@@ -1,0 +1,275 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+# SECTION 1
+#-------------------------------
+[GENTLEMAN,Ethan]
+LoseText = "This will be hard to forget!"
+Pokemon = BUNEARY,6
+Pokemon = PIKIPEK,6
+#-------------------------------
+[ROCKER,Harvey]
+LoseText = "I couldn't find victory, either!"
+Pokemon = GOLDEEN,7
+Pokemon = SEEDOT,8
+Pokemon = FENNEKIN,7
+#-------------------------------
+[YOUNGSTER,Alex]
+LoseText = "Danggit! Every time!"
+Pokemon = RATTATA,15
+	Moves = QUICKATTACK,BITE,TAILWHIP,TACKLE
+#-------------------------------
+[CAMPER,Ralph]
+LoseText = "Rats, you're better than I thought!"
+Pokemon = DEERLING,8
+Pokemon = VULPIX,9
+Pokemon = BUIZEL,8
+#-------------------------------
+[HIKER,Dave]
+LoseText = "At least I have this forest."
+Pokemon = GEODUDE,9
+Pokemon = PHANPY,10
+Pokemon = IGGLYBUFF,10
+#-------------------------------
+[LASS,Jessica]
+LoseText = "Wow, you're good at this!"
+Pokemon = CLEFFA,10
+	Item = ORANBERRY
+Pokemon = DODUO,10
+Pokemon = ESPURR,11
+#-------------------------------
+[COOLTRAINER_M,Max]
+LoseText = "Go ahead, the reward is yours!"
+Pokemon = HIPPOPOTAS,15
+    Item = SMOOTHROCK
+Pokemon = PAWNIARD,15
+    Item = LIFEORB
+	Moves = FURYCUTTER,METALCLAW,TAUNT,SUCKERPUNCH
+	Ability = 0
+Pokemon = STARYU,15
+    Item = ORANBERRY
+	Moves = WATERGUN,CONFUSERAY,RAPIDSPIN,REFLECT
+Pokemon = ANORITH,15
+    Item = LIFEORB
+	Moves = FURYCUTTER,SMACKDOWN,METALCLAW,AQUAJET
+Pokemon = SWINUB,15
+    Ability = 1
+    Item = ORANBERRY
+Pokemon = LILEEP,15
+    Item = ORANBERRY
+	Moves = ABSORB,ACID,CONFUSERAY,INGRAIN
+#-------------------------------
+[COOLTRAINER_M,Max,1]
+LoseText = "Go ahead, the reward is yours!"
+Pokemon = VOLTORB,21
+    Item = LIFEORB
+    Moves = THUNDER,ROLLOUT,CHARGE,SWIFT
+Pokemon = MURKROW,21
+    Ability = 1
+    Item = DAMPROCK
+Pokemon = STARMIE,21
+    Ability = 1
+    Item = SITRUSBERRY
+    Moves = BRINE,RAINDANCE,PSYBEAM,REFLECT
+Pokemon = CROAGUNK,21
+    Ability = 1
+    Item = LIFEORB
+Pokemon = KABUTO,21
+    Ability = 0
+    Item = SITRUSBERRY
+        Moves = ROCKSLIDE,AQUAJET,WATERFALL,RETURN
+Pokemon = CHINCHOU,21
+    Item = SITRUSBERRY
+        Moves = THUNDER,CONFUSERAY,BUBBLEBEAM,THUNDERWAVE
+#-------------------------------
+[SCIENTIST,Charles]
+LoseText = "I couldn't protect my berries!"
+Pokemon = MAGNEMITE,13
+    Item = ORANBERRY
+Pokemon = SKWOVET,14
+    Item = LUMBERRY
+	Ability = 0
+#-------------------------------
+[PICNICKER,Cris]
+LoseText = "I wonder what's inside his pokéball?"
+Pokemon = PURRLOIN,13
+Pokemon = DROWZEE,13
+Pokemon = TYROGUE,14
+#-------------------------------
+[BUGCATCHER,Luca]
+LoseText = "Well fought! I'll have to keep training."
+Pokemon = BUTTERFREE,14
+	Moves = POISONPOWDER,GUST,MINDWAVES,BUGBITE
+Pokemon = PIKACHU,13
+	Moves = QUICKATTACK,THUNDERSHOCK,NUZZLE,GROWL
+Pokemon = SIZZLIPEDE,13
+Pokemon = POLIWAG,14
+#-------------------------------
+[BUGCATCHER,Luca,1]
+LoseText = "Even after beating the gym! Darn."
+Pokemon = BUTTERFREE,16
+	Moves = POISONPOWDER,GUST,MINDWAVES,BUGBITE
+Pokemon = PIKACHU,17
+	Moves = QUICKATTACK,THUNDERSHOCK,NUZZLE,GROWL
+Pokemon = SIZZLIPEDE,17
+Pokemon = POLIWAG,16
+#-------------------------------
+[AROMALADY,Brigitte]
+LoseText = "The smell of losing is not so great..."
+Pokemon = FLABEBE,15
+Pokemon = SNUBBULL,15
+Pokemon = SWIRLIX,15
+#-------------------------------
+[LEADER_Lainie,Lainie]
+LoseText = "Good to make your aquaintance!"
+Pokemon = CUTIEFLY,15
+	Moves = STUNSPORE,FAIRYWIND,ABSORB,REFLECT
+Pokemon = FLABEBE,15
+Pokemon = VANILLITE,15
+Pokemon = MAWILE,15
+	Item = DARKGEM
+Pokemon = SWIRLIX,15
+	Name = Lik
+	Item = SHELLBELL
+	Moves = DRAININGKISS,FAKETEARS,EMBER,PLAYNICE
+# SECTION 2
+#-------------------------------
+[SUPERNERD,Declan]
+LoseText = "I would never train creatures as mainstream as yours..."
+Pokemon = TYNAMO,16
+Pokemon = SKORUPI,16
+Pokemon = BALTOY,16
+#-------------------------------
+[BLACKBELT,Emilio]
+LoseText = "Well, step one could've gone better."
+Pokemon = MACHOP,21
+Pokemon = SCRAGGY,21
+Pokemon = GURDURR,21
+#-------------------------------
+[PSYCHIC_F,Louise]
+LoseText = "...Maybe defeat wasn't that near for you."
+Pokemon = SPOINK,21
+Pokemon = MEDITITE,21
+	Moves = FORCEPALM,MINDWAVES,MEDITATE,FEINT
+Pokemon =  WOOBAT,21
+#-------------------------------
+[BURGLAR,Luke]
+LoseText = "Really? After all three of us?"
+Pokemon = PAWNIARD,21
+Pokemon = VULLABY,21
+Pokemon =  THIEVUL,21
+#-------------------------------
+[BEAUTY,Erin]
+LoseText = "My soul becomes as dying embers!"
+Pokemon = LITLEO,21
+Pokemon = SALANDIT,21
+Pokemon = MONFERNO,21
+#-------------------------------
+[TUBER2_M,Bobby]
+LoseText = "Ride the wave, friend. Go all the way."
+Pokemon = BRIONNE,21
+Pokemon = CHINCHOU,21
+Pokemon = SPHEAL,21
+#-------------------------------
+[POKEMONRANGER_M,Jack]
+LoseText = "To think I'd fail even amongst this grass..."
+Pokemon = GROTLE,21
+Pokemon = LOMBRE,21
+	Moves = MEGADRAIN,ASTONISH,WATERGUN,FURYSWIPES
+Pokemon = APPLIN,21
+#-------------------------------
+[CAMPER,Brian]
+LoseText = "Wow! I bet you're not afraid of anything!"
+Pokemon = ODDISH,17
+Pokemon = EEVEE,17
+Pokemon = SPOINK,17
+#-------------------------------
+[HIKER,Leon]
+LoseText = "Darn! You'll get 'em next time."
+Pokemon = GLIGAR,20
+Pokemon = SLUGMA,21
+	Item = ORANBERRY
+Pokemon = ROSERADE,21
+	Item = POISONGEM
+Pokemon = RHYHORN,20
+#-------------------------------
+[CRUSHGIRL,Abbie]
+LoseText = "Go for the LEGS! THE LEGS! ...Oh. I guess it's over."
+Pokemon = SCRAGGY,20
+Pokemon = COMBUSKEN,20
+Pokemon = SYLVEON,21
+	Item = FAIRYGEM
+Pokemon = CHINCHOU,21
+	Item = ORANBERRY
+#-------------------------------
+[GAMBLER,Dean]
+LoseText = "Heads you win, tails I lose, huh...?"
+Pokemon = MEOWTH,18
+Pokemon = MEOWTH,19
+	Form = 1
+Pokemon = MEOWTH,19
+	Form = 2
+#-------------------------------
+[YOUNGSTER,Chet]
+LoseText = "Wow, you know your stuff!"
+Pokemon = ARON,19
+Pokemon = SABLEYE,19
+Pokemon = PARAS,20
+#-------------------------------
+[YOUNGSTER,Chet,2]
+LoseText = "Lose text."
+Pokemon = ARON,26
+Pokemon = SABLEYE,26
+Pokemon = PARASECT,25
+Pokemon = GOLBAT,25
+Pokemon = MIENFOO,26
+Pokemon = WARTORTLE,25
+#-------------------------------
+[POKEMONBREEDER,Natasha]
+LoseText = "...Noted. Thank you for your cooperation."
+Pokemon = DEDENNE,19
+Pokemon = DUCKLETT,18
+Pokemon = TANGELA,20
+#-------------------------------
+[THEATERNERDS,Joel & Calvin]
+LoseText = "The fault, dear trainer, is not in our Pokémon, but in ourselves."
+Pokemon = TOXEL,19
+Pokemon = CARKOL,20
+Pokemon = BRONZOR,18
+Pokemon = LOUDRED,20
+Pokemon = NOIBAT,19
+Pokemon = YUNGOOS,20
+#-------------------------------
+[BLACKBELT,Adan]
+LoseText = "Oof. Guess I've got a bit of a glass jaw."
+Pokemon = CRANIDOS,21
+Pokemon = KABUTO,21
+Pokemon = JANGMOO,21
+#-------------------------------
+[ENGINEER,Joe]
+LoseText = "I won't give up on them just because nature did."
+Pokemon = TIRTOUGA,21
+Pokemon = TYRUNT,21
+Pokemon = BRONZOR,21
+#-------------------------------
+[LEADER_Bartholomew,Bartholomew]
+LoseText = "Top marks, and my compliments to your Pokémon."
+Pokemon = AMAURA,21
+Pokemon = YANMA,21
+	ITEM = BUGGEM
+	Moves = UTURN,AERIALACE,SONICBOOM,ROOST
+Pokemon = OMANYTE,21
+Pokemon = SHIELDON,21
+Pokemon = ARCHEN,21
+	Item = SHELLBELL
+	Moves = UTURN,PLUCK,ROCKTHROW,DRAGONCLAW
+#-------------------------------
+[BUGCATCHER,Alfie]
+LoseText = "You're scarier than that trail!"
+Pokemon = NOCTOWL,20
+Pokemon = NINJASK,20
+Pokemon = SHEDINJA,20
+#-------------------------------
+[LADY,Lara]
+LoseText = "I don't have that strength after all..."
+Pokemon = CARVANHA,21
+Pokemon = NIDORINA,21
+Pokemon = FEAROW,21

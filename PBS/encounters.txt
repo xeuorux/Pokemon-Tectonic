@@ -1,0 +1,136 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+[002] # Forest Cave
+Cave,20
+    20,SHUPPET,8,11
+    15,GULPIN,8,11
+    15,ROGGENROLA,8,11
+    20,BALTOY,8,11
+    10,SWINUB,8,11
+    10,PAWNIARD,8,11
+    10,NOIBAT,8,11
+#-------------------------------
+[003] # Savannah Route
+Land,20
+    10,CHINGLING,14,16
+    15,POOCHYENA,14,16
+    15,SANDSHREW,14,16
+    10,LEDYBA,14,16
+    10,FURRET,15,16
+    10,FARFETCHD_1,14,16
+    10,NIDORANfE,13,15
+    10,NIDORANmA,13,15
+    10,YAMPER,14,16
+#-------------------------------
+[005] # River Route
+Land,20
+    15,DROWZEE,15,17
+    15,BIBAREL,15,17
+    10,BUIZEL,15,17
+    10,TYMPOLE,15,17
+    15,MEOWTH_2,15,17
+    10,SQUIRTLE,14,15
+    15,PSYDUCK,15,17
+    10,AXEW,15,17
+#-------------------------------
+[004] # Big Cave B1
+Cave,20
+    20,ZUBAT,17,19
+    10,TYNAMO,17,19
+    10,MAWILE,17,19
+    10,SABLEYE,17,19
+    15,GEODUDE,17,19
+    15,PARAS,17,19
+    10,ARON,17,19
+    10,ROLYCOLY,17,19
+#-------------------------------
+[007] # Big Cave B2
+Cave,20
+    20,ZUBAT,17,19
+    10,TYNAMO,17,19
+    10,MAWILE,17,19
+    10,SABLEYE,17,19
+    15,GEODUDE,17,19
+    15,PARAS,17,19
+    10,ARON,17,19
+    10,ROLYCOLY,17,19
+#-------------------------------
+[009] # River Grove
+Land,20
+    50,APPLIN,15,17
+    50,MINCCINO,15,17
+#-------------------------------
+[011] # Oasis Town Hidden
+Land,20
+    33,ANORITH,15,17
+    34,MIENFOO,15,17
+    33,LILEEP,15,17
+#-------------------------------
+[017] # Forest Cave B2
+Cave,20
+    15,WOOBAT,19,22
+    10,TOXEL,19,22
+    10,MAKUHITA,19,22
+    10,SIZZLIPEDE,19,22
+    10,HIPPOPOTAS,19,22
+	15,DIGLETT,19,22
+	15,WHISMUR,19,22
+#-------------------------------
+[018] # Forest Cave - Surfboard
+Cave,20
+    15,WOOBAT,19,22
+    10,TOXEL,19,22
+    10,MAKUHITA,19,22
+    10,SIZZLIPEDE,19,22
+    10,HIPPOPOTAS,19,22
+	15,DIGLETT,19,22
+	15,WHISMUR,19,22
+#-------------------------------
+[020] # Short Route
+Land,20
+    15,PIDGEY,5,7
+    10,BUNNELBY,5,7
+    10,WEEDLE,4,6
+    10,CATERPIE,4,6
+    10,GOSSIFLEUR,5,7
+    10,FENNEKIN,5,7
+    10,SKWOVET,5,7
+    10,VENONAT,5,7
+    10,HOOTHOOT,5,7
+#-------------------------------
+[022] # Forest Crossroads
+Land,20
+    15,RATTATA_1,6,8
+    10,PATRAT,6,8
+    10,IGGLYBUFF,6,8
+    10,NICKIT,6,8
+    15,KRICKETOT,6,8
+    10,WOOPER,6,8
+    10,STUNKY,6,8
+    10,DRATINI,6,8
+#-------------------------------
+[043] # Forest Route
+Land,20
+    15,BUNEARY,8,10
+    15,PIKIPEK,8,10
+    9,METAPOD,7,9
+    9,KAKUNA,7,9
+    10,GROWLITHE,8,10
+    10,SEEDOT,8,10
+    10,AZURILL,8,10
+    12,PICHU,8,10
+#-------------------------------
+[048] # Flower City
+Land,20
+    10,FLABEBE,9,11
+    10,FLABEBE_1,9,11
+    10,FLABEBE_2,9,11
+    10,FLABEBE_3,9,11
+    10,FLABEBE_4,9,11
+    50,RATTATA,9,11
+#-------------------------------
+[010] # Oasis Town
+Land,20
+    33,DUCKLETT,15,17
+    34,CACNEA,15,17
+	33,LOTAD,15,17
