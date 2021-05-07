@@ -655,7 +655,7 @@ class PokemonPartyPanel < SpriteWrapper
             status = GameData::Status::DATA.keys.length / 2
           elsif @pokemon.status != :NONE
             status = GameData::Status.get(@pokemon.status).id_number
-			status = 7 if @pokemon.status==:POISON && @pokemon.statusCount>0
+			status = 8 if @pokemon.status==:POISON && @pokemon.statusCount>0
           elsif @pokemon.pokerusStage == 1
             status = GameData::Status::DATA.keys.length / 2 + 1
           end
@@ -725,6 +725,7 @@ class PokemonSummary_Scene
       status = GameData::Status::DATA.keys.length / 2
     elsif @pokemon.status != :NONE
       status = GameData::Status.get(@pokemon.status).id_number
+	  status = 8 if @pokemon.status==:POISON && @pokemon.statusCount>0
     elsif @pokemon.pokerusStage == 1
       status = GameData::Status::DATA.keys.length / 2 + 1
     end

@@ -121,9 +121,12 @@ Pokemon = SWIRLIX,15
 [LEADER_Lainie,Lainie]
 LoseText = "Good to make your aquaintance!"
 Pokemon = CUTIEFLY,15
-	Moves = STUNSPORE,FAIRYWIND,ABSORB,REFLECT
+	Moves = STUNSPORE,FAIRYWIND,POUT,REFLECT
+	Ability = 2
 Pokemon = FLABEBE,15
 Pokemon = VANILLITE,15
+	Moves = ICYWIND,TAUNT,FAIRYWIND,SWAGGER
+	Ability = 2
 Pokemon = MAWILE,15
 	Item = DARKGEM
 Pokemon = SWIRLIX,15

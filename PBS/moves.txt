@@ -823,6 +823,6 @@
 803,GRANITEHEAD,Granite Head,0FB,120,ROCK,Physical,100,10,0,NearOther,0,abef,"TODO"
 804,TURBULENCE,Turbulence,013,100,FLYING,Special,50,10,0,Other,0,bce,"TODO"
 805,HEAVYSTORM,Heavy Storm,00C,110,FLYING,Special,85,10,10,Other,0,bef,"TODO"
-806,BLUSTER,Bluster,020,50,FLYING,Special,90,10,70,NearOther,0,bef,"The user fires a stormy gust at the target. It has a high chance to also raise the user's Sp. Atk stat."
+806,BLUSTER,Bluster,020,50,FLYING,Special,90,10,70,NearOther,0,bef,"The user fires a stormy gust at the target. It has a high chance to also raise the user's Sp. Atk."
 807,SHREDSHOT,Shred Shot,511,55,STEEL,Special,100,40,100,NearOther,0,befn,"TODO"
 808,SHARDS,Shards,511,90,STEEL,Special,100,10,100,NearOther,0,bef,"TODO"
