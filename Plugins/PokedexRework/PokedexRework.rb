@@ -10,7 +10,6 @@ end
 
 
 def setAllPokemonSeen
-  pbMessage("The Pokédex is loading all commonly known Pokémon...")
   $Trainer.pokedex.unlock(-1)
   legendaries1 = [144,145,146,150,151]
   legendaries2 = [243,244,245,249,250,251]
@@ -22,12 +21,11 @@ def setAllPokemonSeen
   legendaries8 = (888..898).to_a
   legendaries = [legendaries1,legendaries2,legendaries3,legendaries4,legendaries5,legendaries6,legendaries7,legendaries8].flatten
   GameData::Species.each do |species_data|
-	  next if legendaries.include?(species_data.id)
+	  next if species_data.form != 0 || legendaries.include?(species_data.id_number)
       sp = species_data.species
       $Trainer.pokedex.set_seen(sp,false)
   end
   $Trainer.pokedex.refresh_accessible_dexes()
-  pbMessage("Loading complete!")
 end
 
 class PokemonPokedex_Scene
@@ -732,9 +730,7 @@ class PokemonPokedexInfo_Scene
     formname = "" 
     base = Color.new(64,64,64)
     shadow = Color.new(176,176,176)
-	
-	drawTextEx(overlay,150,190,450,1,"!Under Construction!",base,shadow)
-	
+
     for i in @available
       if i[2]==@form
         formname = i[0]
@@ -743,11 +739,12 @@ class PokemonPokedexInfo_Scene
         compatibleMoves = fSpecies.tutor_moves
         @scrollableListLength = compatibleMoves.length
         trueIndex = 0
-        compatibleMoves.each_with_index do |moveName,index|
-          next if index < @scroll
-          drawTextEx(overlay,30,84+30*trueIndex,450,1,moveName,base,shadow)
+        compatibleMoves.each_with_index do |move,index|
+          next if (index/2) < @scroll
+		  moveName = GameData::Move.get(move).real_name
+          drawTextEx(overlay,30+(trueIndex % 2) * 200,84+30*(trueIndex/2).floor,450,1,moveName,base,shadow)
           trueIndex += 1
-          break if trueIndex >= 9
+          break if trueIndex >= 18
         end
       end
     end
@@ -936,7 +933,7 @@ class PokemonPokedexInfo_Scene
       if Input.repeat?(Input::UP) && @scroll > 0
         pbPlayCursorSE
         @scroll -= 1
-      elsif Input.repeat?(Input::DOWN) && @scroll < @scrollableListLength - 9
+      elsif Input.repeat?(Input::DOWN) && @scroll < @scrollableListLength/(@page == 5 ? 2 : 1) - 9 
         pbPlayCursorSE
         @scroll += 1
       elsif Input.trigger?(Input::BACK)
