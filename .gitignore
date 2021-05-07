@@ -9,3 +9,12 @@ selpoint.bmp
 RGSS104E.dll
 mkxp.json
 knownpoint.bmp
+Data/Actors.rxdata
+Data/Animations.rxdata
+Data/Armors.rxdata
+Data/Enemies.rxdata
+Data/Items.rxdata
+Data/Skills.rxdata
+Data/States.rxdata
+Data/System.rxdata
+Data/Weapons.rxdata
