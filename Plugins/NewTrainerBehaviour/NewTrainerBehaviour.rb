@@ -38,8 +38,8 @@ Events.onMapChange += proc { |_sender,e|
 
 def pbTrainerDropsItem()
   pbMessage("The fleeing trainer dropped an item!")
-  items = [:POTION,:RARECANDY,:ETHER,:STATUSHEAL,:POKEBALL,:REPEL,:ESCAPEROPE,:PRETTYFEATHER,:POKEDOLL]
-  chances = [15,30,35,50,65,70,75,95,100]
+  items = [:RARECANDY] # [:POTION,:RARECANDY,:ETHER,:STATUSHEAL,:POKEBALL,:REPEL,:ESCAPEROPE,:PRETTYFEATHER,:POKEDOLL]
+  chances =  [100] # [15,30,35,50,65,70,75,95,100]
   number = rand(100)
   echo("#{number}\n")
   itemGiven = :PRETTYFEATHER

@@ -224,7 +224,7 @@ module PokeBattle_BattleCommon
       end
 	  
       # Record the Pokémon's species as owned in the Pokédex
-      if !pbPlayer.hasOwned?(pkmn.species)
+      if !pbPlayer.owned?(pkmn.species)
         pbPlayer.pokedex.set_owned(pkmn.species)
         if $Trainer.has_pokedex
           pbDisplayPaused(_INTL("You register {1} as caught in the Pokédex.",pkmn.name))
@@ -815,6 +815,8 @@ BattleHandlers::EOREffectItem.add(:TOXICORB,
        battler.pbThis,battler.itemName),true)
   }
 )
+
+ItemHandlers::UseOnPokemon.copy(:FULLHEAL,:STATUSHEAL)
 
 
 def pbPickBerry(berry, qty = 1)

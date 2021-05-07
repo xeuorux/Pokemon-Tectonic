@@ -412,9 +412,9 @@ class PokemonPokedexInfo_Scene
     overlay.clear
     # Make certain sprites visible
 	@sprites["infosprite"].visible    = (@page==1)
-    @sprites["areamap"].visible       = false #(@page==7) if @sprites["areamap"]
-    @sprites["areahighlight"].visible = false #(@page==7) if @sprites["areahighlight"]
-    @sprites["areaoverlay"].visible   = false #(@page==7) if @sprites["areaoverlay"]
+    @sprites["areamap"].visible       = false if @sprites["areamap"] #(@page==7) if @sprites["areamap"]
+    @sprites["areahighlight"].visible = false if @sprites["areahighlight"] #(@page==7) if @sprites["areahighlight"]
+    @sprites["areaoverlay"].visible   = false if @sprites["areaoverlay"] #(@page==7) if @sprites["areaoverlay"]
     @sprites["formfront"].visible     = (@page==8) if @sprites["formfront"]
     @sprites["formback"].visible      = (@page==8) if @sprites["formback"]
     @sprites["formicon"].visible      = (@page==8) if @sprites["formicon"]
@@ -1028,14 +1028,14 @@ class PokemonPokedexInfo_Scene
   end
 
   def pbSceneBrief
-    pbPlayCrySpecies(@species,@form)
+    GameData::Species.play_cry_from_species(@species,@form)
     loop do
       Graphics.update
       Input.update
       pbUpdate
       if Input.trigger?(Input::A)
         pbSEStop
-        pbPlayCrySpecies(@species,@form)
+		GameData::Species.play_cry_from_species(@species,@form)
       elsif Input.trigger?(Input::B)
         pbPlayCloseMenuSE
         break

@@ -1037,16 +1037,16 @@ class PokeBattle_Move
     atk, atkStage = pbGetAttackStats(user,target)
     if !target.hasActiveAbility?(:UNAWARE) || @battle.moldBreaker
       atkStage = 6 if target.damageState.critical && atkStage<6
-	  calc = stageMul[atkStage]/stageDiv[atkStage]
-	  calc = (calc + 1.0)/2.0 if user.boss
+	  calc = stageMul[atkStage].to_f/stageDiv[atkStage].to_f
+	  calc = (calc.to_f + 1.0)/2.0 if user.boss
       atk = (atk.to_f*calc).floor
     end
     # Calculate target's defense stat
     defense, defStage = pbGetDefenseStats(user,target)
     if !user.hasActiveAbility?(:UNAWARE)
       defStage = 6 if target.damageState.critical && defStage>6
-	  calc = stageMul[defStage]/stageDiv[defStage]
-	  calc = (calc + 1.0)/2.0 if target.boss
+	  calc = stageMul[defStage].to_f/stageDiv[defStage].to_f
+	  calc = (calc.to_f + 1.0)/2.0 if target.boss
       defense = (defense.to_f*calc).floor
     end
     # Calculate all multiplier effects
@@ -1276,10 +1276,10 @@ class PokeBattle_Move
     evaStage = [[modifiers[:evasion_stage], -6].max, 6].min + 6
     stageMul = [3,3,3,3,3,3, 3, 4,5,6,7,8,9]
     stageDiv = [9,8,7,6,5,4, 3, 3,3,3,3,3,3]
-    accuracy = 100.0 * stageMul[accStage] / stageDiv[accStage]
-    evasion  = 100.0 * stageMul[evaStage] / stageDiv[evaStage]
-    accuracy = (accuracy * modifiers[:accuracy_multiplier]).round
-    evasion  = (evasion  * modifiers[:evasion_multiplier]).round
+    accuracy = 100.0 * stageMul[accStage].to_f / stageDiv[accStage].to_f
+    evasion  = 100.0 * stageMul[evaStage].to_f / stageDiv[evaStage].to_f
+    accuracy = (accuracy.to_f * modifiers[:accuracy_multiplier].to_f).round
+    evasion  = (evasion.to_f  * modifiers[:evasion_multiplier].to_f).round
     evasion = 1 if evasion < 1
     # Calculation
 	calc = accuracy.to_f / evasion.to_f
@@ -1626,7 +1626,7 @@ class PokeBattle_Battler
     end
     # Trying to replace a status problem with another one
     if self.status != :NONE && !ignoreStatus && !selfInflicted
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...",pbThis(true))) if showMessages
+      @battle.pbDisplay(_INTL("{1} already has a status problem...",pbThis(true))) if showMessages
       return false
     end
     # Trying to inflict a status problem on a Pokémon behind a substitute
@@ -2709,9 +2709,9 @@ class PokeBattle_Move
     return if target.damageState.disguise
 	if Effectiveness.hyper_effective?(target.damageState.typeMod)
 	  if numTargets>1
-        @battle.pbDisplay(_INTL("It's <b>hyper effective</b> on {1}!",target.pbThis(true)))
+        @battle.pbDisplay(_INTL("It's hyper effective on {1}!",target.pbThis(true)))
       else
-        @battle.pbDisplay(_INTL("It's <b>hyper effective</b>!"))
+        @battle.pbDisplay(_INTL("It's hyper effective!"))
       end
     elsif Effectiveness.super_effective?(target.damageState.typeMod)
       if numTargets>1
