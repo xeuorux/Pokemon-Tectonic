@@ -1,6 +1,5 @@
 *.ini
 *.dat
-*.rxdata
 Data/debuglog.txt
 zlib1.dll
 x64-msvcrt-ruby300.dll
