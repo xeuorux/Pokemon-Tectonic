@@ -423,8 +423,8 @@ class PokemonPokedexInfo_Scene
 	shadow   = Color.new(88, 88, 80)
 	pageTitles = ["INFO", "ABILITIES", "STATS", "LEVEL UP MOVES", "TUTOR MOVES", "EVOLUTIONS", "AREA", "FORMS"]
 	formTitle = pageTitles[page-1]
-	drawFormattedTextEx(overlay, 60, 4, Graphics.width, "#{formTitle}", base, shadow, 18)
-	drawFormattedTextEx(overlay, 250, 4, Graphics.width, "[#{page}/8]", base, shadow, 18)
+	drawFormattedTextEx(overlay, 60, 2, Graphics.width, "<outln2>#{formTitle}</outln2>", base, shadow, 18)
+	drawFormattedTextEx(overlay, 250, 2, Graphics.width, "<outln2>[#{page}/8]</outln2>", base, shadow, 18)
     # Draw page-specific information
     case page
     when 1; drawPageInfo
@@ -1041,5 +1041,64 @@ class PokemonPokedexInfo_Scene
         break
       end
     end
+  end
+end
+
+
+class PokeBattle_Scene
+
+	def pbStartSceneSingle(species)   # For use from a Pokémon's summary screen
+		region = -1
+		if Settings::USE_CURRENT_REGION_DEX
+		  region = pbGetCurrentRegion
+		  region = -1 if region >= $Trainer.pokedex.dexes_count - 1
+		else
+		  region = $PokemonGlobal.pokedexDex   # National Dex -1, regional Dexes 0, 1, etc.
+		end
+		dexnum = pbGetRegionalNumber(region,species)
+		dexnumshift = Settings::DEXES_WITH_OFFSETS.include?(region)
+		
+		species_data = GameData::Species.get(species)
+		  color  = species_data.color
+		  type1  = species_data.type1
+		  type2  = species_data.type2 || type1
+		  shape  = species_data.shape
+		  height = species_data.height
+		  weight = species_data.weight
+		  
+		  abilities = species_data.abilities
+          lvlmoves = species_data.moves
+		  tutormoves = species_data.tutor_moves
+		  
+		  # 0 = National Species
+          # 1 = Name
+          # 2 = Height
+          # 3 = Weight
+          # 4 = Number
+          # 5 = Shift
+          # 6 = 1st Type
+          # 7 = 2nd Type
+          # 8 = Color
+          # 9 = Shape
+          # 10 Abilities
+          # 11 Level Up Moves
+		  # 12 Tutor Moves
+		  
+		dexlist = [[species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves]]
+		@scene.pbStartScene(dexlist,0,region)
+		@scene.pbScene
+		@scene.pbEndScene
+	  end
+
+
+  #=============================================================================
+  # Shows the Pokédex entry screen for a newly caught Pokémon
+  #=============================================================================
+  def pbShowPokedex(species)
+    pbFadeOutIn {
+      scene = PokemonPokedexInfo_Scene.new
+      screen = PokemonPokedexInfoScreen.new(scene)
+      screen.pbStartSceneSingle(species)
+    }
   end
 end

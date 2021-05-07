@@ -229,7 +229,7 @@ module PokeBattle_BattleCommon
         if $Trainer.has_pokedex
           pbDisplayPaused(_INTL("You register {1} as caught in the Pokédex.",pkmn.name))
           pbPlayer.pokedex.register_last_seen(pkmn)
-          @scene.pbShowPokedex(GameData::Species.get(pkmn.species).id_number)
+          @scene.pbShowPokedex(pkmn.species)
         end
       end
       # Record a Shadow Pokémon's species as having been caught
@@ -451,32 +451,6 @@ def pbHallOfFameEntry(league=true)
   screen.pbStartScreenEntry
 end
 
-
-BattleHandlers::StatusCureItem.add(:ASPEARBERRY,
-  proc { |item,battler,battle,forced|
-    next false if !forced && !battler.canConsumeBerry?
-    next false if battler.status != :FROZEN
-    itemName = GameData::Item.get(item).name
-    PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
-    battle.pbCommonAnimation("EatBerry",battler) if !forced
-    battler.pbCureStatus(forced)
-    battle.pbDisplay(_INTL("{1}'s {2} unchilled it!",battler.pbThis,itemName)) if !forced
-    next true
-  }
-)
-
-ItemHandlers::UseOnPokemon.add(:ICEHEAL,proc { |item,pkmn,scene|
-  if pkmn.fainted? || pkmn.status != :FROZEN
-    scene.pbDisplay(_INTL("It won't have any effect."))
-    next false
-  end
-  pkmn.heal_status
-  scene.pbRefresh
-  scene.pbDisplay(_INTL("{1} was unchilled out.",pkmn.name))
-  next true
-})
-
-ItemHandlers::UseOnPokemon.copy(:ICEHEAL,:ASPEARBERRY)
 
 module PokeBattle_BattleCommon
 	  #=============================================================================
@@ -806,17 +780,6 @@ class PokemonSummary_Scene
     end
   end
 end
-
-
-BattleHandlers::EOREffectItem.add(:TOXICORB,
-  proc { |item,battler,battle|
-    next if !battler.pbCanPoison?(nil,false)
-    battler.pbPoison(nil,_INTL("{1} was toxified by the {2}!",
-       battler.pbThis,battler.itemName),true)
-  }
-)
-
-ItemHandlers::UseOnPokemon.copy(:FULLHEAL,:STATUSHEAL)
 
 
 def pbPickBerry(berry, qty = 1)

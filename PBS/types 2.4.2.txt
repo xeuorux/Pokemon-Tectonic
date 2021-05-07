@@ -2,12 +2,13 @@
 Name=Normal
 InternalName=NORMAL
 Weaknesses=FIGHTING
+Immunities=GHOST
 
 [1]
 Name=Fighting
 InternalName=FIGHTING
 Weaknesses=FLYING,PSYCHIC,FAIRY
-Resistances=ROCK,DARK,BUG
+Resistances=ROCK,DARK,FIRE
 
 [2]
 Name=Flying
@@ -20,7 +21,7 @@ Immunities=GROUND
 Name=Poison
 InternalName=POISON
 Weaknesses=GROUND,PSYCHIC
-Resistances=FIGHTING,POISON,BUG,FAIRY,WATER
+Resistances=FIGHTING,POISON,BUG,FAIRY
 
 [4]
 Name=Ground
@@ -32,27 +33,27 @@ Immunities=ELECTRIC
 [5]
 Name=Rock
 InternalName=ROCK
-Weaknesses=FIGHTING,WATER,GRASS,STEEL
-Resistances=NORMAL,FLYING,POISON,FIRE,ICE
+Weaknesses=FIGHTING,WATER,GRASS
+Resistances=NORMAL,FLYING,POISON,FIRE
 
 [6]
 Name=Bug
 InternalName=BUG
-Weaknesses=FLYING,ROCK
-Resistances=FIGHTING,GROUND,GRASS
+Weaknesses=FLYING,ROCK,FIRE
+Resistances=FIGHTING,GROUND,GRASS,GHOST,FAIRY
 
 [7]
 Name=Ghost
 InternalName=GHOST
 Weaknesses=DARK,GHOST
-Resistances=POISON
+Resistances=POISON,NORMAL
 Immunities=FIGHTING
 
 [8]
 Name=Steel
 InternalName=STEEL
-Weaknesses=FIGHTING,GROUND,FIRE,DRAGON,PSYCHIC
-Resistances=NORMAL,ROCK,BUG,STEEL,ICE,FAIRY,GRASS,FLYING
+Weaknesses=FIGHTING,GROUND,FIRE,DRAGON
+Resistances=NORMAL,ROCK,BUG,STEEL,ICE,FAIRY,GRASS
 Immunities=POISON
 
 [9]
@@ -78,8 +79,8 @@ Resistances=STEEL,FIRE,WATER,ICE
 Name=Grass
 InternalName=GRASS
 IsSpecialType=true
-Weaknesses=BUG,FIRE,ICE,POISON,FLYING
-Resistances=GROUND,WATER,GRASS,ELECTRIC,FAIRY,GHOST,FIGHTING,PSYCHIC
+Weaknesses=BUG,FIRE,ICE,POISON
+Resistances=GROUND,WATER,GRASS,ELECTRIC,FAIRY,GHOST,FIGHTING
 
 [13]
 Name=Electric
@@ -93,14 +94,14 @@ Name=Psychic
 InternalName=PSYCHIC
 IsSpecialType=true
 Weaknesses=BUG,GHOST,DARK
-Resistances=FIGHTING,PSYCHIC,STEEL
+Resistances=FIGHTING,PSYCHIC,ICE
 
 [15]
 Name=Ice
 InternalName=ICE
 IsSpecialType=true
-Weaknesses=FIGHTING,ROCK,STEEL
-Resistances=ICE,WATER,FIRE
+Weaknesses=FIGHTING,FIRE,STEEL
+Resistances=ICE,WATER,FLYING
 
 [16]
 Name=Dragon
@@ -122,4 +123,5 @@ Name=Fairy
 InternalName=FAIRY
 IsSpecialType=true
 Weaknesses=POISON,STEEL
-Resistances=FIGHTING,DARK,BUG,DRAGON
+Resistances=FIGHTING,DARK
+Immunities=DRAGON
