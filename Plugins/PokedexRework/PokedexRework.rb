@@ -599,19 +599,37 @@ class PokemonPokedexInfo_Scene
         growthRateString = growthRateToString(growthRate)
         otherStats.push(growthRateString)
         rareness = fSpecies.catch_rate
-        if rareness>= 200
-          otherStats.push("F")
-        elsif rareness >= 100
-          otherStats.push("D")
-        elsif rareness >= 50
-          otherStats.push("C")
-        elsif rareness >= 30
+		
+		if rareness>= 250
+	      otherStats.push("F")
+		elsif rareness>= 230
+	      otherStats.push("D-")
+		elsif rareness>= 210
+	      otherStats.push("D")
+		elsif rareness>= 190
+	      otherStats.push("D+")
+		elsif rareness>= 170
+	      otherStats.push("C-")
+		elsif rareness>= 150
+	      otherStats.push("C")
+	    elsif rareness>= 130
+	      otherStats.push("C+")
+	    elsif rareness>= 110
+	      otherStats.push("B-")
+        elsif rareness>= 90
           otherStats.push("B")
-        elsif rareness >= 10
+        elsif rareness >= 70
+          otherStats.push("B+")
+        elsif rareness >= 50
+          otherStats.push("A-")
+        elsif rareness >= 30
           otherStats.push("A")
+        elsif rareness >= 10
+          otherStats.push("A+")
         else
           otherStats.push("S")
         end
+
         otherStats.push(fSpecies.base_exp)
         compatibility = fSpecies.egg_groups
         compat1 = "None"

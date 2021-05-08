@@ -377,7 +377,7 @@ Events.onStepTakenFieldMovement += proc { |_sender,e|
   if $scene.is_a?(Scene_Map)
     if event == $game_player
 	  currentTag = $game_player.pbTerrainTag
-      if currentTag.can_surf && !$PokemonGlobal.surfing
+      if currentTag.can_surf && !$PokemonGlobal.surfing && $PokemonGlobal.bridge == 0
 		pbStartSurfing()
       end
     end

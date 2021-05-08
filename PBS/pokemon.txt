@@ -5983,8 +5983,8 @@ Name = Marill
 InternalName = MARILL
 Type1 = WATER
 Type2 = FAIRY
-BaseStats = 70,45,50,40,20,50
-#Total: 275
+BaseStats = 70,55,55,40,35,50
+#Total: 305
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 88
@@ -6010,7 +6010,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = AZUMARILL,Level,25
+Evolutions = AZUMARILL,Level,31
 #-------------------------------
 [184]
 Name = Azumarill

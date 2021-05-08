@@ -192,7 +192,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:TRAPPER,
 
 BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
   proc { |ability,user,target,move,battle|
-    next if !move.SpecialMove?(user)
+    next if !move.specialMove?(user)
     next if user.poisoned? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
     if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&

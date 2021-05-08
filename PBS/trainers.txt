@@ -275,4 +275,4 @@ Pokemon = SHEDINJA,20
 LoseText = "I don't have that strength after all..."
 Pokemon = CARVANHA,21
 Pokemon = NIDORINA,21
-Pokemon = FEAROW,21
+Pokemon = SPEAROW,21
