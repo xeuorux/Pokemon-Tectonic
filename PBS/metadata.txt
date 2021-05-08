@@ -32,6 +32,7 @@ MapPosition = 0,13,12
 [004]
 # Big Cave B1
 ShowArea = false
+Bicycle = true
 MapPosition = 0,13,12
 #-------------------------------
 [005]
@@ -50,6 +51,7 @@ MapPosition = 0,13,11
 # Big Cave B2
 Outdoor = true
 ShowArea = true
+Bicycle = true
 MapPosition = 0,13,10
 MapSize = 2,11
 #-------------------------------
@@ -64,6 +66,7 @@ MapPosition = 0,14,10
 #-------------------------------
 [010]
 # Oasis Town
+Bicycle = true
 MapPosition = 0,13,10
 BattleBack = indoor3
 Environment = Rock

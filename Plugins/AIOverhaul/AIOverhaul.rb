@@ -138,7 +138,7 @@ class PokeBattle_AI
           totalScore *= 2
         end
 		@battle.messagesBlocked = true
-		if move.pbMoveFailed?(user,[],false)
+		if move.pbMoveFailed?(user,[])
           totalScore = 0
         end
 		@battle.messagesBlocked = false
@@ -153,7 +153,7 @@ class PokeBattle_AI
           score *= 2
         end
 		@battle.messagesBlocked = true
-		if move.pbMoveFailed?(user,[],false)
+		if move.pbMoveFailed?(user,[])
           totalScore = 0
         end
 		@battle.messagesBlocked = false
@@ -174,7 +174,7 @@ class PokeBattle_AI
             score *= 2
           end
 		  @battle.messagesBlocked = true
-		  if move.pbMoveFailed?(user,[b],false)
+		  if move.pbMoveFailed?(user,[b])
             totalScore = 0
           end
 		  @battle.messagesBlocked = false

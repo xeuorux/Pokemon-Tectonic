@@ -93,6 +93,10 @@ def scrubBossBattleSettings
   $game_variables[100] = nil
 end
 
+def pbPlayCrySpecies(species, form = 0, volume = 90, pitch = nil)
+  GameData::Species.play_cry_from_species(species, form, volume, pitch)
+end
+
 module GameData
   class Species
 	def self.sprite_bitmap_from_pokemon(pkmn, back = false, species = nil)

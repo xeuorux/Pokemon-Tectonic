@@ -78,3 +78,13 @@ class PokeBattle_Move_0E0
 	  end
 end
 
+#===============================================================================
+# Halves the target's current HP. (Nature's Madness, Super Fang)
+#===============================================================================
+class PokeBattle_Move_06C < PokeBattle_FixedDamageMove
+  def pbFixedDamage(user,target)
+	denom = target.boss ? 6.0 : 2.0
+    return (target.hp/denom).round
+  end
+end
+
