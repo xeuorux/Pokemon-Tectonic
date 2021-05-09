@@ -1,7 +1,7 @@
 # See the documentation on the wiki to learn how to edit this file.,,,,,,,,,,,,,
 #-------------------------------,,,,,,,,,,,,,
 1,MEGAHORN,Megahorn,000,120,BUG,Physical,85,10,0,NearOther,0,abef,"Using its tough and impressive horn, the user rams into the target with no letup."
-2,ATTACKORDER,Attack Order,005,80,BUG,Physical,100,15,100,NearOther,0,bef,The user calls out its underlings to sting the target. Poisons the target.
+2,ATTACKORDER,Attack Order,000,90,BUG,Physical,100,15,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Critical hits land more easily."
 3,BUGBUZZ,Bug Buzz,046,90,BUG,Special,100,10,10,NearOther,0,befk,The user vibrates its wings to generate a damaging sound wave. It may also lower the target's Sp. Def stat.
 4,FIRSTIMPRESSION,First Impression,174,90,BUG,Physical,100,10,0,NearOther,2,abef,"Although this move has great power, it only works the first turn the user is in battle."
 5,POLLENPUFF,Pollen Puff,16F,90,BUG,Special,100,15,0,NearOther,0,befn,"Fires an exploding pollen puff at enemies, or a HP-restoring one at allies."
