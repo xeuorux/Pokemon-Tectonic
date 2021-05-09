@@ -199,7 +199,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} poisoned {3}! Its Special Attack is reduced!",target.pbThis,target.abilityName,user.pbThis(true))
+        msg = _INTL("{1}'s {2} poisoned {3}! Its Sp. Atk is reduced!",target.pbThis,target.abilityName,user.pbThis(true))
       end
       user.pbPoison(target,msg)
     end

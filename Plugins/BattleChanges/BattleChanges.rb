@@ -1539,14 +1539,14 @@ class PokeBattle_Battler
         if newStatusCount>0
           @battle.pbDisplay(_INTL("{1} was toxified!", pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} was poisoned!", pbThis))
+          @battle.pbDisplay(_INTL("{1} was poisoned! Its Sp. Atk is reduced!", pbThis))
         end
       when :BURN
-        @battle.pbDisplay(_INTL("{1} was burned!", pbThis))
+        @battle.pbDisplay(_INTL("{1} was burned! Its Attack is reduced!", pbThis))
       when :PARALYSIS
         @battle.pbDisplay(_INTL("{1} is paralyzed! It may be unable to move!", pbThis))
       when :FROZEN
-        @battle.pbDisplay(_INTL("{1} was chilled!", pbThis))
+        @battle.pbDisplay(_INTL("{1} was chilled! It's slower and takes more damage!", pbThis))
       end
     end
     PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}") if newStatus == :SLEEP
@@ -2282,6 +2282,7 @@ class PokeBattle_Battler
     @battle.eachBattler { |b| @battle.successStates[b.index].updateSkill }
     # Shadow Pokémon triggering Hyper Mode
     pbHyperMode if @battle.choices[@index][0]!=:None   # Not if self is replaced
+	@battle.scene.pbRefresh()
     # End of move usage
     pbEndTurn(choice)
     # Instruct
@@ -2519,7 +2520,6 @@ class PokeBattle_Battler
       move.pbEffectAgainstTarget(user,b)
     end
     move.pbEffectGeneral(user)
-	@battle.scene.pbRefresh()
     targets.each { |b| b.pbFaint if b && b.fainted? }
     user.pbFaint if user.fainted?
     # Additional effect
