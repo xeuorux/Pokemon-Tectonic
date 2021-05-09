@@ -477,7 +477,7 @@
 462,GUILLOTINE,Guillotine,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"A vicious, tearing attack with big pincers. The target will faint instantly if this attack hits."
 463,HORNDRILL,Horn Drill,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"The user stabs the foe with a horn that rotates like a drill. If it hits, the target faints instantly."
 464,NATURALGIFT,Natural Gift,096,1,NORMAL,Physical,100,15,0,NearOther,0,bef,The user draws power to attack by using its held Berry. The Berry determines its type and power.
-465,PRESENT,Present,094,1,NORMAL,Physical,100,15,0,NearOther,0,bef,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however."
+465,PRESENT,Present,16F,90,ICE,Special,100,15,0,NearOther,0,befn,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however."
 466,RETURN,Return,089,1,NORMAL,Physical,100,20,0,NearOther,0,abef,A full-power attack that grows more powerful the more the user likes its Trainer.
 467,SONICBOOM,Sonic Boom,000,40,NORMAL,Special,100,30,0,NearOther,1,befk,The target is hit with a destructive shock wave. This move always hits first.
 468,SPITUP,Spit Up,113,1,NORMAL,Special,100,10,0,NearOther,0,bf,The power stored using the move Stockpile is released all at once in an attack.
@@ -564,7 +564,7 @@
 549,SWAGGER,Swagger,041,0,NORMAL,Status,85,15,0,NearOther,0,bce,"The user enrages and confuses the target. However, it also sharply raises the target's Attack stat."
 550,SWALLOW,Swallow,114,0,NORMAL,Status,0,10,0,User,0,d,The power stored using the move Stockpile is absorbed by the user to heal its HP.
 551,SWEETSCENT,Sweet Scent,048,0,NORMAL,Status,100,20,0,AllNearFoes,0,bce,"A sweet scent that lowers the foe's evasiveness. It also lures wild Pokémon if used in grass, etc."
-552,SWORDSDANCE,Swords Dance,02E,0,NORMAL,Status,0,10,0,User,0,do,A frenetic dance to uplift the fighting spirit. It sharply raises the user's Attack stat.
+552,SWORDSDANCE,Swords Dance,02E,0,STEEL,Status,0,10,0,User,0,do,A frenetic dance to uplift the fighting spirit. It sharply raises the user's Attack stat.
 553,TAILWHIP,Tail Whip,043,0,NORMAL,Status,100,30,0,AllNearFoes,0,bce,"The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat."
 554,TEARFULLOOK,Tearful Look,13A,0,NORMAL,Status,0,20,0,NearOther,0,ce,The user gets teary eyed to make the target lose its combative spirit. This lowers the target's Attack and Sp. Atk stats.
 555,TEETERDANCE,Teeter Dance,013,0,NORMAL,Status,100,20,0,AllNearOthers,0,beo,The user performs a wobbly dance that confuses the Pokémon around it.
@@ -705,7 +705,7 @@
 686,DOUBLEIRONBASH,Double Iron Bash,175,60,STEEL,Physical,100,5,30,NearOther,0,abf,"The user rotates, centering the hex nut in its chest, and then strikes twice. May cause flinching."
 687,MIRRORSHOT,Mirror Shot,047,65,STEEL,Special,85,10,30,NearOther,0,bef,The user looses a flash of energy from its polished body. It may also lower the target's accuracy.
 688,MAGNETBOMB,Magnet Bomb,0A5,60,STEEL,Physical,0,20,0,NearOther,0,befn,The user launches steel bombs that stick to the target. This attack will not miss.
-689,GEARGRIND,Gear Grind,0BD,50,STEEL,Physical,90,15,0,NearOther,0,abef,The user attacks by grinding two steel gears against the target.
+689,GEARGRIND,Gear Grind,0BD,50,STEEL,Physical,90,15,0,NearOther,0,abef,The user attacks by grinding two of its steel gears against the target.
 690,METALCLAW,Metal Claw,01C,50,STEEL,Physical,95,35,10,NearOther,0,abef,The target is raked with steel claws. It may also raise the user's Attack stat.
 691,BULLETPUNCH,Bullet Punch,000,40,STEEL,Physical,100,30,0,NearOther,1,abefj,The user strikes the target with tough punches as fast as bullets. This move always goes first.
 692,GYROBALL,Gyro Ball,08D,1,STEEL,Physical,100,5,0,NearOther,0,abefn,"The user tackles the target with a high-speed spin. The slower the user, the greater the damage."
@@ -826,3 +826,4 @@
 806,BLUSTER,Bluster,020,50,FLYING,Special,90,10,70,NearOther,0,bef,"The user fires a stormy gust at the target. It has a high chance to also raise the user's Sp. Atk."
 807,SHREDSHOT,Shred Shot,511,55,STEEL,Special,100,40,100,NearOther,0,befn,"TODO"
 808,SHARDS,Shards,511,90,STEEL,Special,100,10,100,NearOther,0,bef,"TODO"
+809,SPITEFULCHANT,Spiteful Chant,60,GHOST,Special,100,20,100,NearOther,0,befk,"The user unleashes its grudge, damaging the target and cutting 4 PP from the move last used by it."
