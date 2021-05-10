@@ -243,7 +243,7 @@
 235,PYROBALL,Pyro Ball,00A,120,FIRE,Physical,80,5,10,NearOther,0,bef,Attacks by igniting a small stone and launching it as a fiery ball. May cause a burn.
 236,BURNINGJEALOUSY,Burning Jealousy,18B,70,FIRE,Special,100,5,100,AllNearFoes,0,bef,Attacks with energy from jealousy. All opposing Pokémon with stat boosts get burned.
 #-------------------------------,,,,,,,,,,,,,
-237,ZEPHYRWING,Zephyr Wing,0C7,140,FLYING,Physical,90,5,30,Other,0,be,A second-turn attack move where the user sharply raises Sp. Def on the first turn.
+237,ZEPHYRWING,Zephyr Wing,0C7,140,FLYING,Physical,90,5,30,Other,0,bef,A second-turn attack move where the user sharply raises Sp. Def on the first turn.
 238,BRAVEBIRD,Brave Bird,0FB,120,FLYING,Physical,100,15,0,Other,0,abef,The user tucks in its wings and charges from a low altitude. The user also takes serious damage.
 239,DRAGONASCENT,Dragon Ascent,03C,120,FLYING,Physical,100,5,0,NearOther,0,abef,The user soars upward and drops at high speeds. Its Defense and Sp. Def stats are lowered.
 240,HURRICANE,Hurricane,015,110,FLYING,Special,70,10,30,Other,0,bef,The user wraps its foe in a fierce wind that flies up into the sky. It may also confuse the foe.
@@ -821,9 +821,13 @@
 801,BLUNTSTRIKE,Blunt Strike,0FB,55,ROCK,Physical,100,30,0,NearOther,0,abef,"TODO"
 802,STONECHARGE,Stone Charge,0FB,85,ROCK,Physical,100,15,0,NearOther,0,abef,"TODO"
 803,GRANITEHEAD,Granite Head,0FB,120,ROCK,Physical,100,10,0,NearOther,0,abef,"TODO"
-804,TURBULENCE,Turbulence,013,100,FLYING,Special,50,10,0,Other,0,bce,"TODO"
+804,TURBULENCE,Turbulence,013,100,FLYING,Special,50,10,0,Other,0,bef,"TODO"
 805,HEAVYSTORM,Heavy Storm,00C,110,FLYING,Special,85,10,10,Other,0,bef,"TODO"
 806,BLUSTER,Bluster,020,50,FLYING,Special,90,10,70,NearOther,0,bef,"The user fires a stormy gust at the target. It has a high chance to also raise the user's Sp. Atk."
 807,SHREDSHOT,Shred Shot,511,55,STEEL,Special,100,40,100,NearOther,0,befn,"TODO"
 808,SHARDS,Shards,511,90,STEEL,Special,100,10,100,NearOther,0,bef,"TODO"
 809,SPITEFULCHANT,Spiteful Chant,10E,60,GHOST,Special,100,20,100,NearOther,0,befk,"The user unleashes its grudge, damaging the target and cutting 4 PP from the move last used by it."
+810,ENLIGHTENEDHIT,Enlightened Hit,515,90,FIGHTING,Physical,100,15,100,NearOther,0,abef,"TODO"
+811,GRIMEGRAPPLE,Grime Grapple,514,100,POISON,Physical,100,10,100,NearOther,0,abef,"TODO"
+812,VANGUARD,Vanguard,513,0,STEEL,Status,100,20,100,User,0,d,"The user enters a protective stance, boosting both its Def. and Sp. Atk. stats."
+813,FLOWSTATE,Flow State,512,0,WATER,Status,100,20,100,User,0,d,"The user gains an instinctual knowledge of battle, boosting both its Atk. and Sp. Def stats."
