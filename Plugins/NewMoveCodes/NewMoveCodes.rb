@@ -244,3 +244,34 @@ class PokeBattle_Move_511 < PokeBattle_Move
 		user.pbItemHPHealCheck
 	  end
 end
+
+#===============================================================================
+# Increases the user's Attack and Sp. Def by 1 stage each. (Flow State)
+#===============================================================================
+class PokeBattle_Move_512 < PokeBattle_MultiStatUpMove
+  def initialize(battle,move)
+    super
+    @statUp = [PBStats::ATTACK,1,PBStats::SPDEF,1]
+  end
+end
+
+#===============================================================================
+# Increases the user's Sp. Atk and Sp. Def by 1 stage each. (Vanguard)
+#===============================================================================
+class PokeBattle_Move_513 < PokeBattle_MultiStatUpMove
+  def initialize(battle,move)
+    super
+    @statUp = [PBStats::SPATK,1,PBStats::DEFENSE,1]
+  end
+end
+
+#===============================================================================
+# Poison's the user, even if normally immune to poison. (Grime Grapple)
+#===============================================================================
+class PokeBattle_Move_514 < PokeBattle_Move
+  def pbEffectAfterAllHits(user,target)
+    return if target.damageState.unaffected
+	user.pbPoison(nil, _INTL("{1} is poisoned by the grime! Their Sp. Atk is reduced!",
+       user.pbThis),false)
+  end
+end

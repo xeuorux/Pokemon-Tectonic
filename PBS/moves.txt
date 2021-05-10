@@ -355,7 +355,7 @@
 342,DRILLRUN,Drill Run,000,80,GROUND,Physical,95,10,0,NearOther,0,abefh,The user crashes into its target while rotating its body like a drill. Critical hits land more easily.
 343,STOMPINGTANTRUM,Stomping Tantrum,166,85,GROUND,Physical,100,10,0,NearOther,0,abef,The user attacks driven by frustration. Power increases if previous move failed.
 344,BONECLUB,Bone Club,00F,65,GROUND,Physical,85,20,10,NearOther,0,be,The user clubs the target with a bone. It may also make the target flinch.
-345,MUDBOMB,Mud Bomb,047,65,GROUND,Special,95,10,30,NearOther,0,befn,The user launches a hard-packed mud ball to attack. It may also lower the target's accuracy.
+345,MUDBOMB,Mud Bomb,047,65,GROUND,Special,100,10,30,NearOther,0,befn,The user launches a hard-packed mud ball to attack. It may also lower the target's accuracy.
 346,BULLDOZE,Bulldoze,044,60,GROUND,Physical,100,20,100,AllNearOthers,0,bef,The user strikes everything around it by stomping on the ground. It reduces hit Pokémon's Speed.
 347,MUDSHOT,Mud Shot,044,55,GROUND,Special,95,15,100,NearOther,0,bef,The user attacks by hurling a blob of mud at the target. It also reduces the target's Speed.
 348,BONEMERANG,Bonemerang,0BD,50,GROUND,Physical,100,10,0,NearOther,0,bef,"The user throws the bone it holds. The bone loops to hit the target twice, coming and going."
@@ -745,7 +745,7 @@
 726,AQUAJET,Aqua Jet,000,40,WATER,Physical,100,20,0,NearOther,1,abef,The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.
 727,BUBBLE,Bubble,044,40,WATER,Special,100,30,10,AllNearFoes,0,bef,A spray of countless bubbles is jetted at the opposing team. It may also lower the targets' Speed stats.
 728,WATERGUN,Water Gun,000,40,WATER,Special,100,25,0,NearOther,0,bef,The target is blasted with a forceful shot of water.
-729,CLAMP,Clamp,0CF,30,WATER,Physical,85,15,0,NearOther,0,abef,The target is clamped and squeezed by the user's very thick and sturdy shell for four to five turns.
+729,CLAMP,Clamp,0CF,45,WATER,Physical,100,15,0,NearOther,0,abef,The target is clamped and squeezed by the user's very thick and sturdy shell for four to five turns.
 730,WHIRLPOOL,Whirlpool,0D0,35,WATER,Special,85,15,0,NearOther,0,bef,Traps foes in a violent swirling whirlpool for four to five turns.
 731,WATERSHURIKEN,Water Shuriken,0C0,15,WATER,Special,100,20,0,NearOther,1,bef,The user hits the target with throwing stars 2-5 times in a row. This move always goes first.
 732,AQUARING,Aqua Ring,0DA,0,WATER,Status,0,20,0,User,0,d,The user envelops itself in a veil made of water. It regains some HP on every turn.
