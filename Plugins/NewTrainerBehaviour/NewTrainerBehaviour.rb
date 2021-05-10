@@ -41,16 +41,13 @@ def pbTrainerDropsItem()
   items = [:RARECANDY] # [:POTION,:RARECANDY,:ETHER,:STATUSHEAL,:POKEBALL,:REPEL,:ESCAPEROPE,:PRETTYFEATHER,:POKEDOLL]
   chances =  [100] # [15,30,35,50,65,70,75,95,100]
   number = rand(100)
-  echo("#{number}\n")
   itemGiven = :PRETTYFEATHER
   items.each_with_index do |item,index|
-    echo("#{item},")
     if number < chances[index]
       itemGiven = item
       break
     end
   end
-  echo("\n")
   pbReceiveItem(itemGiven)
 end
 

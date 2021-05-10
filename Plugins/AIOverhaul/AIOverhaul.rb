@@ -118,6 +118,136 @@ class PokeBattle_AI
     end
   end
   
+    # Trainer Pokémon calculate how much they want to use each of their moves.
+  def pbRegisterMoveTrainer(user,idxMove,choices,skill)
+    move = user.moves[idxMove]
+    target_data = move.pbTarget(user)
+    if target_data.num_targets > 1
+      # If move affects multiple battlers and you don't choose a particular one
+      totalScore = 0
+      @battle.eachBattler do |b|
+        next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
+        score = pbGetMoveScore(move,user,b,skill)
+        totalScore += ((user.opposes?(b)) ? score : -score)
+      end
+	  if skill>=PBTrainerAI.mediumSkill
+		  @battle.messagesBlocked = true
+		  if move.pbMoveFailed?(user,[])
+			totalScore = 0
+		  end
+		  @battle.messagesBlocked = false
+	  end
+      choices.push([idxMove,totalScore,-1]) if totalScore>0
+    elsif target_data.num_targets == 0
+      # If move has no targets, affects the user, a side or the whole field
+      score = pbGetMoveScore(move,user,user,skill)
+	  if skill>=PBTrainerAI.mediumSkill
+		  @battle.messagesBlocked = true
+		  if move.pbMoveFailed?(user,[])
+			score = 0
+		  end
+		  @battle.messagesBlocked = false
+	  end
+      choices.push([idxMove,score,-1]) if score>0
+    else
+      # If move affects one battler and you have to choose which one
+      scoresAndTargets = []
+      @battle.eachBattler do |b|
+        next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
+        next if target_data.targets_foe && !user.opposes?(b)
+        score = pbGetMoveScore(move,user,b,skill)
+		if skill>=PBTrainerAI.mediumSkill
+		  @battle.messagesBlocked = true
+		  if move.pbMoveFailed?(user,[b])
+            score = 0
+          end
+		  @battle.messagesBlocked = false
+		end
+        scoresAndTargets.push([score,b.index]) if score>0
+      end
+      if scoresAndTargets.length>0
+        # Get the one best target for the move
+        scoresAndTargets.sort! { |a,b| b[0]<=>a[0] }
+        choices.push([idxMove,scoresAndTargets[0][0],scoresAndTargets[0][1]])
+      end
+    end
+  end
+  
+  #=============================================================================
+  # Get a score for the given move being used against the given target
+  #=============================================================================
+  def pbGetMoveScore(move,user,target,skill=100)
+    skill = PBTrainerAI.minimumSkill if skill<PBTrainerAI.minimumSkill
+    score = 100
+    score = pbGetMoveScoreFunctionCode(score,move,user,target,skill)
+    # A score of 0 here means it absolutely should not be used
+    return 0 if score<=0
+    if skill>=PBTrainerAI.mediumSkill
+      # Prefer damaging moves if AI has no more Pokémon or AI is less clever
+      if @battle.pbAbleNonActiveCount(user.idxOwnSide)==0
+        if !(skill>=PBTrainerAI.highSkill && @battle.pbAbleNonActiveCount(target.idxOwnSide)>0)
+          if move.statusMove?
+            score /= 1.5
+          elsif target.hp<=target.totalhp/2
+            score *= 1.5
+          end
+        end
+      end
+      # Don't prefer attacking the target if they'd be semi-invulnerable
+      if skill>=PBTrainerAI.mediumSkill && move.accuracy>0 &&
+         (target.semiInvulnerable? || target.effects[PBEffects::SkyDrop]>=0)
+        miss = true
+        miss = false if user.hasActiveAbility?(:NOGUARD) || target.hasActiveAbility?(:NOGUARD)
+        if miss && pbRoughStat(user,:SPEED,skill)>pbRoughStat(target,:SPEED,skill)
+          # Knows what can get past semi-invulnerability
+          if target.effects[PBEffects::SkyDrop]>=0
+            miss = false if move.hitsFlyingTargets?
+          else
+            if target.inTwoTurnAttack?("0C9","0CC","0CE")   # Fly, Bounce, Sky Drop
+              miss = false if move.hitsFlyingTargets?
+            elsif target.inTwoTurnAttack?("0CA")          # Dig
+              miss = false if move.hitsDiggingTargets?
+            elsif target.inTwoTurnAttack?("0CB")          # Dive
+              miss = false if move.hitsDivingTargets?
+            end
+          end
+        end
+        score -= 80 if miss
+      end
+      # Pick a good move for the Choice items
+      if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
+        if move.baseDamage>=60;     score += 60
+        elsif move.damagingMove?;   score += 30
+        elsif move.function=="0F2"; score += 70   # Trick
+        else;                       score -= 60
+        end
+      end
+      # If user is asleep, prefer moves that are usable while asleep
+      if user.status == :SLEEP && !move.usableWhenAsleep?
+        user.eachMove do |m|
+          next unless m.usableWhenAsleep?
+          score -= 60
+          break
+        end
+      end
+    end
+    # Adjust score based on how much damage it can deal
+    if move.damagingMove?
+      score = pbGetMoveScoreDamage(score,move,user,target,skill)
+    else   # Status moves
+      # Don't prefer attacks which don't deal damage
+      score -= 10
+      # Account for accuracy of move
+      accuracy = pbRoughAccuracy(move,user,target,skill)
+      score *= accuracy/100.0
+      score = 0 if score<=10 && skill>=PBTrainerAI.highSkill
+    end
+    score = score.to_i
+    score = 0 if score<0
+    return score
+  end
+
+  
   def pbRegisterMoveWild(user,idxMove,choices)
     move = user.moves[idxMove]
     target_data = move.pbTarget(user)

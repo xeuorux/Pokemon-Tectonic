@@ -275,3 +275,13 @@ class PokeBattle_Move_514 < PokeBattle_Move
        user.pbThis),false)
   end
 end
+
+#===============================================================================
+# The user is immune to secondary effects of moves against them until their next attack. (Enlightened Hit)
+#===============================================================================
+class PokeBattle_Move_515 < PokeBattle_Move
+  def pbEffectAfterAllHits(user,target)
+    return if target.damageState.unaffected
+	user.effects[PBEffects::Enlightened] = true
+  end
+end

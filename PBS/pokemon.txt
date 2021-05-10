@@ -5646,7 +5646,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PIKACHU,Level,10
+Evolutions = PIKACHU,Level,14
 #-------------------------------
 [173]
 Name = Cleffa
@@ -5713,7 +5713,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = JIGGLYPUFF,Level,10
+Evolutions = JIGGLYPUFF,Level,14
 #-------------------------------
 [175]
 Name = Togepi

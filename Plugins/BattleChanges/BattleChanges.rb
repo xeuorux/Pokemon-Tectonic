@@ -722,6 +722,37 @@ class PokeBattle_Battle
     battler.pbCheckForm
     return true
   end
+  
+  #=============================================================================
+  # Attack phase
+  #=============================================================================
+  def pbAttackPhase
+    @scene.pbBeginAttackPhase
+    # Reset certain effects
+    @battlers.each_with_index do |b,i|
+      next if !b
+      b.turnCount += 1 if !b.fainted?
+      @successStates[i].clear
+      if @choices[i][0]!=:UseMove && @choices[i][0]!=:Shift && @choices[i][0]!=:SwitchOut
+        b.effects[PBEffects::DestinyBond] = false
+        b.effects[PBEffects::Grudge]      = false
+      end
+      b.effects[PBEffects::Rage] = false if !pbChoseMoveFunctionCode?(i,"093")   # Rage
+	  b.effects[PBEffects::Enlightened] = false if !pbChoseMoveFunctionCode?(i,"515")   # Rage
+    end
+    PBDebug.log("")
+    # Calculate move order for this round
+    pbCalculatePriority(true)
+    # Perform actions
+    pbAttackPhasePriorityChangeMessages
+    pbAttackPhaseCall
+    pbAttackPhaseSwitch
+    return if @decision>0
+    pbAttackPhaseItems
+    return if @decision>0
+    pbAttackPhaseMegaEvolution
+    pbAttackPhaseMoves
+  end
 
 
 	def pbEndOfBattle
@@ -1019,6 +1050,38 @@ class PokeBattle_Move
     return @battle.pbRandom(ratios[c])==0
   end
   
+  #=============================================================================
+  # Additional effect chance
+  #=============================================================================
+  def pbAdditionalEffectChance(user,target,effectChance=0)
+    return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
+	return 0 if target.effects[PBEffects::Enlightened]
+    ret = (effectChance>0) ? effectChance : @addlEffect
+    if Settings::MECHANICS_GENERATION >= 6 || @function != "0A4"   # Secret Power
+      ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
+                  user.pbOwnSide.effects[PBEffects::Rainbow]>0
+    end
+    ret = 100 if $DEBUG && Input.press?(Input::CTRL)
+    return ret
+  end
+  
+  # NOTE: Flinching caused by a move's effect is applied in that move's code,
+  #       not here.
+  def pbFlinchChance(user,target)
+    return 0 if flinchingMove?
+    return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
+	return 0 if target.effects[PBEffects::Enlightened]
+    ret = 0
+    if user.hasActiveAbility?(:STENCH,true)
+      ret = 10
+    elsif user.hasActiveItem?([:KINGSROCK,:RAZORFANG],true)
+      ret = 10
+    end
+    ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
+                user.pbOwnSide.effects[PBEffects::Rainbow]>0
+    return ret
+  end
+  
   def pbCalcDamage(user,target,numTargets=1)
     return if statusMove?
     if target.damageState.disguise
@@ -1288,6 +1351,26 @@ class PokeBattle_Move
     end
     return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
   end
+  
+  def pbEffectAgainstTarget(user,target)
+    return if target.damageState.substitute
+    return if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
+	return if target.effects[PBEffects::Enlightened]
+    case user.item_id
+    when :POISONBARB
+      target.pbPoison(user) if target.pbCanPoison?(user,false,self)
+    when :TOXICORB
+      target.pbPoison(user,nil,true) if target.pbCanPoison?(user,false,self)
+    when :FLAMEORB
+      target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+    when :LIGHTBALL
+      target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+    when :KINGSROCK, :RAZORFANG
+      target.pbFlinch(user)
+    else
+      target.pbHeldItemTriggerCheck(user.item,true)
+    end
+  end
 end
 
 
@@ -1483,6 +1566,7 @@ class PokeBattle_Battler
     @effects[PBEffects::SwitchedAlly]        = -1
 	
 	@effects[PBEffects::FlinchedAlready]     = false
+	@effects[PBEffects::Enlightened]		 = false
   end
 
 	def takesSandstormDamage?
@@ -2796,6 +2880,7 @@ module PBEffects
     Assist              = 130
     ConfusionChance     = 131
     FlinchedAlready     = 132
+	Enlightened			= 133
 	
 	#===========================================================================
     # These effects apply to a side
