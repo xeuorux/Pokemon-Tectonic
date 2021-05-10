@@ -826,4 +826,4 @@
 806,BLUSTER,Bluster,020,50,FLYING,Special,90,10,70,NearOther,0,bef,"The user fires a stormy gust at the target. It has a high chance to also raise the user's Sp. Atk."
 807,SHREDSHOT,Shred Shot,511,55,STEEL,Special,100,40,100,NearOther,0,befn,"TODO"
 808,SHARDS,Shards,511,90,STEEL,Special,100,10,100,NearOther,0,bef,"TODO"
-809,SPITEFULCHANT,Spiteful Chant,60,GHOST,Special,100,20,100,NearOther,0,befk,"The user unleashes its grudge, damaging the target and cutting 4 PP from the move last used by it."
+809,SPITEFULCHANT,Spiteful Chant,10E,60,GHOST,Special,100,20,100,NearOther,0,befk,"The user unleashes its grudge, damaging the target and cutting 4 PP from the move last used by it."
