@@ -685,7 +685,7 @@ class PokemonPokedexInfo_Scene
 		end
 		
 		#Draw the types the pokemon is weak to
-		drawTextEx(overlay,30,80,450,1,_INTL("Weak To:"),base,shadow)
+		drawTextEx(overlay,30,80,450,1,_INTL("Weak:"),base,shadow)
 		if weakTypes.length == 0
 			rawTextEx(overlay,30,110,450,1,_INTL("None"),base,shadow)
 		else
@@ -695,7 +695,7 @@ class PokemonPokedexInfo_Scene
 		end
 		
 		#Draw the types the pokemon resists
-		drawTextEx(overlay,150,80,450,1,_INTL("Resistent To:"),base,shadow)
+		drawTextEx(overlay,150,80,450,1,_INTL("Resist:"),base,shadow)
 		if resistentTypes.length == 0
 			drawTextEx(overlay,150,110,450,1,_INTL("None"),base,shadow)
 		else
@@ -705,7 +705,7 @@ class PokemonPokedexInfo_Scene
 		end
 		
 		#Draw the types the pokemon is immune to
-		drawTextEx(overlay,310,80,450,1,_INTL("Immune To:"),base,shadow)
+		drawTextEx(overlay,310,80,450,1,_INTL("Immune:"),base,shadow)
 		if immuneTypes.length == 0
 			drawTextEx(overlay,310,110,450,1,_INTL("None"),base,shadow)
 		else

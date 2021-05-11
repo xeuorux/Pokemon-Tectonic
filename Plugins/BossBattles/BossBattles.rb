@@ -1,87 +1,47 @@
 Events.onWildPokemonCreate += proc {| sender, e |
   pkmn = e[0]
+  
+  # If this is a boss fight...
   if $game_switches[95]
     pkmn.boss = true
-    if $game_variables[99].is_a?(Array)
+	
+	#Setting the boss's move set
+	if $game_variables[99].is_a?(Hash)
+	  moves = $game_variables[99][pkmn.species]
+	  pkmn.forget_all_moves()
+      moves.each do |move|
+        pkmn.learn_move(move)
+      end
+    elsif $game_variables[99].is_a?(Array)
       pkmn.forget_all_moves()
       $game_variables[99].each do |move|
         pkmn.learn_move(move)
       end
     end
+	
+	# Setting the boss's item
     if $game_variables[100]
-      pkmn.item = $game_variables[100]
+		if $game_variables[100].is_a?(Hash)
+			pkmn.item = $game_variables[100][pkmn.species]
+		else
+			pkmn.item = $game_variables[100]
+		end
     end
+	
+	# Setting boss's ability
     if $game_variables[94]
-      pkmn.ability = (pkmn.getAbilityList()[$game_variables[94]][0])
+		if $game_variables[94].is_a?(Hash)
+			abilityIndex = $game_variables[94][pkmn.species]
+			pkmn.ability = (pkmn.getAbilityList()[abilityIndex][0])
+		else
+			abilityIndex = $game_variables[94]
+			pkmn.ability = (pkmn.getAbilityList()[abilityIndex][0])
+		end
     else
       pkmn.ability = (pkmn.getAbilityList()[0][0])
     end
   end
 }
-
-Events.onWildBattleOverride += proc { |_sender,e|
-    species = e[0]
-    level   = e[1]
-    handled = e[2]
-    next if handled[0]!=nil
-    next if !$game_switches[95]
-    handled[0] = pbBossBattle(species,level)
-  }
-  
-def pbBossBattle(species,level)
-  outcomeVar = $PokemonTemp.battleRules["outcomeVar"] || 1
-  canLose    = $PokemonTemp.battleRules["canLose"] || false
-  # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
-  if $Trainer.able_pokemon_count==0 || ($DEBUG && Input.press?(Input::CTRL))
-    pbMessage(_INTL("SKIPPING BATTLE...")) if $Trainer.pokemon_count>0
-    pbSet(outcomeVar,1)   # Treat it as a win
-    $PokemonTemp.clearBattleRules
-    $PokemonGlobal.nextBattleBGM       = nil
-    $PokemonGlobal.nextBattleME        = nil
-    $PokemonGlobal.nextBattleCaptureME = nil
-    $PokemonGlobal.nextBattleBack      = nil
-    return 1   # Treat it as a win
-  end
-  # Record information about party Pokémon to be used at the end of battle (e.g.
-  # comparing levels for an evolution check)
-  Events.onStartBattle.trigger(nil)
-  # Generate wild Pokémon based on the species and level
-  foeParty = []
-  sp = nil
-  pkmn = pbGenerateWildPokemon(species,level)
-  foeParty.push(pkmn)
-  raise _INTL("Expected a level after being given {1}, but one wasn't found.",sp) if sp
-  # Calculate who the trainers and their party are
-  playerTrainers    = [$Trainer]
-  playerParty       = $Trainer.party
-  playerPartyStarts = [0]
-  # Create the battle scene (the visual side of it)
-  scene = pbNewBattleScene
-  # Create the battle class (the mechanics side of it)
-  battle = PokeBattle_Battle.new(scene,playerParty,foeParty,playerTrainers,nil)
-  battle.party1starts = playerPartyStarts
-  # Set various other properties in the battle class
-  pbPrepareBattle(battle)
-  $PokemonTemp.clearBattleRules
-  # Perform the battle itself
-  decision = 0
-  pbBattleAnimation(pbGetWildBattleBGM(foeParty),(foeParty.length==1) ? 0 : 2,foeParty) {
-    pbSceneStandby {
-      decision = battle.pbStartBattle
-    }
-    pbAfterBattle(decision,canLose)
-  }
-  Input.update
-  # Save the result of the battle in a Game Variable (1 by default)
-  #    0 - Undecided or aborted
-  #    1 - Player won
-  #    2 - Player lost
-  #    3 - Player or wild Pokémon ran from battle, or player forfeited the match
-  #    4 - Wild Pokémon was caught
-  #    5 - Draw
-  pbSet(outcomeVar,decision)
-  return decision
-end
 
 def scrubBossBattleSettings
   $game_variables[94] = nil

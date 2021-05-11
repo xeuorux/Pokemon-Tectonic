@@ -356,7 +356,7 @@ class PokemonDataBox < SpriteWrapper
 			imagePos.push(["Graphics/Pictures/Battle/icon_primal_Groudon",@spriteBaseX+primalX,4])
 		  end
 		# Draw held item icon
-		elsif @battler.item != 0 && @battler.hasActiveItem?(true)
+		elsif @battler.item && @battler.itemActive?
 		  itemX = (@battler.opposes?(0)) ? 204 : 0   # Foe's/player's
 		  itemY = 36
 		  imagePos.push(["Graphics/Pictures/Party/icon_item",@spriteBaseX+itemX,itemY])

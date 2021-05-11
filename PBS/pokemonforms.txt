@@ -146,6 +146,8 @@ EggMoves = FREEZEDRY,HYPNOSIS,FLAIL,SPITE,DISABLE,HOWL,AGILITY,ENCORE,MOONBLAST,
 Color = White
 Pokedex = In hot weather, this Pokémon makes ice shards with its six tails and sprays them around to cool itself off.
 WildItemUncommon = SNOWBALL
+BattlerPlayerY = 23
+BattlerEnemyY = 28
 Evolutions = NINETALES,Item,ICESTONE
 #-------------------------------
 [NINETALES,1]
@@ -298,6 +300,8 @@ Moves = 1,TACKLE,1,CURSE,3,GROWL,6,ACID,9,YAWN,12,MINDWAVES,15,DISABLE,18,WATERP
 TutorMoves = AMNESIA,AURASPHERE,BLIZZARD,BODYSLAM,BRINE,BULLDOZE,CALMMIND,DIG,DIVE,EARTHQUAKE,ENDURE,EXPANDINGFORCE,FACADE,FIREBLAST,FLAMETHROWER,FOULPLAY,FUTURESIGHT,GRASSKNOT,HAIL,HYDROPUMP,ICEBEAM,ICYWIND,IMPRISON,IRONTAIL,LIGHTSCREEN,LIQUIDATION,MUDSHOT,PAYDAY,PROTECT,PSYCHIC,PSYCHICTERRAIN,PSYSHOCK,RAINDANCE,REST,ROUND,SAFEGUARD,SCALD,SHADOWBALL,SKILLSWAP,SLEEPTALK,SNORE,STOREDPOWER,SUBSTITUTE,SUNNYDAY,SURF,SWIFT,THUNDERWAVE,TRIATTACK,TRICK,TRICKROOM,WEATHERBALL,WHIRLPOOL,WONDERROOM,ZENHEADBUTT
 EggMoves = BELCH,BELLYDRUM,BLOCK,STOMP
 Pokedex = Because Galarian Slowpoke eat the seeds of a plant that grows only in Galar, their tails have developed a spicy flavor.
+BattlerPlayerY = 34
+BattlerEnemyY = 38
 Evolutions = SLOWKING,Item,GALARICAWREATH,SLOWKING,Item,GALARICAWREATH
 #-------------------------------
 [SLOWBRO,1]
@@ -311,6 +315,8 @@ TutorMoves = AMNESIA,AURASPHERE,AVALANCHE,BLIZZARD,BODYSLAM,BRICKBREAK,BRINE,BRU
 Weight = 70.5
 Shape = HeadArms
 Pokedex = If this Pokémon squeezes the tongue of the Shellder biting it, the Shellder will launch a toxic liquid from the tip of its shell.
+BattlerPlayerY = 20
+BattlerEnemyY = 22
 #-------------------------------
 [FARFETCHD,1]
 FormName = Farfetch'd (G)
@@ -394,6 +400,8 @@ Height = 3.0
 Weight = 16.0
 Color = Gray
 Pokedex = Long ago, during a time when droves of factories fouled the air with pollution, Weezing changed into this form for some reason.
+BattlerPlayerY = -4
+BattlerEnemyY = -1
 #-------------------------------
 [MRMIME,1]
 FormName = Mr. Mime (G)
@@ -428,6 +436,9 @@ BaseStats = 90,125,90,100,85,90
 Abilities = DEFIANT
 Moves = 1,PECK,1,FOCUSENERGY,5,SMASH,10,LIGHTSCREEN,15,PLUCK,20,AGILITY,25,ANCIENTPOWER,30,BRICKBREAK,35,DRILLPECK,40,QUICKGUARD,45,THUNDEROUSKICK,50,BULKUP,55,COUNTER,60,DETECT,65,CLOSECOMBAT,70,REVERSAL
 TutorMoves = ACROBATICS,AGILITY,ASSURANCE,BLAZEKICK,BOUNCE,BRAVEBIRD,BRICKBREAK,BULKUP,CLOSECOMBAT,COACHING,COACHING,DUALWINGBEAT,DUALWINGBEAT,ENDURE,ENDURE,FACADE,FACADE,FLY,FOCUSENERGY,GIGAIMPACT,HURRICANE,HYPERBEAM,LIGHTSCREEN,LOWKICK,LOWSWEEP,MEGAKICK,PAYBACK,PROTECT,PROTECT,REST,REST,RETALIATE,REVENGE,REVERSAL,ROUND,ROUND,SCARYFACE,SCREECH,SLEEPTALK,SLEEPTALK,SNORE,SNORE,STEELWING,STOMPINGTANTRUM,SUBSTITUTE,SUBSTITUTE,SUPERPOWER,SWIFT,TAUNT,THROATCHOP,UTURN
+BattlerPlayerY = 15
+BattlerEnemyY = 20
+BattlerShadowX = -2
 #-------------------------------
 [MOLTRES,1]
 FormName = Moltres (G)
@@ -453,6 +464,8 @@ Moves = 0,SHELLSIDEARM,1,SHELLSIDEARM,1,WITHDRAW,1,TACKLE,1,CURSE,1,GROWL,1,ACID
 TutorMoves = AMNESIA,AURASPHERE,AVALANCHE,BLIZZARD,BODYSLAM,BRICKBREAK,BRINE,BULLDOZE,CALMMIND,DIG,DIVE,DRAINPUNCH,EARTHQUAKE,ENDURE,ENDURE,EXPANDINGFORCE,EXPANDINGFORCE,FACADE,FACADE,FIREBLAST,FLAMETHROWER,FLING,FOCUSBLAST,FOULPLAY,FUTURESIGHT,GIGAIMPACT,GRASSKNOT,HAIL,HEX,HYDROPUMP,HYDROPUMP,HYPERBEAM,ICEBEAM,ICEPUNCH,ICYWIND,IMPRISON,IRONDEFENSE,IRONTAIL,LIGHTSCREEN,LIQUIDATION,MEGAKICK,MEGAPUNCH,MUDDYWATER,MUDSHOT,NASTYPLOT,PAYDAY,POWERGEM,PROTECT,PROTECT,PSYCHIC,PSYCHICTERRAIN,PSYSHOCK,RAINDANCE,RAZORSHELL,REST,REST,ROUND,ROUND,SAFEGUARD,SCALD,SHADOWBALL,SKILLSWAP,SLEEPTALK,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SNORE,SNORE,STOREDPOWER,SUBSTITUTE,SUBSTITUTE,SUNNYDAY,SURF,SWIFT,THUNDERWAVE,TRIATTACK,TRICK,TRICKROOM,VENOMDRENCH,VENOSHOCK,WEATHERBALL,WHIRLPOOL,WONDERROOM,ZENHEADBUTT
 Height = 1.8
 Pokedex = Slowking can solve any problem present to it, but no one can understand a thing Slowking says.
+BattlerPlayerY = 17
+BattlerEnemyY = 18
 #-------------------------------
 [UNOWN,1]
 FormName = B
@@ -609,6 +622,8 @@ TutorMoves = ASSURANCE,BLIZZARD,BODYSLAM,DIG,ENDURE,FACADE,FAKETEARS,FLING,GRASS
 EggMoves = KNOCKOFF,PARTINGSHOT,QUICKGUARD
 Color = White
 Pokedex = Thought to be the oldest form of Zigzagoon, it moves in zigzags and wreaks havoc upon its surroundings.
+BattlerPlayerY = 26
+BattlerEnemyY = 29
 #-------------------------------
 [LINOONE,1]
 FormName = Linoone (G)
@@ -909,6 +924,8 @@ TutorMoves = ALLYSWITCH,BRUTALSWING,CALMMIND,DARKPULSE,EARTHPOWER,EARTHQUAKE,END
 EggMoves = MEMENTO
 Pokedex = It's said that this Pokémon was formed when an ancient clay tablet was drawn to a vengeful spirit.
 WildItemRare = SPELLTAG
+BattlerPlayerY = 27
+BattlerEnemyY = 30
 Evolutions = RUNERIGUS,Level,34
 #-------------------------------
 [DEERLING,1]
@@ -1250,6 +1267,8 @@ Weight = 33.5
 Color = Black
 Shape = Quadruped
 Pokedex = This is Zygarde when about 10% of its pieces have been assembled. It leaps at its opponent's chest and sinks its sharp fangs into them.
+BattlerPlayerY = 20
+BattlerEnemyY = 24
 #-------------------------------
 [ZYGARDE,2]
 FormName = Complete Forme
@@ -1260,6 +1279,8 @@ Weight = 610.0
 Color = Black
 Shape = BipedalTail
 Pokedex = This is Zygarde's perfected form. From the orifice on its chest, it radiates high-powered energy that eliminates everything.
+BattlerPlayerY = 1
+BattlerEnemyY = 5
 #-------------------------------
 [ZYGARDE,3]
 PokedexForm = 2
@@ -1269,6 +1290,8 @@ Height = 4.5
 Weight = 610.0
 Color = Black
 Shape = BipedalTail
+BattlerPlayerY = 6
+BattlerEnemyY = 6
 #-------------------------------
 [HOOPA,1]
 FormName = Hoopa Unbound
@@ -1336,6 +1359,8 @@ Height = 8.2
 Weight = 78.6
 Shape = MultiBody
 Pokedex = Weak Wishiwashi school together to concentrate their power. Their united force makes them the demon of the sea, feared near and far.
+BattlerPlayerY = 1
+BattlerEnemyY = 14
 #-------------------------------
 [SILVALLY,1]
 FormName = Type: Fighting
@@ -1560,6 +1585,8 @@ Abilities = LOUD,MINUS
 Moves = 0,SPARK,1,SPARK,1,EERIEIMPULSE,1,BELCH,1,TEARFULLOOK,1,NUZZLE,1,GROWL,1,FLAIL,1,ACID,1,THUNDERSHOCK,1,ACIDSPRAY,1,LEER,1,NOBLEROAR,4,CHARGE,8,SHOCKWAVE,12,SCARYFACE,16,TAUNT,20,VENOMDRENCH,24,SCREECH,28,SWAGGER,32,TOXIC,36,DISCHARGE,40,POISONJAB,44,OVERDRIVE,48,BOOMBURST,52,MAGNETICFLUX
 TutorMoves = DRAINPUNCH,EERIEIMPULSE,ELECTROBALL,ENCORE,ENDURE,FACADE,FIREPUNCH,FLING,GIGAIMPACT,GUNKSHOT,HEX,HYPERBEAM,HYPERVOICE,MEGAKICK,MEGAPUNCH,PAYBACK,POISONJAB,PROTECT,REST,RISINGVOLTAGE,ROUND,SCARYFACE,SCREECH,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SNARL,SNORE,STOREDPOWER,SUBSTITUTE,SWIFT,TAUNT,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERPUNCH,THUNDERWAVE,UPROAR,VENOMDRENCH,VOLTSWITCH,WILDCHARGE
 Pokedex = It has an electrical organ on its chest. While generating electricity, it fills its surroundings with what sounds like the strumming of a bass guitar.
+BattlerPlayerY = 7
+BattlerEnemyY = 11
 #-------------------------------
 [ALCREMIE,1]
 FormName = Berry - Vanilla Cream
@@ -1781,6 +1808,9 @@ Type2 = STEEL
 BaseStats = 92,170,115,148,80,115
 Weight = 355.0
 Pokedex = Able to cut down anything with a single strike, it became known as the Fairy King's Sword, and it inspired awe in friend and foe alike.
+BattlerPlayerY = 4
+BattlerEnemyY = 8
+BattlerShadowX = 0
 #-------------------------------
 [ZAMAZENTA,1]
 FormName = Zamazenta (Crowned)
@@ -1789,6 +1819,7 @@ Type2 = STEEL
 BaseStats = 92,130,145,128,80,145
 Weight = 785.0
 Pokedex = Now that it's equipped with its shield, it can shrug off impressive blows, including the attacks of Dynamax Pokémon.
+BattlerEnemyY = 11
 #-------------------------------
 [URSHIFU,1]
 FormName = Urshifu (Rapid)
@@ -1797,6 +1828,8 @@ Type2 = WATER
 Moves = 0,SURGINGSTRIKES,1,SURGINGSTRIKES,1,AQUAJET,1,SMASH,1,LEER,1,ENDURE,1,FOCUSENERGY,12,AERIALACE,16,SCARYFACE,20,HEADBUTT,24,BRICKBREAK,28,DETECT,32,BULKUP,36,IRONHEAD,40,DYNAMICPUNCH,44,COUNTER,48,CLOSECOMBAT,52,FOCUSPUNCH
 TutorMoves = ACROBATICS,AURASPHERE,BODYPRESS,BODYSLAM,BRICKBREAK,BRINE,BULKUP,CLOSECOMBAT,COACHING,DIG,DIVE,DRAINPUNCH,ENDURE,FACADE,FALSESWIPE,FIREPUNCH,FOCUSBLAST,FOCUSENERGY,GIGAIMPACT,HELPINGHAND,ICEPUNCH,IRONDEFENSE,IRONHEAD,LIQUIDATION,LOWKICK,LOWSWEEP,MEGAKICK,MEGAPUNCH,POISONJAB,PROTECT,RAINDANCE,REST,RETALIATE,REVENGE,REVERSAL,ROCKSLIDE,ROCKTOMB,ROUND,SCALD,SCARYFACE,SLEEPTALK,SNORE,STONEEDGE,SUBSTITUTE,SUPERPOWER,SWIFT,TAUNT,THUNDERPUNCH,UTURN,WATERFALL,WHIRLPOOL,WORKUP,ZENHEADBUTT
 Pokedex = This form of Urshifu is a strong believer in defeating foes by raining many blows down on them. Its strikes are nonstop, flowing like a river.
+BattlerPlayerY = 8
+BattlerEnemyY = 12
 #-------------------------------
 [CALYREX,1]
 FormName = Calyrex (Ice)
@@ -1824,7 +1857,6 @@ Kind = High King
 [KYOGRE,1]
 FormName = Primal Kyogre
 BaseStats = 100,150,90,90,180,160
-#Total: 770
 Abilities = PRIMORDIALSEA
 Height = 9.8
 Weight = 430.0
@@ -1836,7 +1868,6 @@ FormName = Primal Groudon
 Type1 = GROUND
 Type2 = FIRE
 BaseStats = 100,180,160,90,150,90
-#Total: 770
 Abilities = DESOLATELAND
 Height = 5.0
 Weight = 999.7
@@ -1848,10 +1879,7 @@ FormName = M. Rayquaza
 MegaMove = DRAGONASCENT
 MegaMessage = 1
 BaseStats = 105,180,100,115,180,100
-#Total: 780
 Abilities = DELTASTREAM
 HiddenAbility = DELTASTREAM
 Height = 10.8
 Weight = 392.0
-BattlerPlayerY = 0
-BattlerEnemyY = 4
