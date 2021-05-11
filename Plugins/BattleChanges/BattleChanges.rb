@@ -1009,7 +1009,17 @@ class PokeBattle_Battle
     return @scene.pbDisplayConfirmMessage(msg) if !messagesBlocked
   end
   
-  
+  def pbCanMegaEvolve?(idxBattler)
+    return false if $game_switches[Settings::NO_MEGA_EVOLUTION]
+    return false if !@battlers[idxBattler].hasMega?
+    return false if wildBattle? && opposes?(idxBattler) && !@battlers[idxBattler].boss
+    return true if $DEBUG && Input.press?(Input::CTRL)
+    return false if @battlers[idxBattler].effects[PBEffects::SkyDrop]>=0
+    return false if !pbHasMegaRing?(idxBattler) && !@battlers[idxBattler].boss
+    side  = @battlers[idxBattler].idxOwnSide
+    owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
+    return @megaEvolution[side][owner]==-1
+  end
 end
 
 class PokeBattle_Move
@@ -2366,6 +2376,7 @@ class PokeBattle_Battler
     @battle.eachBattler { |b| @battle.successStates[b.index].updateSkill }
     # Shadow Pokémon triggering Hyper Mode
     pbHyperMode if @battle.choices[@index][0]!=:None   # Not if self is replaced
+	# Refresh the scene to account for changes to pokemon status
 	@battle.scene.pbRefresh()
     # End of move usage
     pbEndTurn(choice)

@@ -2,7 +2,20 @@ class PokeBattle_AI
   def pbDefaultChooseEnemyCommand(idxBattler)
     return if pbEnemyShouldWithdraw?(idxBattler)
     return if @battle.pbAutoFightMenu(idxBattler) #Battle palace shenanigans
+	@battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
     pbChooseMoves(idxBattler)
+  end
+  
+  #=============================================================================
+  # Decide whether the opponent should Mega Evolve their Pokémon
+  #=============================================================================
+  def pbEnemyShouldMegaEvolve?(idxBattler)
+    battler = @battle.battlers[idxBattler]
+    if @battle.pbCanMegaEvolve?(idxBattler)   # Simple "always should if possible"
+      PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will Mega Evolve")
+      return true
+    end
+    return false
   end
   
  #=============================================================================
@@ -284,7 +297,7 @@ class PokeBattle_AI
         end
 		@battle.messagesBlocked = true
 		if move.pbMoveFailed?(user,[])
-          totalScore = 0
+          score = 0
         end
 		@battle.messagesBlocked = false
       end
@@ -305,7 +318,7 @@ class PokeBattle_AI
           end
 		  @battle.messagesBlocked = true
 		  if move.pbMoveFailed?(user,[b])
-            totalScore = 0
+            score = 0
           end
 		  @battle.messagesBlocked = false
         end

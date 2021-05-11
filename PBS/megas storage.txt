@@ -1,0 +1,618 @@
+#-------------------------------
+[VENUSAUR,1]
+FormName = M. Venusaur
+MegaStone = VENUSAURITE
+BaseStats = 80,100,123,80,122,120
+#Total: 625
+Abilities = THICKFAT
+HiddenAbility = THICKFAT
+Height = 2.4
+Weight = 155.5
+Pokedex = In order to support its flower, which has grown larger due to Mega Evolution, its back and legs have become stronger.
+BattlerPlayerY = 14
+BattlerEnemyY = 15
+#-------------------------------
+[CHARIZARD,1]
+FormName = M. Charizard X
+MegaStone = CHARIZARDITEX
+Type1 = FIRE
+Type2 = DRAGON
+BaseStats = 78,130,111,100,130,85
+#Total: 634
+Abilities = TOUGHCLAWS
+HiddenAbility = TOUGHCLAWS
+Weight = 110.5
+Color = Black
+Pokedex = The overwhelming power that fills its entire body causes it to turn black and create intense blue flames.
+BattlerPlayerY = 7
+BattlerEnemyY = 13
+#-------------------------------
+[CHARIZARD,2]
+FormName = M. Charizard Y
+MegaStone = CHARIZARDITEY
+BaseStats = 78,104,78,100,159,115
+#Total: 634
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Weight = 100.5
+Pokedex = Its bond with its Trainer is the source of its power. It boasts speed and maneuverability greater than that of a jet fighter.
+BattlerPlayerY = 7
+#-------------------------------
+[BLASTOISE,1]
+FormName = M. Blastoise
+MegaStone = BLASTOISINITE
+BaseStats = 79,103,120,78,135,115
+#Total: 630
+Abilities = MEGALAUNCHER
+HiddenAbility = MEGALAUNCHER
+Weight = 101.1
+Pokedex = The cannon on its back is as powerful as a tank gun. Its tough legs and back enable it to withstand the recoil from firing the cannon.
+BattlerPlayerY = 8
+BattlerEnemyY = 13
+#-------------------------------
+[BEEDRILL,1]
+FormName = M. Beedrill
+MegaStone = BEEDRILLITE
+BaseStats = 65,150,40,145,15,80
+#Total: 495
+Abilities = ADAPTABILITY
+HiddenAbility = ADAPTABILITY
+Height = 1.4
+Weight = 40.5
+Pokedex = Its legs have become poison stingers. It stabs its prey repeatedly with the stingers on its limbs, dealing the final blow with the stinger on its rear.
+BattlerPlayerY = 13
+BattlerEnemyY = 13
+#-------------------------------
+[PIDGEOT,1]
+FormName = M. Pidgeot
+MegaStone = PIDGEOTITE
+BaseStats = 83,80,80,121,135,80
+#Total: 579
+Abilities = NOGUARD
+HiddenAbility = NOGUARD
+Height = 2.2
+Weight = 50.5
+Pokedex = With its muscular strength now greatly increased, it can fly continuously for two weeks without resting.
+BattlerPlayerY = 1
+BattlerEnemyY = 13
+#-------------------------------
+[ALAKAZAM,1]
+FormName = M. Alakazam
+MegaStone = ALAKAZITE
+BaseStats = 55,50,65,150,175,105
+#Total: 600
+Abilities = TRACE
+HiddenAbility = TRACE
+Height = 1.2
+Pokedex = Having traded away its muscles, Alakazam's true power has been unleashed. With its psychic powers, it can foresee all things.
+BattlerPlayerY = 4
+BattlerEnemyY = 8
+#-------------------------------
+[SLOWBRO,2]
+FormName = M. Slowbro
+MegaStone = SLOWBRONITE
+BaseStats = 95,75,180,30,130,80
+#Total: 590
+Abilities = SHELLARMOR
+HiddenAbility = SHELLARMOR
+Height = 2.0
+Weight = 120.0
+Shape = 4
+Pokedex = Having been swallowed whole by Shellder, Slowbro now has an iron defense. It's pretty comfortable in there, too.
+BattlerPlayerY = 8
+BattlerEnemyY = 15
+#-------------------------------
+[GENGAR,1]
+FormName = M. Gengar
+MegaStone = GENGARITE
+BaseStats = 60,65,80,130,170,95
+#Total: 600
+Abilities = SHADOWTAG
+HiddenAbility = SHADOWTAG
+Height = 1.4
+Pokedex = The energy of Mega Evolution awakened it. It sinks into another dimension, where it keeps a patient watch for its chance to attack.
+BattlerPlayerY = 19
+BattlerEnemyY = 21
+#-------------------------------
+[KANGASKHAN,1]
+FormName = M. Kangaskhan
+MegaStone = KANGASKHANITE
+BaseStats = 105,125,100,100,60,100
+#Total: 590
+Abilities = PARENTALBOND
+HiddenAbility = PARENTALBOND
+Weight = 100.0
+Pokedex = The explosive energy the child is bathed in causes temporary growth. The mother is beside herself with worry about it.
+BattlerPlayerY = 16
+BattlerEnemyY = 21
+#-------------------------------
+[PINSIR,1]
+FormName = M. Pinsir
+MegaStone = PINSIRITE
+Type1 = BUG
+Type2 = FLYING
+BaseStats = 65,155,120,105,65,90
+#Total: 600
+Abilities = AERILATE
+HiddenAbility = AERILATE
+Height = 1.7
+Weight = 59.0
+Shape = 13
+Pokedex = It zips around at blistering speeds, looking for an opening to skewer its opponent on its giant pincers.
+BattlerPlayerY = 12
+BattlerEnemyY = 15
+#-------------------------------
+[GYARADOS,1]
+FormName = M. Gyarados
+MegaStone = GYARADOSITE
+Type1 = WATER
+Type2 = DARK
+BaseStats = 95,155,109,81,70,130
+#Total: 640
+Abilities = MOLDBREAKER
+HiddenAbility = MOLDBREAKER
+Weight = 305.0
+Pokedex = It zooms out of the water at Mach speeds. Even large ships caught in its path are split cleanly in two!
+BattlerPlayerY = 4
+BattlerEnemyY = 8
+#-------------------------------
+[AERODACTYL,1]
+FormName = M. Aerodactyl
+MegaStone = AERODACTYLITE
+BaseStats = 80,135,85,150,70,95
+#Total: 615
+Abilities = TOUGHCLAWS
+HiddenAbility = TOUGHCLAWS
+Height = 2.1
+Weight = 79.0
+Pokedex = When it Mega Evolves, it becomes more vicious than ever before. Some say that's because its excess of power is causing it pain.
+BattlerEnemyY = 19
+#-------------------------------
+[MEWTWO,1]
+FormName = M. Mewtwo X
+MegaStone = MEWTWONITEX
+Type1 = PSYCHIC
+Type2 = FIGHTING
+BaseStats = 106,190,100,130,154,100
+#Total: 780
+Abilities = STEADFAST
+HiddenAbility = STEADFAST
+Height = 2.3
+Weight = 127.0
+Pokedex = Psychic power has augmented its muscles. It has a grip strength of one ton and can sprint a hundred meters in two seconds flat!
+BattlerPlayerY = 10
+BattlerEnemyY = 18
+#-------------------------------
+[MEWTWO,2]
+FormName = M. Mewtwo Y
+MegaStone = MEWTWONITEY
+BaseStats = 106,150,70,140,194,120
+#Total: 780
+Abilities = INSOMNIA
+HiddenAbility = INSOMNIA
+Height = 1.5
+Weight = 33.0
+Pokedex = Despite its diminished size, its mental power has grown phenomenally. With a mere thought, it can smash a skyscraper to smithereens.
+#-------------------------------
+[STEELIX,1]
+FormName = M. Steelix
+MegaStone = STEELIXITE
+BaseStats = 75,125,230,30,55,95
+#Total: 610
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Height = 10.5
+Weight = 740.0
+BattlerPlayerY = 6
+BattlerEnemyY = 9
+#-------------------------------
+[SCIZOR,1]
+FormName = M. Scizor
+MegaStone = SCIZORITE
+BaseStats = 70,150,140,65,100,75
+#Total: 600
+Abilities = TECHNICIAN
+HiddenAbility = TECHNICIAN
+Height = 2.0
+Weight = 125.0
+Pokedex = It's better at beating things than grasping them. When it battles for a long time, the weight of its pincers becomes too much to bear.
+BattlerPlayerY = 5
+BattlerEnemyY = 9
+#-------------------------------
+[AMPHAROS,1]
+FormName = M. Ampharos
+MegaStone = AMPHAROSITE
+Type1 = ELECTRIC
+Type2 = DRAGON
+BaseStats = 90,95,105,45,165,110
+#Total: 610
+Abilities = MOLDBREAKER
+HiddenAbility = MOLDBREAKER
+Pokedex = Massive amounts of energy intensely stimulated Ampharos's cells, apparently awakening its long-sleeping dragon's blood.
+BattlerPlayerY = 11
+BattlerEnemyY = 15
+#-------------------------------
+[HERACROSS,1]
+FormName = M. Heracross
+MegaStone = HERACRONITE
+BaseStats = 80,185,115,75,40,105
+#Total: 600
+Abilities = SKILLLINK
+HiddenAbility = SKILLLINK
+Height = 1.7
+Weight = 62.5
+Pokedex = A tremendous influx of energy builds it up, but when Mega Evolution ends, Heracross is bothered by terrible soreness in its muscles.
+BattlerPlayerY = 6
+BattlerEnemyY = 9
+#-------------------------------
+[HOUNDOOM,1]
+FormName = M. Houndoom
+MegaStone = HOUNDOOMINITE
+BaseStats = 75,90,90,115,140,90
+#Total: 600
+Abilities = SOLARPOWER
+HiddenAbility = SOLARPOWER
+Height = 1.9
+Weight = 49.5
+Pokedex = Its red claws and the tips of its tail are melting from high internal temperatures that are painful to Houndoom itself.
+BattlerPlayerY = 8
+BattlerEnemyY = 16
+#-------------------------------
+[TYRANITAR,1]
+FormName = M. Tyranitar
+MegaStone = TYRANITARITE
+BaseStats = 100,164,150,71,95,120
+#Total: 700
+HiddenAbility = SANDSTREAM
+Height = 2.5
+Weight = 255.0
+Pokedex = Due to the colossal power poured into it, this Pokémon's back split right open. Its destructive instincts are the only thing keeping it moving.
+BattlerPlayerY = 12
+BattlerEnemyY = 12
+#-------------------------------
+[SCEPTILE,1]
+FormName = M. Sceptile
+MegaStone = SCEPTILITE
+Type1 = GRASS
+Type2 = DRAGON
+BaseStats = 70,110,75,145,145,85
+#Total: 630
+Abilities = LIGHTNINGROD
+HiddenAbility = LIGHTNINGROD
+Height = 1.9
+Weight = 55.2
+BattlerPlayerY = 3
+BattlerEnemyY = 12
+#-------------------------------
+[BLAZIKEN,1]
+FormName = M. Blaziken
+MegaStone = BLAZIKENITE
+BaseStats = 80,160,80,100,130,80
+#Total: 630
+Abilities = SPEEDBOOST
+BattlerPlayerY = 2
+BattlerEnemyY = 4
+#-------------------------------
+[SWAMPERT,1]
+FormName = M. Swampert
+MegaStone = SWAMPERTITE
+BaseStats = 100,150,110,70,95,110
+#Total: 635
+Abilities = SWIFTSWIM
+HiddenAbility = SWIFTSWIM
+Height = 1.9
+Weight = 102.0
+BattlerPlayerY = 14
+BattlerEnemyY = 20
+#-------------------------------
+[GARDEVOIR,1]
+FormName = M. Gardevoir
+MegaStone = GARDEVOIRITE
+BaseStats = 68,85,65,100,165,135
+#Total: 618
+Abilities = PIXILATE
+HiddenAbility = PIXILATE
+BattlerPlayerY = 9
+BattlerEnemyY = 13
+#-------------------------------
+[SABLEYE,1]
+FormName = M. Sableye
+MegaStone = SABLENITE
+BaseStats = 50,85,125,20,85,115
+#Total: 480
+Abilities = MAGICBOUNCE
+HiddenAbility = MAGICBOUNCE
+Weight = 161.0
+Pokedex = Supporting a giant heavy jewel, it can't change direction very nimbly and is vulnerable to attack from behind.
+BattlerPlayerY = 14
+BattlerEnemyY = 24
+#-------------------------------
+[MAWILE,1]
+FormName = M. Mawile
+MegaStone = MAWILITE
+BaseStats = 50,105,125,50,55,95
+#Total: 480
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+Height = 1.0
+Weight = 23.5
+Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
+BattlerPlayerY = 13
+BattlerEnemyY = 17
+#-------------------------------
+[AGGRON,1]
+FormName = M. Aggron
+MegaStone = AGGRONITE
+Type1 = STEEL
+BaseStats = 70,140,230,50,60,80
+#Total: 630
+Abilities = FILTER
+HiddenAbility = FILTER
+Height = 2.2
+Weight = 395.0
+BattlerPlayerY = 4
+BattlerEnemyY = 9
+#-------------------------------
+[MEDICHAM,1]
+FormName = M. Medicham
+MegaStone = MEDICHAMITE
+BaseStats = 60,100,85,100,80,85
+#Total: 510
+HiddenAbility = PUREPOWER
+BattlerPlayerY = 11
+BattlerEnemyY = 15
+#-------------------------------
+[MANECTRIC,1]
+FormName = M. Manectric
+MegaStone = MANECTITE
+BaseStats = 70,75,80,135,135,80
+#Total: 575
+Abilities = DAZZLE
+HiddenAbility = INTIMIDATE
+Height = 1.8
+Weight = 44.0
+Pokedex = Too much electricity has built up in its body, irritating Manectric. Its explosive speed is equal to that of a lightning bolt.
+BattlerPlayerY = 7
+BattlerEnemyY = 15
+#-------------------------------
+[SHARPEDO,1]
+FormName = M. Sharpedo
+MegaStone = SHARPEDONITE
+BaseStats = 70,140,70,105,110,65
+#Total: 560
+Abilities = STRONGJAW
+HiddenAbility = STRONGJAW
+Height = 2.5
+Weight = 130.3
+Pokedex = The yellow patterns it bears are old scars. The energy from Mega Evolution runs through them, causing it sharp pain and suffering.
+BattlerPlayerY = 10
+BattlerEnemyY = 16
+#-------------------------------
+[CAMERUPT,1]
+FormName = M. Camerupt
+MegaStone = CAMERUPTITE
+BaseStats = 70,120,100,20,145,105
+#Total: 560
+Abilities = SHEERFORCE
+HiddenAbility = SHEERFORCE
+Height = 2.5
+Weight = 320.5
+BattlerPlayerY = 14
+BattlerEnemyY = 20
+#-------------------------------
+[ALTARIA,1]
+FormName = M. Altaria
+MegaStone = ALTARIANITE
+Type1 = DRAGON
+Type2 = FAIRY
+BaseStats = 75,110,110,80,110,105
+#Total: 590
+Abilities = PIXILATE
+HiddenAbility = PIXILATE
+Height = 1.5
+BattlerPlayerY = 6
+BattlerEnemyY = 6
+#-------------------------------
+[BANETTE,1]
+FormName = M. Banette
+MegaStone = BANETTITE
+BaseStats = 64,165,75,75,93,83
+#Total: 555
+Abilities = PRANKSTER
+HiddenAbility = PRANKSTER
+Height = 1.2
+Weight = 13.0
+Pokedex = Extraordinary energy amplifies its cursing power to such an extent that it can't help but curse its own Trainer.
+BattlerPlayerY = 17
+BattlerEnemyY = 20
+#-------------------------------
+[ABSOL,1]
+FormName = M. Absol
+MegaStone = ABSOLITE
+BaseStats = 65,150,60,115,115,60
+#Total: 565
+Abilities = MAGICBOUNCE
+HiddenAbility = MAGICBOUNCE
+Weight = 49.0
+Pokedex = When this Pokémon whips the winglike fur on its back as though beating its wings, it sends an intimidating aura flying at its opponents.
+BattlerEnemyY = 22
+#-------------------------------
+[GLALIE,1]
+FormName = M. Glalie
+MegaStone = GLALITITE
+BaseStats = 80,120,80,100,120,80
+#Total: 580
+Abilities = REFRIGERATE
+HiddenAbility = REFRIGERATE
+Height = 2.1
+Weight = 350.2
+Pokedex = It envelops prey in its mouth, freezing them instantly. But its jaw is dislocated, so it's unable to eat them.
+BattlerPlayerY = 16
+BattlerEnemyY = 19
+#-------------------------------
+[SALAMENCE,1]
+FormName = M. Salamence
+MegaStone = SALAMENCITE
+BaseStats = 95,145,130,120,120,90
+#Total: 700
+Abilities = AERILATE
+HiddenAbility = AERILATE
+Height = 1.8
+Weight = 112.6
+Pokedex = It puts its forelegs inside its shell to streamline itself for flight. Salamence flies at high speeds over all kinds of topographical features.
+BattlerPlayerY = 2
+BattlerEnemyY = 16
+#-------------------------------
+[METAGROSS,1]
+FormName = M. Metagross
+MegaStone = METAGROSSITE
+BaseStats = 95,145,130,120,120,90
+#Total: 700
+Abilities = TOUGHCLAWS
+HiddenAbility = TOUGHCLAWS
+Height = 2.5
+Weight = 942.9
+Pokedex = Its intellect surpasses its previous level, resulting in battles so cruel, they'll make you want to cover your eyes.
+BattlerPlayerY = 20
+BattlerEnemyY = 10
+#-------------------------------
+[LATIAS,1]
+FormName = M. Latias
+MegaStone = LATIASITE
+BaseStats = 80,100,120,110,140,150
+#Total: 700
+Height = 1.8
+Weight = 52.0
+Color = Purple
+BattlerPlayerY = 16
+BattlerEnemyY = 20
+#-------------------------------
+[LATIOS,1]
+FormName = M. Latios
+MegaStone = LATIOSITE
+BaseStats = 80,130,100,110,160,120
+#Total: 700
+Height = 2.3
+Weight = 70.0
+Color = Purple
+BattlerPlayerY = 16
+BattlerEnemyY = 20
+#-------------------------------
+[KYOGRE,1]
+FormName = Primal Kyogre
+BaseStats = 100,150,90,90,180,160
+#Total: 770
+Abilities = PRIMORDIALSEA
+Height = 9.8
+Weight = 430.0
+BattlerPlayerY = 12
+BattlerEnemyY = 22
+#-------------------------------
+[GROUDON,1]
+FormName = Primal Groudon
+Type1 = GROUND
+Type2 = FIRE
+BaseStats = 100,180,160,90,150,90
+#Total: 770
+Abilities = DESOLATELAND
+Height = 5.0
+Weight = 999.7
+BattlerPlayerY = 10
+BattlerEnemyY = 11
+#-------------------------------
+[RAYQUAZA,1]
+FormName = M. Rayquaza
+MegaMove = DRAGONASCENT
+MegaMessage = 1
+BaseStats = 105,180,100,115,180,100
+#Total: 780
+Abilities = DELTASTREAM
+HiddenAbility = DELTASTREAM
+Height = 10.8
+Weight = 392.0
+BattlerPlayerY = 0
+BattlerEnemyY = 4
+#-------------------------------
+[LOPUNNY,1]
+FormName = M. Lopunny
+MegaStone = LOPUNNITE
+Type1 = NORMAL
+Type2 = FIGHTING
+BaseStats = 65,136,94,135,54,96
+#Total: 580
+Abilities = SCRAPPY
+HiddenAbility = SCRAPPY
+Height = 1.3
+Weight = 28.3
+Pokedex = It swings its ears like whips and strikes its enemies with them. It has an intensely combative disposition.
+BattlerPlayerY = 13
+BattlerEnemyY = 16
+#-------------------------------
+[GARCHOMP,1]
+FormName = M. Garchomp
+MegaStone = GARCHOMPITE
+BaseStats = 108,170,115,92,120,95
+#Total: 700
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+BattlerEnemyY = 13
+#-------------------------------
+[LUCARIO,1]
+FormName = M. Lucario
+MegaStone = LUCARIONITE
+BaseStats = 70,145,88,112,140,70
+#Total: 625
+Abilities = ADAPTABILITY
+HiddenAbility = ADAPTABILITY
+Height = 1.3
+Weight = 57.5
+Pokedex = It readies itself to face its enemies by focusing its mental energies. Its fighting style can be summed up in a single word: heartless.
+#-------------------------------
+[ABOMASNOW,1]
+FormName = M. Abomasnow
+MegaStone = ABOMASITE
+BaseStats = 90,132,105,30,132,105
+#Total: 594
+HiddenAbility = SNOWWARNING
+Height = 2.7
+Weight = 185.0
+BattlerPlayerY = 11
+BattlerEnemyY = 14
+#-------------------------------
+[GALLADE,1]
+FormName = M. Gallade
+MegaStone = GALLADITE
+BaseStats = 68,165,95,110,65,115
+#Total: 618
+Abilities = INNERFOCUS
+HiddenAbility = INNERFOCUS
+Weight = 56.4
+BattlerPlayerY = 11
+#-------------------------------
+[AUDINO,1]
+FormName = M. Audino
+MegaStone = AUDINITE
+Type1 = NORMAL
+Type2 = FAIRY
+BaseStats = 103,60,126,50,80,126
+#Total: 545
+Abilities = HEALER
+HiddenAbility = HEALER
+Height = 1.5
+Weight = 32.0
+Color = White
+BattlerPlayerY = 16
+BattlerEnemyY = 21
+#-------------------------------
+[DIANCIE,1]
+FormName = M. Diancie
+MegaStone = DIANCITE
+BaseStats = 50,160,110,110,160,110
+#Total: 700
+Abilities = MAGICBOUNCE
+HiddenAbility = MAGICBOUNCE
+Height = 1.1
+Weight = 27.8
+BattlerPlayerY = 6
+BattlerEnemyY = 4
