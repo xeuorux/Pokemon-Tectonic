@@ -273,7 +273,8 @@ class PokeBattle_AI
 		score = 100
 		score = pbGetMoveScoreBoss(move,user,b) if user.boss
         if move.damagingMove?
-          score = score * (1.2 + (0.2 * b.hp / b.totalhp).floor)
+		  targetPercent = b.hp.to_f / b.totalhp.to_f
+          score = (score*(1.0 + 0.4 * targetPercent)).floor
         end
 		totalScore += score
       end
@@ -297,7 +298,11 @@ class PokeBattle_AI
 		score = 100
         score = pbGetMoveScoreBoss(move,user,b) if user.boss
         if move.damagingMove?
-          score = score * (1.2 + (0.2 * b.hp / b.totalhp).floor)
+			targetPercent = b.hp.to_f / b.totalhp.to_f
+            score = (score*(1.0 + 0.4 * targetPercent)).floor
+		elsif
+			mult = 1.0 + rand(10)/100.0
+			score = (score * mult).floor
         end
         scoresAndTargets.push([score,b.index]) if score>0
       end
@@ -337,10 +342,15 @@ class PokeBattle_AI
 		score = 0
 	elsif move.is_a?(PokeBattle_ProtectMove)
 		score = user.battle.commandPhasesThisRound == 0 ? (@battle.turnCount % 3 == 0 ? 99999 : 0) : 0
-	end
-	
-	# More likely to use damaging moves the more damage they do, and the less current HP you have
-	if move.damagingMove?
+	elsif move.is_a?(PokeBattle_HealingMove)
+		score = (user.hp/user.totalhp < 0.25 && user.battle.commandPhasesThisRound == 0) ? 99999 : 0
+	elsif move.function == "080" # Brine
+		score = target.hp<target.totalhp/2 ? 250 : 0
+	elsif user.species == :INCINEROAR && move.function != "041" && move.function != "0BA" && user.battle.commandPhasesThisRound == 0  # Swagger, Taunt
+		score = 0
+	elsif user.species == :INCINEROAR && (move.function == "041" || move.function == "0BA") && user.battle.commandPhasesThisRound != 0  # Swagger, Taunt
+		score = 0
+	elsif move.damagingMove? # More likely to use damaging moves the more damage they do, and the less current HP you have
 		score = (score * pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f).floor
     end
 	
