@@ -287,7 +287,6 @@ class PokeBattle_AI
       # If move has no targets, affects the user, a side or the whole field
       score = 100
       score = pbGetMoveScoreBoss(move,user,user) if user.boss
-      score += 50 if move.damagingMove? || user.boss
       choices.push([idxMove,score,-1])
     else
       # If move affects one battler and you have to choose which one
@@ -336,6 +335,8 @@ class PokeBattle_AI
 		score = 0
 	elsif user.species == :GOURGEIST && (move.function == "142" || move.function == "00A") && user.battle.commandPhasesThisRound != 0
 		score = 0
+	elsif move.is_a?(PokeBattle_ProtectMove)
+		score = user.battle.commandPhasesThisRound == 0 ? (@battle.turnCount % 3 == 0 ? 99999 : 0) : 0
 	end
 	
 	# More likely to use damaging moves the more damage they do, and the less current HP you have
