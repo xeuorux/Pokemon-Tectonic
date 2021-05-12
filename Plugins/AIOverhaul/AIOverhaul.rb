@@ -49,15 +49,13 @@ class PokeBattle_AI
       maxScore = c[1] if maxScore<c[1]
     end
     # Log the available choices
-    if $INTERNAL
-      logMsg = "[AI] Move choices for #{user.pbThis(true)} (#{user.index}): "
+    logMsg = "[AI] Move choices for #{user.pbThis(true)} (#{user.index}): "
       choices.each_with_index do |c,i|
         logMsg += "#{user.moves[c[0]].name}=#{c[1]}"
         logMsg += " (target #{c[2]})" if c[2]>=0
         logMsg += ", " if i<choices.length-1
       end
       PBDebug.log(logMsg)
-    end
 	# Decide whether all choices are bad, and if so, try switching instead
     if !wildBattler && skill>=PBTrainerAI.mediumSkill
       badMoves = false
@@ -266,41 +264,30 @@ class PokeBattle_AI
     target_data = move.pbTarget(user)
     if target_data.num_targets > 1
       # If move affects multiple battlers and you don't choose a particular one
-      totalScore = 30
+      totalScore = 0
       targets = []
       @battle.eachBattler do |b|
         next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
         next if !user.opposes?(b)
         targets.push(b)
+		score = 100
+		score = pbGetMoveScoreBoss(move,user,b) if user.boss
         if move.damagingMove?
-          totalScore += 10 + (10 * b.hp / b.totalhp).floor
+          score = score * (1.2 + (0.2 * b.hp / b.totalhp).floor)
         end
+		totalScore += score
       end
-      if user.boss
-        if !move.damagingMove? && user.hp >= user.totalhp/2
-          totalScore *= 2
-        end
-		@battle.messagesBlocked = true
-		if move.pbMoveFailed?(user,[])
-          totalScore = 0
-        end
-		@battle.messagesBlocked = false
-      end
+	  if targets.length() != 0
+		totalScore = totalScore / targets.length().to_f
+	  else
+		totalScore = 0
+	  end
       choices.push([idxMove,totalScore,-1]) if totalScore>0
     elsif target_data.num_targets == 0
       # If move has no targets, affects the user, a side or the whole field
-      score = 40
-      score += 20 if move.damagingMove? || user.boss
-      if user.boss
-        if !move.damagingMove? && user.hp >= user.totalhp/2
-          score *= 2
-        end
-		@battle.messagesBlocked = true
-		if move.pbMoveFailed?(user,[])
-          score = 0
-        end
-		@battle.messagesBlocked = false
-      end
+      score = 100
+      score = pbGetMoveScoreBoss(move,user,user) if user.boss
+      score += 50 if move.damagingMove? || user.boss
       choices.push([idxMove,score,-1])
     else
       # If move affects one battler and you have to choose which one
@@ -308,19 +295,10 @@ class PokeBattle_AI
       @battle.eachBattler do |b|
         next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
         next if target_data.targets_foe && !user.opposes?(b)
-        score = 40
+		score = 100
+        score = pbGetMoveScoreBoss(move,user,b) if user.boss
         if move.damagingMove?
-          score += 20 + (20 * b.hp / b.totalhp).floor
-        end
-        if user.boss
-          if !move.damagingMove? && user.hp >= user.totalhp/2
-            score *= 2
-          end
-		  @battle.messagesBlocked = true
-		  if move.pbMoveFailed?(user,[b])
-            score = 0
-          end
-		  @battle.messagesBlocked = false
+          score = score * (1.2 + (0.2 * b.hp / b.totalhp).floor)
         end
         scoresAndTargets.push([score,b.index]) if score>0
       end
@@ -330,6 +308,62 @@ class PokeBattle_AI
         choices.push([idxMove,scoresAndTargets[0][0],scoresAndTargets[0][1]])
       end
     end
+  end
+  
+  def pbGetMoveScoreBoss(move,user,target)
+	score = 100
+
+	if move.function == "09C" # Helping hand
+		score = user.battle.commandPhasesThisRound == 0 ? 150 : 0
+	elsif move.function == "0DF" # Heal Pulse
+		if user.opposes?(target)
+			score = 0
+		else
+			score += 50 if target.hp<target.totalhp/2 &&
+                       target.effects[PBEffects::Substitute]==0
+		end
+	elsif move.function == "05E" || move.function == "05F" # Conversion and Conversion 2
+		score = user.battle.commandPhasesThisRound == 0 ? 150 : 0
+	elsif move.function == "OD9" # Rest
+		if user.hp==user.totalhp || !user.pbCanSleep?(user,false,nil,true)
+			score -= 90
+		else
+			score += 70
+			score -= user.hp*140/user.totalhp
+			score += 30 if user.status != :NONE
+		end
+	elsif user.species == :GOURGEIST && move.function != "142" && move.function != "00A" && user.battle.commandPhasesThisRound == 0 # Trick or treat, moves that burn
+		score = 0
+	elsif user.species == :GOURGEIST && (move.function == "142" || move.function == "00A") && user.battle.commandPhasesThisRound != 0
+		score = 0
+	end
+	
+	# More likely to use damaging moves the more damage they do, and the less current HP you have
+	if move.damagingMove?
+		score = (score * pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f).floor
+    end
+	
+	# Never use a move that would fail outright
+	@battle.messagesBlocked = true
+	if move.pbMoveFailed?(user,[target])
+		score = 0
+    end
+	@battle.messagesBlocked = false
+	
+	return score
+  end
+  
+  def pbGetRealDamageBoss(move,user,target)
+    # Calculate how much damage the move will do (roughly)
+    baseDmg = pbMoveBaseDamage(move,user,target,0)
+    # Account for accuracy of move
+    accuracy = pbRoughAccuracy(move,user,target,0)
+    realDamage = baseDmg * accuracy/100.0
+    # Two-turn attacks waste 2 turns to deal one lot of damage
+    if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
+      realDamage *= 2/3   # Not halved because semi-invulnerable during use or hits first turn
+    end
+    return realDamage
   end
   
   def pbEnemyShouldWithdrawEx?(idxBattler,forceSwitch)

@@ -947,3 +947,15 @@ module MessageConfig
     return TextSpeed || 1
   end
 end
+
+module PBDebug
+	def self.log(msg)
+    if $DEBUG
+      echo("#{msg}\n")
+	  if $INTERNAL
+		@@log.push("#{msg}\r\n")
+		PBDebug.flush
+	  end
+    end
+  end
+end

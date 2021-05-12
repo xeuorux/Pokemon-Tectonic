@@ -88,3 +88,128 @@ class PokeBattle_Move_06C < PokeBattle_FixedDamageMove
   end
 end
 
+
+#===============================================================================
+# Inflicts damage to bring the target's HP down to equal the user's HP. (Endeavor)
+#===============================================================================
+class PokeBattle_Move_06E < PokeBattle_FixedDamageMove
+  def pbFailsAgainstTarget?(user,target)
+    if user.hp>=target.hp
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbNumHits(user,targets); return 1; end
+
+  def pbFixedDamage(user,target)
+    return target.hp-user.hp
+  end
+end
+
+#===============================================================================
+# Averages the user's and target's current HP. (Pain Split)
+#===============================================================================
+class PokeBattle_Move_05A < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    newHP = (user.hp+target.hp)/2
+    if user.hp>newHP;    user.pbReduceHP(user.hp-newHP,false,false)
+    elsif user.hp<newHP; user.pbRecoverHP(newHP-user.hp,false)
+    end
+    if target.hp>newHP;    target.pbReduceHP(target.hp-newHP,false,false)
+    elsif target.hp<newHP; target.pbRecoverHP(newHP-target.hp,false)
+    end
+    @battle.pbDisplay(_INTL("The battlers shared their pain!"))
+    user.pbItemHPHealCheck
+    target.pbItemHPHealCheck
+  end
+end
+
+#===============================================================================
+# In wild battles, makes target flee. Fails if target is a higher level than the
+# user.
+# In trainer battles, target switches out.
+# For status moves. (Roar, Whirlwind)
+#===============================================================================
+class PokeBattle_Move_0EB < PokeBattle_Move
+  def ignoresSubstitute?(user); return true; end
+
+  def pbFailsAgainstTarget?(user,target)
+    if target.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
+      @battle.pbShowAbilitySplash(target)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        @battle.pbDisplay(_INTL("{1} anchors itself!",target.pbThis))
+      else
+        @battle.pbDisplay(_INTL("{1} anchors itself with {2}!",target.pbThis,target.abilityName))
+      end
+      @battle.pbHideAbilitySplash(target)
+      return true
+    end
+    if target.effects[PBEffects::Ingrain]
+      @battle.pbDisplay(_INTL("{1} anchored itself with its roots!",target.pbThis))
+      return true
+    end
+    if !@battle.canRun
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    if @battle.wildBattle? && (target.level>user.level || target.boss)
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    if @battle.trainerBattle?
+      canSwitch = false
+      @battle.eachInTeamFromBattlerIndex(target.index) do |_pkmn,i|
+        next if !@battle.pbCanSwitchLax?(target.index,i)
+        canSwitch = true
+        break
+      end
+      if !canSwitch
+        @battle.pbDisplay(_INTL("But it failed!"))
+        return true
+      end
+    end
+    return false
+  end
+end
+
+#===============================================================================
+# In wild battles, makes target flee. Fails if target is a higher level than the
+# user.
+# In trainer battles, target switches out.
+# For damaging moves. (Circle Throw, Dragon Tail)
+#===============================================================================
+class PokeBattle_Move_0EC < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    if @battle.wildBattle? && target.level<=user.level && @battle.canRun &&
+       (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user)) && !target.boss
+      @battle.decision = 3
+    end
+  end
+
+  def pbSwitchOutTargetsEffect(user,targets,numHits,switchedBattlers)
+    return if @battle.wildBattle?
+    return if user.fainted? || numHits==0
+    roarSwitched = []
+    targets.each do |b|
+      next if b.fainted? || b.damageState.unaffected || b.damageState.substitute
+      next if switchedBattlers.include?(b.index)
+      next if b.effects[PBEffects::Ingrain]
+      next if b.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
+      newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,true)   # Random
+      next if newPkmn<0
+      @battle.pbRecallAndReplace(b.index, newPkmn, true)
+      @battle.pbDisplay(_INTL("{1} was dragged out!",b.pbThis))
+      @battle.pbClearChoice(b.index)   # Replacement Pokémon does nothing this round
+      switchedBattlers.push(b.index)
+      roarSwitched.push(b.index)
+    end
+    if roarSwitched.length>0
+      @battle.moldBreaker = false if roarSwitched.include?(user.index)
+      @battle.pbPriority(true).each do |b|
+        b.pbEffectsOnSwitchIn(true) if roarSwitched.include?(b.index)
+      end
+    end
+  end
+end

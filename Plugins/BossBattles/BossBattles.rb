@@ -430,6 +430,9 @@ class PokeBattle_Battle
         break
       end
       PBDebug.log("")
+	  
+	  @commandPhasesThisRound = 0
+	  
       # Command phase
       PBDebug.logonerr { pbCommandPhase }
       break if @decision>0
@@ -437,6 +440,7 @@ class PokeBattle_Battle
       PBDebug.logonerr { pbAttackPhase }
       break if @decision>0
 	  
+	  @commandPhasesThisRound = 1
 	  
 	  if $game_switches[95]
 		  # Boss phases after main phases
@@ -452,6 +456,9 @@ class PokeBattle_Battle
 			  # Command phase
 			  PBDebug.logonerr { pbExtraBossCommandPhase() }
 			  break if @decision>0
+			  
+			  @commandPhasesThisRound += 1
+			  
 			  # Attack phase
 			  PBDebug.logonerr { pbExtraBossAttackPhase() }
 			  break if @decision>0
@@ -464,6 +471,7 @@ class PokeBattle_Battle
       PBDebug.logonerr { pbEndOfRoundPhase }
       break if @decision>0
       @turnCount += 1
+	  @commandPhasesThisRound = 0
     end
     pbEndOfBattle
   end

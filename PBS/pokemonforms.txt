@@ -174,6 +174,8 @@ TutorMoves = AERIALACE,AGILITY,ALLYSWITCH,ASSURANCE,BEATUP,BODYSLAM,BULLDOZE,CON
 EggMoves = FEINTATTACK,METALSOUND,ANCIENTPOWER,PURSUIT,BEATUP,THRASH,REVERSAL,HEADBUTT,ENDURE,FINALGAMBIT,MEMENTO,HONECLAWS
 Weight = 1.0
 Pokedex = Its head sports an altered form of whiskers made of metal. When in communication with its comrades, its whiskers wobble to and fro.
+BattlerPlayerY = 33
+BattlerEnemyY = 37
 #-------------------------------
 [DUGTRIO,1]
 FormName = Dugtrio (A)
@@ -186,6 +188,8 @@ Moves = 0,SANDTOMB,1,SANDTOMB,1,NIGHTSLASH,1,TRIATTACK,1,SANDATTACK,1,METALCLAW,
 TutorMoves = AERIALACE,AGILITY,ALLYSWITCH,ASSURANCE,BEATUP,BODYSLAM,BULLDOZE,CONFIDE,DIG,DOUBLETEAM,EARTHPOWER,EARTHQUAKE,ECHOEDVOICE,ENDURE,FACADE,FLASHCANNON,FRUSTRATION,GIGAIMPACT,HIDDENPOWER,HIGHHORSEPOWER,HYPERBEAM,IRONDEFENSE,IRONHEAD,PROTECT,REST,RETURN,REVERSAL,ROCKSLIDE,ROCKTOMB,ROUND,SANDSTORM,SANDTOMB,SCORCHINGSANDS,SCREECH,SHADOWCLAW,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SNORE,STEALTHROCK,STEELBEAM,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SUNNYDAY,SWAGGER,THIEF,TOXIC,TRIATTACK,UPROAR,WORKUP
 Weight = 66.6
 Pokedex = Its shining gold hair provides it with protection. It's reputed that keeping any of its fallen hairs will bring bad luck.
+BattlerPlayerY = 25
+BattlerEnemyY = 29
 #-------------------------------
 [MEOWTH,1]
 FormName = Meowth (A)
@@ -237,6 +241,8 @@ Weight = 20.3
 Color = Gray
 Pokedex = Geodude compete against each other with headbutts. The iron sand on their heads will stick to whichever one has stronger magnetism.
 WildItemUncommon = CELLBATTERY
+BattlerPlayerY = 33
+BattlerEnemyY = 35
 #-------------------------------
 [GRAVELER,1]
 FormName = Graveler (A)
@@ -250,6 +256,8 @@ Weight = 110.0
 Color = Gray
 Pokedex = They eat rocks and often get into a scrap over them. The shock of Graveler smashing together causes a flash of light and a booming noise.
 WildItemUncommon = CELLBATTERY
+BattlerPlayerY = 24
+BattlerEnemyY = 28
 #-------------------------------
 [GOLEM,1]
 FormName = Golem (A)
@@ -264,6 +272,8 @@ Weight = 316.0
 Color = Gray
 Pokedex = It fires rocks charged with electricity. Even if the rock isn't fired that accurately, just grazing an opponent will cause numbness and fainting.
 WildItemCommon = CELLBATTERY
+BattlerPlayerY = 16
+BattlerEnemyY = 17
 #-------------------------------
 [PONYTA,1]
 FormName = Ponyta (G)
@@ -330,6 +340,8 @@ EggMoves = COUNTER,COVET,CURSE,DOUBLEEDGE,FEINT,FLAIL,NIGHTSLASH,QUICKATTACK,QUI
 Weight = 42.0
 Pokedex = The stalks of leeks are thicker and longer in the Galar region. Farfetch'd that adapted to these stalks took on a unique form.
 WildItemCommon = LEEK
+BattlerPlayerY = 24
+BattlerEnemyY = 28
 Evolutions = SIRFETCHD,Level,35
 #-------------------------------
 [GRIMER,1]
@@ -346,6 +358,8 @@ Height = 0.7
 Weight = 42.0
 Color = Green
 Pokedex = A Grimer, which had been brought in to solve a problem with garbage, developed over time into this form.
+BattlerPlayerY = 27
+BattlerEnemyY = 31
 #-------------------------------
 [MUK,1]
 FormName = Muk (A)
@@ -372,6 +386,9 @@ TutorMoves = BLOCK,BREAKINGSWIPE,BRICKBREAK,BRUTALSWING,BULLDOZE,BULLETSEED,CONF
 Height = 10.9
 Weight = 415.6
 Pokedex = As it grew taller and taller, it outgrew its reliance on psychic powers, while within it awakened the power of the sleeping dragon.
+BattlerPlayerY = 1
+BattlerEnemyY = 4
+BattlerShadowX = 7
 #-------------------------------
 [CUBONE,1]
 TutorMoves = AERIALACE,BLIZZARD,BRICKBREAK,BRUTALSWING,BULLDOZE,CONFIDE,DOUBLETEAM,EARTHPOWER,EARTHQUAKE,ECHOEDVOICE,ENDEAVOR,ENDURE,FACADE,FALSESWIPE,FIREBLAST,FIREPUNCH,FLAMETHROWER,FLING,FOCUSPUNCH,FRUSTRATION,HIDDENPOWER,ICEBEAM,ICYWIND,IRONDEFENSE,IRONHEAD,IRONTAIL,KNOCKOFF,LOWKICK,POWERUPPUNCH,PROTECT,REST,RETURN,ROCKSLIDE,ROCKTOMB,ROUND,SANDSTORM,SLEEPTALK,SMACKDOWN,SMASH,SNORE,STEALTHROCK,STRENGTH,SUBSTITUTE,SUNNYDAY,SWAGGER,SWORDSDANCE,THIEF,THUNDERPUNCH,TOXIC,UPROAR
@@ -611,6 +628,8 @@ EggMoves = CONFUSERAY,DESTINYBOND,HAZE,HEADSMASH,NATUREPOWER,WATERPULSE
 Weight = 0.5
 Color = White
 Pokedex = Sudden climate change wiped out this ancient kind of Corsola. This Pokémon absorbs others' life-force through its branches.
+BattlerPlayerY = 28
+BattlerEnemyY = 33
 Evolutions = CURSOLA,Level,38
 #-------------------------------
 [ZIGZAGOON,1]
@@ -623,7 +642,7 @@ EggMoves = KNOCKOFF,PARTINGSHOT,QUICKGUARD
 Color = White
 Pokedex = Thought to be the oldest form of Zigzagoon, it moves in zigzags and wreaks havoc upon its surroundings.
 BattlerPlayerY = 26
-BattlerEnemyY = 29
+BattlerEnemyY = 31
 #-------------------------------
 [LINOONE,1]
 FormName = Linoone (G)
@@ -672,7 +691,8 @@ BaseStats = 50,70,160,90,70,160
 EffortPoints = 0,0,2,0,0,1
 Moves = 1,LEER,1,WRAP,7,NIGHTSHADE,13,TELEPORT,19,KNOCKOFF,25,SPIKES,31,PSYCHIC,37,SNATCH,43,PSYCHOSHIFT,49,ZENHEADBUTT,55,IRONDEFENSE,55,AMNESIA,61,RECOVER,67,PSYCHOBOOST,73,COUNTER,73,MIRRORCOAT
 TutorMoves = AERIALACE,ALLYSWITCH,BIND,BRICKBREAK,BRUTALSWING,CALMMIND,CHARGEBEAM,CONFIDE,DARKPULSE,DOUBLETEAM,DRAINPUNCH,DREAMEATER,ENDURE,ENERGYBALL,FACADE,FLASHCANNON,FLING,FOCUSBLAST,FOCUSPUNCH,FRUSTRATION,GIGAIMPACT,GRASSKNOT,GRAVITY,HIDDENPOWER,HYPERBEAM,ICEBEAM,IRONDEFENSE,KNOCKOFF,LASERFOCUS,LIGHTSCREEN,LOWKICK,LOWSWEEP,MAGICCOAT,POISONJAB,PROTECT,PSYCHIC,PSYCHUP,PSYSHOCK,RAINDANCE,RECYCLE,REFLECT,REST,RETURN,ROCKSLIDE,ROCKTOMB,ROLEPLAY,ROUND,SAFEGUARD,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SKILLSWAP,SLEEPTALK,SNATCH,SNORE,SOLARBEAM,STEALTHROCK,STOMPINGTANTRUM,SUBSTITUTE,SUNNYDAY,SWAGGER,TAUNT,TELEKINESIS,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERWAVE,TORMENT,TOXIC,TRICK,TRICKROOM,WATERPULSE,WONDERROOM,ZENHEADBUTT
-BattlerEnemyY = 8
+BattlerPlayerY = 10
+BattlerEnemyY = 13
 #-------------------------------
 [DEOXYS,3]
 FormName = Speed Forme
@@ -680,6 +700,8 @@ BaseStats = 50,95,90,180,95,90
 EffortPoints = 0,0,0,3,0,0
 Moves = 1,LEER,1,WRAP,7,NIGHTSHADE,13,DOUBLETEAM,19,KNOCKOFF,25,PURSUIT,31,PSYCHIC,37,SWIFT,43,PSYCHOSHIFT,49,ZENHEADBUTT,55,AGILITY,61,RECOVER,67,PSYCHOBOOST,73,EXTREMESPEED
 TutorMoves = AERIALACE,ALLYSWITCH,BIND,BRICKBREAK,BRUTALSWING,CALMMIND,CHARGEBEAM,CONFIDE,DARKPULSE,DOUBLETEAM,DRAINPUNCH,DREAMEATER,ENDURE,ENERGYBALL,FACADE,FIREPUNCH,FLASHCANNON,FLING,FOCUSBLAST,FOCUSPUNCH,FRUSTRATION,GIGAIMPACT,GRASSKNOT,GRAVITY,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICEPUNCH,ICYWIND,KNOCKOFF,LASERFOCUS,LIGHTSCREEN,LOWKICK,LOWSWEEP,MAGICCOAT,POISONJAB,PROTECT,PSYCHIC,PSYCHUP,PSYSHOCK,RAINDANCE,RECYCLE,REFLECT,REST,RETURN,ROCKSLIDE,ROCKTOMB,ROLEPLAY,ROUND,SAFEGUARD,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SKILLSWAP,SLEEPTALK,SNATCH,SNORE,SOLARBEAM,STEALTHROCK,STOMPINGTANTRUM,SUBSTITUTE,SUNNYDAY,SWAGGER,SWIFT,TAUNT,TELEKINESIS,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERPUNCH,THUNDERWAVE,TORMENT,TOXIC,TRICK,TRICKROOM,WATERPULSE,WONDERROOM,ZENHEADBUTT
+BattlerPlayerY = 9
+BattlerEnemyY = 13
 #-------------------------------
 [BURMY,1]
 FormName = Burmy (Sand)
@@ -718,7 +740,8 @@ FormName = Cherrim (Sun)
 Type1 = GRASS
 Type2 = FIRE
 Color = Pink
-BattlerEnemyY = 25
+BattlerPlayerY = 29
+BattlerEnemyY = 33
 #-------------------------------
 [SHELLOS,1]
 FormName = East Sea
@@ -727,6 +750,8 @@ Color = Blue
 [GASTRODON,1]
 FormName = East Sea
 Color = Blue
+BattlerPlayerY = 21
+BattlerEnemyY = 25
 #-------------------------------
 [ROTOM,1]
 FormName = Heat Rotom
@@ -790,76 +815,112 @@ BattlerEnemyY = 18
 [ARCEUS,1]
 FormName = Fighting Type
 Type1 = FIGHTING
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,2]
 FormName = Flying Type
 Type1 = FLYING
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,3]
 FormName = Poison Type
 Type1 = POISON
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,4]
 FormName = Ground Type
 Type1 = GROUND
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,5]
 FormName = Rock Type
 Type1 = ROCK
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,6]
 FormName = Bug Type
 Type1 = BUG
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,7]
 FormName = Ghost Type
 Type1 = GHOST
 TutorMoves = AERIALACE,AERIALACE,AQUATAIL,AQUATAIL,AVALANCHE,AVALANCHE,BLIZZARD,BLIZZARD,BRICKBREAK,BRICKBREAK,BRINE,BRINE,BULLDOZE,BULLDOZE,BULLETSEED,BULLETSEED,CALMMIND,CALMMIND,CHARGEBEAM,CHARGEBEAM,CONFIDE,CONFIDE,CUT,CUT,DARKPULSE,DARKPULSE,DEFOG,DEFOG,DIVE,DIVE,DOUBLETEAM,DOUBLETEAM,DRACOMETEOR,DRACOMETEOR,DRAGONCLAW,DRAGONCLAW,DRAGONPULSE,DRAGONPULSE,DREAMEATER,DREAMEATER,EARTHPOWER,EARTHPOWER,EARTHQUAKE,EARTHQUAKE,ECHOEDVOICE,ECHOEDVOICE,ENDURE,ENDURE,ENERGYBALL,ENERGYBALL,FACADE,FACADE,FIREBLAST,FIREBLAST,FLAMETHROWER,FLAMETHROWER,FLASHCANNON,FLASHCANNON,FLY,FLY,FOCUSBLAST,FOCUSBLAST,FRUSTRATION,FRUSTRATION,GIGADRAIN,GIGADRAIN,GIGAIMPACT,GIGAIMPACT,GRASSKNOT,GRASSKNOT,GRAVITY,GRAVITY,HAIL,HAIL,HEATWAVE,HEATWAVE,HIDDENPOWER,HIDDENPOWER,HYPERBEAM,HYPERBEAM,HYPERVOICE,HYPERVOICE,ICEBEAM,ICEBEAM,ICYWIND,ICYWIND,IRONDEFENSE,IRONDEFENSE,IRONHEAD,IRONHEAD,IRONTAIL,IRONTAIL,LASERFOCUS,LASERFOCUS,LASTRESORT,LASTRESORT,LIGHTSCREEN,LIGHTSCREEN,LIQUIDATION,LIQUIDATION,MAGICCOAT,MAGICCOAT,OUTRAGE,OUTRAGE,OVERHEAT,OVERHEAT,PAYBACK,PAYBACK,POISONJAB,POISONJAB,PROTECT,PROTECT,PSYCHIC,PSYCHIC,PSYCHUP,PSYCHUP,PSYSHOCK,PSYSHOCK,QUASH,QUASH,RAINDANCE,RAINDANCE,RECYCLE,RECYCLE,REFLECT,REFLECT,REST,REST,RETALIATE,RETALIATE,RETURN,RETURN,ROAR,ROAR,ROCKSLIDE,ROCKSLIDE,ROCKTOMB,ROCKTOMB,ROUND,ROUND,SAFEGUARD,SAFEGUARD,SANDSTORM,SANDSTORM,SHADOWBALL,SHADOWBALL,SHADOWCLAW,SHADOWCLAW,SHOCKWAVE,SHOCKWAVE,SIGNALBEAM,SIGNALBEAM,SLEEPTALK,SLEEPTALK,SLUDGEBOMB,SLUDGEBOMB,SMASH,SMASH,SNARL,SNARL,SNORE,SNORE,SOLARBEAM,SOLARBEAM,STEALTHROCK,STEALTHROCK,STEELBEAM,STEELBEAM,STONEEDGE,STONEEDGE,STRENGTH,STRENGTH,SUBSTITUTE,SUBSTITUTE,SUNNYDAY,SUNNYDAY,SURF,SURF,SWAGGER,SWAGGER,SWORDSDANCE,SWORDSDANCE,TAILWIND,TAILWIND,TELEKINESIS,TELEKINESIS,THUNDER,THUNDER,THUNDERBOLT,THUNDERBOLT,THUNDERWAVE,THUNDERWAVE,TOXIC,TOXIC,TRICK,TRICK,TRICKROOM,TRICKROOM,WATERFALL,WATERFALL,WATERPULSE,WATERPULSE,WHIRLPOOL,WHIRLPOOL,WILLOWISP,WILLOWISP,WORKUP,WORKUP,XSCISSOR,XSCISSOR,ZENHEADBUTT,ZENHEADBUTT
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,8]
 FormName = Steel Type
 Type1 = STEEL
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,9]
 FormName = Unknown Type
 Type1 = QMARKS
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,10]
 FormName = Fire Type
 Type1 = FIRE
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,11]
 FormName = Water Type
 Type1 = WATER
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,12]
 FormName = Grass Type
 Type1 = GRASS
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,13]
 FormName = Electric Type
 Type1 = ELECTRIC
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,14]
 FormName = Psychic Type
 Type1 = PSYCHIC
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,15]
 FormName = Ice Type
 Type1 = ICE
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,16]
 FormName = Dragon Type
 Type1 = DRAGON
 TutorMoves = AERIALACE,AQUATAIL,AVALANCHE,BLIZZARD,BRICKBREAK,BRINE,BULLDOZE,BULLETSEED,CALMMIND,CHARGEBEAM,CONFIDE,CUT,DARKPULSE,DEFOG,DIVE,DOUBLETEAM,DRACOMETEOR,DRACOMETEOR,DRAGONCLAW,DRAGONPULSE,DREAMEATER,EARTHPOWER,EARTHQUAKE,ECHOEDVOICE,ENDURE,ENERGYBALL,FACADE,FIREBLAST,FLAMETHROWER,FLASHCANNON,FLY,FOCUSBLAST,FRUSTRATION,GIGADRAIN,GIGAIMPACT,GRASSKNOT,GRAVITY,HAIL,HEATWAVE,HIDDENPOWER,HYPERBEAM,HYPERVOICE,ICEBEAM,ICYWIND,IRONDEFENSE,IRONHEAD,IRONTAIL,LASERFOCUS,LASTRESORT,LIGHTSCREEN,LIQUIDATION,MAGICCOAT,OUTRAGE,OVERHEAT,PAYBACK,POISONJAB,PROTECT,PSYCHIC,PSYCHUP,PSYSHOCK,QUASH,RAINDANCE,RECYCLE,REFLECT,REST,RETALIATE,RETURN,ROAR,ROCKSLIDE,ROCKTOMB,ROUND,SAFEGUARD,SANDSTORM,SHADOWBALL,SHADOWCLAW,SHOCKWAVE,SIGNALBEAM,SLEEPTALK,SLUDGEBOMB,SMASH,SNARL,SNORE,SOLARBEAM,STEALTHROCK,STEELBEAM,STONEEDGE,STRENGTH,SUBSTITUTE,SUNNYDAY,SURF,SWAGGER,SWORDSDANCE,TAILWIND,TELEKINESIS,THUNDER,THUNDERBOLT,THUNDERWAVE,TOXIC,TRICK,TRICKROOM,WATERFALL,WATERPULSE,WHIRLPOOL,WILLOWISP,WORKUP,XSCISSOR,ZENHEADBUTT
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,17]
 FormName = Dark Type
 Type1 = DARK
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [ARCEUS,18]
 FormName = Fairy Type
 Type1 = FAIRY
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [BASCULIN,1]
 FormName = Blue-Striped
@@ -867,6 +928,7 @@ Abilities = ROCKHEAD,ADAPTABILITY
 TutorMoves = AQUATAIL,BOUNCE,CONFIDE,CUT,DIVE,DOUBLETEAM,ENDEAVOR,ENDURE,FACADE,FRUSTRATION,HAIL,HIDDENPOWER,ICEBEAM,ICYWIND,LIQUIDATION,PROTECT,RAINDANCE,REST,RETURN,ROUND,SCALD,SLEEPTALK,SNORE,SUBSTITUTE,SUPERPOWER,SURF,SWAGGER,TAUNT,TOXIC,UPROAR,WATERFALL,ZENHEADBUTT
 Pokedex = Even Basculin, which devours everything it can with its huge jaws, is nothing more than food to organisms stronger than itself.
 WildItemUncommon = DEEPSEASCALE
+BattlerPlayerY = 30
 BattlerEnemyY = 37
 #-------------------------------
 [DARUMAKA,1]
@@ -879,6 +941,7 @@ Height = 0.7
 Weight = 40.0
 Color = White
 Pokedex = The colder they get, the more energetic they are. They freeze their breath to make snowballs, using them as ammo for playful snowball fights.
+BattlerPlayerY = 31
 Evolutions = DARMANITAN,Item,ICESTONE
 #-------------------------------
 [DARMANITAN,1]
@@ -892,7 +955,8 @@ Height = 1.7
 Weight = 120.0
 Color = White
 Pokedex = Though it has a gentle disposition, it's also very strong. It will quickly freeze the snowball on its head before going for a headbutt.
-BattlerEnemyY = 33
+BattlerPlayerY = 23
+BattlerEnemyY = 27
 #-------------------------------
 [DARMANITAN,2]
 FormName = Darmanitan Zen
@@ -902,6 +966,8 @@ BaseStats = 105,30,105,55,140,105
 EffortPoints = 0,0,0,0,2,0
 Color = Blue
 Pokedex = When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit.
+BattlerPlayerY = 30
+BattlerEnemyY = 33
 #-------------------------------
 [DARMANITAN,3]
 FormName = Darmanitan Zen (G)
@@ -911,6 +977,8 @@ BaseStats = 105,160,55,135,30,55
 EffortPoints = 0,0,0,0,2,0
 Color = White
 Pokedex = Darmanitan takes this form when enraged. It won't stop spewing flames until its rage has settled, even if its body starts to melt.
+BattlerPlayerY = 27
+BattlerEnemyY = 30
 #-------------------------------
 [YAMASK,1]
 FormName = Yamask (G)
@@ -931,14 +999,17 @@ Evolutions = RUNERIGUS,Level,34
 [DEERLING,1]
 FormName = Summer Form
 Color = Green
+BattlerPlayerY = 28
 #-------------------------------
 [DEERLING,2]
 FormName = Autumn Form
 Color = Red
+BattlerPlayerY = 28
 #-------------------------------
 [DEERLING,3]
 FormName = Winter Form
 Color = Brown
+BattlerPlayerY = 28
 #-------------------------------
 [SAWSBUCK,1]
 FormName = Summer Form
@@ -1046,15 +1117,19 @@ BattlerEnemyY = 20
 #-------------------------------
 [GENESECT,1]
 FormName = Shock Drive
+BattlerPlayerY = 14
 #-------------------------------
 [GENESECT,2]
 FormName = Burn Drive
+BattlerPlayerY = 14
 #-------------------------------
 [GENESECT,3]
 FormName = Chill Drive
+BattlerPlayerY = 14
 #-------------------------------
 [GENESECT,4]
 FormName = Douse Drive
+BattlerPlayerY = 14
 #-------------------------------
 [VIVILLON,1]
 FormName = Continental Pattern
@@ -1179,30 +1254,48 @@ FormName = White Flower
 #-------------------------------
 [FURFROU,1]
 FormName = Heart Trim
+BattlerPlayerY = 20
+BattlerEnemyY = 24
 #-------------------------------
 [FURFROU,2]
 FormName = Star Trim
+BattlerPlayerY = 20
+BattlerEnemyY = 24
 #-------------------------------
 [FURFROU,3]
 FormName = Diamond Trim
+BattlerPlayerY = 20
+BattlerEnemyY = 24
 #-------------------------------
 [FURFROU,4]
 FormName = Debutante Trim
+BattlerPlayerY = 20
+BattlerEnemyY = 24
 #-------------------------------
 [FURFROU,5]
 FormName = Matron Trim
+BattlerPlayerY = 20
+BattlerEnemyY = 24
 #-------------------------------
 [FURFROU,6]
 FormName = Dandy Trim
+BattlerPlayerY = 20
+BattlerEnemyY = 24
 #-------------------------------
 [FURFROU,7]
 FormName = La Reine Trim
+BattlerPlayerY = 20
+BattlerEnemyY = 24
 #-------------------------------
 [FURFROU,8]
 FormName = Kabuki Trim
+BattlerPlayerY = 20
+BattlerEnemyY = 24
 #-------------------------------
 [FURFROU,9]
 FormName = Pharaoh Trim
+BattlerPlayerY = 20
+BattlerEnemyY = 24
 #-------------------------------
 [MEOWSTIC,1]
 FormName = Meowstic♀
@@ -1216,6 +1309,8 @@ Color = White
 FormName = Blade Forme
 BaseStats = 60,150,50,60,150,50
 EffortPoints = 0,2,0,0,1,0
+BattlerPlayerY = 9
+BattlerEnemyY = 13
 #-------------------------------
 [PUMPKABOO,1]
 FormName = Average Size
@@ -1238,6 +1333,8 @@ WildItemRare = MIRACLESEED
 [GOURGEIST,1]
 FormName = Average Size
 TutorMoves = ALLYSWITCH,CHARGEBEAM,CONFIDE,DARKPULSE,DOUBLETEAM,DREAMEATER,ENDURE,ENERGYBALL,EXPLOSION,FACADE,FIREBLAST,FLAMECHARGE,FLAMETHROWER,FOCUSBLAST,FOULPLAY,FRUSTRATION,GIGADRAIN,GIGAIMPACT,GRASSKNOT,GYROBALL,HIDDENPOWER,HYPERBEAM,LIGHTSCREEN,MAGICCOAT,NATUREPOWER,PAINSPLIT,PROTECT,PSYCHIC,REST,RETURN,ROCKSLIDE,ROLEPLAY,ROUND,SAFEGUARD,SEEDBOMB,SHADOWBALL,SKILLSWAP,SLEEPTALK,SLUDGEBOMB,SMASH,SNORE,SOLARBEAM,SPITE,SUBSTITUTE,SUNNYDAY,SWAGGER,SYNTHESIS,TELEKINESIS,THIEF,TOXIC,TRICK,TRICKROOM,WILLOWISP,WORRYSEED
+BattlerPlayerY = 12
+BattlerEnemyY = 16
 #-------------------------------
 [GOURGEIST,2]
 FormName = Large Size
@@ -1245,6 +1342,8 @@ BaseStats = 75,58,122,69,95,75
 TutorMoves = ALLYSWITCH,CHARGEBEAM,CONFIDE,DARKPULSE,DOUBLETEAM,DREAMEATER,ENDURE,ENERGYBALL,EXPLOSION,FACADE,FIREBLAST,FLAMECHARGE,FLAMETHROWER,FOCUSBLAST,FOULPLAY,FRUSTRATION,GIGADRAIN,GIGAIMPACT,GRASSKNOT,GYROBALL,HIDDENPOWER,HYPERBEAM,LIGHTSCREEN,MAGICCOAT,NATUREPOWER,PAINSPLIT,PROTECT,PSYCHIC,REST,RETURN,ROCKSLIDE,ROLEPLAY,ROUND,SAFEGUARD,SEEDBOMB,SHADOWBALL,SKILLSWAP,SLEEPTALK,SLUDGEBOMB,SMASH,SNORE,SOLARBEAM,SPITE,SUBSTITUTE,SUNNYDAY,SWAGGER,SYNTHESIS,TELEKINESIS,THIEF,TOXIC,TRICK,TRICKROOM,WILLOWISP,WORRYSEED
 Height = 1.1
 Weight = 14.0
+BattlerPlayerY = 10
+BattlerEnemyY = 14
 #-------------------------------
 [GOURGEIST,3]
 FormName = Super Size
@@ -1255,6 +1354,8 @@ Weight = 39.0
 WildItemCommon = MIRACLESEED
 WildItemUncommon = MIRACLESEED
 WildItemRare = MIRACLESEED
+BattlerPlayerY = 8
+BattlerEnemyY = 12
 #-------------------------------
 [XERNEAS,1]
 FormName = Active Mode
@@ -1810,7 +1911,6 @@ Weight = 355.0
 Pokedex = Able to cut down anything with a single strike, it became known as the Fairy King's Sword, and it inspired awe in friend and foe alike.
 BattlerPlayerY = 4
 BattlerEnemyY = 8
-BattlerShadowX = 0
 #-------------------------------
 [ZAMAZENTA,1]
 FormName = Zamazenta (Crowned)
@@ -1819,6 +1919,7 @@ Type2 = STEEL
 BaseStats = 92,130,145,128,80,145
 Weight = 785.0
 Pokedex = Now that it's equipped with its shield, it can shrug off impressive blows, including the attacks of Dynamax Pokémon.
+BattlerPlayerY = 20
 BattlerEnemyY = 11
 #-------------------------------
 [URSHIFU,1]
@@ -1842,6 +1943,7 @@ Moves = 1,GLACIALLANCE,1,TACKLE,1,TAILWHIP,1,DOUBLEKICK,1,AVALANCHE,1,STOMP,1,TO
 TutorMoves = AGILITY,ALLYSWITCH,ASSURANCE,AVALANCHE,BATONPASS,BLIZZARD,BODYPRESS,BODYSLAM,BULLDOZE,BULLETSEED,CALMMIND,CLOSECOMBAT,CRUNCH,DRAININGKISS,ENCORE,ENDURE,ENERGYBALL,EXPANDINGFORCE,FACADE,FUTURESIGHT,GIGADRAIN,GIGAIMPACT,GRASSKNOT,GRASSYTERRAIN,GUARDSWAP,HAIL,HEAVYSLAM,HELPINGHAND,HIGHHORSEPOWER,HYPERBEAM,ICEBEAM,ICICLESPEAR,ICYWIND,IMPRISON,IRONDEFENSE,LASHOUT,LEAFSTORM,LIGHTSCREEN,MAGICALLEAF,MAGICROOM,MEGAHORN,METRONOME,MUDSHOT,OUTRAGE,PAYBACK,PAYDAY,POLLENPUFF,POWERSWAP,PROTECT,PSYCHIC,PSYCHICTERRAIN,PSYSHOCK,REFLECT,REST,ROUND,SAFEGUARD,SCARYFACE,SEEDBOMB,SKILLSWAP,SLEEPTALK,SMARTHORN,SNARL,SNORE,SOLARBEAM,SOLARBLADE,SPEEDSWAP,STOMPINGTANTRUM,STOREDPOWER,SUBSTITUTE,SUNNYDAY,SUPERPOWER,SWIFT,SWORDSDANCE,TAUNT,THROATCHOP,TRIATTACK,TRICK,TRICKROOM,UPROAR,WONDERROOM,ZENHEADBUTT
 Kind = High King
 Pokedex = It's said that this Pokémon once moved a large forest—and all the Pokémon living there—to a new location overnight.
+BattlerEnemyY = 11
 #-------------------------------
 [CALYREX,2]
 FormName = Calyrex (Shadow)
@@ -1853,6 +1955,7 @@ Abilities = ASONEGHOST
 Moves = 1,ASTRALBARRAGE,1,TACKLE,1,TAILWHIP,1,DOUBLEKICK,1,HEX,1,STOMP,1,CONFUSERAY,1,HAZE,1,SHADOWBALL,1,TAKEDOWN,1,AGILITY,1,THRASH,1,DISABLE,1,DOUBLEEDGE,1,NASTYPLOT,1,POUND,1,MEGADRAIN,1,MINDWAVES,1,GROWTH,8,LIFEDEW,16,GIGADRAIN,24,PSYSHOCK,32,HELPINGHAND,40,AROMATHERAPY,48,ENERGYBALL,56,PSYCHIC,64,LEECHSEED,72,HEALPULSE,80,SOLARBEAM,88,FUTURESIGHT
 TutorMoves = AGILITY,ALLYSWITCH,ASSURANCE,BATONPASS,BODYSLAM,BULLDOZE,BULLETSEED,CALMMIND,CRUNCH,DARKPULSE,DRAININGKISS,ENCORE,ENDURE,ENERGYBALL,EXPANDINGFORCE,FACADE,FOULPLAY,FUTURESIGHT,GIGADRAIN,GIGAIMPACT,GRASSKNOT,GRASSYTERRAIN,GUARDSWAP,HEAVYSLAM,HELPINGHAND,HEX,HYPERBEAM,IMPRISON,LASHOUT,LEAFSTORM,LIGHTSCREEN,MAGICALLEAF,MAGICROOM,METRONOME,MUDSHOT,NASTYPLOT,PAYBACK,PAYDAY,PHANTOMFORCE,POLLENPUFF,POWERSWAP,PROTECT,PSYCHIC,PSYCHICTERRAIN,PSYCHOCUT,PSYSHOCK,REFLECT,REST,ROUND,SAFEGUARD,SCARYFACE,SEEDBOMB,SHADOWBALL,SKILLSWAP,SLEEPTALK,SNARL,SNORE,SOLARBEAM,SOLARBLADE,SPEEDSWAP,STOMPINGTANTRUM,STOREDPOWER,SUBSTITUTE,SUNNYDAY,SWIFT,TAUNT,TRIATTACK,TRICK,TRICKROOM,UPROAR,WILLOWISP,WONDERROOM,ZENHEADBUTT
 Kind = High King
+BattlerEnemyY = 9
 #-------------------------------
 [KYOGRE,1]
 FormName = Primal Kyogre

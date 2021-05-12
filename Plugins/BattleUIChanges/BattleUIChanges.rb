@@ -487,8 +487,8 @@ class PokemonDataBox < SpriteWrapper
 	types = @battler.pbTypes(true)
 	
 	@type1Icon.visible = (value && @showTypes && !!types[0])
-    @type2Icon.visible = (value && @showTypes && !!types[1])
-    @type3Icon.visible = (value && @showTypes && !!types[2])
+    @type2Icon.visible = (value && @showTypes && !!types[1] && types[1] != types[0])
+    @type3Icon.visible = (value && @showTypes && !!types[2] && types[2] != types[0] && types[2] != types[1])
   end
 end
 
