@@ -442,6 +442,13 @@ class PokeBattle_Battle
 	  
 	  @commandPhasesThisRound = 1
 	  
+	  @battlers.each do |b|
+		next if !b
+		if b.boss
+		   pbSetBossTurns(b)
+		end
+	  end
+	  
 	  if $game_switches[95]
 		  # Boss phases after main phases
 		  extra = $game_variables[95] - 1
@@ -476,6 +483,18 @@ class PokeBattle_Battle
     pbEndOfBattle
   end
   
+  def pbSetBossTurns(pkmn)
+	if pkmn.species == :DIALGA
+		healthRation = pkmn.hp / pkmn.totalhp
+		if $game_variables[95] == 1 && healthRation < 0.66
+			pbDisplay(_INTL("The projection of Dialga expands time on its side of the field!"))
+			$game_variables[95] = 3
+		elsif $game_variables[95] == 3 && healthRation < 0.33
+			pbDisplay(_INTL("The projection of Dialga expands time even more! It's stretched to the max!"))
+			$game_variables[95] = 4
+		end
+	end
+  end
   
   def pbExtraBossCommandPhase()
     @scene.pbBeginCommandPhase

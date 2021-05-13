@@ -213,3 +213,17 @@ class PokeBattle_Move_0EC < PokeBattle_Move
     end
   end
 end
+
+
+#===============================================================================
+# OHKO. Accuracy increases by difference between levels of user and target.
+#===============================================================================
+class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
+  def hitsDiggingTargets?; return @id == :FISSURE; end
+
+  def pbAccuracyCheck(user,target)
+	return true if user.boss
+    acc = @accuracy+user.level-target.level
+    return @battle.pbRandom(100)<acc
+  end
+end

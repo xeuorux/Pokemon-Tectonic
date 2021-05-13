@@ -447,14 +447,14 @@ ItemHandlers::UseOnPokemon.add(:RARECANDY,proc { |item,pkmn,scene|
 
 class Pokemon
 	  # @return [Integer] the maximum HP of this Pokémon
-	  def calcHP(base, level, sv, garbage_placeholder = 0)
+	  def calcHP(base, level, sv)
 		return 1 if base == 1   # For Shedinja
 		level = 15+(level/2).floor
 		return ((base * 2 + sv) * level / 100).floor + level + 10
 	  end
 
 	  # @return [Integer] the specified stat of this Pokémon (not used for total HP)
-	  def calcStat(base, level, sv, garbage_placeholder = 0, garbage_placeholder2 = 0)
+	  def calcStat(base, level, sv)
 		level = 15+(level/2).floor
 		return ((((base * 2 + (sv / 4)) * level / 100).floor + 5)).floor
 	  end

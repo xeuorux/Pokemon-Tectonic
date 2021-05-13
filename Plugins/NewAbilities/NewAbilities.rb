@@ -112,24 +112,23 @@ BattleHandlers::DamageCalcUserAbility.add(:SUNCHASER,
   }
 )
 
-
 BattleHandlers::DamageCalcUserAbility.copy(:STEELWORKER,:PULVERIZE)
 
 BattleHandlers::DamageCalcUserAbility.add(:SUBZERO,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:attack_multiplier] *= 1.5 if isConst?(type,PBTypes,:ICE)
+    mults[:attack_multiplier] *= 1.5 if type == :ICE
   }
 )
 
 BattleHandlers::DamageCalcUserAbility.add(:PALEOLITHIC,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:attack_multiplier] *= 1.5 if isConst?(type,PBTypes,:ROCK)
+    mults[:attack_multiplier] *= 1.5 if type == :ROCK
   }
 )
 
 BattleHandlers::DamageCalcUserAbility.add(:SCALDINGSMOKE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:attack_multiplier] *= 1.5 if isConst?(type,PBTypes,:POISON)
+    mults[:attack_multiplier] *= 1.5 if type == :POISON
   }
 )
 
@@ -334,7 +333,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
 BattleHandlers::UserAbilityOnHit.add(:SHOCKSTYLE,
   proc { |ability,user,target,move,battle|
     next if target.paralyzed? || battle.pbRandom(100)>=50
-    next if !isConst?(move.type,PBTypes,:FIGHTING)
+    next if move.type != :FIGHTING
     battle.pbShowAbilitySplash(user)
     if target.pbCanParalyze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
@@ -342,7 +341,7 @@ BattleHandlers::UserAbilityOnHit.add(:SHOCKSTYLE,
         msg = _INTL("{1}'s {2} paralyzed {3}! It may be unable to move!",
            user.pbThis,user.abilityName,target.pbThis(true))
       end
-      target.pbParalyze(user,msg)
+      target.pbParalyze(msg)
     end
     battle.pbHideAbilitySplash(user)
   }
@@ -351,7 +350,7 @@ BattleHandlers::UserAbilityOnHit.add(:SHOCKSTYLE,
 BattleHandlers::UserAbilityOnHit.add(:FROSTWINGS,
   proc { |ability,user,target,move,battle|
     next if target.frozen? || battle.pbRandom(100)>=20
-    next if !isConst?(move.type,PBTypes,:FLYING)
+    next if move.type != :FLYING
     battle.pbShowAbilitySplash(user)
     if target.pbCanFreeze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
@@ -359,7 +358,7 @@ BattleHandlers::UserAbilityOnHit.add(:FROSTWINGS,
         msg = _INTL("{1}'s {2} chilled {3}! Its speed and evasion are massively lowered!!",
            user.pbThis,user.abilityName,target.pbThis(true))
       end
-      target.pbFreeze(user,msg)
+      target.pbFreeze(msg)
     end
     battle.pbHideAbilitySplash(user)
   }
@@ -368,7 +367,7 @@ BattleHandlers::UserAbilityOnHit.add(:FROSTWINGS,
 BattleHandlers::UserAbilityOnHit.add(:SHOCKWINGS,
   proc { |ability,user,target,move,battle|
     next if target.paralyzed? || battle.pbRandom(100)>=20
-    next if !isConst?(move.type,PBTypes,:FLYING)
+    next if move.type != :FLYING
     battle.pbShowAbilitySplash(user)
     if target.pbCanParalyze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
@@ -376,7 +375,7 @@ BattleHandlers::UserAbilityOnHit.add(:SHOCKWINGS,
         msg = _INTL("{1}'s {2} paralyzed {3}! It may be unable to move!",
            user.pbThis,user.abilityName,target.pbThis(true))
       end
-      target.pbParalyze(user,msg)
+      target.pbParalyze(msg)
     end
     battle.pbHideAbilitySplash(user)
   }
@@ -385,7 +384,7 @@ BattleHandlers::UserAbilityOnHit.add(:SHOCKWINGS,
 BattleHandlers::UserAbilityOnHit.add(:FLAMEWINGS,
   proc { |ability,user,target,move,battle|
     next if target.burned? || battle.pbRandom(100)>=20
-    next if !isConst?(move.type,PBTypes,:FLYING)
+    next if move.type != :FLYING
     battle.pbShowAbilitySplash(user)
     if target.pbCanFreeze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil

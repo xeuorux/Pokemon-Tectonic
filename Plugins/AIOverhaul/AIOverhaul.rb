@@ -350,6 +350,10 @@ class PokeBattle_AI
 		score = 0
 	elsif user.species == :INCINEROAR && (move.function == "041" || move.function == "0BA") && user.battle.commandPhasesThisRound != 0  # Swagger, Taunt
 		score = 0
+	elsif user.species == :DIALGA && move.function == "0C2" #Roar of time
+		score = $game_variables[95] == 4 ? 150 : 0
+	elsif user.species == :ARTICUNO && move.function == "070"
+		score = target.frozen? ? 99999 : 0
 	elsif move.damagingMove? # More likely to use damaging moves the more damage they do, and the less current HP you have
 		score = (score * pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f).floor
     end

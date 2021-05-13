@@ -706,7 +706,7 @@
 687,MIRRORSHOT,Mirror Shot,047,65,STEEL,Special,85,10,30,NearOther,0,bef,The user looses a flash of energy from its polished body. It may also lower the target's accuracy.
 688,MAGNETBOMB,Magnet Bomb,0A5,60,STEEL,Physical,0,20,0,NearOther,0,befn,The user launches steel bombs that stick to the target. This attack will not miss.
 689,GEARGRIND,Gear Grind,0BD,50,STEEL,Physical,90,15,0,NearOther,0,abef,The user attacks by grinding two of its steel gears against the target.
-690,METALCLAW,Metal Claw,01C,50,STEEL,Physical,95,35,10,NearOther,0,abef,The target is raked with steel claws. It may also raise the user's Attack stat.
+690,METALCLAW,Metal Claw,01C,50,STEEL,Physical,100,35,10,NearOther,0,abef,The target is raked with steel claws. It may also raise the user's Attack stat.
 691,BULLETPUNCH,Bullet Punch,000,40,STEEL,Physical,100,30,0,NearOther,1,abefj,The user strikes the target with tough punches as fast as bullets. This move always goes first.
 692,GYROBALL,Gyro Ball,08D,1,STEEL,Physical,100,5,0,NearOther,0,abefn,"The user tackles the target with a high-speed spin. The slower the user, the greater the damage."
 693,HEAVYSLAM,Heavy Slam,09B,1,STEEL,Physical,100,10,0,NearOther,0,abef,"The user slams into the foe with its heavy body. The heavier the user, the greater the damage."
