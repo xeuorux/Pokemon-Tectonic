@@ -343,7 +343,9 @@ class PokeBattle_AI
 	elsif move.is_a?(PokeBattle_ProtectMove)
 		score = user.battle.commandPhasesThisRound == 0 ? (@battle.turnCount % 3 == 0 ? 99999 : 0) : 0
 	elsif move.is_a?(PokeBattle_HealingMove)
-		score = (user.hp/user.totalhp < 0.25 && user.battle.commandPhasesThisRound == 0) ? 99999 : 0
+		score = 99999
+		score = 0 if (user.hp.to_f/user.totalhp.to_f) > 0.25
+		score = 0 if user.battle.commandPhasesThisRound != 0
 	elsif move.function == "080" # Brine
 		score = target.hp<target.totalhp/2 ? 250 : 0
 	elsif user.species == :INCINEROAR && move.function != "041" && move.function != "0BA" && user.battle.commandPhasesThisRound == 0  # Swagger, Taunt
@@ -352,8 +354,14 @@ class PokeBattle_AI
 		score = 0
 	elsif user.species == :DIALGA && move.function == "0C2" #Roar of time
 		score = $game_variables[95] == 4 ? 150 : 0
-	elsif user.species == :ARTICUNO && move.function == "070"
+	elsif user.species == :ARTICUNO && move.function == "070" # OHKO
 		score = target.frozen? ? 99999 : 0
+	elsif move.function == "073" #Metal Burst
+		score = 99999
+		score = 0 if (user.lastHPLostFromFoe/user.totalhp) < 0.1
+		score = 0 if user.battle.commandPhasesThisRound != ($game_variables[95] - 1)
+	elsif move.function == "098" # Flail/Reversal
+		score = (user.hp.to_f/user.totalhp.to_f < 0.5) ? 200 : 0
 	elsif move.damagingMove? # More likely to use damaging moves the more damage they do, and the less current HP you have
 		score = (score * pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f).floor
     end
