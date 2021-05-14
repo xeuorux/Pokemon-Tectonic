@@ -268,7 +268,7 @@ class PokeBattle_Battle
       oldHPRecipient = recipient.hp
       pbCommonAnimation("LeechSeed",recipient,b)
       hpLoss = b.pbReduceHP(b.totalhp/8)
-	  hpLoss = (hpLoss/3.0).floor if b.boss
+	  hpLoss = (hpLoss/4.0).floor if b.boss
       recipient.pbRecoverHPFromDrain(hpLoss,b,
          _INTL("{1}'s health is sapped by Leech Seed!",b.pbThis))
       recipient.pbAbilitiesOnDamageTaken(oldHPRecipient) if recipient.hp<oldHPRecipient

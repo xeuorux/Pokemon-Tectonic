@@ -520,7 +520,7 @@
 505,HOWL,Howl,01C,0,NORMAL,Status,0,40,0,User,0,d,"The user howls loudly to raise its spirit, boosting its Attack stat."
 506,LASERFOCUS,Laser Focus,15E,0,NORMAL,Status,0,30,0,User,0,d,The user focuses intensely. The attack on the next turn always results in a critical hit.
 507,LEER,Leer,043,0,NORMAL,Status,100,30,0,AllNearFoes,0,bce,The user gains an intimidating leer with sharp eyes. The target's Defense stat is reduced.
-508,LOCKON,Lock-On,501,0,NORMAL,Status,0,5,0,NearOther,0,be,The user takes sure aim, raising its accuracy maximally.
+508,LOCKON,Lock-On,0A6,0,NORMAL,Status,0,5,0,NearOther,0,be,"The user takes sure aim at the target. This ensures the next attack does not miss the target."
 509,LOVELYKISS,Lovely Kiss,003,0,NORMAL,Status,75,10,0,NearOther,0,bce,"With a scary face, the user tries to force a kiss on the target. If it suceeds, the target falls asleep."
 510,LUCKYCHANT,Lucky Chant,0A1,0,NORMAL,Status,0,30,0,UserSide,0,d,"The user chants an incantation toward the sky, preventing the foe from landing critical hits."
 511,MEFIRST,Me First,0B0,0,NORMAL,Status,0,20,0,NearFoe,0,b,The user tries to cut ahead of the foe to steal and use the foe's intended move with greater power.

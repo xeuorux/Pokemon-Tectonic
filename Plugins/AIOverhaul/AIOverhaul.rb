@@ -362,9 +362,25 @@ class PokeBattle_AI
 		score = 0 if user.battle.commandPhasesThisRound != ($game_variables[95] - 1)
 	elsif move.function == "098" # Flail/Reversal
 		score = (user.hp.to_f/user.totalhp.to_f < 0.5) ? 200 : 0
+	elsif move.function == "0A6" # Lock On, Mind Reader
+		score = (user.battle.commandPhasesThisRound == ($game_variables[95] - 1)) ? 200 : 0
+	elsif move.damagingMove? && move.accuracy < 70
+		score = 0
+		score = 99999 if user.effects[PBEffects::LockOnPos] == target.index # If locked on to the target
+		score = 0 if user.battle.commandPhasesThisRound != 0
+	elsif move.function == "118"
+		score = 200
 	elsif move.damagingMove? # More likely to use damaging moves the more damage they do, and the less current HP you have
 		score = (score * pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f).floor
     end
+	
+	if move.priority > 0
+		if user.battle.commandPhasesThisRound == 0
+			score *= 2
+		else
+			score = 0
+		end
+	end
 	
 	# Never use a move that would fail outright
 	@battle.messagesBlocked = true

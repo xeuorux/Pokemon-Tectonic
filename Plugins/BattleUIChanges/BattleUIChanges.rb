@@ -96,74 +96,86 @@ class CommandMenuDisplay < BattleMenuBase
 end
 
 class PokeBattle_Scene
-	  def pbInitSprites
-    @sprites = {}
-    # The background image and each side's base graphic
-    pbCreateBackdropSprites
-    # Create message box graphic
-    messageBox = pbAddSprite("messageBox",0,Graphics.height-96,
-       "Graphics/Pictures/Battle/overlay_message",@viewport)
-    messageBox.z = 195
-    # Create message window (displays the message)
-    msgWindow = Window_AdvancedTextPokemon.newWithSize("",
-       16,Graphics.height-96+2,Graphics.width-32,96,@viewport)
-    msgWindow.z              = 200
-    msgWindow.opacity        = 0
-    msgWindow.baseColor      = PokeBattle_SceneConstants::MESSAGE_BASE_COLOR
-    msgWindow.shadowColor    = PokeBattle_SceneConstants::MESSAGE_SHADOW_COLOR
-    msgWindow.letterbyletter = true
-    @sprites["messageWindow"] = msgWindow
-    # Create command window
-    @sprites["commandWindow"] = CommandMenuDisplay.new(@viewport,200,@battle)
-    # Create fight window
-    @sprites["fightWindow"] = FightMenuDisplay.new(@viewport,200)
-    # Create targeting window
-    @sprites["targetWindow"] = TargetMenuDisplay.new(@viewport,200,@battle.sideSizes)
-    pbShowWindow(MESSAGE_BOX)
-    # The party lineup graphics (bar and balls) for both sides
-    for side in 0...2
-      partyBar = pbAddSprite("partyBar_#{side}",0,0,
-         "Graphics/Pictures/Battle/overlay_lineup",@viewport)
-      partyBar.z       = 120
-      partyBar.mirror  = true if side==0   # Player's lineup bar only
-      partyBar.visible = false
-      for i in 0...PokeBattle_SceneConstants::NUM_BALLS
-        ball = pbAddSprite("partyBall_#{side}_#{i}",0,0,nil,@viewport)
-        ball.z       = 121
-        ball.visible = false
-      end
-      # Ability splash bars
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        @sprites["abilityBar_#{side}"] = AbilitySplashBar.new(side,@viewport)
-      end
+	def pbInitSprites
+		@sprites = {}
+		# The background image and each side's base graphic
+		pbCreateBackdropSprites
+		# Create message box graphic
+		messageBox = pbAddSprite("messageBox",0,Graphics.height-96,
+		   "Graphics/Pictures/Battle/overlay_message",@viewport)
+		messageBox.z = 195
+		# Create message window (displays the message)
+		msgWindow = Window_AdvancedTextPokemon.newWithSize("",
+		   16,Graphics.height-96+2,Graphics.width-32,96,@viewport)
+		msgWindow.z              = 200
+		msgWindow.opacity        = 0
+		msgWindow.baseColor      = PokeBattle_SceneConstants::MESSAGE_BASE_COLOR
+		msgWindow.shadowColor    = PokeBattle_SceneConstants::MESSAGE_SHADOW_COLOR
+		msgWindow.letterbyletter = true
+		@sprites["messageWindow"] = msgWindow
+		# Create command window
+		@sprites["commandWindow"] = CommandMenuDisplay.new(@viewport,200,@battle)
+		# Create fight window
+		@sprites["fightWindow"] = FightMenuDisplay.new(@viewport,200)
+		# Create targeting window
+		@sprites["targetWindow"] = TargetMenuDisplay.new(@viewport,200,@battle.sideSizes)
+		pbShowWindow(MESSAGE_BOX)
+		# The party lineup graphics (bar and balls) for both sides
+		for side in 0...2
+		  partyBar = pbAddSprite("partyBar_#{side}",0,0,
+			 "Graphics/Pictures/Battle/overlay_lineup",@viewport)
+		  partyBar.z       = 120
+		  partyBar.mirror  = true if side==0   # Player's lineup bar only
+		  partyBar.visible = false
+		  for i in 0...PokeBattle_SceneConstants::NUM_BALLS
+			ball = pbAddSprite("partyBall_#{side}_#{i}",0,0,nil,@viewport)
+			ball.z       = 121
+			ball.visible = false
+		  end
+		  # Ability splash bars
+		  if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+			@sprites["abilityBar_#{side}"] = AbilitySplashBar.new(side,@viewport)
+		  end
+		end
+		# Player's and partner trainer's back sprite
+		@battle.player.each_with_index do |p,i|
+		  pbCreateTrainerBackSprite(i,p.trainer_type,@battle.player.length)
+		end
+		# Opposing trainer(s) sprites
+		if @battle.trainerBattle?
+		  @battle.opponent.each_with_index do |p,i|
+			pbCreateTrainerFrontSprite(i,p.trainer_type,@battle.opponent.length)
+		  end
+		end
+		# Data boxes and Pokémon sprites
+		@battle.battlers.each_with_index do |b,i|
+		  next if !b
+		  @sprites["dataBox_#{i}"] = PokemonDataBox.new(b,@battle.pbSideSize(i),@viewport)
+		  pbCreatePokemonSprite(i)
+		end
+		# Wild battle, so set up the Pokémon sprite(s) accordingly
+		if @battle.wildBattle?
+		  @battle.pbParty(1).each_with_index do |pkmn,i|
+			index = i*2+1
+			pbChangePokemon(index,pkmn)
+			pkmnSprite = @sprites["pokemon_#{index}"]
+			pkmnSprite.tone    = Tone.new(-80,-80,-80)
+			pkmnSprite.visible = true
+		  end
+		end
     end
-    # Player's and partner trainer's back sprite
-    @battle.player.each_with_index do |p,i|
-      pbCreateTrainerBackSprite(i,p.trainer_type,@battle.player.length)
-    end
-    # Opposing trainer(s) sprites
-    if @battle.trainerBattle?
-      @battle.opponent.each_with_index do |p,i|
-        pbCreateTrainerFrontSprite(i,p.trainer_type,@battle.opponent.length)
-      end
-    end
-    # Data boxes and Pokémon sprites
-    @battle.battlers.each_with_index do |b,i|
-      next if !b
-      @sprites["dataBox_#{i}"] = PokemonDataBox.new(b,@battle.pbSideSize(i),@viewport)
-      pbCreatePokemonSprite(i)
-    end
-    # Wild battle, so set up the Pokémon sprite(s) accordingly
-    if @battle.wildBattle?
-      @battle.pbParty(1).each_with_index do |pkmn,i|
-        index = i*2+1
-        pbChangePokemon(index,pkmn)
-        pkmnSprite = @sprites["pokemon_#{index}"]
-        pkmnSprite.tone    = Tone.new(-80,-80,-80)
-        pkmnSprite.visible = true
-      end
-    end
-  end
+	
+	def pbChangePokemon(idxBattler,pkmn)
+		idxBattler = idxBattler.index if idxBattler.respond_to?("index")
+		pkmnSprite   = @sprites["pokemon_#{idxBattler}"]
+		shadowSprite = @sprites["shadow_#{idxBattler}"]
+		back = !@battle.opposes?(idxBattler)
+		pkmnSprite.setPokemonBitmap(pkmn,back)
+		shadowSprite.setPokemonBitmap(pkmn)
+		# Set visibility of battler's shadow
+		shadowSprite.visible = pkmn.species_data.shows_shadow? if shadowSprite && !back
+		shadowSprite.visible = false if pkmn.boss
+	  end
 
   #=============================================================================
   # The player chooses a main command for a Pokémon

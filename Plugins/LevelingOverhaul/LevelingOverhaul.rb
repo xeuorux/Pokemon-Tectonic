@@ -11,14 +11,14 @@ class PokeBattle_Battle
 	if $game_switches[95] # Boss battle
       @battlers.each do |b|
         next if !b || !b.opposes?   # Can only gain Exp from fainted foes
-        next unless b.fainted? || b.captured
+        next if !b.fainted? || !b.boss
         pbDisplayPaused(_INTL("Each Pokémon in your party got Exp. Points!"))
         b.participants = []
         eachInTeam(0,0) do |pkmn,i|
-          echo("Calcing experience for #{pkmn.name}\n")
           b.participants.push(i)
           pbGainExpOne(i,b,0,[],[])
         end
+		b.boss = false
       end
     else
 		# Go through each battler in turn to find the Pokémon that participated in

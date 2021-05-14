@@ -12,7 +12,7 @@ class PokeBattle_Move_500 < PokeBattle_Move
 class PokeBattle_Move_501 < PokeBattle_StatUpMove
   def initialize(battle,move)
     super
-    @statUp = [PBStats::ACCURACY,12]
+    @statUp = [:ACCURACY,12]
   end
 end
 
@@ -32,7 +32,7 @@ end
 class PokeBattle_Move_503 < PokeBattle_MultiStatUpMove
   def initialize(battle,move)
     super
-    @statUp = [PBStats::SPATK,1,PBStats::SPEED,1]
+    @statUp = [:SPATK,1,:SPEED,1]
   end
 end
 
@@ -87,7 +87,7 @@ end
 #===============================================================================
 class PokeBattle_Move_506 < PokeBattle_Move
   def pbGetDefenseStats(user,target)
-    return target.spdef, target.stages[PBStats::SPDEF]+6
+    return target.spdef, target.stages[:SPDEF]+6
   end
 end
 
@@ -98,11 +98,11 @@ end
 class PokeBattle_Move_507 < PokeBattle_TargetStatDownMove
   def initialize(battle,move)
     super
-    @statDown = [PBStats::SPDEF,1]
+    @statDown = [:SPDEF,1]
   end
   
   def pbCalcTypeModSingle(moveType,defType,user,target)
-    return PBTypeEffectiveness::SUPER_EFFECTIVE_ONE if isConst?(defType,PBTypes,:STEEL)
+    return Effectiveness::SUPER_EFFECTIVE_ONE if moveType == :STEEL
     return super
   end
 end
@@ -212,7 +212,7 @@ end
 class PokeBattle_Move_50F < PokeBattle_StatDownMove
   def initialize(battle,move)
     super
-    @statDown = [PBStats::ATTACK,2]
+    @statDown = [:ATTACK,2]
   end
 end
 
@@ -251,7 +251,7 @@ end
 class PokeBattle_Move_512 < PokeBattle_MultiStatUpMove
   def initialize(battle,move)
     super
-    @statUp = [PBStats::ATTACK,1,PBStats::SPDEF,1]
+    @statUp = [:ATTACK,1,:SPDEF,1]
   end
 end
 
@@ -261,7 +261,7 @@ end
 class PokeBattle_Move_513 < PokeBattle_MultiStatUpMove
   def initialize(battle,move)
     super
-    @statUp = [PBStats::SPATK,1,PBStats::DEFENSE,1]
+    @statUp = [:SPATK,1,:DEFENSE,1]
   end
 end
 
