@@ -370,6 +370,29 @@ class PokeBattle_AI
 		score = 0 if user.battle.commandPhasesThisRound != 0
 	elsif move.function == "118"
 		score = 200
+	elsif move.function == "0A0"
+		score = 0
+		score = 200 if move.physicalMove? && (user.stages[:ATTACK] < 6 || target.stages[:DEFENSE] > 6)
+		score = 400 if move.physicalMove? && (user.stages[:ATTACK] < 4 || target.stages[:DEFENSE] > 8)
+		score = 200 if move.specialMove? && (user.stages[:SPECIAL_ATTACK] < 6 || target.stages[:SPECIAL_DEFENSE] > 6)
+		score = 400 if move.specialMove? && (user.stages[:SPECIAL_ATTACK] < 4 || target.stages[:SPECIAL_DEFENSE] > 8)
+	elsif move.function == "160" # Strength Sap
+		maxHeal = -99999
+		maxHealer = nil
+		@battle.battlers.each do |b|
+			next if !user.opposes?(b)
+			stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+			stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+			atk      = b.attack
+			atkStage = b.stages[:ATTACK]+6
+			healAmt = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
+			if healAmt > maxHeal
+				maxHeal = healAmt
+				maxHealer = b
+			end
+		end
+		echo("Max Healer: #{maxHealer}\n")
+		score = target == maxHealer ? 130 : 0
 	elsif move.damagingMove? # More likely to use damaging moves the more damage they do, and the less current HP you have
 		score = (score * pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f).floor
     end

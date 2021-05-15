@@ -431,6 +431,12 @@ class PokeBattle_Battle
       end
       PBDebug.log("")
 	  
+	  @battlers.each do |b|
+		next if !b || b.fainted || !b.boss
+		pbSetBossTurns(b)
+		pbSetBossItem(b)
+	  end
+	  
 	  @commandPhasesThisRound = 0
 	  
       # Command phase
@@ -441,13 +447,6 @@ class PokeBattle_Battle
       break if @decision>0
 	  
 	  @commandPhasesThisRound = 1
-	  
-	  @battlers.each do |b|
-		next if !b
-		if b.boss
-		   pbSetBossTurns(b)
-		end
-	  end
 	  
 	  if $game_switches[95]
 		  # Boss phases after main phases
@@ -492,6 +491,47 @@ class PokeBattle_Battle
 		elsif $game_variables[95] == 3 && healthRation < 0.33
 			pbDisplay(_INTL("The projection of Dialga expands time even more! It's stretched to the max!"))
 			$game_variables[95] = 4
+		end
+	end
+  end
+  
+  def pbSetBossItem(pkmn)
+	if pkmn.species == :GENESECT && pkmn.turnCount == 0
+		pbDisplay(_INTL("The projection of Genesect is analyzing your team for weaknesses..."))
+		weakToElectric 	= 0
+		weakToFire 		= 0
+		weakToIce 		= 0
+		weakToWater 	= 0
+		maxValue = 0
+
+		$Trainer.party.each do |b|
+			next if !b
+			type1 = b.type1
+			type2 = nil
+			type2 = b.type2 if b.type2 != b.type1
+			weakToElectric += 1 if Effectiveness.super_effective?(Effectiveness.calculate(:ELECTRIC,type1,type2,nil))
+			maxValue = weakToElectric if weakToElectric > maxValue
+			weakToFire += 1  if Effectiveness.super_effective?(Effectiveness.calculate(:FIRE,type1,type2,nil))
+			maxValue = weakToElectric if weakToFire > maxValue
+			weakToIce += 1  if Effectiveness.super_effective?(Effectiveness.calculate(:ICE,type1,type2,nil))
+			maxValue = weakToElectric if weakToIce > maxValue
+			weakToWater += 1  if Effectiveness.super_effective?(Effectiveness.calculate(:WATER,type1,type2,nil))
+			maxValue = weakToElectric if weakToWater > maxValue
+		end
+		
+		chosenItem = nil
+		if maxValue > 0
+			results = {SHOCKDRIVE: weakToElectric, BURNDRIVE: weakToFire, CHILLDRIVE: weakToIce, DOUSEDRIVE: weakToWater}
+			results = results.sort_by{|k, v| v}.to_h
+			results.delete_if{|k, v| v < maxValue}
+			chosenItem = results.keys.sample
+		end
+		
+		if !chosenItem
+			pbDisplay(_INTL("The projection of Genesect can't find any!"))
+		else
+			pbDisplay(_INTL("The projection of Genesect loads a {1}!",GameData::Item.get(chosenItem).real_name))
+			pkmn.item = chosenItem
 		end
 	end
   end
