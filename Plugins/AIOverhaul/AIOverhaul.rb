@@ -393,6 +393,10 @@ class PokeBattle_AI
 		end
 		echo("Max Healer: #{maxHealer}\n")
 		score = target == maxHealer ? 130 : 0
+	elsif move.function == "08E" # Power Trip, Trained Outburst, Stored Power
+		score = 0
+		base = move.pbBaseDamage(nil,user,target)
+		score = (base*5/2) if base >= 100
 	elsif move.damagingMove? # More likely to use damaging moves the more damage they do, and the less current HP you have
 		score = (score * pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f).floor
     end

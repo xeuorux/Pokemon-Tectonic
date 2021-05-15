@@ -94,17 +94,11 @@ end
 #===============================================================================
 class PokeBattle_Move_06E < PokeBattle_FixedDamageMove
   def pbFailsAgainstTarget?(user,target)
-    if user.hp>=target.hp
+    if user.hp>=target.hp || target.boss
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
     return false
-  end
-
-  def pbNumHits(user,targets); return 1; end
-
-  def pbFixedDamage(user,target)
-    return target.hp-user.hp
   end
 end
 
@@ -112,18 +106,13 @@ end
 # Averages the user's and target's current HP. (Pain Split)
 #===============================================================================
 class PokeBattle_Move_05A < PokeBattle_Move
-  def pbEffectAgainstTarget(user,target)
-    newHP = (user.hp+target.hp)/2
-    if user.hp>newHP;    user.pbReduceHP(user.hp-newHP,false,false)
-    elsif user.hp<newHP; user.pbRecoverHP(newHP-user.hp,false)
-    end
-    if target.hp>newHP;    target.pbReduceHP(target.hp-newHP,false,false)
-    elsif target.hp<newHP; target.pbRecoverHP(newHP-target.hp,false)
-    end
-    @battle.pbDisplay(_INTL("The battlers shared their pain!"))
-    user.pbItemHPHealCheck
-    target.pbItemHPHealCheck
-  end
+	def pbFailsAgainstTarget(user,target)
+		if target.boss
+		  @battle.pbDisplay(_INTL("But it failed!"))
+		  return true
+		end
+		return false
+	end
 end
 
 #===============================================================================
