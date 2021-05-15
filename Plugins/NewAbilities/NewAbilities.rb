@@ -76,7 +76,6 @@ BattleHandlers::DamageCalcUserAbility.copy(:HUGEENERGY,:PUREENERGY)
 
 BattleHandlers::DamageCalcUserAbility.add(:DEEPSTING,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    echo("Deep sting: #{move.physicalMove?}\n")
     mults[:attack_multiplier] *= 1.5 if move.physicalMove?
   }
 )

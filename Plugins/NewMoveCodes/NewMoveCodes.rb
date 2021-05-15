@@ -299,3 +299,80 @@ class PokeBattle_Move_516 < PokeBattle_Move
     end
   end
 end
+
+#===============================================================================
+# Priority against Pokemon with half or less health. (Aqua Instinct)
+#===============================================================================
+class PokeBattle_Move_517 < PokeBattle_Move
+	def priorityModification?(user,target);
+		return 1 if target.hp.to_f < target.totalhp.to_f/2
+		return 0
+	end
+end
+
+#===============================================================================
+# Heals user by 1/3 of their max health, but does not fail at full health. (Douse)
+#===============================================================================
+class PokeBattle_Move_518 < PokeBattle_HealingMove
+  def pbOnStartUse(user,targets)
+    @healAmount = (user.totalhp*1/3.0).round
+  end
+  
+  def pbMoveFailed?(user,targets)
+    return false
+  end
+
+  def pbHealAmount(user)
+    return @healAmount
+  end
+end
+
+#===============================================================================
+# Decreases the user's Speed and Defense by 1 stage each. Can't miss. (Prediction Strike)
+#===============================================================================
+class PokeBattle_Move_519 < PokeBattle_StatDownMove
+  def initialize(battle,move)
+    super
+    @statDown = [:SPEED,1,:DEFENSE,1]
+  end
+  
+  def pbAccuracyCheck(user,target); return true; end
+end
+
+#===============================================================================
+# Badly poisons the target. Heals for 1/3 the damage dealt. (Venom Leech)
+#===============================================================================
+class PokeBattle_Move_51A < PokeBattle_PoisonMove
+  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
+
+  def initialize(battle,move)
+    super
+    @toxic = true
+  end
+  
+  def pbEffectAgainstTarget(user,target)
+    return if target.damageState.hpLost<=0
+    hpGain = (target.damageState.hpLost/3.0).round
+    user.pbRecoverHPFromDrain(hpGain,target)
+  end
+end
+
+#===============================================================================
+# User loses their Ice type. Fails if user is not Ice-type. (Cold Conversion)
+#===============================================================================
+class PokeBattle_Move_51B < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    if !user.pbHasType?(:ICE)
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectAfterAllHits(user,target)
+    if !user.effects[PBEffects::ColdConversion]
+      user.effects[PBEffects::ColdConversion] = true
+      @battle.pbDisplay(_INTL("{1} lost its cold!",user.pbThis))
+    end
+  end
+end

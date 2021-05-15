@@ -86,6 +86,111 @@ class PokeBattle_Battle
   end
   
   #=============================================================================
+  # Turn order calculation (priority)
+  #=============================================================================
+  def pbCalculatePriority(fullCalc=false,indexArray=nil)
+    needRearranging = false
+    if fullCalc
+      @priorityTrickRoom = (@field.effects[PBEffects::TrickRoom]>0)
+      # Recalculate everything from scratch
+      randomOrder = Array.new(maxBattlerIndex+1) { |i| i }
+      (randomOrder.length-1).times do |i|   # Can't use shuffle! here
+        r = i+pbRandom(randomOrder.length-i)
+        randomOrder[i], randomOrder[r] = randomOrder[r], randomOrder[i]
+      end
+      @priority.clear
+      for i in 0..maxBattlerIndex
+        b = @battlers[i]
+        next if !b
+        # [battler, speed, sub-priority, priority, tie-breaker order]
+        bArray = [b,b.pbSpeed,0,0,randomOrder[i]]
+        if @choices[b.index][0]==:UseMove || @choices[b.index][0]==:Shift
+          # Calculate move's priority
+          if @choices[b.index][0]==:UseMove
+            move = @choices[b.index][2]
+            pri = move.priority
+            if b.abilityActive?
+              pri = BattleHandlers.triggerPriorityChangeAbility(b.ability,b,move,pri)
+            end
+			target = @choices[b.index][3]
+			pri += move.priorityModification(b,target)
+            bArray[3] = pri
+            @choices[b.index][4] = pri
+          end
+          # Calculate sub-priority (first/last within priority bracket)
+          # NOTE: Going fast beats going slow. A Pokémon with Stall and Quick
+          #       Claw will go first in its priority bracket if Quick Claw
+          #       triggers, regardless of Stall.
+          subPri = 0
+          # Abilities (Stall)
+          if b.abilityActive?
+            newSubPri = BattleHandlers.triggerPriorityBracketChangeAbility(b.ability,
+             b,subPri,self)
+            if subPri!=newSubPri
+              subPri = newSubPri
+              b.effects[PBEffects::PriorityAbility] = true
+              b.effects[PBEffects::PriorityItem]    = false
+            end
+          end
+          # Items (Quick Claw, Custap Berry, Lagging Tail, Full Incense)
+          if b.itemActive?
+            newSubPri = BattleHandlers.triggerPriorityBracketChangeItem(b.item,
+               b,subPri,self)
+            if subPri!=newSubPri
+              subPri = newSubPri
+              b.effects[PBEffects::PriorityAbility] = false
+              b.effects[PBEffects::PriorityItem]    = true
+            end
+          end
+          bArray[2] = subPri
+        end
+        @priority.push(bArray)
+      end
+      needRearranging = true
+    else
+      if (@field.effects[PBEffects::TrickRoom]>0)!=@priorityTrickRoom
+        needRearranging = true
+        @priorityTrickRoom = (@field.effects[PBEffects::TrickRoom]>0)
+      end
+      # Just recheck all battler speeds
+      @priority.each do |orderArray|
+        next if !orderArray
+        next if indexArray && !indexArray.include?(orderArray[0].index)
+        oldSpeed = orderArray[1]
+        orderArray[1] = orderArray[0].pbSpeed
+        needRearranging = true if orderArray[1]!=oldSpeed
+      end
+    end
+    # Reorder the priority array
+    if needRearranging
+      @priority.sort! { |a,b|
+        if a[3]!=b[3]
+          # Sort by priority (highest value first)
+          b[3]<=>a[3]
+        elsif a[2]!=b[2]
+          # Sort by sub-priority (highest value first)
+          b[2]<=>a[2]
+        elsif @priorityTrickRoom
+          # Sort by speed (lowest first), and use tie-breaker if necessary
+          (a[1]==b[1]) ? b[4]<=>a[4] : a[1]<=>b[1]
+        else
+          # Sort by speed (highest first), and use tie-breaker if necessary
+          (a[1]==b[1]) ? b[4]<=>a[4] : b[1]<=>a[1]
+        end
+      }
+      # Write the priority order to the debug log
+      logMsg = (fullCalc) ? "[Round order] " : "[Round order recalculated] "
+      comma = false
+      @priority.each do |orderArray|
+        logMsg += ", " if comma
+        logMsg += "#{orderArray[0].pbThis(comma)} (#{orderArray[0].index})"
+        comma = true
+      end
+      PBDebug.log(logMsg)
+    end
+  end
+  
+  #=============================================================================
   # End of battle
   #=============================================================================
   def pbGainMoney
@@ -1025,6 +1130,10 @@ class PokeBattle_Battle
 end
 
 class PokeBattle_Move
+
+	# Checks whether the move should have modified priority
+	def priorityModification(user,target); return 0; end
+
 # Returns whether the move will be a critical hit.
   def pbIsCritical?(user,target)
     return false if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
@@ -1579,6 +1688,7 @@ class PokeBattle_Battler
 	
 	@effects[PBEffects::FlinchedAlready]     = false
 	@effects[PBEffects::Enlightened]		 = false
+	@effects[PBEffects::ColdConversion]      = false
   end
 
 	def takesSandstormDamage?
@@ -1598,6 +1708,29 @@ class PokeBattle_Battler
 		return false if hasActiveItem?(:SAFETYGOGGLES)
 		return true
 	end
+	
+  # Returns the active types of this Pokémon. The array should not include the
+  # same type more than once, and should not include any invalid type numbers
+  # (e.g. -1).
+  def pbTypes(withType3=false)
+    ret = [@type1]
+    ret.push(@type2) if @type2!=@type1
+    # Burn Up erases the Fire-type.
+    ret.delete(:FIRE) if @effects[PBEffects::BurnUp]
+	# Cold Conversion erases the Ice-type.
+    ret.delete(:FIRE) if @effects[PBEffects::ColdConversion]
+    # Roost erases the Flying-type. If there are no types left, adds the Normal-
+    # type.
+    if @effects[PBEffects::Roost]
+      ret.delete(:FLYING)
+      ret.push(:NORMAL) if ret.length == 0
+    end
+    # Add the third type specially.
+    if withType3 && @effects[PBEffects::Type3]
+      ret.push(@effects[PBEffects::Type3]) if !ret.include?(@effects[PBEffects::Type3])
+    end
+    return ret
+  end
   
   # permanent is whether the item is lost even after battle. Is false for Knock
   # Off.
@@ -1914,6 +2047,29 @@ class PokeBattle_Battler
     end
     # Calculation
     return [(speed*speedMult).round,1].max
+  end
+  
+  #=============================================================================
+  # Change type
+  #=============================================================================
+  def pbChangeTypes(newType)
+    if newType.is_a?(PokeBattle_Battler)
+      newTypes = newType.pbTypes
+      newTypes.push(:NORMAL) if newTypes.length == 0
+      newType3 = newType.effects[PBEffects::Type3]
+      newType3 = nil if newTypes.include?(newType3)
+      @type1 = newTypes[0]
+      @type2 = (newTypes.length == 1) ? newTypes[0] : newTypes[1]
+      @effects[PBEffects::Type3] = newType3
+    else
+      newType = GameData::Type.get(newType).id
+      @type1 = newType
+      @type2 = newType
+      @effects[PBEffects::Type3] = nil
+    end
+    @effects[PBEffects::BurnUp] 		= false
+	@effects[PBEffects::ColdConversion] = false
+    @effects[PBEffects::Roost]  		= false
   end
   
   #=============================================================================
@@ -2887,6 +3043,7 @@ module PBEffects
     ConfusionChance     = 131
     FlinchedAlready     = 132
 	Enlightened			= 133
+	ColdConversion		= 134
 	
 	#===========================================================================
     # These effects apply to a side
