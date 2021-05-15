@@ -251,20 +251,6 @@ module PokeBattle_BattleCommon
   end
 end
 
-class PokemonEncounters
-	# Returns whether the player's current location allows wild encounters to
-  # trigger upon taking a step.
-  def encounter_possible_here?
-    return true if $PokemonGlobal.surfing
-    terrain_tag = $game_map.terrain_tag($game_player.x, $game_player.y)
-    return false if terrain_tag.ice
-    return true if has_cave_encounters? && !(terrain_tag.id == :Sand)   # i.e. this map is a cave
-    return true if has_land_encounters? && terrain_tag.land_wild_encounters
-    return false
-  end
-end
-
-
 class PokeBattle_Battle
 
   #=============================================================================
