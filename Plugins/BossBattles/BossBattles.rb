@@ -40,6 +40,8 @@ Events.onWildPokemonCreate += proc {| sender, e |
     else
       pkmn.ability = (pkmn.getAbilityList()[0][0])
     end
+	
+	pkmn.calc_stats()
   end
 }
 
@@ -157,8 +159,8 @@ class PokeBattle_Battler
     @species      = pkmn.species
     @form         = pkmn.form
     @level        = pkmn.level
-    @totalhp      = pkmn.totalhp * (pkmn.boss ? $game_variables[96] : 1)
-	@hp           = (pkmn.hp ? @totalhp : pkmn.hp)
+    @totalhp      = pkmn.totalhp
+	@hp           = pkmn.hp
     @type1        = pkmn.type1
     @type2        = pkmn.type2
     # ability and item intentionally not copied across here
@@ -178,6 +180,8 @@ class PokeBattle_Battler
     @iv           = {}
     GameData::Stat.each_main { |s| @iv[s.id] = pkmn.iv[s.id] }
     @dummy        = true
+	
+	
   end
 
 
@@ -187,8 +191,8 @@ class PokeBattle_Battler
     @species      = pkmn.species
     @form         = pkmn.form
     @level        = pkmn.level
-    @totalhp      = pkmn.totalhp * (pkmn.boss ? $game_variables[96] : 1)
-	@hp           = (pkmn.boss ? @totalhp : pkmn.hp)
+    @totalhp      = pkmn.totalhp
+	@hp           = pkmn.hp
     @type1        = pkmn.type1
     @type2        = pkmn.type2
     @ability_id   = pkmn.ability_id
@@ -217,7 +221,7 @@ class PokeBattle_Battler
 		return false if boss
 		return @effects[PBEffects::Illusion].shiny? if @effects[PBEffects::Illusion]
 		return @pokemon && @pokemon.shiny?
-	  end
+	end
 end
 
 
@@ -431,10 +435,12 @@ class PokeBattle_Battle
       end
       PBDebug.log("")
 	  
+	  # Allow bosses to set various things about themselves
 	  @battlers.each do |b|
 		next if !b || b.fainted || !b.boss
 		pbSetBossTurns(b)
 		pbSetBossItem(b)
+		pbSetBossForm(b)
 	  end
 	  
 	  @commandPhasesThisRound = 0
@@ -492,6 +498,13 @@ class PokeBattle_Battle
 			pbDisplay(_INTL("The projection of Dialga expands time even more! It's stretched to the max!"))
 			$game_variables[95] = 4
 		end
+	elsif (pkmn.species == :KYOGRE || pkmn.species == :GROUDON)
+		if  pkmn.turnCount % 3 == 0 && pkmn.turnCount > 0
+			pbDisplay(_INTL("The projection is gathering energy for a massive attack!"))
+			$game_variables[95] = 1
+		else
+			$game_variables[95] = 3
+		end
 	end
   end
   
@@ -533,6 +546,12 @@ class PokeBattle_Battle
 			pbDisplay(_INTL("The projection of Genesect loads a {1}!",GameData::Item.get(chosenItem).real_name))
 			pkmn.item = chosenItem
 		end
+	end
+  end
+  
+  def pbSetBossForm(pkmn)
+	if (pkmn.species == :RAYQUAZA || pkmn.species == :GROUDON || pkmn.species == :KYOGRE) && !pkmn.mega?
+		pbMegaEvolve(pkmn.index)
 	end
   end
   

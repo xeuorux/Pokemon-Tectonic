@@ -316,7 +316,7 @@ class PokeBattle_AI
   
   def pbGetMoveScoreBoss(move,user,target)
 	score = 100
-
+	
 	if move.function == "09C" # Helping hand
 		score = user.battle.commandPhasesThisRound == 0 ? 150 : 0
 	elsif move.function == "0DF" # Heal Pulse
@@ -425,6 +425,10 @@ class PokeBattle_AI
 		@battle.messagesBlocked = true
 		score = 0 if move.pbFailsAgainstTarget?(user,target)
 		@battle.messagesBlocked = false
+	elsif move.function == "08B" # Eruption, Water Spout, etc.
+		score = user.turnCount == 0 ? 99999 : 0
+	elsif move.id == :ORIGINPULSE || move.id == :PRECIPICEBLADES
+		score = $game_variables[95] == 1 ? 99999 : 0
 	elsif move.damagingMove? # More likely to use damaging moves the more damage they do, and the less current HP you have
 		score = (score * pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f).floor
     end
