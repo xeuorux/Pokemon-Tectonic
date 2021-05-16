@@ -165,8 +165,8 @@ end
 class PokeBattle_Move_50B < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if !target.damageState.fainted
-    return if !user.pbCanRaiseStatStage?(PBStats::SPATK,user,self)
-    user.pbRaiseStatStage(PBStats::SPATK,3,user)
+    return if !user.pbCanRaiseStatStage?(:SPATK,user,self)
+    user.pbRaiseStatStage(:SPATK,3,user)
   end
 end
 

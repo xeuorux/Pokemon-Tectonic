@@ -1,4 +1,11 @@
 #===============================================================================
+# Generic target's stat increase/decrease classes.
+#===============================================================================
+class PokeBattle_TargetStatDownMove < PokeBattle_Move
+	attr_accessor :statDown
+end
+
+#===============================================================================
 # Cures all party Pokémon of permanent status problems. (Aromatherapy, Heal Bell)
 #===============================================================================
 # NOTE: In Gen 5, this move should have a target of UserSide, while in Gen 6+ it

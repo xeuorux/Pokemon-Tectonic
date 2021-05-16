@@ -368,9 +368,9 @@ class PokeBattle_AI
 		score = 0
 		score = 99999 if user.effects[PBEffects::LockOnPos] == target.index # If locked on to the target
 		score = 0 if user.battle.commandPhasesThisRound != 0
-	elsif move.function == "118"
+	elsif move.function == "118" # Gravity
 		score = 200
-	elsif move.function == "0A0"
+	elsif move.function == "0A0" # Always crit move
 		score = 0
 		score = 200 if move.physicalMove? && (user.stages[:ATTACK] < 6 || target.stages[:DEFENSE] > 6)
 		score = 400 if move.physicalMove? && (user.stages[:ATTACK] < 4 || target.stages[:DEFENSE] > 8)
@@ -391,21 +391,49 @@ class PokeBattle_AI
 				maxHealer = b
 			end
 		end
-		echo("Max Healer: #{maxHealer}\n")
 		score = target == maxHealer ? 130 : 0
 	elsif move.function == "08E" # Power Trip, Trained Outburst, Stored Power
 		score = 0
 		base = move.pbBaseDamage(nil,user,target)
 		score = (base*5/2) if base >= 100
+	elsif move.function == "099" #Electro Ball
+		score = 0
+		base = move.pbBaseDamage(nil,user,target)
+		score = (base*5/2) if base >= 120
+	elsif move.is_a?(PokeBattle_TargetStatDownMove)
+		statDown = move.statDown[0]
+		maxStat = -99999
+		maxStater = nil
+		@battle.battlers.each do |b|
+			next if !b || !user.opposes?(b)
+			stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+			stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+			stat      = b.plainStats[statDown]
+			statStage = b.stages[statDown]+6
+			stat = (stat.to_f*stageMul[statStage]/stageDiv[statStage]).floor
+			if stat > maxStat
+				maxStat = stat
+				maxStater = b
+			end
+		end
+		score = target == maxStater ? 130 : 0
+	elsif move.function == "0CF" # Trap and damage moves
+		score = 150 * user.hp.to_f/user.totalhp.to_f
+		score = 0 if target.effects[PBEffects::Trapping] > 0 && target.effects[PBEffects::TrappingMove] == move.id
+	elsif ["003","005","006","007","00A","00C"].include?(move.function) # Status inducing move
+		score = 100
+		@battle.messagesBlocked = true
+		score = 0 if move.pbFailsAgainstTarget?(user,target)
+		@battle.messagesBlocked = false
 	elsif move.damagingMove? # More likely to use damaging moves the more damage they do, and the less current HP you have
 		score = (score * pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f).floor
     end
 	
-	if move.priority > 0
+	if move.priority > 0 || move.flinchingMove?
 		if user.battle.commandPhasesThisRound == 0
 			score *= 2
 		else
-			score = 0
+			score *= 0.5
 		end
 	end
 	
