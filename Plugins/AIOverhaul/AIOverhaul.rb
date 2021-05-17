@@ -363,7 +363,7 @@ class PokeBattle_AI
 	elsif move.function == "098" # Flail/Reversal
 		score = (user.hp.to_f/user.totalhp.to_f < 0.5) ? 200 : 0
 	elsif move.function == "0A6" # Lock On, Mind Reader
-		score = (user.battle.commandPhasesThisRound == ($game_variables[95] - 1)) ? 200 : 0
+		score = (user.battle.commandPhasesThisRound == $game_variables[95] - 1) ? 200 : 0
 	elsif move.damagingMove? && move.accuracy < 70
 		score = 0
 		score = 99999 if user.effects[PBEffects::LockOnPos] == target.index # If locked on to the target
@@ -429,6 +429,42 @@ class PokeBattle_AI
 		score = user.turnCount == 0 ? 99999 : 0
 	elsif move.id == :ORIGINPULSE || move.id == :PRECIPICEBLADES
 		score = $game_variables[95] == 1 ? 99999 : 0
+	elsif move.function == "14E" #Geomancy
+		score = user.turnCount % 2 == 1 && (user.battle.commandPhasesThisRound == $game_variables[95] - 1) ? 99999 : 0
+	elsif move.function == "124" #Wonder Room
+		score = 0
+		
+		#Use wonder room if its not the first attack of the round, and if all the player's active pokemon
+		#have higher special defense than physical defense
+		if user.battle.commandPhasesThisRound != 0
+			allSpecialFocused = true
+			@battle.battlers.each do |b|
+				next if !b || !user.opposes?(b)
+				defense				= b.plainStats[:DEFENSE]
+				specialDefense      = b.plainStats[:SPECIAL_DEFENSE]
+				if defense > specialDefense
+					allSpecialFocused = false
+				end
+			end
+			
+			if allSpecialFocused
+				user.battle.pbDisplay(_INTL("{1} senses the powerful defensive auras of your Pokemon...",user.pbThis))
+				score = 99999
+			end
+		end
+	elsif move.function == "0F5" # Incinerate
+		score = target.item && (target.item.is_berry? || target.item.is_gem?) ? 99999 : 0
+	elsif move.function == "50E" # Flare Up
+		score = target.burned? ? 200 : 0
+	elsif move.function == "07B" # Venoshock
+		score = target.poisoned? ? 200 : 0
+	elsif move.function == "019" # Heal Bell
+		anyHasStatus = 0
+		@battle.battlers.each do |b|
+			next if !b || user.opposes?(b)
+			anyHasStatus = true if b.status != :NONE
+		end
+		score = anyHasStatus ? 300 : 0
 	elsif move.damagingMove? # More likely to use damaging moves the more damage they do, and the less current HP you have
 		score = (score * pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f).floor
     end

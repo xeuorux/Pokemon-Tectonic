@@ -219,7 +219,7 @@
 211,FUSIONFLARE,Fusion Flare,07A,100,FIRE,Special,100,5,0,NearOther,0,bef,The user brings down a giant flame. It does more damage if influenced by an enormous thunderbolt.
 212,INFERNO,Inferno,00A,100,FIRE,Special,50,5,100,NearOther,0,bef,The user attacks by engulfing the target in an intense fire. It leaves the target with a burn.
 213,MAGMASTORM,Magma Storm,0CF,100,FIRE,Special,75,5,0,NearOther,0,bef,The target becomes trapped within a maelstrom of fire that rages for four to five turns.
-214,SACREDFIRE,Sacred Fire,00A,70,FIRE,Physical,95,5,100,NearOther,0,bef,The target is razed with a mystical fire of great intensity, leaving the target with a burn.
+214,SACREDFIRE,Sacred Fire,00A,50,FIRE,Physical,95,5,100,NearOther,0,bef,The target is razed with a mystical fire of great intensity, leaving the target with a burn.
 215,SEARINGSHOT,Searing Shot,00A,100,FIRE,Special,100,5,30,AllNearOthers,0,befn,An inferno of scarlet flames torches everything around the user. It may leave the foe with a burn.
 216,HEATWAVE,Heat Wave,00A,95,FIRE,Special,90,10,10,AllNearFoes,0,bef,The user attacks by exhaling hot breath on the opposing team. It may also leave targets with a burn.
 217,FLAMETHROWER,Flamethrower,00A,90,FIRE,Special,100,15,10,NearOther,0,bef,The target is scorched with an intense blast of fire. It may also leave the target with a burn.
