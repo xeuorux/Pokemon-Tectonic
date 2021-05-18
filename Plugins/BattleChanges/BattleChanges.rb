@@ -372,9 +372,9 @@ class PokeBattle_Battle
       oldHP = b.hp
       oldHPRecipient = recipient.hp
       pbCommonAnimation("LeechSeed",recipient,b)
-      hpLoss = b.pbReduceHP(b.totalhp/8)
-	  hpLoss = (hpLoss/4.0).floor if b.boss
-      recipient.pbRecoverHPFromDrain(hpLoss,b,
+	  healthFraction = b.boss ? 64 : 8
+      hpLost = b.pbReduceHP(b.totalhp/healthFraction)
+      recipient.pbRecoverHPFromDrain(hpLost,b,
          _INTL("{1}'s health is sapped by Leech Seed!",b.pbThis))
       recipient.pbAbilitiesOnDamageTaken(oldHPRecipient) if recipient.hp<oldHPRecipient
       b.pbItemHPHealCheck
@@ -415,7 +415,7 @@ class PokeBattle_Battle
       elsif b.takesIndirectDamage?
         oldHP = b.hp
         dmg = (b.statusCount==0) ? b.totalhp/8 : b.totalhp*b.effects[PBEffects::Toxic]/16
-		dmg = (dmg/2.0).round if b.boss
+		dmg = (dmg/4.0).round if b.boss
         b.pbContinueStatus { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
@@ -428,7 +428,7 @@ class PokeBattle_Battle
       oldHP = b.hp
       dmg = b.totalhp/8
       dmg = (dmg/2.0).round if b.hasActiveAbility?(:HEATPROOF)
-	  dmg = (dmg/2.0).round if b.boss
+	  dmg = (dmg/4.0).round if b.boss
       b.pbContinueStatus { b.pbReduceHP(dmg,false) }
       b.pbItemHPHealCheck
       b.pbAbilitiesOnDamageTaken(oldHP)
@@ -478,6 +478,7 @@ class PokeBattle_Battle
           if @battlers[b.effects[PBEffects::TrappingUser]].hasActiveItem?(:BINDINGBAND)
             hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/6 : b.totalhp/8
           end
+		  hpLoss = (hpLoss/4.0).floor if b.boss
           @scene.pbDamageAnimation(b)
           b.pbReduceHP(hpLoss,false)
           pbDisplay(_INTL("{1} is hurt by {2}!",b.pbThis,moveName))
