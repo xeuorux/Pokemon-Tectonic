@@ -32,7 +32,7 @@ end
 class PokeBattle_Move_503 < PokeBattle_MultiStatUpMove
   def initialize(battle,move)
     super
-    @statUp = [:SPATK,1,:SPEED,1]
+    @statUp = [:SPECIAL_ATTACK,1,:SPEED,1]
   end
 end
 
@@ -251,7 +251,7 @@ end
 class PokeBattle_Move_512 < PokeBattle_MultiStatUpMove
   def initialize(battle,move)
     super
-    @statUp = [:ATTACK,1,:SPDEF,1]
+    @statUp = [:ATTACK,1,:SPECIAL_DEFENSE,1]
   end
 end
 
@@ -261,7 +261,7 @@ end
 class PokeBattle_Move_513 < PokeBattle_MultiStatUpMove
   def initialize(battle,move)
     super
-    @statUp = [:SPATK,1,:DEFENSE,1]
+    @statUp = [:SPECIAL_ATTACK,1,:DEFENSE,1]
   end
 end
 
@@ -373,6 +373,108 @@ class PokeBattle_Move_51B < PokeBattle_Move
     if !user.effects[PBEffects::ColdConversion]
       user.effects[PBEffects::ColdConversion] = true
       @battle.pbDisplay(_INTL("{1} lost its cold!",user.pbThis))
+    end
+  end
+end
+
+#===============================================================================
+# Heals user by half, then raises Sp. Atk if still unhealed fully. (Dragon Blood)
+#===============================================================================
+class PokeBattle_Move_51C < PokeBattle_HealingMove
+  def pbHealAmount(user)
+    return(user.totalhp/2.0).round
+  end
+  
+  def pbEffectGeneral(user)
+    amt = pbHealAmount(user)
+    user.pbRecoverHP(amt)
+    @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+	if user.hp < user.totalhp
+		if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
+			user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+		end
+	end
+  end
+end
+
+#===============================================================================
+# Target gains a weakness to Bug-type attacks. (Creep Out)
+#===============================================================================
+class PokeBattle_Move_51D < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		if target.effects[PBEffects::CreepOut] == true
+		  @battle.pbDisplay(_INTL("The target is already afraid of bug type moves!"))
+		  return true
+		end
+		return false
+	  end
+
+  def pbEffectAgainstTarget(user,target)
+    target.effects[PBEffects::CreepOut] = true
+    @battle.pbDisplay(_INTL("{1} is now afraid of bug type moves!",target.pbThis))
+  end
+end
+
+#===============================================================================
+# If the move misses, the user gains 2 stages of speed. (Mudslide)
+#===============================================================================
+class PokeBattle_Move_51E < PokeBattle_Move
+	#This method is called if a move fails to hit all of its targets
+	def pbCrashDamage(user)
+		@battle.pbDisplay(_INTL("{1} kept going and picked up speed!",user.pbThis))
+		if user.pbCanRaiseStatStage?(:SPEED,user,self)
+			user.pbRaiseStatStage(:SPEED,2,user)
+		end
+	end
+end
+
+
+#===============================================================================
+# If the move misses, the user gains Special Attack and Accuracy. (Rockapult)
+#===============================================================================
+class PokeBattle_Move_51F < PokeBattle_Move
+	#This method is called if a move fails to hit all of its targets
+	def pbCrashDamage(user)
+		@battle.pbDisplay(_INTL("{1} adjusts its aim!",user.pbThis))
+		@statUp = [:SPECIAL_ATTACK,1,:ACCURACY,1]
+		showAnim = true
+		for i in 0...@statUp.length/2
+		  next if !user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
+		  if user.pbRaiseStatStage(@statUp[i*2],@statUp[i*2+1],user,showAnim)
+			showAnim = false
+		  end
+		end
+	end
+end
+
+#===============================================================================
+# Increases the user's critical hit rate. (Starfall)
+#===============================================================================
+class PokeBattle_Move_520 < PokeBattle_Move
+  def pbEffectGeneral(user)
+	if user.effects[PBEffects::LuckyStar]>=1
+		@battle.pbDisplay(_INTL("{1} is already blessed by a lucky star...",user.pbThis))
+	else
+		user.effects[PBEffects::LuckyStar] = 1
+		@battle.pbDisplay(_INTL("{1} is blessed by the lucky star!",user.pbThis))
+    end
+  end
+end
+
+#===============================================================================
+# Target's last move used loses 4 PP. (Spiteful Chant, Eerie Spell)
+#===============================================================================
+class PokeBattle_Move_521 < PokeBattle_Move
+  def ignoresSubstitute?(user); return true; end
+
+  def pbEffectAgainstTarget(user,target)
+    target.eachMove do |m|
+      next if m.id!=target.lastRegularMoveUsed
+      reduction = [4,m.pp].min
+      target.pbSetPP(m,m.pp-reduction)
+      @battle.pbDisplay(_INTL("It reduced the PP of {1}'s {2} by {3}!",
+         target.pbThis(true),m.name,reduction))
+      break
     end
   end
 end

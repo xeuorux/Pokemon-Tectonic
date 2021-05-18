@@ -223,3 +223,43 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
     return @battle.pbRandom(100)<acc
   end
 end
+
+#===============================================================================
+# Trapping move. Traps for 5 or 6 rounds. Trapped Pokémon lose 1/16 of max HP
+# at end of each round.
+#===============================================================================
+class PokeBattle_Move_0CF < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    return if target.fainted? || target.damageState.substitute
+    return if target.effects[PBEffects::Trapping]>0
+    # Set trapping effect duration and info
+    if user.hasActiveItem?(:GRIPCLAW)
+      target.effects[PBEffects::Trapping] = (Settings::MECHANICS_GENERATION >= 5) ? 8 : 6
+    else
+      target.effects[PBEffects::Trapping] = 5+@battle.pbRandom(2)
+    end
+    target.effects[PBEffects::TrappingMove] = @id
+    target.effects[PBEffects::TrappingUser] = user.index
+    # Message
+    msg = _INTL("{1} was trapped!",target.pbThis)
+    case @id
+    when :BIND,:BEARHUG
+      msg = _INTL("{1} was squeezed by {2}!",target.pbThis,user.pbThis(true))
+    when :CLAMP
+      msg = _INTL("{1} clamped {2}!",user.pbThis,target.pbThis(true))
+    when :FIRESPIN
+      msg = _INTL("{1} was trapped in the fiery vortex!",target.pbThis)
+    when :INFESTATION
+      msg = _INTL("{1} has been afflicted with an infestation by {2}!",target.pbThis,user.pbThis(true))
+    when :MAGMASTORM
+      msg = _INTL("{1} became trapped by Magma Storm!",target.pbThis)
+    when :SANDTOMB
+      msg = _INTL("{1} became trapped by Sand Tomb!",target.pbThis)
+    when :WHIRLPOOL
+      msg = _INTL("{1} became trapped in the vortex!",target.pbThis)
+    when :WRAP
+      msg = _INTL("{1} was wrapped by {2}!",target.pbThis,user.pbThis(true))
+    end
+    @battle.pbDisplay(msg)
+  end
+end

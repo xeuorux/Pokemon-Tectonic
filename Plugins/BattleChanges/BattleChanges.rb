@@ -1190,6 +1190,7 @@ class PokeBattle_Move
     return true if user.effects[PBEffects::LaserFocus]>0
     c += 1 if highCriticalRate?
     c += user.effects[PBEffects::FocusEnergy]
+	c += user.effects[PBEffects::LuckyStar]
     c += 1 if user.inHyperMode? && @type == :SHADOW
     c = ratios.length-1 if c>=ratios.length
     # Calculation
@@ -1461,6 +1462,41 @@ class PokeBattle_Move
     multipliers[:final_damage_multiplier] = pbModifyDamage(multipliers[:final_damage_multiplier], user, target)
   end
   
+  #=============================================================================
+  # Type effectiveness calculation
+  #=============================================================================
+  def pbCalcTypeModSingle(moveType,defType,user,target)
+    ret = Effectiveness.calculate_one(moveType, defType)
+    # Ring Target
+    if target.hasActiveItem?(:RINGTARGET)
+      ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
+    end
+    # Foresight
+    if user.hasActiveAbility?(:SCRAPPY) || target.effects[PBEffects::Foresight]
+      ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GHOST &&
+                                                   Effectiveness.ineffective_type?(moveType, defType)
+    end
+    # Miracle Eye
+    if target.effects[PBEffects::MiracleEye]
+      ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :DARK &&
+                                                   Effectiveness.ineffective_type?(moveType, defType)
+    end
+	#Creep Out
+	if target.effects[PBEffects::CreepOut]
+		ret *= 2 if moveType == :BUG
+	end
+    # Delta Stream's weather
+    if @battle.pbWeather == :StrongWinds
+      ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING &&
+                                                   Effectiveness.super_effective_type?(moveType, defType)
+    end
+    # Grounded Flying-type Pokémon become susceptible to Ground moves
+    if !target.airborne?
+      ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING && moveType == :GROUND
+    end
+    return ret
+  end
+  
   # Accuracy calculations for one-hit KO moves and "always hit" moves are
   # handled elsewhere.
   def pbAccuracyCheck(user,target)
@@ -1616,6 +1652,8 @@ class PokeBattle_Battler
       @effects[PBEffects::PowerTrick]        = false
       @effects[PBEffects::Substitute]        = 0
       @effects[PBEffects::Telekinesis]       = 0
+	  
+	  @effects[PBEffects::LuckyStar]       	 = 0
     end
     @fainted               = (@hp==0)
     @initialHP             = 0
@@ -1767,6 +1805,7 @@ class PokeBattle_Battler
 	@effects[PBEffects::FlinchedAlready]     = false
 	@effects[PBEffects::Enlightened]		 = false
 	@effects[PBEffects::ColdConversion]      = false
+	@effects[PBEffects::CreepOut]		 	 = false
   end
 
 	def takesSandstormDamage?
@@ -3123,6 +3162,8 @@ module PBEffects
     FlinchedAlready     = 132
 	Enlightened			= 133
 	ColdConversion		= 134
+	CreepOut		 	= 135
+	LuckyStar			= 136
 	
 	#===========================================================================
     # These effects apply to a side

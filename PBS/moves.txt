@@ -670,7 +670,7 @@
 653,WONDERROOM,Wonder Room,124,0,PSYCHIC,Status,0,10,0,BothSides,-7,e,The user creates a bizarre area in which Pokémon's Defense and Sp. Def stats are swapped for 5 turns.
 654,MAGICPOWDER,Magic Powder,197,0,PSYCHIC,Status,100,20,0,NearOther,0,bcel,The user scatters a cloud of magic powder that changes the target to Psychic type.
 655,EXPANDINGFORCE,Expanding Force,190,80,PSYCHIC,Special,100,20,0,AllNearOthers,0,bef,Attacks with its psychic power. Power increases and damages all opponents on Psychic Terrain.
-656,EERIESPELL,Eerie Spell,210,80,PSYCHIC,Special,100,10,0,NearOther,0,bef,The user casts a horrible spell on the opponent. This removes 3 PP from their last used move.
+656,EERIESPELL,Eerie Spell,521,70,PSYCHIC,Special,100,10,0,NearOther,0,bef,The user casts a horrible spell on the opponent. This removes 4 PP from their last used move.
 657,FREEZINGGLARE,Freezing Glare,00C,90,PSYCHIC,Special,100,10,20,NearOther,0,ef,The user shoots its psychic power from its eyes to attack. This may also leave the target chilled.
 #-------------------------------,,,,,,,,,,,,,
 658,HEADSMASH,Head Smash,0FC,120,ROCK,Physical,100,5,0,NearOther,0,abef,"The user attacks the foe with a hazardous, full-power headbutt. The user also takes terrible damage."
@@ -806,7 +806,7 @@
 786,SLIGHT,Slight,50B,50,DARK,Special,100,25,0,NearOther,0,abefk,"When the user knocks out a target with this move, the user's Sp. Atk stat rises drastically."
 787,ANGSTWAVE,Angst Wave,0FC,120,DARK,Special,100,10,0,AllNearOthers,0,bef,"The user launches a wave of anxious feelings which overhwhelms all nearby Pokémon. The user takes recoil damage."
 788,FROSTBITE,Frost Bite,50C,65,ICE,Physical,100,10,0,NearOther,0,befi,"The user bites into the target, crushing its flesh with frost. Its power doubles if the target is chilled."
-789,NUMBINGSLUSH,Numbing Slush,00C,80,ICE,Special,100,15,50,NearOther,0,bef,"The user attacks with numbingly cold slush. It may reduce the target's speed."
+789,NUMBINGWIND,Numbing Wind,044,75,ICE,Special,100,15,50,NearOther,0,bef,"The user attacks with numbingly cold wild. It reduces the target's speed."
 790,CHIBURST,Chi Burst,03F,130,FIGHTING,Special,100,5,0,NearOther,0,bef,"The user attacks with a big burst of its inner energy. This sharply reduces the user's Sp. Atk stat."
 791,TRAINEDOUTBURST,Trained Outburst,08E,20,FIGHTING,Special,100,10,0,NearOther,0,befk,"The user attacks with an expert shout. The more the user's stats are raised, the greater the damage."
 792,BEARHUG,Bear Hug,0CF,80,FIGHTING,Physical,90,15,0,NearOther,0,bef,The user wraps the target in a hugely strong hug.
@@ -815,19 +815,18 @@
 795,PERFURMEDPUNCH,Perfumed Punch,0A5,60,FAIRY,Physical,100,25,0,NearOther,0,abef,"The user throws a sweet-smelling punch which the target is unable to avoid."
 796,INFINITEFORCE,Infinite Force,50F,140,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user weilds an exaggerated power to strike the target. The attack's recoil sharply reduces the user's Attack stat."
 797,TANTRUM,Tantrum,0D2,120,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user goes on a wild tantrum for two to three turns. It then becomes confused, however."
-798,SLAG,Slag,005,80,STEEL,Special,100,10,30,NearOther,0,befn,"TODO."
-799,MAGNETHRASH,Magnethrash,0A5,90,STEEL,Physical,0,15,0,NearOther,0,abef,"TODO."
+798,SLAG,Slag,005,80,STEEL,Special,100,10,30,NearOther,0,befn,"The user sprays mining waste at the target. This may leave the target poisoned."
+799,MAGNETHRASH,Magnethrash,0A5,90,STEEL,Physical,0,15,0,NearOther,0,abef,"The user generates an intense magnetic connection between it and the target, striking it without fail."
 800,MAGNETWAVE,Magnet Wave,013,40,STEEL,Special,100,35,10,NearOther,0,bef,"The target is hit by a wave of magnetic energy. It may also leave the target confused."
-801,BLUNTSTRIKE,Blunt Strike,0FB,55,ROCK,Physical,100,30,0,NearOther,0,abef,"TODO"
-802,STONECHARGE,Stone Charge,0FB,85,ROCK,Physical,100,15,0,NearOther,0,abef,"TODO"
-803,GRANITEHEAD,Granite Head,0FB,120,ROCK,Physical,100,10,0,NearOther,0,abef,"TODO"
-804,TURBULENCE,Turbulence,013,100,FLYING,Special,50,10,0,Other,0,bef,"TODO"
-805,HEAVYSTORM,Heavy Storm,00C,110,FLYING,Special,85,10,10,Other,0,bef,"TODO"
-806,BLUSTER,Bluster,020,50,FLYING,Special,90,10,70,NearOther,0,bef,"The user fires a stormy gust at the target. It has a high chance to also raise the user's Sp. Atk."
-807,SHREDSHOT,Shred Shot,511,55,STEEL,Special,100,40,100,NearOther,0,befn,"TODO"
-808,SHARDS,Shards,511,90,STEEL,Special,100,10,100,NearOther,0,bef,"TODO"
-809,SPITEFULCHANT,Spiteful Chant,10E,60,GHOST,Special,100,20,100,NearOther,0,befk,"The user unleashes its grudge, damaging the target and cutting 4 PP from the move last used by it."
-810,ENLIGHTENEDHIT,Enlightened Hit,515,90,FIGHTING,Physical,100,15,100,NearOther,0,abef,"TODO"
-811,GRIMEGRAPPLE,Grime Grapple,514,100,POISON,Physical,100,10,100,NearOther,0,abef,"TODO"
-812,VANGUARD,Vanguard,513,0,STEEL,Status,100,20,100,User,0,d,"The user enters a protective stance, boosting both its Def. and Sp. Atk. stats."
-813,FLOWSTATE,Flow State,512,0,WATER,Status,100,20,100,User,0,d,"The user gains an instinctual knowledge of battle, boosting both its Atk. and Sp. Def stats."
+801,BLUNTSTRIKE,Blunt Strike,0FB,55,ROCK,Physical,100,30,0,NearOther,0,abef,"The user slams the target with blunt force, also harming the user."
+802,STONECHARGE,Stone Charge,0FB,85,ROCK,Physical,100,15,0,NearOther,0,abef,"The user charges into the target with its stony body. This also harms the user."
+803,GRANITEHEAD,Granite Head,0FB,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user smashes its rock-hard head into the target. The user also takes serious damage."
+804,TURBULENCE,Turbulence,013,100,FLYING,Special,50,10,100,Other,0,bef,"Chaotic winds push the target around. This move causes confusion if it hits."
+805,BLUSTER,Bluster,020,50,FLYING,Special,90,10,70,NearOther,0,bef,"The user fires a stormy gust at the target. It has a high chance to also raise the user's Sp. Atk."
+806,SHREDSHOT,Shred Shot,511,55,STEEL,Special,100,40,100,NearOther,0,befn,"The user shreads off bits of its own body to launch at the target. This also damages the user."
+807,SHARDS,Shards,511,90,STEEL,Special,100,10,100,NearOther,0,bef,"The user shoots shards of its own body at the target. This also damages the user."
+808,SPITEFULCHANT,Spiteful Chant,521,70,GHOST,Special,100,20,100,NearOther,0,befk,"The user unleashes its grudge, damaging the target and cutting 4 PP from the move last used by it."
+809,ENLIGHTENEDHIT,Enlightened Hit,515,90,FIGHTING,Physical,100,15,100,NearOther,0,abef,"The user is immune to extra effects of moves until their next attack."
+810,GRIMEGRAPPLE,Grime Grapple,514,100,POISON,Physical,100,10,100,NearOther,0,abef,"The user attacks while slathered in grime. This poisons the user."
+811,VANGUARD,Vanguard,513,0,STEEL,Status,100,20,100,User,0,d,"The user enters a protective stance, boosting both its Def. and Sp. Atk. stats."
+812,FLOWSTATE,Flow State,512,0,WATER,Status,100,20,100,User,0,d,"The user gains an instinctual knowledge of battle, boosting both its Atk. and Sp. Def stats."
