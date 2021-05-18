@@ -264,25 +264,29 @@ class PokeBattle_AI
     target_data = move.pbTarget(user)
     if target_data.num_targets > 1
       # If move affects multiple battlers and you don't choose a particular one
-      totalScore = 0
-      targets = []
-      @battle.eachBattler do |b|
-        next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
-        next if !user.opposes?(b)
-        targets.push(b)
-		score = 100
-		score = pbGetMoveScoreBoss(move,user,b) if user.boss
-        if move.damagingMove?
-		  targetPercent = b.hp.to_f / b.totalhp.to_f
-          score = (score*(1.0 + 0.4 * targetPercent)).floor
-        end
-		totalScore += score
-      end
-	  if targets.length() != 0
-		totalScore = totalScore / targets.length().to_f
+      totalScore = 100
+      
+	  if move.damagingMove?
+		targets = []
+			@battle.eachBattler do |b|
+				next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
+				next if !user.opposes?(b)
+				targets.push(b)
+				score = 100
+				score = pbGetMoveScoreBoss(move,user,b) if user.boss
+				targetPercent = b.hp.to_f / b.totalhp.to_f
+				score = (score*(1.0 + 0.4 * targetPercent)).floor
+				totalScore += score
+			end
+		if targets.length() != 0
+			totalScore = totalScore / targets.length().to_f
+		else
+			totalScore = 0
+		end
 	  else
-		totalScore = 0
+		totalScore = pbGetMoveScoreBoss(move,user,nil) if user.boss
 	  end
+	  
       choices.push([idxMove,totalScore,-1]) if totalScore>0
     elsif target_data.num_targets == 0
       # If move has no targets, affects the user, a side or the whole field
@@ -458,15 +462,18 @@ class PokeBattle_AI
 		score = target.burned? ? 200 : 0
 	elsif move.function == "07B" # Venoshock
 		score = target.poisoned? ? 200 : 0
-	elsif move.function == "019" # Heal Bell
-		anyHasStatus = 0
-		@battle.battlers.each do |b|
-			next if !b || user.opposes?(b)
-			anyHasStatus = true if b.status != :NONE
+	elsif move.function == "150" || move.function == "50B" # Fell Stinger, Slight
+		baseDmg = pbMoveBaseDamage(move,user,target,100)
+		realDamage = pbRoughDamage(move,user,target,100,baseDmg)
+		score = 0
+		if realDamage >= target.hp
+			score = 300
 		end
-		score = anyHasStatus ? 300 : 0
+	elsif move.function == "019" # Heal Bell
+		score = 99999
 	elsif move.damagingMove? # More likely to use damaging moves the more damage they do, and the less current HP you have
-		score = (score * pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f).floor
+		damageRatio = pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f
+		score = (score * (damageRatio+1.0)/2).floor
     end
 	
 	if move.priority > 0 || move.flinchingMove?
@@ -475,6 +482,10 @@ class PokeBattle_AI
 		else
 			score *= 0.5
 		end
+	end
+	
+	if move.function == "111" # Future Sight, etc.
+		score = 0 if move.pbFailsAgainstTarget?(user,target)
 	end
 	
 	# Never use a move that would fail outright

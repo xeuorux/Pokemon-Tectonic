@@ -1413,8 +1413,7 @@ class PokeBattle_Move
     end
     # Type effectiveness
 	typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
-	typeEffect = Math.sqrt(typeEffect) if target.boss || user.boss 
-    multipliers[:final_damage_multiplier] *= typeEffect
+	typeEffect = ((typeEffect+1.0)/2.0) if target.boss || user.boss
     # Burn
     if user.status == :BURN && physicalMove? && damageReducedByBurn? &&
        !user.hasActiveAbility?(:GUTS)
