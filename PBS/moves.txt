@@ -831,3 +831,8 @@
 811,GRIMEGRAPPLE,Grime Grapple,514,100,POISON,Physical,100,10,100,NearOther,0,abef,"TODO"
 812,VANGUARD,Vanguard,513,0,STEEL,Status,100,20,100,User,0,d,"The user enters a protective stance, boosting both its Def. and Sp. Atk. stats."
 813,FLOWSTATE,Flow State,512,0,WATER,Status,100,20,100,User,0,d,"The user gains an instinctual knowledge of battle, boosting both its Atk. and Sp. Def stats."
+814,COLDCONVERSION,Cold Conversion,51B,130,ICE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user melts itself. The user will no longer be Ice type."
+815,VENOMLEECH,Venom Leech,51A,75,POISON,Physical,100,10,0,NearOther,0,abef,"The user drains the target's blood with venomous teeth. The user's HP is restored by a third of the damage dealt. 20% chance to toxify."
+816,PREDICTIONSTRIKE,Prediction Strike,519,110,PSYCHIC,Physical,0,10,0,Other,0,abef,"The user perfectly predicts the target's future location, then strikes. The attack lands without fail and lowers the user's defense and speed."
+817,DOUSE,Douse,518,40,WATER,Special,100,25,0,NearOther,0,bef,"The user douses the target, healing itself by a third of its max. HP in the process."
+818,AQUAINSTINCT,Aqua Instinct,517,65,WATER,Physical,100,10,0,AllNearOthers,0,bef,"TODO."
