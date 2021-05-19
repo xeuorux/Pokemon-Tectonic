@@ -478,3 +478,39 @@ class PokeBattle_Move_521 < PokeBattle_Move
     end
   end
 end
+
+#===============================================================================
+# Target's highest move is drastically reduced. (Dragon Roar)
+#===============================================================================
+class PokeBattle_Move_522 < PokeBattle_TargetMultiStatDownMove
+  def pbFailsAgainstTarget?(user,target)
+    @statArray = []
+    GameData::Stat.each_battle do |s|
+      @statArray.push(s.id) if target.pbCanLowerStatStage?(s.id,user,self)
+    end
+    if @statArray.length==0
+      @battle.pbDisplay(_INTL("{1}'s stats won't go any lower!",target.pbThis))
+      return true
+    end
+    return false
+  end
+  
+  def pbEffectAgainstTarget(user,target)
+	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+	bestStat = :ATTACK
+	bestStatValue = -100
+    GameData::Stat.each_battle do |s|
+      next if !target.pbCanLowerStatStage?(s.id,user,self)
+	  baseStat      = b.plainStats[s.id]
+	  statStage		= b.stages[s.id]+6
+	  statValue = (baseStat.to_f*stageMul[statStage]/stageDiv[statStage]).floor
+	  if statValue > bestStatValue
+		bestStatValue = statValue
+		bestStat = s.id
+	  end
+    end
+	
+    target.pbLowerStatStage(bestStat,2,user)
+  end
+end

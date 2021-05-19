@@ -151,7 +151,7 @@
 146,MISTYTERRAIN,Misty Terrain,156,0,FAIRY,Status,0,10,0,BothSides,0,,The user covers the ground with mist for five turns. Grounded Pokémon can't gain status conditions.
 147,MOONLIGHT,Moonlight,0D8,0,FAIRY,Status,0,5,0,User,0,d,The user restores its own HP. The amount of HP regained varies with the weather.
 148,NATURESMADNESS,Nature's Madness,06C,0,FAIRY,Status,90,10,0,NearOther,0,bef,The user hits the target with the force of nature. It halves the target's HP.
-149,SWEETKISS,Sweet Kiss,013,0,FAIRY,Status,85,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes confusion."
+149,ANGELSKISS,Angel's Kiss,013,0,FAIRY,Status,85,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes confusion."
 150,SPIRITBREAK,Spirit Break,045,75,FAIRY,Physical,100,15,100,NearOther,0,abef,Attacks the target and breaks its spirit. Lowers the target's Sp. Atk stat.
 151,DECORATE,Decorate,17B,0,FAIRY,Status,0,15,0,NearOther,0,,The user sharply raises the target's Attack and Sp. Atk stats by decorating the target.
 152,MISTYEXPLOSION,Misty Explosion,196,100,FAIRY,Special,100,5,0,AllNearOthers,0,bef,Attacks everything around it and faints. Power is increased on Misty Terrain.
@@ -331,7 +331,7 @@
 320,LEECHSEED,Leech Seed,0DC,0,GRASS,Status,90,10,0,NearOther,0,bce,A seed is planted on the target. It steals some HP from the target every turn.
 321,SLEEPPOWDER,Sleep Powder,003,0,GRASS,Status,75,15,0,NearOther,0,bcel,The user scatters a big cloud of sleep-inducing dust around the target.
 322,SPIKYSHIELD,Spiky Shield,14C,0,GRASS,Status,0,10,0,User,4,,Protects the user from attacks. Also damages attackers that make contact with the user.
-323,SPORE,Spore,003,0,GRASS,Status,100,15,0,NearOther,0,bcel,The user scatters bursts of spores that induce sleep.
+323,SPORE,Spore,003,0,GRASS,Status,100,15,0,NearOther,-1,bcel,The user scatters bursts of spores that induce sleep. This move has -1 priority.
 324,STRENGTHSAP,Strength Sap,160,0,GRASS,Status,100,10,0,NearOther,0,bce,The user restores its HP by the target's Attack stat amount. Then lowers the target's Attack stat.
 325,STUNSPORE,Stun Spore,007,0,GRASS,Status,75,30,0,NearOther,0,bcel,The user scatters a cloud of paralyzing powder. It may leave the target with paralysis.
 326,SYNTHESIS,Synthesis,0D8,0,GRASS,Status,0,5,0,User,0,d,The user restores its own HP. The amount of HP regained varies with the weather.
@@ -405,7 +405,7 @@
 390,LASTRESORT,Last Resort,125,140,NORMAL,Physical,100,5,0,NearOther,0,abef,This move can be used only after the user has used all the other moves it knows in the battle.
 391,SKULLBASH,Skull Bash,0C8,140,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user tucks in its head to sharply raise its Defense in the first turn, then rams the foe on the next turn."
 392,DOUBLEEDGE,Double-Edge,0FB,120,NORMAL,Physical,100,15,0,NearOther,0,abef,"A reckless, life-risking tackle. It also damages the user by a fairly large amount, however."
-393,HEADCHARGE,Head Charge,502,120,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user charges its head into the foe, using its powerful guard hair. The user takes massive damage."
+393,HEADCHARGE,Head Charge,502,150,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user charges its head into the foe, using its powerful guard hair. The user takes massive damage."
 394,MEGAKICK,Mega Kick,000,120,NORMAL,Physical,75,5,0,NearOther,0,abef,The target is attacked by a kick launched with muscle-packed power.
 395,TECHNOBLAST,Techno Blast,09F,120,NORMAL,Special,100,5,0,NearOther,0,bef,The user fires a beam of light at its target. The type changes depending on the Drive the user holds.
 396,THRASH,Thrash,0D2,120,NORMAL,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks for two to three turns. It then becomes confused, however."
