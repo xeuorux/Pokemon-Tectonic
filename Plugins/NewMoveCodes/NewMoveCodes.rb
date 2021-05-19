@@ -514,3 +514,44 @@ class PokeBattle_Move_522 < PokeBattle_TargetMultiStatDownMove
     target.pbLowerStatStage(bestStat,2,user)
   end
 end
+
+#===============================================================================
+# Move disables self. (Phantom Break)
+#===============================================================================
+class PokeBattle_Move_523 < PokeBattle_Move
+	def pbEffectAfterAllHits(user,target)
+		user.effects[PBEffects::Disable]     = 5
+		user.effects[PBEffects::DisableMove] = user.lastRegularMoveUsed
+		@battle.pbDisplay(_INTL("{1}'s {2} was disabled!",user.pbThis,
+		   GameData::Move.get(user.lastRegularMoveUsed).name))
+		user.pbItemStatusCureCheck
+	end
+end
+
+#===============================================================================
+# Heals the user by 2/3 health. Move disables self. (Stitch Up)
+#===============================================================================
+class PokeBattle_Move_524 < PokeBattle_HealingMove
+	def pbHealAmount(user)
+		return (user.totalhp*2.0/3.0).round
+	end
+
+	def pbEffectAfterAllHits(user,target)
+		user.effects[PBEffects::Disable]     = 5
+		user.effects[PBEffects::DisableMove] = user.lastRegularMoveUsed
+		@battle.pbDisplay(_INTL("{1}'s {2} was disabled!",user.pbThis,
+		   GameData::Move.get(user.lastRegularMoveUsed).name))
+		user.pbItemStatusCureCheck
+	end
+end
+
+#===============================================================================
+# Increases the user's Attack, Defense and Speed by 1 stage each.
+# (Shiver Dance)
+#===============================================================================
+class PokeBattle_Move_525 < PokeBattle_MultiStatUpMove
+  def initialize(battle,move)
+    super
+    @statUp = [:ATTACK,1,:DEFENSE,1,:SPEED,1]
+  end
+end
