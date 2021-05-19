@@ -1635,7 +1635,7 @@ class PokeBattle_Battler
       @stages[:EVASION]         = 0
       @effects[PBEffects::AquaRing]          = false
       @effects[PBEffects::Confusion]         = 0
-	  @effects[PBEffects::ConfusionChance]         = 0
+	  @effects[PBEffects::ConfusionChance]   = 0
       @effects[PBEffects::Curse]             = false
       @effects[PBEffects::Embargo]           = 0
       @effects[PBEffects::FocusEnergy]       = 0
@@ -1654,6 +1654,8 @@ class PokeBattle_Battler
       @effects[PBEffects::Telekinesis]       = 0
 	  
 	  @effects[PBEffects::LuckyStar]       	 = 0
+	  @effects[PBEffects::Charm]         = 0
+	  @effects[PBEffects::CharmChance]   = 0
     end
     @fainted               = (@hp==0)
     @initialHP             = 0
@@ -1951,6 +1953,91 @@ class PokeBattle_Battler
     @effects[PBEffects::Confusion] = 0
 	@effects[PBEffects::ConfusionChance] = 0
   end
+  
+  #=============================================================================
+  # Charm
+  #=============================================================================
+  def pbCanCharm?(user=nil,showMessages=true,move=nil,selfInflicted=false)
+    return false if fainted?
+    if @effects[PBEffects::Charm]>0
+      @battle.pbDisplay(_INTL("{1} is already charmed.",pbThis)) if showMessages
+      return false
+    end
+    if @effects[PBEffects::Substitute]>0 && !(move && move.ignoresSubstitute?(user)) &&
+       !selfInflicted
+      @battle.pbDisplay(_INTL("But it failed!")) if showMessages
+      return false
+    end
+    # Terrains immunity
+    if affectedByTerrain? && @battle.field.terrain == :Misty
+      @battle.pbDisplay(_INTL("{1} surrounds itself with misty terrain!",pbThis(true))) if showMessages
+      return false
+    end
+    if selfInflicted || !@battle.moldBreaker
+      if hasActiveAbility?(:OWNTEMPO)
+        if showMessages
+          @battle.pbShowAbilitySplash(self)
+          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+            @battle.pbDisplay(_INTL("{1} doesn't become charmed!",pbThis))
+          else
+            @battle.pbDisplay(_INTL("{1}'s {2} prevents charmed!",pbThis,abilityName))
+          end
+          @battle.pbHideAbilitySplash(self)
+        end
+        return false
+      end
+    end
+    if pbOwnSide.effects[PBEffects::Safeguard]>0 && !selfInflicted &&
+       !(user && user.hasActiveAbility?(:INFILTRATOR))
+      @battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!",pbThis)) if showMessages
+      return false
+    end
+    return true
+  end
+
+  def pbCanCharmSelf?(showMessages)
+    return pbCanConfuse?(nil,showMessages,nil,true)
+  end
+  
+  def pbCharm(msg=nil)
+    @effects[PBEffects::Charm] = pbCharmDuration
+	@effects[PBEffects::CharmChance] = 0
+    @battle.pbCommonAnimation("Confusion",self)
+    msg = _INTL("{1} became charmed!",pbThis) if !msg || msg==""
+    @battle.pbDisplay(msg)
+    PBDebug.log("[Lingering effect] #{pbThis}'s charm count is #{@effects[PBEffects::Confusion]}")
+    # Charm cures
+    pbItemStatusCureCheck
+    pbAbilityStatusCureCheck
+  end
+
+  def pbCharmDuration(duration=-1)
+    duration = 4 if duration<=0
+    return duration
+  end
+
+  def pbCureCharm
+    @effects[PBEffects::Charm] = 0
+	@effects[PBEffects::CharmChance] = 0
+  end
+  
+  def pbConfusionDamage(msg,charm=false)
+    @damageState.reset
+    @damageState.initialHP = @hp
+    confusionMove = charm ? PokeBattle_Charm.new(@battle,nil) : PokeBattle_Confusion.new(@battle,nil)
+    confusionMove.calcType = confusionMove.pbCalcType(self)   # nil
+    @damageState.typeMod = confusionMove.pbCalcTypeMod(confusionMove.calcType,self,self)   # 8
+    confusionMove.pbCheckDamageAbsorption(self,self)
+    confusionMove.pbCalcDamage(self,self)
+    confusionMove.pbReduceDamage(self,self)
+    self.hp -= @damageState.hpLost
+    confusionMove.pbAnimateHitAndHPLost(self,[self])
+    @battle.pbDisplay(msg)   # "It hurt itself in its confusion!"
+    confusionMove.pbRecordDamageLost(self,self)
+    confusionMove.pbEndureKOMessage(self)
+    pbFaint if fainted?
+    pbItemHPHealCheck
+  end 
   
   def pbCanInflictStatus?(newStatus,user,showMessages,move=nil,ignoreStatus=false)
     return false if fainted?
@@ -2272,13 +2359,32 @@ class PokeBattle_Battler
         if @battle.pbRandom(100)<threshold && !hasActiveAbility?([:HEADACHE,:TANGLEDFEET])
           @effects[PBEffects::ConfusionChance] = 0
           pbConfusionDamage(_INTL("It hurt itself in its confusion!"))
-          #pbCureConfusion
-          #@battle.pbDisplay(_INTL("The pain snapped {1} out of its confusion!",pbThis(true))) if !fainted?
 		  @effects[PBEffects::ConfusionChance] = -999
           @lastMoveFailed = true
           return false
         else
-          @effects[PBEffects::ConfusionChance] = @effects[PBEffects::ConfusionChance] + 1
+          @effects[PBEffects::ConfusionChance] += 1
+        end
+      end
+    end
+	# Charm
+    if @effects[PBEffects::Charm]>0
+      @effects[PBEffects::Charm] -= 1
+      if @effects[PBEffects::Charm]<=0
+        pbCureCharm
+        @battle.pbDisplay(_INTL("{1} was released from the charm.",pbThis))
+      else
+        @battle.pbAnimation(:LUCKYCHANT,self,nil)
+        @battle.pbDisplay(_INTL("{1} is charmed!",pbThis))
+        threshold = 30 + 35 * @effects[PBEffects::CharmChance]
+        if @battle.pbRandom(100)<threshold && !hasActiveAbility?([:HEADACHE,:TANGLEDFEET])
+          @effects[PBEffects::CharmChance] = 0
+          pbConfusionDamage(_INTL("It's energy went wild due to the charm!"))
+		  @effects[PBEffects::CharmChance] = -999
+          @lastMoveFailed = true
+          return false
+        else
+          @effects[PBEffects::CharmChance] += 1
         end
       end
     end
@@ -3164,6 +3270,8 @@ module PBEffects
 	ColdConversion		= 134
 	CreepOut		 	= 135
 	LuckyStar			= 136
+	Charm				= 137
+	CharmChance			= 138
 	
 	#===========================================================================
     # These effects apply to a side

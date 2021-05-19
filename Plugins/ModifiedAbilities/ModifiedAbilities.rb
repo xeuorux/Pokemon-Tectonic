@@ -154,3 +154,36 @@ BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
     battle.pbHideAbilitySplash(user)
   }
 )
+
+BattleHandlers::StatusCureAbility.add(:OWNTEMPO,
+  proc { |ability,battler|
+    if battler.effects[PBEffects::Confusion]!=0
+		battler.battle.pbShowAbilitySplash(battler)
+		battler.pbCureConfusion
+		if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+		  battler.battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis))
+		else
+		  battler.battle.pbDisplay(_INTL("{1}'s {2} snapped it out of its confusion!",
+			 battler.pbThis,battler.abilityName))
+		end
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+	if battler.effects[PBEffects::Charm]!=0
+		battler.battle.pbShowAbilitySplash(battler)
+		battler.pbCureCharm
+		if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+		  battler.battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis))
+		else
+		  battler.battle.pbDisplay(_INTL("{1}'s {2} release it from the charm!",
+			 battler.pbThis,battler.abilityName))
+		end
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+  }
+)
+
+BattleHandlers::AccuracyCalcTargetAbility.add(:TANGLEDFEET,
+  proc { |ability,mods,user,target,move,type|
+    mods[:accuracy_multiplier] /= 2 if target.effects[PBEffects::Confusion] > 0 || target.effects[PBEffects::Charm] > 0
+  }
+)

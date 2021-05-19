@@ -151,7 +151,7 @@
 146,MISTYTERRAIN,Misty Terrain,156,0,FAIRY,Status,0,10,0,BothSides,0,,The user covers the ground with mist for five turns. Grounded Pokémon can't gain status conditions.
 147,MOONLIGHT,Moonlight,0D8,0,FAIRY,Status,0,5,0,User,0,d,The user restores its own HP. The amount of HP regained varies with the weather.
 148,NATURESMADNESS,Nature's Madness,06C,0,FAIRY,Status,90,10,0,NearOther,0,bef,The user hits the target with the force of nature. It halves the target's HP.
-149,ANGELSKISS,Angel's Kiss,013,0,FAIRY,Status,85,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes confusion."
+149,ANGELSKISS,Angel's Kiss,400,0,FAIRY,Status,85,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes charm."
 150,SPIRITBREAK,Spirit Break,045,75,FAIRY,Physical,100,15,100,NearOther,0,abef,Attacks the target and breaks its spirit. Lowers the target's Sp. Atk stat.
 151,DECORATE,Decorate,17B,0,FAIRY,Status,0,15,0,NearOther,0,,The user sharply raises the target's Attack and Sp. Atk stats by decorating the target.
 152,MISTYEXPLOSION,Misty Explosion,196,100,FAIRY,Special,100,5,0,AllNearOthers,0,bef,Attacks everything around it and faints. Power is increased on Misty Terrain.

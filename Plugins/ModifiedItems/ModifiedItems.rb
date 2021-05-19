@@ -45,3 +45,66 @@ ItemHandlers::UseOnPokemon.add(:SUPERPOTION,proc { |item,pkmn,scene|
 ItemHandlers::UseOnPokemon.add(:HYPERPOTION,proc { |item,pkmn,scene|
   next pbHPItem(pkmn,120,scene)
 })
+
+BattleHandlers::StatusCureItem.add(:LUMBERRY,
+  proc { |item,battler,battle,forced|
+    next false if !forced && !battler.canConsumeBerry?
+    next false if battler.status == :NONE &&
+                  battler.effects[PBEffects::Confusion]==0 && battler.effects[PBEffects::Charm]==0
+    itemName = GameData::Item.get(item).name
+    PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
+    battle.pbCommonAnimation("EatBerry",battler) if !forced
+    oldStatus = battler.status
+    wasConfused 	= (battler.effects[PBEffects::Confusion]>0)
+	wasCharmed		= (battler.effects[PBEffects::Charm]>0)
+    battler.pbCureStatus(forced)
+    battler.pbCureConfusion
+	battler.pbCureCharm
+    if forced
+      battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis)) if wasConfused
+	  battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis)) if wasCharmed
+    else
+      case oldStatus
+      when :SLEEP
+        battle.pbDisplay(_INTL("{1}'s {2} woke it up!",battler.pbThis,itemName))
+      when :POISON
+        battle.pbDisplay(_INTL("{1}'s {2} cured its poisoning!",battler.pbThis,itemName))
+      when :BURN
+        battle.pbDisplay(_INTL("{1}'s {2} healed its burn!",battler.pbThis,itemName))
+      when :PARALYSIS
+        battle.pbDisplay(_INTL("{1}'s {2} cured its paralysis!",battler.pbThis,itemName))
+      when :FROZEN
+        battle.pbDisplay(_INTL("{1}'s {2} defrosted it!",battler.pbThis,itemName))
+      end
+      if wasConfused
+        battle.pbDisplay(_INTL("{1}'s {2} snapped it out of its confusion!",battler.pbThis,itemName))
+      end
+	  if wasCharmed
+        battle.pbDisplay(_INTL("{1}'s {2} released it from the charm!",battler.pbThis,itemName))
+      end
+    end
+    next true
+  }
+)
+
+BattleHandlers::StatusCureItem.add(:PERSIMBERRY,
+  proc { |item,battler,battle,forced|
+    next false if !forced && !battler.canConsumeBerry?
+    next false if battler.effects[PBEffects::Confusion]==0 && battler.effects[PBEffects::Charm]==0
+    itemName = GameData::Item.get(item).name
+    PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
+    battle.pbCommonAnimation("EatBerry",battler) if !forced
+	wasConfused 	= (battler.effects[PBEffects::Confusion]>0)
+	wasCharmed		= (battler.effects[PBEffects::Charm]>0)
+    battler.pbCureConfusion
+	battler.pbCureCharm
+    if forced
+		battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis)) if wasConfused
+		battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis)) if wasCharmed
+    else
+		battle.pbDisplay(_INTL("{1}'s {2} snapped it out of its confusion!",battler.pbThis,itemName)) if wasConfused
+		battle.pbDisplay(_INTL("{1}'s {2} released it from the charm!",battler.pbThis,itemName)) if wasCharmed
+    end
+    next true
+  }
+)

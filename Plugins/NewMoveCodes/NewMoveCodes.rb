@@ -1,4 +1,57 @@
 #===============================================================================
+# Pseudomove for charm damage.
+#===============================================================================
+class PokeBattle_Charm < PokeBattle_Move
+  def initialize(battle,move)
+    @battle     = battle
+    @realMove   = move
+    @id         = 0
+    @name       = ""
+    @function   = "000"
+    @baseDamage = 40
+    @type       = nil
+    @category   = 1
+    @accuracy   = 100
+    @pp         = -1
+    @target     = 0
+    @priority   = 0
+    @flags      = ""
+    @addlEffect = 0
+    @calcType   = nil
+    @powerBoost = false
+    @snatched   = false
+  end
+
+  def physicalMove?(thisType=nil);    return false;  end
+  def specialMove?(thisType=nil);     return true; end
+  def pbCritialOverride(user,target); return -1;    end
+end
+
+class PokeBattle_CharmMove < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    return false if damagingMove?
+    return !target.pbCanCharm?(user,true,self)
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    return if damagingMove?
+    target.pbCharm
+  end
+
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    return if !target.pbCanCharm?(user,false,self)
+    target.pbCharm
+  end
+end
+
+#===============================================================================
+# Charms the target.
+#===============================================================================
+class PokeBattle_Move_400 < PokeBattle_CharmMove
+end
+
+#===============================================================================
 # Hits thrice.
 #===============================================================================
 class PokeBattle_Move_500 < PokeBattle_Move
