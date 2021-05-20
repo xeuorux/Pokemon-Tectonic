@@ -190,7 +190,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:TRAPPER,
 
 BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
   proc { |ability,user,target,move,battle|
-    next if !move.specialMove?(user)
+    next if move.pbContactMove?(user)
     next if user.poisoned? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
     if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
@@ -212,6 +212,26 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDTAIL,
     battle.pbShowAbilitySplash(target)
     battle.pbDisplay(_INTL("{1} laid a curse on {2}!",target.pbThis(true),user.pbThis))
     user.effects[PBEffects::Curse] = true
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:BEGUILEING,
+  proc { |ability,user,target,move,battle|
+    next if target.fainted?
+    next if move.pbContactMove?(user)
+    next if battle.pbRandom(100)>=30
+	next if target.effects[PBEffects::Charm] > 0
+    battle.pbShowAbilitySplash(target)
+    if user.pbCanCharm?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} charmed {3}!",target.pbThis,
+           target.abilityName,user.pbThis(true))
+      end
+      user.pbCharm
+    end
     battle.pbHideAbilitySplash(target)
   }
 )

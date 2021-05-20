@@ -305,3 +305,4 @@
 302,MAESTRO,Maestro,"Sound-based moves gain priority."
 303,POISONPUNISH,Poison Punish,"Special moves have a chance to poison the attacker."
 304,REALIST,Realist,"Ups resistance to Dragon- and Fairy-type moves."
+305,BEGUILEING,Beguileing,"Contact with the Pokémon may cause the attacker to become charmed."
