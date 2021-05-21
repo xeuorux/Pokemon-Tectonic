@@ -817,4 +817,5 @@
 792,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,20000,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,0,
 793,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,A peculiar stone that makes certain species of Pokémon evolve.,1,0,7,
 794,ALOLANWREATH,Alolan Wreath,Alolan Wreathes,1,0,A beautiful floral wreath from Alolan that makes certain species of Pokémon evolve.,1,0,7,
-795,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,0
+795,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,0,
+796,TELEPORTER,Teleporter,Teleporters,8,0,"A teleporter which brings you to your last safe spot.",2,0,6,
