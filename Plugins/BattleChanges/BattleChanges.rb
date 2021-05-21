@@ -2219,6 +2219,51 @@ class PokeBattle_Battler
     return true
   end
   
+  def pbLowerSpecialAttackStatStageDazzle(user)
+    return false if fainted?
+    # NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
+    if @effects[PBEffects::Substitute]>0
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        @battle.pbDisplay(_INTL("{1} is protected by its substitute!",pbThis))
+      else
+        @battle.pbDisplay(_INTL("{1}'s substitute protected it from {2}'s {3}!",
+           pbThis,user.pbThis(true),user.abilityName))
+      end
+      return false
+    end
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      return pbLowerStatStageByAbility(:SPECIAL_ATTACK,1,user,false)
+    end
+    # NOTE: These checks exist to ensure appropriate messages are shown if
+    #       Intimidate is blocked somehow (i.e. the messages should mention the
+    #       Intimidate ability by name).
+    if !hasActiveAbility?(:CONTRARY)
+      if pbOwnSide.effects[PBEffects::Mist]>0
+        @battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by Mist!",
+           pbThis,user.pbThis(true),user.abilityName))
+        return false
+      end
+      if abilityActive?
+        if BattleHandlers.triggerStatLossImmunityAbility(self.ability,self,:ATTACK,@battle,false) ||
+           BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(self.ability,self,:ATTACK,@battle,false)
+          @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
+             pbThis,abilityName,user.pbThis(true),user.abilityName))
+          return false
+        end
+      end
+      eachAlly do |b|
+        next if !b.abilityActive?
+        if BattleHandlers.triggerStatLossImmunityAllyAbility(b.ability,b,self,:ATTACK,@battle,false)
+          @battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by {4}'s {5}!",
+             pbThis,user.pbThis(true),user.abilityName,b.pbThis(true),b.abilityName))
+          return false
+        end
+      end
+    end
+    return false if !pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
+    return pbLowerStatStageByCause(:SPECIAL_ATTACK,1,user,user.abilityName)
+  end
+  
   #=============================================================================
   # Calculated properties
   #=============================================================================

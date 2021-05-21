@@ -12,15 +12,16 @@ Cave,20
 #-------------------------------
 [003] # Savannah Route
 Land,20
-    10,CHINGLING,14,16
-    15,POOCHYENA,14,16
-    15,SANDSHREW,14,16
-    10,LEDYBA,14,16
-    10,FURRET,15,16
-    10,FARFETCHD_1,14,16
-    10,NIDORANfE,13,15
-    10,NIDORANmA,13,15
-    10,YAMPER,14,16
+	30,FURRET,15,16
+    30,CHINGLING,14,16
+    20,FARFETCHD_1,14,16
+    20,YAMPER,14,16
+LandTall,20
+	25,NIDORANfE,13,15
+    25,NIDORANmA,13,15
+	25,POOCHYENA,14,16
+    25,SANDSHREW,14,16
+    25,LEDYBA,14,16
 #-------------------------------
 [005] # River Route
 Land,20
@@ -88,37 +89,42 @@ Cave,20
 #-------------------------------
 [020] # Short Route
 Land,20
-    15,PIDGEY,5,7
-    10,BUNNELBY,5,7
-    10,WEEDLE,4,6
-    10,CATERPIE,4,6
-    10,GOSSIFLEUR,5,7
-    10,FENNEKIN,5,7
-    10,SKWOVET,5,7
-    10,VENONAT,5,7
-    10,HOOTHOOT,5,7
+    20,PIDGEY,5,7
+    20,GOSSIFLEUR,5,7
+    20,FENNEKIN,5,7
+    20,SKWOVET,5,7
+	20,CATERPIE,4,6
+LandTall,20
+	20,BUNNELBY,5,7
+	20,VENONAT,5,7
+    20,HOOTHOOT,5,7
+	20,WEEDLE,4,6
+	20,GASTLY,4,6
 #-------------------------------
 [022] # Forest Crossroads
 Land,20
-    15,RATTATA_1,6,8
-    10,PATRAT,6,8
-    10,IGGLYBUFF,6,8
-    10,NICKIT,6,8
-    15,KRICKETOT,6,8
-    10,WOOPER,6,8
-    10,STUNKY,6,8
-    10,DRATINI,6,8
+    20,PATRAT,6,8
+    20,NICKIT,6,8
+    20,KRICKETOT,6,8
+    20,WOOPER,6,8
+    20,DRATINI,6,8
+LandTall
+	25,RATTATA_1,13,15
+	25,BULBASAUR,13,15
+	25,YUNGOOS,13,15
+	25,PANCHAM,13,15
 #-------------------------------
 [043] # Forest Route
 Land,20
-    15,BUNEARY,8,10
-    15,PIKIPEK,8,10
-    9,METAPOD,7,9
-    9,KAKUNA,7,9
-    10,GROWLITHE,8,10
-    10,SEEDOT,8,10
-    10,AZURILL,8,10
-    12,PICHU,8,10
+    25,BUNEARY,8,10
+    25,PIKIPEK,8,10
+	25,STUNKY,6,8
+	25,IGGLYBUFF,8,10
+LandTall
+	25,GROWLITHE,6,8
+    25,SEEDOT,8,10
+    25,AZURILL,8,10
+    25,PICHU,8,10
 #-------------------------------
 [048] # Flower City
 Land,20

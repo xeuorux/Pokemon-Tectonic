@@ -856,6 +856,6 @@
 837,TONGUETWISTER,Tongue Twister,007,78,GHOST,Physical,100,10,50,NearOther,0,abef,"The target is pestered by a giant tongue. This has a 40% chance to paralyze it."
 838,SMOGSTORM,Smog Storm,005,80,POISON,Special,100,5,40,AllNearOthers,0,bef,"The user summons a storm of poisonous gas. This has a 40% chance to poison the target."
 839,COLDSNOT,Cold Snot,005,65,ICE,Physical,100,25,30,AllNearOthers,0,bef,"The user launches snot at the target. This has a 30% chance to poison the target."
-840,BELOVEDPULSE,Beloved Pulse,400,80,FAIRY,Special,100,15,30,AllNearOthers,0,befm,"A pulse of positivity is shot at the area around the user. It has a 30% chance to charm every target.
-841,KALEIDOSCOPE,Kaleidoscope,400,60,FAIRY,Special,100,20,30,NearOther,0,bef,"TODO."
+840,BELOVEDPULSE,Beloved Pulse,400,80,FAIRY,Special,100,15,30,AllNearOthers,0,befm,"A pulse of positive energy is shot at the area around the user. It has a 30% chance to charm every target.
+841,KALEIDOSCOPE,Kaleidoscope,400,60,FAIRY,Special,100,20,30,NearOther,0,bef,"The target is bombarded by a shower of crazy colors. There's a 30% chance it becomes charmed."
 842,TRAMPLE,Trample,044,80,GROUND,Physical,100,15,15,NearOther,0,bef,The user tramples the target. It has a 15% chance to lower its speed stat.
