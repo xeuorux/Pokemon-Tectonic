@@ -23,7 +23,17 @@ class Pokemon
 	"Greedy",
 	"Eager",
 	"Selfless",
-	"Lucky"
+	"Lucky",
+	"Athletic",
+	"Judgemental",
+	"Alert",
+	"Faithful",
+	"Hopeful",
+	"Romantic",
+	"Profound",
+	"Honest",
+	"Energetic",
+	"Elegant"
 	]
 
 	def trait1
@@ -45,6 +55,51 @@ class Pokemon
 		gen += (@personalID % (TRAITS.length-2)) if TRAITS[gen] == trait2
 		return TRAITS[gen]
 	end
+	
+  # Changes the happiness of this Pokémon depending on what happened to change it.
+  # @param method [String] the happiness changing method (e.g. 'walking')
+  def changeHappiness(method)
+    gain = 0
+    happiness_range = @happiness / 100
+    case method
+    when "walking"
+      gain = [2, 2, 1][happiness_range]
+    when "levelup"
+      gain = [5, 4, 3][happiness_range]
+    when "groom"
+      gain = [10, 10, 4][happiness_range]
+    when "evberry"
+      gain = [10, 5, 2][happiness_range]
+    when "vitamin"
+      gain = [5, 3, 2][happiness_range]
+    when "wing"
+      gain = [3, 2, 1][happiness_range]
+    when "machine", "battleitem"
+      gain = [1, 1, 0][happiness_range]
+    else
+      echo(_INTL("Unknown happiness-changing method: {1}", method.to_s))
+    end
+    if gain > 0
+      gain += 1 if @obtain_map == $game_map.map_id
+      gain += 1 if @poke_ball == :LUXURYBALL
+      gain = (gain * 1.5).floor if hasItem?(:SOOTHEBELL)
+    end
+	prevHappiness = @happiness
+    @happiness = (@happiness + gain).clamp(0, 255)
+	if prevHappiness < 50 && @happiness >= 50
+		msgwindow = pbCreateMessageWindow
+		pbMessageDisplay(msgwindow,_INTL("{1} is happy enough to show off its first trait: {2}!\\wtnp[40]",name,trait1))
+		pbDisposeMessageWindow(msgwindow)
+	elsif prevHappiness < 150 && @happiness >= 150
+		msgwindow = pbCreateMessageWindow
+		pbMessageDisplay(msgwindow,_INTL("{1} is happy enough to show off its second trait: {2}!\\wtnp[40]",name,trait2))
+		pbDisposeMessageWindow(msgwindow)
+	elsif prevHappiness < 220 && @happiness >= 220
+		msgwindow = pbCreateMessageWindow
+		pbMessageDisplay(msgwindow,_INTL("{1} is happy enough to show off its final trait: {2}!\\wtnp[40]",name,trait3))
+		pbDisposeMessageWindow(msgwindow)
+	end
+  end
 end
 
 class PokemonSummary_Scene
@@ -102,3 +157,4 @@ class PokemonSummary_Scene
 		drawFormattedTextEx(overlay,232,82,268,memo)
 	  end
 end
+
