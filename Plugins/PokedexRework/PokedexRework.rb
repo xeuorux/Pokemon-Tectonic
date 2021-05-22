@@ -54,6 +54,13 @@ class PokemonPokedex_Scene
           lvlmoves = species_data.moves
 		  tutormoves = species_data.tutor_moves
 		  
+		  firstSpecies = GameData::Species.get(species)
+		  while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
+			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
+		  end
+		
+		  eggmoves = firstSpecies.egg_moves
+		  
 		  # 0 = National Species
           # 1 = Name
           # 2 = Height
@@ -68,7 +75,7 @@ class PokemonPokedex_Scene
           # 11 Level Up Moves
 		  # 12 Tutor Moves
 		  
-		  ret.push([species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves])
+		  ret.push([species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves, eggmoves])
 		end
 		return ret
 	  end
@@ -103,7 +110,7 @@ class PokemonPokedex_Scene
             pbDexEntry(@sprites["pokedex"].index)
           end
         # Searching for pokemon by name
-        elsif Input.trigger?(Input::AUX1)
+        elsif !Input.press?(Input::CTRL) && Input.press?(Input::AUX1)
           pbPlayDecisionSE
           @sprites["pokedex"].active = false
           name = pbEnterPokemonName("Search species...", 1, 12)
@@ -125,7 +132,7 @@ class PokemonPokedex_Scene
           @sprites["pokedex"].active = true
           pbRefresh
         # Searching for pokemon by ability
-        elsif false #Input.trigger?(Input::AUX2)
+        elsif Input.press?(Input::CTRL) && Input.press?(Input::AUX2)
           pbPlayDecisionSE
           @sprites["pokedex"].active = false
           name = pbEnterPokemonName("Search abilities...", 1, 12)
@@ -150,7 +157,7 @@ class PokemonPokedex_Scene
           @sprites["pokedex"].active = true
           pbRefresh
         # Searching for pokemon by move learned
-        elsif false #Input.trigger?(Input::AUX1)
+        elsif Input.press?(Input::CTRL) && Input.press?(Input::AUX1)
           pbPlayDecisionSE
           @sprites["pokedex"].active = false
           name = pbEnterPokemonName("Search moves...", 1, 12)
@@ -158,9 +165,10 @@ class PokemonPokedex_Scene
           dexlist = pbGetDexList
           dexlist = dexlist.find_all { |item|
             next false if !$Trainer.seen?(item[0]) && !$DEBUG
-            lvlmoves = item[11]
             contains = false
-            lvlmoves.each do |move|
+			
+			lvlmoves = item[11]
+			lvlmoves.each do |move|
               if GameData::Move.get(move[1]).real_name.downcase.include?(name.downcase)
                 contains = true
                 break
@@ -169,13 +177,22 @@ class PokemonPokedex_Scene
             next true if contains
 			
 			tutormoves = item[12]
-			tutormoves.each do |move|
-              if GameData::Move.get(move[1]).real_name.downcase.include?(name.downcase)
+            tutormoves.each do |move|
+              if GameData::Move.get(move).real_name.downcase.include?(name.downcase)
                 contains = true
                 break
               end
             end
-            
+			next true if contains
+			
+			eggmoves = item[13]
+            eggmoves.each do |move|
+              if GameData::Move.get(move).real_name.downcase.include?(name.downcase)
+                contains = true
+                break
+              end
+            end
+			
             next contains
           }
           if dexlist.length==0
@@ -190,7 +207,7 @@ class PokemonPokedex_Scene
           @sprites["pokedex"].active = true
           pbRefresh
         #Search by types
-        elsif Input.trigger?(Input::AUX2)
+        elsif !Input.press?(Input::CTRL) && Input.press?(Input::AUX2)
           pbPlayDecisionSE
           @sprites["pokedex"].active = false
           typeName = pbEnterPokemonName("Search types...", 1, 12)
@@ -413,18 +430,20 @@ class PokemonPokedexInfo_Scene
     @sprites["areamap"].visible       = false if @sprites["areamap"] #(@page==7) if @sprites["areamap"]
     @sprites["areahighlight"].visible = false if @sprites["areahighlight"] #(@page==7) if @sprites["areahighlight"]
     @sprites["areaoverlay"].visible   = false if @sprites["areaoverlay"] #(@page==7) if @sprites["areaoverlay"]
-    @sprites["formfront"].visible     = (@page==9) if @sprites["formfront"]
-    @sprites["formback"].visible      = (@page==9) if @sprites["formback"]
-    @sprites["formicon"].visible      = (@page==9) if @sprites["formicon"]
-	@sprites["formicon2"].visible      = (@page!=1 && @page <8) if @sprites["formicon2"]
+    @sprites["formfront"].visible     = (@page==10) if @sprites["formfront"]
+    @sprites["formback"].visible      = (@page==10) if @sprites["formback"]
+    @sprites["formicon"].visible      = (@page==10) if @sprites["formicon"]
+	@sprites["formicon2"].visible      = (@page!=1 && @page <9) if @sprites["formicon2"]
 	# Draw page title
 	overlay = @sprites["overlay"].bitmap
 	base = Color.new(219, 240, 240)
 	shadow   = Color.new(88, 88, 80)
-	pageTitles = ["INFO", "ABILITIES", "STATS", "TYPE MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES", "EVOLUTIONS", "AREA", "FORMS"]
+	pageTitles = ["INFO", "ABILITIES", "STATS", "TYPE MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES", "EGG MOVES", "EVOLUTIONS", "AREA", "FORMS"]
 	formTitle = pageTitles[page-1]
-	drawFormattedTextEx(overlay, 60, 2, Graphics.width, "<outln2>#{formTitle}</outln2>", base, shadow, 18)
-	drawFormattedTextEx(overlay, 250, 2, Graphics.width, "<outln2>[#{page}/9]</outln2>", base, shadow, 18)
+	drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{formTitle}</outln2>", base, shadow, 18)
+	xPos = 240
+	xPos -= 14 if @page >= 10
+	drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/10]</outln2>", base, shadow, 18)
     # Draw page-specific information
     case page
     when 1; drawPageInfo
@@ -432,10 +451,11 @@ class PokemonPokedexInfo_Scene
     when 3; drawPageStats
 	when 4; drawPageMatchups
     when 5; drawPageLevelUpMoves
+	when 7; drawPageEggMoves
     when 6; drawPageTMMoves
-    when 7; drawPageEvolution
-	when 8; drawPageArea
-	when 9; drawPageForms
+    when 8; drawPageEvolution
+	when 9; drawPageArea
+	when 10; drawPageForms
     end
   end
 
@@ -720,7 +740,7 @@ class PokemonPokedexInfo_Scene
   
   
   def drawPageLevelUpMoves
-    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_levelupmoves"))
+    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
     overlay = @sprites["overlay"].bitmap
     formname = ""
     base = Color.new(64,64,64)
@@ -812,7 +832,7 @@ class PokemonPokedexInfo_Scene
   end
   
   def drawPageTMMoves
-    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_tmmoves"))
+    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
     overlay = @sprites["overlay"].bitmap
     formname = "" 
     base = Color.new(64,64,64)
@@ -824,6 +844,36 @@ class PokemonPokedexInfo_Scene
         drawTextEx(overlay,30,54,450,1,_INTL("TM Moves for {1}",@title),base,shadow)
         fSpecies = GameData::Species.get_species_form(@species,i[2])
         compatibleMoves = fSpecies.tutor_moves
+        @scrollableListLength = compatibleMoves.length
+        trueIndex = 0
+        compatibleMoves.each_with_index do |move,index|
+          next if (index/2) < @scroll
+		  moveName = GameData::Move.get(move).real_name
+          drawTextEx(overlay,30+(trueIndex % 2) * 200,84+30*(trueIndex/2).floor,450,1,moveName,base,shadow)
+          trueIndex += 1
+          break if trueIndex >= 18
+        end
+      end
+    end
+  end
+  
+  def drawPageEggMoves
+    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
+    overlay = @sprites["overlay"].bitmap
+    formname = "" 
+    base = Color.new(64,64,64)
+    shadow = Color.new(176,176,176)
+
+    for i in @available
+      if i[2]==@form
+        formname = i[0]
+        drawTextEx(overlay,30,54,450,1,_INTL("Egg Moves for {1}",@title),base,shadow)
+        fSpecies = GameData::Species.get_species_form(@species,i[2])
+		firstSpecies = fSpecies
+		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
+			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
+		end
+        compatibleMoves = firstSpecies.egg_moves
         @scrollableListLength = compatibleMoves.length
         trueIndex = 0
         compatibleMoves.each_with_index do |move,index|
@@ -1050,11 +1100,11 @@ class PokemonPokedexInfo_Scene
 		if @page==1
           pbPlayCloseMenuSE
           break
-        elsif @page==5 || @page == 6   # Move lists
+        elsif @page==5 || @page == 6 || @page == 7   # Move lists
 		  pbPlayDecisionSE
           pbScroll
           dorefresh = true
-        elsif @page==9   # Forms
+        elsif @page==10   # Forms
           if @available.length>1
             pbPlayDecisionSE
             pbChooseForm
@@ -1087,7 +1137,7 @@ class PokemonPokedexInfo_Scene
         oldpage = @page
         @page -= 1
         @page = 1 if @page<1
-        @page = 9 if @page>9
+        @page = 10 if @page>10
         if @page!=oldpage
 		  @scroll = 0
           pbPlayCursorSE
@@ -1097,7 +1147,7 @@ class PokemonPokedexInfo_Scene
         oldpage = @page
         @page += 1
         @page = 1 if @page<1
-        @page = 9 if @page>9
+        @page = 10 if @page>10
         if @page!=oldpage
 		  @scroll = 0
           pbPlayCursorSE
@@ -1157,6 +1207,13 @@ class PokeBattle_Scene
           lvlmoves = species_data.moves
 		  tutormoves = species_data.tutor_moves
 		  
+		  firstSpecies = GameData::Species.get(species)
+		  while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
+			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
+		  end
+		
+		  eggmoves = firstSpecies.egg_moves
+		  
 		  # 0 = National Species
           # 1 = Name
           # 2 = Height
@@ -1170,8 +1227,9 @@ class PokeBattle_Scene
           # 10 Abilities
           # 11 Level Up Moves
 		  # 12 Tutor Moves
+		  # 13 Egg Moves
 		  
-		dexlist = [[species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves]]
+		dexlist = [[species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves, eggmoves]]
 		@scene.pbStartScene(dexlist,0,region)
 		@scene.pbScene
 		@scene.pbEndScene
