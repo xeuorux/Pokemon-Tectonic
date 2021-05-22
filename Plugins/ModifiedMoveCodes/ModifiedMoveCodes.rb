@@ -263,3 +263,16 @@ class PokeBattle_Move_0CF < PokeBattle_Move
     @battle.pbDisplay(msg)
   end
 end
+
+#===============================================================================
+# Power is doubled if the user is burned, poisoned, paralyzed, or chilled. (Facade)
+# Burn's halving of Attack is negated (new mechanics).
+#===============================================================================
+class PokeBattle_Move_07E < PokeBattle_Move
+  def damageReducedByBurn?; return Settings::MECHANICS_GENERATION <= 5; end
+
+  def pbBaseDamage(baseDmg,user,target)
+    baseDmg *= 2 if user.status != :None
+    return baseDmg
+  end
+end

@@ -555,8 +555,8 @@ class PokeBattle_Move_522 < PokeBattle_TargetMultiStatDownMove
 	bestStatValue = -100
     GameData::Stat.each_battle do |s|
       next if !target.pbCanLowerStatStage?(s.id,user,self)
-	  baseStat      = b.plainStats[s.id]
-	  statStage		= b.stages[s.id]+6
+	  baseStat      = target.plainStats[s.id]
+	  statStage		= target.stages[s.id]+6
 	  statValue = (baseStat.to_f*stageMul[statStage]/stageDiv[statStage]).floor
 	  if statValue > bestStatValue
 		bestStatValue = statValue
@@ -606,5 +606,104 @@ class PokeBattle_Move_525 < PokeBattle_MultiStatUpMove
   def initialize(battle,move)
     super
     @statUp = [:ATTACK,1,:DEFENSE,1,:SPEED,1]
+  end
+end
+
+#===============================================================================
+# Puts the target to sleep. User loses half of their max HP as recoil. (Demon's Kiss)
+#===============================================================================
+class PokeBattle_Move_526 < PokeBattle_SleepMove
+  def pbEffectAgainstTarget(user,target)
+    target.pbSleep
+	return if !user.takesIndirectDamage?
+    return if user.hasActiveAbility?(:ROCKHEAD)
+    amt = (user.maxhp/2.0).ceil
+    user.pbReduceHP(amt,false)
+    @battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
+    user.pbItemHPHealCheck
+  end
+end
+
+#===============================================================================
+# Puts the target to sleep. Fails unless in sunlight. (new!Grass Whistle)
+#===============================================================================
+class PokeBattle_Move_527 < PokeBattle_SleepMove
+	def pbMoveFailed?(user,targets)
+		if @battle.pbWeather != :Sun
+			@battle.pbDisplay(_INTL("But it failed!"))
+			return true
+		end
+		return false
+	end
+end
+
+#===============================================================================
+# Puts the target to sleep. Fails unless the target is at or below half health. (new!Sing)
+#===============================================================================
+class PokeBattle_Move_528 < PokeBattle_SleepMove
+	def pbFailsAgainstTarget?(user,target)
+		if user.hp > (user.maxhp / 2.0).ceil
+			return true
+		end
+		return false
+	end
+end
+
+#===============================================================================
+# Puts the target to sleep. Fails unless the target dealt damage to the user this turn. (new!Sleep Powder)
+#===============================================================================
+class PokeBattle_Move_529 < PokeBattle_SleepMove
+	def pbFailsAgainstTarget?(user,target)
+		if !user.lastAttacker.include?(target.index)
+			return true
+		end
+		return false
+	end
+end
+
+#===============================================================================
+# Deals 50% more damage if user is statused. (Hard Feelings, Sore Spot)
+#===============================================================================
+class PokeBattle_Move_52A < PokeBattle_Move
+	def damageReducedByBurn?; return false; end
+
+	def pbBaseDamage(baseDmg,user,target)
+		baseDmg *= 1.5 if user.status != :None
+		return baseDmg
+	end
+end
+
+#===============================================================================
+# Confuses or charms based on which of the target's attacking stats is higher. (Majestic Glare)
+#===============================================================================
+class PokeBattle_Move_52B < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+    return false if damagingMove?
+    return !target.pbCanConfuse?(user,true,self) && !target.pbCanCharm?(user,true,self)
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    return if damagingMove?
+    confuseOrCharm(target)
+  end
+
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+	confuseOrCharm(target)
+  end
+  
+  def confuseOrCharm(target)
+	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+	attackStage = target.stages[:ATTACK]+6
+	attack = (target.attack.to_f*stageMul[attackStage]/stageDiv[attackStage]).floor
+	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
+	spAtk = (target.spatk.to_f*stageMul[spAtkStage]/stageDiv[spAtkStage]).floor
+	
+    if target.pbCanConfuse?(user,false,self) && attack >= spAtk
+		target.pbConfuse
+	elsif target.pbCanCharm?(user,false,self) && spAtk >= attack
+		target.pbCharm
+	end
   end
 end

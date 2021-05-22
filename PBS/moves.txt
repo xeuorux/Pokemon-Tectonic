@@ -429,7 +429,7 @@
 414,RELICSONG,Relic Song,003,75,NORMAL,Special,100,10,10,AllNearFoes,0,befk,An ancient song appeals to the hearts of those listening. It may also induce sleep.
 415,CHIPAWAY,Chip Away,0A9,70,NORMAL,Physical,100,20,0,NearOther,0,abef,"Seeking an opening, the user strikes continually. The foe's stat changes don't affect the damage."
 416,DIZZYPUNCH,Dizzy Punch,013,70,NORMAL,Physical,100,10,20,NearOther,0,abefj,The target is hit with rhythmically launched punches that may also leave it confused.
-417,FACADE,Facade,07E,70,NORMAL,Physical,100,20,0,NearOther,0,abef,"An attack move that doubles its power if the user is poisoned, burned, or has paralysis."
+417,FACADE,Facade,07E,70,NORMAL,Physical,100,20,0,NearOther,0,abef,"An attack move that doubles its power if the user has a status condition."
 418,HEADBUTT,Headbutt,00F,70,NORMAL,Physical,100,15,30,NearOther,0,abe,The user sticks out its head and attacks by charging into the foe. It may also make the target flinch.
 419,RETALIATE,Retaliate,085,70,NORMAL,Physical,100,5,0,NearOther,0,abef,"Gets revenge for a fainted ally. If an ally fainted in the last turn, this attack's damage increases."
 420,SECRETPOWER,Secret Power,0A4,70,NORMAL,Physical,100,20,30,NearOther,0,be,The user attacks with a secret power. Its added effects vary depending on the user's environment.
