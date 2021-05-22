@@ -140,7 +140,7 @@ end
 #===============================================================================
 class PokeBattle_Move_506 < PokeBattle_Move
   def pbGetDefenseStats(user,target)
-    return target.spdef, target.stages[:SPDEF]+6
+    return target.spdef, target.stages[:SPECIAL_DEFENSE]+6
   end
 end
 
@@ -151,7 +151,7 @@ end
 class PokeBattle_Move_507 < PokeBattle_TargetStatDownMove
   def initialize(battle,move)
     super
-    @statDown = [:SPDEF,1]
+    @statDown = [:SPECIAL_DEFENSE,1]
   end
   
   def pbCalcTypeModSingle(moveType,defType,user,target)
@@ -218,8 +218,8 @@ end
 class PokeBattle_Move_50B < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if !target.damageState.fainted
-    return if !user.pbCanRaiseStatStage?(:SPATK,user,self)
-    user.pbRaiseStatStage(:SPATK,3,user)
+    return if !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
+    user.pbRaiseStatStage(:SPECIAL_ATTACK,3,user)
   end
 end
 
@@ -706,4 +706,104 @@ class PokeBattle_Move_52B < PokeBattle_Move
 		target.pbCharm
 	end
   end
+end
+
+#===============================================================================
+# User gains 1/2 the HP it inflicts as damage. Lower's Sp. Def. (Soul Drain)
+#===============================================================================
+class PokeBattle_Move_52C < PokeBattle_Move
+  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
+
+  def pbEffectAgainstTarget(user,target)
+    return if target.damageState.hpLost<=0
+    hpGain = (target.damageState.hpLost*0.5).round
+    user.pbRecoverHPFromDrain(hpGain,target)
+  end
+  
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    return if !target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
+    target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
+  end
+end
+
+#===============================================================================
+# Resets weather and cures all active Pokemon of statuses. (Shadowpass)
+#===============================================================================
+class PokeBattle_Move_52D < PokeBattle_Move
+	def pbEffectGeneral(user)
+		if @battle.weather != :None
+			case @field.weather
+			  when :Sun       then pbDisplay(_INTL("The sunlight faded."))
+			  when :Rain      then pbDisplay(_INTL("The rain stopped."))
+			  when :Sandstorm then pbDisplay(_INTL("The sandstorm subsided."))
+			  when :Hail      then pbDisplay(_INTL("The hail stopped."))
+			  when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
+			  when :HeavyRain then pbDisplay("The heavy rain has lifted!")
+			  when :HarshSun  then pbDisplay("The harsh sunlight faded!")
+			  when :StrongWinds then pbDisplay("The mysterious air current has dissipated!")
+			  end
+			@battle.weather = :None
+		end
+		
+		@battle.battlers.each do |b|
+			pkmn = b.pokemon
+			next if !pkmn || !pkmn.able? || pkmn.status == :NONE
+			pbAromatherapyHeal(pkmn)
+		end
+	end
+	
+	def pbAromatherapyHeal(pkmn,battler=nil)
+		oldStatus = (battler) ? battler.status : pkmn.status
+		curedName = (battler) ? battler.pbThis : pkmn.name
+		if battler
+		  battler.pbCureStatus(false)
+		else
+		  pkmn.status      = :NONE
+		  pkmn.statusCount = 0
+		end
+		case oldStatus
+		when :SLEEP
+		  @battle.pbDisplay(_INTL("{1} was woken from sleep.",curedName))
+		when :POISON
+		  @battle.pbDisplay(_INTL("{1} was cured of its poisoning.",curedName))
+		when :BURN
+		  @battle.pbDisplay(_INTL("{1}'s burn was healed.",curedName))
+		when :PARALYSIS
+		  @battle.pbDisplay(_INTL("{1} was cured of paralysis.",curedName))
+		when :FROZEN
+		  @battle.pbDisplay(_INTL("{1} was unchilled.",curedName))
+    end
+  end
+end
+
+#===============================================================================
+# Lowers the target's Defense and Evasion by 2. (Echolocate)
+#===============================================================================
+class PokeBattle_Move_52E < PokeBattle_TargetMultiStatDownMove
+  def initialize(battle,move)
+    super
+    @statDown = [:DEFENSE,2,:EVASION,2]
+  end
+end
+
+#===============================================================================
+# Resets weather and reduces the Attack of all enemies. (Wingspan Eclipse)
+#===============================================================================
+class PokeBattle_Move_52F < PokeBattle_Move_042
+	def pbEffectGeneral(user)
+		if @battle.weather != :None
+			case @field.weather
+			  when :Sun       then pbDisplay(_INTL("The sunlight faded."))
+			  when :Rain      then pbDisplay(_INTL("The rain stopped."))
+			  when :Sandstorm then pbDisplay(_INTL("The sandstorm subsided."))
+			  when :Hail      then pbDisplay(_INTL("The hail stopped."))
+			  when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
+			  when :HeavyRain then pbDisplay("The heavy rain has lifted!")
+			  when :HarshSun  then pbDisplay("The harsh sunlight faded!")
+			  when :StrongWinds then pbDisplay("The mysterious air current has dissipated!")
+			end
+			@battle.weather = :None
+		end
+	end
 end

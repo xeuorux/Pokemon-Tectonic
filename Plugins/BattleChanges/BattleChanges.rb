@@ -2002,7 +2002,7 @@ class PokeBattle_Battler
   def pbCharm(msg=nil)
     @effects[PBEffects::Charm] = pbCharmDuration
 	@effects[PBEffects::CharmChance] = 0
-    @battle.pbCommonAnimation("Confusion",self)
+    @battle.pbAnimation(:LUCKYCHANT,self,nil)
     msg = _INTL("{1} became charmed!",pbThis) if !msg || msg==""
     @battle.pbDisplay(msg)
     PBDebug.log("[Lingering effect] #{pbThis}'s charm count is #{@effects[PBEffects::Confusion]}")
