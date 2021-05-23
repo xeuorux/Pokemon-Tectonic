@@ -183,3 +183,12 @@ GameData::EncounterType.register({
   :trigger_chance => 21,
   :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
 })
+
+GameData::TerrainTag.register({
+  :id                     => :Mud,
+  :id_number              => 17,
+  :deep_bush              => true,
+  :land_wild_encounters   => true,
+  :battle_environment     => :Rock,
+  :must_walk              => true
+})
