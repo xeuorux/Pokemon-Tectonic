@@ -110,15 +110,15 @@ class PokemonOption_Scene
              pbSetResizeFactor($PokemonSystem.screensize)
            end
          }
-       ),
-	   EnumOption.new(_INTL("Pokemon Follow"),[_INTL("On"),_INTL("Off")],
+       )
+    ]
+	@PokemonOptions.push(EnumOption.new(_INTL("Pokemon Follow"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.followers },
          proc { |value|
 			$PokemonSystem.followers = value
             pbToggleFollowingPokemon($PokemonSystem.followers == 0 ? "on" : "off",false)
          }
-       )
-    ]
+       )) if $PokemonGlobal
     @PokemonOptions = pbAddOnOptions(@PokemonOptions)
     @sprites["option"] = Window_PokemonOption.new(@PokemonOptions,0,
        @sprites["title"].height,Graphics.width,
