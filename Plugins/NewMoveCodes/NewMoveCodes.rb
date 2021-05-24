@@ -357,8 +357,10 @@ end
 # Priority against Pokemon with half or less health. (Aqua Instinct)
 #===============================================================================
 class PokeBattle_Move_517 < PokeBattle_Move
-	def priorityModification?(user,target);
-		return 1 if target.hp.to_f < target.totalhp.to_f/2
+	def priorityModification(user,targets);
+		targets.each do |b|
+			return 1 if b.hp.to_f < b.totalhp.to_f/2
+		end
 		return 0
 	end
 end
@@ -617,7 +619,7 @@ class PokeBattle_Move_526 < PokeBattle_SleepMove
     target.pbSleep
 	return if !user.takesIndirectDamage?
     return if user.hasActiveAbility?(:ROCKHEAD)
-    amt = (user.maxhp/2.0).ceil
+    amt = (user.totalhp/2.0).ceil
     user.pbReduceHP(amt,false)
     @battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
     user.pbItemHPHealCheck
@@ -689,10 +691,10 @@ class PokeBattle_Move_52B < PokeBattle_Move
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-	confuseOrCharm(target)
+	confuseOrCharm(user,target)
   end
   
-  def confuseOrCharm(target)
+  def confuseOrCharm(user,target)
 	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
 	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
 	attackStage = target.stages[:ATTACK]+6
@@ -732,18 +734,19 @@ end
 #===============================================================================
 class PokeBattle_Move_52D < PokeBattle_Move
 	def pbEffectGeneral(user)
-		if @battle.weather != :None
-			case @field.weather
-			  when :Sun       then pbDisplay(_INTL("The sunlight faded."))
-			  when :Rain      then pbDisplay(_INTL("The rain stopped."))
-			  when :Sandstorm then pbDisplay(_INTL("The sandstorm subsided."))
-			  when :Hail      then pbDisplay(_INTL("The hail stopped."))
-			  when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
-			  when :HeavyRain then pbDisplay("The heavy rain has lifted!")
-			  when :HarshSun  then pbDisplay("The harsh sunlight faded!")
-			  when :StrongWinds then pbDisplay("The mysterious air current has dissipated!")
-			  end
-			@battle.weather = :None
+		if @battle.field.weather != :None
+			case @battle.field.weather
+			  when :Sun       then @battle.pbDisplay(_INTL("The sunlight faded."))
+			  when :Rain      then @battle.pbDisplay(_INTL("The rain stopped."))
+			  when :Sandstorm then @battle.pbDisplay(_INTL("The sandstorm subsided."))
+			  when :Hail      then @battle.pbDisplay(_INTL("The hail stopped."))
+			  when :ShadowSky then @battle.pbDisplay(_INTL("The shadow sky faded."))
+			  when :HeavyRain then @battle.pbDisplay("The heavy rain has lifted!")
+			  when :HarshSun  then @battle.pbDisplay("The harsh sunlight faded!")
+			  when :StrongWinds then @battle.pbDisplay("The mysterious air current has dissipated!")
+			end
+			@battle.field.weather 			= :None
+			@battle.field.weatherDuration  = 0
 		end
 		
 		@battle.battlers.each do |b|
@@ -792,18 +795,19 @@ end
 #===============================================================================
 class PokeBattle_Move_52F < PokeBattle_Move_042
 	def pbEffectGeneral(user)
-		if @battle.weather != :None
-			case @field.weather
-			  when :Sun       then pbDisplay(_INTL("The sunlight faded."))
-			  when :Rain      then pbDisplay(_INTL("The rain stopped."))
-			  when :Sandstorm then pbDisplay(_INTL("The sandstorm subsided."))
-			  when :Hail      then pbDisplay(_INTL("The hail stopped."))
-			  when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
-			  when :HeavyRain then pbDisplay("The heavy rain has lifted!")
-			  when :HarshSun  then pbDisplay("The harsh sunlight faded!")
-			  when :StrongWinds then pbDisplay("The mysterious air current has dissipated!")
+		if @battle.field.weather != :None
+			case @battle.field.weather
+			  when :Sun       then @battle.pbDisplay(_INTL("The sunlight faded."))
+			  when :Rain      then @battle.pbDisplay(_INTL("The rain stopped."))
+			  when :Sandstorm then @battle.pbDisplay(_INTL("The sandstorm subsided."))
+			  when :Hail      then @battle.pbDisplay(_INTL("The hail stopped."))
+			  when :ShadowSky then @battle.pbDisplay(_INTL("The shadow sky faded."))
+			  when :HeavyRain then @battle.pbDisplay("The heavy rain has lifted!")
+			  when :HarshSun  then @battle.pbDisplay("The harsh sunlight faded!")
+			  when :StrongWinds then @battle.pbDisplay("The mysterious air current has dissipated!")
 			end
-			@battle.weather = :None
+			@battle.field.weather 			= :None
+			@battle.field.weatherDuration  = 0
 		end
 	end
 end
