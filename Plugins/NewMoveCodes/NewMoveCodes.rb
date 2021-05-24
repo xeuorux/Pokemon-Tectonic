@@ -155,7 +155,7 @@ class PokeBattle_Move_507 < PokeBattle_TargetStatDownMove
   end
   
   def pbCalcTypeModSingle(moveType,defType,user,target)
-    return Effectiveness::SUPER_EFFECTIVE_ONE if moveType == :STEEL
+    return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :STEEL
     return super
   end
 end

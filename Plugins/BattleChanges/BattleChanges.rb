@@ -1837,7 +1837,7 @@ class PokeBattle_Battler
     # Burn Up erases the Fire-type.
     ret.delete(:FIRE) if @effects[PBEffects::BurnUp]
 	# Cold Conversion erases the Ice-type.
-    ret.delete(:FIRE) if @effects[PBEffects::ColdConversion]
+    ret.delete(:ICE) if @effects[PBEffects::ColdConversion]
     # Roost erases the Flying-type. If there are no types left, adds the Normal-
     # type.
     if @effects[PBEffects::Roost]
