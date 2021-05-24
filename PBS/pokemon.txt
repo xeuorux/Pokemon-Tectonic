@@ -9825,7 +9825,7 @@ Name = Skitty
 InternalName = SKITTY
 Type1 = NORMAL
 BaseStats = 50,35,55,60,55,45
-#Total: 270
+#Total: 300
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 52
@@ -24176,8 +24176,8 @@ BattlerShadowSize = 2
 Name = Crabrawler
 InternalName = CRABRAWLER
 Type1 = FIGHTING
-BaseStats = 77,92,67,53,52,57
-#Total: 398
+BaseStats = 82,97,72,58,57,62
+#Total: 428
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 68
@@ -24204,7 +24204,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = CRABOMINABLE,Location,257
+Evolutions = CRABOMINABLE,Level,35
 #-------------------------------
 [740]
 Name = Crabominable
@@ -27216,8 +27216,8 @@ BattlerShadowSize = 2
 Name = Chewtle
 InternalName = CHEWTLE
 Type1 = WATER
-BaseStats = 550,64,50,44,38,38
-#Total: 784
+BaseStats = 60,69,55,49,43,43
+#Total: 319
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 57

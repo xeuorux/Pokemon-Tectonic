@@ -61,6 +61,26 @@ class PokemonPokedex_Scene
 		
 		  eggmoves = firstSpecies.egg_moves
 		  
+		    evolutions = species_data.get_evolutions
+			evoMethods = []
+			evolutions.each_with_index do |evolution,index|
+			  next if evolution[3]
+			  method = evolution[1]
+			  parameter = evolution[2]
+			  evoSpecies = evolution[0]
+			  next if !method || !evoSpecies
+			  evolutionName = GameData::Species.get(evoSpecies).real_name
+			  methodDescription = describeEvolutionMethod(method,parameter)
+			  evoMethods.push(methodDescription)
+			end
+			
+			baseStats = species_data.base_stats
+			total = 0
+			baseStats.each_with_index do |stat, index|
+			  next if !stat
+			  total += stat[1]
+			end
+		  
 		  # 0 = National Species
           # 1 = Name
           # 2 = Height
@@ -74,8 +94,11 @@ class PokemonPokedex_Scene
           # 10 Abilities
           # 11 Level Up Moves
 		  # 12 Tutor Moves
+		  # 13 Egg Moves
+		  # 14 Evo Methods
+		  # 15 Base stat total
 		  
-		  ret.push([species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves, eggmoves])
+		  ret.push([species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves, eggmoves, evoMethods, total])
 		end
 		return ret
 	  end
@@ -231,7 +254,76 @@ class PokemonPokedex_Scene
           end
           @sprites["pokedex"].active = true
           pbRefresh
-        end
+		# Evolution method
+		elsif false #!Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
+		  pbPlayDecisionSE
+          @sprites["pokedex"].active = false
+          evoMethodName = pbEnterPokemonName("Search evo methods...", 1, 12)
+          dexlist = pbGetDexList
+          dexlist = dexlist.find_all { |item|
+            next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			anyContain = false
+			item[14].each do |evomethod|
+				anyContain = true if evomethod.downcase.include?(evoMethodName.downcase)
+			end
+			next anyContain
+          }
+          if dexlist.length==0
+            pbMessage(_INTL("No matching Pokémon were found."))
+          else
+            @dexlist = dexlist
+            @sprites["pokedex"].commands = @dexlist
+            @sprites["pokedex"].index    = 0
+            @sprites["pokedex"].refresh
+            @searchResults = true
+          end
+          @sprites["pokedex"].active = true
+          pbRefresh
+		# Greater than BST
+		elsif Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
+		  pbPlayDecisionSE
+          @sprites["pokedex"].active = false
+          bstFloorString = pbEnterPokemonName("Search BST floor...", 1, 12)
+		  bstFloor = bstFloorString.to_i
+          dexlist = pbGetDexList
+          dexlist = dexlist.find_all { |item|
+            next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			next item[15] >= bstFloor
+          }
+          if dexlist.length==0
+            pbMessage(_INTL("No matching Pokémon were found."))
+          else
+            @dexlist = dexlist
+            @sprites["pokedex"].commands = @dexlist
+            @sprites["pokedex"].index    = 0
+            @sprites["pokedex"].refresh
+            @searchResults = true
+          end
+          @sprites["pokedex"].active = true
+          pbRefresh
+		# Less than BST
+		elsif !Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
+		  pbPlayDecisionSE
+          @sprites["pokedex"].active = false
+          bstFloorString = pbEnterPokemonName("Search BST ceiling...", 1, 12)
+		  bstFloor = bstFloorString.to_i
+          dexlist = pbGetDexList
+          dexlist = dexlist.find_all { |item|
+            next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			next item[15] <= bstFloor
+          }
+          if dexlist.length==0
+            pbMessage(_INTL("No matching Pokémon were found."))
+          else
+            @dexlist = dexlist
+            @sprites["pokedex"].commands = @dexlist
+            @sprites["pokedex"].index    = 0
+            @sprites["pokedex"].refresh
+            @searchResults = true
+          end
+          @sprites["pokedex"].active = true
+          pbRefresh
+		end
       end
     }
   end
@@ -802,35 +894,6 @@ class PokemonPokedexInfo_Scene
     end
   end
 
-  def describeEvolutionMethod(method,parameter=0)
-    case method
-    when :Level; return "at level #{parameter}"
-    when :LevelMale; return "at level #{parameter} if it's male"
-    when :LevelFemale; return "at level #{parameter} if it's female"
-    when :LevelDay; return "at level #{parameter} during the day"
-    when :LevelNight; return "at level #{parameter} during nighttime"
-    when :LevelRain; return "at level #{parameter} while raining"
-    when :LevelDarkInParty; return "at level #{parameter} while a dark type is in the party"
-    when :AttackGreater; return "at level #{parameter} if it has more attack than defense"
-    when :AtkDefEqual; return "at level #{parameter} if it has attack equal to defense" 
-    when :DefenseGreater; return "at level #{parameter} if it has more defense than attack" 
-    when :Silcoon; return "at level #{parameter} half of the time"
-    when :Cascoon; return "at level #{parameter} the other half of the time"
-    when :Happiness; return "when leveled up while it has high happiness"
-    when :MaxHappiness; return "when leveled up while it has maximum happiness"
-    when :Beauty; return "when leveled up while it has maximum beauty"
-    when :HasMove; return "when leveled up while it knows the move #{GameData::Move.get(parameter).real_name}"
-    when :HasMoveType; return "when leveled up while it knows a move of the #{GameData::Move.get(parameter).real_name} type"
-    when :Location; return "when leveled up near a special location"
-    when :Item; return "when a #{GameData::Item.get(parameter).real_name} is used on it"
-    when :ItemMale; return "when a #{GameData::Item.get(parameter).real_name} is used on it if it's male"
-    when :ItemFemale; return "when a #{GameData::Item.get(parameter).real_name} is used on it if it's female"
-    when :Trade; return "when traded"
-    when :TradeItem; return "when traded holding an #{GameData::Item.get(parameter).real_name}"
-    end
-    return "via a method the programmer was too lazy to describe"
-  end
-  
   def drawPageTMMoves
     @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
     overlay = @sprites["overlay"].bitmap
@@ -1183,7 +1246,6 @@ end
 
 
 class PokeBattle_Scene
-
 	def pbStartSceneSingle(species)   # For use from a Pokémon's summary screen
 		region = -1
 		if Settings::USE_CURRENT_REGION_DEX
@@ -1214,6 +1276,27 @@ class PokeBattle_Scene
 		
 		  eggmoves = firstSpecies.egg_moves
 		  
+		  evolutions = species_data.get_evolutions
+			evoMethods = []
+
+			evolutions.each_with_index do |evolution,index|
+			  next if evolution[3]
+			  method = evolution[1]
+			  parameter = evolution[2]
+			  evoSpecies = evolution[0]
+			  next if !method || !evoSpecies
+			  evolutionName = GameData::Species.get(evoSpecies).real_name
+			  methodDescription = describeEvolutionMethod(method,parameter)
+			  evoMethods.push(methodDescription)
+			end
+
+			baseStats = species_data.base_stats
+			total = 0
+			baseStats.each_with_index do |stat, index|
+			  next if !stat
+			  total += stat[1]
+			end
+		  
 		  # 0 = National Species
           # 1 = Name
           # 2 = Height
@@ -1228,8 +1311,10 @@ class PokeBattle_Scene
           # 11 Level Up Moves
 		  # 12 Tutor Moves
 		  # 13 Egg Moves
+		  # 14 Evo Methods
+		  # 15 Base stat total
 		  
-		dexlist = [[species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves, eggmoves]]
+		dexlist = [[species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves, eggmoves, evoMethods, total]]
 		@scene.pbStartScene(dexlist,0,region)
 		@scene.pbScene
 		@scene.pbEndScene
@@ -1246,4 +1331,33 @@ class PokeBattle_Scene
       screen.pbStartSceneSingle(species)
     }
   end
+end
+
+def describeEvolutionMethod(method,parameter=0)
+    case method
+    when :Level; return "at level #{parameter}"
+    when :LevelMale; return "at level #{parameter} if it's male"
+    when :LevelFemale; return "at level #{parameter} if it's female"
+    when :LevelDay; return "at level #{parameter} during the day"
+    when :LevelNight; return "at level #{parameter} during nighttime"
+    when :LevelRain; return "at level #{parameter} while raining"
+    when :LevelDarkInParty; return "at level #{parameter} while a dark type is in the party"
+    when :AttackGreater; return "at level #{parameter} if it has more attack than defense"
+    when :AtkDefEqual; return "at level #{parameter} if it has attack equal to defense" 
+    when :DefenseGreater; return "at level #{parameter} if it has more defense than attack" 
+    when :Silcoon; return "at level #{parameter} half of the time"
+    when :Cascoon; return "at level #{parameter} the other half of the time"
+    when :Happiness; return "when leveled up while it has high happiness"
+    when :MaxHappiness; return "when leveled up while it has maximum happiness"
+    when :Beauty; return "when leveled up while it has maximum beauty"
+    when :HasMove; return "when leveled up while it knows the move #{GameData::Move.get(parameter).real_name}"
+    when :HasMoveType; return "when leveled up while it knows a move of the #{GameData::Move.get(parameter).real_name} type"
+    when :Location; return "when leveled up near a special location"
+    when :Item; return "when a #{GameData::Item.get(parameter).real_name} is used on it"
+    when :ItemMale; return "when a #{GameData::Item.get(parameter).real_name} is used on it if it's male"
+    when :ItemFemale; return "when a #{GameData::Item.get(parameter).real_name} is used on it if it's female"
+    when :Trade; return "when traded"
+    when :TradeItem; return "when traded holding an #{GameData::Item.get(parameter).real_name}"
+    end
+    return "via a method the programmer was too lazy to describe"
 end
