@@ -499,7 +499,7 @@ class PokeBattle_Battle
 			$game_variables[95] = 4
 		end
 	elsif (pkmn.species == :KYOGRE || pkmn.species == :GROUDON)
-		if  pkmn.turnCount % 3 == 0 && pkmn.turnCount > 0
+		if  @turnCount % 3 == 0 && @turnCount > 0
 			pbDisplay(_INTL("The projection is gathering energy for a massive attack!"))
 			$game_variables[95] = 1
 		else
@@ -550,7 +550,7 @@ class PokeBattle_Battle
   end
   
   def pbSetBossForm(pkmn)
-	if (pkmn.species == :RAYQUAZA || pkmn.species == :GROUDON || pkmn.species == :KYOGRE) && !pkmn.mega?
+	if (pkmn.species == :RAYQUAZA) && !pkmn.mega?
 		pbMegaEvolve(pkmn.index)
 	end
   end

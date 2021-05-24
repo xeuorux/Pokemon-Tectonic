@@ -264,7 +264,7 @@ class PokeBattle_AI
     target_data = move.pbTarget(user)
     if target_data.num_targets > 1
       # If move affects multiple battlers and you don't choose a particular one
-      totalScore = 100
+      totalScore = 0
       
 	  if move.damagingMove?
 		targets = []
@@ -284,6 +284,7 @@ class PokeBattle_AI
 			totalScore = 0
 		end
 	  else
+	    totalScore = 100
 		totalScore = pbGetMoveScoreBoss(move,user,nil) if user.boss
 	  end
 	  
