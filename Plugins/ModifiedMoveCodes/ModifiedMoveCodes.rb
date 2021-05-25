@@ -113,7 +113,7 @@ end
 # Averages the user's and target's current HP. (Pain Split)
 #===============================================================================
 class PokeBattle_Move_05A < PokeBattle_Move
-	def pbFailsAgainstTarget(user,target)
+	def pbFailsAgainstTarget?(user,target)
 		if target.boss
 		  @battle.pbDisplay(_INTL("But it failed!"))
 		  return true
@@ -274,5 +274,19 @@ class PokeBattle_Move_07E < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
     baseDmg *= 2 if user.status != :None
     return baseDmg
+  end
+end
+
+#===============================================================================
+# If user is KO'd before it next moves, the battler that caused it also faints.
+# (Destiny Bond)
+#===============================================================================
+class PokeBattle_Move_0E7 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    if (Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::DestinyBondPrevious]) || $game_variables[95] # Boss battle
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
   end
 end

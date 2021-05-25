@@ -1494,6 +1494,10 @@ class PokeBattle_Move
     if !target.airborne?
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING && moveType == :GROUND
     end
+	
+	# Bosses
+	ret = Effectiveness::NOT_VERY_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
+	
     return ret
   end
   
@@ -3151,7 +3155,13 @@ class Pokemon
     GameData::Stat.each_main do |s|
       if s.id == :HP
         stats[s.id] = calcHP(base_stats[s.id], this_level, @ev[s.id])
-		stats[s.id]	*= $game_variables[96] if boss
+		if boss
+			if $game_variables[96].is_a?(Hash)
+				stats[s.id]	*= $game_variables[96][@species]
+			else
+				stats[s.id]	*= $game_variables[96]
+			end
+		end
       else
         stats[s.id] = calcStat(base_stats[s.id], this_level, @ev[s.id], )
       end

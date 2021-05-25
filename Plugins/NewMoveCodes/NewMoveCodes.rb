@@ -811,3 +811,26 @@ class PokeBattle_Move_52F < PokeBattle_Move_042
 		end
 	end
 end
+
+#===============================================================================
+# Raises Attack of user and team (new!Howl)
+#===============================================================================
+class PokeBattle_Move_530 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    return false if damagingMove?
+	failed = true
+	@battle.eachSameSideBattler(user) do |b|
+      next if !user.pbCanRaiseStatStage?(:ATTACK,user,self,true)
+      failed = false
+      break
+    end
+    return failed
+  end
+
+  def pbEffectGeneral(user)
+    @battle.eachSameSideBattler(user) do |b|
+        next if !user.pbCanRaiseStatStage?(:ATTACK,user,self,true)
+        b.pbRaiseStatStage(:ATTACK,1,user)
+    end
+  end
+end
