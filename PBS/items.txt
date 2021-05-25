@@ -1,4 +1,4 @@
-# See the documentation on the wiki to learn how to edit this file.,,,,,,,,,,
+# See the documentation on the wiki to learn how to edit this file.,,,,,,,,,,,
 #-------------------------------,,,,,,,,,,
 1,REPEL,Repel,Repels,1,400,An item that prevents weak wild Pokémon from appearing for 100 steps after its use.,2,0,0,
 2,SUPERREPEL,Super Repel,Super Repels,1,700,An item that prevents weak wild Pokémon from appearing for 200 steps after its use.,2,0,0,

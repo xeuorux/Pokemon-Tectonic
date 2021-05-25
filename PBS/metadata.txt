@@ -138,6 +138,7 @@ ShowArea = true
 MapPosition = 0,15,8
 #-------------------------------
 [024]
+# Prototype
 HealingSpot = 23,11,15
 MapPosition = 0,15,8
 #-------------------------------
