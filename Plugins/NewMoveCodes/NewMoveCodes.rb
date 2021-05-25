@@ -642,7 +642,8 @@ end
 #===============================================================================
 class PokeBattle_Move_528 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		if target.hp > (target.totalhp / 2.0).ceil
+		if target.hp >= target.totalhp / 2 || !target.pbCanSleep?(user,true,self)
+			@battle.pbDisplay(_INTL("But it failed!"))
 			return true
 		end
 		return false
@@ -654,7 +655,7 @@ end
 #===============================================================================
 class PokeBattle_Move_529 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		if !user.lastAttacker.include?(target.index)
+		if !user.lastAttacker.include?(target.index) || !target.pbCanSleep?(user,true,self)
 			return true
 		end
 		return false
