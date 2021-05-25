@@ -14,8 +14,10 @@ Pokemon = FENNEKIN,7
 #-------------------------------
 [YOUNGSTER,Alex]
 LoseText = "Danggit! Every time!"
-Pokemon = RATTATA,15
+Pokemon = RATTATA,12
 	Moves = QUICKATTACK,BITE,TAILWHIP,TACKLE
+Pokemon = RATTATA,12
+	Form = 1
 #-------------------------------
 [CAMPER,Ralph]
 LoseText = "Rats, you're better than I thought!"

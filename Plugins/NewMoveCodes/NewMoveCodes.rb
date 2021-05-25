@@ -642,7 +642,7 @@ end
 #===============================================================================
 class PokeBattle_Move_528 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		if user.hp > (user.maxhp / 2.0).ceil
+		if target.hp > (target.totalhp / 2.0).ceil
 			return true
 		end
 		return false
