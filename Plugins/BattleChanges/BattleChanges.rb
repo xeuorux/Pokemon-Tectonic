@@ -1495,6 +1495,11 @@ class PokeBattle_Move
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING && moveType == :GROUND
     end
 	
+	# Inured
+	if target.effects[PBEffects::Inured]
+		ret /= 2 if Effectiveness.super_effective_type?(moveType, defType)
+	end
+	
 	# Bosses
 	ret = Effectiveness::NOT_VERY_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
 	
@@ -1656,8 +1661,7 @@ class PokeBattle_Battler
       @effects[PBEffects::PowerTrick]        = false
       @effects[PBEffects::Substitute]        = 0
       @effects[PBEffects::Telekinesis]       = 0
-	  
-	  @effects[PBEffects::LuckyStar]       	 = 0
+
 	  @effects[PBEffects::Charm]         = 0
 	  @effects[PBEffects::CharmChance]   = 0
     end
@@ -1812,6 +1816,9 @@ class PokeBattle_Battler
 	@effects[PBEffects::Enlightened]		 = false
 	@effects[PBEffects::ColdConversion]      = false
 	@effects[PBEffects::CreepOut]		 	 = false
+	@effects[PBEffects::LuckyStar]       	 = false
+	@effects[PBEffects::Inured]       	 	 = false
+	@effects[PBEffects::NoRetreat]			 = false
   end
 
 	def takesSandstormDamage?
@@ -3327,6 +3334,8 @@ module PBEffects
 	LuckyStar			= 136
 	Charm				= 137
 	CharmChance			= 138
+	Inured				= 139
+	NoRetreat			= 140
 	
 	#===========================================================================
     # These effects apply to a side

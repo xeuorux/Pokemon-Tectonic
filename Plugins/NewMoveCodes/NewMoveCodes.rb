@@ -507,10 +507,8 @@ end
 #===============================================================================
 class PokeBattle_Move_520 < PokeBattle_Move
   def pbEffectGeneral(user)
-	if user.effects[PBEffects::LuckyStar]>=1
-		@battle.pbDisplay(_INTL("{1} is already blessed by a lucky star...",user.pbThis))
-	else
-		user.effects[PBEffects::LuckyStar] = 1
+	if !user.effects[PBEffects::LuckyStar]
+		user.effects[PBEffects::LuckyStar] = true
 		@battle.pbDisplay(_INTL("{1} is blessed by the lucky star!",user.pbThis))
     end
   end
@@ -831,6 +829,95 @@ class PokeBattle_Move_530 < PokeBattle_Move
     @battle.eachSameSideBattler(user) do |b|
         next if !user.pbCanRaiseStatStage?(:ATTACK,user,self,true)
         b.pbRaiseStatStage(:ATTACK,1,user)
+    end
+  end
+end
+
+#===============================================================================
+# User takes half damage from Super Effective moves. (Inure)
+#===============================================================================
+class PokeBattle_Move_531 < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+		return false if damagingMove?
+		if user.effects[PBEffects::Inured]
+			@battle.pbDisplay(_INTL("But it failed!"))
+			return true
+		end
+		return false
+    end
+	
+	def pbEffectGeneral(user)
+		user.effects[PBEffects::Inured] = true
+	end
+end
+
+#===============================================================================
+# Raises worst stat two stages, second worst stat by one stage. (Breakdance)
+#===============================================================================
+class PokeBattle_Move_532 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		@statArray = []
+		GameData::Stat.each_battle do |s|
+		  @statArray.push(s.id) if user.pbCanRaiseStatStage?(s.id,user,self)
+		end
+		if @statArray.length==0
+		  @battle.pbDisplay(_INTL("{1}'s stats won't go any higher!",user.pbThis))
+		  return true
+		end
+		return false
+	end
+	
+	def pbEffectAgainstTarget(user,target)
+		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+		statsRanked = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+		statsRanked.sort_by { |s| (user.attack.to_f*stageMul[user.stages[s]]/stageDiv[user.stages[s]]).floor }
+		target.pbRaiseStatStage(statsRanked[0],2,user)
+		target.pbRaiseStatStage(statsRanked[1],1,user)
+	end
+end
+
+#===============================================================================
+# Increases each stat by 1 stage. Prevents user from fleeing. (No Retreat)
+#===============================================================================
+class PokeBattle_Move_533 < PokeBattle_MultiStatUpMove
+  def pbMoveFailed?(user,targets,messages=true)
+    if user.effects[PBEffects::NoRetreat]
+      @battle.pbDisplay(_INTL("But it failed!")) if messages
+      return true
+    end
+    if !user.pbCanRaiseStatStage?(:ATTACK,user,self,true) &&
+       !user.pbCanRaiseStatStage?(:DEFENSE,user,self,true) &&
+       !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,true) &&
+       !user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self,true) &&
+       !user.pbCanRaiseStatStage?(:SPEED,user,self,true)
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    if user.pbCanRaiseStatStage?(:ATTACK,user,self)
+      user.pbRaiseStatStage(:ATTACK,1,user)
+    end
+    if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
+      user.pbRaiseStatStage(:DEFENSE,1,user)
+    end
+    if user.pbCanRaiseStatStage?(:SPEED,user,self)
+      user.pbRaiseStatStage(:SPEED,1,user)
+    end
+    if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
+      user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+    end
+    if user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
+      user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+    end
+
+	user.effects[PBEffects::NoRetreat] = true
+    if !(user.effects[PBEffects::MeanLook]>=0 || user.effects[PBEffects::Trapping]>0 ||
+       user.effects[PBEffects::JawLock] || user.effects[PBEffects::OctolockUser]>=0)
+      @battle.pbDisplay(_INTL("{1} can no longer escape because it used No Retreat!",user.pbThis))
     end
   end
 end
