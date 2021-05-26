@@ -290,3 +290,28 @@ class PokeBattle_Move_0E7 < PokeBattle_Move
     return false
   end
 end
+
+#===============================================================================
+# User flings its item at the target. Power/effect depend on the item. (Fling)
+#===============================================================================
+class PokeBattle_Move_0F7 < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    return if target.damageState.substitute
+    return if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
+	return if target.effects[PBEffects::Enlightened]
+    case user.item_id
+    when :POISONBARB
+      target.pbPoison(user) if target.pbCanPoison?(user,false,self)
+    when :TOXICORB
+      target.pbPoison(user,nil,true) if target.pbCanPoison?(user,false,self)
+    when :FLAMEORB
+      target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+    when :LIGHTBALL
+      target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+    when :KINGSROCK, :RAZORFANG
+      target.pbFlinch(user)
+    else
+      target.pbHeldItemTriggerCheck(user.item,true)
+    end
+  end
+end
