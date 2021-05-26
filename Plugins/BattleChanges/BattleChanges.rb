@@ -3152,6 +3152,12 @@ Events.onStepTakenTransferPossible += proc { |_sender,e|
 
 
 class Pokemon
+  # @return [GameData::Nature, nil] a Nature object corresponding to this Pokémon's nature
+  def nature
+    @nature = GameData::Nature.get(0).id
+    return GameData::Nature.try_get(@nature)
+  end
+
 # Recalculates this Pokémon's stats.
   def calc_stats
     base_stats = self.baseStats

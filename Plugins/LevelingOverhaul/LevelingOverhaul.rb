@@ -449,14 +449,14 @@ class Pokemon
 	  # @return [Integer] the maximum HP of this Pokémon
 	  def calcHP(base, level, sv)
 		return 1 if base == 1   # For Shedinja
-		level = 15+(level/2).floor
-		return ((base * 2 + sv) * level / 100).floor + level + 10
+		pseudoLevel = 15.0+(level.to_f/2.0)
+		return (((base.to_f * 2.0 + sv.to_f) * pseudoLevel / 100.0) + pseudoLevel + 10.0).floor
 	  end
 
 	  # @return [Integer] the specified stat of this Pokémon (not used for total HP)
 	  def calcStat(base, level, sv)
-		level = 15+(level/2).floor
-		return ((((base * 2 + (sv / 4)) * level / 100).floor + 5)).floor
+		pseudoLevel = 15.0+(level.to_f/2.0)
+		return ((((base.to_f * 2.0 + (sv.to_f / 4)) * pseudoLevel / 100.0) + 5.0)).floor
 	  end
 end
 
