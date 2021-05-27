@@ -164,8 +164,8 @@ class PokemonPokedex_Scene
             next false if !$Trainer.seen?(item[0]) && !$DEBUG
             searchPokeAbilities = item[10]
 			next false if !searchPokeAbilities
-            next true if searchPokeAbilities[0] && searchPokeAbilities[0].name.downcase.include?(name.downcase)
-            next true if searchPokeAbilities[1] && searchPokeAbilities[1].name.downcase.include?(name.downcase)
+            next true if searchPokeAbilities[0] && GameData::Ability.get(searchPokeAbilities[0]).real_name.downcase.include?(name.downcase)
+            next true if searchPokeAbilities[1] && GameData::Ability.get(searchPokeAbilities[1]).real_name.downcase.include?(name.downcase)
             next false
           }
           if dexlist.length==0

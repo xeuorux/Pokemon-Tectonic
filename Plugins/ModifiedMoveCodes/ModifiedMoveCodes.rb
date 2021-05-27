@@ -315,3 +315,30 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
     end
   end
 end
+
+#===============================================================================
+# Increases the target's Special Attack by 2 stages. Charms the target. (Flatter)
+#===============================================================================
+class PokeBattle_Move_040 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    failed = true
+    targets.each do |b|
+      next if !b.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self) &&
+              !b.pbCanCharm?(user,false,self)
+      failed = false
+      break
+    end
+    if failed
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
+      target.pbRaiseStatStage(:SPECIAL_ATTACK,2,user)
+    end
+    target.pbCharm if target.pbCanCharm?(user,false,self)
+  end
+end

@@ -55,7 +55,7 @@
 52,DARKVOID,Dark Void,003,0,DARK,Status,50,10,0,AllNearFoes,0,bce,Opposing Pokémon are dragged into a world of total darkness that makes them sleep.
 53,EMBARGO,Embargo,0F8,0,DARK,Status,100,15,0,NearOther,0,bce,It prevents the target from using its held item. Its Trainer is also prevented from using items on it.
 54,FAKETEARS,Fake Tears,04F,0,DARK,Status,100,20,0,NearOther,0,bce,"The user feigns crying to fluster the target, harshly lowering its Sp. Def stat."
-55,FLATTER,Flatter,040,0,DARK,Status,100,15,0,NearOther,0,bce,"Flattery is used to confuse the target. However, it also raises the target's Sp. Atk stat."
+55,FLATTER,Flatter,040,0,DARK,Status,100,15,0,NearOther,0,bce,"Flattery is used to charm the target. However, it also sharply raises the target's Sp. Atk stat."
 56,HONECLAWS,Hone Claws,029,0,DARK,Status,0,15,0,User,0,d,The user sharpens its claws to boost its Attack stat and accuracy.
 57,MEMENTO,Memento,000,0,DARK,Status,100,10,0,NearOther,0,be,"The user faints when using this move. In return, it harshly lowers the target's Attack and Sp. Atk."
 58,NASTYPLOT,Nasty Plot,032,0,DARK,Status,0,20,0,User,0,d,The user stimulates its brain by thinking bad thoughts. It sharply raises the user's Sp. Atk.
