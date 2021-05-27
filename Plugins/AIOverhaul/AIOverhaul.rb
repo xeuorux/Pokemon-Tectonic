@@ -516,7 +516,7 @@ class PokeBattle_AI
     return false if @battle.wildBattle?
     shouldSwitch = forceSwitch
     batonPass = -1
-    moveType = -1
+    moveType = nil
     skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill_level || 0
     battler = @battle.battlers[idxBattler]
     # If the foe's last move was super-effective and powerful
@@ -621,7 +621,7 @@ class PokeBattle_AI
           end
         end
         # moveType is the type of the target's last used move
-        if moveType>=0 && Effectiveness.ineffective?(pbCalcTypeMod(moveType,battler,battler))
+        if moveType != nil && Effectiveness.ineffective?(pbCalcTypeMod(moveType,battler,battler))
           weight = 65
           typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
           if Effectiveness.super_effective?(typeMod)
@@ -629,7 +629,7 @@ class PokeBattle_AI
             weight = 85
           end
           list.unshift(i) if pbAIRandom(100)<weight   # Put this Pokemon first
-        elsif moveType>=0 && Effectiveness.resistant?(pbCalcTypeMod(moveType,battler,battler))
+        elsif moveType != nil && Effectiveness.resistant?(pbCalcTypeMod(moveType,battler,battler))
           weight = 40
           typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
           if Effectiveness.super_effective?(typeMod)

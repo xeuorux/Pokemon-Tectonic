@@ -297,7 +297,7 @@
 294,FAUXLIAGE,Fauxliage,"Moves gain priority in grassy terrain."
 295,SPECIALIST,Specialist,"Powers up super-effective moves of the same type by 50%."
 296,TEMPERATURE,Temperature,"Powers up moves different than the last move by 50%."
-297,CURSEDTAIL,Cursed Tail,"Contact with the Pokémon has a 30% chance to cause a cursed."
+297,CURSEDTAIL,Cursed Tail,"Contact with the Pokémon has a 30% chance to cause a curse."
 298,FROSTWINGS,Frost Wings,"Flying-type attacks have a 20% chance to chill."
 299,SHOCKWINGS,Shock Wings,"Flying-type attacks have a 20% chance to paralyze."
 300,FLAMEWINGS,Flame Wings,"Flying-type attacks have a 20% chance to burn."
