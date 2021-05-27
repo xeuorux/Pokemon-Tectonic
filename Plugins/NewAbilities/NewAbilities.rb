@@ -314,10 +314,10 @@ BattleHandlers::TargetAbilityOnHit.add(:COTTONDOWN,
   proc { |ability,user,target,move,battle|
     battle.pbShowAbilitySplash(target)
     target.eachOpposing{|b|
-      b.pbLowerStatStage(PBStats::SPEED,1,target)
+      b.pbLowerStatStage(:SPEED,1,target)
     }
     target.eachAlly{|b|
-      b.pbLowerStatStage(PBStats::SPEED,1,target)
+      b.pbLowerStatStage(:SPEED,1,target)
     }
     battle.pbHideAbilitySplash(target)
   }
