@@ -439,7 +439,11 @@ class PokeBattle_Battle
       b.effects[PBEffects::Nightmare] = false if !b.asleep?
       next if !b.effects[PBEffects::Nightmare] || !b.takesIndirectDamage?
       oldHP = b.hp
-      b.pbReduceHP(b.totalhp/4)
+	  if b.boss
+		b.pbReduceHP(b.totalhp/16)
+	  else
+		b.pbReduceHP(b.totalhp/4)
+	  end
       pbDisplay(_INTL("{1} is locked in a nightmare!",b.pbThis))
       b.pbItemHPHealCheck
       b.pbAbilitiesOnDamageTaken(oldHP)
@@ -449,7 +453,11 @@ class PokeBattle_Battle
     priority.each do |b|
       next if !b.effects[PBEffects::Curse] || !b.takesIndirectDamage?
       oldHP = b.hp
-      b.pbReduceHP(b.totalhp/4)
+	  if b.boss
+		b.pbReduceHP(b.totalhp/16)
+	  else
+		b.pbReduceHP(b.totalhp/4)
+	  end
       pbDisplay(_INTL("{1} is afflicted by the curse!",b.pbThis))
       b.pbItemHPHealCheck
       b.pbAbilitiesOnDamageTaken(oldHP)
