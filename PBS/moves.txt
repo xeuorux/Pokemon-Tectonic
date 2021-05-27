@@ -104,7 +104,7 @@
 99,FUSIONBOLT,Fusion Bolt,079,100,ELECTRIC,Physical,100,5,0,NearOther,0,bef,The user throws down a giant thunderbolt. It does more damage if influenced by an enormous flame.
 100,PLASMAFISTS,Plasma Fists,146,100,ELECTRIC,Physical,100,15,0,NearOther,0,abefj,The user attacks with electrically charged fists. Normal-type moves become Electric-type.
 101,THUNDERBOLT,Thunderbolt,007,90,ELECTRIC,Special,100,15,10,NearOther,0,bef,A strong electric blast is loosed at the target. It may also leave the target with paralysis.
-102,WILDCHARGE,Wild Charge,0FA,120,ELECTRIC,Physical,100,15,0,NearOther,0,abef,The user shrouds itself in electricity and smashes into its foe. It also damages the user a little.
+102,WILDCHARGE,Wild Charge,0FA,90,ELECTRIC,Physical,100,15,0,NearOther,0,abef,The user shrouds itself in electricity and smashes into its foe. It also damages the user a little.
 103,DISCHARGE,Discharge,007,80,ELECTRIC,Special,100,15,30,AllNearOthers,0,bef,A flare of electricity is loosed to strike the area around the user. It may also cause paralysis.
 104,ZINGZAP,Zing Zap,00F,80,ELECTRIC,Physical,100,10,30,NearOther,0,abe,A strong electric blast crashes down on the target. This may also make the target flinch.
 105,THUNDERPUNCH,Thunder Punch,007,75,ELECTRIC,Physical,100,15,10,NearOther,0,abefj,The target is punched with an electrified fist. It may also leave the target with paralysis.
@@ -705,7 +705,7 @@
 686,DOUBLEIRONBASH,Double Iron Bash,175,60,STEEL,Physical,100,5,30,NearOther,0,abf,"The user rotates, centering the hex nut in its chest, and then strikes twice. May cause flinching."
 687,MIRRORSHOT,Mirror Shot,047,65,STEEL,Special,85,10,30,NearOther,0,bef,The user looses a flash of energy from its polished body. It may also lower the target's accuracy.
 688,MAGNETBOMB,Magnet Bomb,0A5,60,STEEL,Physical,0,20,0,NearOther,0,befn,The user launches steel bombs that stick to the target. This attack will not miss.
-689,GEARGRIND,Gear Grind,0BD,50,STEEL,Physical,90,15,0,NearOther,0,abef,The user attacks by grinding two of its steel gears against the target.
+689,GEARGRIND,Gear Grind,0BD,45,STEEL,Physical,100,15,0,NearOther,0,abef,The user attacks by grinding two of its steel gears against the target.
 690,METALCLAW,Metal Claw,01C,50,STEEL,Physical,100,35,10,NearOther,0,abef,The target is raked with steel claws. It may also raise the user's Attack stat.
 691,BULLETPUNCH,Bullet Punch,000,40,STEEL,Physical,100,30,0,NearOther,1,abefj,The user strikes the target with tough punches as fast as bullets. This move always goes first.
 692,GYROBALL,Gyro Ball,08D,1,STEEL,Physical,100,5,0,NearOther,0,abefn,"The user tackles the target with a high-speed spin. The slower the user, the greater the damage."
