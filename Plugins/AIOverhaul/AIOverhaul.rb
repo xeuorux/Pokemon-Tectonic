@@ -141,24 +141,10 @@ class PokeBattle_AI
         score = pbGetMoveScore(move,user,b,skill)
         totalScore += ((user.opposes?(b)) ? score : -score)
       end
-	  if skill>=PBTrainerAI.mediumSkill
-		  @battle.messagesBlocked = true
-		  if move.pbMoveFailed?(user,[])
-			totalScore = 0
-		  end
-		  @battle.messagesBlocked = false
-	  end
-      choices.push([idxMove,totalScore,-1]) if totalScore>0
+	  choices.push([idxMove,totalScore,-1]) if totalScore>0
     elsif target_data.num_targets == 0
       # If move has no targets, affects the user, a side or the whole field
       score = pbGetMoveScore(move,user,user,skill)
-	  if skill>=PBTrainerAI.mediumSkill
-		  @battle.messagesBlocked = true
-		  if move.pbMoveFailed?(user,[])
-			score = 0
-		  end
-		  @battle.messagesBlocked = false
-	  end
       choices.push([idxMove,score,-1]) if score>0
     else
       # If move affects one battler and you have to choose which one
@@ -167,13 +153,6 @@ class PokeBattle_AI
         next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
         next if target_data.targets_foe && !user.opposes?(b)
         score = pbGetMoveScore(move,user,b,skill)
-		if skill>=PBTrainerAI.mediumSkill
-		  @battle.messagesBlocked = true
-		  if move.pbMoveFailed?(user,[b])
-            score = 0
-          end
-		  @battle.messagesBlocked = false
-		end
         scoresAndTargets.push([score,b.index]) if score>0
       end
       if scoresAndTargets.length>0
@@ -191,8 +170,19 @@ class PokeBattle_AI
     skill = PBTrainerAI.minimumSkill if skill<PBTrainerAI.minimumSkill
     score = 100
     score = pbGetMoveScoreFunctionCode(score,move,user,target,skill)
-    # A score of 0 here means it absolutely should not be used
+	
+	# Never use a move that would fail outright
+	@battle.messagesBlocked = true
+	user.turnCount += 1
+	if move.pbMoveFailed?(user,[target])
+		score = 0
+    end
+	user.turnCount -= 1
+	@battle.messagesBlocked = false
+		
+	# A score of 0 here means it absolutely should not be used
     return 0 if score<=0
+	
     if skill>=PBTrainerAI.mediumSkill
       # Prefer damaging moves if AI has no more Pokémon or AI is less clever
       if @battle.pbAbleNonActiveCount(user.idxOwnSide)==0

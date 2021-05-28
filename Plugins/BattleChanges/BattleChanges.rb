@@ -2062,7 +2062,7 @@ class PokeBattle_Battler
     end
     # Trying to replace a status problem with another one
     if self.status != :NONE && !ignoreStatus && !selfInflicted
-      @battle.pbDisplay(_INTL("{1} already has a status problem...",pbThis(true))) if showMessages
+      @battle.pbDisplay(_INTL("{1} already has a status problem...",pbThis(false))) if showMessages
       return false
     end
     # Trying to inflict a status problem on a Pokémon behind a substitute
@@ -2322,6 +2322,7 @@ class PokeBattle_Battler
     @effects[PBEffects::BurnUp] 		= false
 	@effects[PBEffects::ColdConversion] = false
     @effects[PBEffects::Roost]  		= false
+	@battle.scene.pbRefresh()
   end
   
   #=============================================================================

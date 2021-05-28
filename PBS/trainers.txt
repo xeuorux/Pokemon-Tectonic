@@ -118,6 +118,7 @@ Pokemon = POLIWAG,16
 LoseText = "The smell of losing is not so great..."
 Pokemon = FLABEBE,15
 Pokemon = SNUBBULL,15
+	Ability = 1
 Pokemon = SWIRLIX,15
 #-------------------------------
 [LEADER_Lainie,Lainie]
@@ -131,6 +132,7 @@ Pokemon = VANILLITE,15
 	Ability = 2
 Pokemon = MAWILE,15
 	Item = DARKGEM
+	Moves = BITE,SHOTPUT,EAGERTICKLING,ASTONISH
 Pokemon = SWIRLIX,15
 	Name = Lik
 	Item = SHELLBELL
@@ -278,3 +280,8 @@ LoseText = "I don't have that strength after all..."
 Pokemon = CARVANHA,21
 Pokemon = NIDORINA,21
 Pokemon = SPEAROW,21
+#-------------------------------
+[CRUSHGIRL,Tester]
+LoseText = "..."
+Pokemon = BIDOOF,10
+	Moves = FAKEOUT,TACKLE

@@ -8,7 +8,7 @@ class PokeBattle_Charm < PokeBattle_Move
     @id         = 0
     @name       = ""
     @function   = "000"
-    @baseDamage = 40
+    @baseDamage = 50
     @type       = nil
     @category   = 1
     @accuracy   = 100
@@ -656,6 +656,7 @@ end
 class PokeBattle_Move_529 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
 		if !user.lastAttacker.include?(target.index) || !target.pbCanSleep?(user,true,self)
+			@battle.pbDisplay(_INTL("But it failed!"))
 			return true
 		end
 		return false

@@ -1107,3 +1107,15 @@ Events.onMapChange += proc { |_sender,e|
   $game_switches[98] = true
   $game_switches[99] = true
 }
+
+class StorageSystemPC
+	def name
+		return _INTL("Pokémon Storage PC")
+	end
+end
+
+class TrainerPC
+	def name
+		return _INTL("Item Storage PC")
+	end
+end
