@@ -2460,6 +2460,15 @@ class PokeBattle_Battler
   end
   
   #=============================================================================
+  # Obedience check
+  #=============================================================================
+  # Return true if Pokémon continues attacking (although it may have chosen to
+  # use a different move in disobedience), or false if attack stops.
+  def pbObedienceCheck?(choice)
+    return true
+  end
+  
+  #=============================================================================
   # Master "use move" method
   #=============================================================================
   def pbUseMove(choice,specialUsage=false)

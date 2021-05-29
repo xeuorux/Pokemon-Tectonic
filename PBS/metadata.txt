@@ -26,7 +26,6 @@ BattleBack = field
 Outdoor = true
 ShowArea = true
 Bicycle = true
-HealingSpot = 2,8,8
 MapPosition = 0,13,12
 #-------------------------------
 [004]
@@ -62,7 +61,6 @@ MapPosition = 0,13,12
 #-------------------------------
 [009]
 # River Grove
-HealingSpot = 8,17,11
 MapPosition = 0,14,10
 #-------------------------------
 [010]
@@ -139,7 +137,6 @@ MapPosition = 0,15,8
 #-------------------------------
 [024]
 # Prototype
-HealingSpot = 23,11,15
 MapPosition = 0,15,8
 #-------------------------------
 [025]
@@ -151,74 +148,9 @@ MapPosition = 0,15,8
 Outdoor = true
 MapPosition = 0,15,8
 #-------------------------------
-[027]
-MapPosition = 0,15,8
-#-------------------------------
-[028]
-Outdoor = true
-ShowArea = true
-MapPosition = 0,16,8
-BattleBack = field
-#-------------------------------
-[029]
-Bicycle = true
-MapPosition = 0,16,8
-#-------------------------------
-[030]
-MapPosition = 0,16,8
-#-------------------------------
-[031]
-Outdoor = true
-ShowArea = true
-MapPosition = 0,14,6
-BattleBack = field
-MapSize = 2,1101
-#-------------------------------
 [032]
 # Player's House
 HealingSpot = 21,25,10
-#-------------------------------
-[034]
-Bicycle = true
-MapPosition = 0,15,6
-BattleBack = cave1
-Environment = Cave
-#-------------------------------
-[035]
-Outdoor = true
-ShowArea = true
-MapPosition = 0,13,6
-#-------------------------------
-[036]
-HealingSpot = 35,17,7
-MapPosition = 0,13,6
-#-------------------------------
-[037]
-MapPosition = 0,13,6
-BattleBack = elite1
-#-------------------------------
-[038]
-MapPosition = 0,13,6
-#-------------------------------
-[039]
-Outdoor = true
-ShowArea = true
-MapPosition = 0,11,6
-BattleBack = field
-MapSize = 2,11
-#-------------------------------
-[040]
-Outdoor = true
-ShowArea = true
-BicycleAlways = true
-MapPosition = 0,11,6
-#-------------------------------
-[041]
-Outdoor = true
-ShowArea = true
-BicycleAlways = true
-MapPosition = 0,11,7
-MapSize = 1,111
 #-------------------------------
 [043]
 # Forest Route
@@ -226,161 +158,11 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
-[044]
-Outdoor = true
-ShowArea = true
-MapPosition = 0,11,10
-BattleBack = field
-MapSize = 2,11
-#-------------------------------
-[045]
-Outdoor = true
-ShowArea = true
-BicycleAlways = true
-MapPosition = 0,11,10
-#-------------------------------
-[046]
-Bicycle = true
-MapPosition = 0,12,6
-#-------------------------------
-[047]
-Outdoor = true
-ShowArea = true
-Weather = Rain,0
-MapPosition = 0,15,10
-BattleBack = rocky
-MapSize = 2,11
-Environment = Rock
-#-------------------------------
 [048]
 # Flower Town
 Outdoor = true
 ShowArea = true
 Bicycle = true
-#-------------------------------
-[049]
-Bicycle = true
-MapPosition = 0,16,10
-BattleBack = cave1
-Environment = Cave
-#-------------------------------
-[050]
-Bicycle = true
-MapPosition = 0,16,10
-DarkMap = true
-BattleBack = cave3
-Environment = Cave
-#-------------------------------
-[051]
-Bicycle = true
-MapPosition = 0,16,10
-Dungeon = true
-BattleBack = cave2
-Environment = Cave
-#-------------------------------
-[052]
-Outdoor = true
-ShowArea = true
-MapPosition = 0,17,10
-#-------------------------------
-[053]
-HealingSpot = 52,17,14
-MapPosition = 0,17,10
-#-------------------------------
-[054]
-MapPosition = 0,17,10
-#-------------------------------
-[055]
-HealingSpot = 52,30,10
-MapPosition = 0,17,10
-#-------------------------------
-[056]
-MapPosition = 0,17,10
-BattleBack = indoor1
-#-------------------------------
-[057]
-MapPosition = 0,17,10
-#-------------------------------
-[058]
-MapPosition = 0,17,10
-#-------------------------------
-[059]
-MapPosition = 0,17,10
-BattleBack = indoor1
-#-------------------------------
-[060]
-MapPosition = 0,17,10
-#-------------------------------
-[061]
-MapPosition = 0,17,10
-BattleBack = indoor1
-#-------------------------------
-[062]
-MapPosition = 0,17,10
-#-------------------------------
-[063]
-MapPosition = 0,17,10
-#-------------------------------
-[064]
-MapPosition = 0,17,10
-BattleBack = indoor1
-#-------------------------------
-[065]
-MapPosition = 0,17,10
-#-------------------------------
-[066]
-Outdoor = true
-ShowArea = true
-MapPosition = 0,12,12
-BattleBack = field
-#-------------------------------
-[067]
-MapPosition = 0,12,12
-#-------------------------------
-[068]
-Outdoor = true
-ShowArea = true
-MapPosition = 0,12,12
-SafariMap = true
-BattleBack = forest
-Environment = Forest
-#-------------------------------
-[069]
-Outdoor = true
-ShowArea = true
-MapPosition = 0,13,13
-DiveMap = 70
-BattleBack = field
-#-------------------------------
-[070]
-MapPosition = 0,13,13
-BattleBack = underwater
-Environment = Underwater
-#-------------------------------
-[071]
-MapPosition = 0,13,13
-#-------------------------------
-[072]
-Outdoor = true
-ShowArea = true
-Weather = Storm,50
-MapPosition = 0,18,17
-BattleBack = field
-#-------------------------------
-[073]
-Outdoor = true
-ShowArea = true
-MapPosition = 0,22,16
-BattleBack = field
-#-------------------------------
-[074]
-Bicycle = true
-MapPosition = 0,12,10
-#-------------------------------
-[075]
-Outdoor = true
-MapPosition = 1,13,16
-BattleBack = city
 #-------------------------------
 [076]
 # Flower Center

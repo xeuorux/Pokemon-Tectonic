@@ -487,3 +487,7 @@ Events.onStepTaken += proc { |_sender,_e|
     $PokemonGlobal.call_refresh = [false,false]
   end
 }
+
+def refreshFollow
+	$PokemonTemp.dependentEvents.refresh_sprite(false)
+end
