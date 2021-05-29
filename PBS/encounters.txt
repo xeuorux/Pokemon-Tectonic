@@ -139,6 +139,14 @@ Land,20
 #-------------------------------
 [010] # Oasis Town
 Land,20
-    33,DUCKLETT,15,17
-    34,CACNEA,15,17
-	33,LOTAD,15,17
+    25,DUCKLETT,15,17
+    25,CACNEA,15,17
+	25,LOTAD,15,17
+	25,SILICOBRA,15,17
+#-------------------------------
+[021] # Starting Town
+Land,20
+    25,SLAKOTH,4,6
+    25,ROOKIDEE,4,6
+	25,MINCCINO,4,6
+	25,ZIGZAGOON,4,6

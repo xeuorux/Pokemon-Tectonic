@@ -3136,12 +3136,13 @@ Events.onStepTakenTransferPossible += proc { |_sender,e|
         i.hp -= 1 if i.hp>1 || Settings::POISON_FAINT_IN_FIELD
         if i.hp==1 && !Settings::POISON_FAINT_IN_FIELD
           i.status = :NONE
-          pbMessage(_INTL("{1} survived the burn.\\nThe poison burn was healed!\1",i.name))
+          pbMessage(_INTL("{1} survived the burn.\\nThe burn was healed!\1",i.name))
           next
         elsif i.hp==0
           i.changeHappiness("faint")
           i.status = :NONE
           pbMessage(_INTL("{1} fainted...",i.name))
+		  refreshFollow()
         end
         if $Trainer.able_pokemon_count == 0
           handled[0] = true
