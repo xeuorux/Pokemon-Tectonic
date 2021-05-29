@@ -150,7 +150,7 @@ MapPosition = 0,15,8
 #-------------------------------
 [032]
 # Player's House
-HealingSpot = 21,25,10
+HealingSpot = 21,25,13
 #-------------------------------
 [043]
 # Forest Route

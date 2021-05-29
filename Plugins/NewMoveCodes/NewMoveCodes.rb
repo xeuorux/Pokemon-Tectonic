@@ -923,3 +923,22 @@ class PokeBattle_Move_533 < PokeBattle_MultiStatUpMove
     end
   end
 end
+
+#===============================================================================
+# Puts the target to sleep. Fails unless the target is charmed or confused. (new!Hypnosis)
+#===============================================================================
+class PokeBattle_Move_534 < PokeBattle_SleepMove
+	def pbFailsAgainstTarget?(user,target)
+		if user.Effects[PBEffects::Confusion] == 0 && user.Effects[PBEffects::Charm] == 0
+			@battle.pbDisplay(_INTL("But it failed!"))
+			return true
+		end
+		return false
+	end
+	
+	def pbEffectAgainstTarget(user,target)
+		target.pbCureConfusion
+		target.pbCureCharm
+		target.pbSleep
+	end
+end
