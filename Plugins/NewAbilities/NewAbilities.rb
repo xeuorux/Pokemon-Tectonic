@@ -32,7 +32,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FLYTRAP,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:MAGMAARMOR,
   proc { |ability,user,target,move,type,battle|
-    next pbBattleMoveImmunityStatAbility(user,target,move,type,:ICE,:SPDEF,1,battle)
+    next pbBattleMoveImmunityStatAbility(user,target,move,type,:ICE,:SPECIAL_DEFENSE,1,battle)
   }
 )
 
@@ -88,7 +88,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TEMPERATURE,
 
 BattleHandlers::DamageCalcUserAbility.add(:SPECIALIST,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if PBTypes.superEffective?(target.damageState.typeMod) && user.pbHasType?(type)
+    if Effectiveness.super_effective?(target.damageState.typeMod) && user.pbHasType?(type)
       mults[:final_damage_multiplier] *= 1.5
     end
   }
@@ -97,7 +97,7 @@ BattleHandlers::DamageCalcUserAbility.add(:SPECIALIST,
 
 BattleHandlers::DamageCalcUserAbility.add(:MIDNIGHTSUN,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if user.battle.pbWeather==:Sun && isConst?(type,PBTypes,:DARK)
+    if user.battle.pbWeather==:Sun && type == :DARK
       mults[:base_damage_multiplier] *= 1.5
     end
   }
@@ -163,14 +163,14 @@ BattleHandlers::DamageCalcTargetAbility.add(:DESERTARMOR,
   proc { |ability,user,target,move,mults,baseDmg,type|
     w = user.battle.pbWeather
     if w==:Sandstorm
-      mults[DEF_MULT] *= 2
+      mults[:defense_multiplier] *= 2
     end
   }
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:REALIST,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if isConst?(type,PBTypes,:DRAGON) || isConst?(type,PBTypes,:FAIRY)
+    if type == :DRAGON || type == :FAIRY
       mults[:base_damage_multiplier] /= 2
     end
   }
@@ -238,7 +238,7 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILEING,
 
 BattleHandlers::TargetAbilityOnHit.add(:GRIT,
   proc { |ability,user,target,move,battle|
-    target.pbRaiseStatStageByAbility(:SPDEF,1,target)
+    target.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,target)
   }
 )
 
@@ -326,7 +326,7 @@ BattleHandlers::TargetAbilityOnHit.add(:COTTONDOWN,
 BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
   proc { |ability,user,target,move,battle|
     next if target.form==0
-    if isConst?(target.species,PBSpecies,:CRAMORANT)
+    if target.species == :CRAMORANT
       battle.pbShowAbilitySplash(target)
       gulpform=target.form
       target.form = 0
@@ -336,7 +336,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
         user.pbReduceHP(user.totalhp/4,false)
       end
       if gulpform==1
-        user.pbLowerStatStageByAbility(PBStats::DEFENSE,1,target,false)
+        user.pbLowerStatStageByAbility(:DEFENSE,1,target,false)
       elsif gulpform==2
         msg = nil
         user.pbParalyze(target,msg)
@@ -443,8 +443,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:HUBRIS,
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
-    next if numFainted==0 || !user.pbCanRaiseStatStage?(:SPATK,user)
-    user.pbRaiseStatStageByAbility(:SPATK,numFainted,user)
+    next if numFainted==0 || !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user)
+    user.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,numFainted,user)
   }
 )
 
@@ -476,9 +476,9 @@ BattleHandlers::UserAbilityEndOfMove.add(:ASONEGHOST,
     next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user) || user.fainted?
     battle.pbShowAbilitySplash(user,false,true,:GRIMNEIGH)
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      user.pbRaiseStatStage(:SPATK,numFainted,user)
+      user.pbRaiseStatStage(:SPECIAL_ATTACK,numFainted,user)
     else
-      user.pbRaiseStatStageByCause(:SPATK,numFainted,user,:GRIMNEIGH)
+      user.pbRaiseStatStageByCause(:SPECIAL_ATTACK,numFainted,user,:GRIMNEIGH)
     end
     battle.pbHideAbilitySplash(user)
   }
@@ -505,7 +505,7 @@ BattleHandlers::EOREffectAbility.add(:BALLFETCH,
 
 BattleHandlers::EOREffectAbility.add(:HUNGERSWITCH,
   proc { |ability,battler,battle|
-    if isConst?(battler.species,PBSpecies,:MORPEKO)
+    if battler.species == :MORPEKO
       battle.pbShowAbilitySplash(battler)
       battler.form=(battler.form==0) ? 1 : 0
       battler.pbUpdate(true)

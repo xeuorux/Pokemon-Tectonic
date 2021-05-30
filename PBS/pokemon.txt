@@ -5323,7 +5323,7 @@ Name = Hoothoot
 InternalName = HOOTHOOT
 Type1 = PSYCHIC
 Type2 = FLYING
-BaseStats = 60,35,30,50,51,56
+BaseStats = 70,45,40,60,61,66
 #Total: 282
 GenderRate = Female50Percent
 GrowthRate = Medium

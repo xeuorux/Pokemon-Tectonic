@@ -260,6 +260,7 @@ Pokemon = BRONZOR,21
 [LEADER_Bartholomew,Bartholomew]
 LoseText = "Top marks, and my compliments to your Pokémon."
 Pokemon = AMAURA,21
+	Ability = 1
 Pokemon = YANMA,21
 	ITEM = BUGGEM
 	Moves = UTURN,AERIALACE,SONICBOOM,ROOST
@@ -271,7 +272,7 @@ Pokemon = ARCHEN,21
 #-------------------------------
 [BUGCATCHER,Alfie]
 LoseText = "You're scarier than that trail!"
-Pokemon = NOCTOWL,20
+Pokemon = HOOTHOOT,20
 Pokemon = NINJASK,20
 Pokemon = SHEDINJA,20
 #-------------------------------
