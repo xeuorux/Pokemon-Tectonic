@@ -457,7 +457,7 @@ end
 #===============================================================================
 class PokeBattle_Move_51D < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
-		if target.effects[PBEffects::CreepOut] == true
+		if target.effects[PBEffects::CreepOut]
 		  @battle.pbDisplay(_INTL("The target is already afraid of bug type moves!"))
 		  return true
 		end
@@ -681,7 +681,11 @@ end
 class PokeBattle_Move_52B < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
-    return !target.pbCanConfuse?(user,true,self) && !target.pbCanCharm?(user,true,self)
+    if !target.pbCanConfuse?(user,true,self) && !target.pbCanCharm?(user,true,self)
+		@battle.pbDisplay(_INTL("But it failed!")) 
+		return true
+	end
+	return false
   end
 
   def pbEffectAgainstTarget(user,target)
@@ -788,6 +792,7 @@ class PokeBattle_Move_52E < PokeBattle_TargetMultiStatDownMove
     super
     @statDown = [:DEFENSE,2,:EVASION,2]
   end
+  def pbAccuracyCheck(user,target); return true; end
 end
 
 #===============================================================================
@@ -820,16 +825,17 @@ class PokeBattle_Move_530 < PokeBattle_Move
     return false if damagingMove?
 	failed = true
 	@battle.eachSameSideBattler(user) do |b|
-      next if !user.pbCanRaiseStatStage?(:ATTACK,user,self,true)
+      next if !b.pbCanRaiseStatStage?(:ATTACK,user,self,true)
       failed = false
       break
     end
+	@battle.pbDisplay(_INTL("But it failed!")) if failed
     return failed
   end
 
   def pbEffectGeneral(user)
     @battle.eachSameSideBattler(user) do |b|
-        next if !user.pbCanRaiseStatStage?(:ATTACK,user,self,true)
+        next if !b.pbCanRaiseStatStage?(:ATTACK,user,self,true)
         b.pbRaiseStatStage(:ATTACK,1,user)
     end
   end
@@ -942,3 +948,22 @@ class PokeBattle_Move_534 < PokeBattle_SleepMove
 		target.pbSleep
 	end
 end
+
+#===============================================================================
+# Can only be used on the first turn. Deals more damage if the user was hurt this turn. (Stare Down)
+#===============================================================================
+class PokeBattle_Move535 < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+		if user.turnCount > 1
+			@battle.pbDisplay(_INTL("But it failed!"))
+			return true
+		end
+		return false
+	end
+	
+	def pbBaseDamage(baseDmg,user,target)
+		baseDmg *= 2 if user.lastAttacker.include?(target.index)
+		return baseDmg
+	end
+end
+
