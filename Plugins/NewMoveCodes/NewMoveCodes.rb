@@ -642,7 +642,7 @@ end
 #===============================================================================
 class PokeBattle_Move_528 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		if target.hp >= target.totalhp / 2 || !target.pbCanSleep?(user,true,self)
+		if target.hp > target.totalhp / 2 || !target.pbCanSleep?(user,true,self)
 			@battle.pbDisplay(_INTL("But it failed!"))
 			return true
 		end

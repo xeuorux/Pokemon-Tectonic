@@ -59,7 +59,7 @@ Pokemon = LILEEP,15
     Item = ORANBERRY
 	Moves = ABSORB,ACID,CONFUSERAY,INGRAIN
 #-------------------------------
-[COOLTRAINER_M,Max,1]
+[COOLTRAINER_M,Raven]
 LoseText = "Go ahead, the reward is yours!"
 Pokemon = VOLTORB,21
     Item = LIFEORB
