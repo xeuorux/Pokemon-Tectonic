@@ -118,18 +118,18 @@ Pokemon = POLIWAG,16
 LoseText = "The smell of losing is not so great..."
 Pokemon = FLABEBE,15
 Pokemon = SNUBBULL,15
-	Ability = 1
+	Ability = 0
 Pokemon = SWIRLIX,15
 #-------------------------------
 [LEADER_Lainie,Lainie]
 LoseText = "Good to make your aquaintance!"
 Pokemon = CUTIEFLY,15
 	Moves = STUNSPORE,FAIRYWIND,POUT,REFLECT
-	Ability = 2
+	Ability = 1
 Pokemon = FLABEBE,15
 Pokemon = VANILLITE,15
 	Moves = ICYWIND,TAUNT,FAIRYWIND,SWAGGER
-	Ability = 2
+	Ability = 1
 Pokemon = MAWILE,15
 	Item = DARKGEM
 	Moves = BITE,SHOTPUT,EAGERTICKLING,ASTONISH

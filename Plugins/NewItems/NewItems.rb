@@ -7,13 +7,13 @@ ItemHandlers::UseFromBag.add(:TELEPORTER,proc { |item|
     next 0
   end
   if !GameData::MapMetadata.exists?($game_map.map_id)
-    pbMessage(_INTL("Can't use that here.")) if showmsg
+    pbMessage(_INTL("Can't use that here."))
     next 0
   end
   healing = $PokemonGlobal.healingSpot
   healing = GameData::Metadata.get.home if !healing   # Home
   if !healing
-    pbMessage(_INTL("Can't use that here.")) if showmsg
+    pbMessage(_INTL("Can't use that here."))
     next 0
   end
   next 2
@@ -25,13 +25,13 @@ ItemHandlers::ConfirmUseInField.add(:TELEPORTER,proc { |item|
     next false
   end
   if !GameData::MapMetadata.exists?($game_map.map_id)
-    pbMessage(_INTL("Can't use that here.")) if showmsg
+    pbMessage(_INTL("Can't use that here."))
     next false
   end
   healing = $PokemonGlobal.healingSpot
   healing = GameData::Metadata.get.home if !healing   # Home
   if !healing
-    pbMessage(_INTL("Can't use that here.")) if showmsg
+    pbMessage(_INTL("Can't use that here."))
     next false
   end
   

@@ -645,4 +645,293 @@ class PokeBattle_AI
     end
     return false
   end
+  
+  #=============================================================================
+  # Damage calculation
+  #=============================================================================
+  def pbRoughDamage(move,user,target,skill,baseDmg)
+    # Fixed damage moves
+    return baseDmg if move.is_a?(PokeBattle_FixedDamageMove)
+    # Get the move's type
+    type = pbRoughType(move,user,skill)
+    ##### Calculate user's attack stat #####
+    atk = pbRoughStat(user,:ATTACK,skill)
+    if move.function=="121"   # Foul Play
+      atk = pbRoughStat(target,:ATTACK,skill)
+    elsif move.specialMove?(type)
+      if move.function=="121"   # Foul Play
+        atk = pbRoughStat(target,:SPECIAL_ATTACK,skill)
+      else
+        atk = pbRoughStat(user,:SPECIAL_ATTACK,skill)
+      end
+    end
+    ##### Calculate target's defense stat #####
+    defense = pbRoughStat(target,:DEFENSE,skill)
+    if move.specialMove?(type) && move.function!="122"   # Psyshock
+      defense = pbRoughStat(target,:SPECIAL_DEFENSE,skill)
+    end
+    ##### Calculate all multiplier effects #####
+    multipliers = {
+      :base_damage_multiplier  => 1.0,
+      :attack_multiplier       => 1.0,
+      :defense_multiplier      => 1.0,
+      :final_damage_multiplier => 1.0
+    }
+    # Ability effects that alter damage
+    moldBreaker = false
+    if skill>=PBTrainerAI.highSkill && target.hasMoldBreaker?
+      moldBreaker = true
+    end
+    if skill>=PBTrainerAI.mediumSkill && user.abilityActive?
+      # NOTE: These abilities aren't suitable for checking at the start of the
+      #       round.
+      abilityBlacklist = [:ANALYTIC,:SNIPER,:TINTEDLENS,:AERILATE,:PIXILATE,:REFRIGERATE]
+      canCheck = true
+      abilityBlacklist.each do |m|
+        next if move.id != m
+        canCheck = false
+        break
+      end
+      if canCheck
+        BattleHandlers.triggerDamageCalcUserAbility(user.ability,
+           user,target,move,multipliers,baseDmg,type)
+      end
+    end
+    if skill>=PBTrainerAI.mediumSkill && !moldBreaker
+      user.eachAlly do |b|
+        next if !b.abilityActive?
+        BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,
+           user,target,move,multipliers,baseDmg,type)
+      end
+    end
+    if skill>=PBTrainerAI.bestSkill && !moldBreaker && target.abilityActive?
+      # NOTE: These abilities aren't suitable for checking at the start of the
+      #       round.
+      abilityBlacklist = [:FILTER,:SOLIDROCK]
+      canCheck = true
+      abilityBlacklist.each do |m|
+        next if move.id != m
+        canCheck = false
+        break
+      end
+      if canCheck
+        BattleHandlers.triggerDamageCalcTargetAbility(target.ability,
+           user,target,move,multipliers,baseDmg,type)
+      end
+    end
+    if skill>=PBTrainerAI.bestSkill && !moldBreaker
+      target.eachAlly do |b|
+        next if !b.abilityActive?
+        BattleHandlers.triggerDamageCalcTargetAllyAbility(b.ability,
+           user,target,move,multipliers,baseDmg,type)
+      end
+    end
+    # Item effects that alter damage
+    # NOTE: Type-boosting gems aren't suitable for checking at the start of the
+    #       round.
+    if skill>=PBTrainerAI.mediumSkill && user.itemActive?
+      # NOTE: These items aren't suitable for checking at the start of the
+      #       round.
+      itemBlacklist = [:EXPERTBELT,:LIFEORB]
+      if !itemBlacklist.include?(user.item_id) && user.item && !user.item.is_gem?
+        BattleHandlers.triggerDamageCalcUserItem(user.item,
+           user,target,move,multipliers,baseDmg,type)
+      end
+    end
+    if skill>=PBTrainerAI.bestSkill && target.itemActive?
+      # NOTE: Type-weakening berries aren't suitable for checking at the start
+      #       of the round.
+      if target.item && !target.item.is_berry?
+        BattleHandlers.triggerDamageCalcTargetItem(target.item,
+           user,target,move,multipliers,baseDmg,type)
+      end
+    end
+    # Global abilities
+    if skill>=PBTrainerAI.mediumSkill
+      if (@battle.pbCheckGlobalAbility(:DARKAURA) && type == :DARK) ||
+         (@battle.pbCheckGlobalAbility(:FAIRYAURA) && type == :FAIRY)
+        if @battle.pbCheckGlobalAbility(:AURABREAK)
+          multipliers[:base_damage_multiplier] *= 2 / 3.0
+        else
+          multipliers[:base_damage_multiplier] *= 4 / 3.0
+        end
+      end
+    end
+    # Parental Bond
+    if skill>=PBTrainerAI.mediumSkill && user.hasActiveAbility?(:PARENTALBOND)
+      multipliers[:base_damage_multiplier] *= 1.25
+    end
+    # Me First
+    # TODO
+    # Helping Hand - n/a
+    # Charge
+    if skill>=PBTrainerAI.mediumSkill
+      if user.effects[PBEffects::Charge]>0 && type == :ELECTRIC
+        multipliers[:base_damage_multiplier] *= 2
+      end
+    end
+    # Mud Sport and Water Sport
+    if skill>=PBTrainerAI.mediumSkill
+      if type == :ELECTRIC
+        @battle.eachBattler do |b|
+          next if !b.effects[PBEffects::MudSport]
+          multipliers[:base_damage_multiplier] /= 3
+          break
+        end
+        if @battle.field.effects[PBEffects::MudSportField]>0
+          multipliers[:base_damage_multiplier] /= 3
+        end
+      end
+      if type == :FIRE
+        @battle.eachBattler do |b|
+          next if !b.effects[PBEffects::WaterSport]
+          multipliers[:base_damage_multiplier] /= 3
+          break
+        end
+        if @battle.field.effects[PBEffects::WaterSportField]>0
+          multipliers[:base_damage_multiplier] /= 3
+        end
+      end
+    end
+    # Terrain moves
+    if skill>=PBTrainerAI.mediumSkill
+      case @battle.field.terrain
+      when :Electric
+        multipliers[:base_damage_multiplier] *= 1.5 if type == :ELECTRIC && user.affectedByTerrain?
+      when :Grassy
+        multipliers[:base_damage_multiplier] *= 1.5 if type == :GRASS && user.affectedByTerrain?
+      when :Psychic
+        multipliers[:base_damage_multiplier] *= 1.5 if type == :PSYCHIC && user.affectedByTerrain?
+      when :Misty
+        multipliers[:base_damage_multiplier] /= 2 if type == :DRAGON && target.affectedByTerrain?
+      end
+    end
+    # Multi-targeting attacks
+    if skill>=PBTrainerAI.highSkill
+      if pbTargetsMultiple?(move,user)
+        multipliers[:final_damage_multiplier] *= 0.75
+      end
+    end
+    # Weather
+    if skill>=PBTrainerAI.mediumSkill
+      case @battle.pbWeather
+      when :Sun, :HarshSun
+        if type == :FIRE
+          multipliers[:final_damage_multiplier] *= 1.5
+        elsif type == :WATER
+          multipliers[:final_damage_multiplier] /= 2
+        end
+      when :Rain, :HeavyRain
+        if type == :FIRE
+          multipliers[:final_damage_multiplier] /= 2
+        elsif type == :WATER
+          multipliers[:final_damage_multiplier] *= 1.5
+        end
+      when :Sandstorm
+        if target.pbHasType?(:ROCK) && move.specialMove?(type) && move.function != "122"   # Psyshock
+          multipliers[:defense_multiplier] *= 1.5
+        end
+      end
+    end
+    # Critical hits - n/a
+    # Random variance - n/a
+    # STAB
+    if skill>=PBTrainerAI.mediumSkill
+      if type && user.pbHasType?(type)
+        if user.hasActiveAbility?(:ADAPTABILITY)
+          multipliers[:final_damage_multiplier] *= 2
+        else
+          multipliers[:final_damage_multiplier] *= 1.5
+        end
+      end
+    end
+    # Type effectiveness
+    if skill>=PBTrainerAI.mediumSkill
+      typemod = pbCalcTypeMod(type,user,target)
+      multipliers[:final_damage_multiplier] *= typemod.to_f / Effectiveness::NORMAL_EFFECTIVE
+    end
+    # Burn
+    if skill>=PBTrainerAI.highSkill
+      if user.status == :BURN && move.physicalMove?(type) &&
+         !user.hasActiveAbility?(:GUTS) &&
+         !(Settings::MECHANICS_GENERATION >= 6 && move.function == "07E")   # Facade
+        multipliers[:final_damage_multiplier] /= 2
+      end
+    end
+    # Aurora Veil, Reflect, Light Screen
+    if skill>=PBTrainerAI.highSkill
+      if !move.ignoresReflect? && !user.hasActiveAbility?(:INFILTRATOR)
+        if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
+          if @battle.pbSideBattlerCount(target) > 1
+            multipliers[:final_damage_multiplier] *= 2 / 3.0
+          else
+            multipliers[:final_damage_multiplier] /= 2
+          end
+        elsif target.pbOwnSide.effects[PBEffects::Reflect] > 0 && move.physicalMove?(type)
+          if @battle.pbSideBattlerCount(target) > 1
+            multipliers[:final_damage_multiplier] *= 2 / 3.0
+          else
+            multipliers[:final_damage_multiplier] /= 2
+          end
+        elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && move.specialMove?(type)
+          if @battle.pbSideBattlerCount(target) > 1
+            multipliers[:final_damage_multiplier] *= 2 / 3.0
+          else
+            multipliers[:final_damage_multiplier] /= 2
+          end
+        end
+      end
+    end
+    # Minimize
+    if skill>=PBTrainerAI.highSkill
+      if target.effects[PBEffects::Minimize] && move.tramplesMinimize?(2)
+        multipliers[:final_damage_multiplier] *= 2
+      end
+    end
+    # Move-specific base damage modifiers
+    # TODO
+    # Move-specific final damage modifiers
+    # TODO
+    ##### Main damage calculation #####
+    baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
+    atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
+    defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
+    damage  = (((2.0 * user.level / 5 + 2).floor * baseDmg * atk / defense).floor / 50).floor + 2
+    damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
+    # "AI-specific calculations below"
+    # Increased critical hit rates
+    if skill>=PBTrainerAI.mediumSkill
+      c = 0
+      # Ability effects that alter critical hit rate
+      if c>=0 && user.abilityActive?
+        c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
+      end
+      if skill>=PBTrainerAI.bestSkill
+        if c>=0 && !moldBreaker && target.abilityActive?
+          c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
+        end
+      end
+      # Item effects that alter critical hit rate
+      if c>=0 && user.itemActive?
+        c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
+      end
+      if skill>=PBTrainerAI.bestSkill
+        if c>=0 && target.itemActive?
+          c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
+        end
+      end
+      # Other efffects
+      c = -1 if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
+      if c>=0
+        c += 1 if move.highCriticalRate?
+        c += user.effects[PBEffects::FocusEnergy]
+        c += 1 if user.inHyperMode? && move.type == :SHADOW
+      end
+      if c>=0
+        c = 4 if c>4
+        damage += damage*0.1*c
+      end
+    end
+    return damage.floor
+  end
 end
