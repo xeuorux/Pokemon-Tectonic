@@ -1,14 +1,6 @@
 *.ini
 *.dat
 Data/debuglog.txt
-zlib1.dll
-x64-msvcrt-ruby300.dll
-townmapgen.html
-soundfont.sf2
-selpoint.bmp
-RGSS104E.dll
-mkxp.json
-knownpoint.bmp
 Data/Actors.rxdata
 Data/Armors.rxdata
 Data/Enemies.rxdata

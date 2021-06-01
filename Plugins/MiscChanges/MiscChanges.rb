@@ -91,13 +91,6 @@ class PokemonOption_Scene
            MessageConfig.pbSetSystemFrame("Graphics/Windowskins/" + Settings::MENU_WINDOWSKINS[value])
          }
        ),
-       EnumOption.new(_INTL("Font Style"),[_INTL("Em"),_INTL("R/S"),_INTL("FRLG"),_INTL("DP")],
-         proc { $PokemonSystem.font },
-         proc { |value|
-           $PokemonSystem.font = value
-           MessageConfig.pbSetSystemFontName(Settings::FONT_OPTIONS[value])
-         }
-       ),
        EnumOption.new(_INTL("Text Entry"),[_INTL("Cursor"),_INTL("Keyboard")],
          proc { $PokemonSystem.textinput },
          proc { |value| $PokemonSystem.textinput = value }
@@ -1009,7 +1002,7 @@ class Game_System
 end
 
 class Sprite_Character
-	def update
+  def update
     return if @character.is_a?(Game_Event) && !@character.should_update?
     super
     if @tile_id != @character.tile_id ||
@@ -1036,10 +1029,11 @@ class Sprite_Character
         @character.sprite_size = [@cw, @ch]
       else
         @charbitmap.dispose if @charbitmap
-		@charbitmap = AnimatedBitmap.new('Graphics/Characters/' + @character_name, @character_hue)
+        @charbitmap = AnimatedBitmap.new(
+           'Graphics/Characters/' + @character_name, @character_hue)
 		if @character.is_a?(Game_Event)
 			match = @character.name.match(/.*overworld\(([A-Za-z_0-9]+)\).*/i)
-			if match && @character_name == "00Overworld Placeholder"
+				if match && @character_name == "00Overworld Placeholder"
 				@charbitmap = AnimatedBitmap.new('Graphics/Characters/Followers/' + match[1], @character_hue)
 			end
 		end
@@ -1071,8 +1065,7 @@ class Sprite_Character
       self.oy -= @character.bob_height
     end
     if self.visible
-      if $PokemonSystem.tilemap == 0 ||
-         (@character.is_a?(Game_Event) && @character.name[/regulartone/i])
+      if @character.is_a?(Game_Event) && @character.name[/regulartone/i]
         self.tone.set(0, 0, 0, 0)
       else
         pbDayNightTint(self)
