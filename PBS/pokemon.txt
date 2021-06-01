@@ -9404,8 +9404,8 @@ BattlerShadowSize = 2
 Name = Slakoth
 InternalName = SLAKOTH
 Type1 = NORMAL
-BaseStats = 70,70,60,40,45,45
-#Total: 330
+BaseStats = 80,80,70,50,55,55
+#Total: 390
 GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 56
