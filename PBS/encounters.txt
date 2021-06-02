@@ -96,7 +96,6 @@ Land,20
     20,SKWOVET,5,7
 	20,CATERPIE,4,6
 LandTall,20
-	20,BUNNELBY,5,7
 	20,VENONAT,5,7
     20,HOOTHOOT,5,7
 	20,WEEDLE,4,6
@@ -104,11 +103,15 @@ LandTall,20
 #-------------------------------
 [022] # Forest Crossroads
 Land,20
-    20,PATRAT,6,8
-    20,NICKIT,6,8
-    20,KRICKETOT,6,8
-    20,WOOPER,6,8
-    20,DRATINI,6,8
+    25,PATRAT,6,8
+    25,NICKIT,6,8
+    25,KRICKETOT,6,8
+    25,DRATINI,6,8
+Mud
+	25,WOOPER,6,8
+	25,GRIMER,6,8
+	25,BUNNELBY,6,8
+	25,MUDBRAY,6,8
 LandTall
 	25,SURSKIT,13,15
 	25,BULBASAUR,13,15
