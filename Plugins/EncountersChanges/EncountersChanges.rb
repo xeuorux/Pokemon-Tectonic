@@ -1,8 +1,37 @@
+module GameData
+  class TerrainTag
+	attr_reader :slows
+  
+	def initialize(hash)
+      @id                     = hash[:id]
+      @id_number              = hash[:id_number]
+      @real_name              = hash[:id].to_s                || "Unnamed"
+      @can_surf               = hash[:can_surf]               || false
+      @waterfall              = hash[:waterfall]              || false
+      @waterfall_crest        = hash[:waterfall_crest]        || false
+      @can_fish               = hash[:can_fish]               || false
+      @can_dive               = hash[:can_dive]               || false
+      @deep_bush              = hash[:deep_bush]              || false
+      @shows_grass_rustle     = hash[:shows_grass_rustle]     || false
+      @land_wild_encounters   = hash[:land_wild_encounters]   || false
+      @double_wild_encounters = hash[:double_wild_encounters] || false
+      @battle_environment     = hash[:battle_environment]
+      @ledge                  = hash[:ledge]                  || false
+      @ice                    = hash[:ice]                    || false
+      @bridge                 = hash[:bridge]                 || false
+      @shows_reflections      = hash[:shows_reflections]      || false
+      @must_walk              = hash[:must_walk]              || false
+      @ignore_passability     = hash[:ignore_passability]     || false
+	  @slows     			  = hash[:slows]     			  || false
+    end
+  end
+end
+
 class PokemonEncounters
   # Returns whether the player's current location allows wild encounters to
   # trigger upon taking a step.
   def encounter_possible_here?
-    return true if $PokemonGlobal.surfing
+    #return true if $PokemonGlobal.surfing
     terrain_tag = $game_map.terrain_tag($game_player.x, $game_player.y)
     return false if terrain_tag.ice
     return true if has_cave_encounters? && !(terrain_tag.id == :Sand)   # i.e. this map is a cave
@@ -77,6 +106,9 @@ class PokemonEncounters
     if $PokemonGlobal.surfing
       ret = find_valid_encounter_type_for_time(:Water, time)
     else   # Land/Cave (can have both in the same map)
+	  if $game_map.terrain_tag($game_player.x, $game_player.y).id == :Mud
+		ret = find_valid_encounter_type_for_time(:Mud, time)
+	  end
 	  if $game_map.terrain_tag($game_player.x, $game_player.y).deep_bush
 		ret = find_valid_encounter_type_for_time(:LandTall, time)
 	  end
@@ -187,8 +219,15 @@ GameData::EncounterType.register({
 GameData::TerrainTag.register({
   :id                     => :Mud,
   :id_number              => 17,
-  :deep_bush              => true,
-  :land_wild_encounters   => true,
   :battle_environment     => :Rock,
-  :must_walk              => true
+  :land_wild_encounters	  => true,
+  :must_walk              => true,
+  :slows				  => true
+})
+
+GameData::EncounterType.register({
+  :id             => :Mud,
+  :type           => :land,
+  :trigger_chance => 21,
+  :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
 })
