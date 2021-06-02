@@ -885,50 +885,6 @@ class PokeBattle_Move_532 < PokeBattle_Move
 	end
 end
 
-#===============================================================================
-# Increases each stat by 1 stage. Prevents user from fleeing. (No Retreat)
-#===============================================================================
-class PokeBattle_Move_533 < PokeBattle_MultiStatUpMove
-  def pbMoveFailed?(user,targets,messages=true)
-    if user.effects[PBEffects::NoRetreat]
-      @battle.pbDisplay(_INTL("But it failed!")) if messages
-      return true
-    end
-    if !user.pbCanRaiseStatStage?(:ATTACK,user,self,true) &&
-       !user.pbCanRaiseStatStage?(:DEFENSE,user,self,true) &&
-       !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,true) &&
-       !user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self,true) &&
-       !user.pbCanRaiseStatStage?(:SPEED,user,self,true)
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    return false
-  end
-
-  def pbEffectGeneral(user)
-    if user.pbCanRaiseStatStage?(:ATTACK,user,self)
-      user.pbRaiseStatStage(:ATTACK,1,user)
-    end
-    if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
-      user.pbRaiseStatStage(:DEFENSE,1,user)
-    end
-    if user.pbCanRaiseStatStage?(:SPEED,user,self)
-      user.pbRaiseStatStage(:SPEED,1,user)
-    end
-    if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-      user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
-    end
-    if user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
-      user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
-    end
-
-	user.effects[PBEffects::NoRetreat] = true
-    if !(user.effects[PBEffects::MeanLook]>=0 || user.effects[PBEffects::Trapping]>0 ||
-       user.effects[PBEffects::JawLock] || user.effects[PBEffects::OctolockUser]>=0)
-      @battle.pbDisplay(_INTL("{1} can no longer escape because it used No Retreat!",user.pbThis))
-    end
-  end
-end
 
 #===============================================================================
 # Puts the target to sleep. Fails unless the target is charmed or confused. (new!Hypnosis)
