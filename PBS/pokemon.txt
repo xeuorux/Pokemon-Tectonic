@@ -3785,7 +3785,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MKANGASKHAN,Level,55
+Evolutions = TEAMUJIN,Level,55
 #-------------------------------
 [116]
 Name = Horsea
@@ -10123,7 +10123,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MMEDICHAM,Level,50
+Evolutions = PALMANTRA,Level,50
 #-------------------------------
 [309]
 Name = Electrike
@@ -14069,7 +14069,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MLOPUNNY,Level,45
+Evolutions = HAEROBIC,Level,45
 #-------------------------------
 [429]
 Name = Mismagius
@@ -29423,8 +29423,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [901]
-Name = MKangaskhan
-InternalName = MKANGASKHAN
+Name = Teamujin
+InternalName = TEAMUJIN
 Type1 = NORMAL
 BaseStats = 105,125,100,100,60,100
 #Total: 590
@@ -29552,8 +29552,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [905]
-Name = MMedicham
-InternalName = MMEDICHAM
+Name = Palmantra
+InternalName = PALMANTRA
 Type1 = FIGHTING
 Type2 = PSYCHIC
 BaseStats = 60,90,85,100,90,85
@@ -29776,8 +29776,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [912]
-Name = MLopunny
-InternalName = MLOPUNNY
+Name = Haerobic
+InternalName = HAEROBIC
 Type1 = NORMAL
 Type2 = FIGHTING
 BaseStats = 65,136,94,135,54,96
