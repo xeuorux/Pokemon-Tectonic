@@ -315,7 +315,7 @@ class Game_Character
 		if $PokemonGlobal && $PokemonGlobal.surfing
 		  val = 5
 		end
-		if $game_map.terrain_tag($game_player.x, $game_player.y).slows
+		if $game_player && $game_map.terrain_tag($game_player.x, $game_player.y).slows
 			val -= 1
 		end
 		return if val==@move_speed
