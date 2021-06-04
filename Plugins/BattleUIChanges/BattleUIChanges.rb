@@ -257,6 +257,10 @@ class PokeBattle_Scene
         pbPlayDecisionSE
         ret = 6
         break
+	  elsif Input.trigger?(Input::ACTION) # Open Pokedex
+		pbPlayDecisionSE
+        ret = 7
+		break
       end
     end
     return ret
@@ -586,6 +590,7 @@ GameData::Target.register({
 })
 
 class PokeBattle_Battle
+
 	def pbGoAfterInfo(battler)
 		idxTarget = @scene.pbChooseTarget(battler.index,GameData::Target.get(:UserOrOther))
 		return if idxTarget<0
@@ -594,8 +599,7 @@ class PokeBattle_Battle
 		scene = PokemonPokedexInfo_Scene.new
 		screen = PokemonPokedexInfoScreen.new(scene)
 		screen.pbStartSceneSingle(species)
-    end 
-
+    end
 
 	def pbCommandPhaseLoop(isPlayer)
     # NOTE: Doing some things (e.g. running, throwing a Poké Ball) takes up all
@@ -647,6 +651,12 @@ class PokeBattle_Battle
           break if pbCallMenu(idxBattler)
 		when 5	  # Info
 			pbGoAfterInfo(@battlers[idxBattler])
+		when 7 # Pokedex
+			pbFadeOutIn {
+					scene = PokemonPokedex_Scene.new
+					screen = PokemonPokedexScreen.new(scene)
+					screen.pbStartScreen
+				}
         when -2   # Debug
           pbDebugMenu
           next

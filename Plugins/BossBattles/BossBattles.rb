@@ -79,10 +79,9 @@ module GameData
 	  end
 	  if ret && pkmn.boss
 		new_ret = ret.copy
+		bossified = createBossifiedBitmap(new_ret.bitmap)
+		new_ret.bitmap = bossified
 		ret.dispose
-		for i in 0..new_ret.length-1
-			new_ret.gifbitmaps[i] = createBossifiedBitmap(new_ret[i])
-		end
 		ret = new_ret
 	  end
 	  return ret
