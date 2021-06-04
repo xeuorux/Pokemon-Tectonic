@@ -367,3 +367,25 @@ class PokeBattle_Move_040 < PokeBattle_Move
     target.pbCharm if target.pbCanCharm?(user,false,self)
   end
 end
+
+#===============================================================================
+# Target can no longer switch out or flee, as long as the user remains active.
+# (Anchor Shot, Block, Mean Look, Spider Web, Spirit Shackle, Thousand Waves)
+#===============================================================================
+class PokeBattle_Move_0EF < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    return false if damagingMove?
+    if target.effects[PBEffects::MeanLook]>=0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbAdditionalEffect(user,target)
+    return if target.fainted? || target.damageState.substitute
+    return if target.effects[PBEffects::MeanLook]>=0
+    target.effects[PBEffects::MeanLook] = user.index
+    @battle.pbDisplay(_INTL("{1} can no longer escape!",target.pbThis))
+  end
+end
