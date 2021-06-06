@@ -4,7 +4,7 @@
 [GENTLEMAN,Ethan]
 LoseText = "This will be hard to forget!"
 Pokemon = BUNEARY,6
-Pokemon = PIKIPEK,6
+Pokemon = BIDOOF,6
 #-------------------------------
 [ROCKER,Harvey]
 LoseText = "I couldn't find victory, either!"
