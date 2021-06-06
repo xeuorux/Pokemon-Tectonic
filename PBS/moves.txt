@@ -479,7 +479,7 @@
 464,NATURALGIFT,Natural Gift,096,1,NORMAL,Physical,100,15,0,NearOther,0,bef,The user draws power to attack by using its held Berry. The Berry determines its type and power.
 465,PRESENT,Present,16F,90,ICE,Special,100,15,0,NearOther,0,befn,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however."
 466,RETURN,Return,089,1,NORMAL,Physical,100,20,0,NearOther,0,abef,A full-power attack that grows more powerful the more the user likes its Trainer.
-467,SONICBOOM,Sonic Boom,000,40,NORMAL,Special,100,30,0,NearOther,1,befk,The target is hit with a destructive shock wave. This move always hits first.
+467,SHOUT,Shout,000,40,NORMAL,Special,100,30,0,NearOther,1,befk,The user shouts with force at the target. This move always hits first.
 468,SPITUP,Spit Up,113,1,NORMAL,Special,100,10,0,NearOther,0,bf,The power stored using the move Stockpile is released all at once in an attack.
 469,SUPERFANG,Super Fang,06C,1,NORMAL,Physical,100,10,0,NearOther,0,abef,The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.
 470,TRUMPCARD,Trump Card,097,1,NORMAL,Special,0,5,0,NearOther,0,abef,"The fewer PP this move has, the greater its attack power."
@@ -550,7 +550,7 @@
 535,SHARPEN,Sharpen,01C,0,NORMAL,Status,0,30,0,User,0,d,"The user reduces its polygon count to make itself more jagged, raising the Attack stat."
 536,SHELLSMASH,Shell Smash,035,0,NORMAL,Status,0,15,0,User,0,d,"The user breaks its shell, lowering its defenses but sharply raising attacking and Speed stats."
 537,SIMPLEBEAM,Simple Beam,063,0,NORMAL,Status,100,15,0,NearOther,0,bce,The user's mysterious psychic wave changes the target's Ability to Simple.
-538,SING,Sing,528,0,NORMAL,Status,100,15,0,NearOther,0,bcek,"A lullaby is sung in a calming voice that puts the target with less than half its HP left into a deep sleep."
+538,SING,Sing,528,0,NORMAL,Status,100,15,0,NearOther,0,bcek,"A lullaby is sung in a calming voice that puts the target with half its HP or less left into a deep sleep."
 539,SKETCH,Sketch,05D,0,NORMAL,Status,0,1,0,NearOther,0,,"It enables the user to permanently learn the move last used by the foe. Once used, Sketch disappears."
 540,SLACKOFF,Slack Off,0D5,0,NORMAL,Status,0,10,0,User,0,d,"The user slacks off, restoring its own HP by up to half of its maximum HP."
 541,SLEEPTALK,Sleep Talk,0B4,0,NORMAL,Status,0,10,0,User,0,k,"While it is asleep, the user randomly uses one of the moves it knows."
