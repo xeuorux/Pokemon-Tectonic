@@ -2,13 +2,13 @@
 #-------------------------------
 [002] # Forest Cave
 Cave,20
-    20,SHUPPET,8,11
-    15,GULPIN,8,11
-    15,ROGGENROLA,8,11
-    20,BALTOY,8,11
-    10,SWINUB,8,11
-    10,PAWNIARD,8,11
-    10,NOIBAT,8,11
+    20,SHUPPET,9,11
+    15,GULPIN,9,11
+    15,ROGGENROLA,9,11
+    20,BALTOY,9,11
+    10,SWINUB,9,11
+    10,PAWNIARD,9,11
+    10,NOIBAT,9,11
 #-------------------------------
 [003] # Savannah Route
 Land,20
@@ -17,8 +17,8 @@ Land,20
     20,FARFETCHD_1,14,16
     20,YAMPER,14,16
 LandTall,20
-	25,NIDORANfE,13,15
-    25,NIDORANmA,13,15
+	25,NIDORANfE,14,15
+    25,NIDORANmA,14,15
 	25,POOCHYENA,14,16
     25,SANDSHREW,14,16
     25,LEDYBA,14,16
