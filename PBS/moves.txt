@@ -329,7 +329,7 @@
 318,GRASSYTERRAIN,Grassy Terrain,155,0,GRASS,Status,0,10,0,BothSides,0,,The user turns the ground to grass for five turns. Grounded Pokémon restore a little HP every turn.
 319,INGRAIN,Ingrain,0DB,0,GRASS,Status,0,20,0,User,0,d,"The user lays roots that restore its HP on every turn. Because it is rooted, it can't switch out."
 320,LEECHSEED,Leech Seed,0DC,0,GRASS,Status,90,10,0,NearOther,0,bce,A seed is planted on the target. It steals some HP from the target every turn.
-321,SLEEPPOWDER,Sleep Powder,529,0,GRASS,Status,100,15,0,NearOther,0,bcel,The user scatters a big cloud of sleep-inducing dust around the target if it was hit this turn.
+321,SLEEPPOWDER,Sleep Powder,529,0,GRASS,Status,100,15,0,NearOther,0,bcel,The user scatters a big cloud of sleep-inducing dust around the target if the user was hit this turn.
 322,SPIKYSHIELD,Spiky Shield,14C,0,GRASS,Status,0,10,0,User,4,,Protects the user from attacks. Also damages attackers that make contact with the user.
 323,SPORE,Spore,003,0,GRASS,Status,100,15,0,NearOther,-1,bcel,The user scatters bursts of spores that induce sleep. This move has -1 priority.
 324,STRENGTHSAP,Strength Sap,160,0,GRASS,Status,100,10,0,NearOther,0,bce,The user restores its HP by the target's Attack stat amount. Then lowers the target's Attack stat.
