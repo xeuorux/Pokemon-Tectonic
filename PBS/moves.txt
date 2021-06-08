@@ -871,11 +871,11 @@
 852,LIGHTNINGSHRIEK,Lightning Shriek,030,40,ELECTRIC,Special,100,5,100,NearOther,0,bef,"The user lets out an electric roar, damaging the target and sharply raising its speed."
 853,IGNITE,Ignite,00A,0,FIRE,Status,90,15,0,NearOther,0,bce,"The user sets the target on fire, inflicting a burn."
 854,TORRENTBLADE,Torrent Blade,000,90,WATER,Physical,100,15,0,NearOther,0,abefh,The user uses a jet of water like a sword and attacks by slashing. It has a high critical-hit ratio.
-855,STAREDOWN,Stare Down,535,100,DARK,Special,100,5,0,NearOther,2,bef,"TODO."
-856,INURE,Inure,531,000,ICE,Status,0,10,0,UserSide,0,d,"TODO."
+855,STAREDOWN,Stare Down,535,100,DARK,Special,100,5,0,NearOther,2,bef,"The user stares harshly at the target, dealing double damage if they hurt the user this turn. Only usable on the first turn."
+856,INURE,Inure,531,000,ICE,Status,0,10,0,UserSide,0,d,"The user inures themselves to a harsh environment, shedding their type weaknesses."
 857,BREAKDANCE,Breakdance,532,0,FIGHTING,Status,0,20,0,User,0,do,"The user breakdances, sharply boosting its weakest stat and boosting its second weakest stat."
 858,SHIVERDANCE,Shiver Dance,525,0,ICE,Status,0,20,0,User,0,do,"The user shivers rhythmically. It boosts the user's Atk, Def, and Speed stats."
 859,AMBUSH,Ambush,174,130,DARK,Physical,100,10,0,NearOther,2,abef,"The user ambushes the target. This only works the first turn the user is in battle."
 860,STITCHUP,Stitch Up,524,0,GHOST,Status,0,5,0,User,0,d,The user restores two thirds of its own HP. Then, this attack is disabled.
 861,PHANTOMBREAK,Phantom Break,523,120,GHOST,Physical,100,5,0,NearOther,0,abef,"Although this move has great power, it disables itself after use."
-862,DRAGONROAR,522,0,DRAGON,Status,0,15,0,NearOther,0,ce,"The user roars, causing the target's best stat to drop harshly."
+862,DRAGONROAR,Dragon Roar,522,0,DRAGON,Status,0,15,0,NearOther,0,ce,"The user roars, causing the target's best stat to drop harshly."
