@@ -643,7 +643,7 @@
 626,HEALPULSE,Heal Pulse,0DF,0,PSYCHIC,Status,0,10,0,Other,0,bcm,The user emits a healing pulse which restores the target's HP by up to half of its max HP.
 627,HEALINGWISH,Healing Wish,000,0,PSYCHIC,Status,0,10,0,User,0,d,"The user faints. In return, the Pokémon taking its place will have its HP restored and status cured."
 628,HEARTSWAP,Heart Swap,054,0,PSYCHIC,Status,0,10,0,NearOther,0,be,The user employs its psychic power to switch stat changes with the target.
-629,HYPNOSIS,Hypnosis,003,0,PSYCHIC,Status,75,20,0,NearOther,0,bce,The user employs hypnotic suggestion to make the target fall into a deep sleep.
+629,HYPNOSIS,Hypnosis,534,0,PSYCHIC,Status,100,20,0,NearOther,0,bce,The user employs hypnotic suggestion to make a confused or charmed target fall into a deep sleep.
 630,IMPRISON,Imprison,0B8,0,PSYCHIC,Status,0,10,0,User,0,d,"If the foe knows any move also known by the user, the foe is prevented from using it."
 631,INSTRUCT,Instruct,16B,0,PSYCHIC,Status,0,15,0,NearOther,0,b,The user instructs the target to use the target's last move again.
 632,KINESIS,Kinesis,047,0,PSYCHIC,Status,80,15,0,NearOther,0,bce,The user distracts the target by bending a spoon. It lowers the target's accuracy.
@@ -871,3 +871,4 @@
 852,LIGHTNINGSHRIEK,Lightning Shriek,030,40,ELECTRIC,Special,100,5,100,NearOther,0,bef,"The user lets out an electric roar, damaging the target and sharply raising its speed."
 853,IGNITE,Ignite,00A,0,FIRE,Status,90,15,0,NearOther,0,bce,"The user sets the target on fire, inflicting a burn."
 854,TORRENTBLADE,Torrent Blade,000,90,WATER,Physical,100,15,0,NearOther,0,abefh,The user uses a jet of water like a sword and attacks by slashing. It has a high critical-hit ratio.
+855,STAREDOWN,Stare Down,535,100,DARK,Special,100,5,0,NearOther,2,bef,"TODO."
