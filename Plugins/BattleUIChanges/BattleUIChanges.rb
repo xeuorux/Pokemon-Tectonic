@@ -33,6 +33,7 @@ class CommandMenuDisplay < BattleMenuBase
       # Create bitmaps
       @buttonBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/cursor_command"))
 	  @ballBitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/cursor_ball"))
+	  @dexBitmap   	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/cursor_pokedex"))
       # Create action buttons
       @buttons = Array.new(4) do |i|   # 4 command options, therefore 4 buttons
         button = SpriteWrapper.new(viewport)
@@ -48,12 +49,19 @@ class CommandMenuDisplay < BattleMenuBase
       end
 	  @ballButton = SpriteWrapper.new(viewport)
       @ballButton.bitmap = @ballBitmap.bitmap
-      @ballButton.x = 350
+      @ballButton.x = 300
       @ballButton.y = 0
       @ballButton.src_rect.width  = @ballBitmap.width
       @ballButton.src_rect.height  = @ballBitmap.height/2
       addSprite("ballButton",@ballButton)
       @ballButton.visible = false
+	  
+	  # Create Dex button
+      @dexButton = SpriteWrapper.new(viewport)
+      @dexButton.bitmap = @dexBitmap.bitmap
+      @dexButton.x      = self.x+4
+      @dexButton.y      = self.y-@dexBitmap.height
+      addSprite("dexButton",@dexButton)
     else
       # Create command window (shows Fight/Bag/Pokémon/Run)
       @cmdWindow = Window_CommandPokemon.newWithSize([],
@@ -71,6 +79,7 @@ class CommandMenuDisplay < BattleMenuBase
     super
     @buttonBitmap.dispose if @buttonBitmap
     @ballBitmap.dispose if @ballBitmap
+	@dexBitmap.dispose if @dexBitmap
   end
   
   def refreshButtons
@@ -81,11 +90,14 @@ class CommandMenuDisplay < BattleMenuBase
       button.src_rect.y = MODES[@mode][i]*BUTTON_HEIGHT
       button.z          = self.z + ((i==@index) ? 3 : 2)
     end
+	# Refresh the ball button
 	if $PokemonBag.pockets()[3].any?{|itemrecord| itemrecord[1] > 0}
       @ballButton.src_rect.y = 0
     else
       @ballButton.src_rect.y = 46
     end
+	# Refresh the dex button
+    @dexButton.z             = self.z - 1
   end
   
   def visible=(value)
