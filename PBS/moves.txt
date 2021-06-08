@@ -239,7 +239,7 @@
 231,FIRESPIN,Fire Spin,0CF,35,FIRE,Special,85,15,0,NearOther,0,bef,The target becomes trapped within a fierce vortex of fire that rages for four to five turns.
 232,HEATCRASH,Heat Crash,09B,1,FIRE,Physical,100,10,0,NearOther,0,abef,"The user slams the foe with its flaming body. The heavier the user is, the greater the damage."
 233,SUNNYDAY,Sunny Day,0FF,0,FIRE,Status,0,5,0,BothSides,0,,"The user intensifies the sun for five turns, powering up Fire-type moves."
-234,WILLOWISP,Will-O-Wisp,00A,0,FIRE,Status,90,15,0,NearOther,0,bce,"The user shoots a sinister, bluish-white flame at the target to inflict a burn."
+234,WILLOWISP,Will-O-Wisp,00A,0,GHOST,Status,90,15,0,NearOther,0,bce,"The user shoots a sinister, bluish-white flame at the target to inflict a burn."
 235,PYROBALL,Pyro Ball,00A,120,FIRE,Physical,80,5,10,NearOther,0,bef,Attacks by igniting a small stone and launching it as a fiery ball. May cause a burn.
 236,BURNINGJEALOUSY,Burning Jealousy,516,70,FIRE,Special,100,5,100,AllNearFoes,0,bef,Attacks with energy from jealousy. All opposing Pokémon with stat boosts get burned.
 #-------------------------------,,,,,,,,,,,,,
@@ -869,3 +869,5 @@
 850,WINGSPANECLIPSE,Wingspan Eclipse,52F,0,DRAGON,Status,0,15,0,AllNearFoes,0,bce,"The Pokémon blots out the sky with huge wings, ending weather. It also lowers the opponent's attack."
 851,ALLERGY,Allergy,04D,70,BUG,Special,100,15,100,NearOther,0,bef,"The user makes the target have an allergic reaction. This harshly reduces its speed."
 852,LIGHTNINGSHRIEK,Lightning Shriek,030,40,ELECTRIC,Special,100,5,100,NearOther,0,bef,"The user lets out an electric roar, damaging the target and sharply raising its speed."
+853,IGNITE,Ignite,00A,0,FIRE,Status,90,15,0,NearOther,0,bce,"The user sets the target on fire, inflicting a burn."
+854,TORRENTBLADE,Torrent Blade,000,90,WATER,Physical,100,15,0,NearOther,0,abefh,The user uses a jet of water like a sword and attacks by slashing. It has a high critical-hit ratio.

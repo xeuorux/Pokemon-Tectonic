@@ -969,7 +969,7 @@ BattlerEnemyY = 16
 #-------------------------------
 [BASCULIN,1]
 FormName = Blue-Striped
-Abilities = ROCKHEAD,ADAPTABILITY
+Abilities = ROCKHEAD,ADAPTED
 TutorMoves = AQUATAIL,BOUNCE,CONFIDE,CUT,DIVE,ENDEAVOR,ENDURE,FACADE,FRUSTRATION,HAIL,HIDDENPOWER,ICEBEAM,ICYWIND,LIQUIDATION,PROTECT,RAINDANCE,REST,RETURN,ROUND,SCALD,SLEEPTALK,SNORE,SUBSTITUTE,SUPERPOWER,SURF,SWAGGER,TAUNT,TOXIC,UPROAR,WATERFALL,ZENHEADBUTT
 Pokedex = Even Basculin, which devours everything it can with its huge jaws, is nothing more than food to organisms stronger than itself.
 WildItemUncommon = DEEPSEASCALE
