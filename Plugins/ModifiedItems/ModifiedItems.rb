@@ -135,3 +135,11 @@ BattleHandlers::StatusCureItem.add(:MENTALHERB,
     next true
   }
 )
+
+BattleHandlers::DamageCalcUserItem.add(:THICKCLUB,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if (user.isSpecies?(:CUBONE) || user.isSpecies?(:MAROWAK)) && move.physicalMove?
+      mults[:attack_multiplier] *= 1.5
+    end
+  }
+)
