@@ -325,11 +325,11 @@
 314,COTTONGUARD,Cotton Guard,038,0,GRASS,Status,0,10,0,User,0,d,"The user protects itself by wrapping its body in soft cotton, drastically raising its Defense stat."
 315,COTTONSPORE,Cotton Spore,04D,0,GRASS,Status,100,40,0,AllNearFoes,0,bcel,"The user releases cotton-like spores that cling to the foe, harshly reducing its Speed stat."
 316,FORESTSCURSE,Forest's Curse,143,0,GRASS,Status,100,20,0,NearOther,0,bce,The user puts a forest curse on the target. The target is now Grass type as well.
-317,GRASSWHISTLE,Grass Whistle,527,0,GRASS,Status,100,15,0,NearOther,0,bcek,The user plays a pleasant melody that lulls the target into a deep sleep under harsh sunlight.
+317,GRASSWHISTLE,Grass Whistle,003,0,GRASS,Status,55,15,0,NearOther,0,bcek,"The user plays a pleasant melody that lulls the target into a deep sleep."
 318,GRASSYTERRAIN,Grassy Terrain,155,0,GRASS,Status,0,10,0,BothSides,0,,The user turns the ground to grass for five turns. Grounded Pokémon restore a little HP every turn.
 319,INGRAIN,Ingrain,0DB,0,GRASS,Status,0,20,0,User,0,d,"The user lays roots that restore its HP on every turn. Because it is rooted, it can't switch out."
 320,LEECHSEED,Leech Seed,0DC,0,GRASS,Status,90,10,0,NearOther,0,bce,A seed is planted on the target. It steals some HP from the target every turn.
-321,SLEEPPOWDER,Sleep Powder,529,0,GRASS,Status,100,15,0,NearOther,0,bcel,The user scatters a big cloud of sleep-inducing dust around the target if the user was hit this turn.
+321,SLEEPPOWDER,Sleep Powder,003,0,GRASS,Status,75,15,0,NearOther,0,bcel,"The user scatters a big cloud of sleep-inducing dust around the target."
 322,SPIKYSHIELD,Spiky Shield,14C,0,GRASS,Status,0,10,0,User,4,,Protects the user from attacks. Also damages attackers that make contact with the user.
 323,SPORE,Spore,003,0,GRASS,Status,100,15,0,NearOther,-1,bcel,The user scatters bursts of spores that induce sleep. This move has -1 priority.
 324,STRENGTHSAP,Strength Sap,160,0,GRASS,Status,100,10,0,NearOther,0,bce,The user restores its HP by the target's Attack stat amount. Then lowers the target's Attack stat.
@@ -550,7 +550,7 @@
 535,SHARPEN,Sharpen,01C,0,NORMAL,Status,0,30,0,User,0,d,"The user reduces its polygon count to make itself more jagged, raising the Attack stat."
 536,SHELLSMASH,Shell Smash,035,0,NORMAL,Status,0,15,0,User,0,d,"The user breaks its shell, lowering its defenses but sharply raising attacking and Speed stats."
 537,SIMPLEBEAM,Simple Beam,063,0,NORMAL,Status,100,15,0,NearOther,0,bce,The user's mysterious psychic wave changes the target's Ability to Simple.
-538,SING,Sing,528,0,NORMAL,Status,100,15,0,NearOther,0,bcek,"A lullaby is sung in a calming voice that puts the target with half its HP or less left into a deep sleep."
+538,SING,Sing,003,0,NORMAL,Status,55,15,0,NearOther,0,bcek,"A soothing lullaby is sung in a calming voice that puts the target into a deep slumber."
 539,SKETCH,Sketch,05D,0,NORMAL,Status,0,1,0,NearOther,0,,"It enables the user to permanently learn the move last used by the foe. Once used, Sketch disappears."
 540,SLACKOFF,Slack Off,0D5,0,NORMAL,Status,0,10,0,User,0,d,"The user slacks off, restoring its own HP by up to half of its maximum HP."
 541,SLEEPTALK,Sleep Talk,0B4,0,NORMAL,Status,0,10,0,User,0,k,"While it is asleep, the user randomly uses one of the moves it knows."
@@ -643,7 +643,7 @@
 626,HEALPULSE,Heal Pulse,0DF,0,PSYCHIC,Status,0,10,0,Other,0,bcm,The user emits a healing pulse which restores the target's HP by up to half of its max HP.
 627,HEALINGWISH,Healing Wish,000,0,PSYCHIC,Status,0,10,0,User,0,d,"The user faints. In return, the Pokémon taking its place will have its HP restored and status cured."
 628,HEARTSWAP,Heart Swap,054,0,PSYCHIC,Status,0,10,0,NearOther,0,be,The user employs its psychic power to switch stat changes with the target.
-629,HYPNOSIS,Hypnosis,534,0,PSYCHIC,Status,100,20,0,NearOther,0,bce,The user employs hypnotic suggestion to make a confused or charmed target fall into a deep sleep.
+629,HYPNOSIS,Hypnosis,003,0,PSYCHIC,Status,60,20,0,NearOther,0,bce,"The user employs hypnotic suggestion to make the target fall into a deep sleep."
 630,IMPRISON,Imprison,0B8,0,PSYCHIC,Status,0,10,0,User,0,d,"If the foe knows any move also known by the user, the foe is prevented from using it."
 631,INSTRUCT,Instruct,16B,0,PSYCHIC,Status,0,15,0,NearOther,0,b,The user instructs the target to use the target's last move again.
 632,KINESIS,Kinesis,047,0,PSYCHIC,Status,80,15,0,NearOther,0,bce,The user distracts the target by bending a spoon. It lowers the target's accuracy.
@@ -859,7 +859,7 @@
 840,BELOVEDPULSE,Beloved Pulse,400,80,FAIRY,Special,100,15,30,AllNearOthers,0,befm,"A pulse of positive energy is shot at the area around the user. It has a 30% chance to charm every target.
 841,KALEIDOSCOPE,Kaleidoscope,400,60,FAIRY,Special,100,20,30,NearOther,0,bef,"The target is bombarded by crazy colors. There's a 30% chance it becomes charmed."
 842,TRAMPLE,Trample,044,80,GROUND,Physical,100,15,20,NearOther,0,bef,The user tramples the target. It has a 20% chance to lower its speed stat.
-843,DEMONSKISS,Demon's Kiss,526,0,DARK,Status,100,10,0,NearOther,0,bce,"By sacrificing half its HP, the user curses the target with a kiss, making it fall asleep."
+843,DEMONSKISS,Demon's Kiss,526,0,DARK,Status,100,5,0,NearOther,0,bce,"By sacrificing half its HP, the user curses the target with a kiss, making it fall asleep."
 844,SORESPOT,Sore Spot,52A,50,FAIRY,Physical,100,30,0,NearOther,0,abef,"The user gets upset at the target and attacks it. 50% more effective if the user is affected by a status."
 845,HARDFEELINGS,Hard Feelings,52A,80,FAIRY,Physical,100,15,0,NearOther,0,abef,"The user unleashes its anger at the target. 50% more effective if the user is affected by a status."
 846,SOULDRAIN,Soul Drain,52C,30,GHOST,Special,100,20,100,NearOther,0,bef,"The user absorbs the target's soul, lowering its special defense and draining its life in the process."
@@ -879,3 +879,7 @@
 860,STITCHUP,Stitch Up,524,0,GHOST,Status,0,5,0,User,0,d,The user restores two thirds of its own HP. Then, this attack is disabled.
 861,PHANTOMBREAK,Phantom Break,523,120,GHOST,Physical,100,5,0,NearOther,0,abef,"Although this move has great power, it disables itself after use."
 862,DRAGONROAR,Dragon Roar,522,0,DRAGON,Status,0,15,0,NearOther,0,ce,"The user roars, causing the target's best stat to drop harshly."
+863,SUMMERDAZE,Summer Daze,527,0,GRASS,Status,100,15,0,NearOther,0,bcek,The user plays a pleasant melody that lulls the target into a deep sleep under harsh sunlight.
+864,PACIFY,Pacify,534,0,PSYCHIC,Status,100,20,0,NearOther,0,bce,The user employs hypnotic suggestion to make a confused or charmed target fall into a deep sleep.
+865,LULLABY,Lullaby,528,0,NORMAL,Status,100,15,0,NearOther,0,bcek,"A lullaby is sung in a calming voice that puts the target with half its HP or less left into a deep sleep."
+866,PUFFBALL,Puffball,529,0,GRASS,Status,100,15,0,NearOther,0,bcel,The user bursts a ball of sleep-inducing powder. It fails unless the target hit the user this turn.
