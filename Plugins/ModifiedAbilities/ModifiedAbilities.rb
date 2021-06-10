@@ -187,3 +187,27 @@ BattleHandlers::AccuracyCalcTargetAbility.add(:TANGLEDFEET,
     mods[:accuracy_multiplier] /= 2 if target.effects[PBEffects::Confusion] > 0 || target.effects[PBEffects::Charm] > 0
   }
 )
+
+BattleHandlers::EORHealingAbility.add(:SHEDSKIN,
+  proc { |ability,battler,battle|
+    next if battler.status == :NONE
+    battle.pbShowAbilitySplash(battler)
+    oldStatus = battler.status
+    battler.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      case oldStatus
+      when :SLEEP
+        battle.pbDisplay(_INTL("{1}'s {2} woke it up!",battler.pbThis,battler.abilityName))
+      when :POISON
+        battle.pbDisplay(_INTL("{1}'s {2} cured its poison!",battler.pbThis,battler.abilityName))
+      when :BURN
+        battle.pbDisplay(_INTL("{1}'s {2} healed its burn!",battler.pbThis,battler.abilityName))
+      when :PARALYSIS
+        battle.pbDisplay(_INTL("{1}'s {2} cured its paralysis!",battler.pbThis,battler.abilityName))
+      when :FROZEN
+        battle.pbDisplay(_INTL("{1}'s {2} defrosted it!",battler.pbThis,battler.abilityName))
+      end
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
