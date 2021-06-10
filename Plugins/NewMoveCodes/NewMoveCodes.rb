@@ -433,7 +433,7 @@ class PokeBattle_Move_51B < PokeBattle_Move
 end
 
 #===============================================================================
-# Heals user by half, then raises Sp. Atk if still unhealed fully. (Dragon Blood)
+# Heals user by half, then raises both Attack and Sp. Atk if still unhealed fully. (Dragon Blood)
 #===============================================================================
 class PokeBattle_Move_51C < PokeBattle_HealingMove
   def pbHealAmount(user)
@@ -447,6 +447,9 @@ class PokeBattle_Move_51C < PokeBattle_HealingMove
 	if user.hp < user.totalhp
 		if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
 			user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+		end
+		if user.pbCanRaiseStatStage?(:ATTACK,user,self)
+			user.pbRaiseStatStage(:ATTACK,1,user)
 		end
 	end
   end

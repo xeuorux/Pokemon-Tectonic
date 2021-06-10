@@ -114,7 +114,7 @@
 109,THUNDERFANG,Thunder Fang,009,65,ELECTRIC,Physical,100,15,100,NearOther,0,abei,The user bites with electrified fangs. It may also make the target flinch or leave it with paralysis.
 110,SHOCKWAVE,Shock Wave,0A5,60,ELECTRIC,Special,0,20,0,NearOther,0,bef,The user strikes the target with a quick jolt of electricity. This attack cannot be evaded.
 111,ELECTROWEB,Electroweb,044,55,ELECTRIC,Special,100,15,100,AllNearFoes,0,bef,"The user captures and attacks foes by using an electric net, which lowers their Speed stat."
-112,CHARGEBEAM,Charge Beam,020,50,ELECTRIC,Special,100,10,70,NearOther,0,bef,The user fires a concentrated bundle of electricity. It has a high chance to also raise the user's Sp. Atk stat.
+112,CHARGEBEAM,Charge Beam,020,50,ELECTRIC,Special,100,10,60,NearOther,0,bef,The user fires a concentrated bundle of electricity. It has a high chance to also raise the user's Sp. Atk stat.
 113,THUNDERSHOCK,Thunder Shock,007,40,ELECTRIC,Special,100,30,10,NearOther,0,bef,A jolt of electricity is hurled at the foe to inflict damage. It may also leave the target with paralysis.
 114,NUZZLE,Nuzzle,007,20,ELECTRIC,Physical,100,20,100,NearOther,0,abef,The user nuzzles its electrified cheeks against the target. This also leaves the target with paralysis.
 115,ELECTROBALL,Electro Ball,099,1,ELECTRIC,Special,100,10,0,NearOther,0,befn,The user hurls an electric orb at the foe. It does more damage the faster the user is.
@@ -463,7 +463,7 @@
 448,SPIKECANNON,Spike Cannon,0C0,25,STEEL,Physical,100,25,0,NearOther,0,bef,Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
 449,COMETPUNCH,Comet Punch,0C0,18,NORMAL,Physical,85,15,0,NearOther,0,abefj,The target is hit with a flurry of punches that strike two to five times in a row.
 450,FURYSWIPES,Fury Swipes,0C0,18,NORMAL,Physical,100,15,0,NearOther,0,abef,The target is raked with sharp claws or scythes for two to five times in quick succession.
-451,BARRAGE,Barrage,500,30,GRASS,Physical,85,20,0,NearOther,0,befn,Round objects are hurled at the target to strike two to five times in a row.
+451,HEADTHROW,Head Throw,500,30,GRASS,Physical,85,20,0,NearOther,0,befn,Round objects are hurled at the target to strike three times in a row.
 452,BIND,Bind,0CF,15,NORMAL,Physical,85,20,0,NearOther,0,abef,Things such as long bodies or tentacles are used to bind and squeeze the foe for four to five turns.
 453,DOUBLESLAP,Double Slap,0C0,15,NORMAL,Physical,85,10,0,NearOther,0,abef,"The target is slapped repeatedly, back and forth, two to five times in a row."
 454,FURYATTACK,Fury Attack,0C0,20,FLYING,Physical,100,20,0,NearOther,0,abef,The target is jabbed repeatedly with a horn or beak two to five times in a row.
@@ -477,7 +477,7 @@
 462,GUILLOTINE,Guillotine,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"A vicious, tearing attack with big pincers. The target will faint instantly if this attack hits."
 463,HORNDRILL,Horn Drill,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"The user stabs the foe with a horn that rotates like a drill. If it hits, the target faints instantly."
 464,NATURALGIFT,Natural Gift,096,1,NORMAL,Physical,100,15,0,NearOther,0,bef,The user draws power to attack by using its held Berry. The Berry determines its type and power.
-465,PRESENT,Present,16F,90,ICE,Special,100,15,0,NearOther,0,befn,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however."
+465,PACKAGE,Package,16F,90,ICE,Special,100,15,0,NearOther,0,befn,"The user throws an exploding package at enemies, or one filled with healing treats at allies."
 466,RETURN,Return,089,1,NORMAL,Physical,100,20,0,NearOther,0,abef,A full-power attack that grows more powerful the more the user likes its Trainer.
 467,SHOUT,Shout,000,40,NORMAL,Special,100,30,0,NearOther,1,befk,The user shouts with force at the target. This move always hits first.
 468,SPITUP,Spit Up,113,1,NORMAL,Special,100,10,0,NearOther,0,bf,The power stored using the move Stockpile is released all at once in an attack.
@@ -800,11 +800,11 @@
 780,VITALFORCE,Vital Force,08B,100,FIGHTING,Special,100,5,0,AllNearFoes,0,bef,"The user unleashes a vital energy wave. The lower the user's HP, the less powerful it becomes."
 781,CHIFLUX,Chi Flux,043,50,FIGHTING,Special,100,25,100,NearOther,0,abef,"The user contorts the target's chi with a special technique, lowering its defense."
 782,SHRED,Shred,509,80,DRAGON,Physical,100,15,0,NearOther,0,abef,"The user shreds through the opponents defenses, ignoring positive stat changes and abilities."
-783,CRIPPLINGBREATH,Crippling Breath,50A,70,DRAGON,Special,100,20,30,NearOther,0,bef,"The user exhales magical fumes which may poison or burn the target depending on their stats."
+783,CRIPPLINGBREATH,Crippling Breath,50A,70,DRAGON,Special,100,20,50,NearOther,0,bef,"The user exhales magical fumes which may poison or burn the target depending on their stats."
 784,TORNADO,Tornado,078,80,DRAGON,Special,100,15,20,AllNearFoes,0,be,"The user whips up a vicious tornado to tear at the opposing team. It may also make targets flinch."
 785,HARSHWORDS,Harsh Words,00F,40,DARK,Special,100,25,30,NearOther,0,bek,The target is confronted with painful words. It may make the target flinch.
 786,SLIGHT,Slight,50B,50,DARK,Special,100,25,0,NearOther,0,abefk,"When the user knocks out a target with this move, the user's Sp. Atk stat rises drastically."
-787,ANGSTWAVE,Angst Wave,0FC,120,DARK,Special,100,10,0,AllNearOthers,0,bef,"The user launches a wave of anxious feelings which overhwhelms all nearby Pokémon. The user takes recoil damage."
+787,ANGSTWAVE,Angst Wave,0FC,130,DARK,Special,100,10,0,AllNearOthers,0,bef,"The user launches a wave of anxious feelings which overhwhelms all nearby Pokémon. The user takes recoil damage."
 788,FROSTBITE,Frost Bite,50C,65,ICE,Physical,100,10,0,NearOther,0,befi,"The user bites into the target, crushing its flesh with frost. Its power doubles if the target is chilled."
 789,NUMBINGWIND,Numbing Wind,044,75,ICE,Special,100,15,50,NearOther,0,bef,"The user attacks with numbingly cold wild. It reduces the target's speed."
 790,CHIBURST,Chi Burst,03F,130,FIGHTING,Special,100,5,0,NearOther,0,bef,"The user attacks with a big burst of its inner energy. This sharply reduces the user's Sp. Atk stat."
@@ -822,7 +822,7 @@
 802,STONECHARGE,Stone Charge,0FB,85,ROCK,Physical,100,15,0,NearOther,0,abef,"The user charges into the target with its stony body. This also harms the user."
 803,GRANITEHEAD,Granite Head,0FB,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user smashes its rock-hard head into the target. The user also takes serious damage."
 804,TURBULENCE,Turbulence,013,100,FLYING,Special,50,10,100,Other,0,bef,"Chaotic winds push the target around. This move causes confusion if it hits."
-805,BLUSTER,Bluster,020,50,FLYING,Special,90,10,70,NearOther,0,bef,"The user fires a stormy gust at the target. It has a high chance to also raise the user's Sp. Atk."
+805,BLUSTER,Bluster,020,50,FLYING,Special,100,10,60,NearOther,0,bef,"The user fires a stormy gust at the target. It has a high chance to also raise the user's Sp. Atk."
 806,SHREDSHOT,Shred Shot,511,55,STEEL,Special,100,40,100,NearOther,0,befn,"The user shreads off bits of its own body to launch at the target. This also damages the user."
 807,SHARDS,Shards,511,90,STEEL,Special,100,10,100,NearOther,0,bef,"The user shoots shards of its own body at the target. This also damages the user."
 808,SPITEFULCHANT,Spiteful Chant,521,70,GHOST,Special,100,20,100,NearOther,0,befk,"The user unleashes its grudge, damaging the target and cutting 4 PP from the move last used by it."
