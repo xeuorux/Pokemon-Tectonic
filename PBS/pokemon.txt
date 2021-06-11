@@ -784,8 +784,8 @@ BattlerShadowSize = 2
 Name = Pikachu
 InternalName = PIKACHU
 Type1 = ELECTRIC
-BaseStats = 55,60,50,80,75,60
-#Total: 380
+BaseStats = 65,70,55,90,85,70
+#Total: 435
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 112
@@ -1241,8 +1241,8 @@ Name = Jigglypuff
 InternalName = JIGGLYPUFF
 Type1 = NORMAL
 Type2 = FAIRY
-BaseStats = 140,40,45,35,65,55
-#Total: 380
+BaseStats = 150,50,55,45,75,65
+#Total: 440
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 95
@@ -1275,8 +1275,8 @@ Name = Wigglytuff
 InternalName = WIGGLYTUFF
 Type1 = NORMAL
 Type2 = FAIRY
-BaseStats = 175,50,60,45,90,70
-#Total: 490
+BaseStats = 175,60,60,50,90,80
+#Total: 515
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 196
@@ -5620,8 +5620,8 @@ BattlerShadowSize = 2
 Name = Pichu
 InternalName = PICHU
 Type1 = ELECTRIC
-BaseStats = 30,40,25,70,55,45
-#Total: 265
+BaseStats = 40,50,35,70,65,55
+#Total: 315
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 41
@@ -5647,7 +5647,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PIKACHU,Level,14
+Evolutions = PIKACHU,Level,16
 #-------------------------------
 [173]
 Name = Cleffa
@@ -5687,8 +5687,8 @@ Name = Igglybuff
 InternalName = IGGLYBUFF
 Type1 = NORMAL
 Type2 = FAIRY
-BaseStats = 100,25,30,25,50,35
-#Total: 265
+BaseStats = 110,35,40,35,60,45
+#Total: 325
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 42
@@ -5714,7 +5714,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = JIGGLYPUFF,Level,14
+Evolutions = JIGGLYPUFF,Level,16
 #-------------------------------
 [175]
 Name = Togepi
@@ -5984,8 +5984,8 @@ Name = Marill
 InternalName = MARILL
 Type1 = WATER
 Type2 = FAIRY
-BaseStats = 70,55,55,40,35,50
-#Total: 305
+BaseStats = 80,65,65,45,55,65
+#Total: 375
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 88
@@ -9758,8 +9758,8 @@ Name = Azurill
 InternalName = AZURILL
 Type1 = WATER
 Type2 = FAIRY
-BaseStats = 50,35,40,20,20,40
-#Total: 205
+BaseStats = 60,50,50,40,40,45
+#Total: 285
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 38
@@ -9785,7 +9785,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MARILL,Level,14
+Evolutions = MARILL,Level,16
 Incense = SEAINCENSE
 #-------------------------------
 [299]
@@ -14138,7 +14138,7 @@ Name = Glameow
 InternalName = GLAMEOW
 Type1 = NORMAL
 BaseStats = 49,45,42,85,63,37
-#Total: 310
+#Total: 321
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 62
@@ -14171,7 +14171,7 @@ Name = Purugly
 InternalName = PURUGLY
 Type1 = NORMAL
 BaseStats = 80,65,75,85,112,70
-#Total: 452
+#Total: 487
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 158
@@ -20710,7 +20710,7 @@ InternalName = DURANT
 Type1 = BUG
 Type2 = STEEL
 BaseStats = 58,112,112,109,48,58
-#Total: 484
+#Total: 497
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 169
@@ -21945,7 +21945,7 @@ InternalName = FLOETTE
 Type1 = FAIRY
 Type2 = GRASS
 BaseStats = 69,50,60,57,70,89
-#Total: 385
+#Total: 395
 GenderRate = AlwaysFemale
 GrowthRate = Medium
 BaseEXP = 130
@@ -21979,7 +21979,7 @@ InternalName = FLORGES
 Type1 = FAIRY
 Type2 = GRASS
 BaseStats = 85,60,80,65,90,130
-#Total: 470
+#Total: 510
 GenderRate = AlwaysFemale
 GrowthRate = Medium
 BaseEXP = 248
@@ -29413,7 +29413,7 @@ Weight = 64.0
 Color = White
 Shape = Head
 Kind = Giant Butterfly
-Pokedex = TO DO
+Pokedex = Crystallized energy makes up this Pokémon's blindingly bright and highly toxic scales.
 WildItemUncommon = SILVERPOWDER
 BattlerPlayerX = 0
 BattlerPlayerY = 2
@@ -29575,7 +29575,7 @@ Weight = 31.5
 Color = Red
 Shape = Head
 Kind = Ascended
-Pokedex = TO DO
+Pokedex = This Pokémon can go up to four years without eating a single meal. Through intense training, it is able to fight in a manner indistinguishable from a dance.
 BattlerPlayerX = 0
 BattlerPlayerY = 11
 BattlerEnemyX = 0
@@ -29671,7 +29671,7 @@ Weight = 320.5
 Color = Red
 Shape = Head
 Kind = Eruption
-Pokedex = TO DO
+Pokedex = Magma builds up in its body over time. If this Pokémon does not regularly erupt, it might accidentally destroy the area around it.
 BattlerPlayerX = 0
 BattlerPlayerY = 14
 BattlerEnemyX = 0
@@ -29703,7 +29703,7 @@ Weight = 20.6
 Color = Blue
 Shape = Head
 Kind = Humming
-Pokedex = TO DO
+Pokedex = This Pokémon's singing can bring even the most stoic Trainers to tears. Those who fall asleep on it are said to experience beautiful dreams.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
@@ -29831,7 +29831,7 @@ Weight = 185.0
 Color = White
 Shape = Head
 Kind = Frost Tree
-Pokedex = TO DO
+Pokedex = Despite appearances, these Pokémon are quite friendly. They have been known to save those who have fallen unconscious in a blizzard.
 WildItemUncommon = NEVERMELTICE
 BattlerPlayerX = 0
 BattlerPlayerY = 11
@@ -29865,7 +29865,7 @@ Weight = 32.0
 Color = White
 Shape = Head
 Kind = Hearing
-Pokedex = TO DO
+Pokedex = Researchers have studied this Pokémon's hearing abilities to develop advanced medical equipment. They have an unyielding patience.
 WildItemCommon = ORANBERRY
 WildItemUncommon = SITRUSBERRY
 BattlerPlayerX = 0
@@ -29899,7 +29899,7 @@ Weight = 125.5
 Color = Green
 Shape = Head
 Kind = Sand Snake
-Pokedex = TO DO
+Pokedex = Sand swirls around its body with such speed and power that it could pulverize a skyscraper.
 BattlerPlayerX = 0
 BattlerPlayerY = 3
 BattlerEnemyX = 0
