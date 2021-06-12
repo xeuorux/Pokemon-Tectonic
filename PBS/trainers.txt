@@ -122,21 +122,36 @@ Pokemon = SNUBBULL,15
 Pokemon = SWIRLIX,15
 #-------------------------------
 [LEADER_Lainie,Lainie]
-LoseText = "Good to make your aquaintance!"
+LoseText = "Pleased to make your aquaintance!"
 Pokemon = CUTIEFLY,15
 	Moves = STUNSPORE,FAIRYWIND,POUT,REFLECT
 	Ability = 1
 Pokemon = FLABEBE,15
+Pokemon = SWIRLIX,15
+	Name = Lik
+	Item = SHELLBELL
+	Moves = EAGERTICKLING,FAKETEARS,EMBER,PLAYNICE
 Pokemon = VANILLITE,15
 	Moves = ICYWIND,TAUNT,FAIRYWIND,SWAGGER
 	Ability = 1
+#-------------------------------
+[LEADER_Lainie,Lainie,1]
+LoseText = "Pleased to make your aquaintance!"
+Pokemon = CUTIEFLY,15
+	Moves = STUNSPORE,FAIRYWIND,POUT,REFLECT
+	Ability = 1
+Pokemon = IMPIDIMP,15
+Pokemon = FLABEBE,15
 Pokemon = MAWILE,15
 	Item = DARKGEM
 	Moves = BITE,SHOTPUT,EAGERTICKLING,ASTONISH
 Pokemon = SWIRLIX,15
 	Name = Lik
 	Item = SHELLBELL
-	Moves = DRAININGKISS,FAKETEARS,EMBER,PLAYNICE
+	Moves = EAGERTICKLING,FAKETEARS,EMBER,PLAYNICE
+Pokemon = VANILLITE,15
+	Moves = ICYWIND,TAUNT,FAIRYWIND,SWAGGER
+	Ability = 1
 # SECTION 2
 #-------------------------------
 [SUPERNERD,Declan]
@@ -264,11 +279,25 @@ Pokemon = AMAURA,21
 Pokemon = YANMA,21
 	ITEM = BUGGEM
 	Moves = UTURN,AERIALACE,SHOUT,ROOST
+Pokemon = SHIELDON,21
+Pokemon = OMANYTE,21
+#-------------------------------
+[LEADER_Bartholomew,Bartholomew,1]
+LoseText = "Top marks, and my compliments to your Pokémon."
+Pokemon = AMAURA,21
+	Ability = 1
+Pokemon = YANMA,21
+	ITEM = BUGGEM
+	Moves = UTURN,AERIALACE,SHOUT,ROOST
 Pokemon = OMANYTE,21
 Pokemon = SHIELDON,21
 Pokemon = ARCHEN,21
-	Item = SHELLBELL
+	Item = LUMBERRY
 	Moves = UTURN,PLUCK,ROCKTHROW,DRAGONCLAW
+Pokemon = GOLETT,21
+	Ability = 0
+	Item = LEFTOVERS
+	Moves = RUMBLE,SHADOWPUNCH,FACADE,LOWKICK
 #-------------------------------
 [BUGCATCHER,Alfie]
 LoseText = "You're scarier than that trail!"
