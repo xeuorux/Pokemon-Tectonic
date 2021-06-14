@@ -818,7 +818,7 @@
 798,SLAG,Slag,005,80,STEEL,Special,100,10,30,NearOther,0,befn,"The user sprays mining waste at the target. This may leave the target poisoned."
 799,MAGNETHRASH,Magnethrash,0A5,90,STEEL,Physical,0,15,0,NearOther,0,abef,"The user generates an intense magnetic connection between it and the target, striking it without fail."
 800,MAGNETWAVE,Magnet Wave,013,40,STEEL,Special,100,35,10,NearOther,0,bef,"The target is hit by a wave of magnetic energy. It may also leave the target confused."
-801,BLUNTSTRIKE,Blunt Strike,0FB,55,ROCK,Physical,100,30,0,NearOther,0,abef,"The user slams the target with blunt force, also harming the user."
+801,CRASH,Crash,0FB,55,ROCK,Physical,100,30,0,NearOther,0,abef,"The user slams the target with blunt force, also harming the user."
 802,STONECHARGE,Stone Charge,0FB,85,ROCK,Physical,100,15,0,NearOther,0,abef,"The user charges into the target with its stony body. This also harms the user."
 803,GRANITEHEAD,Granite Head,0FB,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user smashes its rock-hard head into the target. The user also takes serious damage."
 804,TURBULENCE,Turbulence,013,100,FLYING,Special,50,10,100,Other,0,bef,"Chaotic winds push the target around. This move causes confusion if it hits."
@@ -847,7 +847,7 @@
 828,PSYCHICOVERLOAD,Psychic Overload,0D2,120,PSYCHIC,Special,100,10,0,RandomNearFoe,0,abef,"The user overloads its mind to attack for two to three turns. It then becomes confused, however."
 829,PSYPIERCE,Psypierce,046,70,PSYCHIC,Special,100,20,50,NearOther,0,bef,"The user manifests a piercing bolt of psychic energy. It has a 50% chance to lower Sp. Def."
 830,LIGHTSHOW,Lightshow,013,20,BUG,Special,100,20,100,NearOther,0,bef,"The user confuses the target by shooting it with distracting lights."
-831,SIGNALOVERLOAD,Signal Overload,013,110,BUG,Special,70,15,30,NearOther,0,bef,"The target is struck with a complicated projectile. This has a 20% chance to confuse it."
+831,SIGNALOVERLOAD,Signal Overload,013,110,BUG,Special,70,15,30,NearOther,0,bef,"The target is struck with a complicated projectile. This has a 30% chance to confuse it."
 832,PETRIFY,Petrify,007,70,ROCK,Special,100,15,50,NearOther,0,bef,"The user turns the target into stone. This has a 50% chance to paralyze it."
 833,CRYSTALGLINT,Crystal Glint,000,60,ROCK,Special,100,20,0,NearOther,0,befh,"The user attacks with the bright glint of crystals. This move has a high chance to crit."
 834,WAILINGBLOW,Wailing Blow,010,80,GHOST,Physical,100,15,30,NearOther,0,abe,"The user attacks while wailing. This has a 30% chance to make the target flinch."
@@ -886,3 +886,4 @@
 867,MUDTHROW,Mud Throw,044,40,GROUND,Special,100,15,10,NearOther,0,bef,The user attacks by hurling a blob of mud at the target. It has a 10% chance to reduce the target's Speed.
 868,BLINDINGSAND,Blinding Sand,047,40,GROUND,Special,100,10,100,NearOther,0,bef,The user attacks the opponent by throwing sand at its eyes, reducing accuracy.
 869,PURIFYINGWATER,Purifying Water,019,50,WATER,Special,100,5,0,NearOther,0,bef,"The user shoots purified Water, healing the status problems of all the party Pokémon in the process."
+870,CRITICALERROR,Critical Error,0A0,60,GHOST,Special,100,10,0,NearOther,0,bef,"The user causes a glitch in reality. This attack always results in a critical hit."
