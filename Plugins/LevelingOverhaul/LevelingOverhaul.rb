@@ -1,4 +1,13 @@
+
+
 LEVEL_CAPS_USED = true
+
+class Pokemon
+  # Max total EVs
+  EV_LIMIT      = 100
+  # Max EVs that a single stat can have
+  EV_STAT_LIMITS = [50,30,10]
+end
 
 class PokeBattle_Battle
   #=============================================================================
@@ -22,7 +31,7 @@ class PokeBattle_Battle
       end
     else
 		# Go through each battler in turn to find the Pokémon that participated in
-		# battle against it, and award those Pokémon Exp/EVs
+		# battle against it, and award those Pokémon Exp
 		expAll = (GameData::Item.exists?(:EXPALL) && $PokemonBag.pbHasItem?(:EXPALL))
 		p1 = pbParty(0)
 		@battlers.each do |b|
@@ -44,16 +53,15 @@ class PokeBattle_Battle
 			  expShare.push(i)
 			end
 		  end
-		  # Calculate EV and Exp gains for the participants
+		  # Calculate Exp gains for the participants
 		  if numPartic>0 || expShare.length>0 || expAll
-			# Gain EVs and Exp for participants
+			# Gain nd Exp for participants
 			eachInTeam(0,0) do |pkmn,i|
 			  next if !pkmn.able?
 			  next unless b.participants.include?(i) || expShare.include?(i)
-			  pbGainEVsOne(i,b)
 			  pbGainExpOne(i,b,numPartic,expShare,expAll)
 			end
-			# Gain EVs and Exp for all other Pokémon because of Exp All
+			# Gain Exp for all other Pokémon because of Exp All
 			if expAll
 			  showMessage = true
 			  eachInTeam(0,0) do |pkmn,i|
@@ -61,7 +69,6 @@ class PokeBattle_Battle
 				next if b.participants.include?(i) || expShare.include?(i)
 				pbDisplayPaused(_INTL("Your party Pokémon in waiting also got Exp. Points!")) if showMessage
 				showMessage = false
-				pbGainEVsOne(i,b)
 				pbGainExpOne(i,b,numPartic,expShare,expAll,false)
 			  end
 			end
@@ -72,12 +79,12 @@ class PokeBattle_Battle
     end
   end
   
-    def pbGainExpOne(idxParty,defeatedBattler,numPartic,expShare,expAll,showMessages=true)
-    pkmn = pbParty(0)[idxParty]   # The Pokémon gaining EVs from defeatedBattler
+  def pbGainExpOne(idxParty,defeatedBattler,numPartic,expShare,expAll,showMessages=true)
+    pkmn = pbParty(0)[idxParty]   # The Pokémon gaining exp from defeatedBattler
     growth_rate = pkmn.growth_rate
     # Don't bother calculating if gainer is already at max Exp
     if pkmn.exp>=growth_rate.maximum_exp
-      pkmn.calc_stats   # To ensure new EVs still have an effect
+      pkmn.calc_stats
       return
     end
     isPartic    = defeatedBattler.participants.include?(idxParty)
@@ -450,13 +457,13 @@ class Pokemon
 	  def calcHP(base, level, sv)
 		return 1 if base == 1   # For Shedinja
 		pseudoLevel = 15.0+(level.to_f/2.0)
-		return (((base.to_f * 2.0 + sv.to_f) * pseudoLevel / 100.0) + pseudoLevel + 10.0).floor
+		return (((base.to_f * 2.0 + sv.to_f * 2) * pseudoLevel / 100.0) + pseudoLevel + 10.0).floor
 	  end
 
 	  # @return [Integer] the specified stat of this Pokémon (not used for total HP)
 	  def calcStat(base, level, sv)
 		pseudoLevel = 15.0+(level.to_f/2.0)
-		return ((((base.to_f * 2.0 + (sv.to_f / 4)) * pseudoLevel / 100.0) + 5.0)).floor
+		return ((((base.to_f * 2.0 + sv.to_f * 2) * pseudoLevel / 100.0) + 5.0)).floor
 	  end
 end
 
@@ -531,5 +538,82 @@ def pbChangeLevel(pkmn,newlevel,scene)
       }
     end
 	pkmn.changeHappiness("vitamin")
+  end
+end
+
+# Style value adjustments
+
+def pbStyleValueScreen(pkmn)
+	pbFadeOutIn {
+		scene = StyleValueScene.new
+		screen = StyleValueScreen.new(scene)
+		screen.pbStartScreen(pkmn)
+	}
+end
+
+class StyleValueScene
+
+  def pbDisplay(msg,brief=false)
+    UIHelper.pbDisplay(@sprites["msgwindow"],msg,brief) { pbUpdate }
+  end
+
+  def pbConfirm(msg)
+    UIHelper.pbConfirm(@sprites["msgwindow"],msg) { pbUpdate }
+  end
+
+  def pbUpdate
+    pbUpdateSpriteHash(@sprites)
+  end
+
+  def pbStartScene(pokemon)
+    @pokemon=pokemon
+    # Create sprite hash
+    @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
+    @viewport.z=99999
+    @sprites={}
+	addBackgroundPlane(@sprites,"bg","reminderbg",@viewport)
+    @sprites["pokeicon"]=PokemonIconSprite.new(@pokemon,@viewport)
+    @sprites["pokeicon"].setOffset(PictureOrigin::Center)
+    @sprites["pokeicon"].x=320
+    @sprites["pokeicon"].y=84
+	@sprites["background"]=IconSprite.new(0,0,@viewport)
+    @sprites["background"].setBitmap("Graphics/Pictures/reminderSel")
+    @sprites["background"].y=78
+    @sprites["background"].src_rect=Rect.new(0,72,258,72)
+    @sprites["overlay"]=BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
+    pbSetSystemFont(@sprites["overlay"].bitmap)
+	@sprites["msgwindow"]=Window_AdvancedTextPokemon.new("")
+    @sprites["msgwindow"].visible=false
+    @sprites["msgwindow"].viewport=@viewport
+    
+	# CALL COMPLEX SCENE DRAWING METHODS HERE #
+	
+    pbDeactivateWindows(@sprites)
+    # Fade in all sprites
+    pbFadeInAndShow(@sprites) { pbUpdate }
+  end
+
+  # End the scene here
+  def pbEndScene
+    pbFadeOutAndHide(@sprites) { pbUpdate }
+    pbDisposeSpriteHash(@sprites)
+    # DISPOSE OF BITMAPS HERE #
+  end
+end
+
+class StyleValueScreen
+  def initialize(scene)
+    @scene = scene
+  end
+
+  def pbStartScreen(pkmn)
+    @scene.pbStartScene(pkmn)
+    loop do
+      if Input.trigger?(Input::USE)
+        if @scene.pbConfirm(_INTL("Stop adjusting style values?"))
+          return
+        end
+      end
+    end
   end
 end

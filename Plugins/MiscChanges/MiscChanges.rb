@@ -927,7 +927,7 @@ module MessageConfig
 		when 2 then return -2
 		when 3 then return -6
 		end
-    return TextSpeed || 1
+    return TEXT_SPEED || 1
   end
 end
 

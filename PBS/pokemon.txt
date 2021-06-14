@@ -589,8 +589,8 @@ BattlerShadowSize = 2
 Name = Rattata
 InternalName = RATTATA
 Type1 = NORMAL
-BaseStats = 40,66,45,82,35,50
-#Total: 318
+BaseStats = 50,76,55,87,45,60
+#Total: 373
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 51
@@ -616,14 +616,14 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = RATICATE,Level,20
+Evolutions = RATICATE,Level,25
 #-------------------------------
 [20]
 Name = Raticate
 InternalName = RATICATE
 Type1 = NORMAL
-BaseStats = 55,101,60,97,50,70
-#Total: 433
+BaseStats = 65,101,70,107,60,80
+#Total: 483
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 145
