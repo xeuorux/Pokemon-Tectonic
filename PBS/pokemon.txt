@@ -493,8 +493,8 @@ Evolutions = WORNET,Level,45
 Name = Pidgey
 InternalName = PIDGEY
 Type1 = FLYING
-BaseStats = 45,40,45,61,50,40
-#Total: 281
+BaseStats = 50,45,50,67,55,45
+#Total: 312
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 50
@@ -520,14 +520,14 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PIDGEOTTO,Level,14
+Evolutions = PIDGEOTTO,Level,18
 #-------------------------------
 [17]
 Name = Pidgeotto
 InternalName = PIDGEOTTO
 Type1 = FLYING
-BaseStats = 68,45,60,76,75,55
-#Total: 379
+BaseStats = 78,55,70,86,85,65
+#Total: 439
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 122
@@ -552,14 +552,14 @@ BattlerEnemyX = 0
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PIDGEOT,Level,26
+Evolutions = PIDGEOT,Level,34
 #-------------------------------
 [18]
 Name = Pidgeot
 InternalName = PIDGEOT
 Type1 = FLYING
-BaseStats = 83,50,75,101,100,70
-#Total: 479
+BaseStats = 88,55,80,106,105,75
+#Total: 509
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 216
@@ -5853,8 +5853,8 @@ Name = Mareep
 InternalName = MAREEP
 Type1 = ELECTRIC
 Type2 = NORMAL
-BaseStats = 55,40,40,35,65,45
-#Total: 280
+BaseStats = 60,45,45,40,70,50
+#Total: 310
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 56
@@ -5880,15 +5880,15 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = FLAAFFY,Level,15
+Evolutions = FLAAFFY,Level,18
 #-------------------------------
 [180]
 Name = Flaaffy
 InternalName = FLAAFFY
 Type1 = ELECTRIC
 Type2 = NORMAL
-BaseStats = 70,55,55,45,80,60
-#Total: 365
+BaseStats = 80,65,65,55,90,70
+#Total: 425
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 128
@@ -5913,7 +5913,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = AMPHAROS,Level,30
+Evolutions = AMPHAROS,Level,34
 #-------------------------------
 [181]
 Name = Ampharos
@@ -8832,8 +8832,8 @@ Name = Lotad
 InternalName = LOTAD
 Type1 = WATER
 Type2 = GRASS
-BaseStats = 40,30,40,30,40,50
-#Total: 230
+BaseStats = 55,45,55,45,55,65
+#Total: 320
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 44
@@ -8860,15 +8860,15 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LOMBRE,Level,14
+Evolutions = LOMBRE,Level,16
 #-------------------------------
 [271]
 Name = Lombre
 InternalName = LOMBRE
 Type1 = WATER
 Type2 = GRASS
-BaseStats = 60,50,65,50,60,70
-#Total: 355
+BaseStats = 70,60,75,60,70,80
+#Total: 415
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 119
@@ -8901,8 +8901,8 @@ Name = Ludicolo
 InternalName = LUDICOLO
 Type1 = WATER
 Type2 = GRASS
-BaseStats = 80,70,100,70,90,100
-#Total: 510
+BaseStats = 75,65,95,65,85,95
+#Total: 480
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 216
@@ -9691,8 +9691,8 @@ BattlerShadowSize = 2
 Name = Makuhita
 InternalName = MAKUHITA
 Type1 = FIGHTING
-BaseStats = 60,50,35,30,25,35
-#Total: 235
+BaseStats = 70,65,50,40,40,50
+#Total: 315
 GenderRate = Female25Percent
 GrowthRate = Fluctuating
 BaseEXP = 47
@@ -9719,14 +9719,14 @@ BattlerEnemyX = 0
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = HARIYAMA,Level,14
+Evolutions = HARIYAMA,Level,20
 #-------------------------------
 [297]
 Name = Hariyama
 InternalName = HARIYAMA
 Type1 = FIGHTING
-BaseStats = 80,100,70,50,40,70
-#Total: 410
+BaseStats = 80,100,70,50,50,70
+#Total: 420
 GenderRate = Female25Percent
 GrowthRate = Fluctuating
 BaseEXP = 166
@@ -11847,7 +11847,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = WOBBUFFET,Level,15
+Evolutions = WOBBUFFET,Level,25
 Incense = LAXINCENSE
 #-------------------------------
 [361]
@@ -12993,8 +12993,8 @@ BattlerShadowSize = 2
 Name = Starly
 InternalName = STARLY
 Type1 = FLYING
-BaseStats = 40,55,30,60,30,30
-#Total: 245
+BaseStats = 50,65,40,70,40,40
+#Total: 305
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 49
@@ -13020,14 +13020,14 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = STARAVIA,Level,14
+Evolutions = STARAVIA,Level,18
 #-------------------------------
 [397]
 Name = Staravia
 InternalName = STARAVIA
 Type1 = FLYING
-BaseStats = 55,75,50,80,40,40
-#Total: 340
+BaseStats = 65,85,60,90,45,55
+#Total: 400
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 119
@@ -13058,8 +13058,8 @@ Evolutions = STARAPTOR,Level,34
 Name = Staraptor
 InternalName = STARAPTOR
 Type1 = FLYING
-BaseStats = 85,120,70,100,50,60
-#Total: 485
+BaseStats = 95,120,80,100,50,60
+#Total: 505
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 218
@@ -13089,8 +13089,8 @@ BattlerShadowSize = 2
 Name = Bidoof
 InternalName = BIDOOF
 Type1 = NORMAL
-BaseStats = 59,45,40,31,35,40
-#Total: 250
+BaseStats = 69,55,50,41,50,45
+#Total: 310
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 50
@@ -13116,15 +13116,15 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = BIBAREL,Level,15
+Evolutions = BIBAREL,Level,24
 #-------------------------------
 [400]
 Name = Bibarel
 InternalName = BIBAREL
 Type1 = NORMAL
 Type2 = WATER
-BaseStats = 79,85,60,71,55,60
-#Total: 410
+BaseStats = 79,85,60,71,65,60
+#Total: 420
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 144
@@ -13219,8 +13219,8 @@ BattlerShadowSize = 2
 Name = Shinx
 InternalName = SHINX
 Type1 = ELECTRIC
-BaseStats = 45,65,34,45,40,34
-#Total: 263
+BaseStats = 55,75,44,55,50,44
+#Total: 323
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 53
@@ -13246,15 +13246,15 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LUXIO,Level,15
+Evolutions = LUXIO,Level,22
 #-------------------------------
 [404]
 Name = Luxio
 InternalName = LUXIO
 Type1 = ELECTRIC
 Type2 = DARK
-BaseStats = 60,85,49,60,60,49
-#Total: 363
+BaseStats = 70,95,59,70,70,59
+#Total: 423
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 127
@@ -13279,7 +13279,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LUXRAY,Level,30
+Evolutions = LUXRAY,Level,38
 #-------------------------------
 [405]
 Name = Luxray
@@ -13318,8 +13318,8 @@ Name = Budew
 InternalName = BUDEW
 Type1 = GRASS
 Type2 = POISON
-BaseStats = 40,30,35,55,50,70
-#Total: 280
+BaseStats = 40,45,35,55,70,60
+#Total: 305
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 56
@@ -13346,7 +13346,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ROSELIA,Level,15
+Evolutions = ROSELIA,Level,16
 Incense = ROSEINCENSE
 #-------------------------------
 [407]
@@ -23929,8 +23929,8 @@ BattlerShadowSize = 2
 Name = Pikipek
 InternalName = PIKIPEK
 Type1 = FLYING
-BaseStats = 35,75,30,65,30,30
-#Total: 265
+BaseStats = 45,75,40,70,40,45
+#Total: 315
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 53
@@ -23957,14 +23957,14 @@ BattlerEnemyX = 0
 BattlerEnemyY = 31
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = TRUMBEAK,Level,14
+Evolutions = TRUMBEAK,Level,16
 #-------------------------------
 [732]
 Name = Trumbeak
 InternalName = TRUMBEAK
 Type1 = FLYING
-BaseStats = 55,85,50,75,40,50
-#Total: 355
+BaseStats = 65,95,60,85,50,60
+#Total: 415
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 124
@@ -23990,14 +23990,14 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = TOUCANNON,Level,28
+Evolutions = TOUCANNON,Level,30
 #-------------------------------
 [733]
 Name = Toucannon
 InternalName = TOUCANNON
 Type1 = FLYING
-BaseStats = 80,120,75,60,75,75
-#Total: 485
+BaseStats = 85,120,75,60,80,80
+#Total: 500
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 218
@@ -26966,7 +26966,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 30
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = DOTTLER,Level,15
+Evolutions = DOTTLER,Level,16
 #-------------------------------
 [825]
 Name = Dottler
