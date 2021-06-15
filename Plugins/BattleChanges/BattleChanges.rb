@@ -463,6 +463,17 @@ class PokeBattle_Battle
       b.pbAbilitiesOnDamageTaken(oldHP)
       b.pbFaint if b.fainted?
     end
+	# Octolock
+    priority.each do |b|
+      next if !b.effects[PBEffects::Octolock]
+	  octouser = @battlers[b.effects[PBEffects::OctolockUser]]
+      if b.pbCanLowerStatStage?(PBStats::DEFENSE,octouser,self)
+        b.pbLowerStatStage(PBStats::DEFENSE,1,octouser,true,false,true)
+      end
+      if b.pbCanLowerStatStage?(PBStats::SPDEF,octouser,self)
+        b.pbLowerStatStage(PBStats::SPDEF,1,octouser,true,false,true)
+      end
+    end
     # Trapping attacks (Bind/Clamp/Fire Spin/Magma Storm/Sand Tomb/Whirlpool/Wrap)
     priority.each do |b|
       next if b.fainted? || b.effects[PBEffects::Trapping]==0
@@ -479,6 +490,8 @@ class PokeBattle_Battle
         when :SANDTOMB    then pbCommonAnimation("SandTomb", b)
         when :WRAP        then pbCommonAnimation("Wrap", b)
         when :INFESTATION then pbCommonAnimation("Infestation", b)
+		when :SNAPTRAP 	  then pbCommonAnimation("SnapTrap",b)
+        when :THUNDERCAGE then pbCommonAnimation("ThunderCage",b)
         else                   pbCommonAnimation("Wrap", b)
         end
         if b.takesIndirectDamage?
@@ -996,9 +1009,13 @@ class PokeBattle_Battle
         return true
       end
     end
-    # Other certain switching effects
     #return true if Settings::MORE_TYPE_EFFECTS && battler.pbHasType?(:GHOST)
-    # Other certain trapping effects
+	
+	# Other certain switching effects
+    if battler.effects[PBEffects::OctolockUser]>=0
+      partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
+      return false
+    end
     if battler.effects[PBEffects::Trapping]>0 ||
        battler.effects[PBEffects::MeanLook]>=0 ||
        battler.effects[PBEffects::Ingrain] ||
@@ -1042,6 +1059,9 @@ class PokeBattle_Battle
     return false if battler.effects[PBEffects::Trapping]>0 ||
                     battler.effects[PBEffects::MeanLook]>=0 ||
                     battler.effects[PBEffects::Ingrain] ||
+                    battler.effects[PBEffects::JawLock] ||
+                    battler.effects[PBEffects::OctolockUser]>=0 ||
+                    battler.effects[PBEffects::NoRetreat] ||
                     @field.effects[PBEffects::FairyLock]>0
     eachOtherSideBattler(idxBattler) do |b|
       return false if b.abilityActive? &&
@@ -1128,6 +1148,14 @@ class PokeBattle_Battle
           @decision = 3
           return 1
         end
+      end
+	  if battler.effects[PBEffects::JawLock]
+		  @battlers.each do |b|
+			if (battler.effects[PBEffects::JawLockUser] == b.index) && !b.fainted?
+			  partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
+			  return false
+			end
+		  end
       end
       # Other certain trapping effects
       if battler.effects[PBEffects::Trapping]>0 ||
@@ -1572,6 +1600,12 @@ class PokeBattle_Move
 		ret /= 2 if Effectiveness.super_effective_type?(moveType, defType)
 	end
 	
+	# Tar Shot
+	if target.effects[PBEffects::TarShot] && moveType == :FIRE
+      ret = PBTypeEffectiveness::SUPER_EFFECTIVE_ONE if Effectiveness.normal_type?(moveType,target.type1,target.type2)
+      ret = PBTypeEffectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.not_very_effective_type?(moveType,target.type1,target.type2)
+    end
+	
 	# Bosses
 	if user.boss || target.boss
 		ret = Effectiveness::NOT_VERY_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
@@ -1715,7 +1749,9 @@ class PokeBattle_Battler
       @effects[PBEffects::PowerTrick]        = false
       @effects[PBEffects::Substitute]        = 0
       @effects[PBEffects::Telekinesis]       = 0
-
+	  @effects[PBEffects::JawLock]           = false
+      @effects[PBEffects::JawLockUser]       = -1
+	  @effects[PBEffects::NoRetreat]         = false
 	  @effects[PBEffects::Charm]         = 0
 	  @effects[PBEffects::CharmChance]   = 0
     end
@@ -1848,6 +1884,20 @@ class PokeBattle_Battler
       b.effects[PBEffects::Trapping]     = 0
       b.effects[PBEffects::TrappingUser] = -1
     end
+	@effects[PBEffects::Octolock]     = false
+    @effects[PBEffects::OctolockUser] = -1
+    @battle.eachBattler do |b|   # Other battlers lose their lock-on against self - Octolock
+      next if !b.effects[PBEffects::Octolock]
+      next if b.effects[PBEffects::OctolockUser]!=@index
+      b.effects[PBEffects::Octolock]     = false
+      b.effects[PBEffects::OctolockUser] = -1
+    end
+    @battle.eachBattler do |b|   # Other battlers lose their lock-on against self - Jawlock
+      next if !b.effects[PBEffects::JawLock]
+      next if b.effects[PBEffects::JawLockUser]!=@index
+      b.effects[PBEffects::Jawlock]     = false
+      b.effects[PBEffects::JawLockUser] = -1
+    end
     @effects[PBEffects::Truant]              = false
     @effects[PBEffects::TwoTurnAttack]       = nil
     @effects[PBEffects::Type3]               = nil
@@ -1872,7 +1922,6 @@ class PokeBattle_Battler
 	@effects[PBEffects::CreepOut]		 	 = false
 	@effects[PBEffects::LuckyStar]       	 = false
 	@effects[PBEffects::Inured]       	 	 = false
-	@effects[PBEffects::NoRetreat]			 = false
   end
 
 	def takesSandstormDamage?
@@ -2252,7 +2301,68 @@ class PokeBattle_Battler
     return true
   end
   
-  def pbLowerStatStageByCause(stat,increment,user,cause,showAnim=true,ignoreContrary=false)
+  def pbLowerStatStage(stat,increment,user,showAnim=true,ignoreContrary=false,ignoreMirrorArmor=false)
+    # Mirror Armor
+    if !ignoreMirrorArmor && hasActiveAbility?(:MIRRORARMOR) && (!user || user.index!=@index) && 
+	  !@battle.moldBreaker && pbCanLowerStatStage?(stat)
+      battle.pbShowAbilitySplash(self)
+      @battle.pbDisplay(_INTL("{1}'s Mirror Armor activated!",pbThis))
+      if !user
+        battle.pbHideAbilitySplash(self)
+        return false
+      end
+      if !user.hasActiveAbility?(:MIRRORARMOR) && user.pbCanLowerStatStage?(stat,nil,nil,true)
+        user.pbLowerStatStageByAbility(stat,increment,user,splashAnim=false,checkContact=false)
+		# Trigger user's abilities upon stat loss
+		if user.abilityActive?
+		  BattleHandlers.triggerAbilityOnStatLoss(user.ability,user,stat,self)
+		end
+      end
+      battle.pbHideAbilitySplash(self)
+      return false
+    end
+	# Contrary
+    if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
+      return pbRaiseStatStage(stat,increment,user,showAnim,true)
+    end
+    # Perform the stat stage change
+    increment = pbLowerStatStageBasic(stat,increment,ignoreContrary)
+    return false if increment<=0
+    # Stat down animation and message
+    @battle.pbCommonAnimation("StatDown",self) if showAnim
+    arrStatTexts = [
+       _INTL("{1}'s {2} fell!",pbThis,GameData::Stat.get(stat).name),
+       _INTL("{1}'s {2} harshly fell!",pbThis,GameData::Stat.get(stat).name),
+       _INTL("{1}'s {2} severely fell!",pbThis,GameData::Stat.get(stat).name)]
+    @battle.pbDisplay(arrStatTexts[[increment-1,2].min])
+    # Trigger abilities upon stat loss
+    if abilityActive?
+      BattleHandlers.triggerAbilityOnStatLoss(self.ability,self,stat,user)
+    end
+	@effects[PBEffects::LashOut] = true
+    return true
+  end
+  
+  def pbLowerStatStageByCause(stat,increment,user,cause,showAnim=true,ignoreContrary=false,ignoreMirrorArmor=false)
+	# Mirror Armor
+    if !ignoreMirrorArmor && hasActiveAbility?(:MIRRORARMOR) && (!user || user.index!=@index) && 
+	  !@battle.moldBreaker && pbCanLowerStatStage?(stat)
+      battle.pbShowAbilitySplash(self)
+      @battle.pbDisplay(_INTL("{1}'s Mirror Armor activated!",pbThis))
+      if !user
+        battle.pbHideAbilitySplash(self)
+        return false
+      end
+      if !user.hasActiveAbility?(:MIRRORARMOR) && user.pbCanLowerStatStage?(stat,nil,nil,true)
+        user.pbLowerStatStageByAbility(stat,increment,user,splashAnim=false,checkContact=false)
+		# Trigger user's abilities upon stat loss
+		if user.abilityActive?
+		  BattleHandlers.triggerAbilityOnStatLoss(user.ability,user,stat,self)
+		end
+      end
+      battle.pbHideAbilitySplash(self)
+      return false
+    end
     # Contrary
     if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
       return pbRaiseStatStageByCause(stat,increment,user,cause,showAnim,true)
@@ -2282,6 +2392,7 @@ class PokeBattle_Battler
     if abilityActive?
       BattleHandlers.triggerAbilityOnStatLoss(self.ability,self,stat,user)
     end
+	@effects[PBEffects::LashOut] = true
     return true
   end
   
@@ -2999,6 +3110,60 @@ class PokeBattle_Battler
     end
   end
   
+  # Everything in this method is negated by Sheer Force.
+  def pbEffectsAfterMove2(user,targets,move,numHits,switchedBattlers)
+    hpNow = user.hp   # Intentionally determined now, before Shell Bell
+    # Target's held item (Eject Button, Red Card)
+    switchByItem = []
+    @battle.pbPriority(true).each do |b|
+      next if !targets.any? { |targetB| targetB.index==b.index }
+      next if b.damageState.unaffected || b.damageState.calcDamage==0 ||
+         switchedBattlers.include?(b.index)
+      next if !b.itemActive?
+      BattleHandlers.triggerTargetItemAfterMoveUse(b.item,b,user,move,switchByItem,@battle)
+    end
+	if b.effects[PBEffects::LashOut] # Eject Pack 
+		BattleHandlers.triggerItemOnStatLoss(b.item,b,user,move,switchByItem,@battle)
+	end 
+    @battle.moldBreaker = false if switchByItem.include?(user.index)
+    @battle.pbPriority(true).each do |b|
+      b.pbEffectsOnSwitchIn(true) if switchByItem.include?(b.index)
+    end
+    switchByItem.each { |idxB| switchedBattlers.push(idxB) }
+    # User's held item (Life Orb, Shell Bell)
+    if !switchedBattlers.include?(user.index) && user.itemActive?
+      BattleHandlers.triggerUserItemAfterMoveUse(user.item,user,targets,move,numHits,@battle)
+    end
+    # Target's ability (Berserk, Color Change, Emergency Exit, Pickpocket, Wimp Out)
+    switchWimpOut = []
+    @battle.pbPriority(true).each do |b|
+      next if !targets.any? { |targetB| targetB.index==b.index }
+      next if b.damageState.unaffected || switchedBattlers.include?(b.index)
+      next if !b.abilityActive?
+      BattleHandlers.triggerTargetAbilityAfterMoveUse(b.ability,b,user,move,switchedBattlers,@battle)
+      if !switchedBattlers.include?(b.index) && move.damagingMove?
+        if b.pbAbilitiesOnDamageTaken(b.damageState.initialHP)   # Emergency Exit, Wimp Out
+          switchWimpOut.push(b.index)
+        end
+      end
+    end
+    @battle.moldBreaker = false if switchWimpOut.include?(user.index)
+    @battle.pbPriority(true).each do |b|
+      next if b.index==user.index
+      b.pbEffectsOnSwitchIn(true) if switchWimpOut.include?(b.index)
+    end
+    switchWimpOut.each { |idxB| switchedBattlers.push(idxB) }
+    # User's ability (Emergency Exit, Wimp Out)
+    if !switchedBattlers.include?(user.index) && move.damagingMove?
+      hpNow = user.hp if user.hp<hpNow   # In case HP was lost because of Life Orb
+      if user.pbAbilitiesOnDamageTaken(user.initialHP,hpNow)
+        @battle.moldBreaker = false
+        user.pbEffectsOnSwitchIn(true)
+        switchedBattlers.push(user.index)
+      end
+    end
+  end
+  
   #=============================================================================
   # Attack a single target
   #=============================================================================
@@ -3444,4 +3609,12 @@ class BattlerDamageAnimation < PokeBattle_Animation
     battler.setVisible(delay,batSprite.visible)
     shadow.setVisible(delay,shaSprite.visible)
   end
+end
+
+module BattleHandlers
+	ItemOnStatLoss                      = ItemHandlerHash.new
+
+	def self.triggerItemOnStatLoss(item,battler,user,move,switched,battle)
+		ItemOnStatLoss.trigger(item,battler,user,move,switched,battle)
+	end
 end

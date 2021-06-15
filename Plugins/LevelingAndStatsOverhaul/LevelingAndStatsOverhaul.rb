@@ -722,8 +722,8 @@ class StyleValueScene
 	
 	# Place the style value pool
 	textpos.concat([
-		[_INTL("Pool"),250,280,1,base,shadow],
-		[sprintf("%d",@pool),250,320,1,Color.new(64,64,64),Color.new(176,176,176)]
+		[_INTL("Pool"),280,280,1,base,shadow],
+		[sprintf("%d",@pool),280,320,1,Color.new(64,64,64),Color.new(176,176,176)]
 	])
 	
 	# Draw all the previously placed texts
