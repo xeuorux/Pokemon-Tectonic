@@ -11556,7 +11556,7 @@ BattlerShadowSize = 2
 Name = Kecleon
 InternalName = KECLEON
 Type1 = NORMAL
-BaseStats = 60,90,70,70,90,90
+BaseStats = 100,70,95,40,70,95
 #Total: 470
 GenderRate = Female50Percent
 GrowthRate = Parabolic
