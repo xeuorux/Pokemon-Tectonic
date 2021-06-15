@@ -1,4 +1,4 @@
-Name         = LevelingOverhaul                                      
+Name         = LevelingAndStatsOverhaul                                      
 Version      = 1.0    
 Requires	 = BossBattles                                                                                           
 Link         = https://reliccastle.com/link-to-the-plugin/               

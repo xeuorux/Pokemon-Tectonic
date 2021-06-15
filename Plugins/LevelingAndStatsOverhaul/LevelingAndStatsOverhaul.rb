@@ -1,12 +1,79 @@
-
-
 LEVEL_CAPS_USED = true
 
 class Pokemon
-  # Max total EVs
-  EV_LIMIT      = 100
-  # Max EVs that a single stat can have
-  EV_STAT_LIMITS = [50,30,10]
+	  # Creates a new Pokémon object.
+  # @param species [Symbol, String, Integer] Pokémon species
+  # @param level [Integer] Pokémon level
+  # @param owner [Owner, Player, NPCTrainer] Pokémon owner (the player by default)
+  # @param withMoves [TrueClass, FalseClass] whether the Pokémon should have moves
+  # @param rechech_form [TrueClass, FalseClass] whether to auto-check the form
+  def initialize(species, level, owner = $Trainer, withMoves = true, recheck_form = true)
+    species_data = GameData::Species.get(species)
+    @species          = species_data.species
+    @form             = species_data.form
+    @forced_form      = nil
+    @time_form_set    = nil
+    self.level        = level
+    @steps_to_hatch   = 0
+    heal_status
+    @gender           = nil
+    @shiny            = nil
+    @ability_index    = nil
+    @ability          = nil
+    @nature           = nil
+    @nature_for_stats = nil
+    @item             = nil
+    @mail             = nil
+    @moves            = []
+    reset_moves if withMoves
+    @first_moves      = []
+    @ribbons          = []
+    @cool             = 0
+    @beauty           = 0
+    @cute             = 0
+    @smart            = 0
+    @tough            = 0
+    @sheen            = 0
+    @pokerus          = 0
+    @name             = nil
+    @happiness        = species_data.happiness
+    @poke_ball        = :POKEBALL
+    @markings         = 0
+    @iv               = {}
+    @ivMaxed          = {}
+    @ev               = {}
+    GameData::Stat.each_main do |s|
+      @iv[s.id]       = rand(IV_STAT_LIMIT + 1)
+      @ev[s.id]       = 8
+    end
+    if owner.is_a?(Owner)
+      @owner = owner
+    elsif owner.is_a?(Player) || owner.is_a?(NPCTrainer)
+      @owner = Owner.new_from_trainer(owner)
+    else
+      @owner = Owner.new(0, '', 2, 2)
+    end
+    @obtain_method    = 0   # Met
+    @obtain_method    = 4 if $game_switches && $game_switches[Settings::FATEFUL_ENCOUNTER_SWITCH]
+    @obtain_map       = ($game_map) ? $game_map.map_id : 0
+    @obtain_text      = nil
+    @obtain_level     = level
+    @hatched_map      = 0
+    @timeReceived     = pbGetTimeNow.to_i
+    @timeEggHatched   = nil
+    @fused            = nil
+    @personalID       = rand(2 ** 16) | rand(2 ** 16) << 16
+    @hp               = 1
+    @totalhp          = 1
+    calc_stats
+    if @form == 0 && recheck_form
+      f = MultipleForms.call("getFormOnCreation", self)
+      if f
+        self.form = f
+        reset_moves if withMoves
+      end
+    end
+  end
 end
 
 class PokeBattle_Battle
@@ -552,6 +619,8 @@ def pbStyleValueScreen(pkmn)
 end
 
 class StyleValueScene
+  attr_accessor :index
+  attr_accessor :pool
 
   def pbDisplay(msg,brief=false)
     UIHelper.pbDisplay(@sprites["msgwindow"],msg,brief) { pbUpdate }
@@ -563,34 +632,106 @@ class StyleValueScene
 
   def pbUpdate
     pbUpdateSpriteHash(@sprites)
+	@pokemon.calc_stats
+	drawNameAndStats
   end
 
   def pbStartScene(pokemon)
     @pokemon=pokemon
+	@pool = 0
     # Create sprite hash
     @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z=99999
     @sprites={}
-	addBackgroundPlane(@sprites,"bg","reminderbg",@viewport)
+    addBackgroundPlane(@sprites,"bg","mysteryGiftbg",@viewport)
     @sprites["pokeicon"]=PokemonIconSprite.new(@pokemon,@viewport)
     @sprites["pokeicon"].setOffset(PictureOrigin::Center)
-    @sprites["pokeicon"].x=320
-    @sprites["pokeicon"].y=84
-	@sprites["background"]=IconSprite.new(0,0,@viewport)
-    @sprites["background"].setBitmap("Graphics/Pictures/reminderSel")
-    @sprites["background"].y=78
-    @sprites["background"].src_rect=Rect.new(0,72,258,72)
+    @sprites["pokeicon"].x=36
+    @sprites["pokeicon"].y=36
     @sprites["overlay"]=BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
     pbSetSystemFont(@sprites["overlay"].bitmap)
-	@sprites["msgwindow"]=Window_AdvancedTextPokemon.new("")
+    @sprites["msgwindow"]=Window_AdvancedTextPokemon.new("")
     @sprites["msgwindow"].visible=false
     @sprites["msgwindow"].viewport=@viewport
+	
+	#Create the left and right arrow sprites which surround the selected index
+	@index = 0
+	@sprites["leftarrow"] = AnimatedSprite.new("Graphics/Pictures/leftarrow",8,40,28,2,@viewport)
+    @sprites["leftarrow"].x       = 44
+    @sprites["leftarrow"].y       = 78
+    @sprites["leftarrow"].play
+    @sprites["rightarrow"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport)
+    @sprites["rightarrow"].x       = 198
+    @sprites["rightarrow"].y       = 78
+    @sprites["rightarrow"].play
     
 	# CALL COMPLEX SCENE DRAWING METHODS HERE #
+	drawNameAndStats()
 	
     pbDeactivateWindows(@sprites)
     # Fade in all sprites
     pbFadeInAndShow(@sprites) { pbUpdate }
+  end
+  
+  def drawNameAndStats
+	overlay=@sprites["overlay"].bitmap
+    overlay.clear
+	base   = Color.new(248,248,248)
+    shadow = Color.new(104,104,104)
+	
+	#Place the pokemon's name
+	textpos = [[_INTL("{1}", @pokemon.name),80,2,0,Color.new(88,88,80),Color.new(168,184,184)]]
+	
+	# Place the pokemon's style values (stored as EVs)
+	styleValueLabelX = 80
+	styleValueX = 200
+	textpos.concat([
+	   [_INTL("Style Values"),styleValueLabelX,42,0,base,shadow],
+       [_INTL("HP"),styleValueLabelX,82,0,base,shadow],
+       [sprintf("%d",@pokemon.ev[:HP]),styleValueX,82,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Attack"),styleValueLabelX,114,0,base,shadow],
+       [sprintf("%d",@pokemon.ev[:ATTACK]),styleValueX,114,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Defense"),styleValueLabelX,146,0,base,shadow],
+       [sprintf("%d",@pokemon.ev[:DEFENSE]),styleValueX,146,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Sp. Atk"),styleValueLabelX,178,0,base,shadow],
+       [sprintf("%d",@pokemon.ev[:SPECIAL_ATTACK]),styleValueX,178,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Sp. Def"),styleValueLabelX,210,0,base,shadow],
+       [sprintf("%d",@pokemon.ev[:SPECIAL_DEFENSE]),styleValueX,210,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Speed"),styleValueLabelX,242,0,base,shadow],
+       [sprintf("%d",@pokemon.ev[:SPEED]),styleValueX,242,1,Color.new(64,64,64),Color.new(176,176,176)],
+    ])
+	
+	# Place the pokemon's final resultant stats
+	finalStatLabelX = 336
+	finalStatX		= 456
+    textpos.concat([
+	   [_INTL("Final Stats"),finalStatLabelX,42,0,base,shadow],
+       [_INTL("HP"),finalStatLabelX,82,0,base,shadow],
+       [sprintf("%d",@pokemon.totalhp),finalStatX,82,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Attack"),finalStatLabelX,114,0,base,shadow],
+       [sprintf("%d",@pokemon.attack),finalStatX,114,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Defense"),finalStatLabelX,146,0,base,shadow],
+       [sprintf("%d",@pokemon.defense),finalStatX,146,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Sp. Atk"),finalStatLabelX,178,0,base,shadow],
+       [sprintf("%d",@pokemon.spatk),finalStatX,178,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Sp. Def"),finalStatLabelX,210,0,base,shadow],
+       [sprintf("%d",@pokemon.spdef),finalStatX,210,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Speed"),finalStatLabelX,242,0,base,shadow],
+       [sprintf("%d",@pokemon.speed),finalStatX,242,1,Color.new(64,64,64),Color.new(176,176,176)],
+    ])
+	
+	# Place the style value pool
+	textpos.concat([
+		[_INTL("Pool"),250,280,1,base,shadow],
+		[sprintf("%d",@pool),250,320,1,Color.new(64,64,64),Color.new(176,176,176)]
+	])
+	
+	# Draw all the previously placed texts
+	pbDrawTextPositions(overlay,textpos)
+	
+	# Put the arrows around the currently selected style value line
+	@sprites["leftarrow"].y = 90+32*@index
+	@sprites["rightarrow"].y = 90+32*@index
   end
 
   # End the scene here
@@ -608,12 +749,130 @@ class StyleValueScreen
 
   def pbStartScreen(pkmn)
     @scene.pbStartScene(pkmn)
+	@index = 0
+	stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+	@pool = 50
+	stats.each do |stat|
+		@pool -= pkmn.ev[stat]
+	end
+	if @pool < 0
+		raise _INTL("{1} has more EVs than its supposed to be able to!",pkmn.name)
+	end
+	@scene.pool = @pool
     loop do
-      if Input.trigger?(Input::USE)
-        if @scene.pbConfirm(_INTL("Stop adjusting style values?"))
+	  Graphics.update
+      Input.update
+      @scene.pbUpdate
+      if Input.trigger?(Input::BACK)
+        if @pool > 0
+		  pbPlayBuzzerSE
+		  @scene.pbDisplay("There are still Style Values points left to assign!")
+		elsif @scene.pbConfirm(_INTL("Finish adjusting style values?"))
+		  @scene.pbEndScene
+		  pbPlayCloseMenuSE
           return
         end
-      end
+	  elsif Input.trigger?(Input::UP)
+		if @index > 0
+			@index = (@index - 1)
+			pbPlayCursorSE
+			@scene.index = @index
+		end
+	  elsif Input.trigger?(Input::DOWN)
+		if @index < 5
+			@index = (@index + 1)
+			pbPlayCursorSE
+			@scene.index = @index
+		end
+      elsif Input.repeat?(Input::RIGHT)
+		stat = stats[@index]
+		if pkmn.ev[stat] < 20 && @pool > 0
+			pkmn.ev[stat] = (pkmn.ev[stat] + 1)
+			@pool -= 1
+			@scene.pool = @pool
+			pbPlayDecisionSE
+			echo("#{Input.time?(Input::RIGHT)}\n")
+		elsif Input.time?(Input::RIGHT) < 20000
+			pbPlayBuzzerSE
+		end
+	  elsif Input.repeat?(Input::LEFT)
+	    stat = stats[@index]
+		if pkmn.ev[stat] > 0
+			pkmn.ev[stat] = (pkmn.ev[stat] - 1)
+			@pool += 1
+			@scene.pool = @pool
+			pbPlayDecisionSE
+			echo("#{Input.time?(Input::LEFT)}\n")
+		elsif Input.time?(Input::LEFT) < 20000
+			pbPlayBuzzerSE
+		end
+	  end
     end
   end
+end
+
+module GameData
+	class Trainer
+		# Creates a battle-ready version of a trainer's data.
+		# @return [Array] all information about a trainer in a usable form
+		def to_trainer
+		  # Determine trainer's name
+		  tr_name = self.name
+		  Settings::RIVAL_NAMES.each do |rival|
+			next if rival[0] != @trainer_type || !$game_variables[rival[1]].is_a?(String)
+			tr_name = $game_variables[rival[1]]
+			break
+		  end
+		  # Create trainer object
+		  trainer = NPCTrainer.new(tr_name, @trainer_type)
+		  trainer.id        = $Trainer.make_foreign_ID
+		  trainer.items     = @items.clone
+		  trainer.lose_text = self.lose_text
+		  # Create each Pokémon owned by the trainer
+		  @pokemon.each do |pkmn_data|
+			species = GameData::Species.get(pkmn_data[:species]).species
+			pkmn = Pokemon.new(species, pkmn_data[:level], trainer, false)
+			trainer.party.push(pkmn)
+			# Set Pokémon's properties if defined
+			if pkmn_data[:form]
+			  pkmn.forced_form = pkmn_data[:form] if MultipleForms.hasFunction?(species, "getForm")
+			  pkmn.form_simple = pkmn_data[:form]
+			end
+			pkmn.item = pkmn_data[:item]
+			if pkmn_data[:moves] && pkmn_data[:moves].length > 0
+			  pkmn_data[:moves].each { |move| pkmn.learn_move(move) }
+			else
+			  pkmn.reset_moves
+			end
+			pkmn.ability_index = pkmn_data[:ability_index]
+			pkmn.ability = pkmn_data[:ability]
+			pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)
+			pkmn.shiny = (pkmn_data[:shininess]) ? true : false
+			if pkmn_data[:nature]
+			  pkmn.nature = pkmn_data[:nature]
+			else
+			  nature = pkmn.species_data.id_number + GameData::TrainerType.get(trainer.trainer_type).id_number
+			  pkmn.nature = nature % (GameData::Nature::DATA.length / 2)
+			end
+			GameData::Stat.each_main do |s|
+			  pkmn.iv[s.id] = 0
+			  if pkmn_data[:ev]
+				pkmn.ev[s.id] = pkmn_data[:ev][s.id]
+			  else
+				pkmn.ev[s.id] = 8
+			  end
+			end
+			pkmn.happiness = pkmn_data[:happiness] if pkmn_data[:happiness]
+			pkmn.name = pkmn_data[:name] if pkmn_data[:name] && !pkmn_data[:name].empty?
+			if pkmn_data[:shadowness]
+			  pkmn.makeShadow
+			  pkmn.update_shadow_moves(true)
+			  pkmn.shiny = false
+			end
+			pkmn.poke_ball = pkmn_data[:poke_ball] if pkmn_data[:poke_ball]
+			pkmn.calc_stats
+		  end
+		  return trainer
+	  end
+	end
 end
