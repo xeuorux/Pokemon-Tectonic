@@ -3121,10 +3121,11 @@ class PokeBattle_Battler
          switchedBattlers.include?(b.index)
       next if !b.itemActive?
       BattleHandlers.triggerTargetItemAfterMoveUse(b.item,b,user,move,switchByItem,@battle)
-    end
-	if b.effects[PBEffects::LashOut] # Eject Pack 
+	  # Eject Pack
+	  if b.effects[PBEffects::LashOut]
 		BattleHandlers.triggerItemOnStatLoss(b.item,b,user,move,switchByItem,@battle)
-	end 
+	  end 
+    end
     @battle.moldBreaker = false if switchByItem.include?(user.index)
     @battle.pbPriority(true).each do |b|
       b.pbEffectsOnSwitchIn(true) if switchByItem.include?(b.index)

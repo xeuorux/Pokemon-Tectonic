@@ -57,6 +57,7 @@ Pokemon = SWINUB,15
     Ability = 1
     Item = ORANBERRY
 Pokemon = LILEEP,15
+	Ability = 1
     Item = ORANBERRY
 	Moves = ABSORB,ACID,CONFUSERAY,INGRAIN
 #-------------------------------

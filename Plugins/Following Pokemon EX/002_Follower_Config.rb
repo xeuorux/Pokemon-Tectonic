@@ -154,7 +154,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 
 # Specific message if the map name has Pokecenter or Pokemon Center
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
-  if $game_map.name.include?("Poké Center") || $game_map.name.include?("Pokémon Center")
+  if $game_map.name.include?("Center")
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
     pbWait(72)
     messages = [

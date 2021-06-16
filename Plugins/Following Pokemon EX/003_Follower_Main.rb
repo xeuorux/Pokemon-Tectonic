@@ -92,6 +92,8 @@ def pbPokemonFound(item,quantity = 1,message = "")
   itemname = (quantity>1) ? item.name_plural : item.name
   pocket = item.pocket
   move = item.move
+  $PokemonGlobal.time_taken = 0
+  $PokemonGlobal.follower_hold_item = false
   if $PokemonBag.pbStoreItem(item,quantity)   # If item can be picked up
     meName = (item.is_key_item?) ? "Key item get" : "Item get"
     if item == :LEFTOVERS
