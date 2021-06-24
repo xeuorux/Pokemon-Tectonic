@@ -1361,3 +1361,11 @@ def describeEvolutionMethod(method,parameter=0)
     end
     return "via a method the programmer was too lazy to describe"
 end
+
+def speciesEntry(species)
+	pbFadeOutIn {
+		scene = PokemonPokedexInfo_Scene.new
+		screen = PokemonPokedexInfoScreen.new(scene)
+		screen.pbStartSceneSingle(species)
+	}
+end
