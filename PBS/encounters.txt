@@ -27,13 +27,18 @@ LandTall,20
 Land,20
     25,BIBAREL,15,17
 	25,SQUIRTLE,14,15
-    25,BUIZEL,15,17
-    25,TYMPOLE,15,17
-LandTall,20
-    25,MEOWTH_2,15,17
     25,DROWZEE,15,17
     25,PSYDUCK,15,17
+LandTall,20
+    25,MEOWTH_2,15,17
+    25,CHEWTLE,15,17
+    25,MEDITITE,15,17
     25,AXEW,15,17
+ActiveWater,20
+    25,BUIZEL,15,17
+    25,TYMPOLE,15,17
+    25,CORPHISH,15,17
+    25,FINNEON,15,17
 #-------------------------------
 [004] # Big Cave B1
 Cave,20
@@ -42,7 +47,7 @@ Cave,20
 	33,DIGLETT,17,19
 Land
 	34,PARAS,17,19
-	33,TYNAMO,17,19
+	33,WOOBAT,17,19
 	33,BARBOACH,17,19
 #-------------------------------
 [007] # Big Cave B2
@@ -61,6 +66,9 @@ Land
 Land,20
     50,APPLIN,15,17
     50,PONYTA_1,15,17
+ActiveWater
+	50,FEEBAS,15,17
+	50,TOTODILE,15,17
 #-------------------------------
 [011] # Oasis Town Hidden
 Land,20
@@ -108,15 +116,18 @@ Land,20
     25,KRICKETOT,6,8
     25,DRATINI,6,8
 Mud
-	25,WOOPER,6,8
-	25,GRIMER,6,8
-	25,BUNNELBY,6,8
-	25,MUDBRAY,6,8
+	33,WOOPER,6,8
+	33,GRIMER,6,8
+	33,MUDBRAY,6,8
 LandTall
+	33,BULBASAUR,13,15
+	33,YUNGOOS,13,15
+	33,PANCHAM,13,15
+ActiveWater
+	25,POLIWAG,13,15
 	25,SURSKIT,13,15
-	25,BULBASAUR,13,15
-	25,YUNGOOS,13,15
-	25,PANCHAM,13,15
+	25,MAGIKARP,13,15
+	25,LOTAD,13,15
 #-------------------------------
 [043] # Forest Route
 Land,20
@@ -147,6 +158,10 @@ Land,20
     25,CACNEA,15,17
 	25,LOTAD,15,17
 	25,SILICOBRA,15,17
+ActiveWater
+	33,TYNAMO,15,17
+	33,KABUTO,15,17
+	33,OMANYTE,15,17
 #-------------------------------
 [021] # Starting Town
 Land,20

@@ -31,7 +31,7 @@ class PokemonEncounters
   # Returns whether the player's current location allows wild encounters to
   # trigger upon taking a step.
   def encounter_possible_here?
-    #return true if $PokemonGlobal.surfing
+    return true if $PokemonGlobal.surfing
     terrain_tag = $game_map.terrain_tag($game_player.x, $game_player.y)
     return false if terrain_tag.ice
     return true if has_cave_encounters? && !(terrain_tag.id == :Sand)   # i.e. this map is a cave
@@ -104,18 +104,28 @@ class PokemonEncounters
     time = pbGetTimeNow
     ret = nil
     if $PokemonGlobal.surfing
-      ret = find_valid_encounter_type_for_time(:Water, time)
+	  echo("#{$game_map.terrain_tag($game_player.x, $game_player.y).id}\n")
+	  # Active water encounters
+	  if $game_map.terrain_tag($game_player.x, $game_player.y).id == :ActiveWater
+		ret = find_valid_encounter_type_for_time(:ActiveWater, time)
+	  end
+	  
+      ret = find_valid_encounter_type_for_time(:Water, time) if !ret
     else   # Land/Cave (can have both in the same map)
+	  # Mud encounters
 	  if $game_map.terrain_tag($game_player.x, $game_player.y).id == :Mud
 		ret = find_valid_encounter_type_for_time(:Mud, time)
 	  end
+	  # Tall grass encounters
 	  if $game_map.terrain_tag($game_player.x, $game_player.y).deep_bush
 		ret = find_valid_encounter_type_for_time(:LandTall, time)
 	  end
+	  # Land encounters
       if !ret && has_land_encounters? && $game_map.terrain_tag($game_player.x, $game_player.y).land_wild_encounters
         ret = :BugContest if pbInBugContest? && has_encounter_type?(:BugContest)
         ret = find_valid_encounter_type_for_time(:Land, time) if !ret
       end
+	  # Cave encounters
       if !ret && has_cave_encounters?
         ret = find_valid_encounter_type_for_time(:Cave, time)
       end
@@ -209,12 +219,16 @@ class PokemonEncounters
   end
 end
 
+# Tall Grass
+
 GameData::EncounterType.register({
   :id             => :LandTall,
   :type           => :land,
   :trigger_chance => 21,
   :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
 })
+
+# Mud
 
 GameData::TerrainTag.register({
   :id                     => :Mud,
@@ -230,4 +244,20 @@ GameData::EncounterType.register({
   :type           => :land,
   :trigger_chance => 21,
   :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
+})
+
+# Active Water
+
+GameData::TerrainTag.register({
+  :id                     => :ActiveWater,
+  :id_number              => 18,
+  :battle_environment     => :Water,
+  :can_surf               => true
+})
+
+GameData::EncounterType.register({
+  :id             => :ActiveWater,
+  :type           => :water,
+  :trigger_chance => 15,
+  :old_slots      => [60, 30, 5, 4, 1]
 })
