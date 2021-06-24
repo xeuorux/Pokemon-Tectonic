@@ -2775,7 +2775,7 @@ InternalName = DODRIO
 Type1 = NORMAL
 Type2 = FLYING
 BaseStats = 70,110,80,130,60,70
-#Total: 500
+#Total: 520
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 165
@@ -3233,8 +3233,8 @@ Evolutions = KINGLER,Level,28
 Name = Kingler
 InternalName = KINGLER
 Type1 = WATER
-BaseStats = 75,130,115,75,50,50
-#Total: 495
+BaseStats = 70,120,105,65,40,40
+#Total: 440
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 166
@@ -3259,6 +3259,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = MKINGLER,Level,46
 #-------------------------------
 [100]
 Name = Voltorb
@@ -4192,7 +4193,7 @@ Name = Tauros
 InternalName = TAUROS
 Type1 = NORMAL
 BaseStats = 85,110,95,110,40,70
-#Total: 490
+#Total: 510
 GenderRate = AlwaysMale
 GrowthRate = Slow
 BaseEXP = 172
@@ -9829,7 +9830,7 @@ Name = Skitty
 InternalName = SKITTY
 Type1 = NORMAL
 BaseStats = 50,35,55,60,55,45
-#Total: 320
+#Total: 300
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 52
@@ -18745,7 +18746,7 @@ Name = Minccino
 InternalName = MINCCINO
 Type1 = NORMAL
 BaseStats = 60,45,50,60,65,55
-#Total: 330
+#Total: 335
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 60
@@ -18778,7 +18779,7 @@ Name = Cinccino
 InternalName = CINCCINO
 Type1 = NORMAL
 BaseStats = 90,65,70,95,105,95
-#Total: 480
+#Total: 520
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 165
@@ -22728,7 +22729,7 @@ InternalName = HELIOPTILE
 Type1 = ELECTRIC
 Type2 = NORMAL
 BaseStats = 53,40,40,90,75,71
-#Total: 309
+#Total: 369
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 58
@@ -22762,7 +22763,7 @@ InternalName = HELIOLISK
 Type1 = ELECTRIC
 Type2 = NORMAL
 BaseStats = 62,55,55,119,109,104
-#Total: 481
+#Total: 504
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 168
@@ -24867,7 +24868,7 @@ InternalName = STUFFUL
 Type1 = NORMAL
 Type2 = FIGHTING
 BaseStats = 70,75,50,50,45,60
-#Total: 340
+#Total: 350
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 68
@@ -24901,7 +24902,7 @@ InternalName = BEWEAR
 Type1 = NORMAL
 Type2 = FIGHTING
 BaseStats = 120,105,75,60,55,80
-#Total: 500
+#Total: 495
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 175
@@ -25262,7 +25263,7 @@ Name = Pyukumuku
 InternalName = PYUKUMUKU
 Type1 = WATER
 BaseStats = 85,60,130,5,30,130
-#Total: 410
+#Total: 440
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 144
@@ -27267,8 +27268,8 @@ Name = Drednaw
 InternalName = DREDNAW
 Type1 = WATER
 Type2 = ROCK
-BaseStats = 90,115,90,74,48,68
-#Total: 485
+BaseStats = 80,95,80,64,52,52
+#Total: 423
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 170
@@ -27293,6 +27294,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = MDREDNAW,Level,42
 #-------------------------------
 [835]
 Name = Yamper
@@ -27721,8 +27723,8 @@ Name = Toxel
 InternalName = TOXEL
 Type1 = ELECTRIC
 Type2 = POISON
-BaseStats = 40,38,35,40,54,35
-#Total: 242
+BaseStats = 50,48,45,50,64,45
+#Total: 302
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 48
@@ -27755,8 +27757,8 @@ Name = Toxtricity
 InternalName = TOXTRICITY
 Type1 = ELECTRIC
 Type2 = POISON
-BaseStats = 75,98,70,75,114,70
-#Total: 502
+BaseStats = 65,88,60,70,94,60
+#Total: 437
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 176
@@ -27765,7 +27767,7 @@ Rareness = 45
 Happiness = 50
 Abilities = LOUD,PLUS
 HiddenAbility = TECHNICIAN
-Moves = 0,BOOMBURST,1,BOOMBURST,1,EERIEIMPULSE,1,BELCH,1,TEARFULLOOK,1,NUZZLE,1,GROWL,1,FLAIL,1,ACID,1,ACIDSPRAY,1,LEER,1,NOBLEROAR,4,CHARGE,8,THUNDERSHOCK,12,SCARYFACE,16,TAUNT,20,VENOSHOCK,24,SCREECH,28,SWAGGER,32,TOXIC,36,DISCHARGE,40,POISONJAB,44,OVERDRIVE,48,TRAINEDOUTBURST,52,SHIFTGEAR
+Moves = 1,EERIEIMPULSE,1,BELCH,1,TEARFULLOOK,1,NUZZLE,1,GROWL,1,FLAIL,1,ACID,1,ACIDSPRAY,1,LEER,1,NOBLEROAR,4,CHARGE,8,THUNDERSHOCK,12,SCARYFACE,16,TAUNT,20,VENOSHOCK,24,SCREECH,28,SWAGGER,32,TOXIC,36,DISCHARGE,40,POISONJAB,44,OVERDRIVE,48,TRAINEDOUTBURST,52,SHIFTGEAR
 TutorMoves = DRAINPUNCH,EERIEIMPULSE,ELECTROBALL,ENCORE,ENDURE,FACADE,FIREPUNCH,FLING,GIGAIMPACT,GUNKSHOT,HEX,HYPERBEAM,HYPERVOICE,MEGAKICK,MEGAPUNCH,PAYBACK,POISONJAB,PROTECT,REST,RISINGVOLTAGE,ROUND,SCARYFACE,SCREECH,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SNARL,SNORE,STOREDPOWER,SUBSTITUTE,SWIFT,TAUNT,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERPUNCH,THUNDERWAVE,UPROAR,VENOSHOCK,VOLTSWITCH,WILDCHARGE
 Compatibility = Humanlike
 StepsToHatch = 6681
@@ -27782,6 +27784,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = MTOXTRICITY,Level,50
 #-------------------------------
 [850]
 Name = Sizzlipede
@@ -28404,8 +28407,8 @@ Evolutions = ALCREMIE,Level,25
 Name = Alcremie
 InternalName = ALCREMIE
 Type1 = FAIRY
-BaseStats = 65,60,75,64,110,121
-#Total: 495
+BaseStats = 60,55,70,59,100,115
+#Total: 459
 GenderRate = AlwaysFemale
 GrowthRate = Medium
 BaseEXP = 173
@@ -28430,6 +28433,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = MALCREMIE,Level,36
 #-------------------------------
 [870]
 Name = Falinks
@@ -29908,5 +29912,131 @@ BattlerPlayerX = 0
 BattlerPlayerY = 3
 BattlerEnemyX = 0
 BattlerEnemyY = 7
+BattlerShadowX = 0
+BattlerShadowSize = 2
+#-------------------------------
+[916]
+Name = MKingler
+InternalName = MKINGLER
+Type1 = WATER
+BaseStats = 85,140,125,75,60,60
+#Total: 545
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 166
+EffortPoints = 0,2,0,0,0,0
+Rareness = 60
+Happiness = 50
+Abilities = HYPERCUTTER,SHELLARMOR
+HiddenAbility = SHEERFORCE
+Moves = 1,WIDEGUARD,1,HAMMERARM,1,CLAMP,1,LEER,1,HARDEN,1,METALCLAW,12,FURYCUTTER,16,PROTECT,20,KNOCKOFF,24,STOMP,31,RAZORSHELL,36,BRICKBREAK,42,LUNGE,48,CRABHAMMER,54,SWORDSDANCE,60,XSCISSOR
+TutorMoves = AGILITY,ALLYSWITCH,AMNESIA,BLIZZARD,BODYSLAM,BRICKBREAK,BRINE,BRUTALSWING,CONFIDE,CUT,DIG,DIVE,ENDURE,FACADE,FALSESWIPE,FLING,FRUSTRATION,GIGAIMPACT,HAIL,HIDDENPOWER,HIGHHORSEPOWER,HYDROPUMP,HYPERBEAM,ICEBEAM,ICYWIND,IRONDEFENSE,KNOCKOFF,LIQUIDATION,MUDSHOT,PROTECT,QUASH,RAINDANCE,RAZORSHELL,REST,RETURN,ROCKSLIDE,ROCKTOMB,ROUND,SCALD,SLEEPTALK,SMASH,SNORE,STOMPINGTANTRUM,STRENGTH,SUBSTITUTE,SUPERPOWER,SURF,SWAGGER,SWORDSDANCE,THIEF,TOXIC,WATERPULSE,WHIRLPOOL,XSCISSOR
+Compatibility = Water3
+StepsToHatch = 5355
+Height = 2.6
+Weight = 90.0
+Color = Red
+Shape = Head
+Kind = Mega Claw
+Pokedex = TODO
+BattlerPlayerX = 0
+BattlerPlayerY = 0
+BattlerEnemyX = 0
+BattlerEnemyY = 16
+BattlerShadowX = 0
+BattlerShadowSize = 2
+#-------------------------------
+[917]
+Name = MDrednaw
+InternalName = MDREDNAW
+Type1 = WATER
+Type2 = ROCK
+BaseStats = 100,135,100,84,58,78
+#Total: 555
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 170
+EffortPoints = 0,2,0,0,0,0
+Rareness = 75
+Happiness = 50
+Abilities = STRONGJAW,TRAPPER
+HiddenAbility = SWIFTSWIM
+Moves = 1,STONECHARGE,1,RAZORSHELL,1,CRUNCH,1,ROCKPOLISH,1,TACKLE,1,WATERGUN,1,BITE,1,CLAMP,21,HEADBUTT,30,COUNTER,39,JAWLOCK,48,LIQUIDATION,57,CRASHDIVE,66,GRANITEHEAD
+TutorMoves = ASSURANCE,BLIZZARD,BODYPRESS,BODYSLAM,BULLDOZE,CRUNCH,DIG,DIVE,EARTHPOWER,EARTHQUAKE,ENDURE,FACADE,FALSESWIPE,GIGAIMPACT,HIGHHORSEPOWER,HYDROPUMP,HYPERBEAM,ICEBEAM,ICEFANG,IRONDEFENSE,IRONTAIL,LIQUIDATION,MEGAHORN,METEORBEAM,MUDDYWATER,MUDSHOT,PAYBACK,POISONJAB,PROTECT,RAINDANCE,RAZORSHELL,REST,REVENGE,ROCKBLAST,ROCKSLIDE,ROCKTOMB,ROUND,SANDSTORM,SANDTOMB,SCALD,SCALESHOT,SCARYFACE,SKITTERSMACK,SLEEPTALK,SMARTHORN,SNORE,STEALTHROCK,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SUPERPOWER,SURF,SWORDSDANCE,THROATCHOP,WATERFALL,WHIRLPOOL
+Compatibility = Monster,Water1
+StepsToHatch = 5396
+Height = 1.6
+Weight = 165.5
+Color = Green
+Shape = Head
+Kind = Jaw Fortress
+Pokedex = TODO
+BattlerPlayerX = 0
+BattlerPlayerY = 22
+BattlerEnemyX = 0
+BattlerEnemyY = 28
+BattlerShadowX = 0
+BattlerShadowSize = 2
+#-------------------------------
+[918]
+Name = MToxtricity
+InternalName = MTOXTRICITY
+Type1 = ELECTRIC
+Type2 = POISON
+BaseStats = 85,93,80,85,128,80
+#Total: 551
+GenderRate = Female50Percent
+GrowthRate = Parabolic
+BaseEXP = 176
+EffortPoints = 0,0,0,0,2,0
+Rareness = 45
+Happiness = 50
+Abilities = LOUD,PLUS
+HiddenAbility = TECHNICIAN
+Moves = 1,EERIEIMPULSE,1,BELCH,1,TEARFULLOOK,1,NUZZLE,1,GROWL,1,FLAIL,1,ACID,1,ACIDSPRAY,1,LEER,1,NOBLEROAR,4,CHARGE,8,THUNDERSHOCK,12,SCARYFACE,16,TAUNT,20,VENOSHOCK,24,SCREECH,28,SWAGGER,32,TOXIC,36,DISCHARGE,40,POISONJAB,44,OVERDRIVE,48,TRAINEDOUTBURST,52,SHIFTGEAR
+TutorMoves = DRAINPUNCH,EERIEIMPULSE,ELECTROBALL,ENCORE,ENDURE,FACADE,FIREPUNCH,FLING,GIGAIMPACT,GUNKSHOT,HEX,HYPERBEAM,HYPERVOICE,MEGAKICK,MEGAPUNCH,PAYBACK,POISONJAB,PROTECT,REST,RISINGVOLTAGE,ROUND,SCARYFACE,SCREECH,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SNARL,SNORE,STOREDPOWER,SUBSTITUTE,SWIFT,TAUNT,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERPUNCH,THUNDERWAVE,UPROAR,VENOSHOCK,VOLTSWITCH,WILDCHARGE
+Compatibility = Humanlike
+StepsToHatch = 6681
+Height = 3.2
+Weight = 130.0
+Color = Purple
+Shape = Head
+Kind = Broadcast
+Pokedex = TODO
+BattlerPlayerX = 0
+BattlerPlayerY = 6
+BattlerEnemyX = 0
+BattlerEnemyY = 10
+BattlerShadowX = 0
+BattlerShadowSize = 2
+#-------------------------------
+[919]
+Name = MAlcremie
+InternalName = MALCREMIE
+Type1 = FAIRY
+BaseStats = 70,65,80,69,120,131
+#Total: 495
+GenderRate = AlwaysFemale
+GrowthRate = Medium
+BaseEXP = 173
+EffortPoints = 0,0,0,0,0,2
+Rareness = 100
+Happiness = 50
+Abilities = SWEETVEIL,AROMAVEIL
+HiddenAbility = AROMAVEIL
+Moves = 1,TACKLE,1,AROMATICMIST,1,ANGELSKISS,10,ENTRAINMENT,15,DRAININGKISS,20,AROMATHERAPY,25,ATTRACT,30,ACIDARMOR,35,DAZZLINGGLEAM,40,RECOVER,45,MISTYTERRAIN,50,BELOVEDPULSE
+TutorMoves = CALMMIND,DAZZLINGGLEAM,DRAININGKISS,DRAINPUNCH,ENCORE,ENDURE,ENERGYBALL,FACADE,FAKETEARS,FLING,GIGADRAIN,GIGAIMPACT,HELPINGHAND,HYPERBEAM,IMPRISON,LIGHTSCREEN,MAGICALLEAF,MAGICROOM,METRONOME,MISTYEXPLOSION,MISTYTERRAIN,MYSTICALFIRE,PLAYROUGH,POUT,PROTECT,PSYCHIC,PSYSHOCK,REST,ROUND,SAFEGUARD,SLEEPTALK,SNORE,SOLARBEAM,STOREDPOWER,SUBSTITUTE,TRIATTACK,WONDERROOM
+Compatibility = Fairy,Amorphous
+StepsToHatch = 5396
+Height = 3.1
+Weight = 30
+Color = White
+Shape = Head
+Kind = Cake
+Pokedex = TODO
+BattlerPlayerX = 0
+BattlerPlayerY = 20
+BattlerEnemyX = 0
+BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
