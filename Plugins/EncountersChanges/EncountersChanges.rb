@@ -104,7 +104,6 @@ class PokemonEncounters
     time = pbGetTimeNow
     ret = nil
     if $PokemonGlobal.surfing
-	  echo("#{$game_map.terrain_tag($game_player.x, $game_player.y).id}\n")
 	  # Active water encounters
 	  if $game_map.terrain_tag($game_player.x, $game_player.y).id == :ActiveWater
 		ret = find_valid_encounter_type_for_time(:ActiveWater, time)

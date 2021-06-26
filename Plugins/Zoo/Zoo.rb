@@ -28,3 +28,11 @@ def sendToZoo()
 		refreshFollow()
 	end
 end
+
+def debugTurnOnAll()
+	$game_map.events.each_value { |event|
+		if event.name.include?("overworld")
+			pbSetSelfSwitch(event.id,"A",true)
+		end
+	}
+end

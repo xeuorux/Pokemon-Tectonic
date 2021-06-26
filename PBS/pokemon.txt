@@ -3259,7 +3259,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MKINGLER,Level,46
+Evolutions = KLAWSAR,Level,46
 #-------------------------------
 [100]
 Name = Voltorb
@@ -27294,7 +27294,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MDREDNAW,Level,42
+Evolutions = SEISMAW,Level,42
 #-------------------------------
 [835]
 Name = Yamper
@@ -28401,7 +28401,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 35
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ALCREMIE,Level,25
+Evolutions = BLASFEMMIE,Level,25
 #-------------------------------
 [869]
 Name = Alcremie
@@ -28433,7 +28433,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MALCREMIE,Level,36
+Evolutions = BLASFEMMIE,Level,36
 #-------------------------------
 [870]
 Name = Falinks
@@ -29916,8 +29916,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [916]
-Name = MKingler
-InternalName = MKINGLER
+Name = Klawsar
+InternalName = KLAWSAR
 Type1 = WATER
 BaseStats = 85,140,125,75,60,60
 #Total: 545
@@ -29947,8 +29947,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [917]
-Name = MDrednaw
-InternalName = MDREDNAW
+Name = Seismaw
+InternalName = SEISMAW
 Type1 = WATER
 Type2 = ROCK
 BaseStats = 100,135,100,84,58,78
@@ -30011,8 +30011,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [919]
-Name = MAlcremie
-InternalName = MALCREMIE
+Name = Blasfemmie
+InternalName = BLASFEMMIE
 Type1 = FAIRY
 BaseStats = 70,65,80,69,120,131
 #Total: 495
