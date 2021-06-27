@@ -894,7 +894,7 @@ end
 #===============================================================================
 class PokeBattle_Move_534 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		if user.Effects[PBEffects::Confusion] == 0 && user.Effects[PBEffects::Charm] == 0
+		if user.effects[PBEffects::Confusion] == 0 && user.effects[PBEffects::Charm] == 0
 			@battle.pbDisplay(_INTL("But it failed!"))
 			return true
 		end
