@@ -36,3 +36,11 @@ def debugTurnOnAll()
 		end
 	}
 end
+
+def debugTurnOffAll()
+	$game_map.events.each_value { |event|
+		if event.name.include?("overworld")
+			pbSetSelfSwitch(event.id,"A",false)
+		end
+	}
+end
