@@ -791,7 +791,6 @@ class StyleValueScreen
 			@pool -= 1
 			@scene.pool = @pool
 			pbPlayDecisionSE
-			echo("#{Input.time?(Input::RIGHT)}\n")
 		elsif Input.time?(Input::RIGHT) < 20000
 			pbPlayBuzzerSE
 		end
@@ -802,7 +801,6 @@ class StyleValueScreen
 			@pool += 1
 			@scene.pool = @pool
 			pbPlayDecisionSE
-			echo("#{Input.time?(Input::LEFT)}\n")
 		elsif Input.time?(Input::LEFT) < 20000
 			pbPlayBuzzerSE
 		end
