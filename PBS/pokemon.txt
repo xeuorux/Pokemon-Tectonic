@@ -27784,7 +27784,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MTOXTRICITY,Level,50
+Evolutions = ARCLAMOR,Level,50
 #-------------------------------
 [850]
 Name = Sizzlipede
@@ -29979,8 +29979,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [918]
-Name = MToxtricity
-InternalName = MTOXTRICITY
+Name = Arclamor
+InternalName = ARCLAMOR
 Type1 = ELECTRIC
 Type2 = POISON
 BaseStats = 85,93,80,85,128,80
