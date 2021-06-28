@@ -148,6 +148,46 @@ class PokeBattle_Move_05A < PokeBattle_Move
 end
 
 #===============================================================================
+# Power is doubled if the target is using Dive. Hits some semi-invulnerable
+# targets. (Surf)
+#===============================================================================
+class PokeBattle_Move_075 < PokeBattle_Move
+  def hitsDivingTargets?; return true; end
+
+  def pbModifyDamage(damageMult,user,target)
+    damageMult *= 2 if target.inTwoTurnAttack?("0CB")   # Dive
+    return damageMult
+  end
+  
+  def pbEffectAfterAllHits(user,target)
+    if !target.damageState.unaffected && !target.damageState.protected &&
+	  !target.damageState.missed &&
+	  user.species == :CRAMORANT &&
+      user.hasActiveAbility?(:GULPMISSILE) && user.form==0
+      user.form=2
+      user.form=1 if user.hp>(user.totalhp/2)
+      @battle.scene.pbChangePokemon(user,user.pokemon)
+    end
+  end
+end
+
+#===============================================================================
+# Two turn attack. Skips first turn, attacks second turn. (Dive)
+# (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
+#===============================================================================
+class PokeBattle_Move_0CB < PokeBattle_TwoTurnMove
+  def pbChargingTurnMessage(user,targets)
+    @battle.pbDisplay(_INTL("{1} hid underwater!",user.pbThis))
+	if user.species == :CRAMORANT &&
+      user.hasActiveAbility?(:GULPMISSILE) && user.form==0
+      user.form=2
+      user.form=1 if user.hp>(user.totalhp/2)
+      @battle.scene.pbChangePokemon(user,user.pokemon)
+    end
+  end
+end
+
+#===============================================================================
 # In wild battles, makes target flee. Fails if target is a higher level than the
 # user.
 # In trainer battles, target switches out.

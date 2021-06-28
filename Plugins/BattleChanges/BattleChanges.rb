@@ -2136,6 +2136,27 @@ class PokeBattle_Battler
 	@effects[PBEffects::CharmChance] = 0
   end
   
+  def pbEndTurn(_choice)
+    @lastRoundMoved = @battle.turnCount   # Done something this round
+	 # Gorilla Tactics
+    if @effects[PBEffects::GorillaTactics] == nil && @lastMoveUsed>=0 && hasActiveAbility?(:GORILLATACTICS)
+      @effects[PBEffects::GorillaTactics]=@lastMoveUsed
+    end
+    if !@effects[PBEffects::ChoiceBand] &&
+       hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
+      if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
+        @effects[PBEffects::ChoiceBand] = @lastMoveUsed
+      elsif @lastRegularMoveUsed && pbHasMove?(@lastRegularMoveUsed)
+        @effects[PBEffects::ChoiceBand] = @lastRegularMoveUsed
+      end
+    end
+    @effects[PBEffects::BeakBlast]   = false
+    @effects[PBEffects::Charge]      = 0 if @effects[PBEffects::Charge]==1
+    @effects[PBEffects::GemConsumed] = nil
+    @effects[PBEffects::ShellTrap]   = false
+    @battle.eachBattler { |b| b.pbContinualAbilityChecks }   # Trace, end primordial weathers
+  end
+  
   def pbConfusionDamage(msg,charm=false)
     @damageState.reset
     @damageState.initialHP = @hp
@@ -2499,6 +2520,102 @@ class PokeBattle_Battler
 	@battle.scene.pbRefresh()
   end
   
+  def pbCheckFormOnTerrainChange
+    return if fainted?
+    if hasActiveAbility?(:MIMICRY)
+      newTypes = self.pbTypes
+      originalTypes=[@pokemon.type1,@pokemon.type2] | []
+      case @battle.field.terrain
+      when :Electric;   newTypes = [:ELECTRIC]
+      when :Grassy;     newTypes = [:GRASS]
+      when :Misty;      newTypes = [:FAIRY]
+      when :Psychic;    newTypes = [:PSYCHIC]
+      else;                              newTypes = originalTypes.dup
+      end
+      if self.pbTypes!=newTypes
+        pbChangeTypes(newTypes)
+        @battle.pbShowAbilitySplash(self,true)
+        @battle.pbHideAbilitySplash(self)
+        if newTypes!=originalTypes
+          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+            @battle.pbDisplay(_INTL("{1}'s type changed to {3}!",pbThis,
+             self.abilityName,GameData::Type.get(newTypes[0]).name))
+          else
+            @battle.pbDisplay(_INTL("{1}'s {2} made it the {3} type!",pbThis,
+             self.abilityName,GameData::Type.get(newTypes[0]).name))
+          end
+        else
+          @battle.pbDisplay(_INTL("{1} returned back to normal!",pbThis))
+        end
+      end
+    end
+  end
+  
+    # Checks the Pokémon's form and updates it if necessary. Used for when a
+  # Pokémon enters battle (endOfRound=false) and at the end of each round
+  # (endOfRound=true).
+  def pbCheckForm(endOfRound=false)
+    return if fainted? || @effects[PBEffects::Transform]
+    # Form changes upon entering battle and when the weather changes
+    pbCheckFormOnWeatherChange if !endOfRound
+	pbCheckFormOnTerrainChange if !endOfRound
+    # Darmanitan - Zen Mode
+    if isSpecies?(:DARMANITAN) && self.ability == :ZENMODE
+      if @hp<=@totalhp/2
+        if @form!=1
+          @battle.pbShowAbilitySplash(self,true)
+          @battle.pbHideAbilitySplash(self)
+          pbChangeForm(1,_INTL("{1} triggered!",abilityName))
+        end
+      elsif @form!=0
+        @battle.pbShowAbilitySplash(self,true)
+        @battle.pbHideAbilitySplash(self)
+        pbChangeForm(0,_INTL("{1} triggered!",abilityName))
+      end
+    end
+    # Minior - Shields Down
+    if isSpecies?(:MINIOR) && self.ability == :SHIELDSDOWN
+      if @hp>@totalhp/2   # Turn into Meteor form
+        newForm = (@form>=7) ? @form-7 : @form
+        if @form!=newForm
+          @battle.pbShowAbilitySplash(self,true)
+          @battle.pbHideAbilitySplash(self)
+          pbChangeForm(newForm,_INTL("{1} deactivated!",abilityName))
+        elsif !endOfRound
+          @battle.pbDisplay(_INTL("{1} deactivated!",abilityName))
+        end
+      elsif @form<7   # Turn into Core form
+        @battle.pbShowAbilitySplash(self,true)
+        @battle.pbHideAbilitySplash(self)
+        pbChangeForm(@form+7,_INTL("{1} activated!",abilityName))
+      end
+    end
+    # Wishiwashi - Schooling
+    if isSpecies?(:WISHIWASHI) && self.ability == :SCHOOLING
+      if @level>=20 && @hp>@totalhp/4
+        if @form!=1
+          @battle.pbShowAbilitySplash(self,true)
+          @battle.pbHideAbilitySplash(self)
+          pbChangeForm(1,_INTL("{1} formed a school!",pbThis))
+        end
+      elsif @form!=0
+        @battle.pbShowAbilitySplash(self,true)
+        @battle.pbHideAbilitySplash(self)
+        pbChangeForm(0,_INTL("{1} stopped schooling!",pbThis))
+      end
+    end
+    # Zygarde - Power Construct
+    if isSpecies?(:ZYGARDE) && self.ability == :POWERCONSTRUCT && endOfRound
+      if @hp<=@totalhp/2 && @form<2   # Turn into Complete Forme
+        newForm = @form+2
+        @battle.pbDisplay(_INTL("You sense the presence of many!"))
+        @battle.pbShowAbilitySplash(self,true)
+        @battle.pbHideAbilitySplash(self)
+        pbChangeForm(newForm,_INTL("{1} transformed into its Complete Forme!",pbThis))
+      end
+    end
+  end
+  
   #=============================================================================
   # Check whether the user (self) is able to take action at all.
   # If this returns true, and if PP isn't a problem, the move will be considered
@@ -2630,6 +2747,309 @@ class PokeBattle_Battler
         return false
       end
     end
+    return true
+  end
+  
+    #=============================================================================
+  # Initial success check against the target. Done once before the first hit.
+  # Includes move-specific failure conditions, protections and type immunities.
+  #=============================================================================
+  def pbSuccessCheckAgainstTarget(move,user,target)
+    typeMod = move.pbCalcTypeMod(move.calcType,user,target)
+    target.damageState.typeMod = typeMod
+    # Two-turn attacks can't fail here in the charging turn
+    return true if user.effects[PBEffects::TwoTurnAttack]
+    # Move-specific failures
+    return false if move.pbFailsAgainstTarget?(user,target)
+    # Immunity to priority moves because of Psychic Terrain
+    if @battle.field.terrain == :Psychic && target.affectedByTerrain? && target.opposes?(user) &&
+       @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
+      @battle.pbDisplay(_INTL("{1} surrounds itself with psychic terrain!",target.pbThis))
+      return false
+    end
+    # Crafty Shield
+    if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index!=target.index && move.function != "17C"
+       move.statusMove? && !move.pbTarget(user).targets_all
+      @battle.pbCommonAnimation("CraftyShield",target)
+      @battle.pbDisplay(_INTL("Crafty Shield protected {1}!",target.pbThis(true)))
+      target.damageState.protected = true
+      @battle.successStates[user.index].protected = true
+      return false
+    end
+    # Wide Guard
+    if target.pbOwnSide.effects[PBEffects::WideGuard] && user.index!=target.index &&
+       move.pbTarget(user).num_targets > 1 &&
+       (Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?)
+      @battle.pbCommonAnimation("WideGuard",target)
+      @battle.pbDisplay(_INTL("Wide Guard protected {1}!",target.pbThis(true)))
+      target.damageState.protected = true
+      @battle.successStates[user.index].protected = true
+      return false
+    end
+    if move.canProtectAgainst?
+      # Quick Guard
+      if target.pbOwnSide.effects[PBEffects::QuickGuard] &&
+         @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
+        @battle.pbCommonAnimation("QuickGuard",target)
+        @battle.pbDisplay(_INTL("Quick Guard protected {1}!",target.pbThis(true)))
+        target.damageState.protected = true
+        @battle.successStates[user.index].protected = true
+        return false
+      end
+      # Protect
+      if target.effects[PBEffects::Protect]
+        @battle.pbCommonAnimation("Protect",target)
+        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+        target.damageState.protected = true
+        @battle.successStates[user.index].protected = true
+        return false
+      end
+      # King's Shield
+      if target.effects[PBEffects::KingsShield] && move.damagingMove?
+        @battle.pbCommonAnimation("KingsShield",target)
+        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+        target.damageState.protected = true
+        @battle.successStates[user.index].protected = true
+        if move.pbContactMove?(user) && user.affectedByContactEffect?
+          if user.pbCanLowerStatStage?(:ATTACK)
+            user.pbLowerStatStage(:ATTACK,2,nil)
+          end
+        end
+        return false
+      end
+      # Spiky Shield
+      if target.effects[PBEffects::SpikyShield]
+        @battle.pbCommonAnimation("SpikyShield",target)
+        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+        target.damageState.protected = true
+        @battle.successStates[user.index].protected = true
+        if move.pbContactMove?(user) && user.affectedByContactEffect?
+          @battle.scene.pbDamageAnimation(user)
+          user.pbReduceHP(user.totalhp/8,false)
+          @battle.pbDisplay(_INTL("{1} was hurt!",user.pbThis))
+          user.pbItemHPHealCheck
+        end
+        return false
+      end
+      # Baneful Bunker
+      if target.effects[PBEffects::BanefulBunker]
+        @battle.pbCommonAnimation("BanefulBunker",target)
+        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+        target.damageState.protected = true
+        @battle.successStates[user.index].protected = true
+        if move.pbContactMove?(user) && user.affectedByContactEffect?
+          user.pbPoison(target) if user.pbCanPoison?(target,false)
+        end
+        return false
+      end
+      # Mat Block
+      if target.pbOwnSide.effects[PBEffects::MatBlock] && move.damagingMove?
+        # NOTE: Confirmed no common animation for this effect.
+        @battle.pbDisplay(_INTL("{1} was blocked by the kicked-up mat!",move.name))
+        target.damageState.protected = true
+        @battle.successStates[user.index].protected = true
+        return false
+      end
+    end
+    # Magic Coat/Magic Bounce
+    if move.canMagicCoat? && !target.semiInvulnerable? && target.opposes?(user)
+      if target.effects[PBEffects::MagicCoat]
+        target.damageState.magicCoat = true
+        target.effects[PBEffects::MagicCoat] = false
+        return false
+      end
+      if target.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker &&
+         !target.effects[PBEffects::MagicBounce]
+        target.damageState.magicBounce = true
+        target.effects[PBEffects::MagicBounce] = true
+        return false
+      end
+    end
+    # Immunity because of ability (intentionally before type immunity check)
+    return false if move.pbImmunityByAbility(user,target)
+    # Type immunity
+    if move.pbDamagingMove? && Effectiveness.ineffective?(typeMod)
+      PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
+      @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      return false
+    end
+    # Dark-type immunity to moves made faster by Prankster
+    if Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::Prankster] &&
+       target.pbHasType?(:DARK) && target.opposes?(user)
+      PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
+      @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      return false
+    end
+    # Airborne-based immunity to Ground moves
+    if move.damagingMove? && move.calcType == :GROUND &&
+       target.airborne? && !move.hitsFlyingTargets?
+      if target.hasActiveAbility?(:LEVITATE) && !@battle.moldBreaker
+        @battle.pbShowAbilitySplash(target)
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))
+        else
+          @battle.pbDisplay(_INTL("{1} avoided the attack with {2}!",target.pbThis,target.abilityName))
+        end
+        @battle.pbHideAbilitySplash(target)
+        return false
+      end
+      if target.hasActiveItem?(:AIRBALLOON)
+        @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!",target.pbThis,target.itemName))
+        return false
+      end
+      if target.effects[PBEffects::MagnetRise]>0
+        @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Magnet Rise!",target.pbThis))
+        return false
+      end
+      if target.effects[PBEffects::Telekinesis]>0
+        @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Telekinesis!",target.pbThis))
+        return false
+      end
+    end
+    # Immunity to powder-based moves
+    if move.powderMove?
+      if target.pbHasType?(:GRASS) && Settings::MORE_TYPE_EFFECTS
+        PBDebug.log("[Target immune] #{target.pbThis} is Grass-type and immune to powder-based moves")
+        @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+        return false
+      end
+      if Settings::MECHANICS_GENERATION >= 6
+        if target.hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
+          @battle.pbShowAbilitySplash(target)
+          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+            @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+          else
+            @battle.pbDisplay(_INTL("It doesn't affect {1} because of its {2}.",target.pbThis(true),target.abilityName))
+          end
+          @battle.pbHideAbilitySplash(target)
+          return false
+        end
+        if target.hasActiveItem?(:SAFETYGOGGLES)
+          PBDebug.log("[Item triggered] #{target.pbThis} has Safety Goggles and is immune to powder-based moves")
+          @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+          return false
+        end
+      end
+    end
+    # Substitute
+    if target.effects[PBEffects::Substitute]>0 && move.statusMove? &&
+       !move.ignoresSubstitute?(user) && user.index!=target.index
+      PBDebug.log("[Target immune] #{target.pbThis} is protected by its Substitute")
+      @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis(true)))
+      return false
+    end
+    return true
+  end
+  
+  #=============================================================================
+  # Decide whether the trainer is allowed to tell the Pokémon to use the given
+  # move. Called when choosing a command for the round.
+  # Also called when processing the Pokémon's action, because these effects also
+  # prevent Pokémon action. Relevant because these effects can become active
+  # earlier in the same round (after choosing the command but before using the
+  # move) or an unusable move may be called by another move such as Metronome.
+  #=============================================================================
+  def pbCanChooseMove?(move,commandPhase,showMessages=true,specialUsage=false)
+    # Disable
+    if @effects[PBEffects::DisableMove]==move.id && !specialUsage
+      if showMessages
+        msg = _INTL("{1}'s {2} is disabled!",pbThis,move.name)
+        (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+      end
+      return false
+    end
+    # Heal Block
+    if @effects[PBEffects::HealBlock]>0 && move.healingMove?
+      if showMessages
+        msg = _INTL("{1} can't use {2} because of Heal Block!",pbThis,move.name)
+        (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+      end
+      return false
+    end
+    # Gravity
+    if @battle.field.effects[PBEffects::Gravity]>0 && move.unusableInGravity?
+      if showMessages
+        msg = _INTL("{1} can't use {2} because of gravity!",pbThis,move.name)
+        (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+      end
+      return false
+    end
+    # Throat Chop
+    if @effects[PBEffects::ThroatChop]>0 && move.soundMove?
+      if showMessages
+        msg = _INTL("{1} can't use {2} because of Throat Chop!",pbThis,move.name)
+        (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+      end
+      return false
+    end
+    # Choice Band
+    if @effects[PBEffects::ChoiceBand]
+      if hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) &&
+         pbHasMove?(@effects[PBEffects::ChoiceBand])
+        if move.id!=@effects[PBEffects::ChoiceBand]
+          if showMessages
+            msg = _INTL("{1} allows the use of only {2}!",itemName,
+               GameData::Move.get(@effects[PBEffects::ChoiceBand]).name)
+            (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+          end
+          return false
+        end
+      else
+        @effects[PBEffects::ChoiceBand] = nil
+      end
+    end
+	# Gorilla Tactics
+    if @effects[PBEffects::GorillaTactics]>=0
+      if hasActiveAbility?(:GORILLATACTICS)
+        if move.id!=@effects[PBEffects::GorillaTactics]
+          if showMessages
+            msg = _INTL("{1} allows the use of only {2} !",abilityName,GameData::Move.get(@effects[PBEffects::GorillaTactics]).name)
+            (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+          end
+          return false
+        end
+      else
+        @effects[PBEffects::GorillaTactics] = -1
+      end
+    end
+    # Taunt
+    if @effects[PBEffects::Taunt]>0 && move.statusMove?
+      if showMessages
+        msg = _INTL("{1} can't use {2} after the taunt!",pbThis,move.name)
+        (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+      end
+      return false
+    end
+    # Torment
+    if @effects[PBEffects::Torment] && !@effects[PBEffects::Instructed] &&
+       @lastMoveUsed && move.id==@lastMoveUsed && move.id!=@battle.struggle.id
+      if showMessages
+        msg = _INTL("{1} can't use the same move twice in a row due to the torment!",pbThis)
+        (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+      end
+      return false
+    end
+    # Imprison
+    @battle.eachOtherSideBattler(@index) do |b|
+      next if !b.effects[PBEffects::Imprison] || !b.pbHasMove?(move.id)
+      if showMessages
+        msg = _INTL("{1} can't use its sealed {2}!",pbThis,move.name)
+        (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+      end
+      return false
+    end
+    # Assault Vest (prevents choosing status moves but doesn't prevent
+    # executing them)
+    if hasActiveItem?(:ASSAULTVEST) && move.statusMove? && commandPhase
+      if showMessages
+        msg = _INTL("The effects of the {1} prevent status moves from being used!",
+           itemName)
+        (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+      end
+      return false
+    end
+    # Belch
+    return false if !move.pbCanChooseMove?(self,commandPhase,showMessages)
     return true
   end
   
@@ -2838,7 +3258,7 @@ class PokeBattle_Battler
       end
     end
     # Protean
-    if user.hasActiveAbility?(:PROTEAN) && !move.callsAnotherMove? && !move.snatched
+    if (user.hasActiveAbility?(:PROTEAN) || user.hasActiveAbility?(:LIBERO)) && !move.callsAnotherMove? && !move.snatched
       if user.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type
         @battle.pbShowAbilitySplash(user)
         user.pbChangeTypes(move.calcType)
@@ -2854,6 +3274,10 @@ class PokeBattle_Battler
           targets = pbFindTargets(choice,move,user)
         end
       end
+    end
+	# Redirect Dragon Darts first hit if necessary
+    if move.function=="17C" && @battle.pbSideSize(targets[0].index)>1
+      targets=pbChangeTargets(move,user,targets,0)
     end
     #---------------------------------------------------------------------------
     magicCoater  = -1
@@ -3176,6 +3600,10 @@ class PokeBattle_Battler
     targets.each { |b| b.damageState.resetPerHit }
     # Count a hit for Parental Bond (if it applies)
     user.effects[PBEffects::ParentalBond] -= 1 if user.effects[PBEffects::ParentalBond]>0
+	# Redirect Dragon Darts other hits
+	if move.function=="17C" && @battle.pbSideSize(targets[0].index)>1 && hitNum>0
+	  targets=pbChangeTargets(move,user,targets,1)
+	end
     # Accuracy check (accuracy/evasion calc)
     if hitNum==0 || move.successCheckPerHit?
       targets.each do |b|
@@ -3320,6 +3748,123 @@ class PokeBattle_Battler
     targets.each { |b| b.pbFaint if b && b.fainted? }
     user.pbFaint if user.fainted?
     return true
+  end
+  
+  #=============================================================================
+  # Redirect attack to another target
+  #=============================================================================
+  def pbChangeTargets(move,user,targets,dragondarts=-1)
+    target_data = move.pbTarget(user)
+    return targets if @battle.switching   # For Pursuit interrupting a switch
+    return targets if move.cannotRedirect?
+    return targets if move.function != "17C" && (!target_data.can_target_one_foe? || targets.length!=1)
+	# Stalwart / Propeller Tail
+    allySwitched = false
+    ally = -1
+    user.eachOpposing do |b|
+      next if GameData::Move.get(b.lastMoveUsed).function_code != "120"
+      next if target_data.pbTargetsMultiple?
+      next if !hasActiveAbility?(:STALWART) && !hasActiveAbility?(:PROPELLERTAIL) && move.function != "182"
+      next if !@battle.choices[b.index][3] == targets
+      next if b.effects[PBEffects::SwitchedAlly] == -1
+      allySwitched = !allySwitched
+      ally = b.effects[PBEffects::SwitchedAlly]
+      b.effects[PBEffects::SwitchedAlly] = -1
+    end
+    if allySwitched && ally >= 0
+      targets = []
+      pbAddTarget(targets,user,@battle.battlers[ally],move,!PBTargets.canChooseDistantTarget?(move.target))
+      return targets
+    end
+    return targets if user.hasActiveAbility?(:STALWART) || user.hasActiveAbility?(:PROPELLERTAIL)
+	return targets if move.function == "182"
+    priority = @battle.pbPriority(true)
+    nearOnly = !target_data.can_choose_distant_target?
+    # Spotlight (takes priority over Follow Me/Rage Powder/Lightning Rod/Storm Drain)
+    newTarget = nil; strength = 100   # Lower strength takes priority
+    priority.each do |b|
+      next if b.fainted? || b.effects[PBEffects::SkyDrop]>=0
+      next if b.effects[PBEffects::Spotlight]==0 ||
+              b.effects[PBEffects::Spotlight]>=strength
+      next if !b.opposes?(user)
+      next if nearOnly && !b.near?(user)
+      newTarget = b
+      strength = b.effects[PBEffects::Spotlight]
+    end
+    if newTarget
+      PBDebug.log("[Move target changed] #{newTarget.pbThis}'s Spotlight made it the target")
+      targets = []
+      pbAddTarget(targets,user,newTarget,move,nearOnly)
+      return targets
+    end
+	# Dragon Darts redirection
+    if dragondarts>=0
+      newTargets=[]
+      neednewtarget=false
+      # Check if first use has to be redirected
+      if dragondarts==0
+        targets.each do |b|
+          next if !b.effects[PBEffects::Protect] &&
+          !(b.effects[PBEffects::QuickGuard] && @battle.choices[user.index][4]>0) &&
+          !b.effects[PBEffects::SpikyShield] &&
+          !b.effects[PBEffects::BanefulBunker] &&
+          !b.effects[PBEffects::Obstruct] &&
+          b.effects[PBEffects::TwoTurnAttack]<=0 &&
+          !move.pbImmunityByAbility(user,b) &&
+          !Effectiveness.ineffective_type?(move.type,b.type1,b.type2) &&
+          move.pbAccuracyCheck(user,b)
+          next neednewtarget=true
+        end
+      end
+      # Redirect first use if necessary or get another target on each consecutive use
+      if neednewtarget || dragondarts==1
+        targets[0].eachAlly do |b|
+		  next if b.index == user.index && dragondarts==1 # Don't attack yourself on the second hit.
+          next if b.effects[PBEffects::Protect] ||
+          (b.effects[PBEffects::QuickGuard] && @battle.choices[user.index][4]>0) ||
+          b.effects[PBEffects::SpikyShield] ||
+          b.effects[PBEffects::BanefulBunker] ||
+          b.effects[PBEffects::Obstruct] ||
+          b.effects[PBEffects::TwoTurnAttack]>0||
+          move.pbImmunityByAbility(user,b) ||
+          Effectiveness.ineffective_type?(move.type,b.type1,b.type2) ||
+          !move.pbAccuracyCheck(user,b)
+          newTargets.push(b)
+		  b.damageState.unaffected = false
+		  # In double battle, the pokémon might keep this state from a hit from the ally.
+          break
+        end
+      end
+      # Final target
+      targets=newTargets if newTargets.length!=0
+      # Reduce PP if the new target has Pressure
+      if targets[0].hasActiveAbility?(:PRESSURE)
+        user.pbReducePP(move) # Reduce PP
+      end
+    end
+    # Follow Me/Rage Powder (takes priority over Lightning Rod/Storm Drain)
+    newTarget = nil; strength = 100   # Lower strength takes priority
+    priority.each do |b|
+      next if b.fainted? || b.effects[PBEffects::SkyDrop]>=0
+      next if b.effects[PBEffects::RagePowder] && !user.affectedByPowder?
+      next if b.effects[PBEffects::FollowMe]==0 ||
+              b.effects[PBEffects::FollowMe]>=strength
+      next if !b.opposes?(user)
+      next if nearOnly && !b.near?(user)
+      newTarget = b
+      strength = b.effects[PBEffects::FollowMe]
+    end
+    if newTarget
+      PBDebug.log("[Move target changed] #{newTarget.pbThis}'s Follow Me/Rage Powder made it the target")
+      targets = []
+      pbAddTarget(targets,user,newTarget,move,nearOnly)
+      return targets
+    end
+    # Lightning Rod
+    targets = pbChangeTargetByAbility(:LIGHTNINGROD,:ELECTRIC,move,user,targets,priority,nearOnly)
+    # Storm Drain
+    targets = pbChangeTargetByAbility(:STORMDRAIN,:WATER,move,user,targets,priority,nearOnly)
+    return targets
   end
 end
 
