@@ -1107,3 +1107,60 @@ class TrainerPC
 		return _INTL("Item Storage PC")
 	end
 end
+
+#===============================================================================
+# Blacking out animation
+#===============================================================================
+def pbStartOver(gameover=false)
+  if pbInBugContest?
+    pbBugContestStartOver
+    return
+  end
+  $Trainer.heal_party
+  if $PokemonGlobal.pokecenterMapId && $PokemonGlobal.pokecenterMapId>=0
+	mapName = pbGetMessage(MessageTypes::MapNames,$PokemonGlobal.pokecenterMapId)
+    mapName.gsub!(/\\PN/,$Trainer.name) if $Trainer
+    #if gameover
+      #pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]After the unfortunate defeat, you scurry back to a Pokémon Center."))
+    #else
+      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]You scurry back to {1}, protecting your exhausted Pokémon from any further harm...",mapName))
+    #end
+    pbCancelVehicles
+    pbRemoveDependencies
+    $game_switches[Settings::STARTING_OVER_SWITCH] = true
+    $game_temp.player_new_map_id    = $PokemonGlobal.pokecenterMapId
+    $game_temp.player_new_x         = $PokemonGlobal.pokecenterX
+    $game_temp.player_new_y         = $PokemonGlobal.pokecenterY
+    $game_temp.player_new_direction = $PokemonGlobal.pokecenterDirection
+    $scene.transfer_player if $scene.is_a?(Scene_Map)
+    $game_map.refresh
+  else
+    homedata = GameData::Metadata.get.home
+    if homedata && !pbRgssExists?(sprintf("Data/Map%03d.rxdata",homedata[0]))
+      if $DEBUG
+        pbMessage(_ISPRINTF("Can't find the map 'Map{1:03d}' in the Data folder. The game will resume at the player's position.",homedata[0]))
+      end
+      $Trainer.heal_party
+      return
+    end
+    #if gameover
+      #pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]After the unfortunate defeat, you scurry back home."))
+    #else
+      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]You scurry back home, protecting your exhausted Pokémon from any further harm..."))
+    #end
+    if homedata
+      pbCancelVehicles
+      pbRemoveDependencies
+      $game_switches[Settings::STARTING_OVER_SWITCH] = true
+      $game_temp.player_new_map_id    = homedata[0]
+      $game_temp.player_new_x         = homedata[1]
+      $game_temp.player_new_y         = homedata[2]
+      $game_temp.player_new_direction = homedata[3]
+      $scene.transfer_player if $scene.is_a?(Scene_Map)
+      $game_map.refresh
+    else
+      $Trainer.heal_party
+    end
+  end
+  pbEraseEscapePoint
+end
