@@ -2496,6 +2496,23 @@ class PokeBattle_Battler
     return [(speed*speedMult).round,1].max
   end
   
+  def pbRecoverHPFromDrain(amt,target,msg=nil)
+    if target.hasActiveAbility?(:LIQUIDOOZE)
+      @battle.pbShowAbilitySplash(target)
+      pbReduceHP(amt)
+      @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!",pbThis))
+      @battle.pbHideAbilitySplash(target)
+      pbItemHPHealCheck
+    else
+      #msg = _INTL("{1} had its energy drained!",target.pbThis) if nil_or_empty?(msg)
+      @battle.pbDisplay(msg)
+      if canHeal?
+        amt = (amt*1.3).floor if hasActiveItem?(:BIGROOT)
+        pbRecoverHP(amt)
+      end
+    end
+  end
+  
   #=============================================================================
   # Change type
   #=============================================================================
