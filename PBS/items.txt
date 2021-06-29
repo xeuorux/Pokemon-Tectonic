@@ -286,7 +286,7 @@
 282,LEVELBALL,Level Ball,Level Balls,3,300,A Poké Ball with much higher strength the higher your Pokémon's level is above the target.,0,4,4,
 283,LUREBALL,Lure Ball,Lure Balls,3,300,A Poké Ball with 5x strength against Pokémon encountered through fishing.,0,4,4,
 284,HEAVYBALL,Heavy Ball,Heavy Balls,3,300,A Poké Ball whose strength varies with the Pokémon's weight.,0,4,4,
-285,LOVEBALL,Love Ball,Love Balls,3,300,A Poké Ball with 8x strength against Pokémon that are the opposite gender, but same species, as yours.,0,4,4,
+285,LOVEBALL,Love Ball,Love Balls,3,300,"A Poké Ball with 8x strength against Pokémon that are the opposite gender, but same species, as yours.",0,4,4,
 286,FRIENDBALL,Friend Ball,Friend Balls,3,300,A Poké Ball that makes caught Pokémon more friendly.,0,4,4,
 287,MOONBALL,Moon Ball,Moon Balls,3,300,A Poké Ball with 4x strength against Pokémon evolve with or from using a Moon Stone.,0,4,4,
 #-------------------------------,,,,,,,,,,

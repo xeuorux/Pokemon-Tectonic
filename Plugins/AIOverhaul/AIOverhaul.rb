@@ -509,16 +509,24 @@ class PokeBattle_AI
     moveType = nil
     skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill_level || 0
     battler = @battle.battlers[idxBattler]
-    # If the foe's last move was super-effective and powerful
-    if !shouldSwitch && battler.turnCount>1 && skill>=PBTrainerAI.mediumSkill
+    # Switch if previously hit hard by a super effective move
+    if !shouldSwitch && battler.turnCount>1 && skill>=PBTrainerAI.highSkill
       target = battler.pbDirectOpposing(true)
       if !target.fainted? && target.lastMoveUsed
         moveData = GameData::Move.get(target.lastMoveUsed)
         moveType = moveData.type
         typeMod = pbCalcTypeMod(moveType,target,battler)
-        if Effectiveness.super_effective?(typeMod) && moveData.base_damage > 50
-          switchChance = (moveData.base_damage > 70) ? 30 : 20
-          shouldSwitch = (pbAIRandom(100) < switchChance)
+        if Effectiveness.super_effective?(typeMod)
+		  #If the foe's last move was substantial for the level we're at
+		  powerfulBP = 99999
+		  case battler.level
+		  when 1..15
+			powerfulBP = 30
+		  when 16..30
+			powerfulBP = 50
+		  when 31..70
+			powerfulBP = 70
+          shouldSwitch = moveData.base_damage >= powerfulBP
         end
       end
     end
@@ -583,15 +591,81 @@ class PokeBattle_AI
     if battler.effects[PBEffects::PerishSong]==1
       shouldSwitch = true
     end
-    # Should swap when confusion is likely to get it killed
-    if skill>=PBTrainerAI.mediumSkill && battler.effects[PBEffects::ConfusionChance] > 0
-      threshold = 30 + 35 * battler.effects[PBEffects::ConfusionChance]
-      threshold = threshold / 2 if battler.hp>=battler.totalhp/2
-      threshold = threshold / 2 if skill==PBTrainerAI.mediumSkill
-      adRatio = battler.attack.to_f / battler.defense.to_f
-      threshold = threshold + 10 if adRatio > 1.5
-      threshold = threshold - 10 if adRatio > 0.65
-      shouldSwitch = true if pbAIRandom(100) < threshold
+    # Should swap when confusion self-damage is likely to kill it
+    if skill>=PBTrainerAI.mediumSkill && battler.effects[PBEffects::ConfusionChance] >= 1
+		#Calculate the damage the confusionMove would do
+        confusionMove = PokeBattle_Confusion.new(@battle,nil)
+		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+		# Get the move's type
+		type = confusionMove.calcType
+		# Calcuate base power of move
+		baseDmg = confusionMove.pbBaseDamage(confusionMove.baseDamage,battler,battler)
+		# Calculate battler's attack stat
+		atk, atkStage = confusionMove.pbGetAttackStats(battler,battler)
+		if !battler.hasActiveAbility?(:UNAWARE) || @battle.moldBreaker
+		  atk = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
+		end
+		# Calculate battler's defense stat
+		defense, defStage = confusionMove.pbGetDefenseStats(battler,battler)
+		if !battler.hasActiveAbility?(:UNAWARE)
+		  defense = (defense.to_f*stageMul[defStage]/stageDiv[defStage]).floor
+		end
+		# Calculate all multiplier effects
+		multipliers = {
+		  :base_damage_multiplier  => 1.0,
+		  :attack_multiplier       => 1.0,
+		  :defense_multiplier      => 1.0,
+		  :final_damage_multiplier => 1.0
+		}
+		confusionMove.pbCalcDamageMultipliers(battler,battler,1,type,baseDmg,multipliers)
+		# Main damage calculation
+		baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
+		atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
+		defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
+		damage  = (((2.0 * battler.level / 5 + 2).floor * baseDmg * atk / defense).floor / 50).floor + 2
+		damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
+		
+		shouldSwitch = true if damage >= battler.hp
+		shouldSwitch = true if damage >= (battler.hp * 0.5).floor if skill>=PBTrainerAI.bestSkill
+    end
+	# Should swap when charm self-damage is likely to kill it
+    if skill>=PBTrainerAI.mediumSkill && battler.effects[PBEffects::CharmChance] >= 1
+		#Calculate the damage the charmMove would do
+        charmMove = PokeBattle_Charm.new(@battle,nil)
+		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+		# Get the move's type
+		type = charmMove.calcType
+		# Calcuate base power of move
+		baseDmg = charmMove.pbBaseDamage(charmMove.baseDamage,battler,battler)
+		# Calculate battler's attack stat
+		atk, atkStage = charmMove.pbGetAttackStats(battler,battler)
+		if !battler.hasActiveAbility?(:UNAWARE) || @battle.moldBreaker
+		  atk = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
+		end
+		# Calculate battler's defense stat
+		defense, defStage = charmMove.pbGetDefenseStats(battler,battler)
+		if !battler.hasActiveAbility?(:UNAWARE)
+		  defense = (defense.to_f*stageMul[defStage]/stageDiv[defStage]).floor
+		end
+		# Calculate all multiplier effects
+		multipliers = {
+		  :base_damage_multiplier  => 1.0,
+		  :attack_multiplier       => 1.0,
+		  :defense_multiplier      => 1.0,
+		  :final_damage_multiplier => 1.0
+		}
+		charmMove.pbCalcDamageMultipliers(battler,battler,1,type,baseDmg,multipliers)
+		# Main damage calculation
+		baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
+		atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
+		defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
+		damage  = (((2.0 * battler.level / 5 + 2).floor * baseDmg * atk / defense).floor / 50).floor + 2
+		damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
+		
+		shouldSwitch = true if damage >= battler.hp
+		shouldSwitch = true if damage >= (battler.hp * 0.5).floor if skill>=PBTrainerAI.bestSkill
     end
     if shouldSwitch
       list = []
@@ -611,20 +685,20 @@ class PokeBattle_AI
           end
         end
         # moveType is the type of the target's last used move
-        if moveType != nil && Effectiveness.ineffective?(pbCalcTypeMod(moveType,battler,battler))
+        if moveType != nil && Effectiveness.ineffective?(pbCalcTypeMod(moveType,battler,battler.pbDirectOpposing(true)))
           weight = 65
           typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
           if Effectiveness.super_effective?(typeMod)
             # Greater weight if new Pokemon's type is effective against target
-            weight = 85
+            weight = 100
           end
           list.unshift(i) if pbAIRandom(100)<weight   # Put this Pokemon first
-        elsif moveType != nil && Effectiveness.resistant?(pbCalcTypeMod(moveType,battler,battler))
+        elsif moveType != nil && Effectiveness.resistant?(pbCalcTypeMod(moveType,battler,battler.pbDirectOpposing(true)))
           weight = 40
           typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
           if Effectiveness.super_effective?(typeMod)
             # Greater weight if new Pokemon's type is effective against target
-            weight = 60
+            weight = 100
           end
           list.unshift(i) if pbAIRandom(100)<weight   # Put this Pokemon first
         else
