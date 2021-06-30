@@ -424,6 +424,102 @@ module Compiler
     MessageTypes.setMessagesAsHash(MessageTypes::TrainerLoseText, trainer_lose_texts)
     Graphics.update
   end
+  
+  #=============================================================================
+  # Main compiler method for events
+  #=============================================================================
+  def compile_trainer_events(_mustcompile)
+    mapData = MapData.new
+    t = Time.now.to_i
+    Graphics.update
+    trainerChecker = TrainerChecker.new
+    for id in mapData.mapinfos.keys.sort
+      changed = false
+      map = mapData.getMap(id)
+      next if !map || !mapData.mapinfos[id]
+      pbSetWindowText(_INTL("Processing map {1} ({2})",id,mapData.mapinfos[id].name))
+      for key in map.events.keys
+        if Time.now.to_i-t>=5
+          Graphics.update
+          t = Time.now.to_i
+        end
+        newevent = convert_to_trainer_event(map.events[key],trainerChecker)
+        if newevent
+          map.events[key] = newevent
+          changed = true
+        end
+        newevent = convert_to_item_event(map.events[key])
+        if newevent
+          map.events[key] = newevent
+          changed = true
+        end
+		newevent = convert_overworldPkmn_event(map.events[key])
+        if newevent
+          map.events[key] = newevent
+          changed = true
+        end
+        changed = true if fix_event_name(map.events[key])
+        newevent = fix_event_use(map.events[key],id,mapData)
+        if newevent
+          map.events[key] = newevent
+          changed = true
+        end
+      end
+      if Time.now.to_i-t>=5
+        Graphics.update
+        t = Time.now.to_i
+      end
+      changed = true if check_counters(map,id,mapData)
+      if changed
+        mapData.saveMap(id)
+        mapData.saveTilesets
+      end
+    end
+    changed = false
+    Graphics.update
+    commonEvents = load_data("Data/CommonEvents.rxdata")
+    pbSetWindowText(_INTL("Processing common events"))
+    for key in 0...commonEvents.length
+      newevent = fix_event_use(commonEvents[key],0,mapData)
+      if newevent
+        commonEvents[key] = newevent
+        changed = true
+      end
+    end
+    save_data(commonEvents,"Data/CommonEvents.rxdata") if changed
+  end
+  
+  #=============================================================================
+  # Add cry actions to overworld pokemon events which don't already have scripted behaviour.
+  #=============================================================================
+  def convert_overworldPkmn_event(event)
+    return nil if !event || event.pages.length==0
+	match = event.name.match(/.*overworld\((.*)_?([0-9]*)\).*/)
+	return nil if !match
+    ret = RPG::Event.new(event.x,event.y)
+    ret.name = event.name.sub("nocry","")
+    ret.id   = event.id
+	ret.pages = []
+	speciesName = match[1]
+	return nil if !speciesName || speciesName == ""
+	form = match[2]
+	form = 0 if !form || form == ""
+	speciesNamePretty = GameData::Species.get(speciesName.to_sym).real_name
+	for pagenum in 0...event.pages.length
+		page = Marshal::load(Marshal.dump(event.pages[pagenum]))
+		# If this is definitely an overworld placeholder page, and there is not already scripting on this page
+		if page.graphic.character_name == "00Overworld Placeholder" && page.list.length == 1
+			echo("Doing a cry replacement for event: #{event.name}\n")
+			page.trigger = 0 # Action button
+			page.list = []
+			push_script(page.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesName,form))
+			push_script(page.list,sprintf("pbMessage(\"#{speciesNamePretty} cries out!\")",))
+			push_end(page.list)
+		end
+		ret.pages.push(page)
+	end
+	return ret
+  end
 end
 
 def jank_hash_code(str)

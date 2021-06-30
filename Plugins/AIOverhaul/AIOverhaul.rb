@@ -526,6 +526,7 @@ class PokeBattle_AI
 			powerfulBP = 50
 		  when 31..70
 			powerfulBP = 70
+		  end
           shouldSwitch = moveData.base_damage >= powerfulBP
         end
       end
