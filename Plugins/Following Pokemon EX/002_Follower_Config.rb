@@ -10,11 +10,6 @@ Events.FollowerRefresh += proc{|pkmn|
 }
 
 Events.FollowerRefresh += proc{|pkmn|
-# The Pokemon disappears if the name of the map is Cedolan Gym
-  next false if $game_map.name.include?("Cedolan Gym")
-}
-
-Events.FollowerRefresh += proc{|pkmn|
   if $PokemonGlobal.surfing
     next true if pkmn.hasType?(:WATER)
     next false if FollowerSettings::SURFING_FOLLOWERS_EXCEPTIONS.any?{|s| s == pkmn.species || s.to_s == "#{pkmn.species}_#{pkmn.form}" }
@@ -32,6 +27,7 @@ Events.FollowerRefresh += proc{|pkmn|
   end
 }
 
+=begin
 Events.FollowerRefresh += proc{|pkmn|
   metadata = GameData::MapMetadata.try_get($game_map.map_id)
   if metadata && metadata.outdoor_map != true
@@ -40,6 +36,7 @@ Events.FollowerRefresh += proc{|pkmn|
     next false if (height/10.0) > 2.5 && !$PokemonEncounters.encounter_possible_here?
   end
 }
+=end
 
 #-------------------------------------------------------------------------------
 # These are used to define what the Follower will say when spoken to
@@ -80,8 +77,6 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
   end
   next true if pkmn.status != :NONE
 }
-
-
 
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 # Special hold item on a map which includes battle in the name
