@@ -1,10 +1,10 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 # SECTION 1
 #-------------------------------
-[GENTLEMAN,Ethan]
-LoseText = "This will be hard to forget!"
-Pokemon = BUNEARY,6
-Pokemon = BIDOOF,6
+[LASS,Angelica]
+LoseText = "Aww..."
+Pokemon = GASTLY,6
+Pokemon = HOOTHOOT,6
 #-------------------------------
 [ROCKER,Harvey]
 LoseText = "I couldn't find victory, either!"

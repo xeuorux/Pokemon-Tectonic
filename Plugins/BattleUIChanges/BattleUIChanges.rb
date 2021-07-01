@@ -592,6 +592,7 @@ class PokemonDataBox < SpriteWrapper
   end
 end
 
+# Create the targeting category used for the Info button
 GameData::Target.register({
   :id               => :UserOrOther,
   :id_number        => 500,

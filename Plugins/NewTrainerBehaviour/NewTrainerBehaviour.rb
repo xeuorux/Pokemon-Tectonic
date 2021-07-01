@@ -300,7 +300,13 @@ class PokeBattle_Battle
   end
 end
 
-
 def pbTrainerNotScared(event, trainerID, trainerName, trainerPartyID=0)
 	return true
+end
+
+def pbReceiveHardGymItems()
+	pbReceiveItem(:FULLRESTORE)
+	pbReceiveItem(:MAXREPEL)
+	pbReceiveItem(:ULTRABALL)
+	pbReceiveItem(:MAXREVIVE)
 end
