@@ -107,24 +107,9 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
   end
 }
 
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
-# Specific message if the Pokemon is a bug type and the map's name is route 3
-  if $game_map.name == "Route 3" && pkmn.hasType?(:BUG)
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_sing,x,y)
-    pbWait(50)
-    messages = [
-      "{1} seems highly interested in the trees.",
-      "{1} seems to enjoy the buzzing of the bug Pokémon.",
-      "{1} is jumping around restlessly in the forest."
-    ]
-    pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
-    next true
-  end
-}
-
 # Specific message if the map name is Pokemon Lab
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
-  if $game_map.name == "Pokémon Lab"
+  if $game_map.name == "Lab"
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
     pbWait(72)
     messages = [
@@ -191,7 +176,10 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
       "{1} seems to be listening to the sound of rustling leaves.",
       "{1} is standing perfectly still and might be imitating a tree...",
       "{1} got tangled in the branches and almost fell down!",
-      "{1} was surprised when it got hit by a branch!"
+      "{1} was surprised when it got hit by a branch!",
+	  "{1} seems highly interested in the trees.",
+      "{1} seems to enjoy the buzzing of the bug Pokémon.",
+      "{1} is jumping around restlessly in the forest."
     ]
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
     next true
@@ -250,7 +238,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
       pbWait(72)
       messages = [
-        "{1} seems very upset the weather.",
+        "{1} seems very upset by the weather.",
         "{1} is shivering...",
         "{1} doesn’t seem to like being all wet...",
         "{1} keeps trying to shake itself dry...",

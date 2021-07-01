@@ -20,6 +20,7 @@ Outdoor = true
 ShowArea = true
 MapPosition = 0,13,12
 BattleBack = field
+Environment = Cave
 #-------------------------------
 [003]
 # Savannah Route
@@ -140,7 +141,7 @@ MapPosition = 0,15,8
 MapPosition = 0,15,8
 #-------------------------------
 [025]
-# Dock Town
+# Mining Camp
 MapPosition = 0,15,8
 #-------------------------------
 [026]
