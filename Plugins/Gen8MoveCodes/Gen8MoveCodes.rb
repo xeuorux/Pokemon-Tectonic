@@ -434,7 +434,7 @@ end
 #===============================================================================
 class PokeBattle_Move_183 < PokeBattle_Move
   def pbEffectGeneral(user)
-    if !user.item || user.item==0 || !pbIsBerry?(user.item)
+    if !user.item || GameData::Item.get(user.item).is_berry?
       @battle.pbDisplay("But it failed!")
       return -1
     end
@@ -442,7 +442,7 @@ class PokeBattle_Move_183 < PokeBattle_Move
       user.pbRaiseStatStage(:DEFENSE,2,user)
     end
     user.pbHeldItemTriggerCheck(user.item,false)
-    user.pbConsumeItem(true,true,false) if user.item>0
+    user.pbConsumeItem(true,true,false) if user.item
   end
 end
 

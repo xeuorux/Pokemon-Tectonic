@@ -147,7 +147,7 @@ class PokeBattle_AI
     mod2 = Effectiveness::NORMAL_EFFECTIVE
     if battlerThis.type1!=battlerThis.type2
       mod2 = Effectiveness.calculate(battlerThis.type2,_battlerOther.type1,_battlerOther.type2)
-      mod2 = mod2.to_f / Effectivenesss::NORMAL_EFFECTIVE
+      mod2 = mod2.to_f / Effectiveness::NORMAL_EFFECTIVE
     end
     return mod1*mod2
   end
