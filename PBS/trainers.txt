@@ -278,7 +278,7 @@ Pokemon = BRONZOR,21
 [LEADER_Bartholomew,Bartholomew]
 LoseText = "Top marks, and my compliments to your Pokémon."
 Pokemon = AMAURA,21
-	Ability = 1
+	Ability = 0
 Pokemon = YANMA,21
 	ITEM = BUGGEM
 	Moves = UTURN,AERIALACE,SHOUT,ROOST

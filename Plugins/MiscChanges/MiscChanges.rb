@@ -1326,3 +1326,9 @@ class PokemonSummary_Scene
 		pbDrawTextPositions(overlay,textpos)
 	end
 end
+
+# Turn off all field moves
+
+HiddenMoveHandlers::CanUseMove     = MoveHandlerHash.new
+HiddenMoveHandlers::ConfirmUseMove = MoveHandlerHash.new
+HiddenMoveHandlers::UseMove        = MoveHandlerHash.new
