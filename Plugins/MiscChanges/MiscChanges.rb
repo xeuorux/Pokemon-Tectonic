@@ -1160,3 +1160,169 @@ def pbStartOver(gameover=false)
   end
   pbEraseEscapePoint
 end
+
+
+class PokemonSummary_Scene
+	def pbStartForgetScene(party,partyindex,move_to_learn)
+		@viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
+		@viewport.z = 99999
+		@party      = party
+		@partyindex = partyindex
+		@pokemon    = @party[@partyindex]
+		@page = 4
+		@typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+		@sprites = {}
+		@sprites["background"] = IconSprite.new(0,0,@viewport)
+		@sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
+		pbSetSystemFont(@sprites["overlay"].bitmap)
+		@sprites["pokemon"] = PokemonSprite.new(@viewport)
+		@sprites["pokemon"].setOffset(PictureOrigin::Center)
+		@sprites["pokemon"].x = 104
+		@sprites["pokemon"].y = 206
+		@sprites["pokemon"].setPokemonBitmap(@pokemon)
+		@sprites["pokeicon"] = PokemonIconSprite.new(@pokemon,@viewport)
+		@sprites["pokeicon"].setOffset(PictureOrigin::Center)
+		@sprites["pokeicon"].x       = 46
+		@sprites["pokeicon"].y       = 92
+		@sprites["itemicon"] = ItemIconSprite.new(30,320,@pokemon.item_id,@viewport)
+		@sprites["itemicon"].blankzero = true
+		@sprites["movesel"] = MoveSelectionSprite.new(@viewport,!move_to_learn.nil?)
+		@sprites["movesel"].visible = false
+		@sprites["movesel"].visible = true
+		@sprites["movesel"].index   = 0
+		new_move = (move_to_learn) ? Pokemon::Move.new(move_to_learn) : nil
+		drawSelectedMove(new_move,@pokemon.moves[0])
+		pbFadeInAndShow(@sprites)
+	  end
+
+	def pbChooseMoveToForget(move_to_learn)
+		new_move = (move_to_learn) ? Pokemon::Move.new(move_to_learn) : nil
+		selmove = 0
+		maxmove = (new_move) ? Pokemon::MAX_MOVES : Pokemon::MAX_MOVES - 1
+		@sprites["pokemon"].visible = false
+		@sprites["itemicon"].visible = false
+		loop do
+		  Graphics.update
+		  Input.update
+		  pbUpdate
+		  if Input.trigger?(Input::BACK)
+			selmove = Pokemon::MAX_MOVES
+			pbPlayCloseMenuSE if new_move
+			break
+		  elsif Input.trigger?(Input::USE)
+			pbPlayDecisionSE
+			break
+		  elsif Input.trigger?(Input::UP)
+			selmove -= 1
+			selmove = maxmove if selmove<0
+			if selmove<Pokemon::MAX_MOVES && selmove>=@pokemon.numMoves
+			  selmove = @pokemon.numMoves-1
+			end
+			@sprites["movesel"].index = selmove
+			selected_move = (selmove==Pokemon::MAX_MOVES) ? new_move : @pokemon.moves[selmove]
+			drawSelectedMove(new_move,selected_move)
+		  elsif Input.trigger?(Input::DOWN)
+			selmove += 1
+			selmove = 0 if selmove>maxmove
+			if selmove<Pokemon::MAX_MOVES && selmove>=@pokemon.numMoves
+			  selmove = (new_move) ? maxmove : 0
+			end
+			@sprites["movesel"].index = selmove
+			selected_move = (selmove==Pokemon::MAX_MOVES) ? new_move : @pokemon.moves[selmove]
+			drawSelectedMove(new_move,selected_move)
+		  elsif Input.trigger?(Input::ACTION)
+			pbFadeOutIn {
+				pbTemporaryStatsScreen()
+				@sprites["movesel"].visible = false
+				@sprites["pokeicon"].visible = false
+				@sprites["itemicon"].visible = false
+				@sprites["pokemon"].visible = true
+			}
+			loop do
+				Graphics.update
+				Input.update
+				if Input.trigger?(Input::BACK)
+					pbPlayCancelSE()
+					break
+				end
+			end
+			@sprites["movesel"].visible = true
+			@sprites["pokeicon"].visible = true
+			@sprites["itemicon"].visible = true
+			@sprites["pokemon"].visible = false
+			drawSelectedMove(new_move,@pokemon.moves[0])
+			pbFadeInAndShow(@sprites)
+		  end
+		end
+		return (selmove==Pokemon::MAX_MOVES) ? -1 : selmove
+	end
+	
+	def pbTemporaryStatsScreen()
+		@sprites["itemicon"].item = @pokemon.item_id
+		overlay = @sprites["overlay"].bitmap
+		overlay.clear
+		base   = Color.new(248,248,248)
+		shadow = Color.new(104,104,104)
+		# Set background image
+		@sprites["background"].setBitmap("Graphics/Pictures/Summary/bg_3z")
+		imagepos = []
+		# Show the Poké Ball containing the Pokémon
+		ballimage = sprintf("Graphics/Pictures/Summary/icon_ball_%s", @pokemon.poke_ball)
+		if !pbResolveBitmap(ballimage)
+			ballimage = sprintf("Graphics/Pictures/Summary/icon_ball_%02d", pbGetBallType(@pokemon.poke_ball))
+		end
+		imagepos.push([ballimage,14,60])
+		# Draw all images
+		pbDrawImagePositions(overlay,imagepos)
+		# Write various bits of text
+		pagename = _INTL("SKILLS")
+		textpos = [
+		   [pagename,26,10,0,base,shadow],
+		   [@pokemon.name,46,56,0,base,shadow],
+		   [@pokemon.level.to_s,46,86,0,Color.new(64,64,64),Color.new(176,176,176)],
+		   [_INTL("Item"),66,312,0,base,shadow]
+		]
+		# Write the held item's name
+		if @pokemon.hasItem?
+		  textpos.push([@pokemon.item.name,16,346,0,Color.new(64,64,64),Color.new(176,176,176)])
+		else
+		  textpos.push([_INTL("None"),16,346,0,Color.new(192,200,208),Color.new(208,216,224)])
+		end
+		# Write the gender symbol
+		if @pokemon.male?
+		  textpos.push([_INTL("♂"),178,56,0,Color.new(24,112,216),Color.new(136,168,208)])
+		elsif @pokemon.female?
+		  textpos.push([_INTL("♀"),178,56,0,Color.new(248,56,32),Color.new(224,152,144)])
+		end
+		# Draw all text
+		pbDrawTextPositions(overlay,textpos)	
+		# Draw page-specific information
+		overlay = @sprites["overlay"].bitmap
+		base   = Color.new(248,248,248)
+		shadow = Color.new(104,104,104)
+		# Write various bits of text
+		textpos = [
+		   [_INTL("HP"),292,70,2,base,shadow],
+		   [sprintf("%d/%d",@pokemon.hp,@pokemon.totalhp),462,70,1,Color.new(64,64,64),Color.new(176,176,176)],
+		   [_INTL("Attack"),248,114,0,base,shadow],
+		   [sprintf("%d",@pokemon.attack),456,114,1,Color.new(64,64,64),Color.new(176,176,176)],
+		   [_INTL("Defense"),248,146,0,base,shadow],
+		   [sprintf("%d",@pokemon.defense),456,146,1,Color.new(64,64,64),Color.new(176,176,176)],
+		   [_INTL("Sp. Atk"),248,178,0,base,shadow],
+		   [sprintf("%d",@pokemon.spatk),456,178,1,Color.new(64,64,64),Color.new(176,176,176)],
+		   [_INTL("Sp. Def"),248,210,0,base,shadow],
+		   [sprintf("%d",@pokemon.spdef),456,210,1,Color.new(64,64,64),Color.new(176,176,176)],
+		   [_INTL("Speed"),248,242,0,base,shadow],
+		   [sprintf("%d",@pokemon.speed),456,242,1,Color.new(64,64,64),Color.new(176,176,176)],
+		   [_INTL("Ability"),224,278,0,base,shadow]
+		]
+		# Draw ability name and description
+		ability = @pokemon.ability
+		if ability
+		  textpos.push([ability.name,362,278,0,Color.new(64,64,64),Color.new(176,176,176)])
+		  drawTextEx(overlay,224,320,282,2,ability.description,Color.new(64,64,64),Color.new(176,176,176))
+		end
+		# Draw all text
+		pbDrawTextPositions(overlay,textpos)
+	end
+end
