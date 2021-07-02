@@ -357,6 +357,50 @@ class PokeBattle_Move_0E7 < PokeBattle_Move
 end
 
 #===============================================================================
+# Target drops its item. It regains the item at the end of the battle. (Knock Off)
+# If target has a losable item, damage is multiplied by 1.5.
+#===============================================================================
+class PokeBattle_Move_0F0 < PokeBattle_Move
+  def pbBaseDamage(baseDmg,user,target)
+    if Settings::MECHANICS_GENERATION >= 6 &&
+       target.item && !target.unlosableItem?(target.item)
+       # NOTE: Damage is still boosted even if target has Sticky Hold or a
+       #       substitute.
+      baseDmg = (baseDmg*1.5).round
+    end
+    return baseDmg
+  end
+
+  def pbEffectWhenDealingDamage(user,target)
+    return if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't knock off, but bosses can
+    return if user.fainted?
+    return if target.damageState.unaffected || target.damageState.substitute
+    return if !target.item || target.unlosableItem?(target.item)
+    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    itemName = target.itemName
+    target.pbRemoveItem(false)
+    @battle.pbDisplay(_INTL("{1} dropped its {2}!",target.pbThis,itemName))
+  end
+end
+
+#===============================================================================
+# User consumes target's berry and gains its effect. (Bug Bite, Pluck)
+#===============================================================================
+class PokeBattle_Move_0F4 < PokeBattle_Move
+  def pbEffectWhenDealingDamage(user,target)
+    return if user.fainted? || target.fainted?
+    return if target.damageState.unaffected || target.damageState.substitute
+    return if !target.item || !target.item.is_berry?
+    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    item = target.item
+    itemName = target.itemName
+    target.pbRemoveItem
+    @battle.pbDisplay(_INTL("{1} stole and ate its target's {2}!",user.pbThis,itemName))
+    user.pbHeldItemTriggerCheck(item,false)
+  end
+end
+
+#===============================================================================
 # User flings its item at the target. Power/effect depend on the item. (Fling)
 #===============================================================================
 class PokeBattle_Move_0F7 < PokeBattle_Move
