@@ -161,6 +161,32 @@ def pbFadeOutIn(z=99999,nofadeout=false)
   end
 end
 
+def pbStorePokemon(pkmn)
+  if pbBoxesFull?
+    pbMessage(_INTL("There's no more room for Pokémon!\1"))
+    pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
+    return
+  end
+  pkmn.record_first_moves
+  if $Trainer.party_full?
+    oldcurbox = $PokemonStorage.currentBox
+    storedbox = $PokemonStorage.pbStoreCaught(pkmn)
+    curboxname = $PokemonStorage[oldcurbox].name
+    boxname = $PokemonStorage[storedbox].name
+    creator = nil
+    creator = pbGetStorageCreator if $Trainer.seen_storage_creator
+    if storedbox != oldcurbox
+      pbMessage(_INTL("Box \"{1}\" on the Pokémon Storage PC was full.\1", curboxname))
+      pbMessage(_INTL("{1} was transferred to box \"{2}.\"", pkmn.name, boxname))
+    else
+      pbMessage(_INTL("{1} was transferred to the Pokémon Storage PC.\1", pkmn.name))
+      pbMessage(_INTL("It was stored in box \"{1}.\"", boxname))
+    end
+  else
+    $Trainer.party[$Trainer.party.length] = pkmn
+  end
+end
+
 def pbNicknameAndStore(pkmn)
   if pbBoxesFull?
     pbMessage(_INTL("There's no more room for Pokémon!\1"))
@@ -197,7 +223,7 @@ module PokeBattle_BattleCommon
     curBoxName = @peer.pbBoxName(currentBox)
     boxName    = @peer.pbBoxName(storedBox)
     if storedBox!=currentBox
-      pbDisplayPaused(_INTL("Box \"{1}\" on Pokémon Storage 's PC was full.",curBoxName))
+      pbDisplayPaused(_INTL("Box \"{1}\" on the Pokémon Storage PC was full.",curBoxName))
       pbDisplayPaused(_INTL("{1} was transferred to box \"{2}\".",pkmn.name,boxName))
     else
       pbDisplayPaused(_INTL("{1} was transferred to the Pokémon Storage PC.",pkmn.name))

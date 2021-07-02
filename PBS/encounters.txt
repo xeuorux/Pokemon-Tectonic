@@ -52,7 +52,7 @@ Land
 #-------------------------------
 [007] # Big Cave B2
 Cave,20
-    25,MAWILE,17,19
+    25,WHISMUR,17,19
     25,SABLEYE,17,19
 	25,DIGLETT_1,17,19
 	25,DWEBBLE,17,19
@@ -60,7 +60,7 @@ Land
 	25,ARON,17,19
 	25,SHUCKLE,17,19
 	25,BAGON,17,19
-	25,WHISMUR,17,19
+	25,MAWILE,17,19
 #-------------------------------
 [009] # River Grove
 Land,20

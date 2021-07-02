@@ -505,6 +505,7 @@ module Compiler
 	form = match[2]
 	form = 0 if !form || form == ""
 	speciesNamePretty = GameData::Species.get(speciesName.to_sym).real_name
+	changedAny = false
 	for pagenum in 0...event.pages.length
 		page = Marshal::load(Marshal.dump(event.pages[pagenum]))
 		# If this is definitely an overworld placeholder page, and there is not already scripting on this page
@@ -515,9 +516,11 @@ module Compiler
 			push_script(page.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesName,form))
 			push_script(page.list,sprintf("pbMessage(\"#{speciesNamePretty} cries out!\")",))
 			push_end(page.list)
+			changedAny = true
 		end
 		ret.pages.push(page)
 	end
+	return nil if !changedAny
 	return ret
   end
 end
