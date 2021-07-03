@@ -91,10 +91,10 @@ Kind = Seed
 Pokedex = After a rainy day, the flower on its back smells stronger. The scent attracts other Pokémon.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 10
+BattlerEnemyX = 4
+BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [4]
 Name = Charmander
@@ -153,7 +153,7 @@ Kind = Flame
 Pokedex = When it swings its burning tail, it elevates the air temperature to unbearably high levels.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -4
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -188,7 +188,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 4
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [7]
 Name = Squirtle
@@ -247,10 +247,10 @@ Kind = Turtle
 Pokedex = It is said to live 10,000 years. Its furry tail is popular as a symbol of longevity.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -4
 BattlerEnemyY = 17
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = BLASTOISE,Level,36
 #-------------------------------
 [9]
@@ -339,8 +339,8 @@ Kind = Cocoon
 Pokedex = This Pokémon is vulnerable to attack while its shell is soft, exposing its weak and tender body.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyX = -3
+BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = BUTTERFREE,Level,10
@@ -372,8 +372,8 @@ Pokedex = The wings are protected by rain-repellent dust. As a result, this Pok�
 WildItemUncommon = SILVERPOWDER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyX = 7
+BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = PAPELLUMEN,Level,45
@@ -405,7 +405,7 @@ Pokedex = Its poison stinger is very powerful. Its bright-colored body is intend
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 28
+BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = KAKUNA,Level,7
@@ -436,7 +436,7 @@ Pokedex = While awaiting evolution, it hides from predators under leaves and in 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = BEEDRILL,Level,10
@@ -468,8 +468,8 @@ Pokedex = May appear in a swarm. Flies at violent speeds, all the while stabbing
 WildItemUncommon = POISONBARB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyX = -5
+BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = WORNET,Level,45
@@ -531,7 +531,7 @@ Kind = Bird
 Pokedex = Very protective of its sprawling territorial area, this Pokémon will fiercely peck at any intruder.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 4
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -562,8 +562,8 @@ Kind = Bird
 Pokedex = It spreads its gorgeous wings widely to intimidate enemies. It races through the skies at Mach-2 speed.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 8
+BattlerEnemyX = 2
+BattlerEnemyY = 2
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -689,7 +689,7 @@ WildItemUncommon = SHARPBEAK
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 6
+BattlerEnemyY = -6
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -754,7 +754,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [25]
 Name = Pikachu
@@ -908,8 +908,8 @@ Kind = Poison Pin
 Pokedex = It uses its hard incisor teeth to crush and eat berries. The tip of a female Nidoran's horn is a bit more rounded than the tip of a male's horn.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyX = -3
+BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = NIDORINA,Level,20
@@ -1002,8 +1002,8 @@ Kind = Poison Pin
 Pokedex = The horn on a male Nidoran's forehead contains a powerful poison. This is a very cautious Pokémon, always straining its large ears.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = -4
+BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = NIDORINO,Level,20
@@ -1065,10 +1065,10 @@ Kind = Drill
 Pokedex = One swing of its mighty tail can snap a telephone pole as if it were a matchstick.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 10
+BattlerEnemyX = 3
+BattlerEnemyY = 13
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [35]
 Name = Clefairy
@@ -1096,8 +1096,8 @@ Pokedex = When it goes on a rampage, it's impossible to control. But in the pres
 WildItemUncommon = MOONSTONE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyX = -1
+BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = CLEFABLE,Level,48
@@ -1128,8 +1128,8 @@ Pokedex = A timid fairy Pokémon that is rarely seen, it will run and hide the m
 WildItemUncommon = MOONSTONE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyX = 1
+BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -1258,10 +1258,10 @@ Pokedex = The body is soft and rubbery. When angered, it will suck in air and in
 WildItemUncommon = MOONSTONE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 2
 BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [41]
 Name = Zubat
@@ -1290,8 +1290,8 @@ Kind = Bat
 Pokedex = It emits ultrasonic waves from its mouth to check its surroundings. Even in tight caves, Zubat flies around with skill.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = -1
+BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = GOLBAT,Level,22
@@ -1323,7 +1323,7 @@ Pokedex = Its feet are tiny, but this Pokémon walks skillfully. It sneaks up on
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyY = 5
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = CROBAT,Level,40
@@ -1390,7 +1390,7 @@ WildItemUncommon = ABSORBBULB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = VILEPLUME,Item,LEAFSTONE,BELLOSSOM,Item,SUNSTONE
@@ -1422,8 +1422,8 @@ Pokedex = It has the world's largest petals. With every step, the petals shake o
 WildItemUncommon = ABSORBBULB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyX = 1
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -1555,7 +1555,7 @@ WildItemUncommon = SHEDSHELL
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyY = 5
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -1650,7 +1650,7 @@ Pokedex = Adores round objects. It wanders the streets on a nightly basis to loo
 WildItemUncommon = QUICKCLAW
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 1
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -1746,8 +1746,8 @@ Kind = Duck
 Pokedex = The forelegs are webbed, helping to make it an adept swimmer. It can be seen swimming elegantly in lakes, etc.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyX = -2
+BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -1873,7 +1873,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 9
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [60]
 Name = Poliwag
@@ -1998,8 +1998,8 @@ Pokedex = It senses impending attacks and teleports away to safety before the ac
 WildItemUncommon = TWISTEDSPOON
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -2
+BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = KADABRA,Level,16
@@ -2158,10 +2158,10 @@ Pokedex = It uses its four powerful arms to pin the limbs of its foe, then throw
 WildItemUncommon = FOCUSBAND
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -10
 BattlerEnemyY = 5
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [69]
 Name = Bellsprout
@@ -2353,10 +2353,10 @@ Pokedex = It is impossible to distinguish from rocks. It slams against others in
 WildItemUncommon = EVERSTONE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 28
+BattlerEnemyX = -2
+BattlerEnemyY = 26
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = GRAVELER,Level,20
 #-------------------------------
 [75]
@@ -2419,10 +2419,10 @@ Pokedex = Even dynamite can't harm its hard, boulder-like body. It sheds its hid
 WildItemUncommon = EVERSTONE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyX = -4
+BattlerEnemyY = 18
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [77]
 Name = Ponyta
@@ -2579,8 +2579,8 @@ Pokedex = It moves while constantly hovering. It discharges Thunder Wave and so 
 WildItemUncommon = METALCOAT
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 31
+BattlerEnemyX = -1
+BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MAGNETON,Level,30
@@ -2613,7 +2613,7 @@ WildItemUncommon = METALCOAT
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyY = 6
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MAGNEZONE,Item,METALCOAT
@@ -2679,7 +2679,7 @@ Pokedex = The brains in its two heads appear to communicate emotions to each oth
 WildItemUncommon = SHARPBEAK
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -11
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -2712,10 +2712,10 @@ Pokedex = An odd species that is rarely found. The three heads respectively repr
 WildItemUncommon = SHARPBEAK
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -2
 BattlerEnemyY = 5
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [86]
 Name = Seel
@@ -2776,7 +2776,7 @@ Pokedex = Its streamlined body has little drag in water. The colder the temperat
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 11
+BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -2842,7 +2842,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [90]
 Name = Shellder
@@ -2906,10 +2906,10 @@ WildItemCommon = PEARL
 WildItemUncommon = BIGPEARL
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 14
+BattlerEnemyX = -6
+BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [92]
 Name = Gastly
@@ -2937,10 +2937,10 @@ Kind = Gas
 Pokedex = Born from gases, anyone would faint if engulfed by its gaseous body, which contains poison.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = 1
+BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = HAUNTER,Level,25
 #-------------------------------
 [93]
@@ -2968,8 +2968,8 @@ Kind = Gas
 Pokedex = It licks with its gaseous tongue to steal the victim's life force. It lurks in darkness for prey.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = -2
+BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = GENGAR,Item,DUSKSTONE
@@ -2999,8 +2999,8 @@ Kind = Shadow
 Pokedex = Hiding in people's shadows at night, it absorbs their heat. The chill it causes makes the victims shake.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyX = -2
+BattlerEnemyY = 7
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -3063,8 +3063,8 @@ Kind = PACIFY
 Pokedex = If you think that you had a good dream but you can't remember it, a Drowzee has probably eaten it.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyX = -4
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = HYPNO,Level,30
@@ -3159,7 +3159,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = KLAWSAR,Level,46
 #-------------------------------
 [100]
@@ -3189,7 +3189,7 @@ Pokedex = Usually found in power plants. Easily mistaken for a Poké Ball, it ha
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = ELECTRODE,Level,30
@@ -3316,10 +3316,10 @@ Pokedex = It always wears the skull of its dead mother, so no one has any idea w
 WildItemUncommon = THICKCLUB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 25
+BattlerEnemyX = -2
+BattlerEnemyY = 23
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = MAROWAK,Level,28
 #-------------------------------
 [105]
@@ -3349,8 +3349,8 @@ Pokedex = The bone it holds is its key weapon. It throws the bone skillfully lik
 WildItemUncommon = THICKCLUB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -9
+BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -3476,7 +3476,7 @@ WildItemUncommon = SMOKEBALL
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyY = 9
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = WEEZING,Level,35
@@ -3509,7 +3509,7 @@ WildItemUncommon = SMOKEBALL
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 8
+BattlerEnemyY = 4
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -3540,10 +3540,10 @@ Kind = Spikes
 Pokedex = It is inept at turning because of its four short legs. It can only charge and run in one direction.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 17
+BattlerEnemyX = -4
+BattlerEnemyY = 23
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = RHYDON,Level,30
 #-------------------------------
 [112]
@@ -3672,7 +3672,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = TEAMUJIN,Level,55
 #-------------------------------
 [116]
@@ -3703,7 +3703,7 @@ WildItemUncommon = DRAGONSCALE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SEADRA,Level,32
@@ -3767,8 +3767,8 @@ Pokedex = Its dorsal, pectoral, and tail fins wave elegantly in water. That is w
 WildItemUncommon = MYSTICWATER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = 6
+BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SEAKING,Level,33
@@ -3897,8 +3897,8 @@ Kind = Barrier
 Pokedex = It is adept at conning people. It is said to be able to create walls out of thin air by miming.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyX = -2
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -3929,10 +3929,10 @@ Kind = Mantis
 Pokedex = It slashes through grass with its sharp scythes, moving too fast for the human eye to track.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -9
 BattlerEnemyY = 12
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = SCIZOR,Item,METALCOAT
 #-------------------------------
 [124]
@@ -4148,8 +4148,8 @@ Kind = Atrocious
 Pokedex = Rarely seen in the wild. Huge and vicious, it is capable of destroying entire cities in a rage.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 4
+BattlerEnemyX = -5
+BattlerEnemyY = 9
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -4186,7 +4186,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 13
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [132]
 Name = Ditto
@@ -4246,9 +4246,9 @@ Pokedex = Thanks to its unstable genetic makeup, this special Pokémon conceals 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyY = 20
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = VAPOREON,Item,WATERSTONE,JOLTEON,Item,THUNDERSTONE,FLAREON,Item,FIRESTONE,LEAFEON,Item,LEAFSTONE,GLACEON,Item,ICESTONE,SYLVEON,Item,DAWNSTONE,ESPEON,Item,SUNSTONE,UMBREON,Item,DUSKSTONE
 #-------------------------------
 [134]
@@ -4276,8 +4276,8 @@ Kind = Bubble Jet
 Pokedex = It has evolved to be suitable for an aquatic life. It can invisibly melt away into water.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyX = -4
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -4336,8 +4336,8 @@ Kind = Flame
 Pokedex = It has a flame bag inside its body. After inhaling deeply, it blows out flames of nearly 3,000 degrees Fahrenheit.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyX = 3
+BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -4528,7 +4528,7 @@ Pokedex = This is a ferocious Pokémon from ancient times. Apparently even moder
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 11
+BattlerEnemyY = -1
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -4561,10 +4561,10 @@ WildItemUncommon = LEFTOVERS
 WildItemRare = LEFTOVERS
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 10
+BattlerEnemyX = -2
+BattlerEnemyY = 12
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [144]
 Name = Articuno
@@ -4624,7 +4624,7 @@ Pokedex = Zapdos is a legendary bird Pokémon. It's said that when Zapdos rubs i
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 10
+BattlerEnemyY = 1
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -4657,7 +4657,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 8
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [147]
 Name = Dratini
@@ -4721,7 +4721,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = DRAGONITE,Level,55
 #-------------------------------
 [149]
@@ -4751,10 +4751,10 @@ Pokedex = This Pokémon is known as the Sea Incarnate. Figureheads that resemble
 WildItemUncommon = DRAGONSCALE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 5
+BattlerEnemyX = 4
+BattlerEnemyY = 7
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [150]
 Name = Mewtwo
@@ -4813,8 +4813,8 @@ WildItemUncommon = LUMBERRY
 WildItemRare = LUMBERRY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = -7
+BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -4844,7 +4844,7 @@ Kind = Leaf
 Pokedex = It uses the leaf on its head to determine the temperature and humidity. It loves to sunbathe.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 3
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -4907,9 +4907,9 @@ Pokedex = Meganium's breath has the power to revive dead grass and plants. It ca
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 6
+BattlerEnemyY = 7
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [155]
 Name = Cyndaquil
@@ -4937,10 +4937,10 @@ Kind = Fire Mouse
 Pokedex = It has a timid nature. If it is startled, the flames on its back burn more vigorously.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyX = 3
+BattlerEnemyY = 21
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = QUILAVA,Level,16
 #-------------------------------
 [156]
@@ -5030,8 +5030,8 @@ Kind = Big Jaw
 Pokedex = Its powerful, well-developed jaws are capable of crushing anything. Even its Trainer must be careful.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyX = -2
+BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = CROCONAW,Level,16
@@ -5092,10 +5092,10 @@ Kind = Big Jaw
 Pokedex = When it bites with its massive and powerful jaws, it shakes its head and savagely tears its victim up.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -7
 BattlerEnemyY = 9
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [161]
 Name = Sentret
@@ -5154,10 +5154,10 @@ Kind = Long Body
 Pokedex = It makes a nest to suit its long and skinny body. The nest is impossible for other Pokémon to enter.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyX = -1
+BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [163]
 Name = Hoothoot
@@ -5187,9 +5187,9 @@ Pokedex = It always stands on one foot. It changes feet so fast, the movement ca
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyY = 20
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = NOCTOWL,Level,34
 #-------------------------------
 [164]
@@ -5250,8 +5250,8 @@ Kind = Five Star
 Pokedex = It is timid and clusters together with others. The fluid secreted by its feet indicates its location.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = -3
+BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = LEDIAN,Level,25
@@ -5314,8 +5314,8 @@ Kind = String Spit
 Pokedex = It lies still in the same pose for days in its web, waiting for its unsuspecting prey to wander close.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 30
+BattlerEnemyX = -1
+BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = ARIADOS,Level,34
@@ -5377,8 +5377,8 @@ Kind = Bat
 Pokedex = Both of its legs have turned into wings. Without a sound, Crobat flies swiftly toward its prey and sinks its fangs into the nape of its target's neck.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 12
+BattlerEnemyX = 1
+BattlerEnemyY = 2
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -5410,8 +5410,8 @@ Pokedex = It shoots positive and negative electricity between the tips of its tw
 WildItemUncommon = DEEPSEASCALE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyX = 1
+BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = LANTURN,Level,27
@@ -5443,8 +5443,8 @@ Pokedex = It blinds prey with an intense burst of light. With the prey incapacit
 WildItemUncommon = DEEPSEASCALE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = -3
+BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -5507,9 +5507,9 @@ Pokedex = Many appear when the night skies are filled with shooting stars. They 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 31
+BattlerEnemyY = 28
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = CLEFAIRY,Level,28
 #-------------------------------
 [174]
@@ -5540,9 +5540,9 @@ Pokedex = It has a very soft body. If it starts to roll, it will bounce all over
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyY = 27
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = JIGGLYPUFF,Level,16
 #-------------------------------
 [175]
@@ -5604,7 +5604,7 @@ Pokedex = They say that it will appear before kindhearted, caring people and sho
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = TOGEKISS,Item,SHINYSTONE
@@ -5636,10 +5636,10 @@ Kind = Tiny Bird
 Pokedex = It usually forages for food on the ground but may, on rare occasions, hop onto branches to peck at shoots.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 30
+BattlerEnemyX = 1
+BattlerEnemyY = 28
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = XATU,Level,25
 #-------------------------------
 [178]
@@ -5668,8 +5668,8 @@ Kind = Mystic
 Pokedex = They say that it stays still and quiet because it is seeing both the past and future at the same time.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyX = 1
+BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -5733,9 +5733,9 @@ Pokedex = If its coat becomes fully charged with electricity, its tail lights up
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyY = 17
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = AMPHAROS,Level,34
 #-------------------------------
 [181]
@@ -5766,7 +5766,7 @@ BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 12
-BattlerShadowX = 0
+BattlerShadowX = 4
 BattlerShadowSize = 2
 #-------------------------------
 [182]
@@ -5827,10 +5827,10 @@ Kind = Aqua Mouse
 Pokedex = The tip of its tail is filled with oil that is lighter than water, so it acts as a float.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyX = 5
+BattlerEnemyY = 24
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = AZUMARILL,Level,31
 #-------------------------------
 [184]
@@ -5954,7 +5954,7 @@ Pokedex = It drifts on winds. It is said that when Hoppip gather in fields and m
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SKIPLOOM,Level,18
@@ -5986,7 +5986,7 @@ Pokedex = It spreads its petals to absorb sunlight. It also floats in the air to
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 28
+BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = JUMPLUFF,Level,27
@@ -6017,8 +6017,8 @@ Kind = Cottonweed
 Pokedex = Even in the fiercest wind, it can control its fluff to make its way to any place in the world it wants.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 17
+BattlerEnemyX = -2
+BattlerEnemyY = 5
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -6145,7 +6145,7 @@ WildItemUncommon = WIDELENS
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = YANMEGA,HasMove,ANCIENTPOWER
@@ -6177,8 +6177,8 @@ Kind = Water Fish
 Pokedex = When the temperature cools in the evening, they emerge from water to seek food along the shore.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyX = -1
+BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = QUAGSIRE,Level,20
@@ -6239,7 +6239,7 @@ Kind = Sun
 Pokedex = Its fur is so sensitive, it can feel minute shifts in the air and predict the weather...and its foes' thoughts.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -3
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -6302,7 +6302,7 @@ Pokedex = Feared and loathed by many, it is believed to bring misfortune to all 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = HONCHKROW,Item,DUSKSTONE
@@ -6364,8 +6364,8 @@ Kind = Screech
 Pokedex = It likes playing mischievous tricks, such as screaming and wailing to startle people at night.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -3
+BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MISMAGIUS,Item,DUSKSTONE
@@ -6585,7 +6585,7 @@ Pokedex = It flies straight at its target's face, then clamps down on the startl
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 11
+BattlerEnemyY = 0
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = GLISCOR,Level,28
@@ -6810,7 +6810,7 @@ Kind = Single Horn
 Pokedex = With its Herculean powers, it can easily throw around an object that is 100 times its own weight.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -2
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -6909,7 +6909,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [218]
 Name = Slugma
@@ -7162,7 +7162,7 @@ Kind = Delivery
 Pokedex = It carries food all day long. When someone is lost in the mountains, it shares that food.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 3
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -7195,7 +7195,7 @@ Pokedex = While elegantly swimming in the sea, it ignores Remoraid that cling to
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -7259,8 +7259,8 @@ Kind = Dark
 Pokedex = To corner prey, they check each other's location using barks that only they can understand.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = 4
+BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = HOUNDOOM,Level,24
@@ -7291,7 +7291,7 @@ Kind = Dark
 Pokedex = The flames it breathes when angry contain toxins. If they cause a burn, it will hurt forever.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 5
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -7386,10 +7386,10 @@ Kind = Armor
 Pokedex = The longer and bigger its tusks, the higher its rank in its herd. The tusks take long to grow.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = -8
+BattlerEnemyY = 22
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [233]
 Name = Porygon2
@@ -7478,8 +7478,8 @@ Kind = Painter
 Pokedex = Once it becomes an adult, it has a tendency to let its comrades plant footprints on its back.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyX = -8
+BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -7509,8 +7509,8 @@ Kind = Scuffle
 Pokedex = To brush up on its fighting skills, it will challenge anyone. It has a very strong competitive spirit.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -2
+BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = HITMONLEE,AttackGreater,20,HITMONCHAN,DefenseGreater,20,HITMONTOP,AtkDefEqual,20
@@ -7572,8 +7572,8 @@ Kind = Kiss
 Pokedex = If its face gets even slightly dirty, Smoochum will bathe immediately. But if its body gets dirty, Smoochum doesn't really seem to care.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyX = 1
+BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = JYNX,Level,30
@@ -7605,10 +7605,10 @@ Pokedex = It's not good at storing electricity yet. This Pokémon sneaks into pe
 WildItemUncommon = ELECTIRIZER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = 2
+BattlerEnemyY = 23
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = ELECTABUZZ,Level,30
 #-------------------------------
 [240]
@@ -7638,10 +7638,10 @@ Pokedex = This Pokémon makes its home near volcanoes. At the end of the day, Ma
 WildItemUncommon = MAGMARIZER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = 4
+BattlerEnemyY = 23
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = MAGMAR,Level,30
 #-------------------------------
 [241]
@@ -7673,10 +7673,10 @@ WildItemUncommon = MOOMOOMILK
 WildItemRare = MOOMOOMILK
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 4
 BattlerEnemyY = 20
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [242]
 Name = Blissey
@@ -7769,7 +7769,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 9
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [245]
 Name = Suicune
@@ -7799,7 +7799,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [246]
 Name = Larvitar
@@ -7828,10 +7828,10 @@ Kind = Rock Skin
 Pokedex = Born deep underground, it comes aboveground and becomes a pupa once it has finished eating the surrounding soil.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = 1
+BattlerEnemyY = 19
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = PUPITAR,Level,30
 #-------------------------------
 [247]
@@ -7891,10 +7891,10 @@ Kind = Armor
 Pokedex = If it rampages, it knocks down mountains and buries rivers. Maps must be redrawn afterward.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 9
+BattlerEnemyX = 3
+BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [249]
 Name = Lugia
@@ -7922,8 +7922,8 @@ Kind = Diving
 Pokedex = It is said to be the guardian of the seas. It is rumored to have been seen on the night of a storm.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 7
+BattlerEnemyX = -3
+BattlerEnemyY = 5
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -7957,7 +7957,7 @@ WildItemRare = SACREDASH
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 4
+BattlerEnemyY = -8
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -7990,7 +7990,7 @@ WildItemRare = LUMBERRY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -8051,8 +8051,8 @@ Kind = Wood Gecko
 Pokedex = The leaves growing out of Grovyle's body are convenient for camouflaging it from enemies in the forest. This Pokémon is a master at climbing trees in jungles.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyX = -4
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SCEPTILE,Level,36
@@ -8113,10 +8113,10 @@ Kind = Chick
 Pokedex = Torchic has a place inside its body where it keeps its flame. Give it a hug—it will be glowing with warmth. This Pokémon is covered all over by a fluffy coat of down.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = 1
+BattlerEnemyY = 20
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = COMBUSKEN,Level,16
 #-------------------------------
 [256]
@@ -8177,10 +8177,10 @@ Kind = Blaze
 Pokedex = Blaziken has incredibly strong legs—it can easily clear a 30-story building in one leap. This Pokémon's blazing punches leave its foes scorched and blackened.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 8
+BattlerEnemyX = -1
+BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [258]
 Name = Mudkip
@@ -8209,9 +8209,9 @@ Pokedex = In water, Mudkip breathes using the gills on its cheeks. If it is face
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyY = 22
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = MARSHTOMP,Level,16
 #-------------------------------
 [259]
@@ -8241,7 +8241,7 @@ Pokedex = The surface of Marshtomp's body is enveloped by a thin, sticky film th
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SWAMPERT,Level,36
@@ -8335,9 +8335,9 @@ Pokedex = It chases down prey in a pack of around ten. They defeat foes with per
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyY = 17
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [263]
 Name = Zigzagoon
@@ -8367,7 +8367,7 @@ WildItemCommon = POTION
 WildItemUncommon = REVIVE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -4
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -8400,8 +8400,8 @@ WildItemCommon = POTION
 WildItemUncommon = MAXREVIVE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 14
+BattlerEnemyX = -5
+BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -8432,8 +8432,8 @@ WildItemCommon = PECHABERRY
 WildItemUncommon = BRIGHTPOWDER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -3
+BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SILCOON,Item,DAWNSTONE,CASCOON,Item,DUSKSTONE
@@ -8495,8 +8495,8 @@ Pokedex = It has an aggressive nature. It stabs prey with its long, narrow mouth
 WildItemUncommon = SHEDSHELL
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyX = 2
+BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -8525,7 +8525,7 @@ Pokedex = It never forgets any attack it endured while in the cocoon. After evol
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = DUSTOX,Level,10
@@ -8558,7 +8558,7 @@ WildItemUncommon = SHEDSHELL
 BattlerPlayerX = 0
 BattlerPlayerY = 1
 BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -8754,10 +8754,10 @@ Pokedex = By flapping its leafy fan, it can whip up gusts of 100 feet per second
 WildItemUncommon = POWERHERB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 14
+BattlerEnemyX = 4
+BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [276]
 Name = Taillow
@@ -8787,7 +8787,7 @@ Pokedex = It dislikes cold seasons. They migrate to other lands in search of war
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SWELLOW,Level,27
@@ -8819,7 +8819,7 @@ Pokedex = It dives at a steep angle as soon as it spots its prey. It catches its
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 12
+BattlerEnemyY = 3
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -8852,7 +8852,7 @@ WildItemCommon = PRETTYFEATHER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = PELIPPER,Level,25
@@ -8949,9 +8949,9 @@ Pokedex = It has a psychic power that enables it to distort the space around it 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = GARDEVOIR,Level,38,GALLADE,ItemMale,DAWNSTONE
 #-------------------------------
 [282]
@@ -9013,8 +9013,8 @@ Pokedex = It appears as if it is skating on water. It draws prey with a sweet sc
 WildItemCommon = HONEY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -3
+BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MASQUERAIN,Level,22
@@ -9046,8 +9046,8 @@ Pokedex = It flaps its four wings to hover and fly freely in any direction--to a
 WildItemUncommon = SILVERPOWDER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 9
+BattlerEnemyX = -2
+BattlerEnemyY = 6
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -9173,7 +9173,7 @@ Kind = Wild Monkey
 Pokedex = Its stress level rises if it cannot keep moving constantly. Too much stress makes it feel sick.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -9
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -9269,7 +9269,7 @@ Pokedex = Because it moves so quickly, it sometimes becomes unseeable. It congre
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -9299,7 +9299,7 @@ Pokedex = A most peculiar Pokémon that somehow appears in a Poké Ball when a N
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -9329,8 +9329,8 @@ Kind = Whisper
 Pokedex = If it senses danger, it scares the foe by crying out with the volume of a jet-plane engine.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 25
+BattlerEnemyX = 1
+BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = LOUDRED,Level,20
@@ -9394,7 +9394,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [296]
 Name = Makuhita
@@ -9424,7 +9424,7 @@ WildItemUncommon = BLACKBELT
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = HARIYAMA,Level,20
@@ -9455,10 +9455,10 @@ Pokedex = It loves to match power with big-bodied Pokémon. It can knock a truck
 WildItemUncommon = KINGSROCK
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 10
+BattlerEnemyX = -4
+BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [298]
 Name = Azurill
@@ -9487,8 +9487,8 @@ Kind = Polka Dot
 Pokedex = It swings its large, nutrient-filled tail around to fight opponents bigger than itself.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = 12
+BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MARILL,Level,16
@@ -9651,7 +9651,7 @@ Pokedex = Attached to its head is a huge set of jaws formed by horns. It can che
 WildItemUncommon = IRONBALL
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -2
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -9718,8 +9718,8 @@ Pokedex = During territorial disputes, Lairon fight by slamming into each other.
 WildItemUncommon = HARDSTONE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -1
+BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = AGGRON,Level,42
@@ -9753,8 +9753,8 @@ BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 10
-BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowX = 2
+BattlerShadowSize = 3
 #-------------------------------
 [307]
 Name = Meditite
@@ -9783,8 +9783,8 @@ Kind = Meditate
 Pokedex = It eats just one berry a day. By enduring hunger, its spirit is tempered and made sharper.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = 1
+BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MEDICHAM,Level,30
@@ -9815,10 +9815,10 @@ Kind = Meditate
 Pokedex = Through yoga training, it gained the psychic power to predict its foe's next move.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 11
+BattlerEnemyX = 2
+BattlerEnemyY = 9
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = PALMANTRA,Level,50
 #-------------------------------
 [309]
@@ -9847,10 +9847,10 @@ Kind = Lightning
 Pokedex = It stores static electricity in its fur for discharging. It gives off sparks if a storm approaches.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -4
 BattlerEnemyY = 27
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = MANECTRIC,Level,26
 #-------------------------------
 [310]
@@ -9943,10 +9943,10 @@ Pokedex = It cheers on friends. If its friends are losing, its body lets off mor
 WildItemUncommon = CELLBATTERY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = -1
+BattlerEnemyY = 22
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [313]
 Name = Volbeat
@@ -9977,7 +9977,7 @@ WildItemUncommon = BRIGHTPOWDER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -10009,8 +10009,8 @@ Pokedex = With its sweet aroma, it guides Volbeat to draw signs with light in th
 WildItemUncommon = BRIGHTPOWDER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -1
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -10109,10 +10109,10 @@ WildItemCommon = ORANBERRY
 WildItemUncommon = SITRUSBERRY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -2
 BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [318]
 Name = Carvanha
@@ -10143,7 +10143,7 @@ WildItemUncommon = DEEPSEATOOTH
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SHARPEDO,Level,26
@@ -10209,7 +10209,7 @@ Pokedex = It eats one ton of food every day. It plays by shooting stored seawate
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyY = 7
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = WAILORD,Level,40
@@ -10241,9 +10241,9 @@ Pokedex = The biggest of all Pokémon. It can dive to a depth of almost 10,000 f
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 10
+BattlerEnemyY = -1
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [322]
 Name = Numel
@@ -10305,9 +10305,9 @@ Pokedex = If angered, the humps on its back erupt in a shower of molten lava. It
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = DROMERUPT,Level,45
 #-------------------------------
 [324]
@@ -10430,8 +10430,8 @@ Kind = Spot Panda
 Pokedex = The chances of two Spinda having identical spot patterns is less than one in four billion.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyX = 3
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -10463,7 +10463,7 @@ Pokedex = It makes an inescapable conical pit and lies in wait at the bottom for
 WildItemUncommon = SOFTSAND
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -5
 BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -10494,8 +10494,8 @@ Kind = Vibration
 Pokedex = It generates ultrasonic waves by violently flapping its wings. After making its prey faint, it melts the prey with acid.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = -2
+BattlerEnemyY = 7
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = FLYGON,Level,55
@@ -10525,10 +10525,10 @@ Kind = Mystic
 Pokedex = Known as "The Desert Spirit," this Pokémon hides in the sandstorms it causes by beating its wings.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 10
+BattlerEnemyX = 3
+BattlerEnemyY = 7
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [331]
 Name = Cacnea
@@ -10557,10 +10557,10 @@ Pokedex = It prefers harsh environments such as deserts. It can survive for 30 d
 WildItemUncommon = STICKYBARB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyX = -1
+BattlerEnemyY = 24
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = CACTURNE,Level,32
 #-------------------------------
 [332]
@@ -10622,8 +10622,8 @@ Kind = Cotton Bird
 Pokedex = Its cottony wings are full of air, making them light and fluffy to the touch. Swablu takes diligent care of its wings.
 BattlerPlayerX = 0
 BattlerPlayerY = 14
-BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyX = -1
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = ALTARIA,Level,35
@@ -10655,9 +10655,9 @@ Pokedex = This Pokémon has a kind disposition, but if it's provoked, it will th
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyY = 3
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = HYMNUS,Level,55
 #-------------------------------
 [335]
@@ -10752,7 +10752,7 @@ WildItemUncommon = MOONSTONE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -10816,9 +10816,9 @@ Pokedex = Its whiskers make a superb radar. They are used to locate prey, even i
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 30
+BattlerEnemyY = 26
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = WHISCASH,Level,50
 #-------------------------------
 [340]
@@ -10910,7 +10910,7 @@ Kind = Rogue
 Pokedex = Loving to battle, this Pokémon pinches all Pokémon that enter its territory with its pincers and throws them out.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -3
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -10973,8 +10973,8 @@ Pokedex = It is said that it originates from clay dolls made by an ancient civil
 WildItemCommon = LIGHTCLAY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 14
+BattlerEnemyX = -1
+BattlerEnemyY = 3
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -11039,10 +11039,10 @@ Pokedex = It has short legs and can't walk very fast, but its neck and tentacles
 WildItemUncommon = BIGROOT
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -3
 BattlerEnemyY = 5
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [347]
 Name = Anorith
@@ -11135,7 +11135,7 @@ Pokedex = It is the shabbiest Pokémon of all. It forms in schools and lives at 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MILOTIC,Level,30
@@ -11167,9 +11167,9 @@ Pokedex = It is the world's most beautiful Pokémon. There are many works of art
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 11
+BattlerEnemyY = 9
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [351]
 Name = Castform
@@ -11200,8 +11200,8 @@ WildItemUncommon = MYSTICWATER
 WildItemRare = MYSTICWATER
 BattlerPlayerX = 0
 BattlerPlayerY = 3
-BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyX = -2
+BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -11328,8 +11328,8 @@ Pokedex = If it finds bad children who won't listen to their parents, it will sp
 WildItemUncommon = SPELLTAG
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyX = -2
+BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = DUSCLOPS,Level,37
@@ -11360,10 +11360,10 @@ Pokedex = Its body is hollow. It is said that those who look into its body are s
 WildItemUncommon = SPELLTAG
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 5
 BattlerEnemyY = 9
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = DUSKNOIR,Item,DUSKSTONE
 #-------------------------------
 [357]
@@ -11393,10 +11393,10 @@ Kind = Fruit
 Pokedex = The bunch of fruit around its neck ripens twice a year and is delicious. It's a highly favored tropical snack.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 5
 BattlerEnemyY = 4
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [358]
 Name = Chimecho
@@ -11425,8 +11425,8 @@ Pokedex = Emitting ultrasonic cries, it floats on winds to travel great distance
 WildItemUncommon = CLEANSETAG
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyX = -4
+BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -11456,10 +11456,10 @@ Kind = Disaster
 Pokedex = Swift as the wind, Absol races through fields and mountains. Its curved, bow-like horn is acutely sensitive to the warning signs of natural disasters.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyX = -2
+BattlerEnemyY = 20
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = ABSOLUS,Level,52
 #-------------------------------
 [360]
@@ -11487,8 +11487,8 @@ Kind = Bright
 Pokedex = It grows strong by pushing up against others en masse. It loves eating sweet fruit.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 25
+BattlerEnemyX = -1
+BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = WOBBUFFET,Level,25
@@ -11554,7 +11554,7 @@ Pokedex = It can instantly freeze moisture in the atmosphere. It uses this power
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -11650,9 +11650,9 @@ Pokedex = Walrein's tusks keep growing throughout its life. Tusks broken in batt
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 13
+BattlerEnemyY = 17
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [366]
 Name = Clamperl
@@ -11813,8 +11813,8 @@ Pokedex = During the spawning season, countless Luvdisc congregate at coral reef
 WildItemCommon = HEARTSCALE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyX = -3
+BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = ALOMOMOLA,Level,30
@@ -11846,10 +11846,10 @@ Pokedex = Bagon is a solitary Pokémon that doesn't form groups with others of i
 WildItemUncommon = DRAGONFANG
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyX = -5
+BattlerEnemyY = 19
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = SHELGON,Level,30
 #-------------------------------
 [372]
@@ -11911,10 +11911,10 @@ Pokedex = While basking in the joy of flight generally keeps this Pokémon in hi
 WildItemUncommon = DRAGONFANG
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 9
+BattlerEnemyX = -2
+BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [374]
 Name = Beldum
@@ -11944,7 +11944,7 @@ WildItemUncommon = METALCOAT
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = METANG,Level,20
@@ -11976,10 +11976,10 @@ Pokedex = Using magnetic forces to stay aloft, this Pokémon flies at high speed
 WildItemUncommon = METALCOAT
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 2
 BattlerEnemyY = 18
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = METAGROSS,Level,45
 #-------------------------------
 [376]
@@ -12009,10 +12009,10 @@ Pokedex = Metagross is the result of the fusion of two Metang. This Pokémon def
 WildItemUncommon = METALCOAT
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 19
-BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerEnemyX = -2
+BattlerEnemyY = 27
+BattlerShadowX = -2
+BattlerShadowSize = 3
 #-------------------------------
 [377]
 Name = Regirock
@@ -12129,8 +12129,8 @@ Kind = Eon
 Pokedex = Latias is highly sensitive to the emotions of people. If it senses any hostility, this Pokémon ruffles the feathers all over its body and cries shrilly to intimidate the foe.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 11
+BattlerEnemyX = -5
+BattlerEnemyY = 6
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -12160,7 +12160,7 @@ Pokedex = Latios has the ability to make others see an image of what it has seen
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 9
+BattlerEnemyY = 2
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -12191,7 +12191,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 6
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [383]
 Name = Groudon
@@ -12217,10 +12217,10 @@ Kind = Continent
 Pokedex = Groudon is said to be the personification of the land itself. Legends tell of its many clashes against Kyogre, as each sought to gain the power of nature.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 8
+BattlerEnemyX = -1
+BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [384]
 Name = Rayquaza
@@ -12247,8 +12247,8 @@ Kind = Sky High
 Pokedex = Rayquaza is said to have lived for hundreds of millions of years. Legends remain of how it put to rest the clash between Kyogre and Groudon.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 4
+BattlerEnemyX = -5
+BattlerEnemyY = -1
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -12372,10 +12372,10 @@ Kind = Grove
 Pokedex = It knows where pure water wells up. It carries fellow Pokémon there on its back.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyX = -5
+BattlerEnemyY = 20
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = TORTERRA,Level,36
 #-------------------------------
 [389]
@@ -12405,9 +12405,9 @@ Pokedex = Small Pokémon occasionally gather on its unmoving back to begin build
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 5
+BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [390]
 Name = Chimchar
@@ -12435,8 +12435,8 @@ Kind = Chimp
 Pokedex = The gas made in its belly burns from its rear end. The fire burns weakly when it feels sick.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = 1
+BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MONFERNO,Level,16
@@ -12467,8 +12467,8 @@ Kind = Playful
 Pokedex = It uses ceilings and walls to launch aerial attacks. Its fiery tail is but one weapon.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 17
+BattlerEnemyX = 4
+BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = INFERNAPE,Level,36
@@ -12624,8 +12624,8 @@ Kind = Starling
 Pokedex = They flock around mountains and fields, chasing after bug Pokémon. Their singing is noisy and annoying.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = 2
+BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = STARAVIA,Level,18
@@ -12655,8 +12655,8 @@ Kind = Starling
 Pokedex = It lives in forests and fields. Squabbles over territory occur when flocks collide.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyX = 2
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = STARAPTOR,Level,34
@@ -12689,7 +12689,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [399]
 Name = Bidoof
@@ -12749,10 +12749,10 @@ Kind = Beaver
 Pokedex = It makes its nest by damming streams with bark and mud. It is known as an industrious worker.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyX = 7
+BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [401]
 Name = Kricketot
@@ -12780,8 +12780,8 @@ Pokedex = When its antennae hit each other, it sounds like the music of a xyloph
 WildItemUncommon = METRONOME
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyX = 1
+BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = KRICKETUNE,Level,26
@@ -12875,8 +12875,8 @@ Kind = Spark
 Pokedex = Strong electricity courses through the tips of its sharp claws. A light scratch causes fainting in foes.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = 2
+BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = LUXRAY,Level,38
@@ -12907,10 +12907,10 @@ Kind = Gleam Eyes
 Pokedex = Luxray's ability to see through objects comes in handy when it's scouting for danger.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 13
+BattlerEnemyX = 2
+BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [406]
 Name = Budew
@@ -12941,9 +12941,9 @@ WildItemUncommon = POISONBARB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyY = 19
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = ROSELIA,Level,16
 Incense = ROSEINCENSE
 #-------------------------------
@@ -13005,7 +13005,7 @@ Kind = Head Butt
 Pokedex = A lifelong jungle dweller from 100 million years ago, it would snap obstructing trees with headbutts.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -6
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -13103,7 +13103,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [412]
 Name = Burmy
@@ -13197,8 +13197,8 @@ Pokedex = It flutters around at night and steals honey from the Combee hive.
 WildItemUncommon = SILVERPOWDER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = 1
+BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -13229,8 +13229,8 @@ Pokedex = It collects and delivers honey to its colony. At night, they cluster t
 WildItemUncommon = HONEY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyX = 3
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = VESPIQUEN,LevelFemale,21
@@ -13263,7 +13263,7 @@ WildItemUncommon = POISONBARB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyY = 4
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -13325,8 +13325,8 @@ Kind = Sea Weasel
 Pokedex = It inflates the flotation sac around its neck and pokes its head out of the water to see what is going on.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyX = 3
+BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = FLOATZEL,Level,26
@@ -13357,8 +13357,8 @@ Kind = Sea Weasel
 Pokedex = Its flotation sac developed as a result of pursuing aquatic prey. It can double as a rubber raft.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 7
+BattlerEnemyX = 2
+BattlerEnemyY = 6
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -13388,10 +13388,10 @@ Pokedex = It evolves by sucking the energy out of the small ball where it had be
 WildItemUncommon = MIRACLESEED
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyX = 5
+BattlerEnemyY = 26
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = CHERRIM,Level,25
 #-------------------------------
 [421]
@@ -13421,9 +13421,9 @@ WildItemUncommon = MIRACLESEED
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyY = 18
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [422]
 Name = Shellos
@@ -13548,7 +13548,7 @@ Pokedex = These Pokémon are called the "Signpost for Wandering Spirits." Childr
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 17
+BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = DRIFBLIM,Level,28
@@ -13580,7 +13580,7 @@ Pokedex = It's drowsy in daytime, but flies off in the evening in big groups. No
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 14
+BattlerEnemyY = 9
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -13610,10 +13610,10 @@ Kind = Rabbit
 Pokedex = When it senses danger, it perks up its ears. On cold nights, it sleeps with its head tucked into its fur.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 11
+BattlerEnemyX = -2
+BattlerEnemyY = 9
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = LOPUNNY,Level,24
 #-------------------------------
 [428]
@@ -13671,10 +13671,10 @@ Kind = Magical
 Pokedex = Its cries sound like incantations to torment the foe. It appears where you least expect it.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 12
+BattlerEnemyX = -3
+BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [430]
 Name = Honchkrow
@@ -13702,7 +13702,7 @@ Kind = Big Boss
 Pokedex = Becoming active at night, it is known to swarm with numerous Murkrow in tow.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -2
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -13733,10 +13733,10 @@ Kind = Catty
 Pokedex = When it's happy, Glameow demonstrates beautiful movements of its tail, like a dancing ribbon.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyX = 5
+BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = PURUGLY,Level,38
 #-------------------------------
 [432]
@@ -13796,10 +13796,10 @@ Pokedex = There is an orb inside its mouth. When it hops, the orb bounces all ov
 WildItemUncommon = CLEANSETAG
 BattlerPlayerX = 0
 BattlerPlayerY = 8
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = 2
+BattlerEnemyY = 20
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = CHIMECHO,Level,22
 Incense = PUREINCENSE
 #-------------------------------
@@ -13895,7 +13895,7 @@ WildItemUncommon = METALCOAT
 BattlerPlayerX = 0
 BattlerPlayerY = 10
 BattlerEnemyX = 0
-BattlerEnemyY = 25
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = BRONZONG,Level,33
@@ -13927,8 +13927,8 @@ Pokedex = Ancient people believed that petitioning Bronzong for rain was the way
 WildItemUncommon = METALCOAT
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 14
+BattlerEnemyX = -1
+BattlerEnemyY = 7
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -13992,10 +13992,10 @@ Kind = Mime
 Pokedex = It habitually mimics foes. Once mimicked, the foe cannot take its eyes off this Pokémon.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 17
+BattlerEnemyX = -1
+BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = MRMIME,HasMove,MIMIC
 Incense = ODDINCENSE
 #-------------------------------
@@ -14026,8 +14026,8 @@ Pokedex = It carefully carries a round, white rock that it thinks is an egg. It'
 WildItemCommon = OVALSTONE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = -1
+BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = CHANSEY,Level,20
@@ -14061,8 +14061,8 @@ Pokedex = It can learn and speak human words. If they gather, they all learn the
 WildItemUncommon = METRONOME
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = -1
+BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -14125,8 +14125,8 @@ Kind = Land Shark
 Pokedex = Gible attacks anything that moves, and it drags whatever it catches into the crevice that is its lair. Despite the big mouth, Gible's stomach is small.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyX = -1
+BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = GABITE,Level,24
@@ -14157,10 +14157,10 @@ Kind = Cave
 Pokedex = Jewels are buried in the caves these Pokémon nest in, but you'll be torn apart by claws and fangs the moment you enter one of these caves.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 12
+BattlerEnemyX = -3
+BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = GARCHOMP,Level,48
 #-------------------------------
 [445]
@@ -14189,10 +14189,10 @@ Kind = Mach
 Pokedex = Garchomp makes its home in volcanic mountains. It flies through the sky as fast as a jet airplane, hunting down as much prey as it can.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 6
+BattlerEnemyX = -5
+BattlerEnemyY = 7
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [446]
 Name = Munchlax
@@ -14319,10 +14319,10 @@ Kind = Hippo
 Pokedex = It enshrouds itself with sand to protect itself from germs. It does not enjoy getting wet.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -2
 BattlerEnemyY = 24
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = HIPPOWDON,Level,34
 #-------------------------------
 [450]
@@ -14350,10 +14350,10 @@ Kind = Heavyweight
 Pokedex = It blasts internally stored sand from ports on its body to create a towering twister for attack.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 13
+BattlerEnemyX = -2
+BattlerEnemyY = 18
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [451]
 Name = Skorupi
@@ -14416,10 +14416,10 @@ Pokedex = It has the power in its clawed arms to make scrap of a car. The tips o
 WildItemUncommon = POISONBARB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -7
 BattlerEnemyY = 13
-BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowX = 4
+BattlerShadowSize = 3
 #-------------------------------
 [453]
 Name = Croagunk
@@ -14449,8 +14449,8 @@ Pokedex = Inflating its poison sacs, it fills the area with an odd sound and hit
 WildItemUncommon = BLACKSLUDGE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyX = -3
+BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = TOXICROAK,Level,37
@@ -14482,7 +14482,7 @@ Pokedex = Its knuckle claws secrete a toxin so vile that even a scratch could pr
 WildItemUncommon = BLACKSLUDGE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -2
 BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -14513,8 +14513,8 @@ Kind = Bug Catcher
 Pokedex = It binds itself to trees in marshes. It attracts prey with its sweet-smelling drool and gulps them down.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyX = 2
+BattlerEnemyY = 5
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -14544,8 +14544,8 @@ Kind = Wing Fish
 Pokedex = After long exposure to sunlight, the patterns on its tail fins shine vividly when darkness arrives.
 BattlerPlayerX = 0
 BattlerPlayerY = 16
-BattlerEnemyX = 0
-BattlerEnemyY = 28
+BattlerEnemyX = 1
+BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = LUMINEON,Level,31
@@ -14575,8 +14575,8 @@ Kind = Neon
 Pokedex = To avoid detection by predators, it crawls along the seafloor using the two fins on its chest.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyX = 2
+BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -14608,7 +14608,7 @@ Pokedex = When it swims close to the surface of the ocean, people aboard ships a
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MANTINE,HasInParty,REMORAID
@@ -14678,7 +14678,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 9
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = CONIFEAR,Level,48
 #-------------------------------
 [461]
@@ -14708,8 +14708,8 @@ Pokedex = They live in cold regions, forming groups of four or five that hunt pr
 WildItemUncommon = QUICKCLAW
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 14
+BattlerEnemyX = -1
+BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -14741,7 +14741,7 @@ WildItemUncommon = METALCOAT
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 13
+BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -14774,7 +14774,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [464]
 Name = Rhyperior
@@ -14863,10 +14863,10 @@ Pokedex = In terms of electrical-energy output, Electivire is one of the best am
 WildItemUncommon = ELECTIRIZER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 10
+BattlerEnemyX = 2
+BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [467]
 Name = Magmortar
@@ -14897,7 +14897,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 8
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [468]
 Name = Togekiss
@@ -14926,7 +14926,7 @@ Pokedex = It shares many blessings with people who respect one another's rights 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -14958,7 +14958,7 @@ WildItemUncommon = WIDELENS
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 14
+BattlerEnemyY = 2
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -14987,10 +14987,10 @@ Kind = Verdant
 Pokedex = Just like a plant, it uses photosynthesis. As a result, it is always enveloped in clear air.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyX = 3
+BattlerEnemyY = 17
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [471]
 Name = Glaceon
@@ -15017,10 +15017,10 @@ Kind = Fresh Snow
 Pokedex = It lowers its body heat to freeze its fur. The hairs then become like needles it can fire.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyX = -3
+BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [472]
 Name = Gliscor
@@ -15049,7 +15049,7 @@ Pokedex = Its flight is soundless. It uses its lengthy tail to carry off its pre
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyY = 6
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -15079,10 +15079,10 @@ Kind = Twin Tusk
 Pokedex = Its impressive tusks are made of ice. The population thinned when it turned warm after the ice age.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 10
+BattlerEnemyX = -8
+BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [474]
 Name = Porygon-Z
@@ -15173,8 +15173,8 @@ Pokedex = It freely controls three small units called Mini-Noses using magnetic 
 WildItemUncommon = MAGNET
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 13
+BattlerEnemyX = -3
+BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -15204,8 +15204,8 @@ Pokedex = The antenna on its head captures radio waves from the world of spirits
 WildItemUncommon = SPELLTAG
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 13
+BattlerEnemyX = -6
+BattlerEnemyY = 9
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -15266,8 +15266,8 @@ Pokedex = Its body is composed of plasma. It is known to infiltrate electronic d
 FormName = Rotom
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyX = -1
+BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -15296,7 +15296,7 @@ Pokedex = Known as "The Being of Knowledge." It is said that it can wipe out the
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 25
+BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -15354,7 +15354,7 @@ Pokedex = Known as "The Being of Willpower." It sleeps at the bottom of a lake t
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -15384,10 +15384,10 @@ Kind = Temporal
 Pokedex = A Pokémon spoken of in legend. It is said that time began moving when Dialga was born.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 4
+BattlerEnemyX = -2
+BattlerEnemyY = 7
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [484]
 Name = Palkia
@@ -15416,9 +15416,9 @@ Pokedex = It is said to live in a gap in the spatial dimension parallel to ours.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 6
+BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [485]
 Name = Heatran
@@ -15447,9 +15447,9 @@ Pokedex = It dwells in volcanic caves. It digs in with its cross-shaped feet to 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 16
-BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerEnemyY = 24
+BattlerShadowX = 3
+BattlerShadowSize = 3
 #-------------------------------
 [486]
 Name = Regigigas
@@ -15508,10 +15508,10 @@ Pokedex = This Pokémon is said to live in a world on the reverse side of ours, 
 FormName = Altered Forme
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 5
+BattlerEnemyX = -4
+BattlerEnemyY = 8
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [488]
 Name = Cresselia
@@ -15538,7 +15538,7 @@ Pokedex = Those who sleep holding Cresselia's feather are assured of joyful drea
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 9
+BattlerEnemyY = 2
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -15595,8 +15595,8 @@ Kind = Seafaring
 Pokedex = It starts its life with a wondrous power that permits it to bond with any kind of Pokémon.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 25
+BattlerEnemyX = 4
+BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -15624,10 +15624,10 @@ Kind = Pitch-Black
 Pokedex = It can lull people to sleep and make them dream. It is active during nights of the new moon.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 14
+BattlerEnemyX = -5
+BattlerEnemyY = 13
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [492]
 Name = Shaymin
@@ -15717,8 +15717,8 @@ Kind = Victory
 Pokedex = This Pokémon brings victory. It is said that Trainers with Victini always win, regardless of the type of encounter.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 25
+BattlerEnemyX = -7
+BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -15909,7 +15909,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [501]
 Name = Oshawott
@@ -15968,8 +15968,8 @@ Kind = Discipline
 Pokedex = As a result of strict training, each Dewott learns different forms for using the scalchops.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = 4
+BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SAMUROTT,Level,36
@@ -16061,8 +16061,8 @@ Kind = Lookout
 Pokedex = When they see an enemy, their tails stand high, and they spit the seeds of berries stored in their cheek pouches.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyX = 5
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -16092,10 +16092,10 @@ Kind = Puppy
 Pokedex = Though it is a very brave Pokémon, it's also smart enough to check its foe's strength and avoid battle.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 30
+BattlerEnemyX = -3
+BattlerEnemyY = 28
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = HERDIER,Level,16
 #-------------------------------
 [507]
@@ -16123,7 +16123,7 @@ Kind = Loyal Dog
 Pokedex = It has black, cape-like fur that is very hard and decreases the amount of damage it receives.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -2
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -16157,7 +16157,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [509]
 Name = Purrloin
@@ -16466,8 +16466,8 @@ Kind = Drowsing
 Pokedex = The dream mist coming from its forehead changes into many different colors depending on the dream that was eaten.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -3
+BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -16560,8 +16560,8 @@ Kind = Proud
 Pokedex = Males have plumage on their heads. They will never let themselves feel close to anyone other than their Trainers.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 17
+BattlerEnemyX = 2
+BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -16688,10 +16688,10 @@ WildItemCommon = EVERSTONE
 WildItemUncommon = HARDSTONE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 30
-BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerEnemyX = 3
+BattlerEnemyY = 31
+BattlerShadowX = 2
+BattlerShadowSize = 3
 Evolutions = GIGALITH,Level,36
 #-------------------------------
 [526]
@@ -16721,10 +16721,10 @@ WildItemCommon = EVERSTONE
 WildItemUncommon = HARDSTONE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyX = -3
+BattlerEnemyY = 20
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [527]
 Name = Woobat
@@ -16754,7 +16754,7 @@ Pokedex = The heart-shaped mark left on a body after a Woobat has been attached 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 35
+BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SWOOBAT,Level,24
@@ -16785,8 +16785,8 @@ Kind = Courting
 Pokedex = Anyone who comes into contact with the ultrasonic waves emitted by a courting male experiences a positive mood shift.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 28
+BattlerEnemyX = -6
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -16816,8 +16816,8 @@ Kind = Mole
 Pokedex = By spinning its body, it can dig straight through the ground at a speed of 30 mph.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyX = 1
+BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = EXCADRILL,Level,31
@@ -16946,7 +16946,7 @@ Pokedex = This Pokémon is so muscular and strongly built that even a group of w
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 28
+BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = CONKELDURR,Level,40
@@ -16978,9 +16978,9 @@ Pokedex = Rather than rely on force, they master moves that utilize the centrifu
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyY = 26
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [535]
 Name = Tympole
@@ -17200,10 +17200,10 @@ Pokedex = It protects itself from the cold by wrapping up in leaves. It stays on
 WildItemUncommon = MENTALHERB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyX = -1
+BattlerEnemyY = 33
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = LEAVANNY,Level,34
 #-------------------------------
 [542]
@@ -17233,10 +17233,10 @@ Pokedex = It keeps its eggs warm with heat from fermenting leaves. It also uses 
 WildItemUncommon = MENTALHERB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 12
+BattlerEnemyX = -3
+BattlerEnemyY = 9
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [543]
 Name = Venipede
@@ -17300,7 +17300,7 @@ WildItemUncommon = POISONBARB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 31
+BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SCOLIPEDE,Level,48
@@ -17399,7 +17399,7 @@ WildItemUncommon = ABSORBBULB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -17597,7 +17597,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [554]
 Name = Darumaka
@@ -17625,10 +17625,10 @@ Kind = Zen Charm
 Pokedex = When it sleeps, it pulls its limbs into its body and its internal fire goes down to 1,100 degrees Fahrenheit.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyX = 2
+BattlerEnemyY = 31
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = DARMANITAN,Level,35
 #-------------------------------
 [555]
@@ -17658,7 +17658,7 @@ FormName = Standard Mode
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -17689,7 +17689,7 @@ Pokedex = Arid regions are their habitat. They move rhythmically, making a sound
 WildItemUncommon = MIRACLESEED
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -1
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -17722,10 +17722,10 @@ Pokedex = When it finds a stone of a suitable size, it secretes a liquid from it
 WildItemUncommon = HARDSTONE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 36
+BattlerEnemyX = 1
+BattlerEnemyY = 34
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = CRUSTLE,Level,34
 #-------------------------------
 [558]
@@ -17755,10 +17755,10 @@ Pokedex = Competing for territory, Crustle fight viciously. The one whose boulde
 WildItemUncommon = HARDSTONE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyX = 2
+BattlerEnemyY = 24
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [559]
 Name = Scraggy
@@ -17853,7 +17853,7 @@ Kind = Avianoid
 Pokedex = The guardians of an ancient city, they always fly the same route while keeping watch for invaders.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -7
 BattlerEnemyY = 7
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -17915,10 +17915,10 @@ Pokedex = Grave robbers who mistake them for real coffins and get too close end 
 WildItemUncommon = SPELLTAG
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 14
-BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerEnemyX = -5
+BattlerEnemyY = 13
+BattlerShadowX = 3
+BattlerShadowSize = 3
 #-------------------------------
 [564]
 Name = Tirtouga
@@ -17979,8 +17979,8 @@ Kind = Prototurtle
 Pokedex = Carracosta completely devours its prey—bones, shells, and all. Because of this, Carracosta's own shell grows thick and sturdy.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -5
+BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -18138,7 +18138,7 @@ Pokedex = To protect themselves from danger, they hide their true identities by 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = ZOROARK,Level,30
@@ -18167,10 +18167,10 @@ Kind = Illusion Fox
 Pokedex = Bonds between these Pokémon are very strong. It protects the safety of its pack by tricking its opponents.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyX = -1
+BattlerEnemyY = 19
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [572]
 Name = Minccino
@@ -18198,8 +18198,8 @@ Kind = Chinchilla
 Pokedex = These Pokémon prefer a tidy habitat. They are always sweeping and dusting, using their tails as brooms.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 25
+BattlerEnemyX = 2
+BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = CINCCINO,Item,SHINYSTONE
@@ -18229,8 +18229,8 @@ Kind = Scarf
 Pokedex = Cinccino's body is coated in a special oil that helps it deflect attacks, such as punches.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = 2
+BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -18261,10 +18261,10 @@ Kind = Fixation
 Pokedex = They intently observe both Trainers and Pokémon. Apparently, they are looking at something that only Gothita can see.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyX = 1
+BattlerEnemyY = 31
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = GOTHORITA,Level,25
 #-------------------------------
 [575]
@@ -18293,10 +18293,10 @@ Kind = Manipulate
 Pokedex = According to many old tales, it creates friends for itself by controlling sleeping children on starry nights.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyX = 2
+BattlerEnemyY = 25
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = GOTHITELLE,Level,38
 #-------------------------------
 [576]
@@ -18328,7 +18328,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [577]
 Name = Solosis
@@ -18453,10 +18453,10 @@ Kind = Water Bird
 Pokedex = They are better at swimming than flying, and they happily eat their favorite food, peat moss, as they dive underwater.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 31
+BattlerEnemyX = 1
+BattlerEnemyY = 29
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = SWANNA,Level,29
 #-------------------------------
 [581]
@@ -18519,9 +18519,9 @@ WildItemUncommon = NEVERMELTICE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 36
+BattlerEnemyY = 34
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = VANILLISH,Level,20
 #-------------------------------
 [583]
@@ -18682,10 +18682,10 @@ Kind = Sky Squirrel
 Pokedex = The energy made in its cheeks' electric pouches is stored inside its membrane and released while it is gliding.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 36
+BattlerEnemyX = -1
+BattlerEnemyY = 25
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [588]
 Name = Karrablast
@@ -18713,8 +18713,8 @@ Kind = Clamping
 Pokedex = For some reason they evolve when they receive electrical energy while they are attacking Shelmet.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 36
+BattlerEnemyX = 1
+BattlerEnemyY = 34
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = ESCAVALIER,Trade,
@@ -18779,10 +18779,10 @@ WildItemCommon = TINYMUSHROOM
 WildItemUncommon = BIGMUSHROOM
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 36
+BattlerEnemyX = 1
+BattlerEnemyY = 34
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = AMOONGUSS,Level,39
 #-------------------------------
 [591]
@@ -18813,7 +18813,7 @@ WildItemCommon = TINYMUSHROOM
 WildItemUncommon = BIGMUSHROOM
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 3
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -18909,8 +18909,8 @@ Kind = Caring
 Pokedex = It gently holds injured and weak Pokémon in its fins. Its special membrane heals their wounds.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 12
+BattlerEnemyX = -4
+BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -18941,7 +18941,7 @@ Kind = Attaching
 Pokedex = They attach themselves to large-bodied Pokémon and absorb static electricity, which they store in an electric pouch.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 3
 BattlerEnemyY = 36
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -18973,10 +18973,10 @@ Kind = EleSpider
 Pokedex = When attacked, they create an electric barrier by spitting out many electrically charged threads.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyX = 3
+BattlerEnemyY = 36
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [597]
 Name = Ferroseed
@@ -19006,9 +19006,9 @@ WildItemUncommon = STICKYBARB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyY = 32
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = FERROTHORN,Level,40
 #-------------------------------
 [598]
@@ -19068,10 +19068,10 @@ Kind = Gear
 Pokedex = The two minigears that mesh together are predetermined. Each will rebound from other minigears without meshing.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 33
+BattlerEnemyX = -2
+BattlerEnemyY = 30
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = KLANG,Level,24
 #-------------------------------
 [600]
@@ -19100,7 +19100,7 @@ Pokedex = A minigear and big gear comprise its body. If the minigear it launches
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = KLINKLANG,Level,48
@@ -19133,7 +19133,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [602]
 Name = Tynamo
@@ -19161,7 +19161,7 @@ Pokedex = One alone can emit only a trickle of electricity, so a group of them g
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 43
+BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = EELEKTRIK,Level,28
@@ -19192,7 +19192,7 @@ Pokedex = These Pokémon have a big appetite. When they spot their prey, they at
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = EELEKTROSS,Item,THUNDERSTONE
@@ -19222,10 +19222,10 @@ Kind = EleFish
 Pokedex = They crawl out of the ocean using their arms. They will attack prey on shore and immediately drag it into the ocean.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyX = -6
+BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [605]
 Name = Elgyem
@@ -19254,9 +19254,9 @@ Pokedex = Rumors of its origin are linked to a UFO crash site in the desert 50 y
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyY = 26
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = BEHEEYEM,Level,42
 #-------------------------------
 [606]
@@ -19285,7 +19285,7 @@ Pokedex = It uses psychic power to control an opponent's brain and tamper with i
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 21
+BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -19316,8 +19316,8 @@ Kind = Candle
 Pokedex = Litwick shines a light that absorbs the life energy of people and Pokémon, which becomes the fuel that it burns.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyX = -2
+BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = LAMPENT,Level,41
@@ -19381,7 +19381,7 @@ Pokedex = The spirits burned up in its ominous flame lose their way and wander t
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -19445,7 +19445,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = HAXORUS,Level,48
 #-------------------------------
 [612]
@@ -19473,10 +19473,10 @@ Kind = Axe Jaw
 Pokedex = Their sturdy tusks will stay sharp even if used to cut steel beams. These Pokémon are covered in hard armor.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 8
+BattlerEnemyX = -3
+BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [613]
 Name = Cubchoo
@@ -19507,7 +19507,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 35
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = BEARTIC,Level,32
 #-------------------------------
 [614]
@@ -19567,7 +19567,7 @@ WildItemUncommon = NEVERMELTICE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 17
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -19629,7 +19629,7 @@ Pokedex = When its body dries out, it weakens. So, to prevent dehydration, it wr
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -19787,7 +19787,7 @@ Pokedex = Ancient science fashioned this Pokémon from clay. It's been active fo
 WildItemUncommon = LIGHTCLAY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 2
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -19823,7 +19823,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [624]
 Name = Pawniard
@@ -19915,8 +19915,8 @@ Kind = Bash Buffalo
 Pokedex = Their fluffy fur absorbs damage, even if they strike foes with a fierce headbutt.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyX = -11
+BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -19977,8 +19977,8 @@ Kind = Valiant
 Pokedex = They fight for their friends without any thought about danger to themselves. One can carry a car while flying.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 11
+BattlerEnemyX = 1
+BattlerEnemyY = 3
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -20136,8 +20136,8 @@ Kind = Irate
 Pokedex = Lacking sight, it's unaware of its surroundings, so it bumps into things and eats anything that moves.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 31
+BattlerEnemyX = -3
+BattlerEnemyY = 30
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = ZWEILOUS,Level,50
@@ -20170,7 +20170,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = HYDREIGON,Level,64
 #-------------------------------
 [635]
@@ -20266,7 +20266,7 @@ WildItemRare = SILVERPOWDER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -20298,7 +20298,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [639]
 Name = Terrakion
@@ -20387,7 +20387,7 @@ FormName = Incarnate Forme
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -20419,7 +20419,7 @@ FormName = Incarnate Forme
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -20479,9 +20479,9 @@ Pokedex = Concealing itself in lightning clouds, it flies throughout the Unova r
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 6
+BattlerEnemyY = 8
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [645]
 Name = Landorus
@@ -20541,10 +20541,10 @@ Pokedex = It generates a powerful, freezing energy inside itself, but its body b
 FormName = Kyurem
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = -7
+BattlerEnemyY = 26
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [647]
 Name = Keldeo
@@ -20606,10 +20606,10 @@ WildItemUncommon = STARPIECE
 WildItemRare = STARPIECE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyX = 1
+BattlerEnemyY = 25
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [649]
 Name = Genesect
@@ -20637,7 +20637,7 @@ Pokedex = This Pokémon existed 300 million years ago. Team Plasma altered it an
 FormName = Genesect
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -1
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -20668,10 +20668,10 @@ Kind = Spiky Nut
 Pokedex = Such a thick shell of wood covers its head and back that even a direct hit from a truck wouldn't faze it.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyX = 3
+BattlerEnemyY = 27
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = QUILLADIN,Level,16
 #-------------------------------
 [651]
@@ -20731,10 +20731,10 @@ Kind = Spiky Armor
 Pokedex = When it takes a defensive posture with its fists guarding its face, it could withstand a bomb blast.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -6
 BattlerEnemyY = 12
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [653]
 Name = Fennekin
@@ -20763,9 +20763,9 @@ Pokedex = As it walks, it munches on a twig in place of a snack. It intimidates 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 31
+BattlerEnemyY = 29
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = BRAIXEN,Level,16
 #-------------------------------
 [654]
@@ -20825,10 +20825,10 @@ Kind = Fox
 Pokedex = Using psychic power, it generates a fiery vortex of 5,400 degrees Fahrenheit, incinerating foes swept into this whirl of flame.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 10
+BattlerEnemyX = 5
+BattlerEnemyY = 12
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [656]
 Name = Froakie
@@ -20886,8 +20886,8 @@ Kind = Bubble Frog
 Pokedex = Its swiftness is unparalleled. It can scale a tower of more than 2,000 feet in a minute's time.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 28
+BattlerEnemyX = 4
+BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = GRENINJA,Level,36
@@ -20918,10 +20918,10 @@ Kind = Ninja
 Pokedex = It appears and vanishes with a ninja's grace. It toys with its enemies using swift movements, while slicing them with throwing stars of sharpest water.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 20
-BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerEnemyX = -3
+BattlerEnemyY = 21
+BattlerShadowX = 3
+BattlerShadowSize = 3
 #-------------------------------
 [659]
 Name = Bunnelby
@@ -20949,10 +20949,10 @@ Kind = Digging
 Pokedex = It has ears like shovels. Digging holes strengthens its ears so much that they can sever thick roots effortlessly.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyX = -2
+BattlerEnemyY = 20
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = DIGGERSBY,Level,32
 #-------------------------------
 [660]
@@ -20981,10 +20981,10 @@ Kind = Digging
 Pokedex = As powerful as an excavator, its ears can reduce dense bedrock to rubble. When it's finished digging, it lounges lazily.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -10
 BattlerEnemyY = 19
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [661]
 Name = Fletchling
@@ -21013,10 +21013,10 @@ Kind = Tiny Robin
 Pokedex = Despitethe beauty of its lilting voice, it's merciless to intruders that enter its territory.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyX = 1
+BattlerEnemyY = 32
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = FLETCHINDER,Level,17
 #-------------------------------
 [662]
@@ -21045,8 +21045,8 @@ Kind = Ember
 Pokedex = The hotter the flame sac on its belly, the faster it can fly, but it takes some time to get the fire going.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyX = -2
+BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = TALONFLAME,Level,35
@@ -21078,7 +21078,7 @@ Pokedex = When attacking prey, it can reach speeds of up to 310 mph. It finishes
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 8
+BattlerEnemyY = 4
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -21204,8 +21204,8 @@ Kind = Lion Cub
 Pokedex = They set off on their own from their pride and live by themselves to become stronger. These hot-blooded Pokémon are quick to fight.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyX = -3
+BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = PYROAR,Level,35
@@ -21494,7 +21494,7 @@ Pokedex = Historically, in the Kalos region, these Pokémon were the designated 
 FormName = Natural Form
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -2
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -21526,9 +21526,9 @@ Pokedex = It has enough psychic energy to blast everything within 300 feet of it
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 31
+BattlerEnemyY = 29
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = MEOWSTIC,Level,34
 #-------------------------------
 [678]
@@ -21619,8 +21619,8 @@ Kind = Sword
 Pokedex = The complex attack patterns of its two swords are unstoppable, even for an opponent greatly accomplished at swordplay.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 25
+BattlerEnemyX = -2
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = AEGISLASH,Level,53
@@ -21683,7 +21683,7 @@ Pokedex = In the past, rather than using perfume, royal ladies carried a Spritze
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyY = 32
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = AROMATISSE,Level,26
@@ -21745,8 +21745,8 @@ Kind = Cotton Candy
 Pokedex = Because it eats nothing but sweets, its fur is as sticky sweet as cotton candy.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 35
+BattlerEnemyX = 1
+BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SLURPUFF,Level,22
@@ -21840,8 +21840,8 @@ Kind = Overturning
 Pokedex = It lures its prey close with hypnotic motions, then wraps its tentacles around it before finishing it off with digestive fluids.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 13
+BattlerEnemyX = -1
+BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -21904,10 +21904,10 @@ Kind = Collective
 Pokedex = Barbaracle's legs and hands have minds of their own, and they will move independently. But they usually follow the head's orders.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -7
 BattlerEnemyY = 11
-BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowX = -2
+BattlerShadowSize = 3
 #-------------------------------
 [690]
 Name = Skrelp
@@ -21997,8 +21997,8 @@ Kind = Water Gun
 Pokedex = Through controlled explosions of internal gas, it can expel water like a pistol shot. At close distances, it can shatter rock.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 35
+BattlerEnemyX = -3
+BattlerEnemyY = 38
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = CLAWITZER,Level,37
@@ -22027,7 +22027,7 @@ Kind = Howitzer
 Pokedex = By expelling water from the nozzle in the back of its claw, it can move at a speed of 60 knots.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -4
 BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -22059,10 +22059,10 @@ Kind = Generator
 Pokedex = The frills on either side of its head have cells that generate electricity when exposed to sunlight.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 33
+BattlerEnemyX = 1
+BattlerEnemyY = 31
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = HELIOLISK,Item,SUNSTONE
 #-------------------------------
 [695]
@@ -22091,7 +22091,7 @@ Kind = Generator
 Pokedex = It stimulates its muscles with electricity, boosting the strength in its legs and enabling it to run 100 yards in five seconds.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -11
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -22123,10 +22123,10 @@ Kind = Royal Heir
 Pokedex = This is an ancient Pokémon, revived in modern times. It has a violent disposition, and it'll tear apart anything it gets between its hefty jaws.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -7
 BattlerEnemyY = 29
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = TYRANTRUM,Level,39
 #-------------------------------
 [697]
@@ -22155,10 +22155,10 @@ Kind = Despot
 Pokedex = This Pokémon is from about 100,000,000 years ago. It has the presence of a king, vicious but magnificent.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 13
+BattlerEnemyX = 4
+BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [698]
 Name = Amaura
@@ -22219,7 +22219,7 @@ Kind = Tundra
 Pokedex = Aurorus was restored from a fossil. It's said that when this Pokémon howls, auroras appear in the night sky.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 6
 BattlerEnemyY = 7
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -22249,8 +22249,8 @@ Kind = Intertwining
 Pokedex = It wraps its ribbonlike feelers around the arm of its beloved Trainer and walks with him or her.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyX = -1
+BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -22282,8 +22282,8 @@ Pokedex = With its wings, it controls its position in the air. It likes to attac
 WildItemUncommon = KINGSROCK
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -3
+BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -22314,10 +22314,10 @@ Kind = Antenna
 Pokedex = It uses its tail to absorb electricity from power plants or from outlets in houses, and then it fires the electricity from its whiskers.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyX = -4
+BattlerEnemyY = 32
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [703]
 Name = Carbink
@@ -22443,7 +22443,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [707]
 Name = Klefki
@@ -22539,7 +22539,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [710]
 Name = Pumpkaboo
@@ -22605,7 +22605,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 19
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [712]
 Name = Bergmite
@@ -22665,10 +22665,10 @@ Kind = Iceberg
 Pokedex = Bergmite and Dreepy like to huddle on its back makes it look like an aircraft carrier made of ice.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 21
-BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerEnemyX = -2
+BattlerEnemyY = 31
+BattlerShadowX = 2
+BattlerShadowSize = 3
 #-------------------------------
 [714]
 Name = Noibat
@@ -22697,8 +22697,8 @@ Kind = Sound Wave
 Pokedex = Even a robust wrestler will become dizzy and unable to stand when exposed to its 200,000-hertz ultrasonic waves.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = -1
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = NOIVERN,Level,48
@@ -22729,8 +22729,8 @@ Kind = Sound Wave
 Pokedex = The ultrasonic waves it emits from its ears can reduce a large boulder to pebbles. It swoops out of the dark to attack.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 6
+BattlerEnemyX = -8
+BattlerEnemyY = 7
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -22759,10 +22759,10 @@ Pokedex = When the horns on its head shine in seven colors, it is said to be sha
 FormName = Neutral Mode
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -6
 BattlerEnemyY = 4
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [717]
 Name = Yveltal
@@ -22789,10 +22789,10 @@ Kind = Destruction
 Pokedex = When its life comes to an end, it absorbs the life energy of every living thing and turns into a cocoon once more.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 4
+BattlerEnemyX = 5
+BattlerEnemyY = 2
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [718]
 Name = Zygarde
@@ -22823,7 +22823,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 8
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [719]
 Name = Diancie
@@ -22882,7 +22882,7 @@ FormName = Hoopa Confined
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 31
+BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -22911,10 +22911,10 @@ Kind = Steam
 Pokedex = It expels its internal steam from the arms on its back. It has enough power to blow away a mountain.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 10
-BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerEnemyX = -2
+BattlerEnemyY = 12
+BattlerShadowX = 1
+BattlerShadowSize = 3
 #-------------------------------
 [722]
 Name = Rowlet
@@ -22944,7 +22944,7 @@ Pokedex = It sends its feathers, which are as sharp as blades, flying in attack.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 35
+BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = DARTRIX,Level,17
@@ -23010,7 +23010,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [725]
 Name = Litten
@@ -23038,10 +23038,10 @@ Kind = Fire Cat
 Pokedex = If you try too hard to get close to it, it won't open up to you. Even if you do grow close, giving it too much affection is still a no-no.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -2
 BattlerEnemyY = 32
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = TORRACAT,Level,17
 #-------------------------------
 [726]
@@ -23104,7 +23104,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [728]
 Name = Popplio
@@ -23195,8 +23195,8 @@ Kind = Soloist
 Pokedex = To Primarina, every battle is a stage. It takes down its prey with beautiful singing and dancing.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyX = 5
+BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -23291,8 +23291,8 @@ Pokedex = They smack beaks with others of their kind to communicate. The strengt
 WildItemUncommon = RAWSTBERRY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyX = -5
+BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -23326,7 +23326,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 33
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = GUMSHOOS,Level,20
 #-------------------------------
 [735]
@@ -23385,7 +23385,7 @@ Kind = Larva
 Pokedex = If you find its nest, you shouldn't stick your hand inside. You'll get bitten by an irritated Grubbin.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -4
 BattlerEnemyY = 40
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -23513,10 +23513,10 @@ Pokedex = It stores coldness in its pincers and pummels its foes. It can even sm
 WildItemUncommon = CHERIBERRY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 10
+BattlerEnemyX = -3
+BattlerEnemyY = 9
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [741]
 Name = Oricorio
@@ -23579,10 +23579,10 @@ Pokedex = Nectar and pollen are its favorite fare. In fields of flowers, it gets
 WildItemUncommon = HONEY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 32
+BattlerEnemyX = 1
+BattlerEnemyY = 29
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = RIBOMBEE,Level,25
 #-------------------------------
 [743]
@@ -23612,8 +23612,8 @@ Pokedex = Rain makes pollen damp, so Ribombee hates rain. When it sees ominous c
 WildItemUncommon = HONEY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyX = 4
+BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -23707,7 +23707,7 @@ FormName = Solo Form
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 36
+BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -23739,8 +23739,8 @@ Pokedex = They eat Corsola branches, so Mareanie are hated by craftsmen who work
 WildItemUncommon = POISONBARB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyX = 3
+BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = TOXAPEX,Level,38
@@ -23773,9 +23773,9 @@ WildItemUncommon = POISONBARB
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyY = 23
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [749]
 Name = Mudbray
@@ -23839,7 +23839,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [751]
 Name = Dewpider
@@ -23869,10 +23869,10 @@ Pokedex = When two Dewpider meet, they display their water bubbles to each other
 WildItemUncommon = MYSTICWATER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 31
+BattlerEnemyX = 2
+BattlerEnemyY = 29
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = ARAQUANID,Level,22
 #-------------------------------
 [752]
@@ -23902,10 +23902,10 @@ Pokedex = It usually passes its time in the water. When its belly is full, it st
 WildItemUncommon = MYSTICWATER
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = 1
+BattlerEnemyY = 23
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [753]
 Name = Fomantis
@@ -23934,10 +23934,10 @@ Pokedex = When the sun rises, Fomantis spreads its four leaves and bathes in the
 WildItemUncommon = MIRACLESEED
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 30
+BattlerEnemyX = -2
+BattlerEnemyY = 28
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = LURANTIS,Level,30
 #-------------------------------
 [754]
@@ -24000,10 +24000,10 @@ WildItemCommon = TINYMUSHROOM
 WildItemUncommon = BIGMUSHROOM
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyX = 1
+BattlerEnemyY = 27
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = SHIINOTIC,Level,24
 #-------------------------------
 [756]
@@ -24100,8 +24100,8 @@ Pokedex = Salazzle lives deep in caves and forces the Salandit it has attracted 
 WildItemUncommon = SMOKEBALL
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = 1
+BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -24228,10 +24228,10 @@ Pokedex = It's protected by its hard sepals, so it plays with bird Pokémon with
 WildItemUncommon = GRASSYSEED
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyX = 3
+BattlerEnemyY = 20
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = TSAREENA,HasMove,STOMP
 #-------------------------------
 [763]
@@ -24326,7 +24326,7 @@ Pokedex = It normally spends its time meditating in the treetops. It throws Pok�
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -24421,7 +24421,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [769]
 Name = Sandygast
@@ -24485,7 +24485,7 @@ WildItemUncommon = SPELLTAG
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -24547,7 +24547,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = SILVALLY,Level,40
 #-------------------------------
 [773]
@@ -24606,8 +24606,8 @@ FormName = Meteor Form
 WildItemUncommon = STARPIECE
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyX = 1
+BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -24636,10 +24636,10 @@ Kind = Drowsing
 Pokedex = It stays asleep from the moment it's born. When it falls into a deep sleep, it stops moving altogether.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 30
+BattlerEnemyX = 2
+BattlerEnemyY = 28
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [776]
 Name = Turtonator
@@ -24734,8 +24734,8 @@ FormName = Disguised Form
 WildItemUncommon = CHESTOBERRY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 28
+BattlerEnemyX = 7
+BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -24768,7 +24768,7 @@ WildItemUncommon = RAZORFANG
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -24803,7 +24803,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [781]
 Name = Dhelmise
@@ -24931,7 +24931,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [785]
 Name = Tapu Koko
@@ -25081,7 +25081,7 @@ Pokedex = Even though its helpless, gaseous body can be blown away by the slight
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 31
+BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = COSMOEM,Level,43
@@ -25111,7 +25111,7 @@ Pokedex = The king who ruled Alola in times of antiquity called it the "cocoon o
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = SOLGALEO,LevelDay,53,LUNALA,LevelNight,53
@@ -25142,9 +25142,9 @@ Pokedex = Sometimes the result of its opening an Ultra Wormhole is that energy a
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 10
+BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [792]
 Name = Lunala
@@ -25171,10 +25171,10 @@ Kind = Moone
 Pokedex = Records of it exist in writings from long, long ago, where it was known by the name "the beast that calls the moon."
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 12
+BattlerEnemyX = -7
+BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [793]
 Name = Nihilego
@@ -25290,10 +25290,10 @@ Kind = Glowing
 Pokedex = Although it's alien to this world and a danger here, it's apparently a common organism in the world where it normally lives.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 4
+BattlerEnemyX = -4
+BattlerEnemyY = 5
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [797]
 Name = Celesteela
@@ -25321,7 +25321,7 @@ Pokedex = One of the dangerous UBs, high energy readings can be detected coming 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 4
+BattlerEnemyY = 0
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -25380,10 +25380,10 @@ Kind = Junkivore
 Pokedex = Although it's alien to this world and a danger here, it's apparently a common organism in the world where it normally lives.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 11
+BattlerEnemyX = -1
+BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [800]
 Name = Necrozma
@@ -25412,7 +25412,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [801]
 Name = Magearna
@@ -25469,10 +25469,10 @@ Kind = Gloomdweller
 Pokedex = It slips into the shadows of others and mimics their powers and movements. As it improves, it becomes stronger than those it's imitating.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 28
+BattlerEnemyX = 1
+BattlerEnemyY = 24
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [803]
 Name = Poipole
@@ -25559,10 +25559,10 @@ Kind = Rampart
 Pokedex = It appeared from an Ultra Wormhole. Each one appears to be made up of many life-forms stacked one on top of each other.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 6
+BattlerEnemyX = -6
+BattlerEnemyY = 1
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [806]
 Name = Blacephalon
@@ -25618,10 +25618,10 @@ Kind = Thunderclap
 Pokedex = It electrifies its claws and tears its opponents apart with them. Even if they dodge its attack, they'll be electrocuted by the flying sparks.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 6
 BattlerEnemyY = 19
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [808]
 Name = Meltan
@@ -25647,10 +25647,10 @@ Kind = Hex Nut
 Pokedex = It melts particles of iron and other metals found in the subsoil, so it can absorb them into its body of molten steel.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 33
+BattlerEnemyX = 1
+BattlerEnemyY = 31
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [809]
 Name = Melmetal
@@ -25676,10 +25676,10 @@ Kind = Hex Nut
 Pokedex = Revered long ago for its capacity to create iron from nothing, for some reason it has come back to life after 3,000 years.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyX = -9
+BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [810]
 Name = Grookey
@@ -25738,8 +25738,8 @@ Kind = Beat
 Pokedex = When it's drumming out rapid beats in battle, it gets so caugh tup in the rhythm that it won't even notice that it's already knocked out its opponent.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = -4
+BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = RILLABOOM,Level,35
@@ -25862,8 +25862,8 @@ Kind = Striker
 Pokedex = It's skilled at both offense and defense, and it gets pumped up when cheered on. But if it starts showboating, it could put itself in a tough spot.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 12
+BattlerEnemyX = 2
+BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -25924,10 +25924,10 @@ Kind = Water Lizard
 Pokedex = Highly intelligent but also very lazy, it keeps enemies out of its territory by laying traps everywhere.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyX = -4
+BattlerEnemyY = 25
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = INTELEON,Level,35
 #-------------------------------
 [818]
@@ -25955,7 +25955,7 @@ Kind = Secret Agent
 Pokedex = Its nictitating membranes let it pick out foes' weak points so it can precisely blast them with water that shoots from its fingertips at Mach 3.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 3
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -26019,10 +26019,10 @@ Pokedex = Common throughout the Galar region, this Pokémon has strong teeth and
 WildItemUncommon = SITRUSBERRY
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = 11
 BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [821]
 Name = Rookidee
@@ -26082,7 +26082,7 @@ Pokedex = The lessons of many harsh battles have taught it how to accurately jud
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = CORVIKNIGHT,Level,38
@@ -26114,9 +26114,9 @@ Pokedex = With their great intellect and flying skills, these Pokémon very succ
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyY = 19
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [824]
 Name = Blipbug
@@ -26144,9 +26144,9 @@ Pokedex = Often found in gardens, this Pokémon has hairs on its body that it us
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 30
+BattlerEnemyY = 28
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = DOTTLER,Level,16
 #-------------------------------
 [825]
@@ -26209,7 +26209,7 @@ Pokedex = It emits psychic energy to observe and study what's around it, and wha
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -26239,8 +26239,8 @@ Kind = Fox
 Pokedex = Cunning and cautious, this Pokémon survives by stealing food from others. It erases its tracks with swipes of its tail as it makes off with its plunder.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyX = 5
+BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = THIEVUL,Level,18
@@ -26364,7 +26364,7 @@ Pokedex = If its fleece grows too long, Wooloo won't be able to move. Cloth made
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 30
+BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = DUBWOOL,Level,30
@@ -26394,10 +26394,10 @@ Kind = Sheep
 Pokedex = Its majestic horns are meant only to impress the opposite gender. They never see use in battle.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyX = -3
+BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [833]
 Name = Chewtle
@@ -26425,8 +26425,8 @@ Kind = Snapping
 Pokedex = It starts off battles by attacking with its rock-hard horn, but as soon as the opponent flinches, this Pokémon bites down and never lets go.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 29
+BattlerEnemyX = -3
+BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = DREDNAW,Level,22
@@ -26460,7 +26460,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 Evolutions = SEISMAW,Level,42
 #-------------------------------
 [835]
@@ -26489,8 +26489,8 @@ Kind = Puppy
 Pokedex = This gluttonous Pokémon only assists people with their work because it wants treats. As it runs, it crackles with electricity.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 31
+BattlerEnemyX = -1
+BattlerEnemyY = 30
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = BOLTUND,Level,25
@@ -26618,7 +26618,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [840]
 Name = Applin
@@ -26648,9 +26648,9 @@ Pokedex = As soon as it's born, it burrows into an apple. Not only does the appl
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 33
-BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerEnemyY = 30
+BattlerShadowX = -1
+BattlerShadowSize = 1
 Evolutions = FLAPPLE,Level,35
 #-------------------------------
 [841]
@@ -26679,8 +26679,8 @@ Kind = Apple Wing
 Pokedex = It flies on wings of apple skin and spits a powerful acid. It can also change its shape into that of an apple.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 23
+BattlerEnemyX = 5
+BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = APPLETUN,Level,53
@@ -26711,10 +26711,10 @@ Kind = Apple Nectar
 Pokedex = Its body is covered in sweet nectar, and the skin on its back is especially yummy. Children used to have it as a snack.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 17
+BattlerEnemyX = -1
+BattlerEnemyY = 21
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [843]
 Name = Silicobra
@@ -26805,8 +26805,8 @@ Kind = Gulp
 Pokedex = This hungry Pokémon swallows Arrokuda whole. Occasionally, it makes a mistake and tries to swallow a Pokémon other than its preferred prey.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyX = -2
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -26965,8 +26965,8 @@ Kind = Radiator
 Pokedex = It wraps prey up with its heated body, cooking them in its coils. Once they're well-done, it will voraciously nibble them down to the last morsel.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 33
+BattlerEnemyX = -9
+BattlerEnemyY = 32
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = CENTISKORCH,Level,28
@@ -26998,7 +26998,7 @@ Pokedex = While its burning body is already dangerous on its own, this excessive
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -27029,8 +27029,8 @@ Kind = Tantrum
 Pokedex = Its tentacles tear off easily, but it isn't alarmed when that happens, it knows they'll grow back. It's about as smart as a three-year-old.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyX = 2
+BattlerEnemyY = 32
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = GRAPPLOCT,HasMove,TAUNT
@@ -27156,8 +27156,8 @@ Kind = Calm
 Pokedex = If this Pokémon senses a strong emotion, it will run away as fast as it can. It prefers areas without people.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 34
+BattlerEnemyX = 3
+BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = HATTREM,Level,22
@@ -27219,7 +27219,7 @@ Kind = Silent
 Pokedex = If you're too loud around it, you risk being torn apart by the claws on its tentacle. This Pokémon is also known as the Forest Witch.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -6
 BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -27317,7 +27317,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 13
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [862]
 Name = Obstagoon
@@ -27469,7 +27469,7 @@ Kind = Comedian
 Pokedex = Its amusing movements make it very popular. It releases its psychic power from the pattern on its belly.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -2
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -27593,10 +27593,10 @@ Kind = Formation
 Pokedex = The six of them work together as one Pokémon. Teamwork is also their battle strategy, and they constantly change their formation as they fight.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyX = -1
+BattlerEnemyY = 31
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [871]
 Name = Pincurchin
@@ -27689,8 +27689,8 @@ Kind = Frost Moth
 Pokedex = It shows no mercy to any who desecrate fields and mountains. It will fly around on its icy wings, causing a blizzard to chase offenders away.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 19
+BattlerEnemyX = 1
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -27722,7 +27722,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [875]
 Name = Eiscue
@@ -27783,10 +27783,10 @@ Pokedex = Through its horns, it can pick up on the emotions of creatures around 
 FormName = Male
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyX = -2
+BattlerEnemyY = 25
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [877]
 Name = Morpeko
@@ -27815,8 +27815,8 @@ Pokedex = It carries electrically roasted seeds with it as if they're precious t
 FormName = Full Belly Mode
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 27
+BattlerEnemyX = 2
+BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -27847,7 +27847,7 @@ Pokedex = If a job requires serious strength, this Pokémon will excel at it. It
 WildItemUncommon = LAGGINGTAIL
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -11
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -27879,10 +27879,10 @@ Pokedex = These Pokémon live in herds. Their trunks have incredible grip streng
 WildItemUncommon = LAGGINGTAIL
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 17
+BattlerEnemyX = -6
+BattlerEnemyY = 19
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [880]
 Name = Dracozolt
@@ -27910,8 +27910,8 @@ Kind = Fossil
 Pokedex = The powerful muscles in its tail generate its electricity. Compared to its lower body, its upper half is entirely too small.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyX = 2
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -27972,8 +27972,8 @@ Kind = Fossil
 Pokedex = Its mighty legs are capable of running at speeds exceeding 40 mph, but this Pokémon can't breathe unless it's underwater.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 11
+BattlerEnemyX = -3
+BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -28036,9 +28036,9 @@ Pokedex = The special metal that composes its body is very light, so this Pokém
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [885]
 Name = Dreepy
@@ -28068,7 +28068,7 @@ Pokedex = If this weak Pokémon is by itself, a mere child could defeat it. But 
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 32
+BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = DRAKLOAK,Level,26
@@ -28134,7 +28134,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 13
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [888]
 Name = Zacian
@@ -28164,10 +28164,10 @@ WildItemUncommon = RUSTEDSWORD
 WildItemRare = RUSTEDSWORD
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 5
+BattlerEnemyX = 2
+BattlerEnemyY = 6
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [889]
 Name = Zamazenta
@@ -28197,10 +28197,10 @@ WildItemUncommon = RUSTEDSHIELD
 WildItemRare = RUSTEDSHIELD
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 8
+BattlerEnemyX = -3
+BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [890]
 Name = Eternatus
@@ -28230,7 +28230,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 9
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [891]
 Name = Kubfu
@@ -28291,7 +28291,7 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 13
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [893]
 Name = Zarude
@@ -28318,10 +28318,10 @@ Kind = Rogue Monkey
 Pokedex = Once the vines on Zarude's body tear off, they become nutrients in the soil. This helps the plants of the forest grow.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyX = -6
+BattlerEnemyY = 17
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [894]
 Name = Regieleki
@@ -28405,10 +28405,10 @@ Kind = Wild Horse
 Pokedex = Glastrier has tremendous physical strength, and the mask of ice covering its face is 100 times harder than diamond.
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 13
+BattlerEnemyX = -2
+BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [897]
 Name = Spectrier
@@ -28496,7 +28496,7 @@ WildItemUncommon = POISONBARB
 BattlerPlayerX = 0
 BattlerPlayerY = 13
 BattlerEnemyX = 0
-BattlerEnemyY = 13
+BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -28587,10 +28587,10 @@ Kind = Dark
 Pokedex = Its red claws and the tips of its tail are melting from high internal temperatures that are painful to itself.
 BattlerPlayerX = 0
 BattlerPlayerY = 8
-BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyX = 4
+BattlerEnemyY = 17
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [903]
 Name = Rubarior
@@ -28651,10 +28651,10 @@ Pokedex = Its two sets of jaws thrash about violently as if they each had a will
 WildItemUncommon = IRONBALL
 BattlerPlayerX = 0
 BattlerPlayerY = 13
-BattlerEnemyX = 0
-BattlerEnemyY = 17
+BattlerEnemyX = -15
+BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [905]
 Name = Palmantra
@@ -28715,7 +28715,7 @@ BattlerPlayerY = 7
 BattlerEnemyX = 0
 BattlerEnemyY = 15
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [907]
 Name = Scarodon
@@ -28775,10 +28775,10 @@ Kind = Eruption
 Pokedex = Magma builds up in its body over time. If this Pokémon does not regularly erupt, it might accidentally destroy the area around it.
 BattlerPlayerX = 0
 BattlerPlayerY = 14
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = -2
+BattlerEnemyY = 23
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [909]
 Name = Hymnus
@@ -28807,7 +28807,7 @@ Pokedex = This Pokémon's singing can bring even the most stoic Trainers to tear
 BattlerPlayerX = 0
 BattlerPlayerY = 6
 BattlerEnemyX = 0
-BattlerEnemyY = 6
+BattlerEnemyY = 3
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -28837,8 +28837,8 @@ Pokedex = Extraordinary energy amplifies its cursing power to such an extent tha
 WildItemUncommon = SPELLTAG
 BattlerPlayerX = 0
 BattlerPlayerY = 17
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = 1
+BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -28868,10 +28868,10 @@ Kind = Disaster
 Pokedex = When this Pokémon whips the winglike fur on its back as though beating its wings, it sends an intimidating aura flying at its opponents.
 BattlerPlayerX = 0
 BattlerPlayerY = 17
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = 2
+BattlerEnemyY = 26
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [912]
 Name = Haerobic
@@ -28900,9 +28900,9 @@ Pokedex = It swings its ears like whips and strikes its enemies with them. It ha
 BattlerPlayerX = 0
 BattlerPlayerY = 13
 BattlerEnemyX = 0
-BattlerEnemyY = 16
+BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 #-------------------------------
 [913]
 Name = Conifear
@@ -28934,7 +28934,7 @@ BattlerPlayerY = 11
 BattlerEnemyX = 0
 BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [914]
 Name = Sensibelle
@@ -29027,9 +29027,9 @@ Pokedex = TODO
 BattlerPlayerX = 0
 BattlerPlayerY = 1
 BattlerEnemyX = 0
-BattlerEnemyY = 5
+BattlerEnemyY = 9
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [917]
 Name = Seismaw
@@ -29057,10 +29057,10 @@ Kind = Jaw Fortress
 Pokedex = TODO
 BattlerPlayerX = 0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
+BattlerEnemyX = -6
 BattlerEnemyY = 5
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [918]
 Name = Arclamor
@@ -29088,10 +29088,10 @@ Kind = Broadcast
 Pokedex = TODO
 BattlerPlayerX = 0
 BattlerPlayerY = 3
-BattlerEnemyX = 0
-BattlerEnemyY = 7
+BattlerEnemyX = -2
+BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [919]
 Name = Blasfemmie
@@ -29121,4 +29121,4 @@ BattlerPlayerY = 0
 BattlerEnemyX = 0
 BattlerEnemyY = 4
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
