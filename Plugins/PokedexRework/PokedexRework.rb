@@ -398,6 +398,7 @@ class PokemonPokedexInfo_Scene
     @page = 1
 	@evolutionIndex = -1
     @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
+	@moveInfoDisplayBitmap   	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/Rework/move_info_display"))
     @sprites = {}
     @sprites["background"] = IconSprite.new(0,0,@viewport)
     @sprites["infosprite"] = PokemonSprite.new(@viewport)
@@ -452,7 +453,22 @@ class PokemonPokedexInfo_Scene
     @sprites["downarrow"].play
     @sprites["downarrow"].visible = false
     @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
-    @scroll = 0
+	
+	# Create the move extra info display
+	@moveInfoDisplay = SpriteWrapper.new(@viewport)
+    @moveInfoDisplay.bitmap = @moveInfoDisplayBitmap.bitmap
+    @moveInfoDisplay.x      = Graphics.width - @moveInfoDisplayBitmap.width - 16
+    @moveInfoDisplay.y      = Graphics.height - @moveInfoDisplayBitmap.height - 16
+    @sprites["moveInfoDisplay"] = @moveInfoDisplay
+	# Create overlay for selected move's extra info (shows move's BP, description)
+    @extraInfoOverlay = BitmapSprite.new(@moveInfoDisplayBitmap.bitmap.width,@moveInfoDisplayBitmap.height,@viewport)
+    @extraInfoOverlay.x = @moveInfoDisplay.x
+    @extraInfoOverlay.y = @moveInfoDisplay.y
+    pbSetNarrowFont(@extraInfoOverlay.bitmap)
+    @sprites["extraInfoOverlay"] = @extraInfoOverlay
+	@selectedMoveType = 
+	
+    @scroll = -1
 	@title = "Undefined"
 	pbSetSystemFont(@sprites["overlay"].bitmap)
     pbUpdateDummyPokemon
@@ -461,7 +477,7 @@ class PokemonPokedexInfo_Scene
     pbFadeInAndShow(@sprites) { pbUpdate }
   end
 
-  def pbStartSceneBrief(species)  # For standalone access, shows first page only
+  def pbStartSceneBrief(species)  # For standalone access, show page 1 only
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z = 99999
 #    @region = 0
@@ -584,7 +600,10 @@ class PokemonPokedexInfo_Scene
     @sprites["formfront"].visible     = (@page==10) if @sprites["formfront"]
     @sprites["formback"].visible      = (@page==10) if @sprites["formback"]
     @sprites["formicon"].visible      = (@page==10) if @sprites["formicon"]
-	@sprites["formicon2"].visible      = (@page!=1 && @page <9) if @sprites["formicon2"]
+	@sprites["formicon2"].visible      = ![1,5,6,7,10].include?(@page) if @sprites["formicon2"]
+	@sprites["moveInfoDisplay"].visible = @page>=5 && @page <=7  if @sprites["moveInfoDisplay"]
+	@sprites["extraInfoOverlay"].visible = @page>=5 && @page <=7 if @sprites["extraInfoOverlay"]
+	@sprites["extraInfoOverlay"].bitmap.clear if @sprites["extraInfoOverlay"]
 	# Draw page title
 	overlay = @sprites["overlay"].bitmap
 	base = Color.new(219, 240, 240)
@@ -896,13 +915,14 @@ class PokemonPokedexInfo_Scene
     formname = ""
     base = Color.new(64,64,64)
     shadow = Color.new(176,176,176)
+	selected_move = nil
     for i in @available
       if i[2]==@form
         formname = i[0]
         drawTextEx(overlay,30,54,450,1,_INTL("Level Up Moves for {1}",@title),base,shadow)
         fSpecies = GameData::Species.get_species_form(@species,i[2])
         learnset = fSpecies.moves
-        trueIndex = 0
+        displayIndex = 0
         @scrollableListLength = learnset.length
         learnset.each_with_index do |move,index|
           next if index<@scroll
@@ -915,13 +935,20 @@ class PokemonPokedexInfo_Scene
             levelLabel = "E"
           end
           # Draw stat line
-          drawTextEx(overlay,30,84+30*trueIndex,450,1,levelLabel,base,shadow)
-          drawTextEx(overlay,60,84+30*trueIndex,450,1,moveName,base,shadow)
-          trueIndex += 1
-          break if trueIndex >= 9
+		  color = base 
+		  if index == @scroll
+			color = Color.new(255,100,80)
+			selected_move = move
+		  end
+          drawTextEx(overlay,30,84+30*displayIndex,450,1,levelLabel,color,shadow)
+          drawTextEx(overlay,60,84+30*displayIndex,450,1,moveName,color,shadow)
+          displayIndex += 1
+          break if displayIndex >= 9
         end
       end
     end
+	
+	drawMoveInfo(selected_move)
   end
   
   def drawPageEvolution
@@ -997,6 +1024,7 @@ class PokemonPokedexInfo_Scene
     base = Color.new(64,64,64)
     shadow = Color.new(176,176,176)
 
+	selected_move = nil
     for i in @available
       if i[2]==@form
         formname = i[0]
@@ -1004,16 +1032,23 @@ class PokemonPokedexInfo_Scene
         fSpecies = GameData::Species.get_species_form(@species,i[2])
         compatibleMoves = fSpecies.tutor_moves
         @scrollableListLength = compatibleMoves.length
-        trueIndex = 0
+        displayIndex = 0
         compatibleMoves.each_with_index do |move,index|
-          next if (index/2) < @scroll
+          next if index < @scroll
 		  moveName = GameData::Move.get(move).real_name
-          drawTextEx(overlay,30+(trueIndex % 2) * 200,84+30*(trueIndex/2).floor,450,1,moveName,base,shadow)
-          trueIndex += 1
-          break if trueIndex >= 18
+		  color = base
+		  if index == @scroll
+			color = Color.new(255,100,80)
+			selected_move = move
+		  end
+          drawTextEx(overlay,30,84+30*displayIndex,450,1,moveName,color,shadow)
+          displayIndex += 1
+          break if displayIndex >= 9
         end
       end
     end
+	
+	drawMoveInfo(selected_move)
   end
   
   def drawPageEggMoves
@@ -1023,6 +1058,7 @@ class PokemonPokedexInfo_Scene
     base = Color.new(64,64,64)
     shadow = Color.new(176,176,176)
 
+	selected_move = nil
     for i in @available
       if i[2]==@form
         formname = i[0]
@@ -1034,16 +1070,68 @@ class PokemonPokedexInfo_Scene
 		end
         compatibleMoves = firstSpecies.egg_moves
         @scrollableListLength = compatibleMoves.length
-        trueIndex = 0
+        displayIndex = 0
         compatibleMoves.each_with_index do |move,index|
-          next if (index/2) < @scroll
+          next if index < @scroll
 		  moveName = GameData::Move.get(move).real_name
-          drawTextEx(overlay,30+(trueIndex % 2) * 200,84+30*(trueIndex/2).floor,450,1,moveName,base,shadow)
-          trueIndex += 1
-          break if trueIndex >= 18
+		  color = base
+		  if index == @scroll
+			color = Color.new(255,100,80)
+			selected_move = move
+		  end
+          drawTextEx(overlay,30,84+30*displayIndex,450,1,moveName,color,shadow)
+          displayIndex += 1
+          break if displayIndex >= 9
         end
       end
     end
+	
+	drawMoveInfo(selected_move)
+  end
+  
+  def drawMoveInfo(selected_move)
+	if selected_move != nil
+		# Extra move info display
+		@extraInfoOverlay.bitmap.clear
+		overlay = @extraInfoOverlay.bitmap
+		selected_move = GameData::Move.get(selected_move)
+		
+		# Write power and accuracy values for selected move
+		# Write various bits of text
+		base   = Color.new(248,248,248)
+		shadow = Color.new(104,104,104)
+		textpos = [
+		   [_INTL("CATEGORY"),20,0,0,base,shadow],
+		   [_INTL("POWER"),20,32,0,base,shadow],
+		   [_INTL("ACCURACY"),20,64,0,base,shadow]
+		]
+		
+		base = Color.new(64,64,64)
+		shadow = Color.new(176,176,176)
+		case selected_move.base_damage
+		when 0 then textpos.push(["---", 220, 32, 1, base, shadow])   # Status move
+		when 1 then textpos.push(["???", 220, 32, 1, base, shadow])   # Variable power move
+		else        textpos.push([selected_move.base_damage.to_s, 220, 32, 1, base, shadow])
+		end
+		if selected_move.accuracy == 0
+		  textpos.push(["---", 220, 64, 1, base, shadow])
+		else
+		  textpos.push(["#{selected_move.accuracy}%", 220 + overlay.text_size("%").width, 64, 1, base, shadow])
+		end
+		# Draw all text
+		pbDrawTextPositions(overlay, textpos)
+		# Draw selected move's damage category icon
+		imagepos = [["Graphics/Pictures/category", 170, 8, 0, selected_move.category * 28, 64, 28]]
+		pbDrawImagePositions(overlay, imagepos)
+		# Draw selected move's description
+		drawTextEx(overlay,8,108,210,5,selected_move.description,base,shadow)
+		
+		#Draw the move's type
+		type_number = GameData::Type.get(selected_move.type).id_number
+		echo("#{type_number}\n")
+		typerect = Rect.new(0, type_number*32, 96, 32)
+		@sprites["overlay"].bitmap.blt(340, 60, @typebitmap.bitmap, typerect)
+	end
   end
   
   def pbFindEncounter(enc_types, species)
@@ -1218,26 +1306,29 @@ class PokemonPokedexInfo_Scene
   end
   
   def pbScroll
-    oldScroll = -1
+	@scroll = 0
+	drawPage(@page)
     loop do
-      if (oldScroll != @scroll)
-        drawPage(@page)
-      end
       Graphics.update
       Input.update
       pbUpdate
+	  doRefresh = false
       if Input.repeat?(Input::UP) && @scroll > 0
         pbPlayCursorSE
         @scroll -= 1
-      elsif Input.repeat?(Input::DOWN) && @scroll < @scrollableListLength/(@page == 6 ? 2 : 1) - 9 
+		doRefresh = true
+      elsif Input.repeat?(Input::DOWN) && @scroll < @scrollableListLength-1
         pbPlayCursorSE
         @scroll += 1
+		doRefresh = true
       elsif Input.trigger?(Input::BACK)
         pbPlayCancelSE
+		@scroll = -1
+		drawPage(@page)
         break
-      elsif Input.trigger?(Input::ACTION)
-        pbPlayDecisionSE
-        break
+      end
+	  if doRefresh
+        drawPage(@page)
       end
     end
   end
@@ -1324,7 +1415,7 @@ class PokemonPokedexInfo_Scene
         oldindex = @index
         pbGoToPrevious
         if @index!=oldindex
-		  @scroll = 0
+		  @scroll = -1
           pbUpdateDummyPokemon
           @available = pbGetAvailableForms
           pbSEStop
@@ -1335,7 +1426,7 @@ class PokemonPokedexInfo_Scene
         oldindex = @index
         pbGoToNext
         if @index!=oldindex
-		  @scroll = 0
+		  @scroll = -1
           pbUpdateDummyPokemon
           @available = pbGetAvailableForms
           pbSEStop
@@ -1352,7 +1443,7 @@ class PokemonPokedexInfo_Scene
 			@page = 10 if @page>10
 			highestLeftRepeat = repeats
 			if @page!=oldpage
-			  @scroll = 0
+			  @scroll = -1
 			  pbPlayCursorSE
 			  dorefresh = true
 			end
@@ -1367,7 +1458,7 @@ class PokemonPokedexInfo_Scene
 			@page = 10 if @page>10
 			highestRightRepeat = repeats
 			if @page!=oldpage
-			  @scroll = 0
+			  @scroll = -1
 			  pbPlayCursorSE
 			  dorefresh = true
 			end
