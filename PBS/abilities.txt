@@ -39,7 +39,7 @@
 37,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack by 50%."
 38,POISONPOINT,Poison Point,"Contact with the Pokémon may poison the attacker."
 39,INNERFOCUS,Inner Focus,"The Pokémon is protected from flinching."
-40,COLDPROOF,Cold Proof,"Rasises Sp. Def if hit by an Ice-type move. Cannot be chilled."
+40,COLDPROOF,Cold Proof,"Raises Sp. Def if hit by an Ice-type move. Cannot be chilled."
 41,WATERVEIL,Water Veil,"Prevents the Pokémon from getting a burn."
 42,MAGNETPULL,Magnet Pull,"Prevents Steel-type Pokémon from escaping."
 43,SOUNDPROOF,Soundproof,"Gives full immunity to all sound-based moves."
@@ -115,7 +115,7 @@
 113,SCRAPPY,Scrappy,"Enables moves to hit Ghost-type Pokémon."
 114,STORMDRAIN,Storm Drain,"Draws in all Water-type moves to up Sp. Attack."
 115,ICEBODY,Ice Body,"The Pokémon gradually regains HP in a hailstorm."
-116,SOLIDROCK,Solid Rock,"Reduces damage from super-effective attacks."
+116,SOLIDROCK,Solid Rock,"Reduces damage from super-effective attacks by 25%."
 117,SNOWWARNING,Snow Warning,"The Pokémon summons a hailstorm in battle."
 118,HONEYGATHER,Honey Gather,"The Pokémon may gather Honey from somewhere."
 119,FRISK,Frisk,"The Pokémon can check a foe's held item."
@@ -130,7 +130,7 @@
 128,DEFIANT,Defiant,"When its stats are lowered its Attack increases."
 129,DEFEATIST,Defeatist,"Lowers stats when HP becomes half or less."
 130,CURSEDBODY,Cursed Body,"May disable a move used on the Pokémon."
-131,HEALER,Healer,"May heal an ally's status conditions."
+131,HEALER,Healer,"Heals ally's status conditions at the end of turn."
 132,FRIENDGUARD,Friend Guard,"Reduces damage done to allies."
 133,WEAKARMOR,Weak Armor,"Physical attacks lower Defense and raise Speed."
 134,HEAVYMETAL,Heavy Metal,"Doubles the Pokémon's weight."
@@ -143,7 +143,7 @@
 141,MOODY,Moody,"Raises one stat and lowers another."
 142,OVERCOAT,Overcoat,"Protects the Pokémon from damage from weather."
 143,POISONTOUCH,Poison Touch,"May poison targets when a Pokémon makes contact."
-144,REGENERATOR,Regenerator,"Restores a little HP when withdrawn from battle."
+144,REGENERATOR,Regenerator,"Restores 1/3 of max HP when withdrawn from battle."
 145,BIGPECKS,Big Pecks,"Protects from Defense-lowering or Sp. Def-lowering attacks."
 146,SANDRUSH,Sand Rush,"Boosts the Pokémon's Speed in a sandstorm."
 147,WONDERSKIN,Wonder Skin,"Makes status-changing moves more likely to miss."
@@ -184,7 +184,7 @@
 182,PIXILATE,Pixilate,"Normal-type moves become Fairy-type and powered up."
 183,GOOEY,Gooey,"Contact with it lowers the attacker's Speed stat."
 184,AERILATE,Aerilate,"Normal-type moves become Flying-type and power up."
-185,PARENTALBOND,Parental Bond,"Parent and child each attacks."
+185,PARENTALBOND,Parental Bond,"Child attacks after the parent, for 30% of the previous damage."
 186,DARKAURA,Dark Aura,"Powers up each Pokémon's Dark-type moves."
 187,FAIRYAURA,Fairy Aura,"Powers up each Pokémon's Fairy-type moves."
 188,AURABREAK,Aura Break,"Reverses \"Aura\" Abilities to weaken affected moves."
@@ -250,7 +250,7 @@
 248,PERISHBODY,Perish Body,"When it takes a hit, both Pokémon faint after 3 turns.",
 249,POWERSPOT,Power Spot,"Just being next to the Pokémon powers up moves.",
 250,PROPELLERTAIL,Propeller Tail,"Ignores effects changing the target of a move.",
-251,LOUD,Loud,"Boosts power of sound-based moves by 30%, and resitance to them by 50%.",
+251,LOUD,Loud,"Boosts power of sound-based moves by 30%, and resistance to them by 50%.",
 252,RIPEN,Ripen,"Ripens Berries and doubles their effect.",
 253,SANDSPIT,Sand Spit,"Creates a sandstorm when it's hit by an attack.",
 254,SCREENCLEANER,Screen Cleaner,"Screens are nullified when entering battle.",
@@ -287,7 +287,7 @@
 284,AERODYNAMIC,Aerodynamic,"Rasises Speed if hit by a Flying-type move.
 285,HEADACHE,Headache,"Doubles Sp. Atk if the Pokémon is confused."
 286,BUNKERDOWN,Bunker Down,"Survives self-destructing if at full health."
-287,DEEPSTING,Deep Sting,"Boosts Attack by 50%, but physical moves deal recoil."
+287,DEEPSTING,Deep Sting,"Boosts Attack by 50%, but physical moves deal 50% damage back as recoil."
 288,SENTRY,Sentry,"Takes 25% less damage while using a status move."
 289,FORTUNE,Fortune,"Doubles the money gained from this Pokémon's battles."
 290,FLYTRAP,Flytrap,"Raises Attack when hit by Bug-type moves."

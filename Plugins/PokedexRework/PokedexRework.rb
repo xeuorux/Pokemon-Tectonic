@@ -17,9 +17,10 @@ def setAllPokemonSeen
   legendaries4 = (480..494).to_a
   legendaries5 = (638..649).to_a
   legendaries6 = (716..721).to_a
-  legendaries7 = (785..809).to_a
-  legendaries8 = (888..898).to_a
-  legendaries = [legendaries1,legendaries2,legendaries3,legendaries4,legendaries5,legendaries6,legendaries7,legendaries8].flatten
+  legendaries7 = (772..773).to_a
+  legendaries8 = (785..809).to_a
+  legendaries9 = (888..898).to_a
+  legendaries = [legendaries1,legendaries2,legendaries3,legendaries4,legendaries5,legendaries6,legendaries7,legendaries8,legendaries9].flatten
   GameData::Species.each do |species_data|
 	  next if species_data.form != 0 || legendaries.include?(species_data.id_number)
       sp = species_data.species
@@ -531,7 +532,7 @@ class PokemonPokedexInfo_Scene
     @species = @dexlist[@index][0]
     @gender, @form = $Trainer.pokedex.last_form_seen(@species)
     species_data = GameData::Species.get_species_form(@species, @form)
-	@title = species_data.real_form_name || species_data.real_name
+	@title = species_data.real_form_name ? "#{species_data.real_name} (#{species_data.real_form_name})" : species_data.real_name
     @sprites["infosprite"].setSpeciesBitmap(@species,@gender,@form)
     if @sprites["formfront"]
       @sprites["formfront"].setSpeciesBitmap(@species,@gender,@form)
@@ -600,7 +601,7 @@ class PokemonPokedexInfo_Scene
     @sprites["formfront"].visible     = (@page==10) if @sprites["formfront"]
     @sprites["formback"].visible      = (@page==10) if @sprites["formback"]
     @sprites["formicon"].visible      = (@page==10) if @sprites["formicon"]
-	@sprites["formicon2"].visible      = ![1,5,6,7,10].include?(@page) if @sprites["formicon2"]
+	@sprites["formicon2"].visible      = ![1,4,5,6,7,10].include?(@page) if @sprites["formicon2"]
 	@sprites["moveInfoDisplay"].visible = @page>=5 && @page <=7  if @sprites["moveInfoDisplay"]
 	@sprites["extraInfoOverlay"].visible = @page>=5 && @page <=7 if @sprites["extraInfoOverlay"]
 	@sprites["extraInfoOverlay"].bitmap.clear if @sprites["extraInfoOverlay"]
@@ -609,8 +610,8 @@ class PokemonPokedexInfo_Scene
 	base = Color.new(219, 240, 240)
 	shadow   = Color.new(88, 88, 80)
 	pageTitles = ["INFO", "ABILITIES", "STATS", "TYPE MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES", "EGG MOVES", "EVOLUTIONS", "AREA", "FORMS"]
-	formTitle = pageTitles[page-1]
-	drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{formTitle}</outln2>", base, shadow, 18)
+	pageTitle = pageTitles[page-1]
+	drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
 	xPos = 240
 	xPos -= 14 if @page >= 10
 	drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/10]</outln2>", base, shadow, 18)
@@ -880,27 +881,36 @@ class PokemonPokedexInfo_Scene
 			rawTextEx(overlay,30,110,450,1,_INTL("None"),base,shadow)
 		else
 			weakTypes.each_with_index do |t,index|
-				drawTextEx(overlay,30,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
+				#drawTextEx(overlay,30,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
+				type_number = GameData::Type.get(t).id_number
+				typerect = Rect.new(0, type_number*32, 96, 32)
+				overlay.blt(30, 110+36*index, @typebitmap.bitmap, typerect)
 			end
 		end
 		
 		#Draw the types the pokemon resists
-		drawTextEx(overlay,150,80,450,1,_INTL("Resist:"),base,shadow)
+		drawTextEx(overlay,142,80,450,1,_INTL("Resist:"),base,shadow)
 		if resistentTypes.length == 0
-			drawTextEx(overlay,150,110,450,1,_INTL("None"),base,shadow)
+			drawTextEx(overlay,142,110,450,1,_INTL("None"),base,shadow)
 		else
 			resistentTypes.each_with_index do |t,index|
-				drawTextEx(overlay,150,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
+				#drawTextEx(overlay,150,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
+				type_number = GameData::Type.get(t).id_number
+				typerect = Rect.new(0, type_number*32, 96, 32)
+				overlay.blt(142 + (index >= 7 ? 100 : 0), 110+36*(index % 7), @typebitmap.bitmap, typerect)
 			end
 		end
 		
 		#Draw the types the pokemon is immune to
-		drawTextEx(overlay,310,80,450,1,_INTL("Immune:"),base,shadow)
+		drawTextEx(overlay,354,80,450,1,_INTL("Immune:"),base,shadow)
 		if immuneTypes.length == 0
-			drawTextEx(overlay,310,110,450,1,_INTL("None"),base,shadow)
+			drawTextEx(overlay,354,110,450,1,_INTL("None"),base,shadow)
 		else
 			immuneTypes.each_with_index do |t,index|
-				drawTextEx(overlay,310,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
+				#drawTextEx(overlay,310,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
+				type_number = GameData::Type.get(t).id_number
+				typerect = Rect.new(0, type_number*32, 96, 32)
+				overlay.blt(354, 110+36*index, @typebitmap.bitmap, typerect)
 			end
 		end
       end
@@ -996,6 +1006,11 @@ class PokemonPokedexInfo_Scene
 		if evolutions.length == 0
 			drawTextEx(overlay,30,coordinateY,450,1,_INTL("None"),base,shadow)
 			coordinateY += 30
+		elsif @species == :EEVEE
+			drawTextEx(overlay,30,coordinateY,450,6,_INTL("Evolves into Vaporeon with a Water Stone, 
+			Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Sun Stone, Umbreon with a Dusk Stone, 
+			Leafeon with a Leaf Stone, Glaceon with an Ice Stone, and Sylveon with a Dawn Stone
+			"),base,shadow)
 		else
 			evolutions.each do |evolution|
 			  method = evolution[1]
@@ -1128,7 +1143,6 @@ class PokemonPokedexInfo_Scene
 		
 		#Draw the move's type
 		type_number = GameData::Type.get(selected_move.type).id_number
-		echo("#{type_number}\n")
 		typerect = Rect.new(0, type_number*32, 96, 32)
 		@sprites["overlay"].bitmap.blt(340, 60, @typebitmap.bitmap, typerect)
 	end
@@ -1608,6 +1622,7 @@ def describeEvolutionMethod(method,parameter=0)
     when :ItemFemale; return "when a #{GameData::Item.get(parameter).real_name} is used on it if it's female"
     when :Trade; return "when traded"
     when :TradeItem; return "when traded holding an #{GameData::Item.get(parameter).real_name}"
+	when :HasInParty; return "when leveled up while a #{GameData::Species.get(parameter).name} is also in the party"
     end
     return "via a method the programmer was too lazy to describe"
 end

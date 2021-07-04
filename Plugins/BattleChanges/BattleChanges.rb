@@ -1503,14 +1503,23 @@ class PokeBattle_Move
         multipliers[:final_damage_multiplier] *= 2
       end
     end
+	
     # STAB
     if type && user.pbHasType?(type)
-      if user.hasActiveAbility?(:ADAPTABILITY)
-        multipliers[:final_damage_multiplier] *= 2
+	  stab = 1
+	  if (user.pbTypes(true).length > 1)
+		stab = 4.0/3.0
       else
-        multipliers[:final_damage_multiplier] *= 1.5
+        stab = 1.5
       end
+      
+      if user.hasActiveAbility?(:ADAPTED)
+        stab *= 4.0/3.0
+      end
+	  
+	  multipliers[FINAL_DMG_MULT] *= stab
     end
+	
     # Type effectiveness
 	typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
 	typeEffect = ((typeEffect+1.0)/2.0) if target.boss || user.boss

@@ -2,6 +2,7 @@
 Name=Normal
 InternalName=NORMAL
 Weaknesses=FIGHTING
+Immunities=GHOST
 
 [1]
 Name=Fighting
@@ -46,7 +47,7 @@ Name=Ghost
 InternalName=GHOST
 Weaknesses=DARK,GHOST
 Resistances=POISON
-Immunities=FIGHTING
+Immunities=FIGHTING,NORMAL
 
 [8]
 Name=Steel
