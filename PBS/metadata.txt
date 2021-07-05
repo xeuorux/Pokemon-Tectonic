@@ -62,6 +62,9 @@ MapPosition = 0,13,12
 #-------------------------------
 [009]
 # River Grove
+Outdoor = true
+ShowArea = true
+Bicycle = true
 MapPosition = 0,14,10
 #-------------------------------
 [010]
