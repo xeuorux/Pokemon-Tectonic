@@ -69,6 +69,7 @@ Pokemon = VOLTORB,21
 Pokemon = MURKROW,21
     Ability = 1
     Item = DAMPROCK
+	Moves = BOREALWIND,HAZE,SNARL,ROOST
 Pokemon = STARMIE,21
     Ability = 1
     Item = SITRUSBERRY
@@ -277,22 +278,22 @@ Pokemon = BRONZOR,21
 #-------------------------------
 [LEADER_Bartholomew,Bartholomew]
 LoseText = "Top marks, and my compliments to your Pokémon."
-Pokemon = AMAURA,21
-	Ability = 0
+Pokemon = OMANYTE,21
 Pokemon = YANMA,21
 	ITEM = BUGGEM
 	Moves = UTURN,AERIALACE,SHOUT,ROOST
+Pokemon = AMAURA,21
+	Ability = 0
 Pokemon = SHIELDON,21
-Pokemon = OMANYTE,21
 #-------------------------------
 [LEADER_Bartholomew,Bartholomew,1]
 LoseText = "Top marks, and my compliments to your Pokémon."
-Pokemon = AMAURA,21
-	Ability = 0
+Pokemon = OMANYTE,21
 Pokemon = YANMA,21
 	ITEM = BUGGEM
 	Moves = UTURN,AERIALACE,SHOUT,ROOST
-Pokemon = OMANYTE,21
+Pokemon = AMAURA,21
+	Ability = 0
 Pokemon = SHIELDON,21
 Pokemon = ARCHEN,21
 	Item = LUMBERRY

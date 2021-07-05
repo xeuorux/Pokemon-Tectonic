@@ -1517,7 +1517,7 @@ class PokeBattle_Move
         stab *= 4.0/3.0
       end
 	  
-	  multipliers[FINAL_DMG_MULT] *= stab
+	  multipliers[:final_damage_multiplier] *= stab
     end
 	
     # Type effectiveness
@@ -2052,7 +2052,7 @@ class PokeBattle_Battler
   
   def pbSleepDuration(duration = -1)
 		duration = 4 if duration <= 0
-		duration = 2 if hasActiveAbility?(:EARLYBIRD)
+		duration = 2 if hasActiveAbility?(:EARLYBIRD) || boss
 		return duration
   end
   
