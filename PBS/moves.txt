@@ -411,12 +411,12 @@
 396,THRASH,Thrash,0D2,120,NORMAL,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks for two to three turns. It then becomes confused, however."
 397,EGGBOMB,Egg Bomb,000,100,NORMAL,Physical,75,10,0,NearOther,0,befn,A large egg is hurled at the target with maximum force to inflict damage.
 398,JUDGMENT,Judgment,09F,100,NORMAL,Special,100,10,0,NearOther,0,bef,The user releases countless shots of light. Its type varies with the kind of Plate the user is holding.
-399,HYPERVOICE,Hyper Voice,000,90,NORMAL,Special,100,10,0,AllNearFoes,0,befk,The user lets loose a horribly echoing shout with the power to inflict damage.
+399,HYPERVOICE,Hyper Voice,000,95,NORMAL,Special,100,10,0,AllNearFoes,0,befk,The user lets loose a horribly echoing shout with the power to inflict damage.
 400,MULTIATTACK,Multi-Attack,09F,90,NORMAL,Physical,100,10,0,NearOther,0,abef,"Cloaking itself in high energy, the user slams into the target. This move's type depends on the held memory."
 401,REVELATIONDANCE,Revelation Dance,169,90,NORMAL,Special,100,15,0,NearOther,0,befo,The user attacks the target by dancing very hard. The user's type determines the type of this move.
 402,ROCKCLIMB,Rock Climb,013,90,NORMAL,Physical,85,20,20,NearOther,0,abef,The user attacks the target by smashing into it with incredible force. It has a 20% chance to confuse.
 403,TAKEDOWN,Take Down,0FA,90,NORMAL,Physical,100,20,0,NearOther,0,abef,"A reckless, full-body charge attack for slamming into the foe. It also damages the user a little."
-404,UPROAR,Uproar,0D1,90,NORMAL,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep."
+404,UPROAR,Uproar,0D1,110,NORMAL,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep."
 405,BODYSLAM,Body Slam,007,85,NORMAL,Physical,100,15,30,NearOther,0,abef,The user drops onto the target with its full body weight. It has a 30% chance to paralyze.
 406,EXTREMESPEED,Extreme Speed,000,80,NORMAL,Physical,100,5,0,NearOther,2,abef,The user charges the target at blinding speed. This attack always goes before any other move.
 407,HYPERFANG,Hyper Fang,00F,80,NORMAL,Physical,100,15,20,NearOther,0,abei,The user bites hard on the target with its sharp front fangs. It has a 20% to make the target flinch.
@@ -428,9 +428,9 @@
 413,CRUSHCLAW,Crush Claw,043,75,NORMAL,Physical,100,10,100,NearOther,0,abef,The user slashes the target with hard and sharp claws. It also lowers the target's Defense.
 414,RELICSONG,Relic Song,003,75,NORMAL,Special,100,10,10,AllNearFoes,0,befk,An ancient song appeals to the hearts of those listening. It has a 10% chance to induce sleep.
 415,CHIPAWAY,Chip Away,0A9,70,NORMAL,Physical,100,20,0,NearOther,0,abef,"Seeking an opening, the user strikes continually. The foe's stat changes don't affect the damage."
-416,DIZZYPUNCH,Dizzy Punch,013,70,NORMAL,Physical,100,10,20,NearOther,0,abefj,The target is hit with rhythmically launched punches that have a 20% chance to confuse.
+416,DIZZYPUNCH,Dizzy Punch,013,85,NORMAL,Physical,100,10,20,NearOther,0,abefj,The target is hit with rhythmically launched punches that have a 20% chance to confuse.
 417,FACADE,Facade,07E,70,NORMAL,Physical,100,20,0,NearOther,0,abef,"An attack move that doubles its power if the user has a status condition."
-418,HEADBUTT,Headbutt,00F,70,NORMAL,Physical,100,15,30,NearOther,0,abe,The user sticks out its head and attacks by charging into the foe. It has a 30% chance to make the target flinch.
+418,HEADBUTT,Headbutt,007,60,NORMAL,Physical,100,15,20,NearOther,0,abe,The user sticks out its head and attacks by charging into the foe. It has a 20% chance to paralyze.
 419,RETALIATE,Retaliate,085,70,NORMAL,Physical,100,5,0,NearOther,0,abef,"Gets revenge for a fainted ally. If an ally fainted in the last turn, this attack's damage increases."
 420,SECRETPOWER,Secret Power,0A4,70,NORMAL,Physical,100,20,30,NearOther,0,be,The user attacks with a secret power. Its added effects vary depending on the user's environment.
 421,SLASH,Slash,000,70,NORMAL,Physical,100,20,0,NearOther,0,abefh,The target is attacked with a slash of claws or blades. Critical hits land more easily.
@@ -449,11 +449,11 @@
 434,ECHOEDVOICE,Echoed Voice,092,40,NORMAL,Special,100,15,0,NearOther,0,befk,"The user attacks the foe with an echoing voice. If this move is used every turn, it does greater damage."
 435,FAKEOUT,Fake Out,012,40,NORMAL,Physical,100,10,100,NearOther,3,abe,An attack that hits first and makes the target flinch. It only works the first turn the user is in battle.
 436,FALSESWIPE,False Swipe,000,40,NORMAL,Physical,100,40,0,NearOther,0,abef,A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.
-437,HOLDBACK,Hold Back,000,40,NORMAL,Physical,100,40,0,NearOther,0,abef,"The user holds back when it attacks, and the target is left with at least 1 HP."
+437,HOLDBACK,Hold Back,000,40,NORMAL,Special,100,40,0,NearOther,0,abef,"The user holds back when it attacks, and the target is left with at least 1 HP."
 438,PAYDAY,Pay Day,109,50,NORMAL,Physical,100,20,0,NearOther,0,bef,Numerous coins are hurled at the target to inflict damage. Money is earned after battle.
-439,POUND,Pound,000,50,NORMAL,Physical,100,35,0,NearOther,0,abef,"The target is physically pounded with a long tail or a foreleg, etc."
+439,POUND,Pound,01C,45,NORMAL,Physical,100,35,15,NearOther,0,abef,"The target is physically pounded with a long tail or a foreleg, etc. Has a 15% chance to raise attack."
 440,QUICKATTACK,Quick Attack,000,40,NORMAL,Physical,100,30,0,NearOther,1,abef,The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.
-441,SCRATCH,Scratch,000,50,NORMAL,Physical,100,35,0,NearOther,0,abef,"Hard, pointed, and sharp claws rake the target to inflict damage."
+441,SCRATCH,Scratch,000,45,NORMAL,Physical,100,35,0,NearOther,0,abefh,"Hard, pointed, and sharp claws rake the target to inflict damage. Critical hits land more easily"
 442,TACKLE,Tackle,000,50,NORMAL,Physical,100,35,0,NearOther,0,abef,A physical attack in which the user charges and slams into the target with its whole body.
 443,DOUBLEHIT,Double Hit,0BD,35,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user slams the target with a long tail, vines, or tentacle. The target is hit twice in a row."
 444,FEINT,Feint,0AD,30,NORMAL,Special,100,10,0,NearOther,2,ef,An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
@@ -505,7 +505,7 @@
 490,ENCORE,Encore,0BC,0,NORMAL,Status,100,5,0,NearOther,0,bce,The user compels the target to keep using only the move it last used for three turns.
 491,ENDURE,Endure,000,0,NORMAL,Status,0,10,0,User,4,,The user endures any attack with at least 1 HP. Its chance of failing rises if it is used in succession.
 492,ENTRAINMENT,Entrainment,066,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user dances to compel the target to mimic it, making the target's Ability the same as the user's."
-493,FLASH,Flash,047,0,ELECTRIC,Status,100,20,0,NearOther,0,bce,The user flashes a light that cuts the target's accuracy. It can also be used to illuminate caves.
+493,FLASH,Flash,047,0,NORMAL,Status,100,20,0,NearOther,0,bce,The user flashes a light that cuts the target's accuracy. It can also be used to illuminate caves.
 494,FOCUSENERGY,Focus Energy,023,0,NORMAL,Status,0,30,0,User,0,d,The user takes a deep breath and focuses so that critical hits land more easily.
 495,FOLLOWME,Follow Me,117,0,NORMAL,Status,0,20,0,User,2,,"The user draws attention to itself, making all targets take aim only at the user."
 496,FORESIGHT,Foresight,0A7,0,NORMAL,Status,0,40,0,NearOther,0,bce,Enables the user to hit a Ghost type with any kind of move. It also enables the user to hit an evasive foe.
@@ -889,3 +889,11 @@
 870,CRITICALERROR,Critical Error,0A0,60,GHOST,Special,100,10,0,NearOther,0,bef,"The user causes a glitch in reality. This attack always results in a critical hit."
 871,SUBLIMEIMPACT,Sublime Impact,0AD,90,NORMAL,Physical,100,10,0,NearOther,0,aef,An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
 872,ADAMANTINEPRESS,Adamantine Press,000,95,ROCK,Physical,100,10,0,NearOther,0,abef,TODO.
+
+873,CLAMOR,Clamor,0D1,75,NORMAL,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep."
+874,COMETSMASH,Comet Smash,01C,95,NORMAL,Physical,100,10,20,NearOther,0,abefj,The user throws a comet-like punch. It has a 20% chance to raise Attack.
+875,DOUBLEPUNCH,Double Punch,0BD,45,NORMAL,Physical,100,10,0,NearOther,0,abef,"TODO."
+876,PULVERIZE,Pulverize,01C,120,NORMAL,Physical,85,5,10,NearOther,0,abefj,"TODO."
+877,PUMMEL,Pummel,01C,50,NORMAL,Physical,55,20,50,NearOther,0,abefj,"The user warms up by treating the target as a punching bag. This has a 60% chance to raise Attack."
+878,SLICE,Slice,000,95,NORMAL,Physical,100,15,0,NearOther,0,abefh,The target is cut by a clean slice. Critical hits land more easily.
+879,FURY,Fury,093,60,NORMAL,Physical,100,15,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle."
