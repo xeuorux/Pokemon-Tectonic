@@ -1904,7 +1904,7 @@ class PokeBattle_Battler
     @battle.eachBattler do |b|   # Other battlers lose their lock-on against self - Jawlock
       next if !b.effects[PBEffects::JawLock]
       next if b.effects[PBEffects::JawLockUser]!=@index
-      b.effects[PBEffects::Jawlock]     = false
+      b.effects[PBEffects::JawLock]     = false
       b.effects[PBEffects::JawLockUser] = -1
     end
     @effects[PBEffects::Truant]              = false
