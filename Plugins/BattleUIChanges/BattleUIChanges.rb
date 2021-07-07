@@ -654,7 +654,7 @@ class PokeBattle_Battle
 		$Trainer.pokedex.register_last_seen(@battlers[idxTarget].pokemon)
 		scene = PokemonPokedexInfo_Scene.new
 		screen = PokemonPokedexInfoScreen.new(scene)
-		screen.pbStartSceneSingle(species)
+		screen.pbStartSceneSingle(species,true)
     end
 
 	def pbCommandPhaseLoop(isPlayer)

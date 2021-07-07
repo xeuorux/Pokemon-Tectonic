@@ -390,13 +390,14 @@ end
 
 
 class PokemonPokedexInfo_Scene
-  def pbStartScene(dexlist,index,region)
+  def pbStartScene(dexlist,index,region,battle=false)
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z = 99999
     @dexlist = dexlist
     @index   = index
     @region  = region
-    @page = 1
+	@battle = battle
+    @page = @battle ? 2 : 1
 	@evolutionIndex = -1
     @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
 	@moveInfoDisplayBitmap   	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/Rework/move_info_display"))
@@ -614,7 +615,8 @@ class PokemonPokedexInfo_Scene
 	drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
 	xPos = 240
 	xPos -= 14 if @page >= 10
-	drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/10]</outln2>", base, shadow, 18)
+	pageCount = @battle ? 7 : 10
+	drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/#{pageCount}]</outln2>", base, shadow, 18)
     # Draw page-specific information
     case page
     when 1; drawPageInfo
@@ -1398,14 +1400,6 @@ class PokemonPokedexInfo_Scene
       if Input.trigger?(Input::ACTION)
 		if @page == 1
 			GameData::Species.play_cry_from_species(@species, @form)
-		elsif @page==8 && @evolutionsArray.length > 0   # Evolutions
-		  pbPlayDecisionSE
-          newIndex = pbScrollEvolutions()
-		  if newIndex > -1
-			return newIndex,false
-		  end
-		  @evolutionIndex = -1
-          dorefresh = true
 		end
       elsif Input.trigger?(Input::BACK)
         pbPlayCloseMenuSE
@@ -1417,6 +1411,14 @@ class PokemonPokedexInfo_Scene
         elsif @page==5 || @page == 6 || @page == 7   # Move lists
 		  pbPlayDecisionSE
           pbScroll
+          dorefresh = true
+		elsif @page==8 && @evolutionsArray.length > 0   # Evolutions
+		  pbPlayDecisionSE
+          newIndex = pbScrollEvolutions()
+		  if newIndex > -1
+			return newIndex,false
+		  end
+		  @evolutionIndex = -1
           dorefresh = true
         elsif @page==10   # Forms
           if @available.length>1
@@ -1454,7 +1456,6 @@ class PokemonPokedexInfo_Scene
 			oldpage = @page
 			@page -= 1
 			@page = 1 if @page<1
-			@page = 10 if @page>10
 			highestLeftRepeat = repeats
 			if @page!=oldpage
 			  @scroll = -1
@@ -1468,8 +1469,8 @@ class PokemonPokedexInfo_Scene
 		if repeats > highestRightRepeat
 			oldpage = @page
 			@page += 1
-			@page = 1 if @page<1
 			@page = 10 if @page>10
+			@page = 7 if @battle && @page>7
 			highestRightRepeat = repeats
 			if @page!=oldpage
 			  @scroll = -1
@@ -1510,81 +1511,6 @@ end
 
 
 class PokeBattle_Scene
-	def pbStartSceneSingle(species)   # For use from a Pokémon's summary screen
-		region = -1
-		if Settings::USE_CURRENT_REGION_DEX
-		  region = pbGetCurrentRegion
-		  region = -1 if region >= $Trainer.pokedex.dexes_count - 1
-		else
-		  region = $PokemonGlobal.pokedexDex   # National Dex -1, regional Dexes 0, 1, etc.
-		end
-		dexnum = pbGetRegionalNumber(region,species)
-		dexnumshift = Settings::DEXES_WITH_OFFSETS.include?(region)
-		
-		species_data = GameData::Species.get(species)
-		  color  = species_data.color
-		  type1  = species_data.type1
-		  type2  = species_data.type2 || type1
-		  shape  = species_data.shape
-		  height = species_data.height
-		  weight = species_data.weight
-		  
-		  abilities = species_data.abilities
-          lvlmoves = species_data.moves
-		  tutormoves = species_data.tutor_moves
-		  
-		  firstSpecies = GameData::Species.get(species)
-		  while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
-			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
-		  end
-		
-		  eggmoves = firstSpecies.egg_moves
-		  
-		  evolutions = species_data.get_evolutions
-			evoMethods = []
-
-			evolutions.each_with_index do |evolution,index|
-			  next if evolution[3]
-			  method = evolution[1]
-			  parameter = evolution[2]
-			  evoSpecies = evolution[0]
-			  next if !method || !evoSpecies
-			  evolutionName = GameData::Species.get(evoSpecies).real_name
-			  methodDescription = describeEvolutionMethod(method,parameter)
-			  evoMethods.push(methodDescription)
-			end
-
-			baseStats = species_data.base_stats
-			total = 0
-			baseStats.each_with_index do |stat, index|
-			  next if !stat
-			  total += stat[1]
-			end
-		  
-		  # 0 = National Species
-          # 1 = Name
-          # 2 = Height
-          # 3 = Weight
-          # 4 = Number
-          # 5 = Shift
-          # 6 = 1st Type
-          # 7 = 2nd Type
-          # 8 = Color
-          # 9 = Shape
-          # 10 Abilities
-          # 11 Level Up Moves
-		  # 12 Tutor Moves
-		  # 13 Egg Moves
-		  # 14 Evo Methods
-		  # 15 Base stat total
-		  
-		dexlist = [[species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves, eggmoves, evoMethods, total]]
-		@scene.pbStartScene(dexlist,0,region)
-		@scene.pbScene
-		@scene.pbEndScene
-	  end
-
-
   #=============================================================================
   # Shows the Pokédex entry screen for a newly caught Pokémon
   #=============================================================================
@@ -1646,5 +1572,23 @@ module GameData
 		  end
 		  return ret
 		end
+	end
+end
+
+class PokemonPokedexInfoScreen
+	def pbStartSceneSingle(species,battle=false)   # For use from a Pokémon's summary screen
+		region = -1
+		if Settings::USE_CURRENT_REGION_DEX
+		  region = pbGetCurrentRegion
+		  region = -1 if region >= $Trainer.pokedex.dexes_count - 1
+		else
+		  region = $PokemonGlobal.pokedexDex   # National Dex -1, regional Dexes 0, 1, etc.
+		end
+		dexnum = pbGetRegionalNumber(region,species)
+		dexnumshift = Settings::DEXES_WITH_OFFSETS.include?(region)
+		dexlist = [[species,GameData::Species.get(species).name,0,0,dexnum,dexnumshift]]
+		@scene.pbStartScene(dexlist,0,region,battle)
+		@scene.pbScene
+		@scene.pbEndScene
 	end
 end
