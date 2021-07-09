@@ -743,8 +743,38 @@ class PokeBattle_Battle
     @field.effects[PBEffects::FairyLock]   -= 1 if @field.effects[PBEffects::FairyLock]>0
     @field.effects[PBEffects::FusionBolt]  = false
     @field.effects[PBEffects::FusionFlare] = false
+	
+	# Neutralizing Gas
+	pbCheckNeutralizingGas
+	
     @endOfRound = false
   end
+  
+  def pbCheckNeutralizingGas(battler=nil)
+    # Battler = the battler to switch out. 
+	# Should be specified when called from pbAttackPhaseSwitch
+	# Should be nil when called from pbEndOfRoundPhase
+    return if !@field.effects[PBEffects::NeutralizingGas]
+    return if battler && (battler.ability != :NEUTRALIZINGGAS || 
+		battler.effects[PBEffects::GastroAcid])
+    hasabil=false
+    eachBattler {|b|
+      next if !b || b.fainted?
+	  next if battler && b.index == battler.index 
+	  # if specified, the battler will switch out, so don't consider it.
+      # neutralizing gas can be blocked with gastro acid, ending the effect.
+      if b.ability == :NEUTRALIZINGGAS && !b.effects[PBEffects::GastroAcid]
+        hasabil=true; break
+      end
+    }
+    if !hasabil
+      @field.effects[PBEffects::NeutralizingGas] = false
+      pbPriority(true).each { |b| 
+	    next if battler && b.index == battler.index
+	    b.pbEffectsOnSwitchIn
+	  }
+    end
+  end 
 
   # Called when a Pokémon switches in (entry effects, entry hazards).
   def pbOnActiveOne(battler)
@@ -850,6 +880,25 @@ class PokeBattle_Battle
     end
     battler.pbCheckForm
     return true
+  end
+  
+  def pbAttackPhaseSwitch
+    pbPriority.each do |b|
+      next unless @choices[b.index][0]==:SwitchOut && !b.fainted?
+      idxNewPkmn = @choices[b.index][1]   # Party index of Pokémon to switch to
+      b.lastMoveFailed = false   # Counts as a successful move for Stomping Tantrum
+      @lastMoveUser = b.index
+      # Switching message
+      pbMessageOnRecall(b)
+      # Pursuit interrupts switching
+      pbPursuit(b.index)
+      return if @decision>0
+	  # Neutralizing Gas
+	  pbCheckNeutralizingGas(b)
+      # Switch Pokémon
+      pbRecallAndReplace(b.index,idxNewPkmn)
+      b.pbEffectsOnSwitchIn(true)
+    end
   end
   
   #=============================================================================
@@ -1042,9 +1091,35 @@ class PokeBattle_Battle
     end
     return true
   end
+  
+  #=============================================================================
+  # Effects upon a Pokémon entering battle
+  #=============================================================================
+  # Called at the start of battle only.
+  def pbOnActiveAll
+    # Neutralizing Gas activates before anything. 
+	pbPriorityNeutralizingGas
+    # Weather-inducing abilities, Trace, Imposter, etc.
+    pbCalculatePriority(true)
+    pbPriority(true).each { |b| b.pbEffectsOnSwitchIn(true) }
+    pbCalculatePriority
+    # Check forms are correct
+    eachBattler { |b| b.pbCheckForm }
+  end
 
-	
-	#=============================================================================
+ # Called at the start of battle only; Neutralizing Gas activates before anything. 
+  def pbPriorityNeutralizingGas
+    eachBattler {|b|
+      next if !b || b.fainted?
+      # neutralizing gas can be blocked with gastro acid, ending the effect.
+      if b.ability == :NEUTRALIZINGGAS && !b.effects[PBEffects::GastroAcid]
+        BattleHandlers.triggerAbilityOnSwitchIn(:NEUTRALIZINGGAS,b,self)
+		return 
+      end
+    }
+  end
+
+  #=============================================================================
   # Running from battle
   #=============================================================================
   def pbCanRun?(idxBattler)
@@ -1974,6 +2049,18 @@ class PokeBattle_Battler
     return ret
   end
   
+  # NOTE: Do not create any held item which affects whether a Pokémon's ability
+  #       is active. The ability Klutz affects whether a Pokémon's item is
+  #       active, and the code for the two combined would cause an infinite loop
+  #       (regardless of whether any Pokémon actualy has either the ability or
+  #       the item - the code existing is enough to cause the loop).
+  def abilityActive?(ignore_fainted = false)
+    return false if fainted? && !ignore_fainted
+	return false if @battle.field.effects[PBEffects::NeutralizingGas]
+    return false if @effects[PBEffects::GastroAcid]
+    return true
+  end
+  
   # Applies to both losing self's ability (i.e. being replaced by another) and
   # having self's ability be negated.
   def unstoppableAbility?(abil = nil)
@@ -1999,6 +2086,35 @@ class PokeBattle_Battler
       :GULPMISSILE,
       :ASONEICE,
       :ASONEGHOST
+    ]
+    return ability_blacklist.include?(abil.id)
+  end
+  
+  # Applies to gaining the ability.
+  def ungainableAbility?(abil = nil)
+    abil = @ability_id if !abil
+    abil = GameData::Ability.try_get(abil)
+    return false if !abil
+    ability_blacklist = [
+      # Form-changing abilities
+      :BATTLEBOND,
+      :DISGUISE,
+      :FLOWERGIFT,
+      :FORECAST,
+      :MULTITYPE,
+      :POWERCONSTRUCT,
+      :SCHOOLING,
+      :SHIELDSDOWN,
+      :STANCECHANGE,
+      :ZENMODE,
+      # Appearance-changing abilities
+      :ILLUSION,
+      :IMPOSTER,
+      # Abilities intended to be inherent properties of a certain species
+      :COMATOSE,
+      :RKSSYSTEM,
+	  :NEUTRALIZINGGAS,
+	  :HUNGERSWITCH
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -2849,11 +2965,15 @@ class PokeBattle_Battler
     return true
   end
   
-    #=============================================================================
+  #=============================================================================
   # Initial success check against the target. Done once before the first hit.
   # Includes move-specific failure conditions, protections and type immunities.
   #=============================================================================
   def pbSuccessCheckAgainstTarget(move,user,target)
+	# Unseen Fist
+    unseenfist = user.ability == :UNSEENFIST && move.contactMove?
+  
+  
     typeMod = move.pbCalcTypeMod(move.calcType,user,target)
     target.damageState.typeMod = typeMod
     # Two-turn attacks can't fail here in the charging turn
@@ -2868,7 +2988,7 @@ class PokeBattle_Battler
     end
     # Crafty Shield
     if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index!=target.index && move.function != "17C"
-       move.statusMove? && !move.pbTarget(user).targets_all
+       move.statusMove? && !move.pbTarget(user).targets_all && !unseenfist
       @battle.pbCommonAnimation("CraftyShield",target)
       @battle.pbDisplay(_INTL("Crafty Shield protected {1}!",target.pbThis(true)))
       target.damageState.protected = true
@@ -2878,7 +2998,7 @@ class PokeBattle_Battler
     # Wide Guard
     if target.pbOwnSide.effects[PBEffects::WideGuard] && user.index!=target.index &&
        move.pbTarget(user).num_targets > 1 &&
-       (Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?)
+       (Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?) && !unseenfist
       @battle.pbCommonAnimation("WideGuard",target)
       @battle.pbDisplay(_INTL("Wide Guard protected {1}!",target.pbThis(true)))
       target.damageState.protected = true
@@ -2887,7 +3007,7 @@ class PokeBattle_Battler
     end
     if move.canProtectAgainst?
       # Quick Guard
-      if target.pbOwnSide.effects[PBEffects::QuickGuard] &&
+      if target.pbOwnSide.effects[PBEffects::QuickGuard] && !unseenfist &&
          @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
         @battle.pbCommonAnimation("QuickGuard",target)
         @battle.pbDisplay(_INTL("Quick Guard protected {1}!",target.pbThis(true)))
@@ -2896,15 +3016,28 @@ class PokeBattle_Battler
         return false
       end
       # Protect
-      if target.effects[PBEffects::Protect]
+      if target.effects[PBEffects::Protect] && !unseenfist
         @battle.pbCommonAnimation("Protect",target)
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
         return false
       end
+	  # Obstruct
+	  if target.effects[PBEffects::Obstruct] && !unseenfist
+        @battle.pbCommonAnimation("Obstruct",target)
+        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+        target.damageState.protected = true
+        @battle.successStates[user.index].protected = true
+        if move.pbContactMove?(user) && user.affectedByContactEffect?
+          if user.pbCanLowerStatStage?(:DEFENSE)
+            user.pbLowerStatStage(:DEFENSE,2,nil)
+          end
+        end
+        return false
+      end
       # King's Shield
-      if target.effects[PBEffects::KingsShield] && move.damagingMove?
+      if target.effects[PBEffects::KingsShield] && move.damagingMove? && !unseenfist
         @battle.pbCommonAnimation("KingsShield",target)
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
@@ -2917,7 +3050,7 @@ class PokeBattle_Battler
         return false
       end
       # Spiky Shield
-      if target.effects[PBEffects::SpikyShield]
+      if target.effects[PBEffects::SpikyShield] && !unseenfist
         @battle.pbCommonAnimation("SpikyShield",target)
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
@@ -2931,7 +3064,7 @@ class PokeBattle_Battler
         return false
       end
       # Baneful Bunker
-      if target.effects[PBEffects::BanefulBunker]
+      if target.effects[PBEffects::BanefulBunker] && !unseenfist
         @battle.pbCommonAnimation("BanefulBunker",target)
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
@@ -2942,7 +3075,7 @@ class PokeBattle_Battler
         return false
       end
       # Mat Block
-      if target.pbOwnSide.effects[PBEffects::MatBlock] && move.damagingMove?
+      if target.pbOwnSide.effects[PBEffects::MatBlock] && move.damagingMove? && !unseenfist
         # NOTE: Confirmed no common animation for this effect.
         @battle.pbDisplay(_INTL("{1} was blocked by the kicked-up mat!",move.name))
         target.damageState.protected = true
@@ -4342,9 +4475,10 @@ module PBEffects
 	NoRetreat			= 140
 	
 	#===========================================================================
-    # These effects apply to a side
+    # These effects apply to the battle (i.e. both sides)
     #===========================================================================
 	Fortune = 13
+	NeutralizingGas = 14
 end
 
 #===============================================================================
