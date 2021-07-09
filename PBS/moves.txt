@@ -897,3 +897,4 @@
 877,PUMMEL,Pummel,01C,55,NORMAL,Physical,100,20,50,NearOther,0,abefj,"The user warms up by treating the target as a punching bag. This has a 60% chance to raise Attack."
 878,SLICE,Slice,000,95,NORMAL,Physical,100,15,0,NearOther,0,abefh,The target is cut by a clean slice. Critical hits land more easily.
 879,FURY,Fury,093,60,NORMAL,Physical,100,15,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle."
+880,SPELLBIND,Spellbind,400,0,FAIRY,Status,85,10,0,NearOther,0,bce,"TODO."
