@@ -555,7 +555,7 @@ class PokemonDataBox < SpriteWrapper
 			if self.hp > (@battler.totalhp / 3.0)
 			  w2 = @hpBarBitmap.width.to_f
 			  if self.hp < (2.0 * @battler.totalhp / 3.0)
-				w2 = @hpBarBitmap.width.to_f* 2.0 * (self.hp - (@battler.totalhp / 3.0)) / (@battler.totalhp / 3.0)
+				w2 = @hpBarBitmap.width.to_f * (self.hp - (@battler.totalhp / 3.0)) / (@battler.totalhp / 3.0)
 				w2 = 1 if w2<1
 			    # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
 			    #       fit in with the rest of the graphics which are doubled in size.

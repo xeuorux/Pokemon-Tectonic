@@ -172,6 +172,29 @@ class PokeBattle_Move_075 < PokeBattle_Move
 end
 
 #===============================================================================
+# Hits 3 times. Power is multiplied by the hit number. (Triple Kick)
+# An accuracy check is performed for each hit.
+#===============================================================================
+class PokeBattle_Move_0BF < PokeBattle_Move
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets); return 3;    end
+
+  def successCheckPerHit?
+    return @accCheckPerHit
+  end
+
+  def pbOnStartUse(user,targets)
+    @calcBaseDmg = 0
+    @accCheckPerHit = !user.hasActiveAbility?(:SKILLLINK)
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+    @calcBaseDmg += baseDmg if !target.damageState.disguise || !target.damageState.iceface
+    return @calcBaseDmg
+  end
+end
+
+#===============================================================================
 # Two turn attack. Skips first turn, attacks second turn. (Dive)
 # (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
 #===============================================================================

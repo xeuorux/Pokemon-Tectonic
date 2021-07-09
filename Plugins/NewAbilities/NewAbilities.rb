@@ -241,61 +241,6 @@ BattleHandlers::TargetAbilityOnHit.add(:GRIT,
   }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
-  proc { |ability,user,target,move,battle|
-    next if !move.pbContactMove?(user)
-    next if user.fainted?
-    abilityBlacklist = [
-       :DISGUISE,
-       :FLOWERGIFT,
-       :GULPMISSILE,
-       :ICEFACE,
-       :IMPOSTER,
-       :RECEIVER,
-       :RKSSYSTEM,
-       :SCHOOLING,
-       :STANCECHANGE,
-       :WONDERGUARD,
-       :ZENMODE,
-       # Abilities that are plain old blocked.
-       :NEUTRALIZINGGAS
-    ]
-    failed = false
-    abilityBlacklist.each do |abil|
-      next if user.ability != abil
-      failed = true
-      break
-    end
-    next if failed
-    oldAbil = -1
-    battle.pbShowAbilitySplash(target) if user.opposes?(target)
-    if user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      oldAbil = user.ability
-      battle.pbShowAbilitySplash(user,true,false) if user.opposes?(target)
-      user.ability = :WANDERINGSPIRIT
-      target.ability = oldAbil
-      if user.opposes?(target)
-        battle.pbReplaceAbilitySplash(user)
-        battle.pbReplaceAbilitySplash(target)
-      end
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s Ability became {2}!",user.pbThis,user.abilityName))
-      else
-        battle.pbDisplay(_INTL("{1}'s Ability became {2} because of {3}!",
-           user.pbThis,user.abilityName,target.pbThis(true)))
-      end
-
-      battle.pbHideAbilitySplash(user)
-    end
-    battle.pbHideAbilitySplash(target) if user.opposes?(target)
-    if oldAbil
-      user.pbOnAbilityChanged(oldAbil)
-      target.pbOnAbilityChanged(:WANDERINGSPIRIT)
-    end
-
-  }
-)
-
 #===============================================================================
 # UserAbilityOnHit handlers
 #===============================================================================

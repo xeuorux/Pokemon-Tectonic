@@ -1974,6 +1974,35 @@ class PokeBattle_Battler
     return ret
   end
   
+  # Applies to both losing self's ability (i.e. being replaced by another) and
+  # having self's ability be negated.
+  def unstoppableAbility?(abil = nil)
+    abil = @ability_id if !abil
+    abil = GameData::Ability.try_get(abil)
+    return false if !abil
+    ability_blacklist = [
+      # Form-changing abilities
+      :BATTLEBOND,
+      :DISGUISE,
+#      :FLOWERGIFT,                                        # This can be stopped
+#      :FORECAST,                                          # This can be stopped
+      :MULTITYPE,
+      :POWERCONSTRUCT,
+      :SCHOOLING,
+      :SHIELDSDOWN,
+      :STANCECHANGE,
+      :ZENMODE,
+      :ICEFACE,
+      # Abilities intended to be inherent properties of a certain species
+      :COMATOSE,
+      :RKSSYSTEM,
+      :GULPMISSILE,
+      :ASONEICE,
+      :ASONEGHOST
+    ]
+    return ability_blacklist.include?(abil.id)
+  end
+  
   # permanent is whether the item is lost even after battle. Is false for Knock
   # Off.
   def pbRemoveItem(permanent = true)
@@ -2544,6 +2573,50 @@ class PokeBattle_Battler
 	@effects[PBEffects::ColdConversion] = false
     @effects[PBEffects::Roost]  		= false
 	@battle.scene.pbRefresh()
+  end
+  
+  def pbCheckFormOnWeatherChange
+    return if fainted? || @effects[PBEffects::Transform]
+    # Castform - Forecast
+    if isSpecies?(:CASTFORM)
+      if hasActiveAbility?(:FORECAST)
+        newForm = 0
+        case @battle.pbWeather
+        when :Sun, :HarshSun   then newForm = 1
+        when :Rain, :HeavyRain then newForm = 2
+        when :Hail             then newForm = 3
+        end
+        if @form!=newForm
+          @battle.pbShowAbilitySplash(self,true)
+          @battle.pbHideAbilitySplash(self)
+          pbChangeForm(newForm,_INTL("{1} transformed!",pbThis))
+        end
+      else
+        pbChangeForm(0,_INTL("{1} transformed!",pbThis))
+      end
+    end
+    # Cherrim - Flower Gift
+    if isSpecies?(:CHERRIM)
+      if hasActiveAbility?(:FLOWERGIFT)
+        newForm = 0
+        newForm = 1 if [:Sun, :HarshSun].include?(@battle.pbWeather)
+        if @form!=newForm
+          @battle.pbShowAbilitySplash(self,true)
+          @battle.pbHideAbilitySplash(self)
+          pbChangeForm(newForm,_INTL("{1} transformed!",pbThis))
+        end
+      else
+        pbChangeForm(0,_INTL("{1} transformed!",pbThis))
+      end
+    end
+	# Eiscue - Ice Face
+    if @species == :EISCUE && hasActiveAbility?(:ICEFACE) && @battle.pbWeather == :Hail
+      if @form==1
+        @battle.pbShowAbilitySplash(self,true)
+        @battle.pbHideAbilitySplash(self)
+        pbChangeForm(0,_INTL("{1} transformed!",pbThis))
+      end
+    end
   end
   
   def pbCheckFormOnTerrainChange
@@ -4042,12 +4115,77 @@ class PokeBattle_Move
       end
     end
   end
+  
+  #=============================================================================
+  # Weaken the damage dealt (doesn't actually change a battler's HP)
+  #=============================================================================
+  def pbCheckDamageAbsorption(user,target)
+    # Substitute will take the damage
+    if target.effects[PBEffects::Substitute]>0 && !ignoresSubstitute?(user) &&
+       (!user || user.index!=target.index)
+      target.damageState.substitute = true
+      return
+    end
+    # Disguise will take the damage
+    if !@battle.moldBreaker && target.isSpecies?(:MIMIKYU) &&
+       target.form==0 && target.ability == :DISGUISE
+      target.damageState.disguise = true
+      return
+    end
+	# Ice Face will take the damage
+    if !@battle.moldBreaker && target.species == :EISCUE &&
+       target.form==0 && target.ability == :ICEFACE && physicalMove?
+      target.damageState.iceface = true
+      return
+    end
+  end
+  
+  def pbReduceDamage(user,target)
+    damage = target.damageState.calcDamage
+    # Substitute takes the damage
+    if target.damageState.substitute
+      damage = target.effects[PBEffects::Substitute] if damage>target.effects[PBEffects::Substitute]
+      target.damageState.hpLost       = damage
+      target.damageState.totalHPLost += damage
+      return
+    end
+    # Disguise takes the damage
+    return if target.damageState.disguise
+	# Ice Face takes the damage
+    return if target.damageState.iceface
+    # Target takes the damage
+    if damage>=target.hp
+      damage = target.hp
+      # Survive a lethal hit with 1 HP effects
+      if nonLethal?(user,target)
+        damage -= 1
+      elsif target.effects[PBEffects::Endure]
+        target.damageState.endured = true
+        damage -= 1
+      elsif damage==target.totalhp
+        if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
+          target.damageState.sturdy = true
+          damage -= 1
+        elsif target.hasActiveItem?(:FOCUSSASH) && target.hp==target.totalhp
+          target.damageState.focusSash = true
+          damage -= 1
+        elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100)<10
+          target.damageState.focusBand = true
+          damage -= 1
+        end
+      end
+    end
+    damage = 0 if damage<0
+    target.damageState.hpLost       = damage
+    target.damageState.totalHPLost += damage
+  end
 
   #=============================================================================
   # Messages upon being hit
   #=============================================================================
   def pbEffectivenessMessage(user,target,numTargets=1)
     return if target.damageState.disguise
+	return if target.damageState.iceface
 	if Effectiveness.hyper_effective?(target.damageState.typeMod)
 	  if numTargets>1
         @battle.pbDisplay(_INTL("It's hyper effective on {1}!",target.pbThis(true)))
@@ -4066,6 +4204,63 @@ class PokeBattle_Move
       else
         @battle.pbDisplay(_INTL("It's not very effective..."))
       end
+    end
+  end
+  
+  def pbHitEffectivenessMessages(user,target,numTargets=1)
+    return if target.damageState.disguise
+	return if target.damageState.iceface
+    if target.damageState.substitute
+      @battle.pbDisplay(_INTL("The substitute took damage for {1}!",target.pbThis(true)))
+    end
+    if target.damageState.critical
+      if numTargets>1
+        @battle.pbDisplay(_INTL("A critical hit on {1}!",target.pbThis(true)))
+      else
+        @battle.pbDisplay(_INTL("A critical hit!"))
+      end
+    end
+    # Effectiveness message, for moves with 1 hit
+    if !multiHitMove? && user.effects[PBEffects::ParentalBond]==0
+      pbEffectivenessMessage(user,target,numTargets)
+    end
+    if target.damageState.substitute && target.effects[PBEffects::Substitute]==0
+      target.effects[PBEffects::Substitute] = 0
+      @battle.pbDisplay(_INTL("{1}'s substitute faded!",target.pbThis))
+    end
+  end
+  
+  def pbEndureKOMessage(target)
+    if target.damageState.disguise
+      @battle.pbShowAbilitySplash(target)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        @battle.pbDisplay(_INTL("Its disguise served it as a decoy!"))
+      else
+        @battle.pbDisplay(_INTL("{1}'s disguise served it as a decoy!",target.pbThis))
+      end
+      @battle.pbHideAbilitySplash(target)
+      target.pbChangeForm(1,_INTL("{1}'s disguise was busted!",target.pbThis))
+	elsif target.damageState.iceface
+      @battle.pbShowAbilitySplash(target)
+      target.pbChangeForm(1,_INTL("{1} transformed!",target.pbThis))
+      @battle.pbHideAbilitySplash(target)
+    elsif target.damageState.endured
+      @battle.pbDisplay(_INTL("{1} endured the hit!",target.pbThis))
+    elsif target.damageState.sturdy
+      @battle.pbShowAbilitySplash(target)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        @battle.pbDisplay(_INTL("{1} endured the hit!",target.pbThis))
+      else
+        @battle.pbDisplay(_INTL("{1} hung on with Sturdy!",target.pbThis))
+      end
+      @battle.pbHideAbilitySplash(target)
+    elsif target.damageState.focusSash
+      @battle.pbCommonAnimation("UseItem",target)
+      @battle.pbDisplay(_INTL("{1} hung on using its Focus Sash!",target.pbThis))
+      target.pbConsumeItem
+    elsif target.damageState.focusBand
+      @battle.pbCommonAnimation("UseItem",target)
+      @battle.pbDisplay(_INTL("{1} hung on using its Focus Band!",target.pbThis))
     end
   end
 end
@@ -4266,4 +4461,24 @@ def pbPrepareBattle(battle)
     else;                                 battle.time = 0
     end
   end
+end
+
+
+class PokeBattle_DamageState
+	attr_accessor :iceface         # Ice Face ability used
+	
+	def resetPerHit
+		@missed        = false
+		@calcDamage    = 0
+		@hpLost        = 0
+		@critical      = false
+		@substitute    = false
+		@focusBand     = false
+		@focusSash     = false
+		@sturdy        = false
+		@disguise      = false
+		@endured       = false
+		@berryWeakened = false
+		@iceface       = false
+	end
 end
