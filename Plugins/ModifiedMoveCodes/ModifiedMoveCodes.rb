@@ -621,3 +621,18 @@ class PokeBattle_Move_125 < PokeBattle_Move
     return false
   end
 end
+
+# Two turn attack. Ups user's Defense by 2 stage first turn, attacks second turn.
+# (Skull Bash)
+#===============================================================================
+class PokeBattle_Move_0C8 < PokeBattle_TwoTurnMove
+  def pbChargingTurnMessage(user,targets)
+    @battle.pbDisplay(_INTL("{1} tucked in its head!",user.pbThis))
+  end
+
+  def pbChargingTurnEffect(user,target)
+    if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
+      user.pbRaiseStatStage(:DEFENSE,2,user)
+    end
+  end
+end
