@@ -1,3 +1,9 @@
+class PokeBattle_Move
+	def getScore(score,user,target,skill=100)
+		return score
+	end
+end
+
 #===============================================================================
 # Pseudomove for confusion damage.
 #===============================================================================
@@ -29,6 +35,106 @@ end
 class PokeBattle_TargetStatDownMove < PokeBattle_Move
 	attr_accessor :statDown
 end
+
+
+
+#################################################
+#	Actual Move Effects
+#################################################
+
+#===============================================================================
+# Does absolutely nothing. (Splash)
+#===============================================================================
+class PokeBattle_Move_001 < PokeBattle_Move
+  def unusableInGravity?; return true; end
+
+  def pbEffectGeneral(user)
+    @battle.pbDisplay(_INTL("But nothing happened!"))
+  end
+  
+  def getScore(score,user,target,skill=100)
+	score = 20
+    score = 0 if skill>=PBTrainerAI.mediumSkill
+	return score
+  end
+end
+
+def getScoreForPuttingToSleep(score,user,target,skill=100)
+	score += 50
+	if skill>=PBTrainerAI.mediumSkill
+	  score = 0 if target.effects[PBEffects::Yawn]>0
+	end
+	if skill>=PBTrainerAI.highSkill
+	  score -= 50 if target.hasActiveAbility?(:MARVELSCALE)
+	end
+	if skill>=PBTrainerAI.bestSkill && target.pbHasMoveFunction?("011","0B4")   # Snore, Sleep Talk
+		score = 0
+	end
+	return score
+end
+
+#===============================================================================
+# Puts the target to sleep.
+#===============================================================================
+class PokeBattle_Move_003 < PokeBattle_SleepMove
+  def pbMoveFailed?(user,targets)
+    if Settings::MECHANICS_GENERATION >= 7 && @id == :DARKVOID
+      if !user.isSpecies?(:DARKRAI) && user.effects[PBEffects::TransformSpecies] != :DARKRAI
+        @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis))
+        return true
+      end
+    end
+    return false
+  end
+
+  def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
+    return if numHits==0
+    return if user.fainted? || user.effects[PBEffects::Transform]
+    return if @id != :RELICSONG
+    return if !user.isSpecies?(:MELOETTA)
+    return if user.hasActiveAbility?(:SHEERFORCE) && @addlEffect>0
+    newForm = (user.Form+1)%2
+    user.pbChangeForm(newForm,_INTL("{1} transformed!",user.pbThis))
+  end
+  
+  def getScore(score,user,target,skill=100)
+	if target.pbCanSleep?(user,false)
+        score = getScoreForPuttingToSleep(score,user,target,skill=100)
+	elsif statusMove? && skill>=PBTrainerAI.mediumSkill
+        score = 0
+	end
+	return score
+  end
+end
+
+#===============================================================================
+# Makes the target drowsy; it falls asleep at the end of the next turn. (Yawn)
+#===============================================================================
+class PokeBattle_Move_004 < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    if target.effects[PBEffects::Yawn]>0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return true if !target.pbCanSleep?(user,true,self)
+    return false
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    target.effects[PBEffects::Yawn] = 2
+    @battle.pbDisplay(_INTL("{1} made {2} drowsy!",user.pbThis,target.pbThis(true)))
+  end
+  
+  def getScore(score,user,target,skill=100)
+	if target.effects[PBEffects::Yawn]>0 || !target.pbCanSleep?(user,false)
+        score = 0 if skill>=PBTrainerAI.mediumSkill
+    else
+        score = getScoreForPuttingToSleep(score,user,target,skill=100)
+    end
+	return score / 2
+  end
+end
+
 
 #===============================================================================
 # Cures all party Pokémon of permanent status problems. (Aromatherapy, Heal Bell)
@@ -494,5 +600,24 @@ class PokeBattle_Move_0EF < PokeBattle_Move
     return if target.effects[PBEffects::MeanLook]>=0
     target.effects[PBEffects::MeanLook] = user.index
     @battle.pbDisplay(_INTL("{1} can no longer escape!",target.pbThis))
+  end
+end
+
+#===============================================================================
+# Fails unless user has already used all other moves it knows. (Last Resort)
+#===============================================================================
+class PokeBattle_Move_125 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    hasThisMove = false; hasOtherMoves = false; hasUnusedMoves = false
+    user.eachMove do |m|
+      hasThisMove    = true if m.id==@id
+      hasOtherMoves  = true if m.id!=@id
+      hasUnusedMoves = true if m.id!=@id && !user.movesUsed.include?(m.id)
+    end
+    if !hasThisMove || !hasOtherMoves || hasUnusedMoves
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
   end
 end

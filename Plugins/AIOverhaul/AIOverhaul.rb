@@ -79,32 +79,35 @@ class PokeBattle_AI
         return
       end
     end
-    # Find the most preferred move and pick it
-    if skill>=PBTrainerAI.mediumSkill
-      preferredMove = nil
-      preferredMoves = []
-      choices.each do |c|
-        preferredMoves.push(c) if c[1]==maxScore
-      end
-      if preferredMoves.length>0
-        preferredMove = preferredMoves[pbAIRandom(preferredMoves.length)]
-      end
-      PBDebug.log("[AI] #{user.pbThis} (#{user.index}) prefers #{user.moves[preferredMove[0]].name}")
-      @battle.pbRegisterMove(idxBattler,preferredMove[0],false)
-      @battle.pbRegisterTarget(idxBattler,preferredMove[2]) if preferredMove[2]>=0
-    else # Randomly choose a move from the choices (weighted by score) and register it
-      PBDebug.log("[AI] #{user.pbThis} (#{user.index}) doesn't want to use any moves in particular; picking one randomly weighted")
-      randNum = pbAIRandom(totalScore)
-      choices.each do |c|
-        randNum -= c[1]
-        next if randNum>=0
-        @battle.pbRegisterMove(idxBattler,c[0],false)
-        @battle.pbRegisterTarget(idxBattler,c[2]) if c[2]>=0
-        break
-      end
-    end
-    # If there are no calculated choices, pick one at random
-    if choices.length==0
+	
+	if choices.length !=0
+		# Determine the most preferred move
+		preferredMove = nil
+		preferredMoves = []
+		choices.each do |c|
+		  preferredMoves.push(c) if c[1]==maxScore
+		end
+		if preferredMoves.length>0
+		  preferredMove = preferredMoves[pbAIRandom(preferredMoves.length)]
+		end
+		
+		# Pick the most preferred move
+		if skill>=PBTrainerAI.mediumSkill && preferredMove != nil
+		  PBDebug.log("[AI] #{user.pbThis} (#{user.index}) prefers #{user.moves[preferredMove[0]].name}")
+		  @battle.pbRegisterMove(idxBattler,preferredMove[0],false)
+		  @battle.pbRegisterTarget(idxBattler,preferredMove[2]) if preferredMove[2]>=0
+		else # Randomly choose a move from the choices (weighted by score) and register it
+		  PBDebug.log("[AI] #{user.pbThis} (#{user.index}) doesn't want to use any moves in particular; picking one randomly weighted")
+		  randNum = pbAIRandom(totalScore)
+		  choices.each do |c|
+			randNum -= c[1]
+			next if randNum>=0
+			@battle.pbRegisterMove(idxBattler,c[0],false)
+			@battle.pbRegisterTarget(idxBattler,c[2]) if c[2]>=0
+			break
+		  end
+		end
+    else # If there are no calculated choices, pick one at random
       PBDebug.log("[AI] #{user.pbThis} (#{user.index}) doesn't want to use any moves; picking one at random")
       user.eachMoveWithIndex do |_m,i|
         next if !@battle.pbCanChooseMove?(idxBattler,i,false)
@@ -181,7 +184,7 @@ class PokeBattle_AI
 	@battle.messagesBlocked = false
 		
 	# A score of 0 here means it absolutely should not be used
-    return 0 if score<=0
+    return 0 if score == nil || score<=0
 	
     if skill>=PBTrainerAI.mediumSkill
       # Prefer damaging moves if AI has no more Pokémon or AI is less clever

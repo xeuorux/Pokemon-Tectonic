@@ -49,6 +49,14 @@ end
 # Charms the target.
 #===============================================================================
 class PokeBattle_Move_400 < PokeBattle_CharmMove
+	def getScore(score,user,target,skill=100)
+	  if target.pbCanCharm?(user,false)
+        score += 30
+      elsif skill>=PBTrainerAI.mediumSkill
+        score = 0 if statusMove?
+      end
+	  return score
+	end
 end
 
 #===============================================================================
@@ -66,6 +74,12 @@ class PokeBattle_Move_501 < PokeBattle_StatUpMove
   def initialize(battle,move)
     super
     @statUp = [:ACCURACY,12]
+  end
+  
+  def getScore(score,user,target,skill=100)
+	score -= (user.stages[:ACCURACY] - 6)*10
+	score = 0 if user.statStageAtMax?(:ACCURACY)
+	return score
   end
 end
 

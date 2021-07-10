@@ -8,49 +8,6 @@ class PokeBattle_AI
 			
     case move.function
     #---------------------------------------------------------------------------
-    when "000"   # No extra effect
-    #---------------------------------------------------------------------------
-    when "001"
-      score -= 95
-      score = 0 if skill>=PBTrainerAI.highSkill
-    #---------------------------------------------------------------------------
-    when "002"   # Struggle
-    #---------------------------------------------------------------------------
-    when "003"
-      if target.pbCanSleep?(user,false)
-        score += 30
-        if skill>=PBTrainerAI.mediumSkill
-          score -= 30 if target.effects[PBEffects::Yawn]>0
-        end
-        if skill>=PBTrainerAI.highSkill
-          score -= 30 if target.hasActiveAbility?(:MARVELSCALE)
-        end
-        if skill>=PBTrainerAI.bestSkill
-          if target.pbHasMoveFunction?("011","0B4")   # Snore, Sleep Talk
-            score -= 50
-          end
-        end
-      else
-        if skill>=PBTrainerAI.mediumSkill
-          score -= 90 if move.statusMove?
-        end
-      end
-    #---------------------------------------------------------------------------
-    when "004"
-      if target.effects[PBEffects::Yawn]>0 || !target.pbCanSleep?(user,false)
-        score -= 90 if skill>=PBTrainerAI.mediumSkill
-      else
-        score += 30
-        if skill>=PBTrainerAI.highSkill
-          score -= 30 if target.hasActiveAbility?(:MARVELSCALE)
-        end
-        if skill>=PBTrainerAI.bestSkill
-          if target.pbHasMoveFunction?("011","0B4")   # Snore, Sleep Talk
-            score -= 50
-          end
-        end
-      end
-    #---------------------------------------------------------------------------
     when "005", "006", "0BE"
       if target.pbCanPoison?(user,false)
         score += 30
@@ -3056,6 +3013,8 @@ class PokeBattle_AI
     when "175"
       score += 30 if target.effects[PBEffects::Minimize]
     #---------------------------------------------------------------------------
+	else
+		return move.getScore(score,user,target,skill=100)
     end
     return score
   end
