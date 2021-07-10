@@ -211,3 +211,36 @@ BattleHandlers::EORHealingAbility.add(:SHEDSKIN,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:HUGEPOWER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5 if move.physicalMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.copy(:HUGEPOWER,:PUREPOWER)
+
+BattleHandlers::TargetAbilityAfterMoveUse.add(:BERSERK,
+  proc { |ability,target,user,move,switched,battle|
+    next if !move.damagingMove?
+    next if target.damageState.initialHP<target.totalhp/2 || target.hp>=target.totalhp/2
+    next if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
+    target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target)
+    next if !target.pbCanRaiseStatStage?(:ATTACK,target)
+    target.pbRaiseStatStageByAbility(:ATTACK,1,target)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:SLOWSTART,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.effects[PBEffects::SlowStart] = 3
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1} can't get it going!",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1} can't get it going because of its {2}!",
+         battler.pbThis,battler.abilityName))
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)

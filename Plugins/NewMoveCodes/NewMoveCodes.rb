@@ -925,4 +925,45 @@ class PokeBattle_Move535 < PokeBattle_Move
 		return baseDmg
 	end
 end
+#===============================================================================
+# Two turn attack. Ups user's Special Defense by 2 stage first turn, attacks second turn.
+# (Zephyr Wing)
+#===============================================================================
+class PokeBattle_Move_536 < PokeBattle_TwoTurnMove
+  def pbChargingTurnMessage(user,targets)
+    @battle.pbDisplay(_INTL("{1}'s wings start glowing!",user.pbThis))
+  end
 
+  def pbChargingTurnEffect(user,target)
+    if user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
+      user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+    end
+  end
+end
+#===============================================================================
+# User takes recoil damage equal to 1/5 of the damage this move dealt.
+#===============================================================================
+class PokeBattle_Move_537 < PokeBattle_RecoilMove
+  def pbRecoilDamage(user,target)
+    return (target.damageState.totalHPLost/5.0).round
+  end
+end
+
+#===============================================================================
+# Removes all Terrain. Does not fail if there is no Terrain (Terraform)
+#===============================================================================
+class PokeBattle_Move_538 < PokeBattle_Move
+  def pbEffectGeneral(user)
+    case @battle.field.terrain
+      when :Electric
+        @battle.pbDisplay(_INTL("The electric current disappeared from the battlefield!"))
+      when :Grassy
+        @battle.pbDisplay(_INTL("The grass disappeared from the battlefield!"))
+      when :Misty
+        @battle.pbDisplay(_INTL("The mist disappeared from the battlefield!"))
+      when :Psychic
+        @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))
+    end
+    @battle.pbStartTerrain(user,:None,true)
+  end
+end

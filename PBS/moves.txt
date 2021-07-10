@@ -243,7 +243,7 @@
 235,PYROBALL,Pyro Ball,00A,120,FIRE,Physical,80,5,10,NearOther,0,bef,Attacks by igniting a small stone and launching it as a fiery ball. It has a 10% chance to burn.
 236,BURNINGJEALOUSY,Burning Jealousy,516,70,FIRE,Special,100,5,100,AllNearFoes,0,bef,Attacks with energy from jealousy. All opposing Pokémon with stat boosts get burned.
 #-------------------------------,,,,,,,,,,,,,
-237,ZEPHYRWING,Zephyr Wing,0C7,140,FLYING,Physical,100,5,30,Other,0,bef,A second-turn attack move where the user sharply raises Sp. Def on the first turn.
+237,ZEPHYRWING,Zephyr Wing,536,130,FLYING,Physical,100,5,30,Other,0,bef,A second-turn attack move where the user sharply raises Sp. Def on the first turn.
 238,BRAVEBIRD,Brave Bird,0FB,120,FLYING,Physical,100,15,0,Other,0,abef,The user tucks in its wings and charges from a low altitude. The user also takes 33% recoil.
 239,DRAGONASCENT,Dragon Ascent,03C,120,FLYING,Physical,100,5,0,NearOther,0,abef,The user soars upward and drops at high speeds. Its Defense and Sp. Def stats are lowered.
 240,HURRICANE,Hurricane,015,110,FLYING,Special,70,10,30,Other,0,bef,The user wraps its foe in a fierce wind that flies up into the sky. It has a 30% chance to confuse.
@@ -259,7 +259,7 @@
 250,AIRCUTTER,Air Cutter,000,60,FLYING,Special,100,25,0,AllNearFoes,0,befh,The user launches razor-like wind to slash the opposing team. Critical hits land more easily.
 251,PLUCK,Pluck,0F4,60,FLYING,Physical,100,20,0,Other,0,abef,"The user pecks the target. If the target is holding a Berry, the user eats it and gains its effect."
 252,SKYDROP,Sky Drop,0CE,60,FLYING,Physical,100,10,0,Other,0,abef,"The user takes the foe into the sky, then drops it on the next turn. The foe cannot attack while airborne."
-253,WINGATTACK,Wing Attack,000,60,FLYING,Physical,100,35,0,Other,0,abef,"The target is struck with large, imposing wings spread wide to inflict damage."
+253,WINGATTACK,Wing Attack,537,70,FLYING,Physical,100,35,0,Other,0,abef,"The target is struck with large, imposing wings spread wide to inflict damage. The user also takes 20% recoil."
 254,ACROBATICS,Acrobatics,086,55,FLYING,Physical,100,15,0,Other,0,abef,The user nimbly strikes the foe. This attack does more damage if the user is not holding an item.
 255,GUST,Gust,077,40,FLYING,Special,100,40,0,Other,0,bef,A gust of wind is whipped up by wings and launched at the target to inflict damage.
 256,PECK,Peck,000,45,FLYING,Physical,100,40,0,Other,0,abef,The target is jabbed with a sharply pointed beak or horn.
@@ -345,7 +345,7 @@
 333,JUNGLEHEALING,Jungle Healing,189,0,GRASS,Status,0,10,0,UserAndAllies,0,,Restores HP and heals status of itself and its ally Pokémon in battle by using Jungle Powers.
 #-------------------------------,,,,,,,,,,,,,
 334,PRECIPICEBLADES,Precipice Blades,000,120,GROUND,Physical,85,10,0,AllNearFoes,0,bef,The user attacks its foes by manifesting the power of the land in fearsome blades of stone.
-335,EARTHQUAKE,Earthquake,076,100,GROUND,Physical,100,10,0,AllNearOthers,0,bef,The user sets off an earthquake that strikes every Pokémon around it.
+335,EARTHQUAKE,Earthquake,076,95,GROUND,Physical,100,10,0,AllNearOthers,0,bef,The user sets off an earthquake that strikes every Pokémon around it.
 336,HIGHHORSEPOWER,High Horsepower,000,95,GROUND,Physical,100,10,0,NearOther,0,abef,The user fiercely attacks the target using its entire body.
 337,EARTHPOWER,Earth Power,046,90,GROUND,Special,100,10,10,NearOther,0,bef,The user makes the ground under the foe erupt with power. It has a 10% chance to lower Sp. Def.
 338,LANDSWRATH,Land's Wrath,000,90,GROUND,Physical,100,10,0,AllNearFoes,0,bef,The user gathers the energy of the land and focuses that power on foes to damage them.
@@ -415,7 +415,7 @@
 400,MULTIATTACK,Multi-Attack,09F,90,NORMAL,Physical,100,10,0,NearOther,0,abef,"Cloaking itself in high energy, the user slams into the target. This move's type depends on the held memory."
 401,REVELATIONDANCE,Revelation Dance,169,90,NORMAL,Special,100,15,0,NearOther,0,befo,The user attacks the target by dancing very hard. The user's type determines the type of this move.
 402,ROCKCLIMB,Rock Climb,013,90,NORMAL,Physical,85,20,20,NearOther,0,abef,The user attacks the target by smashing into it with incredible force. It has a 20% chance to confuse.
-403,TAKEDOWN,Take Down,0FA,90,NORMAL,Physical,100,20,0,NearOther,0,abef,"A reckless, full-body charge attack for slamming into the foe. It also damages the user a little."
+403,TAKEDOWN,Take Down,0FA,90,NORMAL,Physical,100,20,0,NearOther,0,abef,"A reckless, full-body charge attack for slamming into the foe. It also damages the user by 25% of the damage dealt."
 404,UPROAR,Uproar,0D1,110,NORMAL,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep."
 405,BODYSLAM,Body Slam,007,85,NORMAL,Physical,100,15,30,NearOther,0,abef,The user drops onto the target with its full body weight. It has a 30% chance to paralyze.
 406,EXTREMESPEED,Extreme Speed,000,80,NORMAL,Physical,100,5,0,NearOther,2,abef,The user charges the target at blinding speed. This attack always goes before any other move.
@@ -454,11 +454,11 @@
 439,POUND,Pound,01C,45,NORMAL,Physical,100,35,15,NearOther,0,abef,"The target is physically pounded with a long tail or a foreleg, etc. Has a 15% chance to raise attack."
 440,QUICKATTACK,Quick Attack,000,40,NORMAL,Physical,100,30,0,NearOther,1,abef,The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.
 441,SCRATCH,Scratch,000,45,NORMAL,Physical,100,35,0,NearOther,0,abefh,"Hard, pointed, and sharp claws rake the target to inflict damage. Critical hits land more easily"
-442,TACKLE,Tackle,000,50,NORMAL,Physical,100,35,0,NearOther,0,abef,A physical attack in which the user charges and slams into the target with its whole body.
+442,TACKLE,Tackle,537,55,NORMAL,Physical,100,35,0,NearOther,0,abef,A physical attack in which the user slams into the target. The user also takes 20% of the damage as recoil.
 443,DOUBLEHIT,Double Hit,0BD,35,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user slams the target with a long tail, vines, or tentacle. The target is hit twice in a row."
 444,FEINT,Feint,0AD,30,NORMAL,Special,100,10,0,NearOther,2,ef,An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
 445,TAILSLAP,Tail Slap,0C0,25,NORMAL,Physical,85,10,0,NearOther,0,abef,The user attacks by striking the target with its hard tail. It hits the Pokémon two to five times in a row.
-446,RAGE,Rage,093,20,NORMAL,Physical,100,20,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle."
+446,RAGE,Rage,093,30,NORMAL,Physical,100,20,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle."
 447,RAPIDSPIN,Rapid Spin,110,20,NORMAL,Physical,100,40,0,NearOther,0,abef,"A spin attack that can also eliminate such moves as Bind, Wrap, Leech Seed, and Spikes."
 448,SPIKECANNON,Spike Cannon,0C0,25,STEEL,Physical,100,25,0,NearOther,0,bef,Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
 449,COMETPUNCH,Comet Punch,0C0,18,NORMAL,Physical,85,15,0,NearOther,0,abefj,The target is hit with a flurry of punches that strike two to five times in a row.
@@ -818,8 +818,8 @@
 798,SLAG,Slag,005,80,STEEL,Special,100,10,30,NearOther,0,befn,"The user sprays mining waste at the target. It has a 30% chance to poison."
 799,MAGNETHRASH,Magnethrash,0A5,90,STEEL,Physical,0,15,0,NearOther,0,abef,"The user generates an intense magnetic connection between it and the target, striking it without fail."
 800,MAGNETWAVE,Magnet Wave,013,40,STEEL,Special,100,35,10,NearOther,0,bef,"The target is hit by a wave of magnetic energy. It has a 10% chance to confuse."
-801,CRASH,Crash,0FB,55,ROCK,Physical,100,30,0,NearOther,0,abef,"The user slams the target with blunt force, also harming the user."
-802,STONECHARGE,Stone Charge,0FB,85,ROCK,Physical,100,15,0,NearOther,0,abef,"The user charges into the target with its stony body. This also harms the user."
+801,CRASH,Crash,537,55,ROCK,Physical,100,30,0,NearOther,0,abef,"The user slams the target with blunt force, taking 20% recoil."
+802,STONECHARGE,Stone Charge,0FB,85,ROCK,Physical,100,15,0,NearOther,0,abef,"The user charges into the target with its stony body. The user also takes 33% recoil."
 803,GRANITEHEAD,Granite Head,0FB,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user smashes its rock-hard head into the target. The user also takes 33% recoil."
 804,TURBULENCE,Turbulence,013,100,FLYING,Special,50,10,100,Other,0,bef,"Chaotic winds push the target around. This move causes confusion if it hits."
 805,BLUSTER,Bluster,020,50,FLYING,Special,100,10,60,NearOther,0,bef,"The user fires a stormy gust at the target. It has a high chance to also raise the user's Sp. Atk."
@@ -832,7 +832,7 @@
 812,FLOWSTATE,Flow State,512,0,WATER,Status,100,20,100,User,0,d,"The user gains an instinctual knowledge of battle, boosting both its Atk. and Sp. Def. stats."
 814,COLDCONVERSION,Cold Conversion,51B,130,ICE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user melts itself. The user will no longer be Ice type."
 815,VENOMLEECH,Venom Leech,51A,75,POISON,Physical,100,10,20,NearOther,0,abef,"The user drains the target's blood with venomous teeth. The user's HP is restored by a third of the damage dealt. 20% chance to toxify."
-816,PREDICTIONSTRIKE,Prediction Strike,519,110,PSYCHIC,Physical,0,10,0,Other,0,abef,"The user perfectly predicts the target's future location, then strikes. The attack lands without fail and lowers the user's defense and speed."
+816,REFLEXOVERDRIVE,Reflex Overdrive,519,110,PSYCHIC,Physical,0,10,0,Other,0,abef,"TODO. The attack lands without fail and lowers the user's defense and speed."
 817,DOUSE,Douse,518,40,WATER,Special,100,25,0,AllNearFoes,0,bef,"The user douses the target, healing itself by a third of its max. HP in the process."
 818,AQUAINSTINCT,Aqua Instinct,517,65,WATER,Physical,100,10,0,NearOther,0,bef,"The user preys on the target. This move goes first if the target is below half health."
 819,DRAGONBLOOD,Dragon Blood,51C,0,DRAGON,Status,0,5,0,User,0,d,"The user restores its own HP. The user then raises its Sp. Atk. unless it was fully healed in the process."
@@ -889,7 +889,6 @@
 870,CRITICALERROR,Critical Error,0A0,60,GHOST,Special,100,10,0,NearOther,0,bef,"The user causes a glitch in reality. This attack always results in a critical hit."
 871,SUBLIMEIMPACT,Sublime Impact,0AD,90,NORMAL,Physical,100,10,0,NearOther,0,aef,An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
 872,ADAMANTINEPRESS,Adamantine Press,000,95,ROCK,Physical,100,10,0,NearOther,0,abef,TODO.
-
 873,CLAMOR,Clamor,0D1,75,NORMAL,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep."
 874,COMETSMASH,Comet Smash,01C,95,NORMAL,Physical,100,10,20,NearOther,0,abefj,The user throws a comet-like punch. It has a 20% chance to raise Attack.
 875,DOUBLEPUNCH,Double Punch,0BD,45,NORMAL,Physical,100,10,0,NearOther,0,abef,"TODO."
@@ -898,3 +897,6 @@
 878,SLICE,Slice,000,95,NORMAL,Physical,100,15,0,NearOther,0,abefh,The target is cut by a clean slice. Critical hits land more easily.
 879,FURY,Fury,093,60,NORMAL,Physical,100,15,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle."
 880,SPELLBIND,Spellbind,400,0,FAIRY,Status,85,10,0,NearOther,0,bce,"TODO."
+881,BIRDSTRIKE,Bird Strike,0FA,90,FLYING,Physical,100,35,0,Other,0,abef,"A reckless, charge attack from the air. It also damages the user by 25% of the damage dealt."
+882,TERRAFORM,Terraform,538,70,ROCK,Special,100,15,0,NearOther,0,bef,"TODO."
+883,PREDICTIONSTRIKE,Prediction Strike,0A5,90,PSYCHIC,Physical,0,15,0,Other,0,abef,"The user perfectly predicts the target's future location, then strikes. The attack lands without fail."

@@ -200,7 +200,7 @@
 198,STAKEOUT,Stakeout,"Deals doubles damage to a target's replacement."
 199,WATERBUBBLE,Water Bubble,"Weakens incoming Fire-type moves and prevents burns."
 200,STEELWORKER,Steelworker,"Powers up Steel-type moves."
-201,BERSERK,Berserk,"Ups offenses if a hit makes its HP half or less."
+201,BERSERK,Berserk,"Ups both offenses if a hit makes its HP half or less."
 202,SLUSHRUSH,Slush Rush,"Boosts the Pokémon's Speed stat in a hailstorm."
 203,LONGREACH,Long Reach,"Uses moves without making contact with the target."
 204,LIQUIDVOICE,Liquid Voice,"Its sound-based moves become Water-type."

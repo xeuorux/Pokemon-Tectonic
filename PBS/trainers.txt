@@ -317,5 +317,45 @@ Pokemon = SPEAROW,21
 #-------------------------------
 [CRUSHGIRL,Tester]
 LoseText = "..."
-Pokemon = BIDOOF,10
+Pokemon = BIDOOF,70
 	Moves = FAKEOUT,TACKLE
+#-------------------------------
+#
+#
+#
+#
+#
+#
+#-------------------------------
+[COOLTRAINER_M,Agent]
+LoseText = "TODO!"
+Pokemon = BEARTIC,70
+    Ability = 1
+	EV = 20,20,10,0,0,0 
+    Item = LIFEORB
+	Moves = POISONJAB,NIGHTSLASH,TRIPLEAXEL,DRAINPUNCH
+Pokemon = EELEKTROSS,70
+    Ability = 0
+	EV = 20,20,5,0,0,5
+    Item = LEFTOVERS
+    Moves = COIL,LEECHLIFE,VOLTTACKLE,VENOMLEECH
+Pokemon = PYROAR,70
+    Ability = 0
+	EV = 10,0,0,20,20,0 
+    Item = LIFEORB
+    Moves = DARKPULSE,FLAMETHROWER,OVERHEAT,YAWN
+Pokemon = PORYGONZ,70
+    Ability = 1
+	EV = 10,0,0,20,20,0 
+    Item = TOXICORB
+	Moves = HEX,CRITICALERROR,TRIATTACK,DISCHARGE
+Pokemon = WHISCASH,70
+	Ability = 0
+	EV = 20,20,0,10,0,0 
+    Item = LEFTOVERS
+	Moves = EARTHQUAKE,STONEEDGE,CRASHDIVE,DRAGONDANCE
+Pokemon = PALMANTRA,70
+	Ability = 0
+	EV = 10,20,0,20,0,0 
+    Item = CHOICEBAND
+        Moves = ICEPUNCH,PREDICTIONSTRIKE,HIGHJUMPKICK,DRAINPUNCH
