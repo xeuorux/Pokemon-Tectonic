@@ -146,7 +146,7 @@ class PokemonPokedex_Scene
 	end
 
 	def pbPokedex
-    pbActivateWindow(@sprites,"pokedex") {
+	pbActivateWindow(@sprites,"pokedex") {
       loop do
         Graphics.update
         Input.update
@@ -162,7 +162,7 @@ class PokemonPokedex_Scene
           @sprites["pokedex"].active = false
           pbDexSearch
           @sprites["pokedex"].active = true
-        els
+        else
 =end
 		if Input.trigger?(Input::BACK)
           if @searchResults
@@ -177,214 +177,155 @@ class PokemonPokedex_Scene
             pbPlayDecisionSE
             pbDexEntry(@sprites["pokedex"].index)
           end
-        # Searching for pokemon by name
         elsif Input.press?(Input::ACTION)
-          pbPlayDecisionSE
-          @sprites["pokedex"].active = false
-          name = pbEnterText("Search species...", 0, 12)
-		  if name && name!=""
-			  dexlist = pbGetDexList
-			  dexlist = dexlist.find_all { |item|
-				next false if !$Trainer.seen?(item[0]) && !$DEBUG
-				searchPokeName = item[1]
-				next searchPokeName.downcase.include?(name.downcase)
-			  }
-			  if dexlist.length==0
-				pbMessage(_INTL("No matching Pokémon were found."))
-			  else
-				@dexlist = dexlist
-				@sprites["pokedex"].commands = @dexlist
-				@sprites["pokedex"].index    = 0
-				@sprites["pokedex"].refresh
-				@searchResults = true
-			  end
-          end
-		  @sprites["pokedex"].active = true
-		  pbRefresh
-        # Searching for pokemon by ability
+          acceptSearchResults {
+			searchBySpeciesName()
+		  }
         elsif !Input.press?(Input::CTRL) && Input.press?(Input::AUX1)
-          pbPlayDecisionSE
-          @sprites["pokedex"].active = false
-          name = pbEnterText("Search abilities...", 0, 12)
-          if name && name!=""
-			  dexlist = pbGetDexList
-			  dexlist = dexlist.find_all { |item|
-				next false if !$Trainer.seen?(item[0]) && !$DEBUG
-				searchPokeAbilities = item[10]
-				next false if !searchPokeAbilities
-				next true if searchPokeAbilities[0] && GameData::Ability.get(searchPokeAbilities[0]).real_name.downcase.include?(name.downcase)
-				next true if searchPokeAbilities[1] && GameData::Ability.get(searchPokeAbilities[1]).real_name.downcase.include?(name.downcase)
-				next false
-			  }
-			  if dexlist.length==0
-				pbMessage(_INTL("No matching Pokémon were found."))
-			  else
-				@dexlist = dexlist
-				@sprites["pokedex"].commands = @dexlist
-				@sprites["pokedex"].index    = 0
-				@sprites["pokedex"].refresh
-				@searchResults = true
-			  end
-		  end
-		  @sprites["pokedex"].active = true
-		  pbRefresh
-        # Searching for pokemon by move learned
+          acceptSearchResults {
+			searchByAbility()
+		  }
         elsif Input.press?(Input::CTRL) && Input.press?(Input::AUX1)
-          pbPlayDecisionSE
-          @sprites["pokedex"].active = false
-          name = pbEnterText("Search moves...", 0, 12)
-          
-          if name && name!=""
-			  dexlist = pbGetDexList
-			  dexlist = dexlist.find_all { |item|
-				next false if !$Trainer.seen?(item[0]) && !$DEBUG
-				contains = false
-				
-				lvlmoves = item[11]
-				lvlmoves.each do |move|
-				  if GameData::Move.get(move[1]).real_name.downcase.include?(name.downcase)
-					contains = true
-					break
-				  end
-				end
-				next true if contains
-				
-				tutormoves = item[12]
-				tutormoves.each do |move|
-				  if GameData::Move.get(move).real_name.downcase.include?(name.downcase)
-					contains = true
-					break
-				  end
-				end
-				next true if contains
-				
-				eggmoves = item[13]
-				eggmoves.each do |move|
-				  if GameData::Move.get(move).real_name.downcase.include?(name.downcase)
-					contains = true
-					break
-				  end
-				end
-				
-				next contains
-			  }
-			  if dexlist.length==0
-				pbMessage(_INTL("No matching Pokémon were found."))
-			  else
-				@dexlist = dexlist
-				@sprites["pokedex"].commands = @dexlist
-				@sprites["pokedex"].index    = 0
-				@sprites["pokedex"].refresh
-				@searchResults = true
-			  end
-		  end
-		  @sprites["pokedex"].active = true
-		  pbRefresh
-        #Search by types
+          acceptSearchResults {
+			searchByMoveLearned()
+		  }
         elsif !Input.press?(Input::CTRL) && Input.press?(Input::AUX2)
-          pbPlayDecisionSE
-          @sprites["pokedex"].active = false
-          typeName = pbEnterText("Search types...", 0, 12)
-          if typeName && typeName!=""
-			  dexlist = pbGetDexList
-			  dexlist = dexlist.find_all { |item|
-				next false if !$Trainer.seen?(item[0]) && !$DEBUG
-				searchPokeType1 = item[6]
-				searchPokeType1Name = GameData::Type.get(searchPokeType1).real_name if searchPokeType1
-				searchPokeType2 = item[7]
-				searchPokeType2Name = GameData::Type.get(searchPokeType2).real_name if searchPokeType2
-				next searchPokeType1Name.downcase.include?(typeName.downcase) || searchPokeType2Name.downcase.include?(typeName.downcase)
-			  }
-			  if dexlist.length==0
-				pbMessage(_INTL("No matching Pokémon were found."))
-			  else
-				@dexlist = dexlist
-				@sprites["pokedex"].commands = @dexlist
-				@sprites["pokedex"].index    = 0
-				@sprites["pokedex"].refresh
-				@searchResults = true
-			  end
-		  end
-		  @sprites["pokedex"].active = true
-		  pbRefresh
-		# Evolution method
+          acceptSearchResults {
+			searchByType()
+		  }
 		elsif Input.press?(Input::CTRL) && Input.press?(Input::AUX2)
-		  pbPlayDecisionSE
-          @sprites["pokedex"].active = false
-          evoMethodName = pbEnterText("Search evo methods...", 0, 12)
-          if evoMethodName && evoMethodName!=""
-			  dexlist = pbGetDexList
-			  dexlist = dexlist.find_all { |item|
-				next false if !$Trainer.seen?(item[0]) && !$DEBUG
-				anyContain = false
-				item[14].each do |evomethod|
-					anyContain = true if evomethod.downcase.include?(evoMethodName.downcase)
-				end
-				next anyContain
-			  }
-			  if dexlist.length==0
-				pbMessage(_INTL("No matching Pokémon were found."))
-			  else
-				@dexlist = dexlist
-				@sprites["pokedex"].commands = @dexlist
-				@sprites["pokedex"].index    = 0
-				@sprites["pokedex"].refresh
-				@searchResults = true
-			  end
-		  end
-		  @sprites["pokedex"].active = true
-		  pbRefresh
-		# Greater than BST
-		elsif Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
-		  pbPlayDecisionSE
-          @sprites["pokedex"].active = false
-          bstFloorString = pbEnterText("Search BST floor...", 0, 12)
-		  if bstFloorString && bstFloorString!=""
-			  bstFloor = bstFloorString.to_i
-			  dexlist = pbGetDexList
-			  dexlist = dexlist.find_all { |item|
-				next false if !$Trainer.seen?(item[0]) && !$DEBUG
-				next item[15] >= bstFloor
-			  }
-			  if dexlist.length==0
-				pbMessage(_INTL("No matching Pokémon were found."))
-			  else
-				@dexlist = dexlist
-				@sprites["pokedex"].commands = @dexlist
-				@sprites["pokedex"].index    = 0
-				@sprites["pokedex"].refresh
-				@searchResults = true
-			  end
-		  end
-		  @sprites["pokedex"].active = true
-		  pbRefresh
-		# Less than BST
-		elsif !Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
-		  pbPlayDecisionSE
-          @sprites["pokedex"].active = false
-          bstCeilString = pbEnterText("Search BST ceiling...", 0, 12)
-		  if bstCeilString && bstCeilString!=""
-			  bstCeil = bstCeilString.to_i
-			  dexlist = pbGetDexList
-			  dexlist = dexlist.find_all { |item|
-				next false if !$Trainer.seen?(item[0]) && !$DEBUG
-				next item[15] <= bstCeil
-			  }
-			  if dexlist.length==0
-				pbMessage(_INTL("No matching Pokémon were found."))
-			  else
-				@dexlist = dexlist
-				@sprites["pokedex"].commands = @dexlist
-				@sprites["pokedex"].index    = 0
-				@sprites["pokedex"].refresh
-				@searchResults = true
-			  end
-		  end
-		  @sprites["pokedex"].active = true
-		  pbRefresh
+		  acceptSearchResults {
+			searchByEvolutionMethod()
+		  }
 		end
       end
     }
+  end
+  
+  def acceptSearchResults(&searchingBlock)
+	  pbPlayDecisionSE
+	  @sprites["pokedex"].active = false
+	  dexlist = searchingBlock.call
+	  if !dexlist
+		# Do nothing
+	  elsif dexlist.length==0
+		pbMessage(_INTL("No matching Pokémon were found."))
+	  else
+		@dexlist = dexlist
+		@sprites["pokedex"].commands = @dexlist
+		@sprites["pokedex"].index    = 0
+		@sprites["pokedex"].refresh
+		@searchResults = true
+	  end
+	  @sprites["pokedex"].active = true
+	  pbRefresh
+  end
+  
+  def searchBySpeciesName()
+	  name = pbEnterText("Search species...", 0, 12)
+	  if name && name!=""
+		  dexlist = pbGetDexList
+		  dexlist = dexlist.find_all { |item|
+			next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			searchPokeName = item[1]
+			next searchPokeName.downcase.include?(name.downcase)
+		  }
+		  return dexlist
+	  end
+	  return nil
+  end
+  
+  def searchByAbility()
+	  name = pbEnterText("Search abilities...", 0, 12)
+	  if name && name!=""
+		  dexlist = pbGetDexList
+		  dexlist = dexlist.find_all { |item|
+			next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			searchPokeAbilities = item[10]
+			next false if !searchPokeAbilities
+			next true if searchPokeAbilities[0] && GameData::Ability.get(searchPokeAbilities[0]).real_name.downcase.include?(name.downcase)
+			next true if searchPokeAbilities[1] && GameData::Ability.get(searchPokeAbilities[1]).real_name.downcase.include?(name.downcase)
+			next false
+		  }
+		  return dexlist
+	  end
+	  return nil
+  end
+  
+  def searchByMoveLearned()
+	  name = pbEnterText("Search moves...", 0, 12)
+          
+	  if name && name!=""
+		  dexlist = pbGetDexList
+		  dexlist = dexlist.find_all { |item|
+			next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			contains = false
+			
+			lvlmoves = item[11]
+			lvlmoves.each do |move|
+			  if GameData::Move.get(move[1]).real_name.downcase.include?(name.downcase)
+				contains = true
+				break
+			  end
+			end
+			next true if contains
+			
+			tutormoves = item[12]
+			tutormoves.each do |move|
+			  if GameData::Move.get(move).real_name.downcase.include?(name.downcase)
+				contains = true
+				break
+			  end
+			end
+			next true if contains
+			
+			eggmoves = item[13]
+			eggmoves.each do |move|
+			  if GameData::Move.get(move).real_name.downcase.include?(name.downcase)
+				contains = true
+				break
+			  end
+			end
+			
+			next contains
+		  }
+		  return dexlist
+	  end
+	  return nil
+  end
+  
+  def searchByType()
+	  typeName = pbEnterText("Search types...", 0, 12)
+	  if typeName && typeName!=""
+		  dexlist = pbGetDexList
+		  dexlist = dexlist.find_all { |item|
+			next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			searchPokeType1 = item[6]
+			searchPokeType1Name = GameData::Type.get(searchPokeType1).real_name if searchPokeType1
+			searchPokeType2 = item[7]
+			searchPokeType2Name = GameData::Type.get(searchPokeType2).real_name if searchPokeType2
+			next searchPokeType1Name.downcase.include?(typeName.downcase) || searchPokeType2Name.downcase.include?(typeName.downcase)
+		  }
+		  return dexlist
+	  end
+	  return nil
+  end
+  
+  def searchByEvolutionMethod()
+	  evoMethodName = pbEnterText("Search evo methods...", 0, 12)
+	  if evoMethodName && evoMethodName!=""
+		  dexlist = pbGetDexList
+		  dexlist = dexlist.find_all { |item|
+			next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			anyContain = false
+			item[14].each do |evomethod|
+				anyContain = true if evomethod.downcase.include?(evoMethodName.downcase)
+			end
+			next anyContain
+		  }
+		  return dexlist
+	  end
+	  return nil
   end
 end
 
