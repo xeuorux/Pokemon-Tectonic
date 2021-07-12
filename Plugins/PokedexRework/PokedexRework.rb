@@ -30,6 +30,53 @@ def setAllPokemonSeen
 end
 
 class PokemonPokedex_Scene
+	  def pbStartScene
+    @sliderbitmap       = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_slider")
+    @typebitmap         = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
+    @shapebitmap        = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_shapes")
+    @hwbitmap           = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_hw")
+    @selbitmap          = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_searchsel")
+    @searchsliderbitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_searchslider"))
+	@search2Cursorbitmap 		= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/Rework/cursor_search"))
+    @sprites = {}
+    @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
+    @viewport.z = 99999
+    addBackgroundPlane(@sprites,"background","Pokedex/bg_list",@viewport)
+    addBackgroundPlane(@sprites,"searchbg","Pokedex/Rework/bg_search",@viewport)
+    @sprites["searchbg"].visible = false
+    @sprites["pokedex"] = Window_Pokedex.new(206,30,276,364,@viewport)
+    @sprites["icon"] = PokemonSprite.new(@viewport)
+    @sprites["icon"].setOffset(PictureOrigin::Center)
+    @sprites["icon"].x = 112
+    @sprites["icon"].y = 196
+    @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
+    pbSetSystemFont(@sprites["overlay"].bitmap)
+    #@sprites["searchcursor"] = PokedexSearchSelectionSprite.new(@viewport)
+    #@sprites["searchcursor"].visible = false
+	@sprites["search2cursor"] = SpriteWrapper.new(@viewport)
+	@sprites["search2cursor"].bitmap = @search2Cursorbitmap.bitmap
+    @sprites["search2cursor"].visible = false
+    @searchResults = false
+    @searchParams  = [$PokemonGlobal.pokedexMode,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+    pbRefreshDexList($PokemonGlobal.pokedexIndex[pbGetSavePositionIndex])
+    pbDeactivateWindows(@sprites)
+    pbFadeInAndShow(@sprites)
+  end
+  
+  def pbEndScene
+    pbFadeOutAndHide(@sprites)
+    pbDisposeSpriteHash(@sprites)
+    @sliderbitmap.dispose
+    @typebitmap.dispose
+    @shapebitmap.dispose
+    @hwbitmap.dispose
+    @selbitmap.dispose
+    @searchsliderbitmap.dispose
+    @viewport.dispose
+	@search2Cursorbitmap.dispose
+  end
+
+
 	def pbGetDexList
 		region = pbGetPokedexRegion
 		regionalSpecies = pbAllRegionalSpecies(region)
@@ -120,21 +167,9 @@ class PokemonPokedex_Scene
 		if ret.is_a?(Array) && !ret[1]
 			@dexlist = pbGetDexList()
 			ret = ret[0]
-			echo("#{ret}\n")
+			@searchResults = false
+			@sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_list")
 		end
-
-=begin
-		if @searchResults
-		  dexlist = pbSearchDexList(@searchParams)
-		  @dexlist = dexlist
-		  @sprites["pokedex"].commands = @dexlist
-		  ret = @dexlist.length-1 if ret>=@dexlist.length
-		  ret = 0 if ret<0
-		else
-		  pbRefreshDexList($PokemonGlobal.pokedexIndex[pbGetSavePositionIndex])
-		  $PokemonGlobal.pokedexIndex[pbGetSavePositionIndex] = ret
-		end
-=end
 		# A replacement for the above
 		@sprites["pokedex"].commands = @dexlist
 		
@@ -146,7 +181,7 @@ class PokemonPokedex_Scene
 	end
 
 	def pbPokedex
-	pbActivateWindow(@sprites,"pokedex") {
+	  pbActivateWindow(@sprites,"pokedex") {
       loop do
         Graphics.update
         Input.update
@@ -156,15 +191,12 @@ class PokemonPokedex_Scene
           $PokemonGlobal.pokedexIndex[pbGetSavePositionIndex] = @sprites["pokedex"].index if !@searchResults
           pbRefresh
         end
-=begin
         if Input.trigger?(Input::ACTION)
           pbPlayDecisionSE
           @sprites["pokedex"].active = false
           pbDexSearch
           @sprites["pokedex"].active = true
-        else
-=end
-		if Input.trigger?(Input::BACK)
+        elsif Input.trigger?(Input::BACK)
           if @searchResults
             pbPlayCancelSE
             pbCloseSearch
@@ -177,29 +209,141 @@ class PokemonPokedex_Scene
             pbPlayDecisionSE
             pbDexEntry(@sprites["pokedex"].index)
           end
-        elsif Input.press?(Input::ACTION)
-          acceptSearchResults {
+		elsif !Input.press?(Input::CTRL) && Input.press?(Input::AUX1)
+		  acceptSearchResults {
 			searchBySpeciesName()
 		  }
-        elsif !Input.press?(Input::CTRL) && Input.press?(Input::AUX1)
-          acceptSearchResults {
-			searchByAbility()
-		  }
-        elsif Input.press?(Input::CTRL) && Input.press?(Input::AUX1)
-          acceptSearchResults {
-			searchByMoveLearned()
-		  }
-        elsif !Input.press?(Input::CTRL) && Input.press?(Input::AUX2)
-          acceptSearchResults {
+		elsif Input.press?(Input::CTRL) && Input.press?(Input::AUX1)
+		  acceptSearchResults {
 			searchByType()
+		  }
+		elsif !Input.press?(Input::CTRL) && Input.press?(Input::AUX2)
+		  acceptSearchResults {
+			searchByAbility()
 		  }
 		elsif Input.press?(Input::CTRL) && Input.press?(Input::AUX2)
 		  acceptSearchResults {
-			searchByEvolutionMethod()
+			searchByMoveLearned()
 		  }
+		elsif !Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
+		  # 5th Search method
+		elsif Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
+		  # 6th Search method
 		end
       end
     }
+  end
+  
+  def updateSearch2Cursor(index)
+	@sprites["search2cursor"].x = index % 2 == 0 ? 72 : 296
+	@sprites["search2cursor"].y = index < 2 ? 62 : 158
+  end
+  
+  def pbDexSearch
+    # Prepare to start the search screen
+	oldsprites = pbFadeOutAndHide(@sprites)
+	@sprites["searchbg"].visible     = true
+    @sprites["overlay"].visible      = true
+    @sprites["search2cursor"].visible = true
+	overlay = @sprites["overlay"].bitmap
+	overlay.clear
+    index = 0
+	updateSearch2Cursor(index)
+    oldindex = index
+	
+	# Write the button names onto the overlay
+	base   = Color.new(104,104,104)
+    shadow = Color.new(248,248,248)
+	textpos = [
+	   [_INTL("Choose a Search"),Graphics.width/2,-2,2,shadow,base],
+       [_INTL("Name"),92,68,0,base,shadow],
+       [_INTL("Types"),316,68,0,base,shadow],
+       [_INTL("Abilities"),92,164,0,base,shadow],
+       [_INTL("Moves"),316,164,0,base,shadow]
+    ]
+	pbDrawTextPositions(overlay,textpos)
+	
+	# Begin the search screen
+	pbFadeInAndShow(@sprites)
+	loop do
+      Graphics.update
+      Input.update
+      pbUpdate
+      if index!=oldindex
+        updateSearch2Cursor(index)
+        oldindex = index
+      end
+      if Input.trigger?(Input::UP)
+        if index == 2; index = 0
+		elsif index == 3; index = 1
+		end
+        pbPlayCursorSE if index!=oldindex
+      elsif Input.trigger?(Input::DOWN)
+        if index == 0; index = 2
+		elsif index == 1; index = 3
+		end
+        pbPlayCursorSE if index!=oldindex
+      elsif Input.trigger?(Input::LEFT)
+        if index == 1; index = 0
+		elsif index == 3; index = 2
+		end
+        pbPlayCursorSE if index!=oldindex
+      elsif Input.trigger?(Input::RIGHT)
+        if index == 0; index = 1
+		elsif index == 2; index = 3
+		end
+        pbPlayCursorSE if index!=oldindex
+      elsif Input.trigger?(Input::BACK)
+        pbPlayCloseMenuSE
+        break
+      elsif Input.trigger?(Input::USE)
+		case index 
+		when 0
+		  acceptSearchResults2 {
+			searchBySpeciesName()
+		  }
+		when 1
+		  acceptSearchResults2 {
+			searchByType()
+		  }
+		when 2
+		  acceptSearchResults2 {
+			searchByAbility()
+		  }
+		when 3
+		  acceptSearchResults2 {
+			searchByMoveLearned()
+		  }
+		end
+		pbPlayCloseMenuSE
+		break if @searchResults
+	  end
+	end
+	pbFadeOutAndHide(@sprites)
+	if @searchResults
+      @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_listsearch")
+    else
+      @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_list")
+    end
+	pbRefresh
+    pbFadeInAndShow(@sprites,oldsprites)
+	Input.update
+  end
+  
+  def acceptSearchResults2(&searchingBlock)
+	  pbPlayDecisionSE
+	  dexlist = searchingBlock.call
+	  if !dexlist
+		# Do nothing
+	  elsif dexlist.length==0
+		pbMessage(_INTL("No matching Pokémon were found."))
+	  else
+		@dexlist = dexlist
+		@sprites["pokedex"].commands = @dexlist
+		@sprites["pokedex"].index    = 0
+		@sprites["pokedex"].refresh
+		@searchResults = true
+	  end
   end
   
   def acceptSearchResults(&searchingBlock)
