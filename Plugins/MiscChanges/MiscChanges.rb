@@ -1578,3 +1578,17 @@ end
 HiddenMoveHandlers::CanUseMove     = MoveHandlerHash.new
 HiddenMoveHandlers::ConfirmUseMove = MoveHandlerHash.new
 HiddenMoveHandlers::UseMove        = MoveHandlerHash.new
+
+
+def pbReceiveRandomPokemon(level)
+  possibleSpecies = []
+  GameData::Species.each do |species_data|
+	  next if !$Trainer.pokedex.seen?(species_data.species)
+	  possibleSpecies.push(species_data)
+  end
+  speciesDat = possibleSpecies.sample
+  pkmn = Pokemon.new(speciesDat.species, level)
+  pkmn.form = speciesDat.form
+  pbAddPokemonSilent(pkmn)
+  pbMessage(_INTL("You recieved a #{speciesDat.real_name} (#{speciesDat.real_form_name})"))
+end
