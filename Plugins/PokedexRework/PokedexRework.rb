@@ -109,44 +109,10 @@ class PokemonPokedex_Scene
 		
 		  eggmoves = firstSpecies.egg_moves
 		  
-		    evolutions = species_data.get_evolutions
-			evoMethods = []
-			evolutions.each_with_index do |evolution,index|
-			  next if evolution[3]
-			  method = evolution[1]
-			  parameter = evolution[2]
-			  evoSpecies = evolution[0]
-			  next if !method || !evoSpecies
-			  evolutionName = GameData::Species.get(evoSpecies).real_name
-			  methodDescription = describeEvolutionMethod(method,parameter)
-			  evoMethods.push(methodDescription)
-			end
-			
-			baseStats = species_data.base_stats
-			total = 0
-			baseStats.each_with_index do |stat, index|
-			  next if !stat
-			  total += stat[1]
-			end
+		  evos = species_data.get_evolutions
+		  prevos = species_data.get_prevolutions
 		  
-		  # 0 = National Species
-          # 1 = Name
-          # 2 = Height
-          # 3 = Weight
-          # 4 = Number
-          # 5 = Shift
-          # 6 = 1st Type
-          # 7 = 2nd Type
-          # 8 = Color
-          # 9 = Shape
-          # 10 Abilities
-          # 11 Level Up Moves
-		  # 12 Tutor Moves
-		  # 13 Egg Moves
-		  # 14 Evo Methods
-		  # 15 Base stat total
-		  
-		  ret.push([species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves, eggmoves, evoMethods, total])
+		  ret.push([species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves, eggmoves, evos, prevos])
 		end
 		return ret
 	  end
@@ -226,9 +192,13 @@ class PokemonPokedex_Scene
 			searchByMoveLearned()
 		  }
 		elsif !Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
-		  # 5th Search method
+		  acceptSearchResults {
+			searchByEvolutionMethod()
+		  }
 		elsif Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
-		  # 6th Search method
+		  acceptSearchResults {
+			searchByAvailableLevel()
+		  }
 		end
       end
     }
@@ -236,7 +206,7 @@ class PokemonPokedex_Scene
   
   def updateSearch2Cursor(index)
 	@sprites["search2cursor"].x = index % 2 == 0 ? 72 : 296
-	@sprites["search2cursor"].y = index < 2 ? 62 : 158
+	@sprites["search2cursor"].y = 62 + index / 2 * 96
   end
   
   def pbDexSearch
@@ -259,7 +229,9 @@ class PokemonPokedex_Scene
        [_INTL("Name"),92,68,0,base,shadow],
        [_INTL("Types"),316,68,0,base,shadow],
        [_INTL("Abilities"),92,164,0,base,shadow],
-       [_INTL("Moves"),316,164,0,base,shadow]
+       [_INTL("Moves"),316,164,0,base,shadow],
+	   [_INTL("Evolution"),92,260,0,base,shadow],
+	   [_INTL("Available"),316,260,0,base,shadow]
     ]
 	pbDrawTextPositions(overlay,textpos)
 	
@@ -270,53 +242,57 @@ class PokemonPokedex_Scene
       Input.update
       pbUpdate
       if index!=oldindex
+		pbPlayCursorSE
         updateSearch2Cursor(index)
         oldindex = index
       end
       if Input.trigger?(Input::UP)
-        if index == 2; index = 0
-		elsif index == 3; index = 1
-		end
-        pbPlayCursorSE if index!=oldindex
+        index -= 2 if index >= 2
       elsif Input.trigger?(Input::DOWN)
-        if index == 0; index = 2
-		elsif index == 1; index = 3
-		end
-        pbPlayCursorSE if index!=oldindex
+        index += 2 if index <= 3
       elsif Input.trigger?(Input::LEFT)
-        if index == 1; index = 0
-		elsif index == 3; index = 2
+		if index % 2 == 1
+			index -= 1
 		end
-        pbPlayCursorSE if index!=oldindex
       elsif Input.trigger?(Input::RIGHT)
-        if index == 0; index = 1
-		elsif index == 2; index = 3
+        if index % 2 == 0
+			index += 1
 		end
-        pbPlayCursorSE if index!=oldindex
       elsif Input.trigger?(Input::BACK)
         pbPlayCloseMenuSE
         break
       elsif Input.trigger?(Input::USE)
 		case index 
 		when 0
-		  acceptSearchResults2 {
+		  searchChanged = acceptSearchResults2 {
 			searchBySpeciesName()
 		  }
 		when 1
-		  acceptSearchResults2 {
+		  searchChanged = acceptSearchResults2 {
 			searchByType()
 		  }
 		when 2
-		  acceptSearchResults2 {
+		  searchChanged = acceptSearchResults2 {
 			searchByAbility()
 		  }
 		when 3
-		  acceptSearchResults2 {
+		  searchChanged = acceptSearchResults2 {
 			searchByMoveLearned()
 		  }
+		when 4
+		  searchChanged = acceptSearchResults2 {
+			searchByEvolutionMethod()
+		  }
+		when 5
+		  searchChanged = acceptSearchResults2 {
+			searchByAvailableLevel()
+		  }
 		end
-		pbPlayCloseMenuSE
-		break if @searchResults
+		if searchChanged
+			break
+		else
+			pbPlayCloseMenuSE
+		end
 	  end
 	end
 	pbFadeOutAndHide(@sprites)
@@ -343,7 +319,9 @@ class PokemonPokedex_Scene
 		@sprites["pokedex"].index    = 0
 		@sprites["pokedex"].refresh
 		@searchResults = true
+		return true
 	  end
+	  return false
   end
   
   def acceptSearchResults(&searchingBlock)
@@ -456,14 +434,40 @@ class PokemonPokedex_Scene
   end
   
   def searchByEvolutionMethod()
-	  evoMethodName = pbEnterText("Search evo methods...", 0, 12)
-	  if evoMethodName && evoMethodName!=""
+	  evoMethodTextInput = pbEnterText("Search method...", 0, 12)
+	  if evoMethodTextInput && evoMethodTextInput!=""
 		  dexlist = pbGetDexList
 		  dexlist = dexlist.find_all { |item|
 			next false if !$Trainer.seen?(item[0]) && !$DEBUG
 			anyContain = false
+			# Evolutions
 			item[14].each do |evomethod|
-				anyContain = true if evomethod.downcase.include?(evoMethodName.downcase)
+				strippedActualDescription = describeEvolutionMethod(evomethod[1],evomethod[2]).downcase.delete(' ')
+				strippedInputString = evoMethodTextInput.downcase.delete(' ')
+				anyContain = true if strippedActualDescription.include?(strippedInputString)
+			end
+			next anyContain
+		  }
+		  return dexlist
+	  end
+	  return nil
+  end
+  
+  def searchByAvailableLevel()
+	  levelTextInput = pbEnterText("Search available by level...", 0, 2)
+	  if levelTextInput && levelTextInput!=""
+		  levelIntAttempt = levelTextInput.to_i
+		  return nil if levelIntAttempt == 0
+		  dexlist = pbGetDexList
+		  dexlist = dexlist.find_all { |item|
+			next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			next true if item[15].size == 0
+			anyContain = false
+			# Pre-evolutions
+			item[15].each do |evomethod|
+				if [:Level,:LevelDay,:LevelNight,:LevelMale,:LevelFemale,:LevelRain,:LevelDarkInParty].include?(evomethod[1])
+					anyContain = true if evomethod[2] <= levelIntAttempt
+				end
 			end
 			next anyContain
 		  }
@@ -1461,7 +1465,6 @@ class PokemonPokedexInfo_Scene
 		regionalSpecies.each_with_index do |species, i|
 		  next if !species
 		  if species == otherSpecies
-			echo("#{species},#{otherSpecies},#{i}\n")
 			return i
 		  end
 		end
