@@ -4508,6 +4508,7 @@ BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = PORYGON2,Level,32
+Evolutions = PORYGONZ,Item,DUSKSTONE
 #-------------------------------
 [138]
 Name = Omanyte
@@ -7653,7 +7654,6 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PORYGONZ,Item,DUSKSTONE
 #-------------------------------
 [234]
 Name = Stantler
