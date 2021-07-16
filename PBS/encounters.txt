@@ -162,10 +162,3 @@ ActiveWater
 	33,TYNAMO,15,17
 	33,KABUTO,15,17
 	33,OMANYTE,15,17
-#-------------------------------
-[021] # Starting Town
-Land,20
-    25,SLAKOTH,4,6
-    25,ROOKIDEE,4,6
-	25,MINCCINO,4,6
-	25,ZIGZAGOON,4,6

@@ -21,10 +21,15 @@
 		return
 	end
 	
+	# Remove encounters which you haven't even seen yet
+	@stripped_encarray = @encarray.reject{ |entry|
+		!$Trainer.seen?(entry)
+	}
+	
 	# Create the sprites that show the encounters for this area
 	owned = 0
 	@pkmnsprite = []
-    @encarray.each_with_index do |species,iconIndex|
+    @stripped_encarray.each_with_index do |species,iconIndex|
         encstringarray.push(GameData::Species.get(species).name)
         @pkmnsprite[iconIndex]=PokemonSpeciesIconSprite.new(species,@viewport2)
 		@pkmnsprite[iconIndex].silhouette = true
@@ -46,6 +51,8 @@
 	# Show information about the map and if you've completed it
 	loctext = _INTL("#{$game_map.name}")
 	status = "Incomplete"
+	status = "No species seen!" if @stripped_encarray.length == 0
+	status = "All seen!" if @stripped_encarray.length == @encarray.length
 	status = "All owned!" if owned == @encarray.length
 	loctext += _INTL("<al>#{status}</al>")
     loctext += sprintf("<c2=63184210>-----------------------------------------</c2>")
@@ -161,15 +168,17 @@
   end
 
   def openMainDexNavScreen
-    return if @encarray.length == 0
     navMon = 0
-    lastMon = @encarray.length - 1
-    @sprites["selectedSpeciesName"]=Window_AdvancedTextPokemon.new(_INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name))
+    lastMon = @stripped_encarray.length - 1
+	
+    @sprites["selectedSpeciesName"] = Window_AdvancedTextPokemon.new("Unknown")
     @sprites["selectedSpeciesName"].viewport = @viewport1
     @sprites["selectedSpeciesName"].x=340
     @sprites["selectedSpeciesName"].y=52
     @sprites["selectedSpeciesName"].width=156
     @sprites["selectedSpeciesName"].windowskin = nil
+	
+	@sprites["nav"].visible = false if @stripped_encarray.length == 0
 	
 	# Begin taking input for the main dexnav screen
     loop do
@@ -185,13 +194,12 @@
       elsif Input.trigger?(Input::LEFT) && navMon % 7 != 0
         navMon -=1
         @sprites["nav"].x -= 64
-      elsif Input.trigger?(Input::RIGHT) && navMon % 7 != 6
+      elsif Input.trigger?(Input::RIGHT) && navMon % 7 != 6 && navMon < lastMon
         navMon +=1
         @sprites["nav"].x += 64
       elsif Input.trigger?(Input::C)
-        if !($Trainer.pokedex.owned?(@encarray[navMon]) || ($DEBUG && Input.press?(Input::CTRL)))
-          pbMessage(_INTL("You cannot search for this Pokémon yet!"))
-          pbMessage(_INTL("Try catching one first to register it to your Pokédex!"))
+        if !($Trainer.pokedex.owned?(@stripped_encarray[navMon]) || ($DEBUG && Input.press?(Input::CTRL)))
+          pbMessage(_INTL("You cannot search for this Pokémon, because you haven't owned one yet!"))
           next
         elsif $currentDexSearch != nil
           pbMessage(_INTL("You're already searching for a Pokémon!"))
@@ -201,7 +209,7 @@
 			searchTime = 20 + rand(80)
             pbMessage(_INTL("Searching\\ts[15]...\\wtnp[#{searchTime}]"))
             pbMessage(_INTL("Oh! A Pokemon was found nearby!"))
-		    species=@encarray[navMon]
+		    species=@stripped_encarray[navMon]
 		    # We generate the pokemon they found (added to the encounters),
 		    # giving it some rare "egg moves"to incentivize using  this function
 		    $currentDexSearch=[species,getRandomEggMove(species)]
@@ -213,7 +221,7 @@
         dispose
         break
       end
-	  name = $Trainer.pokedex.owned?(@encarray[navMon]) ? GameData::Species.get(@encarray[navMon]).name : "Unknown"
+	  name = $Trainer.pokedex.owned?(@stripped_encarray[navMon]) ? GameData::Species.get(@stripped_encarray[navMon]).name : "Unknown"
 	  @sprites["selectedSpeciesName"].text = _INTL("<c2=FFCADE00>{1}</c2>",name)
     end
     if navMon != -1
@@ -346,15 +354,16 @@ class PokemonSpeciesIconSprite < SpriteWrapper
     @silhouette = value
     refresh
   end
-  
+
   def refresh
     @animBitmap.dispose if @animBitmap
     @animBitmap = nil
     bitmapFileName = GameData::Species.icon_filename(@species, @form, @gender, @shiny)
     return if !bitmapFileName
     @animBitmap = AnimatedBitmap.new(bitmapFileName)
-    self.bitmap = @animBitmap.bitmap.copy
+    self.bitmap = @animBitmap.bitmap
 	if @silhouette
+		self.bitmap = @animBitmap.bitmap.clone
 		for x in 0..bitmap.width
 			for y in 0..bitmap.height
 			  bitmap.set_pixel(x,y,Color.new(200,200,200,255)) if bitmap.get_pixel(x,y).alpha > 0

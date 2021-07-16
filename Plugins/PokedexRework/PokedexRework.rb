@@ -9,28 +9,30 @@ module Settings
 end
 
 
-def setAllPokemonSeen
+def unlockDex
   $Trainer.pokedex.unlock(-1)
-  legendaries1 = [144,145,146,150,151]
-  legendaries2 = [243,244,245,249,250,251]
-  legendaries3 = (377..386).to_a
-  legendaries4 = (480..494).to_a
-  legendaries5 = (638..649).to_a
-  legendaries6 = (716..721).to_a
-  legendaries7 = (772..773).to_a
-  legendaries8 = (785..809).to_a
-  legendaries9 = (888..898).to_a
-  legendaries = [legendaries1,legendaries2,legendaries3,legendaries4,legendaries5,legendaries6,legendaries7,legendaries8,legendaries9].flatten
-  GameData::Species.each do |species_data|
-	  next if species_data.form != 0 || legendaries.include?(species_data.id_number)
-      sp = species_data.species
-      $Trainer.pokedex.set_seen(sp,false)
-  end
+  $Trainer.pokedex.set_seen(:TREECKO,false)
+  $Trainer.pokedex.set_seen(:TORCHIC,false)
+  $Trainer.pokedex.set_seen(:MUDKIP,false)
   $Trainer.pokedex.refresh_accessible_dexes()
 end
 
+def isLegendary(species_symbol)
+	legendaries1 = [144,145,146,150,151]
+	legendaries2 = [243,244,245,249,250,251]
+	legendaries3 = (377..386).to_a
+	legendaries4 = (480..494).to_a
+	legendaries5 = (638..649).to_a
+	legendaries6 = (716..721).to_a
+	legendaries7 = (772..773).to_a
+	legendaries8 = (785..809).to_a
+	legendaries9 = (888..898).to_a
+	legendaries = [legendaries1,legendaries2,legendaries3,legendaries4,legendaries5,legendaries6,legendaries7,legendaries8,legendaries9].flatten
+	return legendaries.include?(GameData::Species.get(species_symbol).id_number)
+end
+
 class PokemonPokedex_Scene
-	  def pbStartScene
+  def pbStartScene
     @sliderbitmap       = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_slider")
     @typebitmap         = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
     @shapebitmap        = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_shapes")
@@ -89,7 +91,6 @@ class PokemonPokedex_Scene
 		ret = []
 		regionalSpecies.each_with_index do |species, i|
 		  next if !species
-		  next if !pbCanAddForModeList?($PokemonGlobal.pokedexMode, species)
 		  species_data = GameData::Species.get(species)
 		  color  = species_data.color
 		  type1  = species_data.type1
@@ -115,7 +116,85 @@ class PokemonPokedex_Scene
 		  ret.push([species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves, eggmoves, evos, prevos])
 		end
 		return ret
-	  end
+	end
+	
+	def pbRefreshDexList(index=0)
+		dexlist = pbGetDexList
+		# Sort species in ascending order by Regional Dex number
+		dexlist.sort! { |a,b| a[4]<=>b[4] }
+		@dexlist = dexlist
+		@sprites["pokedex"].commands = @dexlist
+		@sprites["pokedex"].index    = index
+		@sprites["pokedex"].refresh
+		if @searchResults
+		  @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_listsearch")
+		else
+		  @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_list")
+		end
+		pbRefresh
+	end
+	
+	def pbRefresh
+		overlay = @sprites["overlay"].bitmap
+		overlay.clear
+		base   = Color.new(88,88,80)
+		shadow = Color.new(168,184,184)
+		iconspecies = @sprites["pokedex"].species
+		iconspecies = nil if isLegendary(iconspecies) && !$Trainer.seen?(iconspecies)
+		# Write various bits of text
+		dexname = _INTL("Pokédex")
+		if $Trainer.pokedex.dexes_count > 1
+		  thisdex = Settings.pokedex_names[pbGetSavePositionIndex]
+		  if thisdex!=nil
+			dexname = (thisdex.is_a?(Array)) ? thisdex[0] : thisdex
+		  end
+		end
+		textpos = [
+		   [dexname,Graphics.width/2,-2,2,Color.new(248,248,248),Color.new(0,0,0)]
+		]
+		textpos.push([GameData::Species.get(iconspecies).name,112,46,2,base,shadow]) if iconspecies
+		if @searchResults
+		  textpos.push([_INTL("Search results"),112,302,2,base,shadow])
+		  textpos.push([@dexlist.length.to_s,112,334,2,base,shadow])
+		else
+		  textpos.push([_INTL("Seen:"),42,302,0,base,shadow])
+		  textpos.push([$Trainer.pokedex.seen_count(pbGetPokedexRegion).to_s,182,302,1,base,shadow])
+		  textpos.push([_INTL("Owned:"),42,334,0,base,shadow])
+		  textpos.push([$Trainer.pokedex.owned_count(pbGetPokedexRegion).to_s,182,334,1,base,shadow])
+		end
+		# Draw all text
+		pbDrawTextPositions(overlay,textpos)
+		# Set Pokémon sprite
+		setIconBitmap(iconspecies)
+		# Draw slider arrows
+		itemlist = @sprites["pokedex"]
+		showslider = false
+		if itemlist.top_row>0
+		  overlay.blt(468,48,@sliderbitmap.bitmap,Rect.new(0,0,40,30))
+		  showslider = true
+		end
+		if itemlist.top_item+itemlist.page_item_max<itemlist.itemCount
+		  overlay.blt(468,346,@sliderbitmap.bitmap,Rect.new(0,30,40,30))
+		  showslider = true
+		end
+		# Draw slider box
+		if showslider
+		  sliderheight = 268
+		  boxheight = (sliderheight*itemlist.page_row_max/itemlist.row_max).floor
+		  boxheight += [(sliderheight-boxheight)/2,sliderheight/6].min
+		  boxheight = [boxheight.floor,40].max
+		  y = 78
+		  y += ((sliderheight-boxheight)*itemlist.top_row/(itemlist.row_max-itemlist.page_row_max)).floor
+		  overlay.blt(468,y,@sliderbitmap.bitmap,Rect.new(40,0,40,8))
+		  i = 0
+		  while i*16<boxheight-8-16
+			height = [boxheight-8-16-i*16,16].min
+			overlay.blt(468,y+8+i*16,@sliderbitmap.bitmap,Rect.new(40,8,40,height))
+			i += 1
+		  end
+		  overlay.blt(468,y+boxheight-16,@sliderbitmap.bitmap,Rect.new(40,24,40,16))
+		end
+	end
 	  
 	def pbDexEntry(index)
 		oldsprites = pbFadeOutAndHide(@sprites)
@@ -171,7 +250,7 @@ class PokemonPokedex_Scene
             break
           end
         elsif Input.trigger?(Input::USE)
-          if $Trainer.pokedex.seen?(@sprites["pokedex"].species)
+          if $Trainer.pokedex.seen?(@sprites["pokedex"].species) || !isLegendary(@sprites["pokedex"].species)
             pbPlayDecisionSE
             pbDexEntry(@sprites["pokedex"].index)
           end
@@ -348,7 +427,7 @@ class PokemonPokedex_Scene
 	  if name && name!=""
 		  dexlist = pbGetDexList
 		  dexlist = dexlist.find_all { |item|
-			next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
 			searchPokeName = item[1]
 			next searchPokeName.downcase.include?(name.downcase)
 		  }
@@ -362,7 +441,7 @@ class PokemonPokedex_Scene
 	  if name && name!=""
 		  dexlist = pbGetDexList
 		  dexlist = dexlist.find_all { |item|
-			next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
 			searchPokeAbilities = item[10]
 			next false if !searchPokeAbilities
 			next true if searchPokeAbilities[0] && GameData::Ability.get(searchPokeAbilities[0]).real_name.downcase.include?(name.downcase)
@@ -380,7 +459,7 @@ class PokemonPokedex_Scene
 	  if name && name!=""
 		  dexlist = pbGetDexList
 		  dexlist = dexlist.find_all { |item|
-			next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
 			contains = false
 			
 			lvlmoves = item[11]
@@ -421,7 +500,7 @@ class PokemonPokedex_Scene
 	  if typeName && typeName!=""
 		  dexlist = pbGetDexList
 		  dexlist = dexlist.find_all { |item|
-			next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
 			searchPokeType1 = item[6]
 			searchPokeType1Name = GameData::Type.get(searchPokeType1).real_name if searchPokeType1
 			searchPokeType2 = item[7]
@@ -438,7 +517,7 @@ class PokemonPokedex_Scene
 	  if evoMethodTextInput && evoMethodTextInput!=""
 		  dexlist = pbGetDexList
 		  dexlist = dexlist.find_all { |item|
-			next false if !$Trainer.seen?(item[0]) && !$DEBUG
+			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
 			anyContain = false
 			# Evolutions
 			item[14].each do |evomethod|
@@ -453,23 +532,61 @@ class PokemonPokedex_Scene
 	  return nil
   end
   
+
   def searchByAvailableLevel()
 	  levelTextInput = pbEnterText("Search available by level...", 0, 2)
 	  if levelTextInput && levelTextInput!=""
 		  levelIntAttempt = levelTextInput.to_i
 		  return nil if levelIntAttempt == 0
+		  
+		  maps_available_by_cap = {
+			15 => [20,22,43,2,48], #Short Route, Forest Crossroads, Forest Route, Forest Cave B1, Flower Town
+			21 => [3,4,7,10,11,5], #Savannah Route, Big Cave B1, Big Cave B2, Oasis Town, Oasis Town Hidden, River Route
+			27 => [17,9] #Forest Cave B2, River Grove
+		  }
+		  
 		  dexlist = pbGetDexList
 		  dexlist = dexlist.find_all { |item|
-			next false if !$Trainer.seen?(item[0]) && !$DEBUG
-			next true if item[15].size == 0
-			anyContain = false
-			# Pre-evolutions
-			item[15].each do |evomethod|
-				if [:Level,:LevelDay,:LevelNight,:LevelMale,:LevelFemale,:LevelRain,:LevelDarkInParty].include?(evomethod[1])
-					anyContain = true if evomethod[2] <= levelIntAttempt
+			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+			
+			speciesToCheckLocationsFor = [item[0]]
+			# Note each pre-evolution which could be the path to aquiring this pokemon by the given level
+			currentPrevo = item[15].length > 0 ? item[15][0] : nil
+			while currentPrevo != nil
+				if [:Level,:LevelDay,:LevelNight,:LevelMale,:LevelFemale,:LevelRain,:LevelDarkInParty].include?(currentPrevo[1])
+					if currentPrevo[2] <= levelIntAttempt
+						speciesToCheckLocationsFor.push(currentPrevo[0])
+					else
+						break
+					end
+				else
+					speciesToCheckLocationsFor.push(currentPrevo[0]) # TO DO: Does not account for availability of evolution items, or other such conditions
 				end
+				
+				# Find the prevo of the prevo
+				prevosfSpecies = GameData::Species.get_species_form(currentPrevo[0],0)
+				prevolutions = prevosfSpecies.get_prevolutions
+				currentPrevo = prevolutions.length > 0 ? prevolutions[0] : nil
 			end
-			next anyContain
+			
+			# Find all the maps which are available by the given level
+			mapsToCheck = []
+			maps_available_by_cap.each do |key, value|
+				mapsToCheck.concat(value)
+				break if key >= levelIntAttempt
+			end
+			
+			# For each possible species which could lead to this species, check to see if its available in any of the maps 
+			# which are available by the level cap which would apply at the given level
+			available = false
+			GameData::Encounter.each_of_version($PokemonGlobal.encounter_version) do |enc_data|
+				next unless mapsToCheck.include?(enc_data.map)
+				speciesToCheckLocationsFor.each do |species|
+					available = true if pbFindEncounter(enc_data.types, species)
+				end
+				break if available
+			end
+			next available
 		  }
 		  return dexlist
 	  end
@@ -529,10 +646,6 @@ class PokemonPokedexInfo_Scene
     @sprites["formicon"].setOffset(PictureOrigin::Center)
     @sprites["formicon"].x = 82
     @sprites["formicon"].y = 328
-	@sprites["formicon2"] = PokemonSpeciesIconSprite.new(0,@viewport)
-    @sprites["formicon2"].setOffset(PictureOrigin::Center)
-    @sprites["formicon2"].x = 450
-    @sprites["formicon2"].y = 90
     @sprites["uparrow"] = AnimatedSprite.new("Graphics/Pictures/uparrow",8,28,40,2,@viewport)
     @sprites["uparrow"].x = 242
     @sprites["uparrow"].y = 268
@@ -635,9 +748,6 @@ class PokemonPokedexInfo_Scene
     if @sprites["formicon"]
       @sprites["formicon"].pbSetParams(@species,@gender,@form)
     end
-	if @sprites["formicon2"]
-      @sprites["formicon2"].pbSetParams(@species,@gender,@form)
-    end
   end
 
   def pbGetAvailableForms
@@ -691,7 +801,6 @@ class PokemonPokedexInfo_Scene
     @sprites["formfront"].visible     = (@page==10) if @sprites["formfront"]
     @sprites["formback"].visible      = (@page==10) if @sprites["formback"]
     @sprites["formicon"].visible      = (@page==10) if @sprites["formicon"]
-	@sprites["formicon2"].visible      = ![1,4,5,6,7,10].include?(@page) if @sprites["formicon2"]
 	@sprites["moveInfoDisplay"].visible = @page>=5 && @page <=7  if @sprites["moveInfoDisplay"]
 	@sprites["extraInfoOverlay"].visible = @page>=5 && @page <=7 if @sprites["extraInfoOverlay"]
 	@sprites["extraInfoOverlay"].bitmap.clear if @sprites["extraInfoOverlay"]
@@ -1239,13 +1348,15 @@ class PokemonPokedexInfo_Scene
 	end
   end
   
-  def pbFindEncounter(enc_types, species)
-    return false if !enc_types
-    enc_types.each_value do |slots|
-      next if !slots
-      slots.each { |slot| return true if GameData::Species.get(slot[1]).species == species }
-    end
-    return false
+  def getEncounterableAreas(species)
+    areas = []
+	GameData::Encounter.each_of_version($PokemonGlobal.encounter_version) do |enc_data|
+		next if !pbFindEncounter(enc_data.types, species)
+		name = (pbGetMessage(MessageTypes::MapNames,enc_data.map) rescue nil) || "???"
+		areas.push(name)
+	end
+	areas.uniq!
+	return areas
   end
 
   def drawPageArea
@@ -1254,79 +1365,60 @@ class PokemonPokedexInfo_Scene
     base   = Color.new(88,88,80)
     shadow = Color.new(168,184,184)
 	
-	drawTextEx(overlay,150,190,450,1,"!Under Construction!",base,shadow)
-	
-=begin
-    @sprites["areahighlight"].bitmap.clear
-    # Fill the array "points" with all squares of the region map in which the
-    # species can be found
-    points = []
-    mapwidth = 1+PokemonRegionMap_Scene::RIGHT-PokemonRegionMap_Scene::LEFT
-    GameData::Encounter.each_of_version($PokemonGlobal.encounter_version) do |enc_data|
-      next if !pbFindEncounter(enc_data.types, @species)
-      map_metadata = GameData::MapMetadata.try_get(enc_data.map)
-      mappos = (map_metadata) ? map_metadata.town_map_position : nil
-      next if !mappos || mappos[0] != @region
-      showpoint = true
-      for loc in @mapdata[@region][2]
-        showpoint = false if loc[0]==mappos[1] && loc[1]==mappos[2] &&
-                             loc[7] && !$game_switches[loc[7]]
-      end
-      next if !showpoint
-      mapsize = map_metadata.town_map_size
-      if mapsize && mapsize[0] && mapsize[0]>0
-        sqwidth  = mapsize[0]
-        sqheight = (mapsize[1].length*1.0/mapsize[0]).ceil
-        for i in 0...sqwidth
-          for j in 0...sqheight
-            if mapsize[1][i+j*sqwidth,1].to_i>0
-              points[mappos[1]+i+(mappos[2]+j)*mapwidth] = true
-            end
-          end
-        end
-      else
-        points[mappos[1]+mappos[2]*mapwidth] = true
-      end
-    end
-    # Draw coloured squares on each square of the region map with a nest
-    pointcolor   = Color.new(0,248,248)
-    pointcolorhl = Color.new(192,248,248)
-    sqwidth = PokemonRegionMap_Scene::SQUAREWIDTH
-    sqheight = PokemonRegionMap_Scene::SQUAREHEIGHT
-    for j in 0...points.length
-      if points[j]
-        x = (j%mapwidth)*sqwidth
-        x += (Graphics.width-@sprites["areamap"].bitmap.width)/2
-        y = (j/mapwidth)*sqheight
-        y += (Graphics.height+32-@sprites["areamap"].bitmap.height)/2
-        @sprites["areahighlight"].bitmap.fill_rect(x,y,sqwidth,sqheight,pointcolor)
-        if j-mapwidth<0 || !points[j-mapwidth]
-          @sprites["areahighlight"].bitmap.fill_rect(x,y-2,sqwidth,2,pointcolorhl)
-        end
-        if j+mapwidth>=points.length || !points[j+mapwidth]
-          @sprites["areahighlight"].bitmap.fill_rect(x,y+sqheight,sqwidth,2,pointcolorhl)
-        end
-        if j%mapwidth==0 || !points[j-1]
-          @sprites["areahighlight"].bitmap.fill_rect(x-2,y,2,sqheight,pointcolorhl)
-        end
-        if (j+1)%mapwidth==0 || !points[j+1]
-          @sprites["areahighlight"].bitmap.fill_rect(x+sqwidth,y,2,sqheight,pointcolorhl)
-        end
-      end
-    end
-    # Set the text
-    textpos = []
-    if points.length==0
-      pbDrawImagePositions(overlay,[
-         [sprintf("Graphics/Pictures/Pokedex/overlay_areanone"),108,188]
-      ])
-      textpos.push([_INTL("Area unknown"),Graphics.width/2,Graphics.height/2 - 6,2,base,shadow])
-    end
-    textpos.push([pbGetMessage(MessageTypes::RegionNames,@region),414,38,2,base,shadow])
-    textpos.push([_INTL("{1}'s area",GameData::Species.get(@species).name),
-       Graphics.width/2,346,2,base,shadow])
-    pbDrawTextPositions(overlay,textpos)
-=end
+	for i in @available
+      if i[2]==@form
+		# Determine which areas the pokemon can be encountered in
+		areas = getEncounterableAreas(@species)
+		
+		# Draw the areas the pokemon can be encountered in
+		coordinateY = 54
+		drawTextEx(overlay,30,coordinateY,450,1,_INTL("Encounterable Areas for {1}",@title),base,shadow)
+		coordinateY += 30
+		if areas.length == 0
+			drawTextEx(overlay,30,coordinateY,450,1,"None",base,shadow)
+		else
+			areas.each do |area_name|
+				drawTextEx(overlay,30,coordinateY,450,1,area_name,base,shadow)
+				coordinateY += 30
+			end
+		end
+		
+		# Determine which areas the pokemon's pre-evos can be encountered in
+		prevo_areas = []
+		fSpecies = GameData::Species.get_species_form(@species,i[2])
+		prevolutions = fSpecies.get_prevolutions
+		currentPrevo = prevolutions.length > 0 ? prevolutions[0] : nil
+		while currentPrevo != nil
+			currentPrevoSpecies = currentPrevo[0]
+			currentPrevoSpeciesName = GameData::Species.get(currentPrevoSpecies).name
+			prevosAreas = getEncounterableAreas(currentPrevoSpecies)
+			prevosAreas.each do |area_name|
+				prevo_areas.push([area_name,currentPrevoSpeciesName])
+			end
+			
+			# Find the prevo of the prevo
+			prevosfSpecies = GameData::Species.get_species_form(currentPrevoSpecies,0)
+			prevolutions = prevosfSpecies.get_prevolutions
+			currentPrevo = prevolutions.length > 0 ? prevolutions[0] : nil
+		end
+		prevo_areas.uniq!
+		
+		if prevo_areas.length != 0
+			# Draw the areas the pokemon's pre-evos can be encountered in
+			coordinateY += 60
+			drawTextEx(overlay,30,coordinateY,450,1,_INTL("Encounter Areas for Pre-Evolutions",@title),base,shadow)
+			coordinateY += 30
+			if prevo_areas.length == 0
+				drawTextEx(overlay,30,coordinateY,450,1,"None",base,shadow)
+			else
+				prevo_areas.each do |area_name,prevo_name|
+					drawTextEx(overlay,30,coordinateY,450,1,"#{area_name} (#{prevo_name})",base,shadow)
+					coordinateY += 30
+				end
+			end
+		end
+	  end
+	end
   end
   
   def drawPageForms
@@ -1353,7 +1445,7 @@ class PokemonPokedexInfo_Scene
     newindex = @index
     while newindex>0
       newindex -= 1
-      if $Trainer.seen?(@dexlist[newindex][0])
+      if !isLegendary(@dexlist[newindex][0]) || $Trainer.seen?(@dexlist[newindex][0])
         @index = newindex
         break
       end
@@ -1364,7 +1456,7 @@ class PokemonPokedexInfo_Scene
     newindex = @index
     while newindex<@dexlist.length-1
       newindex += 1
-      if $Trainer.seen?(@dexlist[newindex][0])
+      if !isLegendary(@dexlist[newindex][0]) || $Trainer.seen?(@dexlist[newindex][0])
         @index = newindex
         break
       end
@@ -1679,4 +1771,35 @@ class PokemonPokedexInfoScreen
 		@scene.pbScene
 		@scene.pbEndScene
 	end
+end
+
+class Window_Pokedex < Window_DrawableCommand
+	def drawItem(index,_count,rect)
+		return if index>=self.top_row+self.page_item_max
+		rect = Rect.new(rect.x+16,rect.y,rect.width-16,rect.height)
+		species     = @commands[index][0]
+		indexNumber = @commands[index][4]
+		indexNumber -= 1 if @commands[index][5]
+		if !isLegendary(species) || $Trainer.seen?(species)
+		  if $Trainer.owned?(species)
+			pbCopyBitmap(self.contents,@pokeballOwn.bitmap,rect.x-6,rect.y+8)
+		  else
+			pbCopyBitmap(self.contents,@pokeballSeen.bitmap,rect.x-6,rect.y+8)
+		  end
+		  text = sprintf("%03d%s %s",indexNumber," ",@commands[index][1])
+		else
+		  text = sprintf("%03d  ----------",indexNumber)
+		end
+		pbDrawShadowText(self.contents,rect.x+36,rect.y+6,rect.width,rect.height,
+		   text,self.baseColor,self.shadowColor)
+	end
+end
+
+def pbFindEncounter(enc_types, species)
+    return false if !enc_types
+    enc_types.each_value do |slots|
+      next if !slots
+      slots.each { |slot| return true if GameData::Species.get(slot[1]).species == species }
+    end
+    return false
 end
