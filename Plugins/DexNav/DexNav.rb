@@ -1,4 +1,4 @@
-﻿class NewDexNav
+class NewDexNav
 
   def initialize
 	# Set up the three peices of UI
