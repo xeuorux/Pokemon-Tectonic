@@ -132,6 +132,20 @@ BattleHandlers::DamageCalcUserAbility.add(:SCALDINGSMOKE,
 
 BattleHandlers::DamageCalcUserAbility.copy(:PUNKROCK,:LOUD)
 
+BattleHandlers::DamageCalcUserAbility.add(:SUNCHASER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.pbWeather==:Rain && move.specialMove?
+      mults[:base_damage_multiplier] *= 1.3
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:MYSTICFIST,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if move.punchingMove?
+  }
+)
+
 #===============================================================================
 # DamageCalcTargetAbility handlers
 #===============================================================================
@@ -204,6 +218,23 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
+  proc { |ability,user,target,move,battle|
+    next if !move.pbContactMove?(user)
+    next if user.frozen? || battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(target)
+    if user.pbCanFreeze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} chilled {3}! It's slower and takes more damage!!",target.pbThis,target.abilityName,user.pbThis(true))
+      end
+      user.pbFreeze(target,msg)
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
 BattleHandlers::TargetAbilityOnHit.add(:CURSEDTAIL,
   proc { |ability,user,target,move,battle|
     next if !move.pbContactMove?(user)
@@ -238,6 +269,16 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILEING,
 BattleHandlers::TargetAbilityOnHit.add(:GRIT,
   proc { |ability,user,target,move,battle|
     target.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
+  proc { |ability,user,target,move,battle|
+    if move.physicalMove?
+		target.pbRaiseStatStageByAbility(:SDEFENSE,1,target)
+	else
+		target.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,target)
+	end
   }
 )
 
@@ -364,6 +405,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:DAZZLE,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:HOLIDAYCHEER,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.eachSameSideBattler(battler.index) do |b|
+      b.pbRecoverHP(b.totalhp/3)
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
 
 #===============================================================================
 # AbilityOnEnemySwitchIn handlers
@@ -380,5 +430,25 @@ BattleHandlers::AbilityOnEnemySwitchIn.add(:PROUDFIRE,
       switcher.pbBurn(bearer,msg)
     end
     battle.pbHideAbilitySplash(bearer)
+  }
+)
+
+
+#===============================================================================
+# AccuracyCalcUserAbility handlers
+#===============================================================================
+
+BattleHandlers::AccuracyCalcUserAbility.add(:SANDSNIPER,
+  proc { |ability,mods,user,target,move,type|
+    mods[:base_accuracy] = 0 if user.battle.pbWeather == :Sandstorm
+  }
+)
+
+#===============================================================================
+# CriticalCalcUserAbility handlers
+#===============================================================================
+BattleHandlers::CriticalCalcUserAbility.add(:STAMPEDE,
+  proc { |ability,user,target,c|
+    next c+user.stages[:SPEED]
   }
 )

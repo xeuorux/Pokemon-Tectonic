@@ -1,7 +1,7 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [RATTATA,1]
-FormName = Rattata (A)
+FormName = Alolan
 Type1 = DARK
 Type2 = NORMAL
 Abilities = HUSTLE
@@ -14,7 +14,7 @@ BattlerEnemyY = 26
 Evolutions = RATICATE,Level,40
 #-------------------------------
 [RATICATE,1]
-FormName = Raticate (A)
+FormName = Alolan
 Type1 = DARK
 Type2 = NORMAL
 BaseStats = 105,86,90,92,45,100
@@ -27,7 +27,7 @@ WildItemUncommon = PECHABERRY
 BattlerEnemyY = 25
 #-------------------------------
 [RAICHU,1]
-FormName = Raichu (A)
+FormName = Alolan
 Type1 = ELECTRIC
 Type2 = PSYCHIC
 BaseStats = 70,85,65,80,115,105
@@ -41,7 +41,7 @@ Weight = 21.0
 BattlerEnemyY = 18
 #-------------------------------
 [SANDSHREW,1]
-FormName = Sandshrew (A)
+FormName = Alolan
 Type1 = ICE
 Type2 = STEEL
 BaseStats = 50,75,80,40,10,45
@@ -57,7 +57,7 @@ BattlerEnemyY = 30
 Evolutions = SANDSLASH,Item,ICESTONE
 #-------------------------------
 [SANDSLASH,1]
-FormName = Sandslash (A)
+FormName = Alolan
 Type1 = ICE
 Type2 = STEEL
 BaseStats = 75,100,120,65,25,65
@@ -71,95 +71,95 @@ Weight = 55.0
 BattlerEnemyY = 24
 #-------------------------------
 [PIKACHU,3]
-FormName = Cosplay Pikachu
+FormName = Cosplay
 Compatibility = Undiscovered
 Pokedex = Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
 #-------------------------------
 [PIKACHU,4]
-FormName = Cosplay Pikachu - Belle
+FormName = Cosplay - Belle
 Compatibility = Undiscovered
 Pokedex = Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
 #-------------------------------
 [PIKACHU,5]
-FormName = Cosplay Pikachu - Libre
+FormName = Cosplay - Libre
 Compatibility = Undiscovered
 Pokedex = Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
 #-------------------------------
 [PIKACHU,6]
-FormName = Cosplay Pikachu - Ph.D.
+FormName = Cosplay - Ph.D.
 Compatibility = Undiscovered
 Pokedex = Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
 #-------------------------------
 [PIKACHU,7]
-FormName = Cosplay Pikachu - Pop Star
+FormName = Cosplay - Pop Star
 Compatibility = Undiscovered
 Pokedex = Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
 #-------------------------------
 [PIKACHU,8]
-FormName = Cosplay Pikachu - Rock Star
+FormName = Cosplay - Rock Star
 Compatibility = Undiscovered
 Pokedex = Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
 #-------------------------------
 [PIKACHU,9]
-FormName = Original Cap Pikachu
+FormName = Original Cap
 Compatibility = Undiscovered
 Pokedex = This Pikachu wears its partner's cap, which is brimming with memories of traveling through many different regions.
 BattlerPlayerY = 27
 BattlerEnemyY = 29
 #-------------------------------
 [PIKACHU,10]
-FormName = Hoenn Cap Pikachu
+FormName = Hoenn Cap
 Compatibility = Undiscovered
 Pokedex = This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Hoenn region.
 BattlerPlayerY = 27
 BattlerEnemyY = 29
 #-------------------------------
 [PIKACHU,11]
-FormName = Sinnoh Cap Pikachu
+FormName = Sinnoh Cap
 Compatibility = Undiscovered
 Pokedex = This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Sinnoh region.
 BattlerPlayerY = 27
 BattlerEnemyY = 29
 #-------------------------------
 [PIKACHU,12]
-FormName = Unova Cap Pikachu
+FormName = Unova Cap
 Compatibility = Undiscovered
 Pokedex = This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Unova region.
 BattlerPlayerY = 27
 BattlerEnemyY = 29
 #-------------------------------
 [PIKACHU,13]
-FormName = Kalos Cap Pikachu
+FormName = Kalos Cap
 Compatibility = Undiscovered
 Pokedex = This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Kalos region.
 BattlerPlayerY = 27
 BattlerEnemyY = 29
 #-------------------------------
 [PIKACHU,14]
-FormName = Alola Cap Pikachu
+FormName = Alola Cap
 Compatibility = Undiscovered
 Pokedex = This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Alola region.
 BattlerPlayerY = 27
 BattlerEnemyY = 29
 #-------------------------------
 [PIKACHU,15]
-FormName = Partner Cap Pikachu
+FormName = Partner Cap
 Compatibility = Undiscovered
 Pokedex = This Pikachu wears its partner's cap, which is brimming with memories of when they first met.
 BattlerPlayerY = 27
 BattlerEnemyY = 29
 #-------------------------------
 [PIKACHU,16]
-FormName = World Cap Pikachu
+FormName = World Cap
 Compatibility = Undiscovered
 Pokedex = This Pikachu is wearing its Trainer's cap. The cap is a precious symbol that travels across different regions with Pikachu.
 BattlerPlayerY = 27
 BattlerEnemyY = 29
 #-------------------------------
 [VULPIX,1]
-FormName = Vulpix (A)
+FormName = Alolan
 Type1 = ICE
-Abilities = SNOWCLOAK
+Abilities = SNOWCLOAK,CHILLEDBODY
 HiddenAbility = SNOWWARNING
 Moves = 1,POWDERSNOW,1,TAILWHIP,4,FAIRYWIND,8,DISABLE,12,SPITEFULCHANT,16,CONFUSERAY,20,DRAININGKISS,24,AURORABEAM,28,EXTRASENSORY,32,ICEBEAM,36,IMPRISON,40,MIST,44,AURORAVEIL,48,SHEERCOLD,52,GRUDGE,56,BLIZZARD
 TutorMoves = AGILITY,AQUATAIL,AURORAVEIL,BLIZZARD,BODYSLAM,CONFIDE,COVET,DARKPULSE,DAZZLINGGLEAM,DIG,DRAININGKISS,ENCORE,ENDURE,FACADE,FOULPLAY,FROSTBREATH,FRUSTRATION,HAIL,HEALBELL,HEX,HIDDENPOWER,ICEBEAM,ICYWIND,IMPRISON,IRONTAIL,PAINSPLIT,PAYBACK,POUT,POWERSWAP,PROTECT,PSYCHUP,RAINDANCE,REFLECT,REST,RETURN,ROAR,ROLEPLAY,ROUND,SAFEGUARD,SLEEPTALK,SNORE,SPITEFULCHANT,SUBSTITUTE,SWAGGER,SWIFT,TAILSLAP,TOXIC,WEATHERBALL,ZENHEADBUTT
@@ -171,11 +171,11 @@ BattlerEnemyY = 28
 Evolutions = NINETALES,Item,ICESTONE
 #-------------------------------
 [NINETALES,1]
-FormName = Ninetales (A)
+FormName = Alolan
 Type1 = ICE
 Type2 = FAIRY
 EffortPoints = 0,0,0,2,0,0
-Abilities = SNOWCLOAK
+Abilities = SNOWCLOAK,CHILLEDBODY
 HiddenAbility = SNOWWARNING
 Moves = 0,DAZZLINGGLEAM,1,DAZZLINGGLEAM,1,NASTYPLOT,1,SPITEFULCHANT,1,ICYWIND,1,CONFUSERAY,1,AURORABEAM,1,EXTRASENSORY,1,ICEBEAM,1,FAIRYWIND,1,IMPRISON,1,MIST,1,AURORAVEIL,1,SHEERCOLD,1,GRUDGE,1,BLIZZARD,1,POWDERSNOW,1,TAILWHIP,1,DISABLE,1,ICESHARD
 TutorMoves = AGILITY,AQUATAIL,AURORAVEIL,AVALANCHE,BLIZZARD,BODYSLAM,CALMMIND,CONFIDE,COVET,DARKPULSE,DAZZLINGGLEAM,DIG,DRAININGKISS,DREAMEATER,ENCORE,ENDURE,FACADE,FAKETEARS,FOULPLAY,FROSTBREATH,FRUSTRATION,GIGAIMPACT,HAIL,HEALBELL,HEX,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICYWIND,IMPRISON,IRONTAIL,LASERFOCUS,MISTYTERRAIN,NASTYPLOT,PAINSPLIT,PAYBACK,POUT,POWERSWAP,PROTECT,PSYCHUP,PSYSHOCK,RAINDANCE,REFLECT,REST,RETURN,ROAR,ROLEPLAY,ROUND,SAFEGUARD,SLEEPTALK,SNORE,SOLARBEAM,SPITEFULCHANT,STOREDPOWER,SUBSTITUTE,SWAGGER,SWIFT,TAILSLAP,TOXIC,TRIPLEAXEL,WEATHERBALL,WONDERROOM,ZENHEADBUTT
@@ -185,7 +185,7 @@ WildItemUncommon = SNOWBALL
 BattlerEnemyY = 20
 #-------------------------------
 [DIGLETT,1]
-FormName = Diglett (A)
+FormName = Alolan
 Type1 = GROUND
 Type2 = STEEL
 BaseStats = 10,55,30,90,35,45
@@ -199,7 +199,7 @@ Pokedex = Its head sports an altered form of whiskers made of metal. When in com
 BattlerEnemyY = 37
 #-------------------------------
 [DUGTRIO,1]
-FormName = Dugtrio (A)
+FormName = Alolan
 Type1 = GROUND
 Type2 = STEEL
 BaseStats = 35,100,60,110,50,70
@@ -213,7 +213,7 @@ Pokedex = Its shining gold hair provides it with protection. It's reputed that k
 BattlerEnemyY = 29
 #-------------------------------
 [MEOWTH,1]
-FormName = Meowth (A)
+FormName = Alolan
 Type1 = DARK
 BaseStats = 40,42,50,73,60,85
 #Total: 350
@@ -227,7 +227,7 @@ Pokedex = It's impulsive, selfish, and fickle. It's very popular with some Train
 BattlerEnemyY = 26
 #-------------------------------
 [MEOWTH,2]
-FormName = Meowth (G)
+FormName = Galarian
 Type1 = STEEL
 BaseStats = 40,75,90,40,40,65
 #Total: 350
@@ -241,7 +241,7 @@ BattlerEnemyY = 24
 Evolutions = PERRSERKER,Level,28
 #-------------------------------
 [PERSIAN,1]
-FormName = Persian (A)
+FormName = Alolan
 Type1 = DARK
 BaseStats = 65,65,85,80,85,120
 #Total: 500
@@ -256,7 +256,7 @@ Pokedex = Its round face is a symbol of wealth. Persian that have bigger, plumpe
 BattlerEnemyY = 19
 #-------------------------------
 [GEODUDE,1]
-FormName = Geodude (A)
+FormName = Alolan
 Type1 = ROCK
 Type2 = ELECTRIC
 Abilities = GALVANIZE,STURDY
@@ -272,7 +272,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 33
 #-------------------------------
 [GRAVELER,1]
-FormName = Graveler (A)
+FormName = Alolan
 Type1 = ROCK
 Type2 = ELECTRIC
 Abilities = GALVANIZE,STURDY
@@ -286,7 +286,7 @@ WildItemUncommon = CELLBATTERY
 BattlerEnemyY = 28
 #-------------------------------
 [GOLEM,1]
-FormName = Golem (A)
+FormName = Alolan
 Type1 = ROCK
 Type2 = ELECTRIC
 Abilities = GALVANIZE,STURDY
@@ -303,7 +303,7 @@ BattlerEnemyY = 17
 BattlerShadowSize = 2
 #-------------------------------
 [PONYTA,1]
-FormName = Ponyta (G)
+FormName = Galarian
 Type1 = PSYCHIC
 Abilities = SUNCHASER,JUSTIFIED
 HiddenAbility = ANTICIPATION
@@ -318,7 +318,7 @@ Pokedex = This Pokémon will look into your eyes and read the contents of your h
 BattlerEnemyY = 23
 #-------------------------------
 [RAPIDASH,1]
-FormName = Rapidash (G)
+FormName = Galarian
 Type1 = PSYCHIC
 Type2 = FAIRY
 Abilities = SUNCHASER,JUSTIFIED
@@ -332,7 +332,7 @@ Pokedex = Brave and prideful, this Pokémon dashes airily through the forest, it
 BattlerEnemyY = 13
 #-------------------------------
 [SLOWPOKE,1]
-FormName = Slowpoke (G)
+FormName = Galarian
 Type1 = PSYCHIC
 Abilities = GLUTTONY,OWNTEMPO
 Moves = 1,TACKLE,1,CURSE,3,GROWL,6,ACID,9,YAWN,12,MINDWAVES,15,DISABLE,18,WATERPULSE,21,HEADBUTT,24,ZENHEADBUTT,27,AMNESIA,30,SURF,33,SLACKOFF,36,PSYCHIC,39,PSYCHUP,42,RAINDANCE,45,HEALPULSE
@@ -343,7 +343,7 @@ BattlerEnemyY = 38
 Evolutions = SLOWKING,Item,GALARICAWREATH,SLOWKING,Item,KINGSROCK
 #-------------------------------
 [SLOWBRO,1]
-FormName = Slowbro (G)
+FormName = Galarian
 Type1 = POISON
 Type2 = PSYCHIC
 BaseStats = 95,100,95,30,100,70
@@ -358,7 +358,7 @@ BattlerPlayerY = 20
 BattlerEnemyY = 22
 #-------------------------------
 [FARFETCHD,1]
-FormName = Farfetch'd (G)
+FormName = Galarian
 Type1 = FIGHTING
 BaseStats = 52,95,55,65,58,62
 #Total: 387
@@ -374,7 +374,7 @@ BattlerEnemyY = 28
 Evolutions = SIRFETCHD,Level,35
 #-------------------------------
 [GRIMER,1]
-FormName = Grimer (A)
+FormName = Alolan
 Type1 = POISON
 Type2 = DARK
 BaseStats = 80,80,50,25,40,50
@@ -391,7 +391,7 @@ Pokedex = A Grimer, which had been brought in to solve a problem with garbage, d
 BattlerEnemyY = 31
 #-------------------------------
 [MUK,1]
-FormName = Muk (A)
+FormName = Alolan
 Type1 = POISON
 Type2 = DARK
 BaseStats = 105,105,75,50,65,100
@@ -407,7 +407,7 @@ Pokedex = The garbage it eats causes continuous chemical changes in its body, wh
 BattlerEnemyY = 23
 #-------------------------------
 [EXEGGUTOR,1]
-FormName = Exeggutor (A)
+FormName = Alolan
 Type1 = GRASS
 Type2 = DRAGON
 BaseStats = 95,125,85,55,95,75
@@ -426,7 +426,7 @@ TutorMoves = AERIALACE,BLIZZARD,BRICKBREAK,BRUTALSWING,BULLDOZE,CONFIDE,EARTHPOW
 Evolutions = MAROWAK,Item,DUSKSTONE
 #-------------------------------
 [MAROWAK,1]
-FormName = Marowak (A)
+FormName = Alolan
 Type1 = FIRE
 Type2 = GHOST
 Abilities = CURSEDBODY,LIGHTNINGROD
@@ -440,7 +440,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 16
 #-------------------------------
 [WEEZING,1]
-FormName = Weezing (G)
+FormName = Galarian
 Type1 = POISON
 Type2 = FAIRY
 Abilities = MISTYSURGE
@@ -453,7 +453,7 @@ Pokedex = Long ago, during a time when droves of factories fouled the air with p
 BattlerEnemyY = 3
 #-------------------------------
 [MRMIME,1]
-FormName = Mr. Mime (G)
+FormName = Galarian
 Type1 = ICE
 Type2 = PSYCHIC
 BaseStats = 50,65,65,100,90,90
@@ -472,7 +472,7 @@ BattlerEnemyY = 25
 Evolutions = MRRIME,Level,42
 #-------------------------------
 [ARTICUNO,1]
-FormName = Articuno (G)
+FormName = Galarian
 Type1 = PSYCHIC
 Type2 = FLYING
 BaseStats = 90,85,85,95,125,100
@@ -484,7 +484,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 11
 #-------------------------------
 [ZAPDOS,1]
-FormName = Zapdos (G)
+FormName = Galarian
 Type1 = FIGHTING
 Type2 = FLYING
 BaseStats = 90,125,90,100,85,90
@@ -497,7 +497,7 @@ BattlerEnemyY = 19
 BattlerShadowSize = 3
 #-------------------------------
 [MOLTRES,1]
-FormName = Moltres (G)
+FormName = Galarian
 Type1 = DARK
 Type2 = FLYING
 BaseStats = 90,85,90,90,100,125
@@ -513,7 +513,7 @@ TutorMoves = CHARGEBEAM,CONFIDE,COVET,ECHOEDVOICE,ELECTROWEB,ENDURE,FACADE,FLING
 Evolutions = PIKACHU,None,
 #-------------------------------
 [SLOWKING,1]
-FormName = Slowking (G)
+FormName = Galarian
 Type1 = POISON
 Type2 = PSYCHIC
 BaseStats = 95,65,80,30,110,110
@@ -661,7 +661,7 @@ BattlerPlayerY = 31
 BattlerEnemyY = 35
 #-------------------------------
 [CORSOLA,1]
-FormName = Corsola (G)
+FormName = Galarian
 Type1 = GHOST
 Type2 = ROCK
 BaseStats = 60,55,100,30,65,100
@@ -678,7 +678,7 @@ BattlerEnemyY = 33
 Evolutions = CURSOLA,Level,38
 #-------------------------------
 [ZIGZAGOON,1]
-FormName = Zigzagoon (G)
+FormName = Galarian
 Type1 = DARK
 Type2 = NORMAL
 Moves = 1,TACKLE,1,LEER,3,SANDATTACK,6,LICK,9,SNARL,12,HEADBUTT,15,BABYDOLLEYES,18,PINMISSILE,21,SLACKOFF,24,TAKEDOWN,27,SCARYFACE,30,COUNTER,33,TAUNT,36,DOUBLEEDGE
@@ -690,7 +690,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 30
 #-------------------------------
 [LINOONE,1]
-FormName = Linoone (G)
+FormName = Galarian
 Type1 = DARK
 Type2 = NORMAL
 Moves = 1,NIGHTSLASH,1,SWITCHEROO,1,PINMISSILE,1,BABYDOLLEYES,1,TACKLE,1,LEER,1,SANDATTACK,1,LICK,9,SNARL,12,HEADBUTT,15,HONECLAWS,18,FURYSWIPES,23,SLACKOFF,28,TAKEDOWN,33,SCARYFACE,38,COUNTER,43,TAUNT,48,DOUBLEEDGE
@@ -701,7 +701,7 @@ BattlerEnemyY = 37
 Evolutions = OBSTAGOON,Level,35
 #-------------------------------
 [CASTFORM,1]
-FormName = Castform (Sun)
+FormName = Sun
 Type1 = FIRE
 Color = Red
 Pokedex = This is the form Castform takes on the brightest of days. Its skin is unexpectedly hot to the touch, so approach with care.
@@ -710,7 +710,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 #-------------------------------
 [CASTFORM,2]
-FormName = Castform (Rain)
+FormName = Rain
 Type1 = WATER
 Color = Blue
 Pokedex = This is the form Castform takes when soaked with rain. When its body is compressed, water will seep out as if from a sponge.
@@ -719,7 +719,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 #-------------------------------
 [CASTFORM,3]
-FormName = Castform (Snow)
+FormName = Hail
 Type1 = ICE
 Color = White
 Pokedex = This is the form Castform takes when covered in snow. Its body becomes an ice-like material, with a temperature near -5 degrees Celsius.
@@ -728,7 +728,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 #-------------------------------
 [DEOXYS,1]
-FormName = Attack Forme
+FormName = Attack
 BaseStats = 50,180,20,150,180,20
 #Total: 600
 EffortPoints = 0,2,0,0,1,0
@@ -738,7 +738,7 @@ BattlerPlayerY = 6
 BattlerEnemyY = 10
 #-------------------------------
 [DEOXYS,2]
-FormName = Defense Forme
+FormName = Defense
 BaseStats = 50,70,160,90,70,160
 #Total: 600
 EffortPoints = 0,0,2,0,0,1
@@ -748,7 +748,7 @@ BattlerPlayerY = 10
 BattlerEnemyY = 13
 #-------------------------------
 [DEOXYS,3]
-FormName = Speed Forme
+FormName = Speed
 BaseStats = 50,95,90,180,95,90
 #Total: 600
 EffortPoints = 0,0,0,3,0,0
@@ -758,19 +758,19 @@ BattlerPlayerY = 9
 BattlerEnemyY = 13
 #-------------------------------
 [BURMY,1]
-FormName = Burmy (Sand)
+FormName = Sand
 Color = Brown
 BattlerPlayerY = 28
 BattlerEnemyY = 32
 #-------------------------------
 [BURMY,2]
-FormName = Burmy (Trash)
+FormName = Trash
 Color = Red
 BattlerPlayerY = 26
 BattlerEnemyY = 30
 #-------------------------------
 [WORMADAM,1]
-FormName = Wormadam (Sand)
+FormName = Sand
 Type1 = BUG
 Type2 = GROUND
 BaseStats = 60,79,105,36,59,85
@@ -783,7 +783,7 @@ BattlerPlayerY = 23
 BattlerEnemyY = 27
 #-------------------------------
 [WORMADAM,2]
-FormName = Wormadam (Trash)
+FormName = Trash
 Type1 = BUG
 Type2 = STEEL
 BaseStats = 60,69,95,36,69,95
@@ -796,7 +796,7 @@ BattlerPlayerY = 23
 BattlerEnemyY = 27
 #-------------------------------
 [CHERRIM,1]
-FormName = Cherrim (Sun)
+FormName = Sun
 Type1 = GRASS
 Type2 = FIRE
 Color = Pink
@@ -817,7 +817,7 @@ BattlerPlayerY = 21
 BattlerEnemyY = 25
 #-------------------------------
 [ROTOM,1]
-FormName = Heat Rotom
+FormName = Heat
 Type1 = ELECTRIC
 Type2 = FIRE
 Pokedex = This Rotom has possessed a convection microwave oven that uses a special motor. It also has a flair for manipulating flames.
@@ -826,7 +826,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 #-------------------------------
 [ROTOM,2]
-FormName = Wash Rotom
+FormName = Wash
 Type1 = ELECTRIC
 Type2 = WATER
 Pokedex = This form of Rotom enjoys coming up with water-based pranks. Be careful with it if you don't want your room flooded.
@@ -835,7 +835,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 14
 #-------------------------------
 [ROTOM,3]
-FormName = Frost Rotom
+FormName = Frost
 Type1 = ELECTRIC
 Type2 = ICE
 Pokedex = Rotom assumes this form when it takes over a refrigerator powered by a special motor. It battles by spewing cold air.
@@ -844,7 +844,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 8
 #-------------------------------
 [ROTOM,4]
-FormName = Fan Rotom
+FormName = Fan
 Type1 = ELECTRIC
 Type2 = FLYING
 Abilities = MOTORDRIVE
@@ -854,7 +854,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 16
 #-------------------------------
 [ROTOM,5]
-FormName = Mow Rotom
+FormName = Mow
 Type1 = ELECTRIC
 Type2 = GRASS
 Pokedex = This is Rotom after it's seized control of a lawn mower that has a special motor. As it mows down grass, it scatters the clippings everywhere.
@@ -862,7 +862,7 @@ BattlerPlayerY = 22
 BattlerEnemyX = 0
 #-------------------------------
 [GIRATINA,1]
-FormName = Origin Forme
+FormName = Origin
 BaseStats = 150,120,100,90,120,100
 #Total: 680
 Abilities = LEVITATE
@@ -876,7 +876,7 @@ BattlerEnemyX = -5
 BattlerEnemyY = 10
 #-------------------------------
 [SHAYMIN,1]
-FormName = Sky Forme
+FormName = Sky
 Type1 = GRASS
 Type2 = FLYING
 BaseStats = 100,103,75,127,120,75
@@ -1010,7 +1010,7 @@ BattlerPlayerY = 30
 BattlerEnemyY = 37
 #-------------------------------
 [DARUMAKA,1]
-FormName = Darumaka (G)
+FormName = Galarian
 Type1 = ICE
 Moves = 1,POWDERSNOW,1,TACKLE,4,TAUNT,8,BITE,12,AVALANCHE,16,WORKUP,20,ICEFANG,24,HEADBUTT,28,ICEPUNCH,32,UPROAR,36,BELLYDRUM,40,BLIZZARD,44,THRASH,48,SUPERPOWER
 TutorMoves = AVALANCHE,BLIZZARD,BRICKBREAK,DIG,ENCORE,ENDURE,FACADE,FIREBLAST,FIREFANG,FIREPUNCH,FIRESPIN,FLAMETHROWER,FLAREBLITZ,FLING,FOCUSENERGY,GRASSKNOT,GYROBALL,HEATWAVE,ICEBEAM,ICEFANG,ICEPUNCH,MEGAKICK,MEGAPUNCH,OVERHEAT,PROTECT,REST,ROCKSLIDE,ROCKTOMB,ROUND,SLEEPTALK,SNORE,SOLARBEAM,SUBSTITUTE,SUNNYDAY,SUPERPOWER,TAUNT,THIEF,UPROAR,UTURN,WILLOWISP,WORKUP,ZENHEADBUTT
@@ -1022,9 +1022,9 @@ Pokedex = The colder they get, the more energetic they are. They freeze their br
 Evolutions = DARMANITAN,Item,ICESTONE
 #-------------------------------
 [DARMANITAN,1]
-FormName = Darmanitan (G)
+FormName = Galarian
 Type1 = ICE
-BaseStats = 105,140,55,95,40,55
+BaseStats = 105,120,55,95,60,55
 #Total: 490
 Abilities = GORILLATACTICS
 Moves = 0,ICICLECRASH,1,ICICLECRASH,1,POWDERSNOW,1,TACKLE,1,TAUNT,1,BITE,12,AVALANCHE,16,WORKUP,20,ICEFANG,24,HEADBUTT,28,ICEPUNCH,32,UPROAR,38,BELLYDRUM,44,BLIZZARD,50,THRASH,56,SUPERPOWER
@@ -1035,22 +1035,11 @@ Color = White
 Pokedex = Though it has a gentle disposition, it's also very strong. It will quickly freeze the snowball on its head before going for a headbutt.
 BattlerPlayerY = 23
 #-------------------------------
-[DARMANITAN,2]
-FormName = Darmanitan Zen
-Type1 = FIRE
-Type2 = PSYCHIC
-BaseStats = 105,30,105,55,140,105
-#Total: 540
-EffortPoints = 0,0,0,0,2,0
-Color = Blue
-Pokedex = When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit.
-BattlerEnemyY = 33
-#-------------------------------
-[DARMANITAN,3]
-FormName = Darmanitan Zen (G)
+[DARMANITANZEN,1]
+FormName = Galarian
 Type1 = ICE
 Type2 = FIRE
-BaseStats = 105,160,55,135,30,55
+BaseStats = 105,30,95,35,120,95
 #Total: 540
 EffortPoints = 0,0,0,0,2,0
 Color = White
@@ -1058,7 +1047,7 @@ Pokedex = Darmanitan takes this form when enraged. It won't stop spewing flames 
 BattlerEnemyY = 30
 #-------------------------------
 [YAMASK,1]
-FormName = Yamask (G)
+FormName = Galarian
 Type1 = ROCK
 Type2 = GHOST
 BaseStats = 38,55,85,30,30,65
@@ -1074,34 +1063,34 @@ BattlerEnemyY = 30
 Evolutions = RUNERIGUS,Level,34
 #-------------------------------
 [DEERLING,1]
-FormName = Summer Form
+FormName = Summer
 Color = Green
 BattlerPlayerY = 28
 #-------------------------------
 [DEERLING,2]
-FormName = Autumn Form
+FormName = Autumn
 Color = Red
 BattlerPlayerY = 28
 #-------------------------------
 [DEERLING,3]
-FormName = Winter Form
+FormName = Winter
 Color = Brown
 BattlerPlayerY = 28
 #-------------------------------
 [SAWSBUCK,1]
-FormName = Summer Form
+FormName = Summer
 BattlerPlayerY = 10
 #-------------------------------
 [SAWSBUCK,2]
-FormName = Autumn Form
+FormName = Autumn
 BattlerPlayerY = 10
 #-------------------------------
 [SAWSBUCK,3]
-FormName = Winter Form
+FormName = Winter
 BattlerPlayerY = 10
 #-------------------------------
 [STUNFISK,1]
-FormName = Stunfisk (G)
+FormName = Galarian
 Type1 = GROUND
 Type2 = STEEL
 BaseStats = 109,81,99,32,66,84
@@ -1117,7 +1106,7 @@ Pokedex = Its conspicuous lips lure prey in as it lies in wait in the mud. When 
 BattlerEnemyY = 33
 #-------------------------------
 [TORNADUS,1]
-FormName = Therian Forme
+FormName = Therian
 BaseStats = 79,100,80,121,110,90
 #Total: 580
 EffortPoints = 0,0,0,3,0,0
@@ -1131,7 +1120,7 @@ BattlerEnemyY = 11
 BattlerShadowSize = 3
 #-------------------------------
 [THUNDURUS,1]
-FormName = Therian Forme
+FormName = Therian
 BaseStats = 79,105,70,101,145,80
 #Total: 580
 EffortPoints = 0,0,0,0,3,0
@@ -1143,7 +1132,7 @@ BattlerPlayerY = 2
 BattlerEnemyY = 10
 #-------------------------------
 [LANDORUS,1]
-FormName = Therian Forme
+FormName = Therian
 BaseStats = 89,145,90,91,105,80
 #Total: 600
 EffortPoints = 0,3,0,0,0,0
@@ -1155,7 +1144,7 @@ BattlerPlayerY = 6
 BattlerEnemyY = 17
 #-------------------------------
 [KYUREM,1]
-FormName = White Kyurem
+FormName = White
 BaseStats = 125,120,90,95,170,100
 #Total: 700
 EffortPoints = 0,0,0,0,3,0
@@ -1168,7 +1157,7 @@ BattlerEnemyX = 8
 BattlerEnemyY = 8
 #-------------------------------
 [KYUREM,2]
-FormName = Black Kyurem
+FormName = Black
 BaseStats = 125,170,100,95,120,90
 #Total: 700
 EffortPoints = 0,3,0,0,0,0
@@ -1202,14 +1191,14 @@ BattlerEnemyX = 1
 BattlerEnemyY = 4
 #-------------------------------
 [KELDEO,1]
-FormName = Resolute Form
+FormName = Resolute
 TutorMoves = AERIALACE,AIRSLASH,AQUATAIL,AURASPHERE,BOUNCE,BRICKBREAK,CALMMIND,CLOSECOMBAT,COACHING,CONFIDE,COVET,CUT,ENDEAVOR,ENDURE,FACADE,FALSESWIPE,FLIPTURN,FOCUSBLAST,FRUSTRATION,GIGAIMPACT,HAIL,HELPINGHAND,HIDDENPOWER,HYDROPUMP,HYPERBEAM,ICYWIND,LASTRESORT,LIQUIDATION,LOWKICK,MEGAHORN,MUDDYWATER,POISONJAB,PROTECT,PSYCHUP,RAINDANCE,REFLECT,REST,RETALIATE,RETURN,REVENGE,REVERSAL,ROAR,ROUND,SAFEGUARD,SCALD,SLEEPTALK,SMARTHORN,SMASH,SNORE,STONEEDGE,STRENGTH,SUBSTITUTE,SUNNYDAY,SUPERPOWER,SURF,SWAGGER,SWIFT,SWORDSDANCE,TAUNT,TOXIC,WATERPULSE,WORKUP,XSCISSOR
 Pokedex = The power that lay hidden in its body now covers its horn, turning it into a sword that can slice through anything.
 BattlerPlayerY = 17
 BattlerEnemyY = 21
 #-------------------------------
 [MELOETTA,1]
-FormName = Pirouette Forme
+FormName = Pirouette
 Type1 = NORMAL
 Type2 = FIGHTING
 BaseStats = 100,128,90,128,77,77
@@ -1421,7 +1410,7 @@ BattlerPlayerY = 19
 BattlerEnemyY = 23
 #-------------------------------
 [AEGISLASH,1]
-FormName = Blade Forme
+FormName = Blade
 BaseStats = 60,150,50,60,150,50
 #Total: 520
 EffortPoints = 0,2,0,0,1,0
@@ -1480,7 +1469,7 @@ BattlerEnemyY = 12
 FormName = Active Mode
 #-------------------------------
 [ZYGARDE,1]
-FormName = 10% Forme
+FormName = 10%
 BaseStats = 54,100,71,115,61,85
 #Total: 486
 Height = 1.2
@@ -1492,7 +1481,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 19
 #-------------------------------
 [ZYGARDE,2]
-FormName = Complete Forme
+FormName = Complete
 BaseStats = 216,100,121,85,91,95
 #Total: 708
 Abilities = POWERCONSTRUCT
@@ -1515,7 +1504,7 @@ Color = Black
 Shape = BipedalTail
 #-------------------------------
 [HOOPA,1]
-FormName = Hoopa Unbound
+FormName = Unbound
 Type1 = PSYCHIC
 Type2 = DARK
 BaseStats = 80,160,60,80,170,130
@@ -1551,14 +1540,16 @@ Pokedex = It summons the dead with its dreamy dancing. From their malice, it dra
 BattlerEnemyY = 24
 #-------------------------------
 [ROCKRUFF,2]
-FormName = Rockruff (Dusk)
+FormName = Dusk
 Abilities = OWNTEMPO
 HiddenAbility = OWNTEMPO
 TutorMoves = CONFIDE,COVET,EARTHPOWER,ECHOEDVOICE,ENDEAVOR,ENDURE,FACADE,FRUSTRATION,HIDDENPOWER,HYPERVOICE,IRONDEFENSE,IRONHEAD,IRONTAIL,LASTRESORT,PROTECT,REST,RETURN,ROAR,ROCKPOLISH,ROCKSLIDE,ROCKTOMB,ROUND,SLEEPTALK,SNARL,SNORE,STEALTHROCK,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SWAGGER,TAUNT,TOXIC,ZENHEADBUTT
 Evolutions = LYCANROC,LevelEvening,25
 #-------------------------------
 [LYCANROC,1]
-FormName = Midnight Form
+FormName = Midnight
+Type1 = ROCK
+Type2 = DARK
 BaseStats = 85,115,75,82,55,75
 #Total: 487
 Abilities = KEENEYE,VITALSPIRIT
@@ -1574,7 +1565,7 @@ BattlerEnemyY = 15
 BattlerShadowSize = 3
 #-------------------------------
 [LYCANROC,2]
-FormName = Dusk Form
+FormName = Dusk
 BaseStats = 75,117,65,110,55,65
 #Total: 487
 Abilities = TOUGHCLAWS
@@ -1584,7 +1575,7 @@ TutorMoves = BRICKBREAK,BULKUP,CLOSECOMBAT,CONFIDE,COVET,CRUNCH,DRILLRUN,EARTHPO
 Pokedex = Bathed in the setting sun of evening, Lycanroc has undergone a special kind of evolution. An intense fighting spirit underlies its calmness.
 #-------------------------------
 [WISHIWASHI,1]
-FormName = Wishiwashi (School)
+FormName = School
 BaseStats = 45,140,130,30,140,135
 #Total: 620
 Height = 8.2
@@ -1686,7 +1677,7 @@ Type1 = FAIRY
 TutorMoves = AERIALACE,AIRSLASH,CONFIDE,CRUNCH,DEFOG,DRACOMETEOR,DRAGONCLAW,ENDURE,EXPLOSION,FACADE,FIREFANG,FLAMECHARGE,FLAMETHROWER,FLASHCANNON,FRUSTRATION,GIGAIMPACT,GRASSPLEDGE,HAIL,HEATWAVE,HIDDENPOWER,HYPERBEAM,HYPERVOICE,ICEBEAM,ICYWIND,IMPRISON,IRONDEFENSE,IRONHEAD,LASERFOCUS,LASTRESORT,MAGICCOAT,OUTRAGE,PAYBACK,PROTECT,PSYCHICFANGS,RAINDANCE,REST,RETURN,REVERSAL,ROAR,ROCKSLIDE,ROUND,SANDSTORM,SCARYFACE,SELFDESTRUCT,SHADOWBALL,SHADOWCLAW,SIGNALBEAM,SLEEPTALK,SNARL,SNORE,STEELBEAM,STEELWING,SUBSTITUTE,SUNNYDAY,SURF,SWAGGER,SWIFT,SWORDSDANCE,TAILWIND,TERRAINPULSE,THUNDERBOLT,THUNDERFANG,THUNDERWAVE,TOXIC,TRIATTACK,UTURN,WORKUP,XSCISSOR,ZENHEADBUTT
 #-------------------------------
 [MINIOR,7]
-FormName = Minior (Red)
+FormName = Red
 BaseStats = 60,100,60,120,130,60
 #Total: 530
 EffortPoints = 0,1,0,0,1,0
@@ -1698,7 +1689,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
 [MINIOR,8]
-FormName = Minior (Orange)
+FormName = Orange
 BaseStats = 60,100,60,120,130,60
 #Total: 530
 EffortPoints = 0,1,0,0,1,0
@@ -1710,7 +1701,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
 [MINIOR,9]
-FormName = Minior (Yellow)
+FormName = Yellow
 BaseStats = 60,100,60,120,130,60
 #Total: 530
 EffortPoints = 0,1,0,0,1,0
@@ -1722,7 +1713,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
 [MINIOR,10]
-FormName = Minior (Green)
+FormName = Green
 BaseStats = 60,100,60,120,130,60
 #Total: 530
 EffortPoints = 0,1,0,0,1,0
@@ -1734,7 +1725,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
 [MINIOR,11]
-FormName = Minior (Blue)
+FormName = Blue
 BaseStats = 60,100,60,120,130,60
 #Total: 530
 EffortPoints = 0,1,0,0,1,0
@@ -1746,7 +1737,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
 [MINIOR,12]
-FormName = Minior (Indigo)
+FormName = Indigo
 BaseStats = 60,100,60,120,130,60
 #Total: 530
 EffortPoints = 0,1,0,0,1,0
@@ -1758,7 +1749,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
 [MINIOR,13]
-FormName = Minior (Violet)
+FormName = Violet
 BaseStats = 60,100,60,120,130,60
 #Total: 530
 EffortPoints = 0,1,0,0,1,0
@@ -1805,7 +1796,7 @@ BattlerEnemyX = -4
 BattlerEnemyY = 5
 #-------------------------------
 [NECROZMA,3]
-FormName = Ultra Necrozma
+FormName = Ultra
 Type1 = PSYCHIC
 Type2 = DRAGON
 BaseStats = 97,167,97,129,167,97
@@ -1835,12 +1826,12 @@ Color = Red
 Pokedex = This gorgeous Magearna looks as it did at the time of its invention. Its luxurious decoration pleased the king's daughter.
 #-------------------------------
 [CRAMORANT,1]
-FormName = Gulping Form
+FormName = Gulping
 Pokedex = The slightest shock is sometimes enough to get this Pokémon to spit out the Arrokuda lodged in its throat.
 BattlerEnemyX = -6
 #-------------------------------
 [CRAMORANT,2]
-FormName = Gorging Form
+FormName = Gorging
 Pokedex = The half-swallowed Pikachu is so startled that it isn't struggling yet, but it's still looking for a chance to strike back.
 BattlerEnemyX = -6
 #-------------------------------
@@ -1854,270 +1845,270 @@ BattlerEnemyX = 3
 BattlerEnemyY = 11
 #-------------------------------
 [ALCREMIE,1]
-FormName = Berry - Vanilla Cream
+FormName = Berry - Vanilla
 #-------------------------------
 [ALCREMIE,2]
-FormName = Love - Vanilla Cream
+FormName = Love - Vanilla
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,3]
-FormName = Star - Vanilla Cream
+FormName = Star - Vanilla
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,4]
-FormName = Clover - Vanilla Cream
+FormName = Clover - Vanilla
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,5]
-FormName = Flower - Vanilla Cream
+FormName = Flower - Vanilla
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,6]
-FormName = Ribbon - Vanilla Cream
+FormName = Ribbon - Vanilla
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,7]
-FormName = Strawberry - Ruby Cream
+FormName = Strawberry - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,8]
-FormName = Berry - Ruby Cream
+FormName = Berry - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,9]
-FormName = Love - Ruby Cream
+FormName = Love - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,10]
-FormName = Star - Ruby Cream
+FormName = Star - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,11]
-FormName = Clover - Ruby Cream
+FormName = Clover - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,12]
-FormName = Flower - Ruby Cream
+FormName = Flower - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,13]
-FormName = Ribbon - Ruby Cream
+FormName = Ribbon - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,14]
-FormName = Strawberry - Matcha Cream
+FormName = Strawberry - Matcha
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,15]
-FormName = Berry - Matcha Cream
+FormName = Berry - Matcha
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,16]
-FormName = Love - Matcha Cream
+FormName = Love - Matcha
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,17]
-FormName = Star - Matcha Cream
+FormName = Star - Matcha
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,18]
-FormName = Clover - Matcha Cream
+FormName = Clover - Matcha
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,19]
-FormName = Flower - Matcha Cream
+FormName = Flower - Matcha
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,20]
-FormName = Ribbon - Matcha Cream
+FormName = Ribbon - Matcha
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,21]
-FormName = Strawberry - Mint Cream
+FormName = Strawberry - Mint
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,22]
-FormName = Berry - Mint Cream
+FormName = Berry - Mint
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,23]
-FormName = Love - Mint Cream
+FormName = Love - Mint
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,24]
-FormName = Star - Mint Cream
+FormName = Star - Mint
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,25]
-FormName = Clover - Mint Cream
+FormName = Clover - Mint
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,26]
-FormName = Flower - Mint Cream
+FormName = Flower - Mint
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,27]
-FormName = Ribbon - Mint Cream
+FormName = Ribbon - Mint
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,28]
-FormName = Strawberry - Lemon Cream
+FormName = Strawberry - Lemon
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,29]
-FormName = Berry - Lemon Cream
+FormName = Berry - Lemon
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,30]
-FormName = Love - Lemon Cream
+FormName = Love - Lemon
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,31]
-FormName = Star - Lemon Cream
+FormName = Star - Lemon
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,32]
-FormName = Clover - Lemon Cream
+FormName = Clover - Lemon
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,33]
-FormName = Flower - Lemon Cream
+FormName = Flower - Lemon
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,34]
-FormName = Ribbon - Lemon Cream
+FormName = Ribbon - Lemon
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,35]
-FormName = Strawberry - Salted Cream
+FormName = Strawberry - Salted
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,36]
-FormName = Berry - Salted Cream
+FormName = Berry - Salted
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,37]
-FormName = Love - Salted Cream
+FormName = Love - Salted
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,38]
-FormName = Star - Salted Cream
+FormName = Star - Salted
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,39]
-FormName = Clover - Salted Cream
+FormName = Clover - Salted
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,40]
-FormName = Flower - Salted Cream
+FormName = Flower - Salted
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,41]
-FormName = Ribbon - Salted Cream
+FormName = Ribbon - Salted
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,42]
-FormName = Strawberry - Ruby Swirl
+FormName = Strawberry - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,43]
-FormName = Berry - Ruby Swirl
+FormName = Berry - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,44]
-FormName = Love - Ruby Swirl
+FormName = Love - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,45]
-FormName = Star - Ruby Swirl
+FormName = Star - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,46]
-FormName = Clover - Ruby Swirl
+FormName = Clover - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,47]
-FormName = Flower - Ruby Swirl
+FormName = Flower - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,48]
-FormName = Ribbon - Ruby Swirl
+FormName = Ribbon - Ruby
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,49]
-FormName = Strawberry - Caramel Swirl
+FormName = Strawberry - Caramel
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,50]
-FormName = Berry - Caramel Swirl
+FormName = Berry - Caramel
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,51]
-FormName = Love - Caramel Swirl
+FormName = Love - Caramel
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,52]
-FormName = Star - Caramel Swirl
+FormName = Star - Caramel
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,53]
-FormName = Clover - Caramel Swirl
+FormName = Clover - Caramel
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,54]
-FormName = Flower - Caramel Swirl
+FormName = Flower - Caramel
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,55]
-FormName = Ribbon - Caramel Swirl
+FormName = Ribbon - Caramel
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,56]
-FormName = Strawberry - Rainbow Swirl
+FormName = Strawberry - Rainbow
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,57]
-FormName = Berry - Rainbow Swirl
+FormName = Berry - Rainbow
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,58]
-FormName = Love - Rainbow Swirl
+FormName = Love - Rainbow
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,59]
-FormName = Star - Rainbow Swirl
+FormName = Star - Rainbow
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,60]
-FormName = Clover - Rainbow Swirl
+FormName = Clover - Rainbow
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,61]
-FormName = Flower - Rainbow Swirl
+FormName = Flower - Rainbow
 BattlerPlayerY = 21
 #-------------------------------
 [ALCREMIE,62]
-FormName = Ribbon - Rainbow Swirl
+FormName = Ribbon - Rainbow
 BattlerPlayerY = 21
 #-------------------------------
 [EISCUE,1]
-FormName = Eiscue (Melted)
+FormName = Melted
 BaseStats = 75,80,70,130,65,50
 #Total: 470
 Pokedex = The hair on its head connects to the surface of its brain. When this Pokémon has something on its mind, its hair chills the air around it.
 #-------------------------------
 [SINISTEA,1]
-FormName = Sinistea (Antique)
+FormName = Antique
 Pokedex = It absorbs the life-force of those who drink it. It waits patiently, but opportunities are fleeting—it tastes so bad that it gets spat out immediately.
 BattlerEnemyY = 35
 Evolutions = POLTEAGEIST,Item,CHIPPEDPOT
 #-------------------------------
 [POLTEAGEIST,1]
-FormName = Polteageist (Antique)
+FormName = Antique
 Pokedex = Trainers Polteageist trusts will be allowed to experience its distinctive flavor and aroma firsthand by sampling just a tiny bit of its tea.
 #-------------------------------
 [INDEEDEE,1]
-FormName = Indeedee♀
+FormName = ♀
 BaseStats = 75,65,65,85,95,105
 #Total: 490
 EffortPoints = 0,0,0,0,0,2
@@ -2130,11 +2121,11 @@ BattlerEnemyX = -1
 BattlerEnemyY = 24
 #-------------------------------
 [MORPEKO,1]
-FormName = Morpeko (Hangry)
+FormName = Hangry
 Pokedex = Hunger hormones affect its temperament. Until its hunger is appeased, it gets up to all manner of evil deeds.
 #-------------------------------
 [ZACIAN,1]
-FormName = Zacian (Crowned)
+FormName = Crowned
 Type1 = FAIRY
 Type2 = STEEL
 BaseStats = 92,170,115,148,80,115
@@ -2144,7 +2135,7 @@ Pokedex = Able to cut down anything with a single strike, it became known as the
 BattlerEnemyX = -5
 #-------------------------------
 [ZAMAZENTA,1]
-FormName = Zamazenta (Crowned)
+FormName = Crowned
 Type1 = FIGHTING
 Type2 = STEEL
 BaseStats = 92,130,145,128,80,145
@@ -2155,7 +2146,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 11
 #-------------------------------
 [URSHIFU,1]
-FormName = Urshifu (Rapid)
+FormName = Rapid
 Type1 = FIGHTING
 Type2 = WATER
 Moves = 0,SURGINGSTRIKES,1,SURGINGSTRIKES,1,AQUAJET,1,SMASH,1,LEER,1,ENDURE,1,FOCUSENERGY,12,AERIALACE,16,SCARYFACE,20,HEADBUTT,24,BRICKBREAK,28,DETECT,32,BULKUP,36,IRONHEAD,40,DYNAMICPUNCH,44,COUNTER,48,CLOSECOMBAT,52,FOCUSPUNCH
@@ -2164,7 +2155,7 @@ Pokedex = This form of Urshifu is a strong believer in defeating foes by raining
 BattlerEnemyY = 12
 #-------------------------------
 [CALYREX,1]
-FormName = Calyrex (Ice)
+FormName = Ice
 Type1 = PSYCHIC
 Type2 = ICE
 BaseStats = 100,165,150,50,85,130
@@ -2178,7 +2169,7 @@ Pokedex = It's said that this Pokémon once moved a large forest—and all the P
 BattlerEnemyY = 13
 #-------------------------------
 [CALYREX,2]
-FormName = Calyrex (Shadow)
+FormName = Shadow
 Type1 = PSYCHIC
 Type2 = GHOST
 BaseStats = 100,85,80,150,165,100
@@ -2191,7 +2182,7 @@ Kind = High King
 BattlerEnemyX = -4
 #-------------------------------
 [KYOGRE,1]
-FormName = Primal Kyogre
+FormName = Primal
 BaseStats = 100,150,90,90,180,160
 #Total: 770
 Abilities = PRIMORDIALSEA
@@ -2201,7 +2192,7 @@ BattlerPlayerY = 12
 BattlerEnemyY = 22
 #-------------------------------
 [GROUDON,1]
-FormName = Primal Groudon
+FormName = Primal
 Type1 = GROUND
 Type2 = FIRE
 BaseStats = 100,180,160,90,150,90
@@ -2213,7 +2204,7 @@ BattlerPlayerY = 10
 BattlerEnemyY = 14
 #-------------------------------
 [RAYQUAZA,1]
-FormName = M. Rayquaza
+FormName = Mega
 MegaMove = DRAGONASCENT
 MegaMessage = 1
 BaseStats = 105,180,100,115,180,100

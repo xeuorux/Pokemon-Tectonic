@@ -1403,6 +1403,20 @@ class PokeBattle_Move
     return ret
   end
   
+  def pbGetAttackStats(user,target)
+    if specialMove? || (user.hasActiveAbility?(:MYSTICFIST) && punchingMove?)
+      return user.spatk, user.stages[:SPECIAL_ATTACK]+6
+    end
+    return user.attack, user.stages[:ATTACK]+6
+  end
+
+  def pbGetDefenseStats(user,target)
+    if specialMove? || (user.hasActiveAbility?(:MYSTICFIST) && punchingMove?)
+      return target.spdef, target.stages[:SPECIAL_DEFENSE]+6
+    end
+    return target.defense, target.stages[:DEFENSE]+6
+  end
+  
   def pbCalcDamage(user,target,numTargets=1)
     return if statusMove?
     if target.damageState.disguise
@@ -2185,6 +2199,34 @@ class PokeBattle_Battler
       @effects[PBEffects::Outrage] = 0
       @currentMove = nil
     end
+  end
+  
+  def pbCureStatus(showMessages=true)
+    oldStatus = status
+    self.status = :NONE
+    if showMessages
+      case oldStatus
+      when :SLEEP     then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
+      when :POISON    then @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", pbThis))
+      when :BURN      then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
+      when :PARALYSIS then @battle.pbDisplay(_INTL("{1} was cured of paralysis.", pbThis))
+      when :FROZEN    then @battle.pbDisplay(_INTL("{1} thawed out!", pbThis))
+      end
+    end
+	
+	# Lingering Daze
+	if oldStatus == :SLEEP
+	  @battle.eachOtherSideBattler(@index) do |b|
+        if b.hasActiveAbility(:LINGERINGDAZE)
+			@battle.pbShowAbilitySplash(b)
+			pbLowerStatStageByAbility(:SPECIAL_ATTACK,1,b)
+			pbLowerStatStageByAbility(:SPECIAL_DEFENSE,1,b)
+			@battle.pbHideAbilitySplash(b)
+		end
+      end
+	end
+	
+    PBDebug.log("[Status change] #{pbThis}'s status was cured") if !showMessages
   end
   
   def pbPoison(user=nil,msg=nil,toxic=false)
