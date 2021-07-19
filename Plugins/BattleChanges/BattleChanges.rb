@@ -109,10 +109,10 @@ class PokeBattle_Battle
           if @choices[b.index][0]==:UseMove
             move = @choices[b.index][2]
             pri = move.priority
-            if b.abilityActive?
-              pri = BattleHandlers.triggerPriorityChangeAbility(b.ability,b,move,pri)
-            end
 			targets = b.pbFindTargets(@choices[b.index],move,b)
+            if b.abilityActive?
+              pri = BattleHandlers.triggerPriorityChangeAbility(b.ability,b,move,pri,targets)
+            end
 			pri += move.priorityModification(b,targets)
             bArray[3] = pri
             @choices[b.index][4] = pri
@@ -2353,18 +2353,20 @@ class PokeBattle_Battler
     @battle.eachBattler { |b| b.pbContinualAbilityChecks }   # Trace, end primordial weathers
   end
   
-  def pbConfusionDamage(msg,charm=false)
+  def pbConfusionDamage(msg,charm=false,superEff=false)
     @damageState.reset
     @damageState.initialHP = @hp
     confusionMove = charm ? PokeBattle_Charm.new(@battle,nil) : PokeBattle_Confusion.new(@battle,nil)
     confusionMove.calcType = confusionMove.pbCalcType(self)   # nil
     @damageState.typeMod = confusionMove.pbCalcTypeMod(confusionMove.calcType,self,self)   # 8
+	@damageState.typeMod *= 2.0 if superEff
     confusionMove.pbCheckDamageAbsorption(self,self)
     confusionMove.pbCalcDamage(self,self)
     confusionMove.pbReduceDamage(self,self)
     self.hp -= @damageState.hpLost
     confusionMove.pbAnimateHitAndHPLost(self,[self])
     @battle.pbDisplay(msg)   # "It hurt itself in its confusion!"
+	@battle.pbDisplay("It was super-effective!") if superEff
     confusionMove.pbRecordDamageLost(self,self)
     confusionMove.pbEndureKOMessage(self)
     pbFaint if fainted?
@@ -2953,9 +2955,13 @@ class PokeBattle_Battler
         @battle.pbCommonAnimation("Confusion",self)
         @battle.pbDisplay(_INTL("{1} is confused!",pbThis))
         threshold = 30 + 35 * @effects[PBEffects::ConfusionChance]
-        if @battle.pbRandom(100)<threshold && !hasActiveAbility?([:HEADACHE,:TANGLEDFEET])
+        if (@battle.pbRandom(100)<threshold && !hasActiveAbility?([:HEADACHE,:TANGLEDFEET])) || ($DEBUG && Input.press?(Input::CTRL))
           @effects[PBEffects::ConfusionChance] = 0
-          pbConfusionDamage(_INTL("It hurt itself in its confusion!"))
+		  superEff = false
+		  @battle.eachOtherSideBattler(@index) do |b| # Brain Scramble
+			superEff = true if b.hasActiveAbility?(:BRAINSCRAMBLE)
+		  end
+          pbConfusionDamage(_INTL("It hurt itself in its confusion!"),false,superEff)
 		  @effects[PBEffects::ConfusionChance] = -999
           @lastMoveFailed = true
           return false
@@ -2974,9 +2980,13 @@ class PokeBattle_Battler
         @battle.pbAnimation(:LUCKYCHANT,self,nil)
         @battle.pbDisplay(_INTL("{1} is charmed!",pbThis))
         threshold = 30 + 35 * @effects[PBEffects::CharmChance]
-        if @battle.pbRandom(100)<threshold && !hasActiveAbility?([:HEADACHE,:TANGLEDFEET])
+        if (@battle.pbRandom(100)<threshold && !hasActiveAbility?([:HEADACHE,:TANGLEDFEET])) || ($DEBUG && Input.press?(Input::CTRL))
           @effects[PBEffects::CharmChance] = 0
-          pbConfusionDamage(_INTL("It's energy went wild due to the charm!"))
+		  superEff = false
+		  @battle.eachOtherSideBattler(@index) do |b| # Brain Scramble
+			superEff = true if b.hasActiveAbility?(:BRAINSCRAMBLE)
+		  end
+          pbConfusionDamage(_INTL("It's energy went wild due to the charm!"),true,superEff)
 		  @effects[PBEffects::CharmChance] = -999
           @lastMoveFailed = true
           return false
@@ -3014,8 +3024,6 @@ class PokeBattle_Battler
   def pbSuccessCheckAgainstTarget(move,user,target)
 	# Unseen Fist
     unseenfist = user.ability == :UNSEENFIST && move.contactMove?
-  
-  
     typeMod = move.pbCalcTypeMod(move.calcType,user,target)
     target.damageState.typeMod = typeMod
     # Two-turn attacks can't fail here in the charging turn
@@ -4447,6 +4455,11 @@ module BattleHandlers
 	def self.triggerAbilityOnEnemySwitchIn(ability,switcher,bearer,battle)
 		AbilityOnEnemySwitchIn.trigger(ability,switcher,bearer,battle)
 	end
+	
+	def self.triggerPriorityChangeAbility(ability,battler,move,pri,targets=[])
+		ret = PriorityChangeAbility.trigger(ability,battler,move,pri,targets)
+		return (ret!=nil) ? ret : pri
+  end
 end
 
 class PokeBattle_ActiveField

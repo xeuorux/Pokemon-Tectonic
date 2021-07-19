@@ -3,17 +3,22 @@
 #===============================================================================
 
 BattleHandlers::PriorityChangeAbility.add(:MAESTRO,
-  proc { |ability,battler,move,pri|
+  proc { |ability,battler,move,pri,targets=nil|
     next pri+1 if move.soundMove?
   }
 )
 
 BattleHandlers::PriorityChangeAbility.add(:FAUXLIAGE,
-  proc { |ability,battler,move,pri|
+  proc { |ability,battler,move,pri,targets=nil|
     next pri+1 if battler.battle.field.terrain==:Grassy
   }
 )
 
+BattleHandlers::PriorityChangeAbility.add(:LIGHTTRICK,
+  proc { |ability,battler,move,pri,targets=nil|
+    next pri+1 if targets && targets.length == 1 && targets[0].status != :None
+  }
+)
 
 #===============================================================================
 # MoveImmunityTargetAbility handlers
@@ -143,6 +148,22 @@ BattleHandlers::DamageCalcUserAbility.add(:SUNCHASER,
 BattleHandlers::DamageCalcUserAbility.add(:MYSTICFIST,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.3 if move.punchingMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:BIGTHORNS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+	if move.physicalMove? && user.battle.terrain == :Grassy
+		mults[:base_damage_multiplier] *= 1.3
+	end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:STORMFRONT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.pbWeather==:Rain && [:Electric,:Flying,:Water].include?(type)
+      mults[:base_damage_multiplier] *= 1.3
+    end
   }
 )
 
@@ -450,5 +471,38 @@ BattleHandlers::AccuracyCalcUserAbility.add(:SANDSNIPER,
 BattleHandlers::CriticalCalcUserAbility.add(:STAMPEDE,
   proc { |ability,user,target,c|
     next c+user.stages[:SPEED]
+  }
+)
+
+#===============================================================================
+# EOREffectAbility handlers
+#===============================================================================
+BattleHandlers::EOREffectAbility.add(:ASTRALBODY,
+  proc { |ability,battler,battle|
+	next unless battle.field.terrain==:Misty
+    next if !battler.canHeal?
+	battle.pbShowAbilitySplash(battler)
+    battler.pbRecoverHP(battler.totalhp/16)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+#===============================================================================
+# MoveBlockingAbility handlers
+#===============================================================================
+BattleHandlers::MoveBlockingAbility.add(:KILLJOY,
+  proc { |ability,bearer,user,targets,move,battle|
+    next move.danceMove?
+  }
+)
+
+BattleHandlers::MoveBlockingAbility.add(:BADINFLUENCE,
+  proc { |ability,bearer,user,targets,move,battle|
+    next move.healingMove?
   }
 )

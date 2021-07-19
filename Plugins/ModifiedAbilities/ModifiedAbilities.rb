@@ -244,3 +244,24 @@ BattleHandlers::AbilityOnSwitchIn.add(:SLOWSTART,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::PriorityChangeAbility.add(:GALEWINGS,
+  proc { |ability,battler,move,pri,targets=nil|
+    next pri+1 if battler.hp==battler.totalhp && move.type == :FLYING
+  }
+)
+
+BattleHandlers::PriorityChangeAbility.add(:PRANKSTER,
+  proc { |ability,battler,move,pri,targets=nil|
+    if move.statusMove?
+      battler.effects[PBEffects::Prankster] = true
+      next pri+1
+    end
+  }
+)
+
+BattleHandlers::PriorityChangeAbility.add(:TRIAGE,
+  proc { |ability,battler,move,pri,targets=nil|
+    next pri+3 if move.healingMove?
+  }
+)
