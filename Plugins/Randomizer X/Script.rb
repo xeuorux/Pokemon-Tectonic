@@ -189,7 +189,7 @@ module Randomizer
     ret = $PokemonGlobal && $PokemonGlobal.isRandomizer
     ret, cmd = self.randomizerSelection unless skip
     @@randomizer = true
-	pbMessage("Attempting to apply your Randomizer rules...")
+	pbMessage("Attempting to apply your Randomizer rules...") unless skip || cmd < 0
     # randomize data and cache it
     $PokemonGlobal.randomizedData = self.randomizeData if $PokemonGlobal.randomizedData.nil?
     $PokemonGlobal.isRandomizer = ret
