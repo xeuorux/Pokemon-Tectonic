@@ -900,3 +900,4 @@
 881,BIRDSTRIKE,Bird Strike,0FA,90,FLYING,Physical,100,35,0,Other,0,abef,"A reckless, charge attack from the air. It also damages the user by 25% of the damage dealt."
 882,TERRAFORM,Terraform,538,70,ROCK,Special,100,15,0,AllNearOthers,0,bef,"Churns rocks throughout the area, dealing damage to all nearby Pokémon and removing any active terrain."
 883,PREDICTIONSTRIKE,Prediction Strike,0A5,90,PSYCHIC,Physical,0,15,0,Other,0,abef,"The user perfectly predicts the target's future location, then strikes. The attack lands without fail."
+884,RAKE,Rake,000,55,BUG,Physical,0,25,0,NearOther,0,abef,"The user rakes the target with sharp claws."
