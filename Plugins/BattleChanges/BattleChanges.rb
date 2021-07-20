@@ -1443,6 +1443,7 @@ class PokeBattle_Move
     defense, defStage = pbGetDefenseStats(user,target)
     if !user.hasActiveAbility?(:UNAWARE)
       defStage = 6 if target.damageState.critical && defStage>6
+	  defStage = 6 if user.hasActiveAbility?(:INFILTRATOR) && defStage>6
 	  calc = stageMul[defStage].to_f/stageDiv[defStage].to_f
 	  calc = (calc.to_f + 1.0)/2.0 if target.boss
       defense = (defense.to_f*calc).floor
@@ -1704,9 +1705,9 @@ class PokeBattle_Move
       ret = PBTypeEffectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.not_very_effective_type?(moveType,target.type1,target.type2)
     end
 	
-	# Bosses
-	if user.boss || target.boss
-		ret = Effectiveness::NOT_VERY_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
+	# Corrosion
+	if user.hasActiveAbility?(:CORROSION)
+		ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :STEEL && Effectiveness.ineffective_type?(moveType, defType)
 	end
 	
     return ret
@@ -3152,8 +3153,13 @@ class PokeBattle_Battler
     # Type immunity
     if move.pbDamagingMove? && Effectiveness.ineffective?(typeMod)
       PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-      return false
+	  if !user.boss && !target.boss
+		@battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+		return false
+	  else
+	    name = (user.boss ? user : target).pbThis(true)
+	    @battle.pbDisplay(_INTL("Within {1}'s aura, immunities are pierced!",name))
+      end
     end
     # Dark-type immunity to moves made faster by Prankster
     if Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::Prankster] &&

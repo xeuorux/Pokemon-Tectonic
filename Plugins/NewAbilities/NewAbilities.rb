@@ -196,7 +196,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:SENTRY,
 BattleHandlers::DamageCalcTargetAbility.add(:DESERTARMOR,
   proc { |ability,user,target,move,mults,baseDmg,type|
     w = user.battle.pbWeather
-    if w==:Sandstorm
+    if w==:Sandstorm && move.physicalMove?
       mults[:defense_multiplier] *= 2
     end
   }

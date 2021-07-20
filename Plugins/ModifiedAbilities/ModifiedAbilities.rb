@@ -1,4 +1,4 @@
-BattleHandlers::StatusCureAbility.add(:MAGMAARMOR,
+BattleHandlers::StatusCureAbility.add(:COLDPROOF,
   proc { |ability,battler|
     next if battler.status != :FROZEN
     battler.battle.pbShowAbilitySplash(battler)
@@ -220,14 +220,14 @@ BattleHandlers::DamageCalcUserAbility.add(:HUGEPOWER,
 
 BattleHandlers::DamageCalcUserAbility.copy(:HUGEPOWER,:PUREPOWER)
 
+BattleHandlers::DamageCalcUserAbility.copy(:KEENEYE,:ILLUMINATE)
+
 BattleHandlers::TargetAbilityAfterMoveUse.add(:BERSERK,
   proc { |ability,target,user,move,switched,battle|
     next if !move.damagingMove?
     next if target.damageState.initialHP<target.totalhp/2 || target.hp>=target.totalhp/2
-    next if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
-    target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target)
-    next if !target.pbCanRaiseStatStage?(:ATTACK,target)
-    target.pbRaiseStatStageByAbility(:ATTACK,1,target)
+	target.pbRaiseStatStageByAbility(:ATTACK,1,target) if target.pbCanRaiseStatStage?(:ATTACK,target)
+    target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target) if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
   }
 )
 
@@ -263,5 +263,95 @@ BattleHandlers::PriorityChangeAbility.add(:PRANKSTER,
 BattleHandlers::PriorityChangeAbility.add(:TRIAGE,
   proc { |ability,battler,move,pri,targets=nil|
     next pri+3 if move.healingMove?
+  }
+)
+
+BattleHandlers::EORHealingAbility.add(:HEALER,
+  proc { |ability,battler,battle|
+    battler.eachAlly do |b|
+      next if b.status == :NONE
+      battle.pbShowAbilitySplash(battler)
+      oldStatus = b.status
+      b.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        case oldStatus
+        when :SLEEP
+          battle.pbDisplay(_INTL("{1}'s {2} woke its partner up!",battler.pbThis,battler.abilityName))
+        when :POISON
+          battle.pbDisplay(_INTL("{1}'s {2} cured its partner's poison!",battler.pbThis,battler.abilityName))
+        when :BURN
+          battle.pbDisplay(_INTL("{1}'s {2} healed its partner's burn!",battler.pbThis,battler.abilityName))
+        when :PARALYSIS
+          battle.pbDisplay(_INTL("{1}'s {2} cured its partner's paralysis!",battler.pbThis,battler.abilityName))
+        when :FROZEN
+          battle.pbDisplay(_INTL("{1}'s {2} defrosted its partner!",battler.pbThis,battler.abilityName))
+        end
+      end
+      battle.pbHideAbilitySplash(battler)
+    end
+  }
+)
+
+BattleHandlers::StatLossImmunityAbility.add(:HYPERCUTTER,
+  proc { |ability,battler,stat,battle,showMessages|
+    next false if stat!=:ATTACK && stat!=:SPECIAL_ATTACK
+    if showMessages
+      battle.pbShowAbilitySplash(battler)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1}'s {2} cannot be lowered!",battler.pbThis,GameData::Stat.get(stat).name))
+      else
+        battle.pbDisplay(_INTL("{1}'s {2} prevents {3} loss!",battler.pbThis,
+           battler.abilityName,GameData::Stat.get(stat).name))
+      end
+      battle.pbHideAbilitySplash(battler)
+    end
+    next true
+  }
+)
+
+BattleHandlers::StatLossImmunityAbility.add(:BIGPECKS,
+  proc { |ability,battler,stat,battle,showMessages|
+    next false if stat!=:DEFENSE && stat!=:SPECIAL_DEFENSE
+    if showMessages
+      battle.pbShowAbilitySplash(battler)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1}'s {2} cannot be lowered!",battler.pbThis,GameData::Stat.get(stat).name))
+      else
+        battle.pbDisplay(_INTL("{1}'s {2} prevents {3} loss!",battler.pbThis,
+           battler.abilityName,GameData::Stat.get(stat).name))
+      end
+      battle.pbHideAbilitySplash(battler)
+    end
+    next true
+  }
+)
+
+BattleHandlers::CriticalCalcUserAbility.add(:SUPERLUCK,
+  proc { |ability,user,target,c|
+    next c+2
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:IRONFIST,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if move.punchingMove?
+  }
+)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:JUSTIFIED,
+  proc { |ability,user,target,move,type,battle|
+    next pbBattleMoveImmunityStatAbility(user,target,move,type,:DARK,:SPEED,1,battle)
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:SANDVEIL,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather==:Sandstorm
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:SNOWCLOAK,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather==:Hail
   }
 )
