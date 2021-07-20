@@ -91,6 +91,11 @@ class PokeBattle_Move_502 < PokeBattle_RecoilMove
   def pbRecoilDamage(user,target)
     return (2.0*target.damageState.totalHPLost/3.0).round
   end
+  
+  def getScore(score,user,target,skill=100)
+	score -= 30
+	return score
+  end
 end
 
 #===============================================================================
@@ -114,6 +119,10 @@ class PokeBattle_Move_504 < PokeBattle_Move
       baseDmg *= 1.25
     end
     return baseDmg
+  end
+  
+  def getScore(score,user,target,skill=100)
+	return getWantsToBeSlowerScore(score,user,target,skill,2)
   end
 end
 
@@ -145,6 +154,23 @@ class PokeBattle_Move_505 < PokeBattle_Move
     target.effects[PBEffects::MoveNext] = true
     target.effects[PBEffects::Quash]    = 0
     @battle.pbDisplay(_INTL("{1} was kickstarted into action!",target.pbThis))
+  end
+  
+  def getScore(score,user,target,skill=100)
+    if skill>=PBTrainerAI.mediumSkill
+		if !target.opposes? # Targeting a player's pokemon
+		    # If damage looks like its going to kill the enemy, allow the move, otherwise don't
+			damage = pbRoughDamage(move,user,target,skill,baseDmg)
+			score = damage >= target.hp ? 150 : 0
+		else
+			# If damage looks like its going to kill or mostly kill the ally, don't allow the move
+			damage = pbRoughDamage(move,user,target,skill,baseDmg)
+			return 0 if damage >= target.hp * 0.8
+			score += target.level*4
+			score -= pbRoughStat(target,:SPEED,skill) * 2
+		end
+	end
+	return score
   end
 end
 
@@ -187,6 +213,10 @@ class PokeBattle_Move_508 < PokeBattle_RecoilMove
     return if target.damageState.substitute
     target.pbFreeze(user) if target.pbCanFreeze?(user,false,self)
   end
+  
+  def getScore(score,user,target,skill=100)
+	return getFreezeMoveScore(score,user,target,skill=100) - 30
+  end
 end
 
 #===============================================================================
@@ -208,6 +238,13 @@ class PokeBattle_Move_509 < PokeBattle_Move
     ret1, _ret2 = super
     return ret1, 6   # Def/SpDef stat stage
   end
+  
+  def getScore(score,user,target,skill=100)
+	score += (target.stages[:DEFENSE]-6) * 10 if physicalMove?
+	score += (target.stages[:SPECIAL_DEFENSE] - 6) * 10 if specialMove?
+	score += (target.stages[:EVASION] - 6)
+	return score
+  end
 end
 
 #===============================================================================
@@ -223,6 +260,12 @@ class PokeBattle_Move_50A < PokeBattle_Move
       target.pbPoison(user) if target.pbCanPoison?(user,false,self)
     end
   end
+  
+  def getScore(score,user,target,skill=100)
+	score += target.pbCanBurn(user,false,self) ? 20 : -20
+	score += target.pbCanPoison(user,false,self) ? 20 : -20
+	return score
+  end
 end
 
 #===============================================================================
@@ -234,6 +277,11 @@ class PokeBattle_Move_50B < PokeBattle_Move
     return if !target.damageState.fainted
     return if !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
     user.pbRaiseStatStage(:SPECIAL_ATTACK,3,user)
+  end
+  
+  def getScore(score,user,target,skill=100)
+	score += 20 if !user.statStageAtMax?(:SPECIAL_ATTACK) && target.hp<=target.totalhp/4
+	return score
   end
 end
 

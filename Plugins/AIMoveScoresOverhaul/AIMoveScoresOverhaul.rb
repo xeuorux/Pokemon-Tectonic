@@ -63,17 +63,8 @@ class PokeBattle_AI
         end
       end
     #---------------------------------------------------------------------------
-    when "00C", "00D", "00E"
-      if target.pbCanFreeze?(user,false)
-        score += 30
-        if skill>=PBTrainerAI.highSkill
-          score -= 20 if target.hasActiveAbility?(:MARVELSCALE)
-        end
-      else
-        if skill>=PBTrainerAI.mediumSkill
-          score -= 90 if move.statusMove?
-        end
-      end
+    when "00C", "00D", "00E","135"
+      score = getFreezeMoveScore(score,user,target,skill=100)
     #---------------------------------------------------------------------------
     when "00F"
       score += 30
@@ -2511,14 +2502,6 @@ class PokeBattle_AI
       score -= 95
       score = 0 if skill>=PBTrainerAI.highSkill
     #---------------------------------------------------------------------------
-    when "135"
-      if target.pbCanFreeze?(user,false)
-        score += 30
-        if skill>=PBTrainerAI.highSkill
-          score -= 20 if target.hasActiveAbility?(:MARVELSCALE)
-        end
-      end
-    #---------------------------------------------------------------------------
     when "136"
       score += 20 if user.stages[:DEFENSE]<0
     #---------------------------------------------------------------------------
@@ -3018,4 +3001,70 @@ class PokeBattle_AI
     end
     return score
   end
+end
+
+# Score methods for umbrella classes
+
+class PokeBattle_MultiStatUpMove
+	def getScore(score,user,target,skill=100)
+		score += 50 if user.turnCount==0   # Multi-stat up moves are often great on the first turn
+	
+		# Return 0 if all the stats upped by this move are already at max
+		stagesMaxxed = true
+		upsPhysicalAttack = false
+		upsSpecialAttack = false
+		for i in 0..@statUp.length/2
+			statSym = @statUp[i*2]
+			stagesMaxxed = false if !user.statStageAtMax?(statSym)
+			score -= user.stages[statSym]*10 # Reduce the score for each existing stage
+			upsPhysicalAttack = true if statSym == :ATTACK
+			upsSpecialAttack = true if statSym == :SPECIAL_ATTACK
+		end
+		return 0 if stagesMaxxed
+		
+        if skill>=PBTrainerAI.mediumSkill
+		  hasPhysicalAttack = false
+          hasSpecicalAttack = false
+          user.eachMove do |m|
+		    hasPhysicalAttack = true if m.physicalMove?(m.type)
+            hasSpecicalAttack = true if m.specialMove?(m.type)
+          end
+		  
+          # Medium or higher skilled trainers wont use this move if it boosts an offensive
+		  # Stat that the pokemon can't actually use
+		  return 0 if upsPhysicalAttack && !upsSpecialAttack && !hasPhysicalAttack
+		  return 0 if !upsPhysicalAttack && upsSpecialAttack && !hasSpecicalAttack
+		  
+		  score -= 20 if !upsPhysicalAttack && !upsSpecialAttack # Boost moves that dont up offensives are worse
+        end
+		
+		return score
+	end
+end
+
+# Helper methods
+
+def getFreezeMoveScore(score,user,target,skill=100)
+	if target.pbCanFreeze?(user,false)
+        score += 30
+        if skill>=PBTrainerAI.highSkill
+          score -= 20 if target.hasActiveAbility?(:MARVELSCALE)
+        end
+    elsif skill>=PBTrainerAI.mediumSkill
+        return 0 if move.statusMove?
+    end
+	return score
+end
+
+def getWantsToBeSlowerScore(score,user,target,skill=100,magnitude=1)
+	if skill>=PBTrainerAI.mediumSkill
+        userSpeed = pbRoughStat(user,:SPEED,skill)
+        targetSpeed = pbRoughStat(target,:SPEED,skill)
+        if userSpeed<targetSpeed
+			score += 10 * magnitude
+        else
+            score -= 10 * magnitude
+        end
+    end
+	return score
 end
