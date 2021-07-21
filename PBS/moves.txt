@@ -140,7 +140,7 @@
 135,DRAININGKISS,Draining Kiss,14F,50,FAIRY,Special,100,10,0,NearOther,0,abef,The user steals the target's HP with a kiss. The user's HP is restored by over half of the damage dealt.
 136,DISARMINGVOICE,Disarming Voice,0A5,40,FAIRY,Special,0,15,0,AllNearFoes,0,befk,"Letting out a charming cry, the user does emotional damage to foes. This attack never misses."
 137,FAIRYWIND,Fairy Wind,000,40,FAIRY,Special,100,30,0,NearOther,0,bef,The user stirs up a fairy wind and strikes the target with it.
-138,AROMATICMIST,Aromatic Mist,138,0,FAIRY,Status,0,20,0,NearAlly,0,,The user raises the Sp. Def stat of an ally Pokémon by using a mysterious aroma.
+138,AROMATICMIST,Aromatic Mist,138,0,FAIRY,Status,0,20,0,NearAlly,0,,The user raises the Def and Sp. Def stat of an ally Pokémon by using a mysterious aroma.
 139,BABYDOLLEYES,Baby-Doll Eyes,042,0,FAIRY,Status,100,30,0,NearOther,1,bce,"The user stares with its baby-doll eyes, which lowers the target's Attack stat. Always goes first."
 140,POUT,Pout,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user pouts, appearing cute before the target. The target's Attack is harshly lowered."
 141,CRAFTYSHIELD,Crafty Shield,14A,0,FAIRY,Status,0,10,0,UserSide,3,,The user protects itself and its allies from status moves with a mysterious power.
@@ -218,7 +218,7 @@
 210,FIREBLAST,Fire Blast,00A,110,FIRE,Special,85,5,10,NearOther,0,bef,The foe is attacked with an intense blast of all-consuming fire. It has a 10% chance to burn.
 211,FUSIONFLARE,Fusion Flare,07A,100,FIRE,Special,100,5,0,NearOther,0,bef,The user brings down a giant flame. It does more damage if influenced by an enormous thunderbolt.
 212,INFERNO,Inferno,00A,100,FIRE,Special,50,5,100,NearOther,0,bef,The user attacks by engulfing the target in an intense fire. It leaves the target with a burn.
-213,MAGMASTORM,Magma Storm,0CF,100,FIRE,Special,75,5,0,NearOther,0,bef,The target becomes trapped within a maelstrom of fire that rages for four to five turns.
+213,MAGMASTORM,Magma Storm,0CF,80,FIRE,Special,100,5,0,NearOther,0,bef,The target becomes trapped within a maelstrom of fire that rages for four to five turns.
 214,SACREDFIRE,Sacred Fire,00A,50,FIRE,Physical,100,5,100,NearOther,0,bef,The target is razed with a mystical fire of great intensity, leaving the target with a burn.
 215,SEARINGSHOT,Searing Shot,00A,100,FIRE,Special,100,5,30,AllNearOthers,0,befn,An inferno of scarlet flames torches everything around the user. It has a 30% chance to burn.
 216,HEATWAVE,Heat Wave,00A,95,FIRE,Special,100,10,10,AllNearFoes,0,bef,The user attacks by exhaling hot breath on the opposing team. It has a 10% chance to burn.
@@ -500,7 +500,7 @@
 485,CONVERSION2,Conversion 2,05F,0,NORMAL,Status,0,30,0,NearOther,0,,The user changes its type to make itself resistant to the type of the attack the opponent used last.
 486,COPYCAT,Copycat,0AF,0,NORMAL,Status,0,20,0,User,0,,The user mimics the move used immediately before it. The move fails if no other move has been used yet.
 487,DEFENSECURL,Defense Curl,01E,0,NORMAL,Status,0,40,0,User,0,d,The user curls up to conceal weak spots and raise its Defense stat.
-488,DISABLE,Disable,0B9,0,NORMAL,Status,100,20,0,NearOther,0,bce,"For four turns, this move prevents the target from using the move it last used."
+488,DISABLE,Disable,0B9,0,GHOST,Status,100,20,0,NearOther,0,bce,"For four turns, this move prevents the target from using the move it last used."
 489,DOUBLETEAM,Double Team,022,0,NORMAL,Status,0,15,0,User,0,d,"By moving rapidly, the user makes illusory copies of itself to raise its evasiveness."
 490,ENCORE,Encore,0BC,0,NORMAL,Status,100,5,0,NearOther,0,bce,The user compels the target to keep using only the move it last used for three turns.
 491,ENDURE,Endure,000,0,NORMAL,Status,0,10,0,User,4,,The user endures any attack with at least 1 HP. Its chance of failing rises if it is used in succession.
@@ -563,7 +563,7 @@
 548,SUPERSONIC,Supersonic,013,0,NORMAL,Status,85,20,0,NearOther,0,bcek,The user generates odd sound waves from its body. It confuses the target.
 549,SWAGGER,Swagger,041,0,NORMAL,Status,85,15,0,NearOther,0,bce,"The user enrages and confuses the target. However, it also sharply raises the target's Attack stat."
 550,SWALLOW,Swallow,114,0,NORMAL,Status,0,10,0,User,0,d,The power stored using the move Stockpile is absorbed by the user to heal its HP.
-551,SWEETSCENT,Sweet Scent,048,0,NORMAL,Status,100,20,0,AllNearFoes,0,bce,"A sweet scent that lowers the foe's evasiveness. It also lures wild Pokémon if used in grass, etc."
+551,SWEETSCENT,Sweet Scent,048,0,GRASS,Status,100,20,0,AllNearFoes,0,bce,"A sweet scent that lowers the foe's evasiveness. It also lures wild Pokémon if used in grass, etc."
 552,SWORDSDANCE,Swords Dance,02E,0,STEEL,Status,0,10,0,User,0,do,A frenetic dance to uplift the fighting spirit. It sharply raises the user's Attack stat.
 553,TAILWHIP,Tail Whip,043,0,NORMAL,Status,100,30,0,AllNearFoes,0,bce,"The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat."
 554,TEARFULLOOK,Tearful Look,13A,0,NORMAL,Status,0,20,0,NearOther,0,ce,The user gets teary eyed to make the target lose its combative spirit. This lowers the target's Attack and Sp. Atk stats.
@@ -698,7 +698,7 @@
 679,SUNSTEELSTRIKE,Sunsteel Strike,163,100,STEEL,Physical,100,5,0,NearOther,0,abef,The user slams into the target with the force of a meteor. Can't be stopped by the target's Ability.
 680,METEORMASH,Meteor Mash,01C,90,STEEL,Physical,100,10,20,NearOther,0,abefj,The target is hit with a hard punch fired like a meteor. It has a 20% chance to raise Attack.
 681,ANCHORSHOT,Anchor Shot,0EF,80,STEEL,Physical,100,20,100,NearOther,0,abef,The user entangles the target with its anchor chain. The target becomes unable to flee.
-682,FLASHCANNON,Flash Cannon,046,80,STEEL,Special,100,10,10,NearOther,0,bef,The user gathers all its light energy and releases it at once. It has a 10% chance to lower Sp. Def.
+682,FLASHCANNON,Flash Cannon,046,80,STEEL,Special,100,10,10,NearOther,0,befm,The user gathers all its light energy and releases it at once. It has a 10% chance to lower Sp. Def.
 683,IRONHEAD,Iron Head,00F,80,STEEL,Physical,100,15,30,NearOther,0,abe,The foe slams the target with its steel-hard head. It has a 30% chance to make the target flinch.
 684,SMARTHORN,Smart Horn,0A5,70,STEEL,Physical,0,10,0,NearOther,0,abef,The user stabs the target with a sharp horn. This attack never misses.
 685,STEELWING,Steel Wing,01D,70,STEEL,Physical,100,25,30,NearOther,0,abef,The target is hit with wings of steel. It has a 30% chance to raise Def.
@@ -901,3 +901,4 @@
 882,TERRAFORM,Terraform,538,70,ROCK,Special,100,15,0,AllNearOthers,0,bef,"Churns rocks throughout the area, dealing damage to all nearby Pokémon and removing any active terrain."
 883,PREDICTIONSTRIKE,Prediction Strike,0A5,90,PSYCHIC,Physical,0,15,0,Other,0,abef,"The user perfectly predicts the target's future location, then strikes. The attack lands without fail."
 884,RAKE,Rake,000,55,BUG,Physical,0,25,0,NearOther,0,abef,"The user rakes the target with sharp claws."
+885,WATERSPIRAL,Water Spiral,16F,85,WATER,Special,100,15,0,NearOther,0,befn,"Fires an spiral of water at enemies, or a HP-restoring one at allies."
