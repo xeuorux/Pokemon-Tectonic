@@ -10,22 +10,60 @@ class Pokemon
 		}
 		return false
 	end
+	
+	def can_tutor_move?
+		return false if egg? || shadowPokemon?
+		species_data = GameData::Species.get(@species)
+		species_data.tutor_moves.each { |m| 
+			return true if !hasMove?(m)
+		}
+		return false
+	end
+end
+
+def pbTutorMoveScreen(pkmn)
+  return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
+	moves = []
+    species_data = GameData::Species.get(pkmn.species)
+    species_data.tutor_moves.each do |m|
+      next if pkmn.hasMove?(m)
+      moves.push(m) if !moves.include?(m)
+    end
+
+  retval = true
+  pbFadeOutIn {
+    scene = MoveLearner_Scene.new
+    screen = MoveLearnerScreen.new(scene)
+    retval = screen.pbStartScreen(pkmn,moves)
+  }
+  return retval
 end
 
 def pbEggMoveScreen(pkmn)
-  retval = true
-  pbFadeOutIn {
-    scene = EggMoveLearner_Scene.new
-    screen = EggMoveLearnerScreen.new(scene)
-    retval = screen.pbStartScreen(pkmn)
-  }
-  return retval
+    return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
+	moves = []
+    firstSpecies = GameData::Species.get(pkmn.species)
+	while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
+		firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
+	end
+    firstSpecies.egg_moves.each do |m|
+      next if pkmn.hasMove?(m)
+      moves.push(m) if !moves.include?(m)
+    end
+
+	retval = true
+	pbFadeOutIn {
+		scene = MoveLearner_Scene.new
+		screen = MoveLearnerScreen.new(scene)
+		retval = screen.pbStartScreen(pkmn,moves)
+	}
+	return retval
 end
 
 #===============================================================================
 # Scene class for handling appearance of the screen
 #===============================================================================
-class EggMoveLearner_Scene
+class MoveLearner_Scene
   VISIBLEMOVES = 4
 
   def pbDisplay(msg,brief=false)
@@ -171,27 +209,12 @@ end
 #===============================================================================
 # Screen class for handling game logic
 #===============================================================================
-class EggMoveLearnerScreen
+class MoveLearnerScreen
   def initialize(scene)
     @scene = scene
   end
 
-  def pbGetLearnableMoves(pkmn)
-    return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
-	moves = []
-    firstSpecies = GameData::Species.get(pkmn.species)
-	while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
-		firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
-	end
-    firstSpecies.egg_moves.each do |m|
-      next if pkmn.hasMove?(m)
-      moves.push(m) if !moves.include?(m)
-    end
-    return moves
-  end
-
-  def pbStartScreen(pkmn)
-    moves = pbGetLearnableMoves(pkmn)
+  def pbStartScreen(pkmn,moves)
     @scene.pbStartScene(pkmn, moves)
     loop do
       move = @scene.pbChooseMove
