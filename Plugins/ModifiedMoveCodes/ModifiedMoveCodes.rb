@@ -643,7 +643,7 @@ class PokeBattle_Move_138 < PokeBattle_Move
   def ignoresSubstitute?(user); return true; end
 
   def pbFailsAgainstTarget?(user,target)
-    return true if !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self,true) && !target.pbCanRaiseStatStage?(:DEFENSE,user,self,true
+    return true if !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self,true) && !target.pbCanRaiseStatStage?(:DEFENSE,user,self,true)
     return false
   end
 
