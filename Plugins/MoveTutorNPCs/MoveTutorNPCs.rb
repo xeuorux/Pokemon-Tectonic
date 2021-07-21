@@ -1,4 +1,11 @@
 class Pokemon
+	def can_relearn_move?
+		return false if egg? || shadowPokemon?
+		this_level = self.level
+		getMoveList.each { |m| return true if m[0] <= this_level && !hasMove?(m[1]) }
+		return false
+	end
+
 	def can_egg_move?
 		return false if egg? || shadowPokemon?
 		firstSpecies = GameData::Species.get(@species)
@@ -8,6 +15,7 @@ class Pokemon
 		firstSpecies.egg_moves.each { |m| 
 			return true if !hasMove?(m)
 		}
+		@first_moves.each { |m| return true if !pkmn.hasMove?(m) }
 		return false
 	end
 	
@@ -21,14 +29,32 @@ class Pokemon
 	end
 end
 
+def pbRelearnMoveScreen(pkmn)
+  return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
+  
+  moves = []
+  pkmn.getMoveList.each do |m|
+      next if m[0] > pkmn.level || pkmn.hasMove?(m[1])
+      moves.push(m[1]) if !moves.include?(m[1])
+  end
+  
+  retval = true
+  pbFadeOutIn {
+    scene = MoveLearner_Scene.new
+    screen = MoveLearnerScreen.new(scene)
+    retval = screen.pbStartScreen(pkmn,moves)
+  }
+  return retval
+end
+
 def pbTutorMoveScreen(pkmn)
   return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
-	moves = []
-    species_data = GameData::Species.get(pkmn.species)
-    species_data.tutor_moves.each do |m|
-      next if pkmn.hasMove?(m)
-      moves.push(m) if !moves.include?(m)
-    end
+  moves = []
+  species_data = GameData::Species.get(pkmn.species)
+  species_data.tutor_moves.each do |m|
+    next if pkmn.hasMove?(m)
+    moves.push(m) if !moves.include?(m)
+  end
 
   retval = true
   pbFadeOutIn {
@@ -47,6 +73,12 @@ def pbEggMoveScreen(pkmn)
 		firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 	end
     firstSpecies.egg_moves.each do |m|
+      next if pkmn.hasMove?(m)
+      moves.push(m) if !moves.include?(m)
+    end
+	
+	# Also a hack to make all level 1 relearn moves actually egg moves
+	pkmn.first_moves.each do |m|
       next if pkmn.hasMove?(m)
       moves.push(m) if !moves.include?(m)
     end

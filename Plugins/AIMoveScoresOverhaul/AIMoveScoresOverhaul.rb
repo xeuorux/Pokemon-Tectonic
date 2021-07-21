@@ -3042,29 +3042,30 @@ class PokeBattle_MultiStatUpMove
 	end
 end
 
-# Helper methods
+class PokeBattle_AI
+	# Helper methods
+	def getFreezeMoveScore(score,user,target,skill=100,status=false)
+		if target.pbCanFreeze?(user,false)
+			score += 30
+			if skill>=PBTrainerAI.highSkill
+			  score -= 20 if target.hasActiveAbility?(:MARVELSCALE)
+			end
+		elsif skill>=PBTrainerAI.mediumSkill
+			return 0 if status
+		end
+		return score
+	end
 
-def getFreezeMoveScore(score,user,target,skill=100,status=false)
-	if target.pbCanFreeze?(user,false)
-        score += 30
-        if skill>=PBTrainerAI.highSkill
-          score -= 20 if target.hasActiveAbility?(:MARVELSCALE)
-        end
-    elsif skill>=PBTrainerAI.mediumSkill
-        return 0 if status
-    end
-	return score
-end
-
-def getWantsToBeSlowerScore(score,user,target,skill=100,magnitude=1)
-	if skill>=PBTrainerAI.mediumSkill
-        userSpeed = pbRoughStat(user,:SPEED,skill)
-        targetSpeed = pbRoughStat(target,:SPEED,skill)
-        if userSpeed<targetSpeed
-			score += 10 * magnitude
-        else
-            score -= 10 * magnitude
-        end
-    end
-	return score
+	def getWantsToBeSlowerScore(score,user,target,skill=100,magnitude=1)
+		if skill>=PBTrainerAI.mediumSkill
+			userSpeed = pbRoughStat(user,:SPEED,skill)
+			targetSpeed = pbRoughStat(target,:SPEED,skill)
+			if userSpeed<targetSpeed
+				score += 10 * magnitude
+			else
+				score -= 10 * magnitude
+			end
+		end
+		return score
+	end
 end

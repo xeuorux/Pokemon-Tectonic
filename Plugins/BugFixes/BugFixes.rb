@@ -129,16 +129,6 @@ module PokeBattle_BattleCommon
   end
 end
 
-class Pokemon
-	def can_relearn_move?
-		return false if egg? || shadowPokemon?
-		this_level = self.level
-		getMoveList.each { |m| return true if m[0] <= this_level && !hasMove?(m[1]) }
-		@first_moves.each { |m| return true if !hasMove?(m[1]) }
-		return false
-	end
-end
-
 class PokeBattle_AI
 	# For switching. Determines the effectiveness of a potential switch-in against
   # an opposing battler.

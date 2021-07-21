@@ -622,6 +622,7 @@ class PokeBattle_Move_125 < PokeBattle_Move
   end
 end
 
+#===============================================================================
 # Two turn attack. Ups user's Defense by 2 stage first turn, attacks second turn.
 # (Skull Bash)
 #===============================================================================
