@@ -11,5 +11,5 @@ module Randomizer
   EXCLUSIONS_SPECIES = []
 
   # list of items to exclude from the randomizer
-  EXCLUSIONS_ITEMS = [:POKEBALL,:GREATBALL,:ULTRABALL]
+  EXCLUSIONS_ITEMS = [:POKEBALL,:GREATBALL,:ULTRABALL,:RARECANDY]
 end

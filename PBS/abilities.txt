@@ -250,7 +250,7 @@
 248,PERISHBODY,Perish Body,"When it takes a hit, both Pokémon faint after 3 turns.",
 249,POWERSPOT,Power Spot,"Just being next to the Pokémon powers up moves.",
 250,PROPELLERTAIL,Propeller Tail,"Ignores effects changing the target of a move.",
-251,LOUD,Loud,"Boosts power of sound-based moves by 30%, and resistance to them by 50%.",
+251,LOUD,Loud,"Boosts power of sound-based moves by 30%.",
 252,RIPEN,Ripen,"Ripens Berries and doubles their effect.",
 253,SANDSPIT,Sand Spit,"Creates a sandstorm when it's hit by an attack.",
 254,SCREENCLEANER,Screen Cleaner,"Screens are nullified when entering battle.",

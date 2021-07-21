@@ -64,7 +64,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "00C", "00D", "00E","135"
-      score = getFreezeMoveScore(score,user,target,skill=100)
+      score = getFreezeMoveScore(score,user,target,skill=100,move.statusMove?)
     #---------------------------------------------------------------------------
     when "00F"
       score += 30
@@ -3044,14 +3044,14 @@ end
 
 # Helper methods
 
-def getFreezeMoveScore(score,user,target,skill=100)
+def getFreezeMoveScore(score,user,target,skill=100,status=false)
 	if target.pbCanFreeze?(user,false)
         score += 30
         if skill>=PBTrainerAI.highSkill
           score -= 20 if target.hasActiveAbility?(:MARVELSCALE)
         end
     elsif skill>=PBTrainerAI.mediumSkill
-        return 0 if move.statusMove?
+        return 0 if status
     end
 	return score
 end

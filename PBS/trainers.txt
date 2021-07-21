@@ -429,6 +429,12 @@ Pokemon = BIDOOF,70
     Moves = FAKEOUT,TACKLE
     AbilityIndex = 0
 #-------------------------------
+[BLACKBELT2,Emilio]
+LoseText = "..."
+Pokemon = BULBASAUR,10
+################################
+#       Vanity Trainers        #
+################################
 [COOLTRAINER_M,Agent]
 LoseText = "TODO!"
 Pokemon = BEARTIC,70
@@ -462,6 +468,32 @@ Pokemon = PALMANTRA,70
     Item = CHOICEBAND
     EV = 10,20,0,20,0,0
 #-------------------------------
-[BLACKBELT2,Emilio]
-LoseText = "..."
-Pokemon = BULBASAUR,10
+[COOLTRAINER_M,Xavier]
+LoseText = "TODO!"
+Pokemon = GALVANTULA,70
+	AbilityIndex = 0
+	Moves = THUNDER,BUGBUZZ,STICKYWEB,LIGHTNINGDANCE
+Pokemon = FERALIGATR,70
+	AbilityIndex = 1
+	Moves = ICEFANG,CRUNCH,LIQUIDATION,AQUAINSTINCT
+	Item = CHOICEBAND
+	EV = 0,20,0,0,20,0,10
+Pokemon = CHANDELURE,70
+	AbilityIndex = 0
+	Moves = FLAMETHROWER,HEX,WILLOWISP,SHADOWBALL
+	Item = LUMBERRY
+	EV = 20,0,20,0,0,10
+Pokemon = HYDREIGON,70
+	Moves = DRACOMETEOR,CRIPPLINGBREATH,DARKPULSE,UTURN
+	Item = CHOICESCARF
+	EV = 10,0,0,20,20,0
+Pokemon = CROBAT,70
+	AbilityIndex = 1
+	Moves = BRAVEBIRD,SUPERFANG,TAUNT,ROOST
+	Item = SHARPBEAK
+	EV = 10,20,0,20,0,0
+Pokemon = SWALOT,70
+	AbilityIndex = 0
+	Moves = SLUDGEWAVE,GIGADRAIN,ACIDSPRAY,ICEBEAM
+	Item = ASSAULTVEST
+	EV = 20,0,15,0,0,15

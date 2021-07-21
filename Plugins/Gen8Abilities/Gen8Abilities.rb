@@ -10,7 +10,7 @@ BattleHandlers::DamageCalcUserAbility.add(:DRAGONSMAW,
 
 BattleHandlers::DamageCalcUserAbility.add(:TRANSISTOR,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[ATK_MULT] *= 1.5 if type == :ELECTRIC
+    mults[:attack_multiplier] *= 1.5 if type == :ELECTRIC
   }
 )
 
@@ -20,7 +20,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TRANSISTOR,
 
 BattleHandlers::DamageCalcTargetAbility.add(:ICESCALES,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[FINAL_DMG_MULT] /= 2 if move.specialMove?
+    mults[:final_damage_multiplier] /= 2 if move.specialMove?
   }
 )
 
@@ -30,13 +30,13 @@ BattleHandlers::DamageCalcTargetAbility.add(:ICESCALES,
 
 BattleHandlers::DamageCalcUserAllyAbility.add(:POWERSPOT,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[FINAL_DMG_MULT]*= 1.3
+    mults[:final_damage_multiplier]*= 1.3
   }
 )
 
 BattleHandlers::DamageCalcUserAllyAbility.add(:STEELYSPIRIT,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[BASE_DMG_MULT] *= 1.5 if type == :STEEL
+    mults[:base_damage_multiplier] *= 1.5 if type == :STEEL
   }
 )
 #===============================================================================
@@ -57,15 +57,13 @@ BattleHandlers::AbilityOnSwitchIn.copy(:ASONEICE,:ASONEGHOST)
 
 BattleHandlers::AbilityOnSwitchIn.add(:INTREPIDSWORD,
   proc { |ability,battler,battle|
-    stat = :ATTACK
-    battler.pbRaiseStatStageByAbility(stat,1,battler)
+    battler.pbRaiseStatStageByAbility(:ATTACK,1,battler)
   }
 )	
 
 BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSHIELD,
   proc { |ability,battler,battle|
-    stat = :DEFENSE
-    battler.pbRaiseStatStageByAbility(stat,1,battler)
+    battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler)
   }
 )
 
