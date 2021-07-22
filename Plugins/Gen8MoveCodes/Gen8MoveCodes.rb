@@ -879,3 +879,17 @@ end
 class PokeBattle_Move_199 < PokeBattle_Move
   # DYNAMAX IS NOT IMPLEMENTED.
 end
+
+#===============================================================================
+# User loses half their hp in recoil. (Steel Beam)
+#===============================================================================
+class PokeBattle_Move_510 < PokeBattle_Move
+	def pbEffectAfterAllHits(user,target)
+		return if target.damageState.unaffected
+		return if !user.takesIndirectDamage?
+		amt = (user.hp / 2).ceil
+		user.pbReduceHP(amt,false)
+		@battle.pbDisplay(_INTL("{1} loses half its health in recoil!",user.pbThis))
+		user.pbItemHPHealCheck
+	  end
+end

@@ -3068,4 +3068,15 @@ class PokeBattle_AI
 		end
 		return score
 	end
+	
+	def sleepMoveAI(score,user,target,skill=100)
+		score += 50 * (target.hp / target.totalhp)
+		score += target.stage[:ATTACK] * 10
+		score += target.stage[:SPECIAL_ATTACK] * 10
+		if !target.pbCanSleep(user,false)
+			score = 10
+			score = 0 if skill > PBTrainerAI.mediumSkill
+		end
+		return score
+	end
 end

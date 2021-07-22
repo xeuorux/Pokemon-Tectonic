@@ -240,9 +240,9 @@ class PokeBattle_Move_509 < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-	score += (target.stages[:DEFENSE]-6) * 10 if physicalMove?
-	score += (target.stages[:SPECIAL_DEFENSE] - 6) * 10 if specialMove?
-	score += (target.stages[:EVASION] - 6)
+	score += target.stages[:DEFENSE] * 10 if physicalMove?
+	score += target.stages[:SPECIAL_DEFENSE] * 10 if specialMove?
+	score += target.stages[:EVASION] * 10
 	return score
   end
 end
@@ -329,22 +329,11 @@ class PokeBattle_Move_50F < PokeBattle_StatDownMove
     super
     @statDown = [:ATTACK,2]
   end
+  
+  def getScore(score,user,target,skill=100)
+	return score + user.stages[:ATTACK]*10
+  end
 end
-
-#===============================================================================
-# User loses half their hp in recoil. (Steel Beam)
-#===============================================================================
-class PokeBattle_Move_510 < PokeBattle_Move
-	def pbEffectAfterAllHits(user,target)
-		return if target.damageState.unaffected
-		return if !user.takesIndirectDamage?
-		amt = (user.hp / 2).ceil
-		user.pbReduceHP(amt,false)
-		@battle.pbDisplay(_INTL("{1} loses half its health in recoil!",user.pbThis))
-		user.pbItemHPHealCheck
-	  end
-end
-
 
 #===============================================================================
 # User loses one third of their hp in recoil. (Shred Shot, Shards)
@@ -357,7 +346,12 @@ class PokeBattle_Move_511 < PokeBattle_Move
 		user.pbReduceHP(amt,false)
 		@battle.pbDisplay(_INTL("{1} loses one third of its health in recoil!",user.pbThis))
 		user.pbItemHPHealCheck
-	  end
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score += 30 - ((user.hp.to_f / user.totalhp.to_f) * 80).floor
+		return score
+	end
 end
 
 #===============================================================================
@@ -389,6 +383,14 @@ class PokeBattle_Move_514 < PokeBattle_Move
 	user.pbPoison(nil, _INTL("{1} is poisoned by the grime! Their Sp. Atk is reduced!",
        user.pbThis),false)
   end
+  
+  def getScore(score,user,target,skill=100)
+	score -= ((user.hp.to_f / user.totalhp.to_f) * 40).floor
+	if user.hasItem?(:LUMBERRY) || user.hasItem?(:PECHABERRY) || user.hasActiveAbility?(:IMMUNITY) || user.hasActiveAbility?(:POISONHEAL) || user.hasActiveAbility?(:GUTS) || user.hasActiveAbility?(:AUDACITY)
+		score += 60
+	end
+	return score
+  end
 end
 
 #===============================================================================
@@ -406,12 +408,23 @@ end
 # Burns opposing Pokemon that have increased their stats. (Burning Jealousy)
 #===============================================================================
 class PokeBattle_Move_516 < PokeBattle_Move
+  def statStagesUp?(target)
+	return target.stages[:ATTACK] > 0 || target.stages[:DEFENSE] > 0 || target.stages[:SPEED] > 0 || target.stages[:SPECIAL_ATTACK] > 0 || target.stages[:SPECIAL_DEFENSE] > 0 || target.stages[:ACCURACY] > 0 || target.stages[:EVASION] > 0
+  end
+
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-	statStagesUp = target.stages[:ATTACK] > 0 || target.stages[:DEFENSE] > 0 || target.stages[:SPEED] > 0 || target.stages[:SPECIAL_ATTACK] > 0 || target.stages[:SPECIAL_DEFENSE] > 0 || target.stages[:ACCURACY] > 0 || target.stages[:EVASION] > 0
-    if target.pbCanBurn?(user,false,self) && statStagesUp
+    if target.pbCanBurn?(user,false,self) && statStagesUp?(target)
       target.pbBurn(user)
     end
+  end
+  
+  def getScore(score,user,target,skill=100)
+    score -= 20
+	target.each do |b|
+		score += 50 if statStagesUp?(b) && b.pbCanBurn?(user,false,self)
+	end
+	return score
   end
 end
 
@@ -425,6 +438,14 @@ class PokeBattle_Move_517 < PokeBattle_Move
 		end
 		return 0
 	end
+	
+	def getScore(score,user,target,skill=100)
+		score -= 20
+		target.each do |b|
+			score += 50 if b.hp.to_f < b.totalhp.to_f/2
+		end
+		return score
+    end
 end
 
 #===============================================================================
@@ -442,6 +463,13 @@ class PokeBattle_Move_518 < PokeBattle_HealingMove
   def pbHealAmount(user)
     return @healAmount
   end
+  
+  def getScore(score,user,target,skill=100)
+		score -= 20
+		score += 40 if user.hp < user.totalHPLost
+		score += 40 if user.hp < user.totalHPLost/2.0
+		return score
+  end
 end
 
 #===============================================================================
@@ -454,6 +482,14 @@ class PokeBattle_Move_519 < PokeBattle_StatDownMove
   end
   
   def pbAccuracyCheck(user,target); return true; end
+  
+  def getScore(score,user,target,skill=100)
+	score += user.stages[:SPEED]*5
+	score += user.stages[:DEFENSE]*5
+	score += 40 if user.stages[:ACCURACY] < 0
+	score += 40 if target.stages[:EVASION] > 0
+	return score
+  end
 end
 
 #===============================================================================
@@ -471,6 +507,12 @@ class PokeBattle_Move_51A < PokeBattle_PoisonMove
     return if target.damageState.hpLost<=0
     hpGain = (target.damageState.hpLost/3.0).round
     user.pbRecoverHPFromDrain(hpGain,target)
+  end
+  
+  def getScore(score,user,target,skill=100)
+    score -= 40 if target.pbCanPoison(user,false)
+	score += 40 if user.hp < user.totalHPLost/2.0
+	return score
   end
 end
 
@@ -491,6 +533,11 @@ class PokeBattle_Move_51B < PokeBattle_Move
       user.effects[PBEffects::ColdConversion] = true
       @battle.pbDisplay(_INTL("{1} lost its cold!",user.pbThis))
     end
+  end
+  
+  def getScore(score,user,target,skill=100)
+    score = 0 if !user.pbHasType?(:ICE)
+	return score
   end
 end
 
@@ -515,6 +562,12 @@ class PokeBattle_Move_51C < PokeBattle_HealingMove
 		end
 	end
   end
+  
+  def getScore(score,user,target,skill=100)
+	score += 40 if user.hp < 2*user.totalhp/3
+    score += 40 if user.hp < user.totalhp/2
+	return score
+  end
 end
 
 #===============================================================================
@@ -533,6 +586,13 @@ class PokeBattle_Move_51D < PokeBattle_Move
     target.effects[PBEffects::CreepOut] = true
     @battle.pbDisplay(_INTL("{1} is now afraid of bug type moves!",target.pbThis))
   end
+  
+  def getScore(score,user,target,skill=100)
+	score += 20 if target.hp > target.totalhp/2
+	score += 20 if user.hp > user.totalhp/2
+	score = 0 if target.effects[PBEffects::CreepOut]
+	return score
+  end
 end
 
 #===============================================================================
@@ -545,6 +605,11 @@ class PokeBattle_Move_51E < PokeBattle_Move
 		if user.pbCanRaiseStatStage?(:SPEED,user,self)
 			user.pbRaiseStatStage(:SPEED,2,user)
 		end
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score -= user.stage[:SPEED] * 10
+		return score
 	end
 end
 
@@ -565,6 +630,12 @@ class PokeBattle_Move_51F < PokeBattle_Move
 		  end
 		end
 	end
+	
+	def getScore(score,user,target,skill=100)
+		score += 20
+		score -= user.stage[:SPEED] * 10
+		return score
+	end
 end
 
 #===============================================================================
@@ -576,6 +647,12 @@ class PokeBattle_Move_520 < PokeBattle_Move
 		user.effects[PBEffects::LuckyStar] = true
 		@battle.pbDisplay(_INTL("{1} is blessed by the lucky star!",user.pbThis))
     end
+  end
+  
+  def getScore(score,user,target,skill=100)
+	score += 30
+	score -= 60 if user.effects[PBEffects::LuckyStar]
+	return score
   end
 end
 
@@ -661,6 +738,12 @@ class PokeBattle_Move_524 < PokeBattle_HealingMove
 		   GameData::Move.get(user.lastRegularMoveUsed).name))
 		user.pbItemStatusCureCheck
 	end
+	
+	def getScore(score,user,target,skill=100)
+		score = 0 if user.hp > user.totalhp/2
+		score += 80 if user.hp < user.totalhp/3
+		return score
+	end
 end
 
 #===============================================================================
@@ -687,6 +770,12 @@ class PokeBattle_Move_526 < PokeBattle_SleepMove
     @battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
     user.pbItemHPHealCheck
   end
+  
+    def getScore(score,user,target,skill=100)
+		score -= 50 if user.hp <= user.totalhp/2
+		score = sleepMoveAI(score,user,target,skill=100)
+		return score
+	end
 end
 
 #===============================================================================
@@ -699,6 +788,15 @@ class PokeBattle_Move_527 < PokeBattle_SleepMove
 			return true
 		end
 		return false
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score = sleepMoveAI(score,user,target,skill=100)
+		if score != 0 && @battle.pbWeather != :Sun
+			score = 10
+			score = 0 if skill > PBTrainerAI.mediumSkill
+		end
+		return score
 	end
 end
 
@@ -713,6 +811,15 @@ class PokeBattle_Move_528 < PokeBattle_SleepMove
 		end
 		return false
 	end
+	
+	def getScore(score,user,target,skill=100)
+		score = sleepMoveAI(score,user,target,skill=100)
+		if score != 0 && target.hp > totalhp/2
+			score = 10
+			score = 0 if skill > PBTrainerAI.mediumSkill
+		end
+		return score
+	end
 end
 
 #===============================================================================
@@ -725,6 +832,12 @@ class PokeBattle_Move_529 < PokeBattle_SleepMove
 			return true
 		end
 		return false
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score = sleepMoveAI(score,user,target,skill=100)
+		score = getWantsToBeSlowerScore(score,user,target,skill=100,magnitude=5)
+		return score
 	end
 end
 
