@@ -3042,8 +3042,8 @@ class PokeBattle_MultiStatUpMove
 	end
 end
 
+# Helper methods
 class PokeBattle_AI
-	# Helper methods
 	def getFreezeMoveScore(score,user,target,skill=100,status=false)
 		if target.pbCanFreeze?(user,false)
 			score += 30

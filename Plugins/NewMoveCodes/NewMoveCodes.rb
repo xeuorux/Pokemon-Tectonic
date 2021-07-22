@@ -890,6 +890,12 @@ class PokeBattle_Move_52B < PokeBattle_Move
 		target.pbCharm
 	end
   end
+  
+  def getScore(score,user,target,skill=100)
+		score += target.pbCanConfuse(user,false) ? 20 : -20
+		score += target.pbCanCharm(user,false) ? 20 : -20
+		return score
+  end
 end
 
 #===============================================================================
@@ -908,6 +914,11 @@ class PokeBattle_Move_52C < PokeBattle_Move
     return if target.damageState.substitute
     return if !target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
     target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
+  end
+  
+  def getScore(score,user,target,skill=100)
+		score += 50 if target.hp > target.totalhp/2
+		return score
   end
 end
 
@@ -960,6 +971,16 @@ class PokeBattle_Move_52D < PokeBattle_Move
 		  @battle.pbDisplay(_INTL("{1} was unchilled.",curedName))
     end
   end
+  
+  def getScore(score,user,target,skill=100)
+		score -= 50 if @battle.field.weather == :None
+		@battle.battlers.each do |b|
+			pkmn = b.pokemon
+			next if !pkmn || !pkmn.able? || pkmn.status == :NONE
+			score += b.opposes? ? 20 : -20 
+		end
+		return score
+  end
 end
 
 #===============================================================================
@@ -971,6 +992,13 @@ class PokeBattle_Move_52E < PokeBattle_TargetMultiStatDownMove
     @statDown = [:DEFENSE,2,:EVASION,2]
   end
   def pbAccuracyCheck(user,target); return true; end
+  
+  def getScore(score,user,target,skill=100)
+		score -= 50
+		score += target.stage[:EVASION] * 20
+		score += target.stage[:DEFENSE] * 20
+		return score
+  end
 end
 
 #===============================================================================
@@ -992,6 +1020,16 @@ class PokeBattle_Move_52F < PokeBattle_Move_042
 			@battle.field.weather 			= :None
 			@battle.field.weatherDuration  = 0
 		end
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score -= 50 if @battle.field.weather = :None
+		@battle.battlers.each do |b|
+			pkmn = b.pokemon
+			next if !pkmn || !pkmn.able? || b.opposes?
+			score += b.stages[:ATTACK] * 10
+		end
+		return score
 	end
 end
 
@@ -1017,6 +1055,15 @@ class PokeBattle_Move_530 < PokeBattle_Move
         b.pbRaiseStatStage(:ATTACK,1,user)
     end
   end
+  
+	def getScore(score,user,target,skill=100)
+		@battle.battlers.each do |b|
+			pkmn = b.pokemon
+			next if !pkmn || !pkmn.able? || !b.opposes?
+			score -= b.stages[:ATTACK] * 10
+		end
+		return score
+	end
 end
 
 #===============================================================================
@@ -1034,6 +1081,12 @@ class PokeBattle_Move_531 < PokeBattle_Move
 	
 	def pbEffectGeneral(user)
 		user.effects[PBEffects::Inured] = true
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score += 50 if user.turnCount == 0
+		score = 0 if user.effects[PBEffects::Inured]
+		return score
 	end
 end
 
@@ -1061,6 +1114,15 @@ class PokeBattle_Move_532 < PokeBattle_Move
 		target.pbRaiseStatStage(statsRanked[0],2,user)
 		target.pbRaiseStatStage(statsRanked[1],1,user)
 	end
+	
+	def getScore(score,user,target,skill=100)
+		score += 50 if user.turnCount == 0
+		stats = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+		stats.each do |s|
+			score -= user.stages[s] * 5
+		end
+		return score
+	end
 end
 
 
@@ -1081,6 +1143,15 @@ class PokeBattle_Move_534 < PokeBattle_SleepMove
 		target.pbCureCharm
 		target.pbSleep
 	end
+	
+	def getScore(score,user,target,skill=100)
+		score = sleepMoveAI(score,user,target,skill=100)
+		if target.effects[PBEffects::Confusion] == 0 && target.effects[PBEffects::Charm] == 0
+			score = 10
+			score = 0 if skill>PBTrainerAI.mediumSkill
+		end
+		return score
+	end
 end
 
 #===============================================================================
@@ -1099,6 +1170,13 @@ class PokeBattle_Move535 < PokeBattle_Move
 		baseDmg *= 2 if user.lastAttacker.include?(target.index)
 		return baseDmg
 	end
+	
+	def getScore(score,user,target,skill=100)
+		score += 50
+		score = getWantsToBeSlowerScore(score,user,target,skill=100,1)
+		score = 0 if user.turnCount != 0
+		return score
+	end
 end
 #===============================================================================
 # Two turn attack. Ups user's Special Defense by 2 stage first turn, attacks second turn.
@@ -1114,6 +1192,11 @@ class PokeBattle_Move_536 < PokeBattle_TwoTurnMove
       user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
     end
   end
+  
+  def getScore(score,user,target,skill=100)
+		score += user.hp > user.totalhp/2 ? 50 : -50
+		return score
+  end
 end
 #===============================================================================
 # User takes recoil damage equal to 1/5 of the damage this move dealt.
@@ -1121,6 +1204,10 @@ end
 class PokeBattle_Move_537 < PokeBattle_RecoilMove
   def pbRecoilDamage(user,target)
     return (target.damageState.totalHPLost/5.0).round
+  end
+  
+  def getScore(score,user,target,skill=100)
+		return score - 10
   end
 end
 
@@ -1140,5 +1227,10 @@ class PokeBattle_Move_538 < PokeBattle_Move
         @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))
     end
     @battle.pbStartTerrain(user,:None,true)
+  end
+  
+  def getScore(score,user,target,skill=100)
+		score += @battle.field.terrain != :None ? 30 : -30
+		return score
   end
 end
