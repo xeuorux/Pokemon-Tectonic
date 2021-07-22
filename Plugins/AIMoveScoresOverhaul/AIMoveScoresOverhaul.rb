@@ -3056,8 +3056,8 @@ end
 
 def getWantsToBeSlowerScore(score,user,target,skill=100,magnitude=1)
 	if skill>=PBTrainerAI.mediumSkill
-		userSpeed = pbRoughStat(user,:SPEED,skill)
-		targetSpeed = pbRoughStat(target,:SPEED,skill)
+		userSpeed = PokeBattle_AI.pbRoughStat(user,:SPEED,skill)
+		targetSpeed = PokeBattle_AI.pbRoughStat(target,:SPEED,skill)
 		if userSpeed<targetSpeed
 			score += 10 * magnitude
 		else
