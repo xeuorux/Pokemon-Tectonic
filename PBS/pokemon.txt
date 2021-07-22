@@ -11255,7 +11255,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [343]
-Name = BALTOY
+Name = Baltoy
 InternalName = BALTOY
 Type1 = GROUND
 Type2 = PSYCHIC
