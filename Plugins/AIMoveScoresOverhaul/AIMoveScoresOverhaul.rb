@@ -3042,41 +3042,38 @@ class PokeBattle_MultiStatUpMove
 	end
 end
 
-# Helper methods
-class PokeBattle_AI
-	def getFreezeMoveScore(score,user,target,skill=100,status=false)
-		if target.pbCanFreeze?(user,false)
-			score += 30
-			if skill>=PBTrainerAI.highSkill
-			  score -= 20 if target.hasActiveAbility?(:MARVELSCALE)
-			end
-		elsif skill>=PBTrainerAI.mediumSkill
-			return 0 if status
+def getFreezeMoveScore(score,user,target,skill=100,status=false)
+	if target.pbCanFreeze?(user,false)
+		score += 30
+		if skill>=PBTrainerAI.highSkill
+		  score -= 20 if target.hasActiveAbility?(:MARVELSCALE)
 		end
-		return score
+	elsif skill>=PBTrainerAI.mediumSkill
+		return 0 if status
 	end
+	return score
+end
 
-	def getWantsToBeSlowerScore(score,user,target,skill=100,magnitude=1)
-		if skill>=PBTrainerAI.mediumSkill
-			userSpeed = pbRoughStat(user,:SPEED,skill)
-			targetSpeed = pbRoughStat(target,:SPEED,skill)
-			if userSpeed<targetSpeed
-				score += 10 * magnitude
-			else
-				score -= 10 * magnitude
-			end
+def getWantsToBeSlowerScore(score,user,target,skill=100,magnitude=1)
+	if skill>=PBTrainerAI.mediumSkill
+		userSpeed = pbRoughStat(user,:SPEED,skill)
+		targetSpeed = pbRoughStat(target,:SPEED,skill)
+		if userSpeed<targetSpeed
+			score += 10 * magnitude
+		else
+			score -= 10 * magnitude
 		end
-		return score
 	end
-	
-	def sleepMoveAI(score,user,target,skill=100)
-		score += 50 * (target.hp / target.totalhp)
-		score += target.stage[:ATTACK] * 10
-		score += target.stage[:SPECIAL_ATTACK] * 10
-		if !target.pbCanSleep(user,false)
-			score = 10
-			score = 0 if skill > PBTrainerAI.mediumSkill
-		end
-		return score
+	return score
+end
+
+def sleepMoveAI(score,user,target,skill=100)
+	score += 50 * (target.hp / target.totalhp)
+	score += target.stage[:ATTACK] * 10
+	score += target.stage[:SPECIAL_ATTACK] * 10
+	if !target.pbCanSleep(user,false)
+		score = 10
+		score = 0 if skill > PBTrainerAI.mediumSkill
 	end
+	return score
 end
