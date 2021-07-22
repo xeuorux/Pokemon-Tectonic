@@ -440,3 +440,20 @@ module GameData
     #---------------------------------------------------------------------------
   end
 end
+
+
+DebugMenuCommands.register("randomizer", {
+  "parent"      => "main",
+  "name"        => _INTL("Randomizer..."),
+  "description" => _INTL("Deal with randomizer")
+})
+
+DebugMenuCommands.register("toggle", {
+  "parent"      => "randomizer",
+  "name"        => _INTL("Toggle Randomizer"),
+  "description" => _INTL("Toggle the Randomizer state off"),
+  "effect"      => proc { |sprites, viewport|
+    Randomizer.toggle(false)
+	pbMessage(_INTL("Randomizer is now #{Randomizer.on? ? "on" : "off"}."))
+  }
+})

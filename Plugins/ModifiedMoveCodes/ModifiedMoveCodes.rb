@@ -640,16 +640,11 @@ end
 #===============================================================================
 # Increases target's Defense and Special Defense by 1 stage. (Aromatic Mist)
 #===============================================================================
-class PokeBattle_Move_138 < PokeBattle_Move
+class PokeBattle_Move_138 < PokeBattle_TargetMultiStatUpMove
   def ignoresSubstitute?(user); return true; end
 
-  def pbFailsAgainstTarget?(user,target)
-    return true if !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self,true) && !target.pbCanRaiseStatStage?(:DEFENSE,user,self,true)
-    return false
-  end
-
-  def pbEffectAgainstTarget(user,target)
-    target.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
-	target.pbRaiseStatStage(:DEFENSE,1,user)
+  def initialize(battle,move)
+    super
+    @statUp = [:DEFENSE,1,:SPECIAL_DEFENSE,1]
   end
 end

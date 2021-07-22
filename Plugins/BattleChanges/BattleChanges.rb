@@ -1617,16 +1617,28 @@ class PokeBattle_Move
     # Burn
     if user.status == :BURN && physicalMove? && damageReducedByBurn? &&
        !user.hasActiveAbility?(:GUTS)
-      multipliers[:final_damage_multiplier] *= 2.0/3.0
+      if !user.boss
+		multipliers[:final_damage_multiplier] *= 2.0/3.0
+	  else
+		multipliers[:final_damage_multiplier] *= 4.0/5.0
+	  end
     end
 	# Poison
     if user.status == :POISON && user.statusCount == 0 && specialMove? && damageReducedByBurn? &&
        !user.hasActiveAbility?(:AUDACITY)
-      multipliers[:final_damage_multiplier] *= 2.0/3.0
+      if !user.boss
+		multipliers[:final_damage_multiplier] *= 2.0/3.0
+	  else
+		multipliers[:final_damage_multiplier] *= 4.0/5.0
+	  end
     end
 	# Chill
     if target.status == :FROZEN
-      multipliers[:final_damage_multiplier] *= 4.0/3.0
+	  if !target.boss
+		multipliers[:final_damage_multiplier] *= 4.0/3.0
+	  else
+		multipliers[:final_damage_multiplier] *= 5.0/4.0
+	  end
     end
     # Aurora Veil, Reflect, Light Screen
     if !ignoresReflect? && !target.damageState.critical &&
@@ -2997,7 +3009,7 @@ class PokeBattle_Battler
       end
     end
     # Paralysis
-    if @status == :PARALYSIS
+    if @status == :PARALYSIS && @commandPhasesThisRound == 0
       if @battle.pbRandom(100)<25
         pbContinueStatus
         @lastMoveFailed = true

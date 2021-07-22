@@ -286,7 +286,7 @@
 276,LICK,Lick,007,30,GHOST,Physical,100,30,30,NearOther,0,abef,"The target is licked with a long tongue, causing damage. It has a 30% chance to paralyze."
 277,NIGHTSHADE,Night Shade,06D,1,GHOST,Special,100,15,0,NearOther,0,bef,The user makes the foe see a frightening mirage. It inflicts damage matching the user's level.
 278,CONFUSERAY,Confuse Ray,013,0,GHOST,Status,100,10,0,NearOther,0,bce,The target is exposed to a sinister ray that triggers confusion.
-279,CURSE,Curse,10D,0,GHOST,Status,0,10,0,User,0,,Curses the target if user is Ghost type. Otherwise, lowers Spe. and raises Atk. and Def.
+279,CURSE,Curse,10D,0,GHOST,Status,0,10,0,User,0,,"Curses the target if user is Ghost type. Otherwise, lowers Spe. and raises Atk. and Def."
 280,DESTINYBOND,Destiny Bond,000,0,GHOST,Status,0,5,0,User,0,,"When this move is used, if the user faints, the foe that landed the knockout hit also faints."
 281,GRUDGE,Grudge,000,0,GHOST,Status,0,5,0,User,0,,"If the user faints, the user's grudge fully depletes the PP of the foe's move that knocked it out."
 282,NIGHTMARE,Nightmare,10F,0,GHOST,Status,100,15,0,NearOther,0,be,A sleeping target sees a nightmare that inflicts some damage every turn.
