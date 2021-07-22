@@ -3056,8 +3056,8 @@ end
 
 def getWantsToBeSlowerScore(score,user,target,skill=100,magnitude=1)
 	if skill>=PBTrainerAI.mediumSkill
-		userSpeed = PokeBattle_AI.pbRoughStat(user,:SPEED,skill)
-		targetSpeed = PokeBattle_AI.pbRoughStat(target,:SPEED,skill)
+		userSpeed = pbRoughStat(user,:SPEED,skill)
+		targetSpeed = pbRoughStat(target,:SPEED,skill)
 		if userSpeed<targetSpeed
 			score += 10 * magnitude
 		else
@@ -3077,3 +3077,31 @@ def sleepMoveAI(score,user,target,skill=100)
 	end
 	return score
 end
+
+
+#=============================================================================
+# Get approximate properties for a battler
+#=============================================================================
+  def pbRoughType(move,user,skill)
+    ret = move.type
+    if skill>=PBTrainerAI.highSkill
+      ret = move.pbCalcType(user)
+    end
+    return ret
+  end
+
+  def pbRoughStat(battler,stat,skill)
+    return battler.pbSpeed if skill>=PBTrainerAI.highSkill && stat==:SPEED
+    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    stage = battler.stages[stat]+6
+    value = 0
+    case stat
+    when :ATTACK          then value = battler.attack
+    when :DEFENSE         then value = battler.defense
+    when :SPECIAL_ATTACK  then value = battler.spatk
+    when :SPECIAL_DEFENSE then value = battler.spdef
+    when :SPEED           then value = battler.speed
+    end
+    return (value.to_f*stageMul[stage]/stageDiv[stage]).floor
+  end
