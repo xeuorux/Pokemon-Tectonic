@@ -424,7 +424,7 @@ class PokeBattle_AI
 		score = 0 if move.pbFailsAgainstTarget?(user,target)
 		@battle.messagesBlocked = false
 	elsif move.function == "08B" # Eruption, Water Spout, etc.
-		score = user.turnCount == 0 ? 99999 : 0
+		score = @battle.turnCount == 0 ? 99999 : 0
 	elsif move.id == :ORIGINPULSE || move.id == :PRECIPICEBLADES
 		score = $game_variables[95] == 1 ? 99999 : 0
 	elsif move.function == "14E" #Geomancy
@@ -933,7 +933,23 @@ class PokeBattle_AI
       if user.status == :BURN && move.physicalMove?(type) &&
          !user.hasActiveAbility?(:GUTS) &&
          !(Settings::MECHANICS_GENERATION >= 6 && move.function == "07E")   # Facade
-        multipliers[:final_damage_multiplier] /= 2
+        if !user.boss
+			multipliers[:final_damage_multiplier] *= 2.0/3.0
+		else
+			multipliers[:final_damage_multiplier] *= 4.0/5.0
+		end
+      end
+    end
+	# Burn
+    if skill>=PBTrainerAI.highSkill
+      if user.status == :POISON && move.specialMove?(type) &&
+         !user.hasActiveAbility?(:AUDACITY) &&
+         !(Settings::MECHANICS_GENERATION >= 6 && move.function == "07E")   # Facade
+        if !user.boss
+			multipliers[:final_damage_multiplier] *= 2.0/3.0
+		else
+			multipliers[:final_damage_multiplier] *= 4.0/5.0
+		end
       end
     end
     # Aurora Veil, Reflect, Light Screen
@@ -958,12 +974,6 @@ class PokeBattle_AI
             multipliers[:final_damage_multiplier] /= 2
           end
         end
-      end
-    end
-    # Minimize
-    if skill>=PBTrainerAI.highSkill
-      if target.effects[PBEffects::Minimize] && move.tramplesMinimize?(2)
-        multipliers[:final_damage_multiplier] *= 2
       end
     end
     # Move-specific base damage modifiers

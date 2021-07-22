@@ -498,7 +498,10 @@ class PokeBattle_Battle
 			$game_variables[95] = 4
 		end
 	elsif (pkmn.species == :KYOGRE || pkmn.species == :GROUDON)
-		if  @turnCount % 3 == 0 && @turnCount > 0
+		if @turnCount == 0
+			$game_variables[95] = 1
+			pbDisplay(_INTL("The projection is clearly preparing a massive opening attack!"))
+		elsif  @turnCount % 3 == 0 && @turnCount > 0
 			pbDisplay(_INTL("The projection is gathering energy for a massive attack!"))
 			$game_variables[95] = 1
 		else

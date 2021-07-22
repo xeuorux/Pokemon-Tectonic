@@ -15,7 +15,7 @@ class Pokemon
 		firstSpecies.egg_moves.each { |m| 
 			return true if !hasMove?(m)
 		}
-		@first_moves.each { |m| return true if !pkmn.hasMove?(m) }
+		@first_moves.each { |m| return true if !hasMove?(m) }
 		return false
 	end
 	
