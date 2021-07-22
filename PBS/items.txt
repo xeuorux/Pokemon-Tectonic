@@ -814,7 +814,7 @@
 790,TM198,TM198,TM198s,4,6000,The user slams into the target using a full-force blast of water. This may also lower the target's Defense stat.,6,0,0,LIQUIDATION
 791,TM199,TM199,TM199s,4,6000,"The user attacks by slamming its body into the target. The higher the user's Defense, the more damage it inflicts.",6,0,0,BODYPRESS
 #------------------------------- NEW ITEMS,,,,,,,,,,
-792,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,20000,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,0,
+792,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,0,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,0,
 793,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,A peculiar stone that makes certain species of Pokémon evolve.,1,0,7,
 794,ALOLANWREATH,Alolan Wreath,Alolan Wreathes,1,0,A beautiful floral wreath from Alolan that makes certain species of Pokémon evolve.,1,0,7,
 795,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,0,
