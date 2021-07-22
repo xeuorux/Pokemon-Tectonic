@@ -3071,7 +3071,7 @@ def sleepMoveAI(score,user,target,skill=100)
 	score += 50 * (target.hp / target.totalhp)
 	score += target.stages[:ATTACK] * 10
 	score += target.stages[:SPECIAL_ATTACK] * 10
-	if !target.pbCanSleep(user,false)
+	if !target.pbCanSleep?(user,false)
 		score = 10
 		score = 0 if skill > PBTrainerAI.mediumSkill
 	end
