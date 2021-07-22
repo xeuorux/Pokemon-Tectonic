@@ -2230,7 +2230,7 @@ class PokeBattle_Battler
 	# Lingering Daze
 	if oldStatus == :SLEEP
 	  @battle.eachOtherSideBattler(@index) do |b|
-        if b.hasActiveAbility(:LINGERINGDAZE)
+        if b.hasActiveAbility?(:LINGERINGDAZE)
 			@battle.pbShowAbilitySplash(b)
 			pbLowerStatStageByAbility(:SPECIAL_ATTACK,1,b)
 			pbLowerStatStageByAbility(:SPECIAL_DEFENSE,1,b)
