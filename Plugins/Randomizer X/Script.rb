@@ -28,13 +28,18 @@ module Randomizer
     # refresh encounter tables
     $PokemonEncounters.setup($game_map.map_id) if $PokemonEncounters
   end
+  
+  @@allSpeciesArray = nil
   #-----------------------------------------------------------------------------
   # get all species keys
   #-----------------------------------------------------------------------------
   def self.all_species
-    keys = []
-    GameData::Species.each { |species| keys.push(species.id) if species.form == 0 }
-    return keys
+	if @@allSpeciesArray == nil
+		echo("Generating the species array for the randomizer!\n")
+		@@allSpeciesArray = []
+		GameData::Species.each { |species| @@allSpeciesArray.push(species.id) if species.form == 0 }
+	end
+    return @@allSpeciesArray
   end
   #-----------------------------------------------------------------------------
   # get all item keys
@@ -78,6 +83,26 @@ module Randomizer
     cmdwindow.dispose
     return ret
   end
+  
+  def self.getNewSpecies(oldSpecies)
+	newSpecies = nil
+	attempts = 1
+	while newSpecies == nil
+		possibleSpecies = self.all_species.sample
+		bstDiff = (pbBaseStatTotal(possibleSpecies) - pbBaseStatTotal(oldSpecies)).abs
+		acceptableDiff = [attempts * 5,60].min
+		acceptableDiff = 99999 if attempts > 100 # Failsafe
+		if !@@rules.include?(:SIMILAR_BST)
+			newSpecies = possibleSpecies
+		elsif bstDiff < acceptableDiff
+			echo("BST difference: #{bstDiff}\n")
+			newSpecies = possibleSpecies
+		end
+		attempts += 1
+	end
+	return newSpecies
+  end
+  
   #-----------------------------------------------------------------------------
   #  randomizes compiled trainer data
   #-----------------------------------------------------------------------------
@@ -93,8 +118,9 @@ module Randomizer
       next if !trainer_exclusions.nil? && trainer_exclusions.include?(data[key].id)
       # iterate through party
       for i in 0...data[key].pokemon.length
+	    # don't change this species if it's an excluded one
         next if !species_exclusions.nil? && species_exclusions.include?(data[key].pokemon[i][:species])
-        data[key].pokemon[i][:species] = self.all_species.sample
+        data[key].pokemon[i][:species] = self.getNewSpecies(data[key].pokemon[i][:species])
       end
     end
     return data
@@ -113,9 +139,9 @@ module Randomizer
       for type in data[key].types.keys
         # cycle each definition
         for i in 0...data[key].types[type].length
-          # set randomized species
+		  # don't change this species if it's an excluded one
           next if !species_exclusions.nil? && species_exclusions.include?(data[key].types[type][i][1])
-          data[key].types[type][i][1] = self.all_species.sample
+		  data[key].types[type][i][1] = self.getNewSpecies(data[key].types[type][i][1])
         end
       end
     end
@@ -126,10 +152,10 @@ module Randomizer
   #-----------------------------------------------------------------------------
   def self.randomizeStatic
     new = {}
-    array = self.all_species
+    array = self.all_species.dup
     # shuffles up species indexes to load a different one
     for org in self.all_species
-      i = rand(array.length)
+      newIndex = -1
       new[org] = array[i]
       array.delete_at(i)
     end
@@ -160,8 +186,8 @@ module Randomizer
     randomized = {
       :TRAINERS => proc{ next Randomizer.randomizeTrainers },
       :ENCOUNTERS => proc{ next Randomizer.randomizeEncounters },
-      :STATIC => proc{ next Randomizer.randomizeStatic },
-      :GIFTS => proc{ next Randomizer.randomizeStatic },
+      #:STATIC => proc{ next Randomizer.randomizeStatic },
+      #:GIFTS => proc{ next Randomizer.randomizeStatic },
       :ITEMS => proc{ next Randomizer.randomizeItems }
     }
     # applies randomized data for specified rule sets
@@ -207,14 +233,13 @@ module Randomizer
   #-----------------------------------------------------------------------------
   def self.randomizerSelection
     # list of all possible rules
-    modifiers = [:TRAINERS, :ENCOUNTERS, :STATIC, :GIFTS, :ITEMS]
+    modifiers = [:TRAINERS, :ENCOUNTERS, :ITEMS, :SIMILAR_BST]
     # list of rule descriptions
     desc = [
-      _INTL("Randomize Trainer parties"),
-      _INTL("Randomize Wild encounters"),
-      _INTL("Randomize Static encounters"),
-      _INTL("Randomize Gifted Pokémon"),
-      _INTL("Randomize Items")
+      _INTL("Randomize Trainer Parties"),
+      _INTL("Randomize Wild Encounters"),
+      _INTL("Randomize Items"),
+	  _INTL("Keep Similar Stat Totals")
     ]
     # default
     added = []; cmd = 0
@@ -441,6 +466,13 @@ module GameData
   end
 end
 
+def pbBaseStatTotal(species)
+  baseStats = GameData::Species.get(species).base_stats
+  ret = 0
+  baseStats.each { |k,v| ret += v }
+  return ret
+end
+
 
 DebugMenuCommands.register("randomizer", {
   "parent"      => "main",
@@ -450,10 +482,10 @@ DebugMenuCommands.register("randomizer", {
 
 DebugMenuCommands.register("toggle", {
   "parent"      => "randomizer",
-  "name"        => _INTL("Toggle Randomizer"),
-  "description" => _INTL("Toggle the Randomizer state off"),
+  "name"        => _INTL("Reset Randomizer"),
+  "description" => _INTL("Reset the Randomizer"),
   "effect"      => proc { |sprites, viewport|
-    Randomizer.toggle(false)
-	pbMessage(_INTL("Randomizer is now #{Randomizer.on? ? "on" : "off"}."))
+    Randomizer.reset
+	pbMessage(_INTL("Randomizer was reset."))
   }
 })

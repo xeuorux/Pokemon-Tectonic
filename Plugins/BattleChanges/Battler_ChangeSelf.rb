@@ -10,19 +10,21 @@ class PokeBattle_Battler
 		@battle.scene.pbFaintBattler(self)
 		
 		# Show dialogue reacting to the fainting
-		if pbOwnedByPlayer?
-			# Trigger dialogue for each opponent
-			@battle.opponent.each_with_index do |trainer,idxTrainer|
+		if @battle.opponent
+			if pbOwnedByPlayer?
+				# Trigger dialogue for each opponent
+				@battle.opponent.each_with_index do |trainer,idxTrainer|
+					@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+						PokeBattle_AI.triggerPlayerPokemonFaintedDialogue(policy,self,dialogue)
+					}
+				end
+			else
+				# Trigger dialogue for the opponent which owns this
+				idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(@index)
 				@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					PokeBattle_AI.triggerPlayerPokemonFaintedDialogue(policy,self,dialogue)
+					PokeBattle_AI.triggerTrainerPokemonFaintedDialogue(policy,self,dialogue)
 				}
 			end
-		else
-			# Trigger dialogue for the opponent which owns this
-			idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(@index)
-			@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-				PokeBattle_AI.triggerTrainerPokemonFaintedDialogue(policy,self,dialogue)
-			}
 		end
 		
 		pbInitEffects(false)

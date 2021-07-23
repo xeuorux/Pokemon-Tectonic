@@ -69,7 +69,7 @@ class NewDexNav
     @sprites["nav"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport3)
     @sprites["nav"].x = 5
     @sprites["nav"].y = 18
-    @sprites["nav"].visible
+    @sprites["nav"].visible = false
     @sprites["nav"].play
     pbFadeInAndShow(@sprites)
     openMainDexNavScreen
@@ -178,26 +178,27 @@ class NewDexNav
     @sprites["selectedSpeciesName"].width=156
     @sprites["selectedSpeciesName"].windowskin = nil
 	
-	@sprites["nav"].visible = false if @stripped_encarray.length == 0
+	inputActive = @stripped_encarray.length != 0
+	@sprites["nav"].visible = true if inputActive
 	
 	# Begin taking input for the main dexnav screen
     loop do
       Graphics.update
       Input.update
       pbUpdateSpriteHash(@sprites)
-      if Input.trigger?(Input::DOWN) && (navMon + 7) <= lastMon
+      if Input.trigger?(Input::DOWN) && (navMon + 7) <= lastMon && inputActive
         navMon += 7
         @sprites["nav"].y += 64
-      elsif Input.trigger?(Input::UP) && navMon > 6
+      elsif Input.trigger?(Input::UP) && navMon > 6 && inputActive
         navMon -=7
         @sprites["nav"].y -= 64
-      elsif Input.trigger?(Input::LEFT) && navMon % 7 != 0
+      elsif Input.trigger?(Input::LEFT) && navMon % 7 != 0 && inputActive
         navMon -=1
         @sprites["nav"].x -= 64
-      elsif Input.trigger?(Input::RIGHT) && navMon % 7 != 6 && navMon < lastMon
+      elsif Input.trigger?(Input::RIGHT) && navMon % 7 != 6 && navMon < lastMon && inputActive
         navMon +=1
         @sprites["nav"].x += 64
-      elsif Input.trigger?(Input::C)
+      elsif Input.trigger?(Input::C) && inputActive
         if !($Trainer.pokedex.owned?(@stripped_encarray[navMon]) || ($DEBUG && Input.press?(Input::CTRL)))
           pbMessage(_INTL("You cannot search for this Pokémon, because you haven't owned one yet!"))
           next

@@ -4197,22 +4197,24 @@ class PokeBattle_Battle
 	
 	# For each pokemon the player decided to use a move with, trigger the trainer dialogue method
 	# for any trainers which can do so
-	idxBattler = -1
-	loop do
-      idxBattler += 1
-      break if idxBattler>=@battlers.length
-      next if !@battlers[idxBattler] || !pbOwnedByPlayer?(idxBattler)
-	  if @choices[idxBattler][0] == :UseMove
-			battler = @battlers[idxBattler]
-			move = @choices[idxBattler][2]
-			target = @choices[idxBattler][3] == -1 ? nil : @battlers[@choices[idxBattler][3]]
-			
-			# Trigger dialogue for each opponent
-			@opponent.each_with_index do |trainer,idxTrainer|
-				@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					PokeBattle_AI.triggerPlayerChoseMoveDialogue(policy,battler,move,target,dialogue)
-				}
-			end	
+	if @opponent
+		idxBattler = -1
+		loop do
+		  idxBattler += 1
+		  break if idxBattler>=@battlers.length
+		  next if !@battlers[idxBattler] || !pbOwnedByPlayer?(idxBattler)
+		  if @choices[idxBattler][0] == :UseMove
+				battler = @battlers[idxBattler]
+				move = @choices[idxBattler][2]
+				target = @choices[idxBattler][3] == -1 ? nil : @battlers[@choices[idxBattler][3]]
+				
+				# Trigger dialogue for each opponent
+				@opponent.each_with_index do |trainer,idxTrainer|
+					@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+						PokeBattle_AI.triggerPlayerChoseMoveDialogue(policy,battler,move,target,dialogue)
+					}
+				end	
+			end
 		end
 	end
   end
@@ -4233,8 +4235,8 @@ class PokeBattle_Battle
 		  if @controlPlayer || !pbOwnedByPlayer?(idxBattler)
 			# Have the AI choose an action
 			@battleAI.pbDefaultChooseEnemyCommand(idxBattler)
-			# If the AI chose to use a move, trigger dialogue event
-			if @choices[idxBattler][0] == :UseMove
+			# If an AI trainer chose to use a move, trigger dialogue event
+			if @opponent && @choices[idxBattler][0] == :UseMove
 				battler = @battlers[idxBattler]
 				move = @choices[idxBattler][2]
 				target = @choices[idxBattler][3] == -1 ? nil : @battlers[@choices[idxBattler][3]]
