@@ -426,7 +426,7 @@ Pokemon = SPEAROW,21
 [BATTLEGIRL,Tester]
 LoseText = "..."
 Pokemon = BIDOOF,70
-    Moves = FAKEOUT,TACKLE
+    Moves = TACKLE,WATERGUN
     AbilityIndex = 0
 #------------------------------
 ################################
