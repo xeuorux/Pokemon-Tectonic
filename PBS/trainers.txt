@@ -355,7 +355,7 @@ Pokemon = NOIBAT,19
 Pokemon = YUNGOOS,20
     AbilityIndex = 0
 #-------------------------------
-[BLACKBELT,Adan]
+[BLACKBELT3,Adan]
 LoseText = "Oof. Guess I've got a bit of a glass jaw."
 Pokemon = CRANIDOS,21
     AbilityIndex = 0
@@ -428,10 +428,7 @@ LoseText = "..."
 Pokemon = BIDOOF,70
     Moves = FAKEOUT,TACKLE
     AbilityIndex = 0
-#------------------------------
-################################
-#       Vanity Trainers        #
-################################
+#-------------------------------
 [COOLTRAINER_M,Agent]
 LoseText = "TODO!"
 Pokemon = BEARTIC,70
@@ -468,29 +465,31 @@ Pokemon = PALMANTRA,70
 [COOLTRAINER_M,Xavier]
 LoseText = "TODO!"
 Pokemon = GALVANTULA,70
-	AbilityIndex = 0
-	Moves = THUNDER,BUGBUZZ,STICKYWEB,LIGHTNINGDANCE
+    Moves = THUNDER,BUGBUZZ,STICKYWEB,LIGHTNINGDANCE
+    AbilityIndex = 0
 Pokemon = FERALIGATR,70
-	AbilityIndex = 1
-	Moves = ICEFANG,CRUNCH,LIQUIDATION,AQUAINSTINCT
-	Item = CHOICEBAND
-	EV = 0,20,0,0,20,0,10
+    Moves = ICEFANG,CRUNCH,LIQUIDATION,AQUAINSTINCT
+    AbilityIndex = 1
+    Item = CHOICEBAND
+    EV = 0,20,0,0,20,0
 Pokemon = CHANDELURE,70
-	AbilityIndex = 0
-	Moves = FLAMETHROWER,HEX,WILLOWISP,SHADOWBALL
-	Item = LUMBERRY
-	EV = 20,0,20,0,0,10
+    Moves = FLAMETHROWER,HEX,WILLOWISP,SHADOWBALL
+    AbilityIndex = 0
+    Item = LUMBERRY
+    EV = 20,0,20,0,0,10
 Pokemon = HYDREIGON,70
-	Moves = DRACOMETEOR,CRIPPLINGBREATH,DARKPULSE,UTURN
-	Item = CHOICESCARF
-	EV = 10,0,0,20,20,0
+    Moves = DRACOMETEOR,CRIPPLINGBREATH,DARKPULSE,UTURN
+    AbilityIndex = 0
+    Item = CHOICESCARF
+    EV = 10,0,0,20,20,0
 Pokemon = CROBAT,70
-	AbilityIndex = 1
-	Moves = BRAVEBIRD,SUPERFANG,TAUNT,ROOST
-	Item = SHARPBEAK
-	EV = 10,20,0,20,0,0
+    Moves = BRAVEBIRD,SUPERFANG,TAUNT,ROOST
+    AbilityIndex = 1
+    Item = SHARPBEAK
+    EV = 10,20,0,20,0,0
 Pokemon = SWALOT,70
-	AbilityIndex = 0
-	Moves = SLUDGEWAVE,GIGADRAIN,ACIDSPRAY,ICEBEAM
-	Item = ASSAULTVEST
-	EV = 20,0,15,0,0,15
+    Moves = SLUDGEWAVE,GIGADRAIN,ACIDSPRAY,ICEBEAM
+    AbilityIndex = 0
+    Item = ASSAULTVEST
+    EV = 20,0,15,0,0,15
+#-------------------------------
