@@ -17,14 +17,21 @@ class PokeBattle_Scene
   end
   
   def showTrainerDialogue(idxTrainer,&block)
+	# Gather dialogue from event calls through the trainer's policies
 	dialogue = []
-	dialogue = block.call(dialogue)
+	policies = @battle.opponent[idxTrainer].policies
+	policies.each do |policy|
+		dialogue = block.call(policy,dialogue)
+	end
 	
+	# Error state
 	if !dialogue
 		echo("Dialogue array somehow became null while trying to show trainer dialogue!")
 		return
 	end
 	
+	# If there's some dialogue schedule, move the trainer on screen,
+	# display all the dialogue, then move the trainer off screen
 	if dialogue.length != 0
 		trainerMovesInOut(idxTrainer) {
 			dialogue.each do |line|

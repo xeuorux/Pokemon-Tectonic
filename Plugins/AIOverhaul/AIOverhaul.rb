@@ -1023,3 +1023,14 @@ class PokeBattle_AI
     return damage.floor
   end
 end
+
+class NPCTrainer < Trainer
+	attr_accessor :policies
+	
+	def initialize(name, trainer_type)
+		super
+		@items     = []
+		@lose_text = nil
+		@policies  = [:TEST]
+	end
+end
