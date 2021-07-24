@@ -55,6 +55,17 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
       end
     end
   end
+  
+  def getScore(score,user,target,skill=100)
+    failed = true
+	for i in 0...@statUp.length/2
+	  score -= target.stages[@statUp[i*2]] * 10
+      failed = false if target.pbCanRaiseStatStage?(@statUp[i*2],user,self)
+      break
+    end
+	score = 0 if failed
+	return score
+  end
 end
 
 
@@ -64,11 +75,9 @@ end
 #===============================================================================
 class PokeBattle_Move_176 < PokeBattle_ParalysisMove
   def pbMoveFailed?(user,targets)
-    if @id == :AURAWHEEL
-      if user.species != :MORPEKO && user.effects[PBEffects::TransformSpecies] != :MORPEKO
-        @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis))
-        return true
-      end
+    if @id == :AURAWHEEL && user.species != :MORPEKO && user.effects[PBEffects::TransformSpecies] != :MORPEKO
+      @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis))
+      return true
     end
     return false
   end
@@ -82,6 +91,12 @@ class PokeBattle_Move_176 < PokeBattle_ParalysisMove
       ret = :DARK
     end
     return ret
+  end
+  
+  def getScore(score,user,target,skill=100)
+	score = getParalysisMoveScore(score,user,target,skill=100)
+	score = 0 if @id == :AURAWHEEL && user.species != :MORPEKO && user.effects[PBEffects::TransformSpecies] != :MORPEKO
+	return score
   end
 end
 
@@ -112,6 +127,11 @@ class PokeBattle_Move_178 < PokeBattle_Move
       baseDmg *= 2
     end
     return baseDmg
+  end
+  
+  def getScore(score,user,target,skill=100)
+	score = getWantsToBeSlowerScore(score,user,target,skill,-5)
+	return score
   end
 end
 
@@ -153,6 +173,12 @@ class PokeBattle_Move_179 < PokeBattle_Move
     end
     user.pbReduceHP(user.totalhp/3,false)
   end
+  
+  def getScore(score,user,target,skill=100)
+	score += 50 if user.turnCount == 0
+	score -= 80 if user.hp < user.totalhp/2
+	return score
+  end
 end
 
 
@@ -162,23 +188,27 @@ end
 # (Court Change)
 #===============================================================================
 class PokeBattle_Move_17A < PokeBattle_Move
+  numericEffects = [PBEffects::Reflect,PBEffects::LightScreen,PBEffects::AuroraVeil,PBEffects::SeaOfFire,
+  PBEffects::Swamp,PBEffects::Rainbow,PBEffects::Mist,PBEffects::Safeguard,PBEffects::Spikes,
+  PBEffects::ToxicSpikes,PBEffects::Tailwind]
+  booleanEffects = [PBEffects::StealthRock,PBEffects::StickyWeb]
+
   def pbEffectGeneral(user)
     changeside=false
     sides=[user.pbOwnSide,user.pbOpposingSide]
     for i in 0...2
-      next if sides[i].effects[PBEffects::Reflect]==0 &&
-              sides[i].effects[PBEffects::LightScreen]==0 &&
-              sides[i].effects[PBEffects::AuroraVeil]==0 &&
-              sides[i].effects[PBEffects::SeaOfFire]==0 && # Fire Pledge
-              sides[i].effects[PBEffects::Swamp]==0 &&     # Grass Pledge
-              sides[i].effects[PBEffects::Rainbow]==0 &&   # Water Pledge
-              sides[i].effects[PBEffects::Mist]==0 &&
-              sides[i].effects[PBEffects::Safeguard]==0 &&
-             !sides[i].effects[PBEffects::StealthRock] &&
-              sides[i].effects[PBEffects::Spikes]==0 &&
-             !sides[i].effects[PBEffects::StickyWeb] &&
-              sides[i].effects[PBEffects::ToxicSpikes]==0 &&
-              sides[i].effects[PBEffects::Tailwind]==0
+	  noNumericEffectsActive = true
+	  noBooleanEffectsActive = true
+	  
+	  numericEffects.each do |effect|
+		noNumericEffectsActive = false if sides[i].effects[effect]!=0
+	  end
+	  
+	  booleanEffects.each do |effect|
+		noBooleanEffectsActive = false if sides[i].effects[effect]
+	  end
+	  
+      next if noNumericEffectsActive && noBooleanEffectsActive
       changeside=true
     end
     if !changeside
@@ -186,61 +216,35 @@ class PokeBattle_Move_17A < PokeBattle_Move
       return -1
     else
       ownside=sides[0]; oppside=sides[1]
-	  # Reflect
-      reflect=ownside.effects[PBEffects::Reflect]
-      ownside.effects[PBEffects::Reflect]=oppside.effects[PBEffects::Reflect]
-      oppside.effects[PBEffects::Reflect]=reflect
-	  # Lighscreen
-      lightscreen=ownside.effects[PBEffects::LightScreen]
-      ownside.effects[PBEffects::LightScreen]=oppside.effects[PBEffects::LightScreen]
-      oppside.effects[PBEffects::LightScreen]=lightscreen
-	  # Aurora Veil
-      auroraveil=ownside.effects[PBEffects::AuroraVeil]
-      ownside.effects[PBEffects::AuroraVeil]=oppside.effects[PBEffects::AuroraVeil]
-      oppside.effects[PBEffects::AuroraVeil]=auroraveil
-	  # Fire Plegde
-      firepledge=ownside.effects[PBEffects::SeaOfFire]
-      ownside.effects[PBEffects::SeaOfFire]=oppside.effects[PBEffects::SeaOfFire]
-      oppside.effects[PBEffects::SeaOfFire]=firepledge
-	  # Grass Pledge
-      grasspledge=ownside.effects[PBEffects::Swamp]
-      ownside.effects[PBEffects::Swamp]=oppside.effects[PBEffects::Swamp]
-      oppside.effects[PBEffects::Swamp]=grasspledge
-	  # Water Pledge
-      waterpledge=ownside.effects[PBEffects::Rainbow]
-      ownside.effects[PBEffects::Rainbow]=oppside.effects[PBEffects::Rainbow]
-      oppside.effects[PBEffects::Rainbow]=waterpledge
-	  # Mist
-      mist=ownside.effects[PBEffects::Mist]
-      ownside.effects[PBEffects::Mist]=oppside.effects[PBEffects::Mist]
-      oppside.effects[PBEffects::Mist]=mist
-	  # Spikes
-      spikes=ownside.effects[PBEffects::Spikes]
-      ownside.effects[PBEffects::Spikes]=oppside.effects[PBEffects::Spikes]
-      oppside.effects[PBEffects::Spikes]=spikes
-	  # Toxic Spikes
-      toxicspikes=ownside.effects[PBEffects::ToxicSpikes]
-      ownside.effects[PBEffects::ToxicSpikes]=oppside.effects[PBEffects::ToxicSpikes]
-      oppside.effects[PBEffects::ToxicSpikes]=toxicspikes
-	  # Stealth Rock
-      stealthrock=ownside.effects[PBEffects::StealthRock]
-      ownside.effects[PBEffects::StealthRock]=oppside.effects[PBEffects::StealthRock]
-      oppside.effects[PBEffects::StealthRock]=stealthrock
-	  # Sticky Web
-      stickyweb=ownside.effects[PBEffects::StickyWeb]
-      ownside.effects[PBEffects::StickyWeb]=oppside.effects[PBEffects::StickyWeb]
-      oppside.effects[PBEffects::StickyWeb]=stickyweb
+
+	  numericEffects.concat(booleanEffects).each do |effect|
+		temp = ownside.effects[effect]
+		ownside.effects[effect]=oppside.effects[effect]
+		oppside.effects[effect]=temp
+	  end
+	  
 	  # Sticky Web user is preserved, for Defiant/Competitive.
       stickywebuser=ownside.effects[PBEffects::StickyWebUser]
       ownside.effects[PBEffects::StickyWebUser]=oppside.effects[PBEffects::StickyWebUser]
       oppside.effects[PBEffects::StickyWebUser]=stickywebuser
-	  # Tailwind
-      tailwind=ownside.effects[PBEffects::Tailwind]
-      ownside.effects[PBEffects::Tailwind]=oppside.effects[PBEffects::Tailwind]
-      oppside.effects[PBEffects::Tailwind]=tailwind
+	  
       @battle.pbDisplay(_INTL("{1} swapped the battle effects affecting each side of the field!",user.pbThis))
       return 0
     end
+  end
+  
+  def getScore(score,user,target,skill=100)
+	sides=[user.pbOwnSide,user.pbOpposingSide]
+	numericEffects.each do |effect|
+		score -= 10 if sides[0].effects[effect]!=0
+		score += 10 if sides[1].effects[effect]!=0
+	end
+	  
+	booleanEffects.each do |effect|
+		score -= 10 if sides[0].effects[effect]
+		score += 10 if sides[1].effects[effect]
+	end
+	return score
   end
 end
 
@@ -334,6 +338,17 @@ class PokeBattle_Move_17E < PokeBattle_Move
   def pbHealAmount(user)
     return (user.totalhp/4.0).round
   end
+  
+  
+  def getScore(score,user,target,skill=100)
+	score += 20 if user.hp < user.totalhp
+	score += 20 if user.hp < user.totalhp/2
+	score += 20 if target.hp < target.totalhp
+	score += 20 if target.hp < target.totalhp/2
+	score -= 80 if !user.canHeal?
+	score -= 80 if !target.canHeal?
+	return score
+  end
 end
 
 
@@ -380,6 +395,13 @@ class PokeBattle_Move_17F < PokeBattle_MultiStatUpMove
       @battle.pbDisplay(_INTL("{1} can no longer escape because it used No Retreat!",user.pbThis))
     end
   end
+  
+  def getScore(score,user,target,skill=100)
+	score += 40 if user.turnCount == 0
+	score -= 40 if user.hp<user.totalhp/2
+	score = 0 if user.effects[PBEffects::NoRetreat]
+	return score
+  end
 end
 
 #===============================================================================
@@ -392,8 +414,6 @@ class PokeBattle_Move_180 < PokeBattle_ProtectMove
     @effect = PBEffects::Obstruct
   end
 end
-
-
 
 #===============================================================================
 # Lowers target's Defense and Special Defense by 1 stage at the end of each
@@ -426,8 +446,6 @@ end
 #===============================================================================
 class PokeBattle_Move_182 < PokeBattle_Move
 end
-
-
 
 #===============================================================================
 # Consumes berry and raises the user's Defense by 2 stages. (Stuff Cheeks)

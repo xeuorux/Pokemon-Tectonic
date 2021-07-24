@@ -779,7 +779,7 @@ class PokeBattle_Move_526 < PokeBattle_SleepMove
 end
 
 #===============================================================================
-# Puts the target to sleep. Fails unless in sunlight. (new!Grass Whistle)
+# Puts the target to sleep. Fails unless in sunlight. (Summer Daze)
 #===============================================================================
 class PokeBattle_Move_527 < PokeBattle_SleepMove
 	def pbMoveFailed?(user,targets)
@@ -801,7 +801,7 @@ class PokeBattle_Move_527 < PokeBattle_SleepMove
 end
 
 #===============================================================================
-# Puts the target to sleep. Fails unless the target is at or below half health. (new!Sing)
+# Puts the target to sleep. Fails unless the target is at or below half health. (Lullaby)
 #===============================================================================
 class PokeBattle_Move_528 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
@@ -823,7 +823,7 @@ class PokeBattle_Move_528 < PokeBattle_SleepMove
 end
 
 #===============================================================================
-# Puts the target to sleep. Fails unless the target dealt damage to the user this turn. (new!Sleep Powder)
+# Puts the target to sleep. Fails unless the target dealt damage to the user this turn. (Puff Ball)
 #===============================================================================
 class PokeBattle_Move_529 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
@@ -835,8 +835,8 @@ class PokeBattle_Move_529 < PokeBattle_SleepMove
 	end
 	
 	def getScore(score,user,target,skill=100)
-		score = sleepMoveAI(score,user,target,skill=100)
-		score = getWantsToBeSlowerScore(score,user,target,skill=100,magnitude=5)
+		score = sleepMoveAI(score,user,target,skill)
+		score = getWantsToBeSlowerScore(score,user,target,skill,magnitude)
 		return score
 	end
 end
@@ -1127,7 +1127,7 @@ end
 
 
 #===============================================================================
-# Puts the target to sleep. Fails unless the target is charmed or confused. (new!Hypnosis)
+# Puts the target to sleep. Fails unless the target is charmed or confused. (Pacify)
 #===============================================================================
 class PokeBattle_Move_534 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)

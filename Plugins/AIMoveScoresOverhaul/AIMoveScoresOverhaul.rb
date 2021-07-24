@@ -28,28 +28,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "007", "008", "009", "0C5"
-      if target.pbCanParalyze?(user,false) &&
-         !(skill>=PBTrainerAI.mediumSkill &&
-         move.id == :THUNDERWAVE &&
-         Effectiveness.ineffective?(pbCalcTypeMod(move.type,user,target)))
-        score += 30
-        if skill>=PBTrainerAI.mediumSkill
-           aspeed = pbRoughStat(user,:SPEED,skill)
-           ospeed = pbRoughStat(target,:SPEED,skill)
-          if aspeed<ospeed
-            score += 30
-          elsif aspeed>ospeed
-            score -= 40
-          end
-        end
-        if skill>=PBTrainerAI.highSkill
-          score -= 40 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET])
-        end
-      else
-        if skill>=PBTrainerAI.mediumSkill
-          score -= 90 if move.statusMove?
-        end
-      end
+      score = getParalysisMoveScore(score,user,target,skill=100)
     #---------------------------------------------------------------------------
     when "00A", "00B", "0C6"
       if target.pbCanBurn?(user,false)
@@ -3040,6 +3019,27 @@ class PokeBattle_MultiStatUpMove
 		
 		return score
 	end
+end
+
+def getParalysisMoveScore(score,user,target,skill=100)
+	wouldBeFailedTWave = skill>=PBTrainerAI.mediumSkill && move.id == :THUNDERWAVE && Effectiveness.ineffective?(pbCalcTypeMod(move.type,user,target))
+	if target.pbCanParalyze?(user,false) && !wouldBeFailedTWave
+        score += 30
+        if skill>=PBTrainerAI.mediumSkill
+           aspeed = pbRoughStat(user,:SPEED,skill)
+           ospeed = pbRoughStat(target,:SPEED,skill)
+          if aspeed<ospeed
+            score += 30
+          elsif aspeed>ospeed
+            score -= 40
+          end
+        end
+        if skill>=PBTrainerAI.highSkill
+          score -= 40 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET])
+        end
+    elsif skill>=PBTrainerAI.mediumSkill
+	    score = 0 if move.statusMove?
+    end
 end
 
 def getFreezeMoveScore(score,user,target,skill=100,status=false)
