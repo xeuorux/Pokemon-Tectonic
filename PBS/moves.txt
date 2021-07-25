@@ -172,7 +172,7 @@
 166,SKYUPPERCUT,Sky Uppercut,11B,85,FIGHTING,Physical,100,15,0,NearOther,0,abefj,The user attacks the target with an uppercut thrown skyward with force.
 167,AURASPHERE,Aura Sphere,0A5,80,FIGHTING,Special,0,20,0,Other,0,befmn,The user looses a blast of aura power from deep within its body. This move is certain to hit.
 168,SUBMISSION,Submission,0FA,120,FIGHTING,Physical,100,20,0,NearOther,0,abef,The user grabs the target and recklessly dives for the ground. The user also takes 25% recoil.
-169,BRICKBREAK,Brick Break,10A,80,FIGHTING,Physical,100,15,0,NearOther,0,abef,The user attacks with a swift chop. It can also break any barrier such as Light Screen and Reflect.
+169,BRICKBREAK,Brick Break,10A,75,FIGHTING,Physical,100,15,0,NearOther,0,abef,The user attacks with a swift chop. It can also break any barrier such as Light Screen and Reflect.
 170,DRAINPUNCH,Drain Punch,0DD,75,FIGHTING,Physical,100,10,0,NearOther,0,abefj,An energy-draining punch. The user's HP is restored by half the damage taken by the target.
 171,VITALTHROW,Vital Throw,0A5,70,FIGHTING,Physical,0,10,0,NearOther,-1,abef,"The user attacks last. In return, this throw move is guaranteed not to miss."
 172,WAKEUPSLAP,Wake-Up Slap,07D,70,NORMAL,Physical,100,10,0,NearOther,0,abef,"This attack inflicts double damage on a sleeping target. It also wakes the target up, however."
