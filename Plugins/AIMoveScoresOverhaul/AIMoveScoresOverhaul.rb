@@ -9,41 +9,16 @@ class PokeBattle_AI
     case move.function
     #---------------------------------------------------------------------------
     when "005", "006", "0BE"
-      if target.pbCanPoison?(user,false)
-        score += 30
-        if skill>=PBTrainerAI.mediumSkill
-          score += 30 if target.hp<=target.totalhp/4
-          score += 50 if target.hp<=target.totalhp/8
-          score -= 40 if target.effects[PBEffects::Yawn]>0
-        end
-        if skill>=PBTrainerAI.highSkill
-          score += 10 if pbRoughStat(target,:DEFENSE,skill)>100
-          score += 10 if pbRoughStat(target,:SPECIAL_DEFENSE,skill)>100
-          score -= 40 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:TOXICBOOST])
-        end
-      else
-        if skill>=PBTrainerAI.mediumSkill
-          score -= 90 if move.statusMove?
-        end
-      end
+      score = getPoisonMoveScore(score,user,target,skill,move.statusMove?)
     #---------------------------------------------------------------------------
     when "007", "008", "009", "0C5"
-      score = getParalysisMoveScore(score,user,target,skill=100)
+      score = getParalysisMoveScore(score,user,target,skill)
     #---------------------------------------------------------------------------
     when "00A", "00B", "0C6"
-      if target.pbCanBurn?(user,false)
-        score += 30
-        if skill>=PBTrainerAI.highSkill
-          score -= 40 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST])
-        end
-      else
-        if skill>=PBTrainerAI.mediumSkill
-          score -= 90 if move.statusMove?
-        end
-      end
+      score = getBurnMoveScore(score,user,target,skill,move.statusMove?)
     #---------------------------------------------------------------------------
     when "00C", "00D", "00E","135"
-      score = getFreezeMoveScore(score,user,target,skill=100,move.statusMove?)
+      score = getFreezeMoveScore(score,user,target,skill,move.statusMove?)
     #---------------------------------------------------------------------------
     when "00F"
       score += 30
@@ -3021,6 +2996,8 @@ class PokeBattle_MultiStatUpMove
 	end
 end
 
+statusUpsideAbilities = [:GUTS,:AUDACITY,:MARVELSCALE,:TOXICBOOST,:QUICKFEET]
+
 def getParalysisMoveScore(score,user,target,skill=100)
 	wouldBeFailedTWave = skill>=PBTrainerAI.mediumSkill && move.id == :THUNDERWAVE && Effectiveness.ineffective?(pbCalcTypeMod(move.type,user,target))
 	if target.pbCanParalyze?(user,false) && !wouldBeFailedTWave
@@ -3035,7 +3012,7 @@ def getParalysisMoveScore(score,user,target,skill=100)
           end
         end
         if skill>=PBTrainerAI.highSkill
-          score -= 40 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET])
+          score -= 40 if target.hasActiveAbility?(statusUpsideAbilities)
         end
     elsif skill>=PBTrainerAI.mediumSkill
 	    score = 0 if move.statusMove?
@@ -3046,11 +3023,42 @@ def getFreezeMoveScore(score,user,target,skill=100,status=false)
 	if target.pbCanFreeze?(user,false)
 		score += 30
 		if skill>=PBTrainerAI.highSkill
-		  score -= 20 if target.hasActiveAbility?(:MARVELSCALE)
+		  score -= 20 if target.hasActiveAbility?(statusUpsideAbilities)
 		end
-	elsif skill>=PBTrainerAI.mediumSkill
-		return 0 if status
+	elsif skill>=PBTrainerAI.mediumSkill && status
+		return 0
 	end
+	return score
+end
+
+def getPoisonMoveScore(score,user,target,skill=100,status=false)
+	if target.pbCanPoison?(user,false)
+        score += 30
+        if skill>=PBTrainerAI.mediumSkill
+          score += 30 if target.hp<=target.totalhp/4
+          score += 50 if target.hp<=target.totalhp/8
+          score -= 40 if target.effects[PBEffects::Yawn]>0
+        end
+        if skill>=PBTrainerAI.highSkill
+          score += 10 if pbRoughStat(target,:DEFENSE,skill)>100
+          score += 10 if pbRoughStat(target,:SPECIAL_DEFENSE,skill)>100
+          score -= 40 if target.hasActiveAbility?(statusUpsideAbilities)
+        end
+    elsif skill>=PBTrainerAI.mediumSkill && status
+        return 0
+    end
+	return score
+end
+
+def getBurnMoveScore(score,user,target,skill=100,status=false)
+	if target.pbCanBurn?(user,false)
+        score += 30
+        if skill>=PBTrainerAI.highSkill
+          score -= 40 if target.hasActiveAbility?([:FLAREBOOST].concat(statusUpsideAbilities))
+        end
+    elsif skill>=PBTrainerAI.mediumSkill && status
+		return 0
+    end
 	return score
 end
 
@@ -3082,26 +3090,26 @@ end
 #=============================================================================
 # Get approximate properties for a battler
 #=============================================================================
-  def pbRoughType(move,user,skill)
-    ret = move.type
-    if skill>=PBTrainerAI.highSkill
-      ret = move.pbCalcType(user)
-    end
-    return ret
-  end
+def pbRoughType(move,user,skill)
+	ret = move.type
+	if skill>=PBTrainerAI.highSkill
+	  ret = move.pbCalcType(user)
+	end
+	return ret
+end
 
-  def pbRoughStat(battler,stat,skill)
-    return battler.pbSpeed if skill>=PBTrainerAI.highSkill && stat==:SPEED
-    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-    stage = battler.stages[stat]+6
-    value = 0
-    case stat
-    when :ATTACK          then value = battler.attack
-    when :DEFENSE         then value = battler.defense
-    when :SPECIAL_ATTACK  then value = battler.spatk
-    when :SPECIAL_DEFENSE then value = battler.spdef
-    when :SPEED           then value = battler.speed
-    end
-    return (value.to_f*stageMul[stage]/stageDiv[stage]).floor
-  end
+def pbRoughStat(battler,stat,skill)
+	return battler.pbSpeed if skill>=PBTrainerAI.highSkill && stat==:SPEED
+	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+	stage = battler.stages[stat]+6
+	value = 0
+	case stat
+	when :ATTACK          then value = battler.attack
+	when :DEFENSE         then value = battler.defense
+	when :SPECIAL_ATTACK  then value = battler.spatk
+	when :SPECIAL_DEFENSE then value = battler.spdef
+	when :SPEED           then value = battler.speed
+	end
+	return (value.to_f*stageMul[stage]/stageDiv[stage]).floor
+end
