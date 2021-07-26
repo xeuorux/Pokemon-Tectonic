@@ -38,7 +38,8 @@ class PokeBattle_AI
       if wildBattler
         pbRegisterMoveWild(user,i,choices)
       else
-        pbRegisterMoveTrainer(user,i,choices,skill)
+        newChoice = pbEvaluateMoveTrainer(user,user.moves[i],skill)
+		choices.push([i].concat(newChoice)) if newChoice
       end
     end
     # Figure out useful information about the choices
@@ -133,9 +134,9 @@ class PokeBattle_AI
   end
   
     # Trainer Pokémon calculate how much they want to use each of their moves.
-  def pbRegisterMoveTrainer(user,idxMove,choices,skill)
-    move = user.moves[idxMove]
+  def pbEvaluateMoveTrainer(user,move,skill)
     target_data = move.pbTarget(user)
+	newChoice = nil
     if target_data.num_targets > 1
       # If move affects multiple battlers and you don't choose a particular one
       totalScore = 0
@@ -144,11 +145,11 @@ class PokeBattle_AI
         score = pbGetMoveScore(move,user,b,skill)
         totalScore += ((user.opposes?(b)) ? score : -score)
       end
-	  choices.push([idxMove,totalScore,-1]) if totalScore>0
+	  newChoice = [totalScore,-1] if totalScore>0
     elsif target_data.num_targets == 0
       # If move has no targets, affects the user, a side or the whole field
       score = pbGetMoveScore(move,user,user,skill)
-      choices.push([idxMove,score,-1]) if score>0
+      newChoice = [score,-1] if score>0
     else
       # If move affects one battler and you have to choose which one
       scoresAndTargets = []
@@ -161,9 +162,10 @@ class PokeBattle_AI
       if scoresAndTargets.length>0
         # Get the one best target for the move
         scoresAndTargets.sort! { |a,b| b[0]<=>a[0] }
-        choices.push([idxMove,scoresAndTargets[0][0],scoresAndTargets[0][1]])
+        newChoice = [scoresAndTargets[0][0],scoresAndTargets[0][1]]
       end
     end
+	return newChoice
   end
   
   #=============================================================================
@@ -1021,6 +1023,44 @@ class PokeBattle_AI
       end
     end
     return damage.floor
+  end
+  
+  def testAllScores(user)
+	@battle.scene.pbDisplay("Testing all move scores...")
+	scores = []
+	target = []
+	skipTheseMoves = [:SHEERCOLD,:GUILLOTINE,:FISSURE,:HORNDRILL]
+	GameData::Move.each { |move|    # Get any one move
+		score = 0
+		next if skipTheseMoves.include?(move.id)
+		begin
+			moveObject = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(move.id))
+			target = user.pbFindTargets([nil,nil,nil,-1],moveObject,user)
+			newChoice = pbEvaluateMoveTrainer(user,moveObject,100)
+			if newChoice
+				score = newChoice[0]
+				target = newChoice[1]
+				targetName = target >= 0 ? @battle.battlers[target].name : "nothing"
+				scores.push([move,targetName,score])
+				#echo("#{move.real_name} (#{move.function_code}), targeting #{targetName}: #{score}\n")
+			else
+				#echo("#{move.real_name} (#{move.function_code}): No valid targets above score 0\n")
+			end
+		rescue
+			echo("Exception encountered while evaluating move #{move.real_name} (#{move.function_code})\n")
+		end
+	}
+	scores.sort_by!{ |score| -score[2]}
+	echo("The best five moves in this situation:\n")
+	for i in 0..4
+		entry = scores[i]
+		echo("#{i+1}: #{entry[0].id} #{entry[0].function_code} (targeting #{entry[1]}) -- #{entry[2]} \n")
+	end
+	echo("The five worst non-zero moves in this situation:\n")
+	for i in 0..4
+		entry = scores[scores.length-(5-i)]
+		echo("#{i+1}: #{entry[0].id} #{entry[0].function_code} (targeting #{entry[1]}) -- #{entry[2]} \n")
+	end
   end
 end
 

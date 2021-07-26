@@ -12,7 +12,7 @@ class PokeBattle_AI
       score = getPoisonMoveScore(score,user,target,skill,move.statusMove?)
     #---------------------------------------------------------------------------
     when "007", "008", "009", "0C5"
-      score = getParalysisMoveScore(score,user,target,skill)
+      score = getParalysisMoveScore(score,user,target,skill,move.statusMove?,move.id == :THUNDERWAVE)
     #---------------------------------------------------------------------------
     when "00A", "00B", "0C6"
       score = getBurnMoveScore(score,user,target,skill,move.statusMove?)
@@ -2925,7 +2925,7 @@ class PokeBattle_AI
       elsif skill>=PBTrainerAI.highSkill && reserves==0 && foes==0
         score += 80   # want to draw
       else
-        score -= (user.total.hp-user.hp)*75/user.totalhp
+        score -= (user.totalhp-user.hp)*75/user.totalhp
       end
     #---------------------------------------------------------------------------
     when "171"
@@ -2967,7 +2967,7 @@ class PokeBattle_MultiStatUpMove
 		stagesMaxxed = true
 		upsPhysicalAttack = false
 		upsSpecialAttack = false
-		for i in 0..@statUp.length/2
+		for i in 0...@statUp.length/2
 			statSym = @statUp[i*2]
 			stagesMaxxed = false if !user.statStageAtMax?(statSym)
 			score -= user.stages[statSym]*10 # Reduce the score for each existing stage
@@ -2996,10 +2996,12 @@ class PokeBattle_MultiStatUpMove
 	end
 end
 
-statusUpsideAbilities = [:GUTS,:AUDACITY,:MARVELSCALE,:TOXICBOOST,:QUICKFEET]
+def statusUpsideAbilities()
+	return [:GUTS,:AUDACITY,:MARVELSCALE,:TOXICBOOST,:QUICKFEET]
+end
 
-def getParalysisMoveScore(score,user,target,skill=100)
-	wouldBeFailedTWave = skill>=PBTrainerAI.mediumSkill && move.id == :THUNDERWAVE && Effectiveness.ineffective?(pbCalcTypeMod(move.type,user,target))
+def getParalysisMoveScore(score,user,target,skill=100,status=false,twave=false)
+	wouldBeFailedTWave = skill>=PBTrainerAI.mediumSkill && twave && Effectiveness.ineffective?(pbCalcTypeMod(:ELECTRIC,user,target))
 	if target.pbCanParalyze?(user,false) && !wouldBeFailedTWave
         score += 30
         if skill>=PBTrainerAI.mediumSkill
@@ -3015,7 +3017,7 @@ def getParalysisMoveScore(score,user,target,skill=100)
           score -= 40 if target.hasActiveAbility?(statusUpsideAbilities)
         end
     elsif skill>=PBTrainerAI.mediumSkill
-	    score = 0 if move.statusMove?
+	    score = 0 if status
     end
 end
 

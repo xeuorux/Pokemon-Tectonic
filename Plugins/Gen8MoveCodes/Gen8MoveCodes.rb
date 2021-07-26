@@ -188,10 +188,15 @@ end
 # (Court Change)
 #===============================================================================
 class PokeBattle_Move_17A < PokeBattle_Move
-  numericEffects = [PBEffects::Reflect,PBEffects::LightScreen,PBEffects::AuroraVeil,PBEffects::SeaOfFire,
+  def initialize(battle,move)
+    super
+    @statUp = [:ATTACK,2,:SPECIAL_ATTACK,2]
+	@numericEffects = [PBEffects::Reflect,PBEffects::LightScreen,PBEffects::AuroraVeil,PBEffects::SeaOfFire,
   PBEffects::Swamp,PBEffects::Rainbow,PBEffects::Mist,PBEffects::Safeguard,PBEffects::Spikes,
   PBEffects::ToxicSpikes,PBEffects::Tailwind]
-  booleanEffects = [PBEffects::StealthRock,PBEffects::StickyWeb]
+	@booleanEffects = [PBEffects::StealthRock,PBEffects::StickyWeb]
+  end
+
 
   def pbEffectGeneral(user)
     changeside=false
@@ -200,11 +205,11 @@ class PokeBattle_Move_17A < PokeBattle_Move
 	  noNumericEffectsActive = true
 	  noBooleanEffectsActive = true
 	  
-	  numericEffects.each do |effect|
+	  @numericEffects.each do |effect|
 		noNumericEffectsActive = false if sides[i].effects[effect]!=0
 	  end
 	  
-	  booleanEffects.each do |effect|
+	  @booleanEffects.each do |effect|
 		noBooleanEffectsActive = false if sides[i].effects[effect]
 	  end
 	  
@@ -217,7 +222,7 @@ class PokeBattle_Move_17A < PokeBattle_Move
     else
       ownside=sides[0]; oppside=sides[1]
 
-	  numericEffects.concat(booleanEffects).each do |effect|
+	  @numericEffects.concat(@booleanEffects).each do |effect|
 		temp = ownside.effects[effect]
 		ownside.effects[effect]=oppside.effects[effect]
 		oppside.effects[effect]=temp
@@ -235,12 +240,12 @@ class PokeBattle_Move_17A < PokeBattle_Move
   
   def getScore(score,user,target,skill=100)
 	sides=[user.pbOwnSide,user.pbOpposingSide]
-	numericEffects.each do |effect|
+	@numericEffects.each do |effect|
 		score -= 10 if sides[0].effects[effect]!=0
 		score += 10 if sides[1].effects[effect]!=0
 	end
 	  
-	booleanEffects.each do |effect|
+	@booleanEffects.each do |effect|
 		score -= 10 if sides[0].effects[effect]
 		score += 10 if sides[1].effects[effect]
 	end
@@ -456,7 +461,7 @@ end
 #===============================================================================
 class PokeBattle_Move_183 < PokeBattle_Move
   def pbEffectGeneral(user)
-    if !user.item || !GameData::Item.get(user.item).is_berry?
+    if !user.item || !user.item.is_berry?
       @battle.pbDisplay("But it failed!")
       return -1
     end
@@ -470,7 +475,7 @@ class PokeBattle_Move_183 < PokeBattle_Move
   def getScore(score,user,target,skill=100)
     score += 40 if user.hp > user.totalhp/2
 	score -= user.stages[:DEFENSE] * 10
-	score = 0 if !user.item || !GameData::Item.get(user.item).is_berry?
+	score = 0 if !user.item || !user.item.is_berry?
 	return score
   end
 end
@@ -487,7 +492,7 @@ class PokeBattle_Move_184 < PokeBattle_Move
   def pbMoveFailed?(user,targets,messages=true)
     @validTargets = []
     @battle.eachBattler do |b|
-      next if !b.item == 0 || !pbIsBerry?(b.item)
+      next if !b.item || !b.item.is_berry?
       @validTargets.push(b.index)
     end
     if @validTargets.length==0
@@ -510,7 +515,7 @@ class PokeBattle_Move_184 < PokeBattle_Move
   
   def getScore(score,user,target,skill=100)
     score -= 40
-	score += 20 if target.item.is_berry?
+	score += 20 if target.item && target.item.is_berry?
 	return score
   end
 end
@@ -594,7 +599,7 @@ class PokeBattle_Move_187 < PokeBattle_Move_005
   end
   
   def getScore(score,user,target,skill=100)
-	score = getPoisonMoveScore(score,user,target,skill,move.statusMove?)
+	score = getPoisonMoveScore(score,user,target,skill,statusMove?)
 	return score
   end
 end
@@ -651,16 +656,16 @@ class PokeBattle_Move_18A < PokeBattle_Move
   end
 
   def pbBaseType(user)
-    ret = getID(PBTypes,:NORMAL)
+    ret = :NORMAL
     if !user.airborne?
       case @battle.field.terrain
-      when PBBattleTerrains::Electric
+      when :Electric
         ret = :ELECTRIC || ret
-      when PBBattleTerrains::Grassy
+      when :Grassy
         ret = :GRASS || ret
-      when PBBattleTerrains::Misty
+      when :Misty
         ret = :FAIRY || ret
-      when PBBattleTerrains::Psychic
+      when :Psychic
         ret = :PSYCHIC || ret
       end
     end

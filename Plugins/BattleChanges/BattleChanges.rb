@@ -4233,6 +4233,9 @@ class PokeBattle_Battle
 		  next if !pbCanShowCommands?(idxBattler)   # Action is forced, can't choose one
 		  # AI controls this battler
 		  if @controlPlayer || !pbOwnedByPlayer?(idxBattler)
+			# Debug testing thing
+			@battleAI.testAllScores(@battlers[idxBattler]) if $DEBUG && Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
+		  
 			# Have the AI choose an action
 			@battleAI.pbDefaultChooseEnemyCommand(idxBattler)
 			# If an AI trainer chose to use a move, trigger dialogue event

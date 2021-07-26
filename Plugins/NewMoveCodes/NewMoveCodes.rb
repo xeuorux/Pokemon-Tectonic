@@ -160,11 +160,11 @@ class PokeBattle_Move_505 < PokeBattle_Move
     if skill>=PBTrainerAI.mediumSkill
 		if !target.opposes? # Targeting a player's pokemon
 		    # If damage looks like its going to kill the enemy, allow the move, otherwise don't
-			damage = pbRoughDamage(move,user,target,skill,baseDmg)
+			damage = @battle.battleAI.pbRoughDamage(self,user,target,skill,baseDamage)
 			score = damage >= target.hp ? 150 : 0
 		else
 			# If damage looks like its going to kill or mostly kill the ally, don't allow the move
-			damage = pbRoughDamage(move,user,target,skill,baseDmg)
+			damage = @battle.battleAI.pbRoughDamage(self,user,target,skill,baseDamage)
 			return 0 if damage >= target.hp * 0.8
 			score += target.level*4
 			score -= pbRoughStat(target,:SPEED,skill) * 2
@@ -262,8 +262,8 @@ class PokeBattle_Move_50A < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-	score += target.pbCanBurn(user,false,self) ? 20 : -20
-	score += target.pbCanPoison(user,false,self) ? 20 : -20
+	score += target.pbCanBurn?(user,false,self) ? 20 : -20
+	score += target.pbCanPoison?(user,false,self) ? 20 : -20
 	return score
   end
 end
@@ -386,7 +386,7 @@ class PokeBattle_Move_514 < PokeBattle_Move
   
   def getScore(score,user,target,skill=100)
 	score -= ((user.hp.to_f / user.totalhp.to_f) * 40).floor
-	if user.hasItem?(:LUMBERRY) || user.hasItem?(:PECHABERRY) || user.hasActiveAbility?(:IMMUNITY) || user.hasActiveAbility?(:POISONHEAL) || user.hasActiveAbility?(:GUTS) || user.hasActiveAbility?(:AUDACITY)
+	if [:LUMBERRY,:PECHABERRY].include?(user.item) || user.hasActiveAbility?(:IMMUNITY) || user.hasActiveAbility?(:POISONHEAL) || user.hasActiveAbility?(:GUTS) || user.hasActiveAbility?(:AUDACITY)
 		score += 60
 	end
 	return score
@@ -421,9 +421,7 @@ class PokeBattle_Move_516 < PokeBattle_Move
   
   def getScore(score,user,target,skill=100)
     score -= 20
-	target.each do |b|
-		score += 50 if statStagesUp?(b) && b.pbCanBurn?(user,false,self)
-	end
+	score += 50 if statStagesUp?(target) && target.pbCanBurn?(user,false,self)
 	return score
   end
 end
@@ -441,9 +439,7 @@ class PokeBattle_Move_517 < PokeBattle_Move
 	
 	def getScore(score,user,target,skill=100)
 		score -= 20
-		target.each do |b|
-			score += 50 if b.hp.to_f < b.totalhp.to_f/2
-		end
+		score += 50 if target.hp < target.totalhp/2
 		return score
     end
 end
@@ -466,8 +462,8 @@ class PokeBattle_Move_518 < PokeBattle_HealingMove
   
   def getScore(score,user,target,skill=100)
 		score -= 20
-		score += 40 if user.hp < user.totalHPLost
-		score += 40 if user.hp < user.totalHPLost/2.0
+		score += 40 if user.hp < user.totalhp
+		score += 40 if user.hp < user.totalhp/2.0
 		return score
   end
 end
@@ -510,8 +506,8 @@ class PokeBattle_Move_51A < PokeBattle_PoisonMove
   end
   
   def getScore(score,user,target,skill=100)
-    score -= 40 if target.pbCanPoison(user,false)
-	score += 40 if user.hp < user.totalHPLost/2.0
+    score -= 40 if target.pbCanPoison?(user,false)
+	score += 40 if user.hp < user.totalhp/2.0
 	return score
   end
 end
@@ -608,7 +604,7 @@ class PokeBattle_Move_51E < PokeBattle_Move
 	end
 	
 	def getScore(score,user,target,skill=100)
-		score -= user.stage[:SPEED] * 10
+		score -= user.stages[:SPEED] * 10
 		return score
 	end
 end
@@ -633,7 +629,7 @@ class PokeBattle_Move_51F < PokeBattle_Move
 	
 	def getScore(score,user,target,skill=100)
 		score += 20
-		score -= user.stage[:SPEED] * 10
+		score -= user.stages[:SPEED] * 10
 		return score
 	end
 end
@@ -814,7 +810,7 @@ class PokeBattle_Move_528 < PokeBattle_SleepMove
 	
 	def getScore(score,user,target,skill=100)
 		score = sleepMoveAI(score,user,target,skill=100)
-		if score != 0 && target.hp > totalhp/2
+		if score != 0 && target.hp > target.totalhp/2
 			score = 10
 			score = 0 if skill > PBTrainerAI.mediumSkill
 		end
@@ -836,7 +832,7 @@ class PokeBattle_Move_529 < PokeBattle_SleepMove
 	
 	def getScore(score,user,target,skill=100)
 		score = sleepMoveAI(score,user,target,skill)
-		score = getWantsToBeSlowerScore(score,user,target,skill,magnitude)
+		score = getWantsToBeSlowerScore(score,user,target,skill,5)
 		return score
 	end
 end
@@ -892,8 +888,8 @@ class PokeBattle_Move_52B < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-		score += target.pbCanConfuse(user,false) ? 20 : -20
-		score += target.pbCanCharm(user,false) ? 20 : -20
+		score += target.pbCanConfuse?(user,false) ? 20 : -20
+		score += target.pbCanCharm?(user,false) ? 20 : -20
 		return score
   end
 end
@@ -995,8 +991,8 @@ class PokeBattle_Move_52E < PokeBattle_TargetMultiStatDownMove
   
   def getScore(score,user,target,skill=100)
 		score -= 50
-		score += target.stage[:EVASION] * 20
-		score += target.stage[:DEFENSE] * 20
+		score += target.stages[:EVASION] * 20
+		score += target.stages[:DEFENSE] * 20
 		return score
   end
 end
