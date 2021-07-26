@@ -1024,44 +1024,6 @@ class PokeBattle_AI
     end
     return damage.floor
   end
-  
-  def testAllScores(user)
-	@battle.scene.pbDisplay("Testing all move scores...")
-	scores = []
-	target = []
-	skipTheseMoves = [:SHEERCOLD,:GUILLOTINE,:FISSURE,:HORNDRILL]
-	GameData::Move.each { |move|    # Get any one move
-		score = 0
-		next if skipTheseMoves.include?(move.id)
-		begin
-			moveObject = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(move.id))
-			target = user.pbFindTargets([nil,nil,nil,-1],moveObject,user)
-			newChoice = pbEvaluateMoveTrainer(user,moveObject,100)
-			if newChoice
-				score = newChoice[0]
-				target = newChoice[1]
-				targetName = target >= 0 ? @battle.battlers[target].name : "nothing"
-				scores.push([move,targetName,score])
-				#echo("#{move.real_name} (#{move.function_code}), targeting #{targetName}: #{score}\n")
-			else
-				#echo("#{move.real_name} (#{move.function_code}): No valid targets above score 0\n")
-			end
-		rescue
-			echo("Exception encountered while evaluating move #{move.real_name} (#{move.function_code})\n")
-		end
-	}
-	scores.sort_by!{ |score| -score[2]}
-	echo("The best five moves in this situation:\n")
-	for i in 0..4
-		entry = scores[i]
-		echo("#{i+1}: #{entry[0].id} #{entry[0].function_code} (targeting #{entry[1]}) -- #{entry[2]} \n")
-	end
-	echo("The five worst non-zero moves in this situation:\n")
-	for i in 0..4
-		entry = scores[scores.length-(5-i)]
-		echo("#{i+1}: #{entry[0].id} #{entry[0].function_code} (targeting #{entry[1]}) -- #{entry[2]} \n")
-	end
-  end
 end
 
 class NPCTrainer < Trainer

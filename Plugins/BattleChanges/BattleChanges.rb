@@ -2,6 +2,7 @@ class PokeBattle_Battle
 	attr_accessor :ballsUsed       # Number of balls thrown without capture
 	attr_accessor :messagesBlocked
 	attr_accessor :commandPhasesThisRound
+	attr_accessor :battleAI
 	
   #=============================================================================
   # Creating the battle class
@@ -2173,27 +2174,29 @@ class PokeBattle_Battler
       @battle.pbCommonAnimation(anim_name, self) if anim_name
     end
     # Show message
-    if msg && !msg.empty?
-      @battle.pbDisplay(msg)
-    else
-      case newStatus
-      when :SLEEP
-        @battle.pbDisplay(_INTL("{1} fell asleep!", pbThis))
-      when :POISON
-        if newStatusCount>0
-          @battle.pbDisplay(_INTL("{1} was toxified!", pbThis))
-        else
-          @battle.pbDisplay(_INTL("{1} was poisoned! Its Sp. Atk is reduced!", pbThis))
-        end
-      when :BURN
-        @battle.pbDisplay(_INTL("{1} was burned! Its Attack is reduced!", pbThis))
-      when :PARALYSIS
-        @battle.pbDisplay(_INTL("{1} is paralyzed! It may be unable to move!", pbThis))
-      when :FROZEN
-        @battle.pbDisplay(_INTL("{1} was chilled! It's slower and takes more damage!", pbThis))
-      end
-    end
-    PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}") if newStatus == :SLEEP
+	if msg != "false"
+		if msg && !msg.empty?
+		  @battle.pbDisplay(msg)
+		else
+		  case newStatus
+		  when :SLEEP
+			@battle.pbDisplay(_INTL("{1} fell asleep!", pbThis))
+		  when :POISON
+			if newStatusCount>0
+			  @battle.pbDisplay(_INTL("{1} was toxified!", pbThis))
+			else
+			  @battle.pbDisplay(_INTL("{1} was poisoned! Its Sp. Atk is reduced!", pbThis))
+			end
+		  when :BURN
+			@battle.pbDisplay(_INTL("{1} was burned! Its Attack is reduced!", pbThis))
+		  when :PARALYSIS
+			@battle.pbDisplay(_INTL("{1} is paralyzed! It may be unable to move!", pbThis))
+		  when :FROZEN
+			@battle.pbDisplay(_INTL("{1} was chilled! It's slower and takes more damage!", pbThis))
+		  end
+		end
+	end
+    #PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}") if newStatus == :SLEEP
     # Form change check
     pbCheckFormOnStatusChange
     # Synchronize
@@ -2239,7 +2242,7 @@ class PokeBattle_Battler
       end
 	end
 	
-    PBDebug.log("[Status change] #{pbThis}'s status was cured") if !showMessages
+    #PBDebug.log("[Status change] #{pbThis}'s status was cured") if !showMessages
   end
   
   def pbPoison(user=nil,msg=nil,toxic=false)
@@ -4234,7 +4237,7 @@ class PokeBattle_Battle
 		  # AI controls this battler
 		  if @controlPlayer || !pbOwnedByPlayer?(idxBattler)
 			# Debug testing thing
-			@battleAI.testAllScores(@battlers[idxBattler]) if $DEBUG && Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
+			@battleAI.beginAutoTester(@battlers[idxBattler]) if $DEBUG && Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
 		  
 			# Have the AI choose an action
 			@battleAI.pbDefaultChooseEnemyCommand(idxBattler)
