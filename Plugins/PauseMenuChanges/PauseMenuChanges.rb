@@ -72,7 +72,7 @@ class PokemonPauseMenu
 		else
 		  commands[cmdSave = commands.length]    = _INTL("Save") if $game_system && !$game_system.save_disabled
 		end
-		commands[cmdRandomizer = commands.length] = _INTL("Randomizer") if !Randomizer.on? && $DEBUG
+		commands[cmdRandomizer = commands.length] = _INTL("Randomizer") if !Randomizer.on?
 		commands[cmdOption = commands.length]    = _INTL("Options")
 		commands[cmdDebug = commands.length]     = _INTL("Debug") if $DEBUG
 		commands[cmdEndGame = commands.length]   = _INTL("Quit Game")
