@@ -284,12 +284,24 @@ def pbGenerateWildPokemon(species,level,isRoamer=false)
   end
   # Shiny Charm makes shiny Pokémon more likely to generate
   if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
-    2.times do   # 3 times as likely
-      break if genwildpoke.shiny?
-      genwildpoke.personalID = rand(2**16) | rand(2**16) << 16
-    end
+	genwildpoke.shinyRerolls = 3
+  else
+	genwildpoke.shinyRerolls = 1
   end
   # Trigger events that may alter the generated Pokémon further
   Events.onWildPokemonCreate.trigger(nil,genwildpoke)
+  # Give it however many chances to be shiny
+  genwildpoke.shinyRerolls.times do
+      if genwildpoke.shiny?
+		echo("The wild pokemon is shiny!")
+		break
+	  end
+      genwildpoke.personalID = rand(2 ** 16) | rand(2 ** 16) << 16
+	  genwildpoke.shiny = nil
+  end
   return genwildpoke
+end
+
+class Pokemon
+	attr_accessor :shinyRerolls
 end

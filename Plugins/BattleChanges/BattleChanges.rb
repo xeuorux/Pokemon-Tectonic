@@ -1819,7 +1819,6 @@ end
 
 
 class PokeBattle_Battler
-
   def pbInitEffects(batonPass)
     if batonPass
       # These effects are passed on if Baton Pass is used, but they need to be

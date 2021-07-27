@@ -302,11 +302,8 @@ Events.onWildPokemonCreate+=proc {|sender,e|
         pokemon.form = pform
         pokemon.reset_moves
         pokemon.learn_move($currentDexSearch[1]) if $currentDexSearch[1]
-        # There is a higher chance for shininess, so we give it another chance to force it to be shiny
-        tempInt = $PokemonBag.pbQuantity(GameData::Item.get(:SHINYCHARM))>0 ? 256 : 768
-        if rand(tempInt)==1
-         pokemon.makeShiny
-        end
+        # There is a higher chance for shininess
+        pokemon.shinyRerolls *= 2
         $currentDexSearch = nil
     end
 }

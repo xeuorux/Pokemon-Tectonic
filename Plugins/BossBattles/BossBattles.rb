@@ -217,7 +217,7 @@ class PokeBattle_Battler
   end
 	
 	def shiny?
-		return false if boss
+		#return false if boss
 		return @effects[PBEffects::Illusion].shiny? if @effects[PBEffects::Illusion]
 		return @pokemon && @pokemon.shiny?
 	end
