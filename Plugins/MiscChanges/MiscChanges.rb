@@ -32,10 +32,19 @@ HiddenMoveHandlers::UseMove        = MoveHandlerHash.new
 
 
 def pbReceiveRandomPokemon(level)
+  $game_variables[26] = level if level > $game_variables[26]
   possibleSpecies = []
   GameData::Species.each do |species_data|
-	  next if !$Trainer.pokedex.seen?(species_data.species)
-	  possibleSpecies.push(species_data)
+	next if species_data.get_evolutions.length > 0 && ![:ONIX,:SCYTHER].include?(species_data.species)
+	if species_data.real_form_name
+		regionals = ["alolan","galarian","makyan"]
+		regionalForm = false
+		regionals.each do |regional|
+			regionalForm = true if species_data.real_form_name.downcase.include?(regional)
+		end
+		next if !regionalForm
+	end
+	possibleSpecies.push(species_data)
   end
   speciesDat = possibleSpecies.sample
   pkmn = Pokemon.new(speciesDat.species, level)
