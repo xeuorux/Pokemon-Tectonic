@@ -88,3 +88,31 @@ class PokeBattle_Scene
     return nil
   end
 end
+
+
+class PBAnimationPlayerX
+  def initialize(animation,user,target,scene=nil,oppMove=false,inEditor=false)
+    @animation     = animation
+    @user          = (oppMove) ? target : user   # Just used for playing user's cry
+    @usersprite    = (user) ? scene.sprites["pokemon_#{user.index}"] : nil
+    @targetsprite  = (target) ? scene.sprites["pokemon_#{target.index}"] : nil
+    @userbitmap    = (@usersprite && @usersprite.bitmap) ? @usersprite.bitmap : nil # not to be disposed
+    @targetbitmap  = (@targetsprite && @targetsprite.bitmap) ? @targetsprite.bitmap : nil # not to be disposed
+    @scene         = scene
+    @viewport      = (scene) ? scene.viewport : nil
+    @inEditor      = inEditor
+    @looping       = false
+    @animbitmap    = nil   # Animation sheet graphic
+    @frame         = -1
+    @framesPerTick = [Graphics.frame_rate/20,1].max   # 20 ticks per second
+    @srcLine       = nil
+    @dstLine       = nil
+    @userOrig      = getSpriteCenter(@usersprite)
+	# Now assumes the target is in the direct center of the screen if one isn't given
+	# So that cells which focus on the target will be centered rather than at the top left
+    @targetOrig    = @targetsprite ? getSpriteCenter(@targetsprite) : [@viewport.rect.width/2,@viewport.rect.height - 160]
+    @oldbg         = []
+    @oldfo         = []
+    initializeSprites
+  end
+end

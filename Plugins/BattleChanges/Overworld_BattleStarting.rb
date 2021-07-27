@@ -233,7 +233,6 @@ def checkLegality(pkmn)
 		learnsViaLevel = false
 		species_data.moves.each do |learnset_entry|
 			break if learnset_entry[0] > pkmn.level
-			echo(learnset_entry[1])
 			learnsViaLevel = true if learnset_entry[1] == moveID
 		end
 		next if learnsViaLevel
