@@ -102,5 +102,5 @@ end
 # More likely to be shiny
 Events.onWildPokemonCreate+=proc {|sender,e|
 	pokemon=e[0]
-	pokemon.shinyRerolls *= 2 if isInZoo(pokemon.species)
+	pokemon.shinyRerolls *= 2 if donatedToZoo?(pokemon.species)
 }
