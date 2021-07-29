@@ -59,52 +59,6 @@ def pbPlayCrySpecies(species, form = 0, volume = 90, pitch = nil)
   GameData::Species.play_cry_from_species(species, form, volume, pitch)
 end
 
-module GameData
-  class Species
-	def self.sprite_bitmap_from_pokemon(pkmn, back = false, species = nil)
-	  species = pkmn.species if !species
-	  species = GameData::Species.get(species).species   # Just to be sure it's a symbol
-	  return self.egg_sprite_bitmap(species, pkmn.form) if pkmn.egg?
-	  if back
-		ret = self.back_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?)
-	  else
-		ret = self.front_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?)
-	  end
-	  alter_bitmap_function = MultipleForms.getFunction(species, "alterBitmap")
-	  if ret && alter_bitmap_function
-		new_ret = ret.copy
-		ret.dispose
-		new_ret.each { |bitmap| alter_bitmap_function.call(pkmn, bitmap) }
-		ret = new_ret
-	  end
-	  if ret && pkmn.boss
-		new_ret = ret.copy
-		bossified = createBossifiedBitmap(new_ret.bitmap)
-		new_ret.bitmap = bossified
-		ret.dispose
-		ret = new_ret
-	  end
-	  return ret
-	end
-  end
-end
-
-def createBossifiedBitmap(bitmap)
-  scaleFactor = 1 + $game_variables[97]/10.0
-  copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
-  for x in 0..copiedBitmap.width
-    for y in 0..copiedBitmap.height
-      color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor)
-      color.alpha   = [color.alpha,140].min
-      color.red     = [color.red + 50,255].min
-      color.blue    = [color.blue + 50,255].min
-      copiedBitmap.set_pixel(x,y,color)
-    end
-  end
-  return copiedBitmap
-end
-
-
 class Pokemon
 	attr_accessor :boss
 	# @return [0, 1, 2] this Pokémon's gender (0 = male, 1 = female, 2 = genderless)
