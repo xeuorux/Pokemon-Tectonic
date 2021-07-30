@@ -61,7 +61,7 @@ class CommandMenuDisplay < BattleMenuBase
       @dexButton.bitmap = @dexBitmap.bitmap
       @dexButton.x      = self.x+4
       @dexButton.y      = self.y-@dexBitmap.height
-      addSprite("dexButton",@dexButton)
+      #addSprite("dexButton",@dexButton) # Turned off for now
     else
       # Create command window (shows Fight/Bag/Pokémon/Run)
       @cmdWindow = Window_CommandPokemon.newWithSize([],
@@ -473,7 +473,7 @@ class PokemonDataBox < SpriteWrapper
 		  imagePos.push(["Graphics/Pictures/Party/icon_item",@spriteBaseX+itemX,itemY])
 		end
 		# Draw owned icon (foe Pokémon only)
-		if @battler.owned? && @battler.opposes?(0)
+		if @battler.owned? && @battler.opposes?(0) && !@battler.boss
 		  imagePos.push(["Graphics/Pictures/Battle/icon_own",@spriteBaseX+8,36])
 		end
 		# Draw status icon

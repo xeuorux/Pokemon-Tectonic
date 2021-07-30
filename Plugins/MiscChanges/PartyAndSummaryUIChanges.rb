@@ -269,71 +269,71 @@ class PokemonSummary_Scene
 end
 
 class PokemonSummary_Scene
-	  def pbStartScene(party,partyindex,inbattle=false)
-    @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
-    @viewport.z = 99999
-    @party      = party
-    @partyindex = partyindex
-    @pokemon    = @party[@partyindex]
-    @inbattle   = inbattle
-    @page = 1
-	@forget = false
-    @typebitmap    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
-    @markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Summary/markings")
-    @sprites = {}
-    @sprites["background"] = IconSprite.new(0,0,@viewport)
-    @sprites["pokemon"] = PokemonSprite.new(@viewport)
-    @sprites["pokemon"].setOffset(PictureOrigin::Center)
-    @sprites["pokemon"].x = 104
-    @sprites["pokemon"].y = 206
-    @sprites["pokemon"].setPokemonBitmap(@pokemon)
-    @sprites["pokeicon"] = PokemonIconSprite.new(@pokemon,@viewport)
-    @sprites["pokeicon"].setOffset(PictureOrigin::Center)
-    @sprites["pokeicon"].x       = 46
-    @sprites["pokeicon"].y       = 92
-    @sprites["pokeicon"].visible = false
-    @sprites["itemicon"] = ItemIconSprite.new(30,320,@pokemon.item_id,@viewport)
-    @sprites["itemicon"].blankzero = true
-    @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
-    pbSetSystemFont(@sprites["overlay"].bitmap)
-    @sprites["movepresel"] = MoveSelectionSprite.new(@viewport)
-    @sprites["movepresel"].visible     = false
-    @sprites["movepresel"].preselected = true
-    @sprites["movesel"] = MoveSelectionSprite.new(@viewport)
-    @sprites["movesel"].visible = false
-    @sprites["ribbonpresel"] = RibbonSelectionSprite.new(@viewport)
-    @sprites["ribbonpresel"].visible     = false
-    @sprites["ribbonpresel"].preselected = true
-    @sprites["ribbonsel"] = RibbonSelectionSprite.new(@viewport)
-    @sprites["ribbonsel"].visible = false
-    @sprites["uparrow"] = AnimatedSprite.new("Graphics/Pictures/uparrow",8,28,40,2,@viewport)
-    @sprites["uparrow"].x = 350
-    @sprites["uparrow"].y = 56
-    @sprites["uparrow"].play
-    @sprites["uparrow"].visible = false
-    @sprites["downarrow"] = AnimatedSprite.new("Graphics/Pictures/downarrow",8,28,40,2,@viewport)
-    @sprites["downarrow"].x = 350
-    @sprites["downarrow"].y = 260
-    @sprites["downarrow"].play
-    @sprites["downarrow"].visible = false
-    @sprites["markingbg"] = IconSprite.new(260,88,@viewport)
-    @sprites["markingbg"].setBitmap("Graphics/Pictures/Summary/overlay_marking")
-    @sprites["markingbg"].visible = false
-    @sprites["markingoverlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
-    @sprites["markingoverlay"].visible = false
-    pbSetSystemFont(@sprites["markingoverlay"].bitmap)
-    @sprites["markingsel"] = IconSprite.new(0,0,@viewport)
-    @sprites["markingsel"].setBitmap("Graphics/Pictures/Summary/cursor_marking")
-    @sprites["markingsel"].src_rect.height = @sprites["markingsel"].bitmap.height/2
-    @sprites["markingsel"].visible = false
-    @sprites["messagebox"] = Window_AdvancedTextPokemon.new("")
-    @sprites["messagebox"].viewport       = @viewport
-    @sprites["messagebox"].visible        = false
-    @sprites["messagebox"].letterbyletter = true
-    pbBottomLeftLines(@sprites["messagebox"],2)
-    drawPage(@page)
-    pbFadeInAndShow(@sprites) { pbUpdate }
-  end
+	def pbStartScene(party,partyindex,inbattle=false)
+		@viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
+		@viewport.z = 99999
+		@party      = party
+		@partyindex = partyindex
+		@pokemon    = @party[@partyindex]
+		@inbattle   = inbattle
+		@page = 1
+		@forget = false
+		@typebitmap    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+		@markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Summary/markings")
+		@sprites = {}
+		@sprites["background"] = IconSprite.new(0,0,@viewport)
+		@sprites["pokemon"] = PokemonSprite.new(@viewport)
+		@sprites["pokemon"].setOffset(PictureOrigin::Center)
+		@sprites["pokemon"].x = 104
+		@sprites["pokemon"].y = 206
+		@sprites["pokemon"].setPokemonBitmap(@pokemon)
+		@sprites["pokeicon"] = PokemonIconSprite.new(@pokemon,@viewport)
+		@sprites["pokeicon"].setOffset(PictureOrigin::Center)
+		@sprites["pokeicon"].x       = 46
+		@sprites["pokeicon"].y       = 92
+		@sprites["pokeicon"].visible = false
+		@sprites["itemicon"] = ItemIconSprite.new(30,320,@pokemon.item_id,@viewport)
+		@sprites["itemicon"].blankzero = true
+		@sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
+		pbSetSystemFont(@sprites["overlay"].bitmap)
+		@sprites["movepresel"] = MoveSelectionSprite.new(@viewport)
+		@sprites["movepresel"].visible     = false
+		@sprites["movepresel"].preselected = true
+		@sprites["movesel"] = MoveSelectionSprite.new(@viewport)
+		@sprites["movesel"].visible = false
+		@sprites["ribbonpresel"] = RibbonSelectionSprite.new(@viewport)
+		@sprites["ribbonpresel"].visible     = false
+		@sprites["ribbonpresel"].preselected = true
+		@sprites["ribbonsel"] = RibbonSelectionSprite.new(@viewport)
+		@sprites["ribbonsel"].visible = false
+		@sprites["uparrow"] = AnimatedSprite.new("Graphics/Pictures/uparrow",8,28,40,2,@viewport)
+		@sprites["uparrow"].x = 350
+		@sprites["uparrow"].y = 56
+		@sprites["uparrow"].play
+		@sprites["uparrow"].visible = false
+		@sprites["downarrow"] = AnimatedSprite.new("Graphics/Pictures/downarrow",8,28,40,2,@viewport)
+		@sprites["downarrow"].x = 350
+		@sprites["downarrow"].y = 260
+		@sprites["downarrow"].play
+		@sprites["downarrow"].visible = false
+		@sprites["markingbg"] = IconSprite.new(260,88,@viewport)
+		@sprites["markingbg"].setBitmap("Graphics/Pictures/Summary/overlay_marking")
+		@sprites["markingbg"].visible = false
+		@sprites["markingoverlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
+		@sprites["markingoverlay"].visible = false
+		pbSetSystemFont(@sprites["markingoverlay"].bitmap)
+		@sprites["markingsel"] = IconSprite.new(0,0,@viewport)
+		@sprites["markingsel"].setBitmap("Graphics/Pictures/Summary/cursor_marking")
+		@sprites["markingsel"].src_rect.height = @sprites["markingsel"].bitmap.height/2
+		@sprites["markingsel"].visible = false
+		@sprites["messagebox"] = Window_AdvancedTextPokemon.new("")
+		@sprites["messagebox"].viewport       = @viewport
+		@sprites["messagebox"].visible        = false
+		@sprites["messagebox"].letterbyletter = true
+		pbBottomLeftLines(@sprites["messagebox"],2)
+		drawPage(@page)
+		pbFadeInAndShow(@sprites) { pbUpdate }
+	end
 
 
 	def pbStartForgetScene(party,partyindex,move_to_learn)

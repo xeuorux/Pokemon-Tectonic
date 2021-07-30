@@ -11,23 +11,23 @@ end
 
 def donatedToZoo?(species)
 	speciesName = GameData::Species.get(species).id.to_s
-	return checkFor(speciesName,true)
+	return checkForZooMap(speciesName,true) != -1
 end
 
 def eventExistsFor?(species)
 	speciesName = GameData::Species.get(species).id.to_s
-	return checkFor(speciesName,false)
+	return checkForZooMap(speciesName,false) != -1
 end
 
-def checkFor(speciesName,careAboutEnabled)
+def checkForZooMap(speciesName,careAboutEnabled=false)
 	forEachZooMap do |map|
 		map.events.each_value { |event|
 			if event.name.include?(speciesName) && (!careAboutEnabled || $game_self_switches[[map.map_id, event.id, "A"]])
-				return true
+				return map.map_id
 			end
 		}
 	end
-	return false
+	return -1
 end
 
 def sendToZoo()

@@ -1023,21 +1023,19 @@ class PokemonPokedexInfo_Scene
         end
 
         otherStats.push(fSpecies.base_exp)
-        compatibility = fSpecies.egg_groups
-        compat1 = "None"
-        compat2 = "None"
         
-		compat1 = GameData::EggGroup.get(compatibility[0]).real_name if compatibility[0]
-	    compat2 = GameData::EggGroup.get(compatibility[1]).real_name if compatibility[1]
-		
-        otherStats.push(compat1)
-        otherStats.push(compat2)
         otherStats.each_with_index do |stat, index|
           next if !stat
           # Draw stat line
           drawTextEx(overlay,230,130+32*index,450,1,otherStatNames[index],base,shadow)
           drawTextEx(overlay,378,130+32*index,450,1,stat.to_s,base,shadow)
         end
+		
+		map_id = checkForZooMap(fSpecies.species.to_s)
+		placementMap = "None"
+		placementMap = (pbGetMessage(MessageTypes::MapNames,map_id) rescue nil) if map_id != -1
+		drawTextEx(overlay,230,274,450,1,"Zoo Section",base,shadow)
+		drawTextEx(overlay,230,306,450,1,placementMap,base,shadow)
       end
     end
   end
