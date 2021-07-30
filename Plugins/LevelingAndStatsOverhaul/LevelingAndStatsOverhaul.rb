@@ -1,7 +1,7 @@
 LEVEL_CAPS_USED = true
 
 class Pokemon
-	  # Creates a new Pokémon object.
+  # Creates a new Pokémon object.
   # @param species [Symbol, String, Integer] Pokémon species
   # @param level [Integer] Pokémon level
   # @param owner [Owner, Player, NPCTrainer] Pokémon owner (the player by default)
@@ -43,7 +43,7 @@ class Pokemon
     @ivMaxed          = {}
     @ev               = {}
     GameData::Stat.each_main do |s|
-      @iv[s.id]       = rand(IV_STAT_LIMIT + 1)
+      @iv[s.id]       = 0
       @ev[s.id]       = 8
     end
     if owner.is_a?(Owner)
@@ -404,6 +404,13 @@ def pbChangeLevel(pkmn,newlevel,scene)
 end
 
 # Style value adjustments
+
+class Pokemon
+	# Max total EVs
+	EV_LIMIT      = 50
+	# Max EVs that a single stat can have
+	EV_STAT_LIMIT = 20
+end
 
 def pbStyleValueScreen(pkmn)
 	pbFadeOutIn {

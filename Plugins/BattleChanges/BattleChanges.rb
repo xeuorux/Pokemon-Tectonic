@@ -4370,7 +4370,7 @@ class Pokemon
 			end
 		end
       else
-        stats[s.id] = calcStat(base_stats[s.id], this_level, @ev[s.id], )
+        stats[s.id] = calcStat(base_stats[s.id], this_level, @ev[s.id])
       end
     end
     hpDiff = @totalhp - @hp

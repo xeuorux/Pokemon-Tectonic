@@ -3,6 +3,7 @@ class Pokemon
 		return false if egg? || shadowPokemon?
 		this_level = self.level
 		getMoveList.each { |m| return true if m[0] <= this_level && !hasMove?(m[1]) }
+		@first_moves.each { |m| return true if !hasMove?(m) }
 		return false
 	end
 
@@ -15,7 +16,6 @@ class Pokemon
 		firstSpecies.egg_moves.each { |m| 
 			return true if !hasMove?(m)
 		}
-		@first_moves.each { |m| return true if !hasMove?(m) }
 		return false
 	end
 	
@@ -36,6 +36,11 @@ def pbRelearnMoveScreen(pkmn)
   pkmn.getMoveList.each do |m|
       next if m[0] > pkmn.level || pkmn.hasMove?(m[1])
       moves.push(m[1]) if !moves.include?(m[1])
+  end
+  
+  pkmn.first_moves.each do |m|
+      next if pkmn.hasMove?(m)
+      moves.push(m) if !moves.include?(m)
   end
   
   retval = true
@@ -73,12 +78,6 @@ def pbEggMoveScreen(pkmn)
 		firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 	end
     firstSpecies.egg_moves.each do |m|
-      next if pkmn.hasMove?(m)
-      moves.push(m) if !moves.include?(m)
-    end
-	
-	# Also a hack to make all level 1 relearn moves actually egg moves
-	pkmn.first_moves.each do |m|
       next if pkmn.hasMove?(m)
       moves.push(m) if !moves.include?(m)
     end
