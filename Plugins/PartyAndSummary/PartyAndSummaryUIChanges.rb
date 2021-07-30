@@ -187,85 +187,85 @@ end
 
 class PokemonSummary_Scene
 	def drawPage(page)
-    if @pokemon.egg?
-      drawPageOneEgg
-      return
-    end
-    @sprites["itemicon"].item = @pokemon.item_id
-    overlay = @sprites["overlay"].bitmap
-    overlay.clear
-    base   = Color.new(248,248,248)
-    shadow = Color.new(104,104,104)
-    # Set background image
-    @sprites["background"].setBitmap("Graphics/Pictures/Summary/bg_#{page}")
-    imagepos=[]
-    # Show the Poké Ball containing the Pokémon
-    ballimage = sprintf("Graphics/Pictures/Summary/icon_ball_%s", @pokemon.poke_ball)
-    if !pbResolveBitmap(ballimage)
-      ballimage = sprintf("Graphics/Pictures/Summary/icon_ball_%02d", pbGetBallType(@pokemon.poke_ball))
-    end
-    imagepos.push([ballimage,14,60])
-    # Show status/fainted/Pokérus infected icon
-    status = 0
-    if @pokemon.fainted?
-      status = GameData::Status::DATA.keys.length / 2
-    elsif @pokemon.status != :NONE
-      status = GameData::Status.get(@pokemon.status).id_number
-	  status = 8 if @pokemon.status==:POISON && @pokemon.statusCount>0
-    elsif @pokemon.pokerusStage == 1
-      status = GameData::Status::DATA.keys.length / 2 + 1
-    end
-    status -= 1
-    if status >= 0
-      imagepos.push(["Graphics/Pictures/Rework/statuses",124,100,0,16*status,44,16])
-    end
-    # Show Pokérus cured icon
-    if @pokemon.pokerusStage==2
-      imagepos.push([sprintf("Graphics/Pictures/Summary/icon_pokerus"),176,100])
-    end
-    # Show shininess star
-    if @pokemon.shiny?
-      imagepos.push([sprintf("Graphics/Pictures/shiny"),2,134])
-    end
-    # Draw all images
-    pbDrawImagePositions(overlay,imagepos)
-    # Write various bits of text
-    pagename = [_INTL("INFO"),
-                _INTL("TRAINER MEMO"),
-                _INTL("SKILLS"),
-                _INTL("MOVES"),
-                _INTL("RIBBONS")][page-1]
-    textpos = [
-       [pagename,26,10,0,base,shadow],
-       [@pokemon.name,46,56,0,base,shadow],
-       [@pokemon.level.to_s,46,86,0,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Item"),66,312,0,base,shadow]
-    ]
-    # Write the held item's name
-    if @pokemon.hasItem?
-      textpos.push([@pokemon.item.name,16,346,0,Color.new(64,64,64),Color.new(176,176,176)])
-    else
-      textpos.push([_INTL("None"),16,346,0,Color.new(192,200,208),Color.new(208,216,224)])
-    end
-    # Write the gender symbol
-    if @pokemon.male?
-      textpos.push([_INTL("♂"),178,56,0,Color.new(24,112,216),Color.new(136,168,208)])
-    elsif @pokemon.female?
-      textpos.push([_INTL("♀"),178,56,0,Color.new(248,56,32),Color.new(224,152,144)])
-    end
-    # Draw all text
-    pbDrawTextPositions(overlay,textpos)
-    # Draw the Pokémon's markings
-    drawMarkings(overlay,84,292)
-    # Draw page-specific information
-    case page
-    when 1 then drawPageOne
-    when 2 then drawPageTwo
-    when 3 then drawPageThree
-    when 4 then drawPageFour
-    when 5 then drawPageFive
-    end
-  end
+		if @pokemon.egg?
+		  drawPageOneEgg
+		  return
+		end
+		@sprites["itemicon"].item = @pokemon.item_id
+		overlay = @sprites["overlay"].bitmap
+		overlay.clear
+		base   = Color.new(248,248,248)
+		shadow = Color.new(104,104,104)
+		# Set background image
+		@sprites["background"].setBitmap("Graphics/Pictures/Summary/bg_#{page}")
+		imagepos=[]
+		# Show the Poké Ball containing the Pokémon
+		ballimage = sprintf("Graphics/Pictures/Summary/icon_ball_%s", @pokemon.poke_ball)
+		if !pbResolveBitmap(ballimage)
+		  ballimage = sprintf("Graphics/Pictures/Summary/icon_ball_%02d", pbGetBallType(@pokemon.poke_ball))
+		end
+		imagepos.push([ballimage,14,60])
+		# Show status/fainted/Pokérus infected icon
+		status = 0
+		if @pokemon.fainted?
+		  status = GameData::Status::DATA.keys.length / 2
+		elsif @pokemon.status != :NONE
+		  status = GameData::Status.get(@pokemon.status).id_number
+		  status = 8 if @pokemon.status==:POISON && @pokemon.statusCount>0
+		elsif @pokemon.pokerusStage == 1
+		  status = GameData::Status::DATA.keys.length / 2 + 1
+		end
+		status -= 1
+		if status >= 0
+		  imagepos.push(["Graphics/Pictures/Rework/statuses",124,100,0,16*status,44,16])
+		end
+		# Show Pokérus cured icon
+		if @pokemon.pokerusStage==2
+		  imagepos.push([sprintf("Graphics/Pictures/Summary/icon_pokerus"),176,100])
+		end
+		# Show shininess star
+		if @pokemon.shiny?
+		  imagepos.push([sprintf("Graphics/Pictures/shiny"),2,134])
+		end
+		# Draw all images
+		pbDrawImagePositions(overlay,imagepos)
+		# Write various bits of text
+		pagename = [_INTL("INFO"),
+					_INTL("TRAINER MEMO"),
+					_INTL("SKILLS"),
+					_INTL("MOVES"),
+					_INTL("RIBBONS")][page-1]
+		textpos = [
+		   [pagename,26,10,0,base,shadow],
+		   [@pokemon.name,46,56,0,base,shadow],
+		   [@pokemon.level.to_s,46,86,0,Color.new(64,64,64),Color.new(176,176,176)],
+		   [_INTL("Item"),66,312,0,base,shadow]
+		]
+		# Write the held item's name
+		if @pokemon.hasItem?
+		  textpos.push([@pokemon.item.name,16,346,0,Color.new(64,64,64),Color.new(176,176,176)])
+		else
+		  textpos.push([_INTL("None"),16,346,0,Color.new(192,200,208),Color.new(208,216,224)])
+		end
+		# Write the gender symbol
+		if @pokemon.male?
+		  textpos.push([_INTL("♂"),178,56,0,Color.new(24,112,216),Color.new(136,168,208)])
+		elsif @pokemon.female?
+		  textpos.push([_INTL("♀"),178,56,0,Color.new(248,56,32),Color.new(224,152,144)])
+		end
+		# Draw all text
+		pbDrawTextPositions(overlay,textpos)
+		# Draw the Pokémon's markings
+		drawMarkings(overlay,84,292)
+		# Draw page-specific information
+		case page
+		when 1 then drawPageOne
+		when 2 then drawPageTwo
+		when 3 then drawPageThree
+		when 4 then drawPageFour
+		when 5 then drawPageFive
+		end
+	end
 end
 
 class PokemonSummary_Scene
@@ -598,7 +598,7 @@ class PokemonSummary_Scene
 		end
 		return (selmove==Pokemon::MAX_MOVES) ? -1 : selmove
 	end
-	
+
 	def pbTemporaryStatsScreen()
 		@sprites["itemicon"].item = @pokemon.item_id
 		overlay = @sprites["overlay"].bitmap
@@ -677,4 +677,304 @@ class PokemonSummary_Scene
 		# Draw all text
 		pbDrawTextPositions(overlay,textpos)
 	end
+end
+
+
+class PokemonPartyScreen
+	def pbPokemonScreen
+    @scene.pbStartScene(@party,
+       (@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."),nil)
+    loop do
+      @scene.pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
+      pkmnid = @scene.pbChoosePokemon(false,-1,1)
+      break if (pkmnid.is_a?(Numeric) && pkmnid<0) || (pkmnid.is_a?(Array) && pkmnid[1]<0)
+      if pkmnid.is_a?(Array) && pkmnid[0]==1   # Switch
+        @scene.pbSetHelpText(_INTL("Move to where?"))
+        oldpkmnid = pkmnid[1]
+        pkmnid = @scene.pbChoosePokemon(true,-1,2)
+        if pkmnid>=0 && pkmnid!=oldpkmnid
+          pbSwitch(oldpkmnid,pkmnid)
+        end
+        next
+      end
+      pkmn = @party[pkmnid]
+      commands   = []
+      cmdSummary = -1
+      cmdDebug   = -1
+      cmdMoves   = [-1] * pkmn.numMoves
+      cmdSwitch  = -1
+      cmdMail    = -1
+      cmdItem    = -1
+	  cmdRename  = -1
+      cmdPokedex = -1
+      # Build the commands
+      commands[cmdSummary = commands.length]      = _INTL("Summary")
+      commands[cmdDebug = commands.length]        = _INTL("Debug") if $DEBUG
+      if !pkmn.egg?
+        # Check for hidden moves and add any that were found
+        pkmn.moves.each_with_index do |m, i|
+          if [:MILKDRINK, :SOFTBOILED].include?(m.id) ||
+             HiddenMoveHandlers.hasHandler(m.id)
+            commands[cmdMoves[i] = commands.length] = [m.name, 1]
+          end
+        end
+      end
+      commands[cmdSwitch = commands.length]       = _INTL("Switch") if @party.length>1
+      if !pkmn.egg?
+		if $Trainer.has_pokedex
+          commands[cmdPokedex = commands.length]  = _INTL("Pokédex")
+        end
+		if !pkmn.shadowPokemon? && !pkmn.foreign?($Trainer)
+          commands[cmdRename = commands.length]   = _INTL("Rename")
+        end
+        if pkmn.mail
+          commands[cmdMail = commands.length]     = _INTL("Mail")
+        else
+          commands[cmdItem = commands.length]     = _INTL("Item")
+        end
+      end
+      commands[commands.length]                   = _INTL("Cancel")
+      command = @scene.pbShowCommands(_INTL("Do what with {1}?",pkmn.name),commands)
+      havecommand = false
+      cmdMoves.each_with_index do |cmd, i|
+        next if cmd < 0 || cmd != command
+        havecommand = true
+        if [:MILKDRINK, :SOFTBOILED].include?(pkmn.moves[i].id)
+          amt = [(pkmn.totalhp/5).floor,1].max
+          if pkmn.hp<=amt
+            pbDisplay(_INTL("Not enough HP..."))
+            break
+          end
+          @scene.pbSetHelpText(_INTL("Use on which Pokémon?"))
+          oldpkmnid = pkmnid
+          loop do
+            @scene.pbPreSelect(oldpkmnid)
+            pkmnid = @scene.pbChoosePokemon(true,pkmnid)
+            break if pkmnid<0
+            newpkmn = @party[pkmnid]
+            movename = pkmn.moves[i].name
+            if pkmnid==oldpkmnid
+              pbDisplay(_INTL("{1} can't use {2} on itself!",pkmn.name,movename))
+            elsif newpkmn.egg?
+              pbDisplay(_INTL("{1} can't be used on an Egg!",movename))
+            elsif newpkmn.hp==0 || newpkmn.hp==newpkmn.totalhp
+              pbDisplay(_INTL("{1} can't be used on that Pokémon.",movename))
+            else
+              pkmn.hp -= amt
+              hpgain = pbItemRestoreHP(newpkmn,amt)
+              @scene.pbDisplay(_INTL("{1}'s HP was restored by {2} points.",newpkmn.name,hpgain))
+              pbRefresh
+            end
+            break if pkmn.hp<=amt
+          end
+          @scene.pbSelect(oldpkmnid)
+          pbRefresh
+          break
+        elsif pbCanUseHiddenMove?(pkmn,pkmn.moves[i].id)
+          if pbConfirmUseHiddenMove(pkmn,pkmn.moves[i].id)
+            @scene.pbEndScene
+            if pkmn.moves[i].id == :FLY
+              scene = PokemonRegionMap_Scene.new(-1,false)
+              screen = PokemonRegionMapScreen.new(scene)
+              ret = screen.pbStartFlyScreen
+              if ret
+                $PokemonTemp.flydata=ret
+                return [pkmn,pkmn.moves[i].id]
+              end
+              @scene.pbStartScene(@party,
+                 (@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
+              break
+            end
+            return [pkmn,pkmn.moves[i].id]
+          end
+        end
+      end
+      next if havecommand
+      if cmdSummary>=0 && command==cmdSummary
+        @scene.pbSummary(pkmnid) {
+          @scene.pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
+        }
+      elsif cmdDebug>=0 && command==cmdDebug
+        pbPokemonDebug(pkmn,pkmnid)
+      elsif cmdSwitch>=0 && command==cmdSwitch
+        @scene.pbSetHelpText(_INTL("Move to where?"))
+        oldpkmnid = pkmnid
+        pkmnid = @scene.pbChoosePokemon(true)
+        if pkmnid>=0 && pkmnid!=oldpkmnid
+          pbSwitch(oldpkmnid,pkmnid)
+        end
+      elsif cmdMail>=0 && command==cmdMail
+        command = @scene.pbShowCommands(_INTL("Do what with the mail?"),
+           [_INTL("Read"),_INTL("Take"),_INTL("Cancel")])
+        case command
+        when 0   # Read
+          pbFadeOutIn {
+            pbDisplayMail(pkmn.mail,pkmn)
+            @scene.pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
+          }
+        when 1   # Take
+          if pbTakeItemFromPokemon(pkmn,self)
+            pbRefreshSingle(pkmnid)
+          end
+        end
+	  elsif cmdRename >= 0 && command==cmdRename
+		currentName = pkmn.name
+		speciesName=GameData::Species.get(pkmn.species).real_name
+		pbTextEntry("#{currentName}'s nickname?",0,10,5)
+		if pbGet(5)=="" || pbGet(5)==currentName
+		  pkmn.name=currentName
+		else
+		  pkmn.name=pbGet(5)
+		end
+	  elsif cmdPokedex >=0 && command==cmdPokedex
+		$Trainer.pokedex.register_last_seen(pkmn)
+		pbFadeOutIn {
+		  scene = PokemonPokedexInfo_Scene.new
+		  screen = PokemonPokedexInfoScreen.new(scene)
+		  screen.pbStartSceneSingle(pkmn.species)
+		}
+      elsif cmdItem>=0 && command==cmdItem
+        itemcommands = []
+        cmdUseItem   = -1
+        cmdGiveItem  = -1
+        cmdTakeItem  = -1
+        cmdMoveItem  = -1
+        # Build the commands
+        itemcommands[cmdUseItem=itemcommands.length]  = _INTL("Use")
+        itemcommands[cmdGiveItem=itemcommands.length] = _INTL("Give")
+        itemcommands[cmdTakeItem=itemcommands.length] = _INTL("Take") if pkmn.hasItem?
+        itemcommands[cmdMoveItem=itemcommands.length] = _INTL("Move") if pkmn.hasItem? && !GameData::Item.get(pkmn.item).is_mail?
+        itemcommands[itemcommands.length]             = _INTL("Cancel")
+        command = @scene.pbShowCommands(_INTL("Do what with an item?"),itemcommands)
+        if cmdUseItem>=0 && command==cmdUseItem   # Use
+          item = @scene.pbUseItem($PokemonBag,pkmn) {
+            @scene.pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
+          }
+          if item
+            pbUseItemOnPokemon(item,pkmn,self)
+            pbRefreshSingle(pkmnid)
+          end
+        elsif cmdGiveItem>=0 && command==cmdGiveItem   # Give
+          item = @scene.pbChooseItem($PokemonBag) {
+            @scene.pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
+          }
+          if item
+            if pbGiveItemToPokemon(item,pkmn,self,pkmnid)
+              pbRefreshSingle(pkmnid)
+            end
+          end
+        elsif cmdTakeItem>=0 && command==cmdTakeItem   # Take
+          if pbTakeItemFromPokemon(pkmn,self)
+            pbRefreshSingle(pkmnid)
+          end
+        elsif cmdMoveItem>=0 && command==cmdMoveItem   # Move
+          item = pkmn.item
+          itemname = item.name
+          @scene.pbSetHelpText(_INTL("Move {1} to where?",itemname))
+          oldpkmnid = pkmnid
+          loop do
+            @scene.pbPreSelect(oldpkmnid)
+            pkmnid = @scene.pbChoosePokemon(true,pkmnid)
+            break if pkmnid<0
+            newpkmn = @party[pkmnid]
+            break if pkmnid==oldpkmnid
+            if newpkmn.egg?
+              pbDisplay(_INTL("Eggs can't hold items."))
+            elsif !newpkmn.hasItem?
+              newpkmn.item = item
+              pkmn.item = nil
+              @scene.pbClearSwitching
+              pbRefresh
+              pbDisplay(_INTL("{1} was given the {2} to hold.",newpkmn.name,itemname))
+              break
+            elsif GameData::Item.get(newpkmn.item).is_mail?
+              pbDisplay(_INTL("{1}'s mail must be removed before giving it an item.",newpkmn.name))
+            else
+              newitem = newpkmn.item
+              newitemname = newitem.name
+              if newitem == :LEFTOVERS
+                pbDisplay(_INTL("{1} is already holding some {2}.\1",newpkmn.name,newitemname))
+              elsif newitemname.starts_with_vowel?
+                pbDisplay(_INTL("{1} is already holding an {2}.\1",newpkmn.name,newitemname))
+              else
+                pbDisplay(_INTL("{1} is already holding a {2}.\1",newpkmn.name,newitemname))
+              end
+              if pbConfirm(_INTL("Would you like to switch the two items?"))
+                newpkmn.item = item
+                pkmn.item = newitem
+                @scene.pbClearSwitching
+                pbRefresh
+                pbDisplay(_INTL("{1} was given the {2} to hold.",newpkmn.name,itemname))
+                pbDisplay(_INTL("{1} was given the {2} to hold.",pkmn.name,newitemname))
+                break
+              end
+            end
+          end
+        end
+      end
+    end
+    @scene.pbEndScene
+    return nil
+  end
+end
+
+class PokeBattle_Scene
+  #=============================================================================
+  # Opens the party screen to choose a Pokémon to switch in (or just view its
+  # summary screens)
+  #=============================================================================
+  def pbPartyScreen(idxBattler,canCancel=false)
+    # Fade out and hide all sprites
+    visibleSprites = pbFadeOutAndHide(@sprites)
+    # Get player's party
+    partyPos = @battle.pbPartyOrder(idxBattler)
+    partyStart, _partyEnd = @battle.pbTeamIndexRangeFromBattlerIndex(idxBattler)
+    modParty = @battle.pbPlayerDisplayParty(idxBattler)
+    # Start party screen
+    scene = PokemonParty_Scene.new
+    switchScreen = PokemonPartyScreen.new(scene,modParty)
+    switchScreen.pbStartScene(_INTL("Choose a Pokémon."),@battle.pbNumPositions(0,0))
+    # Loop while in party screen
+    loop do
+      # Select a Pokémon
+      scene.pbSetHelpText(_INTL("Choose a Pokémon."))
+      idxParty = switchScreen.pbChoosePokemon
+      if idxParty<0
+        next if !canCancel
+        break
+      end
+      # Choose a command for the selected Pokémon
+      cmdSwitch  = -1
+      cmdSummary = -1
+	  cmdPokedex = -1
+      commands = []
+      commands[cmdSwitch  = commands.length] = _INTL("Switch In") if modParty[idxParty].able?
+      commands[cmdSummary = commands.length] = _INTL("Summary")
+	  commands[cmdPokedex = commands.length] = _INTL("Pokédex") if !modParty[idxParty].egg? && $Trainer.has_pokedex
+      commands[commands.length]              = _INTL("Cancel")
+      command = scene.pbShowCommands(_INTL("Do what with {1}?",modParty[idxParty].name),commands)
+      if cmdSwitch>=0 && command==cmdSwitch        # Switch In
+        idxPartyRet = -1
+        partyPos.each_with_index do |pos,i|
+          next if pos!=idxParty+partyStart
+          idxPartyRet = i
+          break
+        end
+        break if yield idxPartyRet, switchScreen
+      elsif cmdSummary>=0 && command==cmdSummary   # Summary
+        scene.pbSummary(idxParty,true)
+	  elsif cmdPokedex && command==cmdPokedex
+        $Trainer.pokedex.register_last_seen(modParty[idxParty])
+		pbFadeOutIn {
+		  dexscene = PokemonPokedexInfo_Scene.new
+		  dexscreen = PokemonPokedexInfoScreen.new(dexscene)
+		  dexscreen.pbStartSceneSingle(modParty[idxParty].species)
+		}
+      end
+    end
+    # Close party screen
+    switchScreen.pbEndScene
+    # Fade back into battle screen
+    pbFadeInAndShow(@sprites,visibleSprites)
+  end
 end

@@ -1115,7 +1115,29 @@ class PokemonPokedexInfo_Scene
     end
   end
   
+  def getFormattedMoveName(move)
+    fSpecies = GameData::Species.get_species_form(@species,@form)
+	move_data = GameData::Move.get(move)
+	moveName = move_data.real_name
+	if move_data.category < 2 # Is a damaging move
+		if [fSpecies.type1,fSpecies.type2].include?(move_data.type) # Is STAB for the main pokemon
+			moveName = "<b>#{moveName}</b>"
+		elsif isAnyEvolutionOfType(fSpecies,move_data.type)
+			moveName = "<i>#{moveName}</i>"
+		end
+	end
+	return moveName
+  end
   
+  def isAnyEvolutionOfType(species_data,type)
+	ret = false
+	species_data.get_evolutions.each do |evolution_data|
+		evoSpecies_data = GameData::Species.get_species_form(evolution_data[0],@form)
+		ret = true if [evoSpecies_data.type1,evoSpecies_data.type2].include?(type)
+		ret = true if isAnyEvolutionOfType(evoSpecies_data,type) # Recursion!!
+	end
+	return ret
+  end
   
   def drawPageLevelUpMoves
     @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
@@ -1136,8 +1158,7 @@ class PokemonPokedexInfo_Scene
           next if index<@scroll
           level = move[0]
           move = move[1]
-          moveName = GameData::Move.get(move).real_name
-          return if !move || !level || !moveName
+          return if !move || !level
           levelLabel = level.to_s
           if level == 0
             levelLabel = "E"
@@ -1148,8 +1169,9 @@ class PokemonPokedexInfo_Scene
 			color = Color.new(255,100,80)
 			selected_move = move
 		  end
-          drawTextEx(overlay,30,84+30*displayIndex,450,1,levelLabel,color,shadow)
-          drawTextEx(overlay,60,84+30*displayIndex,450,1,moveName,color,shadow)
+		  moveName = getFormattedMoveName(move)
+		  drawTextEx(overlay,30,84+30*displayIndex,450,1,levelLabel,color,shadow)
+          drawFormattedTextEx(overlay,60,84+30*displayIndex,450,moveName,color,shadow)
           displayIndex += 1
           break if displayIndex >= 9
         end
@@ -1248,13 +1270,13 @@ class PokemonPokedexInfo_Scene
         displayIndex = 0
         compatibleMoves.each_with_index do |move,index|
           next if index < @scroll
-		  moveName = GameData::Move.get(move).real_name
 		  color = base
 		  if index == @scroll
 			color = Color.new(255,100,80)
 			selected_move = move
 		  end
-          drawTextEx(overlay,30,84+30*displayIndex,450,1,moveName,color,shadow)
+		  moveName = getFormattedMoveName(move)
+          drawFormattedTextEx(overlay,30,84+30*displayIndex,450,moveName,color,shadow)
           displayIndex += 1
           break if displayIndex >= 9
         end
@@ -1286,13 +1308,13 @@ class PokemonPokedexInfo_Scene
         displayIndex = 0
         compatibleMoves.each_with_index do |move,index|
           next if index < @scroll
-		  moveName = GameData::Move.get(move).real_name
 		  color = base
 		  if index == @scroll
 			color = Color.new(255,100,80)
 			selected_move = move
 		  end
-          drawTextEx(overlay,30,84+30*displayIndex,450,1,moveName,color,shadow)
+		  moveName = getFormattedMoveName(move)
+          drawFormattedTextEx(overlay,30,84+30*displayIndex,450,moveName,color,shadow)
           displayIndex += 1
           break if displayIndex >= 9
         end
