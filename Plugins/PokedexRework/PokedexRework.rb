@@ -254,27 +254,27 @@ class PokemonPokedex_Scene
             pbPlayDecisionSE
             pbDexEntry(@sprites["pokedex"].index)
           end
-		elsif !Input.press?(Input::CTRL) && Input.press?(Input::AUX1)
+		elsif Input.pressex?(:NUMBER_1)
 		  acceptSearchResults {
 			searchBySpeciesName()
 		  }
-		elsif Input.press?(Input::CTRL) && Input.press?(Input::AUX1)
+		elsif Input.pressex?(:NUMBER_2)
 		  acceptSearchResults {
 			searchByType()
 		  }
-		elsif !Input.press?(Input::CTRL) && Input.press?(Input::AUX2)
+		elsif Input.pressex?(:NUMBER_3)
 		  acceptSearchResults {
 			searchByAbility()
 		  }
-		elsif Input.press?(Input::CTRL) && Input.press?(Input::AUX2)
+		elsif Input.pressex?(:NUMBER_4)
 		  acceptSearchResults {
 			searchByMoveLearned()
 		  }
-		elsif !Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
+		elsif Input.pressex?(:NUMBER_5)
 		  acceptSearchResults {
 			searchByEvolutionMethod()
 		  }
-		elsif Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
+		elsif Input.pressex?(:NUMBER_6)
 		  acceptSearchResults {
 			searchByAvailableLevel()
 		  }
@@ -1631,32 +1631,52 @@ class PokemonPokedexInfo_Scene
 		highestRightRepeat = 0
 		repeats = 1 + Input.time?(Input::LEFT) / 100000
         if  repeats > highestLeftRepeat
+			highestLeftRepeat = repeats
 			oldpage = @page
 			@page -= 1
 			@page = 1 if @page<1
-			highestLeftRepeat = repeats
 			if @page!=oldpage
 			  @scroll = -1
 			  pbPlayCursorSE
 			  dorefresh = true
 			end
 		end
-      elsif Input.repeat?(Input::RIGHT)
+    elsif Input.repeat?(Input::RIGHT)
 		highestLeftRepeat = 0
         repeats = 1 + Input.time?(Input::RIGHT) / 100000
 		if repeats > highestRightRepeat
+			highestRightRepeat = repeats
 			oldpage = @page
 			@page += 1
 			@page = 10 if @page>10
 			@page = 7 if @battle && @page>7
-			highestRightRepeat = repeats
 			if @page!=oldpage
 			  @scroll = -1
 			  pbPlayCursorSE
 			  dorefresh = true
 			end
 		end
-	  else
+	elsif Input.pressex?(:NUMBER_1)
+	  dorefresh = true if moveToPage(1)
+	elsif Input.pressex?(:NUMBER_2)
+	  dorefresh = true if moveToPage(2)
+	elsif Input.pressex?(:NUMBER_3)
+	  dorefresh = true if moveToPage(3)
+	elsif Input.pressex?(:NUMBER_4)
+	  dorefresh = true if moveToPage(4)
+	elsif Input.pressex?(:NUMBER_5)
+	  dorefresh = true if moveToPage(5)
+	elsif Input.pressex?(:NUMBER_6)
+	  dorefresh = true if moveToPage(6)
+	elsif Input.pressex?(:NUMBER_7)
+	  dorefresh = true if moveToPage(7)
+	elsif Input.pressex?(:NUMBER_8)
+	  dorefresh = true if moveToPage(8)
+	elsif Input.pressex?(:NUMBER_9)
+	  dorefresh = true if moveToPage(9)
+	elsif Input.pressex?(:NUMBER_0)
+	  dorefresh = true if moveToPage(10)
+	else
 		highestLeftRepeat = 0
 		highestRightRepeat = 0
       end
@@ -1665,6 +1685,20 @@ class PokemonPokedexInfo_Scene
       end
     end
     return @index
+  end
+  
+  def moveToPage(pageNum)
+	oldpage = @page
+	@page = pageNum
+	@page = 1 if @page<1
+	@page = 10 if @page>10
+	@page = 7 if pageNum > 7 && @battle
+	if @page!=oldpage
+	  @scroll = -1
+	  pbPlayCursorSE
+	  return true
+	end
+	return false
   end
 
   def pbSceneBrief
