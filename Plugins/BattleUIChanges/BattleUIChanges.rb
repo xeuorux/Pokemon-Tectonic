@@ -61,7 +61,8 @@ class CommandMenuDisplay < BattleMenuBase
       @dexButton.bitmap = @dexBitmap.bitmap
       @dexButton.x      = self.x+4
       @dexButton.y      = self.y-@dexBitmap.height
-      #addSprite("dexButton",@dexButton) # Turned off for now
+	  @dexButton.visible = false
+      addSprite("dexButton",@dexButton) # Turned off for now
     else
       # Create command window (shows Fight/Bag/Pokémon/Run)
       @cmdWindow = Window_CommandPokemon.newWithSize([],
@@ -382,6 +383,7 @@ class PokemonDataBox < SpriteWrapper
 		  bgFilename = ["Graphics/Pictures/Battle/databox_normal",
 						"Graphics/Pictures/Battle/databox_normal_foe"][@battler.index%2]
 		  bgFilename += "_boss" if @boss
+		  bgFilename += "_legend" if isLegendary(@battler.species)
 		  if onPlayerSide
 			@showHP  = true
 			@showExp = true
@@ -515,78 +517,35 @@ class PokemonDataBox < SpriteWrapper
 		  pbDrawNumber(@battler.totalhp,@hpNumbers.bitmap,70,2)
 		end
 		
-		if !@boss
-			# Resize HP bar
+		numHPBars = 1
+		numHPBars = 3 if @boss
+		numHPBars = 2 if !isLegendary(@battler.species)
+		updateHealthBars(numHPBars)
+	end
+	
+	def updateHealthBars(numHealthBars)	
+		hpBars = [@hpBar,@hpBar2,@hpBar3]
+		numHealthBars = numHealthBars.to_f
+		hpBars.each_with_index do |bar,index|
+			break if index==numHealthBars
+			oneBarsShare = (@battler.totalhp / numHealthBars)
 			w = 0
-			if self.hp>0
-			  w = @hpBarBitmap.width.to_f*self.hp/@battler.totalhp
-			  w = 1 if w<1
-			  # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
-			  #       fit in with the rest of the graphics which are doubled in size.
-			  w = ((w/2.0).round)*2
-			end
-			@hpBar.src_rect.width = w
-			hpColor = 0                                  # Green bar
-			hpColor = 1 if self.hp<=@battler.totalhp/2   # Yellow bar
-			hpColor = 2 if self.hp<=@battler.totalhp/4   # Red bar
-			@hpBar.src_rect.y = hpColor*@hpBarBitmap.height/3
-		else
-			# Resize HP bar 1
-			w = 0
-			if self.hp>0
+			if self.hp > oneBarsShare * index
 			  w = @hpBarBitmap.width.to_f
-			  if self.hp < @battler.totalhp / 3.0
-				w = @hpBarBitmap.width.to_f*self.hp/(@battler.totalhp / 3.0)
+			  if self.hp < oneBarsShare * (index + 1)
+				w = @hpBarBitmap.width.to_f * (self.hp - index * oneBarsShare) / oneBarsShare
 				w = 1 if w<1
 			    # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
 			    #       fit in with the rest of the graphics which are doubled in size.
 			    w = ((w/2.0).round)*2
 			  end
 			end
-			@hpBar.src_rect.width = w
+			bar.src_rect.width = w
 			
 			hpColor = 0                                  # Green bar
-			hpColor = 1 if self.hp<=@battler.totalhp/6.0   # Yellow bar
-			hpColor = 2 if self.hp<=@battler.totalhp/12.0   # Red bar
-			@hpBar.src_rect.y = hpColor*@hpBarBitmap.height/3
-			
-			# Resize HP bar 2
-			w2 = 0
-			if self.hp > (@battler.totalhp / 3.0)
-			  w2 = @hpBarBitmap.width.to_f
-			  if self.hp < (2.0 * @battler.totalhp / 3.0)
-				w2 = @hpBarBitmap.width.to_f * (self.hp - (@battler.totalhp / 3.0)) / (@battler.totalhp / 3.0)
-				w2 = 1 if w2<1
-			    # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
-			    #       fit in with the rest of the graphics which are doubled in size.
-			    w2 = ((w2/2.0).round)*2
-			  end
-			end
-			@hpBar2.src_rect.width = w2
-			
-			hpColor = 0                                  # Green bar
-			hpColor = 1 if self.hp<=@battler.totalhp/2.0   # Yellow bar
-			hpColor = 2 if self.hp<=@battler.totalhp * 5.0/12.0   # Red bar
-			@hpBar2.src_rect.y = hpColor*@hpBarBitmap.height/3
-			
-			# Resize HP bar 3
-			w3 = 0
-			if self.hp > (2.0 * @battler.totalhp / 3.0)
-			  w3 = @hpBarBitmap.width.to_f
-			  if self.hp < @battler.totalhp
-				w3 = @hpBarBitmap.width.to_f * (self.hp - (2.0 * @battler.totalhp / 3.0)) / (@battler.totalhp / 3.0)
-				w3 = 1 if w3<1
-			    # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
-			    #       fit in with the rest of the graphics which are doubled in size.
-			    w3 = ((w3/2.0).round)*2
-			  end
-			end
-			@hpBar3.src_rect.width = w3
-			
-			hpColor = 0                                  # Green bar
-			hpColor = 1 if self.hp<=@battler.totalhp * 10.0/12.0   # Yellow bar
-			hpColor = 2 if self.hp<=@battler.totalhp * 3.0/4.0   # Red bar
-			@hpBar3.src_rect.y = hpColor*@hpBarBitmap.height/3
+			hpColor = 1 if self.hp <= @battler.totalhp * (index * 4 + 2) / (4 * numHealthBars)
+			hpColor = 2 if self.hp <= @battler.totalhp * (index * 4 + 1) / (4 * numHealthBars)
+			bar.src_rect.y = hpColor*@hpBarBitmap.height/3
 		end
 	end
 	  
@@ -704,7 +663,7 @@ class PokemonDataBox < SpriteWrapper
     @type3Icon.visible = (value && @showTypes && !!types[2] && types[2] != types[0] && types[2] != types[1])
 	
 	@hpBar2.visible = value && @boss
-	@hpBar3.visible = value && @boss
+	@hpBar3.visible = value && @boss && isLegendary(@battler.species)
   end
 end
 
