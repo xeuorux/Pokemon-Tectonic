@@ -4289,11 +4289,7 @@ class PokeBattle_Battle
 			when 5	  # Info
 				pbGoAfterInfo(@battlers[idxBattler])
 			when 7 # Pokedex
-				pbFadeOutIn {
-						scene = PokemonPokedex_Scene.new
-						screen = PokemonPokedexScreen.new(scene)
-						screen.pbStartScreen
-					}
+				# TODO: Open the battle info menu
 			when -2   # Debug
 			  pbDebugMenu
 			  next
