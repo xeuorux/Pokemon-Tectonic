@@ -507,8 +507,9 @@ class PokemonDataBox < SpriteWrapper
 		end
 		
 		numHPBars = 1
-		numHPBars = 3 if @boss
-		numHPBars = 2 if !isLegendary(@battler.species)
+		if @boss
+			numHPBars = isLegendary(@battler.species) ? 3 : 2
+		end
 		updateHealthBars(numHPBars)
 	end
 	

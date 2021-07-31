@@ -1,4 +1,5 @@
 Name         = PartyAndSummary                                     
-Version      = 1.0                                                                                         
+Version      = 1.0
+Requires	 = StatTracking                                                                                     
 Link         = https://reliccastle.com/link-to-the-plugin/               
 Credits      = Zeu
