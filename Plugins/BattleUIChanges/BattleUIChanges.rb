@@ -55,14 +55,6 @@ class CommandMenuDisplay < BattleMenuBase
       @ballButton.src_rect.height  = @ballBitmap.height/2
       addSprite("ballButton",@ballButton)
       @ballButton.visible = false
-	  
-	  # Create Dex button
-      @dexButton = SpriteWrapper.new(viewport)
-      @dexButton.bitmap = @dexBitmap.bitmap
-      @dexButton.x      = self.x+4
-      @dexButton.y      = self.y-@dexBitmap.height
-	  @dexButton.visible = false
-      addSprite("dexButton",@dexButton) # Turned off for now
     else
       # Create command window (shows Fight/Bag/Pokémon/Run)
       @cmdWindow = Window_CommandPokemon.newWithSize([],
@@ -97,8 +89,6 @@ class CommandMenuDisplay < BattleMenuBase
     else
       @ballButton.src_rect.y = 46
     end
-	# Refresh the dex button
-    @dexButton.z             = self.z - 1
   end
   
   def visible=(value)
@@ -722,7 +712,7 @@ class PokeBattle_Battle
   end
   
 	def pbGoAfterInfo(battler)
-		idxTarget = @scene.pbChooseTarget(battler.index,GameData::Target.get(:UserOrOther))
+		idxTarget = @scene.pbChooseTarget(battler.index,GameData::Target.get(:UserOrOther),nil,true)
 		return if idxTarget<0
 		species = @battlers[idxTarget].species
 		$Trainer.pokedex.register_last_seen(@battlers[idxTarget].pokemon)
@@ -757,6 +747,69 @@ class PokeBattle_Scene
       indices.each { |i| return i }
     end
     return idxBattler   # Target the user initially
+  end
+  
+   def pbChooseTarget(idxBattler,target_data,visibleSprites=nil,dexSelect=false)
+    pbShowWindow(TARGET_BOX)
+    cw = @sprites["targetWindow"]
+    # Create an array of battler names (only valid targets are named)
+    texts = pbCreateTargetTexts(idxBattler,target_data)
+    # Determine mode based on target_data
+    mode = (target_data.num_targets == 1) ? 0 : 1
+    cw.setDetails(texts,mode)
+    cw.index = pbFirstTarget(idxBattler,target_data)
+    pbSelectBattler((mode==0) ? cw.index : texts,2)   # Select initial battler/data box
+    pbFadeInAndShow(@sprites,visibleSprites) if visibleSprites
+    ret = -1
+    loop do
+      oldIndex = cw.index
+      pbUpdate(cw)
+      # Update selected command
+      if mode==0   # Choosing just one target, can change index
+        if Input.trigger?(Input::LEFT) || Input.trigger?(Input::RIGHT)
+          inc = ((cw.index%2)==0) ? -2 : 2
+          inc *= -1 if Input.trigger?(Input::RIGHT)
+          indexLength = @battle.sideSizes[cw.index%2]*2
+          newIndex = cw.index
+          loop do
+            newIndex += inc
+            break if newIndex<0 || newIndex>=indexLength
+            next if texts[newIndex].nil?
+            cw.index = newIndex
+            break
+          end
+        elsif (Input.trigger?(Input::UP) && (cw.index%2)==0) ||
+              (Input.trigger?(Input::DOWN) && (cw.index%2)==1)
+          tryIndex = @battle.pbGetOpposingIndicesInOrder(cw.index)
+          tryIndex.each do |idxBattlerTry|
+            next if texts[idxBattlerTry].nil?
+            cw.index = idxBattlerTry
+            break
+          end
+		elsif Input.trigger?(Input::ACTION)
+			pbFadeOutIn {
+				scene = PokemonPokedex_Scene.new
+				screen = PokemonPokedexScreen.new(scene)
+				screen.pbStartScreen
+			}
+        end
+        if cw.index!=oldIndex
+          pbPlayCursorSE
+          pbSelectBattler(cw.index,2)   # Select the new battler/data box
+        end
+      end
+      if Input.trigger?(Input::USE)   # Confirm
+        ret = cw.index
+        pbPlayDecisionSE
+        break
+      elsif Input.trigger?(Input::BACK)   # Cancel
+        ret = -1
+        pbPlayCancelSE
+        break
+      end
+    end
+    pbSelectBattler(-1)   # Deselect all battlers/data boxes
+    return ret
   end
 end
 
