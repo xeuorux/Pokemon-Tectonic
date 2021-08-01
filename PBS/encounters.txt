@@ -1,4 +1,5 @@
-﻿# ALPHA
+﻿#-------------------------------
+# ALPHA
 #-------------------------------
 [033] # Seaside Villa
 Land,20
@@ -43,12 +44,32 @@ Land,20
 20,GASTLY,7,9
 20,SNOM,7,9
 20,MACHOP,7,9
-#LandPuddle,20
-#20,AZURILL,7,9
-#20,SLOWBRO_1,7,9
-#20,FERROSEED,7,9
-#20,MAKUHITA,7,9
-#20,AXEW,7,9
+Puddle,20
+20,AZURILL,7,9
+20,SLOWPOKE_1,7,9
+20,FERROSEED,7,9
+20,MAKUHITA,7,9
+20,AXEW,7,9
+#-------------------------------
+[038] # Beach Route
+Land,20
+20,EXEGGCUTE,7,9
+20,KRABBY,7,9
+20,MEOWTH_1,7,9
+20,GIBLE,7,9
+20,RHYHORN,7,9
+LandSparse,20
+20,SANDYGAST,7,9
+20,WINGULL,7,9
+20,CUBONE,7,9
+20,NUMEL,7,9
+20,PHANPY,7,9
+Puddle,20
+20,SHELLOS,7,9
+20,SLOWPOKE,7,9
+20,BINACLE,7,9
+20,CLOBBOPUS,7,9
+20,CLAMPERL,7,9
 #-------------------------------
 # PROTOTYPE
 #-------------------------------

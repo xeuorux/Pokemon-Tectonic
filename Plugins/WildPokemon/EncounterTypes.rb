@@ -34,7 +34,7 @@ class PokemonEncounters
     return true if $PokemonGlobal.surfing
     terrain_tag = $game_map.terrain_tag($game_player.x, $game_player.y)
     return false if terrain_tag.ice
-    return true if has_cave_encounters? && !(terrain_tag.id == :Sand)   # i.e. this map is a cave
+    return true if has_cave_encounters? && (terrain_tag.id == :DarkCave)
     return true if has_land_encounters? && terrain_tag.land_wild_encounters
     return false
   end
@@ -118,6 +118,14 @@ class PokemonEncounters
 	  # Tall grass encounters
 	  if $game_map.terrain_tag($game_player.x, $game_player.y).deep_bush
 		ret = find_valid_encounter_type_for_time(:LandTall, time)
+	  end
+	  # Sparse Grass encounters
+	  if $game_map.terrain_tag($game_player.x, $game_player.y).id == :SparseGrass
+		ret = find_valid_encounter_type_for_time(:LandSparse, time)
+	  end
+	  # Puddle encounters
+	  if $game_map.terrain_tag($game_player.x, $game_player.y).id == :Puddle
+		ret = find_valid_encounter_type_for_time(:Puddle, time)
 	  end
 	  # Land encounters
       if !ret && has_land_encounters? && $game_map.terrain_tag($game_player.x, $game_player.y).land_wild_encounters
@@ -227,6 +235,23 @@ GameData::EncounterType.register({
   :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
 })
 
+# Sparse Grass
+
+GameData::TerrainTag.register({
+  :id                     => :SparseGrass,
+  :id_number              => 19,
+  :shows_grass_rustle     => true,
+  :land_wild_encounters   => true,
+  :battle_environment     => :Grass
+})
+
+GameData::EncounterType.register({
+  :id             => :LandSparse,
+  :type           => :land,
+  :trigger_chance => 21,
+  :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
+})
+
 # Mud
 
 GameData::TerrainTag.register({
@@ -260,3 +285,39 @@ GameData::EncounterType.register({
   :trigger_chance => 15,
   :old_slots      => [60, 30, 5, 4, 1]
 })
+
+# Puddle
+
+GameData::TerrainTag.register({
+  :id                     => :Puddle,
+  :id_number              => 18,
+  :battle_environment     => :StillWater,
+  :land_wild_encounters	  => true,
+})
+
+GameData::EncounterType.register({
+  :id             => :Puddle,
+  :type           => :land,
+  :trigger_chance => 21,
+  :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
+})
+
+# Dark Cave
+GameData::TerrainTag.register({
+  :id                     => :DarkCave,
+  :id_number              => 20,
+  :battle_environment     => :Cave,
+  :land_wild_encounters	  => true,
+})
+
+# Show pond splash animation
+Events.onStepTakenFieldMovement += proc { |_sender, e|
+  event = e[0]   # Get the event affected by field movement
+  if $scene.is_a?(Scene_Map)
+    event.each_occupied_tile do |x, y|
+      if $MapFactory.getTerrainTag(event.map.map_id, x, y, true) == :Puddle
+        $scene.spriteset.addUserAnimation(8, x, y, true, 1)
+      end
+    end
+  end
+}
