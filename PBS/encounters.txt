@@ -1,4 +1,56 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+﻿# ALPHA
+#-------------------------------
+[033] # Seaside Villa
+Land,20
+20,FLABEBE,7,9
+20,BUDEW,7,9
+20,SWIRLIX,7,9
+20,MAREEP,7,9
+20,PIDGEY,7,9
+#-------------------------------
+[034] # Forest Route
+Land,20
+20,SKWOVET,7,9
+20,FLETCHLING,7,9
+20,BOUNSWEET,7,9
+20,PICHU,7,9
+20,CATERPIE,7,9
+LandTall,20
+20,GASTLY,7,9
+20,HOPPIP,7,9
+20,LITWICK,7,9
+20,WEEDLE,7,9
+20,PIKIPEK,7,9
+#-------------------------------
+[029] # Mine Path
+Land,20
+20,PETILIL,7,9
+20,ROOKIDEE,7,9
+20,RALTS,7,9
+20,WURMPLE,7,9
+20,IGGLYBUFF,7,9
+LandTall,20
+20,HATENNA,7,9
+20,STARLY,7,9
+20,STUNKY,7,9
+20,NICKIT,7,9
+20,IMPIDIMP,7,9
+#-------------------------------
+[039] # Small Mine
+Land,20
+20,ROLYCOLY,7,9
+20,SPINARAK,7,9
+20,GASTLY,7,9
+20,SNOM,7,9
+20,MACHOP,7,9
+#LandPuddle,20
+#20,AZURILL,7,9
+#20,SLOWBRO_1,7,9
+#20,FERROSEED,7,9
+#20,MAKUHITA,7,9
+#20,AXEW,7,9
+#-------------------------------
+# PROTOTYPE
 #-------------------------------
 [002] # Forest Cave
 Cave,20

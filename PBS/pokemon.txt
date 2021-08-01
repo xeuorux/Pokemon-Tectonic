@@ -26972,7 +26972,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = DOTTLER,Level,16
+Evolutions = DOTTLER,Level,22
 #-------------------------------
 [825]
 Name = Dottler
