@@ -1,5 +1,4 @@
-﻿#-------------------------------
-[YOUNGSTER,Harvey]
+﻿[YOUNGSTER,Harvey]
 LoseText = "I couldn't find victory, either!"
 Pokemon = GOLDEEN,7
 Pokemon = SEEDOT,8
@@ -15,11 +14,24 @@ LoseText = "Dialogue here."
 Pokemon = GEODUDE,9
 Pokemon = MACHOP,9
 #-------------------------------
+[GENTLEMAN,Wilfrid]
+LoseText = "This is probably Waka's job."
+Pokemon = GROWLITHE,10
+Pokemon = SINISTEA,10
+#-------------------------------
+[SCIENTIST_M,Charles]
+LoseText = "I couldn't protect my berries!"
+Pokemon = SKWOVET,11
+    AbilityIndex = 0
+    Item = LUMBERRY
+Pokemon = MAGNEMITE,12
+    AbilityIndex = 0
+    Item = ORANBERRY
+#-------------------------------
 [NINJABOY,Matthew]
 LoseText = "This is probably Waka's job."
 Pokemon = BONSLY,12
 Pokemon = KARRABLAST,12
-Pokemon = NICKIT,12
 #-------------------------------
 [FIREBREATHER,Robert]
 LoseText = "This is probably Waka's job."
@@ -58,7 +70,6 @@ LoseText = "This is probably Waka's job."
 Pokemon = KRABBY,13
 Pokemon = INKAY,13
 Pokemon = EXEGGCUTE,13
-#-------------------------------
 #-------------------------------
 # PROTOTYPE
 #-------------------------------
@@ -166,15 +177,6 @@ Pokemon = CHINCHOU,21
     Moves = THUNDER,CONFUSERAY,BUBBLEBEAM,THUNDERWAVE
     AbilityIndex = 0
     Item = SITRUSBERRY
-#-------------------------------
-[SCIENTIST_M,Charles]
-LoseText = "I couldn't protect my berries!"
-Pokemon = SKWOVET,14
-    AbilityIndex = 0
-    Item = LUMBERRY
-Pokemon = MAGNEMITE,13
-    AbilityIndex = 0
-    Item = ORANBERRY
 #-------------------------------
 [PICNICKER,Cris]
 LoseText = "I wonder what's inside his pokéball?"

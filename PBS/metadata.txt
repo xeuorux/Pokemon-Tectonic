@@ -175,9 +175,13 @@ Outdoor = true
 Bicycle = true
 #-------------------------------
 [034]
-# Forest Route
+# Scenic Path
 Outdoor = true
 Bicycle = true
+#-------------------------------
+[035]
+# Crossroads House
+HealingSpot = 34,24,11
 #-------------------------------
 [038]
 # Beach Route
@@ -185,7 +189,6 @@ Outdoor = true
 Bicycle = true
 #-------------------------------
 [039]
-# Small Mine
 Outdoor = false
 Bicycle = true
 #-------------------------------
