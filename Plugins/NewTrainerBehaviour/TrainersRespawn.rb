@@ -30,8 +30,43 @@ Events.onMapChange += proc { |_sender,e|
   $game_variables[76][$game_map.map_id] = false
   echo("Resetting events on this map\n")
   for event in $game_map.events.values
-    if event.name.downcase.include?("trainer") or ($game_switches[78] && event.name.downcase.include?("berryplant"))
+    if event.name.downcase.include?("trainer") || ($game_switches[78] && event.name.downcase.include?("berryplant")) ||
+		event.name.downcase.include?("reset")
       $game_self_switches[[$game_map.map_id,event.id,"A"]] = false
     end
   end
 }
+
+def setFollowerInactive()
+	follower = getFollowerPokemon()
+	if !follower
+		pbMessage("ERROR: Could not find follower Pokemon!")
+		return
+	end
+	pbSetSelfSwitch(follower.id,'A',true)
+end
+
+def setFollowerGone()
+	follower = getFollowerPokemon()
+	if !follower
+		pbMessage("ERROR: Could not find follower Pokemon!")
+		return
+	end
+	pbSetSelfSwitch(follower.id,'D',true)
+end
+
+def getFollowerPokemon()
+	x = get_self.original_x
+	y = get_self.original_y
+	
+	follower = nil
+	for event in $game_map.events.values
+		next unless event.name.downcase.include?("overworld")
+		xDif = (event.x - x).abs
+		yDif = (event.y - y).abs
+		next unless xDif <= 1 && yDif <= 1 # Must be touching
+		follower = event
+		break
+    end
+	return follower
+end

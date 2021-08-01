@@ -148,13 +148,46 @@ MapPosition = 0,15,8
 MapPosition = 0,15,8
 #-------------------------------
 [026]
-# MAP026
-Outdoor = true
+# Seaside Villa Center
+Outdoor = false
+Bicycle = false
+BicycleAlways = false
+HealingSpot = 33,15,26
 MapPosition = 0,15,8
+#-------------------------------
+[027]
+# Seaside Villa Mart
+Outdoor = false
+Bicycle = false
+#-------------------------------
+[029]
+# Mine Path
+Outdoor = true
+Bicycle = true
 #-------------------------------
 [032]
 # Player's House
 HealingSpot = 21,25,13
+#-------------------------------
+[033]
+# Seaside Villa
+Outdoor = true
+Bicycle = true
+#-------------------------------
+[034]
+# Forest Route
+Outdoor = true
+Bicycle = true
+#-------------------------------
+[038]
+# Beach Route
+Outdoor = true
+Bicycle = true
+#-------------------------------
+[039]
+# Small Mine
+Outdoor = false
+Bicycle = true
 #-------------------------------
 [043]
 # Forest Route

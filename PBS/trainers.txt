@@ -1,4 +1,66 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+﻿#-------------------------------
+[YOUNGSTER,Harvey]
+LoseText = "I couldn't find victory, either!"
+Pokemon = GOLDEEN,7
+Pokemon = SEEDOT,8
+Pokemon = FENNEKIN,7
+#-------------------------------
+[LASS2,Sienna]
+LoseText = "Aww..."
+Pokemon = PIKIPEK,6
+Pokemon = PICHU,6
+#-------------------------------
+[HIKER,Dave]
+LoseText = "Dialogue here."
+Pokemon = GEODUDE,9
+Pokemon = MACHOP,9
+#-------------------------------
+[NINJABOY,Matthew]
+LoseText = "This is probably Waka's job."
+Pokemon = BONSLY,12
+Pokemon = KARRABLAST,12
+Pokemon = NICKIT,12
+#-------------------------------
+[FIREBREATHER,Robert]
+LoseText = "This is probably Waka's job."
+Pokemon = MAGBY,13
+Pokemon = SALANDIT,13
+Pokemon = BULBASAUR,13
+#-------------------------------
+[AROMALADY,Hannah]
+LoseText = "This is probably Waka's job."
+Pokemon = BUDEW,12
+Pokemon = FLABEBE,12
+Pokemon = PIPLUP,12
+#-------------------------------
+[SAILOR,Dylan]
+LoseText = "This is probably Waka's job."
+Pokemon = AZURILL,14
+Pokemon = WINGULL,14
+Pokemon = TEPIG,14
+#-------------------------------
+[LADY2,Rebecca]
+LoseText = "This is probably Waka's job."
+Pokemon = MEOWTH,14
+    Form = 1
+Pokemon = GROWLITHE,14
+Pokemon = PETILIL,14
+#-------------------------------
+[TUBER_M,Peter]
+LoseText = "This is probably Waka's job."
+Pokemon = SANDYGAST,13
+Pokemon = SLOWPOKE,13
+    Form = 1
+Pokemon = OSHAWOTT,13
+#-------------------------------
+[TUBER_F,Sophie]
+LoseText = "This is probably Waka's job."
+Pokemon = KRABBY,13
+Pokemon = INKAY,13
+Pokemon = EXEGGCUTE,13
+#-------------------------------
+#-------------------------------
+# PROTOTYPE
 #-------------------------------
 [LASS2,Angelica]
 LoseText = "Aww..."
@@ -107,12 +169,12 @@ Pokemon = CHINCHOU,21
 #-------------------------------
 [SCIENTIST_M,Charles]
 LoseText = "I couldn't protect my berries!"
-Pokemon = MAGNEMITE,13
-    AbilityIndex = 0
-    Item = ORANBERRY
 Pokemon = SKWOVET,14
     AbilityIndex = 0
     Item = LUMBERRY
+Pokemon = MAGNEMITE,13
+    AbilityIndex = 0
+    Item = ORANBERRY
 #-------------------------------
 [PICNICKER,Cris]
 LoseText = "I wonder what's inside his pokéball?"
@@ -492,69 +554,3 @@ Pokemon = SWALOT,70
     AbilityIndex = 0
     Item = ASSAULTVEST
     EV = 20,0,15,0,0,15
-#-------------------------------
-[NINJABOY,Matthew]
-LoseText = "This is probably Waka's job."
-Pokemon = BONSLY,12
-    AbilityIndex = 0
-Pokemon = KARRABLAST,12
-    AbilityIndex = 0
-Pokemon = NICKIT,12
-    AbilityIndex = 0
-#-------------------------------
-[FIREBREATHER,Robert]
-LoseText = "This is probably Waka's job."
-Pokemon = MAGBY,13
-    AbilityIndex = 0
-Pokemon = SALANDIT,13
-    AbilityIndex = 0
-Pokemon = BULBASAUR,13
-    AbilityIndex = 0
-#-------------------------------
-[AROMALADY,Hannah]
-LoseText = "This is probably Waka's job."
-Pokemon = BUDEW,12
-    AbilityIndex = 0
-Pokemon = FLABEBE,12
-    AbilityIndex = 0
-Pokemon = PIPLUP,12
-    AbilityIndex = 0
-#-------------------------------
-[SAILOR,Dylan]
-LoseText = "This is probably Waka's job."
-Pokemon = AZURILL,14
-    AbilityIndex = 0
-Pokemon = WINGULL,14
-    AbilityIndex = 0
-Pokemon = TEPIG,14
-    AbilityIndex = 0
-#-------------------------------
-[LADY2,Rebecca]
-LoseText = "This is probably Waka's job."
-Pokemon = MEOWTH,14
-    Form = 1
-    AbilityIndex = 0
-Pokemon = GROWLITHE,14
-    AbilityIndex = 0
-Pokemon = PETILIL,14
-    AbilityIndex = 0
-	#-------------------------------
-[TUBER_M,Peter]
-LoseText = "This is probably Waka's job."
-Pokemon = SANDYGAST,13
-    AbilityIndex = 0
-Pokemon = SLOWPOKE,13
-    Form = 1
-    AbilityIndex = 0
-Pokemon = OSHAWOTT,13
-    AbilityIndex = 0
-#-------------------------------
-[TUBER_F,Sophie]
-LoseText = "This is probably Waka's job."
-Pokemon = KRABBY,13
-    AbilityIndex = 0
-Pokemon = INKAY,13
-    AbilityIndex = 0
-Pokemon = EXEGGCUTE,13
-    AbilityIndex = 0
-#-------------------------------
