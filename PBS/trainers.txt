@@ -493,3 +493,68 @@ Pokemon = SWALOT,70
     Item = ASSAULTVEST
     EV = 20,0,15,0,0,15
 #-------------------------------
+[NINJABOY,Matthew]
+LoseText = "This is probably Waka's job."
+Pokemon = BONSLY,12
+    AbilityIndex = 0
+Pokemon = KARRABLAST,12
+    AbilityIndex = 0
+Pokemon = NICKIT,12
+    AbilityIndex = 0
+#-------------------------------
+[FIREBREATHER,Robert]
+LoseText = "This is probably Waka's job."
+Pokemon = MAGBY,13
+    AbilityIndex = 0
+Pokemon = SALANDIT,13
+    AbilityIndex = 0
+Pokemon = BULBASAUR,13
+    AbilityIndex = 0
+#-------------------------------
+[AROMALADY,Hannah]
+LoseText = "This is probably Waka's job."
+Pokemon = BUDEW,12
+    AbilityIndex = 0
+Pokemon = FLABEBE,12
+    AbilityIndex = 0
+Pokemon = PIPLUP,12
+    AbilityIndex = 0
+#-------------------------------
+[SAILOR,Dylan]
+LoseText = "This is probably Waka's job."
+Pokemon = AZURILL,14
+    AbilityIndex = 0
+Pokemon = WINGULL,14
+    AbilityIndex = 0
+Pokemon = TEPIG,14
+    AbilityIndex = 0
+#-------------------------------
+[LADY2,Rebecca]
+LoseText = "This is probably Waka's job."
+Pokemon = MEOWTH,14
+    Form = 1
+    AbilityIndex = 0
+Pokemon = GROWLITHE,14
+    AbilityIndex = 0
+Pokemon = PETILIL,14
+    AbilityIndex = 0
+	#-------------------------------
+[TUBER_M,Peter]
+LoseText = "This is probably Waka's job."
+Pokemon = SANDYGAST,13
+    AbilityIndex = 0
+Pokemon = SLOWPOKE,13
+    Form = 1
+    AbilityIndex = 0
+Pokemon = OSHAWOTT,13
+    AbilityIndex = 0
+#-------------------------------
+[TUBER_F,Sophie]
+LoseText = "This is probably Waka's job."
+Pokemon = KRABBY,13
+    AbilityIndex = 0
+Pokemon = INKAY,13
+    AbilityIndex = 0
+Pokemon = EXEGGCUTE,13
+    AbilityIndex = 0
+#-------------------------------
