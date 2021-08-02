@@ -32,7 +32,7 @@ class PokemonEncounters
   # trigger upon taking a step.
   def encounter_possible_here?
     terrain_tag_id = $game_map.terrain_tag($game_player.x, $game_player.y).id
-    if [:Grass, :DarkCave, :Mud, :SparseGrass, :Puddle, :TallGrass, :ActiveWater].include?(terrain_tag_id)
+    if [:Grass, :DarkCave, :Mud, :SparseGrass, :Puddle, :TallGrass, :ActiveWater, :FloweryGrass, :FloweryGrass2].include?(terrain_tag_id)
 		return true
 	end
 	return false
@@ -123,6 +123,10 @@ class PokemonEncounters
 		ret = :DarkCave
       when :Grass
         ret = :Land
+	  when :FloweryGrass
+        ret = :FloweryGrass
+	  when :FloweryGrass2
+        ret = :FloweryGrass2
       end
     end
 	echo("#{ret}\n")
@@ -225,7 +229,6 @@ GameData::EncounterType.register({
 })
 
 # Sparse Grass
-
 GameData::TerrainTag.register({
   :id                     => :SparseGrass,
   :id_number              => 19,
@@ -306,6 +309,37 @@ GameData::EncounterType.register({
   :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
 })
 
+# Flowery Grass
+GameData::TerrainTag.register({
+  :id                     => :FloweryGrass,
+  :id_number              => 20,
+  :shows_grass_rustle     => true,
+  :land_wild_encounters   => true,
+  :battle_environment     => :Grass
+})
+
+GameData::EncounterType.register({
+  :id             => :FloweryGrass,
+  :type           => :land,
+  :trigger_chance => 21,
+  :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
+})
+
+# Flowery Grass 2
+GameData::TerrainTag.register({
+  :id                     => :FloweryGrass2,
+  :id_number              => 21,
+  :shows_grass_rustle     => true,
+  :land_wild_encounters   => true,
+  :battle_environment     => :Grass
+})
+
+GameData::EncounterType.register({
+  :id             => :FloweryGrass2,
+  :type           => :land,
+  :trigger_chance => 21,
+  :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
+})
 
 # Show pond splash animation
 Events.onStepTakenFieldMovement += proc { |_sender, e|

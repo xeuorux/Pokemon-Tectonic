@@ -163,6 +163,7 @@ Bicycle = false
 [029]
 # Mine Path
 Outdoor = true
+ShowArea = true
 Bicycle = true
 #-------------------------------
 [030]
@@ -179,15 +180,17 @@ HealingSpot = 21,25,13
 [033]
 # Seaside Villa
 Outdoor = true
+ShowArea = true
 Bicycle = true
 #-------------------------------
 [034]
 # Scenic Path
 Outdoor = true
+ShowArea = true
 Bicycle = true
 #-------------------------------
 [035]
-# Scenic House
+# Exile's House
 HealingSpot = 34,24,11
 #-------------------------------
 [038]
