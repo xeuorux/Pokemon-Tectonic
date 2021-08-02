@@ -182,3 +182,24 @@ DebugMenuCommands.register("relearnsfix", {
 	Compiler.write_pokemon
   }
 })
+
+module GameData
+	class Trainer
+		def initialize(hash)
+		  @id             = hash[:id]
+		  @id_number      = hash[:id_number]
+		  @trainer_type   = hash[:trainer_type]
+		  @real_name      = hash[:name]         || "Unnamed"
+		  @version        = hash[:version]      || 0
+		  @items          = hash[:items]        || []
+		  @real_lose_text = hash[:lose_text]    || ""
+		  @pokemon        = hash[:pokemon]      || []
+		  @pokemon.each do |pkmn|
+			GameData::Stat.each_main do |s|
+			  pkmn[:iv][s.id] ||= 0 if pkmn[:iv]
+			  pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
+			end
+		  end
+		end
+	end
+end
