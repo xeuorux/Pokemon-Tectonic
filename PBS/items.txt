@@ -818,4 +818,5 @@
 793,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,A peculiar stone that makes certain species of Pokémon evolve.,1,0,7,
 794,ALOLANWREATH,Alolan Wreath,Alolan Wreathes,1,0,A beautiful floral wreath from Alolan that makes certain species of Pokémon evolve.,1,0,7,
 795,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,0,
-796,TELEPORTER,Teleporter,Teleporters,8,0,"A teleporter which brings you to your last safe spot.",2,0,6,
+796,TELEPORTER,Abraporter,Abraporters,8,0,"A teleporter which brings you to your last safe spot using the power of Abras.",2,0,6,
+797,COPIER,Copier,Copiers,8,0,"A 3d printer which automatically copies consumed held items after battles.",0,0,0

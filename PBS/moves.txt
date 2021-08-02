@@ -832,7 +832,7 @@
 812,FLOWSTATE,Flow State,512,0,WATER,Status,100,20,100,User,0,d,"The user gains an instinctual knowledge of battle, boosting both its Atk. and Sp. Def. stats."
 814,COLDCONVERSION,Cold Conversion,51B,130,ICE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user melts itself. The user will no longer be Ice type."
 815,VENOMLEECH,Venom Leech,51A,75,POISON,Physical,100,10,20,NearOther,0,abef,"The user drains the target's blood with venomous teeth. The user's HP is restored by a third of the damage dealt. 20% chance to toxify."
-816,REFLEXOVERDRIVE,Reflex Overdrive,519,110,PSYCHIC,Physical,0,10,0,Other,0,abef,"TODO. The attack lands without fail and lowers the user's defense and speed."
+816,REFLEXOVERDRIVE,Reflex Overdrive,519,110,PSYCHIC,Physical,0,10,0,Other,0,abef,"Lands without fail and lowers the user's defense and speed."
 817,DOUSE,Douse,518,40,WATER,Special,100,25,0,AllNearFoes,0,bef,"The user douses the target, healing itself by a third of its max. HP in the process."
 818,AQUAINSTINCT,Aqua Instinct,517,65,WATER,Physical,100,10,0,NearOther,0,bef,"The user preys on the target. This move goes first if the target is below half health."
 819,DRAGONBLOOD,Dragon Blood,51C,0,DRAGON,Status,0,5,0,User,0,d,"The user restores its own HP. The user then raises its Sp. Atk. unless it was fully healed in the process."

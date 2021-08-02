@@ -1,4 +1,21 @@
 class PokeBattle_Battler
+	def pbRecoverHP(amt,anim=true,anyAnim=true)
+		raise _INTL("Told to recover a negative amount") if amt<0
+		amt = amt.round
+		amt = @totalhp-@hp if amt>@totalhp-@hp
+		amt = 1 if amt<1 && @hp<@totalhp
+		if effects[PBEffects::NerveBreak]
+			@battle.pbDisplay(_INTL("{1} healing is reversed because of their broken nerves!",pbThis))
+			amt *= -1
+		end
+		oldHP = @hp
+		self.hp += amt
+		PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP}=>#{@hp})") if amt>0
+		raise _INTL("HP greater than total HP") if @hp>@totalhp
+		@battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt>0
+		return amt
+    end
+
 	def pbRecoverHPFromDrain(amt,target,msg=nil)
 		if target.hasActiveAbility?(:LIQUIDOOZE)
 		  @battle.pbShowAbilitySplash(target)

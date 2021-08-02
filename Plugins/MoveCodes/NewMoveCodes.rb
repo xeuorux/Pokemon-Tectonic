@@ -469,7 +469,7 @@ class PokeBattle_Move_518 < PokeBattle_HealingMove
 end
 
 #===============================================================================
-# Decreases the user's Speed and Defense by 1 stage each. Can't miss. (Prediction Strike)
+# Decreases the user's Speed and Defense by 1 stage each. Can't miss. (Reflex Overdrive)
 #===============================================================================
 class PokeBattle_Move_519 < PokeBattle_StatDownMove
   def initialize(battle,move)
@@ -1194,6 +1194,7 @@ class PokeBattle_Move_536 < PokeBattle_TwoTurnMove
 		return score
   end
 end
+
 #===============================================================================
 # User takes recoil damage equal to 1/5 of the damage this move dealt.
 #===============================================================================
@@ -1227,6 +1228,109 @@ class PokeBattle_Move_538 < PokeBattle_Move
   
   def getScore(score,user,target,skill=100)
 		score += @battle.field.terrain != :None ? 30 : -30
+		return score
+  end
+end
+
+#===============================================================================
+# Steals the targets item if its a berry or gem. (Pilfer)
+#===============================================================================
+class PokeBattle_Move_539 < PokeBattle_Move
+  def pbEffectAfterAllHits(user,target)
+    return if @battle.wildBattle? && !user.boss   # Wild Pokémon can't thieve, except if they are bosses
+    return if user.fainted?
+    return if target.damageState.unaffected || target.damageState.substitute
+    return if !target.item || user.item
+    return if target.unlosableItem?(target.item)
+    return if user.unlosableItem?(target.item)
+    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+	return if !item.is_berry? && !item.is_gem?
+    itemName = target.itemName
+    user.item = target.item
+    # Permanently steal the item from wild Pokémon
+    if @battle.wildBattle? && target.opposes? &&
+       target.initialItem==target.item && !user.initialItem
+      user.setInitialItem(target.item)
+      target.pbRemoveItem
+    else
+      target.pbRemoveItem(false)
+    end
+    @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,target.pbThis(true),itemName))
+    user.pbHeldItemTriggerCheck
+  end
+end
+
+#===============================================================================
+# If the target would heal until end of turn, instead they take that much life loss. (Nerve Break)
+#===============================================================================
+class PokeBattle_Move_53A < PokeBattle_Move
+  def pbAdditionalEffect(user,target)
+    return if target.fainted? || target.damageState.substitute
+	return if target.effects[PBEffects::NerveBreak]
+	target.effects[PBEffects::NerveBreak] = true
+  end
+  
+  def getScore(score,user,target,skill=100)
+		score -= 30
+		score += (target.totalhp - target.hp)/target.level
+		return score
+  end
+end
+
+#===============================================================================
+# Deals 50% more damage if faster than the target. Then lower's user's speed. (Nerve Break)
+#===============================================================================
+class PokeBattle_Move_53B < PokeBattle_StatDownMove
+  def initialize(battle,move)
+    super
+    @statDown = [:SPEED,1]
+  end
+  
+  def pbModifyDamage(damageMult,user,target)
+    damageMult *= 1.5 if user.pbSpeed > target.pbSpeed
+    return damageMult
+  end
+end
+
+
+#===============================================================================
+# Can't miss if attacking a target that already hit you this turn. (new!Power Whip)
+#===============================================================================
+class PokeBattle_Move_53C < PokeBattle_Move
+    def pbAccuracyCheck(user,target)
+	if @battle.choices[target.index][0]!=:None &&
+       ((@battle.choices[target.index][0]!=:UseMove &&
+       @battle.choices[target.index][0]!=:Shift) || target.movedThisRound?)
+      return true
+    end
+	return super
+  end
+  
+  def getScore(score,user,target,skill=100)
+	return getWantsToBeSlowerScore(score,user,target,skill,2)
+  end
+end
+
+#===============================================================================
+# Heals user by 1/8 of their max health, but does not fail at full health. (Mending Spring)
+#===============================================================================
+class PokeBattle_Move_53D < PokeBattle_HealingMove
+  def pbOnStartUse(user,targets)
+    @healAmount = (user.totalhp*1/8.0).round
+  end
+  
+  def pbMoveFailed?(user,targets)
+    return false
+  end
+
+  def pbHealAmount(user)
+    return @healAmount
+  end
+  
+  def getScore(score,user,target,skill=100)
+		score -= 10
+		score += 20 if user.hp < user.totalhp
+		score += 20 if user.hp < user.totalhp/2.0
 		return score
   end
 end

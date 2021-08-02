@@ -533,6 +533,31 @@ end
 # User flings its item at the target. Power/effect depend on the item. (Fling)
 #===============================================================================
 class PokeBattle_Move_0F7 < PokeBattle_Move
+  def pbCheckFlingSuccess(user)
+    @willFail = false
+    @willFail = true if !user.item || !user.itemActive? || user.unlosableItem?(user.item)
+    return if @willFail
+    @willFail = true if user.item.is_berry? && !user.canConsumeBerry?
+    return if @willFail
+    return if user.item.is_mega_stone?
+    flingableItem = false
+    @flingPowers.each do |_power, items|
+      next if !items.include?(user.item_id)
+      flingableItem = true
+      break
+    end
+    @willFail = true if !flingableItem
+  end
+
+  def pbMoveFailed?(user,targets)
+	pbCheckFlingSuccess(user)
+    if @willFail
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
   def pbEffectAgainstTarget(user,target)
     return if target.damageState.substitute
     return if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
@@ -646,5 +671,73 @@ class PokeBattle_Move_138 < PokeBattle_TargetMultiStatUpMove
   def initialize(battle,move)
     super
     @statUp = [:DEFENSE,1,:SPECIAL_DEFENSE,1]
+  end
+end
+
+#===============================================================================
+# User steals the target's item, if the user has none itself. (Covet, Thief)
+# Items stolen from wild Pokémon are kept after the battle.
+#===============================================================================
+class PokeBattle_Move_0F1 < PokeBattle_Move
+  def pbEffectAfterAllHits(user,target)
+    return if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't thieve, except if they are bosses
+    return if user.fainted?
+    return if target.damageState.unaffected || target.damageState.substitute
+    return if !target.item || user.item
+    return if target.unlosableItem?(target.item)
+    return if user.unlosableItem?(target.item)
+    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    itemName = target.itemName
+    user.item = target.item
+    # Permanently steal the item from wild Pokémon
+    if @battle.wildBattle? && target.opposes? &&
+       target.initialItem==target.item && !user.initialItem
+      user.setInitialItem(target.item)
+      target.pbRemoveItem
+    else
+      target.pbRemoveItem(false)
+    end
+    @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,target.pbThis(true),itemName))
+    user.pbHeldItemTriggerCheck
+  end
+end
+
+class PokeBattle_Move_0EB < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    if target.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
+      @battle.pbShowAbilitySplash(target)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        @battle.pbDisplay(_INTL("{1} anchors itself!",target.pbThis))
+      else
+        @battle.pbDisplay(_INTL("{1} anchors itself with {2}!",target.pbThis,target.abilityName))
+      end
+      @battle.pbHideAbilitySplash(target)
+      return true
+    end
+    if target.effects[PBEffects::Ingrain]
+      @battle.pbDisplay(_INTL("{1} anchored itself with its roots!",target.pbThis))
+      return true
+    end
+    if !@battle.canRun
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    if @battle.wildBattle? && (target.level>user.level || target.boss?)
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    if @battle.trainerBattle?
+      canSwitch = false
+      @battle.eachInTeamFromBattlerIndex(target.index) do |_pkmn,i|
+        next if !@battle.pbCanSwitchLax?(target.index,i)
+        canSwitch = true
+        break
+      end
+      if !canSwitch
+        @battle.pbDisplay(_INTL("But it failed!"))
+        return true
+      end
+    end
+    return false
   end
 end
