@@ -43,6 +43,8 @@ def setFollowerInactive()
 		pbMessage("ERROR: Could not find follower Pokemon!")
 		return
 	end
+	$scene.spriteset.addUserAnimation(30,follower.x,follower.y)
+	pbWait(Graphics.frame_rate/10)
 	pbSetSelfSwitch(follower.id,'A',true)
 end
 
