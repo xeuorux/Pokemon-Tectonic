@@ -31,12 +31,11 @@ class PokemonEncounters
   # Returns whether the player's current location allows wild encounters to
   # trigger upon taking a step.
   def encounter_possible_here?
-    return true if $PokemonGlobal.surfing
-    terrain_tag = $game_map.terrain_tag($game_player.x, $game_player.y)
-    return false if terrain_tag.ice
-    return true if has_cave_encounters? && (terrain_tag.id == :DarkCave)
-    return true if has_land_encounters? && terrain_tag.land_wild_encounters
-    return false
+    terrain_tag_id = $game_map.terrain_tag($game_player.x, $game_player.y).id
+    if [:Grass, :DarkCave, :Mud, :SparseGrass, :Puddle, :TallGrass, :ActiveWater].include?(terrain_tag_id)
+		return true
+	end
+	return false
   end
 
   # Returns whether a wild encounter should happen, based on its encounter
@@ -103,40 +102,30 @@ class PokemonEncounters
   def encounter_type
     time = pbGetTimeNow
     ret = nil
+	current_terrain_id = $game_map.terrain_tag($game_player.x, $game_player.y).id
     if $PokemonGlobal.surfing
 	  # Active water encounters
-	  if $game_map.terrain_tag($game_player.x, $game_player.y).id == :ActiveWater
+	  if current_terrain_id == :ActiveWater
 		ret = find_valid_encounter_type_for_time(:ActiveWater, time)
 	  end
-	  
-      ret = find_valid_encounter_type_for_time(:Water, time) if !ret
-    else   # Land/Cave (can have both in the same map)
+    else
 	  # Mud encounters
-	  if $game_map.terrain_tag($game_player.x, $game_player.y).id == :Mud
-		ret = find_valid_encounter_type_for_time(:Mud, time)
-	  end
-	  # Tall grass encounters
-	  if $game_map.terrain_tag($game_player.x, $game_player.y).deep_bush
-		ret = find_valid_encounter_type_for_time(:LandTall, time)
-	  end
-	  # Sparse Grass encounters
-	  if $game_map.terrain_tag($game_player.x, $game_player.y).id == :SparseGrass
-		ret = find_valid_encounter_type_for_time(:LandSparse, time)
-	  end
-	  # Puddle encounters
-	  if $game_map.terrain_tag($game_player.x, $game_player.y).id == :Puddle
-		ret = find_valid_encounter_type_for_time(:Puddle, time)
-	  end
-	  # Land encounters
-      if !ret && has_land_encounters? && $game_map.terrain_tag($game_player.x, $game_player.y).land_wild_encounters
-        ret = :BugContest if pbInBugContest? && has_encounter_type?(:BugContest)
-        ret = find_valid_encounter_type_for_time(:Land, time) if !ret
-      end
-	  # Cave encounters
-      if !ret && has_cave_encounters?
-        ret = find_valid_encounter_type_for_time(:Cave, time)
+	  case current_terrain_id
+	  when :Mud
+		ret = :Mud
+	  when :TallGrass
+		ret = :LandTall
+	  when :SparseGrass
+		ret = :LandSparse
+	  when :Puddle
+		ret = :Puddle
+	  when :DarkCave
+		ret = :DarkCave
+      when :Grass
+        ret = :Land
       end
     end
+	echo("#{ret}\n")
     return ret
   end
 
@@ -310,6 +299,14 @@ GameData::TerrainTag.register({
   :land_wild_encounters	  => true,
 })
 
+GameData::EncounterType.register({
+  :id             => :DarkCave,
+  :type           => :land,
+  :trigger_chance => 21,
+  :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
+})
+
+
 # Show pond splash animation
 Events.onStepTakenFieldMovement += proc { |_sender, e|
   event = e[0]   # Get the event affected by field movement
@@ -317,6 +314,8 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
     event.each_occupied_tile do |x, y|
       if $MapFactory.getTerrainTag(event.map.map_id, x, y, true) == :Puddle
         $scene.spriteset.addUserAnimation(8, x, y, true, 1)
+	  elsif $MapFactory.getTerrainTag(event.map.map_id, x, y, true) == :DarkCave
+        $scene.spriteset.addUserAnimation(2, x, y, true, 1)
       end
     end
   end
