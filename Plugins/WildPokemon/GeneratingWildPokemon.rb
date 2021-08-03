@@ -29,10 +29,7 @@ def pbGenerateWildPokemon(species,level,isRoamer=false)
   Events.onWildPokemonCreate.trigger(nil,genwildpoke)
   # Give it however many chances to be shiny
   genwildpoke.shinyRerolls.times do
-      if genwildpoke.shiny?
-		echo("The wild pokemon is shiny!")
-		break
-	  end
+      break if genwildpoke.shiny?
       genwildpoke.personalID = rand(2 ** 16) | rand(2 ** 16) << 16
 	  genwildpoke.shiny = nil
   end

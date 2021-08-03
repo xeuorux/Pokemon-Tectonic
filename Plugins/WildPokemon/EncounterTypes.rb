@@ -129,7 +129,6 @@ class PokemonEncounters
         ret = :FloweryGrass2
       end
     end
-	echo("#{ret}\n")
     return ret
   end
 

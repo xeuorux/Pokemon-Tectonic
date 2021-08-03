@@ -418,6 +418,23 @@ class PokemonDataBox < SpriteWrapper
 		@hpIncPerFrame = minInc if @hpIncPerFrame<minInc
 		@animatingHP   = true
 	end
+	
+	def animateExp(oldExp,newExp,rangeExp)
+		@currentExp     = oldExp
+		@endExp         = newExp
+		@rangeExp       = rangeExp
+		# NOTE: Filling the Exp bar from empty to full takes EXP_BAR_FILL_TIME
+		#       seconds no matter what. Filling half of it takes half as long, etc.
+		@expIncPerFrame = rangeExp/(EXP_BAR_FILL_TIME*Graphics.frame_rate)
+		@animatingExp   = true
+		if @showExp
+			if (@boss || !@battler.battle.wildBattle?)
+				pbSEPlay("Pkmn exp gain",nil,85)
+			else
+				pbSEPlay("Pkmn exp gain",nil,100)
+			end
+		end
+	end
 
 	def refresh
 		self.bitmap.clear
@@ -654,6 +671,48 @@ class PokemonDataBox < SpriteWrapper
 	
 	@hpBar2.visible = value && @boss
 	@hpBar3.visible = value && @boss && isLegendary(@battler.species)
+  end
+  
+  def updateExpAnimation
+    return if !@animatingExp
+    if !@showExp   # Not showing the Exp bar, no need to waste time animating it
+      @currentExp = @endExp
+      @animatingExp = false
+      return
+    end
+    if @currentExp<@endExp   # Gaining Exp
+      @currentExp += @expIncPerFrame
+      @currentExp = @endExp if @currentExp>=@endExp
+    elsif @currentExp>@endExp   # Losing Exp
+      @currentExp -= @expIncPerFrame
+      @currentExp = @endExp if @currentExp<=@endExp
+    end
+    # Refresh the Exp bar
+    refreshExp
+    return if @currentExp!=@endExp   # Exp bar still has more to animate
+    # Exp bar is completely filled, level up with a flash and sound effect
+    if @currentExp>=@rangeExp
+      if @expFlash==0
+        pbSEStop
+        @expFlash = Graphics.frame_rate/5
+		if (@boss || !@battler.battle.wildBattle?)
+			pbSEPlay("Pkmn exp full",nil,85)
+		else
+			pbSEPlay("Pkmn exp full",nil,100)
+		end
+        self.flash(Color.new(64,200,248,192),@expFlash)
+        for i in @sprites
+          i[1].flash(Color.new(64,200,248,192),@expFlash) if !i[1].disposed?
+        end
+      else
+        @expFlash -= 1
+        @animatingExp = false if @expFlash==0
+      end
+    else
+      pbSEStop
+      # Exp bar has finished filling, end animation
+      @animatingExp = false
+    end
   end
 end
 
