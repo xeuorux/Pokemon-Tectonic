@@ -59,6 +59,50 @@ Pokemon = KRABBY,13
 Pokemon = INKAY,13
 Pokemon = EXEGGCUTE,13
 #-------------------------------
+[BATTLEGIRL,Eliza]
+Pokemon = MAKUHITA,15
+Pokemon = SCRAGGY,15
+Pokemon = NICKIT,15
+#-------------------------------
+[LEADER_Lambert,Lambert]
+Pokemon = PANCHAM,15
+	AbilityIndex = 0
+	Moves = ARMTHRUST,TAUNT,LEER,CIRCLETHROW
+Pokemon = MACHOP,15
+	AbilityIndex = 1
+	Moves = MACHPUNCH,LOWKICK,KARATECHOP,KNOCKOFF
+Pokemon = ZIGZAGOON,15
+	AbilityIndex = 1
+	Form = 1
+	Item = ORANBERRY
+	Moves = SNARL,LICK,SANDATTACK,TACKLE
+Pokemon = RIOLU,15
+	AbilityIndex = 1
+	Moves = MIRRORSHOT,SHOUT,VACUUMWAVE,FEINT
+#-------------------------------
+[LEADER_Lambert,Lambert,1]
+Pokemon = ZORUA,15
+	Item = ORANBERRY
+	Moves = HARSHWORDS,COUNTER,GRASSKNOT,SWIFT
+Pokemon = PANCHAM,15
+	AbilityIndex = 0
+	Moves = ARMTHRUST,TAUNT,LEER,CIRCLETHROW
+Pokemon = MACHOP,15
+	AbilityIndex = 1
+	Moves = MACHPUNCH,LOWKICK,KARATECHOP,KNOCKOFF
+Pokemon = ZIGZAGOON,15
+	AbilityIndex = 1
+	Form = 1
+	Item = ORANBERRY
+	Moves = SNARL,LICK,SANDATTACK,TACKLE
+Pokemon = RIOLU,15
+	AbilityIndex = 1
+	Moves = MIRRORSHOT,SHOUT,VACUUMWAVE,FEINT
+Pokemon = CROAGUNK,15
+	AbilityIndex = 0
+	Item = ORANBERRY
+	Moves = FLATTER,ENTOXIN,MUDTHROW,HEADBUTT
+#-------------------------------
 # PROTOTYPE
 #-------------------------------
 [LASS2,Angelica]

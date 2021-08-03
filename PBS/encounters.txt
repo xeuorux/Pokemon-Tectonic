@@ -1,32 +1,32 @@
 ﻿#-------------------------------
 # ALPHA
 #-------------------------------
-[033] # Seaside Villa
+[033] # Casaba Villa
 FloweryGrass,20
-20,FLABEBE,7,9
+20,TOGEPI,7,9
 20,BUDEW,7,9
 20,LILLIPUP,7,9
-20,MAREEP,7,9
+20,SCATTERBUG,7,9
 20,PIDGEY,7,9
 #-------------------------------
-[034] # Forest Route
+[034] # Scenic Path
 Land,20
 20,SKWOVET,7,9
-20,FLETCHLING,7,9
-20,BOUNSWEET,7,9
+20,RATTATA,7,9
+20,PICHU,7,9
 20,PIKIPEK,7,9
 20,CATERPIE,7,9
 LandTall,20
-20,GASTLY,7,9
+20,ABRA,7,9
 20,HOPPIP,7,9
 20,LITWICK,7,9
 20,WEEDLE,7,9
-20,PICHU,7,9
+20,SLAKOTH,7,9
 #-------------------------------
 [029] # Mine Path
 Land,20
-20,PETILIL,8,10
-20,ROOKIDEE,8,10
+20,MAREEP,8,10
+20,SPINARAK,8,10
 20,RALTS,8,10
 20,WURMPLE,8,10
 20,IGGLYBUFF,8,10
@@ -40,7 +40,7 @@ LandTall,20
 [030] # Small Mine
 DarkCave,20
 20,ROLYCOLY,9,11
-20,SPINARAK,9,11
+20,KLINK,9,11
 20,GASTLY,9,11
 20,SNOM,9,11
 20,MACHOP,9,11
@@ -55,9 +55,9 @@ Mud,20
 Land,20
 20,EXEGGCUTE,7,9
 20,KRABBY,7,9
-20,MEOWTH_1,7,9
+20,HOUNDOUR,7,9
 20,GIBLE,7,9
-20,RHYHORN,7,9
+20,GULPIN,7,9
 LandSparse,20
 20,SANDYGAST,7,9
 20,WINGULL,7,9
@@ -67,7 +67,7 @@ LandSparse,20
 Puddle,20
 20,SHELLOS,7,9
 20,SLOWPOKE,7,9
-20,BINACLE,7,9
+20,AZURILL,7,9
 20,CLOBBOPUS,7,9
 20,CLAMPERL,7,9
 #-------------------------------
