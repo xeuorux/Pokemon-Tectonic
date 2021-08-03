@@ -5,7 +5,7 @@
 FloweryGrass,20
 20,FLABEBE,7,9
 20,BUDEW,7,9
-20,SWIRLIX,7,9
+20,LILLIPUP,7,9
 20,MAREEP,7,9
 20,PIDGEY,7,9
 #-------------------------------
@@ -70,6 +70,20 @@ Puddle,20
 20,BINACLE,7,9
 20,CLOBBOPUS,7,9
 20,CLAMPERL,7,9
+#-------------------------------
+[26] # Seaside Grotto
+DarkCave,20
+20,SALANDIT,11,13
+20,WHISMUR,11,13
+20,NOIBAT,11,13
+20,ZUBAT,11,13
+20,GEODUDE,11,13
+LandSparse,20
+20,DITTO,11,13
+20,PARAS,11,13
+20,FERROSEED,11,13
+20,JANGMOO,11,13
+20,GULPIN,11,13
 #-------------------------------
 # PROTOTYPE
 #-------------------------------

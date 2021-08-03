@@ -312,7 +312,7 @@ GameData::EncounterType.register({
 # Flowery Grass
 GameData::TerrainTag.register({
   :id                     => :FloweryGrass,
-  :id_number              => 20,
+  :id_number              => 21,
   :shows_grass_rustle     => true,
   :land_wild_encounters   => true,
   :battle_environment     => :Grass
@@ -328,7 +328,7 @@ GameData::EncounterType.register({
 # Flowery Grass 2
 GameData::TerrainTag.register({
   :id                     => :FloweryGrass2,
-  :id_number              => 21,
+  :id_number              => 22,
   :shows_grass_rustle     => true,
   :land_wild_encounters   => true,
   :battle_environment     => :Grass
