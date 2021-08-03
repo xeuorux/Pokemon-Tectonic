@@ -27,7 +27,7 @@ Pokemon = MAGNEMITE,12
 Pokemon = BONSLY,12
 Pokemon = KARRABLAST,12
 #-------------------------------
-[FIREBREATHER,Robert]
+[FIREBREATHER,Antonio]
 Pokemon = MAGBY,13
 Pokemon = SALANDIT,13
 Pokemon = BULBASAUR,13
