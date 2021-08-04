@@ -4,8 +4,8 @@ Pokemon = SEEDOT,8
 Pokemon = FENNEKIN,7
 #-------------------------------
 [LASS2,Sienna]
-Pokemon = PIKIPEK,6
 Pokemon = PICHU,6
+Pokemon = PIKIPEK,6
 #-------------------------------
 [HIKER,Dave]
 Pokemon = GEODUDE,9

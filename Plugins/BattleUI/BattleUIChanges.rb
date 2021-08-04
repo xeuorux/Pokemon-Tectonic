@@ -189,7 +189,7 @@ class PokeBattle_Scene
     cmds = [
        _INTL("What will\n{1} do?",@battle.battlers[idxBattler].name),
        _INTL("Fight"),
-       _INTL("Bag"),
+       _INTL("Dex"),
        _INTL("Pokémon"),
        (shadowTrainer) ? _INTL("Call") : (firstAction) ? _INTL("Run") : _INTL("Cancel")
     ]

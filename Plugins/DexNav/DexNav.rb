@@ -310,6 +310,7 @@ Events.onWildPokemonCreate+=proc {|sender,e|
 
 # Gets a random ID of a legal egg move of the given species and returns it as a move object.
 def getRandomEggMove(species)
+	return nil if !defined?($PokemonGlobal.dexNavEggMovesUnlocked) || !$PokemonGlobal.dexNavEggMovesUnlocked
 	baby = GameData::Species.get(species).get_baby_species
 	maps = GameData::MapMetadata.try_get($game_map.map_id)
 	form = 0

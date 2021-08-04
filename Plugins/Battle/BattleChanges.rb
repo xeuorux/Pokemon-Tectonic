@@ -356,184 +356,7 @@ class PokeBattle_Battle
 		return 
       end
     }
-  end
-
-  #=============================================================================
-  # Running from battle
-  #=============================================================================
-  def pbCanRun?(idxBattler)
-    return false if trainerBattle? || $game_variables[95] # Boss battle
-    battler = @battlers[idxBattler]
-    return false if !@canRun && !battler.opposes?
-    #return true if battler.pbHasType?(:GHOST) && Settings::MORE_TYPE_EFFECTS
-    return true if battler.abilityActive? &&
-                   BattleHandlers.triggerRunFromBattleAbility(battler.ability,battler)
-    return true if battler.itemActive? &&
-                   BattleHandlers.triggerRunFromBattleItem(battler.item,battler)
-    return false if battler.effects[PBEffects::Trapping]>0 ||
-                    battler.effects[PBEffects::MeanLook]>=0 ||
-                    battler.effects[PBEffects::Ingrain] ||
-                    battler.effects[PBEffects::JawLock] ||
-                    battler.effects[PBEffects::OctolockUser]>=0 ||
-                    battler.effects[PBEffects::NoRetreat] ||
-                    @field.effects[PBEffects::FairyLock]>0
-    eachOtherSideBattler(idxBattler) do |b|
-      return false if b.abilityActive? &&
-                      BattleHandlers.triggerTrappingTargetAbility(b.ability,battler,b,self)
-      return false if b.itemActive? &&
-                      BattleHandlers.triggerTrappingTargetItem(b.item,battler,b,self)
-    end
-    return true
-  end
-	
-	# Return values:
-  # -1: Failed fleeing
-  #  0: Wasn't possible to attempt fleeing, continue choosing action for the round
-  #  1: Succeeded at fleeing, battle will end
-  # duringBattle is true for replacing a fainted Pokémon during the End Of Round
-  # phase, and false for choosing the Run command.
-  def pbRun(idxBattler,duringBattle=false)
-    battler = @battlers[idxBattler]
-    if battler.opposes?
-      return 0 if trainerBattle?
-      @choices[idxBattler][0] = :Run
-      @choices[idxBattler][1] = 0
-      @choices[idxBattler][2] = nil
-      return -1
-    end
-    # Fleeing from trainer battles or boss battles
-    if trainerBattle? || $game_switches[95]
-      if $DEBUG && Input.press?(Input::CTRL)
-        if pbDisplayConfirm(_INTL("Treat this battle as a win?"))
-          @decision = 1
-          return 1
-        elsif pbDisplayConfirm(_INTL("Treat this battle as a loss?"))
-          @decision = 2
-          return 1
-        end
-      elsif pbDisplayConfirm(_INTL("Would you like to forfeit the match and quit now?"))
-        pbSEPlay("Battle flee")
-        if @internalBattle
-          @decision = 2
-        else
-          @decision = 3
-        end
-        return 1
-      end
-      return 0
-    end
-    # Fleeing from wild battles
-    if $DEBUG && Input.press?(Input::CTRL)
-      pbSEPlay("Battle flee")
-      pbDisplayPaused(_INTL("You got away safely!"))
-      @decision = 3
-      return 1
-    end
-    if !@canRun
-      pbDisplayPaused(_INTL("You can't escape!"))
-      return 0
-    end
-    if !duringBattle
-=begin
-      if battler.pbHasType?(:GHOST) && Settings::MORE_TYPE_EFFECTS
-        pbSEPlay("Battle flee")
-        pbDisplayPaused(_INTL("Your Pokémon uses its ghostly powers to escape!"))
-        @decision = 3
-        return 1
-      end
-=end
-      # Abilities that guarantee escape
-      if battler.abilityActive?
-        if BattleHandlers.triggerRunFromBattleAbility(battler.ability,battler)
-          pbShowAbilitySplash(battler,true)
-          pbHideAbilitySplash(battler)
-          pbSEPlay("Battle flee")
-          pbDisplayPaused(_INTL("You got away safely!"))
-          @decision = 3
-          return 1
-        end
-      end
-      # Held items that guarantee escape
-      if battler.itemActive?
-        if BattleHandlers.triggerRunFromBattleItem(battler.item,battler)
-          pbSEPlay("Battle flee")
-          pbDisplayPaused(_INTL("{1} fled using its {2}!",
-             battler.pbThis,battler.itemName))
-          @decision = 3
-          return 1
-        end
-      end
-	  if battler.effects[PBEffects::JawLock]
-		  @battlers.each do |b|
-			if (battler.effects[PBEffects::JawLockUser] == b.index) && !b.fainted?
-			  partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
-			  return false
-			end
-		  end
-      end
-      # Other certain trapping effects
-      if battler.effects[PBEffects::Trapping]>0 ||
-         battler.effects[PBEffects::MeanLook]>=0 ||
-         battler.effects[PBEffects::Ingrain] ||
-         @field.effects[PBEffects::FairyLock]>0
-        pbDisplayPaused(_INTL("You can't escape!"))
-        return 0
-      end
-      # Trapping abilities/items
-      eachOtherSideBattler(idxBattler) do |b|
-        next if !b.abilityActive?
-        if BattleHandlers.triggerTrappingTargetAbility(b.ability,battler,b,self)
-          pbDisplayPaused(_INTL("{1} prevents escape with {2}!",b.pbThis,b.abilityName))
-          return 0
-        end
-      end
-      eachOtherSideBattler(idxBattler) do |b|
-        next if !b.itemActive?
-        if BattleHandlers.triggerTrappingTargetItem(b.item,battler,b,self)
-          pbDisplayPaused(_INTL("{1} prevents escape with {2}!",b.pbThis,b.itemName))
-          return 0
-        end
-      end
-    end
-
-	levelPlayer = 1
-    if levelPlayer<@battlers[idxBattler].level
-      levelPlayer = @battlers[idxBattler].level
-    end
-    @battlers[idxBattler].eachAlly do |a|
-     levelPlayer = a.level if levelPlayer<a.level
-    end
-
-    levelEnemy = 1
-    eachOtherSideBattler(idxBattler) do |b|
-      levelEnemy = b.level if levelEnemy<b.level
-    end
-
-    rate = 90
-    rate += 10 * [levelPlayer-levelEnemy,0].max
-    rate += @runCommand*20
-        
-    if rate>=250 || @battleAI.pbAIRandom(250)<rate
-      pbSEPlay("Battle flee")
-      case rate
-      when 0..130; pbDisplayPaused(_INTL("Miraculously, you found a way out!"))
-      when 131..170; pbDisplayPaused(_INTL("It was hard work, but you managed to escape!"))
-      when 171..210; pbDisplayPaused(_INTL("With a bit of luck you made your retreat!"))
-      when 211..250; pbDisplayPaused(_INTL("You got away safely!"))
-      when 251..10000; pbDisplayPaused(_INTL("You fled easily!"))
-      end
-      @decision = 3
-      return 1
-    end
-    case rate
-    when 0..130; pbDisplayPaused(_INTL("You're locked in place by fear!"))
-    when 131..170; pbDisplayPaused(_INTL("You don't see a way out!"))
-    when 171..210; pbDisplayPaused(_INTL("You couldn't get away!"))
-    when 211..250; pbDisplayPaused(_INTL("The wild Pokémon narrowly blocks your escape!"))
-    end
-    return -1
-  end
-  
+  end  
   
   #=============================================================================
   # Messages and animations
@@ -568,47 +391,46 @@ class PokeBattle_Battle
 end
 
 class PokeBattle_Move
-
 	# Checks whether the move should have modified priority
 	def priorityModification(user,target); return 0; end
-
-# Returns whether the move will be a critical hit.
-  def pbIsCritical?(user,target)
-    return false if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
-    # Set up the critical hit ratios
-    ratios = [16,8,4,2,1]
-    c = 0
-    # Ability effects that alter critical hit rate
-    if c>=0 && user.abilityActive?
-      c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
+	
+	# Returns whether the move will be a critical hit.
+	def pbIsCritical?(user,target)
+		return false if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
+		# Set up the critical hit ratios
+		ratios = [16,8,4,2,1]
+		c = 0
+		# Ability effects that alter critical hit rate
+		if c>=0 && user.abilityActive?
+		  c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
+		end
+		if c>=0 && target.abilityActive? && !@battle.moldBreaker
+		  c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
+		end
+		# Item effects that alter critical hit rate
+		if c>=0 && user.itemActive?
+		  c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
+		end
+		if c>=0 && target.itemActive?
+		  c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
+		end
+		return false if c<0
+		# Move-specific "always/never a critical hit" effects
+		case pbCritialOverride(user,target)
+		when 1  then return true
+		when -1 then return false
+		end
+		# Other effects
+		return true if c>50   # Merciless
+		return true if user.effects[PBEffects::LaserFocus]>0
+		c += 1 if highCriticalRate?
+		c += user.effects[PBEffects::FocusEnergy]
+		c += 1 if user.effects[PBEffects::LuckyStar]
+		c += 1 if user.inHyperMode? && @type == :SHADOW
+		c = ratios.length-1 if c>=ratios.length
+		# Calculation
+		return @battle.pbRandom(ratios[c])==0
     end
-    if c>=0 && target.abilityActive? && !@battle.moldBreaker
-      c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
-    end
-    # Item effects that alter critical hit rate
-    if c>=0 && user.itemActive?
-      c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
-    end
-    if c>=0 && target.itemActive?
-      c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
-    end
-    return false if c<0
-    # Move-specific "always/never a critical hit" effects
-    case pbCritialOverride(user,target)
-    when 1  then return true
-    when -1 then return false
-    end
-    # Other effects
-    return true if c>50   # Merciless
-    return true if user.effects[PBEffects::LaserFocus]>0
-    c += 1 if highCriticalRate?
-    c += user.effects[PBEffects::FocusEnergy]
-	c += 1 if user.effects[PBEffects::LuckyStar]
-    c += 1 if user.inHyperMode? && @type == :SHADOW
-    c = ratios.length-1 if c>=ratios.length
-    # Calculation
-    return @battle.pbRandom(ratios[c])==0
-  end
   
   #=============================================================================
   # Additional effect chance
@@ -705,212 +527,212 @@ class PokeBattle_Move
   end
 
   
-    def pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
-    # Global abilities
-    if (@battle.pbCheckGlobalAbility(:DARKAURA) && type == :DARK) ||
-       (@battle.pbCheckGlobalAbility(:FAIRYAURA) && type == :FAIRY)
-      if @battle.pbCheckGlobalAbility(:AURABREAK)
-        multipliers[:base_damage_multiplier] *= 2 / 3.0
-      else
-        multipliers[:base_damage_multiplier] *= 4 / 3.0
-      end
+	def pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
+		# Global abilities
+		if (@battle.pbCheckGlobalAbility(:DARKAURA) && type == :DARK) ||
+		   (@battle.pbCheckGlobalAbility(:FAIRYAURA) && type == :FAIRY)
+		  if @battle.pbCheckGlobalAbility(:AURABREAK)
+			multipliers[:base_damage_multiplier] *= 2 / 3.0
+		  else
+			multipliers[:base_damage_multiplier] *= 4 / 3.0
+		  end
+		end
+		# Ability effects that alter damage
+		if user.abilityActive?
+		  BattleHandlers.triggerDamageCalcUserAbility(user.ability,
+			 user,target,self,multipliers,baseDmg,type)
+		end
+		if !@battle.moldBreaker
+		  # NOTE: It's odd that the user's Mold Breaker prevents its partner's
+		  #       beneficial abilities (i.e. Flower Gift boosting Atk), but that's
+		  #       how it works.
+		  user.eachAlly do |b|
+			next if !b.abilityActive?
+			BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,
+			   user,target,self,multipliers,baseDmg,type)
+		  end
+		  if target.abilityActive?
+			BattleHandlers.triggerDamageCalcTargetAbility(target.ability,
+			   user,target,self,multipliers,baseDmg,type) if !@battle.moldBreaker
+			BattleHandlers.triggerDamageCalcTargetAbilityNonIgnorable(target.ability,
+			   user,target,self,multipliers,baseDmg,type)
+		  end
+		  target.eachAlly do |b|
+			next if !b.abilityActive?
+			BattleHandlers.triggerDamageCalcTargetAllyAbility(b.ability,
+			   user,target,self,multipliers,baseDmg,type)
+		  end
+		end
+		# Item effects that alter damage
+		if user.itemActive?
+		  BattleHandlers.triggerDamageCalcUserItem(user.item,
+			 user,target,self,multipliers,baseDmg,type)
+		end
+		if target.itemActive?
+		  BattleHandlers.triggerDamageCalcTargetItem(target.item,
+			 user,target,self,multipliers,baseDmg,type)
+		end
+		# Parental Bond's second attack
+		if user.effects[PBEffects::ParentalBond]==1
+		  multipliers[:base_damage_multiplier] /= 4
+		end
+		# Other
+		if user.effects[PBEffects::MeFirst]
+		  multipliers[:base_damage_multiplier] *= 1.5
+		end
+		if user.effects[PBEffects::HelpingHand] && !self.is_a?(PokeBattle_Confusion)
+		  multipliers[:base_damage_multiplier] *= 1.5
+		end
+		if user.effects[PBEffects::Charge]>0 && type == :ELECTRIC
+		  multipliers[:base_damage_multiplier] *= 2
+		end
+		# Mud Sport
+		if type == :ELECTRIC
+		  @battle.eachBattler do |b|
+			next if !b.effects[PBEffects::MudSport]
+			multipliers[:base_damage_multiplier] /= 3
+			break
+		  end
+		  if @battle.field.effects[PBEffects::MudSportField]>0
+			multipliers[:base_damage_multiplier] /= 3
+		  end
+		end
+		# Water Sport
+		if type == :FIRE
+		  @battle.eachBattler do |b|
+			next if !b.effects[PBEffects::WaterSport]
+			multipliers[:base_damage_multiplier] /= 3
+			break
+		  end
+		  if @battle.field.effects[PBEffects::WaterSportField]>0
+			multipliers[:base_damage_multiplier] /= 3
+		  end
+		end
+		# Terrain moves
+		case @battle.field.terrain
+		when :Electric
+		  multipliers[:base_damage_multiplier] *= 1.5 if type == :ELECTRIC && user.affectedByTerrain?
+		when :Grassy
+		  multipliers[:base_damage_multiplier] *= 1.5 if type == :GRASS && user.affectedByTerrain?
+		when :Psychic
+		  multipliers[:base_damage_multiplier] *= 1.5 if type == :PSYCHIC && user.affectedByTerrain?
+		when :Misty
+		  multipliers[:base_damage_multiplier] /= 2 if type == :DRAGON && target.affectedByTerrain?
+		end
+		# Multi-targeting attacks
+		if numTargets>1
+		  multipliers[:final_damage_multiplier] *= 0.75
+		end
+		# Weather
+		case @battle.pbWeather
+		when :Sun, :HarshSun
+		  if type == :FIRE
+			multipliers[:final_damage_multiplier] *= 1.5
+		  elsif type == :WATER
+			multipliers[:final_damage_multiplier] /= 2
+		  end
+		when :Rain, :HeavyRain
+		  if type == :FIRE
+			multipliers[:final_damage_multiplier] /= 2
+		  elsif type == :WATER
+			multipliers[:final_damage_multiplier] *= 1.5
+		  end
+		when :Sandstorm
+		  if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock
+			multipliers[:defense_multiplier] *= 1.5
+		  end
+		when :Hail
+		  if target.pbHasType?(:ICE) && physicalMove?
+			multipliers[:defense_multiplier] *= 1.5
+		  end
+		end
+		# Critical hits
+		if target.damageState.critical
+		  if Settings::NEW_CRITICAL_HIT_RATE_MECHANICS
+			multipliers[:final_damage_multiplier] *= 1.5
+		  else
+			multipliers[:final_damage_multiplier] *= 2
+		  end
+		end
+		
+		# STAB
+		if type && user.pbHasType?(type)
+		  stab = 1
+		  if (user.pbTypes(true).length > 1)
+			stab = 4.0/3.0
+		  else
+			stab = 1.5
+		  end
+		  
+		  if user.hasActiveAbility?(:ADAPTED)
+			stab *= 4.0/3.0
+		  end
+		  
+		  multipliers[:final_damage_multiplier] *= stab
+		end
+		
+		# Type effectiveness
+		typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
+		typeEffect = ((typeEffect+1.0)/2.0) if target.boss || user.boss
+		multipliers[:final_damage_multiplier] *= typeEffect
+		# Burn
+		if user.status == :BURN && physicalMove? && damageReducedByBurn? &&
+		   !user.hasActiveAbility?(:GUTS)
+		  if !user.boss
+			multipliers[:final_damage_multiplier] *= 2.0/3.0
+		  else
+			multipliers[:final_damage_multiplier] *= 4.0/5.0
+		  end
+		end
+		# Poison
+		if user.status == :POISON && user.statusCount == 0 && specialMove? && damageReducedByBurn? &&
+		   !user.hasActiveAbility?(:AUDACITY)
+		  if !user.boss
+			multipliers[:final_damage_multiplier] *= 2.0/3.0
+		  else
+			multipliers[:final_damage_multiplier] *= 4.0/5.0
+		  end
+		end
+		# Chill
+		if target.status == :FROZEN
+		  if !target.boss
+			multipliers[:final_damage_multiplier] *= 4.0/3.0
+		  else
+			multipliers[:final_damage_multiplier] *= 5.0/4.0
+		  end
+		end
+		# Aurora Veil, Reflect, Light Screen
+		if !ignoresReflect? && !target.damageState.critical &&
+		   !user.hasActiveAbility?(:INFILTRATOR)
+		  if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
+			if @battle.pbSideBattlerCount(target)>1
+			  multipliers[:final_damage_multiplier] *= 2 / 3.0
+			else
+			  multipliers[:final_damage_multiplier] /= 2
+			end
+		  elsif target.pbOwnSide.effects[PBEffects::Reflect] > 0 && physicalMove?
+			if @battle.pbSideBattlerCount(target)>1
+			  multipliers[:final_damage_multiplier] *= 2 / 3.0
+			else
+			  multipliers[:final_damage_multiplier] /= 2
+			end
+		  elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && specialMove?
+			if @battle.pbSideBattlerCount(target) > 1
+			  multipliers[:final_damage_multiplier] *= 2 / 3.0
+			else
+			  multipliers[:final_damage_multiplier] /= 2
+			end
+		  end
+		end
+		# Minimize
+		if target.effects[PBEffects::Minimize] && tramplesMinimize?(2)
+		  multipliers[:final_damage_multiplier] *= 2
+		end
+		# Move-specific base damage modifiers
+		multipliers[:base_damage_multiplier] = pbBaseDamageMultiplier(multipliers[:base_damage_multiplier], user, target)
+		# Move-specific final damage modifiers
+		multipliers[:final_damage_multiplier] = pbModifyDamage(multipliers[:final_damage_multiplier], user, target)
     end
-    # Ability effects that alter damage
-    if user.abilityActive?
-      BattleHandlers.triggerDamageCalcUserAbility(user.ability,
-         user,target,self,multipliers,baseDmg,type)
-    end
-    if !@battle.moldBreaker
-      # NOTE: It's odd that the user's Mold Breaker prevents its partner's
-      #       beneficial abilities (i.e. Flower Gift boosting Atk), but that's
-      #       how it works.
-      user.eachAlly do |b|
-        next if !b.abilityActive?
-        BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,
-           user,target,self,multipliers,baseDmg,type)
-      end
-      if target.abilityActive?
-        BattleHandlers.triggerDamageCalcTargetAbility(target.ability,
-           user,target,self,multipliers,baseDmg,type) if !@battle.moldBreaker
-        BattleHandlers.triggerDamageCalcTargetAbilityNonIgnorable(target.ability,
-           user,target,self,multipliers,baseDmg,type)
-      end
-      target.eachAlly do |b|
-        next if !b.abilityActive?
-        BattleHandlers.triggerDamageCalcTargetAllyAbility(b.ability,
-           user,target,self,multipliers,baseDmg,type)
-      end
-    end
-    # Item effects that alter damage
-    if user.itemActive?
-      BattleHandlers.triggerDamageCalcUserItem(user.item,
-         user,target,self,multipliers,baseDmg,type)
-    end
-    if target.itemActive?
-      BattleHandlers.triggerDamageCalcTargetItem(target.item,
-         user,target,self,multipliers,baseDmg,type)
-    end
-    # Parental Bond's second attack
-    if user.effects[PBEffects::ParentalBond]==1
-      multipliers[:base_damage_multiplier] /= 4
-    end
-    # Other
-    if user.effects[PBEffects::MeFirst]
-      multipliers[:base_damage_multiplier] *= 1.5
-    end
-    if user.effects[PBEffects::HelpingHand] && !self.is_a?(PokeBattle_Confusion)
-      multipliers[:base_damage_multiplier] *= 1.5
-    end
-    if user.effects[PBEffects::Charge]>0 && type == :ELECTRIC
-      multipliers[:base_damage_multiplier] *= 2
-    end
-    # Mud Sport
-    if type == :ELECTRIC
-      @battle.eachBattler do |b|
-        next if !b.effects[PBEffects::MudSport]
-        multipliers[:base_damage_multiplier] /= 3
-        break
-      end
-      if @battle.field.effects[PBEffects::MudSportField]>0
-        multipliers[:base_damage_multiplier] /= 3
-      end
-    end
-    # Water Sport
-    if type == :FIRE
-      @battle.eachBattler do |b|
-        next if !b.effects[PBEffects::WaterSport]
-        multipliers[:base_damage_multiplier] /= 3
-        break
-      end
-      if @battle.field.effects[PBEffects::WaterSportField]>0
-        multipliers[:base_damage_multiplier] /= 3
-      end
-    end
-    # Terrain moves
-    case @battle.field.terrain
-    when :Electric
-      multipliers[:base_damage_multiplier] *= 1.5 if type == :ELECTRIC && user.affectedByTerrain?
-    when :Grassy
-      multipliers[:base_damage_multiplier] *= 1.5 if type == :GRASS && user.affectedByTerrain?
-    when :Psychic
-      multipliers[:base_damage_multiplier] *= 1.5 if type == :PSYCHIC && user.affectedByTerrain?
-    when :Misty
-      multipliers[:base_damage_multiplier] /= 2 if type == :DRAGON && target.affectedByTerrain?
-    end
-    # Multi-targeting attacks
-    if numTargets>1
-      multipliers[:final_damage_multiplier] *= 0.75
-    end
-    # Weather
-    case @battle.pbWeather
-    when :Sun, :HarshSun
-      if type == :FIRE
-        multipliers[:final_damage_multiplier] *= 1.5
-      elsif type == :WATER
-        multipliers[:final_damage_multiplier] /= 2
-      end
-    when :Rain, :HeavyRain
-      if type == :FIRE
-        multipliers[:final_damage_multiplier] /= 2
-      elsif type == :WATER
-        multipliers[:final_damage_multiplier] *= 1.5
-      end
-    when :Sandstorm
-      if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock
-        multipliers[:defense_multiplier] *= 1.5
-      end
-	when :Hail
-      if target.pbHasType?(:ICE) && physicalMove?
-        multipliers[:defense_multiplier] *= 1.5
-      end
-    end
-    # Critical hits
-    if target.damageState.critical
-      if Settings::NEW_CRITICAL_HIT_RATE_MECHANICS
-        multipliers[:final_damage_multiplier] *= 1.5
-      else
-        multipliers[:final_damage_multiplier] *= 2
-      end
-    end
-	
-    # STAB
-    if type && user.pbHasType?(type)
-	  stab = 1
-	  if (user.pbTypes(true).length > 1)
-		stab = 4.0/3.0
-      else
-        stab = 1.5
-      end
-      
-      if user.hasActiveAbility?(:ADAPTED)
-        stab *= 4.0/3.0
-      end
-	  
-	  multipliers[:final_damage_multiplier] *= stab
-    end
-	
-    # Type effectiveness
-	typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
-	typeEffect = ((typeEffect+1.0)/2.0) if target.boss || user.boss
-	multipliers[:final_damage_multiplier] *= typeEffect
-    # Burn
-    if user.status == :BURN && physicalMove? && damageReducedByBurn? &&
-       !user.hasActiveAbility?(:GUTS)
-      if !user.boss
-		multipliers[:final_damage_multiplier] *= 2.0/3.0
-	  else
-		multipliers[:final_damage_multiplier] *= 4.0/5.0
-	  end
-    end
-	# Poison
-    if user.status == :POISON && user.statusCount == 0 && specialMove? && damageReducedByBurn? &&
-       !user.hasActiveAbility?(:AUDACITY)
-      if !user.boss
-		multipliers[:final_damage_multiplier] *= 2.0/3.0
-	  else
-		multipliers[:final_damage_multiplier] *= 4.0/5.0
-	  end
-    end
-	# Chill
-    if target.status == :FROZEN
-	  if !target.boss
-		multipliers[:final_damage_multiplier] *= 4.0/3.0
-	  else
-		multipliers[:final_damage_multiplier] *= 5.0/4.0
-	  end
-    end
-    # Aurora Veil, Reflect, Light Screen
-    if !ignoresReflect? && !target.damageState.critical &&
-       !user.hasActiveAbility?(:INFILTRATOR)
-      if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
-        if @battle.pbSideBattlerCount(target)>1
-          multipliers[:final_damage_multiplier] *= 2 / 3.0
-        else
-          multipliers[:final_damage_multiplier] /= 2
-        end
-      elsif target.pbOwnSide.effects[PBEffects::Reflect] > 0 && physicalMove?
-        if @battle.pbSideBattlerCount(target)>1
-          multipliers[:final_damage_multiplier] *= 2 / 3.0
-        else
-          multipliers[:final_damage_multiplier] /= 2
-        end
-      elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && specialMove?
-        if @battle.pbSideBattlerCount(target) > 1
-          multipliers[:final_damage_multiplier] *= 2 / 3.0
-        else
-          multipliers[:final_damage_multiplier] /= 2
-        end
-      end
-    end
-    # Minimize
-    if target.effects[PBEffects::Minimize] && tramplesMinimize?(2)
-      multipliers[:final_damage_multiplier] *= 2
-    end
-    # Move-specific base damage modifiers
-    multipliers[:base_damage_multiplier] = pbBaseDamageMultiplier(multipliers[:base_damage_multiplier], user, target)
-    # Move-specific final damage modifiers
-    multipliers[:final_damage_multiplier] = pbModifyDamage(multipliers[:final_damage_multiplier], user, target)
-  end
   
   #=============================================================================
   # Type effectiveness calculation
@@ -999,194 +821,6 @@ class PokeBattle_Move
     end
     return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
   end
-
-  #=============================================================================
-  # Mega Evolving a battler
-  #=============================================================================
-  def pbMegaEvolve(idxBattler)
-    battler = @battlers[idxBattler]
-    return if !battler || !battler.pokemon
-    return if !battler.hasMega? || battler.mega?
-    # Break Illusion
-    if battler.hasActiveAbility?(:ILLUSION)
-      BattleHandlers.triggerTargetAbilityOnHit(battler.ability,nil,battler,nil,self)
-    end
-    # Mega Evolve
-	if !battler.boss
-		trainerName = pbGetOwnerName(idxBattler)
-		case battler.pokemon.megaMessage
-		when 1   # Rayquaza
-		  pbDisplay(_INTL("{1}'s fervent wish has reached {2}!",trainerName,battler.pbThis))
-		else
-		  pbDisplay(_INTL("{1}'s {2} is reacting to {3}'s {4}!",
-			 battler.pbThis,battler.itemName,trainerName,pbGetMegaRingName(idxBattler)))
-		end
-	else
-		case battler.pokemon.megaMessage
-		when 1   # Rayquaza
-		  pbDisplay(_INTL("{1}'s is inspired by the echo of an ancient wish!",battler.pbThis))
-		else
-		  pbDisplay(_INTL("{1}'s reacts to an unknown power!",battler.pbThis))
-		end
-	end
-    pbCommonAnimation("MegaEvolution",battler)
-    battler.pokemon.makeMega
-    battler.form = battler.pokemon.form
-    battler.pbUpdate(true)
-    @scene.pbChangePokemon(battler,battler.pokemon)
-    @scene.pbRefreshOne(idxBattler)
-    pbCommonAnimation("MegaEvolution2",battler)
-    megaName = battler.pokemon.megaName
-    if !megaName || megaName==""
-      megaName = _INTL("Mega {1}", battler.pokemon.speciesName)
-    end
-    pbDisplay(_INTL("{1} has Mega Evolved into {2}!",battler.pbThis,megaName))
-    side  = battler.idxOwnSide
-    owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
-    @megaEvolution[side][owner] = -2
-    if battler.isSpecies?(:GENGAR) && battler.mega?
-      battler.effects[PBEffects::Telekinesis] = 0
-    end
-    pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
-    # Trigger ability
-    battler.pbEffectsOnSwitchIn
-  end
-  
-  #=============================================================================
-  # Command phase
-  #=============================================================================
-  def pbCommandPhase
-    @scene.pbBeginCommandPhase
-    # Reset choices if commands can be shown
-    @battlers.each_with_index do |b,i|
-      next if !b
-      pbClearChoice(i) if pbCanShowCommands?(i)
-    end
-    # Reset choices to perform Mega Evolution if it wasn't done somehow
-    for side in 0...2
-      @megaEvolution[side].each_with_index do |megaEvo,i|
-        @megaEvolution[side][i] = -1 if megaEvo>=0
-      end
-    end
-	
-	# SWAPPED THE ORDER HERE OF PLAYER VS AI
-	# NO IDEA IF THIS WILL CAUSE MASSIVE PROBLEMS
-	
-    # Choose actions for the round (AI first, then player)
-    pbCommandPhaseLoop(false)   # AI chooses their actions
-	
-    return if @decision!=0   # Battle ended, stop choosing actions
-    pbCommandPhaseLoop(true)   # Player chooses their actions
-	
-	# For each pokemon the player decided to use a move with, trigger the trainer dialogue method
-	# for any trainers which can do so
-	if @opponent
-		idxBattler = -1
-		loop do
-		  idxBattler += 1
-		  break if idxBattler>=@battlers.length
-		  next if !@battlers[idxBattler] || !pbOwnedByPlayer?(idxBattler)
-		  if @choices[idxBattler][0] == :UseMove
-				battler = @battlers[idxBattler]
-				move = @choices[idxBattler][2]
-				target = @choices[idxBattler][3] == -1 ? nil : @battlers[@choices[idxBattler][3]]
-				
-				# Trigger dialogue for each opponent
-				@opponent.each_with_index do |trainer,idxTrainer|
-					@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-						PokeBattle_AI.triggerPlayerChoseMoveDialogue(policy,battler,move,target,dialogue)
-					}
-				end	
-			end
-		end
-	end
-  end
-
-	def pbCommandPhaseLoop(isPlayer)
-		# NOTE: Doing some things (e.g. running, throwing a Poké Ball) takes up all
-		#       your actions in a round.
-		actioned = []
-		idxBattler = -1
-		loop do
-		  break if @decision!=0   # Battle ended, stop choosing actions
-		  idxBattler += 1
-		  break if idxBattler>=@battlers.length
-		  next if !@battlers[idxBattler] || pbOwnedByPlayer?(idxBattler)!=isPlayer
-		  next if @choices[idxBattler][0]!=:None    # Action is forced, can't choose one
-		  next if !pbCanShowCommands?(idxBattler)   # Action is forced, can't choose one
-		  # AI controls this battler
-		  if @controlPlayer || !pbOwnedByPlayer?(idxBattler)
-			# Debug testing thing
-			@battleAI.beginAutoTester(@battlers[idxBattler]) if $DEBUG && Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
-		  
-			# Have the AI choose an action
-			@battleAI.pbDefaultChooseEnemyCommand(idxBattler)
-			# If an AI trainer chose to use a move, trigger dialogue event
-			if @opponent && @choices[idxBattler][0] == :UseMove
-				battler = @battlers[idxBattler]
-				move = @choices[idxBattler][2]
-				target = @choices[idxBattler][3] == -1 ? nil : @battlers[@choices[idxBattler][3]]
-				idxTrainer = pbGetOwnerIndexFromBattlerIndex(idxBattler)
-				trainername = @opponent[idxTrainer].full_name
-				@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					PokeBattle_AI.triggerTrainerChoseMoveDialogue(policy,battler,move,target,trainername,dialogue)
-				}
-			end
-			# Go to the next battler
-			next
-		  end
-		  
-		  # Player chooses an action
-		  actioned.push(idxBattler)
-		  commandsEnd = false   # Whether to cancel choosing all other actions this round
-		  loop do
-			cmd = pbCommandMenu(idxBattler,actioned.length==1)
-			# If being Sky Dropped, can't do anything except use a move
-			if cmd>0 && @battlers[idxBattler].effects[PBEffects::SkyDrop]>=0
-			  pbDisplay(_INTL("Sky Drop won't let {1} go!",@battlers[idxBattler].pbThis(true)))
-			  next
-			end
-			case cmd
-			when 0    # Fight
-			  break if pbFightMenu(idxBattler)
-			when 1    # Bag
-			  if pbItemMenu(idxBattler,actioned.length==1)
-				commandsEnd = true if pbItemUsesAllActions?(@choices[idxBattler][1])
-				break
-			  end
-			when 2    # Pokémon
-			  break if pbPartyMenu(idxBattler)
-			when 3    # Run
-			  # NOTE: "Run" is only an available option for the first battler the
-			  #       player chooses an action for in a round. Attempting to run
-			  #       from battle prevents you from choosing any other actions in
-			  #       that round.
-			  if pbRunMenu(idxBattler)
-				commandsEnd = true
-				break
-			  end
-			when 4    # Call
-			  break if pbCallMenu(idxBattler)
-			when 5	  # Info
-				pbGoAfterInfo(@battlers[idxBattler])
-			when 7 # Pokedex
-				# TODO: Open the battle info menu
-			when -2   # Debug
-			  pbDebugMenu
-			  next
-			when -1   # Go back to previous battler's action choice
-			  next if actioned.length<=1
-			  actioned.pop   # Forget this battler was done
-			  idxBattler = actioned.last-1
-			  pbCancelChoice(idxBattler+1)   # Clear the previous battler's choice
-			  actioned.pop   # Forget the previous battler was done
-			  break
-			end
-			pbCancelChoice(idxBattler)
-		  end
-		  break if commandsEnd
-		end
-	end
 end
 
 # Sets up various battle parameters and applies special rules.
