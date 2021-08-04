@@ -103,6 +103,11 @@ Pokemon = CROAGUNK,15
 	Item = ORANBERRY
 	Moves = FLATTER,ENTOXIN,MUDTHROW,HEADBUTT
 #-------------------------------
+[POKEMONTRAINER_F,???]
+Pokemon = BUNNELBY,15
+Pokemon = SNEASEL,15
+Pokemon = JOLTIK,15
+#-------------------------------
 # PROTOTYPE
 #-------------------------------
 [LASS2,Angelica]
