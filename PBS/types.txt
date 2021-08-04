@@ -39,7 +39,7 @@ Resistances=NORMAL,FLYING,POISON,FIRE,ICE
 [6]
 Name=Bug
 InternalName=BUG
-Weaknesses=FLYING,ROCK
+Weaknesses=FLYING,ROCK,FIRE
 Resistances=FIGHTING,GROUND,GRASS
 
 [7]
@@ -66,7 +66,7 @@ Name=Fire
 InternalName=FIRE
 IsSpecialType=true
 Weaknesses=GROUND,ROCK,WATER
-Resistances=STEEL,FIRE,GRASS,ICE
+Resistances=FIRE,GRASS,ICE
 
 [11]
 Name=Water

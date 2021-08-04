@@ -103,7 +103,7 @@ Pokemon = CROAGUNK,15
 	Item = ORANBERRY
 	Moves = FLATTER,ENTOXIN,MUDTHROW,HEADBUTT
 #-------------------------------
-[POKEMONTRAINER_F,???]
+[POKEMONTRAINER_Yezera,Yezera]
 Pokemon = BUNNELBY,15
 Pokemon = SNEASEL,15
 Pokemon = JOLTIK,15

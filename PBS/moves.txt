@@ -812,7 +812,7 @@
 792,BEARHUG,Bear Hug,0CF,80,FIGHTING,Physical,90,15,0,NearOther,0,bef,The user wraps the target in a hugely strong hug.
 793,INFERNOCHARGE,Inferno Charge,01F,90,FIRE,Physical,100,20,30,NearOther,0,abef,"The user cloaks itself in an inferno of flame and attacks. It has a 30% chance to raise Speed."
 794,FLAREUP,Flare Up,50E,65,FIRE,Physical,100,10,0,NearOther,0,bef,The user targets the opponents soft spots with a fiery strike. Its power doubles if the target is burned.
-795,PERFURMEDPUNCH,Perfumed Punch,0A5,60,FAIRY,Physical,100,25,0,NearOther,0,abef,"The user throws a sweet-smelling punch which the target is unable to avoid."
+795,PERFUMEDPUNCH,Perfumed Punch,0A5,60,FAIRY,Physical,100,25,0,NearOther,0,abef,"The user throws a sweet-smelling punch which the target is unable to avoid."
 796,INFINITEFORCE,Infinite Force,50F,140,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user weilds an exaggerated power to strike the target. The attack's recoil sharply reduces the user's Attack stat."
 797,TANTRUM,Tantrum,0D2,120,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user goes on a wild tantrum for two to three turns. It then becomes confused, however."
 798,SLAG,Slag,005,80,STEEL,Special,100,10,30,NearOther,0,befn,"The user sprays mining waste at the target. It has a 30% chance to poison."

@@ -429,9 +429,9 @@ class PokemonDataBox < SpriteWrapper
 		@animatingExp   = true
 		if @showExp
 			if (@boss || !@battler.battle.wildBattle?)
-				pbSEPlay("Pkmn exp gain",nil,85)
-			else
 				pbSEPlay("Pkmn exp gain",nil,100)
+			else
+				pbSEPlay("Pkmn exp gain",nil,85)
 			end
 		end
 	end
@@ -696,9 +696,9 @@ class PokemonDataBox < SpriteWrapper
         pbSEStop
         @expFlash = Graphics.frame_rate/5
 		if (@boss || !@battler.battle.wildBattle?)
-			pbSEPlay("Pkmn exp full",nil,85)
-		else
 			pbSEPlay("Pkmn exp full",nil,100)
+		else
+			pbSEPlay("Pkmn exp full",nil,85)
 		end
         self.flash(Color.new(64,200,248,192),@expFlash)
         for i in @sprites
