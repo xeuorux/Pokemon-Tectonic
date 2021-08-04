@@ -74,6 +74,42 @@ class Pokemon
       end
     end
   end
+  
+  def nature
+    @nature = GameData::Nature.get(0).id # ALWAYS RETURN NEUTRAL
+    return GameData::Nature.try_get(@nature)
+  end
+  
+  # Recalculates this Pokémon's stats.
+  def calc_stats
+    base_stats = self.baseStats
+    this_level = self.level
+    this_IV    = self.calcIV
+    # Calculate stats
+    stats = {}
+    GameData::Stat.each_main do |s|
+      if s.id == :HP
+        stats[s.id] = calcHP(base_stats[s.id], this_level, @ev[s.id])
+		if boss
+			if $game_variables[96].is_a?(Hash)
+				stats[s.id]	*= $game_variables[96][@species]
+			else
+				stats[s.id]	*= $game_variables[96]
+			end
+		end
+      else
+        stats[s.id] = calcStat(base_stats[s.id], this_level, @ev[s.id])
+      end
+    end
+    hpDiff = @totalhp - @hp
+    @totalhp = stats[:HP]
+    @hp      = (fainted? ? 0 : (@totalhp - hpDiff))
+    @attack  = stats[:ATTACK]
+    @defense = stats[:DEFENSE]
+    @spatk   = stats[:SPECIAL_ATTACK]
+    @spdef   = stats[:SPECIAL_DEFENSE]
+    @speed   = stats[:SPEED]
+  end
 end
 
 class PokeBattle_Battle
