@@ -539,11 +539,34 @@ class PokemonPokedex_Scene
 		  levelIntAttempt = levelTextInput.to_i
 		  return nil if levelIntAttempt == 0
 		  
-		  maps_available_by_cap = {
-			15 => [20,22,43,2,48], #Short Route, Forest Crossroads, Forest Route, Forest Cave B1, Flower Town
-			21 => [3,4,7,10,11,5], #Savannah Route, Big Cave B1, Big Cave B2, Oasis Town, Oasis Town Hidden, River Route
-			27 => [17,9] #Forest Cave B2, River Grove
-		  }
+		  if $game_switches[60] # Playing the prototype
+			  maps_available_by_cap = {
+				15 => [20,22,43,2,48], #Short Route, Forest Crossroads, Forest Route, Forest Cave B1, Flower Town
+				21 => [3,4,7,10,11,5], #Savannah Route, Big Cave B1, Big Cave B2, Oasis Town, Oasis Town Hidden, River Route
+				27 => [17,9] #Forest Cave B2, River Grove
+			  }
+			  
+			  items_available_by_cap = {
+				15 => [],
+				21 => [],
+				27 => [:MOONSTONE,:FIRESTONE,:WATERSTONE,:LEAFSTONE],
+			  }
+			  
+			  surfingAvailable = levelIntAttempt > 21
+		  else # Playing the main game
+			  maps_available_by_cap = {
+				15 => [33,34,29,30,38,26]
+			  }
+			  
+			  items_available_by_cap = {
+				15 => [],
+				20 => [],
+				25 => [:MOONSTONE],
+				30 => [:FIRESTONE,:WATERSTONE,:LEAFSTONE,:THUNDERSTONE,:DAWNSTONE,:DUSKSTONE,:SHINYSTONE,:ICESTONE]
+			  }
+			  
+			  surfingAvailable = false
+		  end
 		  
 		  dexlist = pbGetDexList
 		  dexlist = dexlist.find_all { |item|
@@ -553,14 +576,34 @@ class PokemonPokedex_Scene
 			# Note each pre-evolution which could be the path to aquiring this pokemon by the given level
 			currentPrevo = item[15].length > 0 ? item[15][0] : nil
 			while currentPrevo != nil
-				if [:Level,:LevelDay,:LevelNight,:LevelMale,:LevelFemale,:LevelRain,:LevelDarkInParty].include?(currentPrevo[1])
-					if currentPrevo[2] <= levelIntAttempt
+				evoMethod = currentPrevo[1]
+				case evoMethod
+				# All method based on leveling up to a certain level
+				when :Level,:LevelDay,:LevelNight,:LevelMale,:LevelFemale,:LevelRain,
+					:AttackGreater,:AtkDefEqual,:DefenseGreater,:LevelDarkInParty,
+					:Silcoon,:Cascoon,:Ninjask,:Shedinja
+					
+					levelThreshold = currentPrevo[2]
+					if levelThreshold <= levelIntAttempt
 						speciesToCheckLocationsFor.push(currentPrevo[0])
 					else
 						break
 					end
-				else
-					speciesToCheckLocationsFor.push(currentPrevo[0]) # TO DO: Does not account for availability of evolution items, or other such conditions
+				# All methods based on holding a certain item or using a certain item on the pokemon
+				when :HoldItem,:HoldItemMale,:HoldItemFemale,:DayHoldItem,:NightHoldItem,
+					:Item,:ItemMale,:ItemFemale,:ItemDay,:ItemNight,:ItemHappiness
+					
+					# Push this prevo if the evolution from it is gated by an item which is available by this point
+					itemNeeded = currentPrevo[2]
+					itemAvailable = false
+					items_available_by_cap.each do |key, value|
+						itemAvailable = true if value.include?(itemNeeded)
+						break if key >= levelIntAttempt
+					end
+					speciesToCheckLocationsFor.push(currentPrevo[0]) if itemAvailable
+				# All methods based on leveling up while having a certain move type
+				when :HasMove,:HasMoveType
+					# TO DO: Bespoke checks for each relevant move or move type per pokemon which has them
 				end
 				
 				# Find the prevo of the prevo
@@ -571,18 +614,44 @@ class PokemonPokedex_Scene
 			
 			# Find all the maps which are available by the given level
 			mapsToCheck = []
+			levelCapBracket = 0
 			maps_available_by_cap.each do |key, value|
 				mapsToCheck.concat(value)
-				break if key >= levelIntAttempt
+				levelCapBracket = key
+				break if levelCapBracket >= levelIntAttempt
 			end
 			
 			# For each possible species which could lead to this species, check to see if its available in any of the maps 
 			# which are available by the level cap which would apply at the given level
 			available = false
+			# For each encounters data listing
 			GameData::Encounter.each_of_version($PokemonGlobal.encounter_version) do |enc_data|
 				next unless mapsToCheck.include?(enc_data.map)
+				# For each species we need to check for
 				speciesToCheckLocationsFor.each do |species|
-					available = true if pbFindEncounter(enc_data.types, species)
+					encounterInfoForSpecies = nil
+					# For each slot in that encounters data listing
+					enc_data.types.each do |key,slots|
+					    next if !slots
+						echo(key)
+						next if key == :ActiveWater && !surfingAvailable
+					    slots.each { |slot|
+							species_data = GameData::Species.get(slot[1])
+							if species_data.species == species
+								# Mark down this slot if no such slot is marked, or if this is a lower level encounter
+								if encounterInfoForSpecies == nil || slot[3] < encounterInfoForSpecies[3]
+									encounterInfoForSpecies = slot
+								end
+							end
+					    }
+					end
+					# Continue onto the next species if no slots on the map being currently looked at have an entry for this species
+					next if !encounterInfoForSpecies
+
+					# Assume that encounters which distribute a pokemon beyond the level cap bracket
+					# are not actually available during that level cap
+					# But through returning to a secret part of that map later, or something
+					available = true if encounterInfoForSpecies[3] <= levelCapBracket
 				end
 				break if available
 			end
