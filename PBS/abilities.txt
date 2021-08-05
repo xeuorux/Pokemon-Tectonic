@@ -39,7 +39,7 @@
 37,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack by 50%."
 38,POISONPOINT,Poison Point,"Contact with the Pokémon may poison the attacker."
 39,INNERFOCUS,Inner Focus,"The Pokémon is protected from flinching."
-40,COLDPROOF,Cold Proof,"Raises Sp. Def if hit by an Ice-type move. Cannot be chilled."
+40,COLDPROOF,Cold Proof,"Immune to Ice-type moves, and raises Sp. Def if hit by one. Cannot be chilled."
 41,WATERVEIL,Water Veil,"Prevents the Pokémon from getting a burn."
 42,MAGNETPULL,Magnet Pull,"Prevents Steel-type Pokémon from escaping."
 43,SOUNDPROOF,Soundproof,"Gives full immunity to all sound-based moves."

@@ -448,8 +448,8 @@
 433,WEATHERBALL,Weather Ball,087,50,NORMAL,Special,100,10,0,NearOther,0,befn,An attack move that varies in power and type depending on the weather.
 434,ECHOEDVOICE,Echoed Voice,092,40,NORMAL,Special,100,15,0,NearOther,0,befk,"The user attacks the foe with an echoing voice. If this move is used every turn, it does greater damage."
 435,FAKEOUT,Fake Out,012,40,NORMAL,Physical,100,10,100,NearOther,3,abe,An attack that hits first and makes the target flinch. It only works the first turn the user is in battle.
-436,FALSESWIPE,False Swipe,000,40,NORMAL,Physical,100,40,0,NearOther,0,abef,A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.
-437,HOLDBACK,Hold Back,000,40,NORMAL,Special,100,40,0,NearOther,0,abef,"The user holds back when it attacks, and the target is left with at least 1 HP."
+436,FALSESWIPE,False Swipe,0E9,40,NORMAL,Physical,100,40,0,NearOther,0,abef,A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.
+437,HOLDBACK,Hold Back,0E9,40,NORMAL,Special,100,40,0,NearOther,0,abef,"The user holds back when it attacks, and the target is left with at least 1 HP."
 438,PAYDAY,Pay Day,109,50,NORMAL,Physical,100,20,0,NearOther,0,bef,Numerous coins are hurled at the target to inflict damage. Money is earned after battle.
 439,POUND,Pound,01C,45,NORMAL,Physical,100,35,15,NearOther,0,abef,"The target is physically pounded with a long tail or a foreleg, etc. Has a 15% chance to raise attack."
 440,QUICKATTACK,Quick Attack,000,40,NORMAL,Physical,100,30,0,NearOther,1,abef,The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.
