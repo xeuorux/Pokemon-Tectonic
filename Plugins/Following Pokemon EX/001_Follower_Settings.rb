@@ -11,8 +11,8 @@ module FollowerSettings
   Emo_Normal          = 13
   Emo_Hate            = 15
   Emo_Poison          = 17
-  Emo_sing            = 12
-  Emo_love            = 9
+  Emo_Sing            = 12
+  Emo_Love            = 9
 
   # Allow the player to toggle followers on/off by pressing a key
   ALLOWTOGGLEFOLLOW = false
