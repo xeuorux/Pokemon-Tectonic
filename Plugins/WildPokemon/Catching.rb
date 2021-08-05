@@ -25,6 +25,7 @@ module PokeBattle_BattleCommon
 	y = captureThresholdCalc(pkmn,battler,catch_rate,ball)
 	# Critical capture check
 	if Settings::ENABLE_CRITICAL_CAPTURES
+	  x = captureThresholdCalcHalf(pkmn,battler,catch_rate,ball)
       c = 0
       numOwned = $Trainer.pokedex.owned_count
       if numOwned>600;    c = x*5/12
@@ -50,7 +51,14 @@ module PokeBattle_BattleCommon
   end
   
   def captureThresholdCalc(pkmn,battler,catch_rate,ball)
-    # Get a catch rate if one wasn't provided
+    x = captureThresholdCalcHalf(pkmn,battler,catch_rate,ball)
+    # Second half of the shakes calculation
+	y = ( 65536 / ((255.0/x)**0.1875) ).floor
+    return y
+  end
+  
+  def captureThresholdCalcHalf(pkmn,battler,catch_rate,ball)
+	# Get a catch rate if one wasn't provided
     catch_rate = pkmn.species_data.catch_rate if !catch_rate
     # Modify catch_rate depending on the Poké Ball's effect
     ultraBeast = [:NIHILEGO, :BUZZWOLE, :PHEROMOSA, :XURKITREE, :CELESTEELA,
@@ -74,9 +82,7 @@ module PokeBattle_BattleCommon
     end
     x = x.floor
     x = 1 if x<1
-    # Second half of the shakes calculation
-	y = ( 65536 / ((255.0/x)**0.1875) ).floor
-    return y
+	return x
   end
   
   def captureChanceCalc(pkmn,battler,catch_rate,ball)
