@@ -203,3 +203,38 @@ module GameData
 		end
 	end
 end
+
+DebugMenuCommands.register("autopositionbacksprites", {
+  "parent"      => "editorsmenu",
+  "name"        => _INTL("Auto-Position Back Sprites"),
+  "description" => _INTL("Automatically reposition all Pokémon back sprites. Don't use lightly."),
+  "always_show" => true,
+  "effect"      => proc {
+    if pbConfirmMessage(_INTL("Are you sure you want to reposition all back sprites?"))
+      msgwindow = pbCreateMessageWindow
+      pbMessageDisplay(msgwindow, _INTL("Repositioning all back sprites. Please wait."), false)
+      Graphics.update
+      
+	  GameData::Species.each do |sp|
+		Graphics.update if sp.id_number % 50 == 0
+		bitmap1 = GameData::Species.sprite_bitmap(sp.species, sp.form, nil, nil, nil, true)
+		if bitmap1 && bitmap1.bitmap   # Player's y
+		  sp.back_sprite_x = 0
+		  sp.back_sprite_y = (bitmap1.height - (findBottom(bitmap1.bitmap) + 1)) / 2
+		  data = GameData::Species.get(sp)
+		  if data.abilities.include?(:LEVITATE)
+			sp.back_sprite_y -= 4
+		  elsif data.egg_groups.include?(:Water2)
+			sp.back_sprite_y -= 2
+		  end
+		end
+		bitmap1.dispose if bitmap1
+	  end
+	  GameData::Species.save
+	  Compiler.write_pokemon
+	  Compiler.write_pokemon_forms
+	  
+      pbDisposeMessageWindow(msgwindow)
+    end
+  }
+})
