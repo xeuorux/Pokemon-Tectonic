@@ -8526,7 +8526,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = DUSTOX,Level,10
+Evolutions = DUSTOX,Level,30
 #-------------------------------
 [269]
 Name = Dustox
@@ -8592,14 +8592,15 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LOMBRE,Level,16
+Evolutions = LOMBRE,Level,24
 #-------------------------------
 [271]
 Name = Lombre
 InternalName = LOMBRE
 Type1 = WATER
 Type2 = GRASS
-BaseStats = 70,60,75,60,70,80
+BaseStats = 70,60,80,60,75,80
+#Total: 420
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 119
@@ -12627,13 +12628,13 @@ BattlerEnemyX = 2
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = STARAVIA,Level,18
+Evolutions = STARAVIA,Level,24
 #-------------------------------
 [397]
 Name = Staravia
 InternalName = STARAVIA
 Type1 = FLYING
-BaseStats = 65,85,60,90,45,55
+BaseStats = 70,90,60,95,45,55
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 119
@@ -21274,7 +21275,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = FLOETTE,Level,19
+Evolutions = FLOETTE,Level,23
 #-------------------------------
 [670]
 Name = Floette
@@ -24201,7 +24202,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 34
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = STEENEE,Level,18
+Evolutions = STEENEE,Level,24
 #-------------------------------
 [762]
 Name = Steenee
@@ -24233,7 +24234,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = TSAREENA,HasMove,STOMP
+Evolutions = TSAREENA,Level,34
 #-------------------------------
 [763]
 Name = Tsareena
@@ -26055,13 +26056,14 @@ BattlerEnemyX = 0
 BattlerEnemyY = 32
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = CORVISQUIRE,Level,18
+Evolutions = CORVISQUIRE,Level,26
 #-------------------------------
 [822]
 Name = Corvisquire
 InternalName = CORVISQUIRE
 Type1 = FLYING
-BaseStats = 70,74,57,84,50,72
+BaseStats = 70,84,57,84,50,82
+#Total: 427
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 128
