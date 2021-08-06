@@ -495,18 +495,13 @@ class PokemonDataBox < SpriteWrapper
 		end
 		# Refresh type bars
 		types = @battler.pbTypes(true)
-
-		if types[0]
-		  @type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number*TYPE_ICON_HEIGHT
+		# If the pokemon is disguised as another pokemon, fake its type bars
+		if @battler.effects[PBEffects::Illusion]
+			types = @battler.effects[PBEffects::Illusion].types
 		end
-		
-		if types[1]
-		  @type2Icon.src_rect.y = GameData::Type.get(types[1]).id_number*TYPE_ICON_HEIGHT
-		end
-		
-		if types[2]
-		  @type3Icon.src_rect.y = GameData::Type.get(types[2]).id_number*TYPE_ICON_HEIGHT
-		end
+		@type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number * TYPE_ICON_HEIGHT if types[0]
+		@type2Icon.src_rect.y = GameData::Type.get(types[1]).id_number * TYPE_ICON_HEIGHT if types[1]
+		@type3Icon.src_rect.y = GameData::Type.get(types[2]).id_number * TYPE_ICON_HEIGHT if types[2]
 		
 		pbDrawImagePositions(self.bitmap,imagePos)
 		refreshHP
@@ -665,9 +660,17 @@ class PokemonDataBox < SpriteWrapper
 	
 	types = @battler.pbTypes(true)
 	
-	@type1Icon.visible = (value && @showTypes && !!types[0])
-    @type2Icon.visible = (value && @showTypes && !!types[1] && types[1] != types[0])
-    @type3Icon.visible = (value && @showTypes && !!types[2] && types[2] != types[0] && types[2] != types[1])
+	@type1Icon.visible = false
+	@type2Icon.visible = false
+	@type3Icon.visible = false
+	
+	if value && @showTypes
+		types = @battler.pbTypes(true)
+		types = @battler.effects[PBEffects::Illusion].types if @battler.effects[PBEffects::Illusion]
+		@type1Icon.visible = types[0] != nil
+		@type2Icon.visible = types[1] != nil && types[1] != types[0]
+		@type3Icon.visible = types[2] != nil && types[2] != types[1] && types[2] != types[0]
+	end
 	
 	@hpBar2.visible = value && @boss
 	@hpBar3.visible = value && @boss && isLegendary(@battler.species)
@@ -773,11 +776,12 @@ class PokeBattle_Battle
 	def pbGoAfterInfo(battler)
 		idxTarget = @scene.pbChooseTarget(battler.index,GameData::Target.get(:UserOrOther),nil,true)
 		return if idxTarget<0
-		species = @battlers[idxTarget].species
-		$Trainer.pokedex.register_last_seen(@battlers[idxTarget].pokemon)
+		pokemonTargeted = @battlers[idxTarget].pokemon
+		pokemonTargeted = @battlers[idxTarget].effects[PBEffects::Illusion] if @battlers[idxTarget].effects[PBEffects::Illusion]
+		$Trainer.pokedex.register_last_seen(pokemonTargeted)
 		scene = PokemonPokedexInfo_Scene.new
 		screen = PokemonPokedexInfoScreen.new(scene)
-		screen.pbStartSceneSingle(species,true)
+		screen.pbStartSceneSingle(pokemonTargeted.species,true)
     end
 end
 

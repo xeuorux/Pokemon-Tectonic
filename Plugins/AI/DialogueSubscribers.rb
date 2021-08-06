@@ -85,3 +85,45 @@ PokeBattle_AI::PlayerSendsOutPokemonDialogue.add(:Debug,
     next dialogue_array
   }
 )
+
+
+#===============================================================================
+# TrainerPokemonTookMoveDamageDialogue handlers
+#===============================================================================
+PokeBattle_AI::TrainerPokemonTookMoveDamageDialogue.add(:Debug,
+  proc { |policy,dealer,taker,trainer_speaking,dialogue_array|
+	if !trainer_speaking.policyStates[:TrainerPokemonTookMoveDamageDebug]
+		dialogue_array.push("My Pokemon took move damage!")
+		trainer_speaking.policyStates[:TrainerPokemonTookMoveDamageDebug] = true
+	end
+    next dialogue_array
+  }
+)
+
+PokeBattle_AI::TrainerPokemonTookMoveDamageDialogue.add(:Lambert,
+  proc { |policy,dealer,taker,trainer_speaking,dialogue_array|
+	next dialogue_array if trainer_speaking.policyStates[:IllusionTrick]
+	next dialogue_array if taker.species !=:ZORUA
+	if taker.damageState.typeMod < Effectiveness::NORMAL_EFFECTIVE	
+		dialogue_array.push("Hah. Oldest trick in the book.")
+		trainer_speaking.policyStates[:IllusionTrick] = true
+	elsif taker.damageState.typeMod > Effectiveness::NORMAL_EFFECTIVE
+		dialogue_array.push("Saw through my trick, did ya?")
+		trainer_speaking.policyStates[:IllusionTrick] = true
+	end
+    next dialogue_array
+  }
+)
+
+#===============================================================================
+# PlayerPokemonTookMoveDamageDialogue handlers
+#===============================================================================
+PokeBattle_AI::PlayerPokemonTookMoveDamageDialogue.add(:Debug,
+  proc { |policy,dealer,taker,trainer_speaking,dialogue_array|
+	if !trainer_speaking.policyStates[:PlayerPokemonTookMoveDamageDebug]
+		dialogue_array.push("Your Pokemon took move damage!")
+		trainer_speaking.policyStates[:PlayerPokemonTookMoveDamageDebug] = true
+	end
+    next dialogue_array
+  }
+)

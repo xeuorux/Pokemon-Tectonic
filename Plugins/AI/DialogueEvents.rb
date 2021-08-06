@@ -10,6 +10,8 @@ class PokeBattle_AI
 	PlayerPokemonFaintedDialogue				= TrainerDialogueHandlerHash.new
 	TrainerSendsOutPokemonDialogue				= TrainerDialogueHandlerHash.new
 	PlayerSendsOutPokemonDialogue				= TrainerDialogueHandlerHash.new
+	TrainerPokemonTookMoveDamageDialogue		= TrainerDialogueHandlerHash.new
+	PlayerPokemonTookMoveDamageDialogue			= TrainerDialogueHandlerHash.new
 	
 	def self.triggerTrainerChoseMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue_array)
 		ret = TrainerChoseMoveDialogue.trigger(policy,battler,move,target,trainer_speaking,dialogue_array)
@@ -38,6 +40,16 @@ class PokeBattle_AI
 	
 	def self.triggerPlayerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue_array)
 		ret = PlayerSendsOutPokemonDialogue.trigger(policy,battler,trainer_speaking,dialogue_array)
+		return (ret!=nil) ? ret : dialogue_array
+	end
+	
+	def self.triggerTrainerPokemonTookMoveDamageDialogue(policy,dealer,taker,trainer_speaking,dialogue_array)
+		ret = TrainerPokemonTookMoveDamageDialogue.trigger(policy,dealer,taker,trainer_speaking,dialogue_array)
+		return (ret!=nil) ? ret : dialogue_array
+	end
+	
+	def self.triggerPlayerPokemonTookMoveDamageDialogue(policy,dealer,taker,trainer_speaking,dialogue_array)
+		ret = PlayerPokemonTookMoveDamageDialogue.trigger(policy,dealer,taker,trainer_speaking,dialogue_array)
 		return (ret!=nil) ? ret : dialogue_array
 	end
 end
