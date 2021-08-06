@@ -227,19 +227,19 @@ class PokeBattle_Battle
       when 1
         pbDisplayPaused(_INTL("Oh! A wild {1} appeared!",foeParty[0].name))
 		if $game_switches[95]
-          pbDisplayPaused("Actually, it's a powerful projection!")
+          pbDisplayPaused("Actually, it's a powerful avatar!")
         end
       when 2
         pbDisplayPaused(_INTL("Oh! A wild {1} and {2} appeared!",foeParty[0].name,
            foeParty[1].name))
 		if $game_switches[95]
-          pbDisplayPaused("Actually, they're both powerful projections!")
+          pbDisplayPaused("Actually, they're both powerful avatars!")
         end
       when 3
         pbDisplayPaused(_INTL("Oh! A wild {1}, {2} and {3} appeared!",foeParty[0].name,
            foeParty[1].name,foeParty[2].name))
 		if $game_switches[95]
-          pbDisplayPaused("Actually, they're all powerful projections!")
+          pbDisplayPaused("Actually, they're all powerful avatars!")
         end
       end
     else   # Trainer battle
@@ -377,18 +377,18 @@ class PokeBattle_Battle
 	if pkmn.species == :DIALGA
 		healthRation = pkmn.hp / pkmn.totalhp
 		if $game_variables[95] == 1 && healthRation < 0.66
-			pbDisplay(_INTL("The projection of Dialga expands time on its side of the field!"))
+			pbDisplay(_INTL("The avatar of Dialga expands time on its side of the field!"))
 			$game_variables[95] = 3
 		elsif $game_variables[95] == 3 && healthRation < 0.33
-			pbDisplay(_INTL("The projection of Dialga expands time even more! It's stretched to the max!"))
+			pbDisplay(_INTL("The avatar of Dialga expands time even more! It's stretched to the max!"))
 			$game_variables[95] = 4
 		end
 	elsif (pkmn.species == :KYOGRE || pkmn.species == :GROUDON)
 		if @turnCount == 0
 			$game_variables[95] = 1
-			pbDisplay(_INTL("The projection is clearly preparing a massive opening attack!"))
+			pbDisplay(_INTL("The avatar is clearly preparing a massive opening attack!"))
 		elsif  @turnCount % 3 == 0 && @turnCount > 0
-			pbDisplay(_INTL("The projection is gathering energy for a massive attack!"))
+			pbDisplay(_INTL("The avatar is gathering energy for a massive attack!"))
 			$game_variables[95] = 1
 		else
 			$game_variables[95] = 3
@@ -398,7 +398,7 @@ class PokeBattle_Battle
   
   def pbSetBossItem(pkmn)
 	if pkmn.species == :GENESECT && pkmn.turnCount == 0
-		pbDisplay(_INTL("The projection of Genesect is analyzing your team for weaknesses..."))
+		pbDisplay(_INTL("The avatar of Genesect is analyzing your team for weaknesses..."))
 		weakToElectric 	= 0
 		weakToFire 		= 0
 		weakToIce 		= 0
@@ -429,9 +429,9 @@ class PokeBattle_Battle
 		end
 		
 		if !chosenItem
-			pbDisplay(_INTL("The projection of Genesect can't find any!"))
+			pbDisplay(_INTL("The avatar of Genesect can't find any!"))
 		else
-			pbDisplay(_INTL("The projection of Genesect loads a {1}!",GameData::Item.get(chosenItem).real_name))
+			pbDisplay(_INTL("The avatar of Genesect loads a {1}!",GameData::Item.get(chosenItem).real_name))
 			pkmn.item = chosenItem
 		end
 	end
