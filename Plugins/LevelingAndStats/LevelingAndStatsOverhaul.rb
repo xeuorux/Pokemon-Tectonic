@@ -333,7 +333,7 @@ end
 def pbSetLevelCap(newCap)
   return if !LEVEL_CAPS_USED
   $game_variables[26] = newCap
-  pbMessage(_INTL("Level cap raised to {1}!\\me[Bug catching 3rd]\\wtnp[80]\1",newCap))
+  pbMessage(_INTL("\\wmLevel cap raised to {1}!\\me[Bug catching 3rd]\\wtnp[80]\1",newCap))
 end
 
 ItemHandlers::UseOnPokemon.add(:RARECANDY,proc { |item,pkmn,scene|

@@ -77,6 +77,8 @@ Pokemon = ZIGZAGOON,15
 	Item = ORANBERRY
 	Moves = SNARL,LICK,SANDATTACK,TACKLE
 Pokemon = RIOLU,15
+	Name = Sangfroid
+	Gender = female
 	AbilityIndex = 1
 	Moves = MIRRORSHOT,SHOUT,VACUUMWAVE,FEINT
 #-------------------------------

@@ -173,7 +173,7 @@ class PBAnimationPlayerX
     @animbitmap    = nil   # Animation sheet graphic
     @frame         = -1
     @framesPerTick = [Graphics.frame_rate/20,1].max   # 20 ticks per second
-	@framesPerTick *= speedMult
+	@framesPerTick /= speedMult
     @srcLine       = nil
     @dstLine       = nil
     @userOrig      = getSpriteCenter(@usersprite)
