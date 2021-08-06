@@ -51,16 +51,17 @@ class PokeBattle_Battler
 		if @battle.opponent
 			if pbOwnedByPlayer?
 				# Trigger dialogue for each opponent
-				@battle.opponent.each_with_index do |trainer,idxTrainer|
+				@battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
 					@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-						PokeBattle_AI.triggerPlayerPokemonFaintedDialogue(policy,self,dialogue)
+						PokeBattle_AI.triggerPlayerPokemonFaintedDialogue(policy,self,trainer_speaking,dialogue)
 					}
 				end
 			else
 				# Trigger dialogue for the opponent which owns this
 				idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(@index)
+				trainer_speaking = @battle.opponent[idxTrainer]
 				@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					PokeBattle_AI.triggerTrainerPokemonFaintedDialogue(policy,self,dialogue)
+					PokeBattle_AI.triggerTrainerPokemonFaintedDialogue(policy,self,trainer_speaking,dialogue)
 				}
 			end
 		end

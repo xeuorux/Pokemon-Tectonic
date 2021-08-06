@@ -39,9 +39,9 @@ class PokeBattle_Battle
 				target = @choices[idxBattler][3] == -1 ? nil : @battlers[@choices[idxBattler][3]]
 				
 				# Trigger dialogue for each opponent
-				@opponent.each_with_index do |trainer,idxTrainer|
+				@opponent.each_with_index do |trainer_speaking,idxTrainer|
 					@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-						PokeBattle_AI.triggerPlayerChoseMoveDialogue(policy,battler,move,target,dialogue)
+						PokeBattle_AI.triggerPlayerChoseMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue)
 					}
 				end	
 			end
@@ -68,15 +68,15 @@ class PokeBattle_Battle
 		  
 			# Have the AI choose an action
 			@battleAI.pbDefaultChooseEnemyCommand(idxBattler)
-			# If an AI trainer chose to use a move, trigger dialogue event
+			# If an AI trainer chose to use a move, trigger dialogue event for that trainer
 			if @opponent && @choices[idxBattler][0] == :UseMove
 				battler = @battlers[idxBattler]
 				move = @choices[idxBattler][2]
 				target = @choices[idxBattler][3] == -1 ? nil : @battlers[@choices[idxBattler][3]]
 				idxTrainer = pbGetOwnerIndexFromBattlerIndex(idxBattler)
-				trainername = @opponent[idxTrainer].full_name
+				trainer_speaking = @opponent[idxTrainer]
 				@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					PokeBattle_AI.triggerTrainerChoseMoveDialogue(policy,battler,move,target,trainername,dialogue)
+					PokeBattle_AI.triggerTrainerChoseMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue)
 				}
 			end
 			# Go to the next battler

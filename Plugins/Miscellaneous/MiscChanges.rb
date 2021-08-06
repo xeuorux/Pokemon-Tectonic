@@ -291,6 +291,7 @@ class Interpreter
     # Translate the text
     message = _MAPINTL($game_map.map_id, message)
 	message.gsub!("’","'")
+	message.gsub!("Pokemon","Pokémon")
     # Display the text, with commands/number choosing if appropriate
     @message_waiting = true   # Lets parallel process events work while a message is displayed
     if commands

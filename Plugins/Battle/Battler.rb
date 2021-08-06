@@ -2167,4 +2167,6 @@ class PokeBattle_Battler
     targets = pbChangeTargetByAbility(:STORMDRAIN,:WATER,move,user,targets,priority,nearOnly)
     return targets
   end
+  
+  
 end

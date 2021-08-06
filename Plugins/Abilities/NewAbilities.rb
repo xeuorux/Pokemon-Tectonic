@@ -379,14 +379,14 @@ BattleHandlers::UserAbilityOnHit.add(:FLAMEWINGS,
 #===============================================================================
 BattleHandlers::UserAbilityEndOfMove.add(:DEEPSTING,
   proc { |ability,user,targets,move,battle|
-    return if !user.takesIndirectDamage?
+    next if !user.takesIndirectDamage?
     
     totalDamageDealt = 0
     targets.each do |target|
       next if target.damageState.unaffected
       totalDamageDealt = target.damageState.totalHPLost
     end
-    return if totalDamageDealt <= 0
+    next if totalDamageDealt <= 0
     amt = (totalDamageDealt/2.0).round
     amt = 1 if amt<1
     user.pbReduceHP(amt,false)

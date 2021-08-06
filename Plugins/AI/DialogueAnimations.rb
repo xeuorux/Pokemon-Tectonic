@@ -35,6 +35,8 @@ class PokeBattle_Scene
 	if dialogue.length != 0
 		trainerMovesInOut(idxTrainer) {
 			dialogue.each do |line|
+				line.gsub!("’","'")
+				line.gsub!("Pokemon","Pokémon")
 				pbDisplayPausedMessage(line)
 			end
 		}
