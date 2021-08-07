@@ -154,22 +154,24 @@ class PokeBattle_Battle
       return false
     end
     battler.pbCheckForm
-	# Trigger dialogue for this pokemon
-	if pbOwnedByPlayer?(battler.index)
-		# Trigger each opponent's dialogue
-		@opponent.each_with_index do |trainer_speaking,idxTrainer|
+	if !wildBattle?
+		# Trigger dialogue for this pokemon
+		if pbOwnedByPlayer?(battler.index)
+			# Trigger each opponent's dialogue
+			@opponent.each_with_index do |trainer_speaking,idxTrainer|
+				@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+					trainer = @opponent[idxTrainer]
+					PokeBattle_AI.triggerPlayerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue)
+				}
+			end
+		else
+			# Trigger just this pokemon's trainer's dialogue
+			idxTrainer = pbGetOwnerIndexFromBattlerIndex(battler.index)
+			trainer_speaking = @opponent[idxTrainer]
 			@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-				trainer = @opponent[idxTrainer]
-				PokeBattle_AI.triggerPlayerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue)
+				PokeBattle_AI.triggerTrainerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue)
 			}
 		end
-	else
-		# Trigger just this pokemon's trainer's dialogue
-		idxTrainer = pbGetOwnerIndexFromBattlerIndex(battler.index)
-		trainer_speaking = @opponent[idxTrainer]
-		@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-			PokeBattle_AI.triggerTrainerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue)
-		}
 	end
     return true
   end

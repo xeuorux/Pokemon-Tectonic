@@ -4058,7 +4058,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MPINSIR,Level,46
+Evolutions = SCARAPACE,Level,46
 #-------------------------------
 [128]
 Name = Tauros
@@ -17630,7 +17630,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 31
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = DARMANITAN,Level,35,DARMANITANZEN,Item,SHINYSTONE
+Evolutions = DARMANITAN,Level,35
 #-------------------------------
 [555]
 Name = Darmanitan
@@ -29130,38 +29130,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 3
 #-------------------------------
 [920]
-Name = Zenmanitan
-InternalName = DARMANITANZEN
-Type1 = FIRE
-Type2 = PSYCHIC
-BaseStats = 105,30,105,25,110,105
-GenderRate = Female50Percent
-GrowthRate = Parabolic
-BaseEXP = 168
-EffortPoints = 0,0,0,0,2,0
-Rareness = 60
-Happiness = 50
-Abilities = AUDACITY
-Moves = 0,PSYCHIC,1,PSYCHIC,1,COZYUP,1,TACKLE,1,TAUNT,1,BITE,12,INCINERATE,16,WORKUP,20,FIREFANG,24,HEADBUTT,28,FIREPUNCH,32,UPROAR,38,BELLYDRUM,44,FLAREBLITZ,50,THRASH,56,SUPERPOWER
-TutorMoves = BODYPRESS,BODYSLAM,BRICKBREAK,BULKUP,BULLDOZE,BURNINGJEALOUSY,CONFIDE,DIG,EARTHQUAKE,ENCORE,ENDEAVOR,ENDURE,EXPANDINGFORCE,FACADE,FIREBLAST,FIREFANG,FIREPUNCH,FIRESPIN,FLAMECHARGE,FLAMETHROWER,FLAREBLITZ,FLING,FOCUSBLAST,FOCUSENERGY,FOCUSPUNCH,FRUSTRATION,FUTURESIGHT,GIGAIMPACT,GRASSKNOT,GUARDSWAP,GYROBALL,HEATWAVE,HIDDENPOWER,HYPERBEAM,IRONDEFENSE,IRONHEAD,LASERFOCUS,LASHOUT,MEGAKICK,MEGAPUNCH,MYSTICALFIRE,OVERHEAT,PAYBACK,POWERSWAP,POWERUPPUNCH,PROTECT,PSYCHIC,REST,RETURN,REVERSAL,ROAR,ROCKSLIDE,ROCKTOMB,ROUND,SLEEPTALK,SMACKDOWN,SMASH,SNATCH,SNORE,SOLARBEAM,STONEEDGE,STRENGTH,SUBSTITUTE,SUNNYDAY,SUPERPOWER,SWAGGER,TAUNT,THIEF,TORMENT,TOXIC,TRICK,UPROAR,UTURN,WILLOWISP,WORKUP,ZENHEADBUTT
-Compatibility = Field
-StepsToHatch = 5355
-Height = 1.3
-Weight = 92.9
-Color = Blue
-Shape = Head
-Kind = Blazing
-Pokedex = It turned still as stone to meditate, sharpening its mind and spirit.
-BattlerPlayerX = 0
-BattlerPlayerY = 40
-BattlerEnemyX = 0
-BattlerEnemyY = 33
-BattlerShadowX = 0
-BattlerShadowSize = 2
-#-------------------------------
-[921]
-Name = MPinsir
-InternalName = MPINSIR
+Name = Scarapace
+InternalName = SCARAPACE
 Type1 = BUG
 Type2 = FLYING
 BaseStats = 80,135,100,105,65,70
@@ -29181,7 +29151,7 @@ Height = 1.7
 Weight = 59.0
 Color = Brown
 Shape = MultiWinged
-Kind = Stag Beetle
+Kind = Hunt Beetle
 Pokedex = It zips around at blistering speeds, looking for an opening to skewer its opponent on its giant pincers.
 BattlerPlayerX = 0
 BattlerPlayerY = 40
@@ -29190,7 +29160,7 @@ BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
-[922]
+[921]
 Name = MHeracross
 InternalName = MHERACROSS
 Type1 = BUG

@@ -999,15 +999,6 @@ Weight = 120.0
 Color = White
 Pokedex = Though it has a gentle disposition, it's also very strong. It will quickly freeze the snowball on its head before going for a headbutt.
 #-------------------------------
-[DARMANITANZEN,1]
-FormName = Galarian
-Type1 = ICE
-Type2 = FIRE
-BaseStats = 105,30,95,35,120,95
-Color = White
-Pokedex = Darmanitan takes this form when enraged. It won't stop spewing flames until its rage has settled, even if its body starts to melt.
-BattlerEnemyY = 30
-#-------------------------------
 [YAMASK,1]
 FormName = Galarian
 Type1 = ROCK

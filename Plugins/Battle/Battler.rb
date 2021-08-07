@@ -1701,27 +1701,28 @@ class PokeBattle_Battler
       # Move-specific effects after all hits
       targets.each { |b| move.pbEffectAfterAllHits(user,b) }
 	  
-	  # Triggers dialogue for each target hit
-	  targets.each do |t|
-		next if t.damageState.protected || t.damageState.unaffected
-		if @battle.pbOwnedByPlayer?(t.index)
-			# Trigger each opponent's dialogue
-			@battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
+	  if !battle.wildBattle?
+		  # Triggers dialogue for each target hit
+		  targets.each do |t|
+			next if t.damageState.protected || t.damageState.unaffected
+			if @battle.pbOwnedByPlayer?(t.index)
+				# Trigger each opponent's dialogue
+				@battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
+					@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+						trainer = @battle.opponent[idxTrainer]
+						PokeBattle_AI.triggerPlayerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
+					}
+				end
+			else
+				# Trigger just this pokemon's trainer's dialogue
+				idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(index)
+				trainer_speaking = @battle.opponent[idxTrainer]
 				@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					trainer = @battle.opponent[idxTrainer]
-					PokeBattle_AI.triggerPlayerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
+					PokeBattle_AI.triggerTrainerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
 				}
 			end
-		else
-			# Trigger just this pokemon's trainer's dialogue
-			idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(index)
-			trainer_speaking = @battle.opponent[idxTrainer]
-			@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-				PokeBattle_AI.triggerTrainerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
-			}
-		end
+		  end
 	  end
-	  
       # Faint if 0 HP
       targets.each { |b| b.pbFaint if b && b.fainted? }
       user.pbFaint if user.fainted?
