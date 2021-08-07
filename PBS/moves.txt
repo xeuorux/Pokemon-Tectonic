@@ -57,7 +57,7 @@
 54,FAKETEARS,Fake Tears,04F,0,DARK,Status,100,20,0,NearOther,0,bce,"The user feigns crying to fluster the target, harshly lowering its Sp. Def stat."
 55,FLATTER,Flatter,040,0,DARK,Status,100,15,0,NearOther,0,bce,"Flattery is used to charm the target. However, it also sharply raises the target's Sp. Atk stat."
 56,HONECLAWS,Hone Claws,029,0,DARK,Status,0,15,0,User,0,d,The user sharpens its claws to boost its Attack stat and accuracy.
-57,MEMENTO,Memento,000,0,DARK,Status,100,10,0,NearOther,0,be,"The user faints when using this move. In return, it harshly lowers the target's Attack and Sp. Atk."
+57,MEMENTO,Memento,0E2,0,DARK,Status,100,10,0,NearOther,0,be,"The user faints when using this move. In return, it harshly lowers the target's Attack and Sp. Atk."
 58,NASTYPLOT,Nasty Plot,032,0,DARK,Status,0,20,0,User,0,d,The user stimulates its brain by thinking bad thoughts. It sharply raises the user's Sp. Atk.
 59,PARTINGSHOT,Parting Shot,151,0,DARK,Status,100,20,0,NearOther,0,bcek,"With a parting threat, the user lowers the target's Attack and Sp. Atk stats. Then it switches out."
 60,QUASH,Quash,11E,0,DARK,Status,100,15,0,NearOther,0,be,The user suppresses the target and makes its move go last.
@@ -67,7 +67,7 @@
 64,TOPSYTURVY,Topsy-Turvy,141,0,DARK,Status,0,20,0,NearOther,0,bce,All stat changes affecting the target turn topsy-turvy and become the opposite of what they were.
 65,TORMENT,Torment,0B7,0,DARK,Status,100,15,0,NearOther,0,bce,"The user torments and enrages the foe, making it incapable of using the same move twice in a row."
 66,JAWLOCK,Jaw Lock,17D,80,DARK,Physical,100,10,0,NearOther,0,bef,Prevents the user and target from switching out until either of them faints or is switched out.
-67,FALSESURRENDER,False Surrender,000,80,DARK,Physical,0,10,0,NearOther,0,abef,The user fakes the target out and stabs them with its disheveled hair. The attack never misses.
+67,FALSESURRENDER,False Surrender,0A5,80,DARK,Physical,0,10,0,NearOther,0,abef,The user fakes the target out and stabs them with its disheveled hair. The attack never misses.
 68,OBSTRUCT,Obstruct,180,0,DARK,Status,0,10,0,NearOther,4,,Protects the user from all attacks. Direct contact harshly lowers the attacker's Defense stat.
 69,WICKEDBLOW,Wicked Blow,0A0,80,DARK,Physical,100,5,0,NearOther,0,abef,The user strikes with a fierce blow of Dark Mastery. It always results in a critical hit
 70,LASHOUT,Lash Out,194,75,DARK,Physical,100,5,100,NearOther,0,abef,"If the user's stats were lowered during the turn, the power of this move is doubled."
@@ -287,8 +287,8 @@
 277,NIGHTSHADE,Night Shade,06D,1,GHOST,Special,100,15,0,NearOther,0,bef,The user makes the foe see a frightening mirage. It inflicts damage matching the user's level.
 278,CONFUSERAY,Confuse Ray,013,0,GHOST,Status,100,10,0,NearOther,0,bce,The target is exposed to a sinister ray that triggers confusion.
 279,CURSE,Curse,10D,0,GHOST,Status,0,10,0,User,0,,"Curses the target if user is Ghost type. Otherwise, lowers Spe. and raises Atk. and Def."
-280,DESTINYBOND,Destiny Bond,000,0,GHOST,Status,0,5,0,User,0,,"When this move is used, if the user faints, the foe that landed the knockout hit also faints."
-281,GRUDGE,Grudge,000,0,GHOST,Status,0,5,0,User,0,,"If the user faints, the user's grudge fully depletes the PP of the foe's move that knocked it out."
+280,DESTINYBOND,Destiny Bond,0E7,0,GHOST,Status,0,5,0,User,0,,"When this move is used, if the user faints, the foe that landed the knockout hit also faints."
+281,GRUDGE,Grudge,0E6,0,GHOST,Status,0,5,0,User,0,,"If the user faints, the user's grudge fully depletes the PP of the foe's move that knocked it out."
 282,NIGHTMARE,Nightmare,10F,0,GHOST,Status,100,15,0,NearOther,0,be,A sleeping target sees a nightmare that inflicts some damage every turn.
 283,SPITE,Spite,10E,0,GHOST,Status,100,10,0,NearOther,0,bce,The user unleashes its grudge on the move last used by the target by cutting 4 PP from it.
 284,TRICKORTREAT,Trick-or-Treat,142,0,GHOST,Status,100,20,0,NearOther,0,bce,The user takes the target trick-or-treating. This adds Ghost type to the target's type.
@@ -299,7 +299,7 @@
 288,LEAFSTORM,Leaf Storm,03F,130,GRASS,Special,100,5,0,NearOther,0,bef,A storm of sharp is whipped up. The attack's recoil harshly reduces the user's Sp. Atk stat.
 289,SOLARBLADE,Solar Blade,0C4,125,GRASS,Physical,100,10,0,NearOther,0,abef,"The user gathers light energy into a blade, attacking the target on the next turn."
 290,PETALDANCE,Petal Dance,0D2,120,GRASS,Special,100,10,0,RandomNearFoe,0,abefo,The user attacks by scattering petals for two to three turns. The user then becomes confused.
-291,POWERWHIP,Power Whip,000,120,GRASS,Physical,85,10,0,NearOther,0,abef,The user violently whirls its vines or tentacles to harshly lash the target.
+291,POWERWHIP,Power Whip,53C,120,GRASS,Physical,85,10,0,NearOther,0,abef,The user violently whirls its vines or tentacles to harshly lash the target.
 292,SEEDFLARE,Seed Flare,04F,120,GRASS,Special,85,5,40,NearOther,0,bef,The user generates a shock wave from within its body. It has a 40% chance to harshly lower Sp. Def.
 293,SOLARBEAM,Solar Beam,0C4,120,GRASS,Special,100,10,0,NearOther,0,bef,"A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn."
 294,WOODHAMMER,Wood Hammer,0FB,120,GRASS,Physical,100,15,0,NearOther,0,abef,The user slams its rugged body into the target to attack. The user also takes 33% recoil.
@@ -503,7 +503,7 @@
 488,DISABLE,Disable,0B9,0,GHOST,Status,100,20,0,NearOther,0,bce,"For four turns, this move prevents the target from using the move it last used."
 489,DOUBLETEAM,Double Team,022,0,NORMAL,Status,0,15,0,User,0,d,"By moving rapidly, the user makes illusory copies of itself to raise its evasiveness."
 490,ENCORE,Encore,0BC,0,NORMAL,Status,100,5,0,NearOther,0,bce,The user compels the target to keep using only the move it last used for three turns.
-491,ENDURE,Endure,000,0,NORMAL,Status,0,10,0,User,4,,The user endures any attack with at least 1 HP. Its chance of failing rises if it is used in succession.
+491,ENDURE,Endure,0E8,0,NORMAL,Status,0,10,0,User,4,,The user endures any attack with at least 1 HP. Its chance of failing rises if it is used in succession.
 492,ENTRAINMENT,Entrainment,066,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user dances to compel the target to mimic it, making the target's Ability the same as the user's."
 493,FLASH,Flash,047,0,NORMAL,Status,100,20,0,NearOther,0,bce,The user flashes a light that cuts the target's accuracy. It can also be used to illuminate caves.
 494,FOCUSENERGY,Focus Energy,023,0,NORMAL,Status,0,30,0,User,0,d,The user takes a deep breath and focuses so that critical hits land more easily.
@@ -535,7 +535,7 @@
 520,NOBLEROAR,Noble Roar,13A,0,NORMAL,Status,0,30,0,NearOther,0,bcek,"Letting out a noble roar, the user intimidates the target and lowers its Attack and Sp. Atk."
 521,ODORSLEUTH,Odor Sleuth,0A7,0,NORMAL,Status,0,40,0,NearOther,0,bce,Enables the user to hit a Ghost type with any type of move. It also enables the user to hit an evasive foe.
 522,PAINSPLIT,Pain Split,05A,0,GHOST,Status,0,20,0,NearOther,0,be,"The user adds its HP to the target's HP, then equally shares the combined HP with the target."
-523,PERISHSONG,Perish Song,000,0,GHOST,Status,0,5,0,AllBattlers,0,k,"Any Pokémon that hears this song faints in three turns, unless it switches out of battle."
+523,PERISHSONG,Perish Song,0E5,0,GHOST,Status,0,5,0,AllBattlers,0,k,"Any Pokémon that hears this song faints in three turns, unless it switches out of battle."
 524,PLAYNICE,Play Nice,139,0,FAIRY,Status,0,20,0,NearOther,0,ce,"The user and target become friends. The target loses its will to fight, lowering its Attack stat."
 525,PROTECT,Protect,0AA,0,NORMAL,Status,0,10,0,User,4,,It enables the user to evade all attacks. Its chance of failing rises if it is used in succession.
 526,PSYCHUP,Psych Up,055,0,PSYCHIC,Status,0,10,0,NearOther,0,,The user hypnotizes itself into copying any stat change made by the target.
@@ -641,14 +641,14 @@
 624,GUARDSWAP,Guard Swap,053,0,PSYCHIC,Status,0,10,0,NearOther,0,be,The user employs its psychic power to switch changes to its Defense and Sp. Def with the target.
 625,HEALBLOCK,Heal Block,0BB,0,PSYCHIC,Status,100,15,0,AllNearFoes,0,bce,"For five turns, the foe is prevented from using any moves, Abilities, or held items that recover HP."
 626,HEALPULSE,Heal Pulse,0DF,0,PSYCHIC,Status,0,10,0,Other,0,bcm,The user emits a healing pulse which restores the target's HP by up to half of its max HP.
-627,HEALINGWISH,Healing Wish,000,0,PSYCHIC,Status,0,10,0,User,0,d,"The user faints. In return, the Pokémon taking its place will have its HP restored and status cured."
+627,HEALINGWISH,Healing Wish,0E3,0,PSYCHIC,Status,0,10,0,User,0,d,"The user faints. In return, the Pokémon taking its place will have its HP restored and status cured."
 628,HEARTSWAP,Heart Swap,054,0,PSYCHIC,Status,0,10,0,NearOther,0,be,The user employs its psychic power to switch stat changes with the target.
 629,HYPNOSIS,Hypnosis,003,0,PSYCHIC,Status,60,20,0,NearOther,0,bce,"The user employs hypnotic suggestion to make the target fall into a deep sleep."
 630,IMPRISON,Imprison,0B8,0,PSYCHIC,Status,0,10,0,User,0,d,"If the foe knows any move also known by the user, the foe is prevented from using it."
 631,INSTRUCT,Instruct,16B,0,PSYCHIC,Status,0,15,0,NearOther,0,b,The user instructs the target to use the target's last move again.
 632,KINESIS,Kinesis,047,0,PSYCHIC,Status,80,15,0,NearOther,0,bce,The user distracts the target by bending a spoon. It lowers the target's accuracy.
 633,LIGHTSCREEN,Light Screen,0A3,0,PSYCHIC,Status,0,30,0,UserSide,0,d,A wondrous wall of light is put up to suppress damage from special attacks for five turns.
-634,LUNARDANCE,Lunar Dance,000,0,PSYCHIC,Status,0,10,0,User,0,do,"The user faints. In return, the Pokémon taking its place will have its status and HP fully restored."
+634,LUNARDANCE,Lunar Dance,0E4,0,PSYCHIC,Status,0,10,0,User,0,do,"The user faints. In return, the Pokémon taking its place will have its status and HP fully restored."
 635,MAGICCOAT,Magic Coat,0B1,0,PSYCHIC,Status,0,15,0,User,4,,A barrier reflects back to the target moves like Leech Seed and moves that damage status.
 636,MAGICROOM,Magic Room,0F9,0,PSYCHIC,Status,0,10,0,BothSides,0,e,The user creates a bizarre area in which Pokémon's held items lose their effects for five turns.
 637,MEDITATE,Meditate,027,0,PSYCHIC,Status,0,40,0,User,0,d,The user meditates, raising its Attack and Sp. Atk stat.
@@ -872,7 +872,7 @@
 853,IGNITE,Ignite,00A,0,FIRE,Status,90,15,0,NearOther,0,bce,"The user sets the target on fire, inflicting a burn."
 854,TORRENTBLADE,Torrent Blade,000,90,WATER,Physical,100,15,0,NearOther,0,abefh,The user uses a jet of water like a sword and attacks by slashing. It has a high critical-hit ratio.
 855,STAREDOWN,Stare Down,535,100,DARK,Special,100,5,0,NearOther,2,bef,"The user stares harshly at the target, dealing double damage if they hurt the user this turn. Only usable on the first turn."
-856,INURE,Inure,531,000,ICE,Status,0,10,0,UserSide,0,d,"The user inures themselves to a harsh environment, shedding their type weaknesses."
+856,INURE,Inure,531,0,ICE,Status,0,10,0,UserSide,0,d,"The user inures themselves to a harsh environment, shedding their type weaknesses."
 857,BREAKDANCE,Breakdance,532,0,FIGHTING,Status,0,20,0,User,0,do,"The user breakdances, sharply boosting its weakest stat and boosting its second weakest stat."
 858,SHIVERDANCE,Shiver Dance,525,0,ICE,Status,0,20,0,User,0,do,"The user shivers rhythmically. It boosts the user's Atk, Def, and Speed stats."
 859,AMBUSH,Ambush,174,130,DARK,Physical,100,10,0,NearOther,2,abef,"The user ambushes the target. This only works the first turn the user is in battle."
