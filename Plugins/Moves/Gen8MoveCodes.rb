@@ -108,7 +108,7 @@ end
 #===============================================================================
 class PokeBattle_Move_177 < PokeBattle_Move
   def pbGetAttackStats(user,target)
-    return user.defense, user.stages[PBStats::DEFENSE]+6
+    return user.defense, user.stages[:DEFENSE]+6
   end
 end
 

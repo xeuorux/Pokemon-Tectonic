@@ -397,8 +397,8 @@
 383,TRIPLEAXEL,Triple Axel,0BF,20,ICE,Physical,90,10,0,NearOther,0,abef,A consecutive three-kick attack that becomes more powerful with each successful hit.
 384,GLACIALLANCE,Glacial Lance,000,130,ICE,Physical,100,5,0,NearOther,0,bef,The user attacks by hurling a blizzard-cloaked icicle lance at opposing Pokémon.
 #-------------------------------,,,,,,,,,,,,,
-385,EXPLOSION,Explosion,000,250,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,The user explodes to inflict damage on those around it. The user faints upon using this move.
-386,SELFDESTRUCT,Self-Destruct,000,200,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,The user blows up to inflict damage on all Pokémon in battle. The user faints upon using this move.
+385,EXPLOSION,Explosion,0E0,250,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,The user explodes to inflict damage on those around it. The user faints upon using this move.
+386,SELFDESTRUCT,Self-Destruct,0E0,200,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,The user blows up to inflict damage on all Pokémon in battle. The user faints upon using this move.
 387,GIGAIMPACT,Giga Impact,0C2,200,NORMAL,Physical,100,5,0,NearOther,0,abef,The user charges at the target using every bit of its power. The user must rest on the next turn.
 388,HYPERBEAM,Hyper Beam,0C2,200,NORMAL,Special,100,5,0,NearOther,0,bef,The foe is attacked with a powerful beam. The user must rest on the next turn to regain its energy.
 389,BOOMBURST,Boomburst,000,140,NORMAL,Special,100,10,0,AllNearOthers,0,befk,"The user attacks everything around it with the destructive power of a terrible, explosive sound."

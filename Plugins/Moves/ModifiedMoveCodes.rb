@@ -201,8 +201,10 @@ class PokeBattle_Move_01B < PokeBattle_Move
   end
 end
 
+#===============================================================================
+# User faints, even if the move does nothing else. (Explosion, Self-Destruct)
+#===============================================================================
 class PokeBattle_Move_0E0
-
 	def pbSelfKO(user)
 		return if user.fainted?
 		if user.hasActiveAbility?(:BUNKERDOWN) && user.hp==user.totalhp 
@@ -213,7 +215,7 @@ class PokeBattle_Move_0E0
 		  user.pbReduceHP(user.hp,false)
 		end
 		user.pbItemHPHealCheck
-	  end
+	end
 end
 
 #===============================================================================
@@ -361,6 +363,33 @@ class PokeBattle_Move_0EB < PokeBattle_Move
       end
     end
     return false
+  end
+  
+  def pbEffectGeneral(user)
+	# Escaped from battle
+    @battle.decision = 3 if @battle.wildBattle? && !$game_switches[95] # A boss battle
+  end
+
+  def pbSwitchOutTargetsEffect(user,targets,numHits,switchedBattlers)
+    return if @battle.wildBattle? && !$game_switches[95]
+    return if user.fainted? || numHits==0
+    roarSwitched = []
+    targets.each do |b|
+      next if b.fainted? || b.damageState.unaffected || switchedBattlers.include?(b.index)
+      newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,true)   # Random
+      next if newPkmn<0
+      @battle.pbRecallAndReplace(b.index, newPkmn, true)
+      @battle.pbDisplay(_INTL("{1} was dragged out!",b.pbThis))
+      @battle.pbClearChoice(b.index)   # Replacement Pokémon does nothing this round
+      switchedBattlers.push(b.index)
+      roarSwitched.push(b.index)
+    end
+    if roarSwitched.length>0
+      @battle.moldBreaker = false if roarSwitched.include?(user.index)
+      @battle.pbPriority(true).each do |b|
+        b.pbEffectsOnSwitchIn(true) if roarSwitched.include?(b.index)
+      end
+    end
   end
 end
 
@@ -702,6 +731,12 @@ class PokeBattle_Move_0F1 < PokeBattle_Move
   end
 end
 
+#===============================================================================
+# In wild battles, makes target flee. Fails if target is a higher level than the
+# user.
+# In trainer battles, target switches out.
+# For status moves. (Roar, Whirlwind)
+#===============================================================================
 class PokeBattle_Move_0EB < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     if target.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
@@ -722,7 +757,7 @@ class PokeBattle_Move_0EB < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    if @battle.wildBattle? && (target.level>user.level || target.boss?)
+    if @battle.wildBattle? && (target.level>user.level || target.boss)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -739,5 +774,31 @@ class PokeBattle_Move_0EB < PokeBattle_Move
       end
     end
     return false
+  end
+  
+  def pbEffectGeneral(user)
+    @battle.decision = 3 if @battle.wildBattle? && !$game_switches[95]   # Escaped from battle
+  end
+  
+  def pbSwitchOutTargetsEffect(user,targets,numHits,switchedBattlers)
+    return if @battle.wildBattle? && !$game_switches[95]
+    return if user.fainted? || numHits==0
+    roarSwitched = []
+    targets.each do |b|
+      next if b.fainted? || b.damageState.unaffected || switchedBattlers.include?(b.index)
+      newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,true)   # Random
+      next if newPkmn<0
+      @battle.pbRecallAndReplace(b.index, newPkmn, true)
+      @battle.pbDisplay(_INTL("{1} was dragged out!",b.pbThis))
+      @battle.pbClearChoice(b.index)   # Replacement Pokémon does nothing this round
+      switchedBattlers.push(b.index)
+      roarSwitched.push(b.index)
+    end
+    if roarSwitched.length>0
+      @battle.moldBreaker = false if roarSwitched.include?(user.index)
+      @battle.pbPriority(true).each do |b|
+        b.pbEffectsOnSwitchIn(true) if roarSwitched.include?(b.index)
+      end
+    end
   end
 end
