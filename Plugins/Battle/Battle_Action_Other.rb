@@ -1,5 +1,17 @@
 class PokeBattle_Battle
-	#=============================================================================
+  def pbCanMegaEvolve?(idxBattler)
+    return false if $game_switches[Settings::NO_MEGA_EVOLUTION]
+    return false if !@battlers[idxBattler].hasMega?
+    return false if wildBattle? && opposes?(idxBattler) && !@battlers[idxBattler].boss
+    return true if $DEBUG && Input.press?(Input::CTRL)
+    return false if @battlers[idxBattler].effects[PBEffects::SkyDrop]>=0
+    return false if !pbHasMegaRing?(idxBattler) && !@battlers[idxBattler].boss
+    side  = @battlers[idxBattler].idxOwnSide
+    owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
+    return @megaEvolution[side][owner]==-1
+  end
+
+  #=============================================================================
   # Mega Evolving a battler
   #=============================================================================
   def pbMegaEvolve(idxBattler)

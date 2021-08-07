@@ -598,7 +598,7 @@
 582,BANEFULBUNKER,Baneful Bunker,168,0,POISON,Status,0,10,0,User,4,,Protects the user from attacks. Also poisons any attacker that makes contact with the user.
 583,COIL,Coil,025,0,POISON,Status,0,20,0,User,0,d,The user coils up and concentrates. This raises its Attack and Defense stats as well as its accuracy.
 584,GASTROACID,Gastro Acid,068,0,POISON,Status,100,10,0,NearOther,0,bce,The user hurls up its stomach acids on the foe. The fluid negates the effect of the target's Ability.
-585,POISONGAS,Poison Gas,005,0,POISON,Status,90,40,0,AllNearFoes,0,bce,A cloud of poison gas is sprayed in the face of opposing Pokémon. It poisons those hit.
+585,POISONGAS,Poison Gas,005,0,POISON,Status,90,40,0,NearFoe,0,bce,A cloud of poison gas is sprayed in the face of opposing Pokémon. It poisons those hit.
 586,POISONPOWDER,Poison Powder,005,0,POISON,Status,75,35,0,NearOther,0,bcel,The user scatters a cloud of poisonous dust on the target. It poisons the target.
 587,PURIFY,Purify,15B,0,POISON,Status,0,20,0,NearOther,0,bce,"The user heals the target's status condition. If so, it also restores the user's own HP. "
 588,TOXIC,Toxic,006,0,POISON,Status,90,10,0,NearOther,0,bce,A move that toxifies the target. Its poison damage worsens every turn.

@@ -1,4 +1,67 @@
 class PokeBattle_Battle
+  # Check whether the currently active Pokémon (at battler index idxBattler) can
+  # switch out (and that its replacement at party index idxParty can switch in).
+  # NOTE: Messages are only shown while in the party screen when choosing a
+  #       command for the next round.
+  def pbCanSwitch?(idxBattler,idxParty=-1,partyScene=nil)
+    # Check whether party Pokémon can switch in
+    return false if !pbCanSwitchLax?(idxBattler,idxParty,partyScene)
+    # Make sure another battler isn't already choosing to switch to the party
+    # Pokémon
+    eachSameSideBattler(idxBattler) do |b|
+      next if choices[b.index][0]!=:SwitchOut || choices[b.index][1]!=idxParty
+      partyScene.pbDisplay(_INTL("{1} has already been selected.",
+         pbParty(idxBattler)[idxParty].name)) if partyScene
+      return false
+    end
+    # Check whether battler can switch out
+    battler = @battlers[idxBattler]
+    return true if battler.fainted?
+    # Ability/item effects that allow switching no matter what
+    if battler.abilityActive?
+      if BattleHandlers.triggerCertainSwitchingUserAbility(battler.ability,battler,self)
+        return true
+      end
+    end
+    if battler.itemActive?
+      if BattleHandlers.triggerCertainSwitchingUserItem(battler.item,battler,self)
+        return true
+      end
+    end
+    #return true if Settings::MORE_TYPE_EFFECTS && battler.pbHasType?(:GHOST)
+	
+	# Other certain switching effects
+    if battler.effects[PBEffects::OctolockUser]>=0
+      partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
+      return false
+    end
+    if battler.effects[PBEffects::Trapping]>0 ||
+       battler.effects[PBEffects::MeanLook]>=0 ||
+       battler.effects[PBEffects::Ingrain] ||
+       @field.effects[PBEffects::FairyLock]>0
+      partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
+      return false
+    end
+    # Trapping abilities/items
+    eachOtherSideBattler(idxBattler) do |b|
+      next if !b.abilityActive?
+      if BattleHandlers.triggerTrappingTargetAbility(b.ability,battler,b,self)
+        partyScene.pbDisplay(_INTL("{1}'s {2} prevents switching!",
+           b.pbThis,b.abilityName)) if partyScene
+        return false
+      end
+    end
+    eachOtherSideBattler(idxBattler) do |b|
+      next if !b.itemActive?
+      if BattleHandlers.triggerTrappingTargetItem(b.item,battler,b,self)
+        partyScene.pbDisplay(_INTL("{1}'s {2} prevents switching!",
+           b.pbThis,b.itemName)) if partyScene
+        return false
+      end
+    end
+    return true
+  end
+
 
   #=============================================================================
   # Switching Pokémon

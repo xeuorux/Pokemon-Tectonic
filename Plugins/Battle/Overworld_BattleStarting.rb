@@ -1,3 +1,80 @@
+# Sets up various battle parameters and applies special rules.
+def pbPrepareBattle(battle)
+  battleRules = $PokemonTemp.battleRules
+  # The size of the battle, i.e. how many Pokémon on each side (default: "single")
+  battle.setBattleMode(battleRules["size"]) if !battleRules["size"].nil?
+  # Whether the game won't black out even if the player loses (default: false)
+  battle.canLose = battleRules["canLose"] if !battleRules["canLose"].nil?
+  # Whether the player can choose to run from the battle (default: true)
+  battle.canRun = battleRules["canRun"] if !battleRules["canRun"].nil?
+  # Whether wild Pokémon always try to run from battle (default: nil)
+  battle.rules["alwaysflee"] = battleRules["roamerFlees"]
+  # Whether Pokémon gain Exp/EVs from defeating/catching a Pokémon (default: true)
+  battle.expGain = battleRules["expGain"] if !battleRules["expGain"].nil?
+  # Whether the player gains/loses money at the end of the battle (default: true)
+  battle.moneyGain = battleRules["moneyGain"] if !battleRules["moneyGain"].nil?
+  # Whether the player is able to switch when an opponent's Pokémon faints
+  battle.switchStyle = false
+  # Whether battle animations are shown
+  battle.showAnims = ($PokemonSystem.battlescene==0)
+  battle.showAnims = battleRules["battleAnims"] if !battleRules["battleAnims"].nil?
+  # Terrain
+  battle.defaultTerrain = battleRules["defaultTerrain"] if !battleRules["defaultTerrain"].nil?
+  # Weather
+  if battleRules["defaultWeather"].nil?
+    case GameData::Weather.get($game_screen.weather_type).category
+    when :Rain
+      battle.defaultWeather = :Rain
+    when :Hail
+      battle.defaultWeather = :Hail
+    when :Sandstorm
+      battle.defaultWeather = :Sandstorm
+    when :Sun
+      battle.defaultWeather = :Sun
+    end
+  else
+    battle.defaultWeather = battleRules["defaultWeather"]
+  end
+  # Environment
+  if battleRules["environment"].nil?
+    battle.environment = pbGetEnvironment
+  else
+    battle.environment = battleRules["environment"]
+  end
+  # Backdrop graphic filename
+  if !battleRules["backdrop"].nil?
+    backdrop = battleRules["backdrop"]
+  elsif $PokemonGlobal.nextBattleBack
+    backdrop = $PokemonGlobal.nextBattleBack
+  elsif $PokemonGlobal.surfing
+    backdrop = "water"   # This applies wherever you are, including in caves
+  elsif GameData::MapMetadata.exists?($game_map.map_id)
+    back = GameData::MapMetadata.get($game_map.map_id).battle_background
+    backdrop = back if back && back != ""
+  end
+  backdrop = "indoor1" if !backdrop
+  battle.backdrop = backdrop
+  # Choose a name for bases depending on environment
+  if battleRules["base"].nil?
+    environment_data = GameData::Environment.try_get(battle.environment)
+    base = environment_data.battle_base if environment_data
+  else
+    base = battleRules["base"]
+  end
+  battle.backdropBase = base if base
+  # Time of day
+  if GameData::MapMetadata.exists?($game_map.map_id) &&
+     GameData::MapMetadata.get($game_map.map_id).battle_environment == :Cave
+    battle.time = 2   # This makes Dusk Balls work properly in caves
+  elsif Settings::TIME_SHADING
+    timeNow = pbGetTimeNow
+    if PBDayNight.isNight?(timeNow);      battle.time = 2
+    elsif PBDayNight.isEvening?(timeNow); battle.time = 1
+    else;                                 battle.time = 0
+    end
+  end
+end
+
 #===============================================================================
 # Start a trainer battle
 #===============================================================================

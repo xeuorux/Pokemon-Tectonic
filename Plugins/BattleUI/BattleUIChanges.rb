@@ -372,8 +372,10 @@ class PokemonDataBox < SpriteWrapper
 		if sideSize==1   # One Pokémon on side, use the regular dara box BG
 		  bgFilename = ["Graphics/Pictures/Battle/databox_normal",
 						"Graphics/Pictures/Battle/databox_normal_foe"][@battler.index%2]
-		  bgFilename += "_boss" if @boss
-		  bgFilename += "_legend" if isLegendary(@battler.species)
+		  if @boss
+			bgFilename += "_boss" 
+			bgFilename += "_legend" if isLegendary(@battler.species)
+		  end
 		  if onPlayerSide
 			@showHP  = true
 			@showExp = true

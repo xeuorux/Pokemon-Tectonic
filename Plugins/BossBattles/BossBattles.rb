@@ -50,7 +50,7 @@ def scrubBossBattleSettings
   $game_variables[95] = 1
   $game_variables[96] = 1
   $game_variables[97] = 1
-  $game_variables[98] = 1
+  $game_variables[98] = 3 # XP mult
   $game_variables[99] = nil
   $game_variables[100] = nil
 end
