@@ -409,10 +409,11 @@ class PokemonPokedexInfo_Scene
     formname = ""
     base = Color.new(64,64,64)
     shadow = Color.new(176,176,176)
+	xLeft = 36
     for i in @available
       if i[2]==@form
         formname = i[0]
-        drawTextEx(overlay,30,54,450,1,_INTL("Matchups of {1}",@title),base,shadow)
+        drawTextEx(overlay,xLeft,54,450,1,_INTL("Matchups of {1}",@title),base,shadow)
         fSpecies = GameData::Species.get_species_form(@species,i[2])
 		
 		#type1 = GameData::Type.get(fSpecies.type1)
@@ -437,41 +438,43 @@ class PokemonPokedexInfo_Scene
 		end
 		
 		#Draw the types the pokemon is weak to
-		drawTextEx(overlay,30,80,450,1,_INTL("Weak:"),base,shadow)
+		drawTextEx(overlay,xLeft,80,450,1,_INTL("Weak:"),base,shadow)
 		if weakTypes.length == 0
-			rawTextEx(overlay,30,110,450,1,_INTL("None"),base,shadow)
+			rawTextEx(overlay,xLeft,110,450,1,_INTL("None"),base,shadow)
 		else
 			weakTypes.each_with_index do |t,index|
 				#drawTextEx(overlay,30,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
 				type_number = GameData::Type.get(t).id_number
 				typerect = Rect.new(0, type_number*32, 96, 32)
-				overlay.blt(30, 110+36*index, @typebitmap.bitmap, typerect)
+				overlay.blt(xLeft, 110+36*index, @typebitmap.bitmap, typerect)
 			end
 		end
 		
 		#Draw the types the pokemon resists
-		drawTextEx(overlay,142,80,450,1,_INTL("Resist:"),base,shadow)
+		resistOffset = 112
+		drawTextEx(overlay,xLeft+resistOffset,80,450,1,_INTL("Resist:"),base,shadow)
 		if resistentTypes.length == 0
-			drawTextEx(overlay,142,110,450,1,_INTL("None"),base,shadow)
+			drawTextEx(overlay,xLeft+resistOffset,110,450,1,_INTL("None"),base,shadow)
 		else
 			resistentTypes.each_with_index do |t,index|
 				#drawTextEx(overlay,150,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
 				type_number = GameData::Type.get(t).id_number
 				typerect = Rect.new(0, type_number*32, 96, 32)
-				overlay.blt(142 + (index >= 7 ? 100 : 0), 110+36*(index % 7), @typebitmap.bitmap, typerect)
+				overlay.blt(xLeft+resistOffset + (index >= 7 ? 100 : 0), 110+36*(index % 7), @typebitmap.bitmap, typerect)
 			end
 		end
 		
 		#Draw the types the pokemon is immune to
-		drawTextEx(overlay,354,80,450,1,_INTL("Immune:"),base,shadow)
+		immuneOffset = 324
+		drawTextEx(overlay,xLeft+immuneOffset,80,450,1,_INTL("Immune:"),base,shadow)
 		if immuneTypes.length == 0
-			drawTextEx(overlay,354,110,450,1,_INTL("None"),base,shadow)
+			drawTextEx(overlay,xLeft+immuneOffset,110,450,1,_INTL("None"),base,shadow)
 		else
 			immuneTypes.each_with_index do |t,index|
 				#drawTextEx(overlay,310,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
 				type_number = GameData::Type.get(t).id_number
 				typerect = Rect.new(0, type_number*32, 96, 32)
-				overlay.blt(354, 110+36*index, @typebitmap.bitmap, typerect)
+				overlay.blt(xLeft+immuneOffset, 110+36*index, @typebitmap.bitmap, typerect)
 			end
 		end
       end
@@ -509,10 +512,11 @@ class PokemonPokedexInfo_Scene
     base = Color.new(64,64,64)
     shadow = Color.new(176,176,176)
 	selected_move = nil
+	xLeft = 36
     for i in @available
       if i[2]==@form
         formname = i[0]
-        drawTextEx(overlay,30,54,450,1,_INTL("Level Up Moves for {1}",@title),base,shadow)
+        drawTextEx(overlay,xLeft,54,450,1,_INTL("Level Up Moves for {1}",@title),base,shadow)
         fSpecies = GameData::Species.get_species_form(@species,i[2])
         learnset = fSpecies.moves
         displayIndex = 0
@@ -533,8 +537,8 @@ class PokemonPokedexInfo_Scene
 			selected_move = move
 		  end
 		  moveName = getFormattedMoveName(move)
-		  drawTextEx(overlay,30,84+30*displayIndex,450,1,levelLabel,color,shadow)
-          drawFormattedTextEx(overlay,60,84+30*displayIndex,450,moveName,color,shadow)
+		  drawTextEx(overlay,xLeft,84+30*displayIndex,450,1,levelLabel,color,shadow)
+          drawFormattedTextEx(overlay,xLeft+30,84+30*displayIndex,450,moveName,color,shadow)
           displayIndex += 1
           break if displayIndex >= 9
         end
@@ -550,20 +554,21 @@ class PokemonPokedexInfo_Scene
     formname = ""
     base = Color.new(64,64,64)
     shadow = Color.new(176,176,176)
+	xLeft = 36
     for i in @available
       if i[2]==@form
         formname = i[0]
         fSpecies = GameData::Species.get_species_form(@species,i[2])
 		
 		coordinateY = 54
-		drawTextEx(overlay,30,coordinateY,450,1,_INTL("Pre-Evolutions of {1}",@title),base,shadow)
+		drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("Pre-Evolutions of {1}",@title),base,shadow)
 		coordinateY += 30
 		index = 0
 		
 		# Show pre-volutions
 		prevolutions = fSpecies.get_prevolutions
 		if prevolutions.length == 0
-			drawTextEx(overlay,30,coordinateY,450,1,_INTL("None"),base,shadow)
+			drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("None"),base,shadow)
 			coordinateY += 30
 		else
 			prevolutions.each do |evolution|
@@ -575,22 +580,22 @@ class PokemonPokedexInfo_Scene
 			  methodDescription = describeEvolutionMethod(method,parameter)
 			  # Draw preevolution description
 			  color = index == @evolutionIndex ? Color.new(255,100,80) : base
-			  drawTextEx(overlay,30,coordinateY,450,2,_INTL("Evolves from {1} {2}",evolutionName,methodDescription),color,shadow)
+			  drawTextEx(overlay,xLeft,coordinateY,450,2,_INTL("Evolves from {1} {2}",evolutionName,methodDescription),color,shadow)
 			  coordinateY += 60
 			  index += 1
 			end
 		end
 		
-		drawTextEx(overlay,30,coordinateY,450,1,_INTL("Evolutions of {1}",@title),base,shadow)
+		drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("Evolutions of {1}",@title),base,shadow)
 		coordinateY += 30
 		
 		# Show evolutions
 		evolutions = fSpecies.get_evolutions
 		if evolutions.length == 0
-			drawTextEx(overlay,30,coordinateY,450,1,_INTL("None"),base,shadow)
+			drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("None"),base,shadow)
 			coordinateY += 30
 		elsif @species == :EEVEE
-			drawTextEx(overlay,30,coordinateY,450,6,_INTL("Evolves into Vaporeon with a Water Stone, 
+			drawTextEx(overlay,xLeft,coordinateY,450,6,_INTL("Evolves into Vaporeon with a Water Stone, 
 			Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Sun Stone, Umbreon with a Dusk Stone, 
 			Leafeon with a Leaf Stone, Glaceon with an Ice Stone, and Sylveon with a Dawn Stone
 			"),base,shadow)
@@ -604,7 +609,7 @@ class PokemonPokedexInfo_Scene
 			  methodDescription = describeEvolutionMethod(method,parameter)
 			  # Draw evolution description
 			  color = index == @evolutionIndex ? Color.new(255,100,80) : base
-			  drawTextEx(overlay,30,coordinateY,450,2,_INTL("Evolves into {1} {2}",evolutionName,methodDescription),color,shadow)
+			  drawTextEx(overlay,xLeft,coordinateY,450,2,_INTL("Evolves into {1} {2}",evolutionName,methodDescription),color,shadow)
 			  coordinateY += 60
 			  index += 1
 			end
@@ -623,10 +628,11 @@ class PokemonPokedexInfo_Scene
     shadow = Color.new(176,176,176)
 
 	selected_move = nil
+	xLeft = 36
     for i in @available
       if i[2]==@form
         formname = i[0]
-        drawTextEx(overlay,30,54,450,1,_INTL("TM Moves for {1}",@title),base,shadow)
+        drawTextEx(overlay,xLeft,54,450,1,_INTL("Tutor Moves for {1}",@title),base,shadow)
         fSpecies = GameData::Species.get_species_form(@species,i[2])
         compatibleMoves = fSpecies.tutor_moves
         @scrollableListLength = compatibleMoves.length
@@ -639,7 +645,7 @@ class PokemonPokedexInfo_Scene
 			selected_move = move
 		  end
 		  moveName = getFormattedMoveName(move)
-          drawFormattedTextEx(overlay,30,84+30*displayIndex,450,moveName,color,shadow)
+          drawFormattedTextEx(overlay,xLeft,84+30*displayIndex,450,moveName,color,shadow)
           displayIndex += 1
           break if displayIndex >= 9
         end
@@ -657,10 +663,11 @@ class PokemonPokedexInfo_Scene
     shadow = Color.new(176,176,176)
 
 	selected_move = nil
+	xLeft = 36
     for i in @available
       if i[2]==@form
         formname = i[0]
-        drawTextEx(overlay,30,54,450,1,_INTL("Egg Moves for {1}",@title),base,shadow)
+        drawTextEx(overlay,xLeft,54,450,1,_INTL("Egg Moves for {1}",@title),base,shadow)
         fSpecies = GameData::Species.get_species_form(@species,i[2])
 		firstSpecies = fSpecies
 		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
@@ -677,7 +684,7 @@ class PokemonPokedexInfo_Scene
 			selected_move = move
 		  end
 		  moveName = getFormattedMoveName(move)
-          drawFormattedTextEx(overlay,30,84+30*displayIndex,450,moveName,color,shadow)
+          drawFormattedTextEx(overlay,xLeft,84+30*displayIndex,450,moveName,color,shadow)
           displayIndex += 1
           break if displayIndex >= 9
         end
@@ -748,6 +755,7 @@ class PokemonPokedexInfo_Scene
     base   = Color.new(88,88,80)
     shadow = Color.new(168,184,184)
 	
+	xLeft = 36
 	for i in @available
       if i[2]==@form
 		# Determine which areas the pokemon can be encountered in
@@ -755,13 +763,13 @@ class PokemonPokedexInfo_Scene
 		
 		# Draw the areas the pokemon can be encountered in
 		coordinateY = 54
-		drawTextEx(overlay,30,coordinateY,450,1,_INTL("Encounterable Areas for {1}",@title),base,shadow)
+		drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("Encounterable Areas for {1}",@title),base,shadow)
 		coordinateY += 30
 		if areas.length == 0
-			drawTextEx(overlay,30,coordinateY,450,1,"None",base,shadow)
+			drawTextEx(overlay,xLeft,coordinateY,450,1,"None",base,shadow)
 		else
 			areas.each do |area_name|
-				drawTextEx(overlay,30,coordinateY,450,1,area_name,base,shadow)
+				drawTextEx(overlay,xLeft,coordinateY,450,1,area_name,base,shadow)
 				coordinateY += 30
 			end
 		end
@@ -789,13 +797,13 @@ class PokemonPokedexInfo_Scene
 		if prevo_areas.length != 0
 			# Draw the areas the pokemon's pre-evos can be encountered in
 			coordinateY += 60
-			drawTextEx(overlay,30,coordinateY,450,1,_INTL("Encounter Areas for Pre-Evolutions",@title),base,shadow)
+			drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("Encounter Areas for Pre-Evolutions",@title),base,shadow)
 			coordinateY += 30
 			if prevo_areas.length == 0
-				drawTextEx(overlay,30,coordinateY,450,1,"None",base,shadow)
+				drawTextEx(overlay,xLeft,coordinateY,450,1,"None",base,shadow)
 			else
 				prevo_areas.each do |area_name,prevo_name|
-					drawTextEx(overlay,30,coordinateY,450,1,"#{area_name} (#{prevo_name})",base,shadow)
+					drawTextEx(overlay,xLeft,coordinateY,450,1,"#{area_name} (#{prevo_name})",base,shadow)
 					coordinateY += 30
 				end
 			end
