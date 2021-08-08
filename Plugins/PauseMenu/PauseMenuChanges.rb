@@ -143,14 +143,10 @@ class PokemonPauseMenu
 			}
 		  elsif cmdDexnav>=0 && command==cmdDexnav
 			pbPlayDecisionSE
-			$viewport4.dispose
 			pbFadeOutIn {
-			  if $currentDexSearch != nil && $currentDexSearch.is_a?(Array)
-				pbMessage(_INTL("<c2=7FE00000>You are already searching!</c2>"))
-				break
-			  end
-			  @scene = NewDexNav.new
-			  return
+				$viewport4.dispose
+				@scene = NewDexNav.new
+				return
 			}
 		  elsif cmdLevelCap>=0 && command==cmdLevelCap
 			cap = $game_variables[26]

@@ -28,6 +28,20 @@ module GameData
 end
 
 class PokemonEncounters
+	# Returns whether the given species can be encountered in the given encounter list
+	# of the current map
+	def speciesEncounterableInType(species,enc_type)
+		if !enc_type || !GameData::EncounterType.exists?(enc_type)
+		  raise ArgumentError.new(_INTL("Encounter type {1} does not exist", enc_type))
+		end
+		enc_list = @encounter_tables[enc_type]
+		return false if !enc_list || enc_list.length == 0
+		enc_list.each do |e|
+			return true if species == e[1]
+		end
+		return false
+	end
+
   # Returns whether the player's current location allows wild encounters to
   # trigger upon taking a step.
   def encounter_possible_here?
@@ -148,7 +162,6 @@ class PokemonEncounters
 	
 	# 25% chance to only roll on Pokemon not yet caught
 	uncaught_enc_list = enc_list.clone.delete_if{|e| $Trainer.owned?(e[1])}
-	echo("#{uncaught_enc_list}\n")
 	if uncaught_enc_list.length > 0 && rand(100) < 25
 		echo("Only rolling encounters for uncaught Pokemon!\n")
 		enc_list = uncaught_enc_list
@@ -193,7 +206,6 @@ class PokemonEncounters
 	
 	# 25% chance to only roll on Pokemon not yet caught
 	uncaught_enc_list = enc_list.delete_if{|e| $Trainer.owned?(e[1])}
-	echo("#{uncaught_enc_list}\n")
 	if uncaught_enc_list.length > 0 && rand(100) < 25
 		echo("Only rolling encounters for uncaught Pokemon!\n")
 		enc_list = uncaught_enc_list
