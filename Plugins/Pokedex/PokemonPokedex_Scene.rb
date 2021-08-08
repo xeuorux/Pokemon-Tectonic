@@ -415,6 +415,7 @@ class PokemonPokedex_Scene
 		@sprites["pokedex"].index    = 0
 		@sprites["pokedex"].refresh
 		@searchResults = true
+		@sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_listsearch")
 	  end
 	  @sprites["pokedex"].active = true
 	  pbRefresh
@@ -494,20 +495,52 @@ class PokemonPokedex_Scene
   end
   
   def searchByType()
-	  typeName = pbEnterText("Search types...", 0, 12)
-	  if typeName && typeName!=""
-		  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
-		  dexlist = dexlist.find_all { |item|
-			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
-			searchPokeType1 = item[6]
-			searchPokeType1Name = GameData::Type.get(searchPokeType1).real_name if searchPokeType1
-			searchPokeType2 = item[7]
-			searchPokeType2Name = GameData::Type.get(searchPokeType2).real_name if searchPokeType2
-			next searchPokeType1Name.downcase.include?(typeName.downcase) || searchPokeType2Name.downcase.include?(typeName.downcase)
-		  }
-		  return dexlist
+	  while true
+		  typeName = pbEnterText("Search types...", 0, 16)
+		  typeName.downcase!
+		  if typeName && typeName!=""
+			  typesInput = typeName.split(" ")
+			  if typesInput.length > 2
+				pbMessage(_INTL("Invalid input, too many entries."))
+				next
+			  end
+			  
+			  # Don't do the search if one of the input type names isn't an actual type
+			  invalid = false
+			  typesInput.each do |type|
+				typeIsReal = false
+				GameData::Type.each do |type_data|
+					typeIsReal = true if type_data.real_name.downcase == type
+					break if typeIsReal
+				end
+				if !typeIsReal
+					pbMessage(_INTL("Invalid input: {1}", type))
+					invalid = true
+					break
+				end
+			  end
+			  next if invalid
+			  
+			  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+			  dexlist = dexlist.find_all { |item|
+				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				searchPokeType1 = item[6]
+				searchPokeType1Name = GameData::Type.get(searchPokeType1).real_name.downcase if searchPokeType1
+				searchPokeType2 = item[7]
+				searchPokeType2Name = GameData::Type.get(searchPokeType2).real_name.downcase if searchPokeType2
+				
+				pokeTypeNames = [searchPokeType1Name,searchPokeType2Name]
+				
+				containsAllSearchedTypes = true
+				typesInput.each do |type|
+					containsAllSearchedTypes = false if !pokeTypeNames.include?(type)
+				end
+				next containsAllSearchedTypes
+			  }
+			  return dexlist
+		  end
+		  return nil
 	  end
-	  return nil
   end
   
   def searchByEvolutionMethod()
