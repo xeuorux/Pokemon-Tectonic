@@ -8,7 +8,7 @@ class NewDexNav
     @viewport2.z = 999999
     @viewport3 = Viewport.new(0, 120, Graphics.width, Graphics.height)
     @viewport3.z = 999999
-    $viewport1 = nil
+    $viewport = nil
     searchmon = 0
     @sprites = {}
     @encarray = []
@@ -260,7 +260,7 @@ class NewDexNav
     @sprites["searchIcon"].y = 65
 
 	Graphics.update
-	$viewport1 = @viewport3
+	$viewport = @viewport3
     pbFadeInAndShow(@sprites) {pbUpdate}
     $game_switches[350] = true
   end
@@ -268,14 +268,14 @@ end
 
 Events.onStartBattle+=proc {|_sender,e|
   if $game_switches[350] == true
-    $viewport1.dispose
+    $viewport.dispose
     $game_switches[350] = false
   end
 }
 
 Events.onMapChanging +=proc {|_sender,e|
   if $game_switches[350] == true
-    $viewport1.dispose
+    $viewport.dispose
     $currentDexSearch = nil
     $game_switches[350] = false
   end

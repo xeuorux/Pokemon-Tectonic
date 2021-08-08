@@ -89,3 +89,25 @@ def perfectTrainer()
 	$game_screen.start_tone_change(Tone.new(0,0,0,0), 6 * Graphics.frame_rate / 20)
 	pbTrainerDropsItem()
 end
+
+def phoneCallSE()
+	3.times do
+		pbSEPlay('Voltorb Flip level up', 80, 120)
+		pbWait(20)
+	end
+end
+
+def phoneCall(caller="Unknown",eventSwitch=nil)
+	phoneCallSE()
+	pbSetSelfSwitch(get_self().id,eventSwitch,true) if eventSwitch
+	if !pbConfirmationMessage(_INTL("{1} is calling you. Would you like to answer the phone?", caller))
+		phoneCallEnd()
+		command_end
+		return
+	end	
+end
+
+def phoneCallEnd()
+	pbSEPlay('Voltorb Flip mark', 80, 80)
+	pbWait(40)
+end
