@@ -61,9 +61,10 @@ end
 
 class Pokemon
 	attr_accessor :boss
+	
 	# @return [0, 1, 2] this Pokémon's gender (0 = male, 1 = female, 2 = genderless)
 	  def gender
-		return 2 if boss
+		return 2 if boss?
 		if !@gender
 		  gender_ratio = species_data.gender_ratio
 		  case gender_ratio
@@ -77,6 +78,10 @@ class Pokemon
 		end
 		return @gender
 	  end
+	  
+	def boss?
+		return boss
+	end
 end
 
 class PokeBattle_Battler

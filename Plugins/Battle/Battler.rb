@@ -1162,7 +1162,15 @@ class PokeBattle_Battler
       end
     end
     # Immunity because of ability (intentionally before type immunity check)
-    return false if move.pbImmunityByAbility(user,target)
+    if move.pbImmunityByAbility(user,target)
+		if !user.boss? && !target.boss
+			return false
+		else
+			name = (user.boss ? user : target).pbThis(true)
+			@battle.pbDisplay(_INTL("Except, within {1}'s aura, immunities are pierced!",name))
+			typeMod /= 2
+		end
+	end
     # Type immunity
     if move.pbDamagingMove? && Effectiveness.ineffective?(typeMod)
       PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
@@ -1178,7 +1186,7 @@ class PokeBattle_Battler
     if Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::Prankster] &&
        target.pbHasType?(:DARK) && target.opposes?(user)
       PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      @battle.pbDisplay(_INTL("It doesn't affect {1} due to its Dark typing...",target.pbThis(true)))
       return false
     end
     # Airborne-based immunity to Ground moves
@@ -1211,7 +1219,7 @@ class PokeBattle_Battler
     if move.powderMove?
       if target.pbHasType?(:GRASS) && Settings::MORE_TYPE_EFFECTS
         PBDebug.log("[Target immune] #{target.pbThis} is Grass-type and immune to powder-based moves")
-        @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+        @battle.pbDisplay(_INTL("It doesn't affect {1} because of its Grass typing...",target.pbThis(true)))
         return false
       end
       if Settings::MECHANICS_GENERATION >= 6
