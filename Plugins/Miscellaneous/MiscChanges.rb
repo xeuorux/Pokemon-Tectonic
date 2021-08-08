@@ -239,22 +239,6 @@ DebugMenuCommands.register("autopositionbacksprites", {
   }
 })
 
-def healPartyWithDelay()
-	$Trainer.heal_party
-	pbMEPlay('Pkmn healing')
-	pbWait(68)
-end
-
-def earnBadge(badgeNum)
-	badgeNames = [
-		"Loyalty"
-	]
-	name = badgeNames[badgeNum]
-	pbMessage(_INTL("\\me[Badge get]You've earned the {1} Badge.",name))
-	$Trainer.badges[badgeNum]=true
-	pbWait(120)
-end
-
 class Interpreter
 #-----------------------------------------------------------------------------
   # * Show Text

@@ -1,39 +1,37 @@
 class Pokemon
 	TRAITS =
 	[
-	"Persistent",
-	"Patient",
-	"Rogueish",
-	"Inviting",
-	"Shy",
-	"Friendly",
-	"Acquisitive",
-	"Sweettooth",
-	"Alluring",
-	"Collector",
-	"Resilient",
-	"Boastful",
-	"Partier",
-	"Studious",
-	"Ambitious",
-	"Adorable",
-	"Territorial",
-	"Speedy",
-	"Cowardly",
-	"Greedy",
-	"Eager",
-	"Selfless",
-	"Lucky",
-	"Athletic",
-	"Judgemental",
-	"Alert",
-	"Faithful",
-	"Hopeful",
-	"Romantic",
-	"Profound",
-	"Honest",
-	"Energetic",
-	"Elegant"
+		"Adorable",
+		"Adventurous",
+		"Alert",
+		"Aloof",
+		"Ambitious",
+		"Athletic",
+		"Boastful",
+		"Brooding",
+		"Collector",
+		"Courageous",
+		"Cowardly",
+		"Dramatic",
+		"Elegant",
+		"Energetic",
+		"Friendly",
+		"Hopeful",
+		"Innocent",
+		"Inviting",
+		"Judgemental",
+		"Lucky",
+		"Loyal",
+		"Partier",
+		"Patient",
+		"Persistent",
+		"Profound",
+		"Rogueish",
+		"Selfless",
+		"Shy",
+		"Stoic",
+		"Studious",
+		"Sweettooth"
 	]
 
 	def trait1
@@ -86,17 +84,23 @@ class Pokemon
     end
 	prevHappiness = @happiness
     @happiness = (@happiness + gain).clamp(0, 255)
+	
+	traitUnlocked = nil
+	ordinal = ""
 	if prevHappiness < 50 && @happiness >= 50
-		msgwindow = pbCreateMessageWindow
-		pbMessageDisplay(msgwindow,_INTL("{1} is happy enough to show off its first trait: {2}!\\wtnp[40]",name,trait1))
-		pbDisposeMessageWindow(msgwindow)
+		traitUnlocked = trait1
+		ordinal = "first"
 	elsif prevHappiness < 150 && @happiness >= 150
-		msgwindow = pbCreateMessageWindow
-		pbMessageDisplay(msgwindow,_INTL("{1} is happy enough to show off its second trait: {2}!\\wtnp[40]",name,trait2))
-		pbDisposeMessageWindow(msgwindow)
+		traitUnlocked = trait2
+		ordinal = "second"
 	elsif prevHappiness < 220 && @happiness >= 220
+		traitUnlocked = trait3
+		ordinal = "final"
+	end
+	
+	if traitUnlocked != nil
 		msgwindow = pbCreateMessageWindow
-		pbMessageDisplay(msgwindow,_INTL("{1} is happy enough to show off its final trait: {2}!\\wtnp[40]",name,trait3))
+		pbMessageDisplay(msgwindow,_INTL("\\wm{1} is happy enough to show off its {2} trait: {3}!\\me[Egg get]\\wtnp[80]\1",name,ordinal,traitUnlocked))
 		pbDisposeMessageWindow(msgwindow)
 	end
   end

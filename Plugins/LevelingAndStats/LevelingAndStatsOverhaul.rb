@@ -330,6 +330,11 @@ class PokeBattle_Battle
   end
 end
 
+def pbIncreaseLevelCap(increase)
+	return if !LEVEL_CAPS_USED
+	pbSetLevelCap($game_variables[26] + increase)
+end
+
 def pbSetLevelCap(newCap)
   return if !LEVEL_CAPS_USED
   $game_variables[26] = newCap

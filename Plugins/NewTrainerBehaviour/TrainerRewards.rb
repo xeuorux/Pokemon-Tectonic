@@ -12,10 +12,3 @@ def pbTrainerDropsItem()
   end
   pbReceiveItem(itemGiven)
 end
-
-def pbReceiveHardGymItems()
-	pbReceiveItem(:FULLRESTORE)
-	pbReceiveItem(:MAXREPEL)
-	pbReceiveItem(:ULTRABALL)
-	pbReceiveItem(:MAXREVIVE)
-end
