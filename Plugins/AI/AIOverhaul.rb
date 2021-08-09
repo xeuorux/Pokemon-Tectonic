@@ -118,15 +118,17 @@ class PokeBattle_AI
         @battle.pbAutoChooseMove(user.index)
       end
     end
-    # Randomly choose a move from the choices and register it
-    randNum = pbAIRandom(totalScore)
-    choices.each do |c|
-      randNum -= c[1]
-      next if randNum>=0
-      @battle.pbRegisterMove(idxBattler,c[0],false)
-      @battle.pbRegisterTarget(idxBattler,c[2]) if c[2]>=0
-      break
-    end
+    # if there is somehow still no choice, randomly choose a move from the choices and register it
+	if !@battle.choices[idxBattler][2]
+		randNum = pbAIRandom(totalScore)
+		choices.each do |c|
+		  randNum -= c[1]
+		  next if randNum>=0
+		  @battle.pbRegisterMove(idxBattler,c[0],false)
+		  @battle.pbRegisterTarget(idxBattler,c[2]) if c[2]>=0
+		  break
+		end
+	end
     # Log the result
     if @battle.choices[idxBattler][2]
       PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will use #{@battle.choices[idxBattler][2].name}")
