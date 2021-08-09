@@ -82,17 +82,16 @@ def healAndGiveRewardIfNotYetGiven(index)
 end
 
 def perfectTrainer()
-	$game_screen.start_tone_change(Tone.new(-255,-255,-255,0), 6 * Graphics.frame_rate / 20)
-	pbWait(8)
-	pbSetSelfSwitch(get_self.id,'D',true)
-	setFollowerGone()
-	$game_screen.start_tone_change(Tone.new(0,0,0,0), 6 * Graphics.frame_rate / 20)
+	blackFadeOutIn() {
+		pbSetSelfSwitch(get_self.id,'D',true)
+		setFollowerGone()
+	}
 	pbTrainerDropsItem()
 end
 
 def phoneCallSE()
 	3.times do
-		pbSEPlay('Voltorb Flip level up', 80, 120)
+		pbMessage("\\me[Voltorb Flip level up]Ring ring...")
 		pbWait(20)
 	end
 end
@@ -100,7 +99,7 @@ end
 def phoneCall(caller="Unknown",eventSwitch=nil)
 	phoneCallSE()
 	pbSetSelfSwitch(get_self().id,eventSwitch,true) if eventSwitch
-	if !pbConfirmationMessage(_INTL("{1} is calling you. Would you like to answer the phone?", caller))
+	if !pbConfirmationMessage(_INTL("...It's {1}. Pick up the phone?", caller))
 		phoneCallEnd()
 		command_end
 		return
@@ -108,6 +107,67 @@ def phoneCall(caller="Unknown",eventSwitch=nil)
 end
 
 def phoneCallEnd()
-	pbSEPlay('Voltorb Flip mark', 80, 80)
+	pbMessage(_INTL("\\me[Voltorb Flip mark]Click."))
 	pbWait(40)
+end
+
+def showQuestion(event)
+	event = get_character(event) if !event.is_a?(Game_Character)
+	$scene.spriteset.addUserAnimation(4,event.x,event.y)
+end
+
+def showExclamation(event)
+	event = get_character(event) if !event.is_a?(Game_Character)
+	$scene.spriteset.addUserAnimation(3,event.x,event.y)
+end
+
+def showHappy(event)
+	event = get_character(event) if !event.is_a?(Game_Character)
+	$scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,event.x,event.y)
+end
+
+def showNormal(event)
+	event = get_character(event) if !event.is_a?(Game_Character)
+	$scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,event.x,event.y)
+end
+
+def showHate(event)
+	event = get_character(event) if !event.is_a?(Game_Character)
+	$scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,event.x,event.y)
+end
+
+def showPoison(event)
+	event = get_character(event) if !event.is_a?(Game_Character)
+	$scene.spriteset.addUserAnimation(FollowerSettings::Emo_Poison,event.x,event.y)
+end
+
+def showSing(event)
+	event = get_character(event) if !event.is_a?(Game_Character)
+	$scene.spriteset.addUserAnimation(FollowerSettings::Emo_Sing,event.x,event.y)
+end
+
+def showLove(event)
+	event = get_character(event) if !event.is_a?(Game_Character)
+	$scene.spriteset.addUserAnimation(FollowerSettings::Emo_Sing,event.x,event.y)
+end
+
+def showPokeballEnter(event)
+	event = get_character(event) if !event.is_a?(Game_Character)
+	$scene.spriteset.addUserAnimation(FollowerSettings::Animation_Come_In,event.x,event.y)
+end
+
+def showPokeballExit(event)
+	event = get_character(event) if !event.is_a?(Game_Character)
+	$scene.spriteset.addUserAnimation(FollowerSettings::Animation_Come_Out,event.x,event.y)
+end
+
+def blackFadeOutIn(&block)
+	$game_screen.start_tone_change(Tone.new(-255,-255,-255,0), 8 * Graphics.frame_rate / 20)
+	pbWait(8)
+	&block.call
+	$game_screen.start_tone_change(Tone.new(0,0,0,0), 8 * Graphics.frame_rate / 20)
+end
+
+def setMySwitch(switch,value)
+	pbSetSelfSwitch(get_self.id,switch,value)
 end
