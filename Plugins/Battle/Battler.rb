@@ -1509,7 +1509,7 @@ class PokeBattle_Battler
     # NOTE: This intentionally passes self rather than user. The user is always
     #       self except if Snatched, but this message should state the original
     #       user (self) even if the move is Snatched.
-    move.pbDisplayUseMessage(self)
+    move.pbDisplayUseMessage(self,targets)
     # Snatch's message (user is the new user, self is the original user)
     if move.snatched
       @lastMoveFailed = true   # Intentionally applies to self, not user
