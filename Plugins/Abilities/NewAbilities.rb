@@ -16,7 +16,7 @@ BattleHandlers::PriorityChangeAbility.add(:FAUXLIAGE,
 
 BattleHandlers::PriorityChangeAbility.add(:LIGHTTRICK,
   proc { |ability,battler,move,pri,targets=nil|
-    next pri+1 if targets && targets.length == 1 && targets[0].status != :None
+    next pri+1 if targets && targets.length == 1 && targets[0].status != :NONE
   }
 )
 

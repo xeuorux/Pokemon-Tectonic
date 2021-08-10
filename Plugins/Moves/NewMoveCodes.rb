@@ -844,7 +844,7 @@ class PokeBattle_Move_52A < PokeBattle_Move
 	def damageReducedByBurn?; return false; end
 
 	def pbBaseDamage(baseDmg,user,target)
-		baseDmg *= 1.5 if user.status != :None
+		baseDmg *= 1.5 if user.status != :NONE
 		return baseDmg
 	end
 end
