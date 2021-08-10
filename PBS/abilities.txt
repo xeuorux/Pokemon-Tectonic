@@ -238,7 +238,7 @@
 236,DAUNTLESSSHIELD,Dauntless Shield,"Boosts Defense stat when the Pokémon enters a battle.",
 237,GORILLATACTICS,Gorilla Tactics,"Boosts Attack but only allows the use of one move.",
 238,GULPMISSILE,Gulp Missile,"Attacks with prey caught when using Surf or Dive.",
-239,HUNGERSWITCH,Hunger Switch,"It alternates between Full Belly Mode and Hangry Mode.",
+239,HUNGERSWITCH,Hunger Switch,"It alternates between an Electric-type Mode and a Dark-type Mode.",
 240,ICEFACE,Ice Face,"Prevents a physical attack. Can be restored with hail.",
 241,ICESCALES,Ice Scales,"Halves the damage from special moves.",
 242,INTREPIDSWORD,Intrepid Sword,"Boosts Attack stat when the Pokémon enters a battle.",
