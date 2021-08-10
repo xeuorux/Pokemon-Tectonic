@@ -212,8 +212,7 @@ class PokemonPokedex_Scene
 			# Otherwise, we were given the last looked index of the current dexlist
 			# Go back to the main pokedex menu, at that index
 			else
-				index = currentListIndex
-				@sprites["pokedex"].index = index
+				@sprites["pokedex"].index = ret
 				break
 			end
 		end

@@ -115,7 +115,6 @@ class PokeBattle_Battle
 			when 4    # Call
 			  break if pbCallMenu(idxBattler)
 			when 5	  # Info
-				echo("asdlkjdask")
 				pbGoAfterInfo(@battlers[idxBattler])
 			when 7 # Pokedex
 				# TODO: Open the battle info menu
