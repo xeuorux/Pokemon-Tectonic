@@ -547,7 +547,7 @@ end
 class PokeBattle_Move_0F4 < PokeBattle_Move
   def pbEffectWhenDealingDamage(user,target)
     return if user.fainted? || target.fainted?
-    return if target.damageState.unaffected || target.damageState.substitute
+    return if target.damageState.unaffected || target.damageState.substitute || target.damageState.berryWeakened
     return if !target.item || !target.item.is_berry?
     return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
     item = target.item

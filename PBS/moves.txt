@@ -561,7 +561,7 @@
 546,STOCKPILE,Stockpile,112,0,NORMAL,Status,0,20,0,User,0,d,The user charges up power and raises both its Defense and Sp. Def. The move can be used three times.
 547,SUBSTITUTE,Substitute,10C,0,NORMAL,Status,0,10,0,User,0,d,The user makes a copy of itself using some of its HP. The copy serves as the user's decoy.
 548,SUPERSONIC,Supersonic,013,0,NORMAL,Status,85,20,0,NearOther,0,bcek,The user generates odd sound waves from its body. It confuses the target.
-549,SWAGGER,Swagger,041,0,NORMAL,Status,85,15,0,NearOther,0,bce,"The user enrages and confuses the target. However, it also sharply raises the target's Attack stat."
+549,SWAGGER,Swagger,041,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user enrages and confuses the target. However, it also sharply raises the target's Attack stat."
 550,SWALLOW,Swallow,114,0,NORMAL,Status,0,10,0,User,0,d,The power stored using the move Stockpile is absorbed by the user to heal its HP.
 551,SWEETSCENT,Sweet Scent,048,0,GRASS,Status,100,20,0,AllNearFoes,0,bce,"A sweet scent that lowers the foe's evasiveness. It also lures wild Pokémon if used in grass, etc."
 552,SWORDSDANCE,Swords Dance,02E,0,STEEL,Status,0,10,0,User,0,do,A frenetic dance to uplift the fighting spirit. It sharply raises the user's Attack stat.

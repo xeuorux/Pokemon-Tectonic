@@ -71,13 +71,17 @@ BattleHandlers::DamageCalcUserAbility.add(:HEADACHE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:HUGEENERGY,
+BattleHandlers::DamageCalcUserAbility.add(:POWERUP,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5 if move.physicalMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:ENERGYUP,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] *= 1.5 if move.specialMove?
   }
 )
-
-BattleHandlers::DamageCalcUserAbility.copy(:HUGEENERGY,:PUREENERGY)
 
 BattleHandlers::DamageCalcUserAbility.add(:DEEPSTING,
   proc { |ability,user,target,move,mults,baseDmg,type|
