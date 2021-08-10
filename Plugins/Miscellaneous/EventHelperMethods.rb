@@ -15,7 +15,7 @@ def earnBadge(badgeNum)
 		"Generosity",
 		"Mercy"
 	]
-	name = badgeNames
+	name = badgeNames[badgeNum-1]
 	pbMessage(_INTL("\\me[Badge get]You've earned the {1} Badge.",name))
 	$Trainer.badges[badgeNum-1]=true
 	$game_switches[3+badgeNum]=true # "Defeated Gym X" switch
