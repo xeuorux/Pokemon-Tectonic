@@ -156,7 +156,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 # Specific message if the map name has Forest
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
   if $game_map.name.include?("Forest")
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_sing,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Sing,x,y)
     pbWait(72)
     messages = [
       "{1} seems highly interested in the trees.",
@@ -452,7 +452,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 # All dialogues with the Music Note animation
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
   if random_val == 0
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_sing,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Sing,x,y)
     pbWait(72)
     messages = [
       "{1} seems to want to play with {2}.",
@@ -680,7 +680,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 # All dialogues with the Heart animation
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
   if random_val == 4
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_love,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Love,x,y)
     pbWait(72)
     messages = [
       "{1} suddenly started walking closer to {2}.",

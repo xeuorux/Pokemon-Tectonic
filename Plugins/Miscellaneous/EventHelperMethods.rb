@@ -151,7 +151,7 @@ end
 
 def showLove(event = 0)
 	event = get_character(event) if event.is_a?(Integer)
-	$scene.spriteset.addUserAnimation(FollowerSettings::Emo_Sing,event.x,event.y)
+	$scene.spriteset.addUserAnimation(FollowerSettings::Emo_Love,event.x,event.y)
 end
 
 def showPokeballEnter(event = 0)
