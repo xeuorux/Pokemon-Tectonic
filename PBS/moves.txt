@@ -139,7 +139,7 @@
 134,DAZZLINGGLEAM,Dazzling Gleam,045,70,FAIRY,Special,100,10,30,AllNearFoes,0,bef,The user damages opposing Pokémon by emitting a powerful flash. It has a 30% chance to lower Sp. Atk
 135,DRAININGKISS,Draining Kiss,14F,50,FAIRY,Special,100,10,0,NearOther,0,abef,The user steals the target's HP with a kiss. The user's HP is restored by over half of the damage dealt.
 136,DISARMINGVOICE,Disarming Voice,0A5,40,FAIRY,Special,0,15,0,AllNearFoes,0,befk,"Letting out a charming cry, the user does emotional damage to foes. This attack never misses."
-137,FAIRYWIND,Fairy Wind,000,40,FAIRY,Special,100,30,0,NearOther,0,bef,The user stirs up a fairy wind and strikes the target with it.
+137,FAIRYWIND,Fairy Wind,400,40,FAIRY,Special,100,30,10,NearOther,0,bef,The user stirs up a fairy wind and strikes the target with it. There's a 10% chance it becomes charmed.
 138,AROMATICMIST,Aromatic Mist,138,0,FAIRY,Status,0,20,0,NearAlly,0,,The user raises the Def and Sp. Def stat of an ally Pokémon by using a mysterious aroma.
 139,BABYDOLLEYES,Baby-Doll Eyes,042,0,FAIRY,Status,100,30,0,NearOther,1,bce,"The user stares with its baby-doll eyes, which lowers the target's Attack stat. Always goes first."
 140,POUT,Pout,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user pouts, appearing cute before the target. The target's Attack is harshly lowered."
