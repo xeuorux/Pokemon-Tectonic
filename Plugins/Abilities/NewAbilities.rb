@@ -153,7 +153,7 @@ BattleHandlers::DamageCalcUserAbility.add(:MYSTICFIST,
 
 BattleHandlers::DamageCalcUserAbility.add(:BIGTHORNS,
   proc { |ability,user,target,move,mults,baseDmg,type|
-	if move.physicalMove? && user.battle.terrain == :Grassy
+	if move.physicalMove? && user.battle.field.terrain == :Grassy
 		mults[:base_damage_multiplier] *= 1.3
 	end
   }

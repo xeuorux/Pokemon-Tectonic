@@ -610,7 +610,7 @@ class PokeBattle_Move
     @battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
 	if damagingMove?
 		targets.each do |target|
-			bp = pbBaseDamage(baseDamage,user,target)
+			bp = pbBaseDamage(baseDamage,user,target).floor
 			if bp != baseDamage
 				if targets.length == 1
 					@battle.pbDisplayBrief(_INTL("It's base power was adjusted to {1}!",bp))
