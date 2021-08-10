@@ -87,6 +87,9 @@ end
 class PokeBattle_Battler
 	attr_accessor :boss
 	
+	def boss?
+		return boss
+	end
 
 	def pbInitBlank
     @name           = ""
