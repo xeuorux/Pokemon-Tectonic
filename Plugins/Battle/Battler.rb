@@ -2198,6 +2198,8 @@ class PokeBattle_Battler
     targets = pbChangeTargetByAbility(:LIGHTNINGROD,:ELECTRIC,move,user,targets,priority,nearOnly)
     # Storm Drain
     targets = pbChangeTargetByAbility(:STORMDRAIN,:WATER,move,user,targets,priority,nearOnly)
+	# Challenger
+    targets = pbChangeTargetByAbility(:CHALLENGER,:FIGHTING,move,user,targets,priority,nearOnly)
     return targets
   end
   

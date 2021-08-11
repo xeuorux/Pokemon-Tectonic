@@ -47,6 +47,12 @@ BattleHandlers::MoveImmunityTargetAbility.add(:POISONABSORB,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:CHALLENGER,
+  proc { |ability,user,target,move,type,battle|
+    next pbBattleMoveImmunityStatAbility(user,target,move,type,:FIGHTING,:ATTACK,1,battle)
+  }
+)
+
 #===============================================================================
 # StatusCureAbility handlers
 #===============================================================================
@@ -508,5 +514,14 @@ BattleHandlers::MoveBlockingAbility.add(:KILLJOY,
 BattleHandlers::MoveBlockingAbility.add(:BADINFLUENCE,
   proc { |ability,bearer,user,targets,move,battle|
     next move.healingMove?
+  }
+)
+
+#===============================================================================
+# AccuracyCalcTargetAbility handlers
+#===============================================================================
+BattleHandlers::AccuracyCalcTargetAbility.add(:CHALLENGER,
+  proc { |ability,mods,user,target,move,type|
+    mods[:base_accuracy] = 0 if type == :FIGHTING
   }
 )

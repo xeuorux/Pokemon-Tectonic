@@ -83,10 +83,15 @@ end
 
 def perfectTrainer()
 	blackFadeOutIn() {
-		pbSetSelfSwitch(get_self.id,'D',true)
+		setMySwitch('D',true)
 		setFollowerGone()
 	}
 	pbTrainerDropsItem()
+end
+
+def defeatTrainer()
+	setMySwitch('A',true)
+	setFollowerInactive()
 end
 
 def phoneCallSE()
