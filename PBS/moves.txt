@@ -28,7 +28,7 @@
 26,STICKYWEB,Sticky Web,153,0,BUG,Status,0,20,0,FoeSide,0,c,"Weaves a sticky net around the opposing team, which lowers their Speed stats upon switching in."
 27,STRINGSHOT,String Shot,04D,0,BUG,Status,100,40,0,AllNearFoes,0,bce,The foe is bound with silk blown from the user's mouth. This silk reduces the target's Speed.
 28,TAILGLOW,Tail Glow,039,0,BUG,Status,0,20,0,User,0,d,"The user stares at flashing lights to focus its mind, drastically raising its Sp. Atk stat."
-29,SKITTERSMACK,Skitter Smack,045,70,BUG,Physical,90,10,100,NearOther,0,abef,The user skitters behind the target to attack. This also lowers the target's Sp. Atk stat.
+29,SKITTERSMACK,Skitter Smack,045,70,BUG,Physical,100,10,100,NearOther,0,abef,The user skitters behind the target to attack. This also lowers the target's Sp. Atk stat.
 #-------------------------------,,,,,,,,,,,,,
 30,HYPERSPACEFURY,Hyperspace Fury,13B,100,DARK,Physical,0,5,0,NearOther,0,ef,"Unleashes a barrage of multi-arm attacks, skipping protections. The user's Defense stat falls."
 31,FOULPLAY,Foul Play,121,95,DARK,Physical,100,15,0,NearOther,0,abef,The user turns the foe's power against it. It does more damage the higher the target's Attack stat.
