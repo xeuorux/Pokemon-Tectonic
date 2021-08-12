@@ -179,3 +179,45 @@ end
 def setMySwitch(switch,value)
 	pbSetSelfSwitch(get_self.id,switch,value)
 end
+
+def changeOpacitySpaced(opacityTarget,spaces)
+	currentOpacity = self.opacity
+	opacityChange = opacityTarget - currentOpacity
+	opacityChangePerFrame = opacityChange.to_f / spaces.to_f
+	changeOpacityOverTime(opacityTarget,opacityChangePerFrame.abs)
+end
+
+def changeOpacityOverTime(opacityTarget,speed)
+	currentOpacity = self.opacity
+	
+	new_move_route = RPG::MoveRoute.new
+	new_move_route.repeat    = false
+	new_move_route.skippable = false
+	new_move_route.list.clear
+	
+	calculatedOpacity = currentOpacity
+	targetReached = false
+	while !targetReached
+		if calculatedOpacity < opacityTarget
+			calculatedOpacity += speed
+			if calculatedOpacity > opacityTarget
+				calculatedOpacity = opacityTarget
+				targetReached = true
+			end
+		else
+			calculatedOpacity -= speed
+			if calculatedOpacity < opacityTarget
+				calculatedOpacity = opacityTarget
+				targetReached = true
+			end
+		end
+		output = calculatedOpacity.round
+		output = [[output,0].max,255].min
+		new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Opacity,[output]))
+		new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Wait,[1]))
+	end
+	
+	new_move_route.list.push(RPG::MoveCommand.new(0))
+	
+	self.force_move_route(new_move_route)
+end
