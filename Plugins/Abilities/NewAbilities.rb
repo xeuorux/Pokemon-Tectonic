@@ -372,13 +372,13 @@ BattleHandlers::UserAbilityOnHit.add(:FLAMEWINGS,
     next if target.burned? || battle.pbRandom(100)>=20
     next if move.type != :FLYING
     battle.pbShowAbilitySplash(user)
-    if target.pbCanFreeze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if target.pbCanBurn?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         msg = _INTL("{1}'s {2} burned {3}! Its Attack is reduced!",
            user.pbThis,user.abilityName,target.pbThis(true))
       end
-      target.pbFreeze(user,msg)
+      target.pbBurn(msg)
     end
     battle.pbHideAbilitySplash(user)
   }
