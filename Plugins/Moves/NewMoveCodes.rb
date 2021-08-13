@@ -1332,3 +1332,13 @@ class PokeBattle_Move_53D < PokeBattle_HealingMove
 		return score
   end
 end
+
+#===============================================================================
+# Decreases the user's Sp. Atk and Sp. Atk by 1 stage each. (Geyser)
+#===============================================================================
+class PokeBattle_Move_53E < PokeBattle_StatDownMove
+  def initialize(battle,move)
+    super
+    @statDown = [:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1]
+  end
+end
