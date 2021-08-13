@@ -1,4 +1,6 @@
 class PokeBattle_Move
+  def pbAllMissed(user, targets); end
+
   #=============================================================================
   # Animate the damage dealt, including lowering the HP
   #=============================================================================

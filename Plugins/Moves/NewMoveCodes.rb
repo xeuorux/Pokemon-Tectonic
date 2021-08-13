@@ -596,7 +596,7 @@ end
 #===============================================================================
 class PokeBattle_Move_51E < PokeBattle_Move
 	#This method is called if a move fails to hit all of its targets
-	def pbCrashDamage(user)
+	def pbCrashDamage(user,targets=[])
 		@battle.pbDisplay(_INTL("{1} kept going and picked up speed!",user.pbThis))
 		if user.pbCanRaiseStatStage?(:SPEED,user,self)
 			user.pbRaiseStatStage(:SPEED,2,user)
@@ -1340,5 +1340,45 @@ class PokeBattle_Move_53E < PokeBattle_StatDownMove
   def initialize(battle,move)
     super
     @statDown = [:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1]
+  end
+end
+
+#===============================================================================
+# If the move misses, all targets are forced to switch out. (Rolling Boulder)
+#===============================================================================
+class PokeBattle_Move_53F < PokeBattle_Move
+	#This method is called if a move fails to hit all of its targets
+	def pbAllMissed(user,targets)
+		return if @battle.wildBattle?
+		return if user.fainted?
+		
+		roarSwitched = []
+		targets.each do |b|
+		  next if b.fainted? || b.damageState.substitute
+		  next if b.effects[PBEffects::Ingrain]
+		  next if b.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
+		  newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,true)   # Random
+		  next if newPkmn<0
+		  @battle.pbRecallAndReplace(b.index, newPkmn, true)
+		  @battle.pbDisplay(_INTL("{1} was dragged out!",b.pbThis))
+		  @battle.pbClearChoice(b.index)   # Replacement Pokémon does nothing this round
+		  roarSwitched.push(b.index)
+		end
+		if roarSwitched.length>0
+		  @battle.moldBreaker = false if roarSwitched.include?(user.index)
+		  @battle.pbPriority(true).each do |b|
+			b.pbEffectsOnSwitchIn(true) if roarSwitched.include?(b.index)
+		  end
+		end
+	end
+end
+
+#===============================================================================
+# User's Special Defense is used instead of user's Special Attack for this move's calculations.
+# (Aura Trick)
+#===============================================================================
+class PokeBattle_Move_540 < PokeBattle_Move
+  def pbGetAttackStats(user,target)
+    return user.spdef, user.stages[:SPECIAL_DEFENSE]+6
   end
 end

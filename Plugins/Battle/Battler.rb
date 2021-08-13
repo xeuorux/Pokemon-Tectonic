@@ -1954,6 +1954,7 @@ class PokeBattle_Battler
           pbMissMessage(move,user,b)
         end
         move.pbCrashDamage(user)
+		move.pbAllMissed(user,targets)
         user.pbItemHPHealCheck
         pbCancelMoves
         return false

@@ -203,7 +203,7 @@
 197,METEORASSAULT,Meteor Assault,0C2,170,FIGHTING,Physical,100,5,0,NearOther,0,bef,Attacks wildly with its thick leek. The user can't move on the next turn.
 198,NORETREAT,No Retreat,17F,0,FIGHTING,Status,0,5,0,User,3,d,This move raises all the user's stats but prevents the user from switching out or fleeing.
 199,COACHING,Coaching,18E,0,FIGHTING,Status,0,10,0,NearAlly,0,,"The user properly coaches its ally Pokémon, boosting their Attack and Defense stats."
-200,BODYPRESS,Body Press,177,80,FIGHTING,Physical,100,10,0,NearOther,0,abef,Attacks by slamming its body into the target. Damage increases with the user's Defense stat.
+200,BODYPRESS,Body Press,177,80,FIGHTING,Physical,100,10,0,NearOther,0,abef,Damage increases with the user's Defense stat, rather than it's Attack stat.
 128,THUNDEROUSKICK,Thunderous Kick,043,90,FIGHTING,Physical,100,10,100,NearOther,0,abef,The user kicks the target with lightning-like movement. It lowers the target's Defense.
 #-------------------------------,,,,,,,,,,,,,
 201,VCREATE,V-create,03D,180,FIRE,Physical,100,5,0,NearOther,0,abef,"With a fiery forehead, the user hurls itself at the foe. It lowers the user's Defense, Sp. Def, and Speed."
@@ -253,7 +253,7 @@
 244,BOUNCE,Bounce,0CC,85,FLYING,Physical,85,15,30,Other,0,abef,"The user bounces up high, then drops on the foe on the second turn. It has a 30% chance to paralyze."
 245,DRILLPECK,Drill Peck,000,80,FLYING,Physical,100,20,0,Other,0,abef,A corkscrewing attack with the sharp beak acting as a drill.
 246,OBLIVIONWING,Oblivion Wing,14F,80,FLYING,Special,100,10,0,Other,0,bef,The user absorbs its target's HP. The user's HP is restored by over half of the damage dealt.
-247,AIRSLASH,Air Slash,00F,75,FLYING,Special,100,15,30,Other,0,be,The user attacks with a blade of air that slices even the sky. It has a 30% chance to flinch the target.
+247,AIRSLASH,Air Slash,00F,80,FLYING,Special,100,15,30,Other,0,be,The user attacks with a blade of air that slices even the sky. It has a 30% chance to flinch the target.
 248,CHATTER,Chatter,014,65,FLYING,Special,100,20,100,Other,0,befk,The user attacks using a sound wave based on words it has learned. It also confuses the target.
 249,AERIALACE,Aerial Ace,0A5,60,FLYING,Physical,0,20,0,Other,0,abef,"The user confounds the foe with speed, then slashes. The attack lands without fail."
 250,AIRCUTTER,Air Cutter,000,60,FLYING,Special,100,25,0,AllNearFoes,0,befh,The user launches razor-like wind to slash the opposing team. Critical hits land more easily.
@@ -854,7 +854,7 @@
 835,SAPPINGWIND,Sapping Wind,00C,80,ICE,Special,100,15,30,NearOther,0,bef,"The user summons a wind that drains the target's vitality. This has a 30% chance to chill it."
 836,DREAMDANCE,Dream Dance,032,0,FAIRY,Status,0,20,0,User,0,do,"The user dances in tune with a dreamlike energy, drastically raising their Sp. Atk."
 837,TONGUETWISTER,Tongue Twister,007,78,GHOST,Physical,100,10,50,NearOther,0,abef,"The target is pestered by a giant tongue. This has a 40% chance to paralyze it."
-838,SMOGSTORM,Smog Storm,005,80,POISON,Special,100,5,50,AllNearOthers,0,bef,"The user summons a storm of poisonous gas. This has a 40% chance to poison the target."
+838,SMOGSTORM,Smog Storm,005,80,POISON,Special,100,5,30,AllNearOthers,0,bef,"The user summons a storm of poisonous gas. This has a 30% chance to poison the target."
 839,COLDSNOT,Cold Snot,005,65,ICE,Physical,100,25,30,NearOther,0,bef,"The user launches snot at the target. This has a 30% chance to poison the target."
 840,BELOVEDPULSE,Beloved Pulse,400,80,FAIRY,Special,100,15,30,AllNearOthers,0,befm,"A pulse of positive energy is shot at the area around the user. It has a 30% chance to charm every target.
 841,KALEIDOSCOPE,Kaleidoscope,400,60,FAIRY,Special,100,20,30,NearOther,0,bef,"The target is bombarded by crazy colors. There's a 30% chance it becomes charmed."
@@ -897,7 +897,7 @@
 878,SLICE,Slice,000,95,NORMAL,Physical,100,15,0,NearOther,0,abefh,The target is cut by a clean slice. Critical hits land more easily.
 879,FURY,Fury,093,60,NORMAL,Physical,100,15,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle."
 880,SPELLBIND,Spellbind,400,0,FAIRY,Status,100,10,0,NearOther,0,bce,"Charms the target by putting them under a magical spell."
-881,BIRDSTRIKE,Bird Strike,0FA,90,FLYING,Physical,100,35,0,Other,0,abef,"A reckless, charge attack from the air. It also damages the user by 25% of the damage dealt."
+881,BIRDSTRIKE,Bird Strike,0FA,90,FLYING,Physical,100,20,0,Other,0,abef,"A reckless, charge attack from the air. It also damages the user by 25% of the damage dealt."
 882,TERRAFORM,Terraform,538,70,ROCK,Special,100,15,0,AllNearOthers,0,bef,"Churns rocks throughout the area, dealing damage to all nearby Pokémon and removing any active terrain."
 883,PREDICTIONSTRIKE,Prediction Strike,0A5,90,PSYCHIC,Physical,0,15,0,Other,0,abef,"The user perfectly predicts the target's future location, then strikes. The attack lands without fail."
 884,RAKE,Rake,000,55,BUG,Physical,0,25,0,NearOther,0,abef,"The user rakes the target with sharp claws."
@@ -912,7 +912,7 @@
 893,NERVEBREAK,Nervebreak,53A,80,ICE,Special,100,15,100,NearOther,0,bef,"For the rest of the round, the target's healing is reversed."
 894,FROSTBARB,Frost Barb,043,65,ICE,Physical,100,25,20,NearOther,0,abef,"The user stabs the target with a sharp icicle. It has a 20% chance to lower Defense."
 895,ICECALIBUR,Icecalibur,043,90,ICE,Physical,100,25,10,NearOther,0,abef,"The user slashes the target with ice like a sword. It has a 10% chance to lower Defense."
-896,ARCTICBEACON,Arctic Beacon,00C,100,ICE,Special,50,10,100,NearOther,0,bef,The user overwhelmes the target with a frozen-cold ray, chilling it."
+896,ARCTICBEACON,Arctic Beacon,00C,100,ICE,Special,50,10,100,NearOther,0,bef,"The user overwhelmes the target with a frozen-cold ray, chilling it."
 897,HUNTDOWN,Hunt Down,099,1,FLYING,Physical,100,10,0,NearOther,0,abefn,"The user chases the target and strikes it from above. It does more damage the faster the user is."
 898,DIVEBOMB,Dive Bomb,0C9,125,FLYING,Physical,100,15,0,Other,0,abef,"The user soars up high, then strikes on the second turn by dive bombing the target."
 899,STRAFE,Strafe,000,90,FLYING,Physical,100,15,0,NearOther,0,abef,"The user attacks the target while dashing skillfully past it."
@@ -920,3 +920,17 @@
 901,BEAM,Beam,000,45,NORMAL,Special,100,35,0,NearOther,0,bef,"The user shoots a beam of normal energy at the target."
 902,WHITERAY,White Ray,000,75,NORMAL,Special,100,25,0,NearOther,0,bef,"The user shoots a ray of bright white energy at the target."
 903,RAPIDSTARS,Rapid Stars,0A5,90,NORMAL,Special,0,20,0,AllNearFoes,0,bef,"A barrage of star-shaped rays are shot at the opposing team, never missing."
+904,PILFER,Pilfer,539,40,DARK,Physical,100,30,0,NearOther,0,abef,The user attacks and steals the foe's held Berry or Gem. It can't steal if the user holds an item.
+905,TEASE,Tease,400,60,DARK,Special,100,25,20,NearOther,0,befk,"The user teases the target, dealing a bit of mental damage. It has a 20% chance to charm."
+906,SCAM,Scam,15D,70,DARK,Physical,100,10,0,NearOther,-1,abef,"The user scames the target of it's stat boosts, and then attacks."
+907,DARKALLURE,Dark Allure,400,90,DARK,Special,100,15,10,NearOther,0,bef,"The user strikes the target with dark energy, tempting it. It has a 10% chance to charm."
+908,COYGAZE,Coy Gaze,400,20,DARK,Special,100,20,100,NearOther,0,bef,"The user uses its eyes to charm the target, while dealing a bit of mental damage."
+909,PROFANE,Profane,400,100,DARK,Special,50,5,100,NearOther,0,bef,"The user overwhelms the target with negative energy, charming it and dealing massive damage."
+910,PIERCE,Pierce,509,55,DRAGON,Physical,100,15,0,NearOther,0,abef,"The user pierces the opponents defenses, ignoring positive stat changes and abilities."
+911,ROLLINGBOULDER,Rolling Boulder,53F,140,ROCK,Physical,50,10,0,NearOther,0,bef,"The user rolls a large boulder towards the target. If it misses, the target may be forced to switch."
+912,MINDWARP,Mind Warp,013,80,PSYCHIC,Special,100,15,20,NearOther,0,bef,The target's brain is warped by psychic energy. It has a 20% chance to confuse.
+913,WINDBLADE,Wind Blade,00F,75,FLYING,Special,100,15,30,Other,0,be,The user strikes the target with a sharp blade of air. It has a 40% chance to flinch the target.
+914,ACIDBEAM,Acid Beam,046,90,POISON,Special,100,15,10,NearOther,0,bef,The user shoots a beam of harsh acid at the target. It has a 10% chance to lower Sp. Def.
+915,VENOMORTAR,Venomortar,005,100,POISON,Physical,50,10,100,NearOther,0,bef,The user blasts a bundle of venom at the target, poisoning it.
+916,MOONIMPACT,Moon Impact,000,110,FAIRY,Physical,85,15,0,NearOther,0,abef,The user attacks the target with the power of the moon.
+917,AURATRICK,Aura Trick,540,80,FAIRY,Special,100,10,0,NearOther,0,bef,Damage increases with the user's Sp. Def stat, rather than it's Sp. Atk stat.
