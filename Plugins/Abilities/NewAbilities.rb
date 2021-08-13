@@ -464,6 +464,21 @@ BattleHandlers::AbilityOnEnemySwitchIn.add(:PROUDFIRE,
   }
 )
 
+BattleHandlers::AbilityOnEnemySwitchIn.add(:QUILLINSTINCT,
+  proc { |ability,switcher,bearer,battle|
+    PBDebug.log("[Ability triggered] #{bearer.pbThis}'s #{bearer.abilityName}")
+    battle.pbShowAbilitySplash(bearer)
+    if switcher.pbCanPoison?(bearer,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} poisoned {3}! Its Sp. Atk is reduced!",
+           bearer.pbThis,bearer.abilityName,switcher.pbThis(true))
+      end
+      switcher.pbPoison(bearer,msg)
+    end
+    battle.pbHideAbilitySplash(bearer)
+  }
+)
+
 
 #===============================================================================
 # AccuracyCalcUserAbility handlers

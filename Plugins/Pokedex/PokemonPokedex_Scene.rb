@@ -247,7 +247,7 @@ class PokemonPokedex_Scene
             break
           end
         elsif Input.trigger?(Input::USE)
-          if $Trainer.pokedex.seen?(@sprites["pokedex"].species) || !isLegendary(@sprites["pokedex"].species)
+          if $Trainer.pokedex.seen?(@sprites["pokedex"].species) || !isLegendary(@sprites["pokedex"].species) || (Input.trigger?(Input::CTRL) && $DEBUG)
             pbPlayDecisionSE
             pbDexEntry(@sprites["pokedex"].index)
           end

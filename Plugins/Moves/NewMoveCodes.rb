@@ -1278,7 +1278,7 @@ class PokeBattle_Move_53A < PokeBattle_Move
 end
 
 #===============================================================================
-# Deals 50% more damage if faster than the target. Then lower's user's speed. (Nerve Break)
+# Deals 50% more damage if faster than the target. Then lower's user's speed. (Inertia Shock)
 #===============================================================================
 class PokeBattle_Move_53B < PokeBattle_StatDownMove
   def initialize(battle,move)
@@ -1298,9 +1298,7 @@ end
 #===============================================================================
 class PokeBattle_Move_53C < PokeBattle_Move
     def pbAccuracyCheck(user,target)
-	if @battle.choices[target.index][0]!=:None &&
-       ((@battle.choices[target.index][0]!=:UseMove &&
-       @battle.choices[target.index][0]!=:Shift) || target.movedThisRound?)
+	if @battle.choices[target.index][0]!=:None && target.movedThisRound?
       return true
     end
 	return super

@@ -236,7 +236,7 @@ Land,20
     5,FLABEBE_3,9,11
     5,FLABEBE_4,9,11
 	25,RATTATA,9,11
-	25,RATTATA_1,9,11
+	25,ARATTATA,9,11
     25,MACHOP,9,11
 #-------------------------------
 [010] # Oasis Town
