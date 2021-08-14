@@ -1,9 +1,11 @@
 ﻿[YOUNGSTER,Harvey]
+Policies = PERFECTINGTUTORIAL
 Pokemon = GOLDEEN,7
 Pokemon = SEEDOT,8
 Pokemon = FENNEKIN,7
 #-------------------------------
 [LASS2,Sienna]
+Policies = PERFECTINGTUTORIAL
 Pokemon = PICHU,6
 Pokemon = PIKIPEK,6
 #-------------------------------
@@ -65,6 +67,7 @@ Pokemon = SCRAGGY,15
 Pokemon = NICKIT,15
 #-------------------------------
 [LEADER_Lambert,Lambert]
+Policies = LAMBERT
 Pokemon = PANCHAM,15
 	AbilityIndex = 0
 	Moves = ARMTHRUST,TAUNT,LEER,CIRCLETHROW
@@ -83,6 +86,7 @@ Pokemon = RIOLU,15
 	Moves = MIRRORSHOT,SHOUT,VACUUMWAVE,FEINT
 #-------------------------------
 [LEADER_Lambert,Lambert,1]
+Policies = LAMBERT
 Pokemon = ZORUA,15
 	Item = ORANBERRY
 	Moves = HARSHWORDS,COUNTER,GRASSKNOT,SWIFT
@@ -108,6 +112,7 @@ Pokemon = CROAGUNK,15
 	Moves = FLATTER,ENTOXIN,MUDTHROW,HEADBUTT
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera]
+Policies = YEZERA
 Pokemon = BUNNELBY,15
 Pokemon = SNEASEL,15
 Pokemon = JOLTIK,15

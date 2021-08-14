@@ -1,5 +1,92 @@
 module Compiler
 	module_function
+	
+  #=============================================================================
+  # Compile all data
+  #=============================================================================
+  def compile_all(mustCompile)
+    FileLineData.clear
+    if (!$INEDITOR || Settings::LANGUAGES.length < 2) && safeExists?("Data/messages.dat")
+      MessageTypes.loadMessageFile("Data/messages.dat")
+    end
+    if mustCompile
+      echoln _INTL("*** Starting full compile ***")
+      echoln ""
+      yield(_INTL("Compiling town map data"))
+      compile_town_map               # No dependencies
+      yield(_INTL("Compiling map connection data"))
+      compile_connections            # No dependencies
+      yield(_INTL("Compiling phone data"))
+      compile_phone
+      yield(_INTL("Compiling type data"))
+      compile_types                  # No dependencies
+      yield(_INTL("Compiling ability data"))
+      compile_abilities              # No dependencies
+      yield(_INTL("Compiling move data"))
+      compile_moves                  # Depends on Type
+      yield(_INTL("Compiling item data"))
+      compile_items                  # Depends on Move
+      yield(_INTL("Compiling berry plant data"))
+      compile_berry_plants           # Depends on Item
+      yield(_INTL("Compiling Pokémon data"))
+      compile_pokemon                # Depends on Move, Item, Type, Ability
+      yield(_INTL("Compiling Pokémon forms data"))
+      compile_pokemon_forms          # Depends on Species, Move, Item, Type, Ability
+      yield(_INTL("Compiling machine data"))
+      compile_move_compatibilities   # Depends on Species, Move
+      yield(_INTL("Compiling shadow moveset data"))
+      compile_shadow_movesets        # Depends on Species, Move
+      yield(_INTL("Compiling Regional Dexes"))
+      compile_regional_dexes         # Depends on Species
+      yield(_INTL("Compiling ribbon data"))
+      compile_ribbons                # No dependencies
+      yield(_INTL("Compiling encounter data"))
+      compile_encounters             # Depends on Species
+	  yield(_INTL("Compiling Trainer policy data"))
+	  compile_trainer_policies
+      yield(_INTL("Compiling Trainer type data"))
+      compile_trainer_types          # No dependencies
+      yield(_INTL("Compiling Trainer data"))
+      compile_trainers               # Depends on Species, Item, Move
+      yield(_INTL("Compiling battle Trainer data"))
+      compile_trainer_lists          # Depends on TrainerType
+      yield(_INTL("Compiling metadata"))
+      compile_metadata               # Depends on TrainerType
+      yield(_INTL("Compiling animations"))
+      compile_animations
+      yield(_INTL("Converting events"))
+      compile_trainer_events(mustCompile)
+      yield(_INTL("Saving messages"))
+      pbSetTextMessages
+      MessageTypes.saveMessages
+      echoln ""
+      echoln _INTL("*** Finished full compile ***")
+      echoln ""
+      System.reload_cache
+    end
+    pbSetWindowText(nil)
+  end
+  
+  def compile_trainer_policies(path = "PBS/policies.txt")
+	GameData::Policy::DATA.clear
+    # Read each line of policies.txt at a time and compile it into a trainer type
+    pbCompilerEachCommentedLine(path) { |line, line_no|
+	  line = pbGetCsvRecord(line, line_no, [0, "*n"])
+      policy_symbol = line[0].to_sym
+      if GameData::Policy::DATA[policy_symbol]
+        raise _INTL("Trainer policy ID '{1}' is used twice.\r\n{2}", policy_symbol, FileLineData.linereport)
+      end
+      # Construct trainer type hash
+      policy_hash = {
+        :id          => policy_symbol,
+      }
+      # Add trainer policy's data to records
+      GameData::Policy.register(policy_hash)
+    }
+    # Save all data
+    GameData::Policy.save
+    Graphics.update
+  end
 
   #=============================================================================
   # Compile Pokémon data
@@ -169,7 +256,7 @@ module Compiler
     Graphics.update
   end
   
-    #=============================================================================
+  #=============================================================================
   # Compile individual trainer data
   #=============================================================================
   def compile_trainers(path = "PBS/trainers.txt")
@@ -205,7 +292,8 @@ module Compiler
           :trainer_type => line_data[0],
           :name         => line_data[1],
           :version      => line_data[2] || 0,
-          :pokemon      => []
+          :pokemon      => [],
+		  :policies		=> []
         }
         current_pkmn = nil
         trainer_names[trainer_id] = trainer_hash[:name]
@@ -264,7 +352,7 @@ module Compiler
         end
         # Record XXX=YYY setting
         case property_name
-        when "Items", "LoseText"
+        when "Items", "LoseText","Policies"
           trainer_hash[line_schema[0]] = property_value
           trainer_lose_texts[trainer_id] = property_value if property_name == "LoseText"
         when "Pokemon"
