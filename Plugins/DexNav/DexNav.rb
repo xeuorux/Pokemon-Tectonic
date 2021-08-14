@@ -9,6 +9,18 @@ class NewDexNav
     @viewport3.z = 999999
     $viewport = nil
     @sprites = {}
+	
+	# Set up all the sprites
+	@sprites["background"] = IconSprite.new(0,0,@viewport1)
+	@sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/dexnav"))
+	
+	@sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport1)
+	pbSetSystemFont(@sprites["overlay"].bitmap)
+	@sprites["name_overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport1)
+
+    @sprites["nav_arrow"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport3)
+    @sprites["nav_arrow"].visible = false
+    @sprites["nav_arrow"].play
 
 	# Load encounter data for the given route
 	encounter_array = getEncounterData()
@@ -26,9 +38,9 @@ class NewDexNav
 		end
 		encounterTypesCompleted[encounterType] = encounterTypesCompleted[encounterType] && $Trainer.owned?(entry[1].species)
 	end
-	numEncounterTypesCompleted = 0
+	@numEncounterTypesCompleted = 0
 	encounterTypesCompleted.each do |encounter_type,isCompleted|
-		numEncounterTypesCompleted += 1 if isCompleted
+		@numEncounterTypesCompleted += 1 if isCompleted
 	end
 	
 	# Remove encounters which you haven't been seen yet
@@ -52,40 +64,16 @@ class NewDexNav
 		end
 		
 		@pkmnsprite[iconIndex].y = 30 + 64 * (iconIndex / 7)
-		@pkmnsprite[iconIndex].x = 64 * (iconIndex % 7)
+		@pkmnsprite[iconIndex].x = 30 + 64 * (iconIndex % 7)
     end
 	
-	
-	location_text = _INTL("#{$game_map.name}")
-	
 	# Determine what the status of the completion of this area is
-	status = "Incomplete"
-	status = "No species seen!" if stripped_encounter_array.length == 0
-	status = "All seen!" if stripped_encounter_array.length == encounter_array.length
-	status = "All owned!" if owned == encounter_array.length
-	completions = "#{numEncounterTypesCompleted} habitat#{numEncounterTypesCompleted == 1 ? "" : "s"} completed"
+	@status = "Incomplete"
+	@status = "No species seen!" if stripped_encounter_array.length == 0
+	@status = "All seen!" if stripped_encounter_array.length == encounter_array.length
+	@status = "All owned!" if owned == encounter_array.length
 	
-	location_text += _INTL("<al>#{status}</al>")
-	location_text += _INTL("<al>#{completions}</al>")
-    location_text += sprintf("<c2=63184210>-----------------------------------------</c2>")
-	
-	# Set up the window which shows information about the current map
-    @sprites["locwindow"]=Window_AdvancedTextPokemon.new(location_text)
-    @sprites["locwindow"].viewport=@viewport1
-    @sprites["locwindow"].x = 0
-    @sprites["locwindow"].y = 20
-    @sprites["locwindow"].width = 512
-    @sprites["locwindow"].height = 344
-    @sprites["locwindow"].setSkin("Graphics/Windowskins/frlgtextskin")
-    @sprites["locwindow"].opacity = 100
-    @sprites["locwindow"].visible = true
-	
-	# Set up the navigation arrow which highlights the player's current selection
-    @sprites["nav"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport3)
-    @sprites["nav"].x = 5
-    @sprites["nav"].y = 48
-    @sprites["nav"].visible = false
-    @sprites["nav"].play
+	drawInformation()
 	
     pbFadeInAndShow(@sprites)
 	
@@ -103,43 +91,13 @@ class NewDexNav
     @viewport2.dispose
     @viewport3.dispose
   end
-
-  def getEncounterData
-    mapid = $game_map.map_id
-    encounters = GameData::Encounter.get(mapid, $PokemonGlobal.encounter_version)
-    return nil if encounters == nil
-    encounter_tables = Marshal.load(Marshal.dump(encounters.types))
-	
-	allEncounters = []
-	encounters.types.keys.each do |encounter_type|
-		encounterList = encounter_tables[encounter_type]
-		next if !encounterList
-		encounterList.each do |encounter|
-			speciesSym = encounter[1]
-			species_data = GameData::Species.get(speciesSym)
-			allEncounters.push([encounter_type,species_data])
-		end
-	end
-	  
-    allEncounters.uniq!
-    allEncounters.compact!
-    allEncounters.sort!{|a,b| GameData::Species.get(a[1]).id_number <=> GameData::Species.get(b[1]).id_number}
-	return allEncounters
-  end
   
   def openMainDexNavScreen(encounters)
     navMon = 0
     lastMon = encounters.length - 1
 	
-    @sprites["selectedSpeciesName"] = Window_AdvancedTextPokemon.new("Unknown")
-    @sprites["selectedSpeciesName"].viewport = @viewport1
-    @sprites["selectedSpeciesName"].x=340
-    @sprites["selectedSpeciesName"].y=52
-    @sprites["selectedSpeciesName"].width=156
-    @sprites["selectedSpeciesName"].windowskin = nil
-	
 	inputActive = encounters.length != 0
-	@sprites["nav"].visible = true if inputActive
+	@sprites["nav_arrow"].visible = true if inputActive
 	
 	if encounters.length != 0
 		# Begin taking input for the main dexnav screen
@@ -150,8 +108,8 @@ class NewDexNav
 		  Input.update
 		  pbUpdateSpriteHash(@sprites)
 		  
-		  @sprites["nav"].x = 5 + 64 * (navMon % 7)
-		  @sprites["nav"].y = 48 + 64 * (navMon / 7)
+		  @sprites["nav_arrow"].x = 36 + 64 * (navMon % 7)
+		  @sprites["nav_arrow"].y = 48 + 64 * (navMon / 7)
 		  
 		  highlightedSpeciesData = encounters[navMon]
 		  highlightedSpecies = highlightedSpeciesData.species
@@ -203,13 +161,48 @@ class NewDexNav
 		  end
 		  speciesFormName =  highlightedSpeciesData.real_name 
 		  speciesFormName += "(#{highlightedSpeciesData.real_form_name})" if highlightedSpeciesData.form != 0
-		  displayedName = $Trainer.pokedex.owned?(highlightedSpecies) ? speciesFormName : "Unknown"
-		  @sprites["selectedSpeciesName"].text = _INTL("<c2=FFCADE00>{1}</c2>",displayedName)
+		  @displayedName = $Trainer.pokedex.owned?(highlightedSpecies) ? speciesFormName : "Unknown"
+		  drawInformation()
 		end
 	else
 		pbFadeOutAndHide(@sprites)
 	end
     @viewport2.dispose
+  end
+  
+  def drawInformation()
+	overlay = @sprites["overlay"].bitmap
+	overlay.clear
+	
+	base   = Color.new(88, 88, 80)
+	shadow = Color.new(168, 184, 184)
+	
+	xLeft = 40
+	textpos = [[_INTL("#{$game_map.name}"),80,-4,0,Color.new(248, 248, 248),Color.new(0, 0, 0)]]
+	yPos = 52
+	if $PokemonGlobal.caughtCountsPerMap && $PokemonGlobal.caughtCountsPerMap.has_key?($game_map.map_id)
+		caughtCount = $PokemonGlobal.caughtCountsPerMap[$game_map.map_id][0]
+		caughtCountText = _INTL("#{caughtCount} caught")
+		textpos.push([caughtCountText,xLeft+300,yPos,0,base,shadow])
+	end
+	
+	textpos.push([@status,xLeft,yPos,0,base,shadow])
+	yPos += 32
+	
+	if $PokemonGlobal.caughtCountsPerMap && $PokemonGlobal.caughtCountsPerMap.has_key?($game_map.map_id)
+		receivedCount = $PokemonGlobal.caughtCountsPerMap[$game_map.map_id][1]
+		receivedCountText = _INTL("#{receivedCount} received")
+		textpos.push([receivedCountText,xLeft+300,yPos,0,base,shadow])
+	end
+	completions = "#{@numEncounterTypesCompleted} habitat#{@numEncounterTypesCompleted == 1 ? "" : "s"} completed"
+	textpos.push([completions,xLeft,yPos,0,base,shadow])
+	yPos += 32
+	
+	if @displayedName
+		textpos.push([@displayedName,xLeft,yPos,0,base,shadow])
+	end
+	
+	pbDrawTextPositions(overlay, textpos)
   end
 
   def beginSearchWithOverlay(species_data)
@@ -243,6 +236,29 @@ class NewDexNav
 	Graphics.update
 	$viewport = @viewport3
     pbFadeInAndShow(@sprites) {pbUpdate}
+  end
+  
+  def getEncounterData
+    mapid = $game_map.map_id
+    encounters = GameData::Encounter.get(mapid, $PokemonGlobal.encounter_version)
+    return nil if encounters == nil
+    encounter_tables = Marshal.load(Marshal.dump(encounters.types))
+	
+	allEncounters = []
+	encounters.types.keys.each do |encounter_type|
+		encounterList = encounter_tables[encounter_type]
+		next if !encounterList
+		encounterList.each do |encounter|
+			speciesSym = encounter[1]
+			species_data = GameData::Species.get(speciesSym)
+			allEncounters.push([encounter_type,species_data])
+		end
+	end
+	  
+    allEncounters.uniq!
+    allEncounters.compact!
+    allEncounters.sort!{|a,b| GameData::Species.get(a[1]).id_number <=> GameData::Species.get(b[1]).id_number}
+	return allEncounters
   end
 end
 
