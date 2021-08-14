@@ -1382,3 +1382,36 @@ class PokeBattle_Move_540 < PokeBattle_Move
     return user.spdef, user.stages[:SPECIAL_DEFENSE]+6
   end
 end
+
+
+#===============================================================================
+# Target's "clothing items" are destroyed. (Up In Flames)
+#===============================================================================
+class PokeBattle_Move_541 < PokeBattle_Move
+  def pbEffectWhenDealingDamage(user,target)
+    return if target.damageState.substitute || target.damageState.berryWeakened
+    return if !target.item
+	clothingItems =
+	[:ROCKYHELMET,:CHOICEBAND,:CHOICESCARF,:CHOICESPECS,:BINDINGBAND,
+		:EXPERTBELT,:MUSCLEBAND,:WISEGLASSES,:FOCUSBAND,:FOCUSSASH,:MACHOBRACE,
+		:POWERWEIGHT,:POWERBRACER,:POWERBELT,:POWERLENS,:POWERBAND,:POWERANKLET,
+		:BLACKBELT,:BLACKGLASSES,:SILKSCARF,:REDSCARF,:BLUESCARF,:YELLOWSCARF,
+		:PINKSCARF,:GREENSCARF,:SACHET,:EJECTPACK,:HEAVYDUTYBOOTS,:UTILITYUMBRELLA,
+		:GALARICACUFF,:GALARICAWREATH
+	]
+	return if !clothingItems.include?(target.item)
+    target.pbRemoveItem
+    @battle.pbDisplay(_INTL("{1}'s {2} was incinerated!",target.pbThis,target.itemName))
+  end
+end
+
+#===============================================================================
+# Target's speed is drastically raised. (Propellant)
+#===============================================================================
+class PokeBattle_Move_542 < PokeBattle_Move
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    return if !target.pbCanRaiseStatStage?(:SPEED,user,self)
+    target.pbRaiseStatStage(:SPEED,2,user)
+  end
+end
