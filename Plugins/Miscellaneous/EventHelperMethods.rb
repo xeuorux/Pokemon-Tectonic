@@ -221,3 +221,41 @@ def changeOpacityOverTime(opacityTarget,speed)
 	
 	self.force_move_route(new_move_route)
 end
+
+def purchaseStarters(type,price=5000)
+	return unless [:GRASS,:FIRE,:WATER].include?(type)
+	typeName = GameData::Type.get(type).real_name
+	
+	pbMessage("Hello, and welcome to the Starters Store!")
+	pbMessage("I'm the #{typeName}-type starters salesperson!")
+	pbMessage("You can buy a #{typeName}-type starter Pokemon from me if you have $#{price}.")
+	if $Trainer.money < price
+		pbMessage("I'm sorry, but it seems as though you don't have that much money.")
+		return
+	end
+	pbMessage("Would you like to buy a Grass-type starter Pokemon?")
+	
+	starterArray = []
+	case type
+	when :GRASS
+		starterArray = ["None","Bulbasaur","Chikorita","Turtwig","Snivy","Chespin","Rowlet","Grookey"]
+	when :FIRE
+		starterArray = ["None","Charmander","Torchic","Chimchar","Tepig","Fennekin","Litten","Scorbunny"]
+	when :WATER
+		starterArray = ["None","Squirtle","Totodile","Piplup","Oshawott","Froakie","Popplio","Sobble"]
+	else
+		return
+	end
+	
+	result = pbShowCommands(nil,starterArray)
+	if result == 0
+		pbMessage("Understood, please come back if there's a #{typeName}-type starter Pokemon you'd like to purchase!")
+	else
+		starterChosenName = starterArray[result]
+		starterSpecies = starterChosenName.upcase.to_sym
+		pbAddPokemon(starterSpecies,10)
+		pbMessage("\PN handed over $#{price} in exchange.")
+		$Trainer.money -= price
+		pbMessage("Thank you for shopping here at the Starters Store!")
+	end
+end
