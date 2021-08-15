@@ -96,6 +96,26 @@ PokeBattle_AI::PlayerSendsOutPokemonDialogue.add(:DEBUG,
   }
 )
 
+PokeBattle_AI::PlayerSendsOutPokemonDialogue.add(:REMARKONSTARTER,
+  proc { |policy,battler,trainer_speaking,dialogue_array|
+	return dialogue_array unless [:TREECKO,:CYNDAQUIL,:KRABBY].include?(battler.species)
+	if !trainer_speaking.policyStates[:RemarkedOnStarter]
+		dialogue_array.push("Wow, I've never seen that Pokemon before!")
+		dialogue_array.push("I'm gonna check my Pokedex!")
+		case battler.species
+		when :TREECKO
+			dialogue_array.push("Treecko, huh? It's a Grass-type, and pretty fast too...")
+		when :CYNDAQUIL	
+			dialogue_array.push("Cyndaquil, it says. Fire-type--both of its abilities look scary!")
+		when :KRABBY
+			dialogue_array.push("Krabby... a Water-type... with massive attack power, wow!")
+		end
+		trainer_speaking.policyStates[:RemarkedOnStarter] = true
+	end
+    next dialogue_array
+  }
+)
+
 
 #===============================================================================
 # TrainerPokemonTookMoveDamageDialogue handlers
@@ -123,6 +143,7 @@ PokeBattle_AI::TrainerPokemonTookMoveDamageDialogue.add(:LAMBERT,
     next dialogue_array
   }
 )
+
 
 #===============================================================================
 # PlayerPokemonTookMoveDamageDialogue handlers

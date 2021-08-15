@@ -67,7 +67,6 @@ Pokemon = SCRAGGY,15
 Pokemon = NICKIT,15
 #-------------------------------
 [LEADER_Lambert,Lambert]
-Policies = LAMBERT
 Pokemon = PANCHAM,15
 	AbilityIndex = 0
 	Moves = ARMTHRUST,TAUNT,LEER,CIRCLETHROW
@@ -86,7 +85,6 @@ Pokemon = RIOLU,15
 	Moves = MIRRORSHOT,SHOUT,VACUUMWAVE,FEINT
 #-------------------------------
 [LEADER_Lambert,Lambert,1]
-Policies = LAMBERT
 Pokemon = ZORUA,15
 	Item = ORANBERRY
 	Moves = HARSHWORDS,COUNTER,GRASSKNOT,SWIFT

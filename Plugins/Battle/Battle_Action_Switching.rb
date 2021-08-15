@@ -126,7 +126,37 @@ class PokeBattle_Battle
     end
   end
   
-    # Called when a Pokémon switches in (entry effects, entry hazards).
+  # Called at the start of battle only; Neutralizing Gas activates before anything. 
+  def pbPriorityNeutralizingGas
+    eachBattler {|b|
+      next if !b || b.fainted?
+      # neutralizing gas can be blocked with gastro acid, ending the effect.
+      if b.ability == :NEUTRALIZINGGAS && !b.effects[PBEffects::GastroAcid]
+        BattleHandlers.triggerAbilityOnSwitchIn(:NEUTRALIZINGGAS,b,self)
+		return 
+      end
+    }
+  end 
+  
+  #=============================================================================
+  # Effects upon a Pokémon entering battle
+  #=============================================================================
+  # Called at the start of battle only.
+  def pbOnActiveAll
+	# Neutralizing Gas activates before anything. 
+	pbPriorityNeutralizingGas
+	# Weather-inducing abilities, Trace, Imposter, etc.
+	pbCalculatePriority(true)
+	pbPriority(true).each do |b|
+		b.pbEffectsOnSwitchIn(true)
+		battlerEnterDialogue(b)
+	end
+	pbCalculatePriority
+	# Check forms are correct
+	eachBattler { |b| b.pbCheckForm }
+  end
+  
+  # Called when a Pokémon switches in (entry effects, entry hazards).
   def pbOnActiveOne(battler)
     return false if battler.fainted?
     # Introduce Shadow Pokémon
@@ -137,6 +167,10 @@ class PokeBattle_Battle
     # Record money-doubling effect of Amulet Coin/Luck Incense
     if !battler.opposes? && [:AMULETCOIN, :LUCKINCENSE].include?(battler.item_id)
       @field.effects[PBEffects::AmuletCoin] = true
+    end
+	# Record money-doubling effect of Fortune ability
+    if !battler.opposes? && battler.hasActiveAbility?(:FORTUNE)
+      @field.effects[PBEffects::Fortune] = true
     end
     # Update battlers' participants (who will gain Exp/EVs when a battler faints)
     eachBattler { |b| b.pbUpdateParticipants }
@@ -194,7 +228,7 @@ class PokeBattle_Battle
         pbDisplay(_INTL("{1} absorbed the poison spikes!",battler.pbThis))
       elsif battler.pbCanPoison?(nil,false)
         if battler.pbOwnSide.effects[PBEffects::ToxicSpikes]==2
-          battler.pbPoison(nil,_INTL("{1} was badly poisoned by the poison spikes!",battler.pbThis),true)
+          battler.pbPoison(nil,_INTL("{1} was toxified by the poison spikes!",battler.pbThis),true)
         else
           battler.pbPoison(nil,_INTL("{1} was poisoned by the poison spikes!",battler.pbThis))
         end
@@ -209,6 +243,14 @@ class PokeBattle_Battle
         battler.pbItemStatRestoreCheck
       end
     end
+	# Proudfire and similar abilities
+    if battler.battle.turnCount > 0
+      battler.battle.eachOtherSideBattler(battler.index) do |enemy|
+		  if enemy.abilityActive?
+			BattleHandlers.triggerAbilityOnEnemySwitchIn(enemy.ability,battler,enemy,battler.battle)
+		  end
+	  end
+    end
     # Battler faints if it is knocked out because of an entry hazard above
     if battler.fainted?
       battler.pbFaint
@@ -217,6 +259,11 @@ class PokeBattle_Battle
       return false
     end
     battler.pbCheckForm
+	battlerEnterDialogue(battler)
+    return true
+  end
+  
+  def battlerEnterDialogue(battler)
 	if !wildBattle?
 		# Trigger dialogue for this pokemon
 		if pbOwnedByPlayer?(battler.index)
@@ -236,6 +283,5 @@ class PokeBattle_Battle
 			}
 		end
 	end
-    return true
   end
 end

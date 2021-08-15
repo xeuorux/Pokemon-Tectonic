@@ -52,12 +52,16 @@ module GameData
 			tr_name = $game_variables[rival[1]]
 			break
 		  end
+		  trainerTypeData = GameData::TrainerType.get(@trainer_type)
+		  
 		  # Create trainer object
 		  trainer = NPCTrainer.new(tr_name, @trainer_type)
 		  trainer.id        = $Trainer.make_foreign_ID
 		  trainer.items     = @items.clone
 		  trainer.lose_text = self.lose_text
 		  trainer.policies  = self.policies
+		  trainer.policies.concat(trainerTypeData.policies)
+		  trainer.policies.uniq!
 		  # Create each Pokémon owned by the trainer
 		  @pokemon.each do |pkmn_data|
 			species = GameData::Species.get(pkmn_data[:species]).species
@@ -81,7 +85,7 @@ module GameData
 			if pkmn_data[:nature]
 			  pkmn.nature = pkmn_data[:nature]
 			else
-			  nature = pkmn.species_data.id_number + GameData::TrainerType.get(trainer.trainer_type).id_number
+			  nature = pkmn.species_data.id_number + trainerTypeData.id_number
 			  pkmn.nature = nature % (GameData::Nature::DATA.length / 2)
 			end
 			GameData::Stat.each_main do |s|

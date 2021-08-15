@@ -87,6 +87,58 @@ module Compiler
     GameData::Policy.save
     Graphics.update
   end
+  
+  #=============================================================================
+  # Compile trainer type data
+  #=============================================================================
+  def compile_trainer_types(path = "PBS/trainertypes.txt")
+    GameData::TrainerType::DATA.clear
+    tr_type_names = []
+    # Read each line of trainertypes.txt at a time and compile it into a trainer type
+    pbCompilerEachCommentedLine(path) { |line, line_no|
+      line = pbGetCsvRecord(line, line_no, [0, "unsUSSSeUS",
+        nil, nil, nil, nil, nil, nil, nil, {
+        "Male"   => 0, "M" => 0, "0" => 0,
+        "Female" => 1, "F" => 1, "1" => 1,
+        "Mixed"  => 2, "X" => 2, "2" => 2, "" => 2
+        }, nil, nil]
+      )
+      type_number = line[0]
+      type_symbol = line[1].to_sym
+      if GameData::TrainerType::DATA[type_number]
+        raise _INTL("Trainer type ID number '{1}' is used twice.\r\n{2}", type_number, FileLineData.linereport)
+      elsif GameData::TrainerType::DATA[type_symbol]
+        raise _INTL("Trainer type ID '{1}' is used twice.\r\n{2}", type_symbol, FileLineData.linereport)
+      end
+	  policies_array = []
+	  if line[9]
+		  policies_string_array = line[9].gsub!('[','').gsub!(']','').split(',')
+		  policies_string_array.each do |policy_string|
+			policies_array.push(policy_string.to_sym)
+		  end
+	  end
+      # Construct trainer type hash
+      type_hash = {
+        :id_number   => type_number,
+        :id          => type_symbol,
+        :name        => line[2],
+        :base_money  => line[3],
+        :battle_BGM  => line[4],
+        :victory_ME  => line[5],
+        :intro_ME    => line[6],
+        :gender      => line[7],
+        :skill_level => line[8],
+        :policies    => policies_array,
+      }
+      # Add trainer type's data to records
+      GameData::TrainerType.register(type_hash)
+      tr_type_names[type_number] = type_hash[:name]
+    }
+    # Save all data
+    GameData::TrainerType.save
+    MessageTypes.setMessages(MessageTypes::TrainerTypes, tr_type_names)
+    Graphics.update
+  end
 
   #=============================================================================
   # Compile Pokémon data
