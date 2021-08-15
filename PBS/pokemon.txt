@@ -5599,7 +5599,7 @@ BattlerShadowSize = 2
 Name = Bellossom
 InternalName = BELLOSSOM
 Type1 = GRASS
-BaseStats = 75,50,95,60,110,100
+BaseStats = 75,60,95,60,90,100
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 221
@@ -11253,7 +11253,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SEALEO,Level,32
+Evolutions = SEALEO,Level,26
 #-------------------------------
 [364]
 Name = Sealeo

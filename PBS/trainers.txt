@@ -1,4 +1,7 @@
-﻿[YOUNGSTER,Harvey]
+﻿################################
+	Tutorial Island
+################################
+[YOUNGSTER,Harvey]
 Policies = PERFECTINGTUTORIAL
 Pokemon = GOLDEEN,7
 Pokemon = SEEDOT,8
@@ -114,9 +117,113 @@ Policies = YEZERA
 Pokemon = BUNNELBY,15
 Pokemon = SNEASEL,15
 Pokemon = JOLTIK,15
+################################
+	Ace Trainers
+################################
 #-------------------------------
-# PROTOTYPE
+[COOLTRAINER_M,Max]
+Pokemon = HIPPOPOTAS,15
+    AbilityIndex = 0
+    Item = SMOOTHROCK
+Pokemon = PAWNIARD,15
+    Moves = FURYCUTTER,SHOTPUT,TAUNT,SUCKERPUNCH
+    AbilityIndex = 0
+    Item = LIFEORB
+Pokemon = STARYU,15
+    Moves = WATERGUN,CONFUSERAY,RAPIDSPIN,REFLECT
+    AbilityIndex = 0
+    Item = ORANBERRY
+Pokemon = SANDSHREW,15
+    Moves = ROCKSLIDE,BULLDOZE,SANDSTORM,NIGHTSLASH
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+Pokemon = SWINUB,15
+    AbilityIndex = 1
+    Item = ORANBERRY
+Pokemon = LILEEP,15
+    Moves = ABSORB,ACID,CONFUSERAY,INGRAIN
+    AbilityIndex = 1
+    Item = ORANBERRY
 #-------------------------------
+[COOLTRAINER_F,Raven]
+Pokemon = VOLTORB,20
+    Moves = THUNDER,ROLLOUT,CHARGE,SWIFT
+    AbilityIndex = 0
+    Item = LIFEORB
+Pokemon = MURKROW,20
+    Moves = BOREALWIND,HAZE,SNARL,ROOST
+    AbilityIndex = 1
+    Item = DAMPROCK
+Pokemon = STARMIE,20
+    Moves = BRINE,RAINDANCE,PSYBEAM,REFLECT
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+Pokemon = LOMBRE,20
+    Moves = MEGADRAIN,BUBBLEBEAM,DRAINPUNCH,RAINDANCE
+    AbilityIndex = 1
+    Item = LEFTOVERS
+Pokemon = ANORITH,20
+    Moves = FURYCUTTER,SMACKDOWN,METALCLAW,WATERFALL
+    AbilityIndex = 1
+    Item = LIFEORB
+Pokemon = CHINCHOU,20
+    Moves = THUNDER,CONFUSERAY,BUBBLEBEAM,THUNDERWAVE
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+#-------------------------------
+[COOLTRAINER_M,Zeke]
+Pokemon = BELLOSSOM,25
+	Moves = GIGADRAIN,PUFFBALL,HELPINGHAND,SYNTHESIS
+	Item = HEATROCK
+	AbilityIndex = 0
+Pokemon = CARKOl,25
+	Moves = STEALTHROCK,FLAMECHARGE,ROCKSLIDE,IGNITE
+	Item = WATMELBERRY
+	AbilityIndex = 0
+Pokemon = CHARMELEON,25
+	Moves = FLAMETHROWER,DRAGONPULSE,AIRSLASH,SCORCHINGSANDS
+	Item = CHOICESCARF
+	AbilityIndex = 1
+Pokemon = VANILLISH
+	Moves = ICEBEAM,PROTECT,MOONBLAST,SIGNALBEAM
+	AbilityIndex = 1
+Pokemon = TANGROWTH,25
+	Moves = SOLARBLADE,SUMMERDAZE,KNOCKOFF,PROTECT
+	Item = OCCABERRY
+	AbilityIndex = 0
+Pokemon = TROPIUS,25
+	Moves = SUNNYDAY,THRIVINGFORCE,TOXIC,ROOST
+	AbilityIndex = 0
+	Item = SITRUSBERRY
+#-------------------------------
+[COOLTRAINER_F,Priscilla]
+Pokemon = MISMAGIUS
+	Moves = BONECHILL,MYSTICALFIRE,DAZZLINGGLEAM,POWERGEM
+	Item = CHOICESPECS
+	AbilityIndex = 0
+Pokemon = FROSLASS
+	Moves = BONECHILL,TAUNT,ICYWIND,FROSTBREATH
+	AbilityIndex = 1
+	Item = FOCUSSASH
+Pokemon = CRYOGONAL
+	Moves = AURORAVEIL,CONFUSERAY,RAPIDSPIN,MAGICCOAT
+	AbilityIndex = 0
+	Item = CHOPLEBERRY
+Pokemon = PILOSWINE
+	Moves = EARTHQUAKE,ICEFANG,ROCKSLIDE,SUPERPOWER
+	Abilities = 1
+	Item = LIFEORB
+Pokemon = SEALEO
+	Moves = HAIL,BRINE,TOXIC,WHIRLPOOL
+	Item = LEFTOVERS
+	AbilityIndex = 0
+Pokemon = WAILORD
+	Moves = NOBLEROAR,HEAVYSLAM,REST,BOUNCE
+	AbilityIndex = 0
+	Item = LEFTOVERS
+################################
+	Prototype
+################################
 [LASS2,Angelica]
 LoseText = "Aww..."
 Pokemon = GASTLY,6
@@ -169,58 +276,6 @@ Pokemon = DODUO,10
     AbilityIndex = 0
 Pokemon = ESPURR,11
     AbilityIndex = 0
-#-------------------------------
-[COOLTRAINER_M,Max]
-LoseText = "Go ahead, the reward is yours!"
-Pokemon = HIPPOPOTAS,15
-    AbilityIndex = 0
-    Item = SMOOTHROCK
-Pokemon = PAWNIARD,15
-    Moves = FURYCUTTER,SHOTPUT,TAUNT,SUCKERPUNCH
-    AbilityIndex = 0
-    Item = LIFEORB
-Pokemon = STARYU,15
-    Moves = WATERGUN,CONFUSERAY,RAPIDSPIN,REFLECT
-    AbilityIndex = 0
-    Item = ORANBERRY
-Pokemon = SANDSHREW,15
-    Moves = ROCKSLIDE,BULLDOZE,SANDSTORM,NIGHTSLASH
-    AbilityIndex = 0
-    Item = SITRUSBERRY
-Pokemon = SWINUB,15
-    AbilityIndex = 1
-    Item = ORANBERRY
-Pokemon = LILEEP,15
-    Moves = ABSORB,ACID,CONFUSERAY,INGRAIN
-    AbilityIndex = 1
-    Item = ORANBERRY
-#-------------------------------
-[COOLTRAINER_F,Raven]
-LoseText = "Go ahead, the reward is yours!"
-Pokemon = VOLTORB,21
-    Moves = THUNDER,ROLLOUT,CHARGE,SWIFT
-    AbilityIndex = 0
-    Item = LIFEORB
-Pokemon = MURKROW,21
-    Moves = BOREALWIND,HAZE,SNARL,ROOST
-    AbilityIndex = 1
-    Item = DAMPROCK
-Pokemon = STARMIE,21
-    Moves = BRINE,RAINDANCE,PSYBEAM,REFLECT
-    AbilityIndex = 1
-    Item = SITRUSBERRY
-Pokemon = LOMBRE,21
-    Moves = MEGADRAIN,BUBBLEBEAM,DRAINPUNCH,RAINDANCE
-    AbilityIndex = 1
-    Item = LEFTOVERS
-Pokemon = ANORITH,21
-    Moves = FURYCUTTER,SMACKDOWN,METALCLAW,WATERFALL
-    AbilityIndex = 1
-    Item = LIFEORB
-Pokemon = CHINCHOU,21
-    Moves = THUNDER,CONFUSERAY,BUBBLEBEAM,THUNDERWAVE
-    AbilityIndex = 0
-    Item = SITRUSBERRY
 #-------------------------------
 [PICNICKER,Cris]
 LoseText = "I wonder what's inside his pokéball?"
