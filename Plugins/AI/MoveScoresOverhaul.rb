@@ -3019,6 +3019,7 @@ def getParalysisMoveScore(score,user,target,skill=100,status=false,twave=false)
     elsif skill>=PBTrainerAI.mediumSkill
 	    score = 0 if status
     end
+	return score
 end
 
 def getFreezeMoveScore(score,user,target,skill=100,status=false)

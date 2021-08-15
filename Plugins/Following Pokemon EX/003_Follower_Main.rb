@@ -226,7 +226,7 @@ class DependentEvents
       events = $PokemonGlobal.dependentEvents
       for i in 0...events.length
         next if !events[i] && events[i][8][/FollowerPkmn/i]
-        anim = getConst(FollowerSettings,(ret == true)? :Animation_Come_Out : :Animation_Come_In)
+        anim = getConst(FollowerSettings,ret ? :Animation_Come_Out : :Animation_Come_In)
         $scene.spriteset.addUserAnimation(anim,@realEvents[i].x,@realEvents[i].y)
         pbWait(Graphics.frame_rate/10)
       end

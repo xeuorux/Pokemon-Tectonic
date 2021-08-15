@@ -596,7 +596,7 @@ end
 #===============================================================================
 class PokeBattle_Move_51E < PokeBattle_Move
 	#This method is called if a move fails to hit all of its targets
-	def pbCrashDamage(user)
+	def pbCrashDamage(user,targets=[])
 		@battle.pbDisplay(_INTL("{1} kept going and picked up speed!",user.pbThis))
 		if user.pbCanRaiseStatStage?(:SPEED,user,self)
 			user.pbRaiseStatStage(:SPEED,2,user)
@@ -1278,7 +1278,7 @@ class PokeBattle_Move_53A < PokeBattle_Move
 end
 
 #===============================================================================
-# Deals 50% more damage if faster than the target. Then lower's user's speed. (Nerve Break)
+# Deals 50% more damage if faster than the target. Then lower's user's speed. (Inertia Shock)
 #===============================================================================
 class PokeBattle_Move_53B < PokeBattle_StatDownMove
   def initialize(battle,move)
@@ -1298,9 +1298,7 @@ end
 #===============================================================================
 class PokeBattle_Move_53C < PokeBattle_Move
     def pbAccuracyCheck(user,target)
-	if @battle.choices[target.index][0]!=:None &&
-       ((@battle.choices[target.index][0]!=:UseMove &&
-       @battle.choices[target.index][0]!=:Shift) || target.movedThisRound?)
+	if @battle.choices[target.index][0]!=:None && target.movedThisRound?
       return true
     end
 	return super
@@ -1332,5 +1330,88 @@ class PokeBattle_Move_53D < PokeBattle_HealingMove
 		score += 20 if user.hp < user.totalhp
 		score += 20 if user.hp < user.totalhp/2.0
 		return score
+  end
+end
+
+#===============================================================================
+# Decreases the user's Sp. Atk and Sp. Atk by 1 stage each. (Geyser)
+#===============================================================================
+class PokeBattle_Move_53E < PokeBattle_StatDownMove
+  def initialize(battle,move)
+    super
+    @statDown = [:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1]
+  end
+end
+
+#===============================================================================
+# If the move misses, all targets are forced to switch out. (Rolling Boulder)
+#===============================================================================
+class PokeBattle_Move_53F < PokeBattle_Move
+	#This method is called if a move fails to hit all of its targets
+	def pbAllMissed(user,targets)
+		return if @battle.wildBattle?
+		return if user.fainted?
+		
+		roarSwitched = []
+		targets.each do |b|
+		  next if b.fainted? || b.damageState.substitute
+		  next if b.effects[PBEffects::Ingrain]
+		  next if b.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
+		  newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,true)   # Random
+		  next if newPkmn<0
+		  @battle.pbRecallAndReplace(b.index, newPkmn, true)
+		  @battle.pbDisplay(_INTL("{1} was dragged out!",b.pbThis))
+		  @battle.pbClearChoice(b.index)   # Replacement Pokémon does nothing this round
+		  roarSwitched.push(b.index)
+		end
+		if roarSwitched.length>0
+		  @battle.moldBreaker = false if roarSwitched.include?(user.index)
+		  @battle.pbPriority(true).each do |b|
+			b.pbEffectsOnSwitchIn(true) if roarSwitched.include?(b.index)
+		  end
+		end
+	end
+end
+
+#===============================================================================
+# User's Special Defense is used instead of user's Special Attack for this move's calculations.
+# (Aura Trick)
+#===============================================================================
+class PokeBattle_Move_540 < PokeBattle_Move
+  def pbGetAttackStats(user,target)
+    return user.spdef, user.stages[:SPECIAL_DEFENSE]+6
+  end
+end
+
+
+#===============================================================================
+# Target's "clothing items" are destroyed. (Up In Flames)
+#===============================================================================
+class PokeBattle_Move_541 < PokeBattle_Move
+  def pbEffectWhenDealingDamage(user,target)
+    return if target.damageState.substitute || target.damageState.berryWeakened
+    return if !target.item
+	clothingItems =
+	[:ROCKYHELMET,:CHOICEBAND,:CHOICESCARF,:CHOICESPECS,:BINDINGBAND,
+		:EXPERTBELT,:MUSCLEBAND,:WISEGLASSES,:FOCUSBAND,:FOCUSSASH,:MACHOBRACE,
+		:POWERWEIGHT,:POWERBRACER,:POWERBELT,:POWERLENS,:POWERBAND,:POWERANKLET,
+		:BLACKBELT,:BLACKGLASSES,:SILKSCARF,:REDSCARF,:BLUESCARF,:YELLOWSCARF,
+		:PINKSCARF,:GREENSCARF,:SACHET,:EJECTPACK,:HEAVYDUTYBOOTS,:UTILITYUMBRELLA,
+		:GALARICACUFF,:GALARICAWREATH
+	]
+	return if !clothingItems.include?(target.item)
+    target.pbRemoveItem
+    @battle.pbDisplay(_INTL("{1}'s {2} was incinerated!",target.pbThis,target.itemName))
+  end
+end
+
+#===============================================================================
+# Target's speed is drastically raised. (Propellant)
+#===============================================================================
+class PokeBattle_Move_542 < PokeBattle_Move
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    return if !target.pbCanRaiseStatStage?(:SPEED,user,self)
+    target.pbRaiseStatStage(:SPEED,2,user)
   end
 end

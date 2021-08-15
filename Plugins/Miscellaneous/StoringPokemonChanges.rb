@@ -40,6 +40,13 @@ def pbNicknameAndStore(pkmn)
 	pbMessage(_INTL("The {1} is holding an {2}!",pkmn.name,pkmn.item.name))
   end
   
+  # Increase the caught count for the global metadata
+  if $PokemonGlobal.caughtCountsPerMap.has_key?($game_map.map_id)
+	$PokemonGlobal.caughtCountsPerMap[$game_map.map_id][1] += 1
+  else
+	$PokemonGlobal.caughtCountsPerMap[$game_map.map_id] = [0,1]
+  end
+  
   pbStorePokemon(pkmn)
 end
 
@@ -93,6 +100,13 @@ module PokeBattle_BattleCommon
       pbPlayer.pokedex.set_shadow_pokemon_owned(pkmn.species) if pkmn.shadowPokemon?
       # Store caught Pokémon
       pbStorePokemon(pkmn)
+	  
+	  # Increase the caught count for the global metadata
+	  if $PokemonGlobal.caughtCountsPerMap.has_key?($game_map.map_id)
+		$PokemonGlobal.caughtCountsPerMap[$game_map.map_id][0] += 1
+	  else
+		$PokemonGlobal.caughtCountsPerMap[$game_map.map_id] = [1,0]
+	  end	  
     end
     @caughtPokemon.clear
   end

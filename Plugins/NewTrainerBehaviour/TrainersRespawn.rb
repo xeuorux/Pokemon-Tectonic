@@ -30,8 +30,7 @@ Events.onMapChange += proc { |_sender,e|
   $game_variables[76][$game_map.map_id] = false
   echo("Resetting events on this map\n")
   for event in $game_map.events.values
-    if event.name.downcase.include?("trainer") || ($game_switches[78] && event.name.downcase.include?("berryplant")) ||
-		event.name.downcase.include?("reset")
+    if event.name.downcase.include?("reset") || ($game_switches[78] && event.name.downcase.include?("berryplant"))
       $game_self_switches[[$game_map.map_id,event.id,"A"]] = false
     end
   end

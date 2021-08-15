@@ -635,7 +635,21 @@ class DependentEvents
       end
       if follower.map.map_id == mapTile[0]
         # Follower is on same map as leader
-        follower.moveto(leader.x,leader.y)
+		newPosX = leader.x
+		newPosY = leader.y
+		
+		# Try to find a nearby spot to place the pokemon
+		nearbySpots = [[-1,0],[0,1],[0,1],[0,-1]]
+		nearbySpots.each do |spot|
+			passable = $MapFactory.isPassableStrict?(leader.map.map_id,newPosX+spot[0],newPosY+spot[1],follower)
+			if passable
+				newPosX += spot[0]
+				newPosY += spot[1]
+				break
+			end
+		end
+		
+        follower.moveto(newPosX,newPosY)
         pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
       else
         # Follower will move to different map

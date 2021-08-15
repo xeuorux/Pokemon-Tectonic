@@ -7,15 +7,22 @@ class NPCTrainer < Trainer
 		@items     = []
 		@lose_text = nil
 		@policies  = []
-		#@policies.push(:Debug)
 		@policyStates = {}
-		addPoliciesBasedOnTrainerClass(trainer_type)
 	end
+end
+
+module GameData
+	class Policy
+		attr_reader :id
+		
+		DATA = {}
+		DATA_FILENAME = "policies.dat"
+		
+		extend ClassMethods
+		include InstanceMethods
 	
-	def addPoliciesBasedOnTrainerClass(trainer_type)
-		case trainer_type
-			when :LEADER_Lambert
-				@policies.push(:Lambert)
+		 def initialize(hash)
+		  @id               = hash[:id]
 		end
 	end
 end

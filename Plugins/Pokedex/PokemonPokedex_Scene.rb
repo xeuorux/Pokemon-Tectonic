@@ -247,7 +247,7 @@ class PokemonPokedex_Scene
             break
           end
         elsif Input.trigger?(Input::USE)
-          if $Trainer.pokedex.seen?(@sprites["pokedex"].species) || !isLegendary(@sprites["pokedex"].species)
+          if $Trainer.pokedex.seen?(@sprites["pokedex"].species) || !isLegendary(@sprites["pokedex"].species) || (Input.trigger?(Input::CTRL) && $DEBUG)
             pbPlayDecisionSE
             pbDexEntry(@sprites["pokedex"].index)
           end
@@ -421,13 +421,16 @@ class PokemonPokedex_Scene
   end
   
   def searchBySpeciesName()
-	  name = pbEnterText("Search species...", 0, 12)
-	  if name && name!=""
+	  nameInput = pbEnterText("Search species...", 0, 12)
+	  if nameInput && nameInput!=""
+		  reversed = nameInput[0] == '-'
+		  nameInput = nameInput[1..-1] if reversed
 		  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
 		  dexlist = dexlist.find_all { |item|
 			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
 			searchPokeName = item[1]
-			next searchPokeName.downcase.include?(name.downcase)
+			value = searchPokeName.downcase.include?(nameInput.downcase) ^ reversed # Boolean XOR
+			next value
 		  }
 		  return dexlist
 	  end
@@ -435,16 +438,19 @@ class PokemonPokedex_Scene
   end
   
   def searchByAbility()
-	  name = pbEnterText("Search abilities...", 0, 12)
-	  if name && name!=""
+	  abilityInput = pbEnterText("Search abilities...", 0, 12)
+	  if abilityInput && abilityInput!=""
+		  reversed = abilityInput[0] == '-'
+		  abilityInput = abilityInput[1..-1] if reversed
 		  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
 		  dexlist = dexlist.find_all { |item|
 			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
 			searchPokeAbilities = item[10]
-			next false if !searchPokeAbilities
-			next true if searchPokeAbilities[0] && GameData::Ability.get(searchPokeAbilities[0]).real_name.downcase.include?(name.downcase)
-			next true if searchPokeAbilities[1] && GameData::Ability.get(searchPokeAbilities[1]).real_name.downcase.include?(name.downcase)
-			next false
+			value = false
+			value = true if searchPokeAbilities[0] && GameData::Ability.get(searchPokeAbilities[0]).real_name.downcase.include?(abilityInput.downcase)
+			value = true if searchPokeAbilities[1] && GameData::Ability.get(searchPokeAbilities[1]).real_name.downcase.include?(abilityInput.downcase)
+			value = value ^ reversed # Boolean XOR
+			next value
 		  }
 		  return dexlist
 	  end
@@ -452,42 +458,45 @@ class PokemonPokedex_Scene
   end
   
   def searchByMoveLearned()
-	  name = pbEnterText("Search moves...", 0, 12)
+	  moveNameInput = pbEnterText("Search moves...", 0, 12)
           
-	  if name && name!=""
-		  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
-		  dexlist = dexlist.find_all { |item|
-			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
-			contains = false
+	  if moveNameInput && moveNameInput!=""
+			reversed = moveNameInput[0] == '-'
+		    moveNameInput = moveNameInput[1..-1] if reversed
 			
-			lvlmoves = item[11]
-			lvlmoves.each do |move|
-			  if GameData::Move.get(move[1]).real_name.downcase.include?(name.downcase)
-				contains = true
-				break
-			  end
-			end
-			next true if contains
-			
-			tutormoves = item[12]
-			tutormoves.each do |move|
-			  if GameData::Move.get(move).real_name.downcase.include?(name.downcase)
-				contains = true
-				break
-			  end
-			end
-			next true if contains
-			
-			eggmoves = item[13]
-			eggmoves.each do |move|
-			  if GameData::Move.get(move).real_name.downcase.include?(name.downcase)
-				contains = true
-				break
-			  end
-			end
-			
-			next contains
-		  }
+		    dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		    dexlist = dexlist.find_all { |item|
+				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				contains = false
+				
+				lvlmoves = item[11]
+				lvlmoves.each do |move|
+				  if GameData::Move.get(move[1]).real_name.downcase.include?(moveNameInput.downcase)
+					contains = true
+					break
+				  end
+				end
+				next !reversed if contains
+				
+				tutormoves = item[12]
+				tutormoves.each do |move|
+				  if GameData::Move.get(move).real_name.downcase.include?(moveNameInput.downcase)
+					contains = true
+					break
+				  end
+				end
+				next !reversed if contains
+				
+				eggmoves = item[13]
+				eggmoves.each do |move|
+				  if GameData::Move.get(move).real_name.downcase.include?(moveNameInput.downcase)
+					contains = true
+					break
+				  end
+				end
+				
+				next contains ^ reversed # Boolean XOR
+			}
 		  return dexlist
 	  end
 	  return nil
@@ -495,28 +504,28 @@ class PokemonPokedex_Scene
   
   def searchByType()
 	  while true
-		  typeName = pbEnterText("Search types...", 0, 16)
-		  typeName.downcase!
-		  if typeName && typeName!=""
-			  typesInput = typeName.split(" ")
-			  if typesInput.length > 2
-				pbMessage(_INTL("Invalid input, too many entries."))
-				next
-			  end
+		  typesInput = pbEnterText("Search types...", 0, 100)
+		  typesInput.downcase!
+		  if typesInput && typesInput!=""
+			  typesInputArray = typesInput.split(" ")
 			  
 			  # Don't do the search if one of the input type names isn't an actual type
 			  invalid = false
-			  typesInput.each do |type|
+			  typesSearchInfo = {}
+			  typesInputArray.each do |type_input_entry|
+				reversed = type_input_entry[0] == '-'
+			    type_input_entry = type_input_entry[1..-1] if reversed
 				typeIsReal = false
 				GameData::Type.each do |type_data|
-					typeIsReal = true if type_data.real_name.downcase == type
+					typeIsReal = true if type_data.real_name.downcase == type_input_entry
 					break if typeIsReal
 				end
 				if !typeIsReal
-					pbMessage(_INTL("Invalid input: {1}", type))
+					pbMessage(_INTL("Invalid input: {1}", type_input_entry))
 					invalid = true
 					break
 				end
+				typesSearchInfo[type_input_entry] = reversed
 			  end
 			  next if invalid
 			  
@@ -530,11 +539,15 @@ class PokemonPokedex_Scene
 				
 				pokeTypeNames = [searchPokeType1Name,searchPokeType2Name]
 				
-				containsAllSearchedTypes = true
-				typesInput.each do |type|
-					containsAllSearchedTypes = false if !pokeTypeNames.include?(type)
+				survivesSearch = true
+				typesSearchInfo.each do |type,reversed|
+					if !reversed
+						survivesSearch = false if !pokeTypeNames.include?(type)
+					else
+						survivesSearch = false if pokeTypeNames.include?(type)
+					end
 				end
-				next containsAllSearchedTypes
+				next survivesSearch
 			  }
 			  return dexlist
 		  end
@@ -545,6 +558,8 @@ class PokemonPokedex_Scene
   def searchByEvolutionMethod()
 	  evoMethodTextInput = pbEnterText("Search method...", 0, 12)
 	  if evoMethodTextInput && evoMethodTextInput!=""
+		  reversed = evoMethodTextInput[0] == '-'
+		  evoMethodTextInput = evoMethodTextInput[1..-1] if reversed
 		  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
 		  dexlist = dexlist.find_all { |item|
 			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
@@ -555,7 +570,8 @@ class PokemonPokedex_Scene
 				strippedInputString = evoMethodTextInput.downcase.delete(' ')
 				anyContain = true if strippedActualDescription.include?(strippedInputString)
 			end
-			next anyContain
+			value = anyContain ^ reversed # Boolean XOR
+			next value
 		  }
 		  return dexlist
 	  end
@@ -564,8 +580,11 @@ class PokemonPokedex_Scene
   
 
   def searchByAvailableLevel()
-	  levelTextInput = pbEnterText("Search available by level...", 0, 2)
+	  levelTextInput = pbEnterText("Search available by level...", 0, 3)
 	  if levelTextInput && levelTextInput!=""
+		  reversed = levelTextInput[0] == '-'
+		  levelTextInput = levelTextInput[1..-1] if reversed
+	  
 		  levelIntAttempt = levelTextInput.to_i
 		  return nil if levelIntAttempt == 0
 		  
@@ -685,7 +704,8 @@ class PokemonPokedex_Scene
 				end
 				break if available
 			end
-			next available
+			value = available ^ reversed # Boolean XOR
+			next value
 		  }
 		  return dexlist
 	  end

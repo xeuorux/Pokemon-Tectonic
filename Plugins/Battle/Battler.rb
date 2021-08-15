@@ -1954,6 +1954,7 @@ class PokeBattle_Battler
           pbMissMessage(move,user,b)
         end
         move.pbCrashDamage(user)
+		move.pbAllMissed(user,targets)
         user.pbItemHPHealCheck
         pbCancelMoves
         return false
@@ -2074,8 +2075,10 @@ class PokeBattle_Battler
     targets.each do |b|
       next if b.damageState.unaffected
       next if !b.damageState.berryWeakened
-      @battle.pbDisplay(_INTL("The {1} weakened the damage to {2}!",b.itemName,b.pbThis(true)))
-      b.pbConsumeItem
+	  name = b.itemName
+	  name = "berry" if name == ""
+      @battle.pbDisplay(_INTL("The {1} weakened the damage to {2}!",name,b.pbThis(true)))
+      b.pbConsumeItem if b.item
     end
     targets.each { |b| b.pbFaint if b && b.fainted? }
     user.pbFaint if user.fainted?
@@ -2196,6 +2199,8 @@ class PokeBattle_Battler
     targets = pbChangeTargetByAbility(:LIGHTNINGROD,:ELECTRIC,move,user,targets,priority,nearOnly)
     # Storm Drain
     targets = pbChangeTargetByAbility(:STORMDRAIN,:WATER,move,user,targets,priority,nearOnly)
+	# Challenger
+    targets = pbChangeTargetByAbility(:CHALLENGER,:FIGHTING,move,user,targets,priority,nearOnly)
     return targets
   end
   

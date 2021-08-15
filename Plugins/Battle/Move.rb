@@ -1,4 +1,6 @@
 class PokeBattle_Move
+  def pbAllMissed(user, targets); end
+
   #=============================================================================
   # Animate the damage dealt, including lowering the HP
   #=============================================================================
@@ -608,7 +610,7 @@ class PokeBattle_Move
   
   def pbDisplayUseMessage(user,targets=[])
     @battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
-	if damagingMove?
+	if damagingMove? && pbNumHits(user,targets) == 1
 		targets.each do |target|
 			bp = pbBaseDamage(baseDamage,user,target).floor
 			if bp != baseDamage

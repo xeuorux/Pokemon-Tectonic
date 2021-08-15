@@ -47,6 +47,12 @@ BattleHandlers::MoveImmunityTargetAbility.add(:POISONABSORB,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:CHALLENGER,
+  proc { |ability,user,target,move,type,battle|
+    next pbBattleMoveImmunityStatAbility(user,target,move,type,:FIGHTING,:ATTACK,1,battle)
+  }
+)
+
 #===============================================================================
 # StatusCureAbility handlers
 #===============================================================================
@@ -71,13 +77,17 @@ BattleHandlers::DamageCalcUserAbility.add(:HEADACHE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:HUGEENERGY,
+BattleHandlers::DamageCalcUserAbility.add(:POWERUP,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5 if move.physicalMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:ENERGYUP,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] *= 1.5 if move.specialMove?
   }
 )
-
-BattleHandlers::DamageCalcUserAbility.copy(:HUGEENERGY,:PUREENERGY)
 
 BattleHandlers::DamageCalcUserAbility.add(:DEEPSTING,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -362,13 +372,13 @@ BattleHandlers::UserAbilityOnHit.add(:FLAMEWINGS,
     next if target.burned? || battle.pbRandom(100)>=20
     next if move.type != :FLYING
     battle.pbShowAbilitySplash(user)
-    if target.pbCanFreeze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if target.pbCanBurn?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         msg = _INTL("{1}'s {2} burned {3}! Its Attack is reduced!",
            user.pbThis,user.abilityName,target.pbThis(true))
       end
-      target.pbFreeze(user,msg)
+      target.pbBurn(msg)
     end
     battle.pbHideAbilitySplash(user)
   }
@@ -454,6 +464,21 @@ BattleHandlers::AbilityOnEnemySwitchIn.add(:PROUDFIRE,
   }
 )
 
+BattleHandlers::AbilityOnEnemySwitchIn.add(:QUILLINSTINCT,
+  proc { |ability,switcher,bearer,battle|
+    PBDebug.log("[Ability triggered] #{bearer.pbThis}'s #{bearer.abilityName}")
+    battle.pbShowAbilitySplash(bearer)
+    if switcher.pbCanPoison?(bearer,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} poisoned {3}! Its Sp. Atk is reduced!",
+           bearer.pbThis,bearer.abilityName,switcher.pbThis(true))
+      end
+      switcher.pbPoison(bearer,msg)
+    end
+    battle.pbHideAbilitySplash(bearer)
+  }
+)
+
 
 #===============================================================================
 # AccuracyCalcUserAbility handlers
@@ -504,5 +529,14 @@ BattleHandlers::MoveBlockingAbility.add(:KILLJOY,
 BattleHandlers::MoveBlockingAbility.add(:BADINFLUENCE,
   proc { |ability,bearer,user,targets,move,battle|
     next move.healingMove?
+  }
+)
+
+#===============================================================================
+# AccuracyCalcTargetAbility handlers
+#===============================================================================
+BattleHandlers::AccuracyCalcTargetAbility.add(:CHALLENGER,
+  proc { |ability,mods,user,target,move,type|
+    mods[:base_accuracy] = 0 if type == :FIGHTING
   }
 )

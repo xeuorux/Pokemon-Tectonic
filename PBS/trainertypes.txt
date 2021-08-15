@@ -183,5 +183,5 @@
 200,LEADER_Lainie,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Female,,
 201,LEADER_Bartholomew,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,
 202,THEATERNERDS,Theater Nerds,72,,,,Mixed,,
-300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,
-301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,
+300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,[YEZERA]
+301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,[LAMBERT]

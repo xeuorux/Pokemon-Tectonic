@@ -83,10 +83,15 @@ end
 
 def perfectTrainer()
 	blackFadeOutIn() {
-		pbSetSelfSwitch(get_self.id,'D',true)
+		setMySwitch('D',true)
 		setFollowerGone()
 	}
 	pbTrainerDropsItem()
+end
+
+def defeatTrainer()
+	setMySwitch('A',true)
+	setFollowerInactive()
 end
 
 def phoneCallSE()
@@ -173,4 +178,84 @@ end
 
 def setMySwitch(switch,value)
 	pbSetSelfSwitch(get_self.id,switch,value)
+end
+
+def changeOpacitySpaced(opacityTarget,spaces)
+	currentOpacity = self.opacity
+	opacityChange = opacityTarget - currentOpacity
+	opacityChangePerFrame = opacityChange.to_f / spaces.to_f
+	changeOpacityOverTime(opacityTarget,opacityChangePerFrame.abs)
+end
+
+def changeOpacityOverTime(opacityTarget,speed)
+	currentOpacity = self.opacity
+	
+	new_move_route = RPG::MoveRoute.new
+	new_move_route.repeat    = false
+	new_move_route.skippable = false
+	new_move_route.list.clear
+	
+	calculatedOpacity = currentOpacity
+	targetReached = false
+	while !targetReached
+		if calculatedOpacity < opacityTarget
+			calculatedOpacity += speed
+			if calculatedOpacity > opacityTarget
+				calculatedOpacity = opacityTarget
+				targetReached = true
+			end
+		else
+			calculatedOpacity -= speed
+			if calculatedOpacity < opacityTarget
+				calculatedOpacity = opacityTarget
+				targetReached = true
+			end
+		end
+		output = calculatedOpacity.round
+		output = [[output,0].max,255].min
+		new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Opacity,[output]))
+		new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Wait,[1]))
+	end
+	
+	new_move_route.list.push(RPG::MoveCommand.new(0))
+	
+	self.force_move_route(new_move_route)
+end
+
+def purchaseStarters(type,price=5000)
+	return unless [:GRASS,:FIRE,:WATER].include?(type)
+	typeName = GameData::Type.get(type).real_name
+	
+	pbMessage("Hello, and welcome to the Starters Store!")
+	pbMessage("I'm the #{typeName}-type starters salesperson!")
+	pbMessage("You can buy a #{typeName}-type starter Pokemon from me if you have $#{price}.")
+	if $Trainer.money < price
+		pbMessage("I'm sorry, but it seems as though you don't have that much money.")
+		return
+	end
+	pbMessage("Would you like to buy a Grass-type starter Pokemon?")
+	
+	starterArray = []
+	case type
+	when :GRASS
+		starterArray = ["None","Bulbasaur","Chikorita","Turtwig","Snivy","Chespin","Rowlet","Grookey"]
+	when :FIRE
+		starterArray = ["None","Charmander","Torchic","Chimchar","Tepig","Fennekin","Litten","Scorbunny"]
+	when :WATER
+		starterArray = ["None","Squirtle","Totodile","Piplup","Oshawott","Froakie","Popplio","Sobble"]
+	else
+		return
+	end
+	
+	result = pbShowCommands(nil,starterArray)
+	if result == 0
+		pbMessage("Understood, please come back if there's a #{typeName}-type starter Pokemon you'd like to purchase!")
+	else
+		starterChosenName = starterArray[result]
+		starterSpecies = starterChosenName.upcase.to_sym
+		pbAddPokemon(starterSpecies,10)
+		pbMessage("\PN handed over $#{price} in exchange.")
+		$Trainer.money -= price
+		pbMessage("Thank you for shopping here at the Starters Store!")
+	end
 end
