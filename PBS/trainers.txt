@@ -1,5 +1,5 @@
 ﻿################################
-	Tutorial Island
+#	Tutorial Island
 ################################
 [YOUNGSTER,Harvey]
 Policies = PERFECTINGTUTORIAL
@@ -118,7 +118,7 @@ Pokemon = BUNNELBY,15
 Pokemon = SNEASEL,15
 Pokemon = JOLTIK,15
 ################################
-	Ace Trainers
+#	Ace Trainers
 ################################
 #-------------------------------
 [COOLTRAINER_M,Max]
@@ -176,7 +176,7 @@ Pokemon = BELLOSSOM,25
 	Moves = GIGADRAIN,PUFFBALL,HELPINGHAND,SYNTHESIS
 	Item = HEATROCK
 	AbilityIndex = 0
-Pokemon = CARKOl,25
+Pokemon = CARKOL,25
 	Moves = STEALTHROCK,FLAMECHARGE,ROCKSLIDE,IGNITE
 	Item = WATMELBERRY
 	AbilityIndex = 0
@@ -184,7 +184,7 @@ Pokemon = CHARMELEON,25
 	Moves = FLAMETHROWER,DRAGONPULSE,AIRSLASH,SCORCHINGSANDS
 	Item = CHOICESCARF
 	AbilityIndex = 1
-Pokemon = VANILLISH
+Pokemon = VANILLISH,25
 	Moves = ICEBEAM,PROTECT,MOONBLAST,SIGNALBEAM
 	AbilityIndex = 1
 Pokemon = TANGROWTH,25
@@ -197,32 +197,32 @@ Pokemon = TROPIUS,25
 	Item = SITRUSBERRY
 #-------------------------------
 [COOLTRAINER_F,Priscilla]
-Pokemon = MISMAGIUS
+Pokemon = MISMAGIUS,30
 	Moves = BONECHILL,MYSTICALFIRE,DAZZLINGGLEAM,POWERGEM
 	Item = CHOICESPECS
 	AbilityIndex = 0
-Pokemon = FROSLASS
+Pokemon = FROSLASS,30
 	Moves = BONECHILL,TAUNT,ICYWIND,FROSTBREATH
 	AbilityIndex = 1
 	Item = FOCUSSASH
-Pokemon = CRYOGONAL
+Pokemon = CRYOGONAL,30
 	Moves = AURORAVEIL,CONFUSERAY,RAPIDSPIN,MAGICCOAT
 	AbilityIndex = 0
 	Item = CHOPLEBERRY
-Pokemon = PILOSWINE
+Pokemon = PILOSWINE,30
 	Moves = EARTHQUAKE,ICEFANG,ROCKSLIDE,SUPERPOWER
 	Abilities = 1
 	Item = LIFEORB
-Pokemon = SEALEO
+Pokemon = SEALEO,30
 	Moves = HAIL,BRINE,TOXIC,WHIRLPOOL
 	Item = LEFTOVERS
 	AbilityIndex = 0
-Pokemon = WAILORD
+Pokemon = WAILORD,30
 	Moves = NOBLEROAR,HEAVYSLAM,REST,BOUNCE
 	AbilityIndex = 0
 	Item = LEFTOVERS
 ################################
-	Prototype
+#	Prototype
 ################################
 [LASS2,Angelica]
 LoseText = "Aww..."
