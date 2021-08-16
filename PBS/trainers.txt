@@ -1,6 +1,11 @@
 ﻿################################
 #	Tutorial Island
 ################################
+[BUGCATCHER,Colin]
+Policies = PERFECTINGTUTORIAL,REMARKONSTARTER
+Pokemon = KRICKETOT,6
+Pokemon = SNOM,6
+#-------------------------------
 [YOUNGSTER,Harvey]
 Policies = PERFECTINGTUTORIAL
 Pokemon = GOLDEEN,7
@@ -225,14 +230,12 @@ Pokemon = WAILORD,30
 #	Prototype
 ################################
 [LASS2,Angelica]
-LoseText = "Aww..."
 Pokemon = GASTLY,6
     AbilityIndex = 0
 Pokemon = HOOTHOOT,6
     AbilityIndex = 0
 #-------------------------------
 [GUITARIST3,Harley]
-LoseText = "I couldn't find victory, either!"
 Pokemon = GOLDEEN,7
     AbilityIndex = 0
 Pokemon = SEEDOT,8
@@ -241,7 +244,6 @@ Pokemon = FENNEKIN,7
     AbilityIndex = 0
 #-------------------------------
 [YOUNGSTER,Alex]
-LoseText = "Danggit! Every time!"
 Pokemon = RATTATA,12
     Moves = QUICKATTACK,BITE,TAILWHIP,TACKLE
     AbilityIndex = 0
@@ -250,7 +252,6 @@ Pokemon = RATTATA,12
     AbilityIndex = 0
 #-------------------------------
 [CAMPER,Ralph]
-LoseText = "Rats, you're better than I thought!"
 Pokemon = DEERLING,8
     AbilityIndex = 0
 Pokemon = VULPIX,9
@@ -259,7 +260,6 @@ Pokemon = BUIZEL,8
     AbilityIndex = 0
 #-------------------------------
 [HIKER,Dave]
-LoseText = "At least I have this forest."
 Pokemon = GEODUDE,9
     AbilityIndex = 0
 Pokemon = PHANPY,10
@@ -268,7 +268,6 @@ Pokemon = IGGLYBUFF,10
     AbilityIndex = 0
 #-------------------------------
 [LASS,Jessica]
-LoseText = "Wow, you're good at this!"
 Pokemon = CLEFFA,10
     AbilityIndex = 0
     Item = ORANBERRY
@@ -278,7 +277,6 @@ Pokemon = ESPURR,11
     AbilityIndex = 0
 #-------------------------------
 [PICNICKER,Cris]
-LoseText = "I wonder what's inside his pokéball?"
 Pokemon = PURRLOIN,13
     AbilityIndex = 0
 Pokemon = DROWZEE,13
@@ -287,7 +285,6 @@ Pokemon = TYROGUE,14
     AbilityIndex = 0
 #-------------------------------
 [BUGCATCHER,Luca]
-LoseText = "Well fought! I'll have to keep training."
 Pokemon = BUTTERFREE,14
     Moves = POISONPOWDER,GUST,MINDWAVES,BUGBITE
     AbilityIndex = 0
@@ -300,7 +297,6 @@ Pokemon = POLIWAG,14
     AbilityIndex = 0
 #-------------------------------
 [BUGCATCHER,Luca,1]
-LoseText = "Even after beating the gym! Darn."
 Pokemon = BUTTERFREE,16
     Moves = POISONPOWDER,GUST,MINDWAVES,BUGBITE
     AbilityIndex = 0
@@ -313,7 +309,6 @@ Pokemon = POLIWAG,16
     AbilityIndex = 0
 #-------------------------------
 [AROMALADY,Brigitte]
-LoseText = "The smell of losing is not so great..."
 Pokemon = FLABEBE,15
     AbilityIndex = 0
 Pokemon = SNUBBULL,15
@@ -322,7 +317,6 @@ Pokemon = SWIRLIX,15
     AbilityIndex = 0
 #-------------------------------
 [LEADER_Lainie,Lainie]
-LoseText = "Pleased to make your aquaintance!"
 Pokemon = CUTIEFLY,15
     Moves = STUNSPORE,FAIRYWIND,POUT,REFLECT
     AbilityIndex = 1
@@ -338,7 +332,6 @@ Pokemon = VANILLITE,15
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Lainie,Lainie,1]
-LoseText = "Pleased to make your aquaintance!"
 Pokemon = CUTIEFLY,15
     Moves = STUNSPORE,FAIRYWIND,POUT,REFLECT
     AbilityIndex = 1
@@ -360,7 +353,6 @@ Pokemon = VANILLITE,15
     AbilityIndex = 1
 #-------------------------------
 [SUPERNERD,Declan]
-LoseText = "I would never train creatures as mainstream as yours..."
 Pokemon = TYNAMO,16
     AbilityIndex = 0
 Pokemon = SKORUPI,16
@@ -369,7 +361,6 @@ Pokemon = BALTOY,16
     AbilityIndex = 0
 #-------------------------------
 [BLACKBELT2,Emilio]
-LoseText = "Well, step one could've gone better."
 Pokemon = MACHOP,21
     AbilityIndex = 0
 Pokemon = SCRAGGY,21
@@ -378,7 +369,6 @@ Pokemon = GURDURR,21
     AbilityIndex = 0
 #-------------------------------
 [PSYCHIC_F2,Louise]
-LoseText = "...Maybe defeat wasn't that near for you."
 Pokemon = SPOINK,21
     AbilityIndex = 0
 Pokemon = MEDITITE,21
@@ -388,7 +378,6 @@ Pokemon = WOOBAT,21
     AbilityIndex = 0
 #-------------------------------
 [BURGLAR,Luke]
-LoseText = "Really? After all three of us?"
 Pokemon = PAWNIARD,21
     AbilityIndex = 0
 Pokemon = VULLABY,21
@@ -397,7 +386,6 @@ Pokemon = THIEVUL,21
     AbilityIndex = 0
 #-------------------------------
 [BEAUTY,Erin]
-LoseText = "My soul becomes as dying embers!"
 Pokemon = LITLEO,21
     AbilityIndex = 0
 Pokemon = SALANDIT,21
@@ -406,7 +394,6 @@ Pokemon = MONFERNO,21
     AbilityIndex = 0
 #-------------------------------
 [TUBER_M,Bobby]
-LoseText = "Ride the wave, friend. Go all the way."
 Pokemon = BRIONNE,21
     AbilityIndex = 0
 Pokemon = CHINCHOU,21
@@ -415,7 +402,6 @@ Pokemon = SPHEAL,21
     AbilityIndex = 0
 #-------------------------------
 [POKEMONRANGER_M2,Jack]
-LoseText = "To think I'd fail even amongst this grass..."
 Pokemon = GROTLE,21
     AbilityIndex = 0
 Pokemon = LOMBRE,21
@@ -425,7 +411,6 @@ Pokemon = APPLIN,21
     AbilityIndex = 0
 #-------------------------------
 [CAMPER,Brian]
-LoseText = "Wow! I bet you're not afraid of anything!"
 Pokemon = ODDISH,17
     AbilityIndex = 0
 Pokemon = EEVEE,17
@@ -434,7 +419,6 @@ Pokemon = SPOINK,17
     AbilityIndex = 0
 #-------------------------------
 [HIKER,Leon]
-LoseText = "Darn! You'll get 'em next time."
 Pokemon = GLIGAR,20
     AbilityIndex = 0
 Pokemon = SLUGMA,21
@@ -447,7 +431,6 @@ Pokemon = RHYHORN,20
     AbilityIndex = 0
 #-------------------------------
 [BATTLEGIRL,Abbie]
-LoseText = "Go for the LEGS! THE LEGS! ...Oh. I guess it's over."
 Pokemon = SCRAGGY,20
     AbilityIndex = 0
 Pokemon = COMBUSKEN,20
@@ -460,7 +443,6 @@ Pokemon = CHINCHOU,21
     Item = ORANBERRY
 #-------------------------------
 [GAMBLER,Dean]
-LoseText = "Heads you win, tails I lose, huh...?"
 Pokemon = MEOWTH,18
     AbilityIndex = 0
 Pokemon = MEOWTH,19
@@ -471,7 +453,6 @@ Pokemon = MEOWTH,19
     AbilityIndex = 0
 #-------------------------------
 [YOUNGSTER,Chet]
-LoseText = "Wow, you know your stuff!"
 Pokemon = ARON,19
     AbilityIndex = 0
 Pokemon = SABLEYE,19
@@ -480,7 +461,6 @@ Pokemon = PARAS,20
     AbilityIndex = 0
 #-------------------------------
 [YOUNGSTER,Chet,2]
-LoseText = "Lose text."
 Pokemon = ARON,26
     AbilityIndex = 0
 Pokemon = SABLEYE,26
@@ -495,7 +475,6 @@ Pokemon = WARTORTLE,25
     AbilityIndex = 0
 #-------------------------------
 [POKEMONBREEDER_F2,Natasha]
-LoseText = "...Noted. Thank you for your cooperation."
 Pokemon = DEDENNE,19
     AbilityIndex = 0
 Pokemon = DUCKLETT,18
@@ -504,7 +483,6 @@ Pokemon = TANGELA,20
     AbilityIndex = 0
 #-------------------------------
 [THEATERNERDS,Joel & Calvin]
-LoseText = "The fault, dear trainer, is not in our Pokémon, but in ourselves."
 Pokemon = TOXEL,19
     AbilityIndex = 0
 Pokemon = CARKOL,20
@@ -519,7 +497,6 @@ Pokemon = YUNGOOS,20
     AbilityIndex = 0
 #-------------------------------
 [BLACKBELT3,Adan]
-LoseText = "Oof. Guess I've got a bit of a glass jaw."
 Pokemon = CRANIDOS,21
     AbilityIndex = 0
 Pokemon = KABUTO,21
@@ -528,7 +505,6 @@ Pokemon = JANGMOO,21
     AbilityIndex = 0
 #-------------------------------
 [WORKER2,Joe]
-LoseText = "I won't give up on them just because nature did."
 Pokemon = TIRTOUGA,21
     AbilityIndex = 0
 Pokemon = TYRUNT,21
@@ -537,7 +513,6 @@ Pokemon = BRONZOR,21
     AbilityIndex = 0
 #-------------------------------
 [LEADER_Bartholomew,Bartholomew]
-LoseText = "Top marks, and my compliments to your Pokémon."
 Pokemon = OMANYTE,21
     AbilityIndex = 0
 Pokemon = YANMA,21
@@ -549,7 +524,6 @@ Pokemon = SHIELDON,21
     AbilityIndex = 0
 #-------------------------------
 [LEADER_Bartholomew,Bartholomew,1]
-LoseText = "Top marks, and my compliments to your Pokémon."
 Pokemon = OMANYTE,21
     AbilityIndex = 0
 Pokemon = YANMA,21
@@ -569,7 +543,6 @@ Pokemon = GOLETT,21
     Item = LEFTOVERS
 #-------------------------------
 [BUGCATCHER,Alfie]
-LoseText = "You're scarier than that trail!"
 Pokemon = HOOTHOOT,20
     AbilityIndex = 0
 Pokemon = NINJASK,20
@@ -578,7 +551,6 @@ Pokemon = SHEDINJA,20
     AbilityIndex = 0
 #-------------------------------
 [LADY,Lara]
-LoseText = "I don't have that strength after all..."
 Pokemon = CARVANHA,21
     AbilityIndex = 0
 Pokemon = NIDORINA,21
@@ -587,13 +559,11 @@ Pokemon = SPEAROW,21
     AbilityIndex = 0
 #-------------------------------
 [BATTLEGIRL,Tester]
-LoseText = "..."
 Pokemon = BIDOOF,70
     Moves = TACKLE,WATERGUN
     AbilityIndex = 0
 #-------------------------------
 [COOLTRAINER_M,Agent]
-LoseText = "TODO!"
 Pokemon = BEARTIC,70
     Moves = POISONJAB,NIGHTSLASH,TRIPLEAXEL,DRAINPUNCH
     AbilityIndex = 1
@@ -626,7 +596,6 @@ Pokemon = PALMANTRA,70
     EV = 10,20,0,20,0,0
 #-------------------------------
 [COOLTRAINER_M,Xavier]
-LoseText = "TODO!"
 Pokemon = GALVANTULA,70
     Moves = THUNDER,BUGBUZZ,STICKYWEB,LIGHTNINGDANCE
     AbilityIndex = 0

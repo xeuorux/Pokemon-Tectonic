@@ -171,7 +171,7 @@ end
 
 def blackFadeOutIn(&block)
 	$game_screen.start_tone_change(Tone.new(-255,-255,-255,0), 6 * Graphics.frame_rate / 20)
-	pbWait(8)
+	pbWait(14)
 	block.call
 	$game_screen.start_tone_change(Tone.new(0,0,0,0), 6 * Graphics.frame_rate / 20)
 end
@@ -233,7 +233,7 @@ def purchaseStarters(type,price=5000)
 		pbMessage("I'm sorry, but it seems as though you don't have that much money.")
 		return
 	end
-	pbMessage("Would you like to buy a Grass-type starter Pokemon?")
+	pbMessage("Would you like to buy a #{typeName}-type starter Pokemon?")
 	
 	starterArray = []
 	case type

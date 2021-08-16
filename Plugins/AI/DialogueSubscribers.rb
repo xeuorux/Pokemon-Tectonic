@@ -98,7 +98,7 @@ PokeBattle_AI::PlayerSendsOutPokemonDialogue.add(:DEBUG,
 
 PokeBattle_AI::PlayerSendsOutPokemonDialogue.add(:REMARKONSTARTER,
   proc { |policy,battler,trainer_speaking,dialogue_array|
-	return dialogue_array unless [:TREECKO,:CYNDAQUIL,:KRABBY].include?(battler.species)
+	next dialogue_array unless [:TREECKO,:CYNDAQUIL,:KRABBY].include?(battler.species)
 	if !trainer_speaking.policyStates[:RemarkedOnStarter]
 		dialogue_array.push("Wow, I've never seen that Pokemon before!")
 		dialogue_array.push("I'm gonna check my Pokedex!")

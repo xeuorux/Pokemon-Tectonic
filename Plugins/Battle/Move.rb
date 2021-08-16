@@ -610,7 +610,7 @@ class PokeBattle_Move
   
   def pbDisplayUseMessage(user,targets=[])
     @battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
-	if damagingMove? && pbNumHits(user,targets) == 1
+	if damagingMove? && !multiHitMove?
 		targets.each do |target|
 			bp = pbBaseDamage(baseDamage,user,target).floor
 			if bp != baseDamage
