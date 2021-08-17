@@ -27,17 +27,16 @@ module PokeBattle_BattleCommon
 	y = captureThresholdCalc(pkmn,battler,catch_rate,ball)
 	# Critical capture check
 	if Settings::ENABLE_CRITICAL_CAPTURES
-	  x = captureThresholdCalcHalf(pkmn,battler,catch_rate,ball)
       c = 0
       numOwned = $Trainer.pokedex.owned_count
-      if numOwned>600;    c = x*5/12
-      elsif numOwned>450; c = x*4/12
-      elsif numOwned>300; c = x*3/12
-      elsif numOwned>150; c = x*2/12
-      elsif numOwned>50;  c = x/12
+      if numOwned>600;    c = 20
+      elsif numOwned>450; c = 16
+      elsif numOwned>300; c = 12
+      elsif numOwned>150; c = 8
+      elsif numOwned>50;  c = 4
       end
       # Calculate the number of shakes
-      if c>0 && pbRandom(256)<c
+      if c>0 && pbRandom(100)<c
         @criticalCapture = true
         return 4 if pbRandom(CATCH_BASE_CHANCE)<y
         return 0
@@ -54,7 +53,7 @@ module PokeBattle_BattleCommon
   
   def captureThresholdCalc(pkmn,battler,catch_rate,ball)
 	# Get a catch rate if one wasn't provided
-    catch_rate = pkmn.species_data if !catch_rate
+    catch_rate = pkmn.species_data.catch_rate if !catch_rate
     ultraBeast = [:NIHILEGO, :BUZZWOLE, :PHEROMOSA, :XURKITREE, :CELESTEELA,
                   :KARTANA, :GUZZLORD, :POIPOLE, :NAGANADEL, :STAKATAKA,
                   :BLACEPHALON].include?(pkmn.species)
@@ -89,6 +88,6 @@ def captureThresholdCalcInternals(status,current_hp,total_hp,catch_rate)
     x = 1 if x<1
 	
 	# Second half of the shakes calculation
-	y = ( 65536 / ((255.0/x)**0.1875) ).floor
+	y = ( CATCH_BASE_CHANCE / ((255.0/x)**0.1875) ).floor
 	return y
 end
