@@ -3,6 +3,8 @@ class NewDexNav
 	# Set up the two viewports to hold UI elements
     @viewport1 = Viewport.new(0, 0, Graphics.width, Graphics.height)
     @viewport1.z = 99999
+	@viewport2 = Viewport.new(30, 120, Graphics.width, Graphics.height)
+	@viewport2.z = 99999
     @viewport3 = Viewport.new(0, 120, Graphics.width, Graphics.height)
     @viewport3.z = 999999
     $viewport = nil
@@ -12,7 +14,8 @@ class NewDexNav
 	@sprites["background"] = IconSprite.new(0,0,@viewport1)
 	@sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/dexnav"))
 	
-	@sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport3)
+	@sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport1)
+	@sprites["overlay2"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport2)
 	pbSetSystemFont(@sprites["overlay"].bitmap)
 	@sprites["name_overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport1)
 
@@ -59,7 +62,7 @@ class NewDexNav
 		species = species_data.species
 		displaySpecies.push(species_data)
 
-        @pkmnsprite[iconIndex] = PokemonSpeciesIconSprite.new(species,@viewport1)
+        @pkmnsprite[iconIndex] = PokemonSpeciesIconSprite.new(species,@viewport2)
 		
 		if !$Trainer.pokedex.seen?(species)
 			@pkmnsprite[iconIndex].silhouette = true
@@ -70,8 +73,8 @@ class NewDexNav
 			allOwned = false
 		end
 		
-		@pkmnsprite[iconIndex].x = 30 + 64 * (iconIndex % 7)
-		@pkmnsprite[iconIndex].y = 150 + 64 * (iconIndex / 7)
+		@pkmnsprite[iconIndex].x = 64 * (iconIndex % 7)
+		@pkmnsprite[iconIndex].y = 30 + 64 * (iconIndex / 7)
     end
 	
 	# Determine what the status of the completion of this area is
@@ -94,6 +97,7 @@ class NewDexNav
     pbFadeOutAndHide(@sprites) {pbUpdate}
     pbDisposeSpriteHash(@sprites)
     @viewport1.dispose
+	@viewport2.dispose
     @viewport3.dispose
   end
   
@@ -166,16 +170,19 @@ class NewDexNav
 		  end
 		  speciesFormName =  highlightedSpeciesData.real_name 
 		  speciesFormName += "(#{highlightedSpeciesData.real_form_name})" if highlightedSpeciesData.form != 0
-		  @displayedName = $Trainer.pokedex.owned?(highlightedSpecies) ? speciesFormName : "Unknown"
+		  @displayedName = $Trainer.pokedex.seen?(highlightedSpecies) ? speciesFormName : "Unknown"
 		  drawSprites()
 		end
 	else
 		pbFadeOutAndHide(@sprites)
 	end
+	@viewport1.dispose
+	@viewport2.dispose
   end
   
   def drawSprites()
     @sprites["overlay"].bitmap.clear
+	@sprites["overlay2"].bitmap.clear
 	drawInformation()
 	drawOwnedIcons()
   end
@@ -208,15 +215,13 @@ class NewDexNav
 	yPos += 32
 	
 	if @displayedName
-		textpos.push([@displayedName,xLeft,yPos,0,base,shadow])
+		textpos.push([@displayedName,(Graphics.width-@displayedName.length*10)/2,yPos,0,base,shadow])
 	end
 	
 	pbDrawTextPositions(overlay, textpos)
   end
   
   def drawOwnedIcons
-	overlay = @sprites["overlay"].bitmap
-	
 	imagePos = []
 	@pkmnsprite.each do |sprite|
 		next unless $Trainer.pokedex.owned?(sprite.species)
@@ -225,7 +230,7 @@ class NewDexNav
 		imagePos.push(["Graphics/Pictures/Battle/icon_own",ownedIconX,ownedIconY])
 	end
 	
-	pbDrawImagePositions(overlay,imagePos)
+	pbDrawImagePositions(@sprites["overlay2"].bitmap,imagePos)
   end
 
   def beginSearchWithOverlay(species_data)
