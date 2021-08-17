@@ -152,7 +152,7 @@ class PokeBattle_Battle
 	  anyOwned = true if b.owned?
     end
 
-    rate = 90
+    rate = 140
     rate += 10 * [levelPlayer-levelEnemy,0].max
     rate += @runCommand*20
 	rate += 50 if anyOwned

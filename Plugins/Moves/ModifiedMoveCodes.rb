@@ -802,3 +802,43 @@ class PokeBattle_Move_0EB < PokeBattle_Move
     end
   end
 end
+
+class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
+	def pbDisplayUseMessage(user,targets)
+		if @damagingTurn   # Attack turn
+		  @battle.pbDisplayBrief(_INTL("{1} unleashed energy!",user.pbThis))
+		elsif user.effects[PBEffects::Bide]>1   # Charging turns
+		  @battle.pbDisplayBrief(_INTL("{1} is storing energy!",user.pbThis))
+		else
+		  super   # Start using Bide
+		end
+	end
+end
+
+class PokeBattle_Move_0F7 < PokeBattle_Move
+	def pbDisplayUseMessage(user,targets)
+		super
+		pbCheckFlingSuccess(user)
+		if !@willFail
+		  @battle.pbDisplay(_INTL("{1} flung its {2}!",user.pbThis,user.itemName))
+		end
+	end
+end
+
+class PokeBattle_Move_111 < PokeBattle_Move
+	def pbDisplayUseMessage(user,targets)
+		super if !@battle.futureSight
+	end
+end
+
+class PokeBattle_Move_115 < PokeBattle_Move
+	def pbDisplayUseMessage(user,targets)
+		super if !user.effects[PBEffects::FocusPunch] || user.lastHPLost==0
+	end
+end
+
+class PokeBattle_Move_171 < PokeBattle_Move
+  def pbDisplayUseMessage(user,targets)
+    super if user.tookPhysicalHit
+  end
+end

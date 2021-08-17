@@ -1166,8 +1166,7 @@ class PokeBattle_Battler
 		if !user.boss? && !target.boss
 			return false
 		else
-			name = (user.boss ? user : target).pbThis(true)
-			@battle.pbDisplay(_INTL("Except, within {1}'s aura, immunities are pierced!",name))
+			@battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are pierced!"))
 			typeMod /= 2
 		end
 	end

@@ -196,6 +196,7 @@ HealingSpot = 34,24,11
 [038]
 # Beach Route
 Outdoor = true
+ShowArea = true
 Bicycle = true
 #-------------------------------
 [039]
