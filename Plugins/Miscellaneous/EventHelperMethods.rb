@@ -63,8 +63,8 @@ end
 def gymLeaderDialogueHash()
 	return @leaderDialogueHash if @leaderDialogueHash
 	@leaderDialogueHash = {
-		0 => ["I’ll heal up your Pokémon, give your other rewards, and get out of your way.",
-		"I’ll heal up your Pokémon and get out of your way."]
+		0 => ["I'll heal up your Pokémon, give your other rewards, and get out of your way.",
+		"I'll heal up your Pokémon and get out of your way."]
 	}
 	return @leaderDialogueHash
 end

@@ -454,7 +454,7 @@
 439,POUND,Pound,01C,45,NORMAL,Physical,100,35,15,NearOther,0,abef,"The target is physically pounded with a long tail or a foreleg, etc. Has a 15% chance to raise attack."
 440,QUICKATTACK,Quick Attack,000,40,NORMAL,Physical,100,30,0,NearOther,1,abef,The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.
 441,SCRATCH,Scratch,000,45,NORMAL,Physical,100,35,0,NearOther,0,abefh,"Hard, pointed, and sharp claws rake the target to inflict damage. Critical hits land more easily"
-442,TACKLE,Tackle,537,55,NORMAL,Physical,100,35,0,NearOther,0,abef,A physical attack in which the user slams into the target. The user also takes 20% of the damage as recoil.
+442,TACKLE,Tackle,537,55,NORMAL,Physical,100,35,0,NearOther,0,abef,A physical attack in which the user slams into the target. The user also takes 20% as recoil.
 443,DOUBLEHIT,Double Hit,0BD,35,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user slams the target with a long tail, vines, or tentacle. The target is hit twice in a row."
 444,FEINT,Feint,0AD,30,NORMAL,Special,100,10,0,NearOther,2,ef,An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
 445,TAILSLAP,Tail Slap,0C0,25,NORMAL,Physical,85,10,0,NearOther,0,abef,The user attacks by striking the target with its hard tail. It hits the Pokémon two to five times in a row.
@@ -664,7 +664,7 @@
 647,SKILLSWAP,Skill Swap,067,0,PSYCHIC,Status,0,10,0,NearOther,0,be,The user employs its psychic power to exchange Abilities with the target.
 648,SPEEDSWAP,Speed Swap,161,0,PSYCHIC,Status,0,10,0,NearOther,0,be,The user exchanges Speed stats with the target.
 649,TELEKINESIS,Telekinesis,11A,0,PSYCHIC,Status,0,15,0,NearOther,0,bce,The user makes the target float with its psychic power. The target is easier to hit for three turns.
-650,TELEPORT,Teleport,0EA,0,PSYCHIC,Status,0,20,0,User,-6,,Use it to flee from any wild Pokémon. It can also warp to the last Pokémon Center visited.
+650,TELEPORT,Teleport,0EA,0,PSYCHIC,Status,0,20,0,User,-6,,Use it to flee from any wild Pokémon.
 651,TRICK,Trick,0F2,0,PSYCHIC,Status,100,10,0,NearOther,0,be,The user catches the target off guard and swaps its held item with its own.
 652,TRICKROOM,Trick Room,11F,0,PSYCHIC,Status,0,5,0,BothSides,-7,e,The user creates a bizarre area in which slower Pokémon get to move first for five turns.
 653,WONDERROOM,Wonder Room,124,0,PSYCHIC,Status,0,10,0,BothSides,-7,e,The user creates a bizarre area in which Pokémon's Defense and Sp. Def stats are swapped for 5 turns.
