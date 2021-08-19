@@ -259,3 +259,24 @@ def purchaseStarters(type,price=5000)
 		pbMessage("Thank you for shopping here at the Starters Store!")
 	end
 end
+
+def timedCameraPreview(centerX,centerY,seconds = 5)
+	$game_map.timedCameraPreview(centerX,centerY,seconds)
+end
+
+class Game_Map
+	def timedCameraPreview(centerX,centerY,seconds = 5)
+		prevCameraX = self.display_x
+		prevCameraY = self.display_y
+		blackFadeOutIn {
+			self.display_x = (centerX - 8) * 128
+			self.display_y = (centerY - 8) * 128
+		}
+		Graphics.update
+		pbWait(Graphics.frame_rate*seconds)
+		blackFadeOutIn {
+			self.display_x = prevCameraX
+			self.display_y = prevCameraY
+		}
+	end
+end
