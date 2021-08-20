@@ -1,6 +1,7 @@
 ﻿################################
 #	Tutorial Island
 ################################
+#-------------------------------
 [BUGCATCHER,Colin]
 Policies = PERFECTINGTUTORIAL,REMARKONSTARTER
 Pokemon = KRICKETOT,6

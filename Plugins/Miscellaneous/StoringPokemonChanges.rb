@@ -41,6 +41,7 @@ def pbNicknameAndStore(pkmn)
   end
   
   # Increase the caught count for the global metadata
+  $PokemonGlobal.caughtCountsPerMap = {} if !$PokemonGlobal.caughtCountsPerMap
   if $PokemonGlobal.caughtCountsPerMap.has_key?($game_map.map_id)
 	$PokemonGlobal.caughtCountsPerMap[$game_map.map_id][1] += 1
   else
@@ -102,6 +103,7 @@ module PokeBattle_BattleCommon
       pbStorePokemon(pkmn)
 	  
 	  # Increase the caught count for the global metadata
+	  $PokemonGlobal.caughtCountsPerMap = {} if !$PokemonGlobal.caughtCountsPerMap
 	  if $PokemonGlobal.caughtCountsPerMap.has_key?($game_map.map_id)
 		$PokemonGlobal.caughtCountsPerMap[$game_map.map_id][0] += 1
 	  else

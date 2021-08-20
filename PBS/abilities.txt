@@ -83,7 +83,7 @@
 81,SNOWCLOAK,Snow Cloak,"Takes 25% less damage in a hailstorm."
 82,GLUTTONY,Gluttony,"Encourages the early use of a held Berry."
 83,ANGERPOINT,Anger Point,"Maxes Attack after taking a critical hit."
-84,UNBURDEN,Unburden,"Raises Speed if a held item is used."
+84,UNBURDEN,Unburden,"Raises Speed if a held item is consumed in battle."
 85,HEATPROOF,Heatproof,"Weakens the power of Fire-type moves."
 86,SIMPLE,Simple,"The Pokémon is prone to wild stat changes."
 87,DRYSKIN,Dry Skin,"Reduces HP if it is hot. Water restores HP."

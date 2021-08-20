@@ -615,9 +615,9 @@ class PokeBattle_Move
 			bp = pbBaseDamage(baseDamage,user,target).floor
 			if bp != baseDamage
 				if targets.length == 1
-					@battle.pbDisplayBrief(_INTL("It's base power was adjusted to {1}!",bp))
+					@battle.pbDisplayBrief(_INTL("Its base power was adjusted to {1}!",bp))
 				else
-					@battle.pbDisplayBrief(_INTL("It's base power was adjusted to {1} against {2}!",bp,target.pbThis(true)))
+					@battle.pbDisplayBrief(_INTL("Its base power was adjusted to {1} against {2}!",bp,target.pbThis(true)))
 				end
 			end
 		end

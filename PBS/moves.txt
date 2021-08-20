@@ -359,7 +359,7 @@
 346,BULLDOZE,Bulldoze,044,60,GROUND,Physical,100,20,100,AllNearOthers,0,bef,The user strikes everything around it by stomping on the ground. It reduces hit Pokémon's Speed.
 347,MUDSHOT,Mud Shot,044,60,GROUND,Special,100,15,100,NearOther,0,bef,The user attacks by shooting a beam of mud at the target. It also reduces the target's Speed.
 348,BONEMERANG,Bonemerang,0BD,50,GROUND,Physical,100,10,0,NearOther,0,bef,"The user throws the bone it holds. The bone loops to hit the target twice, coming and going."
-349,SANDTOMB,Sand Tomb,0CF,35,GROUND,Physical,85,15,0,NearOther,0,bef,The user traps the target inside a harshly raging sandstorm for four to five turns.
+349,SANDTOMB,Sand Tomb,0CF,45,GROUND,Physical,100,15,0,NearOther,0,bef,The user traps the target inside a harshly raging sandstorm for four to five turns.
 350,BONERUSH,Bone Rush,0C0,25,GROUND,Physical,100,10,0,NearOther,0,bef,The user strikes the target with a hard bone two to five times in a row.
 351,MUDSLAP,Mud-Slap,047,20,GROUND,Special,100,10,100,NearOther,0,bef,The user hurls mud in the target's face to inflict damage and lower its accuracy.
 352,FISSURE,Fissure,070,1,GROUND,Physical,30,5,0,NearOther,0,be,The user opens up a fissure in the ground and drops the foe in. The target instantly faints if it hits.
