@@ -158,7 +158,7 @@ class PokeBattle_Battle
 		  end
 		  # Calculate Exp gains for the participants
 		  if numPartic>0 || expShare.length>0 || expAll
-			# Gain nd Exp for participants
+			# Gain Exp for participants
 			eachInTeam(0,0) do |pkmn,i|
 			  next if !pkmn.able?
 			  next unless b.participants.include?(i) || expShare.include?(i)

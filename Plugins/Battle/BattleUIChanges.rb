@@ -99,6 +99,10 @@ class CommandMenuDisplay < BattleMenuBase
 end
 
 class PokeBattle_Scene
+	def pbDisplayConfirmMessageSerious(msg)
+		return pbShowCommands(msg,[_INTL("No"),_INTL("Yes")],1)==1
+	end
+
 	def pbInitSprites
 		@sprites = {}
 		# The background image and each side's base graphic
@@ -224,7 +228,7 @@ class PokeBattle_Scene
     pbShowWindow(COMMAND_BOX)
     cw = @sprites["commandWindow"]
     cw.setTexts(texts)
-    cw.setIndexAndMode(@lastCmd[idxBattler],mode)
+    cw.setIndexAndMode(0,mode)
     pbSelectBattler(idxBattler)
     hasPokeballs = $PokemonBag.pockets()[3].any?{|itemrecord| itemrecord[1] > 0}
 	onlyOneOpponent = @battle.pbOpposingBattlerCount == 1

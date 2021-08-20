@@ -104,4 +104,8 @@ class PokeBattle_Battle
   def pbDisplayConfirm(msg)
     return @scene.pbDisplayConfirmMessage(msg) if !messagesBlocked
   end
+  
+  def pbDisplayConfirmSerious(msg)
+    return @scene.pbDisplayConfirmMessageSerious(msg) if !messagesBlocked
+  end
 end

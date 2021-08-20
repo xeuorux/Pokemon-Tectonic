@@ -3,7 +3,7 @@
 ################################
 #-------------------------------
 [BUGCATCHER,Colin]
-Policies = PERFECTINGTUTORIAL,REMARKONSTARTER
+Policies = REMARKONSTARTER
 Pokemon = KRICKETOT,6
 Pokemon = SNOM,6
 #-------------------------------
@@ -11,7 +11,6 @@ Pokemon = SNOM,6
 Policies = PERFECTINGTUTORIAL
 Pokemon = GOLDEEN,7
 Pokemon = SEEDOT,8
-Pokemon = FENNEKIN,7
 #-------------------------------
 [LASS2,Sienna]
 Policies = PERFECTINGTUTORIAL
@@ -56,7 +55,6 @@ Pokemon = TEPIG,14
 [LADY2,Rebecca]
 Pokemon = MEOWTH,14
     Form = 1
-Pokemon = GROWLITHE,14
 Pokemon = PETILIL,14
 #-------------------------------
 [TUBER_M,Peter]

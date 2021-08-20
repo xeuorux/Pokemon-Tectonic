@@ -52,7 +52,7 @@ class PokeBattle_Battle
           @decision = 2
           return 1
         end
-      elsif pbDisplayConfirm(_INTL("Would you like to forfeit the match and quit now?"))
+      elsif pbDisplayConfirmSerious(_INTL("Would you like to forfeit the match and quit now?"))
         pbSEPlay("Battle flee")
         if @internalBattle
           @decision = 2

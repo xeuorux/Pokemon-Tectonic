@@ -264,7 +264,41 @@ def timedCameraPreview(centerX,centerY,seconds = 5)
 	$game_map.timedCameraPreview(centerX,centerY,seconds)
 end
 
+def centerCameraOnPlayer()
+	$game_map.centerCameraOnPlayer()
+end
+
+def slideCameraToPlayer(speed=3)
+	$game_map.slideCameraToPlayer(speed)
+end
+
+def slideCameraToSpot(centerX,centerY,speed=3)
+	$game_map.slideCameraToSpot(centerX,centerY,speed)
+end
+
 class Game_Map
+	def slideCameraToSpot(centerX,centerY,speed=3)
+		distX = (centerX - 8) - (self.display_x/128)
+		xDirection = distX > 0 ? 6 : 4
+		distY = (centerY - 6) - (self.display_y/128)
+		yDirection = distY > 0 ? 2 : 8
+		distXAbs = distX.abs
+		distYAbs = distY.abs
+		xWait = (128 * distXAbs / (4 * speed)).ceil
+		yWait = (128 * distYAbs / (4 * speed)).ceil
+		if distXAbs > distYAbs
+			pbScrollMap(xDirection,distXAbs,speed) if distXAbs > 0
+			pbWait(xWait)
+			pbScrollMap(yDirection,distYAbs,speed) if distYAbs > 0
+			pbWait(yWait)
+		else
+			pbScrollMap(yDirection,distYAbs,speed) if distYAbs > 0
+			pbWait(yWait)
+			pbScrollMap(xDirection,distXAbs,speed) if distXAbs > 0
+			pbWait(xWait)
+		end
+	end
+
 	def timedCameraPreview(centerX,centerY,seconds = 5)
 		prevCameraX = self.display_x
 		prevCameraY = self.display_y
@@ -278,5 +312,14 @@ class Game_Map
 			self.display_x = prevCameraX
 			self.display_y = prevCameraY
 		}
+	end
+	
+	def centerCameraOnPlayer()
+		self.display_x = $game_player.x * 128
+		self.display_y = $game_player.y * 128
+	end
+	
+	def slideCameraToPlayer(speed=3)
+		slideCameraToSpot($game_player.x,$game_player.y,speed)
 	end
 end
