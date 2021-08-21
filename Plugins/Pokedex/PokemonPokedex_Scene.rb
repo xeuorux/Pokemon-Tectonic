@@ -682,7 +682,6 @@ class PokemonPokedex_Scene
 					# For each slot in that encounters data listing
 					enc_data.types.each do |key,slots|
 					    next if !slots
-						echo(key)
 						next if key == :ActiveWater && !surfingAvailable
 					    slots.each { |slot|
 							species_data = GameData::Species.get(slot[1])

@@ -284,8 +284,8 @@ class Game_Map
 		yDirection = distY > 0 ? 2 : 8
 		distXAbs = distX.abs
 		distYAbs = distY.abs
-		xWait = (128 * distXAbs / (4 * speed)).ceil
-		yWait = (128 * distYAbs / (4 * speed)).ceil
+		xWait = (128 * distXAbs / (5 * speed)).ceil
+		yWait = (128 * distYAbs / (5 * speed)).ceil
 		if distXAbs > distYAbs
 			pbScrollMap(xDirection,distXAbs,speed) if distXAbs > 0
 			pbWait(xWait)

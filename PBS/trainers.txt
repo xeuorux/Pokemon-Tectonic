@@ -125,26 +125,54 @@ Pokemon = JOLTIK,15
 #	Ace Trainers
 ################################
 #-------------------------------
+[COOLTRAINER_M,Xander]
+Pokemon = GLAMEOW,15
+    Moves = HARSHWORDS,SHOUT,SWIFT,TAUNT
+    AbilityIndex = 1 # Competitive
+    Item = THROATSPRAY
+Pokemon = JANGMOO,15
+    Moves = BULKUP,DRAGONTAIL,PROTECT,LOWKICK
+    AbilityIndex = 0 # Soundproof
+    Item = LUMBERRY
+Pokemon = FERROSEED,15
+    Moves = INGRAIN,EXPLOSION,SPIKES,KNOCKOFF
+    AbilityIndex = 0 # Iron Barbs
+    Item = ORANBERRY
+Pokemon = MIMEJR,15
+    Moves = MINDWAVES,CALMMIND,ICYWIND,FAIRYWIND
+    AbilityIndex = 1 # Filter
+    Item = LIFEORB
+Pokemon = LUVDISC,15
+    Moves = POUT,ANGELSKISS,WIPEOUT,HEALPULSE
+    AbilityIndex = 0 # Healer
+    Item = LIECHIBERRY
+Pokemon = GOLETT,15
+    AbilityIndex = 0 # Iron Fist
+    Moves = SHADOWPUNCH,RUMBLE,FACADE,ROCKSLIDE
+    Item = ORANBERRY
+#-------------------------------
 [COOLTRAINER_M,Max]
-Pokemon = HIPPOPOTAS,15
+Pokemon = HIPPOPOTAS,20
+	Moves = MUDSHOT,FIRESPIN,SANDSTORM,YAWN
     AbilityIndex = 0
     Item = SMOOTHROCK
-Pokemon = PAWNIARD,15
+Pokemon = PAWNIARD,20
     Moves = FURYCUTTER,SHOTPUT,TAUNT,SUCKERPUNCH
     AbilityIndex = 0
     Item = LIFEORB
-Pokemon = STARYU,15
+Pokemon = STARYU,20
     Moves = WATERGUN,CONFUSERAY,RAPIDSPIN,REFLECT
     AbilityIndex = 0
     Item = ORANBERRY
-Pokemon = SANDSHREW,15
+Pokemon = SANDSHREW,20
     Moves = ROCKSLIDE,BULLDOZE,SANDSTORM,NIGHTSLASH
     AbilityIndex = 0
     Item = SITRUSBERRY
-Pokemon = SWINUB,15
+Pokemon = TOGETIC,20
+	Moves = BOREALWIND,LIFEDEW,KALEIDOSCOPE,HEALBELL
     AbilityIndex = 1
     Item = ORANBERRY
-Pokemon = LILEEP,15
+Pokemon = LILEEP,20
     Moves = ABSORB,ACID,CONFUSERAY,INGRAIN
     AbilityIndex = 1
     Item = ORANBERRY
