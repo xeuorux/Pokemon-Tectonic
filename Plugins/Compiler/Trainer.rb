@@ -82,22 +82,13 @@ module GameData
 			pkmn.ability = pkmn_data[:ability]
 			pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)
 			pkmn.shiny = (pkmn_data[:shininess]) ? true : false
-			if pkmn_data[:nature]
-			  pkmn.nature = pkmn_data[:nature]
-			else
-			  nature = pkmn.species_data.id_number + trainerTypeData.id_number
-			  pkmn.nature = nature % (GameData::Nature::DATA.length / 2)
-			end
+			pkmn.nature = 0
 			GameData::Stat.each_main do |s|
-			  if pkmn_data[:iv]
-				pkmn.iv[s.id] = pkmn_data[:iv][s.id]
-			  else
-				pkmn.iv[s.id] = [pkmn_data[:level] / 2, Pokemon::IV_STAT_LIMIT].min
-			  end
+			  pkmn.iv[s.id] = 0
 			  if pkmn_data[:ev]
 				pkmn.ev[s.id] = pkmn_data[:ev][s.id]
 			  else
-				pkmn.ev[s.id] = [pkmn_data[:level] * 3 / 2, Pokemon::EV_LIMIT / 6].min
+				pkmn.ev[s.id] = 8
 			  end
 			end
 			pkmn.happiness = pkmn_data[:happiness] if pkmn_data[:happiness]
