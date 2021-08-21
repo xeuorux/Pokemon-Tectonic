@@ -172,7 +172,7 @@ class PokemonPokedexInfo_Scene
 	overlay = @sprites["overlay"].bitmap
 	base = Color.new(219, 240, 240)
 	shadow   = Color.new(88, 88, 80)
-	pageTitles = ["INFO", "ABILITIES", "STATS", "TYPE MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES", "EGG MOVES", "EVOLUTIONS", "AREA", "FORMS"]
+	pageTitles = ["INFO", "ABILITIES", "STATS", "TYPE MATCHUPS", "LEVEL UP MOVES", "TM MOVES", "EGG MOVES", "EVOLUTIONS", "AREA", "FORMS"]
 	pageTitle = pageTitles[page-1]
 	drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
 	xPos = 240
@@ -632,7 +632,7 @@ class PokemonPokedexInfo_Scene
     for i in @available
       if i[2]==@form
         formname = i[0]
-        drawTextEx(overlay,xLeft,54,450,1,_INTL("Tutor Moves for {1}",@title),base,shadow)
+        drawTextEx(overlay,xLeft,54,450,1,_INTL("TM Moves for {1}",@title),base,shadow)
         fSpecies = GameData::Species.get_species_form(@species,i[2])
         compatibleMoves = fSpecies.tutor_moves
         @scrollableListLength = compatibleMoves.length
