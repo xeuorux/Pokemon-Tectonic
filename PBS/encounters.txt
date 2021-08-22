@@ -153,6 +153,14 @@ LandTinted,20
 25,YAMASK_1,15,18
 25,CUBONE,15,18
 #-------------------------------
+[56] # Suburb Sketch
+FloweryGrass,20
+20,MEOWTH,15,18
+20,HATENNA,15,18
+20,STUNKY,15,18
+20,STUFFUL,15,18
+20,APPLIN,15,18
+#-------------------------------
 # PROTOTYPE
 #-------------------------------
 [002] # Forest Cave
