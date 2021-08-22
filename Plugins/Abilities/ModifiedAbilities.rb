@@ -355,3 +355,83 @@ BattleHandlers::DamageCalcTargetAbility.add(:SNOWCLOAK,
     mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather==:Hail
   }
 )
+
+
+BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
+  proc { |ability,user,target,move,battle|
+    next if !move.pbContactMove?(user)
+    battle.pbShowAbilitySplash(target)
+    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      battle.scene.pbDamageAnimation(user)
+	  reduce = user.totalhp/8
+	  reduce /= 4 if user.boss
+      user.pbReduceHP(reduce,false)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
+      else
+        battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
+           target.pbThis(true),target.abilityName))
+      end
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.copy(:IRONBARBS,:ROUGHSKIN)
+
+BattleHandlers::EOREffectAbility.add(:BADDREAMS,
+  proc { |ability,battler,battle|
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.near?(battler) || !b.asleep?
+      battle.pbShowAbilitySplash(battler)
+      next if !b.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      oldHP = b.hp
+	  reduce = b.totalhp/8
+	  reduce /= 4 if b.boss
+      b.pbReduceHP(reduce)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is tormented!",b.pbThis))
+      else
+        battle.pbDisplay(_INTL("{1} is tormented by {2}'s {3}!",b.pbThis,
+           battler.pbThis(true),battler.abilityName))
+      end
+      battle.pbHideAbilitySplash(battler)
+      b.pbItemHPHealCheck
+      b.pbAbilitiesOnDamageTaken(oldHP)
+      b.pbFaint if b.fainted?
+    end
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
+  proc { |ability,user,target,move,battle|
+    next if !target.fainted?
+    next if !move.pbContactMove?(user)
+    battle.pbShowAbilitySplash(target)
+    if !battle.moldBreaker
+      dampBattler = battle.pbCheckGlobalAbility(:DAMP)
+      if dampBattler
+        battle.pbShowAbilitySplash(dampBattler)
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          battle.pbDisplay(_INTL("{1} cannot use {2}!",target.pbThis,target.abilityName))
+        else
+          battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
+             target.pbThis,target.abilityName,dampBattler.pbThis(true),dampBattler.abilityName))
+        end
+        battle.pbHideAbilitySplash(dampBattler)
+        battle.pbHideAbilitySplash(target)
+        next
+      end
+    end
+    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      battle.scene.pbDamageAnimation(user)
+	  reduce = user.totalhp/4
+	  reduce /= 4 if user.boss
+      user.pbReduceHP(reduce,false)
+      battle.pbDisplay(_INTL("{1} was caught in the aftermath!",user.pbThis))
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)

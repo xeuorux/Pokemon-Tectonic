@@ -370,3 +370,48 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:MARANGABERRY,
     next battler.pbRaiseStatStage(:SPECIAL_DEFENSE,increment,battler)
   }
 )
+
+
+BattleHandlers::TargetItemOnHit.add(:JABOCABERRY,
+  proc { |item,user,target,move,battle|
+    next if !target.canConsumeBerry?
+    next if !move.physicalMove?
+    next if !user.takesIndirectDamage?
+    battle.pbCommonAnimation("EatBerry",target)
+    battle.scene.pbDamageAnimation(user)
+	reduce = user.totalhp/8
+	reduce /= 4 if user.boss
+    user.pbReduceHP(reduce,false)
+    battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",target.pbThis,
+       target.itemName,user.pbThis(true)))
+    target.pbHeldItemTriggered(item)
+  }
+)
+
+BattleHandlers::TargetItemOnHit.add(:ROWAPBERRY,
+  proc { |item,user,target,move,battle|
+    next if !target.canConsumeBerry?
+    next if !move.specialMove?
+    next if !user.takesIndirectDamage?
+    battle.pbCommonAnimation("EatBerry",target)
+    battle.scene.pbDamageAnimation(user)
+    reduce = user.totalhp/8
+	reduce /= 4 if user.boss
+    user.pbReduceHP(reduce,false)
+    battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",target.pbThis,
+       target.itemName,user.pbThis(true)))
+    target.pbHeldItemTriggered(item)
+  }
+)
+
+BattleHandlers::TargetItemOnHit.add(:ROCKYHELMET,
+  proc { |item,user,target,move,battle|
+    next if !move.pbContactMove?(user) || !user.affectedByContactEffect?
+    next if !user.takesIndirectDamage?
+    battle.scene.pbDamageAnimation(user)
+	reduce = user.totalhp/6
+	reduce /= 4 if user.boss
+    user.pbReduceHP(reduce,false)
+    battle.pbDisplay(_INTL("{1} was hurt by the {2}!",user.pbThis,target.itemName))
+  }
+)
