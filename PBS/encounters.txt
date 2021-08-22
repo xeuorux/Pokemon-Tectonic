@@ -1,5 +1,5 @@
 ﻿#-------------------------------
-# ALPHA
+# ALPHA -- Tutorial Island
 #-------------------------------
 [033] # Casaba Villa
 FloweryGrass,20
@@ -14,7 +14,7 @@ Land,20
 20,SKWOVET,7,9
 20,RATTATA,7,9
 20,HOPPIP,7,9
-20,PIKIPEK,7,9
+20,STARLY,7,9
 20,CATERPIE,7,9
 LandTall,20
 20,ABRA,7,9
@@ -84,6 +84,34 @@ LandSparse,20
 20,FERROSEED,11,13
 20,JANGMOO,11,13
 20,GULPIN,11,13
+#-------------------------------
+# ALPHA --First Open World Section
+#-------------------------------
+[53] # Jungle PROTOTYPE
+Land,20
+20,PANSAGE,16,19
+20,PIKIPEK,16,19
+20,BELLSPROUT,16,19
+20,EKANS,16,19
+20,PURRLOIN,16,19
+Mud,40
+20,CUFANT,16,19
+20,CROAGUNK,16,19
+20,TANGELA,16,19
+20,GRUBBIN,16,19
+20,PANPOUR,16,19
+LandTall,20
+20,AIPOM,16,19
+20,FOMANTIS,16,19
+20,SIZZLIPEDE,16,19
+20,ODDISH,16,19
+20,PANSEAR,16,19
+LandTinted,20
+20,BOUNSWEET,16,19
+20,ORANGURU,16,19
+20,HEATMOR,16,19
+20,SHROOMISH,16,19
+20,VENONAT,16,19
 #-------------------------------
 # PROTOTYPE
 #-------------------------------
