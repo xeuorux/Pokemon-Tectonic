@@ -423,7 +423,7 @@
 408,MEGAPUNCH,Mega Punch,000,80,NORMAL,Physical,85,20,0,NearOther,0,abefj,The target is slugged by a punch thrown with muscle-packed power.
 409,RAZORWIND,Razor Wind,0C3,80,FLYING,Special,100,10,0,AllNearFoes,0,bef,A two-turn attack. Blades of wind hit the foe on the second turn. Critical hits land more easily.
 410,SLAM,Slam,000,80,NORMAL,Physical,75,20,0,NearOther,0,abef,"The target is slammed with a long tail, vines, etc., to inflict damage."
-411,STRENGTH,Strength,000,80,NORMAL,Physical,100,15,0,NearOther,0,abef,The target is slugged with a punch thrown at maximum power. It can also be used to move heavy boulders.
+411,STRENGTH,Strength,000,80,NORMAL,Physical,100,15,0,NearOther,0,abef,The target is slugged with a punch thrown at maximum power.
 412,TRIATTACK,Tri Attack,017,80,NORMAL,Special,100,10,20,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. It has a 6.67% chance each to paralyze, burn, or chill."
 413,CRUSHCLAW,Crush Claw,043,75,NORMAL,Physical,100,10,100,NearOther,0,abef,The user slashes the target with hard and sharp claws. It also lowers the target's Defense.
 414,RELICSONG,Relic Song,003,75,NORMAL,Special,100,10,10,AllNearFoes,0,befk,An ancient song appeals to the hearts of those listening. It has a 10% chance to induce sleep.
@@ -778,7 +778,7 @@
 758,NATUREBUBBLE,Nature Bubble,020,40,GRASS,Special,100,35,10,NearOther,0,befn,"The user fires a small bubble of energy at the target. It has a 10% chance to raise user's Sp. Atk."
 759,ROOTWRACK,Rootwrack,504,60,GRASS,Physical,100,25,0,NearOther,0,bef,"The user sends its roots after the target, raking them. Deals 25% more damage if the target moved first."
 760,EAGERTICKLING,Eager Tickling,042,40,FAIRY,Physical,100,30,10,NearOther,0,abef,"The user tickles the target excessively, damaging it. This has a 10% chance to lower Attack."
-761,TREADON,Tread On,044,40,GROUND,Physical,100,35,10,NearOther,0,bef,The user attacks the opposing Pokémon by trampling it. It has a 10% chance to lower Speed.
+761,TREADON,Tread On,044,40,GROUND,Physical,100,35,10,NearOther,0,abef,The user attacks the opposing Pokémon by trampling it. It has a 10% chance to lower Speed.
 762,RUMBLE,Rumble,076,45,GROUND,Physical,100,35,0,AllNearOthers,0,bef,"The user causes the earth to rumble, striking every Pokémon around it."
 763,TREMOR,Tremor,076,65,GROUND,Physical,100,20,0,AllNearOthers,0,bef,"The user slams the earth, causing all the Pokémon around it to tremble and take damage."
 764,COLDEMBRACE,Cold Embrace,00C,40,ICE,Physical,100,35,10,NearOther,0,abef,"The user grabs the target in a chilly embrace. It has a 10% chance to chill."
