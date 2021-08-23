@@ -315,200 +315,7 @@ class PokeBattle_AI
       end
     end
   end
-  
-  def pbGetMoveScoreBoss(move,user,target)
-	score = 100
-	
-	if move.function == "09C" # Helping hand
-		score = user.battle.commandPhasesThisRound == 0 ? 150 : 0
-	elsif move.function == "0DF" # Heal Pulse
-		if user.opposes?(target)
-			score = 0
-		else
-			score += 50 if target.hp<target.totalhp/2 &&
-                       target.effects[PBEffects::Substitute]==0
-		end
-	elsif move.function == "05E" || move.function == "05F" # Conversion and Conversion 2
-		score = user.battle.commandPhasesThisRound == 0 ? 150 : 0
-	elsif move.function == "OD9" # Rest
-		if user.hp==user.totalhp || !user.pbCanSleep?(user,false,nil,true)
-			score -= 90
-		else
-			score += 70
-			score -= user.hp*140/user.totalhp
-			score += 30 if user.status != :NONE
-		end
-	elsif user.species == :GOURGEIST && move.function != "142" && move.function != "00A" && user.battle.commandPhasesThisRound == 0 # Trick or treat, moves that burn
-		score = 0
-	elsif user.species == :GOURGEIST && (move.function == "142" || move.function == "00A") && user.battle.commandPhasesThisRound != 0
-		score = 0
-	elsif move.is_a?(PokeBattle_ProtectMove)
-		score = user.battle.commandPhasesThisRound == 0 ? (@battle.turnCount % 3 == 0 ? 99999 : 0) : 0
-	elsif move.is_a?(PokeBattle_HealingMove)
-		score = 99999
-		score = 0 if (user.hp.to_f/user.totalhp.to_f) > 0.25
-		score = 0 if user.battle.commandPhasesThisRound != 0
-	elsif move.function == "080" # Brine
-		score = target.hp<target.totalhp/2 ? 250 : 0
-	elsif user.species == :INCINEROAR && move.function != "041" && move.function != "0BA" && user.battle.commandPhasesThisRound == 0  # Swagger, Taunt
-		score = 0
-	elsif user.species == :INCINEROAR && (move.function == "041" || move.function == "0BA") && user.battle.commandPhasesThisRound != 0  # Swagger, Taunt
-		score = 0
-	elsif user.species == :DIALGA && move.function == "0C2" #Roar of time
-		score = $game_variables[95] == 4 ? 150 : 0
-	elsif user.species == :ARTICUNO && move.function == "070" # OHKO
-		score = target.frozen? ? 99999 : 0
-	elsif move.function == "073" #Metal Burst
-		score = 99999
-		score = 0 if (user.lastHPLostFromFoe/user.totalhp) < 0.1
-		score = 0 if user.battle.commandPhasesThisRound != ($game_variables[95] - 1)
-	elsif move.function == "098" # Flail/Reversal
-		score = (user.hp.to_f/user.totalhp.to_f < 0.5) ? 200 : 0
-	elsif move.function == "0A6" # Lock On, Mind Reader
-		score = (user.battle.commandPhasesThisRound == $game_variables[95] - 1) ? 200 : 0
-	elsif move.damagingMove? && move.accuracy < 70
-		score = 0
-		score = 99999 if user.effects[PBEffects::LockOnPos] == target.index # If locked on to the target
-		score = 0 if user.battle.commandPhasesThisRound != 0
-	elsif move.function == "118" # Gravity
-		score = 200
-	elsif move.function == "0A0" # Always crit move
-		score = 0
-		score = 200 if move.physicalMove? && (user.stages[:ATTACK] < 6 || target.stages[:DEFENSE] > 6)
-		score = 400 if move.physicalMove? && (user.stages[:ATTACK] < 4 || target.stages[:DEFENSE] > 8)
-		score = 200 if move.specialMove? && (user.stages[:SPECIAL_ATTACK] < 6 || target.stages[:SPECIAL_DEFENSE] > 6)
-		score = 400 if move.specialMove? && (user.stages[:SPECIAL_ATTACK] < 4 || target.stages[:SPECIAL_DEFENSE] > 8)
-	elsif move.function == "160" # Strength Sap
-		maxHeal = -99999
-		maxHealer = nil
-		@battle.battlers.each do |b|
-			next if !user.opposes?(b)
-			stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-			stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-			atk      = b.attack
-			atkStage = b.stages[:ATTACK]+6
-			healAmt = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
-			if healAmt > maxHeal
-				maxHeal = healAmt
-				maxHealer = b
-			end
-		end
-		score = target == maxHealer ? 130 : 0
-	elsif move.function == "08E" # Power Trip, Trained Outburst, Stored Power
-		score = 0
-		base = move.pbBaseDamage(nil,user,target)
-		score = (base*5/2) if base >= 100
-	elsif move.function == "099" #Electro Ball
-		score = 0
-		base = move.pbBaseDamage(nil,user,target)
-		score = (base*5/2) if base >= 120
-	elsif move.is_a?(PokeBattle_TargetStatDownMove)
-		statDown = move.statDown[0]
-		maxStat = -99999
-		maxStater = nil
-		@battle.battlers.each do |b|
-			next if !b || !user.opposes?(b)
-			stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-			stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-			stat      = b.plainStats[statDown]
-			statStage = b.stages[statDown]+6
-			stat = (stat.to_f*stageMul[statStage]/stageDiv[statStage]).floor
-			if stat > maxStat
-				maxStat = stat
-				maxStater = b
-			end
-		end
-		score = target == maxStater ? 130 : 0
-	elsif move.function == "0CF" # Trap and damage moves
-		score = 150 * user.hp.to_f/user.totalhp.to_f
-		score = 0 if target.effects[PBEffects::Trapping] > 0 && target.effects[PBEffects::TrappingMove] == move.id
-	elsif ["003","005","006","007","00A","00C"].include?(move.function) # Status inducing move
-		score = 100
-		@battle.messagesBlocked = true
-		score = 0 if move.pbFailsAgainstTarget?(user,target)
-		@battle.messagesBlocked = false
-	elsif move.function == "08B" # Eruption, Water Spout, etc.
-		score = @battle.turnCount == 0 ? 99999 : 0
-	elsif move.id == :ORIGINPULSE || move.id == :PRECIPICEBLADES
-		score = $game_variables[95] == 1 ? 99999 : 0
-	elsif move.function == "14E" #Geomancy
-		score = user.turnCount % 2 == 1 && (user.battle.commandPhasesThisRound == $game_variables[95] - 1) ? 99999 : 0
-	elsif move.function == "124" #Wonder Room
-		score = 0
-		
-		#Use wonder room if its not the first attack of the round, and if all the player's active pokemon
-		#have higher special defense than physical defense
-		if user.battle.commandPhasesThisRound != 0
-			allSpecialFocused = true
-			@battle.battlers.each do |b|
-				next if !b || !user.opposes?(b)
-				defense				= b.plainStats[:DEFENSE]
-				specialDefense      = b.plainStats[:SPECIAL_DEFENSE]
-				if defense > specialDefense
-					allSpecialFocused = false
-				end
-			end
-			
-			if allSpecialFocused
-				user.battle.pbDisplay(_INTL("{1} senses the powerful defensive auras of your Pokemon...",user.pbThis))
-				score = 99999
-			end
-		end
-	elsif move.function == "0F5" # Incinerate
-		score = target.item && (target.item.is_berry? || target.item.is_gem?) ? 99999 : 0
-	elsif move.function == "50E" # Flare Up
-		score = target.burned? ? 200 : 0
-	elsif move.function == "07B" # Venoshock
-		score = target.poisoned? ? 200 : 0
-	elsif move.function == "150" || move.function == "50B" # Fell Stinger, Slight
-		baseDmg = pbMoveBaseDamage(move,user,target,100)
-		realDamage = pbRoughDamage(move,user,target,100,baseDmg)
-		score = 0
-		if realDamage >= target.hp
-			score = 300
-		end
-	elsif move.function == "019" # Heal Bell
-		score = 99999
-	elsif move.damagingMove? # More likely to use damaging moves the more damage they do, and the less current HP you have
-		damageRatio = pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f
-		score = (score * (damageRatio+1.0)/2).floor
-    end
-	
-	if move.priority > 0 || move.flinchingMove?
-		if user.battle.commandPhasesThisRound == 0
-			score *= 2
-		else
-			score *= 0.5
-		end
-	end
-	
-	if move.function == "111" # Future Sight, etc.
-		score = 0 if move.pbFailsAgainstTarget?(user,target)
-	end
-	
-	# Never use a move that would fail outright
-	@battle.messagesBlocked = true
-	if move.pbMoveFailed?(user,[target])
-		score = 0
-    end
-	@battle.messagesBlocked = false
-	
-	return score
-  end
-  
-  def pbGetRealDamageBoss(move,user,target)
-    # Calculate how much damage the move will do (roughly)
-    baseDmg = pbMoveBaseDamage(move,user,target,0)
-    # Account for accuracy of move
-    accuracy = pbRoughAccuracy(move,user,target,0)
-    realDamage = baseDmg * accuracy/100.0
-    # Two-turn attacks waste 2 turns to deal one lot of damage
-    if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
-      realDamage *= 2/3   # Not halved because semi-invulnerable during use or hits first turn
-    end
-    return realDamage
-  end
-  
+     
   def pbEnemyShouldWithdrawEx?(idxBattler,forceSwitch)
     return false if @battle.wildBattle?
     shouldSwitch = forceSwitch
@@ -1025,5 +832,17 @@ class PokeBattle_AI
       end
     end
     return damage.floor
+  end
+  
+  # For switching. Determines the effectiveness of a potential switch-in against
+  # an opposing battler.
+  def pbCalcTypeModPokemon(battlerThis,_battlerOther)
+    mod1 = Effectiveness.calculate(battlerThis.type1,_battlerOther.type1,_battlerOther.type2)
+    mod2 = Effectiveness::NORMAL_EFFECTIVE
+    if battlerThis.type1!=battlerThis.type2
+      mod2 = Effectiveness.calculate(battlerThis.type2,_battlerOther.type1,_battlerOther.type2)
+      mod2 = mod2.to_f / Effectiveness::NORMAL_EFFECTIVE
+    end
+    return mod1*mod2
   end
 end
