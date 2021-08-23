@@ -1,4 +1,11 @@
 class PokeBattle_Battler
+	def hasActiveAbility?(check_ability, ignore_fainted = false)
+		return false if !abilityActive?(ignore_fainted)
+		return check_ability.include?(@ability_id) if check_ability.is_a?(Array)
+		return check_ability == self.ability.id
+	end
+	alias hasWorkingAbility hasActiveAbility?
+
 	def takesSandstormDamage?
 		return false if !takesIndirectDamage?
 		return false if pbHasType?(:GROUND) || pbHasType?(:ROCK) || pbHasType?(:STEEL)
