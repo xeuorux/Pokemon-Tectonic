@@ -84,46 +84,6 @@ class Pokemon
 	end
 end
 
-BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
-  proc { |ability,user,targets,move,battle|
-    next if battle.futureSight
-    next if !move.pbDamagingMove?
-    next if user.item
-    next if battle.wildBattle? && user.opposes? && !user.boss
-    targets.each do |b|
-      next if b.damageState.unaffected || b.damageState.substitute
-      next if !b.item
-      next if b.unlosableItem?(b.item) || user.unlosableItem?(b.item)
-      battle.pbShowAbilitySplash(user)
-      if b.hasActiveAbility?(:STICKYHOLD)
-        battle.pbShowAbilitySplash(b) if user.opposes?(b)
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          battle.pbDisplay(_INTL("{1}'s item cannot be stolen!",b.pbThis))
-        end
-        battle.pbHideAbilitySplash(b) if user.opposes?(b)
-        next
-      end
-      user.item = b.item
-      b.item = nil
-      b.effects[PBEffects::Unburden] = true
-      if battle.wildBattle? && !user.initialItem && b.initialItem==user.item
-        user.setInitialItem(user.item)
-        b.setInitialItem(nil)
-      end
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,
-           b.pbThis(true),user.itemName))
-      else
-        battle.pbDisplay(_INTL("{1} stole {2}'s {3} with {4}!",user.pbThis,
-           b.pbThis(true),user.itemName,user.abilityName))
-      end
-      battle.pbHideAbilitySplash(user)
-      user.pbHeldItemTriggerCheck
-      break
-    end
-  }
-)
-
 class PokeBattle_Battle
 	def pbStartBattleSendOut(sendOuts)
     # "Want to battle" messages
@@ -226,12 +186,10 @@ class PokeBattle_Battle
       end
       PBDebug.log("")
 	  
-	  # Allow bosses to set various things about themselves
+	  # Allow bosses to set various things about themselves before their turn
 	  @battlers.each do |b|
 		next if !b || b.fainted || !b.boss
-		pbSetBossTurns(b)
-		pbSetBossItem(b)
-		pbSetBossForm(b)
+		PokeBattle_AI.triggerBossBeginTurn(b.species,b)
 	  end
 	  
 	  @commandPhasesThisRound = 0
@@ -269,7 +227,6 @@ class PokeBattle_Battle
 		  end
 	  end
 	  
-	  
       # End of round phase
       PBDebug.logonerr { pbEndOfRoundPhase }
       break if @decision>0
@@ -278,29 +235,7 @@ class PokeBattle_Battle
     end
     pbEndOfBattle
   end
-  
-  def pbSetBossTurns(pkmn)
-	if pkmn.species == :DIALGA
-		healthRation = pkmn.hp / pkmn.totalhp
-		if $game_variables[95] == 1 && healthRation < 0.66
-			pbDisplay(_INTL("The avatar of Dialga expands time on its side of the field!"))
-			$game_variables[95] = 3
-		elsif $game_variables[95] == 3 && healthRation < 0.33
-			pbDisplay(_INTL("The avatar of Dialga expands time even more! It's stretched to the max!"))
-			$game_variables[95] = 4
-		end
-	elsif (pkmn.species == :KYOGRE || pkmn.species == :GROUDON)
-		if @turnCount == 0
-			$game_variables[95] = 1
-			pbDisplay(_INTL("The avatar is clearly preparing a massive opening attack!"))
-		elsif  @turnCount % 3 == 0 && @turnCount > 0
-			pbDisplay(_INTL("The avatar is gathering energy for a massive attack!"))
-			$game_variables[95] = 1
-		else
-			$game_variables[95] = 3
-		end
-	end
-  end
+
   
   def pbSetBossItem(pkmn)
 	if pkmn.species == :GENESECT && pkmn.turnCount == 0
@@ -343,12 +278,6 @@ class PokeBattle_Battle
 	end
   end
   
-  def pbSetBossForm(pkmn)
-	if (pkmn.species == :RAYQUAZA) && !pkmn.mega?
-		pbMegaEvolve(pkmn.index)
-	end
-  end
-  
   def pbExtraBossCommandPhase()
     @scene.pbBeginCommandPhase
     # Reset choices if commands can be shown
@@ -364,7 +293,6 @@ class PokeBattle_Battle
     end
     pbCommandPhaseLoop(false)
   end
-  
   
   #=============================================================================
   # Attack phase

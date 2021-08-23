@@ -30,10 +30,15 @@ def wonderRoomStrong(user,target)
 			end
 		end
 		
-		if allSpecialFocused
-			user.battle.pbDisplay(_INTL("{1} senses the powerful defensive auras of your Pokemon...",user.pbThis))
-			return true
-		end
+		return true if allSpecialFocused
 	end
 	return false
 end
+
+PokeBattle_AI::BossDecidedOnMove.add(:XERNEAS,
+	proc { |species,move,user,target|
+		if move.function == "14E"
+			user.battle.pbDisplay(_INTL("{1} senses the powerful defensive auras of your Pokemon...",user.pbThis))
+		end
+	}
+)

@@ -113,6 +113,18 @@ class PokeBattle_Battle
           idxPlayerPartyNew = pbGetReplacementPokemonIndex(idxBattler)   # Owner chooses
           pbRecallAndReplace(idxBattler,idxPlayerPartyNew)
           switched.push(idxBattler)
+		else   # Player's Pokémon has fainted in a wild battle
+          switch = false
+          if !pbDisplayConfirm(_INTL("Use next Pokémon?"))
+            switch = (pbRun(idxBattler,true)<=0)
+          else
+            switch = true
+          end
+          if switch
+            idxPlayerPartyNew = pbGetReplacementPokemonIndex(idxBattler)   # Owner chooses
+            pbRecallAndReplace(idxBattler,idxPlayerPartyNew)
+            switched.push(idxBattler)
+          end
         end
       end
       break if switched.length==0

@@ -435,3 +435,43 @@ BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
     battle.pbHideAbilitySplash(target)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
+  proc { |ability,user,targets,move,battle|
+    next if battle.futureSight
+    next if !move.pbDamagingMove?
+    next if user.item
+    next if battle.wildBattle? && user.opposes? && !user.boss
+    targets.each do |b|
+      next if b.damageState.unaffected || b.damageState.substitute
+      next if !b.item
+      next if b.unlosableItem?(b.item) || user.unlosableItem?(b.item)
+      battle.pbShowAbilitySplash(user)
+      if b.hasActiveAbility?(:STICKYHOLD)
+        battle.pbShowAbilitySplash(b) if user.opposes?(b)
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          battle.pbDisplay(_INTL("{1}'s item cannot be stolen!",b.pbThis))
+        end
+        battle.pbHideAbilitySplash(b) if user.opposes?(b)
+        next
+      end
+      user.item = b.item
+      b.item = nil
+      b.effects[PBEffects::Unburden] = true
+      if battle.wildBattle? && !user.initialItem && b.initialItem==user.item
+        user.setInitialItem(user.item)
+        b.setInitialItem(nil)
+      end
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,
+           b.pbThis(true),user.itemName))
+      else
+        battle.pbDisplay(_INTL("{1} stole {2}'s {3} with {4}!",user.pbThis,
+           b.pbThis(true),user.itemName,user.abilityName))
+      end
+      battle.pbHideAbilitySplash(user)
+      user.pbHeldItemTriggerCheck
+      break
+    end
+  }
+)
