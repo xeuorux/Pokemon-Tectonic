@@ -1,6 +1,9 @@
 class MoveScoringHandlerHash < HandlerHash2
 end
 
+class BossBehaviourHash < HandlerHash2
+end
+
 class PokeBattle_AI
 	BossGetMoveIDScore					= MoveScoringHandlerHash.new
 	BossGetMoveCodeScore				= MoveScoringHandlerHash.new
@@ -57,6 +60,17 @@ class PokeBattle_AI
 	def self.triggerBossSpeciesRequireMove(species,move,user,target)
 		ret = BossSpeciesRequireMove.trigger(species,move,user,target)
 		return (ret!=nil) ? ret : false
+	end
+	
+	BossDecidedOnMove				 	= BossBehaviourHash.new
+	BossBeginTurn				= BossBehaviourHash.new
+	
+	def self.triggerBossDecidedOnMove(species,move,user,target)
+		return BossDecidedOnMove.trigger(species,move,user,target)
+	end
+	
+	def self.triggerBossBeginTurn(species,battler)
+		return BossBeginTurn.trigger(species,battler)
 	end
 
 	def pbGetRealDamageBoss(move,user,target)

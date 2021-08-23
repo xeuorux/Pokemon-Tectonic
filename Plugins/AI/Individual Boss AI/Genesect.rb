@@ -1,16 +1,16 @@
 PokeBattle_AI::BossSpeciesRequireMove.add(:GENESECT,
 	proc { |species,move,user,target|
-		next true if move.function == "150" && shouldUseFellStinger(user,target)
+		next true if move.function == "150" && shouldUseFellStinger(move,user,target)
 	}
 )
 
 PokeBattle_AI::BossSpeciesRejectMove.add(:GENESECT,
 	proc { |species,move,user,target|
-		next true if move.function == "150" && !shouldUseFellStinger(user,target)
+		next true if move.function == "150" && !shouldUseFellStinger(move,user,target)
 	}
 )
 
-def shouldUseFellStinger(user,target)
+def shouldUseFellStinger(move,user,target)
 	ai = user.battle.battleAI
 	baseDmg = ai.pbMoveBaseDamage(move,user,target,100)
 	realDamage = ai.pbRoughDamage(move,user,target,100,baseDmg)
@@ -20,3 +20,46 @@ def shouldUseFellStinger(user,target)
 	end
 	return false
 end
+
+PokeBattle_AI::BossBeginTurn.add(:GENESECT,
+	proc { |species,battler|
+		next if battler.turnCount != 0
+		
+		battler.battle.pbDisplay(_INTL("The avatar of Genesect is analyzing your team for weaknesses..."))
+		weakToElectric 	= 0
+		weakToFire 		= 0
+		weakToIce 		= 0
+		weakToWater 	= 0
+		maxValue = 0
+
+		$Trainer.party.each do |b|
+			next if !b
+			type1 = b.type1
+			type2 = nil
+			type2 = b.type2 if b.type2 != b.type1
+			weakToElectric += 1 if Effectiveness.super_effective?(Effectiveness.calculate(:ELECTRIC,type1,type2,nil))
+			maxValue = weakToElectric if weakToElectric > maxValue
+			weakToFire += 1  if Effectiveness.super_effective?(Effectiveness.calculate(:FIRE,type1,type2,nil))
+			maxValue = weakToElectric if weakToFire > maxValue
+			weakToIce += 1  if Effectiveness.super_effective?(Effectiveness.calculate(:ICE,type1,type2,nil))
+			maxValue = weakToElectric if weakToIce > maxValue
+			weakToWater += 1  if Effectiveness.super_effective?(Effectiveness.calculate(:WATER,type1,type2,nil))
+			maxValue = weakToElectric if weakToWater > maxValue
+		end
+		
+		chosenItem = nil
+		if maxValue > 0
+			results = {SHOCKDRIVE: weakToElectric, BURNDRIVE: weakToFire, CHILLDRIVE: weakToIce, DOUSEDRIVE: weakToWater}
+			results = results.sort_by{|k, v| v}.to_h
+			results.delete_if{|k, v| v < maxValue}
+			chosenItem = results.keys.sample
+		end
+		
+		if !chosenItem
+			battler.battle.pbDisplay(_INTL("The avatar of Genesect can't find any!"))
+		else
+			battler.battle.pbDisplay(_INTL("The avatar of Genesect loads a {1}!",GameData::Item.get(chosenItem).real_name))
+			battler.item = chosenItem
+		end
+	}
+)

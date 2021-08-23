@@ -133,6 +133,10 @@ class PokeBattle_AI
     if @battle.choices[idxBattler][2]
       PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will use #{@battle.choices[idxBattler][2].name}")
     end
+	
+	move = @battle.choices[idxBattler][2]
+	target = @battle.choices[idxBattler][3]
+	PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,target)
   end
   
     # Trainer Pokémon calculate how much they want to use each of their moves.

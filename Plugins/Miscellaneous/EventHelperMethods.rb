@@ -323,3 +323,25 @@ class Game_Map
 		slideCameraToSpot($game_player.x,$game_player.y,speed)
 	end
 end
+
+def turnPlayerTowardEvent(eventId = 0)
+	event = get_character(eventId)
+	turnPlayerTowardSpot(event.x,event.y)
+end
+
+def turnPlayerTowardSpot(x,y)
+	$game_player.turn_towards_spot(x,y)
+end
+
+class Game_Player < Game_Character
+	def turn_towards_spot(otherX,otherY)
+		sx = @x + @width / 2.0 - otherX
+		sy = @y - @height / 2.0 - otherY
+		return if sx == 0 && sy == 0
+		if sx.abs > sy.abs
+		  (sx > 0) ? turn_left : turn_right
+		else
+		  (sy > 0) ? turn_up : turn_down
+		end
+	end
+end

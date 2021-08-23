@@ -381,7 +381,7 @@ class PokeBattle_Battler
 	  if !battle.wildBattle?
 		  # Triggers dialogue for each target hit
 		  targets.each do |t|
-			next if t.damageState.protected || t.damageState.unaffected
+			next unless t.damageState.totalHPLost > 0
 			if @battle.pbOwnedByPlayer?(t.index)
 				# Trigger each opponent's dialogue
 				@battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
