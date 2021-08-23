@@ -187,6 +187,52 @@ def changeOpacitySpaced(opacityTarget,spaces)
 	changeOpacityOverTime(opacityTarget,opacityChangePerFrame.abs)
 end
 
+
+Down = 2
+Left = 4
+Right = 6
+Up = 8
+
+def moveBackAndForth(length,initialDirection=Right,transverseLength=0,clockwise=true)
+	new_move_route = RPG::MoveRoute.new
+	new_move_route.repeat    = false
+	new_move_route.skippable = false
+	new_move_route.list.clear
+	
+	case initialDirection
+	when 2 # Down
+		transverseDirection = clockwise ? Left : Right
+	when 4 # Left
+		transverseDirection = clockwise ? Up : Down
+	when 6 # Right
+		transverseDirection = clockwise ? Down : Up
+	when 8 # Up
+		transverseDirection = clockwise ? Right : Left
+	end
+	
+	inverseInitialDirection = 10 - initialDirection
+	inverseTransverseDirection = 10 - transverseDirection
+	
+	length.times {
+		new_move_route.list.push(RPG::MoveCommand.new(initialDirection/2))
+	}
+	transverseLength.times {
+		new_move_route.list.push(RPG::MoveCommand.new(transverseDirection/2))
+	}
+	length.times {
+		new_move_route.list.push(RPG::MoveCommand.new(inverseInitialDirection/2))
+	}
+	transverseLength.times {
+		new_move_route.list.push(RPG::MoveCommand.new(inverseTransverseDirection/2))
+	}
+	
+	new_move_route.list.push(RPG::MoveCommand.new(0))
+	
+	self.force_move_route(new_move_route)
+end
+
+
+
 def changeOpacityOverTime(opacityTarget,speed)
 	currentOpacity = self.opacity
 	
