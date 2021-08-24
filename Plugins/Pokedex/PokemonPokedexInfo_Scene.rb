@@ -561,8 +561,9 @@ class PokemonPokedexInfo_Scene
         fSpecies = GameData::Species.get_species_form(@species,i[2])
 		
 		coordinateY = 54
-		drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("Pre-Evolutions of {1}",@title),base,shadow)
-		coordinateY += 30
+		prevoTitle = _INTL("Pre-Evolutions of {1}",@title)
+		drawTextEx(overlay,(Graphics.width-prevoTitle.length*10)/2,coordinateY,450,1,prevoTitle,base,shadow)
+		coordinateY += 34
 		index = 0
 		
 		# Show pre-volutions
@@ -581,16 +582,19 @@ class PokemonPokedexInfo_Scene
 			  # Draw preevolution description
 			  color = index == @evolutionIndex ? Color.new(255,100,80) : base
 			  drawTextEx(overlay,xLeft,coordinateY,450,2,_INTL("Evolves from {1} {2}",evolutionName,methodDescription),color,shadow)
-			  coordinateY += 60
+			  coordinateY += 30
+			  coordinateY += 30 if method != :Level
 			  index += 1
 			end
 		end
 		
-		drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("Evolutions of {1}",@title),base,shadow)
-		coordinateY += 30
+		evoTitle = _INTL("Evolutions of {1}",@title)
+		drawTextEx(overlay,(Graphics.width-evoTitle.length*10)/2,coordinateY,450,1,evoTitle,base,shadow)
+		coordinateY += 34
 		
 		# Show evolutions
 		evolutions = fSpecies.get_evolutions
+		
 		if evolutions.length == 0
 			drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("None"),base,shadow)
 			coordinateY += 30
@@ -600,18 +604,39 @@ class PokemonPokedexInfo_Scene
 			Leafeon with a Leaf Stone, Glaceon with an Ice Stone, and Sylveon with a Dawn Stone
 			"),base,shadow)
 		else
+			evosOfEvos = {}
 			evolutions.each do |evolution|
 			  method = evolution[1]
 			  parameter = evolution[2]
 			  species = evolution[0]
 			  return if !method || !species
-			  evolutionName = GameData::Species.get_species_form(species,i[2]).real_name
+			  speciesData = GameData::Species.get_species_form(species,i[2])
+			  evolutionName = speciesData.real_name
+			  evosOfEvos[evolutionName] = speciesData.get_evolutions()
 			  methodDescription = describeEvolutionMethod(method,parameter)
 			  # Draw evolution description
 			  color = index == @evolutionIndex ? Color.new(255,100,80) : base
 			  drawTextEx(overlay,xLeft,coordinateY,450,2,_INTL("Evolves into {1} {2}",evolutionName,methodDescription),color,shadow)
-			  coordinateY += 60
+			  coordinateY += 30
+			  coordinateY += 30 if method != :Level
 			  index += 1
+			end
+			
+			evosOfEvos.each do |fromSpecies,evolutions|
+			  evolutions.each do |evolution|
+				  method = evolution[1]
+				  parameter = evolution[2]
+				  species = evolution[0]
+				  return if !method || !species
+				  speciesData = GameData::Species.get_species_form(species,i[2])
+				  evolutionName = speciesData.real_name
+				  methodDescription = describeEvolutionMethod(method,parameter)
+				  # Draw evolution description
+				  color = index == @evolutionIndex ? Color.new(255,100,80) : base
+				  drawTextEx(overlay,xLeft,coordinateY,450,2,_INTL("Evolves into {1} {2} (through {3})",evolutionName,methodDescription,fromSpecies),color,shadow)
+				  coordinateY += 60
+				  index += 1
+			  end
 			end
         end
 		

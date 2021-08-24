@@ -3036,13 +3036,13 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = KINGLER,Level,28
+Evolutions = KINGLER,Level,16
 #-------------------------------
 [99]
 Name = Kingler
 InternalName = KINGLER
 Type1 = WATER
-BaseStats = 70,110,95,65,55,40
+BaseStats = 70,100,95,65,55,40
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 166
@@ -3066,7 +3066,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = KLAWSAR,Level,46
+Evolutions = KLAWSAR,Level,36
 #-------------------------------
 [100]
 Name = Voltorb
@@ -28234,7 +28234,7 @@ BattlerShadowSize = 2
 Name = Klawsar
 InternalName = KLAWSAR
 Type1 = WATER
-BaseStats = 85,140,125,75,60,60
+BaseStats = 85,125,120,75,70,50
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 166

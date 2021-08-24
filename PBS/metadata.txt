@@ -148,7 +148,7 @@ MapPosition = 0,15,8
 MapPosition = 0,15,8
 #-------------------------------
 [026]
-# Seaside Villa Center
+# Seaside Grotto
 Outdoor = false
 Bicycle = false
 BicycleAlways = false
@@ -156,7 +156,7 @@ HealingSpot = 33,15,26
 MapPosition = 0,15,8
 #-------------------------------
 [027]
-# Seaside Villa Mart
+# Casaba Mart
 Outdoor = false
 Bicycle = false
 #-------------------------------
@@ -178,7 +178,7 @@ Environment = Cave
 HealingSpot = 21,25,13
 #-------------------------------
 [033]
-# Seaside Villa
+# Casaba Villa
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -190,7 +190,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [035]
-# Exile's House
+# Impromptu Lab
 HealingSpot = 34,24,11
 #-------------------------------
 [038]
@@ -200,6 +200,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [039]
+# Casaba Center
 Outdoor = false
 Bicycle = true
 #-------------------------------
@@ -214,6 +215,17 @@ Bicycle = true
 Outdoor = true
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[056]
+# Suburb Prototype
+Outdoor = true
+ShowArea = true
+Bicycle = true
+Weather = Rain,10
+#-------------------------------
+[057]
+# Suburb Center
+HealingSpot = 56,40,27
 #-------------------------------
 [076]
 # Flower Center
