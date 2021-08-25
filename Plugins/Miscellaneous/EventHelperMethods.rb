@@ -472,3 +472,10 @@ class Game_Player < Game_Character
 		end
 	end
 end
+
+def stowFollowerIfActive()
+	if $PokemonGlobal.follower_toggled
+		pbToggleFollowingPokemon("off",true)
+		pbWait(Graphics.frame_rate)
+	end
+end
