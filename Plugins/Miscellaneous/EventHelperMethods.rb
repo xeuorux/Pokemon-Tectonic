@@ -89,9 +89,90 @@ def perfectTrainer()
 	pbTrainerDropsItem()
 end
 
+def perfectDoubleTrainer(event1,event2)
+	blackFadeOutIn() {
+		setMySwitch('D',true)
+		pbSetSelfSwitch(event1,'D',true)
+		pbSetSelfSwitch(event2,'D',true)
+		setFollowerGone(event1)
+		setFollowerGone(event2)
+	}
+	pbTrainerDropsItem()
+	pbTrainerDropsItem()
+end
+
 def defeatTrainer()
 	setMySwitch('A',true)
 	setFollowerInactive()
+end
+
+def defeatDoubleTrainer(event1,event2)
+	blackFadeOutIn() {
+		setMySwitch('A',true)
+		pbSetSelfSwitch(event1,'A',true)
+		pbSetSelfSwitch(event2,'A',true)
+		setFollowerInactive(event1)
+		setFollowerInactive(event2)
+	}
+end
+
+def get_player
+	return get_character(0)
+end
+
+def rejectTooFewPokemon(dialogue)
+	if $Trainer.ablePokemonCount<=1
+		pbMessage(dialogue)
+		new_move_route = RPG::MoveRoute.new
+		new_move_route.repeat    = false
+		new_move_route.skippable = false
+		new_move_route.list.clear
+		new_move_route.list.push(RPG::MoveCommand.new(13)) # Backwards
+		new_move_route.list.push(RPG::MoveCommand.new(0)) # End
+		get_player.force_move_route(new_move_route)
+		@move_route_waiting = true if !$game_temp.in_battle # Wait for move route completion
+		command_end # Exit event processing
+	end
+end
+
+def setFollowerInactive(eventId=0)
+	follower = getFollowerPokemon(eventId)
+	if !follower
+		pbMessage("ERROR: Could not find follower Pokemon!")
+		return
+	end
+	showBallReturn(follower.x,follower.y)
+	pbWait(Graphics.frame_rate/10)
+	pbSetSelfSwitch(follower.id,'A',true)
+end
+
+def setFollowerGone(eventId=0)
+	follower = getFollowerPokemon(eventId)
+	if !follower
+		pbMessage("ERROR: Could not find follower Pokemon!")
+		return
+	end
+	pbSetSelfSwitch(follower.id,'D',true)
+end
+
+def showBallReturn(x,y)
+	$scene.spriteset.addUserAnimation(30,x,y)
+end
+
+def getFollowerPokemon(eventId=0)
+	x = get_character(eventId).original_x
+	y = get_character(eventId).original_y
+	
+	follower = nil
+	for event in $game_map.events.values
+		next unless event.name.downcase.include?("overworld")
+		xDif = (event.x - x).abs
+		yDif = (event.y - y).abs
+		next unless xDif <= 1 && yDif <= 1 # Must be touching
+		follower = event
+		break
+    end
+	return follower
 end
 
 def phoneCallSE()

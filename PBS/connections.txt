@@ -24,11 +24,13 @@
 22,East,0,48,West,64
 # Forest Crossroads (22) - Forest Route (43)
 22,East,0,43,West,31
+# Mine Path (29) - Scenic Path (34)
+29,West,3,34,East,0
+# Scenic Path (34) - Casaba Villa (33)
+34,South,0,33,North,24
+# Beach Route (38) - Casaba Villa (33)
+38,East,0,33,West,2
 # Forest Route (43) - Flower Town (48)
 43,North,0,48,South,0
-# Route 1 (34) - Starting Town (33)
-34,South,0,33,North,24
-# Starting Beach (38) - Starting Town (33)
-38,East,0,33,West,2
-# Cave Entrance Grove (29) - Route 1 (34)
-29,West,3,34,East,0
+# Forest Zoo (31) - Suburb Prototype (56)
+31,East,4,56,West,0

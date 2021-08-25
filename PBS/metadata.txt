@@ -173,6 +173,12 @@ ShowArea = true
 Bicycle = true
 Environment = Cave
 #-------------------------------
+[031]
+# Forest Zoo
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
 [032]
 # Player's House
 HealingSpot = 21,25,13

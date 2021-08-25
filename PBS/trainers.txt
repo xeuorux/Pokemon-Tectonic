@@ -122,6 +122,29 @@ Pokemon = BUNNELBY,15
 Pokemon = SNEASEL,15
 Pokemon = JOLTIK,15
 ################################
+#	First Open World Section
+################################
+#-------------------------------
+[GUITARIST,Reece]
+Pokemon = KOFFING
+Pokemon = TOXEL
+Pokemon = BLITZLE
+#-------------------------------
+[PSYCHIC_M,Uriel]
+Pokemon = ABRA
+Pokemon = MEDITITE
+Pokemon = WOOBAT
+#-------------------------------
+[POKEFAN_M,Jamie]
+Pokemon = SUNKERN
+Pokemon = TAILOW
+Pokemon = SPHEAL
+#-------------------------------
+[DANCER,Isai]
+Pokemon = HITMONTOP
+Pokemon = COMBUSKEN
+Pokemon = SLUGMA
+################################
 #	Ace Trainers
 ################################
 #-------------------------------
