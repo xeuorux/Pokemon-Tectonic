@@ -440,7 +440,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:HOLIDAYCHEER,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     battle.eachSameSideBattler(battler.index) do |b|
-      b.pbRecoverHP(b.totalhp/3)
+      b.pbRecoverHP(b.totalhp*0.25)
     end
     battle.pbHideAbilitySplash(battler)
   }
@@ -538,5 +538,11 @@ BattleHandlers::MoveBlockingAbility.add(:BADINFLUENCE,
 BattleHandlers::AccuracyCalcTargetAbility.add(:CHALLENGER,
   proc { |ability,mods,user,target,move,type|
     mods[:base_accuracy] = 0 if type == :FIGHTING
+  }
+)
+
+BattleHandlers::AccuracyCalcUserAllyAbility.add(:OCULAR,
+  proc { |ability,mods,user,target,move,type|
+    mods[:accuracy_multiplier] *= 1.25
   }
 )

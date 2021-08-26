@@ -234,7 +234,7 @@
 231,CASTELIACONE,Casteliacone,Casteliacones,2,350,"Castelia City's specialty, soft-serve ice cream. It heals all the status problems of a single Pokémon.",1,0,0,
 232,REVIVE,Revive,Revives,2,2000,A medicine that revives a fainted Pokémon. It restores half the Pokémon's maximum HP.,1,0,0,
 233,MAXREVIVE,Max Revive,Max Revives,2,4000,A medicine that revives a fainted Pokémon. It fully restores the Pokémon's HP.,1,0,0,
-234,BERRYJUICE,Berry Juice,Berry Juices,2,100,A 100% pure juice made of Berries. It restores the HP of one Pokémon by just 20 points.,1,0,0,
+234,BERRYJUICE,Berry Juice,Berry Juices,2,100,A 100% pure juice made of Berries. It restores the HP of one Pokémon by just 20 points.,1,0,5,
 235,RAGECANDYBAR,Rage Candy Bar,Rage Candy Bars,2,350,Mahogany Town's famous candy. It can be used once to heal all the status conditions of a Pokémon.,1,0,0,
 236,SWEETHEART,Sweet Heart,Sweet Hearts,2,3000,Very sweet chocolate. It restores the HP of one Pokémon by only 20 points.,1,0,0,
 237,FRESHWATER,Fresh Water,Fresh Waters,2,200,Water with a high mineral content. It restores the HP of one Pokémon by 50 points.,1,0,0,
