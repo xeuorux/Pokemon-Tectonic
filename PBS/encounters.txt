@@ -31,7 +31,6 @@ Land,20
 20,WURMPLE,8,10
 20,IGGLYBUFF,8,10
 LandTall,20
-20,HATENNA,8,10
 20,STARLY,8,10
 20,STUNKY,8,10
 20,NICKIT,8,10
@@ -86,6 +85,25 @@ LandSparse,20
 20,GULPIN,11,13
 #-------------------------------
 # ALPHA --First Open World Section
+#-------------------------------
+[60] # Forest Route
+Land,20
+20,TIMBURR,14,17
+20,DEERLING,14,17
+20,SEEDOT,14,17
+20,RATTATA,14,17
+20,HOOTHOOT,14,17
+LandTall,20
+20,PETILIL,14,17
+20,SEWADDLE,14,17
+20,PINECO,14,17
+20,CHINGLING,14,17
+20,WURMPLE,14,17
+LandTinted,20
+20,BUNEARY,14,17
+20,ZORUA,14,17
+20,VENIPEDE,14,17
+20,HATENNA,14,17
 #-------------------------------
 [53] # Jungle PROTOTYPE
 Land,20
@@ -156,7 +174,7 @@ LandTinted,20
 [56] # Suburb Sketch
 FloweryGrass,20
 20,MEOWTH,15,18
-20,HATENNA,15,18
+20,PIDOVE,15,18
 20,STUNKY,15,18
 20,STUFFUL,15,18
 20,APPLIN,15,18
