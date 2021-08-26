@@ -144,6 +144,22 @@ Pokemon = SPHEAL,17
 Pokemon = HITMONTOP,17
 Pokemon = COMBUSKEN,16
 Pokemon = SLUGMA,17
+#-------------------------------
+[DANCER,Isai]
+Pokemon = HITMONTOP,17
+Pokemon = COMBUSKEN,16
+Pokemon = SLUGMA,17
+#-------------------------------
+[ARTIST,Evan]
+Pokemon = SMEARGLE,17
+	Moves = SKETCH,DECORATE,LIGHTSCREEN,METRONOME
+Pokemon = SUNKERN,17
+Pokemon = CUFANT,17
+#-------------------------------
+[HIKER2,Jude]
+Pokemon = ROGGENROLA,17
+Pokemon = TRAPINCH,17
+Pokemon = HOOTHOOT,17
 ################################
 #	Ace Trainers
 ################################
