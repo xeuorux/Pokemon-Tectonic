@@ -79,20 +79,10 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
-# Special hold item on a map which includes battle in the name
-  if $game_map.name.include?("Battle")
-    items = [:POKEBALL,:POKEBALL,:POKEBALL,:GREATBALL,:GREATBALL,:ULTRABALL] # This array can be edited and extended. Look at the one below for a guide
-    # Choose a random item from the items array, give the player 2 of the item with the message "{1} is holding a round object..."
-    next true if pbPokemonFound(items[rand(items.length)],2,"{1} is holding a round object...")
-  end
-}
-
-
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
   if $PokemonGlobal.follower_hold_item
     items = [:POTION,:POTION,:SUPERPOTION,:FULLRESTORE,:REVIVE,
          :RARECANDY,:REPEL,:REPEL,:MAXREPEL,:ESCAPEROPE,
-         :TINYMUSHROOM,:TINYMUSHROOM,:PEARL,:NUGGET,:BIGMUSHROOM
+         :TINYMUSHROOM,:TINYMUSHROOM,:PEARL,:NUGGET,:BIGMUSHROOM,
          :POKEBALL,:POKEBALL,:POKEBALL,:GREATBALL,:GREATBALL,:ULTRABALL
     ]
     # If no message or quantity is specified the default message is used and the quantity of item is 1
