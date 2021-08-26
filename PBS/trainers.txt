@@ -136,7 +136,7 @@ Pokemon = MEDITITE,16
 Pokemon = WOOBAT,15
 #-------------------------------
 [POKEFAN_M,Jamie]
-Pokemon = SUNKERN,16
+Pokemon = PUMPKABOO,16
 Pokemon = TAILLOW,16
 Pokemon = SPHEAL,17
 #-------------------------------
