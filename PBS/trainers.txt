@@ -126,24 +126,24 @@ Pokemon = JOLTIK,15
 ################################
 #-------------------------------
 [GUITARIST,Reece]
-Pokemon = KOFFING
-Pokemon = TOXEL
-Pokemon = BLITZLE
+Pokemon = KOFFING,15
+Pokemon = TOXEL,15
+Pokemon = BLITZLE,15
 #-------------------------------
 [PSYCHIC_M,Uriel]
-Pokemon = ABRA
-Pokemon = MEDITITE
-Pokemon = WOOBAT
+Pokemon = ABRA,15
+Pokemon = MEDITITE,16
+Pokemon = WOOBAT,15
 #-------------------------------
 [POKEFAN_M,Jamie]
-Pokemon = SUNKERN
-Pokemon = TAILOW
-Pokemon = SPHEAL
+Pokemon = SUNKERN,16
+Pokemon = TAILOW,16
+Pokemon = SPHEAL,17
 #-------------------------------
 [DANCER,Isai]
-Pokemon = HITMONTOP
-Pokemon = COMBUSKEN
-Pokemon = SLUGMA
+Pokemon = HITMONTOP,17
+Pokemon = COMBUSKEN,16
+Pokemon = SLUGMA,17
 ################################
 #	Ace Trainers
 ################################
