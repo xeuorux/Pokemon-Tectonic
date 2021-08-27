@@ -162,7 +162,7 @@
 156,CLOSECOMBAT,Close Combat,03C,120,FIGHTING,Physical,100,5,0,NearOther,0,abef,The user fights the foe up close without guarding itself. It also cuts the user's Defense and Sp. Def.
 157,FOCUSBLAST,Focus Blast,046,120,FIGHTING,Special,70,5,10,NearOther,0,befn,The user heightens its mental focus and unleashes its power. It has a 10% chance to Sp. Def.
 158,SUPERPOWER,Superpower,03B,120,FIGHTING,Physical,100,5,0,NearOther,0,abef,"The user attacks the target with great power. However, it also lowers the user's Attack and Defense."
-159,CROSSCHOP,Cross Chop,000,100,FIGHTING,Physical,80,5,0,NearOther,0,abefh,The user delivers a double chop with its forearms crossed. Critical hits land more easily.
+159,CROSSCHOP,Cross Chop,000,90,FIGHTING,Physical,100,5,0,NearOther,0,abefh,The user delivers a double chop with its forearms crossed. Critical hits land more easily.
 160,DYNAMICPUNCH,Dynamic Punch,013,100,FIGHTING,Physical,50,5,100,NearOther,0,abefj,"The user punches the target with full, concentrated power. It confuses the target if it hits."
 161,FLYINGPRESS,Flying Press,144,100,FIGHTING,Physical,100,10,0,Other,0,abef,The user dives down onto the target from the sky. This move is Fighting and Flying type simultaneously.
 162,HAMMERARM,Hammer Arm,03E,100,FIGHTING,Physical,100,10,0,NearOther,0,abefj,"The user swings and hits with its strong and heavy fist. It lowers the user's Speed, however."
