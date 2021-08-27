@@ -454,7 +454,7 @@
 439,POUND,Pound,01C,45,NORMAL,Physical,100,35,15,NearOther,0,abef,"The target is physically pounded with a long tail or a foreleg, etc. Has a 15% chance to raise attack."
 440,QUICKATTACK,Quick Attack,000,40,NORMAL,Physical,100,30,0,NearOther,1,abef,The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.
 441,SCRATCH,Scratch,000,45,NORMAL,Physical,100,35,0,NearOther,0,abefh,"Hard, pointed, and sharp claws rake the target to inflict damage. Critical hits land more easily"
-442,TACKLE,Tackle,537,55,NORMAL,Physical,100,35,0,NearOther,0,abef,An attack in which the user slams into the target. The user also takes 20% as recoil.
+442,TACKLE,Tackle,000,45,NORMAL,Physical,100,35,0,NearOther,0,abef,"A physical attack in which the user charges and slams into the target with its whole body."
 443,DOUBLEHIT,Double Hit,0BD,35,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user slams the target with a long tail, vines, or tentacle. The target is hit twice in a row."
 444,FEINT,Feint,0AD,30,NORMAL,Special,100,10,0,NearOther,2,ef,An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
 445,TAILSLAP,Tail Slap,0C0,25,NORMAL,Physical,85,10,0,NearOther,0,abef,The user attacks by striking the target with its hard tail. It hits the Pokémon two to five times in a row.
