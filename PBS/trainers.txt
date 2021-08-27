@@ -161,6 +161,20 @@ Pokemon = ROGGENROLA,17
 Pokemon = TRAPINCH,17
 Pokemon = HOOTHOOT,17
 #-------------------------------
+[SCIENTIST_M2,Dexter]
+Pokemon = GRIMER,20
+	Moves = POISONGAS,SLUDGE,DISABLE,MUDSHOT
+Pokemon = CHARMANDER,20
+	Moves = IGNITE,WINDBLADE,FIREFANG,CLASH
+Pokemon = SOLOSIS,20
+#-------------------------------
+[SCIENTIST_F,Marie]
+Pokemon = VULPIX,20
+	Moves = INCINERATE,CONFUSERAY,IGNITE,SUBSTITUTE
+Pokemon = KOFFING,20
+	Moves = POISONGAS,WINDBLADE,SLUDGE,CLEARSMOG
+Pokemon = SLUGMA,20
+#-------------------------------
 [LEADER_Eko,Eko]
 Pokemon = SALANDIT,20
 	Moves = POISONGAS,BADSTENCH,EMBER,COVET

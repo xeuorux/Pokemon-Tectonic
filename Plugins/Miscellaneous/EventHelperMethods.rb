@@ -403,6 +403,11 @@ def slideCameraToPlayer(speed=3)
 	$game_map.slideCameraToPlayer(speed)
 end
 
+def slideCameraToEvent(event_id,speed=3)
+	event = get_character(event_id)
+	$game_map.slideCameraToSpot(event.x,event.y,speed)
+end
+
 def slideCameraToSpot(centerX,centerY,speed=3)
 	$game_map.slideCameraToSpot(centerX,centerY,speed)
 end
@@ -415,18 +420,12 @@ class Game_Map
 		yDirection = distY > 0 ? 2 : 8
 		distXAbs = distX.abs
 		distYAbs = distY.abs
-		xWait = (128 * distXAbs / (5 * speed)).ceil
-		yWait = (128 * distYAbs / (5 * speed)).ceil
 		if distXAbs > distYAbs
 			pbScrollMap(xDirection,distXAbs,speed) if distXAbs > 0
-			pbWait(xWait)
 			pbScrollMap(yDirection,distYAbs,speed) if distYAbs > 0
-			pbWait(yWait)
 		else
 			pbScrollMap(yDirection,distYAbs,speed) if distYAbs > 0
-			pbWait(yWait)
 			pbScrollMap(xDirection,distXAbs,speed) if distXAbs > 0
-			pbWait(xWait)
 		end
 	end
 
