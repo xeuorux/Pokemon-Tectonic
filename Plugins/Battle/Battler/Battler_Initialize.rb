@@ -186,6 +186,8 @@ class PokeBattle_Battler
 		@effects[PBEffects::FollowMe]            = 0
 		@effects[PBEffects::Foresight]           = false
 		@effects[PBEffects::FuryCutter]          = 0
+		@effects[PBEffects::IceBall]          	 = 0
+		@effects[PBEffects::RollOut]          = 0
 		@effects[PBEffects::GemConsumed]         = nil
 		@effects[PBEffects::Grudge]              = false
 		@effects[PBEffects::HelpingHand]         = false

@@ -275,6 +275,10 @@ class PokemonPokedex_Scene
 		  acceptSearchResults {
 			searchByAvailableLevel()
 		  }
+		elsif Input.pressex?(0x52) # R, for Random
+		  @sprites["pokedex"].index = rand(@dexlist.length)
+		  @sprites["pokedex"].refresh
+		  pbRefresh
 		end
       end
     }

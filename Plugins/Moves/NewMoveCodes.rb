@@ -1415,3 +1415,41 @@ class PokeBattle_Move_542 < PokeBattle_Move
     target.pbRaiseStatStage(:SPEED,2,user)
   end
 end
+
+#===============================================================================
+# Power doubles for each consecutive use. (Ice Ball)
+#===============================================================================
+class PokeBattle_Move_543 < PokeBattle_Move
+  def pbChangeUsageCounters(user,specialUsage)
+    oldVal = user.effects[PBEffects::IceBall]
+    super
+    maxMult = 1
+    while (@baseDamage<<(maxMult-1))<160
+      maxMult += 1   # 1-4 for base damage of 20, 1-3 for base damage of 40
+    end
+    user.effects[PBEffects::IceBall] = (oldVal>=maxMult) ? maxMult : oldVal+1
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+    return baseDmg<<(user.effects[PBEffects::IceBall]-1)
+  end
+end
+
+#===============================================================================
+# Power doubles for each consecutive use. (Rollout)
+#===============================================================================
+class PokeBattle_Move_544 < PokeBattle_Move
+  def pbChangeUsageCounters(user,specialUsage)
+    oldVal = user.effects[PBEffects::RollOut]
+    super
+    maxMult = 1
+    while (@baseDamage<<(maxMult-1))<160
+      maxMult += 1   # 1-4 for base damage of 20, 1-3 for base damage of 40
+    end
+    user.effects[PBEffects::RollOut] = (oldVal>=maxMult) ? maxMult : oldVal+1
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+    return baseDmg<<(user.effects[PBEffects::RollOut]-1)
+  end
+end

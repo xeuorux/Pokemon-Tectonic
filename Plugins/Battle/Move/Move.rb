@@ -623,4 +623,15 @@ class PokeBattle_Move
 		end
 	end
   end
+  
+  # Reset move usage counters (child classes can increment them).
+  def pbChangeUsageCounters(user,specialUsage)
+    user.effects[PBEffects::FuryCutter]   = 0
+	user.effects[PBEffects::IceBall]   = 0
+	user.effects[PBEffects::RollOut]   = 0
+    user.effects[PBEffects::ParentalBond] = 0
+    user.effects[PBEffects::ProtectRate]  = 1
+    @battle.field.effects[PBEffects::FusionBolt]  = false
+    @battle.field.effects[PBEffects::FusionFlare] = false
+  end
 end

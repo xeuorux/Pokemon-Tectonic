@@ -29,6 +29,8 @@ module PBEffects
 	Inured				= 139
 	NoRetreat			= 140
 	NerveBreak			= 141
+	IceBall				= 142
+	RollOut				= 143
 	
 	#===========================================================================
     # These effects apply to the battle (i.e. both sides)

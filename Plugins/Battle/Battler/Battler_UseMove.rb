@@ -638,4 +638,28 @@ class PokeBattle_Battler
     user.pbFaint if user.fainted?
     return true
   end
+  
+  # Called when the usage of various multi-turn moves is disrupted due to
+  # failing pbTryUseMove, being ineffective against all targets, or because
+  # Pursuit was used specially to intercept a switching foe.
+  # Cancels the use of multi-turn moves and counters thereof. Note that Hyper
+  # Beam's effect is NOT cancelled.
+  def pbCancelMoves(full_cancel = false)
+    # Outragers get confused anyway if they are disrupted during their final
+    # turn of using the move
+    if @effects[PBEffects::Outrage]==1 && pbCanConfuseSelf?(false) && !full_cancel
+      pbConfuse(_INTL("{1} became confused due to fatigue!",pbThis))
+    end
+    # Cancel usage of most multi-turn moves
+    @effects[PBEffects::TwoTurnAttack] = nil
+    @effects[PBEffects::Rollout]       = 0
+    @effects[PBEffects::Outrage]       = 0
+    @effects[PBEffects::Uproar]        = 0
+    @effects[PBEffects::Bide]          = 0
+    @currentMove = nil
+    # Reset counters for moves which increase them when used in succession
+    @effects[PBEffects::FuryCutter]    = 0
+	@effects[PBEffects::IceBall]   	   = 0
+	@effects[PBEffects::RollOut]    = 0
+  end
 end
