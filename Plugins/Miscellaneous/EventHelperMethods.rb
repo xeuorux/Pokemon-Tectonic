@@ -261,6 +261,7 @@ def setMySwitch(switch,value)
 	pbSetSelfSwitch(get_self.id,switch,value)
 end
 
+
 def changeOpacitySpaced(opacityTarget,spaces)
 	currentOpacity = self.opacity
 	opacityChange = opacityTarget - currentOpacity
@@ -275,10 +276,7 @@ Right = 6
 Up = 8
 
 def moveBackAndForth(length,initialDirection=Right,transverseLength=0,clockwise=true)
-	new_move_route = RPG::MoveRoute.new
-	new_move_route.repeat    = false
-	new_move_route.skippable = false
-	new_move_route.list.clear
+	back_and_forth_route = getNewMoveRoute()
 	
 	case initialDirection
 	when 2 # Down
@@ -295,21 +293,29 @@ def moveBackAndForth(length,initialDirection=Right,transverseLength=0,clockwise=
 	inverseTransverseDirection = 10 - transverseDirection
 	
 	length.times {
-		new_move_route.list.push(RPG::MoveCommand.new(initialDirection/2))
+		back_and_forth_route.list.push(RPG::MoveCommand.new(initialDirection/2))
 	}
 	transverseLength.times {
-		new_move_route.list.push(RPG::MoveCommand.new(transverseDirection/2))
+		back_and_forth_route.list.push(RPG::MoveCommand.new(transverseDirection/2))
 	}
 	length.times {
-		new_move_route.list.push(RPG::MoveCommand.new(inverseInitialDirection/2))
+		back_and_forth_route.list.push(RPG::MoveCommand.new(inverseInitialDirection/2))
 	}
 	transverseLength.times {
-		new_move_route.list.push(RPG::MoveCommand.new(inverseTransverseDirection/2))
+		back_and_forth_route.list.push(RPG::MoveCommand.new(inverseTransverseDirection/2))
 	}
+		
+	back_and_forth_route.list.push(RPG::MoveCommand.new(0)) # End of move route
 	
-	new_move_route.list.push(RPG::MoveCommand.new(0))
-	
-	self.force_move_route(new_move_route)
+	self.set_move_route(back_and_forth_route)
+end
+
+class Game_Character
+	def set_move_route(move_route)
+		@move_route         = move_route
+		@move_route_index   = 0
+		move_type_custom
+	end
 end
 
 def getNewMoveRoute()
@@ -321,36 +327,39 @@ def getNewMoveRoute()
 end
 
 
-def changeOpacityOverTime(opacityTarget,speed)
+def modulateOpacityOverTime(speed)
 	currentOpacity = self.opacity
 	
 	new_move_route = getNewMoveRoute()
+	new_move_route.repeat = true
 	
-	calculatedOpacity = currentOpacity
-	targetReached = false
-	while !targetReached
-		if calculatedOpacity < opacityTarget
-			calculatedOpacity += speed
-			if calculatedOpacity > opacityTarget
-				calculatedOpacity = opacityTarget
-				targetReached = true
-			end
-		else
-			calculatedOpacity -= speed
+	[0,255].each do |opacityTarget|
+		calculatedOpacity = currentOpacity
+		targetReached = false
+		while !targetReached
 			if calculatedOpacity < opacityTarget
-				calculatedOpacity = opacityTarget
-				targetReached = true
+				calculatedOpacity += speed
+				if calculatedOpacity > opacityTarget
+					calculatedOpacity = opacityTarget
+					targetReached = true
+				end
+			else
+				calculatedOpacity -= speed
+				if calculatedOpacity < opacityTarget
+					calculatedOpacity = opacityTarget
+					targetReached = true
+				end
 			end
+			output = calculatedOpacity.round
+			output = [[output,0].max,255].min
+			new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Opacity,[output]))
+			new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Wait,[1]))
 		end
-		output = calculatedOpacity.round
-		output = [[output,0].max,255].min
-		new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Opacity,[output]))
-		new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Wait,[1]))
 	end
 	
 	new_move_route.list.push(RPG::MoveCommand.new(0))
 	
-	self.force_move_route(new_move_route)
+	self.set_move_route(new_move_route)
 end
 
 def purchaseStarters(type,price=5000)

@@ -23,7 +23,7 @@ Events.onStepTakenTransferPossible += proc { |_sender,e|
         end
 	  elsif i.status == :POISON
         if !flashed
-          pbFlash(Color.new(255, 0, 0, 128), 4)
+          pbFlash(Color.new(255, 0, 119, 128), 4)
           flashed = true
         end
         i.hp -= 1
