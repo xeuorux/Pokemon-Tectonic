@@ -833,7 +833,7 @@
 814,COLDCONVERSION,Cold Conversion,51B,130,ICE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user melts itself. The user will no longer be Ice type."
 815,VENOMLEECH,Venom Leech,51A,75,POISON,Physical,100,10,20,NearOther,0,abef,"The user drains the target's blood with venomous teeth. The user's HP is restored by a third of the damage dealt. 20% chance to toxify."
 816,REFLEXOVERDRIVE,Reflex Overdrive,519,110,PSYCHIC,Physical,0,10,0,Other,0,abef,"Lands without fail and lowers the user's defense and speed."
-817,DOUSE,Douse,518,40,WATER,Special,100,25,0,AllNearFoes,0,bef,"The user douses the target, healing itself by a third of its max. HP in the process."
+817,DOUSE,Douse,518,40,WATER,Special,100,25,0,NearFoe,0,bef,"The user douses the target, healing itself by a third of its max. HP in the process."
 818,AQUAINSTINCT,Aqua Instinct,517,65,WATER,Physical,100,10,0,NearOther,0,bef,"The user preys on the target. This move goes first if the target is below half health."
 819,DRAGONBLOOD,Dragon Blood,51C,0,DRAGON,Status,0,5,0,User,0,d,"The user restores its own HP. The user then raises its Sp. Atk. unless it was fully healed in the process."
 820,CREEPOUT,Creep Out,51D,50,BUG,Special,100,15,100,NearOther,0,bef,"The user preys on the target's fear of insects, giving it a weakness to the bug type."#
@@ -870,7 +870,7 @@
 851,ALLERGY,Allergy,04D,70,BUG,Special,100,15,100,NearOther,0,bef,"The user makes the target have an allergic reaction. This harshly reduces its speed."
 852,LIGHTNINGSHRIEK,Lightning Shriek,030,40,ELECTRIC,Special,100,5,100,NearOther,0,bef,"The user lets out an electric roar, damaging the target and sharply raising its speed."
 853,IGNITE,Ignite,00A,0,FIRE,Status,90,15,0,NearOther,0,bce,"The user sets the target on fire, inflicting a burn."
-854,TORRENTBLADE,Torrent Blade,000,90,WATER,Physical,100,15,0,NearOther,0,abefh,The user uses a jet of water like a sword and attacks by slashing. It has a high critical-hit ratio.
+854,TORRENTBLADE,Torrent Blade,000,90,WATER,Physical,100,15,0,NearOther,0,abefh,"The user uses a jet of water like a sword and attacks by slashing. It has a high critical-hit ratio."
 855,STAREDOWN,Stare Down,535,100,DARK,Special,100,5,0,NearOther,2,bef,"The user stares harshly at the target, dealing double damage if they hurt the user this turn. Only usable on the first turn."
 856,INURE,Inure,531,0,ICE,Status,0,10,0,UserSide,0,d,"The user inures themselves to a harsh environment, shedding their type weaknesses."
 857,BREAKDANCE,Breakdance,532,0,FIGHTING,Status,0,20,0,User,0,do,"The user breakdances, sharply boosting its weakest stat and boosting its second weakest stat."
@@ -928,7 +928,7 @@
 909,PROFANE,Profane,400,100,DARK,Special,50,5,100,NearOther,0,bef,"The user overwhelms the target with negative energy, charming it and dealing massive damage."
 910,PIERCE,Pierce,509,55,DRAGON,Physical,100,15,0,NearOther,0,abef,"The user pierces the opponents defenses, ignoring positive stat changes and abilities."
 911,ROLLINGBOULDER,Rolling Boulder,53F,140,ROCK,Physical,50,10,0,NearOther,0,bef,"The user rolls a large boulder towards the target. If it misses, the target may be forced to switch."
-912,MINDWARP,Mind Warp,013,80,PSYCHIC,Special,100,15,20,NearOther,0,bef,The target's brain is warped by psychic energy. It has a 20% chance to confuse.
+912,MINDWARP,Mind Warp,013,80,PSYCHIC,Special,100,15,20,NearOther,0,bef,The target's psyche is warped by psychic energy. It has a 20% chance to confuse.
 913,WINDBLADE,Wind Blade,00F,75,FLYING,Special,100,15,30,Other,0,be,The user strikes the target with a sharp blade of air. It has a 40% chance to flinch the target.
 914,ACIDBEAM,Acid Beam,046,90,POISON,Special,100,15,10,NearOther,0,bef,The user shoots a beam of harsh acid at the target. It has a 10% chance to lower Sp. Def.
 915,VENOMORTAR,Venomortar,005,100,POISON,Physical,50,10,100,NearOther,0,bef,The user blasts a bundle of venom at the target, poisoning it.

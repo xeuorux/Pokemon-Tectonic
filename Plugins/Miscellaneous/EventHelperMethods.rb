@@ -65,7 +65,8 @@ def gymLeaderDialogueHash()
 	return @leaderDialogueHash if @leaderDialogueHash
 	@leaderDialogueHash = {
 		0 => ["I'll heal up your Pokémon, give your other rewards, and get out of your way.",
-		"I'll heal up your Pokémon and get out of your way."]
+		"I'll heal up your Pokémon and get out of your way."],
+		1 => ["Dialogue here.","Dialogue here."]
 	}
 	return @leaderDialogueHash
 end
@@ -523,6 +524,12 @@ def defeatBoss(item,count=1)
 	blackFadeOutIn {
 		setMySwitch('A',true)
 	}
-	pbMessage("It left behind an item!")
-	pbReceiveItem(item,count)
+	return if item == nil
+	if count == 1
+		pbMessage("It left behind an item!")
+		pbReceiveItem(item)
+	elsif count > 1
+		pbMessage("It left behind some items!")
+		pbReceiveItem(item,count)
+	end
 end

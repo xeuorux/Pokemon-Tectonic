@@ -764,15 +764,8 @@ class PokemonPokedexInfo_Scene
   end
   
   def getEncounterableAreas(species)
-	prototypeMaps = [20,2,17,18,21,32,16,15,10,12,13,11,14,3,43,48,76,77,78,19,22,8,5,9,6,4,7]
-  
     areas = []
 	GameData::Encounter.each_of_version($PokemonGlobal.encounter_version) do |enc_data|
-		if $game_switches[60] # Prototype
-			next unless prototypeMaps.include?(enc_data.map)
-		else
-			next if prototypeMaps.include?(enc_data.map)
-		end
 		next if !pbFindEncounter(enc_data.types, species)
 		name = (pbGetMessage(MessageTypes::MapNames,enc_data.map) rescue nil) || "???"
 		areas.push(name)

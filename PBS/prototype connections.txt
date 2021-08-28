@@ -1,0 +1,26 @@
+# Savannah Route (3) - Flower Town (48)
+3,East,0,48,West,23
+# Forest Route (43) - Savannah Route (3)
+43,West,0,3,East,10
+# River Route (5) - Starting Town (21)
+5,East,74,21,West,0
+# Forest Crossroads (22) - River Route (5)
+22,West,0,5,East,2
+# Short Route (20) - River Route (5)
+20,North,0,5,South,66
+# River Grove (9) - River Route (5)
+9,East,0,5,West,3
+# Short Route (20) - Starting Town (21)
+20,South,0,21,North,2
+# Short Route (20) - Forest Crossroads (22)
+20,North,0,22,South,2
+# Starting Town (21) - Flower Town (48)
+21,East,0,48,West,136
+# Starting Town (21) - Forest Route (43)
+21,East,0,43,West,103
+# Forest Crossroads (22) - Flower Town (48)
+22,East,0,48,West,64
+# Forest Crossroads (22) - Forest Route (43)
+22,East,0,43,West,31
+# Forest Route (43) - Flower Town (48)
+43,North,0,48,South,0

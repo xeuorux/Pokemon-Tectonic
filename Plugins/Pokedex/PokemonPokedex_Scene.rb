@@ -592,34 +592,19 @@ class PokemonPokedex_Scene
 		  levelIntAttempt = levelTextInput.to_i
 		  return nil if levelIntAttempt == 0
 		  
-		  if $game_switches[60] # Playing the prototype
-			  maps_available_by_cap = {
-				15 => [20,22,43,2,48], #Short Route, Forest Crossroads, Forest Route, Forest Cave B1, Flower Town
-				21 => [3,4,7,10,11,5], #Savannah Route, Big Cave B1, Big Cave B2, Oasis Town, Oasis Town Hidden, River Route
-				27 => [17,9] #Forest Cave B2, River Grove
-			  }
-			  
-			  items_available_by_cap = {
-				15 => [],
-				21 => [],
-				27 => [:MOONSTONE,:FIRESTONE,:WATERSTONE,:LEAFSTONE],
-			  }
-			  
-			  surfingAvailable = levelIntAttempt > 21
-		  else # Playing the main game
-			  maps_available_by_cap = {
-				15 => [33,34,29,30,38,26]
-			  }
-			  
-			  items_available_by_cap = {
-				15 => [],
-				20 => [],
-				25 => [:MOONSTONE],
-				30 => [:FIRESTONE,:WATERSTONE,:LEAFSTONE,:THUNDERSTONE,:DAWNSTONE,:DUSKSTONE,:SHINYSTONE,:ICESTONE]
-			  }
-			  
-			  surfingAvailable = false
-		  end
+		  maps_available_by_cap = {
+			15 => [33,34,29,30,38,26], # Casaba Villa, Scenic Path, Mine Path, Small Mine, Beach Route, Seaside Grotto
+			20 => [56,60] #Forested Road, Suburb
+		  }
+		  
+		  items_available_by_cap = {
+			15 => [],
+			20 => [],
+			25 => [:MOONSTONE],
+			30 => [:FIRESTONE,:WATERSTONE,:LEAFSTONE,:THUNDERSTONE,:DAWNSTONE,:DUSKSTONE,:SHINYSTONE,:ICESTONE]
+		  }
+		  
+		  surfingAvailable = levelIntAttempt >= 35
 		  
 		  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
 		  dexlist = dexlist.find_all { |item|

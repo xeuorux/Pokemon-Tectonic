@@ -26,8 +26,11 @@ class PokeBattle_AI
     user        = @battle.battlers[idxBattler]
     wildBattler = (@battle.wildBattle? && @battle.opposes?(idxBattler))
     skill       = 0
+	policies    = []
     if !wildBattler
-      skill     = @battle.pbGetOwnerFromBattlerIndex(user.index).skill_level || 0
+	  owner = @battle.pbGetOwnerFromBattlerIndex(user.index)
+      skill  = owner.skill_level || 0
+	  policies = owner.policies || []
     end
     # Get scores and targets for each move
     # NOTE: A move is only added to the choices array if it has a non-zero
@@ -38,7 +41,7 @@ class PokeBattle_AI
       if wildBattler
         pbRegisterMoveWild(user,i,choices)
       else
-        newChoice = pbEvaluateMoveTrainer(user,user.moves[i],skill)
+        newChoice = pbEvaluateMoveTrainer(user,user.moves[i],skill,policies)
 		choices.push([i].concat(newChoice)) if newChoice
       end
     end
@@ -139,8 +142,8 @@ class PokeBattle_AI
 	PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,target)
   end
   
-    # Trainer Pokémon calculate how much they want to use each of their moves.
-  def pbEvaluateMoveTrainer(user,move,skill)
+  # Trainer Pokémon calculate how much they want to use each of their moves.
+  def pbEvaluateMoveTrainer(user,move,skill,policies=[])
     target_data = move.pbTarget(user)
 	newChoice = nil
     if target_data.num_targets > 1
@@ -148,13 +151,13 @@ class PokeBattle_AI
       totalScore = 0
       @battle.eachBattler do |b|
         next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
-        score = pbGetMoveScore(move,user,b,skill)
+        score = pbGetMoveScore(move,user,b,skill,policies)
         totalScore += ((user.opposes?(b)) ? score : -score)
       end
 	  newChoice = [totalScore,-1] if totalScore>0
     elsif target_data.num_targets == 0
       # If move has no targets, affects the user, a side or the whole field
-      score = pbGetMoveScore(move,user,user,skill)
+      score = pbGetMoveScore(move,user,user,skill,policies)
       newChoice = [score,-1] if score>0
     else
       # If move affects one battler and you have to choose which one
@@ -162,7 +165,7 @@ class PokeBattle_AI
       @battle.eachBattler do |b|
         next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
         next if target_data.targets_foe && !user.opposes?(b)
-        score = pbGetMoveScore(move,user,b,skill)
+        score = pbGetMoveScore(move,user,b,skill,policies)
         scoresAndTargets.push([score,b.index]) if score>0
       end
       if scoresAndTargets.length>0
@@ -177,10 +180,10 @@ class PokeBattle_AI
   #=============================================================================
   # Get a score for the given move being used against the given target
   #=============================================================================
-  def pbGetMoveScore(move,user,target,skill=100)
+  def pbGetMoveScore(move,user,target,skill=100,policies=[])
     skill = PBTrainerAI.minimumSkill if skill<PBTrainerAI.minimumSkill
     score = 100
-    score = pbGetMoveScoreFunctionCode(score,move,user,target,skill)
+    score = pbGetMoveScoreFunctionCode(score,move,user,target,skill,policies)
 	
 	# Never use a move that would fail outright
 	@battle.messagesBlocked = true

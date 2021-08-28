@@ -8180,9 +8180,9 @@ Generation = 3
 WildItemCommon = PECHABERRY
 WildItemUncommon = BRIGHTPOWDER
 BattlerPlayerX = 0
-BattlerPlayerY = 54
-BattlerEnemyX = 0
-BattlerEnemyY = 31
+BattlerPlayerY = 28
+BattlerEnemyX = -2
+BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 1
 Evolutions = SILCOON,Silcoon,7,CASCOON,Cascoon,7
@@ -8358,7 +8358,6 @@ InternalName = LOMBRE
 Type1 = WATER
 Type2 = GRASS
 BaseStats = 70,60,80,60,75,80
-#Total: 420
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 119
@@ -25379,7 +25378,6 @@ Name = Corvisquire
 InternalName = CORVISQUIRE
 Type1 = FLYING
 BaseStats = 70,84,57,84,50,82
-#Total: 427
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 128
@@ -28485,4 +28483,3 @@ BattlerEnemyX = 0
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-#-------------------------------

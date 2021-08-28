@@ -2,23 +2,23 @@ class PokeBattle_AI
   #=============================================================================
   # Get a score for the given move based on its effect
   #=============================================================================
-  def pbGetMoveScoreFunctionCode(score,move,user,target,skill=100)
+  def pbGetMoveScoreFunctionCode(score,move,user,target,skill=100,policies=[])
 	nonReplacers = [:FLOWERGIFT, :FORECAST, :ILLUSION, :IMPOSTER, :MULTITYPE, :RKSSYSTEM,
             :TRACE, :WONDERGUARD, :ZENMODE, :ICEFACE, :GULPMISSILE, :NEUTRALIZINGGAS]
 			
     case move.function
     #---------------------------------------------------------------------------
     when "005", "006", "0BE"
-      score = getPoisonMoveScore(score,user,target,skill,move.statusMove?)
+      score = getPoisonMoveScore(score,user,target,skill,policies,move.statusMove?)
     #---------------------------------------------------------------------------
     when "007", "008", "009", "0C5"
-      score = getParalysisMoveScore(score,user,target,skill,move.statusMove?,move.id == :THUNDERWAVE)
+      score = getParalysisMoveScore(score,user,target,skill,policies,move.statusMove?,move.id == :THUNDERWAVE)
     #---------------------------------------------------------------------------
     when "00A", "00B", "0C6"
-      score = getBurnMoveScore(score,user,target,skill,move.statusMove?)
+      score = getBurnMoveScore(score,user,target,skill,policies,move.statusMove?)
     #---------------------------------------------------------------------------
     when "00C", "00D", "00E","135"
-      score = getFreezeMoveScore(score,user,target,skill,move.statusMove?)
+      score = getFreezeMoveScore(score,user,target,skill,policies,move.statusMove?)
     #---------------------------------------------------------------------------
     when "00F"
       score += 30
@@ -3000,7 +3000,7 @@ def statusUpsideAbilities()
 	return [:GUTS,:AUDACITY,:MARVELSCALE,:TOXICBOOST,:QUICKFEET]
 end
 
-def getParalysisMoveScore(score,user,target,skill=100,status=false,twave=false)
+def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,twave=false)
 	wouldBeFailedTWave = skill>=PBTrainerAI.mediumSkill && twave && Effectiveness.ineffective?(pbCalcTypeMod(:ELECTRIC,user,target))
 	if target.pbCanParalyze?(user,false) && !wouldBeFailedTWave
         score += 30
@@ -3022,7 +3022,7 @@ def getParalysisMoveScore(score,user,target,skill=100,status=false,twave=false)
 	return score
 end
 
-def getFreezeMoveScore(score,user,target,skill=100,status=false)
+def getFreezeMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target.pbCanFreeze?(user,false)
 		score += 30
 		if skill>=PBTrainerAI.highSkill
@@ -3034,7 +3034,7 @@ def getFreezeMoveScore(score,user,target,skill=100,status=false)
 	return score
 end
 
-def getPoisonMoveScore(score,user,target,skill=100,status=false)
+def getPoisonMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target.pbCanPoison?(user,false)
         score += 30
         if skill>=PBTrainerAI.mediumSkill
@@ -3047,18 +3047,20 @@ def getPoisonMoveScore(score,user,target,skill=100,status=false)
           score += 10 if pbRoughStat(target,:SPECIAL_DEFENSE,skill)>100
           score -= 40 if target.hasActiveAbility?(statusUpsideAbilities)
         end
+		score = 500 if policies.include?(:PRIORITIZEDOTS) && status
     elsif skill>=PBTrainerAI.mediumSkill && status
         return 0
     end
 	return score
 end
 
-def getBurnMoveScore(score,user,target,skill=100,status=false)
+def getBurnMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target.pbCanBurn?(user,false)
         score += 30
         if skill>=PBTrainerAI.highSkill
           score -= 40 if target.hasActiveAbility?([:FLAREBOOST].concat(statusUpsideAbilities))
         end
+		score = 500 if policies.include?(:PRIORITIZEDOTS) && status
     elsif skill>=PBTrainerAI.mediumSkill && status
 		return 0
     end
