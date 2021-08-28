@@ -261,15 +261,6 @@ def setMySwitch(switch,value)
 	pbSetSelfSwitch(get_self.id,switch,value)
 end
 
-
-def changeOpacitySpaced(opacityTarget,spaces)
-	currentOpacity = self.opacity
-	opacityChange = opacityTarget - currentOpacity
-	opacityChangePerFrame = opacityChange.to_f / spaces.to_f
-	changeOpacityOverTime(opacityTarget,opacityChangePerFrame.abs)
-end
-
-
 Down = 2
 Left = 4
 Right = 6

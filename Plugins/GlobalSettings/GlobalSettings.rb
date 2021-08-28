@@ -1,4 +1,6 @@
-# The maximum level Pokémon can reach.
+  GAME_VERSION = "0.2.0"
+
+  # The maximum level Pokémon can reach.
   MAXIMUM_LEVEL        = 70
   # The odds of a wild Pokémon/bred egg having Pokérus (out of 65536).
   POKERUS_CHANCE       = 0

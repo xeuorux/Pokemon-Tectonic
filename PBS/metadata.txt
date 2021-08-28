@@ -223,7 +223,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [056]
-# Suburb Prototype
+# Suburb 
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -232,6 +232,23 @@ Weather = Rain,10
 [057]
 # Suburb Center
 HealingSpot = 56,40,27
+#-------------------------------
+[059]
+# Dock
+Outdoor = true
+ShowArea = true
+Bicycle = true
+Weather = Rain,10
+#-------------------------------
+[060]
+# Forest Route
+Outdoor = true
+ShowArea = true
+Bicycle = true
+Weather = Rain,10
+#-------------------------------
+[061]
+# Sailors house
 #-------------------------------
 [076]
 # Flower Center

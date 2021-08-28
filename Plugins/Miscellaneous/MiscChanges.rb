@@ -59,13 +59,8 @@ def pbPickBerry(berry, qty = 1)
   berryData=interp.getVariable
   berry=GameData::Item.get(berry)
   itemname=(qty>1) ? berry.name_plural : berry.name
-  if qty>1
-    message=_INTL("There are {1} \\c[1]{2}\\c[0]!\nWant to pick them?",qty,itemname)
-  else
-    message=_INTL("There is 1 \\c[1]{1}\\c[0]!\nWant to pick it?",itemname)
-  end
-  if pbConfirmMessage(message)
-    if !$PokemonBag.pbCanStore?(berry,qty)
+
+  if !$PokemonBag.pbCanStore?(berry,qty)
       pbMessage(_INTL("Too bad...\nThe Bag is full..."))
       return
     end
@@ -87,7 +82,6 @@ def pbPickBerry(berry, qty = 1)
     end
     interp.setVariable(berryData)
     pbSetSelfSwitch(thisEvent.id,"A",true)
-  end
 end
 
 module GameData

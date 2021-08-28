@@ -6,7 +6,7 @@ def forEachZooMap()
 end
 
 def canBeSentToZoo(pkmn)
-	return !donatedToZoo?(pkmn.species)
+	return eventExistsFor?(pkmn.species) && !donatedToZoo?(pkmn.species)
 end
 
 def donatedToZoo?(species)
@@ -22,12 +22,21 @@ end
 def checkForZooMap(speciesName,careAboutEnabled=false)
 	forEachZooMap do |map|
 		map.events.each_value { |event|
-			if event.name.include?(speciesName) && (!careAboutEnabled || $game_self_switches[[map.map_id, event.id, "A"]])
-				return map.map_id
+			if eventIsForSpecies(event,speciesName)
+				if careAboutEnabled && $game_self_switches[[map.map_id, event.id, "A"]]
+					return map.map_id
+				else
+					return map.map_id
+				end
 			end
 		}
 	end
 	return -1
+end
+
+def eventIsForSpecies(event,speciesName)
+	match = event.name.match(/.*overworld\(([A-Za-z_0-9]+)\).*/i)
+	return match && match[1] == speciesName
 end
 
 def sendToZoo()
@@ -40,7 +49,8 @@ def sendToZoo()
 	placementMap = nil
 	forEachZooMap do |map|
 		map.events.each_value { |event|
-			if event.name.include?(speciesName)
+			if eventIsForSpecies(event,speciesName)
+				echoln("Enabling event #{event.name}")
 				pbSetSelfSwitch(event.id,"A",true,map.map_id)
 				placementMap = (pbGetMessage(MessageTypes::MapNames,map.map_id) rescue nil) || "???" if !placementMap
 			end
