@@ -16,9 +16,9 @@ BattleHandlers::ItemOnStatLoss.add(:EJECTPACK,
 )
 
 #######################
-# TELEPORTER
+# ABRAPORTER
 #######################
-ItemHandlers::UseFromBag.add(:TELEPORTER,proc { |item|
+ItemHandlers::UseFromBag.add(:ABRAPORTER,proc { |item|
   if $game_player.pbHasDependentEvents?
     pbMessage(_INTL("It can't be used when you have someone with you."))
     next 0
@@ -36,7 +36,7 @@ ItemHandlers::UseFromBag.add(:TELEPORTER,proc { |item|
   next 2
 })
 
-ItemHandlers::ConfirmUseInField.add(:TELEPORTER,proc { |item|
+ItemHandlers::ConfirmUseInField.add(:ABRAPORTER,proc { |item|
   if $game_player.pbHasDependentEvents?
     pbMessage(_INTL("It can't be used when you have someone with you."))
     next false
@@ -56,7 +56,7 @@ ItemHandlers::ConfirmUseInField.add(:TELEPORTER,proc { |item|
   next pbConfirmMessage(_INTL("Want to teleport from here and return to {1}?",mapname))
 })
 
-ItemHandlers::UseInField.add(:TELEPORTER,proc { |item|
+ItemHandlers::UseInField.add(:ABRAPORTER,proc { |item|
   if $game_player.pbHasDependentEvents?
     pbMessage(_INTL("It can't be used when you have someone with you."))
     next 0

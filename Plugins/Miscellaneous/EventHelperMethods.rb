@@ -107,13 +107,11 @@ def defeatTrainer()
 end
 
 def defeatDoubleTrainer(event1,event2)
-	blackFadeOutIn() {
-		setMySwitch('A',true)
-		pbSetSelfSwitch(event1,'A',true)
-		pbSetSelfSwitch(event2,'A',true)
-		setFollowerInactive(event1)
-		setFollowerInactive(event2)
-	}
+	setMySwitch('A',true)
+	pbSetSelfSwitch(event1,'A',true)
+	pbSetSelfSwitch(event2,'A',true)
+	setFollowerInactive(event1)
+	setFollowerInactive(event2)
 end
 
 def get_player

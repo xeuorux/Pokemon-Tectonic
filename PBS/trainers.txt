@@ -141,12 +141,7 @@ Pokemon = TAILLOW,16
 Pokemon = SPHEAL,17
 #-------------------------------
 [DANCER,Isai]
-Pokemon = HITMONTOP,17
-Pokemon = COMBUSKEN,16
-Pokemon = SLUGMA,17
-#-------------------------------
-[DANCER,Isai]
-Pokemon = HITMONTOP,17
+Pokemon = TYROGUE,17
 Pokemon = COMBUSKEN,16
 Pokemon = SLUGMA,17
 #-------------------------------

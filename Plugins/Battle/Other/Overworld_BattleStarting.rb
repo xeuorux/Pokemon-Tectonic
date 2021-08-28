@@ -300,21 +300,23 @@ end
 
 def checkLegality(pkmn)
 	species_data = GameData::Species.get_species_form(pkmn.species,pkmn.form)
-	pkmn.moves.each do |move|
-		return if !move
-		moveID = move.id
-		next if pkmn.first_moves.include?(moveID)
-		next if species_data.tutor_moves.include?(moveID)
-		next if species_data.egg_moves.include?(moveID)
-		
-		learnsViaLevel = false
-		species_data.moves.each do |learnset_entry|
-			break if learnset_entry[0] > pkmn.level
-			learnsViaLevel = true if learnset_entry[1] == moveID
+	if pkmn.species != :SMEARGLE
+		pkmn.moves.each do |move|
+			return if !move
+			moveID = move.id
+			next if pkmn.first_moves.include?(moveID)
+			next if species_data.tutor_moves.include?(moveID)
+			next if species_data.egg_moves.include?(moveID)
+			
+			learnsViaLevel = false
+			species_data.moves.each do |learnset_entry|
+				break if learnset_entry[0] > pkmn.level
+				learnsViaLevel = true if learnset_entry[1] == moveID
+			end
+			next if learnsViaLevel
+			
+			pbMessage(_INTL("Legality error! #{moveID} is an illegal move for Pokemon #{pkmn.name}!"))
 		end
-		next if learnsViaLevel
-		
-		pbMessage(_INTL("Legality error! #{moveID} is an illegal move for Pokemon #{pkmn.name}!"))
 	end
 	
 	# TO DO: check for illegal per evolution
