@@ -23,8 +23,12 @@ def checkForZooMap(speciesName,careAboutEnabled=false)
 	forEachZooMap do |map|
 		map.events.each_value { |event|
 			if eventIsForSpecies(event,speciesName)
-				if careAboutEnabled && $game_self_switches[[map.map_id, event.id, "A"]]
-					return map.map_id
+				if careAboutEnabled
+					if $game_self_switches[[map.map_id, event.id, 'A']]
+						return map.map_id
+					else
+						return -1
+					end
 				else
 					return map.map_id
 				end
