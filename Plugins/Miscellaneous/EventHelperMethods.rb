@@ -46,9 +46,10 @@ def receivedGymRewardYet?(index)
 	return $game_variables[78][index]
 end
 
-def receiveGymReward(index)
+def receiveGymReward(badgeNum)
+	index = badgeNum-1
 	case index
-	when 0
+	when 0,1
 		pbReceiveItem(:FULLRESTORE)
 		pbReceiveItem(:MAXREPEL)
 		pbReceiveItem(:ULTRABALL)
@@ -69,7 +70,8 @@ def gymLeaderDialogueHash()
 	return @leaderDialogueHash
 end
 
-def healAndGiveRewardIfNotYetGiven(index)
+def healAndGiveRewardIfNotYetGiven(badgeNum)
+	index = badgeNum-1
 	dialogue = gymLeaderDialogueHash[index]
 	if receivedGymRewardYet?(index)
 		pbMessage(dialogue[1])
@@ -514,4 +516,13 @@ def teleportArriveAnimation
 	new_move_route.list.push(RPG::MoveCommand.new(0)) # End of move route
 	
 	get_player.force_move_route(new_move_route)
+end
+
+def defeatBoss(item,count=1)
+	pbMessage("The avatar staggers, then drifts away into nothingness.")
+	blackFadeOutIn {
+		setMySwitch('A',true)
+	}
+	pbMessage("It left behind an item!")
+	pbReceiveItem(item,count)
 end
