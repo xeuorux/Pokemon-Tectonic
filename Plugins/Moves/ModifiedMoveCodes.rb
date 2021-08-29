@@ -842,3 +842,15 @@ class PokeBattle_Move_171 < PokeBattle_Move
     super if user.tookPhysicalHit
   end
 end
+
+#===============================================================================
+# Power is doubled if the target has already moved this round. (Payback)
+#===============================================================================
+class PokeBattle_Move_084 < PokeBattle_Move
+  def pbBaseDamage(baseDmg,user,target)
+    if @battle.choices[target.index][0] == :UseMove && target.movedThisRound?
+      baseDmg *= 2
+    end
+    return baseDmg
+  end
+end

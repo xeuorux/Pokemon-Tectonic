@@ -64,11 +64,10 @@ LandSparse,20
 20,NUMEL,7,9
 20,PHANPY,7,9
 Puddle,20
-20,SHELLOS,7,9
-20,SLOWPOKE,7,9
-20,INKAY,7,9
-20,CLOBBOPUS,7,9
-20,CLAMPERL,7,9
+25,SHELLOS,7,9
+25,SLOWPOKE,7,9
+25,INKAY,7,9
+25,CLOBBOPUS,7,9
 #-------------------------------
 [26] # Seaside Grotto
 DarkCave,20
