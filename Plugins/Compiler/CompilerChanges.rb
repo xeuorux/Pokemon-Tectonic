@@ -598,6 +598,11 @@ module Compiler
           map.events[key] = newevent
           changed = true
         end
+		newevent = convert_chasm_style_trainers(map.events[key])
+        if newevent
+          map.events[key] = newevent
+          changed = true
+        end
         changed = true if fix_event_name(map.events[key])
         newevent = fix_event_use(map.events[key],id,mapData)
         if newevent
@@ -627,6 +632,66 @@ module Compiler
       end
     end
     save_data(commonEvents,"Data/CommonEvents.rxdata") if changed
+  end
+  
+  #=============================================================================
+  # Add cry actions to overworld pokemon events which don't already have scripted behaviour.
+  #=============================================================================
+  def convert_chasm_style_trainers(event)
+	return nil if !event || event.pages.length==0
+	match = event.name.match(/.*PHT\(([_a-zA-Z0-9]+)(?:,([_a-zA-Z]+)\))?.*/)
+	return nil if !match
+	ret = RPG::Event.new(event.x,event.y)
+	ret.name = "resettrainer(4)"
+	ret.id   = event.id
+	ret.pages = []
+	trainerTypeName = match[1]
+	return nil if !trainerTypeName || trainerTypeName == ""
+	trainerName = match[2] || "UNKNOWN"
+	ret.pages = [3]
+	
+	# Create the first page, where the battle happens
+	firstPage = RPG::Event::Page.new
+	ret.pages[0] = firstPage
+	firstPage.graphic.character_name = "00TrainerPlaceholder"
+	firstPage.trigger = 2   # On event touch
+	firstPage.list = []
+	push_script(firstPage.list,"pbTrainerIntro(:#{trainerTypeName})")
+	push_script(firstPage.list,"pbNoticePlayer(get_self)")
+	push_text(firstPage.list,"Dialogue here.")
+	
+	push_branch(firstPage.list,"pbTrainerBattle(:#{trainerTypeName},\"#{trainerName}\")")
+	push_branch(firstPage.list,"$game_switches[94]",1)
+	push_text(firstPage.list,"Dialogue here.",2)
+	push_script(firstPage.list,"perfectTrainer",2)
+	push_else(firstPage.list,2)
+	push_text(firstPage.list,"Dialogue here.",2)
+	push_script(firstPage.list,"defeatTrainer",2)
+    push_branch_end(firstPage.list,1)
+    push_branch_end(firstPage.list)
+	
+	push_script(firstPage.list,"pbTrainerEnd")
+	push_end(firstPage.list)
+	
+	# Create the second page, which has a talkable action-button graphic
+	secondPage = RPG::Event::Page.new
+	ret.pages[1] = secondPage
+	secondPage.graphic.character_name = "00TrainerPlaceholder"
+	secondPage.condition.self_switch_valid = true
+	secondPage.condition.self_switch_ch = "A"
+	secondPage.list = []
+	push_text(secondPage.list,"Dialogue here.")
+	push_end(secondPage.list)
+	
+	# Create the third page, which has no functionality and no graphic
+	thirdPage = RPG::Event::Page.new
+	ret.pages[2] = thirdPage
+	thirdPage.condition.self_switch_valid = true
+	thirdPage.condition.self_switch_ch = "D"
+	thirdPage.list = []
+	push_end(thirdPage.list)
+	
+	return ret
   end
   
   #=============================================================================

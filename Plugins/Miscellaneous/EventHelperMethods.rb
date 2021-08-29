@@ -117,10 +117,6 @@ def defeatDoubleTrainer(event1,event2)
 	setFollowerInactive(event2)
 end
 
-def get_player
-	return get_character(0)
-end
-
 def rejectTooFewPokemon(dialogue)
 	if $Trainer.ablePokemonCount<=1
 		pbMessage(dialogue)
