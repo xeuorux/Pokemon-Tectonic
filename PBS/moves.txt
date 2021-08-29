@@ -625,7 +625,7 @@
 608,MISTBALL,Mist Ball,045,70,PSYCHIC,Special,100,5,100,NearOther,0,befn,A mistlike flurry of down envelops and damages the target. It also lowers the target's Sp. Atk.
 609,PSYCHOCUT,Psycho Cut,000,70,PSYCHIC,Physical,100,20,0,NearOther,0,befh,The user tears at the target with blades formed by psychic power. Critical hits land more easily.
 610,PSYBEAM,Psybeam,013,65,PSYCHIC,Special,100,20,10,NearOther,0,bef,The target is attacked with a peculiar ray. It has a 10% chance to confuse.
-611,HEARTSTAMP,Heart Stamp,00F,60,PSYCHIC,Physical,100,25,30,NearOther,0,abe,The user unleashes a vicious blow after its cute act makes the foe less wary. It has a 30% chance to cause flinching.
+611,HEARTSTAMP,Heart Stamp,00F,60,PSYCHIC,Physical,100,25,30,NearOther,0,abe,The user unleashes a vicious blow after a cute act. It has a 30% chance to cause flinching.
 612,MINDWAVES,Mind Waves,013,40,PSYCHIC,Special,100,35,10,NearOther,0,bef,The target is hit by a weak telekinetic force. It has a 10% chance to confuse.
 613,STOREDPOWER,Stored Power,08E,20,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user attacks with stored power. The more the user's stats are raised, the greater the damage."
 614,MIRRORCOAT,Mirror Coat,072,1,PSYCHIC,Special,100,20,0,None,-5,bf,"A retaliation move that counters any special attack, inflicting double the damage taken."
