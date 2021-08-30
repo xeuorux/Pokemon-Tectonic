@@ -32,15 +32,15 @@ class Sprite_Character
 			match = @character.name.match(/.*overworld\(([A-Za-z_0-9]+)\).*/i)
 			if match && @character_name == "00Overworld Placeholder"
 				@charbitmap = AnimatedBitmap.new('Graphics/Characters/Followers/' + match[1], @character_hue)
-				
-				embiggenMatch = @character.name.match(/embiggen\(([0-9]+)\)/i)
-				if embiggenMatch
-					new_bitmap = @charbitmap.copy
-					embiggened = increaseSize(new_bitmap.bitmap,1+Integer(embiggenMatch[1])/10.0)
-					new_bitmap.bitmap = embiggened
-					@charbitmap.dispose
-					@charbitmap = new_bitmap
-				end
+			end
+			
+			embiggenMatch = @character.name.match(/embiggen\(([0-9]+)\)/i)
+			if embiggenMatch
+				new_bitmap = @charbitmap.copy
+				embiggened = increaseSize(new_bitmap.bitmap,1+Integer(embiggenMatch[1])/10.0)
+				new_bitmap.bitmap = embiggened
+				@charbitmap.dispose
+				@charbitmap = new_bitmap
 			end
 		end
         RPG::Cache.retain('Graphics/Characters/', @character_name, @character_hue) if @character == $game_player

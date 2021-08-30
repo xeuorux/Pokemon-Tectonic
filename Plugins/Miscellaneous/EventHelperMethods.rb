@@ -515,7 +515,7 @@ def teleportArriveAnimation
 	get_player.force_move_route(new_move_route)
 end
 
-def defeatBoss(item,count=1)
+def defeatBoss(item=nil,count=1)
 	pbMessage("The avatar staggers, then drifts away into nothingness.")
 	blackFadeOutIn {
 		setMySwitch('A',true)

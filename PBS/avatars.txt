@@ -35,3 +35,193 @@ Turns = 3
 Ability = MOXIE
 Moves = STORMTHROW,METEORMASH,XSCISSOR,SUPERPOWER
 HPMult = 3
+#-------------------------------
+[SHIINOTIC]
+Turns = 2
+Ability = DAZZLE
+Moves = STRENGTHSAP,MOONBLAST,DRAININGKISS,GRASSKNOT
+HPMult = 3
+#-------------------------------
+[MEDICHAM]
+Turns = 2
+Ability = ENERGYUP
+Moves = MEDITATE,TRAINEDOUTBURST,STOREDPOWER,CALMMIND
+HPMult = 5
+#-------------------------------
+[SIRFETCHD]
+Turns = 3
+Ability = STEADFAST
+Item = LEEK
+Moves = FOCUSENERGY,LEAFBLADE,CROSSCHOP,NIGHTSLASH
+HPMult = 4
+#-------------------------------
+[PORYGONZ]
+Turns = 3
+Ability = DOWNLOAD
+HPMult = 2.5
+Moves = BURNUP,TRIATTACK,CONVERSION,CONVERSION2
+#-------------------------------
+[RUNERIGUS]
+Turns = 1
+Ability = WANDERINGSPIRIT
+Moves = SHADOWCLAW,ROCKTOMB,SANDTOMB
+HPMult = 8
+#-------------------------------
+[GOURGEIST]
+Turns = 3
+Ability = INSOMNIA
+Moves = HEX,SHADOWBALL,HEX,WILLOWISP
+HPMult = 4
+#-------------------------------
+[SHIFTRY]
+Turns = 2
+Ability = EARLYBIRD
+Moves = LEAFTORNADO,THIEF,FLING
+HPMult = 5
+#-------------------------------
+[COPPERAJAH]
+Turns = 3
+Ability = DAZZLE
+Moves = HEAVYSLAM,HEATCRASH,TRAMPLE
+HPMult = 4
+#-------------------------------
+[MILOTIC]
+Turns = 2
+Ability = MARVELSCALE
+Moves = AQUARING,RECOVER,BRINE,DRAGONPULSE
+HPMult = 2
+#-------------------------------
+[INCINEROAR]
+Turns = 3
+Ability = ARENATRAP
+Moves = TAUNT,SWAGGER,BURNINGJEALOUSY,FLAREBLITZ
+HPMult = 3
+#-------------------------------
+[KANGASKHAN]
+Turns = 2
+Ability = INNERFOCUS
+Moves = RAGE,HEADBUTT,LASTRESORT,POWERUPPUNCH
+HPMult = 4
+#-------------------------------
+[SWOOBAT]
+Turns = 3
+Ability = UNAWARE
+Moves = HEARTSTAMP,AERIALACE,STEELWING
+HPMult = 3
+#-------------------------------
+[TOXAPEX]
+Turns = 2
+Ability = LIMBER
+Moves = BANEFULBUNKER,VENOSHOCK,LIQUIDATION,TOXICSPIKES
+HPMult = 6
+#-------------------------------
+[AEGISLASH]
+Turns = 3
+Ability = STANCECHANGE
+Moves = KINGSSHIELD,IRONHEAD,SWORDSDANCE,SACREDSWORD
+HPMult = 2
+#-------------------------------
+[HARIYAMA]
+Turns = 2
+Ability = GUTS
+Item = SITRUSBERRY
+Moves = REVERSAL,BELLYDRUM,DRAINPUNCH,STRENGTH
+HPMult = 3
+#-------------------------------
+[TOXTRICITY]
+Turns = 3
+Item = SITRUSBERRY
+Ability = LOUD
+Moves = ACID,BELCH,OVERDRIVE,SWAGGER
+HPMult = 3
+#-------------------------------
+[GARCHOMP]
+Turns = 2
+Ability = SANDVEIL
+Moves = OUTRAGE,CALAMITOUSSLASH,SANDSTORM,REST
+Item = SMOOTHROCK
+HPMult = 5
+#-------------------------------
+[ANINETALES]
+Turns = 2
+Form = 1
+Ability = SNOWVEIL
+Moves = ICYWIND,HAIL,AURORAVEIL,BLIZZARD
+Item = ICYROCK
+HPMult = 5
+#-------------------------------
+[LUDICOLO]
+Turns = 2
+Ability = RAINDISH
+Item = DAMPROCK
+Moves = RAINDANCE,GIGADRAIN,LEECHSEED,AQUARING
+HPMult = 4
+#-------------------------------
+[CHARIZARD]
+Turns = 4
+Item = HEATROCK
+Ability = SOLARPOWER
+Moves = SUNNYDAY,FLAMETHROWER,FIREBLAST,CRIPPLINGBREATH
+HPMult = 3
+#-------------------------------
+[SNORLAX]
+Turns = 1
+Ability = THICKFAT
+Moves = BODYSLAM,REST,SLEEPTALK,YAWN
+HPMult = 8
+#-------------------------------
+[GOLISOPOD]
+Turns = 3
+Ability = EMERGENCYEXIT
+Moves = XSCISSOR,FIRSTIMPRESSION,SWORDSDANCE,LIQUIDATION
+HPMult = 6
+#-------------------------------
+[AGGRON]
+Turns = 2
+Ability = HEAVYMETAL
+Moves = DRAGONTAIL,STEALTHROCK,ROCKSLIDE,CRUNCH
+HPMult = 5
+#-------------------------------
+[SKARMORY]
+Turns = 3
+Ability = KEENEYE
+Moves = SPIKES,WHIRLWIND,STEELWING,DRILLPECK
+HPMult = 4
+#-------------------------------
+[WAILORD]
+Turns = 1
+SizeMult = 2
+Ability = PRESSURE
+Moves = BODYPRESS,BODYSLAM,SELFDESTRUCT,SURF
+HPMult = 10
+#-------------------------------
+[SALAZZLE]
+Turns = 2
+Ability = OBLIVIOUS
+Moves = VENOSHOCK,FLAREUP,IGNITE,POISONGAS
+HPMult = 5
+#-------------------------------
+[KOMMOO]
+Turns = 3
+Ability = SOUNDPROOF
+Item = SITRUSBERRY
+Moves = CLANGOROUSSOUL,CALAMITOUSSLASH,MEGAPUNCH,CLANGINGSCALES
+HPMult = 3
+#-------------------------------
+[METAGROSS]
+Turns = 3
+Ability = CLEARBODY
+Moves = METEORMASH,REFLEXOVERDRIVE,ZENHEADBUTT,FLOWSTATE
+HPMult = 4
+#-------------------------------
+[SPINDA]
+Turns = 1
+Ability = TANGLEDFEET
+Moves = TEETERDANCE,DOUBLEEDGE,COPYCAT,THRASH
+HPMult = 2
+#-------------------------------
+[CRADILY]
+Turns = 3
+Ability = SUCTIONCUPS
+Moves = INGRAIN,LEECHSEED,GIGADRAIN,SOAK
+HPMult = 3

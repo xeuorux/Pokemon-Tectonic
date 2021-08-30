@@ -269,6 +269,7 @@ module Compiler
 				:item		 => contents["Item"],
 				:exp_mult	 => contents["EXPMult"],
 				:hp_mult	 => contents["HPMult"],
+				:size_mult	 => contents["HPMult"],
 			}
 			avatar_number += 1
 			# Add trainer avatar's data to records
@@ -927,9 +928,9 @@ module Compiler
 		push_script(firstPage.list,"defeatBoss",1)
 	else
 		if itemCount > 1
-			push_script(firstPage.list,"defeatBoss(#{item},#{itemCount})",1)
+			push_script(firstPage.list,"defeatBoss(:#{item},#{itemCount})",1)
 		else
-			push_script(firstPage.list,"defeatBoss(#{item})",1)
+			push_script(firstPage.list,"defeatBoss(:#{item})",1)
 		end
 	end
     push_branch_end(firstPage.list)
