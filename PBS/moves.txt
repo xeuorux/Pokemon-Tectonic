@@ -763,7 +763,7 @@
 743,PEBBLEDUST,Pebble Dust,000,50,ROCK,Special,90,25,0,NearOther,0,bef,"The user grinds a pebble into dust, and sprays it at the target."
 744,FUGUFORCE,Fugu Force,006,40,WATER,Physical,100,10,100,NearOther,0,abef,"The user crashes into the target with its quills. It leaves the target toxified."
 745,SHADOW,Shadow,046,40,GHOST,Special,100,15,10,NearOther,0,bef,"The user sends a shadow to attack the target, with a 10% chance to reduce it's Sp. Def."
-746,CLACKACLACK,Clackaclack,045,40,BUG,Special,100,40,10,AllNearFoes,0,befk,"The user attacks the opposing Pokémon with a horrible clattering noise. It has a 10% chance to lower Sp. Atk."
+746,CLACKACLACK,Clackaclack,045,40,BUG,Special,100,40,10,AllNearFoes,0,befk,"The user attacks with a horrible clattering noise. It has a 10% chance to lower Sp. Atk."
 747,LIGHTNINGDANCE,Lightning Dance,503,0,ELECTRIC,Status,0,20,0,User,0,do,"The user dances with the speed of lightning, boosting its Sp. Atk and Speed stats."
 748,CRASHDIVE,Crash Dive,0FB,120,WATER,Physical,100,15,0,Other,0,abef,"The user dives like a submarine at the target. The user also takes 33% recoil."
 749,SHOTPUT,Shotput,000,45,STEEL,Physical,100,25,0,NearOther,0,bef,"The user hurls a metal ball at the target."

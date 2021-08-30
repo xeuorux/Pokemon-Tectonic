@@ -1,6 +1,121 @@
 module Compiler
 	module_function
 	
+  def main
+    return if !$DEBUG
+    begin
+      dataFiles = [
+         "berry_plants.dat",
+         "encounters.dat",
+         "form2species.dat",
+         "items.dat",
+         "map_connections.dat",
+         "metadata.dat",
+         "moves.dat",
+         "phone.dat",
+         "regional_dexes.dat",
+         "ribbons.dat",
+         "shadow_movesets.dat",
+         "species.dat",
+         "species_eggmoves.dat",
+         "species_evolutions.dat",
+         "species_metrics.dat",
+         "species_movesets.dat",
+         "tm.dat",
+         "town_map.dat",
+         "trainer_lists.dat",
+         "trainer_types.dat",
+         "trainers.dat",
+         "types.dat",
+		 "policies.dat",
+		 "avatars.dat"
+      ]
+      textFiles = [
+         "abilities.txt",
+         "berryplants.txt",
+         "connections.txt",
+         "encounters.txt",
+         "items.txt",
+         "metadata.txt",
+         "moves.txt",
+         "phone.txt",
+         "pokemon.txt",
+         "pokemonforms.txt",
+         "regionaldexes.txt",
+         "ribbons.txt",
+         "shadowmoves.txt",
+         "townmap.txt",
+         "trainerlists.txt",
+         "trainers.txt",
+         "trainertypes.txt",
+         "types.txt",
+		 "policies.txt",
+		 "avatars.txt"
+      ]
+      latestDataTime = 0
+      latestTextTime = 0
+      mustCompile = false
+      # Should recompile if new maps were imported
+      mustCompile |= import_new_maps
+      # If no PBS file, create one and fill it, then recompile
+      if !safeIsDirectory?("PBS")
+        Dir.mkdir("PBS") rescue nil
+        write_all
+        mustCompile = true
+      end
+      # Check data files and PBS files, and recompile if any PBS file was edited
+      # more recently than the data files were last created
+      dataFiles.each do |filename|
+        next if !safeExists?("Data/" + filename)
+        begin
+          File.open("Data/#{filename}") { |file|
+            latestDataTime = [latestDataTime, file.mtime.to_i].max
+          }
+        rescue SystemCallError
+          mustCompile = true
+        end
+      end
+      textFiles.each do |filename|
+        next if !safeExists?("PBS/" + filename)
+        begin
+          File.open("PBS/#{filename}") { |file|
+            latestTextTime = [latestTextTime, file.mtime.to_i].max
+          }
+        rescue SystemCallError
+        end
+      end
+      mustCompile |= (latestTextTime >= latestDataTime)
+      # Should recompile if holding Ctrl
+      Input.update
+      mustCompile = true if Input.press?(Input::CTRL)
+      # Delete old data files in preparation for recompiling
+      if mustCompile
+        for i in 0...dataFiles.length
+          begin
+            File.delete("Data/#{dataFiles[i]}") if safeExists?("Data/#{dataFiles[i]}")
+          rescue SystemCallError
+          end
+        end
+      end
+      # Recompile all data
+      compile_all(mustCompile) { |msg| pbSetWindowText(msg); echoln(msg) }
+    rescue Exception
+      e = $!
+      raise e if "#{e.class}"=="Reset" || e.is_a?(Reset) || e.is_a?(SystemExit)
+      pbPrintException(e)
+      for i in 0...dataFiles.length
+        begin
+          File.delete("Data/#{dataFiles[i]}")
+        rescue SystemCallError
+        end
+      end
+      raise Reset.new if e.is_a?(Hangup)
+      loop do
+        Graphics.update
+      end
+    end
+  end
+	
   #=============================================================================
   # Compile all data
   #=============================================================================
@@ -50,6 +165,8 @@ module Compiler
       compile_trainers               # Depends on Species, Item, Move
       yield(_INTL("Compiling battle Trainer data"))
       compile_trainer_lists          # Depends on TrainerType
+	  yield(_INTL("Compiling Avatar battle data"))
+	  compile_avatars				 # Depends on Species, Item, Move
       yield(_INTL("Compiling metadata"))
       compile_metadata               # Depends on TrainerType
       yield(_INTL("Compiling animations"))
@@ -85,6 +202,82 @@ module Compiler
     }
     # Save all data
     GameData::Policy.save
+    Graphics.update
+  end
+  
+  def pbEachAvatarFileSection(f)
+	pbEachFileSectionEx(f) { |section,name|
+      yield section,name if block_given? && name[/^[a-zA-Z0-9]+$/]
+    }
+  end
+  
+  def compile_avatars(path = "PBS/avatars.txt")
+	GameData::Avatar::DATA.clear
+    # Read from PBS file
+    File.open("PBS/avatars.txt", "rb") { |f|
+		FileLineData.file = "PBS/avatars.txt"   # For error reporting
+		# Read a whole section's lines at once, then run through this code.
+		# contents is a hash containing all the XXX=YYY lines in that section, where
+		# the keys are the XXX and the values are the YYY (as unprocessed strings).
+		schema = GameData::Avatar::SCHEMA
+		avatar_number = 1
+		pbEachAvatarFileSection(f) { |contents, avatar_species|
+			FileLineData.setSection(avatar_species, "header", nil)   # For error reporting
+			avatar_symbol = avatar_species.to_sym
+			
+			# Raise an error if a species is invalid or used twice
+			if avatar_species == ""
+			  raise _INTL("An Avatar entry name can't be blank (PBS/avatars.txt).")
+			elsif GameData::Avatar::DATA[avatar_symbol]
+			  raise _INTL("Avatar name '{1}' is used twice.\r\n{2}", avatar_species, FileLineData.linereport)
+			end
+			
+			# Go through schema hash of compilable data and compile this section
+			for key in schema.keys
+				# Skip empty properties, or raise an error if a required property is
+				# empty
+				if contents[key].nil? || contents[key] == ""
+					if ["Turns", "Ability", "Moves", "HPMult"].include?(key)
+						raise _INTL("The entry {1} is required in PBS/avatars.txt section {2}.", key, avatar_species)
+					end
+					contents[key] = nil
+					next
+				end
+
+				# Compile value for key
+				value = pbGetCsvRecord(contents[key], key, schema[key])
+				value = nil if value.is_a?(Array) && value.length == 0
+				contents[key] = value
+			  
+			    # Sanitise data
+				case key
+				when "Moves"
+					if contents["Moves"].length > 4
+						raise _INTL("The moves entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
+					end
+				end
+			end
+			
+			# Construct avatar hash
+			avatar_hash = {
+				:id          => avatar_symbol,
+				:id_number   => avatar_number,
+				:turns		 => contents["Turns"],
+				:form		 => contents["Form"],
+				:moves		 => contents["Moves"],
+				:ability	 => contents["Ability"],
+				:item		 => contents["Item"],
+				:exp_mult	 => contents["EXPMult"],
+				:hp_mult	 => contents["HPMult"],
+			}
+			avatar_number += 1
+			# Add trainer avatar's data to records
+			GameData::Avatar.register(avatar_hash)
+		}
+    }
+
+    # Save all data
+    GameData::Avatar.save
     Graphics.update
   end
   
@@ -603,6 +796,11 @@ module Compiler
           map.events[key] = newevent
           changed = true
         end
+		newevent = convert_avatars(map.events[key])
+        if newevent
+          map.events[key] = newevent
+          changed = true
+        end
         changed = true if fix_event_name(map.events[key])
         newevent = fix_event_use(map.events[key],id,mapData)
         if newevent
@@ -635,7 +833,7 @@ module Compiler
   end
   
   #=============================================================================
-  # Add cry actions to overworld pokemon events which don't already have scripted behaviour.
+  # Convert events using the PHT command into fully fledged placeholder trainers
   #=============================================================================
   def convert_chasm_style_trainers(event)
 	return nil if !event || event.pages.length==0
@@ -695,6 +893,46 @@ module Compiler
   end
   
   #=============================================================================
+  # Convert events using the PHA name command into fully fledged placeholder avatars
+  #=============================================================================
+  def convert_avatars(event)
+	return nil if !event || event.pages.length==0
+	match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)\).*/)
+	return nil if !match
+	ret = RPG::Event.new(event.x,event.y)
+	ret.name = "embiggen(3)size(2,2)trainer(4)"
+	ret.id   = event.id
+	ret.pages = []
+	avatarSpecies = match[1]
+	return nil if !avatarSpecies || avatarSpecies == ""
+	level = match[2]
+	ret.pages = [2]
+	
+	# Create the first page, where the battle happens
+	firstPage = RPG::Event::Page.new
+	ret.pages[0] = firstPage
+	firstPage.graphic.character_name = "Followers/#{avatarSpecies}"
+	firstPage.graphic.opacity = 180
+	firstPage.trigger = 2   # On event touch
+	firstPage.step_anime = true # Animate while still
+	firstPage.list = []
+	push_script(firstPage.list,"pbNoticePlayer(get_self)")
+	push_script(firstPage.list,"introduceAvatar(:#{avatarSpecies})")
+	push_branch(firstPage.list,"pbSmallAvatarBattle([:#{avatarSpecies},#{level}])")
+	push_script(firstPage.list,"defeatBoss",1)
+    push_branch_end(firstPage.list)
+	push_end(firstPage.list)
+	
+	# Create the second page, which has nothing
+	secondPage = RPG::Event::Page.new
+	ret.pages[1] = secondPage
+	secondPage.condition.self_switch_valid = true
+	secondPage.condition.self_switch_ch = "A"
+	
+	return ret
+  end
+  
+  #=============================================================================
   # Add cry actions to overworld pokemon events which don't already have scripted behaviour.
   #=============================================================================
   def convert_overworldPkmn_event(event)
@@ -736,4 +974,24 @@ def jank_hash_code(str)
     result += str[i].to_i
   end
   return result
+end
+
+module GameData
+	def self.load_all
+		echo("Loading all game data.")
+		Type.load
+		Ability.load
+		Move.load
+		Item.load
+		BerryPlant.load
+		Species.load
+		Ribbon.load
+		Encounter.load
+		TrainerType.load
+		Trainer.load
+		Metadata.load
+		MapMetadata.load
+		Policy.load
+		Avatar.load
+	end
 end

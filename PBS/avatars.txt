@@ -1,0 +1,37 @@
+#-------------------------------
+[FURRET]
+Turns = 2
+Ability = RUNAWAY
+Moves = SCRATCH,TACKLE
+HPMult = 2
+#-------------------------------
+[SWALOT]
+Turns = 2
+HPMult = 2.5
+Ability = GLUTTONY
+Moves = POISONGAS,ACID
+#-------------------------------
+[TORKOAL]
+Turns = 2
+HPMult = 2.5
+Ability = SHELLARMOR
+Moves = WILLOWISP,FLAMEBURST
+#-------------------------------
+[MAMOSWINE]
+Turns = 3
+Ability = THICKFAT
+Item = EXPERTBELT
+Moves = BODYPRESS,ICEFANG,BULLDOZE,BITE
+HPMult = 4
+#-------------------------------
+[MAGNEZONE]
+Turns = 3
+Ability = LEVITATE
+Moves = ELECTROBALL,FLASHCANNON,LOCKON,ZAPCANNON
+HPMult = 3
+#-------------------------------
+[PINSIR]
+Turns = 3
+Ability = MOXIE
+Moves = STORMTHROW,METEORMASH,XSCISSOR,SUPERPOWER
+HPMult = 3

@@ -529,3 +529,9 @@ def defeatBoss(item,count=1)
 		pbReceiveItem(item,count)
 	end
 end
+
+def introduceAvatar(species)
+	pbPlayCrySpecies(species)
+	$game_screen.start_shake(5, 5, 2 * Graphics.frame_rate)
+	pbWait(2 * Graphics.frame_rate)
+end

@@ -21,7 +21,7 @@ module GameData
 		extend ClassMethods
 		include InstanceMethods
 	
-		 def initialize(hash)
+		def initialize(hash)
 		  @id               = hash[:id]
 		end
 	end

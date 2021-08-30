@@ -1,49 +1,116 @@
-Events.onWildPokemonCreate += proc {| sender, e |
-  pkmn = e[0]
-  
-  # If this is a boss fight...
-  if $game_switches[95]
-    pkmn.boss = true
+def pbBigAvatarBattle(*args)
+	rule = "3v#{args.length}"
+	setBattleRule(rule)
+	pbAvatarBattleCore(*args)
+end
+
+def pbSmallAvatarBattle(*args)
+	rule = "2v#{args.length}"
+	setBattleRule(rule)
+	pbAvatarBattleCore(*args)
+end
+
+def pbAvatarBattleCore(*args)
+  outcomeVar = $PokemonTemp.battleRules["outcomeVar"] || 1
+  canLose    = $PokemonTemp.battleRules["canLose"] || false
+  $game_switches[95] = true
+  # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
+  if $Trainer.able_pokemon_count == 0 || ($DEBUG && Input.press?(Input::CTRL))
+    pbMessage(_INTL("SKIPPING BATTLE...")) if $Trainer.pokemon_count > 0
+    pbSet(outcomeVar,1)   # Treat it as a win
+    $PokemonTemp.clearBattleRules
+    $PokemonGlobal.nextBattleBGM       = nil
+    $PokemonGlobal.nextBattleME        = nil
+    $PokemonGlobal.nextBattleCaptureME = nil
+    $PokemonGlobal.nextBattleBack      = nil
+    pbMEStop
+    return 1   # Treat it as a win
+  end
+  # Record information about party Pokémon to be used at the end of battle (e.g.
+  # comparing levels for an evolution check)
+  Events.onStartBattle.trigger(nil)
+  # Generate wild Pokémon based on the species and level
+  foeParty = []
+  for arg in args
+    if arg.is_a?(Array)
+		species = GameData::Species.get(arg[0]).id
+		pkmn = pbGenerateWildPokemon(species,arg[1])
+		pkmn.boss = true
+		setAvatarProperties(pkmn)
+		foeParty.push(pkmn)
+	end
+  end
+  # Calculate who the trainers and their party are
+  playerTrainers    = [$Trainer]
+  playerParty       = $Trainer.party
+  playerPartyStarts = [0]
+  room_for_partner = (foeParty.length > 1)
+  if !room_for_partner && $PokemonTemp.battleRules["size"] &&
+     !["single", "1v1", "1v2", "1v3"].include?($PokemonTemp.battleRules["size"])
+    room_for_partner = true
+  end
+  if $PokemonGlobal.partner && !$PokemonTemp.battleRules["noPartner"] && room_for_partner
+    ally = NPCTrainer.new($PokemonGlobal.partner[1],$PokemonGlobal.partner[0])
+    ally.id    = $PokemonGlobal.partner[2]
+    ally.party = $PokemonGlobal.partner[3]
+    playerTrainers.push(ally)
+    playerParty = []
+    $Trainer.party.each { |pkmn| playerParty.push(pkmn) }
+    playerPartyStarts.push(playerParty.length)
+    ally.party.each { |pkmn| playerParty.push(pkmn) }
+    setBattleRule("double") if !$PokemonTemp.battleRules["size"]
+  end
+  # Create the battle scene (the visual side of it)
+  scene = pbNewBattleScene
+  # Create the battle class (the mechanics side of it)
+  battle = PokeBattle_Battle.new(scene,playerParty,foeParty,playerTrainers,nil)
+  battle.party1starts = playerPartyStarts
+  # Set various other properties in the battle class
+  pbPrepareBattle(battle)
+  $PokemonTemp.clearBattleRules
+  # Perform the battle itself
+  decision = 0
+  pbBattleAnimation(pbGetWildBattleBGM(foeParty),(foeParty.length==1) ? 0 : 2,foeParty) {
+    pbSceneStandby {
+      decision = battle.pbStartBattle
+    }
+    pbAfterBattle(decision,canLose)
+  }
+  Input.update
+  # Save the result of the battle in a Game Variable (1 by default)
+  #    0 - Undecided or aborted
+  #    1 - Player won
+  #    2 - Player lost
+  #    3 - Player or wild Pokémon ran from battle, or player forfeited the match
+  #    4 - Wild Pokémon was caught
+  #    5 - Draw
+  pbSet(outcomeVar,decision)
+  $game_switches[95] = false
+  return decision
+end
+
+def setAvatarProperties(pkmn)
+	avatar_data = GameData::Avatar.get(pkmn.species.to_sym)
+
+	# To do
+	#pkmn.form = avatar_data.form
+
+	pkmn.forget_all_moves()
+	avatar_data.moves.each do |move|
+		pkmn.learn_move(move)
+	end
 	
-	#Setting the boss's move set
-	if $game_variables[99].is_a?(Hash)
-	  moves = $game_variables[99][pkmn.species]
-	  pkmn.forget_all_moves()
-      moves.each do |move|
-        pkmn.learn_move(move)
-      end
-    elsif $game_variables[99].is_a?(Array)
-      pkmn.forget_all_moves()
-      $game_variables[99].each do |move|
-        pkmn.learn_move(move)
-      end
-    end
+	pkmn.item = avatar_data.item
+	pkmn.ability = avatar_data.ability
 	
-	# Setting the boss's item
-    if $game_variables[100]
-		if $game_variables[100].is_a?(Hash)
-			pkmn.item = $game_variables[100][pkmn.species]
-		else
-			pkmn.item = $game_variables[100]
-		end
-    end
-	
-	# Setting boss's ability
-    if $game_variables[94]
-		if $game_variables[94].is_a?(Hash)
-			abilityIndex = $game_variables[94][pkmn.species]
-			pkmn.ability = (pkmn.getAbilityList()[abilityIndex][0])
-		else
-			abilityIndex = $game_variables[94]
-			pkmn.ability = (pkmn.getAbilityList()[abilityIndex][0])
-		end
-    else
-      pkmn.ability = (pkmn.getAbilityList()[0][0])
-    end
+	# To do, scrap this
+	$game_variables[95] = avatar_data.num_turns
+	$game_variables[96] = avatar_data.hp_mult
+	$game_variables[97] = avatar_data.size_mult - 1
+	$game_variables[98] = avatar_data.exp_mult
 	
 	pkmn.calc_stats()
-  end
-}
+end
 
 def scrubBossBattleSettings
   $game_variables[94] = nil
