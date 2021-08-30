@@ -562,6 +562,123 @@ end
 # User flings its item at the target. Power/effect depend on the item. (Fling)
 #===============================================================================
 class PokeBattle_Move_0F7 < PokeBattle_Move
+	def initialize(battle,move)
+    super
+    # 80 => all Mega Stones
+    # 10 => all Berries
+    @flingPowers = {
+      130 => [:IRONBALL
+             ],
+      100 => [:HARDSTONE,:RAREBONE,
+              # Fossils
+              :ARMORFOSSIL,:CLAWFOSSIL,:COVERFOSSIL,:DOMEFOSSIL,:HELIXFOSSIL,
+              :JAWFOSSIL,:OLDAMBER,:PLUMEFOSSIL,:ROOTFOSSIL,:SAILFOSSIL,
+              :SKULLFOSSIL
+             ],
+       90 => [:DEEPSEATOOTH,:GRIPCLAW,:THICKCLUB,
+              # Plates
+              :DRACOPLATE,:DREADPLATE,:EARTHPLATE,:FISTPLATE,:FLAMEPLATE,
+              :ICICLEPLATE,:INSECTPLATE,:IRONPLATE,:MEADOWPLATE,:MINDPLATE,
+              :PIXIEPLATE,:SKYPLATE,:SPLASHPLATE,:SPOOKYPLATE,:STONEPLATE,
+              :TOXICPLATE,:ZAPPLATE
+             ],
+       80 => [:ASSAULTVEST,:DAWNSTONE,:DUSKSTONE,:ELECTIRIZER,:MAGMARIZER,
+              :ODDKEYSTONE,:OVALSTONE,:PROTECTOR,:QUICKCLAW,:RAZORCLAW,:SACHET,
+              :SAFETYGOGGLES,:SHINYSTONE,:STICKYBARB,:WEAKNESSPOLICY,
+              :WHIPPEDDREAM
+             ],
+       70 => [:DRAGONFANG,:POISONBARB,
+              # EV-training items (Macho Brace is 60)
+              :POWERANKLET,:POWERBAND,:POWERBELT,:POWERBRACER,:POWERLENS,
+              :POWERWEIGHT,
+              # Drives
+              :BURNDRIVE,:CHILLDRIVE,:DOUSEDRIVE,:SHOCKDRIVE
+             ],
+       60 => [:ADAMANTORB,:DAMPROCK,:GRISEOUSORB,:HEATROCK,:LUSTROUSORB,
+              :MACHOBRACE,:ROCKYHELMET,:STICK,:TERRAINEXTENDER
+             ],
+       50 => [:DUBIOUSDISC,:SHARPBEAK,
+              # Memories
+              :BUGMEMORY,:DARKMEMORY,:DRAGONMEMORY,:ELECTRICMEMORY,:FAIRYMEMORY,
+              :FIGHTINGMEMORY,:FIREMEMORY,:FLYINGMEMORY,:GHOSTMEMORY,
+              :GRASSMEMORY,:GROUNDMEMORY,:ICEMEMORY,:POISONMEMORY,
+              :PSYCHICMEMORY,:ROCKMEMORY,:STEELMEMORY,:WATERMEMORY
+             ],
+       40 => [:EVIOLITE,:ICYROCK,:LUCKYPUNCH
+             ],
+       30 => [:ABSORBBULB,:ADRENALINEORB,:AMULETCOIN,:BINDINGBAND,:BLACKBELT,
+              :BLACKGLASSES,:BLACKSLUDGE,:BOTTLECAP,:CELLBATTERY,:CHARCOAL,
+              :CLEANSETAG,:DEEPSEASCALE,:DRAGONSCALE,:EJECTBUTTON,:ESCAPEROPE,
+              :EXPSHARE,:FLAMEORB,:FLOATSTONE,:FLUFFYTAIL,:GOLDBOTTLECAP,
+              :HEARTSCALE,:HONEY,:KINGSROCK,:LIFEORB,:LIGHTBALL,:LIGHTCLAY,
+              :LUCKYEGG,:LUMINOUSMOSS,:MAGNET,:METALCOAT,:METRONOME,
+              :MIRACLESEED,:MYSTICWATER,:NEVERMELTICE,:PASSORB,:POKEDOLL,
+              :POKETOY,:PRISMSCALE,:PROTECTIVEPADS,:RAZORFANG,:SACREDASH,
+              :SCOPELENS,:SHELLBELL,:SHOALSALT,:SHOALSHELL,:SMOKEBALL,:SNOWBALL,
+              :SOULDEW,:SPELLTAG,:POISONORB,:TWISTEDSPOON,:UPGRADE,
+              # Healing items
+              :ANTIDOTE,:AWAKENING,:BERRYJUICE,:BIGMALASADA,:BLUEFLUTE,
+              :BURNHEAL,:CASTELIACONE,:ELIXIR,:ENERGYPOWDER,:ENERGYROOT,:ETHER,
+              :FRESHWATER,:FULLHEAL,:FULLRESTORE,:HEALPOWDER,:HYPERPOTION,
+              :ICEHEAL,:LAVACOOKIE,:LEMONADE,:LUMIOSEGALETTE,:MAXELIXIR,
+              :MAXETHER,:MAXPOTION,:MAXREVIVE,:MOOMOOMILK,:OLDGATEAU,
+              :PARALYZEHEAL,:PARLYZHEAL,:PEWTERCRUNCHIES,:POTION,:RAGECANDYBAR,
+              :REDFLUTE,:REVIVALHERB,:REVIVE,:SHALOURSABLE,:SODAPOP,
+              :SUPERPOTION,:SWEETHEART,:YELLOWFLUTE,
+              # Battle items
+              :XACCURACY,:XACCURACY2,:XACCURACY3,:XACCURACY6,
+              :XATTACK,:XATTACK2,:XATTACK3,:XATTACK6,
+              :XDEFEND,:XDEFEND2,:XDEFEND3,:XDEFEND6,
+              :XDEFENSE,:XDEFENSE2,:XDEFENSE3,:XDEFENSE6,
+              :XSPATK,:XSPATK2,:XSPATK3,:XSPATK6,
+              :XSPECIAL,:XSPECIAL2,:XSPECIAL3,:XSPECIAL6,
+              :XSPDEF,:XSPDEF2,:XSPDEF3,:XSPDEF6,
+              :XSPEED,:XSPEED2,:XSPEED3,:XSPEED6,
+              :DIREHIT,:DIREHIT2,:DIREHIT3,
+              :ABILITYURGE,:GUARDSPEC,:ITEMDROP,:ITEMURGE,:RESETURGE,
+              # Vitamins
+              :CALCIUM,:CARBOS,:HPUP,:IRON,:PPUP,:PPMAX,:PROTEIN,:ZINC,
+              :RARECANDY,
+              # Most evolution stones (see also 80)
+              :EVERSTONE,:FIRESTONE,:ICESTONE,:LEAFSTONE,:MOONSTONE,:SUNSTONE,
+              :THUNDERSTONE,:WATERSTONE,
+              # Repels
+              :MAXREPEL,:REPEL,:SUPERREPEL,
+              # Mulches
+              :AMAZEMULCH,:BOOSTMULCH,:DAMPMULCH,:GOOEYMULCH,:GROWTHMULCH,
+              :RICHMULCH,:STABLEMULCH,:SURPRISEMULCH,
+              # Shards
+              :BLUESHARD,:GREENSHARD,:REDSHARD,:YELLOWSHARD,
+              # Valuables
+              :BALMMUSHROOM,:BIGMUSHROOM,:BIGNUGGET,:BIGPEARL,:COMETSHARD,
+              :NUGGET,:PEARL,:PEARLSTRING,:RELICBAND,:RELICCOPPER,:RELICCROWN,
+              :RELICGOLD,:RELICSILVER,:RELICSTATUE,:RELICVASE,:STARDUST,
+              :STARPIECE,:STRANGESOUVENIR,:TINYMUSHROOM
+             ],
+       20 => [# Wings
+              :CLEVERWING,:GENIUSWING,:HEALTHWING,:MUSCLEWING,:PRETTYWING,
+              :RESISTWING,:SWIFTWING
+             ],
+       10 => [:AIRBALLOON,:BIGROOT,:BRIGHTPOWDER,:CHOICEBAND,:CHOICESCARF,
+              :CHOICESPECS,:DESTINYKNOT,:DISCOUNTCOUPON,:EXPERTBELT,:FOCUSBAND,
+              :FOCUSSASH,:LAGGINGTAIL,:LEFTOVERS,:MENTALHERB,:METALPOWDER,
+              :MUSCLEBAND,:POWERHERB,:QUICKPOWDER,:REAPERCLOTH,:REDCARD,
+              :RINGTARGET,:SHEDSHELL,:SILKSCARF,:SILVERPOWDER,:SMOOTHROCK,
+              :SOFTSAND,:SOOTHEBELL,:WHITEHERB,:WIDELENS,:WISEGLASSES,:ZOOMLENS,
+              # Terrain seeds
+              :ELECTRICSEED,:GRASSYSEED,:MISTYSEED,:PSYCHICSEED,
+              # Nectar
+              :PINKNECTAR,:PURPLENECTAR,:REDNECTAR,:YELLOWNECTAR,
+              # Incenses
+              :FULLINCENSE,:LAXINCENSE,:LUCKINCENSE,:ODDINCENSE,:PUREINCENSE,
+              :ROCKINCENSE,:ROSEINCENSE,:SEAINCENSE,:WAVEINCENSE,
+              # Scarves
+              :BLUESCARF,:GREENSCARF,:PINKSCARF,:REDSCARF,:YELLOWSCARF
+             ]
+    }
+  end
+
+
   def pbCheckFlingSuccess(user)
     @willFail = false
     @willFail = true if !user.item || !user.itemActive? || user.unlosableItem?(user.item)
@@ -594,8 +711,8 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
     case user.item_id
     when :POISONBARB
       target.pbPoison(user) if target.pbCanPoison?(user,false,self)
-    when :TOXICORB
-      target.pbPoison(user,nil,true) if target.pbCanPoison?(user,false,self)
+    when :POISONORB
+      target.pbPoison(user,nil) if target.pbCanPoison?(user,false,self)
     when :FLAMEORB
       target.pbBurn(user) if target.pbCanBurn?(user,false,self)
     when :LIGHTBALL

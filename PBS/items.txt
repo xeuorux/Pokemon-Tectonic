@@ -115,7 +115,7 @@
 113,FOCUSBAND,Focus Band,Focus Bands,1,4000,"An item to be held by a Pokémon. The holder may endure a potential KO attack, leaving it with just 1 HP.",0,0,0,
 114,FOCUSSASH,Focus Sash,Focus Sashes,1,4000,"An item to be held by a Pokémon. If it has full HP, the holder will endure one potential KO attack, leaving 1 HP.",0,0,0,
 115,FLAMEORB,Flame Orb,Flame Orbs,1,4000,An item to be held by a Pokémon. It is a bizarre orb that inflicts a burn on the holder in battle.,0,0,0,
-116,TOXICORB,Toxic Orb,Toxic Orbs,1,4000,An item to be held by a Pokémon. It is a bizarre orb that badly poisons the holder in battle.,0,0,0,
+116,POISONORB,Poison Orb,Poison Orbs,1,4000,An item to be held by a Pokémon. It is a bizarre orb that poisons the holder in battle.,0,0,0,
 117,STICKYBARB,Sticky Barb,Sticky Barbs,1,4000,A held item that damages the holder on every turn. It may latch on to Pokémon that touch the holder.,0,0,0,
 118,IRONBALL,Iron Ball,Iron Balls,1,4000,A Pokémon held item that cuts Speed. It makes Flying-type and levitating holders susceptible to Ground moves.,0,0,0,
 119,RINGTARGET,Ring Target,Ring Targets,1,4000,Moves that would otherwise have no effect will land on the Pokémon that holds it.,0,0,0,

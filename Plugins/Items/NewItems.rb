@@ -84,3 +84,12 @@ ItemHandlers::UseInField.add(:ABRAPORTER,proc { |item|
   pbEraseEscapePoint
   next 1
 })
+
+
+BattleHandlers::EOREffectItem.add(:POISONORB,
+  proc { |item,battler,battle|
+    next if !battler.pbCanPoison?(nil,false)
+    battler.pbPoison(nil,_INTL("{1} was badly poisoned by the {2}!",
+       battler.pbThis,battler.itemName),true)
+  }
+)
