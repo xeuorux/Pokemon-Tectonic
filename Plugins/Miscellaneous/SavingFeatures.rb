@@ -134,3 +134,27 @@ end
 Events.onMapChange += proc { |_sender,e|
   $game_switches[79] = false
 }
+
+class PokemonGlobalMetadata
+  attr_accessor :autosaveSteps
+end
+
+Events.onStepTaken += proc {
+  next if $PokemonSystem.autosave == 1
+  next if $game_switches[79] # Saving not allowed
+  $PokemonGlobal.autosaveSteps = 0 if !$PokemonGlobal.autosaveSteps
+  $PokemonGlobal.autosaveSteps += 1 unless Input.press?(Input::CTRL)
+  echoln($PokemonGlobal.autosaveSteps)
+  if $PokemonGlobal.autosaveSteps>=30
+    autoSave
+    $PokemonGlobal.autosaveSteps = 0
+  end
+}
+
+def autoSave
+	if !Game.save
+		pbMessage(_INTL("\\se[]Auto-save failed.\\wtnp[30]"))
+	else
+		echoln("Auto-save!")
+	end
+end

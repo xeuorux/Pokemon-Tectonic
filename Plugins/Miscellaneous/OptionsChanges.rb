@@ -1,5 +1,6 @@
 class PokemonSystem
 	attr_accessor :followers
+	attr_accessor :autosave
 
   def initialize
     @textspeed   = 1     # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
@@ -14,7 +15,8 @@ class PokemonSystem
     @bgmvolume   = 30   # Volume of background music and ME
     @sevolume    = 30   # Volume of sound effects
     @textinput   = 1     # Text input mode (0=cursor, 1=keyboard)
-	@followers   = 0	# Follower Pokemon enabled (0=true, 1=false)
+	@followers   = 1	# Follower Pokemon enabled (0=true, 1=false)
+	@autosave	 = 0	# Autosave enabled (0=true, 1=false)
   end
 end
 
@@ -105,6 +107,12 @@ class PokemonOption_Scene
          }
        )
     ]
+	@PokemonOptions.push(EnumOption.new(_INTL("Autosave"),[_INTL("On"),_INTL("Off")],
+         proc { $PokemonSystem.autosave },
+         proc { |value|
+			$PokemonSystem.autosave = value
+         }
+       ))
 	@PokemonOptions.push(EnumOption.new(_INTL("Pokemon Follow"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.followers },
          proc { |value|
