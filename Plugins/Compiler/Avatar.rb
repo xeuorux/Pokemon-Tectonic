@@ -29,7 +29,6 @@ module GameData
 		include InstanceMethods
 		
 		def initialize(hash)
-		  echoln("Initializing avatar: #{hash[:id]}")
 		  @id               = hash[:id]
 		  @id_number        = hash[:id_number]
 		  @num_turns        = hash[:turns]

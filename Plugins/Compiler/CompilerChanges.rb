@@ -897,7 +897,7 @@ module Compiler
   #=============================================================================
   def convert_avatars(event)
 	return nil if !event || event.pages.length==0
-	match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)\).*/)
+	match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)(?:,([_a-zA-Z0-9]+))?(?:,([0-9]+))?\).*/)
 	return nil if !match
 	ret = RPG::Event.new(event.x,event.y)
 	ret.name = "embiggen(3)size(2,2)trainer(4)"
@@ -906,6 +906,10 @@ module Compiler
 	avatarSpecies = match[1]
 	return nil if !avatarSpecies || avatarSpecies == ""
 	level = match[2]
+	item = match[3] || nil
+	itemCount = match[4].to_i || 0
+	
+	
 	ret.pages = [2]
 	
 	# Create the first page, where the battle happens
@@ -919,7 +923,15 @@ module Compiler
 	push_script(firstPage.list,"pbNoticePlayer(get_self)")
 	push_script(firstPage.list,"introduceAvatar(:#{avatarSpecies})")
 	push_branch(firstPage.list,"pbSmallAvatarBattle([:#{avatarSpecies},#{level}])")
-	push_script(firstPage.list,"defeatBoss",1)
+	if item.nil?
+		push_script(firstPage.list,"defeatBoss",1)
+	else
+		if itemCount > 1
+			push_script(firstPage.list,"defeatBoss(#{item},#{itemCount})",1)
+		else
+			push_script(firstPage.list,"defeatBoss(#{item})",1)
+		end
+	end
     push_branch_end(firstPage.list)
 	push_end(firstPage.list)
 	
