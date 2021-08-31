@@ -1008,3 +1008,106 @@ module GameData
 		Avatar.load
 	end
 end
+
+module Compiler
+	module_function
+
+  #=============================================================================
+  # Save Pokémon data to PBS file
+  #=============================================================================
+  def write_pokemon
+    File.open("PBS/pokemon.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      GameData::Species.each do |species|
+        next if species.form != 0
+        pbSetWindowText(_INTL("Writing species {1}...", species.id_number))
+        Graphics.update if species.id_number % 50 == 0
+        f.write("\#-------------------------------\r\n")
+        f.write(sprintf("[%d]\r\n", species.id_number))
+        f.write(sprintf("Name = %s\r\n", species.real_name))
+        f.write(sprintf("InternalName = %s\r\n", species.species))
+        f.write(sprintf("Type1 = %s\r\n", species.type1))
+        f.write(sprintf("Type2 = %s\r\n", species.type2)) if species.type2 != species.type1
+        stats_array = []
+        evs_array = []
+		total = 0
+        GameData::Stat.each_main do |s|
+          next if s.pbs_order < 0
+          stats_array[s.pbs_order] = species.base_stats[s.id]
+          evs_array[s.pbs_order] = species.evs[s.id]
+		  total += species.base_stats[s.id]
+        end
+		f.write(sprintf("# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def\r\n", total))
+        f.write(sprintf("BaseStats = %s\r\n", stats_array.join(",")))
+		f.write(sprintf("# Total = %s\r\n", total))
+        f.write(sprintf("GenderRate = %s\r\n", species.gender_ratio))
+        f.write(sprintf("GrowthRate = %s\r\n", species.growth_rate))
+        f.write(sprintf("BaseEXP = %d\r\n", species.base_exp))
+        f.write(sprintf("EffortPoints = %s\r\n", evs_array.join(",")))
+        f.write(sprintf("Rareness = %d\r\n", species.catch_rate))
+        f.write(sprintf("Happiness = %d\r\n", species.happiness))
+        if species.abilities.length > 0
+          f.write(sprintf("Abilities = %s\r\n", species.abilities.join(",")))
+        end
+        if species.hidden_abilities.length > 0
+          f.write(sprintf("HiddenAbility = %s\r\n", species.hidden_abilities.join(",")))
+        end
+        if species.moves.length > 0
+          f.write(sprintf("Moves = %s\r\n", species.moves.join(",")))
+        end
+        if species.tutor_moves.length > 0
+          f.write(sprintf("TutorMoves = %s\r\n", species.tutor_moves.join(",")))
+        end
+        if species.egg_moves.length > 0
+          f.write(sprintf("EggMoves = %s\r\n", species.egg_moves.join(",")))
+        end
+        if species.egg_groups.length > 0
+          f.write(sprintf("Compatibility = %s\r\n", species.egg_groups.join(",")))
+        end
+        f.write(sprintf("StepsToHatch = %d\r\n", species.hatch_steps))
+        f.write(sprintf("Height = %.1f\r\n", species.height / 10.0))
+        f.write(sprintf("Weight = %.1f\r\n", species.weight / 10.0))
+        f.write(sprintf("Color = %s\r\n", species.color))
+        f.write(sprintf("Shape = %s\r\n", species.shape))
+        f.write(sprintf("Habitat = %s\r\n", species.habitat)) if species.habitat != :None
+        f.write(sprintf("Kind = %s\r\n", species.real_category))
+        f.write(sprintf("Pokedex = %s\r\n", species.real_pokedex_entry))
+        f.write(sprintf("FormName = %s\r\n", species.real_form_name)) if species.real_form_name && !species.real_form_name.empty?
+        f.write(sprintf("Generation = %d\r\n", species.generation)) if species.generation != 0
+        f.write(sprintf("WildItemCommon = %s\r\n", species.wild_item_common)) if species.wild_item_common
+        f.write(sprintf("WildItemUncommon = %s\r\n", species.wild_item_uncommon)) if species.wild_item_uncommon
+        f.write(sprintf("WildItemRare = %s\r\n", species.wild_item_rare)) if species.wild_item_rare
+        f.write(sprintf("BattlerPlayerX = %d\r\n", species.back_sprite_x))
+        f.write(sprintf("BattlerPlayerY = %d\r\n", species.back_sprite_y))
+        f.write(sprintf("BattlerEnemyX = %d\r\n", species.front_sprite_x))
+        f.write(sprintf("BattlerEnemyY = %d\r\n", species.front_sprite_y))
+        f.write(sprintf("BattlerAltitude = %d\r\n", species.front_sprite_altitude)) if species.front_sprite_altitude != 0
+        f.write(sprintf("BattlerShadowX = %d\r\n", species.shadow_x))
+        f.write(sprintf("BattlerShadowSize = %d\r\n", species.shadow_size))
+        if species.evolutions.any? { |evo| !evo[3] }
+          f.write("Evolutions = ")
+          need_comma = false
+          species.evolutions.each do |evo|
+            next if evo[3]   # Skip prevolution entries
+            f.write(",") if need_comma
+            need_comma = true
+            evo_type_data = GameData::Evolution.get(evo[1])
+            param_type = evo_type_data.parameter
+            f.write(sprintf("%s,%s,", evo[0], evo_type_data.id.to_s))
+            if !param_type.nil?
+              if !GameData.const_defined?(param_type.to_sym) && param_type.is_a?(Symbol)
+                f.write(getConstantName(param_type, evo[2]))
+              else
+                f.write(evo[2].to_s)
+              end
+            end
+          end
+          f.write("\r\n")
+        end
+        f.write(sprintf("Incense = %s\r\n", species.incense)) if species.incense
+      end
+    }
+    pbSetWindowText(nil)
+    Graphics.update
+  end
+end

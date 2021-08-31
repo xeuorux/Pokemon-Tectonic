@@ -140,8 +140,6 @@ class PokemonGlobalMetadata
 end
 
 Events.onStepTaken += proc {
-  next if $PokemonSystem.autosave == 1
-  next if $game_switches[79] # Saving not allowed
   $PokemonGlobal.autosaveSteps = 0 if !$PokemonGlobal.autosaveSteps
   $PokemonGlobal.autosaveSteps += 1 unless Input.press?(Input::CTRL)
   echoln($PokemonGlobal.autosaveSteps)
@@ -152,6 +150,8 @@ Events.onStepTaken += proc {
 }
 
 def autoSave
+	return if $PokemonSystem.autosave == 1
+	return if $game_switches[79] # Saving not allowed
 	if !Game.save
 		pbMessage(_INTL("\\se[]Auto-save failed.\\wtnp[30]"))
 	else
