@@ -190,16 +190,19 @@ DebugMenuCommands.register("regionalformsfix", {
 	newSpeciesID = 2000
     GameData::Species.each do |species_data|
 		next if species_data.form == 0
+		next if !species_data.id
 		formName = species_data.real_form_name
+		next if !formName || formName == ""
 		next unless formName.include?("Galarian") || formName.include?("Alolan")
 		
 		prefix = formName.include?("Galarian") ? "G" : "A"
-		newID = prefix + species_data.id
+		trimmedID = species_data.id.to_s[0..-3]
+		newID = (prefix + trimmedID).to_sym
 		echoln(newID)
 	
 		new_species_hash = {
           :id                    => newID,
-          :id_number             => species_data.id_number,
+          :id_number             => newSpeciesID,
           :name                  => species_data.name,
 		  :form					 => 0,
           :form_name             => "",
@@ -241,8 +244,22 @@ DebugMenuCommands.register("regionalformsfix", {
           :shadow_size           => species_data.shadow_size
         }
 		GameData::Species.register(new_species_hash)
+		GameData::Species::DATA.delete(species_data.id)
+		
+		["Back","Back shiny","Front","Front shiny","Icons","Icons shiny","Footprints"].each do |subfolder|
+			source = "Graphics/Pokemon/" + subfolder + "/" + species_data.id.to_s + ".png"
+			destination = "Graphics/Pokemon/" + subfolder + "/" + newID.to_s + ".png"
+			File.copy(source, destination) rescue nil
+		end
+		
+		cry_source = "Audio/SE/Cries/" + trimmedID + ".ogg"
+		cry_destination = "Audio/SE/Cries/" + "/" + newID.to_s + ".ogg"
+		File.copy(cry_source, cry_destination) rescue nil
+		
+		newSpeciesID += 1
 	end
 	GameData::Species.save
-	#Compiler.write_pokemon
+	Compiler.write_pokemon
+	Compiler.write_pokemon_forms
   }
 })
