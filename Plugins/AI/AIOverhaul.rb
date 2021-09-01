@@ -139,7 +139,8 @@ class PokeBattle_AI
 	
 	move = @battle.choices[idxBattler][2]
 	target = @battle.choices[idxBattler][3]
-	PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,target)
+	
+	PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,target) if user.boss?
   end
   
   # Trainer Pokémon calculate how much they want to use each of their moves.
@@ -272,16 +273,16 @@ class PokeBattle_AI
       
 	  if move.damagingMove?
 		targets = []
-			@battle.eachBattler do |b|
-				next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
-				next if !user.opposes?(b)
-				targets.push(b)
-				score = 100
-				score = pbGetMoveScoreBoss(move,user,b) if user.boss
-				targetPercent = b.hp.to_f / b.totalhp.to_f
-				score = (score*(1.0 + 0.4 * targetPercent)).floor
-				totalScore += score
-			end
+		@battle.eachBattler do |b|
+			next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
+			next if !user.opposes?(b)
+			targets.push(b)
+			score = 100
+			score = pbGetMoveScoreBoss(move,user,b) if user.boss
+			targetPercent = b.hp.to_f / b.totalhp.to_f
+			score = (score*(1.0 + 0.4 * targetPercent)).floor
+			totalScore += score
+		end
 		if targets.length() != 0
 			totalScore = totalScore / targets.length().to_f
 		else
@@ -321,6 +322,19 @@ class PokeBattle_AI
         choices.push([idxMove,scoresAndTargets[0][0],scoresAndTargets[0][1]])
       end
     end
+	
+	if user.boss
+		containsAHugeOne = false
+		choices.each do |choice|
+			containsAHugeOne = true if choice[1] > 5000
+		end
+		
+		if containsAHugeOne
+			choices.each do |choice|
+				choice[1] = 0 if choice[1] < 5000
+			end
+		end
+	end
   end
      
   def pbEnemyShouldWithdrawEx?(idxBattler,forceSwitch)

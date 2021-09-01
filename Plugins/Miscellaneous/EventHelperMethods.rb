@@ -400,7 +400,7 @@ def slideCameraToPlayer(speed=3)
 	$game_map.slideCameraToPlayer(speed)
 end
 
-def slideCameraToEvent(event_id,speed=3)
+def slideCameraToEvent(event_id=0,speed=3)
 	event = get_character(event_id)
 	$game_map.slideCameraToSpot(event.x,event.y,speed)
 end

@@ -37,7 +37,7 @@ module GameData
 	  end
 	  if ret && pkmn.boss
 		new_ret = ret.copy
-		bossified = bossifyBitmap(new_ret.bitmap)
+		bossified = bossifyBitmap(new_ret.bitmap,pkmn.scaleFactor)
 		new_ret.bitmap = bossified
 		ret.dispose
 		ret = new_ret
@@ -54,8 +54,7 @@ module GameData
   end
 end
 
-def bossifyBitmap(bitmap)
-  scaleFactor = 1 + $game_variables[97]/10.0
+def bossifyBitmap(bitmap,scaleFactor = 1.3)
   copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
   for x in 0..copiedBitmap.width
     for y in 0..copiedBitmap.height

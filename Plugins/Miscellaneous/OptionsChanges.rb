@@ -64,7 +64,7 @@ class PokemonOption_Scene
            end
          }
        ),
-       EnumOption.new(_INTL("Text Speed"),[_INTL("Slow"),_INTL("Normal"),_INTL("Fast"),_INTL("Rapid"),_INTL("Instant")],
+       EnumOption.new(_INTL("Text Speed"),[_INTL("1"),_INTL("2"),_INTL("3"),_INTL("4"),_INTL("5")],
          proc { $PokemonSystem.textspeed },
          proc { |value|
            $PokemonSystem.textspeed = value

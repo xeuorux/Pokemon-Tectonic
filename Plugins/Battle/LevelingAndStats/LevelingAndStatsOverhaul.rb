@@ -1,6 +1,9 @@
 LEVEL_CAPS_USED = true
 
 class Pokemon
+	attr_accessor :hpMult
+	attr_accessor :scaleFactor
+
   # Creates a new Pokémon object.
   # @param species [Symbol, String, Integer] Pokémon species
   # @param level [Integer] Pokémon level
@@ -64,7 +67,9 @@ class Pokemon
     @fused            = nil
     @personalID       = rand(2 ** 16) | rand(2 ** 16) << 16
     @hp               = 1
-    @totalhp          = 1
+    @totalhp          = 
+	@hpMult			  = 1
+	@scaleFactor	  = 1
     calc_stats
     if @form == 0 && recheck_form
       f = MultipleForms.call("getFormOnCreation", self)
@@ -91,11 +96,7 @@ class Pokemon
       if s.id == :HP
         stats[s.id] = calcHP(base_stats[s.id], this_level, @ev[s.id])
 		if boss
-			if $game_variables[96].is_a?(Hash)
-				stats[s.id]	*= $game_variables[96][@species]
-			else
-				stats[s.id]	*= $game_variables[96]
-			end
+			stats[s.id] *= hpMult
 		end
       else
         stats[s.id] = calcStat(base_stats[s.id], this_level, @ev[s.id])

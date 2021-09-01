@@ -267,9 +267,8 @@ module Compiler
 				:moves		 => contents["Moves"],
 				:ability	 => contents["Ability"],
 				:item		 => contents["Item"],
-				:exp_mult	 => contents["EXPMult"],
 				:hp_mult	 => contents["HPMult"],
-				:size_mult	 => contents["HPMult"],
+				:size_mult	 => contents["SizeMult"],
 			}
 			avatar_number += 1
 			# Add trainer avatar's data to records
@@ -905,6 +904,7 @@ module Compiler
 	ret.id   = event.id
 	ret.pages = []
 	avatarSpecies = match[1]
+	legendary = isLegendary(avatarSpecies)
 	return nil if !avatarSpecies || avatarSpecies == ""
 	level = match[2]
 	item = match[3] || nil
@@ -923,7 +923,7 @@ module Compiler
 	firstPage.list = []
 	push_script(firstPage.list,"pbNoticePlayer(get_self)")
 	push_script(firstPage.list,"introduceAvatar(:#{avatarSpecies})")
-	push_branch(firstPage.list,"pbSmallAvatarBattle([:#{avatarSpecies},#{level}])")
+	push_branch(firstPage.list,"pb#{legendary ? "Big" : "Small"}AvatarBattle([:#{avatarSpecies},#{level}])")
 	if item.nil?
 		push_script(firstPage.list,"defeatBoss",1)
 	else

@@ -1,25 +1,15 @@
-PokeBattle_AI::BossSpeciesRequireMove.add(:GENESECT,
+PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:GENESECT,"150"],
 	proc { |species,move,user,target|
-		next true if move.function == "150" && shouldUseFellStinger(move,user,target)
+		ai = user.battle.battleAI
+		baseDmg = ai.pbMoveBaseDamage(move,user,target,100)
+		realDamage = ai.pbRoughDamage(move,user,target,100,baseDmg)
+		score = 0
+		if realDamage >= target.hp
+			next true
+		end
+		next false
 	}
 )
-
-PokeBattle_AI::BossSpeciesRejectMove.add(:GENESECT,
-	proc { |species,move,user,target|
-		next true if move.function == "150" && !shouldUseFellStinger(move,user,target)
-	}
-)
-
-def shouldUseFellStinger(move,user,target)
-	ai = user.battle.battleAI
-	baseDmg = ai.pbMoveBaseDamage(move,user,target,100)
-	realDamage = ai.pbRoughDamage(move,user,target,100,baseDmg)
-	score = 0
-	if realDamage >= target.hp
-		return true
-	end
-	return false
-end
 
 PokeBattle_AI::BossBeginTurn.add(:GENESECT,
 	proc { |species,battler|

@@ -1,17 +1,8 @@
-PokeBattle_AI::BossSpeciesRequireMove.add(:COBALION,
+# Metal burst
+PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:COBALION,"073"],
 	proc { |species,move,user,target|
-		next true if move.function == "073" && shouldUseMetalBurst(user,target)
+		next false if (user.lastHPLostFromFoe/user.totalhp) < 0.1
+		next false if user.battle.commandPhasesThisRound != ($game_variables[95] - 1)
+		next true
 	}
 )
-
-PokeBattle_AI::BossSpeciesRejectMove.add(:COBALION,
-	proc { |species,move,user,target|
-		next true if move.function == "073" && !shouldUseMetalBurst(user,target)
-	}
-)
-
-def shouldUseMetalBurst(user,target)
-	return false if (user.lastHPLostFromFoe/user.totalhp) < 0.1
-	return false if user.battle.commandPhasesThisRound != ($game_variables[95] - 1)
-	return true
-end
