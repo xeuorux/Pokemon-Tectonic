@@ -225,3 +225,21 @@ Turns = 3
 Ability = SUCTIONCUPS
 Moves = INGRAIN,LEECHSEED,GIGADRAIN,SOAK
 HPMult = 3
+#-------------------------------
+[ARTICUNO]
+Turns = 3
+HPMult = 8
+Ability = FROSTWINGS
+Moves = POWDERSNOW,SHEERCOLD,GALE
+#-------------------------------
+[ZAPDOS]
+Turns = 3
+HPMult = 10
+Ability = SHOCKWINGS
+Moves = AIRSLASH,THUNDERBOLT,SCARYFACE,ELECTROBALL
+#-------------------------------
+[MOLTRES]
+Turns = 3
+HPMult = 10
+Ability = FLAMEWINGS
+Moves = WILLOWISP,ROOST,FLY,FIRESPIN

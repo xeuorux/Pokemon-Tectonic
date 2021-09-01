@@ -142,7 +142,6 @@ end
 Events.onStepTaken += proc {
   $PokemonGlobal.autosaveSteps = 0 if !$PokemonGlobal.autosaveSteps
   $PokemonGlobal.autosaveSteps += 1 unless Input.press?(Input::CTRL)
-  echoln($PokemonGlobal.autosaveSteps)
   if $PokemonGlobal.autosaveSteps>=30
     autoSave
     $PokemonGlobal.autosaveSteps = 0
@@ -156,5 +155,19 @@ def autoSave
 		pbMessage(_INTL("\\se[]Auto-save failed.\\wtnp[30]"))
 	else
 		echoln("Auto-save!")
+	end
+end
+
+def savingTutorial
+	lines = [
+		"It's important that you save your game frequently!",
+		"You can quicksave by pressing the \"AUX1\" key.",
+		"If you don't know what that is, press the \\c[2]F1\\c[0] key to check your control bindings.",
+		"In fact, you should do that any time that you see a button that you don't understand.",
+		"Also, if you don't want to worry about saving manually, you can also turn on \\c[2]autosave\\c[0] in your options menu.",
+		"Hope all that was helpful, dearie!"
+	]
+	lines.each do |line|
+		pbMessage(_INTL("#{line}"))
 	end
 end

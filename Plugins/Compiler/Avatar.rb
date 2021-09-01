@@ -7,7 +7,6 @@ module GameData
 		attr_reader :moves
 		attr_reader :ability
 		attr_reader :item
-		attr_reader :exp_mult
 		attr_reader :size_mult
 		attr_reader :hp_mult
 	
@@ -21,7 +20,6 @@ module GameData
 		  "Ability"      		=> [:ability,       "s"],
 		  "Item"         		=> [:item,          "e", :Item],
 		  "HPMult"				=> [:hp_mult,		"f"],
-		  "XPMult"      		=> [:exp_mult,     "F"],
 		  "SizeMult" 			=> [:size_mult,     "F"],
 		}
 
@@ -36,7 +34,6 @@ module GameData
 		  @moves        	= hash[:moves]
 		  @ability          = hash[:ability]
 		  @item             = hash[:item]
-		  @exp_mult			= hash[:exp_mult] || 1.0
 		  @size_mult		= hash[:size_mult] || 1.3
 		  @hp_mult			= hash[:hp_mult]
 		end

@@ -31,12 +31,14 @@ def pbAvatarBattleCore(*args)
   Events.onStartBattle.trigger(nil)
   # Generate wild Pokémon based on the species and level
   foeParty = []
+  numTurns = 0
   for arg in args
     if arg.is_a?(Array)
 		species = GameData::Species.get(arg[0]).id
 		pkmn = pbGenerateWildPokemon(species,arg[1])
 		pkmn.boss = true
-		setAvatarProperties(pkmn)
+		newNumTurns = setAvatarProperties(pkmn)
+		numTurns = [newNumTurns,numTurns].max
 		foeParty.push(pkmn)
 	end
   end
@@ -65,6 +67,7 @@ def pbAvatarBattleCore(*args)
   # Create the battle class (the mechanics side of it)
   battle = PokeBattle_Battle.new(scene,playerParty,foeParty,playerTrainers,nil)
   battle.party1starts = playerPartyStarts
+  battle.numBossOnlyTurns = numTurns - 1
   # Set various other properties in the battle class
   pbPrepareBattle(battle)
   $PokemonTemp.clearBattleRules
@@ -102,24 +105,12 @@ def setAvatarProperties(pkmn)
 	
 	pkmn.item = avatar_data.item
 	pkmn.ability = avatar_data.ability
-	
-	# To do, scrap this
-	$game_variables[95] = avatar_data.num_turns
-	$game_variables[96] = avatar_data.hp_mult
-	$game_variables[97] = avatar_data.size_mult - 1
-	$game_variables[98] = avatar_data.exp_mult
+	pkmn.hpMult = avatar_data.hp_mult
+	pkmn.scaleFactor = avatar_data.size_mult
 	
 	pkmn.calc_stats()
-end
-
-def scrubBossBattleSettings
-  $game_variables[94] = nil
-  $game_variables[95] = 1
-  $game_variables[96] = 1
-  $game_variables[97] = 1
-  $game_variables[98] = 1 # XP mult
-  $game_variables[99] = nil
-  $game_variables[100] = nil
+	
+	return avatar_data.num_turns
 end
 
 def pbPlayCrySpecies(species, form = 0, volume = 90, pitch = nil)
@@ -152,6 +143,8 @@ class Pokemon
 end
 
 class PokeBattle_Battle
+	attr_accessor :numBossOnlyTurns
+
 	def pbStartBattleSendOut(sendOuts)
     # "Want to battle" messages
     if wildBattle?
@@ -272,9 +265,8 @@ class PokeBattle_Battle
 	  
 	  if $game_switches[95]
 		  # Boss phases after main phases
-		  extra = $game_variables[95] - 1
-		  if extra > 0
-			for i in 1..extra do
+		  if @numBossOnlyTurns > 0
+			for i in 1..@numBossOnlyTurns do
 			  @battlers.each do |b|
 				next if !b
 				if b.boss
