@@ -243,3 +243,120 @@ Turns = 3
 HPMult = 10
 Ability = FLAMEWINGS
 Moves = WILLOWISP,ROOST,FLY,FIRESPIN
+#-------------------------------
+[RAYQUAZA]
+Turns = 3
+HPMult = 8
+Ability = AIRLOCK
+Moves = DRAGONASCENT,ICEBEAM,REST,GALE
+#-------------------------------
+[KYOGRE]
+Turns = 3
+HPMult = 6
+Ability = DRIZZLE
+Item = BLUEORB
+Moves = ORIGINPULSE,THUNDER,ICEBEAM,WATERSPOUT
+#-------------------------------
+[GROUDON]
+Turns = 3
+HPMult = 6
+Ability = DROUGHT
+Item = REDORB
+Moves = PRECIPICEBLADES,ERUPTION,DRAGONCLAW,SOLARBEAM
+#-------------------------------
+[MESPRIT]
+Turns = 1
+HPMult = 3
+Ability = LEVITATE
+Moves = THUNDERBOLT,PSYCHIC,TORNADO
+#-------------------------------
+[AZELF]
+Turns = 1
+HPMult = 3
+Ability = LEVITATE
+Moves = HEATWAVE,PSYCHIC,MOONBLAST
+#-------------------------------
+[UXIE]
+Turns = 1
+HPMult = 3
+Ability = LEVITATE
+Moves = YAWN,HELPINGHAND,EERIESPELL
+#-------------------------------
+[DIALGA]
+Turns = 1
+HPMult = 8
+Ability = PRESSURE
+Moves = ROAROFTIME,DRAGONCLAW,IRONTAIL,FLASHCANNON
+#-------------------------------
+[PALKIA]
+Turns = 3
+HPMult = 6
+Ability = PRESSURE
+Moves = SPACIALREND,LIQUIDATION
+#-------------------------------
+[CRESSELIA]
+Turns = 2
+HPMult = 4
+Ability = LEVITATE
+Item = MENTALHERB
+Moves = FUTURESIGHT,HELPINGHAND,HEALPULSE,PSYCHIC
+#------------------------------
+[DARKRAI]
+Turns = 2
+HPMult = 4
+Ability = BADDREAMS
+Moves = DARKPULSE,SHADOWBALL,SLIGHT,ANGSTWAVE
+#------------------------------
+[COBALION]
+Turns = 2
+HPMult = 10
+Ability = HEARTOFJUSTICE
+Item = ASSAULTVEST
+Moves = METALBURST,REVERSAL,CLOSECOMBAT,DOUBLEEDGE
+#------------------------------
+[TERRAKION]
+Turns = 2
+HPMult = 10
+Ability = HEARTOFJUSTICE
+Item = EXPERTBELT
+Moves = SWORDSDANCE,GRANITEHEAD,TRAMPLE,POISONJAB
+#------------------------------
+[VIRIZION]
+Turns = 3
+HPMult = 5
+Ability = HEARTOFJUSTICE
+Item = LEFTOVERS
+Moves = SUBSTITUTE,HORNLEECH,FOCUSPUNCH,SWORDSDANCE
+#------------------------------
+[KELDEO]
+Turns = 3
+HPMult = 5
+Ability = HEARTOFJUSTICE
+Moves = SECRETSWORD
+#------------------------------
+[GENESECT]
+Turns = 3
+HPMult = 6
+Ability = DOWNLOAD
+Moves = TECHNOBLAST,FELLSTINGER,BUGBUZZ,ELECTROWEB
+#------------------------------
+[YVELTAL]
+Turns = 3
+HPMult = 4
+Ability = DARKAURA
+Item = SITRUSBERRY
+Moves = ACROBATICS,OBLIVIONWING,SNARL,LASHOUT
+#------------------------------
+[XERNEAS]
+Turns = 3
+HPMult = 5
+Ability = FAIRYAURA
+Item = POWERHERB
+Moves = GEOMANCY,MOONBLAST,THUNDERBOLT,WONDERROOM
+#------------------------------
+[ZYGARDE]
+Turns = 3
+HPMult = 5
+Ability = AURABREAK
+Item = POWERHERB
+Moves = THOUSANDARROWS,THOUSANDWAVES,COREENFORCER,LANDSWRATH
