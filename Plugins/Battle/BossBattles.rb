@@ -67,7 +67,7 @@ def pbAvatarBattleCore(*args)
   battle = PokeBattle_Battle.new(scene,playerParty,foeParty,playerTrainers,nil)
   battle.party1starts = playerPartyStarts
   battle.numBossOnlyTurns = numTurns - 1
-  batte.bossBattle = true
+  battle.bossBattle = true
   # Set various other properties in the battle class
   pbPrepareBattle(battle)
   $PokemonTemp.clearBattleRules
