@@ -19,6 +19,14 @@ def eventExistsFor?(species)
 	return checkForZooMap(speciesName,false) != -1
 end
 
+def eventExistsInMap?(mapID,species)
+	map = $MapFactory.getMapNoAdd(mapID)
+	map.events.each_value { |event|
+		return true if eventIsForSpecies(event,species.name)
+	}
+	return false
+end
+
 def checkForZooMap(speciesName,careAboutEnabled=false)
 	forEachZooMap do |map|
 		map.events.each_value { |event|

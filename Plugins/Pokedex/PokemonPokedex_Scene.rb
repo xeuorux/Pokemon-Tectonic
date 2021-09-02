@@ -275,6 +275,18 @@ class PokemonPokedex_Scene
 		  acceptSearchResults {
 			searchByAvailableLevel()
 		  }
+		elsif Input.pressex?(:NUMBER_7)
+		  acceptSearchResults {
+			searchByOwned()
+		  }
+		elsif Input.pressex?(:NUMBER_8)
+		  acceptSearchResults {
+			searchByStatComparison()
+		  }
+		elsif Input.pressex?(:NUMBER_9)
+		  acceptSearchResults {
+			searchByZooSection()
+		  }
 		elsif Input.pressex?(0x52) # R, for Random
 		  @sprites["pokedex"].index = rand(@dexlist.length)
 		  @sprites["pokedex"].refresh
@@ -366,6 +378,10 @@ class PokemonPokedex_Scene
 		when 5
 		  searchChanged = acceptSearchResults2 {
 			searchByAvailableLevel()
+		  }
+		when 6
+		  searchChanged = acceptSearchResults2 {
+			searchByOwned()
 		  }
 		end
 		if searchChanged
@@ -699,4 +715,105 @@ class PokemonPokedex_Scene
 	  end
 	  return nil
   end
+
+
+	def searchByOwned()
+		selection = pbMessage("Which search?",[_INTL("Owned"),_INTL("Not Owned"),_INTL("Cancel")],3)
+	    if selection != 2 
+			dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+			
+			dexlist = dexlist.find_all { |item|
+				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				
+				if selection == 1
+					next !$Trainer.owned?(item[0])
+				else
+					next $Trainer.owned?(item[0])
+				end
+			}
+			
+			return dexlist
+		end
+		return nil
+	end
+	
+	def searchByStatComparison()
+		statSelection = pbMessage("Which stat?",[_INTL("HP"),_INTL("Attack"),_INTL("Defense"),
+			_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Total"),_INTL("Cancel")],8)
+	    return if statSelection == 7 
+		comparisonSelection = pbMessage("Which comparison?",[_INTL("Equal to"),
+			_INTL("Greater than"),_INTL("Less than"),_INTL("Cancel")],4)
+		return if comparisonSelection == 3 
+			dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		statTextInput = pbEnterText("Input value...", 0, 3)
+		if statTextInput && statTextInput!=""
+			reversed = statTextInput[0] == '-'
+			statTextInput = statTextInput[1..-1] if reversed
+		  
+			statIntAttempt = statTextInput.to_i
+			
+			return nil if statIntAttempt == 0
+			
+			dexlist = dexlist.find_all { |item|
+				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				
+				species_data = GameData::Species.get(item[0])
+				
+				statToCompare = 0
+				case statSelection
+				when 0
+					statToCompare = species_data.base_stats[:HP]
+				when 1
+					statToCompare = species_data.base_stats[:ATTACK]
+				when 2
+					statToCompare = species_data.base_stats[:DEFENSE]
+				when 3
+					statToCompare = species_data.base_stats[:SPECIAL_ATTACK]
+				when 4
+					statToCompare = species_data.base_stats[:SPECIAL_DEFENSE]
+				when 5
+					statToCompare = species_data.base_stats[:SPEED]
+				when 6
+					species_data.base_stats.each do |s|
+						statToCompare += s[1]
+					end
+				end
+					
+				case comparisonSelection
+				when 0
+					next statToCompare == statIntAttempt
+				when 1
+					next statToCompare > statIntAttempt
+				when 2
+					next statToCompare < statIntAttempt
+				end
+				next false
+			}
+			
+			return dexlist
+		end
+		return nil
+	end
+	
+	def searchByZooSection()
+		sectionSelection = pbMessage("Which section?",[_INTL("Zoo"),_INTL("Cancel")],2)
+	    return if sectionSelection == 1 
+		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		mapIDs = [31]
+		
+		# Get all the names of the species given events on that map
+		mapID = mapIDs[sectionSelection]
+		map = $MapFactory.getMapNoAdd(mapID)
+		speciesPresent = []
+		map.events.each_value { |event|
+			match = event.name.match(/.*overworld\(([A-Za-z_0-9]+)\).*/i)
+			speciesPresent.push(match[1]) if match
+		}
+		
+		dexlist = dexlist.find_all { |item|
+				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				
+				next speciesPresent.include?(item[0].name)
+		}
+	end
 end
