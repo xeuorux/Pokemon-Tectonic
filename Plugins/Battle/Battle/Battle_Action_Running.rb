@@ -3,7 +3,7 @@ class PokeBattle_Battle
   # Running from battle
   #=============================================================================
   def pbCanRun?(idxBattler)
-    return false if trainerBattle? || $game_switches[95] # Boss battle
+    return false if trainerBattle? || bossBattle? # Boss battle
     battler = @battlers[idxBattler]
     return false if !@canRun && !battler.opposes?
     #return true if battler.pbHasType?(:GHOST) && Settings::MORE_TYPE_EFFECTS

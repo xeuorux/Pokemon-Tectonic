@@ -94,7 +94,7 @@ class CommandMenuDisplay < BattleMenuBase
   def visible=(value)
     super
     @ballButton.visible = false
-    @ballButton.visible = true if value && @battle.wildBattle? && @battle.pbOpposingBattlerCount == 1 && !$game_switches[95]
+    @ballButton.visible = true if value && @battle.wildBattle? && @battle.pbOpposingBattlerCount == 1 && !@battle.bossBattle?
   end
 end
 
@@ -197,7 +197,7 @@ class PokeBattle_Scene
        _INTL("Pokémon"),
        (shadowTrainer) ? _INTL("Call") : (firstAction) ? _INTL("Run") : _INTL("Cancel")
     ]
-    wildBattle = !@battle.trainerBattle? && !$game_switches[95]
+    wildBattle = !@battle.trainerBattle? && !@battle.bossBattle?
     mode = 0
     if shadowTrainer
       mode = 2

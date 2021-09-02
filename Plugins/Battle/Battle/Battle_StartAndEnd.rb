@@ -76,19 +76,19 @@ class PokeBattle_Battle
       case foeParty.length
       when 1
         pbDisplayPaused(_INTL("Oh! A wild {1} appeared!",foeParty[0].name))
-		if $game_switches[95]
+		if bossBattle?
           pbDisplayPaused("Actually, it's a powerful avatar!")
         end
       when 2
         pbDisplayPaused(_INTL("Oh! A wild {1} and {2} appeared!",foeParty[0].name,
            foeParty[1].name))
-		if $game_switches[95]
+		if bossBattle?
           pbDisplayPaused("Actually, they're both powerful avatars!")
         end
       when 3
         pbDisplayPaused(_INTL("Oh! A wild {1}, {2} and {3} appeared!",foeParty[0].name,
            foeParty[1].name,foeParty[2].name))
-		if $game_switches[95]
+		if bossBattle?
           pbDisplayPaused("Actually, they're all powerful avatars!")
         end
       end

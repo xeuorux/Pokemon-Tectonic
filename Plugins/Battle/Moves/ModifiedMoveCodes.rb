@@ -367,11 +367,11 @@ class PokeBattle_Move_0EB < PokeBattle_Move
   
   def pbEffectGeneral(user)
 	# Escaped from battle
-    @battle.decision = 3 if @battle.wildBattle? && !$game_switches[95] # A boss battle
+    @battle.decision = 3 if @battle.wildBattle? && !@battle.bossBattle? # A boss battle
   end
 
   def pbSwitchOutTargetsEffect(user,targets,numHits,switchedBattlers)
-    return if @battle.wildBattle? && !$game_switches[95]
+    return if @battle.wildBattle? && !@battle.bossBattle?
     return if user.fainted? || numHits==0
     roarSwitched = []
     targets.each do |b|
@@ -506,7 +506,7 @@ end
 #===============================================================================
 class PokeBattle_Move_0E7 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    if (Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::DestinyBondPrevious]) || $game_variables[95] # Boss battle
+    if (Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::DestinyBondPrevious]) || @battle.bossBattle?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -894,11 +894,11 @@ class PokeBattle_Move_0EB < PokeBattle_Move
   end
   
   def pbEffectGeneral(user)
-    @battle.decision = 3 if @battle.wildBattle? && !$game_switches[95]   # Escaped from battle
+    @battle.decision = 3 if @battle.wildBattle? && !@battle.bossBattle?   # Escaped from battle
   end
   
   def pbSwitchOutTargetsEffect(user,targets,numHits,switchedBattlers)
-    return if @battle.wildBattle? && !$game_switches[95]
+    return if @battle.wildBattle? && !@battle.bossBattle?
     return if user.fainted? || numHits==0
     roarSwitched = []
     targets.each do |b|

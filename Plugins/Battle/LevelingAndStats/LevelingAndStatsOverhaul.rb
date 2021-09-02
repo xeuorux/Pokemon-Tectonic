@@ -121,7 +121,7 @@ class PokeBattle_Battle
     # Play wild victory music if it's the end of the battle (has to be here)
     @scene.pbWildBattleSuccess if wildBattle? && pbAllFainted?(1) && !pbAllFainted?(0)
     return if !@internalBattle || !@expGain
-	if $game_switches[95] # Boss battle
+	if bossBattle?
       @battlers.each do |b|
         next if !b || !b.opposes?   # Can only gain Exp from fainted foes
         next if !b.fainted? || !b.boss
@@ -216,10 +216,6 @@ class PokeBattle_Battle
     return if exp<=0
     # Pokémon gain more Exp from trainer battles
     exp = (exp*2.0).floor if trainerBattle?
-	# Pokemon gain a parameterized multiplier amount of Exp from boss battles
-	if $game_switches[95]
-		exp = (exp * $game_variables[98]).floor
-	end
     # Scale the gained Exp based on the gainer's level (or not)
     if Settings::SCALED_EXP_FORMULA
       exp /= 5

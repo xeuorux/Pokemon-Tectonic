@@ -3,6 +3,12 @@ class PokeBattle_Battle
 	attr_accessor :messagesBlocked
 	attr_accessor :commandPhasesThisRound
 	attr_accessor :battleAI
+	attr_accessor :bossBattle
+	attr_accessor :numBossOnlyTurns
+  
+  def bossBattle?
+	return bossBattle
+  end
 	
   #=============================================================================
   # Creating the battle class
@@ -78,6 +84,8 @@ class PokeBattle_Battle
     @nextPickupUse     = 0
 	@ballsUsed		   = 0
 	@messagesBlocked   = false
+	@bossBattle		   = false
+	@numBossOnlyTurns  = 0
 	@commandPhasesThisRound = 0
     if GameData::Move.exists?(:STRUGGLE)
       @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))

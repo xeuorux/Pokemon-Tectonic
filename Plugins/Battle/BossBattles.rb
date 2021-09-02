@@ -13,7 +13,6 @@ end
 def pbAvatarBattleCore(*args)
   outcomeVar = $PokemonTemp.battleRules["outcomeVar"] || 1
   canLose    = $PokemonTemp.battleRules["canLose"] || false
-  $game_switches[95] = true
   # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
   if $Trainer.able_pokemon_count == 0 || ($DEBUG && Input.press?(Input::CTRL))
     pbMessage(_INTL("SKIPPING BATTLE...")) if $Trainer.pokemon_count > 0
@@ -68,6 +67,7 @@ def pbAvatarBattleCore(*args)
   battle = PokeBattle_Battle.new(scene,playerParty,foeParty,playerTrainers,nil)
   battle.party1starts = playerPartyStarts
   battle.numBossOnlyTurns = numTurns - 1
+  batte.bossBattle = true
   # Set various other properties in the battle class
   pbPrepareBattle(battle)
   $PokemonTemp.clearBattleRules
@@ -88,7 +88,6 @@ def pbAvatarBattleCore(*args)
   #    4 - Wild Pokémon was caught
   #    5 - Draw
   pbSet(outcomeVar,decision)
-  $game_switches[95] = false
   return decision
 end
 
@@ -142,9 +141,7 @@ class Pokemon
 	end
 end
 
-class PokeBattle_Battle
-  attr_accessor :numBossOnlyTurns
-  
+class PokeBattle_Battle 
   def pbExtraBossCommandPhase()
     @scene.pbBeginCommandPhase
     # Reset choices if commands can be shown
