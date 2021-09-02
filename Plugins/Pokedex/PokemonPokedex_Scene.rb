@@ -287,6 +287,10 @@ class PokemonPokedex_Scene
 		  acceptSearchResults {
 			searchByZooSection()
 		  }
+		elsif Input.pressex?(:NUMBER_0)
+		  acceptSearchResults {
+			searchByTypeMatchup()
+		  }
 		elsif Input.pressex?(0x52) # R, for Random
 		  @sprites["pokedex"].index = rand(@dexlist.length)
 		  @sprites["pokedex"].refresh
@@ -382,6 +386,18 @@ class PokemonPokedex_Scene
 		when 6
 		  searchChanged = acceptSearchResults2 {
 			searchByOwned()
+		  }
+		when 7
+		  searchChanged = acceptSearchResults2 {
+			searchByStatComparison()
+		  }
+		when 8
+		  searchChanged = acceptSearchResults2 {
+			searchByZooSection()
+		  }
+		when 9
+		  searchChanged = acceptSearchResults2 {
+			searchByTypeMatchup()
 		  }
 		end
 		if searchChanged
@@ -815,5 +831,69 @@ class PokemonPokedex_Scene
 				
 				next speciesPresent.include?(item[0].name)
 		}
+	end
+	
+	def searchByTypeMatchup()
+		sectionSelection = pbMessage("Which interaction?",[_INTL("Weak To"),_INTL("Resists"),
+			_INTL("Immune To"),_INTL("Cancel")],4)
+	    return if sectionSelection == 3 
+		
+		while true
+		  typesInput = pbEnterText("Which type(s)?", 0, 100)
+		  typesInput.downcase!
+		  if typesInput && typesInput!=""
+			  typesInputArray = typesInput.split(" ")
+			  
+			  # Don't do the search if one of the input type names isn't an actual type
+			  invalid = false
+			  typesSearchInfo = {}
+			  typesInputArray.each do |type_input_entry|
+				reversed = type_input_entry[0] == '-'
+			    type_input_entry = type_input_entry[1..-1] if reversed
+				typeIsReal = false
+				type_symbol = nil
+				GameData::Type.each do |type_data|
+					if type_data.real_name.downcase == type_input_entry
+						typeIsReal = true
+						type_symbol = type_data.id
+						break
+					end
+				end
+				if !typeIsReal
+					pbMessage(_INTL("Invalid input: {1}", type_input_entry))
+					invalid = true
+					break
+				end
+				typesSearchInfo[type_symbol] = reversed
+			  end
+			  next if invalid
+			  
+			  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+			  dexlist = dexlist.find_all { |item|
+				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				
+				result = true
+				
+				survivesSearch = true
+				typesSearchInfo.each do |type,reversed|
+					effect = Effectiveness.calculate(type,item[6],item[7])
+				
+					echoln("Effectiveness of #{type} vs #{item[6]}/#{item[7]}: #{effect}")
+				
+					case sectionSelection
+					when 0
+						survivesSearch = false if !Effectiveness.super_effective?(effect) ^ reversed
+					when 1
+						survivesSearch = false if !Effectiveness.not_very_effective?(effect) ^ reversed
+					when 2
+						survivesSearch = false if !Effectiveness.ineffective?(effect) ^ reversed
+					end
+				end
+				next survivesSearch
+			  }
+			  return dexlist
+		  end
+		  return nil
+	  end
 	end
 end
