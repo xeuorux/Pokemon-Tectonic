@@ -14,7 +14,9 @@ class PokemonPokedex_Scene
     @viewport.z = 99999
     addBackgroundPlane(@sprites,"background","Pokedex/bg_list",@viewport)
     addBackgroundPlane(@sprites,"searchbg","Pokedex/Rework/bg_search",@viewport)
+	addBackgroundPlane(@sprites,"searchbg2","Pokedex/Rework/bg_search_2",@viewport)
     @sprites["searchbg"].visible = false
+	@sprites["searchbg2"].visible = false
     @sprites["pokedex"] = Window_Pokedex.new(206,30,276,364,@viewport)
     @sprites["icon"] = PokemonSprite.new(@viewport)
     @sprites["icon"].setOffset(PictureOrigin::Center)
@@ -285,11 +287,11 @@ class PokemonPokedex_Scene
 		  }
 		elsif Input.pressex?(:NUMBER_9)
 		  acceptSearchResults {
-			searchByZooSection()
+			searchByTypeMatchup()
 		  }
 		elsif Input.pressex?(:NUMBER_0)
 		  acceptSearchResults {
-			searchByTypeMatchup()
+			searchByZooSection()
 		  }
 		elsif Input.pressex?(0x52) # R, for Random
 		  @sprites["pokedex"].index = rand(@dexlist.length)
@@ -301,7 +303,12 @@ class PokemonPokedex_Scene
   end
   
   def updateSearch2Cursor(index)
+	if index >= 6
+		index -= 6
+		shiftRightABit = true
+	end
 	@sprites["search2cursor"].x = index % 2 == 0 ? 72 : 296
+	@sprites["search2cursor"].x += 4 if shiftRightABit
 	@sprites["search2cursor"].y = 62 + index / 2 * 96
   end
   
@@ -320,39 +327,78 @@ class PokemonPokedex_Scene
 	# Write the button names onto the overlay
 	base   = Color.new(104,104,104)
     shadow = Color.new(248,248,248)
-	textpos = [
+	xLeft = 92
+	xLeft2 = 316
+	page1textpos = [
 	   [_INTL("Choose a Search"),Graphics.width/2,-2,2,shadow,base],
-       [_INTL("Name"),92,68,0,base,shadow],
-       [_INTL("Types"),316,68,0,base,shadow],
-       [_INTL("Abilities"),92,164,0,base,shadow],
-       [_INTL("Moves"),316,164,0,base,shadow],
-	   [_INTL("Evolution"),92,260,0,base,shadow],
-	   [_INTL("Available"),316,260,0,base,shadow]
+       [_INTL("Name"),xLeft,68,0,base,shadow],
+       [_INTL("Types"),xLeft2,68,0,base,shadow],
+       [_INTL("Abilities"),xLeft,164,0,base,shadow],
+       [_INTL("Moves"),xLeft2,164,0,base,shadow],
+	   [_INTL("Evolution"),xLeft,260,0,base,shadow],
+	   [_INTL("Available"),xLeft2,260,0,base,shadow]
     ]
-	pbDrawTextPositions(overlay,textpos)
+	xLeft += 4
+	xLeft2 += 4
+	page2textpos = [
+	   [_INTL("Choose a Search"),Graphics.width/2,-2,2,shadow,base],
+       [_INTL("Owned"),xLeft,68,0,base,shadow],
+       [_INTL("Stats"),xLeft2,68,0,base,shadow],
+       [_INTL("Matchups"),xLeft,164,0,base,shadow],
+       [_INTL("Misc."),xLeft2,164,0,base,shadow],
+	   [_INTL(""),xLeft,260,0,base,shadow],
+	   [_INTL(""),xLeft2,260,0,base,shadow]
+    ]
+	pbDrawTextPositions(overlay,page1textpos)
 	
 	# Begin the search screen
 	pbFadeInAndShow(@sprites)
+	oldIndex = 0
 	loop do
-      Graphics.update
+      if index!=oldIndex
+		pbPlayCursorSE
+		
+		echoln("Old, new: #{oldIndex}, #{index}")
+		
+		if oldIndex < 6 && index >=6
+			pbFadeOutAndHide(@sprites)
+			overlay.clear
+			pbDrawTextPositions(overlay,page2textpos)
+			@sprites["searchbg2"].visible     = true
+			@sprites["overlay"].visible      = true
+			@sprites["search2cursor"].visible = true
+		elsif oldIndex >= 6 && index < 6
+			pbFadeOutAndHide(@sprites)
+			overlay.clear
+			pbDrawTextPositions(overlay,page1textpos)
+			@sprites["searchbg"].visible     = true
+			@sprites["overlay"].visible      = true
+			@sprites["search2cursor"].visible = true
+		end
+		
+        updateSearch2Cursor(index)
+        oldIndex = index
+      end
+	  
+	  Graphics.update
       Input.update
       pbUpdate
-      if index!=oldindex
-		pbPlayCursorSE
-        updateSearch2Cursor(index)
-        oldindex = index
-      end
+	  
       if Input.trigger?(Input::UP)
-        index -= 2 if index >= 2
+        index -= 2 if ![0,1,6,7].include?(index)
       elsif Input.trigger?(Input::DOWN)
-        index += 2 if index <= 3
+        index += 2 if ![4,5,10,11].include?(index)
       elsif Input.trigger?(Input::LEFT)
 		if index % 2 == 1
 			index -= 1
+		elsif [6,8,10].include?(index)
+			index -= 5
 		end
       elsif Input.trigger?(Input::RIGHT)
         if index % 2 == 0
 			index += 1
+		elsif [1,3,5].include?(index)
+			index += 5
 		end
       elsif Input.trigger?(Input::BACK)
         pbPlayCloseMenuSE
@@ -393,11 +439,11 @@ class PokemonPokedex_Scene
 		  }
 		when 8
 		  searchChanged = acceptSearchResults2 {
-			searchByZooSection()
+			searchByTypeMatchup()
 		  }
 		when 9
 		  searchChanged = acceptSearchResults2 {
-			searchByTypeMatchup()
+			searchByZooSection()
 		  }
 		end
 		if searchChanged

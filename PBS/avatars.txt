@@ -23,6 +23,12 @@ Turns = 2
 HPMult = 2.5
 Ability = SHELLARMOR
 Moves = WILLOWISP,FLAMEBURST
+#------------------------------
+[ZARUDE]
+Turns = 3
+HPMult = 3
+Ability = LEAFGUARD
+Moves = JUNGLEHEALING,CRUNCH,THRASH,POWERWHIP
 #-------------------------------
 [MAMOSWINE]
 Turns = 3
