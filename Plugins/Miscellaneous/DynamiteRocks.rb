@@ -10,3 +10,18 @@ def pbRockSmashDynamite
     return true
   end
 end
+
+def explodeRock
+	pbSEPlay("Explosion7",120,150)
+	pbMoveRoute(get_self,[
+		PBMoveRoute::Wait,2,
+		PBMoveRoute::TurnLeft,
+		PBMoveRoute::Wait,2,
+		PBMoveRoute::TurnRight,
+		PBMoveRoute::Wait,2,
+		PBMoveRoute::TurnUp,
+		PBMoveRoute::Wait,2
+	])
+	pbWait(Graphics.frame_rate*4/10)
+	setMySwitch('A',true)
+end
