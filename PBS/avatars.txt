@@ -5,6 +5,13 @@ Ability = RUNAWAY
 Moves = SCRATCH,TACKLE
 HPMult = 2
 #-------------------------------
+[ZERAORA]
+Turns = 3
+Item = LUMBERRY
+Ability = INNERFOCUS
+Moves = THUNDERPUNCH,FIREPUNCH,SLASH
+HPMult = 4
+#-------------------------------
 [SWALOT]
 Turns = 2
 HPMult = 2.5

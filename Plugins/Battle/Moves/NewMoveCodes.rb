@@ -211,7 +211,7 @@ class PokeBattle_Move_508 < PokeBattle_RecoilMove
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    target.pbFreeze(user) if target.pbCanFreeze?(user,false,self)
+    target.pbFreeze if target.pbCanFreeze?(user,false,self)
   end
   
   def getScore(score,user,target,skill=100)

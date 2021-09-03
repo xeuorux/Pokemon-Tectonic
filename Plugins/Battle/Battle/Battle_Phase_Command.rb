@@ -1,5 +1,5 @@
 class PokeBattle_Battle
-	#=============================================================================
+  #=============================================================================
   # Command phase
   #=============================================================================
   def pbCommandPhase
@@ -63,6 +63,7 @@ class PokeBattle_Battle
 		  next if !pbCanShowCommands?(idxBattler)   # Action is forced, can't choose one
 		  # AI controls this battler
 		  if @controlPlayer || !pbOwnedByPlayer?(idxBattler)
+			next if @autoTesting
 			# Debug testing thing
 			@battleAI.beginAutoTester(@battlers[idxBattler]) if $DEBUG && Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
 		  
@@ -85,6 +86,29 @@ class PokeBattle_Battle
 		  
 		  # Player chooses an action
 		  actioned.push(idxBattler)
+		  
+		  if @autoTesting
+			moveData = GameData::Move::DATA[@autoTestingIndex]
+			@autoTestingIndex += 1
+			next if moveData.nil?
+			moveId = moveData.id
+			
+			moveObject = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(moveId))
+			@battlers[idxBattler].moves[0] = moveObject
+		  
+			@choices[idxBattler][0] = :UseMove         # "Use move"
+			@choices[idxBattler][1] = 0   # Index of move to be used
+			@choices[idxBattler][2] = moveObject       # PokeBattle_Move object
+			@choices[idxBattler][3] = -1
+			
+			# Heal all battlers
+			@battlers.each do |b|
+				b.hp = b.totalhp
+				b.pbCureStatus(false)
+			end
+			next
+		  end
+		  
 		  commandsEnd = false   # Whether to cancel choosing all other actions this round
 		  loop do
 			cmd = pbCommandMenu(idxBattler,actioned.length==1)

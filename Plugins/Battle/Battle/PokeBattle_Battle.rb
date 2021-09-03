@@ -5,6 +5,8 @@ class PokeBattle_Battle
 	attr_accessor :battleAI
 	attr_accessor :bossBattle
 	attr_accessor :numBossOnlyTurns
+	attr_accessor :autoTesting
+	attr_accessor :autoTestingIndex
   
   def bossBattle?
 	return bossBattle
@@ -86,6 +88,8 @@ class PokeBattle_Battle
 	@messagesBlocked   = false
 	@bossBattle		   = false
 	@numBossOnlyTurns  = 0
+	@autoTesting	   = false
+	@autoTestingIndex  = 1
 	@commandPhasesThisRound = 0
     if GameData::Move.exists?(:STRUGGLE)
       @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))
