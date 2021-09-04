@@ -346,7 +346,7 @@ class PokemonPokedex_Scene
        [_INTL("Stats"),xLeft2,68,0,base,shadow],
        [_INTL("Matchups"),xLeft,164,0,base,shadow],
        [_INTL("Misc."),xLeft2,164,0,base,shadow],
-	   [_INTL(""),xLeft,260,0,base,shadow],
+	   [_INTL("Stat Sort"),xLeft,260,0,base,shadow],
 	   [_INTL(""),xLeft2,260,0,base,shadow]
     ]
 	pbDrawTextPositions(overlay,page1textpos)
@@ -444,6 +444,10 @@ class PokemonPokedex_Scene
 		when 9
 		  searchChanged = acceptSearchResults2 {
 			searchByZooSection()
+		  }
+		when 10
+		  searchChanged = acceptSearchResults2 {
+			sortByStat()
 		  }
 		end
 		if searchChanged
@@ -941,5 +945,41 @@ class PokemonPokedex_Scene
 		  end
 		  return nil
 	  end
+	end
+	
+	def sortByStat()
+		statSelection = pbMessage("Which stat?",[_INTL("HP"),_INTL("Attack"),_INTL("Defense"),
+			_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Total"),_INTL("Cancel")],8)
+	    return if statSelection == 7
+		sortDirection = pbMessage("Which direction?",[_INTL("Descending"),_INTL("Ascending"),_INTL("Cancel")],3)
+		return if statSelection == 2
+		dexlist = @dexlist
+		dexlist.sort_by! { |entry|
+			speciesData = GameData::Species.get(entry[0])
+			value = 0
+			case statSelection
+			when 0
+				value = speciesData.base_stats[:HP]
+			when 1
+				value = speciesData.base_stats[:ATTACK]
+			when 2
+				value = speciesData.base_stats[:DEFENSE]
+			when 3
+				value = speciesData.base_stats[:SPECIAL_ATTACK]
+			when 4
+				value = speciesData.base_stats[:SPECIAL_DEFENSE]
+			when 5
+				value = speciesData.base_stats[:SPEED]
+			when 6
+				speciesData.base_stats.each do |s|
+					value += s[1]
+				end
+			end
+			
+			value *= -1 if sortDirection == 0
+			next value
+		}
+		
+		return dexlist
 	end
 end
