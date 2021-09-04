@@ -387,3 +387,9 @@ HPMult = 2.5
 Ability = UNNERVE
 Item = MENTALHERB
 Moves = ATTACKORDER,DEFENDORDER,HEALORDER,ALLERGY
+#------------------------------
+[AGOLEM]
+Turns = 2
+HPMult = 5
+Ability = GALVANIZE
+Moves = DOUBLEEDGE,STONEEDGE,FLAIL

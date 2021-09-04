@@ -217,7 +217,7 @@
 215,INNARDSOUT,Innards Out,"Damages an attacker that lands the finishing hit."
 216,DANCER,Dancer,"Repeats another Pokémon's dance move immediately."
 217,BATTERY,Battery,"Powers up ally Pokémon's special moves."
-218,FLUFFY,Fluffy,"Resists contact damage but weaker to Fire-type."
+218,FLUFFY,Fluffy,"Takes half damage from contact moves, but weaker to Fire-type damage."
 219,DAZZLING,Dazzling,"Makes foes unable to use priority attacks."
 220,SOULHEART,Soul-Heart,"Boosts Sp. Atk each time a Pokémon faints."
 221,TANGLINGHAIR,Tangling Hair,"Contact with it lowers the attacker's Speed."
