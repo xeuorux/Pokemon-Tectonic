@@ -263,6 +263,7 @@ class NewDexNav
 
 	Graphics.update
 	$viewport = @viewport3
+	@viewport3.z = 99998
     pbFadeInAndShow(@sprites) {pbUpdate}
   end
   
