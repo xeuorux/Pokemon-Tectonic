@@ -74,6 +74,13 @@ module PokeBattle_BattleCommon
   end
 end
 
+def theoreticalCaptureChance(status,current_hp,total_hp,catch_rate)
+	y = captureThresholdCalcInternals(status,current_hp,total_hp,catch_rate)
+	chancePerShake = y.to_f/CATCH_BASE_CHANCE.to_f
+	overallChance = chancePerShake ** 4
+	return overallChance
+end
+
 def captureThresholdCalcInternals(status,current_hp,total_hp,catch_rate)
     # First half of the shakes calculation
     x = ((3 * total_hp - 2 * current_hp) * catch_rate.to_f)/(3 * total_hp)

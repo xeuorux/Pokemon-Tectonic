@@ -172,7 +172,7 @@ class PokemonPokedexInfo_Scene
 	overlay = @sprites["overlay"].bitmap
 	base = Color.new(219, 240, 240)
 	shadow   = Color.new(88, 88, 80)
-	pageTitles = ["INFO", "ABILITIES", "STATS", "TYPE MATCHUPS", "LEVEL UP MOVES", "TM MOVES", "EGG MOVES", "EVOLUTIONS", "AREA", "FORMS"]
+	pageTitles = ["INFO", "ABILITIES", "STATS", "TYPE MATCHUPS", "LEVEL UP MOVES", "TM MOVES", "EGG MOVES", "EVOLUTIONS", "AREA", "FORMS", "ANALYSIS"]
 	pageTitle = pageTitles[page-1]
 	drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
 	xPos = 240
@@ -190,6 +190,7 @@ class PokemonPokedexInfo_Scene
     when 8; drawPageEvolution
 	when 9; drawPageArea
 	when 10; drawPageForms
+	when 11; drawPageDEBUG
     end
   end
 
@@ -976,6 +977,57 @@ class PokemonPokedexInfo_Scene
     end
 	return nil
   end
+  
+  def drawPageDEBUG
+    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_evolution"))
+    overlay = @sprites["overlay"].bitmap
+    formname = ""
+    base = Color.new(64,64,64)
+    shadow = Color.new(176,176,176)
+	xLeft = 36
+    for i in @available
+      if i[2]==@form
+        formname = i[0]
+        fSpecies = GameData::Species.get_species_form(@species,i[2])
+		
+		coordinateY = 54
+		
+		drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("Analysis of {1}",@title),base,shadow)
+		coordinateY += 34
+		
+		phep = fSpecies.base_stats[:HP] * fSpecies.base_stats[:DEFENSE]
+		shep = fSpecies.base_stats[:HP] * fSpecies.base_stats[:SPECIAL_DEFENSE]
+		effectiveHPs = "PEHP, SEHP: #{phep},#{shep}"
+		drawTextEx(overlay,xLeft,coordinateY,450,1,effectiveHPs,base,shadow)
+		coordinateY += 32
+		
+		numberFaster = 0
+		total = 0
+		mySpeed = fSpecies.base_stats[:SPEED]
+		GameData::Species.each do |otherSpeciesData|
+			next if otherSpeciesData.form != 0
+			next if otherSpeciesData.get_evolutions.length > 0
+			next if isLegendary(otherSpeciesData.id)
+			if mySpeed > otherSpeciesData.base_stats[:SPEED]
+				numberFaster += 1
+			end
+			total += 1
+		end
+		
+		fasterThanPercentOfMetaGame = numberFaster.to_f / total.to_f
+		fasterThanPercentOfMetaGame = (fasterThanPercentOfMetaGame*10000).floor / 100.0
+		drawTextEx(overlay,xLeft,coordinateY,450,1,"Faster than #{fasterThanPercentOfMetaGame}% of final evos",base,shadow)
+		coordinateY += 32
+		
+		totalHP = calcHP(fSpecies.base_stats[:HP],40,8)
+		currentHP = (totalHP * 0.15).floor
+		chanceToCatch = theoreticalCaptureChance(:NONE,currentHP,totalHP,fSpecies.catch_rate)
+		chanceToCatch = (chanceToCatch*10000).floor / 100.0
+		drawTextEx(overlay,xLeft,coordinateY,450,1,"#{chanceToCatch}% chance to catch at level 40, %15 health",base,shadow)
+		coordinateY += 32
+      end
+    end
+  end
 
   def pbScene
     GameData::Species.play_cry_from_species(@species, @form)
@@ -1090,6 +1142,11 @@ class PokemonPokedexInfo_Scene
 	  dorefresh = true if moveToPage(9)
 	elsif Input.pressex?(:NUMBER_0)
 	  dorefresh = true if moveToPage(10)
+	elsif Input.press?(Input::ACTION) && $DEBUG
+		@scroll = -1
+		pbPlayCursorSE
+		@page = 11
+		dorefresh = true
 	else
 		highestLeftRepeat = 0
 		highestRightRepeat = 0
