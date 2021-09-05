@@ -1,3 +1,7 @@
+class PokemonGlobalMetadata
+	attr_accessor :zooSeen
+end
+
 def forEachZooMap()
 	[31].each do |map_id|
 		map = $MapFactory.getMapNoAdd(map_id)
@@ -51,17 +55,26 @@ def eventIsForSpecies(event,speciesName)
 	return match && match[1] == speciesName
 end
 
-def sendToZoo()
-	pokemonName = pbGet(3)
-	return unless pbConfirmMessageSerious(_INTL("Are you sure you want to send {1} to the Zoo?",pokemonName))
+def sendToZoo(pokemon, showMessage=true)
+	if pokemon.egg?
+      pbDisplay(_INTL("You can't donate an Egg."))
+      return nil
+    elsif pokemon.mail
+      pbDisplay(_INTL("Please remove the Pokemon's mail."))
+      return nil
+    end
+
+	return unless pbConfirmMessageSerious(_INTL("Are you sure you want to send {1} to the Zoo?",pokemon.name))
 	
-	species = pbGetPokemon(1).species
-	speciesName = GameData::Species.get(species).id.to_s
+	speciesName = GameData::Species.get(pokemon.species).id.to_s
 	
 	placementMap = nil
 	forEachZooMap do |map|
 		map.events.each_value { |event|
 			if eventIsForSpecies(event,speciesName)
+				if $game_self_switches[[map.map_id, event.id, "A"]]
+					pbMessage("ERROR: An event marked for this species is already enabled in the Zoo!")
+				end
 				echoln("Enabling event #{event.name}")
 				pbSetSelfSwitch(event.id,"A",true,map.map_id)
 				placementMap = (pbGetMessage(MessageTypes::MapNames,map.map_id) rescue nil) || "???" if !placementMap
@@ -71,15 +84,11 @@ def sendToZoo()
 	
 	if !placementMap
 		pbMessage("ERROR: Unable to find that species in the zoo!")
-		return
+		return nil
 	end
 	
-	$Trainer.party[pbGet(1)] = nil
-	$Trainer.party.compact!
-	
-	pbMessage("#{pokemonName} was placed in #{placementMap}!")
-	
-	refreshFollow()
+	pbMessage("#{pokemon.name} was placed in #{placementMap}!") if showMessage
+	return placementMap
 end
 
 def debugTurnOnAll()
@@ -104,6 +113,7 @@ end
 
 def debugCheckMissingSpecies()
 	totalPresent = 0
+	totalDonated = 0
 	totalMissing = 0
 	GameData::Species.each do |species_data|
 		next if species_data.form != 0
@@ -112,13 +122,20 @@ def debugCheckMissingSpecies()
 			totalMissing += 1
 		else
 			totalPresent += 1
+			if donatedToZoo?(species_data.species)
+				totalDonated += 1
+			end
 		end
 	end
-	pbMessage("#{totalPresent} species have an event.")
-	pbMessage("#{totalMissing} species do NOT have an event.")
-	completion = totalPresent.to_f / (totalPresent + totalMissing).to_f
-	completion = (completion*10000).floor / 100.0
-	pbMessage("The Zoo is #{completion} percent complete.")
+	pbMessage("#{totalPresent} species have an event placed.")
+	pbMessage("#{totalMissing} species do NOT have an event placed.")
+	design_completion = totalPresent.to_f / (totalPresent + totalMissing).to_f
+	design_completion = (design_completion*10000).floor / 100.0
+	pbMessage("The Zoo is #{design_completion} percent designed.")
+	pbMessage("#{totalDonated} species have been donated on this save file.")
+	donation_completion = totalDonated.to_f / totalPresent.to_f
+	donation_completion = (donation_completion*10000).floor / 100.0
+	pbMessage("The Zoo is #{donation_completion} percent donated.")
 end
 
 # More likely to be shiny

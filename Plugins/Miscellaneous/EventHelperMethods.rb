@@ -1,3 +1,7 @@
+def pbSetSelfSwitch(eventid, switch_name, value, mapid = -1)
+	$game_system.map_interpreter.pbSetSelfSwitch(eventid, switch_name, value, mapid)
+end
+
 def healPartyWithDelay()
 	$Trainer.heal_party
 	pbMEPlay('Pkmn healing')
