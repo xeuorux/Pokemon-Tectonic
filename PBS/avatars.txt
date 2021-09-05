@@ -83,7 +83,7 @@ HPMult = 8
 [GOURGEIST]
 Turns = 3
 Ability = INSOMNIA
-Moves = HEX,SHADOWBALL,HEX,WILLOWISP
+Moves = HEX,SHADOWBALL,TRICKORTREAT,WILLOWISP
 HPMult = 4
 #-------------------------------
 [SHIFTRY]
