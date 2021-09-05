@@ -404,11 +404,13 @@ def pbItemBall(*args)
 end
 #-----------------------------------------------------------------------------
 #  item receive
+=begin
 alias pbReceiveItem_randomizer_x pbReceiveItem unless defined?(pbReceiveItem_randomizer_x)
 def pbReceiveItem(*args)
   args[0] = randomizeItem(args[0])
   return pbReceiveItem_randomizer_x(*args)
 end
+=end
 #===============================================================================
 #  additional entry to Global Metadata for randomized data storage
 #===============================================================================

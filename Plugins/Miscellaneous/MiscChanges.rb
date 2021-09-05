@@ -53,37 +53,6 @@ def pbReceiveRandomPokemon(level)
   pbMessage(_INTL("You recieved a #{speciesDat.real_name} (#{speciesDat.real_form_name})"))
 end
 
-def pbPickBerry(berry, qty = 1)
-  interp=pbMapInterpreter
-  thisEvent=interp.get_character(0)
-  berryData=interp.getVariable
-  berry=GameData::Item.get(berry)
-  itemname=(qty>1) ? berry.name_plural : berry.name
-
-  if !$PokemonBag.pbCanStore?(berry,qty)
-      pbMessage(_INTL("Too bad...\nThe Bag is full..."))
-      return
-    end
-    $PokemonBag.pbStoreItem(berry,qty)
-    if qty>1
-      pbMessage(_INTL("You picked the {1} \\c[1]{2}\\c[0].\\wtnp[20]",qty,itemname))
-    else
-      pbMessage(_INTL("You picked the \\c[1]{1}\\c[0].\\wtnp[20]",itemname))
-    end
-    pocket = berry.pocket
-    pbMessage(_INTL("{1} put the \\c[1]{2}\\c[0] in the <icon=bagPocket{3}>\\c[1]{4}\\c[0] Pocket.\1",
-       $Trainer.name,itemname,pocket,PokemonBag.pocketNames()[pocket]))
-    if Settings::NEW_BERRY_PLANTS
-      pbMessage(_INTL("The berry plant withered away."))
-      berryData=[0,nil,0,0,0,0,0,0]
-    else
-      pbMessage(_INTL("The berry plant withered away."))
-      berryData=[0,nil,false,0,0,0]
-    end
-    interp.setVariable(berryData)
-    pbSetSelfSwitch(thisEvent.id,"A",true)
-end
-
 module GameData
 	class Trainer
 		def initialize(hash)
