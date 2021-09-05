@@ -9,6 +9,10 @@ FloweryGrass,20
 20,SCATTERBUG,7,9
 20,PIDGEY,7,9
 #-------------------------------
+[027] # Casaba Mart
+Land,20
+1,AVULPIX,10,10
+#-------------------------------
 [034] # Scenic Path
 Land,20
 20,SKWOVET,7,9
