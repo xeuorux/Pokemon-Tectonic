@@ -393,3 +393,15 @@ Turns = 2
 HPMult = 5
 Ability = GALVANIZE
 Moves = DOUBLEEDGE,STONEEDGE,FLAIL
+#-----------------------------
+[NIDOQUEEN]
+Turns = 3
+HPMult = 3
+Ability = POISONPUNISH
+Moves = EARTHPOWER,FLATTER,BADSTENCH
+#-----------------------------
+[PYROAR]
+Turns = 3
+HPMult = 3
+Ability = PROUDFIRE
+Moves = NOBLEROAR,FLAMETHROWER,ENDEAVOR

@@ -1,0 +1,398 @@
+################################
+#	Prototype
+################################
+[LASS2,Angelica]
+Pokemon = GASTLY,6
+    AbilityIndex = 0
+Pokemon = HOOTHOOT,6
+    AbilityIndex = 0
+#-------------------------------
+[GUITARIST3,Harley]
+Pokemon = GOLDEEN,7
+    AbilityIndex = 0
+Pokemon = SEEDOT,8
+    AbilityIndex = 0
+Pokemon = FENNEKIN,7
+    AbilityIndex = 0
+#-------------------------------
+[YOUNGSTER,Alex]
+Pokemon = RATTATA,12
+    Moves = QUICKATTACK,BITE,TAILWHIP,TACKLE
+    AbilityIndex = 0
+Pokemon = RATTATA,12
+    Form = 1
+    AbilityIndex = 0
+#-------------------------------
+[CAMPER,Ralph]
+Pokemon = DEERLING,8
+    AbilityIndex = 0
+Pokemon = VULPIX,9
+    AbilityIndex = 0
+Pokemon = BUIZEL,8
+    AbilityIndex = 0
+#-------------------------------
+[HIKER,Dave]
+Pokemon = GEODUDE,9
+    AbilityIndex = 0
+Pokemon = PHANPY,10
+    AbilityIndex = 0
+Pokemon = IGGLYBUFF,10
+    AbilityIndex = 0
+#-------------------------------
+[LASS,Jessica]
+Pokemon = CLEFFA,10
+    AbilityIndex = 0
+    Item = ORANBERRY
+Pokemon = DODUO,10
+    AbilityIndex = 0
+Pokemon = ESPURR,11
+    AbilityIndex = 0
+#-------------------------------
+[PICNICKER,Cris]
+Pokemon = PURRLOIN,13
+    AbilityIndex = 0
+Pokemon = DROWZEE,13
+    AbilityIndex = 0
+Pokemon = TYROGUE,14
+    AbilityIndex = 0
+#-------------------------------
+[BUGCATCHER,Luca]
+Pokemon = BUTTERFREE,14
+    Moves = POISONPOWDER,GUST,MINDWAVES,BUGBITE
+    AbilityIndex = 0
+Pokemon = PIKACHU,14
+    Moves = QUICKATTACK,THUNDERSHOCK,NUZZLE,GROWL
+    AbilityIndex = 0
+Pokemon = SIZZLIPEDE,13
+    AbilityIndex = 0
+Pokemon = POLIWAG,14
+    AbilityIndex = 0
+#-------------------------------
+[BUGCATCHER,Luca,1]
+Pokemon = BUTTERFREE,16
+    Moves = POISONPOWDER,GUST,MINDWAVES,BUGBITE
+    AbilityIndex = 0
+Pokemon = PIKACHU,17
+    Moves = QUICKATTACK,THUNDERSHOCK,NUZZLE,GROWL
+    AbilityIndex = 0
+Pokemon = SIZZLIPEDE,17
+    AbilityIndex = 0
+Pokemon = POLIWAG,16
+    AbilityIndex = 0
+#-------------------------------
+[AROMALADY,Brigitte]
+Pokemon = FLABEBE,15
+    AbilityIndex = 0
+Pokemon = SNUBBULL,15
+    AbilityIndex = 0
+Pokemon = SWIRLIX,15
+    AbilityIndex = 0
+#-------------------------------
+[LEADER_Lainie,Lainie]
+Pokemon = CUTIEFLY,15
+    Moves = STUNSPORE,FAIRYWIND,POUT,REFLECT
+    AbilityIndex = 1
+Pokemon = FLABEBE,15
+    AbilityIndex = 0
+Pokemon = SWIRLIX,15
+    Name = Lik
+    Moves = EAGERTICKLING,FAKETEARS,EMBER,PLAYNICE
+    AbilityIndex = 0
+    Item = SHELLBELL
+Pokemon = VANILLITE,15
+    Moves = ICYWIND,TAUNT,FAIRYWIND,SWAGGER
+    AbilityIndex = 1
+#-------------------------------
+[LEADER_Lainie,Lainie,1]
+Pokemon = CUTIEFLY,15
+    Moves = STUNSPORE,FAIRYWIND,POUT,REFLECT
+    AbilityIndex = 1
+Pokemon = IMPIDIMP,15
+    AbilityIndex = 0
+Pokemon = FLABEBE,15
+    AbilityIndex = 0
+Pokemon = MAWILE,15
+    Moves = BITE,SHOTPUT,EAGERTICKLING,ASTONISH
+    AbilityIndex = 0
+    Item = DARKGEM
+Pokemon = SWIRLIX,15
+    Name = Lik
+    Moves = EAGERTICKLING,FAKETEARS,EMBER,PLAYNICE
+    AbilityIndex = 0
+    Item = SHELLBELL
+Pokemon = VANILLITE,15
+    Moves = ICYWIND,TAUNT,FAIRYWIND,SWAGGER
+    AbilityIndex = 1
+#-------------------------------
+[SUPERNERD,Declan]
+Pokemon = TYNAMO,16
+    AbilityIndex = 0
+Pokemon = SKORUPI,16
+    AbilityIndex = 0
+Pokemon = BALTOY,16
+    AbilityIndex = 0
+#-------------------------------
+[BLACKBELT2,Emilio]
+Pokemon = MACHOP,21
+    AbilityIndex = 0
+Pokemon = SCRAGGY,21
+    AbilityIndex = 0
+Pokemon = GURDURR,21
+    AbilityIndex = 0
+#-------------------------------
+[PSYCHIC_F2,Louise]
+Pokemon = SPOINK,21
+    AbilityIndex = 0
+Pokemon = MEDITITE,21
+    Moves = FORCEPALM,MINDWAVES,MEDITATE,FEINT
+    AbilityIndex = 0
+Pokemon = WOOBAT,21
+    AbilityIndex = 0
+#-------------------------------
+[BURGLAR,Luke]
+Pokemon = PAWNIARD,21
+    AbilityIndex = 0
+Pokemon = VULLABY,21
+    AbilityIndex = 0
+Pokemon = THIEVUL,21
+    AbilityIndex = 0
+#-------------------------------
+[BEAUTY,Erin]
+Pokemon = LITLEO,21
+    AbilityIndex = 0
+Pokemon = SALANDIT,21
+    AbilityIndex = 0
+Pokemon = MONFERNO,21
+    AbilityIndex = 0
+#-------------------------------
+[TUBER_M,Bobby]
+Pokemon = BRIONNE,21
+    AbilityIndex = 0
+Pokemon = CHINCHOU,21
+    AbilityIndex = 0
+Pokemon = SPHEAL,21
+    AbilityIndex = 0
+#-------------------------------
+[POKEMONRANGER_M2,Jack]
+Pokemon = GROTLE,21
+    AbilityIndex = 0
+Pokemon = LOMBRE,21
+    Moves = MEGADRAIN,ASTONISH,WATERGUN,FURYSWIPES
+    AbilityIndex = 0
+Pokemon = APPLIN,21
+    AbilityIndex = 0
+#-------------------------------
+[CAMPER,Brian]
+Pokemon = ODDISH,17
+    AbilityIndex = 0
+Pokemon = EEVEE,17
+    AbilityIndex = 0
+Pokemon = SPOINK,17
+    AbilityIndex = 0
+#-------------------------------
+[HIKER,Leon]
+Pokemon = GLIGAR,20
+    AbilityIndex = 0
+Pokemon = SLUGMA,21
+    AbilityIndex = 0
+    Item = ORANBERRY
+Pokemon = ROSERADE,21
+    AbilityIndex = 0
+    Item = POISONGEM
+Pokemon = RHYHORN,20
+    AbilityIndex = 0
+#-------------------------------
+[BATTLEGIRL,Abbie]
+Pokemon = SCRAGGY,20
+    AbilityIndex = 0
+Pokemon = COMBUSKEN,20
+    AbilityIndex = 0
+Pokemon = SYLVEON,21
+    AbilityIndex = 0
+    Item = FAIRYGEM
+Pokemon = CHINCHOU,21
+    AbilityIndex = 0
+    Item = ORANBERRY
+#-------------------------------
+[GAMBLER,Dean]
+Pokemon = MEOWTH,18
+    AbilityIndex = 0
+Pokemon = MEOWTH,19
+    Form = 1
+    AbilityIndex = 0
+Pokemon = MEOWTH,19
+    Form = 2
+    AbilityIndex = 0
+#-------------------------------
+[YOUNGSTER,Chet]
+Pokemon = ARON,19
+    AbilityIndex = 0
+Pokemon = SABLEYE,19
+    AbilityIndex = 0
+Pokemon = PARAS,20
+    AbilityIndex = 0
+#-------------------------------
+[YOUNGSTER,Chet,2]
+Pokemon = ARON,26
+    AbilityIndex = 0
+Pokemon = SABLEYE,26
+    AbilityIndex = 0
+Pokemon = PARASECT,25
+    AbilityIndex = 0
+Pokemon = GOLBAT,25
+    AbilityIndex = 0
+Pokemon = MIENFOO,26
+    AbilityIndex = 0
+Pokemon = WARTORTLE,25
+    AbilityIndex = 0
+#-------------------------------
+[POKEMONBREEDER_F2,Natasha]
+Pokemon = DEDENNE,19
+    AbilityIndex = 0
+Pokemon = DUCKLETT,18
+    AbilityIndex = 0
+Pokemon = TANGELA,20
+    AbilityIndex = 0
+#-------------------------------
+[THEATERNERDS,Joel & Calvin]
+Pokemon = TOXEL,19
+    AbilityIndex = 0
+Pokemon = CARKOL,20
+    AbilityIndex = 0
+Pokemon = BRONZOR,18
+    AbilityIndex = 0
+Pokemon = LOUDRED,20
+    AbilityIndex = 0
+Pokemon = NOIBAT,19
+    AbilityIndex = 0
+Pokemon = YUNGOOS,20
+    AbilityIndex = 0
+#-------------------------------
+[BLACKBELT3,Adan]
+Pokemon = CRANIDOS,21
+    AbilityIndex = 0
+Pokemon = KABUTO,21
+    AbilityIndex = 0
+Pokemon = JANGMOO,21
+    AbilityIndex = 0
+#-------------------------------
+[WORKER2,Joe]
+Pokemon = TIRTOUGA,21
+    AbilityIndex = 0
+Pokemon = TYRUNT,21
+    AbilityIndex = 0
+Pokemon = BRONZOR,21
+    AbilityIndex = 0
+#-------------------------------
+[LEADER_Bartholomew,Bartholomew]
+Pokemon = OMANYTE,21
+    AbilityIndex = 0
+Pokemon = YANMA,21
+    Moves = UTURN,AERIALACE,SHOUT,ROOST
+    AbilityIndex = 0
+Pokemon = AMAURA,21
+    AbilityIndex = 0
+Pokemon = SHIELDON,21
+    AbilityIndex = 0
+#-------------------------------
+[LEADER_Bartholomew,Bartholomew,1]
+Pokemon = OMANYTE,21
+    AbilityIndex = 0
+Pokemon = YANMA,21
+    Moves = UTURN,AERIALACE,SHOUT,ROOST
+    AbilityIndex = 0
+Pokemon = AMAURA,21
+    AbilityIndex = 0
+Pokemon = SHIELDON,21
+    AbilityIndex = 0
+Pokemon = ARCHEN,21
+    Moves = UTURN,PLUCK,ROCKTHROW,DRAGONCLAW
+    AbilityIndex = 0
+    Item = LUMBERRY
+Pokemon = GOLETT,21
+    Moves = RUMBLE,SHADOWPUNCH,FACADE,LOWKICK
+    AbilityIndex = 0
+    Item = LEFTOVERS
+#-------------------------------
+[BUGCATCHER,Alfie]
+Pokemon = HOOTHOOT,20
+    AbilityIndex = 0
+Pokemon = NINJASK,20
+    AbilityIndex = 0
+Pokemon = SHEDINJA,20
+    AbilityIndex = 0
+#-------------------------------
+[LADY,Lara]
+Pokemon = CARVANHA,21
+    AbilityIndex = 0
+Pokemon = NIDORINA,21
+    AbilityIndex = 0
+Pokemon = SPEAROW,21
+    AbilityIndex = 0
+#-------------------------------
+[BATTLEGIRL,Tester]
+Pokemon = BIDOOF,70
+    Moves = TACKLE,WATERGUN
+    AbilityIndex = 0
+#-------------------------------
+[COOLTRAINER_M,Agent]
+Pokemon = BEARTIC,70
+    Moves = POISONJAB,NIGHTSLASH,TRIPLEAXEL,DRAINPUNCH
+    AbilityIndex = 1
+    Item = LIFEORB
+    EV = 20,20,10,0,0,0
+Pokemon = EELEKTROSS,70
+    Moves = COIL,LEECHLIFE,VOLTTACKLE,VENOMLEECH
+    AbilityIndex = 0
+    Item = LEFTOVERS
+    EV = 20,20,5,0,0,5
+Pokemon = PYROAR,70
+    Moves = DARKPULSE,FLAMETHROWER,OVERHEAT,YAWN
+    AbilityIndex = 0
+    Item = LIFEORB
+    EV = 10,0,0,20,20,0
+Pokemon = PORYGONZ,70
+    Moves = HEX,CRITICALERROR,TRIATTACK,DISCHARGE
+    AbilityIndex = 1
+    Item = POISONORB
+    EV = 10,0,0,20,20,0
+Pokemon = WHISCASH,70
+    Moves = EARTHQUAKE,STONEEDGE,CRASHDIVE,DRAGONDANCE
+    AbilityIndex = 0
+    Item = LEFTOVERS
+    EV = 20,20,0,10,0,0
+Pokemon = PALMANTRA,70
+    Moves = ICEPUNCH,PREDICTIONSTRIKE,HIGHJUMPKICK,DRAINPUNCH
+    AbilityIndex = 0
+    Item = CHOICEBAND
+    EV = 10,20,0,20,0,0
+#-------------------------------
+[COOLTRAINER_M,Xavier]
+Pokemon = GALVANTULA,70
+    Moves = THUNDER,BUGBUZZ,STICKYWEB,LIGHTNINGDANCE
+    AbilityIndex = 0
+Pokemon = FERALIGATR,70
+    Moves = ICEFANG,CRUNCH,LIQUIDATION,AQUAINSTINCT
+    AbilityIndex = 1
+    Item = CHOICEBAND
+    EV = 0,20,0,0,20,0
+Pokemon = CHANDELURE,70
+    Moves = FLAMETHROWER,HEX,WILLOWISP,SHADOWBALL
+    AbilityIndex = 0
+    Item = LUMBERRY
+    EV = 20,0,20,0,0,10
+Pokemon = HYDREIGON,70
+    Moves = DRACOMETEOR,CRIPPLINGBREATH,DARKPULSE,UTURN
+    AbilityIndex = 0
+    Item = CHOICESCARF
+    EV = 10,0,0,20,20,0
+Pokemon = CROBAT,70
+    Moves = BRAVEBIRD,SUPERFANG,TAUNT,ROOST
+    AbilityIndex = 1
+    Item = SHARPBEAK
+    EV = 10,20,0,20,0,0
+Pokemon = SWALOT,70
+    Moves = EARTHPOWER,GIGADRAIN,ACIDSPRAY,ICEBEAM
+    AbilityIndex = 0
+    Item = ASSAULTVEST
+    EV = 20,0,15,0,0,15
