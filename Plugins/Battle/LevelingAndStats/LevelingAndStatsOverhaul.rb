@@ -94,12 +94,12 @@ class Pokemon
     stats = {}
     GameData::Stat.each_main do |s|
       if s.id == :HP
-        stats[s.id] = calcHP(base_stats[s.id], this_level, @ev[s.id])
+        stats[s.id] = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id])
 		if boss
 			stats[s.id] *= hpMult
 		end
       else
-        stats[s.id] = calcStat(base_stats[s.id], this_level, @ev[s.id])
+        stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
       end
     end
     hpDiff = @totalhp - @hp
@@ -353,14 +353,14 @@ ItemHandlers::UseOnPokemon.add(:RARECANDY,proc { |item,pkmn,scene|
 
 
 # @return [Integer] the maximum HP of this Pokémon
-def calcHP(base, level, sv)
+def calcHPGlobal(base, level, sv)
 	return 1 if base == 1   # For Shedinja
 	pseudoLevel = 15.0+(level.to_f/2.0)
 	return (((base.to_f * 2.0 + sv.to_f * 2) * pseudoLevel / 100.0) + pseudoLevel + 10.0).floor
 end
 
 # @return [Integer] the specified stat of this Pokémon (not used for total HP)
-def calcStat(base, level, sv)
+def calcStatGlobal(base, level, sv)
 	pseudoLevel = 15.0+(level.to_f/2.0)
 	return ((((base.to_f * 2.0 + sv.to_f * 2) * pseudoLevel / 100.0) + 5.0)).floor
 end

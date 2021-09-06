@@ -1019,7 +1019,7 @@ class PokemonPokedexInfo_Scene
 		drawTextEx(overlay,xLeft,coordinateY,450,1,"Faster than #{fasterThanPercentOfMetaGame}% of final evos",base,shadow)
 		coordinateY += 32
 		
-		totalHP = calcHP(fSpecies.base_stats[:HP],40,8)
+		totalHP = calcHPGlobal(fSpecies.base_stats[:HP],40,8)
 		currentHP = (totalHP * 0.15).floor
 		chanceToCatch = theoreticalCaptureChance(:NONE,currentHP,totalHP,fSpecies.catch_rate)
 		chanceToCatch = (chanceToCatch*10000).floor / 100.0
