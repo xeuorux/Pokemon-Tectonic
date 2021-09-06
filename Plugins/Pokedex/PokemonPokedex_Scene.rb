@@ -676,7 +676,10 @@ class PokemonPokedex_Scene
 		  
 		  maps_available_by_cap = {
 			15 => [33,34,29,30,38,26], # Casaba Villa, Scenic Path, Mine Path, Small Mine, Beach Route, Seaside Grotto
-			20 => [56,60,51] #Forested Road, Suburb, Starters Store
+			30 => [60,56,51, 	 #Forested Road, Suburb, Starters Store
+					3,25,55,6,	 # Savannah Route, Mining Camp, Flower Fields, Business Town
+					54,37,7,8,53 # Rolling Hills Route, Ice Rink, Swamp Route, Jungle Route
+					]
 		  }
 		  
 		  items_available_by_cap = {
