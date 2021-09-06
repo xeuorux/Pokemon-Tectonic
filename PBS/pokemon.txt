@@ -4513,7 +4513,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PORYGONZ,Item,DUSKSTONE
+Evolutions = PORYGON2,Level,38,PORYGONZ,Item,DUSKSTONE
 #-------------------------------
 [138]
 Name = Omanyte

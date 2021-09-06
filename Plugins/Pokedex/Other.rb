@@ -27,7 +27,8 @@ def isLegendary(species_symbol)
 	legendaries7 = (772..773).to_a
 	legendaries8 = (785..809).to_a
 	legendaries9 = (888..898).to_a
-	legendaries = [legendaries1,legendaries2,legendaries3,legendaries4,legendaries5,legendaries6,legendaries7,legendaries8,legendaries9].flatten
+	legendaries10 = (948..950).to_a
+	legendaries = [legendaries1,legendaries2,legendaries3,legendaries4,legendaries5,legendaries6,legendaries7,legendaries8,legendaries9,legendaries10].flatten
 	return legendaries.include?(GameData::Species.get(species_symbol).id_number)
 end
 

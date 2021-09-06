@@ -678,7 +678,8 @@ class PokemonPokedex_Scene
 			15 => [33,34,29,30,38,26], # Casaba Villa, Scenic Path, Mine Path, Small Mine, Beach Route, Seaside Grotto
 			30 => [60,56,51, 	 #Forested Road, Suburb, Starters Store
 					3,25,55,6,	 # Savannah Route, Mining Camp, Flower Fields, Business Town
-					54,37,7,8,53 # Rolling Hills Route, Ice Rink, Swamp Route, Jungle Route
+					54,37,7,8,53, # Rolling Hills Route, Ice Rink, Swamp Route, Jungle Route
+					9,36,10,11,12 # Ice Cave, Abandoned Mine, Jungle Temple, River Route, Shortcut Cave
 					]
 		  }
 		  
@@ -686,7 +687,8 @@ class PokemonPokedex_Scene
 			15 => [],
 			20 => [],
 			25 => [:MOONSTONE],
-			30 => [:FIRESTONE,:WATERSTONE,:LEAFSTONE,:THUNDERSTONE,:DAWNSTONE,:DUSKSTONE,:SHINYSTONE,:ICESTONE]
+			35 => [:FIRESTONE,:WATERSTONE,:LEAFSTONE,:THUNDERSTONE,:DAWNSTONE,
+					:DUSKSTONE,:SUNSTONE,:SHINYSTONE,:ICESTONE,:KINGSROCK]
 		  }
 		  
 		  surfingAvailable = levelIntAttempt >= 35

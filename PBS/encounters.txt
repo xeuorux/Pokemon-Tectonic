@@ -30,7 +30,6 @@ LandTall,20
 [029] # Mine Path
 Land,20
 20,MAREEP,8,10
-20,SPINARAK,8,10
 20,RALTS,8,10
 20,ROCKRUFF,8,10
 20,IGGLYBUFF,8,10
@@ -43,15 +42,14 @@ LandTall,20
 [030] # Small Mine
 DarkCave,20
 20,ROLYCOLY,9,11
-20,KLINK,9,11
 20,GASTLY,9,11
-20,SNOM,9,11
+20,BAGON,9,11
 20,MACHOP,9,11
+20,ARON,9,11
 Mud,40
-25,MUDBRAY,9,11
-25,MAKUHITA,9,11
-25,AXEW,9,11
-25,DIGLETT,9,11
+33,MUDBRAY,9,11
+33,MAKUHITA,9,11
+34,DIGLETT,9,11
 #-------------------------------
 [038] # Beach Route
 Land,20
@@ -73,17 +71,15 @@ Puddle,20
 #-------------------------------
 [26] # Seaside Grotto
 DarkCave,20
-20,SALANDIT,11,13
-20,WHISMUR,11,13
-20,NOIBAT,11,13
-20,ZUBAT,11,13
-20,GEODUDE,11,13
+25,SALANDIT,11,13
+25,WHISMUR,11,13
+25,ZUBAT,11,13
+25,GEODUDE,11,13
 LandSparse,20
-20,DITTO,11,13
-20,PARAS,11,13
-20,FERROSEED,11,13
-20,JANGMOO,11,13
-20,GULPIN,11,13
+25,DITTO,11,13
+25,PARAS,11,13
+25,FERROSEED,11,13
+25,GULPIN,11,13
 #-------------------------------
 # ALPHA --First Open World Section
 #-------------------------------
@@ -127,6 +123,7 @@ Land
 1,LITTEN,10,10
 1,SCORBUNNY,10,10
 1,SQUIRTLE,10,10
+1,TOTODILE,10,10
 1,PIPLUP,10,10
 1,OSHAWOTT,10,10
 1,FROAKIE,10,10
@@ -157,6 +154,13 @@ Land,20
 25,MINUN,15,18
 25,TYROGUE,15,18
 25,ESPURR,15,18
+#-------------------------------
+[36] # Abandoned Mine
+Land,20
+25,NOIBAT,15,18
+25,NOSEPASS,15,18
+25,BELDUM,15,18
+25,KLINK,15,18
 #-------------------------------
 [55] # Flower Fields Ideas
 FloweryGrass,20
@@ -208,6 +212,13 @@ Land,20
 25,TEDDIURSA,16,19
 25,SNOVER,16,19
 #-------------------------------
+[9] # Ice Cave
+Land,20
+25,SNORUNT,16,19
+25,BERGMITE,16,19
+25,SNEASEL,16,19
+25,CUBCHOO,16,19
+#-------------------------------
 [7] # Swamp Route
 Land,20
 25,CROAGUNK,18,20
@@ -252,3 +263,29 @@ LandTinted,20
 25,PANSAGE,16,19
 25,PANSEAR,16,19
 25,PANPOUR,16,19
+#-------------------------------
+[10] # Jungle Temple
+Land,20
+25,JANGMOO,17,20
+25,NATU,17,20
+25,LARVESTA,17,20
+25,SPINARAK,17,20
+#-------------------------------
+[11] # River Route
+Land,20
+25,CHEWTLE,17,20
+25,BIDOOF,17,20
+25,DROWZEE,17,20
+25,AXEW,17,20
+Puddle
+25,CORPHISH,17,20
+25,BARBOACH,17,20
+25,BUIZEL,17,20
+25,MAGIKARP,17,20
+#-------------------------------
+[12] # Shortcut Cave
+DarkCave,20
+25,LARVITAR,17,20
+25,WOOBAT,17,20
+25,DRILBUR,17,20
+25,TYNAMO,17,20
