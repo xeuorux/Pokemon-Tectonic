@@ -99,6 +99,11 @@ module Compiler
       end
       # Recompile all data
       compile_all(mustCompile) { |msg| pbSetWindowText(msg); echoln(msg) }
+	  
+	  if Input.press?(Input::SPECIAL)
+		compile_events
+		System.reload_cache
+	  end
     rescue Exception
       e = $!
       raise e if "#{e.class}"=="Reset" || e.is_a?(Reset) || e.is_a?(SystemExit)
@@ -172,7 +177,7 @@ module Compiler
       yield(_INTL("Compiling animations"))
       compile_animations
       yield(_INTL("Converting events"))
-      compile_trainer_events(mustCompile)
+      compile_events(mustCompile)
       yield(_INTL("Saving messages"))
       pbSetTextMessages
       MessageTypes.saveMessages
@@ -761,7 +766,7 @@ module Compiler
   #=============================================================================
   # Main compiler method for events
   #=============================================================================
-  def compile_trainer_events(_mustcompile)
+  def compile_events(_mustcompile)
     mapData = MapData.new
     t = Time.now.to_i
     Graphics.update
@@ -786,17 +791,22 @@ module Compiler
           map.events[key] = newevent
           changed = true
         end
-		newevent = convert_overworldPkmn_event(map.events[key])
-        if newevent
-          map.events[key] = newevent
-          changed = true
-        end
 		newevent = convert_chasm_style_trainers(map.events[key])
         if newevent
           map.events[key] = newevent
           changed = true
         end
 		newevent = convert_avatars(map.events[key])
+        if newevent
+          map.events[key] = newevent
+          changed = true
+        end
+		newevent = convert_overworld_pokemon(map.events[key])
+        if newevent
+          map.events[key] = newevent
+          changed = true
+        end
+		newevent = add_cry_script(map.events[key])
         if newevent
           map.events[key] = newevent
           changed = true
@@ -833,7 +843,7 @@ module Compiler
   end
   
   #=============================================================================
-  # Convert events using the PHT command into fully fledged placeholder trainers
+  # Convert events using the PHT command into fully fledged trainers
   #=============================================================================
   def convert_chasm_style_trainers(event)
 	return nil if !event || event.pages.length==0
@@ -893,7 +903,7 @@ module Compiler
   end
   
   #=============================================================================
-  # Convert events using the PHA name command into fully fledged placeholder avatars
+  # Convert events using the PHA name command into fully fledged avatars
   #=============================================================================
   def convert_avatars(event)
 	return nil if !event || event.pages.length==0
@@ -946,9 +956,64 @@ module Compiler
   end
   
   #=============================================================================
+  # Convert events using the PHP name command into fully fledged overworld pokemon
+  #=============================================================================
+  def convert_overworld_pokemon(event)
+	return nil if !event || event.pages.length==0
+	match = event.name.match(/.*PHP\(([_a-zA-Z0-9]+)(?:,([_a-zA-Z0-9]+))?.*/)
+	return nil if !match
+	species = match[1]
+	speciesData = GameData::Species.get(species.to_sym)
+	return if !species || !speciesData
+	directionText = match[2]
+	direction = Down
+	case directionText.downcase
+	when "left"
+		direction = Left
+	when "right"
+		direction = Right
+	when "up"
+		direction = Up
+	else
+		direction = Down
+	end
+	
+	ret = RPG::Event.new(event.x,event.y)
+	ret.name = "reset"
+	ret.id   = event.id
+	ret.pages = [3]
+	
+	# Create the first page, where the cry happens
+	firstPage = RPG::Event::Page.new
+	ret.pages[0] = firstPage
+	firstPage.graphic.character_name = "Followers/#{species}"
+	firstPage.graphic.direction = direction
+	firstPage.step_anime = true # Animate while still
+	firstPage.trigger = 0 # Action button
+	firstPage.list = []
+	push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesData.id,speciesData.form))
+	push_script(firstPage.list,sprintf("pbMessage(\"#{speciesData.real_name} cries out!\")",))
+	push_end(firstPage.list)
+	
+	# Create the second page, which has nothing
+	secondPage = RPG::Event::Page.new
+	ret.pages[1] = secondPage
+	secondPage.condition.self_switch_valid = true
+	secondPage.condition.self_switch_ch = "A"
+	
+	# Create the third page, which has nothing
+	thirdPage = RPG::Event::Page.new
+	ret.pages[2] = thirdPage
+	thirdPage.condition.self_switch_valid = true
+	thirdPage.condition.self_switch_ch = "D"
+	
+	return ret
+  end
+  
+  #=============================================================================
   # Add cry actions to overworld pokemon events which don't already have scripted behaviour.
   #=============================================================================
-  def convert_overworldPkmn_event(event)
+  def add_cry_script(event)
     return nil if !event || event.pages.length==0
 	match = event.name.match(/.*overworld\((.*)_?([0-9]*)\).*/)
 	return nil if !match

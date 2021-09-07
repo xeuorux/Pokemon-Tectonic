@@ -232,6 +232,36 @@ Pokemon = VOLBEAT,22
 Pokemon = ROOKIDEE,22
 Pokemon = PIDGEOTTO,22
 Pokemon = SEEDOT,22
+#-------------------------------
+[GAMBLER,Gregor]
+Pokemon = MEOWTH,22
+Pokemon = AMEOWTH,22
+Pokemon = GMEOWTH,22
+#-------------------------------
+[MAID,Alice]
+Pokemon = AUDINO,22
+Pokemon = QUILAVA,22
+Pokemon = LICKITUNG,22
+#-------------------------------
+[LASS,Tara]
+Pokemon = QUILLADIN,23
+Pokemon = SEALEO,23
+Pokemon = ELECTABUZZ,23
+#-------------------------------
+[MEDIUM,Theoni]
+Pokemon = SABLEYE,24
+Pokemon = FRILLISH,24
+Pokemon = DODUO,24
+#-------------------------------
+[BAKER,Rose]
+Pokemon = CHIMCHAR,23
+Pokemon = CACNEA,23
+Pokemon = AIPOM,23
+#-------------------------------
+[POKEMANIAC,Travis]
+Pokemon = ARON,23
+Pokemon = DWEBBLE,23
+Pokemon = BAGON,23
 ################################
 #	Ace Trainers
 ################################
