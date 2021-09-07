@@ -979,6 +979,8 @@ module Compiler
 		end
 	end
 	
+	echoln("Converting event: #{species},#{form},#{direction}")
+	
 	ret = RPG::Event.new(event.x,event.y)
 	ret.name = "reset"
 	ret.id   = event.id
