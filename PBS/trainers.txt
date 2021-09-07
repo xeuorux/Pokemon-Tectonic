@@ -209,9 +209,14 @@ Pokemon = NUMEL,20
 	Moves = TREMOR,FLAMEBURST,AMNESIA,FOCUSENERGY
 #-------------------------------
 [LINEBACKER,Josh]
-Pokemon = GURDURR,21
-Pokemon = STUFFUL,21
-Pokemon = MAKUHITA,21
+Pokemon = GURDURR,20
+Pokemon = STUFFUL,20
+Pokemon = MAKUHITA,20
+#-------------------------------
+[SCHOOLKID_F,Arya]
+Pokemon = SWIRLIX,20
+Pokemon = WHIMSICOTT,20
+Pokemon = PURRLOIN,20
 #-------------------------------
 [RUINMANIAC,Spencer]
 Pokemon = BALTOY,21
@@ -257,32 +262,6 @@ Pokemon = GOLETT,15
     Moves = SHADOWPUNCH,RUMBLE,FACADE,ROCKSLIDE
     Item = ORANBERRY
 #-------------------------------
-[COOLTRAINER_M,Max]
-Pokemon = HIPPOPOTAS,20
-	Moves = MUDSHOT,FIRESPIN,SANDSTORM,YAWN
-    AbilityIndex = 0
-    Item = SMOOTHROCK
-Pokemon = PAWNIARD,20
-    Moves = FURYCUTTER,SHOTPUT,TAUNT,SUCKERPUNCH
-    AbilityIndex = 0
-    Item = LIFEORB
-Pokemon = STARYU,20
-    Moves = WATERGUN,CONFUSERAY,RAPIDSPIN,REFLECT
-    AbilityIndex = 0
-    Item = ORANBERRY
-Pokemon = SANDSHREW,20
-    Moves = ROCKSLIDE,BULLDOZE,SANDSTORM,NIGHTSLASH
-    AbilityIndex = 0
-    Item = SITRUSBERRY
-Pokemon = TOGETIC,20
-	Moves = BOREALWIND,LIFEDEW,KALEIDOSCOPE,HEALBELL
-    AbilityIndex = 1
-    Item = ORANBERRY
-Pokemon = LILEEP,20
-    Moves = ABSORB,ACID,CONFUSERAY,INGRAIN
-    AbilityIndex = 1
-    Item = ORANBERRY
-#-------------------------------
 [COOLTRAINER_F,Raven]
 Pokemon = VOLTORB,20
     Moves = THUNDER,ROLLOUT,CHARGE,SWIFT
@@ -308,6 +287,32 @@ Pokemon = CHINCHOU,20
     Moves = THUNDER,CONFUSERAY,BUBBLEBEAM,THUNDERWAVE
     AbilityIndex = 0
     Item = SITRUSBERRY
+#-------------------------------
+[COOLTRAINER_M,Max]
+Pokemon = HIPPOPOTAS,25
+	Moves = MUDSHOT,FIRESPIN,SANDSTORM,YAWN
+    AbilityIndex = 0
+    Item = SMOOTHROCK
+Pokemon = PAWNIARD,25
+    Moves = DUALCHOP,METALCLAW,TAUNT,SUCKERPUNCH
+    AbilityIndex = 0
+    Item = LIFEORB
+Pokemon = TOGETIC,25
+	Moves = BOREALWIND,LIFEDEW,KALEIDOSCOPE,HEALBELL
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+Pokemon = SANDSLASH,25
+    Moves = ROCKSLIDE,BULLDOZE,SANDSTORM,NIGHTSLASH
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+Pokemon = HERDIER,25
+    Moves = PLAYROUGH,FACADE,HELPINGHAND,RECOVER
+    AbilityIndex = 1
+    Item = LEFTOVERS
+Pokemon = LILEEP,25
+    Moves = MEGADRAIN,BRINE,CONFUSERAY,INGRAIN
+    AbilityIndex = 1
+    Item = LEFTOVERS
 #-------------------------------
 [COOLTRAINER_M,Zeke]
 Pokemon = BELLOSSOM,25

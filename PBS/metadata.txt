@@ -15,7 +15,7 @@ PlayerB = POKEMONTRAINER_Leaf,trchar001,girl_bike,girl_surf,girl_run,girl_surf,g
 # Intro - Alpha
 #-------------------------------
 [002]
-# Forest Cave
+# Panorama Test Map
 Outdoor = true
 ShowArea = true
 MapPosition = 0,13,12
@@ -27,16 +27,17 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
+Weather = Sun,10
 MapPosition = 0,13,12
 #-------------------------------
 [004]
-# Big Cave B1
+# Scientist's House
 ShowArea = false
 Bicycle = true
 MapPosition = 0,13,12
 #-------------------------------
 [005]
-# River Route
+# Secret Location
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -44,11 +45,11 @@ MapPosition = 0,13,11
 BattleBack = field
 #-------------------------------
 [006]
-# Harmonic Forest
+# Business Town
 MapPosition = 0,13,11
 #-------------------------------
 [007]
-# Big Cave B2
+# Swamp Ideas
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -56,70 +57,61 @@ MapPosition = 0,13,10
 MapSize = 2,11
 #-------------------------------
 [008]
-# Crossroads House
+# Ghost/Grass Town...?
 HealingSpot = 22,18,19
 MapPosition = 0,13,12
 #-------------------------------
 [009]
-# River Grove
+# Ice Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,14,10
 #-------------------------------
 [010]
-# Oasis Town
+# Jungle Temple
 Bicycle = true
 MapPosition = 0,13,10
 BattleBack = indoor3
 Environment = Rock
 #-------------------------------
 [011]
-# Oasis Town Hidden
+# River Route
 MapPosition = 0,14,10
 #-------------------------------
 [012]
-# Oasis Center
+# Shortcut Cave
 HealingSpot = 10,39,21
 MapPosition = 0,14,10
 #-------------------------------
 [013]
-# Oasis Mart
 MapPosition = 0,14,10
 #-------------------------------
 [014]
-# Oasis Gym
 MapPosition = 0,13,10
 #-------------------------------
 [015]
-# Professor's Lab
 MapPosition = 0,13,10
 #-------------------------------
 [016]
-# Neighbor's House
 MapPosition = 0,13,10
 #-------------------------------
 [017]
-# Forest Cave B2
 MapPosition = 0,13,10
 #-------------------------------
 [018]
-# Forest Cave B2
 MapPosition = 0,13,10
 #-------------------------------
 [019]
-# Sailor's House
 MapPosition = 0,13,10
 #-------------------------------
 [020]
-# Short Route
 Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,13,10
 #-------------------------------
 [021]
-# Starting Town
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -128,19 +120,17 @@ BattleBack = field
 MapSize = 1,11
 #-------------------------------
 [022]
-# Forest Crossroads
 Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
 [023]
-# Boss Fight Test Area
+# Testing Map
 Outdoor = true
 ShowArea = true
 MapPosition = 0,15,8
 #-------------------------------
 [024]
-# Prototype
 MapPosition = 0,15,8
 #-------------------------------
 [025]
@@ -180,7 +170,6 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [032]
-# Player's House
 HealingSpot = 21,25,13
 #-------------------------------
 [033]
@@ -211,13 +200,11 @@ Outdoor = false
 Bicycle = true
 #-------------------------------
 [043]
-# Forest Route
 Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
 [048]
-# Flower Town
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -234,14 +221,14 @@ Weather = Rain,10
 HealingSpot = 56,41,27
 #-------------------------------
 [059]
-# Dock
+# Mainland Dock
 Outdoor = true
 ShowArea = true
 Bicycle = true
 Weather = Rain,10
 #-------------------------------
 [060]
-# Forest Route
+# Forested Road
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -251,5 +238,4 @@ Weather = Rain,10
 # Sailors house
 #-------------------------------
 [076]
-# Flower Center
 HealingSpot = 48,36,21
