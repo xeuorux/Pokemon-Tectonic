@@ -99,11 +99,6 @@ module Compiler
       end
       # Recompile all data
       compile_all(mustCompile) { |msg| pbSetWindowText(msg); echoln(msg) }
-	  
-	  if Input.press?(Input::SPECIAL)
-		compile_events
-		System.reload_cache
-	  end
     rescue Exception
       e = $!
       raise e if "#{e.class}"=="Reset" || e.is_a?(Reset) || e.is_a?(SystemExit)
@@ -177,7 +172,7 @@ module Compiler
       yield(_INTL("Compiling animations"))
       compile_animations
       yield(_INTL("Converting events"))
-      compile_events(mustCompile)
+      compile_events
       yield(_INTL("Saving messages"))
       pbSetTextMessages
       MessageTypes.saveMessages
@@ -766,7 +761,7 @@ module Compiler
   #=============================================================================
   # Main compiler method for events
   #=============================================================================
-  def compile_events(_mustcompile)
+  def compile_events
     mapData = MapData.new
     t = Time.now.to_i
     Graphics.update
@@ -960,22 +955,28 @@ module Compiler
   #=============================================================================
   def convert_overworld_pokemon(event)
 	return nil if !event || event.pages.length==0
-	match = event.name.match(/.*PHP\(([_a-zA-Z0-9]+)(?:,([_a-zA-Z0-9]+))?.*/)
+	match = event.name.match(/.*PHP\(([a-zA-Z0-9]+)(?:_([0-9]*))?(?:,([_a-zA-Z0-9]+))?.*/)
 	return nil if !match
 	species = match[1]
+	return if !species
+	species = species.upcase
+	form	= match[2]
+	form = 0 if !form || form == ""
 	speciesData = GameData::Species.get(species.to_sym)
-	return if !species || !speciesData
-	directionText = match[2]
+	return if !speciesData
+	directionText = match[3]
 	direction = Down
-	case directionText.downcase
-	when "left"
-		direction = Left
-	when "right"
-		direction = Right
-	when "up"
-		direction = Up
-	else
-		direction = Down
+	if !directionText.nil?
+		case directionText.downcase
+		when "left"
+			direction = Left
+		when "right"
+			direction = Right
+		when "up"
+			direction = Up
+		else
+			direction = Down
+		end
 	end
 	
 	ret = RPG::Event.new(event.x,event.y)
@@ -986,12 +987,14 @@ module Compiler
 	# Create the first page, where the cry happens
 	firstPage = RPG::Event::Page.new
 	ret.pages[0] = firstPage
-	firstPage.graphic.character_name = "Followers/#{species}"
+	fileName = species
+	fileName += "_" + form.to_s if form != 0
+	firstPage.graphic.character_name = "Followers/#{fileName}"
 	firstPage.graphic.direction = direction
 	firstPage.step_anime = true # Animate while still
 	firstPage.trigger = 0 # Action button
 	firstPage.list = []
-	push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesData.id,speciesData.form))
+	push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesData.id,form))
 	push_script(firstPage.list,sprintf("pbMessage(\"#{speciesData.real_name} cries out!\")",))
 	push_end(firstPage.list)
 	
