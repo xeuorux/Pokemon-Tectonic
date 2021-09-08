@@ -522,10 +522,10 @@ class PokemonPokedexInfo_Scene
         learnset = fSpecies.moves
         displayIndex = 0
         @scrollableListLength = learnset.length
-        learnset.each_with_index do |move,index|
+        learnset.each_with_index do |learnsetEntry,index|
           next if index<@scroll
-          level = move[0]
-          move = move[1]
+          level = learnsetEntry[0]
+          move = learnsetEntry[1]
           return if !move || !level
           levelLabel = level.to_s
           if level == 0
@@ -995,11 +995,17 @@ class PokemonPokedexInfo_Scene
 		drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("Analysis of {1}",@title),base,shadow)
 		coordinateY += 34
 		
+		# Effective HP
+		
 		phep = fSpecies.base_stats[:HP] * fSpecies.base_stats[:DEFENSE]
 		shep = fSpecies.base_stats[:HP] * fSpecies.base_stats[:SPECIAL_DEFENSE]
+		phep /= 100
+		shep /= 100
 		effectiveHPs = "PEHP, SEHP: #{phep},#{shep}"
 		drawTextEx(overlay,xLeft,coordinateY,450,1,effectiveHPs,base,shadow)
 		coordinateY += 32
+		
+		# Speed tier
 		
 		numberFaster = 0
 		total = 0
@@ -1007,7 +1013,7 @@ class PokemonPokedexInfo_Scene
 		GameData::Species.each do |otherSpeciesData|
 			next if otherSpeciesData.form != 0
 			next if otherSpeciesData.get_evolutions.length > 0
-			next if isLegendary(otherSpeciesData.id)
+			next if isLegendary(otherSpeciesData.id) || isQuarantined(otherSpeciesData.id)
 			if mySpeed > otherSpeciesData.base_stats[:SPEED]
 				numberFaster += 1
 			end
@@ -1019,11 +1025,64 @@ class PokemonPokedexInfo_Scene
 		drawTextEx(overlay,xLeft,coordinateY,450,1,"Faster than #{fasterThanPercentOfMetaGame}% of final evos",base,shadow)
 		coordinateY += 32
 		
+		# Pokeball catch chance
 		totalHP = calcHPGlobal(fSpecies.base_stats[:HP],40,8)
 		currentHP = (totalHP * 0.15).floor
 		chanceToCatch = theoreticalCaptureChance(:NONE,currentHP,totalHP,fSpecies.catch_rate)
 		chanceToCatch = (chanceToCatch*10000).floor / 100.0
 		drawTextEx(overlay,xLeft,coordinateY,450,1,"#{chanceToCatch}% chance to catch at level 40, %15 health",base,shadow)
+		coordinateY += 32
+		
+		# Coverage types
+		
+		moves = []
+		fSpecies.moves.each do |learnsetEntry|
+			moves.push(learnsetEntry[1])
+		end
+		
+		moves.concat(fSpecies.egg_moves)
+		moves.concat(fSpecies.tutor_moves)
+		moves.uniq!
+		moves.compact!
+		
+		typesOfCoverage = []
+		moves.each do |move|
+			moveData = GameData::Move.get(move)
+			next if moveData.category == 2
+			next unless moveData.base_damage >= 80
+			typesOfCoverage.push(moveData.type)
+		end
+		typesOfCoverage.uniq!
+		typesOfCoverage.compact!
+	
+		drawTextEx(overlay,xLeft,coordinateY,450,1,"BnB coverage: #{typesOfCoverage[0..[2,typesOfCoverage.length].min].to_s}",base,shadow)
+		coordinateY += 32
+		for index in 1..10
+			break if typesOfCoverage.length <= 5 * index
+			drawTextEx(overlay,xLeft,coordinateY,450,1,"#{typesOfCoverage[(5 * index)...[(5 * (index+1)),typesOfCoverage.length].min].to_s}",base,shadow)
+			coordinateY += 32
+		end
+		
+		# Metagame coverage
+		numberCovered = 0
+		GameData::Species.each do |otherSpeciesData|
+			next if otherSpeciesData.form != 0
+			next if otherSpeciesData.get_evolutions.length > 0
+			next if isLegendary(otherSpeciesData.id) || isQuarantined(otherSpeciesData.id)
+
+			typesOfCoverage.each do |coverageType|
+				effect = Effectiveness.calculate(coverageType,otherSpeciesData.type1,otherSpeciesData.type2)
+			
+				if Effectiveness.super_effective?(effect)
+					numberCovered += 1
+					break
+				end
+			end
+		end
+		
+		coversPercentOfMetaGame = numberCovered.to_f / total.to_f
+		coversPercentOfMetaGame = (coversPercentOfMetaGame*10000).floor / 100.0
+		drawTextEx(overlay,xLeft,coordinateY,450,1,"Covers #{coversPercentOfMetaGame}% of final evos",base,shadow)
 		coordinateY += 32
       end
     end

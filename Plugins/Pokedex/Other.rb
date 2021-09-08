@@ -32,6 +32,18 @@ def isLegendary(species_symbol)
 	return legendaries.include?(GameData::Species.get(species_symbol).id_number)
 end
 
+def isQuarantined(species_symbol)
+	quarantined = [:FURFROU,:YUNGOOS,:GUMSHOOS,:FARFETCHD,:PANSEAR,:SIMISEAR,
+		:FINNEON,:LUMINEON,:ARROKUDA,:BARRASKEWDA,:GOLDEEN,:SEAKING,:WISHIWASHI,:PANPOUR,
+		:SIMIPOUR,:BASCULIN,:TYMPOLE,:PALPITOAD,:SEISMITOAD,:CRAMORANT,:BRUXISH,
+		:CORSOLA,:BINACLE,:BARBACLE,:TIRTOUGA,:CARRACOSTA,:CLAMPERL,:HUNTAIL,
+		:GOREBYSS,:PANSAGE,:SIMISAGE,:THROW,:SAWK,:WURMPLE,:CASCOON,:SILCOON,
+		:DUSTOX,:BEAUTIFLY,:SURSKIT,:MASQUERAIN,:UNOWN,:BURMY,:WORMADAM,:SHELMET,
+		:ACCELGOR,:KARRABLAST,:ESCAVALIER
+	]
+	return quarantined.include?(species_symbol)
+end
+
 class PokeBattle_Scene
   #=============================================================================
   # Shows the Pokédex entry screen for a newly caught Pokémon
