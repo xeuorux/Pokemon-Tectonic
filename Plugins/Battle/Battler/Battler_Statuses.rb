@@ -1,5 +1,11 @@
 class PokeBattle_Battler
 
+  def getStatuses()
+	statuses = [@status]
+	statuses.push(@bossStatus) if boss?
+	return statuses
+  end
+
   #=============================================================================
   # Generalised checks for whether a status problem can be inflicted
   #=============================================================================
@@ -13,21 +19,59 @@ class PokeBattle_Battler
     if BattleHandlers.triggerStatusCheckAbilityNonIgnorable(self.ability,self,checkStatus)
       return true
     end
-    return @status==checkStatus
+    return getStatuses().include?(checkStatus)
   end
 
   def pbHasAnyStatus?
     if BattleHandlers.triggerStatusCheckAbilityNonIgnorable(self.ability,self,nil)
       return true
     end
-    return @status != :NONE
+	return hasAnyStatusNoTrigger?()
+  end
+  
+  def hasAnyStatusNoTrigger()
+	hasStatus = false
+	getStatuses().each do |status|
+		hasStatus = true if status != :NONE
+	end
+    return hasStatus
+  end
+  
+  def hasSpotsForStatus()
+	hasSpots = false
+	getStatuses().each do |status|
+		hasSpots = true if status == :NONE
+	end
+    return hasSpots
+  end
+  
+  def reduceStatusCount(statusToReduce = nil)
+	if statusToReduce.nil?
+		@statusCount -= 1
+		@bossStatusCount -= 1 if boss?
+	else
+		if @status == statusToReduce
+			@statusCount -= 1
+		elsif boss? && @bossStatus == statusToReduce
+			@bossStatusCount -= 1
+		end
+	end
+  end
+  
+  def getStatusCount(statusOfConcern)
+		if @status == statusOfConcern
+			return @statusCount
+		elsif boss? && @bossStatus == statusOfConcern
+			return @bossStatusCount
+		end
+		return 0
   end
 
   def pbCanInflictStatus?(newStatus,user,showMessages,move=nil,ignoreStatus=false)
     return false if fainted?
     selfInflicted = (user && user.index==@index)
     # Already have that status problem
-    if self.status==newStatus && !ignoreStatus
+    if getStatuses().include?(newStatus) && !ignoreStatus
       if showMessages
         msg = ""
         case self.status
@@ -41,11 +85,19 @@ class PokeBattle_Battler
       end
       return false
     end
-    # Trying to replace a status problem with another one
-    if self.status != :NONE && !ignoreStatus && !selfInflicted
-      @battle.pbDisplay(_INTL("{1} already has a status problem...",pbThis(false))) if showMessages
-      return false
-    end
+	if !boss?
+		# Trying to replace a status problem with another one
+		if self.status != :NONE && !ignoreStatus && !selfInflicted
+		  @battle.pbDisplay(_INTL("{1} already has a status problem...",pbThis(false))) if showMessages
+		  return false
+		end
+	else
+		# Trying to give too many statuses
+		if !hasSpotsForStatus() && !ignoreStatus && !selfInflicted
+			@battle.pbDisplay(_INTL("{1} cannot have any more status problems...",pbThis(false))) if showMessages
+			return false
+		end
+	end
     # Trying to inflict a status problem on a Pokémon behind a substitute
     if @effects[PBEffects::Substitute]>0 && !(move && move.ignoresSubstitute?(user)) &&
        !selfInflicted
@@ -173,7 +225,7 @@ class PokeBattle_Battler
   def pbCanSynchronizeStatus?(newStatus,target)
     return false if fainted?
     # Trying to replace a status problem with another one
-    return false if self.status != :NONE
+    return false if !hasSpotsForStatus()
     # Terrain immunity
     return false if @battle.field.terrain == :Misty && affectedByTerrain?
     # Type immunities
@@ -216,8 +268,18 @@ class PokeBattle_Battler
   #=============================================================================
   def pbInflictStatus(newStatus,newStatusCount=0,msg=nil,user=nil)
     # Inflict the new status
-    self.status      = newStatus
-    self.statusCount = newStatusCount
+    if !boss?
+		@status      = newStatus
+		@statusCount = newStatusCount
+	else
+		if @status == :NONE
+			@status      = newStatus
+			@statusCount = newStatusCount
+		else
+			@bossStatus  = newStatus
+			@bossStatusCount = newStatusCount
+		end
+	end
     @effects[PBEffects::Toxic] = 0
     # Show animation
     if newStatus == :POISON && newStatusCount > 0
@@ -264,7 +326,7 @@ class PokeBattle_Battler
     #       asleep (i.e. it doesn't cancel Rollout/Uproar/other multi-turn
     #       moves, and it doesn't cancel any moves if self becomes frozen/
     #       disabled/anything else). This behaviour was tested in Gen 5.
-    if @status == :SLEEP && @effects[PBEffects::Outrage] > 0
+    if newStatus == :SLEEP && @effects[PBEffects::Outrage] > 0
       @effects[PBEffects::Outrage] = 0
       @currentMove = nil
     end
@@ -405,55 +467,83 @@ class PokeBattle_Battler
   #=============================================================================
   # Generalised status displays
   #=============================================================================
-  def pbContinueStatus
-    if self.status == :POISON && @statusCount > 0
-      @battle.pbCommonAnimation("Toxic", self)
-    else
-      anim_name = GameData::Status.get(self.status).animation
-      @battle.pbCommonAnimation(anim_name, self) if anim_name
-    end
-    yield if block_given?
-    case self.status
-    when :SLEEP
-      @battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis))
-    when :POISON
-      @battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
-    when :BURN
-      @battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis))
-    when :PARALYSIS
-      @battle.pbDisplay(_INTL("{1} is paralyzed! It can't move!", pbThis))
-    when :FROZEN
-      @battle.pbDisplay(_INTL("{1} is frozen solid!", pbThis))
-    end
-    PBDebug.log("[Status continues] #{pbThis}'s sleep count is #{@statusCount}") if self.status == :SLEEP
+  def pbContinueStatus(statusToContinue = nil)
+    getStatuses().each do |oneStatus|
+		next if !statusToContinue.nil? && oneStatus != statusToContinue
+		if oneStatus == :POISON && @statusCount > 0
+			@battle.pbCommonAnimation("Toxic", self)
+		else
+		  anim_name = GameData::Status.get(oneStatus).animation
+		  @battle.pbCommonAnimation(anim_name, self) if anim_name
+		end
+		yield if block_given?
+		case oneStatus
+		when :SLEEP
+		  @battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis))
+		when :POISON
+		  @battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
+		when :BURN
+		  @battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis))
+		when :PARALYSIS
+		  @battle.pbDisplay(_INTL("{1} is paralyzed! It can't move!", pbThis))
+		when :FROZEN
+		  @battle.pbDisplay(_INTL("{1} is frozen solid!", pbThis))
+		end
+		PBDebug.log("[Status continues] #{pbThis}'s sleep count is #{@statusCount}") if oneStatus == :SLEEP
+	end
   end
 
-  def pbCureStatus(showMessages=true)
-    oldStatus = status
-    self.status = :NONE
-    if showMessages
-      case oldStatus
-      when :SLEEP     then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
-      when :POISON    then @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", pbThis))
-      when :BURN      then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
-      when :PARALYSIS then @battle.pbDisplay(_INTL("{1} was cured of paralysis.", pbThis))
-      when :FROZEN    then @battle.pbDisplay(_INTL("{1} thawed out!", pbThis))
-      end
-    end
+  def pbCureStatus(showMessages=true,statusToCure=nil)
+    oldStatuses = []
 	
-	# Lingering Daze
-	if oldStatus == :SLEEP
-	  @battle.eachOtherSideBattler(@index) do |b|
-        if b.hasActiveAbility?(:LINGERINGDAZE)
-			@battle.pbShowAbilitySplash(b)
-			pbLowerStatStageByAbility(:SPECIAL_ATTACK,1,b)
-			pbLowerStatStageByAbility(:SPECIAL_DEFENSE,1,b)
-			@battle.pbHideAbilitySplash(b)
-		end
-      end
+	if statusToCure.nil?
+		echoln("Curing all statuses.")
+	else
+		echoln("Curing #{statusToCure}.")
 	end
 	
-    #PBDebug.log("[Status change] #{pbThis}'s status was cured") if !showMessages
+    if statusToCure.nil? || @status == statusToCure
+		oldStatuses.push(@status)
+		@status = :NONE
+	end
+		
+	if boss?
+		if statusToCure.nil? || @bossStatus == statusToCure
+			oldStatuses.push(@bossStatus)
+			@bossStatus = :NONE
+		elsif @status == :NONE
+			@status = @bossStatus
+			@bossStatus = :NONE
+		end
+	end
+	
+	oldStatuses.each do |oldStatus|
+		if showMessages
+			case oldStatus
+			when :SLEEP     then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
+			when :POISON    then @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", pbThis))
+			when :BURN      then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
+			when :PARALYSIS then @battle.pbDisplay(_INTL("{1} was cured of paralysis.", pbThis))
+			when :FROZEN    then @battle.pbDisplay(_INTL("{1} thawed out!", pbThis))
+			end
+        end
+	
+		# Lingering Daze
+		if oldStatus == :SLEEP
+		  @battle.eachOtherSideBattler(@index) do |b|
+			if b.hasActiveAbility?(:LINGERINGDAZE)
+				@battle.pbShowAbilitySplash(b)
+				pbLowerStatStageByAbility(:SPECIAL_ATTACK,1,b)
+				pbLowerStatStageByAbility(:SPECIAL_DEFENSE,1,b)
+				@battle.pbHideAbilitySplash(b)
+			end
+		  end
+		end
+	end
+	
+	@battle.scene.pbRefreshOne(@index)
+	
+    PBDebug.log("[Status change] #{pbThis}'s status was cured")
   end
 
   #=============================================================================

@@ -30,6 +30,23 @@ class PokeBattle_Battler
 		return @pokemon && @pokemon.shiny?
 	end
 	
+	def pbThis(lowerCase=false)
+		if opposes?
+			if @battle.trainerBattle?
+				return lowerCase ? _INTL("the opposing {1}",name) : _INTL("The opposing {1}",name)
+			else
+				if !boss?
+					return lowerCase ? _INTL("the wild {1}",name) : _INTL("The wild {1}",name)
+				else
+					return lowerCase ? _INTL("the avatar of {1}",name) : _INTL("The avatar of {1}",name)
+				end
+			end
+		elsif !pbOwnedByPlayer?
+			return lowerCase ? _INTL("the ally {1}",name) : _INTL("The ally {1}",name)
+		end
+		return name
+	end
+	
   # Returns the active types of this Pokémon. The array should not include the
   # same type more than once, and should not include any invalid type numbers
   # (e.g. -1).

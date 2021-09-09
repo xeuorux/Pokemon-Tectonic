@@ -142,8 +142,8 @@ class PokeBattle_Battle
     # Damage from poisoning
     priority.each do |b|
       next if b.fainted?
-      next if b.status != :POISON
-      if b.statusCount>0
+      next if !b.poisoned?
+      if b.getStatusCount(:POISON)>0
         b.effects[PBEffects::Toxic] += 1
         b.effects[PBEffects::Toxic] = 15 if b.effects[PBEffects::Toxic]>15
       end
@@ -162,9 +162,9 @@ class PokeBattle_Battle
         end
       elsif b.takesIndirectDamage?
         oldHP = b.hp
-        dmg = (b.statusCount==0) ? b.totalhp/8 : b.totalhp*b.effects[PBEffects::Toxic]/16
+        dmg = (b.getStatusCount(:POISON)==0) ? b.totalhp/8 : b.totalhp*b.effects[PBEffects::Toxic]/16
 		dmg = (dmg/4.0).round if b.boss
-        b.pbContinueStatus { b.pbReduceHP(dmg,false) }
+        b.pbContinueStatus(:POISON) { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
         b.pbFaint if b.fainted?
@@ -172,12 +172,12 @@ class PokeBattle_Battle
     end
     # Damage from burn
     priority.each do |b|
-      next if b.status != :BURN || !b.takesIndirectDamage?
+      next if !b.burned? || !b.takesIndirectDamage?
       oldHP = b.hp
       dmg = b.totalhp/8
       dmg = (dmg/2.0).round if b.hasActiveAbility?(:HEATPROOF)
 	  dmg = (dmg/4.0).round if b.boss
-      b.pbContinueStatus { b.pbReduceHP(dmg,false) }
+      b.pbContinueStatus(:BURN) { b.pbReduceHP(dmg,false) }
       b.pbItemHPHealCheck
       b.pbAbilitiesOnDamageTaken(oldHP)
       b.pbFaint if b.fainted?

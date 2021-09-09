@@ -1,5 +1,15 @@
 class PokeBattle_Battler
 	attr_accessor :boss
+	attr_reader :bossStatus
+	attr_reader :bossStatusCount
+	
+	def bossStatus=(value)
+		@effects[PBEffects::Truant] = false if @bossStatus == :SLEEP && value != :SLEEP
+		@effects[PBEffects::Toxic]  = 0 if value != :POISON
+		@bossStatus = value
+		@bossStatusCount = 0 if value != :POISON && value != :SLEEP
+		@battle.scene.pbRefreshOne(@index)
+	end
 	
 	def boss?
 		return boss
@@ -25,6 +35,7 @@ class PokeBattle_Battler
 		@iv             = {}
 		GameData::Stat.each_main { |s| @iv[s.id] = 0 }
 		@boss			= false
+		@bossStatus		= :NONE
 	end
   
   # Used by Future Sight only, when Future Sight's user is no longer in battle.

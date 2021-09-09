@@ -58,7 +58,7 @@ class PokeBattle_AI
 	end
 	
 	def self.triggerBossSpeciesRequireMove(species,move,user,target)
-		ret = BossSpeciesRequireMove.trigger(species,move,user,target,m)
+		ret = BossSpeciesRequireMove.trigger(species,move,user,target)
 		return (ret!=nil) ? ret : false
 	end
 	

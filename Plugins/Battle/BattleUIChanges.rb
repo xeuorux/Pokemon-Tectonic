@@ -490,13 +490,21 @@ class PokemonDataBox < SpriteWrapper
 		if @battler.owned? && @battler.opposes?(0) && !@battler.boss
 		  imagePos.push(["Graphics/Pictures/Battle/icon_own",@spriteBaseX+8,36])
 		end
+		firstStatusY = 36
 		# Draw status icon
 		if @battler.status != :NONE
 		  s = GameData::Status.get(@battler.status).id_number
 		  if @battler.status == :POISON && @battler.statusCount > 0   # Badly poisoned
 			s = 6
 		  end
-		  imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+24,36,
+		  imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+24,firstStatusY,
+			 0,(s-1)*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
+		end
+		# Draw status icon
+		if @battler.boss? && @battler.bossStatus != :NONE
+		  s = GameData::Status.get(@battler.bossStatus).id_number
+		  y = firstStatusY + 4 + STATUS_ICON_HEIGHT
+		  imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+24,y,
 			 0,(s-1)*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
 		end
 		# Refresh type bars
