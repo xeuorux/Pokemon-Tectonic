@@ -73,7 +73,7 @@ Puddle,20
 DarkCave,20
 25,SALANDIT,11,13
 25,WHISMUR,11,13
-25,ZUBAT,11,13
+25,NOIBAT,11,13
 25,GEODUDE,11,13
 LandSparse,20
 25,DITTO,11,13
@@ -156,8 +156,8 @@ Land,20
 25,ESPURR,15,18
 #-------------------------------
 [36] # Abandoned Mine
-Land,20
-25,NOIBAT,15,18
+DarkCave,20
+25,ZUBAT,15,18
 25,NOSEPASS,15,18
 25,BELDUM,15,18
 25,KLINK,15,18
@@ -286,6 +286,13 @@ Puddle
 [12] # Shortcut Cave
 DarkCave,20
 25,LARVITAR,17,20
-25,WOOBAT,17,20
+25,BRONZOR,17,20
 25,DRILBUR,17,20
 25,TYNAMO,17,20
+#-------------------------------
+[13] # Cave Path
+DarkCave,20
+25,DEINO,17,20
+25,WOOBAT,17,20
+25,SABLEYE,17,20
+25,MAWILE,17,20

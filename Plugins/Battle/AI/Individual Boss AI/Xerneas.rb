@@ -1,5 +1,5 @@
 PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:XERNEAS,"124"],
-	proc { |speciesAndMoveCode,user,target|
+	proc { |speciesAndMoveCode,user,target,move|
 		#Use wonder room if its not the first attack of the round, and if all the player's active pokemon
 		#have higher special defense than physical defense
 		if user.battle.commandPhasesThisRound != 0

@@ -58,20 +58,20 @@ class PokeBattle_AI
 	end
 	
 	def self.triggerBossSpeciesRequireMove(species,move,user,target)
-		ret = BossSpeciesRequireMove.trigger(species,move,user,target)
+		ret = BossSpeciesRequireMove.trigger(species,move,user,target,m)
 		return (ret!=nil) ? ret : false
 	end
 	
 	BossSpeciesUseMoveCodeIfAndOnlyIf			= MoveScoringHandlerHash.new
 	BossSpeciesUseMoveIDIfAndOnlyIf				= MoveScoringHandlerHash.new
 	
-	def self.triggerBossSpeciesUseMoveCodeIfAndOnlyIf(speciesAndMoveCode,user,target)
-		ret = BossSpeciesUseMoveCodeIfAndOnlyIf.trigger(speciesAndMoveCode,user,target)
+	def self.triggerBossSpeciesUseMoveCodeIfAndOnlyIf(speciesAndMoveCode,user,target,move)
+		ret = BossSpeciesUseMoveCodeIfAndOnlyIf.trigger(speciesAndMoveCode,user,target,move)
 		return ret
 	end
 	
-	def self.triggerBossSpeciesUseMoveIDIfAndOnlyIf(speciesAndMoveID,user,target)
-		ret = BossSpeciesUseMoveCodeIfAndOnlyIf.trigger(speciesAndMoveID,user,target)
+	def self.triggerBossSpeciesUseMoveIDIfAndOnlyIf(speciesAndMoveID,user,target,move)
+		ret = BossSpeciesUseMoveCodeIfAndOnlyIf.trigger(speciesAndMoveID,user,target,move)
 		return ret
 	end
 	
@@ -163,8 +163,8 @@ class PokeBattle_AI
 		score = 0 if PokeBattle_AI.triggerBossRejectMoveID(move.id,move,user,target)
 		score = 0 if PokeBattle_AI.triggerBossSpeciesRejectMove(user.species,move,user,target)
 		
-		useMoveIFF = PokeBattle_AI.triggerBossSpeciesUseMoveCodeIfAndOnlyIf([user.species,move.function],user,target)
-		useMoveIFF = useMoveIFF && PokeBattle_AI.triggerBossSpeciesUseMoveIDIfAndOnlyIf([user.species,move.id],user,target)
+		useMoveIFF = PokeBattle_AI.triggerBossSpeciesUseMoveCodeIfAndOnlyIf([user.species,move.function],user,target,move)
+		useMoveIFF = useMoveIFF && PokeBattle_AI.triggerBossSpeciesUseMoveIDIfAndOnlyIf([user.species,move.id],user,target,move)
 		if !(useMoveIFF.nil?)
 			score = useMoveIFF ? 99999 : 0
 		end

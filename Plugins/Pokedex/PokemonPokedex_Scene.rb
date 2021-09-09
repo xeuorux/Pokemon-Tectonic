@@ -679,7 +679,8 @@ class PokemonPokedex_Scene
 			30 => [60,56,51, 	 #Forested Road, Suburb, Starters Store
 					3,25,55,6,	 # Savannah Route, Mining Camp, Flower Fields, Business Town
 					54,37,7,8,53, # Rolling Hills Route, Ice Rink, Swamp Route, Jungle Route
-					9,36,10,11,12 # Ice Cave, Abandoned Mine, Jungle Temple, River Route, Shortcut Cave
+					9,36,10,12, # Ice Cave, Abandoned Mine, Jungle Temple, Shortcut Cave
+					13,11			# Cave Path, River Route
 					]
 		  }
 		  

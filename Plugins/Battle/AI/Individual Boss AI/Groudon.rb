@@ -1,13 +1,13 @@
 # Eruption
 PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:GROUDON,"08B"],
-	proc { |species,move,user,target|
+	proc { |speciesAndMoveCode,user,target,move|
 		next @battle.turnCount == 0
 	}
 )
 
 # PRECIPICE BLADES
 PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:GROUDON,:PRECIPICEBLADES],
-	proc { |species,move,user,target|
+	proc { |speciesAndMoveCode,user,target,move|
 		next battler.battle.numBossOnlyTurns == 0 && @battle.turnCount >= 0
 	}
 )

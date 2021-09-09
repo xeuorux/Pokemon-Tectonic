@@ -1,6 +1,6 @@
 # Strength Sap
 PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:SHIINOTIC,"160"],
-	 proc { |speciesAndMove,user,target|
+	 proc { |speciesAndMove,user,target,move|
 	maxHeal = -99999
 	maxHealer = nil
 	@battle.battlers.each do |b|
