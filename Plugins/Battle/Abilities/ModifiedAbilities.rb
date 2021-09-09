@@ -1,15 +1,3 @@
-BattleHandlers::StatusCureAbility.add(:COLDPROOF,
-  proc { |ability,battler|
-    next if battler.status != :FROZEN
-    battler.battle.pbShowAbilitySplash(battler)
-    battler.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-    if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battler.battle.pbDisplay(_INTL("{1}'s {2} unchilled it!",battler.pbThis,battler.abilityName))
-    end
-    battler.battle.pbHideAbilitySplash(battler)
-  }
-)
-
 BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
   proc { |ability,battler,user,status|
     next if !user || user.index==battler.index
@@ -21,7 +9,7 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           msg = _INTL("{1}'s {2} poisoned {3}! Its Sp. Atk is reduced!",battler.pbThis,battler.abilityName,user.pbThis(true))
         end
-        user.pbPoison(nil,msg,(battler.statusCount>0))
+        user.pbPoison(nil,msg,(battler.getStatusCount(:POISON)>0))
         battler.battle.pbHideAbilitySplash(battler)
       end
     when :BURN
@@ -155,60 +143,10 @@ BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
   }
 )
 
-BattleHandlers::StatusCureAbility.add(:OWNTEMPO,
-  proc { |ability,battler|
-    if battler.effects[PBEffects::Confusion]!=0
-		battler.battle.pbShowAbilitySplash(battler)
-		battler.pbCureConfusion
-		if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-		  battler.battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis))
-		else
-		  battler.battle.pbDisplay(_INTL("{1}'s {2} snapped it out of its confusion!",
-			 battler.pbThis,battler.abilityName))
-		end
-		battler.battle.pbHideAbilitySplash(battler)
-	end
-	if battler.effects[PBEffects::Charm]!=0
-		battler.battle.pbShowAbilitySplash(battler)
-		battler.pbCureCharm
-		if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-		  battler.battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis))
-		else
-		  battler.battle.pbDisplay(_INTL("{1}'s {2} release it from the charm!",
-			 battler.pbThis,battler.abilityName))
-		end
-		battler.battle.pbHideAbilitySplash(battler)
-	end
-  }
-)
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:TANGLEDFEET,
   proc { |ability,mods,user,target,move,type|
     mods[:accuracy_multiplier] /= 2 if target.effects[PBEffects::Confusion] > 0 || target.effects[PBEffects::Charm] > 0
-  }
-)
-
-BattleHandlers::EORHealingAbility.add(:SHEDSKIN,
-  proc { |ability,battler,battle|
-    next if battler.status == :NONE
-    battle.pbShowAbilitySplash(battler)
-    oldStatus = battler.status
-    battler.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-    if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      case oldStatus
-      when :SLEEP
-        battle.pbDisplay(_INTL("{1}'s {2} woke it up!",battler.pbThis,battler.abilityName))
-      when :POISON
-        battle.pbDisplay(_INTL("{1}'s {2} cured its poison!",battler.pbThis,battler.abilityName))
-      when :BURN
-        battle.pbDisplay(_INTL("{1}'s {2} healed its burn!",battler.pbThis,battler.abilityName))
-      when :PARALYSIS
-        battle.pbDisplay(_INTL("{1}'s {2} cured its paralysis!",battler.pbThis,battler.abilityName))
-      when :FROZEN
-        battle.pbDisplay(_INTL("{1}'s {2} defrosted it!",battler.pbThis,battler.abilityName))
-      end
-    end
-    battle.pbHideAbilitySplash(battler)
   }
 )
 
@@ -263,32 +201,6 @@ BattleHandlers::PriorityChangeAbility.add(:PRANKSTER,
 BattleHandlers::PriorityChangeAbility.add(:TRIAGE,
   proc { |ability,battler,move,pri,targets=nil|
     next pri+3 if move.healingMove?
-  }
-)
-
-BattleHandlers::EORHealingAbility.add(:HEALER,
-  proc { |ability,battler,battle|
-    battler.eachAlly do |b|
-      next if b.status == :NONE
-      battle.pbShowAbilitySplash(battler)
-      oldStatus = b.status
-      b.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        case oldStatus
-        when :SLEEP
-          battle.pbDisplay(_INTL("{1}'s {2} woke its partner up!",battler.pbThis,battler.abilityName))
-        when :POISON
-          battle.pbDisplay(_INTL("{1}'s {2} cured its partner's poison!",battler.pbThis,battler.abilityName))
-        when :BURN
-          battle.pbDisplay(_INTL("{1}'s {2} healed its partner's burn!",battler.pbThis,battler.abilityName))
-        when :PARALYSIS
-          battle.pbDisplay(_INTL("{1}'s {2} cured its partner's paralysis!",battler.pbThis,battler.abilityName))
-        when :FROZEN
-          battle.pbDisplay(_INTL("{1}'s {2} defrosted its partner!",battler.pbThis,battler.abilityName))
-        end
-      end
-      battle.pbHideAbilitySplash(battler)
-    end
   }
 )
 
@@ -473,5 +385,12 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
       user.pbHeldItemTriggerCheck
       break
     end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchOut.add(:NATURALCURE,
+  proc { |ability,battler,endOfBattle|
+    PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
+    battler.pbCureStatus(false)
   }
 )

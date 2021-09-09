@@ -21,6 +21,10 @@ class PokeBattle_Battler
     end
     return getStatuses().include?(checkStatus)
   end
+  
+  def hasStatusNoTrigger(checkStatus)
+    return getStatuses().include?(checkStatus)
+  end
 
   def pbHasAnyStatus?
     if BattleHandlers.triggerStatusCheckAbilityNonIgnorable(self.ability,self,nil)
@@ -496,19 +500,13 @@ class PokeBattle_Battler
   def pbCureStatus(showMessages=true,statusToCure=nil)
     oldStatuses = []
 	
-	if statusToCure.nil?
-		echoln("Curing all statuses.")
-	else
-		echoln("Curing #{statusToCure}.")
-	end
-	
     if statusToCure.nil? || @status == statusToCure
 		oldStatuses.push(@status)
 		@status = :NONE
 	end
 		
 	if boss?
-		if statusToCure.nil? || @bossStatus == statusToCure
+		if @bossStatus == statusToCure
 			oldStatuses.push(@bossStatus)
 			@bossStatus = :NONE
 		elsif @status == :NONE
