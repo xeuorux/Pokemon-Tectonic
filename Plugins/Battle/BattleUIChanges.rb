@@ -100,7 +100,7 @@ end
 
 class PokeBattle_Scene
 	def pbDisplayConfirmMessageSerious(msg)
-		return pbShowCommands(msg,[_INTL("No"),_INTL("Yes")],1)==1
+		return pbShowCommands(msg,[_INTL("No"),_INTL("Yes")],0)==1
 	end
 
 	def pbInitSprites

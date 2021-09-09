@@ -837,6 +837,27 @@ module Compiler
     save_data(commonEvents,"Data/CommonEvents.rxdata") if changed
   end
   
+  def getTrainerGraphicNameFromType(trainerTypeName)
+	case trainerTypeName
+		when "LASS"
+			return "NPC_025_Lass"
+		when "MAID"
+			return "NPC_067_Maid"
+		when "MEDIUM"
+			return "NPC_079_Medium"
+		when "RUINMANIAC"
+			return "NPC_081_Ruin_Maniac"
+		when "GAMBLER"
+			return "NPC_Z05_Private_Investigator"
+		when "LINEBACKER"
+			return "trLineBacker"
+		when "SCHOOLKID_F"
+			return "trSchoolKid_F"
+		else
+			return nil
+	end
+  end
+  
   #=============================================================================
   # Convert events using the PHT command into fully fledged trainers
   #=============================================================================
@@ -853,10 +874,12 @@ module Compiler
 	trainerName = match[2] || "UNKNOWN"
 	ret.pages = [3]
 	
+	graphicName = getTrainerGraphicNameFromType(trainerTypeName) || "00TrainerPlaceholder"
+	
 	# Create the first page, where the battle happens
 	firstPage = RPG::Event::Page.new
 	ret.pages[0] = firstPage
-	firstPage.graphic.character_name = "00TrainerPlaceholder"
+	firstPage.graphic.character_name = graphicName
 	firstPage.trigger = 2   # On event touch
 	firstPage.list = []
 	push_script(firstPage.list,"pbTrainerIntro(:#{trainerTypeName})")
@@ -870,8 +893,8 @@ module Compiler
 	push_else(firstPage.list,2)
 	push_text(firstPage.list,"Dialogue here.",2)
 	push_script(firstPage.list,"defeatTrainer",2)
+    push_branch_end(firstPage.list,2)
     push_branch_end(firstPage.list,1)
-    push_branch_end(firstPage.list)
 	
 	push_script(firstPage.list,"pbTrainerEnd")
 	push_end(firstPage.list)
@@ -879,7 +902,7 @@ module Compiler
 	# Create the second page, which has a talkable action-button graphic
 	secondPage = RPG::Event::Page.new
 	ret.pages[1] = secondPage
-	secondPage.graphic.character_name = "00TrainerPlaceholder"
+	secondPage.graphic.character_name = graphicName
 	secondPage.condition.self_switch_valid = true
 	secondPage.condition.self_switch_ch = "A"
 	secondPage.list = []
@@ -938,7 +961,7 @@ module Compiler
 			push_script(firstPage.list,"defeatBoss(:#{item})",1)
 		end
 	end
-    push_branch_end(firstPage.list)
+    push_branch_end(firstPage.list,1)
 	push_end(firstPage.list)
 	
 	# Create the second page, which has nothing
