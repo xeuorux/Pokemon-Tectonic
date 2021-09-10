@@ -30,7 +30,7 @@ class PokeBattle_Battler
     if BattleHandlers.triggerStatusCheckAbilityNonIgnorable(self.ability,self,nil)
       return true
     end
-	return hasAnyStatusNoTrigger?()
+	return hasAnyStatusNoTrigger()
   end
   
   def hasAnyStatusNoTrigger()
