@@ -8,7 +8,7 @@ class PokeBattle_Battle
 		  # Check whether Pursuit can be used
 		  next unless pbMoveCanTarget?(b.index,idxSwitcher,@choices[b.index][2].pbTarget(b))
 		  next unless pbCanChooseMove?(b.index,@choices[b.index][1],false)
-		  next if b.status == :SLEEP
+		  next if b.asleep?
 		  next if b.effects[PBEffects::SkyDrop]>=0
 		  next if b.hasActiveAbility?(:TRUANT) && b.effects[PBEffects::Truant]
 		  # Mega Evolve
