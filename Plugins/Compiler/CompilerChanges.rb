@@ -978,7 +978,7 @@ module Compiler
   #=============================================================================
   def convert_overworld_pokemon(event)
 	return nil if !event || event.pages.length==0
-	match = event.name.match(/.*PHP\(([a-zA-Z0-9]+)(?:_([0-9]*))?(?:,([_a-zA-Z0-9]+))?.*/)
+	match = event.name.match(/.*PHP\(([a-zA-Z0-9]+)(?:_([0-9]*))?(?:,([_a-zA-Z]+))?.*/)
 	return nil if !match
 	species = match[1]
 	return if !species
@@ -1005,7 +1005,7 @@ module Compiler
 	echoln("Converting event: #{species},#{form},#{direction}")
 	
 	ret = RPG::Event.new(event.x,event.y)
-	ret.name = "reset"
+	ret.name = "resetfollower"
 	ret.id   = event.id
 	ret.pages = [3]
 	

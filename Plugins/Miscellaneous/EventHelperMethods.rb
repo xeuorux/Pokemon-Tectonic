@@ -166,7 +166,8 @@ def getFollowerPokemon(eventId=0)
 	
 	follower = nil
 	for event in $game_map.events.values
-		next unless event.name.downcase.include?("overworld")
+		next unless event.name.downcase.include?("follower") ||
+			event.name.downcase.include?("overworld")
 		xDif = (event.x - x).abs
 		yDif = (event.y - y).abs
 		next unless xDif <= 1 && yDif <= 1 # Must be touching
