@@ -101,9 +101,9 @@ LandTinted,20
 #-------------------------------
 [56] # Suburb
 FloweryGrass,20
-25,PIDOVE,15,18
 25,STUNKY,15,18
 25,STUFFUL,15,18
+25,VANILLITE,15,18
 25,APPLIN,15,18
 #-------------------------------
 [51] # Starters Store
@@ -169,7 +169,7 @@ FloweryGrass,20
 10,FLABEBE_4,15,18
 10,COMBEE,15,18
 20,CUFANT,15,18
-20,CUBONE,15,18
+20,BONSLY,15,18
 20,DUSKULL,15,18
 FloweryGrass2,20
 10,FLABEBE_1,15,18
@@ -226,14 +226,12 @@ Land,20
 25,YANMA,18,20
 25,ZORUA,18,20
 LandSparse,20
-25,GOOMY,18,20
-25,MURKROW,18,20
-25,MORELULL,18,20
-25,TOXEL,18,20
+33,MURKROW,18,20
+33,MORELULL,18,20
+33,TOXEL,18,20
 LandTinted,20
-33,SURSKIT,18,20
-33,TYMPOLE,18,20
-34,BASCULIN,18,20
+50,SURSKIT,18,20
+50,TYMPOLE,18,20
 #-------------------------------
 [8] # Grass/Ghost town...?
 LandSparse,20
@@ -292,7 +290,7 @@ DarkCave,20
 #-------------------------------
 [13] # Cave Path
 DarkCave,20
-25,DEINO,17,20
+25,CUBONE,17,20
 25,WOOBAT,17,20
 25,SABLEYE,17,20
 25,MAWILE,17,20
