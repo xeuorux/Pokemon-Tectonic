@@ -540,3 +540,7 @@ def introduceAvatar(species)
 	$game_screen.start_shake(5, 5, 2 * Graphics.frame_rate)
 	pbWait(2 * Graphics.frame_rate)
 end
+
+def pbDeleteItem(item,amount=1)
+	$PokemonBag.pbDeleteItem(item,amount)
+end
