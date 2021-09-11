@@ -277,22 +277,6 @@ class PokemonPokedex_Scene
 		  acceptSearchResults {
 			searchByAvailableLevel()
 		  }
-		elsif Input.pressex?(:NUMBER_7)
-		  acceptSearchResults {
-			searchByOwned()
-		  }
-		elsif Input.pressex?(:NUMBER_8)
-		  acceptSearchResults {
-			searchByStatComparison()
-		  }
-		elsif Input.pressex?(:NUMBER_9)
-		  acceptSearchResults {
-			searchByTypeMatchup()
-		  }
-		elsif Input.pressex?(:NUMBER_0)
-		  acceptSearchResults {
-			searchByZooSection()
-		  }
 		elsif Input.pressex?(0x52) # R, for Random
 		  @sprites["pokedex"].index = rand(@dexlist.length)
 		  @sprites["pokedex"].refresh
@@ -402,7 +386,7 @@ class PokemonPokedex_Scene
        [_INTL("Matchups"),xLeft,164,0,base,shadow],
        [_INTL("Misc."),xLeft2,164,0,base,shadow],
 	   [_INTL("Stat Sort"),xLeft,260,0,base,shadow],
-	   [_INTL(""),xLeft2,260,0,base,shadow]
+	   [_INTL("Other Sort"),xLeft2,260,0,base,shadow]
     ]
 	pbDrawTextPositions(overlay,page1textpos)
 	
@@ -503,6 +487,10 @@ class PokemonPokedex_Scene
 		when 10
 		  searchChanged = acceptSearchResults2 {
 			sortByStat()
+		  }
+		when 11
+		  searchChanged = acceptSearchResults2 {
+			sortByOther()
 		  }
 		end
 		if searchChanged
@@ -733,7 +721,7 @@ class PokemonPokedex_Scene
 			15 => [33,34,29,30,38,26, # Casaba Villa, Scenic Path, Mine Path, Small Mine, Beach Route, Seaside Grotto
 					35,27		# Impromptu Lab, Casaba Mart
 			], 
-			30 => [60,56,51, 	 #Forested Road, Suburb, Starters Store
+			30 => [60,56,51,4,20, 	 #Forested Road, Suburb, Starters Store, Scientist's House, Lengthy Glade
 					3,25,55,6,	 # Savannah Route, Mining Camp, Flower Fields, Business Town
 					54,37,7,8,53, # Rolling Hills Route, Ice Rink, Swamp Route, Jungle Route
 					9,36,10,12, # Ice Cave, Abandoned Mine, Jungle Temple, Shortcut Cave
@@ -1043,6 +1031,27 @@ class PokemonPokedex_Scene
 			next value
 		}
 		
+		return dexlist
+	end
+	
+	def sortByOther()
+		statSelection = pbMessage("Which stat?",[_INTL("Type"),_INTL("Cancel")],2)
+	    return if statSelection == 1 
+		dexlist = @dexlist
+		dexlist.sort_by! { |entry|
+			speciesData = GameData::Species.get(entry[0])
+			
+			types = [speciesData.type1,speciesData.type2]
+			types.sort_by!{ |type|
+				GameData::Type.get(type).id_number
+			}
+			value = 0
+			types.each_with_index do |type,index|
+				value += GameData::Type.get(type).id_number * (18 ** index)
+			end
+			
+			next value
+		}
 		return dexlist
 	end
 end

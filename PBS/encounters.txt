@@ -30,7 +30,7 @@ LandTall,20
 20,PICHU,7,9
 20,LITWICK,7,9
 20,WEEDLE,7,9
-20,SLAKOTH,7,9
+20,RIOLU,7,9
 #-------------------------------
 [029] # Mine Path
 Land,20
@@ -54,20 +54,19 @@ DarkCave,20
 Mud,40
 33,MUDBRAY,9,11
 33,MAKUHITA,9,11
-34,DIGLETT,9,11
+34,PHANPY,9,11
 #-------------------------------
 [038] # Beach Route
 Land,20
-20,EXEGGCUTE,7,9
-20,AZURILL,7,9
-20,HOUNDOUR,7,9
-20,GIBLE,7,9
-20,GULPIN,7,9
+25,EXEGGCUTE,7,9
+25,AZURILL,7,9
+25,HOUNDOUR,7,9
+25,GIBLE,7,9
 LandSparse,20
 25,SANDYGAST,7,9
 25,WINGULL,7,9
 25,NUMEL,7,9
-25,PHANPY,7,9
+25,VANILLITE,7,9
 Puddle,20
 25,SHELLOS,7,9
 25,SLOWPOKE,7,9
@@ -105,10 +104,12 @@ LandTinted,20
 50,WURMPLE,14,17
 #-------------------------------
 [56] # Suburb
+LandSparse
+1,GYAMASK,15,15
 FloweryGrass,20
 25,STUNKY,15,18
 25,STUFFUL,15,18
-25,VANILLITE,15,18
+25,SWIRLIX,15,18
 25,APPLIN,15,18
 #-------------------------------
 [51] # Starters Store
@@ -134,6 +135,14 @@ Land
 1,FROAKIE,10,10
 1,POPPLIO,10,10
 1,SOBBLE,10,10
+#-------------------------------
+[4] # Scientist's House
+Land,1
+1,AGEODUDE,15,15
+#-------------------------------
+[20] # Lengthy Glade
+Land,1
+1,GPONYTA,15,15
 #-------------------------------
 [3] # Savannah Route
 Land,20
@@ -226,10 +235,9 @@ Land,20
 #-------------------------------
 [7] # Swamp Route
 Land,20
-25,CROAGUNK,18,20
-25,FOONGUS,18,20
-25,YANMA,18,20
-25,ZORUA,18,20
+33,CROAGUNK,18,20
+33,FOONGUS,18,20
+33,ZORUA,18,20
 LandSparse,20
 33,MURKROW,18,20
 33,MORELULL,18,20
@@ -247,21 +255,20 @@ LandSparse,20
 #-------------------------------
 [53] # Jungle Route
 Land,20
-20,BOUNSWEET,16,19
 20,PIKIPEK,16,19
-20,BELLSPROUT,16,19
+20,YANMA,16,19
 20,EKANS,16,19
 20,PURRLOIN,16,19
+20,SLAKOTH,16,19
 Mud,40
 33,TANGELA,16,19
 33,GRUBBIN,16,19
 34,SHROOMISH,16,19
 LandTall,20
-20,AIPOM,16,19
-20,FOMANTIS,16,19
-20,VENONAT,16,19
-20,ODDISH,16,19
-20,SIZZLIPEDE,16,19
+25,AIPOM,16,19
+25,FOMANTIS,16,19
+25,VENONAT,16,19
+25,SIZZLIPEDE,16,19
 LandTinted,20
 25,PANSAGE,16,19
 25,PANSEAR,16,19

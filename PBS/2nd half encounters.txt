@@ -92,6 +92,9 @@ Land,20
 25,SEWADDLE,35,38
 25,DEDENNE,35,38
 25,KLEFKI,35,38
+LandTall,20
+25,ODDISH,35,38
+25,BOUNSWEET,35,38
 #-------------------------------
 [] # Regieleki Area
 Land,20
