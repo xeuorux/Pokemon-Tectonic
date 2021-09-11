@@ -19,6 +19,21 @@ class Pokemon
 		return false
 	end
 	
+	def can_mentor_move?
+		return false if egg? || shadowPokemon?
+		firstSpecies = GameData::Species.get(@species)
+		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
+			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
+		end
+		firstSpecies.egg_moves.each { |m| 
+			next if hasMove?(m)
+			$Trainer.party.each do |otherPartyMember|
+				return true if otherPartyMember.hasMove?(m)
+			end
+		}
+		return false
+	end
+	
 	def can_tutor_move?
 		return false if egg? || shadowPokemon?
 		species_data = GameData::Species.get(@species)
@@ -80,6 +95,33 @@ def pbEggMoveScreen(pkmn)
     firstSpecies.egg_moves.each do |m|
       next if pkmn.hasMove?(m)
       moves.push(m) if !moves.include?(m)
+    end
+
+	retval = true
+	pbFadeOutIn {
+		scene = MoveLearner_Scene.new
+		screen = MoveLearnerScreen.new(scene)
+		retval = screen.pbStartScreen(pkmn,moves)
+	}
+	return retval
+end
+
+def pbMentorMoveScreen(pkmn)
+    return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
+	moves = []
+    firstSpecies = GameData::Species.get(pkmn.species)
+	while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
+		firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
+	end
+	
+    firstSpecies.egg_moves.each do |m|
+      next if pkmn.hasMove?(m)
+	  $Trainer.party.each do |otherPartyMember|
+		if otherPartyMember.hasMove?(m)
+			moves.push(m) if !moves.include?(m)
+		end
+	  end
+      
     end
 
 	retval = true

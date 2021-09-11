@@ -172,7 +172,7 @@ class PokemonPokedexInfo_Scene
 	overlay = @sprites["overlay"].bitmap
 	base = Color.new(219, 240, 240)
 	shadow   = Color.new(88, 88, 80)
-	pageTitles = ["INFO", "ABILITIES", "STATS", "TYPE MATCHUPS", "LEVEL UP MOVES", "TM MOVES", "EGG MOVES", "EVOLUTIONS", "AREA", "FORMS", "ANALYSIS"]
+	pageTitles = ["INFO", "ABILITIES", "STATS", "TYPE MATCHUPS", "LEVEL UP MOVES", "TM MOVES", "MENTOR MOVES", "EVOLUTIONS", "AREA", "FORMS", "ANALYSIS"]
 	pageTitle = pageTitles[page-1]
 	drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
 	xPos = 240
@@ -325,7 +325,7 @@ class PokemonPokedexInfo_Scene
     base = Color.new(64,64,64)
     shadow = Color.new(176,176,176)
 	baseStatNames = ["HP","Attack","Defense","Sp. Atk","Sp. Def", "Speed"]
-    otherStatNames = ["Gender Rate", "Growth Rate", "Catch Dif.", "Exp. Grant", "Egg Group 1", "Egg Group 2"]
+    otherStatNames = ["Gender Rate", "Growth Rate", "Catch Dif.", "Exp. Grant"]
     for i in @available
       if i[2]==@form
         formname = i[0]
@@ -693,7 +693,7 @@ class PokemonPokedexInfo_Scene
     for i in @available
       if i[2]==@form
         formname = i[0]
-        drawTextEx(overlay,xLeft,54,450,1,_INTL("Egg Moves for {1}",@title),base,shadow)
+        drawTextEx(overlay,xLeft,54,450,1,_INTL("Mentor Moves for {1}",@title),base,shadow)
         fSpecies = GameData::Species.get_species_form(@species,i[2])
 		firstSpecies = fSpecies
 		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
