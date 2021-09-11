@@ -297,6 +297,61 @@ class PokemonPokedex_Scene
 		  @sprites["pokedex"].index = rand(@dexlist.length)
 		  @sprites["pokedex"].refresh
 		  pbRefresh
+		elsif Input.pressex?(0x49) && $DEBUG # I, for Investigation
+		  # Find information about the currently displayed list
+		  typesCount = {}
+		  GameData::Type.each do |typesData|
+			next if typesData.id == :QMARKS
+			typesCount[typesData.id] = 0
+		  end
+		  total = 0
+		  @dexlist.each do |dexEntry|
+			next if isLegendary(dexEntry[0]) || isQuarantined(dexEntry[0])
+			speciesData = GameData::Species.get(dexEntry[0])
+			disqualify = false
+			speciesData.get_evolutions().each do |evolutionEntry|
+				evoSpecies = evolutionEntry[0]
+				@dexlist.each do |searchDexEntry|
+					if searchDexEntry[0] == evoSpecies
+						echoln("Disqualifying #{dexEntry[0]}")
+						disqualify = true
+					end
+					break if disqualify
+				end
+				break if disqualify
+			end
+			next if disqualify
+			typesCount[speciesData.type1] += 1
+			typesCount[speciesData.type2] += 1 if speciesData.type2 != speciesData.type1
+			total += 1
+		  end
+		  
+		  typesCount = typesCount.sort_by{|type,count| -count}
+		  
+		  # Find information about the whole game list
+		  
+		  wholeGameTypesCount = {}
+		  GameData::Type.each do |typesData|
+			next if typesData.id == :QMARKS
+			wholeGameTypesCount[typesData.id] = 0
+		  end
+		  pbGetDexList.each do |dexEntry|
+			next if isLegendary(dexEntry[0]) || isQuarantined(dexEntry[0])
+			speciesData = GameData::Species.get(dexEntry[0])
+			next if speciesData.get_evolutions().length > 0
+			wholeGameTypesCount[speciesData.type1] += 1
+			wholeGameTypesCount[speciesData.type2] += 1 if speciesData.type2 != speciesData.type1
+		  end
+		  
+		  # Display investigation
+		  
+		  echoln("Investigation of the currently displayed dexlist:")
+		  typesCount.each do |type,count|
+			percentOfThisList = ((count.to_f/total.to_f) * 10000).floor / 100.0
+			percentOfTypeIsInThisMap = ((count.to_f/wholeGameTypesCount[type].to_f) * 10000).floor / 100.0
+			echoln("#{type}-types")
+			echoln("#{count},#{percentOfThisList},#{percentOfTypeIsInThisMap}")
+		  end
 		end
       end
     }
@@ -675,7 +730,9 @@ class PokemonPokedex_Scene
 		  return nil if levelIntAttempt == 0
 		  
 		  maps_available_by_cap = {
-			15 => [33,34,29,30,38,26], # Casaba Villa, Scenic Path, Mine Path, Small Mine, Beach Route, Seaside Grotto
+			15 => [33,34,29,30,38,26, # Casaba Villa, Scenic Path, Mine Path, Small Mine, Beach Route, Seaside Grotto
+					35,27		# Impromptu Lab, Casaba Mart
+			], 
 			30 => [60,56,51, 	 #Forested Road, Suburb, Starters Store
 					3,25,55,6,	 # Savannah Route, Mining Camp, Flower Fields, Business Town
 					54,37,7,8,53, # Rolling Hills Route, Ice Rink, Swamp Route, Jungle Route

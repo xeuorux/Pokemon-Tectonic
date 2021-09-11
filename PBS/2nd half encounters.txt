@@ -89,7 +89,7 @@ Land,20
 [] # Magnetic Park
 Land,20
 25,PACHIRISU,35,38
-25,MAGNEMITE,35,38
+25,SEWADDLE,35,38
 25,DEDENNE,35,38
 25,KLEFKI,35,38
 #-------------------------------

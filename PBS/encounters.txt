@@ -3,11 +3,16 @@
 #-------------------------------
 [033] # Casaba Villa
 FloweryGrass,20
-20,TOGEPI,7,9
-20,BUDEW,7,9
-20,LILLIPUP,7,9
-20,SCATTERBUG,7,9
-20,PIDGEY,7,9
+25,TOGEPI,7,9
+25,BUDEW,7,9
+25,LILLIPUP,7,9
+25,PIDGEY,7,9
+#-------------------------------
+[35] # Impromptu Lab
+Land,20
+1,KRABBY,10,10
+1,CYNDAQUIL,10,10 
+1,TREECKO,10,10 
 #-------------------------------
 [027] # Casaba Mart
 Land,20
@@ -91,7 +96,7 @@ Land,20
 20,MEOWTH,14,17
 20,VENIPEDE,14,17
 LandTall,20
-25,SEWADDLE,14,17
+25,SNOM,14,17
 25,PINECO,14,17
 25,CHINGLING,14,17
 25,HATENNA,14,17
@@ -160,7 +165,7 @@ DarkCave,20
 25,ZUBAT,15,18
 25,NOSEPASS,15,18
 25,BELDUM,15,18
-25,KLINK,15,18
+25,MAGNEMITE,15,18
 #-------------------------------
 [55] # Flower Fields Ideas
 FloweryGrass,20
