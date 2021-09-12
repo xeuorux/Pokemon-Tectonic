@@ -11,6 +11,13 @@ Item = LUMBERRY
 Ability = INNERFOCUS
 Moves = THUNDERPUNCH,FIREPUNCH,SLASH
 HPMult = 4
+HPMult = 2
+#-------------------------------
+[SHAYMIN]
+Turns = 3
+Ability = SERENEGRACE
+Moves = AIRSLASH,MAGICALLEAF,ANGELSKISS
+HPMult = 4
 #-------------------------------
 [SWALOT]
 Turns = 2

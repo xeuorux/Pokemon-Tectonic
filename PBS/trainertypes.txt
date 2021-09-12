@@ -176,3 +176,4 @@
 300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,[YEZERA]
 301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,[LAMBERT]
 302,LEADER_Eko,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,
+303,LEADER_Helena,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Female,,
