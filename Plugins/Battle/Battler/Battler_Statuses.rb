@@ -273,15 +273,15 @@ class PokeBattle_Battler
   def pbInflictStatus(newStatus,newStatusCount=0,msg=nil,user=nil)
     # Inflict the new status
     if !boss?
-		@status      = newStatus
-		@statusCount = newStatusCount
+		self.status			= newStatus
+		self.statusCount	= newStatusCount
 	else
 		if @status == :NONE
-			@status      = newStatus
-			@statusCount = newStatusCount
+			self.status      = newStatus
+			self.statusCount = newStatusCount
 		else
-			@bossStatus  = newStatus
-			@bossStatusCount = newStatusCount
+			self.bossStatus  = newStatus
+			self.bossStatusCount = newStatusCount
 		end
 	end
     @effects[PBEffects::Toxic] = 0
@@ -502,16 +502,16 @@ class PokeBattle_Battler
 	
     if statusToCure.nil? || @status == statusToCure
 		oldStatuses.push(@status)
-		@status = :NONE
+		self.status = :NONE
 	end
 		
 	if boss?
 		if @bossStatus == statusToCure
 			oldStatuses.push(@bossStatus)
-			@bossStatus = :NONE
+			self.bossStatus = :NONE
 		elsif @status == :NONE
-			@status = @bossStatus
-			@bossStatus = :NONE
+			self.status = @bossStatus
+			self.bossStatus = :NONE
 		end
 	end
 	
