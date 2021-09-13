@@ -1616,7 +1616,7 @@ InternalName = DIGLETT
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 30,55,25,95,35,45
-# Total = 305
+# Total = 285
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 53
@@ -2240,7 +2240,7 @@ Type1 = GRASS
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,75,35,40,60,40
-# Total = 300
+# Total = 310
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 60
@@ -2274,7 +2274,7 @@ Type1 = GRASS
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,90,60,55,75,70
-# Total = 390
+# Total = 425
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 137
@@ -2307,7 +2307,7 @@ Type1 = GRASS
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 90,105,75,70,90,80
-# Total = 490
+# Total = 510
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 221
@@ -3942,7 +3942,7 @@ EffortPoints = 0,0,0,1,0,0
 Rareness = 225
 Happiness = 70
 Abilities = ILLUMINATE,NATURALCURE
-Moves = 1,TACKLE,1,HARDEN,4,WATERGUN,8,CONFUSERAY,12,MINDWAVES,16,SWIFT,20,PSYBEAM,24,RAPIDSPIN,28,BRINE,32,PSYCHIC,36,SURF,40,LIGHTSCREEN,44,POWERGEM,48,RECOVER,52,PSYCHICOVERLOAD                ,56,HYDROPUMP
+Moves = 1,TACKLE,1,HARDEN,4,WATERGUN,8,CONFUSERAY,12,MINDWAVES,16,SWIFT,20,PSYBEAM,24,RAPIDSPIN,28,BRINE,32,PSYCHIC,36,SURF,40,LIGHTSCREEN,44,POWERGEM,48,RECOVER,52,PSYCHICOVERLOAD,56,HYDROPUMP
 TutorMoves = BLIZZARD,BRINE,CONFIDE,COSMICPOWER,DAZZLINGGLEAM,DIVE,ENDURE,FACADE,FLASHCANNON,FLIPTURN,FRUSTRATION,GRAVITY,GYROBALL,HAIL,HIDDENPOWER,HYDROPUMP,ICEBEAM,ICYWIND,LIGHTSCREEN,MAGICCOAT,PAINSPLIT,POWERGEM,PROTECT,PSYCHIC,PSYCHUP,RAINDANCE,RECYCLE,REFLECT,REST,RETURN,ROUND,SCALD,SIGNALBEAM,SLEEPTALK,SNORE,SUBSTITUTE,SURF,SWAGGER,SWIFT,THUNDER,THUNDERBOLT,THUNDERWAVE,TOXIC,TRIATTACK,WATERFALL,WATERPULSE,WHIRLPOOL,RAPIDSPIN
 Compatibility = Water3
 StepsToHatch = 5355
@@ -5753,10 +5753,10 @@ Kind = Spike Ball
 Pokedex = A proverb claims that happiness will come to anyone who can make a sleeping Togepi stand up.
 BattlerPlayerX = 0
 BattlerPlayerY = 32
-BattlerEnemyX = 0
-BattlerEnemyY = 30
+BattlerEnemyX = 1
+BattlerEnemyY = 27
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = TOGETIC,Level,18
 #-------------------------------
 [176]
@@ -5789,7 +5789,7 @@ BattlerPlayerY = 22
 BattlerEnemyX = 0
 BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = TOGEKISS,Item,SHINYSTONE
 #-------------------------------
 [177]
@@ -6680,7 +6680,7 @@ InternalName = PINECO
 Type1 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,70,95,15,40,40
-# Total = 320
+# Total = 315
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 58
@@ -9367,7 +9367,7 @@ InternalName = SHROOMISH
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,45,65,40,45,65
-# Total = 295
+# Total = 325
 GenderRate = Female50Percent
 GrowthRate = Fluctuating
 BaseEXP = 59
@@ -10365,7 +10365,7 @@ Type1 = GRASS
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,90,45,85,70,65
-# Total = 400
+# Total = 405
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 140
@@ -12455,7 +12455,7 @@ Kind = Stone Age
 Pokedex = Cutting-edge technology was used to study the internals of this Pokémon's rock body, but nothing was found—not even a brain or a heart.
 BattlerPlayerX = 0
 BattlerPlayerY = 14
-BattlerEnemyX = 0
+BattlerEnemyX = -6
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
@@ -12678,7 +12678,7 @@ BattlerPlayerY = 2
 BattlerEnemyX = -5
 BattlerEnemyY = -1
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [385]
 Name = Jirachi
@@ -13370,7 +13370,7 @@ Type1 = GRASS
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 40,60,35,65,45,40
-# Total = 310
+# Total = 285
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 56
@@ -13406,7 +13406,7 @@ Type1 = GRASS
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,125,65,110,70,80
-# Total = 520
+# Total = 510
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 232
@@ -13669,7 +13669,7 @@ Type1 = BUG
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,55,57,60,55,57
-# Total = 334
+# Total = 339
 GenderRate = AlwaysFemale
 GrowthRate = Parabolic
 BaseEXP = 49
@@ -14754,8 +14754,8 @@ Kind = Emanation
 Pokedex = The aura that emanates from its body intensifies to alert others if it is afraid or sad.
 BattlerPlayerX = 0
 BattlerPlayerY = 27
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -1
+BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = LUCARIO,Level,28
@@ -17092,7 +17092,7 @@ InternalName = TRANQUILL
 Type1 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 72,87,82,85,50,52
-# Total = 438
+# Total = 428
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 125
@@ -21046,10 +21046,10 @@ Kind = Cavern
 Pokedex = Spoken of in legend, this Pokémon used its phenomenal power to destroy a castle in its effort to protect Pokémon.
 BattlerPlayerX = 0
 BattlerPlayerY = 20
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = -5
+BattlerEnemyY = 24
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [640]
 Name = Virizion
@@ -21874,7 +21874,7 @@ InternalName = SPEWPA
 Type1 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 85,57,65,44,72,105
-# Total = 398
+# Total = 428
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 75
@@ -21907,7 +21907,7 @@ Type1 = BUG
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 80,52,50,99,95,105
-# Total = 476
+# Total = 481
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 185
@@ -24473,7 +24473,7 @@ InternalName = ROCKRUFF
 Type1 = ROCK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,75,45,75,35,45
-# Total = 310
+# Total = 325
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 56
@@ -25043,7 +25043,7 @@ InternalName = BOUNSWEET
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 52,62,55,42,47,65
-# Total = 325
+# Total = 323
 GenderRate = AlwaysFemale
 GrowthRate = Parabolic
 BaseEXP = 42
@@ -25593,8 +25593,8 @@ Pokedex = When it's surprised or agitated, the 14 fur spikes on its back will st
 WildItemUncommon = ELECTRICSEED
 BattlerPlayerX = 0
 BattlerPlayerY = 28
-BattlerEnemyX = 0
-BattlerEnemyY = 32
+BattlerEnemyX = 5
+BattlerEnemyY = 30
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -26719,10 +26719,10 @@ Kind = Drummer
 Pokedex = By drumming, it taps into the power of its special tree stump. The roots of the stump follow its direction in battle.
 BattlerPlayerX = 0
 BattlerPlayerY = 8
-BattlerEnemyX = 0
-BattlerEnemyY = 12
+BattlerEnemyX = -4
+BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [813]
 Name = Scorbunny
@@ -27236,10 +27236,10 @@ Kind = Fox
 Pokedex = With a lithe body and sharp claws, it goes around stealing food and eggs. Boltund is its natural enemy.
 BattlerPlayerX = 0
 BattlerPlayerY = 18
-BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyX = 10
+BattlerEnemyY = 19
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [829]
 Name = Gossifleur
@@ -27505,7 +27505,7 @@ InternalName = ROLYCOLY
 Type1 = ROCK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,70,65,40,40,65
-# Total = 320
+# Total = 340
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 48
@@ -28131,7 +28131,7 @@ Type1 = PSYCHIC
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 51,61,50,44,35,58
-# Total = 295
+# Total = 299
 GenderRate = AlwaysFemale
 GrowthRate = Slow
 BaseEXP = 53
@@ -30227,7 +30227,7 @@ Pokedex = It zips around at blistering speeds, looking for an opening to skewer 
 BattlerPlayerX = 0
 BattlerPlayerY = 40
 BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -30294,10 +30294,10 @@ Pokedex = Its fangs are long and very sharp. They grow continuously, so it gnaws
 WildItemUncommon = PECHABERRY
 BattlerPlayerX = 0
 BattlerPlayerY = 26
-BattlerEnemyX = 0
-BattlerEnemyY = 26
+BattlerEnemyX = 4
+BattlerEnemyY = 25
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = ARATICATE,Level,40
 #-------------------------------
 [2001]
@@ -30363,7 +30363,7 @@ Pokedex = It can loose 100,000-volt bursts of electricity, instantly downing foe
 BattlerPlayerX = 0
 BattlerPlayerY = 16
 BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------

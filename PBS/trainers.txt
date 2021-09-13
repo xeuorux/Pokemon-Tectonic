@@ -39,7 +39,7 @@ Pokemon = KARRABLAST,12
 #-------------------------------
 [FIREBREATHER,Antonio]
 Pokemon = MAGBY,13
-Pokemon = SALANDIT,13
+Pokemon = LITWICK,13
 Pokemon = BULBASAUR,13
 #-------------------------------
 [AROMALADY,Hannah]
@@ -53,14 +53,12 @@ Pokemon = WINGULL,14
 Pokemon = TEPIG,14
 #-------------------------------
 [LADY2,Rebecca]
-Pokemon = MEOWTH,14
-    Form = 1
+Pokemon = AMEOWTH,14
 Pokemon = PETILIL,14
 #-------------------------------
 [TUBER_M,Peter]
 Pokemon = SANDYGAST,13
-Pokemon = SLOWPOKE,13
-    Form = 1
+Pokemon = GSLOWPOKE,13
 Pokemon = OSHAWOTT,13
 #-------------------------------
 [TUBER_F,Sophie]
@@ -80,16 +78,15 @@ Pokemon = PANCHAM,15
 Pokemon = MACHOP,15
 	AbilityIndex = 1
 	Moves = MACHPUNCH,LOWKICK,KARATECHOP,KNOCKOFF
-Pokemon = ZIGZAGOON,15
+Pokemon = GZIGZAGOON,15
 	AbilityIndex = 1
-	Form = 1
 	Item = ORANBERRY
 	Moves = SNARL,LICK,SANDATTACK,TACKLE
 Pokemon = RIOLU,15
 	Name = Sangfroid
 	Gender = female
 	AbilityIndex = 1
-	Moves = MIRRORSHOT,SHOUT,VACUUMWAVE,FEINT
+	Moves = MIRRORSHOT,SCREECH,VACUUMWAVE,FEINT
 #-------------------------------
 [LEADER_Lambert,Lambert,1]
 Pokemon = ZORUA,15
@@ -101,16 +98,15 @@ Pokemon = PANCHAM,15
 Pokemon = MACHOP,15
 	AbilityIndex = 1
 	Moves = MACHPUNCH,LOWKICK,KARATECHOP,KNOCKOFF
-Pokemon = ZIGZAGOON,15
+Pokemon = GZIGZAGOON,15
 	AbilityIndex = 1
-	Form = 1
 	Item = ORANBERRY
 	Moves = SNARL,LICK,SANDATTACK,TACKLE
 Pokemon = RIOLU,15
 	Name = Sangfroid
 	Gender = female
 	AbilityIndex = 1
-	Moves = MIRRORSHOT,SHOUT,VACUUMWAVE,FEINT
+	Moves = MIRRORSHOT,SCREECH,VACUUMWAVE,FEINT
 Pokemon = CROAGUNK,15
 	AbilityIndex = 0
 	Item = ORANBERRY

@@ -1546,5 +1546,5 @@ HiddenAbility = DELTASTREAM
 Height = 10.8
 Weight = 392.0
 BattlerPlayerY = 0
-BattlerEnemyX = 0
-BattlerEnemyY = 4
+BattlerEnemyX = -1
+BattlerEnemyY = 1

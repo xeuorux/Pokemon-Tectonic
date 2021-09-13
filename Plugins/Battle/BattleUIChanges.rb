@@ -49,7 +49,7 @@ class CommandMenuDisplay < BattleMenuBase
       end
 	  @ballButton = SpriteWrapper.new(viewport)
       @ballButton.bitmap = @ballBitmap.bitmap
-      @ballButton.x = 300
+      @ballButton.x = 284
       @ballButton.y = 0
       @ballButton.src_rect.width  = @ballBitmap.width
       @ballButton.src_rect.height  = @ballBitmap.height/2
@@ -260,7 +260,8 @@ class PokeBattle_Scene
         pbPlayDecisionSE
         ret = -2
         break
-      elsif Input.trigger?(Input::SPECIAL) && wildbattle && onlyOneOpponent && hasPokeballs   # Throw Ball
+      elsif (Input.trigger?(Input::SPECIAL) || Input.triggerex?(0x42)) &&
+			wildbattle && onlyOneOpponent && hasPokeballs   # Throw Ball
         pbPlayDecisionSE
         ret = 6
         break
