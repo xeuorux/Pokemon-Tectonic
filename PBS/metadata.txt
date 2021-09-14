@@ -45,7 +45,7 @@ MapPosition = 0,13,11
 BattleBack = field
 #-------------------------------
 [006]
-# Business Town
+# Tech Campus
 MapPosition = 0,13,11
 #-------------------------------
 [007]
@@ -85,33 +85,42 @@ HealingSpot = 10,39,21
 MapPosition = 0,14,10
 #-------------------------------
 [013]
+# Cave Path
 MapPosition = 0,14,10
 #-------------------------------
 [014]
+# Campus Buildings
 MapPosition = 0,13,10
 #-------------------------------
 [015]
+# Campus Mart
 MapPosition = 0,13,10
 #-------------------------------
 [016]
+# Campus Center
 MapPosition = 0,13,10
 #-------------------------------
 [017]
+# Mine Head's House
 MapPosition = 0,13,10
 #-------------------------------
 [018]
+# Mine Head's House F2
 MapPosition = 0,13,10
 #-------------------------------
 [019]
+# Book and Coffee Store
 MapPosition = 0,13,10
 #-------------------------------
 [020]
+# Lengthy Glade
 Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,13,10
 #-------------------------------
 [021]
+# Campus Gym
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -120,6 +129,7 @@ BattleBack = field
 MapSize = 1,11
 #-------------------------------
 [022]
+# Secret Grotto
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -131,6 +141,7 @@ ShowArea = true
 MapPosition = 0,15,8
 #-------------------------------
 [024]
+# Shaymin's Chamber
 MapPosition = 0,15,8
 #-------------------------------
 [025]
@@ -218,7 +229,8 @@ Weather = Rain,10
 #-------------------------------
 [057]
 # Suburb Center
-HealingSpot = 56,41,27
+BicycleAlways = false
+HealingSpot = 56,43,27
 #-------------------------------
 [059]
 # Mainland Dock

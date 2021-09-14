@@ -15,6 +15,7 @@ HPMult = 2
 #-------------------------------
 [SHAYMIN]
 Turns = 3
+Form = 1
 Ability = SERENEGRACE
 Moves = AIRSLASH,MAGICALLEAF,ANGELSKISS
 HPMult = 4
@@ -164,7 +165,6 @@ HPMult = 5
 #-------------------------------
 [ANINETALES]
 Turns = 2
-Form = 1
 Ability = SNOWVEIL
 Moves = ICYWIND,HAIL,AURORAVEIL,BLIZZARD
 Item = ICYROCK

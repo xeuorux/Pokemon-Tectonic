@@ -1,6 +1,7 @@
 class PokemonSystem
 	attr_accessor :followers
 	attr_accessor :autosave
+	attr_accessor :particle_effects
 
   def initialize
     @textspeed   = 1     # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
@@ -15,8 +16,9 @@ class PokemonSystem
     @bgmvolume   = 30   # Volume of background music and ME
     @sevolume    = 30   # Volume of sound effects
     @textinput   = 1     # Text input mode (0=cursor, 1=keyboard)
-	@followers   = 1	# Follower Pokemon enabled (0=true, 1=false)
-	@autosave	 = 0	# Autosave enabled (0=true, 1=false)
+	@followers   = 0	# Follower Pokemon enabled (0=true, 1=false)
+	@autosave	 = 1	# Autosave enabled (0=true, 1=false)
+	@particle_effects = 0 # (0=true, 1=false)
   end
 end
 
@@ -107,6 +109,12 @@ class PokemonOption_Scene
          }
        )
     ]
+	@PokemonOptions.push(EnumOption.new(_INTL("Particle Effects"),[_INTL("On"),_INTL("Off")],
+         proc { $PokemonSystem.autosave },
+         proc { |value|
+			$PokemonSystem.particle_effects = value
+         }
+       ))
 	@PokemonOptions.push(EnumOption.new(_INTL("Autosave"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.autosave },
          proc { |value|

@@ -35,7 +35,7 @@ Pokemon = MAGNEMITE,12
 #-------------------------------
 [NINJABOY,Matthew]
 Pokemon = BONSLY,12
-Pokemon = KARRABLAST,12
+Pokemon = NINCADA,12
 #-------------------------------
 [FIREBREATHER,Antonio]
 Pokemon = MAGBY,13
@@ -54,7 +54,7 @@ Pokemon = TEPIG,14
 #-------------------------------
 [LADY2,Rebecca]
 Pokemon = AMEOWTH,14
-Pokemon = PETILIL,14
+Pokemon = CHIKORITA,14
 #-------------------------------
 [TUBER_M,Peter]
 Pokemon = SANDYGAST,13
