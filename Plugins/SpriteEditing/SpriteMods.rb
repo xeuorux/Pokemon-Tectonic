@@ -35,16 +35,9 @@ module GameData
 		new_ret.each { |bitmap| alter_bitmap_function.call(pkmn, bitmap) }
 		ret = new_ret
 	  end
-	  if ret && pkmn.boss
+	  if ret && pkmn.boss && $PokemonSystem.sprite_edits == 0
 		new_ret = ret.copy
 		bossified = bossifyBitmap(new_ret.bitmap,pkmn.scaleFactor)
-		new_ret.bitmap = bossified
-		ret.dispose
-		ret = new_ret
-	  end
-	  if false #ret && pkmn.shinyVariant?
-		new_ret = ret.copy
-		bossified = autoShinify(new_ret.bitmap)
 		new_ret.bitmap = bossified
 		ret.dispose
 		ret = new_ret

@@ -2,6 +2,7 @@ class PokemonSystem
 	attr_accessor :followers
 	attr_accessor :autosave
 	attr_accessor :particle_effects
+	attr_accessor :sprite_edits
 
   def initialize
     @textspeed   = 1     # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
@@ -19,6 +20,7 @@ class PokemonSystem
 	@followers   = 0	# Follower Pokemon enabled (0=true, 1=false)
 	@autosave	 = 1	# Autosave enabled (0=true, 1=false)
 	@particle_effects = 0 # (0=true, 1=false)
+	@sprite_edits = 0 # (0=true, 1=false)
   end
 end
 
@@ -109,12 +111,6 @@ class PokemonOption_Scene
          }
        )
     ]
-	@PokemonOptions.push(EnumOption.new(_INTL("Particle Effects"),[_INTL("On"),_INTL("Off")],
-         proc { $PokemonSystem.autosave },
-         proc { |value|
-			$PokemonSystem.particle_effects = value
-         }
-       ))
 	@PokemonOptions.push(EnumOption.new(_INTL("Autosave"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.autosave },
          proc { |value|
@@ -128,6 +124,18 @@ class PokemonOption_Scene
             pbToggleFollowingPokemon($PokemonSystem.followers == 0 ? "on" : "off",false)
          }
        )) if $PokemonGlobal
+	@PokemonOptions.push(EnumOption.new(_INTL("Particles (Adv.)"),[_INTL("On"),_INTL("Off")],
+         proc { $PokemonSystem.autosave },
+         proc { |value|
+			$PokemonSystem.particle_effects = value
+         }
+       ))
+	@PokemonOptions.push(EnumOption.new(_INTL("Sprite Edits (Adv.)"),[_INTL("On"),_INTL("Off")],
+         proc { $PokemonSystem.autosave },
+         proc { |value|
+			$PokemonSystem.sprite_edits = value
+         }
+       ))
     @PokemonOptions = pbAddOnOptions(@PokemonOptions)
     @sprites["option"] = Window_PokemonOption.new(@PokemonOptions,0,
        @sprites["title"].height,Graphics.width,

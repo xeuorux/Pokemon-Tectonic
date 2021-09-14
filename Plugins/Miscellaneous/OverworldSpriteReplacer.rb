@@ -35,7 +35,7 @@ class Sprite_Character
 			end
 			
 			embiggenMatch = @character.name.match(/embiggen\(([0-9]+)\)/i)
-			if embiggenMatch
+			if embiggenMatch && $PokemonSystem.sprite_edits == 0
 				new_bitmap = @charbitmap.copy
 				embiggened = increaseSize(new_bitmap.bitmap,1+Integer(embiggenMatch[1])/10.0)
 				new_bitmap.bitmap = embiggened
