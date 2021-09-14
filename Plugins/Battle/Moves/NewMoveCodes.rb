@@ -143,7 +143,7 @@ class PokeBattle_Move_505 < PokeBattle_Move
     end
     # Target didn't choose to use a move this round
     oppMove = @battle.choices[target.index][2]
-    if !oppMove || oppMove.id<=0
+    if !oppMove
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
