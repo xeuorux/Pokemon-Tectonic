@@ -86,7 +86,7 @@ Pokemon = RIOLU,15
 	Name = Sangfroid
 	Gender = female
 	AbilityIndex = 1
-	Moves = MIRRORSHOT,SCREECH,VACUUMWAVE,FEINT
+	Moves = MAGNETWAVE,SCREECH,VACUUMWAVE,FEINT
 #-------------------------------
 [LEADER_Lambert,Lambert,1]
 Pokemon = ZORUA,15
@@ -106,7 +106,7 @@ Pokemon = RIOLU,15
 	Name = Sangfroid
 	Gender = female
 	AbilityIndex = 1
-	Moves = MIRRORSHOT,SCREECH,VACUUMWAVE,FEINT
+	Moves = MAGNETWAVE,SCREECH,VACUUMWAVE,FEINT
 Pokemon = CROAGUNK,15
 	AbilityIndex = 0
 	Item = ORANBERRY
