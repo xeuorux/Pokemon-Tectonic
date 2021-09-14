@@ -66,3 +66,51 @@ BattleHandlers::StatusCureAbility.add(:WATERVEIL,
 )
 
 BattleHandlers::StatusCureAbility.copy(:WATERVEIL,:WATERBUBBLE)
+
+BattleHandlers::StatusCureAbility.add(:MENTALBLOCK,
+  proc { |ability,battler|
+    if battler.effects[PBEffects::Confusion]!=0
+		battler.battle.pbShowAbilitySplash(battler)
+		battler.pbCureConfusion
+		battler.battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis))
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+	if battler.effects[PBEffects::Charm]!=0
+		battler.battle.pbShowAbilitySplash(battler)
+		battler.pbCureCharm
+		battler.battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis))
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+	if battler.effects[PBEffects::Taunt]  > 0
+		battler.battle.pbShowAbilitySplash(battler)
+		battle.pbDisplay(_INTL("{1}'s taunt wore off!",battler.pbThis)) if battler.effects[PBEffects::Taunt]>0
+		battler.effects[PBEffects::Taunt]      = 0
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+	if battler.effects[PBEffects::Encore] > 0
+		battler.battle.pbShowAbilitySplash(battler)
+		battle.pbDisplay(_INTL("{1}'s encore ended!",battler.pbThis)) if battler.effects[PBEffects::Encore]>0
+		battler.effects[PBEffects::Encore]     = 0
+		battler.effects[PBEffects::EncoreMove] = nil
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+	if battler.effects[PBEffects::Torment]
+		battler.battle.pbShowAbilitySplash(battler)
+		battle.pbDisplay(_INTL("{1}'s torment wore off!",battler.pbThis)) if battler.effects[PBEffects::Torment]
+		battler.effects[PBEffects::Torment]    = false
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+	if battler.effects[PBEffects::Disable] > 0
+		battler.battle.pbShowAbilitySplash(battler)
+		battle.pbDisplay(_INTL("{1} is no longer disabled!",battler.pbThis)) if battler.effects[PBEffects::Disable]>0
+		battler.effects[PBEffects::Disable]    = 0
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+	if battler.effects[PBEffects::HealBlock]
+		battler.battle.pbShowAbilitySplash(battler)
+		battle.pbDisplay(_INTL("{1}'s Heal Block wore off!",battler.pbThis)) if battler.effects[PBEffects::HealBlock]>0
+		battler.effects[PBEffects::HealBlock]  = 0
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+  }
+)

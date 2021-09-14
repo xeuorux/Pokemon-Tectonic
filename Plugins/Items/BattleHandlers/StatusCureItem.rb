@@ -110,15 +110,6 @@ BattleHandlers::StatusCureItem.add(:MENTALHERB,
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}")
     battle.pbCommonAnimation("UseItem",battler) if !forced
-    if battler.effects[PBEffects::Attract]>=0
-      if forced
-        battle.pbDisplay(_INTL("{1} got over its infatuation.",battler.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1} cured its infatuation status using its {2}!",
-           battler.pbThis,itemName))
-      end
-      battler.pbCureAttract
-    end
     battle.pbDisplay(_INTL("{1}'s taunt wore off!",battler.pbThis)) if battler.effects[PBEffects::Taunt]>0
     battler.effects[PBEffects::Taunt]      = 0
     battle.pbDisplay(_INTL("{1}'s encore ended!",battler.pbThis)) if battler.effects[PBEffects::Encore]>0
