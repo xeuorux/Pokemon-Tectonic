@@ -9,8 +9,9 @@ Pokemon = SNOM,6
 #-------------------------------
 [YOUNGSTER,Harvey]
 Policies = PERFECTINGTUTORIAL
-Pokemon = GOLDEEN,7
+Pokemon = LUVDISC,7
 Pokemon = SEEDOT,8
+	Moves = TACKLE,HARDEN,BRANCHPOKE
 #-------------------------------
 [LASS2,Sienna]
 Policies = PERFECTINGTUTORIAL
@@ -77,7 +78,7 @@ Pokemon = PANCHAM,15
 	Moves = ARMTHRUST,TAUNT,LEER,BITE
 Pokemon = MACHOP,15
 	AbilityIndex = 1
-	Moves = MACHPUNCH,LOWKICK,KARATECHOP,KNOCKOFF
+	Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
 Pokemon = GZIGZAGOON,15
 	AbilityIndex = 1
 	Item = ORANBERRY
@@ -97,7 +98,7 @@ Pokemon = PANCHAM,15
 	Moves = ARMTHRUST,TAUNT,LEER,BITE
 Pokemon = MACHOP,15
 	AbilityIndex = 1
-	Moves = MACHPUNCH,LOWKICK,KARATECHOP,KNOCKOFF
+	Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
 Pokemon = GZIGZAGOON,15
 	AbilityIndex = 1
 	Item = ORANBERRY

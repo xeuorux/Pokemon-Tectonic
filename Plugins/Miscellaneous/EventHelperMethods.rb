@@ -2,6 +2,29 @@ def pbSetSelfSwitch(eventid, switch_name, value, mapid = -1)
 	$game_system.map_interpreter.pbSetSelfSwitch(eventid, switch_name, value, mapid)
 end
 
+def pbReceiveRandomPokemon(level)
+  $game_variables[26] = level if level > $game_variables[26]
+  possibleSpecies = []
+  GameData::Species.each do |species_data|
+	next if species_data.get_evolutions.length > 0 && ![:ONIX,:SCYTHER].include?(species_data.species)
+	next if isLegendary(species_data.id)
+	if species_data.real_form_name
+		regionals = ["alolan","galarian","makyan"]
+		regionalForm = false
+		regionals.each do |regional|
+			regionalForm = true if species_data.real_form_name.downcase.include?(regional)
+		end
+		next if !regionalForm
+	end
+	possibleSpecies.push(species_data)
+  end
+  speciesDat = possibleSpecies.sample
+  pkmn = Pokemon.new(speciesDat.species, level)
+  pkmn.form = speciesDat.form
+  pbAddPokemonSilent(pkmn)
+  pbMessage(_INTL("You recieved a #{speciesDat.real_name} (#{speciesDat.real_form_name})"))
+end
+
 def healPartyWithDelay()
 	$Trainer.heal_party
 	pbMEPlay('Pkmn healing')
@@ -376,7 +399,7 @@ def purchaseStarters(type,price=5000)
 	when :FIRE
 		starterArray = ["None","Charmander","Torchic","Chimchar","Tepig","Fennekin","Litten","Scorbunny"]
 	when :WATER
-		starterArray = ["None","Squirtle","Totodile","Piplup","Oshawott","Froakie","Popplio","Sobble"]
+		starterArray = ["None","Squirtle","Totodile","Mudkip","Piplup","Oshawott","Froakie","Popplio","Sobble"]
 	else
 		return
 	end

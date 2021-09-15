@@ -30,29 +30,6 @@ HiddenMoveHandlers::CanUseMove     = MoveHandlerHash.new
 HiddenMoveHandlers::ConfirmUseMove = MoveHandlerHash.new
 HiddenMoveHandlers::UseMove        = MoveHandlerHash.new
 
-
-def pbReceiveRandomPokemon(level)
-  $game_variables[26] = level if level > $game_variables[26]
-  possibleSpecies = []
-  GameData::Species.each do |species_data|
-	next if species_data.get_evolutions.length > 0 && ![:ONIX,:SCYTHER].include?(species_data.species)
-	if species_data.real_form_name
-		regionals = ["alolan","galarian","makyan"]
-		regionalForm = false
-		regionals.each do |regional|
-			regionalForm = true if species_data.real_form_name.downcase.include?(regional)
-		end
-		next if !regionalForm
-	end
-	possibleSpecies.push(species_data)
-  end
-  speciesDat = possibleSpecies.sample
-  pkmn = Pokemon.new(speciesDat.species, level)
-  pkmn.form = speciesDat.form
-  pbAddPokemonSilent(pkmn)
-  pbMessage(_INTL("You recieved a #{speciesDat.real_name} (#{speciesDat.real_form_name})"))
-end
-
 module GameData
 	class Trainer
 		def initialize(hash)

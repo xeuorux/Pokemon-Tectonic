@@ -125,13 +125,13 @@ class PokemonOption_Scene
          }
        )) if $PokemonGlobal
 	@PokemonOptions.push(EnumOption.new(_INTL("Particles (Adv.)"),[_INTL("On"),_INTL("Off")],
-         proc { $PokemonSystem.autosave },
+         proc { $PokemonSystem.particle_effects },
          proc { |value|
 			$PokemonSystem.particle_effects = value
          }
        ))
 	@PokemonOptions.push(EnumOption.new(_INTL("Sprite Edits (Adv.)"),[_INTL("On"),_INTL("Off")],
-         proc { $PokemonSystem.autosave },
+         proc { $PokemonSystem.sprite_edits },
          proc { |value|
 			$PokemonSystem.sprite_edits = value
          }
@@ -162,5 +162,65 @@ class PokemonOption_Scene
 		when 4 then return -20
 		end
     return TEXT_SPEED || 1
+  end
+end
+
+class Window_PokemonOption < Window_DrawableCommand
+  def drawItem(index,_count,rect)
+    rect = drawCursor(index,rect)
+    optionname = (index==@options.length) ? _INTL("Exit") : @options[index].name
+    optionwidth = rect.width*9/20
+    pbDrawShadowText(self.contents,rect.x,rect.y,optionwidth,rect.height,optionname,
+       @nameBaseColor,@nameShadowColor)
+    return if index==@options.length
+    if @options[index].is_a?(EnumOption)
+      if @options[index].values.length>1
+        totalwidth = 0
+        for value in @options[index].values
+          totalwidth += self.contents.text_size(value).width
+        end
+        spacing = (optionwidth-totalwidth)/(@options[index].values.length-1)
+        spacing = 0 if spacing<0
+        xpos = optionwidth+rect.x
+        ivalue = 0
+        for value in @options[index].values
+          pbDrawShadowText(self.contents,xpos,rect.y,optionwidth,rect.height,value,
+             (ivalue==self[index]) ? @selBaseColor : self.baseColor,
+             (ivalue==self[index]) ? @selShadowColor : self.shadowColor
+          )
+          xpos += self.contents.text_size(value).width
+          xpos += spacing
+          ivalue += 1
+        end
+      else
+        pbDrawShadowText(self.contents,rect.x+optionwidth,rect.y,optionwidth,rect.height,
+           optionname,self.baseColor,self.shadowColor)
+      end
+    elsif @options[index].is_a?(NumberOption)
+      value = _INTL("Type {1}/{2}",@options[index].optstart+self[index],
+         @options[index].optend-@options[index].optstart+1)
+      xpos = optionwidth+rect.x
+      pbDrawShadowText(self.contents,xpos,rect.y,optionwidth,rect.height,value,
+         @selBaseColor,@selShadowColor)
+    elsif @options[index].is_a?(SliderOption)
+      value = sprintf(" %d",@options[index].optend)
+      sliderlength = optionwidth-self.contents.text_size(value).width
+      xpos = optionwidth+rect.x
+      self.contents.fill_rect(xpos,rect.y-2+rect.height/2,
+         optionwidth-self.contents.text_size(value).width,4,self.baseColor)
+      self.contents.fill_rect(
+         xpos+(sliderlength-8)*(@options[index].optstart+self[index])/@options[index].optend,
+         rect.y-8+rect.height/2,
+         8,16,@selBaseColor)
+      value = sprintf("%d",@options[index].optstart+self[index])
+      xpos += optionwidth-self.contents.text_size(value).width
+      pbDrawShadowText(self.contents,xpos,rect.y,optionwidth,rect.height,value,
+         @selBaseColor,@selShadowColor)
+    else
+      value = @options[index].values[self[index]]
+      xpos = optionwidth+rect.x
+      pbDrawShadowText(self.contents,xpos,rect.y,optionwidth,rect.height,value,
+         @selBaseColor,@selShadowColor)
+    end
   end
 end
