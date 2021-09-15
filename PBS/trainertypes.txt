@@ -173,6 +173,7 @@
 170,YOUNGCOUPLE,Young Couple,128,,,,Mixed,,
 171,YOUNGCOUPLE2,Young Couple,128,,,,Mixed,,
 172,GUITARIST3,Guitarist,24,,,,Female,,
+173,IRISCOSPLAYER,Cosplayer,128,,,,Female,,
 300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,[YEZERA]
 301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,[LAMBERT]
 302,LEADER_Eko,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,

@@ -414,3 +414,77 @@ Pokemon = WAILORD,30
 	Moves = NOBLEROAR,HEAVYSLAM,REST,BOUNCE
 	AbilityIndex = 0
 	Item = LEFTOVERS
+################################
+#	Backyard Fight Club Trainers
+################################
+#-------------------------------
+[SCHOOLKID_M,Louis]
+Pokemon = DUCKLETT,19
+Pokemon = STUNKY,20
+Pokemon = STUFFUL,21
+Pokemon = APPLIN,21
+#-------------------------------
+[KIMONOGIRL,Haera]
+Pokemon = ROSELIA,24
+Pokemon = LOMBRE,25
+Pokemon = EEVEE,25
+Pokemon = BRIONNE,26
+Pokemon = BUTTERFREE,26
+#-------------------------------
+[NURSE,Elliot]
+Pokemon = CHANSEY,29
+Pokemon = STANTLER,30
+Pokemon = MALAMAR,31
+Pokemon = GOLISOPOD,32
+Pokemon = LAIRON,32
+#-------------------------------
+[GUITARIST3,Jamie]
+Pokemon = NIDOKING,34
+Pokemon = HOUNDOOM,35
+Pokemon = STARAPTOR,35
+Pokemon = SPIRITOMB,36
+Pokemon = AVALUGG,37
+#-------------------------------
+[BAKER,Margerie]
+Pokemon = ALCREMIE,44
+Pokemon = ARCANINE,45
+Pokemon = SLURPUFF,45
+Pokemon = STOUTLAND,46
+Pokemon = VESPIQUEN,47
+#-------------------------------
+[PILOT,Charlie]
+Pokemon = DRIFBLIM,50
+Pokemon = AZUMARILL,50
+Pokemon = MANERGETIC,51
+Pokemon = TOXICROAK,52
+Pokemon = MINIOR,53
+#-------------------------------
+[VETERANM_2,Roy]
+Pokemon = DECIDUEYE,54
+Pokemon = AURORUS,55
+Pokemon = AMOONGUSS,55
+Pokemon = GOTHITELLE,55
+Pokemon = GIGALITH,56
+#-------------------------------
+[DRAGONTAMER,Arthur]
+Pokemon = KROOKODILE,59
+Pokemon = GOODRA,60
+Pokemon = BRAVIARY,61
+Pokemon = GOLURK,62
+Pokemon = HYMNUS,62
+#-------------------------------
+[IRISCOSPLAYER,Isabelle]
+Pokemon = AGGRON,64
+Pokemon = ZOROARK,65
+Pokemon = LAPRAS,65
+Pokemon = HAEROBIC,66
+Pokemon = HOUNDOMINUS,66
+Pokemon = HYDREIGON,66
+#-------------------------------
+[ELDER,Logun]
+Pokemon = RAICHU,70
+Pokemon = CORVIKNIGHT,70
+Pokemon = SEISMAW,70
+Pokemon = ILLUMISE,70
+Pokemon = ABSOLUS,70
+Pokemon = ALAKAZAM,70
