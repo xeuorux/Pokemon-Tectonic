@@ -568,3 +568,11 @@ end
 def pbDeleteItem(item,amount=1)
 	$PokemonBag.pbDeleteItem(item,amount)
 end
+
+def registerYezera
+	stowFollowerIfActive
+	pbToggleFollowingPokemon("off",false)
+	$PokemonTemp.dependentEvents.removeEventByName("FollowerPkmn")
+	pbRegisterPartner(:POKEMONTRAINER_Yezera,"Yezera",1)
+	pbAddDependency2(@event_id,"Yezera",3)
+end
