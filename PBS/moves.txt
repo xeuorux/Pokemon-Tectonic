@@ -212,7 +212,7 @@
 204,MINDBLOWN,Mind Blown,170,150,FIRE,Special,100,5,0,AllNearOthers,0,bef,The user attacks everything by causing its own head to explode. This also damages the user.
 205,SHELLTRAP,Shell Trap,171,150,FIRE,Special,100,5,0,AllNearFoes,-3,bf,"The user sets a shell trap. If it is hit by a physical move, the trap explodes and hurt the attacker."
 206,BLUEFLARE,Blue Flare,00A,130,FIRE,Special,85,5,20,NearOther,0,bef,"The user attacks by engulfing the foe in a beautiful, yet intense, blue flame. It has a 20% chance to burn."
-207,BURNUP,Burn Up,162,130,FIRE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user burns itself out. The user will no longer be Fire type."
+207,BURNUP,Burn Up,162,130,FIRE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user uses up its Fire-typing."
 208,OVERHEAT,Overheat,03F,130,FIRE,Special,100,5,0,NearOther,0,bef,The user attacks the target at full power. The attack's recoil sharply reduces the user's Sp. Atk stat.
 209,FLAREBLITZ,Flare Blitz,0FB,120,FIRE,Physical,100,15,10,NearOther,0,abef,The user cloaks itself in fire and charges at the foe. The user also takes 33% recoil.
 210,FIREBLAST,Fire Blast,00A,110,FIRE,Special,85,5,10,NearOther,0,bef,The foe is attacked with an intense blast of all-consuming fire. It has a 10% chance to burn.
@@ -798,7 +798,7 @@
 778,WINTERWARNING,Winter Warning,111,140,ICE,Special,100,10,0,NearOther,0,,"Two turns after this move is used, extreme winter cold attacks the target."
 779,CRYSTALCRUSH,Crystal Crush,508,100,ICE,Physical,100,15,30,NearOther,0,abef,"The user crushes the target with their frosted body, taking massive damage themselves. It has a 30% chance to chill."
 780,VITALFORCE,Vital Force,08B,100,FIGHTING,Special,100,5,0,AllNearFoes,0,bef,"The user unleashes a vital energy wave. The lower the user's HP, the less powerful it becomes."
-781,CHIFLUX,Chi Flux,043,50,FIGHTING,Special,100,25,100,NearOther,0,abef,"The user contorts the target's chi with a special technique, lowering its defense."
+781,CHIFLUX,Chi Flux,043,50,FIGHTING,Special,100,25,100,NearOther,0,abef,"The user contorts the target's chi with a special technique, lowering its Defense."
 782,SHRED,Shred,509,80,DRAGON,Physical,100,15,0,NearOther,0,abef,"The user shreds through the opponents defenses, ignoring positive stat changes and abilities."
 783,CRIPPLINGBREATH,Crippling Breath,50A,70,DRAGON,Special,100,20,50,NearOther,0,bef,"The user exhales magical fumes which has a 50% chance to poison or burn the target depending on their stats."
 784,TORNADO,Tornado,078,80,DRAGON,Special,100,15,20,AllNearFoes,0,be,"The user whips up a vicious tornado to tear at the opposing team. It has a 20% chance to also make targets flinch."
@@ -813,7 +813,7 @@
 793,INFERNOCHARGE,Inferno Charge,01F,90,FIRE,Physical,100,20,30,NearOther,0,abef,"The user cloaks itself in an inferno of flame and attacks. It has a 30% chance to raise Speed."
 794,FLAREUP,Flare Up,50E,65,FIRE,Physical,100,10,0,NearOther,0,bef,The user targets the opponents soft spots with a fiery strike. Its power doubles if the target is burned.
 795,PERFUMEDPUNCH,Perfumed Punch,0A5,60,FAIRY,Physical,100,25,0,NearOther,0,abef,"The user throws a sweet-smelling punch which the target is unable to avoid."
-796,INFINITEFORCE,Infinite Force,50F,140,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user weilds an exaggerated power to strike the target. The attack's recoil sharply reduces the user's Attack stat."
+796,INFINITEFORCE,Infinite Force,50F,140,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user wields an exaggerated power to strike the target. The attack's recoil sharply reduces the user's Attack stat."
 797,TANTRUM,Tantrum,0D2,120,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user goes on a wild tantrum for two to three turns. It then becomes confused, however."
 798,SLAG,Slag,005,80,STEEL,Special,100,10,30,NearOther,0,befn,"The user sprays mining waste at the target. It has a 30% chance to poison."
 799,MAGNETHRASH,Magnethrash,0A5,90,STEEL,Physical,0,15,0,NearOther,0,abef,"The user generates an intense magnetic connection between it and the target, striking it without fail."
@@ -830,7 +830,7 @@
 810,GRIMEGRAPPLE,Grime Grapple,514,100,POISON,Physical,100,10,100,NearOther,0,abef,"The user attacks while slathered in grime. This poisons the user."
 811,VANGUARD,Vanguard,513,0,STEEL,Status,100,20,100,User,0,d,"The user enters a protective stance, boosting both its Def. and Sp. Atk. stats."
 812,FLOWSTATE,Flow State,512,0,WATER,Status,100,20,100,User,0,d,"The user gains an instinctual knowledge of battle, boosting both its Atk. and Sp. Def. stats."
-814,COLDCONVERSION,Cold Conversion,51B,130,ICE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user melts itself. The user will no longer be Ice type."
+814,COLDCONVERSION,Cold Conversion,51B,130,ICE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user uses up its Ice-type."
 815,VENOMLEECH,Venom Leech,51A,75,POISON,Physical,100,10,20,NearOther,0,abef,"The user drains the target's blood with venomous teeth. The user's HP is restored by a third of the damage dealt. 20% chance to toxify."
 816,REFLEXOVERDRIVE,Reflex Overdrive,519,110,PSYCHIC,Physical,0,10,0,Other,0,abef,"Lands without fail and lowers the user's defense and speed."
 817,DOUSE,Douse,518,40,WATER,Special,100,25,0,NearFoe,0,bef,"The user douses the target, healing itself by a third of its max. HP in the process."
