@@ -473,19 +473,32 @@ Pokemon = GOODRA,60
 Pokemon = BRAVIARY,61
 Pokemon = GOLURK,62
 Pokemon = HYMNUS,62
+	Item = LEFTOVERS
 #-------------------------------
 [IRISCOSPLAYER,Isabelle]
 Pokemon = AGGRON,64
+	Item = SITRUSBERRY
 Pokemon = ZOROARK,65
 Pokemon = LAPRAS,65
+	Item = LEFTOVERS
 Pokemon = HAEROBIC,66
+	Item = BLACKBELT
 Pokemon = HOUNDOMINUS,66
 Pokemon = HYDREIGON,66
 #-------------------------------
 [ELDER,Logun]
 Pokemon = RAICHU,70
+	Moves = THUNDERBOLT,SURF,FOCUSBLAST,GRASSKNOT
+	Item = SITRUSBERRY
 Pokemon = CORVIKNIGHT,70
+	Item = SITRUSBERRY
 Pokemon = SEISMAW,70
+	Item = LEFTOVERS
 Pokemon = ILLUMISE,70
+	AbilityIndex = 0
+	Item = LEFTOVERS
 Pokemon = ABSOLUS,70
+	Moves = ANGSTWAVE,SACREDSWORD,SLASH,NIGHTSLASH
+	AbilityIndex = 1
 Pokemon = ALAKAZAM,70
+	Item = PERSIMBERRY
