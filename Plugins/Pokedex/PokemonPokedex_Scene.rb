@@ -397,8 +397,6 @@ class PokemonPokedex_Scene
       if index!=oldIndex
 		pbPlayCursorSE
 		
-		echoln("Old, new: #{oldIndex}, #{index}")
-		
 		if oldIndex < 6 && index >=6
 			pbFadeOutAndHide(@sprites)
 			overlay.clear
@@ -587,46 +585,68 @@ class PokemonPokedex_Scene
   end
   
   def searchByMoveLearned()
-	  moveNameInput = pbEnterText("Search moves...", 0, 12)
-          
-	  if moveNameInput && moveNameInput!=""
-			reversed = moveNameInput[0] == '-'
-		    moveNameInput = moveNameInput[1..-1] if reversed
-			
-		    dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
-		    dexlist = dexlist.find_all { |item|
-				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
-				contains = false
+	  learningMethodSelection = pbMessage("Which method?",[_INTL("Any"),_INTL("Level Up"),_INTL("Mentor"),
+			_INTL("TM"),_INTL("Cancel")],5)
+	  return if learningMethodSelection == 4
+      
+	  while true
+		  moveNameInput = pbEnterText("Move name...", 0, 12)
+		  if moveNameInput && moveNameInput!=""
+				reversed = moveNameInput[0] == '-'
+				moveNameInput = moveNameInput[1..-1] if reversed
 				
-				lvlmoves = item[11]
-				lvlmoves.each do |move|
-				  if GameData::Move.get(move[1]).real_name.downcase.include?(moveNameInput.downcase)
-					contains = true
-					break
-				  end
-				end
-				next !reversed if contains
-				
-				tutormoves = item[12]
-				tutormoves.each do |move|
-				  if GameData::Move.get(move).real_name.downcase.include?(moveNameInput.downcase)
-					contains = true
-					break
-				  end
-				end
-				next !reversed if contains
-				
-				eggmoves = item[13]
-				eggmoves.each do |move|
-				  if GameData::Move.get(move).real_name.downcase.include?(moveNameInput.downcase)
-					contains = true
-					break
-				  end
+				actualMove = nil
+			    GameData::Move.each do |moveData|
+					if moveData.real_name.downcase == moveNameInput.downcase
+						actualMove = moveData.id
+						break
+					end
+			    end
+				if actualMove.nil?
+					pbMessage(_INTL("Invalid input: {1}", moveNameInput))
+					next
 				end
 				
-				next contains ^ reversed # Boolean XOR
-			}
-		  return dexlist
+				dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+				dexlist = dexlist.find_all { |item|
+					next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+					contains = false
+					
+					if learningMethodSelection == 0 || learningMethodSelection == 1
+						lvlmoves = item[11]
+						lvlmoves.each do |move|
+						  if move[1] == actualMove
+							contains = true
+							break
+						  end
+						end
+					end
+					
+					if learningMethodSelection == 0 || learningMethodSelection == 2
+						eggmoves = item[13]
+						eggmoves.each do |move|
+						  if move == actualMove
+							contains = true
+							break
+						  end
+						end
+					end
+
+					if learningMethodSelection == 0 || learningMethodSelection == 3
+						tutormoves = item[12]
+						tutormoves.each do |move|
+						  if move == actualMove
+							contains = true
+							break
+						  end
+						end
+					end
+
+					next contains ^ reversed # Boolean XOR
+				}
+			  return dexlist
+		  end
+		  break
 	  end
 	  return nil
   end
