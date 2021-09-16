@@ -172,7 +172,7 @@ class PokemonPokedexInfo_Scene
 	overlay = @sprites["overlay"].bitmap
 	base = Color.new(219, 240, 240)
 	shadow   = Color.new(88, 88, 80)
-	pageTitles = ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "TM MOVES", "MENTOR MOVES", "EVOLUTIONS", "AREA", "ANALYSIS"]
+	pageTitles = ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "MENTOR MOVES", "TM MOVES", "EVOLUTIONS", "AREA", "ANALYSIS"]
 	pageTitle = pageTitles[page-1]
 	drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
 	xPos = 240

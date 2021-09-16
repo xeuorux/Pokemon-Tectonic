@@ -212,8 +212,8 @@ class PokeBattle_Move
 		c += 1 if highCriticalRate?
 		c += user.effects[PBEffects::FocusEnergy]
 		c += 1 if user.effects[PBEffects::LuckyStar]
-		c += 1 if user.inHyperMode? && @type == :SHADOW
 		c = ratios.length-1 if c>=ratios.length
+		echoln("Critical hit stage: #{c}")
 		# Calculation
 		return @battle.pbRandom(ratios[c])==0
     end
