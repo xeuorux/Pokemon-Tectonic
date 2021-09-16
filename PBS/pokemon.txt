@@ -4324,6 +4324,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 3
+Evolutions = LAPNESSIE,Level,36
 #-------------------------------
 [132]
 Name = Ditto
