@@ -165,14 +165,14 @@ class PokemonPokedexInfo_Scene
     @sprites["formfront"].visible     = (@page==10) if @sprites["formfront"]
     @sprites["formback"].visible      = (@page==10) if @sprites["formback"]
     @sprites["formicon"].visible      = (@page==10) if @sprites["formicon"]
-	@sprites["moveInfoDisplay"].visible = @page>=5 && @page <=7  if @sprites["moveInfoDisplay"]
-	@sprites["extraInfoOverlay"].visible = @page>=5 && @page <=7 if @sprites["extraInfoOverlay"]
+	@sprites["moveInfoDisplay"].visible = @page>=6 && @page <=8  if @sprites["moveInfoDisplay"]
+	@sprites["extraInfoOverlay"].visible = @page>=6 && @page <=8 if @sprites["extraInfoOverlay"]
 	@sprites["extraInfoOverlay"].bitmap.clear if @sprites["extraInfoOverlay"]
 	# Draw page title
 	overlay = @sprites["overlay"].bitmap
 	base = Color.new(219, 240, 240)
 	shadow   = Color.new(88, 88, 80)
-	pageTitles = ["INFO", "ABILITIES", "STATS", "TYPE MATCHUPS", "LEVEL UP MOVES", "TM MOVES", "MENTOR MOVES", "EVOLUTIONS", "AREA", "FORMS", "ANALYSIS"]
+	pageTitles = ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "TM MOVES", "MENTOR MOVES", "EVOLUTIONS", "AREA", "ANALYSIS"]
 	pageTitle = pageTitles[page-1]
 	drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
 	xPos = 240
@@ -184,12 +184,12 @@ class PokemonPokedexInfo_Scene
     when 2; drawPageAbilities
     when 3; drawPageStats
 	when 4; drawPageMatchups
-    when 5; drawPageLevelUpMoves
+	when 5; drawPageMatchups2
+    when 6; drawPageLevelUpMoves
 	when 7; drawPageEggMoves
-    when 6; drawPageTMMoves
-    when 8; drawPageEvolution
-	when 9; drawPageArea
-	when 10; drawPageForms
+    when 8; drawPageTMMoves
+    when 9; drawPageEvolution
+	when 10; drawPageArea
 	when 11; drawPageDEBUG
     end
   end
@@ -414,7 +414,7 @@ class PokemonPokedexInfo_Scene
     for i in @available
       if i[2]==@form
         formname = i[0]
-        drawTextEx(overlay,xLeft,54,450,1,_INTL("Matchups of {1}",@title),base,shadow)
+        drawTextEx(overlay,xLeft,54,450,1,_INTL("Defending Matchups of {1}",@title),base,shadow)
         fSpecies = GameData::Species.get_species_form(@species,i[2])
 		
 		#type1 = GameData::Type.get(fSpecies.type1)
@@ -441,7 +441,7 @@ class PokemonPokedexInfo_Scene
 		#Draw the types the pokemon is weak to
 		drawTextEx(overlay,xLeft,80,450,1,_INTL("Weak:"),base,shadow)
 		if weakTypes.length == 0
-			rawTextEx(overlay,xLeft,110,450,1,_INTL("None"),base,shadow)
+			drawTextEx(overlay,xLeft,110,450,1,_INTL("None"),base,shadow)
 		else
 			weakTypes.each_with_index do |t,index|
 				#drawTextEx(overlay,30,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
@@ -468,6 +468,82 @@ class PokemonPokedexInfo_Scene
 		#Draw the types the pokemon is immune to
 		immuneOffset = 324
 		drawTextEx(overlay,xLeft+immuneOffset,80,450,1,_INTL("Immune:"),base,shadow)
+		if immuneTypes.length == 0
+			drawTextEx(overlay,xLeft+immuneOffset,110,450,1,_INTL("None"),base,shadow)
+		else
+			immuneTypes.each_with_index do |t,index|
+				#drawTextEx(overlay,310,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
+				type_number = GameData::Type.get(t).id_number
+				typerect = Rect.new(0, type_number*32, 96, 32)
+				overlay.blt(xLeft+immuneOffset, 110+36*index, @typebitmap.bitmap, typerect)
+			end
+		end
+      end
+    end
+  end
+  
+  def drawPageMatchups2
+    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_matchups"))
+    overlay = @sprites["overlay"].bitmap
+    formname = ""
+    base = Color.new(64,64,64)
+    shadow = Color.new(176,176,176)
+	xLeft = 36
+    for i in @available
+      if i[2]==@form
+        formname = i[0]
+        drawTextEx(overlay,xLeft,54,450,1,_INTL("Attacking Matchups of {1}",@title),base,shadow)
+        fSpecies = GameData::Species.get_species_form(@species,i[2])
+		
+		immuneTypes = []
+		resistentTypes = []
+		weakTypes = []
+		
+		GameData::Type.each do |t|
+			next if t.pseudo_type
+			
+			effect1 = Effectiveness.calculate(fSpecies.type1,t.id,t.id)
+			effect2 = Effectiveness.calculate(fSpecies.type2,t.id,t.id)
+			effect = [effect1,effect2].max
+			
+			if Effectiveness.ineffective?(effect)
+				immuneTypes.push(t)
+			elsif Effectiveness.not_very_effective?(effect)
+				resistentTypes.push(t)
+			elsif Effectiveness.super_effective?(effect)
+				weakTypes.push(t)
+			end
+		end
+		
+		#Draw the types the pokemon is super effective against
+		drawTextEx(overlay,xLeft,80,450,1,_INTL("Super:"),base,shadow)
+		if weakTypes.length == 0
+			drawTextEx(overlay,xLeft,110,450,1,_INTL("None"),base,shadow)
+		else
+			weakTypes.each_with_index do |t,index|
+				#drawTextEx(overlay,30,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
+				type_number = GameData::Type.get(t).id_number
+				typerect = Rect.new(0, type_number*32, 96, 32)
+				overlay.blt(xLeft + (index >= 7 ? 100 : 0), 110+36*(index % 7), @typebitmap.bitmap, typerect)
+			end
+		end
+		
+		#Draw the types the pokemon can't deal but NVE damage to
+		resistOffset = 212
+		drawTextEx(overlay,xLeft+resistOffset,80,450,1,_INTL("Not Very:"),base,shadow)
+		if resistentTypes.length == 0
+			drawTextEx(overlay,xLeft+resistOffset,110,450,1,_INTL("None"),base,shadow)
+		else
+			resistentTypes.each_with_index do |t,index|
+				type_number = GameData::Type.get(t).id_number
+				typerect = Rect.new(0, type_number*32, 96, 32)
+				overlay.blt(xLeft+resistOffset, 110+36*index, @typebitmap.bitmap, typerect)
+			end
+		end
+		
+		#Draw the types the pokemon can't deal but immune damage to
+		immuneOffset = 324
+		drawTextEx(overlay,xLeft+immuneOffset,80,450,1,_INTL("No Effect:"),base,shadow)
 		if immuneTypes.length == 0
 			drawTextEx(overlay,xLeft+immuneOffset,110,450,1,_INTL("None"),base,shadow)
 		else
@@ -1108,11 +1184,11 @@ class PokemonPokedexInfo_Scene
 		if @page==1
           pbPlayCloseMenuSE
           break
-        elsif @page==5 || @page == 6 || @page == 7   # Move lists
+        elsif @page==6 || @page == 7 || @page == 8   # Move lists
 		  pbPlayDecisionSE
           pbScroll
           dorefresh = true
-		elsif @page==8 && @evolutionsArray.length > 0   # Evolutions
+		elsif @page==9 && @evolutionsArray.length > 0   # Evolutions
 		  if @linksEnabled
 			pbPlayDecisionSE
 			  newSpecies = pbScrollEvolutions()
@@ -1124,12 +1200,6 @@ class PokemonPokedexInfo_Scene
 		  else
 			pbPlayBuzzerSE
 		  end
-        elsif @page==10   # Forms
-          if @available.length>1
-            pbPlayDecisionSE
-            pbChooseForm
-            dorefresh = true
-          end
         end
       elsif Input.repeat?(Input::UP)
         oldindex = @index
