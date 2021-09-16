@@ -405,6 +405,25 @@ class PokeBattle_Battler
       PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
 	  if !user.boss && !target.boss
 		@battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+		
+		if !battle.wildBattle?
+		  if @battle.pbOwnedByPlayer?(target.index)
+				# Trigger each opponent's dialogue
+				@battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
+					@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+						trainer = @battle.opponent[idxTrainer]
+						PokeBattle_AI.triggerPlayerPokemonImmuneDialogue(policy,self,target,trainer_speaking,dialogue)
+					}
+				end
+			else
+				# Trigger just this pokemon's trainer's dialogue
+				idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(index)
+				trainer_speaking = @battle.opponent[idxTrainer]
+				@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+					PokeBattle_AI.triggerTrainerPokemonImmuneDialogue(policy,self,target,trainer_speaking,dialogue)
+				}
+			end
+		end
 		return false
 	  else
 	    name = (user.boss ? user : target).pbThis(true)

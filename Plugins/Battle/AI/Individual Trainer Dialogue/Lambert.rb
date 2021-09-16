@@ -21,3 +21,13 @@ PokeBattle_AI::TrainerPokemonTookMoveDamageDialogue.add(:LAMBERT,
     next dialogue_array
   }
 )
+
+PokeBattle_AI::TrainerPokemonImmuneDialogue.add(:LAMBERT,
+  proc { |policy,attacker,target,trainer_speaking,dialogue_array|
+	next dialogue_array if trainer_speaking.policyStates[:IllusionTrick]
+	next dialogue_array if target.species !=:ZORUA
+	dialogue_array.push("Mystified? I’ve got plenty of tricks up my sleeve.")
+	trainer_speaking.policyStates[:IllusionTrick] = true
+    next dialogue_array
+  }
+)
