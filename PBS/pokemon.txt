@@ -18714,7 +18714,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 34
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GARBODOR,Level,36
+Evolutions = GARBODOR,Level,28
 #-------------------------------
 [569]
 Name = Garbodor
@@ -18722,8 +18722,8 @@ InternalName = GARBODOR
 Type1 = POISON
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,95,72,115,60,72
-# Total = 514
+BaseStats = 90,85,65,100,55,68
+# Total = 463
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 166
@@ -18749,6 +18749,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = DONSTER,Level,40
 #-------------------------------
 [570]
 Name = Zorua
@@ -30288,11 +30289,11 @@ TutorMoves = AQUATAIL,AVALANCHE,BLIZZARD,BLOCK,BODYPRESS,BODYSLAM,BRINE,BULLDOZE
 EggMoves = FORESIGHT,TICKLE,REFRESH,DRAGONDANCE,CURSE,SLEEPTALK,ANCIENTPOWER,WHIRLPOOL,DRAGONPULSE,AVALANCHE,FUTURESIGHT,FREEZEDRY,SPARKLINGARIA
 Compatibility = Monster,Water1
 StepsToHatch = 10455
-Height = 2.5
-Weight = 220.0
+Height = 3.7
+Weight = 300.0
 Color = Blue
 Shape = Head
-Kind = Transport
+Kind = Freighter
 Pokedex = Its massive body can transport massive amounts of Pokemon and people. Due to its intelligence, those raised in captivity can learn to speak human languages at childlike levels.
 WildItemCommon = MYSTICWATER
 WildItemUncommon = MYSTICWATER
@@ -30303,6 +30304,40 @@ BattlerEnemyX = 0
 BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 3
+#-------------------------------
+[568]
+Name = Donster
+InternalName = DONSTER
+Type1 = POISON
+Type2 = STEEL
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 105,95,82,115,70,80
+# Total = 547
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 166
+EffortPoints = 0,2,0,0,0,0
+Rareness = 60
+Happiness = 50
+Abilities = STENCH,AFTERMATH
+Moves = 1,POUND,1,TAKEDOWN,1,METALCLAW,1,POISONGAS,1,RECYCLE,1,BADSTENCH,9,AMNESIA,9,IRONDEFENSE,12,CLEARSMOG,15,TOXICSPIKES,18,SLUDGE,21,STOCKPILE,21,SWALLOW,24,HEAVYSLAM,27,POISONJAB,30,TOXIC,33,BELCH,39,PAINSPLIT,43,GUNKSHOT,48,EXPLOSION,54,METALBURST
+TutorMoves = AMNESIA,BODYPRESS,BODYSLAM,CONFIDE,CORROSIVEGAS,CROSSPOISON,DARKPULSE,DRAINPUNCH,ENDURE,EXPLOSION,FACADE,FLING,FOCUSBLAST,FRUSTRATION,GIGADRAIN,GIGAIMPACT,GUNKSHOT,HIDDENPOWER,HYPERBEAM,INFESTATION,PAINSPLIT,PAYBACK,PROTECT,PSYCHIC,RAINDANCE,RECYCLE,REST,RETURN,ROCKBLAST,ROCKPOLISH,ROUND,SCREECH,SEEDBOMB,SELFDESTRUCT,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SMACKDOWN,SNORE,SOLARBEAM,SPIKES,SPITEFULCHANT,STOMPINGTANTRUM,SUBSTITUTE,SUNNYDAY,SWAGGER,THIEF,THUNDERBOLT,TOXIC,TOXICSPIKES,VENOMDRENCH,VENOSHOCK
+Compatibility = Mineral
+StepsToHatch = 5355
+Height = 2.4
+Weight = 163.1
+Color = Green
+Shape = Head
+Kind = Landfill
+Pokedex = The amount of waste it has consumed has rendered extremely harzardous. If it is not careful, its mere presence can make others around it sick.
+WildItemCommon = SILKSCARF
+WildItemUncommon = BLACKSLUDGE
+BattlerPlayerX = 0
+BattlerPlayerY = 11
+BattlerEnemyX = 0
+BattlerEnemyY = 18
+BattlerShadowX = 0
+BattlerShadowSize = 2
 #-------------------------------
 [2000]
 Name = Rattata (A)
