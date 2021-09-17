@@ -1708,7 +1708,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PERSIAN,Level,28
+Evolutions = PERSIAN,Level,28,NEBELUNG,Item,SHINYSTONE
 #-------------------------------
 [53]
 Name = Persian
@@ -30305,7 +30305,7 @@ BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 3
 #-------------------------------
-[568]
+[923]
 Name = Donster
 InternalName = DONSTER
 Type1 = POISON
@@ -30336,6 +30336,39 @@ BattlerPlayerX = 0
 BattlerPlayerY = 11
 BattlerEnemyX = 0
 BattlerEnemyY = 18
+BattlerShadowX = 0
+BattlerShadowSize = 2
+#-------------------------------
+[924]
+Name = Nebelung
+InternalName = NEBELUNG
+Type1 = NORMAL
+Type2 = DRAGON
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 95,90,110,100,65,85
+# Total = 545
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 154
+EffortPoints = 0,0,0,2,0,0
+Rareness = 90
+Happiness = 50
+Abilities = FORTUNE,TECHNICIAN
+Moves = 0,POWERGEM,1,POWERGEM,1,SWITCHEROO,1,FAKEOUT,1,GROWL,1,CLASH,1,SCRATCH,12,PAYDAY,16,BITE,20,TAUNT,24,BREAKINGSWIPE,31,STOMP,36,HONECLAWS,40,SLASH,42,CALAMITOUSSLASH,48,SWORDSDANCE,54,OUTRAGE
+TutorMoves = AERIALACE,AMNESIA,ASSURANCE,BODYSLAM,CONFIDE,COVET,CUT,DARKPULSE,DIG,DREAMEATER,ECHOEDVOICE,EMBARGO,ENDURE,FACADE,FOULPLAY,FRUSTRATION,GIGAIMPACT,GUNKSHOT,HIDDENPOWER,HYPERBEAM,HYPERVOICE,ICYWIND,IRONTAIL,KNOCKOFF,LASHOUT,LASTRESORT,NASTYPLOT,PAYBACK,PAYDAY,PLAYROUGH,POUT,POWERGEM,PROTECT,PSYCHUP,RAINDANCE,REST,RETALIATE,RETURN,ROAR,ROUND,SCREECH,SEEDBOMB,SHADOWBALL,SHADOWCLAW,SHOCKWAVE,SKITTERSMACK,SLEEPTALK,SNATCH,SNORE,SPITEFULCHANT,SUBSTITUTE,SUNNYDAY,SWAGGER,SWIFT,TAUNT,THIEF,THROATCHOP,THUNDER,THUNDERBOLT,TORMENT,TOXIC,UPROAR,UTURN,WATERPULSE,WORKUP
+Compatibility = Field
+StepsToHatch = 5355
+Height = 33.0
+Weight = 108.3
+Color = Yellow
+Shape = Head
+Kind = Long Cat
+Pokedex = It is very long.
+WildItemUncommon = QUICKCLAW
+BattlerPlayerX = 0
+BattlerPlayerY = 15
+BattlerEnemyX = 0
+BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
