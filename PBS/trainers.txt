@@ -269,6 +269,16 @@ Pokemon = VOLTORB,22
 Pokemon = SLUGMA,22
 Pokemon = VENIPEDE,23
 #-------------------------------
+[RICHBOY2,Theodore]
+Pokemon = STANTLER,20
+	AbilityIndex = 0
+Pokemon = CINCCINO,20
+	AbilityIndex = 0
+Pokemon = TAUROS,20
+	AbilityIndex = 0
+Pokemon = BRAIXEN,21
+	AbilityIndex = 1
+#-------------------------------
 [LEADER_Helena,Helena]
 Pokemon = CHINCHOU,25
 		AbilityIndex = 0

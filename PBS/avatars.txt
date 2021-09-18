@@ -412,3 +412,10 @@ Turns = 3
 HPMult = 3
 Ability = PROUDFIRE
 Moves = NOBLEROAR,FLAMETHROWER,ENDEAVOR
+#-----------------------------
+[ABSOLUS]
+Turns = 3
+HPMult = 3
+Ability = SUPERLUCK
+Item = SCOPELENS
+Moves = SACREDSWORD,FOCUSENERGY,SWORDSDANCE,NIGHTSLASH
