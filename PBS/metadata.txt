@@ -181,6 +181,8 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [032]
+# Németh Apartments
+ShowArea = true
 HealingSpot = 21,25,13
 #-------------------------------
 [033]
@@ -211,7 +213,8 @@ Outdoor = false
 Bicycle = true
 #-------------------------------
 [043]
-Outdoor = true
+# Németh Apartments F2
+Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
@@ -250,5 +253,16 @@ Weather = Rain,10
 # Sailors house
 HealingSpot = 59,26,12
 #-------------------------------
+[066]
+# Németh Apartments Attic
+ShowArea = true
+#-------------------------------
+[067]
+# Németh Apartments Room 101
+#-------------------------------
+[069]
+# Németh Apartment Rooms
+#-------------------------------
 [076]
+# Németh Apartments Room 201
 HealingSpot = 48,36,21
