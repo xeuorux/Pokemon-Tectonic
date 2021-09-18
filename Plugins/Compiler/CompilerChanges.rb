@@ -796,12 +796,12 @@ module Compiler
           map.events[key] = newevent
           changed = true
         end
-		newevent = convert_overworld_pokemon(map.events[key])
+		newevent = convert_placeholder_pokemon(map.events[key])
         if newevent
           map.events[key] = newevent
           changed = true
         end
-		newevent = add_cry_script(map.events[key])
+		newevent = convert_overworld_pokemon(map.events[key])
         if newevent
           map.events[key] = newevent
           changed = true
@@ -976,7 +976,7 @@ module Compiler
   #=============================================================================
   # Convert events using the PHP name command into fully fledged overworld pokemon
   #=============================================================================
-  def convert_overworld_pokemon(event)
+  def convert_placeholder_pokemon(event)
 	return nil if !event || event.pages.length==0
 	match = event.name.match(/.*PHP\(([a-zA-Z0-9]+)(?:_([0-9]*))?(?:,([_a-zA-Z]+))?.*/)
 	return nil if !match
@@ -1039,40 +1039,27 @@ module Compiler
   end
   
   #=============================================================================
-  # Add cry actions to overworld pokemon events which don't already have scripted behaviour.
+  # Convert events using the overworld name command to use the correct graphic.
   #=============================================================================
-  def add_cry_script(event)
-    return nil if !event || event.pages.length==0
-	match = event.name.match(/.*overworld\((.*)_?([0-9]*)\).*/)
+  def convert_overworld_pokemon(event)
+	return nil if !event || event.pages.length==0
+	match = event.name.match(/(.*)?overworld\(([a-zA-Z0-9]+)\)(.*)?/)
 	return nil if !match
-    ret = RPG::Event.new(event.x,event.y)
-    ret.name = event.name.sub("nocry","")
-    ret.id   = event.id
-	ret.pages = []
-	speciesName = match[1]
-	return nil if !speciesName || speciesName == ""
-	form = match[2]
-	form = 0 if !form || form == ""
-	speciesNamePretty = GameData::Species.get(speciesName.to_sym).real_name
-	changedAny = false
-	for pagenum in 0...event.pages.length
-		page = Marshal::load(Marshal.dump(event.pages[pagenum]))
-		# If this is definitely an overworld placeholder page, and there is not already scripting on this page
-		if page.graphic.character_name == "00Overworld Placeholder" && page.list.length == 1
-			echo("Doing a cry replacement for event: #{event.name}\n")
-			page.trigger = 0 # Action button
-			page.list = []
-			push_script(page.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesName,form))
-			push_script(page.list,sprintf("pbMessage(\"#{speciesNamePretty} cries out!\")",))
-			push_end(page.list)
-			changedAny = true
-		end
-		ret.pages.push(page)
+	nameStuff = match[1] || ""
+	nameStuff += match[3] || ""
+	nameStuff += match[2] || ""
+	species = match[2]
+	return nil if !species
+	
+	event.name = nameStuff
+	event.pages.each do |page|
+		next if page.graphic.character_name != "00Overworld Placeholder"
+		page.graphic.character_name = "Followers/#{species}" 
 	end
-	return nil if !changedAny
-	return ret
+	
+	return event
   end
-end
+ end
 
 def jank_hash_code(str)
   result = 0
