@@ -209,7 +209,9 @@ class DependentEvents
   def remove_sprite
     events = $PokemonGlobal.dependentEvents
     for i in 0...events.length
-      next if !events[i] && events[i][8][/FollowerPkmn/i]
+      next if !events[i]
+	  next unless events[i][8][/FollowerPkmn/i]
+	  echoln("Removing the sprite for event named #{events[i][8]}")
       events[i][6] = sprintf("")
       @realEvents[i].character_name = ""
       $PokemonGlobal.time_taken = 0
@@ -225,7 +227,8 @@ class DependentEvents
     if anim
       events = $PokemonGlobal.dependentEvents
       for i in 0...events.length
-        next if !events[i] && events[i][8][/FollowerPkmn/i]
+        next if !events[i]
+		next unless events[i][8][/FollowerPkmn/i]
         anim = getConst(FollowerSettings,ret ? :Animation_Come_Out : :Animation_Come_In)
         $scene.spriteset.addUserAnimation(anim,@realEvents[i].x,@realEvents[i].y)
         pbWait(Graphics.frame_rate/10)
