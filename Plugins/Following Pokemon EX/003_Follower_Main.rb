@@ -216,7 +216,7 @@ class DependentEvents
     end
   end
 
-# Command to update follower/ make it reappear
+  # Command to update follower/ make it reappear
   def refresh_sprite(anim = false)
     first_pkmn = $Trainer.first_able_pokemon
     return if !first_pkmn
@@ -491,5 +491,6 @@ Events.onStepTaken += proc { |_sender,_e|
 }
 
 def refreshFollow
-	pbToggleFollowingPokemon($PokemonSystem.followers == 0 ? "on" : "off",true)
+	return if $PokemonSystem.followers == 1
+	pbToggleFollowingPokemon("on",true)
 end

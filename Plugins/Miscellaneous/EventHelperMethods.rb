@@ -509,6 +509,13 @@ def stowFollowerIfActive()
 	end
 end
 
+def unstowFollowerIfAllowed()
+	if $PokemonSystem.followers == 0
+		pbToggleFollowingPokemon("on",true)
+		pbWait(Graphics.frame_rate)
+	end
+end
+
 def teleportLeaveAnimation
 	stowFollowerIfActive()
 	player = get_player
