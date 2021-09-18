@@ -529,7 +529,7 @@ class PokeBattle_Move
     if target.hasActiveItem?(:RINGTARGET)
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
     end
-    # Foresight
+    # Foresight/Scrappy
     if user.hasActiveAbility?(:SCRAPPY) || target.effects[PBEffects::Foresight]
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GHOST &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
@@ -539,7 +539,7 @@ class PokeBattle_Move
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :DARK &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end
-	#Creep Out
+	# Creep Out
 	if target.effects[PBEffects::CreepOut]
 		ret *= 2 if moveType == :BUG
 	end
@@ -564,9 +564,9 @@ class PokeBattle_Move
       ret = PBTypeEffectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.not_very_effective_type?(moveType,target.type1,target.type2)
     end
 	
-	# Corrosion
-	if user.hasActiveAbility?(:CORROSION)
-		ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :STEEL && Effectiveness.ineffective_type?(moveType, defType)
+	# Break Through
+	if user.hasActiveAbility?(:BREAKTHROUGH)
+		ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
 	end
 	
     return ret
