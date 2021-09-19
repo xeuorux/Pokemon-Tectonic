@@ -881,7 +881,7 @@ class PokemonPokedex_Scene
 		comparisonSelection = pbMessage("Which comparison?",[_INTL("Equal to"),
 			_INTL("Greater than"),_INTL("Less than"),_INTL("Cancel")],4)
 		return if comparisonSelection == 3 
-			dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
 		statTextInput = pbEnterText("Input value...", 0, 3)
 		if statTextInput && statTextInput!=""
 			reversed = statTextInput[0] == '-'
@@ -1023,7 +1023,7 @@ class PokemonPokedex_Scene
 			_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Total"),_INTL("Cancel")],8)
 	    return if statSelection == 7
 		sortDirection = pbMessage("Which direction?",[_INTL("Descending"),_INTL("Ascending"),_INTL("Cancel")],3)
-		return if statSelection == 2
+		return if sortDirection == 2
 		dexlist = @dexlist
 		dexlist.sort_by! { |entry|
 			speciesData = GameData::Species.get(entry[0])
