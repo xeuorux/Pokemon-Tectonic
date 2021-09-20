@@ -4387,7 +4387,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = VAPOREON,Item,WATERSTONE,JOLTEON,Item,THUNDERSTONE,FLAREON,Item,FIRESTONE,LEAFEON,Item,LEAFSTONE,GLACEON,Item,ICESTONE,SYLVEON,Item,DAWNSTONE,ESPEON,Item,SUNSTONE,UMBREON,Item,DUSKSTONE
+Evolutions = VAPOREON,Item,WATERSTONE,JOLTEON,Item,THUNDERSTONE,FLAREON,Item,FIRESTONE,LEAFEON,Item,LEAFSTONE,GLACEON,Item,ICESTONE,SYLVEON,Item,DAWNSTONE,ESPEON,Item,SUNSTONE,UMBREON,Item,DUSKSTONE,MAMMEON,Item,SHINYSTONE
 #-------------------------------
 [134]
 Name = Vaporeon
@@ -30371,6 +30371,38 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
+#-------------------------------
+[925]
+Name = Mammeon
+InternalName = MAMMEON
+Type1 = NORMAL
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 130,65,110,60,65,95
+# Total = 525
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 184
+EffortPoints = 2,0,0,0,0,0
+Rareness = 45
+Happiness = 50
+Abilities = ADAPTED
+Moves = 0,BODYSLAM,1,BODYSLAM,1,COVET,1,HELPINGHAND,1,TACKLE,1,GROWL,1,TAILWHIP,5,SANDATTACK,10,QUICKATTACK,15,BABYDOLLEYES,20,SWIFT,25,BITE,30,COPYCAT,35,BATONPASS,40,TAKEDOWN,45,POUT,50,DOUBLEEDGE,55,LASTRESORT
+TutorMoves = BATONPASS,BODYSLAM,CONFIDE,COVET,DIG,ECHOEDVOICE,ENDURE,FACADE,FAKETEARS,FOCUSENERGY,FRUSTRATION,HEALBELL,HELPINGHAND,HIDDENPOWER,HYPERVOICE,IRONTAIL,LASERFOCUS,LASTRESORT,PAYDAY,POUT,PROTECT,RAINDANCE,REFLECT,REST,RETALIATE,RETURN,ROUND,SHADOWBALL,SLEEPTALK,SNORE,STOREDPOWER,SUBSTITUTE,SUNNYDAY,SWAGGER,SWIFT,TOXIC,WEATHERBALL,WORKUP
+EggMoves = POUT,FLAIL,ENDURE,CURSE,TICKLE,WISH,YAWN,FAKETEARS,COVET,DETECT,NATURALGIFT,STOREDPOWER,CAPTIVATE,DOUBLEKICK,MUDTHROW
+Compatibility = Field
+StepsToHatch = 9180
+Height = 10.3
+Weight = 300.5
+Color = Brown
+Shape = Head
+Kind = Massive Fluff
+Pokedex = It is large, fluffy, and friendly. It will try to play with anyone that approaches it, but it might end up crushing them if it is not careful.
+BattlerPlayerX = 0
+BattlerPlayerY = 24
+BattlerEnemyX = 0
+BattlerEnemyY = 20
+BattlerShadowX = 0
+BattlerShadowSize = 1
 #-------------------------------
 [2000]
 Name = Rattata (A)
