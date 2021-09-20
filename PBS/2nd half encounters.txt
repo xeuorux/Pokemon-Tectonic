@@ -13,14 +13,13 @@ Land,20
 25,SHUPPET,32,34
 25,JOLTIK,32,34
 LandTinted
-50,FURFROU,32,34
-50,BURMY,32,34
+100,BURMY,32,34
 #-------------------------------
 [] # City 2
 Land,20
 25,SINISTEA,33,35
 25,SMEARGLE,33,35
-25,CASTFORM,33,35
+25,FURFROU,32,34
 25,MINCCINO,33,35
 #-------------------------------
 [] # Sewers
@@ -95,6 +94,8 @@ Land,20
 LandTall,20
 25,ODDISH,35,38
 25,BOUNSWEET,35,38
+25,,35,38
+25,,35,38
 #-------------------------------
 [] # Regieleki Area
 Land,20

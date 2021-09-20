@@ -263,3 +263,144 @@ DebugMenuCommands.register("regionalformsfix", {
 	Compiler.write_pokemon_forms
   }
 })
+
+DebugMenuCommands.register("generatechangelog", {
+  "parent"      => "editorsmenu",
+  "name"        => _INTL("Generate species changelog"),
+  "description" => _INTL("See the changelog for each species between the Old and New pokemon.txt files."),
+  "effect"      => proc { |sprites, viewport|
+	unchanged = []
+    GameData::SpeciesOld.each do |species_data|
+		next if species_data.form != 0
+		newSpeciesData = GameData::Species.get(species_data.id) || nil
+		next if newSpeciesData.nil?
+		changeLog = []
+		# Check for type changes
+		if species_data.type1 != newSpeciesData.type1
+			changeLog.push("Type 1: #{species_data.type1} => #{newSpeciesData.type1}")
+		end
+		if species_data.type2 != newSpeciesData.type2
+			changeLog.push("Type 2: #{species_data.type2} => #{newSpeciesData.type2}")
+		end
+		# Check for stat changes
+		stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+		oldBST = 0
+		newBST = 0
+		stats.each do |s|
+				oldStat = species_data.base_stats[s]
+				oldBST += oldStat
+				newStat = newSpeciesData.base_stats[s]
+				newBST += newStat
+				if oldStat != newStat
+					difference = (newStat - oldStat)
+					difference = "+" + difference.to_s if difference > 0
+					changeLog.push("#{s}: #{oldStat} => #{newStat} (#{difference})")
+				end
+		end
+		bstDiff = (newBST - oldBST)
+		bstDiff = "+" + bstDiff.to_s if bstDiff > 0
+		changeLog.push("BST: #{oldBST} => #{newBST} (#{bstDiff})") if oldBST != newBST
+		
+		# Check for ability changes
+		abilityRenames = {
+			:ADAPTABILITY => :ADAPTED,
+			:QUEENLYMAJESTY => :ROYALMAJESTY
+		}
+		if species_data.abilities[0] != newSpeciesData.abilities[0]
+			renamed = abilityRenames[species_data.abilities[0]] || nil
+			if renamed != newSpeciesData.abilities[0]
+				if species_data.abilities[0].nil?
+					changeLog.push("Ability 1: Added #{newSpeciesData.abilities[0]}")
+				else
+					changeLog.push("Ability 1: #{species_data.abilities[0]} => #{newSpeciesData.abilities[0]}")
+				end
+			end
+		end
+		if species_data.abilities[1] != newSpeciesData.abilities[1]
+			renamed = abilityRenames[species_data.abilities[1]] || nil
+			if renamed != newSpeciesData.abilities[1]
+				if species_data.abilities[1].nil?
+					changeLog.push("Ability 2: Added #{newSpeciesData.abilities[1]}")
+				else
+					changeLog.push("Ability 2: #{species_data.abilities[1]} => #{newSpeciesData.abilities[1]}")
+				end
+			end
+		end
+		
+		# Check for move list changes
+		moveRenames = {
+			:CHARM => :POUT,
+			:ROCKSMASH => :SMASH,
+			:SMARTSTRIKE => :SMARTHORN,
+			:SWEETKISS => :ANGELSKISS,
+			:POISONFANG => :TOXICFANG
+		} # To do, use this
+		if species_data.moves != newSpeciesData.moves
+			changeLog.push("Learnset changed.")
+		end
+		if species_data.tutor_moves != newSpeciesData.tutor_moves
+			changeLog.push("Tutor learnset changed.")
+		end
+		if species_data.egg_moves != newSpeciesData.egg_moves
+			changeLog.push("Egg moveset changed.")
+		end
+		
+		# Check for evolution changes
+		species_data.evolutions.each do |evolutionData|
+			next if evolutionData[3]
+			method = evolutionData[1]
+			parameter = evolutionData[2]
+			species = evolutionData[0]
+			
+			speciesStillThere = false
+			newSpeciesData.evolutions.each do |newEvolutionData|
+				next if newEvolutionData[3]
+				newSpecies = newEvolutionData[0]
+				newMethod = newEvolutionData[1]
+				newParameter = newEvolutionData[2]
+				if species == newSpecies
+					speciesStillThere = true
+					if method == newMethod
+						if parameter != newParameter
+							changeLog.push("Evolution to #{species} parameter: #{parameter} => #{newParameter}") 
+						end
+					else
+						descriptor = method.to_s
+						descriptor += "(" + parameter.to_s + ")" if !parameter.nil?
+						newDescriptor = newMethod.to_s
+						newDescriptor += "(" + newParameter.to_s + ")" if !newParameter.nil?
+						changeLog.push("Evolution to #{species} method: #{descriptor} => #{newDescriptor}") 
+					end
+					break
+				end
+			end
+			changeLog.push("Evolution to #{species} cut.") if !speciesStillThere
+		end
+		
+		newSpeciesData.evolutions.each do |newEvolutionData|
+			newSpecies = newEvolutionData[0]
+			newMethod = newEvolutionData[1]
+			newParameter = newEvolutionData[2]
+			didEvoExistBefore = false
+			species_data.evolutions.each do |evolutionData|
+				didEvoExistBefore = true if newSpecies == evolutionData[0]
+			end
+			if !didEvoExistBefore
+				changeLog.push("Evolution added: #{newSpecies},#{newMethod},#{newParameter}")
+			end
+		end
+		
+		# Print out the changelog
+		if changeLog.length == 0
+			unchanged.push(species_data.id)
+		else
+			echoln("#{species_data.real_name} changelog:")
+			changeLog.each do |change|
+				echoln(change)
+			end
+			echoln("")
+		end
+	end
+	echoln("Species that were unchanged: #{unchanged.to_s}")
+  }
+})
