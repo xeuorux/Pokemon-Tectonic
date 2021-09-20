@@ -4387,7 +4387,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = VAPOREON,Item,WATERSTONE,JOLTEON,Item,THUNDERSTONE,FLAREON,Item,FIRESTONE,LEAFEON,Item,LEAFSTONE,GLACEON,Item,ICESTONE,SYLVEON,Item,DAWNSTONE,ESPEON,Item,SUNSTONE,UMBREON,Item,DUSKSTONE,MAMMEON,Item,SHINYSTONE
+Evolutions = VAPOREON,Item,WATERSTONE,JOLTEON,Item,THUNDERSTONE,FLAREON,Item,FIRESTONE,LEAFEON,Item,LEAFSTONE,GLACEON,Item,ICESTONE,SYLVEON,Item,DAWNSTONE,ESPEON,Item,SUNSTONE,UMBREON,Item,DUSKSTONE,GIGANTEON,Item,SHINYSTONE
 #-------------------------------
 [134]
 Name = Vaporeon
@@ -30373,8 +30373,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [925]
-Name = Mammeon
-InternalName = MAMMEON
+Name = Giganteon
+InternalName = GIGANTEON
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 130,65,110,60,65,95
