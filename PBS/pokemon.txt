@@ -20367,8 +20367,8 @@ Name = Mienfoo
 InternalName = MIENFOO
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 45,55,50,65,85,50
-# Total = 350
+BaseStats = 45,80,50,65,80,50
+# Total = 370
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 70
@@ -20393,15 +20393,15 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MIENSHAO,Level,50
+Evolutions = MIENSHAO,Level,38
 #-------------------------------
 [620]
 Name = Mienshao
 InternalName = MIENSHAO
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,95,60,105,125,60
-# Total = 510
+BaseStats = 65,125,60,105,125,60
+# Total = 540
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 179
