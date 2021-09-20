@@ -269,9 +269,23 @@ DebugMenuCommands.register("generatechangelog", {
   "name"        => _INTL("Generate species changelog"),
   "description" => _INTL("See the changelog for each species between the Old and New pokemon.txt files."),
   "effect"      => proc { |sprites, viewport|
+	firstNumberInput = pbEnterText("First ID number", 0, 3)
+	if firstNumberInput.blank?
+		next
+	end
+	firstNumberAttempt = firstNumberInput.to_i
+	return nil if firstNumberAttempt == 0
+	lastNumberInput = pbEnterText("Last ID number", 0, 3)
+	if lastNumberInput.blank?
+		next
+	end
+	lastNumberAttempt = lastNumberInput.to_i
+	return nil if lastNumberAttempt == 0
 	unchanged = []
     GameData::SpeciesOld.each do |species_data|
 		next if species_data.form != 0
+		next if species_data.id_number < firstNumberAttempt
+		break if species_data.id_number > lastNumberAttempt
 		newSpeciesData = GameData::Species.get(species_data.id) || nil
 		next if newSpeciesData.nil?
 		changeLog = []
