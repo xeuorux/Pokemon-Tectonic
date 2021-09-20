@@ -20393,7 +20393,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MIENSHAO,Level,50
+Evolutions = MIENSHAO,Level,38
 #-------------------------------
 [620]
 Name = Mienshao
