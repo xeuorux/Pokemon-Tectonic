@@ -234,6 +234,14 @@ class PokemonEncounters
 end
 
 # Tall Grass
+GameData::TerrainTag.register({
+  :id                     => :TallGrass,
+  :id_number              => 10,
+  :deep_bush              => true,
+  :land_wild_encounters   => true,
+  :battle_environment     => :TallGrass,
+  :must_walk              => true
+})
 
 GameData::EncounterType.register({
   :id             => :LandTall,
