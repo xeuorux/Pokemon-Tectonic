@@ -259,7 +259,7 @@ class PokeBattle_Battle
     if showMessages
       if newLevel == level_cap
         if expGained != 0
-          pbDisplayPaused(_INTL("{1} gained only {3} experience due to the level cap at level {2}.",pkmn.name,level_cap,expGained))
+          pbDisplayPaused(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.",pkmn.name,level_cap,expGained))
 		end
       else
         if isOutsider

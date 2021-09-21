@@ -126,9 +126,9 @@ Pokemon = JOLTIK,15
 ################################
 #-------------------------------
 [GUITARIST,Reece]
-Pokemon = KOFFING,15
-Pokemon = TOXEL,15
-Pokemon = BLITZLE,15
+Pokemon = KOFFING,16
+Pokemon = TOXEL,16
+Pokemon = BLITZLE,17
 #-------------------------------
 [PSYCHIC_M,Uriel]
 Pokemon = ABRA,15
@@ -210,17 +210,17 @@ Pokemon = NUMEL,20
 #-------------------------------
 [LINEBACKER,Josh]
 Pokemon = GURDURR,20
-Pokemon = STUFFUL,20
+Pokemon = STUFFUL,21
 Pokemon = MAKUHITA,20
 #-------------------------------
 [SCHOOLKID_F,Arya]
 Pokemon = SWIRLIX,20
 Pokemon = WHIMSICOTT,20
-Pokemon = PURRLOIN,20
+Pokemon = PURRLOIN,21
 #-------------------------------
 [RUINMANIAC,Spencer]
 Pokemon = BALTOY,21
-Pokemon = GOOMY,21
+Pokemon = GOOMY,22
 Pokemon = SHIELDON,21
 #-------------------------------
 [SOCIALITE,Elizabeth]
@@ -234,7 +234,7 @@ Pokemon = PIDGEOTTO,22
 Pokemon = SEEDOT,22
 #-------------------------------
 [GAMBLER,Gregor]
-Pokemon = MEOWTH,22
+Pokemon = MEOWTH,21
 Pokemon = AMEOWTH,22
 Pokemon = GMEOWTH,22
 #-------------------------------
@@ -245,12 +245,12 @@ Pokemon = LICKITUNG,22
 #-------------------------------
 [LASS,Tara]
 Pokemon = QUILLADIN,23
-Pokemon = SEALEO,23
+Pokemon = SEALEO,22
 Pokemon = ELECTABUZZ,23
 #-------------------------------
 [MEDIUM,Theoni]
 Pokemon = SABLEYE,24
-Pokemon = FRILLISH,24
+Pokemon = FRILLISH,23
 Pokemon = DODUO,24
 #-------------------------------
 [BAKER,Rose]

@@ -1007,8 +1007,12 @@ module Compiler
 	case trainerTypeName
 		when "LASS"
 			return "NPC_025_Lass"
+		when "POKEFAN_M"
+			return "NPC_040_Poke_Fan_M"
 		when "MAID"
 			return "NPC_067_Maid"
+		when "GUITARIST"
+			return "NPC_069_Guitarist"
 		when "MEDIUM"
 			return "NPC_079_Medium"
 		when "RUINMANIAC"
@@ -1019,6 +1023,8 @@ module Compiler
 			return "trLineBacker"
 		when "SCHOOLKID_F"
 			return "trSchoolKid_F"
+		when "DANCER"
+			return "trDancer"
 		else
 			return nil
 	end
@@ -1029,7 +1035,7 @@ module Compiler
   #=============================================================================
   def convert_chasm_style_trainers(event)
 	return nil if !event || event.pages.length==0
-	match = event.name.match(/.*PHT\(([_a-zA-Z0-9]+)(?:,([_a-zA-Z]+)\))?.*/)
+	match = event.name.match(/PHT\(([_a-zA-Z0-9]+),([_a-zA-Z]+),([0-9]+)\)/)
 	return nil if !match
 	ret = RPG::Event.new(event.x,event.y)
 	ret.name = "resettrainer(4)"
@@ -1037,7 +1043,8 @@ module Compiler
 	ret.pages = []
 	trainerTypeName = match[1]
 	return nil if !trainerTypeName || trainerTypeName == ""
-	trainerName = match[2] || "UNKNOWN"
+	trainerName = match[2]
+	trainerMaxLevel = match[3]
 	ret.pages = [3]
 	
 	graphicName = getTrainerGraphicNameFromType(trainerTypeName) || "00TrainerPlaceholder"
@@ -1055,7 +1062,7 @@ module Compiler
 	push_branch(firstPage.list,"pbTrainerBattle(:#{trainerTypeName},\"#{trainerName}\")")
 	push_branch(firstPage.list,"$game_switches[94]",1)
 	push_text(firstPage.list,"Dialogue here.",2)
-	push_script(firstPage.list,"perfectTrainer",2)
+	push_script(firstPage.list,"perfectTrainer(#{trainerMaxLevel})",2)
 	push_else(firstPage.list,2)
 	push_text(firstPage.list,"Dialogue here.",2)
 	push_script(firstPage.list,"defeatTrainer",2)

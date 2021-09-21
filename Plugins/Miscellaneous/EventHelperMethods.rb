@@ -112,15 +112,15 @@ def healAndGiveRewardIfNotYetGiven(badgeNum)
 	end
 end
 
-def perfectTrainer()
+def perfectTrainer(maxTrainerLevel=15)
 	blackFadeOutIn() {
 		setMySwitch('D',true)
 		setFollowerGone()
 	}
-	pbTrainerDropsItem()
+	pbTrainerDropsItem(maxTrainerLevel)
 end
 
-def perfectDoubleTrainer(event1,event2)
+def perfectDoubleTrainer(event1,event2,maxTrainerLevel = 15)
 	blackFadeOutIn() {
 		setMySwitch('D',true)
 		pbSetSelfSwitch(event1,'D',true)
@@ -128,8 +128,53 @@ def perfectDoubleTrainer(event1,event2)
 		setFollowerGone(event1)
 		setFollowerGone(event2)
 	}
-	pbTrainerDropsItem()
-	pbTrainerDropsItem()
+	pbTrainerDropsItem(maxTrainerLevel)
+	pbTrainerDropsItem(maxTrainerLevel)
+end
+
+def pbTrainerDropsItem(maxTrainerLevel = 15)
+  # For a medium slow pokemon (e.g. starters):
+  # 10: 200, 15: 500, 20: 1000
+  # 25: 1700, 30: 2500, 35: 3500
+  # 40: 4800, 45: 6200, 50: 7800
+  # 55: 9500, 60: 11,500, 65: 13,500
+  itemsGiven = []
+  case maxTrainerLevel
+  when 0..15
+	itemsGiven = [:EXPCANDYXS,1] # 250
+  when 16..20
+	itemsGiven = [:EXPCANDYXS,2] # 500
+  when 21..25
+	itemsGiven = [:EXPCANDYS,1] # 1000
+  when 26..30
+	itemsGiven = [:EXPCANDYS,2] # 2000
+  when 31..35
+	itemsGiven = [:EXPCANDYS,3] # 3000
+  when 36..40
+	itemsGiven = [:EXPCANDYM,1] # 4000
+  when 41..45
+	itemsGiven = [:EXPCANDYM,1,:EXPCANDYS,1] # 5000
+  when 46..50
+	itemsGiven = [:EXPCANDYM,1,:EXPCANDYS,2] # 6000
+  when 51..55
+	itemsGiven = [:EXPCANDYM,2] # 8000
+  when 56..60
+	itemsGiven = [:EXPCANDYM,2,:EXPCANDYS,2] # 10000
+  when 61..65
+	itemsGiven = [:EXPCANDYL,1] # 12000
+  when 66..70
+	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,1] # 16000
+  else
+	itemsGiven = [:EXPCANDYXS,1] # 250
+  end
+  if itemsGiven.length == 2
+	pbMessage("The fleeing trainer dropped a candy!")
+  else
+	pbMessage("The fleeing trainer dropped some candies!")
+  end
+  for i in 0...itemsGiven.length/2
+  	pbReceiveItem(itemsGiven[i*2],itemsGiven[i*2 + 1])
+  end
 end
 
 def defeatTrainer()
