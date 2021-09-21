@@ -88,7 +88,7 @@ def pbAvatarBattleCore(*args)
   #    4 - Wild Pokémon was caught
   #    5 - Draw
   pbSet(outcomeVar,decision)
-  return decision
+  return (decision==1)
 end
 
 def setAvatarProperties(pkmn)
