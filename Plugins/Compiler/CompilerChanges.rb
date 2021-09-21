@@ -347,10 +347,6 @@ module Compiler
     end
     # Save all data
     GameData::SpeciesOld.save
-    MessageTypes.setMessages(MessageTypes::Species, species_names)
-    MessageTypes.setMessages(MessageTypes::FormNames, species_form_names)
-    MessageTypes.setMessages(MessageTypes::Kinds, species_categories)
-    MessageTypes.setMessages(MessageTypes::Entries, species_pokedex_entries)
     Graphics.update
   end
   
