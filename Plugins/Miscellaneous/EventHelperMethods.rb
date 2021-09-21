@@ -167,7 +167,11 @@ def pbTrainerDropsItem(maxTrainerLevel = 15)
   else
 	itemsGiven = [:EXPCANDYXS,1] # 250
   end
-  if itemsGiven.length == 2
+  total = 0
+  for i in 0...itemsGiven.length/2
+  	total += itemsGiven[i*2 + 1]
+  end
+  if total == 1
 	pbMessage("The fleeing trainer dropped a candy!")
   else
 	pbMessage("The fleeing trainer dropped some candies!")
