@@ -5268,8 +5268,8 @@ Name = Sentret
 InternalName = SENTRET
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,56,54,50,35,75
-# Total = 335
+BaseStats = 70,66,54,50,35,75
+# Total = 350
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 43
@@ -5301,8 +5301,8 @@ Name = Furret
 InternalName = FURRET
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,76,64,100,45,85
-# Total = 465
+BaseStats = 95,86,74,100,45,85
+# Total = 485
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 145
