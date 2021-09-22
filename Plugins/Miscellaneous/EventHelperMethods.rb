@@ -444,9 +444,9 @@ def purchaseStarters(type,price=5000)
 	starterArray = []
 	case type
 	when :GRASS
-		starterArray = ["None","Bulbasaur","Chikorita","Turtwig","Snivy","Chespin","Rowlet","Grookey"]
+		starterArray = ["None","Bulbasaur","Chikorita","Treecko","Turtwig","Snivy","Chespin","Rowlet","Grookey"]
 	when :FIRE
-		starterArray = ["None","Charmander","Torchic","Chimchar","Tepig","Fennekin","Litten","Scorbunny"]
+		starterArray = ["None","Charmander","Cyndaquil","Torchic","Chimchar","Tepig","Fennekin","Litten","Scorbunny"]
 	when :WATER
 		starterArray = ["None","Squirtle","Totodile","Mudkip","Piplup","Oshawott","Froakie","Popplio","Sobble"]
 	else

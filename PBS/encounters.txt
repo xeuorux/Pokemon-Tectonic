@@ -20,7 +20,7 @@ Land,20
 #-------------------------------
 [034] # Scenic Path
 Land,20
-20,SKWOVET,7,9
+20,SENTRET,7,9
 20,RATTATA,7,9
 20,HOPPIP,7,9
 20,STARLY,7,9
@@ -158,7 +158,7 @@ LandTall,20
 20,PONYTA,15,18
 20,BLITZLE,15,18
 LandTinted,20
-33,SENTRET,15,18
+33,SKWOVET,15,18
 33,PATRAT,15,18
 34,ZIGZAGOON,15,18
 #-------------------------------
