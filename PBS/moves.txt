@@ -588,7 +588,7 @@
 572,SLUDGE,Sludge,005,65,POISON,Special,100,20,30,NearOther,0,bef,Unsanitary sludge is hurled at the target. It has a 30% chance to poison.
 573,VENOSHOCK,Venoshock,07B,65,POISON,Special,100,10,0,NearOther,0,bef,The user drenches the foe in a special poisonous liquid. Its power doubles if the target is poisoned.
 574,CLEARSMOG,Clear Smog,050,50,POISON,Special,0,15,0,NearOther,0,bef,The user attacks by throwing a clump of special mud. All status changes are returned to normal.
-575,TOXICFANG,Toxic Fang,006,50,POISON,Physical,100,15,50,NearOther,0,abefi,The user bites the target with toxic fangs. It has a 50% chance to toxifiy.
+575,POISONFANG,Poison Fang,005,50,POISON,Physical,100,15,50,NearOther,0,abefi,"The user bites the target with toxic fangs. It may also leave the target poisoned."
 576,POISONTAIL,Poison Tail,005,50,POISON,Physical,100,25,10,NearOther,0,abefh,The user hits the target with its tail. It has a 10% chance to poison. Critical hits land more easily.
 577,ACID,Acid,046,40,POISON,Special,100,30,10,AllNearFoes,0,bef,The foe is attacked with a spray of harsh acid. It has a 10% chance to lower Sp. Def.
 578,ACIDSPRAY,Acid Spray,04F,40,POISON,Special,100,20,100,NearOther,0,befn,The user spits fluid that works to melt the target. This harshly reduces the target's Sp. Def stat.
@@ -761,7 +761,7 @@
 #-------------------------------,,,,,,,,,,,,,
 742,COZYUP,Cozy Up,00A,40,FIRE,Physical,100,25,10,NearOther,0,abef,"The user warms up its body and attacks the target. It has a 10% chance to burn."
 743,PEBBLEDUST,Pebble Dust,000,50,ROCK,Special,90,25,0,NearOther,0,bef,"The user grinds a pebble into dust, and sprays it at the target."
-744,FUGUFORCE,Fugu Force,006,40,WATER,Physical,100,10,100,NearOther,0,abef,"The user crashes into the target with its quills. It leaves the target toxified."
+744,FUGUFORCE,Fugu Force,005,50,WATER,Physical,100,10,100,NearOther,0,abef,"The user crashes into the target with its quills. It leaves the target poisoned."
 745,SHADOW,Shadow,046,40,GHOST,Special,100,15,10,NearOther,0,bef,"The user sends a shadow to attack the target, with a 10% chance to reduce it's Sp. Def."
 746,CLACKACLACK,Clackaclack,045,40,BUG,Special,100,40,10,AllNearFoes,0,befk,"The user attacks with a horrible clattering noise. It has a 10% chance to lower Sp. Atk."
 747,LIGHTNINGDANCE,Lightning Dance,503,0,ELECTRIC,Status,0,20,0,User,0,do,"The user dances with the speed of lightning, boosting its Sp. Atk and Speed stats."
@@ -948,6 +948,5 @@
 2004,DRAGONRUSH,Dragon Rush,010,100,DRAGON,Physical,75,10,20,NearOther,0,abe,"The user tackles the foe while exhibiting overwhelming menace. It may also make the target flinch."
 2005,SMARTSTRIKE,Smart Strike,0A5,70,STEEL,Physical,0,10,0,NearOther,0,abef,"The user stabs the target with a sharp horn. This attack never misses."
 2006,SWEETKISS,Sweet Kiss,013,0,FAIRY,Status,75,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes confusion."
-2007,POISONFANG,Poison Fang,006,50,POISON,Physical,100,15,50,NearOther,0,abefi,"The user bites the target with toxic fangs. It may also leave the target badly poisoned."
-2008,SONICBOOM,Sonic Boom,06A,1,NORMAL,Special,90,20,0,NearOther,0,bef,"The target is hit with a destructive shock wave that always inflicts 20 HP damage."
-2009,PRESENT,Present,094,1,NORMAL,Physical,90,15,0,NearOther,0,bef,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however."
+2007,SONICBOOM,Sonic Boom,06A,1,NORMAL,Special,90,20,0,NearOther,0,bef,"The target is hit with a destructive shock wave that always inflicts 20 HP damage."
+2008,PRESENT,Present,094,1,NORMAL,Physical,90,15,0,NearOther,0,bef,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however."
