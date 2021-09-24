@@ -321,7 +321,7 @@
 319,BRAINSCRAMBLE,Brain Scramble,"Confusion/Charm damage is super effective."
 320,KILLJOY,Killjoy,"Pokémon can't dance."
 321,BADINFLUENCE,Bad Influence,"Healing moves can't be used."
-322,CHALLENGER,Challenger,"Draws in Fighting-type moves, is immune to them, and boosts Attack when hit."
+322,CHALLENGER,Challenger,"Immune to Fighting-type moves, and boosts Attack when hit by one."
 323,OCULAR,Ocular,"Boosts the accuracy of its allies and itself by 25%."
 324,MENTALBLOCK,Mental Block,"Prevents Confusion, Charm, Taunt, Encore, Torment, Heal Block, or Disable."
 325,BREAKTHROUGH,Break Through,"Moves ignore immunities due to typing."

@@ -326,10 +326,14 @@ def showPokeballExit(event = 0)
 end
 
 def blackFadeOutIn(&block)
-	$game_screen.start_tone_change(Tone.new(-255,-255,-255,0), 6 * Graphics.frame_rate / 20)
-	pbWait(14)
+	if $PokemonSystem.skip_fades == 1
+		$game_screen.start_tone_change(Tone.new(-255,-255,-255,0), 6 * Graphics.frame_rate / 20)
+		pbWait(14)
+	end
 	block.call
-	$game_screen.start_tone_change(Tone.new(0,0,0,0), 6 * Graphics.frame_rate / 20)
+	if $PokemonSystem.skip_fades == 1
+		$game_screen.start_tone_change(Tone.new(0,0,0,0), 6 * Graphics.frame_rate / 20)
+	end
 end
 
 def setMySwitch(switch,value)

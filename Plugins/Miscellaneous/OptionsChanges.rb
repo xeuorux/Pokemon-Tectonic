@@ -3,6 +3,7 @@ class PokemonSystem
 	attr_accessor :autosave
 	attr_accessor :particle_effects
 	attr_accessor :sprite_edits
+	attr_accessor :skip_fades
 
   def initialize
     @textspeed   = 1     # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
@@ -21,6 +22,7 @@ class PokemonSystem
 	@autosave	 = 1	# Autosave enabled (0=true, 1=false)
 	@particle_effects = 0 # (0=true, 1=false)
 	@sprite_edits = 0 # (0=true, 1=false)
+	@skip_fades = 1 # (0=true, 1=false)
   end
 end
 
@@ -136,6 +138,12 @@ class PokemonOption_Scene
 			$PokemonSystem.sprite_edits = value
          }
        ))
+	@PokemonOptions.push(EnumOption.new(_INTL("Skip Fades"),[_INTL("On"),_INTL("Off")],
+         proc { $PokemonSystem.skip_fades },
+         proc { |value|
+			$PokemonSystem.skip_fades = value
+         }
+       )) if $DEBUG
     @PokemonOptions = pbAddOnOptions(@PokemonOptions)
     @sprites["option"] = Window_PokemonOption.new(@PokemonOptions,0,
        @sprites["title"].height,Graphics.width,
