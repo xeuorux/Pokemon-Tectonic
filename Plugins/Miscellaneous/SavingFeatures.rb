@@ -142,7 +142,7 @@ end
 Events.onStepTaken += proc {
   $PokemonGlobal.autosaveSteps = 0 if !$PokemonGlobal.autosaveSteps
   $PokemonGlobal.autosaveSteps += 1 unless Input.press?(Input::CTRL)
-  if $PokemonGlobal.autosaveSteps>=30
+  if $PokemonGlobal.autosaveSteps>=40
     autoSave
     $PokemonGlobal.autosaveSteps = 0
   end
@@ -155,6 +155,31 @@ def autoSave
 		pbMessage(_INTL("\\se[]Auto-save failed.\\wtnp[30]"))
 	else
 		echoln("Auto-save!")
+		x = Graphics.width - 16
+		$game_screen.pictures[1].show("shiny", [0,0], x, 16, 100, 100, 255,0)
+		$game_screen.pictures[1].move(60,[0,0],x,16,100,100,0,0)
+	end
+end
+class AutoSaveIcon
+	def initialize
+		viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
+		viewport.z = 99999
+		@sprites = {}
+		@sprites["saveicon"] = IconSprite.new(0,0,viewport)
+		@sprites["saveicon"].setBitmap(_INTL("Graphics/Pictures/shiny"))
+		Graphics.update
+	end
+	
+	def pbUpdate
+		@framesRemaining -= 1
+		echoln(@framesRemaining)
+		pbUpdateSpriteHash(@sprites)
+	end
+
+	def dispose
+		pbFadeOutAndHide(@sprites) {pbUpdate}
+		pbDisposeSpriteHash(@sprites)
+		@viewport.dispose
 	end
 end
 
