@@ -2,8 +2,6 @@
 #-------------------------------
 # Mine Path (29) - Scenic Path (34)
 29,West,3,34,East,0
-# Forest Zoo (31) - Suburb  (56)
-31,East,4,56,West,0
 # Scenic Path (34) - Casaba Villa (33)
 34,South,0,33,North,24
 # Beach Route (38) - Casaba Villa (33)
