@@ -296,6 +296,32 @@ Pokemon = CLAUNCHER,25
 	Moves = TERRAINPULSE,AQUAJET,HELPINGHAND,WATERPULSE
 Pokemon = PIKACHU,25
 Pokemon = MARSHTOMP,25
+#-------------------------------
+[IDOL,Ishizu]
+Pokemon = JIGGLYPUFF,25
+Pokemon = YAMASK,26
+Pokemon = MONFERNO,26
+#-------------------------------
+[PSYCHIC_F2,Ludmila]
+Pokemon = MRMIME,25
+Pokemon = DROWZEE,26
+Pokemon = MACHOKE,26
+#-------------------------------
+[RANCHER,Billy]
+Pokemon = MILTANK,27
+Pokemon = KRICKETUNE,28
+#-------------------------------
+[COWGIRL,Lara]
+Pokemon = TAUROS,27
+Pokemon = TRUMBEAK,28
+#-------------------------------
+[YOUNGSTER3,Sorin]
+Pokemon = SNORUNT,27
+Pokemon = DEWOTT,28
+#-------------------------------
+[BLACKBELT3,Philip]
+Pokemon = SNORUNT,27
+Pokemon = DEWOTT,28
 ################################
 #	Ace Trainers
 ################################
