@@ -289,13 +289,22 @@ DebugMenuCommands.register("generatechangelog", {
 		newSpeciesData = GameData::Species.get(species_data.id) || nil
 		next if newSpeciesData.nil?
 		changeLog = []
+		
 		# Check for type changes
-		if species_data.type1 != newSpeciesData.type1
-			changeLog.push("Type 1: #{species_data.type1} => #{newSpeciesData.type1}")
+		oldTypes = [species_data.type1]
+		oldTypes.push(species_data.type2) if species_data.type1 != species_data.type2
+		
+		newTypes = [newSpeciesData.type1]
+		newTypes.push(newSpeciesData.type2) if newSpeciesData.type1 != newSpeciesData.type2
+		
+		oldTypes.each do |oldType|
+			changeLog.push("Removed type #{oldType}") if !newTypes.include?(oldType)
 		end
-		if species_data.type2 != newSpeciesData.type2
-			changeLog.push("Type 2: #{species_data.type2} => #{newSpeciesData.type2}")
+		
+		newTypes.each do |newType|
+			changeLog.push("Added type #{newType}") if !oldTypes.include?(newType)
 		end
+		
 		# Check for stat changes
 		stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
 		oldBST = 0
@@ -341,14 +350,8 @@ DebugMenuCommands.register("generatechangelog", {
 			end
 		end
 		
+=begin
 		# Check for move list changes
-		moveRenames = {
-			:CHARM => :POUT,
-			:ROCKSMASH => :SMASH,
-			:SMARTSTRIKE => :SMARTHORN,
-			:SWEETKISS => :ANGELSKISS,
-			:POISONFANG => :TOXICFANG
-		} # To do, use this
 		if species_data.moves != newSpeciesData.moves
 			changeLog.push("Learnset changed.")
 		end
@@ -357,6 +360,77 @@ DebugMenuCommands.register("generatechangelog", {
 		end
 		if species_data.egg_moves != newSpeciesData.egg_moves
 			changeLog.push("Egg moveset changed.")
+		end
+=end
+		
+		#Check for which specific moves have been changed
+		moveRenames = {
+			:CHARM => :POUT,
+			:ROCKSMASH => :SMASH,
+			:SMARTSTRIKE => :SMARTHORN,
+			:SWEETKISS => :ANGELSKISS,
+		}
+		moveRenamesInverted = moveRenames.invert
+		allCutMoves = [:TOXIC,:DOUBLETEAM]
+		
+		oldMovesLearned = []
+		species_data.moves.each do |learnsetEntry|
+			oldMovesLearned.push(learnsetEntry[1])
+		end
+		species_data.tutor_moves.each do |move|
+			oldMovesLearned.push(move)
+		end
+		species_data.egg_moves.each do |move|
+			oldMovesLearned.push(move)
+		end
+		oldMovesLearned.uniq!
+		oldMovesLearned.compact!
+		
+		newMovesLearned = []
+		newSpeciesData.moves.each do |learnsetEntry|
+			newMovesLearned.push(learnsetEntry[1])
+		end
+		newSpeciesData.tutor_moves.each do |move|
+			newMovesLearned.push(move)
+		end
+		newSpeciesData.egg_moves.each do |move|
+			newMovesLearned.push(move)
+		end
+		newMovesLearned.uniq!
+		newMovesLearned.compact!
+		
+		cutMoves = []
+		
+		oldMovesLearned.each do |oldMove|
+			moveRename = moveRenames[oldMove] || oldMove
+			if !newMovesLearned.include?(moveRename) && !allCutMoves.include?(moveRename)
+				cutMoves.push(oldMove)
+			end
+		end
+		
+		if cutMoves.length > 0
+			str = "Removed Moves: "
+			cutMoves.each_with_index do |move,index|
+				str += move.to_s
+				str += ", " if index != cutMoves.length - 1
+			end
+			changeLog.push(str)
+		end
+		
+		newMoves = []
+		
+		newMovesLearned.each do |newMove|
+			moveRename = moveRenamesInverted[newMove] || newMove
+			newMoves.push(newMove) if !oldMovesLearned.include?(moveRename)
+		end
+		
+		if newMoves.length > 0
+			str = "Added Moves: "
+			newMoves.each_with_index do |move,index|
+				str += move.to_s
+				str += ", " if index != newMoves.length - 1
+			end
+			changeLog.push(str)
 		end
 		
 		# Check for evolution changes

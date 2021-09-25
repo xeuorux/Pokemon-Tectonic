@@ -463,12 +463,6 @@ BattleHandlers::MoveBlockingAbility.add(:BADINFLUENCE,
 #===============================================================================
 # AccuracyCalcTargetAbility handlers
 #===============================================================================
-BattleHandlers::AccuracyCalcTargetAbility.add(:CHALLENGER,
-  proc { |ability,mods,user,target,move,type|
-    mods[:base_accuracy] = 0 if type == :FIGHTING
-  }
-)
-
 BattleHandlers::AccuracyCalcUserAllyAbility.add(:OCULAR,
   proc { |ability,mods,user,target,move,type|
     mods[:accuracy_multiplier] *= 1.25

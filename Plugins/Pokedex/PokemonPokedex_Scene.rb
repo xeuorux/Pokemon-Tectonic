@@ -590,7 +590,7 @@ class PokemonPokedex_Scene
 	  return if learningMethodSelection == 4
       
 	  while true
-		  moveNameInput = pbEnterText("Move name...", 0, 12)
+		  moveNameInput = pbEnterText("Move name...", 0, 16)
 		  if moveNameInput && moveNameInput!=""
 				reversed = moveNameInput[0] == '-'
 				moveNameInput = moveNameInput[1..-1] if reversed

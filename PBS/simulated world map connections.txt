@@ -1,0 +1,30 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+# Mine Path (29) - Scenic Path (34)
+29,West,3,34,East,0
+# Scenic Path (34) - Casaba Villa (33)
+34,South,0,33,North,24
+# Beach Route (38) - Casaba Villa (33)
+38,East,0,33,West,2
+# Forested Road (60) - Suburb  (56)
+60,North,0,56,South,45
+# Suburb  (56) - Savannah Route (3)
+56,58,0,3,0,0
+# Cave Path (13) - Mining Camp (25)
+13,South,0,25,North,8
+# Cave Path (13) - Flower Valley (55)
+13,North,0,55,South,16
+# Suburb  (56) - Tech Campus (6)
+56,48,0,6,0,107
+# Mainland Dock (59) - Forested Road (60)
+59,North,0,60,South,11
+# Suburb  (56) - Forest Zoo (31)
+56,0,0,31,77,4
+# River Route (11) - Crossroads (54)
+11,South,0,54,North,17
+# Suburb  (56) - Ice Rink Town (37)
+56,0,0,37,70,106
+# Suburb  (56) - Shortcut Cave (12)
+56,25,0,12,0,51
+# Suburb  (56) - Jungle Route (53)
+56,0,0,53,21,50
