@@ -1003,33 +1003,7 @@ module Compiler
     save_data(commonEvents,"Data/CommonEvents.rxdata") if changed
   end
   
-  def getTrainerGraphicNameFromType(trainerTypeName)
-	case trainerTypeName
-		when "LASS"
-			return "NPC_025_Lass"
-		when "POKEFAN_M"
-			return "NPC_040_Poke_Fan_M"
-		when "MAID"
-			return "NPC_067_Maid"
-		when "GUITARIST"
-			return "NPC_069_Guitarist"
-		when "MEDIUM"
-			return "NPC_079_Medium"
-		when "RUINMANIAC"
-			return "NPC_081_Ruin_Maniac"
-		when "GAMBLER"
-			return "NPC_Z05_Private_Investigator"
-		when "LINEBACKER"
-			return "trLineBacker"
-		when "SCHOOLKID_F"
-			return "trSchoolKid_F"
-		when "DANCER"
-			return "trDancer"
-		else
-			return nil
-	end
-  end
-  
+ 
   #=============================================================================
   # Convert events using the PHT command into fully fledged trainers
   #=============================================================================
@@ -1047,12 +1021,10 @@ module Compiler
 	trainerMaxLevel = match[3]
 	ret.pages = [3]
 	
-	graphicName = getTrainerGraphicNameFromType(trainerTypeName) || "00TrainerPlaceholder"
-	
 	# Create the first page, where the battle happens
 	firstPage = RPG::Event::Page.new
 	ret.pages[0] = firstPage
-	firstPage.graphic.character_name = graphicName
+	firstPage.graphic.character_name = trainerTypeName
 	firstPage.trigger = 2   # On event touch
 	firstPage.list = []
 	push_script(firstPage.list,"pbTrainerIntro(:#{trainerTypeName})")
@@ -1075,7 +1047,7 @@ module Compiler
 	# Create the second page, which has a talkable action-button graphic
 	secondPage = RPG::Event::Page.new
 	ret.pages[1] = secondPage
-	secondPage.graphic.character_name = graphicName
+	secondPage.graphic.character_name = trainerTypeName
 	secondPage.condition.self_switch_valid = true
 	secondPage.condition.self_switch_ch = "A"
 	secondPage.list = []
