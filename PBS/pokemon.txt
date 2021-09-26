@@ -9753,14 +9753,14 @@ BattlerEnemyX = 0
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = HARIYAMA,Level,20
+Evolutions = HARIYAMA,Level,26
 #-------------------------------
 [297]
 Name = Hariyama
 InternalName = HARIYAMA
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,100,70,50,50,70
+BaseStats = 130,100,70,50,70,70
 # Total = 420
 GenderRate = Female25Percent
 GrowthRate = Fluctuating
