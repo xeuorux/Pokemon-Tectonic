@@ -400,7 +400,7 @@
 395,ORANBERRY,Oran Berry,Oran Berries,5,0,It may be held by a Pokémon to heal the user by just 10 HP.,0,0,5,
 396,PERSIMBERRY,Persim Berry,Persim Berries,5,0,It may be held by a Pokémon to recover from confusion or charm.,0,0,5,
 397,LUMBERRY,Lum Berry,Lum Berries,5,0,It may be held by a Pokémon to recover from any status problem.,0,0,5,
-398,SITRUSBERRY,Sitrus Berry,Sitrus Berries,5,0,It may be held by a Pokémon to heal its HP by 25% in a pinch.,0,0,5,
+398,SITRUSBERRY,Sitrus Berry,Sitrus Berries,5,0,It may be held by a Pokémon to heal its HP by one third in a pinch.,0,0,5,
 399,FIGYBERRY,Figy Berry,Figy Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5,
 400,WIKIBERRY,Wiki Berry,Wiki Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5,
 401,MAGOBERRY,Mago Berry,Mago Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5,
