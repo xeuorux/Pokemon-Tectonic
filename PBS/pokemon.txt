@@ -7036,7 +7036,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MHERACROSS,Level,46
+Evolutions = ATLACROSS,Level,46
 #-------------------------------
 [215]
 Name = Sneasel
@@ -30239,8 +30239,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [921]
-Name = MHeracross
-InternalName = MHERACROSS
+Name = Atlacross
+InternalName = ATLACROSS
 Type1 = BUG
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
