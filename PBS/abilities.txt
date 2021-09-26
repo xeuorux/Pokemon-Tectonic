@@ -217,7 +217,7 @@
 215,INNARDSOUT,Innards Out,"Damages an attacker that lands the finishing hit."
 216,DANCER,Dancer,"Repeats another Pokémon's dance move immediately."
 217,BATTERY,Battery,"Powers up ally Pokémon's special moves."
-218,FLUFFY,Fluffy,"Takes half damage from contact moves, but weaker to Fire-type damage."
+218,FLUFFY,Fluffy,"Takes half damage from contact moves, but double from Fire-type moves."
 219,DAZZLING,Dazzling,"Makes foes unable to use priority attacks."
 220,SOULHEART,Soul-Heart,"Boosts Sp. Atk each time a Pokémon faints."
 221,TANGLINGHAIR,Tangling Hair,"Contact with it lowers the attacker's Speed."
@@ -328,6 +328,7 @@
 326,BURNHEAL,Burn Heal,"Restores 1/8th HP each turn if the Pokémon is burned."
 327,FEEDBACK,Feedback,"When attacked with a special move, inflicts 1/8th max HP damage on the attacker."
 328,DISORIENT,Disorient,"Contact with the Pokémon has a 30% chance to cause confusion."
+329,PARANOID,Paranoid,"Takes half damage from Special moves, but double from Psychic-type moves."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."

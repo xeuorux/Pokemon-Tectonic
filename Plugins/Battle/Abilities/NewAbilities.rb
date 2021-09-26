@@ -240,7 +240,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:TRAPPER,
     end
   }
 )
-
+BattleHandlers::DamageCalcTargetAbility.add(:PARANOID,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] *= 2 if move.calcType == :PSYCHIC
+    mults[:final_damage_multiplier] /= 2 if move.specialMove?
+  }
+)
 #===============================================================================
 # UserAbilityOnHit handlers
 #===============================================================================
