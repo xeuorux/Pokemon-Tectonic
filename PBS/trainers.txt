@@ -206,7 +206,7 @@ Pokemon = TYNAMO,20
 Pokemon = NUMEL,20
 	AbilityIndex = 1
 	Item = ORANBERRY
-	Moves = TREMOR,FLAMEBURST,AMNESIA,FOCUSENERGY
+	Moves = TREMOR,FLAMEBURST,INCINERATE,MUDTHROW
 #-------------------------------
 [LINEBACKER,Josh]
 Pokemon = GURDURR,20

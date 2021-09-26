@@ -636,3 +636,15 @@ def registerYezera
 	pbRegisterPartner(:POKEMONTRAINER_Yezera,"Yezera",1)
 	pbAddDependency2(@event_id,"Yezera",3)
 end
+
+def transferPlayer(x,y,direction)
+	$game_temp.player_transferring = true
+	$game_temp.player_new_map_id    = $game_map.map_id
+	$game_temp.player_new_x         = x
+	$game_temp.player_new_y         = y
+	$game_temp.player_new_direction = direction || $game_player.direction
+	
+	Graphics.freeze
+	$game_temp.transition_processing = true
+	$game_temp.transition_name       = ""
+end
