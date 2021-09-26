@@ -80,11 +80,9 @@ BattleHandlers::HPHealItem.add(:SITRUSBERRY,
     next false if !battler.canHeal?
     next false if !forced && !battler.canConsumePinchBerry?(false)
     battle.pbCommonAnimation("EatBerry",battler) if !forced
-	if battler.hasActiveAbility?(:RIPEN)
-		battler.pbRecoverHP(battler.totalhp/4)
-	else
-		battler.pbRecoverHP(battler.totalhp/2)
-	end
+	hpRestore = battler.totalhp.to_f / 3.0
+	hpRestore *= 2 if battler.hasActiveAbility?(:RIPEN)
+	battler.pbRecoverHP(hpRestore)
     itemName = GameData::Item.get(item).name
     if forced
       PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
