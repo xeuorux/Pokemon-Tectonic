@@ -177,7 +177,7 @@
 175,SWEETVEIL,Sweet Veil,"Prevents itself and allies from falling asleep."
 176,STANCECHANGE,Stance Change,"Changes between Blade and Shield Forme with attacks."
 177,GALEWINGS,Gale Wings,"Flying-type moves gain priority when its HP is full."
-178,MEGALAUNCHER,Mega Launcher,"Powers up aura and pulse moves."
+178,MEGALAUNCHER,Mega Launcher,"Increases aura and pulse moves power by 50%."
 179,GRASSPELT,Grass Pelt,"Boosts the Defense stat on Grassy Terrain."
 180,SYMBIOSIS,Symbiosis,"Passes its held item to an ally that has used theirs."
 181,TOUGHCLAWS,Tough Claws,"Powers up moves that make direct contact by 30%."
@@ -329,6 +329,7 @@
 327,FEEDBACK,Feedback,"When attacked with a special move, inflicts 1/8th max HP damage on the attacker."
 328,DISORIENT,Disorient,"Contact with the Pokémon has a 30% chance to cause confusion."
 329,PARANOID,Paranoid,"Takes half damage from Special moves, but double from Psychic-type moves."
+330,SWORDSMAN,Swordsman,"Increases slashing moves damage by 50%."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
