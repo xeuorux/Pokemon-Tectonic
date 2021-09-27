@@ -1,4 +1,5 @@
 class PokeBattle_Move
+
   def pbAllMissed(user, targets); end
 
   #=============================================================================
@@ -635,3 +636,4 @@ class PokeBattle_Move
     @battle.field.effects[PBEffects::FusionFlare] = false
   end
 end
+  def slashMove?;        return @flags[/p/]; end

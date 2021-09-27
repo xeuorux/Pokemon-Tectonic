@@ -160,6 +160,12 @@ BattleHandlers::DamageCalcUserAbility.add(:SCALDINGSMOKE,
 
 BattleHandlers::DamageCalcUserAbility.copy(:PUNKROCK,:LOUD)
 
+BattleHandlers::DamageCalcUserAbility.add(:SWORDSMAN,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if move.slashMove?
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:SUNCHASER,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.battle.pbWeather==:Rain && move.specialMove?
