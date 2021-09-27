@@ -448,6 +448,9 @@ def pbLoadTrainer(tr_type, tr_name, tr_version = 0)
   key = [tr_type.to_sym, tr_name, tr_version]
   # attempt to randomize
   trainer_data = Randomizer.getRandomizedData(trainer_data, :TRAINERS, key)
+  trainer_data.pokemon.each do |pkmn|
+	pkmn[:moves] = nil
+  end
   return (trainer_data) ? trainer_data.to_trainer : nil
 end
 #===============================================================================
