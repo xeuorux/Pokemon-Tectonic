@@ -328,7 +328,7 @@
 323,TM35,TM35,TM35s,4,10000,The user summons a hailstorm lasting five turns. It damages all Pokémon except Ice types.,3,0,0,HAIL
 324,TM36,TM36,TM36s,4,10000,The user traps the target in a violent swirling whirlpool for four to five turns.,3,0,0,WHIRLPOOL
 325,TM37,TM37,TM37s,4,10000,"The user gets all party Pokémon to attack the target. The more party Pokémon, the greater the number of attacks.",3,0,0,BEATUP
-326,TM38,TM38,TM38s,4,10000,The user shoots a sinister flame at the target to inflict a burn.,3,0,0,WILLOWISP
+326,TM38,TM38,TM38s,4,10000,"The user attacks with a sinister flame, inflicting a burn.",3,0,0,WILLOWISP
 327,TM39,TM39,TM39s,4,10000,"This attack move doubles its power if the user is poisoned, burned, or paralyzed.",3,0,0,FACADE
 328,TM40,TM40,TM40s,4,10000,Star-shaped rays are shot at opposing Pokémon. This attack never misses.,3,0,0,SWIFT
 329,TM41,TM41,TM41s,4,10000,The user assists an ally by boosting the power of that ally's attack.,3,0,0,HELPINGHAND

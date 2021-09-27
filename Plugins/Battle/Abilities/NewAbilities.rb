@@ -322,7 +322,27 @@ BattleHandlers::UserAbilityOnHit.add(:FLAMEWINGS,
     battle.pbHideAbilitySplash(user)
   }
 )
-
+BattleHandlers::UserAbilityOnHit.add(:BURNSKILL,
+  proc { |ability,user,target,move,battle|
+    next if !move.specialMove?
+    next if battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(user)
+    if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+      battle.pbShowAbilitySplash(target)
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+      end
+      battle.pbHideAbilitySplash(target)
+    elsif target.pbCanBurn?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} burned {3}!",user.pbThis,user.abilityName,target.pbThis(true))
+      end
+      target.pbBurn(user,msg)
+    end
+    battle.pbHideAbilitySplash(user)
+	}
+)
 #===============================================================================
 # UserAbilityEndOfMove handlers
 #===============================================================================
@@ -477,5 +497,35 @@ BattleHandlers::MoveBlockingAbility.add(:BADINFLUENCE,
 BattleHandlers::AccuracyCalcUserAllyAbility.add(:OCULAR,
   proc { |ability,mods,user,target,move,type|
     mods[:accuracy_multiplier] *= 1.25
+  }
+)
+
+#===============================================================================
+#other handlers
+#==============================================================================
+BattleHandlers::TargetAbilityAfterMoveUse.add(:ADRENALINERUSH,
+  proc { |ability,target,user,move,switched,battle|
+    next if !move.damagingMove?
+    next if target.damageState.initialHP<target.totalhp/2 || target.hp>=target.totalhp/2
+	target.pbRaiseStatStageByAbility(:SPEED,2,target) if target.pbCanRaiseStatStage?(:SPEED,target)
+  }
+)
+
+
+
+BattleHandlers::UserAbilityEndOfMove.add(:SCHADENFREUDE,
+  proc { |ability,battler,targets,move,battle|
+    next if battle.pbAllFainted?(battler.idxOpposingSide)
+    numFainted = 0
+    targets.each { |b| numFainted += 1 if b.damageState.fainted }
+    next if numFainted==0 || !battler.canHeal?
+    battle.pbShowAbilitySplash(battler)
+    battler.pbRecoverHP(battler.totalhp/4)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
+    end
+    battle.pbHideAbilitySplash(battler)
   }
 )
