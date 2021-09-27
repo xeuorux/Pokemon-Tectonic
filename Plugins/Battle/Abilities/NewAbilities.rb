@@ -515,7 +515,6 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:ADRENALINERUSH,
 
 BattleHandlers::UserAbilityEndOfMove.add(:SCHADENFREUDE,
   proc { |ability,battler,targets,move,battle|
-    next if battle.pbAllFainted?(battler.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
     next if numFainted==0 || !battler.canHeal?
