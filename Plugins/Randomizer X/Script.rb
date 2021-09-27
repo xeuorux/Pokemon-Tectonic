@@ -256,13 +256,14 @@ module Randomizer
       commands.push(_INTL("Done"))
       # goes to command window
       cmd = self.commandWindow(commands, cmd, msgwindow)
+	  break if cmd == commands.length - 1
       # processes return
       if cmd < 0
-        clear = pbConfirmMessage("Do you wish to cancel the Randomizer selection?")
-        added.clear if clear
-        next unless clear
+        if pbConfirmMessage("Do you wish to cancel the Randomizer selection?")
+			added.clear
+			break
+		end
       end
-      break if cmd < 0 || cmd >= (commands.length - 1)
       if cmd >= 0 && cmd < (commands.length - 1)
         if added.include?(modifiers[cmd])
           added.delete(modifiers[cmd])

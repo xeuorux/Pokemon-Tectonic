@@ -4,6 +4,9 @@ Turns = 2
 Ability = RUNAWAY
 Moves = SCRATCH,TACKLE
 HPMult = 2
+################################
+#  Gym-Locked Avatars
+################################
 #-------------------------------
 [ZERAORA]
 Turns = 3
@@ -19,6 +22,15 @@ Form = 1
 Ability = SERENEGRACE
 Moves = AIRSLASH,MAGICALLEAF,ANGELSKISS
 HPMult = 5
+#-------------------------------
+[CELEBI]
+Turns = 3
+Ability = NATURALCURE
+Moves = FUTURESIGHT,GIGADRAIN,PSYCHIC,GRASSKNOT
+HPMult = 4
+################################
+#  Route Avatars
+################################
 #-------------------------------
 [SWALOT]
 Turns = 2
