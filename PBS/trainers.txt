@@ -283,19 +283,26 @@ Pokemon = BRAIXEN,21
 Pokemon = CHINCHOU,25
 		AbilityIndex = 0
 Pokemon = LUXIO,25
+	AbilityIndex = 1
 Pokemon = MARSHTOMP,25
+	AbilityIndex = 1
 Pokemon = PIKACHU,25
+	AbilityIndex = 0
 #-------------------------------
 [LEADER_Helena,Helena,1]
 Pokemon = CHINCHOU,25
 	AbilityIndex = 0
 Pokemon = PINCURCHIN,25
+	AbilityIndex = 0
 Pokemon = LUXIO,25
+	AbilityIndex = 1
 Pokemon = CLAUNCHER,25
 	AbilityIndex = 0
 	Moves = TERRAINPULSE,AQUAJET,HELPINGHAND,WATERPULSE
 Pokemon = PIKACHU,25
+	AbilityIndex = 0
 Pokemon = MARSHTOMP,25
+	AbilityIndex = 1
 #-------------------------------
 [IDOL,Ishizu]
 Pokemon = JIGGLYPUFF,25

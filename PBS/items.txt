@@ -823,4 +823,10 @@
 #------------------------------- NEW ITEMS,,,,,,,,,,
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
+902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6
+903,CHAMBER4KEY,Chamber 4 Key,Chamber 4 Keys,8,0,"The key to the fourth chamber containing a powerful avatar.",0,0,6
+904,CHAMBER5KEY,Chamber 5 Key,Chamber 5 Keys,8,0,"The key to the fifth chamber containing a powerful avatar.",0,0,6
+905,CHAMBER6KEY,Chamber 6 Key,Chamber 6 Keys,8,0,"The key to the sixth chamber containing a powerful avatar.",0,0,6
+906,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
+907,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
 908,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It is a cup filled with coffee. It feels warm.",0,0,6
