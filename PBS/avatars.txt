@@ -140,7 +140,7 @@ HPMult = 4
 Turns = 3
 Ability = UNAWARE
 Moves = HEARTSTAMP,AERIALACE,STEELWING
-HPMult = 3
+HPMult = 2
 #-------------------------------
 [TOXAPEX]
 Turns = 2
@@ -414,14 +414,14 @@ Ability = GALVANIZE
 Moves = DOUBLEEDGE,STONEEDGE,FLAIL
 #-----------------------------
 [NIDOQUEEN]
-Turns = 3
-HPMult = 3
+Turns = 2
+HPMult = 2
 Ability = POISONPUNISH
-Moves = EARTHPOWER,FLATTER,BADSTENCH
+Moves = MUDSHOT,FLATTER,BADSTENCH
 #-----------------------------
 [PYROAR]
-Turns = 3
-HPMult = 3
+Turns = 1
+HPMult = 2
 Ability = PROUDFIRE
 Moves = NOBLEROAR,FLAMETHROWER,ENDEAVOR
 #-----------------------------

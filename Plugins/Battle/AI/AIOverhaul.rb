@@ -95,6 +95,19 @@ class PokeBattle_AI
 		  preferredMove = preferredMoves[pbAIRandom(preferredMoves.length)]
 		end
 		
+		# If a move is scored vastly higher than the others, pick it for a boss
+		if user.boss?
+			choseABigOne = false
+			choices.each do |c|
+				next unless c[1] > 5000
+				PBDebug.log("[AI] #{user.pbThis} (#{user.index}) must use #{user.moves[c[0]].name}")
+				@battle.pbRegisterMove(idxBattler,c[0],false)
+				@battle.pbRegisterTarget(idxBattler,c[2]) if c[2]>=0
+				choseABigOne = true
+				break
+			end
+		end
+		
 		# Pick the most preferred move
 		if skill>=PBTrainerAI.mediumSkill && preferredMove != nil
 		  PBDebug.log("[AI] #{user.pbThis} (#{user.index}) prefers #{user.moves[preferredMove[0]].name}")
@@ -278,7 +291,7 @@ class PokeBattle_AI
 			next if !user.opposes?(b)
 			targets.push(b)
 			score = 100
-			score = pbGetMoveScoreBoss(move,user,b) if user.boss
+			score = pbGetMoveScoreBoss(move,user,b) if user.boss?
 			targetPercent = b.hp.to_f / b.totalhp.to_f
 			score = (score*(1.0 + 0.4 * targetPercent)).floor
 			totalScore += score
@@ -290,7 +303,7 @@ class PokeBattle_AI
 		end
 	  else
 	    totalScore = 100
-		totalScore = pbGetMoveScoreBoss(move,user,nil) if user.boss
+		totalScore = pbGetMoveScoreBoss(move,user,nil) if user.boss?
 	  end
 	  
       choices.push([idxMove,totalScore,-1]) if totalScore>0
@@ -306,7 +319,7 @@ class PokeBattle_AI
         next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
         next if target_data.targets_foe && !user.opposes?(b)
 		score = 100
-        score = pbGetMoveScoreBoss(move,user,b) if user.boss
+        score = pbGetMoveScoreBoss(move,user,b) if user.boss?
         if move.damagingMove?
 			targetPercent = b.hp.to_f / b.totalhp.to_f
             score = (score*(1.0 + 0.4 * targetPercent)).floor
@@ -322,19 +335,6 @@ class PokeBattle_AI
         choices.push([idxMove,scoresAndTargets[0][0],scoresAndTargets[0][1]])
       end
     end
-	
-	if user.boss
-		containsAHugeOne = false
-		choices.each do |choice|
-			containsAHugeOne = true if choice[1] > 5000
-		end
-		
-		if containsAHugeOne
-			choices.each do |choice|
-				choice[1] = 0 if choice[1] < 5000
-			end
-		end
-	end
   end
      
   def pbEnemyShouldWithdrawEx?(idxBattler,forceSwitch)
