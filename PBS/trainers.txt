@@ -555,3 +555,18 @@ Pokemon = ABSOLUS,70
 	AbilityIndex = 1
 Pokemon = ALAKAZAM,70
 	Item = PERSIMBERRY
+################################
+#	Pokemon Research Facility Scientists
+################################
+#-------------------------------
+[SCIENTIST_M,Marco]
+Pokemon = KECLEON,30
+	AbilityIndex = 0
+Pokemon = SHARPEDO,30
+	AbilityIndex = 1
+Pokemon = NINETALES,30
+	AbilityIndex = 1
+Pokemon = GABITE,30
+	AbilityIndex = 0
+Pokemon = DOTTLER,30
+	AbilityIndex = 1
