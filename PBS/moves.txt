@@ -436,7 +436,7 @@
 421,SLASH,Slash,000,70,NORMAL,Physical,100,20,0,NearOther,0,abefhp,The target is attacked with a slash of claws or blades. Critical hits land more easily.
 422,SMELLINGSALTS,Smelling Salts,07C,70,NORMAL,Physical,100,10,0,NearOther,0,abef,"This attack inflicts double damage on a paralyzed foe. It also cures the target's paralysis, however."
 423,HORNATTACK,Horn Attack,000,65,NORMAL,Physical,100,25,0,NearOther,0,abef,The target is jabbed with a sharply pointed horn to inflict damage.
-424,STOMP,Stomp,010,65,NORMAL,Physical,100,20,30,NearOther,0,abe,The target is stomped with a big foot. It has a 30% chancce to make the target flinch.
+424,STOMP,Stomp,010,65,NORMAL,Physical,100,20,30,NearOther,0,abe,The target is stomped with a big foot. It has a 30% chance to make the target flinch.
 425,COVET,Covet,0F1,60,NORMAL,Physical,100,25,0,NearOther,0,abef,"The user endearingly approaches the target, then steals the target's held item."
 426,HIDDENPOWER,Hidden Power,090,60,NORMAL,Special,100,15,0,NearOther,0,bef,A unique attack that varies in type and intensity depending on the Pokémon using it.
 427,ROUND,Round,083,60,NORMAL,Special,100,15,0,NearOther,0,befk,The user attacks with a song. Others can join in the Round and make the attack do greater damage.
