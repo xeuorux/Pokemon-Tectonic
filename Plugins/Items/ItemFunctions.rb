@@ -178,11 +178,7 @@ def pbEXPAdditionItem(pkmn,exp,item,scene)
     totalhpdiff = pkmn.totalhp
     pkmn.calc_stats
     scene.pbRefresh
-    if scene.is_a?(PokemonPartyScreen)
-      scene.pbDisplay(_INTL("{1} grew to Lv. {2}!",pkmn.name,pkmn.level))
-    else
-      pbMessage(_INTL("{1} grew to Lv. {2}!",pkmn.name,pkmn.level))
-    end
+    pbMessage(_INTL("{1} grew to Lv. {2}!",pkmn.name,pkmn.level))
     attackdiff  = pkmn.attack-attackdiff
     defensediff = pkmn.defense-defensediff
     speeddiff   = pkmn.speed-speeddiff
@@ -190,9 +186,9 @@ def pbEXPAdditionItem(pkmn,exp,item,scene)
     spdefdiff   = pkmn.spdef-spdefdiff
     totalhpdiff = pkmn.totalhp-totalhpdiff
     pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
-       totalhpdiff,attackdiff,defensediff,spatkdiff,spdefdiff,speeddiff))
+       totalhpdiff,attackdiff,defensediff,spatkdiff,spdefdiff,speeddiff),scene)
     pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
-       pkmn.totalhp,pkmn.attack,pkmn.defense,pkmn.spatk,pkmn.spdef,pkmn.speed))
+       pkmn.totalhp,pkmn.attack,pkmn.defense,pkmn.spatk,pkmn.spdef,pkmn.speed),scene)
 	
 	# Learn new moves upon level up
 	movelist = pkmn.getMoveList
@@ -221,88 +217,4 @@ class PokemonParty_Scene
   def pbChooseNumber(helptext,maximum,initnum=1)
     return UIHelper.pbChooseNumber(@sprites["helpwindow"],helptext,maximum,initnum) { pbUpdate }
   end
-end
-
-#===============================================================================
-# Use an item from the Bag and/or on a Pokémon
-#===============================================================================
-# @return [Integer] 0 = item wasn't used; 1 = item used; 2 = close Bag to use in field
-def pbUseItem(bag,item,bagscene=nil)
-  itm = GameData::Item.get(item)
-  useType = itm.field_use
-  if itm.is_machine?    # TM or TR or HM
-    if $Trainer.pokemon_count == 0
-      pbMessage(_INTL("There is no Pokémon."))
-      return 0
-    end
-    machine = itm.move
-    return 0 if !machine
-    movename = GameData::Move.get(machine).name
-    pbMessage(_INTL("\\se[PC access]You booted up {1}.\1",itm.name))
-    if !pbConfirmMessage(_INTL("Do you want to teach {1} to a Pokémon?",movename))
-      return 0
-    elsif pbMoveTutorChoose(machine,nil,true,itm.is_TR?)
-      bag.pbDeleteItem(item) if itm.is_TR?
-      return 1
-    end
-    return 0
-  elsif useType==1 || useType==5   # Item is usable on a Pokémon
-    if $Trainer.pokemon_count == 0
-      pbMessage(_INTL("There is no Pokémon."))
-      return 0
-    end
-    ret = false
-    annot = nil
-    if itm.is_evolution_stone?
-      annot = []
-      for pkmn in $Trainer.party
-        elig = pkmn.check_evolution_on_use_item(item)
-        annot.push((elig) ? _INTL("ABLE") : _INTL("NOT ABLE"))
-      end
-    end
-    pbFadeOutIn {
-      scene = PokemonParty_Scene.new
-      screen = PokemonPartyScreen.new(scene,$Trainer.party)
-      screen.pbStartScene(_INTL("Use on which Pokémon?"),false,annot)
-      loop do
-        scene.pbSetHelpText(_INTL("Use on which Pokémon?"))
-        chosen = screen.pbChoosePokemon
-        if chosen<0
-          ret = false
-          break
-        end
-        pkmn = $Trainer.party[chosen]
-        if pbCheckUseOnPokemon(item,pkmn,screen)
-          ret = ItemHandlers.triggerUseOnPokemon(item,pkmn,scene)
-          if ret && useType==1   # Usable on Pokémon, consumed
-            bag.pbDeleteItem(item)
-            if !bag.pbHasItem?(item)
-              pbMessage(_INTL("You used your last {1}.",itm.name)) { screen.pbUpdate }
-              break
-            end
-          end
-        end
-      end
-      screen.pbEndScene
-      bagscene.pbRefresh if bagscene
-    }
-    return (ret) ? 1 : 0
-  elsif useType==2   # Item is usable from Bag
-    intret = ItemHandlers.triggerUseFromBag(item)
-    case intret
-    when 0 then return 0
-    when 1 then return 1   # Item used
-    when 2 then return 2   # Item used, end screen
-    when 3                 # Item used, consume item
-      bag.pbDeleteItem(item)
-      return 1
-    when 4                 # Item used, end screen and consume item
-      bag.pbDeleteItem(item)
-      return 2
-    end
-    pbMessage(_INTL("Can't use that here."))
-    return 0
-  end
-  pbMessage(_INTL("Can't use that here."))
-  return 0
 end

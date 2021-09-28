@@ -394,3 +394,28 @@ BattleHandlers::AbilityOnSwitchOut.add(:NATURALCURE,
     battler.pbCureStatus(false)
   }
 )
+
+BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
+  proc { |ability,user,target,move,battle|
+    next if !move.pbContactMove?(user)
+    next if user.fainted?
+    next if user.unstoppableAbility? || user.ability == ability
+    oldAbil = nil
+    battle.pbShowAbilitySplash(target) if user.opposes?(target)
+    if user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      oldAbil = user.ability
+      battle.pbShowAbilitySplash(user,true,false) if user.opposes?(target)
+      user.ability = ability
+      battle.pbReplaceAbilitySplash(user) if user.opposes?(target)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1}'s Ability became {2}!",user.pbThis,user.abilityName))
+      else
+        battle.pbDisplay(_INTL("{1}'s Ability became {2} because of {3}!",
+           user.pbThis,user.abilityName,target.pbThis(true)))
+      end
+      battle.pbHideAbilitySplash(user) if user.opposes?(target)
+    end
+    battle.pbHideAbilitySplash(target) if user.opposes?(target)
+    user.pbOnAbilityChanged(oldAbil) if !oldAbil.nil?
+  }
+)
