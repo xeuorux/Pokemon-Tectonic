@@ -333,6 +333,10 @@
 331,BURNSKILL,Burn Skill,"Has a 30% chance to burn targets when using special moves."
 332,ADRENALINERUSH,Adrenaline Rush,"Ups Speed sharply if a hit makes its HP half or less."
 333,SCHADENFREUDE,Schadenfreude,"Restores own HP after knocking out any Pokémon."
+334,STARGUARDIAN,Star Guardian,"Creates a Light Screen upon entering the battle."
+335,BARRIERMAKER,Barrier Maker,"Creates a Reflect upon entering the battle."
+336,MYSTICAURA,Mystic Aura,"Transforms the field to Magic Room upon entering the battle."
+337,TRICKSTER,Trickster,"Transforms the field to Trick Room upon entering the battle."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."

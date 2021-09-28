@@ -528,3 +528,44 @@ BattleHandlers::UserAbilityEndOfMove.add(:SCHADENFREUDE,
     battle.pbHideAbilitySplash(battler)
   }
 )
+BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.pbOwnSide.effects[PBEffects::LightScreen] = 5
+    battler.pbOwnSide.effects[PBEffects::LightScreen] = 8 if battler.hasActiveItem?(:LIGHTCLAY)
+    battle.pbDisplay(_INTL("{1} put up a Light Screen!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:BARRIERMAKER,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.pbOwnSide.effects[PBEffects::Reflect] = 5
+    battler.pbOwnSide.effects[PBEffects::Reflect] = 8 if battler.hasActiveItem?(:LIGHTCLAY)
+    battle.pbDisplay(_INTL("{1} put up a Reflect!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:MYSTICAURA,
+  proc { |ability,battler,battle|
+	if battle.field.effects[PBEffects::MagicRoom]==0
+		battle.pbShowAbilitySplash(battler)
+		battle.field.effects[PBEffects::MagicRoom] = 5
+		battle.pbDisplay(_INTL("{1}'s aura creates a bizzare area in which Pokemon's held items lose their effects!",battler.pbThis))
+		battle.pbHideAbilitySplash(battler)
+	end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTER,
+  proc { |ability,battler,battle|
+	if battle.field.effects[PBEffects::TrickRoom]==0
+		battle.pbShowAbilitySplash(battler)
+		battle.field.effects[PBEffects::TrickRoom] = 5
+		battle.pbDisplay(_INTL("{1} twisted the dimensions!",battler.pbThis))
+		battle.pbHideAbilitySplash(battler)
+	end
+  }
+)
