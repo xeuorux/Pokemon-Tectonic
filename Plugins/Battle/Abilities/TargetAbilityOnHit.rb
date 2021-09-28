@@ -18,7 +18,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FEEDBACK,
 
 BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
   proc { |ability,user,target,move,battle|
-    next if move.pbContactMove?(user)
+    next unless move.specialMove?
     next if user.poisoned? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
     if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&

@@ -280,8 +280,8 @@ class PokeBattle_Battler
 			self.status      = newStatus
 			self.statusCount = newStatusCount
 		else
-			self.bossStatus  = newStatus
-			self.bossStatusCount = newStatusCount
+			self.bossStatus  		= newStatus
+			self.bossStatusCount	= newStatusCount
 		end
 	end
     @effects[PBEffects::Toxic] = 0
