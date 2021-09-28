@@ -110,7 +110,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GRIT,
 BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
   proc { |ability,user,target,move,battle|
     if move.physicalMove?
-		target.pbRaiseStatStageByAbility(:SDEFENSE,1,target)
+		target.pbRaiseStatStageByAbility(:DEFENSE,1,target)
 	else
 		target.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,target)
 	end
