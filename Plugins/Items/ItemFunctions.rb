@@ -141,8 +141,12 @@ def pbEXPAdditionItem(pkmn,exp,item,scene)
 	maxxp = pkmn.growth_rate.minimum_exp_for_level(level_cap)
     maxlv = ((maxxp - current_exp) / exp.to_f).ceil
     maximum = [maxlv,$PokemonBag.pbQuantity(item)].min # Max items which can be used
-	question = _INTL("How many {1} do you want to use?", GameData::Item.get(item).name_plural)
-    qty = scene.pbChooseNumber(question, maximum, 1)
+	if maximum > 1
+		question = _INTL("How many {1} do you want to use?", GameData::Item.get(item).name_plural)
+		qty = scene.pbChooseNumber(question, maximum, 1)
+	else
+		qty = 1
+	end
     return false if qty < 1
     $PokemonBag.pbDeleteItem(item, qty - 1)
 	scene.pbRefresh

@@ -41,7 +41,6 @@ class PokemonPauseMenu
 		cmdDebug    = -1
 		cmdQuit     = -1
 		cmdEndGame  = -1
-		cmdRandomizer = -1
 		if $Trainer.has_pokedex && $Trainer.pokedex.accessible_dexes.length > 0
 		  commands[cmdPokedex = commands.length] = _INTL("Pokédex")
 		end
@@ -72,7 +71,6 @@ class PokemonPauseMenu
 		else
 		  commands[cmdSave = commands.length]    = _INTL("Save") if $game_system && !$game_system.save_disabled
 		end
-		#commands[cmdRandomizer = commands.length] = _INTL("Randomizer") if !Randomizer.on?
 		commands[cmdOption = commands.length]    = _INTL("Options")
 		commands[cmdDebug = commands.length]     = _INTL("Debug") if $DEBUG
 		commands[cmdEndGame = commands.length]   = _INTL("Quit Game")
@@ -163,8 +161,6 @@ class PokemonPauseMenu
 			  screen.pbStartScreen
 			  @scene.pbRefresh
 			}
-		  elsif cmdRandomizer >= 0 && command==cmdRandomizer
-			Randomizer.start
 		  elsif cmdQuit>=0 && command==cmdQuit
 			@scene.pbHideMenu
 			if pbInSafari?

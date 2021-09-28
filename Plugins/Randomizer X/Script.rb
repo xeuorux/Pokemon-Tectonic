@@ -256,13 +256,14 @@ module Randomizer
       commands.push(_INTL("Done"))
       # goes to command window
       cmd = self.commandWindow(commands, cmd, msgwindow)
+	  break if cmd == commands.length - 1
       # processes return
       if cmd < 0
-        clear = pbConfirmMessage("Do you wish to cancel the Randomizer selection?")
-        added.clear if clear
-        next unless clear
+        if pbConfirmMessage("Do you wish to cancel the Randomizer selection?")
+			added.clear
+			break
+		end
       end
-      break if cmd < 0 || cmd >= (commands.length - 1)
       if cmd >= 0 && cmd < (commands.length - 1)
         if added.include?(modifiers[cmd])
           added.delete(modifiers[cmd])
@@ -447,6 +448,9 @@ def pbLoadTrainer(tr_type, tr_name, tr_version = 0)
   key = [tr_type.to_sym, tr_name, tr_version]
   # attempt to randomize
   trainer_data = Randomizer.getRandomizedData(trainer_data, :TRAINERS, key)
+  trainer_data.pokemon.each do |pkmn|
+	pkmn[:moves] = nil
+  end
   return (trainer_data) ? trainer_data.to_trainer : nil
 end
 #===============================================================================
