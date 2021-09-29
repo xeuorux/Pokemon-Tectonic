@@ -580,3 +580,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:GARLANDGUARDIAN,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:FREERIDE,
+  proc { |ability,battler,battle|
+	done= false
+	battler.eachAlly do |b|
+	    battle.pbShowAbilitySplash(battler)
+		b.pbRaiseStatStageByAbility(:SPEED,1,b)
+		next
+		end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
