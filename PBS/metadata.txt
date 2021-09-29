@@ -85,11 +85,11 @@ HealingSpot = 10,39,21
 MapPosition = 0,14,10
 #-------------------------------
 [013]
-# Cave Path
+# Ice Rink Station
 MapPosition = 0,14,10
 #-------------------------------
 [014]
-# Campus Buildings
+# Tech Campus Buildings
 MapPosition = 0,13,10
 #-------------------------------
 [015]
@@ -121,9 +121,9 @@ MapPosition = 0,13,10
 #-------------------------------
 [021]
 # Campus Gym
-Outdoor = true
+Outdoor = false
 ShowArea = true
-Bicycle = true
+Bicycle = false
 MapPosition = 0,14,8
 BattleBack = field
 MapSize = 1,11
@@ -219,6 +219,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [048]
+# Name Rater's House
 Outdoor = true
 ShowArea = true
 Bicycle = true
