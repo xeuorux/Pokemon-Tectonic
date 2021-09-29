@@ -18,7 +18,7 @@ class PokeBattle_AI
     return false
   end
   
- #=============================================================================
+  #=============================================================================
   # Main move-choosing method (moves with higher scores are more likely to be
   # chosen)
   #=============================================================================
@@ -865,5 +865,30 @@ class PokeBattle_AI
       mod2 = mod2.to_f / Effectiveness::NORMAL_EFFECTIVE
     end
     return mod1*mod2
+  end
+  
+  #=============================================================================
+  # Add to a move's score based on how much damage it will deal (as a percentage
+  # of the target's current HP)
+  #=============================================================================
+  def pbGetMoveScoreDamage(score,move,user,target,skill)
+    # Don't prefer moves that are ineffective because of abilities or effects
+    return 0 if score<=0 || pbCheckMoveImmunity(score,move,user,target,skill)
+    # Calculate how much damage the move will do (roughly)
+    baseDmg = pbMoveBaseDamage(move,user,target,skill)
+    realDamage = pbRoughDamage(move,user,target,skill,baseDmg)
+    # Account for accuracy of move
+    accuracy = pbRoughAccuracy(move,user,target,skill)
+    realDamage *= accuracy/100.0
+    # Two-turn attacks waste 2 turns to deal one lot of damage
+    if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
+      realDamage *= 2/3   # Not halved because semi-invulnerable during use or hits first turn
+    end
+    # Convert damage to percentage of target's remaining HP
+    damagePercentage = realDamage*100.0/target.hp
+    # Adjust score
+    damagePercentage = 200 if damagePercentage>120   # Treat all lethal moves the same
+    score += damagePercentage.to_i
+    return score
   end
 end
