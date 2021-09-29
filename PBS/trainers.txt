@@ -307,7 +307,7 @@ Pokemon = MARSHTOMP,25
 [IDOL,Ishizu]
 Pokemon = JIGGLYPUFF,25
 Pokemon = YAMASK,26
-Pokemon = MONFERNO,26
+Pokemon = BRIONNE,26
 #-------------------------------
 [PSYCHIC_F2,Ludmila]
 Pokemon = MRMIME,25
@@ -323,12 +323,14 @@ Pokemon = TAUROS,27
 Pokemon = TRUMBEAK,28
 #-------------------------------
 [YOUNGSTER3,Sorin]
-Pokemon = SNORUNT,27
+Pokemon = TORRACAT,27
 Pokemon = DEWOTT,28
+POKEMOn = GROVYLE,27
 #-------------------------------
 [BLACKBELT3,Philip]
+Pokemon = MIENFOO,27
+Pokemon = MANKEY,28
 Pokemon = SNORUNT,27
-Pokemon = DEWOTT,28
 ################################
 #	Ace Trainers
 ################################
