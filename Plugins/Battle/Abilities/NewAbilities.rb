@@ -569,3 +569,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTER,
 	end
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:GARLANDGUARDIAN,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.pbOwnSide.effects[PBEffects::Safeguard] = 5
+##battler.pbOwnSide.effects[PBEffects::Safeguard] = 8 if battler.hasActiveItem?(:LIGHTCLAY) if we want to have light clay affect this, uncomment    
+    battle.pbDisplay(_INTL("{1} put up a Safeguard!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
