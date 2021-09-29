@@ -13,48 +13,37 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "007", "008", "009", "0C5"
       score = getParalysisMoveScore(score,user,target,skill,policies,move.statusMove?,move.id == :THUNDERWAVE)
+	  score = getFlinchingMoveScore(score,user,target,skill,policies) if move.function == "009"
     #---------------------------------------------------------------------------
     when "00A", "00B", "0C6"
       score = getBurnMoveScore(score,user,target,skill,policies,move.statusMove?)
+	  score = getFlinchingMoveScore(score,user,target,skill,policies) if move.function == "00B"
     #---------------------------------------------------------------------------
     when "00C", "00D", "00E","135"
       score = getFreezeMoveScore(score,user,target,skill,policies,move.statusMove?)
+	  score = getFlinchingMoveScore(score,user,target,skill,policies) if move.function == "00E"
     #---------------------------------------------------------------------------
-    when "00F"
-      score += 30
-      if skill>=PBTrainerAI.highSkill
-        score += 30 if !target.hasActiveAbility?(:INNERFOCUS) &&
-                       target.effects[PBEffects::Substitute]==0
-      end
+    when "00F" # Flinching move
+      score = getFlinchingMoveScore(score,user,target,skill,policies)
     #---------------------------------------------------------------------------
     when "010"
-      if skill>=PBTrainerAI.highSkill
-        score += 30 if !target.hasActiveAbility?(:INNERFOCUS) &&
-                       target.effects[PBEffects::Substitute]==0
-      end
+      score = getFlinchingMoveScore(score,user,target,skill,policies)
       score += 30 if target.effects[PBEffects::Minimize]
     #---------------------------------------------------------------------------
     when "011"
       if user.asleep?
         score += 100   # Because it can only be used while asleep
-        if skill>=PBTrainerAI.highSkill
-          score += 30 if !target.hasActiveAbility?(:INNERFOCUS) &&
-                         target.effects[PBEffects::Substitute]==0
-        end
+        score = getFlinchingMoveScore(score,user,target,skill,policies)
       else
-        score -= 90   # Because it will fail here
-        score = 0 if skill>=PBTrainerAI.bestSkill
+        score = 0   # Because it will fail here
       end
     #---------------------------------------------------------------------------
     when "012"
       if user.turnCount==0
-        if skill>=PBTrainerAI.highSkill
-          score += 30 if !target.hasActiveAbility?(:INNERFOCUS) &&
-                         target.effects[PBEffects::Substitute]==0
-        end
+	    score += 50
+        score = getFlinchingMoveScore(score,user,target,skill,policies)
       else
-        score -= 90   # Because it will fail here
-        score = 0 if skill>=PBTrainerAI.bestSkill
+        score = 0   # Because it will fail here
       end
     #---------------------------------------------------------------------------
     when "013", "014", "015"
@@ -1474,10 +1463,7 @@ class PokeBattle_AI
     when "077"
     #---------------------------------------------------------------------------
     when "078"
-      if skill>=PBTrainerAI.highSkill
-        score += 30 if !target.hasActiveAbility?(:INNERFOCUS) &&
-                       target.effects[PBEffects::Substitute]==0
-      end
+      score = getFlinchingMoveScore(score,user,target,skill,policies)
     #---------------------------------------------------------------------------
     when "079"
     #---------------------------------------------------------------------------
@@ -1721,10 +1707,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0C7"
       score += 20 if user.effects[PBEffects::FocusEnergy]>0
-      if skill>=PBTrainerAI.highSkill
-        score += 20 if !target.hasActiveAbility?(:INNERFOCUS) &&
-                       target.effects[PBEffects::Substitute]==0
-      end
+      score = getFlinchingMoveScore(score,user,target,skill,policies)
     #---------------------------------------------------------------------------
     when "0C9"
     #---------------------------------------------------------------------------
@@ -2949,6 +2932,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "175"
       score += 30 if target.effects[PBEffects::Minimize]
+	  score = getFlinchingMoveScore(score,user,target,skill,policies)
     #---------------------------------------------------------------------------
 	else
 		return move.getScore(score,user,target,skill=100)
@@ -3064,6 +3048,20 @@ def getBurnMoveScore(score,user,target,skill=100,policies=[],status=false)
     elsif skill>=PBTrainerAI.mediumSkill && status
 		return 0
     end
+	return score
+end
+
+def getFlinchingMoveScore(score,user,target,skill,policies)
+	if skill>=PBTrainerAI.mediumSkill
+		score += 30
+		if skill>=PBTrainerAI.highSkill && 
+			(target.hasActiveAbility?(:INNERFOCUS) ||
+			target.effects[PBEffects::Substitute] != 0 ||
+			target.effects[PBEffects::FlinchedAlready]
+			)
+			score -= 30
+		end
+	end
 	return score
 end
 
