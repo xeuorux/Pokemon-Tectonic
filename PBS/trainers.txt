@@ -572,3 +572,24 @@ Pokemon = GABITE,30
 	AbilityIndex = 0
 Pokemon = DOTTLER,30
 	AbilityIndex = 1
+#-------------------------------
+[SCIENTIST_F,Natasha]
+Pokemon = CHATOT,30
+	AbilityIndex = 0
+	Moves = ROUND,CHATTER,LULLABY
+Pokemon = TOXTRICITY,30
+	Moves = ROUND,METALSOUND,BELCH
+	Item = ORANBERRY
+Pokemon = BRIONNE,30
+	AbilityIndex = 0
+	Moves = ROUND,LULLABY
+Pokemon = WIGGLYTUFF,30
+	AbilityIndex = 1
+	Moves = ROUND,LULLABY,ECHOEDVOICE
+#-------------------------------
+[SCIENTIST_M3,Julien]
+Pokemon = DRIZZILE,30
+	AbilityIndex = 1
+Pokemon = DITTO,30
+Pokemon = ZOROARK,30
+Pokemon = MIMIKYU,30
