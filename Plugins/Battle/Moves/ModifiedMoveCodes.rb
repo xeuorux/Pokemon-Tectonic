@@ -495,7 +495,7 @@ class PokeBattle_Move_07E < PokeBattle_Move
   def damageReducedByBurn?; return Settings::MECHANICS_GENERATION <= 5; end
 
   def pbBaseDamage(baseDmg,user,target)
-    baseDmg *= 2 if user.status != :None
+    baseDmg *= 2 if user.status != :NONE
     return baseDmg
   end
 end

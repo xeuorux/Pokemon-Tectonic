@@ -34,7 +34,7 @@ class PokeBattle_Battle
     return @decision
   end
   
-    #=============================================================================
+  #=============================================================================
   # End of battle
   #=============================================================================
   def pbGainMoney
@@ -43,7 +43,7 @@ class PokeBattle_Battle
     if trainerBattle?
       tMoney = 0
       @opponent.each_with_index do |t,i|
-        tMoney += pbMaxLevelInTeam(1, i) * t.base_money
+        tMoney += pbMaxLevelInTeam(1, i) * [t.base_money,100].min
       end
       tMoney *= 2 if @field.effects[PBEffects::AmuletCoin]
       tMoney *= 2 if @field.effects[PBEffects::HappyHour]
