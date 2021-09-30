@@ -432,7 +432,7 @@ Ability = SUPERLUCK
 Item = SCOPELENS
 Moves = SACREDSWORD,FOCUSENERGY,SWORDSDANCE,NIGHTSLASH
 #-----------------------------
-[DODIO]
+[DODRIO]
 Turns = 3
 HPMult = 2
 Ability = VITALSPIRIT
