@@ -752,9 +752,9 @@ class PokemonPokedex_Scene
 		  items_available_by_cap = {
 			15 => [],
 			20 => [],
-			25 => [:MOONSTONE],
+			25 => [],
 			35 => [:FIRESTONE,:WATERSTONE,:LEAFSTONE,:THUNDERSTONE,:DAWNSTONE,
-					:DUSKSTONE,:SUNSTONE,:SHINYSTONE,:ICESTONE,:KINGSROCK]
+					:DUSKSTONE,:SUNSTONE,:SHINYSTONE,:ICESTONE,:KINGSROCK,:MOONSTONE]
 		  }
 		  
 		  surfingAvailable = levelIntAttempt >= 35

@@ -5433,7 +5433,7 @@ InternalName = LEDIAN
 Type1 = BUG
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 85,85,60,115,55,110
+BaseStats = 75,75,60,95,55,80
 # Total = 510
 GenderRate = Female50Percent
 GrowthRate = Fast

@@ -350,6 +350,7 @@ Up = 8
 
 def moveBackAndForth(length,initialDirection=Right,transverseLength=0,clockwise=true)
 	back_and_forth_route = getNewMoveRoute()
+	back_and_forth_route.repeat = true
 	
 	case initialDirection
 	when 2 # Down
