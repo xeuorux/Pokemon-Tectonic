@@ -587,7 +587,7 @@ Pokemon = WIGGLYTUFF,30
 	AbilityIndex = 1
 	Moves = ROUND,LULLABY,ECHOEDVOICE
 #-------------------------------
-[SCIENTIST_M3,Julien]
+[SCIENTIST_M,Julien]
 Pokemon = DRIZZILE,30
 	AbilityIndex = 1
 Pokemon = DITTO,30
