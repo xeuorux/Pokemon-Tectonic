@@ -593,3 +593,14 @@ Pokemon = DRIZZILE,30
 Pokemon = DITTO,30
 Pokemon = ZOROARK,30
 Pokemon = MIMIKYU,30
+#-------------------------------
+[SCIENTIST_F,Bella]
+Pokemon = DURALUDON,30
+	AbilityIndex = 0
+Pokemon = BELLOSSOM,30
+	AbilityIndex = 0
+Pokemon = MISMAGIUS,30
+	AbilityIndex = 0
+Pokemon = HONCHKROW,30
+	AbilityIndex = 1
+#-------------------------------
