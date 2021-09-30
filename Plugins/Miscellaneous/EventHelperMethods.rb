@@ -90,19 +90,19 @@ end
 
 def gymLeaderDialogue()
 	return @leaderDialogue if @leaderDialogue
-	@leaderDialogue = {
+	@leaderDialogue = [
 		["I'll heal up your Pokémon, give your other rewards, and get out of your way.",
 		"I'll heal up your Pokémon and get out of your way."],
 		["Let me tend to the Pokémon, and hand over something special, while you bask in your victory.",
 		"Let me tend to the Pokémon while you bask in your victory."],
 		["Please take these as a reward.",""]
-	}
+	]
 	return @leaderDialogue
 end
 
 def healAndGiveRewardIfNotYetGiven(badgeNum)
 	index = badgeNum-1
-	dialogue = gymLeaderDialogue[index]
+	dialogue = gymLeaderDialogue()[index]
 	if receivedGymRewardYet?(index)
 		pbMessage(dialogue[1])
 		healPartyWithDelay()
