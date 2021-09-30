@@ -102,7 +102,7 @@ end
 
 def healAndGiveRewardIfNotYetGiven(badgeNum)
 	index = badgeNum-1
-	dialogue = gymLeaderDialogue()[index]
+	dialogue = gymLeaderDialogue[index]
 	if receivedGymRewardYet?(index)
 		pbMessage(dialogue[1])
 		healPartyWithDelay()
