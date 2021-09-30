@@ -212,7 +212,7 @@ end
 
 def setFollowerInactive(eventId=0)
 	followers = getFollowerPokemon(eventId)
-	if !followers || followers.length == 0
+	if followers.nil? || followers.length == 0
 		pbMessage("ERROR: Could not find follower Pokemon!") if $DEBUG
 		return
 	end
@@ -225,7 +225,7 @@ end
 
 def setFollowerGone(eventId=0)
 	followers = getFollowerPokemon(eventId)
-	if !followers || followers.length == 0
+	if followers.nil? || followers.length == 0
 		pbMessage("ERROR: Could not find follower Pokemon!") if $DEBUG
 		return
 	end
