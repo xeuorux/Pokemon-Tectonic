@@ -8,3 +8,13 @@ PokeBattle_AI::TrainerSendsOutPokemonDialogue.add(:EKO,
     next dialogue_array
   }
 )
+
+PokeBattle_AI::PlayerPokemonDiesToDOTDialogue.add(:EKO,
+  proc { |policy,pokemon,trainer_speaking,dialogue_array|
+	if !trainer_speaking.policyStates[:CommentedOnDOTDeath]
+		dialogue_array.push("So the lingering pain claims its first victim. Falter and you will fail!")
+		trainer_speaking.policyStates[:CommentedOnDOTDeath] = true
+	end
+    next dialogue_array
+  }
+)
