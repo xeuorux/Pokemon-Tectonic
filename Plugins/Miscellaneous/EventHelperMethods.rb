@@ -211,23 +211,27 @@ def rejectTooFewPokemon(dialogue)
 end
 
 def setFollowerInactive(eventId=0)
-	follower = getFollowerPokemon(eventId)
-	if !follower
-		pbMessage("ERROR: Could not find follower Pokemon!")
+	followers = getFollowerPokemon(eventId)
+	if !followers || followers.length == 0
+		pbMessage("ERROR: Could not find follower Pokemon!") if $DEBUG
 		return
 	end
-	showBallReturn(follower.x,follower.y)
-	pbWait(Graphics.frame_rate/10)
-	pbSetSelfSwitch(follower.id,'A',true)
+	followers.each do |follower|
+		showBallReturn(follower.x,follower.y)
+		pbWait(Graphics.frame_rate/10)
+		pbSetSelfSwitch(follower.id,'A',true)
+	end
 end
 
 def setFollowerGone(eventId=0)
-	follower = getFollowerPokemon(eventId)
-	if !follower
-		pbMessage("ERROR: Could not find follower Pokemon!")
+	followers = getFollowerPokemon(eventId)
+	if !followers || followers.length == 0
+		pbMessage("ERROR: Could not find follower Pokemon!") if $DEBUG
 		return
 	end
-	pbSetSelfSwitch(follower.id,'D',true)
+	followers.each do |follower|
+		pbSetSelfSwitch(follower.id,'D',true)
+	end
 end
 
 def showBallReturn(x,y)
@@ -238,17 +242,15 @@ def getFollowerPokemon(eventId=0)
 	x = get_character(eventId).original_x
 	y = get_character(eventId).original_y
 	
-	follower = nil
+	followers = []
 	for event in $game_map.events.values
-		next unless event.name.downcase.include?("follower") ||
-			event.name.downcase.include?("overworld")
+		next unless event.name.downcase.include?("follower")
 		xDif = (event.x - x).abs
 		yDif = (event.y - y).abs
 		next unless xDif <= 1 && yDif <= 1 # Must be touching
-		follower = event
-		break
+		followers.push(event)
     end
-	return follower
+	return followers
 end
 
 def phoneCallSE()
