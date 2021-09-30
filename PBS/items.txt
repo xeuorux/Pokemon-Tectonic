@@ -830,3 +830,4 @@
 906,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
 907,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
 908,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It is a cup filled with coffee. It feels warm.",0,0,6
+909,TOXICORB,MISSINGNO Orb,Poison Orbs,1,4000,An item that shouldn't exist.,0,0
