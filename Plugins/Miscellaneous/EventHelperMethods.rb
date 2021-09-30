@@ -88,21 +88,21 @@ def receiveGymReward(badgeNum)
 	$game_variables[78][index] = true # Mark the item as having been received
 end
 
-def gymLeaderDialogueHash()
-	return @leaderDialogueHash if @leaderDialogueHash
-	@leaderDialogueHash = {
-		0 => ["I'll heal up your Pokémon, give your other rewards, and get out of your way.",
+def gymLeaderDialogue()
+	return @leaderDialogue if @leaderDialogue
+	@leaderDialogue = {
+		["I'll heal up your Pokémon, give your other rewards, and get out of your way.",
 		"I'll heal up your Pokémon and get out of your way."],
-		1 => ["Let me tend to the Pokémon, and hand over something special, while you bask in your victory.",
+		["Let me tend to the Pokémon, and hand over something special, while you bask in your victory.",
 		"Let me tend to the Pokémon while you bask in your victory."],
-		2 => ["Please take these as a reward.",""]
+		["Please take these as a reward.",""]
 	}
-	return @leaderDialogueHash
+	return @leaderDialogue
 end
 
 def healAndGiveRewardIfNotYetGiven(badgeNum)
 	index = badgeNum-1
-	dialogue = gymLeaderDialogueHash[index]
+	dialogue = gymLeaderDialogue()[index]
 	if receivedGymRewardYet?(index)
 		pbMessage(dialogue[1])
 		healPartyWithDelay()
