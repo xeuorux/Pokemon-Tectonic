@@ -42,7 +42,7 @@ Resistances = NORMAL,FLYING,POISON,FIRE,ICE
 Name = Bug
 InternalName = BUG
 Weaknesses = FLYING,ROCK,FIRE
-Resistances = FIGHTING,GROUND,GRASS
+Resistances = FIGHTING,GROUND,GRASS,PSYCHIC
 #-------------------------------
 [7]
 Name = Ghost

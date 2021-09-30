@@ -568,8 +568,6 @@ Pokemon = SHARPEDO,30
 	AbilityIndex = 1
 Pokemon = NINETALES,30
 	AbilityIndex = 1
-Pokemon = GABITE,30
-	AbilityIndex = 0
 Pokemon = DOTTLER,30
 	AbilityIndex = 1
 #-------------------------------
