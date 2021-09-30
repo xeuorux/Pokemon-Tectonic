@@ -245,8 +245,8 @@ Pokemon = LICKITUNG,22
 #-------------------------------
 [LASS,Tara]
 Pokemon = QUILLADIN,23
-Pokemon = SEALEO,22
-Pokemon = ELECTABUZZ,23
+Pokemon = SPHEAL,22
+Pokemon = ELEKID,23
 #-------------------------------
 [MEDIUM,Theoni]
 Pokemon = SABLEYE,24
