@@ -18,3 +18,13 @@ PokeBattle_AI::PlayerPokemonDiesToDOTDialogue.add(:EKO,
     next dialogue_array
   }
 )
+
+PokeBattle_AI::TrainerPokemonDiesToDOTDialogue.add(:EKO,
+  proc { |policy,pokemon,trainer_speaking,dialogue_array|
+	if !trainer_speaking.policyStates[:CommentedOnOwnDOTDeath]
+		dialogue_array.push("Delightful! It seems you've learned from this!")
+		trainer_speaking.policyStates[:CommentedOnOwnDOTDeath] = true
+	end
+    next dialogue_array
+  }
+)
