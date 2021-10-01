@@ -95,7 +95,7 @@ BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
         msg = _INTL("{1}'s {2} confused {3}!",target.pbThis,
            target.abilityName,user.pbThis(true))
       end
-      user.pbCharm
+      user.pbConfuse
     end
     battle.pbHideAbilitySplash(target)
   }
