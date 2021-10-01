@@ -248,7 +248,7 @@ HPMult = 4
 #-------------------------------
 [SPINDA]
 Turns = 1
-Ability = TANGLEDFEET
+Ability = DISORIENT
 Moves = TEETERDANCE,DOUBLEEDGE,COPYCAT,THRASH
 HPMult = 2
 #-------------------------------
