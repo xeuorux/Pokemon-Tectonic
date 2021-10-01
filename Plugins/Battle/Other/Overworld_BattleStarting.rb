@@ -306,7 +306,12 @@ def checkLegality(pkmn)
 			moveID = move.id
 			next if pkmn.first_moves.include?(moveID)
 			next if species_data.tutor_moves.include?(moveID)
-			next if species_data.egg_moves.include?(moveID)
+			
+			firstSpecies = species_data
+			while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
+				firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
+			end
+			next if firstSpecies.egg_moves.include?(moveID)
 			
 			learnsViaLevel = false
 			species_data.moves.each do |learnset_entry|
