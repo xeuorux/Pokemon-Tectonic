@@ -133,7 +133,7 @@
 130,BIRDKEEPER_M,Bird Keeper,32,,,,Male,,
 131,BIRDKEEPER_F,Bird Keeper,32,,,,Female,,
 132,RANCHER,Rancher,40,,,,Male,,
-133,COWGIRL,Cowgirl16,30,,,Female,Mixed,,
+133,COWGIRL,Cowgirl,30,,,Female,Mixed,,
 134,POKEFAN_M,Poké Fan,64,,,,Male,,
 135,POKEFAN_M2,Poké Fan,64,,,,Male,,
 136,POKEFAN_F,Poké Fan,64,,,,Female,,
