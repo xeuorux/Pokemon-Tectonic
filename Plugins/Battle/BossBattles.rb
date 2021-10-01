@@ -33,12 +33,14 @@ def pbAvatarBattleCore(*args)
   numTurns = 0
   for arg in args
     if arg.is_a?(Array)
-		species = GameData::Species.get(arg[0]).id
-		pkmn = pbGenerateWildPokemon(species,arg[1])
-		pkmn.boss = true
-		newNumTurns = setAvatarProperties(pkmn)
-		numTurns = [newNumTurns,numTurns].max
-		foeParty.push(pkmn)
+		for i in 0...arg.length/2
+			species = GameData::Species.get(arg[i*2]).id
+			pkmn = pbGenerateWildPokemon(species,arg[i*2+1])
+			pkmn.boss = true
+			newNumTurns = setAvatarProperties(pkmn)
+			numTurns = [newNumTurns,numTurns].max
+			foeParty.push(pkmn)
+		end
 	end
   end
   # Calculate who the trainers and their party are
