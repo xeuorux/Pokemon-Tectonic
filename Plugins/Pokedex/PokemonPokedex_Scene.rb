@@ -753,6 +753,7 @@ class PokemonPokedex_Scene
 			15 => [],
 			20 => [],
 			25 => [],
+			30 => [],
 			35 => [:FIRESTONE,:WATERSTONE,:LEAFSTONE,:THUNDERSTONE,:DAWNSTONE,
 					:DUSKSTONE,:SUNSTONE,:SHINYSTONE,:ICESTONE,:KINGSROCK,:MOONSTONE]
 		  }
