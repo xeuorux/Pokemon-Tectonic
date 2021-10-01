@@ -233,3 +233,102 @@ def pbFadeInAndShow(sprites,visiblesprites=nil)
     end
   }
 end
+
+def pbChooseList(commands, default = 0, cancelValue = -1, sortType = 1)
+  cmdwin = pbListWindow([])
+  itemID = default
+  itemIndex = 0
+  sortMode = (sortType >= 0) ? sortType : 0   # 0=ID, 1=alphabetical
+  sorting = true
+  loop do
+    if sorting
+      if sortMode == 0
+        commands.sort! { |a, b| a[0] <=> b[0] }
+      elsif sortMode == 1
+        commands.sort! { |a, b| a[1] <=> b[1] }
+      end
+      if itemID.is_a?(Symbol)
+        commands.each_with_index { |command, i| itemIndex = i if command[2] == itemID }
+      elsif itemID && itemID > 0
+        commands.each_with_index { |command, i| itemIndex = i if command[0] == itemID }
+      end
+      realcommands = []
+      for command in commands
+        if sortType <= 0
+          realcommands.push(sprintf("%03d: %s", command[0], command[1]))
+        else
+          realcommands.push(command[1])
+        end
+      end
+      sorting = false
+    end
+    cmd = pbCommandsSortable(cmdwin, realcommands, -1, itemIndex, (sortType < 0))
+    if cmd[0] == 0   # Chose an option or cancelled
+      itemID = (cmd[1] < 0) ? cancelValue : (commands[cmd[1]][2] || commands[cmd[1]][0])
+      break
+    elsif cmd[0] == 1   # Toggle sorting
+      itemID = commands[cmd[1]][2] || commands[cmd[1]][0]
+      sortMode = (sortMode + 1) % 2
+      sorting = true
+	elsif cmd[0] == 2   # Go to first matching
+      text = pbEnterText("Enter selection.",0,20).downcase
+	  if text.blank?
+		next
+	  end
+	  changed = false
+	  commands.each_with_index { |command, i|
+		next if i < itemIndex
+		if command[2].to_s.downcase.start_with?(text)
+			itemIndex = i
+			changed = true
+		end
+	  }
+	  if !changed
+		  commands.each_with_index { |command, i|
+			break if i > itemIndex
+			if command[2].to_s.downcase.start_with?(text)
+				itemIndex = i
+				changed = true
+			end
+		  }
+	  end
+	  pbMessage(_INTL("Could not find a command entry matching that input.")) if !changed
+	  sorting = true
+    end
+  end
+  cmdwin.dispose
+  return itemID
+end
+
+def pbCommandsSortable(cmdwindow,commands,cmdIfCancel,defaultindex=-1,sortable=false)
+  cmdwindow.commands = commands
+  cmdwindow.index    = defaultindex if defaultindex >= 0
+  cmdwindow.x        = 0
+  cmdwindow.y        = 0
+  cmdwindow.width    = Graphics.width / 2 if cmdwindow.width < Graphics.width / 2
+  cmdwindow.height   = Graphics.height
+  cmdwindow.z        = 99999
+  cmdwindow.active   = true
+  command = 0
+  loop do
+    Graphics.update
+    Input.update
+    cmdwindow.update
+    if Input.trigger?(Input::ACTION) && sortable
+      command = [1,cmdwindow.index]
+      break
+    elsif Input.trigger?(Input::BACK)
+      command = [0,(cmdIfCancel>0) ? cmdIfCancel-1 : cmdIfCancel]
+      break
+    elsif Input.trigger?(Input::USE)
+      command = [0,cmdwindow.index]
+      break
+	elsif Input.trigger?(Input::SPECIAL)
+      command = [2,cmdwindow.index]
+      break
+    end
+  end
+  ret = command
+  cmdwindow.active = false
+  return ret
+end
