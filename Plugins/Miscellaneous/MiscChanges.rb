@@ -273,6 +273,7 @@ def pbChooseList(commands, default = 0, cancelValue = -1, sortType = 1)
 	elsif cmd[0] == 2   # Go to first matching
       text = pbEnterText("Enter selection.",0,20).downcase
 	  if text.blank?
+		sorting = true
 		next
 	  end
 	  changed = false

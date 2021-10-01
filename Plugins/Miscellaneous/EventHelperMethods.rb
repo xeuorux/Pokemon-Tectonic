@@ -652,3 +652,25 @@ def transferPlayer(x,y,direction)
 	$game_temp.transition_processing = true
 	$game_temp.transition_name       = ""
 end
+
+def hasPokemonInParty(speciesToCheck)
+	if !speciesToCheck.is_a?(Array)
+		speciesToCheck = [speciesToCheck]
+	end
+	hasAll = true
+	speciesToCheck.each do |species|
+		hasInParty = false
+		$Trainer.party.each do |party_member|
+			echoln("Comparing #{party_member.species} to #{species}")
+			if party_member.species == species
+				hasInParty = true
+				break
+			end
+		end
+		if !hasInParty
+			hasAll = false
+			break
+		end
+	end
+	return hasAll
+end
