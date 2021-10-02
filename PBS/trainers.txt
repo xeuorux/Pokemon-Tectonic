@@ -822,3 +822,17 @@ Pokemon = HONCHKROW,30
 [PSYCHIC_F,Ludmila]
 LoseText = "..."
 Pokemon = BULBASAUR,10
+#-------------------------------
+[TRAINER_Vincent,Vincent]
+LoseText = "..."
+Pokemon = FROGADIER,28
+	AbilityIndex = 0
+Pokemon = STEENEE,29
+	AbilityIndex = 1
+Pokemon = POLTEAGEIST,30
+	AbilityIndex = 1
+Pokemon = SABLEYE,30
+	AbilityIndex = 0
+Pokemon = MALAMAR,30
+	AbilityIndex = 0
+#-------------------------------
