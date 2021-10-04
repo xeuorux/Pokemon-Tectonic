@@ -11725,7 +11725,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = DUSCLOPS,Level,37
+Evolutions = DUSCLOPS,Level,27
 #-------------------------------
 [356]
 Name = Dusclops
