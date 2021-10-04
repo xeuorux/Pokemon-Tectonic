@@ -61,7 +61,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDTAIL,
   }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:BEGUILEING,
+BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
   proc { |ability,user,target,move,battle|
     next if target.fainted?
     next if move.pbContactMove?(user)
