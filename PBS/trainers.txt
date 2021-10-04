@@ -774,11 +774,11 @@ Pokemon = ALAKAZAM,70
 LoseText = "..."
 Pokemon = KECLEON,30
     AbilityIndex = 0
-Pokemon = SHARPEDO,30
-    AbilityIndex = 1
+Pokemon = DELCATTY,30
+    AbilityIndex = 0
 Pokemon = NINETALES,30
     AbilityIndex = 1
-Pokemon = DOTTLER,30
+Pokemon = POLIWHIRL,30
     AbilityIndex = 1
 #-------------------------------
 [SCIENTIST_F,Natasha]
@@ -827,12 +827,6 @@ Pokemon = BULBASAUR,10
 LoseText = "..."
 Pokemon = FROGADIER,28
 	AbilityIndex = 0
-Pokemon = STEENEE,29
-	AbilityIndex = 1
-Pokemon = POLTEAGEIST,30
-	AbilityIndex = 1
 Pokemon = SABLEYE,30
-	AbilityIndex = 0
-Pokemon = MALAMAR,30
 	AbilityIndex = 0
 #-------------------------------
