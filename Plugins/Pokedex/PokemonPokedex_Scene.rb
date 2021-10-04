@@ -752,9 +752,10 @@ class PokemonPokedex_Scene
 		  items_available_by_cap = {
 			15 => [],
 			20 => [],
-			25 => [:MOONSTONE],
+			25 => [],
+			30 => [],
 			35 => [:FIRESTONE,:WATERSTONE,:LEAFSTONE,:THUNDERSTONE,:DAWNSTONE,
-					:DUSKSTONE,:SUNSTONE,:SHINYSTONE,:ICESTONE,:KINGSROCK]
+					:DUSKSTONE,:SUNSTONE,:SHINYSTONE,:ICESTONE,:KINGSROCK,:MOONSTONE]
 		  }
 		  
 		  surfingAvailable = levelIntAttempt >= 35
@@ -776,6 +777,7 @@ class PokemonPokedex_Scene
 					
 					levelThreshold = currentPrevo[2]
 					if levelThreshold <= levelIntAttempt
+						echoln("Adding #{currentPrevo[0]} to the checks for #{item[0]} based on level evo.")
 						speciesToCheckLocationsFor.push(currentPrevo[0])
 					else
 						break
@@ -791,10 +793,12 @@ class PokemonPokedex_Scene
 						itemAvailable = true if value.include?(itemNeeded)
 						break if key >= levelIntAttempt
 					end
-					speciesToCheckLocationsFor.push(currentPrevo[0]) if itemAvailable
-				# All methods based on leveling up while having a certain move type
-				when :HasMove,:HasMoveType
-					# TO DO: Bespoke checks for each relevant move or move type per pokemon which has them
+					if itemAvailable
+						speciesToCheckLocationsFor.push(currentPrevo[0])
+						echoln("Adding #{currentPrevo[0]} to the checks for #{item[0]} based on item evo.") if itemAvailable
+					else
+						break
+					end
 				end
 				
 				# Find the prevo of the prevo

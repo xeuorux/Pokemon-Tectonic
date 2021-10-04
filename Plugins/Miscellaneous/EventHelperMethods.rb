@@ -88,21 +88,21 @@ def receiveGymReward(badgeNum)
 	$game_variables[78][index] = true # Mark the item as having been received
 end
 
-def gymLeaderDialogueHash()
-	return @leaderDialogueHash if @leaderDialogueHash
-	@leaderDialogueHash = {
-		0 => ["I'll heal up your Pokémon, give your other rewards, and get out of your way.",
+def gymLeaderDialogue()
+	return @leaderDialogue if @leaderDialogue
+	@leaderDialogue = [
+		["I'll heal up your Pokémon, give your other rewards, and get out of your way.",
 		"I'll heal up your Pokémon and get out of your way."],
-		1 => ["Let me tend to the Pokémon, and hand over something special, while you bask in your victory.",
+		["Let me tend to the Pokémon, and hand over something special, while you bask in your victory.",
 		"Let me tend to the Pokémon while you bask in your victory."],
-		2 => ["Please take these as a reward.",""]
-	}
-	return @leaderDialogueHash
+		["Please take these as a reward.",""]
+	]
+	return @leaderDialogue
 end
 
 def healAndGiveRewardIfNotYetGiven(badgeNum)
 	index = badgeNum-1
-	dialogue = gymLeaderDialogueHash[index]
+	dialogue = gymLeaderDialogue()[index]
 	if receivedGymRewardYet?(index)
 		pbMessage(dialogue[1])
 		healPartyWithDelay()
@@ -211,23 +211,27 @@ def rejectTooFewPokemon(dialogue)
 end
 
 def setFollowerInactive(eventId=0)
-	follower = getFollowerPokemon(eventId)
-	if !follower
-		pbMessage("ERROR: Could not find follower Pokemon!")
+	followers = getFollowerPokemon(eventId)
+	if followers.nil? || followers.length == 0
+		pbMessage("ERROR: Could not find follower Pokemon!") if $DEBUG
 		return
 	end
-	showBallReturn(follower.x,follower.y)
-	pbWait(Graphics.frame_rate/10)
-	pbSetSelfSwitch(follower.id,'A',true)
+	followers.each do |follower|
+		showBallReturn(follower.x,follower.y)
+		pbWait(Graphics.frame_rate/10)
+		pbSetSelfSwitch(follower.id,'A',true)
+	end
 end
 
 def setFollowerGone(eventId=0)
-	follower = getFollowerPokemon(eventId)
-	if !follower
-		pbMessage("ERROR: Could not find follower Pokemon!")
+	followers = getFollowerPokemon(eventId)
+	if followers.nil? || followers.length == 0
+		pbMessage("ERROR: Could not find follower Pokemon!") if $DEBUG
 		return
 	end
-	pbSetSelfSwitch(follower.id,'D',true)
+	followers.each do |follower|
+		pbSetSelfSwitch(follower.id,'D',true)
+	end
 end
 
 def showBallReturn(x,y)
@@ -238,17 +242,15 @@ def getFollowerPokemon(eventId=0)
 	x = get_character(eventId).original_x
 	y = get_character(eventId).original_y
 	
-	follower = nil
+	followers = []
 	for event in $game_map.events.values
-		next unless event.name.downcase.include?("follower") ||
-			event.name.downcase.include?("overworld")
+		next unless event.name.downcase.include?("follower")
 		xDif = (event.x - x).abs
 		yDif = (event.y - y).abs
 		next unless xDif <= 1 && yDif <= 1 # Must be touching
-		follower = event
-		break
+		followers.push(event)
     end
-	return follower
+	return followers
 end
 
 def phoneCallSE()
@@ -348,6 +350,7 @@ Up = 8
 
 def moveBackAndForth(length,initialDirection=Right,transverseLength=0,clockwise=true)
 	back_and_forth_route = getNewMoveRoute()
+	back_and_forth_route.repeat = true
 	
 	case initialDirection
 	when 2 # Down
@@ -648,4 +651,26 @@ def transferPlayer(x,y,direction)
 	Graphics.freeze
 	$game_temp.transition_processing = true
 	$game_temp.transition_name       = ""
+end
+
+def hasPokemonInParty(speciesToCheck)
+	if !speciesToCheck.is_a?(Array)
+		speciesToCheck = [speciesToCheck]
+	end
+	hasAll = true
+	speciesToCheck.each do |species|
+		hasInParty = false
+		$Trainer.party.each do |party_member|
+			echoln("Comparing #{party_member.species} to #{species}")
+			if party_member.species == species
+				hasInParty = true
+				break
+			end
+		end
+		if !hasInParty
+			hasAll = false
+			break
+		end
+	end
+	return hasAll
 end

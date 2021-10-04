@@ -71,7 +71,7 @@ class PokeBattle_AI
 	end
 	
 	def self.triggerBossSpeciesUseMoveIDIfAndOnlyIf(speciesAndMoveID,user,target,move)
-		ret = BossSpeciesUseMoveCodeIfAndOnlyIf.trigger(speciesAndMoveID,user,target,move)
+		ret = BossSpeciesUseMoveIDIfAndOnlyIf.trigger(speciesAndMoveID,user,target,move)
 		return ret
 	end
 	
@@ -164,7 +164,10 @@ class PokeBattle_AI
 		score = 0 if PokeBattle_AI.triggerBossSpeciesRejectMove(user.species,move,user,target)
 		
 		useMoveIFF = PokeBattle_AI.triggerBossSpeciesUseMoveCodeIfAndOnlyIf([user.species,move.function],user,target,move)
-		useMoveIFF = useMoveIFF && PokeBattle_AI.triggerBossSpeciesUseMoveIDIfAndOnlyIf([user.species,move.id],user,target,move)
+		if !(useMoveIFF.nil?)
+			score = useMoveIFF ? 99999 : 0
+		end
+		useMoveIFF = PokeBattle_AI.triggerBossSpeciesUseMoveIDIfAndOnlyIf([user.species,move.id],user,target,move)
 		if !(useMoveIFF.nil?)
 			score = useMoveIFF ? 99999 : 0
 		end
@@ -177,7 +180,6 @@ class PokeBattle_AI
 		# Status inducing move and is a status move
 		# Check for specific target failure condition
 		if ["003","005","006","007","00A","00C"].include?(move.function) && move.statusMove?
-			score = 100
 			score = 0 if move.pbFailsAgainstTarget?(user,target)
 		end
 		@battle.messagesBlocked = false

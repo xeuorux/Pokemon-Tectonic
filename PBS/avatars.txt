@@ -140,7 +140,7 @@ HPMult = 4
 Turns = 3
 Ability = UNAWARE
 Moves = HEARTSTAMP,AERIALACE,STEELWING
-HPMult = 3
+HPMult = 2
 #-------------------------------
 [TOXAPEX]
 Turns = 2
@@ -248,7 +248,7 @@ HPMult = 4
 #-------------------------------
 [SPINDA]
 Turns = 1
-Ability = TANGLEDFEET
+Ability = DISORIENT
 Moves = TEETERDANCE,DOUBLEEDGE,COPYCAT,THRASH
 HPMult = 2
 #-------------------------------
@@ -414,14 +414,14 @@ Ability = GALVANIZE
 Moves = DOUBLEEDGE,STONEEDGE,FLAIL
 #-----------------------------
 [NIDOQUEEN]
-Turns = 3
-HPMult = 3
+Turns = 2
+HPMult = 2
 Ability = POISONPUNISH
-Moves = EARTHPOWER,FLATTER,BADSTENCH
+Moves = MUDSHOT,FLATTER,BADSTENCH
 #-----------------------------
 [PYROAR]
-Turns = 3
-HPMult = 3
+Turns = 1
+HPMult = 2
 Ability = PROUDFIRE
 Moves = NOBLEROAR,FLAMETHROWER,ENDEAVOR
 #-----------------------------
@@ -431,3 +431,9 @@ HPMult = 3
 Ability = SUPERLUCK
 Item = SCOPELENS
 Moves = SACREDSWORD,FOCUSENERGY,SWORDSDANCE,NIGHTSLASH
+#-----------------------------
+[DODRIO]
+Turns = 3
+HPMult = 2
+Ability = VITALSPIRIT
+Moves = PECK

@@ -300,7 +300,7 @@ DarkCave,20
 25,DRILBUR,17,20
 25,TYNAMO,17,20
 #-------------------------------
-[13] # Cave Path
+[81] # Cave Path
 DarkCave,20
 25,CUBONE,17,20
 25,WOOBAT,17,20

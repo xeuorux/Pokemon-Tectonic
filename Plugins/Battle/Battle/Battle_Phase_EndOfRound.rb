@@ -143,10 +143,6 @@ class PokeBattle_Battle
     priority.each do |b|
       next if b.fainted?
       next if !b.poisoned?
-      if b.getStatusCount(:POISON)>0
-        b.effects[PBEffects::Toxic] += 1
-        b.effects[PBEffects::Toxic] = 15 if b.effects[PBEffects::Toxic]>15
-      end
       if b.hasActiveAbility?(:POISONHEAL)
         if b.canHeal?
           anim_name = GameData::Status.get(:POISON).animation
@@ -162,12 +158,15 @@ class PokeBattle_Battle
         end
       elsif b.takesIndirectDamage?
         oldHP = b.hp
-        dmg = (b.getStatusCount(:POISON)==0) ? b.totalhp/8 : b.totalhp*b.effects[PBEffects::Toxic]/16
+        dmg = b.totalhp/8
 		dmg = (dmg/4.0).round if b.boss
         b.pbContinueStatus(:POISON) { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
-        b.pbFaint if b.fainted?
+		if b.fainted?
+			b.pbFaint 
+			triggerDOTDeathDialogue(b)
+		end
       end
     end
     # Damage from burn
@@ -189,14 +188,16 @@ class PokeBattle_Battle
           pbHideAbilitySplash(b)
         end
 	  elsif b.takesIndirectDamage?
-		  oldHP = b.hp
-		  dmg = b.totalhp/8
-		  dmg = (dmg/2.0).round if b.hasActiveAbility?(:HEATPROOF)
-		  dmg = (dmg/4.0).round if b.boss
-		  b.pbContinueStatus(:BURN) { b.pbReduceHP(dmg,false) }
-		  b.pbItemHPHealCheck
-		  b.pbAbilitiesOnDamageTaken(oldHP)
-		  b.pbFaint if b.fainted?
+			oldHP = b.hp
+			dmg = b.totalhp/8
+			dmg = (dmg/4.0).round if b.boss
+			b.pbContinueStatus(:BURN) { b.pbReduceHP(dmg,false) }
+			b.pbItemHPHealCheck
+			b.pbAbilitiesOnDamageTaken(oldHP)
+			if b.fainted?
+			b.pbFaint 
+			triggerDOTDeathDialogue(b)
+		end
 	  end
     end
     # Damage from sleep (Nightmare)
@@ -513,5 +514,26 @@ class PokeBattle_Battle
 	pbCheckNeutralizingGas
 	
     @endOfRound = false
+  end
+  
+  # Enemy dialogue for victims of poison/burn
+  def triggerDOTDeathDialogue(pokemon)
+	if @opponent
+		if pbOwnedByPlayer?(pokemon.index)
+			# Trigger dialogue for each opponent
+			@opponent.each_with_index do |trainer_speaking,idxTrainer|
+				@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+					PokeBattle_AI.triggerPlayerPokemonDiesToDOTDialogue(policy,pokemon,trainer_speaking,dialogue)
+				}
+			end
+		else
+			# Trigger dialogue for the trainer whose pokemon died
+			idxTrainer = pbGetOwnerIndexFromBattlerIndex(pokemon.index)
+			trainer_speaking = @opponent[idxTrainer]
+			@scene.showTrainerDialogue(pokemon.pbOwner) { |policy,dialogue|
+				PokeBattle_AI.triggerPlayerPokemonDiesToDOTDialogue(policy,pokemon,trainer_speaking,dialogue)
+			}
+		end
+	end
   end
 end

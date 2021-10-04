@@ -34,7 +34,7 @@ class PokeBattle_Battle
     return @decision
   end
   
-    #=============================================================================
+  #=============================================================================
   # End of battle
   #=============================================================================
   def pbGainMoney
@@ -43,7 +43,7 @@ class PokeBattle_Battle
     if trainerBattle?
       tMoney = 0
       @opponent.each_with_index do |t,i|
-        tMoney += pbMaxLevelInTeam(1, i) * t.base_money
+        tMoney += pbMaxLevelInTeam(1, i) * [t.base_money,100].min
       end
       tMoney *= 2 if @field.effects[PBEffects::AmuletCoin]
       tMoney *= 2 if @field.effects[PBEffects::HappyHour]
@@ -186,27 +186,25 @@ class PokeBattle_Battle
 	  
 	  @commandPhasesThisRound = 1
 	  
-	  if $game_switches[95] # Boss battle
-		  # Boss phases after main phases
-		  if @numBossOnlyTurns > 0
-			for i in 1..@numBossOnlyTurns do
-			  @battlers.each do |b|
-				next if !b
-				if b.boss
-				  @lastRoundMoved = 0
-				end
-			  end
-			  # Command phase
-			  PBDebug.logonerr { pbExtraBossCommandPhase() }
-			  break if @decision>0
-			  
-			  @commandPhasesThisRound += 1
-			  
-			  # Attack phase
-			  PBDebug.logonerr { pbExtraBossAttackPhase() }
-			  break if @decision>0
+	  # Boss phases after main phases
+	  if @numBossOnlyTurns > 0
+		for i in 1..@numBossOnlyTurns do
+		  @battlers.each do |b|
+			next if !b
+			if b.boss
+			  @lastRoundMoved = 0
 			end
 		  end
+		  # Command phase
+		  PBDebug.logonerr { pbExtraBossCommandPhase() }
+		  break if @decision>0
+		  
+		  @commandPhasesThisRound += 1
+		  
+		  # Attack phase
+		  PBDebug.logonerr { pbExtraBossAttackPhase() }
+		  break if @decision>0
+		end
 	  end
 	  
       # End of round phase

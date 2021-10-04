@@ -18,7 +18,7 @@ class PokeBattle_AI
     return false
   end
   
- #=============================================================================
+  #=============================================================================
   # Main move-choosing method (moves with higher scores are more likely to be
   # chosen)
   #=============================================================================
@@ -93,6 +93,19 @@ class PokeBattle_AI
 		end
 		if preferredMoves.length>0
 		  preferredMove = preferredMoves[pbAIRandom(preferredMoves.length)]
+		end
+		
+		# If a move is scored vastly higher than the others, pick it for a boss
+		if user.boss?
+			choseABigOne = false
+			choices.each do |c|
+				next unless c[1] > 5000
+				PBDebug.log("[AI] #{user.pbThis} (#{user.index}) must use #{user.moves[c[0]].name}")
+				@battle.pbRegisterMove(idxBattler,c[0],false)
+				@battle.pbRegisterTarget(idxBattler,c[2]) if c[2]>=0
+				choseABigOne = true
+				break
+			end
 		end
 		
 		# Pick the most preferred move
@@ -278,7 +291,7 @@ class PokeBattle_AI
 			next if !user.opposes?(b)
 			targets.push(b)
 			score = 100
-			score = pbGetMoveScoreBoss(move,user,b) if user.boss
+			score = pbGetMoveScoreBoss(move,user,b) if user.boss?
 			targetPercent = b.hp.to_f / b.totalhp.to_f
 			score = (score*(1.0 + 0.4 * targetPercent)).floor
 			totalScore += score
@@ -290,7 +303,7 @@ class PokeBattle_AI
 		end
 	  else
 	    totalScore = 100
-		totalScore = pbGetMoveScoreBoss(move,user,nil) if user.boss
+		totalScore = pbGetMoveScoreBoss(move,user,nil) if user.boss?
 	  end
 	  
       choices.push([idxMove,totalScore,-1]) if totalScore>0
@@ -306,7 +319,7 @@ class PokeBattle_AI
         next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
         next if target_data.targets_foe && !user.opposes?(b)
 		score = 100
-        score = pbGetMoveScoreBoss(move,user,b) if user.boss
+        score = pbGetMoveScoreBoss(move,user,b) if user.boss?
         if move.damagingMove?
 			targetPercent = b.hp.to_f / b.totalhp.to_f
             score = (score*(1.0 + 0.4 * targetPercent)).floor
@@ -322,19 +335,6 @@ class PokeBattle_AI
         choices.push([idxMove,scoresAndTargets[0][0],scoresAndTargets[0][1]])
       end
     end
-	
-	if user.boss
-		containsAHugeOne = false
-		choices.each do |choice|
-			containsAHugeOne = true if choice[1] > 5000
-		end
-		
-		if containsAHugeOne
-			choices.each do |choice|
-				choice[1] = 0 if choice[1] < 5000
-			end
-		end
-	end
   end
      
   def pbEnemyShouldWithdrawEx?(idxBattler,forceSwitch)
@@ -865,5 +865,30 @@ class PokeBattle_AI
       mod2 = mod2.to_f / Effectiveness::NORMAL_EFFECTIVE
     end
     return mod1*mod2
+  end
+  
+  #=============================================================================
+  # Add to a move's score based on how much damage it will deal (as a percentage
+  # of the target's current HP)
+  #=============================================================================
+  def pbGetMoveScoreDamage(score,move,user,target,skill)
+    # Don't prefer moves that are ineffective because of abilities or effects
+    return 0 if score<=0 || pbCheckMoveImmunity(score,move,user,target,skill)
+    # Calculate how much damage the move will do (roughly)
+    baseDmg = pbMoveBaseDamage(move,user,target,skill)
+    realDamage = pbRoughDamage(move,user,target,skill,baseDmg)
+    # Account for accuracy of move
+    accuracy = pbRoughAccuracy(move,user,target,skill)
+    realDamage *= accuracy/100.0
+    # Two-turn attacks waste 2 turns to deal one lot of damage
+    if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
+      realDamage *= 2/3   # Not halved because semi-invulnerable during use or hits first turn
+    end
+    # Convert damage to percentage of target's remaining HP
+    damagePercentage = realDamage*100.0/target.hp
+    # Adjust score
+    damagePercentage = 200 if damagePercentage>120   # Treat all lethal moves the same
+    score += damagePercentage.to_i
+    return score
   end
 end

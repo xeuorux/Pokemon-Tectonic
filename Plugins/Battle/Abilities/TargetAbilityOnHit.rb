@@ -18,7 +18,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FEEDBACK,
 
 BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
   proc { |ability,user,target,move,battle|
-    next if move.pbContactMove?(user)
+    next unless move.specialMove?
     next if user.poisoned? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
     if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
@@ -61,7 +61,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDTAIL,
   }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:BEGUILEING,
+BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
   proc { |ability,user,target,move,battle|
     next if target.fainted?
     next if move.pbContactMove?(user)
@@ -95,7 +95,7 @@ BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
         msg = _INTL("{1}'s {2} confused {3}!",target.pbThis,
            target.abilityName,user.pbThis(true))
       end
-      user.pbCharm
+      user.pbConfuse
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -110,7 +110,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GRIT,
 BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
   proc { |ability,user,target,move,battle|
     if move.physicalMove?
-		target.pbRaiseStatStageByAbility(:SDEFENSE,1,target)
+		target.pbRaiseStatStageByAbility(:DEFENSE,1,target)
 	else
 		target.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,target)
 	end

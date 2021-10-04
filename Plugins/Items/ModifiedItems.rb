@@ -78,7 +78,7 @@ BattleHandlers::HPHealItem.add(:ORANBERRY,
 BattleHandlers::HPHealItem.add(:SITRUSBERRY,
   proc { |item,battler,battle,forced|
     next false if !battler.canHeal?
-    next false if !forced && !battler.canConsumePinchBerry?(false)
+    next false if !forced && !battler.canConsumePinchBerry?(true)
     battle.pbCommonAnimation("EatBerry",battler) if !forced
 	hpRestore = battler.totalhp.to_f / 3.0
 	hpRestore *= 2 if battler.hasActiveAbility?(:RIPEN)
