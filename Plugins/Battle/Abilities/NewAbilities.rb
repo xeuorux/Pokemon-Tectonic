@@ -585,9 +585,25 @@ BattleHandlers::AbilityOnSwitchIn.add(:FREERIDE,
 	done= false
 	battler.eachAlly do |b|
 	    battle.pbShowAbilitySplash(battler)
-		b.pbRaiseStatStageByAbility(:SPEED,1,b)
+		b.pbRaiseStatStage(:SPEED,1,b)
 		next
 		end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+
+BattleHandlers::EORWeatherAbility.add(:HEATSAVOR,
+  proc { |ability,weather,battler,battle|
+    next unless [:Sun, :HarshSun].include?(weather)
+    next if !battler.canHeal?
+    battle.pbShowAbilitySplash(battler)
+    battler.pbRecoverHP(battler.totalhp/16)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
+    end
     battle.pbHideAbilitySplash(battler)
   }
 )
