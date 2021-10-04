@@ -569,3 +569,41 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTER,
 	end
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:GARLANDGUARDIAN,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.pbOwnSide.effects[PBEffects::Safeguard] = 5
+##battler.pbOwnSide.effects[PBEffects::Safeguard] = 8 if battler.hasActiveItem?(:LIGHTCLAY) if we want to have light clay affect this, uncomment    
+    battle.pbDisplay(_INTL("{1} put up a Safeguard!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:FREERIDE,
+  proc { |ability,battler,battle|
+	done= false
+	battler.eachAlly do |b|
+	    battle.pbShowAbilitySplash(battler)
+		b.pbRaiseStatStage(:SPEED,1,b)
+		next
+		end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+
+BattleHandlers::EORWeatherAbility.add(:HEATSAVOR,
+  proc { |ability,weather,battler,battle|
+    next unless [:Sun, :HarshSun].include?(weather)
+    next if !battler.canHeal?
+    battle.pbShowAbilitySplash(battler)
+    battler.pbRecoverHP(battler.totalhp/16)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
