@@ -437,3 +437,15 @@ Turns = 3
 HPMult = 2
 Ability = VITALSPIRIT
 Moves = PECK
+#-----------------------------
+[KLINKLANG]
+Turns = 3
+HPMult = 5
+Ability = WEAKARMOR
+Moves = BIND,GEARGRIND,IRONDEFENSE
+#-----------------------------
+[AVALUGG]
+Turns = 2
+HPMult = 4
+Ability = PRISMARMOR
+Moves = CALAMITOUSSLASH,CRYSTALCRUSH,RECOVER
