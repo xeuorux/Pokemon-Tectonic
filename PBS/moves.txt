@@ -755,7 +755,7 @@
 736,WITHDRAW,Withdraw,01D,0,WATER,Status,0,40,0,User,0,d,"The user withdraws its body into its hard shell, raising its Defense stat."
 737,SNIPESHOT,Snipe Shot,182,80,WATER,Special,100,15,0,NearOther,0,bef,"Ignores all attempts at redirection, allowing this move to hit the chosen target."
 738,FISHIOUSREND,Fishious Rend,178,85,WATER,Physical,100,10,0,NearOther,0,abef,Rends the target with its hard gills. Power doubles if the user moves before the target.
-739,LIFEDEW,Life Dew,17E,0,WATER,Status,0,10,0,UserAndAllies,0,d,The user scatters mysterious water around and restores the HP of itself.
+739,LIFEDEW,Life Dew,17E,0,WATER,Status,0,10,0,UserAndAllies,0,d,The user scatters mysterious water around and restores the HP of itself and allies by 33%.
 740,SURGINGSTRIKES,Surging Strikes,188,25,WATER,Physical,100,5,0,NearOther,0,abef,"Strikes the target thrice, with mastery of the Water style. Always results in a critical hit."
 741,FLIPTURN,Flip Turn,0EE,60,WATER,Physical,100,20,0,NearOther,0,abef,"After making its attack, the user rushes back to switch places with a party Pokémon in waiting."
 #-------------------------------,,,,,,,,,,,,,
@@ -767,7 +767,7 @@
 747,LIGHTNINGDANCE,Lightning Dance,503,0,ELECTRIC,Status,0,20,0,User,0,do,"The user dances with the speed of lightning, boosting its Sp. Atk and Speed stats."
 748,CRASHDIVE,Crash Dive,0FB,120,WATER,Physical,100,15,0,Other,0,abef,"The user dives like a submarine at the target. The user also takes 33% recoil."
 749,SHOTPUT,Shotput,000,45,STEEL,Physical,100,25,0,NearOther,0,bef,"The user hurls a metal ball at the target."
-750,WIPEOUT,Wipeout,043,40,WATER,Physical,100,35,15,NearOther,0,abef,"The user rides a wave, then crashs into the target. Has a 15% chance to lower the target's defense."
+750,WIPEOUT,Wipeout,043,40,WATER,Physical,100,35,15,NearOther,0,abef,"The user rides a wave, then crashs into the target. Has a 15% chance to lower the target's Defense."
 751,SWOOP,Swoop,0C9,60,FLYING,Physical,100,30,0,Other,0,abef,"The user takes an advantageous airborne position, then strikes on the second turn."
 752,DIAMONDFORCE,Diamond Force,000,90,ROCK,Special,100,15,0,NearOther,0,befh,"The user sprays diamonds to attack the target's weak points. Has a higher critical hit chance."
 753,CLASH,Clash,000,45,DRAGON,Physical,100,40,0,NearOther,0,abef,"The user harnesses inner battle instincts to strike at the target."

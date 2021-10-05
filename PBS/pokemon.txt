@@ -10364,8 +10364,8 @@ InternalName = ROSELIA
 Type1 = GRASS
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 50,90,45,85,70,65
-# Total = 405
+BaseStats = 50,90,45,85,70,75
+# Total = 415
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 140
@@ -13369,8 +13369,8 @@ InternalName = BUDEW
 Type1 = GRASS
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 40,60,35,65,45,40
-# Total = 285
+BaseStats = 40,60,35,65,45,65
+# Total = 300
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 56
@@ -13405,8 +13405,8 @@ InternalName = ROSERADE
 Type1 = GRASS
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,125,65,110,70,80
-# Total = 510
+BaseStats = 60,125,65,110,70,85
+# Total = 515
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 232
