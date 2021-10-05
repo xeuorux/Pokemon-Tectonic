@@ -95,9 +95,7 @@ Pokemon = CHIKORITA,14
 LoseText = "..."
 Pokemon = SANDYGAST,13
     AbilityIndex = 0
-Pokemon = GSLOWPOKE,13
-    AbilityIndex = 0
-Pokemon = OSHAWOTT,13
+Pokemon = EXEGGCUTE,13
     AbilityIndex = 0
 #-------------------------------
 [TUBER_F,Sophie]
@@ -105,8 +103,6 @@ LoseText = "..."
 Pokemon = KRABBY,13
     AbilityIndex = 0
 Pokemon = INKAY,13
-    AbilityIndex = 0
-Pokemon = EXEGGCUTE,13
     AbilityIndex = 0
 #-------------------------------
 [BATTLEGIRL,Eliza]
@@ -212,16 +208,12 @@ LoseText = "..."
 Pokemon = SMEARGLE,17
     Moves = SKETCH,DECORATE,LIGHTSCREEN,METRONOME
     AbilityIndex = 0
-Pokemon = SUNKERN,17
-    AbilityIndex = 0
 Pokemon = CUFANT,17
     AbilityIndex = 0
 #-------------------------------
 [HIKER2,Jude]
 LoseText = "..."
 Pokemon = ROGGENROLA,17
-    AbilityIndex = 0
-Pokemon = TRAPINCH,17
     AbilityIndex = 0
 Pokemon = HOOTHOOT,17
     AbilityIndex = 0
@@ -321,16 +313,12 @@ Pokemon = SNUBBULL,22
     AbilityIndex = 0
 Pokemon = HONEDGE,22
     AbilityIndex = 0
-Pokemon = VOLBEAT,22
-    AbilityIndex = 0
 #-------------------------------
 [BIRDKEEPER_F,Chloe]
 LoseText = "..."
 Pokemon = ROOKIDEE,22
     AbilityIndex = 0
-Pokemon = PIDGEOTTO,22
-    AbilityIndex = 0
-Pokemon = SEEDOT,22
+Pokemon = VOLBEAT,22
     AbilityIndex = 0
 #-------------------------------
 [GAMBLER,Gregor]
@@ -375,14 +363,10 @@ Pokemon = CHIMCHAR,23
     AbilityIndex = 0
 Pokemon = CACNEA,23
     AbilityIndex = 0
-Pokemon = AIPOM,23
-    AbilityIndex = 0
 #-------------------------------
 [POKEMANIAC,Travis]
 LoseText = "..."
 Pokemon = ARON,23
-    AbilityIndex = 0
-Pokemon = DWEBBLE,23
     AbilityIndex = 0
 Pokemon = BAGON,23
     AbilityIndex = 0
@@ -863,9 +847,7 @@ Pokemon = DUSCLOPS,27
 [WORKER,Kevin]
 Pokemon = BOLDORE,27
 Pokemon = YAMPER,27
-Pokemon = FEAROW,28
 #-------------------------------
 [TEACHER,Hilde]
 Pokemon = HATTREM,27
-Pokemon = CHERRIM,27
 Pokemon = AMBIPOM,28
