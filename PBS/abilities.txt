@@ -340,6 +340,8 @@
 338,GARLANDGUARDIAN,Garland Guardian, "Creates a Safeguard upon entering the battle."
 339,FREERIDE,Free Ride, "Raises other allies speed upon entering the battle."
 340,HEATSAVOR,Heat Savor, "The Pokémon gradually recovers HP in sunny weather."
+341,FROSTSCATTER,Frost Scatter, "Creates a hailstorm when hit by an attack."
+342,POSITIVEOUTLOOK,Positive Outlook, "Raises Electric-type allies' special attack by 25%."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
