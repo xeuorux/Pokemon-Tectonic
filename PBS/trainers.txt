@@ -41,15 +41,6 @@ Pokemon = GROWLITHE,10
 Pokemon = SINISTEA,10
     AbilityIndex = 0
 #-------------------------------
-[SCIENTIST_M,Charles]
-LoseText = "..."
-Pokemon = SKWOVET,11
-    AbilityIndex = 0
-    Item = LUMBERRY
-Pokemon = MAGNEMITE,12
-    AbilityIndex = 0
-    Item = ORANBERRY
-#-------------------------------
 [NINJABOY,Matthew]
 LoseText = "..."
 Pokemon = BONSLY,12
@@ -125,7 +116,7 @@ Pokemon = MACHOP,15
 Pokemon = GZIGZAGOON,15
     Moves = SNARL,LICK,SANDATTACK,TACKLE
     AbilityIndex = 1
-    Item = ORANBERRY
+    Item = SITRUSBERRY
 Pokemon = RIOLU,15
     Name = Sangfroid
     Gender = female
@@ -137,7 +128,7 @@ LoseText = "..."
 Pokemon = ZORUA,15
     Moves = HARSHWORDS,COUNTER,GRASSKNOT,SWIFT
     AbilityIndex = 0
-    Item = ORANBERRY
+    Item = SITRUSBERRY
 Pokemon = PANCHAM,15
     Moves = ARMTHRUST,TAUNT,LEER,BITE
     AbilityIndex = 0
@@ -147,7 +138,7 @@ Pokemon = MACHOP,15
 Pokemon = GZIGZAGOON,15
     Moves = SNARL,LICK,SANDATTACK,TACKLE
     AbilityIndex = 1
-    Item = ORANBERRY
+    Item = SITRUSBERRY
 Pokemon = RIOLU,15
     Name = Sangfroid
     Gender = female
@@ -156,7 +147,7 @@ Pokemon = RIOLU,15
 Pokemon = CROAGUNK,15
     Moves = FLATTER,ENTOXIN,MUDTHROW,HEADBUTT
     AbilityIndex = 0
-    Item = ORANBERRY
+    Item = SITRUSBERRY
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera]
 LoseText = "..."
@@ -251,7 +242,7 @@ Pokemon = VULPIX,20
 Pokemon = FLETCHINDER,20
     Moves = FLAMECHARGE,FLAIL,PECK,QUICKATTACK
     AbilityIndex = 0
-    Item = ORANBERRY
+    Item = SITRUSBERRY
 Pokemon = TENTACOOL,20
     Moves = WATERPULSE,SUPERSONIC,WRAP,ACID
     AbilityIndex = 1
@@ -268,7 +259,7 @@ Pokemon = VULPIX,20
 Pokemon = FLETCHINDER,20
     Moves = FLAMECHARGE,FLAIL,PECK,QUICKATTACK
     AbilityIndex = 0
-    Item = ORANBERRY
+    Item = SITRUSBERRY
 Pokemon = TENTACOOL,20
     Moves = WATERPULSE,SUPERSONIC,WRAP,ACID
     AbilityIndex = 1
@@ -278,7 +269,7 @@ Pokemon = TYNAMO,20
 Pokemon = NUMEL,20
     Moves = TREMOR,FLAMEBURST,INCINERATE,MUDTHROW
     AbilityIndex = 1
-    Item = ORANBERRY
+    Item = SITRUSBERRY
 #-------------------------------
 [LINEBACKER,Josh]
 LoseText = "..."
@@ -481,7 +472,7 @@ Pokemon = JANGMOO,15
 Pokemon = FERROSEED,15
     Moves = INGRAIN,EXPLOSION,SPIKES,KNOCKOFF
     AbilityIndex = 0
-    Item = ORANBERRY
+    Item = SITRUSBERRY
 Pokemon = MIMEJR,15
     Moves = MINDWAVES,CALMMIND,ICYWIND,FAIRYWIND
     AbilityIndex = 1
@@ -493,7 +484,7 @@ Pokemon = LUVDISC,15
 Pokemon = GOLETT,15
     Moves = SHADOWPUNCH,RUMBLE,FACADE,ROCKSLIDE
     AbilityIndex = 0
-    Item = ORANBERRY
+    Item = SITRUSBERRY
 #-------------------------------
 [COOLTRAINER_F,Raven]
 LoseText = "..."
@@ -773,7 +764,7 @@ Pokemon = CHATOT,30
 Pokemon = TOXTRICITY,30
     Moves = ROUND,METALSOUND,BELCH
     AbilityIndex = 0
-    Item = ORANBERRY
+    Item = SITRUSBERRY
 Pokemon = BRIONNE,30
     Moves = ROUND,LULLABY
     AbilityIndex = 0

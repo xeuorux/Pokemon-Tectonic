@@ -195,9 +195,9 @@ class PokeBattle_Battle
 			b.pbItemHPHealCheck
 			b.pbAbilitiesOnDamageTaken(oldHP)
 			if b.fainted?
-			b.pbFaint 
-			triggerDOTDeathDialogue(b)
-		end
+				b.pbFaint 
+				triggerDOTDeathDialogue(b)
+			end
 	  end
     end
     # Damage from sleep (Nightmare)
@@ -530,8 +530,8 @@ class PokeBattle_Battle
 			# Trigger dialogue for the trainer whose pokemon died
 			idxTrainer = pbGetOwnerIndexFromBattlerIndex(pokemon.index)
 			trainer_speaking = @opponent[idxTrainer]
-			@scene.showTrainerDialogue(pokemon.pbOwner) { |policy,dialogue|
-				PokeBattle_AI.triggerPlayerPokemonDiesToDOTDialogue(policy,pokemon,trainer_speaking,dialogue)
+			@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+				PokeBattle_AI.triggerTrainerPokemonDiesToDOTDialogue(policy,pokemon,trainer_speaking,dialogue)
 			}
 		end
 	end
