@@ -608,12 +608,11 @@ BattleHandlers::EORWeatherAbility.add(:HEATSAVOR,
   }
 )
 
-##BattleHandlers::DamageCalcUserAllyAbility.add(:POSITIVEOUTLOOK,
-  ##proc { |ability,battle,battler,user,target,move,mults,baseDmg,type|
-##		mults[:base_damage_multiplier] *= 1.25 if user.pbHasType?(:ELECTRIC)
-##		battle.pbShowAbilitySplash(user)
- ## }
-##)
+BattleHandlers::DamageCalcUserAllyAbility.add(:POSITIVEOUTLOOK,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+			mults[:base_damage_multiplier] *= 1.25 	if user.pbHasType?(:ELECTRIC) && move.specialMove?
+  }
+)
   
 BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
 	proc { |ability,target,battler,move,battle|
