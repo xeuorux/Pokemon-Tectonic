@@ -620,8 +620,8 @@ BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
 	}
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:NEGATIVEOUTLOOK,
+BattleHandlers::DamageCalcTargetAllyAbility.add(:NEGATIVEOUTLOOK,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:final_damage_multiplier] *= 0.75 if user.pbHasType?(:ELECTRIC) && move.specialMove?
-  }
+	mults[:final_damage_multiplier] *= 0.75 if target.pbHasType?(:ELECTRIC) && move.specialMove?
+	 }
 )
