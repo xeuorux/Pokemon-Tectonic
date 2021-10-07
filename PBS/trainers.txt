@@ -5,6 +5,12 @@ LoseText = "..."
 Pokemon = RATTATA,5
     AbilityIndex = 0
 #-------------------------------
+[HIKER,Conroy]
+LoseText = "..."
+Pokemon = Kadabra, 7
+	Moves = Swift
+	AbilityIndex = 0
+#-------------------------------
 [BUGCATCHER,Colin]
 LoseText = "..."
 Pokemon = KRICKETOT,6
