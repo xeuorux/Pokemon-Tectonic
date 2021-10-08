@@ -7,8 +7,8 @@ Pokemon = RATTATA,5
 #-------------------------------
 [HIKER,Conroy]
 LoseText = "..."
-Pokemon = Kadabra, 7
-	Moves = Swift
+Pokemon = KADABRA, 7
+	Moves = SWIFT
 	AbilityIndex = 0
 #-------------------------------
 [BUGCATCHER,Colin]
