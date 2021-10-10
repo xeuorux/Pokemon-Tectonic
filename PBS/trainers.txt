@@ -7,11 +7,11 @@ Pokemon = RATTATA,5
 #-------------------------------
 [HIKER,Conroy]
 LoseText = "..."
-Pokemon = MEWTWO, 10
-	Moves = WATERGUN
+Pokemon = SLOWPOKE, 5
+	Moves = GROWL
 	AbilityIndex = 0
-Pokemon = MEWTWO, 10
-	Moves = WATERGUN
+Pokemon = SLOWPOKE, 5
+	Moves = GROWL
 	AbilityIndex = 0
 #-------------------------------
 [BUGCATCHER,Colin]

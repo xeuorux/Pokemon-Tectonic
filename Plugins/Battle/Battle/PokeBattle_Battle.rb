@@ -120,4 +120,33 @@ class PokeBattle_Battle
   def pbDisplayConfirmSerious(msg)
     return @scene.pbDisplayConfirmMessageSerious(msg) if !messagesBlocked
   end
+
+  # Used for causing weather by a move or by an ability.
+ def pbStartWeather(user,newWeather,fixedDuration=false,showAnim=true)
+    return if @field.weather==newWeather
+    @field.weather = newWeather
+    duration = (fixedDuration) ? 5 : -1
+    if duration>0 && user && user.itemActive?
+      duration = BattleHandlers.triggerWeatherExtenderItem(user.item,
+         @field.weather,duration,user,self)
+    end
+    @field.weatherDuration = duration
+    weather_data = GameData::BattleWeather.try_get(@field.weather)
+    pbCommonAnimation(weather_data.animation) if showAnim && weather_data
+	##@scene.pbAreaUI(newWeather)
+    pbHideAbilitySplash(user) if user
+    case @field.weather
+    when :Sun         then pbDisplay(_INTL("The sunlight turned harsh!"))
+    when :Rain        then pbDisplay(_INTL("It started to rain!"))
+    when :Sandstorm   then pbDisplay(_INTL("A sandstorm brewed!"))
+    when :Hail        then pbDisplay(_INTL("It started to hail!"))
+    when :HarshSun    then pbDisplay(_INTL("The sunlight turned extremely harsh!"))
+    when :HeavyRain   then pbDisplay(_INTL("A heavy rain began to fall!"))
+    when :StrongWinds then pbDisplay(_INTL("Mysterious strong winds are protecting Flying-type Pokémon!"))
+    when :ShadowSky   then pbDisplay(_INTL("A shadow sky appeared!"))
+    end
+    # Check for end of primordial weather, and weather-triggered form changes
+    eachBattler { |b| b.pbCheckFormOnWeatherChange }
+    pbEndPrimordialWeather
+  end
 end
