@@ -584,8 +584,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:FREERIDE,
   proc { |ability,battler,battle|
 	done= false
 	battler.eachAlly do |b|
-	    battle.pbShowAbilitySplash(battler)
-		b.pbRaiseStatStage(:SPEED,1,b)
+	    battle.pbShowAbilitySplash(battler) ##for each ally it will display the ability as it raises the speed, done like this so that it has no effect in 1v1
+		b.pbRaiseStatStage(:SPEED,1,b) 
 		next
 		end
     battle.pbHideAbilitySplash(battler)
@@ -625,3 +625,6 @@ BattleHandlers::DamageCalcTargetAllyAbility.add(:NEGATIVEOUTLOOK,
 	mults[:final_damage_multiplier] *= 0.75 if target.pbHasType?(:ELECTRIC) && move.specialMove?
 	 }
 )
+
+
+

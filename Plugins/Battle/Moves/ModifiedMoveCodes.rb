@@ -946,6 +946,21 @@ class PokeBattle_Move_111 < PokeBattle_Move
 	def pbDisplayUseMessage(user,targets)
 		super if !@battle.futureSight
 	end
+	 def pbEffectAgainstTarget(user,target)
+    return if @battle.futureSight   # Attack is hitting
+    effects = @battle.positions[target.index].effects
+    count = 3
+    count -= 1 if user.hasActiveAbility?([:BADOMEN])
+    effects[PBEffects::FutureSightCounter]        = count
+    effects[PBEffects::FutureSightMove]           = @id
+    effects[PBEffects::FutureSightUserIndex]      = user.index
+    effects[PBEffects::FutureSightUserPartyIndex] = user.pokemonIndex
+    if @id == :DOOMDESIRE
+      @battle.pbDisplay(_INTL("{1} chose Doom Desire as its destiny!",user.pbThis))
+    else
+      @battle.pbDisplay(_INTL("{1} foresaw an attack!",user.pbThis))
+    end
+  end
 end
 
 class PokeBattle_Move_115 < PokeBattle_Move
@@ -971,3 +986,5 @@ class PokeBattle_Move_084 < PokeBattle_Move
     return baseDmg
   end
 end
+
+
