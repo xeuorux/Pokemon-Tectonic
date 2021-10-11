@@ -452,6 +452,13 @@ Moves = CALAMITOUSSLASH,CRYSTALCRUSH,RECOVER
 #-----------------------------
 [GENGAR]
 Turns = 2
-HPMult = 2
+HPMult = 3
 Ability = LEVITATE
 Moves = WILLOWISP,SUCKERPUNCH,DARKPULSE,SHADOWBALL
+#-----------------------------
+[ZOROARK]
+Turns = 2
+HPMult = 2
+Ability = LEVITATE
+Moves = ANGSTWAVE,SLIGHT,SWAGGER,KNOCKOFF
+#-----------------------------
