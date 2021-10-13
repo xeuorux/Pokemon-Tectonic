@@ -860,3 +860,9 @@ Pokemon = YAMPER,27
 [TEACHER,Hilde]
 Pokemon = HATTREM,27
 Pokemon = AMBIPOM,28
+#-------------------------------
+[POKEMONRANGER_M,Rupert]
+Pokemon = FRILLISH,27
+Pokemon = GROVYLE,28
+Pokemon = DRIFBLIM,28
+Pokemon = BRELOOM,29
