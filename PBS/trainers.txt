@@ -862,7 +862,14 @@ Pokemon = HATTREM,27
 Pokemon = AMBIPOM,28
 #-------------------------------
 [POKEMONRANGER_M,Rupert]
+LoseText = "That's no Pokemon!"
 Pokemon = FRILLISH,27
 Pokemon = GROVYLE,28
 Pokemon = DRIFBLIM,28
 Pokemon = BRELOOM,29
+#-------------------------------
+[BACKPACKER_F,Aiyana]
+Pokemon = BRONZOR,28
+Pokemon = BUTTERFREE,28
+Pokemon = MANECTRIC,28
+#-------------------------------
