@@ -13,6 +13,9 @@ Pokemon = SLOWPOKE, 5
 Pokemon = SLOWPOKE, 5
 	Moves = GROWL
 	AbilityIndex = 0
+Pokemon = SLOWPOKE, 5
+	Moves = GROWL
+	AbilityIndex = 0
 #-------------------------------
 [BUGCATCHER,Colin]
 LoseText = "..."
