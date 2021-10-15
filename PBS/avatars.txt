@@ -452,6 +452,42 @@ Moves = CALAMITOUSSLASH,CRYSTALCRUSH,RECOVER
 #-----------------------------
 [GENGAR]
 Turns = 2
-HPMult = 2
+HPMult = 3
 Ability = LEVITATE
 Moves = WILLOWISP,SUCKERPUNCH,DARKPULSE,SHADOWBALL
+#-----------------------------
+[ZOROARK]
+Turns = 2
+HPMult = 2.5
+Ability = ILLUSION
+Moves = ANGSTWAVE,SLIGHT,SWAGGER,KNOCKOFF
+#-----------------------------
+[DUSKNOIR]
+Turns = 2
+HPMult = 2.5
+Ability = PRESSURE
+Moves = FUTURESIGHT,MEANLOOK,WILLOWISP,CONFUSERAY
+#-----------------------------
+[ELDEGOSS]
+Turns = 2
+HPMult = 3.5
+Ability = GRASSYSURGE
+Moves = LEECHSEED,POISONPOWDER,GIGADRAIN,MAGICALLEAF
+#-----------------------------
+[CHIMECHO]
+Turns = 3
+HPMult = 4
+Ability = MAGICBOUNCE
+Moves = SWIFT,YAWN,DREAMEATER
+#-----------------------------
+[COFAGRIGUS]
+Turns = 3
+HPMult = 3
+Ability = HEARTOFJUSTICE
+Moves = SHADOWCLAW,WILLOWISP,CRAFTYSHIELD
+#-----------------------------
+[DECIDUEYE]
+Turns = 3
+HPMult = 3
+Ability = TRAPPER
+Moves = SPIRITSHACKLE,PHANTOMFORCE,NASTYPLOT
