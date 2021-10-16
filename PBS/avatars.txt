@@ -491,3 +491,9 @@ Turns = 3
 HPMult = 3
 Ability = TRAPPER
 Moves = SPIRITSHACKLE,PHANTOMFORCE,NASTYPLOT
+#-----------------------------
+[MANIKLAW]
+Turns = 3
+HPMult = 3
+Ability = INSOMNIA
+Moves = SOULRIP,CURSE,KNOCKOFF

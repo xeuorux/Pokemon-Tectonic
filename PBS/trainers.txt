@@ -892,3 +892,9 @@ Pokemon = ARBOK,29
 Pokemon = MILTANK,27
 Pokemon = ORICORIO,28
 Pokemon = QUAGSIRE,28
+#-------------------------------
+[POKEMONRANGER_F,Val]
+Pokemon = UMBREON,28
+Pokemon = FLOATZEL,28
+Pokemon = CHERRIM,29
+#-------------------------------
