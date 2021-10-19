@@ -497,3 +497,16 @@ Turns = 3
 HPMult = 3
 Ability = INSOMNIA
 Moves = SOULRIP,CURSE,KNOCKOFF
+#-----------------------------
+[SAWSBUCK]
+Turns = 3
+HPMult = 3
+Ability = SERENEGRACE
+Moves = HORNLEECH,SOLARBLADE,SUNNYDAY
+#-----------------------------
+[LEAFEON]
+Turns = 3
+HPMult = 3
+Ability = LEAFGUARD
+Moves = SUNNYDAY,RAZORLEAF,SYNTHESIS,DOUBLEEDGE
+#-----------------------------

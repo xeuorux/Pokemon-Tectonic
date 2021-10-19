@@ -770,19 +770,14 @@ Pokemon = POLIWHIRL,30
 #-------------------------------
 [SCIENTIST_F,Natasha]
 LoseText = "..."
-Pokemon = CHATOT,30
-    Moves = ROUND,CHATTER,LULLABY
-    AbilityIndex = 0
-Pokemon = TOXTRICITY,30
-    Moves = ROUND,METALSOUND,BELCH
-    AbilityIndex = 0
-    Item = SITRUSBERRY
-Pokemon = BRIONNE,30
-    Moves = ROUND,LULLABY
-    AbilityIndex = 0
-Pokemon = WIGGLYTUFF,30
-    Moves = ROUND,LULLABY,ECHOEDVOICE
-    AbilityIndex = 1
+Pokemon = SMEARGLE,30
+	Moves = VCREATE,RAPIDSTARS,PHANTOMBREAK,CELEBRATE
+Pokemon = SMEARGLE,30
+	Moves = COACHING,BLOSSOM,WATERSPIRAL,BREAKDANCE
+Pokemon = SMEARGLE,30
+	Moves = OCTOLOCK,NORETREAT,OBLIVIONWING,TERRADRAIN
+Pokemon = SMEARGLE,30
+	Moves = PROFANE,TRIPLEAXEL,ALLERGY,HUNTDOWN
 #-------------------------------
 [SCIENTIST_M,Julien]
 LoseText = "..."
@@ -897,4 +892,9 @@ Pokemon = QUAGSIRE,28
 Pokemon = UMBREON,28
 Pokemon = FLOATZEL,28
 Pokemon = CHERRIM,29
+#-------------------------------
+[AROMALADY,Cheshire]
+Pokemon = HOOTHOOT,28
+Pokemon = WATCHOG,28
+Pokemon = SCYTHER,29
 #-------------------------------
