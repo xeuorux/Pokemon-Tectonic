@@ -14096,6 +14096,7 @@ Evolutions = LOPUNNY,Level,25
 Name = Lopunny
 InternalName = LOPUNNY
 Type1 = NORMAL
+Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,106,70,105,54,80
 # Total = 480
