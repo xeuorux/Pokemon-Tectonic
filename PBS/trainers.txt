@@ -209,7 +209,7 @@ Pokemon = SLUGMA,17
 [ARTIST,Evan]
 LoseText = "..."
 Pokemon = SMEARGLE,17
-    Moves = SKETCH,DECORATE,LIGHTSCREEN,METRONOME
+    Moves = SKETCH,HEALPULSE,LIGHTSCREEN,COTTONSPORE
     AbilityIndex = 0
 Pokemon = CUFANT,17
     AbilityIndex = 0
@@ -490,11 +490,11 @@ Pokemon = MIMEJR,15
     AbilityIndex = 1
     Item = LIFEORB
 Pokemon = LUVDISC,15
-    Moves = POUT,ANGELSKISS,WIPEOUT,HEALPULSE
+    Moves = POUT,ANGELSKISS,HELPINGHAND,HEALPULSE
     AbilityIndex = 0
     Item = LIECHIBERRY
 Pokemon = GOLETT,15
-    Moves = SHADOWPUNCH,RUMBLE,FACADE,ROCKSLIDE
+    Moves = SHADOWPUNCH,RUMBLE,FACADE,CRASH
     AbilityIndex = 0
     Item = SITRUSBERRY
 #-------------------------------
