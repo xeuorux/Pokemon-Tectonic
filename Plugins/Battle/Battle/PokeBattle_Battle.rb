@@ -133,7 +133,7 @@ class PokeBattle_Battle
     @field.weatherDuration = duration
     weather_data = GameData::BattleWeather.try_get(@field.weather)
     pbCommonAnimation(weather_data.animation) if showAnim && weather_data
-	@scene.pbAreaUI(newWeather)
+	##@scene.pbAreaUI(newWeather)
     pbHideAbilitySplash(user) if user
     case @field.weather
     when :Sun         then pbDisplay(_INTL("The sunlight turned harsh!"))
