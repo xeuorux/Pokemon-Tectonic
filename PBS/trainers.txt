@@ -817,18 +817,25 @@ Pokemon = SABLEYE,26
 LoseText = "..."
 Pokemon = WHISMUR,19
 	AbilityIndex = 1
+	Name = Pippin
 Pokemon = ARON,20
 	AbilityIndex = 0
+	Name = Pebble
 Pokemon = JANGMOO,21
+	Name = Buttercup
 #-------------------------------
 [TRAINER_Lucile,Lucile,1]
 LoseText = "..."
 Pokemon = JANGMOO,29
+	Name = Buttercup
 Pokemon = LOUDRED,30
 	AbilityIndex = 1
+	Name = Pippin
 Pokemon = TOXTRICITY,31
+	Name = Cookie
 Pokemon = LAIRON,32
 	AbilityIndex = 0
+	Name = Pebble
 #-------------------------------
 [SAGE,Imay]
 Pokemon = WEEPINBELL,25
@@ -875,4 +882,19 @@ Pokemon = BRELOOM,29
 Pokemon = BRONZOR,28
 Pokemon = BUTTERFREE,28
 Pokemon = MANECTRIC,28
+#-------------------------------
+[POKEMONRANGER_F2,Alyssa]
+Pokemon = SLURPUFF,28
+Pokemon = MORPEKO,28
+Pokemon = ARBOK,29
+#-------------------------------
+[CAMPER,Christian]
+Pokemon = MILTANK,27
+Pokemon = ORICORIO,28
+Pokemon = QUAGSIRE,28
+#-------------------------------
+[POKEMONRANGER_F,Val]
+Pokemon = UMBREON,28
+Pokemon = FLOATZEL,28
+Pokemon = CHERRIM,29
 #-------------------------------
