@@ -506,7 +506,7 @@
 491,ENDURE,Endure,0E8,0,NORMAL,Status,0,10,0,User,4,,The user endures any attack with at least 1 HP. Its chance of failing rises if it is used in succession.
 492,ENTRAINMENT,Entrainment,066,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user dances to compel the target to mimic it, making the target's Ability the same as the user's."
 493,FLASH,Flash,047,0,NORMAL,Status,100,20,0,NearOther,0,bce,The user flashes a light that cuts the target's accuracy. It can also be used to illuminate caves.
-494,FOCUSENERGY,Focus Energy,023,0,NORMAL,Status,0,30,0,User,0,d,The user takes a deep breath and focuses so that critical hits land more easily.
+494,FOCUSENERGY,Focus Energy,023,0,NORMAL,Status,0,30,0,User,0,d,The user takes a deep breath and focuses so that critical hits land four times more likely.
 495,FOLLOWME,Follow Me,117,0,NORMAL,Status,0,20,0,User,2,,"The user draws attention to itself, making all targets take aim only at the user."
 496,FORESIGHT,Foresight,0A7,0,NORMAL,Status,0,40,0,NearOther,0,bce,Enables the user to hit a Ghost type with any kind of move. It also enables the user to hit an evasive foe.
 497,GLARE,Glare,007,0,NORMAL,Status,100,30,0,NearOther,0,bce,The user intimidates the target with the pattern on its belly to cause paralysis.
