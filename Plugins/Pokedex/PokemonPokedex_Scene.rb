@@ -947,15 +947,15 @@ class PokemonPokedex_Scene
 		map = $MapFactory.getMapNoAdd(mapID)
 		speciesPresent = []
 		map.events.each_value { |event|
-			match = event.name.match(/.*overworld\(([A-Za-z_0-9]+)\).*/i)
-			speciesPresent.push(match[1]) if match
+			speciesPresent.push(event.name.downcase)
 		}
 		
 		dexlist = dexlist.find_all { |item|
 				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
 				
-				next speciesPresent.include?(item[0].name)
+				next speciesPresent.include?(item[0].name.downcase)
 		}
+		return dexlist
 	end
 	
 	def searchByTypeMatchup()

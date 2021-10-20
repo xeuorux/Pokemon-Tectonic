@@ -51,8 +51,8 @@ def checkForZooMap(speciesName,careAboutEnabled=false)
 end
 
 def eventIsForSpecies(event,speciesName)
-	match = event.name.match(/.*overworld\(([A-Za-z_0-9]+)\).*/i)
-	return match && match[1] == speciesName
+	#match = event.name.match(/.*overworld\(([A-Za-z_0-9]+)\).*/i)
+	return event.downcase.name.include?(speciesName.downcase)
 end
 
 def sendToZoo(pokemon, showMessage=true)
