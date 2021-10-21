@@ -52,7 +52,7 @@ end
 
 def eventIsForSpecies(event,speciesName)
 	#match = event.name.match(/.*overworld\(([A-Za-z_0-9]+)\).*/i)
-	return event.downcase.name.include?(speciesName.downcase)
+	return event.name.downcase.include?(speciesName.downcase)
 end
 
 def sendToZoo(pokemon, showMessage=true)
