@@ -104,13 +104,23 @@ LandTinted,20
 50,WURMPLE,14,17
 #-------------------------------
 [56] # Suburb
-LandSparse
-1,GYAMASK,15,15
 FloweryGrass,20
 25,STUNKY,15,18
 25,STUFFUL,15,18
 25,SWIRLIX,15,18
 25,APPLIN,15,18
+#-------------------------------
+[32] # Nemeth Apartments
+LandSparse
+1,TRAPINCH,15,15
+#-------------------------------
+[71] # Nemeth Apartments Room 103
+LandSparse
+1,MAREANIE,15,15
+#-------------------------------
+[74] # Nemeth Apartments Room 203
+LandSparse
+1,GYAMASK,15,15
 #-------------------------------
 [51] # Starters Store
 Land
