@@ -988,3 +988,18 @@ class PokeBattle_Move_084 < PokeBattle_Move
 end
 
 
+#===============================================================================
+# Heals user by 1/2 of its max HP. (Roost)
+# User roosts, and its Flying type is ignored for attacks used against it.
+#===============================================================================
+class PokeBattle_Move_0D6 < PokeBattle_HealingMove
+  def pbEffectGeneral(user)
+    amt = pbHealAmount(user)
+    user.pbRecoverHP(amt)
+    @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+	user.effects[PBEffects::Roost] = true
+  end
+ ## def pbEffectAfterAllHits(user,target)
+ ##   user.effects[PBEffects::Roost] = true
+##  end
+end
