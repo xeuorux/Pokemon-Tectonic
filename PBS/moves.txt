@@ -940,6 +940,8 @@
 921,UPINFLAMES,Up In Flames,541,80,FIRE,Special,100,10,0,NearOther,0,bef,"The user surrounds the target with fire which also destroys any 'clothing' items its holding."
 922,PROPELLANT,Propellant,542,110,FIRE,Physical,100,10,100,NearOther,0,abef,"The user explodes itself into the target. The target's speed also goes up drastically, however."
 923,PSYCHOBLADE,Psychoblade,000,90,PSYCHIC,Physical,100,10,0,NearOther,0,abefhp,"The user manifests a blade of psychic energy to slash the target. Has a higher chance for a critical hit."
+924,CHILL,Chill,00C,0,ICE,Status,100,15,0,NearOther,0,bce,"The user lowers the target's body temperature, causing it to be chilled."
+
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch."
