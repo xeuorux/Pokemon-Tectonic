@@ -606,6 +606,8 @@ def teleportArriveAnimation
 	new_move_route.list.push(RPG::MoveCommand.new(0)) # End of move route
 	
 	get_player.force_move_route(new_move_route)
+	
+	unstowFollowerIfAllowed()
 end
 
 def defeatBoss(item=nil,count=1)
