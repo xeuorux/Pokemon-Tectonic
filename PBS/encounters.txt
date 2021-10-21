@@ -101,7 +101,7 @@ LandTall,20
 25,HATENNA,14,17
 LandTinted,20
 50,PETILIL,14,17
-50,WURMPLE,14,17
+50,WURMPLE,5,6
 #-------------------------------
 [56] # Suburb
 FloweryGrass,20
