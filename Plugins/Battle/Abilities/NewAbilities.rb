@@ -626,5 +626,13 @@ BattleHandlers::DamageCalcTargetAllyAbility.add(:NEGATIVEOUTLOOK,
 	 }
 )
 
-
+BattleHandlers::AbilityOnSwitchIn.add(:CLOVERSONG,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.pbOwnSide.effects[PBEffects::LuckyChant] = 5
+##battler.pbOwnSide.effects[PBEffects::LuckyChant] = 8 if battler.hasActiveItem?(:LIGHTCLAY) if we want to have light clay affect this, uncomment    
+    battle.pbDisplay(_INTL("{1} sung a Lucky Chant!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
 

@@ -344,6 +344,7 @@
 342,POSITIVEOUTLOOK,Positive Outlook, "Raises Electric-type allies' special attack by 25%."
 343,NEGATIVEOUTLOOK,Negative Outlook, "Raises Electric-type allies' special defense by 25%."
 344,BADOMEN,Bad Omen, "Foretold moves hit one turn quicker."
+345,CLOVERSONG,Clover Song, "Sets a Lucky Chant upon entering the battle."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
