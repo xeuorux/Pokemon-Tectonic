@@ -143,3 +143,9 @@ Events.onWildPokemonCreate+=proc {|sender,e|
 	pokemon=e[0]
 	pokemon.shinyRerolls *= 2 if donatedToZoo?(pokemon.species)
 }
+
+Events.onWildPokemonCreate+=proc {|sender,e|
+	pokemon=e[0]
+	pokemon.item = :POTION
+
+}

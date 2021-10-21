@@ -836,9 +836,11 @@ class PokeBattle_Move_0F1 < PokeBattle_Move
     itemName = target.itemName
     user.item = target.item
     # Permanently steal the item from wild Pokémon
-    if @battle.wildBattle? && target.opposes? &&
-       target.initialItem==target.item && !user.initialItem
-      user.setInitialItem(target.item)
+	echoln @battle.wildBattle?
+	echoln target.opposes?
+    if @battle.wildBattle? && target.opposes?## &&
+      ## target.initialItem==target.item
+	 $PokemonBag.pbStoreItem(target.item,1)
       target.pbRemoveItem
     else
       target.pbRemoveItem(false)
