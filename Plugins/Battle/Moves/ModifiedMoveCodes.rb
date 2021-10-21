@@ -36,6 +36,16 @@ class PokeBattle_TargetStatDownMove < PokeBattle_Move
 	attr_accessor :statDown
 end
 
+class PokeBattle_FixedDamageMove
+	def pbCalcTypeModSingle(moveType,defType,user,target)
+		ret = super
+		ret = Effectiveness::NORMAL_EFFECTIVE_ONE unless Effectiveness.ineffective?(ret)
+		return ret
+	end
+end
+
+	
+
 
 
 #################################################
@@ -1003,3 +1013,4 @@ class PokeBattle_Move_0D6 < PokeBattle_HealingMove
  ##   user.effects[PBEffects::Roost] = true
 ##  end
 end
+

@@ -97,7 +97,7 @@ class PokeBattle_Move
   #=============================================================================
   # Messages upon being hit
   #=============================================================================
-  def pbEffectivenessMessage(user,target,numTargets=1)
+ def pbEffectivenessMessage(user,target,numTargets=1)
     return if target.damageState.disguise
 	return if target.damageState.iceface
 	if Effectiveness.hyper_effective?(target.damageState.typeMod)
