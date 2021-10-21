@@ -409,7 +409,7 @@ Moves = ATTACKORDER,DEFENDORDER,HEALORDER,ALLERGY
 #------------------------------
 [AGOLEM]
 Turns = 2
-HPMult = 5
+HPMult = 4
 Ability = GALVANIZE
 Moves = DOUBLEEDGE,STONEEDGE,FLAIL
 #-----------------------------

@@ -321,7 +321,7 @@ Pokemon = HONEDGE,22
 LoseText = "..."
 Pokemon = ROOKIDEE,22
     AbilityIndex = 0
-Pokemon = VOLBEAT,22
+Pokemon = YANMA,22
     AbilityIndex = 0
 #-------------------------------
 [GAMBLER,Gregor]
@@ -387,13 +387,11 @@ Pokemon = VENIPEDE,23
 #-------------------------------
 [RICHBOY2,Theodore]
 LoseText = "..."
-Pokemon = STANTLER,20
+Pokemon = SANDILE,18
     AbilityIndex = 0
-Pokemon = CINCCINO,20
+Pokemon = MINCCINO,19
     AbilityIndex = 0
-Pokemon = TAUROS,20
-    AbilityIndex = 0
-Pokemon = BRAIXEN,21
+Pokemon = BRAIXEN,19
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Helena,Helena]
