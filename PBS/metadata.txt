@@ -45,11 +45,11 @@ MapPosition = 0,13,11
 BattleBack = field
 #-------------------------------
 [006]
-# Tech Campus
+# LuxTech Campus
 MapPosition = 0,13,11
 #-------------------------------
 [007]
-# Swamp Ideas
+# Swamp Route
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -57,12 +57,12 @@ MapPosition = 0,13,10
 MapSize = 2,11
 #-------------------------------
 [008]
-# Ghost/Grass Town...?
+# Ghost Town
 HealingSpot = 22,18,19
 MapPosition = 0,13,12
 #-------------------------------
 [009]
-# Ice Cave
+# Northeast House
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -86,6 +86,7 @@ MapPosition = 0,14,10
 #-------------------------------
 [013]
 # Ice Rink Station
+HealingSpot = 37,35,11
 MapPosition = 0,14,10
 #-------------------------------
 [014]
@@ -98,6 +99,7 @@ MapPosition = 0,13,10
 #-------------------------------
 [016]
 # Campus Center
+HealingSpot = 6,25,28
 MapPosition = 0,13,10
 #-------------------------------
 [017]
@@ -267,3 +269,12 @@ ShowArea = true
 [076]
 # Németh Apartments Room 201
 HealingSpot = 48,36,21
+#-------------------------------
+[082]
+# Mining Cave Station
+Bicycle = false
+HealingSpot = 25,13,16
+#-------------------------------
+[100]
+# Rearranged Building
+HealingSpot = 8,53,20
