@@ -17,6 +17,12 @@ Pokemon = SLOWPOKE, 5
 	Moves = GROWL
 	AbilityIndex = 0
 #-------------------------------
+[AROMALADY,Someone]
+LoseText = "..."
+Pokemon = MILCERY, 10
+	Moves = HEALPULSE
+Pokemon = SLOWPOKE, 5
+#-------------------------------
 [BUGCATCHER,Colin]
 LoseText = "..."
 Pokemon = KRICKETOT,6
