@@ -5590,7 +5590,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LANTURN,Level,27
+Evolutions = LANTURN,Level,25
 #-------------------------------
 [171]
 Name = Lanturn

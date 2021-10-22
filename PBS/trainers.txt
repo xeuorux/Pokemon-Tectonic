@@ -402,7 +402,7 @@ Pokemon = BRAIXEN,19
 #-------------------------------
 [LEADER_Helena,Helena]
 LoseText = "..."
-Pokemon = CHINCHOU,25
+Pokemon = LANTURN,25
     AbilityIndex = 0
 Pokemon = LUXIO,25
     AbilityIndex = 1
@@ -410,10 +410,11 @@ Pokemon = MARSHTOMP,25
     AbilityIndex = 1
 Pokemon = PIKACHU,25
     AbilityIndex = 0
+	Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Helena,Helena,1]
 LoseText = "..."
-Pokemon = CHINCHOU,25
+Pokemon = LANTURN,25
     AbilityIndex = 0
 Pokemon = PINCURCHIN,25
     AbilityIndex = 0
@@ -424,8 +425,10 @@ Pokemon = CLAUNCHER,25
     AbilityIndex = 0
 Pokemon = PIKACHU,25
     AbilityIndex = 0
+	Item = SITRUSBERRY
 Pokemon = MARSHTOMP,25
     AbilityIndex = 1
+	Item = ELECTRICSEED
 #-------------------------------
 [IDOL,Ishizu]
 LoseText = "..."
