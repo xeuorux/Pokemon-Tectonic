@@ -159,22 +159,11 @@ class PokeBattle_Battle
         
     if rate>=250 || @battleAI.pbAIRandom(250)<rate
       pbSEPlay("Battle flee")
-      case rate
-      when 0..130; pbDisplayPaused(_INTL("Miraculously, you found a way out!"))
-      when 131..170; pbDisplayPaused(_INTL("It was hard work, but you managed to escape!"))
-      when 171..210; pbDisplayPaused(_INTL("With a bit of luck you made your retreat!"))
-      when 211..250; pbDisplayPaused(_INTL("You got away safely!"))
-      when 251..10000; pbDisplayPaused(_INTL("You fled easily!"))
-      end
+      pbDisplayPaused(_INTL("You got away safely!"))
       @decision = 3
       return 1
-    end
-    case rate
-    when 0..130; pbDisplayPaused(_INTL("You're locked in place by fear!"))
-    when 131..170; pbDisplayPaused(_INTL("You don't see a way out!"))
-    when 171..210; pbDisplayPaused(_INTL("You couldn't get away!"))
-    when 211..250; pbDisplayPaused(_INTL("The wild Pokémon narrowly blocks your escape!"))
-    end
+    end	
+	pbDisplayPaused(_INTL("You couldn't get away!"))
     return -1
   end
 end
