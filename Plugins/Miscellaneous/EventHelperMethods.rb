@@ -676,3 +676,17 @@ def hasPokemonInParty(speciesToCheck)
 	end
 	return hasAll
 end
+
+def weatherAndTerrainTMSell()
+	pbPokemonMart(
+		[:TM32,
+		:TM33,
+		:TM33,
+		:TM34,
+		:TM88,
+		:TM89,
+		:TM90,
+		:TM91],
+		"Do you like anything you see?"
+	)
+end
