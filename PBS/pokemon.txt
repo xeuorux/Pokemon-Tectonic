@@ -27646,7 +27646,7 @@ InternalName = FLAPPLE
 Type1 = GRASS
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,75,90,35,70,60
+BaseStats = 70,65,90,35,75,60
 # Total = 400
 GenderRate = Female50Percent
 GrowthRate = Erratic

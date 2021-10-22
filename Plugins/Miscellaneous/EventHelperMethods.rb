@@ -625,8 +625,8 @@ def defeatBoss(item=nil,count=1)
 	end
 end
 
-def introduceAvatar(species)
-	pbPlayCrySpecies(species)
+def introduceAvatar(species,form=0)
+	Pokemon.play_cry(species, form)
 	$game_screen.start_shake(5, 5, 2 * Graphics.frame_rate)
 	pbWait(2 * Graphics.frame_rate)
 end

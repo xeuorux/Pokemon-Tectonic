@@ -109,7 +109,7 @@ class PokeBattle_Battle
           end
           pbRecallAndReplace(idxBattler,idxPartyNew)
           switched.push(idxBattler)
-        elsif trainerBattle? || $game_switches[95]   # Player switches in in a trainer battle or boss battle
+        elsif trainerBattle? || bossBattle?   # Player switches in in a trainer battle or boss battle
           idxPlayerPartyNew = pbGetReplacementPokemonIndex(idxBattler)   # Owner chooses
           pbRecallAndReplace(idxBattler,idxPlayerPartyNew)
           switched.push(idxBattler)
