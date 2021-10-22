@@ -153,7 +153,7 @@
 148,NATURESMADNESS,Nature's Madness,06C,0,FAIRY,Status,90,10,0,NearOther,0,bef,The user hits the target with the force of nature. It halves the target's HP.
 149,ANGELSKISS,Angel's Kiss,400,0,FAIRY,Status,85,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes charm."
 150,SPIRITBREAK,Spirit Break,045,75,FAIRY,Physical,100,15,100,NearOther,0,abef,Attacks the target and breaks its spirit. Lowers the target's Sp. Atk stat.
-151,DECORATE,Decorate,17B,0,FAIRY,Status,0,15,0,NearOther,0,,The user sharply raises the target's Attack and Sp. Atk stats by decorating the target.
+151,DECORATE,Decorate,17B,0,FAIRY,Status,0,15,0,NearAlly,0,,The user sharply raises the target's Attack and Sp. Atk stats by decorating the target.
 152,MISTYEXPLOSION,Misty Explosion,196,100,FAIRY,Special,100,5,0,AllNearFoes,0,bef,Attacks all close enemies and faints. Power is increased by 50% on Misty Terrain.
 153,STRANGESTEAM,Strange Steam,013,90,FAIRY,Special,100,10,20,NearOther,0,bef,The user attacks the target by emitting steam. It has a 20% chance to confuse.
 #-------------------------------,,,,,,,,,,,,,
@@ -640,7 +640,7 @@
 623,GUARDSPLIT,Guard Split,059,0,PSYCHIC,Status,0,10,0,NearOther,0,b,The user employs its psychic power to average its Defense and Sp. Def stats with those of its target.
 624,GUARDSWAP,Guard Swap,053,0,PSYCHIC,Status,0,10,0,NearOther,0,be,The user employs its psychic power to switch changes to its Defense and Sp. Def with the target.
 625,HEALBLOCK,Heal Block,0BB,0,PSYCHIC,Status,100,15,0,AllNearFoes,0,bce,"For five turns, the foe is prevented from using any moves, Abilities, or held items that recover HP."
-626,HEALPULSE,Heal Pulse,0DF,0,PSYCHIC,Status,0,10,0,Other,0,bcm,The user emits a healing pulse which restores the target's HP by up to half of its max HP.
+626,HEALPULSE,Heal Pulse,0DF,0,PSYCHIC,Status,0,10,0,NearAlly,0,bcm,The user emits a healing pulse which restores the target's HP by up to half of its max HP.
 627,HEALINGWISH,Healing Wish,0E3,0,PSYCHIC,Status,0,10,0,User,0,d,"The user faints. In return, the Pokémon taking its place will have its HP restored and status cured."
 628,HEARTSWAP,Heart Swap,054,0,PSYCHIC,Status,0,10,0,NearOther,0,be,The user employs its psychic power to switch stat changes with the target.
 629,HYPNOSIS,Hypnosis,003,0,PSYCHIC,Status,60,20,0,NearOther,0,bce,"The user employs hypnotic suggestion to make the target fall into a deep sleep."
