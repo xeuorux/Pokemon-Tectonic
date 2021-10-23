@@ -35,8 +35,8 @@ def earnBadge(badgeNum)
 	badgeNames = [
 		"Loyalty",
 		"Perseverance",
-		"Reverence",
 		"Patience",
+		"Reverence",
 		"Solidarity",
 		"Clarity",
 		"Generosity",
