@@ -510,3 +510,23 @@ HPMult = 3
 Ability = LEAFGUARD
 Moves = SUNNYDAY,RAZORLEAF,SYNTHESIS,DOUBLEEDGE
 #-----------------------------
+[URSARING]
+Turns = 3
+HPMult = 3
+Ability = GUTS
+Moves = SLASH,FACADE
+Item = MUSCLEBAND
+#-----------------------------
+[WATCHOG]
+Turns = 2
+HPMult = 4
+Ability = PARANOID
+Moves = GLARE,WHITERAY,DAZZLINGGLEAM
+Item = WISEGLASSES
+#-----------------------------
+[LINOONE]
+Turns = 1
+HPMult = 5
+Item = SITRUSBERRY
+Ability = GLUTTONY
+Moves = BELLYDRUM,EXTREMESPEED

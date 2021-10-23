@@ -614,12 +614,15 @@ Pokemon = WAILORD,30
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,1]
 LoseText = "..."
-Pokemon = LYCANROC,70
+Pokemon = LYCANROC,25
     AbilityIndex = 0
-Pokemon = LOUDRED,70
+	Moves = HOWL,CRUNCH,ROCKTOMB
+Pokemon = LOUDRED,25
+    AbilityIndex = 1
+	Moves = ECHOEDVOICE
+Pokemon = DONPHAN,25
     AbilityIndex = 0
-Pokemon = DONPHAN,70
-    AbilityIndex = 0
+	Moves = KNOCKOFF,ASSURANCE,PROTECT
 #-------------------------------
 [SCHOOLKID_M,Louis]
 LoseText = "..."
