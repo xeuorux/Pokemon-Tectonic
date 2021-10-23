@@ -813,14 +813,16 @@
 789,TM197,TM197,TM197s,4,10000,The user bites the target with its psychic capabilities. This can also destroy Light Screen and Reflect.,3,0,0,PSYCHICFANGS
 790,TM198,TM198,TM198s,4,6000,The user slams into the target using a full-force blast of water. This may also lower the target's Defense stat.,3,0,0,LIQUIDATION
 791,TM199,TM199,TM199s,4,6000,"The user attacks by slamming its body into the target. The higher the user's Defense, the more damage it inflicts.",3,0,0,BODYPRESS
-#------------------------------- NEW ITEMS,,,,,,,,,,
+#------------------------------- NEW ITEMS
 792,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,0,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,6,
 793,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,A peculiar stone that makes certain species of Pokémon evolve.,1,0,7,
 794,ALOLANWREATH,Alolan Wreath,Alolan Wreathes,1,0,A beautiful floral wreath from Alolan that makes certain species of Pokémon evolve.,1,0,7,
 795,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,6,
 796,ABRAPORTER,Abraporter,Abraporters,8,0,"A teleporter which brings you to your last safe spot using the power of Abras.",2,0,6,
 797,REMATERIALIZER,Rematerializer,Rematerializers,8,0,"A 3D printer which automatically copies consumed held items after battles.",0,0,6
-#------------------------------- NEW ITEMS,,,,,,,,,,
+798,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It is a cup filled with coffee. It feels warm.",0,0,6
+799,LUXTECHSHIPMENT,LuxTech Shipment,LuxTech Shipments,8,0,"A package containing an important shipment destined for LuxTech.",0,0,6
+#------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6
@@ -829,5 +831,5 @@
 905,CHAMBER6KEY,Chamber 6 Key,Chamber 6 Keys,8,0,"The key to the sixth chamber containing a powerful avatar.",0,0,6
 906,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
 907,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
-908,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It is a cup filled with coffee. It feels warm.",0,0,6
-909,TOXICORB,MISSINGNO Orb,Poison Orbs,1,4000,An item that shouldn't exist.,0,0
+# Items which were previously cut
+2009,TOXICORB,MISSINGNO Orb,Poison Orbs,1,4000,An item that shouldn't exist.,0,0

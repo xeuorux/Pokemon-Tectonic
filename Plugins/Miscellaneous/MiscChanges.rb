@@ -172,7 +172,7 @@ class Interpreter
 	message.gsub!("…","...")
 	message.gsub!("–","-")
 	message.gsub!("Pokemon","Pokémon")
-	message.gsub!("Pokeex","Pokédex")
+	message.gsub!("Pokedex","Pokédex")
     # Display the text, with commands/number choosing if appropriate
     @message_waiting = true   # Lets parallel process events work while a message is displayed
     if commands

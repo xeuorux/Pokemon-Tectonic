@@ -512,21 +512,21 @@ Moves = SUNNYDAY,RAZORLEAF,SYNTHESIS,DOUBLEEDGE
 #-----------------------------
 [URSARING]
 Turns = 3
-HPMult = 3
+HPMult = 4
 Ability = GUTS
 Moves = SLASH,FACADE
 Item = MUSCLEBAND
 #-----------------------------
 [WATCHOG]
 Turns = 2
-HPMult = 4
+HPMult = 6
 Ability = PARANOID
 Moves = GLARE,WHITERAY,DAZZLINGGLEAM
 Item = WISEGLASSES
 #-----------------------------
 [LINOONE]
 Turns = 1
-HPMult = 5
+HPMult = 6
 Item = SITRUSBERRY
 Ability = GLUTTONY
 Moves = BELLYDRUM,EXTREMESPEED

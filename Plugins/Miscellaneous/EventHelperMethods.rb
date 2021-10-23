@@ -690,3 +690,7 @@ def weatherAndTerrainTMSell()
 		"Do you like anything you see?"
 	)
 end
+
+def teleportYezera()
+	get_character(1).moveto($game_player.x-1,$game_player.y)
+end
