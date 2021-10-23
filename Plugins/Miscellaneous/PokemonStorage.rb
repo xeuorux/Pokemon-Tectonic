@@ -42,6 +42,7 @@ class PokemonStorageScreen
             cmdItem     = -1
             cmdMark     = -1
             cmdRelease  = -1
+			cmdPokedex  = -1
             cmdDebug    = -1
 			cmdZoo		= -1
             cmdCancel   = -1
@@ -57,6 +58,7 @@ class PokemonStorageScreen
             commands[cmdItem=commands.length]     = _INTL("Item")
             commands[cmdMark=commands.length]     = _INTL("Mark")
             commands[cmdRelease=commands.length]  = _INTL("Release")
+			commands[cmdPokedex = commands.length]  = _INTL("Pokédex") if $Trainer.has_pokedex
             commands[cmdDebug=commands.length]    = _INTL("Debug") if $DEBUG
 			commands[cmdZoo=commands.length]	  = _INTL("Donate") if canBeSentToZoo((@heldpkmn) ? @heldpkmn : pokemon) && $PokemonGlobal.zooSeen
             commands[cmdCancel=commands.length]   = _INTL("Cancel")
@@ -77,6 +79,13 @@ class PokemonStorageScreen
               pbMark(selected,@heldpkmn)
             elsif cmdRelease>=0 && command==cmdRelease   # Release
               pbRelease(selected,@heldpkmn)
+			elsif cmdPokedex>=0 && command==cmdPokedex #Pokedex
+				$Trainer.pokedex.register_last_seen(pokemon)
+				pbFadeOutIn {
+					scene = PokemonPokedexInfo_Scene.new
+					screen = PokemonPokedexInfoScreen.new(scene)
+					screen.pbStartSceneSingle(pokemon.species)
+							}
 			elsif cmdZoo>=0 && command==cmdZoo # Donate to zoo
 			  pbDonate(selected,@heldpkmn)
             elsif cmdDebug>=0 && command==cmdDebug   # Debug
