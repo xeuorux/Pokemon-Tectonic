@@ -530,3 +530,10 @@ HPMult = 6
 Item = SITRUSBERRY
 Ability = GLUTTONY
 Moves = BELLYDRUM,EXTREMESPEED
+#-----------------------------
+[SHUCKLE]
+Turns = 3
+HPMult = 2
+Ability = STURDY
+Moves = POWERTRIP,PROTECT,GIGAIMPACT,STEALTHROCK
+#-----------------------------

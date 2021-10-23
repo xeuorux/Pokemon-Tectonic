@@ -2,7 +2,8 @@
 #-------------------------------
 [YOUNGSTER,Joey]
 LoseText = "..."
-Pokemon = RATTATA,5
+Pokemon = MAGNEMITE, 5
+	Moves = THUNDERWAVE,TACKLE
     AbilityIndex = 0
 #-------------------------------
 [HIKER,Conroy]
