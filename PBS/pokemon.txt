@@ -30087,7 +30087,7 @@ Name = Klawsar
 InternalName = KLAWSAR
 Type1 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 85,125,120,75,70,50
+BaseStats = 85,130,120,65,70,55
 # Total = 525
 GenderRate = Female50Percent
 GrowthRate = Medium
