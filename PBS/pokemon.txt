@@ -10866,7 +10866,7 @@ InternalName = FLYGON
 Type1 = BUG
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,95,80,105,105,80
+BaseStats = 100,90,80,100,110,80
 # Total = 560
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -29151,7 +29151,7 @@ Type1 = DRAGON
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 88,110,75,132,80,75
-# Total = 600
+# Total = 560
 GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 300
