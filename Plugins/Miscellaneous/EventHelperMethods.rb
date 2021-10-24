@@ -681,8 +681,8 @@ def weatherAndTerrainTMSell()
 	pbPokemonMart(
 		[:TM32,
 		:TM33,
-		:TM33,
 		:TM34,
+		:TM35,
 		:TM88,
 		:TM89,
 		:TM90,
