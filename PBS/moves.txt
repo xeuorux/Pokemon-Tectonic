@@ -151,7 +151,7 @@
 146,MISTYTERRAIN,Misty Terrain,156,0,FAIRY,Status,0,10,0,BothSides,0,,The user covers the ground with mist for five turns. Grounded Pokémon can't gain status conditions.
 147,MOONLIGHT,Moonlight,0D8,0,FAIRY,Status,0,5,0,User,0,d,The user restores its own HP. The amount of HP regained varies with the weather.
 148,NATURESMADNESS,Nature's Madness,06C,0,FAIRY,Status,90,10,0,NearOther,0,bef,The user hits the target with the force of nature. It halves the target's HP.
-149,ANGELSKISS,Angel's Kiss,400,0,FAIRY,Status,85,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes charm."
+149,ANGELSKISS,Angel's Kiss,400,0,FAIRY,Status,100,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes charm."
 150,SPIRITBREAK,Spirit Break,045,75,FAIRY,Physical,100,15,100,NearOther,0,abef,Attacks the target and breaks its spirit. Lowers the target's Sp. Atk stat.
 151,DECORATE,Decorate,17B,0,FAIRY,Status,0,15,0,NearAlly,0,,The user sharply raises the target's Attack and Sp. Atk stats by decorating the target.
 152,MISTYEXPLOSION,Misty Explosion,196,100,FAIRY,Special,100,5,0,AllNearFoes,0,bef,Attacks all close enemies and faints. Power is increased by 50% on Misty Terrain.
@@ -560,7 +560,7 @@
 545,SPOTLIGHT,Spotlight,16A,0,NORMAL,Status,0,15,0,NearOther,3,bc,The user shines a spotlight on the target so that only it will be attacked during the turn.
 546,STOCKPILE,Stockpile,112,0,NORMAL,Status,0,20,0,User,0,d,The user charges up power and raises both its Defense and Sp. Def. The move can be used three times.
 547,SUBSTITUTE,Substitute,10C,0,NORMAL,Status,0,10,0,User,0,d,The user makes a copy of itself using some of its HP. The copy serves as the user's decoy.
-548,SUPERSONIC,Supersonic,013,0,NORMAL,Status,85,20,0,NearOther,0,bcek,The user generates odd sound waves from its body. It confuses the target.
+548,SUPERSONIC,Supersonic,013,0,NORMAL,Status,100,20,0,NearOther,0,bcek,The user generates odd sound waves from its body. It confuses the target.
 549,SWAGGER,Swagger,041,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user enrages and confuses the target. However, it also sharply raises the target's Attack stat."
 550,SWALLOW,Swallow,114,0,NORMAL,Status,0,10,0,User,0,d,The power stored using the move Stockpile is absorbed by the user to heal its HP.
 551,SWEETSCENT,Sweet Scent,048,0,GRASS,Status,100,20,0,AllNearFoes,0,bce,"A sweet scent that lowers the foe's evasiveness. It also lures wild Pokémon if used in grass, etc."
