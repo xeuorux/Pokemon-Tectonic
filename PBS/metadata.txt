@@ -81,7 +81,6 @@ MapPosition = 0,14,10
 #-------------------------------
 [012]
 # Shortcut Cave
-HealingSpot = 10,39,21
 MapPosition = 0,14,10
 #-------------------------------
 [013]
@@ -224,6 +223,11 @@ Bicycle = true
 # Name Rater's House
 Outdoor = true
 ShowArea = true
+Bicycle = true
+#-------------------------------
+[054]
+# Crossroads
+Outdoor = true
 Bicycle = true
 #-------------------------------
 [056]
