@@ -202,6 +202,12 @@ Bicycle = true
 # Impromptu Lab
 HealingSpot = 34,24,11
 #-------------------------------
+[037]
+# Ice Rink Town
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
 [038]
 # Beach Route
 Outdoor = true
@@ -282,3 +288,7 @@ HealingSpot = 25,13,16
 [100]
 # Rearranged Building
 HealingSpot = 8,53,20
+#-------------------------------
+[117]
+# Ice Cave
+ShowArea = true
