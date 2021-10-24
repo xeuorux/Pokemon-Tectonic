@@ -236,7 +236,7 @@ Land,20
 25,TEDDIURSA,16,19
 25,SNOVER,16,19
 #-------------------------------
-[9] # Ice Cave
+[117] # Ice Cave
 Land,20
 25,SNORUNT,16,19
 25,BERGMITE,16,19
