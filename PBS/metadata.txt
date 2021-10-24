@@ -46,6 +46,9 @@ BattleBack = field
 #-------------------------------
 [006]
 # LuxTech Campus
+Outdoor = true
+ShowArea = true
+Bicycle = true
 MapPosition = 0,13,11
 #-------------------------------
 [007]

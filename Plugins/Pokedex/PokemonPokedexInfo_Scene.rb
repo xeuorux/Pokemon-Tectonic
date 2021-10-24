@@ -775,7 +775,7 @@ class PokemonPokedexInfo_Scene
 		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
 			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 		end
-        compatibleMoves = firstSpecies.egg_moves
+        compatibleMoves = firstSpecies.egg_moves + fSpecies.tutor_moves
         @scrollableListLength = compatibleMoves.length
         displayIndex = 0
         compatibleMoves.each_with_index do |move,index|
