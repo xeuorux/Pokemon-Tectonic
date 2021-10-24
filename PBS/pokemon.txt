@@ -1137,7 +1137,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = CLEFABLE,Level,48
+Evolutions = CLEFABLE,Level,45
 #-------------------------------
 [36]
 Name = Clefable
@@ -2406,8 +2406,8 @@ InternalName = GEODUDE
 Type1 = ROCK
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 40,80,80,20,30,50
-# Total = 300
+BaseStats = 50,80,80,20,30,50
+# Total = 310
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 60
@@ -2441,8 +2441,8 @@ InternalName = GRAVELER
 Type1 = ROCK
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 55,95,95,35,45,65
-# Total = 390
+BaseStats = 65,95,95,35,45,65
+# Total = 400
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 137
@@ -2467,7 +2467,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GOLEM,Level,40
+Evolutions = GOLEM,Level,35
 #-------------------------------
 [76]
 Name = Golem
@@ -2475,8 +2475,8 @@ InternalName = GOLEM
 Type1 = ROCK
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,120,110,45,55,85
-# Total = 495
+BaseStats = 90,120,110,45,55,85
+# Total = 505
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 223
@@ -4192,7 +4192,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SCARAPACE,Level,46
+Evolutions = SCARAPACE,Level,44
 #-------------------------------
 [128]
 Name = Tauros
@@ -4875,7 +4875,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = DRAGONITE,Level,55
+Evolutions = DRAGONITE,Level,47
 #-------------------------------
 [149]
 Name = Dragonite
@@ -7533,7 +7533,7 @@ BattlerEnemyX = 5
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = HOUNDOMINUS,Level,66
+Evolutions = HOUNDOMINUS,Level,55
 #-------------------------------
 [230]
 Name = Kingdra
@@ -8119,7 +8119,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = TYRANITAR,Level,55
+Evolutions = TYRANITAR,Level,47
 #-------------------------------
 [248]
 Name = Tyranitar
@@ -8127,8 +8127,8 @@ InternalName = TYRANITAR
 Type1 = ROCK
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,134,110,61,95,100
-# Total = 600
+BaseStats = 100,134,110,61,75,95
+# Total = 575
 GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 270
@@ -10858,7 +10858,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 7
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = FLYGON,Level,55
+Evolutions = FLYGON,Level,49
 #-------------------------------
 [330]
 Name = Flygon
@@ -10866,8 +10866,8 @@ InternalName = FLYGON
 Type1 = BUG
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,90,80,100,110,80
-# Total = 600
+BaseStats = 95,95,80,105,105,80
+# Total = 560
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 234
@@ -11024,7 +11024,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 3
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = HYMNUS,Level,55
+Evolutions = HYMNUS,Level,50
 #-------------------------------
 [335]
 Name = Zangoose
@@ -11691,7 +11691,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MANIKLAW,Level,48
+Evolutions = MANIKLAW,Level,44
 #-------------------------------
 [355]
 Name = Duskull
@@ -11858,7 +11858,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = ABSOLUS,Level,52
+Evolutions = ABSOLUS,Level,45
 #-------------------------------
 [360]
 Name = Wynaut
@@ -15193,7 +15193,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 9
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = CONIFEAR,Level,48
+Evolutions = CONIFEAR,Level,45
 #-------------------------------
 [461]
 Name = Weavile
@@ -17913,7 +17913,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SCOLIPEDE,Level,48
+Evolutions = SCOLIPEDE,Level,43
 #-------------------------------
 [545]
 Name = Scolipede
@@ -19013,7 +19013,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 37
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = DUOSION,Level,32
+Evolutions = DUOSION,Level,29
 #-------------------------------
 [578]
 Name = Duosion
@@ -19046,7 +19046,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 31
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = REUNICLUS,Level,41
+Evolutions = REUNICLUS,Level,40
 #-------------------------------
 [579]
 Name = Reuniclus
@@ -19281,7 +19281,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SAWSBUCK,Level,43
+Evolutions = SAWSBUCK,Level,34
 #-------------------------------
 [586]
 Name = Sawsbuck
@@ -19682,7 +19682,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 32
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = FERROTHORN,Level,40
+Evolutions = FERROTHORN,Level,38
 #-------------------------------
 [598]
 Name = Ferrothorn
@@ -19780,7 +19780,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = KLINKLANG,Level,48
+Evolutions = KLINKLANG,Level,44
 #-------------------------------
 [601]
 Name = Klinklang
@@ -20137,7 +20137,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = HAXORUS,Level,48
+Evolutions = HAXORUS,Level,45
 #-------------------------------
 [612]
 Name = Haxorus
@@ -20955,7 +20955,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 30
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = VOLCARONA,Level,59
+Evolutions = VOLCARONA,Level,53
 #-------------------------------
 [637]
 Name = Volcarona
@@ -23188,7 +23188,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 35
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SLIGGOO,Level,40
+Evolutions = SLIGGOO,Level,24
 #-------------------------------
 [705]
 Name = Sliggoo
@@ -23222,7 +23222,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GOODRA,LevelRain,50
+Evolutions = GOODRA,LevelRain,43
 #-------------------------------
 [706]
 Name = Goodra
@@ -23520,7 +23520,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = NOIVERN,Level,48
+Evolutions = NOIVERN,Level,33
 #-------------------------------
 [715]
 Name = Noivern
@@ -25816,8 +25816,8 @@ InternalName = KOMMOO
 Type1 = DRAGON
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,110,125,85,100,105
-# Total = 600
+BaseStats = 75,100,125,85,95,105
+# Total = 585
 GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 270
@@ -30826,8 +30826,8 @@ InternalName = AGEODUDE
 Type1 = ROCK
 Type2 = ELECTRIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 40,80,80,20,30,50
-# Total = 300
+BaseStats = 50,80,80,20,30,50
+# Total = 310
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 60
@@ -30862,8 +30862,8 @@ InternalName = AGRAVELER
 Type1 = ROCK
 Type2 = ELECTRIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 55,95,95,35,45,65
-# Total = 390
+BaseStats = 65,95,95,35,45,65
+# Total = 400
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 137
@@ -30889,7 +30889,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = AGOLEM,Level,40
+Evolutions = AGOLEM,Level,35
 #-------------------------------
 [2014]
 Name = Golem (A)
@@ -30897,8 +30897,8 @@ InternalName = AGOLEM
 Type1 = ROCK
 Type2 = ELECTRIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,120,110,45,55,85
-# Total = 495
+BaseStats = 90,120,110,45,55,85
+# Total = 505
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 223
