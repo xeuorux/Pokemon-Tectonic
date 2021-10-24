@@ -846,7 +846,7 @@ class PokeBattle_Move_0F1 < PokeBattle_Move
     itemName = target.itemName
     user.item = target.item
     # Permanently steal the item from wild Pokémon
-    if @battle.wildBattle? && target.opposes?## &&
+    if @battle.wildBattle? && target.opposes? && @battle.bossBattle?
       ## target.initialItem==target.item 									THIS COMMENT SEEMINGLY WAS NOT WANTED, HOPEFULLY NOTHING BREAKS
 	 $PokemonBag.pbStoreItem(target.item,1)
       target.pbRemoveItem
@@ -1014,3 +1014,37 @@ class PokeBattle_Move_0D6 < PokeBattle_HealingMove
 ##  end
 end
 
+#===============================================================================
+# User and target swap items. They remain swapped after wild battles.
+# (Switcheroo, Trick)
+#===============================================================================
+class PokeBattle_Move_0F2 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    if @battle.wildBattle? && user.opposes? && !user.boss
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    oldUserItem = user.item;     oldUserItemName = user.itemName
+    oldTargetItem = target.item; oldTargetItemName = target.itemName
+    user.item                             = oldTargetItem
+    user.effects[PBEffects::ChoiceBand]   = nil
+    user.effects[PBEffects::Unburden]     = (!user.item && oldUserItem)
+    target.item                           = oldUserItem
+    target.effects[PBEffects::ChoiceBand] = nil
+    target.effects[PBEffects::Unburden]   = (!target.item && oldTargetItem)
+    # Permanently steal the item from wild Pokémon
+    if @battle.wildBattle? && target.opposes? && @battle.bossBattle?
+       target.initialItem==oldTargetItem && !user.initialItem
+      user.setInitialItem(oldTargetItem)
+    end
+    @battle.pbDisplay(_INTL("{1} switched items with its opponent!",user.pbThis))
+    @battle.pbDisplay(_INTL("{1} obtained {2}.",user.pbThis,oldTargetItemName)) if oldTargetItem
+    @battle.pbDisplay(_INTL("{1} obtained {2}.",target.pbThis,oldUserItemName)) if oldUserItem
+    user.pbHeldItemTriggerCheck
+    target.pbHeldItemTriggerCheck
+  end
+end
