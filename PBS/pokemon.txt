@@ -3429,7 +3429,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = MAROWAK,Level,28
+Evolutions = MAROWAK,Level,28,AMAROWAK,Item,FIRESTONE
 #-------------------------------
 [105]
 Name = Marowak

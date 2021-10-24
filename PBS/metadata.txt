@@ -236,6 +236,12 @@ Bicycle = true
 Outdoor = true
 Bicycle = true
 #-------------------------------
+[055]
+# Flower Field
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
 [056]
 # Suburb 
 Outdoor = true
@@ -279,6 +285,12 @@ ShowArea = true
 [076]
 # Németh Apartments Room 201
 HealingSpot = 48,36,21
+#-------------------------------
+[081]
+# Cave Path
+Outdoor = false
+ShowArea = true
+Bicycle = true
 #-------------------------------
 [082]
 # Mining Cave Station
