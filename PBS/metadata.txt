@@ -61,18 +61,23 @@ MapSize = 2,11
 #-------------------------------
 [008]
 # Ghost Town
+Outdoor = true
+ShowArea = true
+Bicycle = true
 HealingSpot = 22,18,19
 MapPosition = 0,13,12
 #-------------------------------
 [009]
 # Northeast House
-Outdoor = true
-ShowArea = true
-Bicycle = true
+Outdoor = false
+ShowArea = false
+Bicycle = false
 MapPosition = 0,14,10
 #-------------------------------
 [010]
 # Jungle Temple
+Outdoor = false
+ShowArea = false
 Bicycle = true
 MapPosition = 0,13,10
 BattleBack = indoor3
@@ -80,10 +85,16 @@ Environment = Rock
 #-------------------------------
 [011]
 # River Route
+Outdoor = true
+ShowArea = true
+Bicycle = true
 MapPosition = 0,14,10
 #-------------------------------
 [012]
 # Shortcut Cave
+Outdoor = false
+ShowArea = true
+Bicycle = false
 MapPosition = 0,14,10
 #-------------------------------
 [013]
@@ -234,9 +245,16 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
+[053]
+# Jungle Route
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
 [054]
 # Crossroads
 Outdoor = true
+ShowArea = true
 Bicycle = true
 #-------------------------------
 [055]
@@ -304,10 +322,124 @@ Bicycle = true
 Bicycle = false
 HealingSpot = 25,13,16
 #-------------------------------
+[099]
+# Ghost Town Buildings
+#-------------------------------
 [100]
 # Rearranged Building
+Outdoor = false
+ShowArea = false
+Bicycle = false
 HealingSpot = 8,53,20
+#-------------------------------
+[101]
+# Dream Space
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[102]
+# Ghost Town Center
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[103]
+# Ghost Town Mart
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[104]
+# Raphael's House
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[105]
+# Avatar Sinkhole 1
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[106]
+# Something's Chamber
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[107]
+# Rupert's Yard
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[108]
+# Sinkhole House Yard
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[109]
+# Sunken Building South
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[110]
+# West Underground 
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[111]
+# Collapsed Passage
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[112]
+# Sunken Building Middle
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[113]
+# East Underground Entrance
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[114]
+# East Underground 
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[115]
+# Avatar Sinkhole 2
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[116]
+# East Cave House
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [117]
 # Ice Cave
 ShowArea = true
+#-------------------------------
+[119]
+# Chasm Hangout
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[120]
+# Deep Layer
+Outdoor = false
+ShowArea = true
+Bicycle = true

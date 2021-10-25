@@ -585,9 +585,8 @@ class PokemonPokedex_Scene
   end
   
   def searchByMoveLearned()
-	  learningMethodSelection = pbMessage("Which method?",[_INTL("Any"),_INTL("Level Up"),_INTL("Mentor"),
-			_INTL("TM"),_INTL("Cancel")],5)
-	  return if learningMethodSelection == 4
+	  learningMethodSelection = pbMessage("Which method?",[_INTL("Any"),_INTL("Level Up"),_INTL("Tutor"),_INTL("Cancel")],4)
+	  return if learningMethodSelection == 3
       
 	  while true
 		  moveNameInput = pbEnterText("Move name...", 0, 16)
@@ -630,9 +629,7 @@ class PokemonPokedex_Scene
 							break
 						  end
 						end
-					end
-
-					if learningMethodSelection == 0 || learningMethodSelection == 3
+						
 						tutormoves = item[12]
 						tutormoves.each do |move|
 						  if move == actualMove
