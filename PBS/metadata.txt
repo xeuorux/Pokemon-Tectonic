@@ -205,6 +205,11 @@ Bicycle = true
 # Impromptu Lab
 HealingSpot = 34,24,11
 #-------------------------------
+[036]
+# Abandoned Mine
+Outdoor = false
+Bicycle = true
+#-------------------------------
 [037]
 # Ice Rink Town
 Outdoor = true

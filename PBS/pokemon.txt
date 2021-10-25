@@ -4493,7 +4493,7 @@ GenderRate = Genderless
 GrowthRate = Medium
 BaseEXP = 79
 EffortPoints = 0,0,0,0,1,0
-Rareness = 45
+Rareness = 135
 Happiness = 70
 Abilities = TRACE,DOWNLOAD
 Moves = 1,TACKLE,1,CONVERSION,5,RECYCLE,10,MAGNETRISE,15,THUNDERSHOCK,20,CONVERSION2,25,HEX,30,AGILITY,35,RECOVER,40,DISCHARGE,45,TRIATTACK,50,TRICKROOM,55,DOUBLEEDGE,60,ZAPCANNON,60,LOCKON
@@ -7500,7 +7500,7 @@ BattlerEnemyX = 4
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = HOUNDOOM,Level,24
+Evolutions = HOUNDOOM,Level,27
 #-------------------------------
 [229]
 Name = Houndoom
@@ -7643,7 +7643,7 @@ GenderRate = Genderless
 GrowthRate = Medium
 BaseEXP = 180
 EffortPoints = 0,0,0,0,2,0
-Rareness = 45
+Rareness = 75
 Happiness = 70
 Abilities = TRACE,DOWNLOAD
 Moves = 1,DEFENSECURL,1,TACKLE,1,CONVERSION,1,RECYCLE,1,MAGNETRISE,15,THUNDERSHOCK,20,CONVERSION2,25,TAKEDOWN,30,AGILITY,35,RECOVER,40,DISCHARGE,45,TRIATTACK,50,TRICKROOM,55,DOUBLEEDGE,60,ZAPCANNON,60,LOCKON,65,HYPERBEAM
@@ -10023,7 +10023,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LAIRON,Level,32
+Evolutions = LAIRON,Level,28
 #-------------------------------
 [305]
 Name = Lairon
@@ -15623,7 +15623,7 @@ GenderRate = Genderless
 GrowthRate = Medium
 BaseEXP = 241
 EffortPoints = 0,0,0,0,3,0
-Rareness = 30
+Rareness = 75
 Happiness = 70
 Abilities = DOWNLOAD,AUDACITY
 Moves = 0,CRITICALERROR,1,CRITICALERROR,1,HEX,1,TRICKROOM,1,NASTYPLOT,1,DEFENSECURL,1,TACKLE,1,CONVERSION,1,RECYCLE,1,MAGNETRISE,15,THUNDERSHOCK,20,HEX,25,CONVERSION2,30,AGILITY,35,RECOVER,40,DISCHARGE,45,TRIATTACK,50,MAGICCOAT,55,RUIN,60,LOCKON,60,ZAPCANNON,65,HYPERBEAM
