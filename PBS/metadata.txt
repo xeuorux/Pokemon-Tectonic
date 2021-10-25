@@ -289,6 +289,10 @@ ShowArea = true
 # Németh Apartments Room 201
 HealingSpot = 48,36,21
 #-------------------------------
+[078]
+# Pokemon Research Facility
+Outdoor = false
+#-------------------------------
 [081]
 # Cave Path
 Outdoor = false
