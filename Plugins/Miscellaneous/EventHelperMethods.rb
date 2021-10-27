@@ -681,8 +681,8 @@ def weatherAndTerrainTMSell()
 	pbPokemonMart(
 		[:TM32,
 		:TM33,
-		:TM33,
 		:TM34,
+		:TM35,
 		:TM88,
 		:TM89,
 		:TM90,
@@ -693,4 +693,9 @@ end
 
 def teleportYezera()
 	get_character(1).moveto($game_player.x-1,$game_player.y)
+end
+
+def noteMovedSelf()
+	echoln("#{$PokemonMap}, #{get_self().id}, #{$game_map.events[get_self().id].name}")
+	$PokemonMap.addMovedEvent(get_self().id) if $PokemonMap
 end

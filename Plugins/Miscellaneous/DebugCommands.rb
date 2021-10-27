@@ -102,14 +102,12 @@ DebugMenuCommands.register("viewdistribution", {
 	end
 		
     GameData::Species.each do |species_data|
-		# Don't check the species if its an alt form that isn't a regional form
-		if species_data.real_form_name
-			regionals = ["alolan","galarian","makyan"]
-			regionalForm = false
-			regionals.each do |regional|
-				regionalForm = true if species_data.real_form_name.downcase.include?(regional)
-			end
-			next if !regionalForm
+		# Don't check the species if its an alt form
+		if species_data.form != 0
+			formName = species_data.real_form_name
+			formName.gsub!("%","") if formName
+			echoln("Skipping #{species_data.real_name} (#{formName})")
+			next
 		end
 		
 		learnSet = []

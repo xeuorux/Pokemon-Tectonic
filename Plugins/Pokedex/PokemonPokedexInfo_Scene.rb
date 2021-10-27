@@ -162,17 +162,17 @@ class PokemonPokedexInfo_Scene
     @sprites["areamap"].visible       = false if @sprites["areamap"] #(@page==7) if @sprites["areamap"]
     @sprites["areahighlight"].visible = false if @sprites["areahighlight"] #(@page==7) if @sprites["areahighlight"]
     @sprites["areaoverlay"].visible   = false if @sprites["areaoverlay"] #(@page==7) if @sprites["areaoverlay"]
-    @sprites["formfront"].visible     = (@page==12) if @sprites["formfront"]
-    @sprites["formback"].visible      = (@page==12) if @sprites["formback"]
-    @sprites["formicon"].visible      = (@page==12) if @sprites["formicon"]
-	@sprites["moveInfoDisplay"].visible = @page>=6 && @page <=8  if @sprites["moveInfoDisplay"]
-	@sprites["extraInfoOverlay"].visible = @page>=6 && @page <=8 if @sprites["extraInfoOverlay"]
+    @sprites["formfront"].visible     = (@page==10) if @sprites["formfront"]
+    @sprites["formback"].visible      = (@page==10) if @sprites["formback"]
+    @sprites["formicon"].visible      = (@page==10) if @sprites["formicon"]
+	@sprites["moveInfoDisplay"].visible = @page==6 || @page ==7  if @sprites["moveInfoDisplay"]
+	@sprites["extraInfoOverlay"].visible = @page==6 || @page ==7 if @sprites["extraInfoOverlay"]
 	@sprites["extraInfoOverlay"].bitmap.clear if @sprites["extraInfoOverlay"]
 	# Draw page title
 	overlay = @sprites["overlay"].bitmap
 	base = Color.new(219, 240, 240)
 	shadow   = Color.new(88, 88, 80)
-	pageTitles = ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "MENTOR MOVES", "TM MOVES", "EVOLUTIONS", "AREA", "ANALYSIS"]
+	pageTitles = ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES", "EVOLUTIONS", "AREA", "FORMS", "ANALYSIS"]
 	pageTitle = pageTitles[page-1]
 	drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
 	xPos = 240
@@ -186,10 +186,10 @@ class PokemonPokedexInfo_Scene
 	when 4; drawPageMatchups
 	when 5; drawPageMatchups2
     when 6; drawPageLevelUpMoves
-	when 7; drawPageEggMoves
-    when 8; drawPageTMMoves
-    when 9; drawPageEvolution
-	when 10; drawPageArea
+	when 7; drawPageTutorMoves
+    when 8; drawPageEvolution
+	when 9; drawPageArea
+	when 10; drawPageForms
 	when 11; drawPageDEBUG
     end
   end
@@ -722,6 +722,7 @@ class PokemonPokedexInfo_Scene
     end
   end
 
+=begin
   def drawPageTMMoves
     @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
     overlay = @sprites["overlay"].bitmap
@@ -756,8 +757,9 @@ class PokemonPokedexInfo_Scene
 	
 	drawMoveInfo(selected_move)
   end
+=end
   
-  def drawPageEggMoves
+  def drawPageTutorMoves
     @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
     overlay = @sprites["overlay"].bitmap
     formname = "" 
@@ -769,13 +771,25 @@ class PokemonPokedexInfo_Scene
     for i in @available
       if i[2]==@form
         formname = i[0]
-        drawTextEx(overlay,xLeft,54,450,1,_INTL("Mentor Moves for {1}",@title),base,shadow)
-        fSpecies = GameData::Species.get_species_form(@species,i[2])
-		firstSpecies = fSpecies
+        drawTextEx(overlay,xLeft,54,450,1,_INTL("Tutorable Moves for {1}",@title),base,shadow)
+        species_data = GameData::Species.get_species_form(@species,i[2])
+		firstSpecies = species_data
 		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
 			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 		end
-        compatibleMoves = firstSpecies.egg_moves
+        compatibleMoves = firstSpecies.egg_moves + species_data.tutor_moves
+		compatibleMoves.uniq!
+		compatibleMoves.compact!
+		compatibleMoves.sort! { |a,b|
+			movaAData = GameData::Move.get(a)
+			movaBData = GameData::Move.get(b)
+
+			if movaAData.category != movaBData.category
+				next movaAData.category <=> movaBData.category
+			end
+			
+			next a <=> b
+		}
         @scrollableListLength = compatibleMoves.length
         displayIndex = 0
         compatibleMoves.each_with_index do |move,index|
@@ -1184,11 +1198,11 @@ class PokemonPokedexInfo_Scene
 		if @page==1
           pbPlayCloseMenuSE
           break
-        elsif @page==6 || @page == 7 || @page == 8   # Move lists
+        elsif @page==6 || @page == 7   # Move lists
 		  pbPlayDecisionSE
           pbScroll
           dorefresh = true
-		elsif @page==9 && @evolutionsArray.length > 0   # Evolutions
+		elsif @page==8 && @evolutionsArray.length > 0   # Evolutions
 		  if @linksEnabled
 			pbPlayDecisionSE
 			  newSpecies = pbScrollEvolutions()
@@ -1200,6 +1214,12 @@ class PokemonPokedexInfo_Scene
 		  else
 			pbPlayBuzzerSE
 		  end
+		elsif @page==10
+			if @available.length>1
+				pbPlayDecisionSE
+				pbChooseForm
+				dorefresh = true
+			end
         end
       elsif Input.repeat?(Input::UP)
         oldindex = @index

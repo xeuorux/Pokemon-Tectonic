@@ -770,46 +770,46 @@ Pokemon = ALAKAZAM,70
 #-------------------------------
 [SCIENTIST_M,Marco]
 LoseText = "..."
-Pokemon = KECLEON,30
+Pokemon = KECLEON,50
     AbilityIndex = 0
-Pokemon = DELCATTY,30
+Pokemon = DELCATTY,50
     AbilityIndex = 0
-Pokemon = NINETALES,30
+Pokemon = NINETALES,50
     AbilityIndex = 1
-Pokemon = POLIWHIRL,30
+Pokemon = POLIWRATH,50
     AbilityIndex = 1
 #-------------------------------
 [SCIENTIST_F,Natasha]
 LoseText = "..."
-Pokemon = SMEARGLE,30
+Pokemon = SMEARGLE,50
 	Moves = VCREATE,RAPIDSTARS,PHANTOMBREAK,CELEBRATE
-Pokemon = SMEARGLE,30
+Pokemon = SMEARGLE,50
 	Moves = COACHING,BLOSSOM,WATERSPIRAL,BREAKDANCE
-Pokemon = SMEARGLE,30
+Pokemon = SMEARGLE,50
 	Moves = OCTOLOCK,NORETREAT,OBLIVIONWING,TERRADRAIN
-Pokemon = SMEARGLE,30
+Pokemon = SMEARGLE,50
 	Moves = PROFANE,TRIPLEAXEL,ALLERGY,HUNTDOWN
 #-------------------------------
 [SCIENTIST_M,Julien]
 LoseText = "..."
-Pokemon = DRIZZILE,30
+Pokemon = INTELEON,50
     AbilityIndex = 1
-Pokemon = DITTO,30
+Pokemon = DITTO,50
     AbilityIndex = 0
-Pokemon = ZOROARK,30
+Pokemon = ZOROARK,50
     AbilityIndex = 0
-Pokemon = MIMIKYU,30
+Pokemon = MIMIKYU,50
     AbilityIndex = 0
 #-------------------------------
 [SCIENTIST_F,Bella]
 LoseText = "..."
-Pokemon = DURALUDON,30
+Pokemon = DURALUDON,50
     AbilityIndex = 0
-Pokemon = BELLOSSOM,30
+Pokemon = BELLOSSOM,50
     AbilityIndex = 0
-Pokemon = MISMAGIUS,30
+Pokemon = MISMAGIUS,50
     AbilityIndex = 0
-Pokemon = HONCHKROW,30
+Pokemon = HONCHKROW,50
     AbilityIndex = 1
 #-------------------------------
 [TRAINER_Vincent,Vincent]
