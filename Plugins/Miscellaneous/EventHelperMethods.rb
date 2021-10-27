@@ -694,3 +694,8 @@ end
 def teleportYezera()
 	get_character(1).moveto($game_player.x-1,$game_player.y)
 end
+
+def noteMovedSelf()
+	echoln("#{$PokemonMap}, #{get_self().id}, #{$game_map.events[get_self().id].name}")
+	$PokemonMap.addMovedEvent(get_self().id) if $PokemonMap
+end
