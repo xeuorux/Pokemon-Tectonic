@@ -88,11 +88,11 @@ Item = LEEK
 Moves = FOCUSENERGY,LEAFBLADE,CROSSCHOP,NIGHTSLASH
 HPMult = 4
 #-------------------------------
-[PORYGONZ]
-Turns = 3
-Ability = DOWNLOAD
-HPMult = 2.5
-Moves = BURNUP,TRIATTACK,CONVERSION,CONVERSION2
+#[PORYGONZ]
+#Turns = 3
+#Ability = DOWNLOAD
+#HPMult = 2.5
+#Moves = BURNUP,TRIATTACK,CONVERSION,CONVERSION2
 #-------------------------------
 [RUNERIGUS]
 Turns = 1
