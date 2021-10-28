@@ -180,7 +180,7 @@
 174,CIRCLETHROW,Circle Throw,0EC,60,FIGHTING,Physical,90,10,0,NearOther,-6,abef,"The user throws the target and drags out another Pokémon in its party. In the wild, the battle ends."
 175,FORCEPALM,Force Palm,007,60,FIGHTING,Physical,100,10,30,NearOther,0,abef,The target is attacked with a shock wave. It has a 30% chance to paralyze.
 176,REVENGE,Revenge,081,60,FIGHTING,Physical,100,10,0,NearOther,-4,abef,An attack move that inflicts double the damage if the user has been hurt by the foe in the same turn.
-177,ROLLINGKICK,Rolling Kick,00F,60,FIGHTING,Physical,85,15,30,NearOther,0,abe,"The user lashes out with a quick, spinning kick. It has a 30% chance to make the target flinch."
+177,ROLLINGKICK,Rolling Kick,00F,60,FIGHTING,Physical,100,15,30,NearOther,0,abe,"The user lashes out with a quick, spinning kick. It has a 30% chance to make the target flinch."
 178,STORMTHROW,Storm Throw,0A0,60,FIGHTING,Physical,100,10,0,NearOther,0,abef,The user strikes the target with a fierce blow. This attack always results in a critical hit.
 179,KARATECHOP,Karate Chop,000,40,FIGHTING,Physical,100,25,0,NearOther,0,abefh,The target is attacked with a sharp chop. Critical hits land more easily.
 180,MACHPUNCH,Mach Punch,000,40,FIGHTING,Physical,100,30,0,NearOther,1,abefj,The user throws a punch at blinding speed. It is certain to strike first.
