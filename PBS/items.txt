@@ -322,10 +322,10 @@
 317,TM29,TM29,TM29s,4,10000,"The user pouts at the target. This harshly lowers its Attack stat.",3,0,0,POUT
 318,TM30,TM30,TM30s,4,10000,The target is hit with wings of steel. This may also raise the user's Defense stat.,3,0,0,STEELWING
 319,TM31,TM31,TM31s,4,10000,"If it is the opposite gender of the user, the target becomes infatuated and less likely to attack.",3,0,0,ATTRACT
-320,TM32,TM32,TM32s,4,10000,"A five-turn sandstorm is summoned to hurt all combatants except the Rock, Ground, and Steel types.",3,0,0,SANDSTORM
-321,TM33,TM33,TM33s,4,10000,"The user summons a heavy rain that falls for five turns, powering up Water-type moves.",3,0,0,RAINDANCE
-322,TM34,TM34,TM34s,4,10000,"The user intensifies the sun for five turns, powering up Fire-type moves.",3,0,0,SUNNYDAY
-323,TM35,TM35,TM35s,4,10000,The user summons a hailstorm lasting five turns. It damages all Pokémon except Ice types.,3,0,0,HAIL
+320,TM32,TM32,TM32s,4,5000,"A five-turn sandstorm is summoned to hurt all combatants except the Rock, Ground, and Steel types.",3,0,0,SANDSTORM
+321,TM33,TM33,TM33s,4,5000,"The user summons a heavy rain that falls for five turns, powering up Water-type moves.",3,0,0,RAINDANCE
+322,TM34,TM34,TM34s,4,5000,"The user intensifies the sun for five turns, powering up Fire-type moves.",3,0,0,SUNNYDAY
+323,TM35,TM35,TM35s,4,5000,The user summons a hailstorm lasting five turns. It damages all Pokémon except Ice types.,3,0,0,HAIL
 324,TM36,TM36,TM36s,4,10000,The user traps the target in a violent swirling whirlpool for four to five turns.,3,0,0,WHIRLPOOL
 325,TM37,TM37,TM37s,4,10000,"The user gets all party Pokémon to attack the target. The more party Pokémon, the greater the number of attacks.",3,0,0,BEATUP
 326,TM38,TM38,TM38s,4,10000,"The user attacks with a sinister flame, inflicting a burn.",3,0,0,WILLOWISP
@@ -378,10 +378,10 @@
 373,TM85,TM85,TM85s,4,10000,"The user yells as if it's ranting about something, which lowers the Sp. Atk stats of opposing Pokémon.",3,0,0,SNARL
 374,TM86,TM86,TM86s,4,10000,"The user vanishes, then strikes the target on the next turn. This move hits even if the target protects itself.",3,0,0,PHANTOMFORCE
 375,TM87,TM87,TM87s,4,10000,The user steals the target's HP with a kiss. The user's HP is restored by over half the damage inflicted.,3,0,0,DRAININGKISS
-376,TM88,TM88,TM88s,4,10000,The user turns the ground to grass for five turns. This slowly restores the HP of Pokémon on the ground.,3,0,0,GRASSYTERRAIN
-377,TM89,TM89,TM89s,4,10000,This protects Pokémon on the ground from status conditions and weakens Dragon-type moves for five turns.,3,0,0,MISTYTERRAIN
-378,TM90,TM90,TM90s,4,10000,The user electrifies the ground for five turns. Pokémon on the ground no longer fall asleep.,3,0,0,ELECTRICTERRAIN
-379,TM91,TM91,TM91s,4,10000,This protects Pokémon on the ground from priority moves for five turns.,3,0,0,PSYCHICTERRAIN
+376,TM88,TM88,TM88s,4,5000,The user turns the ground to grass for five turns. This slowly restores the HP of Pokémon on the ground.,3,0,0,GRASSYTERRAIN
+377,TM89,TM89,TM89s,4,5000,This protects Pokémon on the ground from status conditions and weakens Dragon-type moves for five turns.,3,0,0,MISTYTERRAIN
+378,TM90,TM90,TM90s,4,5000,The user electrifies the ground for five turns. Pokémon on the ground no longer fall asleep.,3,0,0,ELECTRICTERRAIN
+379,TM91,TM91,TM91s,4,5000,This protects Pokémon on the ground from priority moves for five turns.,3,0,0,PSYCHICTERRAIN
 380,TM92,TM92,TM92s,4,100000,"The user attacks by breathing a special, hot fire. This also lowers the target's Sp. Atk stat.",3,0,0,MYSTICALFIRE
 381,TM93,TM93,TM93s,4,10000,The user's body generates an eerie impulse. This harshly lowers the target's Sp. Atk stat.,3,0,0,EERIEIMPULSE
 382,TM94,TM94,TM94s,4,10000,A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.,3,0,0,FALSESWIPE
