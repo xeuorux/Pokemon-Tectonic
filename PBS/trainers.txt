@@ -923,3 +923,21 @@ Pokemon = GABITE,28
 Pokemon = VOLTORB,28
 Pokemon = NUZLEAF,27
 Pokemon = NOCTOWL,27
+#-------------------------------
+[LEADER_Rafael,Rafael]
+Pokemon = DHELMISE,30
+POkemon = LOMBRE,30
+Pokemon = DUSCLOPS,30
+Pokemon = NUZLEAF,30
+	Item = SITRUSBERRY
+#-------------------------------
+[LEADER_Rafael,Rafael,1]
+Pokemon = DHELMISE,30
+POkemon = LOMBRE,30
+Pokemon = DUSCLOPS,30
+Pokemon = NUZLEAF,30
+	Item = SITRUSBERRY
+Pokemon = SWADLOON,30
+	Item = CHOICEBAND
+Pokemon = FRILLISH,30
+	Item = LEFTOVERS
