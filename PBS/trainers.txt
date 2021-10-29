@@ -909,3 +909,17 @@ Pokemon = HOOTHOOT,28
 Pokemon = WATCHOG,28
 Pokemon = SCYTHER,29
 #-------------------------------
+[CLOWN,Klemens]
+Pokemon = AIPOM,27
+Pokemon = TAILLOW,28
+Pokemon = DREEPY,27
+#-------------------------------
+[BACKPACKER_M,Freedom]
+Pokemon = SPINDA,27
+Pokemon = NATU,27
+Pokemon = GABITE,28
+#-------------------------------
+[HOOPSTER,Jerel]
+Pokemon = VOLTORB,28
+Pokemon = NUZLEAF,27
+Pokemon = NOCTOWL,27
