@@ -925,19 +925,19 @@ Pokemon = NUZLEAF,27
 Pokemon = NOCTOWL,27
 #-------------------------------
 [LEADER_Rafael,Rafael]
-Pokemon = DHELMISE
-POkemon = LOMBRE
-Pokemon = DUSCLOPS
-Pokemon = NUZLEAF
+Pokemon = DHELMISE,30
+POkemon = LOMBRE,30
+Pokemon = DUSCLOPS,30
+Pokemon = NUZLEAF,30
 	Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Rafael,Rafael,1]
-Pokemon = DHELMISE
-POkemon = LOMBRE
-Pokemon = DUSCLOPS
-Pokemon = NUZLEAF
+Pokemon = DHELMISE,30
+POkemon = LOMBRE,30
+Pokemon = DUSCLOPS,30
+Pokemon = NUZLEAF,30
 	Item = SITRUSBERRY
-Pokemon = SWADLOON
+Pokemon = SWADLOON,30
 	Item = CHOICEBAND
-Pokemon = FRILLISH
+Pokemon = FRILLISH,30
 	Item = LEFTOVERS
