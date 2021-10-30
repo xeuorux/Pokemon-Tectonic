@@ -334,3 +334,26 @@ def pbCommandsSortable(cmdwindow,commands,cmdIfCancel,defaultindex=-1,sortable=f
   cmdwindow.active = false
   return ret
 end
+
+class Pokemon
+	def form
+		return @forced_form if !@forced_form.nil?
+		return @form if $game_temp.in_battle
+		calc_form = MultipleForms.call("getForm", self)
+		self.form = calc_form if calc_form != nil && calc_form != @form
+		return @form
+	end
+
+	def form_simple
+		return @forced_form || @form
+	end
+
+	def form=(value)
+		oldForm = @form
+		@form = value
+		@ability = nil
+		MultipleForms.call("onSetForm", self, value, oldForm)
+		calc_stats
+		$Trainer.pokedex.register(self) if $Trainer
+	end
+end
