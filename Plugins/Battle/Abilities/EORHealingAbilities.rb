@@ -14,7 +14,7 @@ BattleHandlers::EORHealingAbility.add(:SHEDSKIN,
   proc { |ability,battler,battle|
     next if !battler.hasAnyStatusNoTrigger
     battle.pbShowAbilitySplash(battler)
-    b.pbCureStatus()
+    battler.pbCureStatus()
     battle.pbHideAbilitySplash(battler)
   }
 )
