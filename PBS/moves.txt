@@ -914,7 +914,7 @@
 895,ICECALIBUR,Icecalibur,043,90,ICE,Physical,100,25,10,NearOther,0,abefp,"The user slashes the target with ice like a sword. It has a 10% chance to lower Defense."
 896,ARCTICBEACON,Arctic Beacon,00C,100,ICE,Special,50,10,100,NearOther,0,bef,"The user overwhelmes the target with a frozen-cold ray, chilling it."
 897,HUNTDOWN,Hunt Down,099,1,FLYING,Physical,100,10,0,NearOther,0,abefn,"The user chases the target and strikes it from above. It does more damage the faster the user is."
-898,DIVEBOMB,Dive Bomb,0C9,125,FLYING,Physical,100,15,0,Other,0,abef,"The user soars up high, then strikes on the second turn by dive bombing the target."
+898,DIVEBOMB,Dive Bomb,0C9,125,FLYING,Physical,100,10,0,Other,0,abef,"The user soars up high, then strikes on the second turn by dive bombing the target."
 899,STRAFE,Strafe,000,90,FLYING,Physical,100,15,0,NearOther,0,abef,"The user attacks the target while dashing skillfully past it."
 900,SWARMBURST,Swarm Burst,0E0,250,BUG,Special,100,5,0,AllNearOthers,0,bef,The user explodes to inflict damage on those around it. The user faints upon using this move.
 901,BEAM,Beam,000,45,NORMAL,Special,100,35,0,NearOther,0,bef,"The user shoots a beam of normal energy at the target."
