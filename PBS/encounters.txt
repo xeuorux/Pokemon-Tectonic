@@ -109,6 +109,7 @@ FloweryGrass,20
 25,STUFFUL,15,18
 25,SWIRLIX,15,18
 25,APPLIN,15,18
+25,SMOOCHUM,15,18
 #-------------------------------
 [32] # Nemeth Apartments
 LandSparse
@@ -157,7 +158,7 @@ Land,1
 [3] # Savannah Route
 Land,20
 20,SANDSHREW,15,18
-20,SHINX,15,18
+20,YAMPER,15,18
 20,RHYHORN,15,18
 20,GROWLITHE,15,18
 20,DODUO,15,18
@@ -171,6 +172,8 @@ LandTinted,20
 33,SKWOVET,15,18
 33,PATRAT,15,18
 34,ZIGZAGOON,15,18
+Mud,20
+1,ELEKID,15,15
 #-------------------------------
 [25] # Mining Camp
 Land,20
@@ -178,6 +181,8 @@ Land,20
 25,MINUN,15,18
 25,TYROGUE,15,18
 25,ESPURR,15,18
+Mud,20
+1,CLEFFA,15,15
 #-------------------------------
 [36] # Abandoned Mine
 DarkCave,20
@@ -205,15 +210,17 @@ FloweryGrass2,20
 LandTinted,20
 25,FARFETCHD,15,18
 25,SHELMET,15,18
+Mud,20
+1,SANDILE,15,15
 #-------------------------------
-[6] # Business Town
+[6] # LuxTech
 FloweryGrass2,20
 25,SWABLU,15,18
-25,LOTAD,15,18
+25,SHINX,15,18
 25,PORYGON,15,18
 25,DRATINI,15,18
 #-------------------------------
-[54] # Rolling Hills Ideas
+[54] # Crossroads
 Land,20
 20,BUNNELBY,14,17
 20,WOOLOO,14,17
@@ -228,11 +235,13 @@ FloweryGrass,20
 LandTinted,20
 50,YUNGOOS,14,17
 50,KARRABLAST,14,17
+Mud,1
+1,DRIFLOON,14,17
 #-------------------------------
 [37] # Ice Rink Town
 Land,20
 25,HOOTHOOT,16,19
-25,SMOOCHUM,16,19
+25,CUBCHOO,16,19
 25,TEDDIURSA,16,19
 25,SNOVER,16,19
 #-------------------------------
@@ -241,7 +250,7 @@ Land,20
 25,SNORUNT,16,19
 25,BERGMITE,16,19
 25,SNEASEL,16,19
-25,CUBCHOO,16,19
+25,SWINUB,16,19
 #-------------------------------
 [7] # Swamp Route
 Land,20
@@ -255,24 +264,26 @@ LandSparse,20
 LandTinted,20
 50,SURSKIT,18,20
 50,TYMPOLE,18,20
+Mud,20
+1,ADIGLETT,15,15
 #-------------------------------
 [8] # Grass/Ghost town...?
 LandSparse,20
-25,SKITTY,18,20
-25,YAMPER,18,20
+25,GLAMEOW,18,20
+25,LOTAD,18,20
 25,PUMPKABOO,18,20
-25,SPRITZEE,18,20
+25,PHANTUMP,18,20
 #-------------------------------
 [53] # Jungle Route
 Land,20
 20,PIKIPEK,16,19
 20,YANMA,16,19
-20,EKANS,16,19
+20,SPRITZEE,16,19
 20,PURRLOIN,16,19
 20,ODDISH,16,19
 Mud,40
 33,SLAKOTH,16,19
-33,GRUBBIN,16,19
+33,EKANS,16,19
 34,SHROOMISH,16,19
 LandTall,20
 25,AIPOM,16,19
@@ -316,3 +327,23 @@ DarkCave,20
 25,WOOBAT,17,20
 25,SABLEYE,17,20
 25,MAWILE,17,20
+#-------------------------------
+[78] # LuxTech Main
+Mud,20
+1,WIMPOD,15,15
+#-------------------------------
+[87] # LuxTech Apartments
+Mud,20
+1,MIENFOO,15,15
+#-------------------------------
+[103] # Ghost Town Mart
+Mud,20
+1,SLUGMA,15,15
+#-------------------------------
+[86] # Zigzagoon Nest
+Mud,20
+1,GZIGZAGOON,15,15
+#-------------------------------
+[92] # Ice Rink Lodge F2 Left Room
+Mud,1
+1,AGRIMER,14,17
