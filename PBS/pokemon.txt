@@ -18152,7 +18152,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 39
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = KROKOROK,Level,29
+Evolutions = KROKOROK,Level,20
 #-------------------------------
 [552]
 Name = Krokorok
@@ -18160,8 +18160,8 @@ InternalName = KROKOROK
 Type1 = GROUND
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,82,45,74,45,45
-# Total = 351
+BaseStats = 60,92,60,79,45,65
+# Total = 401
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 123

@@ -91,7 +91,7 @@ Bicycle = true
 MapPosition = 0,14,10
 #-------------------------------
 [012]
-# Shortcut Cave
+# Gigalith's Guts
 Outdoor = false
 ShowArea = true
 Bicycle = false
@@ -103,15 +103,15 @@ HealingSpot = 37,35,11
 MapPosition = 0,14,10
 #-------------------------------
 [014]
-# Tech Campus Buildings
+# LuxTech Buildings
 MapPosition = 0,13,10
 #-------------------------------
 [015]
-# Campus Mart
+# LuxTech Mart
 MapPosition = 0,13,10
 #-------------------------------
 [016]
-# Campus Center
+# LuxTech Center
 HealingSpot = 6,25,28
 MapPosition = 0,13,10
 #-------------------------------
@@ -135,7 +135,7 @@ Bicycle = true
 MapPosition = 0,13,10
 #-------------------------------
 [021]
-# Campus Gym
+# LuxTech Gym
 Outdoor = false
 ShowArea = true
 Bicycle = false
@@ -237,6 +237,7 @@ Bicycle = true
 # Casaba Center
 Outdoor = false
 Bicycle = true
+HealingSpot = 33,15,25
 #-------------------------------
 [043]
 # Németh Apartments F2
@@ -313,7 +314,7 @@ ShowArea = true
 HealingSpot = 48,36,21
 #-------------------------------
 [078]
-# Pokemon Research Facility
+# LuxTech Main
 Outdoor = false
 #-------------------------------
 [081]
@@ -368,7 +369,7 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [106]
-# Something's Chamber
+# Yveltal's Chamber
 Outdoor = false
 ShowArea = false
 Bicycle = true
