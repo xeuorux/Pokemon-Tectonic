@@ -814,10 +814,15 @@ Pokemon = HONCHKROW,50
 #-------------------------------
 [TRAINER_Vincent,Vincent]
 LoseText = "..."
+Pokemon = MURKROW,25
+	AbilityIndex = 1
+	Name = Harbinger
 Pokemon = FROGADIER,25
 	AbilityIndex = 0
+	Name = Penumbra
 Pokemon = SABLEYE,26
 	AbilityIndex = 0
+	Name = Aeternus
 #-------------------------------
 [TRAINER_Lucile,Lucile]
 LoseText = "..."
