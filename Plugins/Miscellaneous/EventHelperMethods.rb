@@ -705,3 +705,12 @@ def noteMovedSelf()
 	echoln("#{$PokemonMap}, #{get_self().id}, #{$game_map.events[get_self().id].name}")
 	$PokemonMap.addMovedEvent(get_self().id) if $PokemonMap
 end
+
+def malasadaVendor()
+	pbPokemonMart(
+		[:BIGMALASADA,
+		:BERRYJUICE,
+		:SODAPOP],
+		"Take a look, it's all delicious!"
+	)
+end
