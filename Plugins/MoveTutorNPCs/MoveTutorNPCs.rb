@@ -26,19 +26,23 @@ class Pokemon
 		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
 			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 		end
-		if firstSpecies.egg_moves.length>0
-			firstSpecies.egg_moves.each { |m| 
-				next if hasMove?(m)
-				$Trainer.party.each do |otherPartyMember|
-					return true if otherPartyMember.hasMove?(m)
-				end
-			}
+		
+		possibleMoves = []
+		eachPokemonInPartyOrStorage do |otherPkmn|
+			otherPkmn.moves.each do |m|
+				possibleMoves.push(m.id)
+			end
 		end
+		possibleMoves.uniq!
+		possibleMoves.compact!
+		
+		firstSpecies.egg_moves.each { |m| 
+			next if hasMove?(m)
+			return true if possibleMoves.include?(m)
+		}
 		species_data.tutor_moves.each { |m|
 			next if hasMove?(m)
-			$Trainer.party.each do |otherPartyMember|
-				return true if otherPartyMember.hasMove?(m)
-			end
+			return true if possibleMoves.include?(m)
 		}
 		return false
 	end
@@ -50,6 +54,19 @@ class Pokemon
 			return true if !hasMove?(m)
 		}
 		return false
+	end
+end
+
+def eachPokemonInPartyOrStorage()
+	$Trainer.party.each do |pkmn|
+		yield pkmn
+	end
+
+	for i in 0...$PokemonStorage.maxBoxes
+		for j in 0...$PokemonStorage.maxPokemon(i)
+			pkmn = $PokemonStorage[i, j]
+			yield pkmn if pkmn
+		end
 	end
 end
 
@@ -119,30 +136,41 @@ def pbMentorMoveScreen(pkmn)
     return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
 	moves = []
     species_data = GameData::Species.get(pkmn.species)
+	
+	possibleMoves = []
+	eachPokemonInPartyOrStorage do |otherPkmn|
+		otherPkmn.moves.each do |m|
+			possibleMoves.push(m.id)
+		end
+	end
+	possibleMoves.uniq!
+	possibleMoves.compact!
+	
+	# Gather mentorable moves from egg moves
 	firstSpecies = species_data
 	while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
 		firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 	end
-	if firstSpecies.egg_moves.length>0
-		firstSpecies.egg_moves.each do |m| 
-			next if pkmn.hasMove?(m)
-			$Trainer.party.each do |otherPartyMember|
-				if otherPartyMember.hasMove?(m)
-					moves.push(m) if !moves.include?(m)
-				end
-			end
+	firstSpecies.egg_moves.each do |m| 
+		next if pkmn.hasMove?(m)
+		if possibleMoves.include?(m)
+			moves.push(m) 
 		end
 	end
-	echoln GameData::Species.get(pkmn.species).tutor_moves
+	
+	# Gather mentorable moves from tutor moves
 	species_data.tutor_moves.each do |m|
-      next if pkmn.hasMove?(m)
-	  $Trainer.party.each do |otherPartyMember|
-		if otherPartyMember.hasMove?(m)
-			moves.push(m) if !moves.include?(m)
+		next if pkmn.hasMove?(m)
+		if possibleMoves.include?(m)
+			moves.push(m)
 		end
-	  end
 	end
-	echoln moves
+	
+	moves.uniq!
+	moves.compact!
+	
+	return false if moves.length == 0
+
 	retval = true
 	pbFadeOutIn {
 		scene = MoveLearner_Scene.new
