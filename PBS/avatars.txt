@@ -537,3 +537,8 @@ HPMult = 2
 Ability = STURDY
 Moves = POWERTRIP,PROTECT,GIGAIMPACT,STEALTHROCK
 #-----------------------------
+[BEARTIC]
+Turns = 3
+HPMult = 4
+Ability = POISONTOUCH
+Moves = COLDSNOT,ICEPUNCH,VENOMDRENCH
