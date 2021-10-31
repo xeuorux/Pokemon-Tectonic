@@ -449,3 +449,9 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[121]
+# Mountain Climb
+Outdoor = true
+ShowArea = true
+Bicycle = true
