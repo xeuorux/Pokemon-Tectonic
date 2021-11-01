@@ -182,7 +182,7 @@ Land,20
 25,TYROGUE,15,18
 25,ESPURR,15,18
 Mud,20
-1,CLEFFA,15,15
+1,SOLOSIS,15,15
 #-------------------------------
 [36] # Abandoned Mine
 DarkCave,20
@@ -211,7 +211,7 @@ LandTinted,20
 25,FARFETCHD,15,18
 25,SHELMET,15,18
 Mud,20
-1,SANDILE,15,15
+1,SHUPPET,15,15
 #-------------------------------
 [6] # LuxTech
 FloweryGrass2,20
@@ -350,6 +350,10 @@ Mud,20
 [86] # Zigzagoon Nest
 Mud,20
 1,GZIGZAGOON,15,15
+#-------------------------------
+[90] #Ice Rink Employees' House
+Mud,20
+1,TRUBBISH,15,15
 #-------------------------------
 [92] # Ice Rink Lodge F2 Left Room
 Mud,1
