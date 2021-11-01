@@ -15682,8 +15682,8 @@ InternalName = PROBOPASS
 Type1 = ROCK
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,55,105,40,85,130
-# Total = 495
+BaseStats = 80,55,125,40,85,140
+# Total = 525
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 184
