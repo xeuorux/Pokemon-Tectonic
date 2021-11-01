@@ -64,7 +64,6 @@ MapSize = 2,11
 Outdoor = true
 ShowArea = true
 Bicycle = true
-HealingSpot = 22,18,19
 MapPosition = 0,13,12
 #-------------------------------
 [009]
