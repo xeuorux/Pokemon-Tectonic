@@ -132,7 +132,8 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
       facewindow = FaceWindowVX.new(param)
 	when "i"
       facewindow.dispose if facewindow
-      facewindow = PictureWindow.new("Graphics/Items/#{param}")
+	  icon_location = GameData::Item.icon_filename(param)
+      facewindow = PictureWindow.new(icon_location)
 	  facewindow.visible = false
     when "ch"
       cmds = param.clone
@@ -191,7 +192,8 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
         facewindow.z        = msgwindow.z
 	  when "i"
         facewindow.dispose if facewindow
-        facewindow = PictureWindow.new("Graphics/Items/#{param}")
+        icon_location = GameData::Item.icon_filename(param)
+        facewindow = PictureWindow.new(icon_location)
         pbPositionNearMsgWindow(facewindow,msgwindow,:left)
         facewindow.viewport = msgwindow.viewport
         facewindow.z        = msgwindow.z
