@@ -470,7 +470,7 @@ Moves = FUTURESIGHT,MEANLOOK,WILLOWISP,CONFUSERAY
 #-----------------------------
 [ELDEGOSS]
 Turns = 2
-HPMult = 3.5
+HPMult = 3
 Ability = GRASSYSURGE
 Moves = LEECHSEED,POISONPOWDER,GIGADRAIN,MAGICALLEAF
 #-----------------------------
