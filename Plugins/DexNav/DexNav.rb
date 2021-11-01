@@ -150,8 +150,7 @@ class NewDexNav
 			    next
 			else
 				if $currentDexSearch != nil && $currentDexSearch.is_a?(Array) &&
-					pbMessageConfirm("Would you like to replace your existing search?")
-					
+					pbConfirmMessage("Would you like to replace your existing search?")
 				end
 				searchTime = 20 + rand(80)
 				pbMessage(_INTL("Searching\\ts[15]...\\wtnp[#{searchTime}]"))
