@@ -911,7 +911,7 @@ Pokemon = FLOATZEL,28
 Pokemon = CHERRIM,29
 #-------------------------------
 [AROMALADY,Cheshire]
-Pokemon = HOOTHOOT,28
+Pokemon = STEENEE,28
 Pokemon = WATCHOG,28
 Pokemon = SCYTHER,29
 #-------------------------------
