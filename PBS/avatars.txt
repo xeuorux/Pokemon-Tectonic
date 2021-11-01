@@ -542,3 +542,9 @@ Turns = 3
 HPMult = 4
 Ability = POISONTOUCH
 Moves = COLDSNOT,ICEPUNCH,VENOMDRENCH
+#-------------------------------
+[MAGIKARP]
+Turns = 3
+Ability = KLUTZ
+Moves = SPLASH
+HPMult = 2
