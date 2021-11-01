@@ -462,7 +462,7 @@ HPMult = 2.5
 Ability = ILLUSION
 Moves = ANGSTWAVE,SLIGHT,SWAGGER,KNOCKOFF
 #-----------------------------
-[DUSKNOIR]
+[NINETALES]
 Turns = 2
 HPMult = 2.5
 Ability = PRESSURE
