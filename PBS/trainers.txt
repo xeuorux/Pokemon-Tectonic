@@ -880,7 +880,7 @@ Pokemon = YAMPER,27
 #-------------------------------
 [TEACHER,Hilde]
 Pokemon = HATTREM,27
-Pokemon = AMBIPOM,28
+Pokemon = FURRET,28
 #-------------------------------
 [POKEMONRANGER_M,Rupert]
 LoseText = "That's no Pokemon!"
@@ -902,6 +902,7 @@ Pokemon = ARBOK,29
 [CAMPER,Christian]
 Pokemon = MILTANK,27
 Pokemon = ORICORIO,28
+	Form = 0
 Pokemon = QUAGSIRE,28
 #-------------------------------
 [POKEMONRANGER_F,Val]
