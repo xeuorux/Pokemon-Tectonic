@@ -314,7 +314,14 @@ Puddle
 25,BUIZEL,17,20
 25,MAGIKARP,17,20
 #-------------------------------
-[12] # Shortcut Cave
+[12] # Gigalith's Guts
+DarkCave,20
+25,LARVITAR,17,20
+25,BRONZOR,17,20
+25,DRILBUR,17,20
+25,TYNAMO,17,20
+#-------------------------------
+[120] # Gigalith's Guts
 DarkCave,20
 25,LARVITAR,17,20
 25,BRONZOR,17,20

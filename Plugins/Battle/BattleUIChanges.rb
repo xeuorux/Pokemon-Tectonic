@@ -1148,7 +1148,7 @@ class PokeBattle_Scene
 		when 0
 			pbMessage(_INTL("This ball has a very low chance to capture the wild Pokémon.",chance))
 		when 100
-			pbMessage(_INTL("This ball is guarenteed to capture the wild Pokémon!",chance))
+			pbMessage(_INTL("This ball is guaranteed to capture the wild Pokémon!",chance))
 		else
 			pbMessage(_INTL("This ball has a close to {1}% chance of capturing the wild Pokémon.",chance))
 		end
