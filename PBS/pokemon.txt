@@ -19384,7 +19384,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 34
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ESCAVALIER,Level,38
+Evolutions = ESCAVALIER,Item,KNIGHTHELMET
 #-------------------------------
 [589]
 Name = Escavalier
@@ -20302,7 +20302,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 37
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ACCELGOR,Level,38
+Evolutions = ACCELGOR,Item,NINJASCARF
 #-------------------------------
 [617]
 Name = Accelgor
