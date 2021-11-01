@@ -823,6 +823,8 @@
 798,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It is a cup filled with coffee. It feels warm.",0,0,6
 799,LUXTECHSHIPMENT,LuxTech Shipment,LuxTech Shipments,8,0,"A package containing an important shipment destined for LuxTech.",0,0,6
 800,DIAMONDTIARA,Diamond Tiara,Diamond Tiaras,1,9000,"A glimmering tiara made of diamonds. It makes a certain Pokemon evolve.",1,0,7
+801,KNIGHTHELMET,Knight Helmet,Knight Helmets,1,3000,"A shining helmet. It makes a certain Pokemon evolve."1,0,7
+802,NINJASCARF,Ninja Scarf,Ninja Scarves,1,3000,"A cool scarf. It makes a certain Pokemon evolve."1,0,7
 #------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6

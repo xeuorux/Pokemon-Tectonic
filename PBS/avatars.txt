@@ -470,7 +470,7 @@ Moves = FUTURESIGHT,MEANLOOK,WILLOWISP,CONFUSERAY
 #-----------------------------
 [ELDEGOSS]
 Turns = 2
-HPMult = 3.5
+HPMult = 3
 Ability = GRASSYSURGE
 Moves = LEECHSEED,POISONPOWDER,GIGADRAIN,MAGICALLEAF
 #-----------------------------
@@ -500,9 +500,9 @@ Moves = SOULRIP,CURSE,KNOCKOFF
 #-----------------------------
 [SAWSBUCK]
 Turns = 3
-HPMult = 3.5
+HPMult = 2.5
 Ability = SERENEGRACE
-Moves = JUMPKICK,DOUBLEEDGE,LEECHSEED,AROMATHERAPY
+Moves = JUMPKICK,DOUBLEEDGE,HORNLEECH,AROMATHERAPY
 #-----------------------------
 [LEAFEON]
 Turns = 3
