@@ -188,7 +188,7 @@ Mud,20
 #-------------------------------
 [36] # Abandoned Mine
 DarkCave,20
-25,ZUBAT,15,18
+25,KLINK,15,18
 25,NOSEPASS,15,18
 25,BELDUM,15,18
 25,MAGNEMITE,15,18
@@ -269,7 +269,7 @@ LandTinted,20
 Mud,20
 1,ADIGLETT,15,15
 #-------------------------------
-[8] # Grass/Ghost town...?
+[8] #Ghost Town...?
 LandSparse,20
 25,GLAMEOW,18,20
 25,LOTAD,18,20
@@ -318,16 +318,16 @@ Puddle
 #-------------------------------
 [12] # Gigalith's Guts
 DarkCave,20
-25,LARVITAR,17,20
+25,ROGGENROLA,17,20
+25,ZUBAT,17,20
 25,BRONZOR,17,20
-25,DRILBUR,17,20
 25,TYNAMO,17,20
 #-------------------------------
-[120] # Gigalith's Guts
+[120] # Deep Layer
 DarkCave,20
 25,LARVITAR,17,20
-25,BRONZOR,17,20
 25,DRILBUR,17,20
+25,BRONZOR,17,20
 25,TYNAMO,17,20
 #-------------------------------
 [81] # Cave Path
@@ -363,7 +363,8 @@ Mud,1
 #-------------------------------
 [121] # Mountain Climb
 Land,20
-25,PAWNIARD,18,20
-25,PANCHAM,18,20
-25,CUBCHOO,18,20
-25,CLEFFA,18,20
+20,PAWNIARD,18,20
+20,PANCHAM,18,20
+20,CUBCHOO,18,20
+20,CLEFFA,18,20
+20,MIENFOO,18,20
