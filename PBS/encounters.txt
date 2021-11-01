@@ -43,6 +43,8 @@ LandTall,20
 20,STUNKY,8,10
 20,NICKIT,8,10
 20,IMPIDIMP,8,10
+Mud,20
+1,PIDOVE,15,15
 #-------------------------------
 [030] # Small Mine
 DarkCave,20
