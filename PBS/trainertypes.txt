@@ -178,6 +178,6 @@
 175,TRAINER_Lucile,Pokémon Trainer,100,,,,Female,,
 300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,[YEZERA]
 301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,[LAMBERT]
-302,LEADER_Eko,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,[EKO]
+302,LEADER_Eko,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,[EKO,PRIORIZEDOTS]
 303,LEADER_Helena,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Female,,[HELENA]
-304,LEADER_Rafael,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,
+304,LEADER_Rafael,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,[RAFAEL,DISLIKEATTACKING]

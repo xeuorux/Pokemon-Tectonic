@@ -263,6 +263,7 @@ class PokeBattle_AI
     # Adjust score based on how much damage it can deal
     if move.damagingMove?
       score = pbGetMoveScoreDamage(score,move,user,target,skill)
+	  score *= 0.75 if policies.include?(:DISLIKEATTACKING)
     else   # Status moves
       # Don't prefer attacks which don't deal damage
       score -= 10
