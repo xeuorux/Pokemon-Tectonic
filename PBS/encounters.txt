@@ -179,12 +179,13 @@ Mud,20
 #-------------------------------
 [25] # Mining Camp
 Land,20
-25,PLUSLE,15,18
-25,MINUN,15,18
-25,TYROGUE,15,18
-25,ESPURR,15,18
+20,PLUSLE,15,18
+20,MINUN,15,18
+20,TYROGUE,15,18
+20,ESPURR,15,18
+20,BELLSPROUT,15,18
 Mud,20
-1,SOLOSIS,15,15
+1,BLIPBUG,15,15
 #-------------------------------
 [36] # Abandoned Mine
 DarkCave,20
@@ -217,16 +218,17 @@ Mud,20
 #-------------------------------
 [6] # LuxTech
 FloweryGrass2,20
-25,SWABLU,15,18
-25,SHINX,15,18
-25,PORYGON,15,18
-25,DRATINI,15,18
+20,SWABLU,15,18
+20,SHINX,15,18
+20,PORYGON,15,18
+20,DRATINI,15,18
+20,ELECTRIKE,15,18
 #-------------------------------
 [54] # Crossroads
 Land,20
 20,BUNNELBY,14,17
 20,WOOLOO,14,17
-20,ELECTRIKE,14,17
+20,ROOKIDEE,14,17
 20,KRICKETOT,14,17
 20,FLETCHLING,14,17
 FloweryGrass,20
@@ -311,10 +313,11 @@ Land,20
 25,DROWZEE,17,20
 25,AXEW,17,20
 Puddle
-25,CORPHISH,17,20
-25,BARBOACH,17,20
-25,BUIZEL,17,20
-25,MAGIKARP,17,20
+20,CORPHISH,17,20
+20,BARBOACH,17,20
+20,BUIZEL,17,20
+20,MAGIKARP,17,20
+20,POLIWAG,17,20
 #-------------------------------
 [12] # Gigalith's Guts
 DarkCave,20
@@ -355,7 +358,7 @@ Mud,20
 #-------------------------------
 [90] #Ice Rink Employees' House
 Mud,20
-1,TRUBBISH,15,15
+1,GOOMY,15,15
 #-------------------------------
 [92] # Ice Rink Lodge F2 Left Room
 Mud,1
@@ -376,5 +379,6 @@ SewerWater,20
 50,GRIMER,17,19
 50,SOLOSIS,17,19
 SewerFloor,20
-50,MUNCHLAX,17,19
-50,VOLTORB,17,19
+34,MUNCHLAX,17,19
+33,VOLTORB,17,19
+33,TRUBBISH,17,19
