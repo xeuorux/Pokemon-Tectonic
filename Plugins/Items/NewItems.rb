@@ -113,3 +113,21 @@ ItemHandlers::UseOnPokemon.add(:EXPCANDYL,proc { |item,pkmn,scene|
 ItemHandlers::UseOnPokemon.add(:EXPCANDYXL,proc { |item,pkmn,scene|
   pbEXPAdditionItem(pkmn,50000,item,scene)
 })
+
+##################
+# EXP Jar
+##################
+
+ItemHandlers::UseFromBag.add(:EXPJAR,proc { |item|
+	$PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
+	candyTotal = 0
+	pbMessage(_INTL("You have {1} Battle Extract stored in the EXP Jar.",$PokemonGlobal.expJAR))
+	candyTotal = $PokemonGlobal.expJAR / 300
+	if candyTotal > 0
+		if pbConfirmMessage(_INTL("You can make {1} candies. Would you like to?", candyTotal))
+			pbReceiveItem(:EXPCANDYXS,candyTotal)
+			$PokemonGlobal.expJAR = $PokemonGlobal.expJAR%300
+		end
+	end
+	next 1
+	})

@@ -1,6 +1,6 @@
 class PokemonGlobalMetadata
 	attr_accessor :caughtCountsPerMap
-	
+	attr_accessor :expJAR
 	def initialize
     # Movement
     @bicycle              = false
@@ -56,7 +56,8 @@ class PokemonGlobalMetadata
     @pokerusTime          = nil
     # Save file
     @safesave             = false
-	
+	##exp Jar item
+	@expJAR				  = 0
 	@caughtCountsPerMap = {}
   end
 end
