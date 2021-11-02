@@ -253,6 +253,7 @@ Pokemon = SLUGMA,20
     AbilityIndex = 0
 #-------------------------------
 [LEADER_Eko,Eko]
+Policies = PRIORITIZEDOTS
 LoseText = "..."
 Pokemon = SALANDIT,20
     Moves = POISONGAS,BADSTENCH,EMBER,COVET
@@ -269,6 +270,7 @@ Pokemon = TENTACOOL,20
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Eko,Eko,1]
+Policies = PRIORITIZEDOTS
 LoseText = "..."
 Pokemon = SALANDIT,20
     Moves = POISONGAS,BADSTENCH,EMBER,COVET
@@ -933,6 +935,7 @@ Pokemon = NUZLEAF,27
 Pokemon = NOCTOWL,27
 #-------------------------------
 [LEADER_Rafael,Rafael]
+Policies = DISLIKEATTACKING
 Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
 Pokemon = LOMBRE,30
@@ -946,6 +949,7 @@ Pokemon = NUZLEAF,30
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Rafael,Rafael,1]
+Policies = DISLIKEATTACKING
 Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
 Pokemon = BAYLEEF,30
@@ -965,3 +969,27 @@ Pokemon = NUZLEAF,30
 	AbilityIndex = 0
     Moves = MAGICALLEAF,REST,PAYBACK,SELFDESTRUCT
     Item = SITRUSBERRY
+#-------------------------------
+[LASS2,Lainie,1]
+Pokemon = RIBOMBEE,35
+    Moves = STUNSPORE,POLLENPUFF,POUT,REFLECT
+    AbilityIndex = 1
+	Item = POISONORB
+Pokemon = MORGREM,35
+    AbilityIndex = 0
+	Item = FAIRYGEM
+	Moves = FALSESURRENDER,SWAGGER,REFLECT,TAUNT
+Pokemon = FLABEBE,35
+    AbilityIndex = 0
+Pokemon = MAWILE,35
+    Moves = CRUNCH,METEORMASH,PERFUMEDPUNCH,SWORDSDANCE
+    AbilityIndex = 0
+    Item = DARKGEM
+Pokemon = SLURPUFF,35
+    Moves = PERFUMEDPUNCH,ROOTWRACK,DRAINPUNCH,
+    AbilityIndex = 0
+	Item = LEFTOVERS
+Pokemon = VANILLISH,35
+    Moves = ICYWIND,UPROAR,DRAININGKISS
+    AbilityIndex = 1
+	Item = CHOICESPECS
