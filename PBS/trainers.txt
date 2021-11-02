@@ -229,6 +229,7 @@ Pokemon = HOOTHOOT,17
     AbilityIndex = 0
 #-------------------------------
 [SCIENTIST_M2,Dexter]
+Policies = PRIORITIZEDOTS
 LoseText = "..."
 Pokemon = GRIMER,20
     Moves = POISONGAS,SLUDGE,DISABLE,MUDSHOT
@@ -240,6 +241,7 @@ Pokemon = SOLOSIS,20
     AbilityIndex = 0
 #-------------------------------
 [SCIENTIST_F,Marie]
+Policies = PRIORITIZEDOTS
 LoseText = "..."
 Pokemon = CARKOL,20
     Moves = FLAMECHARGE,CRASH,RAPIDSPIN,IGNITE
