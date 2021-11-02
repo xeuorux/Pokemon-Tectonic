@@ -548,3 +548,10 @@ Turns = 3
 Ability = KLUTZ
 Moves = SPLASH
 HPMult = 2
+#-------------------------------
+[DONSTER]
+Turns = 2
+Ability = KLUTZ
+Item = SITRUSBERRY
+Moves = CLEARSMOG,HEAVYSLAM,GUNKSHOT,BELCH
+HPMult = 4
