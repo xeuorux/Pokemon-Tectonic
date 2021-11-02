@@ -368,3 +368,13 @@ Land,20
 20,CUBCHOO,18,20
 20,CLEFFA,18,20
 20,MIENFOO,18,20
+#-------------------------------
+[122] # Sewers
+Land,20
+1,VOLTORB,17,19
+SewerWater,20
+50,GRIMER,17,19
+50,SOLOSIS,17,19
+SewerFloor,20
+50,MUNCHLAX,17,19
+50,VOLTORB,17,19

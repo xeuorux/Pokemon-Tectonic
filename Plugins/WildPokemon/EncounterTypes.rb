@@ -47,7 +47,8 @@ class PokemonEncounters
   def encounter_possible_here?
     terrain_tag_id = $game_map.terrain_tag($game_player.x, $game_player.y).id
     if [:Grass, :DarkCave, :Mud, :SparseGrass, :Puddle, :TallGrass,
-		:ActiveWater, :FloweryGrass, :FloweryGrass2, :TintedGrass].include?(terrain_tag_id)
+		:ActiveWater, :FloweryGrass, :FloweryGrass2, :TintedGrass,
+		:SewerWater, :SewerFloor].include?(terrain_tag_id)
 		return true
 	end
 	return false
@@ -121,10 +122,11 @@ class PokemonEncounters
     if $PokemonGlobal.surfing
 	  # Active water encounters
 	  if current_terrain_id == :ActiveWater
-		ret = find_valid_encounter_type_for_time(:ActiveWater, time)
+		ret = :ActiveWater
+	  elsif current_terrain_id == :SewerWater
+		ret = :SewerWater
 	  end
     else
-	  # Mud encounters
 	  case current_terrain_id
 	  when :Mud
 		ret = :Mud
@@ -144,7 +146,13 @@ class PokemonEncounters
         ret = :FloweryGrass2
 	  when :TintedGrass
 		ret = :LandTinted
+	  when :SewerWater
+		ret = :SewerWater
+	  when :SewerFloor
+		ret = :SewerFloor
       end
+	  
+	  echoln("Encounter type here: #{ret}")
     end
     return ret
   end
@@ -379,6 +387,36 @@ GameData::EncounterType.register({
   :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
 })
 
+# Sewer Floor
+GameData::TerrainTag.register({
+  :id                     => :SewerFloor,
+  :id_number              => 24,
+  :land_wild_encounters   => true,
+  :battle_environment     => :Neutral
+})
+
+GameData::EncounterType.register({
+  :id             => :SewerFloor,
+  :type           => :land,
+  :trigger_chance => 21,
+  :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
+})
+
+# Sewer Water
+GameData::TerrainTag.register({
+  :id                     => :SewerWater,
+  :id_number              => 25,
+  :land_wild_encounters   => true,
+  :battle_environment     => :MovingWater
+})
+
+GameData::EncounterType.register({
+  :id             => :SewerWater,
+  :type           => :land,
+  :trigger_chance => 21,
+  :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
+})
+
 # Show grass rustle animation, and auto-move the player over waterfalls and ice
 Events.onStepTakenFieldMovement += proc { |_sender, e|
   event = e[0]   # Get the event affected by field movement
@@ -390,6 +428,8 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
 			$scene.spriteset.addUserAnimation(Settings::GRASS_ANIMATION_ID, x, y, true, 1)
 		  elsif tag == :Puddle
 			$scene.spriteset.addUserAnimation(8, x, y, true, 1)
+		  elsif tag == :SewerFloor || tag == :SewerWater
+		   $scene.spriteset.addUserAnimation(18, x, y, true, 1)
 		  elsif tag == :DarkCave
 			$scene.spriteset.addUserAnimation(2, x, y, true, 1)
 		  end

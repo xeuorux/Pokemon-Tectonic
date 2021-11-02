@@ -22,14 +22,6 @@ Land,20
 25,FURFROU,32,34
 25,MINCCINO,33,35
 #-------------------------------
-[] # Sewers
-Land,20
-100,VOLTORB,31,33
-Sludge,20
-33,GRIMER,31,33
-33,MUNCHLAX,31,33
-33,SOLOSIS,31,33
-#-------------------------------
 [] # Desert
 LandSparse,20
 25,HELIOPTILE,31,33

@@ -362,7 +362,7 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [105]
-# Avatar Sinkhole 1
+# Southeast Sinkhole
 Outdoor = false
 ShowArea = false
 Bicycle = true
@@ -438,7 +438,7 @@ Bicycle = false
 ShowArea = true
 #-------------------------------
 [119]
-# Chasm Hangout
+# Ranger Hangout
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -452,5 +452,11 @@ Bicycle = true
 [121]
 # Mountain Climb
 Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[122]
+# Sewer
+Outdoor = false
 ShowArea = true
 Bicycle = true
