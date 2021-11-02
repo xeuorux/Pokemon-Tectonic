@@ -698,3 +698,7 @@ def malasadaVendor()
 		"Take a look, it's all delicious!"
 	)
 end
+
+def hasFirstFourBadges?()
+	return $game_switches[4] && $game_switches[5] && $game_switches[6] && $game_switches[7]
+end

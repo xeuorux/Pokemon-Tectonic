@@ -11,7 +11,7 @@ FloweryGrass,20
 [35] # Impromptu Lab
 Land,20
 1,KRABBY,10,10
-1,CYNDAQUIL,10,10 
+1,NUMEL,10,10 
 1,TREECKO,10,10 
 #-------------------------------
 [027] # Casaba Mart

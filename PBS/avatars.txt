@@ -64,7 +64,7 @@ Moves = ELECTROBALL,FLASHCANNON,LOCKON,ZAPCANNON
 HPMult = 3
 #-------------------------------
 [PINSIR]
-Turns = 3
+Turns = 2
 Ability = MOXIE
 Moves = STORMTHROW,METEORMASH,XSCISSOR,SUPERPOWER
 HPMult = 3
