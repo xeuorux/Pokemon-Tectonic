@@ -489,15 +489,10 @@ class PokeBattle_Move_519 < PokeBattle_StatDownMove
 end
 
 #===============================================================================
-# Badly poisons the target. Heals for 1/3 the damage dealt. (Venom Leech)
+# Poisons the target. Heals for 1/3 the damage dealt. (Venom Leech)
 #===============================================================================
 class PokeBattle_Move_51A < PokeBattle_PoisonMove
   def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
-
-  def initialize(battle,move)
-    super
-    @toxic = true
-  end
   
   def pbEffectAgainstTarget(user,target)
     return if target.damageState.hpLost<=0
@@ -1451,5 +1446,23 @@ class PokeBattle_Move_544 < PokeBattle_Move
 
   def pbBaseDamage(baseDmg,user,target)
     return baseDmg<<(user.effects[PBEffects::RollOut]-1)
+  end
+end
+
+#===============================================================================
+# Heals for 1/3 the damage dealt. (new!Drain Punch)
+#===============================================================================
+class PokeBattle_Move_545 < PokeBattle_PoisonMove
+  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
+  
+  def pbEffectAgainstTarget(user,target)
+    return if target.damageState.hpLost<=0
+    hpGain = (target.damageState.hpLost/3.0).round
+    user.pbRecoverHPFromDrain(hpGain,target)
+  end
+  
+  def getScore(score,user,target,skill=100)
+	score += 40 if user.hp < user.totalhp/2.0
+	return score
   end
 end
