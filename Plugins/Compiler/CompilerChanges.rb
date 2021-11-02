@@ -1112,27 +1112,55 @@ module Compiler
   #=============================================================================
   def convert_avatars(event)
 	return nil if !event || event.pages.length==0
-	match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)(?:,([_a-zA-Z0-9]+))?(?:,([0-9]+))?\).*/)
+	match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)(?:,([_a-zA-Z]+))?(?:,([_a-zA-Z0-9]+))?(?:,([0-9]+))?\).*/)
 	return nil if !match
 	ret = RPG::Event.new(event.x,event.y)
-	ret.name = "embiggen(3)size(2,2)trainer(4)"
+	ret.name = "size(2,2)trainer(4)"
 	ret.id   = event.id
 	ret.pages = []
 	avatarSpecies = match[1]
 	legendary = isLegendary(avatarSpecies)
 	return nil if !avatarSpecies || avatarSpecies == ""
 	level = match[2]
-	item = match[3] || nil
-	itemCount = match[4].to_i || 0
+	directionText = match[3]
+	item = match[4] || nil
+	itemCount = match[5].to_i || 0
 	
+	direction = Down
+	if !directionText.nil?
+		case directionText.downcase
+		when "left"
+			direction = Left
+		when "right"
+			direction = Right
+		when "up"
+			direction = Up
+		else
+			direction = Down
+		end
+	end
+	
+	# Create the needed graphics
+	overworldBitmap = AnimatedBitmap.new('Graphics/Characters/Followers/' + avatarSpecies)
+	copiedOverworldBitmap = overworldBitmap.copy
+	bossifiedOverworld = increaseSize(copiedOverworldBitmap.bitmap)
+	bossifiedOverworld.to_file('Graphics/Characters/zAvatar_' + avatarSpecies + '.png')
+	
+	# Create the needed graphics
+	battlebitmap = AnimatedBitmap.new('Graphics/Pokemon/Front/' + avatarSpecies)
+	copiedBattleBitmap = battlebitmap.copy
+	bossifiedBattle = bossify(copiedBattleBitmap.bitmap)
+	bossifiedBattle.to_file('Graphics/Pokemon/Avatars/' + avatarSpecies + '.png')
+	
+	# Set up the pages
 	
 	ret.pages = [2]
-	
 	# Create the first page, where the battle happens
 	firstPage = RPG::Event::Page.new
 	ret.pages[0] = firstPage
-	firstPage.graphic.character_name = "Followers/#{avatarSpecies}"
+	firstPage.graphic.character_name = "zAvatar_#{avatarSpecies}"
 	firstPage.graphic.opacity = 180
+	firstPage.graphic.direction = direction
 	firstPage.trigger = 2   # On event touch
 	firstPage.step_anime = true # Animate while still
 	firstPage.list = []
@@ -1158,6 +1186,31 @@ module Compiler
 	secondPage.condition.self_switch_ch = "A"
 	
 	return ret
+  end
+  
+  def increaseSize(bitmap,scaleFactor=1.3)
+	  copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
+	  for x in 0..copiedBitmap.width
+		for y in 0..copiedBitmap.height
+		  color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor)
+		  copiedBitmap.set_pixel(x,y,color)
+		end
+	  end
+	  return copiedBitmap
+  end
+  
+  def bossify(bitmap,scaleFactor = 1.3)
+	  copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
+	  for x in 0..copiedBitmap.width
+		for y in 0..copiedBitmap.height
+		  color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor)
+		  color.alpha   = [color.alpha,140].min
+		  color.red     = [color.red + 50,255].min
+		  color.blue    = [color.blue + 50,255].min
+		  copiedBitmap.set_pixel(x,y,color)
+		end
+	  end
+	  return copiedBitmap
   end
   
   #=============================================================================
