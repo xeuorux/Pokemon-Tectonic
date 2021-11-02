@@ -10,7 +10,7 @@
 8,XSCISSOR,X-Scissor,000,95,BUG,Physical,100,15,0,NearOther,0,abefhp,The user slashes at the foe by crossing its scythes or claws. It has a high critical-hit ratio.
 9,SIGNALBEAM,Signal Beam,013,75,BUG,Special,100,15,10,NearOther,0,bef,The user attacks with a beam of light. It has a 10% chance to confuse.
 10,UTURN,U-turn,0EE,70,BUG,Physical,100,20,0,NearOther,0,abef,"After making its attack, the user rushes back to switch places with a party Pokémon in waiting."
-11,STEAMROLLER,Steamroller,010,65,BUG,Physical,100,20,30,NearOther,0,abe,The user rolls over its foes, crushing them. It has a 30% chance to make the target flinch.
+11,STEAMROLLER,Steamroller,010,65,BUG,Physical,100,20,30,NearOther,0,abe,"The user rolls over its foes, crushing them. It has a 30% chance to make the target flinch."
 12,BUGBITE,Bug Bite,0F4,60,BUG,Physical,100,20,0,NearOther,0,abef,"The user bites the target. If the target is holding a Berry, the user eats it and gains its effect."
 13,SILVERWIND,Silver Wind,02D,60,BUG,Special,100,15,10,NearOther,0,bef,The foe is attacked with powdery scales blown by wind. It has a 10% chance to raise all stats.
 14,FELLSTINGER,Fell Stinger,150,50,BUG,Physical,100,25,0,NearOther,0,abef,"When the user knocks out a target with this move, the user's Attack stat rises drastically."
