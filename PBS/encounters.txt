@@ -344,6 +344,10 @@ DarkCave,20
 Mud,20
 1,WIMPOD,15,15
 #-------------------------------
+[85] # Worried Man's House
+Mud,20
+1,HORSEA,15,15
+#-------------------------------
 [87] # LuxTech Apartments
 Mud,20
 1,MIENFOO,15,15
@@ -371,6 +375,8 @@ Land,20
 20,CUBCHOO,18,20
 20,CLEFFA,18,20
 20,MIENFOO,18,20
+Mud,20
+1,HAPPINY,15,15
 #-------------------------------
 [122] # Sewers
 Land,20
@@ -382,3 +388,4 @@ SewerFloor,20
 34,MUNCHLAX,17,19
 33,VOLTORB,17,19
 33,TRUBBISH,17,19
+#-------------------------------
