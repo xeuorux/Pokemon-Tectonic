@@ -106,7 +106,7 @@ BattleHandlers::StatusCureAbility.add(:MENTALBLOCK,
 		battler.effects[PBEffects::Disable]    = 0
 		battler.battle.pbHideAbilitySplash(battler)
 	end
-	if battler.effects[PBEffects::HealBlock]
+	if battler.effects[PBEffects::HealBlock] > 0
 		battler.battle.pbShowAbilitySplash(battler)
 		battle.pbDisplay(_INTL("{1}'s Heal Block wore off!",battler.pbThis)) if battler.effects[PBEffects::HealBlock]>0
 		battler.effects[PBEffects::HealBlock]  = 0

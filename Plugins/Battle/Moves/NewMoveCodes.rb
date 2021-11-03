@@ -523,6 +523,7 @@ class PokeBattle_Move_51B < PokeBattle_Move
     if !user.effects[PBEffects::ColdConversion]
       user.effects[PBEffects::ColdConversion] = true
       @battle.pbDisplay(_INTL("{1} lost its cold!",user.pbThis))
+	  @battle.scene.pbRefresh()
     end
   end
   

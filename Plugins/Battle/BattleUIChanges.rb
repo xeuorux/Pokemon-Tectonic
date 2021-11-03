@@ -463,6 +463,9 @@ class PokemonDataBox < SpriteWrapper
 	end
 
 	def refresh
+		echoln "start"
+		puts caller
+		echoln "END"
 		self.bitmap.clear
 		return if !@battler.pokemon
 		textPos = []
@@ -533,11 +536,23 @@ class PokemonDataBox < SpriteWrapper
 		if @battler.effects[PBEffects::Illusion]
 			types = @battler.effects[PBEffects::Illusion].types
 		end
-		@type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number * TYPE_ICON_HEIGHT if types[0]
-		@type2Icon.src_rect.y = GameData::Type.get(types[1]).id_number * TYPE_ICON_HEIGHT if types[1]
-		@type3Icon.src_rect.y = GameData::Type.get(types[2]).id_number * TYPE_ICON_HEIGHT if types[2]
-		
+		if types[0]
+			@type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number * TYPE_ICON_HEIGHT
+		else
+			@type1Icon.visible = false
+		end
+		if types[1]
+			@type2Icon.src_rect.y = GameData::Type.get(types[1]).id_number * TYPE_ICON_HEIGHT if types[1]
+		else
+			@type2Icon.visible = false
+		end
+		if types[2]
+			@type3Icon.src_rect.y = GameData::Type.get(types[2]).id_number * TYPE_ICON_HEIGHT if types[2]
+		else
+			@type3Icon.visible = false
+		end
 		pbDrawImagePositions(self.bitmap,imagePos)
+		#self.update
 		refreshHP
 		refreshExp
 	end
