@@ -994,3 +994,7 @@ Pokemon = VANILLISH,35
     Moves = ICYWIND,UPROAR,DRAININGKISS,WATERPULSE
     AbilityIndex = 1
 	Item = CHOICESPECS
+#-------------------------------
+[NURSE,Joy]
+Pokemon = HAPPINY,18
+#-------------------------------
