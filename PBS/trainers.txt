@@ -2,8 +2,8 @@
 #-------------------------------
 [YOUNGSTER,Joey]
 LoseText = "..."
-Pokemon = MAGNEMITE, 5
-	Moves = THUNDERWAVE,TACKLE
+Pokemon = STARYU, 5
+	Moves = CAMOUFLAGE
     AbilityIndex = 0
 #-------------------------------
 [HIKER,Conroy]

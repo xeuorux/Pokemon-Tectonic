@@ -1048,3 +1048,20 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
     target.pbHeldItemTriggerCheck
   end
 end
+
+
+
+
+#===============================================================================
+# User loses their Fire type. Fails if user is not Fire-type. (Burn Up)
+#===============================================================================
+class PokeBattle_Move_162 < PokeBattle_Move
+
+  def pbEffectAfterAllHits(user,target)
+    if !user.effects[PBEffects::BurnUp]
+      user.effects[PBEffects::BurnUp] = true
+      @battle.pbDisplay(_INTL("{1} burned itself out!",user.pbThis))
+	  @battle.scene.pbRefresh()
+    end
+  end
+end
