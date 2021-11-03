@@ -325,7 +325,7 @@ Bicycle = true
 [082]
 # Mining Cave Station
 Bicycle = false
-HealingSpot = 25,13,16
+HealingSpot = 25,13,17
 #-------------------------------
 [099]
 # Ghost Town Buildings

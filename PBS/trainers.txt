@@ -891,6 +891,7 @@ LoseText = "That's no Pokemon!"
 Pokemon = FRILLISH,27
 Pokemon = GROVYLE,28
 Pokemon = DRIFBLIM,28
+	Moves = HEATWAVE,OMINOUSWIND,HEX,THUNDERWAVE
 Pokemon = BRELOOM,29
 #-------------------------------
 [BACKPACKER_F,Aiyana]
