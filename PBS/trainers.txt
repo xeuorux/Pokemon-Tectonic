@@ -886,7 +886,7 @@ Pokemon = YAMPER,27
 Pokemon = HATTREM,27
 Pokemon = FURRET,28
 #-------------------------------
-[POKEMONRANGER_M,Rupert]
+[POKEMONRANGER_M,Connor]
 LoseText = "That's no Pokemon!"
 Pokemon = FRILLISH,27
 Pokemon = GROVYLE,28
