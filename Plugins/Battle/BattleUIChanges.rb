@@ -463,9 +463,6 @@ class PokemonDataBox < SpriteWrapper
 	end
 
 	def refresh
-		echoln "start"
-		puts caller
-		echoln "END"
 		self.bitmap.clear
 		return if !@battler.pokemon
 		textPos = []
