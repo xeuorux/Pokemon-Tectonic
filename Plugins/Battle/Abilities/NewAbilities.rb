@@ -641,3 +641,9 @@ BattleHandlers::TargetAbilityOnHit.add(:INNERLIGHT,
 		pbBattleWeatherAbility(:Sun,battler,battle)
 	}
 )
+
+BattleHandlers::TargetAbilityOnHit.add(:STORMBRINGER,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Rain,battler,battle)
+	}
+)
