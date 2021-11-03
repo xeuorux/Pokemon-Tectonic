@@ -149,4 +149,29 @@ class PokeBattle_Battle
     eachBattler { |b| b.pbCheckFormOnWeatherChange }
     pbEndPrimordialWeather
   end
+
+  def pbStartTerrain(user,newTerrain,fixedDuration=true)
+    return if @field.terrain==newTerrain
+    @field.terrain = newTerrain
+    duration = (fixedDuration) ? 5 : -1
+    if duration>0 && user && user.itemActive?
+      duration = BattleHandlers.triggerTerrainExtenderItem(user.item,newTerrain,duration,user,self)
+    end
+    @field.terrainDuration = duration
+    terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
+    pbCommonAnimation(terrain_data.animation) if terrain_data
+    case @field.terrain
+    when :Electric
+      pbDisplay(_INTL("An electric current runs across the battlefield!"))
+    when :Grassy
+      pbDisplay(_INTL("Grass grew to cover the battlefield!"))
+    when :Misty
+      pbDisplay(_INTL("Mist swirled about the battlefield!"))
+    when :Psychic
+      pbDisplay(_INTL("The battlefield got weird!"))
+    end
+	pbHideAbilitySplash(user) if user
+    # Check for terrain seeds that boost stats in a terrain
+    eachBattler { |b| b.pbItemTerrainStatBoostCheck }
+  end 
 end

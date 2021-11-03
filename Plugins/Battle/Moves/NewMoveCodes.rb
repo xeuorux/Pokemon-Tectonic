@@ -1467,3 +1467,19 @@ class PokeBattle_Move_545 < PokeBattle_PoisonMove
 	return score
   end
 end
+
+
+
+#===============================================================================
+# Always critical hit vs Opponents with raised stats (Glitter Slash)
+#===============================================================================
+class PokeBattle_Move_546 < PokeBattle_Move
+  def statStagesUp?(target)
+	return target.stages[:ATTACK] > 0 || target.stages[:DEFENSE] > 0 || target.stages[:SPEED] > 0 || target.stages[:SPECIAL_ATTACK] > 0 || target.stages[:SPECIAL_DEFENSE] > 0 || target.stages[:ACCURACY] > 0 || target.stages[:EVASION] > 0
+  end
+  
+  def pbCritialOverride(user,target)
+	return 1 if statStagesUp?(target)
+	return 0
+  end
+end
