@@ -1471,9 +1471,9 @@ end
 
 
 #===============================================================================
-# Burns opposing Pokemon that have increased their stats. (Burning Jealousy)
+# Always critical hit vs Opponents with raised stats (Glitter Slash)
 #===============================================================================
-class PokeBattle_Move_516 < PokeBattle_Move
+class PokeBattle_Move_546 < PokeBattle_Move
   def statStagesUp?(target)
 	return target.stages[:ATTACK] > 0 || target.stages[:DEFENSE] > 0 || target.stages[:SPEED] > 0 || target.stages[:SPECIAL_ATTACK] > 0 || target.stages[:SPECIAL_DEFENSE] > 0 || target.stages[:ACCURACY] > 0 || target.stages[:EVASION] > 0
   end

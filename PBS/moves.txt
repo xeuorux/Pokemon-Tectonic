@@ -941,7 +941,7 @@
 922,PROPELLANT,Propellant,542,110,FIRE,Physical,100,10,100,NearOther,0,abef,"The user explodes itself into the target. The target's speed also goes up drastically, however."
 923,PSYCHOBLADE,Psychoblade,000,90,PSYCHIC,Physical,100,10,0,NearOther,0,abefhp,"The user manifests a blade of psychic energy to slash the target. Has a higher chance for a critical hit."
 924,CHILL,Chill,00C,0,ICE,Status,100,15,0,NearOther,0,bce,"The user lowers the target's body temperature, causing it to be chilled."
-925,SPARKLESLASH,Glitter Slash,546,40,FAIRY,Physical,100,30,0,NearOther,0,abefp,"The user slashes at the opponent with a sparkly aura, guaranteeing a critical hit on foes with boosted stats."
+925,GLITTERBOMB,Glitter Bomb,546,40,FAIRY,Physical,100,30,0,NearOther,0,abefp,"The user chucks a glittery party favor at the opponent, guaranteeing a critical hit on foes with boosted stats."
 926,GLITTERSLASH,Glitter Slash,546,65,FAIRY,Physical,100,20,0,NearOther,0,abefp,"The user slashes at the opponent with a glittering aura, guaranteeing a critical hit on foes with boosted stats."
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."
