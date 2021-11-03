@@ -170,7 +170,6 @@ class PokeBattle_Battle
     when :Psychic
       pbDisplay(_INTL("The battlefield got weird!"))
     end
-	echoln "fuck you"
 	pbHideAbilitySplash(user) if user
     # Check for terrain seeds that boost stats in a terrain
     eachBattler { |b| b.pbItemTerrainStatBoostCheck }
