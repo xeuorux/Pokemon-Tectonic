@@ -616,7 +616,7 @@ BattleHandlers::DamageCalcUserAllyAbility.add(:POSITIVEOUTLOOK,
   
 BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
 	proc { |ability,target,battler,move,battle|
-    pbBattleWeatherAbility(:Hail,battler,battle)
+		pbBattleWeatherAbility(:Hail,battler,battle)
 	}
 )
 
@@ -636,3 +636,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:CLOVERSONG,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:INNERLIGHT,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Sun,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:STORMBRINGER,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Rain,battler,battle)
+	}
+)

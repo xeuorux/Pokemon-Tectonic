@@ -2,7 +2,6 @@ class PokemonSystem
 	attr_accessor :followers
 	attr_accessor :autosave
 	attr_accessor :particle_effects
-	attr_accessor :sprite_edits
 	attr_accessor :skip_fades
 
   def initialize
@@ -21,7 +20,6 @@ class PokemonSystem
 	@followers   = 0	# Follower Pokemon enabled (0=true, 1=false)
 	@autosave	 = 1	# Autosave enabled (0=true, 1=false)
 	@particle_effects = 0 # (0=true, 1=false)
-	@sprite_edits = 0 # (0=true, 1=false)
 	@skip_fades = 1 # (0=true, 1=false)
   end
 end
@@ -130,12 +128,6 @@ class PokemonOption_Scene
          proc { $PokemonSystem.particle_effects },
          proc { |value|
 			$PokemonSystem.particle_effects = value
-         }
-       ))
-	@PokemonOptions.push(EnumOption.new(_INTL("Sprite Edits (Adv.)"),[_INTL("On"),_INTL("Off")],
-         proc { $PokemonSystem.sprite_edits },
-         proc { |value|
-			$PokemonSystem.sprite_edits = value
          }
        ))
 	@PokemonOptions.push(EnumOption.new(_INTL("Skip Fades"),[_INTL("On"),_INTL("Off")],

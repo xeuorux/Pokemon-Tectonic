@@ -18,7 +18,6 @@ module GameData
     end
 =end
   
-  
 	def self.sprite_bitmap_from_pokemon(pkmn, back = false, species = nil)
 	  species = pkmn.species if !species
 	  species = GameData::Species.get(species).species   # Just to be sure it's a symbol
@@ -28,18 +27,19 @@ module GameData
 	  else
 		ret = self.front_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?)
 	  end
+	  
+	  if ret && pkmn.boss
+		filename = 'Graphics/Pokemon/Avatars/' + species.to_s
+		filename += '_' + pkmn.form if pkmn.form != 0
+		echoln(filename)
+		ret = AnimatedBitmap.new(filename)
+	  end
+	  
 	  alter_bitmap_function = MultipleForms.getFunction(species, "alterBitmap")
-	  if ret && alter_bitmap_function
+	  if ret && !pkmn.boss && alter_bitmap_function
 		new_ret = ret.copy
 		ret.dispose
 		new_ret.each { |bitmap| alter_bitmap_function.call(pkmn, bitmap) }
-		ret = new_ret
-	  end
-	  if ret && pkmn.boss && $PokemonSystem.sprite_edits == 0
-		new_ret = ret.copy
-		bossified = bossifyBitmap(new_ret.bitmap,pkmn.scaleFactor)
-		new_ret.bitmap = bossified
-		ret.dispose
 		ret = new_ret
 	  end
 	  return ret
@@ -47,29 +47,7 @@ module GameData
   end
 end
 
-def bossifyBitmap(bitmap,scaleFactor = 1.3)
-  copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
-  for x in 0..copiedBitmap.width
-    for y in 0..copiedBitmap.height
-      color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor)
-      color.alpha   = [color.alpha,140].min
-      color.red     = [color.red + 50,255].min
-      color.blue    = [color.blue + 50,255].min
-      copiedBitmap.set_pixel(x,y,color)
-    end
-  end
-  return copiedBitmap
-end
-
-class Pokemon
-	def shinyVariant?
-		if @shinyVariant.nil?
-		  @shinyVariant = shiny? && rand(4) < 3
-		end
-		return @shinyVariant
-	end
-end
-
+=begin
 def autoShinify(bitmap)
   copiedBitmap = Bitmap.new(bitmap.width,bitmap.height)
   totalColors = [0,0,0]
@@ -109,7 +87,6 @@ def autoShinify(bitmap)
       color = bitmap.get_pixel(x,y)
 	  newColor = color.dup
 	  newColor = darkShades(color)
-=begin
 	  case mode
 	  when 1
 		newColor.red += findChangeTowardsOtherColor(totalColors[1],totalColors[0],targetPixelDiff)
@@ -121,7 +98,6 @@ def autoShinify(bitmap)
 		newColor.blue += findChangeTowardsOtherColor(totalColors[0],totalColors[2],targetPixelDiff)
 		newColor.red += findChangeTowardsOtherColor(totalColors[2],totalColors[0],targetPixelDiff)
 	  end
-=end
 	  copiedBitmap.set_pixel(x,y,newColor)
     end
   end
@@ -142,3 +118,4 @@ def findChangeTowardsOtherColor(initialColor,otherColor,targetPixelDiff)
 	diff = (velocity.abs - targetPixelDiff).abs
 	return (velocity * (100 - diff) + velocityDirection * targetPixelDiff * diff ) / 100
 end
+=end
