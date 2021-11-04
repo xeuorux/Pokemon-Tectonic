@@ -999,3 +999,8 @@ Pokemon = VANILLISH,35
 [NURSE,Joy]
 Pokemon = HAPPINY,18
 #-------------------------------
+[LASS,Dimitra
+Pokemon = CUFANT,25
+Pokemon = MARILL,25
+Pokemon = POOCHYENA,25
+#-------------------------------
