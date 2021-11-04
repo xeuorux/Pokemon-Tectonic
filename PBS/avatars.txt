@@ -529,7 +529,7 @@ Turns = 1
 HPMult = 6
 Item = SITRUSBERRY
 Ability = GLUTTONY
-Moves = BELLYDRUM,EXTREMESPEED
+Moves = HEADBUTT,COVET,TAUNT
 #-----------------------------
 [SHUCKLE]
 Turns = 3
