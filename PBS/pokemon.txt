@@ -23235,7 +23235,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GOODRA,LevelRain,43
+Evolutions = GOODRA,Level,43
 #-------------------------------
 [706]
 Name = Goodra
