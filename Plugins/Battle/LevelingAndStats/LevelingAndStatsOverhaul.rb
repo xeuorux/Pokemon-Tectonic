@@ -276,7 +276,7 @@ class PokeBattle_Battle
           pbDisplayPaused(_INTL("{1} got {2} Exp. Points!",pkmn.name,expGained))
         end
       end
-	 pbDisplayPaused(_INTL("{1} exp was put into the EXP Jar.",expLeftovers)) if expLeftovers > 0
+	 pbDisplayPaused(_INTL("{1} exp was put into the EXP-EZ Dispenser.",expLeftovers)) if expLeftovers > 0
     end
     if newLevel<curLevel
       debugInfo = "Levels: #{curLevel}->#{newLevel} | Exp: #{pkmn.exp}->#{expFinal} | gain: #{expGained}"
