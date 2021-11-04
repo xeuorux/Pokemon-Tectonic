@@ -69,7 +69,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:CHALLENGER,
 #===============================================================================
 # StatLossImmunityAbility handlers
 #===============================================================================
-BattleHandlers::StatLossImmunityAbility.copy(:CLEARBODY,:WHITESMOKE,:ROYALSCALES)
+BattleHandlers::StatLossImmunityAbility.copy(:CLEARBODY,:WHITESMOKE,:STUBBORN)
 
 
 #===============================================================================
