@@ -1,8 +1,8 @@
 #-------------------------------
 [FURRET]
 Turns = 2
-Ability = RUNAWAY
-Moves = SCRATCH,TACKLE
+Ability = STAKEOUT
+Moves = SCRATCH,TREADON
 HPMult = 2
 ################################
 #  Gym-Locked Avatars
