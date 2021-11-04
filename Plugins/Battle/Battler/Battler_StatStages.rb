@@ -66,7 +66,7 @@ class PokeBattle_Battler
       return pbRaiseStatStageByCause(stat,increment,user,cause,showAnim,true)
     end
 	# Royal Scales
-    if hasActiveAbility?(:ROYALSCALES) && !@battle.moldBreaker
+    if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
       return false
     end
     # Perform the stat stage change
@@ -94,7 +94,7 @@ class PokeBattle_Battler
     return true
   end
   
-  def pbLowerSpecialAttackStatStageDazzle(user)
+  def pbLowerSpecialAttackStatStageFascinate(user)
     return false if fainted?
     # NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
     if @effects[PBEffects::Substitute]>0

@@ -71,7 +71,7 @@ HPMult = 3
 #-------------------------------
 [SHIINOTIC]
 Turns = 2
-Ability = DAZZLE
+Ability = FASCINATE
 Moves = STRENGTHSAP,MOONBLAST,DRAININGKISS,GRASSKNOT
 HPMult = 3
 #-------------------------------
@@ -114,7 +114,7 @@ HPMult = 5
 #-------------------------------
 [COPPERAJAH]
 Turns = 3
-Ability = DAZZLE
+Ability = FASCINATE
 Moves = HEAVYSLAM,HEATCRASH,TRAMPLE
 HPMult = 4
 #-------------------------------
