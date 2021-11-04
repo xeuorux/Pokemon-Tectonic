@@ -460,3 +460,9 @@ Bicycle = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[63]
+# Sewer
+Outdoor = false
+ShowArea = true
+Bicycle = false
