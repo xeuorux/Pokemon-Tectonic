@@ -26562,7 +26562,6 @@ BattlerShadowSize = 2
 Name = Zeraora
 InternalName = ZERAORA
 Type1 = ELECTRIC
-Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 88,112,75,143,102,80
 # Total = 600
