@@ -19,15 +19,15 @@ HPMult = 2
 [SHAYMIN]
 Turns = 3
 Form = 1
-Ability = SERENEGRACE
+Ability = FLOWERVEIL
 Moves = AIRSLASH,MAGICALLEAF,ANGELSKISS
-HPMult = 5
+HPMult = 4.5
 #-------------------------------
 [CELEBI]
 Turns = 3
-Ability = NATURALCURE
+Ability = STARGUARDIAN
 Moves = FUTURESIGHT,GIGADRAIN,PSYCHIC,GRASSKNOT
-HPMult = 4
+HPMult = 3.5
 ################################
 #  Route Avatars
 ################################
