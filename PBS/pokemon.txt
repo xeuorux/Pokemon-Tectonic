@@ -30424,7 +30424,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 1
 #-------------------------------
 [2000]
-Name = Rattata (A)
+Name = A. Rattata
 InternalName = ARATTATA
 Type1 = DARK
 Type2 = NORMAL
@@ -30459,7 +30459,7 @@ BattlerShadowSize = 1
 Evolutions = ARATICATE,Level,40
 #-------------------------------
 [2001]
-Name = Raticate (A)
+Name = A. Raticate
 InternalName = ARATICATE
 Type1 = DARK
 Type2 = NORMAL
@@ -30492,7 +30492,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2002]
-Name = Raichu (A)
+Name = A. Raichu
 InternalName = ARAICHU
 Type1 = ELECTRIC
 Type2 = PSYCHIC
@@ -30524,7 +30524,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2003]
-Name = Sandshrew (A)
+Name = A. Sandshrew
 InternalName = ASANDSHREW
 Type1 = ICE
 Type2 = STEEL
@@ -30559,7 +30559,7 @@ BattlerShadowSize = 2
 Evolutions = ASANDSLASH,Item,ICESTONE
 #-------------------------------
 [2004]
-Name = Sandslash (A)
+Name = A. Sandslash
 InternalName = ASANDSLASH
 Type1 = ICE
 Type2 = STEEL
@@ -30592,7 +30592,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2005]
-Name = Vulpix (A)
+Name = A. Vulpix
 InternalName = AVULPIX
 Type1 = ICE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -30626,7 +30626,7 @@ BattlerShadowSize = 2
 Evolutions = ANINETALES,Item,ICESTONE
 #-------------------------------
 [2006]
-Name = Ninetales (A)
+Name = A. Ninetales
 InternalName = ANINETALES
 Type1 = ICE
 Type2 = FAIRY
@@ -30659,7 +30659,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2007]
-Name = Diglett (A)
+Name = A. Diglett
 InternalName = ADIGLETT
 Type1 = GROUND
 Type2 = STEEL
@@ -30694,7 +30694,7 @@ BattlerShadowSize = 2
 Evolutions = ADUGTRIO,Level,26
 #-------------------------------
 [2008]
-Name = Dugtrio (A)
+Name = A. Dugtrio
 InternalName = ADUGTRIO
 Type1 = GROUND
 Type2 = STEEL
@@ -30727,7 +30727,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2009]
-Name = Meowth (A)
+Name = A. Meowth
 InternalName = AMEOWTH
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -30761,7 +30761,7 @@ BattlerShadowSize = 2
 Evolutions = APERSIAN,Level,28
 #-------------------------------
 [2010]
-Name = Meowth (G)
+Name = G. Meowth
 InternalName = GMEOWTH
 Type1 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -30795,7 +30795,7 @@ BattlerShadowSize = 2
 Evolutions = PERRSERKER,Level,28
 #-------------------------------
 [2011]
-Name = Persian (A)
+Name = A. Persian
 InternalName = APERSIAN
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -30827,7 +30827,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2012]
-Name = Geodude (A)
+Name = A. Geodude
 InternalName = AGEODUDE
 Type1 = ROCK
 Type2 = ELECTRIC
@@ -30862,7 +30862,7 @@ BattlerShadowSize = 1
 Evolutions = AGRAVELER,Level,20
 #-------------------------------
 [2013]
-Name = Graveler (A)
+Name = A. Graveler
 InternalName = AGRAVELER
 Type1 = ROCK
 Type2 = ELECTRIC
@@ -30896,7 +30896,7 @@ BattlerShadowSize = 2
 Evolutions = AGOLEM,Level,35
 #-------------------------------
 [2014]
-Name = Golem (A)
+Name = A. Golem
 InternalName = AGOLEM
 Type1 = ROCK
 Type2 = ELECTRIC
@@ -30929,7 +30929,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2015]
-Name = Ponyta (G)
+Name = G. Ponyta
 InternalName = GPONYTA
 Type1 = PSYCHIC
 Type2 = FAIRY
@@ -30963,7 +30963,7 @@ BattlerShadowSize = 2
 Evolutions = GRAPIDASH,Level,32
 #-------------------------------
 [2016]
-Name = Rapidash (G)
+Name = G. Rapidash
 InternalName = GRAPIDASH
 Type1 = PSYCHIC
 Type2 = FAIRY
@@ -30995,7 +30995,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2017]
-Name = Slowpoke (G)
+Name = G. Slowpoke
 InternalName = GSLOWPOKE
 Type1 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -31029,7 +31029,7 @@ BattlerShadowSize = 2
 Evolutions = GSLOWKING,Item,GALARICAWREATH,GSLOWKING,Item,KINGSROCK
 #-------------------------------
 [2018]
-Name = Slowbro (G)
+Name = G. Slowbro
 InternalName = GSLOWBRO
 Type1 = POISON
 Type2 = PSYCHIC
@@ -31062,7 +31062,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2019]
-Name = Farfetch'd (G)
+Name = G. Farfetch'd
 InternalName = GFARFETCHD
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -31096,7 +31096,7 @@ BattlerShadowSize = 2
 Evolutions = SIRFETCHD,Level,35
 #-------------------------------
 [2020]
-Name = Grimer (A)
+Name = A. Grimer
 InternalName = AGRIMER
 Type1 = POISON
 Type2 = DARK
@@ -31131,7 +31131,7 @@ BattlerShadowSize = 2
 Evolutions = AMUK,Level,38
 #-------------------------------
 [2021]
-Name = Muk (A)
+Name = A. Muk
 InternalName = AMUK
 Type1 = POISON
 Type2 = DARK
@@ -31164,7 +31164,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 3
 #-------------------------------
 [2022]
-Name = Exeggutor (A)
+Name = A. Exeggutor
 InternalName = AEXEGGUTOR
 Type1 = GRASS
 Type2 = DRAGON
@@ -31196,7 +31196,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2023]
-Name = Marowak (A)
+Name = A. Marowak
 InternalName = AMAROWAK
 Type1 = FIRE
 Type2 = GHOST
@@ -31229,7 +31229,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2024]
-Name = Weezing (G)
+Name = G. Weezing
 InternalName = GWEEZING
 Type1 = POISON
 Type2 = FAIRY
@@ -31262,7 +31262,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2025]
-Name = Mr. Mime (G)
+Name = G. Mr. Mime
 InternalName = GMRMIME
 Type1 = ICE
 Type2 = PSYCHIC
@@ -31296,7 +31296,7 @@ BattlerShadowSize = 2
 Evolutions = MRRIME,Level,42
 #-------------------------------
 [2026]
-Name = Articuno (G)
+Name = G. Articuno
 InternalName = GARTICUNO
 Type1 = PSYCHIC
 Type2 = FLYING
@@ -31328,7 +31328,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2027]
-Name = Zapdos (G)
+Name = G. Zapdos
 InternalName = GZAPDOS
 Type1 = FIGHTING
 Type2 = FLYING
@@ -31360,7 +31360,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 3
 #-------------------------------
 [2028]
-Name = Moltres (G)
+Name = G. Moltres
 InternalName = GMOLTRES
 Type1 = DARK
 Type2 = FLYING
@@ -31392,7 +31392,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 3
 #-------------------------------
 [2029]
-Name = Slowking (G)
+Name = G. Slowking
 InternalName = GSLOWKING
 Type1 = POISON
 Type2 = PSYCHIC
@@ -31425,7 +31425,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2030]
-Name = Corsola (G)
+Name = G. Corsola
 InternalName = GCORSOLA
 Type1 = GHOST
 Type2 = ROCK
@@ -31460,7 +31460,7 @@ BattlerShadowSize = 2
 Evolutions = CURSOLA,Level,38
 #-------------------------------
 [2031]
-Name = Zigzagoon (G)
+Name = G. Zigzagoon
 InternalName = GZIGZAGOON
 Type1 = DARK
 Type2 = NORMAL
@@ -31496,7 +31496,7 @@ BattlerShadowSize = 2
 Evolutions = GLINOONE,Level,26
 #-------------------------------
 [2032]
-Name = Linoone (G)
+Name = G. Linoone
 InternalName = GLINOONE
 Type1 = DARK
 Type2 = NORMAL
@@ -31531,7 +31531,7 @@ BattlerShadowSize = 2
 Evolutions = OBSTAGOON,Level,35
 #-------------------------------
 [2033]
-Name = Darumaka (G)
+Name = G. Darumaka
 InternalName = GDARUMAKA
 Type1 = ICE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -31564,7 +31564,7 @@ BattlerShadowSize = 1
 Evolutions = GDARMANITAN,Item,ICESTONE
 #-------------------------------
 [2034]
-Name = Darmanitan (G)
+Name = G. Darmanitan
 InternalName = GDARMANITAN
 Type1 = ICE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -31595,7 +31595,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2035]
-Name = Yamask (G)
+Name = G. Yamask
 InternalName = GYAMASK
 Type1 = ROCK
 Type2 = GHOST
@@ -31630,7 +31630,7 @@ BattlerShadowSize = 2
 Evolutions = RUNERIGUS,Level,34
 #-------------------------------
 [2036]
-Name = Stunfisk (G)
+Name = G. Stunfisk
 InternalName = GSTUNFISK
 Type1 = GROUND
 Type2 = STEEL
