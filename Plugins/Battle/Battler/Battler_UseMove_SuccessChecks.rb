@@ -338,7 +338,7 @@ class PokeBattle_Battler
         @battle.successStates[user.index].protected = true
         if move.pbContactMove?(user) && user.affectedByContactEffect?
           if user.pbCanLowerStatStage?(:ATTACK)
-            user.pbLowerStatStage(:ATTACK,2,nil)
+            user.pbLowerStatStage(:ATTACK,1,nil)
           end
         end
         return false
