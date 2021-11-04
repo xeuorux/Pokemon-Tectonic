@@ -1007,3 +1007,8 @@ Pokemon = TYRUNT,20
 Pokemon = WARTORTLE,20
 	AbilityIndex = 1
 #-------------------------------
+[LASS,Dimitra]
+Pokemon = CUFANT,25
+Pokemon = MARILL,25
+Pokemon = POOCHYENA,25
+#-------------------------------

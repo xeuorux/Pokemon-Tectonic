@@ -312,14 +312,15 @@ def showPokeballExit(event = 0)
 	$scene.spriteset.addUserAnimation(FollowerSettings::Animation_Come_Out,event.x,event.y)
 end
 
-def blackFadeOutIn(&block)
+def blackFadeOutIn(length=10,&block)
 	if $PokemonSystem.skip_fades == 1
-		$game_screen.start_tone_change(Tone.new(-255,-255,-255,0), 6 * Graphics.frame_rate / 20)
-		pbWait(14)
+		$game_screen.start_tone_change(Tone.new(-255,-255,-255,0), length * Graphics.frame_rate / 20)
+		pbWait(length * Graphics.frame_rate / 20)
 	end
 	block.call
 	if $PokemonSystem.skip_fades == 1
-		$game_screen.start_tone_change(Tone.new(0,0,0,0), 6 * Graphics.frame_rate / 20)
+		$game_screen.start_tone_change(Tone.new(0,0,0,0), length * Graphics.frame_rate / 20)
+		pbWait(length * Graphics.frame_rate / 20)
 	end
 end
 
@@ -701,4 +702,44 @@ end
 
 def hasFirstFourBadges?()
 	return $game_switches[4] && $game_switches[5] && $game_switches[6] && $game_switches[7]
+end
+
+def reviveFossil(fossil)
+	fossilsToSpecies = {
+		:HELIXFOSSIL => :OMANYTE,
+		:DOMEFOSSIL => :KABUTO,
+		:OLDAMBER => :AERODACTYL,
+		:ROOTFOSSIL => :LILEEP,
+		:CLAWFOSSIL => :ANORITH,
+		:SKULLFOSSIL => :CRANIDOS,
+		:ARMORFOSSIL => :SHIELDON,
+		:COVERFOSSIL => :TIRTOUGA,
+		:PLUMEFOSSIL => :ARCHEN,
+		:JAWFOSSIL => :TYRUNT,
+		:SAILFOSSIL => :AMAURA
+	}
+	
+	species = fossilsToSpecies[fossil] || nil
+	
+	if species.nil?
+		pbMessage("Error! Could not determine how to revive the given fossil.")
+		return
+	end
+	item_data = GameData::Item.get(fossil)
+	
+	pbMessage("\\PN hands over the #{item_data.name} and $3000.")
+	
+	pbMessage("The procedure has started, now just to wait...")
+	
+	blackFadeOutIn(30) {
+		$Trainer.money = $Trainer.money - 3000
+	}
+	
+	pbMessage("It's done! Here is your newly revived Pokemon!")
+	
+	pbAddPokemon(species,10)
+end
+
+def pbSilentItem(item,quantity=1)
+	$PokemonBag.pbStoreItem(item,quantity)
 end
