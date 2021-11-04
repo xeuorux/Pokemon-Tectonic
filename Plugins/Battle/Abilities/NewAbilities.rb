@@ -383,12 +383,12 @@ BattleHandlers::UserAbilityEndOfMove.copy(:HUBRIS,:GRIMNEIGH)
 # AbilityOnSwitchIn handlers
 #===============================================================================
 
-BattleHandlers::AbilityOnSwitchIn.add(:DAZZLE,
+BattleHandlers::AbilityOnSwitchIn.add(:FASCINATE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     battle.eachOtherSideBattler(battler.index) do |b|
       next if !b.near?(battler)
-      b.pbLowerSpecialAttackStatStageDazzle(battler)
+      b.pbLowerSpecialAttackStatStageFascinate(battler)
       b.pbItemOnIntimidatedCheck
     end
     battle.pbHideAbilitySplash(battler)
