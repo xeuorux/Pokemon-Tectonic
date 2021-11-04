@@ -286,7 +286,7 @@
 284,AERODYNAMIC,Aerodynamic,"Grants immunity to Flying-type moves and raises Speed if hit by one."
 285,HEADACHE,Headache,"Doubles Sp. Atk if the Pokémon is confused."
 286,BUNKERDOWN,Bunker Down,"Survives self-destructing if at full health."
-287,DEEPSTING,Deep Sting,"Boosts Attack by 50%, but physical moves deal 50% damage back as recoil."
+287,DEEPSTING,Deep Sting,"Boosts Attack by 50%, but physical moves deal 25% damage back as recoil."
 288,SENTRY,Sentry,"Takes 25% less damage while using a status move."
 289,FORTUNE,Fortune,"Doubles the money gained from this Pokémon's battles."
 290,FLYTRAP,Flytrap,"Grants immunity to Bug-type moves and raises Attack when hit by one."
