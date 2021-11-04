@@ -999,3 +999,11 @@ Pokemon = VANILLISH,35
 [NURSE,Joy]
 Pokemon = HAPPINY,18
 #-------------------------------
+[STRIKER,Thaddeus]
+Pokemon = MACHOKE,20
+	AbilityIndex = 0
+Pokemon = TYRUNT,20
+	AbilityIndex = 1
+Pokemon = WARTORTLE,20
+	AbilityIndex = 1
+#-------------------------------
