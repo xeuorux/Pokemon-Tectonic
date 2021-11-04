@@ -476,9 +476,9 @@ Moves = POISONPOWDER,MAGICALLEAF,THRIVINGFORCE
 #-----------------------------
 [CHIMECHO]
 Turns = 3
-HPMult = 4
+HPMult = 3
 Ability = MAGICBOUNCE
-Moves = SWIFT,YAWN,DREAMEATER
+Moves = SWIFT,UPROAR,PSYCHIC
 #-----------------------------
 [COFAGRIGUS]
 Turns = 3
