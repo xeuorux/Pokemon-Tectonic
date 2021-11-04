@@ -74,7 +74,7 @@ Bicycle = false
 MapPosition = 0,14,10
 #-------------------------------
 [010]
-# Jungle Temple
+# Temple Path
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -335,7 +335,7 @@ HealingSpot = 25,13,17
 Outdoor = false
 ShowArea = false
 Bicycle = false
-HealingSpot = 8,53,20
+HealingSpot = 8,21,27
 #-------------------------------
 [101]
 # Dream Space
