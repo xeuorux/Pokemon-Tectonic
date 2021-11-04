@@ -117,7 +117,7 @@ class PokeBattle_Battle
   # Gaining Experience
   #=============================================================================
   def pbGainExp
-	hasExpJAR = (GameData::Item.exists?(:EXPJAR) && $PokemonBag.pbHasItem?(:EXPJAR))
+	hasExpJAR = (GameData::Item.exists?(:EXPEZDISPENSER) && $PokemonBag.pbHasItem?(:EXPEZDISPENSER))
     # Play wild victory music if it's the end of the battle (has to be here)
     @scene.pbWildBattleSuccess if wildBattle? && pbAllFainted?(1) && !pbAllFainted?(0)
     return if !@internalBattle || !@expGain
