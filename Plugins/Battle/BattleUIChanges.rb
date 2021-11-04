@@ -284,10 +284,12 @@ class PokeBattle_Scene
         pbPlayDecisionSE
         ret = 6
         break
+=begin
 	  elsif Input.trigger?(Input::ACTION) # Open Pokedex
 		pbPlayDecisionSE
         ret = 7
 		break
+=end
       end
     end
     return ret
