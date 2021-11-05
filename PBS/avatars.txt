@@ -54,38 +54,38 @@ Moves = JUNGLEHEALING,CRUNCH,THRASH,POWERWHIP
 Turns = 3
 Ability = THICKFAT
 Item = EXPERTBELT
-Moves = BODYPRESS,ICEFANG,BULLDOZE,BITE
+Moves = ICEFANG,BULLDOZE
 HPMult = 4
 #-------------------------------
 [MAGNEZONE]
 Turns = 3
 Ability = LEVITATE
-Moves = ELECTROBALL,FLASHCANNON,LOCKON,ZAPCANNON
+Moves = FLASHCANNON,LOCKON,ZAPCANNON
 HPMult = 3
 #-------------------------------
 [PINSIR]
 Turns = 2
 Ability = MOXIE
-Moves = STORMTHROW,METEORMASH,XSCISSOR,SUPERPOWER
+Moves = SUPERPOWER
 HPMult = 3
 #-------------------------------
 [SHIINOTIC]
 Turns = 2
 Ability = FASCINATE
-Moves = STRENGTHSAP,MOONBLAST,DRAININGKISS,GRASSKNOT
+Moves = STRENGTHSAP,MOONBLAST
 HPMult = 3
 #-------------------------------
 [MEDICHAM]
 Turns = 2
 Ability = ENERGYUP
-Moves = MEDITATE,TRAINEDOUTBURST,STOREDPOWER,CALMMIND
+Moves = MEDITATE,STOREDPOWER
 HPMult = 5
 #-------------------------------
 [SIRFETCHD]
 Turns = 3
 Ability = STEADFAST
 Item = LEEK
-Moves = FOCUSENERGY,LEAFBLADE,CROSSCHOP,NIGHTSLASH
+Moves = FOCUSENERGY,LEAFBLADE
 HPMult = 4
 #-------------------------------
 #[PORYGONZ]
@@ -97,13 +97,13 @@ HPMult = 4
 [RUNERIGUS]
 Turns = 1
 Ability = WANDERINGSPIRIT
-Moves = SHADOWCLAW,ROCKTOMB,SANDTOMB
-HPMult = 8
+Moves = SHADOWCLAW,SANDTOMB
+HPMult = 6
 #-------------------------------
 [GOURGEIST]
 Turns = 3
 Ability = INSOMNIA
-Moves = HEX,SHADOWBALL,TRICKORTREAT,WILLOWISP
+Moves = SHADOWBALL,TRICKORTREAT
 HPMult = 4
 #-------------------------------
 [SHIFTRY]
@@ -115,7 +115,7 @@ HPMult = 5
 [COPPERAJAH]
 Turns = 3
 Ability = FASCINATE
-Moves = HEAVYSLAM,HEATCRASH,TRAMPLE
+Moves = HEAVYSLAM
 HPMult = 4
 #-------------------------------
 [MILOTIC]
@@ -139,7 +139,7 @@ HPMult = 4
 [SWOOBAT]
 Turns = 2
 Ability = UNAWARE
-Moves = HEARTSTAMP,AERIALACE,STEELWING
+Moves = HEARTSTAMP,AERIALACE
 HPMult = 3
 #-------------------------------
 [TOXAPEX]
@@ -411,7 +411,7 @@ Moves = ATTACKORDER,DEFENDORDER,HEALORDER,ALLERGY
 Turns = 2
 HPMult = 4
 Ability = GALVANIZE
-Moves = DOUBLEEDGE,STONEEDGE,FLAIL
+Moves = DOUBLEEDGE,FLAIL
 #-----------------------------
 [NIDOQUEEN]
 Turns = 2
@@ -430,7 +430,7 @@ Turns = 3
 HPMult = 3
 Ability = SUPERLUCK
 Item = SCOPELENS
-Moves = MOONBLAST,FOCUSENERGY,NIGHTSLASH
+Moves = MOONBLAST,NIGHTSLASH
 #-----------------------------
 [DODRIO]
 Turns = 3
@@ -442,43 +442,43 @@ Moves = PECK
 Turns = 3
 HPMult = 5
 Ability = WEAKARMOR
-Moves = BIND,GEARGRIND,IRONDEFENSE
+Moves = GEARGRIND,IRONDEFENSE
 #-----------------------------
 [AVALUGG]
 Turns = 2
 HPMult = 4
 Ability = PRISMARMOR
-Moves = CALAMITOUSSLASH,CRYSTALCRUSH,RECOVER
+Moves = CALAMITOUSSLASH,CRYSTALCRUSH
 #-----------------------------
 [GENGAR]
 Turns = 2
-HPMult = 3
+HPMult = 4
 Ability = LEVITATE
-Moves = SUCKERPUNCH,DARKPULSE,SHADOWBALL
+Moves = SHADOWBALL
 #-----------------------------
 [ZOROARK]
 Turns = 2
 HPMult = 2.5
 Ability = ILLUSION
-Moves = ANGSTWAVE,SLIGHT,SWAGGER
+Moves = ANGSTWAVE,SLIGHT
 #-----------------------------
 [NINETALES]
 Turns = 2
 HPMult = 2.5
 Ability = PRESSURE
-Moves = FUTURESIGHT,WILLOWISP,SPELLBIND
+Moves = WILLOWISP,HEX
 #-----------------------------
 [ELDEGOSS]
 Turns = 2
 HPMult = 3
 Ability = GRASSYSURGE
-Moves = POISONPOWDER,MAGICALLEAF,THRIVINGFORCE
+Moves = POISONPOWDER,MAGICALLEAF
 #-----------------------------
 [CHIMECHO]
 Turns = 3
 HPMult = 3
 Ability = MAGICBOUNCE
-Moves = SWIFT,UPROAR,PSYCHIC
+Moves = UPROAR
 #-----------------------------
 [COFAGRIGUS]
 Turns = 3
@@ -490,38 +490,38 @@ Moves = SHADOWCLAW,WILLOWISP,CRAFTYSHIELD
 Turns = 3
 HPMult = 3
 Ability = TRAPPER
-Moves = SPIRITSHACKLE,PHANTOMFORCE,NASTYPLOT
+Moves = SPIRITSHACKLE,PHANTOMFORCE
 #-----------------------------
 [MANIKLAW]
 Turns = 3
 HPMult = 3
 Ability = INSOMNIA
-Moves = SOULRIP,CURSE,KNOCKOFF
+Moves = SOULRIP,KNOCKOFF
 #-----------------------------
 [SAWSBUCK]
 Turns = 3
 HPMult = 2.5
 Ability = SERENEGRACE
-Moves = JUMPKICK,DOUBLEEDGE,HORNLEECH,AROMATHERAPY
+Moves = DOUBLEEDGE,HORNLEECH
 #-----------------------------
 [LEAFEON]
 Turns = 3
 HPMult = 3
 Ability = LEAFGUARD
-Moves = SUNNYDAY,RAZORLEAF,SYNTHESIS,DOUBLEEDGE
+Moves = RAZORLEAF,SYNTHESIS
 #-----------------------------
 [URSARING]
 Turns = 3
 HPMult = 4
 Ability = GUTS
-Moves = SLASH,FACADE
+Moves = SLASH
 Item = MUSCLEBAND
 #-----------------------------
 [WATCHOG]
 Turns = 2
 HPMult = 6
 Ability = PARANOID
-Moves = GLARE,WHITERAY,DAZZLINGGLEAM
+Moves = GLARE,WHITERAY
 Item = WISEGLASSES
 #-----------------------------
 [LINOONE]
@@ -529,7 +529,7 @@ Turns = 1
 HPMult = 6
 Item = SITRUSBERRY
 Ability = GLUTTONY
-Moves = HEADBUTT,COVET,TAUNT
+Moves = HEADBUTT,COVET
 #-----------------------------
 [SHUCKLE]
 Turns = 3
@@ -541,7 +541,7 @@ Moves = POWERTRIP,GIGAIMPACT,STEALTHROCK
 Turns = 3
 HPMult = 4
 Ability = POISONTOUCH
-Moves = COLDSNOT,ICEPUNCH,VENOMDRENCH
+Moves = COLDSNOT,VENOMDRENCH
 #-------------------------------
 [MAGIKARP]
 Turns = 3
@@ -551,9 +551,9 @@ HPMult = 2
 #-------------------------------
 [DONSTER]
 Turns = 2
-Ability = KLUTZ
+Ability = GLUTTONY
 Item = SITRUSBERRY
-Moves = CLEARSMOG,HEAVYSLAM,BELCH
+Moves = CLEARSMOG,BELCH
 HPMult = 4
 #-------------------------------
 [SUICUNE]
