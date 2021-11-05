@@ -2,7 +2,7 @@
 [FURRET]
 Turns = 2
 Ability = STAKEOUT
-Moves = SCRATCH,TREADON
+Moves = TACKLE
 HPMult = 2
 ################################
 #  Gym-Locked Avatars
