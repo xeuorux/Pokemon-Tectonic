@@ -184,4 +184,10 @@ class PokeBattle_Battler
     # Calculation
     return [(speed*speedMult).round,1].max
   end
+  
+  def hasActiveItem?(check_item, ignore_fainted = false)
+    return false if !itemActive?(ignore_fainted)
+    return check_item.include?(@item_id) if check_item.is_a?(Array)
+    return check_item == @item_id
+  end
 end
