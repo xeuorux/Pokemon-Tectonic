@@ -760,7 +760,7 @@
 741,FLIPTURN,Flip Turn,0EE,60,WATER,Physical,100,20,0,NearOther,0,abef,"After making its attack, the user rushes back to switch places with a party Pokémon in waiting."
 #-------------------------------,,,,,,,,,,,,,
 742,COZYUP,Cozy Up,00A,40,FIRE,Physical,100,25,10,NearOther,0,abef,"The user warms up its body and attacks the target. It has a 10% chance to burn."
-743,PEBBLEDUST,Pebble Dust,000,50,ROCK,Special,90,25,0,NearOther,0,bef,"The user grinds a pebble into dust, and sprays it at the target."
+743,PEBBLEDUST,Pebble Dust,000,45,ROCK,Special,100,25,0,NearOther,0,bef,"The user grinds a pebble into dust, and sprays it at the target."
 744,FUGUFORCE,Fugu Force,005,50,WATER,Physical,100,10,100,NearOther,0,abef,"The user crashes into the target with its quills. It leaves the target poisoned."
 745,SHADOW,Shadow,046,40,GHOST,Special,100,15,10,NearOther,0,bef,"The user sends a shadow to attack the target, with a 10% chance to reduce it's Sp. Def."
 746,CLACKACLACK,Clackaclack,045,40,BUG,Special,100,40,10,AllNearFoes,0,befk,"The user attacks with a horrible clattering noise. It has a 10% chance to lower Sp. Atk."

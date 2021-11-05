@@ -67,7 +67,7 @@ Bicycle = true
 MapPosition = 0,13,12
 #-------------------------------
 [009]
-# Northeast House
+# House of Leaves
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -160,6 +160,9 @@ MapPosition = 0,15,8
 #-------------------------------
 [025]
 # Mining Camp
+Outdoor = true
+ShowArea = true
+Bicycle = true
 MapPosition = 0,15,8
 #-------------------------------
 [026]
@@ -218,6 +221,7 @@ HealingSpot = 34,24,11
 [036]
 # Abandoned Mine
 Outdoor = false
+ShowArea = true
 Bicycle = true
 #-------------------------------
 [037]
@@ -298,6 +302,12 @@ Weather = Rain,10
 # Sailors house
 HealingSpot = 59,26,12
 #-------------------------------
+[063]
+# Suburb Buildings
+Outdoor = false
+ShowArea = true
+Bicycle = false
+#-------------------------------
 [066]
 # Németh Apartments Attic
 ShowArea = true
@@ -326,6 +336,18 @@ Bicycle = true
 # Mining Cave Station
 Bicycle = false
 HealingSpot = 25,13,17
+#-------------------------------
+[087]
+# LuxTech Rec Center
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[088]
+# LuxTech Sewer Access
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [099]
 # Ghost Town Buildings
@@ -374,7 +396,7 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [107]
-# Rupert's Yard
+# Connor's Yard
 Outdoor = false
 ShowArea = false
 Bicycle = true
@@ -460,9 +482,3 @@ Bicycle = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
-#-------------------------------
-[63]
-# Sewer
-Outdoor = false
-ShowArea = true
-Bicycle = false
