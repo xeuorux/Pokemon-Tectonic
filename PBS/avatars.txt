@@ -555,3 +555,9 @@ Ability = KLUTZ
 Item = SITRUSBERRY
 Moves = CLEARSMOG,HEAVYSLAM,BELCH
 HPMult = 4
+#-------------------------------
+[SUICUNE]
+Turns = 2
+Ability = KLUTZ
+Moves = BLIZZARD,SURF,PURIFYINGWATER
+HPMult = 4
