@@ -1001,10 +1001,13 @@ Pokemon = HAPPINY,18
 #-------------------------------
 [STRIKER,Thaddeus]
 Pokemon = MACHOKE,20
+	Gender = male
 	AbilityIndex = 0
 Pokemon = TYRUNT,20
+	Gender = male
 	AbilityIndex = 1
 Pokemon = WARTORTLE,20
+	Gender = male
 	AbilityIndex = 1
 #-------------------------------
 [LASS,Dimitra]
@@ -1012,3 +1015,7 @@ Pokemon = CUFANT,25
 Pokemon = MARILL,25
 Pokemon = POOCHYENA,25
 #-------------------------------
+[JOGGER,Janos]
+Pokemon = MANECTRIC,30
+Pokemon = NIDORINA,30
+Pokemon = MUNNA,30
