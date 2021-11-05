@@ -565,5 +565,12 @@ HPMult = 4
 [ENTEI]
 Turns = 2
 Ability = PRESSURE
-Moves = ROAR,SWAGGER,ERUPTION
+Moves = ROAR,BITE,ERUPTION
 HPMult = 4
+#-------------------------------
+[RAIKOU]
+Turns = 2
+Ability = PRESSURE
+Moves = LIGHTNINGSHRIEK,CALMMIND,SWAGGER
+HPMult = 4
+#-------------------------------
