@@ -993,6 +993,7 @@ Pokemon = GASTRODON,35
     AbilityIndex = 0
     Item = LEFTOVERS
 Pokemon = SLURPUFF,35
+    Name = Lik
     Moves = PLAYROUGH,BELLYDRUM,DRAINPUNCH,FACADE
     AbilityIndex = 0
 	Item = KEBIABERRY

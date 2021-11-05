@@ -602,7 +602,7 @@
 586,POISONPOWDER,Poison Powder,005,0,POISON,Status,100,35,0,NearOther,0,bcel,The user scatters a cloud of poisonous dust on the target. It poisons the target.
 587,PURIFY,Purify,15B,0,POISON,Status,0,20,0,NearOther,0,bce,"The user heals the target's status condition. If so, it also restores the user's own HP. "
 588,TOXIC,Toxic,006,0,POISON,Status,90,10,0,NearOther,0,bce,A move that toxifies the target. Its poison damage worsens every turn.
-589,TOXICSPIKES,Toxic Spikes,104,0,POISON,Status,0,20,0,FoeSide,0,c,The user lays a trap of poison spikes at the foe's feet. They poison foes that switch into battle.
+589,TOXICSPIKES,Poison Spikes,104,0,POISON,Status,0,20,0,FoeSide,0,c,The user lays a trap of poison spikes at the foe's feet. They poison foes that switch into battle.
 590,TOXICTHREAD,Toxic Thread,159,0,POISON,Status,100,20,0,NearOther,0,bce,The user shoots poisonous threads to poison the target and lower the target's Speed stat.
 591,VENOMDRENCH,Venom Drench,140,0,POISON,Status,100,20,0,AllNearFoes,0,bc,"Foes are drenched in an odd liquid that lowers the Attack, Sp. Atk, and Speed of poisoned Pokémon."
 592,CORROSIVEGAS,Corrosive Gas,201,0,POISON,Status,100,40,0,AllNearOthers,0,,The user surrounds everything around it with highly acidic gas and melts away items they hold.
