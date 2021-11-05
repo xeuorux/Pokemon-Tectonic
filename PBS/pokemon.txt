@@ -30366,11 +30366,7 @@ Name = Nibelong
 InternalName = NIBELONG
 Type1 = NORMAL
 Type2 = DRAGON
-BaseStats = 70,110,60,145,65,65
-# Total = 515
-# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,85,100,90,55,85
-# Total = 545
+BaseStats = 95,90,102,90,53,85
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 154
