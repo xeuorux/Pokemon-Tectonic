@@ -11,9 +11,8 @@ HPMult = 2
 [ZERAORA]
 Turns = 3
 Item = LUMBERRY
-Ability = INNERFOCUS
+Ability = QUICKFEET
 Moves = THUNDERPUNCH,FIREPUNCH,SLASH
-HPMult = 4
 HPMult = 2
 #-------------------------------
 [SHAYMIN]
@@ -83,7 +82,7 @@ HPMult = 5
 #-------------------------------
 [SIRFETCHD]
 Turns = 3
-Ability = STEADFAST
+Ability = BREAKTHROUGH
 Item = LEEK
 Moves = FOCUSENERGY,LEAFBLADE
 HPMult = 4
@@ -156,7 +155,7 @@ HPMult = 2
 #-------------------------------
 [HARIYAMA]
 Turns = 2
-Ability = GUTS
+Ability = BURNHEAL
 Item = SITRUSBERRY
 Moves = REVERSAL,BELLYDRUM,DRAINPUNCH,STRENGTH
 HPMult = 3
@@ -170,14 +169,14 @@ HPMult = 3
 #-------------------------------
 [GARCHOMP]
 Turns = 2
-Ability = SANDVEIL
+Ability = SANDSHROUD
 Moves = OUTRAGE,CALAMITOUSSLASH,SANDSTORM,REST
 Item = SMOOTHROCK
 HPMult = 5
 #-------------------------------
 [ANINETALES]
 Turns = 2
-Ability = SNOWVEIL
+Ability = SNOWSHROUD
 Moves = ICYWIND,HAIL,AURORAVEIL,BLIZZARD
 Item = ICYROCK
 HPMult = 5
@@ -216,7 +215,7 @@ HPMult = 5
 #-------------------------------
 [SKARMORY]
 Turns = 3
-Ability = KEENEYE
+Ability = SOUNDPROOF
 Moves = SPIKES,WHIRLWIND,STEELWING,DRILLPECK
 HPMult = 4
 #-------------------------------
@@ -229,7 +228,7 @@ HPMult = 10
 #-------------------------------
 [SALAZZLE]
 Turns = 2
-Ability = OBLIVIOUS
+Ability = SPECIALIST
 Moves = VENOSHOCK,FLAREUP,IGNITE,POISONGAS
 HPMult = 5
 #-------------------------------
@@ -317,13 +316,13 @@ Moves = YAWN,HELPINGHAND,EERIESPELL
 [DIALGA]
 Turns = 1
 HPMult = 8
-Ability = PRESSURE
+Ability = STALWART
 Moves = ROAROFTIME,DRAGONCLAW,IRONTAIL,FLASHCANNON
 #-------------------------------
 [PALKIA]
 Turns = 3
 HPMult = 6
-Ability = PRESSURE
+Ability = REALIST
 Moves = SPACIALREND,LIQUIDATION
 #-------------------------------
 [CRESSELIA]
@@ -422,13 +421,13 @@ Moves = MUDSHOT,FLATTER,BADSTENCH
 [PYROAR]
 Turns = 1
 HPMult = 2
-Ability = PROUDFIRE
+Ability = STUBBORN
 Moves = NOBLEROAR,FLAMETHROWER,ENDEAVOR
 #-----------------------------
 [ABSOLUS]
 Turns = 3
 HPMult = 3
-Ability = SUPERLUCK
+Ability = BADOMEN
 Item = SCOPELENS
 Moves = MOONBLAST,NIGHTSLASH
 #-----------------------------
@@ -465,7 +464,7 @@ Moves = ANGSTWAVE,SLIGHT
 [NINETALES]
 Turns = 2
 HPMult = 2.5
-Ability = PRESSURE
+Ability = CURSEDTAIL
 Moves = WILLOWISP,HEX
 #-----------------------------
 [ELDEGOSS]
@@ -534,7 +533,7 @@ Moves = HEADBUTT,COVET
 [SHUCKLE]
 Turns = 3
 HPMult = 2
-Ability = STURDY
+Ability = GLUTTONY
 Moves = POWERTRIP,GIGAIMPACT,STEALTHROCK
 #-----------------------------
 [BEARTIC]
@@ -545,13 +544,13 @@ Moves = COLDSNOT,VENOMDRENCH
 #-------------------------------
 [MAGIKARP]
 Turns = 3
-Ability = KLUTZ
+Ability = SWIFTSWIM
 Moves = SPLASH
 HPMult = 2
 #-------------------------------
 [DONSTER]
 Turns = 2
-Ability = GLUTTONY
+Ability = STENCH
 Item = SITRUSBERRY
 Moves = CLEARSMOG,BELCH
 HPMult = 4
