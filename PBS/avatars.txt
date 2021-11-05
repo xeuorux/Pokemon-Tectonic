@@ -561,3 +561,9 @@ Turns = 2
 Ability = PRESSURE
 Moves = SURF,PURIFYINGWATER,BRINE
 HPMult = 4
+#-------------------------------
+[ENTEI]
+Turns = 2
+Ability = PRESSURE
+Moves = ROAR,SWAGGER,ERUPTION
+HPMult = 4
