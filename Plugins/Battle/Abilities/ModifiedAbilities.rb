@@ -1,4 +1,4 @@
-BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
+didBattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
   proc { |ability,battler,user,status|
     next if !user || user.index==battler.index
     case status
@@ -255,19 +255,6 @@ BattleHandlers::MoveImmunityTargetAbility.add(:JUSTIFIED,
     next pbBattleMoveImmunityStatAbility(user,target,move,type,:DARK,:SPEED,1,battle)
   }
 )
-
-BattleHandlers::DamageCalcTargetAbility.add(:SANDVEIL,
-  proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather==:Sandstorm
-  }
-)
-
-BattleHandlers::DamageCalcTargetAbility.add(:SNOWCLOAK,
-  proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather==:Hail
-  }
-)
-
 
 BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
   proc { |ability,user,target,move,battle|
