@@ -137,10 +137,10 @@ Moves = RAGE,HEADBUTT,LASTRESORT,POWERUPPUNCH
 HPMult = 4
 #-------------------------------
 [SWOOBAT]
-Turns = 3
+Turns = 2
 Ability = UNAWARE
 Moves = HEARTSTAMP,AERIALACE,STEELWING
-HPMult = 2
+HPMult = 3
 #-------------------------------
 [TOXAPEX]
 Turns = 2
@@ -434,7 +434,7 @@ Moves = MOONBLAST,FOCUSENERGY,NIGHTSLASH
 #-----------------------------
 [DODRIO]
 Turns = 3
-HPMult = 2
+HPMult = 1.5
 Ability = VITALSPIRIT
 Moves = PECK
 #-----------------------------

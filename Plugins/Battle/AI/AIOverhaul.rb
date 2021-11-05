@@ -163,11 +163,17 @@ class PokeBattle_AI
     if target_data.num_targets > 1
       # If move affects multiple battlers and you don't choose a particular one
       totalScore = 0
+	  targets = []
       @battle.eachBattler do |b|
         next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
+		targets.push(b)
         score = pbGetMoveScore(move,user,b,skill,policies)
         totalScore += ((user.opposes?(b)) ? score : -score)
       end
+	  if targets.length > 1
+		totalScore *= targets.length / (targets.length.to_f + 1.0)
+		totalScore = totalScore.floor
+	  end
 	  newChoice = [totalScore,-1] if totalScore>0
     elsif target_data.num_targets == 0
       # If move has no targets, affects the user, a side or the whole field
@@ -888,8 +894,40 @@ class PokeBattle_AI
     # Convert damage to percentage of target's remaining HP
     damagePercentage = realDamage*100.0/target.hp
     # Adjust score
-    damagePercentage = 200 if damagePercentage>120   # Treat all lethal moves the same
-    score += damagePercentage.to_i
+    damagePercentage = 200 if damagePercentage >= 105   # Treat all lethal moves the same
+    score = (score * 0.8 + damagePercentage * 1.4).to_i
     return score
+  end
+  
+  #=============================================================================
+  # Accuracy calculation
+  #=============================================================================
+  def pbRoughAccuracy(move,user,target,skill)
+    return 100 if target.effects[PBEffects::Telekinesis] > 0
+    baseAcc = move.accuracy
+    baseAcc = move.pbBaseAccuracy(user,target)
+    # Get the move's type
+    type = pbRoughType(move,user,skill)
+    # Calculate all modifier effects
+    modifiers = {}
+    modifiers[:base_accuracy]  = baseAcc
+    modifiers[:accuracy_stage] = user.stages[:ACCURACY]
+    modifiers[:evasion_stage]  = target.stages[:EVASION]
+    modifiers[:accuracy_multiplier] = 1.0
+    modifiers[:evasion_multiplier]  = 1.0
+    pbCalcAccuracyModifiers(user,target,modifiers,move,type,skill)
+    # Calculation
+    accStage = [[modifiers[:accuracy_stage], -6].max, 6].min + 6
+    evaStage = [[modifiers[:evasion_stage], -6].max, 6].min + 6
+    stageMul = [3,3,3,3,3,3, 3, 4,5,6,7,8,9]
+    stageDiv = [9,8,7,6,5,4, 3, 3,3,3,3,3,3]
+    accuracy = 100.0 * stageMul[accStage] / stageDiv[accStage]
+    evasion  = 100.0 * stageMul[evaStage] / stageDiv[evaStage]
+    accuracy = (accuracy * modifiers[:accuracy_multiplier]).round
+    evasion  = (evasion  * modifiers[:evasion_multiplier]).round
+    evasion = 1 if evasion<1
+    # Value always hit moves if otherwise would be hard to hit here
+    return 125 if modifiers[:base_accuracy] == 0 && (accuracy / evasion < 1)
+	return modifiers[:base_accuracy] * accuracy / evasion
   end
 end
