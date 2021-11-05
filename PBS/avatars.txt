@@ -555,3 +555,22 @@ Ability = KLUTZ
 Item = SITRUSBERRY
 Moves = CLEARSMOG,HEAVYSLAM,BELCH
 HPMult = 4
+#-------------------------------
+[SUICUNE]
+Turns = 2
+Ability = PRESSURE
+Moves = SURF,PURIFYINGWATER,BRINE
+HPMult = 4
+#-------------------------------
+[ENTEI]
+Turns = 2
+Ability = PRESSURE
+Moves = ROAR,BITE,ERUPTION
+HPMult = 4
+#-------------------------------
+[RAIKOU]
+Turns = 2
+Ability = PRESSURE
+Moves = LIGHTNINGSHRIEK,CALMMIND,SWAGGER
+HPMult = 4
+#-------------------------------

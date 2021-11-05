@@ -602,7 +602,7 @@
 586,POISONPOWDER,Poison Powder,005,0,POISON,Status,100,35,0,NearOther,0,bcel,The user scatters a cloud of poisonous dust on the target. It poisons the target.
 587,PURIFY,Purify,15B,0,POISON,Status,0,20,0,NearOther,0,bce,"The user heals the target's status condition. If so, it also restores the user's own HP. "
 588,TOXIC,Toxic,006,0,POISON,Status,90,10,0,NearOther,0,bce,A move that toxifies the target. Its poison damage worsens every turn.
-589,TOXICSPIKES,Poison Spikes,104,0,POISON,Status,0,20,0,FoeSide,0,c,The user lays a trap of poison spikes at the foe's feet. They poison foes that switch into battle.
+589,TOXICSPIKES,Toxic Spikes,104,0,POISON,Status,0,20,0,FoeSide,0,c,The user lays a trap of poison spikes at the foe's feet. They poison foes that switch into battle.
 590,TOXICTHREAD,Toxic Thread,159,0,POISON,Status,100,20,0,NearOther,0,bce,The user shoots poisonous threads to poison the target and lower the target's Speed stat.
 591,VENOMDRENCH,Venom Drench,140,0,POISON,Status,100,20,0,AllNearFoes,0,bc,"Foes are drenched in an odd liquid that lowers the Attack, Sp. Atk, and Speed of poisoned Pokémon."
 592,CORROSIVEGAS,Corrosive Gas,201,0,POISON,Status,100,40,0,AllNearOthers,0,,The user surrounds everything around it with highly acidic gas and melts away items they hold.
@@ -945,6 +945,8 @@
 926,GLITTERSLASH,Glitter Slash,546,65,FAIRY,Physical,100,20,0,NearOther,0,abefp,"The user slashes at the opponent with a glittering aura, guaranteeing a critical hit on foes with boosted stats."
 927,LUNARJUSTICE,Lunar Justice,546,85,FAIRY,Physical,100,10,0,NearOther,0,abefp,"The user attacks with the power of the moon, guaranteeing a critical hit on foes with boosted stats."
 928,POISONSPIKES,Poison Spikes,104,0,POISON,Status,0,20,0,FoeSide,0,c,The user lays a trap of poison spikes at the foe's feet. They poison foes that switch into battle.
+929,ENVENOM,Envenom,005,0,POISON,Status,100,40,0,NearFoe,0,bce,A concentrated glob of poison is strategically fired at the enemy. It poisons those hit.
+
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch."
