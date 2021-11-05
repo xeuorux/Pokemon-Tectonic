@@ -1712,7 +1712,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PERSIAN,Level,28,NIBELONG,Item,SHINYSTONE
+Evolutions = PERSIAN,Level,28,NIBELONG,Item,DAWNSTONE
 #-------------------------------
 [53]
 Name = Persian
