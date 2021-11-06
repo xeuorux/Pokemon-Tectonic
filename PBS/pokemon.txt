@@ -24937,7 +24937,7 @@ Type2 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 48,44,40,77,71,40
 # Total = 320
-GenderRate = Female75Percent
+GenderRate = AlwaysFemale
 GrowthRate = Medium
 BaseEXP = 64
 EffortPoints = 0,0,0,1,0,0
