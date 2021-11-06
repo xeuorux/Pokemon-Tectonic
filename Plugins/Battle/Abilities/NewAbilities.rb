@@ -662,7 +662,8 @@ BattleHandlers::DamageCalcTargetAbility.add(:SNOWSHROUD,
 
 BattleHandlers::TargetAbilityOnHit.add(:ELECTRICFENCE,
   proc { |ability,user,target,move,battle|
-    next unless battler.battle.field.terrain == :Electric
+	echoln target.battle.field.terrain == :Electric
+    next unless target.battle.field.terrain == :Electric
     battle.pbShowAbilitySplash(target)
     if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
