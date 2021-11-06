@@ -2812,6 +2812,7 @@ BattlerShadowSize = 3
 Name = Seel
 InternalName = SEEL
 Type1 = WATER
+Type2 = ICE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,45,55,65,65,70
 # Total = 365

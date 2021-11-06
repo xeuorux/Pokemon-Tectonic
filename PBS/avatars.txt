@@ -510,8 +510,8 @@ Ability = LEAFGUARD
 Moves = RAZORLEAF,SYNTHESIS
 #-----------------------------
 [URSARING]
-Turns = 3
-HPMult = 4
+Turns = 2
+HPMult = 6
 Ability = GUTS
 Moves = SLASH
 Item = MUSCLEBAND
