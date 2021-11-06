@@ -23902,6 +23902,7 @@ Evolutions = TORRACAT,Level,17
 Name = Torracat
 InternalName = TORRACAT
 Type1 = FIRE
+Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,85,50,90,80,50
 # Total = 420
@@ -23999,6 +24000,7 @@ Evolutions = BRIONNE,Level,17
 Name = Brionne
 InternalName = BRIONNE
 Type1 = WATER
+Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,69,69,50,91,81
 # Total = 420
