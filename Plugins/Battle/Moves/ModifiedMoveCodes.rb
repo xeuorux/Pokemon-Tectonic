@@ -4,45 +4,7 @@ class PokeBattle_Move
 	end
 end
 
-#===============================================================================
-# Pseudomove for confusion damage.
-#===============================================================================
-class PokeBattle_Confusion < PokeBattle_Move
-  def initialize(battle,move)
-    @battle     = battle
-    @realMove   = move
-    @id         = 0
-    @name       = ""
-    @function   = "000"
-    @baseDamage = 50
-    @type       = nil
-    @category   = 0
-    @accuracy   = 100
-    @pp         = -1
-    @target     = 0
-    @priority   = 0
-    @flags      = ""
-    @addlEffect = 0
-    @calcType   = nil
-    @powerBoost = false
-    @snatched   = false
-  end
-end
 
-#===============================================================================
-# Generic target's stat increase/decrease classes.
-#===============================================================================
-class PokeBattle_TargetStatDownMove < PokeBattle_Move
-	attr_accessor :statDown
-end
-
-class PokeBattle_FixedDamageMove
-	def pbCalcTypeModSingle(moveType,defType,user,target)
-		ret = super
-		ret = Effectiveness::NORMAL_EFFECTIVE_ONE unless Effectiveness.ineffective?(ret)
-		return ret
-	end
-end
 
 	
 
