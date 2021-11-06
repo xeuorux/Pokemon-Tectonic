@@ -813,7 +813,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = RAICHU,Item,THUNDERSTONE,ARAICHU,Item,ALOLANWREATH,KINGACHU,Item,KINGSROCK
+Evolutions = RAICHU,Item,THUNDERSTONE,ARAICHU,Item,ALOLANWREATH,BIGACHU,Item,KINGSROCK
 #-------------------------------
 [26]
 Name = Raichu
