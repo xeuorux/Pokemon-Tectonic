@@ -27,7 +27,6 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-Weather = Sun,10
 MapPosition = 0,13,12
 #-------------------------------
 [004]
@@ -277,7 +276,6 @@ Bicycle = true
 Outdoor = true
 ShowArea = true
 Bicycle = true
-Weather = Rain,10
 #-------------------------------
 [057]
 # Suburb Center
@@ -289,14 +287,12 @@ HealingSpot = 56,43,27
 Outdoor = true
 ShowArea = true
 Bicycle = true
-Weather = Rain,10
 #-------------------------------
 [060]
 # Forested Road
 Outdoor = true
 ShowArea = true
 Bicycle = true
-Weather = Rain,10
 #-------------------------------
 [061]
 # Sailors house
