@@ -232,3 +232,59 @@ class StyleValueScreen
     end
   end
 end
+
+def choosePokemonToStyle(pokemonVar = 1,nameVar = 3)
+	pbChooseStylePokemon(1,3, proc { |p|
+		p.ev[:ATTACK] != 8 ||
+		p.ev[:DEFENSE] != 8 ||
+		p.ev[:SPEED] != 8 ||
+		p.ev[:HP] != 8 ||
+		p.ev[:SPECIAL_ATTACK] != 8 ||
+		p.ev[:SPECIAL_DEFENSE] != 8
+		}
+	)
+end
+
+def pbChooseStylePokemon(variableNumber,nameVarNumber,styleProc=nil)
+  chosen = 0
+  pbFadeOutIn {
+    scene = PokemonParty_Scene.new
+    screen = PokemonPartyScreen.new(scene,$Trainer.party)
+    if styleProc
+      chosen=screen.pbChooseAblePokemonStyle(styleProc)
+    else
+      screen.pbStartScene(_INTL("Choose a Pokémon."),false)
+      chosen = screen.pbChoosePokemon
+      screen.pbEndScene
+    end
+  }
+  pbSet(variableNumber,chosen)
+  if chosen>=0
+    pbSet(nameVarNumber,$Trainer.party[chosen].name)
+  else
+    pbSet(nameVarNumber,"")
+  end
+end
+
+class PokemonPartyScreen
+	def pbChooseAblePokemonStyle(styledProc)
+		annot = []
+		for pkmn in @party
+		  styled = styledProc.call(pkmn)
+		  annot.push((styled) ? _INTL("STYLED") : _INTL("NOT STYLED"))
+		end
+		ret = -1
+		@scene.pbStartScene(@party,
+		   (@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."),annot)
+		loop do
+		  @scene.pbSetHelpText(
+			 (@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
+		  pkmnid = @scene.pbChoosePokemon
+		  break if pkmnid<0
+		  ret = pkmnid
+			break
+		end
+		@scene.pbEndScene
+    return ret
+  end
+end
