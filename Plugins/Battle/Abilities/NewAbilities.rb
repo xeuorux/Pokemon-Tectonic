@@ -681,3 +681,5 @@ BattleHandlers::TargetAbilityOnHit.add(:ELECTRICFENCE,
     battle.pbHideAbilitySplash(target)
   }
 )
+
+

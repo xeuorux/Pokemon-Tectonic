@@ -1483,3 +1483,18 @@ class PokeBattle_Move_546 < PokeBattle_Move
 	return 0
   end
 end
+
+
+#===============================================================================
+# Poisons, chills, or burns the target. (Chaos Wheel)
+#===============================================================================
+class PokeBattle_Move_547 < PokeBattle_Move
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    case @battle.pbRandom(3)
+    when 0 then target.pbPoison(user) if target.pbCanPoison?(user, false, self)
+    when 1 then target.pbFreeze if target.pbCanFreeze?(user, false, self)
+    when 2 then target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
+    end
+  end
+end

@@ -1086,3 +1086,5 @@ class PokeBattle_Move_104 < PokeBattle_Move
        user.pbOpposingTeam(true)))
   end
 end
+
+
