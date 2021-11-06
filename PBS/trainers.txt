@@ -621,15 +621,15 @@ Pokemon = WAILORD,30
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,1]
 LoseText = "..."
-Pokemon = LYCANROC,25
-    AbilityIndex = 0
-	Moves = HOWL,CRUNCH,ROCKTOMB
-Pokemon = LOUDRED,25
-    AbilityIndex = 1
-	Moves = ECHOEDVOICE
-Pokemon = DONPHAN,25
-    AbilityIndex = 0
-	Moves = KNOCKOFF,ASSURANCE,PROTECT
+Pokemon = MAGNETON,25
+	AbilityIndex = 1
+	Moves = LIGHTSCREEN,SHOCKWAVE,MIRRORSHOT
+Pokemon = MORGREM,25
+	AbilityIndex = 1
+	Moves = REFLECT,ASSURANCE,PERFUMEDPUNCH
+Pokemon = POLIWHIRL,25
+	AbilityIndex = 1
+	Moves = SPATTERINGRAM,BRICKBREAK,HELPINGHAND
 #-------------------------------
 [SCHOOLKID_M,Louis]
 LoseText = "..."

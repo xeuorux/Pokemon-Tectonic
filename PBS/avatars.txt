@@ -118,10 +118,10 @@ Moves = HEAVYSLAM
 HPMult = 4
 #-------------------------------
 [MILOTIC]
-Turns = 2
+Turns = 1
 Ability = MARVELSCALE
-Moves = AQUARING,RECOVER,BRINE,DRAGONPULSE
-HPMult = 2
+Moves = BRINE,TWISTER
+HPMult = 6
 #-------------------------------
 [INCINEROAR]
 Turns = 3
