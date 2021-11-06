@@ -229,7 +229,7 @@ HPMult = 10
 [SALAZZLE]
 Turns = 2
 Ability = SPECIALIST
-Moves = VENOSHOCK,IGNITE
+Moves = VENOSHOCK,IGNITE,POISONGAS
 HPMult = 3
 #-------------------------------
 [KOMMOO]
