@@ -413,8 +413,9 @@ Pokemon = LUXIO,25
     AbilityIndex = 1
 Pokemon = MARSHTOMP,25
     AbilityIndex = 1
-Pokemon = PIKACHU,25
+Pokemon = CHARJABUG,25
     AbilityIndex = 0
+	Moves = STRINGSHOT,CLACKACLACK,LIGHTSHOW,RISINGVOLTAGE
 	Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Helena,Helena,1]
@@ -428,8 +429,9 @@ Pokemon = LUXIO,25
 Pokemon = CLAUNCHER,25
     Moves = TERRAINPULSE,AQUAJET,WATERPULSE
     AbilityIndex = 0
-Pokemon = PIKACHU,25
+Pokemon = CHARJABUG,25
     AbilityIndex = 0
+	Moves = STRINGSHOT,CLACKACLACK,LIGHTSHOW,RISINGVOLTAGE
 	Item = SITRUSBERRY
 Pokemon = MARSHTOMP,25
     AbilityIndex = 1
