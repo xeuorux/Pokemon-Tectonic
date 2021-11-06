@@ -830,13 +830,13 @@ Pokemon = SABLEYE,26
 #-------------------------------
 [TRAINER_Lucile,Lucile]
 LoseText = "..."
-Pokemon = WHISMUR,19
+Pokemon = WHISMUR,18
 	AbilityIndex = 1
 	Name = Pippin
-Pokemon = ARON,20
+Pokemon = ARON,19
 	AbilityIndex = 0
 	Name = Pebble
-Pokemon = JANGMOO,21
+Pokemon = JANGMOO,20
 	Name = Buttercup
 #-------------------------------
 [TRAINER_Lucile,Lucile,1]
