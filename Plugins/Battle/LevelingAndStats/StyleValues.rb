@@ -220,6 +220,11 @@ class StyleValueScreen
 			@pool += 1
 			@scene.pool = @pool
 			pbPlayDecisionSE
+		elsif @pool > 0 && Input.trigger?(Input::LEFT)
+			pkmn.ev[stat] = [@pool,20].min
+			@pool -= pkmn.ev[stat]
+			@scene.pool = @pool
+			pbPlayDecisionSE
 		elsif Input.time?(Input::LEFT) < 20000
 			pbPlayBuzzerSE
 		end
