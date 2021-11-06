@@ -743,3 +743,8 @@ end
 def pbSilentItem(item,quantity=1)
 	$PokemonBag.pbStoreItem(item,quantity)
 end
+
+def showThinkingOverFollower(followerName = "Yezera")
+	event = pbGetDependency(followerName)
+	$scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,event.x,event.y)
+end
