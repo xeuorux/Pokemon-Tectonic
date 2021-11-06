@@ -24940,7 +24940,7 @@ Type2 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 48,44,40,77,71,40
 # Total = 320
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 64
 EffortPoints = 0,0,0,1,0,0
@@ -24957,7 +24957,7 @@ Weight = 4.8
 Color = Black
 Shape = Head
 Kind = Toxic Lizard
-Pokedex = The males will do whatever the females tell them. They give the females most of their food. Due to malnutrition, the males can't evolve.
+Pokedex = The males will do whatever the females tell them. They give the females most of their food. If the males got enough nutrition, they would also evolve. 
 WildItemUncommon = SMOKEBALL
 BattlerPlayerX = 0
 BattlerPlayerY = 23
@@ -24965,7 +24965,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SALAZZLE,LevelFemale,33,SALAZZLE,ItemMale,SALANDITFEED
+Evolutions = SALAZZLE,Level,33
 #-------------------------------
 [758]
 Name = Salazzle
