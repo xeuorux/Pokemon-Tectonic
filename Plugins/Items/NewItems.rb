@@ -129,9 +129,9 @@ ItemHandlers::UseFromBag.add(:EXPEZDISPENSER,proc { |item|
 	sCandyTotal = sCandyTotal % 4
 	if sCandyTotal > 0 || xsCandyTotal > 0 || mCandyTotal > 0
 		if pbConfirmMessage(_INTL("You can make {1} Medium, {2} Small and {3} Extra-Small candies. Would you like to?", mCandyTotal, sCandyTotal, xsCandyTotal))
+			pbReceiveItem(:EXPCANDYM,mCandyTotal) if mCandyTotal > 0
+			pbReceiveItem(:EXPCANDYS,sCandyTotal) if sCandyTotal > 0
 			pbReceiveItem(:EXPCANDYXS,xsCandyTotal) if xsCandyTotal > 0
-			pbReceiveItem(:EXPCANDYXS,sCandyTotal) if sCandyTotal > 0
-			pbReceiveItem(:EXPCANDYXS,mCandyTotal) if mCandyTotal > 0
 			$PokemonGlobal.expJAR = $PokemonGlobal.expJAR % 300
 		end
 	else
