@@ -1,4 +1,4 @@
-didBattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
+BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
   proc { |ability,battler,user,status|
     next if !user || user.index==battler.index
     case status
