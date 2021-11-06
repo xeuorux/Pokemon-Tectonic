@@ -585,8 +585,24 @@ class PokemonPokedex_Scene
   end
   
   def searchByMoveLearned()
-	  learningMethodSelection = pbMessage("Which method?",[_INTL("Any"),_INTL("Level Up"),_INTL("Tutor"),_INTL("Cancel")],4)
-	  return if learningMethodSelection == 3
+	  learningMethodSelection = pbMessage("Which method?",[_INTL("Any"),_INTL("Level Up"),_INTL("By Specific Level"),_INTL("Tutor"),_INTL("Cancel")],5)
+	  return if learningMethodSelection == 4
+	  
+	  if learningMethodSelection == 2
+		while true
+			levelTextInput = pbEnterText(_INTL("Enter level..."), 0, 3)
+			return nil if levelTextInput.blank?
+			reversed = levelTextInput[0] == '-'
+			levelTextInput = levelTextInput[1..-1] if reversed
+
+			levelIntAttempt = levelTextInput.to_i
+			if levelIntAttempt == 0
+				pbMessage(_INTL("Invalid level input."))
+				next
+			end
+			break
+		end
+	  end
       
 	  while true
 		  moveNameInput = pbEnterText("Move name...", 0, 16)
@@ -613,15 +629,26 @@ class PokemonPokedex_Scene
 					
 					if learningMethodSelection == 0 || learningMethodSelection == 1
 						lvlmoves = item[11]
-						lvlmoves.each do |move|
-						  if move[1] == actualMove
+						lvlmoves.each do |learnset_entry|
+						  if learnset_entry[1] == actualMove
 							contains = true
 							break
 						  end
 						end
 					end
 					
-					if learningMethodSelection == 0 || learningMethodSelection == 2
+					if learningMethodSelection == 2
+						lvlmoves = item[11]
+						lvlmoves.each do |learnset_entry|
+							break if learnset_entry[0] > levelIntAttempt
+							if learnset_entry[1] == actualMove
+								contains = true
+								break
+							end
+						end
+					end
+					
+					if learningMethodSelection == 0 || learningMethodSelection == 3
 						eggmoves = item[13]
 						eggmoves.each do |move|
 						  if move == actualMove
