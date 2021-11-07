@@ -889,42 +889,40 @@ Pokemon = HATTREM,27
 Pokemon = FURRET,28
 #-------------------------------
 [POKEMONRANGER_M,Connor]
-LoseText = "That's no Pokemon!"
-Pokemon = FRILLISH,27
-Pokemon = GROVYLE,28
 Pokemon = DRIFBLIM,28
 	Moves = HEATWAVE,OMINOUSWIND,HEX,THUNDERWAVE
 Pokemon = BRELOOM,29
+Pokemon = GYAMASK,28
 #-------------------------------
 [BACKPACKER_F,Aiyana]
-Pokemon = BRONZOR,28
+Pokemon = TANGELA,28
+Pokemon = GOURGEIST,28
 Pokemon = BUTTERFREE,28
-Pokemon = MANECTRIC,28
 #-------------------------------
 [POKEMONRANGER_F2,Alyssa]
-Pokemon = SLURPUFF,28
-Pokemon = MORPEKO,28
-Pokemon = ARBOK,29
+Pokemon = GROTLE,27
+Pokemon = LAMPENT,28
+Pokemon = EKANS,27
 #-------------------------------
 [CAMPER,Christian]
-Pokemon = MILTANK,27
 Pokemon = ORICORIO,28
-	Form = 0
+	Form = 3
+Pokemon = SKIPLOOM,27
 Pokemon = QUAGSIRE,28
 #-------------------------------
 [POKEMONRANGER_F,Val]
-Pokemon = UMBREON,28
-Pokemon = FLOATZEL,28
+Pokemon = BANETTE,28
 Pokemon = CHERRIM,29
+Pokemon = FLOATZEL,27
 #-------------------------------
 [AROMALADY,Cheshire]
 Pokemon = STEENEE,28
 Pokemon = WATCHOG,28
-Pokemon = SCYTHER,29
+Pokemon = SHEDINJA,29
 #-------------------------------
 [CLOWN,Klemens]
 Pokemon = AIPOM,27
-Pokemon = TAILLOW,28
+Pokemon = SWELLOW,28
 Pokemon = DREEPY,27
 #-------------------------------
 [BACKPACKER_M,Freedom]

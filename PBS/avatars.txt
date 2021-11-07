@@ -112,9 +112,9 @@ Moves = LEAFTORNADO,THIEF,FLING
 HPMult = 5
 #-------------------------------
 [COPPERAJAH]
-Turns = 3
+Turns = 2
 Ability = FASCINATE
-Moves = HEAVYSLAM
+Moves = HEAVYSLAM,METALCLAW
 HPMult = 4
 #-------------------------------
 [MILOTIC]
@@ -469,42 +469,36 @@ Moves = WILLOWISP,HEX
 #-----------------------------
 [ELDEGOSS]
 Turns = 2
-HPMult = 3
+HPMult = 4
 Ability = GRASSYSURGE
 Moves = POISONPOWDER,MAGICALLEAF
 #-----------------------------
 [CHIMECHO]
-Turns = 3
-HPMult = 3
+Turns = 2
+HPMult = 4
 Ability = MAGICBOUNCE
 Moves = UPROAR
 #-----------------------------
-[COFAGRIGUS]
-Turns = 3
-HPMult = 3
-Ability = HEARTOFJUSTICE
-Moves = SHADOWCLAW,WILLOWISP,CRAFTYSHIELD
-#-----------------------------
 [DECIDUEYE]
-Turns = 3
-HPMult = 3
+Turns = 1
+HPMult = 6
 Ability = TRAPPER
-Moves = SPIRITSHACKLE,PHANTOMFORCE
+Moves = SPIRITSHACKLE,LEAFBLADE
 #-----------------------------
 [MANIKLAW]
-Turns = 3
+Turns = 2
 HPMult = 3
 Ability = INSOMNIA
-Moves = SOULRIP,KNOCKOFF
+Moves = SOULCLAW,SHADOWCLAW
 #-----------------------------
 [SAWSBUCK]
-Turns = 3
-HPMult = 2.5
+Turns = 2
+HPMult = 2
 Ability = SERENEGRACE
 Moves = DOUBLEEDGE,HORNLEECH
 #-----------------------------
 [LEAFEON]
-Turns = 3
+Turns = 1
 HPMult = 3
 Ability = LEAFGUARD
 Moves = RAZORLEAF,SYNTHESIS

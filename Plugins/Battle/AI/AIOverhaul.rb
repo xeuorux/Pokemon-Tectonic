@@ -61,7 +61,7 @@ class PokeBattle_AI
       end
       PBDebug.log(logMsg)
 	# Decide whether all choices are bad, and if so, try switching instead
-    if !wildBattler && skill>=PBTrainerAI.mediumSkill
+    if !wildBattler
       badMoves = false
       if (maxScore<=20 && user.turnCount>2) ||
          (maxScore<=40 && user.turnCount>5)
@@ -109,7 +109,7 @@ class PokeBattle_AI
 		end
 		
 		# Pick the most preferred move
-		if skill>=PBTrainerAI.mediumSkill && preferredMove != nil
+		if !preferredMove.nil?
 		  PBDebug.log("[AI] #{user.pbThis} (#{user.index}) prefers #{user.moves[preferredMove[0]].name}")
 		  @battle.pbRegisterMove(idxBattler,preferredMove[0],false)
 		  @battle.pbRegisterTarget(idxBattler,preferredMove[2]) if preferredMove[2]>=0
@@ -687,40 +687,17 @@ class PokeBattle_AI
         multipliers[:base_damage_multiplier] *= 2
       end
     end
-    # Mud Sport and Water Sport
-    if skill>=PBTrainerAI.mediumSkill
-      if type == :ELECTRIC
-        @battle.eachBattler do |b|
-          next if !b.effects[PBEffects::MudSport]
-          multipliers[:base_damage_multiplier] /= 3
-          break
-        end
-        if @battle.field.effects[PBEffects::MudSportField]>0
-          multipliers[:base_damage_multiplier] /= 3
-        end
-      end
-      if type == :FIRE
-        @battle.eachBattler do |b|
-          next if !b.effects[PBEffects::WaterSport]
-          multipliers[:base_damage_multiplier] /= 3
-          break
-        end
-        if @battle.field.effects[PBEffects::WaterSportField]>0
-          multipliers[:base_damage_multiplier] /= 3
-        end
-      end
-    end
     # Terrain moves
     if skill>=PBTrainerAI.mediumSkill
       case @battle.field.terrain
       when :Electric
-        multipliers[:base_damage_multiplier] *= 1.5 if type == :ELECTRIC && user.affectedByTerrain?
+        multipliers[:base_damage_multiplier] *= 1.3 if type == :ELECTRIC && user.affectedByTerrain?
       when :Grassy
-        multipliers[:base_damage_multiplier] *= 1.5 if type == :GRASS && user.affectedByTerrain?
+        multipliers[:base_damage_multiplier] *= 1.3 if type == :GRASS && user.affectedByTerrain?
       when :Psychic
-        multipliers[:base_damage_multiplier] *= 1.5 if type == :PSYCHIC && user.affectedByTerrain?
+        multipliers[:base_damage_multiplier] *= 1.3 if type == :PSYCHIC && user.affectedByTerrain?
       when :Misty
-        multipliers[:base_damage_multiplier] /= 2 if type == :DRAGON && target.affectedByTerrain?
+        multipliers[:base_damage_multiplier] *= 1.3 if type == :FAIRY && target.affectedByTerrain?
       end
     end
     # Multi-targeting attacks
@@ -763,10 +740,8 @@ class PokeBattle_AI
       end
     end
     # Type effectiveness
-    if skill>=PBTrainerAI.mediumSkill
-      typemod = pbCalcTypeMod(type,user,target)
-      multipliers[:final_damage_multiplier] *= typemod.to_f / Effectiveness::NORMAL_EFFECTIVE
-    end
+    typemod = pbCalcTypeMod(type,user,target)
+    multipliers[:final_damage_multiplier] *= typemod.to_f / Effectiveness::NORMAL_EFFECTIVE
     # Burn
     if skill>=PBTrainerAI.highSkill
       if user.status == :BURN && move.physicalMove?(type) &&
@@ -779,7 +754,7 @@ class PokeBattle_AI
 		end
       end
     end
-	# Burn
+	# Poison
     if skill>=PBTrainerAI.highSkill
       if user.status == :POISON && move.specialMove?(type) &&
          !user.hasActiveAbility?(:AUDACITY) &&

@@ -295,7 +295,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [061]
-# Sailors house
+# Sailor's House
 HealingSpot = 59,26,12
 #-------------------------------
 [063]
@@ -353,7 +353,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
-HealingSpot = 8,21,27
+HealingSpot = 8,55,11
 #-------------------------------
 [101]
 # Dream Space
@@ -440,7 +440,7 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [115]
-# Avatar Sinkhole 2
+# Weird Sinkhole
 Outdoor = false
 ShowArea = false
 Bicycle = true

@@ -721,6 +721,7 @@ BattlerShadowSize = 2
 Name = Ekans
 InternalName = EKANS
 Type1 = POISON
+Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 35,70,44,75,40,44
 # Total = 308
@@ -748,7 +749,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ARBOK,Level,22
+Evolutions = ARBOK,Level,30
 #-------------------------------
 [24]
 Name = Arbok
@@ -20017,7 +20018,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LAMPENT,Level,41
+Evolutions = LAMPENT,Level,26
 #-------------------------------
 [608]
 Name = Lampent
