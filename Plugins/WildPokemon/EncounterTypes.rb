@@ -417,6 +417,15 @@ GameData::EncounterType.register({
   :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
 })
 
+
+# A special encounter type only used to mark other items
+GameData::EncounterType.register({
+  :id             => :Special,
+  :type           => :none,
+  :trigger_chance => 0,
+  :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
+})
+
 # Show grass rustle animation, and auto-move the player over waterfalls and ice
 Events.onStepTakenFieldMovement += proc { |_sender, e|
   event = e[0]   # Get the event affected by field movement
