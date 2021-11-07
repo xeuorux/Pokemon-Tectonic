@@ -14,7 +14,6 @@ class PokeBattle_Scene
       noFlip = true if anim
       anim = move2anim[0][id_number] if !anim
     end
-	testVariable = anim+hitNum
 #    echoln (_INTL("anim is {1}\n hitNum = {2} \nanim + hitNum is {4}\n this method is returning ({2},{3})",anim,hitNum,noFlip,testVariable))
 #currently the bounce animation does not exist, but this is not likely why the pokemon is not disappearing
     return [anim+hitNum,noFlip] if anim
