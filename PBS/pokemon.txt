@@ -2671,7 +2671,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MAGNETON,Level,30
+Evolutions = MAGNETON,Level,25
 #-------------------------------
 [82]
 Name = Magneton
@@ -28287,7 +28287,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MORGREM,Level,32
+Evolutions = MORGREM,Level,24
 #-------------------------------
 [860]
 Name = Morgrem
