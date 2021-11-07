@@ -110,8 +110,9 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
     end
   end
 
-  def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
+  def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)	
     hitNum = 1 if @chargingTurn && !@damagingTurn   # Charging anim
+	echoln (_INTL("hitnum = {1}",hitNum))
     super
   end
 end
