@@ -464,7 +464,7 @@ class PokeBattle_Move
 		multipliers[:final_damage_multiplier] *= typeEffect
 		# Burn
 		if user.burned? && physicalMove? && damageReducedByBurn? &&
-		   !user.hasActiveAbility?(:GUTS)
+		   !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
 		  if !user.boss?
 			multipliers[:final_damage_multiplier] *= 2.0/3.0
 		  else
@@ -473,7 +473,7 @@ class PokeBattle_Move
 		end
 		# Poison
 		if user.poisoned? && user.statusCount == 0 && specialMove? && damageReducedByBurn? &&
-		   !user.hasActiveAbility?(:AUDACITY)
+		   !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:POISONHEAL)
 		  if !user.boss?
 			multipliers[:final_damage_multiplier] *= 2.0/3.0
 		  else
