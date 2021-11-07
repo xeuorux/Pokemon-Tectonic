@@ -413,6 +413,7 @@ Pokemon = LUXIO,25
     AbilityIndex = 1
 Pokemon = MARSHTOMP,25
     AbilityIndex = 1
+	Moves = SPATTERINGRAM,SANDTOMB,FORCEPALM,FACADE
 Pokemon = CHARJABUG,25
     AbilityIndex = 0
 	Moves = STRINGSHOT,CLACKACLACK,LIGHTSHOW,RISINGVOLTAGE
@@ -435,6 +436,7 @@ Pokemon = CHARJABUG,25
 	Item = SITRUSBERRY
 Pokemon = MARSHTOMP,25
     AbilityIndex = 1
+	Moves = SPATTERINGRAM,SANDTOMB,FORCEPALM,FACADE
 	Item = ELECTRICSEED
 #-------------------------------
 [IDOL,Ishizu]
@@ -971,7 +973,7 @@ Pokemon = NUZLEAF,30
     Moves = MAGICALLEAF,REST,PAYBACK,SELFDESTRUCT
     Item = SITRUSBERRY
 #-------------------------------
-[LASS2,Lainie]
+[ARCHFRIEND_Lainie,Lainie]
 Pokemon = ARIADOS,35
     Moves = STICKYWEB,XSCISSOR,SWORDSDANCE,BATONPASS
     AbilityIndex = 1

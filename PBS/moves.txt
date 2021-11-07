@@ -703,7 +703,7 @@
 684,SMARTHORN,Smart Horn,0A5,70,STEEL,Physical,0,10,0,NearOther,0,abef,The user stabs the target with a sharp horn. This attack never misses.
 685,STEELWING,Steel Wing,01D,70,STEEL,Physical,100,25,30,NearOther,0,abef,The target is hit with wings of steel. It has a 30% chance to raise Def.
 686,DOUBLEIRONBASH,Double Iron Bash,175,60,STEEL,Physical,100,5,30,NearOther,0,abf,"The user rotates, centering the hex nut in its chest, and then strikes twice. Each hit has a 30% chance to cause flinching."
-687,MIRRORSHOT,Mirror Shot,047,65,STEEL,Special,85,10,30,NearOther,0,bef,The user looses a flash of energy from its polished body. It has a 30% chance to lower accuracy.
+687,MIRRORSHOT,Mirror Shot,047,60,STEEL,Special,100,10,30,NearOther,0,bef,The user looses a flash of energy from its polished body. It has a 30% chance to lower accuracy.
 688,MAGNETBOMB,Magnet Bomb,0A5,50,STEEL,Physical,0,20,0,NearOther,0,befn,The user launches steel bombs that stick to the target. This attack will not miss.
 689,GEARGRIND,Gear Grind,0BD,45,STEEL,Physical,100,15,0,NearOther,0,abef,The user attacks by grinding two of its steel gears against the target.
 690,METALCLAW,Metal Claw,01C,50,STEEL,Physical,100,35,15,NearOther,0,abef,The target is raked with steel claws. It has a 15% chance to raise Attack.
@@ -831,7 +831,7 @@
 811,VANGUARD,Vanguard,513,0,STEEL,Status,100,20,100,User,0,d,"The user enters a protective stance, boosting both its Def. and Sp. Atk. stats."
 812,FLOWSTATE,Flow State,512,0,WATER,Status,100,20,100,User,0,d,"The user gains an instinctual knowledge of battle, boosting both its Atk. and Sp. Def. stats."
 814,COLDCONVERSION,Cold Conversion,51B,130,ICE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user uses up its Ice-type."
-815,VENOMLEECH,Venom Leech,51A,75,POISON,Physical,100,10,20,NearOther,0,abef,"The user drains the target's blood with venomous teeth. The user's HP is restored by a third of the damage dealt. 20% chance to toxify."
+815,VENOMLEECH,Venom Leech,51A,70,POISON,Physical,100,10,20,NearOther,0,abef,"The user chomps with venomous teeth. The user's HP is restored by a third of the damage dealt. 20% chance to poison."
 816,REFLEXOVERDRIVE,Reflex Overdrive,519,110,PSYCHIC,Physical,0,10,0,Other,0,abef,"Lands without fail and lowers the user's defense and speed."
 817,DOUSE,Douse,518,40,WATER,Special,100,25,0,NearFoe,0,bef,"The user douses the target, healing itself by a third of its max. HP in the process."
 818,AQUAINSTINCT,Aqua Instinct,517,65,WATER,Physical,100,10,0,NearOther,0,bef,"The user preys on the target. This move goes first if the target is below half health."
@@ -945,7 +945,7 @@
 926,GLITTERSLASH,Glitter Slash,546,65,FAIRY,Physical,100,20,0,NearOther,0,abefp,"The user slashes at the opponent with a glittering aura, guaranteeing a critical hit on foes with boosted stats."
 927,LUNARJUSTICE,Lunar Justice,546,85,FAIRY,Physical,100,10,0,NearOther,0,abefp,"The user attacks with the power of the moon, guaranteeing a critical hit on foes with boosted stats."
 928,POISONSPIKES,Poison Spikes,104,0,POISON,Status,0,20,0,FoeSide,0,c,The user lays a trap of poison spikes at the foe's feet. They poison foes that switch into battle.
-929,ENVENOM,Envenom,005,0,POISON,Status,100,40,0,NearFoe,0,bce,A concentrated glob of poison is strategically fired at the enemy. It poisons those hit.
+929,ENVENOM,Envenom,005,0,POISON,Status,100,40,0,NearFoe,0,bce,Venom is strategically introduced into the target, poisoning it.
 930,CHAOSWHEEL,Chaos Wheel,547,80,NORMAL,Physical,100,10,20,NearOther,0,bef,"The user thrashes furiously while infused with elements. It has a 6.67% chance each to paralyze, burn, or chill."
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."

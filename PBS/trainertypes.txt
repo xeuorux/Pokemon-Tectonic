@@ -176,6 +176,7 @@
 173,IRISCOSPLAYER,Cosplayer,128,,,,Female,,
 174,TRAINER_Vincent,Pokémon Trainer,100,,,,Male,,
 175,TRAINER_Lucile,Pokémon Trainer,100,,,,Female,,
+299,ARCHFRIEND_Lainie,Archfriend,100,Battle Gym Leader,Battle victory leader,,Female,,[LAINIE]
 300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,[YEZERA]
 301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,[LAMBERT]
 302,LEADER_Eko,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,[EKO]
