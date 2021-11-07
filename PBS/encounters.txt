@@ -9,13 +9,13 @@ FloweryGrass,20
 25,PIDGEY,7,9
 #-------------------------------
 [35] # Impromptu Lab
-Land,20
+Special,20
 1,KRABBY,10,10
 1,NUMEL,10,10 
 1,TREECKO,10,10 
 #-------------------------------
 [027] # Casaba Mart
-Land,20
+Special,20
 1,ASANDSHREW,10,10
 #-------------------------------
 [034] # Scenic Path
@@ -43,7 +43,7 @@ LandTall,20
 20,STUNKY,8,10
 20,NICKIT,8,10
 20,IMPIDIMP,8,10
-Mud,20
+Special,20
 1,PIDOVE,15,15
 #-------------------------------
 [030] # Small Mine
@@ -113,19 +113,19 @@ FloweryGrass,20
 25,SMOOCHUM,15,18
 #-------------------------------
 [32] # Nemeth Apartments
-LandSparse
+Special
 1,TRAPINCH,15,15
 #-------------------------------
 [71] # Nemeth Apartments Room 103
-LandSparse
+Special
 1,MAREANIE,15,15
 #-------------------------------
 [74] # Nemeth Apartments Room 203
-LandSparse
+Special
 1,GYAMASK,15,15
 #-------------------------------
 [51] # Starters Store
-Land
+Special
 1,BULBASAUR,10,10
 1,CHIKORITA,10,10
 1,TURTWIG,10,10
@@ -134,6 +134,7 @@ Land
 1,ROWLET,10,10
 1,GROOKEY,10,10
 1,CHARMANDER,10,10
+1,CYNDAQUIL,10,10
 1,TORCHIC,10,10
 1,CHIMCHAR,10,10
 1,TEPIG,10,10
@@ -142,6 +143,7 @@ Land
 1,SCORBUNNY,10,10
 1,SQUIRTLE,10,10
 1,TOTODILE,10,10
+1,MUDKIP,10,10
 1,PIPLUP,10,10
 1,OSHAWOTT,10,10
 1,FROAKIE,10,10
@@ -149,11 +151,11 @@ Land
 1,SOBBLE,10,10
 #-------------------------------
 [4] # Scientist's House
-Land,1
+Special,1
 1,AGEODUDE,15,15
 #-------------------------------
 [20] # Lengthy Glade
-Land,1
+Special,1
 1,GPONYTA,15,15
 #-------------------------------
 [3] # Savannah Route
@@ -173,17 +175,16 @@ LandTinted,20
 33,SKWOVET,15,18
 33,PATRAT,15,18
 34,ZIGZAGOON,15,18
-Mud,20
+Special,20
 1,ELEKID,15,15
 #-------------------------------
 [25] # Mining Camp
 Land,20
-20,PLUSLE,15,18
-20,MINUN,15,18
-20,TYROGUE,15,18
-20,ESPURR,15,18
-20,BELLSPROUT,15,18
-Mud,20
+25,PLUSLE,15,18
+25,MINUN,15,18
+25,TYROGUE,15,18
+25,ESPURR,15,18
+Special,20
 1,BLIPBUG,15,15
 #-------------------------------
 [36] # Abandoned Mine
@@ -212,7 +213,7 @@ FloweryGrass2,20
 LandTinted,20
 25,FARFETCHD,15,18
 25,SHELMET,15,18
-Mud,20
+Special,20
 1,SHUPPET,15,15
 #-------------------------------
 [6] # LuxTech
@@ -238,7 +239,7 @@ FloweryGrass,20
 LandTinted,20
 50,YUNGOOS,14,17
 50,KARRABLAST,14,17
-Mud,1
+Special,1
 1,DRIFLOON,14,17
 #-------------------------------
 [37] # Ice Rink Town
@@ -258,7 +259,7 @@ Land,20
 [7] # Swamp Route
 Land,20
 33,CROAGUNK,18,20
-33,FOONGUS,18,20
+33,SPEAROW,18,20
 33,ZORUA,18,20
 LandSparse,20
 33,MURKROW,18,20
@@ -267,10 +268,10 @@ LandSparse,20
 LandTinted,20
 50,SURSKIT,18,20
 50,TYMPOLE,18,20
-Mud,20
+Special,20
 1,ADIGLETT,15,15
 #-------------------------------
-[8] #Ghost Town...?
+[8] # Ghost Town
 LandSparse,20
 25,GLAMEOW,18,20
 25,LOTAD,18,20
@@ -340,31 +341,31 @@ DarkCave,20
 25,MAWILE,17,20
 #-------------------------------
 [78] # LuxTech Main
-Mud,20
+Special,20
 1,WIMPOD,15,15
 #-------------------------------
 [85] # Worried Man's House
-Mud,20
+Special,20
 1,HORSEA,15,15
 #-------------------------------
 [87] # LuxTech Apartments
-Mud,20
+Special,20
 1,MIENFOO,15,15
 #-------------------------------
 [103] # Ghost Town Mart
-Mud,20
+Special,20
 1,SLUGMA,15,15
 #-------------------------------
 [86] # Zigzagoon Nest
-Mud,20
+Special,20
 1,GZIGZAGOON,15,15
 #-------------------------------
 [90] #Ice Rink Employees' House
-Mud,20
+Special,20
 1,GOOMY,15,15
 #-------------------------------
 [92] # Ice Rink Lodge F2 Left Room
-Mud,1
+Special,1
 1,AGRIMER,14,17
 #-------------------------------
 [121] # Mountain Climb
@@ -374,11 +375,11 @@ Land,20
 20,CUBCHOO,18,20
 20,CLEFFA,18,20
 20,MIENFOO,18,20
-Mud,20
+Special,20
 1,HAPPINY,15,15
 #-------------------------------
 [122] # Sewers
-Land,20
+Special,20
 1,VOLTORB,17,19
 SewerWater,20
 50,GRIMER,17,19
@@ -388,3 +389,20 @@ SewerFloor,20
 33,VOLTORB,17,19
 33,TRUBBISH,17,19
 #-------------------------------
+[066] # Nemeth Apartments Attic
+Special,20
+1,ABSOL,15,15
+#-------------------------------
+[123] # Nemeth Academy
+Special,20
+1,OMANYTE,10,10
+1,KABUTO,10,10
+1,AERODACTYL,40,40
+1,LILEEP,10,10
+1,ANORITH,10,10
+1,SHIELDON,10,10
+1,CRANIDOS,10,10
+1,ARCHEN,10,10
+1,TIRTOUGA,10,10
+1,AMAURA,10,10
+1,TYRUNT,10,10

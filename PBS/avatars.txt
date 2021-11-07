@@ -214,9 +214,15 @@ Moves = DRAGONTAIL,STEALTHROCK,ROCKSLIDE,CRUNCH
 HPMult = 5
 #-------------------------------
 [SKARMORY]
-Turns = 3
+Turns = 1
 Ability = SOUNDPROOF
-Moves = SPIKES,WHIRLWIND,STEELWING,DRILLPECK
+Moves = SPIKES,WHIRLWIND,DRILLPECK
+HPMult = 8
+#-------------------------------
+[ELECTRODE]
+Turns = 2
+Ability = SOUNDPROOF
+Moves = SHOCKWAVE,SWIFT
 HPMult = 4
 #-------------------------------
 [WAILORD]
@@ -225,12 +231,6 @@ SizeMult = 2
 Ability = PRESSURE
 Moves = BODYPRESS,BODYSLAM,SELFDESTRUCT,SURF
 HPMult = 10
-#-------------------------------
-[SALAZZLE]
-Turns = 2
-Ability = SPECIALIST
-Moves = VENOSHOCK,IGNITE,POISONGAS
-HPMult = 3
 #-------------------------------
 [KOMMOO]
 Turns = 3

@@ -1,10 +1,10 @@
 ﻿#-------------------------------
 [] # City 1
 Land,20
-25,GZIGZAGOON,31,33
+25,SNUBBULL,31,33
 25,PIDOVE,31,33
 25,HAPPINY,31,33
-25,GLAMEOW,31,33
+25,SKITTY,31,33
 #-------------------------------
 [] # Slums
 Land,20
@@ -34,16 +34,22 @@ SandPit,20
 25,HIPPOPOTAS,31,33
 25,TRAPINCH,31,33
 #-------------------------------
+[] # Oasis Town
+25,ELGYEM,36,39
+25,MUNNA,36,39
+25,DURALUDON,36,39
+25,SIGILYPH,36,39
+#-------------------------------
 [] # Rock Pad
 25,ELGYEM,36,39
 25,MUNNA,36,39
 25,DURALUDON,36,39
-25,LARVESTA,36,39
+25,SIGILYPH,36,39
 #-------------------------------
 [] # Regirock Area
 25,YAMASK,36,39
 25,STONJOURNER,36,39
-25,SIGILYPH,36,39
+25,CARBINK,36,39
 25,SOLROCK,36,39
 #-------------------------------
 [] # Catacombs

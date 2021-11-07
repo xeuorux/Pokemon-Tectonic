@@ -297,7 +297,6 @@ class PokemonPokedex_Scene
 				evoSpecies = evolutionEntry[0]
 				@dexlist.each do |searchDexEntry|
 					if searchDexEntry[0] == evoSpecies
-						echoln("Disqualifying #{dexEntry[0]}")
 						disqualify = true
 					end
 					break if disqualify
@@ -765,11 +764,11 @@ class PokemonPokedex_Scene
 			15 => [33,34,29,30,38,26, # Casaba Villa, Scenic Path, Mine Path, Small Mine, Beach Route, Seaside Grotto
 					35,27		# Impromptu Lab, Casaba Mart
 			], 
-			30 => [60,56,51, 	 # Forested Road, Suburb, Starters Store
+			30 => [60,56,51,66,123, 	 # Forested Road, Suburb, Starters Store, Nemeth Attic, Nemeth Academy
 					3,25,55,6,	 # Savannah Route, Mining Camp, Flower Fields, LuxTech Campus
-					54,37,7,8,53, # Rolling Hills Route, Ice Rink, Swamp Route, Jungle Route
-					117,36,10,12, # Ice Cave, Abandoned Mine, Jungle Temple, Shortcut Cave
-					13,11,122,		# Cave Path, River Route, Sewer
+					54,37,7,8,53, # Crossroads, Ice Rink, Swamp Route, Jungle Route
+					117,36,10,12, # Ice Cave, Abandoned Mine, Jungle Temple, Gigalith's Guts
+					13,11,122,120,121,		# Cave Path, River Route, Sewer, Deep Layer, Mountain Climb
 					
 					4,20,86,       # Scientist's House, Lengthy Glade, Zigzagoon Nest
 					78,87,103,92,    # LuxTech Main, LuxTech Apartments, Ghost Town Mart, Ice Rink Lodge
@@ -805,7 +804,7 @@ class PokemonPokedex_Scene
 					
 					levelThreshold = currentPrevo[2]
 					if levelThreshold <= levelIntAttempt
-						echoln("Adding #{currentPrevo[0]} to the checks for #{item[0]} based on level evo.")
+						#echoln("Adding #{currentPrevo[0]} to the checks for #{item[0]} based on level evo.")
 						speciesToCheckLocationsFor.push(currentPrevo[0])
 					else
 						break
@@ -823,7 +822,7 @@ class PokemonPokedex_Scene
 					end
 					if itemAvailable
 						speciesToCheckLocationsFor.push(currentPrevo[0])
-						echoln("Adding #{currentPrevo[0]} to the checks for #{item[0]} based on item evo.") if itemAvailable
+						#echoln("Adding #{currentPrevo[0]} to the checks for #{item[0]} based on item evo.") if itemAvailable
 					else
 						break
 					end
@@ -1030,9 +1029,7 @@ class PokemonPokedex_Scene
 				survivesSearch = true
 				typesSearchInfo.each do |type,reversed|
 					effect = Effectiveness.calculate(type,item[6],item[7])
-				
-					echoln("Effectiveness of #{type} vs #{item[6]}/#{item[7]}: #{effect}")
-				
+							
 					case sectionSelection
 					when 0
 						survivesSearch = false if !Effectiveness.super_effective?(effect) ^ reversed
