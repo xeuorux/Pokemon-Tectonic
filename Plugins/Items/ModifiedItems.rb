@@ -253,7 +253,7 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:MARANGABERRY,
     next false if !forced && !battler.canConsumeBerry?
     next false if !battler.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,battler)
     itemName = GameData::Item.get(item).name
-	ncrement = 1
+	increment = 1
 	if battler.hasActiveAbility?(:RIPEN)
       increment *=2
     end

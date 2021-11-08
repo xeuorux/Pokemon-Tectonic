@@ -1498,3 +1498,51 @@ class PokeBattle_Move_547 < PokeBattle_Move
     end
   end
 end
+
+#===============================================================================
+# Damages, while also healing the team of statuses. (Purifying Water)
+#===============================================================================
+class PokeBattle_Move_548 < PokeBattle_Move
+	def pbEffectAfterAllHits(user,target)
+		@battle.eachSameSideBattler(user) do |b|
+			next if b.status == :NONE
+			pbAromatherapyHeal(b.pokemon,b)
+		end
+		# Cure all Pokémon in the user's and partner trainer's party.
+		# NOTE: This intentionally affects the partner trainer's inactive Pokémon
+		#       too.
+		@battle.pbParty(user.index).each_with_index do |pkmn,i|
+			next if !pkmn || !pkmn.able? || pkmn.status == :NONE
+			next if @battle.pbFindBattler(i,user)   # Skip Pokémon in battle
+			pbAromatherapyHeal(pkmn)
+		end
+	end
+
+	def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
+		super
+		@battle.pbDisplay(_INTL("The area was purified!"))
+	end
+
+	def pbAromatherapyHeal(pkmn,battler=nil)
+		oldStatus = (battler) ? battler.status : pkmn.status
+		curedName = (battler) ? battler.pbThis : pkmn.name
+		if battler
+		  battler.pbCureStatus(false)
+		else
+		  pkmn.status      = :NONE
+		  pkmn.statusCount = 0
+		end
+		case oldStatus
+		when :SLEEP
+		  @battle.pbDisplay(_INTL("{1} was woken from sleep.",curedName))
+		when :POISON
+		  @battle.pbDisplay(_INTL("{1} was cured of its poisoning.",curedName))
+		when :BURN
+		  @battle.pbDisplay(_INTL("{1}'s burn was healed.",curedName))
+		when :PARALYSIS
+		  @battle.pbDisplay(_INTL("{1} was cured of paralysis.",curedName))
+		when :FROZEN
+		  @battle.pbDisplay(_INTL("{1} was unchilled.",curedName))
+		end
+	end
+end
