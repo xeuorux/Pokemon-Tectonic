@@ -478,3 +478,9 @@ Bicycle = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[129]
+# Barren Crater
+Outdoor = true
+ShowArea = true
+Bicycle = true
