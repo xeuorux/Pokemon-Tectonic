@@ -281,6 +281,10 @@ class PokemonPokedex_Scene
 		  @sprites["pokedex"].index = rand(@dexlist.length)
 		  @sprites["pokedex"].refresh
 		  pbRefresh
+		elsif Input.pressex?(0x47) && $DEBUG # G, for Get
+		  pbAddPokemon(@sprites["pokedex"].species,$game_variables[26])
+		elsif Input.pressex?(0x42) && $DEBUG # B, for Battle
+		  pbWildBattle(@sprites["pokedex"].species, $game_variables[26])
 		elsif Input.pressex?(0x49) && $DEBUG # I, for Investigation
 		  # Find information about the currently displayed list
 		  typesCount = {}
