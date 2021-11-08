@@ -57,7 +57,7 @@ Pokemon = MACHOP,9
 LoseText = "..."
 Pokemon = GROWLITHE,10
     AbilityIndex = 0
-Pokemon = SINISTEA,10
+Pokemon = CHEWTLE,10
     AbilityIndex = 0
 #-------------------------------
 [NINJABOY,Matthew]
