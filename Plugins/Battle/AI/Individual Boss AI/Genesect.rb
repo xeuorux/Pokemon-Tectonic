@@ -2,7 +2,7 @@ PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:GENESECT,"150"],
 	proc { |speciesAndMoveCode,user,target,move|
 		ai = user.battle.battleAI
 		baseDmg = ai.pbMoveBaseDamage(move,user,target,100)
-		realDamage = ai.pbRoughDamage(move,user,target,100,move.baseDmg)
+		realDamage = ai.pbRoughDamage(move,user,target,100,baseDmg)
 		score = 0
 		if realDamage >= target.hp
 			next true

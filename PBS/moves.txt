@@ -746,7 +746,7 @@
 727,BUBBLE,Bubble,044,30,WATER,Special,100,30,100,AllNearFoes,0,bef,A spray of countless bubbles is jetted at the opposing team. It also lowers the foe's Speed stat.
 728,WATERGUN,Water Gun,000,40,WATER,Special,100,25,0,NearOther,0,bef,The target is blasted with a forceful shot of water.
 729,CLAMP,Clamp,0CF,45,WATER,Physical,100,15,0,NearOther,0,abef,The target is clamped and squeezed by the user's very thick and sturdy shell for four to five turns.
-730,WHIRLPOOL,Whirlpool,0D0,35,WATER,Special,85,15,0,NearOther,0,bef,Traps foes in a violent swirling whirlpool for four to five turns.
+730,WHIRLPOOL,Whirlpool,0D0,45,WATER,Special,85,15,0,NearOther,0,bef,Traps foes in a violent swirling whirlpool for four to five turns.
 731,WATERSHURIKEN,Water Shuriken,0C0,15,WATER,Special,100,20,0,NearOther,1,bef,The user hits the target with throwing stars 2-5 times in a row. This move always goes first.
 732,AQUARING,Aqua Ring,0DA,0,WATER,Status,0,20,0,User,0,d,The user envelops itself in a veil made of water. It regains some HP on every turn.
 733,RAINDANCE,Rain Dance,100,0,WATER,Status,0,5,0,BothSides,0,,"The user summons a heavy rain that falls for five turns, powering up Water-type moves."
@@ -885,7 +885,7 @@
 866,PUFFBALL,Puffball,529,0,GRASS,Status,100,15,0,NearOther,0,bcel,The user bursts a ball of sleep-inducing powder. It fails unless the target hit the user this turn.
 867,MUDTHROW,Mud Throw,044,40,GROUND,Special,100,15,10,NearOther,0,bef,The user attacks by hurling a blob of mud at the target. It has a 10% chance to reduce the target's Speed.
 868,BLINDINGSAND,Blinding Sand,047,40,GROUND,Special,100,10,100,NearOther,0,bef,The user attacks the opponent by throwing sand at its eyes, reducing accuracy.
-869,PURIFYINGWATER,Purifying Water,019,50,WATER,Special,100,5,0,NearOther,0,bef,"The user shoots purified Water, healing the status problems of all the party Pokémon in the process."
+869,PURIFYINGWATER,Purifying Water,548,50,WATER,Special,100,5,0,NearOther,0,bef,"The user shoots purified Water, healing the status problems of all the party Pokémon in the process."
 870,CRITICALERROR,Critical Error,0A0,60,GHOST,Special,100,10,0,NearOther,0,bef,"The user causes a glitch in reality. This attack always results in a critical hit."
 871,SUBLIMEIMPACT,Sublime Impact,0AD,90,NORMAL,Physical,100,10,0,NearOther,0,aef,An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
 872,ADAMANTINEPRESS,Adamantine Press,000,95,ROCK,Physical,100,10,0,NearOther,0,abef,The user presses their body with great force onto the target.
