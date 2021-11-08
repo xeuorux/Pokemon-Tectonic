@@ -121,7 +121,7 @@ HPMult = 4
 Turns = 1
 Ability = MARVELSCALE
 Moves = BRINE,TWISTER
-HPMult = 6
+HPMult = 5
 #-------------------------------
 [INCINEROAR]
 Turns = 3
@@ -552,18 +552,18 @@ HPMult = 4
 [SUICUNE]
 Turns = 2
 Ability = PRESSURE
-Moves = SURF,PURIFYINGWATER,BRINE
+Moves = WHIRLPOOL,PURIFYINGWATER,BRINE
 HPMult = 4
 #-------------------------------
 [ENTEI]
 Turns = 2
 Ability = PRESSURE
-Moves = ROAR,BITE,ERUPTION
+Moves = ROAR,ERUPTION,INCINERATE
 HPMult = 4
 #-------------------------------
 [RAIKOU]
 Turns = 2
 Ability = PRESSURE
-Moves = LIGHTNINGSHRIEK,CALMMIND,SWAGGER
+Moves = LIGHTNINGSHRIEK,ELECTROBALL,THUNDERWAVE
 HPMult = 4
 #-------------------------------
