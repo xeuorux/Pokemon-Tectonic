@@ -549,6 +549,19 @@ Item = SITRUSBERRY
 Moves = CLEARSMOG,BELCH
 HPMult = 4
 #-------------------------------
+[DURALUDON]
+Turns = 3
+Ability = SANDSTREAM
+Item = SMOOTHROCK
+Moves = BREAKINGSWIPE,SCREECH,DRAGONROAR
+HPMult = 4
+#-------------------------------
+[KRICKETUNE]
+Turns = 2
+Ability = MAESTRO
+Moves = ECHOEDVOICE,BUGBUZZ
+HPMult = 4
+#-------------------------------
 [SUICUNE]
 Turns = 2
 Ability = PRESSURE
