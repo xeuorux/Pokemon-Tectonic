@@ -389,7 +389,7 @@ BattlerEnemyX = 7
 BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PAPELLUMEN,Level,45
+Evolutions = PAPELLUMEN,Level,42
 #-------------------------------
 [13]
 Name = Weedle
@@ -489,7 +489,7 @@ BattlerEnemyX = -5
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = WORNET,Level,45
+Evolutions = WORNET,Level,42
 #-------------------------------
 [16]
 Name = Pidgey
@@ -945,7 +945,7 @@ BattlerEnemyX = -3
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = NIDORINA,Level,20
+Evolutions = NIDORINA,Level,21
 #-------------------------------
 [30]
 Name = Nidorina
@@ -1044,7 +1044,7 @@ BattlerEnemyX = -4
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = NIDORINO,Level,20
+Evolutions = NIDORINO,Level,21
 #-------------------------------
 [33]
 Name = Nidorino
@@ -3800,7 +3800,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = TEAMUJIN,Level,55
+Evolutions = TEAMUJIN,Level,53
 #-------------------------------
 [116]
 Name = Horsea
@@ -7541,7 +7541,7 @@ BattlerEnemyX = 5
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = HOUNDOMINUS,Level,55
+Evolutions = HOUNDOMINUS,Level,52
 #-------------------------------
 [230]
 Name = Kingdra
@@ -7607,7 +7607,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = DONPHAN,Level,25
+Evolutions = DONPHAN,Level,26
 #-------------------------------
 [232]
 Name = Donphan
@@ -8756,7 +8756,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = BEAUTIFLY,Level,25
+Evolutions = BEAUTIFLY,Level,26
 #-------------------------------
 [267]
 Name = Beautifly
@@ -8825,7 +8825,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 37
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = DUSTOX,Level,25
+Evolutions = DUSTOX,Level,26
 #-------------------------------
 [269]
 Name = Dustox
@@ -12365,7 +12365,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = METANG,Level,20
+Evolutions = METANG,Level,22
 #-------------------------------
 [375]
 Name = Metang
@@ -14095,7 +14095,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 9
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = LOPUNNY,Level,25
+Evolutions = LOPUNNY,Level,22
 #-------------------------------
 [428]
 Name = Lopunny
@@ -17529,7 +17529,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 32
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GURDURR,Level,20
+Evolutions = GURDURR,Level,21
 #-------------------------------
 [533]
 Name = Gurdurr
@@ -17790,7 +17790,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 36
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SWADLOON,Level,20
+Evolutions = SWADLOON,Level,21
 #-------------------------------
 [541]
 Name = Swadloon
@@ -18164,7 +18164,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 39
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = KROKOROK,Level,20
+Evolutions = KROKOROK,Level,21
 #-------------------------------
 [552]
 Name = Krokorok
@@ -20903,7 +20903,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = HYDREIGON,Level,53
+Evolutions = HYDREIGON,Level,52
 #-------------------------------
 [635]
 Name = Hydreigon
@@ -23542,7 +23542,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = NOIVERN,Level,40
+Evolutions = NOIVERN,Level,36
 #-------------------------------
 [715]
 Name = Noivern
@@ -24465,7 +24465,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = RIBOMBEE,Level,25
+Evolutions = RIBOMBEE,Level,27
 #-------------------------------
 [743]
 Name = Ribombee
@@ -24531,7 +24531,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LYCANROC,Level,25
+Evolutions = LYCANROC,Level,22
 #-------------------------------
 [745]
 Name = Lycanroc
@@ -25798,7 +25798,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = HAKAMOO,Level,35
+Evolutions = HAKAMOO,Level,27
 #-------------------------------
 [783]
 Name = Hakamo-o
@@ -26725,7 +26725,7 @@ BattlerEnemyX = -4
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = RILLABOOM,Level,35
+Evolutions = RILLABOOM,Level,36
 #-------------------------------
 [812]
 Name = Rillaboom
@@ -26821,7 +26821,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = CINDERACE,Level,35
+Evolutions = CINDERACE,Level,36
 #-------------------------------
 [815]
 Name = Cinderace
@@ -26917,7 +26917,7 @@ BattlerEnemyX = -4
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = INTELEON,Level,35
+Evolutions = INTELEON,Level,36
 #-------------------------------
 [818]
 Name = Inteleon
@@ -27664,7 +27664,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 30
 BattlerShadowX = -1
 BattlerShadowSize = 1
-Evolutions = FLAPPLE,Level,35
+Evolutions = FLAPPLE,Level,27
 #-------------------------------
 [841]
 Name = Flapple
@@ -27697,7 +27697,7 @@ BattlerEnemyX = 5
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = APPLETUN,Level,53
+Evolutions = APPLETUN,Level,51
 #-------------------------------
 [842]
 Name = Appletun
