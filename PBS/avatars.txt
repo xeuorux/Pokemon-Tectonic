@@ -50,7 +50,7 @@ Ability = LEAFGUARD
 Moves = JUNGLEHEALING,CRUNCH,THRASH,POWERWHIP
 #-------------------------------
 [MAMOSWINE]
-Turns = 3
+Turns = 2
 Ability = THICKFAT
 Item = EXPERTBELT
 Moves = ICEFANG,BULLDOZE
@@ -81,7 +81,7 @@ Moves = MEDITATE,STOREDPOWER
 HPMult = 5
 #-------------------------------
 [SIRFETCHD]
-Turns = 3
+Turns = 2
 Ability = BREAKTHROUGH
 Item = LEEK
 Moves = FOCUSENERGY,LEAFBLADE
@@ -100,7 +100,7 @@ Moves = SHADOWCLAW,SANDTOMB
 HPMult = 6
 #-------------------------------
 [GOURGEIST]
-Turns = 3
+Turns = 2
 Ability = INSOMNIA
 Moves = SHADOWBALL,TRICKORTREAT
 HPMult = 4
@@ -438,7 +438,7 @@ Ability = VITALSPIRIT
 Moves = PECK
 #-----------------------------
 [KLINKLANG]
-Turns = 3
+Turns = 2
 HPMult = 5
 Ability = WEAKARMOR
 Moves = GEARGRIND,IRONDEFENSE
@@ -553,11 +553,11 @@ HPMult = 4
 Turns = 3
 Ability = SANDSTREAM
 Item = SMOOTHROCK
-Moves = BREAKINGSWIPE,SCREECH,DRAGONROAR
+Moves = BREAKINGSWIPE,DRAGONROAR
 HPMult = 4
 #-------------------------------
 [KRICKETUNE]
-Turns = 2
+Turns = 1
 Ability = MAESTRO
 Moves = ECHOEDVOICE,BUGBUZZ
 HPMult = 4
