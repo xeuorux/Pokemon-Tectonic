@@ -676,10 +676,11 @@ class PokemonPokedexInfo_Scene
 			drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("None"),base,shadow)
 			coordinateY += 30
 		elsif @species == :EEVEE
-			drawTextEx(overlay,xLeft,coordinateY,450,6,_INTL("Evolves into Vaporeon with a Water Stone, 
-			Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Sun Stone, Umbreon with a Dusk Stone, 
-			Leafeon with a Leaf Stone, Glaceon with an Ice Stone, and Sylveon with a Dawn Stone
-			"),base,shadow)
+			drawTextEx(overlay,xLeft,coordinateY,450,6,_INTL("Evolves into Vaporeon with a Water Stone," + 
+				"Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Sun Stone," +
+				"Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone," +
+				", Sylveon with a Dawn Stone, and Giganteon with a Shiny Stone."
+			),base,shadow)
 		else
 			evosOfEvos = {}
 			evolutions.each do |evolution|
