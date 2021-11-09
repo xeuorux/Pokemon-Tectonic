@@ -13671,7 +13671,6 @@ BattlerShadowSize = 2
 Name = Combee
 InternalName = COMBEE
 Type1 = BUG
-Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,55,57,60,55,57
 # Total = 339
@@ -13705,7 +13704,6 @@ Evolutions = VESPIQUEN,LevelFemale,21
 Name = Vespiquen
 InternalName = VESPIQUEN
 Type1 = BUG
-Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 100,80,102,40,80,102
 # Total = 504
