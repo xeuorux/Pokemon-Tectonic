@@ -553,11 +553,11 @@ HPMult = 4
 Turns = 3
 Ability = SANDSTREAM
 Item = SMOOTHROCK
-Moves = BREAKINGSWIPE,SCREECH,DRAGONROAR
+Moves = BREAKINGSWIPE,DRAGONROAR
 HPMult = 4
 #-------------------------------
 [KRICKETUNE]
-Turns = 2
+Turns = 1
 Ability = MAESTRO
 Moves = ECHOEDVOICE,BUGBUZZ
 HPMult = 4
