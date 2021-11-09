@@ -414,7 +414,7 @@ Land,20
 25,SPOINK,18,20
 25,SIZZLIPEDE,18,20
 #-------------------------------
-[129] # Cultivated Desert
+[128] # Cultivated Desert
 Land,20
 25,HELIOPTILE,16,18
 25,CACNEA,18,18
