@@ -5405,7 +5405,7 @@ BattlerShadowSize = 2
 Name = Ledyba
 InternalName = LEDYBA
 Type1 = BUG
-Type2 = FLYING
+Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,50,45,75,40,80
 # Total = 340
@@ -12789,6 +12789,7 @@ Evolutions = GROTLE,Level,16
 Name = Grotle
 InternalName = GROTLE
 Type1 = GRASS
+Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,89,85,36,55,65
 # Total = 405
@@ -12984,6 +12985,7 @@ Evolutions = PRINPLUP,Level,16
 Name = Prinplup
 InternalName = PRINPLUP
 Type1 = WATER
+Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 64,81,68,50,66,76
 # Total = 405
