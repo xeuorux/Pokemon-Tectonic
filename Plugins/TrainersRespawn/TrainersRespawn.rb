@@ -22,15 +22,15 @@ Events.onMapChange += proc { |_sender,e|
     next
   end
     
-  if !$game_variables[76][$game_map.map_id] && $game_variables[75].is_a?(Array) && !$game_variables[75].any?{|id| id == $game_map.map_id}
-    echo("Skipping this map because its already been reset and it's not an always reset map.\n")
+  if !$game_variables[76][$game_map.map_id]
+    echo("Skipping this map because its already been reset.\n")
     next
   end
     
   $game_variables[76][$game_map.map_id] = false
   echo("Resetting events on this map\n")
   for event in $game_map.events.values
-    if event.name.downcase.include?("reset") || ($game_switches[78] && event.name.downcase.include?("berryplant"))
+    if event.name.downcase.include?("reset")
       $game_self_switches[[$game_map.map_id,event.id,"A"]] = false
     end
   end
