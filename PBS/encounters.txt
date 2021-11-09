@@ -347,9 +347,9 @@ Special,20
 Special,20
 1,HORSEA,15,15
 #-------------------------------
-[87] # LuxTech Apartments
+[87] # LuxTech Rec Center
 Special,20
-1,MIENFOO,15,15
+1,BOUNSWEET,15,15
 #-------------------------------
 [103] # Ghost Town Mart
 Special,20
