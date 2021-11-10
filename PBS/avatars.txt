@@ -558,8 +558,8 @@ HPMult = 4
 #-------------------------------
 [KRICKETUNE]
 Turns = 1
-Ability = MAESTRO
-Moves = ECHOEDVOICE,BUGBUZZ
+Ability = LOUD
+Moves = ECHOEDVOICE
 HPMult = 4
 #-------------------------------
 [SUICUNE]

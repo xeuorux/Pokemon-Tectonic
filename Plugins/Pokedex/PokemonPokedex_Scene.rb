@@ -337,7 +337,7 @@ class PokemonPokedex_Scene
 			percentOfThisList = ((count.to_f/total.to_f) * 10000).floor / 100.0
 			percentOfTypeIsInThisMap = ((count.to_f/wholeGameTypesCount[type].to_f) * 10000).floor / 100.0
 			echoln("#{type}-types")
-			echoln("#{count},#{percentOfThisList},#{percentOfTypeIsInThisMap}")
+			echoln("Total: #{count},Percent of list: #{percentOfThisList}, Percent of all: #{percentOfTypeIsInThisMap}")
 		  end
 		end
       end
