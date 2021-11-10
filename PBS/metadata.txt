@@ -169,7 +169,6 @@ MapPosition = 0,15,8
 Outdoor = false
 Bicycle = false
 BicycleAlways = false
-HealingSpot = 33,15,26
 MapPosition = 0,15,8
 #-------------------------------
 [027]
@@ -199,7 +198,6 @@ Bicycle = true
 [032]
 # Németh Apartments
 ShowArea = true
-HealingSpot = 21,25,13
 #-------------------------------
 [033]
 # Casaba Villa
@@ -215,7 +213,6 @@ Bicycle = true
 #-------------------------------
 [035]
 # Impromptu Lab
-HealingSpot = 34,24,11
 #-------------------------------
 [036]
 # Abandoned Mine
@@ -316,7 +313,6 @@ ShowArea = true
 #-------------------------------
 [076]
 # Németh Apartments Room 201
-HealingSpot = 48,36,21
 #-------------------------------
 [078]
 # LuxTech Main
