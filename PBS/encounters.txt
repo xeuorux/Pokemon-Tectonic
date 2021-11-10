@@ -271,11 +271,10 @@ Special,20
 #-------------------------------
 [8] # Ghost Town
 LandSparse,20
-20,LOTAD,18,20
-20,GLAMEOW,18,20
-20,SURSKIT,18,20
-20,ZORUA,18,20
-20,PUMPKABOO,18,20
+25,LOTAD,18,20
+25,GLAMEOW,18,20
+25,ZORUA,18,20
+25,PUMPKABOO,18,20
 #-------------------------------
 [53] # Jungle Route
 Land,20
