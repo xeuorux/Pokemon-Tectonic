@@ -257,7 +257,7 @@ Land,20
 [7] # Swamp Route
 Land,20
 33,CROAGUNK,18,20
-33,GLAMEOW,18,20
+33,SURSKIT,18,20
 33,PHANTUMP,18,20
 LandSparse,20
 33,MURKROW,18,20
@@ -272,7 +272,7 @@ Special,20
 [8] # Ghost Town
 LandSparse,20
 25,LOTAD,18,20
-25,PUMPKABOO,18,20
+25,GLAMEOW,18,20
 25,SURSKIT,18,20
 25,ZORUA,18,20
 #-------------------------------
