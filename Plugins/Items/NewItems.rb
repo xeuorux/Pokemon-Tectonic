@@ -122,7 +122,7 @@ ItemHandlers::UseFromBag.add(:EXPEZDISPENSER,proc { |item|
 	$PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
 	candyTotal = 0
 	pbMessage(_INTL("You have {1} EXP stored in the EXP-EZ Dispenser.",$PokemonGlobal.expJAR))
-	xsCandyTotal = $PokemonGlobal.expJAR / 300
+	xsCandyTotal = $PokemonGlobal.expJAR / 350
 	sCandyTotal = xsCandyTotal / 4
 	xsCandyTotal = xsCandyTotal % 4
 	mCandyTotal = sCandyTotal / 4
@@ -132,7 +132,7 @@ ItemHandlers::UseFromBag.add(:EXPEZDISPENSER,proc { |item|
 			pbReceiveItem(:EXPCANDYM,mCandyTotal) if mCandyTotal > 0
 			pbReceiveItem(:EXPCANDYS,sCandyTotal) if sCandyTotal > 0
 			pbReceiveItem(:EXPCANDYXS,xsCandyTotal) if xsCandyTotal > 0
-			$PokemonGlobal.expJAR = $PokemonGlobal.expJAR % 300
+			$PokemonGlobal.expJAR = $PokemonGlobal.expJAR % 350
 		end
 	else
 		pbMessage(_INTL("That's not enough to make any candies."))
