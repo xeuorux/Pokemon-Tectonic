@@ -762,7 +762,7 @@
 742,COZYUP,Cozy Up,00A,40,FIRE,Physical,100,25,10,NearOther,0,abef,"The user warms up its body and attacks the target. It has a 10% chance to burn."
 743,PEBBLEDUST,Pebble Dust,000,45,ROCK,Special,100,25,0,NearOther,0,bef,"The user grinds a pebble into dust, and sprays it at the target."
 744,FUGUFORCE,Fugu Force,005,50,WATER,Physical,100,10,100,NearOther,0,abef,"The user crashes into the target with its quills. It leaves the target poisoned."
-745,SHADOW,Shadow,046,40,GHOST,Special,100,15,10,NearOther,0,bef,"The user sends a shadow to attack the target, with a 10% chance to reduce it's Sp. Def."
+745,SHADOW,Shadow,046,40,GHOST,Special,100,30,10,NearOther,0,bef,"The user sends a shadow to attack the target, with a 10% chance to reduce it's Sp. Def."
 746,CLACKACLACK,Clackaclack,045,40,BUG,Special,100,40,10,AllNearFoes,0,befk,"The user attacks with a horrible clattering noise. It has a 10% chance to lower Sp. Atk."
 747,LIGHTNINGDANCE,Lightning Dance,503,0,ELECTRIC,Status,0,20,0,User,0,do,"The user dances with the speed of lightning, boosting its Sp. Atk and Speed stats."
 748,CRASHDIVE,Crash Dive,0FB,120,WATER,Physical,100,15,0,Other,0,abef,"The user dives like a submarine at the target. The user also takes 33% recoil."
@@ -876,7 +876,7 @@
 857,BREAKDANCE,Breakdance,532,0,FIGHTING,Status,0,20,0,User,0,do,"The user breakdances, sharply boosting its weakest stat and boosting its second weakest stat."
 858,SHIVERDANCE,Shiver Dance,525,0,ICE,Status,0,20,0,User,0,do,"The user shivers rhythmically. It boosts the user's Atk, Def, and Speed stats."
 859,AMBUSH,Ambush,174,130,DARK,Physical,100,10,0,NearOther,2,abef,"The user ambushes the target. This only works the first turn the user is in battle."
-860,STITCHUP,Stitch Up,524,0,GHOST,Status,0,5,0,User,0,d,The user restores two thirds of its own HP. Then, this attack is disabled.
+860,STITCHUP,Stitch Up,524,0,GHOST,Status,0,5,0,User,0,d,"The user restores two thirds of its own HP. Then, this attack is disabled."
 861,PHANTOMBREAK,Phantom Break,523,120,GHOST,Physical,100,5,0,NearOther,0,abef,"Although this move has great power, it disables itself after use."
 862,DRAGONROAR,Dragon Roar,522,0,DRAGON,Status,0,15,0,NearOther,0,ce,"The user roars, causing the target's best stat to drop harshly."
 863,SUMMERDAZE,Summer Daze,527,0,GRASS,Status,100,15,0,NearOther,0,bcek,The user plays a pleasant melody that lulls the target into a deep sleep under harsh sunlight.
