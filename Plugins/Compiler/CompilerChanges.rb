@@ -446,7 +446,79 @@ module Compiler
     GameData::Avatar.save
     Graphics.update
   end
-  
+=begin 
+
+#THIS IS TO BE BTAVATAR COMPILER CODE
+ def compile_btavatars(path = "PBS/btavatars.txt")
+	GameData::Avatar::DATA.clear
+    # Read from PBS file
+    File.open("PBS/btavatars.txt", "rb") { |f|
+		FileLineData.file = "PBS/avatars.txt"   # For error reporting
+		# Read a whole section's lines at once, then run through this code.
+		# contents is a hash containing all the XXX=YYY lines in that section, where
+		# the keys are the XXX and the values are the YYY (as unprocessed strings).
+		schema = GameData::Avatar::SCHEMA
+		avatar_number = 1
+		pbEachAvatarFileSection(f) { |contents, avatar_species|
+			FileLineData.setSection(avatar_species, "header", nil)   # For error reporting
+			avatar_symbol = avatar_species.to_sym
+			
+			# Raise an error if a species is invalid or used twice
+			if avatar_species == ""
+			  raise _INTL("An Avatar entry name can't be blank (PBS/avatars.txt).")
+			elsif GameData::Avatar::DATA[avatar_symbol]
+			  raise _INTL("Avatar name '{1}' is used twice.\r\n{2}", avatar_species, FileLineData.linereport)
+			end
+			
+			# Go through schema hash of compilable data and compile this section
+			for key in schema.keys
+				# Skip empty properties, or raise an error if a required property is
+				# empty
+				if contents[key].nil? || contents[key] == ""
+					if ["Turns", "Ability", "Moves", "HPMult"].include?(key)
+						raise _INTL("The entry {1} is required in PBS/avatars.txt section {2}.", key, avatar_species)
+					end
+					contents[key] = nil
+					next
+				end
+
+				# Compile value for key
+				value = pbGetCsvRecord(contents[key], key, schema[key])
+				value = nil if value.is_a?(Array) && value.length == 0
+				contents[key] = value
+			  
+			    # Sanitise data
+				case key
+				when "Moves"
+					if contents["Moves"].length > 4
+						raise _INTL("The moves entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
+					end
+				end
+			end
+			
+			# Construct avatar hash
+			avatar_hash = {
+				:id          => avatar_symbol,
+				:id_number   => avatar_number,
+				:turns		 => contents["Turns"],
+				:form		 => contents["Form"],
+				:moves		 => contents["Moves"],
+				:ability	 => contents["Ability"],
+				:item		 => contents["Item"],
+				:hp_mult	 => contents["HPMult"],
+				:size_mult	 => contents["SizeMult"],
+			}
+			avatar_number += 1
+			# Add trainer avatar's data to records
+			GameData::Avatar.register(avatar_hash)
+		}
+    }
+
+    # Save all data
+    GameData::Avatar.save
+    Graphics.update
+  end
+=end
   #=============================================================================
   # Compile trainer type data
   #=============================================================================
