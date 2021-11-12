@@ -906,4 +906,59 @@ class PokeBattle_AI
     return 125 if modifiers[:base_accuracy] == 0 && (accuracy / evasion < 1)
 	return modifiers[:base_accuracy] * accuracy / evasion
   end
+  
+  #=============================================================================
+  # Immunity to a move because of the target's ability, item or other effects
+  #=============================================================================
+  def pbCheckMoveImmunity(score,move,user,target,skill)
+    type = pbRoughType(move,user,skill)
+    typeMod = pbCalcTypeMod(type,user,target)
+    # Type effectiveness
+    return true if Effectiveness.ineffective?(typeMod) || score<=0
+    # Immunity due to ability/item/other effects
+    if skill>=PBTrainerAI.mediumSkill
+      case type
+      when :GROUND
+        return true if target.airborne? && !move.hitsFlyingTargets?
+      when :FIRE
+        return true if target.hasActiveAbility?(:FLASHFIRE)
+      when :WATER
+        return true if target.hasActiveAbility?([:DRYSKIN,:STORMDRAIN,:WATERABSORB])
+      when :GRASS
+        return true if target.hasActiveAbility?(:SAPSIPPER)
+      when :ELECTRIC
+        return true if target.hasActiveAbility?([:LIGHTNINGROD,:MOTORDRIVE,:VOLTABSORB])
+	  when :ICE
+        return true if target.hasActiveAbility?(:COLDPROOF)
+	  when :FLYING
+        return true if target.hasActiveAbility?(:AERODYNAMIC)
+	  when :POISON
+        return true if target.hasActiveAbility?(:POISONABSORB)
+	  when :FIGHTING
+        return true if target.hasActiveAbility?(:CHALLENGER)
+	  when :DARK
+        return true if target.hasActiveAbility?(:HEARTOFJUSTICE)
+      end
+      return true if Effectiveness.not_very_effective?(typeMod) &&
+                     target.hasActiveAbility?(:WONDERGUARD)
+      return true if move.damagingMove? && user.index!=target.index && !target.opposes?(user) &&
+                     target.hasActiveAbility?(:TELEPATHY)
+      return true if move.canMagicCoat? && target.hasActiveAbility?(:MAGICBOUNCE) &&
+                     target.opposes?(user)
+      return true if move.soundMove? && target.hasActiveAbility?(:SOUNDPROOF)
+      return true if move.bombMove? && target.hasActiveAbility?(:BULLETPROOF)
+      if move.powderMove?
+        return true if target.pbHasType?(:GRASS)
+        return true if target.hasActiveAbility?(:OVERCOAT)
+        return true if target.hasActiveItem?(:SAFETYGOGGLES)
+      end
+      return true if target.effects[PBEffects::Substitute]>0 && move.statusMove? &&
+                     !move.ignoresSubstitute?(user) && user.index!=target.index
+      return true if Settings::MECHANICS_GENERATION >= 7 && user.hasActiveAbility?(:PRANKSTER) &&
+                     target.pbHasType?(:DARK) && target.opposes?(user)
+      return true if move.priority>0 && @battle.field.terrain == :Psychic &&
+                     target.affectedByTerrain? && target.opposes?(user)
+    end
+    return false
+  end
 end

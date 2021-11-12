@@ -118,7 +118,7 @@ class PokeBattle_AI
 			score = 0 if user.battle.commandPhasesThisRound != 0
 		end
 		
-		if move.is_a?(PokeBattle_TargetStatDownMove)
+		if !move.damagingMove? && move.is_a?(PokeBattle_TargetStatDownMove)
 			statDown = move.statDown[0]
 			maxStat = -99999
 			maxStater = nil

@@ -75,7 +75,7 @@ BattleHandlers::HPHealItem.add(:ORANBERRY,
   }
 )
 
-BattleHandlers::HPHealItem.add(:SITRUSBERRY,
+BattleHandlers::HPHealItem.add(:ORANBERRY,
   proc { |item,battler,battle,forced|
     next false if !battler.canHeal?
     next false if !forced && !battler.canConsumePinchBerry?(true)

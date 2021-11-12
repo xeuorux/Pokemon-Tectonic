@@ -610,7 +610,7 @@ BattleHandlers::EORWeatherAbility.add(:HEATSAVOR,
 
 BattleHandlers::DamageCalcUserAllyAbility.add(:POSITIVEOUTLOOK,
   proc { |ability,user,target,move,mults,baseDmg,type|
-			mults[:base_damage_multiplier] *= 1.25 	if user.pbHasType?(:ELECTRIC) && move.specialMove?
+			mults[:base_damage_multiplier] *= 1.50 	if user.pbHasType?(:ELECTRIC) && move.specialMove?
   }
 )
   
@@ -622,7 +622,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
 
 BattleHandlers::DamageCalcTargetAllyAbility.add(:NEGATIVEOUTLOOK,
   proc { |ability,user,target,move,mults,baseDmg,type|
-	mults[:final_damage_multiplier] *= 0.75 if target.pbHasType?(:ELECTRIC) && move.specialMove?
+	mults[:final_damage_multiplier] *= (2.0/3.0) if target.pbHasType?(:ELECTRIC) && move.specialMove?
 	 }
 )
 

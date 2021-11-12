@@ -29,6 +29,12 @@ class PokemonPokedex_Scene
 	@sprites["search2cursor"] = SpriteWrapper.new(@viewport)
 	@sprites["search2cursor"].bitmap = @search2Cursorbitmap.bitmap
     @sprites["search2cursor"].visible = false
+	@searchPopupbitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/z_header_filled"))
+	@sprites["z_header"] = SpriteWrapper.new(@viewport)
+
+	@sprites["z_header"].bitmap = @searchPopupbitmap.bitmap
+	@sprites["z_header"].x = Graphics.width - @searchPopupbitmap.width
+	@sprites["z_header"].visible = false
     @searchResults = false
     @searchParams  = [$PokemonGlobal.pokedexMode,-1,-1,-1,-1,-1,-1,-1,-1,-1]
     pbRefreshDexList($PokemonGlobal.pokedexIndex[pbGetSavePositionIndex])
@@ -110,9 +116,16 @@ class PokemonPokedex_Scene
 		overlay.clear
 		base   = Color.new(88,88,80)
 		shadow = Color.new(168,184,184)
+		zBase = Color.new(248,248,248)
+		zShadow = Color.new(0,0,0)
 		iconspecies = @sprites["pokedex"].species
 		iconspecies = nil if isLegendary(iconspecies) && !$Trainer.seen?(iconspecies)
 		# Write various bits of text
+
+		#@sprites["cursor_list"].setBitmap("Graphics/Pictures/Pokedex/cursor_list")
+		#zOverlay = @sprites["z_header"].bitmap
+		#zTextpos = [[_INTL("Z/SHIFT to search."),20,2,0,zBase,shadow]]
+		#pbDrawTextPositions(zOverlay,zTextpos)
 		dexname = _INTL("Pokédex")
 		if $Trainer.pokedex.dexes_count > 1
 		  thisdex = Settings.pokedex_names[pbGetSavePositionIndex]
@@ -121,13 +134,16 @@ class PokemonPokedex_Scene
 		  end
 		end
 		textpos = [
-		   [dexname,Graphics.width/2,-2,2,Color.new(248,248,248),Color.new(0,0,0)]
+		   [dexname,Graphics.width/10,-2,2,Color.new(248,248,248),Color.new(0,0,0)]
 		]
 		textpos.push([GameData::Species.get(iconspecies).name,112,46,2,base,shadow]) if iconspecies
+		
 		if @searchResults
 		  textpos.push([_INTL("Search results"),112,302,2,base,shadow])
 		  textpos.push([@dexlist.length.to_s,112,334,2,base,shadow])
+		  textpos.push([_INTL("Z/SHIFT to search further."),Graphics.width-5,-2,1,zBase,zShadow])
 		else
+		  textpos.push([_INTL("Z/SHIFT to search."),Graphics.width-5,-2,1,zBase,zShadow])
 		  textpos.push([_INTL("Seen:"),42,302,0,base,shadow])
 		  textpos.push([$Trainer.pokedex.seen_count(pbGetPokedexRegion).to_s,182,302,1,base,shadow])
 		  textpos.push([_INTL("Owned:"),42,334,0,base,shadow])
@@ -231,6 +247,9 @@ class PokemonPokedex_Scene
         Input.update
         oldindex = @sprites["pokedex"].index
         pbUpdate
+		#zOverlay = @sprites["overlay"].bitmap
+		#zTextpos = [[_INTL("Press Z or SHIFT to search.") ,Graphics.width/4*3,Graphics.height,0,Color.new(104,104,104),Color.new(248,248,248)]]
+		#pbDrawTextPositions(zOverlay,zTextpos)
         if oldindex!=@sprites["pokedex"].index
           $PokemonGlobal.pokedexIndex[pbGetSavePositionIndex] = @sprites["pokedex"].index if !@searchResults
           pbRefresh
@@ -769,7 +788,7 @@ class PokemonPokedex_Scene
 					35,27		# Impromptu Lab, Casaba Mart
 			], 
 			30 => [60,56,51,66,123, 	 # Forested Road, Suburb, Starters Store, Nemeth Attic, Nemeth Academy
-					3,25,55,6,	 # Savannah Route, Mining Camp, Flower Fields, LuxTech Campus
+					3,25,55,6,81,	 # Savannah Route, Mining Camp, Flower Fields, LuxTech Campus, Cave Path
 					54,37,7,8,53, # Crossroads, Ice Rink, Swamp Route, Jungle Route
 					117,36,10,12, # Ice Cave, Abandoned Mine, Jungle Temple, Gigalith's Guts
 					13,11,122,120,121,		# Cave Path, River Route, Sewer, Deep Layer, Mountain Climb

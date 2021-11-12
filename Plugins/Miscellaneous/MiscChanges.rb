@@ -24,12 +24,6 @@ Events.onMapChange += proc { |_sender,e|
   $game_switches[99] = true
 }
 
-# Turn off all field moves
-
-HiddenMoveHandlers::CanUseMove     = MoveHandlerHash.new
-HiddenMoveHandlers::ConfirmUseMove = MoveHandlerHash.new
-HiddenMoveHandlers::UseMove        = MoveHandlerHash.new
-
 module GameData
 	class Trainer
 		def initialize(hash)

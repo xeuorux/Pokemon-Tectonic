@@ -42,12 +42,6 @@ Turns = 2
 HPMult = 2.5
 Ability = SHELLARMOR
 Moves = WILLOWISP,FLAMEBURST
-#------------------------------
-[ZARUDE]
-Turns = 3
-HPMult = 3
-Ability = LEAFGUARD
-Moves = JUNGLEHEALING,CRUNCH,THRASH,POWERWHIP
 #-------------------------------
 [MAMOSWINE]
 Turns = 2
@@ -552,9 +546,8 @@ HPMult = 4
 [DURALUDON]
 Turns = 3
 Ability = SANDSTREAM
-Item = SMOOTHROCK
 Moves = BREAKINGSWIPE,DRAGONROAR
-HPMult = 4
+HPMult = 3
 #-------------------------------
 [KRICKETUNE]
 Turns = 1
@@ -580,3 +573,20 @@ Ability = PRESSURE
 Moves = LIGHTNINGSHRIEK,ELECTROBALL,THUNDERWAVE
 HPMult = 4
 #-------------------------------
+[AURORUS]
+Turns = 1
+Ability = SNOWWARNING
+Moves = ICYWIND
+HPMult = 4
+#-------------------------------
+[GYARADOS]
+Turns = 2
+Ability = INTIMIDATE
+Moves = SHRED,WATERFALL
+HPMult = 4
+#-------------------------------
+[JIRACHI]
+Turns = 2
+Ability = SERENEGRACE
+Moves = DOOMDESIRE,LIFEDEW
+HPMult = 5

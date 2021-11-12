@@ -210,6 +210,7 @@ class PokeBattle_Move
 		# Other effects
 		return true if c>50   # Merciless
 		return true if user.effects[PBEffects::LaserFocus]>0
+		return false if user.boss?
 		c += 1 if highCriticalRate?
 		c += user.effects[PBEffects::FocusEnergy]
 		c += 1 if user.effects[PBEffects::LuckyStar]

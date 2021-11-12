@@ -102,7 +102,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SCREENCLEANER,
 BattleHandlers::AbilityOnSwitchIn.add(:PASTELVEIL,
   proc { |ability,battler,battle|
     battler.eachAlly do |b|
-      next if b.status != PBStatuses::POISON
+      next if b.status != :POISON
       battle.pbShowAbilitySplash(battler)
       b.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH

@@ -125,31 +125,34 @@ def pbTrainerDropsItem(maxTrainerLevel = 15)
   # 55: 9500, 60: 11,500, 65: 13,500
   itemsGiven = []
   case maxTrainerLevel
-  when 0..15
+  when 0..12
 	itemsGiven = [:EXPCANDYXS,1] # 250
-  when 16..20
+  when 13..17
 	itemsGiven = [:EXPCANDYXS,2] # 500
-  when 21..25
+  when 18..22
 	itemsGiven = [:EXPCANDYS,1] # 1000
-  when 26..30
+  when 23..27
 	itemsGiven = [:EXPCANDYS,2] # 2000
-  when 31..35
+  when 28..32
 	itemsGiven = [:EXPCANDYS,3] # 3000
-  when 36..40
+  when 33..37
 	itemsGiven = [:EXPCANDYM,1] # 4000
-  when 41..45
+  when 38..42
 	itemsGiven = [:EXPCANDYM,1,:EXPCANDYS,1] # 5000
-  when 46..50
+  when 43..47
 	itemsGiven = [:EXPCANDYM,1,:EXPCANDYS,2] # 6000
-  when 51..55
+  when 48..52
 	itemsGiven = [:EXPCANDYM,2] # 8000
-  when 56..60
+  when 53..57
 	itemsGiven = [:EXPCANDYM,2,:EXPCANDYS,2] # 10000
-  when 61..65
+  when 58..62
 	itemsGiven = [:EXPCANDYL,1] # 12000
-  when 66..70
+  when 63..67
 	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,1] # 16000
+  when 68..70
+	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,2] # 20000
   else
+	pbMessage("Unassigned level passed to pbTrainerDropsItem: #{maxTrainerLevel}") if $DEBUG
 	itemsGiven = [:EXPCANDYXS,1] # 250
   end
   total = 0

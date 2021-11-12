@@ -16,7 +16,7 @@
 14,FELLSTINGER,Fell Stinger,150,50,BUG,Physical,100,25,0,NearOther,0,abef,"When the user knocks out a target with this move, the user's Attack stat rises drastically."
 15,STRUGGLEBUG,Struggle Bug,045,50,BUG,Special,100,20,100,AllNearFoes,0,bef,"While resisting, the user attacks the opposing Pokémon. The targets' Sp. Atk is reduced."
 16,FURYCUTTER,Fury Cutter,091,30,BUG,Physical,100,20,0,NearOther,0,abefp,The target is slashed with scythes or claws. Its power increases if it hits in succession.
-17,PINMISSILE,Pin Missile,0C0,25,BUG,Physical,95,20,0,NearOther,0,bef,Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
+17,PINMISSILE,Pin Missile,0C0,25,BUG,Physical,100,20,0,NearOther,0,bef,Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
 18,TWINEEDLE,Twineedle,0BE,25,BUG,Physical,100,20,20,NearOther,0,bef,The foe is stabbed twice by a pair of stingers. Each stinger has a 20% chance to poison.
 19,INFESTATION,Infestation,0CF,20,BUG,Special,100,20,0,NearOther,0,abef,The target is infested and unable to flee for four to five turns.
 20,DEFENDORDER,Defend Order,02A,0,BUG,Status,0,10,0,User,0,d,"The user calls out its underlings to shield its body, raising its Defense and Sp. Def stats."
@@ -259,7 +259,7 @@
 250,AIRCUTTER,Air Cutter,000,60,FLYING,Special,100,25,0,AllNearFoes,0,befh,The user launches razor-like wind to slash the opposing team. Critical hits land more easily.
 251,PLUCK,Pluck,0F4,60,FLYING,Physical,100,20,0,Other,0,abef,"The user pecks the target. If the target is holding a Berry, the user eats it and gains its effect."
 252,SKYDROP,Sky Drop,0CE,60,FLYING,Physical,100,10,0,Other,0,abef,"The user takes the foe into the sky, then drops it on the next turn. The foe cannot attack while airborne."
-253,WINGATTACK,Wing Attack,537,70,FLYING,Physical,100,35,0,Other,0,abef,"The target is struck with large, imposing wings spread wide to inflict damage. The user also takes 20% recoil."
+253,WINGATTACK,Wing Attack,537,55,FLYING,Physical,100,35,0,Other,0,abef,"The target is struck with large, imposing wings spread wide to inflict damage. The user also takes 20% recoil."
 254,ACROBATICS,Acrobatics,086,55,FLYING,Physical,100,15,0,Other,0,abef,The user nimbly strikes the foe. This attack does more damage if the user is not holding an item.
 255,GUST,Gust,077,40,FLYING,Special,100,40,0,Other,0,bef,A gust of wind is whipped up by wings and launched at the target to inflict damage.
 256,PECK,Peck,000,45,FLYING,Physical,100,40,0,Other,0,abef,The target is jabbed with a sharply pointed beak or horn.
@@ -762,7 +762,7 @@
 742,COZYUP,Cozy Up,00A,40,FIRE,Physical,100,25,10,NearOther,0,abef,"The user warms up its body and attacks the target. It has a 10% chance to burn."
 743,PEBBLEDUST,Pebble Dust,000,45,ROCK,Special,100,25,0,NearOther,0,bef,"The user grinds a pebble into dust, and sprays it at the target."
 744,FUGUFORCE,Fugu Force,005,50,WATER,Physical,100,10,100,NearOther,0,abef,"The user crashes into the target with its quills. It leaves the target poisoned."
-745,SHADOW,Shadow,046,40,GHOST,Special,100,15,10,NearOther,0,bef,"The user sends a shadow to attack the target, with a 10% chance to reduce it's Sp. Def."
+745,SHADOW,Shadow,046,40,GHOST,Special,100,30,10,NearOther,0,bef,"The user sends a shadow to attack the target, with a 10% chance to reduce it's Sp. Def."
 746,CLACKACLACK,Clackaclack,045,40,BUG,Special,100,40,10,AllNearFoes,0,befk,"The user attacks with a horrible clattering noise. It has a 10% chance to lower Sp. Atk."
 747,LIGHTNINGDANCE,Lightning Dance,503,0,ELECTRIC,Status,0,20,0,User,0,do,"The user dances with the speed of lightning, boosting its Sp. Atk and Speed stats."
 748,CRASHDIVE,Crash Dive,0FB,120,WATER,Physical,100,15,0,Other,0,abef,"The user dives like a submarine at the target. The user also takes 33% recoil."
@@ -876,7 +876,7 @@
 857,BREAKDANCE,Breakdance,532,0,FIGHTING,Status,0,20,0,User,0,do,"The user breakdances, sharply boosting its weakest stat and boosting its second weakest stat."
 858,SHIVERDANCE,Shiver Dance,525,0,ICE,Status,0,20,0,User,0,do,"The user shivers rhythmically. It boosts the user's Atk, Def, and Speed stats."
 859,AMBUSH,Ambush,174,130,DARK,Physical,100,10,0,NearOther,2,abef,"The user ambushes the target. This only works the first turn the user is in battle."
-860,STITCHUP,Stitch Up,524,0,GHOST,Status,0,5,0,User,0,d,The user restores two thirds of its own HP. Then, this attack is disabled.
+860,STITCHUP,Stitch Up,524,0,GHOST,Status,0,5,0,User,0,d,"The user restores two thirds of its own HP. Then, this attack is disabled."
 861,PHANTOMBREAK,Phantom Break,523,120,GHOST,Physical,100,5,0,NearOther,0,abef,"Although this move has great power, it disables itself after use."
 862,DRAGONROAR,Dragon Roar,522,0,DRAGON,Status,0,15,0,NearOther,0,ce,"The user roars, causing the target's best stat to drop harshly."
 863,SUMMERDAZE,Summer Daze,527,0,GRASS,Status,100,15,0,NearOther,0,bcek,The user plays a pleasant melody that lulls the target into a deep sleep under harsh sunlight.
@@ -887,7 +887,7 @@
 868,BLINDINGSAND,Blinding Sand,047,40,GROUND,Special,100,10,100,NearOther,0,bef,The user attacks the opponent by throwing sand at its eyes, reducing accuracy.
 869,PURIFYINGWATER,Purifying Water,548,50,WATER,Special,100,5,0,NearOther,0,bef,"The user shoots purified Water, healing the status problems of all the party Pokémon in the process."
 870,CRITICALERROR,Critical Error,0A0,60,GHOST,Special,100,10,0,NearOther,0,bef,"The user causes a glitch in reality. This attack always results in a critical hit."
-871,SUBLIMEIMPACT,Sublime Impact,0AD,90,NORMAL,Physical,100,10,0,NearOther,0,aef,An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
+871,PRIMALIMPACT,Primal Impact,0AD,90,NORMAL,Physical,100,10,0,NearOther,0,aef,An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
 872,ADAMANTINEPRESS,Adamantine Press,000,95,ROCK,Physical,100,10,0,NearOther,0,abef,The user presses their body with great force onto the target.
 873,CLAMOR,Clamor,0D1,75,NORMAL,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep."
 874,COMETSMASH,Comet Smash,01C,95,NORMAL,Physical,100,10,20,NearOther,0,abefj,The user throws a comet-like punch. It has a 20% chance to raise Attack.
