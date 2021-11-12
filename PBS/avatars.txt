@@ -578,3 +578,9 @@ Turns = 1
 Ability = SNOWWARNING
 Moves = ICYWIND
 HPMult = 4
+#-------------------------------
+[GYARADOS]
+Turns = 2
+Ability = INTIMIDATE
+Moves = SHRED,WATERFALL
+HPMult = 4
