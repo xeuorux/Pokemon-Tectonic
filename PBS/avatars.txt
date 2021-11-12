@@ -584,3 +584,9 @@ Turns = 2
 Ability = INTIMIDATE
 Moves = SHRED,WATERFALL
 HPMult = 4
+#-------------------------------
+[JIRACHI]
+Turns = 2
+Ability = SERENEGRACE
+Moves = DOOMDESIRE,LIFEDEW
+HPMult = 5
