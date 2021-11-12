@@ -10,7 +10,7 @@ class PokeBattle_Battler
 		return false if !takesIndirectDamage?
 		return false if pbHasType?(:GROUND) || pbHasType?(:ROCK) || pbHasType?(:STEEL)
 		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDVEIL,:STOUT])
+		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:STOUT])
 		return false if hasActiveItem?(:SAFETYGOGGLES)
 		return true
 	  end
@@ -19,7 +19,7 @@ class PokeBattle_Battler
 		return false if !takesIndirectDamage?
 		return false if pbHasType?(:ICE) || pbHasType?(:STEEL) || pbHasType?(:GHOST)
 		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWCLOAK,:STOUT,:SNOWWARNING])
+		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:STOUT,:SNOWWARNING])
 		return false if hasActiveItem?(:SAFETYGOGGLES)
 		return true
 	end
