@@ -788,7 +788,7 @@ class PokemonPokedex_Scene
 					35,27		# Impromptu Lab, Casaba Mart
 			], 
 			30 => [60,56,51,66,123, 	 # Forested Road, Suburb, Starters Store, Nemeth Attic, Nemeth Academy
-					3,25,55,6,	 # Savannah Route, Mining Camp, Flower Fields, LuxTech Campus
+					3,25,55,6,81,	 # Savannah Route, Mining Camp, Flower Fields, LuxTech Campus, Cave Path
 					54,37,7,8,53, # Crossroads, Ice Rink, Swamp Route, Jungle Route
 					117,36,10,12, # Ice Cave, Abandoned Mine, Jungle Temple, Gigalith's Guts
 					13,11,122,120,121,		# Cave Path, River Route, Sewer, Deep Layer, Mountain Climb

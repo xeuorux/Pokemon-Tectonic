@@ -181,7 +181,7 @@ Land,20
 25,PLUSLE,15,18
 25,MINUN,15,18
 25,TYROGUE,15,18
-25,ESPURR,15,18
+25,PAWNIARD,15,18
 Special,20
 1,BLIPBUG,15,15
 #-------------------------------
@@ -407,7 +407,7 @@ Special,20
 Land,20
 25,NINCADA,18,20
 25,TANGELA,18,20
-25,PAWNIARD,18,20
+25,VULLABY,18,20
 25,SPOINK,18,20
 #-------------------------------
 [130] # Canal Desert
