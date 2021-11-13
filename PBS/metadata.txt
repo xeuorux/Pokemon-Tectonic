@@ -480,3 +480,9 @@ Bicycle = true
 Outdoor = true
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[130]
+# Canal Desert
+Outdoor = true
+ShowArea = true
+Bicycle = true
