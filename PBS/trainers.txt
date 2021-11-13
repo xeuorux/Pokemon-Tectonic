@@ -873,7 +873,7 @@ Pokemon = RHYHORN,26
 #-------------------------------
 [FISHERMAN2,Mason]
 Pokemon = BUIZEL,26
-Pokemon = HORSEA,26
+Pokemon = SEADRA,26
 Pokemon = KROKOROK,26
 #-------------------------------
 [GENTLEMAN3,Charles]

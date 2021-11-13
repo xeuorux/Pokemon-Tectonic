@@ -931,9 +931,9 @@
 912,MINDWARP,Mind Warp,013,80,PSYCHIC,Special,100,15,20,NearOther,0,bef,The target's psyche is warped by psychic energy. It has a 20% chance to confuse.
 913,WINDBLADE,Wind Blade,00F,60,FLYING,Special,100,15,30,Other,0,be,The user strikes the target with a sharp blade of air. It has a 40% chance to flinch the target.
 914,ACIDBEAM,Acid Beam,046,90,POISON,Special,100,15,10,NearOther,0,bef,The user shoots a beam of harsh acid at the target. It has a 10% chance to lower Sp. Def.
-915,VENOMORTAR,Venomortar,005,100,POISON,Physical,50,10,100,NearOther,0,bef,The user blasts a bundle of venom at the target, poisoning it.
+915,VENOMORTAR,Venomortar,005,100,POISON,Physical,50,10,100,NearOther,0,bef,"The user blasts a bundle of venom at the target, poisoning it."
 916,MOONIMPACT,Moon Impact,000,110,FAIRY,Physical,85,15,0,NearOther,0,abef,The user attacks the target with the power of the moon.
-917,AURATRICK,Aura Trick,540,80,FAIRY,Special,100,10,0,NearOther,0,bef,Damage increases with the user's Sp. Def stat, rather than it's Sp. Atk stat.
+917,AURATRICK,Aura Trick,540,80,FAIRY,Special,100,10,0,NearOther,0,bef,"Damage increases with the user's Sp. Def stat, rather than it's Sp. Atk stat."
 918,DISTORT,Distort,043,40,FIGHTING,Special,100,35,10,NearOther,0,abef,"The user distorts the target's aura, damaging it. This has a 10% chance of reducing the target's defense."
 919,ADRENALASH,Adrenalash,020,90,FIGHTING,Special,100,15,20,NearOther,0,bef,"The user forms their excitement into a lash to strike the target, with a 10% chance of raising the user's Sp. Atk."
 920,EARTHRIFT,Earth Rift,50F,140,GROUND,Physical,100,10,0,NearOther,0,abef,"The user cracks the earth under the target with a massive strike. This sharply reduces the user's Attack stat."
@@ -945,7 +945,7 @@
 926,GLITTERSLASH,Glitter Slash,546,65,FAIRY,Physical,100,20,0,NearOther,0,abefp,"The user slashes at the opponent with a glittering aura, guaranteeing a critical hit on foes with boosted stats."
 927,LUNARJUSTICE,Lunar Justice,546,85,FAIRY,Physical,100,10,0,NearOther,0,abefp,"The user attacks with the power of the moon, guaranteeing a critical hit on foes with boosted stats."
 928,POISONSPIKES,Poison Spikes,104,0,POISON,Status,0,20,0,FoeSide,0,c,The user lays a trap of poison spikes at the foe's feet. They poison foes that switch into battle.
-929,ENVENOM,Envenom,005,0,POISON,Status,100,40,0,NearFoe,0,bce,Venom is strategically introduced into the target, poisoning it.
+929,ENVENOM,Envenom,005,0,POISON,Status,100,40,0,NearFoe,0,bce,"Venom is strategically introduced into the target, poisoning it."
 930,CHAOSWHEEL,Chaos Wheel,547,80,NORMAL,Physical,100,10,20,NearOther,0,bef,"The user thrashes furiously while infused with elements. It has a 6.67% chance each to paralyze, burn, or chill."
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."
