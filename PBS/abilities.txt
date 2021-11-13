@@ -305,7 +305,7 @@
 303,POISONPUNISH,Poison Punish,"Special moves have a chance to poison the attacker."
 304,REALIST,Realist,"Ups resistance to Dragon- and Fairy-type moves."
 305,BEGUILING,Beguiling,"Non-contact attacks to the Pokémon may cause the attacker to become charmed."
-306,TIDALFORCE,Tidal Foce,"Boosts Sp. Atk by 30% in rain."
+306,TIDALFORCE,Tidal Force,"Boosts Sp. Atk by 30% in rain."
 307,ADAPTIVESKIN,Adaptive Skin,"The user raises the correct defense based on each hit taken."
 308,SANDSNIPER,Sand Sniper,"Cannot miss during sandstorms."
 309,STAMPEDE,Stampede,"The user's critical hit chance raises or lowers with its Speed."

@@ -590,3 +590,9 @@ Turns = 2
 Ability = SERENEGRACE
 Moves = DOOMDESIRE,LIFEDEW
 HPMult = 5
+#-------------------------------FEELFREETOMAKEABETTERAVATAROUTOFTHIS
+[GIRATINA]
+Turns = 3
+Ability = LEVITATE
+Moves = HYPERBEAM,OMINOUSWIND
+HPMult = 4.5
