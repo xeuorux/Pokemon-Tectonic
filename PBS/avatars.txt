@@ -422,7 +422,6 @@ Moves = NOBLEROAR,FLAMETHROWER,ENDEAVOR
 Turns = 3
 HPMult = 3
 Ability = BADOMEN
-Item = SCOPELENS
 Moves = MOONBLAST,NIGHTSLASH
 #-----------------------------
 [DODRIO]
