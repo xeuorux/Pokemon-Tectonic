@@ -270,7 +270,7 @@ Special,20
 1,ADIGLETT,15,15
 #-------------------------------
 [8] # Ghost Town
-LandSparse,20
+LandTall,20
 25,LOTAD,18,20
 25,GLAMEOW,18,20
 25,ZORUA,18,20

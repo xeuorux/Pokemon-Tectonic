@@ -398,7 +398,7 @@ Pokemon = VENIPEDE,23
 #-------------------------------
 [RICHBOY2,Theodore]
 LoseText = "..."
-Pokemon = SANDILE,18
+Pokemon = EKANS,18
     AbilityIndex = 0
 Pokemon = MINCCINO,19
     AbilityIndex = 0
