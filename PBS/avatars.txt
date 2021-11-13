@@ -596,3 +596,11 @@ Turns = 3
 Ability = LEVITATE
 Moves = HYPERBEAM,OMINOUSWIND
 HPMult = 4.5
+#-----------------------------
+[PARASECT]
+Turns = 2
+HPMult = 4
+Ability = COMATOSE
+Moves = SOULRIP,SPORE
+Item = MUSCLEBAND
+#-----------------------------
