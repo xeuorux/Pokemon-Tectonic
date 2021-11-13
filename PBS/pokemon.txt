@@ -1181,8 +1181,8 @@ Name = Vulpix
 InternalName = VULPIX
 Type1 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 53,31,50,45,50,65
-# Total = 294
+BaseStats = 63,41,60,55,60,75
+# Total = 354
 GenderRate = Female75Percent
 GrowthRate = Medium
 BaseEXP = 60
@@ -11921,7 +11921,7 @@ Weight = 16.8
 Color = Gray
 Shape = Head
 Kind = Snow Hat
-Pokedex = In the snow country, certain folklore says a house will prosper if a Snorunt lives there.
+Pokedex = In Sinnoh, certain folklore says a house will prosper if a Snorunt lives there.
 WildItemUncommon = SNOWBALL
 BattlerPlayerX = 0
 BattlerPlayerY = 29
@@ -23468,7 +23468,7 @@ Weight = 99.5
 Color = Blue
 Shape = Head
 Kind = Ice Chunk
-Pokedex = Using air of -150 degrees Fahrenheit, they freeze opponents solid. They live in herds above the snow line on mountains.
+Pokedex = Using air of -50 degrees Fahrenheit, they freeze opponents solid. They live in herds above the snow line on mountains.
 BattlerPlayerX = 0
 BattlerPlayerY = 27
 BattlerEnemyX = 0
@@ -23834,7 +23834,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = DECIDUEYE,Level,34
+Evolutions = DECIDUEYE,Level,36
 #-------------------------------
 [724]
 Name = Decidueye
@@ -23932,7 +23932,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = INCINEROAR,Level,34
+Evolutions = INCINEROAR,Level,36
 #-------------------------------
 [727]
 Name = Incineroar
@@ -24030,7 +24030,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PRIMARINA,Level,34
+Evolutions = PRIMARINA,Level,36
 #-------------------------------
 [730]
 Name = Primarina
@@ -30636,7 +30636,7 @@ Name = A. Vulpix
 InternalName = AVULPIX
 Type1 = ICE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 53,31,50,45,50,65
+BaseStats = 63,41,60,55,60,75
 # Total = 294
 GenderRate = Female75Percent
 GrowthRate = Medium
