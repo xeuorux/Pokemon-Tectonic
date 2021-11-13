@@ -20019,7 +20019,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LAMPENT,Level,26
+Evolutions = LAMPENT,Level,24
 #-------------------------------
 [608]
 Name = Lampent
