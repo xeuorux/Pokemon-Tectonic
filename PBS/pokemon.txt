@@ -2204,7 +2204,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MACHAMP,Level,40
+Evolutions = MACHAMP,Level,36
 #-------------------------------
 [68]
 Name = Machamp
@@ -2472,7 +2472,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GOLEM,Level,35
+Evolutions = GOLEM,Level,36
 #-------------------------------
 [76]
 Name = Golem
@@ -3076,7 +3076,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GENGAR,Item,DUSKSTONE
+Evolutions = GENGAR,Level,36
 #-------------------------------
 [94]
 Name = Gengar
@@ -13681,7 +13681,7 @@ BaseEXP = 49
 EffortPoints = 0,0,0,1,0,0
 Rareness = 120
 Happiness = 50
-Abilities = HONEYGATHER
+Abilities = HONEYGATHER,FRISK
 Moves = 1,GUST,1,STRUGGLEBUG,1,BUGBITE
 TutorMoves = BUGBITE,BUGBUZZ,DUALWINGBEAT,ENDEAVOR,SNORE,SWIFT,TAILWIND
 Compatibility = Bug
