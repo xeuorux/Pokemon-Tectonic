@@ -453,7 +453,7 @@ module Compiler
 	GameData::Avatar::DATA.clear
     # Read from PBS file
     File.open("PBS/btavatars.txt", "rb") { |f|
-		FileLineData.file = "PBS/avatars.txt"   # For error reporting
+		FileLineData.file = "PBS/btavatars.txt"   # For error reporting
 		# Read a whole section's lines at once, then run through this code.
 		# contents is a hash containing all the XXX=YYY lines in that section, where
 		# the keys are the XXX and the values are the YYY (as unprocessed strings).

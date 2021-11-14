@@ -2,10 +2,10 @@
 #-------------------------------
 [YOUNGSTER,Joey]
 LoseText = "..."
-Pokemon = DITTO, 10
-	Moves = TRANSFORM
+Pokemon = MACHOP, 10
+	Moves = WAKEUPSLAP
     AbilityIndex = 0
-Pokemon = ODDISH, 10
+Pokemon = KOMALA, 10
 #-------------------------------
 [HIKER,Conroy]
 LoseText = "..."

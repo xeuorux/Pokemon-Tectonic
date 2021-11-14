@@ -407,22 +407,32 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
   }
 )
 
-=begin
-BattleHandlers::AbilityOnSwitchIn.add(:IMPOSTER,
-  proc { |ability,battler,battle|
-    next if battler.effects[PBEffects::Transform]
-    choice = battler.pbDirectOpposing
-    next if choice.fainted?
-    next if choice.effects[PBEffects::Transform] ||
-            choice.effects[PBEffects::Illusion] ||
-            choice.effects[PBEffects::Substitute]>0 ||
-            choice.effects[PBEffects::SkyDrop]>=0 ||
-            choice.semiInvulnerable?
-    battle.pbShowAbilitySplash(battler,true)
-    battle.pbHideAbilitySplash(battler)
-    battle.pbAnimation(:TRANSFORM,battler,choice)
-    battle.scene.pbChangePokemon(battler,choice.pokemon)
-    battler.pbTransform(choice)
+BattleHandlers::StatusCheckAbilityNonIgnorable.add(:COMATOSE,
+  proc { |ability,battler,status|
+	validTransform = false
+	validTransform = true if battler.effects[PBEffects::TransformSpecies] == :PARASECT || battler.effects[PBEffects::TransformSpecies] == :KOMALA
+	isTransformed = false
+	isTransformed = battler.effects[PBEffects::Transform] && validTransform
+	validSpecies = battler.isSpecies?(:KOMALA) || battler.isSpecies?(:PARASECT)
+    next false if !(validSpecies || isTransformed)
+	echoln _INTL("valid species is {1}", validSpecies)
+    next true if status.nil? || status == :SLEEP
+  }
+ )
+ 
+ BattleHandlers::StatusImmunityAbilityNonIgnorable.add(:COMATOSE,
+  proc { |ability,battler,status|
+    next true if battler.isSpecies?(:KOMALA) || battler.isSpecies?(:PARASECT)
+	validTransform = false
+	validTransform = true if battler.effects[PBEffects::TransformSpecies] == :PARASECT || battler.effects[PBEffects::TransformSpecies] == :KOMALA
+	next true if battler.effects[PBEffects::Transform] && validTransform
   }
 )
-=end
+
+BattleHandlers::AbilityOnSwitchIn.add(:COMATOSE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is drowsing!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
