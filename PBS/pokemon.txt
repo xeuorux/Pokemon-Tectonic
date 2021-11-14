@@ -25104,14 +25104,14 @@ BattlerEnemyX = 0
 BattlerEnemyY = 34
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = STEENEE,Level,24
+Evolutions = STEENEE,Level,22
 #-------------------------------
 [762]
 Name = Steenee
 InternalName = STEENEE
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 58,90,76,52,45,64
+BaseStats = 58,95,80,52,55,85
 # Total = 385
 GenderRate = AlwaysFemale
 GrowthRate = Parabolic
@@ -25137,7 +25137,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = TSAREENA,Level,34
+Evolutions = TSAREENA,Level,38
 #-------------------------------
 [763]
 Name = Tsareena
@@ -25145,7 +25145,7 @@ InternalName = TSAREENA
 Type1 = GRASS
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 72,120,98,62,50,108
+BaseStats = 72,120,98,62,70,108
 # Total = 510
 GenderRate = AlwaysFemale
 GrowthRate = Parabolic
