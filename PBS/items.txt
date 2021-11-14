@@ -36,7 +36,7 @@
 34,ARMORFOSSIL,Armor Fossil,Armor Fossils,1,5000,A fossil from a prehistoric Pokémon that lived on the land. It appears to be part of a collar.,0,0,8,
 35,COVERFOSSIL,Cover Fossil,Cover Fossils,1,5000,A fossil of an ancient Pokémon that lived in the sea in ancient times. It appears to be part of its back.,0,0,8,
 36,PLUMEFOSSIL,Plume Fossil,Plume Fossils,1,5000,A fossil of an ancient Pokémon that flew in the sky in ancient times. It appears to be part of its wing.,0,0,8,
-37,PRETTYFEATHER,Pretty Feather,Pretty Feathers,1,1000,"A beautiful feather. It can be sold to shops for $500.",0,0,0,
+37,PRETTYFEATHER,Pretty Feather,Pretty Feathers,1,3000,"A beautiful feather. It can be sold to shops for $1500.",0,0,0,
 38,TINYMUSHROOM,Tiny Mushroom,Tiny Mushrooms,1,500,A small and rare mushroom. It can be sold to shops for $250.,0,0,0,
 39,BIGMUSHROOM,Big Mushroom,Big Mushrooms,1,5000,A large and rare mushroom. It can be sold to shops for $2500.,0,0,0,
 40,BALMMUSHROOM,Balm Mushroom,Balm Mushrooms,1,15000,A rare mushroom which gives off a nice fragrance. It can be sold to shops for $7500.,0,0,0,

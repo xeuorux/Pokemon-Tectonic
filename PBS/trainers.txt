@@ -142,7 +142,7 @@ Pokemon = GZIGZAGOON,15
 Pokemon = RIOLU,15
     Name = Sangfroid
     Gender = female
-    Moves = MAGNETWAVE,SCREECH,VACUUMWAVE,FEINT
+    Moves = MAGNETWAVE,SCREECH,VACUUMWAVE,VANGUARD
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Lambert,Lambert,1]
@@ -164,7 +164,7 @@ Pokemon = GZIGZAGOON,15
 Pokemon = RIOLU,15
     Name = Sangfroid
     Gender = female
-    Moves = MAGNETWAVE,SCREECH,VACUUMWAVE,FEINT
+    Moves = MAGNETWAVE,SCREECH,VACUUMWAVE,VANGUARD
     AbilityIndex = 1
 Pokemon = CROAGUNK,15
     Moves = FLATTER,ENTOXIN,MUDTHROW,HEADBUTT
