@@ -5873,9 +5873,8 @@ BattlerShadowSize = 2
 Name = Mareep
 InternalName = MAREEP
 Type1 = ELECTRIC
-Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,45,45,40,70,50
+BaseStats = 70,35,60,30,65,50
 # Total = 310
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -5907,9 +5906,8 @@ Evolutions = FLAAFFY,Level,18
 Name = Flaaffy
 InternalName = FLAAFFY
 Type1 = ELECTRIC
-Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,65,65,55,90,70
+BaseStats = 95,55,80,40,85,70
 # Total = 425
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -5942,8 +5940,8 @@ InternalName = AMPHAROS
 Type1 = ELECTRIC
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 90,75,85,55,115,90
-# Total = 510
+BaseStats = 110,65,95,50,105,90
+# Total = 515
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 230
