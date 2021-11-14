@@ -45,7 +45,6 @@ class PokemonOption_Scene
            if $PokemonSystem.bgmvolume!=value
              $PokemonSystem.bgmvolume = value
              if $game_system.playing_bgm!=nil && !inloadscreen
-               $game_system.playing_bgm.volume = value
                playingBGM = $game_system.getPlayingBGM
                $game_system.bgm_pause
                $game_system.bgm_resume(playingBGM)
@@ -151,7 +150,6 @@ class PokemonOption_Scene
     pbFadeInAndShow(@sprites) { pbUpdate }
   end
  end
- 
  module MessageConfig
 	def self.pbSettingToTextSpeed(speed)
 		case speed
@@ -222,5 +220,5 @@ class Window_PokemonOption < Window_DrawableCommand
       pbDrawShadowText(self.contents,xpos,rect.y,optionwidth,rect.height,value,
          @selBaseColor,@selShadowColor)
     end
-  end
+end
 end

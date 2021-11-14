@@ -537,16 +537,19 @@ class PokemonDataBox < SpriteWrapper
 		end
 		if types[0]
 			@type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number * TYPE_ICON_HEIGHT
+			@type1Icon.visible = true if @battler.effects[PBEffects::Transform]
 		else
 			@type1Icon.visible = false
 		end
 		if types[1]
 			@type2Icon.src_rect.y = GameData::Type.get(types[1]).id_number * TYPE_ICON_HEIGHT if types[1]
+			@type2Icon.visible = true if @battler.effects[PBEffects::Transform]
 		else
 			@type2Icon.visible = false
 		end
 		if types[2]
 			@type3Icon.src_rect.y = GameData::Type.get(types[2]).id_number * TYPE_ICON_HEIGHT if types[2]
+			@type3Icon.visible = true if @battler.effects[PBEffects::Transform]
 		else
 			@type3Icon.visible = false
 		end

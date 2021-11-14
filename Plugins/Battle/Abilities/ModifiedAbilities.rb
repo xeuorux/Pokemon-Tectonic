@@ -406,3 +406,23 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
     user.pbOnAbilityChanged(oldAbil) if !oldAbil.nil?
   }
 )
+
+=begin
+BattleHandlers::AbilityOnSwitchIn.add(:IMPOSTER,
+  proc { |ability,battler,battle|
+    next if battler.effects[PBEffects::Transform]
+    choice = battler.pbDirectOpposing
+    next if choice.fainted?
+    next if choice.effects[PBEffects::Transform] ||
+            choice.effects[PBEffects::Illusion] ||
+            choice.effects[PBEffects::Substitute]>0 ||
+            choice.effects[PBEffects::SkyDrop]>=0 ||
+            choice.semiInvulnerable?
+    battle.pbShowAbilitySplash(battler,true)
+    battle.pbHideAbilitySplash(battler)
+    battle.pbAnimation(:TRANSFORM,battler,choice)
+    battle.scene.pbChangePokemon(battler,choice.pokemon)
+    battler.pbTransform(choice)
+  }
+)
+=end

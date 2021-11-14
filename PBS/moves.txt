@@ -783,7 +783,7 @@
 763,TREMOR,Tremor,076,65,GROUND,Physical,100,20,0,AllNearOthers,0,bef,"The user slams the earth, causing all the Pokémon around it to tremble and take damage."
 764,COLDEMBRACE,Cold Embrace,00C,40,ICE,Physical,100,35,10,NearOther,0,abef,"The user grabs the target in a chilly embrace. It has a 10% chance to chill."
 765,BADSTENCH,Bad Stench,013,50,POISON,Special,100,25,20,NearOther,0,bef,"The user gives off a terrible stench towards the target. It has a 20% chance to confuse."
-766,BLINDSIDE,Blind Side,147,40,PSYCHIC,Physical,100,35,0,NearOther,0,abef,"The user skillfully attacks around the enemy's defenses. Skips protections, and always hits."
+766,BLINDSIDE,Blind Side,147,40,PSYCHIC,Physical,0,35,0,NearOther,0,abef,"The user skillfully attacks around the enemy's defenses. Skips protections, and always hits."
 767,SLURP,Slurp,0DD,25,BUG,Physical,100,25,0,NearOther,0,abef,"The user slurpsa bit of the target's blood. The user's HP is restored by half the damage dealt."
 768,KICKSTART,Kickstart,505,40,PSYCHIC,Physical,100,10,0,NearOther,0,abef,"The user kicks the target, giving them the energy to attack right after the user."
 769,BOREALWIND,Boreal Wind,00C,60,FLYING,Special,100,20,20,NearOther,0,bef,"The user whips up a cold northerly wind to attack the target. It has a 20% chance to chill."
@@ -812,7 +812,7 @@
 792,BEARHUG,Bear Hug,0CF,80,FIGHTING,Physical,90,15,0,NearOther,0,bef,The user wraps the target in a hugely strong hug.
 793,INFERNOCHARGE,Inferno Charge,01F,90,FIRE,Physical,100,20,30,NearOther,0,abef,"The user cloaks itself in an inferno of flame and attacks. It has a 30% chance to raise Speed."
 794,FLAREUP,Flare Up,50E,65,FIRE,Physical,100,10,0,NearOther,0,bef,The user targets the opponents soft spots with a fiery strike. Its power doubles if the target is burned.
-795,PERFUMEDPUNCH,Perfumed Punch,0A5,60,FAIRY,Physical,100,25,0,NearOther,0,abef,"The user throws a sweet-smelling punch which the target is unable to avoid."
+795,PERFUMEDPUNCH,Perfumed Punch,0A5,60,FAIRY,Physical,0,25,0,NearOther,0,abef,"The user throws a sweet-smelling punch which the target is unable to avoid."
 796,INFINITEFORCE,Infinite Force,50F,140,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user wields an exaggerated power to strike the target. The attack's recoil sharply reduces the user's Attack stat."
 797,TANTRUM,Tantrum,0D2,120,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user goes on a wild tantrum for two to three turns. It then becomes confused, however."
 798,SLAG,Slag,005,80,STEEL,Special,100,10,30,NearOther,0,befn,"The user sprays mining waste at the target. It has a 30% chance to poison."
@@ -922,7 +922,7 @@
 903,RAPIDSTARS,Rapid Stars,0A5,90,NORMAL,Special,0,20,0,AllNearFoes,0,bef,"A barrage of star-shaped rays are shot at the opposing team, never missing."
 904,PILFER,Pilfer,539,40,DARK,Physical,100,30,0,NearOther,0,abef,The user attacks and steals the foe's held Berry or Gem. It can't steal if the user holds an item.
 905,TEASE,Tease,400,60,DARK,Special,100,25,20,NearOther,0,befk,"The user teases the target, dealing a bit of mental damage. It has a 20% chance to charm."
-906,SCAM,Scam,15D,70,DARK,Physical,100,10,0,NearOther,-1,abef,"The user scames the target of it's stat boosts, and then attacks."
+906,SCAM,Scam,15D,70,DARK,Physical,100,10,0,NearOther,-1,abef,"The user scams the target of its stat boosts, and then attacks."
 907,DARKALLURE,Dark Allure,400,90,DARK,Special,100,15,10,NearOther,0,bef,"The user strikes the target with dark energy, tempting it. It has a 10% chance to charm."
 908,COYGAZE,Coy Gaze,400,20,DARK,Special,100,20,100,NearOther,0,bef,"The user uses its eyes to charm the target, while dealing a bit of mental damage."
 909,PROFANE,Profane,400,100,DARK,Special,50,5,100,NearOther,0,bef,"The user overwhelms the target with negative energy, charming it and dealing massive damage."
@@ -947,6 +947,7 @@
 928,POISONSPIKES,Poison Spikes,104,0,POISON,Status,0,20,0,FoeSide,0,c,The user lays a trap of poison spikes at the foe's feet. They poison foes that switch into battle.
 929,ENVENOM,Envenom,005,0,POISON,Status,100,40,0,NearFoe,0,bce,"Venom is strategically introduced into the target, poisoning it."
 930,CHAOSWHEEL,Chaos Wheel,547,80,NORMAL,Physical,100,10,20,NearOther,0,bef,"The user thrashes furiously while infused with elements. It has a 6.67% chance each to paralyze, burn, or chill."
+931,MINDLINK,Mind Link,549,0,PSYCHIC,Status,0,40,0,User,0,d,"The user syncs its mind with its teammates, Special Attack stat of itself and its allies."
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch."
