@@ -229,7 +229,7 @@ class PokemonPartyScreen
 		if $Trainer.has_pokedex
           commands[cmdPokedex = commands.length]  = _INTL("Pokédex")
         end
-		if !pkmn.shadowPokemon? && !pkmn.foreign?($Trainer)
+		if !pkmn.shadowPokemon?
           commands[cmdRename = commands.length]   = _INTL("Rename")
         end
         if pkmn.mail

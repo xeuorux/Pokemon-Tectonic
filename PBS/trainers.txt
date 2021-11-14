@@ -510,7 +510,7 @@ Pokemon = LUVDISC,15
     AbilityIndex = 0
     Item = LIECHIBERRY
 Pokemon = GOLETT,15
-    Moves = SHADOWPUNCH,RUMBLE,FACADE,CRASH
+    Moves = ASTONISH,RUMBLE,BULKUP,CRASH
     AbilityIndex = 0
     Item = SITRUSBERRY
 #-------------------------------
