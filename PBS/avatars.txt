@@ -397,8 +397,7 @@ Moves = LIGHTSCREEN,REFLECT,POWERUPPUNCH,XSCISSOR
 Turns = 3
 HPMult = 2.5
 Ability = UNNERVE
-Item = MENTALHERB
-Moves = ATTACKORDER,DEFENDORDER,HEALORDER,ALLERGY
+Moves = ATTACKORDER,DEFENDORDER
 #------------------------------
 [AGOLEM]
 Turns = 2
@@ -498,14 +497,14 @@ Moves = RAZORLEAF,SYNTHESIS
 #-----------------------------
 [URSARING]
 Turns = 2
-HPMult = 6
+HPMult = 4
 Ability = GUTS
 Moves = SLASH
 Item = MUSCLEBAND
 #-----------------------------
 [WATCHOG]
 Turns = 2
-HPMult = 6
+HPMult = 4
 Ability = PARANOID
 Moves = GLARE,WHITERAY
 Item = WISEGLASSES
@@ -524,7 +523,7 @@ Ability = GLUTTONY
 Moves = POWERTRIP,GIGAIMPACT,STEALTHROCK
 #-----------------------------
 [BEARTIC]
-Turns = 3
+Turns = 2
 HPMult = 4
 Ability = POISONTOUCH
 Moves = COLDSNOT,VENOMDRENCH
