@@ -1546,3 +1546,36 @@ class PokeBattle_Move_548 < PokeBattle_Move
 		end
 	end
 end
+
+#===============================================================================
+# Raises Sp.Attack of user and team (Mind Link)
+#===============================================================================
+class PokeBattle_Move_549 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    return false if damagingMove?
+	failed = true
+	@battle.eachSameSideBattler(user) do |b|
+      next if !b.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,true)
+      failed = false
+      break
+    end
+	@battle.pbDisplay(_INTL("But it failed!")) if failed
+    return failed
+  end
+
+  def pbEffectGeneral(user)
+    @battle.eachSameSideBattler(user) do |b|
+        next if !b.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,true)
+        b.pbRaiseStatStage(:ATTACK,1,user)
+    end
+  end
+  
+	def getScore(score,user,target,skill=100)
+		@battle.battlers.each do |b|
+			pkmn = b.pokemon
+			next if !pkmn || !pkmn.able? || !b.opposes?
+			score -= b.stages[:SPECIAL_ATTACK] * 10
+		end
+		return score
+	end
+end
