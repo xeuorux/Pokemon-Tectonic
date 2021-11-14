@@ -2,9 +2,10 @@
 #-------------------------------
 [YOUNGSTER,Joey]
 LoseText = "..."
-Pokemon = STARYU, 5
-	Moves = CAMOUFLAGE
+Pokemon = DITTO, 10
+	Moves = TRANSFORM
     AbilityIndex = 0
+Pokemon = ODDISH, 10
 #-------------------------------
 [HIKER,Conroy]
 LoseText = "..."
@@ -22,7 +23,9 @@ Pokemon = SLOWPOKE, 5
 LoseText = "..."
 Pokemon = MILCERY, 10
 	Moves = HEALPULSE
+Pokemon = ZORUA, 5
 Pokemon = SLOWPOKE, 5
+POKEMON = ODDISH,5
 #-------------------------------
 [BUGCATCHER,Colin]
 LoseText = "..."
