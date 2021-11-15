@@ -628,7 +628,7 @@
 615,LUMIOSEGALETTE,Lumiose Galette,Lumiose Galettes,2,350,A popular treat in Lumiose City. It can be used once to heal all the status conditions of a Pokémon.,1,0,0,
 616,SHALOURSABLE,Shalour Sable,Shalour Sables,2,350,Shalour City's famous shortbread. It can be used once to heal all the status conditions of a Pokémon.,1,0,0,
 617,BIGMALASADA,Big Malasada,Big Malasadas,2,350,The Alola region's specialty--fried bread. It can be used once to heal all the status conditions of a Pokémon.,1,0,0,
-618,ABILITYCAPSULE,Ability Capsule,Ability Capsule,2,5000,A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used.,1,0,0,
+618,ABILITYCAPSULE,Ability Capsule,Ability Capsule,2,3000,A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used.,1,0,0,
 #-------------------------------,,,,,,,,,,
 619,DREAMBALL,Dream Ball,Dream Balls,3,0,A somewhat different Poké Ball that makes it easier to catch wild Pokémon while they're asleep.,0,4,4,
 620,BEASTBALL,Beast Ball,Beast Balls,3,1000,A special Poké Ball designed to catch Ultra Beasts. It has a low success rate for catching others.,0,4,4,

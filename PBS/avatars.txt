@@ -109,7 +109,7 @@ HPMult = 5
 Turns = 2
 Ability = FASCINATE
 Moves = HEAVYSLAM,METALCLAW
-HPMult = 4
+HPMult = 3.5
 #-------------------------------
 [MILOTIC]
 Turns = 1
@@ -588,7 +588,7 @@ Turns = 2
 Ability = SERENEGRACE
 Moves = DOOMDESIRE,LIFEDEW
 HPMult = 5
-#-------------------------------FEELFREETOMAKEABETTERAVATAROUTOFTHIS
+#-------------------------------
 [GIRATINA]
 Turns = 3
 Ability = LEVITATE
@@ -602,3 +602,14 @@ Ability = COMATOSE
 Moves = SOULRIP,SPORE
 Item = MUSCLEBAND
 #-----------------------------
+[BELLOSSOM]
+Turns = 2
+Ability = DROUGHT
+Moves = FIERYDANCE,ABSORB
+HPMult = 3
+#-----------------------------
+[HONCHKROW]
+Turns = 1
+Ability = DRIZZLE
+Moves = HURRICANE,FOULPLAY
+HPMult = 5
