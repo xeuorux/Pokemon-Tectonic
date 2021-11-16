@@ -515,7 +515,6 @@ class PokemonDataBox < SpriteWrapper
 		firstStatusY = 36
 		# Draw status icon
 		if @battler.pbHasAnyStatus? || @battler.status != :NONE
-			echoln _INTL("his status is {1}, it is {2} that he has sleep",@battler.pbHasAnyStatus?, @battler.pbHasStatus?(:SLEEP))
 		  s = GameData::Status.get(@battler.status).id_number
 		  s = GameData::Status.get(:SLEEP).id_number if @battler.pbHasStatus?(:SLEEP)
 		  if @battler.status == :POISON && @battler.statusCount > 0   # Badly poisoned

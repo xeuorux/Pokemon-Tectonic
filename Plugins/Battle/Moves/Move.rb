@@ -636,5 +636,30 @@ class PokeBattle_Move
     @battle.field.effects[PBEffects::FusionBolt]  = false
     @battle.field.effects[PBEffects::FusionFlare] = false
   end
+  
+  #=============================================================================
+  # Check if target is immune to the move because of its ability
+  #=============================================================================
+  def pbImmunityByAbility(user,target)
+    return false if @battle.moldBreaker
+    ret = false
+    if target.abilityActive?
+      ret = BattleHandlers.triggerMoveImmunityTargetAbility(target.ability,
+         user,target,self,@calcType,@battle)
+    end
+	if !ret
+		target.eachAlly do |b|
+			echoln _INTL("b is {1}",b.pbThis)
+			next if !b.abilityActive?
+			ret = BattleHandlers.triggerMoveImmunityAllyAbility(b.ability,user,target,self,@calcType,@battle,b)
+			break if ret
+		end
+	end
+    return ret
+  end
 end
   def slashMove?;        return @flags[/p/]; end
+  
+  
+  
+  

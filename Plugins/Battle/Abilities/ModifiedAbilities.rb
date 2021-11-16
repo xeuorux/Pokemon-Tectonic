@@ -376,7 +376,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
 )
 
 BattleHandlers::AbilityOnSwitchOut.add(:NATURALCURE,
-  proc { |ability,battler,endOfBattle|
+  proc { |ability,battler,endOfBattle,battle=nil|
     PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
     battler.pbCureStatus(false)
   }
@@ -415,7 +415,6 @@ BattleHandlers::StatusCheckAbilityNonIgnorable.add(:COMATOSE,
 	isTransformed = battler.effects[PBEffects::Transform] && validTransform
 	validSpecies = battler.isSpecies?(:KOMALA) || battler.isSpecies?(:PARASECT)
     next false if !(validSpecies || isTransformed)
-	echoln _INTL("valid species is {1}", validSpecies)
     next true if status.nil? || status == :SLEEP
   }
  )
@@ -434,5 +433,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:COMATOSE,
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} is drowsing!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
+  }
+)
+
+
+
+BattleHandlers::AbilityOnSwitchOut.add(:REGENERATOR,
+  proc { |ability,battler,endOfBattle,battle=nil|
+    next if endOfBattle
+    PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
+    battler.pbRecoverHP(battler.totalhp/3,false,false)
   }
 )

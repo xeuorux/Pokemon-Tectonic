@@ -298,7 +298,8 @@ class PokeBattle_Battler
       target.damageState.protected = true
       @battle.successStates[user.index].protected = true
       return false
-    end
+    end	
+	######################################################
     if move.canProtectAgainst?
       # Quick Guard
       if target.pbOwnSide.effects[PBEffects::QuickGuard] && !unseenfist &&
@@ -392,7 +393,19 @@ class PokeBattle_Battler
       end
     end
     # Immunity because of ability (intentionally before type immunity check)
-    if move.pbImmunityByAbility(user,target)
+=begin
+	if target.effects[PBEffects::Gargantuan] > 0 && user.index!=target.index && move.pbTarget(user).num_targets >1 &&
+	(Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?) && !@battle.moldBreaker
+		@battle.pbDisplay(_INTL("Gargantuan protected {1}!",target.pbThis(true)))
+		if !user.boss? && !target.boss
+			return false
+		else
+			@battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are partially ignored!"))
+			typeMod /= 2
+		end
+	end
+=end
+    if move.pbImmunityByAbility(user,target) 
 		if !user.boss? && !target.boss
 			return false
 		else

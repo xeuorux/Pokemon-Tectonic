@@ -10,14 +10,14 @@ Pokemon = SLOWPOKE, 10
 #-------------------------------
 [HIKER,Conroy]
 LoseText = "..."
-Pokemon = SLOWPOKE, 5
-	Moves = GROWL
+Pokemon = SHELLDER, 15
+	Moves = SURF
 	AbilityIndex = 0
-Pokemon = SLOWPOKE, 5
-	Moves = GROWL
+Pokemon = SUICUNE, 15
+	Moves = SURF
 	AbilityIndex = 0
-Pokemon = SLOWPOKE, 5
-	Moves = GROWL
+Pokemon = BUIZEL, 15
+	Moves = SURF
 	AbilityIndex = 0
 #-------------------------------
 [AROMALADY,Someone]

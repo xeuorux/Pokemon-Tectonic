@@ -322,5 +322,6 @@ class PokeBattle_Battler
 		@effects[PBEffects::CreepOut]		 	 = false
 		@effects[PBEffects::LuckyStar]       	 = false
 		@effects[PBEffects::Inured]       	 	 = false
+		@effects[PBEffects::Gargantuan]			 = 0
     end
 end
