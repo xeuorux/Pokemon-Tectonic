@@ -109,12 +109,12 @@ HPMult = 5
 Turns = 2
 Ability = FASCINATE
 Moves = HEAVYSLAM,METALCLAW
-HPMult = 4
+HPMult = 3.5
 #-------------------------------
 [MILOTIC]
 Turns = 1
-Ability = MARVELSCALE
-Moves = BRINE,TWISTER
+Ability = COMPETITIVE
+Moves = BRINE,WATERGUN
 HPMult = 5
 #-------------------------------
 [INCINEROAR]
@@ -397,8 +397,7 @@ Moves = LIGHTSCREEN,REFLECT,POWERUPPUNCH,XSCISSOR
 Turns = 3
 HPMult = 2.5
 Ability = UNNERVE
-Item = MENTALHERB
-Moves = ATTACKORDER,DEFENDORDER,HEALORDER,ALLERGY
+Moves = ATTACKORDER,DEFENDORDER
 #------------------------------
 [AGOLEM]
 Turns = 2
@@ -422,7 +421,6 @@ Moves = NOBLEROAR,FLAMETHROWER,ENDEAVOR
 Turns = 3
 HPMult = 3
 Ability = BADOMEN
-Item = SCOPELENS
 Moves = MOONBLAST,NIGHTSLASH
 #-----------------------------
 [DODRIO]
@@ -499,22 +497,22 @@ Moves = RAZORLEAF,SYNTHESIS
 #-----------------------------
 [URSARING]
 Turns = 2
-HPMult = 6
-Ability = GUTS
-Moves = SLASH
+HPMult = 4
+Ability = CHALLENGER
+Moves = CUT,SLASH,SCRATCH
 Item = MUSCLEBAND
 #-----------------------------
 [WATCHOG]
 Turns = 2
-HPMult = 6
+HPMult = 4
 Ability = PARANOID
-Moves = GLARE,WHITERAY
+Moves = WHITERAY,BEAM
 Item = WISEGLASSES
 #-----------------------------
 [LINOONE]
 Turns = 1
 HPMult = 6
-Item = SITRUSBERRY
+Item = ORANBERRY
 Ability = GLUTTONY
 Moves = HEADBUTT,COVET
 #-----------------------------
@@ -525,7 +523,7 @@ Ability = GLUTTONY
 Moves = POWERTRIP,GIGAIMPACT,STEALTHROCK
 #-----------------------------
 [BEARTIC]
-Turns = 3
+Turns = 2
 HPMult = 4
 Ability = POISONTOUCH
 Moves = COLDSNOT,VENOMDRENCH
@@ -589,4 +587,29 @@ HPMult = 4
 Turns = 2
 Ability = SERENEGRACE
 Moves = DOOMDESIRE,LIFEDEW
+HPMult = 5
+#-------------------------------
+[GIRATINA]
+Turns = 3
+Ability = LEVITATE
+Moves = HYPERBEAM,OMINOUSWIND
+HPMult = 4.5
+#-----------------------------
+[PARASECT]
+Turns = 2
+HPMult = 4
+Ability = COMATOSE
+Moves = SOULRIP,SPORE
+Item = MUSCLEBAND
+#-----------------------------
+[BELLOSSOM]
+Turns = 2
+Ability = DROUGHT
+Moves = FIERYDANCE,ABSORB
+HPMult = 3
+#-----------------------------
+[HONCHKROW]
+Turns = 1
+Ability = DRIZZLE
+Moves = HURRICANE,FOULPLAY
 HPMult = 5

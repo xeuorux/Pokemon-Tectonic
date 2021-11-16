@@ -30,7 +30,7 @@ module GameData
 	  
 	  if ret && pkmn.boss
 		filename = 'Graphics/Pokemon/Avatars/' + species.to_s
-		filename += '_' + pkmn.form if pkmn.form != 0
+		filename += '_' + pkmn.form.to_s if pkmn.form != 0
 		echoln(filename)
 		ret = AnimatedBitmap.new(filename)
 	  end

@@ -246,9 +246,9 @@ Bicycle = true
 #-------------------------------
 [048]
 # Name Rater's House
-Outdoor = true
+Outdoor = false
 ShowArea = true
-Bicycle = true
+Bicycle = false
 #-------------------------------
 [053]
 # Jungle Route
@@ -477,6 +477,12 @@ Bicycle = true
 #-------------------------------
 [129]
 # Barren Crater
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[130]
+# Canal Desert
 Outdoor = true
 ShowArea = true
 Bicycle = true

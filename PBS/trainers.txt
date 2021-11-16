@@ -2,27 +2,31 @@
 #-------------------------------
 [YOUNGSTER,Joey]
 LoseText = "..."
-Pokemon = STARYU, 5
-	Moves = CAMOUFLAGE
+Pokemon = VOLTORB, 15
+	Moves = CHARGE,THUNDERWAVE
     AbilityIndex = 0
+Pokemon = SLOWPOKE, 10
+	Moves = WATERGUN
 #-------------------------------
 [HIKER,Conroy]
 LoseText = "..."
-Pokemon = SLOWPOKE, 5
-	Moves = GROWL
+Pokemon = SHELLDER, 15
+	Moves = SURF
 	AbilityIndex = 0
-Pokemon = SLOWPOKE, 5
-	Moves = GROWL
+Pokemon = SUICUNE, 15
+	Moves = SURF
 	AbilityIndex = 0
-Pokemon = SLOWPOKE, 5
-	Moves = GROWL
+Pokemon = BUIZEL, 15
+	Moves = SURF
 	AbilityIndex = 0
 #-------------------------------
 [AROMALADY,Someone]
 LoseText = "..."
 Pokemon = MILCERY, 10
 	Moves = HEALPULSE
+Pokemon = ZORUA, 5
 Pokemon = SLOWPOKE, 5
+POKEMON = ODDISH,5
 #-------------------------------
 [BUGCATCHER,Colin]
 LoseText = "..."
@@ -139,7 +143,7 @@ Pokemon = GZIGZAGOON,15
 Pokemon = RIOLU,15
     Name = Sangfroid
     Gender = female
-    Moves = MAGNETWAVE,SCREECH,VACUUMWAVE,FEINT
+    Moves = MAGNETWAVE,SCREECH,VACUUMWAVE,VANGUARD
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Lambert,Lambert,1]
@@ -161,7 +165,7 @@ Pokemon = GZIGZAGOON,15
 Pokemon = RIOLU,15
     Name = Sangfroid
     Gender = female
-    Moves = MAGNETWAVE,SCREECH,VACUUMWAVE,FEINT
+    Moves = MAGNETWAVE,SCREECH,VACUUMWAVE,VANGUARD
     AbilityIndex = 1
 Pokemon = CROAGUNK,15
     Moves = FLATTER,ENTOXIN,MUDTHROW,HEADBUTT
@@ -398,7 +402,7 @@ Pokemon = VENIPEDE,23
 #-------------------------------
 [RICHBOY2,Theodore]
 LoseText = "..."
-Pokemon = SANDILE,18
+Pokemon = EKANS,18
     AbilityIndex = 0
 Pokemon = MINCCINO,19
     AbilityIndex = 0
@@ -510,7 +514,7 @@ Pokemon = LUVDISC,15
     AbilityIndex = 0
     Item = LIECHIBERRY
 Pokemon = GOLETT,15
-    Moves = SHADOWPUNCH,RUMBLE,FACADE,CRASH
+    Moves = ASTONISH,RUMBLE,BULKUP,CRASH
     AbilityIndex = 0
     Item = SITRUSBERRY
 #-------------------------------
@@ -873,7 +877,7 @@ Pokemon = RHYHORN,26
 #-------------------------------
 [FISHERMAN2,Mason]
 Pokemon = BUIZEL,26
-Pokemon = HORSEA,26
+Pokemon = SEADRA,26
 Pokemon = KROKOROK,26
 #-------------------------------
 [GENTLEMAN3,Charles]

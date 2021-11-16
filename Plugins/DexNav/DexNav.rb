@@ -34,6 +34,7 @@ class NewDexNav
 	encounterTypesCompleted = {}
 	encounter_array.each do |entry|
 		encounterType = entry[0]
+		next if encounterType == :Special
 		if !encounterTypesCompleted.has_key?(encounterType)
 			encounterTypesCompleted[encounterType] = true
 		end

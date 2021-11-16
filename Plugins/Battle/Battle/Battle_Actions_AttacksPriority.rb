@@ -12,7 +12,13 @@ class PokeBattle_Battle
         r = i+pbRandom(randomOrder.length-i)
         randomOrder[i], randomOrder[r] = randomOrder[r], randomOrder[i]
       end
+	  honorAura = false
       @priority.clear
+	  for i in 0..maxBattlerIndex
+		b = @battlers[i]
+		next if !b
+		honorAura = true if b.hasHonorAura?
+	  end
       for i in 0..maxBattlerIndex
         b = @battlers[i]
         next if !b
@@ -23,6 +29,7 @@ class PokeBattle_Battle
           if @choices[b.index][0]==:UseMove
             move = @choices[b.index][2]
             pri = move.priority
+			pri -= 1 if (self.pbCheckGlobalAbility(:HONORAURA) && move.statusMove?)
 			targets = b.pbFindTargets(@choices[b.index],move,b)
             if b.abilityActive?
               pri = BattleHandlers.triggerPriorityChangeAbility(b.ability,b,move,pri,targets)
@@ -61,6 +68,7 @@ class PokeBattle_Battle
         @priority.push(bArray)
       end
       needRearranging = true
+	  honorAura = false
     else
       if (@field.effects[PBEffects::TrickRoom]>0)!=@priorityTrickRoom
         needRearranging = true

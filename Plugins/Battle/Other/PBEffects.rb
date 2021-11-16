@@ -31,6 +31,7 @@ module PBEffects
 	NerveBreak			= 141
 	IceBall				= 142
 	RollOut				= 143
+	Gargantuan			= 144
 	
 	#===========================================================================
     # These effects apply to the battle (i.e. both sides)

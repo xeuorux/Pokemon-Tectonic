@@ -325,6 +325,11 @@ class PokeBattle_Move
 			multipliers[:base_damage_multiplier] *= 4 / 3.0
 		  end
 		end
+		if (@battle.pbCheckGlobalAbility(:RUINOUS))
+			echoln _INTL("Multipliers is {1}", multipliers)
+			multipliers[:base_damage_multiplier] *= 1.20
+			echoln _INTL("Multipliers is {1} after RUINOUS", multipliers)
+		end
 		# Ability effects that alter damage
 		if user.abilityActive?
 		  BattleHandlers.triggerDamageCalcUserAbility(user.ability,
@@ -636,5 +641,29 @@ class PokeBattle_Move
     @battle.field.effects[PBEffects::FusionBolt]  = false
     @battle.field.effects[PBEffects::FusionFlare] = false
   end
+  
+  #=============================================================================
+  # Check if target is immune to the move because of its ability
+  #=============================================================================
+  def pbImmunityByAbility(user,target)
+    return false if @battle.moldBreaker
+    ret = false
+    if target.abilityActive?
+      ret = BattleHandlers.triggerMoveImmunityTargetAbility(target.ability,
+         user,target,self,@calcType,@battle)
+    end
+	if !ret
+		target.eachAlly do |b|
+			next if !b.abilityActive?
+			ret = BattleHandlers.triggerMoveImmunityAllyAbility(b.ability,user,target,self,@calcType,@battle,b)
+			break if ret
+		end
+	end
+    return ret
+  end
 end
   def slashMove?;        return @flags[/p/]; end
+  
+  
+  
+  

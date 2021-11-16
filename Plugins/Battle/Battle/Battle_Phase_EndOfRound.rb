@@ -1,5 +1,85 @@
 class PokeBattle_Battle
 	#=============================================================================
+  # End Of Round weather
+  #=============================================================================
+  def pbEORWeather(priority)
+    # NOTE: Primordial weather doesn't need to be checked here, because if it
+    #       could wear off here, it will have worn off already.
+    # Count down weather duration
+    @field.weatherDuration -= 1 if @field.weatherDuration>0
+    # Weather wears off
+    if @field.weatherDuration==0
+      case @field.weather
+      when :Sun       then pbDisplay(_INTL("The sunlight faded."))
+      when :Rain      then pbDisplay(_INTL("The rain stopped."))
+      when :Sandstorm then pbDisplay(_INTL("The sandstorm subsided."))
+      when :Hail      then pbDisplay(_INTL("The hail stopped."))
+      when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
+      end
+      @field.weather = :None
+      # Check for form changes caused by the weather changing
+      eachBattler { |b| b.pbCheckFormOnWeatherChange }
+      # Start up the default weather
+      pbStartWeather(nil,@field.defaultWeather) if @field.defaultWeather != :None
+      return if @field.weather == :None
+    end
+    # Weather continues
+    weather_data = GameData::BattleWeather.try_get(@field.weather)
+    pbCommonAnimation(weather_data.animation) if weather_data
+    case @field.weather
+#    when :Sun         then pbDisplay(_INTL("The sunlight is strong."))
+#    when :Rain        then pbDisplay(_INTL("Rain continues to fall."))
+    when :Sandstorm   then pbDisplay(_INTL("The sandstorm is raging."))
+    when :Hail        then pbDisplay(_INTL("The hail is crashing down."))
+#    when :HarshSun    then pbDisplay(_INTL("The sunlight is extremely harsh."))
+#    when :HeavyRain   then pbDisplay(_INTL("It is raining heavily."))
+#    when :StrongWinds then pbDisplay(_INTL("The wind is strong."))
+    when :ShadowSky   then pbDisplay(_INTL("The shadow sky continues."))
+    end
+    # Effects due to weather
+    curWeather = pbWeather
+    priority.each do |b|
+      # Weather-related abilities
+      if b.abilityActive?
+        BattleHandlers.triggerEORWeatherAbility(b.ability,curWeather,b,self)
+        b.pbFaint if b.fainted?
+      end
+      # Weather damage
+      # NOTE:
+      case curWeather
+      when :Sandstorm
+        next if !b.takesSandstormDamage?
+        pbDisplay(_INTL("{1} is buffeted by the sandstorm!",b.pbThis))
+        @scene.pbDamageAnimation(b)
+		reduction = b.totalhp/16
+		reduction /= 4 if b.boss?
+        b.pbReduceHP(reduction,false)
+        b.pbItemHPHealCheck
+        b.pbFaint if b.fainted?
+      when :Hail
+        next if !b.takesHailDamage?
+        pbDisplay(_INTL("{1} is buffeted by the hail!",b.pbThis))
+        @scene.pbDamageAnimation(b)
+        reduction = b.totalhp/16
+		reduction /= 4 if b.boss?
+        b.pbReduceHP(reduction,false)
+        b.pbItemHPHealCheck
+        b.pbFaint if b.fainted?
+      when :ShadowSky
+        next if !b.takesShadowSkyDamage?
+        pbDisplay(_INTL("{1} is hurt by the shadow sky!",b.pbThis))
+        @scene.pbDamageAnimation(b)
+        reduction = b.totalhp/16
+		reduction /= 4 if b.boss?
+        b.pbReduceHP(reduction,false)
+        b.pbItemHPHealCheck
+        b.pbFaint if b.fainted?
+      end
+    end
+  end
+
+
+  #=============================================================================
   # End Of Round phase
   #=============================================================================
   def pbEndOfRoundPhase

@@ -190,4 +190,9 @@ class PokeBattle_Battler
     return check_item.include?(@item_id) if check_item.is_a?(Array)
     return check_item == @item_id
   end
+
+def hasHonorAura?
+    return hasActiveAbility?([:HONORAURA])
+end
+
 end

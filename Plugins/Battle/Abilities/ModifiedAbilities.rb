@@ -376,7 +376,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
 )
 
 BattleHandlers::AbilityOnSwitchOut.add(:NATURALCURE,
-  proc { |ability,battler,endOfBattle|
+  proc { |ability,battler,endOfBattle,battle=nil|
     PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
     battler.pbCureStatus(false)
   }
@@ -404,5 +404,44 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
     end
     battle.pbHideAbilitySplash(target) if user.opposes?(target)
     user.pbOnAbilityChanged(oldAbil) if !oldAbil.nil?
+  }
+)
+
+BattleHandlers::StatusCheckAbilityNonIgnorable.add(:COMATOSE,
+  proc { |ability,battler,status|
+	validTransform = false
+	validTransform = true if battler.effects[PBEffects::TransformSpecies] == :PARASECT || battler.effects[PBEffects::TransformSpecies] == :KOMALA
+	isTransformed = false
+	isTransformed = battler.effects[PBEffects::Transform] && validTransform
+	validSpecies = battler.isSpecies?(:KOMALA) || battler.isSpecies?(:PARASECT)
+    next false if !(validSpecies || isTransformed)
+    next true if status.nil? || status == :SLEEP
+  }
+ )
+ 
+ BattleHandlers::StatusImmunityAbilityNonIgnorable.add(:COMATOSE,
+  proc { |ability,battler,status|
+    next true if battler.isSpecies?(:KOMALA) || battler.isSpecies?(:PARASECT)
+	validTransform = false
+	validTransform = true if battler.effects[PBEffects::TransformSpecies] == :PARASECT || battler.effects[PBEffects::TransformSpecies] == :KOMALA
+	next true if battler.effects[PBEffects::Transform] && validTransform
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:COMATOSE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is drowsing!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+
+
+BattleHandlers::AbilityOnSwitchOut.add(:REGENERATOR,
+  proc { |ability,battler,endOfBattle,battle=nil|
+    next if endOfBattle
+    PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
+    battler.pbRecoverHP(battler.totalhp/3,false,false)
   }
 )

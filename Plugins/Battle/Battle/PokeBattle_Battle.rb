@@ -7,6 +7,7 @@ class PokeBattle_Battle
 	attr_accessor :numBossOnlyTurns
 	attr_accessor :autoTesting
 	attr_accessor :autoTestingIndex
+	attr_accessor :honorAura
   
   def bossBattle?
 	return bossBattle
@@ -91,6 +92,7 @@ class PokeBattle_Battle
 	@autoTesting	   = false
 	@autoTestingIndex  = 1
 	@commandPhasesThisRound = 0
+	@honorAura		   = false
     if GameData::Move.exists?(:STRUGGLE)
       @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))
     else
@@ -175,3 +177,5 @@ class PokeBattle_Battle
     eachBattler { |b| b.pbItemTerrainStatBoostCheck }
   end 
 end
+
+
