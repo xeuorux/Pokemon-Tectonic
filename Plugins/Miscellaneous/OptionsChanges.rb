@@ -99,15 +99,6 @@ class PokemonOption_Scene
        EnumOption.new(_INTL("Text Entry"),[_INTL("Cursor"),_INTL("Keyboard")],
          proc { $PokemonSystem.textinput },
          proc { |value| $PokemonSystem.textinput = value }
-       ),
-       EnumOption.new(_INTL("Screen Size"),[_INTL("S"),_INTL("M"),_INTL("L"),_INTL("XL"),_INTL("Full")],
-         proc { [$PokemonSystem.screensize, 4].min },
-         proc { |value|
-           if $PokemonSystem.screensize != value
-             $PokemonSystem.screensize = value
-             pbSetResizeFactor($PokemonSystem.screensize)
-           end
-         }
        )
     ]
 	@PokemonOptions.push(EnumOption.new(_INTL("Autosave"),[_INTL("On"),_INTL("Off")],
