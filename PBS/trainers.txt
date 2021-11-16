@@ -127,6 +127,7 @@ Pokemon = SCRAGGY,15
     AbilityIndex = 0
 Pokemon = NICKIT,15
     AbilityIndex = 0
+	Moves = BITE,HONECLAWS,QUICKATTACK,TAILWHIP
 #-------------------------------
 [LEADER_Lambert,Lambert]
 LoseText = "..."
