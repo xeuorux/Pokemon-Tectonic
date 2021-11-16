@@ -141,9 +141,9 @@ class PokemonPokedex_Scene
 		if @searchResults
 		  textpos.push([_INTL("Search results"),112,302,2,base,shadow])
 		  textpos.push([@dexlist.length.to_s,112,334,2,base,shadow])
-		  textpos.push([_INTL("Z/SHIFT to search further."),Graphics.width-5,-2,1,zBase,zShadow])
+		  textpos.push([_INTL("ACTION/Z to search further."),Graphics.width-5,-2,1,zBase,zShadow])
 		else
-		  textpos.push([_INTL("Z/SHIFT to search."),Graphics.width-5,-2,1,zBase,zShadow])
+		  textpos.push([_INTL("ACTION/Z to search."),Graphics.width-5,-2,1,zBase,zShadow])
 		  textpos.push([_INTL("Seen:"),42,302,0,base,shadow])
 		  textpos.push([$Trainer.pokedex.seen_count(pbGetPokedexRegion).to_s,182,302,1,base,shadow])
 		  textpos.push([_INTL("Owned:"),42,334,0,base,shadow])
