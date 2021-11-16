@@ -1,5 +1,4 @@
 class PokeBattle_Battle
-	#attr_accessor = :honorAura
   #=============================================================================
   # Turn order calculation (priority)
   #=============================================================================
@@ -30,7 +29,7 @@ class PokeBattle_Battle
           if @choices[b.index][0]==:UseMove
             move = @choices[b.index][2]
             pri = move.priority
-			pri -= 1 if (honorAura && move.statusMove?)
+			pri -= 1 if (self.pbCheckGlobalAbility(:HONORAURA) && move.statusMove?)
 			targets = b.pbFindTargets(@choices[b.index],move,b)
             if b.abilityActive?
               pri = BattleHandlers.triggerPriorityChangeAbility(b.ability,b,move,pri,targets)

@@ -325,6 +325,11 @@ class PokeBattle_Move
 			multipliers[:base_damage_multiplier] *= 4 / 3.0
 		  end
 		end
+		if (@battle.pbCheckGlobalAbility(:RUINOUS))
+			echoln _INTL("Multipliers is {1}", multipliers)
+			multipliers[:base_damage_multiplier] *= 1.20
+			echoln _INTL("Multipliers is {1} after RUINOUS", multipliers)
+		end
 		# Ability effects that alter damage
 		if user.abilityActive?
 		  BattleHandlers.triggerDamageCalcUserAbility(user.ability,
@@ -649,7 +654,6 @@ class PokeBattle_Move
     end
 	if !ret
 		target.eachAlly do |b|
-			echoln _INTL("b is {1}",b.pbThis)
 			next if !b.abilityActive?
 			ret = BattleHandlers.triggerMoveImmunityAllyAbility(b.ability,user,target,self,@calcType,@battle,b)
 			break if ret

@@ -731,15 +731,22 @@ BattleHandlers::AbilityOnSwitchOut.add(:GARGANTUAN,
 =end
 BattleHandlers::MoveImmunityAllyAbility.add(:GARGANTUAN,
   proc { |ability,user,target,move,type,battle,ally|
-	blah = false
-	blah = user.index!=target.index && move.pbTarget(user).num_targets >1
-	echoln "Blah is false"
+	condition = false
+	condition = user.index!=target.index && move.pbTarget(user).num_targets >1
     next false if !blah
 	battle.pbShowAbilitySplash(ally)
-	echoln _INTL("User is {1}", user.pbThis)
-	echoln _INTL("Target is {1}", target.pbThis)
 	battle.pbDisplay(_INTL("{1} was shielded from {2} by {3}'s {4} form!",target.pbThis,move.name,ally.pbThis,ability.name))
 	battle.pbHideAbilitySplash(ally)
 	next true
+  }
+)
+
+
+BattleHandlers::AbilityOnSwitchIn.add(:RUINOUS,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    #battler.effects[PBEffects::Ruinous] = true
+    battle.pbDisplay(_INTL("{1} covers the field in a miasma of ruin! Everyone deals 1.2x more damage!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
   }
 )
