@@ -683,3 +683,12 @@ BattleHandlers::TargetAbilityOnHit.add(:ELECTRICFENCE,
 )
 
 
+BattleHandlers::AbilityOnSwitchIn.add(:HONORAURA,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    #battler.effects[PBEffects::HonorAura] = true
+	#not needed i think?
+    battle.pbDisplay(_INTL("{1}'s aura illuminates the field! Status moves lose priority!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)

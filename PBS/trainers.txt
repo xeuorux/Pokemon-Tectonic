@@ -2,10 +2,11 @@
 #-------------------------------
 [YOUNGSTER,Joey]
 LoseText = "..."
-Pokemon = MACHOP, 10
-	Moves = WAKEUPSLAP
+Pokemon = VOLTORB, 15
+	Moves = CHARGE,THUNDERWAVE
     AbilityIndex = 0
-Pokemon = KOMALA, 10
+Pokemon = SLOWPOKE, 10
+	Moves = WATERGUN
 #-------------------------------
 [HIKER,Conroy]
 LoseText = "..."

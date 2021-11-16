@@ -348,6 +348,7 @@
 346,INNERLIGHT,Inner Light, "Creates harsh sun when hit by an attack."
 347,STORMBRINGER,Stormbringer, "Creates heavy rain when hit by an attack."
 348,ELECTRICFENCE,Electric Fence, "Inflicts 1/8th max HP damage to the foe when damaged on Electric Terrain."
+349,HONORAURA,Honor Aura, "Lowers priority of status moves used by any Pokemon."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
