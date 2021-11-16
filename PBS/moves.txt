@@ -196,9 +196,9 @@
 190,REVERSAL,Reversal,098,1,FIGHTING,Physical,100,15,0,NearOther,0,abef,An all-out attack that becomes more powerful the less HP the user has.
 191,SEISMICTOSS,Seismic Toss,06D,1,FIGHTING,Physical,100,20,0,NearOther,0,abef,The target is thrown using the power of gravity. It inflicts damage equal to the user's level.
 192,BULKUP,Bulk Up,024,0,FIGHTING,Status,0,20,0,User,0,d,"The user tenses its muscles to bulk up its body, boosting both its Attack and Defense stats."
-193,DETECT,Detect,0AA,0,FIGHTING,Status,0,5,0,User,4,,It enables the user to evade all attacks. Its chance of failing rises if it is used in succession.
+193,DETECT,Detect,0AA,0,FIGHTING,Status,0,5,0,User,4,,It enables the user to evade all attacks. It always fails if it is used in succession.
 194,MATBLOCK,Mat Block,149,0,FIGHTING,Status,0,10,0,UserSide,0,d,"Using a pulled-up mat as a shield, the user protects itself and its allies from damaging moves."
-195,QUICKGUARD,Quick Guard,0AB,0,FIGHTING,Status,0,15,0,UserSide,3,d,The user protects itself and its allies from priority moves. If may fail if used in succession.
+195,QUICKGUARD,Quick Guard,0AB,0,FIGHTING,Status,0,15,0,UserSide,3,d,The user protects itself and its allies from priority moves. It always fails if it is used in succession.
 196,OCTOLOCK,Octolock,181,0,FIGHTING,Status,100,15,0,NearOther,0,be,Locks the target in and prevents fleeing. Lowers target's Defense and Sp. Def every turn.
 197,METEORASSAULT,Meteor Assault,0C2,170,FIGHTING,Physical,100,5,0,NearOther,0,bef,Attacks wildly with its thick leek. The user can't move on the next turn.
 198,NORETREAT,No Retreat,17F,0,FIGHTING,Status,0,5,0,User,3,d,This move raises all the user's stats but prevents the user from switching out or fleeing.
@@ -503,7 +503,7 @@
 488,DISABLE,Disable,0B9,0,GHOST,Status,100,20,0,NearOther,0,bce,"For four turns, this move prevents the target from using the move it last used."
 489,DOUBLETEAM,Double Team,022,0,NORMAL,Status,0,15,0,User,0,d,"By moving rapidly, the user makes illusory copies of itself to raise its evasiveness."
 490,ENCORE,Encore,0BC,0,NORMAL,Status,100,5,0,NearOther,0,bce,The user compels the target to keep using only the move it last used for three turns.
-491,ENDURE,Endure,0E8,0,NORMAL,Status,0,10,0,User,4,,The user endures any attack with at least 1 HP. Its chance of failing rises if it is used in succession.
+491,ENDURE,Endure,0E8,0,NORMAL,Status,0,10,0,User,4,,The user endures any attack with at least 1 HP. It always fails if it is used in succession.
 492,ENTRAINMENT,Entrainment,066,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user dances to compel the target to mimic it, making the target's Ability the same as the user's."
 493,FLASH,Flash,047,0,NORMAL,Status,100,20,0,NearOther,0,bce,The user flashes a light that cuts the target's accuracy. It can also be used to illuminate caves.
 494,FOCUSENERGY,Focus Energy,023,0,NORMAL,Status,0,30,0,User,0,d,The user takes a deep breath and focuses so that critical hits land four times more likely.
@@ -537,7 +537,7 @@
 522,PAINSPLIT,Pain Split,05A,0,GHOST,Status,0,20,0,NearOther,0,be,"The user adds its HP to the target's HP, then equally shares the combined HP with the target."
 523,PERISHSONG,Perish Song,0E5,0,GHOST,Status,0,5,0,AllBattlers,0,k,"Any Pokémon that hears this song faints in three turns, unless it switches out of battle."
 524,PLAYNICE,Play Nice,139,0,FAIRY,Status,0,20,0,NearOther,0,ce,"The user and target become friends. The target loses its will to fight, lowering its Attack stat."
-525,PROTECT,Protect,0AA,0,NORMAL,Status,0,10,0,User,4,,It enables the user to evade all attacks. Its chance of failing rises if it is used in succession.
+525,PROTECT,Protect,0AA,0,NORMAL,Status,0,10,0,User,4,,It enables the user to evade all attacks. It always fails if it is used in succession.
 526,PSYCHUP,Psych Up,055,0,PSYCHIC,Status,0,10,0,NearOther,0,,The user hypnotizes itself into copying any stat change made by the target.
 527,RECOVER,Recover,0D5,0,NORMAL,Status,0,10,0,User,0,d,"Restoring its own cells, the user restores its own HP by half of its max HP."
 528,RECYCLE,Recycle,0F6,0,NORMAL,Status,0,10,0,User,0,d,The user recycles a held item that has been used in battle so it can be used again.
@@ -689,7 +689,7 @@
 671,ROCKPOLISH,Rock Polish,030,0,ROCK,Status,0,20,0,User,0,d,The user polishes its body to reduce drag. It can sharply raise the Speed stat.
 672,SANDSTORM,Sandstorm,101,0,ROCK,Status,0,10,0,BothSides,0,,"Summons a five-turn sandstorm to hurt all combatants except the Rock, Ground, and Steel types."
 673,STEALTHROCK,Stealth Rock,105,0,ROCK,Status,0,20,0,FoeSide,0,c,The user lays a trap of levitating stones around the foe. The trap hurts foes that switch into battle.
-674,WIDEGUARD,Wide Guard,0AC,0,ROCK,Status,0,10,0,UserSide,3,d,The user and its allies are protected from wide-ranging attacks for a turn. May fail if used in succession.
+674,WIDEGUARD,Wide Guard,0AC,0,ROCK,Status,0,10,0,UserSide,3,d,The user and its allies are protected from wide-ranging attacks for a turn. Always fails if used in succession.
 675,TARSHOT,Tar Shot,186,0,ROCK,Status,0,15,0,NearOther,3,bce,"Pours sticky tar over the target, lowering its Speed stat and making it weak to Fire."
 676,METEORBEAM,Meteor Beam,191,120,ROCK,Special,100,10,0,NearOther,0,bef,"Gathers space power and boosts its Sp. Atk stat on one turn, then attacks on the next turn."
 #-------------------------------,,,,,,,,,,,,,

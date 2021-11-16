@@ -31,6 +31,8 @@ def pbAvatarBattleCore(*args)
   # Generate wild Pokémon based on the species and level
   foeParty = []
   numTurns = 0
+  
+  respawnFollower = false
   for arg in args
     if arg.is_a?(Array)
 		for i in 0...arg.length/2
@@ -79,6 +81,7 @@ def pbAvatarBattleCore(*args)
     pbSceneStandby {
       decision = battle.pbStartBattle
     }
+	pbPokemonFollow(1) if decision != 1 && $game_switches[59] # In cave with Yezera
     pbAfterBattle(decision,canLose)
   }
   Input.update

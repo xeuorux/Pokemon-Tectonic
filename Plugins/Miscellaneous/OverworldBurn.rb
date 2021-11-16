@@ -6,7 +6,7 @@ Events.onStepTakenTransferPossible += proc { |_sender,e|
     flashed = false
 	frontOfParty = $Trainer.first_able_pokemon
     $Trainer.able_party.each_with_index do |pokemon,index|
-      if pokemon.status == :BURN
+      if pokemon.status == :BURN && !pokemon.hasAbility?(:BURNHEAL)
         if !flashed
 		  pbFlash(Color.new(255, 119, 0, 128), 4)
           flashed = true
@@ -25,7 +25,7 @@ Events.onStepTakenTransferPossible += proc { |_sender,e|
           handled[0] = true
           pbCheckAllFainted
         end
-	  elsif pokemon.status == :POISON
+	  elsif pokemon.status == :POISON && !pokemon.hasAbility?(:POISONHEAL)
         if !flashed
           pbFlash(Color.new(255, 0, 119, 128), 4)
           flashed = true
