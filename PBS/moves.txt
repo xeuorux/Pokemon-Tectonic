@@ -566,7 +566,7 @@
 551,SWEETSCENT,Sweet Scent,048,0,GRASS,Status,100,20,0,AllNearFoes,0,bce,"A sweet scent that lowers the foe's evasiveness. It also lures wild Pokémon if used in grass, etc."
 552,SWORDSDANCE,Swords Dance,02E,0,STEEL,Status,0,10,0,User,0,do,A frenetic dance to uplift the fighting spirit. It sharply raises the user's Attack stat.
 553,TAILWHIP,Tail Whip,043,0,NORMAL,Status,100,30,0,AllNearFoes,0,bce,"The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat."
-554,TEARFULLOOK,Tearful Look,13A,0,NORMAL,Status,0,20,0,NearOther,0,ce,The user gets teary eyed to make the target lose its combative spirit. This lowers the target's Attack and Sp. Atk stats.
+554,TEARFULLOOK,Tearful Look,13A,0,NORMAL,Status,0,20,0,NearOther,0,ce,"The user gets teary eyed. This lowers the target's Attack and Sp. Atk stats."
 555,TEETERDANCE,Teeter Dance,013,0,NORMAL,Status,100,20,0,AllNearOthers,0,beo,The user performs a wobbly dance that confuses the Pokémon around it.
 556,TICKLE,Tickle,04A,0,NORMAL,Status,100,20,0,NearOther,0,bce,"The user tickles the target into laughing, reducing its Attack and Defense stats."
 557,TRANSFORM,Transform,069,0,NORMAL,Status,0,10,0,NearOther,0,,The user transforms into a copy of the target right down to having the same move set.
@@ -773,7 +773,7 @@
 753,CLASH,Clash,000,45,DRAGON,Physical,100,40,0,NearOther,0,abef,"The user harnesses inner battle instincts to strike at the target."
 754,JOLT,Jolt,007,40,ELECTRIC,Physical,100,30,10,NearOther,0,abef,"The user strikes the enemy while coated lightly with electricity. It has a 10% chance to paralyze."
 755,ELECTROSLASH,Electroslash,000,85,ELECTRIC,Physical,100,15,0,NearOther,0,abefhp,"The user harnesses a blade of lightning and slices at the target. Has a higher critical hit chance."
-756,CURRENTCRASH,Current Crash,0FA,55,ELECTRIC,Physical,100,30,0,NearOther,0,abef,"The user wraps parts of their body in electricity and crashes into the target. Inflicts recoil."
+756,CURRENTCRASH,Current Crash,0FA,55,ELECTRIC,Physical,100,30,0,NearOther,0,abef,"The user wraps parts of their body in electricity and crashes into the target. Inflicts 25% recoil."
 757,FAVOR,Favor,089,9,NORMAL,Special,100,20,0,NearOther,0,bef,"A full-power special attack that grows more powerful the more the user likes its Trainer."
 758,NATUREBUBBLE,Nature Bubble,020,40,GRASS,Special,100,35,10,NearOther,0,befn,"The user fires a small bubble of energy at the target. It has a 10% chance to raise user's Sp. Atk."
 759,ROOTWRACK,Rootwrack,504,60,GRASS,Physical,100,25,0,NearOther,0,bef,"The user sends its roots after the target, raking them. Deals 25% more damage if the target moved first."

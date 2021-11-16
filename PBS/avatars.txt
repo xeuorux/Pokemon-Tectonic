@@ -113,8 +113,8 @@ HPMult = 3.5
 #-------------------------------
 [MILOTIC]
 Turns = 1
-Ability = MARVELSCALE
-Moves = BRINE,TWISTER
+Ability = COMPETITIVE
+Moves = BRINE,WATERGUN
 HPMult = 5
 #-------------------------------
 [INCINEROAR]
@@ -498,21 +498,21 @@ Moves = RAZORLEAF,SYNTHESIS
 [URSARING]
 Turns = 2
 HPMult = 4
-Ability = GUTS
-Moves = SLASH
+Ability = CHALLENGER
+Moves = CUT,SLASH,SCRATCH
 Item = MUSCLEBAND
 #-----------------------------
 [WATCHOG]
 Turns = 2
 HPMult = 4
 Ability = PARANOID
-Moves = GLARE,WHITERAY
+Moves = WHITERAY,BEAM
 Item = WISEGLASSES
 #-----------------------------
 [LINOONE]
 Turns = 1
 HPMult = 6
-Item = SITRUSBERRY
+Item = ORANBERRY
 Ability = GLUTTONY
 Moves = HEADBUTT,COVET
 #-----------------------------

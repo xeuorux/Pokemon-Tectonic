@@ -1,5 +1,6 @@
 module BattleHandlers
 	AbilityOnEnemySwitchIn              = AbilityHandlerHash.new
+	MoveImmunityAllyAbility           = AbilityHandlerHash.new
 
 	def self.triggerAbilityOnEnemySwitchIn(ability,switcher,bearer,battle)
 		AbilityOnEnemySwitchIn.trigger(ability,switcher,bearer,battle)
@@ -9,6 +10,15 @@ module BattleHandlers
 		ret = PriorityChangeAbility.trigger(ability,battler,move,pri,targets)
 		return (ret!=nil) ? ret : pri
 	end
+	
+	def self.triggerAbilityOnSwitchOut(ability,battler,endOfBattle,battle)
+		AbilityOnSwitchOut.trigger(ability,battler,endOfBattle,battle)
+    end
+	
+	def self.triggerMoveImmunityAllyAbility(ability,user,target,move,type,battle,ally)
+		ret = MoveImmunityAllyAbility.trigger(ability,user,target,move,type,battle,ally)
+    return (ret!=nil) ? ret : false
+  end
 end
 
 #===============================================================================
@@ -689,6 +699,54 @@ BattleHandlers::AbilityOnSwitchIn.add(:HONORAURA,
     #battler.effects[PBEffects::HonorAura] = true
 	#not needed i think?
     battle.pbDisplay(_INTL("{1}'s aura illuminates the field! Status moves lose priority!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+=begin
+BattleHandlers::AbilityOnSwitchIn.add(:GARGANTUAN,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.eachAlly do |b|
+	    battle.pbShowAbilitySplash(battler)
+		b.effects[PBEffects::Gargantuan] += 1
+		echoln _INTL("Gargantuan increased, count on {1} is {2}",b.name,b.effects[PBEffects::Gargantuan])
+		next
+		end
+    battle.pbDisplay(_INTL("{1} is immense, blocking spread moves for its allies!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchOut.add(:GARGANTUAN,
+  proc { |ability,battler,endOfBattle,battle=nil|
+    next if endOfBattle
+		battler.eachAlly do |b|
+		b.effects[PBEffects::Gargantuan] -= 1
+		echoln _INTL("Gargantuan reduced, count on {1} is {2}",b.name,b.effects[PBEffects::Gargantuan])
+		next
+		end
+  }
+)
+=end
+BattleHandlers::MoveImmunityAllyAbility.add(:GARGANTUAN,
+  proc { |ability,user,target,move,type,battle,ally|
+	condition = false
+	condition = user.index!=target.index && move.pbTarget(user).num_targets >1
+    next false if !blah
+	battle.pbShowAbilitySplash(ally)
+	battle.pbDisplay(_INTL("{1} was shielded from {2} by {3}'s {4} form!",target.pbThis,move.name,ally.pbThis,ability.name))
+	battle.pbHideAbilitySplash(ally)
+	next true
+  }
+)
+
+
+BattleHandlers::AbilityOnSwitchIn.add(:RUINOUS,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    #battler.effects[PBEffects::Ruinous] = true
+    battle.pbDisplay(_INTL("{1} covers the field in a miasma of ruin! Everyone deals 1.2x more damage!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
