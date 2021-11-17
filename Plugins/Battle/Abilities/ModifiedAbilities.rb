@@ -250,12 +250,6 @@ BattleHandlers::DamageCalcUserAbility.add(:IRONFIST,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.add(:JUSTIFIED,
-  proc { |ability,user,target,move,type,battle|
-    next pbBattleMoveImmunityStatAbility(user,target,move,type,:DARK,:SPEED,1,battle)
-  }
-)
-
 BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
   proc { |ability,user,target,move,battle|
     next if !move.pbContactMove?(user)

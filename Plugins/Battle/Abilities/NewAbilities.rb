@@ -741,6 +741,11 @@ BattleHandlers::MoveImmunityAllyAbility.add(:GARGANTUAN,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:HEARTOFJUSTICE,
+  proc { |ability,user,target,move,type,battle|
+    next pbBattleMoveImmunityStatAbility(user,target,move,type,:DARK,:ATTACK,1,battle)
+  }
+)
 
 BattleHandlers::AbilityOnSwitchIn.add(:RUINOUS,
   proc { |ability,battler,battle|
