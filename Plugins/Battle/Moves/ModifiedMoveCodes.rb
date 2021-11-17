@@ -808,9 +808,8 @@ class PokeBattle_Move_0F1 < PokeBattle_Move
     itemName = target.itemName
     user.item = target.item
     # Permanently steal the item from wild Pokémon
-    if @battle.wildBattle? && target.opposes? && @battle.bossBattle?
-      ## target.initialItem==target.item 									THIS COMMENT SEEMINGLY WAS NOT WANTED, HOPEFULLY NOTHING BREAKS
-	 $PokemonBag.pbStoreItem(target.item,1)
+    if @battle.wildBattle? && target.opposes? && !@battle.bossBattle? #&& target.initialItem==target.item
+	  $PokemonBag.pbStoreItem(target.item,1)
       target.pbRemoveItem
     else
       target.pbRemoveItem(false)
@@ -998,11 +997,6 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
     target.item                           = oldUserItem
     target.effects[PBEffects::ChoiceBand] = nil
     target.effects[PBEffects::Unburden]   = (!target.item && oldTargetItem)
-    # Permanently steal the item from wild Pokémon
-    if @battle.wildBattle? && target.opposes? && @battle.bossBattle?
-       target.initialItem==oldTargetItem && !user.initialItem
-      user.setInitialItem(oldTargetItem)
-    end
     @battle.pbDisplay(_INTL("{1} switched items with its opponent!",user.pbThis))
     @battle.pbDisplay(_INTL("{1} obtained {2}.",user.pbThis,oldTargetItemName)) if oldTargetItem
     @battle.pbDisplay(_INTL("{1} obtained {2}.",target.pbThis,oldUserItemName)) if oldUserItem
