@@ -23,7 +23,7 @@ Pokemon = BUIZEL, 15
 [AROMALADY,Someone]
 LoseText = "..."
 Pokemon = MILCERY, 10
-	Moves = HEALPULSE
+	Moves = FAIRYWIND
 Pokemon = ZORUA, 5
 Pokemon = SLOWPOKE, 5
 POKEMON = ODDISH,5

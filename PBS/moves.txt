@@ -99,7 +99,7 @@
 #-------------------------------,,,,,,,,,,,,,
 95,BOLTSTRIKE,Bolt Strike,007,130,ELECTRIC,Physical,85,5,20,NearOther,0,abef,"The user charges at its foe, surrounding itself with lightning. It has a 20% chance to paralyze."
 96,VOLTTACKLE,Volt Tackle,0FB,120,ELECTRIC,Physical,100,15,0,NearOther,0,abef,"The user electrifies itself, then charges at the foe. The user also takes 33% recoil."
-97,ZAPCANNON,Zap Cannon,007,120,ELECTRIC,Special,50,5,100,NearOther,0,befn,The user fires an electric blast like a cannon to inflict damage and cause paralysis.
+97,ZAPCANNON,Zap Cannon,007,100,ELECTRIC,Special,50,5,100,NearOther,0,befn,The user fires an electric blast like a cannon to inflict damage and cause paralysis.
 98,THUNDER,Thunder,008,110,ELECTRIC,Special,70,10,30,NearOther,0,bef,A wicked thunderbolt is dropped on the foe to inflict damage. It has a 30% chance to paralyze.
 99,FUSIONBOLT,Fusion Bolt,079,100,ELECTRIC,Physical,100,5,0,NearOther,0,bef,The user throws down a giant thunderbolt. It does more damage if influenced by an enormous flame.
 100,PLASMAFISTS,Plasma Fists,146,100,ELECTRIC,Physical,100,15,0,NearOther,0,abefj,The user attacks with electrically charged fists. Normal-type moves become Electric-type.
@@ -737,7 +737,7 @@
 718,SCALD,Scald,00A,80,WATER,Special,100,15,30,NearOther,0,bef,The user shoots boiling hot water at its target. This has a 30% chance to burn.
 719,WATERPLEDGE,Water Pledge,108,80,WATER,Special,100,10,0,NearOther,0,bef,"A column of water strikes the target. When combined with its fire equivalent, it makes a rainbow."
 720,WATERFALL,Waterfall,00F,80,WATER,Physical,100,15,20,NearOther,0,abe,The user charges at the target and has a 20% chance to make it flinch.
-721,RAZORSHELL,Razor Shell,043,75,WATER,Physical,95,10,50,NearOther,0,abef,The user cuts the foe with sharp shells. It has a 50% chance to lower Defense.
+721,RAZORSHELL,Razor Shell,043,75,WATER,Physical,95,10,50,NearOther,0,abefp,The user cuts the foe with sharp shells. It has a 50% chance to lower Defense.
 722,BRINE,Brine,080,65,WATER,Special,100,10,0,NearOther,0,bef,"If the target's HP is down to about half, this attack will hit with double the power."
 723,BUBBLEBEAM,Bubble Beam,044,55,WATER,Special,100,20,100,NearOther,0,bef,A spray of bubbles is forcefully ejected at the target. It also lowers the foe's Speed stat.
 724,OCTAZOOKA,Octazooka,047,65,WATER,Special,85,10,50,NearOther,0,befn,The user attacks by spraying ink in the foe's face or eyes. It has a 50% chance to lower accuracy.
