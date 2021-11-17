@@ -33,13 +33,13 @@ HPMult = 3.5
 #-------------------------------
 [SWALOT]
 Turns = 2
-HPMult = 2.5
+HPMult = 2
 Ability = GLUTTONY
 Moves = POISONGAS,ACID
 #-------------------------------
 [TORKOAL]
 Turns = 2
-HPMult = 2.5
+HPMult = 2
 Ability = SHELLARMOR
 Moves = WILLOWISP,FLAMEBURST
 #-------------------------------

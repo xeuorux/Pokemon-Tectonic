@@ -242,7 +242,7 @@ class PokeBattle_Battler
     # Paralysis
     if pbHasStatus?(:PARALYSIS) && (!boss || @battle.commandPhasesThisRound == 0)
       if @battle.pbRandom(100)<25
-        pbContinueStatus
+        pbContinueStatus(:PARALYSIS)
         @lastMoveFailed = true
         return false
       end
