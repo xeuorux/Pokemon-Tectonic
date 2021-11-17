@@ -403,7 +403,7 @@ Moves = ATTACKORDER,DEFENDORDER
 Turns = 2
 HPMult = 4
 Ability = GALVANIZE
-Moves = DOUBLEEDGE,FLAIL
+Moves = TAKEDOWN,FLAIL
 #-----------------------------
 [NIDOQUEEN]
 Turns = 2
