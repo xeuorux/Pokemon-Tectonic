@@ -418,8 +418,8 @@ Ability = STUBBORN
 Moves = NOBLEROAR,FLAMETHROWER,ENDEAVOR
 #-----------------------------
 [ABSOLUS]
-Turns = 3
-HPMult = 3
+Turns = 2
+HPMult = 3.5
 Ability = BADOMEN
 Moves = MOONBLAST,NIGHTSLASH
 #-----------------------------
