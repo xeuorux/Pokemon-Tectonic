@@ -560,10 +560,10 @@ Moves = WHIRLPOOL,PURIFYINGWATER,BRINE
 HPMult = 4
 #-------------------------------
 [ENTEI]
-Turns = 2
+Turns = 3
 Ability = PRESSURE
-Moves = ROAR,ERUPTION,INCINERATE
-HPMult = 4
+Moves = INCINERATE,FLAMEWHEEL,SUNNYDAY
+HPMult = 3
 #-------------------------------
 [RAIKOU]
 Turns = 2
