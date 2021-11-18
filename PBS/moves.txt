@@ -196,7 +196,7 @@
 190,REVERSAL,Reversal,098,1,FIGHTING,Physical,100,15,0,NearOther,0,abef,An all-out attack that becomes more powerful the less HP the user has.
 191,SEISMICTOSS,Seismic Toss,06D,1,FIGHTING,Physical,100,20,0,NearOther,0,abef,The target is thrown using the power of gravity. It inflicts damage equal to the user's level.
 192,BULKUP,Bulk Up,024,0,FIGHTING,Status,0,20,0,User,0,d,"The user tenses its muscles to bulk up its body, boosting both its Attack and Defense stats."
-193,DETECT,Detect,0AA,0,FIGHTING,Status,0,5,0,User,4,,It enables the user to evade all attacks. It always fails if it is used in succession.
+193,DETECT,Detect,0AA,0,FIGHTING,Status,0,3,0,User,4,,It enables the user to evade all attacks. It always fails if it is used in succession.
 194,MATBLOCK,Mat Block,149,0,FIGHTING,Status,0,10,0,UserSide,0,d,"Using a pulled-up mat as a shield, the user protects itself and its allies from damaging moves."
 195,QUICKGUARD,Quick Guard,0AB,0,FIGHTING,Status,0,15,0,UserSide,3,d,The user protects itself and its allies from priority moves. It always fails if it is used in succession.
 196,OCTOLOCK,Octolock,181,0,FIGHTING,Status,100,15,0,NearOther,0,be,Locks the target in and prevents fleeing. Lowers target's Defense and Sp. Def every turn.
@@ -537,7 +537,7 @@
 522,PAINSPLIT,Pain Split,05A,0,GHOST,Status,0,20,0,NearOther,0,be,"The user adds its HP to the target's HP, then equally shares the combined HP with the target."
 523,PERISHSONG,Perish Song,0E5,0,GHOST,Status,0,5,0,AllBattlers,0,k,"Any Pokémon that hears this song faints in three turns, unless it switches out of battle."
 524,PLAYNICE,Play Nice,139,0,FAIRY,Status,0,20,0,NearOther,0,ce,"The user and target become friends. The target loses its will to fight, lowering its Attack stat."
-525,PROTECT,Protect,0AA,0,NORMAL,Status,0,10,0,User,4,,It enables the user to evade all attacks. It always fails if it is used in succession.
+525,PROTECT,Protect,0AA,0,NORMAL,Status,0,3,0,User,4,,It enables the user to evade all attacks. It always fails if it is used in succession.
 526,PSYCHUP,Psych Up,055,0,PSYCHIC,Status,0,10,0,NearOther,0,,The user hypnotizes itself into copying any stat change made by the target.
 527,RECOVER,Recover,0D5,0,NORMAL,Status,0,10,0,User,0,d,"Restoring its own cells, the user restores its own HP by half of its max HP."
 528,RECYCLE,Recycle,0F6,0,NORMAL,Status,0,10,0,User,0,d,The user recycles a held item that has been used in battle so it can be used again.
