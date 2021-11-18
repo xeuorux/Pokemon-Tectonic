@@ -38,7 +38,7 @@ module GameData
 		  @item             = hash[:item]
 		  @size_mult		= hash[:size_mult] || 1.3
 		  @hp_mult			= hash[:hp_mult]
-		  @dmg_mult 		= hash[:dmg_mult]
+		  @dmg_mult 		= hash[:dmg_mult] || 1
 		end
 	end
 end
