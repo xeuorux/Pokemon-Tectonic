@@ -116,6 +116,17 @@ def setAvatarProperties(pkmn)
 	return avatar_data.num_turns
 end
 
+
+def calcHPMult(pkmn)
+	hpMult = 1
+	if pkmn.boss
+		avatar_data = GameData::Avatar.get(pkmn.species.to_sym)
+		hpMult = avatar_data.hp_mult
+	end
+	return hpMult
+end
+		
+
 def pbPlayCrySpecies(species, form = 0, volume = 90, pitch = nil)
   GameData::Species.play_cry_from_species(species, form, volume, pitch)
 end
