@@ -80,12 +80,21 @@ class PokemonStorageScreen
             elsif cmdRelease>=0 && command==cmdRelease   # Release
               pbRelease(selected,@heldpkmn)
 			elsif cmdPokedex>=0 && command==cmdPokedex #Pokedex
-				$Trainer.pokedex.register_last_seen(pokemon)
-				pbFadeOutIn {
-					scene = PokemonPokedexInfo_Scene.new
-					screen = PokemonPokedexInfoScreen.new(scene)
-					screen.pbStartSceneSingle(pokemon.species)
-							}
+				if @heldpkmn
+					$Trainer.pokedex.register_last_seen(@heldpkmn)
+					pbFadeOutIn {
+						scene = PokemonPokedexInfo_Scene.new
+						screen = PokemonPokedexInfoScreen.new(scene)
+						screen.pbStartSceneSingle(@heldpkmn.species)
+								}			
+				else
+					$Trainer.pokedex.register_last_seen(pokemon)
+					pbFadeOutIn {
+						scene = PokemonPokedexInfo_Scene.new
+						screen = PokemonPokedexInfoScreen.new(scene)
+						screen.pbStartSceneSingle(pokemon.species)
+								}
+				end
 			elsif cmdZoo>=0 && command==cmdZoo # Donate to zoo
 			  pbDonate(selected,@heldpkmn)
             elsif cmdDebug>=0 && command==cmdDebug   # Debug
