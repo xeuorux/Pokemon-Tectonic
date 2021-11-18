@@ -2,7 +2,7 @@ LEVEL_CAPS_USED = true
 class Pokemon
 	attr_accessor :hpMult
 	attr_accessor :scaleFactor
-
+	attr_accessor :dmgMult
   # Creates a new Pokémon object.
   # @param species [Symbol, String, Integer] Pokémon species
   # @param level [Integer] Pokémon level
@@ -66,9 +66,10 @@ class Pokemon
     @fused            = nil
     @personalID       = rand(2 ** 16) | rand(2 ** 16) << 16
     @hp               = 1
-    @totalhp          = 
+    @totalhp          = 1
 	@hpMult			  = 1
 	@scaleFactor	  = 1
+	@dmgMult		  = 1
     calc_stats
     if @form == 0 && recheck_form
       f = MultipleForms.call("getFormOnCreation", self)
@@ -95,10 +96,20 @@ class Pokemon
       if s.id == :HP
         stats[s.id] = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id])
 		if boss
+			echoln stats[s.id]
 			stats[s.id] *= hpMult
 		end
-      else
-        stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
+      elsif (s.id == :ATTACK) || (s.id == :SPECIAL_ATTACK)
+		if boss
+			stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
+			echoln(_INTL("The stat {1} is {2} pre mult which is {3}.", s.id, stats[s.id], dmgMult))
+			stats[s.id] *= dmgMult
+			echoln(_INTL("The stat {1} is {2} post mult.", s.id, stats[s.id]))
+		else
+			stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
+		end
+	  else
+		stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
       end
     end
     hpDiff = @totalhp - @hp

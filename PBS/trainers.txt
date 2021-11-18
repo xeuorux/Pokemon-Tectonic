@@ -2,11 +2,11 @@
 #-------------------------------
 [YOUNGSTER,Joey]
 LoseText = "..."
-Pokemon = VOLTORB, 15
-	Moves = CHARGE,THUNDERWAVE
+Pokemon = RHYHORN, 15
+	Moves = BULLDOZE
     AbilityIndex = 0
-Pokemon = SLOWPOKE, 10
-	Moves = WATERGUN
+Pokemon = GEODUDE, 10
+	Moves = TREMOR
 #-------------------------------
 [HIKER,Conroy]
 LoseText = "..."
