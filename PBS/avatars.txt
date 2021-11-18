@@ -586,7 +586,7 @@ HPMult = 4
 [JIRACHI]
 Turns = 2
 Ability = SERENEGRACE
-Moves = DOOMDESIRE,LIFEDEW
+Moves = DOOMDESIRE,PSYBEAM,LIFEDEW
 HPMult = 5
 #-------------------------------
 [GIRATINA]
