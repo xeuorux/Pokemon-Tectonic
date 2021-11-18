@@ -593,7 +593,8 @@ HPMult = 5
 Turns = 3
 Ability = LEVITATE
 Moves = HYPERBEAM,OMINOUSWIND
-HPMult = 4.5
+HPMult = 2.5
+DMGMult = 1.5
 #-----------------------------
 [PARASECT]
 Turns = 2

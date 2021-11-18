@@ -220,11 +220,37 @@ end
 class PokeBattle_Move_05A < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
 		if target.boss
-		  @battle.pbDisplay(_INTL("But it failed!"))
-		  return true
+		  #@battle.pbDisplay(_INTL("But it failed!"))
+		  #return true
 		end
 		return false
 	end
+	
+=begin
+	def pbEffectAgainstTarget(user,target)
+		newHP = (user.hp+target.hp)/2
+		userHPMult = @battle.calcHPMult(user)
+		targetHPMult = @battle.calcHPMult(target)
+    if user.hp>newHP;    user.pbReduceHP(user.hp-newHP,false,false)
+    elsif user.hp<newHP; user.pbRecoverHP(newHP-user.hp,false)
+	end
+	if target.boss
+		echoln _INTL("{1}'s HP is {2}./n {3}'s HP is {4}./n HP Mult is {5}",target.pbThis, target.hp, user.pbThis, user.hp, targetHPMult)
+		if target.hp>newHP*targetHPMult
+			target.pbReduceHP(target.hp-(newHP*targetHPMult),false,false)
+			echoln _INTL("{1}'s hp is now {2}",target.pbThis,target.hp)
+			elsif target.hp<newHP
+				target.pbRecoverHP((newHP*targetHPMult)-target.hp,false)
+				echoln _INTL("{1}'s hp is now {2}",target.pbThis,target.hp)
+		end
+	elsif target.hp>newHP; target.pbReduceHP(target.hp-newHP,false,false)
+    elsif target.hp<newHP; target.pbRecoverHP(newHP-target.hp,false)	
+	end
+    @battle.pbDisplay(_INTL("The battlers shared their pain!"))
+    user.pbItemHPHealCheck
+    target.pbItemHPHealCheck
+  end
+=end
 end
 
 #===============================================================================
