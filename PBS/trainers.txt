@@ -19,6 +19,15 @@ Pokemon = SNORLAX, 70
 Pokemon = PRIMEAPE, 70
 	Moves = METRONOME
 	AbilityIndex = 0
+Pokemon = NIBELONG, 70
+	Moves = METRONOME
+	AbilityIndex = 0
+Pokemon = CONIFEAR, 70
+	Moves = METRONOME
+	AbilityIndex = 0
+Pokemon = BLASFEMMIE, 70
+	Moves = METRONOME
+	AbilityIndex = 0
 #-------------------------------
 [AROMALADY,Someone]
 LoseText = "..."
