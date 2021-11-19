@@ -9,7 +9,7 @@ PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:RAIKOU,:THUNDERWAVE],
   }
 )
 
-PokeBattle_AI::BossDecidedOnMove.add(:KYOGRE,
+PokeBattle_AI::BossDecidedOnMove.add(:RAIKOU,
 	proc { |species,move,user,target|
 		if move.id == :THUNDERWAVE
 			user.battle.pbDisplay(_INTL("Raikou feels rivalled by #{target.name}'s speed!"))
