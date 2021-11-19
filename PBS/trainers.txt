@@ -275,7 +275,7 @@ Pokemon = CAMERUPT,20
 #-------------------------------
 [LINEBACKER,Josh]
 LoseText = "..."
-Pokemon = GURDURR,20
+Pokemon = GURDURR,21
 Pokemon = STUNKY,21
 Pokemon = SERVINE,20
 #-------------------------------
