@@ -9,6 +9,7 @@ module GameData
 		attr_reader :item
 		attr_reader :size_mult
 		attr_reader :hp_mult
+		attr_reader :dmg_mult
 	
 		DATA = {}
 		DATA_FILENAME = "avatars.dat"
@@ -21,6 +22,7 @@ module GameData
 		  "Item"         		=> [:item,          "e", :Item],
 		  "HPMult"				=> [:hp_mult,		"f"],
 		  "SizeMult" 			=> [:size_mult,     "F"],
+		  "DMGMult"				=> [:dmg_mult,		"F"],
 		}
 
 		extend ClassMethods
@@ -36,6 +38,7 @@ module GameData
 		  @item             = hash[:item]
 		  @size_mult		= hash[:size_mult] || 1.3
 		  @hp_mult			= hash[:hp_mult]
+		  @dmg_mult 		= hash[:dmg_mult] || 1
 		end
 	end
 end

@@ -2,11 +2,11 @@
 #-------------------------------
 [YOUNGSTER,Joey]
 LoseText = "..."
-Pokemon = VOLTORB, 15
-	Moves = CHARGE,THUNDERWAVE
+Pokemon = RHYHORN, 15
+	Moves = BULLDOZE
     AbilityIndex = 0
-Pokemon = SLOWPOKE, 10
-	Moves = WATERGUN
+Pokemon = GEODUDE, 10
+	Moves = TREMOR
 #-------------------------------
 [HIKER,Conroy]
 LoseText = "..."
@@ -17,6 +17,15 @@ Pokemon = SNORLAX, 70
 	Moves = METRONOME
 	AbilityIndex = 0
 Pokemon = PRIMEAPE, 70
+	Moves = METRONOME
+	AbilityIndex = 0
+Pokemon = NIBELONG, 70
+	Moves = METRONOME
+	AbilityIndex = 0
+Pokemon = CONIFEAR, 70
+	Moves = METRONOME
+	AbilityIndex = 0
+Pokemon = BLASFEMMIE, 70
 	Moves = METRONOME
 	AbilityIndex = 0
 #-------------------------------
@@ -266,7 +275,7 @@ Pokemon = CAMERUPT,20
 #-------------------------------
 [LINEBACKER,Josh]
 LoseText = "..."
-Pokemon = GURDURR,20
+Pokemon = GURDURR,21
 Pokemon = STUNKY,21
 Pokemon = SERVINE,20
 #-------------------------------

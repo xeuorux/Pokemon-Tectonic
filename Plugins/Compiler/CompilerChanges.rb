@@ -434,6 +434,7 @@ module Compiler
 				:ability	 => contents["Ability"],
 				:item		 => contents["Item"],
 				:hp_mult	 => contents["HPMult"],
+				:dmg_mult	 => contents["DMGMult"],
 				:size_mult	 => contents["SizeMult"],
 			}
 			avatar_number += 1

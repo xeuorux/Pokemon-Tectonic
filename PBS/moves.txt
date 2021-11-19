@@ -256,7 +256,7 @@
 247,AIRSLASH,Air Slash,00F,80,FLYING,Special,100,15,30,Other,0,bep,The user attacks with a blade of air that slices even the sky. It has a 30% chance to flinch the target.
 248,CHATTER,Chatter,014,65,FLYING,Special,100,20,100,Other,0,befk,The user attacks using a sound wave based on words it has learned. It also confuses the target.
 249,AERIALACE,Aerial Ace,0A5,60,FLYING,Physical,0,20,0,Other,0,abef,"The user confounds the foe with speed, then slashes. The attack lands without fail."
-250,AIRCUTTER,Air Cutter,000,60,FLYING,Special,100,25,0,AllNearFoes,0,befh,The user launches razor-like wind to slash the opposing team. Critical hits land more easily.
+250,AIRCUTTER,Air Cutter,000,60,FLYING,Special,100,25,0,AllNearFoes,0,befhp,The user launches razor-like wind to slash the opposing team. Critical hits land more easily.
 251,PLUCK,Pluck,0F4,60,FLYING,Physical,100,20,0,Other,0,abef,"The user pecks the target. If the target is holding a Berry, the user eats it and gains its effect."
 252,SKYDROP,Sky Drop,0CE,60,FLYING,Physical,100,10,0,Other,0,abef,"The user takes the foe into the sky, then drops it on the next turn. The foe cannot attack while airborne."
 253,WINGATTACK,Wing Attack,537,55,FLYING,Physical,100,35,0,Other,0,abef,"The target is struck with large, imposing wings spread wide to inflict damage. The user also takes 20% recoil."
@@ -948,6 +948,7 @@
 929,ENVENOM,Envenom,005,0,POISON,Status,100,40,0,NearFoe,0,bce,"Venom is strategically introduced into the target, poisoning it."
 930,CHAOSWHEEL,Chaos Wheel,547,80,NORMAL,Physical,100,10,20,NearOther,0,bef,"The user thrashes furiously while infused with elements. It has a 6.67% chance each to paralyze, burn, or chill."
 931,MINDLINK,Mind Link,549,0,PSYCHIC,Status,0,40,0,User,0,d,"The user syncs its mind with its teammates, Special Attack stat of itself and its allies."
+932,BULLETCHARGE,Bullet Charge,01F,60,STEEL,Physical,100,20,20,NearOther,0,abef,"The user embraces gunpowder to rocket at its foe. It has a 20% chance to increase the speed stat."
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch."

@@ -109,6 +109,8 @@ def setAvatarProperties(pkmn)
 	pkmn.item = avatar_data.item
 	pkmn.ability = avatar_data.ability
 	pkmn.hpMult = avatar_data.hp_mult
+	pkmn.dmgMult = avatar_data.dmg_mult
+	echoln _INTL("pkmn.dmgMult is {1}", pkmn.dmgMult)
 	pkmn.scaleFactor = avatar_data.size_mult
 	
 	pkmn.calc_stats()
