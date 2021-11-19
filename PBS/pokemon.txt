@@ -16834,7 +16834,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 31
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SIMISAGE,Item,LEAFSTONE
+Evolutions = SIMISAGE,Level,31
 #-------------------------------
 [512]
 Name = Simisage
@@ -16900,7 +16900,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 30
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SIMISEAR,Item,FIRESTONE
+Evolutions = SIMISEAR,Level,31
 #-------------------------------
 [514]
 Name = Simisear
@@ -16966,7 +16966,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SIMIPOUR,Item,WATERSTONE
+Evolutions = SIMIPOUR,Level,31
 #-------------------------------
 [516]
 Name = Simipour
@@ -18061,7 +18061,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 30
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LILLIGANT,Item,SUNSTONE
+Evolutions = LILLIGANT,Level,36
 #-------------------------------
 [549]
 Name = Lilligant
