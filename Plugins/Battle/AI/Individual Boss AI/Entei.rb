@@ -9,3 +9,11 @@ PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:ENTEI,:SUNNYDAY],
 	next user.battle.field.weather != :Sun && user.hp <= user.totalhp / 2
   }
 )
+
+PokeBattle_AI::BossDecidedOnMove.add(:ENTEI,
+	proc { |species,move,user,target|
+		if move.id == :SUNNYDAY
+			user.battle.pbDisplay(_INTL("The avatar of Entei is heating up with rage!"))
+		end
+	}
+)
