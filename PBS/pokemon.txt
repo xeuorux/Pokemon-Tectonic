@@ -13771,8 +13771,8 @@ InternalName = BUIZEL
 Type1 = WATER
 Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 55,55,40,85,45,30
-# Total = 310
+BaseStats = 60,65,40,85,45,30
+# Total = 325
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 66
