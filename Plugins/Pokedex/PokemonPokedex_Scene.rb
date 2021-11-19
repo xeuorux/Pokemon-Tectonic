@@ -587,21 +587,58 @@ class PokemonPokedex_Scene
   end
   
   def searchByAbility()
-	  abilityInput = pbEnterText("Search abilities...", 0, 12)
-	  if abilityInput && abilityInput!=""
-		  reversed = abilityInput[0] == '-'
-		  abilityInput = abilityInput[1..-1] if reversed
-		  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
-		  dexlist = dexlist.find_all { |item|
-			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
-			searchPokeAbilities = item[10]
-			value = false
-			value = true if searchPokeAbilities[0] && GameData::Ability.get(searchPokeAbilities[0]).real_name.downcase.include?(abilityInput.downcase)
-			value = true if searchPokeAbilities[1] && GameData::Ability.get(searchPokeAbilities[1]).real_name.downcase.include?(abilityInput.downcase)
-			value = value ^ reversed # Boolean XOR
-			next value
-		  }
-		  return dexlist
+	  abilitySearchTypeSelection = pbMessage("Which search?",[_INTL("Name"),_INTL("Description"),_INTL("Cancel")],3)
+	  return if abilitySearchTypeSelection == 2
+	  
+	  if abilitySearchTypeSelection == 0
+		  while true
+			  abilityNameInput = pbEnterText("Search abilities...", 0, 20)
+			  if abilityNameInput && abilityNameInput!=""
+				reversed = abilityNameInput[0] == '-'
+				abilityNameInput = abilityNameInput[1..-1] if reversed
+
+				actualAbility = nil
+				GameData::Ability.each do |abilityData|
+					if abilityData.real_name.downcase == abilityNameInput.downcase
+						actualAbility = abilityData.id
+						break
+					end
+				end
+				if actualAbility.nil?
+					pbMessage(_INTL("Invalid input: {1}", abilityNameInput))
+					next
+				end
+
+				dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+				dexlist = dexlist.find_all { |item|
+					next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+					searchPokeAbilities = item[10]
+					value = false
+					value = true if searchPokeAbilities.include?(actualAbility)
+					value = value ^ reversed # Boolean XOR
+					next value
+				}
+				return dexlist
+			  end
+		  end
+	  elsif abilitySearchTypeSelection == 1
+		  abilityDescriptionInput = pbEnterText("Search ability desc...", 0, 20)
+		  if abilityDescriptionInput && abilityDescriptionInput!=""
+			reversed = abilityDescriptionInput[0] == '-'
+			abilityDescriptionInput = abilityDescriptionInput[1..-1] if reversed
+
+			dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+			dexlist = dexlist.find_all { |item|
+				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				searchPokeAbilities = item[10]
+				value = false
+				value = true if searchPokeAbilities[0] && GameData::Ability.get(searchPokeAbilities[0]).description.downcase.include?(abilityDescriptionInput)
+				value = true if searchPokeAbilities[1] && GameData::Ability.get(searchPokeAbilities[1]).description.downcase.include?(abilityDescriptionInput)
+				value = value ^ reversed # Boolean XOR
+				next value
+			}
+			return dexlist
+		  end
 	  end
 	  return nil
   end
