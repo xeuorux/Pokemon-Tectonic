@@ -198,6 +198,7 @@ class PokemonSummary_Scene
 					Color.new(144,104,0),   # 1/2 of total PP or less
 					Color.new(144,72,24),   # 1/4 of total PP or less
 					Color.new(136,48,48)]   # Zero PP
+		@sprites["pokemon"].visible = true
 		@sprites["pokeicon"].visible = false
 		@sprites["itemicon"].visible = true
 		textpos  = []
