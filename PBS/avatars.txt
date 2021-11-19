@@ -562,7 +562,7 @@ HPMult = 4
 [ENTEI]
 Turns = 3
 Ability = PRESSURE
-Moves = INCINERATE,FLAMEWHEEL,SUNNYDAY
+Moves = INCINERATE,INFERNOCHARGE,SUNNYDAY
 HPMult = 3
 #-------------------------------
 [RAIKOU]
