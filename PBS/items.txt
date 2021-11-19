@@ -103,7 +103,7 @@
 101,EXPERTBELT,Expert Belt,Expert Belts,1,4000,An item to be held by a Pokémon. It is a well-worn belt that boosts the power of supereffective moves by 20%.,0,0,0,
 102,METRONOME,Metronome,Metronomes,1,4000,A Pokémon held item that boosts a move used consecutively. Its effect is reset if another move is used.,0,0,0,
 103,MUSCLEBAND,Muscle Band,Muscle Bands,1,4000,An item to be held by a Pokémon. It is a headband that boosts the power of physical moves by 10%.,0,0,0,
-104,WISEGLASSES,Wise Glasses,Wise Glasses,1,4000,An item to be held by a Pokémon. It is a thick pair of glasses that boosts the power of special moves by %10.,0,0,0,
+104,WISEGLASSES,Wise Glasses,Wise Glasses,1,4000,An item to be held by a Pokémon. It is a thick pair of glasses that boosts the power of special moves by 10%.,0,0,0,
 105,RAZORCLAW,Razor Claw,Razor Claws,1,5000,An item to be held by a Pokémon. It is a sharply hooked claw that ups the holder's critical-hit ratio.,0,0,0,
 106,SCOPELENS,Scope Lens,Scope Lenses,1,4000,An item to be held by a Pokémon. It is a lens that boosts the holder's critical-hit ratio.,0,0,0,
 107,WIDELENS,Wide Lens,Wide Lenses,1,4000,An item to be held by a Pokémon. It is a magnifying lens that slightly boosts the accuracy of moves.,0,0,0,

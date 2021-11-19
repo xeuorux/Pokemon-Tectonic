@@ -3275,8 +3275,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = 
-,Level,36
+Evolutions = KLAWSAR,Level,36
 #-------------------------------
 [100]
 Name = Voltorb
