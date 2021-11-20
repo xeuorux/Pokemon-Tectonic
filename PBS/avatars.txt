@@ -544,8 +544,8 @@ HPMult = 4
 [DURALUDON]
 Turns = 3
 Ability = SANDSTREAM
-Moves = BREAKINGSWIPE,DRAGONROAR
-HPMult = 3
+Moves = TWISTER,DRAGONROAR
+HPMult = 4
 #-------------------------------
 [KRICKETUNE]
 Turns = 1
