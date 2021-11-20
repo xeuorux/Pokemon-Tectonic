@@ -448,8 +448,8 @@ Ability = LEVITATE
 Moves = SHADOWBALL
 #-----------------------------
 [ZOROARK]
-Turns = 2
-HPMult = 2.5
+Turns = 1
+HPMult = 4
 Ability = ILLUSION
 Moves = ANGSTWAVE,SLIGHT
 #-----------------------------
