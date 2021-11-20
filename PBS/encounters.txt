@@ -89,9 +89,16 @@ LandSparse,20
 #-------------------------------
 # ALPHA --First Open World Section
 #-------------------------------
+[59] # Mainland Dock
+Land,20
+25,TAILLOW,15,15
+25,CHINGLING,14,17
+25,GULPIN,14,17
+25,TIMBURR,14,17
+#-------------------------------
 [60] # Forest Route
 Land,20
-20,TIMBURR,14,17
+20,STUFFUL,14,17
 20,BUNEARY,14,17
 20,SEEDOT,14,17
 20,MEOWTH,14,17
@@ -99,7 +106,7 @@ Land,20
 LandTall,20
 25,SNOM,14,17
 25,PINECO,14,17
-25,CHINGLING,14,17
+25,DIGLETT,14,17
 25,SPEAROW,14,17
 LandTinted,20
 50,PETILIL,14,17
@@ -107,7 +114,7 @@ LandTinted,20
 #-------------------------------
 [56] # Suburb
 FloweryGrass,20
-25,STUFFUL,15,18
+25,DUCKLETT,15,18
 25,SWIRLIX,15,18
 25,CHERUBI,15,18
 25,SMOOCHUM,15,18
@@ -351,6 +358,14 @@ Special,20
 [87] # LuxTech Rec Center
 Special,20
 1,BOUNSWEET,15,15
+#-------------------------------
+[96] # LuxTech Cold Storage
+Special,20
+1,SEWADDLE,15,15
+#-------------------------------
+[98] # LuxTech Cold Storage Basement
+Special,20
+1,FEEBAS,15,15
 #-------------------------------
 [103] # Ghost Town Mart
 Special,20
