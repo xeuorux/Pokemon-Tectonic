@@ -68,7 +68,7 @@
 65,TORMENT,Torment,0B7,0,DARK,Status,100,15,0,NearOther,0,bce,"The user torments and enrages the foe, making it incapable of using the same move twice in a row."
 66,JAWLOCK,Jaw Lock,17D,80,DARK,Physical,100,10,0,NearOther,0,bef,Prevents the user and target from switching out until either of them faints or is switched out.
 67,FALSESURRENDER,False Surrender,0A5,80,DARK,Physical,0,10,0,NearOther,0,abef,The user fakes the target out and stabs them with its disheveled hair. The attack never misses.
-68,OBSTRUCT,Obstruct,180,0,DARK,Status,0,10,0,NearOther,4,,Protects the user from all attacks. Direct contact harshly lowers the attacker's Defense stat.
+68,OBSTRUCT,Obstruct,180,0,DARK,Status,0,3,0,NearOther,4,,Protects the user from all attacks. Direct contact harshly lowers the attacker's Defense stat.
 69,WICKEDBLOW,Wicked Blow,0A0,80,DARK,Physical,100,5,0,NearOther,0,abef,The user strikes with a fierce blow of Dark Mastery. It always results in a critical hit
 70,LASHOUT,Lash Out,194,75,DARK,Physical,100,5,100,NearOther,0,abef,"If the user's stats were lowered during the turn, the power of this move is doubled."
 71,FIERYWRATH,Fiery Wrath,00F,90,DARK,Special,100,10,20,AllNearFoes,0,ef,The user transforms its wrath into a fire-like aura to attack. It has a 30% chance to make the target flinch.
@@ -250,7 +250,7 @@
 241,AEROBLAST,Aeroblast,000,95,FLYING,Special,100,5,0,Other,0,befh,A vortex of air is shot at the target to inflict damage. Critical hits land more easily.
 242,BEAKBLAST,Beak Blast,172,100,FLYING,Physical,100,15,0,NearOther,0,bfn,The user heats up its beak before attacking. Making contact in this time results in a burn.
 243,FLY,Fly,0C9,90,FLYING,Physical,100,15,0,Other,0,abef,"The user soars, then strikes on the second turn."
-244,BOUNCE,Bounce,0CC,85,FLYING,Physical,85,15,30,Other,0,abef,"The user bounces up high, then drops on the foe on the second turn. It has a 30% chance to paralyze."
+244,BOUNCE,Bounce,0CC,85,FLYING,Physical,100,15,30,Other,0,abef,"The user bounces up high, then drops on the foe on the second turn. It has a 30% chance to paralyze."
 245,DRILLPECK,Drill Peck,000,80,FLYING,Physical,100,20,0,Other,0,abef,A corkscrewing attack with the sharp beak acting as a drill.
 246,OBLIVIONWING,Oblivion Wing,14F,80,FLYING,Special,100,10,0,Other,0,bef,The user absorbs its target's HP. The user's HP is restored by over half of the damage dealt.
 247,AIRSLASH,Air Slash,00F,80,FLYING,Special,100,15,30,Other,0,bep,The user attacks with a blade of air that slices even the sky. It has a 30% chance to flinch the target.
@@ -330,7 +330,7 @@
 319,INGRAIN,Ingrain,0DB,0,GRASS,Status,0,20,0,User,0,d,"The user lays roots that restore its HP on every turn. Because it is rooted, it can't switch out."
 320,LEECHSEED,Leech Seed,0DC,0,GRASS,Status,100,10,0,NearOther,0,bce,A seed is planted on the target. It steals some HP from the target every turn.
 321,SLEEPPOWDER,Sleep Powder,003,0,GRASS,Status,75,15,0,NearOther,0,bcel,"The user scatters a big cloud of sleep-inducing dust around the target."
-322,SPIKYSHIELD,Spiky Shield,14C,0,GRASS,Status,0,10,0,User,4,,Protects the user from attacks. Also damages attackers that make contact with the user.
+322,SPIKYSHIELD,Spiky Shield,14C,0,GRASS,Status,0,3,0,User,4,,Protects the user from attacks. Also damages attackers that make contact with the user.
 323,SPORE,Spore,003,0,GRASS,Status,100,15,0,NearOther,-1,bcel,The user scatters bursts of spores that induce sleep. This move has -1 priority.
 324,STRENGTHSAP,Strength Sap,160,0,GRASS,Status,100,10,0,NearOther,0,bce,The user restores its HP by the target's Attack stat amount. Then lowers the target's Attack stat.
 325,STUNSPORE,Stun Spore,007,0,GRASS,Status,100,30,0,NearOther,0,bcel,The user scatters a cloud of paralyzing powder. It leaves the target with paralysis.
@@ -595,7 +595,7 @@
 579,SMOG,Smog,005,30,POISON,Special,100,35,30,NearOther,0,bef,The target is attacked with a discharge of filthy gases. It has a 30% chance to poison.
 580,POISONSTING,Poison Sting,005,30,POISON,Physical,100,35,30,NearOther,0,bef,The user stabs the target with a poisonous stinger. This has a 30% chance to poison.
 581,ACIDARMOR,Acid Armor,02F,0,POISON,Status,0,20,0,User,0,d,"The user alters its cellular structure to liquefy itself, sharply raising its Defense stat."
-582,BANEFULBUNKER,Baneful Bunker,168,0,POISON,Status,0,10,0,User,4,,Protects the user from attacks. Also poisons any attacker that makes contact with the user.
+582,BANEFULBUNKER,Baneful Bunker,168,0,POISON,Status,0,3,0,User,4,,Protects the user from attacks. Also poisons any attacker that makes contact with the user.
 583,COIL,Coil,025,0,POISON,Status,0,20,0,User,0,d,The user coils up and concentrates. This raises its Attack and Defense stats as well as its accuracy.
 584,GASTROACID,Gastro Acid,068,0,POISON,Status,100,10,0,NearOther,0,bce,The user hurls up its stomach acids on the foe. The fluid negates the effect of the target's Ability.
 585,POISONGAS,Poison Gas,005,0,POISON,Status,100,40,0,NearFoe,0,bce,A cloud of poison gas is sprayed in the face of opposing Pokémon. It poisons those hit.
@@ -714,7 +714,7 @@
 695,AUTOTOMIZE,Autotomize,031,0,STEEL,Status,0,15,0,User,0,d,The user sheds part of its body to make itself lighter and sharply raise its Speed stat.
 696,GEARUP,Gear Up,15C,0,STEEL,Status,0,20,0,UserAndAllies,0,d,The user engages its gears to raise the Attack and Sp. Atk of allies with the Plus or Minus Ability.
 697,IRONDEFENSE,Iron Defense,02F,0,STEEL,Status,0,15,0,User,0,d,"The user hardens its body's surface like iron, sharply raising its Defense stat."
-698,KINGSSHIELD,King's Shield,14B,0,STEEL,Status,0,10,0,User,4,,Protects itself from damage. It also lowers the Attack of attackers that make contact.
+698,KINGSSHIELD,King's Shield,14B,0,STEEL,Status,0,3,0,User,4,,Protects itself from damage. It also lowers the Attack of attackers that make contact.
 699,METALSOUND,Metal Sound,04F,0,STEEL,Status,100,40,0,NearOther,0,bcek,A horrible sound like scraping metal harshly reduces the target's Sp. Def stat.
 700,SHIFTGEAR,Shift Gear,036,0,STEEL,Status,0,10,0,User,0,d,"The user rotates its gears, raising its Attack and sharply raising its Speed."
 701,BEHEMOTHBASH,Behemoth Bash,000,100,STEEL,Physical,100,5,0,NearOther,0,abef,The user becomes a gigantic shield and slams into the target.
