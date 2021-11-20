@@ -550,7 +550,7 @@ HPMult = 4
 [KRICKETUNE]
 Turns = 1
 Ability = LOUD
-Moves = ECHOEDVOICE
+Moves = ECHOEDVOICE,BUGBUZZ
 HPMult = 4
 #-------------------------------
 [SUICUNE]
