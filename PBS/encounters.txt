@@ -12,7 +12,7 @@ FloweryGrass,20
 Special,20
 1,KRABBY,10,10
 1,NUMEL,10,10 
-1,TREECKO,10,10 
+1,APPLIN,10,10 
 #-------------------------------
 [027] # Casaba Mart
 Special,20
@@ -109,7 +109,7 @@ LandTinted,20
 FloweryGrass,20
 25,STUFFUL,15,18
 25,SWIRLIX,15,18
-25,APPLIN,15,18
+25,CHERUBI,15,18
 25,SMOOCHUM,15,18
 #-------------------------------
 [32] # Nemeth Apartments
@@ -128,6 +128,7 @@ Special
 Special
 1,BULBASAUR,10,10
 1,CHIKORITA,10,10
+1,TREECKO,10,10
 1,TURTWIG,10,10
 1,SNIVY,10,10
 1,CHESPIN,10,10
