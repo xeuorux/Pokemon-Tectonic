@@ -1,10 +1,10 @@
-PokeBattle_AI::BossSpeciesUseMoveIdIfAndOnlyIf.add([:SUICUNE,:PURIFYINGWATER],
+PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:SUICUNE,:PURIFYINGWATER],
   proc { |speciesAndMove,user,target,move|
 	next user.pbHasAnyStatus?
   }
 )
 
-PokeBattle_AI::BossSpeciesUseMoveIdIfAndOnlyIf.add([:SUICUNE,:WHIRLPOOL],
+PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:SUICUNE,:WHIRLPOOL],
   proc { |speciesAndMove,user,target,move|
 	next user.pbHasAnyStatus?
   }

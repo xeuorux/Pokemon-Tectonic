@@ -93,7 +93,7 @@ def healAndGiveRewardIfNotYetGiven(badgeNum)
 	leaderDialogue =
 		["I'll heal up your Pokémon and get out of your way.",
 		"Let me tend to your Pokémon while you bask in your victory."][index] || ""
-	pbMessage(leaderDialogue)
+	pbMessage(leaderDialogue) if !leaderDialogue.blank?
 	healPartyWithDelay()
 end
 

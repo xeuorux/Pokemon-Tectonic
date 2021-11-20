@@ -405,12 +405,9 @@ class PokeBattle_Battler
 		end
 	end
 =end
-    if move.pbImmunityByAbility(user,target) 
-		if !user.boss? && !target.boss
+	if !user.boss? && !target.boss
+		if move.pbImmunityByAbility(user,target) 
 			return false
-		else
-			@battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are partially ignored!"))
-			typeMod /= 2
 		end
 	end
     # Type immunity
@@ -440,7 +437,7 @@ class PokeBattle_Battler
 		return false
 	  else
 	    name = (user.boss ? user : target).pbThis(true)
-	    @battle.pbDisplay(_INTL("Within {1}'s aura, immunities are pierced!",name))
+	    @battle.pbDisplay(_INTL("Within {1}'s aura, immunities are resistances!",name))
       end
     end
     # Dark-type immunity to moves made faster by Prankster
