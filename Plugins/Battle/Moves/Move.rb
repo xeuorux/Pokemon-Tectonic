@@ -466,7 +466,6 @@ class PokeBattle_Move
 		
 		# Type effectiveness
 		typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
-		#typeEffect = ((typeEffect+1.0)/2.0) if target.boss || user.boss
 		multipliers[:final_damage_multiplier] *= typeEffect
 		# Burn
 		if user.burned? && physicalMove? && damageReducedByBurn? &&
@@ -574,6 +573,45 @@ class PokeBattle_Move
 	# Break Through
 	if user.hasActiveAbility?(:BREAKTHROUGH)
 		ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
+	end
+	
+	if (target.boss? || user.boss?) && ret == 0
+		ret = 0.5
+		@battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!"))
+	end
+	
+    return ret
+  end
+  
+  def pbCalcTypeMod(moveType,user,target)
+    return Effectiveness::NORMAL_EFFECTIVE if !moveType
+    return Effectiveness::NORMAL_EFFECTIVE if moveType == :GROUND &&
+       target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL)
+    # Determine types
+    tTypes = target.pbTypes(true)
+    # Get effectivenesses
+    typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
+    if moveType == :SHADOW
+      if target.shadowPokemon?
+        typeMods[0] = Effectiveness::NOT_VERY_EFFECTIVE_ONE
+      else
+        typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE
+      end
+    else
+      tTypes.each_with_index do |type,i|
+        typeMods[i] = pbCalcTypeModSingle(moveType,type,user,target)
+      end
+    end
+    # Multiply all effectivenesses together
+    ret = 1
+    typeMods.each { |m| ret *= m }
+	
+	# Late boss specific immunity abilities check
+	if user.boss? || target.boss?
+		if move.pbImmunityByAbility(user,target) 
+			@battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
+			ret /= 2
+		end
 	end
 	
     return ret
