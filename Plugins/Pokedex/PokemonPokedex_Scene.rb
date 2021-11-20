@@ -829,6 +829,7 @@ class PokemonPokedex_Scene
 					54,37,7,8,53, # Crossroads, Ice Rink, Swamp Route, Jungle Route
 					117,36,10,12, # Ice Cave, Abandoned Mine, Jungle Temple, Gigalith's Guts
 					13,11,122,120,121,		# Cave Path, River Route, Sewer, Deep Layer, Mountain Climb
+					130, 129, # Canal Desert, Barren Crater
 					
 					4,20,86,       # Scientist's House, Lengthy Glade, Zigzagoon Nest
 					78,87,103,92,    # LuxTech Main, LuxTech Apartments, Ghost Town Mart, Ice Rink Lodge
