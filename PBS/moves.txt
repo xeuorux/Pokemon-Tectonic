@@ -250,7 +250,7 @@
 241,AEROBLAST,Aeroblast,000,95,FLYING,Special,100,5,0,Other,0,befh,A vortex of air is shot at the target to inflict damage. Critical hits land more easily.
 242,BEAKBLAST,Beak Blast,172,100,FLYING,Physical,100,15,0,NearOther,0,bfn,The user heats up its beak before attacking. Making contact in this time results in a burn.
 243,FLY,Fly,0C9,90,FLYING,Physical,100,15,0,Other,0,abef,"The user soars, then strikes on the second turn."
-244,BOUNCE,Bounce,0CC,85,FLYING,Physical,85,15,30,Other,0,abef,"The user bounces up high, then drops on the foe on the second turn. It has a 30% chance to paralyze."
+244,BOUNCE,Bounce,0CC,85,FLYING,Physical,100,15,30,Other,0,abef,"The user bounces up high, then drops on the foe on the second turn. It has a 30% chance to paralyze."
 245,DRILLPECK,Drill Peck,000,80,FLYING,Physical,100,20,0,Other,0,abef,A corkscrewing attack with the sharp beak acting as a drill.
 246,OBLIVIONWING,Oblivion Wing,14F,80,FLYING,Special,100,10,0,Other,0,bef,The user absorbs its target's HP. The user's HP is restored by over half of the damage dealt.
 247,AIRSLASH,Air Slash,00F,80,FLYING,Special,100,15,30,Other,0,bep,The user attacks with a blade of air that slices even the sky. It has a 30% chance to flinch the target.
@@ -916,7 +916,7 @@
 897,HUNTDOWN,Hunt Down,099,1,FLYING,Physical,100,10,0,NearOther,0,abefn,"The user chases the target and strikes it from above. It does more damage the faster the user is."
 898,DIVEBOMB,Dive Bomb,0C9,125,FLYING,Physical,100,10,0,Other,0,abef,"The user soars up high, then strikes on the second turn by dive bombing the target."
 899,STRAFE,Strafe,000,90,FLYING,Physical,100,15,0,NearOther,0,abef,"The user attacks the target while dashing skillfully past it."
-900,SWARMBURST,Swarm Burst,0E0,250,BUG,Special,100,5,0,AllNearOthers,0,bef,The user explodes to inflict damage on those around it. The user faints upon using this move.
+900,SWARMBURST,Swarm Burst,0E0,250,BUG,Physical,100,5,0,AllNearOthers,0,bef,The user explodes to inflict damage on those around it. The user faints upon using this move.
 901,BEAM,Beam,000,45,NORMAL,Special,100,35,0,NearOther,0,bef,"The user shoots a beam of normal energy at the target."
 902,WHITERAY,White Ray,000,75,NORMAL,Special,100,25,0,NearOther,0,bef,"The user shoots a ray of bright white energy at the target."
 903,RAPIDSTARS,Rapid Stars,0A5,90,NORMAL,Special,0,20,0,AllNearFoes,0,bef,"A barrage of star-shaped rays are shot at the opposing team, never missing."
