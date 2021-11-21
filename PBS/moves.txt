@@ -415,7 +415,7 @@
 400,MULTIATTACK,Multi-Attack,09F,120,NORMAL,Physical,100,10,0,NearOther,0,abef,"Cloaking itself in high energy, the user slams into the target. This move's type depends on the held memory."
 401,REVELATIONDANCE,Revelation Dance,169,90,NORMAL,Special,100,15,0,NearOther,0,befo,The user attacks the target by dancing very hard. The user's type determines the type of this move.
 402,ROCKCLIMB,Rock Climb,013,90,NORMAL,Physical,85,20,20,NearOther,0,abef,The user attacks the target by smashing into it with incredible force. It has a 20% chance to confuse.
-403,TAKEDOWN,Take Down,0FA,90,NORMAL,Physical,100,20,0,NearOther,0,abef,"A reckless, full-body charge attack for slamming into the foe. It also damages the user by 25% of the damage dealt."
+403,TAKEDOWN,Take Down,0FA,90,NORMAL,Physical,100,20,0,NearOther,0,abef,"A full-body charge attack for slamming into the foe. It also damages the user by 25% of the damage dealt."
 404,UPROAR,Uproar,0D1,110,NORMAL,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep."
 405,BODYSLAM,Body Slam,007,85,NORMAL,Physical,100,15,30,NearOther,0,abef,The user drops onto the target with its full body weight. It has a 30% chance to paralyze.
 406,EXTREMESPEED,Extreme Speed,000,80,NORMAL,Physical,100,5,0,NearOther,2,abef,The user charges the target at blinding speed. This attack always goes before any other move.
@@ -495,7 +495,7 @@
 480,CAMOUFLAGE,Camouflage,060,0,NORMAL,Status,0,20,0,User,0,d,"The user's type is changed depending on its environment, such as at water's edge, in grass, or in a cave."
 481,CAPTIVATE,Captivate,13D,0,FAIRY,Status,100,20,0,AllNearFoes,0,bce,"The target is charmed into harshly lowering its Sp. Atk stat."
 482,CELEBRATE,Celebrate,134,0,NORMAL,Status,0,40,0,User,0,,The Pokémon congratulates you on your special day!
-483,CONFIDE,Confide,13C,0,DARK,Status,0,20,0,NearOther,0,cek,The user tells the target a secret. The target loses focus and its Sp. Atk stat is lowered.
+483,CONFIDE,Confide,13C,0,DARK,Status,0,20,0,NearOther,1,cek,The user tells the target a secret, lowering its Sp. Atk stat. Always goes first.
 484,CONVERSION,Conversion,05E,0,NORMAL,Status,0,30,0,User,0,d,The user changes its type to become the same type as one of its moves.
 485,CONVERSION2,Conversion 2,05F,0,NORMAL,Status,0,30,0,NearOther,0,,The user changes its type to make itself resistant to the type of the attack the opponent used last.
 486,COPYCAT,Copycat,0AF,0,NORMAL,Status,0,20,0,User,0,,The user mimics the move used immediately before it. The move fails if no other move has been used yet.
