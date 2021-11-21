@@ -4,6 +4,7 @@
 LoseText = "..."
 Pokemon = RHYHORN, 15
 	Moves = BULLDOZE
+	Item = SITRUSBERRY
     AbilityIndex = 0
 Pokemon = GEODUDE, 10
 	Moves = TREMOR

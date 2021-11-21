@@ -760,10 +760,12 @@ BattleHandlers::AbilityOnSwitchIn.add(:RUINOUS,
 BattleHandlers::DamageCalcTargetAbility.add(:FORTIFIED,
   proc { |ability,user,target,move,mults,baseDmg,type|
 	if !user.movedThisRound?
-		#@battle.pbShowAbilitySplash(target)
-		#battle.pbDisplay(_INTL("Rhyhorn is fortified, reducing the damage!"))
+		#user.battle.pbShowAbilitySplash(target)
+		#user.battle.pbDisplay(_INTL("Rhyhorn is fortified, reducing the damage!"))
 		mults[:final_damage_multiplier] *= 0.80
-		#battle.pbHideAbilitySplash(target)
+		#user.battle.pbHideAbilitySplash(target)
     end
   }
 )
+
+

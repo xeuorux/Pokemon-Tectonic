@@ -1119,10 +1119,15 @@ class PokeBattle_Move_0DE < PokeBattle_Move
     return baseDmg
   end
 
-  def pbEffectAgainstTarget(user,target)
-    return if target.damageState.hpLost<=0
+  def pbEffectWhenDealingDamage(user,target)
+    return if target.damageState.hpLost<=0 || !target.asleep?
     hpGain = (target.damageState.hpLost/2.0).round
     user.pbRecoverHPFromDrain(hpGain,target)
+	user.battle.pbDisplay(_INTL("{1} ate {2}'s dream!", user.pbThis, target.pbThis)) if target.asleep?
+  end
+  
+  def pbEffectAgainstTarget(user,target)
+    return
   end
 end
 
