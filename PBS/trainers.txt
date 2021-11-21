@@ -141,7 +141,7 @@ Pokemon = RIOLU,15
     Moves = MAGNETWAVE,SCREECH,VACUUMWAVE,VANGUARD
     AbilityIndex = 1
 #-------------------------------
-[LEADER_Lambert,Lambert,1]
+[LEADER_Lambert_2,Lambert]
 LoseText = "..."
 Pokemon = ZORUA,15
     Moves = HARSHWORDS,COUNTER,GRASSKNOT,SWIFT
@@ -248,7 +248,7 @@ Pokemon = TENTACOOL,20
     Moves = WATERPULSE,SUPERSONIC,WRAP,ACID
     AbilityIndex = 1
 #-------------------------------
-[LEADER_Eko,Eko,1]
+[LEADER_Eko_2,Eko]
 Policies = PRIORITIZEDOTS
 LoseText = "..."
 Pokemon = SALANDIT,20
@@ -365,7 +365,7 @@ Pokemon = CHARJABUG,25
 	Moves = STRINGSHOT,CLACKACLACK,LIGHTSHOW,RISINGVOLTAGE
 	Item = SITRUSBERRY
 #-------------------------------
-[LEADER_Helena,Helena,1]
+[LEADER_Helena_2,Helena]
 LoseText = "..."
 Pokemon = LANTURN,25
     AbilityIndex = 0
@@ -837,7 +837,7 @@ Pokemon = NUZLEAF,30
     Moves = MAGICALLEAF,FAKEOUT,PAYBACK,SELFDESTRUCT
     Item = SITRUSBERRY
 #-------------------------------
-[LEADER_Rafael,Rafael,1]
+[LEADER_Rafael_2,Rafael]
 Policies = DISLIKEATTACKING
 Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
