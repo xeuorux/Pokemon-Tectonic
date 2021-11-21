@@ -33,7 +33,7 @@ class PokeBattle_Battle
 	# Record if the fight was perfected
 	if $Trainer.able_pokemon_count == faintedBefore
 		$game_switches[94] = true 
-		pbDisplayPaused(_INTL("You perfected the fight!"))
+		pbMessage(_INTL("You perfected the fight!"))
 	end
     return @decision
   end
