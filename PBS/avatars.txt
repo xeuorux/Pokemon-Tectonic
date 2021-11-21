@@ -12,8 +12,8 @@ HPMult = 2
 Turns = 3
 Item = LUMBERRY
 Ability = QUICKFEET
-Moves = THUNDERPUNCH,FIREPUNCH,SLASH
-HPMult = 2
+Moves = THUNDERPUNCH,FIREPUNCH
+HPMult = 3
 #-------------------------------
 [SHAYMIN]
 Turns = 3
