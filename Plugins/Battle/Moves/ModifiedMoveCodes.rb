@@ -1100,3 +1100,29 @@ class PokeBattle_ProtectMove < PokeBattle_Move
   end
 
 end
+
+#===============================================================================
+# User gains half the HP it inflicts as damage. Fails if target is not asleep.
+# (Dream Eater)
+#===============================================================================
+class PokeBattle_Move_0DE < PokeBattle_Move
+  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
+
+  def pbFailsAgainstTarget?(user,target)
+	return false
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+	if target.asleep?
+	    baseDmg *= 2
+	end
+    return baseDmg
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    return if target.damageState.hpLost<=0
+    hpGain = (target.damageState.hpLost/2.0).round
+    user.pbRecoverHPFromDrain(hpGain,target)
+  end
+end
+
