@@ -154,7 +154,7 @@
 149,ANGELSKISS,Angel's Kiss,400,0,FAIRY,Status,100,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes charm."
 150,SPIRITBREAK,Spirit Break,045,75,FAIRY,Physical,100,15,100,NearOther,0,abef,Attacks the target and breaks its spirit. Lowers the target's Sp. Atk stat.
 151,DECORATE,Decorate,17B,0,FAIRY,Status,0,15,0,NearAlly,0,,The user sharply raises the target's Attack and Sp. Atk stats by decorating the target.
-152,MISTYEXPLOSION,Misty Explosion,196,100,FAIRY,Special,100,5,0,AllNearFoes,0,bef,Attacks all close enemies and faints. Power is increased by 50% on Misty Terrain.
+152,MISTYEXPLOSION,Misty Explosion,196,120,FAIRY,Special,100,5,0,AllNearFoes,0,bef,Attacks all close enemies and faints. Power is increased by 50% on Misty Terrain.
 153,STRANGESTEAM,Strange Steam,013,90,FAIRY,Special,100,10,20,NearOther,0,bef,The user attacks the target by emitting steam. It has a 20% chance to confuse.
 #-------------------------------,,,,,,,,,,,,,
 154,FOCUSPUNCH,Focus Punch,115,150,FIGHTING,Physical,100,20,0,NearOther,-3,abfj,The user focuses its mind before launching a punch. It will fail if the user is hit before it is used.
@@ -397,8 +397,8 @@
 383,TRIPLEAXEL,Triple Axel,0BF,20,ICE,Physical,90,10,0,NearOther,0,abef,A consecutive three-kick attack that becomes more powerful with each successful hit.
 384,GLACIALLANCE,Glacial Lance,000,130,ICE,Physical,100,5,0,NearOther,0,bef,The user attacks by hurling a blizzard-cloaked icicle lance at opposing Pokémon.
 #-------------------------------,,,,,,,,,,,,,
-385,EXPLOSION,Explosion,0E0,250,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,The user explodes to inflict damage on those around it. The user faints upon using this move.
-386,SELFDESTRUCT,Self-Destruct,0E0,200,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,The user blows up to inflict damage on all Pokémon in battle. The user faints upon using this move.
+385,EXPLOSION,Explosion,0E0,350,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,The user explodes to inflict damage on those around it. The user faints upon using this move.
+386,SELFDESTRUCT,Self-Destruct,0E0,250,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,The user blows up to inflict damage on all Pokémon in battle. The user faints upon using this move.
 387,GIGAIMPACT,Giga Impact,0C2,200,NORMAL,Physical,100,5,0,NearOther,0,abef,The user charges at the target using every bit of its power. The user must rest on the next turn.
 388,HYPERBEAM,Hyper Beam,0C2,200,NORMAL,Special,100,5,0,NearOther,0,bef,The foe is attacked with a powerful beam. The user must rest on the next turn to regain its energy.
 389,BOOMBURST,Boomburst,000,140,NORMAL,Special,100,10,0,AllNearOthers,0,befk,"The user attacks everything around it with the destructive power of a terrible, explosive sound."
