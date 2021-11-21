@@ -495,7 +495,7 @@
 480,CAMOUFLAGE,Camouflage,060,0,NORMAL,Status,0,20,0,User,0,d,"The user's type is changed depending on its environment, such as at water's edge, in grass, or in a cave."
 481,CAPTIVATE,Captivate,13D,0,FAIRY,Status,100,20,0,AllNearFoes,0,bce,"The target is charmed into harshly lowering its Sp. Atk stat."
 482,CELEBRATE,Celebrate,134,0,NORMAL,Status,0,40,0,User,0,,The Pokémon congratulates you on your special day!
-483,CONFIDE,Confide,13C,0,DARK,Status,0,20,0,NearOther,0,cek,The user tells the target a secret. The target loses focus and its Sp. Atk stat is lowered.
+483,CONFIDE,Confide,13C,0,DARK,Status,0,20,0,NearOther,1,cek,The user tells the target a secret, lowering its Sp. Atk stat. Always goes first.
 484,CONVERSION,Conversion,05E,0,NORMAL,Status,0,30,0,User,0,d,The user changes its type to become the same type as one of its moves.
 485,CONVERSION2,Conversion 2,05F,0,NORMAL,Status,0,30,0,NearOther,0,,The user changes its type to make itself resistant to the type of the attack the opponent used last.
 486,COPYCAT,Copycat,0AF,0,NORMAL,Status,0,20,0,User,0,,The user mimics the move used immediately before it. The move fails if no other move has been used yet.
