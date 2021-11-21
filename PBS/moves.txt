@@ -905,7 +905,7 @@
 886,SPATTERINGRAM,Spattering Ram,043,60,WATER,Physical,100,25,30,NearOther,0,abef,"The user rams the target like a ship. It has a 30% chance to lower Defense."
 887,BLOSSOM,Blossom,020,50,GRASS,Special,100,35,70,NearOther,0,befn,"A wonderous flower blooms underneath the target, dealing damage. It has a 70% chance to raise user's Sp. Atk."
 888,THRIVINGFORCE,Thriving Force,020,90,GRASS,Special,100,15,10,NearOther,0,befn,"The user attacks with the bursting power of nature. It has a 10% chance to raise user's Sp. Atk."
-889,TERRADRAIN,Terra Drain,0DD,14F,GRASS,Special,50,15,0,NearOther,0,befh,A nutrient-draining attack. The user's HP is restored by 75% of the damage taken by the target.
+889,TERRADRAIN,Terra Drain,0DD,100,GRASS,Special,50,15,0,NearOther,0,befh,A nutrient-draining attack. The user's HP is restored by 75% of the damage taken by the target.
 890,MENDINGSPRING,Mending Spring,53D,60,WATER,Special,100,15,0,NearOther,0,bef,"The user opens a spring to blast the target, and heal the user by 1/8th of its max hp."
 891,INERTIASHOCK,Inertia Shock,53B,80,ELECTRIC,Special,100,10,10,NearOther,0,bef,"Deals 50% more damage if faster than the target. Lower's the user's speed."
 892,GEYSER,Geyser,53E,120,WATER,Special,100,5,0,NearOther,0,bef,"The user propels a geyser of water at the target. This causes the user's Sp. Atk and Sp. Def to decrease."
