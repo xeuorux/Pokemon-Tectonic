@@ -216,7 +216,7 @@ HPMult = 8
 [ELECTRODE]
 Turns = 2
 Ability = SOUNDPROOF
-Moves = SHOCKWAVE,SWIFT
+Moves = DISCHARGE,SWIFT
 HPMult = 4
 #-------------------------------
 [WAILORD]
@@ -557,19 +557,19 @@ HPMult = 4
 Turns = 2
 Ability = PRESSURE
 Moves = WHIRLPOOL,PURIFYINGWATER,BRINE
-HPMult = 4
+HPMult = 5
 #-------------------------------
 [ENTEI]
 Turns = 3
 Ability = PRESSURE
 Moves = INCINERATE,INFERNOCHARGE,SUNNYDAY
-HPMult = 3
+HPMult = 4
 #-------------------------------
 [RAIKOU]
 Turns = 2
 Ability = PRESSURE
 Moves = LIGHTNINGSHRIEK,ELECTROBALL,THUNDERWAVE
-HPMult = 4
+HPMult = 5
 #-------------------------------
 [AURORUS]
 Turns = 1
