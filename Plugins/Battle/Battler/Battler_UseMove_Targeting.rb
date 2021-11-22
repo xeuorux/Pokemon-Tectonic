@@ -58,7 +58,7 @@ class PokeBattle_Battler
           !b.effects[PBEffects::SpikyShield] &&
           !b.effects[PBEffects::BanefulBunker] &&
           !b.effects[PBEffects::Obstruct] &&
-          b.effects[PBEffects::TwoTurnAttack]<=0 &&
+          !invulnerableTwoTurnAttack?(b,move) &&
           !move.pbImmunityByAbility(user,b) &&
           !Effectiveness.ineffective_type?(move.type,b.type1,b.type2) &&
           move.pbAccuracyCheck(user,b)
@@ -74,7 +74,7 @@ class PokeBattle_Battler
           b.effects[PBEffects::SpikyShield] ||
           b.effects[PBEffects::BanefulBunker] ||
           b.effects[PBEffects::Obstruct] ||
-          b.effects[PBEffects::TwoTurnAttack]>0||
+          invulnerableTwoTurnAttack?(b,move)||
           move.pbImmunityByAbility(user,b) ||
           Effectiveness.ineffective_type?(move.type,b.type1,b.type2) ||
           !move.pbAccuracyCheck(user,b)
@@ -111,4 +111,19 @@ class PokeBattle_Battler
     end
     return targets
   end
+  
+  
+	def invulnerableTwoTurnAttack?(target,move)
+		miss = true
+		if target.inTwoTurnAttack?("0C9","0CC","0CE")   # Fly, Bounce, Sky Drop
+			miss = false if move.hitsFlyingTargets?
+			elsif target.inTwoTurnAttack?("0CA")            # Dig
+			miss = false if move.hitsDiggingTargets?
+			elsif target.inTwoTurnAttack?("0CB")            # Dive
+			miss = false if move.hitsDivingTargets?
+			elsif target.inTwoTurnAttack?("0CD","14D")		#PHANTOMFORCE/SHADOWFORCE in case we have a move that hits them
+				miss = true
+		end
+		return miss
+	end
 end

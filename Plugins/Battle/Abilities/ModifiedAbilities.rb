@@ -33,6 +33,17 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         user.pbParalyze(nil,msg)
         battler.battle.pbHideAbilitySplash(battler)
       end
+	when :FROZEN
+      if user.pbCanFrozenSynchronize?(battler)
+        battler.battle.pbShowAbilitySplash(battler)
+        msg = nil
+        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          msg = _INTL("{1}'s {2} chilled {3}! It's slowed and takes more damage!",
+             battler.pbThis,battler.abilityName,user.pbThis(true))
+        end
+        user.pbFreeze(nil,msg)
+        battler.battle.pbHideAbilitySplash(battler)
+      end
     end
   }
 )
@@ -247,12 +258,6 @@ BattleHandlers::CriticalCalcUserAbility.add(:SUPERLUCK,
 BattleHandlers::DamageCalcUserAbility.add(:IRONFIST,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.3 if move.punchingMove?
-  }
-)
-
-BattleHandlers::MoveImmunityTargetAbility.add(:JUSTIFIED,
-  proc { |ability,user,target,move,type,battle|
-    next pbBattleMoveImmunityStatAbility(user,target,move,type,:DARK,:SPEED,1,battle)
   }
 )
 

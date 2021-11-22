@@ -741,6 +741,11 @@ BattleHandlers::MoveImmunityAllyAbility.add(:GARGANTUAN,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:HEARTOFJUSTICE,
+  proc { |ability,user,target,move,type,battle|
+    next pbBattleMoveImmunityStatAbility(user,target,move,type,:DARK,:ATTACK,1,battle)
+  }
+)
 
 BattleHandlers::AbilityOnSwitchIn.add(:RUINOUS,
   proc { |ability,battler,battle|
@@ -750,3 +755,17 @@ BattleHandlers::AbilityOnSwitchIn.add(:RUINOUS,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+
+BattleHandlers::DamageCalcTargetAbility.add(:FORTIFIED,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+	if !user.movedThisRound?
+		#user.battle.pbShowAbilitySplash(target)
+		#user.battle.pbDisplay(_INTL("Rhyhorn is fortified, reducing the damage!"))
+		mults[:final_damage_multiplier] *= 0.80
+		#user.battle.pbHideAbilitySplash(target)
+    end
+  }
+)
+
+

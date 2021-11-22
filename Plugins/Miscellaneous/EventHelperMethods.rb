@@ -93,7 +93,7 @@ def healAndGiveRewardIfNotYetGiven(badgeNum)
 	leaderDialogue =
 		["I'll heal up your Pokémon and get out of your way.",
 		"Let me tend to your Pokémon while you bask in your victory."][index] || ""
-	pbMessage(leaderDialogue)
+	pbMessage(leaderDialogue) if !leaderDialogue.blank?
 	healPartyWithDelay()
 end
 
@@ -480,7 +480,7 @@ def purchaseStarters(type,price=5000)
 	starterArray = []
 	case type
 	when :GRASS
-		starterArray = ["None","Bulbasaur","Chikorita","Turtwig","Snivy","Chespin","Rowlet","Grookey"]
+		starterArray = ["None","Bulbasaur","Chikorita","Treecko","Turtwig","Snivy","Chespin","Rowlet","Grookey"]
 	when :FIRE
 		starterArray = ["None","Charmander","Cyndaquil","Torchic","Chimchar","Tepig","Fennekin","Litten","Scorbunny"]
 	when :WATER

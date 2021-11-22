@@ -61,7 +61,7 @@ PokeBattle_AI::BossGetMoveCodeScore.add("0CF",
 #===============================================================================
 # BossRequireMoveCode handlers
 #===============================================================================
-# Flare Up
+# Venoshock
 PokeBattle_AI::BossRequireMoveCode.add("07B",
 	proc { |moveCode,move,user,target|
 		next true if user.poisoned?

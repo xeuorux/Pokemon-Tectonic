@@ -245,6 +245,8 @@ class PokeBattle_Battler
       hasImmuneType |= pbHasType?(:FIRE)
     when :PARALYSIS
       hasImmuneType |= pbHasType?(:ELECTRIC) && Settings::MORE_TYPE_EFFECTS
+	when :FROZEN
+	  hasImmuneType |= pbHasType?(:ICE)
     end
     return false if hasImmuneType
     # Ability immunity
@@ -749,5 +751,10 @@ class PokeBattle_Battler
   def pbFlinch(_user=nil)
     return if hasActiveAbility?(:INNERFOCUS) && !@battle.moldBreaker
     @effects[PBEffects::Flinch] = true
+  end
+  
+  
+  def pbCanFrozenSynchronize?(target)
+    return pbCanSynchronizeStatus?(:FROZEN, target)
   end
 end

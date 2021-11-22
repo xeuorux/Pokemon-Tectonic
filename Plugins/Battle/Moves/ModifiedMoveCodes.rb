@@ -220,11 +220,37 @@ end
 class PokeBattle_Move_05A < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
 		if target.boss
-		  @battle.pbDisplay(_INTL("But it failed!"))
-		  return true
+		  #@battle.pbDisplay(_INTL("But it failed!"))
+		  #return true
 		end
 		return false
 	end
+	
+=begin
+	def pbEffectAgainstTarget(user,target)
+		newHP = (user.hp+target.hp)/2
+		userHPMult = @battle.calcHPMult(user)
+		targetHPMult = @battle.calcHPMult(target)
+    if user.hp>newHP;    user.pbReduceHP(user.hp-newHP,false,false)
+    elsif user.hp<newHP; user.pbRecoverHP(newHP-user.hp,false)
+	end
+	if target.boss
+		echoln _INTL("{1}'s HP is {2}./n {3}'s HP is {4}./n HP Mult is {5}",target.pbThis, target.hp, user.pbThis, user.hp, targetHPMult)
+		if target.hp>newHP*targetHPMult
+			target.pbReduceHP(target.hp-(newHP*targetHPMult),false,false)
+			echoln _INTL("{1}'s hp is now {2}",target.pbThis,target.hp)
+			elsif target.hp<newHP
+				target.pbRecoverHP((newHP*targetHPMult)-target.hp,false)
+				echoln _INTL("{1}'s hp is now {2}",target.pbThis,target.hp)
+		end
+	elsif target.hp>newHP; target.pbReduceHP(target.hp-newHP,false,false)
+    elsif target.hp<newHP; target.pbRecoverHP(newHP-target.hp,false)	
+	end
+    @battle.pbDisplay(_INTL("The battlers shared their pain!"))
+    user.pbItemHPHealCheck
+    target.pbItemHPHealCheck
+  end
+=end
 end
 
 #===============================================================================
@@ -808,9 +834,8 @@ class PokeBattle_Move_0F1 < PokeBattle_Move
     itemName = target.itemName
     user.item = target.item
     # Permanently steal the item from wild Pokémon
-    if @battle.wildBattle? && target.opposes? && @battle.bossBattle?
-      ## target.initialItem==target.item 									THIS COMMENT SEEMINGLY WAS NOT WANTED, HOPEFULLY NOTHING BREAKS
-	 $PokemonBag.pbStoreItem(target.item,1)
+    if @battle.wildBattle? && target.opposes? && !@battle.bossBattle? #&& target.initialItem==target.item
+	  $PokemonBag.pbStoreItem(target.item,1)
       target.pbRemoveItem
     else
       target.pbRemoveItem(false)
@@ -998,11 +1023,6 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
     target.item                           = oldUserItem
     target.effects[PBEffects::ChoiceBand] = nil
     target.effects[PBEffects::Unburden]   = (!target.item && oldTargetItem)
-    # Permanently steal the item from wild Pokémon
-    if @battle.wildBattle? && target.opposes? && @battle.bossBattle?
-       target.initialItem==oldTargetItem && !user.initialItem
-      user.setInitialItem(oldTargetItem)
-    end
     @battle.pbDisplay(_INTL("{1} switched items with its opponent!",user.pbThis))
     @battle.pbDisplay(_INTL("{1} obtained {2}.",user.pbThis,oldTargetItemName)) if oldTargetItem
     @battle.pbDisplay(_INTL("{1} obtained {2}.",target.pbThis,oldUserItemName)) if oldUserItem
@@ -1080,3 +1100,34 @@ class PokeBattle_ProtectMove < PokeBattle_Move
   end
 
 end
+
+#===============================================================================
+# User gains half the HP it inflicts as damage. Fails if target is not asleep.
+# (Dream Eater)
+#===============================================================================
+class PokeBattle_Move_0DE < PokeBattle_Move
+  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
+
+  def pbFailsAgainstTarget?(user,target)
+	return false
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+	if target.asleep?
+	    baseDmg *= 2
+	end
+    return baseDmg
+  end
+
+  def pbEffectWhenDealingDamage(user,target)
+    return if target.damageState.hpLost<=0 || !target.asleep?
+    hpGain = (target.damageState.hpLost/2.0).round
+    user.pbRecoverHPFromDrain(hpGain,target)
+	user.battle.pbDisplay(_INTL("{1} ate {2}'s dream!", user.pbThis, target.pbThis)) if target.asleep?
+  end
+  
+  def pbEffectAgainstTarget(user,target)
+    return
+  end
+end
+

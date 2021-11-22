@@ -96,9 +96,9 @@ def pbPickBerry(berry, qty = 1)
     end
     $PokemonBag.pbStoreItem(berry,qty)
     if qty>1
-      pbMessage(_INTL("You picked the {1} \\c[1]{2}\\c[0].\\wtnp[20]",qty,itemname))
+      pbMessage(_INTL("\\me[Berry get]You picked the {1} \\c[1]{2}\\c[0].\\wtnp[20]",qty,itemname))
     else
-      pbMessage(_INTL("You picked the \\c[1]{1}\\c[0].\\wtnp[20]",itemname))
+      pbMessage(_INTL("\\me[Berry get]You picked the \\c[1]{1}\\c[0].\\wtnp[20]",itemname))
     end
 	showItemDescription(berry)
     pocket = berry.pocket

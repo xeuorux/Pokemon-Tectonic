@@ -5,8 +5,7 @@ PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:DURALUDON,"522"],
 	}
 )
 
-# Breaking Swipe
-PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:DURALUDON,"042"],
+PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:DURALUDON,:TWISTER],
 	proc { |speciesAndMoveCode,user,target,move|
 		next user.battle.commandPhasesThisRound == 2
 	}

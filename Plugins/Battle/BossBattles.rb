@@ -109,12 +109,25 @@ def setAvatarProperties(pkmn)
 	pkmn.item = avatar_data.item
 	pkmn.ability = avatar_data.ability
 	pkmn.hpMult = avatar_data.hp_mult
+	pkmn.dmgMult = avatar_data.dmg_mult
+	echoln _INTL("pkmn.dmgMult is {1}", pkmn.dmgMult)
 	pkmn.scaleFactor = avatar_data.size_mult
 	
 	pkmn.calc_stats()
 	
 	return avatar_data.num_turns
 end
+
+
+def calcHPMult(pkmn)
+	hpMult = 1
+	if pkmn.boss
+		avatar_data = GameData::Avatar.get(pkmn.species.to_sym)
+		hpMult = avatar_data.hp_mult
+	end
+	return hpMult
+end
+		
 
 def pbPlayCrySpecies(species, form = 0, volume = 90, pitch = nil)
   GameData::Species.play_cry_from_species(species, form, volume, pitch)

@@ -12,8 +12,8 @@ HPMult = 2
 Turns = 3
 Item = LUMBERRY
 Ability = QUICKFEET
-Moves = THUNDERPUNCH,FIREPUNCH,SLASH
-HPMult = 2
+Moves = THUNDERPUNCH,FIREPUNCH
+HPMult = 3
 #-------------------------------
 [SHAYMIN]
 Turns = 3
@@ -33,13 +33,13 @@ HPMult = 3.5
 #-------------------------------
 [SWALOT]
 Turns = 2
-HPMult = 2.5
+HPMult = 2
 Ability = GLUTTONY
 Moves = POISONGAS,ACID
 #-------------------------------
 [TORKOAL]
 Turns = 2
-HPMult = 2.5
+HPMult = 2
 Ability = SHELLARMOR
 Moves = WILLOWISP,FLAMEBURST
 #-------------------------------
@@ -403,7 +403,7 @@ Moves = ATTACKORDER,DEFENDORDER
 Turns = 2
 HPMult = 4
 Ability = GALVANIZE
-Moves = DOUBLEEDGE,FLAIL
+Moves = TAKEDOWN,FLAIL
 #-----------------------------
 [NIDOQUEEN]
 Turns = 2
@@ -418,8 +418,8 @@ Ability = STUBBORN
 Moves = NOBLEROAR,FLAMETHROWER,ENDEAVOR
 #-----------------------------
 [ABSOLUS]
-Turns = 3
-HPMult = 3
+Turns = 2
+HPMult = 3.5
 Ability = BADOMEN
 Moves = MOONBLAST,NIGHTSLASH
 #-----------------------------
@@ -448,8 +448,8 @@ Ability = LEVITATE
 Moves = SHADOWBALL
 #-----------------------------
 [ZOROARK]
-Turns = 2
-HPMult = 2.5
+Turns = 1
+HPMult = 4
 Ability = ILLUSION
 Moves = ANGSTWAVE,SLIGHT
 #-----------------------------
@@ -544,13 +544,13 @@ HPMult = 4
 [DURALUDON]
 Turns = 3
 Ability = SANDSTREAM
-Moves = BREAKINGSWIPE,DRAGONROAR
-HPMult = 3
+Moves = TWISTER,DRAGONROAR
+HPMult = 4
 #-------------------------------
 [KRICKETUNE]
 Turns = 1
 Ability = LOUD
-Moves = ECHOEDVOICE
+Moves = ECHOEDVOICE,BUGBUZZ
 HPMult = 4
 #-------------------------------
 [SUICUNE]
@@ -560,10 +560,10 @@ Moves = WHIRLPOOL,PURIFYINGWATER,BRINE
 HPMult = 4
 #-------------------------------
 [ENTEI]
-Turns = 2
+Turns = 3
 Ability = PRESSURE
-Moves = ROAR,ERUPTION,INCINERATE
-HPMult = 4
+Moves = INCINERATE,INFERNOCHARGE,SUNNYDAY
+HPMult = 3
 #-------------------------------
 [RAIKOU]
 Turns = 2
@@ -586,14 +586,15 @@ HPMult = 4
 [JIRACHI]
 Turns = 2
 Ability = SERENEGRACE
-Moves = DOOMDESIRE,LIFEDEW
+Moves = DOOMDESIRE,PSYBEAM,LIFEDEW
 HPMult = 5
 #-------------------------------
 [GIRATINA]
 Turns = 3
 Ability = LEVITATE
 Moves = HYPERBEAM,OMINOUSWIND
-HPMult = 4.5
+HPMult = 10
+DMGMult = 0.1
 #-----------------------------
 [PARASECT]
 Turns = 2
