@@ -1,6 +1,6 @@
 PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:JIRACHI,:DOOMDESIRE],
   proc { |speciesAndMove,user,target,move|
-	next user.battle.turnCount % 2 == 0
+	next user.battle.turnCount % 2 == 0 && user.battle.commandPhasesThisRound == 0
   }
 )
 

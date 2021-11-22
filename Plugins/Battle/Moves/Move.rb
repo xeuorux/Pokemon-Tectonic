@@ -608,7 +608,7 @@ class PokeBattle_Move
 	
 	# Late boss specific immunity abilities check
 	if user.boss? || target.boss?
-		if move.pbImmunityByAbility(user,target) 
+		if pbImmunityByAbility(user,target) 
 			@battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
 			ret /= 2
 		end
@@ -699,9 +699,6 @@ class PokeBattle_Move
 	end
     return ret
   end
-end
+  
   def slashMove?;        return @flags[/p/]; end
-  
-  
-  
-  
+end
