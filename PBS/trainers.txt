@@ -4,10 +4,10 @@
 LoseText = "..."
 Pokemon = RHYHORN, 15
 	Moves = BULLDOZE
-	Item = SITRUSBERRY
+	Item = AIRBALLOON
     AbilityIndex = 0
-Pokemon = GEODUDE, 10
-	Moves = TREMOR
+Pokemon = CATERPIE, 10
+	Item = SITRUSBERRY
 #-------------------------------
 [HIKER,Conroy]
 LoseText = "..."
@@ -34,7 +34,10 @@ Pokemon = BLASFEMMIE, 70
 LoseText = "..."
 Pokemon = MILCERY, 10
 	Moves = FAIRYWIND
+	Item = AIRBALLOON
+	AbilityIndex = 1
 Pokemon = ZORUA, 5
+	Item = AIRBALLOON
 Pokemon = SLOWPOKE, 5
 POKEMON = ODDISH,5
 #-------------------------------
