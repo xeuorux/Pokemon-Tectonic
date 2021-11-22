@@ -446,9 +446,10 @@ module Compiler
     # Save all data
     GameData::Avatar.save
     Graphics.update
-  end
-=begin 
+  end 
 
+
+=begin
 #THIS IS TO BE BTAVATAR COMPILER CODE
  def compile_btavatars(path = "PBS/btavatars.txt")
 	GameData::Avatar::DATA.clear
@@ -507,6 +508,7 @@ module Compiler
 				:ability	 => contents["Ability"],
 				:item		 => contents["Item"],
 				:hp_mult	 => contents["HPMult"],
+				:dmg_mult	 => contents["DMGMult"],
 				:size_mult	 => contents["SizeMult"],
 			}
 			avatar_number += 1
@@ -519,6 +521,7 @@ module Compiler
     GameData::Avatar.save
     Graphics.update
   end
+end
 =end
   #=============================================================================
   # Compile trainer type data
