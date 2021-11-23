@@ -25011,7 +25011,7 @@ InternalName = STUFFUL
 Type1 = NORMAL
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,75,50,50,45,60
+BaseStats = 70,60,60,50,45,60
 # Total = 350
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -25045,7 +25045,7 @@ InternalName = BEWEAR
 Type1 = NORMAL
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 120,105,75,60,55,80
+BaseStats = 120,90,90,60,55,80
 # Total = 495
 GenderRate = Female50Percent
 GrowthRate = Medium
