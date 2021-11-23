@@ -603,11 +603,11 @@ Ability = COMATOSE
 Moves = SOULRIP,SPORE
 Item = MUSCLEBAND
 #-----------------------------
-[BELLOSSOM]
-Turns = 2
+[SUNFLORA]
+Turns = 1
 Ability = DROUGHT
-Moves = FIERYDANCE,ABSORB
-HPMult = 3
+Moves = GROWTH,NATUREBUBBLE
+HPMult = 4
 #-----------------------------
 [HONCHKROW]
 Turns = 1
