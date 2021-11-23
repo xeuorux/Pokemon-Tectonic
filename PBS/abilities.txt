@@ -353,6 +353,7 @@
 351,RUINOUS,Ruinous, "Damage from all Pokemon attacks is increased by 20%."
 352,FORTIFIED,Fortified, "Take 20% less damage from attacks on turns when it hasn't moved yet."
 353,SCAVENGE,Scavenge, "The user takes items used up by its opponents."
+354,SNOWCHASER,Snow Chaser,"Boosts Attack by 30% in hailstorms."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
