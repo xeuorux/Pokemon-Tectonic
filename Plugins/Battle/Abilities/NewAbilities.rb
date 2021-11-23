@@ -148,7 +148,7 @@ BattleHandlers::DamageCalcUserAbility.add(:SUNCHASER,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:SNOWCHASER,
+BattleHandlers::DamageCalcUserAbility.add(:BLIZZBOXER,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.battle.pbWeather==:Hail && move.physicalMove?
       mults[:base_damage_multiplier] *= 1.3
