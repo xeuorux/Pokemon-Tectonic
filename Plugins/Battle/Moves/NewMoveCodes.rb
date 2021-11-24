@@ -1579,3 +1579,19 @@ class PokeBattle_Move_549 < PokeBattle_Move
 		return score
 	end
 end
+
+
+
+#===============================================================================
+# Deals damage and curses the target. (SPOOOKY SNUGGLING)
+#===============================================================================
+class PokeBattle_Move_54A < PokeBattle_Move
+
+	def pbEffectAgainstTarget(user,target)
+		echoln "we made it"
+		return false if target.effects[PBEffects::Curse] == true
+		target.effects[PBEffects::Curse] = true
+		@battle.pbDisplay(_INTL("{1} was cursed!", target.pbThis))
+	end
+	
+end

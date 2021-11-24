@@ -321,16 +321,16 @@ Moves = SPACIALREND,LIQUIDATION
 #-------------------------------
 [CRESSELIA]
 Turns = 2
-HPMult = 4
+HPMult = 6
 Ability = LEVITATE
 Item = MENTALHERB
-Moves = FUTURESIGHT,HELPINGHAND,HEALPULSE,PSYCHIC
+Moves = HELPINGHAND,PSYCHIC
 #------------------------------
 [DARKRAI]
 Turns = 2
-HPMult = 4
+HPMult = 6
 Ability = BADDREAMS
-Moves = DARKPULSE,SHADOWBALL,SLIGHT,ANGSTWAVE
+Moves = DARKPULSE
 #------------------------------
 [COBALION]
 Turns = 2
@@ -465,23 +465,17 @@ HPMult = 4
 Ability = GRASSYSURGE
 Moves = POISONPOWDER,MAGICALLEAF
 #-----------------------------
-[CHIMECHO]
-Turns = 2
-HPMult = 4
-Ability = MAGICBOUNCE
-Moves = UPROAR
-#-----------------------------
-[DECIDUEYE]
-Turns = 1
-HPMult = 6
-Ability = TRAPPER
-Moves = SPIRITSHACKLE,LEAFBLADE
-#-----------------------------
 [MANIKLAW]
 Turns = 2
 HPMult = 3
 Ability = INSOMNIA
 Moves = SOULCLAW,SHADOWCLAW
+#-----------------------------
+[MISMAGIUS]
+Turns = 2
+HPMult = 3
+Ability = SNOWWARNING
+Moves = ICYWIND,SOULDRAIN
 #-----------------------------
 [SAWSBUCK]
 Turns = 2
@@ -614,3 +608,34 @@ Turns = 1
 Ability = DRIZZLE
 Moves = HURRICANE,FOULPLAY
 HPMult = 5
+#-----------------------------
+[SIMISAGE]
+Turns = 1
+HPMult = 1
+Ability = FRIENDGUARD
+Moves = SEEDBOMB
+#-----------------------------
+[SIMIPOUR]
+Turns = 1
+HPMult = 1
+Ability = FRIENDGUARD
+Moves = BUBBLEBEAM
+#-----------------------------
+[SIMISEAR]
+Turns = 1
+HPMult = 1
+Ability = FRIENDGUARD
+Moves = FLAMEBURST
+#-----------------------------
+[MIGHTYENA]
+Turns = 2
+HPMult = 3
+Ability = INTIMIDATE
+Moves = BITE,TACKLE
+#-----------------------------
+[MINIOR]
+Turns = 2
+HPMult = 3
+Ability = SHIELDSDOWN
+Moves = POWERGEM,GALE
+#-----------------------------
