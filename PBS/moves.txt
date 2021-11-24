@@ -949,7 +949,8 @@
 930,CHAOSWHEEL,Chaos Wheel,547,80,NORMAL,Physical,100,10,20,NearOther,0,bef,"The user thrashes furiously while infused with elements. It has a 6.67% chance each to paralyze, burn, or chill."
 931,MINDLINK,Mind Link,549,0,PSYCHIC,Status,0,40,0,User,0,d,"The user syncs its mind with its teammates, Special Attack stat of itself and its allies."
 932,BULLETCHARGE,Bullet Charge,01F,60,STEEL,Physical,100,20,20,NearOther,0,abef,"The user embraces gunpowder to rocket at its foe. It has a 20% chance to increase the speed stat."
-933,SEEDSURPRISE,Seed Surprise,096,1,NORMAL,Special,100,15,0,NearOther,0,bef,The user draws power to attack by using its held Berry. The Berry determines its type and power.
+933,SEEDSURPRISE,Seed Surprise,096,1,NORMAL,Special,100,15,0,NearOther,0,bef,"The user draws power to attack by using its held Berry. The Berry determines its type and power."
+934,SPOOKYSNUGGLING,Spooky Snuggling,54A,50,GHOST,Physical,100,10,0,NearOther,0,abef,"The user harnesses its jealousy to attack the opponent with ghostly hugs, cursing them."
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch."
