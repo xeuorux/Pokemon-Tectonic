@@ -626,3 +626,16 @@ Turns = 1
 HPMult = 1
 Ability = FRIENDGUARD
 Moves = FLAMEBURST
+#-----------------------------
+[MIGHTYENA]
+Turns = 2
+HPMult = 3
+Ability = INTIMIDATE
+Moves = BITE,TACKLE
+#-----------------------------
+[MINIOR]
+Turns = 2
+HPMult = 3
+Ability = SHIELDSDOWN
+Moves = POWERGEM,GALE
+#-----------------------------
