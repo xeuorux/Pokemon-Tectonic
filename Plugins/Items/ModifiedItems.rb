@@ -56,24 +56,6 @@ def pbBattleTypeWeakingBerry(type,moveType,target,mults)
   target.battle.pbCommonAnimation("EatBerry",target)
 end
 
-BattleHandlers::HPHealItem.add(:ORANBERRY,
-  proc { |item,battler,battle,forced|
-    next false if !battler.canHeal?
-    next false if !forced && !battler.canConsumePinchBerry?(false)
-    battle.pbCommonAnimation("EatBerry",battler) if !forced
-	healAmount = 10
-	healAmount *= 2 if battler.hasActiveAbility?(:RIPEN)
-    battler.pbRecoverHP(healAmount)
-    itemName = GameData::Item.get(item).name
-    if forced
-      PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",battler.pbThis,itemName))
-    end
-    next true
-  }
-)
 
 BattleHandlers::HPHealItem.add(:ORANBERRY,
   proc { |item,battler,battle,forced|
@@ -81,6 +63,25 @@ BattleHandlers::HPHealItem.add(:ORANBERRY,
     next false if !forced && !battler.canConsumePinchBerry?(true)
     battle.pbCommonAnimation("EatBerry",battler) if !forced
 	hpRestore = battler.totalhp.to_f / 3.0
+	hpRestore *= 2 if battler.hasActiveAbility?(:RIPEN)
+	battler.pbRecoverHP(hpRestore)
+    itemName = GameData::Item.get(item).name
+    if forced
+      PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1} restored its health using its {2}!",battler.pbThis,itemName))
+    end
+    next true
+  }
+)
+
+BattleHandlers::HPHealItem.add(:SITRUSBERRY,
+  proc { |item,battler,battle,forced|
+    next false if !battler.canHeal?
+    next false if !forced && !battler.canConsumePinchBerry?(false)
+    battle.pbCommonAnimation("EatBerry",battler) if !forced
+    hpRestore = battler.totalhp.to_f / 4.0
 	hpRestore *= 2 if battler.hasActiveAbility?(:RIPEN)
 	battler.pbRecoverHP(hpRestore)
     itemName = GameData::Item.get(item).name
