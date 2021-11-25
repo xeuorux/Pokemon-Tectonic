@@ -91,10 +91,11 @@ LandSparse,20
 #-------------------------------
 [59] # Mainland Dock
 Land,20
-25,TAILLOW,15,15
-25,CHINGLING,14,17
-25,GULPIN,14,17
-25,TIMBURR,14,17
+20,TAILLOW,15,15
+20,CHINGLING,14,17
+20,GULPIN,14,17
+20,TIMBURR,14,17
+20,SCATTERBUG,14,17
 #-------------------------------
 [60] # Forest Route
 Land,20
