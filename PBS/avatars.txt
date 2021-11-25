@@ -431,13 +431,13 @@ Moves = PECK
 #-----------------------------
 [KLINKLANG]
 Turns = 2
-HPMult = 5
+HPMult = 4
 Ability = WEAKARMOR
 Moves = GEARGRIND,IRONDEFENSE
 #-----------------------------
 [AVALUGG]
-Turns = 2
-HPMult = 4
+Turns = 1
+HPMult = 5
 Ability = PRISMARMOR
 Moves = CALAMITOUSSLASH,CRYSTALCRUSH
 #-----------------------------
