@@ -343,7 +343,7 @@ Pokemon = BAGON,23
 LoseText = "..."
 Pokemon = CACNEA,21
 Pokemon = VOLTORB,22
-Pokemon = SLUGMA,22
+Pokemon = MONFERNO,22
 Pokemon = VENIPEDE,23
 #-------------------------------
 [RICHBOY2,Theodore]
@@ -415,6 +415,7 @@ Pokemon = TRUMBEAK,28
 LoseText = "..."
 Pokemon = TORRACAT,25
 Pokemon = DEWOTT,26
+Pokemon = GROVYLE,26
 #-------------------------------
 [BLACKBELT3,Philip]
 LoseText = "..."
@@ -532,7 +533,7 @@ Pokemon = TROPIUS,25
 [COOLTRAINER_F,Priscilla]
 LoseText = "..."
 Pokemon = MISMAGIUS,30
-    Moves = BONECHILL,MYSTICALFIRE,DAZZLINGGLEAM,POWERGEM
+    Moves = SPITEFULCHANT,MYSTICALFIRE,DAZZLINGGLEAM,POWERGEM
     AbilityIndex = 0
     Item = CHOICESPECS
 Pokemon = FROSLASS,30
