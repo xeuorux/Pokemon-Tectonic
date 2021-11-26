@@ -63,7 +63,7 @@ DebugMenuCommands.register("autopositionbacksprites", {
 		  sp.back_sprite_x = 0
 		  sp.back_sprite_y = (bitmap1.height - (findBottom(bitmap1.bitmap) + 1)) / 2
 		  data = GameData::Species.get(sp)
-		  if data.abilities.include?(:LEVITATE)
+		  if data.abilities.include?(:LEVITATE) || data.abilities.include?(:DESERTSPIRIT)
 			sp.back_sprite_y -= 4
 		  elsif data.egg_groups.include?(:Water2)
 			sp.back_sprite_y -= 2

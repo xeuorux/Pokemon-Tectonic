@@ -1640,3 +1640,23 @@ class PokeBattle_Move_54B < PokeBattle_StatUpMove
 		end
 	end
 end
+
+
+#===============================================================================
+# Increases the user's Sp. Attack by 1 and Sp. Def by 1 stage each.
+# In sandstorm, increases are 2 stages each instead. (Desert Dance)
+#===============================================================================
+class PokeBattle_Move_54C < PokeBattle_MultiStatUpMove
+  def initialize(battle,move)
+    super
+    @statUp = [:ATTACK,1,:SPECIAL_ATTACK,1]
+  end
+
+  def pbOnStartUse(user,targets)
+	if [:Sandstorm].include?(@battle.pbWeather)
+		@statUp = [:SPECIAL_ATTACK,2,:SPECIAL_DEFENSE,2,:SPEED,1]
+	else
+		@statUp = [:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1] 
+	end
+  end
+end
