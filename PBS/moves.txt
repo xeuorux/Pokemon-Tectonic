@@ -30,10 +30,10 @@
 28,TAILGLOW,Tail Glow,039,0,BUG,Status,0,20,0,User,0,d,"The user stares at flashing lights to focus its mind, drastically raising its Sp. Atk stat."
 29,SKITTERSMACK,Skitter Smack,045,70,BUG,Physical,100,10,100,NearOther,0,abef,The user skitters behind the target to attack. This also lowers the target's Sp. Atk stat.
 #-------------------------------,,,,,,,,,,,,,
-30,HYPERSPACEFURY,Hyperspace Fury,13B,100,DARK,Physical,0,5,0,NearOther,0,ef,"Unleashes a barrage of multi-arm attacks, skipping protections. The user's Defense stat falls."
-31,FOULPLAY,Foul Play,121,95,DARK,Physical,100,15,0,NearOther,0,abef,The user turns the foe's power against it. It does more damage the higher the target's Attack stat.
-32,DARKESTLARIAT,Darkest Lariat,0A9,85,DARK,Physical,100,10,0,NearOther,0,abef,The user swings both arms and hits the target. Ignores the target's stat changes.
-33,NIGHTDAZE,Night Daze,047,85,DARK,Special,100,10,40,NearOther,0,bef,The user lets loose a pitch-black shock wave at its target. It has a 40% chance to lower accuracy.
+30,HYPERSPACEFURY,Hyperspace Fury,13B,100,DARK,Physical,0,5,0,NearOther,0,ef,"Unleashes a barrage of multi-arm attacks, skipping and destroying protections. It always hits. The user's Defense stat falls."
+31,FOULPLAY,Foul Play,121,95,DARK,Physical,100,15,0,NearOther,0,abef,"The user turns the foe's power against it. It does more damage the higher the target's Attack stat."
+32,DARKESTLARIAT,Darkest Lariat,0A9,85,DARK,Physical,100,10,0,NearOther,0,abef,"The user swings both arms and hits the target. Ignores the target's stat changes."
+33,NIGHTDAZE,Night Daze,047,85,DARK,Special,100,10,40,NearOther,0,bef,"The user lets loose a pitch-black shock wave at its target. It has a 40% chance to lower accuracy."
 34,CRUNCH,Crunch,043,80,DARK,Physical,100,15,20,NearOther,0,abefi,The user crunches up the target with sharp fangs. It has a 20% chance to lower Defense.
 35,DARKPULSE,Dark Pulse,00F,80,DARK,Special,100,15,20,Other,0,bem,The user releases a horrible aura imbued with dark thoughts. It has a 20% chance to make the target flinch.
 36,THROATCHOP,Throat Chop,16C,80,DARK,Physical,100,15,100,NearOther,0,abef,The user attacks the target's throat. The target cannot use sound-based moves for two turns.
@@ -67,7 +67,7 @@
 64,TOPSYTURVY,Topsy-Turvy,141,0,DARK,Status,0,20,0,NearOther,1,bce,All stat changes affecting the target turn topsy-turvy and become the opposite of what they were.
 65,TORMENT,Torment,0B7,0,DARK,Status,100,15,0,NearOther,0,bce,"The user torments and enrages the foe, making it incapable of using the same move twice in a row."
 66,JAWLOCK,Jaw Lock,17D,80,DARK,Physical,100,10,0,NearOther,0,bef,Prevents the user and target from switching out until either of them faints or is switched out.
-67,FALSESURRENDER,False Surrender,0A5,80,DARK,Physical,0,10,0,NearOther,0,abef,The user fakes the target out and stabs them with its disheveled hair. The attack never misses.
+67,FALSESURRENDER,False Surrender,0A5,80,DARK,Physical,0,10,0,NearOther,0,aef,The user fakes the target out and stabs them with its disheveled hair. The attack never misses and skips protections.
 68,OBSTRUCT,Obstruct,180,0,DARK,Status,0,3,0,NearOther,4,,Protects the user from all attacks. Direct contact harshly lowers the attacker's Defense stat.
 69,WICKEDBLOW,Wicked Blow,0A0,80,DARK,Physical,100,5,0,NearOther,0,abef,The user strikes with a fierce blow of Dark Mastery. It always results in a critical hit
 70,LASHOUT,Lash Out,194,75,DARK,Physical,100,5,100,NearOther,0,abef,"If the user's stats were lowered during the turn, the power of this move is doubled."
@@ -138,7 +138,7 @@
 133,PLAYROUGH,Play Rough,042,90,FAIRY,Physical,100,10,10,NearOther,0,abef,The user plays rough with the target and attacks it. It has a 10% chance to lower Atk.
 134,DAZZLINGGLEAM,Dazzling Gleam,045,70,FAIRY,Special,100,10,30,AllNearFoes,0,bef,The user damages opposing Pokémon by emitting a powerful flash. It has a 30% chance to lower Sp. Atk
 135,DRAININGKISS,Draining Kiss,14F,50,FAIRY,Special,100,10,0,NearOther,0,abef,The user steals the target's HP with a kiss. The user's HP is restored by over half of the damage dealt.
-136,DISARMINGVOICE,Disarming Voice,0A5,40,FAIRY,Special,0,15,0,AllNearFoes,0,befk,"Letting out a charming cry, the user does emotional damage to foes. This attack never misses."
+136,DISARMINGVOICE,Disarming Voice,0A5,40,FAIRY,Special,0,15,0,AllNearFoes,0,efk,"Letting out a charming cry, the user does emotional damage to foes. This attack never misses and destroys protections."
 137,FAIRYWIND,Fairy Wind,400,40,FAIRY,Special,100,30,10,NearOther,0,bef,The user stirs up a fairy wind and strikes the target with it. There's a 10% chance it becomes charmed.
 138,AROMATICMIST,Aromatic Mist,138,0,FAIRY,Status,0,20,0,NearAlly,0,,The user raises the Def and Sp. Def stat of an ally Pokémon by using a mysterious aroma.
 139,BABYDOLLEYES,Baby-Doll Eyes,042,0,FAIRY,Status,100,30,0,NearOther,1,bce,"The user stares with its baby-doll eyes, which lowers the target's Attack stat. Always goes first."
@@ -174,7 +174,7 @@
 168,SUBMISSION,Submission,0FA,120,FIGHTING,Physical,100,20,0,NearOther,0,abef,The user grabs the target and recklessly dives for the ground. The user also takes 25% recoil.
 169,BRICKBREAK,Brick Break,10A,75,FIGHTING,Physical,100,15,0,NearOther,0,abef,The user attacks with a swift chop. It can also break any barrier such as Light Screen and Reflect.
 170,DRAINPUNCH,Drain Punch,545,80,FIGHTING,Physical,100,10,0,NearOther,0,abefj,An energy-draining punch. The user's HP is restored by one third the damage taken by the target.
-171,VITALTHROW,Vital Throw,0A5,70,FIGHTING,Physical,0,10,0,NearOther,-1,abef,"The user attacks last. In return, this throw move is guaranteed not to miss."
+171,VITALTHROW,Vital Throw,0A5,70,FIGHTING,Physical,0,10,0,NearOther,-1,aef,"The user attacks last. In return, this throw move is guaranteed not to miss and bypasses protection moves."
 172,WAKEUPSLAP,Wake-Up Slap,07D,70,FIGHTING,Physical,100,10,0,NearOther,0,abef,"This attack inflicts double damage on a sleeping target. It also wakes the target up, however."
 173,LOWSWEEP,Low Sweep,044,65,FIGHTING,Physical,100,20,100,NearOther,0,abef,"The user attacks the target's legs swiftly, reducing the target's Speed stat."
 174,CIRCLETHROW,Circle Throw,0EC,60,FIGHTING,Physical,90,10,0,NearOther,-6,abef,"The user throws the target and drags out another Pokémon in its party. In the wild, the battle ends."
@@ -272,7 +272,7 @@
 #-------------------------------,,,,,,,,,,,,,
 263,SHADOWFORCE,Shadow Force,0CD,120,GHOST,Physical,100,5,0,NearOther,0,aef,"The user disappears, then strikes the foe on the second turn. It hits even if the foe protects itself."
 264,MOONGEISTBEAM,Moongeist Beam,163,100,GHOST,Special,100,5,0,NearOther,0,bef,The user emits a sinister ray. This move can be used on the target regardless of its Abilities.
-265,PHANTOMFORCE,Phantom Force,14D,90,GHOST,Physical,100,10,0,NearOther,0,aef,"The user vanishes somewhere, then strikes on the next turn. Hits through protections."
+265,PHANTOMFORCE,Phantom Force,14D,90,GHOST,Physical,100,10,0,NearOther,0,aef,"The user vanishes somewhere, then strikes on the next turn. Skips and destroys protections."
 266,SPECTRALTHIEF,Spectral Thief,15D,90,GHOST,Physical,100,10,0,NearOther,0,abef,"The user hides in the target's shadow, steals the target's stat boosts, and then attacks."
 267,SHADOWBONE,Shadow Bone,043,85,GHOST,Physical,100,10,20,NearOther,0,bef,The user beats the target with a bone containing a spirit. It has a 20% to lower Defense.
 268,SHADOWBALL,Shadow Ball,046,90,GHOST,Special,100,15,20,NearOther,0,befn,The user hurls a shadowy blob at the target. It has a 20% chance to lower Sp. Def.
@@ -312,7 +312,7 @@
 301,HORNLEECH,Horn Leech,0DD,75,GRASS,Physical,100,10,0,NearOther,0,abef,The user drains the foe's energy with its horns. The user's HP is restored by half the damage inflicted.
 302,TROPKICK,Trop Kick,042,70,GRASS,Physical,100,15,100,NearOther,0,abef,The user lands an intense tropical kick on the target. This also lowers the target's Attack stat.
 303,LEAFTORNADO,Leaf Tornado,047,65,GRASS,Special,100,10,50,NearOther,0,bef,The user attacks its foe by encircling it in sharp leaves. It has a 50% chance to lower accuracy.
-304,MAGICALLEAF,Magical Leaf,0A5,60,GRASS,Special,0,20,0,NearOther,0,bef,The user scatters curious leaves that chase the target. This attack will not miss.
+304,MAGICALLEAF,Magical Leaf,0A5,60,GRASS,Special,0,20,0,NearOther,0,ef,"The user scatters curious leaves that chase the target. This attack will not miss and skips protections."
 305,NEEDLEARM,Needle Arm,00F,60,GRASS,Physical,100,15,30,NearOther,0,abe,The user attacks by wildly swinging its thorny arms. It has a 30% chance to make the target flinch.
 306,RAZORLEAF,Razor Leaf,000,55,GRASS,Physical,100,25,0,AllNearFoes,0,befh,Sharp-edged leaves are launched to slash at the opposing team. Critical hits land more easily.
 307,VINEWHIP,Vine Whip,504,40,GRASS,Physical,100,25,0,NearOther,0,abef,"The target is struck with slender, whiplike vines. Deals 25% more damage if the target moved first."
@@ -438,10 +438,10 @@
 423,HORNATTACK,Horn Attack,000,65,NORMAL,Physical,100,25,0,NearOther,0,abef,The target is jabbed with a sharply pointed horn to inflict damage.
 424,STOMP,Stomp,010,65,NORMAL,Physical,100,20,30,NearOther,0,abe,The target is stomped with a big foot. It has a 30% chance to make the target flinch.
 425,COVET,Covet,0F1,60,NORMAL,Physical,100,25,0,NearOther,0,abef,"The user endearingly approaches the target, then steals the target's held item."
-426,HIDDENPOWER,Hidden Power,090,60,NORMAL,Special,100,15,0,NearOther,0,bef,A unique attack that varies in type and intensity depending on the Pokémon using it.
-427,ROUND,Round,083,60,NORMAL,Special,100,15,0,NearOther,0,befk,The user attacks with a song. Others can join in the Round and make the attack do greater damage.
-428,SWIFT,Swift,0A5,60,NORMAL,Special,0,20,0,AllNearFoes,0,bef,Star-shaped rays are shot at the opposing team. This attack never misses.
-429,VISEGRIP,Vise Grip,000,55,NORMAL,Physical,100,30,0,NearOther,0,abef,The target is gripped and squeezed from both sides to inflict damage.
+426,HIDDENPOWER,Hidden Power,090,60,NORMAL,Special,100,15,0,NearOther,0,bef,"A unique attack that varies in type and intensity depending on the Pokémon using it."
+427,ROUND,Round,083,60,NORMAL,Special,100,15,0,NearOther,0,befk,"The user attacks with a song. Others can join in the Round and make the attack do greater damage."
+428,SWIFT,Swift,0A5,60,NORMAL,Special,0,20,0,AllNearFoes,0,bef,"Star-shaped rays are shot at the opposing team. This attack never misses and skips protections."
+429,VISEGRIP,Vise Grip,000,55,NORMAL,Physical,100,30,0,NearOther,0,abef,"The target is gripped and squeezed from both sides to inflict damage."
 430,CUT,Cut,000,50,NORMAL,Physical,100,30,0,NearOther,0,abefp,The target is cut with a scythe or a claw. It can also be used to cut down thin trees.
 431,SNORE,Snore,011,75,NORMAL,Special,100,15,30,NearOther,0,bek,An attack that can be used only if the user is asleep. It has a 30% chancce to make the target flinch.
 432,STRUGGLE,Struggle,002,50,NORMAL,Physical,0,1,0,RandomNearFoe,0,abf,An attack that is used in desperation only if the user has no PP. It also hurts the user slightly.
@@ -618,7 +618,7 @@
 601,PSYCHIC,Psychic,046,90,PSYCHIC,Special,100,10,10,NearOther,0,bef,The target is hit by a strong telekinetic force. It has a 10% chance to lower Sp. Def.
 602,PSYCHICFANGS,Psychic Fang,10A,85,PSYCHIC,Physical,100,10,0,NearOther,0,abefi,The user bites the target using psychic capabilities. This can also destroy Light Screen and Reflect.
 603,EXTRASENSORY,Extrasensory,00F,80,PSYCHIC,Special,100,20,20,NearOther,0,be,"The user attacks with an odd, unseeable power. It has a 20% chance to make the target flinch."
-604,HYPERSPACEHOLE,Hyperspace Hole,147,80,PSYCHIC,Special,0,5,0,NearOther,0,ef,"Using a hyperspace hole, the user appears right next to the target and strikes. Skips protections."
+604,HYPERSPACEHOLE,Hyperspace Hole,147,80,PSYCHIC,Special,0,5,0,NearOther,0,ef,"Using a hyperspace hole, the user appears right next to the target and strikes. Skips and destroys protections and substitutes. Always hits."
 605,PSYSHOCK,Psyshock,122,85,PSYCHIC,Special,100,10,0,NearOther,0,bef,The user materializes an odd psychic wave to attack the target. This attack does physical damage.
 606,ZENHEADBUTT,Zen Headbutt,00F,80,PSYCHIC,Physical,100,15,20,NearOther,0,abe,The user focuses its willpower to its head and attacks the foe. It has a 20% chance to make the target flinch.
 607,LUSTERPURGE,Luster Purge,046,70,PSYCHIC,Special,100,5,100,NearOther,0,bef,The user lets loose a damaging burst of light. It has a 20% chance to lower Sp. Def.
@@ -699,14 +699,14 @@
 680,METEORMASH,Meteor Mash,01C,90,STEEL,Physical,100,10,20,NearOther,0,abefj,The target is hit with a hard punch fired like a meteor. It has a 20% chance to raise Attack.
 681,ANCHORSHOT,Anchor Shot,0EF,80,STEEL,Physical,100,20,100,NearOther,0,abef,The user entangles the target with its anchor chain. The target becomes unable to flee.
 682,FLASHCANNON,Flash Cannon,046,80,STEEL,Special,100,10,10,NearOther,0,befm,The user gathers all its light energy and releases it at once. It has a 10% chance to lower Sp. Def.
-683,IRONHEAD,Iron Head,00F,80,STEEL,Physical,100,15,30,NearOther,0,abe,The foe slams the target with its steel-hard head. It has a 30% chance to make the target flinch.
-684,SMARTHORN,Smart Horn,0A5,70,STEEL,Physical,0,10,0,NearOther,0,abef,The user stabs the target with a sharp horn. This attack never misses.
+683,IRONHEAD,Iron Head,00F,80,STEEL,Physical,100,15,30,NearOther,0,abe,"The foe slams the target with its steel-hard head. It has a 30% chance to make the target flinch."
+684,SMARTHORN,Smart Horn,0A5,70,STEEL,Physical,0,10,0,NearOther,0,aef,"The user stabs the target with a sharp horn. This attack never misses and skips protections."
 685,STEELWING,Steel Wing,01D,70,STEEL,Physical,100,25,30,NearOther,0,abef,The target is hit with wings of steel. It has a 30% chance to raise Def.
 686,DOUBLEIRONBASH,Double Iron Bash,175,60,STEEL,Physical,100,5,30,NearOther,0,abf,"The user rotates, centering the hex nut in its chest, and then strikes twice. Each hit has a 30% chance to cause flinching."
 687,MIRRORSHOT,Mirror Shot,047,60,STEEL,Special,100,10,30,NearOther,0,bef,The user looses a flash of energy from its polished body. It has a 30% chance to lower accuracy.
-688,MAGNETBOMB,Magnet Bomb,0A5,50,STEEL,Physical,0,20,0,NearOther,0,befn,The user launches steel bombs that stick to the target. This attack will not miss.
-689,GEARGRIND,Gear Grind,0BD,45,STEEL,Physical,100,15,0,NearOther,0,abef,The user attacks by grinding two of its steel gears against the target.
-690,METALCLAW,Metal Claw,01C,50,STEEL,Physical,100,35,15,NearOther,0,abef,The target is raked with steel claws. It has a 15% chance to raise Attack.
+688,MAGNETBOMB,Magnet Bomb,0A5,50,STEEL,Physical,0,20,0,NearOther,0,efn,"The user launches steel bombs that stick to the target. This attack will not miss and skips protections."
+689,GEARGRIND,Gear Grind,0BD,45,STEEL,Physical,100,15,0,NearOther,0,abef,"The user attacks by grinding two of its steel gears against the target."
+690,METALCLAW,Metal Claw,01C,50,STEEL,Physical,100,35,15,NearOther,0,abef,"The target is raked with steel claws. It has a 15% chance to raise Attack."
 691,BULLETPUNCH,Bullet Punch,000,40,STEEL,Physical,100,30,0,NearOther,1,abefj,The user strikes the target with tough punches as fast as bullets. This move always goes first.
 692,GYROBALL,Gyro Ball,08D,1,STEEL,Physical,100,5,0,NearOther,0,abefn,"The user tackles the target with a high-speed spin. The slower the user, the greater the damage."
 693,HEAVYSLAM,Heavy Slam,09B,1,STEEL,Physical,100,10,0,NearOther,0,abef,"The user slams into the foe with its heavy body. The heavier the user, the greater the damage."
@@ -783,7 +783,7 @@
 763,TREMOR,Tremor,076,65,GROUND,Physical,100,20,0,AllNearOthers,0,bef,"The user slams the earth, causing all the Pokémon around it to tremble and take damage."
 764,COLDEMBRACE,Cold Embrace,00C,40,ICE,Physical,100,35,10,NearOther,0,abef,"The user grabs the target in a chilly embrace. It has a 10% chance to chill."
 765,BADSTENCH,Bad Stench,013,50,POISON,Special,100,25,20,NearOther,0,bef,"The user gives off a terrible stench towards the target. It has a 20% chance to confuse."
-766,BLINDSIDE,Blind Side,147,40,PSYCHIC,Physical,0,35,0,NearOther,0,abef,"The user skillfully attacks around the enemy's defenses. Skips protections, and always hits."
+766,BLINDSIDE,Blind Side,147,40,PSYCHIC,Physical,0,35,0,NearOther,0,aef,"The user skillfully attacks around the enemy's defenses. Skips and destroys protections, and always hits."
 767,SLURP,Slurp,0DD,25,BUG,Physical,100,25,0,NearOther,0,abef,"The user slurpsa bit of the target's blood. The user's HP is restored by half the damage dealt."
 768,KICKSTART,Kickstart,505,40,PSYCHIC,Physical,100,10,0,NearOther,0,abef,"The user kicks the target, giving them the energy to attack right after the user."
 769,BOREALWIND,Boreal Wind,00C,60,FLYING,Special,100,20,20,NearOther,0,bef,"The user whips up a cold northerly wind to attack the target. It has a 20% chance to chill."
@@ -865,7 +865,7 @@
 846,SOULDRAIN,Soul Drain,52C,30,GHOST,Special,100,20,100,NearOther,0,bef,"The user absorbs the target's soul, lowering its special defense and draining its life in the process."
 847,SHADOWPASS,Shadowpass,52D,40,DARK,Special,100,15,0,AllNearOthers,0,bce,"Darkness rolls over the field, damaging all other Pokémon, ending weather, and healing statuses."
 848,MAJESTICGLARE,Majestic Glare,52B,70,DRAGON,Special,100,15,50,NearOther,0,bef,"The user glares at its target, either confusing or charming it based on which of its attacking stats are higher."
-849,ECHOLOCATE,Echolocate,52E,0,FLYING,Status,0,15,0,AllNearFoes,0,bcek,"The user locate's the target with an intense shriek, harshly lowering opponent's defense and evasion. This move can't miss."
+849,ECHOLOCATE,Echolocate,52E,0,FLYING,Status,0,15,0,AllNearFoes,0,cek,"The user locate's the target with an intense shriek, harshly lowering opponent's defense and evasion. This move can't miss and skips protections."
 850,WINGSPANECLIPSE,Wingspan Eclipse,52F,0,DRAGON,Status,0,15,0,AllNearFoes,0,bce,"The Pokémon blots out the sky with huge wings, ending weather. It also lowers the opponent's attack."
 851,ALLERGY,Allergy,04D,70,BUG,Special,100,15,100,NearOther,0,bef,"The user makes the target have an allergic reaction. This harshly reduces its speed."
 852,LIGHTNINGSHRIEK,Lightning Shriek,030,40,ELECTRIC,Special,100,5,100,NearOther,0,bef,"The user lets out an electric roar, damaging the target and sharply raising its speed."
@@ -919,7 +919,7 @@
 900,SWARMBURST,Swarm Burst,0E0,300,BUG,Physical,100,5,0,AllNearOthers,0,bef,The user explodes to inflict damage on those around it. The user faints upon using this move.
 901,BEAM,Beam,000,45,NORMAL,Special,100,35,0,NearOther,0,bef,"The user shoots a beam of normal energy at the target."
 902,WHITERAY,White Ray,000,75,NORMAL,Special,100,25,0,NearOther,0,bef,"The user shoots a ray of bright white energy at the target."
-903,RAPIDSTARS,Rapid Stars,0A5,90,NORMAL,Special,0,20,0,AllNearFoes,0,bef,"A barrage of star-shaped rays are shot at the opposing team, never missing."
+903,RAPIDSTARS,Rapid Stars,0A5,90,NORMAL,Special,0,20,0,AllNearFoes,0,ef,"A barrage of star-shaped rays are shot at the opposing team, never missing. Skips protections."
 904,PILFER,Pilfer,539,40,DARK,Physical,100,30,0,NearOther,0,abef,The user attacks and steals the foe's held Berry or Gem. It can't steal if the user holds an item.
 905,TEASE,Tease,400,60,DARK,Special,100,25,20,NearOther,0,befk,"The user teases the target, dealing a bit of mental damage. It has a 20% chance to charm."
 906,SCAM,Scam,15D,70,DARK,Physical,100,10,0,NearOther,-1,abef,"The user scams the target of its stat boosts, and then attacks."
@@ -960,7 +960,7 @@
 2002,CONFUSION,Confusion,013,50,PSYCHIC,Special,100,25,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It may also leave the target confused."
 2003,ROCKSMASH,Rock Smash,043,40,FIGHTING,Physical,100,15,50,NearOther,0,abef,"The user attacks with a punch that can shatter a rock. It may also lower the foe's Defense stat."
 2004,DRAGONRUSH,Dragon Rush,010,100,DRAGON,Physical,75,10,20,NearOther,0,abe,"The user tackles the foe while exhibiting overwhelming menace. It may also make the target flinch."
-2005,SMARTSTRIKE,Smart Strike,0A5,70,STEEL,Physical,0,10,0,NearOther,0,abef,"The user stabs the target with a sharp horn. This attack never misses."
+2005,SMARTSTRIKE,Smart Strike,0A5,70,STEEL,Physical,0,10,0,NearOther,0,aef,"The user stabs the target with a sharp horn. This attack never misses. Skips protections."
 2006,SWEETKISS,Sweet Kiss,013,0,FAIRY,Status,75,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes confusion."
 2007,SONICBOOM,Sonic Boom,06A,1,NORMAL,Special,90,20,0,NearOther,0,bef,"The target is hit with a destructive shock wave that always inflicts 20 HP damage."
 2008,PRESENT,Present,094,1,NORMAL,Physical,90,15,0,NearOther,0,bef,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however."
