@@ -182,8 +182,8 @@
 176,REVENGE,Revenge,081,60,FIGHTING,Physical,100,10,0,NearOther,-4,abef,An attack move that inflicts double the damage if the user has been hurt by the foe in the same turn.
 177,ROLLINGKICK,Rolling Kick,00F,60,FIGHTING,Physical,100,15,30,NearOther,0,abe,"The user lashes out with a quick, spinning kick. It has a 30% chance to make the target flinch."
 178,STORMTHROW,Storm Throw,0A0,60,FIGHTING,Physical,100,10,0,NearOther,0,abef,The user strikes the target with a fierce blow. This attack always results in a critical hit.
-179,KARATECHOP,Karate Chop,000,40,FIGHTING,Physical,100,25,0,NearOther,0,abefh,The target is attacked with a sharp chop. Critical hits land more easily.
-180,MACHPUNCH,Mach Punch,000,40,FIGHTING,Physical,100,30,0,NearOther,1,abefj,The user throws a punch at blinding speed. It is certain to strike first.
+179,KARATECHOP,Karate Chop,000,40,FIGHTING,Physical,100,25,0,NearOther,0,abefh,"The target is attacked with a sharp chop. Critical hits land more easily."
+180,MACHPUNCH,Mach Punch,000,40,FIGHTING,Physical,100,30,0,NearOther,1,abefj,"The user throws a punch at blinding speed. It is certain to strike first."
 181,POWERUPPUNCH,Power-Up Punch,01C,40,FIGHTING,Physical,100,20,100,NearOther,0,abefj,"Striking opponents repeatedly makes the user's fists harder, raising the user's Attack stat."
 182,SMASH,Smash,043,40,FIGHTING,Physical,100,15,20,NearOther,0,abef,The user attacks with a punch that could shatter a rock. It has a 20% chance to lower Defense.
 183,VACUUMWAVE,Vacuum Wave,000,40,FIGHTING,Special,100,30,0,NearOther,1,bef,The user whirls its fists to send a wave of pure vacuum at the target. This move always goes first.
@@ -204,7 +204,7 @@
 198,NORETREAT,No Retreat,17F,0,FIGHTING,Status,0,5,0,User,3,d,This move raises all the user's stats but prevents the user from switching out or fleeing.
 199,COACHING,Coaching,18E,0,FIGHTING,Status,0,10,0,NearAlly,0,,"The user properly coaches its ally Pokémon, boosting their Attack and Defense stats."
 200,BODYPRESS,Body Press,177,80,FIGHTING,Physical,100,10,0,NearOther,0,abef,Damage increases with the user's Defense stat, rather than it's Attack stat.
-128,THUNDEROUSKICK,Thunderous Kick,043,90,FIGHTING,Physical,100,10,100,NearOther,0,abef,The user kicks the target with lightning-like movement. It lowers the target's Defense.
+128,THUNDEROUSKICK,Thunderous Kick,043,90,FIGHTING,Physical,100,10,100,NearOther,0,abef,"The user kicks the target with lightning-like movement. It lowers the target's Defense."
 #-------------------------------,,,,,,,,,,,,,
 201,VCREATE,V-create,03D,180,FIRE,Physical,100,5,0,NearOther,0,abef,"With a fiery forehead, the user hurls itself at the foe. It lowers the user's Defense, Sp. Def, and Speed."
 202,BLASTBURN,Blast Burn,0C2,170,FIRE,Special,100,5,0,NearOther,0,bef,"The target is razed by a fiery explosion. The user must rest on the next turn, however."
@@ -253,7 +253,7 @@
 244,BOUNCE,Bounce,0CC,85,FLYING,Physical,100,15,30,Other,0,abef,"The user bounces up high, then drops on the foe on the second turn. It has a 30% chance to paralyze."
 245,DRILLPECK,Drill Peck,000,80,FLYING,Physical,100,20,0,Other,0,abef,A corkscrewing attack with the sharp beak acting as a drill.
 246,OBLIVIONWING,Oblivion Wing,14F,80,FLYING,Special,100,10,0,Other,0,bef,The user absorbs its target's HP. The user's HP is restored by over half of the damage dealt.
-247,AIRSLASH,Air Slash,00F,80,FLYING,Special,100,15,30,Other,0,bep,The user attacks with a blade of air that slices even the sky. It has a 30% chance to flinch the target.
+247,AIRSLASH,Air Slash,00F,80,FLYING,Special,100,15,30,Other,0,bep,"The user attacks with a blade of air that slices even the sky. It has a 30% chance to flinch the target."
 248,CHATTER,Chatter,014,65,FLYING,Special,100,20,100,Other,0,befk,The user attacks using a sound wave based on words it has learned. It also confuses the target.
 249,AERIALACE,Aerial Ace,0A5,60,FLYING,Physical,0,20,0,Other,0,abef,"The user confounds the foe with speed, then slashes. The attack lands without fail."
 250,AIRCUTTER,Air Cutter,000,60,FLYING,Special,100,25,0,AllNearFoes,0,befhp,The user launches razor-like wind to slash the opposing team. Critical hits land more easily.
@@ -466,8 +466,8 @@
 451,HEADTHROW,Head Throw,500,30,GRASS,Physical,85,20,0,NearOther,0,befn,Round objects are hurled at the target to strike three times in a row.
 452,BIND,Bind,0CF,15,NORMAL,Physical,85,20,0,NearOther,0,abef,Things such as long bodies or tentacles are used to bind and squeeze the foe for four to five turns.
 453,DOUBLESLAP,Double Slap,0C0,15,NORMAL,Physical,85,10,0,NearOther,0,abef,"The target is slapped repeatedly, back and forth, two to five times in a row."
-454,FURYATTACK,Fury Attack,0C0,20,FLYING,Physical,100,20,0,NearOther,0,abef,The target is jabbed repeatedly with a horn or beak two to five times in a row.
-455,WRAP,Wrap,0CF,15,NORMAL,Physical,100,20,0,NearOther,0,abef,A long body or vines are used to wrap and squeeze the target for four to five turns.
+454,FURYATTACK,Fury Attack,0C0,20,FLYING,Physical,100,20,0,NearOther,0,abef,"The target is jabbed repeatedly with a horn or beak two to five times in a row."
+455,WRAP,Wrap,0CF,15,NORMAL,Physical,100,20,0,NearOther,0,abef,"A long body or vines are used to wrap and squeeze the target for four to five turns."
 456,CONSTRICT,Constrict,044,10,NORMAL,Physical,100,35,10,NearOther,0,abef,"The foe is attacked with long, creeping tentacles or vines. It has a 10% to lower Speed."
 457,BIDE,Bide,0D4,1,NORMAL,Physical,0,10,0,None,1,abf,"The user endures attacks for two turns, then strikes back to cause double the damage taken."
 458,CRUSHGRIP,Crush Grip,08C,1,NORMAL,Physical,100,5,0,NearOther,0,abef,The target is crushed with great force. The attack is more powerful the more HP the target has left.
@@ -554,15 +554,15 @@
 539,SKETCH,Sketch,05D,0,NORMAL,Status,0,1,0,NearOther,0,,"It enables the user to permanently learn the move last used by the foe. Once used, Sketch disappears."
 540,SLACKOFF,Slack Off,0D5,0,NORMAL,Status,0,10,0,User,0,d,"The user slacks off, restoring its own HP by up to half of its maximum HP."
 541,SLEEPTALK,Sleep Talk,0B4,0,NORMAL,Status,0,10,0,User,0,k,"While it is asleep, the user randomly uses one of the moves it knows."
-542,SMOKESCREEN,Smokescreen,047,0,NORMAL,Status,100,20,0,NearOther,0,bce,The user releases an obscuring cloud of smoke or ink. It reduces the target's accuracy.
+542,SMOKESCREEN,Smokescreen,047,0,NORMAL,Status,100,20,0,NearOther,0,bce,"The user releases an obscuring cloud of smoke or ink. It reduces the target's accuracy."
 543,SOFTBOILED,Soft-Boiled,0D5,0,NORMAL,Status,0,10,0,User,0,d,The user restores its own HP by up to half of its maximum HP. May also be used in the field to heal HP.
-544,SPLASH,Splash,001,0,WATER,Status,0,40,0,User,0,,The user just flops and splashes around to no effect at all...
+544,SPLASH,Splash,001,0,WATER,Status,0,40,0,User,0,,"The user just flops and splashes around to no effect at all..."
 545,SPOTLIGHT,Spotlight,16A,0,NORMAL,Status,0,15,0,NearOther,3,bc,The user shines a spotlight on the target so that only it will be attacked during the turn.
 546,STOCKPILE,Stockpile,112,0,NORMAL,Status,0,20,0,User,0,d,The user charges up power and raises both its Defense and Sp. Def. The move can be used three times.
 547,SUBSTITUTE,Substitute,10C,0,NORMAL,Status,0,10,0,User,0,d,The user makes a copy of itself using some of its HP. The copy serves as the user's decoy.
 548,SUPERSONIC,Supersonic,013,0,NORMAL,Status,100,20,0,NearOther,0,bcek,The user generates odd sound waves from its body. It confuses the target.
 549,SWAGGER,Swagger,041,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user enrages and confuses the target. However, it also sharply raises the target's Attack stat."
-550,SWALLOW,Swallow,114,0,NORMAL,Status,0,10,0,User,0,d,The power stored using the move Stockpile is absorbed by the user to heal its HP.
+550,SWALLOW,Swallow,114,0,NORMAL,Status,0,10,0,User,0,d,"The power stored using the move Stockpile is absorbed by the user to heal its HP."
 551,SWEETSCENT,Sweet Scent,048,0,GRASS,Status,100,20,0,AllNearFoes,0,bce,"A sweet scent that lowers the foe's evasiveness. It also lures wild Pokémon if used in grass, etc."
 552,SWORDSDANCE,Swords Dance,02E,0,STEEL,Status,0,10,0,User,0,do,A frenetic dance to uplift the fighting spirit. It sharply raises the user's Attack stat.
 553,TAILWHIP,Tail Whip,043,0,NORMAL,Status,100,30,0,AllNearFoes,0,bce,"The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat."
