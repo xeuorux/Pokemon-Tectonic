@@ -1133,13 +1133,4 @@ end
 
 
 
-#===============================================================================
-# Removes trapping moves, entry hazards and Leech Seed on user/user's side. Raises speed by 1.
-# (Rapid Spin)
-#===============================================================================
-class PokeBattle_Move_110 < PokeBattle_StatUpMove
-  def initialize(battle,move)
-    super
-    @statUp = [:SPEED,1]
-  end
-end
+

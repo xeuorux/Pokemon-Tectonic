@@ -459,7 +459,7 @@
 444,FEINT,Feint,0AD,30,NORMAL,Physical,100,10,0,NearOther,2,ef,An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
 445,TAILSLAP,Tail Slap,0C0,25,NORMAL,Physical,85,10,0,NearOther,0,abef,The user attacks by striking the target with its hard tail. It hits the Pokémon two to five times in a row.
 446,RAGE,Rage,093,30,NORMAL,Physical,100,20,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle."
-447,RAPIDSPIN,Rapid Spin,110,50,NORMAL,Physical,100,40,0,NearOther,0,abef,"A spin attack that can also eliminate such moves as Bind, Wrap, Leech Seed, and Spikes. Also raises user's speed."
+447,RAPIDSPIN,Rapid Spin,54B,50,NORMAL,Physical,100,40,100,NearOther,0,abef,"A spin attack that can also eliminate such moves as Bind, Wrap, Leech Seed, and Spikes. Also raises user's speed."
 448,SPIKECANNON,Spike Cannon,0C0,25,STEEL,Physical,100,25,0,NearOther,0,bef,Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
 449,COMETPUNCH,Comet Punch,0C0,18,NORMAL,Physical,85,15,0,NearOther,0,abefj,The target is hit with a flurry of punches that strike two to five times in a row.
 450,FURYSWIPES,Fury Swipes,0C0,18,NORMAL,Physical,100,15,0,NearOther,0,abefp,The target is raked with sharp claws or scythes for two to five times in quick succession.
