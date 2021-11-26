@@ -1660,3 +1660,28 @@ class PokeBattle_Move_54C < PokeBattle_MultiStatUpMove
 	end
   end
 end
+
+
+
+#===============================================================================
+# Decreases a random stat. Can't miss in sandstorm. (Dust Force)
+#===============================================================================
+class PokeBattle_Move_54D < PokeBattle_TargetStatDownMove
+	def initialize(battle,move)
+		super
+		@statDown = [:SPEED,1]
+	end
+
+	def pbBaseAccuracy(user,target)
+		return 0 if @battle.pbWeather == :Sandstorm
+		return super
+	end
+  
+  
+	def pbAdditionalEffect(user,target)
+		statOptions = [:ATTACK,:DEFENSE,:SPECIALATTACK,:SPECIALDEFENSE,:SPEED]
+		rng = @battle.pbRandom(100) % 5
+		@statDown = [statOptions[rng],1]
+		super
+	end
+end

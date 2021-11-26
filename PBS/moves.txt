@@ -491,11 +491,11 @@
 476,BATONPASS,Baton Pass,0ED,0,NORMAL,Status,0,40,0,User,0,,"The user switches places with a party Pokémon in waiting, passing along any stat changes."
 477,BELLYDRUM,Belly Drum,03A,0,NORMAL,Status,0,10,0,User,0,d,The user maximizes its Attack stat in exchange for HP equal to half its max HP.
 478,BESTOW,Bestow,0F3,0,NORMAL,Status,0,15,0,NearOther,0,e,The user passes its held item to the target when the target isn't holding an item.
-479,BLOCK,Block,0EF,0,NORMAL,Status,0,5,0,NearOther,0,ce,The user blocks the target's way with arms spread wide to prevent escape.
+479,BLOCK,Block,0EF,0,NORMAL,Status,0,5,0,NearOther,0,ce,"The user blocks the target's way with arms spread wide to prevent escape."
 480,CAMOUFLAGE,Camouflage,060,0,NORMAL,Status,0,20,0,User,0,d,"The user's type is changed depending on its environment, such as at water's edge, in grass, or in a cave."
 481,CAPTIVATE,Captivate,13D,0,FAIRY,Status,100,20,0,AllNearFoes,0,bce,"The target is charmed into harshly lowering its Sp. Atk stat."
-482,CELEBRATE,Celebrate,134,0,NORMAL,Status,0,40,0,User,0,,The Pokémon congratulates you on your special day!
-483,CONFIDE,Confide,13C,0,DARK,Status,0,20,0,NearOther,1,cek,The user tells the target a secret, lowering its Sp. Atk stat. Always goes first.
+482,CELEBRATE,Celebrate,134,0,NORMAL,Status,0,40,0,User,0,,"The Pokémon congratulates you on your special day!"
+483,CONFIDE,Confide,13C,0,DARK,Status,0,20,0,NearOther,1,cek,"The user tells the target a secret, lowering its Sp. Atk stat. Always goes first."
 484,CONVERSION,Conversion,05E,0,NORMAL,Status,0,30,0,User,0,d,The user changes its type to become the same type as one of its moves.
 485,CONVERSION2,Conversion 2,05F,0,NORMAL,Status,0,30,0,NearOther,0,,The user changes its type to make itself resistant to the type of the attack the opponent used last.
 486,COPYCAT,Copycat,0AF,0,NORMAL,Status,0,20,0,User,0,,The user mimics the move used immediately before it. The move fails if no other move has been used yet.
@@ -952,6 +952,8 @@
 933,SEEDSURPRISE,Seed Surprise,096,1,NORMAL,Special,100,15,0,NearOther,0,bef,"The user draws power to attack by using its held Berry. The Berry determines its type and power."
 934,SPOOKYSNUGGLING,Spooky Snuggling,54A,50,GHOST,Physical,100,10,0,NearOther,0,abef,"The user harnesses its jealousy to attack the opponent with ghostly hugs, cursing them."
 935,DESERTDANCE,Desert Dance,54C,0,GROUND,Status,0,20,0,User,0,do,"The user performs an ancient dance of the desert that boosts its Special Attack and Special Defense stats. Doubles these increases in sandstorm and also increase speed."
+936,DUSTFORCE,Dust Force,54D,110,GROUND,Special,70,15,10,AllNearFoes,0,bef,"The user harnesses turbulent sands to envelop its foes. Can't miss in sandstorm. Has a 50% chance to reduce a random stat."
+937,BULLETTRAIN,Bullet Train,01F,90,STEEL,Physical,100,20,20,NearOther,0,abef,"The user becomes a pain train. It has a 20% chance to increase the speed stat."
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch."
