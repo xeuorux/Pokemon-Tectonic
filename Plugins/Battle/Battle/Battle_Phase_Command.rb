@@ -140,8 +140,9 @@ class PokeBattle_Battle
 			  break if pbCallMenu(idxBattler)
 			when 5	  # Info
 				pbGoAfterInfo(@battlers[idxBattler])
-			when 7 # Pokedex
-				# TODO: Open the battle info menu
+			when 7 # Battle info
+				pbBattleInfoMenu
+				next
 			when -2   # Debug
 			  pbDebugMenu
 			  next
@@ -157,5 +158,9 @@ class PokeBattle_Battle
 		  end
 		  break if commandsEnd
 		end
+	end
+	
+	def pbBattleInfoMenu
+		@scene.pbBattleInfoMenu
 	end
 end
