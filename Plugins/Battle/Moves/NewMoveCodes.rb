@@ -1595,3 +1595,93 @@ class PokeBattle_Move_54A < PokeBattle_Move
 	end
 	
 end
+
+
+#===============================================================================
+# Removes trapping moves, entry hazards and Leech Seed on user/user's side. Raises speed by 1.
+# (new Rapid Spin)
+#===============================================================================
+class PokeBattle_Move_54B < PokeBattle_StatUpMove
+	def initialize(battle,move)
+		super
+		@statUp = [:SPEED,1]
+		echoln "did this work"
+	end
+	
+	def pbEffectAfterAllHits(user,target)
+		return if user.fainted? || target.damageState.unaffected
+		if user.effects[PBEffects::Trapping]>0
+			trapMove = GameData::Move.get(user.effects[PBEffects::TrappingMove]).name
+			trapUser = @battle.battlers[user.effects[PBEffects::TrappingUser]]
+			@battle.pbDisplay(_INTL("{1} got free of {2}'s {3}!",user.pbThis,trapUser.pbThis(true),trapMove))
+			user.effects[PBEffects::Trapping]     = 0
+			user.effects[PBEffects::TrappingMove] = nil
+			user.effects[PBEffects::TrappingUser] = -1
+		end
+		if user.effects[PBEffects::LeechSeed]>=0
+			user.effects[PBEffects::LeechSeed] = -1
+			@battle.pbDisplay(_INTL("{1} shed Leech Seed!",user.pbThis))
+		end
+		if user.pbOwnSide.effects[PBEffects::StealthRock]
+			user.pbOwnSide.effects[PBEffects::StealthRock] = false
+			@battle.pbDisplay(_INTL("{1} blew away stealth rocks!",user.pbThis))
+		end
+		if user.pbOwnSide.effects[PBEffects::Spikes]>0
+			user.pbOwnSide.effects[PBEffects::Spikes] = 0
+			@battle.pbDisplay(_INTL("{1} blew away spikes!",user.pbThis))
+		end
+		if user.pbOwnSide.effects[PBEffects::ToxicSpikes]>0
+			user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
+			@battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
+		end
+		if user.pbOwnSide.effects[PBEffects::StickyWeb]
+			user.pbOwnSide.effects[PBEffects::StickyWeb] = false
+			@battle.pbDisplay(_INTL("{1} blew away sticky webs!",user.pbThis))
+		end
+	end
+end
+
+
+#===============================================================================
+# Increases the user's Sp. Attack by 1 and Sp. Def by 1 stage each.
+# In sandstorm, increases are 2 stages each instead. (Desert Dance)
+#===============================================================================
+class PokeBattle_Move_54C < PokeBattle_MultiStatUpMove
+  def initialize(battle,move)
+    super
+    @statUp = [:ATTACK,1,:SPECIAL_ATTACK,1]
+  end
+
+  def pbOnStartUse(user,targets)
+	if [:Sandstorm].include?(@battle.pbWeather)
+		@statUp = [:SPECIAL_ATTACK,2,:SPECIAL_DEFENSE,2,:SPEED,1]
+	else
+		@statUp = [:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1] 
+	end
+  end
+end
+
+
+
+#===============================================================================
+# Decreases a random stat. Can't miss in sandstorm. (Dust Force)
+#===============================================================================
+class PokeBattle_Move_54D < PokeBattle_TargetStatDownMove
+	def initialize(battle,move)
+		super
+		@statDown = [:SPEED,1]
+	end
+
+	def pbBaseAccuracy(user,target)
+		return 0 if @battle.pbWeather == :Sandstorm
+		return super
+	end
+  
+  
+	def pbAdditionalEffect(user,target)
+		statOptions = [:ATTACK,:DEFENSE,:SPECIALATTACK,:SPECIALDEFENSE,:SPEED]
+		rng = @battle.pbRandom(100) % 5
+		@statDown = [statOptions[rng],1]
+		super
+	end
+end
