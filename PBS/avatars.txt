@@ -5,6 +5,13 @@ Ability = KLUTZ
 Moves = TACKLE
 HPMult = 2
 DMGMult = 0.8
+#-------------------------------
+[VIGOROTH]
+Turns = 2
+Ability = VITALSPIRIT
+Moves = SCRATCH
+HPMult = 1.5
+Item = ORANBERRY
 ################################
 #  Gym-Locked Avatars
 ################################
