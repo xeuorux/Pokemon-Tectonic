@@ -355,6 +355,7 @@
 353,SCAVENGE,Scavenge, "The user takes items used up by its opponents."
 354,BLIZZBOXER,Blizz Boxer,"Boosts Attack by 30% in hailstorms."
 355,DESERTSPIRIT,Desert Spirit,"Gives the user full immunity to ground type moves and sandstorm damage.
+356,SUDDENCHILL,Sudden Chill,"Special moves against the Pokémon have a 30% chance to chill the attacker."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
