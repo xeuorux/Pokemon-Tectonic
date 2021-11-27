@@ -276,14 +276,74 @@ class PokeBattle_Scene
   def pbBattleInfoMenu
 	# Create targeting window
 	cw = BattleInfoDisplay.new(@viewport,300,@battle)
+	totalBattlers = @battle.pbSideBattlerCount + @battle.pbOpposingBattlerCount
+	doRefresh = false
     loop do
-		pbUpdate(cw)
+	  pbUpdate(cw)
+	  if doRefresh
+		doRefresh = false
+		cw.refresh
+		Graphics.update
+	  end
       if Input.trigger?(Input::B)
         pbPlayCancelSE
-        break
+		break
+	  elsif Input.trigger?(Input::UP) && cw.individual.nil?
+		cw.selected -= 1
+		if (cw.selected < 0)
+			cw.selected = totalBattlers - 1
+		end
+		pbPlayDecisionSE
+		doRefresh = true
+	  elsif Input.trigger?(Input::DOWN) && cw.individual.nil?
+		cw.selected += 1
+		if (cw.selected >= totalBattlers)
+			cw.selected = 0
+		end
+		pbPlayDecisionSE
+		doRefresh = true
+	  elsif Input.trigger?(Input::USE)
+		battler = nil
+		index = 0
+		selectedBattler = nil
+		@battle.eachSameSideBattler do |b|
+			if index == cw.selected
+				selectedBattler = b
+				pbPlayDecisionSE
+				break;
+			end
+			index += 1
+		end
+		if !selectedBattler
+			@battle.eachOtherSideBattler do |b|
+				if index == cw.selected
+					selectedBattler = b
+					pbPlayDecisionSE
+					break;
+				end
+				index += 1
+			end
+		end
+		if selectedBattler
+			cw.individual = selectedBattler
+			pbIndividualBattlerInfoMenu(cw)
+			doRefresh = true
+		end
       end
     end
 	cw.dispose
+  end
+  
+  def pbIndividualBattlerInfoMenu(display)
+    display.refresh
+	Graphics.update
+    loop do
+	  pbUpdate(display)
+      if Input.trigger?(Input::B)
+        display.individual = nil
+		break
+	  end
+    end
   end
   
   # Returns the initial position of the cursor when choosing a target for a move
