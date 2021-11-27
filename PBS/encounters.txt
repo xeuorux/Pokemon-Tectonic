@@ -187,8 +187,8 @@ Special,20
 #-------------------------------
 [25] # Mining Camp
 Land,20
-25,PLUSLE,15,18
-25,MINUN,15,18
+25,GOTHITA,15,18
+25,TOXEL,15,18
 25,TYROGUE,15,18
 25,PAWNIARD,15,18
 Special,20
@@ -218,8 +218,9 @@ FloweryGrass2,20
 20,COMBEE,15,18
 20,MEDITITE,15,18
 LandTinted,20
-25,FARFETCHD,15,18
-25,SHELMET,15,18
+34,FARFETCHD,15,18
+33,SHELMET,15,18
+33,BELLSPROUT,15,18
 Special,20
 1,SHUPPET,15,15
 #-------------------------------
@@ -370,7 +371,7 @@ Special,20
 #-------------------------------
 [103] # Ghost Town Mart
 Special,20
-1,SLUGMA,15,15
+1,MAGBY,15,15
 #-------------------------------
 [86] # Zigzagoon Nest
 Special,20
@@ -387,7 +388,7 @@ Special,1
 [121] # Mountain Climb
 Land,20
 25,SNOVER,18,20
-25,MIENFOO,18,20
+25,PANCHAM,18,20
 25,CUBCHOO,18,20
 25,CLEFFA,18,20
 Special,20
@@ -424,18 +425,19 @@ Special,20
 #-------------------------------
 [129] # Barren Crag
 Land,20
-25,NINCADA,18,20
-25,TANGELA,18,20
-25,VULLABY,18,20
-25,SPOINK,18,20
+20,NINCADA,18,20
+20,TANGELA,18,20
+20,VULLABY,18,20
+20,SPOINK,18,20
+20,VULPIX,18,20
 #-------------------------------
 [130] # Canal Desert
 LandSparse,20
-25,HELIOPTILE,16,18
-25,CACNEA,18,18
-25,SANDILE,18,18
-25,SKORUPI,18,18
-25,HIPPOPOTAS,18,18
+20,HELIOPTILE,16,18
+20,CACNEA,18,18
+20,SANDILE,18,18
+20,SKORUPI,18,18
+20,HIPPOPOTAS,18,18
 FloweryGrass,20
 25,SILICOBRA,34,36
 25,PACHIRISU,34,36
