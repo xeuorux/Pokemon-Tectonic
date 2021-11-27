@@ -142,7 +142,6 @@ class PokeBattle_Battle
 				pbGoAfterInfo(@battlers[idxBattler])
 			when 7 # Battle info
 				pbBattleInfoMenu
-				next
 			when -2   # Debug
 			  pbDebugMenu
 			  next
