@@ -701,4 +701,7 @@ class PokeBattle_Move
   end
   
   def slashMove?;        return @flags[/p/]; end
+
+  def contactMove?; return @Category=="Physical"?1:0 end
+
 end
