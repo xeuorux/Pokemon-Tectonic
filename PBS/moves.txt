@@ -954,6 +954,13 @@
 935,DESERTDANCE,Desert Dance,54C,0,GROUND,Status,0,20,0,User,0,do,"The user performs an ancient dance of the desert that boosts its Special Attack and Special Defense stats. Doubles these increases in sandstorm and also increase speed."
 936,DUSTFORCE,Dust Force,54D,110,GROUND,Special,70,15,10,AllNearFoes,0,bef,"The user harnesses turbulent sands to envelop its foes. Can't miss in sandstorm. Has a 50% chance to reduce a random stat."
 937,BULLETTRAIN,Bullet Train,01F,90,STEEL,Physical,100,20,20,NearOther,0,abef,"The user becomes a pain train. It has a 20% chance to increase the speed stat."
+938,POISONPOLLEN,Poison Pollen,005,0,GRASS,Status,100,35,0,NearOther,0,bce,The user scatters a cloud of poisonous dust on the target. It poisons the target.
+939,PARAPOLLEN,Para-Pollen,007,0,GRASS,Status,100,30,0,NearOther,0,bce,The user scatters a cloud of paralyzing dust. It leaves the target with paralysis.
+940,COTTONDUST,Cotton Dust,04D,0,GRASS,Status,100,40,0,AllNearFoes,0,bce,"The user releases cotton-like spores that cling to the foe, harshly reducing its Speed stat."
+941,BLACKPOWDER,Blackpowder,148,0,BUG,Status,100,20,0,NearOther,0,bce,The target is covered in a powder that explodes and damages it if it uses a Fire-type move.
+942,MAGICDUST,Magic Dust,197,0,PSYCHIC,Status,100,20,0,NearOther,0,bce,The user scatters a cloud of magic dust that changes the target to Psychic type.
+	
+
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch."

@@ -14,6 +14,7 @@ class BattleInfoDisplay < SpriteWrapper
 	
 	@contents = BitmapWrapper.new(@backgroundBitmap.width,@backgroundBitmap.height)
     self.bitmap  = @contents
+	pbSetNarrowFont(self.bitmap)
 	
 	self.z = z
     refresh
@@ -36,6 +37,30 @@ class BattleInfoDisplay < SpriteWrapper
     self.bitmap.clear
 	# Draw background panel
     self.bitmap.blt(0,0,@backgroundBitmap.bitmap,Rect.new(0,0,@backgroundBitmap.width,@backgroundBitmap.height))
+	
+	base   = Color.new(88,88,80)
+    shadow = Color.new(168,184,184)
+	textToDraw = []
+	
+	textToDraw.push([_INTL("Your Side"),24,10,0,base,shadow])
+	index = 0
+	@battle.eachSameSideBattler do |b|
+		next if !b
+		textToDraw.push([b.name,24,40+32 * index,0,base,shadow])
+		index += 1
+	end
+	index = 4
+	textToDraw.push([_INTL("Their Side"),24,40+32 * index,0,base,shadow])
+	index += 1
+	@battle.eachOtherSideBattler do |b|
+		next if !b
+		textToDraw.push([b.name,24,40+32 * index,0,base,shadow])
+		index += 1
+	end
+	
+	textToDraw.push([_INTL("Weather: {1}",@battle.field.weather),24,310,0,base,shadow])
+	textToDraw.push([_INTL("Terrain: {1}",@battle.field.terrain),224,310,0,base,shadow])
+	pbDrawTextPositions(self.bitmap,textToDraw)
   end
   
   def update(frameCounter=0)
