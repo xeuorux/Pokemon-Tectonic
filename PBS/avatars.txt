@@ -1,9 +1,10 @@
 #-------------------------------
 [FURRET]
 Turns = 2
-Ability = STAKEOUT
+Ability = KLUTZ
 Moves = TACKLE
 HPMult = 2
+DMGMult = 0.8
 ################################
 #  Gym-Locked Avatars
 ################################
