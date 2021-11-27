@@ -9370,7 +9370,7 @@ Name = Shroomish
 InternalName = SHROOMISH
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,45,65,40,45,65
+BaseStats = 65,70,65,45,45,65
 # Total = 325
 GenderRate = Female50Percent
 GrowthRate = Fluctuating
@@ -9406,7 +9406,7 @@ InternalName = BRELOOM
 Type1 = GRASS
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,130,80,70,60,60
+BaseStats = 65,130,80,70,60,60
 # Total = 460
 GenderRate = Female50Percent
 GrowthRate = Fluctuating
@@ -27968,7 +27968,7 @@ InternalName = SIZZLIPEDE
 Type1 = FIRE
 Type2 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 50,65,45,45,50,50
+BaseStats = 73,82,45,45,64,64
 # Total = 305
 GenderRate = Female50Percent
 GrowthRate = Medium

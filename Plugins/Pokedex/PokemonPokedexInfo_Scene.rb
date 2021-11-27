@@ -398,6 +398,7 @@ class PokemonPokedexInfo_Scene
 		map_id = checkForZooMap(fSpecies.species.to_s)
 		placementMap = "None"
 		placementMap = (pbGetMessage(MessageTypes::MapNames,map_id) rescue nil) if map_id != -1
+		placementMap.gsub!("Zoo","")
 		drawTextEx(overlay,230,274,450,1,"Zoo Section",base,shadow)
 		drawTextEx(overlay,230,306,450,1,placementMap,base,shadow)
       end

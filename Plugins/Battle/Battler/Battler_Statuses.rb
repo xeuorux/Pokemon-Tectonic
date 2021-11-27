@@ -604,7 +604,7 @@ class PokeBattle_Battler
   end
 
   def pbConfusionDuration(duration=-1)
-    duration = 4 if duration<=0
+    duration = 3 if duration<=0
     return duration
   end
 
@@ -671,7 +671,7 @@ class PokeBattle_Battler
   end
 
   def pbCharmDuration(duration=-1)
-    duration = 4 if duration<=0
+    duration = 3 if duration<=0
     return duration
   end
 
