@@ -776,6 +776,7 @@ def reviveFossil(fossil)
 	
 	blackFadeOutIn(30) {
 		$Trainer.money = $Trainer.money - 3000
+		$PokemonBag.pbDeleteItem(fossil)
 	}
 	
 	pbMessage("It's done! Here is your newly revived Pokemon!")
