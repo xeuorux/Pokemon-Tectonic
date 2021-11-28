@@ -89,21 +89,7 @@ class PokeBattle_Scene
 		areaUIpoint = Graphics.height/4
 		indicator_Y = Graphics.height/3
 		indicator_X = Graphics.width/30
-##		@areaUI = pbAddSprite("weatherUI",0,areaUIpoint,"Graphics/Pictures/Battle/areaUI/areaUI_box",@viewport)
-##		@weatherUI = pbAddSprite("weatherUI",indicator_X,indicator_Y,"Graphics/Items/POKEDOLL",@viewport)
     end
-	##adds the area UI
-	def pbAreaUI(newWeather)
-		@weatherUI.dispose
-		indicator_Y = Graphics.height/3
-		indicator_X = Graphics.width/30
-		case @battle.pbWeather
-		when :Sun then @weatherUI = pbAddSprite("weatherUI",indicator_X,indicator_Y,"Graphics/Items/SUNSTONE",@viewport)
-		when :Rain then @weatherUI = pbAddSprite("weatherUI",indicator_X,indicator_Y,"Graphics/Items/MYSTICWATER",@viewport)	
-		when :None then @weatherUI = pbAddSprite("weatherUI",indicator_X,indicator_Y,"Graphics/Items/POKEDOLL",@viewport)
-		end
-		@weatherUI.update
-	end
 	
 	def pbChangePokemon(idxBattler,pkmn)
 		idxBattler = idxBattler.index if idxBattler.respond_to?("index")

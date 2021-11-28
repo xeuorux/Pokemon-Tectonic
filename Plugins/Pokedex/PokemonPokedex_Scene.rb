@@ -127,12 +127,14 @@ class PokemonPokedex_Scene
 		#zTextpos = [[_INTL("Z/SHIFT to search."),20,2,0,zBase,shadow]]
 		#pbDrawTextPositions(zOverlay,zTextpos)
 		dexname = _INTL("Pokédex")
+=begin
 		if $Trainer.pokedex.dexes_count > 1
 		  thisdex = Settings.pokedex_names[pbGetSavePositionIndex]
 		  if thisdex!=nil
 			dexname = (thisdex.is_a?(Array)) ? thisdex[0] : thisdex
 		  end
 		end
+=end
 		textpos = [
 		   [dexname,Graphics.width/10,-2,2,Color.new(248,248,248),Color.new(0,0,0)]
 		]
