@@ -28,6 +28,13 @@ module GameData
 end
 
 class PokemonEncounters
+	def initialize
+		@step_chances       = {}
+		@encounter_tables   = {}
+		@chance_accumulator = 0
+		@lastEncounter		= nil
+	end
+
 	# Returns whether the given species can be encountered in the given encounter list
 	# of the current map
 	def speciesEncounterableInType(species,enc_type)
@@ -151,8 +158,6 @@ class PokemonEncounters
 	  when :SewerFloor
 		ret = :SewerFloor
       end
-	  
-	  echoln("Encounter type here: #{ret}")
     end
     return ret
   end
@@ -175,6 +180,10 @@ class PokemonEncounters
 		enc_list = uncaught_enc_list
 	end
 	
+	if @lastEncounter && enc_list.length >= 3
+		enc_list = enc_list.delete_if{|e| e[1] == @lastEncounter}
+	end
+	
     enc_list.sort! { |a, b| b[0] <=> a[0] }   # Highest probability first
     # Calculate the total probability value
     chance_total = 0
@@ -194,6 +203,8 @@ class PokemonEncounters
     end
     # Get the chosen species and level
     level = rand(encounter[2]..encounter[3])
+	
+	@lastEncounter = encounter[1]
     # Return [species, level]
     return [encounter[1], level]
   end
