@@ -107,7 +107,20 @@ class BattleInfoDisplay < SpriteWrapper
 	index = 0
 	for effect in 0..150
 		effectValue = battler.effects[effect]
-		next if effectValue.nil? || effectValue == false || effectValue <= 0
+#		valid = false
+#		valid = effectValue.respond_to?(:to_i)
+		int_value = 0
+#		if valid && !effectValue.nil?
+#			echoln _INTL("REPEAT:effectvalue is {1}, effect is {2}, effectValue <=0 is {3}", effectValue, effect,effectValue<=0)
+#		else
+#			echoln _INTL("Bad:effectvalue is {1}, effect is {2}", effectValue, effect)
+#		end
+		if !effectValue.nil? && (effectValue.is_a?(String) || [true,false].include?(effectValue))
+			int_value = 1
+		else
+			int_value = effectValue.to_i
+		end
+		next if effectValue.nil? || effectValue == false || int_value <= 0
 		next if effect == PBEffects::ProtectRate && effect <= 1
 		effectName = labelPbEffect(effect)
 		next if effectName.blank?

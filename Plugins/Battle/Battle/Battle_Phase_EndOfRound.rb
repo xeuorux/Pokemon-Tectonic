@@ -1,5 +1,26 @@
 class PokeBattle_Battle
-	#=============================================================================
+
+
+#=============================================================================
+# Decrement effect counters
+#=============================================================================
+
+
+  def pbEORCountDownFieldEffect(effect,msg)
+    if @field.effects[effect]>0
+      @field.effects[effect] -= 1
+      if @field.effects[effect]==0
+        pbDisplay(msg)
+        if effect==PBEffects::MagicRoom
+          pbPriority(true).each { |b| b.pbItemTerrainStatBoostCheck }
+		  pbPriority(true).each { |b| b.pbItemFieldEffectCheck }
+        end
+      end
+    end
+  end
+
+
+  #=============================================================================
   # End Of Round weather
   #=============================================================================
   def pbEORWeather(priority)
@@ -396,6 +417,7 @@ class PokeBattle_Battle
     pbEORCountDownBattlerEffect(priority,PBEffects::Embargo) { |battler|
       pbDisplay(_INTL("{1} can use items again!",battler.pbThis))
       battler.pbItemTerrainStatBoostCheck
+	  battler.pbItemFieldEffectCheck
     }
     # Yawn
     pbEORCountDownBattlerEffect(priority,PBEffects::Yawn) { |battler|
