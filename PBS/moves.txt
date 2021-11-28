@@ -236,7 +236,7 @@
 228,INCINERATE,Incinerate,0F5,60,FIRE,Special,100,15,0,AllNearFoes,0,bef,The user attacks the foe with fire. The target's held Berry becomes burnt up and unusable.
 229,FLAMECHARGE,Flame Charge,01F,50,FIRE,Physical,100,20,100,NearOther,0,abef,"The user cloaks itself in flame and attacks. Building up more power, it raises the user's Speed stat."
 230,EMBER,Ember,00A,40,FIRE,Special,100,25,10,NearOther,0,bef,The target is attacked with small flames. It has a 10% chance to burn.
-231,FIRESPIN,Fire Spin,0CF,65,FIRE,Special,85,15,0,NearOther,0,bef,The target becomes trapped within a fierce vortex of fire that rages for four to five turns.
+231,FIRESPIN,Fire Spin,0CF,65,FIRE,Special,100,15,0,NearOther,0,bef,The target becomes trapped within a fierce vortex of fire that rages for four to five turns.
 232,HEATCRASH,Heat Crash,09B,1,FIRE,Physical,100,10,0,NearOther,0,abef,"The user slams the foe with its flaming body. The heavier the user is, the greater the damage."
 233,SUNNYDAY,Sunny Day,0FF,0,FIRE,Status,0,5,0,BothSides,0,,"The user intensifies the sun for five turns, powering up Fire-type moves."
 234,WILLOWISP,Will-O-Wisp,00A,0,GHOST,Status,100,15,0,NearOther,0,bce,"The user shoots a sinister, bluish-white flame at the target to inflict a burn."
@@ -959,6 +959,7 @@
 940,COTTONDUST,Cotton Dust,04D,0,GRASS,Status,100,40,0,AllNearFoes,0,bce,"The user releases cotton-like spores that cling to the foe, harshly reducing its Speed stat."
 941,BLACKPOWDER,Blackpowder,148,0,BUG,Status,100,20,0,NearOther,0,bce,"The target is covered in a powder that explodes if it uses a Fire-type move."
 942,MAGICDUST,Magic Dust,197,0,PSYCHIC,Status,100,20,0,NearOther,0,bce,"The user scatters a cloud of magic dust that changes the target to Psychic type."
+943,KRAKENCLUTCHES,Kraken Clutches,0CF,85,WATER,Physical,100,10,0,NearOther,0,abef,"The target is trapped by monstrous tentacles for four to five turns."
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch."

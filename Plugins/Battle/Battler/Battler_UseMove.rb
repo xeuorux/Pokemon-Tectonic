@@ -598,6 +598,7 @@ class PokeBattle_Battler
       move.pbEffectAgainstTarget(user,b)
     end
     move.pbEffectGeneral(user)
+	@battle.eachBattler { |b| b.pbItemFieldEffectCheck} #use this until the field change method applies to all field changes
     targets.each { |b| b.pbFaint if b && b.fainted? }
     user.pbFaint if user.fainted?
     # Additional effect
