@@ -83,19 +83,23 @@ class PokeBattle_Battle
       when 1
         pbDisplayPaused(_INTL("Oh! A wild {1} appeared!",foeParty[0].name))
 		if bossBattle?
-          pbDisplayPaused("Actually, it's a powerful avatar!")
+          if isLegendary?(foeParty[0].species)
+			pbDisplayPaused("Actually, it's a powerful legendary avatar!")
+		  else
+			pbDisplayPaused("Actually, it's an avatar!")
+		  end
         end
       when 2
         pbDisplayPaused(_INTL("Oh! A wild {1} and {2} appeared!",foeParty[0].name,
            foeParty[1].name))
 		if bossBattle?
-          pbDisplayPaused("Actually, they're both powerful avatars!")
+          pbDisplayPaused("Actually, they're both avatars!")
         end
       when 3
         pbDisplayPaused(_INTL("Oh! A wild {1}, {2} and {3} appeared!",foeParty[0].name,
            foeParty[1].name,foeParty[2].name))
 		if bossBattle?
-          pbDisplayPaused("Actually, they're all powerful avatars!")
+          pbDisplayPaused("Actually, they're all avatars!")
         end
       end
     else   # Trainer battle
