@@ -107,8 +107,9 @@ class BattleInfoDisplay < SpriteWrapper
 	index = 0
 	for effect in 0..150
 		effectValue = battler.effects[effect]
-		next if effectValue.nil? || effectValue == false || effectValue <= 0
-		next if effect == PBEffects::ProtectRate && effect <= 1
+		next if effectValue.nil? || effectValue == false
+		next if effectValue.is_a?(Integer) && effectValue <= 0
+		next if effect == PBEffects::ProtectRate && effectValue <= 1
 		effectName = labelPbEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
