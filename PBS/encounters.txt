@@ -20,11 +20,10 @@ Special,20
 #-------------------------------
 [034] # Scenic Path
 Land,20
-20,IMPIDIMP,7,9
-20,RATTATA,7,9
-20,HOPPIP,7,9
-20,STARLY,7,9
-20,CATERPIE,7,9
+25,IMPIDIMP,7,9
+25,RATTATA,7,9
+25,HOPPIP,7,9
+25,CATERPIE,7,9
 LandTall,20
 20,ABRA,7,9
 20,PICHU,7,9
