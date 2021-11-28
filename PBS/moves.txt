@@ -456,7 +456,7 @@
 441,SCRATCH,Scratch,000,45,NORMAL,Physical,100,35,0,NearOther,0,abefh,"Hard, pointed, and sharp claws rake the target to inflict damage. Critical hits land more easily"
 442,TACKLE,Tackle,000,45,NORMAL,Physical,100,35,0,NearOther,0,abef,"A physical attack in which the user charges and slams into the target with its whole body."
 443,DOUBLEHIT,Double Hit,0BD,35,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user slams the target with a long tail, vines, or tentacle. The target is hit twice in a row."
-444,FEINT,Feint,0AD,30,NORMAL,Physical,100,10,0,NearOther,2,ef,An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
+444,FEINT,Feint,0AD,30,NORMAL,Physical,100,10,0,NearOther,2,ef,"An attack that hits a target using Protect or Detect. It also lifts the effects of those moves."
 445,TAILSLAP,Tail Slap,0C0,25,NORMAL,Physical,85,10,0,NearOther,0,abef,The user attacks by striking the target with its hard tail. It hits the Pokémon two to five times in a row.
 446,RAGE,Rage,093,30,NORMAL,Physical,100,20,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle."
 447,RAPIDSPIN,Rapid Spin,54B,50,NORMAL,Physical,100,40,100,NearOther,0,abef,"A spin attack that can also eliminate such moves as Bind, Wrap, Leech Seed, and Spikes. Also raises user's speed."
@@ -887,7 +887,7 @@
 868,BLINDINGSAND,Blinding Sand,047,40,GROUND,Special,100,10,100,NearOther,0,bef,The user attacks the opponent by throwing sand at its eyes, reducing accuracy.
 869,PURIFYINGWATER,Purifying Water,548,50,WATER,Special,100,5,0,NearOther,0,bef,"The user shoots purified Water, healing the status problems of all the party Pokémon in the process."
 870,CRITICALERROR,Critical Error,0A0,60,GHOST,Special,100,10,0,NearOther,0,bef,"The user causes a glitch in reality. This attack always results in a critical hit."
-871,PRIMALIMPACT,Primal Impact,0AD,90,NORMAL,Physical,100,10,0,NearOther,0,aef,An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
+871,PRIMALIMPACT,Primal Impact,0AD,90,NORMAL,Physical,100,10,0,NearOther,0,aef,"An attack empowered by the might of a lazy king. It skips and destroys protections."
 872,ADAMANTINEPRESS,Adamantine Press,000,95,ROCK,Physical,100,10,0,NearOther,0,abef,The user presses their body with great force onto the target.
 873,CLAMOR,Clamor,0D1,75,NORMAL,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep."
 874,COMETSMASH,Comet Smash,01C,95,NORMAL,Physical,100,10,20,NearOther,0,abefj,The user throws a comet-like punch. It has a 20% chance to raise Attack.
