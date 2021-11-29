@@ -16,6 +16,7 @@ class FightMenuDisplay < BattleMenuBase
       @typeBitmap    			= AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
       @megaEvoBitmap 			= AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_mega"))
       @shiftBitmap   			= AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_shift"))
+	  @extraReminderBitmap 		= AnimatedBitmap.new(_INTL("Graphics/Pictures/Rework/extra_info_reminder_bottomless"))
 	  @moveInfoDisplayBitmap   	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/move_info_display"))
       # Create background graphic
       background = IconSprite.new(0,Graphics.height-96,viewport)
@@ -66,6 +67,12 @@ class FightMenuDisplay < BattleMenuBase
       @shiftButton.x      = self.x+4
       @shiftButton.y      = self.y-@shiftBitmap.height
       addSprite("shiftButton",@shiftButton)
+	  # Create extra info reminder button
+	  @extraReminder = SpriteWrapper.new(viewport)
+	  @extraReminder.bitmap = @extraReminderBitmap.bitmap
+	  @extraReminder.x = self.x+4
+	  @extraReminder.y = self.y + 6 - @extraReminderBitmap.height
+	  addSprite("extraReminder",@extraReminder)
 	  # Create the move extra info display
 	  @moveInfoDisplay = SpriteWrapper.new(viewport)
       @moveInfoDisplay.bitmap = @moveInfoDisplayBitmap.bitmap
@@ -104,6 +111,7 @@ class FightMenuDisplay < BattleMenuBase
     @typeBitmap.dispose if @typeBitmap
     @megaEvoBitmap.dispose if @megaEvoBitmap
     @shiftBitmap.dispose if @shiftBitmap
+	@extraReminderBitmap if @extraReminderBitmap
 	@moveInfoDisplayBitmap.dispose if @moveInfoDisplayBitmap
   end
   
@@ -111,6 +119,7 @@ class FightMenuDisplay < BattleMenuBase
     super(value)
 	@sprites["moveInfoDisplay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
 	@sprites["extraInfoOverlay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
+	@sprites["extraReminder"].visible = !@extraInfoToggled && @visible if @sprites["extraReminder"]
   end
   
   def toggleExtraInfo
@@ -118,6 +127,7 @@ class FightMenuDisplay < BattleMenuBase
 	
 	@sprites["moveInfoDisplay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
 	@sprites["extraInfoOverlay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
+	@sprites["extraReminder"].visible = !@extraInfoToggled && @visible if @sprites["extraReminder"]
   end
 
   def refreshMoveData(move)

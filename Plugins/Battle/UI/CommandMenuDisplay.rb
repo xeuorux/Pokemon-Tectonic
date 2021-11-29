@@ -29,7 +29,7 @@ class CommandMenuDisplay < BattleMenuBase
       # Create bitmaps
       @buttonBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/cursor_command"))
 	  @ballBitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/cursor_ball"))
-	  @dexBitmap   	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/cursor_pokedex"))
+	  @extraReminderBitmap 		= AnimatedBitmap.new(_INTL("Graphics/Pictures/Rework/extra_info_reminder_bottomless"))
       # Create action buttons
       @buttons = Array.new(4) do |i|   # 4 command options, therefore 4 buttons
         button = SpriteWrapper.new(viewport)
@@ -43,6 +43,7 @@ class CommandMenuDisplay < BattleMenuBase
         addSprite("button_#{i}",button)
         next button
       end
+	  # Create ball button
 	  @ballButton = SpriteWrapper.new(viewport)
       @ballButton.bitmap = @ballBitmap.bitmap
       @ballButton.x = 284
@@ -51,6 +52,13 @@ class CommandMenuDisplay < BattleMenuBase
       @ballButton.src_rect.height  = @ballBitmap.height/2
       addSprite("ballButton",@ballButton)
       @ballButton.visible = false
+	  
+	  # Create extra info reminder
+	  @extraReminder = SpriteWrapper.new(viewport)
+	  @extraReminder.bitmap = @extraReminderBitmap.bitmap
+	  @extraReminder.x = self.x+4
+	  @extraReminder.y = self.y + 6 - @extraReminderBitmap.height
+	  addSprite("extraReminder",@extraReminder)
     else
       # Create command window (shows Fight/Bag/Pokémon/Run)
       @cmdWindow = Window_CommandPokemon.newWithSize([],
@@ -68,7 +76,7 @@ class CommandMenuDisplay < BattleMenuBase
     super
     @buttonBitmap.dispose if @buttonBitmap
     @ballBitmap.dispose if @ballBitmap
-	@dexBitmap.dispose if @dexBitmap
+	@extraReminderBitmap.dispose if @extraReminderBitmap
   end
   
   def refreshButtons

@@ -361,6 +361,7 @@ class PokeBattle_Scene
    def pbChooseTarget(idxBattler,target_data,visibleSprites=nil,dexSelect=false)
     pbShowWindow(TARGET_BOX)
     cw = @sprites["targetWindow"]
+	cw.dexSelect = dexSelect
     # Create an array of battler names (only valid targets are named)
     texts = pbCreateTargetTexts(idxBattler,target_data)
     # Determine mode based on target_data
@@ -395,7 +396,7 @@ class PokeBattle_Scene
             cw.index = idxBattlerTry
             break
           end
-		elsif Input.trigger?(Input::ACTION)
+		elsif Input.trigger?(Input::ACTION) && dexSelect
 			pbFadeOutIn {
 				scene = PokemonPokedex_Scene.new
 				screen = PokemonPokedexScreen.new(scene)
