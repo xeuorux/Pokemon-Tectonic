@@ -371,6 +371,7 @@ Special,20
 [103] # Ghost Town Mart
 Special,20
 1,MAGBY,15,15
+1,SINISTEA,20,20
 #-------------------------------
 [86] # Zigzagoon Nest
 Special,20
