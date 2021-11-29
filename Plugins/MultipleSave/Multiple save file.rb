@@ -179,110 +179,110 @@ end
 # Save screen
 class PokemonSaveScreen
 	def pbSaveScreen
-    ret = false
+		ret = false
 		# Check for renaming
 		FileSave.rename
 		# Count save file
 		count = FileSave.count
 		# Start
-    msg = _INTL("What do you want to do?")
 		cmds = [_INTL("Save"),_INTL("Delete"),_INTL("Cancel")]
-		cmd = pbCustomMessageForSave(msg,cmds,3)
-		# Delete
-		if cmd==1
+		saveDeleteSelection = pbCustomMessageForSave(_INTL("What do you want to do?"),cmds,3)
+		ret = inGameSaveScreen(count) if saveDeleteSelection == 0
+		return inGameDeleteScreen(count) if saveDeleteSelection == 1	
+		return ret
+	end
+	
+	def inGameSaveScreen(count)
+		ret = false
+		@scene.pbStartScreen
+		commands = []
+		cmdSaveCurrent 	= -1
+		cmdSaveNew		= -1
+		cmdSaveOld		= -1
+		commands[cmdSaveCurrent = commands.length] = _INTL("Save current save file") if !$storenamefilesave.nil? && count>0
+		commands[cmdSaveNew = commands.length] = _INTL("New Save File")
+		commands[cmdSaveOld = commands.length] = _INTL("Old Save File")
+		commands[commands.length] = _INTL("Cancel")
+		saveTypeSelection = pbCustomMessageForSave(_INTL("What do you want to do?"),commands, ($storenamefilesave.nil? && count>0 ? 3 : 4 ))
+		# New save file
+		if cmdSaveNew >= 0 && saveTypeSelection == cmdSaveNew
+			SaveData.changeFILEPATH(FileSave.name(count+1))
+			if Game.save
+				pbMessage(_INTL("\\se[]{1} saved the game.\\me[GUI save game]\\wtnp[30]", $Trainer.name))
+				ret = true
+			else
+				pbMessage(_INTL("\\se[]Save fa iled.\\wtnp[30]"))
+				ret = false
+			end
+			SaveData.changeFILEPATH(!$storenamefilesave.nil? ? $storenamefilesave : FileSave.name)
+		end
+		if cmdSaveOld >= 0 && saveTypeSelection == cmdSaveOld
 			if count <= 0
 				pbMessage(_INTL("No save file was found."))
 			else
-				cmds = [_INTL("Delete All File Save"),_INTL("Delete Only One File Save"),_INTL("Cancel")]
-        cmd2 = pbCustomMessageForSave(msg,cmds,3)
-				case cmd2
-				# All
-				when 0
-					if pbConfirmMessageSerious(_INTL("Delete all saves?"))
-            pbMessage(_INTL("Once data has been deleted, there is no way to recover it.\1"))
-            if pbConfirmMessageSerious(_INTL("Delete the saved data anyway?"))
-              pbMessage(_INTL("Deleting all data. Don't turn off the power.\\wtnp[0]"))
-							haserrorwhendelete = false
-							count.times { |i|
-								name = FileSave.name(i+1, false)
-								begin
-									SaveData.delete_file(name)
-								rescue
-									haserrorwhendelete = true
-								end
-							}
-							pbMessage(_INTL("You have at least one file that cant delete and have error")) if haserrorwhendelete
-              Graphics.frame_reset
-              pbMessage(_INTL("The save file was deleted."))
-            end
-          end
-				# Only one
-				when 1
-					pbFadeOutIn {
-            file = ScreenChooseFileSave.new(count)
-            file.movePanel(2)
-            file.endScene
-            Graphics.frame_reset if file.deletefile
-          }
-				end
-				# Return menu
-				return false
+				pbFadeOutIn {
+				  file = ScreenChooseFileSave.new(count)
+				  file.movePanel
+				  file.endScene
+				  ret = file.staymenu
+				}
 			end
-		else
-			@scene.pbStartScreen
-			# Save
-			if cmd==0
-				cmds = [_INTL("New Save File"),_INTL("Old Save File")]
-				cmds << _INTL("Save current save file") if !$storenamefilesave.nil? && count>0
-				cmds << _INTL("Cancel")
-				cmd2 = pbCustomMessageForSave(msg,cmds, ($storenamefilesave.nil? && count>0 ? 3 : 4 ))
-				# New save file
-				case cmd2
-				when 0
-					SaveData.changeFILEPATH(FileSave.name(count+1))
-					if Game.save
-						pbMessage(_INTL("\\se[]{1} saved the game.\\me[GUI save game]\\wtnp[30]", $Trainer.name))
-						ret = true
-					else
-						pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
-						ret = false
-					end
-					SaveData.changeFILEPATH(!$storenamefilesave.nil? ? $storenamefilesave : FileSave.name)
-				# Old save file
-				when 1
-					if count <= 0
-						pbMessage(_INTL("No save file was found."))
-					else
-            pbFadeOutIn {
-              file = ScreenChooseFileSave.new(count)
-              file.movePanel
-              file.endScene
-              ret = file.staymenu
-            }
-					end
-				end
-				if !$storenamefilesave.nil? && count>0
-					if cmd2 == 2
-						SaveData.changeFILEPATH($storenamefilesave)
-						if Game.save
-							pbMessage(_INTL("\\se[]{1} saved the game.\\me[GUI save game]\\wtnp[30]", $Trainer.name))
-							ret = true
-						else
-							pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
-							ret = false
-						end
-						SaveData.changeFILEPATH(!$storenamefilesave.nil? ? $storenamefilesave : FileSave.name)
-					end
-				end
-			# Cancel
-			else
-				pbSEPlay("GUI save choice")
-			end
-			@scene.pbEndScreen
 		end
+		if cmdSaveCurrent >=0 && saveTypeSelection == cmdSaveCurrent
+			SaveData.changeFILEPATH($storenamefilesave)
+			if Game.save
+				pbMessage(_INTL("\\se[]{1} saved the game.\\me[GUI save game]\\wtnp[30]", $Trainer.name))
+				ret = true
+			else
+				pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
+				ret = false
+			end
+			SaveData.changeFILEPATH(!$storenamefilesave.nil? ? $storenamefilesave : FileSave.name)
+		end
+		@scene.pbEndScreen
 		return ret
 	end
+	
+	def inGameDeleteScreen(count)
+		if count <= 0
+			pbMessage(_INTL("No save file was found."))
+			return false
+		end
+		commands = [_INTL("Delete One Save"),_INTL("Delete All Saves"),_INTL("Cancel")]
+		deleteTypeSelection = pbCustomMessageForSave(_INTL("What do you want to do?"),commands,3)
+		case deleteTypeSelection
+		when 0
+			pbFadeOutIn {
+				file = ScreenChooseFileSave.new(count)
+				file.movePanel(2)
+				file.endScene
+				Graphics.frame_reset if file.deletefile
+			}
+		when 1
+			if pbConfirmMessageSerious(_INTL("Delete all saves?"))
+				pbMessage(_INTL("Once data has been deleted, there is no way to recover it.\1"))
+				if pbConfirmMessageSerious(_INTL("Delete the saved data anyway?"))
+					pbMessage(_INTL("Deleting all data. Don't turn off the power.\\wtnp[0]"))
+					haserrorwhendelete = false
+					count.times { |i|
+						name = FileSave.name(i+1, false)
+						begin
+							SaveData.delete_file(name)
+						rescue
+							haserrorwhendelete = true
+						end
+					}
+					pbMessage(_INTL("You have at least one file that cant delete and have error")) if haserrorwhendelete
+					Graphics.frame_reset
+					pbMessage(_INTL("The save file was deleted."))
+				end
+			end
+		end
+		# Return menu
+		return false
+	end
 end
+
 #------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------#
@@ -295,25 +295,25 @@ class PokemonLoadScreen
   end
 
 	def pbStartLoadScreen
-    commands = []
-    cmd_continue     = -1
-    cmd_new_game     = -1
-    cmd_options      = -1
-    cmd_debug        = -1
-    cmd_quit         = -1
-    show_continue    = FileSave.count>0
-    commands[cmd_continue = commands.length] = _INTL('Load Game') if show_continue
-    commands[cmd_new_game = commands.length]  = _INTL('New Game')
-    commands[cmd_options = commands.length]   = _INTL('Options')
-    commands[cmd_debug = commands.length]     = _INTL('Debug') if $DEBUG
-    commands[cmd_quit = commands.length]      = _INTL('Quit Game')
+		commands = []
+		cmd_continue     = -1
+		cmd_new_game     = -1
+		cmd_options      = -1
+		cmd_debug        = -1
+		cmd_quit         = -1
+		show_continue    = FileSave.count>0
+		commands[cmd_continue = commands.length] = _INTL('Load Game') if show_continue
+		commands[cmd_new_game = commands.length]  = _INTL('New Game')
+		commands[cmd_options = commands.length]   = _INTL('Options')
+		commands[cmd_debug = commands.length]     = _INTL('Debug') if $DEBUG
+		commands[cmd_quit = commands.length]      = _INTL('Quit Game')
 		@scene.pbStartScene(commands, false, nil, 0, 0)
 		@scene.pbStartScene2
-    loop do
-      command = @scene.pbChoose(commands)
-      pbPlayDecisionSE if command != cmd_quit
-      case command
-      when cmd_continue
+		loop do
+		  command = @scene.pbChoose(commands)
+		  pbPlayDecisionSE if command != cmd_quit
+		  case command
+		  when cmd_continue
 				pbFadeOutIn {
 					file = ScreenChooseFileSave.new(FileSave.count)
 					file.movePanel(1)
@@ -321,32 +321,32 @@ class PokemonLoadScreen
 					file.endScene
 					return if !file.staymenu
 				}
-      when cmd_new_game
-        @scene.pbEndScene
-        Game.start_new
-        return
-			when cmd_options
-        pbFadeOutIn do
-          scene = PokemonOption_Scene.new
-          screen = PokemonOptionScreen.new(scene)
-          screen.pbStartScreen(true)
-        end
-      when cmd_debug
-        pbFadeOutIn { pbDebugMenu(false) }
-      when cmd_quit
-        pbPlayCloseMenuSE
-        @scene.pbEndScene
-        $scene = nil
-        return
-      else
-        pbPlayBuzzerSE
-      end
-    end
-  end
+		  when cmd_new_game
+			@scene.pbEndScene
+			Game.start_new
+			return
+				when cmd_options
+			pbFadeOutIn do
+			  scene = PokemonOption_Scene.new
+			  screen = PokemonOptionScreen.new(scene)
+			  screen.pbStartScreen(true)
+			end
+		  when cmd_debug
+			pbFadeOutIn { pbDebugMenu(false) }
+		  when cmd_quit
+			pbPlayCloseMenuSE
+			@scene.pbEndScene
+			$scene = nil
+			return
+		  else
+			pbPlayBuzzerSE
+		  end
+		end
+	end
 
 	def pbStartDeleteScreen
-    @scene.pbStartDeleteScene
-    @scene.pbStartScene2
+		@scene.pbStartDeleteScene
+		@scene.pbStartScene2
 		count = FileSave.count
 		if count<0
 			pbMessage(_INTL("No save file was found."))
@@ -375,17 +375,17 @@ class PokemonLoadScreen
 					end
 				end
 			when 1
-        pbFadeOutIn {
-          file = ScreenChooseFileSave.new(count)
-          file.movePanel(2)
-          file.endScene
-          Graphics.frame_reset if file.deletefile
-        }
+				pbFadeOutIn {
+				  file = ScreenChooseFileSave.new(count)
+				  file.movePanel(2)
+				  file.endScene
+				  Graphics.frame_reset if file.deletefile
+				}
 			end
 		end
-    @scene.pbEndScene
-    $scene = pbCallTitle
-  end
+		@scene.pbEndScene
+		$scene = pbCallTitle
+	end
 end
 #------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------#
@@ -482,7 +482,12 @@ class ScreenChooseFileSave
     end
     textpos = []
     (0...endnum).each { |i| 
-      string = _INTL("Save File #{namesave+1+i}")
+	  file = self.load_save_file(FileSave.name(i+1))
+	  trainer = file[:player]
+	  mapid = file[:map_factory].map.map_id
+	  mapname = pbGetMapNameFromId(mapid)
+      mapname.gsub!(/\\PN/,trainer.name)
+      string = _INTL("Save #{namesave+1+i}: #{trainer.name} / #{mapname}")
       x = 24*2 + 36; y = 16*2 + 5 + 48*i
       textpos<<[string,x,y,0,BaseColor,ShadowColor] 
     }
@@ -528,21 +533,21 @@ class ScreenChooseFileSave
               # Draw text
               textPanel
             end
-						if checkInput(Input::USE)
-							dispose
-							draw = true
-							if self.fileLoad.empty?
-								@choose = 0; @position = 0
-								if FileSave.count==0
-									pbMessage(_INTL('You dont have any save file. Restart game now.'))
-									@staymenu = false
-									$scene = pbCallTitle if @type == 1
-									break
-								end
-							else
-								infor = true
-							end
-						end
+			if checkInput(Input::USE)
+				dispose
+				draw = true
+				if self.fileLoad.empty?
+					@choose = 0; @position = 0
+					if FileSave.count==0
+						pbMessage(_INTL('You dont have any save file. Restart game now.'))
+						@staymenu = false
+						$scene = pbCallTitle if @type == 1
+						break
+					end
+				else
+					infor = true
+				end
+			end
             if checkInput(Input::BACK)
               @staymenu = true if @type==1
               break
@@ -558,17 +563,17 @@ class ScreenChooseFileSave
             loadmenu = true if @type==1
             if checkInput(Input::USE)
               # Save file
-							case @type
+			  case @type
               when 0
-								SaveData.changeFILEPATH(FileSave.name(@position+1))
-								if Game.save
-									pbMessage(_INTL("\\se[]{1} saved the game.\\me[GUI save game]\\wtnp[30]", $Trainer.name))
-									ret = true
-								else
-									pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
-									ret = false
-								end
-								SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
+				SaveData.changeFILEPATH(FileSave.name(@position+1))
+				if Game.save
+					pbMessage(_INTL("\\se[]{1} saved the game.\\me[GUI save game]\\wtnp[30]", $Trainer.name))
+					ret = true
+				else
+					pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
+					ret = false
+				end
+				SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
                 break
               # Delete file
               when 2
@@ -605,7 +610,7 @@ class ScreenChooseFileSave
         end
         if checkInput(Input::USE)
           # Set up system again
-					$storenamefilesave = FileSave.name(@position+1)
+		  $storenamefilesave = FileSave.name(@position+1)
           Game.set_up_system
           if @posinfor==0
             Game.load(self.fileLoad)
@@ -613,17 +618,17 @@ class ScreenChooseFileSave
             break
           # Mystery Gift
           elsif @posinfor==1 && @mysgif
-						pbFadeOutIn { 
-							pbDownloadMysteryGift(self.fileLoad[:player]) 
-							@posinfor = 0; @qinfor = 0; @mysgif = false
-              dispose; draw = true; loadmenu=false; infor = false
-						}
+			pbFadeOutIn { 
+				pbDownloadMysteryGift(self.fileLoad[:player]) 
+				@posinfor = 0; @qinfor = 0; @mysgif = false
+				dispose; draw = true; loadmenu=false; infor = false
+			}
           # Language
           elsif Settings::LANGUAGES.length>=2 && ( @posinfor==2 || (@posinfor==1 && !@mysgif))
-						$PokemonSystem.language = pbChooseLanguage
-						pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
-						self.fileLoad[:pokemon_system] = $PokemonSystem
-						File.open(FileSave.name(@position+1), 'wb') { |file| Marshal.dump(self.fileLoad, file) }
+			$PokemonSystem.language = pbChooseLanguage
+			pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
+			self.fileLoad[:pokemon_system] = $PokemonSystem
+			File.open(FileSave.name(@position+1), 'wb') { |file| Marshal.dump(self.fileLoad, file) }
             @posinfor = 0; @qinfor = 0; @mysgif = false
             dispose; draw = true; loadmenu=false; infor = false
           end
@@ -661,11 +666,11 @@ class ScreenChooseFileSave
   
   # Draw information (text)
   def drawInfor(type,font=nil)
-		# Set trainer
-		trainer = self.fileLoad[:player]
+	# Set trainer
+	trainer = self.fileLoad[:player]
     # Set mystery gift and language
     if type==1
-			mystery = self.fileLoad[:player].mystery_gift_unlocked
+	  mystery = trainer.mystery_gift_unlocked
       @mysgif = mystery
       @qinfor+=1 if mystery
       @qinfor+=1 if Settings::LANGUAGES.length>=2
@@ -689,7 +694,7 @@ class ScreenChooseFileSave
     set_xy_sprite("infor panel 1",x,y)
     # Set
     create_sprite_2("text",@viewport)
-		framecount = self.fileLoad[:frame_count]
+	framecount = self.fileLoad[:frame_count]
     totalsec = (framecount || 0) / Graphics.frame_rate
     bitmap = @sprites["text"].bitmap
     textpos = []
@@ -716,7 +721,7 @@ class ScreenChooseFileSave
     else
       textpos<<[trainer.name,56*2+x,32*2+y,0,TEXTCOLOR,TEXTSHADOWCOLOR]
     end
-		mapid = self.fileLoad[:map_factory].map.map_id
+	mapid = self.fileLoad[:map_factory].map.map_id
     mapname = pbGetMapNameFromId(mapid)
     mapname.gsub!(/\\PN/,trainer.name)
     textpos<<[mapname,193*2+x,5*2+y,1,TEXTCOLOR,TEXTSHADOWCOLOR]
@@ -747,21 +752,21 @@ class ScreenChooseFileSave
     else
       meta = GameData::Metadata.get_player(trainer.character_ID)
       if meta
-				filename = pbGetPlayerCharset(meta,1,trainer,true)
-				@sprites["player"] = TrainerWalkingCharSprite.new(filename,@viewport)
-				charwidth  = @sprites["player"].bitmap.width
-				charheight = @sprites["player"].bitmap.height
-				@sprites["player"].x        = 56*2-charwidth/8
-				@sprites["player"].y        = 56*2-charheight/8
-				@sprites["player"].src_rect = Rect.new(0,0,charwidth/4,charheight/4)
-			end
-			for i in 0...trainer.party.length
-				@sprites["party#{i}"] = PokemonIconSprite.new(trainer.party[i],@viewport)
-				@sprites["party#{i}"].setOffset(PictureOrigin::Center)
-				@sprites["party#{i}"].x = (167+33*(i%2))*2
-				@sprites["party#{i}"].y = (56+25*(i/2))*2
-				@sprites["party#{i}"].z = 99999
-			end
+		filename = pbGetPlayerCharset(meta,1,trainer,true)
+		@sprites["player"] = TrainerWalkingCharSprite.new(filename,@viewport)
+		charwidth  = @sprites["player"].bitmap.width
+		charheight = @sprites["player"].bitmap.height
+		@sprites["player"].x        = 56*2-charwidth/8
+		@sprites["player"].y        = 56*2-charheight/8
+		@sprites["player"].src_rect = Rect.new(0,0,charwidth/4,charheight/4)
+	  end
+	  for i in 0...trainer.party.length
+		@sprites["party#{i}"] = PokemonIconSprite.new(trainer.party[i],@viewport)
+		@sprites["party#{i}"].setOffset(PictureOrigin::Center)
+		@sprites["party#{i}"].x = (167+33*(i%2))*2
+		@sprites["party#{i}"].y = (56+25*(i/2))*2
+		@sprites["party#{i}"].z = 99999
+	  end
       # Fade
       pbFadeInAndShow(@sprites) { update }
     end
