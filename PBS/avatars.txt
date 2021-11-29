@@ -648,8 +648,8 @@ Ability = SHIELDSDOWN
 Moves = POWERGEM,GALE
 #-----------------------------
 [CLEFABLE]
-Turns = 3
-HPMult = 4
+Turns = 2
+HPMult = 1.5
 Ability = BEGUILING
 Moves = METRONOME
 Item = LEPPABERRY
