@@ -647,3 +647,17 @@ HPMult = 3
 Ability = SHIELDSDOWN
 Moves = POWERGEM,GALE
 #-----------------------------
+[CLEFABLE]
+Turns = 3
+HPMult = 4
+Ability = BEGUILING
+Moves = METRONOME
+Item = LEPPABERRY
+#-----------------------------
+[RHYPERIOR]
+Turns = 1
+HPMult = 5
+Ability = FORTIFIED
+Moves = ADAMANTINEPRESS,ROCKAPULT
+Item = LAGGINGTAIL
+#-----------------------------
