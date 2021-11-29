@@ -292,8 +292,10 @@ Pokemon = SERVINE,20
 LoseText = "..."
 Pokemon = SWIRLIX,20
 Pokemon = SHELLOS,20
-Pokemon = PURRLOIN,21
-	Item = NORMALGEM
+	Item = SITRUSBERRY
+	AbilityIndex = 1
+Pokemon = TRANQUILL,21
+	AbilityIndex = 0
 #-------------------------------
 [RUINMANIAC,Spencer]
 LoseText = "..."
