@@ -654,3 +654,10 @@ Ability = BEGUILING
 Moves = METRONOME
 Item = LEPPABERRY
 #-----------------------------
+[RHYPERIOR]
+Turns = 1
+HPMult = 5
+Ability = FORTIFIED
+Moves = ADAMANTINEPRESS,ROCKAPULT
+Item = LAGGINGTAIL
+#-----------------------------
