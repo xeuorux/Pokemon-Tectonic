@@ -647,3 +647,10 @@ HPMult = 3
 Ability = SHIELDSDOWN
 Moves = POWERGEM,GALE
 #-----------------------------
+[CLEFABLE]
+Turns = 3
+HPMult = 4
+Ability = BEGUILING
+Moves = METRONOME
+Item = LEPPABERRY
+#-----------------------------
