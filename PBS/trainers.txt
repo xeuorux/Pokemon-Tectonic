@@ -187,7 +187,7 @@ Pokemon = BLITZLE,17
 [PSYCHIC_M,Uriel]
 LoseText = "..."
 Pokemon = ABRA,15
-	Item = SITRUSBERRY
+	Item = PSYCHICGEM
 Pokemon = MEDITITE,16
 Pokemon = WOOBAT,15
 #-------------------------------
@@ -195,7 +195,7 @@ Pokemon = WOOBAT,15
 LoseText = "..."
 Pokemon = PUMPKABOO,16
 Pokemon = TAILLOW,16
-	Item = FLYINGGEM
+	Item = SITRUSBERRY
 Pokemon = SPHEAL,17
 #-------------------------------
 [DANCER,Isai]
