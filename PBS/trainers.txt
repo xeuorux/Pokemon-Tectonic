@@ -948,3 +948,40 @@ Pokemon = POOCHYENA,25
 Pokemon = MANECTRIC,30
 Pokemon = NIDORINA,30
 Pokemon = MUNNA,30
+#-------------------------------
+[POKEMANIAC,Nikos]
+Pokemon = CHARIZARD,40
+	AbilityIndex = 0
+Pokemon = ARCHEOPS,40
+	Item = CHOICEBAND
+Pokemon = WEAVILE,40
+	AbilityIndex = 1
+Pokemon = LEAFEON,40
+	Item = GRASSGEM
+#-------------------------------
+[ROUGHNECK,Randall]
+Pokemon = CROBAT,40
+	AbilityIndex = 0
+	Item = FLYINGGEM
+Pokemon = EXEGGUTOR,40
+	AbilityIndex = 0
+Pokemon = EXCADRILL,40
+	AbilityIndex = 1
+Pokemon = SPIRITOMB,40
+	AbilityIndex = 1
+	Item = LEFTOVERS
+#-------------------------------
+[BURGLAR,Keith]
+Pokemon = ROSERADE,40
+	AbilityIndex = 0
+	Item = LIFEORB
+Pokemon = CRABOMINABLE,40
+	AbilityIndex = 0
+Pokemon = NOIVERN,40
+	AbilityIndex = 1
+Pokemon = VILEPLUME,40
+	AbilityIndex = 1
+	Item = SITRUSBERRY
+Pokemon = MANDIBUZZ,40
+	AbilityIndex = 0
+	Item = LEFTOVERS
