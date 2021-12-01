@@ -42,6 +42,7 @@ Pokemon = SLOWPOKE, 5
 POKEMON = ODDISH,5
 #-------------------------------
 [BUGCATCHER,Colin]
+Policies = REMARKONSTARTER
 LoseText = "..."
 Pokemon = KRICKETOT,6
     AbilityIndex = 0
