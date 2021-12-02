@@ -75,7 +75,7 @@ class PokemonSummary_Scene
 		@page = 4
 		@forget = true
 		@typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
-		@statsCursorBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Summary/Rework/cursor_stats"))
+		@extraReminderBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Rework/extra_info_reminder"))
 		@sprites = {}
 		@sprites["background"] = IconSprite.new(0,0,@viewport)
 		@sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
@@ -96,10 +96,10 @@ class PokemonSummary_Scene
 		@sprites["movesel"].visible = false
 		@sprites["movesel"].visible = true
 		@sprites["movesel"].index   = 0
-		@sprites["statsCursor"] = SpriteWrapper.new(@viewport)
-		@sprites["statsCursor"].bitmap = @statsCursorBitmap.bitmap
-		@sprites["statsCursor"].x = 44
-		@sprites["statsCursor"].y = 64
+		@sprites["extraReminder"] = SpriteWrapper.new(@viewport)
+		@sprites["extraReminder"].bitmap = @extraReminderBitmap.bitmap
+		@sprites["extraReminder"].x = 34
+		@sprites["extraReminder"].y = 64
 		new_move = (move_to_learn) ? Pokemon::Move.new(move_to_learn) : nil
 		drawSelectedMove(new_move,@pokemon.moves[0])
 		pbFadeInAndShow(@sprites)
@@ -344,7 +344,7 @@ class PokemonSummary_Scene
 		pbFadeOutAndHide(@sprites) { pbUpdate }
 		pbDisposeSpriteHash(@sprites)
 		@typebitmap.dispose
-		@statsCursorBitmap.dispose if @statsCursorBitmap
+		@extraReminderBitmap.dispose if @extraReminderBitmap
 		@markingbitmap.dispose if @markingbitmap
 		@viewport.dispose
 	end
@@ -389,7 +389,7 @@ class PokemonSummary_Scene
 				pbTemporaryStatsScreen()
 				@sprites["movesel"].visible = false
 				@sprites["itemicon"].visible = false
-				@sprites["statsCursor"].visible = false
+				@sprites["extraReminder"].visible = false
 				@sprites["pokemon"].visible = true
 			}
 			loop do
@@ -402,7 +402,7 @@ class PokemonSummary_Scene
 			end
 			@sprites["movesel"].visible = true
 			@sprites["itemicon"].visible = true
-			@sprites["statsCursor"].visible = true
+			@sprites["extraReminder"].visible = true
 			@sprites["pokemon"].visible = false
 			drawSelectedMove(new_move,@pokemon.moves[0])
 			pbFadeInAndShow(@sprites)

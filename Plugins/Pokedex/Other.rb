@@ -32,6 +32,8 @@ def isLegendary(species_symbol)
 	return legendaries.include?(GameData::Species.get(species_symbol).id_number)
 end
 
+alias isLegendary? isLegendary
+
 def isQuarantined(species_symbol)
 	quarantined = [:FURFROU,:YUNGOOS,:GUMSHOOS,:FARFETCHD,:PANSEAR,:SIMISEAR,
 		:FINNEON,:LUMINEON,:ARROKUDA,:BARRASKEWDA,:GOLDEEN,:SEAKING,:WISHIWASHI,:PANPOUR,

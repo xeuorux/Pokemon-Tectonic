@@ -89,14 +89,14 @@ class Scene_Map
   end
 end
 
-
+=begin
 class PokemonSaveScreen
 	def pbSaveScreen
     ret = false
-	if $game_switches[79]
-      pbMessage(_INTL("\\se[]Saving is not allowed in this area.\\wtnp[10]"))
-      return
-    end
+	#if $game_switches[79]
+    # pbMessage(_INTL("\\se[]Saving is not allowed in this area.\\wtnp[10]"))
+    # return
+    #end
     @scene.pbStartScreen
     if pbConfirmMessage(_INTL('Would you like to save the game?'))
       if SaveData.exists? && $PokemonTemp.begunNewGame
@@ -126,6 +126,7 @@ class PokemonSaveScreen
     return ret
   end
 end
+=end
 
 
 # Removes the "can't save" switch whenever you transfer maps.

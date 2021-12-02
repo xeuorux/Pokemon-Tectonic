@@ -554,13 +554,13 @@ class DependentEvents
           end
         end
         # Assumes leader is 1x1 tile in size
-        passable = tile && $MapFactory.isPassableStrict?(tile[0],tile[1],tile[2],follower)
+        passable = tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
         if i == 0 && !passable && tile &&
            $MapFactory.getTerrainTag(tile[0],tile[1],tile[2]).ledge
           # If the tile isn't passable and the tile is a ledge,
           # get tile from further behind
           tile = $MapFactory.getFacingTileFromPos(tile[0],tile[1],tile[2],facing)
-          passable = tile && $MapFactory.isPassableStrict?(tile[0],tile[1],tile[2],follower)
+          passable = tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
         end
         if passable
           relativePos = $MapFactory.getThisAndOtherPosRelativePos(
@@ -578,7 +578,7 @@ class DependentEvents
     else
       tile = $MapFactory.getFacingTile(facings[0],leader)
       # Assumes leader is 1x1 tile in size
-      passable = tile && $MapFactory.isPassableStrict?(tile[0],tile[1],tile[2],follower)
+      passable = tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
       mapTile = passable ? mapTile : nil
     end
     if mapTile && follower.map.map_id == mapTile[0]
@@ -641,7 +641,7 @@ class DependentEvents
 		# Try to find a nearby spot to place the pokemon
 		nearbySpots = [[-1,0],[0,1],[0,1],[0,-1]]
 		nearbySpots.each do |spot|
-			passable = $MapFactory.isPassableStrict?(leader.map.map_id,newPosX+spot[0],newPosY+spot[1],follower)
+			passable = $MapFactory.isPassable?(leader.map.map_id,newPosX+spot[0],newPosY+spot[1],follower)
 			if passable
 				newPosX += spot[0]
 				newPosY += spot[1]

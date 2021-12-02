@@ -198,7 +198,7 @@ class PokeBattle_Battler
       else
         @battle.pbCommonAnimation("Confusion",self)
         @battle.pbDisplay(_INTL("{1} is confused!",pbThis))
-        threshold = 30 + 35 * @effects[PBEffects::ConfusionChance]
+        threshold = 50 + 50 * @effects[PBEffects::ConfusionChance]
         if (@battle.pbRandom(100)<threshold && !hasActiveAbility?([:HEADACHE,:TANGLEDFEET])) || ($DEBUG && Input.press?(Input::CTRL))
           @effects[PBEffects::ConfusionChance] = 0
 		  superEff = false
@@ -223,7 +223,7 @@ class PokeBattle_Battler
       else
         @battle.pbAnimation(:LUCKYCHANT,self,nil)
         @battle.pbDisplay(_INTL("{1} is charmed!",pbThis))
-        threshold = 30 + 35 * @effects[PBEffects::CharmChance]
+        threshold = 50 + 50 * @effects[PBEffects::CharmChance]
         if (@battle.pbRandom(100)<threshold && !hasActiveAbility?([:HEADACHE,:TANGLEDFEET])) || ($DEBUG && Input.press?(Input::CTRL))
           @effects[PBEffects::CharmChance] = 0
 		  superEff = false
@@ -450,7 +450,7 @@ class PokeBattle_Battler
     # Airborne-based immunity to Ground moves
     if move.damagingMove? && move.calcType == :GROUND &&
        target.airborne? && !move.hitsFlyingTargets?
-      if target.hasActiveAbility?(:LEVITATE) && !@battle.moldBreaker
+      if target.hasLevitate? && !@battle.moldBreaker
         @battle.pbShowAbilitySplash(target)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))

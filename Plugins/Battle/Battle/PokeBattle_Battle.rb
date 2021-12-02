@@ -176,6 +176,14 @@ class PokeBattle_Battle
     # Check for terrain seeds that boost stats in a terrain
     eachBattler { |b| b.pbItemTerrainStatBoostCheck }
   end 
+  
+  def pbChangeField(user,fieldEffect,modifier)
+	return
+	@field.effects[PBEffects:fieldEffect] = modifier
+  end
+  
+  
+  
 end
 
 

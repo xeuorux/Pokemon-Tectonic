@@ -1,0 +1,26 @@
+module Input
+  BALL	   = B
+end
+
+# Create the targeting category used for the Info button
+GameData::Target.register({
+  :id               => :UserOrOther,
+  :id_number        => 500,
+  :name             => _INTL("User Or Other"),
+  :targets_foe      => true,
+  :long_range       => true,
+  :num_targets      => 1
+})
+
+class PokeBattle_Battle
+	def pbGoAfterInfo(battler)
+		idxTarget = @scene.pbChooseTarget(battler.index,GameData::Target.get(:UserOrOther),nil,true)
+		return if idxTarget<0
+		pokemonTargeted = @battlers[idxTarget].pokemon
+		pokemonTargeted = @battlers[idxTarget].effects[PBEffects::Illusion] if @battlers[idxTarget].effects[PBEffects::Illusion]
+		$Trainer.pokedex.register_last_seen(pokemonTargeted)
+		scene = PokemonPokedexInfo_Scene.new
+		screen = PokemonPokedexInfoScreen.new(scene)
+		screen.pbStartSceneSingle(pokemonTargeted.species,true)
+    end
+end

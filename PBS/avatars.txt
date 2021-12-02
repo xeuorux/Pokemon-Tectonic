@@ -1,9 +1,17 @@
 #-------------------------------
 [FURRET]
 Turns = 2
-Ability = STAKEOUT
+Ability = KLUTZ
 Moves = TACKLE
 HPMult = 2
+DMGMult = 0.8
+#-------------------------------
+[VIGOROTH]
+Turns = 2
+Ability = VITALSPIRIT
+Moves = SCRATCH
+HPMult = 1.5
+Item = ORANBERRY
 ################################
 #  Gym-Locked Avatars
 ################################
@@ -216,7 +224,7 @@ HPMult = 8
 [ELECTRODE]
 Turns = 2
 Ability = SOUNDPROOF
-Moves = SHOCKWAVE,SWIFT
+Moves = DISCHARGE,SWIFT
 HPMult = 4
 #-------------------------------
 [WAILORD]
@@ -321,16 +329,16 @@ Moves = SPACIALREND,LIQUIDATION
 #-------------------------------
 [CRESSELIA]
 Turns = 2
-HPMult = 4
+HPMult = 6
 Ability = LEVITATE
 Item = MENTALHERB
-Moves = FUTURESIGHT,HELPINGHAND,HEALPULSE,PSYCHIC
+Moves = HELPINGHAND,PSYCHIC
 #------------------------------
 [DARKRAI]
 Turns = 2
-HPMult = 4
+HPMult = 6
 Ability = BADDREAMS
-Moves = DARKPULSE,SHADOWBALL,SLIGHT,ANGSTWAVE
+Moves = DARKPULSE
 #------------------------------
 [COBALION]
 Turns = 2
@@ -431,13 +439,13 @@ Moves = PECK
 #-----------------------------
 [KLINKLANG]
 Turns = 2
-HPMult = 5
+HPMult = 4
 Ability = WEAKARMOR
 Moves = GEARGRIND,IRONDEFENSE
 #-----------------------------
 [AVALUGG]
-Turns = 2
-HPMult = 4
+Turns = 1
+HPMult = 5
 Ability = PRISMARMOR
 Moves = CALAMITOUSSLASH,CRYSTALCRUSH
 #-----------------------------
@@ -465,23 +473,17 @@ HPMult = 4
 Ability = GRASSYSURGE
 Moves = POISONPOWDER,MAGICALLEAF
 #-----------------------------
-[CHIMECHO]
-Turns = 2
-HPMult = 4
-Ability = MAGICBOUNCE
-Moves = UPROAR
-#-----------------------------
-[DECIDUEYE]
-Turns = 1
-HPMult = 6
-Ability = TRAPPER
-Moves = SPIRITSHACKLE,LEAFBLADE
-#-----------------------------
 [MANIKLAW]
 Turns = 2
 HPMult = 3
 Ability = INSOMNIA
 Moves = SOULCLAW,SHADOWCLAW
+#-----------------------------
+[MISMAGIUS]
+Turns = 2
+HPMult = 3
+Ability = SNOWWARNING
+Moves = ICYWIND,SOULDRAIN
 #-----------------------------
 [SAWSBUCK]
 Turns = 2
@@ -557,19 +559,19 @@ HPMult = 4
 Turns = 2
 Ability = PRESSURE
 Moves = WHIRLPOOL,PURIFYINGWATER,BRINE
-HPMult = 4
+HPMult = 5
 #-------------------------------
 [ENTEI]
 Turns = 3
 Ability = PRESSURE
 Moves = INCINERATE,INFERNOCHARGE,SUNNYDAY
-HPMult = 3
+HPMult = 4
 #-------------------------------
 [RAIKOU]
 Turns = 2
 Ability = PRESSURE
 Moves = LIGHTNINGSHRIEK,ELECTROBALL,THUNDERWAVE
-HPMult = 4
+HPMult = 5
 #-------------------------------
 [AURORUS]
 Turns = 1
@@ -603,14 +605,59 @@ Ability = COMATOSE
 Moves = SOULRIP,SPORE
 Item = MUSCLEBAND
 #-----------------------------
-[BELLOSSOM]
-Turns = 2
+[SUNFLORA]
+Turns = 1
 Ability = DROUGHT
-Moves = FIERYDANCE,ABSORB
-HPMult = 3
+Moves = GROWTH,NATUREBUBBLE
+HPMult = 4
 #-----------------------------
 [HONCHKROW]
 Turns = 1
 Ability = DRIZZLE
 Moves = HURRICANE,FOULPLAY
 HPMult = 5
+#-----------------------------
+[SIMISAGE]
+Turns = 1
+HPMult = 1
+Ability = FRIENDGUARD
+Moves = SEEDBOMB
+#-----------------------------
+[SIMIPOUR]
+Turns = 1
+HPMult = 1
+Ability = FRIENDGUARD
+Moves = BUBBLEBEAM
+#-----------------------------
+[SIMISEAR]
+Turns = 1
+HPMult = 1
+Ability = FRIENDGUARD
+Moves = FLAMEBURST
+#-----------------------------
+[MIGHTYENA]
+Turns = 2
+HPMult = 3
+Ability = INTIMIDATE
+Moves = BITE,TACKLE
+#-----------------------------
+[MINIOR]
+Turns = 2
+HPMult = 3
+Ability = SHIELDSDOWN
+Moves = POWERGEM,GALE
+#-----------------------------
+[CLEFABLE]
+Turns = 2
+HPMult = 1.5
+Ability = BEGUILING
+Moves = METRONOME
+Item = LEPPABERRY
+#-----------------------------
+[RHYPERIOR]
+Turns = 1
+HPMult = 5
+Ability = FORTIFIED
+Moves = ADAMANTINEPRESS,ROCKAPULT
+Item = LAGGINGTAIL
+#-----------------------------

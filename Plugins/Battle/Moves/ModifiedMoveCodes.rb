@@ -1131,3 +1131,24 @@ class PokeBattle_Move_0DE < PokeBattle_Move
   end
 end
 
+
+
+
+
+
+#===============================================================================
+# User is Ghost: User loses 1/2 of max HP, and curses the target.
+# Cursed Pokémon lose 1/4 of their max HP at the end of each round.
+# User is not Ghost: Decreases the user's Speed by 1 stage, and increases the
+# user's Attack and Defense by 1 stage each. (Curse)
+#===============================================================================
+class PokeBattle_Move_10D < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    return if !user.pbHasType?(:GHOST)
+    # Ghost effect
+    @battle.pbDisplay(_INTL("{1} cut its own HP and laid a curse on {2}!",user.pbThis,target.pbThis(true)))
+    target.effects[PBEffects::Curse] = true
+    user.pbReduceHP(user.totalhp/4,false)
+    user.pbItemHPHealCheck
+  end
+end

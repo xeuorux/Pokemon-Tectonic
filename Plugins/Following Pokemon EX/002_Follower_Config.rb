@@ -14,7 +14,7 @@ Events.FollowerRefresh += proc{|pkmn|
     next true if pkmn.hasType?(:WATER)
     next false if FollowerSettings::SURFING_FOLLOWERS_EXCEPTIONS.any?{|s| s == pkmn.species || s.to_s == "#{pkmn.species}_#{pkmn.form}" }
     next true if pkmn.hasType?(:FLYING)
-    next true if pkmn.hasAbility?(:LEVITATE)
+    next true if pkmn.hasAbility?(:LEVITATE) || pkmn.hasAbility?(:DESERTSPIRIT)
     next true if FollowerSettings::SURFING_FOLLOWERS.any?{|s| s == pkmn.species || s.to_s == "#{pkmn.species}_#{pkmn.form}" }
     next false
   end

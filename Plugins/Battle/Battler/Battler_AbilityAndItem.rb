@@ -80,7 +80,7 @@ class PokeBattle_Battler
  end
 =end
  
-   def pbScavenge
+def pbScavenge
     return if fainted?
     #return if self.item
  	@battle.pbPriority(true).each do |b|
@@ -100,8 +100,54 @@ class PokeBattle_Battler
       b.item = self.item
       @battle.pbHideAbilitySplash(b)
       break
-  end
-	
+    end
 end
+
+
+
+ #=============================================================================
+ # Held item trigger checks
+ #=============================================================================
+ # NOTE: A Pokémon using Bug Bite/Pluck, and a Pokémon having an item thrown at
+ #       it via Fling, will gain the effect of the item even if the Pokémon is
+ #       affected by item-negating effects.
+ # item_to_use is an item ID for Bug Bite/Pluck and Fling, and nil otherwise.
+ # fling is for Fling only.
+	def pbHeldItemTriggerCheck(item_to_use = nil, fling = false)
+		return if fainted?
+		return if !item_to_use && !itemActive?
+		pbItemHPHealCheck(item_to_use, fling)
+		pbItemStatusCureCheck(item_to_use, fling)
+		pbItemEndOfMoveCheck(item_to_use, fling)
+		# For Enigma Berry, Kee Berry and Maranga Berry, which have their effects
+		# when forcibly consumed by Pluck/Fling.
+		if item_to_use
+		itm = item_to_use || self.item
+		if BattleHandlers.triggerTargetItemOnHitPositiveBerry(itm, self, @battle, true)
+			pbHeldItemTriggered(itm, false, fling)
+		end
+		end
+	end
+  
+  
+	def pbItemHPHealCheck(item_to_use = nil, fling = false)
+		return if !item_to_use && !itemActive?
+		itm = item_to_use || self.item
+		if BattleHandlers.triggerHPHealItem(itm, self, @battle, !item_to_use.nil?)
+		pbHeldItemTriggered(itm, item_to_use.nil?, fling)
+		elsif !item_to_use
+		pbItemTerrainStatBoostCheck
+		pbItemFieldEffectCheck
+		end
+	end
+
+
+	def pbItemFieldEffectCheck
+	return if !itemActive?
+	if BattleHandlers.triggerFieldEffectItem(self.item,self,@battle)
+		pbHeldItemTriggered(self.item)
+	end
+	end
+
 
 end

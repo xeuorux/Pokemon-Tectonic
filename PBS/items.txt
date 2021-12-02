@@ -820,7 +820,7 @@
 795,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,6,
 796,ABRAPORTER,Abraporter,Abraporters,8,0,"A teleporter which brings you to your last safe spot using the power of Abras.",2,0,6,
 797,REMATERIALIZER,Rematerializer,Rematerializers,8,0,"A 3D printer which automatically copies consumed held items after battles.",0,0,6
-798,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It is a cup filled with coffee. It feels warm.",0,0,6
+798,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It's a cup filled with warm coffee. You probably shouldn't be keeping this in your backpack.",0,0,6
 799,LUXTECHSHIPMENT,LuxTech Shipment,LuxTech Shipments,8,0,"A package containing an important shipment destined for LuxTech.",0,0,6
 800,DIAMONDTIARA,Diamond Tiara,Diamond Tiaras,1,9000,"A glimmering tiara made of diamonds. It makes a certain Pokemon evolve.",1,0,7
 801,KNIGHTHELMET,Knight Helmet,Knight Helmets,1,3000,"A shining helmet. It makes a certain Pokemon evolve.",1,0,7

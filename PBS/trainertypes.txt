@@ -92,8 +92,8 @@
 89,JUGGLER,Juggler,32,,,,Male,,
 90,HARLEQUIN,Harlequin,32,,,,Male,,
 91,FIREBREATHER,Firebreather,32,,,BLACKBELT,Male,,
-92,ARTIST,Artist,48,ARTIST,,,Male,,
-93,ARTIST2,Artist,48,ARTIST,,,Male,,
+92,ARTIST,Artist,48,,,ARTIST,Male,,
+93,ARTIST2,Artist,48,,,ARTIST,Male,,
 94,BAKER,Baker,32,,,AROMALADY,Female,,
 95,WAITER,Waiter,32,,,AROMALADY,Male,,
 96,WAITER2,Waiter,32,,,AROMALADY,Male,,
@@ -128,7 +128,7 @@
 125,POKEMONRANGER_M2,Pokémon Ranger,60,,,ELITETRAINER,Male,,
 126,POKEMONRANGER_F,Pokémon Ranger,60,,,ACETRAINER,Female,,
 127,POKEMONRANGER_F2,Pokémon Ranger,60,,,ELITETRAINER,Female,,
-128,AROMALADY,Aroma Lady,32,,,,Female,,
+128,AROMALADY,Aroma Lady,32,,,AROMALADY,Female,,
 129,RUINMANIAC,Ruin Maniac,48,,,BACKPACKER,Male,,
 130,BIRDKEEPER_M,Bird Keeper,32,,,HIKER,Male,,
 131,BIRDKEEPER_F,Bird Keeper,32,,,,Female,,
@@ -178,11 +178,11 @@
 175,TRAINER_Lucile,Pokémon Trainer,100,,,,Female,,
 299,ARCHFRIEND_Lainie,Archfriend,100,Battle Gym Leader,Battle victory leader,,Female,,[LAINIE]
 300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,[YEZERA]
-301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,[LAMBERT]
+301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,[LAMBERT]
 302,LEADER_Lambert_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,[LAMBERT]
-303,LEADER_Eko,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,[EKO]
+303,LEADER_Eko,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,[EKO]
 304,LEADER_Eko_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,[EKO]
-305,LEADER_Helena,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Female,,[HELENA]
+305,LEADER_Helena,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Female,,[HELENA]
 306,LEADER_Helena_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,[HELENA]
-307,LEADER_Rafael,Gym Leader,100,Battle Gym Leader,Battle victory leader,,Male,,[RAFAEL]
+307,LEADER_Rafael,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,[RAFAEL]
 308,LEADER_Rafael_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,[RAFAEL]

@@ -7,7 +7,7 @@ Pokemon = RHYHORN, 15
 	Item = AIRBALLOON
     AbilityIndex = 0
 Pokemon = CATERPIE, 10
-	Item = SITRUSBERRY
+	Item = ORANBERRY
 #-------------------------------
 [HIKER,Conroy]
 LoseText = "..."
@@ -42,6 +42,7 @@ Pokemon = SLOWPOKE, 5
 POKEMON = ODDISH,5
 #-------------------------------
 [BUGCATCHER,Colin]
+Policies = REMARKONSTARTER
 LoseText = "..."
 Pokemon = KRICKETOT,6
     AbilityIndex = 0
@@ -181,11 +182,13 @@ Pokemon = JOLTIK,15
 LoseText = "..."
 Pokemon = KOFFING,16
 Pokemon = TOXEL,16
+	Item = SITRUSBERRY
 Pokemon = BLITZLE,17
 #-------------------------------
 [PSYCHIC_M,Uriel]
 LoseText = "..."
 Pokemon = ABRA,15
+	Item = PSYCHICGEM
 Pokemon = MEDITITE,16
 Pokemon = WOOBAT,15
 #-------------------------------
@@ -193,11 +196,13 @@ Pokemon = WOOBAT,15
 LoseText = "..."
 Pokemon = PUMPKABOO,16
 Pokemon = TAILLOW,16
+	Item = SITRUSBERRY
 Pokemon = SPHEAL,17
 #-------------------------------
 [DANCER,Isai]
 LoseText = "..."
 Pokemon = TYROGUE,17
+	Item = FIGHTINGGEM
 Pokemon = COMBUSKEN,16
 Pokemon = SLUGMA,17
 #-------------------------------
@@ -281,19 +286,24 @@ Pokemon = CAMERUPT,20
 LoseText = "..."
 Pokemon = GURDURR,21
 Pokemon = STUNKY,21
+	Item = DARKGEM
 Pokemon = SERVINE,20
 #-------------------------------
 [SCHOOLKID_F,Arya]
 LoseText = "..."
 Pokemon = SWIRLIX,20
 Pokemon = SHELLOS,20
-Pokemon = PURRLOIN,21
+	Item = SITRUSBERRY
+	AbilityIndex = 1
+Pokemon = TRANQUILL,21
+	AbilityIndex = 0
 #-------------------------------
 [RUINMANIAC,Spencer]
 LoseText = "..."
 Pokemon = BALTOY,21
 Pokemon = GOOMY,22
 Pokemon = SHIELDON,21
+	Item = ORANBERRY
 #-------------------------------
 [SOCIALITE,Elizabeth]
 LoseText = "..."
@@ -308,31 +318,37 @@ Pokemon = YANMA,22
 [GAMBLER,Gregor]
 LoseText = "..."
 Pokemon = MEOWTH,21
+	Item = NORMALGEM
 Pokemon = AMEOWTH,22
+	Item = DARKGEM
 Pokemon = GMEOWTH,22
+	Item = STEELGEM
 #-------------------------------
 [MAID,Alice]
 LoseText = "..."
 Pokemon = AUDINO,22
+	Item = ORANBERRY
 Pokemon = QUILAVA,22
 Pokemon = LICKITUNG,22
 #-------------------------------
 [LASS,Tara]
 LoseText = "..."
 Pokemon = QUILLADIN,23
-Pokemon = SPHEAL,22
+Pokemon = SLOWPOKE,22
+	Item = SITRUSBERRY
 Pokemon = ELEKID,23
 #-------------------------------
 [MEDIUM,Theoni]
 LoseText = "..."
 Pokemon = SABLEYE,24
+	Item = NORMALGEM
 Pokemon = FRILLISH,23
 Pokemon = VIGOROTH,24
 #-------------------------------
 [BAKER,Rose]
 LoseText = "..."
 Pokemon = CHIMCHAR,23
-Pokemon = CACNEA,23
+Pokemon = DRILBUR,23
 #-------------------------------
 [POKEMANIAC,Travis]
 LoseText = "..."
@@ -342,14 +358,17 @@ Pokemon = BAGON,23
 [POKEKID,Braden]
 LoseText = "..."
 Pokemon = CACNEA,21
-Pokemon = VOLTORB,22
-Pokemon = SLUGMA,22
+Pokemon = TRUBBISH,22
+	AbilityIndex = 1
+	Item = SITRUSBERRY
+Pokemon = MONFERNO,22
 Pokemon = VENIPEDE,23
 #-------------------------------
 [RICHBOY2,Theodore]
 LoseText = "..."
-Pokemon = EKANS,18
-    AbilityIndex = 0
+Pokemon = MAWILE,18
+    AbilityIndex = 1
+	Item = STEELGEM
 Pokemon = MINCCINO,19
     AbilityIndex = 0
 Pokemon = BRAIXEN,19
@@ -393,12 +412,14 @@ Pokemon = MARSHTOMP,25
 LoseText = "..."
 Pokemon = JIGGLYPUFF,25
 Pokemon = YAMASK,26
+	Item = SITRUSBERRY
 Pokemon = BRIONNE,26
 #-------------------------------
 [PSYCHIC_F2,Ludmila]
 LoseText = "..."
 Pokemon = MRMIME,25
 Pokemon = DROWZEE,26
+	Item = ORANBERRY
 Pokemon = MACHOKE,26
 #-------------------------------
 [RANCHER,Billy]
@@ -415,12 +436,14 @@ Pokemon = TRUMBEAK,28
 LoseText = "..."
 Pokemon = TORRACAT,25
 Pokemon = DEWOTT,26
+Pokemon = GROVYLE,26
 #-------------------------------
 [BLACKBELT3,Philip]
 LoseText = "..."
 Pokemon = MIENFOO,26
-Pokemon = MANKEY,27
+Pokemon = WHIRLIPEDE,27
 Pokemon = SNORUNT,26
+	Item = ICEGEM
 #-------------------------------
 [COOLTRAINER_M,Xander]
 LoseText = "..."
@@ -532,7 +555,7 @@ Pokemon = TROPIUS,25
 [COOLTRAINER_F,Priscilla]
 LoseText = "..."
 Pokemon = MISMAGIUS,30
-    Moves = BONECHILL,MYSTICALFIRE,DAZZLINGGLEAM,POWERGEM
+    Moves = SPITEFULCHANT,MYSTICALFIRE,DAZZLINGGLEAM,POWERGEM
     AbilityIndex = 0
     Item = CHOICESPECS
 Pokemon = FROSLASS,30
@@ -668,46 +691,46 @@ Pokemon = ALAKAZAM,70
 #-------------------------------
 [SCIENTIST_M,Marco]
 LoseText = "..."
-Pokemon = KECLEON,50
+Pokemon = KECLEON,40
     AbilityIndex = 0
-Pokemon = DELCATTY,50
+Pokemon = DELCATTY,40
     AbilityIndex = 0
-Pokemon = NINETALES,50
+Pokemon = NINETALES,40
     AbilityIndex = 1
-Pokemon = POLIWRATH,50
+Pokemon = POLIWRATH,40
     AbilityIndex = 1
 #-------------------------------
 [SCIENTIST_F,Natasha]
 LoseText = "..."
-Pokemon = SMEARGLE,50
+Pokemon = SMEARGLE,40
 	Moves = VCREATE,RAPIDSTARS,PHANTOMBREAK,CELEBRATE
-Pokemon = SMEARGLE,50
+Pokemon = SMEARGLE,40
 	Moves = COACHING,BLOSSOM,WATERSPIRAL,BREAKDANCE
-Pokemon = SMEARGLE,50
+Pokemon = SMEARGLE,40
 	Moves = OCTOLOCK,NORETREAT,OBLIVIONWING,TERRADRAIN
-Pokemon = SMEARGLE,50
+Pokemon = SMEARGLE,40
 	Moves = PROFANE,TRIPLEAXEL,ALLERGY,HUNTDOWN
 #-------------------------------
 [SCIENTIST_M,Julien]
 LoseText = "..."
-Pokemon = INTELEON,50
+Pokemon = INTELEON,40
     AbilityIndex = 1
-Pokemon = DITTO,50
+Pokemon = DITTO,40
     AbilityIndex = 0
-Pokemon = ZOROARK,50
+Pokemon = ZOROARK,40
     AbilityIndex = 0
-Pokemon = MIMIKYU,50
+Pokemon = MIMIKYU,40
     AbilityIndex = 0
 #-------------------------------
 [SCIENTIST_F,Bella]
 LoseText = "..."
-Pokemon = DURALUDON,50
+Pokemon = DURALUDON,40
     AbilityIndex = 0
-Pokemon = BELLOSSOM,50
+Pokemon = BELLOSSOM,40
     AbilityIndex = 0
-Pokemon = MISMAGIUS,50
+Pokemon = MISMAGIUS,40
     AbilityIndex = 0
-Pokemon = HONCHKROW,50
+Pokemon = HONCHKROW,40
     AbilityIndex = 1
 #-------------------------------
 [TRAINER_Vincent,Vincent]
@@ -748,21 +771,25 @@ Pokemon = LAIRON,32
 #-------------------------------
 [SAGE,Imay]
 Pokemon = WEEPINBELL,25
+	Item = SITRUSBERRY
 Pokemon = ORANGURU,26
-Pokemon = RIBOMBEE,25
+Pokemon = DOTTLER,25
 #-------------------------------
 [PARASOLLADY,Clarissa]
 Pokemon = SEEL,25
-Pokemon = PONYTA,26
+	Item = ORANBERRY
+Pokemon = HOUNDOOM,27
 Pokemon = FOONGUS,26
 #-------------------------------
 [POKEFAN_F2,Tsveta]
 Pokemon = EEVEE,27
+	Item = SITRUSBERRY
 Pokemon = EELEKTRIK,26
 Pokemon = RHYHORN,26
 #-------------------------------
 [FISHERMAN2,Mason]
 Pokemon = BUIZEL,26
+	Item = NORMALGEM
 Pokemon = SEADRA,26
 Pokemon = KROKOROK,26
 #-------------------------------
@@ -770,6 +797,7 @@ Pokemon = KROKOROK,26
 Pokemon = NIDORINO,26
 Pokemon = DEERLING,26
 Pokemon = GREEDENT,27
+	Moves = STOCKPILE,SWALLOW,SUPERFANG,BODYSLAM
 Pokemon = DUSCLOPS,27
 #-------------------------------
 [WORKER,Kevin]
@@ -785,9 +813,11 @@ Pokemon = DRIFBLIM,28
 	Moves = HEATWAVE,OMINOUSWIND,HEX,THUNDERWAVE
 Pokemon = BRELOOM,29
 Pokemon = GYAMASK,28
+	Item = ORANBERRY
 #-------------------------------
 [BACKPACKER_F,Aiyana]
 Pokemon = TANGELA,28
+	Item = GRASSGEM
 Pokemon = GOURGEIST,28
 Pokemon = BUTTERFREE,28
 #-------------------------------
@@ -795,15 +825,18 @@ Pokemon = BUTTERFREE,28
 Pokemon = GROTLE,27
 Pokemon = LAMPENT,28
 Pokemon = EKANS,27
+	Item = SITRUSBERRY
 #-------------------------------
 [CAMPER,Christian]
 Pokemon = ORICORIO,28
 	Form = 3
 Pokemon = SKIPLOOM,27
+	Item = ORANBERRY
 Pokemon = QUAGSIRE,28
 #-------------------------------
 [POKEMONRANGER_F,Val]
 Pokemon = BANETTE,28
+	Item = SITRUSBERRY
 Pokemon = CHERRIM,29
 Pokemon = FLOATZEL,27
 #-------------------------------
@@ -815,15 +848,18 @@ Pokemon = SHEDINJA,29
 [CLOWN,Klemens]
 Pokemon = AIPOM,27
 Pokemon = SWELLOW,28
-Pokemon = DREEPY,27
+Pokemon = DRATINI,27
+	Item = DRAGONGEM
 #-------------------------------
 [BACKPACKER_M,Freedom]
 Pokemon = SPINDA,27
 Pokemon = NATU,27
+	Item = SITRUSBERRY
 Pokemon = GABITE,28
 #-------------------------------
 [HOOPSTER,Jerel]
 Pokemon = VOLTORB,28
+	Item = SITRUSBERRY
 Pokemon = NUZLEAF,27
 Pokemon = NOCTOWL,27
 #-------------------------------
@@ -913,3 +949,40 @@ Pokemon = POOCHYENA,25
 Pokemon = MANECTRIC,30
 Pokemon = NIDORINA,30
 Pokemon = MUNNA,30
+#-------------------------------
+[POKEMANIAC,Nikos]
+Pokemon = CHARIZARD,40
+	AbilityIndex = 0
+Pokemon = ARCHEOPS,40
+	Item = CHOICEBAND
+Pokemon = WEAVILE,40
+	AbilityIndex = 1
+Pokemon = LEAFEON,40
+	Item = GRASSGEM
+#-------------------------------
+[ROUGHNECK,Randall]
+Pokemon = CROBAT,40
+	AbilityIndex = 0
+	Item = FLYINGGEM
+Pokemon = EXEGGUTOR,40
+	AbilityIndex = 0
+Pokemon = EXCADRILL,40
+	AbilityIndex = 1
+Pokemon = SPIRITOMB,40
+	AbilityIndex = 1
+	Item = LEFTOVERS
+#-------------------------------
+[BURGLAR,Keith]
+Pokemon = ROSERADE,40
+	AbilityIndex = 0
+	Item = LIFEORB
+Pokemon = CRABOMINABLE,40
+	AbilityIndex = 0
+Pokemon = NOIVERN,40
+	AbilityIndex = 1
+Pokemon = VILEPLUME,40
+	AbilityIndex = 1
+	Item = SITRUSBERRY
+Pokemon = MANDIBUZZ,40
+	AbilityIndex = 0
+	Item = LEFTOVERS

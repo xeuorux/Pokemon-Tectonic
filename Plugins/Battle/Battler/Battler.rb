@@ -10,7 +10,7 @@ class PokeBattle_Battler
 		return false if !takesIndirectDamage?
 		return false if pbHasType?(:GROUND) || pbHasType?(:ROCK) || pbHasType?(:STEEL)
 		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:STOUT])
+		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:STOUT,:DESERTSPIRIT])
 		return false if hasActiveItem?(:SAFETYGOGGLES)
 		return true
 	  end
@@ -19,7 +19,7 @@ class PokeBattle_Battler
 		return false if !takesIndirectDamage?
 		return false if pbHasType?(:ICE) || pbHasType?(:STEEL) || pbHasType?(:GHOST)
 		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:STOUT,:SNOWWARNING])
+		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:STOUT,:SNOWWARNING,:BLIZZBOXER])
 		return false if hasActiveItem?(:SAFETYGOGGLES)
 		return true
 	end
@@ -139,6 +139,23 @@ class PokeBattle_Battler
     ]
     return ability_blacklist.include?(abil.id)
   end
+  
+	def hasLevitate?
+		return hasActiveAbility?([:LEVITATE, :DESERTSPIRIT])
+	end
+	
+	def airborne?
+		return false if hasActiveItem?(:IRONBALL)
+		return false if @effects[PBEffects::Ingrain]
+		return false if @effects[PBEffects::SmackDown]
+		return false if @battle.field.effects[PBEffects::Gravity] > 0
+		return true if pbHasType?(:FLYING)
+		return true if hasLevitate? && !@battle.moldBreaker
+		return true if hasActiveItem?(:AIRBALLOON)
+		return true if @effects[PBEffects::MagnetRise] > 0
+		return true if @effects[PBEffects::Telekinesis] > 0
+		return false
+	end
   
   # permanent is whether the item is lost even after battle. Is false for Knock
   # Off.

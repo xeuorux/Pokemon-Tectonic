@@ -127,12 +127,14 @@ class PokemonPokedex_Scene
 		#zTextpos = [[_INTL("Z/SHIFT to search."),20,2,0,zBase,shadow]]
 		#pbDrawTextPositions(zOverlay,zTextpos)
 		dexname = _INTL("Pokédex")
+=begin
 		if $Trainer.pokedex.dexes_count > 1
 		  thisdex = Settings.pokedex_names[pbGetSavePositionIndex]
 		  if thisdex!=nil
 			dexname = (thisdex.is_a?(Array)) ? thisdex[0] : thisdex
 		  end
 		end
+=end
 		textpos = [
 		   [dexname,Graphics.width/10,-2,2,Color.new(248,248,248),Color.new(0,0,0)]
 		]
@@ -406,9 +408,9 @@ class PokemonPokedex_Scene
        [_INTL("Owned"),xLeft,68,0,base,shadow],
        [_INTL("Stats"),xLeft2,68,0,base,shadow],
        [_INTL("Matchups"),xLeft,164,0,base,shadow],
-       [_INTL("Misc."),xLeft2,164,0,base,shadow],
+       [_INTL("Misc. Search"),xLeft2,164,0,base,shadow],
 	   [_INTL("Stat Sort"),xLeft,260,0,base,shadow],
-	   [_INTL("Other Sort"),xLeft2,260,0,base,shadow]
+	   [_INTL("Misc. Sort"),xLeft2,260,0,base,shadow]
     ]
 	pbDrawTextPositions(overlay,page1textpos)
 	
@@ -502,7 +504,7 @@ class PokemonPokedex_Scene
 		  }
 		when 9
 		  searchChanged = acceptSearchResults2 {
-			searchByZooSection()
+			searchByMisc()
 		  }
 		when 10
 		  searchChanged = acceptSearchResults2 {
@@ -1025,11 +1027,19 @@ class PokemonPokedex_Scene
 		return nil
 	end
 	
-	def searchByZooSection()
-		sectionSelection = pbMessage("Which section?",[_INTL("Zoo"),_INTL("Cancel")],2)
-	    return if sectionSelection == 1 
+	def searchByMisc()
+		searchSelection = pbMessage("Which search?",[_INTL("Map Found"),_INTL("Zoo Section"),_INTL("Cancel")],3)
+		return searchByMapFound() if searchSelection == 0
+		return searchByZooSection() if searchSelection == 1
+	end
+	
+	def searchByZooSection
 		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
 		mapIDs = [31]
+		mapNames = [_INTL("Forest"),_INTL("Cancel")]
+		
+		sectionSelection = pbMessage("Which section?",mapNames,mapNames.length)
+		return if sectionSelection == mapNames.length - 1
 		
 		# Get all the names of the species given events on that map
 		mapID = mapIDs[sectionSelection]
@@ -1043,6 +1053,34 @@ class PokemonPokedex_Scene
 				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
 				
 				next speciesPresent.include?(item[0].name.downcase)
+		}
+		return dexlist
+	end
+	
+	def searchByMapFound
+		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		
+		mapNameTextInput = pbEnterText("Search map name...", 0, 20)
+		return if mapNameTextInput.blank?
+		reversed = mapNameTextInput[0] == '-'
+		mapNameTextInput = mapNameTextInput[1..-1] if reversed
+		
+		speciesPresent = []
+		GameData::Encounter.each_of_version($PokemonGlobal.encounter_version) do |enc_data|
+				mapName = pbGetMapNameFromId(enc_data.map)
+				next unless mapName.downcase.include?(mapNameTextInput.downcase)
+				enc_data.types.each do |key,slots|
+					next if !slots
+					slots.each { |slot|
+						speciesPresent.push(slot[1])
+					}
+				end
+		end
+		
+		dexlist = dexlist.find_all { |item|
+				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				
+				next speciesPresent.include?(item[0]) ^ reversed # Boolean XOR
 		}
 		return dexlist
 	end
