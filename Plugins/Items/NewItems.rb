@@ -179,18 +179,18 @@ class Trainer
   def heal_party
     @party.each { |pkmn| pkmn.heal }
 	
-	if $PokemonBag.pbHasItem?(:TEAMHEALER)
+	if $PokemonBag.pbHasItem?(:AIDKIT)
 		$PokemonGlobal.teamHealerUpgrades 		= 0 if $PokemonGlobal.teamHealerUpgrades.nil?
 		$PokemonGlobal.teamHealerMaxUses 		= 1 if $PokemonGlobal.teamHealerMaxUses.nil?
 		$PokemonGlobal.teamHealerCurrentUses 	= 1 if $PokemonGlobal.teamHealerCurrentUses.nil?
 		
 		$PokemonGlobal.teamHealerCurrentUses = $PokemonGlobal.teamHealerMaxUses
-		pbMessage(_INTL("Your Team Healer was refreshed up to #{$PokemonGlobal.teamHealerCurrentUses} charges."))
+		pbMessage(_INTL("Your Aid Kit was refreshed to #{$PokemonGlobal.teamHealerCurrentUses} charges."))
 	end
   end
 end
 
-ItemHandlers::UseFromBag.add(:TEAMHEALER,proc { |item|
+ItemHandlers::UseFromBag.add(:AIDKIT,proc { |item|
 	$PokemonGlobal.teamHealerUpgrades 		= 0 if $PokemonGlobal.teamHealerUpgrades.nil?
 	$PokemonGlobal.teamHealerMaxUses 		= 1 if $PokemonGlobal.teamHealerMaxUses.nil?
 	$PokemonGlobal.teamHealerCurrentUses 	= 1 if $PokemonGlobal.teamHealerCurrentUses.nil?
@@ -210,17 +210,20 @@ ItemHandlers::UseFromBag.add(:TEAMHEALER,proc { |item|
 	end
 })
 
-ItemHandlers::ConfirmUseInField.add(:TEAMHEALER,proc { |item|
+ItemHandlers::ConfirmUseInField.add(:AIDKIT,proc { |item|
   next true
 })
 
-ItemHandlers::UseInField.add(:TEAMHEALER,proc { |item|
+ItemHandlers::UseInField.add(:AIDKIT,proc { |item|
 	if $PokemonGlobal.teamHealerCurrentUses > 0
 		$PokemonGlobal.teamHealerCurrentUses -= 1
-		pbMessage(_INTL("Healing your entire team! You have #{$PokemonGlobal.teamHealerCurrentUses} charges left."))
+		healAmount = 30 * (1+$PokemonGlobal.teamHealerUpgrades)
+		pbMessage(_INTL("Healing your entire team by {1}.",healAmount))
+		charges = $PokemonGlobal.teamHealerCurrentUses
+		pbMessage(_INTL("You have {1} #{charges == 1 ? "charge" : "charges"} left.", charges))
 		$Trainer.party.each do |p|
 			next if p.egg?
-			pbItemRestoreHP(p,30 * (1+$PokemonGlobal.teamHealerUpgrades))
+			pbItemRestoreHP(p,healAmount)
 			p.heal_status
 			p.heal_PP
 		end
@@ -229,4 +232,35 @@ ItemHandlers::UseInField.add(:TEAMHEALER,proc { |item|
 		pbMessage(_INTL("You are out of charges."))
 		next 0
 	end
+})
+
+ItemHandlers::UseFromBag.add(:KITEXPANSION,proc { |item|
+	$PokemonGlobal.teamHealerUpgrades 		= 0 if $PokemonGlobal.teamHealerUpgrades.nil?
+	$PokemonGlobal.teamHealerMaxUses 		= 1 if $PokemonGlobal.teamHealerMaxUses.nil?
+	$PokemonGlobal.teamHealerCurrentUses 	= 1 if $PokemonGlobal.teamHealerCurrentUses.nil?
+
+	if !$PokemonBag.pbHasItem?(:AIDKIT)
+		pbMessage(_INTL("You don't have a Aid Kit to upgrade."))
+		next 0
+	end
+	charges = $PokemonGlobal.teamHealerMaxUses
+	pbMessage(_INTL("Your Aid Kit has been increased to #{charges+1} charges."))
+	$PokemonGlobal.teamHealerMaxUses	 	+= 1
+	$PokemonGlobal.teamHealerCurrentUses 	+= 1
+	next 3
+})
+
+ItemHandlers::UseFromBag.add(:MEDICALUPGRADE,proc { |item|
+	$PokemonGlobal.teamHealerUpgrades 		= 0 if $PokemonGlobal.teamHealerUpgrades.nil?
+	$PokemonGlobal.teamHealerMaxUses 		= 1 if $PokemonGlobal.teamHealerMaxUses.nil?
+	$PokemonGlobal.teamHealerCurrentUses 	= 1 if $PokemonGlobal.teamHealerCurrentUses.nil?
+
+	if !$PokemonBag.pbHasItem?(:AIDKIT)
+		pbMessage(_INTL("You don't have a Aid Kit to upgrade."))
+		next 0
+	end
+	charges = $PokemonGlobal.teamHealerMaxUses
+	pbMessage(_INTL("Your Aid Kit now heals an additional 30 HP per charge."))
+	$PokemonGlobal.teamHealerUpgrades	 	+= 1
+	next 3
 })
