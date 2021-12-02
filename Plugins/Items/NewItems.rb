@@ -139,3 +139,47 @@ ItemHandlers::UseFromBag.add(:EXPEZDISPENSER,proc { |item|
 	end
 	next 1
 })
+
+def rechargeTeamHealer()
+	$PokemonGlobal.teamHealerUpgrades 		= 0 if $PokemonGlobal.teamHealerUpgrades.nil?
+	$PokemonGlobal.teamHealerMaxUses 		= 1 if $PokemonGlobal.teamHealerMaxUses.nil?
+	$PokemonGlobal.teamHealerCurrentUses 	= 1 if $PokemonGlobal.teamHealerCurrentUses.nil?
+	
+	$PokemonGlobal.teamHealerCurrentUses = $PokemonGlobal.teamHealerMaxUses
+end
+
+class Trainer
+	# Fully heal all Pokémon in the party.
+  def heal_party
+    @party.each { |pkmn| pkmn.heal }
+	
+	if $PokemonBag.pbHasItem?(:TEAMHEALER)
+		$PokemonGlobal.teamHealerUpgrades 		= 0 if $PokemonGlobal.teamHealerUpgrades.nil?
+		$PokemonGlobal.teamHealerMaxUses 		= 1 if $PokemonGlobal.teamHealerMaxUses.nil?
+		$PokemonGlobal.teamHealerCurrentUses 	= 1 if $PokemonGlobal.teamHealerCurrentUses.nil?
+		
+		$PokemonGlobal.teamHealerCurrentUses = $PokemonGlobal.teamHealerMaxUses
+		pbMessage(_INTL("Your Team Healer was refreshed up to #{$PokemonGlobal.teamHealerCurrentUses} charges."))
+	end
+  end
+end
+
+ItemHandlers::UseFromBag.add(:TEAMHEALER,proc { |item|
+	$PokemonGlobal.teamHealerUpgrades 		= 0 if $PokemonGlobal.teamHealerUpgrades.nil?
+	$PokemonGlobal.teamHealerMaxUses 		= 1 if $PokemonGlobal.teamHealerMaxUses.nil?
+	$PokemonGlobal.teamHealerCurrentUses 	= 1 if $PokemonGlobal.teamHealerCurrentUses.nil?
+
+	if $PokemonGlobal.teamHealerCurrentUses > 0
+		$PokemonGlobal.teamHealerCurrentUses -= 1
+		pbMessage(_INTL("Healing your entire team! You have #{$PokemonGlobal.teamHealerCurrentUses} charges left."))
+		$Trainer.party.each do |p|
+			next if p.egg?
+			pbItemRestoreHP(p,30 * (1+$PokemonGlobal.teamHealerUpgrades))
+			p.heal_status
+			p.heal_PP
+		end
+		next 1
+	else
+		pbMessage(_INTL("You are out of charges."))
+	end
+})

@@ -1,6 +1,10 @@
 class PokemonGlobalMetadata
 	attr_accessor :caughtCountsPerMap
 	attr_accessor :expJAR
+	attr_accessor :teamHealerCurrentUses
+	attr_accessor :teamHealerMaxUses
+	attr_accessor :teamHealerUpgrades
+	
 	def initialize
     # Movement
     @bicycle              = false
@@ -58,6 +62,9 @@ class PokemonGlobalMetadata
     @safesave             = false
 	##exp Jar item
 	@expJAR				  = 0
-	@caughtCountsPerMap = {}
+	@caughtCountsPerMap	  = {}
+	@teamHealerUpgrades   = 0
+	@teamHealerMaxUses	  = 1
+	@teamHealerCurrentUses= 1
   end
 end
