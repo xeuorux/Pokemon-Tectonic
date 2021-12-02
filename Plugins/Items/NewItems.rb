@@ -115,7 +115,7 @@ ItemHandlers::UseOnPokemon.add(:EXPCANDYXL,proc { |item,pkmn,scene|
 })
 
 ##################
-# EXPEZDISPENSER
+# EXP-EZ DISPENSER
 ##################
 
 ItemHandlers::UseFromBag.add(:EXPEZDISPENSER,proc { |item|
@@ -136,17 +136,43 @@ ItemHandlers::UseFromBag.add(:EXPEZDISPENSER,proc { |item|
 		end
 	else
 		pbMessage(_INTL("That's not enough to make any candies."))
+		next 0
 	end
 	next 1
 })
 
-def rechargeTeamHealer()
-	$PokemonGlobal.teamHealerUpgrades 		= 0 if $PokemonGlobal.teamHealerUpgrades.nil?
-	$PokemonGlobal.teamHealerMaxUses 		= 1 if $PokemonGlobal.teamHealerMaxUses.nil?
-	$PokemonGlobal.teamHealerCurrentUses 	= 1 if $PokemonGlobal.teamHealerCurrentUses.nil?
-	
-	$PokemonGlobal.teamHealerCurrentUses = $PokemonGlobal.teamHealerMaxUses
-end
+
+ItemHandlers::ConfirmUseInField.add(:EXPEZDISPENSER,proc { |item|
+  next true
+})
+
+ItemHandlers::UseInField.add(:EXPEZDISPENSER,proc { |item|
+	$PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
+	candyTotal = 0
+	pbMessage(_INTL("You have {1} EXP stored in the EXP-EZ Dispenser.",$PokemonGlobal.expJAR))
+	xsCandyTotal = $PokemonGlobal.expJAR / 350
+	sCandyTotal = xsCandyTotal / 4
+	xsCandyTotal = xsCandyTotal % 4
+	mCandyTotal = sCandyTotal / 4
+	sCandyTotal = sCandyTotal % 4
+	if sCandyTotal > 0 || xsCandyTotal > 0 || mCandyTotal > 0
+		if pbConfirmMessage(_INTL("You can make {1} Medium, {2} Small and {3} Extra-Small candies. Would you like to?", mCandyTotal, sCandyTotal, xsCandyTotal))
+			pbReceiveItem(:EXPCANDYM,mCandyTotal) if mCandyTotal > 0
+			pbReceiveItem(:EXPCANDYS,sCandyTotal) if sCandyTotal > 0
+			pbReceiveItem(:EXPCANDYXS,xsCandyTotal) if xsCandyTotal > 0
+			$PokemonGlobal.expJAR = $PokemonGlobal.expJAR % 350
+		end
+	else
+		pbMessage(_INTL("That's not enough to make any candies."))
+		next 0
+	end
+	next 1
+})
+
+
+##################
+# TEAM HEALER
+##################
 
 class Trainer
 	# Fully heal all Pokémon in the party.
@@ -181,5 +207,26 @@ ItemHandlers::UseFromBag.add(:TEAMHEALER,proc { |item|
 		next 1
 	else
 		pbMessage(_INTL("You are out of charges."))
+	end
+})
+
+ItemHandlers::ConfirmUseInField.add(:TEAMHEALER,proc { |item|
+  next true
+})
+
+ItemHandlers::UseInField.add(:TEAMHEALER,proc { |item|
+	if $PokemonGlobal.teamHealerCurrentUses > 0
+		$PokemonGlobal.teamHealerCurrentUses -= 1
+		pbMessage(_INTL("Healing your entire team! You have #{$PokemonGlobal.teamHealerCurrentUses} charges left."))
+		$Trainer.party.each do |p|
+			next if p.egg?
+			pbItemRestoreHP(p,30 * (1+$PokemonGlobal.teamHealerUpgrades))
+			p.heal_status
+			p.heal_PP
+		end
+		next 1
+	else
+		pbMessage(_INTL("You are out of charges."))
+		next 0
 	end
 })
