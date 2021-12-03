@@ -661,3 +661,8 @@ Ability = FORTIFIED
 Moves = ADAMANTINEPRESS,ROCKAPULT
 Item = LAGGINGTAIL
 #-----------------------------
+[PYROAR]
+Turns = 2
+HPMult = 4
+Ability = STUBBORN
+Moves = FLAMETHROWER,NOBLEROAR
