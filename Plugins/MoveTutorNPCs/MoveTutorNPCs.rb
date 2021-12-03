@@ -44,6 +44,11 @@ class Pokemon
 			next if hasMove?(m)
 			return true if possibleMoves.include?(m)
 		}
+		species_data.moves.each { |learnset_entry|
+			m = learnset_entry[1]
+			next if hasMove?(m)
+			return true if possibleMoves.include?(m)
+		}
 		return false
 	end
 	
@@ -165,6 +170,15 @@ def pbMentorMoveScreen(pkmn)
 			moves.push(m)
 		end
 	end
+	
+	# Gather mentorable moves from level up moves
+	species_data.moves.each { |learnset_entry|
+		m = learnset_entry[1]
+		next if pkmn.hasMove?(m)
+		if possibleMoves.include?(m)
+			moves.push(m)
+		end
+	}
 	
 	moves.uniq!
 	moves.compact!

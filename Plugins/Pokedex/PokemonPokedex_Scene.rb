@@ -2,13 +2,13 @@ SEARCHES_STACK = true
 
 class PokemonPokedex_Scene
   def pbStartScene
-    @sliderbitmap       = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_slider")
-    @typebitmap         = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
-    @shapebitmap        = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_shapes")
-    @hwbitmap           = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_hw")
-    @selbitmap          = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_searchsel")
-    @searchsliderbitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_searchslider"))
-	@search2Cursorbitmap 		= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/Rework/cursor_search"))
+    @sliderbitmap       	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_slider")
+    @typebitmap         	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
+    @shapebitmap        	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_shapes")
+    @hwbitmap           	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_hw")
+    @selbitmap          	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_searchsel")
+    @searchsliderbitmap 	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_searchslider"))
+	@search2Cursorbitmap	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/Rework/cursor_search"))
     @sprites = {}
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z = 99999
@@ -688,6 +688,7 @@ class PokemonPokedex_Scene
 					next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
 					contains = false
 					
+					# By level up
 					if learningMethodSelection == 0 || learningMethodSelection == 1
 						lvlmoves = item[11]
 						lvlmoves.each do |learnset_entry|
@@ -698,6 +699,7 @@ class PokemonPokedex_Scene
 						end
 					end
 					
+					# By specific level
 					if learningMethodSelection == 2
 						lvlmoves = item[11]
 						lvlmoves.each do |learnset_entry|
