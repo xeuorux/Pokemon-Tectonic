@@ -21990,7 +21990,7 @@ BattlerEnemyX = -3
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PYROAR,Level,35
+Evolutions = PYROAR,Item,SUNSTONE
 #-------------------------------
 [668]
 Name = Pyroar
