@@ -18,7 +18,7 @@
 16,COLORCHANGE,Color Change,"Changes the Pokémon's type to the foe's move."
 17,IMMUNITY,Immunity,"Prevents the Pokémon from getting poisoned."
 18,FLASHFIRE,Flash Fire,"Provides immunity to Fire-type moves and powers up if it's hit by one."
-19,SHIELDDUST,Shield Dust,"Blocks the added effects of attacks taken."
+19,SHIELDDUST,Shield Dust,"Blocks all added effects of attacks taken."
 20,OWNTEMPO,Own Tempo,"Prevents the Pokémon from becoming confused."
 21,SUCTIONCUPS,Suction Cups,"Can't be forced to switch out. Boosts accuracy when hit."
 22,INTIMIDATE,Intimidate,"Lowers the foe's Attack stat."

@@ -736,15 +736,6 @@ FormName = Blue Flower
 [FLOETTE,4]
 FormName = White Flower
 #-------------------------------
-[FLOETTE,5]
-FormName = Eternal Flower
-BaseStats = 74,65,67,92,125,128
-BaseEXP = 243
-Moves = 1,TACKLE,1,VINEWHIP,1,FAIRYWIND,6,FAIRYWIND,10,LUCKYCHANT,15,RAZORLEAF,20,WISH,25,MAGICALLEAF,27,GRASSYTERRAIN,33,PETALBLIZZARD,38,AROMATHERAPY,43,MISTYTERRAIN,46,MOONBLAST,50,LIGHTOFRUIN,51,PETALDANCE,58,SOLARBEAM
-Compatibility = Undiscovered
-Pokedex = The flower it's holding can no longer be found blooming anywhere. It's also thought to contain terrifying power.
-Evolutions = FLORGES,None,
-#-------------------------------
 [FLORGES,1]
 FormName = Yellow Flower
 #-------------------------------

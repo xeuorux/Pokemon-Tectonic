@@ -212,7 +212,7 @@ class PokemonPauseMenu
 			if pbConfirmMessage(_INTL("Are you sure you want to quit the game?"))
 			  scene = PokemonSave_Scene.new
 			  screen = PokemonSaveScreen.new(scene)
-			  if screen.pbSaveScreen
+			  if screen.pbSaveScreen(true)
 				@scene.pbEndScene
 			  end
 			  @scene.pbEndScene
