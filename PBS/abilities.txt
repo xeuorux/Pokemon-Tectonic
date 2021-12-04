@@ -255,7 +255,7 @@
 253,SANDSPIT,Sand Burst,"Creates a sandstorm when it's hit by an attack.",
 254,SCREENCLEANER,Screen Cleaner,"Screens are nullified when entering battle.",
 255,STALWART,Stalwart,"Ignores effects changing the target of a move.",
-256,STEAMENGINE,Steam Engine,"Boosts Speed when hit by a Fire- or Water-type move.",
+256,STEAMENGINE,Steam Engine,"Raises Speed massively when hit by a Fire- or Water-type move.",
 257,STEELYSPIRIT,Steely Spirit,"Powers up ally Pokémon's Steel-type moves.",
 258,WANDERINGSPIRIT,Wandering Spirit,"Taking a physical hit exchanges Abilities."
 259,UNSEENFIST,Unseen Fist,"Physical moves negate all protection effects."
