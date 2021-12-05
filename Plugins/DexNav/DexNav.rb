@@ -275,6 +275,7 @@ class NewDexNav
 	
 	allEncounters = []
 	encounters.types.keys.each do |encounter_type|
+		next if encounter_type == :Special
 		encounterList = encounter_tables[encounter_type]
 		next if !encounterList
 		encounterList.each do |encounter|
