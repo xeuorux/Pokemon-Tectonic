@@ -269,7 +269,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [056]
-# Suburb 
+# Németh
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -286,7 +286,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [060]
-# Forested Road
+# Shipping Lane
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -450,6 +450,7 @@ Bicycle = false
 [117]
 # Ice Cave
 ShowArea = true
+Weather = Blizzard,100
 #-------------------------------
 [119]
 # Ranger Hangout
