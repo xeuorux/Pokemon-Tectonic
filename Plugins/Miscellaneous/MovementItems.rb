@@ -34,6 +34,7 @@ class Game_Map
 			# Make water tiles passable if player is surfing or has the surfboard
 			#echo("#{$PokemonBag.pbHasItem?(:SURFBOARD)}, #{errain.can_surf}, #{terrain.waterfall}\n")
 			return true if terrain.can_surf && !terrain.waterfall && ($PokemonGlobal.surfing || $PokemonBag.pbHasItem?(:SURFBOARD))
+			return true if terrain.rock_climbable && $PokemonBag.pbHasItem?(:CLIMBINGGEAR)
 			# Prevent cycling in really tall grass/on ice
 			return false if $PokemonGlobal.bicycle && terrain.must_walk
 			# Depend on passability of bridge tile if on bridge

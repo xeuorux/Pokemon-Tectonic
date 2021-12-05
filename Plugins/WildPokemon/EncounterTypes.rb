@@ -1,6 +1,7 @@
 module GameData
   class TerrainTag
 	attr_reader :slows
+	attr_reader :rock_climbable
   
 	def initialize(hash)
       @id                     = hash[:id]
@@ -23,6 +24,7 @@ module GameData
       @must_walk              = hash[:must_walk]              || false
       @ignore_passability     = hash[:ignore_passability]     || false
 	  @slows     			  = hash[:slows]     			  || false
+	  @rock_climbable		  = hash[:rock_climbable]		  || false
     end
   end
 end
@@ -435,6 +437,15 @@ GameData::EncounterType.register({
   :type           => :none,
   :trigger_chance => 0,
   :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
+})
+
+# Tall Grass
+GameData::TerrainTag.register({
+  :id                     => :RockClimb,
+  :id_number              => 26,
+  :must_walk              => true,
+  :slows              	  => true,
+  :rock_climbable		  => true
 })
 
 # Show grass rustle animation, and auto-move the player over waterfalls and ice

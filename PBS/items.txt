@@ -829,6 +829,7 @@
 804,AIDKIT,Aid Kit,Aid Kits,8,0,"A first-aid pack which heals your whole team a limited number of times. Restocked at PokeCenters and after resting.",2,0,6
 805,KITEXPANSION,Kit Expansion,Kit Expansion,1,0,"A pack which can be attached to your Aid Kit to increase it's number of use charges.",2,0,0
 806,MEDICALUPGRADE,Medical Upgrade,Medical Upgrade,1,0,"A suite of medicines which can be added to your Team Healer to increase its healing.",2,0,0
+807,CLIMBINGGEAR,Climbing Gear,Climbing Gears,8,0,"A set of climbing gear, allowing you to climb on white rocks.",0,0,6,
 #------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
