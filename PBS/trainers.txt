@@ -2,9 +2,8 @@
 #-------------------------------
 [YOUNGSTER,Joey]
 LoseText = "..."
-Pokemon = RHYHORN, 15
-	Moves = BULLDOZE
-	Item = AIRBALLOON
+Pokemon = FERROSEED, 15
+	Moves = INGRAIN
     AbilityIndex = 0
 Pokemon = CATERPIE, 10
 	Item = ORANBERRY
