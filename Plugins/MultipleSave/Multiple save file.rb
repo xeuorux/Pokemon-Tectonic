@@ -123,48 +123,48 @@ end
 module Game
 	def self.set_up_system
 		SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
-    SaveData.move_old_windows_save if System.platform[/Windows/]
-    save_data = (SaveData.exists?) ? SaveData.read_from_file(SaveData::FILE_PATH) : {}
-    if save_data.empty?
-      SaveData.initialize_bootup_values
-    else
-      SaveData.load_bootup_values(save_data)
-    end
-    # Set resize factor
-    pbSetResizeFactor([$PokemonSystem.screensize, 4].min)
-    # Set language (and choose language if there is no save file)
-    if Settings::LANGUAGES.length >= 2
-      $PokemonSystem.language = pbChooseLanguage if save_data.empty?
-      pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
-    end
-  end
+		SaveData.move_old_windows_save if System.platform[/Windows/]
+		save_data = (SaveData.exists?) ? SaveData.read_from_file(SaveData::FILE_PATH) : {}
+		if save_data.empty?
+		  SaveData.initialize_bootup_values
+		else
+		  SaveData.load_bootup_values(save_data)
+		end
+		# Set resize factor
+		pbSetResizeFactor([$PokemonSystem.screensize, 4].min)
+		# Set language (and choose language if there is no save file)
+		if Settings::LANGUAGES.length >= 2
+		  $PokemonSystem.language = pbChooseLanguage if save_data.empty?
+		  pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
+		end
+	end
 end
 #--------------------#
 # Set emergency save #
 #--------------------#
 def pbEmergencySave
-  oldscene = $scene
-  $scene = nil
-  pbMessage(_INTL("The script is taking too long. The game will restart."))
-  return if !$Trainer
+	oldscene = $scene
+	$scene = nil
+	pbMessage(_INTL("The script is taking too long. The game will restart."))
+	return if !$Trainer
 	# It will store the last save file when you dont file save
 	count = FileSave.count
 	SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
-  if SaveData.exists?
-    File.open(SaveData::FILE_PATH, 'rb') do |r|
-      File.open(SaveData::FILE_PATH + '.bak', 'wb') do |w|
-        while s = r.read(4096)
-          w.write s
-        end
-      end
-    end
-  end
-  if Game.save
-    pbMessage(_INTL("\\se[]The game was saved.\\me[GUI save game] The previous save file has been backed up.\\wtnp[30]"))
-  else
-    pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
-  end
-  $scene = oldscene
+	if SaveData.exists?
+		File.open(SaveData::FILE_PATH, 'rb') do |r|
+		  File.open(SaveData::FILE_PATH + '.bak', 'wb') do |w|
+			while s = r.read(4096)
+			  w.write s
+			end
+		  end
+		end
+	end
+	if Game.save
+		pbMessage(_INTL("\\se[]The game was saved.\\me[GUI save game] The previous save file has been backed up.\\wtnp[30]"))
+	else
+		pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
+	end
+	$scene = oldscene
 end
 #------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------#
@@ -219,8 +219,11 @@ class PokemonSaveScreen
 				pbMessage(_INTL("\\se[]Save fa iled.\\wtnp[30]"))
 				ret = false
 			end
+			# Change the stored save file to what you just created
+			$storenamefilesave = FileSave.name(count+1)
 			SaveData.changeFILEPATH(!$storenamefilesave.nil? ? $storenamefilesave : FileSave.name)
 		end
+		# Old save file
 		if cmdSaveOld >= 0 && saveTypeSelection == cmdSaveOld
 			if count <= 0
 				pbMessage(_INTL("No save file was found."))
@@ -233,6 +236,7 @@ class PokemonSaveScreen
 				}
 			end
 		end
+		# Save over current
 		if cmdSaveCurrent >=0 && saveTypeSelection == cmdSaveCurrent
 			SaveData.changeFILEPATH($storenamefilesave)
 			if Game.save
@@ -578,6 +582,7 @@ class ScreenChooseFileSave
 					pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
 					ret = false
 				end
+				$storenamefilesave = FileSave.name(@position+1)
 				SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
                 break
               # Delete file
