@@ -320,6 +320,8 @@ Events.onWildPokemonCreate += proc {|sender,e|
 			# There is a higher chance for shininess
 			pokemon.shinyRerolls *= 2
 			$currentDexSearch = nil
+		else
+			echoln("Cannot find #{species} in #{currentTileEncounterType}!")
 		end
     end
 }
