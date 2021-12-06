@@ -179,22 +179,27 @@ end
 # Save screen
 class PokemonSaveScreen
 	def pbSaveScreen(quitting = false)
-		ret = false
 		# Check for renaming
 		FileSave.rename
 		# Count save file
 		count = FileSave.count
 		# Start
-		cmds = [_INTL("Save"),_INTL("Delete")]
+		saveCommand = -1
+		deleteCommand = -1
+		quitCancelCommand = -1
+		cmds = []
+		cmds[saveCommand = cmds.length] = _INTL("Save")
 		if quitting
-			cmds.push(_INTL("Quit"))
+			cmds[quitCancelCommand = cmds.length] = _INTL("Quit")
 		else
-			cmds.push(_INTL("Cancel"))
+			cmds[deleteCommand = cmds.length] = _INTL("Delete")
+			cmds[quitCancelCommand = cmds.length] = _INTL("Cancel")
 		end
-		saveDeleteSelection = pbCustomMessageForSave(_INTL("What do you want to do?"),cmds,3)
-		ret = inGameSaveScreen(count) if saveDeleteSelection == 0
-		return inGameDeleteScreen(count) if saveDeleteSelection == 1	
-		return ret
+		saveDeleteSelection = pbCustomMessageForSave(_INTL("What do you want to do?"),cmds,cmds.length)
+		return false if quitCancelCommand >= 0 && saveDeleteSelection == quitCancelCommand
+		return inGameSaveScreen(count) if saveCommand >= 0 && saveDeleteSelection == saveCommand
+		return inGameDeleteScreen(count) if deleteCommand >= 0 && saveDeleteSelection == deleteCommand
+		return false
 	end
 	
 	def inGameSaveScreen(count)
