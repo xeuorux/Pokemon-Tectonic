@@ -435,6 +435,7 @@ Pokemon = TRUMBEAK,28
 LoseText = "..."
 Pokemon = TORRACAT,25
 Pokemon = DEWOTT,26
+	Item = RINDOBERRY
 Pokemon = GROVYLE,26
 #-------------------------------
 [BLACKBELT3,Philip]
