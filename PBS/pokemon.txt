@@ -27769,7 +27769,7 @@ Name = Sandaconda
 InternalName = SANDACONDA
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,70,90,65,80,60
+BaseStats = 65,65,90,65,85,60
 # Total = 430
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -30082,7 +30082,7 @@ InternalName = SANDORNADO
 Type1 = GROUND
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,95,105,85,105,70
+BaseStats = 80,85,105,85,115,70
 # Total = 540
 GenderRate = Female50Percent
 GrowthRate = Medium
