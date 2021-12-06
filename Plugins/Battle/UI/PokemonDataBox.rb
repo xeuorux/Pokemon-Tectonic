@@ -151,20 +151,24 @@ class PokemonDataBox < SpriteWrapper
 		firstStatusY = 36
 		# Draw status icon
 		if @battler.pbHasAnyStatus? || @battler.status != :NONE
-		  s = GameData::Status.get(@battler.status).id_number
-		  s = GameData::Status.get(:SLEEP).id_number if @battler.pbHasStatus?(:SLEEP)
-		  if @battler.status == :POISON && @battler.statusCount > 0   # Badly poisoned
+			s = GameData::Status.get(@battler.status).id_number
+			s = GameData::Status.get(:SLEEP).id_number if @battler.pbHasStatus?(:SLEEP)
+		else
 			s = 6
-		  end
-		  imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+24,firstStatusY,
-			 0,(s-1)*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
 		end
-		# Draw status icon
-		if @battler.boss? && @battler.bossStatus != :NONE
-		  s = GameData::Status.get(@battler.bossStatus).id_number
-		  y = firstStatusY + 4 + STATUS_ICON_HEIGHT
-		  imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+24,y,
+		imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+24,firstStatusY,
 			 0,(s-1)*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
+		# Draw status icon for bosses
+		if @battler.boss?
+			if @battler.bossStatus != :NONE
+				s = GameData::Status.get(@battler.bossStatus).id_number
+				s = GameData::Status.get(:SLEEP).id_number if @battler.pbHasStatus?(:SLEEP)
+			else
+				s = 6
+			end
+			y = firstStatusY + 4 + STATUS_ICON_HEIGHT
+			imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+24,y,
+				 0,(s-1)*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
 		end
 		# Refresh type bars
 		types = @battler.pbTypes(true)
