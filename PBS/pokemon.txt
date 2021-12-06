@@ -3704,7 +3704,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = RHYPERIOR,Level,39
+Evolutions = RHYPERIOR,Level,41
 #-------------------------------
 [113]
 Name = Chansey
