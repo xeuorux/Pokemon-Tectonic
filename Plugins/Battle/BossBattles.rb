@@ -77,7 +77,7 @@ def pbAvatarBattleCore(*args)
   $PokemonTemp.clearBattleRules
   # Perform the battle itself
   decision = 0
-  pbBattleAnimation(pbGetWildBattleBGM(foeParty),(foeParty.length==1) ? 0 : 2,foeParty) {
+  pbBattleAnimation(pbGetAvatarBattleBGM(foeParty),(foeParty.length==1) ? 0 : 2,foeParty) {
     pbSceneStandby {
       decision = battle.pbStartBattle
     }
@@ -110,7 +110,6 @@ def setAvatarProperties(pkmn)
 	pkmn.ability = avatar_data.ability
 	pkmn.hpMult = avatar_data.hp_mult
 	pkmn.dmgMult = avatar_data.dmg_mult
-	echoln _INTL("pkmn.dmgMult is {1}", pkmn.dmgMult)
 	pkmn.scaleFactor = avatar_data.size_mult
 	
 	pkmn.calc_stats()
@@ -220,4 +219,31 @@ def pbPlayerPartyMaxLevel(countFainted = false)
     maxPlayerLevel = pkmn.level if pkmn.level > maxPlayerLevel && (!pkmn.fainted? || countFainted)
   end
   return maxPlayerLevel
+end
+
+def pbGetAvatarBattleBGM(_wildParty)   # wildParty is an array of Pokémon objects
+	if $PokemonGlobal.nextBattleBGM
+		return $PokemonGlobal.nextBattleBGM.clone
+	end
+	ret = nil
+=begin
+	if !ret
+	# Check map metadata
+	map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
+	music = (map_metadata) ? map_metadata.wild_battle_BGM : nil
+	ret = pbStringToAudioFile(music) if music && music != ""
+	end
+=end
+	legend = false
+	_wildParty.each do |p|
+		legend = true if isLegendary?(p.species)
+	end
+
+	# Check global metadata
+	music = legend ? GameData::Metadata.get.legendary_avatar_battle_BGM : GameData::Metadata.get.avatar_battle_BGM
+	ret = pbStringToAudioFile(music) if music && music!=""
+	ret = pbStringToAudioFile("Battle wild") if !ret
+	
+	echoln("Avatar music selection for Legendary = #{legend} : #{music}")
+	return ret
 end
