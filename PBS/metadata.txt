@@ -4,7 +4,7 @@
 Home = 32,9,7,2
 WildBattleBGM = Battle wild.ogg
 TrainerBattleBGM = DPPTTrainer.ogg
-AvatarBattleBGM = Battle wild.ogg
+AvatarBattleBGM = Battle avatar.ogg
 LegendaryAvatarBattleBGM = DPPTTrainer.ogg
 WildVictoryME = Battle victory wild.ogg
 TrainerVictoryME = Battle victory trainer.ogg
