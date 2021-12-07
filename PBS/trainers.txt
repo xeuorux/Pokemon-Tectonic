@@ -778,7 +778,7 @@ Pokemon = LAIRON,32
 [SAGE,Imay]
 Pokemon = WEEPINBELL,25
 	Item = SITRUSBERRY
-Pokemon = ORANGURU,26
+Pokemon = LOPUNNY,26
 Pokemon = DOTTLER,25
 #-------------------------------
 [PARASOLLADY,Clarissa]
