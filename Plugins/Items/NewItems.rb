@@ -264,3 +264,9 @@ ItemHandlers::UseFromBag.add(:MEDICALUPGRADE,proc { |item|
 	$PokemonGlobal.teamHealerUpgrades	 	+= 1
 	next 3
 })
+
+BattleHandlers::DamageCalcTargetItem.add(:STRIKEVEST,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 1.5 if move.physicalMove?
+  }
+)
