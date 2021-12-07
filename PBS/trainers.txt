@@ -478,6 +478,38 @@ Pokemon = VANILLITE,15
 	Item = LIFEORB
 	EV = 0,0,10,20,20,0
 #-------------------------------
+[COOLTRAINER_F,Jade]
+Pokemon = BRAIXEN,20
+	AbilityIndex = 1
+	Moves = PSYBEAM,IGNITE,LIGHTSCREEN,FIRESPIN
+	Item = LEFTOVERS
+	EV = 20,0,20,0,0,10
+Pokemon = FROGADIER,20
+	AbilityIndex = 1
+	Moves = WATERPULSE,SHADOWPASS,ICYWIND
+	Item = WATERGEM
+	EV = 10,0,0,20,20,0
+Pokemon = JIGGLYPUFF,20
+	AbilityIndex = 1
+	Moves = DISARMINGVOICE,ROUND,LULLABY,REST
+	Item = LEFTOVERS
+	EV = 0,0,20,0,10,20
+Pokemon = SKIPLOOM,20
+	AbilityIndex = 0
+	Moves = POISONPOLLEN,SYNTHESIS,MAGICALLEAF,REFLECT
+	Item = LEFTOVERS
+	EV = 20,20,0,10,0,0
+Pokemon = PIKACHU,20
+	AbilityIndex = 0
+	Moves = ELECTROBALL,NUZZLE,DISARMINGVOICE,SHOUT
+	Item = POISONORB
+	EV = 0,0,10,20,20,0
+Pokemon = FURRET,20
+	AbilityIndex = 0
+	Moves = COVET,QUICKATTACK,SMASH,BRUTALSWING
+	Item = NORMALGEM
+	EV = 20,20,0,10,0,0
+#-------------------------------
 [COOLTRAINER_F,Raven]
 LoseText = "..."
 Pokemon = POLITOED,30
