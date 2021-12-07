@@ -1,5 +1,6 @@
 *.ini
 *.dat
+*.bak
 Data/debuglog.txt
 Data/Actors.rxdata
 Data/Armors.rxdata
