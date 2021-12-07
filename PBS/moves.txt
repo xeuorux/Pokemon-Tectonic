@@ -809,7 +809,7 @@
 789,NUMBINGWIND,Numbing Wind,044,75,ICE,Special,100,15,50,NearOther,0,bef,"The user attacks with numbingly cold wild. It reduces the target's speed."
 790,CHIBURST,Chi Burst,03F,130,FIGHTING,Special,100,5,0,NearOther,0,bef,"The user attacks with a big burst of its inner energy. This sharply reduces the user's Sp. Atk stat."
 791,TRAINEDOUTBURST,Trained Outburst,08E,20,FIGHTING,Special,100,10,0,NearOther,0,befk,"The user attacks with an expert shout. The more the user's stats are raised, the greater the damage."
-792,BEARHUG,Bear Hug,0CF,80,FIGHTING,Physical,90,15,0,NearOther,0,bef,The user wraps the target in a hugely strong hug.
+792,BEARHUG,Bear Hug,0CF,80,FIGHTING,Physical,90,15,0,NearOther,0,bef,"The user traps the target in a hugely strong hug."
 793,INFERNOCHARGE,Inferno Charge,01F,90,FIRE,Physical,100,20,30,NearOther,0,abef,"The user cloaks itself in an inferno of flame and attacks. It has a 30% chance to raise Speed."
 794,FLAREUP,Flare Up,50E,65,FIRE,Physical,100,10,0,NearOther,0,bef,"The user targets the opponents soft spots with a fiery strike. Its power doubles if the target is burned."
 795,PERFUMEDPUNCH,Perfumed Punch,0A5,60,FAIRY,Physical,0,25,0,NearOther,0,abef,"The user throws a sweet-smelling punch which the target is unable to avoid."
