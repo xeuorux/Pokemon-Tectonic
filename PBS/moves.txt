@@ -903,7 +903,7 @@
 884,RAKE,Rake,000,55,BUG,Physical,0,25,0,NearOther,0,abef,"The user rakes the target with sharp claws."
 885,WATERSPIRAL,Water Spiral,16F,85,WATER,Special,100,15,0,NearOther,0,befn,"Fires an spiral of water at enemies, or a HP-restoring one at allies."
 886,SPATTERINGRAM,Spattering Ram,043,60,WATER,Physical,100,25,30,NearOther,0,abef,"The user rams the target like a ship. It has a 30% chance to lower Defense."
-887,BLOSSOM,Blossom,020,50,GRASS,Special,100,35,70,NearOther,0,befn,"A wonderous flower blooms underneath the target, dealing damage. It has a 70% chance to raise user's Sp. Atk."
+887,BLOSSOM,Blossom,020,50,GRASS,Special,100,35,70,NearOther,0,befn,"A flower blooms underneath the target, dealing damage. It has a 70% chance to raise user's Sp. Atk."
 888,THRIVINGFORCE,Thriving Force,020,90,GRASS,Special,100,15,10,NearOther,0,befn,"The user attacks with the bursting power of nature. It has a 10% chance to raise user's Sp. Atk."
 889,TERRADRAIN,Terra Drain,0DD,100,GRASS,Special,50,15,0,NearOther,0,befh,A nutrient-draining attack. The user's HP is restored by 75% of the damage taken by the target.
 890,MENDINGSPRING,Mending Spring,53D,60,WATER,Special,100,15,0,NearOther,0,bef,"The user opens a spring to blast the target, and heal the user by 1/8th of its max hp."
