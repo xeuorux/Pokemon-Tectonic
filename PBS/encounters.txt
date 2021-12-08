@@ -107,7 +107,7 @@ LandTall,20
 25,SNOM,14,17
 25,PINECO,14,17
 25,DIGLETT,14,17
-25,SPEAROW,14,17
+25,PIKIPEK,14,17
 LandTinted,20
 50,PETILIL,14,17
 50,WURMPLE,5,6
@@ -196,7 +196,7 @@ Special,20
 [36] # Abandoned Mine
 DarkCave,20
 25,KLINK,15,18
-25,NOSEPASS,15,18
+25,SPINARAK,15,18
 25,BELDUM,15,18
 25,MAGNEMITE,15,18
 #-------------------------------
@@ -264,10 +264,11 @@ Land,20
 #-------------------------------
 [7] # Swamp Route
 Land,20
-25,CROAGUNK,18,20
-25,SURSKIT,18,20
-25,PHANTUMP,18,20
-25,ROOKIDEE,18,20
+20,CROAGUNK,18,20
+20,SURSKIT,18,20
+20,PHANTUMP,18,20
+20,ROOKIDEE,18,20
+20,JOLTIK,18,20
 LandSparse,20
 25,MURKROW,18,20
 25,MORELULL,18,20
@@ -288,7 +289,7 @@ LandTall,20
 #-------------------------------
 [53] # Jungle Route
 Land,20
-25,PIKIPEK,16,19
+25,NATU,16,19
 25,YANMA,16,19
 25,PURRLOIN,16,19
 25,ODDISH,16,19
@@ -305,13 +306,6 @@ LandTinted,20
 25,PANSAGE,16,19
 25,PANSEAR,16,19
 25,PANPOUR,16,19
-#-------------------------------
-[10] # Jungle Temple
-Land,20
-25,JANGMOO,17,20
-25,NATU,17,20
-25,LARVESTA,17,20
-25,SPINARAK,17,20
 #-------------------------------
 [11] # River Route
 Land,20
@@ -330,8 +324,8 @@ Puddle
 DarkCave,20
 25,ROGGENROLA,17,20
 25,ZUBAT,17,20
-25,BRONZOR,17,20
-25,TYNAMO,17,20
+25,NOSEPASS,17,20
+25,BALTOY,17,20
 #-------------------------------
 [120] # Deep Layer
 DarkCave,20
@@ -386,10 +380,11 @@ Special,1
 #-------------------------------
 [121] # Mountain Climb
 Land,20
-25,SNOVER,18,20
-25,PANCHAM,18,20
-25,CUBCHOO,18,20
-25,CLEFFA,18,20
+20,SNOVER,18,20
+20,PANCHAM,18,20
+20,CUBCHOO,18,20
+20,CLEFFA,18,20
+20,JANGMOO,18,20
 Special,20
 1,HAPPINY,15,15
 #-------------------------------
