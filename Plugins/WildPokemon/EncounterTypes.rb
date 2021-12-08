@@ -172,7 +172,7 @@ class PokemonEncounters
     if !enc_type || !GameData::EncounterType.exists?(enc_type)
       raise ArgumentError.new(_INTL("Encounter type {1} does not exist", enc_type))
     end
-    enc_list = @encounter_tables[enc_type]
+    enc_list = @encounter_tables[enc_type].clone
     return nil if !enc_list || enc_list.length == 0
 	
 	# 25% chance to only roll on Pokemon not yet caught
@@ -183,10 +183,14 @@ class PokemonEncounters
 	end
 	
 	if @lastEncounter && enc_list.length >= 3
+		echoln("Ensuring no encounters with #{@lastEncounter}")
 		enc_list = enc_list.delete_if{|e| e[1] == @lastEncounter}
 	end
 	
     enc_list.sort! { |a, b| b[0] <=> a[0] }   # Highest probability first
+	
+	echoln("Encounter list: #{enc_list.to_s}")
+	
     # Calculate the total probability value
     chance_total = 0
     enc_list.each { |a| chance_total += a[0] }
