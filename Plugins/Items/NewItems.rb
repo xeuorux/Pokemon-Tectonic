@@ -174,11 +174,7 @@ ItemHandlers::UseInField.add(:EXPEZDISPENSER,proc { |item|
 # TEAM HEALER
 ##################
 
-class Trainer
-	# Fully heal all Pokémon in the party.
-  def heal_party
-    @party.each { |pkmn| pkmn.heal }
-	
+def refillAidKit()
 	if $PokemonBag.pbHasItem?(:AIDKIT)
 		$PokemonGlobal.teamHealerUpgrades 		= 0 if $PokemonGlobal.teamHealerUpgrades.nil?
 		$PokemonGlobal.teamHealerMaxUses 		= 1 if $PokemonGlobal.teamHealerMaxUses.nil?
@@ -187,7 +183,6 @@ class Trainer
 		$PokemonGlobal.teamHealerCurrentUses = $PokemonGlobal.teamHealerMaxUses
 		pbMessage(_INTL("Your Aid Kit was refreshed to #{$PokemonGlobal.teamHealerCurrentUses} charges."))
 	end
-  end
 end
 
 ItemHandlers::UseFromBag.add(:AIDKIT,proc { |item|
