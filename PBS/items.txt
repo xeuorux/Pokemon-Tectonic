@@ -767,7 +767,7 @@
 743,TM151,TM151,TM151s,4,4000,"The user vigorously performs a mystic, powerful dance that raises its Attack and Speed stats.",3,0,0,DRAGONDANCE
 744,TM152,TM152,TM152s,4,6000,"The user tackles the target with a high-speed spin. The slower the user, the greater the damage.",3,0,0,GYROBALL
 745,TM153,TM153,TM153s,4,16000,The user fights the foe up close without guarding itself. It also cuts the user's Defense and Sp. Def.,3,0,0,CLOSECOMBAT
-746,TM154,TM154,TM154s,4,4000,The user lays a trap of poison spikes at the opponent's feet. They poison opponents that switch into battle.,3,0,0,TOXICSPIKES
+746,TM154,TM154,TM154s,4,4000,The user lays a trap of poison spikes at the opponent's feet. They poison opponents that switch into battle.,3,0,0,POISONSPIKES
 747,TM155,TM155,TM155s,4,16000,"The user cloaks itself in fire and charges at the foe. The user sustains serious damage, too.",3,0,0,FLAREBLITZ
 748,TM156,TM156,TM156s,4,6000,The user looses a blast of aura power from deep within its body at the target. This attack never misses.,3,0,0,AURASPHERE
 749,TM157,TM157,TM157s,4,6000,"The target is stabbed with a tentacle, arm, or the like steeped in poison. This may also poison the target.",3,0,0,POISONJAB

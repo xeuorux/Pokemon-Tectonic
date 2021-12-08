@@ -174,7 +174,7 @@ Pokemon = CROAGUNK,15
 [POKEMONTRAINER_Yezera,Yezera]
 LoseText = "..."
 Pokemon = BUNNELBY,15
-Pokemon = SNEASEL,15
+Pokemon = SMOOCHUM,15
 Pokemon = JOLTIK,15
 #-------------------------------
 [GUITARIST,Reece]
@@ -509,6 +509,38 @@ Pokemon = FURRET,20
 	Moves = COVET,QUICKATTACK,SMASH,BRUTALSWING
 	Item = NORMALGEM
 	EV = 20,20,0,10,0,0
+#-------------------------------
+[COOLTRAINER_M,Miles]
+Pokemon = WHIRLIPEDE,25
+	AbilityIndex = 1
+	Item = LEFTOVERS
+	Moves = POISONSPIKES,VENOMDRENCH,STEAMROLLER,ENVENOM
+	EV = 20,0,10,0,0,20
+Pokemon = PIDGEOTTO,25
+	AbilityIndex = 1
+	Item = POISONORB
+	Moves = WINDBLADE,TAILWIND,ROOST
+	EV = 10,0,0,15,20,5
+Pokemon = HAUNTER,25
+	AbilityIndex = 0
+	Item = LEFTOVERS
+	Moves = WILLOWISP,HEX,CLEARSMOG,SUBSTITUTE
+	EV = 20,0,0,20,10,0
+Pokemon = LAIRON,25
+	AbilityIndex = 0
+	Item = ROCKYHELMET
+	Moves = STONECHARGE,METALCLAW,FROSTBARB
+	EV = 20,0,10,20,0,0
+Pokemon = ABSOL,25
+	AbilityIndex = 1
+	Item = SALACBERRY
+	Moves = GLITTERSLASH,BRUTALSWING,SWORDSDANCE
+	EV = 10,20,0,20,0,0
+Pokemon = FLAAFFY,25
+	AbilityIndex = 0
+	Item = STRIKEVEST
+	Moves = VANGUARD,SHOCKWAVE,THUNDERWAVE,SIGNALBEAM
+	EV = 20,0,0,0,0,20
 #-------------------------------
 [COOLTRAINER_F,Raven]
 LoseText = "..."
