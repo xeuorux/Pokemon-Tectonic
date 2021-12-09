@@ -31,13 +31,13 @@ Pokemon = BLASFEMMIE, 70
 #-------------------------------
 [AROMALADY,Someone]
 LoseText = "..."
-Pokemon = MILCERY, 10
+Pokemon = MILCERY,10
 	Moves = FAIRYWIND
 	Item = AIRBALLOON
 	AbilityIndex = 1
-Pokemon = ZORUA, 5
+Pokemon = ZORUA,5
 	Item = AIRBALLOON
-Pokemon = SLOWPOKE, 5
+Pokemon = SLOWPOKE,5
 POKEMON = ODDISH,5
 #-------------------------------
 [BUGCATCHER,Colin]
@@ -333,9 +333,9 @@ Pokemon = LICKITUNG,22
 [LASS,Tara]
 LoseText = "..."
 Pokemon = QUILLADIN,23
-Pokemon = SLOWPOKE,22
-	Item = SITRUSBERRY
+Pokemon = DUOSION,22
 Pokemon = ELEKID,23
+	Item = SITRUSBERRY
 #-------------------------------
 [MEDIUM,Theoni]
 LoseText = "..."
@@ -462,7 +462,7 @@ Pokemon = RATTATA,15
     AbilityIndex = 0 # Guts
     Item = FLAMEORB
 	EV = 10,20,0,20,0,0
-Pokemon = SLOWPOKE
+Pokemon = SLOWPOKE,15
 	Moves = MINDWAVES,WATERGUN,YAWN,RECYCLE
 	AbilityIndex = 1 # Mental Block
 	Item = ORANBERRY
@@ -1040,8 +1040,8 @@ Pokemon = LEAFEON,40
 Pokemon = CROBAT,40
 	AbilityIndex = 0
 	Item = FLYINGGEM
-Pokemon = EXEGGUTOR,40
-	AbilityIndex = 0
+Pokemon = VILEPLUME,40
+	AbilityIndex = 1
 Pokemon = EXCADRILL,40
 	AbilityIndex = 1
 Pokemon = SPIRITOMB,40
@@ -1054,11 +1054,42 @@ Pokemon = ROSERADE,40
 	Item = LIFEORB
 Pokemon = CRABOMINABLE,40
 	AbilityIndex = 0
-Pokemon = NOIVERN,40
-	AbilityIndex = 1
-Pokemon = VILEPLUME,40
-	AbilityIndex = 1
-	Item = SITRUSBERRY
+Pokemon = KLINKLANG,40
+	AbilityIndex = 0
+Pokemon = EXEGGUTOR,40
+	AbilityIndex = 0
 Pokemon = MANDIBUZZ,40
 	AbilityIndex = 0
 	Item = LEFTOVERS
+#-------------------------------
+[DRAGONTAMER,Georgius]
+Pokemon = DRUDDIGON,40
+    AbilityIndex = 0 # Sheer Force
+    Moves = FLAMETHROWER,TORNADO
+Pokemon = NOIVERN,40
+    Moves = DRAGONPULSE,AIRSLASH
+Pokemon = TYRANTRUM,40
+    AbilityIndex = 1 # Rock head
+    Moves = STONECHARGE,DRAGONCLAW
+#-------------------------------
+[SAGE,Rennyo]
+Pokemon = GARDEVOIR
+    AbilityIndex = 0 # SYNCHRONIZE
+    Moves = LIFEDEW,HELPINGHAND
+Pokemon = XATU
+    AbilityIndex = 0 # Sentry
+    Moves = HEALPULSE,HELPINGHAND
+Pokemon = DELIBIRD
+    AbilityIndex = 1 # Holiday Cheer
+    Moves = TAILWIND,PACKAGE
+#-------------------------------
+[HARLEQUIN,Vincenzi]
+Pokemon = LEAVANNY
+	AbilityIndex = 0 # Cold Proof
+    Moves = STRINGSHOT,LEAFBLADE
+Pokemon = PRIMARINA
+    AbilityIndex = 0 # Maestro
+    Moves = GROWL,SPARKLINGARIA
+Pokemon = BEWEAR
+    AbilityIndex = 0 # Fluffy
+    Moves = LEER,BODYSLAM
