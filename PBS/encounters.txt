@@ -443,3 +443,15 @@ Special,1
 [91] # Book and Coffee Shop
 Special,20
 1,MILCERY,15,15
+#-------------------------------
+[10] # Six Spire Cave
+Special,20
+1,EEVEE,15,15
+#-------------------------------
+[124] # Clearwater Cave
+Special,20
+1,EEVEE,15,15
+#-------------------------------
+[125] # Volcanic Cave
+Special,20
+1,EEVEE,15,15
