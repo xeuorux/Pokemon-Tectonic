@@ -1,6 +1,6 @@
 class PokeBattle_Move
-
-  def pbAllMissed(user, targets); end
+	def isEmpowered?; return false; end
+	def pbAllMissed(user, targets); end
 
   #=============================================================================
   # Animate the damage dealt, including lowering the HP
@@ -654,7 +654,11 @@ class PokeBattle_Move
   end
   
   def pbDisplayUseMessage(user,targets=[])
-    @battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
+	if isEmpowered?
+		pbMessage(_INTL("\\ts[{3}]\\[06644bd2]{1} used {2}!",user.pbThis,@name,MessageConfig.pbGetTextSpeed() + 10))
+	else
+		@battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
+	end
 	if damagingMove? && !multiHitMove?
 		targets.each do |target|
 			bp = pbBaseDamage(baseDamage,user,target).floor

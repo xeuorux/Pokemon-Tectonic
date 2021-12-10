@@ -960,6 +960,16 @@
 941,BLACKPOWDER,Blackpowder,148,0,BUG,Status,100,20,0,NearOther,0,bce,"The target is covered in a powder that explodes if it uses a Fire-type move."
 942,MAGICDUST,Magic Dust,197,0,PSYCHIC,Status,100,20,0,NearOther,0,bce,"The user scatters a cloud of magic dust that changes the target to Psychic type."
 943,KRAKENCLUTCHES,Kraken Clutches,0CF,85,WATER,Physical,100,10,0,NearOther,0,abef,"The target is trapped by monstrous tentacles for four to five turns."
+# Empowered Moves, for use only by avatars
+1500,EMPOWEREDHEALBELL,Empowered Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
+1501,EMPOWEREDSUNNYDAY,Empowered Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."
+1502,EMPOWEREDRAINDANCE,Empowered Rain Dance,602,0,WATER,Status,0,1,0,BothSides,0,,"The user summons rain, surrounds itself with healing water, and becomes Water-type."
+1503,EMPOWEREDLEECHSEED,Empowered Leech Seed,603,0,GRASS,Status,100,1,0,AllNearFoes,0,bce,"Plants seeds on all near foes, draining HP each turn. User becomes Grass-type."
+1504,EMPOWEREDLIGHTNINGDANCE,Empowered Lightning Dance,503,0,ELECTRIC,Status,0,1,0,User,0,do,"The user sharply boosts its Sp. Atk and Speed stats, and becomes Electric-type."
+1505,EMPOWEREDHAIL,Empowered Hail,605,0,ICE,Status,0,1,0,BothSides,0,,"The user summons a hail storm, chills all enemies, and becomes Ice-type."
+1507,EMPOWEREDSPIKES,Empowered Spikes,607,0,GROUND,Status,0,1,0,FoeSide,0,c,"The user lays 3 layers of spike traps at the foe's feet, and becomes a Ground-type.
+1511,EMPOWEREDSANDSTORM,Empowered Sandstorm,611,0,ROCK,Status,0,1,0,BothSides,0,,"Summons a sandstorm, boosts its Def. and Sp. Def, and becomes Rock-type."
+1513,EMPOWEREDDRAGONDANCE,Empowered Dragon Dance,613,0,DRAGON,Status,0,1,0,User,0,do,"The user sharply boosts its Attack and Speed, and becomes Dragon-type."
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch."

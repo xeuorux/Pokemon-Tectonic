@@ -35,6 +35,20 @@ Turns = 3
 Ability = STARGUARDIAN
 Moves = FUTURESIGHT,GIGADRAIN,PSYCHIC,GRASSKNOT
 HPMult = 3.5
+#------------------------------
+[YVELTAL]
+Turns = 3
+HPMult = 4
+Ability = DARKAURA
+Item = SITRUSBERRY
+Moves = ACROBATICS,OBLIVIONWING,SNARL,LASHOUT
+#------------------------------
+[XERNEAS]
+Turns = 3
+HPMult = 5
+Ability = FAIRYAURA
+Item = POWERHERB
+Moves = GEOMANCY,MOONBLAST,THUNDERBOLT,WONDERROOM
 ################################
 #  Route Avatars
 ################################
@@ -372,20 +386,6 @@ Turns = 3
 HPMult = 6
 Ability = DOWNLOAD
 Moves = TECHNOBLAST,FELLSTINGER,BUGBUZZ,ELECTROWEB
-#------------------------------
-[YVELTAL]
-Turns = 3
-HPMult = 4
-Ability = DARKAURA
-Item = SITRUSBERRY
-Moves = ACROBATICS,OBLIVIONWING,SNARL,LASHOUT
-#------------------------------
-[XERNEAS]
-Turns = 3
-HPMult = 5
-Ability = FAIRYAURA
-Item = POWERHERB
-Moves = GEOMANCY,MOONBLAST,THUNDERBOLT,WONDERROOM
 #------------------------------
 [ZYGARDE]
 Turns = 3
