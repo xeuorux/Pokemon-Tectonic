@@ -252,6 +252,7 @@ Pokemon = FLETCHINDER,20
     Moves = FLAMECHARGE,FLAIL,PECK,QUICKATTACK
     AbilityIndex = 0
     Item = SITRUSBERRY
+	Name = Dario
 Pokemon = TENTACOOL,20
     Moves = WATERPULSE,SUPERSONIC,WRAP,ACID
     AbilityIndex = 1
@@ -270,6 +271,7 @@ Pokemon = FLETCHINDER,20
     Moves = FLAMECHARGE,FLAIL,PECK,QUICKATTACK
     AbilityIndex = 0
     Item = SITRUSBERRY
+	Name = Dario
 Pokemon = TENTACOOL,20
     Moves = WATERPULSE,SUPERSONIC,WRAP,ACID
     AbilityIndex = 1
@@ -1073,23 +1075,23 @@ Pokemon = TYRANTRUM,40
     Moves = STONECHARGE,DRAGONCLAW
 #-------------------------------
 [SAGE,Rennyo]
-Pokemon = GARDEVOIR
+Pokemon = GARDEVOIR, 40
     AbilityIndex = 0 # SYNCHRONIZE
     Moves = LIFEDEW,HELPINGHAND
-Pokemon = XATU
+Pokemon = XATU, 40
     AbilityIndex = 0 # Sentry
     Moves = HEALPULSE,HELPINGHAND
-Pokemon = DELIBIRD
+Pokemon = DELIBIRD, 40
     AbilityIndex = 1 # Holiday Cheer
     Moves = TAILWIND,PACKAGE
 #-------------------------------
 [HARLEQUIN,Vincenzi]
-Pokemon = LEAVANNY
+Pokemon = LEAVANNY, 40
 	AbilityIndex = 0 # Cold Proof
     Moves = STRINGSHOT,LEAFBLADE
-Pokemon = PRIMARINA
+Pokemon = PRIMARINA, 40
     AbilityIndex = 0 # Maestro
     Moves = GROWL,SPARKLINGARIA
-Pokemon = BEWEAR
+Pokemon = BEWEAR, 40
     AbilityIndex = 0 # Fluffy
     Moves = LEER,BODYSLAM
