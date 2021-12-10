@@ -856,12 +856,50 @@ class PokemonPokedexInfo_Scene
 	end
   end
   
+  def getNameForEncounterType(encounterType)
+	case encounterType
+	when :Land
+		return "Thick Grass"
+	when :LandSparse
+		return "Sparse Grass"
+	when :LandTall
+		return "Tall Grass"
+	when :Special
+		return "Other"
+	when :FloweryGrass
+		return "Yellow Flowers"
+	when :FloweryGrass2
+		return "Blue Flowers"
+	when :SewerWater
+		return "Sewage"
+	when :SewerFloor
+		return "Dirty Floor"
+	when :DarkCave
+		return "Dark Ground"
+	when :Mud
+		return "Mud"
+	when :Puddle
+		return "Puddle"
+	when :LandTinted
+		return "Secret Grass"
+	end
+	return "Unknown"
+  end
+  
   def getEncounterableAreas(species)
     areas = []
 	GameData::Encounter.each_of_version($PokemonGlobal.encounter_version) do |enc_data|
-		next if !pbFindEncounter(enc_data.types, species)
-		name = (pbGetMessage(MessageTypes::MapNames,enc_data.map) rescue nil) || "???"
-		areas.push(name)
+		enc_data.types.each do |type,slots|
+		  next if !slots
+		  slots.each	{ |slot|
+			if GameData::Species.get(slot[1]).species == species
+				name = (pbGetMessage(MessageTypes::MapNames,enc_data.map) rescue nil) || "???"
+				name = "#{name} [#{getNameForEncounterType(type)}]"
+				areas.push(name)
+				break
+			end
+		  }
+		end
 	end
 	areas.uniq!
 	return areas
