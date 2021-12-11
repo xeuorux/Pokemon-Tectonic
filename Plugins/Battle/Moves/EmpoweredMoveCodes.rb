@@ -87,6 +87,18 @@ class PokeBattle_Move_605 < PokeBattle_Move_102
 	end
 end
 
+# Empowered Bulk Up
+class PokeBattle_Move_606 < PokeBattle_Move_024
+	include EmpoweredMove
+	
+	def pbEffectGeneral(user)
+		super
+		@battle.pbDisplay(_INTL("{1} gained a massive amount of mass!",user.pbThis))
+		user.effects[PBEffects::WeightChange] += 1000
+		transformType(user,:FIGHTING)
+	end
+end
+
 # Empowered Spikes
 class PokeBattle_Move_607 < PokeBattle_Move_103
 	include EmpoweredMove
@@ -96,6 +108,33 @@ class PokeBattle_Move_607 < PokeBattle_Move_103
 		@battle.pbDisplay(_INTL("3 layers of spikes were scattered all around {1}'s feet!",
 		   user.pbOpposingTeam(true)))
 		transformType(user,:GROUND)
+	end
+end
+
+# Empowered Tailwind
+class PokeBattle_Move_608 < PokeBattle_Move_05B
+  include EmpoweredMove
+
+  def pbEffectGeneral(user)
+    user.pbOwnSide.effects[PBEffects::Tailwind] = 99999
+	@battle.pbDisplay(_INTL("A permanent Tailwind blew from behind {1}!",user.pbTeam(true)))
+	@battle.numBossOnlyTurns += 1
+	@battle.eachSameSideBattler(user) do |b|
+		@battle.pbDisplay(_INTL("{1} gained an extra attack!",user.pbThis))
+	end
+	transformType(user,:FLYING)
+  end
+end
+
+# Empowered Calm Mind
+class PokeBattle_Move_609 < PokeBattle_Move_02C
+	 include EmpoweredMove
+
+	def pbEffectGeneral(user)
+		GameData::Stat.each_battle { |s| user.stages[s.id] = 0 if user.stages[s.id] < 0 }
+		@battle.pbDisplay(_INTL("{1}'s negative stat changes were eliminated!", user.pbThis))
+		super
+		transformType(user,:PSYCHIC)
 	end
 end
 

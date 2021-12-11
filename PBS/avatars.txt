@@ -30,11 +30,11 @@ Ability = FLOWERVEIL
 Moves = AIRSLASH,MAGICALLEAF,ANGELSKISS
 HPMult = 4.5
 #-------------------------------
-[CELEBI]
-Turns = 3
-Ability = STARGUARDIAN
-Moves = FUTURESIGHT,GIGADRAIN,PSYCHIC,GRASSKNOT
-HPMult = 3.5
+[JIRACHI]
+Turns = 2
+Ability = SERENEGRACE
+Moves = DOOMDESIRE,PSYBEAM,LIFEDEW
+HPMult = 5
 #------------------------------
 [YVELTAL]
 Turns = 3
@@ -579,12 +579,6 @@ Ability = INTIMIDATE
 Moves = SHRED,WATERFALL
 HPMult = 4
 #-------------------------------
-[JIRACHI]
-Turns = 2
-Ability = SERENEGRACE
-Moves = DOOMDESIRE,PSYBEAM,LIFEDEW
-HPMult = 5
-#-------------------------------
 [GIRATINA]
 Turns = 3
 Ability = LEVITATE
@@ -660,3 +654,10 @@ Turns = 2
 HPMult = 4
 Ability = STUBBORN
 Moves = FLAMETHROWER,NOBLEROAR
+#-------------------------------
+[CELEBI]
+Turns = 3
+Ability = STARGUARDIAN
+#Moves = FUTURESIGHT,GIGADRAIN,PSYCHIC,GRASSKNOT
+Moves = PSYCHIC,EMPOWEREDBULKUP,EMPOWEREDTAILWIND,EMPOWEREDCALMMIND
+HPMult = 3.5

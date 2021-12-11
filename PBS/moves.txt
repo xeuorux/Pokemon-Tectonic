@@ -967,8 +967,11 @@
 1503,EMPOWEREDLEECHSEED,Empowered Leech Seed,603,0,GRASS,Status,100,1,0,AllNearFoes,0,bce,"Plants seeds on all near foes, draining HP each turn. User becomes Grass-type."
 1504,EMPOWEREDLIGHTNINGDANCE,Empowered Lightning Dance,503,0,ELECTRIC,Status,0,1,0,User,0,do,"The user sharply boosts its Sp. Atk and Speed stats, and becomes Electric-type."
 1505,EMPOWEREDHAIL,Empowered Hail,605,0,ICE,Status,0,1,0,BothSides,0,,"The user summons a hail storm, chills all enemies, and becomes Ice-type."
-1507,EMPOWEREDSPIKES,Empowered Spikes,607,0,GROUND,Status,0,1,0,FoeSide,0,c,"The user lays 3 layers of spike traps at the foe's feet, and becomes a Ground-type.
-1511,EMPOWEREDSANDSTORM,Empowered Sandstorm,611,0,ROCK,Status,0,1,0,BothSides,0,,"Summons a sandstorm, boosts its Def. and Sp. Def, and becomes Rock-type."
+1506,EMPOWEREDBULKUP,Empowered Bulk Up,606,0,FIGHTING,Status,0,1,0,User,0,d,"The user boosts its Attack and Defense, gains a lot of weight, and becomes Fighting-type."
+1507,EMPOWEREDSPIKES,Empowered Spikes,607,0,GROUND,Status,0,1,0,FoeSide,0,c,"The user lays 3 layers of spike traps at the foe's feet, and becomes Ground-type.
+1508,EMPOWEREDTAILWIND,Empowered Tailwind,608,0,FLYING,Status,0,1,0,UserSide,0,d,"The user ups the Speed and attack count of itself and allies, and becomes Flying-type."
+1509,EMPOWEREDCALMMIND,Empowered Calm Mind,609,0,PSYCHIC,Status,0,1,0,User,0,d,"The user resets its negative stat changes, raises its Sp. Atk and Sp. Def, and becomes Psychic-type."
+1511,EMPOWEREDSANDSTORM,Empowered Sandstorm,611,0,ROCK,Status,0,1,0,BothSides,0,,"The user summons a sandstorm, boosts its Def. and Sp. Def, and becomes Rock-type."
 1513,EMPOWEREDDRAGONDANCE,Empowered Dragon Dance,613,0,DRAGON,Status,0,1,0,User,0,do,"The user sharply boosts its Attack and Speed, and becomes Dragon-type."
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."

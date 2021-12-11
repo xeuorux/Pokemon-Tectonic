@@ -222,6 +222,19 @@ class PokeBattle_Battle
       break if @decision>0
       @turnCount += 1
 	  @commandPhasesThisRound = 0
+	  
+	  # Have bosses use empowered moves if appropriate
+	  @battlers.each do |b|
+		next if !b
+		next unless b.boss
+		next unless b.hp < b.totalhp / 2
+		b.eachMoveWithIndex do |move,index|
+			next unless move.isEmpowered?
+			next if move.pp < 1
+			pbDisplayPaused(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
+			b.pbUseMove([:UseMove,index,move,-1,0])
+		end
+	  end
     end
     pbEndOfBattle
   end
