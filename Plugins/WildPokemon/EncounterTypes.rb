@@ -424,7 +424,8 @@ GameData::TerrainTag.register({
   :id                     => :SewerWater,
   :id_number              => 25,
   :land_wild_encounters   => true,
-  :battle_environment     => :MovingWater
+  :battle_environment     => :MovingWater,
+  :can_surf				  => true,
 })
 
 GameData::EncounterType.register({
