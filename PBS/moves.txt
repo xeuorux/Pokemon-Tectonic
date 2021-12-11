@@ -518,7 +518,7 @@
 503,HELPINGHAND,Helping Hand,09C,0,NORMAL,Status,0,20,0,NearAlly,5,,The user assists an ally by boosting the power of its attack.
 504,HOLDHANDS,Hold Hands,133,0,NORMAL,Status,0,40,0,NearAlly,0,,The user and an ally hold hands. This makes them very happy.
 505,HOWL,Howl,530,0,NORMAL,Status,0,40,0,User,0,d,"The user howls loudly to raise the Attack stat of itself and its allies."
-506,LASERFOCUS,Laser Focus,15E,0,NORMAL,Status,0,30,0,User,0,d,The user focuses intensely. The attack on the next turn always results in a critical hit.
+506,LASERFOCUS,Laser Focus,15E,0,STEEL,Status,0,30,0,User,0,d,The user focuses intensely. The attack on the next turn always results in a critical hit.
 507,LEER,Leer,043,0,NORMAL,Status,100,30,0,AllNearFoes,0,bce,The user gains an intimidating leer with sharp eyes. The target's Defense stat is reduced.
 508,LOCKON,Lock-On,0A6,0,NORMAL,Status,0,5,0,NearOther,0,be,"The user takes sure aim at the target. This ensures the next attack does not miss the target."
 509,LOVELYKISS,Lovely Kiss,003,0,NORMAL,Status,75,10,0,NearOther,0,bce,"With a scary face, the user tries to force a kiss on the target. If it suceeds, the target falls asleep."
@@ -971,8 +971,14 @@
 1507,EMPOWEREDSPIKES,Empowered Spikes,607,0,GROUND,Status,0,1,0,FoeSide,0,c,"The user lays 3 layers of spike traps at the foe's feet, and becomes Ground-type.
 1508,EMPOWEREDTAILWIND,Empowered Tailwind,608,0,FLYING,Status,0,1,0,UserSide,0,d,"The user ups the Speed and attack count of itself and allies, and becomes Flying-type."
 1509,EMPOWEREDCALMMIND,Empowered Calm Mind,609,0,PSYCHIC,Status,0,1,0,User,0,d,"The user resets its negative stat changes, raises its Sp. Atk and Sp. Def, and becomes Psychic-type."
+1510,EMPOWEREDSTRINGSHOT,Empowered String Shot,610,0,BUG,Status,100,1,0,AllNearFoes,0,bce,"Nearby foes are bound with silk, sharply lowering their Speed, Atk., and Sp. Atk. User also becomes Bug-type.
 1511,EMPOWEREDSANDSTORM,Empowered Sandstorm,611,0,ROCK,Status,0,1,0,BothSides,0,,"The user summons a sandstorm, boosts its Def. and Sp. Def, and becomes Rock-type."
+1512,EMPOWEREDWILLOWISP,Empowered Will-O-Wisp,612,0,GHOST,Status,100,1,0,AllNearFoes,0,bce,"The user shoots sinister flame at nearby foes, inflict burns. User becomes a Ghost-type."
 1513,EMPOWEREDDRAGONDANCE,Empowered Dragon Dance,613,0,DRAGON,Status,0,1,0,User,0,do,"The user sharply boosts its Attack and Speed, and becomes Dragon-type."
+1514,EMPOWEREDTORMENT,Empowered Torment,614,0,DARK,Status,100,1,0,AllNearFoes,0,bce,"The user torments and enrages the foe, making it incapable of using the same move twice in a row."
+1515,EMPOWEREDLASERFOCUS,Empowered Laser Focus,615,0,STEEL,Status,0,1,0,User,0,d,"The user focuses intently, making every future attack critical. The user becomes a Steel-type."
+1516,EMPOWEREDMOONLIGHT,Empowered Moonlight,616,0,FAIRY,Status,0,1,0,User,0,d,The user restores its own HP. The amount of HP regained varies with the weather.
+1517,EMPOWEREDPOISONGAS,Empowered Poison Gas,617,0,POISON,Status,100,1,0,AllNearFoes,0,bce,"A cloud of poison gas is sprayed at all nearby foes, poisoning them. User becomes a Poison-type."
 # Moves which were previously removed/renamed
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered."
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch."
