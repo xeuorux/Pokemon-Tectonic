@@ -154,7 +154,7 @@
 149,ANGELSKISS,Angel's Kiss,400,0,FAIRY,Status,100,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes charm."
 150,SPIRITBREAK,Spirit Break,045,75,FAIRY,Physical,100,15,100,NearOther,0,abef,Attacks the target and breaks its spirit. Lowers the target's Sp. Atk stat.
 151,DECORATE,Decorate,17B,0,FAIRY,Status,0,15,0,NearAlly,0,,The user sharply raises the target's Attack and Sp. Atk stats by decorating the target.
-152,MISTYEXPLOSION,Misty Explosion,196,120,FAIRY,Special,100,5,0,AllNearFoes,0,bef,Attacks all close enemies and faints. Power is increased by 50% on Misty Terrain.
+152,MISTYEXPLOSION,Misty Explosion,196,150,FAIRY,Special,100,5,0,AllNearFoes,0,bef,Attacks all close enemies and faints. Power is increased by 50% on Misty Terrain.
 153,STRANGESTEAM,Strange Steam,013,90,FAIRY,Special,100,10,20,NearOther,0,bef,The user attacks the target by emitting steam. It has a 20% chance to confuse.
 #-------------------------------,,,,,,,,,,,,,
 154,FOCUSPUNCH,Focus Punch,115,150,FIGHTING,Physical,100,20,0,NearOther,-3,abfj,The user focuses its mind before launching a punch. It will fail if the user is hit before it is used.
