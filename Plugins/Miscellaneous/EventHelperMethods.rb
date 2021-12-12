@@ -29,6 +29,7 @@ def healPartyWithDelay()
 	$Trainer.heal_party
 	pbMEPlay('Pkmn healing')
 	pbWait(68)
+	refillAidKit()
 end
 
 def earnBadge(badgeNum)
