@@ -129,7 +129,7 @@ Pokemon = NICKIT,15
 [LEADER_Lambert,Lambert]
 LoseText = "..."
 Pokemon = PANCHAM,15
-    Moves = ARMTHRUST,TAUNT,LEER,BITE
+    Moves = SMASH,TAUNT,LEER,BITE
     AbilityIndex = 0
 Pokemon = MACHOP,15
     Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
@@ -151,7 +151,7 @@ Pokemon = ZORUA,15
     AbilityIndex = 0
     Item = SITRUSBERRY
 Pokemon = PANCHAM,15
-    Moves = ARMTHRUST,TAUNT,LEER,BITE
+    Moves = SMASH,TAUNT,LEER,BITE
     AbilityIndex = 0
 Pokemon = MACHOP,15
     Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
