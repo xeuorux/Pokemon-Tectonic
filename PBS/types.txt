@@ -124,5 +124,5 @@ Immunities = PSYCHIC
 Name = Fairy
 InternalName = FAIRY
 IsSpecialType = true
-Weaknesses = POISON,STEEL
-Resistances = FIGHTING,BUG,DARK,DRAGON
+Weaknesses = POISON,STEEL,BUG
+Resistances = FIGHTING,DARK,DRAGON

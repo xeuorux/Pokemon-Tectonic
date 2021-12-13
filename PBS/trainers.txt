@@ -53,7 +53,6 @@ LoseText = "..."
 Pokemon = LUVDISC,7
     AbilityIndex = 0
 Pokemon = SEEDOT,8
-    Moves = TACKLE,HARDEN,BRANCHPOKE
     AbilityIndex = 0
 #-------------------------------
 [LASS2,Sienna]
@@ -1037,6 +1036,7 @@ Pokemon = WEAVILE,40
 	AbilityIndex = 1
 Pokemon = LEAFEON,40
 	Item = GRASSGEM
+Pokemon = SHARPEDO,40
 #-------------------------------
 [ROUGHNECK,Randall]
 Pokemon = CROBAT,40
@@ -1049,6 +1049,7 @@ Pokemon = EXCADRILL,40
 Pokemon = SPIRITOMB,40
 	AbilityIndex = 1
 	Item = LEFTOVERS
+Pokemon = MAGMORTAR,40
 #-------------------------------
 [BURGLAR,Keith]
 Pokemon = ROSERADE,40
@@ -1095,3 +1096,37 @@ Pokemon = PRIMARINA, 40
 Pokemon = BEWEAR, 40
     AbilityIndex = 0 # Fluffy
     Moves = LEER,BODYSLAM
+#-------------------------------
+[COOLTRAINER_M2,Georgio]
+Pokemon = SCEPTILE,40
+	AbilityIndex = 0
+Pokemon = MACHAMP,40
+	AbilityIndex = 1
+Pokemon = BISHARP,40
+	AbilityIndex = 0
+Pokemon = BEARTIC,40
+	AbilityIndex = 1
+Pokemon = PELIPPER,40
+	AbilityIndex = 0
+#-------------------------------
+[BOARDER,Georgio]
+Pokemon = MORPEKO,40
+Pokemon = OCTILLERY,40
+	AbilityIndex = 1
+Pokemon = GLACEON,40
+Pokemon = INDEEDEE,40
+	AbilityIndex = 1
+Pokemon = TOXAPEX,40
+	AbilityIndex = 0
+#-------------------------------
+[TWINS2,Bella and Meghan]
+Pokemon = EISCUE,40
+Pokemon = SIGILYPH,40
+	AbilityIndex = 1
+Pokemon = ARAQUANID,40
+	AbilityIndex = 1
+Pokemon = CINCCINO,40
+	AbilityIndex = 1
+Pokemon = AROMATISSE,40
+	AbilityIndex = 1
+Pokemon = STONJOURNER,40

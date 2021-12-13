@@ -3039,7 +3039,7 @@ def getPoisonMoveScore(score,user,target,skill=100,policies=[],status=false)
 end
 
 def getBurnMoveScore(score,user,target,skill=100,policies=[],status=false)
-	if target.pbCanBurn?(user,false)
+	if target && target.pbCanBurn?(user,false)
         score += 30
         if skill>=PBTrainerAI.highSkill
           score -= 40 if target.hasActiveAbility?([:FLAREBOOST].concat(statusUpsideAbilities))

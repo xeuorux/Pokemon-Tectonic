@@ -233,7 +233,7 @@ class BattleInfoDisplay < SpriteWrapper
 		"Unburden",
 		"Uproar Restless",
 		"Water Sport",
-		"Weight Automized",
+		"Weight Added",
 		"Drowzy",
 		"",
 		"",
@@ -263,7 +263,8 @@ class BattleInfoDisplay < SpriteWrapper
 		"Nerve Broken",
 		"Ice Ball",
 		"Roll Out",
-		"Protected By Gargantuan"
+		"Protected By Gargantuan",
+		"Empowered Moonlight"
 	][effectNumber] || ""
   end
   

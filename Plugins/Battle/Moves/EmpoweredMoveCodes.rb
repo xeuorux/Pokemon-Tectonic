@@ -138,6 +138,16 @@ class PokeBattle_Move_609 < PokeBattle_Move_02C
 	end
 end
 
+# Empowered String Shot
+class PokeBattle_Move_610 < PokeBattle_TargetMultiStatDownMove
+	include EmpoweredMove
+
+	def initialize(battle,move)
+		super
+		@statDown = [:SPEED,2,:ATTACK,2,:SPECIAL_ATTACK,2]
+	end
+end
+
 # Empowered Sandstorm
 class PokeBattle_Move_611 < PokeBattle_Move_101
 	include EmpoweredMove
@@ -147,6 +157,20 @@ class PokeBattle_Move_611 < PokeBattle_Move_101
 		user.pbRaiseStatStage(:DEFENSE,1,user)
 		user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
 		transformType(user,:ROCK)
+	end
+end
+
+# Empowered Will-o-Wisp
+class PokeBattle_Move_612 < PokeBattle_Move
+	include EmpoweredMove
+
+	def pbEffectGeneral(user)
+		super
+		@battle.eachOtherSideBattler(user) do |b|
+			next unless b.pbCanBurn?(user,true,self)
+			b.pbBurn(user)
+	    end
+		transformType(user,:GHOST)
 	end
 end
 
@@ -163,4 +187,66 @@ class PokeBattle_Move_613 < PokeBattle_MultiStatUpMove
 		super
 		transformType(user,:DRAGON)
 	end
-end 
+end
+
+# Empowered Torment
+class PokeBattle_Move_614 < PokeBattle_Move_0B7
+	include EmpoweredMove
+	
+	def pbEffectGeneral(user)
+		super
+		transformType(user,:DARK)
+	end
+	
+	def pbEffectAgainstTarget(user,target)
+		target.effects[PBEffects::Torment] = true
+		@battle.pbDisplay(_INTL("{1} was subjected to torment!",target.pbThis))
+		target.pbItemStatusCureCheck
+		target.pbLowerStatStage(:ATTACK,1,user)
+		target.pbLowerStatStage(:SPECIAL_ATTACK,1,user)
+	 end
+end
+
+# Empowered Laser Focus
+class PokeBattle_Move_615 < PokeBattle_Move
+	include EmpoweredMove
+
+	def pbEffectGeneral(user)
+		user.effects[PBEffects::LaserFocus] = 99999
+		@battle.pbDisplay(_INTL("{1} concentrated with extreme intensity!",user.pbThis))
+		transformType(user,:STEEL)
+	end
+end
+
+# Empowered Moonlight
+class PokeBattle_Move_616 < PokeBattle_Move
+	include EmpoweredMove
+	
+	def healingMove?;       return true; end
+	
+	def pbEffectGeneral(user)
+		user.pbRecoverHP((user.totalhp/2.0).round)
+		@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+		
+		user.attack,user.spatk = user.spatk,user.attack
+		@battle.pbDisplay(_INTL("{1} switched its Attack and Sp. Atk!",user.pbThis))
+		
+		user.defense,user.spdef = user.spdef,user.defense
+		@battle.pbDisplay(_INTL("{1} switched its Defense and Sp. Def!",user.pbThis))
+		user.effects[PBEffects::EmpoweredMoonlight] = !user.effects[PBEffects::EmpoweredMoonlight]
+	end
+end
+
+# Empowered Poison Gas
+class PokeBattle_Move_617 < PokeBattle_Move
+	include EmpoweredMove
+
+	def pbEffectGeneral(user)
+		super
+		@battle.eachOtherSideBattler(user) do |b|
+			next unless b.pbCanPoison?(user,true,self)
+			b.pbPoison(user)
+	    end
+		transformType(user,:POISON)
+	end
+end

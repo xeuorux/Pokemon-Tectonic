@@ -32,6 +32,7 @@ module PBEffects
 	IceBall				= 142
 	RollOut				= 143
 	Gargantuan			= 144
+	EmpoweredMoonlight  = 145
 	
 	#===========================================================================
     # These effects apply to the battle (i.e. both sides)
