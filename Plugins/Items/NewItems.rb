@@ -214,7 +214,7 @@ ItemHandlers::ConfirmUseInField.add(:AIDKIT,proc { |item|
 ItemHandlers::UseInField.add(:AIDKIT,proc { |item|
 	if $PokemonGlobal.teamHealerCurrentUses > 0
 		$PokemonGlobal.teamHealerCurrentUses -= 1
-		healAmount = 15 + 5 * $PokemonGlobal.teamHealerUpgrades)
+		healAmount = 15 + 5 * $PokemonGlobal.teamHealerUpgrades
 		pbMessage(_INTL("Healing your entire team by {1}.",healAmount))
 		charges = $PokemonGlobal.teamHealerCurrentUses
 		pbMessage(_INTL("You have {1} #{charges == 1 ? "charge" : "charges"} left.", charges))
