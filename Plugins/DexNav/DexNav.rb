@@ -1,5 +1,12 @@
 class NewDexNav
   def initialize
+	# Load encounter data for the given route
+	encounter_array = getDexNavEncounterDataForMap()
+	if !encounter_array || encounter_array.length == 0
+		pbMessage(_INTL("There are no encounters on this map."))
+		return
+	end
+ 
 	# Set up the two viewports to hold UI elements
     @viewport1 = Viewport.new(0, 0, Graphics.width, Graphics.height)
     @viewport1.z = 99999
@@ -22,13 +29,6 @@ class NewDexNav
     @sprites["nav_arrow"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport3)
     @sprites["nav_arrow"].visible = false
     @sprites["nav_arrow"].play
-
-	# Load encounter data for the given route
-	encounter_array = getEncounterData()
-	if !encounter_array || encounter_array.length == 0
-		pbMessage(_INTL("There are no encounters on this map."))
-		return
-	end
 	
 	# Find which encounter sets the player has yet completed
 	encounterTypesCompleted = {}
@@ -267,8 +267,10 @@ class NewDexNav
     pbFadeInAndShow(@sprites) {pbUpdate}
   end
   
-  def getEncounterData
-    mapid = $game_map.map_id
+end
+
+def getDexNavEncounterDataForMap(mapid = -1)
+    mapid = $game_map.map_id if mapid == -1
     encounters = GameData::Encounter.get(mapid, $PokemonGlobal.encounter_version)
     return nil if encounters == nil
     encounter_tables = Marshal.load(Marshal.dump(encounters.types))
@@ -289,7 +291,6 @@ class NewDexNav
     allEncounters.compact!
     allEncounters.sort!{|a,b| GameData::Species.get(a[1]).id_number <=> GameData::Species.get(b[1]).id_number}
 	return allEncounters
-  end
 end
 
 Events.onStartBattle+=proc {|_sender,e|
