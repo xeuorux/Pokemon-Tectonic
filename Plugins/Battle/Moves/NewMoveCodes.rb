@@ -1566,7 +1566,7 @@ class PokeBattle_Move_549 < PokeBattle_Move
   def pbEffectGeneral(user)
     @battle.eachSameSideBattler(user) do |b|
         next if !b.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,true)
-        b.pbRaiseStatStage(:ATTACK,1,user)
+        b.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
     end
   end
   

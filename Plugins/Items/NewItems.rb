@@ -174,7 +174,8 @@ ItemHandlers::UseInField.add(:EXPEZDISPENSER,proc { |item|
 # TEAM HEALER
 ##################
 
-HEALING_UPGRADE_AMOUNT = 5
+AID_KIT_BASE_HEALING = 25
+HEALING_UPGRADE_AMOUNT = 10
 
 def initializeAidKit()
 	$PokemonGlobal.teamHealerUpgrades 		= 0
@@ -192,7 +193,7 @@ end
 def useAidKit()
 	if $PokemonGlobal.teamHealerCurrentUses > 0
 		$PokemonGlobal.teamHealerCurrentUses -= 1
-		healAmount = 15 + HEALING_UPGRADE_AMOUNT * $PokemonGlobal.teamHealerUpgrades
+		healAmount = AID_KIT_BASE_HEALING + HEALING_UPGRADE_AMOUNT * $PokemonGlobal.teamHealerUpgrades
 		pbMessage(_INTL("Healing your entire team by {1}.",healAmount))
 		charges = $PokemonGlobal.teamHealerCurrentUses
 		pbMessage(_INTL("You have {1} #{charges == 1 ? "charge" : "charges"} left.", charges))
