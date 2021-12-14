@@ -95,14 +95,49 @@ class BattleInfoDisplay < SpriteWrapper
 	end
 	textToDraw.push([battlerName,180,10,0,base,shadow])
 	index = 0
-	[:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED,:ACCURACY,:EVASION].each do |stat|
+	
+	stageMulMainStat = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+	stageDivMainStat = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+	
+	stageMulBattleStat = [3,3,3,3,3,3, 3, 4,5,6,7,8,9]
+    stageDivBattleStat = [9,8,7,6,5,4, 3, 3,3,3,3,3,3]
+	
+	# Stat Stages
+	textToDraw.push(["Stat Stages",24,42,0,base,shadow])
+	
+	statsToNames = {
+	:ATTACK => "Atk",
+	:DEFENSE => "Def",
+	:SPECIAL_ATTACK => "Sp. Atk",
+	:SPECIAL_DEFENSE => "Sp. Def",
+	:SPEED => "Speed",
+	:ACCURACY => "Acc",
+	:EVASION => "Evade"
+	}
+	
+	statsToNames.each do |stat,name|
 		statData = GameData::Stat.get(stat)
-		statName = statData.real_name
 		stage = battler.stages[stat]
-		textToDraw.push([statName,24,50 + 32 * index,0,base,shadow])
-		textToDraw.push([stage.to_s,200,50 + 32 * index,2,base,shadow])
+		stageLabel = stage.to_s
+		stageLabel = "+" + stageLabel if stage > 0
+		y = 90 + 32 * index
+		textToDraw.push([name,24,y,0,base,shadow])
+		textToDraw.push([stageLabel,stage == 0 ? 102 : 96,y,2,base,shadow])
+		
+		if stage != 0
+			#Percentages
+			stageMul = statData.type == :battle ? stageMulBattleStat : stageMulMainStat
+			stageDiv = statData.type == :battle ? stageDivBattleStat : stageDivMainStat
+			adjustedStage = stage + 6
+			mult = stageMul[adjustedStage].to_f/stageDiv[adjustedStage].to_f
+			stageCalcLabel = "(#{mult.round(2)}x)"
+			textToDraw.push([stageCalcLabel,140,y,2,base,shadow])
+		end
 		index += 1
 	end
+	
+	# Effects
+	textToDraw.push(["Effects",240,42,0,base,shadow])
 	
 	index = 0
 	for effect in 0..150
@@ -113,7 +148,7 @@ class BattleInfoDisplay < SpriteWrapper
 		effectName = labelPbEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
-		textToDraw.push([effectName,240,50 + 32 * index,0,base,shadow])
+		textToDraw.push([effectName,240,90 + 32 * index,0,base,shadow])
 		index += 1
 	end
 	
