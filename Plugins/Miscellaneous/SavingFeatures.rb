@@ -1,9 +1,3 @@
-=begin
-module Input
-  SAVE	   = S
-end
-=end
-
 class Game_Temp
 	attr_accessor :save_calling             # save calling flag
 end
@@ -76,65 +70,14 @@ class Scene_Map
   
   def call_save
     $game_temp.save_calling = false
-	if $game_switches[79]
-      pbMessage(_INTL("\\se[]Saving is not allowed in this area.\\wtnp[10]"))
-      return
-    end
     pbSEPlay("GUI save choice")
-    if Game.save
+    if properlySave()
       pbMessage(_INTL("\\se[]{1} saved the game.\\me[GUI save game]",$Trainer.name))
     else
       pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
     end
   end
 end
-
-=begin
-class PokemonSaveScreen
-	def pbSaveScreen
-    ret = false
-	#if $game_switches[79]
-    # pbMessage(_INTL("\\se[]Saving is not allowed in this area.\\wtnp[10]"))
-    # return
-    #end
-    @scene.pbStartScreen
-    if pbConfirmMessage(_INTL('Would you like to save the game?'))
-      if SaveData.exists? && $PokemonTemp.begunNewGame
-        pbMessage(_INTL('WARNING!'))
-        pbMessage(_INTL('There is a different game file that is already saved.'))
-        pbMessage(_INTL("If you save now, the other file's adventure, including items and Pokémon, will be entirely lost."))
-        if !pbConfirmMessageSerious(
-            _INTL('Are you sure you want to save now and overwrite the other save file?'))
-          pbSEPlay('GUI save choice')
-          @scene.pbEndScreen
-          return false
-        end
-      end
-      $PokemonTemp.begunNewGame = false
-      pbSEPlay('GUI save choice')
-      if Game.save
-        pbMessage(_INTL("\\se[]{1} saved the game.\\me[GUI save game]\\wtnp[30]", $Trainer.name))
-        ret = true
-      else
-        pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
-        ret = false
-      end
-    else
-      pbSEPlay('GUI save choice')
-    end
-    @scene.pbEndScreen
-    return ret
-  end
-end
-=end
-
-
-# Removes the "can't save" switch whenever you transfer maps.
-# This switch needs to be set true by an autorun object in whatever maps its meant
-# To be present on
-Events.onMapChange += proc { |_sender,e|
-  $game_switches[79] = false
-}
 
 class PokemonGlobalMetadata
   attr_accessor :autosaveSteps
@@ -149,18 +92,28 @@ Events.onStepTaken += proc {
   end
 }
 
+def properlySave
+	if $storenamefilesave.nil?
+		count = FileSave.count
+		SaveData.changeFILEPATH(FileSave.name(count+1))
+		$storenamefilesave = FileSave.name(count+1)
+	end
+	SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
+	return Game.save
+end
+
 def autoSave
 	return if $PokemonSystem.autosave == 1
-	return if $game_switches[79] # Saving not allowed
-	if !Game.save
+	SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
+	if !properlySave
 		pbMessage(_INTL("\\se[]Auto-save failed.\\wtnp[30]"))
 	else
-		echoln("Auto-save!")
 		x = Graphics.width - 16
 		$game_screen.pictures[1].show("shiny", [0,0], x, 16, 100, 100, 255,0)
 		$game_screen.pictures[1].move(60,[0,0],x,16,100,100,0,0)
 	end
 end
+
 class AutoSaveIcon
 	def initialize
 		viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)

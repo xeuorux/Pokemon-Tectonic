@@ -148,7 +148,6 @@ def pbEmergencySave
 	pbMessage(_INTL("The script is taking too long. The game will restart."))
 	return if !$Trainer
 	# It will store the last save file when you dont file save
-	count = FileSave.count
 	SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
 	if SaveData.exists?
 		File.open(SaveData::FILE_PATH, 'rb') do |r|

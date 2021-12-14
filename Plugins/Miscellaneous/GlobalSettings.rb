@@ -1,4 +1,4 @@
-  GAME_VERSION = "0.2.0"
+  GAME_VERSION = "A1.1.1"
 
   # The maximum level Pokémon can reach.
   MAXIMUM_LEVEL        = 70
