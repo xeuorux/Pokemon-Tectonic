@@ -207,7 +207,11 @@ class PokeBattle_Battle
     priority.each do |b|
       next if !b.effects[PBEffects::Ingrain]
       next if !b.canHeal?
-      hpGain = b.totalhp/16
+	if b.boss?
+		hpGain = b.totalhp/32
+	else
+		hpGain = b.totalhp/8
+	end
       hpGain = (hpGain*1.3).floor if b.hasActiveItem?(:BIGROOT)
       b.pbRecoverHP(hpGain)
       pbDisplay(_INTL("{1} absorbed nutrients with its roots!",b.pbThis))
