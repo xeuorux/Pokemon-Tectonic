@@ -177,23 +177,19 @@ ItemHandlers::UseInField.add(:EXPEZDISPENSER,proc { |item|
 HEALING_UPGRADE_AMOUNT = 5
 
 def initializeAidKit()
-	$PokemonGlobal.teamHealerUpgrades 		= 0 if $PokemonGlobal.teamHealerUpgrades.nil?
-	$PokemonGlobal.teamHealerMaxUses 		= 3 if $PokemonGlobal.teamHealerMaxUses.nil?
-	$PokemonGlobal.teamHealerCurrentUses 	= 3 if $PokemonGlobal.teamHealerCurrentUses.nil?
+	$PokemonGlobal.teamHealerUpgrades 		= 0
+	$PokemonGlobal.teamHealerMaxUses 		= 3
+	$PokemonGlobal.teamHealerCurrentUses 	= 3
 end
 
 def refillAidKit()
 	if $PokemonBag.pbHasItem?(:AIDKIT)
-		fixAidKitForZeuOneTime()
-		
 		$PokemonGlobal.teamHealerCurrentUses = $PokemonGlobal.teamHealerMaxUses
 		pbMessage(_INTL("Your Aid Kit was refreshed to #{$PokemonGlobal.teamHealerCurrentUses} charges."))
 	end
 end
 
 def useAidKit()
-	initializeAidKit()
-
 	if $PokemonGlobal.teamHealerCurrentUses > 0
 		$PokemonGlobal.teamHealerCurrentUses -= 1
 		healAmount = 15 + HEALING_UPGRADE_AMOUNT * $PokemonGlobal.teamHealerUpgrades
@@ -226,8 +222,6 @@ ItemHandlers::UseInField.add(:AIDKIT,proc { |item|
 })
 
 ItemHandlers::UseFromBag.add(:KITEXPANSION,proc { |item|
-	initializeAidKit()
-
 	if !$PokemonBag.pbHasItem?(:AIDKIT)
 		pbMessage(_INTL("You don't have a Aid Kit to upgrade."))
 		next 0
@@ -240,8 +234,6 @@ ItemHandlers::UseFromBag.add(:KITEXPANSION,proc { |item|
 })
 
 ItemHandlers::UseFromBag.add(:MEDICALUPGRADE,proc { |item|
-	initializeAidKit()
-
 	if !$PokemonBag.pbHasItem?(:AIDKIT)
 		pbMessage(_INTL("You don't have a Aid Kit to upgrade."))
 		next 0
