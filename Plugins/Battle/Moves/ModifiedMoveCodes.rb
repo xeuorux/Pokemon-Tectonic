@@ -1152,3 +1152,28 @@ class PokeBattle_Move_10D < PokeBattle_Move
     user.pbItemHPHealCheck
   end
 end
+
+# Aqua Ring
+class PokeBattle_Move_0DA < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+	return false if damagingMove?
+    if user.effects[PBEffects::AquaRing]
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+	return if damagingMove?
+    user.effects[PBEffects::AquaRing] = true
+    @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
+  end
+  
+  def pbEffectAfterAllHits(user,target)
+	return unless damagingMove?
+	return if user.effects[PBEffects::AquaRing]
+    user.effects[PBEffects::AquaRing] = true
+    @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
+  end
+end
