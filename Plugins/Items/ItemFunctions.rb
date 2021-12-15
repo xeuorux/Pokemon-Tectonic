@@ -144,7 +144,7 @@ def pbEXPAdditionItem(pkmn,exp,item,scene)
 	if maximum > 1
 		params = ChooseNumberParams.new
 		params.setRange(0, maximum)
-		params.setDefaultValue(0)
+		params.setDefaultValue(1)
 		question = _INTL("How many {1} do you want to use?", GameData::Item.get(item).name_plural)
 		qty = pbMessageChooseNumber(question, params)
 	else

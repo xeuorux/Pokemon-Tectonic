@@ -317,3 +317,112 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   facewindow.dispose if facewindow
   return ret
 end
+
+class Window_InputNumberPokemon < SpriteWindow_Base
+	def initialize(digits_max,min = nil,max = nil)
+		@digits_max=digits_max
+		@minumum = min
+		@maximum = max
+		@number=0
+		@frame=0
+		@sign=false
+		@negative=false
+		super(0,0,32,32)
+		self.width=digits_max*24+8+self.borderX
+		self.height=32+self.borderY
+		colors=getDefaultTextColors(self.windowskin)
+		@baseColor=colors[0]
+		@shadowColor=colors[1]
+		@index=digits_max-1
+		self.active=true
+		refresh
+	end
+	
+	def update
+		super
+		digits=@digits_max+(@sign ? 1 : 0)
+		refresh if @frame%15==0
+		if self.active
+		  if Input.repeat?(Input::UP) || Input.repeat?(Input::DOWN)
+			if @index==0 && @sign
+			  @negative=!@negative
+			else
+			  place = 10 ** (digits - 1 - @index)
+			  newNumber = @number
+			  n = newNumber / place % 10
+			  newNumber -= n*place
+			  if Input.repeat?(Input::UP)
+				n = (n + 1) % 10
+			  elsif Input.repeat?(Input::DOWN)
+				n = (n + 9) % 10
+			  end
+			  newNumber += n*place
+			  if (@maximum && newNumber > @maximum) || (@minimum && newNumber < @minimum)
+				pbPlayBuzzerSE()
+			  else
+				pbPlayCursorSE()
+				@number = newNumber
+			  end
+			end
+			refresh
+		  elsif Input.repeat?(Input::RIGHT)
+			if digits >= 2
+			  pbPlayCursorSE()
+			  @index = (@index + 1) % digits
+			  @frame=0
+			  refresh
+			end
+		  elsif Input.repeat?(Input::LEFT)
+			if digits >= 2
+			  pbPlayCursorSE()
+			  @index = (@index + digits - 1) % digits
+			  @frame=0
+			  refresh
+			end
+		  end
+		end
+		@frame=(@frame+1)%30
+	end
+end
+
+def pbChooseNumber(msgwindow,params)
+  return 0 if !params
+  ret=0
+  maximum=params.maxNumber
+  minimum=params.minNumber
+  defaultNumber=params.initialNumber
+  cancelNumber=params.cancelNumber
+  cmdwindow=Window_InputNumberPokemon.new(params.maxDigits,minimum,maximum)
+  cmdwindow.z=99999
+  cmdwindow.visible=true
+  cmdwindow.setSkin(params.skin) if params.skin
+  cmdwindow.sign=params.negativesAllowed # must be set before number
+  cmdwindow.number=defaultNumber
+  pbPositionNearMsgWindow(cmdwindow,msgwindow,:right)
+  loop do
+    Graphics.update
+    Input.update
+    pbUpdateSceneMap
+    cmdwindow.update
+    msgwindow.update if msgwindow
+    yield if block_given?
+    if Input.trigger?(Input::USE)
+      ret=cmdwindow.number
+      if ret>maximum
+        pbPlayBuzzerSE()
+      elsif ret<minimum
+        pbPlayBuzzerSE()
+      else
+        pbPlayDecisionSE()
+        break
+      end
+    elsif Input.trigger?(Input::BACK)
+      pbPlayCancelSE()
+      ret=cancelNumber
+      break
+    end
+  end
+  cmdwindow.dispose
+  Input.update
+  return ret
+end
