@@ -140,7 +140,7 @@ class BattleInfoDisplay < SpriteWrapper
 			stageLabel = "#{stageLabel} (#{mult.round(2)}x)"
 		end
 		
-		x = 102
+		x = 106
 		x -= 12 if !stageZero
 		mainColor = @battle.bossBattle? ? bossBase : base
 		textToDraw.push([stageLabel,x,y,0,mainColor,shadow])
@@ -157,6 +157,7 @@ class BattleInfoDisplay < SpriteWrapper
 		next if effectValue.nil? || effectValue == false
 		next if effectValue.is_a?(Integer) && effectValue <= 0
 		next if effect == PBEffects::ProtectRate && effectValue <= 1
+		next if effect == PBEffects::Unburden && !battler.hasActiveAbility?(:UNBURDEN)
 		effectName = labelPbEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
