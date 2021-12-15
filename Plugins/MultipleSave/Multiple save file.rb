@@ -500,7 +500,7 @@ class ScreenChooseFileSave
 	  mapid = file[:map_factory].map.map_id
 	  mapname = pbGetMapNameFromId(mapid)
       mapname.gsub!(/\\PN/,trainer.name)
-      string = _INTL("Save #{namesave+1+i}: #{trainer.name} / #{mapname}")
+      string = _INTL("#{namesave+1+i}: #{trainer.name} / #{mapname}")
       x = 24*2 + 36; y = 16*2 + 5 + 48*i
       textpos<<[string,x,y,0,BaseColor,ShadowColor] 
     }

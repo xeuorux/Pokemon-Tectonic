@@ -85,6 +85,7 @@ class BattleInfoDisplay < SpriteWrapper
   
   def drawIndividualBattlerInfo(battler)
 	base   = Color.new(88,88,80)
+	bossBase = Color.new(50,115,50)
     shadow = Color.new(168,184,184)
 	textToDraw = []
 	
@@ -116,23 +117,34 @@ class BattleInfoDisplay < SpriteWrapper
 	}
 	
 	statsToNames.each do |stat,name|
+		y = 90 + 32 * index
+	
 		statData = GameData::Stat.get(stat)
+		textToDraw.push([name,24,y,0,base,shadow])
+		
 		stage = battler.stages[stat]
+		stageZero = stage == 0
+		if !stageZero && @battle.bossBattle?
+			stage = (stage/2.0).round(1)
+		end
 		stageLabel = stage.to_s
 		stageLabel = "+" + stageLabel if stage > 0
-		y = 90 + 32 * index
-		textToDraw.push([name,24,y,0,base,shadow])
-		textToDraw.push([stageLabel,stage == 0 ? 102 : 96,y,2,base,shadow])
 		
-		if stage != 0
+		if !stageZero
 			#Percentages
 			stageMul = statData.type == :battle ? stageMulBattleStat : stageMulMainStat
 			stageDiv = statData.type == :battle ? stageDivBattleStat : stageDivMainStat
 			adjustedStage = stage + 6
 			mult = stageMul[adjustedStage].to_f/stageDiv[adjustedStage].to_f
-			stageCalcLabel = "(#{mult.round(2)}x)"
-			textToDraw.push([stageCalcLabel,140,y,2,base,shadow])
+			mult = (1+mult)/2.0 if @battle.bossBattle?
+			stageLabel = "#{stageLabel} (#{mult.round(2)}x)"
 		end
+		
+		x = 102
+		x -= 12 if !stageZero
+		mainColor = @battle.bossBattle? ? bossBase : base
+		textToDraw.push([stageLabel,x,y,0,mainColor,shadow])
+		
 		index += 1
 	end
 	
