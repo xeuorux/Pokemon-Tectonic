@@ -105,7 +105,7 @@
     // default value when the game starts.
     // (default: disabled)
     //
-    // "frameSkip": false,
+    "frameSkip": true,
 
 
     // Use a fixed framerate that is approx. equal to the
@@ -184,7 +184,7 @@
                      "x": "JumpUp",
                      "y": "JumpDown",
                      "z": "Special",
-                     "l": "(unused)",
+                     "l": "Quicksave",
                      "r": "(unused)"},
 
 
@@ -210,7 +210,7 @@
     // Set the game window icon to 'path/to/icon.png'
     // (default: none)
     //
-    // "iconPath": "/path/to/icon.png",
+    //"iconPath": "/Graphics/Icons/game_window_icon.png",
 
 
     // Instead of playing an RPG Maker game,
@@ -270,7 +270,7 @@
     // Use the script's name as filename in warnings and error messages
     // (default: enabled)
     //
-    // "useScriptNames": true,
+    "useScriptNames": true,
 
 
     // Font substitutions allow drop-in replacements of fonts
@@ -360,6 +360,6 @@
     // "Game.rgssad", but specifying the executable name here
     // is a tiny bit less intrusive.
     //
-    // "execName": "Game"
+    "execName": "Project Chasm"
 
 }
