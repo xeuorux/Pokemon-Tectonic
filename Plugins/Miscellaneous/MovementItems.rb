@@ -17,7 +17,7 @@ class Game_Character
 		# 4 => 25.6   # 5 frames per tile - running speed (2x walking speed)
 		# 5 => 32     # 4 frames per tile - cycling speed (1.25x running speed)
 		# 6 => 64     # 2 frames per tile
-		self.move_speed_real = (val == 6) ? 64 : (val == 5) ? 32 : (2 ** (val + 1)) * 0.8
+		self.move_speed_real = [3.2,6.4,12.8,25.6,44,64][val-1]
 	  end
 end
 
