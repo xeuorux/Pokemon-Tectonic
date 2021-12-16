@@ -46,6 +46,8 @@ def isQuarantined(species_symbol)
 	return quarantined.include?(species_symbol)
 end
 
+alias isQuarantined? isQuarantined
+
 class PokeBattle_Scene
   #=============================================================================
   # Shows the Pokédex entry screen for a newly caught Pokémon
