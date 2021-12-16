@@ -711,32 +711,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:HONORAURA,
   }
 )
 
-=begin
-BattleHandlers::AbilityOnSwitchIn.add(:GARGANTUAN,
-  proc { |ability,battler,battle|
-    battle.pbShowAbilitySplash(battler)
-    battler.eachAlly do |b|
-	    battle.pbShowAbilitySplash(battler)
-		b.effects[PBEffects::Gargantuan] += 1
-		echoln _INTL("Gargantuan increased, count on {1} is {2}",b.name,b.effects[PBEffects::Gargantuan])
-		next
-		end
-    battle.pbDisplay(_INTL("{1} is immense, blocking spread moves for its allies!",battler.pbThis))
-    battle.pbHideAbilitySplash(battler)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchOut.add(:GARGANTUAN,
-  proc { |ability,battler,endOfBattle,battle=nil|
-    next if endOfBattle
-		battler.eachAlly do |b|
-		b.effects[PBEffects::Gargantuan] -= 1
-		echoln _INTL("Gargantuan reduced, count on {1} is {2}",b.name,b.effects[PBEffects::Gargantuan])
-		next
-		end
-  }
-)
-=end
 BattleHandlers::MoveImmunityAllyAbility.add(:GARGANTUAN,
   proc { |ability,user,target,move,type,battle,ally|
 	condition = false
@@ -777,3 +751,21 @@ BattleHandlers::DamageCalcTargetAbility.add(:FORTIFIED,
 )
 
 
+BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR,:IMPERVIOUS)
+
+BattleHandlers::StatLossImmunityAbility.add(:IMPERVIOUS,
+  proc { |ability,battler,stat,battle,showMessages|
+    next false if stat!=:DEFENSE && stat!=:SPECIAL_DEFENSE
+    if showMessages
+      battle.pbShowAbilitySplash(battler)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1}'s {2} cannot be lowered!",battler.pbThis,GameData::Stat.get(stat).name))
+      else
+        battle.pbDisplay(_INTL("{1}'s {2} prevents {3} loss!",battler.pbThis,
+           battler.abilityName,GameData::Stat.get(stat).name))
+      end
+      battle.pbHideAbilitySplash(battler)
+    end
+    next true
+  }
+)

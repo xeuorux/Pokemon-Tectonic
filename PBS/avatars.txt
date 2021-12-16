@@ -62,7 +62,7 @@ Moves = POISONGAS,ACID
 [TORKOAL]
 Turns = 2
 HPMult = 2
-Ability = SHELLARMOR
+Ability = IMPERVIOUS
 Moves = WILLOWISP,FLAMEBURST
 #-------------------------------
 [MAMOSWINE]
