@@ -738,19 +738,29 @@ class PokemonPokedex_Scene
 	  return nil
   end
   
-  def searchByType()
+	def searchByType()
+	  learningMethodSelection = pbMessage("Full typing?",[_INTL("Full"),_INTL("Just One"),_INTL("Cancel")],3)
+	  return if learningMethodSelection == 2
+	  
+	  full = learningMethodSelection == 0
+	  
 	  while true
-		  typesInput = pbEnterText("Search types...", 0, 100)
+		  typesInput = pbEnterText(full ? "Search types..." : "Search type...", 0, 100)
 		  typesInput.downcase!
 		  if typesInput && typesInput!=""
+			  reversed = typesInput[0] == '-'
+			  typesInput = typesInput[1..-1] if reversed
 			  typesInputArray = typesInput.split(" ")
+			  
+			  # Throw out improper input
+			  if typesInputArray.length > 1 && !full
+				pbMessage(_INTL("Don't input more than one type for \"Just One\" type search. "))
+				next
+			  end
 			  
 			  # Don't do the search if one of the input type names isn't an actual type
 			  invalid = false
-			  typesSearchInfo = {}
 			  typesInputArray.each do |type_input_entry|
-				reversed = type_input_entry[0] == '-'
-			    type_input_entry = type_input_entry[1..-1] if reversed
 				typeIsReal = false
 				GameData::Type.each do |type_data|
 					typeIsReal = true if type_data.real_name.downcase == type_input_entry
@@ -761,9 +771,12 @@ class PokemonPokedex_Scene
 					invalid = true
 					break
 				end
-				typesSearchInfo[type_input_entry] = reversed
 			  end
 			  next if invalid
+			  
+			  if typesInputArray.length == 1
+				typesInputArray = [typesInputArray[0],typesInputArray[0]]
+			  end
 			  
 			  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
 			  dexlist = dexlist.find_all { |item|
@@ -775,15 +788,13 @@ class PokemonPokedex_Scene
 				
 				pokeTypeNames = [searchPokeType1Name,searchPokeType2Name]
 				
-				survivesSearch = true
-				typesSearchInfo.each do |type,reversed|
-					if !reversed
-						survivesSearch = false if !pokeTypeNames.include?(type)
-					else
-						survivesSearch = false if pokeTypeNames.include?(type)
-					end
+				if full
+					survivesSearch = pokeTypeNames.eql?(typesInputArray)
+				else
+					survivesSearch = pokeTypeNames.include?(typesInputArray[0])
 				end
-				next survivesSearch
+				
+				next survivesSearch ^ reversed # Boolean XOR
 			  }
 			  return dexlist
 		  end
@@ -975,58 +986,72 @@ class PokemonPokedex_Scene
 		statSelection = pbMessage("Which stat?",[_INTL("HP"),_INTL("Attack"),_INTL("Defense"),
 			_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Total"),_INTL("Cancel")],8)
 	    return if statSelection == 7 
-		comparisonSelection = pbMessage("Which comparison?",[_INTL("Equal to"),
-			_INTL("Greater than"),_INTL("Less than"),_INTL("Cancel")],4)
-		return if comparisonSelection == 3 
-		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
-		statTextInput = pbEnterText("Input value...", 0, 3)
-		if statTextInput && statTextInput!=""
-			reversed = statTextInput[0] == '-'
-			statTextInput = statTextInput[1..-1] if reversed
-		  
-			statIntAttempt = statTextInput.to_i
-			
-			return nil if statIntAttempt == 0
-			
-			dexlist = dexlist.find_all { |item|
-				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+		comparisonSelection = pbMessage("Which comparison?",[_INTL("Equal to number"),
+			_INTL("Greater than number"),_INTL("Less than number"),_INTL("Equal to stat"),
+			_INTL("Greater than stat"),_INTL("Less than stat"),_INTL("Cancel")],7)
+		return if comparisonSelection == 6 
+		
+		stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+		if comparisonSelection <= 2
+			statTextInput = pbEnterText("Input value...", 0, 3)
+			if statTextInput && statTextInput!=""
+				statIntAttempt = statTextInput.to_i
 				
-				species_data = GameData::Species.get(item[0])
+				return nil if statIntAttempt == 0
 				
-				statToCompare = 0
-				case statSelection
-				when 0
-					statToCompare = species_data.base_stats[:HP]
-				when 1
-					statToCompare = species_data.base_stats[:ATTACK]
-				when 2
-					statToCompare = species_data.base_stats[:DEFENSE]
-				when 3
-					statToCompare = species_data.base_stats[:SPECIAL_ATTACK]
-				when 4
-					statToCompare = species_data.base_stats[:SPECIAL_DEFENSE]
-				when 5
-					statToCompare = species_data.base_stats[:SPEED]
-				when 6
-					species_data.base_stats.each do |s|
-						statToCompare += s[1]
-					end
-				end
-					
-				case comparisonSelection
-				when 0
-					next statToCompare == statIntAttempt
-				when 1
-					next statToCompare > statIntAttempt
-				when 2
-					next statToCompare < statIntAttempt
-				end
-				next false
-			}
+				comparitorB = statIntAttempt
+			else
+				return nil
+			end
+		elsif
+			statSelectionComparison = pbMessage("Compare to which stat?",[_INTL("HP"),_INTL("Attack"),_INTL("Defense"),
+			_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Cancel")],7)
+			return if statSelectionComparison == 6
 			
-			return dexlist
+			comparitorB = stats[statSelectionComparison]
 		end
-		return nil
+		
+		comparitorA = stats[statSelection]
+		
+		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		dexlist = dexlist.find_all { |item|
+			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+			
+			species_data = GameData::Species.get(item[0])
+			
+			statToCompareA = 0
+			case statSelection
+			when 0..5
+				statToCompareA = species_data.base_stats[comparitorA]
+			when 6
+				species_data.base_stats.each do |s|
+					statToCompareA += s[1]
+				end
+			end
+			
+			statToCompareB = 0
+			if comparitorB.is_a?(Symbol)
+				statToCompareB = species_data.base_stats[comparitorB]
+			else
+				statToCompareB = comparitorB
+			end
+						
+			result = false
+			case comparisonSelection % 3
+			when 0
+				result = statToCompareA == statToCompareB
+			when 1
+				result =  statToCompareA > statToCompareB
+			when 2
+				result =  statToCompareA < statToCompareB
+			end
+			
+			echoln("#{statToCompareA} compare to #{statToCompareB}, #{result}")
+			
+			next result
+		}
+		
+		return dexlist
 	end
 	
 	def searchByMisc()
