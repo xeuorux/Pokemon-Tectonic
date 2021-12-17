@@ -259,7 +259,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:REALIST,
 
 BattleHandlers::DamageCalcTargetAbility.add(:TRAPPER,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if user.battle.pbCanSwitch?(user.index)
+    if user.battle.pbIsTrapped?(user.index)
       mults[:final_damage_multiplier] *= 0.75
     end
   }

@@ -14,33 +14,35 @@ class PokeBattle_Battle
          pbParty(idxBattler)[idxParty].name)) if partyScene
       return false
     end
-    # Check whether battler can switch out
-    battler = @battlers[idxBattler]
-    return true if battler.fainted?
-    # Ability/item effects that allow switching no matter what
+    return true if @battlers[idxBattler].fainted?
+    return !pbIsTrapped?(idxBattler,partyScene)
+  end
+  
+  def pbIsTrapped?(idxBattler,partyScene=nil)
+	battler = @battlers[idxBattler]
+	# Ability effects that allow switching no matter what
     if battler.abilityActive?
       if BattleHandlers.triggerCertainSwitchingUserAbility(battler.ability,battler,self)
-        return true
+        return false
       end
     end
+	# Item effects that allow switching no matter what
     if battler.itemActive?
       if BattleHandlers.triggerCertainSwitchingUserItem(battler.item,battler,self)
-        return true
+        return false
       end
     end
-    #return true if Settings::MORE_TYPE_EFFECTS && battler.pbHasType?(:GHOST)
-	
 	# Other certain switching effects
     if battler.effects[PBEffects::OctolockUser]>=0
       partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
-      return false
+      return true
     end
     if battler.effects[PBEffects::Trapping]>0 ||
        battler.effects[PBEffects::MeanLook]>=0 ||
        battler.effects[PBEffects::Ingrain] ||
        @field.effects[PBEffects::FairyLock]>0
       partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
-      return false
+      return true
     end
     # Trapping abilities/items
     eachOtherSideBattler(idxBattler) do |b|
@@ -48,7 +50,7 @@ class PokeBattle_Battle
       if BattleHandlers.triggerTrappingTargetAbility(b.ability,battler,b,self)
         partyScene.pbDisplay(_INTL("{1}'s {2} prevents switching!",
            b.pbThis,b.abilityName)) if partyScene
-        return false
+        return true
       end
     end
     eachOtherSideBattler(idxBattler) do |b|
@@ -56,10 +58,10 @@ class PokeBattle_Battle
       if BattleHandlers.triggerTrappingTargetItem(b.item,battler,b,self)
         partyScene.pbDisplay(_INTL("{1}'s {2} prevents switching!",
            b.pbThis,b.itemName)) if partyScene
-        return false
+        return true
       end
     end
-    return true
+	return false
   end
 
 
