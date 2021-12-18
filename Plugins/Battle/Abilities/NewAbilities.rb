@@ -798,3 +798,36 @@ BattleHandlers::DamageCalcTargetAbility.add(:HEADSTRONG,
     end
   }
 )
+
+BattleHandlers::PriorityChangeAbility.add(:DECEPTIVE,
+  proc { |ability,battler,move,pri|
+    if move.statusMove? && battler.battle.field.terrain == :Misty
+      battler.effects[PBEffects::Prankster] = true
+      next pri+1
+    end
+  }
+)
+
+BattleHandlers::StatusImmunityAbility.add(:FAEVEIL,
+  proc { |ability,battler,status|
+    next true if status == :BURN || status == :POISON
+  }
+)
+
+BattleHandlers::StatusImmunityAllyAbility.add(:FAEVEIL,
+  proc { |ability,battler,status|
+    next true if status == :BURN || status == :POISON
+  }
+)
+
+BattleHandlers::StatusImmunityAbility.add(:CANDYVEIL,
+  proc { |ability,battler,status|
+    next true if status == :SLEEP || status == :CHILL
+  }
+)
+
+BattleHandlers::StatusImmunityAllyAbility.add(:CANDYVEIL,
+  proc { |ability,battler,status|
+    next true if status == :SLEEP || status == :CHILL
+  }
+)

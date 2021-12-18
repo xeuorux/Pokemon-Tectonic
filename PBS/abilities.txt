@@ -361,6 +361,8 @@
 359,TOUGH,Tough,"Ups resistance to Fighting- and Rock-type moves."
 360,QUICKTHINKING,Quick Thinking,"Doubled speed in Psychic Terrain."
 361,HEADSTRONG,Headstrong,"Doubled speed in Psychic Terrain."
+362,CANDYVEIL,Candy Veil,"Prevents itself and allies from falling asleep or being chilled."
+363,FAEVEIL,Fae Veil,"Prevents itself and allies from being poisoned or burned."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
