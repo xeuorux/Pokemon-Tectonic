@@ -450,3 +450,28 @@ BattleHandlers::AbilityOnSwitchOut.add(:REGENERATOR,
     battler.pbRecoverHP(battler.totalhp/3,false,false)
   }
 )
+
+BattleHandlers::EOREffectAbility.add(:MOODY,
+  proc { |ability,battler,battle|
+    randomUp = []
+    randomDown = []
+    GameData::Stat.each_battle do |s|
+		next if s == :EVASION
+		randomUp.push(s.id) if battler.pbCanRaiseStatStage?(s.id, battler)
+		randomDown.push(s.id) if battler.pbCanLowerStatStage?(s.id, battler)
+    end
+    next if randomUp.length==0 && randomDown.length==0
+    battle.pbShowAbilitySplash(battler)
+    if randomUp.length>0
+      r = battle.pbRandom(randomUp.length)
+      battler.pbRaiseStatStageByAbility(randomUp[r],2,battler,false)
+      randomDown.delete(randomUp[r])
+    end
+    if randomDown.length>0
+      r = battle.pbRandom(randomDown.length)
+      battler.pbLowerStatStageByAbility(randomDown[r],1,battler,false)
+    end
+    battle.pbHideAbilitySplash(battler)
+    battler.pbItemStatRestoreCheck if randomDown.length>0
+  }
+)
