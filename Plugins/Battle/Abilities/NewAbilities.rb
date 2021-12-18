@@ -257,6 +257,15 @@ BattleHandlers::DamageCalcTargetAbility.add(:REALIST,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:TOUGH,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if type == :FIGHTING || type == :ROCK
+      mults[:base_damage_multiplier] /= 2
+    end
+  }
+)
+
+
 BattleHandlers::DamageCalcTargetAbility.add(:TRAPPER,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.battle.pbIsTrapped?(user.index)
