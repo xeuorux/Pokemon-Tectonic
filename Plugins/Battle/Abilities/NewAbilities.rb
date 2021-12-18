@@ -784,3 +784,17 @@ BattleHandlers::CriticalCalcUserAbility.add(:HARSH,
     next 99 if target.burned?
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:QUICKTHINKING,
+  proc { |ability,battler,mult|
+    next mult*2 if battler.battle.field.terrain == :Psychic
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:HEADSTRONG,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.field.terrain == :Psychic
+      mults[:defense_multiplier] *= 1.5
+    end
+  }
+)

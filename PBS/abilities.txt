@@ -359,6 +359,8 @@
 357,IMPERVIOUS,Impervious,"Protects from Critical Hits, Def-lowering, and Sp. Def-lowering."
 358,HARSH,Harsh,"Its attacks are critical against burned targets."
 359,TOUGH,Tough,"Ups resistance to Fighting- and Rock-type moves."
+360,QUICKTHINKING,Quick Thinking,"Doubled speed in Psychic Terrain."
+361,HEADSTRONG,Headstrong,"Doubled speed in Psychic Terrain."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
