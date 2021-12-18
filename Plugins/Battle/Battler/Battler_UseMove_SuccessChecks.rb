@@ -402,7 +402,7 @@ class PokeBattle_Battler
 			@battle.successStates[user.index].protected = true
 			return false
 		else
-			@battle.pbDisplay(_INTL("Mat Block was ignored, and failed to protect {1}!",target.pbThis(true))
+			@battle.pbDisplay(_INTL("Mat Block was ignored, and failed to protect {1}!",target.pbThis(true)))
 		end
 	end
 	

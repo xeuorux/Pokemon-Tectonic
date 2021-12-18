@@ -1114,8 +1114,8 @@ class PokemonPokedex_Scene
 	
 	def searchByTypeMatchup()
 		sectionSelection = pbMessage("Which interaction?",[_INTL("Weak To"),_INTL("Resists"),
-			_INTL("Immune To"),_INTL("Cancel")],4)
-	    return if sectionSelection == 3 
+			_INTL("Immune To"),_INTL("Neutral To"),_INTL("Cancel")],5)
+	    return if sectionSelection == 4 
 		
 		while true
 		  typesInput = pbEnterText("Which type(s)?", 0, 100)
@@ -1164,6 +1164,8 @@ class PokemonPokedex_Scene
 						survivesSearch = false if !Effectiveness.not_very_effective?(effect) ^ reversed
 					when 2
 						survivesSearch = false if !Effectiveness.ineffective?(effect) ^ reversed
+					when 3
+						survivesSearch = false if !Effectiveness.normal?(effect) ^ reversed
 					end
 				end
 				next survivesSearch
