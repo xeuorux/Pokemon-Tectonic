@@ -75,7 +75,7 @@
 73,WHITESMOKE,White Smoke,"Prevents other Pokémon from lowering its stats."
 74,PUREPOWER,Pure Power,"Raises the Pokémon's Attack stat by 50%."
 75,SHELLARMOR,Shell Armor,"The Pokémon is protected against critical hits."
-76,AIRLOCK,Air Lock,"Eliminates the effects of weather."
+76,AIRLOCK,Air Lock,"Suppresses the effects of weather."
 77,TANGLEDFEET,Tangled Feet,"Doubles evasion if the Pokémon is confused."
 78,MOTORDRIVE,Motor Drive,"Grants immunity to Electric-type moves and boosts Speed when hit by one."
 79,RIVALRY,Rivalry,"Deals more damage to a foe of the same gender."
@@ -363,6 +363,7 @@
 361,HEADSTRONG,Headstrong,"Doubled speed in Psychic Terrain."
 362,CANDYVEIL,Candy Veil,"Prevents itself and allies from falling asleep or being chilled."
 363,FAEVEIL,Fae Veil,"Prevents itself and allies from being poisoned or burned."
+364,EARTHLOCK,Earth Lock,"Suppresses the effects of terrains."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."

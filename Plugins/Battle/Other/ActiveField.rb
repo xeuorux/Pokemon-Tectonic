@@ -2,7 +2,6 @@ class PokeBattle_ActiveField
     class PokeBattle_ActiveField
     attr_accessor :effects
     attr_accessor :defaultWeather
-    attr_accessor :weather
     attr_accessor :weatherDuration
     attr_accessor :defaultTerrain
     attr_accessor :terrain
@@ -31,5 +30,10 @@ class PokeBattle_ActiveField
       @terrain         = :None
       @terrainDuration = 0
     end
+  end
+  
+  def terrain()
+	eachBattler { |b| return :None if b.hasActiveAbility?([:EARTHLOCK]) }
+	return @terrain
   end
 end

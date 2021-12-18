@@ -831,3 +831,14 @@ BattleHandlers::StatusImmunityAllyAbility.add(:CANDYVEIL,
     next true if status == :SLEEP || status == :CHILL
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:EARTHLOCK,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1} has {2}!",battler.pbThis,battler.abilityName))
+    end
+    battle.pbDisplay(_INTL("The effects of the terrain disappeared."))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
