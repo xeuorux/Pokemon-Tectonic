@@ -124,10 +124,10 @@ BattleHandlers::DamageCalcUserAbility.add(:TEMPERATURE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:SPECIALIST,
+BattleHandlers::DamageCalcUserAbility.add(:EXPERTISE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if Effectiveness.super_effective?(target.damageState.typeMod) && user.pbHasType?(type)
-      mults[:final_damage_multiplier] *= 1.5
+    if Effectiveness.super_effective?(target.damageState.typeMod)
+      mults[:final_damage_multiplier] *= 1.3
     end
   }
 )
