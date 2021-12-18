@@ -475,3 +475,10 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
     battler.pbItemStatRestoreCheck if randomDown.length>0
   }
 )
+BattleHandlers::DamageCalcTargetAbility.add(:GRASSPELT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.field.terrain == :Grassy
+      mults[:defense_multiplier] *= 2.0
+    end
+  }
+)
