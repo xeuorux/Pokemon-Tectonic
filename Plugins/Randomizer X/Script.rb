@@ -478,6 +478,7 @@ def pbBaseStatTotal(species)
   baseStats = GameData::Species.get(species).base_stats
   ret = 0
   baseStats.each { |k,v| ret += v }
+  ret += 200 if species == :SHEDINJA
   return ret
 end
 
