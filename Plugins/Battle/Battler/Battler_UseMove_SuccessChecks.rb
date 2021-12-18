@@ -300,84 +300,112 @@ class PokeBattle_Battler
       return false
     end	
 	######################################################
-    if move.canProtectAgainst?
-      # Quick Guard
-      if target.pbOwnSide.effects[PBEffects::QuickGuard] && !unseenfist &&
-         @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
-        @battle.pbCommonAnimation("QuickGuard",target)
-        @battle.pbDisplay(_INTL("Quick Guard protected {1}!",target.pbThis(true)))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        return false
-      end
-      # Protect
-      if target.effects[PBEffects::Protect] && !unseenfist
-        @battle.pbCommonAnimation("Protect",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        return false
-      end
-	  # Obstruct
-	  if target.effects[PBEffects::Obstruct] && !unseenfist
-        @battle.pbCommonAnimation("Obstruct",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        if move.pbContactMove?(user) && user.affectedByContactEffect?
-          if user.pbCanLowerStatStage?(:DEFENSE)
-            user.pbLowerStatStage(:DEFENSE,2,nil)
-          end
-        end
-        return false
-      end
-      # King's Shield
-      if target.effects[PBEffects::KingsShield] && move.damagingMove? && !unseenfist
-        @battle.pbCommonAnimation("KingsShield",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        if move.pbContactMove?(user) && user.affectedByContactEffect?
-          if user.pbCanLowerStatStage?(:ATTACK)
-            user.pbLowerStatStage(:ATTACK,1,nil)
-          end
-        end
-        return false
-      end
-      # Spiky Shield
-      if target.effects[PBEffects::SpikyShield] && !unseenfist
-        @battle.pbCommonAnimation("SpikyShield",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        if move.pbContactMove?(user) && user.affectedByContactEffect?
-          @battle.scene.pbDamageAnimation(user)
-          user.pbReduceHP(user.totalhp/8,false)
-          @battle.pbDisplay(_INTL("{1} was hurt!",user.pbThis))
-          user.pbItemHPHealCheck
-        end
-        return false
-      end
-      # Baneful Bunker
-      if target.effects[PBEffects::BanefulBunker] && !unseenfist
-        @battle.pbCommonAnimation("BanefulBunker",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        if move.pbContactMove?(user) && user.affectedByContactEffect?
-          user.pbPoison(target) if user.pbCanPoison?(target,false)
-        end
-        return false
-      end
-      # Mat Block
-      if target.pbOwnSide.effects[PBEffects::MatBlock] && move.damagingMove? && !unseenfist
-        # NOTE: Confirmed no common animation for this effect.
-        @battle.pbDisplay(_INTL("{1} was blocked by the kicked-up mat!",move.name))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        return false
-      end
-    end
+	#	Protect Style Moves
+	######################################################
+	# Quick Guard
+	if target.pbOwnSide.effects[PBEffects::QuickGuard] && @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
+		if move.canProtectAgainst? && !unseenfist
+			@battle.pbCommonAnimation("QuickGuard",target)
+			@battle.pbDisplay(_INTL("Quick Guard protected {1}!",target.pbThis(true)))
+			target.damageState.protected = true
+			@battle.successStates[user.index].protected = true
+			return false
+		else
+			@battle.pbDisplay(_INTL("Quick Guard was ignored, and failed to protect {1}!",target.pbThis(true)))
+		end
+	end
+	# Protect
+	if target.effects[PBEffects::Protect]
+		if move.canProtectAgainst? && !unseenfist
+			@battle.pbCommonAnimation("Protect",target)
+			@battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+			target.damageState.protected = true
+			@battle.successStates[user.index].protected = true
+			return false
+		else
+			@battle.pbDisplay(_INTL("{1}'s Protect was ignored!",target.pbThis))
+		end
+	end
+	# Obstruct
+	if target.effects[PBEffects::Obstruct]
+		if move.canProtectAgainst? && !unseenfist
+			@battle.pbCommonAnimation("Obstruct",target)
+			@battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+			target.damageState.protected = true
+			@battle.successStates[user.index].protected = true
+			if move.pbContactMove?(user) && user.affectedByContactEffect?
+			  if user.pbCanLowerStatStage?(:DEFENSE)
+				user.pbLowerStatStage(:DEFENSE,2,nil)
+			  end
+			end
+			return false
+		else
+			@battle.pbDisplay(_INTL("{1}'s Obstruct was ignored!",target.pbThis))
+		end
+	end
+	# King's Shield
+	if target.effects[PBEffects::KingsShield] && move.damagingMove?
+		if move.canProtectAgainst? && !unseenfist
+			@battle.pbCommonAnimation("KingsShield",target)
+			@battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+			target.damageState.protected = true
+			@battle.successStates[user.index].protected = true
+			if move.pbContactMove?(user) && user.affectedByContactEffect?
+			  if user.pbCanLowerStatStage?(:ATTACK)
+				user.pbLowerStatStage(:ATTACK,1,nil)
+			  end
+			end
+			return false
+		else
+			@battle.pbDisplay(_INTL("{1}'s King's Shield was ignored!",target.pbThis))
+		end
+	end
+	# Spiky Shield
+	if target.effects[PBEffects::SpikyShield]
+		if move.canProtectAgainst? && !unseenfist
+			@battle.pbCommonAnimation("SpikyShield",target)
+			@battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+			target.damageState.protected = true
+			@battle.successStates[user.index].protected = true
+			if move.pbContactMove?(user) && user.affectedByContactEffect?
+			  @battle.scene.pbDamageAnimation(user)
+			  user.pbReduceHP(user.totalhp/8,false)
+			  @battle.pbDisplay(_INTL("{1} was hurt!",user.pbThis))
+			  user.pbItemHPHealCheck
+			end
+			return false
+		else
+			@battle.pbDisplay(_INTL("{1}'s Spiky Shield was ignored!",target.pbThis))
+		end
+	end
+	# Baneful Bunker
+	if target.effects[PBEffects::BanefulBunker]
+		if move.canProtectAgainst? && !unseenfist
+			@battle.pbCommonAnimation("BanefulBunker",target)
+			@battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+			target.damageState.protected = true
+			@battle.successStates[user.index].protected = true
+			if move.pbContactMove?(user) && user.affectedByContactEffect?
+			  user.pbPoison(target) if user.pbCanPoison?(target,false)
+			end
+			return false
+		else
+			@battle.pbDisplay(_INTL("{1}'s Baneful Bunker was ignored!",target.pbThis))
+		end
+	end
+	# Mat Block
+	if target.pbOwnSide.effects[PBEffects::MatBlock] && move.damagingMove?
+		if move.canProtectAgainst? && !unseenfist
+			# NOTE: Confirmed no common animation for this effect.
+			@battle.pbDisplay(_INTL("{1} was blocked by the kicked-up mat!",move.name))
+			target.damageState.protected = true
+			@battle.successStates[user.index].protected = true
+			return false
+		else
+			@battle.pbDisplay(_INTL("Mat Block was ignored, and failed to protect {1}!",target.pbThis(true))
+		end
+	end
+	
     # Magic Coat/Magic Bounce
     if move.canMagicCoat? && !target.semiInvulnerable? && target.opposes?(user)
       if target.effects[PBEffects::MagicCoat]
@@ -392,19 +420,6 @@ class PokeBattle_Battler
         return false
       end
     end
-    # Immunity because of ability (intentionally before type immunity check)
-=begin
-	if target.effects[PBEffects::Gargantuan] > 0 && user.index!=target.index && move.pbTarget(user).num_targets >1 &&
-	(Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?) && !@battle.moldBreaker
-		@battle.pbDisplay(_INTL("Gargantuan protected {1}!",target.pbThis(true)))
-		if !user.boss? && !target.boss
-			return false
-		else
-			@battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are partially ignored!"))
-			typeMod /= 2
-		end
-	end
-=end
 	if !user.boss? && !target.boss
 		if move.pbImmunityByAbility(user,target) 
 			return false
