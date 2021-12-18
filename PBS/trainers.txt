@@ -1109,7 +1109,7 @@ Pokemon = BEARTIC,40
 Pokemon = PELIPPER,40
 	AbilityIndex = 0
 #-------------------------------
-[BOARDER,Georgio]
+[BOARDER,Alex]
 Pokemon = MORPEKO,40
 Pokemon = OCTILLERY,40
 	AbilityIndex = 1
