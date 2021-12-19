@@ -469,11 +469,18 @@ def purchaseStarters(type,price=5000)
 	return unless [:GRASS,:FIRE,:WATER].include?(type)
 	typeName = GameData::Type.get(type).real_name
 	
+	token = (type.to_s + "TOKEN").to_sym
+	tokenName = GameData::Item.get(token).real_name
+	
 	pbMessage("Hello, and welcome to the Starters Store!")
 	pbMessage("I'm the #{typeName}-type starters salesperson!")
-	pbMessage("You can buy a #{typeName}-type starter Pokemon from me if you have $#{price}.")
+	pbMessage("You can buy a #{typeName}-type starter Pokemon from me if you have $#{price} and a #{tokenName}.")
 	if $Trainer.money < price
 		pbMessage("I'm sorry, but it seems as though you don't have that much money.")
+		return
+	end
+	if !$PlayerBag.pbHasItem?(token)
+		pbMessage("I'm sorry, but it seems as though you don't have a #{tokenName}.")
 		return
 	end
 	pbMessage("Would you like to buy a #{typeName}-type starter Pokemon?")
@@ -497,8 +504,9 @@ def purchaseStarters(type,price=5000)
 		starterChosenName = starterArray[result]
 		starterSpecies = starterChosenName.upcase.to_sym
 		pbAddPokemon(starterSpecies,10)
-		pbMessage("\PN handed over $#{price} in exchange.")
+		pbMessage("\PN handed over $#{price} and a #{tokenName} in exchange.")
 		$Trainer.money -= price
+		$PlayerBag.pbDeleteItem(token)
 		pbMessage("Thank you for shopping here at the Starters Store!")
 	end
 end
