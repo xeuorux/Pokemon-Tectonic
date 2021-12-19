@@ -465,7 +465,7 @@ def modulateOpacityOverTime(speed)
 	self.set_move_route(new_move_route)
 end
 
-def purchaseStarters(type,price=5000)
+def purchaseStarters(type,price=3000)
 	return unless [:GRASS,:FIRE,:WATER].include?(type)
 	typeName = GameData::Type.get(type).real_name
 	
