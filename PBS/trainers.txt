@@ -66,7 +66,7 @@ Pokemon = PIKIPEK,6
 LoseText = "..."
 Pokemon = GEODUDE,9
     AbilityIndex = 0
-Pokemon = MACHOP,9
+Pokemon = TIMBURR,9
     AbilityIndex = 0
 #-------------------------------
 [GENTLEMAN,Wilfrid]
@@ -178,10 +178,10 @@ Pokemon = JOLTIK,15
 #-------------------------------
 [GUITARIST,Reece]
 LoseText = "..."
-Pokemon = KOFFING,16
+Pokemon = BLITZLE,17
 Pokemon = TOXEL,16
 	Item = SITRUSBERRY
-Pokemon = BLITZLE,17
+Pokemon = GASTLY,16
 #-------------------------------
 [PSYCHIC_M,Uriel]
 LoseText = "..."
@@ -202,13 +202,13 @@ LoseText = "..."
 Pokemon = TYROGUE,17
 	Item = FIGHTINGGEM
 Pokemon = COMBUSKEN,16
-Pokemon = SLUGMA,17
+Pokemon = DARUMAKA,17
 #-------------------------------
 [ARTIST,Evan]
 LoseText = "..."
 Pokemon = SMEARGLE,17
     Moves = SKETCH,HEALPULSE,LIGHTSCREEN,COTTONSPORE
-Pokemon = CUFANT,17
+Pokemon = PARAS,17
 #-------------------------------
 [HIKER2,Jude]
 LoseText = "..."
@@ -352,7 +352,7 @@ Pokemon = DRILBUR,23
 #-------------------------------
 [POKEMANIAC,Travis]
 LoseText = "..."
-Pokemon = ARON,23
+Pokemon = ADIGLETT,23
 Pokemon = BAGON,23
 #-------------------------------
 [POKEKID,Braden]
@@ -413,14 +413,14 @@ LoseText = "..."
 Pokemon = JIGGLYPUFF,25
 Pokemon = YAMASK,26
 	Item = SITRUSBERRY
-Pokemon = BRIONNE,26
+Pokemon = SANDACONDA,26
 #-------------------------------
 [PSYCHIC_F2,Ludmila]
 LoseText = "..."
 Pokemon = MRMIME,25
-Pokemon = DROWZEE,26
+Pokemon = GOLBAT,26
 	Item = ORANBERRY
-Pokemon = MACHOKE,26
+Pokemon = RATICATE,26
 #-------------------------------
 [RANCHER,Billy]
 LoseText = "..."
@@ -603,32 +603,6 @@ Pokemon = LILEEP,25
     AbilityIndex = 1
     Item = LEFTOVERS
 #-------------------------------
-[COOLTRAINER_M,Zeke]
-LoseText = "..."
-Pokemon = BELLOSSOM,25
-    Moves = GIGADRAIN,PUFFBALL,HELPINGHAND,SYNTHESIS
-    AbilityIndex = 0
-    Item = HEATROCK
-Pokemon = CARKOL,25
-    Moves = STEALTHROCK,FLAMECHARGE,ROCKSLIDE,IGNITE
-    AbilityIndex = 0
-    Item = WATMELBERRY
-Pokemon = CHARMELEON,25
-    Moves = FLAMETHROWER,DRAGONPULSE,AIRSLASH,SCORCHINGSANDS
-    AbilityIndex = 1
-    Item = CHOICESCARF
-Pokemon = VANILLISH,25
-    Moves = ICEBEAM,PROTECT,MOONBLAST,SIGNALBEAM
-    AbilityIndex = 1
-Pokemon = TANGROWTH,25
-    Moves = SOLARBLADE,SUMMERDAZE,KNOCKOFF,PROTECT
-    AbilityIndex = 0
-    Item = OCCABERRY
-Pokemon = TROPIUS,25
-    Moves = SUNNYDAY,THRIVINGFORCE,POISONPOWDER,ROOST
-    AbilityIndex = 0
-    Item = SITRUSBERRY
-#-------------------------------
 [COOLTRAINER_F,Priscilla]
 LoseText = "..."
 Pokemon = MISMAGIUS,30
@@ -678,10 +652,10 @@ Pokemon = APPLIN,21
 [KIMONOGIRL,Haera]
 LoseText = "..."
 Pokemon = ROSELIA,24
-Pokemon = LOMBRE,25
-Pokemon = EEVEE,25
 Pokemon = BRIONNE,26
 Pokemon = BUTTERFREE,26
+Pokemon = CUBONE,25
+Pokemon = WARTORTLE,25
 #-------------------------------
 [NURSE,Elliot]
 LoseText = "..."
@@ -689,7 +663,7 @@ Pokemon = CHANSEY,29
 Pokemon = STANTLER,30
 Pokemon = MALAMAR,31
 Pokemon = GOLISOPOD,32
-Pokemon = LAIRON,32
+Pokemon = METANG,32
 #-------------------------------
 [GUITARIST3,Jamie]
 LoseText = "..."
@@ -703,7 +677,7 @@ Pokemon = AVALUGG,37
 LoseText = "..."
 Pokemon = ALCREMIE,44
 Pokemon = ARCANINE,45
-Pokemon = SLURPUFF,45
+Pokemon = FRAXURE,45
 Pokemon = STOUTLAND,46
 Pokemon = VESPIQUEN,47
 #-------------------------------
@@ -818,9 +792,12 @@ Pokemon = MURKROW,25
 Pokemon = FROGADIER,25
 	AbilityIndex = 0
 	Name = Penumbra
-Pokemon = SABLEYE,26
-	AbilityIndex = 0
-	Name = Aeternus
+Pokemon = KINGLER,26
+	AbilityIndex = 1
+	Name = Aegis
+Pokemon = QWILFISH,26
+	AbilityIndex = 1
+	Name = Venenus
 #-------------------------------
 [TRAINER_Lucile,Lucile]
 LoseText = "..."
@@ -883,7 +860,7 @@ Pokemon = YAMPER,27
 #-------------------------------
 [TEACHER,Hilde]
 Pokemon = HATTREM,27
-Pokemon = FURRET,28
+Pokemon = LOUDRED,28
 #-------------------------------
 [POKEMONRANGER_M,Connor]
 Pokemon = DRIFBLIM,28
@@ -896,7 +873,7 @@ Pokemon = GYAMASK,28
 Pokemon = TANGELA,28
 	Item = GRASSGEM
 Pokemon = GOURGEIST,28
-Pokemon = BUTTERFREE,28
+Pokemon = VIKAVOLT,28
 #-------------------------------
 [POKEMONRANGER_F2,Alyssa]
 Pokemon = GROTLE,27
@@ -907,7 +884,7 @@ Pokemon = EKANS,27
 [CAMPER,Christian]
 Pokemon = ORICORIO,28
 	Form = 3
-Pokemon = SKIPLOOM,27
+Pokemon = GLOOM,27
 	Item = ORANBERRY
 Pokemon = QUAGSIRE,28
 #-------------------------------
@@ -937,7 +914,7 @@ Pokemon = GABITE,28
 [HOOPSTER,Jerel]
 Pokemon = VOLTORB,28
 	Item = SITRUSBERRY
-Pokemon = NUZLEAF,27
+Pokemon = ABOMASNOW,28
 Pokemon = NOCTOWL,27
 #-------------------------------
 [LEADER_Rafael,Rafael]
