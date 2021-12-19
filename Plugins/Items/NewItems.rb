@@ -23,10 +23,12 @@ ItemHandlers::UseFromBag.add(:ABRAPORTER,proc { |item|
     pbMessage(_INTL("It can't be used when you have someone with you."))
     next 0
   end
+=begin
   if !GameData::MapMetadata.exists?($game_map.map_id)
     pbMessage(_INTL("Can't use that here."))
-    next 0
+    next false
   end
+=end
   healing = $PokemonGlobal.healingSpot
   healing = GameData::Metadata.get.home if !healing   # Home
   if !healing
@@ -41,10 +43,12 @@ ItemHandlers::ConfirmUseInField.add(:ABRAPORTER,proc { |item|
     pbMessage(_INTL("It can't be used when you have someone with you."))
     next false
   end
+=begin
   if !GameData::MapMetadata.exists?($game_map.map_id)
     pbMessage(_INTL("Can't use that here."))
     next false
   end
+=end
   healing = $PokemonGlobal.healingSpot
   healing = GameData::Metadata.get.home if !healing   # Home
   if !healing
