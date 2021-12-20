@@ -1695,3 +1695,13 @@ class PokeBattle_Move_54E < PokeBattle_MultiStatUpMove
     @statUp = [:ATTACK,1,:DEFENSE,1,:ACCURACY,1]
   end
 end
+
+#===============================================================================
+# Effectiveness against Dragon-type is 2x. (Slay)
+#===============================================================================
+class PokeBattle_Move_54F < PokeBattle_Move
+  def pbCalcTypeModSingle(moveType,defType,user,target)
+    return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :DRAGON
+    return super
+  end
+end
