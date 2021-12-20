@@ -708,4 +708,19 @@ class PokeBattle_Move
 
   def contactMove?; return physicalMove? end
 
+	# NOTE: Flinching caused by a move's effect is applied in that move's code,
+  #       not here.
+  def pbFlinchChance(user,target)
+    return 0 if flinchingMove?
+    return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
+    ret = 0
+    if user.hasActiveAbility?(:STENCH,true)
+      ret = 50
+    elsif user.hasActiveItem?([:KINGSROCK,:RAZORFANG],true)
+      ret = 10
+    end
+    ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
+                user.pbOwnSide.effects[PBEffects::Rainbow]>0
+    return ret
+  end
 end
