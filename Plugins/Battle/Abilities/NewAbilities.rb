@@ -435,6 +435,22 @@ BattleHandlers::AbilityOnSwitchIn.add(:HOLIDAYCHEER,
 #===============================================================================
 # AbilityOnEnemySwitchIn handlers
 #===============================================================================
+
+BattleHandlers::AbilityOnEnemySwitchIn.add(:DETERRANT,
+  proc { |ability,switcher,bearer,battle|
+    PBDebug.log("[Ability triggered] #{bearer.pbThis}'s #{bearer.abilityName}")
+    battle.pbShowAbilitySplash(bearer)
+    if switcher.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+       switcher.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      battle.scene.pbDamageAnimation(user)
+      user.pbReduceHP(user.totalhp/8,false)
+      battle.pbDisplay(_INTL("{1} was attacked on sight!",user.pbThis))
+    end
+    battle.pbHideAbilitySplash(bearer)
+  }
+)
+
+=begin
 BattleHandlers::AbilityOnEnemySwitchIn.add(:PROUDFIRE,
   proc { |ability,switcher,bearer,battle|
     PBDebug.log("[Ability triggered] #{bearer.pbThis}'s #{bearer.abilityName}")
@@ -450,7 +466,7 @@ BattleHandlers::AbilityOnEnemySwitchIn.add(:PROUDFIRE,
   }
 )
 
-BattleHandlers::AbilityOnEnemySwitchIn.add(:QUILLINSTINCT,
+BattleHandlers::AbilityOnEnemySwitchIn.add(:QUILLERINSTINCT,
   proc { |ability,switcher,bearer,battle|
     PBDebug.log("[Ability triggered] #{bearer.pbThis}'s #{bearer.abilityName}")
     battle.pbShowAbilitySplash(bearer)
@@ -464,6 +480,7 @@ BattleHandlers::AbilityOnEnemySwitchIn.add(:QUILLINSTINCT,
     battle.pbHideAbilitySplash(bearer)
   }
 )
+=end
 
 
 #===============================================================================
@@ -840,5 +857,35 @@ BattleHandlers::AbilityOnSwitchIn.add(:EARTHLOCK,
     end
     battle.pbDisplay(_INTL("The effects of the terrain disappeared."))
     battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:TERRITORIAL,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if target.battle.field.terrain != :None
+      mults[:attack_multiplier] *= 1.3
+    end
+  }
+)
+
+BattleHandlers::UserAbilityCalcMoveDamage.add(:ELECTRICFENCE,
+  proc { |ability,user,target,move,battle|
+	echoln target.battle.field.terrain == :Electric
+    next unless target.battle.field.terrain == :Electric
+    battle.pbShowAbilitySplash(target)
+    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      battle.scene.pbDamageAnimation(user)
+      reduce = user.totalhp/8
+	  reduce /= 4 if user.boss
+      user.pbReduceHP(reduce,false)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
+      else
+        battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
+           target.pbThis(true),target.abilityName))
+      end
+    end
+    battle.pbHideAbilitySplash(target)
   }
 )

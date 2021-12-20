@@ -133,3 +133,15 @@ BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
 	end
   }
 )
+
+
+BattleHandlers::TargetAbilityOnHit.add(:QUILLERINSTINCT,
+  proc { |ability,user,target,move,battle|
+    next if user.pbOpposingSide.effects[PBEffects::Spikes] >= 3
+    battle.pbShowAbilitySplash(target)
+    user.pbOpposingSide.effects[PBEffects::Spikes] += 1
+    @battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
+       user.pbOpposingTeam(true)))
+    battle.pbHideAbilitySplash(target)
+  }
+)
