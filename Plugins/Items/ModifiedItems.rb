@@ -336,3 +336,17 @@ ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE,proc { |item,pkmn,scene|
   end
   next false
 })
+
+BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
+  proc { |item,user,targets,move,numHits,battle|
+    next if !user.canHeal?
+    totalDamage = 0
+    targets.each { |b| totalDamage += b.damageState.totalHPLost }
+    next if totalDamage<=0
+	amt = (totalDamage/8.0).round
+	amt = 1 if amt<1
+    user.pbRecoverHP(amt)
+    battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",
+       user.pbThis,user.itemName))
+  }
+)
