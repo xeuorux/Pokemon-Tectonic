@@ -21,7 +21,7 @@
 19,SHIELDDUST,Shield Dust,"Blocks all added effects of attacks taken."
 20,OWNTEMPO,Own Tempo,"Prevents the Pokémon from becoming confused."
 21,SUCTIONCUPS,Suction Cups,"Can't be forced to switch out. Boosts accuracy when hit."
-22,INTIMIDATE,Intimidate,"Lowers the foe's Attack stat."
+22,INTIMIDATE,Intimidate,"Lowers the foe's Attack stat by scaring them."
 23,SHADOWTAG,Shadow Tag,"Prevents the foe from escaping."
 24,ROUGHSKIN,Rough Skin,"Physical moves against it inflict 1/8th max HP damage to the foe."
 25,WONDERGUARD,Wonder Guard,"Only super-effective moves will hit."
@@ -268,7 +268,7 @@
 266,ASONEICE,As One,"Possesses 2 abilities, Unnerve and Chilling Neigh"
 267,ASONEGHOST,As One,"Possesses 2 abilities, Unnerve and Grim Neigh"
 #-------------------------------
-268,FASCINATE,Fascinate,"Lowers the foe's Special Attack stat."
+268,FASCINATE,Fascinate,"Lowers the foe's Special Attack stat by distracting them."
 269,PROUDFIRE,Proudfire,"Enemy Pokémon that switch in become burned."
 270,PALEOLITHIC,Paleolithic,"Powers up Rock-type moves by 50%."
 271,SUBZERO,Sub Zero,"Powers up Ice-type moves by 50%."
@@ -365,10 +365,11 @@
 363,FAEVEIL,Fae Veil,"Prevents itself and allies from being poisoned or burned."
 364,EARTHLOCK,Earth Lock,"Suppresses the effects of terrains."
 365,DECEPTIVE,Deceptive,"Gives priority to status moves in Misty Terrain."
+366,FRUSTRATE,Frustrate,"Lowers the foe's Speed stat by impeding their movements."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
 1003,MAGMAARMOR,Magma Armor,"Prevents the Pokémon from becoming frozen."
 1004,QUEENLYMAJESTY,Queenly Majesty,"Makes foes unable to use priority attacks."
-1005,PUNKROCK,Punk Rock,"Boosts power and resistance of sound moves.",
+1005,PUNKROCK,Punk Rock,"Boosts power and resistance of sound moves."
