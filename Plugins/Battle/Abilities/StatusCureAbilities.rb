@@ -25,7 +25,7 @@ BattleHandlers::StatusCureAbility.add(:LIMBER,
   proc { |ability,battler|
     next if !battler.hasStatusNoTrigger(:SLEEP)
     battler.battle.pbShowAbilitySplash(battler)
-    battler.pbCureStatus(true,:SLEEP)
+    battler.pbCureStatus(true,:PARALYSIS)
     battler.battle.pbHideAbilitySplash(battler)
   }
 )
@@ -113,4 +113,19 @@ BattleHandlers::StatusCureAbility.add(:MENTALBLOCK,
 		battler.battle.pbHideAbilitySplash(battler)
 	end
   }
+)
+
+BattleHandlers::StatusCureAbility.add(:ENERGETIC,
+  proc { |ability,battler|
+	if battler.hasStatusNoTrigger(:CHILL)
+		battler.battle.pbShowAbilitySplash(battler)
+		battler.pbCureStatus(true,:CHILL)
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+	if battler.hasStatusNoTrigger(:PARALYSIS)
+		battler.battle.pbShowAbilitySplash(battler)
+		battler.pbCureStatus(true,:PARALYSIS)
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+  }	
 )

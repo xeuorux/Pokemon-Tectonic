@@ -825,30 +825,6 @@ BattleHandlers::PriorityChangeAbility.add(:DECEPTIVE,
   }
 )
 
-BattleHandlers::StatusImmunityAbility.add(:FAEVEIL,
-  proc { |ability,battler,status|
-    next true if status == :BURN || status == :POISON
-  }
-)
-
-BattleHandlers::StatusImmunityAllyAbility.add(:FAEVEIL,
-  proc { |ability,battler,status|
-    next true if status == :BURN || status == :POISON
-  }
-)
-
-BattleHandlers::StatusImmunityAbility.add(:CANDYVEIL,
-  proc { |ability,battler,status|
-    next true if status == :SLEEP || status == :CHILL
-  }
-)
-
-BattleHandlers::StatusImmunityAllyAbility.add(:CANDYVEIL,
-  proc { |ability,battler,status|
-    next true if status == :SLEEP || status == :CHILL
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:EARTHLOCK,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
@@ -887,5 +863,22 @@ BattleHandlers::UserAbilityCalcMoveDamage.add(:ELECTRICFENCE,
       end
     end
     battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::StatLossImmunityAbility.add(:BIGPECKS,
+  proc { |ability,battler,stat,battle,showMessages|
+    next false if stat!=:DEFENSE
+    if showMessages
+      battle.pbShowAbilitySplash(battler)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1}'s {2} cannot be lowered!",battler.pbThis,GameData::Stat.get(stat).name))
+      else
+        battle.pbDisplay(_INTL("{1}'s {2} prevents {3} loss!",battler.pbThis,
+           battler.abilityName,GameData::Stat.get(stat).name))
+      end
+      battle.pbHideAbilitySplash(battler)
+    end
+    next true
   }
 )

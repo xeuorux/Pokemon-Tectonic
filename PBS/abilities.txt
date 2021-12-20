@@ -368,6 +368,7 @@
 366,FRUSTRATE,Frustrate,"Lowers the foe's Speed stat by impeding their movements."
 367,TERRITORIAL,Territorial,"Boosts damage by 30% if there is a terrain."
 368,DETERRENT,Deterrent,"Enemies which swap in take damage equal to 1/8th their HP."
+369,ENERGETIC,Energetic,"Can't be Chilled, Paralyzed, or have Speed reduced."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
