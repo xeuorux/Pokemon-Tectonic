@@ -789,7 +789,7 @@ class PokemonPokedex_Scene
 				pokeTypeNames = [searchPokeType1Name,searchPokeType2Name]
 				
 				if full
-					survivesSearch = pokeTypeNames.eql?(typesInputArray)
+					survivesSearch = pokeTypeNames.eql?(typesInputArray) || pokeTypeNames.reverse.eql?(typesInputArray)
 				else
 					survivesSearch = pokeTypeNames.include?(typesInputArray[0])
 				end
