@@ -964,7 +964,7 @@
 945,SMIRK,Smirk,046,0,NORMAL,Status,100,30,0,AllNearFoes,0,bce,"The user smirks with confidence. The Sp. Def of nearby enemies is reduced."
 946,STOREFUEL,Store Fuel,54E,0,FIRE,Status,0,20,0,User,0,d,"The user stores its fuel for future attacks. This raises its Sp. Atk, Sp. Def, and accuracy."
 947,REMOVALBEAM,Removal Beam,00C,85,NORMAL,Special,100,15,30,Other,0,befm,"The target is struck by a beam of negative energy. It has a 30% chance to chill."
-948,SLAY,Slay,54F,90,STEEL,Physical,100,15,0,NearOther,0,abefh,"The user slashes at the target with a steel blade. Super-effective versus Dragon-types."
+948,SLAY,Slay,54F,90,STEEL,Physical,100,15,0,NearOther,0,abefhp,"The user slashes at the target with a steel blade. Super-effective versus Dragon-types."
 # Primeval Moves, for use only by avatars
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."
