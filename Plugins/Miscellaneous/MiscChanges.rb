@@ -351,3 +351,13 @@ class Pokemon
 		$Trainer.pokedex.register(self) if $Trainer
 	end
 end
+
+def pbChangePlayer(id)
+  return false if id < 0 || id >= 8
+  meta = GameData::Metadata.get_player(id)
+  return false if !meta
+  $Trainer.character_ID = id
+  $PokemonSystem.gendered_look = id
+  $Trainer.trainer_type = meta[0]
+  $game_player.character_name = meta[1]
+end

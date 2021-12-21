@@ -3,6 +3,7 @@ class PokemonSystem
 	attr_accessor :autosave
 	attr_accessor :particle_effects
 	attr_accessor :skip_fades
+	attr_accessor :gendered_look
 
   def initialize
     @textspeed   = 1     # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
@@ -21,6 +22,7 @@ class PokemonSystem
 	@autosave	 = 1	# Autosave enabled (0=true, 1=false)
 	@particle_effects = 0 # (0=true, 1=false)
 	@skip_fades = 1 # (0=true, 1=false)
+	@gendered_look = 0 # (0 = Masc, 1 = Fem)
   end
 end
 
@@ -101,6 +103,13 @@ class PokemonOption_Scene
          proc { |value| $PokemonSystem.textinput = value }
        )
     ]
+	@PokemonOptions.push(EnumOption.new(_INTL("Look"),[_INTL("Masc."),_INTL("Fem.")],
+         proc { $PokemonSystem.gendered_look },
+         proc { |value|
+			$PokemonSystem.gendered_look = value
+			pbChangePlayer(value)
+         }
+       ))
 	@PokemonOptions.push(EnumOption.new(_INTL("Autosave"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.autosave },
          proc { |value|

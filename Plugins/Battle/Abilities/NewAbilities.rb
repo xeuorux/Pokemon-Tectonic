@@ -703,35 +703,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:EARTHLOCK,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:TERRITORIAL,
-  proc { |ability,user,target,move,mults,baseDmg,type|
-    if target.battle.field.terrain != :None
-      mults[:attack_multiplier] *= 1.3
-    end
-  }
-)
-
-BattleHandlers::UserAbilityCalcMoveDamage.add(:ELECTRICFENCE,
-  proc { |ability,user,target,move,battle|
-	echoln target.battle.field.terrain == :Electric
-    next unless target.battle.field.terrain == :Electric
-    battle.pbShowAbilitySplash(target)
-    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      battle.scene.pbDamageAnimation(user)
-      reduce = user.totalhp/8
-	  reduce /= 4 if user.boss
-      user.pbReduceHP(reduce,false)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
-           target.pbThis(true),target.abilityName))
-      end
-    end
-    battle.pbHideAbilitySplash(target)
-  }
-)
 
 BattleHandlers::StatLossImmunityAbility.add(:BIGPECKS,
   proc { |ability,battler,stat,battle,showMessages|
