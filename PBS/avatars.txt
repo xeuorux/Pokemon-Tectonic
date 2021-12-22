@@ -1,33 +1,28 @@
 #-------------------------------
-[FURRET]
-Turns = 2
-Ability = KLUTZ
-Moves = TACKLE
-HPMult = 2
-DMGMult = 0.8
-#-------------------------------
 [VIGOROTH]
 Turns = 2
-Ability = VITALSPIRIT
+Ability = VITALSPIRIT,PRIMEVALDRAGONDANCE
 Moves = SCRATCH
-HPMult = 1.5
-Item = ORANBERRY
+PostPrimeMoves = CLASH
+HPMult = 2
 ################################
 #  Gym-Locked Avatars
 ################################
 #-------------------------------
 [ZERAORA]
-Turns = 3
+Turns = 2
 Item = LUMBERRY
 Ability = QUICKFEET
-Moves = THUNDERPUNCH,FIREPUNCH
-HPMult = 3
+Moves = THUNDERPUNCH,EMPOWEREDTAILWIND
+PostPrimeMoves = AERIALACE
+HPMult = 5
 #-------------------------------
 [SHAYMIN]
 Turns = 3
 Form = 1
 Ability = FLOWERVEIL
-Moves = AIRSLASH,MAGICALLEAF,ANGELSKISS
+Moves = AIRSLASH,ANGELSKISS,EMPOWEREDHEALBELL
+PostPrimeMoves = WHITERAY
 HPMult = 4.5
 #-------------------------------
 [JIRACHI]
@@ -41,7 +36,8 @@ Turns = 3
 HPMult = 4
 Ability = DARKAURA
 Item = SITRUSBERRY
-Moves = ACROBATICS,OBLIVIONWING,SNARL,LASHOUT
+Moves = OBLIVIONWING,LASHOUT,PRIMEVALHAIL
+PostPrimeMoves = ICEBEAM
 #------------------------------
 [XERNEAS]
 Turns = 3
@@ -130,13 +126,15 @@ HPMult = 5
 [COPPERAJAH]
 Turns = 2
 Ability = FASCINATE
-Moves = HEAVYSLAM,METALCLAW
+Moves = METALCLAW,PRIMEVALWILLOWISP
+PostPrimeMoves = SOULCLAW
 HPMult = 3.5
 #-------------------------------
 [MILOTIC]
 Turns = 1
 Ability = COMPETITIVE
-Moves = BRINE,WATERGUN
+Moves = BRINE,WATERGUN,PRIMEVALLEECHSEED
+PostPrimeMoves = MAGICALLEAF
 HPMult = 5
 #-------------------------------
 [INCINEROAR]
@@ -402,10 +400,11 @@ Item = LIGHTCLAY
 Moves = LIGHTSCREEN,REFLECT,POWERUPPUNCH,XSCISSOR
 #------------------------------
 [VESPIQUEN]
-Turns = 3
-HPMult = 2.5
+Turns = 2
+HPMult = 3
 Ability = UNNERVE
-Moves = ATTACKORDER,DEFENDORDER
+Moves = ATTACKORDER,PRIMEVALSPIKES
+PostPrimeMoves = RUMBLE
 #------------------------------
 [AGOLEM]
 Turns = 2
@@ -495,22 +494,23 @@ Moves = RAZORLEAF,SYNTHESIS
 Turns = 2
 HPMult = 4
 Ability = CHALLENGER
-Moves = CUT,SLASH,SCRATCH
+Moves = CUT,SCRATCH
 Item = MUSCLEBAND
 #-----------------------------
 [WATCHOG]
 Turns = 2
 HPMult = 4
 Ability = PARANOID
-Moves = WHITERAY,BEAM
+Moves = WHITERAY,BEAM,PRIMEVALLIGHTNINGDANCE
+PostPrimeMoves = DISCHARGE
 Item = WISEGLASSES
 #-----------------------------
 [LINOONE]
 Turns = 1
 HPMult = 6
-Item = ORANBERRY
-Ability = GLUTTONY
-Moves = HEADBUTT,COVET
+Ability = SCAVENGE
+Moves = HEADBUTT,COVET,PRIMEVALRAINDANCE
+PostPrimeMoves = SPATTERINGRAM
 #-----------------------------
 [SHUCKLE]
 Turns = 3
@@ -576,7 +576,8 @@ HPMult = 4
 [GYARADOS]
 Turns = 2
 Ability = INTIMIDATE
-Moves = SHRED,WATERFALL
+Moves = WATERFALL,PRIMEVALLASERFOCUS
+PostPrimeMoves = IRONHEAD
 HPMult = 4
 #-------------------------------
 [GIRATINA]
@@ -627,7 +628,8 @@ Moves = FLAMEBURST
 Turns = 2
 HPMult = 3
 Ability = INTIMIDATE
-Moves = BITE,TACKLE
+Moves = BITE,TACKLE,PRIMEVALMOONLIGHT
+PostPrimeMoves = DISARMINGVOICE
 #-----------------------------
 [MINIOR]
 Turns = 2
@@ -636,11 +638,10 @@ Ability = SHIELDSDOWN
 Moves = POWERGEM,GALE
 #-----------------------------
 [CLEFABLE]
-Turns = 2
-HPMult = 1.5
-Ability = BEGUILING
-Moves = METRONOME
-Item = LEPPABERRY
+Turns = 1
+HPMult = 2
+Ability = FRIENDGUARD
+Moves = DAZZLINGGLEAM
 #-----------------------------
 [RHYPERIOR]
 Turns = 1

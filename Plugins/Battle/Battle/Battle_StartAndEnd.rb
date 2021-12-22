@@ -228,11 +228,21 @@ class PokeBattle_Battle
 		next if !b
 		next unless b.boss
 		next unless b.hp < b.totalhp / 2
+		usedEmpoweredMove = false
 		b.eachMoveWithIndex do |move,index|
 			next unless move.isEmpowered?
 			next if move.pp < 1
 			pbDisplayPaused(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
 			b.pbUseMove([:UseMove,index,move,-1,0])
+			usedEmpoweredMove = true
+		end
+		# Swap to post-empowerment moveset
+		if usedEmpoweredMove
+			echoln("Swapping Avatar to Post-Empowering moveset")
+			avatar_data = GameData::Avatar.get(b.species.to_sym)
+			avatar_data.post_prime_moves.each_with_index do |m,i|
+			  b.moves[i] = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(m))
+			end
 		end
 	  end
     end

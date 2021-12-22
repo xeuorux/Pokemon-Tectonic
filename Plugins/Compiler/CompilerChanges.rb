@@ -419,23 +419,28 @@ module Compiler
 				case key
 				when "Moves"
 					if contents["Moves"].length > 4
-						raise _INTL("The moves entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
+						raise _INTL("The Moves entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
+					end
+				when "PostPrimeMoves"
+					if contents["PostPrimeMoves"].length > 4
+						raise _INTL("The Post Prime Moves entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
 					end
 				end
 			end
 			
 			# Construct avatar hash
 			avatar_hash = {
-				:id          => avatar_symbol,
-				:id_number   => avatar_number,
-				:turns		 => contents["Turns"],
-				:form		 => contents["Form"],
-				:moves		 => contents["Moves"],
-				:ability	 => contents["Ability"],
-				:item		 => contents["Item"],
-				:hp_mult	 => contents["HPMult"],
-				:dmg_mult	 => contents["DMGMult"],
-				:size_mult	 => contents["SizeMult"],
+				:id          		=> avatar_symbol,
+				:id_number   		=> avatar_number,
+				:turns		 		=> contents["Turns"],
+				:form		 		=> contents["Form"],
+				:moves		 		=> contents["Moves"],
+				:post_prime_moves	=> contents["PostPrimeMoves"],
+				:ability	 		=> contents["Ability"],
+				:item		 		=> contents["Item"],
+				:hp_mult	 		=> contents["HPMult"],
+				:dmg_mult			=> contents["DMGMult"],
+				:size_mult	 		=> contents["SizeMult"],
 			}
 			avatar_number += 1
 			# Add trainer avatar's data to records
