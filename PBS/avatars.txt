@@ -4,6 +4,13 @@ Ability = VITALSPIRIT,PRIMEVALDRAGONDANCE
 Moves = SCRATCH
 PostPrimeMoves = CLASH
 HPMult = 2
+#-----------------------------
+[BIDOOF]
+Turns = 1
+HPMult = 10
+Ability = KLUTZ
+Moves = BODYSLAM,PRIMEVALCALMMIND
+PostPrimeMoves = ZENHEADBUTT
 ################################
 #  Chamber Avatars
 ################################

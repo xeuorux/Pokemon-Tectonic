@@ -272,7 +272,7 @@
 269,PROUDFIRE,Proudfire,"Enemy Pokémon that switch in become burned."
 270,PALEOLITHIC,Paleolithic,"Powers up Rock-type moves by 50%."
 271,SUBZERO,Sub Zero,"Powers up Ice-type moves by 50%."
-272,PULVERIZE,Pulverize,"Powers up Steel-type moves by 50%."
+272,ADAMANTITE,Adamantite,"Powers up Steel-type moves by 50%."
 273,MIDNIGHTSUN,Midnight Sun,"Powers up Dark-type moves by 50% in sunshine."
 274,AUDACITY,Audacity,"Boosts Sp. Atk by 50% if statused. Ignores poison Sp. Atk reduction."
 275,STOUT,Stout,"Takes no damage from weather, and 20% less damage from attacks during weather."

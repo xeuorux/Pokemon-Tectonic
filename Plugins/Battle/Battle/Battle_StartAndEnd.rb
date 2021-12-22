@@ -243,6 +243,8 @@ class PokeBattle_Battle
 			avatar_data.post_prime_moves.each_with_index do |m,i|
 			  b.moves[i] = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(m))
 			end
+			b.empowered = true
+			@scene.pbRefresh
 		end
 	  end
     end

@@ -1,5 +1,6 @@
 class PokeBattle_Battler
 	attr_accessor :boss
+	attr_accessor :empowered
 	attr_reader :bossStatus
 	attr_reader :bossStatusCount
 	
@@ -17,6 +18,10 @@ class PokeBattle_Battler
 	
 	def boss?
 		return boss
+	end
+	
+	def empowered?
+		return empowered
 	end
 
 	def pbInitBlank
@@ -41,6 +46,7 @@ class PokeBattle_Battler
 		@boss			= false
 		@bossStatus		= :NONE
 		@bossStatusCount = 0
+		@empowered 		= false
 	end
   
   # Used by Future Sight only, when Future Sight's user is no longer in battle.

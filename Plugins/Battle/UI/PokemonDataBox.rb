@@ -111,7 +111,8 @@ class PokemonDataBox < SpriteWrapper
 		nameWidth = self.bitmap.text_size(@battler.name).width
 		nameOffset = 0
 		nameOffset = nameWidth-116 if nameWidth>116
-		textPos.push([@battler.name,@spriteBaseX+8-nameOffset,0,false,NAME_BASE_COLOR,NAME_SHADOW_COLOR])
+		nameColor = @battler.empowered? ? Color.new(20,200, 70) : NAME_BASE_COLOR
+		textPos.push([@battler.name,@spriteBaseX+8-nameOffset,0,false,nameColor,NAME_SHADOW_COLOR])
 		# Draw Pokémon's gender symbol
 		case @battler.displayGender
 		when 0   # Male
