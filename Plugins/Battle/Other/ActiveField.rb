@@ -31,9 +31,4 @@ class PokeBattle_ActiveField
       @terrainDuration = 0
     end
   end
-  
-  def terrain()
-	eachBattler { |b| return :None if b.hasActiveAbility?([:EARTHLOCK]) }
-	return @terrain
-  end
 end
