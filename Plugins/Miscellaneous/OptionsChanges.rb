@@ -109,7 +109,7 @@ class PokemonOption_Scene
 			$PokemonSystem.gendered_look = value
 			pbChangePlayer(value)
          }
-       ))
+       )) if $PokemonGlobal
 	@PokemonOptions.push(EnumOption.new(_INTL("Autosave"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.autosave },
          proc { |value|
