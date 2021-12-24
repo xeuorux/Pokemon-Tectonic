@@ -547,7 +547,7 @@
 532,SAFEGUARD,Safeguard,01A,0,NORMAL,Status,0,25,0,UserSide,0,d,The user creates a protective field that prevents status problems for five turns.
 533,SCARYFACE,Scary Face,04D,0,GHOST,Status,100,10,0,NearOther,0,bce,The user frightens the target with a scary face to harshly reduce its Speed stat.
 534,SCREECH,Screech,04C,0,NORMAL,Status,100,40,0,AllNearFoes,0,bcek,An earsplitting screech harshly reduces the target's Defense stat.
-535,SHARPEN,Sharpen,01C,0,NORMAL,Status,0,30,0,User,0,d,"The user reduces its polygon count to make itself more jagged, raising the Attack stat."
+535,SHARPEN,Sharpen,01C,0,NORMAL,Status,0,30,0,User,0,d,"The user edges become sharper, raising its Attack stat."
 536,SHELLSMASH,Shell Smash,035,0,WATER,Status,0,15,0,User,0,d,"The user breaks its shell, lowering its defenses but sharply raising attacking and Speed stats."
 537,SIMPLEBEAM,Simple Beam,063,0,NORMAL,Status,100,15,0,NearOther,0,bce,The user shoots a mysterious beam that changes the target's Ability to Simple.
 538,SING,Sing,003,0,NORMAL,Status,55,15,0,NearOther,0,bcek,"A soothing lullaby is sung in a calming voice that puts the target into a deep slumber."
