@@ -1,7 +1,7 @@
 [VIGOROTH]
 Turns = 2
-Ability = VITALSPIRIT,PRIMEVALDRAGONDANCE
-Moves = SCRATCH
+Ability = VITALSPIRIT
+Moves = SCRATCH,PRIMEVALDRAGONDANCE
 PostPrimeMoves = CLASH
 HPMult = 2
 #-----------------------------
