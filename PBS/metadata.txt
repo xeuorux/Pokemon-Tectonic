@@ -490,17 +490,20 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
-[140] # Grass Starters
+[140]
+# Grass Starters
 Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
-[141] # Fire Starters
+[141]
+# Fire Starters
 Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
-[142] # Water Starters
+[142]
+# Water Starters
 Outdoor = false
 ShowArea = true
 Bicycle = false
