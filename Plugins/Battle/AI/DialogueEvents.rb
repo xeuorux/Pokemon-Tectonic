@@ -6,6 +6,7 @@ end
 class PokeBattle_AI
 	TrainerChoseMoveDialogue                    = TrainerDialogueHandlerHash.new
 	PlayerChoseMoveDialogue						= TrainerDialogueHandlerHash.new
+	TrainerIsUsingMoveDialogue					= TrainerDialogueHandlerHash.new
 	TrainerPokemonFaintedDialogue				= TrainerDialogueHandlerHash.new
 	PlayerPokemonFaintedDialogue				= TrainerDialogueHandlerHash.new
 	TrainerSendsOutPokemonDialogue				= TrainerDialogueHandlerHash.new
@@ -16,6 +17,7 @@ class PokeBattle_AI
 	PlayerPokemonImmuneDialogue					= TrainerDialogueHandlerHash.new
 	TrainerPokemonDiesToDOTDialogue				= TrainerDialogueHandlerHash.new
 	PlayerPokemonDiesToDOTDialogue				= TrainerDialogueHandlerHash.new
+	TerrainChangeDialogue						= TrainerDialogueHandlerHash.new
 	
 	def self.triggerTrainerChoseMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue_array)
 		ret = TrainerChoseMoveDialogue.trigger(policy,battler,move,target,trainer_speaking,dialogue_array)
@@ -24,6 +26,11 @@ class PokeBattle_AI
 	
 	def self.triggerPlayerChoseMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue_array)
 		ret = PlayerChoseMoveDialogue.trigger(policy,battler,move,target,trainer_speaking,dialogue_array)
+		return (ret!=nil) ? ret : dialogue_array
+	end
+	
+	def self.triggerTrainerIsUsingMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue_array)
+		ret = TrainerIsUsingMoveDialogue.trigger(policy,battler,move,target,trainer_speaking,dialogue_array)
 		return (ret!=nil) ? ret : dialogue_array
 	end
 	
@@ -74,6 +81,11 @@ class PokeBattle_AI
 	
 	def self.triggerPlayerPokemonDiesToDOTDialogue(policy,pokemon,trainer_speaking,dialogue_array)
 		ret = PlayerPokemonDiesToDOTDialogue.trigger(policy,pokemon,trainer_speaking,dialogue_array)
+		return (ret!=nil) ? ret : dialogue_array
+	end
+	
+	def self.triggerTerrainChangeDialogue(policy,old_terrain,new_terrain,trainer_speaking,dialogue_array)
+		ret = TerrainChangeDialogue.trigger(policy,old_terrain,new_terrain,trainer_speaking,dialogue_array)
 		return (ret!=nil) ? ret : dialogue_array
 	end
 end

@@ -154,6 +154,7 @@ class PokeBattle_Battle
 
   def pbStartTerrain(user,newTerrain,fixedDuration=true)
     return if @field.terrain==newTerrain
+	old_terrain = @field.terrain
     @field.terrain = newTerrain
     duration = (fixedDuration) ? 5 : -1
     if duration>0 && user && user.itemActive?
@@ -175,6 +176,13 @@ class PokeBattle_Battle
 	pbHideAbilitySplash(user) if user
     # Check for terrain seeds that boost stats in a terrain
     eachBattler { |b| b.pbItemTerrainStatBoostCheck }
+	
+	# Trigger dialogue for each opponent
+	@opponent.each_with_index do |trainer_speaking,idxTrainer|
+		@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+			PokeBattle_AI.triggerTerrainChangeDialogue(policy,old_terrain,newTerrain,trainer_speaking,dialogue)
+		}
+	end
   end 
   
   def pbChangeField(user,fieldEffect,modifier)

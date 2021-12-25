@@ -654,6 +654,17 @@ class PokeBattle_Move
   end
   
   def pbDisplayUseMessage(user,targets=[])
+	# Trigger dialogue for a trainer about to use a move
+	if @battle.opponent
+		idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(user.index)
+		trainer_speaking = @battle.opponent[idxTrainer] || nil
+		if !trainer_speaking.nil?
+			@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+				PokeBattle_AI.triggerTrainerIsUsingMoveDialogue(policy,user,self,targets,trainer_speaking,dialogue)
+			}
+		end
+	end
+  
 	if isEmpowered?
 		pbMessage(_INTL("\\ts[{3}]{1} used <c2=06644bd2>{2}</c2>!",user.pbThis,@name,MessageConfig.pbGetTextSpeed() + 10))
 	else
