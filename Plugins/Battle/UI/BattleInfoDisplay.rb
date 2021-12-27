@@ -204,7 +204,7 @@ class BattleInfoDisplay < SpriteWrapper
 		"",
 		"Foresight",
 		"Fury Cutter",
-		"Gasto Acid",
+		"Gastro Acid",
 		"",
 		"",
 		"Heal Block",
