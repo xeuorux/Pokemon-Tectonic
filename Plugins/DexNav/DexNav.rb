@@ -259,7 +259,8 @@ class NewDexNav
     @sprites["search"].opacity = 140
     @sprites["searchIcon"] = PokemonSpeciesIconSprite.new(species_data.species,@viewport3)
     @sprites["searchIcon"].x = 450
-    @sprites["searchIcon"].y = 65
+    @sprites["searchIcon"].y = 125
+	@sprites["searchIcon"].z += 100
 
 	Graphics.update
 	$viewport = @viewport3
