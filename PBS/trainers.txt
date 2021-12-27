@@ -147,7 +147,7 @@ Pokemon = RIOLU,15
 [LEADER_Lambert_2,Lambert]
 LoseText = "..."
 Pokemon = ZORUA,15
-    Moves = HARSHWORDS,COUNTER,GRASSKNOT,SWIFT
+    Moves = HARSHWORDS,GRASSKNOT,SWIFT
     AbilityIndex = 0
     Item = SITRUSBERRY
 Pokemon = PANCHAM,15

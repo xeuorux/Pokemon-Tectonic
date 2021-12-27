@@ -12,7 +12,8 @@ PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:RAIKOU,:THUNDERWAVE],
 PokeBattle_AI::BossDecidedOnMove.add(:RAIKOU,
 	proc { |species,move,user,target|
 		if move.id == :THUNDERWAVE
-			user.battle.pbDisplay(_INTL("The avatar of Raikou feels rivalled by #{target.name}'s speed!"))
+			battler = user.battle.battlers[target]
+			user.battle.pbDisplay(_INTL("The avatar of Raikou feels rivalled by #{battler.name}'s speed!"))
 		end
 	}
 )
