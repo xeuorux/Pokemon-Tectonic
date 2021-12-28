@@ -124,7 +124,7 @@ class BattleInfoDisplay < SpriteWrapper
 		
 		stage = battler.stages[stat]
 		stageZero = stage == 0
-		if !stageZero && @battle.bossBattle?
+		if !stageZero && battler.boss?
 			stage = (stage/2.0).round(1)
 		end
 		stageLabel = stage.to_s
@@ -136,7 +136,7 @@ class BattleInfoDisplay < SpriteWrapper
 			stageDiv = statData.type == :battle ? stageDivBattleStat : stageDivMainStat
 			adjustedStage = stage + 6
 			mult = stageMul[adjustedStage].to_f/stageDiv[adjustedStage].to_f
-			mult = (1+mult)/2.0 if @battle.bossBattle?
+			mult = (1+mult)/2.0 if battler.boss?
 			stageLabel = "#{stageLabel} (#{mult.round(2)}x)"
 		end
 		

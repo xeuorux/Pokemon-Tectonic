@@ -285,7 +285,7 @@ class PokeBattle_Move
     if !target.hasActiveAbility?(:UNAWARE) || @battle.moldBreaker
       atkStage = 6 if target.damageState.critical && atkStage<6
 	  calc = stageMul[atkStage].to_f/stageDiv[atkStage].to_f
-	  calc = (calc.to_f + 1.0)/2.0 if user.boss
+	  calc = (calc.to_f + 1.0)/2.0 if user.boss?
       atk = (atk.to_f*calc).floor
     end
     # Calculate target's defense stat
@@ -294,7 +294,7 @@ class PokeBattle_Move
       defStage = 6 if target.damageState.critical && defStage>6
 	  defStage = 6 if user.hasActiveAbility?(:INFILTRATOR) && defStage>6
 	  calc = stageMul[defStage].to_f/stageDiv[defStage].to_f
-	  calc = (calc.to_f + 1.0)/2.0 if target.boss
+	  calc = (calc.to_f + 1.0)/2.0 if target.boss?
       defense = (defense.to_f*calc).floor
     end
     # Calculate all multiplier effects
@@ -571,11 +571,12 @@ class PokeBattle_Move
     end
 	
 	# Break Through
-	if user.hasActiveAbility?(:BREAKTHROUGH)
-		ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
+	if user.hasActiveAbility?(:BREAKTHROUGH) &&
+			Effectiveness.ineffective_type?(moveType, defType)
+		ret = Effectiveness::NORMAL_EFFECTIVE_ONE
 	end
 	
-	if (target.boss? || user.boss?) && ret == 0
+	if @battle.bossBattle? && ret == 0
 		ret = 0.5
 		@battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!"))
 	end
@@ -607,7 +608,7 @@ class PokeBattle_Move
     typeMods.each { |m| ret *= m }
 	
 	# Late boss specific immunity abilities check
-	if user.boss? || target.boss?
+	if @battle.bossBattle?
 		if pbImmunityByAbility(user,target) 
 			@battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
 			ret /= 2
@@ -643,13 +644,16 @@ class PokeBattle_Move
     accuracy = 100.0 * stageMul[accStage].to_f / stageDiv[accStage].to_f
     evasion  = 100.0 * stageMul[evaStage].to_f / stageDiv[evaStage].to_f
     accuracy = (accuracy.to_f * modifiers[:accuracy_multiplier].to_f).round
+	if user.boss?
+      accuracy = (accuracy.to_f + 1.0) / 2.0
+    end
     evasion  = (evasion.to_f  * modifiers[:evasion_multiplier].to_f).round
+	if target.boss?
+      evasion = (evasion.to_f + 1.0) / 2.0
+    end
     evasion = 1 if evasion < 1
     # Calculation
 	calc = accuracy.to_f / evasion.to_f
-    if user.boss || target.boss
-      calc = (calc.to_f + 1.0) / 2.0
-    end
     return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
   end
   
