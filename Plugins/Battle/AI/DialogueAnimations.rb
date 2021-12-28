@@ -21,7 +21,11 @@ class PokeBattle_Scene
 	dialogue = []
 	policies = @battle.opponent[idxTrainer].policies
 	policies.each do |policy|
-		dialogue = block.call(policy,dialogue)
+		begin
+			dialogue = block.call(policy,dialogue)
+		rescue
+			pbMessage(_INTL("An error was encountered while trying to check for trainer dialogue."))
+		end
 	end
 	
 	# Error state
