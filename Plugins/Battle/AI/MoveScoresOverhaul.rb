@@ -1423,7 +1423,7 @@ class PokeBattle_AI
       if target.effects[PBEffects::HyperBeam]>0
         score = 0
       else
-        if target.lastMoveUsed && (user.hp/user.totalhp > .5)
+        if target.lastMoveUsed && (user.hp/user.totalhp > 0.5)
           moveData = GameData::Move.get(target.lastMoveUsed)
           score += 100 if moveData.physical?
 		else
@@ -1435,7 +1435,7 @@ class PokeBattle_AI
       if target.effects[PBEffects::HyperBeam]>0
         score = 0
       else
-        if target.lastMoveUsed && (user.hp/user.totalhp > .5)
+        if target.lastMoveUsed && (user.hp/user.totalhp > 0.5)
           moveData = GameData::Move.get(target.lastMoveUsed)
           score += 100 if moveData.special?
 		else
