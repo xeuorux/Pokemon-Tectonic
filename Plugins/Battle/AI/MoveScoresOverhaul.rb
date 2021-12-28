@@ -1421,30 +1421,26 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "071"
       if target.effects[PBEffects::HyperBeam]>0
-        score -= 90
+        score = 0
       else
-        attack = pbRoughStat(user,:ATTACK,skill)
-        spatk  = pbRoughStat(user,:SPECIAL_ATTACK,skill)
-        if attack*1.5<spatk
-          score -= 60
-        elsif skill>=PBTrainerAI.mediumSkill && target.lastMoveUsed
+        if target.lastMoveUsed && (user.hp/user.totalhp > .5)
           moveData = GameData::Move.get(target.lastMoveUsed)
-          score += 60 if moveData.physical?
-        end
+          score += 100 if moveData.physical?
+		else
+		  score = 0
+		end
       end
     #---------------------------------------------------------------------------
     when "072"
       if target.effects[PBEffects::HyperBeam]>0
-        score -= 90
+        score = 0
       else
-        attack = pbRoughStat(user,:ATTACK,skill)
-        spatk  = pbRoughStat(user,:SPECIAL_ATTACK,skill)
-        if attack>spatk*1.5
-          score -= 60
-        elsif skill>=PBTrainerAI.mediumSkill && target.lastMoveUsed
+        if target.lastMoveUsed && (user.hp/user.totalhp > .5)
           moveData = GameData::Move.get(target.lastMoveUsed)
-          score += 60 if moveData.special?
-        end
+          score += 100 if moveData.special?
+		else
+		  score = 0
+		end
       end
     #---------------------------------------------------------------------------
     when "073"
