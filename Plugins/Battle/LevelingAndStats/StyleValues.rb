@@ -123,10 +123,19 @@ class StyleValueScene
 	textpos.push([_INTL("Reset"),resetX,resetY,1,base,shadow])
 	
 	# Place the style value pool
-	poolXLeft = 300
+	poolXLeft = 240
 	textpos.concat([
-		[_INTL("Pool"),poolXLeft,280,1,base,shadow],
-		[sprintf("%d",@pool),poolXLeft,320,1,Color.new(64,64,64),Color.new(176,176,176)]
+		[_INTL("Pool"),poolXLeft,280,0,base,shadow],
+		[sprintf("%d",@pool),poolXLeft,320,0,Color.new(64,64,64),Color.new(176,176,176)]
+	])
+	
+	# Place the style name
+	styleXLeft = 340
+	styleName = "Balanced"
+	styleName = getStyleName(@pokemon.ev)
+	textpos.concat([
+		[_INTL("Style"),styleXLeft,280,0,base,shadow],
+		[styleName,styleXLeft,320,0,Color.new(64,64,64),Color.new(176,176,176)]
 	])
 	
 	# Draw all the previously placed texts
@@ -145,6 +154,72 @@ class StyleValueScene
     pbFadeOutAndHide(@sprites) { pbUpdate }
     pbDisposeSpriteHash(@sprites)
     # DISPOSE OF BITMAPS HERE #
+  end
+  
+  def getStyleName(evs)
+	stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+	largeStats = []
+	stats.each do |stat|
+		largeStats.push(stat) if evs[stat] >= 17
+	end
+	echoln(largeStats.to_s)
+	largeStats = largeStats.sort_by { |a| evs[a]}
+	largeStats.pop() if largeStats.length > 2
+	largeStats = largeStats.sort_by { |a| stats.find_index(a) }
+	echoln(largeStats.to_s)
+	if largeStats.length == 1
+		case largeStats[0]
+		when :HP
+			return "Stocky"
+		when :ATTACK
+			return "Aggressive"
+		when :DEFENSE
+			return "Defensive"
+		when :SPECIAL_ATTACK
+			return "Cunning"
+		when :SPECIAL_DEFENSE
+			return "Suspicious"
+		when :SPEED
+			return "Quick"
+		end
+	elsif largeStats.length == 2
+		case largeStats
+		when [:HP,:ATTACK]
+			return "Blunt"
+		when [:HP,:DEFENSE]
+			return "Armored"
+		when [:HP,:SPECIAL_ATTACK]
+			return "Attuned"
+		when [:HP,:SPECIAL_DEFENSE]
+			return "Fortified"
+		when [:HP,:SPEED]
+			return "Unyielding"
+		when [:ATTACK,:DEFENSE]
+			return "Bulky"
+		when [:ATTACK,:SPECIAL_ATTACK]
+			return "Mixed"
+		when [:ATTACK,:SPECIAL_DEFENSE]
+			return "Flowing"
+		when [:ATTACK,:SPEED]
+			return "Hunting"
+		when [:DEFENSE,:SPECIAL_ATTACK]
+			return "Vanguard"
+		when [:DEFENSE,:SPECIAL_DEFENSE]
+			return "Prepared"
+		when [:DEFENSE,:SPEED]
+			return "Steady"
+		when [:SPECIAL_ATTACK,:SPECIAL_DEFENSE]
+			return "Calm"
+		when [:SPECIAL_ATTACK,:SPEED]
+			return "Striking"
+		when [:SPECIAL_DEFENSE,:SPEED]
+			return "Spirited"
+		end
+	elsif largeStats.length >= 3
+		echoln("This shouldn't be possible.")
+	end
+	
+	return "Balanced"
   end
 end
 
