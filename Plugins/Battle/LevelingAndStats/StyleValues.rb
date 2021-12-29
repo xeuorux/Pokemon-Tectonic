@@ -160,10 +160,10 @@ class StyleValueScene
 	stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
 	largeStats = []
 	stats.each do |stat|
-		largeStats.push(stat) if evs[stat] >= 17
+		largeStats.push(stat) if evs[stat] >= 13
 	end
 	largeStats = largeStats.sort_by { |a| evs[a]}
-	largeStats.pop() if largeStats.length > 2
+	largeStats.pop() if largeStats.length > 3
 	largeStats = largeStats.sort_by { |a| stats.find_index(a) }
 	if largeStats.length == 1
 		case largeStats[0]
@@ -183,19 +183,19 @@ class StyleValueScene
 	elsif largeStats.length == 2
 		case largeStats
 		when [:HP,:ATTACK]
-			return "Blunt"
+			return "Brutish"
 		when [:HP,:DEFENSE]
 			return "Armored"
 		when [:HP,:SPECIAL_ATTACK]
 			return "Attuned"
 		when [:HP,:SPECIAL_DEFENSE]
-			return "Fortified"
+			return "Guarded"
 		when [:HP,:SPEED]
 			return "Unyielding"
 		when [:ATTACK,:DEFENSE]
 			return "Bulky"
 		when [:ATTACK,:SPECIAL_ATTACK]
-			return "Mixed"
+			return "Variable"
 		when [:ATTACK,:SPECIAL_DEFENSE]
 			return "Flowing"
 		when [:ATTACK,:SPEED]
@@ -213,7 +213,50 @@ class StyleValueScene
 		when [:SPECIAL_DEFENSE,:SPEED]
 			return "Spirited"
 		end
-	elsif largeStats.length >= 3
+	elsif largeStats.length == 3
+		case largeStats
+		when [:HP,:ATTACK,:DEFENSE]
+			return "Blunt"
+		when [:HP,:ATTACK,:SPECIAL_ATTACK]
+			return "Forceful"
+		when [:HP,:ATTACK,:SPECIAL_DEFENSE]
+			return "Smooth"
+		when [:HP,:ATTACK,:SPEED]
+			return "Blitzing"
+		when [:HP,:DEFENSE,:SPECIAL_ATTACK]
+			return "Fortified"
+		when [:HP,:DEFENSE,:SPECIAL_DEFENSE]
+			return "Precautionary"
+		when [:HP,:DEFENSE,:SPEED]
+			return "Carefree"
+		when [:HP,:SPECIAL_DEFENSE,:SPEED]
+			return "Crafty"
+		when [:HP,:SPECIAL_ATTACK,:SPECIAL_DEFENSE]
+			return "Serene"
+		when [:HP,:SPECIAL_ATTACK,:SPEED]
+			return "Energetic"
+		when [:ATTACK,:DEFENSE,:SPECIAL_ATTACK]
+			return "Deliberate"
+		when [:ATTACK,:DEFENSE,:SPECIAL_DEFENSE]
+			return "Patient"
+		when [:ATTACK,:DEFENSE,:SPEED]
+			return "Flanking"
+		when [:ATTACK,:SPECIAL_ATTACK,:SPECIAL_DEFENSE]
+			return "Strategic"
+		when [:ATTACK,:SPECIAL_ATTACK,:SPEED]
+			return "Opportunistic"
+		when [:ATTACK,:SPECIAL_DEFENSE,:SPEED]
+			return "Determined"
+		when [:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE]
+			return "Calculating"
+		when [:DEFENSE,:SPECIAL_ATTACK,:SPEED]
+			return "Tactical"
+		when [:DEFENSE,:SPECIAL_DEFENSE,:SPEED]
+			return "Protective"
+		when [:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+			return "Elegant"
+		end
+	elsif largeStats.length >= 4
 		echoln("This shouldn't be possible.")
 	end
 	
