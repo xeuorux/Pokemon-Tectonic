@@ -162,11 +162,9 @@ class StyleValueScene
 	stats.each do |stat|
 		largeStats.push(stat) if evs[stat] >= 17
 	end
-	echoln(largeStats.to_s)
 	largeStats = largeStats.sort_by { |a| evs[a]}
 	largeStats.pop() if largeStats.length > 2
 	largeStats = largeStats.sort_by { |a| stats.find_index(a) }
-	echoln(largeStats.to_s)
 	if largeStats.length == 1
 		case largeStats[0]
 		when :HP

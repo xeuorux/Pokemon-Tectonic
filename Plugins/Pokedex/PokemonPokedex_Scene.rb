@@ -354,11 +354,11 @@ class PokemonPokedex_Scene
 		  # Display investigation
 		  
 		  echoln("Investigation of the currently displayed dexlist:")
+		  echoln("Type,Count,PercentOfCurrentList,PercentageTypeCompletion")
 		  typesCount.each do |type,count|
 			percentOfThisList = ((count.to_f/total.to_f) * 10000).floor / 100.0
 			percentOfTypeIsInThisMap = ((count.to_f/wholeGameTypesCount[type].to_f) * 10000).floor / 100.0
-			echoln("#{type}-types")
-			echoln("Total: #{count},Percent of list: #{percentOfThisList}, Percent of all: #{percentOfTypeIsInThisMap}")
+			echoln("#{type},#{count},#{percentOfThisList},#{percentOfTypeIsInThisMap}")
 		  end
 		end
       end
@@ -1045,8 +1045,6 @@ class PokemonPokedex_Scene
 			when 2
 				result =  statToCompareA < statToCompareB
 			end
-			
-			echoln("#{statToCompareA} compare to #{statToCompareB}, #{result}")
 			
 			next result
 		}
