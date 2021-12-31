@@ -2,16 +2,37 @@ class Game_Event < Game_Character
 	attr_reader   :event
 end
 
+class PokemonGlobalMetadata
+	attr_accessor   :estate_box
+end
+
+ESTATE_MAP_IDS 			= [51]
+ESTATE_MAP_POSITIONS 	= [[19,16]]
+
+def transferToEstate(boxNum = 0)
+	echoln("Transferring player to estate or box number #{boxNum}")
+	$PokemonGlobal.estate_box = boxNum
+	$game_temp.player_transferring = true
+	$game_temp.player_new_map_id    = 	ESTATE_MAP_IDS[boxNum] || ESTATE_MAP_IDS[0]
+	position = ESTATE_MAP_POSITIONS[boxNum] || ESTATE_MAP_POSITIONS[0]
+	$game_temp.player_new_x         =	position[0]
+	$game_temp.player_new_y         = 	position[1]
+	$game_temp.player_new_direction = 	Up
+	
+	#Graphics.freeze
+	#$game_temp.transition_processing = true
+	#$game_temp.transition_name       = ""
+end
+
 def loadBoxPokemonIntoPlaceholders
 	echoln("Beginning to load box Pokemon.")
 
 	unusedBoxPokes = []
-	boxNum = 0 #rand(30)
+	boxNum = $PokemonGlobal.estate_box || 0
 	for index in 0...$PokemonStorage.maxPokemon(boxNum)
       pokemon = $PokemonStorage[boxNum][index]
 	  next if pokemon.nil?
 	  unusedBoxPokes.push(pokemon)
-	  echoln("Needing to place Pokemon #{pokemon.name}")
     end
 
 	events = $game_map.events.values.shuffle()
@@ -25,7 +46,6 @@ end
 
 def convertEventToPokemon(event,pokemon)
 	actualEvent = event.event
-	echoln("Converting #{event.id} to #{pokemon.name}")
 	
 	species = pokemon.species
 	form = pokemon.form

@@ -1,3 +1,4 @@
+@@ -1,231 +0,0 @@
 class PokemonStorageScreen
   def pbStartScreen(command)
     @heldpkmn = nil
