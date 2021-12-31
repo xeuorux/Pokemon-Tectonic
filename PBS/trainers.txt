@@ -43,9 +43,9 @@ POKEMON = ODDISH,5
 [BUGCATCHER,Colin]
 Policies = REMARKONSTARTER
 LoseText = "..."
-Pokemon = KRICKETOT,6
+Pokemon = KRICKETOT,7
     AbilityIndex = 0
-Pokemon = SNOM,6
+Pokemon = SNOM,8
     AbilityIndex = 0
 #-------------------------------
 [YOUNGSTER,Harvey]
@@ -57,9 +57,10 @@ Pokemon = SEEDOT,8
 #-------------------------------
 [LASS2,Sienna]
 LoseText = "..."
-Pokemon = PICHU,6
+Pokemon = PICHU,8
     AbilityIndex = 0
-Pokemon = PIKIPEK,6
+	Moves = THUNDERSHOCK,GROWL,SHOUT
+Pokemon = PONYTA,8
     AbilityIndex = 0
 #-------------------------------
 [HIKER,Dave]
