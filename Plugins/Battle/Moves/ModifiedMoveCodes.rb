@@ -4,12 +4,6 @@ class PokeBattle_Move
 	end
 end
 
-
-
-	
-
-
-
 #################################################
 #	Actual Move Effects
 #################################################
@@ -1175,5 +1169,27 @@ class PokeBattle_Move_0DA < PokeBattle_Move
 	return if user.effects[PBEffects::AquaRing]
     user.effects[PBEffects::AquaRing] = true
     @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
+  end
+end
+
+#===============================================================================
+# Power is doubled if the target is using Dig. Power is halved if Grassy Terrain
+# is in effect. Hits some semi-invulnerable targets. (Earthquake)
+#===============================================================================
+class PokeBattle_Move_076 < PokeBattle_Move
+  def hitsDiggingTargets?; return true; end
+
+  def pbModifyDamage(damageMult,user,target)
+    damageMult *= 2 if target.inTwoTurnAttack?("0CA")   # Dig
+    return damageMult
+  end
+end
+
+#===============================================================================
+# Decreases the target's Speed by 1 stage.
+#===============================================================================
+class PokeBattle_Move_044 < PokeBattle_TargetStatDownMove
+  def pbBaseDamage(baseDmg,user,target)
+    return baseDmg
   end
 end
