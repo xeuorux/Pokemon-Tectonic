@@ -324,7 +324,6 @@ class PokemonPartyScreen
         end
 	  elsif cmdRename >= 0 && command==cmdRename
 		currentName = pkmn.name
-		speciesName=GameData::Species.get(pkmn.species).real_name
 		pbTextEntry("#{currentName}'s nickname?",0,10,5)
 		if pbGet(5)=="" || pbGet(5)==currentName
 		  pkmn.name=currentName

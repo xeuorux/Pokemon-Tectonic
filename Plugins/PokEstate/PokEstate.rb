@@ -6,10 +6,12 @@ def loadBoxPokemonIntoPlaceholders
 	echoln("Beginning to load box Pokemon.")
 
 	unusedBoxPokes = []
-	boxNum = rand(30)
+	boxNum = 0 #rand(30)
 	for index in 0...$PokemonStorage.maxPokemon(boxNum)
       pokemon = $PokemonStorage[boxNum][index]
-	  unusedBoxPokes.push(pokemon) if !pokemon.nil?
+	  next if pokemon.nil?
+	  unusedBoxPokes.push(pokemon)
+	  echoln("Needing to place Pokemon #{pokemon.name}")
     end
 
 	events = $game_map.events.values.shuffle()
@@ -87,9 +89,11 @@ def ranchChoices(personalID = -1)
 	commands = []
 	cmdSummary = -1
 	cmdTake = -1
+	cmdRename = -1
 	cmdCancel = -1
 	commands[cmdSummary = commands.length] = _INTL("View Summary")
 	commands[cmdTake = commands.length] = _INTL("Take")
+	commands[cmdRename = commands.length] = _INTL("Rename")
 	commands[cmdCancel = commands.length] = _INTL("Cancel")
 	while true
 		command = pbMessage(_INTL("What would you like to do with #{pokemon.name}?"),commands,commands.length)
@@ -99,6 +103,15 @@ def ranchChoices(personalID = -1)
 				screen = PokemonSummaryScreen.new(scene)
 				screen.pbStartSingleScreen(pokemon)
 			}
+		elsif command > -1 && command == cmdRename
+			currentName = pokemon.name
+			pbTextEntry("#{currentName}'s nickname?",0,10,5)
+			if pbGet(5)=="" || pbGet(5) == currentName
+			  pokemon.name = currentName
+			else
+			  pokemon.name = pbGet(5)
+			end
+			convertEventToPokemon(get_self,pokemon)
 		elsif command > -1 && command == cmdTake
 			if $Trainer.party_full?
 				pbPlayDecisionSE
