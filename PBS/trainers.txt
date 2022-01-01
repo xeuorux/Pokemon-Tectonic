@@ -188,7 +188,7 @@ Pokemon = GASTLY,16
 LoseText = "..."
 Pokemon = ABRA,15
 	Item = PSYCHICGEM
-Pokemon = MEDITITE,16
+Pokemon = IMPIDIMP,16
 Pokemon = WOOBAT,15
 #-------------------------------
 [POKEFAN_M,Jamie]
@@ -203,7 +203,7 @@ LoseText = "..."
 Pokemon = TYROGUE,17
 	Item = FIGHTINGGEM
 Pokemon = COMBUSKEN,16
-Pokemon = DARUMAKA,17
+Pokemon = AXEW,17
 #-------------------------------
 [ARTIST,Evan]
 LoseText = "..."
