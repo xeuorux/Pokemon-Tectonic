@@ -130,7 +130,7 @@ Special
 Special
 1,GYAMASK,15,15
 #-------------------------------
-[51] # Starters Store
+[140] # Starters Store Grass
 Special
 1,BULBASAUR,10,10
 1,CHIKORITA,10,10
@@ -140,6 +140,9 @@ Special
 1,CHESPIN,10,10
 1,ROWLET,10,10
 1,GROOKEY,10,10
+#-------------------------------
+[141] # Starters Store Fire
+Special
 1,CHARMANDER,10,10
 1,CYNDAQUIL,10,10
 1,TORCHIC,10,10
@@ -148,6 +151,9 @@ Special
 1,FENNEKIN,10,10
 1,LITTEN,10,10
 1,SCORBUNNY,10,10
+#-------------------------------
+[142] # Starters Store Grass
+Special
 1,SQUIRTLE,10,10
 1,TOTODILE,10,10
 1,MUDKIP,10,10
