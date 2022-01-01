@@ -17,8 +17,8 @@ module BattleHandlers
 	
 	def self.triggerMoveImmunityAllyAbility(ability,user,target,move,type,battle,ally)
 		ret = MoveImmunityAllyAbility.trigger(ability,user,target,move,type,battle,ally)
-    return (ret!=nil) ? ret : false
-  end
+		return (ret!=nil) ? ret : false
+	end
 end
 
 #===============================================================================
