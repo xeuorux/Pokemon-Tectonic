@@ -146,6 +146,10 @@ class PokeBattle_Move_610 < PokeBattle_TargetMultiStatDownMove
 		super
 		@statDown = [:SPEED,2,:ATTACK,2,:SPECIAL_ATTACK,2]
 	end
+	
+	def pbEffectGeneral(user)
+		transformType(user,:BUG)
+	end
 end
 
 # Empowered Sandstorm
@@ -234,6 +238,8 @@ class PokeBattle_Move_616 < PokeBattle_Move
 		user.defense,user.spdef = user.spdef,user.defense
 		@battle.pbDisplay(_INTL("{1} switched its Defense and Sp. Def!",user.pbThis))
 		user.effects[PBEffects::EmpoweredMoonlight] = !user.effects[PBEffects::EmpoweredMoonlight]
+		
+		transformType(user,:FAIRY)
 	end
 end
 

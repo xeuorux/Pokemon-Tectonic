@@ -240,9 +240,15 @@ class PokeBattle_Battle
 		if usedEmpoweredMove
 			echoln("Swapping Avatar to Post-Empowering moveset")
 			avatar_data = GameData::Avatar.get(b.species.to_sym)
-			avatar_data.post_prime_moves.each_with_index do |m,i|
-			  b.moves[i] = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(m))
+			for i in 0..3 do
+				m = avatar_data.post_prime_moves[i]
+				if m.nil?
+					b.moves[i] = nil
+				else
+					b.moves[i] = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(m))
+				end
 			end
+			b.moves[i] = nil
 			b.empowered = true
 			@scene.pbRefresh
 		end
