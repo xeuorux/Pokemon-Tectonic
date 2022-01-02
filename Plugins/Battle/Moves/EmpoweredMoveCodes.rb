@@ -37,7 +37,7 @@ class PokeBattle_Move_601 < PokeBattle_Move_0FF
 end
 
 # Empowered Rain Dance
-class PokeBattle_Move_602 < PokeBattle_Move_102
+class PokeBattle_Move_602 < PokeBattle_Move_100
 	include EmpoweredMove
 
 	def pbEffectGeneral(user)
