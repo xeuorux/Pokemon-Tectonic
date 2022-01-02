@@ -96,15 +96,12 @@ class Pokemon
       if s.id == :HP
         stats[s.id] = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id])
 		if boss
-			echoln stats[s.id]
 			stats[s.id] *= hpMult
 		end
       elsif (s.id == :ATTACK) || (s.id == :SPECIAL_ATTACK)
 		if boss
 			stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
-			echoln(_INTL("The stat {1} is {2} pre mult which is {3}.", s.id, stats[s.id], dmgMult))
 			stats[s.id] *= dmgMult
-			echoln(_INTL("The stat {1} is {2} post mult.", s.id, stats[s.id]))
 		else
 			stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
 		end

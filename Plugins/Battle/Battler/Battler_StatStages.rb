@@ -1,45 +1,96 @@
 class PokeBattle_Battler
-	def pbLowerStatStage(stat,increment,user,showAnim=true,ignoreContrary=false,ignoreMirrorArmor=false)
-    # Mirror Armor
-    if !ignoreMirrorArmor && hasActiveAbility?(:MIRRORARMOR) && (!user || user.index!=@index) && 
-	  !@battle.moldBreaker && pbCanLowerStatStage?(stat)
-      battle.pbShowAbilitySplash(self)
-      @battle.pbDisplay(_INTL("{1}'s Mirror Armor activated!",pbThis))
-      if !user
-        battle.pbHideAbilitySplash(self)
-        return false
-      end
-      if !user.hasActiveAbility?(:MIRRORARMOR) && user.pbCanLowerStatStage?(stat,nil,nil,true)
-        user.pbLowerStatStageByAbility(stat,increment,user,splashAnim=false,checkContact=false)
-		# Trigger user's abilities upon stat loss
-		if user.abilityActive?
-		  BattleHandlers.triggerAbilityOnStatLoss(user.ability,user,stat,self)
+	def pbRaiseStatStage(stat,increment,user,showAnim=true,ignoreContrary=false)
+		# Contrary
+		if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
+		  return pbLowerStatStage(stat,increment,user,showAnim,true)
 		end
-      end
-      battle.pbHideAbilitySplash(self)
-      return false
-    end
-	# Contrary
-    if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
-      return pbRaiseStatStage(stat,increment,user,showAnim,true)
-    end
-    # Perform the stat stage change
-    increment = pbLowerStatStageBasic(stat,increment,ignoreContrary)
-    return false if increment<=0
-    # Stat down animation and message
-    @battle.pbCommonAnimation("StatDown",self) if showAnim
-    arrStatTexts = [
-       _INTL("{1}'s {2} fell!",pbThis,GameData::Stat.get(stat).name),
-       _INTL("{1}'s {2} harshly fell!",pbThis,GameData::Stat.get(stat).name),
-       _INTL("{1}'s {2} severely fell!",pbThis,GameData::Stat.get(stat).name)]
-    @battle.pbDisplay(arrStatTexts[[increment-1,2].min])
-    # Trigger abilities upon stat loss
-    if abilityActive?
-      BattleHandlers.triggerAbilityOnStatLoss(self.ability,self,stat,user)
-    end
-	@effects[PBEffects::LashOut] = true
-    return true
-  end
+		# Perform the stat stage change
+		increment = pbRaiseStatStageBasic(stat,increment,ignoreContrary)
+		return false if increment<=0
+		# Stat up animation and message
+		@battle.pbCommonAnimation("StatUp",self) if showAnim
+		arrStatTexts = [
+		   _INTL("{1}'s {2} rose{3}!",pbThis,GameData::Stat.get(stat).name,boss? ? " slightly" : ""),
+		   _INTL("{1}'s {2} rose{3}!",pbThis,GameData::Stat.get(stat).name,boss? ? "" : " sharply"),
+		   _INTL("{1}'s {2} rose{3}!",pbThis,GameData::Stat.get(stat).name,boss? ? " greatly" : " drastically")]
+		@battle.pbDisplay(arrStatTexts[[increment-1,2].min])
+		# Trigger abilities upon stat gain
+		if abilityActive?
+		  BattleHandlers.triggerAbilityOnStatGain(self.ability,self,stat,user)
+		end
+		return true
+	end
+
+	def pbRaiseStatStageByCause(stat,increment,user,cause,showAnim=true,ignoreContrary=false)
+		# Contrary
+		if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
+		  return pbLowerStatStageByCause(stat,increment,user,cause,showAnim,true)
+		end
+		# Perform the stat stage change
+		increment = pbRaiseStatStageBasic(stat,increment,ignoreContrary)
+		return false if increment<=0
+		# Stat up animation and message
+		@battle.pbCommonAnimation("StatUp",self) if showAnim
+		if user.index==@index
+		  arrStatTexts = [
+			 _INTL("{1}'s {2}{4} raised its {3}!",pbThis,cause,GameData::Stat.get(stat).name,boss? ? " slightly" : ""),
+			 _INTL("{1}'s {2}{4} raised its {3}!",pbThis,cause,GameData::Stat.get(stat).name,boss? ? "" : " sharply"),
+			 _INTL("{1}'s {2}{4} raised its {3}!",pbThis,cause,GameData::Stat.get(stat).name,boss? ? " greatly" : " drastically")]
+		else
+		  arrStatTexts = [
+			 _INTL("{1}'s {2}{5} raised {3}'s {4}!",user.pbThis,cause,pbThis(true),GameData::Stat.get(stat).name,boss? ? " slightly" : ""),
+			 _INTL("{1}'s {2}{5} raised {3}'s {4}!",user.pbThis,cause,pbThis(true),GameData::Stat.get(stat).name,boss? ? "" : " sharply"),
+			 _INTL("{1}'s {2}{5} raised {3}'s {4}!",user.pbThis,cause,pbThis(true),GameData::Stat.get(stat).name,boss? ? " greatly" : " drastically")]
+		end
+		@battle.pbDisplay(arrStatTexts[[increment-1,2].min])
+		# Trigger abilities upon stat gain
+		if abilityActive?
+		  BattleHandlers.triggerAbilityOnStatGain(self.ability,self,stat,user)
+		end
+		return true
+	end
+
+	def pbLowerStatStage(stat,increment,user,showAnim=true,ignoreContrary=false,ignoreMirrorArmor=false)
+		# Mirror Armor
+		if !ignoreMirrorArmor && hasActiveAbility?(:MIRRORARMOR) && (!user || user.index!=@index) && 
+		  !@battle.moldBreaker && pbCanLowerStatStage?(stat)
+		  battle.pbShowAbilitySplash(self)
+		  @battle.pbDisplay(_INTL("{1}'s Mirror Armor activated!",pbThis))
+		  if !user
+			battle.pbHideAbilitySplash(self)
+			return false
+		  end
+		  if !user.hasActiveAbility?(:MIRRORARMOR) && user.pbCanLowerStatStage?(stat,nil,nil,true)
+			user.pbLowerStatStageByAbility(stat,increment,user,splashAnim=false,checkContact=false)
+			# Trigger user's abilities upon stat loss
+			if user.abilityActive?
+			  BattleHandlers.triggerAbilityOnStatLoss(user.ability,user,stat,self)
+			end
+		  end
+		  battle.pbHideAbilitySplash(self)
+		  return false
+		end
+		# Contrary
+		if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
+		  return pbRaiseStatStage(stat,increment,user,showAnim,true)
+		end
+		# Perform the stat stage change
+		increment = pbLowerStatStageBasic(stat,increment,ignoreContrary)
+		return false if increment<=0
+		# Stat down animation and message
+		@battle.pbCommonAnimation("StatDown",self) if showAnim
+		arrStatTexts = [
+		   _INTL("{1}'s {2}{3} fell!",pbThis,GameData::Stat.get(stat).name,boss? ? " slightly" : ""),
+		   _INTL("{1}'s {2}{3} fell!",pbThis,GameData::Stat.get(stat).name,boss? ? "" : " harshly"),
+		   _INTL("{1}'s {2}{3} fell!",pbThis,GameData::Stat.get(stat).name,boss? ? " severely" : " badly")]
+		@battle.pbDisplay(arrStatTexts[[increment-1,2].min])
+		# Trigger abilities upon stat loss
+		if abilityActive?
+		  BattleHandlers.triggerAbilityOnStatLoss(self.ability,self,stat,user)
+		end
+		@effects[PBEffects::LashOut] = true
+		return true
+	end
   
   def pbLowerStatStageByCause(stat,increment,user,cause,showAnim=true,ignoreContrary=false,ignoreMirrorArmor=false)
 	# Mirror Armor
@@ -76,14 +127,14 @@ class PokeBattle_Battler
     @battle.pbCommonAnimation("StatDown",self) if showAnim
     if user.index==@index
       arrStatTexts = [
-         _INTL("{1}'s {2} lowered its {3}!",pbThis,cause,GameData::Stat.get(stat).name),
-         _INTL("{1}'s {2} harshly lowered its {3}!",pbThis,cause,GameData::Stat.get(stat).name),
-         _INTL("{1}'s {2} severely lowered its {3}!",pbThis,cause,GameData::Stat.get(stat).name)]
+         _INTL("{1}'s {2}{4} lowered its {3}!",pbThis,cause,GameData::Stat.get(stat).name,boss? ? " slightly" : ""),
+         _INTL("{1}'s {2}{4} lowered its {3}!",pbThis,cause,GameData::Stat.get(stat).name,boss? ? "" : " harshly"),
+         _INTL("{1}'s {2}{4} lowered its {3}!",pbThis,cause,GameData::Stat.get(stat).name,boss? ? " severely" : " badly")]
     else
       arrStatTexts = [
-         _INTL("{1}'s {2} lowered {3}'s {4}!",user.pbThis,cause,pbThis(true),GameData::Stat.get(stat).name),
-         _INTL("{1}'s {2} harshly lowered {3}'s {4}!",user.pbThis,cause,pbThis(true),GameData::Stat.get(stat).name),
-         _INTL("{1}'s {2} severely lowered {3}'s {4}!",user.pbThis,cause,pbThis(true),GameData::Stat.get(stat).name)]
+         _INTL("{1}'s {2}{5} lowered {3}'s {4}!",user.pbThis,cause,pbThis(true),GameData::Stat.get(stat).name,boss? ? " slightly" : ""),
+         _INTL("{1}'s {2}{5} lowered {3}'s {4}!",user.pbThis,cause,pbThis(true),GameData::Stat.get(stat).name,boss? ? "" : " harshly"),
+         _INTL("{1}'s {2}{5} lowered {3}'s {4}!",user.pbThis,cause,pbThis(true),GameData::Stat.get(stat).name,boss? ? " severely" : " badly")]
     end
     @battle.pbDisplay(arrStatTexts[[increment-1,2].min])
     # Trigger abilities upon stat loss
