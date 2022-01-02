@@ -136,7 +136,7 @@ Pokemon = MACHOP,15
     Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
     AbilityIndex = 1
 Pokemon = GZIGZAGOON,15
-    Moves = SNARL,LICK,SANDATTACK,TACKLE
+    Moves = SNARL,LICK,TACKLE
     AbilityIndex = 1
     Item = SITRUSBERRY
 Pokemon = RIOLU,15
@@ -189,7 +189,7 @@ LoseText = "..."
 Pokemon = ABRA,15
 	Item = PSYCHICGEM
 Pokemon = IMPIDIMP,16
-Pokemon = WOOBAT,15
+Pokemon = RUFFLET,15
 #-------------------------------
 [POKEFAN_M,Jamie]
 LoseText = "..."
@@ -343,8 +343,8 @@ Pokemon = ELEKID,23
 LoseText = "..."
 Pokemon = SABLEYE,24
 	Item = NORMALGEM
-Pokemon = FRILLISH,23
-Pokemon = VIGOROTH,24
+Pokemon = SKRELP,23
+Pokemon = WOOLOO,24
 #-------------------------------
 [BAKER,Rose]
 LoseText = "..."
@@ -446,9 +446,9 @@ Pokemon = GROVYLE,26
 #-------------------------------
 [BLACKBELT3,Philip]
 LoseText = "..."
-Pokemon = MIENFOO,26
-Pokemon = WHIRLIPEDE,27
-Pokemon = SNORUNT,26
+Pokemon = MIENFOO,25
+Pokemon = WHIRLIPEDE,25
+Pokemon = SNORUNT,25
 	Item = ICEGEM
 #-------------------------------
 [COOLTRAINER_M,Xander]
