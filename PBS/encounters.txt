@@ -221,9 +221,8 @@ FloweryGrass2,20
 25,PSYDUCK,15,18
 25,MEDITITE,15,18
 LandTinted,20
-34,FARFETCHD,15,18
-33,SHELMET,15,18
-33,BELLSPROUT,15,18
+50,SHELMET,15,18
+50,BELLSPROUT,15,18
 Special,20
 1,SHUPPET,15,15
 #-------------------------------
@@ -323,6 +322,8 @@ Puddle
 20,BUIZEL,17,20
 20,MAGIKARP,17,20
 20,POLIWAG,17,20
+LandTinted,20
+100,FARFETCHD,15,18
 #-------------------------------
 [12] # Gigalith's Guts
 DarkCave,20
