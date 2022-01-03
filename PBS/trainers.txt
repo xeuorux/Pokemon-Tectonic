@@ -1116,3 +1116,34 @@ Pokemon = CINCCINO,40
 Pokemon = AROMATISSE,40
 	AbilityIndex = 1
 Pokemon = STONJOURNER,40
+##################################
+#  2nd Half of Game
+##################################
+[SWIMMER_M,Stannis]
+Pokemon = WISHIWASHI,33
+Pokemon = ALTARIA,31
+	Item = FAIRYGEM
+Pokemon = LUNATONE,32
+Pokemon = EMOLGA,33
+	Item = SITRUSBERRY
+[WAITRESS,Carmilla]
+Pokemon = CLEFAIRY,32
+	Item = ORANBERRY
+Pokemon = DUGTRIO,31
+Pokemon = DURANT,32
+	Item = CHOICEBAND
+Pokemon = UNFEZANT,33
+[BIKER2,Chuck]
+Pokemon = MUK,33
+Pokemon = FLAAFFY,32
+	Item = ELECTRICGEM
+Pokemon = DONPHAN,32
+Pokemon = PORYGON,32
+	Item = SITRUSBERRY
+[NURSERYAIDE,Francesca]
+Pokemon = CINCCINO,33
+Pokemon = BRONZOR,31
+	Item = LEFTOVERS
+Pokemon = RAMPARDOS,31
+Pokemon = CRUSTLE,33
+	Item = ORANBERRY
