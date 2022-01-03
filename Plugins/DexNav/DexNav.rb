@@ -155,7 +155,7 @@ class NewDexNav
 				end
 				searchTime = 20 + rand(80)
 				pbMessage(_INTL("Searching\\ts[15]...\\wtnp[#{searchTime}]"))
-				pbMessage(_INTL("Oh! A Pokemon was found nearby!"))
+				pbMessage(_INTL("Oh! A #{highlightedSpeciesData.real_name} was found nearby!"))
 				pbFadeOutAndHide(@sprites)
 				beginSearchWithOverlay(highlightedSpeciesData)
 				break
