@@ -834,6 +834,7 @@
 809,GRASSTOKEN,Grass Token,Grass Tokens,1,5000,"A token which can be exchanged, with a fee, for a Grass-type at the Starter Store.",0,0,0,
 810,WATERTOKEN,Water Token,Water Tokens,1,5000,"A token which can be exchanged, with a fee, for a Water-type at the Starter Store.",0,0,0,
 811,FIRETOKEN,Fire Token,Fire Tokens,1,5000,"A token which can be exchanged, with a fee, for a Fire-type at the Starter Store.",0,0,0,
+812,UNIVERSALFORMALIZER,Universal Formalizer,Universal Formalizers,8,0,"Use on a Pokémon to switch it into another one of its forms.",5,0,6,
 #------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
