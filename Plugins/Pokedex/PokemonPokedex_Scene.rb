@@ -1053,9 +1053,26 @@ class PokemonPokedex_Scene
 	end
 	
 	def searchByMisc()
-		searchSelection = pbMessage("Which search?",[_INTL("Map Found"),_INTL("Zoo Section"),_INTL("Cancel")],3)
-		return searchByMapFound() if searchSelection == 0
-		return searchByZooSection() if searchSelection == 1
+		miscSearches = []
+		cmdMapFound = -1
+		cmdZooSection = -1
+		cmdIsQuarantined = -1
+		cmdIsLegendary = -1
+		miscSearches[cmdMapFound = miscSearches.length] = _INTL("Map Found")
+		miscSearches[cmdZooSection = miscSearches.length] = _INTL("Zoo Section")
+		miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined") if $DEBUG
+		miscSearches[cmdIsLegendary = miscSearches.length] = _INTL("Legendary")
+		miscSearches.push(_INTL("Cancel"))
+		searchSelection = pbMessage("Which search?",miscSearches,miscSearches.length)
+		if cmdMapFound > -1 && searchSelection == cmdMapFound
+			return searchByMapFound() 
+		elsif cmdZooSection > -1 && searchSelection == cmdZooSection
+			return searchByZooSection()
+		elsif cmdIsQuarantined > -1 && searchSelection == cmdIsQuarantined
+			return searchByQuarantined()
+		elsif cmdIsLegendary > -1 && searchSelection == cmdIsLegendary
+			return searchByLegendary()
+		end
 	end
 	
 	def searchByZooSection
@@ -1108,6 +1125,40 @@ class PokemonPokedex_Scene
 				next speciesPresent.include?(item[0]) ^ reversed # Boolean XOR
 		}
 		return dexlist
+	end
+	
+	def searchByQuarantined()
+		selection = pbMessage("Which search?",[_INTL("Quarantined"),_INTL("Not Quarantined"),_INTL("Cancel")],3)
+	    if selection != 2 
+			dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+			
+			dexlist = dexlist.find_all { |item|	
+				if selection == 1
+					next !isQuarantined?(item[0])
+				else
+					next isQuarantined?(item[0])
+				end
+			}
+			return dexlist
+		end
+		return nil
+	end
+	
+	def searchByLegendary()
+		selection = pbMessage("Which search?",[_INTL("Legendary"),_INTL("Not Legendary"),_INTL("Cancel")],3)
+	    if selection != 2 
+			dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+			
+			dexlist = dexlist.find_all { |item|	
+				if selection == 1
+					next !isLegendary?(item[0])
+				else
+					next isLegendary?(item[0])
+				end
+			}
+			return dexlist
+		end
+		return nil
 	end
 	
 	def searchByTypeMatchup()
