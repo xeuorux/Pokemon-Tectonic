@@ -849,10 +849,10 @@ Pokemon = HATTREM,27
 Pokemon = LOUDRED,28
 #-------------------------------
 [POKEMONRANGER_M,Connor]
-Pokemon = DRIFBLIM,28
-	Moves = HEATWAVE,OMINOUSWIND,HEX,THUNDERWAVE
-Pokemon = BRELOOM,29
-Pokemon = GYAMASK,28
+Pokemon = DRIFBLIM,30
+	Moves = THUNDERWAVE,HEX,CHILL
+Pokemon = BRELOOM,30
+Pokemon = GYAMASK,30
 	Item = ORANBERRY
 #-------------------------------
 [BACKPACKER_F,Aiyana]
