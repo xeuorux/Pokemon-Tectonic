@@ -9,14 +9,14 @@ class BattleInfoDisplay < SpriteWrapper
     self.y = 0
 	self.battle = battle
 	
-	@sprites      = {}
-    @spriteX      = 0
-    @spriteY      = 0
-	@selected	  = 0
-	@individual   = nil
-	@backgroundBitmap  = AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/battle_info")
-	
-	@statusCursorBitmap  = AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/cursor_status")
+	@sprites      			= {}
+    @spriteX      			= 0
+    @spriteY      			= 0
+	@selected	  			= 0
+	@individual   			= nil
+	@field					= false
+	@backgroundBitmap  		= AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/battle_info")
+	@statusCursorBitmap  	= AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/cursor_status")
 	
 	@contents = BitmapWrapper.new(@backgroundBitmap.width,@backgroundBitmap.height)
     self.bitmap  = @contents
@@ -78,8 +78,44 @@ class BattleInfoDisplay < SpriteWrapper
 		battlerIndex += 1
 	end
 	
-	textToDraw.push([_INTL("Weather: {1}",@battle.field.weather),24,320,0,base,shadow])
-	textToDraw.push([_INTL("Terrain: {1}",@battle.field.terrain),224,320,0,base,shadow])
+	textToDraw.push([_INTL("Weather: {1}",@battle.field.weather),24,326,0,base,shadow])
+	textToDraw.push([_INTL("Terrain: {1}",@battle.field.terrain),224,326,0,base,shadow])
+	
+	# Whole field effects
+	wholeFieldX = 326
+	textToDraw.push([_INTL("Whole Field"),wholeFieldX+60,10,2,base,shadow])
+	index = 0
+	for effect in 0..30
+		effectValue = @battle.field.effects[effect]
+		next if effectValue.nil? || effectValue == false
+		next if effectValue.is_a?(Integer) && effectValue <= 0
+		effectName = labelBattleEffect(effect)
+		next if effectName.blank?
+		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+		effectName = "..." if index == 8
+		textToDraw.push([effectName,wholeFieldX,40 + 32 * index,0,base,shadow])
+		break if index == 8
+		index += 1
+	end
+	
+	# One side effects
+	# Index intentionally not reset
+	for side in 0..1
+		for effect in 0..30
+			effectValue = @battle.sides[side].effects[effect]
+			next if effectValue.nil? || effectValue == false
+			next if effectValue.is_a?(Integer) && effectValue <= 0
+			effectName = labelSideEffect(effect)
+			next if effectName.blank?
+			effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+			effectName += side == 0 ? " [A]" : " [E]"
+			effectName = "..." if index == 8
+			textToDraw.push([effectName,wholeFieldX,40 + 32 * index,0,base,shadow])
+			break if index == 8
+			index += 1
+		end
+	end
+	
 	pbDrawTextPositions(self.bitmap,textToDraw)
   end
   
@@ -151,6 +187,7 @@ class BattleInfoDisplay < SpriteWrapper
 	# Effects
 	textToDraw.push(["Effects",240,42,0,base,shadow])
 	
+	# Battler effects
 	index = 0
 	for effect in 0..150
 		effectValue = battler.effects[effect]
@@ -158,17 +195,34 @@ class BattleInfoDisplay < SpriteWrapper
 		next if effectValue.is_a?(Integer) && effectValue <= 0
 		next if effect == PBEffects::ProtectRate && effectValue <= 1
 		next if effect == PBEffects::Unburden && !battler.hasActiveAbility?(:UNBURDEN)
-		effectName = labelPbEffect(effect)
+		effectName = labelBattlerEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+		effectName = "..." if index == 8
 		textToDraw.push([effectName,240,90 + 32 * index,0,base,shadow])
+		break if index == 8
+		index += 1
+	end
+	
+	# Slot effects
+	# Index purposefully not reset here
+	for effect in 0..30
+		effectValue = @battle.positions[battler.index].effects[effect]
+		next if effectValue.nil? || effectValue == false
+		next if effectValue.is_a?(Integer) && effectValue <= 0
+		effectName = labelSlotEffect(effect)
+		next if effectName.blank?
+		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+		effectName = "..." if index == 8
+		textToDraw.push([effectName,240,90 + 32 * index,0,base,shadow])
+		break if index == 8
 		index += 1
 	end
 	
 	pbDrawTextPositions(self.bitmap,textToDraw)
   end
   
-  def labelPbEffect(effectNumber)
+  def labelBattlerEffect(effectNumber)
 	return [
 		"Aqua Ring",
 		"", # Attract
@@ -316,6 +370,67 @@ class BattleInfoDisplay < SpriteWrapper
 	][effectNumber] || ""
   end
   
+  def labelSlotEffect(effectNumber)
+	return [
+		"Attack Incoming",
+		"Delayed Attack",
+		"",
+		"",
+		"", # Healing Wish
+		"", # Lunar Dance
+		"", # Wish
+		"Wishing For",
+		"" # Wish Maker
+	][effectNumber] || ""
+  end
+  
+	def labelBattleEffect(effectNumber)
+		return [
+			"Amulet Coin",
+			"Fairy Lock",
+			"", # Fusion Bolt
+			"", # Fusion Flare
+			"Gravity",
+			"Happy Hour",
+			"", # Ion Deluge
+			"Magic Room",
+			"Mud Sport",
+			"Pay Day",
+			"Trick Room",
+			"Water Sport",
+			"Wonder Room",
+			"Fortune",
+			"Neutralizing Gas"
+		][effectNumber] || ""
+	end
+
+	def labelSideEffect(effectNumber)
+		return [
+			"Aurora Veil",
+			"", # Crafty Shield
+			"", # Echoed Voice Count
+			"", # Encoed Voice Used
+			"", # Last Round Fainted
+			"Light Screen",
+			"Lucky Chant",
+			"", # Mat Block,
+			"Mist",
+			"", # Quick Guard
+			"Rainbow",
+			"Reflect",
+			"", # Round
+			"Safeguard",
+			"Sea of Fire",
+			"Spikes",
+			"Stealth Rock",
+			"Sticky Web",
+			"Swamp",
+			"Tailwind",
+			"Poison Spikes", # Toxic Spikes,
+			"" # Wide Guard
+		][effectNumber] || ""
+	end
+ 
   def update(frameCounter=0)
     super()
     pbUpdateSpriteHash(@sprites)

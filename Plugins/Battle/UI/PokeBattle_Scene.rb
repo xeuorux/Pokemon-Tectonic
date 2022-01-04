@@ -288,6 +288,26 @@ class PokeBattle_Scene
 		end
 		pbPlayDecisionSE
 		doRefresh = true
+	  elsif Input.trigger?(Input::SPECIAL) && cw.individual.nil? && $DEBUG
+=begin
+		for effect in 0..15 do
+			@battle.field.effects[effect] = true
+		end
+=end
+		for side in 0..1
+			for effect in 0..15 do
+				@battle.sides[side].effects[effect] = true
+			end
+		end
+		for effect in 0..30 do
+			@battle.positions[0].effects[effect] = true
+		end
+		for effect in 0..150 do
+			@battle.battlers[0].effects[effect] = true
+		end
+		@battle.battlers[0].effects[PBEffects::Illusion] = false
+		pbPlayDecisionSE
+		doRefresh = true
 	  elsif Input.trigger?(Input::USE)
 		battler = nil
 		index = 0

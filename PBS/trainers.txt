@@ -652,9 +652,9 @@ Pokemon = DOUBLADE,32
 #-------------------------------
 [GUITARIST3,Jamie]
 LoseText = "..."
-Pokemon = NIDOKING,34
+Pokemon = NIDORINO,34
 Pokemon = HOUNDOOM,35
-Pokemon = STARAPTOR,35
+Pokemon = PIDGEOT,35
 Pokemon = SPIRITOMB,36
 Pokemon = AVALUGG,37
 #-------------------------------
