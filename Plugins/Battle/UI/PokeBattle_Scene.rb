@@ -572,5 +572,39 @@ class PokeBattle_Scene
     # Fade back into battle screen (if not already showing it)
     pbFadeInAndShow(@sprites,visibleSprites) if !wasTargeting
   end
+  
+  # Animates battlers flashing and data boxes' HP bars because of damage taken
+  # by an attack. targets is an array, which are all animated simultaneously.
+  # Each element in targets is also an array: [battler, old HP, effectiveness]
+  def pbHitAndHPLossAnimation(targets)
+    @briefMessage = false
+    # Set up animations
+    damageAnims = []
+    targets.each do |t|
+      anim = BattlerDamageAnimation.new(@sprites,@viewport,t[0].index,t[2],t[1] - t[0].hp)
+      damageAnims.push(anim)
+      @sprites["dataBox_#{t[0].index}"].animateHP(t[1],t[0].hp,t[0].totalhp)
+    end
+    # Update loop
+    loop do
+      damageAnims.each { |a| a.update }
+      pbUpdate
+      allDone = true
+      targets.each do |t|
+        next if !@sprites["dataBox_#{t[0].index}"].animatingHP
+        allDone = false
+        break
+      end
+      next if !allDone
+      damageAnims.each do |a|
+        next if a.animDone?
+        allDone = false
+        break
+      end
+      next if !allDone
+      break
+    end
+    damageAnims.each { |a| a.dispose }
+  end
 end
 

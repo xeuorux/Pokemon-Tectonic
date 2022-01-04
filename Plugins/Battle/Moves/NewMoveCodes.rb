@@ -1687,12 +1687,12 @@ class PokeBattle_Move_54D < PokeBattle_TargetStatDownMove
 end
 
 #===============================================================================
-# Increases the user's Attack, Defense and accuracy by 1 stage each. (Coil)
+# Increases the user's Sp. Atk, Sp. Def and accuracy by 1 stage each. (Store Fuel)
 #===============================================================================
 class PokeBattle_Move_54E < PokeBattle_MultiStatUpMove
   def initialize(battle,move)
     super
-    @statUp = [:ATTACK,1,:DEFENSE,1,:ACCURACY,1]
+    @statUp = [:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1,:ACCURACY,1]
   end
 end
 

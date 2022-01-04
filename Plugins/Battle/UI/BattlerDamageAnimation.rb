@@ -2,9 +2,42 @@
 # Shows a Pokémon flashing after taking damage
 #===============================================================================
 class BattlerDamageAnimation < PokeBattle_Animation
+	def initialize(sprites,viewport,idxBattler,effectiveness,damageDealt = 0)
+		@idxBattler    = idxBattler
+		@effectiveness = effectiveness
+		@damageDealt = damageDealt
+		@damageDisplayBitmap = BitmapWrapper.new(Graphics.width,Graphics.height)
+		@damageDisplaySprite = SpriteWrapper.new(@viewport)
+		@damageDisplaySprite.bitmap = @damageDisplayBitmap
+		pbSetSystemFont(@damageDisplayBitmap)
+		@damageDisplayBitmap.font.size = 64
+		@damageDisplaySprite.z = 999999
+		
+		super(sprites,viewport)
+		
+		@sprites["damage_display"] = @damageDisplaySprite
+    end
+
 	def createProcesses
 		batSprite = @sprites["pokemon_#{@idxBattler}"]
 		shaSprite = @sprites["shadow_#{@idxBattler}"]
+		
+		echoln("Are these the same? #{batSprite.viewport == @viewport}")
+	
+		if @damageDealt != 0
+			@damageDisplayBitmap.clear
+			base   = Color.new(72,72,72)
+			shadow = Color.new(248,248,248)
+			
+			damageX = batSprite.x
+			damageY = batSprite.y - 140
+			pbDrawTextPositions(@damageDisplayBitmap,[[@damageDealt.to_s,damageX,damageY,2,base,shadow,true]])
+		
+			spritePicture = addSprite(@damageDisplaySprite)
+			spritePicture.moveXY(5, 20, 0, -30)
+			spritePicture.moveOpacity(10,15,0)
+		end
+		
 		# Set up battler/shadow sprite
 		battler = addSprite(batSprite,PictureOrigin::Bottom)
 		shadow  = addSprite(shaSprite,PictureOrigin::Center)
@@ -26,5 +59,10 @@ class BattlerDamageAnimation < PokeBattle_Animation
 		# Restore original battler/shadow sprites visibilities
 		battler.setVisible(delay,batSprite.visible)
 		shadow.setVisible(delay,shaSprite.visible)
+	end
+	
+	def dispose
+		super
+		@damageDisplayBitmap.dispose if @damageDisplayBitmap
 	end
 end
