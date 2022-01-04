@@ -266,11 +266,8 @@ class PokeBattle_Scene
 	doRefresh = false
     loop do
 	  pbUpdate(cw)
-	  if doRefresh
-		doRefresh = false
-		cw.refresh
-		Graphics.update
-	  end
+	  cw.refresh
+	  Graphics.update
       if Input.trigger?(Input::B)
         pbPlayCancelSE
 		break
@@ -280,34 +277,34 @@ class PokeBattle_Scene
 			cw.selected = totalBattlers - 1
 		end
 		pbPlayDecisionSE
-		doRefresh = true
 	  elsif Input.trigger?(Input::DOWN) && cw.individual.nil?
 		cw.selected += 1
 		if (cw.selected >= totalBattlers)
 			cw.selected = 0
 		end
 		pbPlayDecisionSE
-		doRefresh = true
 	  elsif Input.trigger?(Input::SPECIAL) && cw.individual.nil? && $DEBUG
-=begin
+
 		for effect in 0..15 do
 			@battle.field.effects[effect] = true
 		end
-=end
 		for side in 0..1
 			for effect in 0..15 do
 				@battle.sides[side].effects[effect] = true
 			end
 		end
+=begin
 		for effect in 0..30 do
 			@battle.positions[0].effects[effect] = true
 		end
 		for effect in 0..150 do
 			@battle.battlers[0].effects[effect] = true
 		end
+=end
+		
 		@battle.battlers[0].effects[PBEffects::Illusion] = false
+		@battle.battlers[0].effects[PBEffects::ProtectRate] = false
 		pbPlayDecisionSE
-		doRefresh = true
 	  elsif Input.trigger?(Input::USE)
 		battler = nil
 		index = 0
@@ -333,7 +330,6 @@ class PokeBattle_Scene
 		if selectedBattler
 			cw.individual = selectedBattler
 			pbIndividualBattlerInfoMenu(cw)
-			doRefresh = true
 		end
       end
     end
@@ -342,9 +338,10 @@ class PokeBattle_Scene
   
   def pbIndividualBattlerInfoMenu(display)
     display.refresh
-	Graphics.update
     loop do
 	  pbUpdate(display)
+	  display.refresh
+	  Graphics.update
       if Input.trigger?(Input::B)
         display.individual = nil
 		break

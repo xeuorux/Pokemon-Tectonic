@@ -22,6 +22,9 @@ class BattleInfoDisplay < SpriteWrapper
     self.bitmap  = @contents
 	pbSetNarrowFont(self.bitmap)
 	
+	@battlerScrollingValue = 0
+	@fieldScrollingValue = 0
+	
 	self.z = z
     refresh
   end
@@ -84,7 +87,8 @@ class BattleInfoDisplay < SpriteWrapper
 	# Whole field effects
 	wholeFieldX = 326
 	textToDraw.push([_INTL("Whole Field"),wholeFieldX+60,10,2,base,shadow])
-	index = 0
+	
+	fieldEffects = []
 	for effect in 0..30
 		effectValue = @battle.field.effects[effect]
 		next if effectValue.nil? || effectValue == false
@@ -92,10 +96,7 @@ class BattleInfoDisplay < SpriteWrapper
 		effectName = labelBattleEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
-		effectName = "..." if index == 8
-		textToDraw.push([effectName,wholeFieldX,40 + 32 * index,0,base,shadow])
-		break if index == 8
-		index += 1
+		fieldEffects.push(effectName)
 	end
 	
 	# One side effects
@@ -109,13 +110,27 @@ class BattleInfoDisplay < SpriteWrapper
 			next if effectName.blank?
 			effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
 			effectName += side == 0 ? " [A]" : " [E]"
-			effectName = "..." if index == 8
-			textToDraw.push([effectName,wholeFieldX,40 + 32 * index,0,base,shadow])
-			break if index == 8
-			index += 1
+			fieldEffects.push(effectName)
 		end
 	end
 	
+	# Render out the field effects
+	scrolling = true if fieldEffects.length > 8
+	index = 0
+	repeats = scrolling ? 2 : 1
+	for repeat in 0...repeats
+		fieldEffects.each do |effectName|
+			index += 1
+			calcedY = 50 + 32 * index
+			calcedY -= @fieldScrollingValue if scrolling
+			next if calcedY < 34 || calcedY > 286
+			textToDraw.push([effectName,wholeFieldX,calcedY,0,base,shadow])
+		end
+	end
+	
+	# Reset the scrolling once its scrolled through the entire list once
+	@fieldScrollingValue = 0 if @fieldScrollingValue > fieldEffects.length * 32
+
 	pbDrawTextPositions(self.bitmap,textToDraw)
   end
   
@@ -188,6 +203,8 @@ class BattleInfoDisplay < SpriteWrapper
 	textToDraw.push(["Effects",240,42,0,base,shadow])
 	
 	# Battler effects
+	battlerEffects = []
+	
 	index = 0
 	for effect in 0..150
 		effectValue = battler.effects[effect]
@@ -198,10 +215,7 @@ class BattleInfoDisplay < SpriteWrapper
 		effectName = labelBattlerEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
-		effectName = "..." if index == 8
-		textToDraw.push([effectName,240,90 + 32 * index,0,base,shadow])
-		break if index == 8
-		index += 1
+		battlerEffects.push(effectName)
 	end
 	
 	# Slot effects
@@ -213,11 +227,26 @@ class BattleInfoDisplay < SpriteWrapper
 		effectName = labelSlotEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
-		effectName = "..." if index == 8
-		textToDraw.push([effectName,240,90 + 32 * index,0,base,shadow])
-		break if index == 8
-		index += 1
+		battlerEffects.push(effectName)
 	end
+	
+	scrolling = true if battlerEffects.length > 8
+	
+	# Print all the battler effects to screen
+	index = 0
+	repeats = scrolling ? 2 : 1
+	for repeat in 0...repeats
+		battlerEffects.each do |effectName|
+			index += 1
+			calcedY = 90 + 32 * index
+			calcedY -= @battlerScrollingValue if scrolling
+			next if calcedY < 74 || calcedY > 326
+			textToDraw.push([effectName,240,calcedY,0,base,shadow])
+		end
+	end
+	
+	# Reset the scrolling once its scrolled through the entire list once
+	@battlerScrollingValue = 0 if @battlerScrollingValue > battlerEffects.length * 32
 	
 	pbDrawTextPositions(self.bitmap,textToDraw)
   end
@@ -434,5 +463,12 @@ class BattleInfoDisplay < SpriteWrapper
   def update(frameCounter=0)
     super()
     pbUpdateSpriteHash(@sprites)
+	if @individual.nil?
+		@battlerScrollingValue = 0
+		@fieldScrollingValue += 2
+	else
+		@battlerScrollingValue += 2
+		@fieldScrollingValue = 0
+	end
   end
 end
