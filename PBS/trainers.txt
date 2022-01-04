@@ -646,9 +646,9 @@ Pokemon = POOCHYENA,25
 LoseText = "..."
 Pokemon = CHANSEY,29
 Pokemon = STANTLER,30
-Pokemon = MALAMAR,31
+Pokemon = ONIX,31
 Pokemon = GOLISOPOD,32
-Pokemon = METANG,32
+Pokemon = DOUBLADE,32
 #-------------------------------
 [GUITARIST3,Jamie]
 LoseText = "..."
