@@ -205,7 +205,6 @@ class BattleInfoDisplay < SpriteWrapper
 	# Battler effects
 	battlerEffects = []
 	
-	index = 0
 	for effect in 0..150
 		effectValue = battler.effects[effect]
 		next if effectValue.nil? || effectValue == false
@@ -219,7 +218,6 @@ class BattleInfoDisplay < SpriteWrapper
 	end
 	
 	# Slot effects
-	# Index purposefully not reset here
 	for effect in 0..30
 		effectValue = @battle.positions[battler.index].effects[effect]
 		next if effectValue.nil? || effectValue == false

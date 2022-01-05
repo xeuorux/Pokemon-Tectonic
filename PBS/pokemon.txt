@@ -14067,7 +14067,7 @@ Name = Buneary
 InternalName = BUNEARY
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 55,66,44,85,44,56
+BaseStats = 55,61,49,85,44,56
 # Total = 350
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -14093,7 +14093,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 9
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = LOPUNNY,Level,22
+Evolutions = LOPUNNY,Level,24
 #-------------------------------
 [428]
 Name = Lopunny
@@ -14101,7 +14101,7 @@ InternalName = LOPUNNY
 Type1 = NORMAL
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,106,70,105,54,80
+BaseStats = 65,96,80,105,54,80
 # Total = 480
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -29983,7 +29983,7 @@ InternalName = HAEROBIC
 Type1 = NORMAL
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,126,89,130,59,106
+BaseStats = 70,116,99,120,59,106
 # Total = 580
 GenderRate = Female50Percent
 GrowthRate = Medium
