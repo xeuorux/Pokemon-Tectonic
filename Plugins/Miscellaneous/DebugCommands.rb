@@ -519,47 +519,6 @@ DebugMenuCommands.register("generatechangelog", {
   }
 })
 
-def find_item_locations()
-	# Display item locations
-	item_locations = {}
-	
-	mapData = MapData.new
-    for id in mapData.mapinfos.keys.sort
-		map = mapData.getMap(id)
-		next if !map || !mapData.mapinfos[id]
-		for key in map.events.keys
-			pbEachPage(map.events[key]) do |page|
-				page.list.each do |command|
-					#next unless [355,655].include?(command.id) # Only checking script commands
-					script = command.parameters[0]
-					next unless script.is_a?(String)
-					match = script.match(/pbReceiveItem\((:[A-Z0-9]+(?:,[0-9]+)?)\)/)
-					if match
-						item = match[1]
-						mapName = pbGetMapNameFromId(id)
-						if item_locations.has_key?(item)
-							item_locations[item].push(mapName)
-						else
-							item_locations[item] = [mapName]
-						end
-					end
-				end
-			end
-		end
-	end
-	
-	item_locations = item_locations.sort{|a,b| GameData::Item.get(a[0].to_sym).id_number <=> GameData::Item.get(b[0].to_sym).id_number}
-	
-	item_locations.each do |item,locations|
-		echo("#{item}: ")
-		locations.each do |location|
-			echo("#{location}, ")
-		end
-		echo("\n")
-	end
-  end
-  
-
 DebugMenuCommands.register("analyzeitemdistribution", {
   "parent"      => "editorsmenu",
   "name"        => _INTL("Analyze item distribution"),
@@ -584,7 +543,7 @@ def analyze_items(map_id,map_name,event)
 		page.list.each do |eventCommand|
 			eventCommand.parameters.each do |parameter|
 				next unless parameter.is_a?(String)
-				match = parameter.match(/(?:(?:pbReceiveItem)|(?:defeatBoss)|(?:pbItemBall))\((:[A-Z0-9]+)(?:,([0-9]+))?(?:,?.+)?\)/)
+				match = parameter.match(/(?:(?:pbReceiveItem)|(?:defeatBoss)|(?:pbPickBerry)|(?:pbItemBall))\((:[A-Z0-9]+)(?:,([0-9]+))?(?:,?.+)?\)/)
 				if match
 					itemName = match[1][1..-1]
 					eventName = event.name.gsub(",","")
