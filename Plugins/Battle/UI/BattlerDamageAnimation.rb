@@ -23,7 +23,7 @@ class BattlerDamageAnimation < PokeBattle_Animation
 		shaSprite = @sprites["shadow_#{@idxBattler}"]
 		
 		# Damage hit numbers
-		if @damageDealt != 0
+		if @damageDealt != 0 && $PokemonSystem.damage_numbers == 0
 			@damageDisplayBitmap.clear
 			
 			framesForMovement = 20
