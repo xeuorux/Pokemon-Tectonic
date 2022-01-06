@@ -7,6 +7,7 @@ class BattlerDamageAnimation < PokeBattle_Animation
 		@effectiveness = effectiveness
 		@battler = battler
 		@damageDealt = battler.damageState.displayedDamage
+		battler.damageState.displayedDamage = 0
 		@damageDisplayBitmap = BitmapWrapper.new(Graphics.width,Graphics.height)
 		@damageDisplaySprite = SpriteWrapper.new(@viewport)
 		@damageDisplaySprite.bitmap = @damageDisplayBitmap
