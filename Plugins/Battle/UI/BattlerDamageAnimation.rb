@@ -24,9 +24,18 @@ class BattlerDamageAnimation < PokeBattle_Animation
 		
 		echoln("Are these the same? #{batSprite.viewport == @viewport}")
 	
+		# Damage hit numbers
 		if @damageDealt != 0
 			@damageDisplayBitmap.clear
-			base   = Color.new(72,72,72)
+			
+			base = Color.new(72,72,72)
+			case @effectiveness
+			when 0 then base = Color.new(72,72,72)
+			when 1 then base = Color.new(130,130,130)
+			when 2 then base = Color.new(220,40,40)
+			when 4 then base = Color.new(250,50,250)
+			end
+			
 			shadow = Color.new(248,248,248)
 			
 			damageX = batSprite.x
