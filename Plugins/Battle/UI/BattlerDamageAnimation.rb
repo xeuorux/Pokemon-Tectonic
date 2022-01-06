@@ -2,15 +2,15 @@
 # Shows a Pokémon flashing after taking damage
 #===============================================================================
 class BattlerDamageAnimation < PokeBattle_Animation
-	def initialize(sprites,viewport,idxBattler,effectiveness,damageDealt = 0)
+	def initialize(sprites,viewport,idxBattler,effectiveness,battler)
 		@idxBattler    = idxBattler
 		@effectiveness = effectiveness
-		@damageDealt = damageDealt
+		@battler = battler
+		@damageDealt = battler.damageState.displayedDamage
 		@damageDisplayBitmap = BitmapWrapper.new(Graphics.width,Graphics.height)
 		@damageDisplaySprite = SpriteWrapper.new(@viewport)
 		@damageDisplaySprite.bitmap = @damageDisplayBitmap
 		pbSetSystemFont(@damageDisplayBitmap)
-		@damageDisplayBitmap.font.size = 64
 		@damageDisplaySprite.z = 999999
 		
 		super(sprites,viewport)
@@ -22,11 +22,28 @@ class BattlerDamageAnimation < PokeBattle_Animation
 		batSprite = @sprites["pokemon_#{@idxBattler}"]
 		shaSprite = @sprites["shadow_#{@idxBattler}"]
 		
-		echoln("Are these the same? #{batSprite.viewport == @viewport}")
-	
 		# Damage hit numbers
 		if @damageDealt != 0
 			@damageDisplayBitmap.clear
+			
+			framesForMovement = 20
+			framesForOpacity = 15
+			
+			hpPercentDamaged = @damageDealt / @battler.totalhp.to_f
+			numHPBars = @battler.boss? ? (isLegendary?(@battler.species) ? 3 : 2) : 1
+			hpBarPercentage = (hpPercentDamaged * numHPBars).floor(1)
+			
+			if hpBarPercentage >= 1.0
+				@damageDisplayBitmap.font.size = 96
+				framesForMovement += 10
+				framesForOpacity += 10
+			elsif hpBarPercentage >= 0.5
+				@damageDisplayBitmap.font.size = 64
+				framesForMovement += 5
+				framesForOpacity += 5
+			else
+				@damageDisplayBitmap.font.size = 32
+			end
 			
 			base = Color.new(72,72,72)
 			case @effectiveness
@@ -43,8 +60,8 @@ class BattlerDamageAnimation < PokeBattle_Animation
 			pbDrawTextPositions(@damageDisplayBitmap,[[@damageDealt.to_s,damageX,damageY,2,base,shadow,true]])
 		
 			spritePicture = addSprite(@damageDisplaySprite)
-			spritePicture.moveXY(5, 20, 0, -30)
-			spritePicture.moveOpacity(10,15,0)
+			spritePicture.moveXY(5, framesForMovement, 0, -30)
+			spritePicture.moveOpacity(10,framesForOpacity,0)
 		end
 		
 		# Set up battler/shadow sprite
