@@ -100,8 +100,6 @@ class PokeBattle_AI
 	end
 
 	def pbGetMoveScoreBoss(move,user,target)
-		return 0 if move.isEmpowered? # Never ever use empowered moves normally
-	
 		score = 100
 		
 		score = PokeBattle_AI.triggerBossGetMoveCodeScore(move.id,move,user,target,score)
