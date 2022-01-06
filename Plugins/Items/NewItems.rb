@@ -262,7 +262,7 @@ ItemHandlers::UseOnPokemon.add(:UNIVERSALFORMALIZER,proc { |item,pkmn,scene|
 	species = pkmn.species
 	if [:DEOXYS,:ORICORIO,:LYCANROC,:ROTOM,
 			:DARMANITAN,:GDARMANITAN,:BURMY,:WORMADAM,
-			:DEERLING,:SAWSBUCK,:TORNADUS,:THUNDURUS,:LANDORUS,
+			:TORNADUS,:THUNDURUS,:LANDORUS,
 			:PUMPKABOO,:GOURGEIST,:URSHIFU].include?(species)
 		possibleForms = []
 		possibleFormNames = []
