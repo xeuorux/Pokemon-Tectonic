@@ -1535,3 +1535,23 @@ Weight = 392.0
 BattlerPlayerY = 0
 BattlerEnemyX = -1
 BattlerEnemyY = 1
+#-------------------------------
+[DARMANITAN,1]
+FormName = Zen Mode
+Type1 = FIRE
+Type2 = PSYCHIC
+BaseStats = 105,30,105,55,140,105
+EffortPoints = 0,0,0,0,2,0
+Color = Blue
+Pokedex = When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit.
+BattlerPlayerY = 65
+BattlerEnemyY = 33
+#-------------------------------
+[GDARMANITAN,1]
+FormName = Zen Mode
+Type1 = ICE
+Type2 = FIRE
+BaseStats = 105,30,95,35,120,95
+Color = White
+Pokedex = Darmanitan takes this form when enraged. It won't stop spewing flames until its rage has settled, even if its body starts to melt.
+BattlerEnemyY = 30
