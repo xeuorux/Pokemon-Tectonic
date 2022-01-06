@@ -232,8 +232,8 @@
 229,LAVACOOKIE,Lava Cookie,Lava Cookies,2,350,Lavaridge Town's local specialty. It heals all the status problems of one Pokémon.,1,0,0,
 230,OLDGATEAU,Old Gateau,Old Gateaux,2,350,Old Chateau's hidden specialty. It heals all the status problems of a single Pokémon.,1,0,0,
 231,CASTELIACONE,Casteliacone,Casteliacones,2,350,"Castelia City's specialty, soft-serve ice cream. It heals all the status problems of a single Pokémon.",1,0,0,
-232,REVIVE,Revive,Revives,2,2000,A medicine that revives a fainted Pokémon. It restores half the Pokémon's maximum HP.,1,0,0,
-233,MAXREVIVE,Max Revive,Max Revives,2,4000,A medicine that revives a fainted Pokémon. It fully restores the Pokémon's HP.,1,0,0,
+232,REVIVE,Revive,Revives,2,800,A medicine that revives a fainted Pokémon. It restores half the Pokémon's maximum HP.,1,0,0,
+233,MAXREVIVE,Max Revive,Max Revives,2,2000,A medicine that revives a fainted Pokémon. It fully restores the Pokémon's HP.,1,0,0,
 234,BERRYJUICE,Berry Juice,Berry Juices,2,100,A 100% pure juice made of Berries. It restores the HP of one Pokémon by just 20 points.,1,0,5,
 235,RAGECANDYBAR,Rage Candy Bar,Rage Candy Bars,2,350,Mahogany Town's famous candy. It can be used once to heal all the status conditions of a Pokémon.,1,0,0,
 236,SWEETHEART,Sweet Heart,Sweet Hearts,2,3000,Very sweet chocolate. It restores the HP of one Pokémon by only 20 points.,1,0,0,
@@ -834,6 +834,7 @@
 809,GRASSTOKEN,Grass Token,Grass Tokens,1,5000,"A token which can be exchanged, with a fee, for a Grass-type at the Starter Store.",0,0,0,
 810,WATERTOKEN,Water Token,Water Tokens,1,5000,"A token which can be exchanged, with a fee, for a Water-type at the Starter Store.",0,0,0,
 811,FIRETOKEN,Fire Token,Fire Tokens,1,5000,"A token which can be exchanged, with a fee, for a Fire-type at the Starter Store.",0,0,0,
+812,UNIVERSALFORMALIZER,Universal Formalizer,Universal Formalizers,8,0,"Use on a Pokémon to switch it into another one of its forms.",5,0,6,
 #------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6

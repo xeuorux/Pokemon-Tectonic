@@ -164,8 +164,8 @@ Moves = PECK
 [KLINKLANG]
 Turns = 2
 HPMult = 4
-Ability = WEAKARMOR
-Moves = GEARGRIND,IRONDEFENSE
+Ability = CLEARBODY
+Moves = GEARGRIND,
 #-----------------------------
 [AVALUGG]
 Turns = 1

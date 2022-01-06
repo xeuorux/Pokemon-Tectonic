@@ -128,6 +128,7 @@ class PokeBattle_AI
       PBDebug.log("[AI] #{user.pbThis} (#{user.index}) doesn't want to use any moves; picking one at random")
       user.eachMoveWithIndex do |_m,i|
         next if !@battle.pbCanChooseMove?(idxBattler,i,false)
+		next if _m.isEmpowered?
         choices.push([i,100,-1])   # Move index, score, target
       end
       if choices.length==0   # No moves are physically possible to use; use Struggle
@@ -136,6 +137,7 @@ class PokeBattle_AI
     end
     # if there is somehow still no choice, randomly choose a move from the choices and register it
 	if !@battle.choices[idxBattler][2]
+		echoln("All AI protocols have failed, picking at random. THIS IS VERY BAD.")
 		randNum = pbAIRandom(totalScore)
 		choices.each do |c|
 		  randNum -= c[1]
@@ -285,6 +287,8 @@ class PokeBattle_AI
   
   def pbRegisterMoveWild(user,idxMove,choices)
     move = user.moves[idxMove]
+	return if move.isEmpowered? # Never ever use empowered moves normally
+	
     target_data = move.pbTarget(user)
     if target_data.num_targets > 1
       # If move affects multiple battlers and you don't choose a particular one

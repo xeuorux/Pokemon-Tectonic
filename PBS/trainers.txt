@@ -2,50 +2,30 @@
 #-------------------------------
 [YOUNGSTER,Joey]
 LoseText = "..."
-Pokemon = FERROSEED, 15
-	Moves = INGRAIN
-    AbilityIndex = 0
-Pokemon = CATERPIE, 10
-	Item = ORANBERRY
+Pokemon = BIDOOF,50
+	Moves = TACKLE
+Pokemon = BIDOOF,50
+	Moves = TACKLE
+Pokemon = BIDOOF,50
+	Moves = TACKLE
+Pokemon = BIDOOF,50
+	Moves = TACKLE
 #-------------------------------
 [HIKER,Conroy]
 LoseText = "..."
 Pokemon = CLEFABLE,70
-	Moves = METRONOME
-	AbilityIndex = 0
-Pokemon = SNORLAX, 70
-	Moves = METRONOME
-	AbilityIndex = 0
-Pokemon = PRIMEAPE, 70
-	Moves = METRONOME
-	AbilityIndex = 0
-Pokemon = NIBELONG, 70
-	Moves = METRONOME
-	AbilityIndex = 0
-Pokemon = CONIFEAR, 70
-	Moves = METRONOME
-	AbilityIndex = 0
-Pokemon = BLASFEMMIE, 70
-	Moves = METRONOME
-	AbilityIndex = 0
-#-------------------------------
-[AROMALADY,Someone]
-LoseText = "..."
-Pokemon = MILCERY,10
-	Moves = FAIRYWIND
-	Item = AIRBALLOON
-	AbilityIndex = 1
-Pokemon = ZORUA,5
-	Item = AIRBALLOON
-Pokemon = SLOWPOKE,5
-POKEMON = ODDISH,5
+Pokemon = SNORLAX,70
+Pokemon = PRIMEAPE,70
+Pokemon = NIBELONG,70
+Pokemon = CONIFEAR,70
+Pokemon = BLASFEMMIE,70
 #-------------------------------
 [BUGCATCHER,Colin]
 Policies = REMARKONSTARTER
 LoseText = "..."
-Pokemon = KRICKETOT,6
+Pokemon = KRICKETOT,7
     AbilityIndex = 0
-Pokemon = SNOM,6
+Pokemon = SNOM,8
     AbilityIndex = 0
 #-------------------------------
 [YOUNGSTER,Harvey]
@@ -57,9 +37,10 @@ Pokemon = SEEDOT,8
 #-------------------------------
 [LASS2,Sienna]
 LoseText = "..."
-Pokemon = PICHU,6
+Pokemon = PICHU,8
     AbilityIndex = 0
-Pokemon = PIKIPEK,6
+	Moves = THUNDERSHOCK,GROWL,SHOUT
+Pokemon = PONYTA,8
     AbilityIndex = 0
 #-------------------------------
 [HIKER,Dave]
@@ -87,8 +68,8 @@ Pokemon = NINCADA,12
 LoseText = "..."
 Pokemon = MAGBY,13
     AbilityIndex = 0
-Pokemon = LITWICK,13
-    AbilityIndex = 0
+Pokemon = HOUNDOUR,13
+    AbilityIndex = 1
 Pokemon = BULBASAUR,13
     AbilityIndex = 0
 #-------------------------------
@@ -135,7 +116,7 @@ Pokemon = MACHOP,15
     Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
     AbilityIndex = 1
 Pokemon = GZIGZAGOON,15
-    Moves = SNARL,LICK,SANDATTACK,TACKLE
+    Moves = SNARL,LICK,TACKLE
     AbilityIndex = 1
     Item = SITRUSBERRY
 Pokemon = RIOLU,15
@@ -187,8 +168,8 @@ Pokemon = GASTLY,16
 LoseText = "..."
 Pokemon = ABRA,15
 	Item = PSYCHICGEM
-Pokemon = MEDITITE,16
-Pokemon = WOOBAT,15
+Pokemon = IMPIDIMP,16
+Pokemon = RUFFLET,15
 #-------------------------------
 [POKEFAN_M,Jamie]
 LoseText = "..."
@@ -202,7 +183,7 @@ LoseText = "..."
 Pokemon = TYROGUE,17
 	Item = FIGHTINGGEM
 Pokemon = COMBUSKEN,16
-Pokemon = DARUMAKA,17
+Pokemon = AXEW,17
 #-------------------------------
 [ARTIST,Evan]
 LoseText = "..."
@@ -342,8 +323,8 @@ Pokemon = ELEKID,23
 LoseText = "..."
 Pokemon = SABLEYE,24
 	Item = NORMALGEM
-Pokemon = FRILLISH,23
-Pokemon = VIGOROTH,24
+Pokemon = SKRELP,23
+Pokemon = WOOLOO,24
 #-------------------------------
 [BAKER,Rose]
 LoseText = "..."
@@ -371,24 +352,24 @@ Pokemon = MAWILE,18
 	Item = STEELGEM
 Pokemon = MINCCINO,19
     AbilityIndex = 0
-Pokemon = BRAIXEN,19
+Pokemon = MORELULL,19
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Helena,Helena]
 LoseText = "..."
 Pokemon = LANTURN,25
     AbilityIndex = 0
-Pokemon = LUXIO,25
-    AbilityIndex = 1
-Pokemon = MARSHTOMP,25
+Pokemon = WAILMER,25
     AbilityIndex = 1
 	Name = Hannibal
 	Gender = male
-	Moves = SPATTERINGRAM,SANDTOMB,FORCEPALM,FACADE
+	Moves = NOBLEROAR,CHILL,WHIRLPOOL,BRINE
 Pokemon = CHARJABUG,25
     AbilityIndex = 0
 	Moves = STRINGSHOT,CLACKACLACK,LIGHTSHOW,RISINGVOLTAGE
 	Item = SITRUSBERRY
+Pokemon = LUXIO,25
+    AbilityIndex = 1
 #-------------------------------
 [LEADER_Helena_2,Helena]
 LoseText = "..."
@@ -396,8 +377,6 @@ Pokemon = LANTURN,25
     AbilityIndex = 0
 Pokemon = PINCURCHIN,25
     AbilityIndex = 0
-Pokemon = LUXIO,25
-    AbilityIndex = 1
 Pokemon = CLAUNCHER,25
     Moves = TERRAINPULSE,AQUAJET,WATERPULSE
     AbilityIndex = 0
@@ -405,12 +384,14 @@ Pokemon = CHARJABUG,25
     AbilityIndex = 0
 	Moves = STRINGSHOT,CLACKACLACK,LIGHTSHOW,RISINGVOLTAGE
 	Item = SITRUSBERRY
-Pokemon = MARSHTOMP,25
+Pokemon = WAILMER,25
     AbilityIndex = 1
-	Gender = male
 	Name = Hannibal
-	Moves = SPATTERINGRAM,SANDTOMB,FORCEPALM,FACADE
+	Gender = male
+	Moves = NOBLEROAR,CHILL,WHIRLPOOL,BRINE
 	Item = ELECTRICSEED
+Pokemon = LUXIO,25
+    AbilityIndex = 1
 #-------------------------------
 [IDOL,Ishizu]
 LoseText = "..."
@@ -445,9 +426,9 @@ Pokemon = GROVYLE,26
 #-------------------------------
 [BLACKBELT3,Philip]
 LoseText = "..."
-Pokemon = MIENFOO,26
-Pokemon = WHIRLIPEDE,27
-Pokemon = SNORUNT,26
+Pokemon = MIENFOO,25
+Pokemon = WHIRLIPEDE,25
+Pokemon = SNORUNT,25
 	Item = ICEGEM
 #-------------------------------
 [COOLTRAINER_M,Xander]
@@ -649,7 +630,7 @@ Pokemon = POLIWHIRL,25
 [SCHOOLKID_M,Louis]
 LoseText = "..."
 Pokemon = DUCKLETT,19
-Pokemon = STUNKY,20
+Pokemon = ELECTRIKE,20
 Pokemon = STUFFUL,21
 Pokemon = APPLIN,21
 #-------------------------------
@@ -659,21 +640,21 @@ Pokemon = ROSELIA,24
 Pokemon = BRIONNE,26
 Pokemon = BUTTERFREE,26
 Pokemon = CUBONE,25
-Pokemon = WARTORTLE,25
+Pokemon = POOCHYENA,25
 #-------------------------------
 [NURSE,Elliot]
 LoseText = "..."
 Pokemon = CHANSEY,29
 Pokemon = STANTLER,30
-Pokemon = MALAMAR,31
+Pokemon = ONIX,31
 Pokemon = GOLISOPOD,32
-Pokemon = METANG,32
+Pokemon = DOUBLADE,32
 #-------------------------------
 [GUITARIST3,Jamie]
 LoseText = "..."
-Pokemon = NIDOKING,34
+Pokemon = NIDORINO,34
 Pokemon = HOUNDOOM,35
-Pokemon = STARAPTOR,35
+Pokemon = PIDGEOT,35
 Pokemon = SPIRITOMB,36
 Pokemon = AVALUGG,37
 #-------------------------------
@@ -687,7 +668,7 @@ Pokemon = VESPIQUEN,47
 #-------------------------------
 [PILOT,Charlie]
 LoseText = "..."
-Pokemon = DRIFBLIM,50
+Pokemon = SKARMORY,50
 Pokemon = AZUMARILL,50
 Pokemon = MANERGETIC,51
 Pokemon = TOXICROAK,52
@@ -712,15 +693,16 @@ Pokemon = HYMNUS,62
 #-------------------------------
 [IRISCOSPLAYER,Isabelle]
 LoseText = "..."
+Pokemon = HAXORUS,65
 Pokemon = AGGRON,64
     Item = SITRUSBERRY
-Pokemon = ZOROARK,65
 Pokemon = LAPNESSIE,65
     Item = LEFTOVERS
-Pokemon = HAEROBIC,66
-    Item = BLACKBELT
+Pokemon = EMOLGA,66
+    Item = FLYINGGEM
 Pokemon = HOUNDOMINUS,66
-Pokemon = HYDREIGON,66
+Pokemon = EXCADRILL,66
+	AbilityIndex = 1
 #-------------------------------
 [ELDER,Logun]
 LoseText = "..."
@@ -856,7 +838,7 @@ Pokemon = NIDORINO,26
 Pokemon = DEERLING,26
 Pokemon = GREEDENT,27
 	Moves = STOCKPILE,SWALLOW,SUPERFANG,BODYSLAM
-Pokemon = DUSCLOPS,27
+Pokemon = LIEPARD,27
 #-------------------------------
 [WORKER,Kevin]
 Pokemon = BOLDORE,27
@@ -867,10 +849,10 @@ Pokemon = HATTREM,27
 Pokemon = LOUDRED,28
 #-------------------------------
 [POKEMONRANGER_M,Connor]
-Pokemon = DRIFBLIM,28
-	Moves = HEATWAVE,OMINOUSWIND,HEX,THUNDERWAVE
-Pokemon = BRELOOM,29
-Pokemon = GYAMASK,28
+Pokemon = DRIFBLIM,30
+	Moves = THUNDERWAVE,HEX,CHILL
+Pokemon = BRELOOM,30
+Pokemon = GYAMASK,30
 	Item = ORANBERRY
 #-------------------------------
 [BACKPACKER_F,Aiyana]
@@ -1115,3 +1097,34 @@ Pokemon = CINCCINO,40
 Pokemon = AROMATISSE,40
 	AbilityIndex = 1
 Pokemon = STONJOURNER,40
+##################################
+#  2nd Half of Game
+##################################
+[SWIMMER_M,Stannis]
+Pokemon = WISHIWASHI,33
+Pokemon = ALTARIA,31
+	Item = FAIRYGEM
+Pokemon = LUNATONE,32
+Pokemon = EMOLGA,33
+	Item = SITRUSBERRY
+[WAITRESS,Carmilla]
+Pokemon = CLEFAIRY,32
+	Item = ORANBERRY
+Pokemon = DUGTRIO,31
+Pokemon = DURANT,32
+	Item = CHOICEBAND
+Pokemon = UNFEZANT,33
+[BIKER2,Chuck]
+Pokemon = MUK,33
+Pokemon = FLAAFFY,32
+	Item = ELECTRICGEM
+Pokemon = DONPHAN,32
+Pokemon = PORYGON,32
+	Item = SITRUSBERRY
+[NURSERYAIDE,Francesca]
+Pokemon = CINCCINO,33
+Pokemon = BRONZOR,31
+	Item = LEFTOVERS
+Pokemon = RAMPARDOS,31
+Pokemon = CRUSTLE,33
+	Item = ORANBERRY

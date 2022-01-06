@@ -4,25 +4,27 @@ class PokemonSystem
 	attr_accessor :particle_effects
 	attr_accessor :skip_fades
 	attr_accessor :gendered_look
+	attr_accessor :damage_numbers
 
   def initialize
-    @textspeed   = 1     # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
-    @battlescene = 0     # Battle effects (animations) (0=on, 1=off)
-    @battlestyle = 1     # Battle style (0=switch, 1=set)
-    @frame       = 0     # Default window frame (see also Settings::MENU_WINDOWSKINS)
-    @textskin    = 0     # Speech frame
-    @font        = 0     # Font (see also Settings::FONT_OPTIONS)
-    @screensize  = (Settings::SCREEN_SCALE * 2).floor - 1   # 0=half size, 1=full size, 2=full-and-a-half size, 3=double size
-    @language    = 0     # Language (see also Settings::LANGUAGES in script PokemonSystem)
-    @runstyle    = 0     # Default movement speed (0=walk, 1=run)
-    @bgmvolume   = 30   # Volume of background music and ME
-    @sevolume    = 30   # Volume of sound effects
-    @textinput   = 1     # Text input mode (0=cursor, 1=keyboard)
-	@followers   = 0	# Follower Pokemon enabled (0=true, 1=false)
-	@autosave	 = 1	# Autosave enabled (0=true, 1=false)
-	@particle_effects = 0 # (0=true, 1=false)
-	@skip_fades = 1 # (0=true, 1=false)
-	@gendered_look = 0 # (0 = Masc, 1 = Fem)
+    @textspeed   		= 1 # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
+    @battlescene 		= 0 # Battle effects (animations) (0=on, 1=off)
+    @battlestyle 		= 1 # Battle style (0=switch, 1=set)
+    @frame      		= 0 # Default window frame (see also Settings::MENU_WINDOWSKINS)
+    @textskin    		= 0 # Speech frame
+    @font        		= 0 # Font (see also Settings::FONT_OPTIONS)
+    @screensize  		= (Settings::SCREEN_SCALE * 2).floor - 1   # 0=half size, 1=full size, 2=full-and-a-half size, 3=double size
+    @language    		= 0 # Language (see also Settings::LANGUAGES in script PokemonSystem)
+    @runstyle    		= 0 # Default movement speed (0=walk, 1=run)
+    @bgmvolume  		= 30 # Volume of background music and ME
+    @sevolume    		= 30 # Volume of sound effects
+    @textinput   		= 1 # Text input mode (0=cursor, 1=keyboard)
+	@followers   		= 0	# Follower Pokemon enabled (0=true, 1=false)
+	@autosave	 		= 1	# Autosave enabled (0=true, 1=false)
+	@particle_effects 	= 0 # (0=true, 1=false)
+	@skip_fades 		= 1 # (0=true, 1=false)
+	@gendered_look 		= 0 # (0 = Masc, 1 = Fem)
+	@damage_numbers 	= 0
   end
 end
 
@@ -101,6 +103,12 @@ class PokemonOption_Scene
        EnumOption.new(_INTL("Text Entry"),[_INTL("Cursor"),_INTL("Keyboard")],
          proc { $PokemonSystem.textinput },
          proc { |value| $PokemonSystem.textinput = value }
+       ),
+	   EnumOption.new(_INTL("Damage Numbers"),[_INTL("On"),_INTL("Off")],
+         proc { $PokemonSystem.damage_numbers },
+         proc { |value|
+			$PokemonSystem.damage_numbers = value
+         }
        )
     ]
 	@PokemonOptions.push(EnumOption.new(_INTL("Look"),[_INTL("Masc."),_INTL("Fem.")],

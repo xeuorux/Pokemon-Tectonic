@@ -211,7 +211,7 @@ class PokeBattle_Battle
         eff = eff.to_f / Effectiveness::NORMAL_EFFECTIVE
         oldHP = battler.hp
         battler.pbReduceHP(battler.totalhp*eff/8,false)
-        pbDisplay(_INTL("Pointed stones dug into {1}!",battler.pbThis))
+        pbDisplay(_INTL("Pointed stones dug into {1}!",battler.pbThis(true)))
         battler.pbItemHPHealCheck
         if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
           return pbOnActiveOne(battler)   # For replacement battler

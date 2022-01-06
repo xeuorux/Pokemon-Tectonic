@@ -801,14 +801,3 @@ def showThinkingOverFollower(followerName = "Yezera")
 	event = pbGetDependency(followerName)
 	$scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,event.x,event.y)
 end
-
-def mentorshipCoordinatorSpeech(ranger = false)
-	if ranger
-		pbMessage(_INTL("I'm the Pokemon Mentorship Coordinator for this group of rangers."))
-	else
-		pbMessage(_INTL("I'm the Pokemon Mentorship Coordinator."))
-	end
-	pbMessage(_INTL("I help your Pokemon to teach each other moves through mentorships!"))
-	pbMessage(_INTL("Pokemon can teach any move they know to any other Pokemon you have who can learn that move."))
-	pbMessage(_INTL("The Pokemon in your party can learn from any other Pokemon in your party, or any in your PC!"))
-end

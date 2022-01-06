@@ -217,8 +217,8 @@ class PokemonStorageScreen
       pkmnname = pokemon.name
       @scene.pbRelease(selected,heldpoke)
       if heldpoke
-        @heldpkmn = nil
       else
+        @heldpkmn = nil
         @storage.pbDelete(box,index)
       end
       @scene.pbRefresh

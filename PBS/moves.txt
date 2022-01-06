@@ -451,7 +451,7 @@
 436,FALSESWIPE,False Swipe,0E9,40,NORMAL,Physical,100,40,0,NearOther,0,abef,A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.
 437,HOLDBACK,Hold Back,0E9,40,NORMAL,Special,100,40,0,NearOther,0,abef,"The user holds back when it attacks, and the target is left with at least 1 HP."
 438,PAYDAY,Pay Day,109,50,NORMAL,Physical,100,20,0,NearOther,0,bef,Numerous coins are hurled at the target to inflict damage. Money is earned after battle.
-439,POUND,Pound,01C,45,NORMAL,Physical,100,35,15,NearOther,0,abef,"The target is physically pounded with a long tail or a foreleg, etc. Has a 15% chance to raise attack."
+439,POUND,Pound,01C,45,NORMAL,Physical,000,35,15,NearOther,0,abef,"The target is physically pounded with a long tail or a foreleg, etc."
 440,QUICKATTACK,Quick Attack,000,40,NORMAL,Physical,100,30,0,NearOther,1,abef,The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.
 441,SCRATCH,Scratch,000,45,NORMAL,Physical,100,35,0,NearOther,0,abefh,"Hard, pointed, and sharp claws rake the target to inflict damage. Critical hits land more easily"
 442,TACKLE,Tackle,000,45,NORMAL,Physical,100,35,0,NearOther,0,abef,"A physical attack in which the user charges and slams into the target with its whole body."
@@ -612,7 +612,7 @@
 595,PSYCHOBOOST,Psycho Boost,03F,140,PSYCHIC,Special,100,5,0,NearOther,0,bef,The user attacks the target at full power. The attack harshly reduces the user's Sp. Atk stat.
 596,FUTURESIGHT,Future Sight,111,120,PSYCHIC,Special,100,10,0,NearOther,0,,"Two turns after this move is used, a hunk of psychic energy attacks the target."
 597,SYNCHRONOISE,Synchronoise,123,120,PSYCHIC,Special,100,10,0,AllNearOthers,0,bef,"Using an odd shock wave, the user damages any Pokémon of the same type as the user."
-598,DREAMEATER,Dream Eater,0DE,70,PSYCHIC,Special,100,15,0,NearOther,0,bef,The user eats the dreams of a sleeping foe. It absorbs half the damage caused to heal the user's HP.
+598,DREAMABSORB,Dream Absorb,0DE,70,PSYCHIC,Special,100,15,0,NearOther,0,bef,The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.
 599,PHOTONGEYSER,Photon Geyser,164,100,PSYCHIC,Special,100,5,0,NearOther,0,bef,The user attacks with a pillar of light. This move the higher of the user's Attack or Sp. Atk stat.
 600,PSYSTRIKE,Psystrike,122,100,PSYCHIC,Special,100,10,0,NearOther,0,bef,The user materializes an odd psychic wave to attack the target. This attack does physical damage.
 601,PSYCHIC,Psychic,046,90,PSYCHIC,Special,100,10,10,NearOther,0,bef,The target is hit by a strong telekinetic force. It has a 10% chance to lower Sp. Def.
@@ -737,7 +737,7 @@
 718,SCALD,Scald,00A,80,WATER,Special,100,15,30,NearOther,0,bef,The user shoots boiling hot water at its target. This has a 30% chance to burn.
 719,WATERPLEDGE,Water Pledge,108,80,WATER,Special,100,10,0,NearOther,0,bef,"A column of water strikes the target. When combined with its fire equivalent, it makes a rainbow."
 720,WATERFALL,Waterfall,00F,80,WATER,Physical,100,15,20,NearOther,0,abe,The user charges at the target and has a 20% chance to make it flinch.
-721,RAZORSHELL,Razor Shell,043,75,WATER,Physical,95,10,50,NearOther,0,abefp,The user cuts the foe with sharp shells. It has a 50% chance to lower Defense.
+721,RAZORSHELL,Razor Shell,043,75,WATER,Physical,100,10,50,NearOther,0,abefp,The user cuts the foe with sharp shells. It has a 50% chance to lower Defense.
 722,BRINE,Brine,080,65,WATER,Special,100,10,0,NearOther,0,bef,"If the target's HP is down to about half, this attack will hit with double the power."
 723,BUBBLEBEAM,Bubble Beam,044,55,WATER,Special,100,20,100,NearOther,0,bef,A spray of bubbles is forcefully ejected at the target. It also lowers the foe's Speed stat.
 724,OCTAZOOKA,Octazooka,047,65,WATER,Special,85,10,50,NearOther,0,befn,The user attacks by spraying ink in the foe's face or eyes. It has a 50% chance to lower accuracy.
@@ -970,7 +970,7 @@
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."
 1502,PRIMEVALRAINDANCE,Primeval Rain Dance,602,0,WATER,Status,0,1,0,BothSides,0,,"The user summons rain, surrounds itself with healing water, and becomes Water-type."
 1503,PRIMEVALLEECHSEED,Primeval Leech Seed,603,0,GRASS,Status,100,1,0,AllNearFoes,0,bce,"Plants seeds on all near foes, draining HP each turn. User becomes Grass-type."
-1504,PRIMEVALLIGHTNINGDANCE,Primeval Lightning Dance,503,0,ELECTRIC,Status,0,1,0,User,0,do,"The user sharply boosts its Sp. Atk and Speed stats, and becomes Electric-type."
+1504,PRIMEVALLIGHTNINGDANCE,Primeval Lightning Dance,604,0,ELECTRIC,Status,0,1,0,User,0,do,"The user sharply boosts its Sp. Atk and Speed stats, and becomes Electric-type."
 1505,PRIMEVALHAIL,Primeval Hail,605,0,ICE,Status,0,1,0,BothSides,0,,"The user summons a hail storm, chills all enemies, and becomes Ice-type."
 1506,PRIMEVALBULKUP,Primeval Bulk Up,606,0,FIGHTING,Status,0,1,0,User,0,d,"The user boosts its Attack and Defense, gains a lot of weight, and becomes Fighting-type."
 1507,PRIMEVALSPIKES,Primeval Spikes,607,0,GROUND,Status,0,1,0,FoeSide,0,c,"The user lays 3 layers of spike traps at the foe's feet, and becomes Ground-type."

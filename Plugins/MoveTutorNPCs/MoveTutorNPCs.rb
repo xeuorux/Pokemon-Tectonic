@@ -1,3 +1,55 @@
+def moveRelearner()
+	if isTempSwitchOff?("A")
+		pbMessage(_INTL("I'm the Pokémon Move Maniac."))
+		pbMessage(_INTL("I know every single move that Pokémon learn while leveling up or evolving."))
+		pbMessage(_INTL("I can teach moves to your Pokémon -- at no cost!"))
+		setTempSwitchOn("A")
+	end
+	if pbConfirmMessage(_INTL("Do you want me to teach one of your Pokémon a move?"))
+		while true do
+			pbChoosePokemon(1,3,proc{|p|
+				p.can_relearn_move?
+			},false)
+			if $game_variables[1] < 0
+				pbMessage(_INTL("If your Pokémon need to learn a move, come to me!"))
+				break
+			elsif !pbGetPokemon(1).can_relearn_move?
+				pbMessage(_INTL("Sorry, it doesn't appear as if I have any move I can teach to your \v[3]."))
+			else
+				pbRelearnMoveScreen(pbGetPokemon(1))
+			end
+		end
+	else
+		pbMessage(_INTL("If your Pokémon need to learn a move, come to me!"))
+	end
+end
+
+def mentorCoordinator()
+	if isTempSwitchOff?("A")
+		pbMessage(_INTL("I help your Pokemon to teach each other moves through mentorships!"))
+		pbMessage(_INTL("Pokemon can teach any move they know to any other Pokemon you have who can learn that move."))
+		pbMessage(_INTL("Any Pokemon in your party on in your PC can be a mentor!"))
+		setTempSwitchOn("A")
+	end
+	if pbConfirmMessage(_INTL("Would you like one of your party members to learn a move through mentoring?"))
+		while true do
+			pbChoosePokemon(1,3,proc{|p|
+				p.can_mentor_move?
+			},false)
+			if $game_variables[1] < 0
+				pbMessage(_INTL("If your Pokémon need to mentor each other, come to me."))
+				break
+			elsif !pbGetPokemon(1).can_relearn_move?
+				pbMessage(_INTL("Sorry, it doesn't appear that \v[3] can have any moves mentored to it at the moment.."))
+			else
+				pbMentorMoveScreen(pbGetPokemon(1))
+			end
+		end
+	else
+		pbMessage(_INTL("If your Pokémon need to mentor each other, come to me."))
+	end
+end
+
 class Pokemon
 	def can_relearn_move?
 		return false if egg? || shadowPokemon?

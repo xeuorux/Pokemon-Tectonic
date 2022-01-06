@@ -1,12 +1,10 @@
 class PokeBattle_Battler
-
-
   #=============================================================================
   # Ability effects
   #=============================================================================
   def pbAbilitiesOnSwitchOut
     if abilityActive?
-      BattleHandlers.triggerAbilityOnSwitchOut(@battle,self.ability,self,false)
+      BattleHandlers.triggerAbilityOnSwitchOut(self.ability,self,false,@battle)
     end
     # Reset form
     @battle.peer.pbOnLeavingBattle(@battle,@pokemon,@battle.usedInBattle[idxOwnSide][@index/2])
@@ -15,41 +13,22 @@ class PokeBattle_Battler
     @fainted = true
     # Check for end of primordial weather
     @battle.pbEndPrimordialWeather
-  end
-  
-
-=begin
-  def pbConsumeItem(recoverable=true,symbiosis=true,belch=true,scavenge=true)
-    PBDebug.log("[Item consumed] #{pbThis} consumed its held #{itemName}")
-    if recoverable
-      setRecycleItem(@item_id)
-      @effects[PBEffects::PickupItem] = @item_id
-      @effects[PBEffects::PickupUse]  = @battle.nextPickupUse
-    end
-    setBelched if belch && self.item.is_berry?
-    pbRemoveItem
-    pbSymbiosis if symbiosis
-	pbScavenge if scavenge
-  end
-=end
-  
-  #=========================================
-  #Also handles SCAVENGE
-  #========================================= 
-  
-  
- def pbConsumeItem(recoverable=true,symbiosis=true,belch=true,scavenge=true)
-    PBDebug.log("[Item consumed] #{pbThis} consumed its held #{itemName}")
-    if recoverable
-      setRecycleItem(@item_id)
-      @effects[PBEffects::PickupItem] = @item_id
-      @effects[PBEffects::PickupUse]  = @battle.nextPickupUse
-    end
-    setBelched if belch && self.item.is_berry?
-	pbScavenge if scavenge
-    pbRemoveItem
-    pbSymbiosis if symbiosis
-  end
+  end  
+	  #=========================================
+	  #Also handles SCAVENGE
+	  #========================================= 
+	def pbConsumeItem(recoverable=true,symbiosis=true,belch=true,scavenge=true)
+		PBDebug.log("[Item consumed] #{pbThis} consumed its held #{itemName}")
+		if recoverable
+		  setRecycleItem(@item_id)
+		  @effects[PBEffects::PickupItem] = @item_id
+		  @effects[PBEffects::PickupUse]  = @battle.nextPickupUse
+		end
+		setBelched if belch && self.item.is_berry?
+		pbScavenge if scavenge
+		pbRemoveItem
+		pbSymbiosis if symbiosis
+	end
 
 
 =begin

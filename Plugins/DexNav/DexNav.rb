@@ -155,7 +155,7 @@ class NewDexNav
 				end
 				searchTime = 20 + rand(80)
 				pbMessage(_INTL("Searching\\ts[15]...\\wtnp[#{searchTime}]"))
-				pbMessage(_INTL("Oh! A Pokemon was found nearby!"))
+				pbMessage(_INTL("Oh! A #{highlightedSpeciesData.real_name} was found nearby!"))
 				pbFadeOutAndHide(@sprites)
 				beginSearchWithOverlay(highlightedSpeciesData)
 				break
@@ -234,7 +234,7 @@ class NewDexNav
   end
 
   def beginSearchWithOverlay(species_data)
-	$currentDexSearch=[species_data,getRandomEggMove(species_data.species)]
+	$currentDexSearch=[species_data,getRandomMentorMove(species_data.species)]
   	
 	# Determine which of the Pokemon's abilities it will have, and store that info for later
     navRand = rand(2)
@@ -329,24 +329,15 @@ Events.onWildPokemonCreate += proc {|sender,e|
 }
 
 # Gets a random ID of a legal egg move of the given species and returns it as a move object.
-def getRandomEggMove(species)
+def getRandomMentorMove(species)
 	return nil if !defined?($PokemonGlobal.dexNavEggMovesUnlocked) || !$PokemonGlobal.dexNavEggMovesUnlocked
-	baby = GameData::Species.get(species).get_baby_species
-	maps = GameData::MapMetadata.try_get($game_map.map_id)
-	form = 0
-	if form == 0 && maps && maps==0
-	  if isConst?(baby,GameData::Species,:RIOLU)||isConst?(baby,GameData::Species,:LUCARIO)||isConst?(baby,GameData::Species,:BUNEARY)||isConst?(baby,GameData::Species,:LOPUNNY)||isConst?(baby,GameData::Species,:NUMEL)||isConst?(baby,GameData::Species,:CAMERUPT)||isConst?(baby,GameData::Species,:ROCKRUFF)||isConst?(baby,GameData::Species,:YAMASK)
-		form += 2
-	  elsif isConst?(baby,GameData::Species,:CACNEA)||isConst?(baby,GameData::Species,:CACTURNE)||isConst?(baby,GameData::Species,:SANDYGAST)||isConst?(baby,GameData::Species,:PALOSSAND)||isConst?(baby,GameData::Species,:DEINO)||isConst?(baby,GameData::Species,:ZWEILOUS)||isConst?(baby,GameData::Species,:HYDREIGON)||isConst?(baby,GameData::Species,:TRAPINCH)||isConst?(baby,GameData::Species,:HORSEA)||isConst?(baby,GameData::Species,:SEADRA)||isConst?(baby,GameData::Species,:EXEGGCUTE)||isConst?(baby,GameData::Species,:EXEGGUTOR)||isConst?(baby,GameData::Species,:SEEL)||isConst?(baby,GameData::Species,:DEWGONG)||isConst?(baby,GameData::Species,:DROWZEE)||isConst?(baby,GameData::Species,:PHANPY)||isConst?(baby,GameData::Species,:ZEBSTRIKA)
-		form += 1
-	  else
-		form = form
-	  end
+	firstSpecies = GameData::Species.get(species)
+	while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
+		firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 	end
-	egg = GameData::Species.get_species_form(baby,form).egg_moves
-	moveChoice = rand(egg.length)
-	move = egg[moveChoice]
-	return move
+	
+	moves = firstSpecies.egg_moves.concat(species.tutor_moves)
+	return moves.sample
 end
 
 

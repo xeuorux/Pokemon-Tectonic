@@ -130,7 +130,7 @@ Special
 Special
 1,GYAMASK,15,15
 #-------------------------------
-[51] # Starters Store
+[140] # Starters Store Grass
 Special
 1,BULBASAUR,10,10
 1,CHIKORITA,10,10
@@ -140,6 +140,9 @@ Special
 1,CHESPIN,10,10
 1,ROWLET,10,10
 1,GROOKEY,10,10
+#-------------------------------
+[141] # Starters Store Fire
+Special
 1,CHARMANDER,10,10
 1,CYNDAQUIL,10,10
 1,TORCHIC,10,10
@@ -148,6 +151,9 @@ Special
 1,FENNEKIN,10,10
 1,LITTEN,10,10
 1,SCORBUNNY,10,10
+#-------------------------------
+[142] # Starters Store Grass
+Special
 1,SQUIRTLE,10,10
 1,TOTODILE,10,10
 1,MUDKIP,10,10
@@ -215,9 +221,8 @@ FloweryGrass2,20
 25,PSYDUCK,15,18
 25,MEDITITE,15,18
 LandTinted,20
-34,FARFETCHD,15,18
-33,SHELMET,15,18
-33,BELLSPROUT,15,18
+50,SHELMET,15,18
+50,BELLSPROUT,15,18
 Special,20
 1,SHUPPET,15,15
 #-------------------------------
@@ -317,6 +322,8 @@ Puddle
 20,BUIZEL,17,20
 20,MAGIKARP,17,20
 20,POLIWAG,17,20
+LandTinted,20
+100,FARFETCHD,15,18
 #-------------------------------
 [12] # Gigalith's Guts
 DarkCave,20

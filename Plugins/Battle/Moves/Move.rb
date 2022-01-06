@@ -56,40 +56,56 @@ class PokeBattle_Move
   
   def pbReduceDamage(user,target)
     damage = target.damageState.calcDamage
+	target.damageState.displayedDamage = damage
     # Substitute takes the damage
     if target.damageState.substitute
       damage = target.effects[PBEffects::Substitute] if damage>target.effects[PBEffects::Substitute]
       target.damageState.hpLost       = damage
       target.damageState.totalHPLost += damage
+	  target.damageState.displayedDamage = damage
       return
     end
     # Disguise takes the damage
-    return if target.damageState.disguise
+    if target.damageState.disguise
+		target.damageState.displayedDamage = 0
+		return
+	end
 	# Ice Face takes the damage
-    return if target.damageState.iceface
+	if target.damageState.iceface
+		target.damageState.displayedDamage = 0
+		return
+	end
     # Target takes the damage
+	damageAdjusted = false
     if damage>=target.hp
       damage = target.hp
       # Survive a lethal hit with 1 HP effects
       if nonLethal?(user,target)
         damage -= 1
+		damageAdjusted = true
       elsif target.effects[PBEffects::Endure]
         target.damageState.endured = true
         damage -= 1
+		damageAdjusted = true
       elsif damage==target.totalhp
         if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
           target.damageState.sturdy = true
           damage -= 1
+		  damageAdjusted = true
         elsif target.hasActiveItem?(:FOCUSSASH) && target.hp==target.totalhp
           target.damageState.focusSash = true
           damage -= 1
+		  damageAdjusted = true
         elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100)<10
           target.damageState.focusBand = true
           damage -= 1
+		  damageAdjusted = true
         end
       end
     end
+	target.damageState.displayedDamage = damage if damageAdjusted
     damage = 0 if damage<0
+	target.damageState.displayedDamage = 0 if target.damageState.displayedDamage < 0
     target.damageState.hpLost       = damage
     target.damageState.totalHPLost += damage
   end
@@ -645,11 +661,11 @@ class PokeBattle_Move
     evasion  = 100.0 * stageMul[evaStage].to_f / stageDiv[evaStage].to_f
     accuracy = (accuracy.to_f * modifiers[:accuracy_multiplier].to_f).round
 	if user.boss?
-      accuracy = (accuracy.to_f + 1.0) / 2.0
+      accuracy = (accuracy.to_f + 100.0) / 2.0
     end
     evasion  = (evasion.to_f  * modifiers[:evasion_multiplier].to_f).round
 	if target.boss?
-      evasion = (evasion.to_f + 1.0) / 2.0
+      evasion = (evasion.to_f + 100.0) / 2.0
     end
     evasion = 1 if evasion < 1
     # Calculation

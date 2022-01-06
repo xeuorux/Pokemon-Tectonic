@@ -226,8 +226,9 @@ class PokeBattle_Battle
 	  # Have bosses use empowered moves if appropriate
 	  @battlers.each do |b|
 		next if !b
-		next unless b.boss
+		next unless b.boss?
 		next unless b.hp < b.totalhp / 2
+		next if b.empowered
 		usedEmpoweredMove = false
 		b.eachMoveWithIndex do |move,index|
 			next unless move.isEmpowered?
@@ -238,10 +239,14 @@ class PokeBattle_Battle
 		end
 		# Swap to post-empowerment moveset
 		if usedEmpoweredMove
-			echoln("Swapping Avatar to Post-Empowering moveset")
 			avatar_data = GameData::Avatar.get(b.species.to_sym)
-			avatar_data.post_prime_moves.each_with_index do |m,i|
-			  b.moves[i] = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(m))
+			b.moves = []
+			b.pokemon.moves = []
+			avatar_data.post_prime_moves.each do |m|
+				pokeMove = Pokemon::Move.new(m)
+				moveObject = PokeBattle_Move.from_pokemon_move(self,pokeMove)
+				b.moves.push(moveObject)
+				b.pokemon.moves.push(pokeMove)
 			end
 			b.empowered = true
 			@scene.pbRefresh

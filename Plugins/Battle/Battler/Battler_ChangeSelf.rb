@@ -191,6 +191,14 @@ class PokeBattle_Battler
     end
   end
   
+  def pbCheckFormOnStatusChange
+    return if fainted? || @effects[PBEffects::Transform]
+    # Shaymin - reverts if frozen
+    if isSpecies?(:SHAYMIN) && frozen? && !boss?
+      pbChangeForm(0,_INTL("{1} transformed!",pbThis))
+    end
+  end
+  
     # Checks the Pokémon's form and updates it if necessary. Used for when a
   # Pokémon enters battle (endOfRound=false) and at the end of each round
   # (endOfRound=true).

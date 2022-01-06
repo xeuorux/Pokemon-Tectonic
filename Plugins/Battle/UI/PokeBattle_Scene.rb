@@ -266,11 +266,8 @@ class PokeBattle_Scene
 	doRefresh = false
     loop do
 	  pbUpdate(cw)
-	  if doRefresh
-		doRefresh = false
-		cw.refresh
-		Graphics.update
-	  end
+	  cw.refresh
+	  Graphics.update
       if Input.trigger?(Input::B)
         pbPlayCancelSE
 		break
@@ -280,14 +277,34 @@ class PokeBattle_Scene
 			cw.selected = totalBattlers - 1
 		end
 		pbPlayDecisionSE
-		doRefresh = true
 	  elsif Input.trigger?(Input::DOWN) && cw.individual.nil?
 		cw.selected += 1
 		if (cw.selected >= totalBattlers)
 			cw.selected = 0
 		end
 		pbPlayDecisionSE
-		doRefresh = true
+	  elsif Input.trigger?(Input::SPECIAL) && cw.individual.nil? && $DEBUG
+
+		for effect in 0..15 do
+			@battle.field.effects[effect] = true
+		end
+		for side in 0..1
+			for effect in 0..15 do
+				@battle.sides[side].effects[effect] = true
+			end
+		end
+=begin
+		for effect in 0..30 do
+			@battle.positions[0].effects[effect] = true
+		end
+		for effect in 0..150 do
+			@battle.battlers[0].effects[effect] = true
+		end
+=end
+		
+		@battle.battlers[0].effects[PBEffects::Illusion] = false
+		@battle.battlers[0].effects[PBEffects::ProtectRate] = false
+		pbPlayDecisionSE
 	  elsif Input.trigger?(Input::USE)
 		battler = nil
 		index = 0
@@ -313,7 +330,6 @@ class PokeBattle_Scene
 		if selectedBattler
 			cw.individual = selectedBattler
 			pbIndividualBattlerInfoMenu(cw)
-			doRefresh = true
 		end
       end
     end
@@ -322,9 +338,10 @@ class PokeBattle_Scene
   
   def pbIndividualBattlerInfoMenu(display)
     display.refresh
-	Graphics.update
     loop do
 	  pbUpdate(display)
+	  display.refresh
+	  Graphics.update
       if Input.trigger?(Input::B)
         display.individual = nil
 		break
@@ -571,6 +588,40 @@ class PokeBattle_Scene
     itemScene.pbEndScene
     # Fade back into battle screen (if not already showing it)
     pbFadeInAndShow(@sprites,visibleSprites) if !wasTargeting
+  end
+  
+  # Animates battlers flashing and data boxes' HP bars because of damage taken
+  # by an attack. targets is an array, which are all animated simultaneously.
+  # Each element in targets is also an array: [battler, old HP, effectiveness]
+  def pbHitAndHPLossAnimation(targets)
+    @briefMessage = false
+    # Set up animations
+    damageAnims = []
+    targets.each do |t|
+      anim = BattlerDamageAnimation.new(@sprites,@viewport,t[0].index,t[2],t[0])
+      damageAnims.push(anim)
+      @sprites["dataBox_#{t[0].index}"].animateHP(t[1],t[0].hp,t[0].totalhp)
+    end
+    # Update loop
+    loop do
+      damageAnims.each { |a| a.update }
+      pbUpdate
+      allDone = true
+      targets.each do |t|
+        next if !@sprites["dataBox_#{t[0].index}"].animatingHP
+        allDone = false
+        break
+      end
+      next if !allDone
+      damageAnims.each do |a|
+        next if a.animDone?
+        allDone = false
+        break
+      end
+      next if !allDone
+      break
+    end
+    damageAnims.each { |a| a.dispose }
   end
 end
 

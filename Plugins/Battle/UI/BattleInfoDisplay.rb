@@ -9,18 +9,21 @@ class BattleInfoDisplay < SpriteWrapper
     self.y = 0
 	self.battle = battle
 	
-	@sprites      = {}
-    @spriteX      = 0
-    @spriteY      = 0
-	@selected	  = 0
-	@individual   = nil
-	@backgroundBitmap  = AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/battle_info")
-	
-	@statusCursorBitmap  = AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/cursor_status")
+	@sprites      			= {}
+    @spriteX      			= 0
+    @spriteY      			= 0
+	@selected	  			= 0
+	@individual   			= nil
+	@field					= false
+	@backgroundBitmap  		= AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/battle_info")
+	@statusCursorBitmap  	= AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/cursor_status")
 	
 	@contents = BitmapWrapper.new(@backgroundBitmap.width,@backgroundBitmap.height)
     self.bitmap  = @contents
 	pbSetNarrowFont(self.bitmap)
+	
+	@battlerScrollingValue = 0
+	@fieldScrollingValue = 0
 	
 	self.z = z
     refresh
@@ -78,8 +81,56 @@ class BattleInfoDisplay < SpriteWrapper
 		battlerIndex += 1
 	end
 	
-	textToDraw.push([_INTL("Weather: {1}",@battle.field.weather),24,320,0,base,shadow])
-	textToDraw.push([_INTL("Terrain: {1}",@battle.field.terrain),224,320,0,base,shadow])
+	textToDraw.push([_INTL("Weather: {1}",@battle.field.weather),24,326,0,base,shadow])
+	textToDraw.push([_INTL("Terrain: {1}",@battle.field.terrain),224,326,0,base,shadow])
+	
+	# Whole field effects
+	wholeFieldX = 326
+	textToDraw.push([_INTL("Whole Field"),wholeFieldX+60,10,2,base,shadow])
+	
+	fieldEffects = []
+	for effect in 0..30
+		effectValue = @battle.field.effects[effect]
+		next if effectValue.nil? || effectValue == false
+		next if effectValue.is_a?(Integer) && effectValue <= 0
+		effectName = labelBattleEffect(effect)
+		next if effectName.blank?
+		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+		fieldEffects.push(effectName)
+	end
+	
+	# One side effects
+	# Index intentionally not reset
+	for side in 0..1
+		for effect in 0..30
+			effectValue = @battle.sides[side].effects[effect]
+			next if effectValue.nil? || effectValue == false
+			next if effectValue.is_a?(Integer) && effectValue <= 0
+			effectName = labelSideEffect(effect)
+			next if effectName.blank?
+			effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+			effectName += side == 0 ? " [A]" : " [E]"
+			fieldEffects.push(effectName)
+		end
+	end
+	
+	# Render out the field effects
+	scrolling = true if fieldEffects.length > 8
+	index = 0
+	repeats = scrolling ? 2 : 1
+	for repeat in 0...repeats
+		fieldEffects.each do |effectName|
+			index += 1
+			calcedY = 50 + 32 * index
+			calcedY -= @fieldScrollingValue if scrolling
+			next if calcedY < 34 || calcedY > 286
+			textToDraw.push([effectName,wholeFieldX,calcedY,0,base,shadow])
+		end
+	end
+	
+	# Reset the scrolling once its scrolled through the entire list once
+	@fieldScrollingValue = 0 if @fieldScrollingValue > fieldEffects.length * 32
+
 	pbDrawTextPositions(self.bitmap,textToDraw)
   end
   
@@ -151,24 +202,54 @@ class BattleInfoDisplay < SpriteWrapper
 	# Effects
 	textToDraw.push(["Effects",240,42,0,base,shadow])
 	
-	index = 0
+	# Battler effects
+	battlerEffects = []
+	
 	for effect in 0..150
 		effectValue = battler.effects[effect]
 		next if effectValue.nil? || effectValue == false
 		next if effectValue.is_a?(Integer) && effectValue <= 0
 		next if effect == PBEffects::ProtectRate && effectValue <= 1
 		next if effect == PBEffects::Unburden && !battler.hasActiveAbility?(:UNBURDEN)
-		effectName = labelPbEffect(effect)
+		effectName = labelBattlerEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
-		textToDraw.push([effectName,240,90 + 32 * index,0,base,shadow])
-		index += 1
+		battlerEffects.push(effectName)
 	end
+	
+	# Slot effects
+	for effect in 0..30
+		effectValue = @battle.positions[battler.index].effects[effect]
+		next if effectValue.nil? || effectValue == false
+		next if effectValue.is_a?(Integer) && effectValue <= 0
+		effectName = labelSlotEffect(effect)
+		next if effectName.blank?
+		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+		battlerEffects.push(effectName)
+	end
+	
+	scrolling = true if battlerEffects.length > 8
+	
+	# Print all the battler effects to screen
+	index = 0
+	repeats = scrolling ? 2 : 1
+	for repeat in 0...repeats
+		battlerEffects.each do |effectName|
+			index += 1
+			calcedY = 90 + 32 * index
+			calcedY -= @battlerScrollingValue if scrolling
+			next if calcedY < 74 || calcedY > 326
+			textToDraw.push([effectName,240,calcedY,0,base,shadow])
+		end
+	end
+	
+	# Reset the scrolling once its scrolled through the entire list once
+	@battlerScrollingValue = 0 if @battlerScrollingValue > battlerEffects.length * 32
 	
 	pbDrawTextPositions(self.bitmap,textToDraw)
   end
   
-  def labelPbEffect(effectNumber)
+  def labelBattlerEffect(effectNumber)
 	return [
 		"Aqua Ring",
 		"", # Attract
@@ -316,8 +397,76 @@ class BattleInfoDisplay < SpriteWrapper
 	][effectNumber] || ""
   end
   
+  def labelSlotEffect(effectNumber)
+	return [
+		"Attack Incoming",
+		"Delayed Attack",
+		"",
+		"",
+		"", # Healing Wish
+		"", # Lunar Dance
+		"", # Wish
+		"Wishing For",
+		"" # Wish Maker
+	][effectNumber] || ""
+  end
+  
+	def labelBattleEffect(effectNumber)
+		return [
+			"Amulet Coin",
+			"Fairy Lock",
+			"", # Fusion Bolt
+			"", # Fusion Flare
+			"Gravity",
+			"Happy Hour",
+			"", # Ion Deluge
+			"Magic Room",
+			"Mud Sport",
+			"Pay Day",
+			"Trick Room",
+			"Water Sport",
+			"Wonder Room",
+			"Fortune",
+			"Neutralizing Gas"
+		][effectNumber] || ""
+	end
+
+	def labelSideEffect(effectNumber)
+		return [
+			"Aurora Veil",
+			"", # Crafty Shield
+			"", # Echoed Voice Count
+			"", # Encoed Voice Used
+			"", # Last Round Fainted
+			"Light Screen",
+			"Lucky Chant",
+			"", # Mat Block,
+			"Mist",
+			"", # Quick Guard
+			"Rainbow",
+			"Reflect",
+			"", # Round
+			"Safeguard",
+			"Sea of Fire",
+			"Spikes",
+			"Stealth Rock",
+			"Sticky Web",
+			"Swamp",
+			"Tailwind",
+			"Poison Spikes", # Toxic Spikes,
+			"" # Wide Guard
+		][effectNumber] || ""
+	end
+ 
   def update(frameCounter=0)
     super()
     pbUpdateSpriteHash(@sprites)
+	if @individual.nil?
+		@battlerScrollingValue = 0
+		@fieldScrollingValue += 2
+	else
+		@battlerScrollingValue += 2
+		@fieldScrollingValue = 0
+	end
   end
 end

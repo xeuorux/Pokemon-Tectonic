@@ -409,3 +409,24 @@ class PokemonPartyScreen
     return ret
   end
 end
+
+def styleValuesTrainer()
+	if isTempSwitchOff?("A")
+		pbMessage(_INTL("I'm the Style Values adjuster. I can adjust your Pokémon's Style values."))
+		pbMessage(_INTL("1 point in a Style Value for a stat is equivalent to 1 point in the same base stat."))
+		setTempSwitchOn("A")
+	end
+	if pbConfirmMessage(_INTL("Would you like to adjust the Style Values of any of your Pokémon?"))
+		while true do
+			choosePokemonToStyle()
+			if $game_variables[1] < 0
+				pbMessage(_INTL("If your Pokémon need to have their Style Values adjusted, come to me."))
+				break
+			else
+				pbStyleValueScreen(pbGetPokemon(1))
+			end
+		end
+	else
+		pbMessage(_INTL("If your Pokémon need to have their Style Values adjusted, come to me."))
+	end
+end

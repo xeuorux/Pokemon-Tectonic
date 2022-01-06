@@ -2,14 +2,37 @@ class Game_Event < Game_Character
 	attr_reader   :event
 end
 
+class PokemonGlobalMetadata
+	attr_accessor   :estate_box
+end
+
+ESTATE_MAP_IDS 			= [51]
+ESTATE_MAP_POSITIONS 	= [[19,16]]
+
+def transferToEstate(boxNum = 0)
+	echoln("Transferring player to estate or box number #{boxNum}")
+	$PokemonGlobal.estate_box = boxNum
+	$game_temp.player_transferring = true
+	$game_temp.player_new_map_id    = 	ESTATE_MAP_IDS[boxNum] || ESTATE_MAP_IDS[0]
+	position = ESTATE_MAP_POSITIONS[boxNum] || ESTATE_MAP_POSITIONS[0]
+	$game_temp.player_new_x         =	position[0]
+	$game_temp.player_new_y         = 	position[1]
+	$game_temp.player_new_direction = 	Up
+	
+	#Graphics.freeze
+	#$game_temp.transition_processing = true
+	#$game_temp.transition_name       = ""
+end
+
 def loadBoxPokemonIntoPlaceholders
 	echoln("Beginning to load box Pokemon.")
 
 	unusedBoxPokes = []
-	boxNum = rand(30)
+	boxNum = $PokemonGlobal.estate_box || 0
 	for index in 0...$PokemonStorage.maxPokemon(boxNum)
       pokemon = $PokemonStorage[boxNum][index]
-	  unusedBoxPokes.push(pokemon) if !pokemon.nil?
+	  next if pokemon.nil?
+	  unusedBoxPokes.push(pokemon)
     end
 
 	events = $game_map.events.values.shuffle()
@@ -17,15 +40,12 @@ def loadBoxPokemonIntoPlaceholders
 		next unless event.name.downcase.include?("boxplaceholder")
 		break if unusedBoxPokes.length == 0
 		pokemon = unusedBoxPokes.delete_at(rand(unusedBoxPokes.length))
-		convertEventToPokemon(event.event,pokemon)
-		event.refresh
+		convertEventToPokemon(event,pokemon)
     end
 end
 
 def convertEventToPokemon(event,pokemon)
-	event = get_character(event) if event.is_a?(Integer)
-	
-	echoln("Converting #{event.id} to #{pokemon.name}")
+	actualEvent = event.event
 	
 	species = pokemon.species
 	form = pokemon.form
@@ -33,8 +53,8 @@ def convertEventToPokemon(event,pokemon)
 	
 	# Create the first page, where the cry happens
 	firstPage = RPG::Event::Page.new
-	wasCustom = event.pages[0].move_type == 3
-	event.pages[0] = firstPage
+	wasCustom = actualEvent.pages[0].move_type == 3
+	actualEvent.pages[0] = firstPage
 	fileName = species.to_s
 	fileName += "_" + form.to_s if form != 0
 	firstPage.graphic.character_name = "Followers/#{fileName}"
@@ -48,6 +68,8 @@ def convertEventToPokemon(event,pokemon)
 	push_script(firstPage.list,sprintf("pbMessage(\"#{pokemon.name} cries out!\")",))
 	push_script(firstPage.list,sprintf("ranchChoices(#{pokemon.personalID})",))
 	firstPage.list.push(RPG::EventCommand.new(0,0,[]))
+	
+	event.refresh()
 end
 
 def push_script(list,script,indent=0)
@@ -67,18 +89,31 @@ def ranchChoices(personalID = -1)
 	return if personalID < 0
 	
 	pokemon = nil
-	pbEachNonEggPokemon { |p, boxIndex|
-		if p.personalID == personalID
-			pokemon = p
-			break
+	currentBox = -1
+	currentSlot = -1
+	for box in -1...$PokemonStorage.maxBoxes
+		for slot in 0...$PokemonStorage.maxPokemon(box)
+			pkmn = $PokemonStorage[box][slot]
+			next if pkmn.nil?
+			if pkmn.personalID == personalID
+				pokemon = pkmn
+				currentBox = box
+				currentSlot = slot
+				break
+			end
 		end
-	}
+    end
+
 	return if pokemon.nil?
 
 	commands = []
 	cmdSummary = -1
+	cmdTake = -1
+	cmdRename = -1
 	cmdCancel = -1
 	commands[cmdSummary = commands.length] = _INTL("View Summary")
+	commands[cmdTake = commands.length] = _INTL("Take")
+	commands[cmdRename = commands.length] = _INTL("Rename")
 	commands[cmdCancel = commands.length] = _INTL("Cancel")
 	while true
 		command = pbMessage(_INTL("What would you like to do with #{pokemon.name}?"),commands,commands.length)
@@ -88,6 +123,37 @@ def ranchChoices(personalID = -1)
 				screen = PokemonSummaryScreen.new(scene)
 				screen.pbStartSingleScreen(pokemon)
 			}
+		elsif command > -1 && command == cmdRename
+			currentName = pokemon.name
+			pbTextEntry("#{currentName}'s nickname?",0,10,5)
+			if pbGet(5)=="" || pbGet(5) == currentName
+			  pokemon.name = currentName
+			else
+			  pokemon.name = pbGet(5)
+			end
+			convertEventToPokemon(get_self,pokemon)
+		elsif command > -1 && command == cmdTake
+			if $Trainer.party_full?
+				pbPlayDecisionSE
+				pbMessage(_INTL("Party is full, choose a Pokemon to swap out."))
+				pbChooseNonEggPokemon(1,3)
+				chosenIndex = pbGet(1)
+				next if chosenIndex == -1
+				chosenPokemon = $Trainer.party[chosenIndex]
+				$PokemonStorage[currentBox][currentSlot] = chosenPokemon
+				$Trainer.party[chosenIndex] = pokemon
+				pbMessage(_INTL("You pick #{pokemon.name} up and add it to your party."))
+				pbMessage(_INTL("And place #{chosenPokemon.name} down into the Estate."))
+				convertEventToPokemon(get_self,chosenPokemon)
+				break
+			else  
+				$PokemonStorage[currentBox][currentSlot] = nil
+				$Trainer.party[$Trainer.party.length] = pokemon
+				pbMessage(_INTL("You pick #{pokemon.name} up and add it to your party."))
+				get_self().event.pages[0] = RPG::Event::Page.new
+				get_self().refresh()
+				break
+			end
 		elsif command > -1 && command == cmdCancel
 			break
 		end
@@ -195,7 +261,7 @@ class PokemonSummary_Scene
           pbPlayDecisionSE
           dorefresh = pbOptions
         end
-      elsif Input.trigger?(Input::UP) && !party.nil? && @partyindex>0
+      elsif Input.trigger?(Input::UP) && !@party.nil? && @partyindex>0
         oldindex = @partyindex
         pbGoToPrevious
         if @partyindex!=oldindex
@@ -203,7 +269,7 @@ class PokemonSummary_Scene
           @ribbonOffset = 0
           dorefresh = true
         end
-      elsif Input.trigger?(Input::DOWN) && !party.nil? && @partyindex<@party.length-1
+      elsif Input.trigger?(Input::DOWN) && !@party.nil? && @partyindex<@party.length-1
         oldindex = @partyindex
         pbGoToNext
         if @partyindex!=oldindex
