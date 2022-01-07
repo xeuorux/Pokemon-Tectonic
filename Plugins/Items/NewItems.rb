@@ -65,14 +65,16 @@ ItemHandlers::UseInField.add(:ABRAPORTER,proc { |item|
     pbMessage(_INTL("It can't be used when you have someone with you."))
     next 0
   end
+=begin
   if !GameData::MapMetadata.exists?($game_map.map_id)
-    pbMessage(_INTL("Can't use that here.")) if showmsg
+    pbMessage(_INTL("Can't use that here."))
     next 0
   end
+=end
   healing = $PokemonGlobal.healingSpot
   healing = GameData::Metadata.get.home if !healing   # Home
   if !healing
-    pbMessage(_INTL("Can't use that here.")) if showmsg
+    pbMessage(_INTL("Can't use that here."))
     next 0
   end
   pbUseItemMessage(item)
