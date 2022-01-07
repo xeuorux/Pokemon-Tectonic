@@ -8,7 +8,7 @@
   POISON_IN_FIELD       = true
   # Whether poisoned Pokémon will faint while walking around in the field
   # (true), or survive the poisoning with 1 HP (false).
-  POISON_FAINT_IN_FIELD =  true
+  POISON_FAINT_IN_FIELD =  false
   
   # Whether the Pokédex list shown is the one for the player's current region
   # (true), or whether a menu pops up for the player to manually choose which

@@ -11,8 +11,12 @@ Events.onStepTakenTransferPossible += proc { |_sender,e|
 		  pbFlash(Color.new(255, 119, 0, 128), 4)
           flashed = true
         end
-        pokemon.hp -= 2
-        if pokemon.hp <= 0
+        pokemon.hp -= 2 if pokemon.hp>2 || Settings::POISON_FAINT_IN_FIELD
+        if pokemon.hp <= 2 && !Settings::POISON_FAINT_IN_FIELD
+          pokemon.status = :NONE
+          pbMessage(_INTL("{1} survived the burn.\\nThe burn faded away!\1",i.name))
+          next
+        elsif pokemon.hp <= 0
           pokemon.changeHappiness("faint")
           pokemon.status = :NONE
           pbMessage(_INTL("{1} fainted...",pokemon.name))
@@ -30,8 +34,12 @@ Events.onStepTakenTransferPossible += proc { |_sender,e|
           pbFlash(Color.new(255, 0, 119, 128), 4)
           flashed = true
         end
-        pokemon.hp -= 2
-		if pokemon.hp <= 0
+        pokemon.hp -= 2 if pokemon.hp>2 || Settings::POISON_FAINT_IN_FIELD
+        if pokemon.hp <= 2 && !Settings::POISON_FAINT_IN_FIELD
+          pokemon.status = :NONE
+          pbMessage(_INTL("{1} survived the poisoning.\\nThe poison faded away!\1",i.name))
+          next
+        elsif pokemon.hp <= 0
           pokemon.changeHappiness("faint")
           pokemon.status = :NONE
           pbMessage(_INTL("{1} fainted...",pokemon.name))
