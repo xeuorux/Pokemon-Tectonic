@@ -178,10 +178,12 @@ class PokeBattle_Battle
     eachBattler { |b| b.pbItemTerrainStatBoostCheck }
 	
 	# Trigger dialogue for each opponent
-	@opponent.each_with_index do |trainer_speaking,idxTrainer|
-		@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-			PokeBattle_AI.triggerTerrainChangeDialogue(policy,old_terrain,newTerrain,trainer_speaking,dialogue)
-		}
+	if @opponent
+		@opponent.each_with_index do |trainer_speaking,idxTrainer|
+			@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+				PokeBattle_AI.triggerTerrainChangeDialogue(policy,old_terrain,newTerrain,trainer_speaking,dialogue)
+			}
+		end
 	end
   end 
   
