@@ -503,24 +503,42 @@ BattlerEnemyY = 37
 #-------------------------------
 [DEERLING,1]
 FormName = Summer
+Type1 = NORMAL
+Type2 = GRASS
+Abilities = SWIFTSWIM,SERENEGRACE
 Color = Green
 #-------------------------------
 [DEERLING,2]
 FormName = Autumn
+Type1 = NORMAL
+Type2 = GROUND
+Abilities = SLUSHRUSH,SERENEGRACE
 Color = Red
 #-------------------------------
 [DEERLING,3]
 FormName = Winter
+Type1 = NORMAL
+Type2 = ICE
+Abilities = SANDRUSH,SERENEGRACE
 Color = Brown
 #-------------------------------
 [SAWSBUCK,1]
 FormName = Summer
+Type1 = NORMAL
+Type2 = GRASS
+Abilities = SWIFTSWIM,SERENEGRACE
 #-------------------------------
 [SAWSBUCK,2]
 FormName = Autumn
+Type1 = NORMAL
+Type2 = GROUND
+Abilities = SLUSHRUSH,SERENEGRACE
 #-------------------------------
 [SAWSBUCK,3]
 FormName = Winter
+Type1 = NORMAL
+Type2 = ICE
+Abilities = SANDRUSH,SERENEGRACE
 #-------------------------------
 [TORNADUS,1]
 FormName = Therian

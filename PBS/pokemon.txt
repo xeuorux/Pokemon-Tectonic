@@ -19261,7 +19261,7 @@ BattlerShadowSize = 2
 Name = Deerling
 InternalName = DEERLING
 Type1 = NORMAL
-Type2 = GRASS
+Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,60,60,75,40,80
 # Total = 380
@@ -19296,7 +19296,7 @@ Evolutions = SAWSBUCK,Level,34
 Name = Sawsbuck
 InternalName = SAWSBUCK
 Type1 = NORMAL
-Type2 = GRASS
+Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 85,100,80,95,60,100
 # Total = 520
