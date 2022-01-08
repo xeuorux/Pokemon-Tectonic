@@ -30,11 +30,11 @@ PokeBattle_AI::BossBeginTurn.add(:GENESECT,
 			weakToElectric += 1 if Effectiveness.super_effective?(Effectiveness.calculate(:ELECTRIC,type1,type2,nil))
 			maxValue = weakToElectric if weakToElectric > maxValue
 			weakToFire += 1  if Effectiveness.super_effective?(Effectiveness.calculate(:FIRE,type1,type2,nil))
-			maxValue = weakToElectric if weakToFire > maxValue
+			maxValue = weakToFire if weakToFire > maxValue
 			weakToIce += 1  if Effectiveness.super_effective?(Effectiveness.calculate(:ICE,type1,type2,nil))
-			maxValue = weakToElectric if weakToIce > maxValue
+			maxValue = weakToIce if weakToIce > maxValue
 			weakToWater += 1  if Effectiveness.super_effective?(Effectiveness.calculate(:WATER,type1,type2,nil))
-			maxValue = weakToElectric if weakToWater > maxValue
+			maxValue = weakToWater if weakToWater > maxValue
 		end
 		
 		chosenItem = nil
