@@ -686,7 +686,7 @@ class PokeBattle_Move
 	end
   
 	if isEmpowered?
-		pbMessage(_INTL("\\ts[{3}]{1} used <c2=06644bd2>{2}</c2>!",user.pbThis,@name,MessageConfig.pbGetTextSpeed() + 10))
+		pbMessage(_INTL("\\ts[{3}]{1} used <c2=06644bd2>{2}</c2>!",user.pbThis,@name,MessageConfig.pbGetTextSpeed() * 2))
 	else
 		@battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
 	end
