@@ -1,8 +1,11 @@
 LEVEL_CAPS_USED = true
+
 class Pokemon
 	attr_accessor :hpMult
 	attr_accessor :scaleFactor
 	attr_accessor :dmgMult
+	attr_accessor :battlingStreak
+	
   # Creates a new Pokémon object.
   # @param species [Symbol, String, Integer] Pokémon species
   # @param level [Integer] Pokémon level
@@ -70,6 +73,7 @@ class Pokemon
 	@hpMult			  = 1
 	@scaleFactor	  = 1
 	@dmgMult		  = 1
+	@battlingStreak	  = 0
     calc_stats
     if @form == 0 && recheck_form
       f = MultipleForms.call("getFormOnCreation", self)
@@ -246,6 +250,12 @@ class PokeBattle_Battle
         exp = (exp*1.5).floor
       end
     end
+	# Increase Exp gain based on battling streak
+	pkmn.battlingStreak = 0 if pkmn.battlingStreak.nil?
+	if pkmn.battlingStreak >= 2
+		pbDisplayPaused(_INTL("{1} benefits from its Hot Streak!",pkmn.name))
+		exp = (exp * 1.5).floor
+	end
     # Modify Exp gain based on pkmn's held item
     i = BattleHandlers.triggerExpGainModifierItem(pkmn.item,pkmn,exp)
     if i<0
@@ -256,7 +266,7 @@ class PokeBattle_Battle
 	level_cap = LEVEL_CAPS_USED ? $game_variables[26] : growth_rate.max_level
     expFinal = growth_rate.add_exp(pkmn.exp, exp)
 	expLeftovers = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap))
-	##calculates if there is excess exp and if it can be stored
+	# Calculates if there is excess exp and if it can be stored
 	if (expFinal > expLeftovers) && hasExpJAR
 		expLeftovers = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap+1))
 	else
@@ -343,7 +353,6 @@ class PokeBattle_Battle
     end
 	$PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
 	$PokemonGlobal.expJAR += expLeftovers if (expLeftovers > 0 && hasExpJAR)
-	echoln $PokemonGlobal.expJAR
   end
 end
 

@@ -35,6 +35,22 @@ class PokeBattle_Battle
 		$game_switches[94] = true 
 		pbMessage(_INTL("You perfected the fight!")) if trainerBattle? && @decision == 1
 	end
+	# Update each of the player's pokemon's battling streak
+	if trainerBattle? || bossBattle?
+		eachSameSideBattler { |b| 
+			next unless b.pbOwnedByPlayer?
+			next unless @usedInBattle[b.idxOwnSide][b.index/2]
+			p = b.pokemon
+			p.battlingStreak = 0 if p.battlingStreak.nil?
+			if p.fainted?
+				pbMessage("#{p.name}'s Hot Streak is now over.") if p.battlingStreak == 2
+				p.battlingStreak = 0
+			else
+				p.battlingStreak += 1
+				pbMessage("#{p.name} is on a Hot Streak!") if p.battlingStreak == 2
+			end
+		}
+	end
     return @decision
   end
   
