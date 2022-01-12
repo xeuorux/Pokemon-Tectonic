@@ -236,7 +236,7 @@
 228,INCINERATE,Incinerate,0F5,60,FIRE,Special,100,15,0,AllNearFoes,0,bef,The user attacks the foe with fire. The target's held Berry or Gem becomes burnt up and unusable.
 229,FLAMECHARGE,Flame Charge,01F,50,FIRE,Physical,100,20,100,NearOther,0,abef,"The user cloaks itself in flame and attacks. Building up more power, it raises the user's Speed stat."
 230,EMBER,Ember,00A,40,FIRE,Special,100,25,10,NearOther,0,bef,The target is attacked with small flames. It has a 10% chance to burn.
-231,FIRESPIN,Fire Spin,0CF,65,FIRE,Special,100,15,0,NearOther,0,bef,The target becomes trapped within a fierce vortex of fire that rages for four to five turns.
+231,FIRESPIN,Fire Spin,0CF,45,FIRE,Special,100,15,0,NearOther,0,bef,The target becomes trapped within a fierce vortex of fire that rages for four to five turns.
 232,HEATCRASH,Heat Crash,09B,1,FIRE,Physical,100,10,0,NearOther,0,abef,"The user slams the foe with its flaming body. The heavier the user is, the greater the damage."
 233,SUNNYDAY,Sunny Day,0FF,0,FIRE,Status,0,5,0,BothSides,0,,"The user intensifies the sun for five turns, powering up Fire-type moves."
 234,WILLOWISP,Will-O-Wisp,00A,0,GHOST,Status,100,15,0,NearOther,0,bce,"The user shoots a sinister, bluish-white flame at the target to inflict a burn."
