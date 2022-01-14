@@ -6,7 +6,7 @@ class PokemonGlobalMetadata
 	attr_accessor   :estate_box
 end
 
-ESTATE_MAP_IDS 				= [148,150]
+ESTATE_MAP_IDS 				= [148,150,151]
 FALLBACK_MAP_ID				= 149
 ESTATE_MAP_WEST_ENTRANCE	= [8,18]
 ESTATE_MAP_EAST_ENTRANCE	= [31,18]
