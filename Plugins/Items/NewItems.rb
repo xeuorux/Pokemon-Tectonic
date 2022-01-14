@@ -275,8 +275,9 @@ ItemHandlers::UseOnPokemon.add(:UNIVERSALFORMALIZER,proc { |item,pkmn,scene|
 			possibleFormNames.push(species_data.real_form_name)
 		end
 		possibleFormNames.push(_INTL("Cancel"))
-		choice = pbMessage("Which form shall the Pokemon take?",possibleFormNames,possibleFormNames.length)
+		choice = scene.pbMessage("Which form shall the Pokemon take?",	possibleFormNames,possibleFormNames.length)
 		if choice < possibleFormNames.length
+			scene.pbMessage("#{pkmn.name} swapped to form #{possibleFormNames[choice]} form!")
 			pkmn.form = possibleForms[choice].form
 		end
 		next true
