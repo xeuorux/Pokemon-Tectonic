@@ -6,23 +6,53 @@ class PokemonGlobalMetadata
 	attr_accessor   :estate_box
 end
 
-ESTATE_MAP_IDS 			= [51]
-ESTATE_MAP_POSITIONS 	= [[19,16]]
+ESTATE_MAP_IDS 				= [148,150]
+FALLBACK_MAP_ID				= 149
+ESTATE_MAP_WEST_ENTRANCE	= [8,18]
+ESTATE_MAP_EAST_ENTRANCE	= [31,18]
 
-def transferToEstate(boxNum = 0)
-	echoln("Transferring player to estate or box number #{boxNum}")
+def transferToWesterEstate()
+	$PokemonGlobal.estate_box = 0 if !$PokemonGlobal.estate_box
+	westerBox = $PokemonGlobal.estate_box - 1
+	westerBox = Settings::NUM_STORAGE_BOXES-1 if westerBox < 0
+	transferToEstate(westerBox)
+end
+
+def transferToEasterEstate()
+	$PokemonGlobal.estate_box = 0 if !$PokemonGlobal.estate_box
+	easterValue = $PokemonGlobal.estate_box + 1
+	easterValue = 0 if easterValue >= Settings::NUM_STORAGE_BOXES
+	transferToEstate(easterValue,true)
+end
+
+def transferToEstate(boxNum = 0,westEntrance=false)
 	$PokemonGlobal.estate_box = boxNum
+	background = $PokemonStorage[boxNum].background
+	newMap = ESTATE_MAP_IDS[background] || FALLBACK_MAP_ID
+
+	# Transfer the player to the new spot
+	echoln("Transferring player to estate or box number #{boxNum}")
 	$game_temp.player_transferring = true
-	$game_temp.player_new_map_id    = 	ESTATE_MAP_IDS[boxNum] || ESTATE_MAP_IDS[0]
-	position = ESTATE_MAP_POSITIONS[boxNum] || ESTATE_MAP_POSITIONS[0]
+	$game_temp.player_new_map_id    = 	newMap
+	position = westEntrance ? ESTATE_MAP_WEST_ENTRANCE : ESTATE_MAP_EAST_ENTRANCE
 	$game_temp.player_new_x         =	position[0]
 	$game_temp.player_new_y         = 	position[1]
-	$game_temp.player_new_direction = 	Up
+	$game_temp.player_new_direction = 	westEntrance ? Right : Left
 	
-	#Graphics.freeze
-	#$game_temp.transition_processing = true
-	#$game_temp.transition_name       = ""
+	# If not actually gone to a different map
+	if $game_map.map_id == newMap
+		loadBoxPokemonIntoPlaceholders()
+	end
 end
+
+Events.onMapSceneChange += proc { |_sender, e|
+	scene      = e[0]
+	mapChanged = e[1]
+	next if !scene || !scene.spriteset
+	next unless $game_map.map_id == FALLBACK_MAP_ID || ESTATE_MAP_IDS.include?($game_map.map_id)
+	label = _INTL("PokÉstate #{$PokemonGlobal.estate_box +  1}")
+	scene.spriteset.addUserSprite(LocationWindow.new(label))
+}
 
 def loadBoxPokemonIntoPlaceholders
 	echoln("Beginning to load box Pokemon.")
