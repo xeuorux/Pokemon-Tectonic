@@ -534,3 +534,9 @@ Bicycle = true
 Outdoor = true
 ShowArea = false
 Bicycle = true
+#-------------------------------
+[152]
+# PokEstate Scrubland
+Outdoor = true
+ShowArea = false
+Bicycle = true
