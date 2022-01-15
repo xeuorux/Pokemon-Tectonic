@@ -6,26 +6,16 @@ class PokemonGlobalMetadata
 	attr_accessor   :estate_box
 end
 
+def estate_box()
+	$PokemonGlobal.estate_box = 0 if !$PokemonGlobal.estate_box
+	return $PokemonGlobal.estate_box
+end
+
 ESTATE_MAP_IDS 				= [148,150,151]
 FALLBACK_MAP_ID				= 149
-ESTATE_MAP_WEST_ENTRANCE	= [8,18]
-ESTATE_MAP_EAST_ENTRANCE	= [31,18]
+ESTATE_MAP_ENTRANCES	= [[20,30,8],[31,18,4],[8,18,6]] # S, E, W
 
-def transferToWesterEstate()
-	$PokemonGlobal.estate_box = 0 if !$PokemonGlobal.estate_box
-	westerBox = $PokemonGlobal.estate_box - 1
-	westerBox = Settings::NUM_STORAGE_BOXES-1 if westerBox < 0
-	transferToEstate(westerBox)
-end
-
-def transferToEasterEstate()
-	$PokemonGlobal.estate_box = 0 if !$PokemonGlobal.estate_box
-	easterValue = $PokemonGlobal.estate_box + 1
-	easterValue = 0 if easterValue >= Settings::NUM_STORAGE_BOXES
-	transferToEstate(easterValue,true)
-end
-
-def transferToEstate(boxNum = 0,westEntrance=false)
+def transferToEstate(boxNum = 0,entrance=0)
 	$PokemonGlobal.estate_box = boxNum
 	background = $PokemonStorage[boxNum].background
 	newMap = ESTATE_MAP_IDS[background] || FALLBACK_MAP_ID
@@ -33,16 +23,34 @@ def transferToEstate(boxNum = 0,westEntrance=false)
 	# Transfer the player to the new spot
 	echoln("Transferring player to estate or box number #{boxNum}")
 	$game_temp.player_transferring = true
+	$game_temp.setup_sames = true
 	$game_temp.player_new_map_id    = 	newMap
-	position = westEntrance ? ESTATE_MAP_WEST_ENTRANCE : ESTATE_MAP_EAST_ENTRANCE
+	position = ESTATE_MAP_ENTRANCES[entrance]
 	$game_temp.player_new_x         =	position[0]
 	$game_temp.player_new_y         = 	position[1]
-	$game_temp.player_new_direction = 	westEntrance ? Right : Left
-	
-	# If not actually gone to a different map
-	if $game_map.map_id == newMap
-		loadBoxPokemonIntoPlaceholders()
-	end
+	$game_temp.player_new_direction = 	position[2]
+end
+
+def transferToWesterEstate()
+	westerBox = estate_box - 1
+	westerBox = Settings::NUM_STORAGE_BOXES-1 if westerBox < 0
+	transferToEstate(westerBox,1)
+end
+
+def transferToEasterEstate()
+	easterValue = estate_box + 1
+	easterValue = 0 if easterValue >= Settings::NUM_STORAGE_BOXES
+	transferToEstate(easterValue,2)
+end
+
+def transferToEstateOfChoice()
+	params = ChooseNumberParams.new
+    params.setRange(1, Settings::NUM_STORAGE_BOXES+1)
+	params.setDefaultValue(estate_box+1)
+	boxChoice = pbMessageChooseNumber(_INTL("Which plot would you like to visit?"),params)
+	boxChoice -= 1
+	return if boxChoice <= -1 || boxChoice == estate_box
+	transferToEstate(boxChoice,0)
 end
 
 Events.onMapSceneChange += proc { |_sender, e|
@@ -50,21 +58,23 @@ Events.onMapSceneChange += proc { |_sender, e|
 	mapChanged = e[1]
 	next if !scene || !scene.spriteset
 	next unless $game_map.map_id == FALLBACK_MAP_ID || ESTATE_MAP_IDS.include?($game_map.map_id)
-	label = _INTL("PokÉstate #{$PokemonGlobal.estate_box +  1}")
+	label = _INTL("PokÉstate #{estate_box +  1}")
 	scene.spriteset.addUserSprite(LocationWindow.new(label))
 }
 
 def loadBoxPokemonIntoPlaceholders
 	echoln("Beginning to load box Pokemon.")
-
+	
+	# Find all the pokemon that need to be represented
 	unusedBoxPokes = []
-	boxNum = $PokemonGlobal.estate_box || 0
+	boxNum = estate_box
 	for index in 0...$PokemonStorage.maxPokemon(boxNum)
       pokemon = $PokemonStorage[boxNum][index]
 	  next if pokemon.nil?
 	  unusedBoxPokes.push(pokemon)
     end
 
+	# Load all the pokemon into the placeholders
 	events = $game_map.events.values.shuffle()
 	for event in events
 		next unless event.name.downcase.include?("boxplaceholder")
@@ -333,5 +343,71 @@ class PokemonSummary_Scene
       end
     end
     return @partyindex
+  end
+end
+
+class Game_Temp
+	attr_accessor :setup_sames
+	
+	#-----------------------------------------------------------------------------
+  # * Object Initialization
+  #-----------------------------------------------------------------------------
+  def initialize
+    @message_window_showing = false
+    @common_event_id        = 0
+    @in_battle              = false
+    @battle_abort           = false
+    @battleback_name        = ''
+    @in_menu                = false
+    @menu_beep              = false
+    @menu_calling           = false
+    @debug_calling          = false
+    @player_transferring    = false
+    @player_new_map_id      = 0
+    @player_new_x           = 0
+    @player_new_y           = 0
+    @player_new_direction   = 0
+    @transition_processing  = false
+    @transition_name        = ""
+    @to_title               = false
+    @fadestate              = 0
+    @background_bitmap      = nil
+    @message_window_showing = false
+    @transition_processing  = false
+    @mart_prices            = {}
+	@setup_sames			= false
+  end
+end
+
+class Scene_Map
+	def transfer_player(cancelVehicles=true)
+    $game_temp.player_transferring = false
+    pbCancelVehicles($game_temp.player_new_map_id) if cancelVehicles
+    autofade($game_temp.player_new_map_id)
+    pbBridgeOff
+    @spritesetGlobal.playersprite.clearShadows
+    if $game_map.map_id != $game_temp.player_new_map_id || $game_temp.setup_sames
+      $MapFactory.setup($game_temp.player_new_map_id)
+    end
+	$game_temp.setup_sames = false
+    $game_player.moveto($game_temp.player_new_x, $game_temp.player_new_y)
+    case $game_temp.player_new_direction
+    when 2 then $game_player.turn_down
+    when 4 then $game_player.turn_left
+    when 6 then $game_player.turn_right
+    when 8 then $game_player.turn_up
+    end
+    $game_player.straighten
+    $game_map.update
+    disposeSpritesets
+    RPG::Cache.clear
+    createSpritesets
+    if $game_temp.transition_processing
+      $game_temp.transition_processing = false
+      Graphics.transition(20)
+    end
+    $game_map.autoplay
+    Graphics.frame_reset
+    Input.update
   end
 end

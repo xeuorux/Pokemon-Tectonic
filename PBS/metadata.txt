@@ -507,3 +507,30 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = false
+################################
+#	PokEstate Maps
+################################
+#-------------------------------
+[149]
+# PokEstate Base
+Outdoor = true
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[148]
+# PokEstate Forest
+Outdoor = true
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[150]
+# PokEstate City
+Outdoor = true
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[151]
+# PokEstate Desert
+Outdoor = true
+ShowArea = false
+Bicycle = true
