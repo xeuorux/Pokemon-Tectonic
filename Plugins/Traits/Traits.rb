@@ -1,4 +1,9 @@
 class Pokemon
+	PERSONALITY_THRESHOLD_ONE = 50
+	PERSONALITY_THRESHOLD_TWO = 150
+	PERSONALITY_THRESHOLD_THREE = 200
+	PERSONALITY_THRESHOLD_FOUR = 255
+
 	TRAITS =
 	[
 		"Adorable",
@@ -19,7 +24,7 @@ class Pokemon
 		"Hopeful",
 		"Innocent",
 		"Inviting",
-		"Judgemental",
+		"Juidgey",
 		"Lucky",
 		"Loyal",
 		"Partier",
@@ -35,23 +40,45 @@ class Pokemon
 	]
 
 	def trait1
-		return nil if happiness < 50
-		return TRAITS[@personalID % TRAITS.length]
+		return nil if happiness < PERSONALITY_THRESHOLD_ONE
+		while @Trait1.nil? || @Trait1 == @Trait2 || @Trait1 == @Trait3
+			@Trait1 = TRAITS.sample
+		end
+		return @Trait1
 	end
 	  
 	def trait2
-	    return nil if happiness < 150
-		gen = (@personalID/TRAITS.length).floor % TRAITS.length
-		gen += (@personalID % (TRAITS.length-1)) if TRAITS[gen] == trait1
-		return TRAITS[gen]
+	    return nil if happiness < PERSONALITY_THRESHOLD_TWO
+		while @Trait2.nil? || @Trait2 == @Trait1 || @Trait2 == @Trait3
+			@Trait2 = TRAITS.sample
+		end
+		return @Trait2
 	end
 	  
 	def trait3
-		return nil if happiness < 220
-		gen = (@personalID/(TRAITS.length * TRAITS.length)).floor % TRAITS.length
-		gen += (@personalID % (TRAITS.length-1)) if TRAITS[gen] == trait1
-		gen += (@personalID % (TRAITS.length-2)) if TRAITS[gen] == trait2
-		return TRAITS[gen]
+		return nil if happiness < PERSONALITY_THRESHOLD_THREE
+		while @Trait3.nil? || @Trait3 == @Trait1 || @Trait3 == @Trait2
+			@Trait3 = TRAITS.sample
+		end
+		return @Trait3
+	end
+	
+	LIKES = ["Candy","Apples","Ribbons"]
+	def like
+		return nil if happiness < PERSONALITY_THRESHOLD_FOUR
+		while @Like.nil? || @Like == @Dislike
+			@Like = LIKES.sample
+		end
+		return @Like
+	end
+	
+	DISLIKES = ["Candy","Apples","Ribbons"]
+	def dislike
+		return nil if happiness < PERSONALITY_THRESHOLD_FOUR
+		while @Dislike.nil? || @Dislike == @Like
+			@Dislike = DISLIKES.sample
+		end
+		return @Dislike
 	end
 	
   # Changes the happiness of this Pokémon depending on what happened to change it.
@@ -86,21 +113,31 @@ class Pokemon
     @happiness = (@happiness + gain).clamp(0, 255)
 	
 	traitUnlocked = nil
+	likeUnlocked = nil
+	dislikeUnlocked = nil
 	ordinal = ""
-	if prevHappiness < 50 && @happiness >= 50
+	if prevHappiness < PERSONALITY_THRESHOLD_ONE && @happiness >= PERSONALITY_THRESHOLD_ONE
 		traitUnlocked = trait1
 		ordinal = "first"
-	elsif prevHappiness < 150 && @happiness >= 150
+	elsif prevHappiness < PERSONALITY_THRESHOLD_TWO && @happiness >= PERSONALITY_THRESHOLD_TWO
 		traitUnlocked = trait2
 		ordinal = "second"
-	elsif prevHappiness < 220 && @happiness >= 220
+	elsif prevHappiness < PERSONALITY_THRESHOLD_THREE && @happiness >= PERSONALITY_THRESHOLD_THREE
 		traitUnlocked = trait3
 		ordinal = "final"
+	elsif prevHappiness < PERSONALITY_THRESHOLD_FOUR && @happiness >= PERSONALITY_THRESHOLD_FOUR
+		likeUnlocked = like
+		dislikeUnlocked = dislike
 	end
 	
-	if traitUnlocked != nil
+	if !traitUnlocked.nil?
 		msgwindow = pbCreateMessageWindow
 		pbMessageDisplay(msgwindow,_INTL("\\wm{1} is happy enough to show off its {2} trait: {3}!\\me[Egg get]\\wtnp[80]\1",name,ordinal,traitUnlocked))
+		pbDisposeMessageWindow(msgwindow)
+	elsif !likeUnlocked.nil? && !dislikeUnlocked.nil?
+		msgwindow = pbCreateMessageWindow
+		pbMessageDisplay(msgwindow,_INTL("\\wm{1} is at maximum happiness! It loves you so much!\1",name))
+		pbMessageDisplay(msgwindow,_INTL("\\wm{1} reveals that it likes {2} and that it dislikes {3}!\\me[Egg get]\\wtnp[100]\1",name,likeUnlocked,dislikeUnlocked))
 		pbDisposeMessageWindow(msgwindow)
 	end
   end
@@ -113,11 +150,19 @@ class PokemonSummary_Scene
 		
 		# Traits
 		if !@pokemon.shadowPokemon? || @pokemon.heartStage>3
-		  memo += _INTL("<c3=F83820,E09890>Traits:<c3=404040,B0B0B0>\n")
-		  memo += _INTL("<c3=404040{2},B0B0B0>{1}\n",@pokemon.trait1 || "Unknown",@pokemon.trait1 ? "FF" : "77")
-		  memo += _INTL("<c3=404040{2},B0B0B0>{1}\n",@pokemon.trait2 || "Unknown",@pokemon.trait2 ? "FF" : "77")
-		  memo += _INTL("<c3=404040{2},B0B0B0>{1}\n",@pokemon.trait3 || "Unknown",@pokemon.trait3 ? "FF" : "77")
-		  memo += _INTL("\n")
+		  memo += _INTL("<c3=F83820,E09890>Traits:<c3=404040,B0B0B0>")
+		  memo += _INTL("<r><c3=F83820,E09890>Likes:<c3=404040,B0B0B0>")
+		  memo += "\n"
+		  memo += _INTL("<c3=404040{2},B0B0B0>{1}",@pokemon.trait1 || "Unknown",@pokemon.trait1 ? "FF" : "77")
+		  memo += _INTL("<r><c3=404040{2},B0B0B0>{1}",@pokemon.like || "Unknown",@pokemon.like ? "FF" : "77")
+		  memo += "\n"
+		  memo += _INTL("<c3=404040{2},B0B0B0>{1}",@pokemon.trait2 || "Unknown",@pokemon.trait2 ? "FF" : "77")
+		  memo += _INTL("<r><c3=F83820,E09890>Dislikes:<c3=404040,B0B0B0>")
+		  memo += "\n"
+		  memo += _INTL("<c3=404040{2},B0B0B0>{1}",@pokemon.trait3 || "Unknown",@pokemon.trait3 ? "FF" : "77")
+		  memo += _INTL("<r><c3=404040{2},B0B0B0>{1}",@pokemon.dislike || "Unknown",@pokemon.dislike ? "FF" : "77")
+		  memo += "\n"
+		  memo += "\n"
 		end
 
 		# Write date received
@@ -127,11 +172,13 @@ class PokemonSummary_Scene
 		  year  = @pokemon.timeReceived.year
 		  memo += _INTL("<c3=404040,B0B0B0>{1} {2}, {3}\n",date,month,year)
 		end
+		
 		# Write map name Pokémon was received on
 		mapname = pbGetMapNameFromId(@pokemon.obtain_map)
 		mapname = @pokemon.obtain_text if @pokemon.obtain_text && !@pokemon.obtain_text.empty?
 		mapname = _INTL("Faraway place") if !mapname || mapname==""
 		memo += sprintf("<c3=F83820,E09890>%s\n",mapname)
+		
 		# Write how Pokémon was obtained
 		mettext = [_INTL("Met at Lv. {1}.",@pokemon.obtain_level),
 				   _INTL("Egg received."),
@@ -140,7 +187,7 @@ class PokemonSummary_Scene
 				   _INTL("Had a fateful encounter at Lv. {1}.",@pokemon.obtain_level)
 				  ][@pokemon.obtain_method]
 		memo += sprintf("<c3=404040,B0B0B0>%s\n",mettext) if mettext && mettext!=""
-		
+
 		# If Pokémon was hatched, write when and where it hatched
 		if @pokemon.obtain_method == 1
 		  if @pokemon.timeEggHatched
