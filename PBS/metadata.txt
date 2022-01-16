@@ -540,3 +540,9 @@ Bicycle = true
 Outdoor = true
 ShowArea = false
 Bicycle = true
+#-------------------------------
+[153]
+# PokEstate Crag
+Outdoor = true
+ShowArea = false
+Bicycle = true
