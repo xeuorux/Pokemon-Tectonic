@@ -546,3 +546,9 @@ Bicycle = true
 Outdoor = true
 ShowArea = false
 Bicycle = true
+#-------------------------------
+[154]
+# PokEstate Volcano
+Outdoor = true
+ShowArea = false
+Bicycle = true
