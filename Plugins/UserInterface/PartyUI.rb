@@ -212,8 +212,10 @@ class PokemonPartyScreen
       cmdItem    = -1
 	  cmdRename  = -1
       cmdPokedex = -1
+	  cmdSetDown = -1
       # Build the commands
-      commands[cmdSummary = commands.length]      = _INTL("Summary")
+      commands[cmdSetDown = commands.length]	  = _INTL("Set Down") if defined?(isInEstate?) && isInEstate?()
+	  commands[cmdSummary = commands.length]      = _INTL("Summary")
       commands[cmdDebug = commands.length]        = _INTL("Debug") if $DEBUG
       if !pkmn.egg?
         # Check for hidden moves and add any that were found
@@ -337,6 +339,13 @@ class PokemonPartyScreen
 		  screen = PokemonPokedexInfoScreen.new(scene)
 		  screen.pbStartSceneSingle(pkmn.species)
 		}
+	  elsif cmdSetDown >= 0 && command==cmdSetDown
+		if setDownIntoEstate(pkmn)
+			@party[pkmnid] = nil
+			@party.compact!
+			@scene.pbHardRefresh
+			break
+		end
       elsif cmdItem>=0 && command==cmdItem
         itemcommands = []
         cmdUseItem   = -1

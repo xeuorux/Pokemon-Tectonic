@@ -15,6 +15,10 @@ ESTATE_MAP_IDS 				= [148,150,151,152,153]
 FALLBACK_MAP_ID				= 149
 ESTATE_MAP_ENTRANCES	= [[20,30,8],[31,18,4],[8,18,6]] # S, E, W
 
+def isInEstate?
+	return $game_map.map_id == FALLBACK_MAP_ID || ESTATE_MAP_IDS.include?($game_map.map_id)
+end
+
 def transferToEstate(boxNum = 0,entrance=0)
 	$PokemonGlobal.estate_box = boxNum
 	background = $PokemonStorage[boxNum].background
@@ -57,7 +61,7 @@ Events.onMapSceneChange += proc { |_sender, e|
 	scene      = e[0]
 	mapChanged = e[1]
 	next if !scene || !scene.spriteset
-	next unless $game_map.map_id == FALLBACK_MAP_ID || ESTATE_MAP_IDS.include?($game_map.map_id)
+	next unless isInEstate?()
 	label = _INTL("PokÉstate #{estate_box +  1}")
 	scene.spriteset.addUserSprite(LocationWindow.new(label))
 }
@@ -105,7 +109,6 @@ def convertEventToPokemon(event,pokemon)
 	firstPage.move_frequency = [[speciesData.base_stats[:SPEED] / 25,0].max,5].min
 	firstPage.list = []
 	push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesData.id,form))
-	push_script(firstPage.list,sprintf("pbMessage(\"#{pokemon.name} cries out!\")",))
 	push_script(firstPage.list,sprintf("ranchChoices(#{pokemon.personalID})",))
 	firstPage.list.push(RPG::EventCommand.new(0,0,[]))
 	
@@ -180,6 +183,7 @@ def ranchChoices(personalID = -1)
 				chosenIndex = pbGet(1)
 				next if chosenIndex == -1
 				chosenPokemon = $Trainer.party[chosenIndex]
+				chosenPokemon.heal
 				$PokemonStorage[currentBox][currentSlot] = chosenPokemon
 				$Trainer.party[chosenIndex] = pokemon
 				pbMessage(_INTL("You pick #{pokemon.name} up and add it to your party."))
@@ -198,6 +202,60 @@ def ranchChoices(personalID = -1)
 			break
 		end
 	end
+end
+
+def setDownIntoEstate(pokemon)
+	return unless isInEstate?()
+	
+	if $Trainer.able_pokemon_count == 1 && !pokemon.fainted?
+		pbMessage("Can't set down your last able Pokemon!")
+		return false
+	end
+
+	box = $PokemonStorage[$PokemonGlobal.estate_box]
+	if box.full?
+		pbMessage("Can't set #{pokemon.name} down into the current Estate plot because it is full.")
+		return false
+	end
+	
+	dir = $game_player.direction
+	x = $game_player.x
+	y = $game_player.y
+	case dir
+	when Up
+		y -= 1
+	when Right
+		x += 1
+	when Left
+		x -= 1
+	when Down
+		y += 1
+	end
+	
+	if !$game_map.passableStrict?(x,y,dir)
+		pbMessage("Can't set #{pokemon.name} down, the spot in front of you is blocked.")
+		return false
+	end
+	
+	pokemon.heal
+	
+	# Place the pokemon into the box
+	for i in 0..box.length
+		next if !box[i].nil?
+		box[i] = pokemon
+		break
+	end
+	
+	# Put the pokemon into an event on the current map
+	events = $game_map.events.values.shuffle()
+	for event in events
+		next unless event.name.downcase.include?("boxplaceholder")
+		convertEventToPokemon(event,pokemon)
+		event.moveto(x,y)
+		event.direction = dir
+		break
+    end
+	return true
 end
 
 class PokemonSummaryScreen
