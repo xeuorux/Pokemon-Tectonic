@@ -5,7 +5,7 @@ Land,20
 20,PIDOVE,31,33
 20,HAPPINY,31,33
 20,SKITTY,31,33
-20,,31,33
+20,AUDINO,31,33
 #-------------------------------
 [] # Slums
 Land,20
@@ -190,7 +190,6 @@ ActiveWater
 1,SHELLOS,1,1
 1,CARNIVINE,1,1
 1,ROTOM,1,1
-1,AUDINO,1,1
 1,SAWK,1,1
 1,THROH,1,1
 1,COTTONEE,1,1
