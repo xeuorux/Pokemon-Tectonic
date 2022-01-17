@@ -552,3 +552,9 @@ Bicycle = true
 Outdoor = true
 ShowArea = false
 Bicycle = true
+#-------------------------------
+[160]
+# PokEstate Snowy
+Outdoor = true
+ShowArea = false
+Bicycle = true
