@@ -909,3 +909,11 @@ class ScreenChooseFileSave
 		@viewport.dispose
 	end
 end
+
+def pbScreenCapture
+  t = pbGetTimeNow
+  filestart = t.strftime("[%Y-%m-%d] %H_%M_%S.%L")
+  capturefile = sprintf("Save Game/%s.png", filestart)
+  Graphics.screenshot(capturefile)
+  pbSEPlay("Pkmn exp full") if FileTest.audio_exist?("Audio/SE/Pkmn exp full")
+end
