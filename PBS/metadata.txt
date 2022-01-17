@@ -558,3 +558,9 @@ Bicycle = true
 Outdoor = true
 ShowArea = false
 Bicycle = true
+#-------------------------------
+[161]
+# PokEstate Cave
+Outdoor = true
+ShowArea = false
+Bicycle = true
