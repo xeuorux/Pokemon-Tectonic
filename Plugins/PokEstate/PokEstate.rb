@@ -49,7 +49,7 @@ end
 
 def transferToEstateOfChoice()
 	params = ChooseNumberParams.new
-    params.setRange(1, Settings::NUM_STORAGE_BOXES+1)
+    params.setRange(1, Settings::NUM_STORAGE_BOXES)
 	params.setDefaultValue(estate_box+1)
 	boxChoice = pbMessageChooseNumber(_INTL("Which plot would you like to visit?"),params)
 	boxChoice -= 1

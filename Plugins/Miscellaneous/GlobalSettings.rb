@@ -1,3 +1,4 @@
+module Settings
   GAME_VERSION = "A1.2.1"
 
   # The maximum level Pokémon can reach.
@@ -60,4 +61,5 @@
   #   * Maximum possible level (optional).
   POKE_RADAR_ENCOUNTERS = []
   
-  
+  NUM_STORAGE_BOXES = 40
+end
