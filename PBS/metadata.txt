@@ -570,3 +570,9 @@ Bicycle = true
 Outdoor = true
 ShowArea = false
 Bicycle = true
+#-------------------------------
+[163]
+# PokEstate Ocean
+Outdoor = true
+ShowArea = false
+Bicycle = true
