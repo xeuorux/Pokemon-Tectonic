@@ -4,6 +4,7 @@ end
 
 class PokemonGlobalMetadata
 	attr_accessor   :estate_box
+	attr_accessor   :estate_teleport
 end
 
 def estate_box()
@@ -23,6 +24,11 @@ def transferToEstate(boxNum = 0,entrance=0)
 	$PokemonGlobal.estate_box = boxNum
 	background = $PokemonStorage[boxNum].background
 	newMap = ESTATE_MAP_IDS[background] || FALLBACK_MAP_ID
+	
+	# Notate the current location if outside the estate
+	if !isInEstate?
+		$PokemonGlobal.estate_teleport = [$game_map.map_id,$game_player.x,$game_player.y,$game_player.direction]
+	end
 
 	# Transfer the player to the new spot
 	echoln("Transferring player to estate or box number #{boxNum}")
@@ -33,6 +39,9 @@ def transferToEstate(boxNum = 0,entrance=0)
 	$game_temp.player_new_x         =	position[0]
 	$game_temp.player_new_y         = 	position[1]
 	$game_temp.player_new_direction = 	position[2]
+	Graphics.freeze
+	$game_temp.transition_processing = true
+	$game_temp.transition_name       = ""
 end
 
 def transferToWesterEstate()
@@ -47,14 +56,57 @@ def transferToEasterEstate()
 	transferToEstate(easterValue,2)
 end
 
+def teleportPlayerBack()
+	if $PokemonGlobal.estate_teleport.nil?
+		pbMessage("ERROR: Cannot find location to teleport you back to.")
+		pbMessage("Bringing you to Casaba Villa instead.")
+		$game_temp.player_transferring = true
+		$game_temp.player_new_map_id    = 	33
+		$game_temp.player_new_x         =	20
+		$game_temp.player_new_y         = 	38
+		$game_temp.player_new_direction = 	Up
+	else
+		tele = $PokemonGlobal.estate_teleport
+		$game_temp.player_transferring = true
+		$game_temp.player_new_map_id    = 	tele[0]
+		$game_temp.player_new_x         =	tele[1]
+		$game_temp.player_new_y         = 	tele[2]
+		$game_temp.player_new_direction = 	tele[3]
+	end
+	Graphics.freeze
+	$game_temp.transition_processing = true
+	$game_temp.transition_name       = ""
+end
+
 def transferToEstateOfChoice()
 	params = ChooseNumberParams.new
-    params.setRange(1, Settings::NUM_STORAGE_BOXES)
+	params.setRange(1, Settings::NUM_STORAGE_BOXES)
 	params.setDefaultValue(estate_box+1)
+	params.setCancelValue(0)
 	boxChoice = pbMessageChooseNumber(_INTL("Which plot would you like to visit?"),params)
 	boxChoice -= 1
-	return if boxChoice <= -1 || boxChoice == estate_box
+	return false if boxChoice <= -1
+	return false if isInEstate?() && boxChoice == estate_box
 	transferToEstate(boxChoice,0)
+	return true
+end
+
+def truckChoices()
+	commandLeaveEstate = -1
+	commandGoToOtherPlot = -1
+	commandCancel = -1
+	commands = []
+	commands[commandGoToOtherPlot = commands.length] = "Drive To Plot"
+	commands[commandLeaveEstate = commands.length] = "Leave PokÉstate"
+	commands[commandCancel = commands.length] = "Cancel"
+	
+	command = pbMessage(_INTL("What would you like to do?"),commands,commandCancel)
+	
+	if commandLeaveEstate > -1 && command == commandLeaveEstate
+		teleportPlayerBack()
+	elsif commandGoToOtherPlot > -1 && command == commandGoToOtherPlot
+		transferToEstateOfChoice()
+	end
 end
 
 Events.onMapSceneChange += proc { |_sender, e|
@@ -439,33 +491,73 @@ end
 
 class Scene_Map
 	def transfer_player(cancelVehicles=true)
-    $game_temp.player_transferring = false
-    pbCancelVehicles($game_temp.player_new_map_id) if cancelVehicles
-    autofade($game_temp.player_new_map_id)
-    pbBridgeOff
-    @spritesetGlobal.playersprite.clearShadows
-    if $game_map.map_id != $game_temp.player_new_map_id || $game_temp.setup_sames
-      $MapFactory.setup($game_temp.player_new_map_id)
+		$game_temp.player_transferring = false
+		pbCancelVehicles($game_temp.player_new_map_id) if cancelVehicles
+		autofade($game_temp.player_new_map_id)
+		pbBridgeOff
+		@spritesetGlobal.playersprite.clearShadows
+		if $game_map.map_id != $game_temp.player_new_map_id || $game_temp.setup_sames
+		  $MapFactory.setup($game_temp.player_new_map_id)
+		end
+		$game_temp.setup_sames = false
+		$game_player.moveto($game_temp.player_new_x, $game_temp.player_new_y)
+		case $game_temp.player_new_direction
+		when 2 then $game_player.turn_down
+		when 4 then $game_player.turn_left
+		when 6 then $game_player.turn_right
+		when 8 then $game_player.turn_up
+		end
+		$game_player.straighten
+		$game_map.update
+		disposeSpritesets
+		RPG::Cache.clear
+		createSpritesets
+		if $game_temp.transition_processing
+		  $game_temp.transition_processing = false
+		  Graphics.transition(20)
+		end
+		$game_map.autoplay
+		Graphics.frame_reset
+		Input.update
+	end
+end
+
+def pbPokeCenterPC
+	pbMessage(_INTL("\\se[PC open]The Pokémon Storage System was opened."))
+    command = 0
+    loop do
+		commands = [_INTL("Organize Boxes"),
+			_INTL("Withdraw Pokémon"),
+			_INTL("Deposit Pokémon"),
+			_INTL("Visit PokÉstate"),
+			_INTL("Log Out")]
+		command = pbShowCommands(nil,commands,-1)
+		if command>=0 && command<3
+			if command==1   # Withdraw
+				if $PokemonStorage.party_full?
+					pbMessage(_INTL("Your party is full!"))
+					next
+				end
+				elsif command==2   # Deposit
+					count=0
+					for p in $PokemonStorage.party
+						count += 1 if p && !p.egg? && p.hp>0
+					end
+					if count<=1
+						pbMessage(_INTL("Can't deposit the last Pokémon!"))
+					next
+				end
+			end
+			pbFadeOutIn {
+				scene = PokemonStorageScene.new
+				screen = PokemonStorageScreen.new(scene,$PokemonStorage)
+				screen.pbStartScreen(command)
+			}
+		elsif command == 3 # Estate
+			break if transferToEstateOfChoice()
+		else
+			break
+		end
     end
-	$game_temp.setup_sames = false
-    $game_player.moveto($game_temp.player_new_x, $game_temp.player_new_y)
-    case $game_temp.player_new_direction
-    when 2 then $game_player.turn_down
-    when 4 then $game_player.turn_left
-    when 6 then $game_player.turn_right
-    when 8 then $game_player.turn_up
-    end
-    $game_player.straighten
-    $game_map.update
-    disposeSpritesets
-    RPG::Cache.clear
-    createSpritesets
-    if $game_temp.transition_processing
-      $game_temp.transition_processing = false
-      Graphics.transition(20)
-    end
-    $game_map.autoplay
-    Graphics.frame_reset
-    Input.update
-  end
+	pbSEPlay("PC close")
 end
