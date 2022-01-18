@@ -564,3 +564,9 @@ Bicycle = true
 Outdoor = true
 ShowArea = false
 Bicycle = true
+#-------------------------------
+[162]
+# PokEstate Beach
+Outdoor = true
+ShowArea = false
+Bicycle = true
