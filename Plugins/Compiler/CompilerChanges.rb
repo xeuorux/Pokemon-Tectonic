@@ -1429,7 +1429,7 @@ end
 	
 	return event
   end
- end
+end
 
 def jank_hash_code(str)
   result = 0
