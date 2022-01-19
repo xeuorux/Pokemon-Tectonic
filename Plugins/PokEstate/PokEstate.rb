@@ -12,7 +12,7 @@ def estate_box()
 	return $PokemonGlobal.estate_box
 end
 
-ESTATE_MAP_IDS 				= [148,150,151,152,153,154,160,161,162,163]
+ESTATE_MAP_IDS 				= [148,150,151,152,153,154,160,161,162,163,164]
 FALLBACK_MAP_ID				= 149
 ESTATE_MAP_ENTRANCES	= [[20,30,8],[31,18,4],[8,18,6]] # S, E, W
 

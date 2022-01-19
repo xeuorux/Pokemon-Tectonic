@@ -24,7 +24,7 @@ class Pokemon
 		"Hopeful",
 		"Innocent",
 		"Inviting",
-		"Juidgey",
+		"Judgey",
 		"Lucky",
 		"Loyal",
 		"Partier",
