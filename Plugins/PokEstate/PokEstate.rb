@@ -155,7 +155,6 @@ def convertEventToPokemon(event,pokemon)
 	fileName += "_" + form.to_s if form != 0
 	firstPage.graphic.character_name = "Followers/#{fileName}"
 	firstPage.graphic.direction = 2 + rand(4) * 2
-	firstPage.step_anime = true # Animate while still
 	firstPage.trigger = 0 # Action button
 	firstPage.move_type = 1 if !wasCustom # Random
 	firstPage.move_frequency = [[speciesData.base_stats[:SPEED] / 25,0].max,5].min
