@@ -7,25 +7,35 @@ Events.FollowerRefresh += proc{|pkmn|
   next false if $PokemonGlobal.bicycle
 # Pokeride Compatibility
   next false if $PokemonGlobal.mount if defined?($PokemonGlobal.mount)
-}
-
-Events.FollowerRefresh += proc{|pkmn|
+  
   if $PokemonGlobal.surfing
+    next true if swimmingSpecies?(pkmn.species,pkmn.form)
+    next true if floatingSpecies?(pkmn.species,pkmn.form)
+    next false
+  elsif $PokemonGlobal.diving
     next true if pkmn.hasType?(:WATER)
-    next false if FollowerSettings::SURFING_FOLLOWERS_EXCEPTIONS.any?{|s| s == pkmn.species || s.to_s == "#{pkmn.species}_#{pkmn.form}" }
-    next true if pkmn.hasType?(:FLYING)
-    next true if pkmn.hasAbility?(:LEVITATE) || pkmn.hasAbility?(:DESERTSPIRIT)
-    next true if FollowerSettings::SURFING_FOLLOWERS.any?{|s| s == pkmn.species || s.to_s == "#{pkmn.species}_#{pkmn.form}" }
     next false
   end
 }
 
-Events.FollowerRefresh += proc{|pkmn|
-  if $PokemonGlobal.diving
-    next true if pkmn.hasType?(:WATER)
-    next false
-  end
-}
+def swimmingSpecies?(species,form=0)
+	species_data = GameData::Species.get_species_form(species,form)
+    return false if FollowerSettings::SURFING_FOLLOWERS_EXCEPTIONS.any?{|s| s == species || s.to_s == "#{species}_#{form}" }
+	return true if species_data.type1 == :WATER || species_data.type2 == :WATER
+	return false
+end
+
+def floatingSpecies?(species,form=0)
+	species_data = GameData::Species.get_species_form(species,form)
+	if species_data.type1 == :FLYING || species_data.type2 == :FLYING
+		exception = FollowerSettings::SURFING_FOLLOWERS_EXCEPTIONS.any?{|s| s == species || s.to_s == "#{species}_#{form}" }
+		return !exception
+	end
+    return true if species_data.abilities.include?(:LEVITATE)
+	return true if species_data.abilities.include?(:DESERTSPIRIT)
+    return true if FollowerSettings::SURFING_FOLLOWERS.any?{|s| s == species || s.to_s == "#{species}_#{form}" }
+	return false
+end
 
 =begin
 Events.FollowerRefresh += proc{|pkmn|

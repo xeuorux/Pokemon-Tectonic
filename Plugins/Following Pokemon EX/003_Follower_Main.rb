@@ -211,7 +211,6 @@ class DependentEvents
     for i in 0...events.length
       next if !events[i]
 	  next unless events[i][8][/FollowerPkmn/i]
-	  echoln("Removing the sprite for event named #{events[i][8]}")
       events[i][6] = sprintf("")
       @realEvents[i].character_name = ""
       $PokemonGlobal.time_taken = 0

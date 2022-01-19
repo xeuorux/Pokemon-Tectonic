@@ -9,14 +9,7 @@ class Game_Character
 		return if val==@move_speed
 		@move_speed = val
 		# @move_speed_real is the number of quarter-pixels to move each frame. There
-		# are 128 quarter-pixels per tile. By default, it is calculated from
-		# @move_speed and has these values (assuming 40 fps):
-		# 1 => 3.2    # 40 frames per tile
-		# 2 => 6.4    # 20 frames per tile
-		# 3 => 12.8   # 10 frames per tile - walking speed
-		# 4 => 25.6   # 5 frames per tile - running speed (2x walking speed)
-		# 5 => 32     # 4 frames per tile - cycling speed (1.25x running speed)
-		# 6 => 64     # 2 frames per tile
+		# are 128 quarter-pixels per tile.
 		self.move_speed_real = [3.2,6.4,12.8,25.6,44,64][val-1]
 	  end
 end
@@ -60,6 +53,7 @@ Events.onStepTakenFieldMovement += proc { |_sender,e|
 	  currentTag = $game_player.pbTerrainTag
       if currentTag.can_surf && !$PokemonGlobal.surfing && $PokemonGlobal.bridge == 0
 		pbStartSurfing()
+		$PokemonGlobal.call_refresh = [true,false]
       end
     end
   end
