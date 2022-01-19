@@ -147,6 +147,8 @@ def convertEventToPokemon(event,pokemon)
 	form = pokemon.form
 	speciesData = GameData::Species.get(species)
 	
+	floatingSpecies = floatingSpecies?(species,form)
+	
 	# Create the first page, where the cry happens
 	firstPage = RPG::Event::Page.new
 	wasCustom = actualEvent.pages[0].move_type == 3
@@ -156,13 +158,15 @@ def convertEventToPokemon(event,pokemon)
 	firstPage.graphic.character_name = "Followers/#{fileName}"
 	firstPage.graphic.direction = 2 + rand(4) * 2
 	firstPage.trigger = 0 # Action button
-	firstPage.step_anime = defined?(floatingSpecies?) && floatingSpecies?(species,form)
+	firstPage.step_anime = floatingSpecies
 	firstPage.move_type = 1 if !wasCustom # Random
 	firstPage.move_frequency = [[speciesData.base_stats[:SPEED] / 25,0].max,5].min
 	firstPage.list = []
 	push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesData.id,form))
 	push_script(firstPage.list,sprintf("ranchChoices(#{pokemon.personalID})",))
 	firstPage.list.push(RPG::EventCommand.new(0,0,[]))
+	
+	event.floats = floatingSpecies
 	
 	event.refresh()
 end
@@ -459,7 +463,7 @@ end
 class Game_Temp
 	attr_accessor :setup_sames
 	
-	#-----------------------------------------------------------------------------
+  #-----------------------------------------------------------------------------
   # * Object Initialization
   #-----------------------------------------------------------------------------
   def initialize

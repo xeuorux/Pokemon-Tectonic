@@ -746,3 +746,12 @@ class PokemonMapFactory
     return ret
   end
 end
+
+class Game_Character
+	attr_accessor :floats
+	
+	def bush_depth
+		return 0 if floats
+		return @bush_depth || 0
+	end
+end
