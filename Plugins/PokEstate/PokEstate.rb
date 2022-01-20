@@ -770,8 +770,12 @@ class PokemonStorageScreen
         @scene.pbChangeBackground(papers[1][wpaper])
       end
     when 2
-      @scene.pbBoxName(_INTL("Box name?"),0,12)
+		@scene.pbBoxName(_INTL("Box name?"),0,12)
 	when 3
+		if heldpkmn
+			pbDisplay("Can't Visit the PokÉstate while you have a Pokémon in your hand!")
+			return false
+		end
 		transferToEstate(@storage.currentBox)
 		return true
     end
