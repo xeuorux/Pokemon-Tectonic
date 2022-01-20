@@ -632,7 +632,7 @@ LoseText = "..."
 Pokemon = DUCKLETT,19
 Pokemon = ELECTRIKE,20
 Pokemon = STUFFUL,21
-Pokemon = APPLIN,21
+Pokemon = FLAPPLE,21
 #-------------------------------
 [KIMONOGIRL,Haera]
 LoseText = "..."
