@@ -96,11 +96,11 @@ def truckChoices()
 	commandGoToOtherPlot = -1
 	commandCancel = -1
 	commands = []
-	commands[commandGoToOtherPlot = commands.length] = "Drive To Plot"
-	commands[commandLeaveEstate = commands.length] = "Leave PokÉstate"
-	commands[commandCancel = commands.length] = "Cancel"
+	commands[commandGoToOtherPlot = commands.length] = _INTL("Drive To Plot")
+	commands[commandLeaveEstate = commands.length] = _INTL("Leave PokÉstate")
+	commands[commandCancel = commands.length] = _INTL("Cancel")
 	
-	command = pbMessage(_INTL("What would you like to do?"),commands,commandCancel)
+	command = pbMessage(_INTL("What would you like to do?"),commands,commandCancel+1)
 	
 	if commandLeaveEstate > -1 && command == commandLeaveEstate
 		teleportPlayerBack()
@@ -114,7 +114,9 @@ Events.onMapSceneChange += proc { |_sender, e|
 	mapChanged = e[1]
 	next if !scene || !scene.spriteset
 	next unless isInEstate?()
+	boxName = $PokemonStorage[estate_box].name
 	label = _INTL("PokÉstate #{estate_box +  1}")
+	label += " - #{boxName}" if !boxName.eql?("Box #{estate_box +  1}")
 	scene.spriteset.addUserSprite(LocationWindow.new(label))
 }
 
@@ -560,7 +562,7 @@ def pbPokeCenterPC
 			pbFadeOutIn {
 				scene = PokemonStorageScene.new
 				screen = PokemonStorageScreen.new(scene,$PokemonStorage)
-				screen.pbStartScreen(command)
+				return if screen.pbStartScreen(command)
 			}
 		elsif command == 3 # Estate
 			break if transferToEstateOfChoice()
@@ -569,4 +571,210 @@ def pbPokeCenterPC
 		end
     end
 	pbSEPlay("PC close")
+end
+
+class PokemonStorageScreen
+	def pbStartScreen(command)
+    @heldpkmn = nil
+    if command==0   # Organise
+      @scene.pbStartBox(self,command)
+      loop do
+        selected = @scene.pbSelectBox(@storage.party)
+        if selected==nil
+          if pbHeldPokemon
+            pbDisplay(_INTL("You're holding a Pokémon!"))
+            next
+          end
+          next if pbConfirm(_INTL("Continue Box operations?"))
+          break
+        elsif selected[0]==-3   # Close box
+          if pbHeldPokemon
+            pbDisplay(_INTL("You're holding a Pokémon!"))
+            next
+          end
+          if pbConfirm(_INTL("Exit from the Box?"))
+            pbSEPlay("PC close")
+            break
+          end
+          next
+        elsif selected[0]==-4   # Box name
+          if pbBoxCommands
+			@scene.pbCloseBox
+			return true
+		  end
+        else
+          pokemon = @storage[selected[0],selected[1]]
+          heldpoke = pbHeldPokemon
+          next if !pokemon && !heldpoke
+          if @scene.quickswap
+            if @heldpkmn
+              (pokemon) ? pbSwap(selected) : pbPlace(selected)
+            else
+              pbHold(selected)
+            end
+          else
+            commands = []
+            cmdMove     = -1
+            cmdSummary  = -1
+            cmdWithdraw = -1
+            cmdItem     = -1
+            cmdMark     = -1
+            cmdRelease  = -1
+            cmdDebug    = -1
+            cmdCancel   = -1
+            if heldpoke
+              helptext = _INTL("{1} is selected.",heldpoke.name)
+              commands[cmdMove=commands.length]   = (pokemon) ? _INTL("Shift") : _INTL("Place")
+            elsif pokemon
+              helptext = _INTL("{1} is selected.",pokemon.name)
+              commands[cmdMove=commands.length]   = _INTL("Move")
+            end
+            commands[cmdSummary=commands.length]  = _INTL("Summary")
+            commands[cmdWithdraw=commands.length] = (selected[0]==-1) ? _INTL("Store") : _INTL("Withdraw")
+            commands[cmdItem=commands.length]     = _INTL("Item")
+            commands[cmdMark=commands.length]     = _INTL("Mark")
+            commands[cmdRelease=commands.length]  = _INTL("Release")
+            commands[cmdDebug=commands.length]    = _INTL("Debug") if $DEBUG
+            commands[cmdCancel=commands.length]   = _INTL("Cancel")
+            command=pbShowCommands(helptext,commands)
+            if cmdMove>=0 && command==cmdMove   # Move/Shift/Place
+              if @heldpkmn
+                (pokemon) ? pbSwap(selected) : pbPlace(selected)
+              else
+                pbHold(selected)
+              end
+            elsif cmdSummary>=0 && command==cmdSummary   # Summary
+              pbSummary(selected,@heldpkmn)
+            elsif cmdWithdraw>=0 && command==cmdWithdraw   # Store/Withdraw
+              (selected[0]==-1) ? pbStore(selected,@heldpkmn) : pbWithdraw(selected,@heldpkmn)
+            elsif cmdItem>=0 && command==cmdItem   # Item
+              pbItem(selected,@heldpkmn)
+            elsif cmdMark>=0 && command==cmdMark   # Mark
+              pbMark(selected,@heldpkmn)
+            elsif cmdRelease>=0 && command==cmdRelease   # Release
+              pbRelease(selected,@heldpkmn)
+            elsif cmdDebug>=0 && command==cmdDebug   # Debug
+              pbPokemonDebug((@heldpkmn) ? @heldpkmn : pokemon,selected,heldpoke)
+            end
+          end
+        end
+      end
+      @scene.pbCloseBox
+    elsif command==1   # Withdraw
+      @scene.pbStartBox(self,command)
+      loop do
+        selected = @scene.pbSelectBox(@storage.party)
+        if selected==nil
+          next if pbConfirm(_INTL("Continue Box operations?"))
+          break
+        else
+          case selected[0]
+          when -2   # Party Pokémon
+            pbDisplay(_INTL("Which one will you take?"))
+            next
+          when -3   # Close box
+            if pbConfirm(_INTL("Exit from the Box?"))
+              pbSEPlay("PC close")
+              break
+            end
+            next
+          when -4   # Box name
+            if pbBoxCommands
+				@scene.pbCloseBox
+				return true
+		    end
+          end
+          pokemon = @storage[selected[0],selected[1]]
+          next if !pokemon
+          command = pbShowCommands(_INTL("{1} is selected.",pokemon.name),[
+             _INTL("Withdraw"),
+             _INTL("Summary"),
+             _INTL("Mark"),
+             _INTL("Release"),
+             _INTL("Cancel")
+          ])
+          case command
+          when 0 then pbWithdraw(selected, nil)
+          when 1 then pbSummary(selected, nil)
+          when 2 then pbMark(selected, nil)
+          when 3 then pbRelease(selected, nil)
+          end
+        end
+      end
+      @scene.pbCloseBox
+    elsif command==2   # Deposit
+      @scene.pbStartBox(self,command)
+      loop do
+        selected = @scene.pbSelectParty(@storage.party)
+        if selected==-3   # Close box
+          if pbConfirm(_INTL("Exit from the Box?"))
+            pbSEPlay("PC close")
+            break
+          end
+          next
+        elsif selected<0
+          next if pbConfirm(_INTL("Continue Box operations?"))
+          break
+        else
+          pokemon = @storage[-1,selected]
+          next if !pokemon
+          command = pbShowCommands(_INTL("{1} is selected.",pokemon.name),[
+             _INTL("Store"),
+             _INTL("Summary"),
+             _INTL("Mark"),
+             _INTL("Release"),
+             _INTL("Cancel")
+          ])
+          case command
+          when 0 then pbStore([-1, selected], nil)
+          when 1 then pbSummary([-1, selected], nil)
+          when 2 then pbMark([-1, selected], nil)
+          when 3 then pbRelease([-1, selected], nil)
+          end
+        end
+      end
+      @scene.pbCloseBox
+    elsif command==3
+      @scene.pbStartBox(self,command)
+      @scene.pbCloseBox
+    end
+	return false
+  end
+  
+  def pbBoxCommands
+    commands = [
+       _INTL("Jump"),
+       _INTL("Wallpaper"),
+       _INTL("Name"),
+	   _INTL("Visit PokÉstate"),
+       _INTL("Cancel"),
+    ]
+    command = pbShowCommands(
+       _INTL("What do you want to do?"),commands)
+    case command
+    when 0
+      destbox = @scene.pbChooseBox(_INTL("Jump to which Box?"))
+      if destbox>=0
+        @scene.pbJumpToBox(destbox)
+      end
+    when 1
+      papers = @storage.availableWallpapers
+      index = 0
+      for i in 0...papers[1].length
+        if papers[1][i]==@storage[@storage.currentBox].background
+          index = i; break
+        end
+      end
+      wpaper = pbShowCommands(_INTL("Pick the wallpaper."),papers[0],index)
+      if wpaper>=0
+        @scene.pbChangeBackground(papers[1][wpaper])
+      end
+    when 2
+      @scene.pbBoxName(_INTL("Box name?"),0,12)
+	when 3
+		transferToEstate(@storage.currentBox)
+		return true
+    end
+	return false
+  end
 end
