@@ -208,21 +208,24 @@ def ranchChoices(personalID = -1)
 	commands = []
 	cmdSummary = -1
 	cmdTake = -1
+	cmdInteract = -1
 	cmdRename = -1
 	cmdCancel = -1
 	commands[cmdSummary = commands.length] = _INTL("View Summary")
 	commands[cmdTake = commands.length] = _INTL("Take")
+	commands[cmdInteract = commands.length] = _INTL("Interact")
 	commands[cmdRename = commands.length] = _INTL("Rename")
 	commands[cmdCancel = commands.length] = _INTL("Cancel")
+	command = 0
 	while true
-		command = pbMessage(_INTL("What would you like to do with #{pokemon.name}?"),commands,commands.length)
-		if command > -1 && command == cmdSummary
+		command = pbMessage(_INTL("What would you like to do with #{pokemon.name}?"),commands,commands.length,nil,command)
+		if cmdSummary > -1 && command == cmdSummary
 			pbFadeOutIn {
 				scene = PokemonSummary_Scene.new
 				screen = PokemonSummaryScreen.new(scene)
 				screen.pbStartSingleScreen(pokemon)
 			}
-		elsif command > -1 && command == cmdRename
+		elsif cmdRename > -1 && command == cmdRename
 			currentName = pokemon.name
 			pbTextEntry("#{currentName}'s nickname?",0,10,5)
 			if pbGet(5)=="" || pbGet(5) == currentName
@@ -231,7 +234,7 @@ def ranchChoices(personalID = -1)
 			  pokemon.name = pbGet(5)
 			end
 			convertEventToPokemon(get_self,pokemon)
-		elsif command > -1 && command == cmdTake
+		elsif cmdTake > -1 && command == cmdTake
 			if $Trainer.party_full?
 				pbPlayDecisionSE
 				pbMessage(_INTL("Party is full, choose a Pokemon to swap out."))
@@ -254,7 +257,9 @@ def ranchChoices(personalID = -1)
 				get_self().refresh()
 				break
 			end
-		elsif command > -1 && command == cmdCancel
+		elsif cmdInteract > -1 && command == cmdInteract
+			Events.OnTalkToFollower.trigger(pokemon,get_self().x,get_self().y,rand(6))
+		elsif cmdCancel > -1 && command == cmdCancel
 			break
 		end
 	end
