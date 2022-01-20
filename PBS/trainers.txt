@@ -1107,6 +1107,7 @@ Pokemon = ALTARIA,31
 Pokemon = LUNATONE,32
 Pokemon = EMOLGA,33
 	Item = SITRUSBERRY
+#-------------------------------
 [WAITRESS,Carmilla]
 Pokemon = CLEFAIRY,32
 	Item = ORANBERRY
@@ -1114,6 +1115,7 @@ Pokemon = DUGTRIO,31
 Pokemon = DURANT,32
 	Item = CHOICEBAND
 Pokemon = UNFEZANT,33
+#-------------------------------
 [BIKER2,Chuck]
 Pokemon = MUK,33
 Pokemon = FLAAFFY,32
@@ -1121,6 +1123,7 @@ Pokemon = FLAAFFY,32
 Pokemon = DONPHAN,32
 Pokemon = PORYGON,32
 	Item = SITRUSBERRY
+#-------------------------------
 [NURSERYAIDE,Francesca]
 Pokemon = CINCCINO,33
 Pokemon = BRONZOR,31
@@ -1128,3 +1131,18 @@ Pokemon = BRONZOR,31
 Pokemon = RAMPARDOS,31
 Pokemon = CRUSTLE,33
 	Item = ORANBERRY
+#-------------------------------
+[GENTLEMAN3,Oliver]
+Pokemon = GRAPIDASH,34
+	AbilityIndex = 1
+Pokemon = GWEEZING,34
+	AbilityIndex = 1
+Pokemon = OBSTAGOON,35
+	Item = FLAMEORB
+	AbilityIndex = 1
+Pokemon = SIRFETCHD,35
+	AbilityIndex = 0
+Pokemon = GSLOWKING,35
+	AbilityIndex = 1
+	Item = SITRUSBERRY
+#-------------------------------

@@ -31070,7 +31070,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 38
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GSLOWKING,Item,GALARICAWREATH,GSLOWKING,Item,WATERSTONE
+Evolutions = GSLOWKING,Item,GALARICAWREATH,GSLOWBRO,Level,37
 #-------------------------------
 [2018]
 Name = G. Slowbro
