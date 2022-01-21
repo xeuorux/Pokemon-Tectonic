@@ -63,7 +63,7 @@ class Pokemon
 		return @Trait3
 	end
 	
-	LIKES = ["Candy","Apples","Ribbons"]
+	LIKES = ["Scary Movies","Berries","Beach Walks","Swimming","Stories","Camping","Breeze","Beach Trips","Comedy Movies","EDM","Introspection","Spicy Food","Soda","Hiking","Paintings","People Watching","Bike Rides","Languages","Fishing","Gardening","Dumpster Diving","Judo","Shopping","Fashion","Jogging","Card Games","Video Games","Computers","Math","Chemistry","Documentaries","History","Rainy Days","Tightropes","Astronomy","Horoscopes","Tree Climbing","Meditation","Acrobatics","Cakes","Ice Cream","Expensive Food","Cooking","Baking","Action Movies","Lo-Fi","Rock Music","Rocks","Snow","Exercise","Marathons","Weightlifting","Heavy Metal","Coffee","Iced Latte","Hot Cocao","Chocolate Milk","Flowers","Avant-garde","Novelty","Routines","Yoga","The Occult","Skiing","Plays","Fireworks","Salsa","Naps","Pizza","Jigsaw Puzzles","Firemaking","Following You","Taking Pictures","Attention","Being Spoiled","Parkour","Destruction","Pottery","Weaving","Reality TV","Tournament Arcs","Competition","Banter","Cleaning","Milkshakes"]
 	def like
 		return nil if happiness < PERSONALITY_THRESHOLD_FOUR
 		while @Like.nil? || @Like == @Dislike
@@ -72,7 +72,7 @@ class Pokemon
 		return @Like
 	end
 	
-	DISLIKES = ["Candy","Apples","Ribbons"]
+	DISLIKES = ["Scary Movies","Petting","Loud Noises","Smalltalk","Directions","Introspection","Sour Food","Bitter Coffee","Sweet Coffee","The Vet","Pollen","Tight Spaces","Crowds","Commuting","Hiking","Doing Nothing","Sad Stories","Heights","Storms","Hot Days","Cold Days","The Dark","Defeatists","Babies","Forests","Deserts","Exercise","Babysitting","Loud Cars","Responsibilities","Cleaning","Spicy Food","Soda","Loud Music","Cooking","Snow","Exercise","Routines","Fireworks","Attention","Being Spoiled"]
 	def dislike
 		return nil if happiness < PERSONALITY_THRESHOLD_FOUR
 		while @Dislike.nil? || @Dislike == @Like
