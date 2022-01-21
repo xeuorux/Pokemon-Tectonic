@@ -7,12 +7,26 @@ class PokemonGlobalMetadata
 	attr_accessor   :estate_teleport
 end
 
+class PokemonStorage
+  BASICWALLPAPERQTY = 14
+  
+  def allWallpapers
+    return [
+       # Basic wallpapers
+       _INTL("Forest"),_INTL("City"),_INTL("Desert"),_INTL("Savanna"),
+       _INTL("Crag"),_INTL("Volcano"),_INTL("Snow"),_INTL("Cave"),
+       _INTL("Beach"),_INTL("Seafloor"),_INTL("River"),_INTL("Sky"),
+       _INTL("Machine"),_INTL("Simple")
+    ]
+  end
+end
+
 def estate_box()
 	$PokemonGlobal.estate_box = 0 if !$PokemonGlobal.estate_box
 	return $PokemonGlobal.estate_box
 end
 
-ESTATE_MAP_IDS 				= [148,150,151,152,153,154,160,161,162,163,164]
+ESTATE_MAP_IDS 				= [148,150,151,152,153,154,160,161,162,163,164,149,170,169]
 FALLBACK_MAP_ID				= 149
 ESTATE_MAP_ENTRANCES	= [[20,30,8],[31,18,4],[8,18,6]] # S, E, W
 

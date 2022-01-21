@@ -578,7 +578,19 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [164]
-# PokEstate Ocean
+# PokEstate River
+Outdoor = true
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[170]
+# PokEstate Machine
+Outdoor = true
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[169]
+# PokEstate Basic
 Outdoor = true
 ShowArea = false
 Bicycle = true
