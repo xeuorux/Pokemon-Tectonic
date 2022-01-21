@@ -91,13 +91,29 @@ def transferToEstateOfChoice()
 	return true
 end
 
+def changeLandscape()
+	papers = $PokemonStorage.availableWallpapers
+	index = 0
+	for i in 0...papers[1].length
+		if papers[1][i]==$PokemonStorage[estate_box].background
+			index = i; break
+		end
+	end
+	chosenPaper = pbMessage(_INTL("Pick the landscape you'd like for this plot."),papers[0],index)
+	return if chosenPaper < 0
+	$PokemonStorage[estate_box].background = chosenPaper
+	transferToEstate(estate_box)
+end
+
 def truckChoices()
 	commandLeaveEstate = -1
 	commandGoToOtherPlot = -1
+	commandLandscape = -1
 	commandCancel = -1
 	commands = []
 	commands[commandGoToOtherPlot = commands.length] = _INTL("Drive To Plot")
 	commands[commandLeaveEstate = commands.length] = _INTL("Leave PokÉstate")
+	commands[commandLandscape = commands.length] = _INTL("Landscape")
 	commands[commandCancel = commands.length] = _INTL("Cancel")
 	
 	command = pbMessage(_INTL("What would you like to do?"),commands,commandCancel+1)
@@ -106,6 +122,8 @@ def truckChoices()
 		teleportPlayerBack()
 	elsif commandGoToOtherPlot > -1 && command == commandGoToOtherPlot
 		transferToEstateOfChoice()
+	elsif commandLandscape > -1 && command == commandLandscape
+		changeLandscape()
 	end
 end
 
