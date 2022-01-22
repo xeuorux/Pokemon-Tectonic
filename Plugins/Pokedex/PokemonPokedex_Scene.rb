@@ -836,7 +836,7 @@ class PokemonPokedex_Scene
 		  return nil if levelIntAttempt == 0
 		  
 		  maps_available_by_cap = {
-			15 => [33,34,29,30,38,26, # Casaba Villa, Scenic Path, Mine Path, Small Mine, Beach Route, Seaside Grotto
+			15 => [136,34,30,51,38,26, # Casaba Villa, Scenic Path, Tunnel Path, Foreclosed Tunnel, Beach Route, Seaside Grotto
 					35,27		# Impromptu Lab, Casaba Mart
 			], 
 			30 => [60,56,140,141,142,66,123, 	 # Forested Road, Suburb, Starters Store Maps, Nemeth Attic, Nemeth Academy

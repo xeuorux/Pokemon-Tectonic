@@ -33,7 +33,7 @@ LandTall,20
 25,LITWICK,7,9
 25,RIOLU,7,9
 #-------------------------------
-[029] # Mine Path
+[030] # Tunnel Path
 Land,20
 25,MAREEP,8,10
 25,RALTS,8,10
@@ -47,7 +47,7 @@ LandTall,20
 Special,20
 1,PIDOVE,15,15
 #-------------------------------
-[030] # Small Mine
+[51] # Foreclosed Tunnel
 DarkCave,20
 25,ROLYCOLY,9,11
 25,GASTLY,9,11
