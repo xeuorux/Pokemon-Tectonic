@@ -145,3 +145,43 @@ BattleHandlers::TargetAbilityOnHit.add(:QUILLERINSTINCT,
     battle.pbHideAbilitySplash(target)
   }
 )
+
+BattleHandlers::TargetAbilityOnHit.add(:ELECTRICFENCE,
+  proc { |ability,user,target,move,battle|
+	echoln target.battle.field.terrain == :Electric
+    next unless target.battle.field.terrain == :Electric
+    battle.pbShowAbilitySplash(target)
+    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      battle.scene.pbDamageAnimation(user)
+      reduce = user.totalhp/8
+	  reduce /= 4 if user.boss
+      user.pbReduceHP(reduce,false)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
+      else
+        battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
+           target.pbThis(true),target.abilityName))
+      end
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:INNERLIGHT,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Sun,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:STORMBRINGER,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Rain,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Hail,battler,battle)
+	}
+)
