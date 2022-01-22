@@ -801,3 +801,11 @@ def showThinkingOverFollower(followerName = "Yezera")
 	event = pbGetDependency(followerName)
 	$scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,event.x,event.y)
 end
+
+def isCat?(species)
+	array = [:MEOWTH,:PERSIAN,:AMEOWTH,:APERSIAN,:GMEOWTH,:PERRSERKER,:ESPEON,:FLAREON,:GLACEON,
+		:JOLTEON,:LEAFEON,:SYLVEON,:UMBREON,:VAPOREON,:SKITTY,:DELCATTY,:ZANGOOSE,:MZANGOOSE,:ABSOL,
+		:ABSOLUS,:SHINX,:LUXIO,:LUXRAY,:GLAMEOW,:PURUGLY,:PURRLOIN,:LIEPARD,:LITLEO,:PYROAR,:ESPURR,
+		:MEOWSTIC,:LITTEN,:TORRACAT,:INCINEROAR]
+	return array.include?(species)
+end
