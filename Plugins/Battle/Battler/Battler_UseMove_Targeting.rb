@@ -109,8 +109,30 @@ class PokeBattle_Battler
       pbAddTarget(targets,user,newTarget,move,nearOnly)
       return targets
     end
+	# Bad Luck
+    targets = pbChangeTargetByAbility(:BADLUCK,move,user,targets,priority,nearOnly) if move.statusMove?()
     return targets
   end
+  
+	def pbChangeTargetByAbility(drawingAbility,move,user,targets,priority,nearOnly)
+		return targets if targets[0].hasActiveAbility?(drawingAbility)
+		priority.each do |b|
+		  next if b.index==user.index || b.index==targets[0].index
+		  next if !b.hasActiveAbility?(drawingAbility)
+		  next if nearOnly && !b.near?(user)
+		  @battle.pbShowAbilitySplash(b)
+		  targets.clear
+		  pbAddTarget(targets,user,b,move,nearOnly)
+		  if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+			@battle.pbDisplay(_INTL("{1} took the attack!",b.pbThis))
+		  else
+			@battle.pbDisplay(_INTL("{1} took the attack with its {2}!",b.pbThis,b.abilityName))
+		  end
+		  @battle.pbHideAbilitySplash(b)
+		  break
+		end
+		return targets
+	end
   
   
 	def invulnerableTwoTurnAttack?(target,move)
