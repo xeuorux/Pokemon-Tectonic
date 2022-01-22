@@ -25,7 +25,7 @@ BattleBack = field
 Environment = Cave
 #-------------------------------
 [003]
-# Savannah Route
+# The Shift
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -53,7 +53,7 @@ Bicycle = true
 MapPosition = 0,13,11
 #-------------------------------
 [007]
-# Swamp Route
+# Wet Walkways
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -61,7 +61,7 @@ MapPosition = 0,13,10
 MapSize = 2,11
 #-------------------------------
 [008]
-# Ghost Town
+# Velenz
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -75,7 +75,7 @@ Bicycle = false
 MapPosition = 0,14,10
 #-------------------------------
 [010]
-# Temple Path
+# Six Spire Cave
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -84,7 +84,7 @@ BattleBack = indoor3
 Environment = Rock
 #-------------------------------
 [011]
-# River Route
+# Eleig River Crossing
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -98,7 +98,7 @@ Bicycle = false
 MapPosition = 0,14,10
 #-------------------------------
 [013]
-# Ice Rink Station
+# Svait Station
 HealingSpot = 37,35,11
 MapPosition = 0,14,10
 #-------------------------------
@@ -124,7 +124,7 @@ MapPosition = 0,13,10
 MapPosition = 0,13,10
 #-------------------------------
 [019]
-# Book and Coffee Store
+# Reading Ribombee Café
 MapPosition = 0,13,10
 #-------------------------------
 [020]
@@ -160,7 +160,7 @@ MapPosition = 0,15,8
 MapPosition = 0,15,8
 #-------------------------------
 [025]
-# Mining Camp
+# Grouz
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -179,20 +179,18 @@ Outdoor = false
 Bicycle = false
 #-------------------------------
 [029]
-# Mine Path
 Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
 [030]
-# Small Mine
-Outdoor = false
+# Tunnel Path
+Outdoor = true
 ShowArea = true
 Bicycle = true
-Environment = Cave
 #-------------------------------
 [031]
-# Forest Zoo
+# Pokemon Zoo - Forest
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -201,29 +199,20 @@ Bicycle = true
 # Németh Apartments
 ShowArea = true
 #-------------------------------
-[033]
-# Casaba Villa
-Outdoor = true
-ShowArea = true
-Bicycle = true
-#-------------------------------
-[034]
-# Scenic Path
-Outdoor = true
-ShowArea = true
-Bicycle = true
-#-------------------------------
 [035]
 # Impromptu Lab
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [036]
-# Abandoned Mine
+# Grouz Mine
 Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
 [037]
-# Ice Rink Town
+# Svait
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -252,20 +241,27 @@ Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
+[051]
+# Foreclosed Tunnel
+Outdoor = false
+ShowArea = true
+Bicycle = true
+Environment = Cave
+#-------------------------------
 [053]
-# Jungle Route
+# The Tangle
 Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
 [054]
-# Crossroads
+# County Park
 Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
 [055]
-# Flower Field
+# Floral Rest
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -277,7 +273,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [057]
-# Suburb Center
+# Németh Center
 BicycleAlways = false
 HealingSpot = 56,43,27
 #-------------------------------
@@ -327,7 +323,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [082]
-# Mining Cave Station
+# Grouz Station
 Bicycle = false
 HealingSpot = 25,13,17
 #-------------------------------
@@ -344,7 +340,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [099]
-# Ghost Town Buildings
+# Velenz Buildings
 #-------------------------------
 [100]
 # Rearranged Building
@@ -360,13 +356,13 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [102]
-# Ghost Town Center
+# Velenz Center
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [103]
-# Ghost Town Mart
+# Velenz Mart
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -408,7 +404,7 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [110]
-# West Underground 
+# Velenz Underground West
 Outdoor = false
 ShowArea = false
 Bicycle = true
@@ -432,7 +428,7 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [114]
-# East Underground 
+# Velenz Underground East
 Outdoor = false
 ShowArea = false
 Bicycle = true
@@ -473,7 +469,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [122]
-# Sewer
+# Makya Sewers
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -490,26 +486,41 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
+[136]
+# Casaba Villa
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[138]
+# Scenic Path
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
 [140]
-# Grass Starters
+# Starters Store - Grass
 Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
 [141]
-# Fire Starters
+# Starters Store - Fire
 Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
 [142]
-# Water Starters
+# Starters Store - Water
 Outdoor = false
 ShowArea = true
 Bicycle = false
-################################
-#	PokEstate Maps
-################################
+#-------------------------------
+[148]
+# PokEstate 1 - Forest
+Outdoor = true
+ShowArea = false
+Bicycle = true
 #-------------------------------
 [149]
 # PokEstate Base
@@ -517,86 +528,80 @@ Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
-[148]
-# PokEstate Forest
-Outdoor = true
-ShowArea = false
-Bicycle = true
-#-------------------------------
 [150]
-# PokEstate City
+# PokEstate 2 - City
 Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [151]
-# PokEstate Desert
+# PokEstate 3 - Desert
 Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [152]
-# PokEstate Scrubland
+# PokEstate 4 - Scrubland
 Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [153]
-# PokEstate Crag
+# PokEstate 5 - Crag
 Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [154]
-# PokEstate Volcano
+# PokEstate 6 - Volcano
 Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [160]
-# PokEstate Snowy
+# PokEstate 7 - Snowy
 Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [161]
-# PokEstate Cave
+# PokEstate 8 - Cave
 Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [162]
-# PokEstate Beach
+# PokEstate 9 - Beach
 Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [163]
-# PokEstate Ocean
+# PokEstate 10 - Seafloor
 Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [164]
-# PokEstate River
-Outdoor = true
-ShowArea = false
-Bicycle = true
-#-------------------------------
-[170]
-# PokEstate Machine
-Outdoor = true
-ShowArea = false
-Bicycle = true
-#-------------------------------
-[172]
-# PokEstate Sky
+# PokEstate 11 - River
 Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [169]
-# PokEstate Basic
+# PokEstate 14 - Simple
+Outdoor = true
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[170]
+# PokEstate 13 - Machine
+Outdoor = true
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[172]
+# PokEstate 12 - Sky
 Outdoor = true
 ShowArea = false
 Bicycle = true

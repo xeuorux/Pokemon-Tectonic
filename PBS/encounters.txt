@@ -1,12 +1,15 @@
 ﻿#-------------------------------
 # ALPHA -- Tutorial Island
 #-------------------------------
-[033] # Casaba Villa
+[136] # Casaba Villa
+Land,20
+34,MACHOP,8,10
+33,RATTATA,8,10
+33,PIDGEY,8,10
 FloweryGrass,20
-25,TOGEPI,7,9
-25,BUDEW,7,9
-25,LILLIPUP,7,9
-25,PIDGEY,7,9
+33,TOGEPI,8,10
+33,BUDEW,8,10
+34,LILLIPUP,8,10
 #-------------------------------
 [35] # Impromptu Lab
 Special,20
@@ -21,7 +24,7 @@ Special,20
 [034] # Scenic Path
 Land,20
 25,IMPIDIMP,7,9
-25,RATTATA,7,9
+25,LITLEO,7,9
 25,HOPPIP,7,9
 25,CATERPIE,7,9
 LandTall,20
@@ -46,11 +49,10 @@ Special,20
 #-------------------------------
 [030] # Small Mine
 DarkCave,20
-20,ROLYCOLY,9,11
-20,GASTLY,9,11
-20,BAGON,9,11
-20,MACHOP,9,11
-20,ARON,9,11
+25,ROLYCOLY,9,11
+25,GASTLY,9,11
+25,BAGON,9,11
+25,ARON,9,11
 Mud,40
 33,MUDBRAY,9,11
 33,MAKUHITA,9,11
