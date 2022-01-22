@@ -759,15 +759,15 @@ Pokemon = ZOROARK,40
 Pokemon = MIMIKYU,40
     AbilityIndex = 0
 #-------------------------------
-[SCIENTIST_F,Bella]
+[SCIENTIST_F,Viola]
 LoseText = "..."
-Pokemon = DURALUDON,40
+Pokemon = GIRAFARIG,40
     AbilityIndex = 0
-Pokemon = BELLOSSOM,40
+Pokemon = COMFEY,40
     AbilityIndex = 0
-Pokemon = MISMAGIUS,40
-    AbilityIndex = 0
-Pokemon = HONCHKROW,40
+Pokemon = BEHEEYEM,40
+    AbilityIndex = 1
+Pokemon = UNFEZANT,40
     AbilityIndex = 1
 #-------------------------------
 [TRAINER_Vincent,Vincent]
