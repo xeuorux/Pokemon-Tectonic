@@ -589,6 +589,12 @@ Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
+[172]
+# PokEstate Sky
+Outdoor = true
+ShowArea = false
+Bicycle = true
+#-------------------------------
 [169]
 # PokEstate Basic
 Outdoor = true
