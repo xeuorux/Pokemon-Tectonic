@@ -267,9 +267,10 @@ BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
     battle.pbShowAbilitySplash(target)
     if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      battle.scene.pbDamageAnimation(user)
 	  reduce = user.totalhp/8
 	  reduce /= 4 if user.boss
+	  user.damageState.displayedDamage = reduce
+	  battle.scene.pbDamageAnimation(user)
       user.pbReduceHP(reduce,false)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
@@ -330,11 +331,31 @@ BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
     end
     if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      battle.scene.pbDamageAnimation(user)
 	  reduce = user.totalhp/4
 	  reduce /= 4 if user.boss
+	  user.damageState.displayedDamage = reduce
+	  battle.scene.pbDamageAnimation(user)
       user.pbReduceHP(reduce,false)
       battle.pbDisplay(_INTL("{1} was caught in the aftermath!",user.pbThis))
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
+  proc { |ability,user,target,move,battle|
+    next if !target.fainted? || user.dummy
+    battle.pbShowAbilitySplash(target)
+    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      user.damageState.displayedDamage = target.damageState.hpLost
+	  battle.scene.pbDamageAnimation(user)
+      user.pbReduceHP(target.damageState.hpLost,false)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
+      else
+        battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
+           target.pbThis(true),target.abilityName))
+      end
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -480,5 +501,46 @@ BattleHandlers::DamageCalcTargetAbility.add(:GRASSPELT,
     if user.battle.field.terrain == :Grassy
       mults[:defense_multiplier] *= 2.0
     end
+  }
+)
+
+BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
+  proc { |ability,weather,battler,battle|
+    case weather
+    when :Sun, :HarshSun
+      battle.pbShowAbilitySplash(battler)
+	  reduction = battler.totalhp/8
+	  battler.damageState.displayedDamage = reduction
+      battle.scene.pbDamageAnimation(battler)
+      battler.pbReduceHP(reduction,false)
+      battle.pbDisplay(_INTL("{1} was hurt by the sunlight!",battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+      battler.pbItemHPHealCheck
+    when :Rain, :HeavyRain
+      next if !battler.canHeal?
+      battle.pbShowAbilitySplash(battler)
+      battler.pbRecoverHP(battler.totalhp/8)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+      else
+        battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
+      end
+      battle.pbHideAbilitySplash(battler)
+    end
+  }
+)
+
+BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
+  proc { |ability,weather,battler,battle|
+    next unless [:Sun, :HarshSun].include?(weather)
+    battle.pbShowAbilitySplash(battler)
+	reduction = battler.totalhp/8
+	reduction /= 4 if battler.boss?
+	battler.damageState.displayedDamage = reduction
+	battle.scene.pbDamageAnimation(battler)
+    battler.pbReduceHP(reduction,false)
+    battle.pbDisplay(_INTL("{1} was hurt by the sunlight!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+    battler.pbItemHPHealCheck
   }
 )

@@ -1193,3 +1193,24 @@ class PokeBattle_Move_044 < PokeBattle_TargetStatDownMove
     return baseDmg
   end
 end
+
+#===============================================================================
+# If attack misses, user takes crash damage of 1/2 of max HP.
+# (High Jump Kick, Jump Kick)
+#===============================================================================
+class PokeBattle_Move_10B < PokeBattle_Move
+  def recoilMove?;        return true; end
+  def unusableInGravity?; return true; end
+
+  def pbCrashDamage(user)
+    return if !user.takesIndirectDamage?
+    @battle.pbDisplay(_INTL("{1} kept going and crashed!",user.pbThis))
+    reduction = user.totalhp/2
+	reduction /= 4 if user.boss?
+	user.damageState.displayedDamage = reduction
+	@battle.scene.pbDamageAnimation(user)
+    user.pbReduceHP(reduction,false)
+    user.pbItemHPHealCheck
+    user.pbFaint if user.fainted?
+  end
+end

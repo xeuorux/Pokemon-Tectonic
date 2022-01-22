@@ -136,12 +136,13 @@ BattleHandlers::TargetItemOnHit.add(:JABOCABERRY,
     next if !move.physicalMove?
     next if !user.takesIndirectDamage?
     battle.pbCommonAnimation("EatBerry",target)
-    battle.scene.pbDamageAnimation(user)
+	reduction = user.totalhp/8
 	if target.hasActiveAbility?(:RIPEN)
-		user.pbReduceHP(user.totalhp/4,false)
-	else
-		user.pbReduceHP(user.totalhp/8,false)
+		reduction *= 2
 	end
+	user.damageState.displayedDamage = reduction
+	battle.scene.pbDamageAnimation(user)
+	user.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",target.pbThis,
        target.itemName,user.pbThis(true)))
     target.pbHeldItemTriggered(item)
@@ -154,12 +155,13 @@ BattleHandlers::TargetItemOnHit.add(:ROWAPBERRY,
     next if !move.specialMove?
     next if !user.takesIndirectDamage?
     battle.pbCommonAnimation("EatBerry",target)
-    battle.scene.pbDamageAnimation(user)
-    if target.hasActiveAbility?(:RIPEN)
-		user.pbReduceHP(user.totalhp/4,false)
-	else
-		user.pbReduceHP(user.totalhp/8,false)
+    reduction = user.totalhp/8
+	if target.hasActiveAbility?(:RIPEN)
+		reduction *= 2
 	end
+	user.damageState.displayedDamage = reduction
+	battle.scene.pbDamageAnimation(user)
+	user.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",target.pbThis,
        target.itemName,user.pbThis(true)))
     target.pbHeldItemTriggered(item)
@@ -304,10 +306,11 @@ BattleHandlers::TargetItemOnHit.add(:ROCKYHELMET,
   proc { |item,user,target,move,battle|
     next if !move.pbContactMove?(user) || !user.affectedByContactEffect?
     next if !user.takesIndirectDamage?
+	reduction = user.totalhp/6
+	reduction /= 4 if user.boss
+	user.damageState.displayedDamage = reduction
     battle.scene.pbDamageAnimation(user)
-	reduce = user.totalhp/6
-	reduce /= 4 if user.boss
-    user.pbReduceHP(reduce,false)
+    user.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} was hurt by the {2}!",user.pbThis,target.itemName))
   }
 )
@@ -348,5 +351,21 @@ BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
     user.pbRecoverHP(amt)
     battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",
        user.pbThis,user.itemName))
+  }
+)
+
+BattleHandlers::EOREffectItem.add(:STICKYBARB,
+  proc { |item,battler,battle|
+    next if !battler.takesIndirectDamage?
+    oldHP = battler.hp
+	reduction = battler.totalhp/8
+	reduction /= 4 if battler.boss?
+	battler.damageState.displayedDamage = reduction
+    battle.scene.pbDamageAnimation(battler)
+    battler.pbReduceHP(reduction,false)
+    battle.pbDisplay(_INTL("{1} is hurt by its {2}!",battler.pbThis,battler.itemName))
+    battler.pbItemHPHealCheck
+    battler.pbAbilitiesOnDamageTaken(oldHP)
+    battler.pbFaint if battler.fainted?
   }
 )

@@ -71,27 +71,30 @@ class PokeBattle_Battle
       when :Sandstorm
         next if !b.takesSandstormDamage?
         pbDisplay(_INTL("{1} is buffeted by the sandstorm!",b.pbThis))
-        @scene.pbDamageAnimation(b)
 		reduction = b.totalhp/16
 		reduction /= 4 if b.boss?
+		b.damageState.displayedDamage = reduction
+		@scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
         b.pbFaint if b.fainted?
       when :Hail
         next if !b.takesHailDamage?
         pbDisplay(_INTL("{1} is buffeted by the hail!",b.pbThis))
-        @scene.pbDamageAnimation(b)
         reduction = b.totalhp/16
 		reduction /= 4 if b.boss?
+		b.damageState.displayedDamage = reduction
+		@scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
         b.pbFaint if b.fainted?
       when :ShadowSky
         next if !b.takesShadowSkyDamage?
         pbDisplay(_INTL("{1} is hurt by the shadow sky!",b.pbThis))
-        @scene.pbDamageAnimation(b)
         reduction = b.totalhp/16
 		reduction /= 4 if b.boss?
+		b.damageState.displayedDamage = reduction
+		@scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
         b.pbFaint if b.fainted?
@@ -172,8 +175,11 @@ class PokeBattle_Battle
         next if b.opposes?(side)
         next if !b.takesIndirectDamage? || b.pbHasType?(:FIRE)
         oldHP = b.hp
+		reduction = b.totalhp/8
+		reduction /= 4 if b.boss?
+		b.damageState.displayedDamage = reduction
         @scene.pbDamageAnimation(b)
-        b.pbReduceHP(b.totalhp/8,false)
+        b.pbReduceHP(reduction,false)
         pbDisplay(_INTL("{1} is hurt by the sea of fire!",b.pbThis))
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
@@ -238,9 +244,11 @@ class PokeBattle_Battle
     # Damage from Hyper Mode (Shadow Pokémon)
     priority.each do |b|
       next if !b.inHyperMode? || @choices[b.index][0]!=:UseMove
-      hpLoss = b.totalhp/24
+      reduction = b.totalhp/24
+	  reduction /= 4 if b.boss?
+	  b.damageState.displayedDamage = reduction
       @scene.pbDamageAnimation(b)
-      b.pbReduceHP(hpLoss,false)
+      b.pbReduceHP(reduction,false)
       pbDisplay(_INTL("The Hyper Mode attack hurts {1}!",b.pbThis(true)))
       b.pbFaint if b.fainted?
     end
@@ -371,6 +379,7 @@ class PokeBattle_Battle
             hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/6 : b.totalhp/8
           end
 		  hpLoss = (hpLoss/4.0).floor if b.boss
+		  b.damageState.displayedDamage = hpLoss
           @scene.pbDamageAnimation(b)
           b.pbReduceHP(hpLoss,false)
           pbDisplay(_INTL("{1} is hurt by {2}!",b.pbThis,moveName))
