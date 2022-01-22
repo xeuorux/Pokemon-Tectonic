@@ -371,6 +371,7 @@
 369,ENERGETIC,Energetic,"Can't be Chilled, Paralyzed, or have Speed reduced."
 370,STRATAGEM,Stratagem,"Powers up Rock-type moves by 50%."
 371,ARMORPIERCING,Armor Piercing,"Deal double damage against raised Defense or Sp. Def."
+372,BADLUCK,Bad Luck,"When free from Status, non-Damaging moves are drawn in."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
