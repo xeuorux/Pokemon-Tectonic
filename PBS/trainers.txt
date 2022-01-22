@@ -1153,11 +1153,25 @@ Pokemon = ZEBSTRIKA,35
 #-------------------------------
 [CLERK_M2,Marton]
 Pokemon = KLEFKI,34
-Pokemon = CENTISKORCH,35
 	Item = ORANBERRY
+Pokemon = CENTISKORCH,35
 #-------------------------------
 [CLERK_M2,Zoltan]
 Pokemon = TROPIUS,34
+	AbilityIndex = 0
+	Item = ORANBERRY
+Pokemon = SWALOT,35
+#-------------------------------
+[CEO,Beatrice]
+Pokemon = HELIOLISK,35
+	Item = ORANBERRY
+	AbilityIndex = 1
+Pokemon = HEATMOR,35
+	AbilityIndex = 0
+Pokemon = FALINKS,35
+Pokemon = FURFROU,35
+	AbilityIndex = 0
+Pokemon = PANGORO,35
 	Item = ORANBERRY
 	AbilityIndex = 0
-Pokemon = SWALOT,35
+#-------------------------------
