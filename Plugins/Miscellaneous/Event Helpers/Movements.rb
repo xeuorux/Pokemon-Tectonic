@@ -92,7 +92,7 @@ def birdCrossing(directions=[Left,Right,Up,Down],speed=4)
 	bird_route.repeat = true
 	
 	bird_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Script,
-		["chooseDirection(#{directions.to_s},#{$game_map.width},#{$game_map.height},#{minDelay},#{maxDelay})"]))
+		["chooseDirection(#{directions.to_s},#{$game_map.width},#{$game_map.height})"]))
 	
 	bird_route.list.push(RPG::MoveCommand.new(0))
 	
@@ -100,7 +100,7 @@ def birdCrossing(directions=[Left,Right,Up,Down],speed=4)
 	self.event.pages[0].move_speed = speed
 end
 
-def chooseDirection(directions,width,height,minDelay,maxDelay)
+def chooseDirection(directions,width,height)
 	direction = directions.sample
 	
 	new_route = getNewMoveRoute()
