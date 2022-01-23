@@ -179,6 +179,7 @@ Outdoor = false
 Bicycle = false
 #-------------------------------
 [029]
+# Full Blast Records F2
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -556,6 +557,12 @@ Bicycle = true
 # PokEstate 6 - Volcano
 Outdoor = true
 ShowArea = false
+Bicycle = true
+#-------------------------------
+[155]
+# Newer City
+Outdoor = true
+ShowArea = true
 Bicycle = true
 #-------------------------------
 [160]

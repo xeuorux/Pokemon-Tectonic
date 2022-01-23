@@ -87,7 +87,6 @@ def modulateOpacityOverTime(speed)
 end
 
 def birdCrossing(directions=[Left,Right,Up,Down],speed=4)
-	echoln("Starting to travel as a bird!")
 	bird_route = getNewMoveRoute()
 	bird_route.repeat = true
 	
@@ -104,7 +103,7 @@ def chooseDirection(directions,width,height)
 	direction = directions.sample
 	
 	new_route = getNewMoveRoute()
-	new_route.repeat = false
+	new_route.repeat = true
 	new_route.skippable = true
 	
 	self.direction = direction
@@ -114,16 +113,20 @@ def chooseDirection(directions,width,height)
 	case direction
 	when Up
 		length = height
-		self.moveto(rand(width).floor,height-1)
+		new_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Script,
+			["self.moveto(#{rand(width).floor},#{height-1})"]))
 	when Down
 		length = height
-		self.moveto(rand(width).floor,0)		
+		new_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Script,
+			["self.moveto(#{rand(width).floor},0)"]))
 	when Left
 		length = width
-		self.moveto(width-1,rand(height).floor)
+		new_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Script,
+			["self.moveto(#{width-1},#{rand(height).floor})"]))
 	when Right
 		length = width
-		self.moveto(0,rand(height).floor)
+		new_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Script,
+			["self.moveto(0,#{rand(height).floor})"]))
 	end
 	
 	for i in 0..length
@@ -132,5 +135,5 @@ def chooseDirection(directions,width,height)
 	
 	new_route.list.push(RPG::MoveCommand.new(0))
 		
-	self.force_move_route(new_route)
+	self.set_move_route(new_route)
 end
