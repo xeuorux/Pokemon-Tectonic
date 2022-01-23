@@ -97,7 +97,7 @@ Land,20
 20,TIMBURR,14,17
 20,SCATTERBUG,14,17
 #-------------------------------
-[60] # Forest Route
+[60] # Shipping Lane
 Land,20
 20,STUFFUL,14,17
 20,SENTRET,14,17
@@ -113,7 +113,7 @@ LandTinted,20
 50,PETILIL,14,17
 50,WURMPLE,5,6
 #-------------------------------
-[56] # Suburb
+[56] # Nemeth
 FloweryGrass,20
 25,DUCKLETT,15,18
 25,SWIRLIX,15,18
@@ -194,7 +194,7 @@ LandTinted,20
 Special,20
 1,ELEKID,15,15
 #-------------------------------
-[25] # Mining Camp
+[25] # Grouz
 Land,20
 25,GOTHITA,15,18
 25,TOXEL,15,18
@@ -239,7 +239,7 @@ FloweryGrass2,20
 20,MIMEJR,15,18
 20,ELECTRIKE,15,18
 #-------------------------------
-[54] # Crossroads
+[54] # County Park
 Land,20
 20,BUNNELBY,14,17
 20,BUNEARY,14,17
@@ -257,7 +257,7 @@ LandTinted,20
 Special,1
 1,DRIFLOON,14,17
 #-------------------------------
-[37] # Ice Rink Town
+[37] # Svait
 Land,20
 25,HOOTHOOT,16,19
 25,MIENFOO,16,19
@@ -271,7 +271,7 @@ Land,20
 25,SNEASEL,16,19
 25,SWINUB,16,19
 #-------------------------------
-[7] # Swamp Route
+[7] # Wet Walkways
 Land,20
 25,CROAGUNK,18,20
 25,SURSKIT,18,20
@@ -288,14 +288,14 @@ LandTinted,20
 Special,20
 1,ADIGLETT,15,15
 #-------------------------------
-[8] # Ghost Town
+[8] # Velenz
 LandTall,20
 25,LOTAD,18,20
 25,GLAMEOW,18,20
 25,ZORUA,18,20
 25,PUMPKABOO,18,20
 #-------------------------------
-[53] # Jungle Route
+[53] # The Tangle
 Land,20
 25,NATU,16,19
 25,YANMA,16,19
@@ -315,7 +315,7 @@ LandTinted,20
 25,PANSEAR,16,19
 25,PANPOUR,16,19
 #-------------------------------
-[11] # River Route
+[11] # Eleig River Crossing
 Land,20
 25,CHEWTLE,17,20
 25,BIDOOF,17,20
