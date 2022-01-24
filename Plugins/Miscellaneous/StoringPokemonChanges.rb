@@ -128,6 +128,8 @@ module PokeBattle_BattleCommon
           # Store caught Pokémon
           pbStorePokemon(pkmn)
         end
+	  else
+		pbStorePokemon(pkmn)
       end
     end
     @caughtPokemon.clear
