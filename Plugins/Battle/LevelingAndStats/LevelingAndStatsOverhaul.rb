@@ -356,14 +356,16 @@ class PokeBattle_Battle
   end
 end
 
+LEVEL_CAP_VAR = 26
+
 def pbIncreaseLevelCap(increase)
 	return if !LEVEL_CAPS_USED
-	pbSetLevelCap($game_variables[26] + increase)
+	pbSetLevelCap($game_variables[LEVEL_CAP_VAR] + increase)
 end
 
 def pbSetLevelCap(newCap)
 	return if !LEVEL_CAPS_USED
-	$game_variables[26] = newCap
+	$game_variables[LEVEL_CAP_VAR] = newCap
 	pbMessage(_INTL("\\wmLevel cap raised to {1}!\\me[Bug catching 3rd]\\wtnp[80]\1",newCap))
 end
 
