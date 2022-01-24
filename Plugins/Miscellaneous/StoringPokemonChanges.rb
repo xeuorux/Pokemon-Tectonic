@@ -99,8 +99,6 @@ module PokeBattle_BattleCommon
       end
       # Record a Shadow Pokémon's species as having been caught
       pbPlayer.pokedex.set_shadow_pokemon_owned(pkmn.species) if pkmn.shadowPokemon?
-      # Store caught Pokémon
-      pbStorePokemon(pkmn)
 	  
 	  # Increase the caught count for the global metadata
 	  $PokemonGlobal.caughtCountsPerMap = {} if !$PokemonGlobal.caughtCountsPerMap
@@ -108,7 +106,29 @@ module PokeBattle_BattleCommon
 		$PokemonGlobal.caughtCountsPerMap[$game_map.map_id][0] += 1
 	  else
 		$PokemonGlobal.caughtCountsPerMap[$game_map.map_id] = [1,0]
-	  end	  
+	  end
+
+	  #Check Party Size
+      if $Trainer.party_full?
+        #Y/N option to store newly caught
+        if pbDisplayConfirm(_INTL("Would you like to add {1} to your party?", pkmn.name))
+          pbDisplay("Choose which Pokemon will be sent back to the PC.")
+		  #if Y, select pokemon to store instead
+          chosen = pbChoosePokemon(1,3)
+          #Didn't cancel
+          if chosen
+            # Put the chosen pokemon in the PC and put the newly caught pokemon in the party
+            pbStorePokemon($Trainer.party[$game_variables[1]])
+            $Trainer.party[$game_variables[1]] = pkmn
+          else
+            # Store caught Pokémon if cancelled
+            pbStorePokemon(pkmn)
+          end
+        else
+          # Store caught Pokémon
+          pbStorePokemon(pkmn)
+        end
+      end
     end
     @caughtPokemon.clear
   end
