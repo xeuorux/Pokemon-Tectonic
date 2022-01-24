@@ -54,11 +54,11 @@ class StyleValueScene
 	#Create the left and right arrow sprites which surround the selected index
 	@index = 0
 	@sprites["leftarrow"] = AnimatedSprite.new("Graphics/Pictures/leftarrow",8,40,28,2,@viewport)
-    @sprites["leftarrow"].x       = 44
+    @sprites["leftarrow"].x       = 36
     @sprites["leftarrow"].y       = 78
     @sprites["leftarrow"].play
     @sprites["rightarrow"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport)
-    @sprites["rightarrow"].x       = 198
+    @sprites["rightarrow"].x       = 190
     @sprites["rightarrow"].y       = 78
     @sprites["rightarrow"].play
     
@@ -76,12 +76,13 @@ class StyleValueScene
 	base   = Color.new(248,248,248)
     shadow = Color.new(104,104,104)
 	
+	styleValueLabelX = 72
+	styleValueX = styleValueLabelX + 120
+	
 	#Place the pokemon's name
-	textpos = [[_INTL("{1}", @pokemon.name),80,2,0,Color.new(88,88,80),Color.new(168,184,184)]]
+	textpos = [[_INTL("{1}", @pokemon.name),styleValueLabelX,2,0,Color.new(88,88,80),Color.new(168,184,184)]]
 	
 	# Place the pokemon's style values (stored as EVs)
-	styleValueLabelX = 80
-	styleValueX = 200
 	textpos.concat([
 	   [_INTL("Style Values"),styleValueLabelX,42,0,base,shadow],
        [_INTL("HP"),styleValueLabelX,82,0,base,shadow],
@@ -98,9 +99,14 @@ class StyleValueScene
        [sprintf("%d",@pokemon.ev[:SPEED]),styleValueX,242,1,Color.new(64,64,64),Color.new(176,176,176)],
     ])
 	
+	# Place the "reset all" button
+	red = Color.new(250,120,120)
+	textpos.push([_INTL("Reset"),styleValueLabelX,280,0,@index == 6 ? red : base,shadow])
+	textpos.push([_INTL("Confirm"),styleValueLabelX,320,0,@index == 7 ? red : base,shadow])
+	
 	# Place the pokemon's final resultant stats
-	finalStatLabelX = 336
-	finalStatX		= 456
+	finalStatLabelX = styleValueLabelX + 250
+	finalStatX		= finalStatLabelX + 120
     textpos.concat([
 	   [_INTL("Final Stats"),finalStatLabelX,42,0,base,shadow],
        [_INTL("HP"),finalStatLabelX,82,0,base,shadow],
@@ -117,20 +123,15 @@ class StyleValueScene
        [sprintf("%d",@pokemon.speed),finalStatX,242,1,Color.new(64,64,64),Color.new(176,176,176)],
     ])
 	
-	# Place the "reset all" button
-	resetX = 160
-	resetY = 280
-	textpos.push([_INTL("Reset"),resetX,resetY,1,base,shadow])
-	
 	# Place the style value pool
-	poolXLeft = 240
+	poolXLeft = finalStatLabelX - 100
 	textpos.concat([
 		[_INTL("Pool"),poolXLeft,280,0,base,shadow],
 		[sprintf("%d",@pool),poolXLeft,320,0,Color.new(64,64,64),Color.new(176,176,176)]
 	])
 	
 	# Place the style name
-	styleXLeft = 340
+	styleXLeft = finalStatLabelX
 	styleName = "Balanced"
 	styleName = getStyleName(@pokemon.ev)
 	textpos.concat([
@@ -144,8 +145,8 @@ class StyleValueScene
 	# Put the arrows around the currently selected style value line
 	if @index < 6
 		@sprites["leftarrow"].y = @sprites["rightarrow"].y = 90+32*@index
-	elsif @index == 6 # Reset all button
-		@sprites["leftarrow"].y = @sprites["rightarrow"].y = resetY
+	else
+		@sprites["leftarrow"].y = @sprites["rightarrow"].y = -500
 	end
   end
 
@@ -302,17 +303,26 @@ class StyleValueScreen
 			end
 			@scene.pool = @pool
 			pbPlayDecisionSE
+		elsif @index == 7
+			if @pool > 0
+			  pbPlayBuzzerSE
+			  @scene.pbDisplay("There are still Style Values points left to assign!")
+			elsif @scene.pbConfirm(_INTL("Finish adjusting style values?"))
+			  @scene.pbEndScene
+			  pbPlayCloseMenuSE
+			  return
+			end
 		end
 	  elsif Input.trigger?(Input::UP)
 		if @index > 0
 			@index = (@index - 1)
 		else
-			@index = 6
+			@index = 7
 		end
 		pbPlayCursorSE
 		@scene.index = @index
 	  elsif Input.trigger?(Input::DOWN)
-		if @index < 6
+		if @index < 7
 			@index = (@index + 1)
 		else
 			@index = 0
