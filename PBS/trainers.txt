@@ -997,8 +997,8 @@ Pokemon = MUNNA,30
 [POKEMANIAC,Nikos]
 Pokemon = CHARIZARD,40
 	AbilityIndex = 0
-Pokemon = ARCHEOPS,40
-	Item = CHOICEBAND
+Pokemon = INDEEDEE,40
+	AbilityIndex = 1
 Pokemon = WEAVILE,40
 	AbilityIndex = 1
 Pokemon = LEAFEON,40
@@ -1011,11 +1011,10 @@ Pokemon = CROBAT,40
 	Item = FLYINGGEM
 Pokemon = VILEPLUME,40
 	AbilityIndex = 1
-Pokemon = EXCADRILL,40
+Pokemon = OCTILLERY,40
 	AbilityIndex = 1
 Pokemon = SPIRITOMB,40
 	AbilityIndex = 1
-	Item = LEFTOVERS
 Pokemon = MAGMORTAR,40
 #-------------------------------
 [BURGLAR,Keith]
@@ -1069,20 +1068,21 @@ Pokemon = SCEPTILE,40
 	AbilityIndex = 0
 Pokemon = MACHAMP,40
 	AbilityIndex = 1
+	Item = FIGHTINGGEM
 Pokemon = BISHARP,40
 	AbilityIndex = 0
 Pokemon = BEARTIC,40
 	AbilityIndex = 1
-Pokemon = PELIPPER,40
-	AbilityIndex = 0
+Pokemon = EXCADRILL,40
+	AbilityIndex = 1
 #-------------------------------
 [BOARDER,Alex]
 Pokemon = MORPEKO,40
-Pokemon = OCTILLERY,40
-	AbilityIndex = 1
+Pokemon = PELIPPER,40
+	AbilityIndex = 0
 Pokemon = GLACEON,40
-Pokemon = INDEEDEE,40
-	AbilityIndex = 1
+Pokemon = ARCHEOPS,40
+	Item = CHOICEBAND
 Pokemon = TOXAPEX,40
 	AbilityIndex = 0
 #-------------------------------
@@ -1094,6 +1094,7 @@ Pokemon = ARAQUANID,40
 	AbilityIndex = 1
 Pokemon = CINCCINO,40
 	AbilityIndex = 1
+	Item = LEFTOVERS
 Pokemon = AROMATISSE,40
 	AbilityIndex = 1
 Pokemon = STONJOURNER,40

@@ -31740,6 +31740,7 @@ BattlerEnemyY = 3
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
+[2501]
 Name = M. Sentret
 InternalName = MSENTRET
 Type1 = PSYCHIC
@@ -31773,7 +31774,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = FURRET,Level,18
 #-------------------------------
-[162]
+[[2502]
 Name = M. Furret
 InternalName = MFURRET
 Type1 = PSYCHIC
