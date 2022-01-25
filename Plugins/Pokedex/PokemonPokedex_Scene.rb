@@ -851,7 +851,7 @@ class PokemonPokedex_Scene
 					96,98, 			# Luxtech Cold Storage, LuxTech Cold Storage Basement
 					78,87,103,92,    # LuxTech Main, LuxTech Rec Center, Ghost Town Mart, Ice Rink Lodge
 					32,71,74		# Nemeth Apartments, Nemeth Apartments Room 103, Nemeth Apartments Room 203
-					]
+					],
 			55 => [155,29,	# Prizca West, Full Blast Records F2 
 					34,		# Battle Fair
 					]
