@@ -474,13 +474,21 @@ LandSparse,20
 25,JANGMOO,18,20
 25,DUNSPARCE,18,20
 #-------------------------------
-[155] # Newer City
+[155] # Prizca West
 FloweryGrass2,20
-20,SNUBBULL,31,33
-20,PIDOVE,31,33
-20,HAPPINY,31,33
-20,SKITTY,31,33
-20,AUDINO,31,33
+25,KOFFING,32,34
+25,SCRAGGY,32,34
+25,SHUPPET,32,34
+25,PIDOVE,32,34
+#-------------------------------
+[34] # Battle Fair
+Land,20
+25,SNUBBULL,31,33
+25,HAPPINY,31,33
+25,SKITTY,31,33
+25,AUDINO,31,33
+LandTinted
+100,ZIGZAGOON,32,34
 #-------------------------------
 [029] # Full Blast Records F2
 Special,1
