@@ -21,7 +21,7 @@ Special,20
 Special,20
 1,ASANDSHREW,10,10
 #-------------------------------
-[034] # Scenic Path
+[138] # Scenic Path
 Land,20
 25,IMPIDIMP,7,9
 25,LITLEO,7,9
@@ -475,14 +475,14 @@ LandSparse,20
 25,DUNSPARCE,18,20
 #-------------------------------
 [155] # Prizca West
-FloweryGrass2,20
+Land,20
 25,KOFFING,32,34
 25,SCRAGGY,32,34
 25,SHUPPET,32,34
 25,PIDOVE,32,34
 #-------------------------------
 [34] # Battle Fair
-Land,20
+FloweryGrass,20
 25,SNUBBULL,31,33
 25,HAPPINY,31,33
 25,SKITTY,31,33
