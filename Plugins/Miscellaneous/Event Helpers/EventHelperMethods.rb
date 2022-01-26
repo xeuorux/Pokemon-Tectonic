@@ -372,7 +372,7 @@ def setMySwitch(switch,value)
 	pbSetSelfSwitch(get_self.id,switch,value)
 end
 
-def purchaseStarters(type,price=3000)
+def purchaseStarters(type,price=0)
 	return unless [:GRASS,:FIRE,:WATER].include?(type)
 	typeName = GameData::Type.get(type).real_name
 	
@@ -381,7 +381,11 @@ def purchaseStarters(type,price=3000)
 	
 	pbMessage("Hello, and welcome to the Starters Store!")
 	pbMessage("I'm the #{typeName}-type starters salesperson!")
-	pbMessage("You can buy a #{typeName}-type starter Pokemon from me if you have $#{price} and a #{tokenName}.")
+	if price > 0
+		pbMessage("You can buy a #{typeName}-type starter Pokemon from me if you have $#{price} and a #{tokenName}.")
+	else
+		pbMessage("You can buy a #{typeName}-type starter Pokemon from me if you have a #{tokenName}.")
+	end
 	if $Trainer.money < price
 		pbMessage("I'm sorry, but it seems as though you don't have that much money.")
 		return
