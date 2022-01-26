@@ -615,6 +615,37 @@ Pokemon = WAILORD,30
     AbilityIndex = 0
     Item = LEFTOVERS
 #-------------------------------
+[COOLTRAINER_M,Emir]
+Pokemon = AMBIPOM,40
+	Moves = FLING,COVET,STEALTHROCK,SANDTOMB
+	AbilityIndex = 0
+	Item = IRONBALL
+	EV = 20,0,0,20,0,10
+Pokemon = RUBARIOR,40
+	Moves = BODYSLAM,KNOCKOFF,REST,SLEEPTALK
+	AbilityIndex = 0
+	Item = LEFTOVERS
+	EV = 20,0,10,0,0,20
+Pokemon = TURTONATOR,40
+	Moves = INCINERATE,DRAGONROAR,CRIPPLINGBREATH,IGNITE
+	AbilityIndex = 1
+	Item = ASSAULTVEST
+	EV = 20,0,20,0,0,10
+Pokemon = PARASECT,40
+	Moves = BUGBITE,SPORE,SWORDSDANCE,SOULCLAW
+	Item = LIFEORB
+	EV = 20,20,10,0,0,0
+Pokemon = SCIZOR,40
+	Moves = DOUBLEHIT,BULLETPUNCH,ACROBATICS,BUGBITE
+	AbilityIndex = 0
+	Item = MUSCLEBAND
+	EV = 10,20,0,20,0,0
+Pokemon = CROBAT,40
+	Moves = ACROBATICS,CROSSPOISON,STEELWING,LEECHLIFE
+	AbilityIndex = 1
+	Item = LIFEORB
+	EV = 10,20,0,20,0,0
+#-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,1]
 LoseText = "..."
 Pokemon = MAGNETON,25
@@ -1203,7 +1234,7 @@ Pokemon = SKUNTANK,36
 Pokemon = MEDICHAM,35
 	Item = FIGHTINGGEM
 #-------------------------------
-[VETERAN_M,Hadley]
+[VETERANM_2,Hadley]
 Pokemon = DRAMPA,37
 Pokemon = NIDOQUEEN,38
 	Item = ORANBERRY
