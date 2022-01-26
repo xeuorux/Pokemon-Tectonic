@@ -22421,7 +22421,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = AEGISLASH,Level,53
+Evolutions = AEGISLASH,Level,43
 #-------------------------------
 [681]
 Name = Aegislash
@@ -28098,7 +28098,6 @@ BattlerShadowSize = 2
 Name = Sinistea
 InternalName = SINISTEA
 Type1 = GHOST
-Type2 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,55,89,60,89,55
 # Total = 398
@@ -28132,7 +28131,6 @@ Evolutions = POLTEAGEIST,Item,DUSKSTONE
 Name = Polteageist
 InternalName = POLTEAGEIST
 Type1 = GHOST
-Type2 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,65,124,70,124,65
 # Total = 508

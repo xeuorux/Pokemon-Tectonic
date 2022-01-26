@@ -1176,3 +1176,49 @@ Pokemon = PANGORO,35
 	Item = ORANBERRY
 	AbilityIndex = 0
 #-------------------------------
+[POKEFAN_F,Impi]
+Pokemon = PURUGLY,36
+Pokemon = MUSHARNA,36
+Pokemon = INFERNAPE,37
+Pokemon = GOLEM,36
+#-------------------------------
+[COLLECTOR,Evan]
+Pokemon = ARAICHU,36
+	AbilityIndex = 1
+Pokemon = RILLABOOM,37
+Pokemon = JELLICENT,37
+	Gender = male
+Pokemon = GSTUNFISK,36
+#-------------------------------
+[DOCTOR,Peio]
+Pokemon = HATTERENE,35
+Pokemon = BLASTOISE,36
+Pokemon = SKUNTANK,36
+Pokemon = MEDICHAM,35
+#-------------------------------
+[VETERAN_M,Hadley]
+Pokemon = DRAMPA,37
+Pokemon = NIDOQUEEN,38
+Pokemon = ELECTIVIRE,37
+Pokemon = SUDOWOODO,38
+#-------------------------------
+[BIRDKEEPER_M,Kendall]
+Pokemon = CARNIVINE,36
+Pokemon = GOLDUCK,37
+Pokemon = FORRETRESS,36
+Pokemon = ZWEILOUS,37
+#-------------------------------
+[CYCLIST_F,Anastasia]
+Pokemon = PYROAR,37
+	Gender = female
+Pokemon = GRUMPIG,38
+Pokemon = GYARADOS,37
+Pokemon = AMPHAROS,38
+#-------------------------------
+[BEAUTY,Gretchen]
+Pokemon = TSAREENA,38
+Pokemon = ESPEON,37
+#-------------------------------
+[CAMERAMAN,Marcel]
+Pokemon = LUXRAY,38
+Pokemon = UMBREON,37
