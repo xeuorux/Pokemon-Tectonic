@@ -1178,47 +1178,64 @@ Pokemon = PANGORO,35
 #-------------------------------
 [POKEFAN_F,Impi]
 Pokemon = PURUGLY,36
+	Item = ORANBERRY
 Pokemon = MUSHARNA,36
 Pokemon = INFERNAPE,37
+	Item = EJECTPACK
 Pokemon = GOLEM,36
 #-------------------------------
 [COLLECTOR,Evan]
 Pokemon = ARAICHU,36
 	AbilityIndex = 1
 Pokemon = RILLABOOM,37
+	AbilityIndex = 0
+	Item = ORANBERRY
 Pokemon = JELLICENT,37
 	Gender = male
 Pokemon = GSTUNFISK,36
+	Item = SITRUSBERRY
 #-------------------------------
 [DOCTOR,Peio]
 Pokemon = HATTERENE,35
+	Item = ORANBERRY
 Pokemon = BLASTOISE,36
 Pokemon = SKUNTANK,36
 Pokemon = MEDICHAM,35
+	Item = FIGHTINGGEM
 #-------------------------------
 [VETERAN_M,Hadley]
 Pokemon = DRAMPA,37
 Pokemon = NIDOQUEEN,38
+	Item = ORANBERRY
 Pokemon = ELECTIVIRE,37
 Pokemon = SUDOWOODO,38
+	Item = WISEGLASSES
 #-------------------------------
 [BIRDKEEPER_M,Kendall]
 Pokemon = CARNIVINE,36
 Pokemon = GOLDUCK,37
+	Item = SITRUSBERRY
 Pokemon = FORRETRESS,36
 Pokemon = ZWEILOUS,37
+	Item = DRAGONGEM
 #-------------------------------
 [CYCLIST_F,Anastasia]
 Pokemon = PYROAR,37
 	Gender = female
 Pokemon = GRUMPIG,38
 Pokemon = GYARADOS,37
+	Item = WHITEHERB
 Pokemon = AMPHAROS,38
+	Item = ORANBERRY
 #-------------------------------
 [BEAUTY,Gretchen]
 Pokemon = TSAREENA,38
+	Item = CHOICEBAND
 Pokemon = ESPEON,37
+	Item = SITRUSBERRY
 #-------------------------------
 [CAMERAMAN,Marcel]
 Pokemon = LUXRAY,38
+	Item = DARKGEM
 Pokemon = UMBREON,37
+	Item = LEFTOVERS
