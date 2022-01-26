@@ -679,3 +679,10 @@ Turns = 3
 HPMult = 2
 Ability = GLUTTONY
 Moves = POWERTRIP,GIGAIMPACT,STEALTHROCK
+#-----------------------------
+[ARBOK]
+Turns = 2
+HPMult = 2.5
+Ability = SHEDSKIN
+Moves = POISONJAB,PRIMEVALSUNNYDAY
+PostPrimeMoves = FIREFANG
