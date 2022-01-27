@@ -5,7 +5,7 @@ BattleHandlers::StatusImmunityAbility.add(:COLDPROOF,
 )
 
 BattleHandlers::StatusImmunityAbility.add(:ENERGETIC,
-  proc { |ability,battler|
+  proc { |ability,battler,status|
 	next true if status == :FROZEN || status == :PARALYSIS
   }
 )
