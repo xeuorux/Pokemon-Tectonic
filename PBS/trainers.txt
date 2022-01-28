@@ -1270,3 +1270,52 @@ Pokemon = LUXRAY,38
 	Item = DARKGEM
 Pokemon = UMBREON,37
 	Item = LEFTOVERS
+#-------------------------------
+[JANITOR,Aaron]
+Pokemon = FEAROW,35
+	Item = FLYINGGEM
+Pokemon = LYCANROC,35
+	Item = ROCKGEM
+Pokemon = SWELLOW,35
+Pokemon = ARCHEN,35
+#-------------------------------
+[LADY3,Kristiane]
+Pokemon = PIDGEOT,35
+	ITEM = SITRUSBERRY
+Pokemon = MINIOR,35
+Pokemon = ALTARIA,35
+	ITEM = ORANBERRY
+Pokemon = SUDOWOODO,35
+#-------------------------------
+[ROUGHNECK,Reese]
+Pokemon = PUPITAR,35
+	Item = LEFTOVERS
+Pokemon = GLIGAR,35
+Pokemon = SIGILYPH,35
+Pokemon = RAMPARDOS,35
+	Item = SITRUSBERRY
+#-------------------------------
+[WORKER,Bryn]
+Pokemon = COALOSSAL,35
+Pokemon = CORVISQUIRE,35
+Pokemon = GRAVELER,35
+	Item = LIFEORB
+Pokemon = CARBINK,35
+	Item = ORANBERRY
+#-------------------------------
+[ROUGHNECK2,Flavio]
+Pokemon = UNFEZANT,35
+	Gender = male
+Pokemon = TOUCANNON,35
+	Item = CHOICEBAND
+Pokemon = SWANNA,35
+	Item = FLYINGGEM
+Pokemon = RAMPARDOS,35
+#-------------------------------
+[SMASHER,Stella]
+Pokemon = SHUCKLE,35
+Pokemon = MASQUERAIN,35
+Pokemon = WEEZING,35
+	Item = POISONGEM
+Pokemon = RUNERIGUS,35
+	Item = LEFTOVERS

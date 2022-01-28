@@ -177,6 +177,7 @@
 174,TRAINER_Vincent,Pokémon Trainer,100,,,,Male,,
 175,TRAINER_Lucile,Pokémon Trainer,100,,,,Female,,
 176,CEO,CEO,100,,,,Female,,
+177,LADY3,Lady,160,,,LASS2,Female,,
 299,ARCHFRIEND_Lainie,Archfriend,100,Battle champion iris,Battle victory champion,,Female,,[LAINIE]
 300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,[YEZERA]
 301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,[LAMBERT]
