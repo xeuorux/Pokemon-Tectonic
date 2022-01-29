@@ -31772,7 +31772,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = FURRET,Level,18
 #-------------------------------
-[[2502]
+[2502]
 Name = M. Furret
 InternalName = MFURRET
 Type1 = PSYCHIC
