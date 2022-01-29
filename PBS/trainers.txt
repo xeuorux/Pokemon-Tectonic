@@ -1243,11 +1243,11 @@ Pokemon = SUDOWOODO,38
 	Item = WISEGLASSES
 #-------------------------------
 [BIRDKEEPER_M,Kendall]
-Pokemon = CARNIVINE,36
-Pokemon = GOLDUCK,37
+Pokemon = CARNIVINE,35
+Pokemon = GOLDUCK,36
 	Item = SITRUSBERRY
 Pokemon = FORRETRESS,36
-Pokemon = ZWEILOUS,37
+Pokemon = ZWEILOUS,35
 	Item = DRAGONGEM
 #-------------------------------
 [CYCLIST_F,Anastasia]
