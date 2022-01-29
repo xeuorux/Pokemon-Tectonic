@@ -1319,3 +1319,9 @@ Pokemon = WEEZING,35
 	Item = POISONGEM
 Pokemon = RUNERIGUS,35
 	Item = LEFTOVERS
+#-------------------------------
+[WAITRESS3,Leonie]
+Pokemon = METANG,35
+Pokemon = DREDNAW,35
+Pokemon = YANMEGA,35
+Pokemon = AROMATISSE,35
