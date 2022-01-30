@@ -45,6 +45,22 @@ Ability = DARKAURA
 Item = SITRUSBERRY
 Moves = OBLIVIONWING,LASHOUT,PRIMEVALHAIL
 PostPrimeMoves = ICEBEAM
+#------------------------------ 5
+[ZAMAZENTA]
+Turns = 1
+HPMult = 3.5
+Ability = DAUNTLESSSHIELD
+Moves = IRONHEAD,CLOSECOMBAT,PRIMEVALSPIKES
+PostPrimeMoves = STOMPINGTANTRUM
+Form = 1
+#------------------------------ 5
+[ZACIAN]
+Turns = 2
+HPMult = 2.5
+Ability = INTREPIDSWORD
+Moves = SACREDSWORD,PLAYROUGH,PRIMEVALSTRINGSHOT
+PostPrimeMoves = FURYCUTTER
+Form = 1
 #------------------------------  6
 [XERNEAS]
 Turns = 3
@@ -259,6 +275,13 @@ Turns = 1
 HPMult = 2
 Ability = FRIENDGUARD
 Moves = DAZZLINGGLEAM
+#-----------------------------
+[ARBOK]
+Turns = 2
+HPMult = 2.5
+Ability = SHEDSKIN
+Moves = POISONJAB,PRIMEVALSUNNYDAY
+PostPrimeMoves = FIREFANG
 ################################
 #	Ghost Town
 ################################
@@ -679,10 +702,3 @@ Turns = 3
 HPMult = 2
 Ability = GLUTTONY
 Moves = POWERTRIP,GIGAIMPACT,STEALTHROCK
-#-----------------------------
-[ARBOK]
-Turns = 2
-HPMult = 2.5
-Ability = SHEDSKIN
-Moves = POISONJAB,PRIMEVALSUNNYDAY
-PostPrimeMoves = FIREFANG

@@ -91,7 +91,7 @@ LandSparse,20
 #-------------------------------
 [59] # Mainland Dock
 Land,20
-20,TAILLOW,15,15
+20,TAILLOW,14,17
 20,CHINGLING,14,17
 20,GULPIN,14,17
 20,TIMBURR,14,17
@@ -200,6 +200,10 @@ Land,20
 25,TOXEL,15,18
 25,TYROGUE,15,18
 25,PAWNIARD,15,18
+LandTinted,20
+34,BURMY,15,18
+33,BURMY_1,15,18
+33,BURMY_2,15,18
 Special,20
 1,BLIPBUG,15,15
 #-------------------------------
@@ -226,7 +230,7 @@ FloweryGrass2,20
 25,PSYDUCK,15,18
 25,MEDITITE,15,18
 LandTinted,20
-50,FARFETCHD,15,18
+50,ZIGZAGOON,15,18
 50,BELLSPROUT,15,18
 Special,20
 1,SHUPPET,15,15
@@ -283,7 +287,7 @@ LandSparse,20
 25,EKANS,18,20
 25,WOOPER,18,20
 LandTinted,20
-50,BURMY,18,20
+50,SKWOVET,18,20
 50,TYMPOLE,18,20
 Special,20
 1,ADIGLETT,15,15
@@ -488,7 +492,7 @@ FloweryGrass,20
 25,SKITTY,31,33
 25,AUDINO,31,33
 LandTinted
-100,ZIGZAGOON,32,34
+100,FARFETCHD,32,34
 #-------------------------------
 [029] # Full Blast Records F2
 Special,1

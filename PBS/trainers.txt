@@ -1243,11 +1243,11 @@ Pokemon = SUDOWOODO,38
 	Item = WISEGLASSES
 #-------------------------------
 [BIRDKEEPER_M,Kendall]
-Pokemon = CARNIVINE,36
-Pokemon = GOLDUCK,37
+Pokemon = CARNIVINE,35
+Pokemon = GOLDUCK,36
 	Item = SITRUSBERRY
 Pokemon = FORRETRESS,36
-Pokemon = ZWEILOUS,37
+Pokemon = ZWEILOUS,35
 	Item = DRAGONGEM
 #-------------------------------
 [CYCLIST_F,Anastasia]
@@ -1270,3 +1270,123 @@ Pokemon = LUXRAY,38
 	Item = DARKGEM
 Pokemon = UMBREON,37
 	Item = LEFTOVERS
+#-------------------------------
+[JANITOR,Aaron]
+Pokemon = FEAROW,35
+	Item = FLYINGGEM
+Pokemon = LYCANROC,35
+	Item = ROCKGEM
+Pokemon = SWELLOW,35
+Pokemon = ARCHEN,35
+#-------------------------------
+[LADY3,Kristiane]
+Pokemon = PIDGEOT,35
+	ITEM = SITRUSBERRY
+Pokemon = MINIOR,35
+Pokemon = ALTARIA,35
+	ITEM = ORANBERRY
+Pokemon = SUDOWOODO,35
+#-------------------------------
+[ROUGHNECK,Reese]
+Pokemon = PUPITAR,35
+	Item = LEFTOVERS
+Pokemon = GLIGAR,35
+Pokemon = SIGILYPH,35
+Pokemon = RAMPARDOS,35
+	Item = SITRUSBERRY
+#-------------------------------
+[WORKER,Bryn]
+Pokemon = COALOSSAL,35
+Pokemon = CORVISQUIRE,35
+Pokemon = GRAVELER,35
+	Item = LIFEORB
+Pokemon = CARBINK,35
+	Item = ORANBERRY
+#-------------------------------
+[ROUGHNECK2,Flavio]
+Pokemon = UNFEZANT,35
+	Gender = male
+Pokemon = TOUCANNON,35
+	Item = CHOICEBAND
+Pokemon = SWANNA,35
+	Item = FLYINGGEM
+Pokemon = RAMPARDOS,35
+#-------------------------------
+[SMASHER,Stella]
+Pokemon = SHUCKLE,35
+Pokemon = MASQUERAIN,35
+Pokemon = WEEZING,35
+	Item = POISONGEM
+Pokemon = RUNERIGUS,35
+	Item = LEFTOVERS
+#-------------------------------
+[WAITRESS3,Leonie]
+Pokemon = METANG,35
+Pokemon = DREDNAW,35
+Pokemon = YANMEGA,35
+Pokemon = AROMATISSE,35
+#-------------------------------
+[DEVJUGGLER,Brickbat]
+Pokemon = WIGGLYTUFF,50
+Pokemon = HAEROBIC,50
+Pokemon = GIGANTEON,50
+Pokemon = KECLEON,50
+Pokemon = CINCCINO,50
+Pokemon = BEWEAR,50
+#-------------------------------
+[DEVCOOLTRAINER_M4,Xavier]
+Pokemon = GALVANTULA,50
+Pokemon = FERALIGATR,50
+Pokemon = CHANDELURE,50
+Pokemon = CROBAT,50
+Pokemon = SWALOT,50
+Pokemon = HYDREIGON,52
+#-------------------------------
+[DEVACETRAINER_M,Waka]
+Pokemon = GLALIE,50
+Pokemon = DHELMISE,50
+Pokemon = CRYOGONAL,50
+Pokemon = GIRAFARIG,50
+Pokemon = MUNNA,50
+Pokemon = CHIMECHO,50
+#-------------------------------
+[DEVSUPERNERD,Agentbla]
+Pokemon = BEARTIC,50
+Pokemon = PYROAR,50
+	Gender = male
+Pokemon = PORYGONZ,50
+Pokemon = WHISCASH,50
+Pokemon = EELEKTROSS,50
+Pokemon = PALMANTRA,50
+#-------------------------------
+[DEVDRAGONTAMER2,Divock]
+Pokemon = DRAGONITE,50
+Pokemon = KLAWSAR,50
+Pokemon = VESPIQUEN,50
+Pokemon = SCRAFTY,50
+Pokemon = PRIMARINA,50
+Pokemon = NIDOKING,50
+#-------------------------------
+[DEVGAMBLER,IgnitedxSoul]
+Pokemon = AEGISLASH,50
+Pokemon = INFERNAPE,50
+Pokemon = GARCHOMP,50
+Pokemon = TOXAPEX,50
+Pokemon = RILLABOOM,50
+#-------------------------------
+[DEVARTIST3,Drawingbox]
+Pokemon = ESPEON,50
+Pokemon = GOTHITELLE,50
+Pokemon = BEHEEYEM,50
+Pokemon = ORBEETLE,50
+Pokemon = HATTERENE,50
+Pokemon = MALAMAR,50
+#-------------------------------
+[DEVCOOLTRAINER_M3,Dada]
+Pokemon = FLAREON,50
+Pokemon = HOUNDOMINUS,52
+Pokemon = MAGMORTAR,50
+Pokemon = DARMANITAN,50
+	Form = 0
+Pokemon = CHANDELURE,50
+Pokemon = TALONFLAME,50
