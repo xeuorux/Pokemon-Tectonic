@@ -1356,7 +1356,7 @@ Pokemon = PYROAR,50
 	Gender = male
 Pokemon = PORYGONZ,50
 Pokemon = WHISCASH,50
-Pokemon = ELEKTROSS,50
+Pokemon = EELEKTROSS,50
 Pokemon = PALMANTRA,50
 #-------------------------------
 [DEVDRAGONTAMER2,Divock]
