@@ -91,7 +91,7 @@ LandSparse,20
 #-------------------------------
 [59] # Mainland Dock
 Land,20
-20,TAILLOW,15,15
+20,TAILLOW,14,17
 20,CHINGLING,14,17
 20,GULPIN,14,17
 20,TIMBURR,14,17

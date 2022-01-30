@@ -21890,7 +21890,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 31
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SPEWPA,Level,16
+Evolutions = SPEWPA,Level,18
 #-------------------------------
 [665]
 Name = Spewpa
