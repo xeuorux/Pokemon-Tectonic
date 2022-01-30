@@ -685,7 +685,7 @@ Pokemon = DOUBLADE,32
 LoseText = "..."
 Pokemon = NIDORINO,34
 Pokemon = HOUNDOOM,35
-Pokemon = PIDGEOT,35
+Pokemon = SWOOBAT,35
 Pokemon = SPIRITOMB,36
 Pokemon = AVALUGG,37
 #-------------------------------
@@ -1239,8 +1239,8 @@ Pokemon = DRAMPA,37
 Pokemon = NIDOQUEEN,38
 	Item = ORANBERRY
 Pokemon = ELECTIVIRE,37
-Pokemon = SUDOWOODO,38
-	Item = WISEGLASSES
+Pokemon = KABUTOPS,38
+	Item = MUSCLEBAND
 #-------------------------------
 [BIRDKEEPER_M,Kendall]
 Pokemon = CARNIVINE,35
@@ -1285,7 +1285,7 @@ Pokemon = PIDGEOT,35
 Pokemon = MINIOR,35
 Pokemon = ALTARIA,35
 	ITEM = ORANBERRY
-Pokemon = SUDOWOODO,35
+Pokemon = CACTURNE,35
 #-------------------------------
 [ROUGHNECK,Reese]
 Pokemon = PUPITAR,35
@@ -1390,3 +1390,67 @@ Pokemon = DARMANITAN,50
 	Form = 0
 Pokemon = CHANDELURE,50
 Pokemon = TALONFLAME,50
+#-------------------------------
+[LEADER_Bence,Bence]
+Pokemon = STARAVIA,35
+	AbilityIndex = 0
+	Moves = DUALWINGBEAT,BRICKBREAK,STEELWING,QUICKATTACK
+Pokemon = JUMPLUFF,35
+	AbilityIndex = 0
+	Moves = MEGADRAIN,PUFFBALL,WINDBLADE,SYNTHESIS
+	Item = ORANBERRY
+Pokemon = STONJOURNER,35
+	Moves = BODYPRESS,ROCKSLIDE,STEALTHROCK,BODYSLAM
+	Name = Agnes
+	Gender = female
+	Item = LEFTOVERS
+Pokemon = DREDNAW,35
+	AbilityIndex = 1
+	Moves = RAZORSHELL,CLAMP,STONECHARGE,MEANLOOK
+#-------------------------------
+[LEADER_Zoe,Zoé]
+Pokemon = STEELIX,35
+	Moves = BULLDOZE,FIREFANG,ROCKSLIDE,CURSE
+	AbilityIndex = 0
+Pokemon = MANTINE,35
+	Moves = ROOST,BOUNCE,BUBBLEBEAM
+	AbilityIndex = 1
+	Name = 1 Second
+	Gender = male
+	Item = LEFTOVERS
+Pokemon = BRAVIARY,35
+	AbilityIndex = 0
+	Moves = POWERUPPUNCH,MACHPUNCH,BIRDSTRIKE,SHADOWCLAW
+	Item = SITRUSBERRY
+Pokemon = SUDOWOODO,35
+	AbilityIndex = 1
+	Moves = FAKETEARS,TEARFULLOOK,POWERGEM,MAGICALLEAF
+#-------------------------------
+[LEADER_Bence_2,Bence]
+Pokemon = STARAVIA,35
+	AbilityIndex = 0
+	Moves = DUALWINGBEAT,BRICKBREAK,STEELWING,QUICKATTACK
+Pokemon = STONJOURNER,35
+	Moves = BODYPRESS,ROCKSLIDE,STEALTHROCK,BODYSLAM
+	Name = Agnes
+	Gender = female
+	Item = LEFTOVERS
+Pokemon = JUMPLUFF,35
+	AbilityIndex = 0
+	Moves = MEGADRAIN,PUFFBALL,WINDBLADE,SYNTHESIS
+	Item = ORANBERRY
+#-------------------------------
+[LEADER_Zoe_2,Zoé]
+Pokemon = STEELIX,35
+	Moves = BULLDOZE,FIREFANG,ROCKSLIDE,CURSE
+	AbilityIndex = 0
+Pokemon = MANTINE,35
+	Moves = ROOST,BOUNCE,BUBBLEBEAM,HELPINGHAND
+	AbilityIndex = 1
+	Name = 1 Second
+	Gender = male
+	Item = LEFTOVERS
+Pokemon = AERODACTYL,35
+	Moves = IRONHEAD,STONECHARGE,BIRDSTRIKE
+	AbilityIndex = 1
+	Item = SITRUSBERRY
