@@ -114,12 +114,13 @@ module PokeBattle_BattleCommon
         if pbDisplayConfirm(_INTL("Would you like to add {1} to your party?", pkmn.name))
           pbDisplay("Choose which Pokemon will be sent back to the PC.")
 		  #if Y, select pokemon to store instead
-          chosen = pbChoosePokemon(1,3)
+          pbChoosePokemon(1,3)
+		  chosen = $game_variables[1]
           #Didn't cancel
-          if chosen
+          if chosen != -1
             # Put the chosen pokemon in the PC and put the newly caught pokemon in the party
-            pbStorePokemon($Trainer.party[$game_variables[1]])
-            $Trainer.party[$game_variables[1]] = pkmn
+            pbStorePokemon($Trainer.party[chosen])
+            $Trainer.party[chosen] = pkmn
           else
             # Store caught Pokémon if cancelled
             pbStorePokemon(pkmn)
