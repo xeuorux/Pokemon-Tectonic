@@ -1370,6 +1370,7 @@ Pokemon = NIDOKING,50
 [DEVGAMBLER,IgnitedxSoul]
 Pokemon = AEGISLASH,50
 Pokemon = INFERNAPE,50
+Pokemon = VIKAVOLT,50
 Pokemon = GARCHOMP,50
 Pokemon = TOXAPEX,50
 Pokemon = RILLABOOM,50
