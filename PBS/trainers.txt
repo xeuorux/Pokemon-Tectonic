@@ -1325,3 +1325,68 @@ Pokemon = METANG,35
 Pokemon = DREDNAW,35
 Pokemon = YANMEGA,35
 Pokemon = AROMATISSE,35
+#-------------------------------
+[DEVJUGGLER,Brickbat]
+Pokemon = WIGGLYTUFF,50
+Pokemon = HAEROBIC,50
+Pokemon = GIGANTEON,50
+Pokemon = KECLEON,50
+Pokemon = CINCCINO,50
+Pokemon = BEWEAR,50
+#-------------------------------
+[DEVCOOLTRAINER_M4,Xavier]
+Pokemon = GALVANTULA,50
+Pokemon = FERALIGATR,50
+Pokemon = CHANDELURE,50
+Pokemon = CROBAT,50
+Pokemon = SWALOT,50
+Pokemon = HYDREIGON,52
+#-------------------------------
+[DEVACETRAINER_M,Waka]
+Pokemon = GLALIE,50
+Pokemon = DHELMISE,50
+Pokemon = CRYOGONAL,50
+Pokemon = GIRAFARIG,50
+Pokemon = MUNNA,50
+Pokemon = CHIMECHO,50
+#-------------------------------
+[DEVSUPERNERD,Agentbla]
+Pokemon = BEARTIC,50
+Pokemon = PYROAR,50
+	Gender = male
+Pokemon = PORYGONZ,50
+Pokemon = WHISCASH,50
+Pokemon = ELEKTROSS,50
+Pokemon = PALMANTRA,50
+#-------------------------------
+[DEVDRAGONTAMER2,Divock]
+Pokemon = DRAGONITE,50
+Pokemon = KLAWSAR,50
+Pokemon = VESPIQUEN,50
+Pokemon = SCRAFTY,50
+Pokemon = PRIMARINA,50
+Pokemon = NIDOKING,50
+#-------------------------------
+[DEVGAMBLER,IgnitedxSoul]
+Pokemon = AEGISLASH,50
+Pokemon = INFERNAPE,50
+Pokemon = GARCHOMP,50
+Pokemon = TOXAPEX,50
+Pokemon = RILLABOOM,50
+#-------------------------------
+[DEVARTIST3,Drawingbox]
+Pokemon = ESPEON,50
+Pokemon = GOTHITELLE,50
+Pokemon = BEHEEYEM,50
+Pokemon = ORBEETLE,50
+Pokemon = HATTERENE,50
+Pokemon = MALAMAR,50
+#-------------------------------
+[DEVCOOLTRAINER_M3,Dada]
+Pokemon = FLAREON,50
+Pokemon = HOUNDOMINUS,52
+Pokemon = MAGMORTAR,50
+Pokemon = DARMANITAN,50
+	Form = 0
+Pokemon = CHANDELURE,50
+Pokemon = TALONFLAME,50

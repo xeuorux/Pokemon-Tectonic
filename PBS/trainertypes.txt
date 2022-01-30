@@ -180,6 +180,7 @@
 177,LADY3,Lady,160,,,LASS2,Female,,
 178,WAITRESS3,Waitress,32,,,AROMALADY,Female,,
 179,WAITER3,Waiter,32,,,AROMALADY,Male,,
+180,ARTIST3,Artist,32,,,ARTIST,Female,,
 299,ARCHFRIEND_Lainie,Archfriend,100,Battle champion iris,Battle victory champion,,Female,,[LAINIE]
 300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,[YEZERA]
 301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,[LAMBERT]
@@ -190,3 +191,11 @@
 306,LEADER_Helena_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,[HELENA]
 307,LEADER_Rafael,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,[RAFAEL]
 308,LEADER_Rafael_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,[RAFAEL]
+400,DEVJUGGLER,Developer,80,,,,Male,,
+401,DEVCOOLTRAINER_M4,Developer,80,,,,Male,,
+402,DEVACETRAINER_M,Developer,80,,,,Male,,
+403,DEVSUPERNERD,Developer,80,,,,Male,,
+404,DEVDRAGONTAMER2,Developer,80,,,,Male,,
+405,DEVGAMBLER,Developer,80,,,,Male,,
+406,DEVARTIST3,Developer,80,,,,Male,,
+407,DEVCOOLTRAINER_M3,Developer,80,,,,Male,,
