@@ -729,3 +729,10 @@ def isCat?(species)
 		:MEOWSTIC,:LITTEN,:TORRACAT,:INCINEROAR]
 	return array.include?(species)
 end
+
+def refreshMapEvents()
+	events = $game_map.events.values
+	for event in events
+		event.refresh()
+    end
+end
