@@ -687,7 +687,7 @@
 667,ABILITYPATCH,Ability Patch,Ability Patches,2,20000,A patch that allows a Pokémon with a regular Ability to have a rare Ability.,1,0,0,
 #-------------------------------,,,,,,,,,,
 668,GALARICACUFF,Galarica Cuff,Galarica Cuffs,1,3000,A cuff made from woven-together Galarica Twigs. Giving it to Galarian Slowpoke makes the Pokémon very happy.,1,0,7,
-669,GALARICAWREATH,Galarica Wreath,Galarica Wreaths,1,3000,A wreath made from woven- Galarica Twigs. It makes certain species of Pokémon evolve.,1,0,7,
+669,GALARICAWREATH,Galarica Wreath,Galarica Wreaths,1,1500,A wreath made from woven- Galarica Twigs. It makes certain species of Pokémon evolve.,1,0,7,
 670,SWEETAPPLE,Sweet Apple,Sweet Apples,1,2200,A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally sweet.,1,0,7,
 671,TARTAPPLE,Sweet Apple,Sweet Apples,1,2200,A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.,1,0,7,
 672,CRACKEDPOT,Cracked Pot,Cracked Pot,1,1600,"A peculiar teapot that can make a certain species of Pokémon evolve. It may be cracked, but tea poured from it is delicious.",1,0,7,
@@ -816,7 +816,7 @@
 #------------------------------- NEW ITEMS
 792,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,0,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,6,
 793,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,A peculiar stone that makes certain species of Pokémon evolve.,1,0,7,
-794,ALOLANWREATH,Alolan Wreath,Alolan Wreathes,1,0,A beautiful floral wreath from Alolan that makes certain species of Pokémon evolve.,1,0,7,
+794,ALOLANWREATH,Alolan Wreath,Alolan Wreathes,1,1500,A beautiful floral wreath from Alolan that makes certain species of Pokémon evolve.,1,0,7,
 795,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,6,
 796,ABRAPORTER,Abraporter,Abraporters,8,0,"A teleporter which brings you to your last safe spot using the power of Abras.",2,0,6,
 797,REMATERIALIZER,Rematerializer,Rematerializers,8,0,"A 3D printer which automatically copies consumed held items after battles.",0,0,6
