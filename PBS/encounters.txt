@@ -111,7 +111,7 @@ LandTall,20
 25,PIKIPEK,14,17
 LandTinted,20
 50,PETILIL,14,17
-50,WURMPLE,5,6
+50,WURMPLE,14,17
 #-------------------------------
 [56] # Nemeth
 FloweryGrass,20
