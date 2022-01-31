@@ -261,6 +261,15 @@ def phoneCall(caller="Unknown",eventSwitch=nil)
 	end	
 end
 
+def phoneCallConditional(caller="Unknown")
+	phoneCallSE()
+	if !pbConfirmMessage(_INTL("...It's {1}. Pick up the phone?", caller))
+		phoneCallEnd()
+		return false
+	end
+	return true
+end
+
 def phoneCallEnd()
 	pbMessage(_INTL("\\se[Voltorb Flip mark]Click."))
 	pbWait(40)
