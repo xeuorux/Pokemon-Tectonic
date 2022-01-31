@@ -686,7 +686,7 @@ LoseText = "..."
 Pokemon = NIDORINO,34
 Pokemon = HOUNDOOM,35
 Pokemon = SWOOBAT,35
-Pokemon = SPIRITOMB,36
+Pokemon = DRAKLOAK,36
 Pokemon = AVALUGG,37
 #-------------------------------
 [BAKER,Margerie]
@@ -1455,3 +1455,23 @@ Pokemon = AERODACTYL,35
 	Moves = IRONHEAD,STONECHARGE,BIRDSTRIKE
 	AbilityIndex = 1
 	Item = SITRUSBERRY
+#-------------------------------
+[TRAINER_Zain,Zain]
+Pokemon = LIEPARD,37
+	Moves = FAKEOUT,TAUNT,SUCKERPUNCH
+	AbilityIndex = 0
+	Item = NORMALGEM
+Pokemon = HARIYAMA,37
+	Moves = BULKUP,VITALTHROW,FAKEOUT,KNOCKOFF
+	AbilityIndex = 1
+	Item = FLAMEORB
+Pokemon = AZUMARILL,38
+	Moves = PLAYROUGH,GLITTERBOMB,MENDINGSPRING,WATERFALL
+	AbilityIndex = 1
+Pokemon = DONPHAN,38
+	Moves = STEAMROLLER,TRAMPLE,PROTECT,THUNDERFANG
+Pokemon = SERPERIOR,38
+	Moves = MAJESTICGLARE,LEAFTORNADO,LEECHSEED
+	AbilityIndex = 1
+	Item = BIGROOT
+#-------------------------------

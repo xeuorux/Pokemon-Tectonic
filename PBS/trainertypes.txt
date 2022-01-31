@@ -181,6 +181,7 @@
 178,WAITRESS3,Waitress,32,,,AROMALADY,Female,,
 179,WAITER3,Waiter,32,,,AROMALADY,Male,,
 180,ARTIST3,Artist,32,,,ARTIST,Female,,
+298,TRAINER_Zain,Your Brother,100,,,,Male,,
 299,ARCHFRIEND_Lainie,Archfriend,100,Battle champion iris,Battle victory champion,,Female,,[LAINIE]
 300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,[YEZERA]
 301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,[LAMBERT]
