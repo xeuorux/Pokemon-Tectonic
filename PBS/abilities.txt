@@ -248,7 +248,7 @@
 246,NEUTRALIZINGGAS,Neutralizing Gas,"Abilities will be nullified or will not be triggered.",
 247,PASTELVEIL,Pastel Veil,"Protects it and ally Pokémon from being poisoned.",
 248,PERISHBODY,Perish Body,"When it takes a hit, both Pokémon faint after 3 turns.",
-249,POWERSPOT,Power Spot,"Just being next to the Pokémon powers up moves.",
+249,POWERSPOT,Power Spot,"Powers up nearby allies moves by 30%.",
 250,PROPELLERTAIL,Propeller Tail,"Ignores effects changing the target of a move.",
 251,LOUD,Loud,"Boosts power of sound-based moves by 30%.",
 252,RIPEN,Ripen,"Ripens Berries and doubles their effect.",

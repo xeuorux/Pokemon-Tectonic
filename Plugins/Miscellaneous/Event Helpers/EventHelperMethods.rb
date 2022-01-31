@@ -64,6 +64,8 @@ def earnBadge(badgeNum)
 	else
 		echo("Gym badge #{index} not yet defined!\n")
 	end
+	
+	refreshMapEvents()
 end
 
 def receivedGymRewardYet?(index)
