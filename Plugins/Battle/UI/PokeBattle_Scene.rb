@@ -478,7 +478,7 @@ class PokeBattle_Scene
 		ballTarget = @battle.battlers[0].pbDirectOpposing(true)
 		trueChance = @battle.captureChanceCalc(ballTarget.pokemon,ballTarget,nil,itemSym)
 		chance = (trueChance*100/5).floor * 5
-		chance = 100 if itemSym == :MASTERBALL || chance > 100
+		chance = 100 if chance > 100
 		case chance
 		when 0
 			pbMessage(_INTL("This ball has a very low chance to capture the wild Pokémon.",chance))

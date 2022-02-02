@@ -24,6 +24,7 @@ module PokeBattle_BattleCommon
   #=============================================================================
   def pbCaptureCalc(pkmn,battler,catch_rate,ball)
     return 4 if $DEBUG && Input.press?(Input::CTRL)
+	return 4 if BallHandlers.isUnconditional?(ball,self,battler)
 	y = captureThresholdCalc(pkmn,battler,catch_rate,ball)
 	# Critical capture check
 	if Settings::ENABLE_CRITICAL_CAPTURES
@@ -67,6 +68,7 @@ module PokeBattle_BattleCommon
   end
   
   def captureChanceCalc(pkmn,battler,catch_rate,ball)
+	return 1 if BallHandlers.isUnconditional?(ball,self,battler)
 	y = captureThresholdCalc(pkmn,battler,catch_rate,ball)
 	chancePerShake = y.to_f/CATCH_BASE_CHANCE.to_f
 	overallChance = chancePerShake ** 4
