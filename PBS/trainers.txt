@@ -1342,7 +1342,7 @@ Pokemon = CROBAT,50
 Pokemon = SWALOT,50
 Pokemon = HYDREIGON,52
 #-------------------------------
-[DEVACETRAINER_M,Waka]
+[DEVPSYCHIC_M,Waka]
 Pokemon = GLALIE,50
 Pokemon = DHELMISE,50
 Pokemon = CRYOGONAL,50
@@ -1391,6 +1391,14 @@ Pokemon = DARMANITAN,50
 	Form = 0
 Pokemon = CHANDELURE,50
 Pokemon = TALONFLAME,50
+#-------------------------------
+[DEVPOKEMONRANGER_M,Zufaix]
+Pokemon = ANINETALES,50
+Pokemon = MISMAGIUS,50
+Pokemon = FROSLASS,50
+Pokemon = LAPNESSIE,50
+Pokemon = ASANDSLASH,50
+Pokemon = CONIFEAR,50
 #-------------------------------
 [LEADER_Bence,Bence]
 Pokemon = STARAVIA,35

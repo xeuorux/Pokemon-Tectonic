@@ -198,9 +198,10 @@
 312,LEADER_Zoe_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,[ZOE]
 400,DEVJUGGLER,Developer,80,,,,Male,,
 401,DEVCOOLTRAINER_M4,Developer,80,,,,Male,,
-402,DEVACETRAINER_M,Developer,80,,,,Male,,
+402,DEVPSYCHIC_M,Developer,80,,,,Male,,
 403,DEVSUPERNERD,Developer,80,,,,Male,,
 404,DEVDRAGONTAMER2,Developer,80,,,,Male,,
 405,DEVGAMBLER,Developer,80,,,,Male,,
 406,DEVARTIST3,Developer,80,,,,Male,,
 407,DEVCOOLTRAINER_M3,Developer,80,,,,Male,,
+408,DEVPOKEMONRANGER_M,Developer,80,,,,Male,,
