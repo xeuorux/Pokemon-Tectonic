@@ -2717,8 +2717,8 @@ InternalName = FARFETCHD
 Type1 = NORMAL
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 77,95,77,69,68,77
-# Total = 463
+BaseStats = 52,90,55,60,58,62
+# Total = 377
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 132
