@@ -6,7 +6,28 @@ def pbStorePokemon(pkmn)
   end
   pkmn.record_first_moves
   if $Trainer.party_full?
-    oldcurbox = $PokemonStorage.currentBox
+	storingPokemon = pkmn
+	if pbConfirmMessageSerious(_INTL("Would you like to add {1} to your party?", pkmn.name))
+	  pbMessage(_INTL("Choose which Pokemon will be sent back to the PC."))
+	  #if Y, select pokemon to store instead
+	  pbChoosePokemon(1,3)
+	  chosen = $game_variables[1]
+	  #Didn't cancel
+	  if chosen != -1
+		storingPokemon = $Trainer.party[chosen]
+		$Trainer.party[chosen] = pkmn
+		
+		refreshFollow
+	  end
+	end
+    pbStorePokemonInPC(storingPokemon)
+  else
+    $Trainer.party[$Trainer.party.length] = pkmn
+  end
+end
+
+def pbStorePokemonInPC(pkmn)
+	oldcurbox = $PokemonStorage.currentBox
     storedbox = $PokemonStorage.pbStoreCaught(pkmn)
     curboxname = $PokemonStorage[oldcurbox].name
     boxname = $PokemonStorage[storedbox].name
@@ -19,9 +40,6 @@ def pbStorePokemon(pkmn)
       pbMessage(_INTL("{1} was transferred to the Pokémon Storage PC.\1", pkmn.name))
       pbMessage(_INTL("It was stored in box \"{1}.\"", boxname))
     end
-  else
-    $Trainer.party[$Trainer.party.length] = pkmn
-  end
 end
 
 def pbNicknameAndStore(pkmn)
@@ -41,14 +59,26 @@ def pbNicknameAndStore(pkmn)
   end
   
   # Increase the caught count for the global metadata
-  $PokemonGlobal.caughtCountsPerMap = {} if !$PokemonGlobal.caughtCountsPerMap
-  if $PokemonGlobal.caughtCountsPerMap.has_key?($game_map.map_id)
-	$PokemonGlobal.caughtCountsPerMap[$game_map.map_id][1] += 1
-  else
-	$PokemonGlobal.caughtCountsPerMap[$game_map.map_id] = [0,1]
-  end
+  incrementDexNavCounts(false)
   
   pbStorePokemon(pkmn)
+end
+
+def incrementDexNavCounts(caught)
+	$PokemonGlobal.caughtCountsPerMap = {} if !$PokemonGlobal.caughtCountsPerMap
+	if caught
+		if $PokemonGlobal.caughtCountsPerMap.has_key?($game_map.map_id)
+			$PokemonGlobal.caughtCountsPerMap[$game_map.map_id][0] += 1
+		else
+			$PokemonGlobal.caughtCountsPerMap[$game_map.map_id] = [1,0]
+		end
+	else
+		if $PokemonGlobal.caughtCountsPerMap.has_key?($game_map.map_id)
+			$PokemonGlobal.caughtCountsPerMap[$game_map.map_id][1] += 1
+		else
+			$PokemonGlobal.caughtCountsPerMap[$game_map.map_id] = [0,1]
+		end
+	end
 end
 
 module PokeBattle_BattleCommon
@@ -101,26 +131,43 @@ module PokeBattle_BattleCommon
       pbPlayer.pokedex.set_shadow_pokemon_owned(pkmn.species) if pkmn.shadowPokemon?
 	  
 	  # Increase the caught count for the global metadata
-	  $PokemonGlobal.caughtCountsPerMap = {} if !$PokemonGlobal.caughtCountsPerMap
-	  if $PokemonGlobal.caughtCountsPerMap.has_key?($game_map.map_id)
-		$PokemonGlobal.caughtCountsPerMap[$game_map.map_id][0] += 1
-	  else
-		$PokemonGlobal.caughtCountsPerMap[$game_map.map_id] = [1,0]
-	  end
+	  incrementDexNavCounts(true)
 
 	  #Check Party Size
       if $Trainer.party_full?
         #Y/N option to store newly caught
-        if pbDisplayConfirm(_INTL("Would you like to add {1} to your party?", pkmn.name))
-          pbDisplay("Choose which Pokemon will be sent back to the PC.")
+        if pbDisplayConfirmSerious(_INTL("Would you like to add {1} to your party?", pkmn.name))
+          pbDisplay(_INTL("Choose which Pokemon will be sent back to the PC."))
 		  #if Y, select pokemon to store instead
           pbChoosePokemon(1,3)
 		  chosen = $game_variables[1]
           #Didn't cancel
           if chosen != -1
-            # Put the chosen pokemon in the PC and put the newly caught pokemon in the party
-            pbStorePokemon($Trainer.party[chosen])
-            $Trainer.party[chosen] = pkmn
+			# Find the battler which matches with the chosen pokemon
+            chosenPokemon = $Trainer.party[chosen]
+			chosenBattler = nil
+			eachSameSideBattler() do |battler|
+				next unless battler.pokemon == chosenPokemon
+				chosenBattler = battler
+				break
+			end
+			if !chosenBattler.nil?
+				# Handle the chosen pokemon leaving battle
+				BattleHandlers.triggerAbilityOnSwitchOut(chosenBattler.ability,chosenBattler,true,self) if chosenBattler.abilityActive?
+				@peer.pbOnLeavingBattle(self,chosenBattler,@usedInBattle[0][chosenBattler.index],true)   # Reset form
+				chosenPokemon.item = @initialItems[0][chosenBattler.index]
+				@initialItems[0][chosenBattler.index] = pkmn.item
+				
+				# Put the chosen pokemon in the PC and put the newly caught pokemon in the party
+				pbStorePokemon(chosenPokemon)
+				$Trainer.party[chosen] = pkmn
+				
+				refreshFollow
+			else
+				pbMessage(_INTL("An error has occured. Not able to find the battler object for that Pokemon."))
+				# Store caught Pokémon if error
+				pbStorePokemon(pkmn)
+			end
           else
             # Store caught Pokémon if cancelled
             pbStorePokemon(pkmn)
@@ -130,6 +177,7 @@ module PokeBattle_BattleCommon
           pbStorePokemon(pkmn)
         end
 	  else
+		# Store caught Pokémon
 		pbStorePokemon(pkmn)
       end
     end
