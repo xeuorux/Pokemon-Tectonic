@@ -5,6 +5,7 @@ class PokemonSystem
 	attr_accessor :skip_fades
 	attr_accessor :gendered_look
 	attr_accessor :damage_numbers
+	attr_accessor :show_item_descriptions
 
   def initialize
     @textspeed   		= 1 # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
@@ -24,7 +25,8 @@ class PokemonSystem
 	@particle_effects 	= 0 # (0=true, 1=false)
 	@skip_fades 		= 1 # (0=true, 1=false)
 	@gendered_look 		= 0 # (0 = Masc, 1 = Fem)
-	@damage_numbers 	= 0
+	@damage_numbers 	= 0 # (0=true, 1=false)
+	@show_item_descriptions = 0 # (0=true, 1=false)
   end
 end
 
@@ -104,13 +106,23 @@ class PokemonOption_Scene
          proc { $PokemonSystem.textinput },
          proc { |value| $PokemonSystem.textinput = value }
        ),
-	   EnumOption.new(_INTL("Damage Numbers"),[_INTL("On"),_INTL("Off")],
+    ]
+	@PokemonOptions.push(
+		EnumOption.new(_INTL("Damage Numbers"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.damage_numbers },
          proc { |value|
 			$PokemonSystem.damage_numbers = value
          }
        )
-    ]
+	)
+	@PokemonOptions.push(
+	   EnumOption.new(_INTL("Item Desc Popups"),[_INTL("On"),_INTL("Off")],
+         proc { $PokemonSystem.show_item_descriptions },
+         proc { |value|
+			$PokemonSystem.show_item_descriptions = value
+         }
+       )
+	)
 	@PokemonOptions.push(EnumOption.new(_INTL("Look"),[_INTL("Masc."),_INTL("Fem.")],
          proc { $PokemonSystem.gendered_look },
          proc { |value|
