@@ -167,7 +167,7 @@ Bicycle = true
 MapPosition = 0,15,8
 #-------------------------------
 [026]
-# Seaside Grotto
+# Bluepoint Grotto
 Outdoor = false
 Bicycle = false
 BicycleAlways = false
@@ -180,12 +180,12 @@ Bicycle = false
 #-------------------------------
 [029]
 # Full Blast Records F2
-Outdoor = true
-ShowArea = true
-Bicycle = true
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [030]
-# Tunnel Path
+# Windy Way
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -199,6 +199,18 @@ Bicycle = true
 [032]
 # Németh Apartments
 ShowArea = true
+#-------------------------------
+[033]
+# Full Blast Sewer Access
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[034]
+# Battle Plaza
+Outdoor = true
+ShowArea = true
+Bicycle = true
 #-------------------------------
 [035]
 # Impromptu Lab
@@ -219,7 +231,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [038]
-# Beach Route
+# Bluepoint Beach
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -236,6 +248,12 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
+[047]
+# Grand Hotel
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [048]
 # Name Rater's House
 Outdoor = false
@@ -248,6 +266,12 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 Environment = Cave
+#-------------------------------
+[052]
+# Snowbird's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [053]
 # The Tangle
@@ -295,7 +319,7 @@ Bicycle = true
 HealingSpot = 59,26,12
 #-------------------------------
 [063]
-# Suburb Buildings
+# Németh Buildings
 Outdoor = false
 ShowArea = true
 Bicycle = false
@@ -336,6 +360,12 @@ Bicycle = false
 #-------------------------------
 [088]
 # LuxTech Sewer Access
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[095]
+# Snowbird's House F2
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -487,6 +517,12 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
+[134]
+# Prizca West Gym
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [136]
 # Casaba Villa
 Outdoor = true
@@ -494,7 +530,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [138]
-# Scenic Path
+# Scenic Trail
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -515,6 +551,24 @@ Bicycle = false
 # Starters Store - Water
 Outdoor = false
 ShowArea = true
+Bicycle = false
+#-------------------------------
+[144]
+# Artist's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[145]
+# Fancy House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[146]
+# Fancy House F2
+Outdoor = false
+ShowArea = false
 Bicycle = false
 #-------------------------------
 [148]
@@ -560,10 +614,29 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [155]
-# Newer City
+# Prizca West
 Outdoor = true
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[157]
+# Traffic Control
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[158]
+# Prizca West Center
+Outdoor = false
+ShowArea = false
+Bicycle = false
+HealingSpot = 155,32,28
+#-------------------------------
+[159]
+# Travel Agency
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [160]
 # PokEstate 7 - Snowy
@@ -595,6 +668,30 @@ Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
+[165]
+# Aquatopia Aquarium
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[166]
+# Aegislash Insurance
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[167]
+# Aegislash Insurance F2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[168]
+# Aegislash Insurance F3
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [169]
 # PokEstate 14 - Simple
 Outdoor = true
@@ -607,8 +704,62 @@ Outdoor = true
 ShowArea = false
 Bicycle = true
 #-------------------------------
+[171]
+# Dingy Office
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [172]
 # PokEstate 12 - Sky
 Outdoor = true
 ShowArea = false
 Bicycle = true
+#-------------------------------
+[173]
+# Full Blast Records
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[174]
+# Worn Shed
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[175]
+# Worn Shed Basement
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[176]
+# Hero's Chamber
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[177]
+# Battle Plaza Market
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[178]
+# Chasm Dev
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[179]
+# Chasm Dev F2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[180]
+# Prizca West Mart
+Outdoor = false
+ShowArea = false
+Bicycle = false
