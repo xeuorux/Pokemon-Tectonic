@@ -78,8 +78,10 @@ end
 def showItemDescription(item)
 	$PokemonGlobal.hadItemYet = {} if $PokemonGlobal.hadItemYet.nil?
 	if !$PokemonGlobal.hadItemYet[item.id]
-		pbMessage(_INTL("\\cl\\l[4]\\op\\wu\\i[{1}]\\or{2}\\wt[30]",item.id,item.real_description))
 		$PokemonGlobal.hadItemYet[item.id] = true
+		if $PokemonSystem.show_item_descriptions == 0
+			pbMessage(_INTL("\\cl\\l[4]\\op\\wu\\i[{1}]\\or{2}\\wt[30]",item.id,item.real_description))
+		end
 	end
 end
 
@@ -143,8 +145,9 @@ def pbEXPAdditionItem(pkmn,exp,item,scene)
     maximum = [maxlv,$PokemonBag.pbQuantity(item)].min # Max items which can be used
 	if maximum > 1
 		params = ChooseNumberParams.new
-		params.setRange(0, maximum)
-		params.setDefaultValue(1)
+		params.setRange(1, maximum)
+		params.setInitialValue(1)
+		params.setCancelValue(0)
 		question = _INTL("How many {1} do you want to use?", GameData::Item.get(item).name_plural)
 		qty = pbMessageChooseNumber(question, params)
 	else
