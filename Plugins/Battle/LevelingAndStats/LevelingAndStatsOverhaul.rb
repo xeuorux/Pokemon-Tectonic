@@ -227,7 +227,7 @@ class PokeBattle_Battle
     end
     return if exp<=0
     # Pokémon gain more Exp from trainer battles
-    exp = (exp*2.0).floor if trainerBattle?
+    exp = (exp*1.8).floor if trainerBattle?
     # Scale the gained Exp based on the gainer's level (or not)
     if Settings::SCALED_EXP_FORMULA
       exp /= 5
@@ -240,21 +240,11 @@ class PokeBattle_Battle
     else
       exp /= 7
     end
-    # Foreign Pokémon gain more Exp
-    isOutsider = (pkmn.owner.id != pbPlayer.id ||
-                 (pkmn.owner.language != 0 && pkmn.owner.language != pbPlayer.language))
-    if isOutsider
-      if pkmn.owner.language != 0 && pkmn.owner.language != pbPlayer.language
-        exp = (exp*1.7).floor
-      else
-        exp = (exp*1.5).floor
-      end
-    end
 	# Increase Exp gain based on battling streak
 	pkmn.battlingStreak = 0 if pkmn.battlingStreak.nil?
 	if pkmn.battlingStreak >= 2
 		pbDisplayPaused(_INTL("{1} benefits from its Hot Streak!",pkmn.name))
-		exp = (exp * 1.5).floor
+		exp = (exp * 1.3).floor
 	end
     # Modify Exp gain based on pkmn's held item
     i = BattleHandlers.triggerExpGainModifierItem(pkmn.item,pkmn,exp)
@@ -288,11 +278,7 @@ class PokeBattle_Battle
           pbDisplayPaused(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.",pkmn.name,level_cap,expGained))
 		end
       else
-        if isOutsider
-          pbDisplayPaused(_INTL("{1} got a boosted {2} Exp. Points!",pkmn.name,expGained))
-        else
-          pbDisplayPaused(_INTL("{1} got {2} Exp. Points!",pkmn.name,expGained))
-        end
+        pbDisplayPaused(_INTL("{1} got {2} Exp. Points!",pkmn.name,expGained))
       end
 	 pbDisplayPaused(_INTL("{1} exp was put into the EXP-EZ Dispenser.",expLeftovers)) if expLeftovers > 0
     end
