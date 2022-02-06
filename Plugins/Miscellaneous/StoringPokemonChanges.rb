@@ -161,7 +161,7 @@ module PokeBattle_BattleCommon
 			pbStorePokemon(chosenPokemon)
 			$Trainer.party[chosen] = pkmn
 			
-			refreshFollow
+			#refreshFollow
           else
             # Store caught Pokémon if cancelled
             pbStorePokemon(pkmn)
