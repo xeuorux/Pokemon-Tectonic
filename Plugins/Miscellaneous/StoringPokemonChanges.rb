@@ -154,20 +154,14 @@ module PokeBattle_BattleCommon
 			if !chosenBattler.nil?
 				# Handle the chosen pokemon leaving battle
 				BattleHandlers.triggerAbilityOnSwitchOut(chosenBattler.ability,chosenBattler,true,self) if chosenBattler.abilityActive?
-				@peer.pbOnLeavingBattle(self,chosenBattler,@usedInBattle[0][chosenBattler.index],true)   # Reset form
 				chosenPokemon.item = @initialItems[0][chosenBattler.index]
 				@initialItems[0][chosenBattler.index] = pkmn.item
-				
-				# Put the chosen pokemon in the PC and put the newly caught pokemon in the party
-				pbStorePokemon(chosenPokemon)
-				$Trainer.party[chosen] = pkmn
-				
-				refreshFollow
-			else
-				pbMessage(_INTL("An error has occured. Not able to find the battler object for that Pokemon."))
-				# Store caught Pokémon if error
-				pbStorePokemon(pkmn)
 			end
+			@peer.pbOnLeavingBattle(self,chosenPokemon,@usedInBattle[0][chosen],true)   # Reset form
+			pbStorePokemon(chosenPokemon)
+			$Trainer.party[chosen] = pkmn
+			
+			refreshFollow
           else
             # Store caught Pokémon if cancelled
             pbStorePokemon(pkmn)
