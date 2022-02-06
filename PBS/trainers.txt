@@ -1160,7 +1160,7 @@ Pokemon = PORYGON,32
 Pokemon = CINCCINO,33
 Pokemon = BRONZOR,31
 	Item = LEFTOVERS
-Pokemon = RAMPARDOS,31
+Pokemon = SLIGGOO,31
 Pokemon = CRUSTLE,33
 	Item = ORANBERRY
 #-------------------------------
@@ -1310,7 +1310,7 @@ Pokemon = TOUCANNON,35
 	Item = CHOICEBAND
 Pokemon = SWANNA,35
 	Item = FLYINGGEM
-Pokemon = RAMPARDOS,35
+Pokemon = RHYDON,35
 #-------------------------------
 [SMASHER,Stella]
 Pokemon = SHUCKLE,35
