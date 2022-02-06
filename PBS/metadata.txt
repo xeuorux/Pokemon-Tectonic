@@ -677,7 +677,7 @@ Bicycle = false
 [166]
 # Aegislash Insurance
 Outdoor = false
-ShowArea = false
+ShowArea = true
 Bicycle = false
 #-------------------------------
 [167]

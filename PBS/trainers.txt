@@ -1334,7 +1334,7 @@ Pokemon = KECLEON,50
 Pokemon = CINCCINO,50
 Pokemon = BEWEAR,50
 #-------------------------------
-[DEVCOOLTRAINER_M4,Xavier]
+[DEVCOOLTRAINER_M4,Zeu]
 Pokemon = GALVANTULA,50
 Pokemon = FERALIGATR,50
 Pokemon = CHANDELURE,50
