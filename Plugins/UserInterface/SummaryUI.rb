@@ -139,8 +139,8 @@ class PokemonSummary_Scene
 		  imagepos.push(["Graphics/Pictures/Rework/statuses",124,100,0,16*status,44,16])
 		end
 		# Show Pokérus cured icon
-		if @pokemon.pokerusStage==2
-		  imagepos.push([sprintf("Graphics/Pictures/Summary/icon_pokerus"),176,100])
+		if @pokemon.onHotStreak?
+		  imagepos.push([sprintf("Graphics/Pictures/Summary/hot_streak"),176,100])
 		end
 		# Show shininess star
 		if @pokemon.shiny?

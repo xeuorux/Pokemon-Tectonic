@@ -84,6 +84,10 @@ class Pokemon
     end
   end
   
+  def onHotStreak?()
+	return @battlingStreak >= 2
+  end
+  
   def nature
     @nature = GameData::Nature.get(0).id # ALWAYS RETURN NEUTRAL
     return GameData::Nature.try_get(@nature)
@@ -242,7 +246,7 @@ class PokeBattle_Battle
     end
 	# Increase Exp gain based on battling streak
 	pkmn.battlingStreak = 0 if pkmn.battlingStreak.nil?
-	if pkmn.battlingStreak >= 2
+	if pkmn.onHotStreak?
 		pbDisplayPaused(_INTL("{1} benefits from its Hot Streak!",pkmn.name))
 		exp = (exp * 1.3).floor
 	end
