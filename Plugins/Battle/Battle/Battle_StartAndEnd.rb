@@ -236,7 +236,6 @@ class PokeBattle_Battle
       # End of round phase
       PBDebug.logonerr { pbEndOfRoundPhase }
       break if @decision>0
-      @turnCount += 1
 	  @commandPhasesThisRound = 0
 	  
 	  # Have bosses use empowered moves if appropriate
@@ -250,6 +249,7 @@ class PokeBattle_Battle
 			next unless move.isEmpowered?
 			next if move.pp < 1
 			pbDisplayPaused(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
+			b.lastRoundMoved = 0
 			b.pbUseMove([:UseMove,index,move,-1,0])
 			usedEmpoweredMove = true
 		end
@@ -268,6 +268,8 @@ class PokeBattle_Battle
 			@scene.pbRefresh
 		end
 	  end
+	  
+	  @turnCount += 1
     end
     pbEndOfBattle
   end
