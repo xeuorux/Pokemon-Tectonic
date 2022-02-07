@@ -2717,8 +2717,8 @@ InternalName = FARFETCHD
 Type1 = NORMAL
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 52,90,55,60,58,62
-# Total = 377
+BaseStats = 77,95,77,64,60,77
+# Total = 450
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 132
@@ -31108,8 +31108,8 @@ Name = G. Farfetch'd
 InternalName = GFARFETCHD
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 52,95,55,65,58,62
-# Total = 387
+BaseStats = 77,95,77,64,60,77
+# Total = 450
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 132
