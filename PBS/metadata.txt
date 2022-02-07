@@ -500,7 +500,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [122]
-# Makya Sewers
+# Prizca Sewers
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -675,7 +675,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [166]
-# Aegislash Insurance
+# Aegis Insurance
 Outdoor = false
 ShowArea = true
 Bicycle = false
@@ -725,7 +725,7 @@ Bicycle = false
 [174]
 # Worn Shed
 Outdoor = false
-ShowArea = false
+ShowArea = true
 Bicycle = false
 #-------------------------------
 [175]
