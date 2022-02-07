@@ -3440,7 +3440,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = MAROWAK,Level,36,AMAROWAK,Item,FIRESTONE
+Evolutions = MAROWAK,Level,36,AMAROWAK,Item,ALOLANWREATH
 #-------------------------------
 [105]
 Name = Marowak
@@ -14491,7 +14491,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = MRMIME,Level,27,GMRMIME,Item,ICESTONE
+Evolutions = MRMIME,Level,27,GMRMIME,Item,GALARICAWREATH
 Incense = ODDINCENSE
 #-------------------------------
 [440]
