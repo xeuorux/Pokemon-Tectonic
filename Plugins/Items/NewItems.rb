@@ -29,6 +29,10 @@ ItemHandlers::UseFromBag.add(:ABRAPORTER,proc { |item|
     next false
   end
 =end
+  if $game_map.name[/"Gym"/]
+    pbMessage(_INTL("You can't teleport from Gyms."))
+    next 0
+  end
   healing = $PokemonGlobal.healingSpot
   healing = GameData::Metadata.get.home if !healing   # Home
   if !healing
@@ -49,6 +53,10 @@ ItemHandlers::ConfirmUseInField.add(:ABRAPORTER,proc { |item|
     next false
   end
 =end
+  if $game_map.name.include?("Gym")
+    pbMessage(_INTL("You can't teleport from Gyms."))
+    next false
+  end
   healing = $PokemonGlobal.healingSpot
   healing = GameData::Metadata.get.home if !healing   # Home
   if !healing

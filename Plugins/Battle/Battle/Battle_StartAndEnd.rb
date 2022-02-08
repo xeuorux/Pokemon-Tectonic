@@ -37,19 +37,16 @@ class PokeBattle_Battle
 	end
 	# Update each of the player's pokemon's battling streak
 	if trainerBattle? || bossBattle?
-		eachSameSideBattler { |b| 
-			next unless b.pbOwnedByPlayer?
-			next unless @usedInBattle[b.idxOwnSide][b.index/2]
-			p = b.pokemon
-			p.battlingStreak = 0 if p.battlingStreak.nil?
-			if p.fainted?
-				pbMessage("#{p.name}'s Hot Streak is now over.") if p.battlingStreak == 2
-				p.battlingStreak = 0
-			else
-				p.battlingStreak += 1
-				pbMessage("#{p.name} is on a Hot Streak!") if p.battlingStreak == 2
+		pbParty(0).each_with_index do |pkmn,i|
+			pkmn.battlingStreak = 0 if pkmn.battlingStreak.nil?
+			if pkmn.fainted? || [2,3].include?(@decision)
+				pbMessage("#{pkmn.name}'s Hot Streak is now over.") if pkmn.onHotStreak?
+				pkmn.battlingStreak = 0
+			elsif @usedInBattle[0][i]
+				pkmn.battlingStreak += 1
+				pbMessage("#{pkmn.name} is on a Hot Streak!") if pkmn.onHotStreak?
 			end
-		}
+		end
 	end
     return @decision
   end
@@ -236,7 +233,6 @@ class PokeBattle_Battle
       # End of round phase
       PBDebug.logonerr { pbEndOfRoundPhase }
       break if @decision>0
-      @turnCount += 1
 	  @commandPhasesThisRound = 0
 	  
 	  # Have bosses use empowered moves if appropriate
@@ -250,6 +246,7 @@ class PokeBattle_Battle
 			next unless move.isEmpowered?
 			next if move.pp < 1
 			pbDisplayPaused(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
+			b.lastRoundMoved = 0
 			b.pbUseMove([:UseMove,index,move,-1,0])
 			usedEmpoweredMove = true
 		end
@@ -268,6 +265,8 @@ class PokeBattle_Battle
 			@scene.pbRefresh
 		end
 	  end
+	  
+	  @turnCount += 1
     end
     pbEndOfBattle
   end

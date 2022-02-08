@@ -346,7 +346,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
     totalDamage = 0
     targets.each { |b| totalDamage += b.damageState.totalHPLost }
     next if totalDamage<=0
-	amt = (totalDamage/8.0).round
+	amt = (totalDamage/6.0).round
 	amt = 1 if amt<1
     user.pbRecoverHP(amt)
     battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",
