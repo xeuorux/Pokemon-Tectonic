@@ -5306,7 +5306,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = FURRET,Level,18
+Evolutions = FURRET,Level,20
 #-------------------------------
 [162]
 Name = Furret
@@ -31770,7 +31770,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = FURRET,Level,18
+Evolutions = MFURRET,Level,20
 #-------------------------------
 [2502]
 Name = M. Furret
