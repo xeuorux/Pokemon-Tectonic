@@ -1,9 +1,10 @@
 CHASM_CREDITs = <<_END_
 
-Developers
+Major Contributors
 Zeu<s>Agentbla
 Divock<s>Brickbat
-Wakarimasensei<s>
+Wakarimasensei<s>ali760
+Drawingbox<s>Zufaix
 
 Other Contributors
 Arenastellez<s>IgnitedXSoul
