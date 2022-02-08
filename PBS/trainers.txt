@@ -1104,7 +1104,7 @@ Pokemon = BISHARP,40
 	AbilityIndex = 0
 Pokemon = BEARTIC,40
 	AbilityIndex = 1
-Pokemon = EXCADRILL,40
+Pokemon = AROMATISSE,40
 	AbilityIndex = 1
 #-------------------------------
 [BOARDER,Alex]
@@ -1126,7 +1126,7 @@ Pokemon = ARAQUANID,40
 Pokemon = CINCCINO,40
 	AbilityIndex = 1
 	Item = LEFTOVERS
-Pokemon = AROMATISSE,40
+Pokemon = EXCADRILL,40
 	AbilityIndex = 1
 Pokemon = STONJOURNER,40
 ##################################
