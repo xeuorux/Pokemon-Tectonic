@@ -154,7 +154,7 @@ BattleHandlers::DamageCalcUserAbility.add(:BROODING,
   proc { |ability,user,target,move,mults,baseDmg,type|
 	dragonCount = 0
 	user.battle.eachInTeamFromBattlerIndex(user.index) do |pkmn,i|
-		dragonCount += 1 if pkmn.pbHasType?(:DRAGON)
+		dragonCount += 1 if pkmn.hasType?(:DRAGON)
 	end
 	mults[:attack_multiplier] *= (1.0 + dragonCount * 0.05) 
   }
