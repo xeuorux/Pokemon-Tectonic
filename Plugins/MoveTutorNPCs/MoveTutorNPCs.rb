@@ -39,8 +39,8 @@ def mentorCoordinator()
 			if $game_variables[1] < 0
 				pbMessage(_INTL("If your Pokémon need to mentor each other, come to me."))
 				break
-			elsif !pbGetPokemon(1).can_relearn_move?
-				pbMessage(_INTL("Sorry, it doesn't appear that \v[3] can have any moves mentored to it at the moment.."))
+			elsif !pbGetPokemon(1).can_mentor_move?
+				pbMessage(_INTL("Sorry, it doesn't appear that #{1} can have any moves mentored to it at the moment..",p.name))
 			else
 				pbMentorMoveScreen(pbGetPokemon(1))
 			end
