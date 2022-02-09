@@ -15621,7 +15621,7 @@ InternalName = PORYGONZ
 Type1 = NORMAL
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,80,70,90,120,90
+BaseStats = 85,80,70,95,110,90
 # Total = 530
 GenderRate = Genderless
 GrowthRate = Medium
