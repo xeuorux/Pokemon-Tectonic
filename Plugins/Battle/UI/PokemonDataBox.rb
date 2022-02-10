@@ -324,8 +324,8 @@ class PokemonDataBox < SpriteWrapper
   def y=(value)
     super
     @hpBar.y     = value+40
-	@hpBar2.y     = value+60
-	@hpBar3.y     = value+80
+	@hpBar2.y     = value+52
+	@hpBar3.y     = value+64
     @expBar.y    = value+74
     @hpNumbers.y = value+52
     @type1Icon.y = value-30
