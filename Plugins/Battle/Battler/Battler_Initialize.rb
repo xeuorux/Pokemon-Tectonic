@@ -156,8 +156,8 @@ class PokeBattle_Battler
 		  @effects[PBEffects::JawLock]           = false
 		  @effects[PBEffects::JawLockUser]       = -1
 		  @effects[PBEffects::NoRetreat]         = false
-		  @effects[PBEffects::Charm]         = 0
-		  @effects[PBEffects::CharmChance]   = 0
+		  @effects[PBEffects::Charm]         	 = 0
+		  @effects[PBEffects::CharmChance]   	 = 0
 		end
 		@fainted               = (@hp==0)
 		@initialHP             = 0
@@ -329,5 +329,6 @@ class PokeBattle_Battler
 		@effects[PBEffects::LuckyStar]       	 = false
 		@effects[PBEffects::Inured]       	 	 = false
 		@effects[PBEffects::Gargantuan]			 = 0
+		@effects[PBEffects::NerveBreaj]   		 = false
     end
 end
