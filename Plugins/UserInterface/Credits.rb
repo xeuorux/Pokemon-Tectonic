@@ -5,6 +5,7 @@ Zeu<s>Agentbla
 Divock<s>Brickbat
 Wakarimasensei<s>ali760
 Drawingbox<s>Zufaix
+persephone
 
 Other Contributors
 Arenastellez<s>IgnitedXSoul
