@@ -1347,7 +1347,7 @@ Pokemon = GLALIE,50
 Pokemon = DHELMISE,50
 Pokemon = CRYOGONAL,50
 Pokemon = GIRAFARIG,50
-Pokemon = MUNNA,50
+Pokemon = MUSHARNA,50
 Pokemon = CHIMECHO,50
 #-------------------------------
 [DEVSUPERNERD,Agentbla]
