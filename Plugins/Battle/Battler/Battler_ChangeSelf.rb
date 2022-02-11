@@ -10,6 +10,7 @@ class PokeBattle_Battler
 		end
 		oldHP = @hp
 		self.hp += amt
+		self.hp = 0 if self.hp < 0
 		PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP}=>#{@hp})") if amt>0
 		raise _INTL("HP greater than total HP") if @hp>@totalhp
 		@battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt>0
