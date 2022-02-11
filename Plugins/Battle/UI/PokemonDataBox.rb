@@ -317,9 +317,9 @@ class PokemonDataBox < SpriteWrapper
 	@hpBar3.x    = value+@spriteBaseX+102
     @expBar.x    = value+@spriteBaseX+2
     @hpNumbers.x = value+@spriteBaseX+80
-    @type1Icon.x = value+@spriteBaseX+2
-    @type2Icon.x = value+@spriteBaseX+2+48
-    @type3Icon.x = value+@spriteBaseX+2+48+48
+    @type1Icon.x = value+@spriteBaseX+4
+    @type2Icon.x = value+@spriteBaseX+4+48
+    @type3Icon.x = value+@spriteBaseX+4+48+48
   end
 
   def y=(value)
@@ -329,9 +329,9 @@ class PokemonDataBox < SpriteWrapper
 	@hpBar3.y     = value+64
     @expBar.y    = value+74
     @hpNumbers.y = value+52
-	iconDepth = 62
+	iconDepth = 60
 	if @boss
-		iconDepth = @legendary ? 102 : 82
+		iconDepth = @legendary ? 100 : 80
 	end
     @type1Icon.y = value+iconDepth
     @type2Icon.y = value+iconDepth
