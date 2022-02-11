@@ -5,7 +5,7 @@ class PokemonDataBox < SpriteWrapper
 	# Maximum time in seconds to make a change to the HP bar.
 	HP_BAR_CHANGE_TIME = 0.5
 	
-	TYPE_ICON_HEIGHT = 28
+	TYPE_ICON_HEIGHT = 18
 	
 	def initialize(battler,sideSize,viewport=nil)
 		super(viewport)
@@ -23,6 +23,7 @@ class PokemonDataBox < SpriteWrapper
 		@expFlash     = 0
 		@showTypes    = false
 		@boss = @battler.boss && sideSize == 1
+		@legendary = isLegendary(@battler.species)
 		initializeDataBoxGraphic(sideSize)
 		initializeOtherGraphics(viewport)
 		refresh
@@ -36,7 +37,7 @@ class PokemonDataBox < SpriteWrapper
 						"Graphics/Pictures/Battle/databox_normal_foe"][@battler.index%2]
 		  if @boss
 			bgFilename += "_boss" 
-			bgFilename += "_legend" if isLegendary(@battler.species)
+			bgFilename += "_legend" if @legendary
 		  end
 		  if onPlayerSide
 			@showHP  = true
@@ -249,7 +250,7 @@ class PokemonDataBox < SpriteWrapper
     @numbersBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/icon_numbers"))
     @hpBarBitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_hp"))
     @expBarBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_exp"))
-	@typeBitmap    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+	@typeBitmap    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/icon_types"))
     # Create sprite to draw HP numbers on
     @hpNumbers = BitmapSprite.new(124,16,viewport)
     pbSetSmallFont(@hpNumbers.bitmap)
@@ -314,11 +315,11 @@ class PokemonDataBox < SpriteWrapper
     @hpBar.x     = value+@spriteBaseX+102
 	@hpBar2.x    = value+@spriteBaseX+102
 	@hpBar3.x    = value+@spriteBaseX+102
-    @expBar.x    = value+@spriteBaseX+6
+    @expBar.x    = value+@spriteBaseX+2
     @hpNumbers.x = value+@spriteBaseX+80
-    @type1Icon.x = value+@spriteBaseX+10
-    @type2Icon.x = value+@spriteBaseX+80
-    @type3Icon.x = value+@spriteBaseX+150
+    @type1Icon.x = value+@spriteBaseX+2
+    @type2Icon.x = value+@spriteBaseX+2+48
+    @type3Icon.x = value+@spriteBaseX+2+48+48
   end
 
   def y=(value)
@@ -328,9 +329,13 @@ class PokemonDataBox < SpriteWrapper
 	@hpBar3.y     = value+64
     @expBar.y    = value+74
     @hpNumbers.y = value+52
-    @type1Icon.y = value-30
-    @type2Icon.y = value-30
-    @type3Icon.y = value-30
+	iconDepth = 62
+	if @boss
+		iconDepth = @legendary ? 102 : 82
+	end
+    @type1Icon.y = value+iconDepth
+    @type2Icon.y = value+iconDepth
+    @type3Icon.y = value+iconDepth
   end
 
   def z=(value)
