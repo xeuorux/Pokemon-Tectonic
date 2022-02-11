@@ -329,6 +329,6 @@ class PokeBattle_Battler
 		@effects[PBEffects::LuckyStar]       	 = false
 		@effects[PBEffects::Inured]       	 	 = false
 		@effects[PBEffects::Gargantuan]			 = 0
-		@effects[PBEffects::NerveBreaj]   		 = false
+		@effects[PBEffects::NerveBreak]   		 = false
     end
 end
