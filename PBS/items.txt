@@ -816,7 +816,7 @@
 #------------------------------- NEW ITEMS
 792,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,0,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,6,
 793,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,A peculiar stone that makes certain species of Pokémon evolve.,1,0,7,
-794,ALOLANWREATH,Alolan Wreath,Alolan Wreathes,1,1500,A beautiful floral wreath from Alolan that makes certain species of Pokémon evolve.,1,0,7,
+794,ALOLANWREATH,Alolan Wreath,Alolan Wreathes,1,1500,A beautiful floral wreath from Alola that makes certain species of Pokémon evolve.,1,0,7,
 795,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,6,
 796,ABRAPORTER,Abraporter,Abraporters,8,0,"A teleporter which brings you to your last safe spot using the power of Abras.",2,0,6,
 797,REMATERIALIZER,Rematerializer,Rematerializers,8,0,"A 3D printer which automatically copies consumed held items after battles.",0,0,6
@@ -828,16 +828,16 @@
 803,EXPEZDISPENSER,EXP-EZ Dispenser,EXP-EZ Dispensers,8,0,"A mysterious machine that is able to create candies from experience.",2,0,6
 804,AIDKIT,Aid Kit,Aid Kits,8,0,"A first-aid pack which heals your whole team a limited number of times. Restocked at PokeCenters and after resting.",2,0,6
 805,KITEXPANSION,Kit Expansion,Kit Expansion,1,0,"A pack which can be attached to your Aid Kit to increase its number of use charges.",2,0,0
-806,MEDICALUPGRADE,Medical Upgrade,Medical Upgrade,1,0,"A suite of medicines which can be added to your Aid Kit to increase its healing.",2,0,0
+806,MEDICALUPGRADE,Medical Upgrade,Medical Upgrades,1,0,"A suite of medicines which can be added to your Aid Kit to increase its healing.",2,0,0
 807,CLIMBINGGEAR,Climbing Gear,Climbing Gears,8,0,"A set of climbing gear, allowing you to climb on white rocks.",0,0,6,
 808,STRIKEVEST,Strike Vest,Strike Vests,1,1000,"An item to be held by a Pokémon. This offensive vest raises Defense but prevents the use of status moves.",0,0,0,
-809,GRASSTOKEN,Grass Token,Grass Tokens,1,5000,"A token which can be exchanged, with a fee, for a Grass-type at the Starter Store.",0,0,0,
-810,WATERTOKEN,Water Token,Water Tokens,1,5000,"A token which can be exchanged, with a fee, for a Water-type at the Starter Store.",0,0,0,
-811,FIRETOKEN,Fire Token,Fire Tokens,1,5000,"A token which can be exchanged, with a fee, for a Fire-type at the Starter Store.",0,0,0,
+809,GRASSTOKEN,Grass Token,Grass Tokens,1,5000,"A token which can be exchanged for a Grass-type at the Starter Store.",0,0,0,
+810,WATERTOKEN,Water Token,Water Tokens,1,5000,"A token which can be exchanged for a Water-type at the Starter Store.",0,0,0,
+811,FIRETOKEN,Fire Token,Fire Tokens,1,5000,"A token which can be exchanged for a Fire-type at the Starter Store.",0,0,0,
 812,UNIVERSALFORMALIZER,Universal Formalizer,Universal Formalizers,8,0,"Use on a Pokémon to switch it into another one of its forms.",5,0,6,
 813,WEIRDPACKAGE,Weird Package,Weird Packages,8,0,"A suspicious package. Probably best not to look inside.",0,0,0,
 814,AEGISIDCARD,Aegis ID Card,Aegis ID Cards,8,0,"A forged ID card. It will let you pretend you work at Aegis Insurance.",0,0,6,
-815,INCRIMINATINGEVIDENCE,Incriminating Evidence,Incriminating Evidence,8,0,"A device containing evidence against Aegislash Insurance.",0,0,6,
+815,INCRIMINATINGEVIDENCE,Incriminating Evidence,Incriminating Evidence,8,0,"A device containing evidence against Aegis Insurance.",0,0,6,
 #------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
