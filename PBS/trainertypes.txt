@@ -182,20 +182,20 @@
 179,WAITER3,Waiter,32,,,AROMALADY,Male,,
 180,ARTIST3,Artist,32,,,ARTIST,Female,,
 298,TRAINER_Zain,Your Brother,100,,,,Male,,
-299,ARCHFRIEND_Lainie,Archfriend,100,Battle champion iris,Battle victory champion,,Female,,[LAINIE]
-300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,[YEZERA]
-301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,[LAMBERT]
-302,LEADER_Lambert_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,[LAMBERT]
-303,LEADER_Eko,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,[EKO]
-304,LEADER_Eko_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,[EKO]
-305,LEADER_Helena,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Female,,[HELENA]
-306,LEADER_Helena_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,[HELENA]
-307,LEADER_Rafael,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,[RAFAEL]
-308,LEADER_Rafael_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,[RAFAEL]
-309,LEADER_Bence,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,[BENCE]
-310,LEADER_Bence_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,[BENCE]
-311,LEADER_Zoe,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,[ZOE]
-312,LEADER_Zoe_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,[ZOE]
+299,ARCHFRIEND_Lainie,Archfriend,100,Battle champion iris,Battle victory champion,,Female,,
+300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,
+301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,
+302,LEADER_Lambert_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,
+303,LEADER_Eko,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,
+304,LEADER_Eko_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,
+305,LEADER_Helena,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Female,,
+306,LEADER_Helena_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,
+307,LEADER_Rafael,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,
+308,LEADER_Rafael_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,
+309,LEADER_Bence,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,
+310,LEADER_Bence_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,
+311,LEADER_Zoe,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,
+312,LEADER_Zoe_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,
 400,DEVJUGGLER,Developer,80,,,,Male,,
 401,DEVCOOLTRAINER_M4,Developer,80,,,,Male,,
 402,DEVPSYCHIC_M,Developer,80,,,,Male,,
