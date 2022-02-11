@@ -120,14 +120,13 @@ class PokeBattle_Battle
 			case cmd
 			when 0    # Fight
 			  break if pbFightMenu(idxBattler)
-			when 1    # Bag
-			  if pbItemMenu(idxBattler,actioned.length==1)
-				commandsEnd = true if pbItemUsesAllActions?(@choices[idxBattler][1])
-				break
-			  end
-			when 2    # Pokémon
+			when 1    # Dex
+				pbGoAfterInfo(@battlers[idxBattler])
+			when 2    # Info
+			  pbBattleInfoMenu
+			when 3    # Pokémon
 			  break if pbPartyMenu(idxBattler)
-			when 3    # Run
+			when 4    # Run
 			  # NOTE: "Run" is only an available option for the first battler the
 			  #       player chooses an action for in a round. Attempting to run
 			  #       from battle prevents you from choosing any other actions in
@@ -136,12 +135,19 @@ class PokeBattle_Battle
 				commandsEnd = true
 				break
 			  end
-			when 4    # Call
-			  break if pbCallMenu(idxBattler)
-			when 5	  # Info
-				pbGoAfterInfo(@battlers[idxBattler])
-			when 7 # Battle info
-				pbBattleInfoMenu
+			when 5	  # Ball
+				if trainerBattle?
+					pbDisplay(_INTL("You can't catch trainers' Pokemon!"))
+					next
+				end
+				if bossBattle?
+					pbDisplay(_INTL("You can't catch Avatars!"))
+					next
+				end
+				if pbItemMenu(idxBattler,actioned.length==1)
+					commandsEnd = true if pbItemUsesAllActions?(@choices[idxBattler][1])
+					break
+			    end
 			when -2   # Debug
 			  pbDebugMenu
 			  next

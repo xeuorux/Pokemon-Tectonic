@@ -110,11 +110,13 @@ class PokeBattle_Scene
   def pbCommandMenu(idxBattler,firstAction)
     shadowTrainer = (GameData::Type.exists?(:SHADOW) && @battle.trainerBattle?)
     cmds = [
-       _INTL("What will\n{1} do?",@battle.battlers[idxBattler].name),
+       _INTL("",@battle.battlers[idxBattler].name),
        _INTL("Fight"),
        _INTL("Dex"),
+	   _INTL("Info"),
        _INTL("Pokémon"),
-       (shadowTrainer) ? _INTL("Call") : (firstAction) ? _INTL("Run") : _INTL("Cancel")
+       (shadowTrainer) ? _INTL("Call") : (firstAction) ? _INTL("Run") : _INTL("Cancel"),
+	   _INTL("Ball")
     ]
     wildBattle = !@battle.trainerBattle? && !@battle.bossBattle?
     mode = 0
@@ -130,10 +132,7 @@ class PokeBattle_Scene
       mode = 1
     end
     ret = pbCommandMenuEx(idxBattler,cmds,mode,wildBattle)
-    ret = 4 if ret==3 && shadowTrainer   # Convert "Run" to "Call"
-    ret = -1 if ret==3 && !firstAction   # Convert "Run" to "Cancel"
-    ret = 5 if ret==1 # Convert "Bag" to "Info"
-    ret = 1 if ret==6
+    ret = -1 if ret==4 && !firstAction   # Convert "Run" to "Cancel"
     return ret
   end
   
@@ -157,13 +156,13 @@ class PokeBattle_Scene
       pbUpdate(cw)
       # Update selected command
       if Input.trigger?(Input::LEFT)
-        cw.index -= 1 if (cw.index&1)==1
+        cw.index -= 1 if cw.index > 0
       elsif Input.trigger?(Input::RIGHT)
-        cw.index += 1 if (cw.index&1)==0
+        cw.index += 1 if cw.index < 5
       elsif Input.trigger?(Input::UP)
-        cw.index -= 2 if (cw.index&2)==2
+        cw.index -= 3 if cw.index >= 3
       elsif Input.trigger?(Input::DOWN)
-        cw.index += 2 if (cw.index&2)==0
+        cw.index += 3 if cw.index < 3
       end
       pbPlayCursorSE if cw.index!=oldIndex
       # Actions
