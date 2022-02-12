@@ -32,7 +32,7 @@ class CommandMenuDisplay < BattleMenuBase
       @buttons = Array.new(6) do |i|   # 4 command options, therefore 4 buttons
         button = SpriteWrapper.new(viewport)
         button.bitmap = @buttonBitmap.bitmap
-        button.x      = self.x+Graphics.width-488
+        button.x      = self.x+Graphics.width-490
         button.x      += (i%3) * (@buttonBitmap.width/2+4)
         button.y      = self.y+6
         button.y      += (((i/3)==0) ? 0 : BUTTON_HEIGHT-4)

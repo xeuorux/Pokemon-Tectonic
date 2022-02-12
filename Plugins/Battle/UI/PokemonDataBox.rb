@@ -6,6 +6,8 @@ class PokemonDataBox < SpriteWrapper
 	HP_BAR_CHANGE_TIME = 0.5
 	
 	TYPE_ICON_HEIGHT = 18
+	NAME_BASE_COLOR = Color.new(255,255,255)
+	NAME_SHADOW_COLOR       = Color.new(136,136,136)
 	
 	def initialize(battler,sideSize,viewport=nil)
 		super(viewport)
@@ -247,7 +249,7 @@ class PokemonDataBox < SpriteWrapper
 	  
   def initializeOtherGraphics(viewport)
     # Create other bitmaps
-    @numbersBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/icon_numbers"))
+    @numbersBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/icon_numbers_white"))
     @hpBarBitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_hp"))
     @expBarBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_exp"))
 	@typeBitmap    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/icon_types"))
