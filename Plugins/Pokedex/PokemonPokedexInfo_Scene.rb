@@ -394,13 +394,33 @@ class PokemonPokedexInfo_Scene
           drawTextEx(overlay,230,130+32*index,450,1,otherStatNames[index],base,shadow)
           drawTextEx(overlay,378,130+32*index,450,1,stat.to_s,base,shadow)
         end
-		
+=begin
 		map_id = checkForZooMap(fSpecies.species.to_s)
 		placementMap = "None"
 		placementMap = (pbGetMessage(MessageTypes::MapNames,map_id) rescue nil) if map_id != -1
 		placementMap.gsub!("Zoo","")
 		drawTextEx(overlay,230,274,450,1,"Zoo Section",base,shadow)
 		drawTextEx(overlay,230,306,450,1,placementMap,base,shadow)
+=end
+		items = []
+		items.push(fSpecies.wild_item_common) if fSpecies.wild_item_common
+		items.push(fSpecies.wild_item_uncommon) if fSpecies.wild_item_uncommon
+		items.push(fSpecies.wild_item_rare) if fSpecies.wild_item_rare
+		items.uniq!
+		items.compact!
+		itemsString = ""
+		if items.length > 0
+			items.each_with_index do |item,index|
+				name = GameData::Item.get(item).real_name
+				itemsString += name
+				itemsString += ", " if index < items.length - 1
+			end
+		else
+			itemsString = "None"
+		end
+		drawTextEx(overlay,230,274,450,1,"Wild Items",base,shadow)
+		drawTextEx(overlay,230,306,450,1,itemsString,base,shadow)
+
       end
     end
   end

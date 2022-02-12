@@ -1060,10 +1060,12 @@ class PokemonPokedex_Scene
 		miscSearches = []
 		cmdMapFound = -1
 		cmdZooSection = -1
+		cmdWildItem = -1
 		cmdIsQuarantined = -1
 		cmdIsLegendary = -1
 		miscSearches[cmdMapFound = miscSearches.length] = _INTL("Map Found")
-		miscSearches[cmdZooSection = miscSearches.length] = _INTL("Zoo Section")
+		#miscSearches[cmdZooSection = miscSearches.length] = _INTL("Zoo Section")
+		miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
 		miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined") if $DEBUG
 		miscSearches[cmdIsLegendary = miscSearches.length] = _INTL("Legendary")
 		miscSearches.push(_INTL("Cancel"))
@@ -1076,7 +1078,38 @@ class PokemonPokedex_Scene
 			return searchByQuarantined()
 		elsif cmdIsLegendary > -1 && searchSelection == cmdIsLegendary
 			return searchByLegendary()
+		elsif cmdWildItem > -1 && searchSelection == cmdWildItem
+			return searchByWildItem()
 		end
+	end
+	
+	def searchByWildItem
+		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		
+		wildItemNameTextInput = pbEnterText("Search item name...", 0, 20)
+		return if wildItemNameTextInput.blank?
+		reversed = wildItemNameTextInput[0] == '-'
+		wildItemNameTextInput = wildItemNameTextInput[1..-1] if reversed
+		
+		dexlist = dexlist.find_all { |dex_item|
+				next false if isLegendary(dex_item[0]) && !$Trainer.seen?(dex_item[0]) && !$DEBUG
+				
+				fSpecies = GameData::Species.get(dex_item[0])
+				items = []
+				items.push(fSpecies.wild_item_common) if fSpecies.wild_item_common
+				items.push(fSpecies.wild_item_uncommon) if fSpecies.wild_item_uncommon
+				items.push(fSpecies.wild_item_rare) if fSpecies.wild_item_rare
+				items.uniq!
+				items.compact!
+				
+				itemNames = []
+				items.each_with_index do |item,index|
+					itemNames.push(GameData::Item.get(item).real_name.downcase)
+				end
+				
+				next itemNames.include?(wildItemNameTextInput.downcase) ^ reversed # Boolean XOR
+		}
+		return dexlist
 	end
 	
 	def searchByZooSection
@@ -1102,6 +1135,7 @@ class PokemonPokedex_Scene
 		}
 		return dexlist
 	end
+	
 	
 	def searchByMapFound
 		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
