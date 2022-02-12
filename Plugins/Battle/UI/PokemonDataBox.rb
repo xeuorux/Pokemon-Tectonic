@@ -329,7 +329,7 @@ class PokemonDataBox < SpriteWrapper
 	@hpBar3.y     = value+64
     @expBar.y    = value+74
     @hpNumbers.y = value+52
-	iconDepth = 60
+	iconDepth = 58
 	if @boss
 		iconDepth = @legendary ? 100 : 80
 	end
