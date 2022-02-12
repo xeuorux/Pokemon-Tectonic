@@ -1,207 +1,207 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
-0,POKEMONTRAINER_Red,Pokémon Trainer,60,,,,Male,,
-1,POKEMONTRAINER_Leaf,Pokémon Trainer,60,,,,Female,,
-2,POKEMONTRAINER_RIVAL,Pokémon Trainer,60,,,,Male,,
-3,POKEMONTRAINER_RIVALM,Pokémon Trainer,60,,,,Female,,
-4,POKEMONTRAINER_RIVALF,Pokémon Trainer,60,,,,Male,,
-5,YOUNGSTER,Youngster,16,,,YOUNGSTER,Male,,
-6,YOUNGSTER2,Youngster,16,,,YOUNGSTER,Male,,
-7,YOUNGSTER3,Youngster,16,,,YOUNGSTER,Male,,
-8,LASS,Lass,16,,,LASS,Female,,
-9,LASS2,Lass,16,,,LASS,Female,,
-10,LASS3,Lass,16,,,LASS,Female,,
-11,SCHOOLKID_M,School Kid,20,,,YOUNGSTER2,Male,,
-12,SCHOOLKID_M2,School Kid,20,,,YOUNGSTER2,Male,,
-13,SCHOOLKID_M3,School Kid,20,,,YOUNGSTER2,Male,,
-14,SCHOOLKID_F,School Kid,20,,,LASS2,Female,,
-15,SCHOOLKID_F2,School Kid,20,,,LASS2,Female,,
-16,BUGCATCHER,Bug Catcher,16,,,YOUNGSTER,Male,,
-17,BUGCATCHER2,Bug Catcher,16,,,YOUNGSTER,Male,,
-18,CAMPER,Camper,16,,,YOUNGSTER,Male,,
-19,PICNICKER,Picnicker,16,,,LASS,Female,,
-20,NINJABOY,Ninja Boy,8,,,TWINS,Male,,
-21,POKEKID,Poké Kid,8,,,TWINS,Female,,
-22,PRESCHOOLER_M,Preschooler,20,,,TWINS2,Male,,
-23,PRESCHOOLER_F,Preschooler,20,,,TWINS2,Female,,
-24,TUBER_M,Tuber,4,,,TWINS,Male,,
-25,TUBER_F,Tuber,4,,,TWINS,Female,,
-26,SWIMMER_M,Swimmer,16,,,,Male,,
-27,SWIMMER_M2,Swimmer,16,,,,Male,,
-28,SWIMMER_M3,Swimmer,16,,,,Male,,
-29,SWIMMER_F,Swimmer,16,,,,Female,,
-30,SWIMMER_F2,Swimmer,16,,,,Female,,
-31,SWIMMER_F3,Swimmer,16,,,,Female,,
-32,FISHERMAN,Fisherman,32,,,SAILOR,Male,,
-33,FISHERMAN2,Fisherman,32,,,SAILOR,Male,,
-34,BLACKBELT,Black Belt,24,,,BLACKBELT,Male,,
-35,BLACKBELT2,Black Belt,24,,,BLACKBELT,Male,,
-36,BLACKBELT3,Black Belt,24,,,BLACKBELT,Male,,
-37,BATTLEGIRL,Battle Girl,16,,,BLACKBELT,Female,,
-38,BATTLEGIRL2,Battle Girl,16,,,BLACKBELT,Female,,
-39,JOGGER,Jogger,32,,,CYCLING2,Male,,
-40,CYCLIST_M,Cyclist,32,,,CYCLING,Male,,
-41,CYCLIST_M2,Cyclist,32,,,CYCLING,Male,,
-42,CYCLIST_F,Cyclist,32,,,CYCLING,Female,,
-43,CYCLIST_F2,Cyclist,32,,,CYCLING,Female,,
-44,HIKER,Hiker,32,,,BACKPACKER,Male,,
-45,HIKER2,Hiker,32,,,BACKPACKER,Male,,
-46,BACKPACKER_M,Backpacker,32,,,BACKPACKER,Male,,
-47,BACKPACKER_F,Backpacker,32,,,BACKPACKER,Female,,
-48,SCIENTIST_M,Scientist,32,,,SCIENTIST,Male,,
-49,SCIENTIST_M2,Scientist,32,,,SCIENTIST,Male,,
-50,SCIENTIST_M3,Scientist,32,,,SCIENTIST,Male,,
-51,SCIENTIST_F,Scientist,32,,,SCIENTIST,Male,,
-52,COLLECTOR,Collector,64,,,COLLECTOR,Male,,
-53,SUPERNERD,Super Nerd,24,,,COLLECTOR,Male,,
-54,PSYCHIC_M,Psychic,32,,,PSYCHIC,Male,,
-55,PSYCHIC_M2,Psychic,32,,,PSYCHIC,Male,,
-56,PSYCHIC_F,Psychic,32,,,PSYCHIC,Female,,
-57,PSYCHIC_F2,Psychic,32,,,PSYCHIC,Female,,
-58,SAGE,Sage,48,,,MONK,Male,,
-59,ELDER,Elder,120,,,MONK,Male,,
-60,MEDIUM,Medium,48,,,MONK,Female,,
-61,KIMONOGIRL,Kimono Girl,120,,,MONK,Female,,
-62,BEAUTY,Beauty,56,,,LASS,Female,,
-63,BEAUTY2,Beauty,56,,,LASS,Female,,
-64,BEAUTY3,Beauty,56,,,LASS,Female,,
-65,CAMERAMAN,Cameraman,32,,,,Male,,
-66,REPORTER,Reporter,40,,,,Female,,
-67,TEACHER,Teacher,48,,,,Female,,
-68,NURSERYAIDE,Nursery Aide,48,,,,Female,,
-69,RICHBOY,Rich Boy,160,,,YOUNGSTER2,Male,,
-70,RICHBOY2,Rich Boy,160,,,YOUNGSTER2,Male,,
-71,LADY,Lady,160,,,LASS2,Female,,
-72,LADY2,Lady,160,,,LASS2,Female,,
-73,PARASOLLADY,Parasol Lady,32,,,PARASOL,Female,,
-74,PARASOLLADY2,Parasol Lady,32,,,PARASOL,Female,,
-75,HOOPSTER,Hoopster,32,,,CYCLING2,Male,,
-76,LINEBACKER,Linebacker,32,,,CYCLING2,Male,,
-77,STRIKER,Striker,32,,,CYCLING2,Male,,
-78,INFIELDER,Infielder,32,,,CYCLING2,Male,,
-79,SMASHER,Smasher,32,,,CYCLING2,Female,,
-80,SKIER_M,Skier,32,,,BLACKBELT,Male,,
-81,BOARDER,Boarder,32,,,BLACKBELT,Male,,
-82,SKIER_F,Skier,32,,,BLACKBELT,Female,,
-83,SKIER_F2,Skier,32,,,BLACKBELT,Female,,
-84,GUITARIST,Guitarist,24,,,BLACKBELT,Male,,
-85,GUITARIST2,Guitarist,24,,,BLACKBELT,Male,,
-86,DANCER,Dancer,24,,,,Male,,
-87,IDOL,Idol,72,,,,Female,,
-88,CLOWN,Clown,24,,,,Male,,
-89,JUGGLER,Juggler,32,,,,Male,,
-90,HARLEQUIN,Harlequin,32,,,,Male,,
-91,FIREBREATHER,Firebreather,32,,,BLACKBELT,Male,,
-92,ARTIST,Artist,48,,,ARTIST,Male,,
-93,ARTIST2,Artist,48,,,ARTIST,Male,,
-94,BAKER,Baker,32,,,AROMALADY,Female,,
-95,WAITER,Waiter,32,,,AROMALADY,Male,,
-96,WAITER2,Waiter,32,,,AROMALADY,Male,,
-97,WAITRESS,Waitress,32,,,AROMALADY,Female,,
-98,WAITRESS2,Waitress,32,,,AROMALADY,Female,,
-99,MAID,Maid,40,,,,Female,,
-100,MAID2,Maid,40,,,,Female,,
-101,WORKER,Worker,40,,,,Male,,
-102,WORKER2,Worker,40,,,,Male,,
-103,WORKER3,Worker,40,,,,Male,,
-104,POLICEMAN,Policeman,40,,,,Male,,
-105,POLICEMAN2,Policeman,40,,,,Male,,
-106,BURGLAR,Burglar,16,,,COLLECTOR,Male,,
-107,GAMBLER,Gambler,120,,,GAMBLER,Male,,
-108,ROUGHNECK,Roughneck,24,,,ROUGHNECK,Male,,
-109,ROUGHNECK2,Roughneck,24,,,ROUGHNECK,Male,,
-110,BIKER,Biker,16,,,BLACKBELT,Male,,
-111,BIKER2,Biker,16,,,BLACKBELT,Male,,
-112,JANITOR,Janitor,24,,,,Male,,
-113,CLERK_M,Clerk,24,,,,Male,,
-114,CLERK_M2,Clerk,24,,,,Male,,
-115,CLERK_F,Clerk,24,,,,Female,,
-116,POKEMANIAC,Poké Maniac,64,,,COLLECTOR,Male,,
-117,DRAGONTAMER,Dragon Tamer,32,,,ACETRAINER,Male,,
-118,POKEMONBREEDER_M,Pokémon Breeder,16,,,,Male,,
-119,POKEMONBREEDER_M2,Pokémon Breeder,16,,,,Male,,
-120,POKEMONBREEDER_F,Pokémon Breeder,16,,,,Female,,
-121,POKEMONBREEDER_F2,Pokémon Breeder,16,,,,Female,,
-122,DEPOTAGENT,Depot Agent,32,,,,Male,,
-123,PILOT,Pilot,40,,,CYCLING,Male,,
-124,POKEMONRANGER_M,Pokémon Ranger,60,,,ACETRAINER,Male,,
-125,POKEMONRANGER_M2,Pokémon Ranger,60,,,ELITETRAINER,Male,,
-126,POKEMONRANGER_F,Pokémon Ranger,60,,,ACETRAINER,Female,,
-127,POKEMONRANGER_F2,Pokémon Ranger,60,,,ELITETRAINER,Female,,
-128,AROMALADY,Aroma Lady,32,,,AROMALADY,Female,,
-129,RUINMANIAC,Ruin Maniac,48,,,BACKPACKER,Male,,
-130,BIRDKEEPER_M,Bird Keeper,32,,,HIKER,Male,,
-131,BIRDKEEPER_F,Bird Keeper,32,,,,Female,,
-132,RANCHER,Rancher,40,,,,Male,,
-133,COWGIRL,Cowgirl,30,,,Female,Mixed,,
-134,POKEFAN_M,Poké Fan,64,,,POKEFAN,Male,,
-135,POKEFAN_M2,Poké Fan,64,,,POKEFAN,Male,,
-136,POKEFAN_F,Poké Fan,64,,,POKEFAN,Female,,
-137,POKEFAN_F2,Poké Fan,64,,,POKEFAN,Female,,
-138,DOCTOR,Doctor,60,,,,Male,,
-139,NURSE,Nurse,60,,,,Female,,
-140,SAILOR,Sailor,32,,,SAILOR,Male,,
-141,GENTLEMAN,Gentleman,200,,,GAMBLER,Male,,
-142,GENTLEMAN2,Gentleman,200,,,GAMBLER,Male,,
-143,GENTLEMAN3,Gentleman,200,,,GAMBLER,Male,,
-144,SOCIALITE,Socialite,200,,,GAMBLER,Female,,
-145,SOCIALITE2,Socialite,200,,,GAMBLER,Female,,
-146,VETERANM,Veteran,80,,,GAMBLER,Male,,
-147,VETERANM_2,Veteran,80,,,GAMBLER,Male,,
-148,VETERAN_F,Veteran,80,,,GAMBLER,Female,,
-149,COOLTRAINER_M,Cooltrainer,60,,,ELITETRAINER,Male,,
-150,COOLTRAINER_M2,Cooltrainer,60,,,ACETRAINER,Male,,
-151,COOLTRAINER_M3,Cooltrainer,60,,,ELITETRAINER,Male,,
-152,COOLTRAINER_M4,Cooltrainer,60,,,ACETRAINER,Male,,
-153,COOLTRAINER_F,Cooltrainer,60,,,ELITETRAINER,Female,,
-154,COOLTRAINER_F2,Cooltrainer,60,,,ELITETRAINER,Female,,
-155,COOLTRAINER_F3,Cooltrainer,60,,,ACETRAINER,Female,,
-156,COOLTRAINER_F4,Cooltrainer,60,,,ACETRAINER,Female,,
-157,CHAMPION_M,Champion,60,,,,Male,,
-158,CHAMPION_F,Champion,60,,,,Female,,
-159,BACKERS_M,Backers,128,,,,Mixed,,
-160,BACKERS_F,Backers,128,,,,Mixed,,
-161,BELLEANDPA,Belle & Pa,64,,,,Mixed,,
-162,DOUBLETEAM,Double Team,128,,,,Mixed,,
-163,DOUBLETEAM2,Double Team,128,,,,Mixed,,
-164,HOOLIGANS,Hooligans,128,,,,Mixed,,
-165,INTERVIEWERS,Interviewers,128,,,,Mixed,,
-166,SISANDBRO,Sis and Bro,64,,,,Mixed,,
-167,TWINS,Twins,32,,,TWINS2,Mixed,,
-168,TWINS2,Twins,32,,,TWINS,Mixed,,
-169,TWINS3,Twins,32,,,TWINS2,Mixed,,
-170,YOUNGCOUPLE,Young Couple,128,,,,Mixed,,
-171,YOUNGCOUPLE2,Young Couple,128,,,,Mixed,,
-172,GUITARIST3,Guitarist,24,,,BLACKBELT,Female,,
-173,IRISCOSPLAYER,Cosplayer,128,,,,Female,,
-174,TRAINER_Vincent,Pokémon Trainer,100,,,,Male,,
-175,TRAINER_Lucile,Pokémon Trainer,100,,,,Female,,
-176,CEO,CEO,100,,,,Female,,
-177,LADY3,Lady,160,,,LASS2,Female,,
-178,WAITRESS3,Waitress,32,,,AROMALADY,Female,,
-179,WAITER3,Waiter,32,,,AROMALADY,Male,,
-180,ARTIST3,Artist,32,,,ARTIST,Female,,
-298,TRAINER_Zain,Your Brother,100,,,,Male,,
-299,ARCHFRIEND_Lainie,Archfriend,100,Battle champion iris,Battle victory champion,,Female,,
-300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,
-301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,
-302,LEADER_Lambert_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,
-303,LEADER_Eko,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,
-304,LEADER_Eko_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,
-305,LEADER_Helena,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Female,,
-306,LEADER_Helena_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,
-307,LEADER_Rafael,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,
-308,LEADER_Rafael_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,
-309,LEADER_Bence,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,
-310,LEADER_Bence_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,
-311,LEADER_Zoe,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,
-312,LEADER_Zoe_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,
-400,DEVJUGGLER,Developer,80,,,,Male,,
-401,DEVCOOLTRAINER_M4,Developer,80,,,,Male,,
-402,DEVPSYCHIC_M,Developer,80,,,,Male,,
-403,DEVSUPERNERD,Developer,80,,,,Male,,
-404,DEVDRAGONTAMER2,Developer,80,,,,Male,,
-405,DEVGAMBLER,Developer,80,,,,Male,,
-406,DEVARTIST3,Developer,80,,,,Male,,
-407,DEVCOOLTRAINER_M3,Developer,80,,,,Male,,
-408,DEVPOKEMONRANGER_M,Developer,80,,,,Male,,
+0,POKEMONTRAINER_Red,Pokémon Trainer,60,,,,Male,,,[]
+1,POKEMONTRAINER_Leaf,Pokémon Trainer,60,,,,Female,,,[]
+2,POKEMONTRAINER_RIVAL,Pokémon Trainer,60,,,,Male,,,[]
+3,POKEMONTRAINER_RIVALM,Pokémon Trainer,60,,,,Female,,,[]
+4,POKEMONTRAINER_RIVALF,Pokémon Trainer,60,,,,Male,,,[]
+5,YOUNGSTER,Youngster,16,,,YOUNGSTER,Male,,,[]
+6,YOUNGSTER2,Youngster,16,,,YOUNGSTER,Male,,,[]
+7,YOUNGSTER3,Youngster,16,,,YOUNGSTER,Male,,,[]
+8,LASS,Lass,16,,,LASS,Female,,,[]
+9,LASS2,Lass,16,,,LASS,Female,,,[]
+10,LASS3,Lass,16,,,LASS,Female,,,[]
+11,SCHOOLKID_M,School Kid,20,,,YOUNGSTER2,Male,,,[]
+12,SCHOOLKID_M2,School Kid,20,,,YOUNGSTER2,Male,,,[]
+13,SCHOOLKID_M3,School Kid,20,,,YOUNGSTER2,Male,,,[]
+14,SCHOOLKID_F,School Kid,20,,,LASS2,Female,,,[]
+15,SCHOOLKID_F2,School Kid,20,,,LASS2,Female,,,[]
+16,BUGCATCHER,Bug Catcher,16,,,YOUNGSTER,Male,,,[]
+17,BUGCATCHER2,Bug Catcher,16,,,YOUNGSTER,Male,,,[]
+18,CAMPER,Camper,16,,,YOUNGSTER,Male,,,[]
+19,PICNICKER,Picnicker,16,,,LASS,Female,,,[]
+20,NINJABOY,Ninja Boy,8,,,TWINS,Male,,,[]
+21,POKEKID,Poké Kid,8,,,TWINS,Female,,,[]
+22,PRESCHOOLER_M,Preschooler,20,,,TWINS2,Male,,,[]
+23,PRESCHOOLER_F,Preschooler,20,,,TWINS2,Female,,,[]
+24,TUBER_M,Tuber,4,,,TWINS,Male,,,[]
+25,TUBER_F,Tuber,4,,,TWINS,Female,,,[]
+26,SWIMMER_M,Swimmer,16,,,,Male,,,[]
+27,SWIMMER_M2,Swimmer,16,,,,Male,,,[]
+28,SWIMMER_M3,Swimmer,16,,,,Male,,,[]
+29,SWIMMER_F,Swimmer,16,,,,Female,,,[]
+30,SWIMMER_F2,Swimmer,16,,,,Female,,,[]
+31,SWIMMER_F3,Swimmer,16,,,,Female,,,[]
+32,FISHERMAN,Fisherman,32,,,SAILOR,Male,,,[]
+33,FISHERMAN2,Fisherman,32,,,SAILOR,Male,,,[]
+34,BLACKBELT,Black Belt,24,,,BLACKBELT,Male,,,[]
+35,BLACKBELT2,Black Belt,24,,,BLACKBELT,Male,,,[]
+36,BLACKBELT3,Black Belt,24,,,BLACKBELT,Male,,,[]
+37,BATTLEGIRL,Battle Girl,16,,,BLACKBELT,Female,,,[]
+38,BATTLEGIRL2,Battle Girl,16,,,BLACKBELT,Female,,,[]
+39,JOGGER,Jogger,32,,,CYCLING2,Male,,,[]
+40,CYCLIST_M,Cyclist,32,,,CYCLING,Male,,,[]
+41,CYCLIST_M2,Cyclist,32,,,CYCLING,Male,,,[]
+42,CYCLIST_F,Cyclist,32,,,CYCLING,Female,,,[]
+43,CYCLIST_F2,Cyclist,32,,,CYCLING,Female,,,[]
+44,HIKER,Hiker,32,,,BACKPACKER,Male,,,[]
+45,HIKER2,Hiker,32,,,BACKPACKER,Male,,,[]
+46,BACKPACKER_M,Backpacker,32,,,BACKPACKER,Male,,,[]
+47,BACKPACKER_F,Backpacker,32,,,BACKPACKER,Female,,,[]
+48,SCIENTIST_M,Scientist,32,,,SCIENTIST,Male,,,[]
+49,SCIENTIST_M2,Scientist,32,,,SCIENTIST,Male,,,[]
+50,SCIENTIST_M3,Scientist,32,,,SCIENTIST,Male,,,[]
+51,SCIENTIST_F,Scientist,32,,,SCIENTIST,Male,,,[]
+52,COLLECTOR,Collector,64,,,COLLECTOR,Male,,,[]
+53,SUPERNERD,Super Nerd,24,,,COLLECTOR,Male,,,[]
+54,PSYCHIC_M,Psychic,32,,,PSYCHIC,Male,,,[]
+55,PSYCHIC_M2,Psychic,32,,,PSYCHIC,Male,,,[]
+56,PSYCHIC_F,Psychic,32,,,PSYCHIC,Female,,,[]
+57,PSYCHIC_F2,Psychic,32,,,PSYCHIC,Female,,,[]
+58,SAGE,Sage,48,,,MONK,Male,,,[]
+59,ELDER,Elder,120,,,MONK,Male,,,[]
+60,MEDIUM,Medium,48,,,MONK,Female,,,[]
+61,KIMONOGIRL,Kimono Girl,120,,,MONK,Female,,,[]
+62,BEAUTY,Beauty,56,,,LASS,Female,,,[]
+63,BEAUTY2,Beauty,56,,,LASS,Female,,,[]
+64,BEAUTY3,Beauty,56,,,LASS,Female,,,[]
+65,CAMERAMAN,Cameraman,32,,,,Male,,,[]
+66,REPORTER,Reporter,40,,,,Female,,,[]
+67,TEACHER,Teacher,48,,,,Female,,,[]
+68,NURSERYAIDE,Nursery Aide,48,,,,Female,,,[]
+69,RICHBOY,Rich Boy,160,,,YOUNGSTER2,Male,,,[]
+70,RICHBOY2,Rich Boy,160,,,YOUNGSTER2,Male,,,[]
+71,LADY,Lady,160,,,LASS2,Female,,,[]
+72,LADY2,Lady,160,,,LASS2,Female,,,[]
+73,PARASOLLADY,Parasol Lady,32,,,PARASOL,Female,,,[]
+74,PARASOLLADY2,Parasol Lady,32,,,PARASOL,Female,,,[]
+75,HOOPSTER,Hoopster,32,,,CYCLING2,Male,,,[]
+76,LINEBACKER,Linebacker,32,,,CYCLING2,Male,,,[]
+77,STRIKER,Striker,32,,,CYCLING2,Male,,,[]
+78,INFIELDER,Infielder,32,,,CYCLING2,Male,,,[]
+79,SMASHER,Smasher,32,,,CYCLING2,Female,,,[]
+80,SKIER_M,Skier,32,,,BLACKBELT,Male,,,[]
+81,BOARDER,Boarder,32,,,BLACKBELT,Male,,,[]
+82,SKIER_F,Skier,32,,,BLACKBELT,Female,,,[]
+83,SKIER_F2,Skier,32,,,BLACKBELT,Female,,,[]
+84,GUITARIST,Guitarist,24,,,BLACKBELT,Male,,,[]
+85,GUITARIST2,Guitarist,24,,,BLACKBELT,Male,,,[]
+86,DANCER,Dancer,24,,,,Male,,,[]
+87,IDOL,Idol,72,,,,Female,,,[]
+88,CLOWN,Clown,24,,,,Male,,,[]
+89,JUGGLER,Juggler,32,,,,Male,,,[]
+90,HARLEQUIN,Harlequin,32,,,,Male,,,[]
+91,FIREBREATHER,Firebreather,32,,,BLACKBELT,Male,,,[]
+92,ARTIST,Artist,48,,,ARTIST,Male,,,[]
+93,ARTIST2,Artist,48,,,ARTIST,Male,,,[]
+94,BAKER,Baker,32,,,AROMALADY,Female,,,[]
+95,WAITER,Waiter,32,,,AROMALADY,Male,,,[]
+96,WAITER2,Waiter,32,,,AROMALADY,Male,,,[]
+97,WAITRESS,Waitress,32,,,AROMALADY,Female,,,[]
+98,WAITRESS2,Waitress,32,,,AROMALADY,Female,,,[]
+99,MAID,Maid,40,,,,Female,,,[]
+100,MAID2,Maid,40,,,,Female,,,[]
+101,WORKER,Worker,40,,,,Male,,,[]
+102,WORKER2,Worker,40,,,,Male,,,[]
+103,WORKER3,Worker,40,,,,Male,,,[]
+104,POLICEMAN,Policeman,40,,,,Male,,,[]
+105,POLICEMAN2,Policeman,40,,,,Male,,,[]
+106,BURGLAR,Burglar,16,,,COLLECTOR,Male,,,[]
+107,GAMBLER,Gambler,120,,,GAMBLER,Male,,,[]
+108,ROUGHNECK,Roughneck,24,,,ROUGHNECK,Male,,,[]
+109,ROUGHNECK2,Roughneck,24,,,ROUGHNECK,Male,,,[]
+110,BIKER,Biker,16,,,BLACKBELT,Male,,,[]
+111,BIKER2,Biker,16,,,BLACKBELT,Male,,,[]
+112,JANITOR,Janitor,24,,,,Male,,,[]
+113,CLERK_M,Clerk,24,,,,Male,,,[]
+114,CLERK_M2,Clerk,24,,,,Male,,,[]
+115,CLERK_F,Clerk,24,,,,Female,,,[]
+116,POKEMANIAC,Poké Maniac,64,,,COLLECTOR,Male,,,[]
+117,DRAGONTAMER,Dragon Tamer,32,,,ACETRAINER,Male,,,[]
+118,POKEMONBREEDER_M,Pokémon Breeder,16,,,,Male,,,[]
+119,POKEMONBREEDER_M2,Pokémon Breeder,16,,,,Male,,,[]
+120,POKEMONBREEDER_F,Pokémon Breeder,16,,,,Female,,,[]
+121,POKEMONBREEDER_F2,Pokémon Breeder,16,,,,Female,,,[]
+122,DEPOTAGENT,Depot Agent,32,,,,Male,,,[]
+123,PILOT,Pilot,40,,,CYCLING,Male,,,[]
+124,POKEMONRANGER_M,Pokémon Ranger,60,,,ACETRAINER,Male,,,[]
+125,POKEMONRANGER_M2,Pokémon Ranger,60,,,ELITETRAINER,Male,,,[]
+126,POKEMONRANGER_F,Pokémon Ranger,60,,,ACETRAINER,Female,,,[]
+127,POKEMONRANGER_F2,Pokémon Ranger,60,,,ELITETRAINER,Female,,,[]
+128,AROMALADY,Aroma Lady,32,,,AROMALADY,Female,,,[]
+129,RUINMANIAC,Ruin Maniac,48,,,BACKPACKER,Male,,,[]
+130,BIRDKEEPER_M,Bird Keeper,32,,,HIKER,Male,,,[]
+131,BIRDKEEPER_F,Bird Keeper,32,,,,Female,,,[]
+132,RANCHER,Rancher,40,,,,Male,,,[]
+133,COWGIRL,Cowgirl,30,,,Female,Mixed,,,[]
+134,POKEFAN_M,Poké Fan,64,,,POKEFAN,Male,,,[]
+135,POKEFAN_M2,Poké Fan,64,,,POKEFAN,Male,,,[]
+136,POKEFAN_F,Poké Fan,64,,,POKEFAN,Female,,,[]
+137,POKEFAN_F2,Poké Fan,64,,,POKEFAN,Female,,,[]
+138,DOCTOR,Doctor,60,,,,Male,,,[]
+139,NURSE,Nurse,60,,,,Female,,,[]
+140,SAILOR,Sailor,32,,,SAILOR,Male,,,[]
+141,GENTLEMAN,Gentleman,200,,,GAMBLER,Male,,,[]
+142,GENTLEMAN2,Gentleman,200,,,GAMBLER,Male,,,[]
+143,GENTLEMAN3,Gentleman,200,,,GAMBLER,Male,,,[]
+144,SOCIALITE,Socialite,200,,,GAMBLER,Female,,,[]
+145,SOCIALITE2,Socialite,200,,,GAMBLER,Female,,,[]
+146,VETERANM,Veteran,80,,,GAMBLER,Male,,,[]
+147,VETERANM_2,Veteran,80,,,GAMBLER,Male,,,[]
+148,VETERAN_F,Veteran,80,,,GAMBLER,Female,,,[]
+149,COOLTRAINER_M,Cooltrainer,60,,,ELITETRAINER,Male,,,[]
+150,COOLTRAINER_M2,Cooltrainer,60,,,ACETRAINER,Male,,,[]
+151,COOLTRAINER_M3,Cooltrainer,60,,,ELITETRAINER,Male,,,[]
+152,COOLTRAINER_M4,Cooltrainer,60,,,ACETRAINER,Male,,,[]
+153,COOLTRAINER_F,Cooltrainer,60,,,ELITETRAINER,Female,,,[]
+154,COOLTRAINER_F2,Cooltrainer,60,,,ELITETRAINER,Female,,,[]
+155,COOLTRAINER_F3,Cooltrainer,60,,,ACETRAINER,Female,,,[]
+156,COOLTRAINER_F4,Cooltrainer,60,,,ACETRAINER,Female,,,[]
+157,CHAMPION_M,Champion,60,,,,Male,,,[]
+158,CHAMPION_F,Champion,60,,,,Female,,,[]
+159,BACKERS_M,Backers,128,,,,Mixed,,,[]
+160,BACKERS_F,Backers,128,,,,Mixed,,,[]
+161,BELLEANDPA,Belle & Pa,64,,,,Mixed,,,[]
+162,DOUBLETEAM,Double Team,128,,,,Mixed,,,[]
+163,DOUBLETEAM2,Double Team,128,,,,Mixed,,,[]
+164,HOOLIGANS,Hooligans,128,,,,Mixed,,,[]
+165,INTERVIEWERS,Interviewers,128,,,,Mixed,,,[]
+166,SISANDBRO,Sis and Bro,64,,,,Mixed,,,[]
+167,TWINS,Twins,32,,,TWINS2,Mixed,,,[]
+168,TWINS2,Twins,32,,,TWINS,Mixed,,,[]
+169,TWINS3,Twins,32,,,TWINS2,Mixed,,,[]
+170,YOUNGCOUPLE,Young Couple,128,,,,Mixed,,,[]
+171,YOUNGCOUPLE2,Young Couple,128,,,,Mixed,,,[]
+172,GUITARIST3,Guitarist,24,,,BLACKBELT,Female,,,[]
+173,IRISCOSPLAYER,Cosplayer,128,,,,Female,,,[]
+174,TRAINER_Vincent,Pokémon Trainer,100,,,,Male,,,[]
+175,TRAINER_Lucile,Pokémon Trainer,100,,,,Female,,,[]
+176,CEO,CEO,100,,,,Female,,,[]
+177,LADY3,Lady,160,,,LASS2,Female,,,[]
+178,WAITRESS3,Waitress,32,,,AROMALADY,Female,,,[]
+179,WAITER3,Waiter,32,,,AROMALADY,Male,,,[]
+180,ARTIST3,Artist,32,,,ARTIST,Female,,,[]
+298,TRAINER_Zain,Your Brother,100,,,,Male,,,[]
+299,ARCHFRIEND_Lainie,Archfriend,100,Battle champion iris,Battle victory champion,,Female,,,[]
+300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,,[]
+301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,,[]
+302,LEADER_Lambert_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,,[]
+303,LEADER_Eko,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,,[]
+304,LEADER_Eko_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,,[]
+305,LEADER_Helena,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Female,,,[]
+306,LEADER_Helena_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,,[]
+307,LEADER_Rafael,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,,[]
+308,LEADER_Rafael_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,,[]
+309,LEADER_Bence,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,,[]
+310,LEADER_Bence_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,,[]
+311,LEADER_Zoe,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,,[]
+312,LEADER_Zoe_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,,[]
+400,DEVJUGGLER,Developer,80,,,,Male,,,[]
+401,DEVCOOLTRAINER_M4,Developer,80,,,,Male,,,[]
+402,DEVPSYCHIC_M,Developer,80,,,,Male,,,[]
+403,DEVSUPERNERD,Developer,80,,,,Male,,,[]
+404,DEVDRAGONTAMER2,Developer,80,,,,Male,,,[]
+405,DEVGAMBLER,Developer,80,,,,Male,,,[]
+406,DEVARTIST3,Developer,80,,,,Male,,,[]
+407,DEVCOOLTRAINER_M3,Developer,80,,,,Male,,,[]
+408,DEVPOKEMONRANGER_M,Developer,80,,,,Male,,,[]

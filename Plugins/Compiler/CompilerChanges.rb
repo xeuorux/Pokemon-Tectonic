@@ -944,8 +944,9 @@ end
             :level   => property_value[1]
           }
 		  # The default ability index for a given species of a given trainer should be chaotic, but not random
-		  current_pkmn[:ability_index] = jank_hash_code(trainer_hash[:name] + current_pkmn[:species].to_s) % 2
-          trainer_hash[line_schema[0]].push(current_pkmn)
+		  current_pkmn[:ability_index] = (trainer_hash[:name] + current_pkmn[:species].to_s).hash % 2
+		  echoln("Default index: #{current_pkmn[:ability_index]}")
+		  trainer_hash[line_schema[0]].push(current_pkmn)
         else
           if !current_pkmn
             raise _INTL("Pokémon hasn't been defined yet!\r\n{1}", FileLineData.linereport)
@@ -1431,14 +1432,6 @@ end
   end
 end
 
-def jank_hash_code(str)
-  result = 0
-  for i in 0..(str.length - 1)
-    result += str[i].to_i
-  end
-  return result
-end
-
 module GameData
 	def self.load_all
 		echo("Loading all game data.")
@@ -1556,6 +1549,96 @@ module Compiler
           f.write("\r\n")
         end
         f.write(sprintf("Incense = %s\r\n", species.incense)) if species.incense
+      end
+    }
+    pbSetWindowText(nil)
+    Graphics.update
+  end
+  
+  #=============================================================================
+  # Save trainer type data to PBS file
+  #=============================================================================
+  def write_trainer_types
+    File.open("PBS/trainertypes.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      f.write("\#-------------------------------\r\n")
+      GameData::TrainerType.each do |t|
+		policiesString = ""
+		if t.policies
+		  policiesString += "["
+		  t.policies.each_with_index do |policy_symbol,index|
+			policiesString += policy_symbol.to_s
+			policiesString += "," if index < t.policies.length - 1
+		  end
+		  policiesString += "]"
+        end
+	  
+        f.write(sprintf("%d,%s,%s,%d,%s,%s,%s,%s,%s,%s,%s\r\n",
+          t.id_number,
+          csvQuote(t.id.to_s),
+          csvQuote(t.real_name),
+          t.base_money,
+          csvQuote(t.battle_BGM),
+          csvQuote(t.victory_ME),
+          csvQuote(t.intro_ME),
+          ["Male", "Female", "Mixed"][t.gender],
+          (t.skill_level == t.base_money) ? "" : t.skill_level.to_s,
+          csvQuote(t.skill_code),
+		  policiesString
+        ))
+      end
+    }
+    Graphics.update
+  end
+
+  #=============================================================================
+  # Save individual trainer data to PBS file
+  #=============================================================================
+  def write_trainers
+    File.open("PBS/trainers.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      GameData::Trainer.each do |trainer|
+        pbSetWindowText(_INTL("Writing trainer {1}...", trainer.id_number))
+        Graphics.update if trainer.id_number % 50 == 0
+        f.write("\#-------------------------------\r\n")
+        if trainer.version > 0
+          f.write(sprintf("[%s,%s,%d]\r\n", trainer.trainer_type, trainer.real_name, trainer.version))
+        else
+          f.write(sprintf("[%s,%s]\r\n", trainer.trainer_type, trainer.real_name))
+        end
+		if trainer.policies && trainer.policies.length > 0
+		  policiesString = ""
+		  trainer.policies.each_with_index do |policy_symbol,index|
+			policiesString += policy_symbol.to_s
+			policiesString += "," if index < trainer.policies.length - 1
+		  end
+          f.write(sprintf("Policies = %s\r\n", policiesString))
+        end
+        f.write(sprintf("Items = %s\r\n", trainer.items.join(","))) if trainer.items.length > 0
+        trainer.pokemon.each do |pkmn|
+          f.write(sprintf("Pokemon = %s,%d\r\n", pkmn[:species], pkmn[:level]))
+          f.write(sprintf("    Name = %s\r\n", pkmn[:name])) if pkmn[:name] && !pkmn[:name].empty?
+          f.write(sprintf("    Form = %d\r\n", pkmn[:form])) if pkmn[:form] && pkmn[:form] > 0
+          f.write(sprintf("    Gender = %s\r\n", (pkmn[:gender] == 1) ? "female" : "male")) if pkmn[:gender]
+          f.write("    Shiny = yes\r\n") if pkmn[:shininess]
+          f.write("    Shadow = yes\r\n") if pkmn[:shadowness]
+          f.write(sprintf("    Moves = %s\r\n", pkmn[:moves].join(","))) if pkmn[:moves] && pkmn[:moves].length > 0
+          f.write(sprintf("    Ability = %s\r\n", pkmn[:ability])) if pkmn[:ability]
+          f.write(sprintf("    AbilityIndex = %d\r\n", pkmn[:ability_index])) if pkmn[:ability_index]
+          f.write(sprintf("    Item = %s\r\n", pkmn[:item])) if pkmn[:item]
+          f.write(sprintf("    Nature = %s\r\n", pkmn[:nature])) if pkmn[:nature]
+          ivs_array = []
+          evs_array = []
+          GameData::Stat.each_main do |s|
+            next if s.pbs_order < 0
+            ivs_array[s.pbs_order] = pkmn[:iv][s.id] if pkmn[:iv]
+            evs_array[s.pbs_order] = pkmn[:ev][s.id] if pkmn[:ev]
+          end
+          f.write(sprintf("    IV = %s\r\n", ivs_array.join(","))) if pkmn[:iv]
+          f.write(sprintf("    EV = %s\r\n", evs_array.join(","))) if pkmn[:ev]
+          f.write(sprintf("    Happiness = %d\r\n", pkmn[:happiness])) if pkmn[:happiness]
+          f.write(sprintf("    Ball = %s\r\n", pkmn[:poke_ball])) if pkmn[:poke_ball]
+        end
       end
     }
     pbSetWindowText(nil)
