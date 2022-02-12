@@ -1465,6 +1465,7 @@ Pokemon = AERODACTYL,35
 	Item = SITRUSBERRY
 #-------------------------------
 [TRAINER_Zain,Zain]
+Policies = ZAIN
 Pokemon = LIEPARD,37
 	Moves = FAKEOUT,TAUNT,SUCKERPUNCH
 	AbilityIndex = 0
