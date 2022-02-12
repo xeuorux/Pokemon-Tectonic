@@ -1,7 +1,6 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [YOUNGSTER,Joey]
-LoseText = "..."
 Pokemon = BIDOOF,50
 	Moves = TACKLE
 Pokemon = BIDOOF,50
@@ -12,7 +11,6 @@ Pokemon = BIDOOF,50
 	Moves = TACKLE
 #-------------------------------
 [HIKER,Conroy]
-LoseText = "..."
 Pokemon = CLEFABLE,70
 Pokemon = SNORLAX,70
 Pokemon = PRIMEAPE,70
@@ -22,21 +20,18 @@ Pokemon = BLASFEMMIE,70
 #-------------------------------
 [BUGCATCHER,Colin]
 Policies = REMARKONSTARTER
-LoseText = "..."
 Pokemon = KRICKETOT,7
     AbilityIndex = 0
 Pokemon = SNOM,8
     AbilityIndex = 0
 #-------------------------------
 [YOUNGSTER,Harvey]
-LoseText = "..."
 Pokemon = LUVDISC,7
     AbilityIndex = 0
 Pokemon = SEEDOT,8
     AbilityIndex = 0
 #-------------------------------
 [LASS2,Sienna]
-LoseText = "..."
 Pokemon = PICHU,8
     AbilityIndex = 0
 	Moves = THUNDERSHOCK,GROWL,SHOUT
@@ -44,28 +39,24 @@ Pokemon = PONYTA,8
     AbilityIndex = 0
 #-------------------------------
 [HIKER,Dave]
-LoseText = "..."
 Pokemon = GEODUDE,9
     AbilityIndex = 0
 Pokemon = TIMBURR,9
     AbilityIndex = 0
 #-------------------------------
 [GENTLEMAN,Wilfrid]
-LoseText = "..."
 Pokemon = GROWLITHE,10
     AbilityIndex = 0
 Pokemon = CHEWTLE,10
     AbilityIndex = 0
 #-------------------------------
 [NINJABOY,Matthew]
-LoseText = "..."
 Pokemon = BONSLY,12
     AbilityIndex = 0
 Pokemon = NINCADA,12
     AbilityIndex = 0
 #-------------------------------
 [FIREBREATHER,Antonio]
-LoseText = "..."
 Pokemon = MAGBY,13
     AbilityIndex = 0
 Pokemon = HOUNDOUR,13
@@ -74,41 +65,35 @@ Pokemon = BULBASAUR,13
     AbilityIndex = 0
 #-------------------------------
 [AROMALADY,Hannah]
-LoseText = "..."
 Pokemon = BUDEW,12
 Pokemon = FLABEBE,12
 Pokemon = PIPLUP,12
 #-------------------------------
 [SAILOR,Dylan]
-LoseText = "..."
 Pokemon = AZURILL,14
 Pokemon = WINGULL,14
 Pokemon = TEPIG,14
 #-------------------------------
 [LADY2,Rebecca]
-LoseText = "..."
 Pokemon = AMEOWTH,14
 Pokemon = CHIKORITA,14
 #-------------------------------
 [TUBER_M,Peter]
-LoseText = "..."
 Pokemon = SANDYGAST,13
 Pokemon = EXEGGCUTE,13
 #-------------------------------
 [TUBER_F,Sophie]
-LoseText = "..."
 Pokemon = KRABBY,13
 Pokemon = INKAY,13
 #-------------------------------
 [BATTLEGIRL,Eliza]
-LoseText = "..."
 Pokemon = MAKUHITA,15
 Pokemon = SCRAGGY,15
 Pokemon = NICKIT,15
 	Moves = BITE,HONECLAWS,QUICKATTACK,TAILWHIP
 #-------------------------------
 [LEADER_Lambert,Lambert]
-LoseText = "..."
+Policies = LAMBERT
 Pokemon = PANCHAM,15
     Moves = SMASH,TAUNT,LEER,BITE
     AbilityIndex = 0
@@ -126,7 +111,7 @@ Pokemon = RIOLU,15
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Lambert_2,Lambert]
-LoseText = "..."
+Policies = LAMBERT
 Pokemon = ZORUA,15
     Moves = HARSHWORDS,GRASSKNOT,SWIFT
     AbilityIndex = 0
@@ -152,53 +137,46 @@ Pokemon = CROAGUNK,15
     Item = SITRUSBERRY
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera]
-LoseText = "..."
+Policies = YEZERA
 Pokemon = BUNNELBY,15
 Pokemon = SMOOCHUM,15
 Pokemon = JOLTIK,15
 #-------------------------------
 [GUITARIST,Reece]
-LoseText = "..."
 Pokemon = BLITZLE,17
 Pokemon = TOXEL,16
 	Item = SITRUSBERRY
 Pokemon = GASTLY,16
 #-------------------------------
 [PSYCHIC_M,Uriel]
-LoseText = "..."
 Pokemon = ABRA,15
 	Item = PSYCHICGEM
 Pokemon = IMPIDIMP,16
 Pokemon = RUFFLET,15
 #-------------------------------
 [POKEFAN_M,Jamie]
-LoseText = "..."
 Pokemon = PUMPKABOO,16
 Pokemon = TAILLOW,16
 	Item = SITRUSBERRY
 Pokemon = SPHEAL,17
 #-------------------------------
 [DANCER,Isai]
-LoseText = "..."
 Pokemon = TYROGUE,17
 	Item = FIGHTINGGEM
 Pokemon = COMBUSKEN,16
 Pokemon = AXEW,17
 #-------------------------------
 [ARTIST,Evan]
-LoseText = "..."
 Pokemon = SMEARGLE,17
     Moves = SKETCH,HEALPULSE,LIGHTSCREEN,COTTONSPORE
 Pokemon = PARAS,17
 #-------------------------------
 [HIKER2,Jude]
-LoseText = "..."
 Pokemon = ROGGENROLA,17
 Pokemon = HOOTHOOT,17
 #-------------------------------
 [SCIENTIST_M2,Dexter]
 Policies = PRIORITIZEDOTS
-LoseText = "..."
 Pokemon = GRIMER,20
     Moves = POISONGAS,SLUDGE,DISABLE,MUDSHOT
     AbilityIndex = 0
@@ -210,7 +188,6 @@ Pokemon = SOLOSIS,20
 #-------------------------------
 [SCIENTIST_F,Marie]
 Policies = PRIORITIZEDOTS
-LoseText = "..."
 Pokemon = CARKOL,20
     Moves = FLAMECHARGE,CRASH,RAPIDSPIN,IGNITE
     AbilityIndex = 1
@@ -220,8 +197,7 @@ Pokemon = SLUGMA,20
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Eko,Eko]
-Policies = PRIORITIZEDOTS
-LoseText = "..."
+Policies = PRIORITIZEDOTS,EKO
 Pokemon = SALANDIT,20
     Moves = POISONGAS,BADSTENCH,EMBER,COVET
     AbilityIndex = 1
@@ -238,8 +214,7 @@ Pokemon = TENTACOOL,20
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Eko_2,Eko]
-Policies = PRIORITIZEDOTS
-LoseText = "..."
+Policies = PRIORITIZEDOTS,EKO
 Pokemon = SALANDIT,20
     Moves = POISONGAS,BADSTENCH,EMBER,COVET
     AbilityIndex = 1
@@ -264,14 +239,12 @@ Pokemon = CAMERUPT,20
     Item = SITRUSBERRY
 #-------------------------------
 [LINEBACKER,Josh]
-LoseText = "..."
 Pokemon = GURDURR,21
 Pokemon = STUNKY,21
 	Item = DARKGEM
 Pokemon = SERVINE,20
 #-------------------------------
 [SCHOOLKID_F,Arya]
-LoseText = "..."
 Pokemon = SWIRLIX,20
 Pokemon = SHELLOS,20
 	Item = SITRUSBERRY
@@ -280,24 +253,20 @@ Pokemon = TRANQUILL,21
 	AbilityIndex = 0
 #-------------------------------
 [RUINMANIAC,Spencer]
-LoseText = "..."
 Pokemon = BALTOY,21
 Pokemon = GOOMY,22
 Pokemon = SHIELDON,21
 	Item = ORANBERRY
 #-------------------------------
 [SOCIALITE,Elizabeth]
-LoseText = "..."
 Pokemon = SNUBBULL,22
 Pokemon = HONEDGE,22
 #-------------------------------
 [BIRDKEEPER_F,Chloe]
-LoseText = "..."
 Pokemon = ROOKIDEE,22
 Pokemon = YANMA,22
 #-------------------------------
 [GAMBLER,Gregor]
-LoseText = "..."
 Pokemon = MEOWTH,21
 	Item = NORMALGEM
 Pokemon = AMEOWTH,22
@@ -306,38 +275,32 @@ Pokemon = GMEOWTH,22
 	Item = STEELGEM
 #-------------------------------
 [MAID,Alice]
-LoseText = "..."
 Pokemon = AUDINO,22
 	Item = ORANBERRY
 Pokemon = QUILAVA,22
 Pokemon = LICKITUNG,22
 #-------------------------------
 [LASS,Tara]
-LoseText = "..."
 Pokemon = QUILLADIN,23
 Pokemon = AGRIMER,22
 Pokemon = ELEKID,23
 	Item = SITRUSBERRY
 #-------------------------------
 [MEDIUM,Theoni]
-LoseText = "..."
 Pokemon = SABLEYE,24
 	Item = NORMALGEM
 Pokemon = SKRELP,23
 Pokemon = WOOLOO,24
 #-------------------------------
 [BAKER,Rose]
-LoseText = "..."
 Pokemon = CHIMCHAR,23
 Pokemon = DRILBUR,23
 #-------------------------------
 [POKEMANIAC,Travis]
-LoseText = "..."
 Pokemon = ADIGLETT,23
 Pokemon = BAGON,23
 #-------------------------------
 [POKEKID,Braden]
-LoseText = "..."
 Pokemon = CACNEA,21
 Pokemon = TRUBBISH,22
 	AbilityIndex = 1
@@ -346,7 +309,6 @@ Pokemon = MONFERNO,22
 Pokemon = VENIPEDE,23
 #-------------------------------
 [RICHBOY2,Theodore]
-LoseText = "..."
 Pokemon = MAWILE,18
     AbilityIndex = 1
 	Item = STEELGEM
@@ -356,7 +318,7 @@ Pokemon = MORELULL,19
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Helena,Helena]
-LoseText = "..."
+Policies = HELENA
 Pokemon = LANTURN,25
     AbilityIndex = 0
 Pokemon = WAILMER,25
@@ -372,7 +334,7 @@ Pokemon = LUXIO,25
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Helena_2,Helena]
-LoseText = "..."
+Policies = HELENA
 Pokemon = LANTURN,25
     AbilityIndex = 0
 Pokemon = PINCURCHIN,25
@@ -394,45 +356,38 @@ Pokemon = LUXIO,25
     AbilityIndex = 1
 #-------------------------------
 [IDOL,Ishizu]
-LoseText = "..."
 Pokemon = JIGGLYPUFF,25
 Pokemon = YAMASK,26
 	Item = SITRUSBERRY
 Pokemon = SANDACONDA,26
 #-------------------------------
 [PSYCHIC_F2,Ludmila]
-LoseText = "..."
 Pokemon = MRMIME,25
 Pokemon = GOLBAT,26
 	Item = ORANBERRY
 Pokemon = RATICATE,26
 #-------------------------------
 [RANCHER,Billy]
-LoseText = "..."
 Pokemon = MILTANK,27
 Pokemon = KRICKETUNE,28
 #-------------------------------
 [COWGIRL,Lara]
-LoseText = "..."
 Pokemon = TAUROS,27
 Pokemon = TRUMBEAK,28
 #-------------------------------
 [YOUNGSTER3,Sorin]
-LoseText = "..."
 Pokemon = TORRACAT,25
 Pokemon = DEWOTT,26
 	Item = RINDOBERRY
 Pokemon = GROVYLE,26
 #-------------------------------
 [BLACKBELT3,Philip]
-LoseText = "..."
 Pokemon = MIENFOO,25
 Pokemon = WHIRLIPEDE,25
 Pokemon = SNORUNT,25
 	Item = ICEGEM
 #-------------------------------
 [COOLTRAINER_M,Xander]
-LoseText = "..."
 Pokemon = FERROSEED,15
     Moves = INGRAIN,SELFDESTRUCT,SPIKES
     AbilityIndex = 0 # Iron Barbs
@@ -529,7 +484,6 @@ Pokemon = FLAAFFY,25
 	EV = 20,0,0,0,0,20
 #-------------------------------
 [COOLTRAINER_F,Raven]
-LoseText = "..."
 Pokemon = POLITOED,30
     Moves = GALE,SCALD,FLIPTURN
     AbilityIndex = 0
@@ -562,7 +516,6 @@ Pokemon = SHIINOTIC,30
 	EV = 20,0,0,0,20,10
 #-------------------------------
 [COOLTRAINER_M,Max]
-LoseText = "..."
 Pokemon = HIPPOPOTAS,25
     Moves = MUDSHOT,FIRESPIN,SANDSTORM,YAWN
     AbilityIndex = 0
@@ -589,7 +542,6 @@ Pokemon = LILEEP,25
     Item = LEFTOVERS
 #-------------------------------
 [COOLTRAINER_F,Priscilla]
-LoseText = "..."
 Pokemon = MISMAGIUS,30
     Moves = SPITEFULCHANT,MYSTICALFIRE,DAZZLINGGLEAM,POWERGEM
     AbilityIndex = 0
@@ -647,7 +599,6 @@ Pokemon = CROBAT,40
 	EV = 10,20,0,20,0,0
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,1]
-LoseText = "..."
 Pokemon = MAGNETON,25
 	AbilityIndex = 1
 	Moves = LIGHTSCREEN,SHOCKWAVE,MIRRORSHOT
@@ -659,14 +610,12 @@ Pokemon = POLIWHIRL,25
 	Moves = SPATTERINGRAM,BRICKBREAK,HELPINGHAND
 #-------------------------------
 [SCHOOLKID_M,Louis]
-LoseText = "..."
 Pokemon = DUCKLETT,19
 Pokemon = ELECTRIKE,20
 Pokemon = STUFFUL,21
 Pokemon = FLAPPLE,21
 #-------------------------------
 [KIMONOGIRL,Haera]
-LoseText = "..."
 Pokemon = ROSELIA,24
 Pokemon = BRIONNE,26
 Pokemon = BUTTERFREE,26
@@ -674,7 +623,6 @@ Pokemon = CUBONE,25
 Pokemon = POOCHYENA,25
 #-------------------------------
 [NURSE,Elliot]
-LoseText = "..."
 Pokemon = CHANSEY,29
 Pokemon = STANTLER,30
 Pokemon = ONIX,31
@@ -682,7 +630,6 @@ Pokemon = GOLISOPOD,32
 Pokemon = DOUBLADE,32
 #-------------------------------
 [GUITARIST3,Jamie]
-LoseText = "..."
 Pokemon = NIDORINO,34
 Pokemon = HOUNDOOM,35
 Pokemon = SWOOBAT,35
@@ -690,7 +637,6 @@ Pokemon = DRAKLOAK,36
 Pokemon = AVALUGG,37
 #-------------------------------
 [BAKER,Margerie]
-LoseText = "..."
 Pokemon = ALCREMIE,44
 Pokemon = ARCANINE,45
 Pokemon = FRAXURE,45
@@ -698,7 +644,6 @@ Pokemon = STOUTLAND,46
 Pokemon = VESPIQUEN,47
 #-------------------------------
 [PILOT,Charlie]
-LoseText = "..."
 Pokemon = SKARMORY,50
 Pokemon = AZUMARILL,50
 Pokemon = MANERGETIC,51
@@ -706,7 +651,6 @@ Pokemon = TOXICROAK,52
 Pokemon = MINIOR,53
 #-------------------------------
 [VETERANM_2,Roy]
-LoseText = "..."
 Pokemon = DECIDUEYE,54
 Pokemon = AURORUS,55
 Pokemon = AMOONGUSS,55
@@ -714,7 +658,6 @@ Pokemon = GOTHITELLE,55
 Pokemon = GIGALITH,56
 #-------------------------------
 [DRAGONTAMER,Arthur]
-LoseText = "..."
 Pokemon = KROOKODILE,59
 Pokemon = GOODRA,60
 Pokemon = BRAVIARY,61
@@ -723,7 +666,6 @@ Pokemon = HYMNUS,62
     Item = LEFTOVERS
 #-------------------------------
 [IRISCOSPLAYER,Isabelle]
-LoseText = "..."
 Pokemon = HAXORUS,65
 Pokemon = AGGRON,64
     Item = SITRUSBERRY
@@ -736,7 +678,6 @@ Pokemon = EXCADRILL,66
 	AbilityIndex = 1
 #-------------------------------
 [ELDER,Logun]
-LoseText = "..."
 Pokemon = RAICHU,70
     Moves = THUNDERBOLT,SURF,FOCUSBLAST,GRASSKNOT
     AbilityIndex = 0
@@ -758,7 +699,6 @@ Pokemon = ALAKAZAM,70
     Item = PERSIMBERRY
 #-------------------------------
 [SCIENTIST_M,Marco]
-LoseText = "..."
 Pokemon = KECLEON,40
     AbilityIndex = 0
 Pokemon = DELCATTY,40
@@ -769,7 +709,6 @@ Pokemon = POLIWRATH,40
     AbilityIndex = 1
 #-------------------------------
 [SCIENTIST_F,Natasha]
-LoseText = "..."
 Pokemon = SMEARGLE,40
 	Moves = VCREATE,RAPIDSTARS,PHANTOMBREAK,CELEBRATE
 Pokemon = SMEARGLE,40
@@ -780,7 +719,6 @@ Pokemon = SMEARGLE,40
 	Moves = PROFANE,TRIPLEAXEL,ALLERGY,HUNTDOWN
 #-------------------------------
 [SCIENTIST_M,Julien]
-LoseText = "..."
 Pokemon = INTELEON,40
     AbilityIndex = 1
 Pokemon = DITTO,40
@@ -791,7 +729,6 @@ Pokemon = MIMIKYU,40
     AbilityIndex = 0
 #-------------------------------
 [SCIENTIST_F,Viola]
-LoseText = "..."
 Pokemon = GIRAFARIG,40
     AbilityIndex = 0
 Pokemon = COMFEY,40
@@ -802,7 +739,6 @@ Pokemon = UNFEZANT,40
     AbilityIndex = 1
 #-------------------------------
 [TRAINER_Vincent,Vincent]
-LoseText = "..."
 Pokemon = MURKROW,25
 	AbilityIndex = 1
 	Name = Harbinger
@@ -817,7 +753,6 @@ Pokemon = QWILFISH,26
 	Name = Venenus
 #-------------------------------
 [TRAINER_Lucile,Lucile]
-LoseText = "..."
 Pokemon = WHISMUR,18
 	AbilityIndex = 1
 	Name = Pippin
@@ -828,7 +763,6 @@ Pokemon = JANGMOO,20
 	Name = Buttercup
 #-------------------------------
 [TRAINER_Lucile,Lucile,1]
-LoseText = "..."
 Pokemon = JANGMOO,29
 	Name = Buttercup
 Pokemon = LOUDRED,30
@@ -935,7 +869,7 @@ Pokemon = ABOMASNOW,28
 Pokemon = NOCTOWL,27
 #-------------------------------
 [LEADER_Rafael,Rafael]
-Policies = DISLIKEATTACKING
+Policies = DISLIKEATTACKING,RAFAEL
 Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
 Pokemon = LOMBRE,30
@@ -951,7 +885,7 @@ Pokemon = NUZLEAF,30
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Rafael_2,Rafael]
-Policies = DISLIKEATTACKING
+Policies = DISLIKEATTACKING,RAFAEL
 Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
 Pokemon = BAYLEEF,30
@@ -975,6 +909,7 @@ Pokemon = NUZLEAF,30
     Item = SITRUSBERRY
 #-------------------------------
 [ARCHFRIEND_Lainie,Lainie]
+Policies = LAINIE
 Pokemon = ARIADOS,35
     Moves = STICKYWEB,XSCISSOR,SWORDSDANCE,BATONPASS
     AbilityIndex = 1
