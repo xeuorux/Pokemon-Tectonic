@@ -181,13 +181,19 @@ Moves = PECK
 Turns = 2
 HPMult = 4
 Ability = CLEARBODY
-Moves = GEARGRIND,
+Moves = GEARGRIND
 #-----------------------------
 [AVALUGG]
 Turns = 1
 HPMult = 5
 Ability = PRISMARMOR
-Moves = CALAMITOUSSLASH,CRYSTALCRUSH
+Moves = CRYSTALCRUSH
+#-----------------------------
+[ELECTIVIRE]
+Turns = 2
+HPMult = 4
+Ability = STATIC
+Moves = PLASMAFISTS
 #-----------------------------
 [BEARTIC]
 Turns = 2
