@@ -1,7 +1,9 @@
 PokeBattle_AI::PlayerPokemonFaintedDialogue.add(:ZAIN,
   proc { |policy,battler,trainer_speaking,dialogue_array|
 	starters = [:APPLIN,:FLAPPLE,:APPLETUN,:NUMEL,:CAMERUPT,:DROMERUPT,:KRABBY,:KINGLER,:KLAWSAR]
-	if starters.include?(battler.species) && !trainer_speaking.policyStates[:StarterDeathDialogue]
+	if $Trainer.able_pokemon_count == 0
+		dialogue_array.push("Really? That’s it? Get back up. That can’t be all you’ve got.")
+	elsif starters.include?(battler.species) && !trainer_speaking.policyStates[:StarterDeathDialogue]
 		dialogue_array.push("I guess the power of friendship only goes so far.")
 		trainer_speaking.policyStates[:StarterDeathDialogue] = true
 	elsif !trainer_speaking.policyStates[:NonStarterDeathDialogue]
