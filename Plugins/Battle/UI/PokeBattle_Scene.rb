@@ -146,7 +146,9 @@ class PokeBattle_Scene
     pbShowWindow(COMMAND_BOX)
     cw = @sprites["commandWindow"]
     cw.setTexts(texts)
-    cw.setIndexAndMode(0,mode)
+	initIndex = @lastCmd[idxBattler]
+	#initIndex = 0 if @lastCmd[idxBattler] == 3
+    cw.setIndexAndMode(initIndex,mode)
     pbSelectBattler(idxBattler)
     hasPokeballs = $PokemonBag.pockets()[3].any?{|itemrecord| itemrecord[1] > 0}
 	onlyOneOpponent = @battle.pbOpposingBattlerCount == 1
