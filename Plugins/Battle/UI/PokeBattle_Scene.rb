@@ -113,10 +113,10 @@ class PokeBattle_Scene
        _INTL("",@battle.battlers[idxBattler].name),
        _INTL("Fight"),
        _INTL("Dex"),
-	   _INTL("Info"),
+	   _INTL("Ball"),
        _INTL("Pokémon"),
+	   _INTL("Info"),
        (shadowTrainer) ? _INTL("Call") : (firstAction) ? _INTL("Run") : _INTL("Cancel"),
-	   _INTL("Ball")
     ]
     wildBattle = !@battle.trainerBattle? && !@battle.bossBattle?
     mode = 0

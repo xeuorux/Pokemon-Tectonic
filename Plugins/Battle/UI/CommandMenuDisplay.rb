@@ -2,12 +2,13 @@ class CommandMenuDisplay < BattleMenuBase
 	attr_accessor   :battle
 
 	MODES = [
-		 [0,8,11,1,3,2],   # 0 = Wild Battle
-		 [0,8,11,1,9,2],   # 1 = Battle with "Cancel" instead of "Run"
-		 [0,8,11,1,4,2],   # 2 = Battle with "Call" instead of "Run"
-		 [5,7,11,6,3,2],   # 3 = Safari Zone
-		 [0,8,11,1,3,2],    # 4 = Bug Catching Contest
-		 [0,8,11,1,10,2]  # 5 = Trainer Battle
+		# Fight, Dex, Ball, Pkmn, Info, Forfeit
+		 [0,8,2,1,11,3],   # 0 = Wild Battle
+		 [0,8,2,1,11,9],   # 1 = Battle with "Cancel" instead of "Run"
+		 [0,8,2,1,11,4],   # 2 = Battle with "Call" instead of "Run"
+		 [5,7,2,6,11,3],   # 3 = Safari Zone
+		 [0,8,2,1,11,3],    # 4 = Bug Catching Contest
+		 [0,8,2,1,11,10]  # 5 = Trainer Battle
 	  ]
   def initialize(viewport,z,battle)
     super(viewport)

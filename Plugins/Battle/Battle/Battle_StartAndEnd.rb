@@ -51,6 +51,51 @@ class PokeBattle_Battle
     return @decision
   end
   
+  def pbStartBattleCore
+    # Set up the battlers on each side
+    sendOuts = pbSetUpSides
+    # Create all the sprites and play the battle intro animation
+    @scene.pbStartBattle(self)
+    # Show trainers on both sides sending out Pokémon
+    pbStartBattleSendOut(sendOuts)
+	# Curses apply if at all
+	if @opponent && $PokemonGlobal.tarot_amulet_active
+		@opponent.each do |opponent|
+			triggerApplyCurse(opponent.policies,curses)
+		end
+	end
+    # Weather announcement
+    weather_data = GameData::BattleWeather.try_get(@field.weather)
+    pbCommonAnimation(weather_data.animation) if weather_data
+    case @field.weather
+    when :Sun         then pbDisplay(_INTL("The sunlight is strong."))
+    when :Rain        then pbDisplay(_INTL("It is raining."))
+    when :Sandstorm   then pbDisplay(_INTL("A sandstorm is raging."))
+    when :Hail        then pbDisplay(_INTL("Hail is falling."))
+    when :HarshSun    then pbDisplay(_INTL("The sunlight is extremely harsh."))
+    when :HeavyRain   then pbDisplay(_INTL("It is raining heavily."))
+    when :StrongWinds then pbDisplay(_INTL("The wind is strong."))
+    when :ShadowSky   then pbDisplay(_INTL("The sky is shadowy."))
+    end
+    # Terrain announcement
+    terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
+    pbCommonAnimation(terrain_data.animation) if terrain_data
+    case @field.terrain
+    when :Electric
+      pbDisplay(_INTL("An electric current runs across the battlefield!"))
+    when :Grassy
+      pbDisplay(_INTL("Grass is covering the battlefield!"))
+    when :Misty
+      pbDisplay(_INTL("Mist swirls about the battlefield!"))
+    when :Psychic
+      pbDisplay(_INTL("The battlefield is weird!"))
+    end
+    # Abilities upon entering battle
+    pbOnActiveAll
+    # Main battle loop
+    pbBattleLoop
+  end
+  
   #=============================================================================
   # End of battle
   #=============================================================================
