@@ -175,11 +175,9 @@ class PokeBattle_Battle
       pbDisplay(_INTL("Oh!\nA Shadow Pokémon!"))
     end
 	# Trigger enter the field curses, if this is a player's pokemon
-	if !battler.opposes?
-		curses.each do |curse|
+	curses.each do |curse|
 			triggerBattlerEnterCurseEffect(curse,battler,self)
 		end
-	end
     # Record money-doubling effect of Amulet Coin/Luck Incense
     if !battler.opposes? && [:AMULETCOIN, :LUCKINCENSE].include?(battler.item_id)
       @field.effects[PBEffects::AmuletCoin] = true

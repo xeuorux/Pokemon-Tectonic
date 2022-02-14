@@ -945,7 +945,6 @@ end
           }
 		  # The default ability index for a given species of a given trainer should be chaotic, but not random
 		  current_pkmn[:ability_index] = (trainer_hash[:name] + current_pkmn[:species].to_s).hash % 2
-		  echoln("Default index: #{current_pkmn[:ability_index]}")
 		  trainer_hash[line_schema[0]].push(current_pkmn)
         else
           if !current_pkmn
