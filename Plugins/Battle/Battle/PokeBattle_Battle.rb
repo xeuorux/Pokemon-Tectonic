@@ -8,6 +8,7 @@ class PokeBattle_Battle
 	attr_accessor :autoTesting
 	attr_accessor :autoTestingIndex
 	attr_accessor :honorAura
+	attr_reader	  :curses
   
   def bossBattle?
 	return bossBattle
@@ -93,6 +94,7 @@ class PokeBattle_Battle
 	@autoTestingIndex  = 1
 	@commandPhasesThisRound = 0
 	@honorAura		   = false
+	@curses			   = []
     if GameData::Move.exists?(:STRUGGLE)
       @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))
     else

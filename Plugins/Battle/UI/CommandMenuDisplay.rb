@@ -37,7 +37,6 @@ class CommandMenuDisplay < BattleMenuBase
         button.x      += (i%3) * (@buttonBitmap.width/2+4)
         button.y      = self.y+6
         button.y      += (((i/3)==0) ? 0 : BUTTON_HEIGHT-4)
-		echoln("Button #{i}: #{button.x}, #{button.y}")
         button.src_rect.width  = @buttonBitmap.width/2
         button.src_rect.height = BUTTON_HEIGHT
         addSprite("button_#{i}",button)

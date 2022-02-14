@@ -61,7 +61,10 @@ class PokeBattle_Battle
 	# Curses apply if at all
 	if @opponent && $PokemonGlobal.tarot_amulet_active
 		@opponent.each do |opponent|
-			triggerApplyCurse(opponent.policies,curses)
+			opponent.policies.each do |policy|
+				cursesToAdd = triggerBattleStartApplyCurse(policy,self,[])
+				curses.concat(cursesToAdd)
+			end
 		end
 	end
     # Weather announcement
