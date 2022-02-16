@@ -76,219 +76,6 @@ Ability = AURABREAK
 Item = POWERHERB
 Moves = THOUSANDARROWS,THOUSANDWAVES,COREENFORCER,LANDSWRATH
 ################################
-#  Route Avatars
-################################
-#-------------------------------
-[SWALOT]
-Turns = 2
-HPMult = 2
-Ability = GLUTTONY
-Moves = POISONGAS,ACID
-#-------------------------------
-[TORKOAL]
-Turns = 2
-HPMult = 2
-Ability = IMPERVIOUS
-Moves = IGNITE,FLAMEBURST
-#-------------------------------
-[MAMOSWINE]
-Turns = 2
-Ability = THICKFAT
-Item = EXPERTBELT
-Moves = ICEFANG,BULLDOZE
-HPMult = 4
-#-----------------------------
-[MIGHTYENA]
-Turns = 2
-HPMult = 3
-Ability = INTIMIDATE
-Moves = BITE,TACKLE,PRIMEVALMOONLIGHT
-PostPrimeMoves = DISARMINGVOICE
-#-------------------------------
-[COPPERAJAH]
-Turns = 2
-Ability = FASCINATE
-Moves = METALCLAW,PRIMEVALSTRINGSHOT
-PostPrimeMoves = BUGBITE
-HPMult = 3.5
-#-------------------------------
-[MILOTIC]
-Turns = 1
-Ability = COMPETITIVE
-Moves = BRINE,WATERGUN,PRIMEVALSANDSTORM
-PostPrimeMoves = CRYSTALGLINT
-HPMult = 5
-#-------------------------------
-[KANGASKHAN]
-Turns = 2
-Ability = INNERFOCUS
-Moves = RAGE,HEADBUTT,PRIMEVALWILLOWISP
-PostPrimeMoves = SHADOWCLAW
-HPMult = 4
-#-------------------------------
-[SWOOBAT]
-Turns = 2
-Ability = UNAWARE
-Moves = HEARTSTAMP,AERIALACE
-HPMult = 3
-#-------------------------------
-[ELECTRODE]
-Turns = 2
-Ability = SOUNDPROOF
-Moves = DISCHARGE,PRIMEVALSTRINGSHOT
-PostPrimeMoves = SIGNALBEAM
-HPMult = 4
-#------------------------------
-[GENESECT]
-Turns = 3
-HPMult = 6
-Ability = DOWNLOAD
-Moves = TECHNOBLAST,FELLSTINGER,BUGBUZZ,ELECTROWEB
-#------------------------------
-[LEDIAN]
-Turns = 1
-HPMult = 8
-Ability = IRONFIST
-Item = LIGHTCLAY
-Moves = LIGHTSCREEN,REFLECT,POWERUPPUNCH,XSCISSOR
-#------------------------------
-[VESPIQUEN]
-Turns = 2
-HPMult = 3
-Ability = UNNERVE
-Moves = ATTACKORDER,PRIMEVALSPIKES
-PostPrimeMoves = RUMBLE
-#------------------------------
-[AGOLEM]
-Turns = 2
-HPMult = 4
-Ability = GALVANIZE
-Moves = TAKEDOWN,FLAIL
-#-----------------------------
-[ABSOLUS]
-Turns = 2
-HPMult = 3.5
-Ability = BADOMEN
-Moves = MOONBLAST,NIGHTSLASH
-#-----------------------------
-[DODRIO]
-Turns = 3
-HPMult = 1.5
-Ability = VITALSPIRIT
-Moves = PECK
-#-----------------------------
-[KLINKLANG]
-Turns = 2
-HPMult = 4
-Ability = CLEARBODY
-Moves = GEARGRIND
-#-----------------------------
-[AVALUGG]
-Turns = 1
-HPMult = 5
-Ability = PRISMARMOR
-Moves = CRYSTALCRUSH
-#-----------------------------
-[ELECTIVIRE]
-Turns = 2
-HPMult = 4
-Ability = STATIC
-Moves = PLASMAFISTS
-#-----------------------------
-[BEARTIC]
-Turns = 2
-HPMult = 4
-Ability = POISONTOUCH
-Moves = COLDSNOT,VENOMDRENCH
-#-------------------------------
-[MAGIKARP]
-Turns = 3
-Ability = SWIFTSWIM
-Moves = SPLASH
-HPMult = 2
-#-------------------------------
-[DONSTER]
-Turns = 2
-Ability = STENCH
-Item = SITRUSBERRY
-Moves = CLEARSMOG,BELCH
-HPMult = 4
-#-------------------------------
-[DURALUDON]
-Turns = 3
-Ability = SANDSTREAM
-Moves = TWISTER,DRAGONROAR
-HPMult = 4
-#-------------------------------
-[KRICKETUNE]
-Turns = 1
-Ability = LOUD
-Moves = ECHOEDVOICE,BUGBUZZ
-HPMult = 4
-#-------------------------------
-[AURORUS]
-Turns = 1
-Ability = SNOWWARNING
-Moves = ICYWIND
-HPMult = 4
-#-------------------------------
-[GYARADOS]
-Turns = 2
-Ability = INTIMIDATE
-Moves = WATERFALL,PRIMEVALLASERFOCUS
-PostPrimeMoves = IRONHEAD
-HPMult = 4
-#-----------------------------
-[PARASECT]
-Turns = 2
-HPMult = 4
-Ability = COMATOSE
-Moves = SOULRIP,SPORE
-Item = MUSCLEBAND
-#-----------------------------
-[SUNFLORA]
-Turns = 1
-Ability = DROUGHT
-Moves = GROWTH,NATUREBUBBLE
-HPMult = 4
-#-----------------------------
-[HONCHKROW]
-Turns = 1
-Ability = DRIZZLE
-Moves = HURRICANE,FOULPLAY
-HPMult = 5
-#-----------------------------
-[SIMISAGE]
-Turns = 1
-HPMult = 1
-Ability = FRIENDGUARD
-Moves = SEEDBOMB
-#-----------------------------
-[SIMIPOUR]
-Turns = 1
-HPMult = 1
-Ability = FRIENDGUARD
-Moves = BUBBLEBEAM
-#-----------------------------
-[SIMISEAR]
-Turns = 1
-HPMult = 1
-Ability = FRIENDGUARD
-Moves = FLAMEBURST
-#-----------------------------
-[CLEFABLE]
-Turns = 1
-HPMult = 2
-Ability = FRIENDGUARD
-Moves = DAZZLINGGLEAM
-#-----------------------------
-[ARBOK]
-Turns = 2
-HPMult = 2.5
-Ability = SHEDSKIN
-Moves = POISONJAB,PRIMEVALSUNNYDAY
-PostPrimeMoves = FIREFANG
-################################
 #	Ghost Town
 ################################
 #-----------------------------
@@ -708,3 +495,223 @@ Turns = 3
 HPMult = 2
 Ability = GLUTTONY
 Moves = POWERTRIP,GIGAIMPACT,STEALTHROCK
+################################
+#  Route Avatars
+################################
+#-------------------------------
+[SWALOT]
+Turns = 2
+HPMult = 2
+Ability = GLUTTONY
+Moves = POISONGAS,ACID
+#-------------------------------
+[TORKOAL]
+Turns = 2
+HPMult = 2
+Ability = IMPERVIOUS
+Moves = IGNITE,FLAMEBURST
+#-------------------------------
+[MAMOSWINE]
+Turns = 2
+Ability = THICKFAT
+Item = EXPERTBELT
+Moves = ICEFANG,BULLDOZE
+HPMult = 4
+#-----------------------------
+[MIGHTYENA]
+Turns = 2
+HPMult = 3
+Ability = INTIMIDATE
+Moves = BITE,TACKLE,PRIMEVALMOONLIGHT
+PostPrimeMoves = DISARMINGVOICE
+#-------------------------------
+[COPPERAJAH]
+Turns = 2
+Ability = FASCINATE
+Moves = METALCLAW,PRIMEVALSTRINGSHOT
+PostPrimeMoves = BUGBITE
+HPMult = 3.5
+#-------------------------------
+[MILOTIC]
+Turns = 1
+Ability = COMPETITIVE
+Moves = BRINE,WATERGUN,PRIMEVALSANDSTORM
+PostPrimeMoves = CRYSTALGLINT
+HPMult = 5
+#-------------------------------
+[KANGASKHAN]
+Turns = 2
+Ability = INNERFOCUS
+Moves = RAGE,HEADBUTT,PRIMEVALWILLOWISP
+PostPrimeMoves = SHADOWCLAW
+HPMult = 4
+#-------------------------------
+[SWOOBAT]
+Turns = 2
+Ability = UNAWARE
+Moves = HEARTSTAMP,AERIALACE
+HPMult = 3
+#-------------------------------
+[ELECTRODE]
+Turns = 2
+Ability = SOUNDPROOF
+Moves = DISCHARGE,PRIMEVALSTRINGSHOT
+PostPrimeMoves = SIGNALBEAM
+HPMult = 4
+#------------------------------
+[GENESECT]
+Turns = 3
+HPMult = 6
+Ability = DOWNLOAD
+Moves = TECHNOBLAST,FELLSTINGER,BUGBUZZ,ELECTROWEB
+#------------------------------
+[LEDIAN]
+Turns = 1
+HPMult = 8
+Ability = IRONFIST
+Item = LIGHTCLAY
+Moves = LIGHTSCREEN,REFLECT,POWERUPPUNCH,XSCISSOR
+#------------------------------
+[VESPIQUEN]
+Turns = 2
+HPMult = 3
+Ability = UNNERVE
+Moves = ATTACKORDER,PRIMEVALSPIKES
+PostPrimeMoves = RUMBLE
+#------------------------------
+[AGOLEM]
+Turns = 2
+HPMult = 4
+Ability = GALVANIZE
+Moves = TAKEDOWN,FLAIL
+#-----------------------------
+[ABSOLUS]
+Turns = 2
+HPMult = 3.5
+Ability = BADOMEN
+Moves = MOONBLAST,NIGHTSLASH
+#-----------------------------
+[DODRIO]
+Turns = 3
+HPMult = 1.5
+Ability = VITALSPIRIT
+Moves = PECK
+#-----------------------------
+[KLINKLANG]
+Turns = 2
+HPMult = 4
+Ability = CLEARBODY
+Moves = GEARGRIND
+#-----------------------------
+[AVALUGG]
+Turns = 1
+HPMult = 5
+Ability = PRISMARMOR
+Moves = CRYSTALCRUSH
+#-----------------------------
+[ELECTIVIRE]
+Turns = 2
+HPMult = 4
+Ability = STATIC
+Moves = PLASMAFISTS
+#-----------------------------
+[BEARTIC]
+Turns = 2
+HPMult = 4
+Ability = POISONTOUCH
+Moves = COLDSNOT,VENOMDRENCH
+#-------------------------------
+[MAGIKARP]
+Turns = 3
+Ability = SWIFTSWIM
+Moves = SPLASH
+HPMult = 2
+#-------------------------------
+[DONSTER]
+Turns = 2
+Ability = STENCH
+Item = SITRUSBERRY
+Moves = CLEARSMOG,BELCH
+HPMult = 4
+#-------------------------------
+[DURALUDON]
+Turns = 3
+Ability = SANDSTREAM
+Moves = TWISTER,DRAGONROAR
+HPMult = 4
+#-------------------------------
+[KRICKETUNE]
+Turns = 1
+Ability = LOUD
+Moves = ECHOEDVOICE,BUGBUZZ
+HPMult = 4
+#-------------------------------
+[AURORUS]
+Turns = 1
+Ability = SNOWWARNING
+Moves = ICYWIND
+HPMult = 4
+#-------------------------------
+[GYARADOS]
+Turns = 2
+Ability = INTIMIDATE
+Moves = WATERFALL,PRIMEVALLASERFOCUS
+PostPrimeMoves = IRONHEAD
+HPMult = 4
+#-----------------------------
+[PARASECT]
+Turns = 2
+HPMult = 4
+Ability = COMATOSE
+Moves = SOULRIP,SPORE
+Item = MUSCLEBAND
+#-----------------------------
+[SUNFLORA]
+Turns = 1
+Ability = DROUGHT
+Moves = GROWTH,NATUREBUBBLE
+HPMult = 4
+#-----------------------------
+[HONCHKROW]
+Turns = 1
+Ability = DRIZZLE
+Moves = HURRICANE,FOULPLAY
+HPMult = 5
+#-----------------------------
+[SIMISAGE]
+Turns = 1
+HPMult = 1
+Ability = FRIENDGUARD
+Moves = SEEDBOMB
+#-----------------------------
+[SIMIPOUR]
+Turns = 1
+HPMult = 1
+Ability = FRIENDGUARD
+Moves = BUBBLEBEAM
+#-----------------------------
+[SIMISEAR]
+Turns = 1
+HPMult = 1
+Ability = FRIENDGUARD
+Moves = FLAMEBURST
+#-----------------------------
+[CLEFABLE]
+Turns = 1
+HPMult = 2
+Ability = FRIENDGUARD
+Moves = DAZZLINGGLEAM
+#-----------------------------
+[ARBOK]
+Turns = 2
+HPMult = 2.5
+Ability = SHEDSKIN
+Moves = POISONJAB,PRIMEVALSUNNYDAY
+PostPrimeMoves = FIREFANG
+#-----------------------------
+[MARACTUS]
+Turns = 2
+HPMult = 4
+Ability = GRIT
+Moves = GIGADRAIN,PRIMEVALLASERFOCUS
+PostPrimeMoves = STEELBEAM

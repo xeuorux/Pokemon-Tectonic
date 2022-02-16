@@ -1808,3 +1808,26 @@ Pokemon = GLALIE,45
     AbilityIndex = 0
     Item = ORANBERRY
 #-------------------------------
+[SWIMMER_F3,Bree]
+Pokemon = ALOMOMOLA,33
+Pokemon = ELDEGOSS,34
+Pokemon = GMRMIME,33
+Pokemon = SCYTHER,34
+#-------------------------------
+[WORKER3,Seamus]
+Pokemon = TOGEDEMARU,33
+Pokemon = HERACROSS,34
+Pokemon = ARBOK,33
+Pokemon = DRAKLOAK,34
+#-------------------------------
+[RUINMANIAC,Colby]
+Pokemon = MUDSDALE,35
+Pokemon = DEWGONG,34
+Pokemon = WHIMSICOTT,35
+Pokemon = RAPIDASH,34
+#-------------------------------
+[JUGGLER,Mikael]
+Pokemon = MEOWSTIC,34
+Pokemon = URSARING,35
+Pokemon = OCTILLERY,34
+Pokemon = AEXEGGUTOR,34
