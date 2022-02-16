@@ -50,20 +50,12 @@ def earnBadge(badgeNum)
 	pbWait(120)
 	
 	# Increase the level cap
-	case badgeNum
-	when 1
-		pbSetLevelCap(20)
-	when 2..4
-		pbIncreaseLevelCap(5)
-	when 5
-		pbSetLevelCap(45)
-	when 6,7
-		pbIncreaseLevelCap(5)
-	when 8
-		pbSetLevelCap(70)
-	else
-		echo("Gym badge #{index} not yet defined!\n")
+	totalBadges = 0
+	$Trainer.badges.each do |hasBadge|
+		totalBadges += 1 if hasBadge
 	end
+	levelCapsPerBadgeCount = [15,20,25,30,40,45,50,60,70]
+	pbSetLevelCap(levelCapsPerBadgeCount[totalBadges])
 	
 	refreshMapEvents()
 end
