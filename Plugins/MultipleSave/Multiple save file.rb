@@ -495,12 +495,13 @@ class ScreenChooseFileSave
     end
     textpos = []
     (0...endnum).each { |i| 
-	  file = self.load_save_file(FileSave.name(i+1))
+	  saveIDThisSlot = namesave+1+i
+	  file = self.load_save_file(FileSave.name(saveIDThisSlot))
 	  trainer = file[:player]
 	  mapid = file[:map_factory].map.map_id
 	  mapname = pbGetMapNameFromId(mapid)
       mapname.gsub!(/\\PN/,trainer.name)
-      string = _INTL("#{namesave+1+i}: #{trainer.name} / #{mapname}")
+      string = _INTL("#{saveIDThisSlot}: #{trainer.name} / #{mapname}")
       x = 24*2 + 36; y = 16*2 + 5 + 48*i
       textpos<<[string,x,y,0,BaseColor,ShadowColor] 
     }
