@@ -176,8 +176,8 @@ class PokeBattle_Battle
     end
 	# Trigger enter the field curses, if this is a player's pokemon
 	curses.each do |curse|
-			triggerBattlerEnterCurseEffect(curse,battler,self)
-		end
+		triggerBattlerEnterCurseEffect(curse,battler,self)
+	end
     # Record money-doubling effect of Amulet Coin/Luck Incense
     if !battler.opposes? && [:AMULETCOIN, :LUCKINCENSE].include?(battler.item_id)
       @field.effects[PBEffects::AmuletCoin] = true

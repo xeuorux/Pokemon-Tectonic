@@ -562,8 +562,8 @@ class PokeBattle_Move
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end
 	# Creep Out
-	if target.effects[PBEffects::CreepOut]
-		ret *= 2 if moveType == :BUG
+	if target.effects[PBEffects::CreepOut] && moveType == :BUG
+		ret *= 2
 	end
     # Delta Stream's weather
     if @battle.pbWeather == :StrongWinds
@@ -582,8 +582,7 @@ class PokeBattle_Move
 	
 	# Tar Shot
 	if target.effects[PBEffects::TarShot] && moveType == :FIRE
-      ret = PBTypeEffectiveness::SUPER_EFFECTIVE_ONE if Effectiveness.normal_type?(moveType,target.type1,target.type2)
-      ret = PBTypeEffectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.not_very_effective_type?(moveType,target.type1,target.type2)
+      ret *= 2
     end
 	
 	# Break Through
@@ -595,6 +594,11 @@ class PokeBattle_Move
 	if @battle.bossBattle? && ret == 0
 		ret = 0.5
 		@battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!"))
+	end
+	
+	# Type effectiveness changing curses
+	@battle.curses.each do |curse|
+		ret = @battle.triggerEffectivenessChangeCurseEffect(curse,moveType,defType,user,target,ret)
 	end
 	
     return ret

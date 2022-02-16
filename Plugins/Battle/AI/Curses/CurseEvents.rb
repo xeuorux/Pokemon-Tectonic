@@ -1,6 +1,7 @@
 class PokeBattle_Battle
 	BattleStartApplyCurse = HandlerHash2.new
 	BattlerEnterCurseEffect = HandlerHash2.new
+	EffectivenessChangeCurseEffect = HandlerHash2.new
 	
 	def triggerBattleStartApplyCurse(curse_policy,battle,curses_array)
 		echoln("Triggering possible curses for policy: #{curse_policy}")
@@ -11,6 +12,11 @@ class PokeBattle_Battle
 	def triggerBattlerEnterCurseEffect(curse_policy,battler,battle)
 		ret = BattlerEnterCurseEffect.trigger(curse_policy,battler,battle)
 		return ret || false
+	end
+	
+	def triggerEffectivenessChangeCurseEffect(curse_policy,moveType,defType,user,target,effectiveness)
+		ret = EffectivenessChangeCurseEffect.trigger(curse_policy,moveType,defType,user,target,effectiveness)
+		return ret || effectiveness
 	end
 	
 	def amuletActivates(curseName)
