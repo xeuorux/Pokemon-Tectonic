@@ -118,7 +118,7 @@ Pokemon = NICKIT,15
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Lambert,Lambert]
-Policies = LAMBERT,CURSE_TYPE_WEAKENED
+Policies = LAMBERT
 Pokemon = PANCHAM,15
     Moves = SMASH,TAUNT,LEER,BITE
     AbilityIndex = 0

@@ -595,12 +595,6 @@ class PokeBattle_Move
 		ret = 0.5
 		@battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!"))
 	end
-	
-	# Type effectiveness changing curses
-	@battle.curses.each do |curse|
-		ret = @battle.triggerEffectivenessChangeCurseEffect(curse,moveType,defType,user,target,ret)
-	end
-	
     return ret
   end
   
@@ -633,6 +627,11 @@ class PokeBattle_Move
 			@battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
 			ret /= 2
 		end
+	end
+	
+	# Type effectiveness changing curses
+	@battle.curses.each do |curse|
+		ret = @battle.triggerEffectivenessChangeCurseEffect(curse,moveType,user,target,ret)
 	end
 	
     return ret
