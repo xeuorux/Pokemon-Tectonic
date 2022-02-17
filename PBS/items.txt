@@ -378,10 +378,10 @@
 373,TM85,TM85,TM85s,4,10000,"The user yells as if it's ranting about something, which lowers the Sp. Atk stats of opposing Pokémon.",3,0,0,SNARL
 374,TM86,TM86,TM86s,4,10000,"The user vanishes, then strikes the target on the next turn. This move hits even if the target protects itself.",3,0,0,PHANTOMFORCE
 375,TM87,TM87,TM87s,4,10000,The user steals the target's HP with a kiss. The user's HP is restored by over half the damage inflicted.,3,0,0,DRAININGKISS
-376,TM88,TM88,TM88s,4,5000,The user turns the ground to grass for five turns. This slowly restores the HP of Pokémon on the ground.,3,0,0,GRASSYTERRAIN
-377,TM89,TM89,TM89s,4,5000,This protects Pokémon on the ground from status conditions for five turns.,3,0,0,MISTYTERRAIN
-378,TM90,TM90,TM90s,4,5000,The user electrifies the ground for five turns. Pokémon on the ground no longer fall asleep.,3,0,0,ELECTRICTERRAIN
-379,TM91,TM91,TM91s,4,5000,This protects Pokémon on the ground from priority moves for five turns.,3,0,0,PSYCHICTERRAIN
+376,TM88,TM88,TM88s,4,5000,"For five turns, Grass-type attacks are boosted, and grounded Pokémon restore a little HP every turn.",3,0,0,GRASSYTERRAIN
+377,TM89,TM89,TM89s,4,5000,"For five turns, Fairy-type moves are boosted, and grounded Pokémon can't be burned/poisoned.",3,0,0,FAIRYTERRAIN
+378,TM90,TM90,TM90s,4,5000,"For five turns, Electric-type attacks are boosted, and grounded Pokémon can't sleep or be chilled.",3,0,0,ELECTRICTERRAIN
+379,TM91,TM91,TM91s,4,5000,"For five turns, Psychic-type attacks are boosted, and priority moves fail.",3,0,0,PSYCHICTERRAIN
 380,TM92,TM92,TM92s,4,100000,"The user attacks by breathing a special, hot fire. This also lowers the target's Sp. Atk stat.",3,0,0,MYSTICALFIRE
 381,TM93,TM93,TM93s,4,10000,The user's body generates an eerie impulse. This harshly lowers the target's Sp. Atk stat.,3,0,0,EERIEIMPULSE
 382,TM94,TM94,TM94s,4,10000,"The user pouts, appearing cute before the target. The target's Attack is harshly lowered.",3,0,0,POUT

@@ -120,7 +120,7 @@
 115,ELECTROBALL,Electro Ball,099,1,ELECTRIC,Special,100,10,0,NearOther,0,befn,The user hurls an electric orb at the foe. It does more damage the faster the user is.
 116,CHARGE,Charge,021,0,ELECTRIC,Status,0,20,0,User,0,d,The user boosts the power of the Electric move it uses next. It also raises the user's Sp. Def stat.
 117,EERIEIMPULSE,Eerie Impulse,13D,0,ELECTRIC,Status,100,15,0,NearOther,0,bce,The user's body generates an eerie impulse. Harshly lowers the target's Sp. Atk stat.
-118,ELECTRICTERRAIN,Electric Terrain,154,0,ELECTRIC,Status,0,10,0,BothSides,0,,The user electrifies the ground for five turns. Pokémon on the ground no longer fall asleep.
+118,ELECTRICTERRAIN,Electric Terrain,154,0,ELECTRIC,Status,0,10,0,BothSides,0,,"For five turns, Electric-type attacks are boosted, and grounded Pokémon can't sleep or be chilled."
 119,ELECTRIFY,Electrify,145,0,ELECTRIC,Status,0,20,0,NearOther,0,be,"If the target uses a move after being electrified, that move becomes Electric-type."
 120,IONDELUGE,Ion Deluge,146,0,ELECTRIC,Status,0,25,0,BothSides,1,,The user disperses electrically charged particles. Normal-type moves become Electric-type.
 121,MAGNETRISE,Magnet Rise,119,0,ELECTRIC,Status,0,10,0,User,0,d,The user levitates using electrically generated magnetism for five turns.
@@ -148,7 +148,7 @@
 143,FLORALHEALING,Floral Healing,16E,0,FAIRY,Status,0,10,0,NearOther,0,bc,The user restores the target's HP by up to half of its max HP. It restores more HP when the terrain is grass.
 144,FLOWERSHIELD,Flower Shield,13F,0,FAIRY,Status,0,10,0,AllBattlers,0,,The user raises the Defense stats of all Grass-type Pokémon in battle with a mysterious power.
 145,GEOMANCY,Geomancy,14E,0,FAIRY,Status,0,10,0,User,0,,"The user absorbs energy and sharply raises its Sp. Atk, Sp. Def, and Speed stats on the next turn."
-146,MISTYTERRAIN,Misty Terrain,156,0,FAIRY,Status,0,10,0,BothSides,0,,The user covers the ground with mist for five turns. Grounded Pokémon can't gain status conditions.
+146,FAIRYTERRAIN,Fairy Terrain,156,0,FAIRY,Status,0,10,0,BothSides,0,,"For five turns, Fairy-type moves are boosted, and grounded Pokémon can't be burned/poisoned."
 147,MOONLIGHT,Moonlight,0D8,0,FAIRY,Status,0,5,0,User,0,d,The user restores its own HP. The amount of HP regained varies with the weather.
 148,NATURESMADNESS,Nature's Madness,06C,0,FAIRY,Status,90,10,0,NearOther,0,bef,The user hits the target with the force of nature. It halves the target's HP.
 149,ANGELSKISS,Angel's Kiss,400,0,FAIRY,Status,100,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes charm."
@@ -326,7 +326,7 @@
 315,COTTONSPORE,Cotton Spore,04D,0,GRASS,Status,100,40,0,AllNearFoes,0,bcel,"The user releases cotton-like spores that cling to the foe, harshly reducing its Speed stat."
 316,FORESTSCURSE,Forest's Curse,143,0,GRASS,Status,100,20,0,NearOther,0,bce,The user puts a forest curse on the target. The target is now Grass type as well.
 317,GRASSWHISTLE,Grass Whistle,003,0,GRASS,Status,55,15,0,NearOther,0,bcek,"The user plays a pleasant melody that lulls the target into a deep sleep."
-318,GRASSYTERRAIN,Grassy Terrain,155,0,GRASS,Status,0,10,0,BothSides,0,,The user turns the ground to grass for five turns. Grounded Pokémon restore a little HP every turn.
+318,GRASSYTERRAIN,Grassy Terrain,155,0,GRASS,Status,0,10,0,BothSides,0,,"For five turns, Grass-type attacks are boosted, and grounded Pokémon restore a little HP every turn."
 319,INGRAIN,Ingrain,0DB,0,GRASS,Status,0,20,0,User,0,d,"The user lays roots that restore its HP on every turn. Because it is rooted, it can't switch out."
 320,LEECHSEED,Leech Seed,0DC,0,GRASS,Status,100,10,0,NearOther,0,bce,A seed is planted on the target. It steals some HP from the target every turn.
 321,SLEEPPOWDER,Sleep Powder,003,0,GRASS,Status,75,15,0,NearOther,0,bcel,"The user scatters a big cloud of sleep-inducing dust around the target."
@@ -656,7 +656,7 @@
 639,POWERSPLIT,Power Split,058,0,PSYCHIC,Status,0,10,0,NearOther,0,b,The user employs its psychic power to average its Attack and Sp. Atk stats with those of the target.
 640,POWERSWAP,Power Swap,052,0,PSYCHIC,Status,0,10,0,NearOther,0,be,The user employs its psychic power to switch changes to its Attack and Sp. Atk with the target.
 641,POWERTRICK,Power Trick,057,0,PSYCHIC,Status,0,10,0,User,0,d,The user employs its psychic power to switch its Attack with its Defense stat.
-642,PSYCHICTERRAIN,Psychic Terrain,173,0,PSYCHIC,Status,0,10,0,BothSides,0,,Protects grounded Pokémon from priority moves and powers up Psychic-type moves for five turns.
+642,PSYCHICTERRAIN,Psychic Terrain,173,0,PSYCHIC,Status,0,10,0,BothSides,0,,"For five turns, Psychic-type attacks are boosted, and priority moves fail."
 643,PSYCHOSHIFT,Psycho Shift,01B,0,PSYCHIC,Status,100,10,0,NearOther,0,be,"Using its psychic power of suggestion, the user transfers its status problems to the target."
 644,REFLECT,Reflect,0A2,0,PSYCHIC,Status,0,20,0,UserSide,0,d,A wondrous wall of light is put up to suppress damage from physical attacks for five turns.
 645,REST,Rest,0D9,0,PSYCHIC,Status,0,5,0,User,0,d,The user goes to sleep for two turns. It fully restores the user's HP and heals any status problem.
@@ -994,3 +994,4 @@
 2006,SWEETKISS,Sweet Kiss,013,0,FAIRY,Status,75,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes confusion."
 2007,SONICBOOM,Sonic Boom,06A,1,NORMAL,Special,90,20,0,NearOther,0,bef,"The target is hit with a destructive shock wave that always inflicts 20 HP damage."
 2008,PRESENT,Present,094,1,NORMAL,Physical,90,15,0,NearOther,0,bef,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however."
+2009,MISTYTERRAIN,Misty Terrain,156,0,FAIRY,Status,0,10,0,BothSides,0,,The user covers the ground with mist for five turns. Grounded Pokémon can't gain status conditions.
