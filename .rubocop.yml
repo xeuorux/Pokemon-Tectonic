@@ -1,0 +1,13 @@
+Style/Encoding:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 100
+  
+AllCops:
+  TargetRubyVersion: 3.0
+  NewCops: enable
+  
+Layout/IndentationStyle:
+  EnforcedStyle: tabs
+  IndentationWidth: 4
