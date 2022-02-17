@@ -15,6 +15,7 @@ Pokemon = BIDOOF,50
     AbilityIndex = 0
 #-------------------------------
 [HIKER,Conroy]
+Policies = CURSE_PERISH_SONGED
 Pokemon = CLEFABLE,70
     AbilityIndex = 1
 Pokemon = SNORLAX,70
