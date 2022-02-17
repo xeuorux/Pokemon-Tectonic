@@ -50,9 +50,7 @@ class PokeBattle_AI
       if target.pbCanConfuse?(user,false)
         score += 30
       else
-        if skill>=PBTrainerAI.mediumSkill
-          score -= 90 if move.statusMove?
-        end
+        score -= 90 if move.statusMove?
       end
     #---------------------------------------------------------------------------
     when "016"
@@ -66,11 +64,9 @@ class PokeBattle_AI
       elsif skill>=PBTrainerAI.bestSkill && target.hasActiveAbility?(:OBLIVIOUS)
         score -= 80; canattract = false
       end
-      if skill>=PBTrainerAI.highSkill
-        if canattract && target.hasActiveItem?(:DESTINYKNOT) &&
-           user.pbCanAttract?(target,false)
-          score -= 30
-        end
+	  if canattract && target.hasActiveItem?(:DESTINYKNOT) &&
+	    user.pbCanAttract?(target,false)
+	    score -= 30
       end
     #---------------------------------------------------------------------------
     when "017"
@@ -124,34 +120,30 @@ class PokeBattle_AI
     when "01C"
       if move.statusMove?
         if user.statStageAtMax?(:ATTACK)
-          score -= 90
+			score -= 90
         else
-          score -= user.stages[:ATTACK]*20
-          if skill>=PBTrainerAI.mediumSkill
-            hasPhysicalAttack = false
-            user.eachMove do |m|
-              next if !m.physicalMove?(m.type)
-              hasPhysicalAttack = true
-              break
-            end
-            if hasPhysicalAttack
-              score += 20
-            elsif skill>=PBTrainerAI.highSkill
-              score -= 90
-            end
-          end
+			score -= user.stages[:ATTACK]*20
+			hasPhysicalAttack = false
+			user.eachMove do |m|
+			  next if !m.physicalMove?(m.type)
+			  hasPhysicalAttack = true
+			  break
+			end
+			if hasPhysicalAttack
+			  score += 20
+			else
+			  score -= 90
+			end
         end
       else
         score += 20 if user.stages[:ATTACK]<0
-        if skill>=PBTrainerAI.mediumSkill
-          hasPhysicalAttack = false
-          user.eachMove do |m|
-            next if !m.physicalMove?(m.type)
-            hasPhysicalAttack = true
-            break
-          end
-          score += 20 if hasPhysicalAttack
-        end
+		hasPhysicalAttack = false
+		user.eachMove do |m|
+			next if !m.physicalMove?(m.type)
+			hasPhysicalAttack = true
+			break
+		end
+		score += 20 if hasPhysicalAttack
       end
     #---------------------------------------------------------------------------
     when "01D", "01E", "0C8"
@@ -168,14 +160,12 @@ class PokeBattle_AI
     when "01F"
       if move.statusMove?
         if user.statStageAtMax?(:SPEED)
-          score -= 90
+			score -= 90
         else
-          score -= user.stages[:SPEED]*10
-          if skill>=PBTrainerAI.highSkill
-            aspeed = pbRoughStat(user,:SPEED,skill)
-            ospeed = pbRoughStat(target,:SPEED,skill)
-            score += 30 if aspeed<ospeed && aspeed*2>ospeed
-          end
+			score -= user.stages[:SPEED]*10
+			aspeed = pbRoughStat(user,:SPEED,skill)
+			ospeed = pbRoughStat(target,:SPEED,skill)
+			score += 30 if aspeed<ospeed && aspeed*2>ospeed
         end
       else
         score += 20 if user.stages[:SPEED]<0
@@ -2956,28 +2946,26 @@ class PokeBattle_MultiStatUpMove
 		end
 		return 0 if stagesMaxxed
 		
-        if skill>=PBTrainerAI.mediumSkill
-		  hasPhysicalAttack = false
-          hasSpecicalAttack = false
-          user.eachMove do |m|
-		    hasPhysicalAttack = true if m.physicalMove?(m.type)
-            hasSpecicalAttack = true if m.specialMove?(m.type)
-          end
-		  
-          # Medium or higher skilled trainers wont use this move if it boosts an offensive
-		  # Stat that the pokemon can't actually use
-		  return 0 if upsPhysicalAttack && !upsSpecialAttack && !hasPhysicalAttack
-		  return 0 if !upsPhysicalAttack && upsSpecialAttack && !hasSpecicalAttack
-		  
-		  score -= 20 if !upsPhysicalAttack && !upsSpecialAttack # Boost moves that dont up offensives are worse
-        end
+		hasPhysicalAttack = false
+		hasSpecicalAttack = false
+		user.eachMove do |m|
+		hasPhysicalAttack = true if m.physicalMove?(m.type)
+		hasSpecicalAttack = true if m.specialMove?(m.type)
+		end
+
+		# Wont use this move if it boosts an offensive
+		# Stat that the pokemon can't actually use
+		return 0 if upsPhysicalAttack && !upsSpecialAttack && !hasPhysicalAttack
+		return 0 if !upsPhysicalAttack && upsSpecialAttack && !hasSpecicalAttack
+
+		score -= 20 if !upsPhysicalAttack && !upsSpecialAttack # Boost moves that dont up offensives are worse
 		
 		return score
 	end
 end
 
 def statusUpsideAbilities()
-	return [:GUTS,:AUDACITY,:MARVELSCALE,:TOXICBOOST,:QUICKFEET]
+	return [:GUTS,:AUDACITY,:MARVELSCALE,:QUICKFEET]
 end
 
 def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,twave=false)
@@ -2990,14 +2978,12 @@ def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,t
           if aspeed<ospeed
             score += 30
           elsif aspeed>ospeed
-            score -= 40
+            score -= 30
           end
         end
-        if skill>=PBTrainerAI.highSkill
-          score -= 40 if target.hasActiveAbility?(statusUpsideAbilities)
-        end
-    elsif skill>=PBTrainerAI.mediumSkill
-	    score = 0 if status
+        score -= 30 if target.hasActiveAbility?(statusUpsideAbilities)
+    elsif status
+	    score = 0 
     end
 	return score
 end
@@ -3005,31 +2991,20 @@ end
 def getFreezeMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target.pbCanFreeze?(user,false)
 		score += 30
-		if skill>=PBTrainerAI.highSkill
-		  score -= 20 if target.hasActiveAbility?(statusUpsideAbilities)
-		end
-	elsif skill>=PBTrainerAI.mediumSkill && status
+		score -= 30 if target.hasActiveAbility?(statusUpsideAbilities)
+	elsif status
 		return 0
 	end
 	return score
 end
 
 def getPoisonMoveScore(score,user,target,skill=100,policies=[],status=false)
-	if target.pbCanPoison?(user,false)
+	if target && target.pbCanPoison?(user,false)
         score += 30
-        if skill>=PBTrainerAI.mediumSkill
-          score += 30 if target.hp<=target.totalhp/4
-          score += 50 if target.hp<=target.totalhp/8
-          score -= 40 if target.effects[PBEffects::Yawn]>0
-        end
-        if skill>=PBTrainerAI.highSkill
-          score += 10 if pbRoughStat(target,:DEFENSE,skill)>100
-          score += 10 if pbRoughStat(target,:SPECIAL_DEFENSE,skill)>100
-          score -= 40 if target.hasActiveAbility?(statusUpsideAbilities)
-        end
+        score -= 30 if if target.hasActiveAbility?([:TOXICBOOST,:POISONHEAL].concat(statusUpsideAbilities))
 		score = 500 if policies.include?(:PRIORITIZEDOTS) && status
-    elsif skill>=PBTrainerAI.mediumSkill && status
-        return 0
+    elsif status
+		return 0
     end
 	return score
 end
@@ -3037,11 +3012,9 @@ end
 def getBurnMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target && target.pbCanBurn?(user,false)
         score += 30
-        if skill>=PBTrainerAI.highSkill
-          score -= 40 if target.hasActiveAbility?([:FLAREBOOST].concat(statusUpsideAbilities))
-        end
+        score -= 30 if target.hasActiveAbility?([:FLAREBOOST,:BURNHEAL].concat(statusUpsideAbilities))
 		score = 500 if policies.include?(:PRIORITIZEDOTS) && status
-    elsif skill>=PBTrainerAI.mediumSkill && status
+    elsif status
 		return 0
     end
 	return score
