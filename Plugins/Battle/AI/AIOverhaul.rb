@@ -217,7 +217,10 @@ class PokeBattle_AI
 	@battle.messagesBlocked = false
 		
 	# A score of 0 here means it absolutely should not be used
-    return 0 if score == nil || score<=0
+    if score == nil || score<=0
+		echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)}: #{0}")
+		return 0
+	end
 	
     if skill>=PBTrainerAI.mediumSkill
       # Prefer damaging moves if AI has no more Pokémon or AI is less clever
@@ -263,7 +266,7 @@ class PokeBattle_AI
       if user.status == :SLEEP && !move.usableWhenAsleep?
         user.eachMove do |m|
           next unless m.usableWhenAsleep?
-          score -= 60
+          score *= 0.1
           break
         end
       end
@@ -281,6 +284,7 @@ class PokeBattle_AI
     end
     score = score.to_i
     score = 0 if score<0
+	echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)}: #{score}")
     return score
   end
 

@@ -3048,28 +3048,27 @@ def getBurnMoveScore(score,user,target,skill=100,policies=[],status=false)
 end
 
 def getFlinchingMoveScore(score,user,target,skill,policies)
-	if skill>=PBTrainerAI.mediumSkill
-		score += 30
-		if skill>=PBTrainerAI.highSkill && 
-			(target.hasActiveAbility?(:INNERFOCUS) ||
+	userSpeed = pbRoughStat(user,:SPEED,skill)
+	targetSpeed = pbRoughStat(target,:SPEED,skill)
+	
+	if target.hasActiveAbility?(:INNERFOCUS) ||
 			target.effects[PBEffects::Substitute] != 0 ||
-			target.effects[PBEffects::FlinchedAlready]
-			)
-			score -= 30
-		end
+			target.effects[PBEffects::FlinchedAlready] ||
+			targetSpeed > userSpeed
+		score -= 20
+	else
+		score += 20
 	end
 	return score
 end
 
 def getWantsToBeSlowerScore(score,user,target,skill=100,magnitude=1)
-	if skill>=PBTrainerAI.mediumSkill
-		userSpeed = pbRoughStat(user,:SPEED,skill)
-		targetSpeed = pbRoughStat(target,:SPEED,skill)
-		if userSpeed<targetSpeed
-			score += 10 * magnitude
-		else
-			score -= 10 * magnitude
-		end
+	userSpeed = pbRoughStat(user,:SPEED,skill)
+	targetSpeed = pbRoughStat(target,:SPEED,skill)
+	if userSpeed<targetSpeed
+		score += 10 * magnitude
+	else
+		score -= 10 * magnitude
 	end
 	return score
 end
