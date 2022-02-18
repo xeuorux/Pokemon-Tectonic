@@ -30,6 +30,10 @@ class PokeBattle_Battle
       @decision = 0
       @scene.pbEndBattle(@decision)
     end
+	# End the effect of all curses
+	curses.each do |curse_policy|
+		triggerBattleEndCurse(curse_policy,self)
+	end
 	# Record if the fight was perfected
 	if $Trainer.able_pokemon_count == faintedBefore
 		$game_switches[94] = true 
