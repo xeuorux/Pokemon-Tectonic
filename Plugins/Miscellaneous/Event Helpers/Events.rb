@@ -17,3 +17,18 @@ def noteMovedSelf()
 	echoln("#{$PokemonMap}, #{get_self().id}, #{$game_map.events[get_self().id].name}")
 	$PokemonMap.addMovedEvent(get_self().id) if $PokemonMap
 end
+
+def goToLabel(label_name)
+	temp_index = 0
+	loop do
+		return true if temp_index >= @list.size - 1   # Reached end of commands
+		# Check whether this command is a label with the desired name
+		if @list[temp_index].code == 118 &&
+		   @list[temp_index].parameters[0] == label_name
+		  @index = temp_index
+		  return true
+		end
+		# Command isn't the desired label, increment temp_index and keep looking
+		temp_index += 1
+	  end
+end

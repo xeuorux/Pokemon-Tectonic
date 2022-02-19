@@ -9,7 +9,8 @@ def useTarotAmulet()
 end
 
 ItemHandlers::UseFromBag.add(:TAROTAMULET,proc { |item|
-	next useTarotAmulet()
+	useTarotAmulet()
+	next 1
 })
 
 ItemHandlers::ConfirmUseInField.add(:TAROTAMULET,proc { |item|

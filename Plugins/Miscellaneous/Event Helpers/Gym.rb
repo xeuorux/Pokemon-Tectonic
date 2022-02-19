@@ -26,6 +26,24 @@ def earnBadge(badgeNum)
 	refreshMapEvents()
 end
 
+def showGymChoices(notSureLabel="NotSure",basicTeamLabel="BasicTeam",doublesTeamLabel="DoublesTeam",amuletMatters = true)
+	cmdNotSure = -1
+	cmdBasicTeam = -1
+	cmdDoublesTeam = -1
+	commands = []
+	commands[cmdNotSure = commands.length]  = _INTL("I'm not sure")
+	commands[cmdBasicTeam = commands.length]  = (amuletMatters && $PokemonGlobal.tarot_amulet_active) ? _INTL("Basic Team (CURSED)") : _INTL("Basic Team")
+	commands[cmdDoublesTeam = commands.length]  = _INTL("Doubles Team (Advanced)")
+	cmd = pbShowCommands(nil,commands)
+	if cmdNotSure > -1 && cmd == cmdNotSure
+		goToLabel(notSureLabel)
+	elsif cmdBasicTeam > -1 && cmd == cmdBasicTeam
+		goToLabel(basicTeamLabel)
+	elsif cmdDoublesTeam > -1 && cmd == cmdDoublesTeam
+		goToLabel(doublesTeamLabel)
+	end
+end
+
 def receivedGymRewardYet?(index)
 	if $game_variables[78] == 0
 		$game_variables[78] = [false] * 8

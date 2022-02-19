@@ -162,6 +162,32 @@ Pokemon = CROAGUNK,15
     AbilityIndex = 0
     Item = SITRUSBERRY
 #-------------------------------
+[LEADER_Lambert_2,Lambert,1]
+Policies = LAMBERT,CURSE_TYPE_WEAKENED
+Pokemon = ZORUA,15
+    Moves = HARSHWORDS,GRASSKNOT,SWIFT
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+Pokemon = PANCHAM,15
+    Moves = SMASH,TAUNT,LEER,BITE
+    AbilityIndex = 0
+Pokemon = MACHOP,15
+    Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
+    AbilityIndex = 1
+Pokemon = GZIGZAGOON,15
+    Moves = SNARL,LICK,TACKLE,BITE
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+Pokemon = RIOLU,15
+    Name = Sangfroid
+    Gender = female
+    Moves = MAGNETWAVE,SCREECH,COURAGEBOLT,VANGUARD
+    AbilityIndex = 1
+Pokemon = CROAGUNK,15
+    Moves = FLATTER,ENTOXIN,MUDTHROW,HEADBUTT
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+#-------------------------------
 [POKEMONTRAINER_Yezera,Yezera]
 Policies = YEZERA
 Pokemon = BUNNELBY,15
