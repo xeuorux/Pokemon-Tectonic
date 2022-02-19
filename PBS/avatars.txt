@@ -663,7 +663,8 @@ HPMult = 4
 Turns = 2
 HPMult = 4
 Ability = COMATOSE
-Moves = SOULRIP,SPORE
+Moves = SOULRIP,SPORE,PRIMEVALPOISONGAS
+PostPrimeMoves = POISONJAB
 Item = MUSCLEBAND
 #-----------------------------
 [SUNFLORA]

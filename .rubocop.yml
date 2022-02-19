@@ -1,13 +1,30 @@
 Style/Encoding:
-  Enabled: true
+    Enabled: true
 
 Layout/LineLength:
-  Max: 100
+    Max: 200
   
 AllCops:
-  TargetRubyVersion: 3.0
-  NewCops: enable
+    TargetRubyVersion: 3.0
+    NewCops: enable
   
 Layout/IndentationStyle:
-  EnforcedStyle: tabs
-  IndentationWidth: 4
+    EnforcedStyle: tabs
+
+Layout/IndentationWidth:
+    Enabled: false
+  
+Naming/VariableName:
+    EnforcedStyle: snake_case
+
+Naming/FileName:
+    Enabled: false
+    
+Style/FrozenStringLiteralComment:
+    EnforcedStyle: never
+
+Style/StringLiterals:
+    EnforcedStyle: double_quotes
+
+Layout/ArgumentAlignment:  
+    Enabled: false

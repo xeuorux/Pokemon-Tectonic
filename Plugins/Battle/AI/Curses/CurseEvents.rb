@@ -3,6 +3,7 @@ class PokeBattle_Battle
 	BattleEndCurse						= HandlerHash2.new
 	BattlerEnterCurseEffect 			= HandlerHash2.new
 	EffectivenessChangeCurseEffect 		= HandlerHash2.new
+	MoveUsedCurseEffect					= HandlerHash2.new
 	
 	def triggerBattleStartApplyCurse(curse_policy,battle,curses_array)
 		ret = BattleStartApplyCurse.trigger(curse_policy,battle,curses_array)
@@ -21,6 +22,11 @@ class PokeBattle_Battle
 	def triggerEffectivenessChangeCurseEffect(curse_policy,moveType,user,target,effectiveness)
 		ret = EffectivenessChangeCurseEffect.trigger(curse_policy,moveType,user,target,effectiveness)
 		return ret || effectiveness
+	end
+	
+	def triggerMoveUsedCurseEffect(curse_policy,user,target,move)
+		ret = MoveUsedCurseEffect.trigger(curse_policy,user,target,move)
+		return ret || true
 	end
 	
 	def amuletActivates(curseName)

@@ -378,6 +378,11 @@ class PokeBattle_Battler
       # Move-specific effects after all hits
       targets.each { |b| move.pbEffectAfterAllHits(user,b) }
 	  
+	  # Curses about move usage
+	  @battle.curses.each do |curse_policy|
+			@battle.triggerMoveUsedCurseEffect(curse_policy,self,choice[3],move)
+	  end
+	  
 	  if !battle.wildBattle?
 		  # Triggers dialogue for each target hit
 		  targets.each do |t|
