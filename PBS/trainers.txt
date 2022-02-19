@@ -1810,25 +1810,25 @@ Pokemon = GLALIE,45
     Item = ORANBERRY
 #-------------------------------
 [SWIMMER_F3,Bree]
-Pokemon = ALOMOMOLA,33
-Pokemon = ELDEGOSS,34
-Pokemon = GMRMIME,33
-Pokemon = SCYTHER,34
+Pokemon = ALOMOMOLA,46
+Pokemon = ELDEGOSS,47
+Pokemon = MRRIME,46
+Pokemon = SCIZOR,47
 #-------------------------------
 [WORKER3,Seamus]
-Pokemon = TOGEDEMARU,33
-Pokemon = HERACROSS,34
-Pokemon = ARBOK,33
-Pokemon = DRAKLOAK,34
+Pokemon = TOGEDEMARU,46
+Pokemon = HERACROSS,47
+Pokemon = ARBOK,46
+Pokemon = SANDORNADO,47
 #-------------------------------
 [RUINMANIAC,Colby]
-Pokemon = MUDSDALE,35
-Pokemon = DEWGONG,34
-Pokemon = WHIMSICOTT,35
-Pokemon = RAPIDASH,34
+Pokemon = MUDSDALE,48
+Pokemon = DEWGONG,47
+Pokemon = WHIMSICOTT,48
+Pokemon = RAPIDASH,47
 #-------------------------------
 [JUGGLER,Mikael]
-Pokemon = MEOWSTIC,34
-Pokemon = URSARING,35
-Pokemon = OCTILLERY,34
-Pokemon = AEXEGGUTOR,34
+Pokemon = MEOWSTIC,47
+Pokemon = URSARING,48
+Pokemon = OCTILLERY,47
+Pokemon = AEXEGGUTOR,47
