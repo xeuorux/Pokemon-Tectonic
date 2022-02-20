@@ -1,12 +1,13 @@
 def blackFadeOutIn(length=10,&block)
-	if $PokemonSystem.skip_fades == 1
-		$game_screen.start_tone_change(Tone.new(-255,-255,-255,0), length * Graphics.frame_rate / 20)
-		pbWait(length * Graphics.frame_rate / 20)
+	adjustedLength = length * Graphics.frame_rate / 20
+	if $PokemonSystem.skip_fades == 1 || !$DEBUG
+		$game_screen.start_tone_change(Tone.new(-255,-255,-255,0), adjustedLength)
+		pbWait(adjustedLength)
 	end
 	block.call
-	if $PokemonSystem.skip_fades == 1
-		$game_screen.start_tone_change(Tone.new(0,0,0,0), length * Graphics.frame_rate / 20)
-		pbWait(length * Graphics.frame_rate / 20)
+	if $PokemonSystem.skip_fades == 1 || !$DEBUG
+		$game_screen.start_tone_change(Tone.new(0,0,0,0), adjustedLength)
+		pbWait(adjustedLength)
 	end
 end
 
