@@ -43,12 +43,13 @@ class PokeBattle_Battle
 	if trainerBattle? || bossBattle?
 		pbParty(0).each_with_index do |pkmn,i|
 			pkmn.battlingStreak = 0 if pkmn.battlingStreak.nil?
+      wasOnStreak = pkmn.onHotStreak?
 			if pkmn.fainted? || [2,3].include?(@decision)
 				pbMessage("#{pkmn.name}'s Hot Streak is now over.") if pkmn.onHotStreak?
 				pkmn.battlingStreak = 0
 			elsif @usedInBattle[0][i]
 				pkmn.battlingStreak += 1
-				pbMessage("#{pkmn.name} is on a Hot Streak!") if pkmn.onHotStreak?
+				pbMessage("#{pkmn.name} is on a Hot Streak!") if pkmn.onHotStreak? && !wasOnStreak
 			end
 		end
 	end
