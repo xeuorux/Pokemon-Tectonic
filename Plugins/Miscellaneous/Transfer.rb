@@ -20,7 +20,10 @@ class Scene_Map
 		# The player surfs if they were transferred to a surfable tile
 		terrainID = $game_map.terrain_tag($game_player.x, $game_player.y).id
 		terrain = GameData::TerrainTag.try_get(terrainID)
-		$PokemonGlobal.surfing = true if terrain && terrain.can_surf
+		if terrain && terrain.can_surf
+			$PokemonGlobal.surfing = true
+			pbUpdateVehicle
+		end
 		
 		disposeSpritesets
 		RPG::Cache.clear
