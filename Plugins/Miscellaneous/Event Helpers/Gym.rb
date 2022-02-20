@@ -32,7 +32,7 @@ def showGymChoices(notSureLabel="NotSure",basicTeamLabel="BasicTeam",doublesTeam
 	cmdDoublesTeam = -1
 	commands = []
 	commands[cmdNotSure = commands.length]  = _INTL("I'm not sure")
-	commands[cmdBasicTeam = commands.length]  = (amuletMatters && $PokemonGlobal.tarot_amulet_active) ? _INTL("Basic Team (CURSED)") : _INTL("Basic Team")
+	commands[cmdBasicTeam = commands.length]  = (amuletMatters && $PokemonGlobal.tarot_amulet_active) ? _INTL("Full Team (CURSED)") : _INTL("Basic Team")
 	commands[cmdDoublesTeam = commands.length]  = _INTL("Doubles Team (Advanced)")
 	cmd = pbShowCommands(nil,commands)
 	if cmdNotSure > -1 && cmd == cmdNotSure
