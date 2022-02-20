@@ -1300,7 +1300,7 @@ class PokemonPokedex_Scene
 	end
 	
 	def sortByOther()
-		statSelection = pbMessage("Which stat?",[_INTL("Type"),_INTL("Cancel")],2)
+		statSelection = pbMessage("Sort by what?",[_INTL("Type"),_INTL("Cancel")],2)
 	    return if statSelection == 1 
 		dexlist = @dexlist
 		dexlist.sort_by! { |entry|

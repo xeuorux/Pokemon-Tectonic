@@ -114,7 +114,7 @@ class PokemonDataBox < SpriteWrapper
 		nameWidth = self.bitmap.text_size(@battler.name).width
 		nameOffset = 0
 		nameOffset = nameWidth-116 if nameWidth>116
-		nameColor = @battler.empowered? ? Color.new(20,200, 70) : NAME_BASE_COLOR
+		nameColor = @battler.empowered? ? Color.new(221,207, 115) : NAME_BASE_COLOR
 		textPos.push([@battler.name,@spriteBaseX+8-nameOffset,0,false,nameColor,NAME_SHADOW_COLOR])
 		# Draw Pokémon's gender symbol
 		case @battler.displayGender
@@ -182,19 +182,19 @@ class PokemonDataBox < SpriteWrapper
 		end
 		if types[0]
 			@type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number * TYPE_ICON_HEIGHT
-			@type1Icon.visible = true if @battler.effects[PBEffects::Transform]
+			@type1Icon.visible = true if @battler.effects[PBEffects::Transform] && @showTypes
 		else
 			@type1Icon.visible = false
 		end
 		if types[1]
 			@type2Icon.src_rect.y = GameData::Type.get(types[1]).id_number * TYPE_ICON_HEIGHT if types[1]
-			@type2Icon.visible = true if @battler.effects[PBEffects::Transform]
+			@type2Icon.visible = true if @battler.effects[PBEffects::Transform] && @showTypes
 		else
 			@type2Icon.visible = false
 		end
 		if types[2]
 			@type3Icon.src_rect.y = GameData::Type.get(types[2]).id_number * TYPE_ICON_HEIGHT if types[2]
-			@type3Icon.visible = true if @battler.effects[PBEffects::Transform]
+			@type3Icon.visible = true if @battler.effects[PBEffects::Transform] && @showTypes
 		else
 			@type3Icon.visible = false
 		end

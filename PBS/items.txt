@@ -838,7 +838,7 @@
 813,WEIRDPACKAGE,Weird Package,Weird Packages,8,0,"A suspicious package. Probably best not to look inside.",0,0,0,
 814,AEGISIDCARD,Aegis ID Card,Aegis ID Cards,8,0,"A forged ID card. It will let you pretend you work at Aegis Insurance.",0,0,6,
 815,INCRIMINATINGEVIDENCE,Incriminating Evidence,Incriminating Evidence,8,0,"A device containing evidence against Aegis Insurance.",0,0,6,
-816,TAROTAMULET,Tarot Amulet,Tarot Amulets,8,0,"An amulet which will self-inflict curses during certain battles.",2,0,6
+816,TAROTAMULET,Tarot Amulet,Tarot Amulets,8,0,"An amulet which make certain battles harder, and curse you during.",2,0,6
 #------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6

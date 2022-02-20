@@ -162,6 +162,32 @@ Pokemon = CROAGUNK,15
     AbilityIndex = 0
     Item = SITRUSBERRY
 #-------------------------------
+[LEADER_Lambert_2,Lambert,1]
+Policies = LAMBERT,CURSE_TYPE_WEAKENED
+Pokemon = ZORUA,15
+    Moves = HARSHWORDS,GRASSKNOT,SWIFT
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+Pokemon = PANCHAM,15
+    Moves = SMASH,TAUNT,LEER,BITE
+    AbilityIndex = 0
+Pokemon = MACHOP,15
+    Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
+    AbilityIndex = 1
+Pokemon = GZIGZAGOON,15
+    Moves = SNARL,LICK,TACKLE,BITE
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+Pokemon = RIOLU,15
+    Name = Sangfroid
+    Gender = female
+    Moves = MAGNETWAVE,SCREECH,COURAGEBOLT,VANGUARD
+    AbilityIndex = 1
+Pokemon = CROAGUNK,15
+    Moves = FLATTER,ENTOXIN,MUDTHROW,HEADBUTT
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+#-------------------------------
 [POKEMONTRAINER_Yezera,Yezera]
 Policies = YEZERA
 Pokemon = BUNNELBY,15
@@ -836,47 +862,47 @@ Pokemon = ALAKAZAM,70
     Item = PERSIMBERRY
 #-------------------------------
 [SCIENTIST_M,Marco]
-Pokemon = KECLEON,40
+Pokemon = KECLEON,36
     AbilityIndex = 0
-Pokemon = DELCATTY,40
+Pokemon = DELCATTY,36
     AbilityIndex = 0
-Pokemon = NINETALES,40
+Pokemon = NINETALES,36
     AbilityIndex = 1
-Pokemon = POLIWRATH,40
+Pokemon = POLIWRATH,36
     AbilityIndex = 1
 #-------------------------------
 [SCIENTIST_F,Natasha]
-Pokemon = SMEARGLE,40
+Pokemon = SMEARGLE,37
     Moves = VCREATE,RAPIDSTARS,PHANTOMBREAK,CELEBRATE
     AbilityIndex = 1
-Pokemon = SMEARGLE,40
+Pokemon = SMEARGLE,37
     Moves = COACHING,BLOSSOM,WATERSPIRAL,BREAKDANCE
     AbilityIndex = 1
-Pokemon = SMEARGLE,40
+Pokemon = SMEARGLE,37
     Moves = OCTOLOCK,NORETREAT,OBLIVIONWING,TERRADRAIN
     AbilityIndex = 1
-Pokemon = SMEARGLE,40
+Pokemon = SMEARGLE,37
     Moves = PROFANE,TRIPLEAXEL,ALLERGY,HUNTDOWN
     AbilityIndex = 1
 #-------------------------------
 [SCIENTIST_M,Julien]
-Pokemon = INTELEON,40
+Pokemon = INTELEON,36
     AbilityIndex = 1
-Pokemon = DITTO,40
+Pokemon = DITTO,36
     AbilityIndex = 0
-Pokemon = ZOROARK,40
+Pokemon = ZOROARK,36
     AbilityIndex = 0
-Pokemon = MIMIKYU,40
+Pokemon = MIMIKYU,36
     AbilityIndex = 0
 #-------------------------------
 [SCIENTIST_F,Viola]
-Pokemon = GIRAFARIG,40
+Pokemon = GIRAFARIG,35
     AbilityIndex = 0
-Pokemon = COMFEY,40
+Pokemon = COMFEY,35
     AbilityIndex = 0
-Pokemon = BEHEEYEM,40
+Pokemon = BEHEEYEM,35
     AbilityIndex = 1
-Pokemon = UNFEZANT,40
+Pokemon = UNFEZANT,35
     AbilityIndex = 1
 #-------------------------------
 [TRAINER_Vincent,Vincent]
@@ -1274,6 +1300,34 @@ Pokemon = EXCADRILL,40
     AbilityIndex = 1
 Pokemon = STONJOURNER,40
     AbilityIndex = 1
+#-------------------------------
+[PICNICKER,Magdalena]
+Pokemon = SYLVEON,40
+Pokemon = PYUKUMUKU,40
+	Item = ROCKYHELMET
+Pokemon = ARIADOS,40
+	AbilityIndex = 0
+Pokemon = DIGGERSBY,40
+	AbilityIndex = 0
+	Item = CHOICEBAND
+Pokemon = DEWGONG,40
+	AbilityIndex = 0
+	Item = FLAMEORB
+#-------------------------------
+[PSYCHIC_F,Hannele]
+Pokemon = GIGALITH,40
+	AbilityIndex = 1
+Pokemon = ALAKAZAM,40
+	AbilityIndex = 0
+	Item = CHOICESPECS
+Pokemon = SEVIPER,40
+	AbilityIndex = 0
+Pokemon = DUBWOOL,40
+	AbilityIndex = 0
+	Item = LEFTOVERS
+Pokemon = CHATOT,40
+	AbilityIndex = 0
+	Item = SITRUSBERRY
 #-------------------------------
 [SWIMMER_M,Stannis]
 Pokemon = WISHIWASHI,33
@@ -1810,25 +1864,25 @@ Pokemon = GLALIE,45
     Item = ORANBERRY
 #-------------------------------
 [SWIMMER_F3,Bree]
-Pokemon = ALOMOMOLA,33
-Pokemon = ELDEGOSS,34
-Pokemon = GMRMIME,33
-Pokemon = SCYTHER,34
+Pokemon = ALOMOMOLA,46
+Pokemon = ELDEGOSS,47
+Pokemon = MRRIME,46
+Pokemon = SCIZOR,47
 #-------------------------------
 [WORKER3,Seamus]
-Pokemon = TOGEDEMARU,33
-Pokemon = HERACROSS,34
-Pokemon = ARBOK,33
-Pokemon = DRAKLOAK,34
+Pokemon = TOGEDEMARU,46
+Pokemon = HERACROSS,47
+Pokemon = ARBOK,46
+Pokemon = SANDORNADO,47
 #-------------------------------
 [RUINMANIAC,Colby]
-Pokemon = MUDSDALE,35
-Pokemon = DEWGONG,34
-Pokemon = WHIMSICOTT,35
-Pokemon = RAPIDASH,34
+Pokemon = MUDSDALE,48
+Pokemon = DEWGONG,47
+Pokemon = WHIMSICOTT,48
+Pokemon = RAPIDASH,47
 #-------------------------------
 [JUGGLER,Mikael]
-Pokemon = MEOWSTIC,34
-Pokemon = URSARING,35
-Pokemon = OCTILLERY,34
-Pokemon = AEXEGGUTOR,34
+Pokemon = MEOWSTIC,47
+Pokemon = URSARING,48
+Pokemon = OCTILLERY,47
+Pokemon = AEXEGGUTOR,47

@@ -25,6 +25,9 @@ Style/FrozenStringLiteralComment:
 
 Style/StringLiterals:
     EnforcedStyle: double_quotes
+    
+Style/GlobalVars:
+    Enabled: false
 
 Layout/ArgumentAlignment:  
     Enabled: false

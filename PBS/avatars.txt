@@ -683,19 +683,22 @@ HPMult = 5
 Turns = 1
 HPMult = 1
 Ability = FRIENDGUARD
-Moves = SEEDBOMB
+Moves = SEEDBOMB,PRIMEVALCALMMIND
+PostPrimeMoves = PSYCHIC
 #-----------------------------
 [SIMIPOUR]
 Turns = 1
 HPMult = 1
 Ability = FRIENDGUARD
-Moves = BUBBLEBEAM
+Moves = BUBBLEBEAM,PRIMEVALBULKUP
+PostPrimeMoves = BRICKBREAK
 #-----------------------------
 [SIMISEAR]
 Turns = 1
 HPMult = 1
 Ability = FRIENDGUARD
-Moves = FLAMEBURST
+Moves = FLAMEBURST,PRIMEVALTORMENT
+PostPrimeMoves = CRUNCH
 #-----------------------------
 [CLEFABLE]
 Turns = 1
@@ -716,3 +719,24 @@ HPMult = 4
 Ability = GRIT
 Moves = GIGADRAIN,PRIMEVALLASERFOCUS
 PostPrimeMoves = STEELBEAM
+#-----------------------------
+[GREEDENT]
+Turns = 2
+HPMult = 3
+Ability = CHEEKPOUCH
+Moves = STOCKPILE,SWALLOW,SPITUP
+Item = ORANBERRY
+#-----------------------------
+[ORBEETLE]
+Turns = 2
+HPMult = 3
+Ability = BRAINSCRAMBLE
+Moves = CONFUSERAY,PSYCHICOVERLOAD,BUGBUZZ
+Item = PERSIMBERRY
+#-----------------------------
+[TOUCANNON]
+Turns = 3
+HPMult = 2.5
+Ability = SHEERFORCE
+Moves = DRILLPECK,FEATHERDANCE,PRIMEVALDRAGONDANCE
+PostPrimeMoves = OUTRAGE
