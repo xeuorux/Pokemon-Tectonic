@@ -157,7 +157,11 @@ MapPosition = 0,15,8
 #-------------------------------
 [024]
 # Shaymin's Chamber
+Outdoor = false
+ShowArea = false
+Bicycle = false
 MapPosition = 0,15,8
+Environment = Cave
 #-------------------------------
 [025]
 # Grouz
@@ -169,9 +173,11 @@ MapPosition = 0,15,8
 [026]
 # Bluepoint Grotto
 Outdoor = false
+ShowArea = true
 Bicycle = false
 BicycleAlways = false
 MapPosition = 0,15,8
+Environment = Cave
 #-------------------------------
 [027]
 # Casaba Mart
@@ -189,6 +195,7 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
+Environment = Forest
 #-------------------------------
 [031]
 # Pokemon Zoo - Forest
@@ -235,12 +242,27 @@ Bicycle = true
 Outdoor = true
 ShowArea = true
 Bicycle = true
+Environment = Sand
 #-------------------------------
 [039]
 # Casaba Center
 Outdoor = false
 Bicycle = true
 HealingSpot = 33,15,25
+#-------------------------------
+[041]
+# Casaba Gym
+Outdoor = false
+ShowArea = false
+Bicycle = false
+BattleBack = 
+#-------------------------------
+[042]
+# Zeraora's Chamber
+Outdoor = false
+ShowArea = false
+Bicycle = false
+Environment = Cave
 #-------------------------------
 [043]
 # Németh Apartments F2
@@ -307,12 +329,14 @@ HealingSpot = 56,43,27
 Outdoor = true
 ShowArea = true
 Bicycle = true
+Environment = Forest
 #-------------------------------
 [060]
 # Shipping Lane
 Outdoor = true
 ShowArea = true
 Bicycle = true
+Environment = Forest
 #-------------------------------
 [061]
 # Sailor's House
@@ -534,6 +558,7 @@ Bicycle = true
 Outdoor = true
 ShowArea = true
 Bicycle = true
+Environment = Forest
 #-------------------------------
 [140]
 # Starters Store - Grass
@@ -669,7 +694,7 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [165]
-# Aquatopia Aquarium
+# Aquatopia Menagerie
 Outdoor = false
 ShowArea = false
 Bicycle = false
