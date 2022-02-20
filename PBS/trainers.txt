@@ -862,47 +862,47 @@ Pokemon = ALAKAZAM,70
     Item = PERSIMBERRY
 #-------------------------------
 [SCIENTIST_M,Marco]
-Pokemon = KECLEON,40
+Pokemon = KECLEON,36
     AbilityIndex = 0
-Pokemon = DELCATTY,40
+Pokemon = DELCATTY,36
     AbilityIndex = 0
-Pokemon = NINETALES,40
+Pokemon = NINETALES,36
     AbilityIndex = 1
-Pokemon = POLIWRATH,40
+Pokemon = POLIWRATH,36
     AbilityIndex = 1
 #-------------------------------
 [SCIENTIST_F,Natasha]
-Pokemon = SMEARGLE,40
+Pokemon = SMEARGLE,37
     Moves = VCREATE,RAPIDSTARS,PHANTOMBREAK,CELEBRATE
     AbilityIndex = 1
-Pokemon = SMEARGLE,40
+Pokemon = SMEARGLE,37
     Moves = COACHING,BLOSSOM,WATERSPIRAL,BREAKDANCE
     AbilityIndex = 1
-Pokemon = SMEARGLE,40
+Pokemon = SMEARGLE,37
     Moves = OCTOLOCK,NORETREAT,OBLIVIONWING,TERRADRAIN
     AbilityIndex = 1
-Pokemon = SMEARGLE,40
+Pokemon = SMEARGLE,37
     Moves = PROFANE,TRIPLEAXEL,ALLERGY,HUNTDOWN
     AbilityIndex = 1
 #-------------------------------
 [SCIENTIST_M,Julien]
-Pokemon = INTELEON,40
+Pokemon = INTELEON,36
     AbilityIndex = 1
-Pokemon = DITTO,40
+Pokemon = DITTO,36
     AbilityIndex = 0
-Pokemon = ZOROARK,40
+Pokemon = ZOROARK,36
     AbilityIndex = 0
-Pokemon = MIMIKYU,40
+Pokemon = MIMIKYU,36
     AbilityIndex = 0
 #-------------------------------
 [SCIENTIST_F,Viola]
-Pokemon = GIRAFARIG,40
+Pokemon = GIRAFARIG,35
     AbilityIndex = 0
-Pokemon = COMFEY,40
+Pokemon = COMFEY,35
     AbilityIndex = 0
-Pokemon = BEHEEYEM,40
+Pokemon = BEHEEYEM,35
     AbilityIndex = 1
-Pokemon = UNFEZANT,40
+Pokemon = UNFEZANT,35
     AbilityIndex = 1
 #-------------------------------
 [TRAINER_Vincent,Vincent]
@@ -1300,6 +1300,34 @@ Pokemon = EXCADRILL,40
     AbilityIndex = 1
 Pokemon = STONJOURNER,40
     AbilityIndex = 1
+#-------------------------------
+[PICNICKER,Magdalena]
+Pokemon = SYLVEON,40
+Pokemon = PYUKUMUKU,40
+	Item = ROCKYHELMET
+Pokemon = ARIADOS,40
+	AbilityIndex = 0
+Pokemon = DIGGERSBY,40
+	AbilityIndex = 0
+	Item = CHOICEBAND
+Pokemon = DEWGONG,40
+	AbilityIndex = 0
+	Item = FLAMEORB
+#-------------------------------
+[PSYCHIC_F,Hannele]
+Pokemon = GIGALITH,40
+	AbilityIndex = 1
+Pokemon = ALAKAZAM,40
+	AbilityIndex = 0
+	Item = CHOICESPECS
+Pokemon = SEVIPER,40
+	AbilityIndex = 0
+Pokemon = DUBWOOL,40
+	AbilityIndex = 0
+	Item = LEFTOVERS
+Pokemon = CHATOT,40
+	AbilityIndex = 0
+	Item = SITRUSBERRY
 #-------------------------------
 [SWIMMER_M,Stannis]
 Pokemon = WISHIWASHI,33

@@ -5,13 +5,13 @@ Zeu<s>Agentbla
 Divock<s>Brickbat
 Wakarimasensei<s>ali760
 Drawingbox<s>Zufaix
-persephone
+lichenprincess
 
 Other Contributors
 Arenastellez<s>IgnitedXSoul
 Fbarbarosa<s>ctWizard
 Slaynoir<s>Maddie
-FurretKnight<s>
+FurretKnight<s>Dtp81390
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 
