@@ -5,6 +5,7 @@ class PokemonGlobalMetadata
 	attr_accessor :teamHealerMaxUses
 	attr_accessor :teamHealerUpgrades
 	attr_accessor :tarot_amulet_active
+	attr_accessor :stored_search
 	
 	def initialize
     # Movement
@@ -68,5 +69,6 @@ class PokemonGlobalMetadata
 	@teamHealerMaxUses	  = 1
 	@teamHealerCurrentUses= 1
 	@tarot_amulet_active  = false
+	@stored_search		  = nil
   end
 end

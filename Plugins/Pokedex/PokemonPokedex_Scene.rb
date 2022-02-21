@@ -35,9 +35,19 @@ class PokemonPokedex_Scene
 	@sprites["z_header"].bitmap = @searchPopupbitmap.bitmap
 	@sprites["z_header"].x = Graphics.width - @searchPopupbitmap.width
 	@sprites["z_header"].visible = false
-    @searchResults = false
     @searchParams  = [$PokemonGlobal.pokedexMode,-1,-1,-1,-1,-1,-1,-1,-1,-1]
-    pbRefreshDexList($PokemonGlobal.pokedexIndex[pbGetSavePositionIndex])
+	
+	# Load stored search
+	storedIndex = $PokemonGlobal.pokedexIndex[pbGetSavePositionIndex]
+	if $PokemonGlobal.stored_search
+		@dexlist = $PokemonGlobal.stored_search
+		@searchResults = true
+		refreshDexListGraphics(0)
+	else
+		@searchResults =  false
+		pbRefreshDexList(storedIndex)
+	end
+	
     pbDeactivateWindows(@sprites)
     pbFadeInAndShow(@sprites)
   end
@@ -100,6 +110,10 @@ class PokemonPokedex_Scene
 		# Sort species in ascending order by Regional Dex number
 		dexlist.sort! { |a,b| a[4]<=>b[4] }
 		@dexlist = dexlist
+		refreshDexListGraphics(index)
+	end
+	
+	def refreshDexListGraphics(index)
 		@sprites["pokedex"].commands = @dexlist
 		@sprites["pokedex"].index    = index
 		@sprites["pokedex"].refresh
@@ -263,8 +277,14 @@ class PokemonPokedex_Scene
           @sprites["pokedex"].active = true
         elsif Input.trigger?(Input::BACK)
           if @searchResults
-            pbPlayCancelSE
-            pbCloseSearch
+            if pbMessage(_INTL("You have an active search. What would you like to do?"),[_INTL("Store Search and Exit"),_INTL("Cancel Search")],1) == 0
+				$PokemonGlobal.stored_search = @dexlist
+				pbPlayCloseMenuSE
+				break
+			else
+				pbPlayCancelSE
+				pbCloseSearch
+			end
           else
             pbPlayCloseMenuSE
             break
@@ -364,6 +384,24 @@ class PokemonPokedex_Scene
 		end
       end
     }
+  end
+  
+  def pbCloseSearch
+    oldsprites = pbFadeOutAndHide(@sprites)
+    oldspecies = @sprites["pokedex"].species
+    @searchResults = false
+	$PokemonGlobal.stored_search = nil
+    $PokemonGlobal.pokedexMode = MODENUMERICAL
+    @searchParams  = [$PokemonGlobal.pokedexMode,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+    pbRefreshDexList($PokemonGlobal.pokedexIndex[pbGetSavePositionIndex])
+    for i in 0...@dexlist.length
+      next if @dexlist[i][0]!=oldspecies
+      @sprites["pokedex"].index = i
+      pbRefresh
+      break
+    end
+    $PokemonGlobal.pokedexIndex[pbGetSavePositionIndex] = @sprites["pokedex"].index
+    pbFadeInAndShow(@sprites,oldsprites)
   end
   
   def updateSearch2Cursor(index)
