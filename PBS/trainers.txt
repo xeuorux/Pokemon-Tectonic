@@ -1019,7 +1019,7 @@ Pokemon = TANGELA,28
     Item = GRASSGEM
 Pokemon = GOURGEIST,28
     AbilityIndex = 0
-Pokemon = VIKAVOLT,28
+Pokemon = CHARJABUG,28
     AbilityIndex = 0
 #-------------------------------
 [POKEMONRANGER_F2,Alyssa]

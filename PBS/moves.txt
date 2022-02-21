@@ -982,7 +982,7 @@
 1513,PRIMEVALDRAGONDANCE,Primeval Dragon Dance,613,0,DRAGON,Status,0,1,0,User,0,do,"The user sharply boosts its Attack and Speed, and becomes Dragon-type."
 1514,PRIMEVALTORMENT,Primeval Torment,614,0,DARK,Status,100,1,0,AllNearFoes,0,bce,"The user torments and enrages the foe, making it incapable of using the same move twice in a row."
 1515,PRIMEVALLASERFOCUS,Primeval Laser Focus,615,0,STEEL,Status,0,1,0,User,0,d,"The user focuses intently, making every future attack critical. The user becomes a Steel-type."
-1516,PRIMEVALMOONLIGHT,Primeval Moonlight,616,0,FAIRY,Status,0,1,0,User,0,d,"The user restores its own HP. The user swaps its Attack stats, and swaps its Defense stats, and becomes Fairy-type."
+1516,PRIMEVALMOONLIGHT,Primeval Moonlight,616,0,FAIRY,Status,0,1,0,User,0,d,"The user restores its HP, swaps its Attack stats, swaps its Defense stats, and becomes Fairy-type."
 1517,PRIMEVALPOISONGAS,Primeval Poison Gas,617,0,POISON,Status,100,1,0,AllNearFoes,0,bce,"A cloud of poison gas is sprayed at all nearby foes, poisoning them. User becomes a Poison-type."
 1518,PRIMEVALENDURE,Primeval Endure,618,0,NORMAL,Status,0,1,0,User,4,,"The user endures the next three hits which would faint it. User becomes a Normal-type."
 1519,PRIMEVALIGNITE,Primeval Ignite,619,0,FIRE,Status,100,1,0,AllNearFoes,0,bce,"The user inflicts burns on all nearby foes. User becomes a Fire-type."

@@ -76,7 +76,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:EARTHLOCK,
 BattleHandlers::AbilityOnSwitchIn.add(:RUINOUS,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is ruinous! Everyone deals 1.2x more damage!",battler.pbThis))
+    battle.pbDisplay(_INTL("{1} is ruinous! Everyone deals 20% more damage!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
