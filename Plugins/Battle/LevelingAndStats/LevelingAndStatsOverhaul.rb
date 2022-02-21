@@ -247,7 +247,7 @@ class PokeBattle_Battle
 	# Increase Exp gain based on battling streak
 	pkmn.battlingStreak = 0 if pkmn.battlingStreak.nil?
 	if pkmn.onHotStreak?
-		pbDisplayPaused(_INTL("{1} benefits from its Hot Streak!",pkmn.name))
+		#pbDisplayPaused(_INTL("{1} benefits from its Hot Streak!",pkmn.name))
 		exp = (exp * 1.3).floor
 	end
     # Modify Exp gain based on pkmn's held item
@@ -269,6 +269,7 @@ class PokeBattle_Battle
 	expFinal = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap))
     expGained = expFinal-pkmn.exp
 	expLeftovers = expLeftovers-pkmn.exp
+	@expStored += expLeftovers if expLeftovers > 0
 	curLevel = pkmn.level
     newLevel = growth_rate.level_from_exp(expFinal)
     if expGained == 0 and pkmn.level < level_cap
@@ -282,9 +283,13 @@ class PokeBattle_Battle
           pbDisplayPaused(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.",pkmn.name,level_cap,expGained))
 		end
       else
-        pbDisplayPaused(_INTL("{1} got {2} Exp. Points!",pkmn.name,expGained))
+		if !pkmn.onHotStreak?
+			pbDisplayPaused(_INTL("{1} got {2} Exp. Points!",pkmn.name,expGained))
+		else
+			pbDisplayPaused(_INTL("{1} got a Hot Streak boosted {2} Exp. Points!",pkmn.name,expGained))
+		end
       end
-	 pbDisplayPaused(_INTL("{1} exp was put into the EXP-EZ Dispenser.",expLeftovers)) if expLeftovers > 0
+	 #pbDisplayPaused(_INTL("{1} exp was put into the EXP-EZ Dispenser.",expLeftovers)) if expLeftovers > 0
     end
     if newLevel<curLevel
       debugInfo = "Levels: #{curLevel}->#{newLevel} | Exp: #{pkmn.exp}->#{expFinal} | gain: #{expGained}"

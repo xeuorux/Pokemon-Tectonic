@@ -406,6 +406,7 @@ class PokeBattle_Battle
 			end
 		  end
 		end
+		pbDisplayPaused(_INTL("{1} exp was stored in the EXP-EZ Dispenser this battle.",@expStored)) if @expStored > 0
 		# Clean up battle stuff
 		@scene.pbEndBattle(@decision)
 		@battlers.each do |b|
