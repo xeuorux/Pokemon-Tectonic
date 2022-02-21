@@ -330,5 +330,6 @@ class PokeBattle_Battler
 		@effects[PBEffects::Inured]       	 	 = false
 		@effects[PBEffects::Gargantuan]			 = 0
 		@effects[PBEffects::NerveBreak]   		 = false
+		@effects[PBEffects::EmpoweredEndure]     = 0
     end
 end
