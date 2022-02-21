@@ -660,11 +660,10 @@ PostPrimeMoves = IRONHEAD
 HPMult = 4
 #-----------------------------
 [PARASECT]
-Turns = 2
-HPMult = 4
+Turns = 1
+HPMult = 6
 Ability = COMATOSE
-Moves = SOULRIP,SPORE,PRIMEVALPOISONGAS
-PostPrimeMoves = POISONJAB
+Moves = SOULRIP,SPORE
 Item = MUSCLEBAND
 #-----------------------------
 [SUNFLORA]
