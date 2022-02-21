@@ -542,7 +542,7 @@ HPMult = 5
 [KANGASKHAN]
 Turns = 2
 Ability = INNERFOCUS
-Moves = RAGE,HEADBUTT,PRIMEVALWILLOWISP
+Moves = RAGE,HEADBUTT,PRIMEVALCURSE
 PostPrimeMoves = SHADOWCLAW
 HPMult = 4
 #-------------------------------
@@ -566,11 +566,11 @@ Ability = DOWNLOAD
 Moves = TECHNOBLAST,FELLSTINGER,BUGBUZZ,ELECTROWEB
 #------------------------------
 [LEDIAN]
-Turns = 1
-HPMult = 8
+Turns = 2
+HPMult = 4
 Ability = IRONFIST
 Item = LIGHTCLAY
-Moves = LIGHTSCREEN,REFLECT,POWERUPPUNCH,XSCISSOR
+Moves = LIGHTSCREEN,XSCISSOR
 #------------------------------
 [VESPIQUEN]
 Turns = 2

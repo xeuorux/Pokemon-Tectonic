@@ -164,15 +164,15 @@ class PokeBattle_Move_611 < PokeBattle_Move_101
 	end
 end
 
-# Empowered Will-o-Wisp
+# Empowered Curse
 class PokeBattle_Move_612 < PokeBattle_Move
 	include EmpoweredMove
 
 	def pbEffectGeneral(user)
 		super
 		@battle.eachOtherSideBattler(user) do |b|
-			next unless b.pbCanBurn?(user,true,self)
-			b.pbBurn(user)
+			@battle.pbDisplay(_INTL("{1} laid a curse on {2}!",user.pbThis,b.pbThis(true)))
+			b.effects[PBEffects::Curse] = true
 	    end
 		transformType(user,:GHOST)
 	end
@@ -254,5 +254,84 @@ class PokeBattle_Move_617 < PokeBattle_Move
 			b.pbPoison(user)
 	    end
 		transformType(user,:POISON)
+	end
+end
+
+# Empowered Endure
+class PokeBattle_Move_618 < PokeBattle_Move
+	include EmpoweredMove
+	
+	def pbEffectGeneral(user)
+		super
+		@battle.pbDisplay(_INTL("{1} braced itself!",user.pbThis))
+		@battle.pbDisplay(_INTL("It will endure the next 3 hits which would faint it!",user.pbThis))
+		user.effects[PBEffects::EmpoweredEndure] = 3
+		transformType(user,:NORMAL)
+	end
+end
+	
+# Empowered Ignite
+class PokeBattle_Move_619 < PokeBattle_Move
+	include EmpoweredMove
+
+	def pbEffectGeneral(user)
+		super
+		@battle.eachOtherSideBattler(user) do |b|
+			next unless b.pbCanBurn?(user,true,self)
+			b.pbBurn(user)
+	    end
+		transformType(user,:FIRE)
+	end
+end
+
+# Empowered Ignite
+class PokeBattle_Move_619 < PokeBattle_Move
+	include EmpoweredMove
+
+	def pbEffectGeneral(user)
+		super
+		@battle.eachOtherSideBattler(user) do |b|
+			next unless b.pbCanBurn?(user,true,self)
+			b.pbBurn(user)
+	    end
+		transformType(user,:FIRE)
+	end
+end
+
+# Empowered Flow State
+class PokeBattle_Move_620 < PokeBattle_MultiStatUpMove
+	include EmpoweredMove
+	
+	def initialize(battle,move)
+		super
+		@statUp = [:ATTACK,1,:SPECIAL_DEFENSE,1]
+	end
+	
+	def pbEffectGeneral(user)
+		# TO DO
+		super
+		transformType(user,:WATER)
+	end
+end
+
+# Empowered Grassy Terrain
+class PokeBattle_Move_621 < PokeBattle_Move_155
+	include EmpoweredMove
+	
+	def pbEffectGeneral(user)
+		# TO DO
+		super
+		transformType(user,:GRASS)
+	end
+end
+
+# Empowered Electric Terrain
+class PokeBattle_Move_622 < PokeBattle_Move_154
+	include EmpoweredMove
+	
+	def pbEffectGeneral(user)
+		# TO DO
+		super
+		transformType(user,:ELECTRIC)
 	end
 end

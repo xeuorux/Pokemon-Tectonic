@@ -33,6 +33,7 @@ module PBEffects
 	RollOut				= 140
 	Gargantuan			= 141
 	EmpoweredMoonlight  = 142
+	EmpoweredEndure		= 143
 	
 	#===========================================================================
     # These effects apply to the battle (i.e. both sides)
