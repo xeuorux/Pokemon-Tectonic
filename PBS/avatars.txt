@@ -546,11 +546,12 @@ Moves = RAGE,HEADBUTT,PRIMEVALCURSE
 PostPrimeMoves = SHADOWCLAW
 HPMult = 4
 #-------------------------------
-[SWOOBAT]
+[RAICHU]
 Turns = 2
-Ability = UNAWARE
-Moves = HEARTSTAMP,AERIALACE
-HPMult = 3
+HPMult = 2.5
+Ability = AUDACITY
+Moves = SHOCKWAVE,PRIMEVALGRASSYTERRAIN
+PostPrimeMoves = MEGADRAIN
 #-------------------------------
 [ELECTRODE]
 Turns = 2
@@ -613,7 +614,7 @@ Moves = CRYSTALCRUSH
 Turns = 2
 HPMult = 4
 Ability = STATIC
-Moves = PLASMAFISTS
+Moves = PLASMAFISTS,FORCEPALM
 #-----------------------------
 [BEARTIC]
 Turns = 2
