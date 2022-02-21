@@ -511,10 +511,9 @@ end
 #-------------------------------------------------------------------------------
 class DependentEvents
   def pbFollowEventAcrossMaps(leader,follower,instant = false,leaderIsTrueLeader = true)
-    d = leader.direction
     areConnected = $MapFactory.areConnected?(leader.map.map_id,follower.map.map_id)
     # Get the rear facing tile of leader
-    facingDirection = 10 - d
+    facingDirection = 10 - leader.direction
     if !leaderIsTrueLeader && areConnected
       relativePos = $MapFactory.getThisAndOtherEventRelativePos(leader,follower)
       # Assumes leader and follower are both 1x1 tile in size
@@ -530,16 +529,32 @@ class DependentEvents
     end
     facings = [facingDirection] # Get facing from behind
     if !leaderIsTrueLeader
-      facings.push(d) # Get forward facing
+      facings.push(leader.direction) # Get forward facing
     end
+	
     mapTile = nil
+	
     if areConnected
-      bestRelativePos = -1
+      mapTile = findMapTilesForConnectedMaps(follower,leader,facings)
+    else
+      tile = $MapFactory.getFacingTile(facings[0],leader)
+      # Assumes leader is 1x1 tile in size
+      passable = tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
+      mapTile = passable ? mapTile : nil
+    end
+	
+	moveFollower(follower,leader,mapTile,instant)
+  end
+  
+  def findMapTilesForConnectedMaps(follower,leader,facings)
+	  mapTile = nil
+	  bestRelativePos = -1
       oldthrough = follower.through
       follower.through = false
       for i in 0...facings.length
         facing = facings[i]
         tile = $MapFactory.getFacingTile(facing,leader)
+		# Check for staircase shenanigans
         if GameData::TerrainTag.exists?(:StairLeft)
           currentTag = $game_player.pbTerrainTag
           if tile[1] > $game_player.x
@@ -575,14 +590,27 @@ class DependentEvents
         end
       end
       follower.through = oldthrough
+	  return mapTile
+  end
+  
+  def moveFollower(follower,leader,mapTile,instant)
+	if mapTile && follower.map.map_id == mapTile[0]
+      moveFollowerToSameMap(follower,leader,mapTile,instant)
     else
-      tile = $MapFactory.getFacingTile(facings[0],leader)
-      # Assumes leader is 1x1 tile in size
-      passable = tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
-      mapTile = passable ? mapTile : nil
+      if !mapTile
+        # Make current position into leader's position
+        mapTile = [leader.map.map_id,leader.x,leader.y]
+      end
+      if follower.map.map_id == mapTile[0]
+        moveFollowerToNearbySpot(follower,leader,mapTile)
+      else
+        moveFollowerToDifferentMap(follower,leader,mapTile)
+      end
     end
-    if mapTile && follower.map.map_id == mapTile[0]
-      # Follower is on same map
+  end
+  
+  def moveFollowerToSameMap(follower,leader,mapTile,instant)
+	  # Follower is on same map
       newX = mapTile[1]
       newY = mapTile[2]
       if defined?(leader.on_stair?) && leader.on_stair?
@@ -597,8 +625,8 @@ class DependentEvents
           end
         end
       end
-      deltaX = (d == 6 ? -1 : d == 4 ? 1 : 0)
-      deltaY = (d == 2 ? -1 : d == 8 ? 1 : 0)
+      deltaX = (leader.direction == 6 ? -1 : leader.direction == 4 ? 1 : 0)
+      deltaY = (leader.direction == 2 ? -1 : leader.direction == 8 ? 1 : 0)
       posX = newX + deltaX
       posY = newY + deltaY
       follower.move_speed = leader.move_speed # sync movespeed
@@ -628,46 +656,43 @@ class DependentEvents
           pbFancyMoveTo(follower,newX,newY,leader)
         end
       end
-    else
-      if !mapTile
-        # Make current position into leader's position
-        mapTile = [leader.map.map_id,leader.x,leader.y]
-      end
-      if follower.map.map_id == mapTile[0]
-        # Follower is on same map as leader
-		newPosX = leader.x
-		newPosY = leader.y
-		
-		# Try to find a nearby spot to place the pokemon
-		nearbySpots = [[-1,0],[0,1],[0,1],[0,-1]]
-		nearbySpots.each do |spot|
-			passable = $MapFactory.isPassable?(leader.map.map_id,newPosX+spot[0],newPosY+spot[1],follower)
-			if passable
-				newPosX += spot[0]
-				newPosY += spot[1]
-				break
-			end
+  end
+  
+  def moveFollowerToNearbySpot(follower,leader,mapTile)
+	# Follower is on same map as leader
+	newPosX = leader.x
+	newPosY = leader.y
+	
+	# Try to find a nearby spot to place the pokemon
+	nearbySpots = [[-1,0],[0,1],[0,1],[0,-1]]
+	nearbySpots.each do |spot|
+		passable = $MapFactory.isPassable?(leader.map.map_id,newPosX+spot[0],newPosY+spot[1],follower)
+		if passable
+			newPosX += spot[0]
+			newPosY += spot[1]
+			break
 		end
-		
-        follower.moveto(newPosX,newPosY)
-        pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
-      else
-        # Follower will move to different map
-        events = $PokemonGlobal.dependentEvents
-        eventIndex = pbEnsureEvent(follower,mapTile[0])
-        if eventIndex >= 0
-          newFollower = @realEvents[eventIndex]
-          newEventData = events[eventIndex]
-          newFollower.moveto(mapTile[1],mapTile[2])
-          pbFancyMoveTo(newFollower,mapTile[1], mapTile[2], leader)
-          newEventData[3] = mapTile[1]
-          newEventData[4] = mapTile[2]
-          if mapTile[0] == leader.map.map_id
-             pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
-          end
-        end
-      end
-    end
+	end
+	
+	follower.moveto(newPosX,newPosY)
+	pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
+  end
+  
+  def moveFollowerToDifferentMap(follower,leader,mapTile)
+	# Follower will move to different map
+	events = $PokemonGlobal.dependentEvents
+	eventIndex = pbEnsureEvent(follower,mapTile[0])
+	if eventIndex >= 0
+	  newFollower = @realEvents[eventIndex]
+	  newEventData = events[eventIndex]
+	  newFollower.moveto(mapTile[1],mapTile[2])
+	  pbFancyMoveTo(newFollower,mapTile[1], mapTile[2], leader)
+	  newEventData[3] = mapTile[1]
+	  newEventData[4] = mapTile[2]
+	  if mapTile[0] == leader.map.map_id
+		 pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
+	  end
+	end
   end
 
   #Fix follower not being in the same spot upon save
