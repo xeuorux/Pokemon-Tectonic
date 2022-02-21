@@ -87,6 +87,11 @@ class PokeBattle_Move
         target.damageState.endured = true
         damage -= 1
 		damageAdjusted = true
+	  elsif target.effects[PBEffects::EmpoweredEndure] > 0
+		target.damageState.endured = true
+        damage -= 1
+		damageAdjusted = true
+		target.effects[PBEffects::EmpoweredEndure] -= 1
       elsif damage==target.totalhp
         if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
           target.damageState.sturdy = true
@@ -466,12 +471,7 @@ class PokeBattle_Move
 		
 		# STAB
 		if type && user.pbHasType?(type)
-		  stab = 1
-		  if (user.pbTypes(true).length > 1)
-			stab = 4.0/3.0
-		  else
-			stab = 1.5
-		  end
+		  stab = 1.5
 		  
 		  if user.hasActiveAbility?(:ADAPTED)
 			stab *= 4.0/3.0
