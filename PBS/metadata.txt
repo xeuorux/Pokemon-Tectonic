@@ -788,3 +788,10 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+#-------------------------------
+[185]
+# Eleig Stretch
+Outdoor = true
+ShowArea = true
+Bicycle = true
+Environment = Forest
