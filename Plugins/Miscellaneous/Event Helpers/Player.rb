@@ -46,6 +46,24 @@ def transferPlayer(x,y,direction)
 	$game_temp.transition_name       = ""
 end
 
+def mapTransitionTransfer(map_id,x,y)
+	pbSEPlay('Exit Door',80)
+	blackFadeOutIn {
+		distanceX = $game_player.x - get_self.x
+		distanceY = $game_player.y - get_self.y
+
+		$game_temp.player_transferring = true
+		$game_temp.player_new_map_id    = map_id || $game_map.map_id
+		$game_temp.player_new_x         = x + distanceX
+		$game_temp.player_new_y         = y + distanceY
+		$game_temp.player_new_direction = $game_player.direction
+		
+		Graphics.freeze
+		$game_temp.transition_processing = true
+		$game_temp.transition_name       = ""
+	}
+end
+
 def healPartyWithDelay()
 	$Trainer.heal_party
 	pbMEPlay('Pkmn healing')
