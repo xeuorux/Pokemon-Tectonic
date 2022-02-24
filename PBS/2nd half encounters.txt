@@ -99,12 +99,11 @@ Land,20
 25,GOLETT,33,35
 25,DRUDDIGON,33,35
 25,DEINO,33,35
-25,,33,35
+25,MZANGOOSE,33,35
 DarkCave,20
-25,SPIRITOMB,33,35
-25,MIMIKYU,33,35
-25,GOOMY,33,35
-25,LUNATONE,33,35
+33,SPIRITOMB,33,35
+33,MIMIKYU,33,35
+33,LUNATONE,33,35
 #-------------------------------
 [] # Shield
 Land,20
@@ -120,8 +119,8 @@ LandTall,20
 #-------------------------------
 [] # Candy Town
 Land,20
-25,FALINKS,36,39
-25,,36,39
+
+25,KLEFKI,36,39
 25,TOGEDEMARU,36,39
 25,MILCERY,36,39
 #-------------------------------
@@ -130,12 +129,8 @@ Land,20
 25,,35,38
 25,SEWADDLE,35,38
 25,DEDENNE,35,38
-25,KLEFKI,35,38
-LandTall,20
-25,,35,38
 25,BOUNSWEET,35,38
-25,,35,38
-25,,35,38
+25,FALINKS,36,39
 #-------------------------------
 [] # Regieleki Area
 Land,20
