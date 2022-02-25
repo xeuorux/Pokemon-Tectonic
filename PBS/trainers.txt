@@ -1161,6 +1161,13 @@ Pokemon = SLURPUFF,35
 Pokemon = HAPPINY,18
     AbilityIndex = 1
 #-------------------------------
+[WAITRESS,Linnea]
+Pokemon = COMBEE,15
+    AbilityIndex = 0
+Pokemon = KLINK,15
+    AbilityIndex = 0
+Pokemon = CHINGLING,15
+#-------------------------------
 [STRIKER,Thaddeus]
 Pokemon = MACHOKE,20
     Gender = male
