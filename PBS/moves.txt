@@ -451,7 +451,7 @@
 436,FALSESWIPE,False Swipe,0E9,40,NORMAL,Physical,100,40,0,NearOther,0,abef,A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.
 437,HOLDBACK,Hold Back,0E9,40,NORMAL,Special,100,40,0,NearOther,0,abef,"The user holds back when it attacks, and the target is left with at least 1 HP."
 438,PAYDAY,Pay Day,109,50,NORMAL,Physical,100,20,0,NearOther,0,bef,Numerous coins are hurled at the target to inflict damage. Money is earned after battle.
-439,POUND,Pound,01C,45,NORMAL,Physical,000,35,15,NearOther,0,abef,"The target is physically pounded with a long tail or a foreleg, etc."
+439,POUND,Pound,000,45,NORMAL,Physical,000,45,15,NearOther,0,abef,"The target is physically pounded with a long tail or a foreleg, etc."
 440,QUICKATTACK,Quick Attack,000,40,NORMAL,Physical,100,30,0,NearOther,1,abef,The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.
 441,SCRATCH,Scratch,000,45,NORMAL,Physical,100,35,0,NearOther,0,abefh,"Hard, pointed, and sharp claws rake the target to inflict damage. Critical hits land more easily"
 442,TACKLE,Tackle,000,45,NORMAL,Physical,100,35,0,NearOther,0,abef,"A physical attack in which the user charges and slams into the target with its whole body."
