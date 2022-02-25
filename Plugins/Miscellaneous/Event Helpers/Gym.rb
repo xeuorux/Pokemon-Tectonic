@@ -1,3 +1,5 @@
+BADGE_COUNT_VARIABLE = 27
+
 def earnBadge(badgeNum)
 	badgeNames = [
 		"Loyalty",
@@ -22,6 +24,9 @@ def earnBadge(badgeNum)
 	end
 	levelCapsPerBadgeCount = [15,20,25,30,40,45,50,60,70]
 	pbSetLevelCap(levelCapsPerBadgeCount[totalBadges])
+	
+	# 
+	$game_variables[BADGE_COUNT_VARIABLE] += 1
 	
 	refreshMapEvents()
 end
@@ -74,4 +79,8 @@ def healAndGiveRewardIfNotYetGiven(badgeNum)
 		"Let me tend to your Pokémon while you bask in your victory."][index] || ""
 	pbMessage(leaderDialogue) if !leaderDialogue.blank?
 	healPartyWithDelay()
+end
+
+def hasFirstFourBadges?()
+	return $game_switches[4] && $game_switches[5] && $game_switches[6] && $game_switches[7]
 end

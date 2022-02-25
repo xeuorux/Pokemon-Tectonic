@@ -35,10 +35,6 @@ def hasPokemonInParty(speciesToCheck)
 	return hasAll
 end
 
-def hasFirstFourBadges?()
-	return $game_switches[4] && $game_switches[5] && $game_switches[6] && $game_switches[7]
-end
-
 def isCat?(species)
 	array = [:MEOWTH,:PERSIAN,:AMEOWTH,:APERSIAN,:GMEOWTH,:PERRSERKER,:ESPEON,:FLAREON,:GLACEON,
 		:JOLTEON,:LEAFEON,:SYLVEON,:UMBREON,:VAPOREON,:SKITTY,:DELCATTY,:ZANGOOSE,:MZANGOOSE,:ABSOL,
