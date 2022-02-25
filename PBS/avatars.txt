@@ -740,3 +740,10 @@ HPMult = 2.5
 Ability = SHEERFORCE
 Moves = DRILLPECK,FEATHERDANCE,PRIMEVALDRAGONDANCE
 PostPrimeMoves = OUTRAGE
+#-----------------------------
+[LICKILICKY]
+Turns = 2
+HPMult = 4
+Ability = MENTALBLOCK
+Moves = CRUSHGRIP,PRIMEVALCURSE
+PostPrimeMoves = TONGUETWISTER
