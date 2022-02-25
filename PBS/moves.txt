@@ -509,7 +509,7 @@
 494,FOCUSENERGY,Focus Energy,023,0,NORMAL,Status,0,30,0,User,0,d,The user takes a deep breath and focuses so that critical hits land four times more likely.
 495,FOLLOWME,Follow Me,117,0,NORMAL,Status,0,20,0,User,2,,"The user draws attention to itself, making all targets take aim only at the user."
 496,FORESIGHT,Foresight,0A7,0,NORMAL,Status,0,40,0,NearOther,0,bce,Enables the user to hit a Ghost type with any kind of move. It also enables the user to hit an evasive foe.
-497,GLARE,Glare,007,0,NORMAL,Status,100,30,0,NearOther,0,bce,The user intimidates the target with the pattern on its belly to cause paralysis.
+497,GLARE,Glare,007,0,NORMAL,Status,100,30,0,NearOther,0,bce,The user intimidates the target by staring at it to cause paralysis.
 498,GROWL,Growl,042,0,NORMAL,Status,100,40,0,AllNearFoes,0,bcek,"The user growls, scaring nearby foes. Their Attack stat is lowered."
 499,GROWTH,Growth,028,0,NORMAL,Status,0,20,0,User,0,d,"The user's body grows all at once, raising the Atk and Sp. Atk stats."
 500,HAPPYHOUR,Happy Hour,157,0,NORMAL,Status,0,30,0,UserSide,0,,Using Happy Hour doubles the amount of prize money received after battle.
