@@ -1886,3 +1886,15 @@ Pokemon = MEOWSTIC,47
 Pokemon = URSARING,48
 Pokemon = OCTILLERY,47
 Pokemon = AEXEGGUTOR,47
+#-------------------------------
+[CAMPER,Liam]
+Pokemon = VENUSAUR,37
+Pokemon = HITMONCHAN,38
+Pokemon = DRAGONAIR,38
+Pokemon = PORYGON2,37
+#-------------------------------
+[POKEMONRANGER_M2,Marton]
+Pokemon = MZANGOOSE,37
+Pokemon = BRONZONG,38
+Pokemon = FALINKS,37
+Pokemon = TSAREENA,38
