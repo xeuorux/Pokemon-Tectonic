@@ -27795,7 +27795,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SANDORNADO,Level,45
+Evolutions = SAHARICANE,Level,45
 #-------------------------------
 [845]
 Name = Cramorant
@@ -30076,8 +30076,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [915]
-Name = Sandornado
-InternalName = SANDORNADO
+Name = Saharicane
+InternalName = SAHARICANE
 Type1 = GROUND
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
