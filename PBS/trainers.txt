@@ -190,11 +190,11 @@ Pokemon = CROAGUNK,15
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera]
 Policies = YEZERA
-Pokemon = BUNNELBY,15
+Pokemon = BUNNELBY,17
     AbilityIndex = 1
-Pokemon = SMOOCHUM,15
+Pokemon = SMOOCHUM,17
     AbilityIndex = 0
-Pokemon = JOLTIK,15
+Pokemon = JOLTIK,18
     AbilityIndex = 0
 #-------------------------------
 [GUITARIST,Reece]
