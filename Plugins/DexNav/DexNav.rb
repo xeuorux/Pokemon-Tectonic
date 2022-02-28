@@ -31,17 +31,19 @@ class NewDexNav
     @sprites["nav_arrow"].play
 	
 	# Find which encounter sets the player has yet completed
-	encounterTypesCompleted = {}
+	encounterTypesCompletion = {}
 	encounter_array.each do |entry|
 		encounterType = entry[0]
 		next if encounterType == :Special
-		if !encounterTypesCompleted.has_key?(encounterType)
-			encounterTypesCompleted[encounterType] = true
+		if !encounterTypesCompletion.has_key?(encounterType)
+			encounterTypesCompletion[encounterType] = true
 		end
-		encounterTypesCompleted[encounterType] = encounterTypesCompleted[encounterType] && $Trainer.owned?(entry[1].species)
+		encounterTypesCompletion[encounterType] = encounterTypesCompletion[encounterType] && $Trainer.owned?(entry[1].species)
 	end
+	@numEncounterTypes			= 0
 	@numEncounterTypesCompleted = 0
-	encounterTypesCompleted.each do |encounter_type,isCompleted|
+	encounterTypesCompletion.each do |encounter_type,isCompleted|
+		@numEncounterTypes			+= 1
 		@numEncounterTypesCompleted += 1 if isCompleted
 	end
 	
@@ -210,7 +212,7 @@ class NewDexNav
 		receivedCountText = _INTL("#{receivedCount} received")
 		textpos.push([receivedCountText,xLeft+300,yPos,0,base,shadow])
 	end
-	completions = "#{@numEncounterTypesCompleted} habitat#{@numEncounterTypesCompleted == 1 ? "" : "s"} completed"
+	completions = "#{@numEncounterTypesCompleted}/#{@numEncounterTypes} encounter groups#{@numEncounterTypesCompleted == 1 ? "" : "s"} completed"
 	textpos.push([completions,xLeft,yPos,0,base,shadow])
 	yPos += 32
 	
