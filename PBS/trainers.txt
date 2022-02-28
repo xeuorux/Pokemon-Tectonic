@@ -192,6 +192,7 @@ Pokemon = CROAGUNK,15
 Policies = YEZERA
 Pokemon = BUNNELBY,17
     AbilityIndex = 1
+	Item = ORANBERRY
 Pokemon = SMOOCHUM,17
     AbilityIndex = 0
 Pokemon = JOLTIK,18
