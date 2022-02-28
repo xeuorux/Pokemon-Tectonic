@@ -729,6 +729,18 @@ Pokemon = POLIWHIRL,25
     Moves = SPATTERINGRAM,BRICKBREAK,HELPINGHAND
     AbilityIndex = 1
 #-------------------------------
+[POKEMONTRAINER_Yezera,Yezera,2]
+Pokemon = VOLBEAT,30
+	AbilityIndex = 1
+	Item = SITRUSBERRY
+Pokemon = HYPNO,31
+	AbilityIndex = 1
+Pokemon = MALAMAR,31
+	AbilityIndex = 0
+Pokemon = MILTANK,32
+	Item = LEFTOVERS
+	AbilityIndex = 0
+#-------------------------------
 [SCHOOLKID_M,Louis]
 Pokemon = DUCKLETT,19
     AbilityIndex = 0
