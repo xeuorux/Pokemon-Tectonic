@@ -1003,7 +1003,7 @@ Pokemon = HATTREM,27
 Pokemon = LOUDRED,28
     AbilityIndex = 0
 #-------------------------------
-[POKEMONRANGER_M,Connor]
+[POKEMONRANGER_M2,Connor]
 Pokemon = DRIFBLIM,30
     Moves = THUNDERWAVE,HEX,CHILL
     AbilityIndex = 0
