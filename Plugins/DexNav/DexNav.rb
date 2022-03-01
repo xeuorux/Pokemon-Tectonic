@@ -212,7 +212,7 @@ class NewDexNav
 		receivedCountText = _INTL("#{receivedCount} received")
 		textpos.push([receivedCountText,xLeft+300,yPos,0,base,shadow])
 	end
-	completions = "#{@numEncounterTypesCompleted}/#{@numEncounterTypes} encounter groups#{@numEncounterTypesCompleted == 1 ? "" : "s"} completed"
+	completions = "#{@numEncounterTypesCompleted}/#{@numEncounterTypes} group#{@numEncounterTypesCompleted == 1 ? "" : "s"} completed"
 	textpos.push([completions,xLeft,yPos,0,base,shadow])
 	yPos += 32
 	
