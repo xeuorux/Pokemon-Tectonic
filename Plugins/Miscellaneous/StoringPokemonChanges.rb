@@ -144,6 +144,7 @@ module PokeBattle_BattleCommon
           #Didn't cancel
           if chosen != -1
 			 chosenPokemon = $Trainer.party[chosen]
+			 @peer.pbOnLeavingBattle(self,chosenPokemon,@usedInBattle[0][chosen],true)   # Reset form
 		  
 			# Find the battler which matches with the chosen pokemon	
 			chosenBattler = nil
