@@ -1109,6 +1109,7 @@ class PokemonPokedex_Scene
 		miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
 		miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined") if $DEBUG
 		miscSearches[cmdIsLegendary = miscSearches.length] = _INTL("Legendary")
+		miscSearches[cmdGeneration = miscSearches.length] = _INTL("Generation")
 		miscSearches.push(_INTL("Cancel"))
 		searchSelection = pbMessage("Which search?",miscSearches,miscSearches.length)
 		if cmdMapFound > -1 && searchSelection == cmdMapFound
@@ -1121,6 +1122,8 @@ class PokemonPokedex_Scene
 			return searchByLegendary()
 		elsif cmdWildItem > -1 && searchSelection == cmdWildItem
 			return searchByWildItem()
+		elsif cmdGeneration > -1 && searchSelection == cmdGeneration
+			return searchByGeneration()
 		end
 	end
 	
@@ -1238,6 +1241,40 @@ class PokemonPokedex_Scene
 			return dexlist
 		end
 		return nil
+	end
+	
+	def searchByGeneration()
+		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		
+		generationNumber = 0
+		while true
+			generationNumberTextInput = pbEnterText("Search generation number...", 0, 20)
+			return if generationNumberTextInput.blank?
+			reversed = generationNumberTextInput[0] == '-'
+			generationNumberTextInput = generationNumberTextInput[1..-1] if reversed
+			
+			generationNumber = generationNumberTextInput.to_i
+			if generationNumber <= 0 || generationNumber >= 9
+				pbMessage("Please choose a generation number between 1 and 8.")
+			else
+				break
+			end
+		end
+		
+		generationlastNumbers = [0,151,251,386,493,649,721,809,898]
+		generationFirstNumber = generationlastNumbers[generationNumber-1]
+		generationLastNumber = generationlastNumbers[generationNumber]
+		
+		dexlist = dexlist.find_all { |item|
+				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				id = GameData::Species.get(item[0]).id_number
+				
+				isInChosenGeneration = id > generationFirstNumber &&
+										id <= generationLastNumber
+				
+				next isInChosenGeneration ^ reversed # Boolean XOR
+		}
+		return dexlist
 	end
 	
 	def searchByTypeMatchup()
