@@ -82,10 +82,11 @@ class ItemIconSprite < SpriteWrapper
 		if @item || !@blankzero
 		  @animbitmap = AnimatedBitmap.new(GameData::Item.icon_filename(@item))
 		  self.bitmap = @animbitmap.bitmap
+		  pbSetSystemFont(self.bitmap)
 		  if item == :AIDKIT
 			base = Color.new(235,235,235)
 			shadow = Color.new(50,50,50)
-			pbDrawTextPositions(self.bitmap,[[$PokemonGlobal.teamHealerCurrentUses.to_s,28,18,0,base,shadow,true]])
+			pbDrawTextPositions(self.bitmap,[[$PokemonGlobal.teamHealerCurrentUses.to_s,28,14,0,base,shadow,true]])
 		  end
 		  if self.bitmap.height==ANIM_ICON_SIZE
 			@numframes = [(self.bitmap.width/ANIM_ICON_SIZE).floor,1].max
