@@ -1,5 +1,6 @@
 class Game_Event < Game_Character
 	attr_reader   :event
+	attr_accessor :direction_fix
 end
 
 class PokemonGlobalMetadata
@@ -152,9 +153,7 @@ Events.onMapSceneChange += proc { |_sender, e|
 	scene.spriteset.addUserSprite(LocationWindow.new(label))
 }
 
-def loadBoxPokemonIntoPlaceholders
-	echoln("Beginning to load box Pokemon.")
-	
+def loadBoxPokemonIntoPlaceholders()
 	# Find all the pokemon that need to be represented
 	unusedBoxPokes = []
 	boxNum = estate_box
@@ -163,14 +162,28 @@ def loadBoxPokemonIntoPlaceholders
 	  next if pokemon.nil?
 	  unusedBoxPokes.push(pokemon)
     end
+	
+	# Find the feeding bowl, if  any
+	feedingBowl = nil
+	for event in $game_map.events.values
+		if event.name.downcase.include?("feedingbowl")
+			feedingBowl = event 
+			break
+		end
+	end
 
 	# Load all the pokemon into the placeholders
 	events = $game_map.events.values.shuffle()
 	for event in events
 		next unless event.name.downcase.include?("boxplaceholder")
-		break if unusedBoxPokes.length == 0
-		pokemon = unusedBoxPokes.delete_at(rand(unusedBoxPokes.length))
-		convertEventToPokemon(event,pokemon)
+		if unusedBoxPokes.length != 0
+			pokemon = unusedBoxPokes.delete_at(rand(unusedBoxPokes.length))
+			convertEventToPokemon(event,pokemon)
+		else
+			# Scrub all others
+			event.event.pages = [RPG::Event::Page.new]
+			event.refresh
+		end
     end
 end
 
@@ -181,26 +194,31 @@ def convertEventToPokemon(event,pokemon)
 	form = pokemon.form
 	speciesData = GameData::Species.get(species)
 	
-	floatingSpecies = floatingSpecies?(species,form)
+	originalPage = actualEvent.pages[0]
 	
 	# Create the first page, where the cry happens
 	firstPage = RPG::Event::Page.new
-	wasCustom = actualEvent.pages[0].move_type == 3
-	actualEvent.pages[0] = firstPage
 	fileName = species.to_s
 	fileName += "_" + form.to_s if form != 0
 	firstPage.graphic.character_name = "Followers/#{fileName}"
-	firstPage.graphic.direction = 2 + rand(4) * 2
+	beginWandering(firstPage,pokemon,originalPage.step_anime)
+	firstPage.move_type = originalPage.move_type
+	if originalPage.move_type == 1 # Random
+		firstPage.graphic.direction = 2 + rand(4) * 2
+		firstPage.direction_fix = false
+	else
+		firstPage.graphic.direction = originalPage.graphic.direction
+		firstPage.direction_fix = originalPage.direction_fix
+	end
 	firstPage.trigger = 0 # Action button
-	firstPage.step_anime = floatingSpecies
-	firstPage.move_type = 1 if !wasCustom # Random
-	firstPage.move_frequency = [[speciesData.base_stats[:SPEED] / 25,0].max,5].min
 	firstPage.list = []
 	push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesData.id,form))
 	push_script(firstPage.list,sprintf("ranchChoices(#{pokemon.personalID})",))
 	firstPage.list.push(RPG::EventCommand.new(0,0,[]))
 	
-	event.floats = floatingSpecies
+	actualEvent.pages[0] = firstPage
+	
+	event.floats = floatingSpecies?(pokemon.species,pokemon.form)
 	
 	event.refresh()
 end
@@ -242,7 +260,7 @@ def ranchChoices(personalID = -1)
 		command = pbMessage(_INTL("What would you like to do with #{pokemon.name}?"),commands,commands.length,nil,command)
 		if cmdSummary > -1 && command == cmdSummary
 			pbFadeOutIn {
-				scene = PokemonSummary_Scene.new
+				scenfe = PokemonSummary_Scene.new
 				screen = PokemonSummaryScreen.new(scene)
 				screen.pbStartSingleScreen(pokemon)
 			}
@@ -279,11 +297,28 @@ def ranchChoices(personalID = -1)
 				break
 			end
 		elsif cmdInteract > -1 && command == cmdInteract
+			prev_direction = get_self.direction
+			get_self.direction_fix = false
+			get_self.turn_toward_player
 			Events.OnTalkToFollower.trigger(pokemon,get_self().x,get_self().y,rand(6))
+			if rand < 0.5
+				beginWandering(get_self.event.pages[0],pokemon)
+				get_self.refresh
+			else
+				get_self.turn_generic(prev_direction)
+			end
 		elsif cmdCancel > -1 && command == cmdCancel
 			break
 		end
 	end
+end
+
+def beginWandering(page,pokemon,stepAnimation=false)
+	speciesData = GameData::Species.get(pokemon.species)
+	page.direction_fix = false
+	page.move_type = 1 # Random
+	page.step_anime = stepAnimation || floatingSpecies?(pokemon.species,pokemon.form)
+	page.move_frequency = [[speciesData.base_stats[:SPEED] / 25,0].max,5].min
 end
 
 def setDownIntoEstate(pokemon)

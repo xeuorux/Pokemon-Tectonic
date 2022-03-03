@@ -1145,6 +1145,11 @@ end
           map.events[key] = newevent
           changed = true
         end
+		newevent = change_overworld_placeholders(map.events[key])
+		if newevent
+          map.events[key] = newevent
+          changed = true
+        end
         changed = true if fix_event_name(map.events[key])
         newevent = fix_event_use(map.events[key],id,mapData)
         if newevent
@@ -1426,6 +1431,17 @@ end
 		next if page.graphic.character_name != "00Overworld Placeholder"
 		page.graphic.character_name = "Followers/#{species}" 
 	end
+	
+	return event
+  end
+  
+  def change_overworld_placeholders(event)
+	return nil if !event || event.pages.length==0
+	return nil unless event.name.downcase.include?("boxplaceholder")
+	
+	#event.pages.each do |page|
+	#	page.move_type = 1
+	#end
 	
 	return event
   end
