@@ -94,7 +94,7 @@ MapPosition = 0,14,10
 # Gigalith's Guts
 Outdoor = false
 ShowArea = true
-Bicycle = false
+Bicycle = true
 MapPosition = 0,14,10
 #-------------------------------
 [013]

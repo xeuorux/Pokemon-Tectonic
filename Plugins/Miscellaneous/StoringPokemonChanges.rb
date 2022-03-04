@@ -143,25 +143,26 @@ module PokeBattle_BattleCommon
 		  chosen = $game_variables[1]
           #Didn't cancel
           if chosen != -1
-			# Find the battler which matches with the chosen pokemon
-            chosenPokemon = $Trainer.party[chosen]
+			 chosenPokemon = $Trainer.party[chosen]
+			 @peer.pbOnLeavingBattle(self,chosenPokemon,@usedInBattle[0][chosen],true)   # Reset form
+		  
+			# Find the battler which matches with the chosen pokemon	
 			chosenBattler = nil
 			eachSameSideBattler() do |battler|
 				next unless battler.pokemon == chosenPokemon
 				chosenBattler = battler
 				break
 			end
-			if !chosenBattler.nil?
-				# Handle the chosen pokemon leaving battle
-				BattleHandlers.triggerAbilityOnSwitchOut(chosenBattler.ability,chosenBattler,true,self) if chosenBattler.abilityActive?
-				chosenPokemon.item = @initialItems[0][chosenBattler.index]
-				@initialItems[0][chosenBattler.index] = pkmn.item
+			# Handle the chosen pokemon leaving battle, if it was in battle
+			if !chosenBattler.nil? && chosenBattler.abilityActive?
+				BattleHandlers.triggerAbilityOnSwitchOut(chosenBattler.ability,chosenBattler,true,self)
 			end
-			@peer.pbOnLeavingBattle(self,chosenPokemon,@usedInBattle[0][chosen],true)   # Reset form
+			
+			chosenPokemon.item = @initialItems[0][chosen]
+			@initialItems[0][chosen] = pkmn.item
+			
 			pbStorePokemon(chosenPokemon)
 			$Trainer.party[chosen] = pkmn
-			
-			#refreshFollow
           else
             # Store caught Pokémon if cancelled
             pbStorePokemon(pkmn)

@@ -21,13 +21,16 @@ def useAidKit()
 		healAmount = AID_KIT_BASE_HEALING + HEALING_UPGRADE_AMOUNT * $PokemonGlobal.teamHealerUpgrades
 		pbMessage(_INTL("Healing your entire team by {1}.",healAmount))
 		charges = $PokemonGlobal.teamHealerCurrentUses
-		pbMessage(_INTL("You have {1} #{charges == 1 ? "charge" : "charges"} left.", charges))
+		#pbMessage(_INTL("You have {1} #{charges == 1 ? "charge" : "charges"} left.", charges))
+		fullyHealed = true
 		$Trainer.party.each do |p|
 			next if p.egg?
 			pbItemRestoreHP(p,healAmount)
 			p.heal_status
 			p.heal_PP
+			fullyHealed = false if p.hp < p.totalhp
 		end
+		pbMessage(_INTL("Your entire teams is fully healthy!")) if fullyHealed
 		return 1
 	else
 		pbMessage(_INTL("You are out of charges."))
@@ -69,3 +72,34 @@ ItemHandlers::UseFromBag.add(:MEDICALUPGRADE,proc { |item|
 	$PokemonGlobal.teamHealerUpgrades	 	+= 1
 	next 3
 })
+
+class ItemIconSprite < SpriteWrapper
+	def item=(value)
+		return if @item==value && !@forceitemchange
+		@item = value
+		@animbitmap.dispose if @animbitmap
+		@animbitmap = nil
+		if @item || !@blankzero
+		  @animbitmap = AnimatedBitmap.new(GameData::Item.icon_filename(@item))
+		  self.bitmap = @animbitmap.bitmap
+		  pbSetSystemFont(self.bitmap)
+		  if item == :AIDKIT
+			base = Color.new(235,235,235)
+			shadow = Color.new(50,50,50)
+			pbDrawTextPositions(self.bitmap,[[$PokemonGlobal.teamHealerCurrentUses.to_s,28,14,0,base,shadow,true]])
+		  end
+		  if self.bitmap.height==ANIM_ICON_SIZE
+			@numframes = [(self.bitmap.width/ANIM_ICON_SIZE).floor,1].max
+			self.src_rect = Rect.new(0,0,ANIM_ICON_SIZE,ANIM_ICON_SIZE)
+		  else
+			@numframes = 1
+			self.src_rect = Rect.new(0,0,self.bitmap.width,self.bitmap.height)
+		  end
+		  @animframe = 0
+		  @frame = 0
+		else
+		  self.bitmap = nil
+		end
+		changeOrigin
+	end
+end

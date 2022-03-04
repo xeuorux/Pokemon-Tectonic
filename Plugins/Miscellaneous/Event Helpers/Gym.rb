@@ -49,6 +49,24 @@ def showGymChoices(notSureLabel="NotSure",basicTeamLabel="BasicTeam",doublesTeam
 	end
 end
 
+def showGymChoicesBenceZoe(notSureLabel="NotSure",basicTeamLabel="BasicTeam",doublesTeamLabel="DoublesTeam",amuletMatters = true)
+	cmdNotSure = -1
+	cmdBasicTeam = -1
+	cmdDoublesTeam = -1
+	commands = []
+	commands[cmdNotSure = commands.length]  = _INTL("I'm not sure")
+	commands[cmdBasicTeam = commands.length]  = (amuletMatters && $PokemonGlobal.tarot_amulet_active) ? _INTL("Your Full Team (CURSED)") : _INTL("Just You")
+	commands[cmdDoublesTeam = commands.length]  = _INTL("Both of you (Advanced)")
+	cmd = pbShowCommands(nil,commands)
+	if cmdNotSure > -1 && cmd == cmdNotSure
+		goToLabel(notSureLabel)
+	elsif cmdBasicTeam > -1 && cmd == cmdBasicTeam
+		goToLabel(basicTeamLabel)
+	elsif cmdDoublesTeam > -1 && cmd == cmdDoublesTeam
+		goToLabel(doublesTeamLabel)
+	end
+end
+
 def receivedGymRewardYet?(index)
 	if $game_variables[78] == 0
 		$game_variables[78] = [false] * 8
@@ -83,4 +101,9 @@ end
 
 def hasFirstFourBadges?()
 	return $game_switches[4] && $game_switches[5] && $game_switches[6] && $game_switches[7]
+end
+
+def endGymChoice()
+	pbTrainerEnd
+	command_end
 end

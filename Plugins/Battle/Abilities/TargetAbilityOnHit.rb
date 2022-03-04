@@ -101,7 +101,7 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
 BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
   proc { |ability,user,target,move,battle|
     next if target.fainted?
-    next if move.pbContactMove?(user)
+    next unless move.pbContactMove?(user)
     next if battle.pbRandom(100)>=30
 	next if target.effects[PBEffects::Confusion] > 0
     battle.pbShowAbilitySplash(target)

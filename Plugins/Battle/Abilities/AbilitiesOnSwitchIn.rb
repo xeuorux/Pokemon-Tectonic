@@ -1,3 +1,37 @@
+BattleHandlers::AbilityOnSwitchIn.add(:FASCINATE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.near?(battler)
+      b.pbLowerSpecialAttackStatStageFascinate(battler)
+      b.pbItemOnIntimidatedCheck
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:FRUSTRATE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.near?(battler)
+      b.pbLowerSpeedStatStageFrustrate(battler)
+      b.pbItemOnIntimidatedCheck
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:HOLIDAYCHEER,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.eachSameSideBattler(battler.index) do |b|
+      b.pbRecoverHP(b.totalhp*0.25)
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
@@ -76,7 +110,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:EARTHLOCK,
 BattleHandlers::AbilityOnSwitchIn.add(:RUINOUS,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is ruinous! Everyone deals 20% more damage!",battler.pbThis))
+    battle.pbDisplay(_INTL("{1} is ruinous! Everyone deals 20 percent more damage!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
