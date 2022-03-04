@@ -1439,6 +1439,7 @@ end
 	return nil if !event || event.pages.length==0
 	return nil unless event.name.downcase.include?("boxplaceholder")
 	
+	return nil
 	#event.pages.each do |page|
 	#	page.move_type = 1
 	#end
