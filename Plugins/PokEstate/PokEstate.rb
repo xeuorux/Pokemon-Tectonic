@@ -277,7 +277,7 @@ def ranchChoices(personalID = -1)
 		command = pbMessage(_INTL("What would you like to do with #{pokemon.name}?"),commands,commands.length,nil,command)
 		if cmdSummary > -1 && command == cmdSummary
 			pbFadeOutIn {
-				scenfe = PokemonSummary_Scene.new
+				scene = PokemonSummary_Scene.new
 				screen = PokemonSummaryScreen.new(scene)
 				screen.pbStartSingleScreen(pokemon)
 			}
