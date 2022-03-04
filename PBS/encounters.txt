@@ -546,3 +546,20 @@ Land
 Special,1
 1,AMEOWTH,15,15
 #-------------------------------
+[187] # Prizca East
+Land,20
+25,SINISTEA,33,35
+25,SMEARGLE,33,35
+25,FURFROU,32,34
+25,MINCCINO,33,35
+#-------------------------------
+[189] # Catacombs
+Land,20
+25,GOLETT,33,35
+25,DRUDDIGON,33,35
+25,DEINO,33,35
+25,MZANGOOSE,33,35
+DarkCave,20
+33,SPIRITOMB,33,35
+33,MIMIKYU,33,35
+33,LUNATONE,33,35
