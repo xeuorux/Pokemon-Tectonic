@@ -196,6 +196,22 @@ def convertEventToPokemon(event,pokemon)
 	
 	originalPage = actualEvent.pages[0]
 	
+	displayedMessage = nil
+	# Find a message comment, if present
+	# Find all the trainer comments in the event
+	list = originalPage.list
+    for i in 0...list.length
+      next if list[i].code!=108   # Comment (first line)
+      command = list[i].parameters[0]
+      for j in (i+1)...list.length
+        break if list[j].code!=408   # Comment (continuation line)
+        command += "\r\n"+list[j].parameters[0]
+      end
+      displayedMessage = command
+	  displayedMessage.gsub!("\\P",pokemon.name)
+	  break
+    end
+	
 	# Create the first page, where the cry happens
 	firstPage = RPG::Event::Page.new
 	fileName = species.to_s
@@ -212,6 +228,7 @@ def convertEventToPokemon(event,pokemon)
 	end
 	firstPage.trigger = 0 # Action button
 	firstPage.list = []
+	push_text(firstPage.list,displayedMessage) if displayedMessage
 	push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesData.id,form))
 	push_script(firstPage.list,sprintf("ranchChoices(#{pokemon.personalID})",))
 	firstPage.list.push(RPG::EventCommand.new(0,0,[]))
