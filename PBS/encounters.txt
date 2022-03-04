@@ -547,7 +547,7 @@ Special,1
 1,AMEOWTH,15,15
 #-------------------------------
 [187] # Prizca East
-Land,20
+FloweryGrass2,20
 25,SINISTEA,33,35
 25,SMEARGLE,33,35
 25,FURFROU,32,34
