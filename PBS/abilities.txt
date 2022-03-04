@@ -38,7 +38,7 @@
 36,TRACE,Trace,"The Pokémon copies a foe's Ability."
 37,POWERUP,Power Up,"Raises the Pokémon's Attack by 50%."
 38,POISONPOINT,Poison Point,"Physical moves against the Pokémon have a 30% chance to poison the attacker."
-39,INNERFOCUS,Inner Focus,"The Pokémon is protected from flinching, Intimidate, and Fascinate."
+39,INNERFOCUS,Inner Focus,"The Pokémon is protected from flinching, Intimidate, Fascinate, and Frustrate."
 40,COLDPROOF,Cold Proof,"Immune to Ice-type moves, and raises Sp. Def if hit by one. Cannot be chilled."
 41,WATERVEIL,Water Veil,"Prevents the Pokémon from getting a burn."
 42,MAGNETPULL,Magnet Pull,"Prevents Steel-type Pokémon from escaping."
