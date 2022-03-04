@@ -35,6 +35,7 @@ Princess-phoenix<s>seiyouh
 SpritersResource<s>Thatsowitty
 KyleDove<s>ausberge
 exiled-shadow<s>supercow
+Pablus94<s>LunaMaddalena
 
 Charsets
 DiegoWT<s>PurpleZaffre
