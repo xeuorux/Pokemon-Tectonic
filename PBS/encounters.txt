@@ -484,6 +484,8 @@ Land,20
 25,SCRAGGY,32,34
 25,SHUPPET,32,34
 25,PIDOVE,32,34
+Special,1
+1,ROTOM,30,30
 #-------------------------------
 [34] # Battle Fair
 FloweryGrass,20
@@ -563,3 +565,7 @@ DarkCave,20
 33,SPIRITOMB,33,35
 33,MIMIKYU,33,35
 33,LUNATONE,33,35
+#-------------------------------
+[180] # Prizca West Mart
+Special,1
+1,GFARFETCHD,30,30
