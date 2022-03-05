@@ -69,16 +69,17 @@ BattleHandlers::StatusCureAbility.copy(:WATERVEIL,:WATERBUBBLE)
 
 BattleHandlers::StatusCureAbility.add(:MENTALBLOCK,
   proc { |ability,battler|
+		battle = battler.battle
     if battler.effects[PBEffects::Confusion]!=0
 		battler.battle.pbShowAbilitySplash(battler)
 		battler.pbCureConfusion
-		battler.battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis))
+		battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis))
 		battler.battle.pbHideAbilitySplash(battler)
 	end
 	if battler.effects[PBEffects::Charm]!=0
 		battler.battle.pbShowAbilitySplash(battler)
 		battler.pbCureCharm
-		battler.battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis))
+		battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis))
 		battler.battle.pbHideAbilitySplash(battler)
 	end
 	if battler.effects[PBEffects::Taunt]  > 0
