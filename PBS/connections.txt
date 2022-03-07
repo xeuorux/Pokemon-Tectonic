@@ -1,4 +1,6 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
-# Beach Route (38) - Casaba Villa (136)
+# Bluepoint Beach (38) - Casaba Villa (136)
 38,East,0,136,West,6
+# Prizca Castle (188) - Prizca East (187)
+188,10,32,187,0,0
