@@ -218,6 +218,7 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
+Environment = None
 #-------------------------------
 [035]
 # Impromptu Lab
@@ -528,18 +529,21 @@ Bicycle = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
+Environment = StillWater
 #-------------------------------
 [129]
 # Barren Crater
 Outdoor = true
 ShowArea = true
 Bicycle = true
+Environment = Rock
 #-------------------------------
 [130]
 # Canal Desert
 Outdoor = true
 ShowArea = true
 Bicycle = true
+Environment = Sand
 #-------------------------------
 [134]
 # Prizca West Gym
@@ -789,9 +793,40 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
+[183]
+# Circuit Cave
+Outdoor = false
+ShowArea = true
+Bicycle = true
+Environment = Cave
+#-------------------------------
 [185]
 # Eleig Stretch
 Outdoor = true
 ShowArea = true
 Bicycle = true
 Environment = Forest
+#-------------------------------
+[186]
+# Farm Placeeholder
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[187]
+# Prizca East
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[188]
+# Prizca Castle
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[189]
+# Catacombs Placeholder
+Outdoor = false
+ShowArea = true
+Bicycle = true
