@@ -82,7 +82,7 @@ class PokeBattle_Battler
 				when :SLEEP		 then msg = _INTL("{1} is already asleep!", pbThis)
 				when :POISON		then msg = _INTL("{1} is already poisoned!", pbThis)
 				when :BURN			then msg = _INTL("{1} already has a burn!", pbThis)
-				when :PARALYSIS then msg = _INTL("{1} is already paralyzed!", pbThis)
+				when :PARALYSIS then msg = _INTL("{1} is already numbed!", pbThis)
 				when :FROZEN		then msg = _INTL("{1} is already chilled!", pbThis)
 				end
 				@battle.pbDisplay(msg)
@@ -184,7 +184,7 @@ class PokeBattle_Battler
 					when :SLEEP		 then msg = _INTL("{1} stays awake!", pbThis)
 					when :POISON		then msg = _INTL("{1} cannot be poisoned!", pbThis)
 					when :BURN			then msg = _INTL("{1} cannot be burned!", pbThis)
-					when :PARALYSIS then msg = _INTL("{1} cannot be paralyzed!", pbThis)
+					when :PARALYSIS then msg = _INTL("{1} cannot be numbed!", pbThis)
 					when :FROZEN		then msg = _INTL("{1} cannot be chilled!", pbThis)
 					end
 				elsif immAlly
@@ -199,7 +199,7 @@ class PokeBattle_Battler
 						msg = _INTL("{1} cannot be burned because of {2}'s {3}!",
 							 pbThis,immAlly.pbThis(true),immAlly.abilityName)
 					when :PARALYSIS
-						msg = _INTL("{1} cannot be paralyzed because of {2}'s {3}!",
+						msg = _INTL("{1} cannot be numbed because of {2}'s {3}!",
 							 pbThis,immAlly.pbThis(true),immAlly.abilityName)
 					when :FROZEN
 						msg = _INTL("{1} cannot be chilled because of {2}'s {3}!",
@@ -210,7 +210,7 @@ class PokeBattle_Battler
 					when :SLEEP		 then msg = _INTL("{1} stays awake because of its {2}!", pbThis, abilityName)
 					when :POISON		then msg = _INTL("{1}'s {2} prevents poisoning!", pbThis, abilityName)
 					when :BURN			then msg = _INTL("{1}'s {2} prevents burns!", pbThis, abilityName)
-					when :PARALYSIS then msg = _INTL("{1}'s {2} prevents paralysis!", pbThis, abilityName)
+					when :PARALYSIS then msg = _INTL("{1}'s {2} prevents numbing!", pbThis, abilityName)
 					when :FROZEN		then msg = _INTL("{1}'s {2} prevents chilling!", pbThis, abilityName)
 					end
 				end
@@ -318,7 +318,7 @@ class PokeBattle_Battler
 			when :BURN
 			@battle.pbDisplay(_INTL("{1} was burned! Its Attack is reduced!", pbThis))
 			when :PARALYSIS
-			@battle.pbDisplay(_INTL("{1} is paralyzed! It may be unable to move!", pbThis))
+			@battle.pbDisplay(_INTL("{1} is numbed! It's slower and it's stat improvements are ignored!", pbThis))
 			when :FROZEN
 			@battle.pbDisplay(_INTL("{1} was chilled! It's slower and takes more damage!", pbThis))
 			end
@@ -497,8 +497,6 @@ class PokeBattle_Battler
 			@battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
 		when :BURN
 			@battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis))
-		when :PARALYSIS
-			@battle.pbDisplay(_INTL("{1} is paralyzed! It can't move!", pbThis))
 		when :FROZEN
 			@battle.pbDisplay(_INTL("{1} is frozen solid!", pbThis))
 		end
@@ -530,7 +528,7 @@ class PokeBattle_Battler
 			when :SLEEP		 then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
 			when :POISON		then @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", pbThis))
 			when :BURN			then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
-			when :PARALYSIS then @battle.pbDisplay(_INTL("{1} was cured of paralysis.", pbThis))
+			when :PARALYSIS then @battle.pbDisplay(_INTL("{1} is no longer numbed.", pbThis))
 			when :FROZEN		then @battle.pbDisplay(_INTL("{1} thawed out!", pbThis))
 			end
 				end

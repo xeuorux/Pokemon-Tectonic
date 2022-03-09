@@ -309,6 +309,9 @@ class PokeBattle_Move
 	  calc = (calc.to_f + 1.0)/2.0 if user.boss?
       atk = (atk.to_f*calc).floor
     end
+	if atkStage > 6 && user.paralyzed?
+		atkStage = 6
+	end
     # Calculate target's defense stat
     defense, defStage = pbGetDefenseStats(user,target)
     if !user.hasActiveAbility?(:UNAWARE)
@@ -318,6 +321,9 @@ class PokeBattle_Move
 	  calc = (calc.to_f + 1.0)/2.0 if target.boss?
       defense = (defense.to_f*calc).floor
     end
+	if defStage > 6 && user.paralyzed?
+		defStage = 6
+	end
     # Calculate all multiplier effects
     multipliers = {
       :base_damage_multiplier  => 1.0,

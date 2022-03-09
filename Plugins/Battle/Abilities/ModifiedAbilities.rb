@@ -27,7 +27,7 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          msg = _INTL("{1}'s {2} paralyzed {3}! It may be unable to move!",
+          msg = _INTL("{1}'s {2} numbed {3}! It's slower and it's stat improvements are ignored!",
              battler.pbThis,battler.abilityName,user.pbThis(true))
         end
         user.pbParalyze(nil,msg)

@@ -176,6 +176,7 @@ class PokeBattle_Battler
     stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
     stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
     stage = @stages[:SPEED] + 6
+	stage = 6 if stage > 6 && paralyzed?
     speed = @speed*stageMul[stage]/stageDiv[stage]
     speedMult = 1.0
     # Ability effects that alter calculated Speed
@@ -189,8 +190,8 @@ class PokeBattle_Battler
     # Other effects
     speedMult *= 2 if pbOwnSide.effects[PBEffects::Tailwind]>0
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp]>0
-    # Paralysis
-    if (status == :PARALYSIS && !hasActiveAbility?(:QUICKFEET)) || status == :FROZEN
+    # Paralysis and Chill
+    if (paralyzed? || frozen?) && !hasActiveAbility?(:QUICKFEET)
       speedMult /= (Settings::MECHANICS_GENERATION >= 7) ? 2 : 4
     end
     # Badge multiplier

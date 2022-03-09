@@ -240,6 +240,7 @@ class PokeBattle_Battler
         end
       end
     end
+=begin
     # Paralysis
     if pbHasStatus?(:PARALYSIS) && (!boss || @battle.commandPhasesThisRound == 0)
       if @battle.pbRandom(100)<25
@@ -248,6 +249,7 @@ class PokeBattle_Battler
         return false
       end
     end
+=end
     # Infatuation
     if @effects[PBEffects::Attract]>=0
       @battle.pbCommonAnimation("Attract",self)
