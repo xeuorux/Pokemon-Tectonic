@@ -15,6 +15,14 @@ def pbStorePokemon(pkmn)
 	  #Didn't cancel
 	  if chosen != -1
 		storingPokemon = $Trainer.party[chosen]
+		
+		if storingPokemon.hasItem?
+			itemName = GameData::Item.get(storingPokemon.item).real_name
+			if pbConfirmMessageSerious(_INTL("{1} is holding an {2}. Would you like to take it before transferring?", storingPokemon.name, itemName))
+				pbTakeItemFromPokemon(storingPokemon)
+			end
+		end
+		
 		$Trainer.party[chosen] = pkmn
 		
 		refreshFollow
@@ -24,6 +32,37 @@ def pbStorePokemon(pkmn)
   else
     $Trainer.party[$Trainer.party.length] = pkmn
   end
+end
+
+def pbTakeItemFromPokemon(pkmn)
+  ret = false
+  if !pkmn.hasItem?
+    pbMessage(_INTL("{1} isn't holding anything.",pkmn.name))
+  elsif !$PokemonBag.pbCanStore?(pkmn.item)
+    pbMessage(_INTL("The Bag is full. The Pokémon's item could not be removed."))
+  elsif pkmn.mail
+    if pbConfirmMessage(_INTL("Save the removed mail in your PC?"))
+      if !pbMoveToMailbox(pkmn)
+        pbMessage(_INTL("Your PC's Mailbox is full."))
+      else
+        pbMessage(_INTL("The mail was saved in your PC."))
+        pkmn.item = nil
+        ret = true
+      end
+    elsif pbConfirmMessage(_INTL("If the mail is removed, its message will be lost. OK?"))
+      $PokemonBag.pbStoreItem(pkmn.item)
+      pbMessage(_INTL("Received the {1} from {2}.",pkmn.item.name,pkmn.name))
+      pkmn.item = nil
+      pkmn.mail = nil
+      ret = true
+    end
+  else
+    $PokemonBag.pbStoreItem(pkmn.item)
+    pbMessage(_INTL("Received the {1} from {2}.",pkmn.item.name,pkmn.name))
+    pkmn.item = nil
+    ret = true
+  end
+  return ret
 end
 
 def pbStorePokemonInPC(pkmn)
@@ -160,6 +199,13 @@ module PokeBattle_BattleCommon
 			
 			chosenPokemon.item = @initialItems[0][chosen]
 			@initialItems[0][chosen] = pkmn.item
+			
+			if chosenPokemon.hasItem?
+				itemName = GameData::Item.get(chosenPokemon.item).real_name
+				if pbConfirmMessageSerious(_INTL("{1} is holding an {2}. Would you like to take it before transferring?", pkmn.name, itemName))
+					pbTakeItemFromPokemon(chosenPokemon)
+				end
+			end
 			
 			pbStorePokemon(chosenPokemon)
 			$Trainer.party[chosen] = pkmn
