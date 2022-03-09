@@ -830,3 +830,15 @@ Bicycle = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[193]
+# Lapras Shore
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[196]
+# Boiling Cave
+Outdoor = true
+ShowArea = true
+Bicycle = true

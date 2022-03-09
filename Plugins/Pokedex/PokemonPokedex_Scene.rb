@@ -892,7 +892,8 @@ class PokemonPokedex_Scene
 			55 => [155,29,47,	# Prizca West, Full Blast Records F2, Grand Hotal
 					34,183,180,		# Battle Fair, Circuit Cave, Priza West Mart
 					185,186,		# Eleig Stretch, Farm Placeholder
-					189			# Prizca East
+					189,			# Prizca East
+					193,196			# Lapras Shore, Boiling Cave
 					]
 		  }
 		  
