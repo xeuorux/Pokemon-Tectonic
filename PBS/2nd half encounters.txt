@@ -142,7 +142,7 @@ Land,20
 [] # Mountain Path
 Land
 25,DRAMPA,36,39
-25,,36,39
+25,MORPEKO,36,39
 25,SPINDA,36,39
 25,CHATOT,36,39
 LandTall
@@ -152,7 +152,7 @@ LandTall
 25,MIENFOO,36,39
 LandSparse
 33,GLIGAR,36,39
-33,,36,39
+33,GIRAFARIG,36,39
 33,ABSOL,36,39
 #-------------------------------
 [] # Volcanic Path
@@ -172,13 +172,8 @@ HotRock
 25,DRIFLOON,38,40
 #-------------------------------
 [] # Reef
-Land
-25,PYUKUMUKU,31,33
-25,STUNFISK,31,33
-25,STARYU,31,33
-25,CRAMORANT,31,33
 ActiveWater
-20,MAREANIE,31,33
+20,PINCURCHIN,31,33
 20,CORSOLA,31,33
 20,WISHIWASHI,31,33
 20,FINNEON,31,33
@@ -188,7 +183,7 @@ ActiveWater
 ActiveWater
 20,MANTYKE,32,34
 20,ARROKUDA,32,34
-20,BINACLE,32,34
+20,CLAMPERL,32,34
 20,BASCULIN,32,34
 20,BRUXISH,32,34
 #-------------------------------
