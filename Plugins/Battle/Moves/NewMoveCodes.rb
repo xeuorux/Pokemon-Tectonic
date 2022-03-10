@@ -12,7 +12,7 @@ class PokeBattle_Charm < PokeBattle_Move
     @type       = nil
     @category   = 1
     @accuracy   = 100
-    @pp         = -1
+    @pp         = -1 
     @target     = 0
     @priority   = 0
     @flags      = ""
@@ -849,7 +849,7 @@ end
 # Confuses or charms based on which of the target's attacking stats is higher. (Majestic Glare)
 #===============================================================================
 class PokeBattle_Move_52B < PokeBattle_Move
-	def pbFailsAgainstTarget?(user,target)
+  def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
     if !target.pbCanConfuse?(user,true,self) && !target.pbCanCharm?(user,true,self)
 		@battle.pbDisplay(_INTL("But it failed!")) 

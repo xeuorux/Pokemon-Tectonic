@@ -630,7 +630,11 @@ class PokeBattle_Move
 	# Late boss specific immunity abilities check
 	if @battle.bossBattle?
 		if pbImmunityByAbility(user,target) 
-			@battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
+			if damagingMove?
+				@battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
+			else
+				@battle.pbDisplay(_INTL("Except, within the avatar's aura, the move can pierce the immunity!"))
+			end
 			ret /= 2
 		end
 	end

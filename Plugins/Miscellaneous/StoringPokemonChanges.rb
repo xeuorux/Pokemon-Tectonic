@@ -34,7 +34,7 @@ def pbStorePokemon(pkmn)
   end
 end
 
-def pbTakeItemFromPokemon(pkmn)
+def pbTakeItemFromPokemon(pkmn,scene=nil)
   ret = false
   if !pkmn.hasItem?
     pbMessage(_INTL("{1} isn't holding anything.",pkmn.name))
