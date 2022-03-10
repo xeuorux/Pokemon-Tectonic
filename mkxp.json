@@ -185,7 +185,7 @@
                      "y": "JumpDown",
                      "z": "Special",
                      "l": "Quicksave",
-                     "r": "(unused)"},
+                     "r": "Bicycle"},
 
 
     // Allow symlinks for game assets to be followed

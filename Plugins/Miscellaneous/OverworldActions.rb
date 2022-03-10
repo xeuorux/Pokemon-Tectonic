@@ -2,6 +2,10 @@ class Game_Temp
 	attr_accessor :save_calling             # save calling flag
 end
 
+class PokemonTemp
+	attr_accessor :bicycleCalling 
+end
+
 class Scene_Map
 	def update
     loop do
@@ -40,6 +44,10 @@ class Scene_Map
         unless $game_player.moving?
           $PokemonTemp.keyItemCalling = true
         end
+	  elsif Input.trigger?(Input::AUX2)
+        unless $game_player.moving?
+          $PokemonTemp.bicycleCalling = true
+        end
 	  elsif Input.trigger?(Input::AUX1)
 		unless $game_system.menu_disabled or $game_player.moving?
           $game_temp.save_calling = true
@@ -56,6 +64,8 @@ class Scene_Map
         call_debug
 	  elsif $game_temp.save_calling
 		call_save
+	  elsif $PokemonTemp.bicycleCalling
+		call_bike
       elsif $PokemonTemp.keyItemCalling
         $PokemonTemp.keyItemCalling = false
         $game_player.straighten
@@ -76,6 +86,12 @@ class Scene_Map
     else
       pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
     end
+  end
+  
+  def call_bike
+	$PokemonTemp.bicycleCalling = false
+	return unless $PokemonBag.pbHasItem?(:BICYCLE)
+	pbUseKeyItemInField(:BICYCLE)
   end
 end
 

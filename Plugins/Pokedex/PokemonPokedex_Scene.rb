@@ -447,9 +447,9 @@ class PokemonPokedex_Scene
        [_INTL("Owned"),xLeft,68,0,base,shadow],
        [_INTL("Stats"),xLeft2,68,0,base,shadow],
        [_INTL("Matchups"),xLeft,164,0,base,shadow],
-       [_INTL("Misc. Search"),xLeft2,164,0,base,shadow],
+       [_INTL("Filters"),xLeft2,164,0,base,shadow],
 	   [_INTL("Stat Sort"),xLeft,260,0,base,shadow],
-	   [_INTL("Misc. Sort"),xLeft2,260,0,base,shadow]
+	   [_INTL("Sorts"),xLeft2,260,0,base,shadow]
     ]
 	pbDrawTextPositions(overlay,page1textpos)
 	
