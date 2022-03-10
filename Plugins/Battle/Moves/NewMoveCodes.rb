@@ -872,9 +872,9 @@ class PokeBattle_Move_52B < PokeBattle_Move
 	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
 	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
 	attackStage = target.stages[:ATTACK]+6
-	attack = (target.attack.to_f*stageMul[attackStage]/stageDiv[attackStage]).floor
+	attack = (target.attack.to_f*stageMul[attackStage].to_f/stageDiv[attackStage].to_f).floor
 	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
-	spAtk = (target.spatk.to_f*stageMul[spAtkStage]/stageDiv[spAtkStage]).floor
+	spAtk = (target.spatk.to_f*stageMul[spAtkStage].to_f/stageDiv[spAtkStage].to_f).floor
 	
     if target.pbCanConfuse?(user,false,self) && attack >= spAtk
 		target.pbConfuse

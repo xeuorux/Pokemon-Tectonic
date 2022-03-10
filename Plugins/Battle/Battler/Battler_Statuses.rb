@@ -313,10 +313,10 @@ class PokeBattle_Battler
 			if newStatusCount>0
 				@battle.pbDisplay(_INTL("{1} was toxified!", pbThis))
 			else
-				@battle.pbDisplay(_INTL("{1} was poisoned! Its Sp. Atk is reduced!", pbThis))
+				@battle.pbDisplay(_INTL("{1} was poisoned! Its Sp. Atk is reduced by a third!", pbThis))
 			end
 			when :BURN
-			@battle.pbDisplay(_INTL("{1} was burned! Its Attack is reduced!", pbThis))
+			@battle.pbDisplay(_INTL("{1} was burned! Its Attack is reduced by a third!", pbThis))
 			when :PARALYSIS
 			@battle.pbDisplay(_INTL("{1} is numbed! It's slower and it's stat improvements are ignored!", pbThis))
 			when :FROZEN
