@@ -1,5 +1,5 @@
 ItemHandlers::UseFromBag.add(:EXPEZDISPENSER,proc { |item|
-	return useEXPEZ
+	next useEXPEZ
 })
 
 
@@ -8,7 +8,7 @@ ItemHandlers::ConfirmUseInField.add(:EXPEZDISPENSER,proc { |item|
 })
 
 ItemHandlers::UseInField.add(:EXPEZDISPENSER,proc { |item|
-	return useEXPEZ
+	next useEXPEZ
 })
 
 def useEXPEZ()
@@ -29,7 +29,7 @@ def useEXPEZ()
 		end
 	else
 		pbMessage(_INTL("That's not enough to make any candies."))
-		next 0
+		return 0
 	end
-	next 1
+	return 1
 end
