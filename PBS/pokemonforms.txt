@@ -503,34 +503,40 @@ BattlerEnemyY = 37
 #-------------------------------
 [DEERLING,1]
 FormName = Summer
+BaseStats = 55,80,50,70,40,85
 Type1 = NORMAL
 Type2 = GRASS
 Color = Green
 #-------------------------------
 [DEERLING,2]
 FormName = Autumn
+BaseStats = 60,50,50,85,40,95
 Type1 = NORMAL
 Type2 = GROUND
 Color = Red
 #-------------------------------
 [DEERLING,3]
 FormName = Winter
+BaseStats = 80,65,95,50,40,50
 Type1 = NORMAL
 Type2 = ICE
 Color = Brown
 #-------------------------------
 [SAWSBUCK,1]
 FormName = Summer
+BaseStats = 75,120,70,90,60,105
 Type1 = NORMAL
 Type2 = GRASS
 #-------------------------------
 [SAWSBUCK,2]
 FormName = Autumn
+BaseStats = 80,90,70,105,60,115
 Type1 = NORMAL
 Type2 = GROUND
 #-------------------------------
 [SAWSBUCK,3]
 FormName = Winter
+BaseStats = 100,105,115,70,60,70
 Type1 = NORMAL
 Type2 = ICE
 #-------------------------------
