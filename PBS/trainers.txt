@@ -2013,35 +2013,62 @@ Pokemon = GLALIE,45
 [SWIMMER_F3,Bree]
 Pokemon = ALOMOMOLA,46
 Pokemon = ELDEGOSS,47
+	Item = ASSAULTVEST
 Pokemon = MRRIME,46
 Pokemon = SCIZOR,47
+	Item = BUGGEM
 #-------------------------------
 [WORKER3,Seamus]
 Pokemon = TOGEDEMARU,46
+	Item = LEFTOVERS
 Pokemon = HERACROSS,47
 Pokemon = ARBOK,46
+	Item = SITRUSBERRY
 Pokemon = SAHARICANE,47
 #-------------------------------
 [RUINMANIAC,Colby]
 Pokemon = MUDSDALE,48
 Pokemon = DEWGONG,47
 Pokemon = WHIMSICOTT,48
+	Item = GRASSGEM
 Pokemon = RAPIDASH,47
+	Item = CHOICESCARF
 #-------------------------------
 [JUGGLER,Mikael]
 Pokemon = MEOWSTIC,47
 Pokemon = URSARING,48
+	Item = ROCKYHELMET
 Pokemon = OCTILLERY,47
+	Item = EXPERTBELT
 Pokemon = AEXEGGUTOR,47
 #-------------------------------
 [CAMPER,Liam]
 Pokemon = VENUSAUR,37
 Pokemon = HITMONCHAN,38
+	Item = FIGHTINGGEM
 Pokemon = DRAGONAIR,38
 Pokemon = PORYGON2,37
+	Item = FOCUSBAND
 #-------------------------------
 [POKEMONRANGER_M2,Marton]
 Pokemon = MZANGOOSE,37
+	Item = CHOICEBAND
 Pokemon = BRONZONG,38
 Pokemon = FALINKS,37
 Pokemon = TSAREENA,38
+	Item = GRASSGEM
+#-------------------------------
+[JUGGLER,Youcef]
+Pokemon = ELECTRODE,44
+	AbilityIndex = 0
+	Moves = EXPLOSION
+	Item = NORMALGEM
+Pokemon = WEEZING,44
+	Moves = EXPLOSION,SMOGSTORM,GALE
+Pokemon = FERROTHORN,45
+	Moves = EXPLOSION,POWERWHIP,GYROBALL
+	Item = LAGGINGTAIL
+Pokemon = FORRETRESS,45
+	Moves = EXPLOSION,GYROBALL,PAYBACK
+Pokemon = GOLEM,46
+	Moves = EXPLOSION,EARTHQUAKE
