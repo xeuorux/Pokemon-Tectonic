@@ -31,11 +31,11 @@ carchagui<s>Princess Phoenix
 DormDude<s>Rayquaza-dot
 Vazquinho<s>Yveltalchannel
 Magna-Ryunoid<s>Plutomaniacx
-Princess-phoenix<s>seiyouh
+LilaTraube<s>seiyouh
 SpritersResource<s>Thatsowitty
-KyleDove<s>ausberge
-exiled-shadow<s>supercow
-Pablus94<s>LunaMaddalena
+exiled-shadow<s>ausberge
+supercow<s>LunaMaddalena
+
 
 Charsets
 DiegoWT<s>PurpleZaffre
