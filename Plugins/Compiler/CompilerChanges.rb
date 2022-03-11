@@ -1096,6 +1096,96 @@ end
     Graphics.update
   end
   
+    #=============================================================================
+  # Compile metadata
+  #=============================================================================
+  def compile_metadata(path = "PBS/metadata.txt")
+    GameData::Metadata::DATA.clear
+    GameData::MapMetadata::DATA.clear
+    # Read from PBS file
+    File.open(path, "rb") { |f|
+      FileLineData.file = path   # For error reporting
+      # Read a whole section's lines at once, then run through this code.
+      # contents is a hash containing all the XXX=YYY lines in that section, where
+      # the keys are the XXX and the values are the YYY (as unprocessed strings).
+      pbEachFileSection(f) { |contents, map_id|
+        schema = (map_id == 0) ? GameData::Metadata::SCHEMA : GameData::MapMetadata::SCHEMA
+        # Go through schema hash of compilable data and compile this section
+        for key in schema.keys
+          FileLineData.setSection(map_id, key, contents[key])   # For error reporting
+          # Skip empty properties, or raise an error if a required property is
+          # empty
+          if contents[key].nil?
+            if map_id == 0 && ["Home", "PlayerA"].include?(key)
+              raise _INTL("The entry {1} is required in {2} section 0.", key, path)
+            end
+            next
+          end
+          # Compile value for key
+          value = pbGetCsvRecord(contents[key], key, schema[key])
+          value = nil if value.is_a?(Array) && value.length == 0
+          contents[key] = value
+        end
+        if map_id == 0   # Global metadata
+          # Construct metadata hash
+          metadata_hash = {
+            :id                 => map_id,
+            :home               => contents["Home"],
+            :wild_battle_BGM    => contents["WildBattleBGM"],
+            :trainer_battle_BGM => contents["TrainerBattleBGM"],
+            :wild_victory_ME    => contents["WildVictoryME"],
+            :trainer_victory_ME => contents["TrainerVictoryME"],
+            :wild_capture_ME    => contents["WildCaptureME"],
+            :surf_BGM           => contents["SurfBGM"],
+            :bicycle_BGM        => contents["BicycleBGM"],
+            :player_A           => contents["PlayerA"],
+            :player_B           => contents["PlayerB"],
+            :player_C           => contents["PlayerC"],
+            :player_D           => contents["PlayerD"],
+            :player_E           => contents["PlayerE"],
+            :player_F           => contents["PlayerF"],
+            :player_G           => contents["PlayerG"],
+            :player_H           => contents["PlayerH"]
+          }
+          # Add metadata's data to records
+          GameData::Metadata.register(metadata_hash)
+        else   # Map metadata
+          # Construct metadata hash
+          metadata_hash = {
+            :id                   => map_id,
+            :outdoor_map          => contents["Outdoor"],
+            :announce_location    => contents["ShowArea"],
+            :can_bicycle          => contents["Bicycle"],
+            :always_bicycle       => contents["BicycleAlways"],
+            :teleport_destination => contents["HealingSpot"],
+            :weather              => contents["Weather"],
+            :town_map_position    => contents["MapPosition"],
+            :dive_map_id          => contents["DiveMap"],
+            :dark_map             => contents["DarkMap"],
+            :safari_map           => contents["SafariMap"],
+            :snap_edges           => contents["SnapEdges"],
+            :random_dungeon       => contents["Dungeon"],
+            :battle_background    => contents["BattleBack"],
+            :wild_battle_BGM      => contents["WildBattleBGM"],
+            :trainer_battle_BGM   => contents["TrainerBattleBGM"],
+            :wild_victory_ME      => contents["WildVictoryME"],
+            :trainer_victory_ME   => contents["TrainerVictoryME"],
+            :wild_capture_ME      => contents["WildCaptureME"],
+            :town_map_size        => contents["MapSize"],
+            :battle_environment   => contents["Environment"],
+			:teleport_blocked	  => contents["TeleportBlocked"]
+          }
+          # Add metadata's data to records
+          GameData::MapMetadata.register(metadata_hash)
+        end
+      }
+    }
+    # Save all data
+    GameData::Metadata.save
+    GameData::MapMetadata.save
+    Graphics.update
+  end
+  
   #=============================================================================
   # Main compiler method for events
   #=============================================================================
