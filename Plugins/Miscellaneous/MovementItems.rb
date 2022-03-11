@@ -1,6 +1,6 @@
 class Game_Character
 	def move_speed=(val)
-		if $PokemonGlobal && $PokemonGlobal.surfing
+		if $game_player && self==$game_player && $PokemonGlobal && $PokemonGlobal.surfing
 		  val = 5
 		end
 		if $game_player && $game_map.terrain_tag($game_player.x, $game_player.y).slows
