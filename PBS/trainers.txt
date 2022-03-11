@@ -1966,6 +1966,7 @@ Pokemon = SERPERIOR,43
     Item = BIGROOT
 #-------------------------------
 [LEADER_Noel,Noel]
+Policies = NOEL
 Pokemon = MRRIME,45
     Moves = COLDCONVERSION,EERIESPELL,DREAMDANCE,DAZZLINGGLEAM
     AbilityIndex = 1
@@ -1987,6 +1988,7 @@ Pokemon = GLALIE,45
     Item = ORANBERRY
 #-------------------------------
 [LEADER_Noel_2,Noel]
+Policies = NOEL
 Pokemon = MRRIME,45
     Moves = COLDCONVERSION,EERIESPELL,DREAMDANCE,DAZZLINGGLEAM
     AbilityIndex = 1
@@ -2013,6 +2015,7 @@ Pokemon = GLALIE,45
     Item = ORANBERRY
 #-------------------------------
 [LEADER_Noel_2,Noel,1]
+Policies = NOEL,CURSE_DELEVELED
 Pokemon = MRRIME,45
     Moves = COLDCONVERSION,EERIESPELL,DREAMDANCE,DAZZLINGGLEAM
     AbilityIndex = 1
