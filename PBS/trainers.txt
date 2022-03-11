@@ -2072,3 +2072,33 @@ Pokemon = FORRETRESS,45
 	Moves = EXPLOSION,GYROBALL,PAYBACK
 Pokemon = GOLEM,46
 	Moves = EXPLOSION,EARTHQUAKE
+#-------------------------------
+[BEAUTY,Kryssa]
+Pokemon = GDARMANITAN,45
+Pokemon = STARMIE,45
+	Item = PSYCHICGEM
+Pokemon = MAMOSWINE,45
+	AbilityIndex = 0
+	Item = EXPERTBELT
+Pokemon = MEOWSTIC,45
+	Gender = Male
+#-------------------------------
+[ARTIST,Arnold]
+Pokemon = VENOMOTH,45
+	Item = FLAMEORB
+Pokemon = CLAYDOL,45
+Pokemon = JYNX,45
+Pokemon = FROSLASS,45
+	Item = SITRUSBERRY
+#-------------------------------
+[WORKER3,Bruce]
+Pokemon = AURORUS,45
+	AbilityIndex = 1
+	Item = ICYROCK
+Pokemon = ANINETALES,45
+	AbilityIndex = 0
+Pokemon = HATTERENE,45
+	AbilityIndex = 1
+Pokemon = SIGILYPH,45
+	AbilityIndex = 0
+	Item = SITRUSBERRY
