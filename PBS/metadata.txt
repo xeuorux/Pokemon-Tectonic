@@ -4,8 +4,6 @@
 Home = 32,9,7,2
 WildBattleBGM = Battle wild.ogg
 TrainerBattleBGM = DPPTTrainer.ogg
-AvatarBattleBGM = Battle avatar.ogg
-LegendaryAvatarBattleBGM = Battle avatar legendary.ogg
 WildVictoryME = Battle victory wild.ogg
 TrainerVictoryME = Battle victory trainer.ogg
 SurfBGM = Surfing.mid
@@ -33,7 +31,6 @@ MapPosition = 0,13,12
 #-------------------------------
 [004]
 # Scientist's House
-ShowArea = false
 Bicycle = true
 MapPosition = 0,13,12
 #-------------------------------
@@ -69,14 +66,11 @@ MapPosition = 0,13,12
 #-------------------------------
 [009]
 # House of Leaves
-Outdoor = false
-ShowArea = false
 Bicycle = false
 MapPosition = 0,14,10
 #-------------------------------
 [010]
 # Six Spire Cave
-Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,13,10
@@ -92,7 +86,6 @@ MapPosition = 0,14,10
 #-------------------------------
 [012]
 # Gigalith's Guts
-Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,14,10
@@ -136,12 +129,12 @@ MapPosition = 0,13,10
 #-------------------------------
 [021]
 # LuxTech Gym
-Outdoor = false
 ShowArea = true
 Bicycle = false
 MapPosition = 0,14,8
 BattleBack = field
 MapSize = 1,11
+TeleportBlocked = true
 #-------------------------------
 [022]
 # Secret Grotto
@@ -157,8 +150,6 @@ MapPosition = 0,15,8
 #-------------------------------
 [024]
 # Shaymin's Chamber
-Outdoor = false
-ShowArea = false
 Bicycle = false
 MapPosition = 0,15,8
 Environment = Cave
@@ -172,7 +163,6 @@ MapPosition = 0,15,8
 #-------------------------------
 [026]
 # Bluepoint Grotto
-Outdoor = false
 ShowArea = true
 Bicycle = false
 BicycleAlways = false
@@ -181,13 +171,10 @@ Environment = Cave
 #-------------------------------
 [027]
 # Casaba Mart
-Outdoor = false
 Bicycle = false
 #-------------------------------
 [029]
 # Full Blast Records F2
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [030]
@@ -209,8 +196,6 @@ ShowArea = true
 #-------------------------------
 [033]
 # Full Blast Sewer Access
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [034]
@@ -222,13 +207,10 @@ Environment = None
 #-------------------------------
 [035]
 # Impromptu Lab
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [036]
 # Grouz Mine
-Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
@@ -247,53 +229,42 @@ Environment = Sand
 #-------------------------------
 [039]
 # Casaba Center
-Outdoor = false
 Bicycle = true
 HealingSpot = 33,15,25
 #-------------------------------
 [041]
 # Casaba Gym
-Outdoor = false
-ShowArea = false
 Bicycle = false
 BattleBack = 
+TeleportBlocked = true
 #-------------------------------
 [042]
 # Zeraora's Chamber
-Outdoor = false
-ShowArea = false
 Bicycle = false
 Environment = Cave
 #-------------------------------
 [043]
 # Németh Apartments F2
-Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
 [047]
 # Grand Hotel
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [048]
 # Name Rater's House
-Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
 [051]
 # Foreclosed Tunnel
-Outdoor = false
 ShowArea = true
 Bicycle = true
 Environment = Cave
 #-------------------------------
 [052]
 # Snowbird's House
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [053]
@@ -345,7 +316,6 @@ HealingSpot = 59,26,12
 #-------------------------------
 [063]
 # Németh Buildings
-Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
@@ -364,11 +334,9 @@ ShowArea = true
 #-------------------------------
 [078]
 # LuxTech Main
-Outdoor = false
 #-------------------------------
 [081]
 # Cave Path
-Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
@@ -379,20 +347,14 @@ HealingSpot = 25,13,17
 #-------------------------------
 [087]
 # LuxTech Rec Center
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [088]
 # LuxTech Sewer Access
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [095]
 # Snowbird's House F2
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [099]
@@ -400,105 +362,72 @@ Bicycle = false
 #-------------------------------
 [100]
 # Rearranged Building
-Outdoor = false
-ShowArea = false
 Bicycle = false
 HealingSpot = 8,55,11
 #-------------------------------
 [101]
 # Dream Space
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [102]
 # Velenz Center
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [103]
 # Velenz Mart
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [104]
 # Raphael's House
-Outdoor = false
-ShowArea = false
 Bicycle = true
+TeleportBlocked = true
 #-------------------------------
 [105]
 # Southeast Sinkhole
-Outdoor = false
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [106]
 # Yveltal's Chamber
-Outdoor = false
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [107]
 # Connor's Yard
-Outdoor = false
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [108]
 # Sinkhole House Yard
-Outdoor = false
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [109]
 # Sunken Building South
-Outdoor = false
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [110]
 # Velenz Underground West
-Outdoor = false
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [111]
 # Collapsed Passage
-Outdoor = false
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [112]
 # Sunken Building Middle
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [113]
 # East Underground Entrance
-Outdoor = false
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [114]
 # Velenz Underground East
-Outdoor = false
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [115]
 # Weird Sinkhole
-Outdoor = false
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [116]
 # East Cave House
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [117]
@@ -508,13 +437,10 @@ Weather = Blizzard,100
 #-------------------------------
 [119]
 # Ranger Hangout
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [120]
 # Deep Layer
-Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
@@ -526,7 +452,6 @@ Bicycle = true
 #-------------------------------
 [122]
 # Prizca Sewers
-Outdoor = false
 ShowArea = true
 Bicycle = true
 Environment = StillWater
@@ -547,9 +472,8 @@ Environment = Sand
 #-------------------------------
 [134]
 # Prizca West Gym
-Outdoor = false
-ShowArea = false
 Bicycle = false
+TeleportBlocked = true
 #-------------------------------
 [136]
 # Casaba Villa
@@ -566,80 +490,64 @@ Environment = Forest
 #-------------------------------
 [140]
 # Starters Store - Grass
-Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
 [141]
 # Starters Store - Fire
-Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
 [142]
 # Starters Store - Water
-Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
 [144]
 # Artist's House
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [145]
 # Fancy House
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [146]
 # Fancy House F2
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [148]
 # PokEstate 1 - Forest
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [149]
 # PokEstate Base
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [150]
 # PokEstate 2 - City
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [151]
 # PokEstate 3 - Desert
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [152]
 # PokEstate 4 - Scrubland
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [153]
 # PokEstate 5 - Crag
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [154]
 # PokEstate 6 - Volcano
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [155]
@@ -650,152 +558,120 @@ Bicycle = true
 #-------------------------------
 [157]
 # Traffic Control
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [158]
 # Prizca West Center
-Outdoor = false
-ShowArea = false
 Bicycle = false
 HealingSpot = 155,32,28
 #-------------------------------
 [159]
 # Travel Agency
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [160]
 # PokEstate 7 - Snowy
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [161]
 # PokEstate 8 - Cave
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [162]
 # PokEstate 9 - Beach
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [163]
 # PokEstate 10 - Seafloor
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [164]
 # PokEstate 11 - River
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [165]
 # Aquatopia Menagerie
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [166]
 # Aegis Insurance
-Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
 [167]
 # Aegislash Insurance F2
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [168]
 # Aegislash Insurance F3
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [169]
 # PokEstate 14 - Simple
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [170]
 # PokEstate 13 - Machine
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [171]
 # Dingy Office
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [172]
 # PokEstate 12 - Sky
 Outdoor = true
-ShowArea = false
 Bicycle = true
 #-------------------------------
 [173]
 # Full Blast Records
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [174]
 # Worn Shed
-Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
 [175]
 # Worn Shed Basement
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [176]
 # Hero's Chamber
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [177]
 # Battle Plaza Market
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [178]
 # Chasm Dev
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [179]
 # Chasm Dev F2
-Outdoor = false
-ShowArea = false
 Bicycle = false
 #-------------------------------
 [180]
 # Prizca West Mart
-Outdoor = false
-ShowArea = false
 Bicycle = false
+#-------------------------------
+[182]
+# Tangle Dungeon
+Outdoor = true
+ShowArea = true
+Bicycle = true
+TeleportBlocked = true
 #-------------------------------
 [183]
 # Circuit Cave
-Outdoor = false
 ShowArea = true
 Bicycle = true
 Environment = Cave
@@ -827,7 +703,6 @@ Bicycle = true
 #-------------------------------
 [189]
 # Catacombs Placeholder
-Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
@@ -837,8 +712,16 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
+[195]
+# Prizca East Gym
+TeleportBlocked = true
+#-------------------------------
 [196]
 # Boiling Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[62]
+Bicycle = false
+TeleportBlocked = true

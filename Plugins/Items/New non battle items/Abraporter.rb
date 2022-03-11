@@ -3,14 +3,11 @@ ItemHandlers::UseFromBag.add(:ABRAPORTER,proc { |item|
     pbMessage(_INTL("It can't be used when you have someone with you."))
     next 0
   end
-=begin
   if !GameData::MapMetadata.exists?($game_map.map_id)
-    pbMessage(_INTL("Can't use that here."))
-    next false
+    next 0
   end
-=end
-  if $game_map.name[/"Gym"/]
-    pbMessage(_INTL("You can't teleport from Gyms."))
+  if GameData::MapMetadata.get($game_map.map_id).teleport_blocked
+	pbMessage(_INTL("You are prevented from teleporting due to an unknown force."))
     next 0
   end
   healing = $PokemonGlobal.healingSpot
@@ -27,14 +24,11 @@ ItemHandlers::ConfirmUseInField.add(:ABRAPORTER,proc { |item|
     pbMessage(_INTL("It can't be used when you have someone with you."))
     next false
   end
-=begin
   if !GameData::MapMetadata.exists?($game_map.map_id)
-    pbMessage(_INTL("Can't use that here."))
     next false
   end
-=end
-  if $game_map.name.include?("Gym")
-    pbMessage(_INTL("You can't teleport from Gyms."))
+  if GameData::MapMetadata.get($game_map.map_id).teleport_blocked
+	pbMessage(_INTL("You are prevented from teleporting due to an unknown force."))
     next false
   end
   healing = $PokemonGlobal.healingSpot
@@ -49,16 +43,6 @@ ItemHandlers::ConfirmUseInField.add(:ABRAPORTER,proc { |item|
 })
 
 ItemHandlers::UseInField.add(:ABRAPORTER,proc { |item|
-  if $game_player.pbHasDependentEvents?
-    pbMessage(_INTL("It can't be used when you have someone with you."))
-    next 0
-  end
-=begin
-  if !GameData::MapMetadata.exists?($game_map.map_id)
-    pbMessage(_INTL("Can't use that here."))
-    next 0
-  end
-=end
   healing = $PokemonGlobal.healingSpot
   healing = GameData::Metadata.get.home if !healing   # Home
   if !healing
