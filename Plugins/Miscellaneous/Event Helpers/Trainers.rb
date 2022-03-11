@@ -140,8 +140,10 @@ end
 
 def pbTrainerBattleCursed(nonCursedInfoArray, cursedInfoArray)
 	if $PokemonGlobal.tarot_amulet_active
-		pbTrainerBattle(cursedInfoArray[0], cursedInfoArray[1], nil, false, cursedInfoArray[2])
+		id = cursedInfoArray[2] || 0
+		pbTrainerBattle(cursedInfoArray[0], cursedInfoArray[1], nil, false, id)
 	else
-		pbTrainerBattle(nonCursedInfoArray[0], nonCursedInfoArray[1], nil, false, nonCursedInfoArray[2])
+		id = nonCursedInfoArray[2] || 0
+		pbTrainerBattle(nonCursedInfoArray[0], nonCursedInfoArray[1], nil, false, id)
 	end
 end

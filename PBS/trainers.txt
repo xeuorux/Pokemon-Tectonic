@@ -163,7 +163,7 @@ Pokemon = CROAGUNK,15
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Lambert_2,Lambert,1]
-Policies = LAMBERT,CURSE_TYPE_WEAKENED
+Policies = LAMBERT,CURSE_PERISH_SONGED
 Pokemon = ZORUA,15
     Moves = HARSHWORDS,GRASSKNOT,SWIFT
     AbilityIndex = 0
@@ -288,6 +288,31 @@ Pokemon = TENTACOOL,20
 #-------------------------------
 [LEADER_Eko_2,Eko]
 Policies = PRIORITIZEDOTS,EKO
+Pokemon = SALANDIT,20
+    Moves = POISONGAS,BADSTENCH,EMBER,COVET
+    AbilityIndex = 1
+    Item = AIRBALLOON
+Pokemon = VULPIX,20
+    Moves = INCINERATE,CONFUSERAY,IGNITE,SUBSTITUTE
+    AbilityIndex = 0
+Pokemon = FLETCHINDER,20
+    Name = Dario
+    Moves = FLAMECHARGE,FLAIL,PECK,QUICKATTACK
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+Pokemon = TENTACOOL,20
+    Moves = WATERPULSE,SUPERSONIC,WRAP,ACID
+    AbilityIndex = 1
+Pokemon = TYNAMO,20
+    Moves = JOLT,BITE,POISONFANG,LIGHTSCREEN
+    AbilityIndex = 0
+Pokemon = CAMERUPT,20
+    Moves = TREMOR,FLAMEBURST,INCINERATE,MUDTHROW
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+#-------------------------------
+[LEADER_Eko_2,Eko,1]
+Policies = PRIORITIZEDOTS,EKO,CURSE_SPIKES
 Pokemon = SALANDIT,20
     Moves = POISONGAS,BADSTENCH,EMBER,COVET
     AbilityIndex = 1
@@ -439,6 +464,28 @@ Pokemon = LUXIO,25
 #-------------------------------
 [LEADER_Helena_2,Helena]
 Policies = HELENA
+Pokemon = LANTURN,25
+    AbilityIndex = 0
+Pokemon = PINCURCHIN,25
+    AbilityIndex = 0
+Pokemon = CLAUNCHER,25
+    Moves = TERRAINPULSE,AQUAJET,WATERPULSE
+    AbilityIndex = 0
+Pokemon = CHARJABUG,25
+    Moves = STRINGSHOT,CLACKACLACK,LIGHTSHOW,RISINGVOLTAGE
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+Pokemon = WAILMER,25
+    Name = Hannibal
+    Gender = male
+    Moves = NOBLEROAR,CHILL,WHIRLPOOL,BRINE
+    AbilityIndex = 1
+    Item = ELECTRICSEED
+Pokemon = LUXIO,25
+    AbilityIndex = 1
+#-------------------------------
+[LEADER_Helena_2,Helena,1]
+Policies = HELENA,CURSE_TORMENTED
 Pokemon = LANTURN,25
     AbilityIndex = 0
 Pokemon = PINCURCHIN,25
@@ -1143,6 +1190,32 @@ Pokemon = NUZLEAF,30
     AbilityIndex = 0
     Item = SITRUSBERRY
 #-------------------------------
+[LEADER_Rafael_2,Rafael,1]
+Policies = DISLIKEATTACKING,RAFAEL,CURSE_SELF_DEBUFFING
+Pokemon = DHELMISE,30
+    Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
+    AbilityIndex = 1
+Pokemon = BAYLEEF,30
+    Moves = HEALPULSE,LIGHTSCREEN,AURATRICK,MAGICALLEAF
+    AbilityIndex = 0
+    Item = LIGHTCLAY
+Pokemon = LOMBRE,30
+    Moves = MEGADRAIN,BUBBLEBEAM,PROTECT,LEECHSEED
+    AbilityIndex = 0
+Pokemon = DUSCLOPS,30
+    Name = Apotropaia
+    Gender = female
+    Moves = CONFUSERAY,SHADOWSNEAK,WILLOWISP,TAUNT
+    AbilityIndex = 1
+Pokemon = NINETALES,30
+    Moves = SPELLBIND,BURNINGJEALOUSY,HEX,PACIFY
+    AbilityIndex = 0
+    Item = FOCUSSASH
+Pokemon = NUZLEAF,30
+    Moves = MAGICALLEAF,REST,PAYBACK,SELFDESTRUCT
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+#-------------------------------
 [ARCHFRIEND_Lainie,Lainie]
 Policies = LAINIE
 Pokemon = ARIADOS,35
@@ -1765,6 +1838,32 @@ Pokemon = ARCHEOPS,40
 	Moves = PLUCK,STRAFE,ROCKSLIDE,UTURN
 	Item = SITRUSBERRY
 #-------------------------------
+[LEADER_Bence_2,Bence,1]
+Policies = BENCE,CURSE_TYPE_FRAGILE
+Pokemon = STARAPTOR,40
+    Moves = DUALWINGBEAT,BRICKBREAK,STEELWING,QUICKATTACK
+    AbilityIndex = 0
+Pokemon = BASTIODON,40
+	Moves = TAUNT,SPIKES,SWAGGER,IRONHEAD
+	AbilityIndex = 0
+	Item = CHOPLEBERRY
+Pokemon = JUMPLUFF,40
+    Moves = MEGADRAIN,POISONPOLLEN,WINDBLADE,SYNTHESIS
+    AbilityIndex = 0
+    Item = ORANBERRY
+Pokemon = STONJOURNER,40
+    Name = Agnes
+    Gender = female
+    Moves = BODYPRESS,ROCKSLIDE,STEALTHROCK,HEAVYSLAM
+    AbilityIndex = 1
+    Item = LEFTOVERS
+Pokemon = DREDNAW,40
+    Moves = RAZORSHELL,JAWLOCK,STONECHARGE,MEANLOOK
+    AbilityIndex = 1
+Pokemon = ARCHEOPS,40
+	Moves = PLUCK,STRAFE,ROCKSLIDE,UTURN
+	Item = SITRUSBERRY
+#-------------------------------
 [LEADER_Zoe,Zoé]
 Pokemon = STEELIX,40
     Moves = BULLDOZE,FIREFANG,ROCKSLIDE,CURSE
@@ -1775,6 +1874,33 @@ Pokemon = MANTINE,40
     Moves = ROOST,GALE,BUBBLEBEAM
     AbilityIndex = 1
     Item = LEFTOVERS
+Pokemon = BRAVIARY,40
+    Moves = POWERUPPUNCH,MACHPUNCH,BIRDSTRIKE,SHADOWCLAW
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+Pokemon = SUDOWOODO,40
+    Moves = FAKETEARS,TEARFULLOOK,POWERGEM,MAGICALLEAF
+    AbilityIndex = 1
+Pokemon = AERODACTYL,40
+    Moves = IRONHEAD,STONECHARGE,BIRDSTRIKE,CRUNCH
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+#-------------------------------
+[LEADER_Zoe_2,Zoé,1]
+Policies = ZOE,CURSE_TYPE_FRAGILE
+Pokemon = STEELIX,40
+    Moves = BULLDOZE,FIREFANG,ROCKSLIDE,CURSE
+    AbilityIndex = 0
+Pokemon = MANTINE,40
+    Name = 1 Second
+    Gender = male
+    Moves = ROOST,GALE,BUBBLEBEAM
+    AbilityIndex = 1
+    Item = LEFTOVERS
+Pokemon = HAWLUCHA,40
+	Moves = FLYINGPRESS,DRAINPUNCH,SWORDSDANCE,TAUNT
+	Item = LIFEORB
+	AbilityIndex = 0
 Pokemon = BRAVIARY,40
     Moves = POWERUPPUNCH,MACHPUNCH,BIRDSTRIKE,SHADOWCLAW
     AbilityIndex = 0
