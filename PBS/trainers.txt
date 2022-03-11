@@ -1965,7 +1965,7 @@ Pokemon = SERPERIOR,43
     AbilityIndex = 1
     Item = BIGROOT
 #-------------------------------
-[Leader_Noel,Noel]
+[LEADER_Noel,Noel]
 Pokemon = MRRIME,45
     Moves = COLDCONVERSION,EERIESPELL,DREAMDANCE,DAZZLINGGLEAM
     AbilityIndex = 1
@@ -1985,7 +1985,32 @@ Pokemon = GLALIE,45
     AbilityIndex = 0
     Item = ORANBERRY
 #-------------------------------
-[Leader_Noel_2,Noel]
+[LEADER_Noel_2,Noel]
+Pokemon = MRRIME,45
+    Moves = COLDCONVERSION,EERIESPELL,DREAMDANCE,DAZZLINGGLEAM
+    AbilityIndex = 1
+    Item = ROOMSERVICE
+Pokemon = GIRAFARIG,45
+    Moves = FOULPLAY,PSYCHICFANGS,FLING,THIEF
+    AbilityIndex = 0
+    Item = IRONBALL
+Pokemon = METAGROSS,45
+    Moves = METEORMASH,BULLETPUNCH,BODYPRESS,PSYCHOCUT
+    AbilityIndex = 0
+    Shiny = yes
+Pokemon = LUNATONE,45
+    Moves = PSYCHIC,SIGNALBEAM,MOONBLAST,METEORBEAM
+    AbilityIndex = 0
+    Item = POWERHERB
+Pokemon = CRABOMINABLE,45
+    Moves = ENLIGHTENEDHIT,ICEHAMMER,THUNDERPUNCH,BRICKBREAK
+    AbilityIndex = 0
+Pokemon = GLALIE,45
+    Moves = CRYSTALCRUSH,CRUNCH,BULLDOZE,ICESHARD
+    AbilityIndex = 0
+    Item = ORANBERRY
+#-------------------------------
+[LEADER_Noel_2,Noel,1]
 Pokemon = MRRIME,45
     Moves = COLDCONVERSION,EERIESPELL,DREAMDANCE,DAZZLINGGLEAM
     AbilityIndex = 1
