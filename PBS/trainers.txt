@@ -2089,6 +2089,28 @@ Pokemon = FALINKS,37
 Pokemon = TSAREENA,38
 	Item = GRASSGEM
 #-------------------------------
+[SWIMMER_M3,Rhys]
+Pokemon = BELLOSSOM,37
+	AbilityIndex = 0
+	Item = FOCUSSASH
+Pokemon = SALAZZLE,37
+	AbilityIndex = 0
+	Item = EXPERTBELT
+Pokemon = POLTEAGEIST,38
+	AbilityIndex = 0
+Pokemon = BIBAREL,39
+	AbilityIndex = 1
+	Item = NORMALGEM
+#-------------------------------
+[SWIMMER_F2,Astrid]
+Pokemon = TENTACRUEL,38
+Pokemon = VOLBEAT,38
+	Item = CHOICESCARF
+Pokemon = PALOSSAND,39
+	AbilityIndex = 0
+	Item = ORANBERRY
+Pokemon = REUNICLUS,40
+#-------------------------------
 [JUGGLER,Youcef]
 Pokemon = ELECTRODE,44
 	AbilityIndex = 0
