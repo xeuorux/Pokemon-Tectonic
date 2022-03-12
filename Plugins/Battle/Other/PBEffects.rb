@@ -34,7 +34,7 @@ module PBEffects
 	Gargantuan			= 141
 	EmpoweredMoonlight  = 142
 	EmpoweredEndure		= 143
-	EmpoweredLaserFocus
+	EmpoweredLaserFocus = 144
 	
 	#===========================================================================
     # These effects apply to the battle (i.e. both sides)
