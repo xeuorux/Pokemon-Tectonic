@@ -331,5 +331,6 @@ class PokeBattle_Battler
 		@effects[PBEffects::Gargantuan]			 = 0
 		@effects[PBEffects::NerveBreak]   		 = false
 		@effects[PBEffects::EmpoweredEndure]     = 0
+		@effects[PBEffects::EmpoweredLaserFocus] = false
     end
 end
