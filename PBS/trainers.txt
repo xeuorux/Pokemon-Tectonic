@@ -188,6 +188,7 @@ Pokemon = CROAGUNK,15
     AbilityIndex = 0
     Item = SITRUSBERRY
 #-------------------------------
+# THIS IS COMPLETELY UNUSED NOW
 [POKEMONTRAINER_Yezera,Yezera]
 Policies = YEZERA
 Pokemon = BUNNELBY,17
@@ -777,6 +778,30 @@ Pokemon = POLIWHIRL,25
     Moves = SPATTERINGRAM,BRICKBREAK,HELPINGHAND
     AbilityIndex = 1
 #-------------------------------
+[POKEMONTRAINER_Yezera,Yezera,6]
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = MAGNETON,25
+    Moves = LIGHTSCREEN,SHOCKWAVE,MIRRORSHOT
+    AbilityIndex = 1
+Pokemon = MORGREM,25
+    Moves = REFLECT,ASSURANCE,PERFUMEDPUNCH
+    AbilityIndex = 1
+Pokemon = POLIWHIRL,25
+    Moves = SPATTERINGRAM,BRICKBREAK,HELPINGHAND
+    AbilityIndex = 1
+Pokemon = CENTISKORCH,25
+    Moves = BUGBITE,FLAMEWHEEL,DAZZLE
+    AbilityIndex = 1
+	Item = FIREGEM
+Pokemon = SANDACONDA,25
+    Moves = SCORCHINGSANDS,GLARE,SANDSTORM
+	Item = LEFTOVERS
+    AbilityIndex = 1
+Pokemon = DARTRIX,25
+    Moves = SHADOWSNEAK,STITCHUP,RAZORLEAF,PLUCK
+	Item = GHOSTGEM
+    AbilityIndex = 1
+#-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,2]
 Pokemon = VOLBEAT,30
 	AbilityIndex = 1
@@ -787,6 +812,24 @@ Pokemon = MALAMAR,31
 	AbilityIndex = 0
 Pokemon = MILTANK,32
 	Item = LEFTOVERS
+	AbilityIndex = 0
+#-------------------------------
+[POKEMONTRAINER_Yezera,Yezera,7]
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = VOLBEAT,30
+	AbilityIndex = 1
+	Item = SITRUSBERRY
+Pokemon = HYPNO,31
+	AbilityIndex = 1
+Pokemon = MALAMAR,31
+	AbilityIndex = 0
+Pokemon = MILTANK,32
+	Item = LEFTOVERS
+	AbilityIndex = 0
+Pokemon = RHYDON,32
+	AbilityIndex = 0
+	Item = ROCKGEM
+Pokemon = EISCUE,32
 	AbilityIndex = 0
 #-------------------------------
 [SCHOOLKID_M,Louis]
@@ -1945,6 +1988,28 @@ Pokemon = AERODACTYL,40
 #-------------------------------
 [TRAINER_Zain,Zain]
 Policies = ZAIN
+Pokemon = LIEPARD,42
+    Moves = FAKEOUT,TAUNT,SUCKERPUNCH
+    AbilityIndex = 0
+    Item = NORMALGEM
+Pokemon = HARIYAMA,42
+    Moves = BULKUP,BRICKBREAK,FAKEOUT,KNOCKOFF
+    AbilityIndex = 1
+    Item = FLAMEORB
+Pokemon = FROSMOTH,43
+    Moves = BLIZZARD,SILVERWIND,BUGBUZZ,DAZZLINGGLEAM
+    AbilityIndex = 1
+Pokemon = DONPHAN,43
+    Moves = STEAMROLLER,EARTHQUAKE,PROTECT,THUNDERFANG
+    AbilityIndex = 1
+	Item = SHELLBELL
+Pokemon = SERPERIOR,43
+    Moves = MAJESTICGLARE,LEAFTORNADO,LEECHSEED
+    AbilityIndex = 1
+    Item = BIGROOT
+#-------------------------------
+[TRAINER_Zain,Zain]
+Policies = ZAIN,CURSE_SUBSTITUTED
 Pokemon = LIEPARD,42
     Moves = FAKEOUT,TAUNT,SUCKERPUNCH
     AbilityIndex = 0

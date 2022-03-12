@@ -27991,7 +27991,7 @@ BattlerEnemyX = -9
 BattlerEnemyY = 32
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = CENTISKORCH,Level,28
+Evolutions = CENTISKORCH,Level,24
 #-------------------------------
 [851]
 Name = Centiskorch
