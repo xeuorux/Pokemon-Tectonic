@@ -509,7 +509,7 @@ Special,1
 #-------------------------------
 [047] # Grand Hotel
 Special,1
-1,MZANGOOSE,15,15
+1,ZANGOOSE,15,15
 #-------------------------------
 [185] # Eleig Stretch
 Land
@@ -622,6 +622,10 @@ Land
 20,MUNNA,31,33
 20,DURALUDON,31,33
 20,SIGILYPH,31,33
+#-------------------------------
+[187] # Prizca West
+Special,1
+1,SEVIPER,15,15
 #-------------------------------
 [202] # Mountaineer's House
 Special,1
