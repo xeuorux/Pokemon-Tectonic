@@ -1,4 +1,53 @@
 class PokeBattle_Battler
+	def attack
+		if hasActiveItem?(:POWERLOCK)
+			return 95
+		else
+			return @attack
+		end
+	end
+	
+	def defense
+		if @battle.field.effects[PBEffects::WonderRoom]>0
+			if hasActiveItem?(:WILLLOCK)
+				return 95
+			else
+				return @spdef 
+			end
+		else
+			if hasActiveItem?(:GUARDLOCK)
+				return 95
+			else
+				return @defense
+			end
+		end
+	end
+	
+	def spatk
+		if hasActiveItem?(:ENERGYLOCK)
+			return 95
+		else
+			return @attack
+		end
+	end
+	
+	def spdef
+		if @battle.field.effects[PBEffects::WonderRoom]>0
+			if hasActiveItem?(:GUARDLOCK)
+				return 95
+			else
+				return @defense
+			end
+		else
+			if hasActiveItem?(:WILLLOCK)
+				return 95
+			else
+				return @spdef 
+			end
+		end
+	end
+
+
 	def hasActiveAbility?(check_ability, ignore_fainted = false)
 		return false if !abilityActive?(ignore_fainted)
 		return check_ability.include?(@ability_id) if check_ability.is_a?(Array)
