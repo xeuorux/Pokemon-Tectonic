@@ -236,7 +236,7 @@
 233,MAXREVIVE,Max Revive,Max Revives,2,2000,A medicine that revives a fainted Pokémon. It fully restores the Pokémon's HP.,1,0,0,
 234,BERRYJUICE,Berry Juice,Berry Juices,2,100,A 100% pure juice made of Berries. It restores the HP of one Pokémon by just 20 points.,1,0,5,
 235,RAGECANDYBAR,Rage Candy Bar,Rage Candy Bars,2,350,Mahogany Town's famous candy. It can be used once to heal all the status conditions of a Pokémon.,1,0,0,
-236,SWEETHEART,Sweet Heart,Sweet Hearts,2,3000,Very sweet chocolate. It restores the HP of one Pokémon by only 20 points.,1,0,0,
+236,SWEETHEART,Sweet Heart,Sweet Hearts,2,150,Very sweet chocolate. It restores the HP of one Pokémon by only 20 points.,1,0,0,
 237,FRESHWATER,Fresh Water,Fresh Waters,2,200,Water with a high mineral content. It restores the HP of one Pokémon by 50 points.,1,0,0,
 238,SODAPOP,Soda Pop,Soda Pops,2,300,A fizzy soda drink. It restores the HP of one Pokémon by 60 points.,1,0,0,
 239,LEMONADE,Lemonade,Lemonades,2,350,A very sweet drink. It restores the HP of one Pokémon by 80 points.,1,0,0,
@@ -843,6 +843,7 @@
 818,GUARDLOCK,Guard Lock,Guard Locks,1,4000,"A held item. It set's the holder's Defense stat to 95.",0,0,0,
 819,ENERGYLOCK,Energy Lock,Energy Locks,1,4000,"A held item. It set's the holder's Sp. Atk. stat to 95.",0,0,0,
 820,WILLLOCK,Will Lock,Will Locks,1,4000,"A held item. It set's the holder's Sp. Def. stat to 95.",0,0,0,
+821,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,15000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0,
 #------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
