@@ -386,3 +386,8 @@ class PokemonSpeciesIconSprite < SpriteWrapper
     changeOrigin
   end
 end
+
+
+class PokemonGlobalMetadata
+	attr_accessor :dexNavEggMovesUnlocked
+end
