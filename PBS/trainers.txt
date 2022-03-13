@@ -2008,7 +2008,7 @@ Pokemon = SERPERIOR,43
     AbilityIndex = 1
     Item = BIGROOT
 #-------------------------------
-[TRAINER_Zain,Zain]
+[TRAINER_Zain,Zain,1]
 Policies = ZAIN,CURSE_SUBSTITUTED
 Pokemon = LIEPARD,42
     Moves = FAKEOUT,TAUNT,SUCKERPUNCH
@@ -2029,6 +2029,10 @@ Pokemon = SERPERIOR,43
     Moves = MAJESTICGLARE,LEAFTORNADO,LEECHSEED
     AbilityIndex = 1
     Item = BIGROOT
+Pokemon = EMPOLEON,43
+    Moves = STEELWING,SWORDSDANCE,LIQUIDATION
+    AbilityIndex = 0
+	Item = SALACBERRY
 #-------------------------------
 [LEADER_Noel,Noel]
 Policies = NOEL
