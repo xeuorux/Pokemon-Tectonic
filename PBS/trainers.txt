@@ -2226,3 +2226,13 @@ Pokemon = HATTERENE,45
 Pokemon = SIGILYPH,45
 	AbilityIndex = 0
 	Item = CUSTAPBERRY
+#-------------------------------
+[CLERK_M2,Gazsi]
+Pokemon = THIEVUL,45
+	AbilityIndex = 0
+Pokemon = GARDEVOIR,45
+	AbilityIndex = 1
+Pokemon = KANGASKHAN,45
+Pokemon = WATCHOG,45
+	AbilityIndex = 1
+#-------------------------------
