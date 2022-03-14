@@ -9258,7 +9258,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = GARDEVOIR,Level,38,GALLADE,ItemMale,DAWNSTONE
+Evolutions = GARDEVOIR,Level,38,GALLADE,Item,DAWNSTONE
 #-------------------------------
 [282]
 Name = Gardevoir
@@ -11922,7 +11922,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GLALIE,Level,42,FROSLASS,ItemFemale,DAWNSTONE
+Evolutions = GLALIE,Level,42,FROSLASS,Item,DAWNSTONE
 #-------------------------------
 [362]
 Name = Glalie
