@@ -304,7 +304,7 @@
 299,TM11,TM11,TM11s,4,10000,"In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn.",3,0,0,SOLARBEAM
 300,TM12,TM12,TM12s,4,50000,"In this two-turn attack, the user gathers light, then attacks with a charged blade on the next turn.",3,0,0,SOLARBLADE
 301,TM13,TM13,TM13s,4,10000,The target becomes trapped within a fierce vortex of fire that rages for four to five turns.,3,0,0,FIRESPIN
-302,TM14,TM14,TM14s,4,10000,The user launches a weak jolt of electricity that numbs the target.,3,0,0,THUNDERWAVE
+302,TM14,TM14,TM14s,4,10000,"A weak electric charge that numbs the target.",3,0,0,THUNDERJOLT
 303,TM15,TM15,TM15s,4,6000,"The user burrows into the ground, then attacks on the next turn.",3,0,0,DIG
 304,TM16,TM16,TM16s,4,10000,An earsplitting screech harshly lowers the target's Defense stat.,3,0,0,SCREECH
 305,TM17,TM17,TM17s,4,10000,A wondrous wall of light is put up to reduce damage from special attacks for five turns.,3,0,0,LIGHTSCREEN

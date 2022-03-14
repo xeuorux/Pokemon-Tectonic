@@ -125,7 +125,7 @@
 120,IONDELUGE,Ion Deluge,146,0,ELECTRIC,Status,0,25,0,BothSides,1,,The user disperses electrically charged particles. Normal-type moves become Electric-type.
 121,MAGNETRISE,Magnet Rise,119,0,ELECTRIC,Status,0,10,0,User,0,d,The user levitates using electrically generated magnetism for five turns.
 122,MAGNETICFLUX,Magnetic Flux,137,0,ELECTRIC,Status,0,20,0,UserAndAllies,0,d,Manipulates magnetic fields to raise the Defense and Sp. Def stats of allies with Plus or Minus Abilities.
-123,THUNDERWAVE,Thunder Wave,007,0,ELECTRIC,Status,100,20,0,NearOther,0,bce,A weak electric charge is launched at the target. It causes numbing if it hits.
+123,THUNDERJOLT,Thunder Jolt,007,0,ELECTRIC,Status,100,20,0,NearOther,0,bce,"A weak electric charge that numbs the target."
 124,OVERDRIVE,Overdrive,000,80,ELECTRIC,Special,100,10,0,AllNearFoes,0,bef,Attacks opposing Pokémon by twanging a guitar or bass guitar.
 125,AURAWHEEL,Aura Wheel,176,100,ELECTRIC,Physical,100,10,10,NearOther,0,bef,Type changes depending on the user's form. It has a 10% chance to numb.
 126,BOLTBEAK,Bolt Beak,178,85,ELECTRIC,Physical,100,10,0,NearOther,0,abef,Attacks with an electrified beak. Power is doubled if the user moves before the target.
@@ -965,6 +965,7 @@
 946,STOREFUEL,Store Fuel,54E,0,FIRE,Status,0,20,0,User,0,d,"The user stores its fuel for future attacks. This raises its Sp. Atk, Sp. Def, and accuracy."
 947,REMOVALBEAM,Removal Beam,00C,85,NORMAL,Special,100,15,30,Other,0,befm,"The target is struck by a beam of negative energy. It has a 30% chance to chill."
 948,SLAY,Slay,54F,90,STEEL,Physical,100,15,0,NearOther,0,abefhp,"The user slashes at the target with a steel blade. Super-effective versus Dragon-types."
+949,CHIBLOCK,Chi Block,007,0,FIGHTING,Status,100,20,0,NearOther,0,abcef,"Numbs the target by striking their pressure points."
 # Primeval Moves, for use only by avatars
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."
