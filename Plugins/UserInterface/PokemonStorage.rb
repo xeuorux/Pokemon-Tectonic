@@ -1,5 +1,5 @@
 class PokemonStorageScreen
-  def pbStartScreen(command)
+	def pbStartScreen(command)
     @heldpkmn = nil
     if command==0   # Organise
       @scene.pbStartBox(self,command)
@@ -23,7 +23,10 @@ class PokemonStorageScreen
           end
           next
         elsif selected[0]==-4   # Box name
-          pbBoxCommands
+          if pbBoxCommands
+			@scene.pbCloseBox
+			return true
+		  end
         else
           pokemon = @storage[selected[0],selected[1]]
           heldpoke = pbHeldPokemon
@@ -54,11 +57,11 @@ class PokemonStorageScreen
               commands[cmdMove=commands.length]   = _INTL("Move")
             end
             commands[cmdSummary=commands.length]  = _INTL("Summary")
+			commands[cmdPokedex = commands.length]  = _INTL("Pokédex") if $Trainer.has_pokedex
             commands[cmdWithdraw=commands.length] = (selected[0]==-1) ? _INTL("Store") : _INTL("Withdraw")
             commands[cmdItem=commands.length]     = _INTL("Item")
             commands[cmdMark=commands.length]     = _INTL("Mark")
             commands[cmdRelease=commands.length]  = _INTL("Release")
-			commands[cmdPokedex = commands.length]  = _INTL("Pokédex") if $Trainer.has_pokedex
             commands[cmdDebug=commands.length]    = _INTL("Debug") if $DEBUG
 			commands[cmdZoo=commands.length]	  = _INTL("Donate") if canBeSentToZoo((@heldpkmn) ? @heldpkmn : pokemon) && $PokemonGlobal.zooSeen
             commands[cmdCancel=commands.length]   = _INTL("Cancel")
@@ -123,28 +126,50 @@ class PokemonStorageScreen
             end
             next
           when -4   # Box name
-            pbBoxCommands
-            next
+            if pbBoxCommands
+				@scene.pbCloseBox
+				return true
+		    end
           end
           pokemon = @storage[selected[0],selected[1]]
           next if !pokemon
-		  commands = [
-             _INTL("Store"),
-             _INTL("Summary"),
-             _INTL("Mark"),
-             _INTL("Release")
-          ]
-		  zoo = canBeSentToZoo(pokemon) && $PokemonGlobal.zooSeen
+          cmdWithdraw = -1
+		  cmdSummary = -1
+		  cmdPokedex = -1
+		  cmdMark = -1
+		  cmdRelease = -1
+		  cmdZoo = -1
+		  commands = []
+		  commands[cmdWithdraw = commands.length] = _INTL("Withdraw")
+		  commands[cmdSummary = commands.length] = _INTL("Summary")
+		  commands[cmdPokedex = commands.length] = _INTL("Pokedex") if $Trainer.has_pokedex
+		  commands[cmdMark = commands.length] = _INTL("Mark")
 		  
-		  commands.push(_INTL("Donate")) if zoo
+		  zoo = canBeSentToZoo(pokemon) && $PokemonGlobal.zooSeen
+		  if pbAbleCount<=1 && pbAble?(pokemon)
+			  zoo = false
+		  end
+		  commands[cmdDonate = commands.length] = _INTL("Donate") if zoo && $PokemonGlobal.zooSeen
+		  commands[cmdRelease = commands.length] = _INTL("Release")
 		  commands.push(_INTL("Cancel"))
           command = pbShowCommands(_INTL("{1} is selected.",pokemon.name),commands)
-          case command
-          when 0 then pbWithdraw(selected, nil)
-          when 1 then pbSummary(selected, nil)
-          when 2 then pbMark(selected, nil)
-          when 3 then pbRelease(selected, nil)
-		  when 4 then pbDonate(selected, nil) if zoo
+          if cmdWithdraw > -1 && command == cmdWithdraw
+			pbWithdraw(selected, nil)
+		  elsif cmdSummary > -1 && command == cmdSummary
+			pbSummary(selected, nil)
+          elsif cmdMark > -1 && command == cmdMark
+			pbMark(selected, nil)
+          elsif	cmdRelease > -1 && command == cmdRelease
+			pbRelease(selected, nil)
+		  elsif	cmdZoo > -1 && command == cmdZoo
+			pbDonate(selected, nil)
+		  elsif	cmdPokedex > -1 && command == cmdPokedex
+			$Trainer.pokedex.register_last_seen(pokemon)
+			pbFadeOutIn {
+			  scene = PokemonPokedexInfo_Scene.new
+			  screen = PokemonPokedexInfoScreen.new(scene)
+			  screen.pbStartSceneSingle(pokemon.species)
+			}
           end
         end
       end
@@ -165,26 +190,43 @@ class PokemonStorageScreen
         else
           pokemon = @storage[-1,selected]
           next if !pokemon
-		  commands = [
-             _INTL("Store"),
-             _INTL("Summary"),
-             _INTL("Mark"),
-             _INTL("Release")
-          ]
+          cmdStore = -1
+		  cmdSummary = -1
+		  cmdPokedex = -1
+		  cmdMark = -1
+		  cmdRelease = -1
+		  cmdZoo = -1
+		  commands = []
+		  commands[cmdStore = commands.length] = _INTL("Store")
+		  commands[cmdSummary = commands.length] = _INTL("Summary")
+		  commands[cmdPokedex = commands.length] = _INTL("Pokedex") if $Trainer.has_pokedex
+		  commands[cmdMark = commands.length] = _INTL("Mark")
+		  
 		  zoo = canBeSentToZoo(pokemon) && $PokemonGlobal.zooSeen
 		  if pbAbleCount<=1 && pbAble?(pokemon)
 			  zoo = false
 		  end
-		  
-		  commands.push(_INTL("Donate")) if zoo && $PokemonGlobal.zooSeen
+		  commands[cmdDonate = commands.length] = _INTL("Donate") if zoo && $PokemonGlobal.zooSeen
+		  commands[cmdRelease = commands.length] = _INTL("Release")
 		  commands.push(_INTL("Cancel"))
           command = pbShowCommands(_INTL("{1} is selected.",pokemon.name),commands)
-          case command
-          when 0 then pbStore([-1, selected], nil)
-          when 1 then pbSummary([-1, selected], nil)
-          when 2 then pbMark([-1, selected], nil)
-          when 3 then pbRelease([-1, selected], nil)
-		  when 4 then pbDonate([-1, selected], nil) if zoo
+          if cmdStore > -1 && command == cmdStore
+			pbStore([-1, selected], nil)
+		  elsif cmdSummary > -1 && command == cmdSummary
+			pbSummary([-1, selected], nil)
+          elsif cmdMark > -1 && command == cmdMark
+			pbMark([-1, selected], nil)
+          elsif	cmdRelease > -1 && command == cmdRelease
+			pbRelease([-1, selected], nil)
+		  elsif	cmdZoo > -1 && command == cmdZoo
+			pbDonate([-1, selected], nil)
+		  elsif	cmdPokedex > -1 && command == cmdPokedex
+			$Trainer.pokedex.register_last_seen(pokemon)
+			pbFadeOutIn {
+			  scene = PokemonPokedexInfo_Scene.new
+			  screen = PokemonPokedexInfoScreen.new(scene)
+			  screen.pbStartSceneSingle(pokemon.species)
+			}
           end
         end
       end
@@ -193,6 +235,48 @@ class PokemonStorageScreen
       @scene.pbStartBox(self,command)
       @scene.pbCloseBox
     end
+	return false
+  end
+  
+  def pbBoxCommands
+    commands = [
+       _INTL("Jump"),
+       _INTL("Wallpaper"),
+       _INTL("Name"),
+	   _INTL("Visit PokÉstate"),
+       _INTL("Cancel"),
+    ]
+    command = pbShowCommands(
+       _INTL("What do you want to do?"),commands)
+    case command
+    when 0
+      destbox = @scene.pbChooseBox(_INTL("Jump to which Box?"))
+      if destbox>=0
+        @scene.pbJumpToBox(destbox)
+      end
+    when 1
+      papers = @storage.availableWallpapers
+      index = 0
+      for i in 0...papers[1].length
+        if papers[1][i]==@storage[@storage.currentBox].background
+          index = i; break
+        end
+      end
+      wpaper = pbShowCommands(_INTL("Pick the wallpaper."),papers[0],index)
+      if wpaper>=0
+        @scene.pbChangeBackground(papers[1][wpaper])
+      end
+    when 2
+		@scene.pbBoxName(_INTL("Box name?"),0,12)
+	when 3
+		if heldpkmn
+			pbDisplay("Can't Visit the PokÉstate while you have a Pokémon in your hand!")
+			return false
+		end
+		transferToEstate(@storage.currentBox)
+		return true
+    end
+	return false
   end
   
   def pbDonate(selected,heldpoke)
