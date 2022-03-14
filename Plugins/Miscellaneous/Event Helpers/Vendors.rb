@@ -42,9 +42,9 @@ def purchaseStarters(type,price=0)
 		starterSpecies = starterChosenName.upcase.to_sym
 		pbAddPokemon(starterSpecies,10)
 		if price > 0
-			pbMessage("\PN handed over $#{price} and a #{tokenName} in exchange.")
+			pbMessage("\\PN handed over $#{price} and a #{tokenName} in exchange.")
 		else
-			pbMessage("\PN handed over a #{tokenName} in exchange.")
+			pbMessage("\\PN handed over a #{tokenName} in exchange.")
 		end
 		$Trainer.money -= price
 		$PlayerBag.pbDeleteItem(token)
