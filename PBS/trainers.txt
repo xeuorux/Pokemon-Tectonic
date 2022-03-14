@@ -188,7 +188,6 @@ Pokemon = CROAGUNK,15
     AbilityIndex = 0
     Item = SITRUSBERRY
 #-------------------------------
-# THIS IS COMPLETELY UNUSED NOW
 [POKEMONTRAINER_Yezera,Yezera]
 Policies = YEZERA
 Pokemon = BUNNELBY,17
@@ -198,6 +197,24 @@ Pokemon = SMOOCHUM,17
     AbilityIndex = 0
 Pokemon = JOLTIK,18
     AbilityIndex = 0
+#-------------------------------
+[POKEMONTRAINER_Yezera,Yezera,5]
+Policies = YEZERA,CURSE_TYPE_WEAKENED
+Pokemon = BUNNELBY,17
+    AbilityIndex = 1
+	Item = ORANBERRY
+Pokemon = SMOOCHUM,17
+    AbilityIndex = 0
+Pokemon = JOLTIK,18
+    AbilityIndex = 0
+Pokemon = NOIBAT,17
+	AbilityIndex = 1
+	Item = FLYINGGEM
+Pokemon = LARVESTA,18
+	Item = SITRUSBERRY
+Pokemon = WHISMUR,17
+	AbilityIndex = 1
+	Item = THROATSPRAY
 #-------------------------------
 [GUITARIST,Reece]
 Pokemon = BLITZLE,17
@@ -803,6 +820,7 @@ Pokemon = DARTRIX,25
     AbilityIndex = 1
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,2]
+Policies = YEZERA
 Pokemon = VOLBEAT,30
 	AbilityIndex = 1
 	Item = SITRUSBERRY
@@ -815,7 +833,7 @@ Pokemon = MILTANK,32
 	AbilityIndex = 0
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,7]
-Policies = CURSE_TYPE_WEAKENED
+Policies = YEZERA,CURSE_TYPE_WEAKENED
 Pokemon = VOLBEAT,30
 	AbilityIndex = 1
 	Item = SITRUSBERRY
