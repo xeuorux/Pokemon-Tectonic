@@ -2145,20 +2145,36 @@ Pokemon = OCTILLERY,47
 Pokemon = AEXEGGUTOR,47
 #-------------------------------
 [CAMPER,Liam]
-Pokemon = VENUSAUR,37
-Pokemon = HITMONCHAN,38
-	Item = FIGHTINGGEM
-Pokemon = DRAGONAIR,38
-Pokemon = PORYGON2,37
+Pokemon = HITMONCHAN,34
+Pokemon = IVYSAUR,33
+Pokemon = DRAGONAIR,34
+	Item = DRAGONGEM
+Pokemon = PORYGON,33
 	Item = FOCUSSASH
 #-------------------------------
-[POKEMONRANGER_M2,Marton]
-Pokemon = MZANGOOSE,37
-	Item = CHOICEBAND
-Pokemon = BRONZONG,38
-Pokemon = FALINKS,37
-Pokemon = TSAREENA,38
-	Item = GRASSGEM
+[POKEMONRANGER_M2,Martel]
+Pokemon = FALINKS,34
+Pokemon = STEENEE,33
+	Item = SITRUSBERRY
+Pokemon = SWALOT,33
+Pokemon = CHIMECHO,34
+	Item = SHELLBELL
+#-------------------------------
+[BEAUTY3,Ester]
+Pokemon = AMPHAROS,34
+Pokemon = VIBRAVA,33
+	Item = BUGGEM
+Pokemon = CHANSEY,34
+	Item = EVIOLITE
+Pokemon = GRAPPLOCT,33
+#-------------------------------
+[SWIMMER_F,Marion]
+Pokemon = VAPOREON,33
+Pokemon = WHIRLIPEDE,34
+	Item = LEFTOVERS
+Pokemon = FLOETTE,33
+	Item = SITRUSBERRY
+Pokemon = AMUK,34
 #-------------------------------
 [SWIMMER_M3,Rhys]
 Pokemon = BELLOSSOM,37
