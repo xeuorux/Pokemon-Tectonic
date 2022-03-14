@@ -30,7 +30,11 @@ class PokeBattle_Battle
 	end
 	
 	def amuletActivates(curseName)
-		pbDisplay(_INTL("The Tarot Amulet glows with power!\1"))
-		pbDisplay(_INTL("You have been afflicted with the curse: #{curseName}\1"))
+		pbDisplaySlower(_INTL("The Tarot Amulet glows with power!"))
+		pbDisplaySlower(_INTL("You have been afflicted with the curse: #{curseName}"))
+	end
+	
+	def pbDisplaySlower(string)
+		pbDisplay(string + "\1")
 	end
 end

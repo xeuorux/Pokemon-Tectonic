@@ -1,7 +1,7 @@
 PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_TYPE_FRAGILE,
 	proc { |curse_policy,battle,curses_array|
 		battle.amuletActivates("Type Fragile")
-		battle.pbDisplay(_INTL("Super Effective attacks against your Pokemon are instead Hyper Effective.\1"))
+		battle.pbDisplaySlower(_INTL("Super Effective attacks against your Pokemon are instead Hyper Effective."))
 		curses_array.push(curse_policy)
 		next curses_array
 	}

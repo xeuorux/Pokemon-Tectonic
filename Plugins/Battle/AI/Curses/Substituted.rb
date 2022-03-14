@@ -1,7 +1,7 @@
 PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_SUBSTITUTED,
 	proc { |curse_policy,battle,curses_array|
 		battle.amuletActivates("Substituted")
-		battle.pbDisplay(_INTL("Whenever an enemy Pokemon enters the battlefield, if it's at full health, it forms a substitute.\1"))
+		battle.pbDisplaySlower(_INTL("Whenever an enemy Pokemon enters the battlefield, if it's at full health, it forms a substitute."))
 		curses_array.push(curse_policy)
 		next curses_array
 	}
@@ -18,6 +18,6 @@ PokeBattle_Battle::BattlerEnterCurseEffect.add(:CURSE_SUBSTITUTED,
 		battler.effects[PBEffects::Trapping]     = 0
 		battler.effects[PBEffects::TrappingMove] = nil
 		battler.effects[PBEffects::Substitute]   = subLife
-		battle.pbDisplay(_INTL("{1} put in a substitute!",battler.pbThis))
+		battle.pbDisplaySlower(_INTL("{1} put in a substitute!",battler.pbThis))
 	}
 )

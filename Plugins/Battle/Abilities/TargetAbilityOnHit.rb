@@ -4,7 +4,10 @@ BattleHandlers::TargetAbilityOnHit.add(:FEEDBACK,
     battle.pbShowAbilitySplash(target)
     if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       battle.scene.pbDamageAnimation(user)
-      user.pbReduceHP(user.totalhp/8,false)
+	  reduce = user.totalhp/8
+	  reduce /= 4 if user.boss
+	  reduce.ceil
+      user.pbReduceHP(reduce,false)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
       else
