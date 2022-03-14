@@ -48,9 +48,9 @@ class PokeBattle_AI
 	#---------------------------------------------------------------------------
 	when "013", "014", "015"
 	  if target.pbCanConfuse?(user,false)
-		score += 30
-	  else
-		score -= 90 if move.statusMove?
+		score += 20
+	  elsif move.statusMove? || user.hasActiveAbility?(:MENTALBLOCK)
+		score = 0
 	  end
 	#---------------------------------------------------------------------------
 	when "016"

@@ -51,9 +51,9 @@ end
 class PokeBattle_Move_400 < PokeBattle_CharmMove
 	def getScore(score,user,target,skill=100)
 	  if target.pbCanCharm?(user,false)
-        score += 30
-      elsif skill>=PBTrainerAI.mediumSkill
-        score = 0 if statusMove?
+        score += 20
+      elsif statusMove? || user.hasActiveAbility?(:MENTALBLOCK)
+        score = 0
       end
 	  return score
 	end
