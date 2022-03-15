@@ -24,7 +24,8 @@ class PokemonDataBox < SpriteWrapper
 		@animatingExp = false
 		@expFlash     = 0
 		@showTypes    = false
-		@boss = @battler.boss && sideSize == 1
+		@halvedStatus = false
+		@bossGraphics = @battler.boss && sideSize == 1
 		@legendary = isLegendary(@battler.species)
 		initializeDataBoxGraphic(sideSize)
 		initializeOtherGraphics(viewport)
@@ -34,10 +35,10 @@ class PokemonDataBox < SpriteWrapper
 	  def initializeDataBoxGraphic(sideSize)
 		onPlayerSide = ((@battler.index%2)==0)
 		# Get the data box graphic and set whether the HP numbers/Exp bar are shown
-		if sideSize==1   # One Pokémon on side, use the regular dara box BG
+		if sideSize==1   # One Pokémon on side, use the regular data box BG
 		  bgFilename = ["Graphics/Pictures/Battle/databox_normal",
 						"Graphics/Pictures/Battle/databox_normal_foe"][@battler.index%2]
-		  if @boss
+		  if @bossGraphics
 			bgFilename += "_boss" 
 			bgFilename += "_legend" if @legendary
 		  end
@@ -47,9 +48,10 @@ class PokemonDataBox < SpriteWrapper
 		  else
 			@showTypes = true
 		  end
-		else   # Multiple Pokémon on side, use the thin dara box BG
+		else   # Multiple Pokémon on side, use the thin data box BG
 		  bgFilename = ["Graphics/Pictures/Battle/databox_thin",
 						"Graphics/Pictures/Battle/databox_thin_foe"][@battler.index%2]
+		  @halvedStatus = true if @battler.boss
 		end
 		@databoxBitmap  = AnimatedBitmap.new(bgFilename)
 		# Determine the co-ordinates of the data box and the left edge padding width
@@ -95,7 +97,7 @@ class PokemonDataBox < SpriteWrapper
 		@expIncPerFrame = rangeExp/(EXP_BAR_FILL_TIME*Graphics.frame_rate)
 		@animatingExp   = true
 		if @showExp
-			if (@boss || !@battler.battle.wildBattle?)
+			if (@bossGraphics || !@battler.battle.wildBattle?)
 				pbSEPlay("Pkmn exp gain",nil,100)
 			else
 				pbSEPlay("Pkmn exp gain",nil,85)
@@ -160,8 +162,9 @@ class PokemonDataBox < SpriteWrapper
 		else
 			s = 6
 		end
+		statusWidth = @halvedStatus ? 22 : -1
 		imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+24,firstStatusY,
-			 0,(s-1)*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
+			 0,(s-1)*STATUS_ICON_HEIGHT,statusWidth,STATUS_ICON_HEIGHT])
 		# Draw status icon for bosses
 		if @battler.boss?
 			if @battler.bossStatus != :NONE
@@ -170,9 +173,14 @@ class PokemonDataBox < SpriteWrapper
 			else
 				s = 6
 			end
-			y = firstStatusY + 4 + STATUS_ICON_HEIGHT
-			imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+24,y,
-				 0,(s-1)*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
+			x = @spriteBaseX + 24
+			x += 22 if @halvedStatus
+			y = firstStatusY
+			y += 4 + STATUS_ICON_HEIGHT if !@halvedStatus
+			statusXRect = @halvedStatus ? 22 : 0
+			statusWidth = @halvedStatus ? 22 : -1
+			imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",x,y,
+				 statusXRect,(s-1)*STATUS_ICON_HEIGHT,statusWidth,STATUS_ICON_HEIGHT])
 		end
 		# Refresh type bars
 		types = @battler.pbTypes(true)
@@ -215,7 +223,7 @@ class PokemonDataBox < SpriteWrapper
 		end
 		
 		numHPBars = 1
-		if @boss
+		if @bossGraphics
 			numHPBars = isLegendary(@battler.species) ? 3 : 2
 		end
 		updateHealthBars(numHPBars)
@@ -332,7 +340,7 @@ class PokemonDataBox < SpriteWrapper
     @expBar.y    = value+74
     @hpNumbers.y = value+52
 	iconDepth = 60
-	if @boss
+	if @bossGraphics
 		iconDepth = @legendary ? 100 : 80
 	end
     @type1Icon.y = value+iconDepth
@@ -373,8 +381,8 @@ class PokemonDataBox < SpriteWrapper
 		@type3Icon.visible = types[2] != nil && types[2] != types[1] && types[2] != types[0]
 	end
 	
-	@hpBar2.visible = value && @boss
-	@hpBar3.visible = value && @boss && isLegendary(@battler.species)
+	@hpBar2.visible = value && @bossGraphics
+	@hpBar3.visible = value && @bossGraphics && isLegendary(@battler.species)
   end
   
   def updateExpAnimation
@@ -399,7 +407,7 @@ class PokemonDataBox < SpriteWrapper
       if @expFlash==0
         pbSEStop
         @expFlash = Graphics.frame_rate/5
-		if (@boss || !@battler.battle.wildBattle?)
+		if (@bossGraphics || !@battler.battle.wildBattle?)
 			pbSEPlay("Pkmn exp full",nil,100)
 		else
 			pbSEPlay("Pkmn exp full",nil,85)

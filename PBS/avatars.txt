@@ -684,22 +684,19 @@ HPMult = 5
 Turns = 1
 HPMult = 1
 Ability = FRIENDGUARD
-Moves = SEEDBOMB,PRIMEVALCALMMIND
-PostPrimeMoves = PSYCHIC
+Moves = SEEDBOMB
 #-----------------------------
 [SIMIPOUR]
 Turns = 1
 HPMult = 1
 Ability = FRIENDGUARD
-Moves = BUBBLEBEAM,PRIMEVALBULKUP
-PostPrimeMoves = BRICKBREAK
+Moves = BUBBLEBEAM
 #-----------------------------
 [SIMISEAR]
 Turns = 1
 HPMult = 1
 Ability = FRIENDGUARD
-Moves = FLAMEBURST,PRIMEVALTORMENT
-PostPrimeMoves = CRUNCH
+Moves = FLAMEBURST
 #-----------------------------
 [CLEFABLE]
 Turns = 1

@@ -18,3 +18,9 @@ def introduceAvatar(species,form=0)
 	$game_screen.start_shake(5, 5, 2 * Graphics.frame_rate)
 	pbWait(2 * Graphics.frame_rate)
 end
+
+def introduceAvatarQuicker(species,form=0)
+	Pokemon.play_cry(species, form)
+	$game_screen.start_shake(5, 5, 2 * Graphics.frame_rate)
+	pbWait((0.5 * Graphics.frame_rate).ceil)
+end
