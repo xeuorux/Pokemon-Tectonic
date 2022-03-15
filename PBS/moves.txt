@@ -841,7 +841,7 @@
 822,MUDSLIDE,Mud Slide,51E,125,GROUND,Special,75,10,0,NearOther,0,bef,"The user causes a Mud Slide. If the move misses, it sharply raises Speed."
 823,STARFALL,Star Fall,520,50,ROCK,Special,100,15,100,NearOther,0,bef,"A star falls on the target. Witnessing this lucky star also increases the user's critical strike chance."
 824,BUBBLEBLAST,Bubble Blast,044,80,WATER,Special,100,15,30,NearOther,0,bef,"A blast of bubbles is shot at the target. It has a 30% chance to also lower its Speed stat."
-825,CHISTRIKE,Chi Strike,00C,60,FIGHTING,Special,100,20,30,NearOther,0,bef,"The user shoots a blast of Chi. This has a 30% chance to chill the target."
+825,CHISTRIKE,Chi Strike,007,60,FIGHTING,Special,100,20,30,NearOther,0,bef,"The user shoots a blast of Chi. This has a 30% chance to numb the target."
 826,COURAGEBOLT,Courage Bolt,020,40,FIGHTING,Special,100,35,10,NearOther,0,bef,"The user manifests a bolt of pure courage. This has a 10% chance of raising the user's Sp. Atk."
 827,SLUSHSPRAY,Slush Spray,00C,80,GROUND,Special,100,15,30,NearOther,0,bef,"The user hurls cold slush in the target's face. This has a 30% chance to chill it."
 828,PSYCHICOVERLOAD,Psychic Overload,0D2,120,PSYCHIC,Special,100,10,0,RandomNearFoe,0,abef,"The user overloads its mind to attack for two to three turns. It then becomes confused, however."
