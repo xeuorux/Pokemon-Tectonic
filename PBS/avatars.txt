@@ -26,7 +26,7 @@ HPMult = 5
 [SHAYMIN]
 Turns = 3
 Form = 1
-Ability = POISONABSORB
+Ability = AERODYNAMIC
 Moves = AIRSLASH,ANGELSKISS,PRIMEVALHEALBELL
 PostPrimeMoves = WHITERAY
 HPMult = 4.5
