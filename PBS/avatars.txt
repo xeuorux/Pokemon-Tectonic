@@ -576,7 +576,7 @@ Moves = LIGHTSCREEN,XSCISSOR
 #------------------------------
 [VESPIQUEN]
 Turns = 2
-HPMult = 3
+HPMult = 3.5
 Ability = UNNERVE
 Moves = ATTACKORDER,PRIMEVALSPIKES
 PostPrimeMoves = RUMBLE
