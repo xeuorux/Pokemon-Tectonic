@@ -77,7 +77,8 @@ def malasadaVendor()
 		[:BIGMALASADA,
 		:BERRYJUICE,
 		:SODAPOP],
-		"Take a look, it's all delicious!"
+		"Take a look, it's all delicious!",
+		true
 	)
 end
 
