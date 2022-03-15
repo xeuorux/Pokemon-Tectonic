@@ -385,10 +385,10 @@ Moves = METEORMASH,REFLEXOVERDRIVE,ZENHEADBUTT,FLOWSTATE
 HPMult = 4
 #-------------------------------
 [SPINDA]
-Turns = 1
+Turns = 2
 Ability = DISORIENT
-Moves = TEETERDANCE,DOUBLEEDGE,COPYCAT,THRASH
-HPMult = 2
+Moves = DOUBLEEDGE,COPYCAT,THRASH
+HPMult = 3
 #-------------------------------
 [CRADILY]
 Turns = 3
