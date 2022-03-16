@@ -554,7 +554,7 @@
 544,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,1,4000,"An item to be held by a Pokémon. It boosts Speed when intimidated, fascinated, or frustrated once per battle.",0,0,0,
 #-------------------------------,,,,,,,,,,
 545,PIXIEPLATE,Pixie Plate,Pixie Plates,1,1000,An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fairy-type moves.,0,0,0,
-546,FAIRYGEM,Fairy Gem,Fairy Gems,1,200,"A gem with an essence of the fey. When held, it strengthens the power of a Fairy-type move once per battle.",0,0,10,
+546,FAIRYGEM,Fairy Gem,Fairy Gems,1,1000,"A gem with an essence of the fey. When held, it strengthens the power of a Fairy-type move once per battle.",0,0,10,
 547,FIREMEMORY,Fire Memory,Fire Memories,1,1000,A memory disc containing Fire-type data. It changes the holder's type if held by a certain Pokémon.,0,0,0,
 548,WATERMEMORY,Water Memory,Water Memories,1,1000,A memory disc containing Water-type data. It changes the holder's type if held by a certain Pokémon.,0,0,0,
 549,ELECTRICMEMORY,Electric Memory,Electric Memories,1,1000,A memory disc containing Electric-type data. It changes the holder's type if held by a certain Pokémon.,0,0,0,
