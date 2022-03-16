@@ -24531,7 +24531,7 @@ Name = Lycanroc
 InternalName = LYCANROC
 Type1 = ROCK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,115,65,112,55,65
+BaseStats = 75,117,65,110,55,65
 # Total = 487
 GenderRate = Female50Percent
 GrowthRate = Medium
