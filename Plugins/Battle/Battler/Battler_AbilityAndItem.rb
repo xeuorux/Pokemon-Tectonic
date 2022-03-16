@@ -18,6 +18,10 @@ class PokeBattle_Battler
 	  #Also handles SCAVENGE
 	  #========================================= 
 	def pbConsumeItem(recoverable=true,symbiosis=true,belch=true,scavenge=true)
+		if item.nil?
+			PBDebug.log("[Item not consumed] #{pbThis} could not consume its held #{itemName} because it was already missing")
+			return
+		end
 		PBDebug.log("[Item consumed] #{pbThis} consumed its held #{itemName}")
 		if recoverable
 		  setRecycleItem(@item_id)
