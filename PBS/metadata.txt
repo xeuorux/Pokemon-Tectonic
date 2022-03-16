@@ -706,6 +706,10 @@ Bicycle = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
+[191]
+# Prizca East Center
+HealingSpot = 187,67,30
+#-------------------------------
 [193]
 # Lapras Shore
 Outdoor = true
