@@ -838,7 +838,7 @@
 813,WEIRDPACKAGE,Weird Package,Weird Packages,8,0,"A suspicious package. Probably best not to look inside.",0,0,0,
 814,AEGISIDCARD,Aegis ID Card,Aegis ID Cards,8,0,"A forged ID card. It will let you pretend you work at Aegis Insurance.",0,0,6,
 815,INCRIMINATINGEVIDENCE,Incriminating Evidence,Incriminating Evidence,8,0,"A device containing evidence against Aegis Insurance.",0,0,6,
-816,TAROTAMULET,Tarot Amulet,Tarot Amulets,8,0,"An amulet which make certain battles harder, and curse you during. Can be toggled on or off.",2,0,6
+816,TAROTAMULET,Tarot Amulet,Tarot Amulets,8,0,"An amulet which curses you during certain battles, making them harder. Can be toggled on or off.",2,0,6
 817,POWERLOCK,Power Lock,Power Locks,1,4000,"A held item. It set's the holder's Attack stat to 95.",0,0,0,
 818,GUARDLOCK,Guard Lock,Guard Locks,1,4000,"A held item. It set's the holder's Defense stat to 95.",0,0,0,
 819,ENERGYLOCK,Energy Lock,Energy Locks,1,4000,"A held item. It set's the holder's Sp. Atk. stat to 95.",0,0,0,
