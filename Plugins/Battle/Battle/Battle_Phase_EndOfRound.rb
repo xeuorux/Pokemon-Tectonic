@@ -188,7 +188,9 @@ class PokeBattle_Battle
       # Grassy Terrain (healing)
       if @field.terrain == :Grassy && b.affectedByTerrain? && b.canHeal?
         PBDebug.log("[Lingering effect] Grassy Terrain heals #{b.pbThis(true)}")
-        b.pbRecoverHP(b.totalhp/16)
+		amount = b.totalhp/16
+		amount /= 4 if b.boss?
+        b.pbRecoverHP(amount)
         pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
       end
       # Healer, Hydration, Shed Skin
