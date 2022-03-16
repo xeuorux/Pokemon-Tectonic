@@ -496,10 +496,11 @@ Special,1
 #-------------------------------
 [34] # Battle Fair
 FloweryGrass,20
-25,SNUBBULL,31,33
-25,HAPPINY,31,33
-25,SKITTY,31,33
-25,AUDINO,31,33
+20,SNUBBULL,31,33
+20,HAPPINY,31,33
+20,SKITTY,31,33
+20,AUDINO,31,33
+20,INDEEDEE,31,33
 LandTinted
 100,FARFETCHD,32,34
 #-------------------------------
@@ -535,16 +536,16 @@ Puddle
 25,ILLUMISE,30,32
 #-------------------------------
 [186] # Farm
-Land
+FloweryGrass,20
 25,SKIDDO,32,34
 25,MILTANK,32,34
 25,TAUROS,32,34
-25,PACHIRISU,33,34
-LandSparse
 25,COTTONEE,32,34
+Land,20
 25,BOUFFALANT,32,34
+25,HAWLUCHA,32,34
 25,TROPIUS,32,34
-25,TAUROS,32,34
+25,MORPEKO,32,34
 #-------------------------------
 [183] # Circuit Cave
 Land
