@@ -170,3 +170,9 @@ BattleHandlers::DamageCalcUserAbility.add(:SOULREAD,
 	end
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:SURFSUP,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5 if type == :WATER
+  }
+)
