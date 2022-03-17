@@ -188,3 +188,21 @@ BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
 		pbBattleWeatherAbility(:Hail,battler,battle)
 	}
 )
+
+BattleHandlers::TargetAbilityAfterMoveUse.add(:VENGEANCE,
+  proc { |ability,target,user,move,switched,battle|
+    next if !move.damagingMove?
+    next if target.damageState.initialHP<target.totalhp/2 || target.hp>=target.totalhp/2
+	battle.pbShowAbilitySplash(target)
+	if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+	  reduce = user.totalhp/4
+	  reduce /= 4 if user.boss
+	  reduce = reduce.floor
+	  user.damageState.displayedDamage = reduce
+	  battle.scene.pbDamageAnimation(user)
+      user.pbReduceHP(reduce,false)
+      battle.pbDisplay(_INTL("{1} was punished!",user.pbThis))
+    end
+	battle.pbHideAbilitySplash(target)
+  }
+)
