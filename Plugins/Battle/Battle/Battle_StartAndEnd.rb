@@ -252,6 +252,11 @@ class PokeBattle_Battle
 	  
 	  @commandPhasesThisRound = 0
 	  
+	  # Curses effects here
+	  @curses.each do |curse_policy|
+		triggerBeginningOfTurnCurseEffect(curse_policy,self)
+	  end
+	  
       # Command phase
       PBDebug.logonerr { pbCommandPhase }
       break if @decision>0

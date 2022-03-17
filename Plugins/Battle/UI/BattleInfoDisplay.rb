@@ -81,8 +81,10 @@ class BattleInfoDisplay < SpriteWrapper
 		battlerIndex += 1
 	end
 	
-	textToDraw.push([_INTL("Weather: {1}",@battle.field.weather),24,326,0,base,shadow])
-	textToDraw.push([_INTL("Terrain: {1}",@battle.field.terrain),224,326,0,base,shadow])
+	weatherName = GameData::BattleWeather.get(@battle.field.weather).real_name
+	terrainName = GameData::BattleTerrain.get(@battle.field.terrain).real_name
+	textToDraw.push([_INTL("Weather: {1}",weatherName),24,326,0,base,shadow])
+	textToDraw.push([_INTL("Terrain: {1}",terrainName),224,326,0,base,shadow])
 	
 	# Whole field effects
 	wholeFieldX = 326
