@@ -375,6 +375,8 @@
 373,BROODING,Brooding,"Gets 5% to non-HP stats per other Dragon on team."
 374,SOULREAD,Soul Read,"Double damage to targets who don't share a type with their last move."
 375,SURFSUP,Surf's Up,"Powers up Water-type moves by 50%."
+376,NUMBINGTOUCH,Numbing Touch,"Physical moves have a 30% chance to numb targets."
+377,NERVENUMBER,Nerve Number,"Special moves have a 30% chance to numb targets."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
