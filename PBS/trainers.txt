@@ -2186,7 +2186,7 @@ Pokemon = CHANSEY,34
 	Item = EVIOLITE
 Pokemon = GRAPPLOCT,33
 #-------------------------------
-[SWIMMER_F,Marion]
+[AROMALADY3,Marion]
 Pokemon = VAPOREON,33
 Pokemon = WHIRLIPEDE,34
 	Item = LEFTOVERS
