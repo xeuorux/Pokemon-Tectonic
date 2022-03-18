@@ -400,6 +400,21 @@ class PokeBattle_Battler
 			@battle.pbDisplay(_INTL("{1}'s Baneful Bunker was ignored!",target.pbThis))
 		end
 	end
+	# Stunning Curl
+	if target.effects[PBEffects::StunningCurl]
+		if move.canProtectAgainst? && !unseenfist
+			@battle.pbCommonAnimation("StunningCurl",target)
+			@battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+			target.damageState.protected = true
+			@battle.successStates[user.index].protected = true
+			if move.damagingMove?
+				user.pbParalyze(target) if user.pbCanParalyze?(target,false)
+			end
+			return false
+		else
+			@battle.pbDisplay(_INTL("{1}'s Stunning Curl was ignored!",target.pbThis))
+		end
+	end
 	# Mat Block
 	if target.pbOwnSide.effects[PBEffects::MatBlock] && move.damagingMove?
 		if move.canProtectAgainst? && !unseenfist

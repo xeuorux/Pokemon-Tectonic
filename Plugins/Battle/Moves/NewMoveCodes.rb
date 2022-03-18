@@ -1705,3 +1705,15 @@ class PokeBattle_Move_54F < PokeBattle_Move
     return super
   end
 end
+
+#===============================================================================
+# User is protected against moves with the "B" flag this round. If a Pokémon
+# attacks the user while this effect applies, that Pokémon is paralyzed (numbed).
+# (Stunning Curl)
+#===============================================================================
+class PokeBattle_Move_550 < PokeBattle_ProtectMove
+  def initialize(battle,move)
+    super
+    @effect = PBEffects::StunningCurl
+  end
+end

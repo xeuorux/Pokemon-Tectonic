@@ -660,6 +660,8 @@ class PokemonPokedex_Scene
 					next value
 				}
 				return dexlist
+			  else
+				return nil
 			  end
 		  end
 	  elsif abilitySearchTypeSelection == 1
@@ -679,6 +681,8 @@ class PokemonPokedex_Scene
 				next value
 			}
 			return dexlist
+		  else
+			return nil
 		  end
 	  end
 	  return nil
