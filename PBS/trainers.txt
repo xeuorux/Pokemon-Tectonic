@@ -2375,3 +2375,4 @@ Pokemon = FLOATZEL,70
 Pokemon = URSHIFU,70
 	Item = WHITEHERB
 	EV = 10,20,0,0,0,20
+	Form = 1
