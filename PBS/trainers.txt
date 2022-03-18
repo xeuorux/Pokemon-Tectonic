@@ -2270,3 +2270,18 @@ Pokemon = KANGASKHAN,45
 Pokemon = WATCHOG,45
 	AbilityIndex = 1
 #-------------------------------
+[BLACKBELT,Leo]
+Pokemon = NOIVERN,50
+    AbilityIndex = 1
+Pokemon = SLAKING,50
+	Item = SITRUSBERRY
+	Moves = PRIMALIMPACT,BRICKBREAK,FIREPUNCH,BULKUP
+Pokemon = PERRSERKER,50
+    AbilityIndex = 1
+    Item = STEELGEM
+Pokemon = ORBEETLE,50
+	AbilityIndex = 1
+Pokemon = MIGHTYENA,50
+	AbilityIndex = 1
+	Item = CHOICESCARF
+#-------------------------------
