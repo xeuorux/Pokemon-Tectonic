@@ -2270,22 +2270,6 @@ Pokemon = KANGASKHAN,45
 Pokemon = WATCHOG,45
 	AbilityIndex = 1
 #-------------------------------
-[BLACKBELT,Leo]
-Pokemon = NOIVERN,48
-    AbilityIndex = 1
-	Item = YACHEBERRY
-Pokemon = SLAKING,48
-	Item = SITRUSBERRY
-	Moves = PRIMALIMPACT,BRICKBREAK,FIREPUNCH,BULKUP
-Pokemon = PERRSERKER,49
-    AbilityIndex = 1
-    Item = STEELGEM
-Pokemon = ORBEETLE,50
-	AbilityIndex = 1
-Pokemon = MIGHTYENA,50
-	AbilityIndex = 1
-	Item = CHOICESCARF
-#-------------------------------
 [BATTLEGIRL2,Juniper]
 Pokemon = HIPPOWDON,53
 	Item = SMOOTHROCK
@@ -2333,7 +2317,7 @@ Pokemon = RAPIDASH,65
 	AbilityIndex = 1
 	Item = LIECHIBERRY
 #-------------------------------
-[BLACKBELT4,Lorenzo]
+[BLACKBELT,Leo]
 Pokemon = AMPHAROS,68
 	AbilityIndex = 1
 	Item = ORANBERRY
