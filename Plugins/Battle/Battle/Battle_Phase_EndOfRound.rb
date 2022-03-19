@@ -68,6 +68,7 @@ class PokeBattle_Battle
         next if !b.takesSandstormDamage?
         pbDisplay(_INTL("{1} is buffeted by the sandstorm!",b.pbThis))
 		reduction = b.totalhp/16
+		reduction *= 2 if !pbCheckGlobalAbility(:SHRAPNELSTORM).nil?
 		reduction /= 4 if b.boss?
 		b.damageState.displayedDamage = reduction
 		@scene.pbDamageAnimation(b)
@@ -78,6 +79,7 @@ class PokeBattle_Battle
         next if !b.takesHailDamage?
         pbDisplay(_INTL("{1} is buffeted by the hail!",b.pbThis))
         reduction = b.totalhp/16
+		reduction *= 2 if !pbCheckGlobalAbility(:BITTERCOLD).nil?
 		reduction /= 4 if b.boss?
 		b.damageState.displayedDamage = reduction
 		@scene.pbDamageAnimation(b)
