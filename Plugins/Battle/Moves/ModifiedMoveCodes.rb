@@ -1230,3 +1230,55 @@ class PokeBattle_Move_096 < PokeBattle_Move
 		return false
 	end
 end
+
+class PokeBattle_Move
+	def removeProtections(target)
+		target.effects[PBEffects::BanefulBunker]          = false
+		target.effects[PBEffects::KingsShield]            = false
+		target.effects[PBEffects::Protect]                = false
+		target.effects[PBEffects::SpikyShield]            = false
+		target.effects[PBEffects::StunningCurl]           = false
+		target.pbOwnSide.effects[PBEffects::CraftyShield] = false
+		target.pbOwnSide.effects[PBEffects::MatBlock]     = false
+		target.pbOwnSide.effects[PBEffects::QuickGuard]   = false
+		target.pbOwnSide.effects[PBEffects::WideGuard]    = false
+	end
+end
+
+#===============================================================================
+# Ends target's protections immediately. (Feint)
+#===============================================================================
+class PokeBattle_Move_0AD < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    removeProtections(target)
+  end
+end
+
+#===============================================================================
+# Two turn attack. Skips first turn, attacks second turn. (Shadow Force)
+# Is invulnerable during use. Ends target's protections upon hit.
+#===============================================================================
+class PokeBattle_Move_0CD < PokeBattle_TwoTurnMove
+  def pbAttackingTurnEffect(user,target)
+    removeProtections(target)
+  end
+end
+
+#===============================================================================
+# Decreases the user's Defense by 1 stage. Always hits. Ends target's
+# protections immediately. (Hyperspace Fury)
+#===============================================================================
+class PokeBattle_Move_13B < PokeBattle_StatDownMove
+  def pbEffectAgainstTarget(user,target)
+    removeProtections(target)
+  end
+end
+
+#===============================================================================
+# Always hits. Ends target's protections immediately. (Hyperspace Hole)
+#===============================================================================
+class PokeBattle_Move_147 < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    removeProtections(target)
+  end
+end

@@ -2186,7 +2186,7 @@ Pokemon = CHANSEY,34
 	Item = EVIOLITE
 Pokemon = GRAPPLOCT,33
 #-------------------------------
-[SWIMMER_F,Marion]
+[AROMALADY3,Marion]
 Pokemon = VAPOREON,33
 Pokemon = WHIRLIPEDE,34
 	Item = LEFTOVERS
@@ -2270,3 +2270,93 @@ Pokemon = KANGASKHAN,45
 Pokemon = WATCHOG,45
 	AbilityIndex = 1
 #-------------------------------
+[BLACKBELT2,Riccardo]
+Pokemon = HIPPOWDON,53
+	Item = SMOOTHROCK
+Pokemon = MANDIBUZZ,53
+	AbilityIndex = 1
+	Item = SITRUSBERRY
+Pokemon = MARACTUS,54
+	AbilityIndex = 1
+Pokemon = GARCHOMP,55
+	AbilityIndex = 1
+	Item = PERSIMBERRY
+	Moves = OUTRAGE,UNDERMINE,SHRED,AERIALACE
+Pokemon = TYPHLOSION,55
+	AbilityIndex = 0
+	Item = UTILITYUMBRELLA
+#-------------------------------
+[BATTLEGIRL3,Amelia]
+Pokemon = KECLEON,58
+	Item = WEAKNESSPOLICY
+Pokemon = ATLACROSS,58
+	AbilityIndex = 1
+	Item = POISONORB
+Pokemon = BRAVIARY,59
+	AbilityIndex = 0
+	Item = CUSTAPBERRY
+Pokemon = REUNICLUS,60
+	AbilityIndex = 1
+Pokemon = MANIKLAW,60
+	AbilityIndex = 0
+	Item = FOCUSSASH
+#-------------------------------
+[BATTLEGIRL2,Juniper]
+Pokemon = AMOONGUSS,63
+	Item = ROCKYHELMET
+	AbilityIndex = 0
+Pokemon = SEISMITOAD,63
+	AbilityIndex = 0
+Pokemon = DRAPION,64
+	AbilityIndex = 1
+	Item = REDCARD
+Pokemon = MAGMORTAR,65
+	AbilityIndex = 0
+	Item = GUARDLOCK
+Pokemon = RAPIDASH,65
+	AbilityIndex = 1
+	Item = LIECHIBERRY
+#-------------------------------
+[BLACKBELT,Leo]
+Pokemon = AMPHAROS,68
+	AbilityIndex = 1
+	Item = ORANBERRY
+Pokemon = HAEROBIC,68
+	AbilityIndex = 1
+	Item = FIGHTINGGEM
+Pokemon = SALAMENCE,69
+	AbilityIndex = 1
+	Item = SHELLBELL
+Pokemon = SAMUROTT,70
+	AbilityIndex = 1
+Pokemon = JYNX,70
+	Item = FOCUSSASH
+	AbilityIndex = 0
+#-------------------------------
+[BATTLEGIRL4,Scilla]
+Pokemon = AZUMARILL,70
+	AbilityIndex = 1
+	Item = CHOICESCARF
+	EV = 20,20,10,0,0,0
+Pokemon = GALLADE,70
+	AbilityIndex = 0
+	Item = FOCUSSASH
+	EV = 10,20,0,20,0,0
+Pokemon = MACHAMP,70
+	AbilityIndex = 0
+	Moves = MEGAPUNCH,THUNDERPUNCH,CROSSCHOP,KNOCKOFF
+	Item = POISONORB
+	EV = 10,20,0,20,0,0
+Pokemon = RIOJIN,70
+	AbilityIndex = 0
+	Item = FIGHTINGGEM
+	EV = 10,20,0,20,0,0
+Pokemon = FLOATZEL,70
+	AbilityIndex = 0
+	Item = LIFEORB
+	Moves = EXTREMESPEED,FAKEOUT,LIQUIDATION,AQUAINSTINCT
+	EV = 10,20,0,20,0,0
+Pokemon = URSHIFU,70
+	Item = WHITEHERB
+	EV = 10,20,0,0,0,20
+	Form = 1

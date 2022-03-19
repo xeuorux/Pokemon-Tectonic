@@ -35,6 +35,7 @@ module PBEffects
 	EmpoweredMoonlight  = 142
 	EmpoweredEndure		= 143
 	EmpoweredLaserFocus = 144
+	StunningCurl		= 145
 	
 	#===========================================================================
     # These effects apply to the battle (i.e. both sides)

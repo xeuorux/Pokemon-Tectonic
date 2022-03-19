@@ -67,7 +67,7 @@
 65,ODDKEYSTONE,Odd Keystone,Odd Keystones,1,2100,A vital item that is needed to keep a stone tower from collapsing. Voices can be heard from it occasionally.,0,0,0,
 66,AIRBALLOON,Air Balloon,Air Balloons,1,4000,"An item to be held by a Pokémon. The holder will float in the air until hit. Once hit, this item will burst.",0,0,0,
 67,BRIGHTPOWDER,Bright Powder,Bright Powders,1,4000,An item to be held by a Pokémon. It casts a tricky glare that lowers the opponent's accuracy.,0,0,0,
-68,EVIOLITE,Eviolite,Eviolites,1,4000,"A mysterious evolutionary lump. When held, it raises the Defense and Sp. Def if the holder can still evolve.",0,0,0,
+68,EVIOLITE,Eviolite,Eviolites,1,8000,"A mysterious evolutionary lump. When held, it raises the Defense and Sp. Def if the holder can still evolve.",0,0,0,
 69,FLOATSTONE,Float Stone,Float Stones,1,4000,A very light stone. It reduces the weight of a Pokémon when held.,0,0,0,
 70,DESTINYKNOT,Destiny Knot,Destiny Knots,1,4000,"A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, so does the foe.",0,0,0,
 71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,1,4000,"If the holder of this item takes damage, the attacker will also be damaged upon contact.",0,0,0,
