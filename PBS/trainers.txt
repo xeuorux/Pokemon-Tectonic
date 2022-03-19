@@ -572,7 +572,7 @@ Pokemon = SNORUNT,25
     AbilityIndex = 1
     Item = ICEGEM
 #-------------------------------
-[COOLTRAINER_M,Xander]
+[COOLTRAINER_M7,Xander]
 Pokemon = FERROSEED,15
     Moves = INGRAIN,SELFDESTRUCT,SPIKES
     AbilityIndex = 0
@@ -604,7 +604,7 @@ Pokemon = VANILLITE,15
     Item = LIFEORB
     EV = 0,0,10,20,20,0
 #-------------------------------
-[COOLTRAINER_F,Jade]
+[COOLTRAINER_F7,Jade]
 Pokemon = BRAIXEN,20
     Moves = PSYBEAM,IGNITE,LIGHTSCREEN,FIRESPIN
     AbilityIndex = 1
@@ -636,7 +636,7 @@ Pokemon = FURRET,20
     Item = NORMALGEM
     EV = 20,20,0,10,0,0
 #-------------------------------
-[COOLTRAINER_M,Miles]
+[COOLTRAINER_M7,Miles]
 Pokemon = WHIRLIPEDE,25
     Moves = POISONSPIKES,VENOMDRENCH,STEAMROLLER,ENVENOM
     AbilityIndex = 1
@@ -668,7 +668,7 @@ Pokemon = FLAAFFY,25
     Item = STRIKEVEST
     EV = 20,0,0,0,0,20
 #-------------------------------
-[COOLTRAINER_F,Raven]
+[COOLTRAINER_F7,Raven]
 Pokemon = POLITOED,30
     Moves = GALE,SCALD,FLIPTURN
     AbilityIndex = 0
@@ -752,7 +752,7 @@ Pokemon = WAILORD,30
     AbilityIndex = 0
     Item = LEFTOVERS
 #-------------------------------
-[COOLTRAINER_M,Emir]
+[COOLTRAINER_M7,Emir]
 Pokemon = AMBIPOM,45
     Moves = FLING,COVET,STEALTHROCK,SANDTOMB
     AbilityIndex = 0
@@ -2206,6 +2206,18 @@ Pokemon = POLTEAGEIST,38
 Pokemon = BIBAREL,39
 	AbilityIndex = 1
 	Item = NORMALGEM
+#-------------------------------
+[SWIMMER_F5,Shreya]
+Pokemon = QWILFISH,38
+	AbilityIndex = 0
+Pokemon = MIGHTYENA,38
+	AbilityIndex = 0
+	Item = EJECTBUTTON
+Pokemon = MIENSHAO,39
+	AbilityIndex = 0
+	Item = SHELLBELL
+Pokemon = PLUSLE,40
+	AbilityIndex = 1
 #-------------------------------
 [SWIMMER_F2,Astrid]
 Pokemon = TENTACRUEL,38

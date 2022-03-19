@@ -40,30 +40,6 @@ Land,20
 3,WAILMER,30,35
 1,KYOGRE,30,35
 #-------------------------------
-[] # City 1
-Land,20
-20,SNUBBULL,31,33
-20,PIDOVE,31,33
-20,HAPPINY,31,33
-20,SKITTY,31,33
-20,AUDINO,31,33
-#-------------------------------
-[] # Slums
-Land,20
-25,KOFFING,32,34
-25,SCRAGGY,32,34
-25,SHUPPET,32,34
-25,JOLTIK,32,34
-LandTinted
-100,ZIGZAGOON,32,34
-#-------------------------------
-[] # City 2
-Land,20
-25,SINISTEA,33,35
-25,SMEARGLE,33,35
-25,FURFROU,32,34
-25,MINCCINO,33,35
-#-------------------------------
 [] # Desert
 LandSparse,20
 25,,31,33
@@ -153,16 +129,6 @@ LandSparse
 33,GLIGAR,36,39
 33,GIRAFARIG,36,39
 33,ABSOL,36,39
-#-------------------------------
-[] # Volcanic Path
-DarkCave
-33,HEATMOR,38,40
-33,DURANT,38,40
-33,ONIX,38,39
-HotRock
-33,TURTONATOR,38,40
-33,TORKOAL,38,40
-33,SLUGMA,38,40
 #-------------------------------
 [] # Sky
 25,WAILMER,38,40

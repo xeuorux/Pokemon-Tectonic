@@ -745,3 +745,11 @@ HPMult = 4
 Ability = MENTALBLOCK
 Moves = CRUSHGRIP,PRIMEVALCURSE
 PostPrimeMoves = TONGUETWISTER
+#-----------------------------
+[OCTILLERY]
+Turns = 2
+HPMult = 3
+Ability = ARMORPIERCING
+Moves = FIREBLAST,HYDROPUMP,PRIMEVALHEALBELL
+PostPrimeMoves = REMOVALBEAM
+#-----------------------------
