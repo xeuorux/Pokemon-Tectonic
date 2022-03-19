@@ -347,10 +347,11 @@ DarkCave,20
 #-------------------------------
 [120] # Deep Layer
 DarkCave,20
-25,LARVITAR,17,20
-25,DRILBUR,17,20
-25,BRONZOR,17,20
-25,TYNAMO,17,20
+20,LARVITAR,17,20
+20,DRILBUR,17,20
+20,BRONZOR,17,20
+20,TYNAMO,17,20
+20,ONIX,17,20
 #-------------------------------
 [81] # Cave Path
 DarkCave,20
