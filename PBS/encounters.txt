@@ -124,6 +124,8 @@ FloweryGrass,20
 LandTinted,20
 50,YUNGOOS,15,18
 50,FOMANTIS,15,18
+Special
+1,SENTRET,15,15
 #-------------------------------
 [32] # Nemeth Apartments
 Special
@@ -463,7 +465,7 @@ FloweryGrass,20
 Special,1
 1,DEINO,10,10
 #-------------------------------
-[91] # Book and Coffee Shop
+[91] # Reading Ribombee Cafe
 Special,20
 1,MILCERY,15,15
 #-------------------------------

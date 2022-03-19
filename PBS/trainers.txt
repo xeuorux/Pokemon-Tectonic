@@ -2207,6 +2207,18 @@ Pokemon = BIBAREL,39
 	AbilityIndex = 1
 	Item = NORMALGEM
 #-------------------------------
+[SWIMMER_F5,Shreya]
+Pokemon = QWILFISH,38
+	AbilityIndex = 0
+Pokemon = MIGHTYENA,38
+	AbilityIndex = 0
+	Item = EJECTBUTTON
+Pokemon = MIENSHAO,39
+	AbilityIndex = 0
+	Item = SHELLBELL
+Pokemon = PLUSLE,40
+	AbilityIndex = 1
+#-------------------------------
 [SWIMMER_F2,Astrid]
 Pokemon = TENTACRUEL,38
 Pokemon = VOLBEAT,38
