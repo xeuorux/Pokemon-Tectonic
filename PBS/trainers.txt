@@ -2270,7 +2270,7 @@ Pokemon = KANGASKHAN,45
 Pokemon = WATCHOG,45
 	AbilityIndex = 1
 #-------------------------------
-[BATTLEGIRL2,Juniper]
+[BLACKBELT2,Riccardo]
 Pokemon = HIPPOWDON,53
 	Item = SMOOTHROCK
 Pokemon = MANDIBUZZ,53
@@ -2301,7 +2301,7 @@ Pokemon = MANIKLAW,60
 	AbilityIndex = 0
 	Item = FOCUSSASH
 #-------------------------------
-[BLACKBELT2,Riccardo]
+[BATTLEGIRL2,Juniper]
 Pokemon = AMOONGUSS,63
 	Item = ROCKYHELMET
 	AbilityIndex = 0
