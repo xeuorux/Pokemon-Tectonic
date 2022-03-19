@@ -12,7 +12,7 @@ MAPS_AVAILABLE_BY_CAP = {
 			4,20,86,       # Scientist's House, Lengthy Glade, Zigzagoon Nest, LuxTech Cold Storage Basement
 			78,87,103,92,    # LuxTech Main, LuxTech Rec Center, Ghost Town Mart, Ice Rink Lodge
 			32,71,74,		# Nemeth Apartments, Nemeth Apartments Room 103, Nemeth Apartments Room 203
-			91,65				# Reading Ribombee Cafe, Nemeth Mart
+			91,65,85				# Reading Ribombee Cafe, Nemeth Mart, Worried Man's House
 			],
 	55 => [155,29,47,	# Prizca West, Full Blast Records F2, Grand Hotal
 			34,183,180,		# Battle Fair, Circuit Cave, Priza West Mart

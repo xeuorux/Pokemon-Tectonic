@@ -461,7 +461,7 @@ FloweryGrass,20
 25,SILICOBRA,34,36
 25,PACHIRISU,34,36
 25,MARACTUS,34,36
-25,TOXEL,34,36
+25,GLIGAR,34,36
 Special,1
 1,DEINO,10,10
 #-------------------------------
@@ -631,4 +631,8 @@ Land
 [202] # Mountaineer's House
 Special,1
 1,ORICORIO,15,15
+#-------------------------------
+[203] # Skeevy Eevee Pub
+Special,20
+1,EEVEE,15,15
 #-------------------------------
