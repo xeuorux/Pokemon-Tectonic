@@ -28904,15 +28904,15 @@ BattlerEnemyX = -11
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = COPPERAJAH,Level,34
+Evolutions = COPPERAJAH,Level,29
 #-------------------------------
 [879]
 Name = Copperajah
 InternalName = COPPERAJAH
 Type1 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 122,130,69,30,80,69
-# Total = 500
+BaseStats = 112,120,59,30,70,59
+# Total = 450
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 175
@@ -28937,6 +28937,7 @@ BattlerEnemyX = -6
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 3
+Evolutions = DIGNIPHITE,Level,49
 #-------------------------------
 [880]
 Name = Dracozolt
@@ -30504,9 +30505,9 @@ BaseStats = 80,90,95,100,140,75
 # Total = 580
 GenderRate = Female50Percent
 GrowthRate = Parabolic
-BaseEXP = 184
+BaseEXP = 250
 EffortPoints = 0,1,0,0,1,0
-Rareness = 75
+Rareness = 70
 Happiness = 50
 Abilities = HONORAURA,INNERFOCUS
 Moves = 0,FOCUSBLAST,1,FOCUSBLAST,1,AURASPHERE,1,COURAGEBOLT,1,ENDURE,4,VANGUARD,8,MAGNETWAVE,12,CHIBLOCK,16,VACUUMWAVE,20,MIRRORSHOT,24,METALSOUND,32,CALMMIND,36,ADRENALASH,40,DREAMDANCE,44,MIRRORCOAT,48,FLASHCANNON,52,TRAINEDOUTBURST,56,FINALGAMBIT,60,CHIBURST
@@ -30517,7 +30518,7 @@ Height = 1.5
 Weight = 67.0
 Color = Blue
 Shape = Head
-Kind = Aura
+Kind = Paragon
 Pokedex = Not only has it mastered the emotions of others, it has mastered the emotions of itself.
 BattlerPlayerX = 0
 BattlerPlayerY = 15
@@ -30536,9 +30537,9 @@ BaseStats = 85,75,185,15,110,80
 # Total = 555
 GenderRate = Female50Percent
 GrowthRate = Medium
-BaseEXP = 179
+BaseEXP = 250
 EffortPoints = 0,0,2,0,0,0
-Rareness = 25
+Rareness = 40
 Happiness = 50
 Abilities = SHEERFORCE,SHRAPNELSTORM
 Moves = 0,STEELBEAM,1,STEELBEAM,1,PEBBLEDUST,1,LEER,4,MUDTHROW,8,ROCKPOLISH,12,SHREDSHOT,16,STARFALL,20,MUDSHOT,24,STEALTHROCK,28,SHARDS,32,TERRAFORM,36,EARTHPOWER,40,SLAG,44,DIAMONDFORCE,48,SANDSTORM,52,SLUSHSPRAY,56,WIDEGUARD,60,MUDSLIDE
@@ -30549,7 +30550,7 @@ Height = 10.5
 Weight = 1232.1
 Color = Gray
 Shape = Head
-Kind = Iron Snake
+Kind = Titanium Snake
 Pokedex = Scientists have been unable to create a metal harder than the one found on Titanix.
 BattlerPlayerX = 0
 BattlerPlayerY = 8
@@ -30557,6 +30558,38 @@ BattlerEnemyX = 0
 BattlerEnemyY = 6
 BattlerShadowX = 0
 BattlerShadowSize = 2
+#-------------------------------
+[930]
+Name = Digniphite
+InternalName = DIGNIPHITE
+Type1 = STEEL
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 137,145,84,20,90,84
+# Total = 560
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 250
+EffortPoints = 0,2,0,0,0,0
+Rareness = 60
+Happiness = 50
+Abilities = SHEERFORCE,FASCINATE
+Moves = 1,HEAVYSLAM,1,SHOTPUT,1,GROWL,5,TREADON,9,SMASH,13,METALCLAW,17,BULLDOZE,21,BULLETCHARGE,25,DIG,29,IRONDEFENSE,33,IRONHEAD,37,TRAMPLE,41,BULLETTRAIN,45,PLAYROUGH,49,SUPERPOWER,53,IRONTAIL
+TutorMoves = BODYPRESS,BODYSLAM,BRICKBREAK,BRUTALSWING,BULLDOZE,DIG,EARTHPOWER,EARTHQUAKE,ENDURE,FACADE,FLASHCANNON,FLING,GIGAIMPACT,HEATCRASH,HEAVYSLAM,TRAMPLE,HYPERBEAM,IRONDEFENSE,IRONHEAD,MEGAKICK,MUDSHOT,OUTRAGE,PAYBACK,PLAYROUGH,POWERWHIP,PROTECT,REST,REVENGE,ROCKBLAST,ROCKSLIDE,ROCKTOMB,ROUND,SCARYFACE,SCREECH,SLEEPTALK,SNARL,SNORE,STEALTHROCK,STEELBEAM,STEELROLLER,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SUPERPOWER,TAUNT,WORKUP,ZENHEADBUTT
+Compatibility = Field,Mineral
+StepsToHatch = 6681
+Height = 12.0
+Weight = 882.0
+Color = Green
+Shape = Head
+Kind = Copperderm
+Pokedex = A herd of these Pokemon have been known to excavate an entire mountain in a matter of weeks.
+WildItemUncommon = LAGGINGTAIL
+BattlerPlayerX = 0
+BattlerPlayerY = 13
+BattlerEnemyX = -6
+BattlerEnemyY = 19
+BattlerShadowX = 0
+BattlerShadowSize = 3
 #-------------------------------
 [2000]
 Name = A. Rattata
