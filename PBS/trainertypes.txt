@@ -191,6 +191,8 @@
 188,BEAUTY5,Beauty,56,,,LASS,Female,,,[]
 189,BATTLEGIRL3,Battle Girl,16,,,BLACKBELT,Female,,,[]
 190,BATTLEGIRL4,Battle Girl,16,,,BLACKBELT,Female,,,[]
+191,COOLTRAINER_M7,Cooltrainer,60,,,ELITETRAINER,Male,,,[]
+192,COOLTRAINER_F7,Cooltrainer,60,,,ELITETRAINER,Female,,,[]
 298,TRAINER_Zain,Your Brother,100,,,,Male,,,[]
 299,ARCHFRIEND_Lainie,Archfriend,100,Battle champion iris,Battle victory champion,,Female,,,[]
 300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,,[]
