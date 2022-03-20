@@ -252,13 +252,38 @@ end
 # (Crippling Breath)
 #===============================================================================
 class PokeBattle_Move_50A < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    return false if damagingMove?
+    if !target.pbCanBurn?(user,true,self) && !target.pbCanPoison?(user,true,self)
+		@battle.pbDisplay(_INTL("But it failed!")) 
+		return true
+	end
+	return false
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    return if damagingMove?
+    burnOrPoison(target)
+  end
+
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    if target.attack > target.spatk
-      target.pbBurn(user) if target.pbCanBurn?(user,false,self)
-    else
-      target.pbPoison(user) if target.pbCanPoison?(user,false,self)
-    end
+	burnOrPoison(user,target)
+  end
+  
+  def burnOrPoison(user,target)
+	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+	attackStage = target.stages[:ATTACK]+6
+	attack = (target.attack.to_f*stageMul[attackStage].to_f/stageDiv[attackStage].to_f).floor
+	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
+	spAtk = (target.spatk.to_f*stageMul[spAtkStage].to_f/stageDiv[spAtkStage].to_f).floor
+	
+    if target.pbCanBurn?(user,false,self) && attack >= spAtk
+		target.pbBurn(user)
+	elsif target.pbCanPoison?(user,false,self) && spAtk >= attack
+		target.pbPoison(user)
+	end
   end
   
   def getScore(score,user,target,skill=100)
