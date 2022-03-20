@@ -1,0 +1,5 @@
+Name      = Cable Club
+Version   = 2.1
+Optional  = v19.1 Hotfixes
+Website   = https://reliccastle.com/resources/640/
+Credits   = mGriffin,Khaikaa,Vendily
