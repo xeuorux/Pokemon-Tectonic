@@ -600,7 +600,7 @@ class PokeBattle_Battle
       b.effects[PBEffects::ThroatChop]       -= 1 if b.effects[PBEffects::ThroatChop]>0
 	  b.effects[PBEffects::Assist]			 = false
 	  b.effects[PBEffects::LashOut]			 = false
-	  b.effects[PBEffects::NumbingCurl]      = false
+	  b.effects[PBEffects::StunningCurl]      = false
       b.lastHPLost                           = 0
       b.lastHPLostFromFoe                    = 0
       b.tookDamage                           = false
