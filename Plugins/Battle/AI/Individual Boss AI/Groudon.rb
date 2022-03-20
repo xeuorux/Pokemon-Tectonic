@@ -1,7 +1,7 @@
 # Eruption
 PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:GROUDON,"08B"],
 	proc { |speciesAndMoveCode,user,target,move|
-		next @battle.turnCount == 0
+		next user.battle.turnCount == 0
 	}
 )
 
