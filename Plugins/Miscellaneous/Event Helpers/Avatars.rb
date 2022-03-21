@@ -1,4 +1,5 @@
 def defeatBoss(item=nil,count=1)
+	$PokemonGlobal.respawnPoint = nil
 	pbMessage("The avatar staggers, then drifts away into nothingness.")
 	blackFadeOutIn {
 		setMySwitch('A',true)
