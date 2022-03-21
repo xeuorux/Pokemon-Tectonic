@@ -1003,3 +1003,4 @@
 2008,PRESENT,Present,094,1,NORMAL,Physical,90,15,0,NearOther,0,bef,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however."
 2009,MISTYTERRAIN,Misty Terrain,156,0,FAIRY,Status,0,10,0,BothSides,0,,The user covers the ground with mist for five turns. Grounded Pokémon can't gain status conditions.
 2010,THUNDERWAVE,Thunder Wave,007,0,ELECTRIC,Status,100,20,0,NearOther,0,bce,A weak electric charge is launched at the target. It causes paralysis if it hits.
+2011,DREAMEATER,Dream Eater,0DE,70,PSYCHIC,Special,100,15,0,NearOther,0,bef,The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.
