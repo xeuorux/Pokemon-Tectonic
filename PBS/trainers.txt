@@ -1928,8 +1928,8 @@ Pokemon = ARCHEOPS,40
 	Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Zoe,Zoé]
-Pokemon = STEELIX,40
-    Moves = BULLDOZE,FIREFANG,ROCKSLIDE,CURSE
+Pokemon = CRADILY,40
+    Moves = GIGADRAIN,DIAMONDFORCE,BRINE,STEALTHROCK
     AbilityIndex = 0
 Pokemon = MANTINE,40
     Name = 1 Second
@@ -1951,8 +1951,8 @@ Pokemon = AERODACTYL,40
 #-------------------------------
 [LEADER_Zoe_2,Zoé,1]
 Policies = ZOE,CURSE_TYPE_FRAGILE
-Pokemon = STEELIX,40
-    Moves = BULLDOZE,FIREFANG,ROCKSLIDE,CURSE
+Pokemon = CRADILY,40
+    Moves = GIGADRAIN,DIAMONDFORCE,BRINE,STEALTHROCK
     AbilityIndex = 0
 Pokemon = MANTINE,40
     Name = 1 Second
@@ -1992,8 +1992,8 @@ Pokemon = JUMPLUFF,40
     Item = ORANBERRY
 #-------------------------------
 [LEADER_Zoe_2,Zoé]
-Pokemon = STEELIX,40
-    Moves = BULLDOZE,FIREFANG,ROCKSLIDE,CURSE
+Pokemon = CRADILY,40
+    Moves = GIGADRAIN,DIAMONDFORCE,BRINE,STEALTHROCK
     AbilityIndex = 0
 Pokemon = MANTINE,40
     Name = 1 Second
