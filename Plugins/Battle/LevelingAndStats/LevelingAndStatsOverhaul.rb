@@ -256,6 +256,11 @@ class PokeBattle_Battle
       i = BattleHandlers.triggerExpGainModifierItem(@initialItems[0][idxParty],pkmn,exp)
     end
     exp = i if i>=0
+	# If EXP in this battle is capped, store all XP instead of granting it
+	if @expCapped
+		@expStored += exp
+		return
+	end
     # Make sure Exp doesn't exceed the maximum
 	level_cap = LEVEL_CAPS_USED ? $game_variables[26] : growth_rate.max_level
     expFinal = growth_rate.add_exp(pkmn.exp, exp)

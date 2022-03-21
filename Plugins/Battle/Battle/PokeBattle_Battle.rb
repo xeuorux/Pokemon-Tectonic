@@ -10,6 +10,7 @@ class PokeBattle_Battle
 	attr_accessor :honorAura
 	attr_accessor :expStored
 	attr_reader	  :curses
+	attr_accessor :expCapped
   
   def bossBattle?
 	return bossBattle
@@ -97,6 +98,7 @@ class PokeBattle_Battle
 	@honorAura		   = false
 	@curses			   = []
 	@expStored		   = 0
+	@expCapped		   = false
     if GameData::Move.exists?(:STRUGGLE)
       @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))
     else

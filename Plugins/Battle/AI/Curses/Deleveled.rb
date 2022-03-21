@@ -5,7 +5,9 @@ end
 PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_DELEVELED,
 	proc { |curse_policy,battle,curses_array|
 		battle.amuletActivates("Deleveled")
-		battle.pbDisplaySlower(_INTL("Your Pokemon start this fight 10 levels lower."))
+		battle.pbDisplaySlower(_INTL("Your Pokemon start this fight 10 levels lower. All XP gained goes to the EXP-EZ dispenser."))
+		
+		battle.expCapped = true
 		
 		$Trainer.party.each do |pokemon|
 			pokemon.pre_curse_exp = pokemon.exp
