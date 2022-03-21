@@ -11,7 +11,8 @@ def pbStartOver(gameover=false)
     return
   end
   $Trainer.heal_party
-  if !$PokemonGlobal.respawnPoint.nil?
+  if !$PokemonGlobal.respawnPoint.nil? &&
+		pbConfirmMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]You feel the pull of the nearby Avatar Totem. Would you like it to revive you?"))
 	pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]By the power of the Avatar Totem, your team is revived."))
     pbCancelVehicles
     pbRemoveDependenciesExceptFollower
@@ -20,7 +21,7 @@ def pbStartOver(gameover=false)
 	$game_temp.player_new_map_id    = $game_map.map_id
     $game_temp.player_new_x         = $PokemonGlobal.respawnPoint[0]
     $game_temp.player_new_y         = $PokemonGlobal.respawnPoint[1]
-    $game_temp.player_new_direction = $PokemonGlobal.respawnPoint[2]
+    $game_temp.player_new_direction = $PokemonGlobal.respawnPoint[2] || Down
     $scene.transfer_player if $scene.is_a?(Scene_Map)
     $game_map.refresh
 	$PokemonGlobal.respawnPoint = nil
