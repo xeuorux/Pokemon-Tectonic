@@ -115,3 +115,16 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
     super
   end
 end
+
+class PokeBattle_StatDownMove < PokeBattle_Move
+  def pbEffectAfterAllHits(user,target)
+    return if @battle.pbAllFainted?(target.idxOwnSide)
+    showAnim = true
+    for i in 0...@statDown.length/2
+      next if !user.pbCanLowerStatStage?(@statDown[i*2],user,self)
+      if user.pbLowerStatStage(@statDown[i*2],@statDown[i*2+1],user,showAnim)
+        showAnim = false
+      end
+    end
+  end
+end
