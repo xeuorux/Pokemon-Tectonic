@@ -176,3 +176,9 @@ BattleHandlers::DamageCalcUserAbility.add(:SURFSUP,
     mults[:attack_multiplier] *= 1.5 if type == :WATER
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:STRANGESTRENGTH,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 2.0 if move.physicalMove? && user.battle.field.terrain == :Misty
+  }
+)

@@ -1,5 +1,5 @@
 class PokeBattle_Battler
-	#=============================================================================
+  #=============================================================================
   # Redirect attack to another target
   #=============================================================================
   def pbChangeTargets(move,user,targets,dragondarts=-1)
@@ -110,8 +110,14 @@ class PokeBattle_Battler
       return targets
     end
 	# Bad Luck
-    targets = pbChangeTargetByAbility(:BADLUCK,move,user,targets,priority,nearOnly) if move.statusMove?()
-    return targets
+    targets = pbChangeTargetByAbility(:BADLUCK,move,user,targets,priority,nearOnly) if move.statusMove?() && !user.pbHasAnyStatus?
+    # Epic Hero
+	maxDamage = 0
+	targets.each do |target|
+		baseDamage = move.pbBaseDamage(move.baseDamage,user,target).floor
+	end
+	targets = pbChangeTargetByAbility(:EPICHERO,move,user,targets,priority,nearOnly) if maxDamage >= 100
+	return targets
   end
   
 	def pbChangeTargetByAbility(drawingAbility,move,user,targets,priority,nearOnly)
