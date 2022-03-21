@@ -377,7 +377,7 @@
 375,SURFSUP,Surf's Up,"Powers up Water-type moves by 50%."
 376,NUMBINGTOUCH,Numbing Touch,"Physical moves have a 30% chance to numb targets."
 377,NERVENUMBER,Nerve Number,"Special moves have a 30% chance to numb targets."
-378,VENGEANCE,Vengence,"Deals 1/4 of the attacker's HP if a hit makes its HP half or less."
+378,VENGEANCE,Vengeance,"Deals 1/4 of the attacker's HP if a hit makes its HP half or less."
 379,SHRAPNELSTORM,Shrapnel Storm,"The Sandstorm weather deals double damage."
 380,BITTERCOLD,Bitter Cold,"The Hail weather deals double damage."
 # Abilities which were previously cut/renamed
