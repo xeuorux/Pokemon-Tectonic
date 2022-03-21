@@ -10,6 +10,7 @@ PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_DELEVELED,
 		$Trainer.party.each do |pokemon|
 			pokemon.pre_curse_exp = pokemon.exp
 			pokemon.level -= 10
+			pokemon.calc_stats
 		end
 		
 		battle.eachSameSideBattler(0) do |battler|
