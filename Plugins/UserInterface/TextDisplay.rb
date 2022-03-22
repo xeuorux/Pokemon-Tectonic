@@ -351,14 +351,38 @@ class Window_InputNumberPokemon < SpriteWindow_Base
 			  newNumber = @number
 			  n = newNumber / place % 10
 			  newNumber -= n*place
+			  higherPlaceChange = 0
 			  if Input.repeat?(Input::UP)
 				n = (n + 1) % 10
+				# Went above 9
+				if n == 0
+					newNumber += 10*place
+				else
+					newNumber += n*place
+				end
 			  elsif Input.repeat?(Input::DOWN)
 				n = (n + 9) % 10
+				# Went below 0
+				if n == 9
+					newNumber -= place
+				else
+					newNumber += n*place
+				end
 			  end
-			  newNumber += n*place
-			  if (@maximum && newNumber > @maximum) || (@minimum && newNumber < @minimum)
-				pbPlayBuzzerSE()
+			  tempMin = @minimum
+			  tempMin = 0 if tempMin.nil? && !@sign
+			  if @maximum && newNumber > @maximum
+				if tempMin && Input.trigger?(Input::UP)
+					@number = tempMin
+				else
+					pbPlayBuzzerSE()
+				end
+			  elsif tempMin && newNumber < tempMin
+				if @maximum && Input.trigger?(Input::DOWN)
+					@number = @maximum
+				else
+					pbPlayBuzzerSE()
+				end
 			  else
 				pbPlayCursorSE()
 				@number = newNumber
