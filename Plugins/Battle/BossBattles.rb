@@ -132,7 +132,7 @@ end
 def setAvatarProperties(pkmn)
 	avatar_data = GameData::Avatar.get(pkmn.species.to_sym)
 
-	pkmn.forced_form = avatar_data.form
+	pkmn.forced_form = avatar_data.form if avatar_data.form != 0
 
 	pkmn.forget_all_moves()
 	avatar_data.moves.each do |move|

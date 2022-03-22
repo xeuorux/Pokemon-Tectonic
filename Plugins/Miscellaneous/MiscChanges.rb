@@ -338,10 +338,6 @@ class Pokemon
 		return @form
 	end
 
-	def form_simple
-		return @forced_form || @form
-	end
-
 	def form=(value)
 		oldForm = @form
 		@form = value
