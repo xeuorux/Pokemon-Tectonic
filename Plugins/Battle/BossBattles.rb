@@ -13,7 +13,8 @@ module GameData
 	  if ret && pkmn.boss
 		filename = 'Graphics/Pokemon/Avatars/' + species.to_s
 		filename += '_' + pkmn.form.to_s if pkmn.form != 0
-		echoln(filename)
+		filename += '_back' if back
+		echoln("Accessing boss battle sprite: #{filename}")
 		ret = AnimatedBitmap.new(filename)
 	  end
 	  
@@ -278,4 +279,64 @@ def pbGetAvatarBattleBGM(_wildParty)   # wildParty is an array of Pokémon objec
 	
 	echoln("Avatar music selection for Legendary = #{legend} : #{music}")
 	return ret
+end
+
+def createBossGraphics(species_internal_name)
+	# Create the overworld sprite
+	begin
+		overworldBitmap = AnimatedBitmap.new('Graphics/Characters/Followers/' + species_internal_name)
+		copiedOverworldBitmap = overworldBitmap.copy
+		bossifiedOverworld = increaseSize(copiedOverworldBitmap.bitmap)
+		bossifiedOverworld.to_file('Graphics/Characters/zAvatar_' + species_internal_name + '.png')
+	rescue Exception
+		e = $!
+		pbPrintException(e)
+	end
+	
+	# Create the front in battle sprite
+	begin
+		battlebitmap = AnimatedBitmap.new('Graphics/Pokemon/Front/' + species_internal_name)
+		copiedBattleBitmap = battlebitmap.copy
+		bossifiedBattle = bossify(copiedBattleBitmap.bitmap)
+		bossifiedBattle.to_file('Graphics/Pokemon/Avatars/' + species_internal_name + '.png')
+	rescue Exception
+		e = $!
+		pbPrintException(e)
+	end
+	
+	# Create the back in battle sprite
+	begin
+		battlebitmap = AnimatedBitmap.new('Graphics/Pokemon/Back/' + species_internal_name)
+		copiedBattleBitmap = battlebitmap.copy
+		bossifiedBattle = bossify(copiedBattleBitmap.bitmap)
+		bossifiedBattle.to_file('Graphics/Pokemon/Avatars/' + species_internal_name + '_back.png')
+	rescue Exception
+		e = $!
+		pbPrintException(e)
+	end
+end
+
+def increaseSize(bitmap,scaleFactor=1.3)
+	copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
+	for x in 0..copiedBitmap.width
+		for y in 0..copiedBitmap.height
+		  color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor)
+		  copiedBitmap.set_pixel(x,y,color)
+		end
+	end
+	return copiedBitmap
+end
+  
+def bossify(bitmap,scaleFactor = 1.3)
+  copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
+  for x in 0..copiedBitmap.width
+	for y in 0..copiedBitmap.height
+	  color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor)
+	  color.alpha   = [color.alpha,140].min
+	  color.red     = [color.red + 50,255].min
+	  color.blue    = [color.blue + 50,255].min
+	  copiedBitmap.set_pixel(x,y,color)
+	end
+  end
+  return copiedBitmap
 end

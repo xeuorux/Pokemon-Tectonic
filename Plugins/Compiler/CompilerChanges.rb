@@ -1366,18 +1366,7 @@ end
 	end
 	
 	# Create the needed graphics
-	overworldBitmap = AnimatedBitmap.new('Graphics/Characters/Followers/' + avatarSpecies)
-	copiedOverworldBitmap = overworldBitmap.copy
-	bossifiedOverworld = increaseSize(copiedOverworldBitmap.bitmap)
-	bossifiedOverworld.to_file('Graphics/Characters/zAvatar_' + avatarSpecies + '.png')
-	
-	# Create the needed graphics
-	battlebitmap = AnimatedBitmap.new('Graphics/Pokemon/Front/' + avatarSpecies)
-	copiedBattleBitmap = battlebitmap.copy
-	bossifiedBattle = bossify(copiedBattleBitmap.bitmap)
-	bossifiedBattle.to_file('Graphics/Pokemon/Avatars/' + avatarSpecies + '.png')
-	
-	# Set up the pages
+	createBossGraphics(avatarSpecies)
 	
 	ret.pages = [2]
 	# Create the first page, where the battle happens
@@ -1411,31 +1400,6 @@ end
 	secondPage.condition.self_switch_ch = "A"
 	
 	return ret
-  end
-  
-  def increaseSize(bitmap,scaleFactor=1.3)
-	  copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
-	  for x in 0..copiedBitmap.width
-		for y in 0..copiedBitmap.height
-		  color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor)
-		  copiedBitmap.set_pixel(x,y,color)
-		end
-	  end
-	  return copiedBitmap
-  end
-  
-  def bossify(bitmap,scaleFactor = 1.3)
-	  copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
-	  for x in 0..copiedBitmap.width
-		for y in 0..copiedBitmap.height
-		  color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor)
-		  color.alpha   = [color.alpha,140].min
-		  color.red     = [color.red + 50,255].min
-		  color.blue    = [color.blue + 50,255].min
-		  copiedBitmap.set_pixel(x,y,color)
-		end
-	  end
-	  return copiedBitmap
   end
   
   #=============================================================================
