@@ -659,30 +659,34 @@ class PokemonPokedexInfo_Scene
         fSpecies = GameData::Species.get_species_form(@species,i[2])
 		
 		coordinateY = 54
-		prevoTitle = _INTL("Pre-Evolutions of {1}",@title)
-		drawTextEx(overlay,(Graphics.width-prevoTitle.length*10)/2,coordinateY,450,1,prevoTitle,base,shadow)
-		coordinateY += 34
+		if @species != :EEVEE
+			prevoTitle = _INTL("Pre-Evolutions of {1}",@title)
+			drawTextEx(overlay,(Graphics.width-prevoTitle.length*10)/2,coordinateY,450,1,prevoTitle,base,shadow)
+			coordinateY += 34
+		end
 		index = 0
 		
 		# Show pre-volutions
 		prevolutions = fSpecies.get_prevolutions
-		if prevolutions.length == 0
-			drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("None"),base,shadow)
-			coordinateY += 30
-		else
-			prevolutions.each do |evolution|
-			  method = evolution[1]
-			  parameter = evolution[2]
-			  species = evolution[0]
-			  return if !method || !species
-			  evolutionName = GameData::Species.get_species_form(species,i[2]).real_name
-			  methodDescription = describeEvolutionMethod(method,parameter)
-			  # Draw preevolution description
-			  color = index == @evolutionIndex ? Color.new(255,100,80) : base
-			  drawTextEx(overlay,xLeft,coordinateY,450,2,_INTL("Evolves from {1} {2}",evolutionName,methodDescription),color,shadow)
-			  coordinateY += 30
-			  coordinateY += 30 if method != :Level
-			  index += 1
+		if @species != :EEVEE
+			if prevolutions.length == 0
+				drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("None"),base,shadow)
+				coordinateY += 30
+			else
+				prevolutions.each do |evolution|
+				  method = evolution[1]
+				  parameter = evolution[2]
+				  species = evolution[0]
+				  return if !method || !species
+				  evolutionName = GameData::Species.get_species_form(species,i[2]).real_name
+				  methodDescription = describeEvolutionMethod(method,parameter)
+				  # Draw preevolution description
+				  color = index == @evolutionIndex ? Color.new(255,100,80) : base
+				  drawTextEx(overlay,xLeft,coordinateY,450,2,_INTL("Evolves from {1} {2}",evolutionName,methodDescription),color,shadow)
+				  coordinateY += 30
+				  coordinateY += 30 if method != :Level
+				  index += 1
+				end
 			end
 		end
 		
@@ -690,58 +694,78 @@ class PokemonPokedexInfo_Scene
 		drawTextEx(overlay,(Graphics.width-evoTitle.length*10)/2,coordinateY,450,1,evoTitle,base,shadow)
 		coordinateY += 34
 		
-		# Show evolutions
-		evolutions = fSpecies.get_evolutions
+		@evolutionsArray = prevolutions
 		
-		if evolutions.length == 0
+		# Show evolutions
+		allEvolutions = getEvolutionsRecursive(fSpecies)
+		
+		if allEvolutions.length == 0
 			drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("None"),base,shadow)
 			coordinateY += 30
 		elsif @species == :EEVEE
-			drawTextEx(overlay,xLeft,coordinateY,450,6,_INTL("Evolves into Vaporeon with a Water Stone," + 
-				"Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Sun Stone," +
-				"Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone," +
-				", Sylveon with a Dawn Stone, and Giganteon with a Shiny Stone."
+			drawTextEx(overlay,xLeft,coordinateY,450,7,_INTL("Evolves into Vaporeon with a Water Stone, " + 
+				"Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Sun Stone, " +
+				"Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone, " +
+				"Sylveon with a Dawn Stone, and Giganteon with a Shiny Stone."
 			),base,shadow)
 		else
-			evosOfEvos = {}
-			evolutions.each do |evolution|
-			  method = evolution[1]
-			  parameter = evolution[2]
-			  species = evolution[0]
-			  return if !method || !species
-			  speciesData = GameData::Species.get_species_form(species,i[2])
-			  evolutionName = speciesData.real_name
-			  evosOfEvos[evolutionName] = speciesData.get_evolutions()
-			  methodDescription = describeEvolutionMethod(method,parameter)
-			  # Draw evolution description
-			  color = index == @evolutionIndex ? Color.new(255,100,80) : base
-			  drawTextEx(overlay,xLeft,coordinateY,450,2,_INTL("Evolves into {1} {2}",evolutionName,methodDescription),color,shadow)
-			  coordinateY += 30
-			  coordinateY += 30 if method != :Level
-			  index += 1
-			end
-			
-			evosOfEvos.each do |fromSpecies,evolutions|
+			allEvolutions.each do |fromSpecies,evolutions|
 			  evolutions.each do |evolution|
 				  method = evolution[1]
 				  parameter = evolution[2]
 				  species = evolution[0]
-				  return if !method || !species
+				  next if method.nil? || species.nil?
 				  speciesData = GameData::Species.get_species_form(species,i[2])
+				  next if speciesData.nil?
+				  @evolutionsArray.push(evolution)
 				  evolutionName = speciesData.real_name
 				  methodDescription = describeEvolutionMethod(method,parameter)
 				  # Draw evolution description
 				  color = index == @evolutionIndex ? Color.new(255,100,80) : base
-				  drawTextEx(overlay,xLeft,coordinateY,450,2,_INTL("Evolves into {1} {2} (through {3})",evolutionName,methodDescription,fromSpecies),color,shadow)
-				  coordinateY += 60
+				  fromSpeciesName = GameData::Species.get(fromSpecies).real_name
+				  if fromSpecies == fSpecies.species
+					  drawTextEx(overlay,xLeft,coordinateY,450,2,_INTL("Evolves into {1} {2}",evolutionName,methodDescription),color,shadow)
+				  else
+					  drawTextEx(overlay,xLeft,coordinateY,450,2,_INTL("Evolves into {1} {2} (through {3})",evolutionName,methodDescription,fromSpeciesName),color,shadow)
+				  end
+				  coordinateY += 30
+				  coordinateY += 30 if method != :Level || fromSpecies != fSpecies.species
 				  index += 1
 			  end
 			end
         end
-		
-		@evolutionsArray = prevolutions.concat(evolutions)
       end
     end
+  end
+  
+  def getEvolutionsRecursive(species_data)
+	evolutions = species_data.get_evolutions
+	if evolutions.length == 0
+		return {}
+	else
+		newEvolutions = {}
+		evolutions.each do |entry|
+			addToHashOfArrays(newEvolutions,species_data.species,entry)
+		end
+		evolutions.each do |evolutionEntry|
+			data = GameData::Species.get(evolutionEntry[0])
+			furtherEvos = getEvolutionsRecursive(data)
+			furtherEvos.each do |speciesInvolved,furtherEvolutionEntryArray|
+				furtherEvolutionEntryArray.each do |furtherEvolutionEntry|
+					addToHashOfArrays(newEvolutions,speciesInvolved,furtherEvolutionEntry)
+				end
+			end
+		end
+		return newEvolutions
+	end
+  end
+  
+  def addToHashOfArrays(hash_of_arrays,key,newValue)
+	if hash_of_arrays.has_key?(key)
+		hash_of_arrays[key].push(newValue)
+	else
+		hash_of_arrays[key] = [newValue]
+	end
   end
 
 =begin
