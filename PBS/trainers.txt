@@ -2344,6 +2344,8 @@ Pokemon = SAMUROTT,70
 Pokemon = JYNX,70
 	Item = FOCUSSASH
 	AbilityIndex = 0
+Pokemon = SNORLAX,70
+    AbilityIndex = 1
 #-------------------------------
 [BATTLEGIRL4,Scilla]
 Pokemon = AZUMARILL,70
