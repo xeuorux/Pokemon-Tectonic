@@ -1880,7 +1880,7 @@ Pokemon = ASANDSLASH,60
 Pokemon = CONIFEAR,60
     AbilityIndex = 1
 #-------------------------------
-[DEVFURISODEGIRL,Lichenprincess]
+[DEVHEXMANIAC,Lichenprincess]
 Pokemon = GALVANTULA,60
 	AbilityIndex = 0
 Pokemon = TOXAPEX,60
@@ -1894,12 +1894,32 @@ Pokemon = ARCLAMOR,60
 #-------------------------------
 [DEVMAID2,Maddie]
 Pokemon = BUNEARY,60
+	AbilityIndex = 1
 Pokemon = WOOLOO,60
+	AbilityIndex = 0
 Pokemon = BUNEARY,60
+	AbilityIndex = 0
 Pokemon = PIKACHU,60
+	AbilityIndex = 1
 	Form = 14
 Pokemon = BUNEARY,60
+	AbilityIndex = 1
 Pokemon = BRIONNE,60
+	AbilityIndex = 0
+#-------------------------------
+[DEVCLERK_M2,Papper]
+Pokemon = FERALIGATR,60
+	AbilityIndex = 1
+Pokemon = PACHIRISU,60
+	AbilityIndex = 0
+Pokemon = TORTERRA,60
+	AbilityIndex = 0
+Pokemon = HONCHKROW,60
+	AbilityIndex = 0
+Pokemon = BRONZONG,60
+	AbilityIndex = 1
+Pokemon = DRAPION,60
+	AbilityIndex = 0
 #-------------------------------
 [LEADER_Bence,Bence]
 Pokemon = STARAPTOR,40

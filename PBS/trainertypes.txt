@@ -223,5 +223,6 @@
 406,DEVARTIST3,Developer,80,,,,Female,,,[]
 407,DEVCOOLTRAINER_M3,Developer,80,,,,Male,,,[]
 408,DEVPOKEMONRANGER_M,Developer,80,,,,Male,,,[]
-409,DEVFURISODEGIRL,Developer,80,,,,Female,,,[]
+409,DEVHEXMANIAC,Developer,80,,,,Female,,,[]
 410,DEVMAID2,Developer,80,,,,Female,,,[]
+411,DEVCLERK_M2,Developer,80,,,,Male,,,[]
