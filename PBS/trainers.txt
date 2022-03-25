@@ -1754,131 +1754,143 @@ Pokemon = AROMATISSE,40
     AbilityIndex = 0
 #-------------------------------
 [DEVJUGGLER,Brickbat]
-Pokemon = WIGGLYTUFF,55
+Pokemon = WIGGLYTUFF,60
     AbilityIndex = 1
-Pokemon = HAEROBIC,55
+Pokemon = HAEROBIC,60
     AbilityIndex = 1
-Pokemon = GIGANTEON,55
+Pokemon = GIGANTEON,60
     AbilityIndex = 0
-Pokemon = KECLEON,55
+Pokemon = KECLEON,60
     AbilityIndex = 1
-Pokemon = CINCCINO,55
+Pokemon = CINCCINO,60
     AbilityIndex = 0
-Pokemon = BEWEAR,55
+Pokemon = BEWEAR,60
     AbilityIndex = 0
 #-------------------------------
 [DEVCOOLTRAINER_M4,Zeu]
-Pokemon = GALVANTULA,55
+Pokemon = GALVANTULA,60
     AbilityIndex = 0
-Pokemon = FERALIGATR,55
+Pokemon = FERALIGATR,60
     AbilityIndex = 1
-Pokemon = CHANDELURE,55
+Pokemon = CHANDELURE,60
     AbilityIndex = 1
-Pokemon = CROBAT,55
+Pokemon = CROBAT,60
     AbilityIndex = 0
-Pokemon = SWALOT,55
+Pokemon = SWALOT,60
     AbilityIndex = 0
-Pokemon = HYDREIGON,55
+Pokemon = HYDREIGON,60
     AbilityIndex = 1
 #-------------------------------
 [DEVPSYCHIC_M,Waka]
-Pokemon = GLALIE,55
+Pokemon = GLALIE,60
     AbilityIndex = 0
-Pokemon = DHELMISE,55
+Pokemon = DHELMISE,60
     AbilityIndex = 1
-Pokemon = CRYOGONAL,55
+Pokemon = CRYOGONAL,60
     AbilityIndex = 0
-Pokemon = GIRAFARIG,55
+Pokemon = GIRAFARIG,60
     AbilityIndex = 0
-Pokemon = MUSHARNA,55
+Pokemon = MUSHARNA,60
     AbilityIndex = 0
-Pokemon = CHIMECHO,55
+Pokemon = CHIMECHO,60
     AbilityIndex = 1
 #-------------------------------
 [DEVSUPERNERD,Agentbla]
-Pokemon = BEARTIC,55
+Pokemon = BEARTIC,60
     AbilityIndex = 1
-Pokemon = PYROAR,55
+Pokemon = PYROAR,60
     Gender = male
     AbilityIndex = 0
-Pokemon = PORYGONZ,55
+Pokemon = PORYGONZ,60
     AbilityIndex = 0
-Pokemon = WHISCASH,55
+Pokemon = WHISCASH,60
     AbilityIndex = 0
-Pokemon = EELEKTROSS,55
+Pokemon = EELEKTROSS,60
     AbilityIndex = 1
-Pokemon = PALMANTRA,55
+Pokemon = PALMANTRA,60
     AbilityIndex = 1
 #-------------------------------
 [DEVDRAGONTAMER2,Divock]
-Pokemon = DRAGONITE,55
+Pokemon = DRAGONITE,60
     AbilityIndex = 0
-Pokemon = KLAWSAR,55
+Pokemon = KLAWSAR,60
     AbilityIndex = 1
-Pokemon = VESPIQUEN,55
+Pokemon = VESPIQUEN,60
     AbilityIndex = 1
-Pokemon = SCRAFTY,55
+Pokemon = SCRAFTY,60
     AbilityIndex = 0
-Pokemon = PRIMARINA,55
+Pokemon = PRIMARINA,60
     AbilityIndex = 0
-Pokemon = NIDOKING,55
+Pokemon = NIDOKING,60
     AbilityIndex = 1
 #-------------------------------
 [DEVGAMBLER,IgnitedxSoul]
-Pokemon = AEGISLASH,55
+Pokemon = AEGISLASH,60
     AbilityIndex = 1
-Pokemon = INFERNAPE,55
+Pokemon = INFERNAPE,60
     AbilityIndex = 0
-Pokemon = VIKAVOLT,55
+Pokemon = VIKAVOLT,60
     AbilityIndex = 1
-Pokemon = GARCHOMP,55
+Pokemon = GARCHOMP,60
     AbilityIndex = 1
-Pokemon = TOXAPEX,55
+Pokemon = TOXAPEX,60
     AbilityIndex = 1
-Pokemon = RILLABOOM,55
+Pokemon = RILLABOOM,60
     AbilityIndex = 0
 #-------------------------------
 [DEVARTIST3,Drawingbox]
-Pokemon = ESPEON,55
+Pokemon = ESPEON,60
     AbilityIndex = 0
-Pokemon = GOTHITELLE,55
+Pokemon = GOTHITELLE,60
     AbilityIndex = 0
-Pokemon = BEHEEYEM,55
+Pokemon = BEHEEYEM,60
     AbilityIndex = 0
-Pokemon = ORBEETLE,55
+Pokemon = ORBEETLE,60
     AbilityIndex = 1
-Pokemon = HATTERENE,55
+Pokemon = HATTERENE,60
     AbilityIndex = 0
-Pokemon = MALAMAR,55
+Pokemon = MALAMAR,60
     AbilityIndex = 0
 #-------------------------------
 [DEVCOOLTRAINER_M3,Dada]
-Pokemon = FLAREON,55
+Pokemon = FLAREON,60
     AbilityIndex = 1
-Pokemon = HOUNDOMINUS,55
+Pokemon = HOUNDOMINUS,60
     AbilityIndex = 0
-Pokemon = MAGMORTAR,55
+Pokemon = MAGMORTAR,60
     AbilityIndex = 0
-Pokemon = DARMANITAN,55
+Pokemon = DARMANITAN,60
     AbilityIndex = 1
-Pokemon = CHANDELURE,55
+Pokemon = CHANDELURE,60
     AbilityIndex = 0
-Pokemon = TALONFLAME,55
+Pokemon = TALONFLAME,60
     AbilityIndex = 1
 #-------------------------------
 [DEVPOKEMONRANGER_M,Zufaix]
-Pokemon = ANINETALES,55
+Pokemon = ANINETALES,60
     AbilityIndex = 0
-Pokemon = MISMAGIUS,55
+Pokemon = MISMAGIUS,60
     AbilityIndex = 0
-Pokemon = FROSLASS,55
+Pokemon = FROSLASS,60
     AbilityIndex = 0
-Pokemon = LAPNESSIE,55
+Pokemon = LAPNESSIE,60
     AbilityIndex = 0
-Pokemon = ASANDSLASH,55
+Pokemon = ASANDSLASH,60
     AbilityIndex = 1
-Pokemon = CONIFEAR,55
+Pokemon = CONIFEAR,60
     AbilityIndex = 1
+#-------------------------------
+[DEVFURISODEGIRL,Lichenprincess]
+Pokemon = GALVANTULA,60
+	AbilityIndex = 0
+Pokemon = TOXAPEX,60
+	AbilityIndex = 0
+Pokemon = CHANDELURE,60
+	AbilityIndex = 0
+Pokemon = HATTERENE,60
+	AbilityIndex = 0
+Pokemon = VOLCARONA,60
+Pokemon = ARCLAMOR,60
 #-------------------------------
 [LEADER_Bence,Bence]
 Pokemon = STARAPTOR,40
@@ -2267,8 +2279,8 @@ Pokemon = AURORUS,45
 	Item = ICYROCK
 Pokemon = ANINETALES,45
 	AbilityIndex = 0
-Pokemon = HATTERENE,45
-	AbilityIndex = 1
+Pokemon = GLACEON,45
+	AbilityIndex = 0
 Pokemon = SIGILYPH,45
 	AbilityIndex = 0
 	Item = CUSTAPBERRY
@@ -2374,4 +2386,15 @@ Pokemon = URSHIFU,70
 	Item = WHITEHERB
 	EV = 10,20,0,0,0,20
 	Form = 1
+#-------------------------------
+[TRAINER_Imogene_A,Imogene]
+Pokemon = GOTHORITA,27
+	AbilityIndex = 1
+Pokemon = SHEDINJA,27
+#-------------------------------
+[TRAINER_Imogene_B,Imogene]
+Pokemon = CORVISQUIRE,27
+	AbilityIndex = 0
+Pokemon = GLIGAR,27
+	AbilityIndex = 0
 #-------------------------------
