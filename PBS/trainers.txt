@@ -2398,3 +2398,12 @@ Pokemon = CORVISQUIRE,27
 Pokemon = GLIGAR,27
 	AbilityIndex = 0
 #-------------------------------
+[ROUGHNECK2,Robert]
+Pokemon = GRIMER,28
+	AbilityIndex = 0
+Pokemon = KIRLIA,29
+	AbilityIndex = 0
+	Item = SITRUSBERRY
+Pokemon = DOTTLER,30
+	AbilityIndex = 1
+#-------------------------------
