@@ -423,18 +423,14 @@ end
 #===============================================================================
 #  refresh cache on load
 #===============================================================================
-class PokemonLoadScreen
-  alias pbStartLoadScreen_randomizer_x pbStartLoadScreen unless self.method_defined?(:pbStartLoadScreen_randomizer_x)
-  def pbStartLoadScreen
-    ret = pbStartLoadScreen_randomizer_x
-    # refresh current cache
-    if $PokemonGlobal && $PokemonGlobal.isRandomizer
-      Randomizer.start(true)
-      Randomizer.set_rules($PokemonGlobal.randomizerRules) if !$PokemonGlobal.randomizerRules.nil?
-    end
-    return ret
-  end
-end
+Events.onMapChange += proc { |_sender,_e|
+	# refresh current cache
+	if $PokemonGlobal && $PokemonGlobal.isRandomizer
+		echoln("Loading randomizer data!")
+		Randomizer.start(true)
+		Randomizer.set_rules($PokemonGlobal.randomizerRules) if !$PokemonGlobal.randomizerRules.nil?
+	end
+}
 #===============================================================================
 #  randomize trainer data if possible
 #===============================================================================
@@ -489,7 +485,16 @@ DebugMenuCommands.register("randomizer", {
   "description" => _INTL("Deal with randomizer")
 })
 
-DebugMenuCommands.register("toggle", {
+DebugMenuCommands.register("startrandomizer", {
+  "parent"      => "randomizer",
+  "name"        => _INTL("Start the Randomizer"),
+  "description" => _INTL("Starts the Randomizer"),
+  "effect"      => proc { |sprites, viewport|
+    Randomizer.start
+  }
+})
+
+DebugMenuCommands.register("resetrandomizer", {
   "parent"      => "randomizer",
   "name"        => _INTL("Reset Randomizer"),
   "description" => _INTL("Reset the Randomizer"),
