@@ -1223,7 +1223,7 @@ class PokeBattle_Move_096 < PokeBattle_Move
 	def pbMoveFailed?(user,targets)
 		# NOTE: Unnerve does not stop a Pokémon using this move.
 		item = user.item
-		if !item.nil? || !item.is_berry? || !user.itemActive?
+		if item.nil? || !item.is_berry? || !user.itemActive?
 		  @battle.pbDisplay(_INTL("But it failed!"))
 		  return true
 		end
