@@ -540,7 +540,7 @@ Puddle
 #-------------------------------
 [186] # Farm
 LandTall,20
-25,SKIDDO,32,34+
+25,SKIDDO,32,34
 25,MILTANK,32,34
 25,TAUROS,32,34
 25,COTTONEE,32,34
