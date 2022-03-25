@@ -1892,6 +1892,15 @@ Pokemon = HATTERENE,60
 Pokemon = VOLCARONA,60
 Pokemon = ARCLAMOR,60
 #-------------------------------
+[DEVMAID2,Maddie]
+Pokemon = BUNEARY,60
+Pokemon = WOOLOO,60
+Pokemon = BUNEARY,60
+Pokemon = PIKACHU,60
+	Form = 14
+Pokemon = BUNEARY,60
+Pokemon = BRIONNE,60
+#-------------------------------
 [LEADER_Bence,Bence]
 Pokemon = STARAPTOR,40
     Moves = DUALWINGBEAT,BRICKBREAK,STEELWING,QUICKATTACK
