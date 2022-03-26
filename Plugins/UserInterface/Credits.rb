@@ -13,7 +13,7 @@ Fbarbarosa<s>ctWizard
 Slaynoir<s>Maddie
 FurretKnight<s>Dtp81390
 Gabs<s>derrondad
-papper
+papper<s>Jaggedthorn
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 
