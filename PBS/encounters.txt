@@ -755,7 +755,7 @@ DarkCave
 #-------------------------------
 [219] # Regirock Cave
 DarkCave
-33,STONEJOURNER,35,38
+33,STONJOURNER,35,38
 33,LUNATONE,35,38
 33,SOLROCK,35,38
 #-------------------------------
