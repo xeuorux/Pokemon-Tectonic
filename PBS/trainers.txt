@@ -2440,7 +2440,7 @@ Pokemon = DOTTLER,30
 Pokemon = GALLADE,40
 	Name = Jeanne
 	Gender = female
-	Item = SITRUSBERRY
+	Item = SHELLBELL
 	AbilityIndex = 1
 Pokemon = GRAPIDASH,40
 	Name = Vashti
@@ -2452,4 +2452,20 @@ Pokemon = ARCANINE,40
 	Name = Enkidu
 	AbilityIndex = 0
 	Item = EJECTBUTTON
+#-------------------------------
+[TRAINER_Keoni,Keoni]
+Pokemon = MFURRET,22
+	Item = PSYCHICGEM
+Pokemon = ARATTATA,22
+	AbilityIndex = 0
+Pokemon = GDARUMAKA,23
+#-------------------------------
+[TRAINER_Keoni,Keoni,1]
+Pokemon = MSEVIPER,38
+Pokemon = MZANGOOSE,38
+Pokemon = GDARMANITAN,39
+	Item = ICEGEM
+Pokemon = ARATICATE,40
+	AbilityIndex = 0
+	Item = LEFTOVERS
 #-------------------------------
