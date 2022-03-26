@@ -24,12 +24,21 @@ DarkCave,20
 #-------------------------------
 [] # Candy Town
 Land,20
-25,KLEFKI,36,39
-25,TOGEDEMARU,36,39
-25,MILCERY,36,39
+25,KLEFKI,31,33
+25,TOGEDEMARU,31,33
+25,MILCERY,31,33
+25,CASTFORM,31,33
 #-------------------------------
 [] # Sky
 25,WAILMER,38,40
 25,CRYOGONAL,38,40
 25,MINIOR,38,40
 25,DRIFLOON,38,40
+#-------------------------------
+[] # Eleig Stretch Forest Area
+Land,20
+20,CHATOT,31,33
+20,KOMALA,31,33
+20,FOONGUS,31,33
+20,PASSIMIAN,31,33
+20,CARNIVINE,31,33
