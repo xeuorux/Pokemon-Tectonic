@@ -2436,3 +2436,20 @@ Pokemon = KIRLIA,29
 Pokemon = DOTTLER,30
 	AbilityIndex = 1
 #-------------------------------
+[TRAINER_Candy,Candy]
+Pokemon = GALLADE,40
+	Name = Jeanne
+	Gender = female
+	Item = SITRUSBERRY
+	AbilityIndex = 1
+Pokemon = GRAPIDASH,40
+	Name = Vashti
+	AbilityIndex = 1
+Pokemon = STARAPTOR,40
+	Name = Robin
+	AbilityIndex = 0
+Pokemon = ARCANINE,40
+	Name = Enkidu
+	AbilityIndex = 0
+	Item = EJECTBUTTON
+#-------------------------------

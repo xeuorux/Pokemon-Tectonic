@@ -3479,7 +3479,7 @@ Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,120,53,87,35,110
 # Total = 455
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 159
 EffortPoints = 0,2,0,0,0,0
@@ -3510,7 +3510,7 @@ Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,105,79,76,35,110
 # Total = 455
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 159
 EffortPoints = 0,0,0,0,0,2
@@ -7739,7 +7739,7 @@ Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,55,55,55,55,55
 # Total = 330
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 42
 EffortPoints = 0,1,0,0,0,0
@@ -7772,7 +7772,7 @@ Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,95,95,70,35,110
 # Total = 455
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 159
 EffortPoints = 0,0,0,0,0,2
@@ -15651,7 +15651,7 @@ Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 68,125,65,80,65,115
 # Total = 518
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 233
 EffortPoints = 0,3,0,0,0,0
@@ -15748,7 +15748,7 @@ Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 80,70,70,120,100,70
 # Total = 510
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 168
 EffortPoints = 0,0,0,2,0,0
@@ -17693,7 +17693,7 @@ Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 120,100,85,45,30,85
 # Total = 465
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 163
 EffortPoints = 2,0,0,0,0,0
@@ -17725,7 +17725,7 @@ Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,125,75,85,30,75
 # Total = 465
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 163
 EffortPoints = 0,2,0,0,0,0
@@ -18030,7 +18030,7 @@ Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 45,45,60,60,70,50
 # Total = 330
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 56
 EffortPoints = 0,0,0,0,1,0
@@ -18065,7 +18065,7 @@ Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 70,60,85,90,115,90
 # Total = 510
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 168
 EffortPoints = 0,0,0,0,2,0
@@ -20732,7 +20732,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MANDIBUZZ,Level,32
+Evolutions = MANDIBUZZ,Level,31
 #-------------------------------
 [630]
 Name = Mandibuzz
@@ -22027,7 +22027,7 @@ Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 44,38,38,42,61,71
 # Total = 294
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 61
 EffortPoints = 0,0,0,0,0,1
@@ -22062,7 +22062,7 @@ Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 69,50,60,57,70,89
 # Total = 395
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 130
 EffortPoints = 0,0,0,0,0,2
@@ -22096,7 +22096,7 @@ Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 85,60,80,65,90,130
 # Total = 510
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 248
 EffortPoints = 0,0,0,0,0,3
@@ -24974,7 +24974,7 @@ Type2 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 68,64,60,117,111,60
 # Total = 480
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 168
 EffortPoints = 0,0,0,2,0,0
@@ -25072,7 +25072,7 @@ Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 52,62,55,42,47,65
 # Total = 323
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 42
 EffortPoints = 1,0,0,0,0,0
@@ -25106,7 +25106,7 @@ Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 58,95,80,52,55,85
 # Total = 425
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 102
 EffortPoints = 0,0,0,2,0,0
@@ -25140,7 +25140,7 @@ Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 72,120,98,62,70,108
 # Total = 530
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 230
 EffortPoints = 0,3,0,0,0,0
@@ -28187,7 +28187,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = HATTREM,Level,22
+Evolutions = HATTREM,Level,24
 #-------------------------------
 [857]
 Name = Hattrem
@@ -28220,7 +28220,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = HATTERENE,Level,35
+Evolutions = HATTERENE,Level,38
 #-------------------------------
 [858]
 Name = Hatterene
@@ -28551,7 +28551,7 @@ Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,50,50,44,60,71
 # Total = 330
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 54
 EffortPoints = 0,0,0,0,0,1
@@ -28584,7 +28584,7 @@ Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,55,70,59,100,115
 # Total = 459
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 173
 EffortPoints = 0,0,0,0,0,2
@@ -30207,7 +30207,7 @@ Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 70,65,80,69,120,131
 # Total = 535
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 173
 EffortPoints = 0,0,0,0,0,2
