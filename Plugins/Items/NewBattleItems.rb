@@ -15,6 +15,18 @@ BattleHandlers::ItemOnStatLoss.add(:EJECTPACK,
   }
 )
 
+BattleHandlers::UserItemAfterMoveUse.add(:THROATSPRAY,
+  proc { |item, user, targets, move, numHits, battle|
+    next if battle.pbAllFainted?(user.idxOwnSide) ||
+            battle.pbAllFainted?(user.idxOpposingSide)
+    next if !move.soundMove? || numHits == 0
+    next if !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK, user)
+    battle.pbCommonAnimation("UseItem",user)
+    user.pbRaiseStatStage(:SPECIAL_ATTACK, 1, user)
+    user.pbConsumeItem
+  }
+)
+
 BattleHandlers::EOREffectItem.add(:POISONORB,
   proc { |item,battler,battle|
     next if !battler.pbCanPoison?(nil,false)
