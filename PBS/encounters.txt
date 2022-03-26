@@ -325,17 +325,15 @@ LandTinted,20
 #-------------------------------
 [11] # Eleig River Crossing
 Land,20
-20,CHEWTLE,17,20
-20,BIDOOF,17,20
-20,DROWZEE,17,20
-20,AXEW,17,20
-20,GOSSIFLEUR,17,20
+25,CHEWTLE,17,20
+25,DROWZEE,17,20
+25,AXEW,17,20
+25,GOSSIFLEUR,17,20
 Puddle
-20,CORPHISH,17,20	
-20,BARBOACH,17,20
-20,BUIZEL,17,20
-20,MAGIKARP,17,20
-20,POLIWAG,17,20
+25,BARBOACH,17,20
+25,BUIZEL,17,20
+25,MAGIKARP,17,20
+25,POLIWAG,17,20
 LandTinted,20
 50,SHELMET,31,33
 50,KARRABLAST,31,33
@@ -410,12 +408,6 @@ Land,20
 20,CUBCHOO,18,20
 20,CLEFFA,18,20
 20,SPEAROW,18,20
-LandSparse,20 # Post-Rock Climb
-20,ORANGURU,48,50
-20,GIRAFARIG,48,50
-20,ABSOL,48,50
-20,DRAMPA,48,50
-20,SPINDA,48,50
 Special,20
 1,HAPPINY,15,15
 #-------------------------------
@@ -438,7 +430,7 @@ Special,20
 Special,20
 1,OMANYTE,10,10
 1,KABUTO,10,10
-1,AERODACTYL,40,40
+1,AERODACTYL,30,30
 1,LILEEP,10,10
 1,ANORITH,10,10
 1,SHIELDON,10,10
@@ -447,6 +439,10 @@ Special,20
 1,TIRTOUGA,10,10
 1,AMAURA,10,10
 1,TYRUNT,10,10
+1,DRACOZOLT,60,60
+1,DRACOVISH,60,60
+1,ARCTOVISH,60,60
+1,ARCTOZOLT,60,60
 #-------------------------------
 [129] # Barren Crag
 Land,20
@@ -555,37 +551,29 @@ FloweryGrass2,20
 25,TROPIUS,32,34
 25,MORPEKO,32,34
 #-------------------------------
-[183] # Circuit Cave
-Land
-25,ELEKID,35,38
-25,PLUSLE,35,38
-25,MINUN,35,38
-25,SOLROCK,35,38
-#-------------------------------
 [65] # Nemeth Mart
 Special,1
 1,AMEOWTH,15,15
 #-------------------------------
 [187] # Prizca East
 FloweryGrass2,20
-20,SINISTEA,33,35
-20,SMEARGLE,33,35
-20,FURFROU,33,35
-20,MINCCINO,33,35
-20,COMFEY,33,35
+25,SINISTEA,33,35
+25,SMEARGLE,33,35
+25,FURFROU,33,35
+25,COMFEY,33,35
 Special,1
 1,SEVIPER,15,15
 #-------------------------------
 [189] # Catacombs
 Land,20
-33,GOLETT,33,35
-33,DRUDDIGON,33,35
-33,DEINO,33,35
+25,GOLETT,33,35
+25,DRUDDIGON,33,35
+25,DEINO,33,35
+25,SIGILYPH,33,35
 DarkCave,20
-25,SPIRITOMB,33,35
-25,MIMIKYU,33,35
-25,LUNATONE,33,35
-25,YAMASK,33,35
+33,SPIRITOMB,33,35
+33,MIMIKYU,33,35
+34,YAMASK,33,35
 #-------------------------------
 [180] # Prizca West Mart
 Special,1
@@ -656,7 +644,7 @@ LandSparse,20
 Puddle,20
 25,SEEL,35,38
 25,SPHEAL,35,38
-25,CARBINK,35,38
+25,EISCUE,35,38
 25,STANTLER,35,38
 #-------------------------------
 [212] # Ocean Fishing Zone
@@ -743,3 +731,62 @@ Mud,20 # Post-surf
 25,SEVIPER,34,36
 25,ZANGOOSE,34,36
 25,GSTUNFISK,34,36
+#-------------------------------
+[215] # Sky
+Land
+25,WAILMER,52,54
+25,CRYOGONAL,52,54
+25,MINIOR,52,54
+25,CASTFORM,52,54
+#-------------------------------
+[214] # Gigalith's Guts Town
+DarkCave
+25,ELGYEM,16,19
+25,MUNNA,16,19
+25,CARBINK,16,19
+Special
+1,UNOWN,16,19
+#-------------------------------
+[183] # Circuit Cave
+DarkCave
+33,ELEKID,35,38
+33,PLUSLE,35,38
+33,MINUN,35,38
+#-------------------------------
+[219] # Regirock Cave
+DarkCave
+33,STONEJOURNER,35,38
+33,LUNATONE,35,38
+33,SOLROCK,35,38
+#-------------------------------
+[217] # Candy Town
+Land,20
+25,KLEFKI,38,40
+25,DELIBIRD,38,40
+25,MILCERY,38,40
+25,CRYOGONAL,38,40
+#-------------------------------
+[216] # Mountain Lake
+Land,20
+25,CHATOT,34,36
+25,KOMALA,34,36
+25,CARNIVINE,34,36
+25,MINCCINO,34,36
+LandSparse,20
+20,ORANGURU,34,36
+20,ABSOL,34,36
+20,DRAMPA,34,36
+20,SPINDA,34,36
+20,PASSIMIAN,34,36
+Puddle
+25,FOONGUS,34,36
+25,CORPHISH,34,36	
+25,BIDOOF,34,36
+25,GIRAFARIG,34,36
+#-------------------------------
+[218] # Abyssal Chamber
+Puddle
+25,WIMPOD,35,37
+25,CHINCHOU,35,37
+25,MANTYKE,35,37
+25,RELICANTH,35,37
