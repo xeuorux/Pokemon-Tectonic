@@ -155,7 +155,7 @@ class PokemonEncounters
         ret = :FloweryGrass2
 	  when :TintedGrass
 		ret = :LandTinted
-	  when :SewerWater
+	  when :SewerGrate
 		ret = :SewerWater
 	  when :SewerFloor
 		ret = :SewerFloor
@@ -424,14 +424,21 @@ GameData::TerrainTag.register({
   :id                     => :SewerWater,
   :id_number              => 25,
   :land_wild_encounters   => true,
-  :battle_environment     => :MovingWater#,
-  #:can_surf				  => true,
+  :battle_environment     => :MovingWater,
+  :can_surf				  => true,
+})
+
+GameData::TerrainTag.register({
+  :id                     => :SewerGrate,
+  :id_number              => 27,
+  :land_wild_encounters   => true,
+  :battle_environment     => :MovingWater
 })
 
 GameData::EncounterType.register({
   :id             => :SewerWater,
   :type           => :land,
-  :trigger_chance => 21,
+  :trigger_chance => 1,
   :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
 })
 
@@ -444,7 +451,7 @@ GameData::EncounterType.register({
   :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
 })
 
-# Tall Grass
+# Climbable Rocks
 GameData::TerrainTag.register({
   :id                     => :RockClimb,
   :id_number              => 26,

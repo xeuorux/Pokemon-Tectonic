@@ -411,16 +411,30 @@ Land,20
 Special,20
 1,HAPPINY,15,15
 #-------------------------------
-[122] # Sewers
+[122] # Prizca Sewers South
 Special,20
 1,VOLTORB,17,19
-SewerWater,20
+SewerWater,3
 50,GRIMER,17,19
 50,SOLOSIS,17,19
 SewerFloor,20
 34,MUNCHLAX,17,19
 33,VOLTORB,17,19
 33,TRUBBISH,17,19
+#-------------------------------
+[220] # Prizca Sewers North
+SewerWater,1
+50,GRIMER,32,34
+50,SOLOSIS,32,34
+#-------------------------------
+[220] # Prizca Sewers North
+SewerWater,3
+50,GRIMER,32,34
+50,SOLOSIS,32,34
+SewerFloor,20
+34,MUNCHLAX,32,34
+33,ELECTRODE,32,34
+33,TRUBBISH,32,34
 #-------------------------------
 [066] # Nemeth Apartments Attic
 Special,20
