@@ -14,6 +14,7 @@ Slaynoir<s>Maddie
 FurretKnight<s>Dtp81390
 Gabs<s>derrondad
 papper<s>Jaggedthorn
+BlueObelisk
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 
