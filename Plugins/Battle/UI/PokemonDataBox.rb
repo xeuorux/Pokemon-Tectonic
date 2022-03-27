@@ -131,7 +131,7 @@ class PokemonDataBox < SpriteWrapper
 		pbDrawNumber(@battler.level,self.bitmap,@spriteBaseX+162,16)
 		# Draw shiny icon
 		if @battler.shiny?
-		  shinyX = (@battler.opposes?(0)) ? 206 : -6   # Foe's/player's
+		  shinyX = (@battler.opposes?(0)) ? 214 : -6   # Foe's/player's
 		  imagePos.push(["Graphics/Pictures/shiny",@spriteBaseX+shinyX,36])
 		end
 		# Draw Mega Evolution/Primal Reversion icon
