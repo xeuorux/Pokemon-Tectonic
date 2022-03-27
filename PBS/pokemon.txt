@@ -14799,7 +14799,7 @@ Name = Hippopotas
 InternalName = HIPPOPOTAS
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,40,75,35,80,50
+BaseStats = 75,40,65,35,80,60
 # Total = 355
 GenderRate = Female50Percent
 GrowthRate = Slow
@@ -14832,8 +14832,8 @@ Name = Hippowdon
 InternalName = HIPPOWDON
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,60,100,45,105,70
-# Total = 480
+BaseStats = 100,60,100,45,105,100
+# Total = 510
 GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 184
@@ -29073,8 +29073,8 @@ InternalName = DURALUDON
 Type1 = STEEL
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,85,100,70,105,50
-# Total = 480
+BaseStats = 70,65,100,70,85,40
+# Total = 430
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 187
@@ -30588,6 +30588,39 @@ BattlerPlayerX = 0
 BattlerPlayerY = 13
 BattlerEnemyX = -6
 BattlerEnemyY = 19
+BattlerShadowX = 0
+BattlerShadowSize = 3
+#-------------------------------
+[931]
+Name = Towerpoda
+InternalName = TOWERPODA
+Type1 = STEEL
+Type2 = DRAGON
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 85,80,110,90,105,40
+# Total = 510
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 240
+EffortPoints = 0,0,0,0,2,0
+Rareness = 60
+Happiness = 50
+Abilities = SANDSTREAM
+Moves = 1,METALCLAW,1,LEER,6,SMASH,12,HONECLAWS,18,DRAGONROAR,24,BREAKINGSWIPE,30,DRAGONTAIL,36,IRONDEFENSE,42,LASERFOCUS,48,DRAGONCLAW,54,FLASHCANNON,60,METALBURST,66,STEELBEAM
+TutorMoves = BODYPRESS,BODYSLAM,BREAKINGSWIPE,BRICKBREAK,DARKPULSE,DRACOMETEOR,DRAGONCLAW,DRAGONPULSE,ENDURE,FACADE,FLASHCANNON,FOULPLAY,GIGAIMPACT,GYROBALL,HEAVYSLAM,HYPERBEAM,IRONDEFENSE,IRONHEAD,LIGHTSCREEN,OUTRAGE,PROTECT,REFLECT,REST,ROCKSLIDE,ROCKTOMB,ROUND,SCARYFACE,SCREECH,SLEEPTALK,SNARL,SNORE,SOLARBEAM,STEALTHROCK,STEELBEAM,STEELROLLER,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SWORDSDANCE,THUNDER,THUNDERBOLT,THUNDERJOLT
+EggMoves = MIRRORCOAT,NIGHTSLASH,SLASH
+Compatibility = Mineral,Dragon
+StepsToHatch = 7966
+Height = 80.8
+Weight = 728.0
+Color = White
+Shape = Head
+Kind = Alloy
+Pokedex = It has grown so tall it can no longer fit in the cave it grew up in. Some Towerpoda feel a bittersweet nostalgia because of this.
+BattlerPlayerX = 0
+BattlerPlayerY = 13
+BattlerEnemyX = -8
+BattlerEnemyY = 7
 BattlerShadowX = 0
 BattlerShadowSize = 3
 #-------------------------------

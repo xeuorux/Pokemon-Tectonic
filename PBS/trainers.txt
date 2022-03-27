@@ -1826,16 +1826,14 @@ Pokemon = CHIMECHO,60
 [DEVSUPERNERD,Agentbla]
 Pokemon = BEARTIC,60
     AbilityIndex = 1
-Pokemon = PYROAR,60
-    Gender = male
-    AbilityIndex = 0
-Pokemon = PORYGONZ,60
+Pokemon = NINETALES,60
+    AbilityIndex = 1
+Pokemon = KRICKETUNE,60
     AbilityIndex = 0
 Pokemon = WHISCASH,60
     AbilityIndex = 0
-Pokemon = EELEKTROSS,60
-    AbilityIndex = 1
-Pokemon = PALMANTRA,60
+Pokemon = MFURRET,60
+Pokemon = DIGNIPHITE,60
     AbilityIndex = 1
 #-------------------------------
 [DEVDRAGONTAMER2,Divock]
