@@ -332,7 +332,7 @@
 321,SLEEPPOWDER,Sleep Powder,003,0,GRASS,Status,75,15,0,NearOther,0,bcel,"The user scatters a big cloud of sleep-inducing dust around the target."
 322,SPIKYSHIELD,Spiky Shield,14C,0,GRASS,Status,0,3,0,User,4,,Protects the user from attacks. Also damages physical attackers.
 323,SPORE,Spore,003,0,GRASS,Status,100,15,0,NearOther,-1,bcel,The user scatters bursts of spores that induce sleep. This move has -1 priority.
-324,STRENGTHSAP,Strength Sap,160,0,GRASS,Status,100,10,0,NearOther,0,bce,The user restores its HP by the target's Attack stat amount. Then lowers the target's Attack stat.
+324,STRENGTHSAP,Strength Sap,160,0,GRASS,Status,100,10,0,NearOther,0,bce,"Restores its own HP by the target's Attack stat amount, then lowers the target's Attack stat."
 325,STUNSPORE,Stun Spore,007,0,GRASS,Status,100,30,0,NearOther,0,bcel,The user scatters a cloud of paralyzing powder. It leaves the target numb.
 326,SYNTHESIS,Synthesis,0D8,0,GRASS,Status,0,5,0,User,0,d,The user restores its own HP. The amount of HP regained varies with the weather.
 327,WORRYSEED,Worry Seed,064,0,GRASS,Status,100,10,0,NearOther,0,bce,A seed that causes worry is planted on the foe. It prevents sleep by making its Ability Insomnia.
@@ -405,7 +405,7 @@
 390,LASTRESORT,Last Resort,125,140,NORMAL,Physical,100,5,0,NearOther,0,abef,This move can be used only after the user has used all the other moves it knows in the battle.
 391,SKULLBASH,Skull Bash,0C8,140,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user tucks in its head to sharply raise its Defense in the first turn, then rams the foe on the next turn."
 392,DOUBLEEDGE,Double-Edge,0FB,120,NORMAL,Physical,100,15,0,NearOther,0,abef,"A reckless, life-risking tackle. The user also takes 33% recoil."
-393,HEADCHARGE,Head Charge,502,150,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user charges its head into the foe, using its powerful guard hair. The user takes 2/3 of the damage as recoil."
+393,HEADCHARGE,Head Charge,502,170,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user charges its head into the foe, using its powerful guard hair. The user takes 2/3 of the damage as recoil."
 394,MEGAKICK,Mega Kick,000,120,NORMAL,Physical,80,5,0,NearOther,0,abef,The target is attacked by a kick launched with muscle-packed power.
 395,TECHNOBLAST,Techno Blast,09F,120,NORMAL,Special,100,5,0,NearOther,0,bef,The user fires a beam of light at its target. The type changes depending on the Drive the user holds.
 396,THRASH,Thrash,0D2,120,NORMAL,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks for two to three turns. It then becomes confused, however."
