@@ -29073,7 +29073,7 @@ InternalName = DURALUDON
 Type1 = STEEL
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,65,100,70,85,40
+BaseStats = 70,65,80,70,80,45
 # Total = 430
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -29099,6 +29099,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 3
+Evolutions = TOWERPODA,Level,34
 #-------------------------------
 [885]
 Name = Dreepy
@@ -30597,7 +30598,7 @@ InternalName = TOWERPODA
 Type1 = STEEL
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 85,80,110,90,105,40
+BaseStats = 85,80,100,90,105,60
 # Total = 510
 GenderRate = Female50Percent
 GrowthRate = Medium
