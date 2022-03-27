@@ -422,7 +422,7 @@ SewerFloor,20
 33,VOLTORB,17,19
 33,TRUBBISH,17,19
 #-------------------------------
-[220] # Prizca Sewers North
+[222] # Prizca Sewers Tunnel
 SewerWater,1
 50,GRIMER,32,34
 50,SOLOSIS,32,34
