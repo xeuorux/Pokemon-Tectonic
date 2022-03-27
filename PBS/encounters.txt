@@ -111,9 +111,6 @@ LandTall,20
 25,PINECO,14,17
 25,DIGLETT,14,17
 25,PIKIPEK,14,17
-LandTinted,20
-50,PETILIL,14,17
-50,WURMPLE,14,17
 #-------------------------------
 [56] # Nemeth
 FloweryGrass,20
@@ -121,9 +118,6 @@ FloweryGrass,20
 25,SWIRLIX,15,18
 25,CHERUBI,15,18
 25,SMOOCHUM,15,18
-LandTinted,20
-50,YUNGOOS,15,18
-50,FOMANTIS,15,18
 Special
 1,SENTRET,15,15
 #-------------------------------
@@ -180,7 +174,7 @@ Special,1
 Special,1
 1,GPONYTA,15,15
 #-------------------------------
-[3] # Savannah Route
+[3] # The Shift
 Land,20
 25,SANDSHREW,15,18
 25,YAMPER,15,18
@@ -192,9 +186,6 @@ LandTall,20
 13,NIDORANmA,15,18
 25,PONYTA,15,18
 25,BLITZLE,15,18
-LandTinted,20
-50,DODUO,15,18
-50,PATRAT,15,18
 Special,20
 1,ELEKID,15,15
 #-------------------------------
@@ -204,10 +195,6 @@ Land,20
 25,TOXEL,15,18
 25,TYROGUE,15,18
 25,PAWNIARD,15,18
-LandTinted,20
-34,BURMY,15,18
-33,BURMY_1,15,18
-33,BURMY_2,15,18
 Special,20
 1,BLIPBUG,15,15
 #-------------------------------
@@ -218,7 +205,7 @@ DarkCave,20
 25,BELDUM,15,18
 25,MAGNEMITE,15,18
 #-------------------------------
-[55] # Flower Fields Ideas
+[55] #Floral Rest
 FloweryGrass,20
 5,FLABEBE,15,18
 5,FLABEBE_1,15,18
@@ -233,9 +220,6 @@ FloweryGrass2,20
 25,DRATINI,15,18
 25,PSYDUCK,15,18
 25,MEDITITE,15,18
-LandTinted,20
-50,ZIGZAGOON,15,18
-50,BELLSPROUT,15,18
 Special,20
 1,SHUPPET,15,15
 #-------------------------------
@@ -290,9 +274,6 @@ LandSparse,20
 25,MORELULL,18,20
 25,EKANS,18,20
 25,WOOPER,18,20
-LandTinted,20
-50,SKWOVET,18,20
-50,TYMPOLE,18,20
 Special,20
 1,ADIGLETT,15,15
 #-------------------------------
@@ -318,10 +299,6 @@ LandTall,20
 25,SIZZLIPEDE,16,19
 25,VENONAT,16,19
 25,SPRITZEE,16,19
-LandTinted,20
-25,PANSAGE,16,19
-25,PANSEAR,16,19
-25,PANPOUR,16,19
 #-------------------------------
 [11] # Eleig River Crossing
 Land,20
@@ -334,9 +311,6 @@ Puddle
 25,BUIZEL,17,20
 25,MAGIKARP,17,20
 25,POLIWAG,17,20
-LandTinted,20
-50,SHELMET,31,33
-50,KARRABLAST,31,33
 #-------------------------------
 [12] # Gigalith's Guts
 DarkCave,20
@@ -513,15 +487,13 @@ Land,20
 Special,1
 1,ROTOM,30,30
 #-------------------------------
-[34] # Battle Fair
+[34] # Battle Plaza
 FloweryGrass,20
 20,SNUBBULL,31,33
 20,HAPPINY,31,33
 20,SKITTY,31,33
 20,AUDINO,31,33
 20,INDEEDEE,31,33
-LandTinted
-100,FARFETCHD,32,34
 #-------------------------------
 [029] # Full Blast Records F2
 Special,1
@@ -609,9 +581,6 @@ Puddle,20
 25,STARYU,36,38
 25,PYUKUMUKU,36,38
 25,PINCURCHIN,36,38
-LandTinted,20
-50,BINACLE,36,38
-50,CRAMORANT,36,38
 #-------------------------------
 [196] # Ocean Lava Zone
 DarkCave,20
