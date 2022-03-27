@@ -31,3 +31,9 @@ BattleHandlers::PriorityChangeAbility.add(:DECEPTIVE,
     end
   }
 )
+
+BattleHandlers::PriorityChangeAbility.add(:ENVY,
+  proc { |ability,battler,move,pri,targets=nil|
+    next pri+1 if targets && targets.length == 1 && targets[0].statStagesUp?
+  }
+)

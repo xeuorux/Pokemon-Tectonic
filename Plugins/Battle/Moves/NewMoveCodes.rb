@@ -428,18 +428,13 @@ class PokeBattle_Move_515 < PokeBattle_Move
   end
 end
 
-
 #===============================================================================
 # Burns opposing Pokemon that have increased their stats. (Burning Jealousy)
 #===============================================================================
 class PokeBattle_Move_516 < PokeBattle_Move
-  def statStagesUp?(target)
-	return target.stages[:ATTACK] > 0 || target.stages[:DEFENSE] > 0 || target.stages[:SPEED] > 0 || target.stages[:SPECIAL_ATTACK] > 0 || target.stages[:SPECIAL_DEFENSE] > 0 || target.stages[:ACCURACY] > 0 || target.stages[:EVASION] > 0
-  end
-
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    if target.pbCanBurn?(user,false,self) && statStagesUp?(target)
+    if target.pbCanBurn?(user,false,self) && target.statStagesUp?
       target.pbBurn(user)
     end
   end
