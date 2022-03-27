@@ -329,10 +329,11 @@ DarkCave,20
 #-------------------------------
 [81] # Cave Path
 DarkCave,20
-25,CUBONE,17,20
-25,WOOBAT,17,20
-25,SABLEYE,17,20
-25,MAWILE,17,20
+20,CUBONE,17,20
+20,WOOBAT,17,20
+20,SABLEYE,17,20
+20,MAWILE,17,20
+20,DURALUDON,17,20
 #-------------------------------
 [78] # LuxTech Main
 Special,20

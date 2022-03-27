@@ -759,3 +759,9 @@ HPMult = 6
 Ability = FROSTSCATTER
 Moves = CRYSTALCRUSH,PRIMEVALFLOWSTATE
 PostPrimeMoves = LIQUIDATION
+#-----------------------------
+[HIPPOWDON]
+Turns = 1
+HPMult = 5
+Ability = SANDSTREAM
+Moves = HEATWAVE,STEALTHROCK,SLACKOFF
