@@ -2495,3 +2495,36 @@ Pokemon = ARATICATE,40
 	AbilityIndex = 0
 	Item = LEFTOVERS
 #-------------------------------
+[SWIMMER_M2,Finn]
+Pokemon = RELICANTH,34
+	AbilityIndex = 1
+Pokemon = LINOONE,36
+	AbilityIndex = 1
+	Item = SITRUSBERRY
+	Moves = BELLYDRUM,EXTREMESPEED,FLAIL,IRONTAIL
+Pokemon = LEDIAN,35
+	AbilityIndex = 1
+	Item = MUSCLEBAND
+Pokemon = CHESNAUGHT,36
+	AbilityIndex = 1
+#-------------------------------
+[COWGIRL,Sasha]
+Pokemon = VIVILLON,35
+Pokemon = SHELGON,36
+	AbilityIndex = 1
+	Item = LEFTOVERS
+Pokemon = GENGAR,36
+	AbilityIndex = 1
+	Item = GHOSTGEM
+Pokemon = GRANBULL,37
+	AbilityIndex = 1
+#-------------------------------
+[SKIER_F2,Valeriya]
+Pokemon = KADABRA,28
+	AbilityIndex = 1
+Pokemon = RABOOT,28
+	Item = FIREGEM
+	AbilityIndex = 1 
+Pokemon = HITMONTOP,29
+	AbilityIndex = 1
+#-------------------------------
