@@ -301,4 +301,11 @@ class PokeBattle_Battler
     return false if !pbCanLowerStatStage?(:SPEED,user)
     return pbLowerStatStageByCause(:SPEED,1,user,user.abilityName)
   end
+  
+	def statStagesUp?(target)
+		return stages[:ATTACK] > 0 || stages[:DEFENSE] > 0 ||
+				stages[:SPEED] > 0 || stages[:SPECIAL_ATTACK] > 0 ||
+				stages[:SPECIAL_DEFENSE] > 0 || target.stages[:ACCURACY] > 0 ||
+				target.stages[:EVASION] > 0
+	end
 end
