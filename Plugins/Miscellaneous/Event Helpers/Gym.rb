@@ -1,4 +1,5 @@
 BADGE_COUNT_VARIABLE = 27
+SURFBOARD_PHONECALL_GLOBAL = 61
 
 def earnBadge(badgeNum)
 	badgeNames = [
@@ -26,10 +27,25 @@ def earnBadge(badgeNum)
 	pbSetLevelCap(levelCapsPerBadgeCount[totalBadges])
 	
 	# 
-	$game_variables[BADGE_COUNT_VARIABLE] += 1
+	$game_variables[BADGE_COUNT_VARIABLE] = totalBadges
+	
+	if totalBadges == 4
+		$PokemonGlobal.shouldProcSurfboardCall = true
+	end
 	
 	refreshMapEvents()
 end
+
+class PokemonGlobalMetadata
+	attr_accessor :shouldProcSurfboardCall
+end
+
+Events.onMapChange += proc { |_sender, e|
+	if $PokemonGlobal.shouldProcSurfboardCall && playerIsOutdoors?()
+		$game_switches[SURFBOARD_PHONECALL_GLOBAL] = true
+		$PokemonGlobal.shouldProcSurfboardCall = false
+	end
+}
 
 def showGymChoices(notSureLabel="NotSure",basicTeamLabel="BasicTeam",doublesTeamLabel="DoublesTeam",amuletMatters = true)
 	cmdNotSure = -1
