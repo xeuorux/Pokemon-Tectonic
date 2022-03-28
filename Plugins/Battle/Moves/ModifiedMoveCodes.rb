@@ -214,8 +214,8 @@ end
 class PokeBattle_Move_05A < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
 		if target.boss
-		  #@battle.pbDisplay(_INTL("But it failed!"))
-		  #return true
+			@battle.pbDisplay(_INTL("But it failed!"))
+			return true
 		end
 		return false
 	end
