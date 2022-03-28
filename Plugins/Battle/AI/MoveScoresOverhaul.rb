@@ -2964,19 +2964,23 @@ def statusUpsideAbilities()
 	return [:GUTS,:AUDACITY,:MARVELSCALE,:QUICKFEET]
 end
 
+# Actually used for numbing now
 def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,twave=false)
 	wouldBeFailedTWave = skill>=PBTrainerAI.mediumSkill && twave && Effectiveness.ineffective?(pbCalcTypeMod(:ELECTRIC,user,target))
 	if target.pbCanParalyze?(user,false) && !wouldBeFailedTWave
-		score += 30
-		if skill>=PBTrainerAI.mediumSkill
-		   aspeed = pbRoughStat(user,:SPEED,skill)
-		   ospeed = pbRoughStat(target,:SPEED,skill)
-		  if aspeed<ospeed
+		score += 10
+		aspeed = pbRoughStat(user,:SPEED,skill)
+		ospeed = pbRoughStat(target,:SPEED,skill)
+		if aspeed<ospeed
 			score += 30
-		  elsif aspeed>ospeed
+		elsif aspeed>ospeed
 			score -= 30
-		  end
 		end
+		score += ([target.stages[:ATTACK],0].max)*10
+		score += ([target.stages[:DEFENSE],0].max)*10
+		score += ([target.stages[:SPECIAL_ATTACK],0].max)*10
+		score += ([target.stages[:SPECIAL_DEFENSE],0].max)*10
+		score += ([target.stages[:EVASION],0].max)*10
 		score -= 30 if target.hasActiveAbility?(statusUpsideAbilities)
 	elsif status
 		score = 0 
@@ -3066,7 +3070,7 @@ def pbRoughType(move,user,skill)
 end
 
 def pbRoughStat(battler,stat,skill)
-	return battler.pbSpeed if skill>=PBTrainerAI.highSkill && stat==:SPEED
+	return battler.pbSpeed if stat==:SPEED
 	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
 	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
 	stage = battler.stages[stat]+6
