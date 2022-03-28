@@ -2516,8 +2516,46 @@ Pokemon = SHELGON,36
 Pokemon = GENGAR,36
 	AbilityIndex = 1
 	Item = GHOSTGEM
+	Gender = male
 Pokemon = GRANBULL,37
 	AbilityIndex = 1
+#-------------------------------
+[LASS2,Faye]
+Pokemon = WIGGLYTUFF,35
+	AbilityIndex = 1
+	Item = THROATSPRAY
+Pokemon = DELPHOX,36
+	AbilityIndex = 1
+	Item = WISEGLASSES
+Pokemon = ROTOM,36
+	Form = 2
+Pokemon = ABSOL,37
+	AbilityIndex = 1
+#-------------------------------
+[SCIENTIST_F,Zofia]
+Pokemon = VESPIQUEN,35
+	AbilityIndex = 1
+	Item = ORANBERRY
+Pokemon = LANTURN,36
+	AbilityIndex = 0
+	Item = ELECTRICGEM
+Pokemon = BEEDRILL,36
+	Item = SHELLBELL
+Pokemon = TALONFLAME,37
+	Item = LIFEORB
+	AbilityIndex = 1
+Pokemon = TORTERRA,38
+	Item = BIGROOT
+	AbilityIndex = 0
+#-------------------------------
+[BOARDER,Lev]
+Pokemon = PINSIR,29
+	AbilityIndex = 0
+Pokemon = DEERLING,29
+	Form = 3
+	Item = SITRUSBERRY
+Pokemon = TREVENANT,30
+	AbilityIndex = 0
 #-------------------------------
 [SKIER_F2,Valeriya]
 Pokemon = KADABRA,28
