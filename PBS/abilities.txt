@@ -268,7 +268,7 @@
 266,ASONEICE,As One,"Possesses 2 abilities, Unnerve and Chilling Neigh"
 267,ASONEGHOST,As One,"Possesses 2 abilities, Unnerve and Grim Neigh"
 #-------------------------------
-268,FASCINATE,Fascinate,"Upon entry, owers the foe's Special Attack stat by distracting them."
+268,FASCINATE,Fascinate,"Upon entry, lowers the foe's Special Attack stat by distracting them."
 269,PROUDFIRE,Proudfire,"Enemy Pokémon that switch in become burned."
 270,PALEOLITHIC,Paleolithic,"Powers up Rock-type moves by 50%."
 271,SUBZERO,Sub Zero,"Powers up Ice-type moves by 50%."

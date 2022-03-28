@@ -526,12 +526,12 @@ Ability = INTIMIDATE
 Moves = BITE,TACKLE,PRIMEVALMOONLIGHT
 PostPrimeMoves = DISARMINGVOICE
 #-------------------------------
-[COPPERAJAH]
+[DIGNIPHITE]
 Turns = 2
+HPMult = 3
 Ability = FASCINATE
 Moves = METALCLAW,PRIMEVALSTRINGSHOT
 PostPrimeMoves = BUGBITE
-HPMult = 3.5
 #-------------------------------
 [MILOTIC]
 Turns = 1
