@@ -42,3 +42,11 @@ def isCat?(species)
 		:MEOWSTIC,:LITTEN,:TORRACAT,:INCINEROAR]
 	return array.include?(species)
 end
+
+def playerIsOutdoors?
+	begin
+		return GameData::MapMetadata.get($game_map.map_id).outdoor_map
+	rescue
+		return false
+	end
+end

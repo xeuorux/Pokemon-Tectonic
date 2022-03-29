@@ -290,7 +290,7 @@ Pokemon = SLUGMA,20
 [LEADER_Eko,Eko]
 Policies = PRIORITIZEDOTS,EKO
 Pokemon = SALANDIT,20
-    Moves = POISONGAS,BADSTENCH,EMBER,COVET
+    Moves = POISONGAS,BADSTENCH,EMBER,IGNITE
     AbilityIndex = 1
 Pokemon = VULPIX,20
     Moves = INCINERATE,CONFUSERAY,IGNITE,SUBSTITUTE
@@ -299,7 +299,7 @@ Pokemon = FLETCHINDER,20
     Name = Dario
     Moves = FLAMECHARGE,FLAIL,PECK,QUICKATTACK
     AbilityIndex = 0
-    Item = SITRUSBERRY
+    Item = LIECHIBERRY
 Pokemon = TENTACOOL,20
     Moves = WATERPULSE,SUPERSONIC,WRAP,ACID
     AbilityIndex = 1
@@ -307,9 +307,12 @@ Pokemon = TENTACOOL,20
 [LEADER_Eko_2,Eko]
 Policies = PRIORITIZEDOTS,EKO
 Pokemon = SALANDIT,20
-    Moves = POISONGAS,BADSTENCH,EMBER,COVET
+    Moves = POISONGAS,BADSTENCH,EMBER,IGNITE
     AbilityIndex = 1
     Item = AIRBALLOON
+Pokemon = TENTACOOL,20
+    Moves = WATERPULSE,SUPERSONIC,WRAP,ACID
+    AbilityIndex = 1
 Pokemon = VULPIX,20
     Moves = INCINERATE,CONFUSERAY,IGNITE,SUBSTITUTE
     AbilityIndex = 0
@@ -317,12 +320,9 @@ Pokemon = FLETCHINDER,20
     Name = Dario
     Moves = FLAMECHARGE,FLAIL,PECK,QUICKATTACK
     AbilityIndex = 0
-    Item = SITRUSBERRY
-Pokemon = TENTACOOL,20
-    Moves = WATERPULSE,SUPERSONIC,WRAP,ACID
-    AbilityIndex = 1
+    Item = LIECHIBERRY
 Pokemon = TYNAMO,20
-    Moves = JOLT,BITE,POISONFANG,LIGHTSCREEN
+    Moves = JOLT,ENTOXIN,POISONFANG,LIGHTSCREEN
     AbilityIndex = 0
 Pokemon = CAMERUPT,20
     Moves = TREMOR,FLAMEBURST,INCINERATE,MUDTHROW
@@ -332,7 +332,7 @@ Pokemon = CAMERUPT,20
 [LEADER_Eko_2,Eko,1]
 Policies = PRIORITIZEDOTS,EKO,CURSE_SPIKES
 Pokemon = SALANDIT,20
-    Moves = POISONGAS,BADSTENCH,EMBER,COVET
+    Moves = POISONGAS,BADSTENCH,EMBER,IGNITE
     AbilityIndex = 1
     Item = AIRBALLOON
 Pokemon = VULPIX,20
@@ -342,12 +342,12 @@ Pokemon = FLETCHINDER,20
     Name = Dario
     Moves = FLAMECHARGE,FLAIL,PECK,QUICKATTACK
     AbilityIndex = 0
-    Item = SITRUSBERRY
+    Item = LIECHIBERRY
 Pokemon = TENTACOOL,20
     Moves = WATERPULSE,SUPERSONIC,WRAP,ACID
     AbilityIndex = 1
 Pokemon = TYNAMO,20
-    Moves = JOLT,BITE,POISONFANG,LIGHTSCREEN
+    Moves = JOLT,ENTOXIN,POISONFANG,LIGHTSCREEN
     AbilityIndex = 0
 Pokemon = CAMERUPT,20
     Moves = TREMOR,FLAMEBURST,INCINERATE,MUDTHROW
@@ -468,6 +468,7 @@ Pokemon = MORELULL,19
 Policies = HELENA
 Pokemon = LANTURN,25
     AbilityIndex = 0
+    Moves = DOUSE,SHOCKWAVE,VOLTSWITCH,EERIEIMPULSE
 Pokemon = WAILMER,25
     Name = Hannibal
     Gender = male
@@ -479,13 +480,17 @@ Pokemon = CHARJABUG,25
     Item = SITRUSBERRY
 Pokemon = LUXIO,25
     AbilityIndex = 1
+    Moves = FEINTATTACK,THUNDERFANG,ROAR,MAGNETRISE
 #-------------------------------
 [LEADER_Helena_2,Helena]
 Policies = HELENA
 Pokemon = LANTURN,25
     AbilityIndex = 0
+    Moves = DOUSE,SHOCKWAVE,VOLTSWITCH,EERIEIMPULSE
 Pokemon = PINCURCHIN,25
     AbilityIndex = 0
+    Moves = SPARK,PECK,BUBBLEBEAM,VENOSHOCK
+    Item = EJECTBUTTON
 Pokemon = CLAUNCHER,25
     Moves = TERRAINPULSE,AQUAJET,WATERPULSE
     AbilityIndex = 0
@@ -501,13 +506,17 @@ Pokemon = WAILMER,25
     Item = ELECTRICSEED
 Pokemon = LUXIO,25
     AbilityIndex = 1
+    Moves = FEINTATTACK,THUNDERFANG,ROAR,MAGNETRISE
 #-------------------------------
 [LEADER_Helena_2,Helena,1]
 Policies = HELENA,CURSE_TORMENTED
 Pokemon = LANTURN,25
     AbilityIndex = 0
+    Moves = DOUSE,SHOCKWAVE,VOLTSWITCH,EERIEIMPULSE
 Pokemon = PINCURCHIN,25
     AbilityIndex = 0
+    Moves = SPARK,PECK,BUBBLEBEAM,VENOSHOCK
+    Item = EJECTBUTTON
 Pokemon = CLAUNCHER,25
     Moves = TERRAINPULSE,AQUAJET,WATERPULSE
     AbilityIndex = 0
@@ -523,6 +532,7 @@ Pokemon = WAILMER,25
     Item = ELECTRICSEED
 Pokemon = LUXIO,25
     AbilityIndex = 1
+    Moves = FEINTATTACK,THUNDERFANG,ROAR,MAGNETRISE
 #-------------------------------
 [IDOL,Ishizu]
 Pokemon = JIGGLYPUFF,25
@@ -1248,10 +1258,10 @@ Pokemon = DUSCLOPS,30
     Gender = female
     Moves = CONFUSERAY,NIGHTSHADE,WILLOWISP,TAUNT
     AbilityIndex = 1
-Pokemon = NUZLEAF,30
-    Moves = MAGICALLEAF,FAKEOUT,PAYBACK,SELFDESTRUCT
+    Item = COLBURBERRY
+Pokemon = SHIFTRY,30
+    Moves = MAGICALLEAF,FAKEOUT,PAYBACK,AIRSLASH
     AbilityIndex = 0
-    Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Rafael_2,Rafael]
 Policies = DISLIKEATTACKING,RAFAEL
@@ -1268,16 +1278,16 @@ Pokemon = LOMBRE,30
 Pokemon = DUSCLOPS,30
     Name = Apotropaia
     Gender = female
-    Moves = CONFUSERAY,SHADOWSNEAK,WILLOWISP,TAUNT
+    Moves = CONFUSERAY,NIGHTSHADE,WILLOWISP,TAUNT
     AbilityIndex = 1
-Pokemon = NINETALES,30
-    Moves = SPELLBIND,BURNINGJEALOUSY,HEX,PACIFY
+    Item = COLBURBERRY
+Pokemon = LAMPENT,30
+    Moves = HEX,INCINERATE,CHILL,CLEARSMOG
     AbilityIndex = 0
-    Item = FOCUSSASH
-Pokemon = NUZLEAF,30
-    Moves = MAGICALLEAF,REST,PAYBACK,SELFDESTRUCT
+    Item = ORANBERRY
+Pokemon = SHIFTRY,30
+    Moves = MAGICALLEAF,FAKEOUT,PAYBACK,AIRSLASH
     AbilityIndex = 0
-    Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Rafael_2,Rafael,1]
 Policies = DISLIKEATTACKING,RAFAEL,CURSE_SELF_DEBUFFING
@@ -1294,16 +1304,16 @@ Pokemon = LOMBRE,30
 Pokemon = DUSCLOPS,30
     Name = Apotropaia
     Gender = female
-    Moves = CONFUSERAY,SHADOWSNEAK,WILLOWISP,TAUNT
+    Moves = CONFUSERAY,NIGHTSHADE,WILLOWISP,TAUNT
     AbilityIndex = 1
-Pokemon = NINETALES,30
-    Moves = SPELLBIND,BURNINGJEALOUSY,HEX,PACIFY
+    Item = COLBURBERRY
+Pokemon = LAMPENT,30
+    Moves = HEX,INCINERATE,CHILL,CLEARSMOG
     AbilityIndex = 0
-    Item = FOCUSSASH
-Pokemon = NUZLEAF,30
-    Moves = MAGICALLEAF,REST,PAYBACK,SELFDESTRUCT
+    Item = ORANBERRY
+Pokemon = SHIFTRY,30
+    Moves = MAGICALLEAF,FAKEOUT,PAYBACK,AIRSLASH
     AbilityIndex = 0
-    Item = SITRUSBERRY
 #-------------------------------
 [ARCHFRIEND_Lainie,Lainie]
 Policies = LAINIE
@@ -2516,8 +2526,46 @@ Pokemon = SHELGON,36
 Pokemon = GENGAR,36
 	AbilityIndex = 1
 	Item = GHOSTGEM
+	Gender = male
 Pokemon = GRANBULL,37
 	AbilityIndex = 1
+#-------------------------------
+[LASS2,Faye]
+Pokemon = WIGGLYTUFF,35
+	AbilityIndex = 1
+	Item = THROATSPRAY
+Pokemon = DELPHOX,36
+	AbilityIndex = 1
+	Item = WISEGLASSES
+Pokemon = ROTOM,36
+	Form = 2
+Pokemon = ABSOL,37
+	AbilityIndex = 1
+#-------------------------------
+[SCIENTIST_F,Zofia]
+Pokemon = VESPIQUEN,35
+	AbilityIndex = 1
+	Item = ORANBERRY
+Pokemon = LANTURN,36
+	AbilityIndex = 0
+	Item = ELECTRICGEM
+Pokemon = BEEDRILL,36
+	Item = SHELLBELL
+Pokemon = TALONFLAME,37
+	Item = LIFEORB
+	AbilityIndex = 1
+Pokemon = TORTERRA,38
+	Item = BIGROOT
+	AbilityIndex = 0
+#-------------------------------
+[BOARDER,Lev]
+Pokemon = PINSIR,29
+	AbilityIndex = 0
+Pokemon = DEERLING,29
+	Form = 3
+	Item = SITRUSBERRY
+Pokemon = TREVENANT,30
+	AbilityIndex = 0
 #-------------------------------
 [SKIER_F2,Valeriya]
 Pokemon = KADABRA,28

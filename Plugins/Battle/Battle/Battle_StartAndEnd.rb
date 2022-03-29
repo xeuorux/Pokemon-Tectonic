@@ -292,11 +292,19 @@ class PokeBattle_Battle
       break if @decision>0
 	  @commandPhasesThisRound = 0
 	  
-	  # Have bosses use empowered moves if appropriate
+	  useEmpoweredMoves()
+	  
+	  @turnCount += 1
+    end
+    pbEndOfBattle
+  end
+  
+  def useEmpoweredMoves()
+	# Have bosses use empowered moves if appropriate
 	  @battlers.each do |b|
 		next if !b
 		next unless b.boss?
-		next unless b.hp < b.totalhp / 2
+		next unless b.hp < b.totalhp * 0.6
 		next if b.empowered
 		usedEmpoweredMove = false
 		b.eachMoveWithIndex do |move,index|
@@ -322,10 +330,6 @@ class PokeBattle_Battle
 			@scene.pbRefresh
 		end
 	  end
-	  
-	  @turnCount += 1
-    end
-    pbEndOfBattle
   end
   
   def pbEndOfBattle

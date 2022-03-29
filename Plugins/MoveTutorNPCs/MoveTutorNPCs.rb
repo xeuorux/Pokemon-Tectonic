@@ -28,7 +28,7 @@ def mentorCoordinator()
 	if isTempSwitchOff?("A")
 		pbMessage(_INTL("I help your Pokemon to teach each other moves through mentorships!"))
 		pbMessage(_INTL("Pokemon can teach any move they know to any other Pokemon you have who can learn that move."))
-		pbMessage(_INTL("Any Pokemon in your party on in your PC can be a mentor!"))
+		pbMessage(_INTL("Any Pokemon in your party or in your PC can be a mentor!"))
 		setTempSwitchOn("A")
 	end
 	if pbConfirmMessage(_INTL("Would you like one of your party members to learn a move through mentoring?"))
