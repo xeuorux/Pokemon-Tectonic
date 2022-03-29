@@ -1250,7 +1250,7 @@ Policies = DISLIKEATTACKING,RAFAEL
 Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
     AbilityIndex = 1
-Pokemon = LUDICOLO,30
+Pokemon = LOMBRE,30
     Moves = MEGADRAIN,BUBBLEBEAM,PROTECT,LEECHSEED
     AbilityIndex = 0
 Pokemon = DUSCLOPS,30
@@ -1259,8 +1259,8 @@ Pokemon = DUSCLOPS,30
     Moves = CONFUSERAY,NIGHTSHADE,WILLOWISP,TAUNT
     AbilityIndex = 1
     Item = COLBURBERRY
-Pokemon = NUZLEAF,30
-    Moves = MAGICALLEAF,FAKEOUT,PAYBACK,SELFDESTRUCT
+Pokemon = SHIFTRY,30
+    Moves = MAGICALLEAF,FAKEOUT,PAYBACK,AIRSLASH
     AbilityIndex = 0
 #-------------------------------
 [LEADER_Rafael_2,Rafael]
@@ -1272,7 +1272,7 @@ Pokemon = BAYLEEF,30
     Moves = HEALPULSE,LIGHTSCREEN,AURATRICK,MAGICALLEAF
     AbilityIndex = 0
     Item = LIGHTCLAY
-Pokemon = LUDICOLO,30
+Pokemon = LOMBRE,30
     Moves = MEGADRAIN,BUBBLEBEAM,PROTECT,LEECHSEED
     AbilityIndex = 0
 Pokemon = DUSCLOPS,30
@@ -1285,8 +1285,8 @@ Pokemon = LAMPENT,30
     Moves = HEX,INCINERATE,CHILL,CLEARSMOG
     AbilityIndex = 0
     Item = ORANBERRY
-Pokemon = NUZLEAF,30
-    Moves = MAGICALLEAF,FAKEOUT,PAYBACK,SELFDESTRUCT
+Pokemon = SHIFTRY,30
+    Moves = MAGICALLEAF,FAKEOUT,PAYBACK,AIRSLASH
     AbilityIndex = 0
 #-------------------------------
 [LEADER_Rafael_2,Rafael,1]
@@ -1298,7 +1298,7 @@ Pokemon = BAYLEEF,30
     Moves = HEALPULSE,LIGHTSCREEN,AURATRICK,MAGICALLEAF
     AbilityIndex = 0
     Item = LIGHTCLAY
-Pokemon = LUDICOLO,30
+Pokemon = LOMBRE,30
     Moves = MEGADRAIN,BUBBLEBEAM,PROTECT,LEECHSEED
     AbilityIndex = 0
 Pokemon = DUSCLOPS,30
@@ -1311,8 +1311,8 @@ Pokemon = LAMPENT,30
     Moves = HEX,INCINERATE,CHILL,CLEARSMOG
     AbilityIndex = 0
     Item = ORANBERRY
-Pokemon = NUZLEAF,30
-    Moves = MAGICALLEAF,FAKEOUT,PAYBACK,SELFDESTRUCT
+Pokemon = SHIFTRY,30
+    Moves = MAGICALLEAF,FAKEOUT,PAYBACK,AIRSLASH
     AbilityIndex = 0
 #-------------------------------
 [ARCHFRIEND_Lainie,Lainie]
