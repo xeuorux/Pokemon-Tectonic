@@ -224,7 +224,7 @@
 216,HEATWAVE,Heat Wave,00A,80,FIRE,Special,100,10,10,AllNearFoes,0,bef,The user attacks by exhaling hot breath on the opposing team. It has a 10% chance to burn.
 217,FLAMETHROWER,Flamethrower,00A,90,FIRE,Special,100,15,10,NearOther,0,bef,The target is scorched with an intense blast of fire. It has a 10% chance to burn.
 218,BLAZEKICK,Blaze Kick,00A,85,FIRE,Physical,100,10,10,NearOther,0,abefh,The user launches a kick with a high critical-hit ratio. It has a 10% chance to burn.
-219,FIERYDANCE,Fiery Dance,020,80,FIRE,Special,100,10,50,NearOther,0,befo,"Cloaked in flames, the user dances and flaps its wings. It has a 50% chance to the user's Sp. Atk."
+219,FIERYDANCE,Fiery Dance,020,80,FIRE,Special,100,10,50,NearOther,0,befo,"Cloaked in flames, the user dances rhythmically. It has a 50% chance to the user's Sp. Atk."
 220,FIRELASH,Fire Lash,043,80,FIRE,Physical,100,15,100,NearOther,0,abef,The user strikes the target with a burning lash. This also lowers the target's Defense stat.
 221,FIREPLEDGE,Fire Pledge,107,80,FIRE,Special,100,10,0,NearOther,0,bef,"A column of fire hits opposing Pokémon. When used with its Grass equivalent, it makes a sea of fire."
 222,LAVAPLUME,Lava Plume,00A,80,FIRE,Special,100,15,30,AllNearOthers,0,bef,An inferno of scarlet flames torches everything around the user. It has a 30% chance to burn.
