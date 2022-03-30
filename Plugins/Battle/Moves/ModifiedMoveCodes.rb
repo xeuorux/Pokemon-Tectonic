@@ -1229,6 +1229,23 @@ class PokeBattle_Move_096 < PokeBattle_Move
 		end
 		return false
 	end
+	
+	# NOTE: The AI calls this method via pbCalcType, but it involves user.item
+  #       which here is assumed to be not nil (because item.id is called). Since
+  #       the AI won't want to use it if the user has no item anyway, perhaps
+  #       this is good enough.
+  def pbBaseType(user)
+    item = user.item
+    ret = :NORMAL
+	if !item.nil?
+		@typeArray.each do |type, items|
+		  next if !items.include?(item.id)
+		  ret = type if GameData::Type.exists?(type)
+		  break
+		end
+	end
+    return ret
+  end
 end
 
 class PokeBattle_Move
