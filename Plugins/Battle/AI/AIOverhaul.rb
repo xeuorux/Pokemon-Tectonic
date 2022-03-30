@@ -199,94 +199,96 @@ class PokeBattle_AI
 	return newChoice
   end
   
-  #=============================================================================
-  # Get a score for the given move being used against the given target
-  #=============================================================================
-  def pbGetMoveScore(move,user,target,skill=100,policies=[])
-    skill = PBTrainerAI.minimumSkill if skill<PBTrainerAI.minimumSkill
-    score = 100
-    score = pbGetMoveScoreFunctionCode(score,move,user,target,skill,policies)
-	
-	# Never use a move that would fail outright
-	@battle.messagesBlocked = true
-	user.turnCount += 1
-	if move.pbMoveFailed?(user,[target])
-		score = 0
-    end
-	user.turnCount -= 1
-	@battle.messagesBlocked = false
+	#=============================================================================
+	# Get a score for the given move being used against the given target
+	#=============================================================================
+	def pbGetMoveScore(move,user,target,skill=100,policies=[])
+		skill = PBTrainerAI.minimumSkill if skill<PBTrainerAI.minimumSkill
+		score = 100
+		score = pbGetMoveScoreFunctionCode(score,move,user,target,skill,policies)
+		if score.nil?
+			echoln("#{user.pbThis} unable to score #{move.id} against target #{target.pbThis(false)}")
+			return 0
+		end
 		
-	# A score of 0 here means it absolutely should not be used
-    if score == nil || score<=0
-		echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)}: #{0}")
-		return 0
-	end
+		# Never use a move that would fail outright
+		@battle.messagesBlocked = true
+		user.turnCount += 1
+		if move.pbMoveFailed?(user,[target])
+			score = 0
+		end
+		user.turnCount -= 1
+		@battle.messagesBlocked = false
+		
+		# Don't prefer moves that are ineffective because of abilities or effects
+		score = 0 if pbCheckMoveImmunity(score,move,user,target,skill)
+		
+		# If user is asleep, prefer moves that are usable while asleep
+		if user.status == :SLEEP && !move.usableWhenAsleep?
+			user.eachMove do |m|
+				next unless m.usableWhenAsleep?
+				score = 0
+				break
+			end
+		end
+		# Don't prefer attacking the target if they'd be semi-invulnerable
+		if move.accuracy>0 && (target.semiInvulnerable? || target.effects[PBEffects::SkyDrop]>=0)
+			miss = true
+			miss = false if user.hasActiveAbility?(:NOGUARD) || target.hasActiveAbility?(:NOGUARD)
+			if miss && pbRoughStat(user,:SPEED,skill)>pbRoughStat(target,:SPEED,skill)
+			  # Knows what can get past semi-invulnerability
+			  if target.effects[PBEffects::SkyDrop]>=0
+				miss = false if move.hitsFlyingTargets?
+			  else
+				if target.inTwoTurnAttack?("0C9","0CC","0CE")   # Fly, Bounce, Sky Drop
+				  miss = false if move.hitsFlyingTargets?
+				elsif target.inTwoTurnAttack?("0CA")          # Dig
+				  miss = false if move.hitsDiggingTargets?
+				elsif target.inTwoTurnAttack?("0CB")          # Dive
+				  miss = false if move.hitsDivingTargets?
+				end
+			  end
+			end
+			score = 0 if miss
+		end
+		
+		# A score of 0 here means it absolutely should not be used
+		if score<=0
+			echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)}: #{0}")
+			return 0
+		end
+		
+		# Pick a good move for the Choice items
+			if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
+				if move.baseDamage>=60;     score += 60
+				elsif move.damagingMove?;   score += 30
+				elsif move.function=="0F2"; score += 70   # Trick
+				else;                       score -= 60
+			end
+		end
+		
+		# Adjust score based on how much damage it can deal
+		if move.damagingMove?
+		  score = pbGetMoveScoreDamage(score,move,user,target,skill)
+		  score *= 0.75 if policies.include?(:DISLIKEATTACKING)
+		else   # Status moves
+		  # Don't prefer attacks which don't deal damage
+		  score -= 10
+		  # Account for accuracy of move
+		  accuracy = pbRoughAccuracy(move,user,target,skill)
+		  score *= accuracy/100.0
+		end
 	
-    if skill>=PBTrainerAI.mediumSkill
-      # Prefer damaging moves if AI has no more Pokémon or AI is less clever
-      if @battle.pbAbleNonActiveCount(user.idxOwnSide)==0
-        if !(skill>=PBTrainerAI.highSkill && @battle.pbAbleNonActiveCount(target.idxOwnSide)>0)
-          if move.statusMove?
-            score /= 1.5
-          elsif target.hp<=target.totalhp/2
-            score *= 1.5
-          end
-        end
-      end
-      # Don't prefer attacking the target if they'd be semi-invulnerable
-      if skill>=PBTrainerAI.mediumSkill && move.accuracy>0 &&
-         (target.semiInvulnerable? || target.effects[PBEffects::SkyDrop]>=0)
-        miss = true
-        miss = false if user.hasActiveAbility?(:NOGUARD) || target.hasActiveAbility?(:NOGUARD)
-        if miss && pbRoughStat(user,:SPEED,skill)>pbRoughStat(target,:SPEED,skill)
-          # Knows what can get past semi-invulnerability
-          if target.effects[PBEffects::SkyDrop]>=0
-            miss = false if move.hitsFlyingTargets?
-          else
-            if target.inTwoTurnAttack?("0C9","0CC","0CE")   # Fly, Bounce, Sky Drop
-              miss = false if move.hitsFlyingTargets?
-            elsif target.inTwoTurnAttack?("0CA")          # Dig
-              miss = false if move.hitsDiggingTargets?
-            elsif target.inTwoTurnAttack?("0CB")          # Dive
-              miss = false if move.hitsDivingTargets?
-            end
-          end
-        end
-        score -= 80 if miss
-      end
-      # Pick a good move for the Choice items
-      if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
-        if move.baseDamage>=60;     score += 60
-        elsif move.damagingMove?;   score += 30
-        elsif move.function=="0F2"; score += 70   # Trick
-        else;                       score -= 60
-        end
-      end
-      # If user is asleep, prefer moves that are usable while asleep
-      if user.status == :SLEEP && !move.usableWhenAsleep?
-        user.eachMove do |m|
-          next unless m.usableWhenAsleep?
-          score *= 0.1
-          break
-        end
-      end
-    end
-    # Adjust score based on how much damage it can deal
-    if move.damagingMove?
-      score = pbGetMoveScoreDamage(score,move,user,target,skill)
-	  score *= 0.75 if policies.include?(:DISLIKEATTACKING)
-    else   # Status moves
-      # Don't prefer attacks which don't deal damage
-      score -= 10
-      # Account for accuracy of move
-      accuracy = pbRoughAccuracy(move,user,target,skill)
-      score *= accuracy/100.0
-    end
-    score = score.to_i
-    score = 0 if score<0
-	echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)}: #{score}")
-    return score
-  end
+		# Account for accuracy of move
+		accuracy = pbRoughAccuracy(move,user,target,skill)
+		score *= accuracy/100.0
+		
+		# Final adjustments t score
+		score = score.to_i
+		score = 0 if score<0
+		echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)}: #{score}")
+		return score
+	end
 
   
   def pbRegisterMoveWild(user,idxMove,choices)
@@ -442,7 +444,7 @@ class PokeBattle_AI
       shouldSwitch = true
     end
     # Should swap when confusion self-damage is likely to kill it
-    if skill>=PBTrainerAI.mediumSkill && battler.effects[PBEffects::ConfusionChance] >= 1
+    if battler.effects[PBEffects::ConfusionChance] >= 1
 		#Calculate the damage the confusionMove would do
         confusionMove = PokeBattle_Confusion.new(@battle,nil)
 		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
@@ -480,7 +482,7 @@ class PokeBattle_AI
 		shouldSwitch = true if damage >= (battler.hp * 0.5).floor if skill>=PBTrainerAI.bestSkill
     end
 	# Should swap when charm self-damage is likely to kill it
-    if skill>=PBTrainerAI.mediumSkill && battler.effects[PBEffects::CharmChance] >= 1
+    if battler.effects[PBEffects::CharmChance] >= 1
 		#Calculate the damage the charmMove would do
         charmMove = PokeBattle_Charm.new(@battle,nil)
 		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
@@ -861,14 +863,9 @@ class PokeBattle_AI
   # of the target's current HP)
   #=============================================================================
   def pbGetMoveScoreDamage(score,move,user,target,skill)
-    # Don't prefer moves that are ineffective because of abilities or effects
-    return 0 if score<=0 || pbCheckMoveImmunity(score,move,user,target,skill)
     # Calculate how much damage the move will do (roughly)
     baseDmg = pbMoveBaseDamage(move,user,target,skill)
     realDamage = pbRoughDamage(move,user,target,skill,baseDmg)
-    # Account for accuracy of move
-    accuracy = pbRoughAccuracy(move,user,target,skill)
-    realDamage *= accuracy/100.0
     # Two-turn attacks waste 2 turns to deal one lot of damage
     if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
       realDamage *= 2/3   # Not halved because semi-invulnerable during use or hits first turn
@@ -876,8 +873,8 @@ class PokeBattle_AI
     # Convert damage to percentage of target's remaining HP
     damagePercentage = realDamage*100.0/target.hp
     # Adjust score
-    damagePercentage = 200 if damagePercentage >= 105   # Treat all lethal moves the same
-    score = (score * 0.8 + damagePercentage * 1.4).to_i
+    damagePercentage = 200 if damagePercentage >= 105   # Extremely prefer lethal damage
+    score = (score * 0.5 + damagePercentage * 1.5).to_i
     return score
   end
   
