@@ -48,7 +48,8 @@ class PokemonPauseMenu
 		commands[cmdBag = commands.length]       = _INTL("Bag") if !pbInBugContest?
 		commands[cmdPokegear = commands.length]  = _INTL("Pokégear") if $Trainer.has_pokegear
 		commands[cmdDexnav = commands.length]	 = _INTL("DexNav")
-		commands[cmdLevelCap = commands.length]  = _INTL("Level Cap") if (LEVEL_CAPS_USED && $game_variables[26] > 0 && $game_variables[26] < 100)
+		showCapMenu = LEVEL_CAPS_USED && $game_variables[26] > 0 && $Trainer.party_count > 0
+		commands[cmdLevelCap = commands.length]  = _INTL("Level Cap") if showCapMenu
 		commands[cmdTrainer = commands.length]   = $Trainer.name
 		if pbInSafari?
 		  if Settings::SAFARI_STEPS <= 0
