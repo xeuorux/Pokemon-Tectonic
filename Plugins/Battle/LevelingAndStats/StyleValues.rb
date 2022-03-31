@@ -29,8 +29,6 @@ class StyleValueScene
 
   def pbUpdate
     pbUpdateSpriteHash(@sprites)
-	@pokemon.calc_stats
-	drawNameAndStats
   end
 
   def pbStartScene(pokemon)
@@ -67,7 +65,7 @@ class StyleValueScene
 	
     pbDeactivateWindows(@sprites)
     # Fade in all sprites
-    pbFadeInAndShow(@sprites) { pbUpdate }
+    pbFadeInAndShow(@sprites)
   end
   
   def drawNameAndStats
@@ -269,6 +267,11 @@ class StyleValueScreen
   def initialize(scene)
     @scene = scene
   end
+  
+  def updateStats(pkmn)
+	pkmn.calc_stats
+	@scene.drawNameAndStats
+  end
 
   def pbStartScreen(pkmn)
     @scene.pbStartScene(pkmn)
@@ -303,6 +306,7 @@ class StyleValueScreen
 			end
 			@scene.pool = @pool
 			pbPlayDecisionSE
+			updateStats(pkmn)
 		elsif @index == 7
 			if @pool > 0
 			  pbPlayBuzzerSE
@@ -321,6 +325,7 @@ class StyleValueScreen
 		end
 		pbPlayCursorSE
 		@scene.index = @index
+		@scene.drawNameAndStats
 	  elsif Input.trigger?(Input::DOWN)
 		if @index < 7
 			@index = (@index + 1)
@@ -329,6 +334,7 @@ class StyleValueScreen
 		end
 		pbPlayCursorSE
 		@scene.index = @index
+		@scene.drawNameAndStats
       elsif Input.repeat?(Input::RIGHT) && @index < 6
 		stat = stats[@index]
 		if pkmn.ev[stat] < 20 && @pool > 0
@@ -336,11 +342,13 @@ class StyleValueScreen
 			@pool -= 1
 			@scene.pool = @pool
 			pbPlayDecisionSE
+			updateStats(pkmn)
 		elsif pkmn.ev[stat] == 20 && Input.trigger?(Input::RIGHT)
 			pkmn.ev[stat] = 0
 			@pool += 20
 			@scene.pool = @pool
 			pbPlayDecisionSE
+			updateStats(pkmn)
 		elsif Input.time?(Input::RIGHT) < 20000
 			pbPlayBuzzerSE
 		end
@@ -351,11 +359,13 @@ class StyleValueScreen
 			@pool += 1
 			@scene.pool = @pool
 			pbPlayDecisionSE
+			updateStats(pkmn)
 		elsif @pool > 0 && Input.trigger?(Input::LEFT)
 			pkmn.ev[stat] = [@pool,20].min
 			@pool -= pkmn.ev[stat]
 			@scene.pool = @pool
 			pbPlayDecisionSE
+			updateStats(pkmn)
 		elsif Input.time?(Input::LEFT) < 20000
 			pbPlayBuzzerSE
 		end
