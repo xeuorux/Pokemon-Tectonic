@@ -346,11 +346,11 @@ class PokeBattle_Battle
     priority.each do |b|
       next if !b.effects[PBEffects::Octolock]
 	  octouser = @battlers[b.effects[PBEffects::OctolockUser]]
-      if b.pbCanLowerStatStage?(PBStats::DEFENSE,octouser,self)
-        b.pbLowerStatStage(PBStats::DEFENSE,1,octouser,true,false,true)
+      if b.pbCanLowerStatStage?(:DEFENSE,octouser,self)
+        b.pbLowerStatStage(:DEFENSE,1,octouser,true,false,true)
       end
-      if b.pbCanLowerStatStage?(PBStats::SPDEF,octouser,self)
-        b.pbLowerStatStage(PBStats::SPDEF,1,octouser,true,false,true)
+      if b.pbCanLowerStatStage?(:SPECIAL_DEFENSE,octouser,self)
+        b.pbLowerStatStage(:SPECIAL_DEFENSE,1,octouser,true,false,true)
       end
     end
     # Trapping attacks (Bind/Clamp/Fire Spin/Magma Storm/Sand Tomb/Whirlpool/Wrap)
