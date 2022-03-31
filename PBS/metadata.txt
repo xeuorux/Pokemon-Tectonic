@@ -314,6 +314,11 @@ Environment = Forest
 # Sailor's House
 HealingSpot = 59,26,12
 #-------------------------------
+[062]
+# Németh Gym
+Bicycle = false
+TeleportBlocked = true
+#-------------------------------
 [063]
 # Németh Buildings
 ShowArea = true
@@ -451,7 +456,8 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [122]
-# Prizca Sewers
+# Prizca Sewers South
+Outdoor = false
 ShowArea = true
 Bicycle = true
 Environment = StillWater
@@ -684,7 +690,7 @@ Bicycle = true
 Environment = Forest
 #-------------------------------
 [186]
-# Farm Placeeholder
+# Frostflow Farms
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -726,6 +732,20 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
-[62]
+[220]
+# Prizca Sewers East
+Outdoor = false
+ShowArea = true
 Bicycle = false
-TeleportBlocked = true
+#-------------------------------
+[222]
+# Prizca Sewers Tunnel
+Outdoor = false
+ShowArea = true
+Bicycle = false
+#-------------------------------
+[223]
+# Prizca Sewers West
+Outdoor = false
+ShowArea = true
+Bicycle = false
