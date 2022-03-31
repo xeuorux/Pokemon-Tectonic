@@ -2633,11 +2633,11 @@ Pokemon = VIKAVOLT,43
 [CLOWN,Dimesmart]
 Pokemon = MISMAGIUS,47
 	AbilityIndex = 1
-	Item = SITRUSBERRY
 Pokemon = GIGACHU,48
 	AbilityIndex = 0
 Pokemon = TORKOAL,48
 	AbilityIndex = 0
+	Item = AIRBALLOON
 Pokemon = FLYGON,49
 	AbilityIndex = 0
 	Item = SHELLBELL

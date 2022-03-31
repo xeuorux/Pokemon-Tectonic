@@ -818,3 +818,10 @@ Moves = ZEPHYRWING,GUNKSHOT,PRIMEVALSANDSTORM
 PostPrimeMoves = ROCKSLIDE
 Item = ROCKGEM
 #-----------------------------
+[NOIVERN]
+Turns = 2
+HPMult = 4
+Ability = INFILTRATOR
+Moves = DRAGONPULSE,HURRICANE,PRIMEVALSUNNYDAY
+PostPrimeMoves = FLAMETHROWER
+#-----------------------------
