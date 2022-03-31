@@ -763,32 +763,64 @@ Pokemon = WAILORD,30
     Item = LEFTOVERS
 #-------------------------------
 [COOLTRAINER_M7,Emir]
-Pokemon = AMBIPOM,45
+Pokemon = SCIZOR,45
+	AbilityIndex = 0
+	Item = OCCABERRY
+	Moves = BULLETPUNCH,DUALWINGBEAT,FURYATTACK,BUGBITE
+	EV = 20,20,0,0,0,10
+Pokemon = MANIKLAW,45
+	AbilityIndex = 0
+	Item = COLBURBERRY
+	Moves = FURYCUTTER,SHADOWCLAW,SLICE,PHANTOMBREAK
+	EV = 10,20,0,10,0,0
+Pokemon = SWAMPERT,45
+	AbilityIndex = 1
+	Item = RINDOBERRY
+	Moves = LIQUIDATION,FLOWSTATE,EARTHQUAKE,ICEPUNCH
+	EV = 20,20,0,0,0,10
+Pokemon = RUBARIOR,45
+    Moves = POWERGEM,GYROBALL,REST,SLEEPTALK
+    AbilityIndex = 0
+    Item = ROSELIBERRY
+    EV = 20,0,10,0,0,20
+Pokemon = SKUNTANK,45
+	AbilityIndex = 1
+	Item = SHUCABERRY
+	Moves = FLAMETHROWER,SHADOWBALL,DARKPULSE,SELFDESTRUCT
+	EV = 10,0,0,20,20,0
+Pokemon = EELEKTROSS,45
+	AbilityIndex = 0
+	Item = PAYAPABERRY
+	Moves = VENOMLEECH,ELECTROSLASH,LEECHLIFE,COIL
+	EV = 20,20,10,0,0,0
+#-------------------------------
+[COOLTRAINER_F7,Blaire]
+Pokemon = AMBIPOM,40
     Moves = FLING,COVET,STEALTHROCK,SANDTOMB
     AbilityIndex = 0
     Item = IRONBALL
     EV = 20,0,0,20,0,10
-Pokemon = RUBARIOR,45
-    Moves = POWERGEM,KNOCKOFF,REST,SLEEPTALK
+Pokemon = MACHAMP,40
+    Moves = BULKUP,KNOCKOFF,FACADE,REVERSAL
     AbilityIndex = 0
-    Item = LEFTOVERS
-    EV = 20,0,10,0,0,20
-Pokemon = TURTONATOR,45
+    Item = POISONORB
+    EV = 20,20,10,0,0,0
+Pokemon = TURTONATOR,40
     Moves = INCINERATE,DRAGONROAR,CRIPPLINGBREATH,IGNITE
     AbilityIndex = 1
     Item = ASSAULTVEST
     EV = 20,0,20,0,0,10
-Pokemon = PARASECT,45
+Pokemon = PARASECT,40
     Moves = BUGBITE,SPORE,SWORDSDANCE,SOULCLAW
     AbilityIndex = 0
     Item = LIFEORB
     EV = 20,20,10,0,0,0
-Pokemon = SCIZOR,45
-    Moves = DOUBLEHIT,BULLETPUNCH,AERIALACE,BUGBITE
-    AbilityIndex = 0
-    Item = FOCUSSASH
+Pokemon = EXCADRILL,40
+    Moves = DRILLRUN,ROCKCLIMB,AERIALACE,ROCKSLIDE
+    AbilityIndex = 1
+    Item = CHOICESCARF
     EV = 10,20,0,20,0,0
-Pokemon = CROBAT,45
+Pokemon = CROBAT,40
     Moves = ACROBATICS,CROSSPOISON,STEELWING,LEECHLIFE
     AbilityIndex = 1
     Item = STEELGEM
@@ -2575,4 +2607,38 @@ Pokemon = RABOOT,28
 	AbilityIndex = 1 
 Pokemon = HITMONTOP,29
 	AbilityIndex = 1
+#-------------------------------
+[TUBER_M,Derek]
+Pokemon = LUDICOLO,40
+	AbilityIndex = 0
+Pokemon = TOXTRICITY,40
+	Item = POISONGEM
+Pokemon = NIDOKING,41
+	AbilityIndex = 0
+Pokemon = MILLIBLAZE,42
+	AbilityIndex = 1
+	Item = LIFEORB
+#-------------------------------
+[WORKER2,Hugo]
+Pokemon = COFAGRIGUS,41
+	AbilityIndex = 1
+Pokemon = ASANDSLASH,41
+	AbilityIndex = 1
+Pokemon = TAUROS,42
+	Item = CHOPLEBERRY
+Pokemon = VIKAVOLT,43
+	AbilityIndex = 1
+	Item = CHOICESPECS
+#-------------------------------
+[CLOWN,Dimesmart]
+Pokemon = MISMAGIUS,42
+	AbilityIndex = 1
+	Item = SITRUSBERRY
+Pokemon = GIGACHU,42
+	AbilityIndex = 0
+Pokemon = TORKOAL,43
+	AbilityIndex = 0
+Pokemon = FLYGON,44
+	AbilityIndex = 0
+	Item = SHELLBELL
 #-------------------------------
