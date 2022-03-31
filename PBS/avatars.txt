@@ -765,3 +765,10 @@ Turns = 1
 HPMult = 5
 Ability = SANDSTREAM
 Moves = HEATWAVE,STEALTHROCK,SLACKOFF
+#-----------------------------
+[REUNICLUS]
+Turns = 2
+HPMult = 4
+Ability = MAGICGUARD
+Moves = PSYSHOCK,PRIMEVALTORMENT
+PostPrimeMoves = DARKPULSE
