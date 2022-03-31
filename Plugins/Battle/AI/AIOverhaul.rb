@@ -60,29 +60,14 @@ class PokeBattle_AI
         logMsg += ", " if i<choices.length-1
       end
       PBDebug.log(logMsg)
+	  
 	# Decide whether all choices are bad, and if so, try switching instead
-    if !wildBattler
-      badMoves = false
-      if (maxScore<=20 && user.turnCount>2) ||
-         (maxScore<=40 && user.turnCount>5)
-        badMoves = true if pbAIRandom(100)<80
-      end
-      if !badMoves && totalScore<100
-        badMoves = true
-        choices.each do |c|
-          next if !user.moves[c[0]].damagingMove?
-          badMoves = false
-          break
-        end
-        badMoves = false if badMoves && pbAIRandom(100)<10
-      end
-      if badMoves && pbEnemyShouldWithdrawEx?(idxBattler,true)
-        if $INTERNAL
-          PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will switch due to terrible moves")
-        end
-        return
-      end
-    end
+	if !wildBattler && maxScore <= 40 && pbEnemyShouldWithdrawEx?(idxBattler,true)
+		if $INTERNAL
+		  PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will switch due to terrible moves")
+		end
+		return
+	end
 	
 	if choices.length !=0
 		# Determine the most preferred move
