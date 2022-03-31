@@ -256,12 +256,6 @@ class PokeBattle_AI
 		if move.damagingMove?
 		  score = pbGetMoveScoreDamage(score,move,user,target,skill)
 		  score *= 0.75 if policies.include?(:DISLIKEATTACKING)
-		else   # Status moves
-		  # Don't prefer attacks which don't deal damage
-		  score -= 10
-		  # Account for accuracy of move
-		  accuracy = pbRoughAccuracy(move,user,target,skill)
-		  score *= accuracy/100.0
 		end
 	
 		# Account for accuracy of move
@@ -859,7 +853,7 @@ class PokeBattle_AI
     damagePercentage = realDamage*100.0/target.hp
     # Adjust score
     damagePercentage = 200 if damagePercentage >= 105   # Extremely prefer lethal damage
-    score = (score * 0.5 + damagePercentage * 1.5).to_i
+    score = (score * 0.75 + damagePercentage * 1.5).to_i
     return score
   end
   
