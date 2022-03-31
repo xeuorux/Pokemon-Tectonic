@@ -2631,14 +2631,14 @@ Pokemon = VIKAVOLT,43
 	Item = CHOICESPECS
 #-------------------------------
 [CLOWN,Dimesmart]
-Pokemon = MISMAGIUS,42
+Pokemon = MISMAGIUS,47
 	AbilityIndex = 1
 	Item = SITRUSBERRY
-Pokemon = GIGACHU,42
+Pokemon = GIGACHU,48
 	AbilityIndex = 0
-Pokemon = TORKOAL,43
+Pokemon = TORKOAL,48
 	AbilityIndex = 0
-Pokemon = FLYGON,44
+Pokemon = FLYGON,49
 	AbilityIndex = 0
 	Item = SHELLBELL
 #-------------------------------

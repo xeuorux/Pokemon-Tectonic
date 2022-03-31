@@ -772,3 +772,49 @@ HPMult = 4
 Ability = MAGICGUARD
 Moves = PSYSHOCK,PRIMEVALTORMENT
 PostPrimeMoves = DARKPULSE
+#-----------------------------
+[DUBWOOL]
+Turns = 2
+HPMult = 4.5
+Ability = FLUFFY
+Moves = BODYPRESS,COTTONGUARD,PRIMEVALBULKUP
+PostPrimeMoves = HAMMERARM
+#-----------------------------
+[GRIMMSNARL]
+Turns = 3
+HPMult = 2.5
+Ability = RUINOUS
+Moves = SPIRITBREAK,PLAYROUGH,PRIMEVALHAIL
+PostPrimeMoves = ICEBURN
+Item = POWERHERB
+#-----------------------------
+[FLORGES]
+Turns = 2
+HPMult = 4
+Ability = AUDACITY
+Moves = TERRADRAIN,DRAININGKISS,PRIMEVALPOISONGAS
+PostPrimeMoves = VENOMLEECH
+Item = BIGROOT
+#-----------------------------
+[GOODRA]
+Turns = 2
+HPMult = 4
+Ability = GOOEY
+Moves = CORRODE,CRIPPLINGBREATH,PRIMEVALLIGHTNINGDANCE
+PostPrimeMoves = ELECTROBALL,ELECTROWEB
+#-----------------------------
+[MASQUERAIN]
+Turns = 2
+HPMult = 4
+Ability = INTIMIDATE
+Moves = WINDBLADE,STICKYWEB,PRIMEVALRAINDANCE
+PostPrimeMoves = WATERSPIRAL
+#-----------------------------
+[CROBAT]
+Turns = 3
+HPMult = 2.5
+Ability = INFILTRATOR
+Moves = ZEPHYRWING,GUNKSHOT,PRIMEVALSANDSTORM
+PostPrimeMoves = ROCKSLIDE
+Item = ROCKGEM
+#-----------------------------
