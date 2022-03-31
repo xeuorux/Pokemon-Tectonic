@@ -39,6 +39,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:DEEPSTING,
     user.pbReduceHP(amt,false)
     battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
     user.pbItemHPHealCheck
+	user.pbFaint if user.fainted?
   }
 )
 
