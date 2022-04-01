@@ -396,13 +396,13 @@ SewerFloor,20
 25,TRUBBISH,17,19
 #-------------------------------
 [223] # Prizca Sewers West
-Land
+LandSparse
 33,ELGYEM,31,33
 33,MUNNA,31,33
 34,SIGILYPH,31,33
 #-------------------------------
 [220] # Prizca Sewers East
-Land,20
+LandSparse,20
 25,GOLETT,33,35
 25,DRUDDIGON,33,35
 25,DEINO,33,35
