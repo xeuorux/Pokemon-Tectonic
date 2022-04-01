@@ -967,6 +967,7 @@
 948,SLAY,Slay,54F,90,STEEL,Physical,100,15,0,NearOther,0,abefhp,"The user slashes at the target with a steel blade. Super-effective versus Dragon-types."
 949,CHIBLOCK,Chi Block,007,0,FIGHTING,Status,100,20,0,NearOther,0,abcef,"Numbs the target by striking their pressure points."
 950,STUNNINGCURL,Stunning Curl,550,0,BUG,Status,0,3,0,User,4,,"Protects the user from attacks. Also numbs any attacker who attacks the user."
+951,FLAMESPIKES,Flame Spikes,551,0,FIRE,Status,0,20,0,FoeSide,0,c,The user lays a trap of flaming spikes at the foe's feet. They burn foes that switch into battle.
 # Primeval Moves, for use only by avatars
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."

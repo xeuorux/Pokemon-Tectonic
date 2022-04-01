@@ -764,7 +764,7 @@
 740,TM148,TM148,TM148s,4,4000,"The user tenses its muscles to bulk up its body, raising both its Attack and Defense stats.",3,0,0,BULKUP
 741,TM149,TM149,TM149s,4,4000,The user quietly focuses its mind and calms its spirit to raise its Sp. Atk and Sp. Def stats.,3,0,0,CALMMIND
 742,TM150,TM150,TM150s,4,6000,The user handles a sharp leaf like a sword and attacks by cutting its target. Critical hits land more easily.,3,0,0,LEAFBLADE
-743,TM151,TM151,TM151s,4,4000,"The user vigorously performs a mystic, powerful dance that raises its Attack and Speed stats.",3,0,0,DRAGONDANCE
+743,TM151,TM151,TM151s,4,4000,"The user lays a trap of flaming spikes at the foe's feet. They burn foes that switch into battle..",3,0,0,FLAMESPIKES
 744,TM152,TM152,TM152s,4,6000,"The user tackles the target with a high-speed spin. The slower the user, the greater the damage.",3,0,0,GYROBALL
 745,TM153,TM153,TM153s,4,16000,The user fights the foe up close without guarding itself. It also cuts the user's Defense and Sp. Def.,3,0,0,CLOSECOMBAT
 746,TM154,TM154,TM154s,4,4000,The user lays a trap of poison spikes at the opponent's feet. They poison opponents that switch into battle.,3,0,0,POISONSPIKES

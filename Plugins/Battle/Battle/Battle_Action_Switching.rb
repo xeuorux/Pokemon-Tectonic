@@ -235,17 +235,23 @@ class PokeBattle_Battle
       end
     end
     # Toxic Spikes
-    if battler.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 && !battler.fainted? &&
+    if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0 && !battler.fainted? &&
        !battler.airborne?
       if battler.pbHasType?(:POISON)
         battler.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
         pbDisplay(_INTL("{1} absorbed the poison spikes!",battler.pbThis))
       elsif battler.pbCanPoison?(nil,false)
-        if battler.pbOwnSide.effects[PBEffects::ToxicSpikes]==2
-          battler.pbPoison(nil,_INTL("{1} was toxified by the poison spikes!",battler.pbThis),true)
-        else
-          battler.pbPoison(nil,_INTL("{1} was poisoned by the poison spikes!",battler.pbThis))
-        end
+        battler.pbPoison(nil,_INTL("{1} was poisoned by the poison spikes!",battler.pbThis))
+      end
+    end
+	# Flame Spikes
+    if battler.pbOwnSide.effects[PBEffects::FlameSpikes] > 0 && !battler.fainted? &&
+       !battler.airborne?
+      if battler.pbHasType?(:FIRE)
+        battler.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
+        pbDisplay(_INTL("{1} absorbed the flame spikes!",battler.pbThis))
+      elsif battler.pbCanBurn?(nil,false)
+          battler.pbBurn(nil,_INTL("{1} was burned by the flame spikes!",battler.pbThis))
       end
     end
     # Sticky Web

@@ -1738,3 +1738,32 @@ class PokeBattle_Move_550 < PokeBattle_ProtectMove
     @effect = PBEffects::StunningCurl
   end
 end
+
+#===============================================================================
+# Entry hazard. Lays burn spikes on the opposing side.
+# (Flame Spikes)
+#===============================================================================
+class PokeBattle_Move_551 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    if user.pbOpposingSide.effects[PBEffects::FlameSpikes]>=1
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    user.pbOpposingSide.effects[PBEffects::FlameSpikes] += 1
+    @battle.pbDisplay(_INTL("Flame spikes were scattered all around {1}'s feet!",
+       user.pbOpposingTeam(true)))
+  end
+  
+  def getScore
+		if user.pbOpposingSide.effects[PBEffects::FlameSpikes] >= 1
+			return 0
+		end
+		score -= 30
+		score += 15*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
+		return score
+  end
+end

@@ -1042,7 +1042,6 @@ class PokeBattle_Move_162 < PokeBattle_Move
   end
 end
 
-
 #===============================================================================
 # Entry hazard. Lays poison spikes on the opposing side (max. 1 layers).
 # (Poison Spikes)
@@ -1062,6 +1061,7 @@ class PokeBattle_Move_104 < PokeBattle_Move
        user.pbOpposingTeam(true)))
   end
 end
+
 #===============================================================================
 # Protect Nerf: Now instantly fails on second try.
 # (Protect/Detect/etc.)
@@ -1297,5 +1297,108 @@ end
 class PokeBattle_Move_147 < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
     removeProtections(target)
+  end
+end
+
+#===============================================================================
+# Decreases the target's evasion by 1 stage. Ends all barriers and entry
+# hazards for the target's side OR on both sides. (Defog)
+#===============================================================================
+class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
+  def pbFailsAgainstTarget?(user,target)
+    targetSide = target.pbOwnSide
+    targetOpposingSide = target.pbOpposingSide
+    return false if targetSide.effects[PBEffects::AuroraVeil]>0 ||
+                    targetSide.effects[PBEffects::LightScreen]>0 ||
+                    targetSide.effects[PBEffects::Reflect]>0 ||
+                    targetSide.effects[PBEffects::Mist]>0 ||
+                    targetSide.effects[PBEffects::Safeguard]>0
+    return false if targetSide.effects[PBEffects::StealthRock] ||
+                    targetSide.effects[PBEffects::Spikes]>0 ||
+                    targetSide.effects[PBEffects::ToxicSpikes]>0 ||
+					targetSide.effects[PBEffects::FlameSpikes]>0 ||
+                    targetSide.effects[PBEffects::StickyWeb]
+    return false if Settings::MECHANICS_GENERATION >= 6 &&
+                    (targetOpposingSide.effects[PBEffects::StealthRock] ||
+                    targetOpposingSide.effects[PBEffects::Spikes]>0 ||
+                    targetOpposingSide.effects[PBEffects::ToxicSpikes]>0 ||
+					targetOpposingSide.effects[PBEffects::FlameSpikes]>0 ||
+                    targetOpposingSide.effects[PBEffects::StickyWeb])
+    return false if Settings::MECHANICS_GENERATION >= 8 && @battle.field.terrain != :None
+    return super
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    if target.pbCanLowerStatStage?(@statDown[0],user,self)
+      target.pbLowerStatStage(@statDown[0],@statDown[1],user)
+    end
+    if target.pbOwnSide.effects[PBEffects::AuroraVeil]>0
+      target.pbOwnSide.effects[PBEffects::AuroraVeil] = 0
+      @battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!",target.pbTeam))
+    end
+    if target.pbOwnSide.effects[PBEffects::LightScreen]>0
+      target.pbOwnSide.effects[PBEffects::LightScreen] = 0
+      @battle.pbDisplay(_INTL("{1}'s Light Screen wore off!",target.pbTeam))
+    end
+    if target.pbOwnSide.effects[PBEffects::Reflect]>0
+      target.pbOwnSide.effects[PBEffects::Reflect] = 0
+      @battle.pbDisplay(_INTL("{1}'s Reflect wore off!",target.pbTeam))
+    end
+    if target.pbOwnSide.effects[PBEffects::Mist]>0
+      target.pbOwnSide.effects[PBEffects::Mist] = 0
+      @battle.pbDisplay(_INTL("{1}'s Mist faded!",target.pbTeam))
+    end
+    if target.pbOwnSide.effects[PBEffects::Safeguard]>0
+      target.pbOwnSide.effects[PBEffects::Safeguard] = 0
+      @battle.pbDisplay(_INTL("{1} is no longer protected by Safeguard!!",target.pbTeam))
+    end
+    if target.pbOwnSide.effects[PBEffects::StealthRock] ||
+       (Settings::MECHANICS_GENERATION >= 6 &&
+       target.pbOpposingSide.effects[PBEffects::StealthRock])
+      target.pbOwnSide.effects[PBEffects::StealthRock]      = false
+      target.pbOpposingSide.effects[PBEffects::StealthRock] = false if Settings::MECHANICS_GENERATION >= 6
+      @battle.pbDisplay(_INTL("{1} blew away stealth rocks!",user.pbThis))
+    end
+    if target.pbOwnSide.effects[PBEffects::Spikes]>0 ||
+       (Settings::MECHANICS_GENERATION >= 6 &&
+       target.pbOpposingSide.effects[PBEffects::Spikes]>0)
+      target.pbOwnSide.effects[PBEffects::Spikes]      = 0
+      target.pbOpposingSide.effects[PBEffects::Spikes] = 0 if Settings::MECHANICS_GENERATION >= 6
+      @battle.pbDisplay(_INTL("{1} blew away spikes!",user.pbThis))
+    end
+    if target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 ||
+       (Settings::MECHANICS_GENERATION >= 6 &&
+       target.pbOpposingSide.effects[PBEffects::ToxicSpikes]>0)
+      target.pbOwnSide.effects[PBEffects::ToxicSpikes]      = 0
+      target.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0 if Settings::MECHANICS_GENERATION >= 6
+      @battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
+    end
+	if target.pbOwnSide.effects[PBEffects::FlameSpikes]>0 ||
+       (Settings::MECHANICS_GENERATION >= 6 &&
+       target.pbOpposingSide.effects[PBEffects::FlameSpikes]>0)
+      target.pbOwnSide.effects[PBEffects::FlameSpikes]      = 0
+      target.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0 if Settings::MECHANICS_GENERATION >= 6
+      @battle.pbDisplay(_INTL("{1} blew away flame spikes!",user.pbThis))
+    end
+    if target.pbOwnSide.effects[PBEffects::StickyWeb] ||
+       (Settings::MECHANICS_GENERATION >= 6 &&
+       target.pbOpposingSide.effects[PBEffects::StickyWeb])
+      target.pbOwnSide.effects[PBEffects::StickyWeb]      = false
+      target.pbOpposingSide.effects[PBEffects::StickyWeb] = false if Settings::MECHANICS_GENERATION >= 6
+      @battle.pbDisplay(_INTL("{1} blew away sticky webs!",user.pbThis))
+    end
+    if Settings::MECHANICS_GENERATION >= 8 && @battle.field.terrain != :None
+      case @battle.field.terrain
+      when :Electric
+        @battle.pbDisplay(_INTL("The electricity disappeared from the battlefield."))
+      when :Grassy
+        @battle.pbDisplay(_INTL("The grass disappeared from the battlefield."))
+      when :Misty
+        @battle.pbDisplay(_INTL("The mist disappeared from the battlefield."))
+      when :Psychic
+        @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield."))
+      end
+      @battle.field.terrain = :None
+    end
   end
 end

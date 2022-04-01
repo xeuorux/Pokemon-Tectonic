@@ -869,6 +869,7 @@ class PokeBattle_AI
 					 target.pbOwnSide.effects[PBEffects::Safeguard]>0
 	  score -= 30 if target.pbOwnSide.effects[PBEffects::Spikes]>0 ||
 					 target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 ||
+					 target.pbOwnSide.effects[PBEffects::FlameSpikes]>0 ||
 					 target.pbOwnSide.effects[PBEffects::StealthRock]
 	#---------------------------------------------------------------------------
 	when "04A"
@@ -1879,6 +1880,7 @@ class PokeBattle_AI
 	  if score>20
 		score += 50 if target.pbOwnSide.effects[PBEffects::Spikes]>0
 		score += 50 if target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0
+		score += 50 if target.pbOwnSide.effects[PBEffects::FlameSpikes]>0
 		score += 50 if target.pbOwnSide.effects[PBEffects::StealthRock]
 	  end
 	#---------------------------------------------------------------------------
@@ -1887,6 +1889,7 @@ class PokeBattle_AI
 		 !(skill>=PBTrainerAI.highSkill && target.hasActiveAbility?(:SUCTIONCUPS))
 		score += 40 if target.pbOwnSide.effects[PBEffects::Spikes]>0
 		score += 40 if target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0
+		score += 50 if target.pbOwnSide.effects[PBEffects::FlameSpikes]>0
 		score += 40 if target.pbOwnSide.effects[PBEffects::StealthRock]
 	  end
 	#---------------------------------------------------------------------------
@@ -2094,23 +2097,12 @@ class PokeBattle_AI
 	  end
 	#---------------------------------------------------------------------------
 	when "104"
-	  if user.pbOpposingSide.effects[PBEffects::ToxicSpikes]>=2
-		score -= 90
-	  else
-		canChoose = false
-		user.eachOpposing do |b|
-		  next if !@battle.pbCanChooseNonActive?(b.index)
-		  canChoose = true
-		  break
-		end
-		if !canChoose
-		  # Opponent can't switch in any Pokemon
-		  score -= 90
+		if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] >= 1
+			score = 0
 		else
-		  score += 8*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
-		  score += [26,13][user.pbOpposingSide.effects[PBEffects::ToxicSpikes]]
+			score -= 30
+			score += 15*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
 		end
-	  end
 	#---------------------------------------------------------------------------
 	when "105"
 	  if user.pbOpposingSide.effects[PBEffects::StealthRock]
