@@ -777,8 +777,8 @@ PostPrimeMoves = DARKPULSE
 Turns = 2
 HPMult = 4.5
 Ability = FLUFFY
-Moves = BODYPRESS,COTTONGUARD,PRIMEVALBULKUP
-PostPrimeMoves = HAMMERARM
+Moves = BODYSLAM,PRIMEVALBULKUP
+PostPrimeMoves = BODYPRESS
 #-----------------------------
 [GRIMMSNARL]
 Turns = 3
