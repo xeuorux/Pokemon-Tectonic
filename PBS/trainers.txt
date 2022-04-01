@@ -2642,3 +2642,62 @@ Pokemon = FLYGON,49
 	AbilityIndex = 0
 	Item = SHELLBELL
 #-------------------------------
+[SCIENTIST_M3,Gunter]
+Pokemon = CRUSTLE,55
+	AbilityIndex = 0
+	Item = SITRUSBERRY
+Pokemon = BRELOOM,55
+	AbilityIndex = 0
+	Item = COBABERRY
+Pokemon = TYRANITAR,55
+	AbilityIndex = 1
+	Item = FLAMEORB
+Pokemon = ALAKAZAM,55
+	Item = FOCUSSASH
+	AbilityIndex = 0
+Pokemon = HYDREIGON,55
+	Item = CHOICESPECS
+Pokemon = HITMONCHAN,55
+	AbilityIndex = 1
+	Item = MUSCLEBAND
+#-------------------------------
+[SCIENTIST_F3,Nkechi]
+Pokemon = URSARING,55
+	AbilityIndex = 0
+	Item = ORANBERRY
+Pokemon = AMUK,55
+	Item = BLACKSLUDGE
+	AbilityIndex = 0
+Pokemon = UNFEZANT,55
+	Item = SCOPELENS
+	AbilityIndex = 0
+Pokemon = LAPNESSIE,55
+	AbilityIndex = 1
+	Item = LEFTOVERS
+Pokemon = PORYGONZ,55
+	Item = FLAMEORB
+	AbilityIndex = 1
+Pokemon = DECEAT,55
+	AbilityIndex = 0
+	Item = CHOICEBAND
+#-------------------------------
+[SCIENTIST_M4,Jacob]
+Pokemon = GRANBULL,55
+	AbilityIndex = 0
+	Item = EJECTBUTTON
+Pokemon = CONIFEAR,55
+	AbilityIndex = 1
+	Item = EJECTBUTTON
+Pokemon = SWANNA,55
+	AbilityIndex = 0
+	Item = EJECTBUTTON
+Pokemon = DROMERUPT,55
+	AbilityIndex = 0
+	Item = ORANBERRY
+Pokemon = NIBELONG,55
+	AbilityIndex = 1
+	Item = LIECHIBERRY
+Pokemon = ADUGTRIO,55
+	AbilityIndex = 1
+	Item = CHOICESCARF
+#-------------------------------
