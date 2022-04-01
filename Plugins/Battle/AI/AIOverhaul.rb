@@ -339,9 +339,10 @@ class PokeBattle_AI
     moveType = nil
     skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill_level || 0
     battler = @battle.battlers[idxBattler]
+	PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is determining whether it should swap (Defaulting to #{forceSwitch}).")
     # Switch if previously hit hard by a super effective move
-    if !shouldSwitch && battler.turnCount>1 && skill>=PBTrainerAI.highSkill
-      target = battler.pbDirectOpposing(true)
+    if !shouldSwitch && battler.turnCount > 1
+		target = battler.pbDirectOpposing(true)
       if !target.fainted? && target.lastMoveUsed
         moveData = GameData::Move.get(target.lastMoveUsed)
         moveType = moveData.type
@@ -354,39 +355,22 @@ class PokeBattle_AI
 			powerfulBP = 30
 		  when 16..30
 			powerfulBP = 50
-		  when 31..70
+		  when 31..45
 			powerfulBP = 70
+		  when 46..70
+			powerfulBP = 90
 		  end
-          shouldSwitch = moveData.base_damage >= powerfulBP
+          shouldSwitch = true if moveData.base_damage >= powerfulBP
+		  PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is anxious about being hit last turn by a high BP super-effective move and may try to swap.")
         end
       end
     end
     # Pokémon can't do anything (must have been in battle for at least 2 rounds)
-    if !@battle.pbCanChooseAnyMove?(idxBattler) &&
-       battler.turnCount && battler.turnCount>=2
+    if !@battle.pbCanChooseAnyMove?(idxBattler)
       shouldSwitch = true
     end
-    # Pokémon is Perish Songed and has Baton Pass
-    if skill>=PBTrainerAI.highSkill && battler.effects[PBEffects::PerishSong]==1
-      battler.eachMoveWithIndex do |m,i|
-        next if m.function!="0ED"   # Baton Pass
-        next if !@battle.pbCanChooseMove?(idxBattler,i,false)
-        batonPass = i
-        break
-      end
-    end
-    # Pokémon will faint because of bad poisoning at the end of this round, but
-    # would survive at least one more round if it were regular poisoning instead
-    if battler.status == :POISON && battler.statusCount > 0 &&
-       skill>=PBTrainerAI.highSkill
-      toxicHP = battler.totalhp/16
-      nextToxicHP = toxicHP*(battler.effects[PBEffects::Toxic]+1)
-      if battler.hp<=nextToxicHP && battler.hp>toxicHP*2
-        shouldSwitch = true if pbAIRandom(100)<80
-      end
-    end
     # Pokémon is Encored into an unfavourable move
-    if battler.effects[PBEffects::Encore]>0 && skill>=PBTrainerAI.mediumSkill
+    if battler.effects[PBEffects::Encore] > 0
       idxEncoredMove = battler.pbEncoredMoveIndex
       if idxEncoredMove>=0
         scoreSum   = 0
@@ -396,26 +380,18 @@ class PokeBattle_AI
           scoreCount += 1
         end
         if scoreCount>0 && scoreSum/scoreCount<=20
-          shouldSwitch = true if pbAIRandom(100)<80
+          shouldSwitch = true
         end
       end
     end
     # If there is a single foe and it is resting after Hyper Beam or is
     # Truanting (i.e. free turn)
     if @battle.pbSideSize(battler.index+1)==1 &&
-       !battler.pbDirectOpposing.fainted? && skill>=PBTrainerAI.highSkill
+       !battler.pbDirectOpposing.fainted?
       opp = battler.pbDirectOpposing
       if opp.effects[PBEffects::HyperBeam]>0 ||
          (opp.hasActiveAbility?(:TRUANT) && opp.effects[PBEffects::Truant])
-        shouldSwitch = false if pbAIRandom(100)<80
-      end
-    end
-    # Sudden Death rule - I'm not sure what this means
-    if @battle.rules["suddendeath"] && battler.turnCount>0
-      if battler.hp<=battler.totalhp/4 && pbAIRandom(100)<30
-        shouldSwitch = true
-      elsif battler.hp<=battler.totalhp/2 && pbAIRandom(100)<80
-        shouldSwitch = true
+        shouldSwitch = false
       end
     end
     # Pokémon is about to faint because of Perish Song
@@ -457,8 +433,7 @@ class PokeBattle_AI
 		damage  = (((2.0 * battler.level / 5 + 2).floor * baseDmg * atk / defense).floor / 50).floor + 2
 		damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
 		
-		shouldSwitch = true if damage >= battler.hp
-		shouldSwitch = true if damage >= (battler.hp * 0.5).floor if skill>=PBTrainerAI.bestSkill
+		shouldSwitch = true if damage >= (battler.hp * 0.5).floor
     end
 	# Should swap when charm self-damage is likely to kill it
     if battler.effects[PBEffects::CharmChance] >= 1
@@ -495,48 +470,61 @@ class PokeBattle_AI
 		damage  = (((2.0 * battler.level / 5 + 2).floor * baseDmg * atk / defense).floor / 50).floor + 2
 		damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
 		
-		shouldSwitch = true if damage >= battler.hp
-		shouldSwitch = true if damage >= (battler.hp * 0.5).floor if skill>=PBTrainerAI.bestSkill
+		shouldSwitch = true if damage >= (battler.hp * 0.5).floor
     end
     if shouldSwitch
+      PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is trying to find a teammate to swap into.")
       list = []
+	  
       @battle.pbParty(idxBattler).each_with_index do |pkmn,i|
         next if !@battle.pbCanSwitch?(idxBattler,i)
-        # If perish count is 1, it may be worth it to switch
-        # even with Spikes, since Perish Song's effect will end
-        if battler.effects[PBEffects::PerishSong]!=1
-          # Will contain effects that recommend against switching
-          spikes = battler.pbOwnSide.effects[PBEffects::Spikes]
-          # Don't switch to this if too little HP
-          if spikes>0
-            spikesDmg = [8,6,4][spikes-1]
-            if pkmn.hp<=pkmn.totalhp/spikesDmg
-              next if !pkmn.hasType?(:FLYING) && !pkmn.hasLevitate?
-            end
-          end
-        end
-        # moveType is the type of the target's last used move
-        if moveType != nil && Effectiveness.ineffective?(pbCalcTypeMod(moveType,battler,battler.pbDirectOpposing(true)))
-          weight = 65
-          typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
-          if Effectiveness.super_effective?(typeMod)
-            # Greater weight if new Pokemon's type is effective against target
-            weight = 100
-          end
-          list.unshift(i) if pbAIRandom(100)<weight   # Put this Pokemon first
-        elsif moveType != nil && Effectiveness.resistant?(pbCalcTypeMod(moveType,battler,battler.pbDirectOpposing(true)))
-          weight = 40
-          typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
-          if Effectiveness.super_effective?(typeMod)
-            # Greater weight if new Pokemon's type is effective against target
-            weight = 100
-          end
-          list.unshift(i) if pbAIRandom(100)<weight   # Put this Pokemon first
-        else
-          list.push(i)   # put this Pokemon last
+        # Will contain effects that recommend against switching
+		spikes = battler.pbOwnSide.effects[PBEffects::Spikes]
+		# Don't switch to this if too little HP
+		if spikes > 0
+			spikesDmg = [8,6,4][spikes-1]
+			if pkmn.hp <= pkmn.totalhp / spikesDmg
+				next if !pkmn.hasType?(:FLYING) && !pkmn.hasLevitate?
+			end
+		end
+		typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
+		if moveType != nil
+			typeModDefensive = pbCalcTypeMod(moveType,battler,battler.pbDirectOpposing(true))
+		end
+		
+		typeModOffensive = pbCalcTypeModPokemonOffensive(pkmn,target)
+		
+		typeMatchupScore = 0
+		# Modify the type matchup score based on the defensive matchup
+		if Effectiveness.ineffective?(typeModDefensive)
+			typeMatchupScore += 4
+		elsif Effectiveness.not_very_effective?(typeModDefensive)
+			typeMatchupScore += 2
+		elsif Effectiveness.hyper_effective?(typeModDefensive)
+			typeMatchupScore -= 4
+		elsif Effectiveness.super_effective?(typeModDefensive)
+			typeMatchupScore -= 2
+		end
+		# Modify the type matchup score based on the offensive matchup
+		if Effectiveness.ineffective?(typeModOffensive)
+			typeMatchupScore -= 2
+		elsif Effectiveness.not_very_effective?(typeModOffensive)
+			typeMatchupScore -= 1
+		elsif Effectiveness.hyper_effective?(typeModOffensive)
+			typeMatchupScore += 2
+		elsif Effectiveness.super_effective?(typeModOffensive)
+			typeMatchupScore += 1
+		end
+		
+		# If the score is worth it, swap into it
+        if typeMatchupScore >= 2
+          list.push([i,typeMatchupScore])
         end
       end
+	  
       if list.length>0
+		list.sort_by!{|entry| entry[1]}
+	    PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are: #{list.to_s}")
         if batonPass>=0 && @battle.pbRegisterMove(idxBattler,batonPass,false)
           PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Baton Pass to avoid Perish Song")
           return true
@@ -546,9 +534,23 @@ class PokeBattle_AI
                       "#{@battle.pbParty(idxBattler)[list[0]].name}")
           return true
         end
+	  else
+		PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) fails to find any swap candidates.")
       end
     end
     return false
+  end
+  
+  # For switching. Determines the effectiveness of a potential switch-in against
+  # an opposing battler.
+  def pbCalcTypeModPokemonOffensive(user,target)
+    mod1 = Effectiveness.calculate(user.type1,target.type1,target.type2)
+    mod2 = Effectiveness::NORMAL_EFFECTIVE
+    if user.type1 != user.type2
+      mod2 = Effectiveness.calculate(user.type2,target.type1,target.type2)
+      mod2 = mod2.to_f / Effectiveness::NORMAL_EFFECTIVE
+    end
+    return [mod1,mod2].max
   end
   
   #=============================================================================
@@ -584,10 +586,10 @@ class PokeBattle_AI
     }
     # Ability effects that alter damage
     moldBreaker = false
-    if skill>=PBTrainerAI.highSkill && target.hasMoldBreaker?
+    if target.hasMoldBreaker?
       moldBreaker = true
     end
-    if skill>=PBTrainerAI.mediumSkill && user.abilityActive?
+    if user.abilityActive?
       # NOTE: These abilities aren't suitable for checking at the start of the
       #       round.
       abilityBlacklist = [:ANALYTIC,:SNIPER,:TINTEDLENS,:AERILATE,:PIXILATE,:REFRIGERATE]
@@ -602,14 +604,14 @@ class PokeBattle_AI
            user,target,move,multipliers,baseDmg,type)
       end
     end
-    if skill>=PBTrainerAI.mediumSkill && !moldBreaker
+    if !moldBreaker
       user.eachAlly do |b|
         next if !b.abilityActive?
         BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,
            user,target,move,multipliers,baseDmg,type)
       end
     end
-    if skill>=PBTrainerAI.bestSkill && !moldBreaker && target.abilityActive?
+    if !moldBreaker && target.abilityActive?
       # NOTE: These abilities aren't suitable for checking at the start of the
       #       round.
       abilityBlacklist = [:FILTER,:SOLIDROCK]
@@ -624,7 +626,7 @@ class PokeBattle_AI
            user,target,move,multipliers,baseDmg,type)
       end
     end
-    if skill>=PBTrainerAI.bestSkill && !moldBreaker
+    if !moldBreaker
       target.eachAlly do |b|
         next if !b.abilityActive?
         BattleHandlers.triggerDamageCalcTargetAllyAbility(b.ability,
@@ -634,7 +636,7 @@ class PokeBattle_AI
     # Item effects that alter damage
     # NOTE: Type-boosting gems aren't suitable for checking at the start of the
     #       round.
-    if skill>=PBTrainerAI.mediumSkill && user.itemActive?
+    if user.itemActive?
       # NOTE: These items aren't suitable for checking at the start of the
       #       round.
       itemBlacklist = [:EXPERTBELT,:LIFEORB]
@@ -643,7 +645,7 @@ class PokeBattle_AI
            user,target,move,multipliers,baseDmg,type)
       end
     end
-    if skill>=PBTrainerAI.bestSkill && target.itemActive?
+    if target.itemActive?
       # NOTE: Type-weakening berries aren't suitable for checking at the start
       #       of the round.
       if target.item && !target.item.is_berry?
@@ -652,7 +654,6 @@ class PokeBattle_AI
       end
     end
     # Global abilities
-    if skill>=PBTrainerAI.mediumSkill
       if (@battle.pbCheckGlobalAbility(:DARKAURA) && type == :DARK) ||
          (@battle.pbCheckGlobalAbility(:FAIRYAURA) && type == :FAIRY)
         if @battle.pbCheckGlobalAbility(:AURABREAK)
@@ -661,123 +662,108 @@ class PokeBattle_AI
           multipliers[:base_damage_multiplier] *= 4 / 3.0
         end
       end
-    end
     # Parental Bond
-    if skill>=PBTrainerAI.mediumSkill && user.hasActiveAbility?(:PARENTALBOND)
+    if user.hasActiveAbility?(:PARENTALBOND)
       multipliers[:base_damage_multiplier] *= 1.25
     end
     # Me First
     # TODO
     # Helping Hand - n/a
     # Charge
-    if skill>=PBTrainerAI.mediumSkill
-      if user.effects[PBEffects::Charge]>0 && type == :ELECTRIC
-        multipliers[:base_damage_multiplier] *= 2
-      end
-    end
+	if user.effects[PBEffects::Charge]>0 && type == :ELECTRIC
+		multipliers[:base_damage_multiplier] *= 2
+	end
     # Terrain moves
-    if skill>=PBTrainerAI.mediumSkill
-      case @battle.field.terrain
-      when :Electric
-        multipliers[:base_damage_multiplier] *= 1.3 if type == :ELECTRIC && user.affectedByTerrain?
-      when :Grassy
-        multipliers[:base_damage_multiplier] *= 1.3 if type == :GRASS && user.affectedByTerrain?
-      when :Psychic
-        multipliers[:base_damage_multiplier] *= 1.3 if type == :PSYCHIC && user.affectedByTerrain?
-      when :Misty
-        multipliers[:base_damage_multiplier] *= 1.3 if type == :FAIRY && target.affectedByTerrain?
-      end
-    end
+	case @battle.field.terrain
+	when :Electric
+		multipliers[:base_damage_multiplier] *= 1.3 if type == :ELECTRIC && user.affectedByTerrain?
+	when :Grassy
+		multipliers[:base_damage_multiplier] *= 1.3 if type == :GRASS && user.affectedByTerrain?
+	when :Psychic
+		multipliers[:base_damage_multiplier] *= 1.3 if type == :PSYCHIC && user.affectedByTerrain?
+	when :Misty
+		multipliers[:base_damage_multiplier] *= 1.3 if type == :FAIRY && target.affectedByTerrain?
+	end
     # Multi-targeting attacks
-    if skill>=PBTrainerAI.highSkill
-      if pbTargetsMultiple?(move,user)
-        multipliers[:final_damage_multiplier] *= 0.75
-      end
-    end
+	if pbTargetsMultiple?(move,user)
+		multipliers[:final_damage_multiplier] *= 0.75
+	end
     # Weather
-    if skill>=PBTrainerAI.mediumSkill
-      case @battle.pbWeather
-      when :Sun, :HarshSun
-        if type == :FIRE
-          multipliers[:final_damage_multiplier] *= 1.5
-        elsif type == :WATER
-          multipliers[:final_damage_multiplier] /= 2
-        end
-      when :Rain, :HeavyRain
-        if type == :FIRE
-          multipliers[:final_damage_multiplier] /= 2
-        elsif type == :WATER
-          multipliers[:final_damage_multiplier] *= 1.5
-        end
-      when :Sandstorm
-        if target.pbHasType?(:ROCK) && move.specialMove?(type) && move.function != "122"   # Psyshock
-          multipliers[:defense_multiplier] *= 1.5
-        end
-      end
-    end
+	case @battle.pbWeather
+	when :Sun, :HarshSun
+		if type == :FIRE
+		  multipliers[:final_damage_multiplier] *= 1.5
+		elsif type == :WATER
+		  multipliers[:final_damage_multiplier] /= 2
+		end
+	when :Rain, :HeavyRain
+		if type == :FIRE
+		  multipliers[:final_damage_multiplier] /= 2
+		elsif type == :WATER
+		  multipliers[:final_damage_multiplier] *= 1.5
+		end
+	when :Sandstorm
+		if target.pbHasType?(:ROCK) && move.specialMove?(type)
+		  multipliers[:defense_multiplier] *= 1.5
+		end
+	when :Hail
+		if target.pbHasType?(:ICE) && move.physicalMove?(type)
+		  multipliers[:defense_multiplier] *= 1.5
+		end
+	end
     # Critical hits - n/a
     # Random variance - n/a
     # STAB
-    if skill>=PBTrainerAI.mediumSkill
-      if type && user.pbHasType?(type)
-        if user.hasActiveAbility?(:ADAPTABILITY)
-          multipliers[:final_damage_multiplier] *= 2
-        else
-          multipliers[:final_damage_multiplier] *= 1.5
-        end
-      end
-    end
+	if type && user.pbHasType?(type)
+		if user.hasActiveAbility?(:ADAPTABILITY)
+			multipliers[:final_damage_multiplier] *= 2
+		else
+			multipliers[:final_damage_multiplier] *= 1.5
+		end
+	end
     # Type effectiveness
     typemod = pbCalcTypeMod(type,user,target)
     multipliers[:final_damage_multiplier] *= typemod.to_f / Effectiveness::NORMAL_EFFECTIVE
     # Burn
-    if skill>=PBTrainerAI.highSkill
-      if user.status == :BURN && move.physicalMove?(type) &&
-         !user.hasActiveAbility?(:GUTS) &&
-         !(Settings::MECHANICS_GENERATION >= 6 && move.function == "07E")   # Facade
-        if !user.boss
+	if user.status == :BURN && move.physicalMove?(type) &&
+	 !user.hasActiveAbility?(:GUTS) && !move.damageReducedByBurn?
+		if !user.boss
 			multipliers[:final_damage_multiplier] *= 2.0/3.0
 		else
 			multipliers[:final_damage_multiplier] *= 4.0/5.0
 		end
-      end
-    end
+	end
 	# Poison
-    if skill>=PBTrainerAI.highSkill
-      if user.status == :POISON && move.specialMove?(type) &&
-         !user.hasActiveAbility?(:AUDACITY) &&
-         !(Settings::MECHANICS_GENERATION >= 6 && move.function == "07E")   # Facade
-        if !user.boss
+	if user.status == :POISON && move.specialMove?(type) &&
+	 !user.hasActiveAbility?(:AUDACITY) && !move.damageReducedByBurn?
+		if !user.boss
 			multipliers[:final_damage_multiplier] *= 2.0/3.0
 		else
 			multipliers[:final_damage_multiplier] *= 4.0/5.0
 		end
-      end
-    end
+	end
     # Aurora Veil, Reflect, Light Screen
-    if skill>=PBTrainerAI.highSkill
-      if !move.ignoresReflect? && !user.hasActiveAbility?(:INFILTRATOR)
-        if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
-          if @battle.pbSideBattlerCount(target) > 1
-            multipliers[:final_damage_multiplier] *= 2 / 3.0
-          else
-            multipliers[:final_damage_multiplier] /= 2
-          end
-        elsif target.pbOwnSide.effects[PBEffects::Reflect] > 0 && move.physicalMove?(type)
-          if @battle.pbSideBattlerCount(target) > 1
-            multipliers[:final_damage_multiplier] *= 2 / 3.0
-          else
-            multipliers[:final_damage_multiplier] /= 2
-          end
-        elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && move.specialMove?(type)
-          if @battle.pbSideBattlerCount(target) > 1
-            multipliers[:final_damage_multiplier] *= 2 / 3.0
-          else
-            multipliers[:final_damage_multiplier] /= 2
-          end
-        end
-      end
-    end
+	if !move.ignoresReflect? && !user.hasActiveAbility?(:INFILTRATOR)
+		if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
+		  if @battle.pbSideBattlerCount(target) > 1
+			multipliers[:final_damage_multiplier] *= 2 / 3.0
+		  else
+			multipliers[:final_damage_multiplier] /= 2
+		  end
+		elsif target.pbOwnSide.effects[PBEffects::Reflect] > 0 && move.physicalMove?(type)
+		  if @battle.pbSideBattlerCount(target) > 1
+			multipliers[:final_damage_multiplier] *= 2 / 3.0
+		  else
+			multipliers[:final_damage_multiplier] /= 2
+		  end
+		elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && move.specialMove?(type)
+		  if @battle.pbSideBattlerCount(target) > 1
+			multipliers[:final_damage_multiplier] *= 2 / 3.0
+		  else
+			multipliers[:final_damage_multiplier] /= 2
+		  end
+		end
+	end
     # Move-specific base damage modifiers
     # TODO
     # Move-specific final damage modifiers
@@ -790,38 +776,33 @@ class PokeBattle_AI
     damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
     # "AI-specific calculations below"
     # Increased critical hit rates
-    if skill>=PBTrainerAI.mediumSkill
-      c = 0
-      # Ability effects that alter critical hit rate
-      if c>=0 && user.abilityActive?
-        c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
-      end
-      if skill>=PBTrainerAI.bestSkill
-        if c>=0 && !moldBreaker && target.abilityActive?
-          c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
-        end
-      end
-      # Item effects that alter critical hit rate
-      if c>=0 && user.itemActive?
-        c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
-      end
-      if skill>=PBTrainerAI.bestSkill
-        if c>=0 && target.itemActive?
-          c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
-        end
-      end
-      # Other efffects
-      c = -1 if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
-      if c>=0
-        c += 1 if move.highCriticalRate?
-        c += user.effects[PBEffects::FocusEnergy]
-        c += 1 if user.inHyperMode? && move.type == :SHADOW
-      end
-      if c>=0
-        c = 4 if c>4
-        damage += damage*0.1*c
-      end
-    end
+	c = 0
+	# Ability effects that alter critical hit rate
+	if c>=0 && user.abilityActive?
+		c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
+	end
+	if c>=0 && !moldBreaker && target.abilityActive?
+		c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
+	end
+	# Item effects that alter critical hit rate
+	if c>=0 && user.itemActive?
+		c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
+	end
+	if c>=0 && target.itemActive?
+		c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
+	end
+	# Other efffects
+	c = -1 if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
+	if c>=0
+		c += 1 if move.highCriticalRate?
+		c += user.effects[PBEffects::FocusEnergy]
+		c += 1 if user.inHyperMode? && move.type == :SHADOW
+	end
+	if c>=0
+		c = 4 if c>4
+		damage += damage*0.1*c
+	end
+	  
     return damage.floor
   end
   
