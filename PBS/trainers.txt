@@ -1278,7 +1278,7 @@ Pokemon = NOCTOWL,27
     AbilityIndex = 0
 #-------------------------------
 [LEADER_Rafael,Rafael]
-Policies = DISLIKEATTACKING,RAFAEL
+Policies = RAFAEL
 Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
     AbilityIndex = 1
@@ -1296,7 +1296,7 @@ Pokemon = BELLOSSOM,30
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Rafael_2,Rafael]
-Policies = DISLIKEATTACKING,RAFAEL
+Policies = RAFAEL
 Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
     AbilityIndex = 1
@@ -1322,7 +1322,7 @@ Pokemon = ORICORIO,30
 	Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Rafael_2,Rafael,1]
-Policies = DISLIKEATTACKING,RAFAEL,CURSE_SELF_DEBUFFING
+Policies = RAFAEL,CURSE_SELF_DEBUFFING
 Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
     AbilityIndex = 1

@@ -529,9 +529,10 @@ class PokeBattle_AI
           PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Baton Pass to avoid Perish Song")
           return true
         end
-        if @battle.pbRegisterSwitch(idxBattler,list[0])
+		partySlotNumber = list[0][0]
+        if @battle.pbRegisterSwitch(idxBattler,partySlotNumber)
           PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will switch with " +
-                      "#{@battle.pbParty(idxBattler)[list[0]].name}")
+                      "#{@battle.pbParty(idxBattler)[partySlotNumber].name}")
           return true
         end
 	  else
