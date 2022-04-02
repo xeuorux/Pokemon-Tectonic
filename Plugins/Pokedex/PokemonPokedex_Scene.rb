@@ -675,8 +675,8 @@ class PokemonPokedex_Scene
 				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
 				searchPokeAbilities = item[10]
 				value = false
-				value = true if searchPokeAbilities[0] && GameData::Ability.get(searchPokeAbilities[0]).description.downcase.include?(abilityDescriptionInput)
-				value = true if searchPokeAbilities[1] && GameData::Ability.get(searchPokeAbilities[1]).description.downcase.include?(abilityDescriptionInput)
+				value = true if searchPokeAbilities[0] && GameData::Ability.get(searchPokeAbilities[0]).description.downcase.include?(abilityDescriptionInput.downcase)
+				value = true if searchPokeAbilities[1] && GameData::Ability.get(searchPokeAbilities[1]).description.downcase.include?(abilityDescriptionInput.downcase)
 				value = value ^ reversed # Boolean XOR
 				next value
 			}
