@@ -749,3 +749,12 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = false
+#-------------------------------
+[235]
+# Renovated House
+HealingSpot = 187,55,37
+#-------------------------------
+[236]
+# Your House
+HealingSpot = 187,55,37
+#-------------------------------
