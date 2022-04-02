@@ -53,7 +53,7 @@ Events.onMapChange += proc { |_sender,e|
 }
 
 Events.onStepTaken += proc { |_sender,_e|
-	next if !$PokemonGlobal.respawn_tutorial <= 0
+	next if $PokemonGlobal.respawn_tutorial <= 0
 	if $PokemonGlobal.respawn_tutorial == 1
 		pbWait(10)
 		pbMessage(_INTL("\\wmAfter healing at a bed or Pokecenter, defeated enemy trainers will become battle ready again!\\wtnp[80]\1"))
