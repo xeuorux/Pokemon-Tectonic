@@ -16,8 +16,6 @@ def pbStartOver(gameover=false)
 	pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]By the power of the Avatar Totem, your team is revived."))
     pbCancelVehicles
     pbRemoveDependenciesExceptFollower
-	pbToggleFollowingPokemon("off",false)
-	$game_switches[Settings::STARTING_OVER_SWITCH] = true
 	$game_temp.player_new_map_id    = $game_map.map_id
     $game_temp.player_new_x         = $PokemonGlobal.respawnPoint[0]
     $game_temp.player_new_y         = $PokemonGlobal.respawnPoint[1]

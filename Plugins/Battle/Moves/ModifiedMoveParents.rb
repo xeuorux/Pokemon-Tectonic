@@ -117,6 +117,8 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
 end
 
 class PokeBattle_StatDownMove < PokeBattle_Move
+	def pbEffectWhenDealingDamage(user,target); end
+
   def pbEffectAfterAllHits(user,target)
     return if @battle.pbAllFainted?(target.idxOwnSide)
     showAnim = true

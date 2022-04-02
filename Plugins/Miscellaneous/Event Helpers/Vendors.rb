@@ -72,6 +72,23 @@ def terrainTMSell()
 	)
 end
 
+def fossilSell()
+	pbPokemonMart(
+		[:HELIXFOSSIL,
+		:DOMEFOSSIL,
+		:OLDAMBER,
+		:ROOTFOSSIL,
+		:CLAWFOSSIL,
+		:SKULLFOSSIL,
+		:ARMORFOSSIL,
+		:COVERFOSSIL,
+		:PLUMEFOSSIL,
+		:JAWFOSSIL,
+		:SAILFOSSIL],
+		"Do you like anything you see?"
+	)
+end
+
 def malasadaVendor()
 	pbPokemonMart(
 		[:BIGMALASADA,
