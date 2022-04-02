@@ -59,7 +59,6 @@ Events.onStepTaken += proc { |_sender,_e|
 		pbMessage(_INTL("\\wmAfter healing at a bed or Pokecenter, defeated enemy trainers will become battle ready again!\\wtnp[80]\1"))
 		pbMessage(_INTL("\\wmTrainers who fled don't come back, however.\\wtnp[80]\1"))
 		pbWait(10)
-		$PokemonGlobal.respawn_tutorial = false
 		$PokemonGlobal.respawns_tutorialized = true
 	end
 	$PokemonGlobal.respawn_tutorial -= 1
