@@ -844,6 +844,7 @@
 819,ENERGYLOCK,Energy Lock,Energy Locks,1,4000,"A held item. It set's the holder's Sp. Atk. stat to 95.",0,0,0,
 820,WILLLOCK,Will Lock,Will Locks,1,4000,"A held item. It set's the holder's Sp. Def. stat to 95.",0,0,0,
 821,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,15000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0,
+822,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca.",0,0,6
 #------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
