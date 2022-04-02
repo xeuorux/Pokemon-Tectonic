@@ -29,8 +29,9 @@ class PokeBattle_ActiveField
       @terrain         = :None
       @terrainDuration = 0
     end
-	
-	class PokeBattle_ActiveSide
+end
+
+class PokeBattle_ActiveSide
     attr_accessor :effects
 
     def initialize
@@ -59,5 +60,4 @@ class PokeBattle_ActiveField
 	  @effects[PBEffects::FlameSpikes]        = 0
       @effects[PBEffects::WideGuard]          = false
     end
-  end
 end
