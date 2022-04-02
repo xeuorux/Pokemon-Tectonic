@@ -277,13 +277,25 @@ class PokemonPokedex_Scene
           @sprites["pokedex"].active = true
         elsif Input.trigger?(Input::BACK)
           if @searchResults
-            if pbMessage(_INTL("You have an active search. What would you like to do?"),[_INTL("Store Search and Exit"),_INTL("Cancel Search")],1) == 0
+			storeCommand = -1
+			cancelCommand = -1
+			cancelAndCloseCommand = -1
+			commands = []
+			commands[cancelCommand = commands.length] = _INTL("Cancel Search")
+			commands[cancelAndCloseCommand = commands.length] = _INTL("Cancel Search and Exit")
+			commands[storeCommand = commands.length] = _INTL("Store Search and Exit")
+			result = pbMessage(_INTL("You have an active search. What would you like to do?"),commands,0)
+            if result == storeCommand
 				$PokemonGlobal.stored_search = @dexlist
 				pbPlayCloseMenuSE
 				break
-			else
+			elsif result == cancelCommand
 				pbPlayCancelSE
 				pbCloseSearch
+			elsif result == cancelAndCloseCommand
+				pbCloseSearch
+				pbPlayCloseMenuSE
+				break
 			end
           else
             pbPlayCloseMenuSE
