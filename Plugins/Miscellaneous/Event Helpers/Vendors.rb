@@ -84,7 +84,7 @@ def fossilSell()
 		:COVERFOSSIL,
 		:PLUMEFOSSIL,
 		:JAWFOSSIL,
-		:SAILFOSSIL]
+		:SAILFOSSIL],
 		"Do you like anything you see?"
 	)
 end
