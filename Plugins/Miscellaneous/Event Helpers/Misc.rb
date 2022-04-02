@@ -43,6 +43,11 @@ def isCat?(species)
 	return array.include?(species)
 end
 
+def isAlien?(species)
+	array = [:CLEFFA,:CLEFAIRY,:CLEFABLE,:STARYU,:STARMIE,:LUNATONE,:SOLROCK,:ELGYEM,:BEHEEYEM,:KYUREM,:ETERNATUS,:DEOXYS]
+	return array.include?(species)
+end
+
 def playerIsOutdoors?
 	begin
 		return GameData::MapMetadata.get($game_map.map_id).outdoor_map
