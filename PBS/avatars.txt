@@ -636,8 +636,8 @@ Item = SITRUSBERRY
 Moves = CLEARSMOG,BELCH
 HPMult = 4
 #-------------------------------
-[DURALUDON]
-Turns = 3
+[TOWERPODA]
+Turns = 2
 Ability = SANDSTREAM
 Moves = TWISTER,DRAGONROAR
 HPMult = 4
