@@ -35,9 +35,32 @@ Events.onMapChange += proc { |_sender,e|
     
   $PokemonGlobal.respawnTable[$game_map.map_id] = false
   echo("Resetting events on this map\n")
+  anyTrainersRespawned = false
   for event in $game_map.events.values
     if event.name.downcase.include?("reset")
       $game_self_switches[[$game_map.map_id,event.id,"A"]] = false
+	  if event.name.downcase.include?("trainer")
+		anyTrainersRespawned = true
+	  end
     end
   end
+  
+  if anyTrainersRespawned && !$PokemonGlobal.respawns_tutorialized
+	$PokemonGlobal.respawn_tutorial = 5
+  else
+    $PokemonGlobal.respawn_tutorial = 0
+  end
+}
+
+Events.onStepTaken += proc { |_sender,_e|
+	next if !$PokemonGlobal.respawn_tutorial <= 0
+	if $PokemonGlobal.respawn_tutorial == 1
+		pbWait(10)
+		pbMessage(_INTL("\\wmAfter healing at a bed or Pokecenter, defeated enemy trainers will become battle ready again!\\wtnp[80]\1"))
+		pbMessage(_INTL("\\wmTrainers who fled don't come back, however.\\wtnp[80]\1"))
+		pbWait(10)
+		$PokemonGlobal.respawn_tutorial = false
+		$PokemonGlobal.respawns_tutorialized = true
+	end
+	$PokemonGlobal.respawn_tutorial -= 1
 }

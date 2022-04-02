@@ -6,6 +6,8 @@ class PokemonGlobalMetadata
 	attr_accessor :teamHealerUpgrades
 	attr_accessor :tarot_amulet_active
 	attr_accessor :stored_search
+	attr_accessor :respawns_tutorialized
+	attr_accessor :respawn_tutorial
 	
 	def initialize
     # Movement
@@ -70,5 +72,7 @@ class PokemonGlobalMetadata
 	@teamHealerCurrentUses= 1
 	@tarot_amulet_active  = false
 	@stored_search		  = nil
+	@respawns_tutorialized = false
+	@respawn_tutorial 	  = 5
   end
 end
