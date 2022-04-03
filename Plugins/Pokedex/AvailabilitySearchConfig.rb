@@ -24,7 +24,7 @@ MAPS_AVAILABLE_BY_CAP = {
 			187,189,202,	# Prizca East, Catacombs, Mountaineer's House
 			193,196,203,	# Lapras Shore, Boiling Cave, Skeevee Eevee Pub
 			211,212,216,	# Shield, Ocean Fishing, Mountain Lake
-			218				# Abyssal Chamber
+			218,230,232,	# Abyssal Chamber, Galarian Fan's House, Biologist's House
 			],
 	70 => [215			# Sky
 			]
