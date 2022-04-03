@@ -1758,7 +1758,7 @@ class PokeBattle_Move_551 < PokeBattle_Move
        user.pbOpposingTeam(true)))
   end
   
-  def getScore
+  def getScore(score,user,target,skill=100)
 		if user.pbOpposingSide.effects[PBEffects::FlameSpikes] >= 1
 			return 0
 		end
