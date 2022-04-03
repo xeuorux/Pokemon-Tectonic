@@ -53,7 +53,7 @@ class PokeBattle_Move_400 < PokeBattle_CharmMove
 	  canCharm = target.pbCanCharm?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
 	  if canCharm
 		score += 20
-	  elsif move.statusMove?
+	  elsif statusMove?
 		score = 0
 	  end
 	  return score
