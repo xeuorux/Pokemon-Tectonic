@@ -38,10 +38,10 @@ Events.onMapChange += proc { |_sender,e|
   anyTrainersRespawned = false
   for event in $game_map.events.values
     if event.name.downcase.include?("reset")
-      $game_self_switches[[$game_map.map_id,event.id,"A"]] = false
-	  if event.name.downcase.include?("trainer")
-		anyTrainersRespawned = true
-	  end
+		if event.name.downcase.include?("trainer") && $game_self_switches[[$game_map.map_id,event.id,"A"]]
+			anyTrainersRespawned = true
+		end
+		$game_self_switches[[$game_map.map_id,event.id,"A"]] = false
     end
   end
   
