@@ -82,7 +82,7 @@ class PokeBattle_Scene
       return anim if anim
 	  
       # Default animation for the move's type not found, use Tackle's animation
-      if GameData::Move.exists?(:TACKLE)
+      if moveData.physicalMove? && GameData::Move.exists?(:TACKLE)
         return pbFindMoveAnimDetails(move2anim, :TACKLE, idxUser)
       end
     rescue
@@ -102,7 +102,6 @@ class PokeBattle_Scene
     animations = pbLoadBattleAnimations
     return if !animations
 	speedMult = 1
-	speedMult = 2 if hitNum > 0
     pbSaveShadows {
       if animID[1]   # On opposing side and using OppMove animation
         pbAnimationCore(animations[anim],target,user,true,speedMult)
@@ -174,8 +173,7 @@ class PBAnimationPlayerX
     @looping       = false
     @animbitmap    = nil   # Animation sheet graphic
     @frame         = -1
-    @framesPerTick = [Graphics.frame_rate/20,1].max   # 20 ticks per second
-	@framesPerTick /= speedMult
+    @framesPerTick = [Graphics.frame_rate/(20*speedMult),1].max   # 20 ticks per second
     @srcLine       = nil
     @dstLine       = nil
     @userOrig      = getSpriteCenter(@usersprite)

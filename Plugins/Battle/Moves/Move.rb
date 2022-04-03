@@ -6,7 +6,7 @@ class PokeBattle_Move
   # Animate the damage dealt, including lowering the HP
   #=============================================================================
   # Animate being damaged and losing HP (by a move)
-  def pbAnimateHitAndHPLost(user,targets)
+  def pbAnimateHitAndHPLost(user,targets,fastHitAnimation=false)
     # Animate allies first, then foes
     animArray = []
     for side in 0...2   # side here means "allies first, then foes"
@@ -24,7 +24,7 @@ class PokeBattle_Move
         animArray.push([b,oldHP,effectiveness])
       end
       if animArray.length>0
-        @battle.scene.pbHitAndHPLossAnimation(animArray)
+        @battle.scene.pbHitAndHPLossAnimation(animArray,fastHitAnimation)
         animArray.clear
       end
     end

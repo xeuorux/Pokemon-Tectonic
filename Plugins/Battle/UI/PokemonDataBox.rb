@@ -74,17 +74,21 @@ class PokemonDataBox < SpriteWrapper
 		end
 	  end
 	  
-	def animateHP(oldHP,newHP,rangeHP)
+	def animateHP(oldHP,newHP,rangeHP,fastAnimation)
 		@currentHP   = oldHP
 		@endHP       = newHP
 		@rangeHP     = rangeHP
-		# NOTE: A change in HP takes the same amount of time to animate, no matter
-		#       how big a change it is.
-		@hpIncPerFrame = (newHP-oldHP).abs/(HP_BAR_CHANGE_TIME*Graphics.frame_rate)
-		# minInc is the smallest amount that HP is allowed to change per frame.
-		# This avoids a tiny change in HP still taking HP_BAR_CHANGE_TIME seconds.
-		minInc = (rangeHP*4)/(@hpBarBitmap.width*HP_BAR_CHANGE_TIME*Graphics.frame_rate)
-		@hpIncPerFrame = minInc if @hpIncPerFrame<minInc
+		if !fastAnimation
+			# NOTE: A change in HP takes the same amount of time to animate, no matter
+			#       how big a change it is.
+			@hpIncPerFrame = (newHP-oldHP).abs/(HP_BAR_CHANGE_TIME*Graphics.frame_rate)
+			# minInc is the smallest amount that HP is allowed to change per frame.
+			# This avoids a tiny change in HP still taking HP_BAR_CHANGE_TIME seconds.
+			minInc = (rangeHP*4)/(@hpBarBitmap.width*HP_BAR_CHANGE_TIME*Graphics.frame_rate)
+			@hpIncPerFrame = [@hpIncPerFrame,minInc].max
+		else
+			@hpIncPerFrame = 999
+		end
 		@animatingHP   = true
 	end
 	

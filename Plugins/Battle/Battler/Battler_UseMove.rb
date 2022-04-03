@@ -537,7 +537,7 @@ class PokeBattle_Battler
       end
     end
     # Show move animation (for this hit)
-    move.pbShowAnimation(move.id,user,targets,hitNum)
+    move.pbShowAnimation(move.id,user,targets,hitNum) if hitNum == 0
     # Type-boosting Gem consume animation/message
     if user.effects[PBEffects::GemConsumed] && hitNum==0
       # NOTE: The consume animation and message for Gems are shown now, but the
@@ -560,7 +560,7 @@ class PokeBattle_Battler
         move.pbInflictHPDamage(b)
       end
       # Animate the hit flashing and HP bar changes
-      move.pbAnimateHitAndHPLost(user,targets)
+      move.pbAnimateHitAndHPLost(user,targets,hitNum > 0)
     end
     # Self-Destruct/Explosion's damaging and fainting of user
     move.pbSelfKO(user) if hitNum==0

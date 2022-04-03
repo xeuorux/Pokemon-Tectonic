@@ -2,7 +2,7 @@
 # Shows a Pokémon flashing after taking damage
 #===============================================================================
 class BattlerDamageAnimation < PokeBattle_Animation
-	def initialize(sprites,viewport,idxBattler,effectiveness,battler)
+	def initialize(sprites,viewport,idxBattler,effectiveness,battler,fastHitAnimation)
 		@idxBattler    = idxBattler
 		@effectiveness = effectiveness
 		@battler = battler
@@ -13,6 +13,8 @@ class BattlerDamageAnimation < PokeBattle_Animation
 		@damageDisplaySprite.bitmap = @damageDisplayBitmap
 		pbSetSystemFont(@damageDisplayBitmap)
 		@damageDisplaySprite.z = 999999
+		
+		@fastHitAnimation = fastHitAnimation
 		
 		super(sprites,viewport)
 		
@@ -46,6 +48,11 @@ class BattlerDamageAnimation < PokeBattle_Animation
 				@damageDisplayBitmap.font.size = 32
 			end
 			
+			if @fastHitAnimation
+				framesForMovement /= 4 
+				framesForOpacity /= 4
+			end
+			
 			base = Color.new(72,72,72)
 			case @effectiveness
 			when 0 then base = Color.new(72,72,72)
@@ -60,9 +67,17 @@ class BattlerDamageAnimation < PokeBattle_Animation
 			damageY = batSprite.y - 140
 			pbDrawTextPositions(@damageDisplayBitmap,[[@damageDealt.to_s,damageX,damageY,2,base,shadow,true]])
 		
+			if @fastHitAnimation
+				movementFrameStart = 1
+				opacityFrameStart = 2
+			else
+				movementFrameStart = 5
+				opacityFrameStart = 10
+			end
+		
 			spritePicture = addSprite(@damageDisplaySprite)
-			spritePicture.moveXY(5, framesForMovement, 0, -30)
-			spritePicture.moveOpacity(10,framesForOpacity,0)
+			spritePicture.moveXY(movementFrameStart, framesForMovement, 0, -30)
+			spritePicture.moveOpacity(opacityFrameStart,framesForOpacity,0)
 		end
 		
 		# Set up battler/shadow sprite
@@ -76,7 +91,8 @@ class BattlerDamageAnimation < PokeBattle_Animation
 		when 2 then battler.setSE(delay, "Battle damage super")
 		when 4 then battler.setSE(delay, "Battle damage hyper") # HYPER EFFECTIVE DAMAGE !!
 		end
-		4.times do   # 4 flashes, each lasting 0.2 (4/20) seconds
+		flashesCount = @fastHitAnimation ? 1 : 4
+		flashesCount.times do   # 4 flashes, each lasting 0.2 (4/20) seconds
 		  battler.setVisible(delay,false)
 		  shadow.setVisible(delay,false)
 		  battler.setVisible(delay+2,true) if batSprite.visible

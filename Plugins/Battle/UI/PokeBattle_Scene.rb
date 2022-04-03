@@ -606,14 +606,14 @@ class PokeBattle_Scene
   # Animates battlers flashing and data boxes' HP bars because of damage taken
   # by an attack. targets is an array, which are all animated simultaneously.
   # Each element in targets is also an array: [battler, old HP, effectiveness]
-  def pbHitAndHPLossAnimation(targets)
+  def pbHitAndHPLossAnimation(targets,fastHitAnimation=false)
     @briefMessage = false
     # Set up animations
     damageAnims = []
     targets.each do |t|
-      anim = BattlerDamageAnimation.new(@sprites,@viewport,t[0].index,t[2],t[0])
-      damageAnims.push(anim)
-      @sprites["dataBox_#{t[0].index}"].animateHP(t[1],t[0].hp,t[0].totalhp)
+		anim = BattlerDamageAnimation.new(@sprites,@viewport,t[0].index,t[2],t[0],fastHitAnimation)
+		damageAnims.push(anim)
+		@sprites["dataBox_#{t[0].index}"].animateHP(t[1],t[0].hp,t[0].totalhp,fastHitAnimation)
     end
     # Update loop
     loop do
