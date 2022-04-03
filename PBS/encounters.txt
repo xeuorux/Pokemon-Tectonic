@@ -551,6 +551,14 @@ FloweryGrass2,20
 Special,1
 1,SEVIPER,15,15
 #-------------------------------
+[230] # Galarian Fan's House
+Special,1
+1,SKARMORY,15,15
+#-------------------------------
+[232] # Biologist's House
+Special,1
+1,CHINCHOU,15,15
+#-------------------------------
 [189] # Catacombs
 DarkCave,20
 33,SPIRITOMB,33,35
