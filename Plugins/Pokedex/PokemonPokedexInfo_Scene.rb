@@ -73,7 +73,6 @@ class PokemonPokedexInfo_Scene
     @extraInfoOverlay.y = @moveInfoDisplay.y
     pbSetNarrowFont(@extraInfoOverlay.bitmap)
     @sprites["extraInfoOverlay"] = @extraInfoOverlay
-	@selectedMoveType = 
 	
     @scroll = -1
 	@title = "Undefined"
@@ -178,7 +177,10 @@ class PokemonPokedexInfo_Scene
 	xPos = 240
 	xPos -= 14 if @page >= 10
 	drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/#{10}]</outln2>", base, shadow, 18)
-    # Draw page-specific information
+    # Draw species name on top right
+	speciesName = GameData::Species.get(@species).real_name
+	drawFormattedTextEx(overlay, xPos+104, 2, Graphics.width, "<outln2>#{speciesName}</outln2>", base, shadow, 18)
+	# Draw page-specific information
     case page
     when 1; drawPageInfo
     when 2; drawPageAbilities
@@ -394,14 +396,6 @@ class PokemonPokedexInfo_Scene
           drawTextEx(overlay,230,130+32*index,450,1,otherStatNames[index],base,shadow)
           drawTextEx(overlay,378,130+32*index,450,1,stat.to_s,base,shadow)
         end
-=begin
-		map_id = checkForZooMap(fSpecies.species.to_s)
-		placementMap = "None"
-		placementMap = (pbGetMessage(MessageTypes::MapNames,map_id) rescue nil) if map_id != -1
-		placementMap.gsub!("Zoo","")
-		drawTextEx(overlay,230,274,450,1,"Zoo Section",base,shadow)
-		drawTextEx(overlay,230,306,450,1,placementMap,base,shadow)
-=end
 		items = []
 		items.push(fSpecies.wild_item_common) if fSpecies.wild_item_common
 		items.push(fSpecies.wild_item_uncommon) if fSpecies.wild_item_uncommon
@@ -614,7 +608,6 @@ class PokemonPokedexInfo_Scene
     for i in @available
       if i[2]==@form
         formname = i[0]
-        drawTextEx(overlay,xLeft,54,450,1,_INTL("Level Up Moves for {1}",@title),base,shadow)
         fSpecies = GameData::Species.get_species_form(@species,i[2])
         learnset = fSpecies.moves
         displayIndex = 0
@@ -635,10 +628,10 @@ class PokemonPokedexInfo_Scene
 			selected_move = move
 		  end
 		  moveName = getFormattedMoveName(move)
-		  drawTextEx(overlay,xLeft,84+30*displayIndex,450,1,levelLabel,color,shadow)
-          drawFormattedTextEx(overlay,xLeft+30,84+30*displayIndex,450,moveName,color,shadow)
+		  drawTextEx(overlay,xLeft,60+30*displayIndex,450,1,levelLabel,color,shadow)
+          drawFormattedTextEx(overlay,xLeft+30,60+30*displayIndex,450,moveName,color,shadow)
           displayIndex += 1
-          break if displayIndex >= 9
+          break if displayIndex >= 10
         end
       end
     end
@@ -817,7 +810,6 @@ class PokemonPokedexInfo_Scene
     for i in @available
       if i[2]==@form
         formname = i[0]
-        drawTextEx(overlay,xLeft,54,450,1,_INTL("Tutorable Moves for {1}",@title),base,shadow)
         species_data = GameData::Species.get_species_form(@species,i[2])
 		firstSpecies = species_data
 		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
@@ -846,9 +838,9 @@ class PokemonPokedexInfo_Scene
 			selected_move = move
 		  end
 		  moveName = getFormattedMoveName(move)
-          drawFormattedTextEx(overlay,xLeft,84+30*displayIndex,450,moveName,color,shadow)
+          drawFormattedTextEx(overlay,xLeft,60+30*displayIndex,450,moveName,color,shadow)
           displayIndex += 1
-          break if displayIndex >= 9
+          break if displayIndex >= 10
         end
       end
     end
@@ -861,7 +853,7 @@ class PokemonPokedexInfo_Scene
 		# Extra move info display
 		@extraInfoOverlay.bitmap.clear
 		overlay = @extraInfoOverlay.bitmap
-		selected_move = GameData::Move.get(selected_move)
+		moveData = GameData::Move.get(selected_move)
 		
 		# Write power and accuracy values for selected move
 		# Write various bits of text
@@ -875,28 +867,55 @@ class PokemonPokedexInfo_Scene
 		
 		base = Color.new(64,64,64)
 		shadow = Color.new(176,176,176)
-		case selected_move.base_damage
+		case moveData.base_damage
 		when 0 then textpos.push(["---", 220, 32, 1, base, shadow])   # Status move
 		when 1 then textpos.push(["???", 220, 32, 1, base, shadow])   # Variable power move
-		else        textpos.push([selected_move.base_damage.to_s, 220, 32, 1, base, shadow])
+		else        textpos.push([moveData.base_damage.to_s, 220, 32, 1, base, shadow])
 		end
-		if selected_move.accuracy == 0
+		if moveData.accuracy == 0
 		  textpos.push(["---", 220, 64, 1, base, shadow])
 		else
-		  textpos.push(["#{selected_move.accuracy}%", 220 + overlay.text_size("%").width, 64, 1, base, shadow])
+		  textpos.push(["#{moveData.accuracy}%", 220 + overlay.text_size("%").width, 64, 1, base, shadow])
 		end
 		# Draw all text
 		pbDrawTextPositions(overlay, textpos)
 		# Draw selected move's damage category icon
-		imagepos = [["Graphics/Pictures/category", 170, 8, 0, selected_move.category * 28, 64, 28]]
+		imagepos = [["Graphics/Pictures/category", 170, 8, 0, moveData.category * 28, 64, 28]]
 		pbDrawImagePositions(overlay, imagepos)
 		# Draw selected move's description
-		drawTextEx(overlay,8,108,210,5,selected_move.description,base,shadow)
+		drawTextEx(overlay,8,108,210,5,moveData.description,base,shadow)
 		
 		#Draw the move's type
-		type_number = GameData::Type.get(selected_move.type).id_number
+		type_number = GameData::Type.get(moveData.type).id_number
 		typerect = Rect.new(0, type_number*32, 96, 32)
-		@sprites["overlay"].bitmap.blt(340, 60, @typebitmap.bitmap, typerect)
+		@sprites["overlay"].bitmap.blt(380, 60, @typebitmap.bitmap, typerect)
+		
+		#Draw the move's special categories
+		category = ""
+		moveData.flags.split('').each do |flag|
+			case flag
+			when 'i'
+				category = "Bite"
+			when 'j'
+				category = "Punch"
+			when 'k'
+				category = "Sound"
+			when 'l'
+				category = "Powder"
+			when 'm'
+				category = "Pulse"
+			when 'n'
+				category = "Bomb"
+			when 'o'
+				category = "Dance"
+			when 't'
+				category = "Blade"
+			end
+		end
+		
+		categoryBase   = Color.new(88,88,80)
+		categoryShadow = Color.new(168,184,184)
+		drawTextEx(@sprites["overlay"].bitmap,300,70,210,2,category,categoryBase,categoryShadow)
 	end
   end
   
