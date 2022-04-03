@@ -73,6 +73,6 @@ class PokemonGlobalMetadata
 	@tarot_amulet_active  = false
 	@stored_search		  = nil
 	@respawns_tutorialized = false
-	@respawn_tutorial 	  = 5
+	@respawn_tutorial 	  = 0
   end
 end
