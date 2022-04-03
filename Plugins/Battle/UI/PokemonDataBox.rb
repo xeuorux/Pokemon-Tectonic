@@ -74,7 +74,7 @@ class PokemonDataBox < SpriteWrapper
 		end
 	  end
 	  
-	def animateHP(oldHP,newHP,rangeHP,fastAnimation)
+	def animateHP(oldHP,newHP,rangeHP,fastAnimation=false)
 		@currentHP   = oldHP
 		@endHP       = newHP
 		@rangeHP     = rangeHP
