@@ -227,3 +227,20 @@ BattleHandlers::TargetAbilityOnHit.add(:SNAKEPIT,
     battle.pbHideAbilitySplash(target)
   }
 )
+
+BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
+  proc { |ability,user,target,move,battle|
+    next if user.paralyzed? || battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(target)
+    if user.pbCanParalyze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} numbed {3}! It may be unable to move!",
+           target.pbThis,target.abilityName,user.pbThis(true))
+      end
+      user.pbParalyze(target,msg)
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
