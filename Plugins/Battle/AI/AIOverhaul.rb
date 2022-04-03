@@ -217,24 +217,31 @@ class PokeBattle_AI
 			end
 		end
 		# Don't prefer attacking the target if they'd be semi-invulnerable
-		if move.accuracy>0 && (target.semiInvulnerable? || target.effects[PBEffects::SkyDrop]>=0)
-			miss = true
-			miss = false if user.hasActiveAbility?(:NOGUARD) || target.hasActiveAbility?(:NOGUARD)
-			if miss && pbRoughStat(user,:SPEED,skill)>pbRoughStat(target,:SPEED,skill)
+		if move.accuracy > 0 && (target.semiInvulnerable? || target.effects[PBEffects::SkyDrop]>=0)
+			  canHitAnyways = false
 			  # Knows what can get past semi-invulnerability
 			  if target.effects[PBEffects::SkyDrop]>=0
-				miss = false if move.hitsFlyingTargets?
+				canHitAnyways = true if move.hitsFlyingTargets?
 			  else
 				if target.inTwoTurnAttack?("0C9","0CC","0CE")   # Fly, Bounce, Sky Drop
-				  miss = false if move.hitsFlyingTargets?
+				  canHitAnyways = true if move.hitsFlyingTargets?
 				elsif target.inTwoTurnAttack?("0CA")          # Dig
-				  miss = false if move.hitsDiggingTargets?
+				  canHitAnyways = true if move.hitsDiggingTargets?
 				elsif target.inTwoTurnAttack?("0CB")          # Dive
-				  miss = false if move.hitsDivingTargets?
+				  canHitAnyways = true if move.hitsDivingTargets?
 				end
 			  end
+			  canHitAnyways = true if user.hasActiveAbility?(:NOGUARD) || target.hasActiveAbility?(:NOGUARD)
+			  
+			if user.pbSpeed > target.pbSpeed
+				if canHitAnyways
+					score *= 2
+				else
+					score = 0
+				end
+			else
+				score /= 2
 			end
-			score = 0 if miss
 		end
 		
 		# A score of 0 here means it absolutely should not be used
@@ -340,9 +347,11 @@ class PokeBattle_AI
     skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill_level || 0
     battler = @battle.battlers[idxBattler]
 	PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is determining whether it should swap (Defaulting to #{forceSwitch}).")
-    # Switch if previously hit hard by a super effective move
+    
+	target = battler.pbDirectOpposing(true)
+	
+	# Switch if previously hit hard by a super effective move
     if !shouldSwitch && battler.turnCount > 1
-		target = battler.pbDirectOpposing(true)
       if !target.fainted? && target.lastMoveUsed
         moveData = GameData::Move.get(target.lastMoveUsed)
         moveType = moveData.type
@@ -488,11 +497,13 @@ class PokeBattle_AI
 			end
 		end
 		typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
-		if moveType != nil
+		if !moveType.nil?
 			typeModDefensive = pbCalcTypeMod(moveType,battler,battler.pbDirectOpposing(true))
 		end
 		
-		typeModOffensive = pbCalcTypeModPokemonOffensive(pkmn,target)
+		if !target.nil?
+			typeModOffensive = pbCalcTypeModPokemonOffensive(pkmn,target)
+		end
 		
 		typeMatchupScore = 0
 		# Modify the type matchup score based on the defensive matchup

@@ -299,7 +299,7 @@ class PokeBattle_Battler
       realNumHits = 0
       for i in 0...numHits
         break if magicCoater>=0 || magicBouncer>=0
-        success = pbProcessMoveHit(move,user,targets,i,skipAccuracyCheck)
+        success = pbProcessMoveHit(move,user,targets,i,skipAccuracyCheck,numHits > 1)
         if !success
           if i==0 && targets.length>0
             hasFailed = false
@@ -483,7 +483,7 @@ class PokeBattle_Battler
   #=============================================================================
   # Attack a single target
   #=============================================================================
-  def pbProcessMoveHit(move,user,targets,hitNum,skipAccuracyCheck)
+  def pbProcessMoveHit(move,user,targets,hitNum,skipAccuracyCheck,multiHit=false)
     return false if user.fainted?
     # For two-turn attacks being used in a single turn
     move.pbInitialEffect(user,targets,hitNum)
@@ -560,7 +560,7 @@ class PokeBattle_Battler
         move.pbInflictHPDamage(b)
       end
       # Animate the hit flashing and HP bar changes
-      move.pbAnimateHitAndHPLost(user,targets,hitNum > 0)
+      move.pbAnimateHitAndHPLost(user,targets,multiHit)
     end
     # Self-Destruct/Explosion's damaging and fainting of user
     move.pbSelfKO(user) if hitNum==0
