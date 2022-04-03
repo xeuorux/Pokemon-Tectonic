@@ -2,7 +2,7 @@
 # Shows a Pokémon flashing after taking damage
 #===============================================================================
 class BattlerDamageAnimation < PokeBattle_Animation
-	def initialize(sprites,viewport,idxBattler,effectiveness,battler,fastHitAnimation)
+	def initialize(sprites,viewport,idxBattler,effectiveness,battler,fastHitAnimation=false)
 		@idxBattler    = idxBattler
 		@effectiveness = effectiveness
 		@battler = battler
