@@ -30,7 +30,7 @@ def useAidKit()
 			p.heal_PP
 			fullyHealed = false if p.hp < p.totalhp
 		end
-		refreshFollow()
+		refreshFollow(false)
 		pbMessage(_INTL("Your entire team is healthy!")) if fullyHealed
 		return 1
 	else

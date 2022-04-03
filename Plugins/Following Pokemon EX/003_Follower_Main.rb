@@ -493,7 +493,7 @@ Events.onStepTaken += proc { |_sender,_e|
   end
 }
 
-def refreshFollow
+def refreshFollow(animate=true)
 	return if $PokemonSystem.followers == 1
-	pbToggleFollowingPokemon("on",true)
+	pbToggleFollowingPokemon("on",animate)
 end
