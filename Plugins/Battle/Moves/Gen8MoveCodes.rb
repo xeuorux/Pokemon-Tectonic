@@ -692,7 +692,7 @@ end
 class PokeBattle_Move_18B < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    if target.pbCanBurn?(user,false,self) && statStagesUp(target)
+    if target.pbCanBurn?(user,false,self) && target.statStagesUp?
       target.pbBurn(user)
     end
   end
