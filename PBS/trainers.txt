@@ -2487,6 +2487,7 @@ Pokemon = URSHIFU,70
 [TRAINER_Imogene_A,Imogene]
 Pokemon = GOTHORITA,27
 	AbilityIndex = 1
+	Item = ORANBERRY
 Pokemon = SHEDINJA,27
 #-------------------------------
 [TRAINER_Imogene_B,Imogene]
@@ -2494,6 +2495,7 @@ Pokemon = CORVISQUIRE,27
 	AbilityIndex = 0
 Pokemon = GLIGAR,27
 	AbilityIndex = 0
+	Item = ORANBERRY
 #-------------------------------
 [ROUGHNECK2,Robert]
 Pokemon = GRIMER,28
@@ -2508,7 +2510,7 @@ Pokemon = DOTTLER,30
 Pokemon = GALLADE,40
 	Name = Jeanne
 	Gender = female
-	Item = SHELLBELL
+	Item = FOCUSSASH
 	AbilityIndex = 1
 Pokemon = GRAPIDASH,40
 	Name = Vashti
@@ -2516,6 +2518,7 @@ Pokemon = GRAPIDASH,40
 Pokemon = STARAPTOR,40
 	Name = Robin
 	AbilityIndex = 0
+	Item = SHELLBELL
 Pokemon = ARCANINE,40
 	Name = Enkidu
 	AbilityIndex = 0
@@ -2526,11 +2529,13 @@ Pokemon = MFURRET,22
 	Item = PSYCHICGEM
 Pokemon = ARATTATA,22
 	AbilityIndex = 0
+	Item = LEFTOVERS
 Pokemon = GDARUMAKA,23
 #-------------------------------
 [TRAINER_Keoni,Keoni,1]
 Pokemon = MSEVIPER,38
 Pokemon = MZANGOOSE,38
+	Item = GHOSTGEM
 Pokemon = GDARMANITAN,39
 	Item = ICEGEM
 Pokemon = ARATICATE,40
