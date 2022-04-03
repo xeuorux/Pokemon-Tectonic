@@ -333,6 +333,7 @@ class PokeBattle_Battler
 		@effects[PBEffects::StunningCurl]		 = false
 		
 		@effects[PBEffects::EmpoweredEndure]     = 0
+		@effects[PBEffects::EmpoweredMoonlight]  = false
 		@effects[PBEffects::EmpoweredLaserFocus] = false
     end
 end

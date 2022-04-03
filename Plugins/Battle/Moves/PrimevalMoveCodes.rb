@@ -216,7 +216,7 @@ class PokeBattle_Move_615 < PokeBattle_Move
 	include EmpoweredMove
 
 	def pbEffectGeneral(user)
-		user.effects[PBEffects::PrimevalLaserFocus] = true
+		user.effects[PBEffects::EmpoweredLaserFocus] = true
 		@battle.pbDisplay(_INTL("{1} concentrated with extreme intensity!",user.pbThis))
 		transformType(user,:STEEL)
 	end
