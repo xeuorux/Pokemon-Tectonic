@@ -11,7 +11,7 @@ PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_DELEVELED,
 		
 		$Trainer.party.each do |pokemon|
 			pokemon.pre_curse_exp = pokemon.exp
-			pokemon.level -= 10
+			pokemon.level = [1,pokemon.level-10].max
 			pokemon.calc_stats
 		end
 		
