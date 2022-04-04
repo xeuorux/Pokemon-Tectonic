@@ -128,7 +128,7 @@
 126,CONTRARY,Contrary,"Makes stat changes have an opposite effect."
 127,UNNERVE,Unnerve,"Makes the foe nervous and unable to eat Berries."
 128,DEFIANT,Defiant,"When its stats are lowered its Attack increases."
-129,DEFEATIST,Defeatist,"Lowers stats when HP becomes half or less."
+129,DEFEATIST,Defeatist,"Lowers attacking stats when HP becomes half or less."
 130,CURSEDBODY,Cursed Body,"Moves used on the Pokémon have a 30% chance to be disabled."
 131,HEALER,Healer,"Heals ally's status conditions at the end of turn."
 132,FRIENDGUARD,Friend Guard,"Reduces damage done to allies."
