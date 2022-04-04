@@ -481,6 +481,12 @@ Environment = Sand
 Bicycle = false
 TeleportBlocked = true
 #-------------------------------
+[135]
+# Ancient Meteorite
+Outdoor = false
+ShowArea = true
+Bicycle = false
+#-------------------------------
 [136]
 # Casaba Villa
 Outdoor = true
@@ -757,4 +763,3 @@ HealingSpot = 187,55,37
 [236]
 # Your House
 HealingSpot = 187,55,37
-#-------------------------------

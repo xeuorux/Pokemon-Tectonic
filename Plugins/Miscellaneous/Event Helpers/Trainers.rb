@@ -6,6 +6,14 @@ def perfectTrainer(maxTrainerLevel=15)
 	pbTrainerDropsItem(maxTrainerLevel)
 end
 
+def perfectAceTrainer(maxTrainerLevel=15)
+	blackFadeOutIn() {
+		setMySwitch('D',true)
+		setFollowerGone()
+	}
+	pbTrainerDropsItem(maxTrainerLevel,4)
+end
+
 def perfectDoubleTrainer(event1,event2,maxTrainerLevel = 15)
 	blackFadeOutIn() {
 		setMySwitch('D',true)
@@ -18,14 +26,33 @@ def perfectDoubleTrainer(event1,event2,maxTrainerLevel = 15)
 	pbTrainerDropsItem(maxTrainerLevel)
 end
 
-def pbTrainerDropsItem(maxTrainerLevel = 15)
-  # For a medium slow pokemon (e.g. starters):
+def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1)
+	itemsGiven = candiesForLevel(maxTrainerLevel = 15)
+	
+	total = 0
+	for i in 0...itemsGiven.length/2
+		itemsGiven[i*2 + 1] *= multiplier
+		total += itemsGiven[i*2 + 1]
+	end
+	if total == 1
+		pbMessage("The fleeing trainer dropped a candy!")
+	else
+		pbMessage("The fleeing trainer dropped some candies!")
+	end
+	
+	for i in 0...itemsGiven.length/2
+		pbReceiveItem(itemsGiven[i*2],itemsGiven[i*2 + 1])
+	end
+end
+
+def candiesForLevel(level)
+	# For a medium slow pokemon (e.g. starters):
   # 10: 200, 15: 500, 20: 1000
   # 25: 1700, 30: 2500, 35: 3500
   # 40: 4800, 45: 6200, 50: 7800
   # 55: 9500, 60: 11,500, 65: 13,500
   itemsGiven = []
-  case maxTrainerLevel
+  case level
   when 0..12
 	itemsGiven = [:EXPCANDYXS,1] # 250
   when 13..17
@@ -50,24 +77,15 @@ def pbTrainerDropsItem(maxTrainerLevel = 15)
 	itemsGiven = [:EXPCANDYL,1] # 12000
   when 63..67
 	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,1] # 16000
-  when 68..70
+  when 68..72
+	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,2] # 20000
+  when 68..72
 	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,2] # 20000
   else
 	pbMessage("Unassigned level passed to pbTrainerDropsItem: #{maxTrainerLevel}") if $DEBUG
 	itemsGiven = [:EXPCANDYXS,1] # 250
   end
-  total = 0
-  for i in 0...itemsGiven.length/2
-  	total += itemsGiven[i*2 + 1]
-  end
-  if total == 1
-	pbMessage("The fleeing trainer dropped a candy!")
-  else
-	pbMessage("The fleeing trainer dropped some candies!")
-  end
-  for i in 0...itemsGiven.length/2
-  	pbReceiveItem(itemsGiven[i*2],itemsGiven[i*2 + 1])
-  end
+  return itemsGiven
 end
 
 def defeatTrainer()

@@ -823,12 +823,16 @@ class ScreenChooseFileSave
 	def load_save_file(file_path)
 		save_data = SaveData.read_from_file(file_path)
 		unless SaveData.valid?(save_data)
-			if File.file?(file_path + '.bak')
-				pbMessage(_INTL('The save file is corrupt. A backup will be loaded.'))
-				save_data = load_save_file(file_path + '.bak')
+			unless $DEBUG
+				if File.file?(file_path + '.bak')
+					pbMessage(_INTL('The save file is corrupt. A backup will be loaded.'))
+					save_data = load_save_file(file_path + '.bak')
+				else
+					self.prompt_save_deletion
+					return {}
+				end
 			else
-				self.prompt_save_deletion
-				return {}
+				pbMessage(_INTL('The save file is considered invalid. Letting you access anyway due to being in DEBUG mode.'))
 			end
 		end
 		return save_data
