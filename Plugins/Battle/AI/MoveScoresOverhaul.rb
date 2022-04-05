@@ -32,26 +32,26 @@ class PokeBattle_AI
 	#---------------------------------------------------------------------------
 	when "011"
 		if user.asleep?
-		score += 100	 # Because it can only be used while asleep
-		score = getFlinchingMoveScore(score,user,target,skill,policies)
+			score += 100	 # Because it can only be used while asleep
+			score = getFlinchingMoveScore(score,user,target,skill,policies)
 		else
-		score = 0	 # Because it will fail here
+			score = 0	 # Because it will fail here
 		end
 	#---------------------------------------------------------------------------
 	when "012"
 		if user.turnCount==0
-		score += 50
-		score = getFlinchingMoveScore(score,user,target,skill,policies)
+			score += 50
+			score = getFlinchingMoveScore(score,user,target,skill,policies)
 		else
-		score = 0	 # Because it will fail here
+			score = 0	 # Because it will fail here
 		end
 	#---------------------------------------------------------------------------
 	when "013", "014", "015"
 		canConfuse = target.pbCanConfuse?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
 		if canConfuse
-		score += 20
+			score += 20
 		elsif move.statusMove?
-		score = 0
+			score = 0
 		end
 	#---------------------------------------------------------------------------
 	when "016"

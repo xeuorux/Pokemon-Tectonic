@@ -1,7 +1,6 @@
 class NPCTrainer < Trainer
-	attr_accessor :policies
-	attr_accessor :policyStates
-	
+	attr_accessor :policies, :policyStates
+
 	def initialize(name, trainer_type)
 		super
 		@items     = []
@@ -14,15 +13,15 @@ end
 module GameData
 	class Policy
 		attr_reader :id
-		
+
 		DATA = {}
 		DATA_FILENAME = "policies.dat"
-		
+
 		extend ClassMethods
 		include InstanceMethods
-	
+
 		def initialize(hash)
-		  @id               = hash[:id]
+			@id = hash[:id]
 		end
 	end
 end
