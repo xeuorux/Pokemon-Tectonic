@@ -125,7 +125,7 @@
 120,IONDELUGE,Ion Deluge,146,0,ELECTRIC,Status,0,25,0,BothSides,1,,The user disperses electrically charged particles. Normal-type moves become Electric-type.
 121,MAGNETRISE,Magnet Rise,119,0,ELECTRIC,Status,0,10,0,User,0,d,The user levitates using electrically generated magnetism for five turns.
 122,MAGNETICFLUX,Magnetic Flux,137,0,ELECTRIC,Status,0,20,0,UserAndAllies,0,d,Manipulates magnetic fields to raise the Defense and Sp. Def stats of allies with Plus or Minus Abilities.
-123,THUNDERJOLT,Thunder Jolt,007,0,ELECTRIC,Status,100,20,0,NearOther,0,bce,"A weak electric charge that numbs the target."
+123,NUMB,Numb,007,0,ELECTRIC,Status,100,20,0,NearOther,0,bce,"A weak electric charge numbs the target, slowing it and causing its increased stats to be ignored."
 124,OVERDRIVE,Overdrive,000,80,ELECTRIC,Special,100,10,0,AllNearFoes,0,bef,Attacks opposing Pokémon by twanging a guitar or bass guitar.
 125,AURAWHEEL,Aura Wheel,176,100,ELECTRIC,Physical,100,10,10,NearOther,0,bef,Type changes depending on the user's form. It has a 10% chance to numb.
 126,BOLTBEAK,Bolt Beak,178,85,ELECTRIC,Physical,100,10,0,NearOther,0,abef,Attacks with an electrified beak. Power is doubled if the user moves before the target.

@@ -673,7 +673,7 @@ Pokemon = ABSOL,25
     Item = SALACBERRY
     EV = 10,20,0,20,0,0
 Pokemon = FLAAFFY,25
-    Moves = VANGUARD,SHOCKWAVE,THUNDERJOLT,SIGNALBEAM
+    Moves = VANGUARD,SHOCKWAVE,NUMB,SIGNALBEAM
     AbilityIndex = 0
     Item = STRIKEVEST
     EV = 20,0,0,0,0,20
@@ -1197,7 +1197,7 @@ Pokemon = LOUDRED,28
 #-------------------------------
 [POKEMONRANGER_M2,Connor]
 Pokemon = DRIFBLIM,30
-    Moves = THUNDERJOLT,HEX,CHILL
+    Moves = NUMB,HEX,CHILL
     AbilityIndex = 0
 Pokemon = BRELOOM,30
     AbilityIndex = 1
