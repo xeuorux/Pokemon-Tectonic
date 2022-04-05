@@ -26634,6 +26634,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 31
 BattlerShadowX = 0
 BattlerShadowSize = 1
+Evolutions = MELMETAL,Level,44
 #-------------------------------
 [809]
 Name = Melmetal
