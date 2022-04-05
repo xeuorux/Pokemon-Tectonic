@@ -961,29 +961,6 @@ class PokeBattle_Move_52D < PokeBattle_Move
 			pbAromatherapyHeal(pkmn)
 		end
 	end
-	
-	def pbAromatherapyHeal(pkmn,battler=nil)
-		oldStatus = (battler) ? battler.status : pkmn.status
-		curedName = (battler) ? battler.pbThis : pkmn.name
-		if battler
-		  battler.pbCureStatus(false)
-		else
-		  pkmn.status      = :NONE
-		  pkmn.statusCount = 0
-		end
-		case oldStatus
-		when :SLEEP
-		  @battle.pbDisplay(_INTL("{1} was woken from sleep.",curedName))
-		when :POISON
-		  @battle.pbDisplay(_INTL("{1} was cured of its poisoning.",curedName))
-		when :BURN
-		  @battle.pbDisplay(_INTL("{1}'s burn was healed.",curedName))
-		when :PARALYSIS
-		  @battle.pbDisplay(_INTL("{1} was cured of paralysis.",curedName))
-		when :FROZEN
-		  @battle.pbDisplay(_INTL("{1} was unchilled.",curedName))
-    end
-  end
   
   def getScore(score,user,target,skill=100)
 		score -= 50 if @battle.field.weather == :None

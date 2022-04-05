@@ -1,3 +1,28 @@
+class PokeBattle_Move
+  def pbAromatherapyHeal(pkmn,battler=nil)
+		if battler
+		  	battler.pbCureStatus(false)
+		else
+			oldStatus = (battler) ? battler.status : pkmn.status
+			curedName = (battler) ? battler.pbThis : pkmn.name
+		  	pkmn.status      = :NONE
+		  	pkmn.statusCount = 0
+			case oldStatus
+			when :SLEEP
+				@battle.pbDisplay(_INTL("{1} was woken from sleep.",curedName))
+			when :POISON
+				@battle.pbDisplay(_INTL("{1} was cured of its poisoning.",curedName))
+			when :BURN
+				@battle.pbDisplay(_INTL("{1}'s burn was healed.",curedName))
+			when :PARALYSIS
+				@battle.pbDisplay(_INTL("{1} was cured of numb.",curedName))
+			when :FROZEN
+				@battle.pbDisplay(_INTL("{1} was unchilled.",curedName))
+			end
+    	end
+  end
+end
+
 #===============================================================================
 # Pseudomove for confusion damage.
 #===============================================================================

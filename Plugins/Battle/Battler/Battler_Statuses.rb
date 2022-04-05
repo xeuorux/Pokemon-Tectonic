@@ -508,46 +508,45 @@ class PokeBattle_Battler
 		oldStatuses = []
 	
 		if statusToCure.nil? || @status == statusToCure
-		oldStatuses.push(@status)
-		self.status = :NONE
-	end
+			oldStatuses.push(@status)
+			self.status = :NONE
+		end
+			
+		if boss?
+			if @bossStatus == statusToCure
+				oldStatuses.push(@bossStatus)
+				self.bossStatus = :NONE
+			elsif @status == :NONE
+				self.status = @bossStatus
+				self.bossStatus = :NONE
+			end
+		end
 		
-	if boss?
-		if @bossStatus == statusToCure
-			oldStatuses.push(@bossStatus)
-			self.bossStatus = :NONE
-		elsif @status == :NONE
-			self.status = @bossStatus
-			self.bossStatus = :NONE
-		end
-	end
-	
-	oldStatuses.each do |oldStatus|
-		if showMessages
-			case oldStatus
-			when :SLEEP		 then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
-			when :POISON		then @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", pbThis))
-			when :BURN			then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
-			when :PARALYSIS then @battle.pbDisplay(_INTL("{1} is no longer numbed.", pbThis))
-			when :FROZEN		then @battle.pbDisplay(_INTL("{1} thawed out!", pbThis))
-			end
+		oldStatuses.each do |oldStatus|
+			if showMessages
+				case oldStatus
+				when :SLEEP		 then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
+				when :POISON		then @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", pbThis))
+				when :BURN			then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
+				when :PARALYSIS then @battle.pbDisplay(_INTL("{1} is no longer numbed.", pbThis))
+				when :FROZEN		then @battle.pbDisplay(_INTL("{1} thawed out!", pbThis))
 				end
-	
-		# Lingering Daze
-		if oldStatus == :SLEEP
-			@battle.eachOtherSideBattler(@index) do |b|
-			if b.hasActiveAbility?(:LINGERINGDAZE)
-				@battle.pbShowAbilitySplash(b)
-				pbLowerStatStageByAbility(:SPECIAL_ATTACK,1,b)
-				pbLowerStatStageByAbility(:SPECIAL_DEFENSE,1,b)
-				@battle.pbHideAbilitySplash(b)
 			end
+	
+			# Lingering Daze
+			if oldStatus == :SLEEP
+				@battle.eachOtherSideBattler(@index) do |b|
+					if b.hasActiveAbility?(:LINGERINGDAZE)
+						@battle.pbShowAbilitySplash(b)
+						pbLowerStatStageByAbility(:SPECIAL_ATTACK,1,b)
+						pbLowerStatStageByAbility(:SPECIAL_DEFENSE,1,b)
+						@battle.pbHideAbilitySplash(b)
+					end
+				end
 			end
 		end
-	end
 	
-	@battle.scene.pbRefreshOne(@index)
-	
+		@battle.scene.pbRefreshOne(@index)
 		PBDebug.log("[Status change] #{pbThis}'s status was cured")
 	end
 
