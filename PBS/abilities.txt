@@ -385,6 +385,7 @@
 383,ENVY,Envy,"Priority against single targets with increased stats."
 384,SNAKEPIT,Snake Pit,"When attacked in Grassy terrain, inflicts 1/8th max HP damage on the attacker."
 385,PETRIFYING,Petrifying,"Attacks against the Pokémon has a 30% chance to cause numbing."
+386,FROSTSONG,Frost Song,"Sound-based attacks turn Ice-type and are boosted by 30%."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."

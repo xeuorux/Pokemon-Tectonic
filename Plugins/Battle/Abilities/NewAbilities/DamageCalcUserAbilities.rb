@@ -182,3 +182,9 @@ BattleHandlers::DamageCalcUserAbility.add(:STRANGESTRENGTH,
     mults[:attack_multiplier] *= 2.0 if move.physicalMove? && user.battle.field.terrain == :Misty
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:FROSTSONG,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if move.powerBoost
+  }
+)

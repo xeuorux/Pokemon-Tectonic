@@ -227,3 +227,12 @@ BattleHandlers::CriticalCalcUserAbility.add(:HARSH,
     next 99 if target.burned?
   }
 )
+
+BattleHandlers::MoveBaseTypeModifierAbility.add(:FROSTSONG,
+  proc { |ability,user,move,type|
+    next unless move.soundMove?
+    next unless GameData::Type.exists?(:ICE)
+    move.powerBoost = true
+    next :ICE
+  }
+)
