@@ -147,7 +147,7 @@ class PokeBattle_Scene
     cw = @sprites["commandWindow"]
     cw.setTexts(texts)
 	initIndex = @lastCmd[idxBattler]
-	#initIndex = 0 if @lastCmd[idxBattler] == 3
+	initIndex = 0 if @lastCmd[idxBattler] == 3
     cw.setIndexAndMode(initIndex,mode)
     pbSelectBattler(idxBattler)
     hasPokeballs = $PokemonBag.pockets()[3].any?{|itemrecord| itemrecord[1] > 0}
@@ -180,15 +180,36 @@ class PokeBattle_Scene
         pbPlayDecisionSE
         ret = -2
         break
-      elsif (Input.trigger?(Input::SPECIAL) || Input.triggerex?(0x42)) &&
-			wildbattle && onlyOneOpponent && hasPokeballs   # Throw Ball
-        pbPlayDecisionSE
-        ret = 6
-        break
-	  elsif Input.trigger?(Input::ACTION) # Open Battle Info
+	  elsif Input.pressex?(:NUMBER_1)
 		pbPlayDecisionSE
-        ret = 7
-		break
+        ret = 0
+        @lastCmd[idxBattler] = 0
+        break
+	  elsif Input.pressex?(:NUMBER_2)
+		pbPlayDecisionSE
+        ret = 1
+        @lastCmd[idxBattler] = 1
+        break
+	  elsif Input.pressex?(:NUMBER_3)
+		pbPlayDecisionSE
+        ret = 2
+        @lastCmd[idxBattler] = 2
+        break
+	  elsif Input.pressex?(:NUMBER_4)
+		pbPlayDecisionSE
+        ret = 3
+        @lastCmd[idxBattler] = 3
+        break
+	  elsif Input.pressex?(:NUMBER_5)
+		pbPlayDecisionSE
+        ret = 4
+        @lastCmd[idxBattler] = 4
+        break
+	  elsif Input.pressex?(:NUMBER_6)
+		pbPlayDecisionSE
+        ret = 5
+        @lastCmd[idxBattler] = 5
+        break
       end
     end
     return ret
