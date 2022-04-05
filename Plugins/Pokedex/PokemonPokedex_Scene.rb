@@ -1097,7 +1097,7 @@ class PokemonPokedex_Scene
 		miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
 		miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined") if $DEBUG
 		miscSearches[cmdIsLegendary = miscSearches.length] = _INTL("Legendary")
-		miscSearches[cmdMovesetConformance = miscSearches.length] = _INTL("Moveset is Unfit") if $DEBUG
+		miscSearches[cmdMovesetConformance = miscSearches.length] = _INTL("Moveset Noncomfority") if $DEBUG
 		miscSearches[cmdGeneration = miscSearches.length] = _INTL("Generation")
 		miscSearches.push(_INTL("Cancel"))
 		searchSelection = pbMessage("Which search?",miscSearches,miscSearches.length)
@@ -1225,21 +1225,31 @@ class PokemonPokedex_Scene
 		command60Max = -1
 		commandExcessiveLevel1s = -1
 		commandAbove70 = -1
+		commandNoEarlyStab = -1
+		commandNoProgressStab = -1
+		commandNoBBStab = -1
 		commands = [_INTL("Cancel")]
 		commands[commandAny = commands.length] = _INTL("Any")
 		commands[command4Tempo = commands.length] = _INTL("Non-4-Tempo")
 		commands[command60Max = commands.length] = _INTL("Ends before 60")
 		commands[commandExcessiveLevel1s = commands.length] = _INTL("Too Many 1s")
 		commands[commandAbove70 = commands.length] = _INTL("Above 70")
-		commands[commandAll = commands.length] = _INTL("All")
+		commands[commandNoEarlyStab = commands.length] = _INTL("No Pre-16 Stab")
+		commands[commandNoProgressStab = commands.length] = _INTL("No 16-31 Stab")
+		commands[commandNoBBStab = commands.length] = _INTL("No 32-44 Stab")
 		selection = pbMessage("Which rulebreakers?",commands,3)
 		unless selection == 0
 			dexlist = dexlist.find_all { |item|			
 				lvlmoves = item[11]
+				types = [item[6],item[7]]
+				types.uniq!
+				types.compact!
+				typeCount = types.length
 				
 				anyNon4s = false
 				countOf1s = 0
 				maxLevel = 0
+				earlyStabDebt,progressStabDebt,bbStabDebt = typeCount,typeCount,typeCount
 				lvlmoves.each do |learnset_entry|
 					learnLevel = learnset_entry[0]
 					maxLevel = learnLevel if learnLevel > maxLevel
@@ -1248,10 +1258,17 @@ class PokemonPokedex_Scene
 					elsif learnLevel % 4 != 0
 						anyNon4s = true
 					end
-				end
-				
-				if selection == commandAll
-					next anyNon4s && maxLevel < 60 && countOf1s > 3 && maxLevel > 70
+					
+					moveData = GameData::Move.get(learnset_entry[1])
+					if types.include?(moveData.type)
+						if learnLevel < 16
+							earlyStabDebt -= 1
+						elsif learnLevel < 32
+							progressStabDebt -= 1
+						elsif learnLevel < 45
+							bbStabDebt -= 1
+						end
+					end
 				end
 				
 				breaks4s = false
@@ -1268,6 +1285,18 @@ class PokemonPokedex_Scene
 				end
 				
 				if maxLevel > 70 && (selection == commandAbove70 || selection == commandAny)
+					next true
+				end
+				
+				if earlyStabDebt > 0 && (selection == commandNoEarlyStab || selection == commandAny)
+					next true
+				end
+				
+				if progressStabDebt > 0 && (selection == commandNoProgressStab || selection == commandAny)
+					next true
+				end
+				
+				if bbStabDebt > 0 && (selection == commandNoBBStab || selection == commandAny)
 					next true
 				end
 				
