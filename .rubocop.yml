@@ -1,3 +1,6 @@
+inherit_from:
+- https://relaxed.ruby.style/rubocop.yml
+
 Style/Encoding:
     Enabled: true
 
