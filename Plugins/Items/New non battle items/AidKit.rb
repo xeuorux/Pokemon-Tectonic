@@ -7,9 +7,11 @@ def initializeAidKit()
 	$PokemonGlobal.teamHealerCurrentUses 	= 3
 end
 
-def refillAidKit()
-	if $PokemonBag.pbHasItem?(:AIDKIT)
-		$PokemonGlobal.teamHealerCurrentUses = $PokemonGlobal.teamHealerMaxUses
+def refillAidKit(doubled = false)
+	refillCharges = $PokemonGlobal.teamHealerMaxUses
+	refillCharges *= 2 if doubled
+	if $PokemonBag.pbHasItem?(:AIDKIT) && $PokemonGlobal.teamHealerCurrentUses < refillCharges
+		$PokemonGlobal.teamHealerCurrentUses = refillCharges
 		pbMessage(_INTL("Your Aid Kit was refreshed to #{$PokemonGlobal.teamHealerCurrentUses} charges."))
 	end
 end
