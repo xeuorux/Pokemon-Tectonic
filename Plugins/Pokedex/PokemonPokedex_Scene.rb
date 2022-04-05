@@ -339,6 +339,11 @@ class PokemonPokedex_Scene
 		  pbMessage("Added #{@sprites["pokedex"].species}")
 		elsif Input.pressex?(0x42) && $DEBUG # B, for Battle
 		  pbWildBattle(@sprites["pokedex"].species, $game_variables[26])
+		elsif Input.pressex?(0x50) && $DEBUG # P, for Print
+			echoln("Printing the entirety of the current dex list.")
+			 @dexlist.each do |dexEntry|
+				echoln(dexEntry[0])
+			 end
 		elsif Input.pressex?(0x49) && $DEBUG # I, for Investigation
 		  # Find information about the currently displayed list
 		  typesCount = {}
@@ -1087,11 +1092,12 @@ class PokemonPokedex_Scene
 		cmdWildItem = -1
 		cmdIsQuarantined = -1
 		cmdIsLegendary = -1
+		cmdMovesetConformance = -1
 		miscSearches[cmdMapFound = miscSearches.length] = _INTL("Map Found")
-		#miscSearches[cmdZooSection = miscSearches.length] = _INTL("Zoo Section")
 		miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
 		miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined") if $DEBUG
 		miscSearches[cmdIsLegendary = miscSearches.length] = _INTL("Legendary")
+		miscSearches[cmdMovesetConformance = miscSearches.length] = _INTL("Moveset is Unfit") if $DEBUG
 		miscSearches[cmdGeneration = miscSearches.length] = _INTL("Generation")
 		miscSearches.push(_INTL("Cancel"))
 		searchSelection = pbMessage("Which search?",miscSearches,miscSearches.length)
@@ -1107,6 +1113,8 @@ class PokemonPokedex_Scene
 			return searchByWildItem()
 		elsif cmdGeneration > -1 && searchSelection == cmdGeneration
 			return searchByGeneration()
+		elsif cmdMovesetConformance > -1 && searchSelection == cmdMovesetConformance
+			return searchByMovesetConformance()
 		end
 	end
 	
@@ -1203,6 +1211,67 @@ class PokemonPokedex_Scene
 				else
 					next isQuarantined?(item[0])
 				end
+			}
+			return dexlist
+		end
+		return nil
+	end
+	
+	def searchByMovesetConformance()
+		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		
+		commandAny = -1
+		command4Tempo = -1
+		command60Max = -1
+		commandExcessiveLevel1s = -1
+		commandAbove70 = -1
+		commands = [_INTL("Cancel")]
+		commands[commandAny = commands.length] = _INTL("Any")
+		commands[command4Tempo = commands.length] = _INTL("Non-4-Tempo")
+		commands[command60Max = commands.length] = _INTL("Ends before 60")
+		commands[commandExcessiveLevel1s = commands.length] = _INTL("Too Many 1s")
+		commands[commandAbove70 = commands.length] = _INTL("Above 70")
+		commands[commandAll = commands.length] = _INTL("All")
+		selection = pbMessage("Which rulebreakers?",commands,3)
+		unless selection == 0
+			dexlist = dexlist.find_all { |item|			
+				lvlmoves = item[11]
+				
+				anyNon4s = false
+				countOf1s = 0
+				maxLevel = 0
+				lvlmoves.each do |learnset_entry|
+					learnLevel = learnset_entry[0]
+					maxLevel = learnLevel if learnLevel > maxLevel
+					if learnLevel == 1
+						countOf1s += 1
+					elsif learnLevel % 4 != 0
+						anyNon4s = true
+					end
+				end
+				
+				if selection == commandAll
+					next anyNon4s && maxLevel < 60 && countOf1s > 3 && maxLevel > 70
+				end
+				
+				breaks4s = false
+				if anyNon4s && (selection == command4Tempo || selection == commandAny)
+					next true
+				end
+				
+				if maxLevel < 60 && (selection == command60Max || selection == commandAny)
+					next true
+				end
+				
+				if countOf1s > 3 && (selection == commandExcessiveLevel1s || selection == commandAny)
+					next true
+				end
+				
+				if maxLevel > 70 && (selection == commandAbove70 || selection == commandAny)
+					next true
+				end
+				
+				next false
 			}
 			return dexlist
 		end

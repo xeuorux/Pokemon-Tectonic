@@ -1120,14 +1120,26 @@ class PokemonPokedexInfo_Scene
       Input.update
       pbUpdate
 	  doRefresh = false
-      if Input.repeat?(Input::UP) && @scroll > 0
-        pbPlayCursorSE
-        @scroll -= 1
-		doRefresh = true
-      elsif Input.repeat?(Input::DOWN) && @scroll < @scrollableListLength-1
-        pbPlayCursorSE
-        @scroll += 1
-		doRefresh = true
+      if Input.repeat?(Input::UP)
+		if @scroll > 0
+			pbPlayCursorSE
+			@scroll -= 1
+			doRefresh = true
+		else Input.trigger?(Input::UP)
+			pbPlayCursorSE
+			@scroll = @scrollableListLength-1
+			doRefresh = true
+		end
+      elsif Input.repeat?(Input::DOWN)
+		if @scroll < @scrollableListLength-1
+			pbPlayCursorSE
+			@scroll += 1
+			doRefresh = true
+		else Input.trigger?(Input::DOWN)
+			pbPlayCursorSE
+			@scroll = 0
+			doRefresh = true
+		end
       elsif Input.trigger?(Input::BACK)
         pbPlayCancelSE
 		@scroll = -1
