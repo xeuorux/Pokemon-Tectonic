@@ -121,6 +121,7 @@ class PokeBattle_Move
  def pbEffectivenessMessage(user,target,numTargets=1)
     return if target.damageState.disguise
 	return if target.damageState.iceface
+	return if defined?($PokemonSystem.show_effectiveness) && $PokemonSystem.show_effectiveness == 1
 	if Effectiveness.hyper_effective?(target.damageState.typeMod)
 	  if numTargets>1
         @battle.pbDisplay(_INTL("It's hyper effective on {1}!",target.pbThis(true)))
