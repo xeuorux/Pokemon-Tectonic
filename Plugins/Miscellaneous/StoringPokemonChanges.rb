@@ -202,7 +202,7 @@ module PokeBattle_BattleCommon
 			
 			if chosenPokemon.hasItem?
 				itemName = GameData::Item.get(chosenPokemon.item).real_name
-				if pbConfirmMessageSerious(_INTL("{1} is holding an {2}. Would you like to take it before transferring?", pkmn.name, itemName))
+				if pbConfirmMessageSerious(_INTL("{1} is holding an {2}. Would you like to take it before transferring?", chosenPokemon.name, itemName))
 					pbTakeItemFromPokemon(chosenPokemon)
 				end
 			end
