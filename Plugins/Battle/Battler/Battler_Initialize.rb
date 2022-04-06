@@ -313,7 +313,7 @@ class PokeBattle_Battler
 		@effects[PBEffects::WeightChange]        = 0
 		@effects[PBEffects::Yawn]                = 0
 		
-		@effects[PBEffects::GorillaTactics]      = -1
+		@effects[PBEffects::GorillaTactics]      = nil
 		@effects[PBEffects::BallFetch]           = 0
 		@effects[PBEffects::LashOut]             = false
 		@effects[PBEffects::BurningJealousy]     = false

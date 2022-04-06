@@ -14,6 +14,12 @@ BattleHandlers::DamageCalcUserAbility.add(:TRANSISTOR,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:GORILLATACTICS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5 if move.physicalMove?
+  }
+)
+
 #===============================================================================
 # DamageCalcTargetAbility handlers
 #===============================================================================

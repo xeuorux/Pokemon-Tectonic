@@ -2,15 +2,19 @@ class PokeBattle_Battler
 	def pbEndTurn(_choice)
 		@lastRoundMoved = @battle.turnCount   # Done something this round
 		 # Gorilla Tactics
-		if @effects[PBEffects::GorillaTactics] == nil && @lastMoveUsed>=0 && hasActiveAbility?(:GORILLATACTICS)
-		  @effects[PBEffects::GorillaTactics]=@lastMoveUsed
-		end
-		if !@effects[PBEffects::ChoiceBand] &&
-		   hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
-		  if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
-			@effects[PBEffects::ChoiceBand] = @lastMoveUsed
+    if hasActiveAbility?(:GORILLATACTICS) && !@effects[PBEffects::GorillaTactics]
+      if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
+			  @effects[PBEffects::GorillaTactics] = @lastMoveUsed
 		  elsif @lastRegularMoveUsed && pbHasMove?(@lastRegularMoveUsed)
-			@effects[PBEffects::ChoiceBand] = @lastRegularMoveUsed
+		  	@effects[PBEffects::GorillaTactics] = @lastRegularMoveUsed
+		  end
+    end
+    # Choice Items
+		if !@effects[PBEffects::ChoiceBand] && hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
+		  if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
+			  @effects[PBEffects::ChoiceBand] = @lastMoveUsed
+		  elsif @lastRegularMoveUsed && pbHasMove?(@lastRegularMoveUsed)
+		  	@effects[PBEffects::ChoiceBand] = @lastRegularMoveUsed
 		  end
 		end
 		@effects[PBEffects::BeakBlast]   = false
