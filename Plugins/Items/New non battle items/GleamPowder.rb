@@ -2,17 +2,17 @@ class PokemonGlobalMetadata
   attr_accessor :next_shiny_guaranteed
 end
 
-ItemHandlers::UseFromBag.add(:SHINIFIER,proc { |item|
-  if pbConfirmMessageSerious(_INTL("Use up the Shinifier?"))
+ItemHandlers::UseFromBag.add(:GLEAMPOWDER,proc { |item|
+  if pbConfirmMessageSerious(_INTL("Disperse the Gleam Powder?"))
     next 4
   else
     next 0
   end
 })
 
-ItemHandlers::UseInField.add(:SHINIFIER,proc { |item|
+ItemHandlers::UseInField.add(:GLEAMPOWDER,proc { |item|
   $PokemonGlobal.next_shiny_guaranteed = true
-  pbMessage(_INTL("You crush the shinifier."))
+  pbMessage(_INTL("You disperse the Gleam Powder."))
   next 3
 })
 
@@ -21,6 +21,6 @@ Events.onWildPokemonCreate += proc { |_sender,e|
   if defined?($PokemonGlobal.next_shiny_guaranteed) && $PokemonGlobal.next_shiny_guaranteed
     pokemon.shiny = true
     $PokemonGlobal.next_shiny_guaranteed = false
-    pbMessage(_INTL("The scent of the shinifier pulls a shiny Pokemon towards you!"))
+    pbMessage(_INTL("The scent of the Gleam Powder pulls a shiny Pokemon towards you!"))
   end
 }

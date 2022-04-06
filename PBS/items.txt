@@ -845,7 +845,7 @@
 820,WILLLOCK,Will Lock,Will Locks,1,4000,"A held item. It set's the holder's Sp. Def. stat to 95.",0,0,0,
 821,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,15000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0,
 822,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca.",0,0,6
-823,SHINIFIER,Shinifier,Shinifiers,1,10000,"Crush to ensure the next wild Pokemon you find is shiny.",2,0,0,
+823,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,10000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokemon you find is shiny.",2,0,0,
 #------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
