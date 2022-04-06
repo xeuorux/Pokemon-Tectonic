@@ -236,3 +236,40 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:FROSTSONG,
     next :ICE
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:GILD,
+  proc { |ability,user,targets,move,battle|
+    next if battle.futureSight
+    next if !move.pbDamagingMove?
+    next if battle.wildBattle? && user.opposes?
+    targets.each do |b|
+      next if b.damageState.unaffected || b.damageState.substitute
+      next if !b.item
+      next if b.unlosableItem?(b.item) || user.unlosableItem?(b.item)
+      battle.pbShowAbilitySplash(user)
+      if b.hasActiveAbility?(:STICKYHOLD)
+        battle.pbShowAbilitySplash(b) if user.opposes?(b)
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          battle.pbDisplay(_INTL("{1}'s item cannot be gilded!",b.pbThis))
+        end
+        battle.pbHideAbilitySplash(b) if user.opposes?(b)
+        next
+      end
+      itemName = target.itemName
+      target.pbRemoveItem(false)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} turned {2}'s {3} into gold!",user.pbThis,
+           b.pbThis(true),itemName))
+      else
+        battle.pbDisplay(_INTL("{1} turned {2}'s {3} into gold with {4}!",user.pbThis,
+           b.pbThis(true),itemName,user.abilityName))
+      end
+      if user.pbOwnedByPlayer?
+        battle.field.effects[PBEffects::PayDay] += 5*user.level
+      end
+      battle.pbDisplay(_INTL("Coins were scattered everywhere!"))
+      battle.pbHideAbilitySplash(user)
+      break
+    end
+  }
+)
