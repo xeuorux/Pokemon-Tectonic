@@ -958,7 +958,7 @@ class PokeBattle_Move_52D < PokeBattle_Move
 		@battle.battlers.each do |b|
 			pkmn = b.pokemon
 			next if !pkmn || !pkmn.able? || pkmn.status == :NONE
-			pbAromatherapyHeal(pkmn)
+			pbAromatherapyHeal(pkmn,b)
 		end
 	end
   
