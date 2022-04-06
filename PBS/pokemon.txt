@@ -32080,7 +32080,7 @@ BattlerShadowSize = 2
 [2506]
 Name = M. Vulpix
 InternalName = MVULPIX
-Type1 = Dark
+Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 53,41,50,65,70,75
 # Total = 354
@@ -32114,7 +32114,7 @@ Evolutions = NINETALES,Item,DUSKSTONE
 [2507]
 Name = M. Ninetales
 InternalName = MNINETALES
-Type1 = Dark
+Type1 = DARK
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 73,56,85,95,91,105
