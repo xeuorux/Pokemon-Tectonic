@@ -1385,15 +1385,7 @@ class PokeBattle_Move_541 < PokeBattle_Move
   def pbEffectWhenDealingDamage(user,target)
     return if target.damageState.substitute || target.damageState.berryWeakened
     return if !target.item
-	clothingItems =
-	[:ROCKYHELMET,:CHOICEBAND,:CHOICESCARF,:CHOICESPECS,:BINDINGBAND,
-		:EXPERTBELT,:MUSCLEBAND,:WISEGLASSES,:FOCUSBAND,:FOCUSSASH,:MACHOBRACE,
-		:POWERWEIGHT,:POWERBRACER,:POWERBELT,:POWERLENS,:POWERBAND,:POWERANKLET,
-		:BLACKBELT,:BLACKGLASSES,:SILKSCARF,:REDSCARF,:BLUESCARF,:YELLOWSCARF,
-		:PINKSCARF,:GREENSCARF,:SACHET,:EJECTPACK,:HEAVYDUTYBOOTS,:UTILITYUMBRELLA,
-		:GALARICACUFF,:GALARICAWREATH
-	]
-	return if !clothingItems.include?(target.item)
+	return if !CLOTHING_ITEMS.include?(target.item)
     target.pbRemoveItem
     @battle.pbDisplay(_INTL("{1}'s {2} was incinerated!",target.pbThis,target.itemName))
   end
