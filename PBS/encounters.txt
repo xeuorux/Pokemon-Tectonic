@@ -629,8 +629,8 @@ Puddle,20
 25,EISCUE,35,38
 25,STANTLER,35,38
 #-------------------------------
-[212] # Ocean Fishing Zone
-Land,20
+[239] # Ocean Fishing Contest
+FishingContest,20
 3,REMORAID,30,35
 3,KRABBY,30,35
 3,CLAUNCHER,30,35

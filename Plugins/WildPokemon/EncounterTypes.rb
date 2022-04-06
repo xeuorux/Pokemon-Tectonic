@@ -129,36 +129,38 @@ class PokemonEncounters
     ret = nil
 	current_terrain_id = $game_map.terrain_tag($game_player.x, $game_player.y).id
     if $PokemonGlobal.surfing
-	  # Active water encounters
-	  if current_terrain_id == :ActiveWater
-		ret = :ActiveWater
-	  elsif current_terrain_id == :SewerWater
-		ret = :SewerWater
-	  end
+      # Active water encounters
+      if current_terrain_id == :ActiveWater
+        ret = :ActiveWater
+      elsif current_terrain_id == :SewerWater
+        ret = :SewerWater
+      end
     else
-	  case current_terrain_id
-	  when :Mud
-		ret = :Mud
-	  when :TallGrass
-		ret = :LandTall
-	  when :SparseGrass
-		ret = :LandSparse
-	  when :Puddle
-		ret = :Puddle
-	  when :DarkCave
-		ret = :DarkCave
+      case current_terrain_id
+      when :Mud
+      ret = :Mud
+      when :TallGrass
+      ret = :LandTall
+      when :SparseGrass
+      ret = :LandSparse
+      when :Puddle
+      ret = :Puddle
+      when :DarkCave
+      ret = :DarkCave
       when :Grass
-        ret = :Land
-	  when :FloweryGrass
-        ret = :FloweryGrass
-	  when :FloweryGrass2
-        ret = :FloweryGrass2
-	  when :TintedGrass
-		ret = :LandTinted
-	  when :SewerGrate
-		ret = :SewerWater
-	  when :SewerFloor
-		ret = :SewerFloor
+      ret = :Land
+      when :FloweryGrass
+      ret = :FloweryGrass
+      when :FloweryGrass2
+      ret = :FloweryGrass2
+      when :TintedGrass
+      ret = :LandTinted
+      when :SewerGrate
+      ret = :SewerWater
+      when :SewerFloor
+      ret = :SewerFloor
+      when :FishingContest
+      ret = :FishingContest
       end
     end
     return ret
@@ -458,4 +460,19 @@ GameData::TerrainTag.register({
   :must_walk              => true,
   :slows              	  => true,
   :rock_climbable		  => true
+})
+
+# Fishing Contest Water
+GameData::EncounterType.register({
+  :id             => :FishingContest,
+  :type           => :contest,
+  :trigger_chance => 15,
+  :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
+})
+
+GameData::TerrainTag.register({
+  :id                     => :FishingContest,
+  :id_number              => 28,
+  :land_wild_encounters   => true,
+  :battle_environment     => :MovingWater
 })
