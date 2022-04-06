@@ -9932,7 +9932,7 @@ InternalName = SABLEYE
 Type1 = DARK
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,65,75,50,65,50
+BaseStats = 75,60,75,50,60,60
 # Total = 380
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -29702,7 +29702,7 @@ InternalName = RUBARIOR
 Type1 = DARK
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 115,85,125,20,85,70
+BaseStats = 125,75,125,20,75,80
 # Total = 500
 GenderRate = Female50Percent
 GrowthRate = Parabolic
