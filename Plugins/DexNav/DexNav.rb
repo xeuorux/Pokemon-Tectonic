@@ -47,13 +47,6 @@ class NewDexNav
 		@numEncounterTypesCompleted += 1 if isCompleted
 	end
 	
-=begin
-	# Remove encounters which you haven't been seen yet
-	stripped_encounter_array = encounter_array.reject{ |entry|
-		!$Trainer.seen?(entry[1].species)
-	}
-=end
-	
 	# Create the sprites that show the encounters for this area
 	owned = 0
 	@pkmnsprite = []
@@ -75,9 +68,6 @@ class NewDexNav
 		if !$Trainer.pokedex.owned?(species)
 			allOwned = false
 		end
-		
-		@pkmnsprite[iconIndex].x = 64 * (iconIndex % 7)
-		@pkmnsprite[iconIndex].y = 30 + 64 * (iconIndex / 7)
     end
 	
 	# Determine what the status of the completion of this area is
@@ -121,7 +111,9 @@ class NewDexNav
 		  pbUpdateSpriteHash(@sprites)
 		  
 		  @sprites["nav_arrow"].x = 6 + 64 * (navMon % 7)
-		  @sprites["nav_arrow"].y = 48 + 64 * (navMon / 7)
+		  @sprites["nav_arrow"].y = 42 + 64 * ([navMon / 7,2].min)
+
+		  prevNavMon = navMon
 		  
 		  highlightedSpeciesData = encounters[navMon]
 		  highlightedSpecies = highlightedSpeciesData.species
@@ -170,10 +162,12 @@ class NewDexNav
 			highestLeftRepeat = 0
 			highestRightRepeat = 0
 		  end
-		  speciesFormName =  highlightedSpeciesData.real_name 
-		  speciesFormName += "(#{highlightedSpeciesData.real_form_name})" if highlightedSpeciesData.form != 0
-		  @displayedName = $Trainer.pokedex.seen?(highlightedSpecies) ? speciesFormName : "Unknown"
-		  drawSprites()
+		  if prevNavMon != navMon
+			speciesFormName =  highlightedSpeciesData.real_name 
+			speciesFormName += "(#{highlightedSpeciesData.real_form_name})" if highlightedSpeciesData.form != 0
+			@displayedName = $Trainer.pokedex.seen?(highlightedSpecies) ? speciesFormName : "Unknown"
+			drawSprites(navMon)
+		  end
 		end
 	else
 		pbFadeOutAndHide(@sprites)
@@ -182,11 +176,18 @@ class NewDexNav
 	@viewport2.dispose
   end
   
-  def drawSprites()
+  def drawSprites(navigationIndex=0)
     @sprites["overlay"].bitmap.clear
 	@sprites["overlay2"].bitmap.clear
+	offset = [(navigationIndex/7)-2,0].max * 7
+	@pkmnsprite.each_with_index do |sprite,iconIndex|
+		offsetIndex = iconIndex - offset	
+		sprite.x = 64 * (offsetIndex % 7)
+		sprite.y = 24 + 64 * (offsetIndex / 7)
+		sprite.visible = offsetIndex >= 0 && offsetIndex <= 20
+    end
 	drawInformation()
-	drawOwnedIcons()
+	drawOwnedIcons(offset)
   end
   
   def drawInformation()
@@ -216,16 +217,20 @@ class NewDexNav
 	textpos.push([completions,xLeft,yPos,0,base,shadow])
 	yPos += 32
 	
-	if @displayedName
-		textpos.push([@displayedName,(Graphics.width-@displayedName.length*10)/2,yPos,0,base,shadow])
-	end
+	#if @displayedName
+	#	textpos.push([@displayedName,(Graphics.width-@displayedName.length*10)/2,yPos,0,base,shadow])
+	#end
 	
 	pbDrawTextPositions(overlay, textpos)
   end
   
-  def drawOwnedIcons
+  def drawOwnedIcons(offset=0)
 	imagePos = []
-	@pkmnsprite.each do |sprite|
+	
+	@pkmnsprite.each_with_index do |sprite,iconIndex|
+		offsetIndex = iconIndex - offset
+		next if offsetIndex < 0
+		break if offsetIndex > 20
 		next unless $Trainer.pokedex.owned?(sprite.species)
 		ownedIconX = sprite.x + 8
 		ownedIconY = sprite.y + 8
@@ -286,6 +291,7 @@ def getDexNavEncounterDataForMap(mapid = -1)
 		encounterList.each do |encounter|
 			speciesSym = encounter[1]
 			species_data = GameData::Species.get(speciesSym)
+			next if isLegendary(speciesSym)
 			allEncounters.push([encounter_type,species_data])
 		end
 	end
