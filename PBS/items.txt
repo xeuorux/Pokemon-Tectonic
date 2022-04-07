@@ -80,9 +80,9 @@
 78,AMULETCOIN,Amulet Coin,Amulet Coins,1,10000,An item to be held by a Pokémon. It doubles a battle's prize money if the holding Pokémon joins in.,0,0,0,
 79,SOOTHEBELL,Soothe Bell,Soothe Bells,1,4000,"An item to be held by a Pokémon. The comforting chime of this bell calms the holder, making it friendly.",0,0,0,
 80,CLEANSETAG,Cleanse Tag,Cleanse Tags,1,5000,An item to be held by a Pokémon. It helps keep wild Pokémon away if the holder is the first one in the party.,0,0,0,
-81,CHOICEBAND,Choice Band,Choice Bands,1,4000,"An item to be held by a Pokémon. This headband ups Attack, but allows the use of only one move.",0,0,0,
-82,CHOICESPECS,Choice Specs,Choice Specs,1,4000,An item to be held by a Pokémon. These curious glasses boost Sp. Atk but allows the use of only one move.,0,0,0,
-83,CHOICESCARF,Choice Scarf,Choice Scarves,1,4000,An item to be held by a Pokémon. This scarf boosts Speed but allows the use of only one move.,0,0,0,
+81,CHOICEBAND,Choice Band,Choice Bands,1,8000,"An item to be held by a Pokémon. This headband ups Attack, but allows the use of only one move.",0,0,0,
+82,CHOICESPECS,Choice Specs,Choice Specs,1,8000,An item to be held by a Pokémon. These curious glasses boost Sp. Atk but allows the use of only one move.,0,0,0,
+83,CHOICESCARF,Choice Scarf,Choice Scarves,1,8000,An item to be held by a Pokémon. This scarf boosts Speed but allows the use of only one move.,0,0,0,
 84,HEATROCK,Heat Rock,Heat Rocks,1,4000,A Pokémon held item that extends the duration of the move Sunny Day used by the holder.,0,0,0,
 85,DAMPROCK,Damp Rock,Damp Rocks,1,4000,A Pokémon held item that extends the duration of the move Rain Dance used by the holder.,0,0,0,
 86,SMOOTHROCK,Smooth Rock,Smooth Rocks,1,4000,A Pokémon held item that extends the duration of the move Sandstorm used by the holder.,0,0,0,
@@ -92,11 +92,11 @@
 90,BINDINGBAND,Binding Band,Binding Bands,1,4000,A band that increases the power of binding moves when held.,0,0,0,
 91,BIGROOT,Big Root,Big Roots,1,4000,A Pokémon held item that boosts the power of HP-stealing moves to let the holder recover more HP.,0,0,0,
 92,BLACKSLUDGE,Black Sludge,Black Sludges,1,4000,A held item that gradually restores the HP of Poison-type Pokémon. It inflicts damage on all other types.,0,0,0,
-93,LEFTOVERS,Leftovers,Leftovers,1,4000,An item to be held by a Pokémon. The holder's HP is gradually restored during battle.,0,0,0,
+93,LEFTOVERS,Leftovers,Leftovers,1,8000,An item to be held by a Pokémon. The holder's HP is gradually restored during battle.,0,0,0,
 94,SHELLBELL,Shell Bell,Shell Bells,1,4000,An item to be held by a Pokémon. The holder's HP is restored a little every time it inflicts damage.,0,0,0,
-95,MENTALHERB,Mental Herb,Mental Herbs,1,4000,An item to be held by a Pokémon. It snaps the holder out of a variety of mental warping effects.,0,0,0,
-96,WHITEHERB,White Herb,White Herbs,1,4000,An item to be held by a Pokémon. It restores any lowered stat in battle.,0,0,0,
-97,POWERHERB,Power Herb,Power Herbs,1,4000,A single-use item to be held by a Pokémon. It allows the immediate use of a move that charges up first.,0,0,0,
+95,MENTALHERB,Mental Herb,Mental Herbs,1,8000,An item to be held by a Pokémon. It snaps the holder out of a variety of mental warping effects.,0,0,0,
+96,WHITEHERB,White Herb,White Herbs,1,8000,An item to be held by a Pokémon. It restores any lowered stat in battle.,0,0,0,
+97,POWERHERB,Power Herb,Power Herbs,1,8000,A single-use item to be held by a Pokémon. It allows the immediate use of a move that charges up first.,0,0,0,
 98,ABSORBBULB,Absorb Bulb,Absorb Bulbs,1,4000,"A consumable bulb. If the holder is hit by a Water-type move, its Sp. Atk will rise.",0,0,0,
 99,CELLBATTERY,Cell Battery,Cell Batteries,1,4000,"A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise.",0,0,0,
 100,LIFEORB,Life Orb,Life Orbs,1,4000,"A held item. It boosts the power of moves by 30%, but at the cost of 10% HP on each hit.",0,0,0,
@@ -822,7 +822,7 @@
 797,REMATERIALIZER,Rematerializer,Rematerializers,8,0,"A 3D printer which automatically copies consumed held items after battles.",0,0,6
 798,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It's a cup filled with warm coffee. You probably shouldn't be keeping this in your backpack.",0,0,6
 799,LUXTECHSHIPMENT,LuxTech Shipment,LuxTech Shipments,8,0,"A package containing an important shipment destined for LuxTech.",0,0,6
-800,DIAMONDTIARA,Diamond Tiara,Diamond Tiaras,1,9000,"A glimmering tiara made of diamonds. It makes a certain Pokemon evolve.",1,0,7
+800,DIAMONDTIARA,Diamond Tiara,Diamond Tiaras,1,50000,"A glimmering tiara made of diamonds. It makes a certain Pokemon evolve.",1,0,7
 801,KNIGHTHELMET,Knight Helmet,Knight Helmets,1,3000,"A shining helmet. It makes a certain Pokemon evolve.",1,0,7
 802,NINJASCARF,Ninja Scarf,Ninja Scarves,1,3000,"A cool scarf. It makes a certain Pokemon evolve.",1,0,7
 803,EXPEZDISPENSER,EXP-EZ Dispenser,EXP-EZ Dispensers,8,0,"A mysterious machine that is able to create candies from experience.",2,0,6
@@ -831,9 +831,9 @@
 806,MEDICALUPGRADE,Medical Upgrade,Medical Upgrades,1,0,"A suite of medicines which can be added to your Aid Kit to increase its healing.",2,0,0
 807,CLIMBINGGEAR,Climbing Gear,Climbing Gears,8,0,"A set of climbing gear, allowing you to climb on white rocks.",0,0,6,
 808,STRIKEVEST,Strike Vest,Strike Vests,1,1000,"An item to be held by a Pokémon. This offensive vest raises Defense but prevents the use of status moves.",0,0,0,
-809,GRASSTOKEN,Grass Token,Grass Tokens,1,5000,"A token which can be exchanged for a Grass-type at the Starter Store.",0,0,0,
-810,WATERTOKEN,Water Token,Water Tokens,1,5000,"A token which can be exchanged for a Water-type at the Starter Store.",0,0,0,
-811,FIRETOKEN,Fire Token,Fire Tokens,1,5000,"A token which can be exchanged for a Fire-type at the Starter Store.",0,0,0,
+809,GRASSTOKEN,Grass Token,Grass Tokens,1,10000,"A token which can be exchanged for a Grass-type at the Starter Store.",0,0,0,
+810,WATERTOKEN,Water Token,Water Tokens,1,10000,"A token which can be exchanged for a Water-type at the Starter Store.",0,0,0,
+811,FIRETOKEN,Fire Token,Fire Tokens,1,10000,"A token which can be exchanged for a Fire-type at the Starter Store.",0,0,0,
 812,UNIVERSALFORMALIZER,Universal Formalizer,Universal Formalizers,8,0,"Use on a Pokémon to switch it into another one of its forms.",5,0,6,
 813,WEIRDPACKAGE,Weird Package,Weird Packages,8,0,"A suspicious package. Probably best not to look inside.",0,0,0,
 814,AEGISIDCARD,Aegis ID Card,Aegis ID Cards,8,0,"A forged ID card. It will let you pretend you work at Aegis Insurance.",0,0,6,
@@ -845,7 +845,7 @@
 820,WILLLOCK,Will Lock,Will Locks,1,4000,"A held item. It set's the holder's Sp. Def. stat to 95.",0,0,0,
 821,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,15000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0,
 822,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca.",0,0,6
-823,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,10000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokemon you find is shiny.",2,0,0,
+823,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokemon you find is shiny.",2,0,0,
 #------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
