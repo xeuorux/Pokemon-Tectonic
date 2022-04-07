@@ -1557,9 +1557,8 @@ Pokemon = CHATOT,40
 [SWIMMER_M,Stannis]
 Pokemon = WISHIWASHI,33
     AbilityIndex = 0
-Pokemon = ALTARIA,31
-    AbilityIndex = 0
-    Item = FAIRYGEM
+Pokemon = HAKAMOO,31
+    Item = DRAGONGEM
 Pokemon = LUNATONE,32
     AbilityIndex = 1
 Pokemon = EMOLGA,33
@@ -2540,6 +2539,49 @@ Pokemon = GDARMANITAN,39
 	Item = ICEGEM
 Pokemon = ARATICATE,40
 	AbilityIndex = 0
+	Item = LEFTOVERS
+#-------------------------------
+[TRAINER_Alessa,Alessa]
+Pokemon = COTTONEE,19
+	AbilityIndex = 1
+	Item = KEEBERRY
+Pokemon = DWEBBLE,19
+	AbilityIndex = 1
+	Item = SHELLBELL
+Pokemon = WOOPER,20
+	AbilityIndex = 0
+	Item = RINDOBERRY
+Pokemon = VANILLISH,20
+	AbilityIndex = 1
+#-------------------------------
+[TRAINER_Alessa,Alessa,1]
+Pokemon = TRUBBISH,26
+	AbilityIndex = 1
+Pokemon = SWADLOON,26
+	AbilityIndex = 0
+	Item = ORANBERRY
+Pokemon = PIGNITE,27
+	AbilityIndex = 1
+	Item = FIREGEM
+Pokemon = SUNFLORA,27
+	AbilityIndex = 1
+	Item = HEATROCK
+#-------------------------------
+[TRAINER_Alessa,Alessa,2]
+Pokemon = WALREIN,44
+	AbilityIndex = 0
+	Item = ICEGEM
+Pokemon = MEGANIUM,44
+	AbilityIndex = 1
+	Item = ORANBERRY
+Pokemon = INCINEROAR,45
+	AbilityIndex = 0
+	Item = CHOICESCARF
+Pokemon = WORNET,45
+	Item = SHELLBELL
+Pokemon = ALTARIA,46
+	AbilityIndex = 0
+	Name = Khamsin
 	Item = LEFTOVERS
 #-------------------------------
 [SWIMMER_M2,Finn]

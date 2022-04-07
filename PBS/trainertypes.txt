@@ -195,6 +195,7 @@
 192,COOLTRAINER_F7,Cooltrainer,60,,,ELITETRAINER,Female,,,[]
 193,SCIENTIST_F3,Scientist,32,,,SCIENTIST,Female,,,[]
 194,SCIENTIST_M4,Scientist,32,,,SCIENTIST,Male,,,[]
+293,TRAINER_Alessa,Pokémon Trainer,100,,,,Female,,,[]
 294,TRAINER_Keoni,Pokémon Trainer,100,,,,Male,,,[]
 295,TRAINER_Candy,Pokémon Trainer,100,,,,Female,,,[]
 296,TRAINER_Imogene_B,Pokémon Trainer,100,,,,Female,,,[]
