@@ -1429,7 +1429,7 @@ class PokeBattle_AI
 		end
 	#---------------------------------------------------------------------------
 	when "0EA"
-		score = 0 if @battle.trainerBattle?
+		score -= 40
 	#---------------------------------------------------------------------------
 	when "0EB"
 		if target.effects[PBEffects::Ingrain] || target.hasActiveAbility?(:SUCTIONCUPS)

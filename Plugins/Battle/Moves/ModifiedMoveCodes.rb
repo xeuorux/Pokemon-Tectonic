@@ -1366,3 +1366,43 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
     end
   end
 end
+
+#===============================================================================
+# User flees from battle. Fails in trainer battles. (Teleport)
+#===============================================================================
+class PokeBattle_Move_0EA < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    if @battle.wildBattle? && !@battle.bossBattle?
+      if !@battle.pbCanRun?(user.index)
+        @battle.pbDisplay(_INTL("But it failed!"))
+        return true
+      end
+    else
+      if !@battle.pbCanChooseNonActive?(user.index)
+        @battle.pbDisplay(_INTL("But it failed!"))
+        return true
+      end
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    if @battle.wildBattle? && !@battle.bossBattle?
+      @battle.pbDisplay(_INTL("{1} fled from battle!",user.pbThis))
+      @battle.decision = 3   # Escaped
+    else
+      return if user.fainted?
+      return if !@battle.pbCanChooseNonActive?(user.index)
+      @battle.pbDisplay(_INTL("{1} teleported, and went back to {2}!",user.pbThis,
+        @battle.pbGetOwnerName(user.index)))
+      @battle.pbPursuit(user.index)
+      return if user.fainted?
+      newPkmn = @battle.pbGetReplacementPokemonIndex(user.index)   # Owner chooses
+      return if newPkmn<0
+      @battle.pbRecallAndReplace(user.index,newPkmn)
+      @battle.pbClearChoice(user.index)   # Replacement Pokémon does nothing this round
+      @battle.moldBreaker = false
+      user.pbEffectsOnSwitchIn(true)
+    end
+  end
+end
