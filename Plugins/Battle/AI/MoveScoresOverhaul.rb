@@ -975,9 +975,6 @@ class PokeBattle_AI
 		score -= 50
 		score += target.hp*100/target.totalhp
 	#---------------------------------------------------------------------------
-	when "06D"
-		score += 80 if target.hp<=user.level
-	#---------------------------------------------------------------------------
 	when "06E"
 		if user.hp>=target.hp
 			score = 0
