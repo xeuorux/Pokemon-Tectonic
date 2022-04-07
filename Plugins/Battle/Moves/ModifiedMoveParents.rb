@@ -155,3 +155,43 @@ class PokeBattle_StatDownMove < PokeBattle_Move
     end
   end
 end
+
+class PokeBattle_MultiStatUpMove
+	def getScore(score,user,target,skill=100)
+		score += 20 if user.turnCount==0	 # Multi-stat up moves are often great on the first turn
+	
+		# Return 0 if all the stats upped by this move are already at max
+		stagesMaxxed = true
+		upsPhysicalAttack = false
+		upsSpecialAttack = false
+		for i in 0...@statUp.length/2
+			statSym = @statUp[i*2]
+			stagesMaxxed = false if !user.statStageAtMax?(statSym)
+			score -= user.stages[statSym]*10 # Reduce the score for each existing stage
+			upsPhysicalAttack = true if statSym == :ATTACK
+			upsSpecialAttack = true if statSym == :SPECIAL_ATTACK
+		end
+		return 0 if stagesMaxxed
+
+		# Wont use this move if it boosts an offensive
+		# Stat that the pokemon can't actually use
+		return 0 if upsPhysicalAttack && !upsSpecialAttack && !user.hasPhysicalAttack?
+		return 0 if !upsPhysicalAttack && upsSpecialAttack && !user.hasSpecicalAttack?
+
+		score -= 10 if !upsPhysicalAttack && !upsSpecialAttack # Boost moves that dont up offensives are worse
+		
+		return score
+	end
+end
+
+class PokeBattle_WeatherMove < PokeBattle_Move
+  def getScore(score,user,target,skill=100)
+    score += 20
+    if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE)
+			score = 0
+		elsif @battle.pbWeather == :Sun
+			score = 0
+    end
+    return score
+  end
+end
