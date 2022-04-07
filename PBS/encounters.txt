@@ -483,7 +483,7 @@ Land,20
 25,MVULPIX,32,34
 25,PIDOVE,32,34
 Special,1
-1,ROTOM,30,30
+1,ROTOM,40,40
 #-------------------------------
 [34] # Battle Plaza
 FloweryGrass,20
@@ -495,11 +495,11 @@ FloweryGrass,20
 #-------------------------------
 [029] # Full Blast Records F2
 Special,1
-1,GMEOWTH,15,15
+1,GMEOWTH,40,40
 #-------------------------------
 [047] # Grand Hotel
 Special,1
-1,ZANGOOSE,15,15
+1,ZANGOOSE,40,40
 #-------------------------------
 [185] # Eleig Stretch
 Land
@@ -536,7 +536,7 @@ FloweryGrass2,20
 20,MORPEKO,32,34
 20,DEDENNE,32,34
 Special,1
-1,CASTFORM,15,15
+1,CASTFORM,40,40
 #-------------------------------
 [65] # Nemeth Mart
 Special,1
@@ -549,15 +549,15 @@ FloweryGrass2,20
 25,FURFROU,33,35
 25,COMFEY,33,35
 Special,1
-1,SEVIPER,15,15
+1,SEVIPER,40,40
 #-------------------------------
 [230] # Galarian Fan's House
 Special,1
-1,SKARMORY,15,15
+1,SKARMORY,40,40
 #-------------------------------
 [232] # Biologist's House
 Special,1
-1,CHINCHOU,15,15
+1,CHINCHOU,40,40
 #-------------------------------
 [189] # Catacombs
 DarkCave,20
@@ -567,7 +567,7 @@ DarkCave,20
 #-------------------------------
 [180] # Prizca West Mart
 Special,1
-1,GFARFETCHD,30,30
+1,GFARFETCHD,40,40
 #-------------------------------
 [193] # Lapras Shore
 Land,20
@@ -606,11 +606,11 @@ DarkCave
 #-------------------------------
 [202] # Mountaineer's House
 Special,1
-1,ORICORIO,15,15
+1,ORICORIO,40,40
 #-------------------------------
 [203] # Skeevy Eevee Pub
 Special,20
-1,EEVEE,15,15
+1,EEVEE,40,40
 #-------------------------------
 [211] # Shield
 Land,20
@@ -775,3 +775,8 @@ Puddle
 25,CHINCHOU,35,37
 25,MANTYKE,35,37
 25,RELICANTH,35,37
+#-------------------------------
+[234] # Ranger Recruitment
+Special
+1,VULPIX,40,40
+#-------------------------------
