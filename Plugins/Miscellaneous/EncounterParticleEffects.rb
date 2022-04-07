@@ -10,6 +10,8 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
 			$scene.spriteset.addUserAnimation(Settings::GRASS_ANIMATION_ID, x, y, true, 1)
 		  elsif tag == :Puddle
 			$scene.spriteset.addUserAnimation(8, x, y, true, 1)
+		  elsif tag == :FishingContest
+			$scene.spriteset.addUserAnimation(8, x, y, true, 1)
 		  elsif tag == :SewerFloor || tag == :SewerWater
 		   $scene.spriteset.addUserAnimation(18, x, y, true, 1)
 		  elsif tag == :DarkCave
