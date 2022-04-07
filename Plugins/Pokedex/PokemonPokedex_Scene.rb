@@ -1017,14 +1017,14 @@ class PokemonPokedex_Scene
 	
 	def searchByStatComparison()
 		statSelection = pbMessage("Which stat?",[_INTL("HP"),_INTL("Attack"),_INTL("Defense"),
-			_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Total"),_INTL("Cancel")],8)
-	    return if statSelection == 7 
+			_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Total"),_INTL("Phys. EHP"),_INTL("Spec. EHP"),_INTL("Cancel")],10)
+	    return if statSelection == 9
 		comparisonSelection = pbMessage("Which comparison?",[_INTL("Equal to number"),
 			_INTL("Greater than number"),_INTL("Less than number"),_INTL("Equal to stat"),
 			_INTL("Greater than stat"),_INTL("Less than stat"),_INTL("Cancel")],7)
 		return if comparisonSelection == 6 
 		
-		stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+		stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED,:PEHP,:SEPH]
 		if comparisonSelection <= 2
 			statTextInput = pbEnterText("Input value...", 0, 3)
 			if statTextInput && statTextInput!=""
@@ -1038,8 +1038,8 @@ class PokemonPokedex_Scene
 			end
 		elsif
 			statSelectionComparison = pbMessage("Compare to which stat?",[_INTL("HP"),_INTL("Attack"),_INTL("Defense"),
-			_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Cancel")],7)
-			return if statSelectionComparison == 6
+			_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Phys. EHP"),_INTL("Spec. EHP"),_INTL("Cancel")],9)
+			return if statSelectionComparison == 8
 			
 			comparitorB = stats[statSelectionComparison]
 		end
@@ -1055,16 +1055,23 @@ class PokemonPokedex_Scene
 			statToCompareA = 0
 			case statSelection
 			when 0..5
-				statToCompareA = species_data.base_stats[comparitorA]
+				statToCompareA = species_data.calced_stats[comparitorA]
 			when 6
 				species_data.base_stats.each do |s|
 					statToCompareA += s[1]
 				end
+			when 7
+				statToCompareA = species_data.physical_ehp	
+			when 8
+				statToCompareA = species_data.special_ehp
 			end
 			
 			statToCompareB = 0
 			if comparitorB.is_a?(Symbol)
-				statToCompareB = species_data.base_stats[comparitorB]
+				calced_stats = species_data.base_stats
+				calced_stats[:PEHP] = species_data.physical_ehp
+				calced_stats[:SEHP] = species_data.special_ehp
+				statToCompareB = calced_stats[comparitorB]
 			else
 				statToCompareB = comparitorB
 			end
@@ -1424,8 +1431,8 @@ class PokemonPokedex_Scene
 	
 	def sortByStat()
 		statSelection = pbMessage("Which stat?",[_INTL("HP"),_INTL("Attack"),_INTL("Defense"),
-			_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Total"),_INTL("Cancel")],8)
-	    return if statSelection == 7
+			_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Total"),_INTL("Phys. EHP"),_INTL("Spec. EHP"),_INTL("Cancel")],10)
+	    return if statSelection == 9
 		sortDirection = pbMessage("Which direction?",[_INTL("Descending"),_INTL("Ascending"),_INTL("Cancel")],3)
 		return if sortDirection == 2
 		dexlist = @dexlist
@@ -1449,6 +1456,10 @@ class PokemonPokedex_Scene
 				speciesData.base_stats.each do |s|
 					value += s[1]
 				end
+			when 7
+				value = speciesData.physical_ehp
+			when 8
+				value = speciesData.special_ehp
 			end
 			
 			value *= -1 if sortDirection == 0

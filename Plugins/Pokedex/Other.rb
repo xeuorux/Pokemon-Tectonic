@@ -104,11 +104,19 @@ module GameData
 		def get_prevolutions(exclude_invalid = false)
 		  ret = []
 		  @evolutions.each do |evo|
-			next if !evo[3]   # Is the prevolution
+			next if !evo[3]   # Is an evolution
 			next if evo[1] == :None && exclude_invalid
 			ret.push([evo[0], evo[1], evo[2]])   # [Species, method, parameter]
 		  end
 		  return ret
+		end
+
+		def physical_ehp
+			return [(base_stats[:HP] * base_stats[:DEFENSE] / 100),1].max
+		end
+
+		def special_ehp
+			return [(base_stats[:HP] * base_stats[:SPECIAL_DEFENSE] / 100),1].max
 		end
 	end
 end

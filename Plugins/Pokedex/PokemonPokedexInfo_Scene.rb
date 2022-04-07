@@ -327,28 +327,29 @@ class PokemonPokedexInfo_Scene
     base = Color.new(64,64,64)
     shadow = Color.new(176,176,176)
 	baseStatNames = ["HP","Attack","Defense","Sp. Atk","Sp. Def", "Speed"]
-    otherStatNames = ["Gender Rate", "Growth Rate", "Catch Dif.", "Exp. Grant"]
+    otherStatNames = ["Gender Rate", "Growth Rate", "Catch Dif.", "Exp. Grant", "PEHP / SEHP"]
     for i in @available
       if i[2]==@form
         formname = i[0]
-        drawTextEx(overlay,30,54,450,1,_INTL("Stats of {1}",@title),base,shadow)
         fSpecies = GameData::Species.get_species_form(@species,i[2])
         
+		yBase = 100
+
         #Base stats
-        drawTextEx(overlay,30,90,450,1,"Base Stats",base,shadow)
+        drawTextEx(overlay,30,yBase-40,450,1,"Base Stats",base,shadow)
         baseStats = fSpecies.base_stats
         total = 0
         baseStats.each_with_index do |stat, index|
           next if !stat
           total += stat[1]
           # Draw stat line
-          drawTextEx(overlay,30,130+32*index,450,1,baseStatNames[index],base,shadow)
-          drawTextEx(overlay,136,130+32*index,450,1,stat[1].to_s,base,shadow)
+          drawTextEx(overlay,30,yBase+32*index,450,1,baseStatNames[index],base,shadow)
+          drawTextEx(overlay,136,yBase+32*index,450,1,stat[1].to_s,base,shadow)
         end
-        drawTextEx(overlay,30,130+32*6+14,450,1,"Total",base,shadow)
-        drawTextEx(overlay,136,130+32*6+14,450,1,total.to_s,base,shadow)
+        drawTextEx(overlay,30,yBase+32*6+14,450,1,"Total",base,shadow)
+        drawTextEx(overlay,136,yBase+32*6+14,450,1,total.to_s,base,shadow)
         # Other stats
-        drawTextEx(overlay,250,90,450,1,"Other Stats",base,shadow)
+        drawTextEx(overlay,250,yBase-40,450,1,"Other Stats",base,shadow)
         otherStats = []
         genderRate = fSpecies.gender_ratio
         genderRateString = genderRateToString(genderRate)
@@ -389,12 +390,16 @@ class PokemonPokedexInfo_Scene
         end
 
         otherStats.push(fSpecies.base_exp)
+
+		physEHP = fSpecies.physical_ehp
+		specEHP = fSpecies.special_ehp
+		otherStats.push(physEHP.to_s + " / " + specEHP.to_s)
         
         otherStats.each_with_index do |stat, index|
           next if !stat
           # Draw stat line
-          drawTextEx(overlay,230,130+32*index,450,1,otherStatNames[index],base,shadow)
-          drawTextEx(overlay,378,130+32*index,450,1,stat.to_s,base,shadow)
+          drawTextEx(overlay,230,yBase+32*index,450,1,otherStatNames[index],base,shadow)
+          drawTextEx(overlay,378,yBase+32*index,450,1,stat.to_s,base,shadow)
         end
 		items = []
 		items.push(fSpecies.wild_item_common) if fSpecies.wild_item_common
@@ -412,10 +417,9 @@ class PokemonPokedexInfo_Scene
 		else
 			itemsString = "None"
 		end
-		drawTextEx(overlay,230,274,450,1,"Wild Items",base,shadow)
-		drawTextEx(overlay,230,306,450,1,itemsString,base,shadow)
-
-      end
+		drawTextEx(overlay,230,yBase+174,450,1,"Wild Items",base,shadow)
+		drawTextEx(overlay,230,yBase+203,450,1,itemsString,base,shadow)
+	  end
     end
   end
   
