@@ -163,7 +163,7 @@ class PokeBattle_AI
 				score = 0
 			else
 				score -= user.stages[:SPECIAL_ATTACK]*20
-				if user.hasSpecicalAttack?
+				if user.hasSpecialAttack?
 					score += 20
 				else
 					score = 0
@@ -171,7 +171,7 @@ class PokeBattle_AI
 			end
 		else
 			score += 20 if user.stages[:SPECIAL_ATTACK]<0
-			score += 20 if user.hasSpecicalAttack?
+			score += 20 if user.hasSpecialAttack?
 		end
 	#---------------------------------------------------------------------------
 	when "021"
@@ -270,7 +270,7 @@ class PokeBattle_AI
 			else
 				score += 40 if user.turnCount==0
 				score -= user.stages[:SPECIAL_ATTACK]*20
-				if user.hasSpecicalAttack?
+				if user.hasSpecialAttack?
 					score += 20
 				else
 					score = 0
@@ -279,7 +279,7 @@ class PokeBattle_AI
 		else
 			score += 10 if user.turnCount==0
 			score += 20 if user.stages[:SPECIAL_ATTACK]<0
-			score += 20 if user.hasSpecicalAttack?
+			score += 20 if user.hasSpecialAttack?
 		end
 	#---------------------------------------------------------------------------
 	when "033"
@@ -474,7 +474,7 @@ class PokeBattle_AI
 			end
 		else
 			score += 20 if user.stages[:SPECIAL_ATTACK]>0
-			score += 20 if user.hasSpecicalAttack?
+			score += 20 if user.hasSpecialAttack?
 		end
 	#---------------------------------------------------------------------------
 	when "046"
@@ -2082,9 +2082,9 @@ class PokeBattle_AI
 			score -= user.stages[:SPECIAL_DEFENSE]*10	 # because two-turn attack
 			score -= user.stages[:SPEED]*10
 			if user.hasSpecialAttack?
-			score += 20
+				score += 20
 			else
-			score = 0
+				score = 0
 			end
 			aspeed = pbRoughStat(user,:SPEED,skill)
 			ospeed = pbRoughStat(target,:SPEED,skill)
