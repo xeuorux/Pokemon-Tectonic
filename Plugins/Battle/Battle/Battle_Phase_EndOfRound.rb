@@ -32,6 +32,7 @@ class PokeBattle_Battle
       when :Sandstorm then pbDisplay(_INTL("The sandstorm subsided."))
       when :Hail      then pbDisplay(_INTL("The hail stopped."))
       when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
+      when :Sandstorm then pbDisplay(_INTL("The acid rain stopped."))
       end
       @field.weather = :None
       # Check for form changes caused by the weather changing
@@ -52,6 +53,7 @@ class PokeBattle_Battle
 #    when :HeavyRain   then pbDisplay(_INTL("It is raining heavily."))
 #    when :StrongWinds then pbDisplay(_INTL("The wind is strong."))
     when :ShadowSky   then pbDisplay(_INTL("The shadow sky continues."))
+    when :AcidRain   then pbDisplay(_INTL("The acid rain continues to fall."))  
     end
     # Effects due to weather
     curWeather = pbWeather
@@ -67,11 +69,11 @@ class PokeBattle_Battle
       when :Sandstorm
         next if !b.takesSandstormDamage?
         pbDisplay(_INTL("{1} is buffeted by the sandstorm!",b.pbThis))
-		reduction = b.totalhp/16
-		reduction *= 2 if !pbCheckGlobalAbility(:SHRAPNELSTORM).nil?
-		reduction /= 4 if b.boss?
-		b.damageState.displayedDamage = reduction
-		@scene.pbDamageAnimation(b)
+		    reduction = b.totalhp/16
+		    reduction *= 2 if !pbCheckGlobalAbility(:SHRAPNELSTORM).nil?
+		    reduction /= 4 if b.boss?
+		    b.damageState.displayedDamage = reduction
+		    @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
         b.pbFaint if b.fainted?
@@ -79,10 +81,10 @@ class PokeBattle_Battle
         next if !b.takesHailDamage?
         pbDisplay(_INTL("{1} is buffeted by the hail!",b.pbThis))
         reduction = b.totalhp/16
-		reduction *= 2 if !pbCheckGlobalAbility(:BITTERCOLD).nil?
-		reduction /= 4 if b.boss?
-		b.damageState.displayedDamage = reduction
-		@scene.pbDamageAnimation(b)
+	    	reduction *= 2 if !pbCheckGlobalAbility(:BITTERCOLD).nil?
+		    reduction /= 4 if b.boss?
+		    b.damageState.displayedDamage = reduction
+		    @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
         b.pbFaint if b.fainted?
@@ -90,12 +92,28 @@ class PokeBattle_Battle
         next if !b.takesShadowSkyDamage?
         pbDisplay(_INTL("{1} is hurt by the shadow sky!",b.pbThis))
         reduction = b.totalhp/16
-		reduction /= 4 if b.boss?
-		b.damageState.displayedDamage = reduction
-		@scene.pbDamageAnimation(b)
+		    reduction /= 4 if b.boss?
+		    b.damageState.displayedDamage = reduction
+		    @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
         b.pbFaint if b.fainted?
+      when :AcidRain
+        if !b.takesAcidRainDamage?
+          pbDisplay(_INTL("{1} is hurt by the acid rain!",b.pbThis))
+          reduction = b.totalhp/16
+          reduction /= 4 if b.boss?
+          b.damageState.displayedDamage = reduction
+          @scene.pbDamageAnimation(b)
+          b.pbReduceHP(reduction,false)
+          b.pbItemHPHealCheck
+          b.pbFaint if b.fainted?
+        elsif b.pbHasType?(:POISON)
+          pbDisplay(_INTL("{1} absorbs the acid rain!",b.pbThis))
+          heal = b.totalhp/16
+          heal /= 4 if b.boss?
+          b.pbRestoreHP(heal,false)
+        end
       end
     end
   end

@@ -1736,3 +1736,13 @@ class PokeBattle_Move_551 < PokeBattle_Move
 		return score
   end
 end
+
+#===============================================================================
+# Starts acid rain weather. (Acid Rain)
+#===============================================================================
+class PokeBattle_Move_552 < PokeBattle_WeatherMove
+	def initialize(battle,move)
+	  super
+	  @weatherType = :AcidRain
+	end
+end
