@@ -23,8 +23,8 @@ module GameData
       @shows_reflections      = hash[:shows_reflections]      || false
       @must_walk              = hash[:must_walk]              || false
       @ignore_passability     = hash[:ignore_passability]     || false
-	  @slows     			  = hash[:slows]     			  || false
-	  @rock_climbable		  = hash[:rock_climbable]		  || false
+	    @slows     			  = hash[:slows]     			  || false
+	    @rock_climbable		  = hash[:rock_climbable]		  || false
     end
   end
 end
@@ -55,12 +55,9 @@ class PokemonEncounters
   # trigger upon taking a step.
   def encounter_possible_here?
     terrain_tag_id = $game_map.terrain_tag($game_player.x, $game_player.y).id
-    if [:Grass, :DarkCave, :Mud, :SparseGrass, :Puddle, :TallGrass,
+    return [:Grass, :DarkCave, :Mud, :SparseGrass, :Puddle, :TallGrass,
 		:ActiveWater, :FloweryGrass, :FloweryGrass2, :TintedGrass,
-		:SewerWater, :SewerFloor].include?(terrain_tag_id)
-		return true
-	end
-	return false
+		:SewerWater, :SewerFloor, :FishingContest].include?(terrain_tag_id)
   end
 
   # Returns whether a wild encounter should happen, based on its encounter
@@ -127,13 +124,16 @@ class PokemonEncounters
   def encounter_type
     time = pbGetTimeNow
     ret = nil
-	current_terrain_id = $game_map.terrain_tag($game_player.x, $game_player.y).id
+	  current_terrain_id = $game_map.terrain_tag($game_player.x, $game_player.y).id
     if $PokemonGlobal.surfing
       # Active water encounters
-      if current_terrain_id == :ActiveWater
+      case current_terrain_id
+      when :ActiveWater
         ret = :ActiveWater
-      elsif current_terrain_id == :SewerWater
+      when :SewerWater
         ret = :SewerWater
+      when :FishingContest
+        ret = :FishingContest
       end
     else
       case current_terrain_id
@@ -159,8 +159,6 @@ class PokemonEncounters
       ret = :SewerWater
       when :SewerFloor
       ret = :SewerFloor
-      when :FishingContest
-      ret = :FishingContest
       end
     end
     return ret
@@ -177,21 +175,21 @@ class PokemonEncounters
     enc_list = @encounter_tables[enc_type].clone
     return nil if !enc_list || enc_list.length == 0
 	
-	# 25% chance to only roll on Pokemon not yet caught
-	uncaught_enc_list = enc_list.clone.delete_if{|e| $Trainer.owned?(e[1])}
-	if uncaught_enc_list.length > 0 && rand(100) < 25
-		echo("Only rolling encounters for uncaught Pokemon!\n")
-		enc_list = uncaught_enc_list
-	end
-	
-	if @lastEncounter && enc_list.length >= 3
-		echoln("Ensuring no encounters with #{@lastEncounter}")
-		enc_list = enc_list.delete_if{|e| e[1] == @lastEncounter}
-	end
+    # 25% chance to only roll on Pokemon not yet caught
+    uncaught_enc_list = enc_list.clone.delete_if{|e| $Trainer.owned?(e[1])}
+    if uncaught_enc_list.length > 0 && rand(100) < 25
+      echo("Only rolling encounters for uncaught Pokemon!\n")
+      enc_list = uncaught_enc_list
+    end
+    
+    if @lastEncounter && enc_list.length >= 3
+      echoln("Ensuring no encounters with #{@lastEncounter}")
+      enc_list = enc_list.delete_if{|e| e[1] == @lastEncounter}
+    end
 	
     enc_list.sort! { |a, b| b[0] <=> a[0] }   # Highest probability first
 	
-	echoln("Encounter list: #{enc_list.to_s}")
+	  echoln("Encounter list: #{enc_list.to_s}")
 	
     # Calculate the total probability value
     chance_total = 0
@@ -212,7 +210,7 @@ class PokemonEncounters
     # Get the chosen species and level
     level = rand(encounter[2]..encounter[3])
 	
-	@lastEncounter = encounter[1]
+	  @lastEncounter = encounter[1]
     # Return [species, level]
     return [encounter[1], level]
   end
@@ -231,12 +229,12 @@ class PokemonEncounters
     enc_list = encounter_data.types[enc_type]
     return nil if !enc_list || enc_list.length == 0
 	
-	# 25% chance to only roll on Pokemon not yet caught
-	uncaught_enc_list = enc_list.delete_if{|e| $Trainer.owned?(e[1])}
-	if uncaught_enc_list.length > 0 && rand(100) < 25
-		echo("Only rolling encounters for uncaught Pokemon!\n")
-		enc_list = uncaught_enc_list
-	end
+    # 25% chance to only roll on Pokemon not yet caught
+    uncaught_enc_list = enc_list.delete_if{|e| $Trainer.owned?(e[1])}
+    if uncaught_enc_list.length > 0 && rand(100) < 25
+      echo("Only rolling encounters for uncaught Pokemon!\n")
+      enc_list = uncaught_enc_list
+    end
 	
     # Calculate the total probability value
     chance_total = 0
@@ -465,14 +463,14 @@ GameData::TerrainTag.register({
 # Fishing Contest Water
 GameData::EncounterType.register({
   :id             => :FishingContest,
-  :type           => :contest,
-  :trigger_chance => 15,
+  :type           => :water,
+  :trigger_chance => 30,
   :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
 })
 
 GameData::TerrainTag.register({
   :id                     => :FishingContest,
   :id_number              => 28,
-  :land_wild_encounters   => true,
+  :can_surf               => true,
   :battle_environment     => :MovingWater
 })

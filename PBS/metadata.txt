@@ -763,3 +763,10 @@ HealingSpot = 187,55,37
 [236]
 # Your House
 HealingSpot = 187,55,37
+#-------------------------------
+[239]
+# Ocean Fishing Contest
+Outdoor = true
+ShowArea = true
+Bicycle = false
+Weather = HeavyRain,100
