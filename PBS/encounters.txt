@@ -11,7 +11,7 @@ FloweryGrass,20
 33,BUDEW,8,10
 34,LILLIPUP,8,10
 #-------------------------------
-[38] # Impromptu Lab
+[35] # Impromptu Lab
 Special,20
 1,KRABBY,10,10
 1,NUMEL,10,10 
@@ -404,10 +404,9 @@ LandSparse
 #-------------------------------
 [220] # Prizca Sewers East
 LandSparse,20
-25,GOLETT,33,38
-25,DRUDDIGON,33,38
-25,DEINO,33,38
-25,VOLTORB,17,19
+33,GOLETT,33,35
+33,DRUDDIGON,33,35
+34,DEINO,33,35
 #-------------------------------
 [066] # Nemeth Apartments Attic
 Special,20
@@ -544,10 +543,10 @@ Special,1
 #-------------------------------
 [187] # Prizca East
 FloweryGrass2,20
-25,SINISTEA,33,38
-25,SMEARGLE,33,38
-25,FURFROU,33,38
-25,COMFEY,33,38
+25,SINISTEA,33,35
+25,SMEARGLE,33,35
+25,FURFROU,33,35
+25,COMFEY,33,35
 Special,1
 1,SEVIPER,40,40
 #-------------------------------
@@ -561,9 +560,9 @@ Special,1
 #-------------------------------
 [189] # Catacombs
 DarkCave,20
-33,SPIRITOMB,33,38
-33,MIMIKYU,33,38
-34,YAMASK,33,38
+33,SPIRITOMB,36,38
+33,MIMIKYU,36,38
+34,YAMASK,36,38
 #-------------------------------
 [180] # Prizca West Mart
 Special,1
