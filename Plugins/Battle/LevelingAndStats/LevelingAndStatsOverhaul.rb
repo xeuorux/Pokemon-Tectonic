@@ -103,18 +103,16 @@ class Pokemon
     GameData::Stat.each_main do |s|
       if s.id == :HP
         stats[s.id] = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id])
-		if boss
-			stats[s.id] *= hpMult
-		end
+        if boss
+          stats[s.id] *= hpMult
+        end
       elsif (s.id == :ATTACK) || (s.id == :SPECIAL_ATTACK)
-		if boss
-			stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
-			stats[s.id] *= dmgMult
-		else
-			stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
-		end
-	  else
-		stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
+        stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
+        if boss
+          stats[s.id] *= dmgMult
+        end
+      else
+        stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
       end
     end
     hpDiff = @totalhp - @hp

@@ -176,7 +176,7 @@ class PokeBattle_MultiStatUpMove
 		# Wont use this move if it boosts an offensive
 		# Stat that the pokemon can't actually use
 		return 0 if upsPhysicalAttack && !upsSpecialAttack && !user.hasPhysicalAttack?
-		return 0 if !upsPhysicalAttack && upsSpecialAttack && !user.hasSpecicalAttack?
+		return 0 if !upsPhysicalAttack && upsSpecialAttack && !user.hasSpecialAttack?
 
 		score -= 10 if !upsPhysicalAttack && !upsSpecialAttack # Boost moves that dont up offensives are worse
 		
