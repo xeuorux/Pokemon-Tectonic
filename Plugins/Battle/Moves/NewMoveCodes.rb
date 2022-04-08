@@ -1096,17 +1096,17 @@ class PokeBattle_Move_532 < PokeBattle_Move
 		return false
 	end
 	
-	def pbEffectAgainstTarget(user,target)
+	def pbEffectGeneral(user)
 		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
 		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
 		statsRanked = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
-		statsRanked.sort_by { |s| (user.attack.to_f*stageMul[user.stages[s]]/stageDiv[user.stages[s]]).floor }
-		target.pbRaiseStatStage(statsRanked[0],2,user)
-		target.pbRaiseStatStage(statsRanked[1],1,user)
+		statsRanked.sort_by { |s| user.stats[s].to_f * stageMul[user.stages[s]+6] / stageDiv[user.stages[s]+6] }
+		user.pbRaiseStatStageBasic(statsRanked[0],2)
+		user.pbRaiseStatStageBasic(statsRanked[1],1)
 	end
 	
 	def getScore(score,user,target,skill=100)
-		score += 50 if user.turnCount == 0
+		score += 20 if user.turnCount == 0
 		stats = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
 		stats.each do |s|
 			score -= user.stages[s] * 5
