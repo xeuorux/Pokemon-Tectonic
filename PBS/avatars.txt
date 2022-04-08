@@ -445,14 +445,14 @@ Ability = REALIST
 Moves = SPACIALREND,LIQUIDATION
 #-------------------------------
 [CRESSELIA]
-Turns = 2
+Turns = 1
 HPMult = 6
 Ability = LEVITATE
 Item = MENTALHERB
 Moves = HELPINGHAND,PSYCHIC
 #------------------------------
 [DARKRAI]
-Turns = 2
+Turns = 1
 HPMult = 6
 Ability = BADDREAMS
 Moves = DARKPULSE

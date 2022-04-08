@@ -340,3 +340,87 @@ def bossify(bitmap,scaleFactor = 1.3)
   end
   return copiedBitmap
 end
+
+
+class PokeBattle_Battle
+	def addAvatarBattler(species,level)
+		# Create the new pokemon
+		newPokemon = pbGenerateWildPokemon(species,level)
+		newPokemon.boss = true
+		setAvatarProperties(newPokemon)
+
+		# Put the battler into the battle
+		battlerIndexNew = 1 + @sideSizes[1] * 2
+		pbCreateBattler(battlerIndexNew,newPokemon,1)
+		newBattler = @battlers[battlerIndexNew]
+		sideSizes[1] += 1
+
+		# Remake all the battle boxes
+		scene.sprites["dataBox_#{battlerIndexNew}"] = PokemonDataBox.new(newBattler,@sideSizes[1],@scene.viewport)
+		eachBattler do |b|
+			next if b.index % 2 == 0
+			databox = scene.sprites["dataBox_#{b.index}"]
+			databox.dispose
+			databox.initialize(b,sideSizes[1],@scene.viewport)
+			databox.visible = true
+		end
+
+		# Create the new avatar's battle sprite
+		scene.pbCreatePokemonSprite(battlerIndexNew)
+		
+		# Move existing sprites around
+		eachBattler do |b|
+			next if b.index % 2 == 0
+			battleSprite = scene.sprites["pokemon_#{b.index}"]
+			battleSprite.dispose
+			battleSprite.initialize(@scene.viewport,sideSizes[1],b.index,@scene.animations)
+			scene.pbChangePokemon(b.index,b.pokemon)
+			battleSprite.visible = true
+		end
+
+		# Create the new avatar's battle sprite
+		scene.pbCreatePokemonSprite(battlerIndexNew)
+		pkmnSprite = @scene.sprites["pokemon_#{battlerIndexNew}"]
+		pkmnSprite.tone    = Tone.new(-80,-80,-80)
+
+		# Remake the targeting menu
+		@scene.sprites["targetWindow"] = TargetMenuDisplay.new(@scene.viewport,200,@sideSizes)
+		@scene.sprites["targetWindow"].visible = false
+
+		# Send it out into the battle
+		@scene.animateIntroNewAvatar(battlerIndexNew)
+		pbOnActiveOne(newBattler)
+		pbCalculatePriority
+	end
+end
+
+class PokeBattle_Scene
+	attr_reader :animations
+	def animateIntroNewAvatar(battlerIndexNew)
+		# Animation of new pokemon appearing
+		dataBoxAnim = DataBoxAppearAnimation.new(@sprites,@viewport,battlerIndexNew)
+		@animations.push(dataBoxAnim)
+		# Set up wild Pokémon returning to normal colour and playing intro
+		# animations (including cry)
+		@animations.push(BattleIntroAnimationSolo.new(@sprites,@viewport,battlerIndexNew))
+		# Play all the animations
+		while inPartyAnimation?; pbUpdate; end
+	end
+end
+
+#===============================================================================
+# Shows a single wild Pokémon fading back to its normal color, and triggers their intro
+# animation
+#===============================================================================
+class BattleIntroAnimationSolo < PokeBattle_Animation
+	def initialize(sprites,viewport,idxBattler)
+	  @idxBattler = idxBattler
+	  super(sprites,viewport)
+	end
+  
+	def createProcesses
+		battler = addSprite(@sprites["pokemon_#{@idxBattler}"],PictureOrigin::Bottom)
+		battler.moveTone(0,4,Tone.new(0,0,0,0))
+		battler.setCallback(0,[@sprites["pokemon_#{@idxBattler}"],:pbPlayIntroAnimation])
+	end
+  end
