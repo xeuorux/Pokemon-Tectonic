@@ -17,7 +17,6 @@ class PokeBattle_Battle
     end
 	
 	# SWAPPED THE ORDER HERE OF PLAYER VS AI
-	# NO IDEA IF THIS WILL CAUSE MASSIVE PROBLEMS
 	
     # Choose actions for the round (AI first, then player)
     pbCommandPhaseLoop(false)   # AI chooses their actions

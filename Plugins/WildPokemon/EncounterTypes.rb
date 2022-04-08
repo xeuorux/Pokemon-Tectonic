@@ -470,6 +470,7 @@ GameData::EncounterType.register({
 
 GameData::TerrainTag.register({
   :id                     => :FishingContest,
+  :type                   => :contest,
   :id_number              => 28,
   :can_surf               => true,
   :battle_environment     => :MovingWater

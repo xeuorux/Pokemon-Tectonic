@@ -47,7 +47,7 @@ class PokemonPauseMenu
 		commands[cmdPokemon = commands.length]   = _INTL("Pokémon") if $Trainer.party_count > 0
 		commands[cmdBag = commands.length]       = _INTL("Bag") if !pbInBugContest?
 		commands[cmdPokegear = commands.length]  = _INTL("Pokégear") if $Trainer.has_pokegear
-		commands[cmdDexnav = commands.length]	 = _INTL("DexNav")
+		commands[cmdDexnav = commands.length]	 = _INTL("DexNav") if !$catching_minigame.active?
 		showCapMenu = LEVEL_CAPS_USED && $game_variables[26] > 0 && $Trainer.party_count > 0
 		commands[cmdLevelCap = commands.length]  = _INTL("Level Cap") if showCapMenu
 		commands[cmdTrainer = commands.length]   = $Trainer.name

@@ -8,6 +8,8 @@ class PokemonDataBox < SpriteWrapper
 	TYPE_ICON_HEIGHT = 18
 	NAME_BASE_COLOR = Color.new(255,255,255)
 	NAME_SHADOW_COLOR       = Color.new(136,136,136)
+
+	attr_accessor :showTypes
 	
 	def initialize(battler,sideSize,viewport=nil)
 		super(viewport)
@@ -30,7 +32,7 @@ class PokemonDataBox < SpriteWrapper
 		initializeDataBoxGraphic(sideSize)
 		initializeOtherGraphics(viewport)
 		refresh
-	  end
+	end
 	
 	  def initializeDataBoxGraphic(sideSize)
 		onPlayerSide = ((@battler.index%2)==0)
@@ -313,14 +315,18 @@ class PokemonDataBox < SpriteWrapper
 	
   end
   
-  def dispose
-    pbDisposeSpriteHash(@sprites)
-    @databoxBitmap.dispose
+  def disposeBitmaps()
+	@databoxBitmap.dispose
     @numbersBitmap.dispose
     @hpBarBitmap.dispose
     @expBarBitmap.dispose
 	@typeBitmap.dispose
     @contents.dispose
+  end
+
+  def dispose
+    pbDisposeSpriteHash(@sprites)
+    disposeBitmaps
     super
   end
   

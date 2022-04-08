@@ -302,10 +302,9 @@ class PokeBattle_Battle
     end
     # Damage from burn
     priority.each do |b|
-	  next if b.fainted?
+	    next if b.fainted?
       next if !b.burned?
-	  
-	  if b.hasActiveAbility?(:BURNHEAL)
+	    if b.hasActiveAbility?(:BURNHEAL)
         if b.canHeal?
           anim_name = GameData::Status.get(:BURN).animation
           pbCommonAnimation(anim_name, b) if anim_name
@@ -318,29 +317,29 @@ class PokeBattle_Battle
           end
           pbHideAbilitySplash(b)
         end
-	  elsif b.takesIndirectDamage?
-			oldHP = b.hp
-			dmg = b.totalhp/8
-			dmg = (dmg/4.0).round if b.boss
-			b.pbContinueStatus(:BURN) { b.pbReduceHP(dmg,false) }
-			b.pbItemHPHealCheck
-			b.pbAbilitiesOnDamageTaken(oldHP)
-			if b.fainted?
-				b.pbFaint 
-				triggerDOTDeathDialogue(b)
-			end
-	  end
+	    elsif b.takesIndirectDamage?
+        oldHP = b.hp
+        dmg = b.totalhp/8
+        dmg = (dmg/4.0).round if b.boss
+        b.pbContinueStatus(:BURN) { b.pbReduceHP(dmg,false) }
+        b.pbItemHPHealCheck
+        b.pbAbilitiesOnDamageTaken(oldHP)
+        if b.fainted?
+          b.pbFaint 
+          triggerDOTDeathDialogue(b)
+        end
+      end
     end
     # Damage from sleep (Nightmare)
     priority.each do |b|
       b.effects[PBEffects::Nightmare] = false if !b.asleep?
       next if !b.effects[PBEffects::Nightmare] || !b.takesIndirectDamage?
       oldHP = b.hp
-	  if b.boss
-		b.pbReduceHP(b.totalhp/16)
-	  else
-		b.pbReduceHP(b.totalhp/4)
-	  end
+      if b.boss
+        b.pbReduceHP(b.totalhp/16)
+      else
+        b.pbReduceHP(b.totalhp/4)
+      end
       pbDisplay(_INTL("{1} is locked in a nightmare!",b.pbThis))
       b.pbItemHPHealCheck
       b.pbAbilitiesOnDamageTaken(oldHP)
@@ -350,11 +349,11 @@ class PokeBattle_Battle
     priority.each do |b|
       next if !b.effects[PBEffects::Curse] || !b.takesIndirectDamage?
       oldHP = b.hp
-	  if b.boss
-		b.pbReduceHP(b.totalhp/16)
-	  else
-		b.pbReduceHP(b.totalhp/4)
-	  end
+      if b.boss
+        b.pbReduceHP(b.totalhp/16)
+      else
+        b.pbReduceHP(b.totalhp/4)
+      end
       pbDisplay(_INTL("{1} is afflicted by the curse!",b.pbThis))
       b.pbItemHPHealCheck
       b.pbAbilitiesOnDamageTaken(oldHP)
@@ -363,7 +362,7 @@ class PokeBattle_Battle
 	# Octolock
     priority.each do |b|
       next if !b.effects[PBEffects::Octolock]
-	  octouser = @battlers[b.effects[PBEffects::OctolockUser]]
+	    octouser = @battlers[b.effects[PBEffects::OctolockUser]]
       if b.pbCanLowerStatStage?(:DEFENSE,octouser,self)
         b.pbLowerStatStage(:DEFENSE,1,octouser,true,false,true)
       end
@@ -387,7 +386,7 @@ class PokeBattle_Battle
         when :SANDTOMB    then pbCommonAnimation("SandTomb", b)
         when :WRAP        then pbCommonAnimation("Wrap", b)
         when :INFESTATION then pbCommonAnimation("Infestation", b)
-		when :SNAPTRAP 	  then pbCommonAnimation("SnapTrap",b)
+	    	when :SNAPTRAP 	  then pbCommonAnimation("SnapTrap",b)
         when :THUNDERCAGE then pbCommonAnimation("ThunderCage",b)
         else                   pbCommonAnimation("Wrap", b)
         end
@@ -396,8 +395,8 @@ class PokeBattle_Battle
           if @battlers[b.effects[PBEffects::TrappingUser]].hasActiveItem?(:BINDINGBAND)
             hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/6 : b.totalhp/8
           end
-		  hpLoss = (hpLoss/4.0).floor if b.boss
-		  b.damageState.displayedDamage = hpLoss
+		      hpLoss = (hpLoss/4.0).floor if b.boss
+		      b.damageState.displayedDamage = hpLoss
           @scene.pbDamageAnimation(b)
           b.pbReduceHP(hpLoss,false)
           pbDisplay(_INTL("{1} is hurt by {2}!",b.pbThis,moveName))

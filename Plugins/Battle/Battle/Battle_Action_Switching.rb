@@ -19,20 +19,20 @@ class PokeBattle_Battle
   end
   
   def pbIsTrapped?(idxBattler,partyScene=nil)
-	battler = @battlers[idxBattler]
-	# Ability effects that allow switching no matter what
+	  battler = @battlers[idxBattler]
+	  # Ability effects that allow switching no matter what
     if battler.abilityActive?
       if BattleHandlers.triggerCertainSwitchingUserAbility(battler.ability,battler,self)
         return false
       end
     end
-	# Item effects that allow switching no matter what
+	  # Item effects that allow switching no matter what
     if battler.itemActive?
       if BattleHandlers.triggerCertainSwitchingUserItem(battler.item,battler,self)
         return false
       end
     end
-	# Other certain switching effects
+	  # Other certain switching effects
     if battler.effects[PBEffects::OctolockUser]>=0
       partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
       return true
@@ -71,8 +71,8 @@ class PokeBattle_Battle
   # General switching method that checks if any Pokémon need to be sent out and,
   # if so, does. Called at the end of each round.
   def pbEORSwitch(favorDraws=false)
-    return if @decision>0 && !favorDraws
-    return if @decision==5 && favorDraws
+    return if @decision > 0 && !favorDraws
+    return if @decision == 5 && favorDraws
     pbJudge
     return if @decision>0
     # Check through each fainted battler to see if that spot can be filled.
@@ -87,6 +87,7 @@ class PokeBattle_Battle
           next if wildBattle? && opposes?(idxBattler)   # Wild Pokémon can't switch
           idxPartyNew = pbSwitchInBetween(idxBattler)
           opponent = pbGetOwnerFromBattlerIndex(idxBattler)
+=begin
           # NOTE: The player is only offered the chance to switch their own
           #       Pokémon when an opponent replaces a fainted Pokémon in single
           #       battles. In double battles, etc. there is no such offer.
@@ -109,13 +110,14 @@ class PokeBattle_Battle
               end
             end
           end
+=end
           pbRecallAndReplace(idxBattler,idxPartyNew)
           switched.push(idxBattler)
         elsif trainerBattle? || bossBattle?   # Player switches in in a trainer battle or boss battle
           idxPlayerPartyNew = pbGetReplacementPokemonIndex(idxBattler)   # Owner chooses
           pbRecallAndReplace(idxBattler,idxPlayerPartyNew)
           switched.push(idxBattler)
-		else   # Player's Pokémon has fainted in a wild battle
+		    else # Player's Pokémon has fainted in a wild battle
           switch = false
           if !bossBattle? && !pbDisplayConfirm(_INTL("Use next Pokémon?"))
             switch = (pbRun(idxBattler,true)<=0)
@@ -143,7 +145,7 @@ class PokeBattle_Battle
       # neutralizing gas can be blocked with gastro acid, ending the effect.
       if b.ability == :NEUTRALIZINGGAS && !b.effects[PBEffects::GastroAcid]
         BattleHandlers.triggerAbilityOnSwitchIn(:NEUTRALIZINGGAS,b,self)
-		return 
+		    return 
       end
     }
   end 
@@ -153,17 +155,17 @@ class PokeBattle_Battle
   #=============================================================================
   # Called at the start of battle only.
   def pbOnActiveAll
-	# Neutralizing Gas activates before anything. 
-	pbPriorityNeutralizingGas
-	# Weather-inducing abilities, Trace, Imposter, etc.
-	pbCalculatePriority(true)
-	pbPriority(true).each do |b|
-		b.pbEffectsOnSwitchIn(true)
-		battlerEnterDialogue(b)
-	end
-	pbCalculatePriority
-	# Check forms are correct
-	eachBattler { |b| b.pbCheckForm }
+    # Neutralizing Gas activates before anything. 
+    pbPriorityNeutralizingGas
+    # Weather-inducing abilities, Trace, Imposter, etc.
+    pbCalculatePriority(true)
+    pbPriority(true).each do |b|
+      b.pbEffectsOnSwitchIn(true)
+      battlerEnterDialogue(b)
+    end
+    pbCalculatePriority
+    # Check forms are correct
+    eachBattler { |b| b.pbCheckForm }
   end
   
   # Called when a Pokémon switches in (entry effects, entry hazards).
@@ -174,15 +176,15 @@ class PokeBattle_Battle
       pbCommonAnimation("Shadow",battler)
       pbDisplay(_INTL("Oh!\nA Shadow Pokémon!"))
     end
-	# Trigger enter the field curses, if this is a player's pokemon
-	curses.each do |curse|
-		triggerBattlerEnterCurseEffect(curse,battler,self)
-	end
+    # Trigger enter the field curses, if this is a player's pokemon
+    curses.each do |curse|
+      triggerBattlerEnterCurseEffect(curse,battler,self)
+    end
     # Record money-doubling effect of Amulet Coin/Luck Incense
     if !battler.opposes? && [:AMULETCOIN, :LUCKINCENSE].include?(battler.item_id)
       @field.effects[PBEffects::AmuletCoin] = true
     end
-	# Record money-doubling effect of Fortune ability
+	  # Record money-doubling effect of Fortune ability
     if !battler.opposes? && battler.hasActiveAbility?(:FORTUNE)
       @field.effects[PBEffects::Fortune] = true
     end
