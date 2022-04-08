@@ -832,7 +832,7 @@ class ScreenChooseFileSave
 					return {}
 				end
 			else
-				pbMessage(_INTL('The save file is considered invalid. Letting you access anyway due to being in DEBUG mode.'))
+				echoln(_INTL('The save file at #{file_path} is considered invalid. Letting you access anyway due to being in DEBUG mode.'))
 			end
 		end
 		return save_data
