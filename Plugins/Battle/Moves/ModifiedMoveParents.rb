@@ -1,7 +1,7 @@
 class PokeBattle_Move
   def pbAromatherapyHeal(pkmn,battler=nil)
 		if battler
-		  	battler.pbCureStatus(false)
+		  	battler.pbCureStatus()
 		else
 			oldStatus = (battler) ? battler.status : pkmn.status
 			curedName = (battler) ? battler.pbThis : pkmn.name
