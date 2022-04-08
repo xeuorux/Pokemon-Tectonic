@@ -1055,7 +1055,7 @@ class PokemonPokedex_Scene
 			statToCompareA = 0
 			case statSelection
 			when 0..5
-				statToCompareA = species_data.calced_stats[comparitorA]
+				statToCompareA = species_data.base_stats[comparitorA]
 			when 6
 				species_data.base_stats.each do |s|
 					statToCompareA += s[1]
