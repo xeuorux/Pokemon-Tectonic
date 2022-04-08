@@ -770,10 +770,10 @@ Puddle
 #-------------------------------
 [218] # Abyssal Chamber
 Puddle
-25,WIMPOD,38,37
-25,CHINCHOU,38,37
-25,MANTYKE,38,37
-25,RELICANTH,38,37
+25,WIMPOD,35,37
+25,CHINCHOU,35,37
+25,MANTYKE,35,37
+25,RELICANTH,35,37
 #-------------------------------
 [234] # Ranger Recruitment
 Special
