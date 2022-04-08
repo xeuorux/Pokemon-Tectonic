@@ -2489,7 +2489,7 @@ class PokeBattle_Battler
 	end
 
 	def hasDamagingAttack?
-		user.eachMove do |m|
+		eachMove do |m|
 			next if !m.damagingMove?
 			return true
 			break
@@ -2498,7 +2498,7 @@ class PokeBattle_Battler
 	end
 
 	def hasAlly?
-		target.eachAlly do |b|
+		eachAlly do |b|
 			return true
 			break
 		end
