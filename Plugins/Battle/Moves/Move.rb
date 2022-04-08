@@ -56,7 +56,7 @@ class PokeBattle_Move
   
   def pbReduceDamage(user,target)
     damage = target.damageState.calcDamage
-	target.damageState.displayedDamage = damage
+	  target.damageState.displayedDamage = damage
     # Substitute takes the damage
     if target.damageState.substitute
       damage = target.effects[PBEffects::Substitute] if damage>target.effects[PBEffects::Substitute]
@@ -67,50 +67,50 @@ class PokeBattle_Move
     end
     # Disguise takes the damage
     if target.damageState.disguise
-		target.damageState.displayedDamage = 0
-		return
-	end
-	# Ice Face takes the damage
-	if target.damageState.iceface
-		target.damageState.displayedDamage = 0
-		return
-	end
+		  target.damageState.displayedDamage = 0
+		  return
+	  end
+    # Ice Face takes the damage
+    if target.damageState.iceface
+      target.damageState.displayedDamage = 0
+      return
+    end
     # Target takes the damage
-	damageAdjusted = false
+	  damageAdjusted = false
     if damage>=target.hp
       damage = target.hp
       # Survive a lethal hit with 1 HP effects
       if nonLethal?(user,target)
         damage -= 1
-		damageAdjusted = true
+		    damageAdjusted = true
       elsif target.effects[PBEffects::Endure]
         target.damageState.endured = true
         damage -= 1
-		damageAdjusted = true
-	  elsif target.effects[PBEffects::EmpoweredEndure] > 0
-		target.damageState.endured = true
+		    damageAdjusted = true
+      elsif target.effects[PBEffects::EmpoweredEndure] > 0
+		    target.damageState.endured = true
         damage -= 1
-		damageAdjusted = true
-		target.effects[PBEffects::EmpoweredEndure] -= 1
+		    damageAdjusted = true
+		    target.effects[PBEffects::EmpoweredEndure] -= 1
       elsif damage==target.totalhp
         if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
           target.damageState.sturdy = true
           damage -= 1
-		  damageAdjusted = true
+		      damageAdjusted = true
         elsif target.hasActiveItem?(:FOCUSSASH) && target.hp==target.totalhp
           target.damageState.focusSash = true
           damage -= 1
-		  damageAdjusted = true
+		      damageAdjusted = true
         elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100)<10
           target.damageState.focusBand = true
           damage -= 1
-		  damageAdjusted = true
+		      damageAdjusted = true
         end
       end
     end
-	target.damageState.displayedDamage = damage if damageAdjusted
+	  target.damageState.displayedDamage = damage if damageAdjusted
     damage = 0 if damage<0
-	target.damageState.displayedDamage = 0 if target.damageState.displayedDamage < 0
+	  target.damageState.displayedDamage = 0 if target.damageState.displayedDamage < 0
     target.damageState.hpLost       = damage
     target.damageState.totalHPLost += damage
   end
@@ -118,11 +118,11 @@ class PokeBattle_Move
   #=============================================================================
   # Messages upon being hit
   #=============================================================================
- def pbEffectivenessMessage(user,target,numTargets=1)
+  def pbEffectivenessMessage(user,target,numTargets=1)
     return if target.damageState.disguise
-	return if target.damageState.iceface
-	return if defined?($PokemonSystem.show_effectiveness) && $PokemonSystem.show_effectiveness == 1
-	if Effectiveness.hyper_effective?(target.damageState.typeMod)
+	  return if target.damageState.iceface
+	  return if defined?($PokemonSystem.show_effectiveness) && $PokemonSystem.show_effectiveness == 1
+	  if Effectiveness.hyper_effective?(target.damageState.typeMod)
 	  if numTargets>1
         @battle.pbDisplay(_INTL("It's hyper effective on {1}!",target.pbThis(true)))
       else
@@ -307,25 +307,26 @@ class PokeBattle_Move
     atk, atkStage = pbGetAttackStats(user,target)
     if !target.hasActiveAbility?(:UNAWARE) || @battle.moldBreaker
       atkStage = 6 if target.damageState.critical && atkStage<6
-	  calc = stageMul[atkStage].to_f/stageDiv[atkStage].to_f
-	  calc = (calc.to_f + 1.0)/2.0 if user.boss?
+	    calc = stageMul[atkStage].to_f/stageDiv[atkStage].to_f
+	    calc = (calc.to_f + 1.0)/2.0 if user.boss?
       atk = (atk.to_f*calc).floor
     end
-	if atkStage > 6 && user.paralyzed?
-		atkStage = 6
-	end
+	  if atkStage > 6 && user.paralyzed?
+		  atkStage = 6
+	  end
     # Calculate target's defense stat
     defense, defStage = pbGetDefenseStats(user,target)
     if !user.hasActiveAbility?(:UNAWARE)
-      defStage = 6 if target.damageState.critical && defStage>6
-	  defStage = 6 if user.hasActiveAbility?(:INFILTRATOR) && defStage>6
-	  calc = stageMul[defStage].to_f/stageDiv[defStage].to_f
-	  calc = (calc.to_f + 1.0)/2.0 if target.boss?
+      if defStage > 6 && (target.damageState.critical || user.hasActiveAbility?(:INFILTRATOR))
+        defStage = 6
+      end
+	    calc = stageMul[defStage].to_f/stageDiv[defStage].to_f
+	    calc = (calc.to_f + 1.0)/2.0 if target.boss?
       defense = (defense.to_f*calc).floor
     end
-	if defStage > 6 && user.paralyzed?
-		defStage = 6
-	end
+    if defStage > 6 && target.paralyzed?
+      defStage = 6
+    end
     # Calculate all multiplier effects
     multipliers = {
       :base_damage_multiplier  => 1.0,
@@ -355,9 +356,7 @@ class PokeBattle_Move
 		  end
 		end
 		if (@battle.pbCheckGlobalAbility(:RUINOUS))
-			echoln _INTL("Multipliers is {1}", multipliers)
-			multipliers[:base_damage_multiplier] *= 1.20
-			echoln _INTL("Multipliers is {1} after RUINOUS", multipliers)
+			multipliers[:base_damage_multiplier] *= 1.2
 		end
 		# Ability effects that alter damage
 		if user.abilityActive?
@@ -482,7 +481,7 @@ class PokeBattle_Move
 		  stab = 1.5
 		  
 		  if user.hasActiveAbility?(:ADAPTED)
-			stab *= 4.0/3.0
+			  stab *= 4.0/3.0
 		  end
 		  
 		  multipliers[:final_damage_multiplier] *= stab
@@ -540,15 +539,11 @@ class PokeBattle_Move
 			end
 		  end
 		end
-		# Minimize
-		if target.effects[PBEffects::Minimize] && tramplesMinimize?(2)
-		  multipliers[:final_damage_multiplier] *= 2
-		end
 		# Move-specific base damage modifiers
 		multipliers[:base_damage_multiplier] = pbBaseDamageMultiplier(multipliers[:base_damage_multiplier], user, target)
 		# Move-specific final damage modifiers
 		multipliers[:final_damage_multiplier] = pbModifyDamage(multipliers[:final_damage_multiplier], user, target)
-    end
+  end
   
   #=============================================================================
   # Type effectiveness calculation
@@ -569,10 +564,10 @@ class PokeBattle_Move
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :DARK &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end
-	# Creep Out
-	if target.effects[PBEffects::CreepOut] && moveType == :BUG
-		ret *= 2
-	end
+    # Creep Out
+    if target.effects[PBEffects::CreepOut] && moveType == :BUG
+      ret *= 2
+    end
     # Delta Stream's weather
     if @battle.pbWeather == :StrongWinds
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING &&
@@ -583,28 +578,28 @@ class PokeBattle_Move
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING && moveType == :GROUND
     end
 	
-	# Inured
-	if target.effects[PBEffects::Inured]
-		ret /= 2 if Effectiveness.super_effective_type?(moveType, defType)
-	end
-	
-	# Tar Shot
-	if target.effects[PBEffects::TarShot] && moveType == :FIRE
-      ret *= 2
+    # Inured
+    if target.effects[PBEffects::Inured]
+      ret /= 2 if Effectiveness.super_effective_type?(moveType, defType)
     end
-	
-	# Break Through
-	if user.hasActiveAbility?(:BREAKTHROUGH) &&
-			Effectiveness.ineffective_type?(moveType, defType)
-		ret = Effectiveness::NORMAL_EFFECTIVE_ONE
-	end
-	
-	if @battle.bossBattle? && ret == 0
-		ret = 0.5
-		@battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!"))
-	end
-    return ret
-  end
+    
+    # Tar Shot
+    if target.effects[PBEffects::TarShot] && moveType == :FIRE
+        ret *= 2
+      end
+    
+    # Break Through
+    if user.hasActiveAbility?(:BREAKTHROUGH) &&
+        Effectiveness.ineffective_type?(moveType, defType)
+      ret = Effectiveness::NORMAL_EFFECTIVE_ONE
+    end
+    
+    if @battle.bossBattle? && ret == 0
+      ret = 0.5
+      @battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!"))
+    end
+      return ret
+    end
   
   def pbCalcTypeMod(moveType,user,target)
     return Effectiveness::NORMAL_EFFECTIVE if !moveType
@@ -629,22 +624,22 @@ class PokeBattle_Move
     ret = 1
     typeMods.each { |m| ret *= m }
 	
-	# Late boss specific immunity abilities check
-	if @battle.bossBattle?
-		if pbImmunityByAbility(user,target) 
-			if damagingMove?
-				@battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
-			else
-				@battle.pbDisplay(_INTL("Except, within the avatar's aura, the move can pierce the immunity!"))
-			end
-			ret /= 2
-		end
-	end
+    # Late boss specific immunity abilities check
+    if @battle.bossBattle?
+      if pbImmunityByAbility(user,target) 
+        if damagingMove?
+          @battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
+        else
+          @battle.pbDisplay(_INTL("Except, within the avatar's aura, the move can pierce the immunity!"))
+        end
+        ret /= 2
+      end
+    end
 	
-	# Type effectiveness changing curses
-	@battle.curses.each do |curse|
-		ret = @battle.triggerEffectivenessChangeCurseEffect(curse,moveType,user,target,ret)
-	end
+    # Type effectiveness changing curses
+    @battle.curses.each do |curse|
+      ret = @battle.triggerEffectivenessChangeCurseEffect(curse,moveType,user,target,ret)
+    end
 	
     return ret
   end
@@ -675,55 +670,55 @@ class PokeBattle_Move
     accuracy = 100.0 * stageMul[accStage].to_f / stageDiv[accStage].to_f
     evasion  = 100.0 * stageMul[evaStage].to_f / stageDiv[evaStage].to_f
     accuracy = (accuracy.to_f * modifiers[:accuracy_multiplier].to_f).round
-	if user.boss?
-      accuracy = (accuracy.to_f + 100.0) / 2.0
+    if user.boss?
+        accuracy = (accuracy.to_f + 100.0) / 2.0
+      end
+      evasion  = (evasion.to_f  * modifiers[:evasion_multiplier].to_f).round
+    if target.boss?
+        evasion = (evasion.to_f + 100.0) / 2.0
+      end
+      evasion = 1 if evasion < 1
+      # Calculation
+    calc = accuracy.to_f / evasion.to_f
+      return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
     end
-    evasion  = (evasion.to_f  * modifiers[:evasion_multiplier].to_f).round
-	if target.boss?
-      evasion = (evasion.to_f + 100.0) / 2.0
-    end
-    evasion = 1 if evasion < 1
-    # Calculation
-	calc = accuracy.to_f / evasion.to_f
-    return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
-  end
   
   def pbDisplayUseMessage(user,targets=[])
-	# Trigger dialogue for a trainer about to use a move
-	if @battle.opponent
-		idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(user.index)
-		trainer_speaking = @battle.opponent[idxTrainer] || nil
-		if !trainer_speaking.nil?
-			@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-				PokeBattle_AI.triggerTrainerIsUsingMoveDialogue(policy,user,self,targets,trainer_speaking,dialogue)
-			}
-		end
-	end
-  
-	if isEmpowered?
-		pbMessage(_INTL("\\ts[{3}]{1} used <c2=06644bd2>{2}</c2>!",user.pbThis,@name,MessageConfig.pbGetTextSpeed() * 2))
-	else
-		@battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
-	end
-	if damagingMove? && !multiHitMove?
-		targets.each do |target|
-			bp = pbBaseDamage(baseDamage,user,target).floor
-			if bp != baseDamage
-				if targets.length == 1
-					@battle.pbDisplayBrief(_INTL("Its base power was adjusted to {1}!",bp))
-				else
-					@battle.pbDisplayBrief(_INTL("Its base power was adjusted to {1} against {2}!",bp,target.pbThis(true)))
-				end
-			end
-		end
-	end
+    # Trigger dialogue for a trainer about to use a move
+    if @battle.opponent
+      idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(user.index)
+      trainer_speaking = @battle.opponent[idxTrainer] || nil
+      if !trainer_speaking.nil?
+        @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+          PokeBattle_AI.triggerTrainerIsUsingMoveDialogue(policy,user,self,targets,trainer_speaking,dialogue)
+        }
+      end
+    end
+    
+    if isEmpowered?
+      pbMessage(_INTL("\\ts[{3}]{1} used <c2=06644bd2>{2}</c2>!",user.pbThis,@name,MessageConfig.pbGetTextSpeed() * 2))
+    else
+      @battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
+    end
+    if damagingMove? && !multiHitMove?
+      targets.each do |target|
+        bp = pbBaseDamage(baseDamage,user,target).floor
+        if bp != baseDamage
+          if targets.length == 1
+            @battle.pbDisplayBrief(_INTL("Its base power was adjusted to {1}!",bp))
+          else
+            @battle.pbDisplayBrief(_INTL("Its base power was adjusted to {1} against {2}!",bp,target.pbThis(true)))
+          end
+        end
+      end
+    end
   end
   
   # Reset move usage counters (child classes can increment them).
   def pbChangeUsageCounters(user,specialUsage)
     user.effects[PBEffects::FuryCutter]   = 0
-	user.effects[PBEffects::IceBall]   = 0
-	user.effects[PBEffects::RollOut]   = 0
+	  user.effects[PBEffects::IceBall]   = 0
+  	user.effects[PBEffects::RollOut]   = 0
     user.effects[PBEffects::ParentalBond] = 0
     user.effects[PBEffects::ProtectRate]  = 1
     @battle.field.effects[PBEffects::FusionBolt]  = false
@@ -740,13 +735,13 @@ class PokeBattle_Move
       ret = BattleHandlers.triggerMoveImmunityTargetAbility(target.ability,
          user,target,self,@calcType,@battle)
     end
-	if !ret
-		target.eachAlly do |b|
-			next if !b.abilityActive?
-			ret = BattleHandlers.triggerMoveImmunityAllyAbility(b.ability,user,target,self,@calcType,@battle,b)
-			break if ret
-		end
-	end
+    if !ret
+      target.eachAlly do |b|
+        next if !b.abilityActive?
+        ret = BattleHandlers.triggerMoveImmunityAllyAbility(b.ability,user,target,self,@calcType,@battle,b)
+        break if ret
+      end
+    end
     return ret
   end
   

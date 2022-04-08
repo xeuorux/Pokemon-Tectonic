@@ -27,7 +27,7 @@ class PokeBattle_Battler
 		if hasActiveItem?(:ENERGYLOCK)
 			return 95
 		else
-			return @attack
+			return @spatk
 		end
 	end
 	
