@@ -27,7 +27,7 @@ def perfectDoubleTrainer(event1,event2,maxTrainerLevel = 15)
 end
 
 def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1)
-	itemsGiven = candiesForLevel(maxTrainerLevel = 15)
+	itemsGiven = candiesForLevel(maxTrainerLevel)
 	
 	total = 0
 	for i in 0...itemsGiven.length/2
