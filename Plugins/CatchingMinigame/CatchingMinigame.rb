@@ -2,7 +2,7 @@ SaveData.register(:catching_minigame) do
 	ensure_class :CatchingMinigame
 	save_value { $catching_minigame }
 	load_value { |value| $catching_minigame = value }
-	new_game_value { WaypointsTracker.new }
+	new_game_value { CatchingMinigame.new }
 end
 
 SaveData.register_conversion(:catching_minigame_data_add) do
@@ -15,26 +15,25 @@ end
 
 class CatchingMinigame
     attr_reader :turnsLeft
-    attr_reader :baseLevel
+    attr_reader :baseLevelForScoring
 
     attr_reader :currentMaxScore
-    attr_reader :currentMaxPokemon
+    attr_reader :currentMaxScorePokemon
 
     attr_reader :highScore
     attr_reader :highScorePokemon
 
     def initialize
         @highScore = 0
+        @highScorePokemon = nil
         @active = false
     end
 
-    def begin(cutSceneLocation,returnLocation,turnsGiven=20,baseLevel=30)
+    def begin(cutSceneLocation,returnLocation,turnsGiven=20,baseLevelForScoring=30)
         @turnsLeft = turnsGiven
-        @baseLevel = baseLevel
+        @baseLevelForScoring = baseLevelForScoring
         @currentMaxScore = 0
-        @currentMaxPokemon = nil
-        @highScore = 0
-        @highScorePokemon = nil
+        @currentMaxScorePokemon = nil
         @cutSceneLocation = cutSceneLocation
         @returnLocation = returnLocation
         @active = true
@@ -45,11 +44,11 @@ class CatchingMinigame
     end
 
     def submitForScoring(pokemon)
-        score = scorePokemon(pokemon,@baseLevel)
+        score = scorePokemon(pokemon,@baseLevelForScoring)
         pbMessage(_INTL("Your #{pokemon.name} is rated at #{score}."))
         if score > @currentMaxScore
             @currentMaxScore = score
-            @currentMaxPokemon = pokemon
+            @currentMaxScorePokemon = pokemon
         end
         if score > @highScore
             @highScore = score
@@ -58,20 +57,20 @@ class CatchingMinigame
         end
     end
 
-    def scorePokemon(pokemon,baseLevel)
+    def scorePokemon(pokemon,baseLevelForScoring)
         rarity = GameData::Species.get(pokemon.species).catch_rate
         level = pokemon.level
-        return [((255-rarity)/4.0 + (level - baseLevel) * 4).floor,0].max
+        return [((255-rarity)/4.0 + (level - baseLevelForScoring) * 4).floor,0].max
     end
 
     def end()
         transferPlayer(@cutSceneLocation)
         pbWait(20)
-        if @currentMaxPokemon.nil?
+        if @currentMaxScorePokemon.nil?
             pbMessage(_INTL("You caught no Pokemon."))
         else
-            pbMessage(_INTL("Your best catch was a level #{@currentMaxPokemon.level} " + 
-                "#{GameData::Species.get(currentMaxPokemon.species).real_name}, which gives you a score of #{@currentMaxScore}."))
+            pbMessage(_INTL("Your best catch was a level #{@currentMaxScorePokemon.level} " + 
+                "#{GameData::Species.get(currentMaxScorePokemon.species).real_name}, which gives you a score of #{@currentMaxScore}."))
             giveReward(@currentMaxScore)
         end
         @currentMaxScore = 0
