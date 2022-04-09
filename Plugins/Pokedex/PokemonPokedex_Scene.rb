@@ -806,16 +806,16 @@ class PokemonPokedex_Scene
 	  full = learningMethodSelection == 1
 	  
 	  while true
-		  typesInput = pbEnterText(full ? "Search types..." : "Search type...", 0, 100)
+		  typesInput = pbEnterText(full ? "Search full typing..." : "Search type...", 0, 100)
 		  typesInput.downcase!
-		  if typesInput && typesInput!=""
+		  if typesInput && typesInput != ""
 			  reversed = typesInput[0] == '-'
 			  typesInput = typesInput[1..-1] if reversed
 			  typesInputArray = typesInput.split(" ")
 			  
 			  # Throw out improper input
 			  if typesInputArray.length > 1 && !full
-				pbMessage(_INTL("Don't input more than one type for \"Just One\" type search. "))
+				pbMessage(_INTL("Don't input more than one type for \"Either\" type search. "))
 				next
 			  end
 			  
