@@ -442,7 +442,7 @@ class PokeBattle_Move_516 < PokeBattle_Move
   
   def getScore(score,user,target,skill=100)
     score -= 20
-	score += 50 if statStagesUp?(target) && target.pbCanBurn?(user,false,self)
+	score += 50 if target.statStagesUp? && target.pbCanBurn?(user,false,self)
 	return score
   end
 end
@@ -1463,13 +1463,9 @@ end
 #===============================================================================
 # Always critical hit vs Opponents with raised stats (Glitter Slash)
 #===============================================================================
-class PokeBattle_Move_546 < PokeBattle_Move
-  def statStagesUp?(target)
-	return target.stages[:ATTACK] > 0 || target.stages[:DEFENSE] > 0 || target.stages[:SPEED] > 0 || target.stages[:SPECIAL_ATTACK] > 0 || target.stages[:SPECIAL_DEFENSE] > 0 || target.stages[:ACCURACY] > 0 || target.stages[:EVASION] > 0
-  end
-  
+class PokeBattle_Move_546 < PokeBattle_Move 
   def pbCritialOverride(user,target)
-	return 1 if statStagesUp?(target)
+	return 1 if target.statStagesUp?
 	return 0
   end
 end
