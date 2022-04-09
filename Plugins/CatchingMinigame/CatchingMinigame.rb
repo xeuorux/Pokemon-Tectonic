@@ -21,11 +21,13 @@ class CatchingMinigame
     attr_reader :currentMaxScorePokemon
 
     attr_reader :highScore
-    attr_reader :highScorePokemon
+    attr_reader :highScorePokemonLevel
+    attr_reader :highScorePokemonSpeciesName
 
     def initialize
         @highScore = 0
-        @highScorePokemon = nil
+        @highScorePokemonLevel = 0
+        @highScorePokemonSpeciesName = nil
         @active = false
     end
 
@@ -52,7 +54,8 @@ class CatchingMinigame
         end
         if score > @highScore
             @highScore = score
-            @highScorePokemon = pokemon
+            @highScorePokemonSpeciesName = GameData::Species.get(pokemon.species).real_name
+            @highScorePokemonLevel = pokemon.level
             pbMessage(_INTL("That's a new high score!"))
         end
     end
@@ -294,4 +297,31 @@ def pbStepTakenCatchingContest(repel_active)
     $PokemonTemp.encounterTriggered = true
     $PokemonTemp.forceSingleBattle = false
     EncounterModifier.triggerEncounterEnd
+end
+
+def hearAboutCatchingMinigameHighScore
+  pbMessage(_INTL("It was a #{$catching_minigame.highScorePokemonSpeciesName}, right? At level #{$catching_minigame.highScorePokemonLevel}?"))
+  score = $catching_minigame.highScore
+  pbMessage(_INTL("That one earned you #{score > 60 ? "a whoppin' " : ""}#{score} points."))
+  if $catching_minigame.highScorePokemonSpeciesName == "Kyogre"
+    pbMessage(_INTL("..."))
+    pbMessage(_INTL("What?! You reeled in the legendary king of the ocean?!"))
+    pbMessage(_INTL("I don't know what t'say..."))
+  else
+    if score < 40
+      pbMessage(_INTL("I'm sure you can do better if ya give it another shot!"))
+    elsif score > 70
+      pbMessage(_INTL("That's rather well done, there!"))
+    end
+  end
+end
+
+alias minigame_pbStartOver pbStartOver
+def pbStartOver(gameover=false)
+  if $catching_minigame.active?
+    $Trainer.heal_party
+    $catching_minigame.end
+  else
+   minigame_pbStartOver(gameover)
+  end
 end

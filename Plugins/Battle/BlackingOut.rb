@@ -6,10 +6,6 @@ end
 # Blacking out animation
 #===============================================================================
 def pbStartOver(gameover=false)
-  if pbInBugContest?
-    pbBugContestStartOver
-    return
-  end
   $Trainer.heal_party
   if !$PokemonGlobal.respawnPoint.nil? &&
 		pbConfirmMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]You feel the pull of the nearby Avatar Totem. Would you like it to revive you?"))
