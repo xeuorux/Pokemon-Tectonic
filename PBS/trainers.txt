@@ -2247,10 +2247,10 @@ Pokemon = SCIZOR,47
 	Item = BUGGEM
 #-------------------------------
 [WORKER3,Seamus]
-Pokemon = TYRANITAR,46
+Pokemon = TYRANITAR,47
 	Item = FLAMEORB
 	AbilityIndex = 1
-Pokemon = TOGEDEMARU,47
+Pokemon = TOGEDEMARU,46
 Pokemon = ARBOK,46
 	Item = SITRUSBERRY
 Pokemon = SAHARICANE,47
@@ -2264,7 +2264,7 @@ Pokemon = RAPIDASH,47
 	Item = CHOICESCARF
 #-------------------------------
 [JUGGLER,Mikael]
-Pokemon = GARCHOMP,47
+Pokemon = GARCHOMP,48
 Pokemon = URSARING,48
 	Item = ROCKYHELMET
 Pokemon = OCTILLERY,47
