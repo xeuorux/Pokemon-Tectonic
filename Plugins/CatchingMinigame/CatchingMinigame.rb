@@ -76,7 +76,8 @@ class CatchingMinigame
         @currentMaxScore = 0
         @turnsLeft = 0
         pbWait(10)
-        pbMessage(_INTL("Returning to Prizca West."))
+        mapName = pbGetMessage(MessageTypes::MapNames,@returnLocation[3])
+        pbMessage(_INTL("Returning to #{mapName}."))
         pbWait(20)
         transferPlayer(@returnLocation)
         @active = false
