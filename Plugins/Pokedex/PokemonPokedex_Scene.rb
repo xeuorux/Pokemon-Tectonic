@@ -799,10 +799,11 @@ class PokemonPokedex_Scene
   end
   
 	def searchByType()
-	  learningMethodSelection = pbMessage("Full typing?",[_INTL("Full"),_INTL("Just One"),_INTL("Cancel")],3)
-	  return if learningMethodSelection == 2
+	  selections = [_INTL("Either"),_INTL("Full"),_INTL("Cancel")]
+	  learningMethodSelection = pbMessage("Either type or full typing?",selections,selections.length)
+	  return if learningMethodSelection == selections.length - 1
 	  
-	  full = learningMethodSelection == 0
+	  full = learningMethodSelection == 1
 	  
 	  while true
 		  typesInput = pbEnterText(full ? "Search types..." : "Search type...", 0, 100)
