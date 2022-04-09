@@ -1470,22 +1470,45 @@ class PokemonPokedex_Scene
 	end
 	
 	def sortByOther()
-		statSelection = pbMessage("Sort by what?",[_INTL("Type"),_INTL("Cancel")],2)
-	    return if statSelection == 1 
+		selections = [_INTL("Type"),_INTL("Gender Rate"),_INTL("Growth Rate"),_INTL("Catch Difficulty"),_INTL("Experience Grant"),_INTL("Cancel")]
+		statSelection = pbMessage("Sort by what?",selections,selections.length+1)
+	    return if statSelection == selections.length
 		dexlist = @dexlist
+		typesCount = 0
+		GameData::Type.each { |t| typesCount += 1 if !t.pseudo_type && t.id != :SHADOW }
 		dexlist.sort_by! { |entry|
 			speciesData = GameData::Species.get(entry[0])
 			
-			types = [speciesData.type1,speciesData.type2]
-			types.sort_by!{ |type|
-				GameData::Type.get(type).id_number
-			}
-			value = 0
-			types.each_with_index do |type,index|
-				value += GameData::Type.get(type).id_number * (18 ** index)
+			case statSelection
+			when 0
+				types = [speciesData.type1,speciesData.type2]
+				types.sort_by!{ |type|
+					GameData::Type.get(type).id_number
+				}
+				value = 0
+				types.each_with_index do |type,index|
+					value += GameData::Type.get(type).id_number * (typesCount ** index)
+				end
+				
+				next value
+			when 1
+				case speciesData.gender_ratio
+				when :Genderless
+					next 300
+				when :AlwaysMale
+					next 0
+				when :AlwaysFemale
+					next 255
+				end
+				genderRatioData = GameData::GenderRatio.get(speciesData.gender_ratio)
+				next genderRatioData.female_chance
+			when 2
+				next -GameData::GrowthRate.get(speciesData.growth_rate).id
+			when 3
+				next -speciesData.catch_rate
+			when 4
+				next speciesData.base_exp
 			end
-			
-			next value
 		}
 		return dexlist
 	end

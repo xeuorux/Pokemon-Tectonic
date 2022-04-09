@@ -169,3 +169,36 @@ def pbFindEncounter(enc_types, species)
     end
     return false
 end
+
+def catchDifficultyFromRareness(rareness)
+	if rareness>= 250
+		return "F"
+	elsif rareness>= 230
+		return "D-"
+	elsif rareness>= 210
+		return "D"
+	elsif rareness>= 190
+		return "D+"
+	elsif rareness>= 170
+		return "C-"
+	elsif rareness>= 150
+		return "C"
+	elsif rareness>= 130
+		return "C+"
+	elsif rareness>= 110
+		return "B-"
+	elsif rareness>= 90
+		return "B"
+	elsif rareness >= 70
+		return "B+"
+	elsif rareness >= 50
+		return "A-"
+	elsif rareness >= 30
+		return "A"
+	elsif rareness >= 10
+		return "A+"
+	else
+		return "S"
+	end
+	return "-"
+end
