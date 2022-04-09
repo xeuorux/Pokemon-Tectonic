@@ -241,12 +241,12 @@ def printChangeLogBetween(firstNumberAttempt,lastNumberAttempt)
 			if changeLog.length == 0
 				unchanged.push(species_data.id)
 			else
-				f.write("#{species_data.real_name} changelog:\r\n")
+				f.write("#{species_data.real_name}:\r\n")
 				changeLog.each do |change|
 					next if change.nil?
 					f.write(change + "\r\n")
 				end
-				f.write("\r\n")
+				f.write("--------------------------------------------\r\n")
 			end
 		end
 		f.write("Species that were unchanged: #{unchanged.to_s}")
