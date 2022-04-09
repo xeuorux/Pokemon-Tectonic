@@ -1555,7 +1555,7 @@ Pokemon = CHATOT,40
 	Item = SITRUSBERRY
 #-------------------------------
 [SWIMMER_M,Stannis]
-Pokemon = WISHIWASHI,33
+Pokemon = ALOMOMOLA,33
     AbilityIndex = 0
 Pokemon = HAKAMOO,31
     Item = DRAGONGEM
@@ -2239,7 +2239,7 @@ Pokemon = GLALIE,45
     Item = ORANBERRY
 #-------------------------------
 [SWIMMER_F3,Bree]
-Pokemon = ALOMOMOLA,46
+Pokemon = SCARODON,46
 Pokemon = ELDEGOSS,47
 	Item = ASSAULTVEST
 Pokemon = MRRIME,46
@@ -2247,9 +2247,10 @@ Pokemon = SCIZOR,47
 	Item = BUGGEM
 #-------------------------------
 [WORKER3,Seamus]
-Pokemon = TOGEDEMARU,46
-	Item = LEFTOVERS
-Pokemon = HERACROSS,47
+Pokemon = TYRANITAR,46
+	Item = FLAMEORB
+	AbilityIndex = 1
+Pokemon = TOGEDEMARU,47
 Pokemon = ARBOK,46
 	Item = SITRUSBERRY
 Pokemon = SAHARICANE,47
@@ -2263,12 +2264,12 @@ Pokemon = RAPIDASH,47
 	Item = CHOICESCARF
 #-------------------------------
 [JUGGLER,Mikael]
-Pokemon = MEOWSTIC,47
+Pokemon = GARCHOMP,47
 Pokemon = URSARING,48
 	Item = ROCKYHELMET
 Pokemon = OCTILLERY,47
 	Item = EXPERTBELT
-Pokemon = AEXEGGUTOR,47
+Pokemon = MEOWSTIC,47
 #-------------------------------
 [CAMPER,Liam]
 Pokemon = HITMONCHAN,34
@@ -2398,10 +2399,10 @@ Pokemon = MANDIBUZZ,53
 	Item = SITRUSBERRY
 Pokemon = MARACTUS,54
 	AbilityIndex = 1
-Pokemon = GARCHOMP,55
+Pokemon = SALAMENCE,55
 	AbilityIndex = 1
 	Item = PERSIMBERRY
-	Moves = OUTRAGE,UNDERMINE,SHRED,AERIALACE
+	Moves = OUTRAGE,FIRELASH,DRAGONDANCE,ACROBATICS
 Pokemon = TYPHLOSION,55
 	AbilityIndex = 0
 	Item = UTILITYUMBRELLA
