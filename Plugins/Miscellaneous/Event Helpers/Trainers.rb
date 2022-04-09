@@ -22,11 +22,10 @@ def perfectDoubleTrainer(event1,event2,maxTrainerLevel = 15)
 		setFollowerGone(event1)
 		setFollowerGone(event2)
 	}
-	pbTrainerDropsItem(maxTrainerLevel)
-	pbTrainerDropsItem(maxTrainerLevel)
+	pbTrainerDropsItem(maxTrainerLevel,2,true)
 end
 
-def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1)
+def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1,plural=false)
 	itemsGiven = candiesForLevel(maxTrainerLevel)
 	
 	total = 0
@@ -35,9 +34,17 @@ def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1)
 		total += itemsGiven[i*2 + 1]
 	end
 	if total == 1
-		pbMessage("The fleeing trainer dropped a candy!")
+		if plural
+			pbMessage("One of the fleeing trainers dropped a candy!")
+		else
+			pbMessage("The fleeing trainer dropped a candy!")
+		end
 	else
-		pbMessage("The fleeing trainer dropped some candies!")
+		if plural
+			pbMessage("The fleeing trainers dropped some candies!")
+		else
+			pbMessage("The fleeing trainer dropped some candies!")
+		end
 	end
 	
 	for i in 0...itemsGiven.length/2
@@ -46,7 +53,7 @@ def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1)
 end
 
 def candiesForLevel(level)
-	# For a medium slow pokemon (e.g. starters):
+  # For a medium slow pokemon (e.g. starters):
   # 10: 200, 15: 500, 20: 1000
   # 25: 1700, 30: 2500, 35: 3500
   # 40: 4800, 45: 6200, 50: 7800
