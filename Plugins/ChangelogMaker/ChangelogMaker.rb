@@ -119,7 +119,7 @@ def printChangeLogBetween(firstNumberAttempt,lastNumberAttempt)
 							end
 						end
 						# Write out the description of the new ability if its custom
-						if !newSpeciesData.abilities[i].nil? && newAbilityData.id_number > NEW_ABILITIES_STARTING_ID
+						if !newSpeciesData.abilities[i].nil? && newAbilityData.id_number >= NEW_ABILITIES_STARTING_ID
 							desc = newAbilityData.description.gsub("%"," percent")
 							changeLog.push("\t\"#{desc}\"")
 						end
