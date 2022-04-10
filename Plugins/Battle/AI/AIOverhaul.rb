@@ -349,34 +349,36 @@ class PokeBattle_AI
     return false if @battle.wildBattle?
     shouldSwitch = forceSwitch
     batonPass = -1
-    moveType = nil
     skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill_level || 0
     battler = @battle.battlers[idxBattler]
   	PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is determining whether it should swap (Defaulting to #{forceSwitch}).")
     
 	  target = battler.pbDirectOpposing(true)
-	
+    moveType = nil
+    if !target.fainted? && target.lastMoveUsed
+      moveData = GameData::Move.get(target.lastMoveUsed)
+      moveType = moveData.type
+    end
+
 	  # Switch if previously hit hard by a super effective move
     if !shouldSwitch && battler.turnCount > 1
-      if !target.fainted? && target.lastMoveUsed
-        moveData = GameData::Move.get(target.lastMoveUsed)
-        moveType = moveData.type
+      if !moveType.nil?
         typeMod = pbCalcTypeMod(moveType,target,battler)
         if Effectiveness.super_effective?(typeMod)
-		  #If the foe's last move was substantial for the level we're at
-		  powerfulBP = 99999
-		  case battler.level
-		  when 1..15
-			powerfulBP = 30
-		  when 16..30
-			powerfulBP = 50
-		  when 31..45
-			powerfulBP = 70
-		  when 46..70
-			powerfulBP = 90
-		  end
+          #If the foe's last move was substantial for the level we're at
+          powerfulBP = 99999
+          case battler.level
+          when 1..15
+          powerfulBP = 30
+          when 16..30
+          powerfulBP = 50
+          when 31..45
+          powerfulBP = 70
+          when 46..70
+          powerfulBP = 90
+          end
           shouldSwitch = true if moveData.base_damage >= powerfulBP
-		  PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is anxious about being hit last turn by a high BP super-effective move and may try to swap.")
+          PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is anxious about being hit last turn by a high BP super-effective move and may try to swap.")
         end
       end
     end
@@ -415,77 +417,77 @@ class PokeBattle_AI
     end
     # Should swap when confusion self-damage is likely to kill it
     if battler.effects[PBEffects::ConfusionChance] >= 1
-		#Calculate the damage the confusionMove would do
-        confusionMove = PokeBattle_Confusion.new(@battle,nil)
-		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-		# Get the move's type
-		type = confusionMove.calcType
-		# Calcuate base power of move
-		baseDmg = confusionMove.pbBaseDamage(confusionMove.baseDamage,battler,battler)
-		# Calculate battler's attack stat
-		atk, atkStage = confusionMove.pbGetAttackStats(battler,battler)
-		if !battler.hasActiveAbility?(:UNAWARE) || @battle.moldBreaker
-		  atk = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
-		end
-		# Calculate battler's defense stat
-		defense, defStage = confusionMove.pbGetDefenseStats(battler,battler)
-		if !battler.hasActiveAbility?(:UNAWARE)
-		  defense = (defense.to_f*stageMul[defStage]/stageDiv[defStage]).floor
-		end
-		# Calculate all multiplier effects
-		multipliers = {
-		  :base_damage_multiplier  => 1.0,
-		  :attack_multiplier       => 1.0,
-		  :defense_multiplier      => 1.0,
-		  :final_damage_multiplier => 1.0
-		}
-		confusionMove.pbCalcDamageMultipliers(battler,battler,1,type,baseDmg,multipliers)
-		# Main damage calculation
-		baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
-		atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
-		defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
-		damage  = (((2.0 * battler.level / 5 + 2).floor * baseDmg * atk / defense).floor / 50).floor + 2
-		damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
-		
-		shouldSwitch = true if damage >= (battler.hp * 0.5).floor
+		  #Calculate the damage the confusionMove would do
+      confusionMove = PokeBattle_Confusion.new(@battle,nil)
+      stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+      stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+      # Get the move's type
+      type = confusionMove.calcType
+      # Calcuate base power of move
+      baseDmg = confusionMove.pbBaseDamage(confusionMove.baseDamage,battler,battler)
+      # Calculate battler's attack stat
+      atk, atkStage = confusionMove.pbGetAttackStats(battler,battler)
+      if !battler.hasActiveAbility?(:UNAWARE) || @battle.moldBreaker
+        atk = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
+      end
+      # Calculate battler's defense stat
+      defense, defStage = confusionMove.pbGetDefenseStats(battler,battler)
+      if !battler.hasActiveAbility?(:UNAWARE)
+        defense = (defense.to_f*stageMul[defStage]/stageDiv[defStage]).floor
+      end
+      # Calculate all multiplier effects
+      multipliers = {
+        :base_damage_multiplier  => 1.0,
+        :attack_multiplier       => 1.0,
+        :defense_multiplier      => 1.0,
+        :final_damage_multiplier => 1.0
+      }
+      confusionMove.pbCalcDamageMultipliers(battler,battler,1,type,baseDmg,multipliers)
+      # Main damage calculation
+      baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
+      atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
+      defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
+      damage  = (((2.0 * battler.level / 5 + 2).floor * baseDmg * atk / defense).floor / 50).floor + 2
+      damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
+      
+      shouldSwitch = true if damage >= (battler.hp * 0.5).floor
     end
-	# Should swap when charm self-damage is likely to kill it
+	  # Should swap when charm self-damage is likely to kill it
     if battler.effects[PBEffects::CharmChance] >= 1
-		#Calculate the damage the charmMove would do
-        charmMove = PokeBattle_Charm.new(@battle,nil)
-		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-		# Get the move's type
-		type = charmMove.calcType
-		# Calcuate base power of move
-		baseDmg = charmMove.pbBaseDamage(charmMove.baseDamage,battler,battler)
-		# Calculate battler's attack stat
-		atk, atkStage = charmMove.pbGetAttackStats(battler,battler)
-		if !battler.hasActiveAbility?(:UNAWARE) || @battle.moldBreaker
-		  atk = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
-		end
-		# Calculate battler's defense stat
-		defense, defStage = charmMove.pbGetDefenseStats(battler,battler)
-		if !battler.hasActiveAbility?(:UNAWARE)
-		  defense = (defense.to_f*stageMul[defStage]/stageDiv[defStage]).floor
-		end
-		# Calculate all multiplier effects
-		multipliers = {
-		  :base_damage_multiplier  => 1.0,
-		  :attack_multiplier       => 1.0,
-		  :defense_multiplier      => 1.0,
-		  :final_damage_multiplier => 1.0
-		}
-		charmMove.pbCalcDamageMultipliers(battler,battler,1,type,baseDmg,multipliers)
-		# Main damage calculation
-		baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
-		atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
-		defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
-		damage  = (((2.0 * battler.level / 5 + 2).floor * baseDmg * atk / defense).floor / 50).floor + 2
-		damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
-		
-		shouldSwitch = true if damage >= (battler.hp * 0.5).floor
+		  #Calculate the damage the charmMove would do
+      charmMove = PokeBattle_Charm.new(@battle,nil)
+		  stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+		  stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+      # Get the move's type
+      type = charmMove.calcType
+      # Calcuate base power of move
+      baseDmg = charmMove.pbBaseDamage(charmMove.baseDamage,battler,battler)
+      # Calculate battler's attack stat
+      atk, atkStage = charmMove.pbGetAttackStats(battler,battler)
+      if !battler.hasActiveAbility?(:UNAWARE) || @battle.moldBreaker
+        atk = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
+      end
+      # Calculate battler's defense stat
+      defense, defStage = charmMove.pbGetDefenseStats(battler,battler)
+      if !battler.hasActiveAbility?(:UNAWARE)
+        defense = (defense.to_f*stageMul[defStage]/stageDiv[defStage]).floor
+      end
+      # Calculate all multiplier effects
+      multipliers = {
+        :base_damage_multiplier  => 1.0,
+        :attack_multiplier       => 1.0,
+        :defense_multiplier      => 1.0,
+        :final_damage_multiplier => 1.0
+      }
+      charmMove.pbCalcDamageMultipliers(battler,battler,1,type,baseDmg,multipliers)
+      # Main damage calculation
+      baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
+      atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
+      defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
+      damage  = (((2.0 * battler.level / 5 + 2).floor * baseDmg * atk / defense).floor / 50).floor + 2
+      damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
+      
+      shouldSwitch = true if damage >= (battler.hp * 0.5).floor
     end
     if shouldSwitch
       PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is trying to find a teammate to swap into.")
@@ -494,66 +496,66 @@ class PokeBattle_AI
       @battle.pbParty(idxBattler).each_with_index do |pkmn,i|
         next if !@battle.pbCanSwitch?(idxBattler,i)
         # Will contain effects that recommend against switching
-		spikes = battler.pbOwnSide.effects[PBEffects::Spikes]
-		# Don't switch to this if too little HP
-		if spikes > 0
-			spikesDmg = [8,6,4][spikes-1]
-			if pkmn.hp <= pkmn.totalhp / spikesDmg
-				next if !pkmn.hasType?(:FLYING) && !pkmn.hasLevitate?
-			end
-		end
-		typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
-		if !moveType.nil?
-			typeModDefensive = pbCalcTypeMod(moveType,battler,battler.pbDirectOpposing(true))
-		end
-		
-		if !target.nil?
-			typeModOffensive = pbCalcTypeModPokemonOffensive(pkmn,target)
-		end
-		
-		typeMatchupScore = 0
-		# Modify the type matchup score based on the defensive matchup
-		if Effectiveness.ineffective?(typeModDefensive)
-			typeMatchupScore += 4
-		elsif Effectiveness.not_very_effective?(typeModDefensive)
-			typeMatchupScore += 2
-		elsif Effectiveness.hyper_effective?(typeModDefensive)
-			typeMatchupScore -= 4
-		elsif Effectiveness.super_effective?(typeModDefensive)
-			typeMatchupScore -= 2
-		end
-		# Modify the type matchup score based on the offensive matchup
-		if Effectiveness.ineffective?(typeModOffensive)
-			typeMatchupScore -= 2
-		elsif Effectiveness.not_very_effective?(typeModOffensive)
-			typeMatchupScore -= 1
-		elsif Effectiveness.hyper_effective?(typeModOffensive)
-			typeMatchupScore += 2
-		elsif Effectiveness.super_effective?(typeModOffensive)
-			typeMatchupScore += 1
-		end
-		
-		# If the score is worth it, swap into it
+        spikes = battler.pbOwnSide.effects[PBEffects::Spikes]
+        # Don't switch to this if too little HP
+        if spikes > 0
+          spikesDmg = [8,6,4][spikes-1]
+          if pkmn.hp <= pkmn.totalhp / spikesDmg
+            next if !pkmn.hasType?(:FLYING) && !pkmn.hasLevitate?
+          end
+        end
+        typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
+        if !moveType.nil?
+          typeModDefensive = pbCalcTypeMod(moveType,battler,battler.pbDirectOpposing(true))
+        end
+        
+        if !target.nil?
+          typeModOffensive = pbCalcTypeModPokemonOffensive(pkmn,target)
+        end
+        
+        typeMatchupScore = 0
+        # Modify the type matchup score based on the defensive matchup
+        if Effectiveness.ineffective?(typeModDefensive)
+          typeMatchupScore += 4
+        elsif Effectiveness.not_very_effective?(typeModDefensive)
+          typeMatchupScore += 2
+        elsif Effectiveness.hyper_effective?(typeModDefensive)
+          typeMatchupScore -= 4
+        elsif Effectiveness.super_effective?(typeModDefensive)
+          typeMatchupScore -= 2
+        end
+        # Modify the type matchup score based on the offensive matchup
+        if Effectiveness.ineffective?(typeModOffensive)
+          typeMatchupScore -= 2
+        elsif Effectiveness.not_very_effective?(typeModOffensive)
+          typeMatchupScore -= 1
+        elsif Effectiveness.hyper_effective?(typeModOffensive)
+          typeMatchupScore += 2
+        elsif Effectiveness.super_effective?(typeModOffensive)
+          typeMatchupScore += 1
+        end
+      
+        # If the score is worth it, swap into it
         if typeMatchupScore >= 2
-          list.push([i,typeMatchupScore])
+            list.push([i,typeMatchupScore])
         end
       end
-	  
-      if list.length>0
-		list.sort_by!{|entry| entry[1]}
-	    PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are: #{list.to_s}")
-        if batonPass>=0 && @battle.pbRegisterMove(idxBattler,batonPass,false)
-          PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Baton Pass to avoid Perish Song")
-          return true
-        end
-		partySlotNumber = list[0][0]
-        if @battle.pbRegisterSwitch(idxBattler,partySlotNumber)
-          PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will switch with " +
-                      "#{@battle.pbParty(idxBattler)[partySlotNumber].name}")
-          return true
-        end
-	  else
-		PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) fails to find any swap candidates.")
+      
+        if list.length>0
+         list.sort_by!{|entry| entry[1]}
+        PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are: #{list.to_s}")
+          if batonPass>=0 && @battle.pbRegisterMove(idxBattler,batonPass,false)
+            PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Baton Pass to avoid Perish Song")
+            return true
+          end
+          partySlotNumber = list[0][0]
+          if @battle.pbRegisterSwitch(idxBattler,partySlotNumber)
+            PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will switch with " +
+                        "#{@battle.pbParty(idxBattler)[partySlotNumber].name}")
+            return true
+          end
+      else
+      PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) fails to find any swap candidates.")
       end
     end
     return false
