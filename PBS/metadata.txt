@@ -229,7 +229,9 @@ Environment = Sand
 #-------------------------------
 [039]
 # Casaba Center
-Bicycle = true
+Outdoor = false
+ShowArea = false
+Bicycle = false
 HealingSpot = 33,15,25
 #-------------------------------
 [041]
