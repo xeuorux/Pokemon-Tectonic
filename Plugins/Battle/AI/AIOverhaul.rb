@@ -2,7 +2,7 @@ class PokeBattle_AI
   def pbDefaultChooseEnemyCommand(idxBattler)
     return if pbEnemyShouldWithdraw?(idxBattler)
     return if @battle.pbAutoFightMenu(idxBattler) #Battle palace shenanigans
-	@battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
+	  @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
     pbChooseMoves(idxBattler)
   end
   
@@ -26,11 +26,11 @@ class PokeBattle_AI
     user        = @battle.battlers[idxBattler]
     wildBattler = (@battle.wildBattle? && @battle.opposes?(idxBattler))
     skill       = 0
-	policies    = []
+	  policies    = []
     if !wildBattler
-	  owner = @battle.pbGetOwnerFromBattlerIndex(user.index)
+	    owner = @battle.pbGetOwnerFromBattlerIndex(user.index)
       skill  = owner.skill_level || 0
-	  policies = owner.policies || []
+	    policies = owner.policies || []
     end
     # Get scores and targets for each move
     # NOTE: A move is only added to the choices array if it has a non-zero
