@@ -640,11 +640,10 @@ Pokemon = PIKACHU,20
     AbilityIndex = 0
     Item = POISONORB
     EV = 0,0,10,20,20,0
-Pokemon = FURRET,20
-    Moves = COVET,QUICKATTACK,SMASH,BRUTALSWING
-    AbilityIndex = 0
-    Item = NORMALGEM
-    EV = 20,20,0,10,0,0
+Pokemon = BUTTERFREE,20
+    Moves = GUST,ELECTROWEB,CLACKACLACK,WHIRLWIND
+    Item = BUGGEM
+    EV = 10,0,0,0,20,10
 #-------------------------------
 [COOLTRAINER_M7,Miles]
 Pokemon = WHIRLIPEDE,25
