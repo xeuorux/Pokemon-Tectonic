@@ -883,7 +883,7 @@ class PokemonPokedexInfo_Scene
 				category = "Bomb"
 			when 'o'
 				category = "Dance"
-			when 't'
+			when 'p'
 				category = "Blade"
 			end
 		end
