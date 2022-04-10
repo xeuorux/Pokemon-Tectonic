@@ -286,7 +286,7 @@ class PokeBattle_AI
   
   def pbRegisterMoveWild(user,idxMove,choices)
     move = user.moves[idxMove]
-	return if move.isEmpowered? # Never ever use empowered moves normally
+	  return if move.isEmpowered? # Never ever use empowered moves normally
 	
     target_data = move.pbTarget(user)
     if target_data.num_targets > 1
@@ -312,9 +312,8 @@ class PokeBattle_AI
 		end
 	  else
 	    totalScore = 100
-		totalScore = pbGetMoveScoreBoss(move,user,nil) if user.boss?
+		  totalScore = pbGetMoveScoreBoss(move,user,nil) if user.boss?
 	  end
-	  
       choices.push([idxMove,totalScore,-1]) if totalScore>0
     elsif target_data.num_targets == 0
       # If move has no targets, affects the user, a side or the whole field
@@ -327,14 +326,14 @@ class PokeBattle_AI
       @battle.eachBattler do |b|
         next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
         next if target_data.targets_foe && !user.opposes?(b)
-		score = 100
+		    score = 100
         score = pbGetMoveScoreBoss(move,user,b) if user.boss?
         if move.damagingMove?
-			targetPercent = b.hp.to_f / b.totalhp.to_f
-            score = (score*(1.0 + 0.4 * targetPercent)).floor
-		elsif
-			mult = 1.0 + rand(10)/100.0
-			score = (score * mult).floor
+			    targetPercent = b.hp.to_f / b.totalhp.to_f
+          score = (score*(1.0 + 0.4 * targetPercent)).floor
+		    elsif
+			    mult = 1.0 + rand(10)/100.0
+			    score = (score * mult).floor
         end
         scoresAndTargets.push([score,b.index]) if score>0
       end
@@ -353,11 +352,11 @@ class PokeBattle_AI
     moveType = nil
     skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill_level || 0
     battler = @battle.battlers[idxBattler]
-	PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is determining whether it should swap (Defaulting to #{forceSwitch}).")
+  	PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is determining whether it should swap (Defaulting to #{forceSwitch}).")
     
-	target = battler.pbDirectOpposing(true)
+	  target = battler.pbDirectOpposing(true)
 	
-	# Switch if previously hit hard by a super effective move
+	  # Switch if previously hit hard by a super effective move
     if !shouldSwitch && battler.turnCount > 1
       if !target.fainted? && target.lastMoveUsed
         moveData = GameData::Move.get(target.lastMoveUsed)
@@ -887,7 +886,9 @@ class PokeBattle_AI
     evasion  = (evasion  * modifiers[:evasion_multiplier]).round
     evasion = 1 if evasion<1
     # Value always hit moves if otherwise would be hard to hit here
-    return 125 if modifiers[:base_accuracy] == 0 && (accuracy / evasion < 1)
+    if modifiers[:base_accuracy] == 0
+      return (accuracy / evasion < 1) ? 125 : 100
+    end
 	  return modifiers[:base_accuracy] * accuracy / evasion
   end
   
