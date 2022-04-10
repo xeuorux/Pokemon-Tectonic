@@ -430,7 +430,7 @@ Pokemon = SKRELP,23
     AbilityIndex = 1
 Pokemon = WOOLOO,24
     AbilityIndex = 1
-	Moves = DOUBLEKICK,HEADBUTT,DEFENSECURL
+	Moves = DOUBLEKICK,HEADBUTT,COPYCAT
 #-------------------------------
 [BAKER,Rose]
 Pokemon = CHIMCHAR,23
