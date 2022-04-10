@@ -898,7 +898,7 @@ class PokeBattle_AI
     type = pbRoughType(move,user,skill)
     typeMod = pbCalcTypeMod(type,user,target)
     # Type effectiveness
-    return true if (Effectiveness.ineffective?(typeMod) && move.statusMove?) || score<=0
+    return true if (Effectiveness.ineffective?(typeMod) && !move.statusMove?) || score<=0
     # Immunity due to ability/item/other effects
     if skill>=PBTrainerAI.mediumSkill
       case type
