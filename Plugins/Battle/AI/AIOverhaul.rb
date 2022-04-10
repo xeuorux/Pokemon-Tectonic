@@ -201,15 +201,20 @@ class PokeBattle_AI
 		user.turnCount += 1
 		if move.pbMoveFailed?(user,[target])
 			score = 0
+      echoln("#{user.pbThis} scores the move #{move.id} as 0 against target #{target.pbThis(false)} due to it being predicted to fail.")
 		end
 		user.turnCount -= 1
 		@battle.messagesBlocked = false
 		
 		# Don't prefer moves that are ineffective because of abilities or effects
-		score = 0 if pbCheckMoveImmunity(score,move,user,target,skill)
+		if pbCheckMoveImmunity(score,move,user,target,skill)
+      score = 0
+      echoln("#{user.pbThis} scores the move #{move.id} as 0 due to it being ineffective against target #{target.pbThis(false)}.")
+    end
 		
 		# If user is asleep, prefer moves that are usable while asleep
 		if user.status == :SLEEP && !move.usableWhenAsleep?
+      echoln("#{user.pbThis} scores the move #{move.id} differently against target #{target.pbThis(false)} due to the user being asleep.")
 			user.eachMove do |m|
 				next unless m.usableWhenAsleep?
 				score = 0
@@ -218,41 +223,43 @@ class PokeBattle_AI
 		end
 		# Don't prefer attacking the target if they'd be semi-invulnerable
 		if move.accuracy > 0 && (target.semiInvulnerable? || target.effects[PBEffects::SkyDrop]>=0)
+        echoln("#{user.pbThis} scores the move #{move.id} differently against target #{target.pbThis(false)} due to the target being semi-invulnerable.")
 			  canHitAnyways = false
 			  # Knows what can get past semi-invulnerability
 			  if target.effects[PBEffects::SkyDrop]>=0
 				canHitAnyways = true if move.hitsFlyingTargets?
 			  else
-				if target.inTwoTurnAttack?("0C9","0CC","0CE")   # Fly, Bounce, Sky Drop
-				  canHitAnyways = true if move.hitsFlyingTargets?
-				elsif target.inTwoTurnAttack?("0CA")          # Dig
-				  canHitAnyways = true if move.hitsDiggingTargets?
-				elsif target.inTwoTurnAttack?("0CB")          # Dive
-				  canHitAnyways = true if move.hitsDivingTargets?
-				end
+          if target.inTwoTurnAttack?("0C9","0CC","0CE")   # Fly, Bounce, Sky Drop
+            canHitAnyways = true if move.hitsFlyingTargets?
+          elsif target.inTwoTurnAttack?("0CA")          # Dig
+            canHitAnyways = true if move.hitsDiggingTargets?
+          elsif target.inTwoTurnAttack?("0CB")          # Dive
+            canHitAnyways = true if move.hitsDivingTargets?
+          end
 			  end
 			  canHitAnyways = true if user.hasActiveAbility?(:NOGUARD) || target.hasActiveAbility?(:NOGUARD)
 			  
-			if user.pbSpeed > target.pbSpeed
-				if canHitAnyways
-					score *= 2
-				else
-					score = 0
-				end
-			else
-				score /= 2
-			end
+        if user.pbSpeed > target.pbSpeed
+          if canHitAnyways
+            score *= 2
+          else
+            score = 0
+          end
+        else
+          score /= 2
+        end
 		end
 		
 		# A score of 0 here means it absolutely should not be used
 		if score<=0
-			echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)}: #{0}")
+			echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)} early: #{0}")
 			return 0
 		end
 		
 		# Pick a good move for the Choice items
-			if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
-				if move.baseDamage>=60;     score += 60
+    if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
+      echoln("#{user.pbThis} scores the move #{move.id} differently #{target.pbThis(false)} due to gavubg a choice item.")
+      if move.baseDamage>=60;     score += 60
 				elsif move.damagingMove?;   score += 30
 				elsif move.function=="0F2"; score += 70   # Trick
 				else;                       score -= 60
@@ -856,9 +863,9 @@ class PokeBattle_AI
   def pbRoughAccuracy(move,user,target,skill)
     return 100 if target.effects[PBEffects::Telekinesis] > 0
     baseAcc = move.accuracy
-	return 100 if baseAcc == 0
+	  return 100 if baseAcc == 0
     baseAcc = move.pbBaseAccuracy(user,target)
-	return 100 if baseAcc == 0
+	  return 100 if baseAcc == 0
     # Get the move's type
     type = pbRoughType(move,user,skill)
     # Calculate all modifier effects
@@ -881,7 +888,7 @@ class PokeBattle_AI
     evasion = 1 if evasion<1
     # Value always hit moves if otherwise would be hard to hit here
     return 125 if modifiers[:base_accuracy] == 0 && (accuracy / evasion < 1)
-	return modifiers[:base_accuracy] * accuracy / evasion
+	  return modifiers[:base_accuracy] * accuracy / evasion
   end
   
   #=============================================================================
