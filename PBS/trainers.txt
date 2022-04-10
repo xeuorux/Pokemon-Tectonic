@@ -115,7 +115,7 @@ Pokemon = MAKUHITA,15
 Pokemon = SCRAGGY,15
     AbilityIndex = 1
 Pokemon = NICKIT,15
-    Moves = BITE,HONECLAWS,QUICKATTACK,TAILWHIP
+    Moves = PILFER,HONECLAWS,QUICKATTACK,TAILWHIP
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Lambert,Lambert]
