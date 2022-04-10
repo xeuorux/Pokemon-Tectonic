@@ -4,8 +4,8 @@
 Home = 32,9,7,2
 WildBattleBGM = Battle wild.ogg
 TrainerBattleBGM = DPPTTrainer.ogg
-WildVictoryME = Battle victory wild.ogg
-TrainerVictoryME = Battle victory trainer.ogg
+WildVictoryME = VICTORYWILDPOKEMONHGSS.ogg
+TrainerVictoryME = VICTORYTRAINERDPPT.ogg
 SurfBGM = Surfing.mid
 BicycleBGM = BICYCLE2.ogg
 PlayerA = POKEMONTRAINER_Red,trchar000,boy_bike,boy_surf,boy_run,boy_surf,boy_fish_offset,boy_fish_offset
