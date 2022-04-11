@@ -112,11 +112,15 @@ module GameData
 		end
 
 		def physical_ehp
-			return [(base_stats[:HP] * base_stats[:DEFENSE] / 100),1].max
+			hpCalc = calcHPGlobal(base_stats[:HP],EHP_LEVEL,8)
+			defenseCalc = calcStatGlobal(base_stats[:DEFENSE],EHP_LEVEL,8)
+			return [(hpCalc * defenseCalc / 100),1].max
 		end
 
 		def special_ehp
-			return [(base_stats[:HP] * base_stats[:SPECIAL_DEFENSE] / 100),1].max
+			hpCalc = calcHPGlobal(base_stats[:HP],EHP_LEVEL,8)
+			spDefenseCalc = calcStatGlobal(base_stats[:SPECIAL_DEFENSE],EHP_LEVEL,8)
+			return [(hpCalc * spDefenseCalc / 100),1].max
 		end
 	end
 end
