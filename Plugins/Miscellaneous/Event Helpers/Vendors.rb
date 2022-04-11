@@ -133,5 +133,5 @@ def reviveFossil(fossil)
 	
 	pbMessage("It's done! Here is your newly revived Pokemon!")
 	
-	pbAddPokemon(species,10)
+	pbAddPokemon(species,15)
 end
