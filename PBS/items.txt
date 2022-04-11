@@ -846,6 +846,14 @@
 821,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,15000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0,
 822,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca.",0,0,6
 823,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokemon you find is shiny.",2,0,0,
+# Dragon eggs
+850,DRATINIEGG,Dratini Egg,Dratini Eggs,1,10000,"An abandoned Dratini egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+851,BAGONEGG,Bagon Egg,Bagon Eggs,1,10000,"An abandoned Bagon egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+852,GIBLEEGG,Gible Egg,Gible Eggs,1,10000,"An abandoned Gible egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+853,DEINOEGG,Deino Egg,Deino Eggs,1,10000,"An abandoned Deino egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+854,GOOMYEGG,Goomy Egg,Goomy Eggs,1,10000,"An abandoned Goomy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+855,JANGMOOEGG,Jangmo-o Egg,Jangmo-o Eggs,1,10000,"An abandoned Jangmo-o egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+856,DREEPYEGG,Dreepy Egg,Dreepy Eggs,1,10000,"An abandoned Dreepy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
 #------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
