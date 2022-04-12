@@ -281,12 +281,12 @@ def pbGetAvatarBattleBGM(_wildParty)   # wildParty is an array of Pokémon objec
 	return ret
 end
 
-def createBossGraphics(species_internal_name)
+def createBossGraphics(species_internal_name,overworldMult=1.5,battleMult=1.3)
 	# Create the overworld sprite
 	begin
 		overworldBitmap = AnimatedBitmap.new('Graphics/Characters/Followers/' + species_internal_name)
 		copiedOverworldBitmap = overworldBitmap.copy
-		bossifiedOverworld = increaseSize(copiedOverworldBitmap.bitmap)
+		bossifiedOverworld = increaseSize(copiedOverworldBitmap.bitmap,overworldMult)
 		bossifiedOverworld.to_file('Graphics/Characters/zAvatar_' + species_internal_name + '.png')
 	rescue Exception
 		e = $!
@@ -297,7 +297,7 @@ def createBossGraphics(species_internal_name)
 	begin
 		battlebitmap = AnimatedBitmap.new('Graphics/Pokemon/Front/' + species_internal_name)
 		copiedBattleBitmap = battlebitmap.copy
-		bossifiedBattle = bossify(copiedBattleBitmap.bitmap)
+		bossifiedBattle = bossify(copiedBattleBitmap.bitmap,battleMult)
 		bossifiedBattle.to_file('Graphics/Pokemon/Avatars/' + species_internal_name + '.png')
 	rescue Exception
 		e = $!
@@ -308,7 +308,7 @@ def createBossGraphics(species_internal_name)
 	begin
 		battlebitmap = AnimatedBitmap.new('Graphics/Pokemon/Back/' + species_internal_name)
 		copiedBattleBitmap = battlebitmap.copy
-		bossifiedBattle = bossify(copiedBattleBitmap.bitmap)
+		bossifiedBattle = bossify(copiedBattleBitmap.bitmap,battleMult)
 		bossifiedBattle.to_file('Graphics/Pokemon/Avatars/' + species_internal_name + '_back.png')
 	rescue Exception
 		e = $!
@@ -316,7 +316,7 @@ def createBossGraphics(species_internal_name)
 	end
 end
 
-def increaseSize(bitmap,scaleFactor=1.3)
+def increaseSize(bitmap,scaleFactor)
 	copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
 	for x in 0..copiedBitmap.width
 		for y in 0..copiedBitmap.height
@@ -327,7 +327,7 @@ def increaseSize(bitmap,scaleFactor=1.3)
 	return copiedBitmap
 end
   
-def bossify(bitmap,scaleFactor = 1.3)
+def bossify(bitmap,scaleFactor)
   copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
   for x in 0..copiedBitmap.width
 	for y in 0..copiedBitmap.height
