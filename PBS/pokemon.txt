@@ -11772,7 +11772,7 @@ InternalName = TROPIUS
 Type1 = GRASS
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 99,58,113,51,82,117
+BaseStats = 109,58,123,51,82,108
 # Total = 520
 GenderRate = Female50Percent
 GrowthRate = Slow
