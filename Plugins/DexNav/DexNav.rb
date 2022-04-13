@@ -125,7 +125,7 @@ class NewDexNav
 		  @sprites["nav_arrow"].x = 6 + 64 * (navMon % 7)
 		  @sprites["nav_arrow"].y = 42 + 64 * ([navMon / 7,2].min)
 		  @sprites["scroll_arrow_up"].visible = navMon > 20
-		  @sprites["scroll_arrow_down"].visible = (navMon / 7) < (encounters.length / 7)
+		  @sprites["scroll_arrow_down"].visible = (navMon / 7) < (encounters.length / 7) && encounters.length > 21
 
 		  prevNavMon = navMon
 		  
