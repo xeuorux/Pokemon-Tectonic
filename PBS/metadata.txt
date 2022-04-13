@@ -55,6 +55,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,13,11
+Environment = None
 #-------------------------------
 [007]
 # Wet Walkways
@@ -139,6 +140,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 MapPosition = 0,13,10
+Environment = None
 #-------------------------------
 [018]
 # Mine Head's House F2
@@ -198,6 +200,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,15,8
+Environment = Grass
 #-------------------------------
 [026]
 # Bluepoint Grotto
@@ -269,6 +272,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+Environment = Cave
 #-------------------------------
 [037]
 # Svait
@@ -378,6 +382,7 @@ Environment = Grass
 Outdoor = true
 ShowArea = true
 Bicycle = true
+Environment = ForestGrass
 #-------------------------------
 [056]
 # Németh
@@ -515,6 +520,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+Environment = Cave
 #-------------------------------
 [082]
 # Grouz Station
@@ -522,6 +528,14 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 25,13,17
+#-------------------------------
+[084]
+# Jirachi's Chamber
+Environment = Cave
+#-------------------------------
+[086]
+# Zigzagoon Nest
+Environment = None
 #-------------------------------
 [087]
 # LuxTech Rec Center
@@ -684,6 +698,10 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 Environment = StillWater
+#-------------------------------
+[124]
+# Clearwater Cave
+Environment = Cave
 #-------------------------------
 [125]
 # Volcanic Cave
@@ -1079,3 +1097,6 @@ Outdoor = true
 ShowArea = true
 Bicycle = false
 Weather = HeavyRain,100
+#-------------------------------
+[241]
+# Grouz Mine Sinkhole
