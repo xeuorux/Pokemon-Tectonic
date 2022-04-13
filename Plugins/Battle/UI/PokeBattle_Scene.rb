@@ -657,5 +657,104 @@ class PokeBattle_Scene
     end
     damageAnims.each { |a| a.dispose }
   end
+
+  
+  def pbCreateBackdropSprites
+    case @battle.time
+    when 1 then time = "eve"
+    when 2 then time = "night"
+    end
+    # Put everything together into backdrop, bases and message bar filenames
+    backdropFilename = @battle.backdrop
+    baseFilename = @battle.backdrop
+    baseFilename = sprintf("%s_%s",baseFilename,@battle.backdropBase) if @battle.backdropBase
+    messageFilename = @battle.backdrop
+    if time
+      trialName = sprintf("%s_%s",backdropFilename,time)
+      if pbResolveBitmap(sprintf("Graphics/Battlebacks/"+trialName+"_bg"))
+        backdropFilename = trialName
+      end
+      trialName = sprintf("%s_%s",baseFilename,time)
+      if pbResolveBitmap(sprintf("Graphics/Battlebacks/"+trialName+"_base0"))
+        baseFilename = trialName
+      end
+      trialName = sprintf("%s_%s",messageFilename,time)
+      if pbResolveBitmap(sprintf("Graphics/Battlebacks/"+trialName+"_message"))
+        messageFilename = trialName
+      end
+    end
+    if !pbResolveBitmap(sprintf("Graphics/Battlebacks/"+baseFilename+"_base0")) &&
+       @battle.backdropBase
+      baseFilename = @battle.backdropBase
+      if time
+        trialName = sprintf("%s_%s",baseFilename,time)
+        if pbResolveBitmap(sprintf("Graphics/Battlebacks/"+trialName+"_base0"))
+          baseFilename = trialName
+        end
+      end
+    end
+    # Finalise filenames
+    battleBG   = "Graphics/Battlebacks/"+backdropFilename+"_bg"
+    playerBase = "Graphics/Battlebacks/"+baseFilename+"_base0"
+    enemyBase  = "Graphics/Battlebacks/"+baseFilename+"_base1"
+    messageBG  = "Graphics/Battlebacks/"+messageFilename+"_message"
+    # Apply graphics
+    bg = pbAddSprite("battle_bg",0,0,battleBG,@viewport)
+    bg.z = 0
+    bg = pbAddSprite("battle_bg2",-Graphics.width,0,battleBG,@viewport)
+    bg.z      = 0
+    bg.mirror = true
+    for side in 0...2
+      baseX, baseY = PokeBattle_SceneConstants.pbBattlerPosition(side)
+      base = pbAddSprite("base_#{side}",baseX,baseY,
+         (side==0) ? playerBase : enemyBase,@viewport)
+      base.z    = 1
+      if base.bitmap
+        base.ox = base.bitmap.width/2
+        base.oy = (side==0) ? base.bitmap.height : base.bitmap.height/2
+      end
+      if @battle.bossBattle?
+        if side != 0
+          base.zoom_x *= 1.5
+          base.zoom_y *= 1.5
+        end
+      end
+    end
+    cmdBarBG = pbAddSprite("cmdBar_bg",0,Graphics.height-96,messageBG,@viewport)
+    cmdBarBG.z = 180
+  end
 end
 
+module PokeBattle_SceneConstants
+# Returns where the centre bottom of a battler's sprite should be, given its
+  # index and the number of battlers on its side, assuming the battler has
+  # metrics of 0 (those are added later).
+  def self.pbBattlerPosition(index, sideSize = 1,boss = false)
+    # Start at the centre of the base for the appropriate side
+    if (index & 1) == 0
+      ret = [PLAYER_BASE_X, PLAYER_BASE_Y]
+    else
+      ret = [FOE_BASE_X, FOE_BASE_Y]
+    end
+    # Shift depending on index (no shifting needed for sideSize of 1)
+    xShift = 0
+    yShift = 0
+    case sideSize
+    when 2
+      xShift = [-48, 48, 32, -32][index]
+      yShift = [  0,  0, 16, -16][index]
+    when 3
+      xShift = [-80, 80,  0,  0, 80, -80][index]
+      yShift = [  0,  0,  8, -8, 16, -16][index]
+    end
+    if boss
+      xShift *= 1.5
+      yShift *= 1.5
+      yShift += 20
+    end
+    ret[0] += xShift
+    ret[1] += yShift
+
+    return ret
+  end
+end
