@@ -366,7 +366,7 @@ Special,20
 #-------------------------------
 [90] #Ice Rink Employees' House
 Special,20
-1,GOOMY,15,15
+1,SKORUPI,15,15
 #-------------------------------
 [92] # Ice Rink Lodge F2 Left Room
 Special,1
@@ -441,15 +441,15 @@ LandSparse,20
 20,HELIOPTILE,16,18
 20,CACNEA,18,18
 20,SANDILE,18,18
-20,SKORUPI,18,18
+20,SILICOBRA,18,18
 20,HIPPOPOTAS,18,18
 FloweryGrass,20
-25,SILICOBRA,34,36
+25,SKORUPI,34,36
 25,PACHIRISU,34,36
 25,MARACTUS,34,36
 25,GLIGAR,34,36
 Special,1
-1,DEINO,10,10
+1,DARUMAKA,10,10
 #-------------------------------
 [91] # Reading Ribombee Cafe
 Special,20
