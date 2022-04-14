@@ -388,6 +388,7 @@
 386,FROSTSONG,Frost Song,"Sound-based attacks turn Ice-type and are boosted by 30%."
 387,GILD,Gild,"Turns the held item of a Pokémon it hits into gold coins for you to take."
 388,LUXURYTASTE,Luxury Taste,"At end of turn, heals 1/8th HP if holding a clothing item."
+389,CHILLOUT,Chill Out,"Has a 30% chance to chill targets when using special moves."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."

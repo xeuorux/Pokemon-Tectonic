@@ -4,12 +4,12 @@
 [136] # Casaba Villa
 Land,20
 34,MACHOP,8,10
-33,RATTATA,8,10
+33,MSINISTEA,8,10
 33,PIDGEY,8,10
 FloweryGrass,20
 33,TOGEPI,8,10
 33,BUDEW,8,10
-34,LILLIPUP,8,10
+34,RATTATA,8,10
 #-------------------------------
 [35] # Impromptu Lab
 Special,20
