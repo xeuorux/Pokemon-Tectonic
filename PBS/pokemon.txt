@@ -32143,3 +32143,71 @@ BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
+#-------------------------------
+[2508]
+Name = M. Sinistea
+InternalName = MSINISTEA
+Type1 = GHOST
+Type2 = ICE
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 50,55,89,60,89,55
+# Total = 398
+GenderRate = Genderless
+GrowthRate = Medium
+BaseEXP = 62
+EffortPoints = 0,0,0,0,1,0
+Rareness = 120
+Happiness = 50
+Abilities = WEAKARMOR,BURNSKILL
+Moves = 1,SHADOW,1,WITHDRAW,4,WATERGUN,8,LEAFAGE,12,AROMATHERAPY,16,WATERPULSE,20,MAGICALLEAF,24,IGNITE,28,HEX,32,EERIEIMPULSE,36,SHADOWBALL,40,SCALD,44,AROMATICMIST,48,PETALDANCE,52,HYDROPUMP,60,POLTERGEIST,60,SHELLSMASH
+TutorMoves = EERIEIMPULSE,ALLYSWITCH,BATONPASS,BRINE,DARKPULSE,ENDURE,FACADE,FOULPLAY,GIGADRAIN,HEX,METRONOME,NASTYPLOT,PAYBACK,PHANTOMFORCE,POLTERGEIST,PROTECT,PSYCHIC,PSYSHOCK,REST,ROUND,SHADOWBALL,SLEEPTALK,SNORE,STOREDPOWER,SUBSTITUTE,TRICK,WILLOWISP,WONDERROOM
+EggMoves = STRENGTHSAP,PACIFY,CHARM,CHILL
+Compatibility = Mineral,Amorphous
+StepsToHatch = 5396
+Height = 0.1
+Weight = 0.2
+Color = Purple
+Shape = Head
+Kind = Black Tea
+Pokedex = The teacup in which this Pokémon makes its home is a famous piece of antique tableware. Many forgeries are in circulation.
+FormName = Phony Form
+BattlerPlayerX = 0
+BattlerPlayerY = 34
+BattlerEnemyX = 0
+BattlerEnemyY = 38
+BattlerShadowX = 0
+BattlerShadowSize = 2
+Evolutions = MPOLTEAGEIST,Item,ICESTONE
+#-------------------------------
+[2509]
+Name = M. Polteageist
+InternalName = MPOLTEAGEIST
+Type1 = GHOST
+Type2 = ICE
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 60,65,124,70,124,65
+# Total = 508
+GenderRate = Genderless
+GrowthRate = Medium
+BaseEXP = 178
+EffortPoints = 0,0,0,0,2,0
+Rareness = 60
+Happiness = 50
+Abilities = WEAKARMOR,BURNSKILL
+Moves = 0,TEATIME,1,TEATIME,1,SHADOW,1,WITHDRAW,4,WATERGUN,8,LEAFAGE,12,AROMATHERAPY,16,WATERPULSE,20,MAGICALLEAF,24,IGNITE,28,HEX,32,EERIEIMPULSE,36,SHADOWBALL,40,SCALD,44,AROMATICMIST,48,PETALDANCE,52,HYDROPUMP,60,POLTERGEIST,60,SHELLSMASH
+TutorMoves = EERIEIMPULSE,ALLYSWITCH,BATONPASS,BRINE,DARKPULSE,ENDURE,FACADE,FOULPLAY,GIGADRAIN,GIGAIMPACT,HEX,HYPERBEAM,LIGHTSCREEN,METRONOME,NASTYPLOT,PAYBACK,PHANTOMFORCE,POLTERGEIST,PROTECT,PSYCHIC,PSYSHOCK,REFLECT,REST,ROUND,SELFDESTRUCT,SHADOWBALL,SLEEPTALK,SNORE,STOREDPOWER,SUBSTITUTE,TRICK,WILLOWISP,WONDERROOM
+Compatibility = Mineral,Amorphous
+StepsToHatch = 5396
+Height = 0.2
+Weight = 0.4
+Color = Purple
+Shape = Head
+Kind = Black Tea
+Pokedex = Leaving leftover black tea unattended is asking for this Pokémon to come along and pour itself into it, turning the tea into a new Polteageist.
+BattlerPlayerX = 0
+BattlerPlayerY = 18
+BattlerEnemyX = 0
+BattlerEnemyY = 22
+BattlerShadowX = 0
+BattlerShadowSize = 2
+#-------------------------------
