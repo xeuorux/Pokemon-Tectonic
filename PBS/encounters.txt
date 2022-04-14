@@ -123,7 +123,7 @@ Special
 #-------------------------------
 [32] # Nemeth Apartments
 Special
-1,TRAPINCH,15,15
+1,ESPURR,15,15
 #-------------------------------
 [71] # Nemeth Apartments Room 103
 Special
