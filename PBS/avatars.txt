@@ -831,3 +831,4 @@ HPMult = 4
 Ability = IMPERVIOUS
 Moves = KNOCKOFF,AIRSLASH,PRIMEVALSPIKES
 PostPrimeMoves = BONERUSH
+#-----------------------------
