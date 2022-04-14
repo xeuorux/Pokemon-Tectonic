@@ -32150,7 +32150,7 @@ InternalName = MSINISTEA
 Type1 = GHOST
 Type2 = ICE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 50,55,89,60,89,55
+BaseStats = 50,55,79,65,84,75
 # Total = 398
 GenderRate = Genderless
 GrowthRate = Medium
@@ -32185,7 +32185,7 @@ InternalName = MPOLTEAGEIST
 Type1 = GHOST
 Type2 = ICE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,65,124,70,124,65
+BaseStats = 60,65,100,80,114,89
 # Total = 508
 GenderRate = Genderless
 GrowthRate = Medium
