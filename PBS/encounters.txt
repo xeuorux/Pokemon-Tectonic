@@ -297,7 +297,7 @@ LandTall,20
 20,AIPOM,16,19
 20,SIZZLIPEDE,16,19
 20,VENONAT,16,19
-20,MTANGELA,18,20
+20,SHUPPET,18,20
 20,SPRITZEE,16,19
 #-------------------------------
 [11] # Eleig River Crossing
@@ -434,7 +434,7 @@ Land,20
 25,NINCADA,18,20
 25,VULLABY,18,20
 25,SPOINK,18,20
-25,SHUPPET,18,20
+25,MTANGELA,18,20
 #-------------------------------
 [130] # Canal Desert
 LandSparse,20
