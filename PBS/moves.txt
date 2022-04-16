@@ -609,7 +609,7 @@
 593,SHELLSIDEARM,Shell Side Arm,187,90,POISON,Special,100,10,25,NearOther,0,bef,"Inflicts physical or special damage, whichever will be more effective. This has a 25% chance to poison."
 #-------------------------------,,,,,,,,,,,,,
 594,PRISMATICLASER,Prismatic Laser,0C2,170,PSYCHIC,Special,100,10,0,NearOther,0,bef,The user shoots powerful lasers using the power of a prism. The user can't move on the next turn.
-595,PSYCHOBOOST,Psycho Boost,03F,140,PSYCHIC,Special,100,5,0,NearOther,0,bef,The user attacks the target at full power. The attack harshly reduces the user's Sp. Atk stat.
+595,PSYCHOBOOST,Psycho Boost,03F,130,PSYCHIC,Special,100,5,0,NearOther,0,bef,The user attacks the target at full power. The attack harshly reduces the user's Sp. Atk stat.
 596,FUTURESIGHT,Future Sight,111,120,PSYCHIC,Special,100,10,0,NearOther,0,,"Two turns after this move is used, a hunk of psychic energy attacks the target."
 597,SYNCHRONOISE,Synchronoise,123,120,PSYCHIC,Special,100,10,0,AllNearOthers,0,bef,"Using an odd shock wave, the user damages any Pokémon of the same type as the user."
 598,DREAMABSORB,Dream Absorb,0DE,70,PSYCHIC,Special,100,15,0,NearOther,0,bef,The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.
@@ -772,7 +772,7 @@
 752,DIAMONDFORCE,Diamond Force,000,90,ROCK,Special,100,15,0,NearOther,0,befh,"The user sprays diamonds at the target's weak points. Critical hits land more easily."
 753,CLASH,Clash,000,45,DRAGON,Physical,100,40,0,NearOther,0,abef,"The user harnesses inner battle instincts to strike at the target."
 754,JOLT,Jolt,007,40,ELECTRIC,Physical,100,30,10,NearOther,0,abef,"The user strikes the enemy while coated lightly with electricity. It has a 10% chance to numb."
-755,ELECTROSLASH,Electroslash,000,85,ELECTRIC,Physical,100,15,0,NearOther,0,abefhp,"The user harnesses a blade of lightning and slices at the target. Critical hits land more easily."
+755,ELECTROSLASH,Electroslash,000,90,ELECTRIC,Physical,100,15,0,NearOther,0,abefhp,"The user harnesses a blade of lightning and slices at the target. Critical hits land more easily."
 756,CURRENTCRASH,Current Crash,0FA,55,ELECTRIC,Physical,100,30,0,NearOther,0,abef,"The user wraps their body in electricity and crashes into the target. The user also takes 25% recoil."
 757,FAVOR,Favor,089,9,NORMAL,Special,100,20,0,NearOther,0,bef,"A full-power special attack that grows more powerful the more the user likes its Trainer."
 758,NATUREBUBBLE,Nature Bubble,020,40,GRASS,Special,100,35,10,NearOther,0,befn,"The user fires a small bubble of energy at the target. It has a 10% chance to raise user's Sp. Atk."
@@ -813,7 +813,7 @@
 793,INFERNOCHARGE,Inferno Charge,01F,90,FIRE,Physical,100,20,30,NearOther,0,abef,"The user cloaks itself in an inferno of flame and attacks. It has a 30% chance to raise Speed."
 794,FLAREUP,Flare Up,50E,65,FIRE,Physical,100,10,0,NearOther,0,bef,"The user targets the opponents soft spots with a fiery strike. Its power doubles if the target is burned."
 795,PERFUMEDPUNCH,Perfumed Punch,0A5,60,FAIRY,Physical,0,25,0,NearOther,0,abef,"The user throws a sweet-smelling punch which the target is unable to avoid."
-796,INFINITEFORCE,Infinite Force,50F,140,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user wields an exaggerated power to strike the target. The attack's recoil sharply reduces the user's Attack stat."
+796,INFINITEFORCE,Infinite Force,50F,130,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user wields an exaggerated power to strike the target. The attack's recoil sharply reduces the user's Attack stat."
 797,TANTRUM,Tantrum,0D2,120,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user goes on a wild tantrum for two to three turns. It then becomes confused, however."
 798,SLAG,Slag,005,80,STEEL,Special,100,10,30,NearOther,0,befn,"The user sprays mining waste at the target. It has a 30% chance to poison."
 799,MAGNETHRASH,Magnethrash,0A5,90,STEEL,Physical,0,15,0,NearOther,0,abef,"The user generates an intense magnetic connection between it and the target, striking it without fail."
@@ -936,7 +936,7 @@
 917,AURATRICK,Aura Trick,540,80,FAIRY,Special,100,10,0,NearOther,0,bef,"Damage increases with the user's Sp. Def stat, rather than it's Sp. Atk stat."
 918,DISTORT,Distort,043,40,FIGHTING,Special,100,35,10,NearOther,0,abef,"The user distorts the target's aura, damaging it. This has a 10% chance of reducing the target's defense."
 919,ADRENALASH,Adrenalash,020,90,FIGHTING,Special,100,15,20,NearOther,0,bef,"The user forms their excitement into a lash to strike the target, with a 10% chance of raising the user's Sp. Atk."
-920,EARTHRIFT,Earth Rift,50F,140,GROUND,Physical,100,10,0,NearOther,0,abef,"The user cracks the earth under the target with a massive strike. This sharply reduces the user's Attack stat."
+920,EARTHRIFT,Earth Rift,50F,130,GROUND,Physical,100,10,0,NearOther,0,abef,"The user cracks the earth under the target with a massive strike. This sharply reduces the user's Attack stat."
 921,UPINFLAMES,Up In Flames,541,80,FIRE,Special,100,10,0,NearOther,0,bef,"The user surrounds the target with fire which also destroys any 'clothing' items its holding."
 922,PROPELLANT,Propellant,542,110,FIRE,Physical,100,10,100,NearOther,0,abef,"The user explodes itself into the target. The target's speed also goes up drastically, however."
 923,PSYCHOBLADE,Psychoblade,000,90,PSYCHIC,Physical,100,10,0,NearOther,0,abefhp,"The user manifests a blade of psychic energy to slash the target. Has a higher chance for a critical hit."
