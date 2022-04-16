@@ -3411,7 +3411,7 @@ InternalName = CUBONE
 Type1 = GROUND
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,85,60,35,60,100
+BaseStats = 65,85,60,40,60,100
 # Total = 375
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -3446,7 +3446,7 @@ InternalName = MAROWAK
 Type1 = GROUND
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,120,70,45,100,120
+BaseStats = 80,120,70,55,100,120
 # Total = 540
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -4240,7 +4240,7 @@ Name = Magikarp
 InternalName = MAGIKARP
 Type1 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 20,15,55,80,10,20
+BaseStats = 20,20,55,80,10,20
 # Total = 200
 GenderRate = Female50Percent
 GrowthRate = Slow
@@ -31416,7 +31416,7 @@ InternalName = AMAROWAK
 Type1 = FIRE
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,120,70,45,100,120
+BaseStats = 80,120,70,55,100,120
 # Total = 540
 GenderRate = Female50Percent
 GrowthRate = Medium
