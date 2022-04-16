@@ -822,6 +822,7 @@ class ScreenChooseFileSave
 #-------------------------------------------------------------------------------
 	def load_save_file(file_path)
 		save_data = SaveData.read_from_file(file_path)
+=begin
 		unless SaveData.valid?(save_data)
 			unless $DEBUG
 				if File.file?(file_path + '.bak')
@@ -835,6 +836,7 @@ class ScreenChooseFileSave
 				echoln(_INTL('The save file at #{file_path} is considered invalid. Letting you access anyway due to being in DEBUG mode.'))
 			end
 		end
+=end
 		return save_data
 	end
 

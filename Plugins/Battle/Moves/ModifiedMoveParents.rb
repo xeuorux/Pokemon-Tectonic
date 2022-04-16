@@ -158,6 +158,7 @@ end
 
 class PokeBattle_MultiStatUpMove
 	def getScore(score,user,target,skill=100)
+    score -= 40 if user.paralyzed?
 		score += 20 if user.turnCount==0	 # Multi-stat up moves are often great on the first turn
 	
 		# Return 0 if all the stats upped by this move are already at max

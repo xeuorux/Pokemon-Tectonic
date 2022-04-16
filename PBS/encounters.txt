@@ -4,12 +4,12 @@
 [136] # Casaba Villa
 Land,20
 34,MACHOP,8,10
-33,RATTATA,8,10
+33,MSINISTEA,8,10
 33,PIDGEY,8,10
 FloweryGrass,20
 33,TOGEPI,8,10
 33,BUDEW,8,10
-34,LILLIPUP,8,10
+34,RATTATA,8,10
 #-------------------------------
 [35] # Impromptu Lab
 Special,20
@@ -51,7 +51,7 @@ Special,20
 DarkCave,20
 25,ROLYCOLY,9,11
 25,GASTLY,9,11
-25,BAGON,9,11
+25,TRAPINCH,9,11
 25,NOSEPASS,9,11
 Mud,40
 33,MUDBRAY,9,11
@@ -63,14 +63,14 @@ Land,20
 25,EXEGGCUTE,7,9
 25,AZURILL,7,9
 25,HOUNDOUR,7,9
-25,GIBLE,7,9
+25,WINGULL,7,9
 LandSparse,20
 25,SANDYGAST,7,9
 25,HONEDGE,7,9
 25,GRUBBIN,7,9
 25,VANILLITE,7,9
 Puddle,20
-25,WINGULL,7,9
+25,HORSEA,7,9
 25,SLOWPOKE,7,9
 25,INKAY,7,9
 25,CLOBBOPUS,7,9
@@ -123,7 +123,7 @@ Special
 #-------------------------------
 [32] # Nemeth Apartments
 Special
-1,TRAPINCH,15,15
+1,ESPURR,15,15
 #-------------------------------
 [71] # Nemeth Apartments Room 103
 Special
@@ -225,11 +225,10 @@ Special,20
 #-------------------------------
 [6] # LuxTech
 FloweryGrass2,20
-20,SWABLU,15,18
-20,SHINX,15,18
-20,PORYGON,15,18
-20,MIMEJR,15,18
-20,ELECTRIKE,15,18
+25,SHINX,15,18
+25,PORYGON,15,18
+25,MIMEJR,15,18
+25,ELECTRIKE,15,18
 #-------------------------------
 [54] # County Park
 Land,20
@@ -239,7 +238,7 @@ Land,20
 20,KRICKETOT,14,17
 20,FLETCHLING,14,17
 FloweryGrass,20
-25,DREEPY,14,17
+25,SWABLU,14,17
 25,SUNKERN,14,17
 25,CUTIEFLY,14,17
 25,LEDYBA,14,17
@@ -298,7 +297,7 @@ LandTall,20
 20,AIPOM,16,19
 20,SIZZLIPEDE,16,19
 20,VENONAT,16,19
-20,MTANGELA,18,20
+20,SHUPPET,18,20
 20,SPRITZEE,16,19
 #-------------------------------
 [11] # Eleig River Crossing
@@ -367,7 +366,7 @@ Special,20
 #-------------------------------
 [90] #Ice Rink Employees' House
 Special,20
-1,GOOMY,15,15
+1,SKORUPI,15,15
 #-------------------------------
 [92] # Ice Rink Lodge F2 Left Room
 Special,1
@@ -406,7 +405,7 @@ LandSparse
 LandSparse,20
 33,GOLETT,33,35
 33,DRUDDIGON,33,35
-34,DEINO,33,35
+34,SKRELP,33,35
 #-------------------------------
 [066] # Nemeth Apartments Attic
 Special,20
@@ -435,22 +434,22 @@ Land,20
 25,NINCADA,18,20
 25,VULLABY,18,20
 25,SPOINK,18,20
-25,SHUPPET,18,20
+25,MTANGELA,18,20
 #-------------------------------
 [130] # Canal Desert
 LandSparse,20
 20,HELIOPTILE,16,18
 20,CACNEA,18,18
 20,SANDILE,18,18
-20,SKORUPI,18,18
+20,SILICOBRA,18,18
 20,HIPPOPOTAS,18,18
 FloweryGrass,20
-25,SILICOBRA,34,36
+25,SKORUPI,34,36
 25,PACHIRISU,34,36
 25,MARACTUS,34,36
 25,GLIGAR,34,36
 Special,1
-1,DEINO,10,10
+1,DARUMAKA,10,10
 #-------------------------------
 [91] # Reading Ribombee Cafe
 Special,20
@@ -470,10 +469,9 @@ Special,20
 #-------------------------------
 [126] # Sun Cave
 LandSparse,20
-25,JOLTIK,18,20
-25,LARVESTA,18,20
-25,JANGMOO,18,20
-25,DUNSPARCE,18,20
+33,JOLTIK,18,20
+33,LARVESTA,18,20
+34,DUNSPARCE,18,20
 #-------------------------------
 [155] # Prizca West
 Land,20
@@ -486,11 +484,10 @@ Special,1
 #-------------------------------
 [34] # Battle Plaza
 FloweryGrass,20
-20,SNUBBULL,31,33
-20,HAPPINY,31,33
-20,SKITTY,31,33
-20,AUDINO,31,33
-20,INDEEDEE,31,33
+25,SNUBBULL,31,33
+25,HAPPINY,31,33
+25,SKITTY,31,33
+25,AUDINO,31,33
 #-------------------------------
 [029] # Full Blast Records F2
 Special,1
@@ -507,20 +504,18 @@ Land
 25,MZANGOOSE,30,32
 25,DEERLING,30,32
 LandTall
-25,GOOMY,30,32
-25,HERACROSS,30,32
-25,MIENFOO,30,32
-25,EMOLGA,30,32
+33,HERACROSS,30,32
+33,MIENFOO,30,32
+34,EMOLGA,30,32
 LandSparse
 25,FALINKS,30,32
 25,ESPURR,30,32
 25,DEWPIDER,30,32
 25,LICKITUNG,30,32
 Puddle
-25,CLAUNCHER,30,32
-25,SKRELP,30,32
-25,VOLBEAT,30,32
-25,ILLUMISE,30,32
+33,CLAUNCHER,30,32
+33,VOLBEAT,30,32
+34,ILLUMISE,30,32
 #-------------------------------
 [186] # Frostflow Farm
 LandTall,20
@@ -543,7 +538,7 @@ Special,1
 #-------------------------------
 [187] # Prizca East
 FloweryGrass2,20
-25,SINISTEA,33,35
+25,INDEEDEE,33,35
 25,SMEARGLE,33,35
 25,FURFROU,33,35
 25,COMFEY,33,35
@@ -705,10 +700,11 @@ FloweryGrass,20
 20,PETILIL,18,20
 20,SENTRET,18,20
 DarkCave
-25,ADIGLETT,18,20
-25,AGEODUDE,18,20
-25,GYAMASK,18,20
-25,GMEOWTH,18,20
+20,ADIGLETT,18,20
+20,AGEODUDE,18,20
+20,GYAMASK,18,20
+20,GMEOWTH,18,20
+20,SINISTEA,18,20
 Mud,20 # Post-surf
 20,DHELMISE,34,36
 20,SEVIPER,34,36

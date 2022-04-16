@@ -825,3 +825,10 @@ Ability = INFILTRATOR
 Moves = DRAGONPULSE,HURRICANE,PRIMEVALSUNNYDAY
 PostPrimeMoves = FLAMETHROWER
 #-----------------------------
+[MANDIBUZZ]
+Turns = 2
+HPMult = 4
+Ability = IMPERVIOUS
+Moves = KNOCKOFF,AIRSLASH,PRIMEVALSPIKES
+PostPrimeMoves = BONERUSH
+#-----------------------------

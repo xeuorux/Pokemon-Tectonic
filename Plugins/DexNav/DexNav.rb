@@ -29,6 +29,18 @@ class NewDexNav
     @sprites["nav_arrow"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport3)
     @sprites["nav_arrow"].visible = false
     @sprites["nav_arrow"].play
+
+	@sprites["scroll_arrow_up"] = AnimatedSprite.new("Graphics/Pictures/uparrow",8,28,40,2,@viewport3)
+	@sprites["scroll_arrow_up"].x = (Graphics.width - 28) / 2
+	@sprites["scroll_arrow_up"].y = 0
+	@sprites["scroll_arrow_up"].visible = false
+    @sprites["scroll_arrow_up"].play
+
+	@sprites["scroll_arrow_down"] = AnimatedSprite.new("Graphics/Pictures/downarrow",8,28,40,2,@viewport3)
+	@sprites["scroll_arrow_down"].x = (Graphics.width - 28) / 2
+	@sprites["scroll_arrow_down"].y = 206
+	@sprites["scroll_arrow_down"].visible = false
+    @sprites["scroll_arrow_down"].play
 	
 	# Find which encounter sets the player has yet completed
 	encounterTypesCompletion = {}
@@ -112,6 +124,8 @@ class NewDexNav
 		  
 		  @sprites["nav_arrow"].x = 6 + 64 * (navMon % 7)
 		  @sprites["nav_arrow"].y = 42 + 64 * ([navMon / 7,2].min)
+		  @sprites["scroll_arrow_up"].visible = navMon > 20
+		  @sprites["scroll_arrow_down"].visible = (navMon / 7) < (encounters.length / 7) && encounters.length > 21
 
 		  prevNavMon = navMon
 		  

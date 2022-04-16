@@ -115,7 +115,7 @@ Pokemon = MAKUHITA,15
 Pokemon = SCRAGGY,15
     AbilityIndex = 1
 Pokemon = NICKIT,15
-    Moves = BITE,HONECLAWS,QUICKATTACK,TAILWHIP
+    Moves = PILFER,HONECLAWS,QUICKATTACK,TAILWHIP
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Lambert,Lambert]
@@ -430,7 +430,7 @@ Pokemon = SKRELP,23
     AbilityIndex = 1
 Pokemon = WOOLOO,24
     AbilityIndex = 1
-	Moves = DOUBLEKICK,HEADBUTT,DEFENSECURL
+	Moves = DOUBLEKICK,HEADBUTT,COPYCAT
 #-------------------------------
 [BAKER,Rose]
 Pokemon = CHIMCHAR,23
@@ -640,11 +640,10 @@ Pokemon = PIKACHU,20
     AbilityIndex = 0
     Item = POISONORB
     EV = 0,0,10,20,20,0
-Pokemon = FURRET,20
-    Moves = COVET,QUICKATTACK,SMASH,BRUTALSWING
-    AbilityIndex = 0
-    Item = NORMALGEM
-    EV = 20,20,0,10,0,0
+Pokemon = BUTTERFREE,20
+    Moves = GUST,ELECTROWEB,CLACKACLACK,WHIRLWIND
+    Item = BUGGEM
+    EV = 10,0,0,0,20,10
 #-------------------------------
 [COOLTRAINER_M7,Miles]
 Pokemon = WHIRLIPEDE,25
@@ -1283,7 +1282,7 @@ Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
     AbilityIndex = 1
 Pokemon = THWACKEY,30
-    Moves = BODYSLAM,KNOCKOFF,GRASSYGLIDE,MEGAPUNCH
+    Moves = BODYSLAM,KNOCKOFF,RAZORLEAF,MEGAPUNCH
     AbilityIndex = 1
 	Item = TERRAINEXTENDER
 Pokemon = AMAROWAK,30
@@ -1291,9 +1290,9 @@ Pokemon = AMAROWAK,30
     Gender = female
     Moves = BONECLUB,SHADOWCLAW,BRICKBREAK,SWORDSDANCE
     AbilityIndex = 1
-Pokemon = BELLOSSOM,30
-    Moves = ALLERGY,FIERYDANCE,POISONSPIKES,MOONBLAST
-    AbilityIndex = 1
+Pokemon = ORICORIO,30
+    Moves = FEATHERDANCE,TEETERDANCE,LIGHTNINGDANCE,FIERYDANCE
+	Form = 3
 #-------------------------------
 [LEADER_Rafael_2,Rafael]
 Policies = RAFAEL
@@ -1301,7 +1300,7 @@ Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
     AbilityIndex = 1
 Pokemon = THWACKEY,30
-    Moves = BODYSLAM,KNOCKOFF,GRASSYGLIDE,MEGAPUNCH
+    Moves = BODYSLAM,KNOCKOFF,RAZORLEAF,MEGAPUNCH
     AbilityIndex = 1
 	Item = TERRAINEXTENDER
 Pokemon = AMAROWAK,30
@@ -1309,16 +1308,16 @@ Pokemon = AMAROWAK,30
     Gender = female
     Moves = BONECLUB,SHADOWCLAW,BRICKBREAK,SWORDSDANCE
     AbilityIndex = 1
-Pokemon = BELLOSSOM,30
-    Moves = ALLERGY,FIERYDANCE,POISONSPIKES,MOONBLAST
-    AbilityIndex = 1
+Pokemon = ORICORIO,30
+    Moves = FEATHERDANCE,TEETERDANCE,LIGHTNINGDANCE,FIERYDANCE
+	Form = 3
 Pokemon = MISMAGIUS,30
     Moves = HEX,KALEIDOSCOPE,CHILL,CLEARSMOG
     AbilityIndex = 1
     Item = PETAYABERRY
-Pokemon = ORICORIO,30
-    Moves = FEATHERDANCE,TEETERDANCE,LIGHTNINGDANCE,FIERYDANCE
-	Form = 3
+Pokemon = BELLOSSOM,30
+    Moves = MEGADRAIN,FIERYDANCE,POISONSPIKES,GRASSYGLIDE
+    AbilityIndex = 1
 	Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Rafael_2,Rafael,1]
@@ -1327,7 +1326,7 @@ Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
     AbilityIndex = 1
 Pokemon = THWACKEY,30
-    Moves = BODYSLAM,KNOCKOFF,GRASSYGLIDE,MEGAPUNCH
+    Moves = BODYSLAM,KNOCKOFF,RAZORLEAF,MEGAPUNCH
     AbilityIndex = 1
 	Item = TERRAINEXTENDER
 Pokemon = AMAROWAK,30
@@ -1335,16 +1334,16 @@ Pokemon = AMAROWAK,30
     Gender = female
     Moves = BONECLUB,SHADOWCLAW,BRICKBREAK,SWORDSDANCE
     AbilityIndex = 1
-Pokemon = BELLOSSOM,30
-    Moves = ALLERGY,FIERYDANCE,POISONSPIKES,MOONBLAST
-    AbilityIndex = 1
+Pokemon = ORICORIO,30
+    Moves = FEATHERDANCE,TEETERDANCE,LIGHTNINGDANCE,FIERYDANCE
+	Form = 3
 Pokemon = MISMAGIUS,30
     Moves = HEX,KALEIDOSCOPE,CHILL,CLEARSMOG
     AbilityIndex = 1
     Item = PETAYABERRY
-Pokemon = ORICORIO,30
-    Moves = FEATHERDANCE,TEETERDANCE,LIGHTNINGDANCE,FIERYDANCE
-	Form = 3
+Pokemon = BELLOSSOM,30
+    Moves = MEGADRAIN,FIERYDANCE,POISONSPIKES,GRASSYGLIDE
+    AbilityIndex = 1
 	Item = SITRUSBERRY
 #-------------------------------
 [ARCHFRIEND_Lainie,Lainie]

@@ -1234,7 +1234,7 @@ class PokeBattle_Move_539 < PokeBattle_Move
     return if @battle.wildBattle? && !user.boss   # Wild Pokémon can't thieve, except if they are bosses
     return if user.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
-    return if !target.item || user.item
+    return if !target.item || target.item.nil? || user.item
     return if target.unlosableItem?(target.item)
     return if user.unlosableItem?(target.item)
     return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
@@ -1721,6 +1721,11 @@ class PokeBattle_Move_551 < PokeBattle_Move
     user.pbOpposingSide.effects[PBEffects::FlameSpikes] += 1
     @battle.pbDisplay(_INTL("Flame spikes were scattered all around {1}'s feet!",
        user.pbOpposingTeam(true)))
+	if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] > 0
+		user.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
+		@battle.pbDisplay(_INTL("The poison spikes around {1}'s feet were brushed aside!",
+       		user.pbOpposingTeam(true)))
+	end
   end
   
   def getScore(score,user,target,skill=100)

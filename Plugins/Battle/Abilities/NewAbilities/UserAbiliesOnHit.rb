@@ -103,7 +103,29 @@ BattleHandlers::UserAbilityOnHit.add(:BURNSKILL,
     elsif target.pbCanBurn?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} burned {3}!",user.pbThis,user.abilityName,target.pbThis(true))
+        msg = _INTL("{1}'s {2} burned {3}! Its Attack is reduced by a third!",user.pbThis,user.abilityName,target.pbThis(true))
+      end
+      target.pbBurn(user,msg)
+    end
+    battle.pbHideAbilitySplash(user)
+	}
+)
+
+BattleHandlers::UserAbilityOnHit.add(:CHILLOUT,
+  proc { |ability,user,target,move,battle|
+    next if !move.specialMove?
+    next if battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(user)
+    if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+      battle.pbShowAbilitySplash(target)
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+      end
+      battle.pbHideAbilitySplash(target)
+    elsif target.pbCanFreeze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} chilled {3}! It's slower and takes more damage!",user.pbThis,user.abilityName,target.pbThis(true))
       end
       target.pbBurn(user,msg)
     end

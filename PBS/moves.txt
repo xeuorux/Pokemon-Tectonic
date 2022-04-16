@@ -885,7 +885,7 @@
 866,PUFFBALL,Puffball,529,0,GRASS,Status,100,15,0,NearOther,0,bcel,"The user bursts a ball of sleep-inducing powder. It fails unless the target hit the user this turn."
 867,MUDTHROW,Mud Throw,044,40,GROUND,Special,100,15,10,NearOther,0,bef,"The user attacks by hurling a blob of mud at the target. It has a 10% chance to reduce the target's Speed."
 868,BLINDINGSAND,Blinding Sand,047,40,GROUND,Special,100,10,100,NearOther,0,bef,"The user attacks the opponent by throwing sand at its eyes, reducing accuracy."
-869,PURIFYINGWATER,Purifying Water,548,50,WATER,Special,100,5,0,NearOther,0,bef,"The user shoots purified Water, healing the status problems of all the party Pokémon in the process."
+869,PURIFYINGWATER,Purifying Water,548,50,WATER,Special,100,5,0,NearOther,0,bef,"The user shoots purified Water, also healing the status problems of all the party Pokémon."
 870,CRITICALERROR,Critical Error,0A0,60,GHOST,Special,100,10,0,NearOther,0,bef,"The user causes a glitch in reality. This attack always results in a critical hit."
 871,PRIMALIMPACT,Primal Impact,0AD,90,NORMAL,Physical,100,10,0,NearOther,0,aef,"An attack empowered by the might of a lazy king. It skips and destroys protections."
 872,ADAMANTINEPRESS,Adamantine Press,000,95,ROCK,Physical,100,10,0,NearOther,0,abef,"The user presses their rock-hard body with great force onto the target."

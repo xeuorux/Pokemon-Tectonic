@@ -395,7 +395,7 @@
 390,CHESTOBERRY,Chesto Berry,Chesto Berries,5,0,It may be held by a Pokémon to recover from sleep.,0,0,5,
 391,PECHABERRY,Pecha Berry,Pecha Berries,5,0,It may be held by a Pokémon to recover from poison.,0,0,5,
 392,RAWSTBERRY,Rawst Berry,Rawst Berries,5,0,It may be held by a Pokémon to recover from a burn.,0,0,5,
-393,ASPEARBERRY,Aspear Berry,Aspear Berries,5,0,It may be held by a Pokémon to defrost it.,0,0,5,
+393,ASPEARBERRY,Aspear Berry,Aspear Berries,5,0,It may be held by a Pokémon to unchill it.,0,0,5,
 394,LEPPABERRY,Leppa Berry,Leppa Berries,5,0,It may be held by a Pokémon to restore a move's PP by 10.,0,0,5,
 395,ORANBERRY,Oran Berry,Oran Berries,5,0,"It may be held by a Pokémon to heal the user by 33% in a pinch.",0,0,5,
 396,PERSIMBERRY,Persim Berry,Persim Berries,5,0,It may be held by a Pokémon to recover from confusion or charm.,0,0,5,
@@ -827,8 +827,8 @@
 802,NINJASCARF,Ninja Scarf,Ninja Scarves,1,3000,"A cool scarf. It makes a certain Pokemon evolve.",1,0,7
 803,EXPEZDISPENSER,EXP-EZ Dispenser,EXP-EZ Dispensers,8,0,"A mysterious machine that is able to create candies from experience.",2,0,6
 804,AIDKIT,Aid Kit,Aid Kits,8,0,"A first-aid pack which heals your whole team a limited number of times. Restocked at PokeCenters and after resting.",2,0,6
-805,KITEXPANSION,Kit Expansion,Kit Expansion,1,0,"A pack which can be attached to your Aid Kit to increase its number of use charges.",2,0,0
-806,MEDICALUPGRADE,Medical Upgrade,Medical Upgrades,1,0,"A suite of medicines which can be added to your Aid Kit to increase its healing.",2,0,0
+805,KITEXPANSION,Kit Expansion,Kit Expansion,2,0,"A pack which can be attached to your Aid Kit to increase its number of use charges.",2,0,0
+806,MEDICALUPGRADE,Medical Upgrade,Medical Upgrades,2,0,"A suite of medicines which can be added to your Aid Kit to increase its healing.",2,0,0
 807,CLIMBINGGEAR,Climbing Gear,Climbing Gears,8,0,"A set of climbing gear, allowing you to climb on white rocks.",0,0,6,
 808,STRIKEVEST,Strike Vest,Strike Vests,1,10000,"An item to be held by a Pokémon. This offensive vest raises Defense but prevents the use of status moves.",0,0,0,
 809,GRASSTOKEN,Grass Token,Grass Tokens,1,10000,"A token which can be exchanged for a Grass-type at the Starter Store.",0,0,0,
@@ -846,6 +846,14 @@
 821,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,15000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0,
 822,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca.",0,0,6
 823,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokemon you find is shiny.",2,0,0,
+# Dragon eggs
+850,DRATINIEGG,Dratini Egg,Dratini Eggs,1,10000,"An abandoned Dratini egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+851,BAGONEGG,Bagon Egg,Bagon Eggs,1,10000,"An abandoned Bagon egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+852,GIBLEEGG,Gible Egg,Gible Eggs,1,10000,"An abandoned Gible egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+853,DEINOEGG,Deino Egg,Deino Eggs,1,10000,"An abandoned Deino egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+854,GOOMYEGG,Goomy Egg,Goomy Eggs,1,10000,"An abandoned Goomy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+855,JANGMOOEGG,Jangmo-o Egg,Jangmo-o Eggs,1,10000,"An abandoned Jangmo-o egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+856,DREEPYEGG,Dreepy Egg,Dreepy Eggs,1,10000,"An abandoned Dreepy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
 #------------------------------- NEW ITEMS pt. 2
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6

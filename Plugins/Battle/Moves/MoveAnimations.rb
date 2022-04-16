@@ -82,7 +82,7 @@ class PokeBattle_Scene
       return anim if anim
 	  
       # Default animation for the move's type not found, use Tackle's animation
-      if moveData.physicalMove? && GameData::Move.exists?(:TACKLE)
+      if moveData.category != 2 && GameData::Move.exists?(:TACKLE)
         return pbFindMoveAnimDetails(move2anim, :TACKLE, idxUser)
       end
     rescue

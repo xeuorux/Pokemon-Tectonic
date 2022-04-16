@@ -119,6 +119,9 @@ class PokeBattle_AI
 		if move.statusMove?
 			if user.statStageAtMax?(:ATTACK)
 				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:ATTACK],0].min*20
 			else
 				score -= user.stages[:ATTACK]*20
 				if target.hasPhysicalAttack?
@@ -136,6 +139,9 @@ class PokeBattle_AI
 		if move.statusMove?
 			if user.statStageAtMax?(:DEFENSE)
 				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:DEFENSE],0].min*20
 			else
 				score -= user.stages[:DEFENSE]*20
 			end
@@ -147,6 +153,9 @@ class PokeBattle_AI
 		if move.statusMove?
 			if user.statStageAtMax?(:SPEED)
 				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:SPEED],0].min*20
 			else
 				score -= user.stages[:SPEED]*10
 				aspeed = pbRoughStat(user,:SPEED,skill)
@@ -161,6 +170,9 @@ class PokeBattle_AI
 		if move.statusMove?
 			if user.statStageAtMax?(:SPECIAL_ATTACK)
 				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:SPECIAL_ATTACK],0].min*20
 			else
 				score -= user.stages[:SPECIAL_ATTACK]*20
 				if user.hasSpecialAttack?
@@ -197,6 +209,9 @@ class PokeBattle_AI
 		if move.statusMove?
 			if user.statStageAtMax?(:EVASION)
 				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:EVASION],0].min*20
 			else
 				score -= user.stages[:EVASION]*10
 			end
@@ -219,6 +234,9 @@ class PokeBattle_AI
 		if move.statusMove?
 			if user.statStageAtMax?(:ATTACK)
 				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:ATTACK],0].min*20
 			else
 				score += 40 if user.turnCount==0
 				score -= user.stages[:ATTACK]*20
@@ -238,6 +256,9 @@ class PokeBattle_AI
 		if move.statusMove?
 			if user.statStageAtMax?(:DEFENSE)
 				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:DEFENSE],0].min*20
 			else
 				score += 40 if user.turnCount==0
 				score -= user.stages[:DEFENSE]*20
@@ -251,6 +272,9 @@ class PokeBattle_AI
 		if move.statusMove?
 			if user.statStageAtMax?(:SPEED)
 				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:SPEED],0].min*20
 			else
 				score += 20 if user.turnCount==0
 				score -= user.stages[:SPEED]*10
@@ -267,6 +291,9 @@ class PokeBattle_AI
 		if move.statusMove?
 			if user.statStageAtMax?(:SPECIAL_ATTACK)
 				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:SPECIAL_ATTACK],0].min*20
 			else
 				score += 40 if user.turnCount==0
 				score -= user.stages[:SPECIAL_ATTACK]*20
@@ -286,6 +313,9 @@ class PokeBattle_AI
 		if move.statusMove?
 			if user.statStageAtMax?(:SPECIAL_DEFENSE)
 				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:SPECIAL_DEFENSE],0].min*20
 			else
 				score += 40 if user.turnCount==0
 				score -= user.stages[:SPECIAL_DEFENSE]*20
@@ -299,6 +329,9 @@ class PokeBattle_AI
 		if move.statusMove?
 			if user.statStageAtMax?(:EVASION)
 				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:EVASION],0].min*20
 			else
 				score += 40 if user.turnCount==0
 				score -= user.stages[:EVASION]*10
@@ -319,34 +352,40 @@ class PokeBattle_AI
 	when "037"
 		avgStat = 0; canChangeStat = false
 		GameData::Stat.each_battle do |s|
-		next if target.statStageAtMax?(s.id)
-		avgStat -= target.stages[s.id]
-		canChangeStat = true
+			next if target.statStageAtMax?(s.id)
+			avgStat -= target.stages[s.id]
+			canChangeStat = true
 		end
 		if canChangeStat
-		avgStat = avgStat/2 if avgStat<0	 # More chance of getting even better
-		score += avgStat*10
+			avgStat = avgStat/2 if avgStat<0	 # More chance of getting even better
+			score += avgStat*10
 		else
-		score = 0
+			score = 0
 		end
 	#---------------------------------------------------------------------------
 	when "038"
 		if move.statusMove?
-		if user.statStageAtMax?(:DEFENSE)
-			score = 0
+			if user.statStageAtMax?(:DEFENSE)
+				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:DEFENSE],0].min*20
+			else
+				score += 40 if user.turnCount==0
+				score -= user.stages[:DEFENSE]*30
+			end
 		else
-			score += 40 if user.turnCount==0
-			score -= user.stages[:DEFENSE]*30
-		end
-		else
-		score += 10 if user.turnCount==0
-		score += 30 if user.stages[:DEFENSE]<0
+			score += 10 if user.turnCount==0
+			score += 30 if user.stages[:DEFENSE]<0
 		end
 	#---------------------------------------------------------------------------
 	when "039"
 		if move.statusMove?
 			if user.statStageAtMax?(:SPECIAL_ATTACK)
 				score = 0
+			elsif user.paralyzed?
+				score -= 40
+				score -= [user.stages[:SPECIAL_ATTACK],0].min*20
 			else
 				score += 40 if user.turnCount==0
 				score -= user.stages[:SPECIAL_ATTACK]*30
@@ -363,7 +402,7 @@ class PokeBattle_AI
 		end
 	#---------------------------------------------------------------------------
 	when "03A"
-		if user.statStageAtMax?(:ATTACK) || user.hp<=user.totalhp/2
+		if user.statStageAtMax?(:ATTACK) || user.hp<=user.totalhp/2 || user.paralyzed?
 			score = 0
 		else
 			score += (6-user.stages[:ATTACK])*10
@@ -380,12 +419,12 @@ class PokeBattle_AI
 		score += avg/2
 	#---------------------------------------------------------------------------
 	when "03C"
-		avg =	user.stages[:DEFENSE]*10
+		avg = user.stages[:DEFENSE]*10
 		avg += user.stages[:SPECIAL_DEFENSE]*10
 		score += avg/2
 	#---------------------------------------------------------------------------
 	when "03D"
-		avg =	user.stages[:DEFENSE]*10
+		avg = user.stages[:DEFENSE]*10
 		avg += user.stages[:SPEED]*10
 		avg += user.stages[:SPECIAL_DEFENSE]*10
 		score += (avg/3).floor
@@ -1901,6 +1940,7 @@ class PokeBattle_AI
 			score -= b.stages[:SPECIAL_DEFENSE]*10
 		end
 		if hasEffect
+			score -= 40 if user.paralyzed?
 			score -= user.stages[:DEFENSE]*10
 			score -= user.stages[:SPECIAL_DEFENSE]*10
 		else
@@ -1911,6 +1951,7 @@ class PokeBattle_AI
 		if target.statStageAtMax?(:SPECIAL_DEFENSE)
 			score = 0
 		else
+			score -= 40 if target.paralyzed?
 			score -= target.stages[:SPECIAL_DEFENSE]*10
 		end
 	#---------------------------------------------------------------------------
@@ -2078,6 +2119,7 @@ class PokeBattle_AI
 		 user.statStageAtMax?(:SPEED)
 			score = 0
 		else
+			score -= 40 if user.paralyzed?
 			score -= user.stages[:SPECIAL_ATTACK]*10	 # Only *10 instead of *20
 			score -= user.stages[:SPECIAL_DEFENSE]*10	 # because two-turn attack
 			score -= user.stages[:SPEED]*10
