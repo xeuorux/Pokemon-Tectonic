@@ -1234,7 +1234,7 @@ class PokeBattle_Move_539 < PokeBattle_Move
     return if @battle.wildBattle? && !user.boss   # Wild Pokémon can't thieve, except if they are bosses
     return if user.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
-    return if !target.item || user.item
+    return if !target.item || target.item.nil? || user.item
     return if target.unlosableItem?(target.item)
     return if user.unlosableItem?(target.item)
     return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
