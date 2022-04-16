@@ -354,7 +354,7 @@
 341,DIG,Dig,0CA,90,GROUND,Physical,100,10,0,NearOther,0,abef,"The user burrows, then attacks on the second turn."
 342,DRILLRUN,Drill Run,000,80,GROUND,Physical,100,10,0,NearOther,0,abefh,The user crashes into its target while rotating its body like a drill. Critical hits land more easily.
 343,STOMPINGTANTRUM,Stomping Tantrum,166,85,GROUND,Physical,100,10,0,NearOther,0,abef,The user attacks driven by frustration. Power increases if previous move failed.
-344,BONECLUB,Bone Club,00F,65,GROUND,Physical,85,20,10,NearOther,0,be,The user clubs the target with a bone. It has a 10% chance to make the target flinch.
+344,BONECLUB,Bone Club,00F,65,GROUND,Physical,100,20,50,NearOther,0,be,The user clubs the target with a bone. It has a 50% chance to make the target flinch.
 345,MUDBOMB,Mud Bomb,047,65,GROUND,Special,100,10,30,NearOther,0,befn,The user launches a hard-packed mud ball to attack. It has a 30% chance to lower accuracy.
 346,BULLDOZE,Bulldoze,044,60,GROUND,Physical,100,20,100,AllNearOthers,0,bef,The user strikes everything around it by stomping on the ground. It reduces hit Pokémon's Speed.
 347,MUDSHOT,Mud Shot,044,60,GROUND,Special,100,15,100,NearOther,0,bef,The user attacks by shooting a beam of mud at the target. It also reduces the target's Speed.
