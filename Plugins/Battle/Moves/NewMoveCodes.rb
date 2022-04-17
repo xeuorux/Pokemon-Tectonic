@@ -1238,7 +1238,7 @@ class PokeBattle_Move_539 < PokeBattle_Move
     return if target.unlosableItem?(target.item)
     return if user.unlosableItem?(target.item)
     return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
-	return if !item.is_berry? && !item.is_gem?
+	return unless target.item.is_berry? || target.item.is_gem?
     itemName = target.itemName
     user.item = target.item
     # Permanently steal the item from wild Pokémon
