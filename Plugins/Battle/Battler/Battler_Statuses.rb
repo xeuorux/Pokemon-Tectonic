@@ -282,17 +282,17 @@ class PokeBattle_Battler
 	def pbInflictStatus(newStatus,newStatusCount=0,msg=nil,user=nil)
 		# Inflict the new status
 		if !boss?
-		self.status			= newStatus
-		self.statusCount	= newStatusCount
-	else
-		if @status == :NONE
 			self.status			= newStatus
-			self.statusCount = newStatusCount
+			self.statusCount	= newStatusCount
 		else
-			self.bossStatus			= newStatus
-			self.bossStatusCount	= newStatusCount
+			if @status == :NONE
+				self.status			= newStatus
+				self.statusCount = newStatusCount
+			else
+				self.bossStatus			= newStatus
+				self.bossStatusCount	= newStatusCount
+			end
 		end
-	end
 		@effects[PBEffects::Toxic] = 0
 		# Show animation
 		if newStatus == :POISON && newStatusCount > 0
@@ -302,28 +302,28 @@ class PokeBattle_Battler
 			@battle.pbCommonAnimation(anim_name, self) if anim_name
 		end
 		# Show message
-	if msg != "false"
-		if msg && !msg.empty?
-			@battle.pbDisplay(msg)
-		else
-			case newStatus
-			when :SLEEP
-			@battle.pbDisplay(_INTL("{1} fell asleep!", pbThis))
-			when :POISON
-			if newStatusCount>0
-				@battle.pbDisplay(_INTL("{1} was toxified!", pbThis))
+		if msg != "false"
+			if msg && !msg.empty?
+				@battle.pbDisplay(msg)
 			else
-				@battle.pbDisplay(_INTL("{1} was poisoned! Its Sp. Atk is reduced by a third!", pbThis))
-			end
-			when :BURN
-			@battle.pbDisplay(_INTL("{1} was burned! Its Attack is reduced by a third!", pbThis))
-			when :PARALYSIS
-			@battle.pbDisplay(_INTL("{1} is numbed! It's slower and it's stat improvements are ignored!", pbThis))
-			when :FROZEN
-			@battle.pbDisplay(_INTL("{1} was chilled! It's slower and takes more damage!", pbThis))
+				case newStatus
+				when :SLEEP
+				@battle.pbDisplay(_INTL("{1} fell asleep!", pbThis))
+				when :POISON
+				if newStatusCount>0
+					@battle.pbDisplay(_INTL("{1} was toxified!", pbThis))
+				else
+					@battle.pbDisplay(_INTL("{1} was poisoned! Its Sp. Atk is reduced by a third!", pbThis))
+				end
+				when :BURN
+				@battle.pbDisplay(_INTL("{1} was burned! Its Attack is reduced by a third!", pbThis))
+				when :PARALYSIS
+				@battle.pbDisplay(_INTL("{1} is numbed! It's slower and it's stat improvements are ignored!", pbThis))
+				when :FROZEN
+				@battle.pbDisplay(_INTL("{1} was chilled! It's slower and takes more damage!", pbThis))
+				end
 			end
 		end
-	end
 		#PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}") if newStatus == :SLEEP
 		# Form change check
 		pbCheckFormOnStatusChange
@@ -357,7 +357,7 @@ class PokeBattle_Battler
 	end
 
 	def pbCanSleepYawn?
-		return false if self.status != :NONE
+		return false if !hasSpotsForStatus()
 		if affectedByTerrain?
 			return false if [:Electric, :Misty].include?(@battle.field.terrain)
 		end
