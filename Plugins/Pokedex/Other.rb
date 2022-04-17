@@ -63,7 +63,7 @@ end
 
 def describeEvolutionMethod(method,parameter=0)
     case method
-    when :Level; return "at level #{parameter}"
+    when :Level,:Ninjask; return "at level #{parameter}"
     when :LevelMale; return "at level #{parameter} if it's male"
     when :LevelFemale; return "at level #{parameter} if it's female"
     when :LevelDay; return "at level #{parameter} during the day"
@@ -87,6 +87,7 @@ def describeEvolutionMethod(method,parameter=0)
     when :Trade; return "when traded"
     when :TradeItem; return "when traded holding an #{GameData::Item.get(parameter).real_name}"
 	when :HasInParty; return "when leveled up while a #{GameData::Species.get(parameter).name} is also in the party"
+	when :Shedinja; return "also if you have an empty pokeball and party slot"
     end
     return "via a method the programmer was too lazy to describe"
 end

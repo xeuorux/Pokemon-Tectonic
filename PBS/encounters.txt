@@ -3,13 +3,15 @@
 #-------------------------------
 [136] # Casaba Villa
 Land,20
-34,MACHOP,8,10
-33,RATTATA,8,10
-33,PIDGEY,8,10
+25,MACHOP,8,10
+25,MSINISTEA,8,10
+25,PIDGEY,8,10
+25,ELECTRIKE,8,10
 FloweryGrass,20
-33,TOGEPI,8,10
-33,BUDEW,8,10
-34,LILLIPUP,8,10
+25,TOGEPI,8,10
+25,BUDEW,8,10
+25,RATTATA,8,10
+25,ABRA,8,10
 #-------------------------------
 [35] # Impromptu Lab
 Special,20
@@ -28,7 +30,7 @@ Land,20
 25,HOPPIP,7,9
 25,CATERPIE,7,9
 LandTall,20
-25,ABRA,7,9
+25,MEDITITE,7,9
 25,PICHU,7,9
 25,LITWICK,7,9
 25,RIOLU,7,9
@@ -71,7 +73,7 @@ LandSparse,20
 25,VANILLITE,7,9
 Puddle,20
 25,HORSEA,7,9
-25,SLOWPOKE,7,9
+25,LUVDISC,7,9
 25,INKAY,7,9
 25,CLOBBOPUS,7,9
 #-------------------------------
@@ -123,7 +125,7 @@ Special
 #-------------------------------
 [32] # Nemeth Apartments
 Special
-1,TRAPINCH,15,15
+1,ESPURR,15,15
 #-------------------------------
 [71] # Nemeth Apartments Room 103
 Special
@@ -219,7 +221,7 @@ FloweryGrass2,20
 25,CUFANT,15,18
 25,DRATINI,15,18
 25,PSYDUCK,15,18
-25,MEDITITE,15,18
+25,NICKIT,15,18
 Special,20
 1,MVULPIX,15,15
 #-------------------------------
@@ -228,7 +230,7 @@ FloweryGrass2,20
 25,SHINX,15,18
 25,PORYGON,15,18
 25,MIMEJR,15,18
-25,ELECTRIKE,15,18
+25,SLOWPOKE,15,18
 #-------------------------------
 [54] # County Park
 Land,20
@@ -297,7 +299,7 @@ LandTall,20
 20,AIPOM,16,19
 20,SIZZLIPEDE,16,19
 20,VENONAT,16,19
-20,MTANGELA,18,20
+20,SHUPPET,18,20
 20,SPRITZEE,16,19
 #-------------------------------
 [11] # Eleig River Crossing
@@ -366,7 +368,7 @@ Special,20
 #-------------------------------
 [90] #Ice Rink Employees' House
 Special,20
-1,GOOMY,15,15
+1,SKORUPI,15,15
 #-------------------------------
 [92] # Ice Rink Lodge F2 Left Room
 Special,1
@@ -434,22 +436,22 @@ Land,20
 25,NINCADA,18,20
 25,VULLABY,18,20
 25,SPOINK,18,20
-25,SHUPPET,18,20
+25,MTANGELA,18,20
 #-------------------------------
 [130] # Canal Desert
 LandSparse,20
 20,HELIOPTILE,16,18
 20,CACNEA,18,18
 20,SANDILE,18,18
-20,SKORUPI,18,18
+20,SILICOBRA,18,18
 20,HIPPOPOTAS,18,18
 FloweryGrass,20
-25,SILICOBRA,34,36
+25,SKORUPI,34,36
 25,PACHIRISU,34,36
 25,MARACTUS,34,36
 25,GLIGAR,34,36
 Special,1
-1,DEINO,10,10
+1,DARUMAKA,10,10
 #-------------------------------
 [91] # Reading Ribombee Cafe
 Special,20
@@ -484,11 +486,10 @@ Special,1
 #-------------------------------
 [34] # Battle Plaza
 FloweryGrass,20
-20,SNUBBULL,31,33
-20,HAPPINY,31,33
-20,SKITTY,31,33
-20,AUDINO,31,33
-20,INDEEDEE,31,33
+25,SNUBBULL,31,33
+25,HAPPINY,31,33
+25,SKITTY,31,33
+25,AUDINO,31,33
 #-------------------------------
 [029] # Full Blast Records F2
 Special,1
@@ -500,13 +501,12 @@ Special,1
 #-------------------------------
 [185] # Eleig Stretch
 Land
-25,SCYTHER,30,32
-25,MSEVIPER,30,32
-25,MZANGOOSE,30,32
-25,DEERLING,30,32
+33,MSEVIPER,30,32
+33,MZANGOOSE,30,32
+34,DEERLING,30,32
 LandTall
 33,HERACROSS,30,32
-33,MIENFOO,30,32
+33,SCYTHER,30,32
 34,EMOLGA,30,32
 LandSparse
 25,FALINKS,30,32
@@ -514,9 +514,10 @@ LandSparse
 25,DEWPIDER,30,32
 25,LICKITUNG,30,32
 Puddle
-33,CLAUNCHER,30,32
-33,VOLBEAT,30,32
-34,ILLUMISE,30,32
+25,CLAUNCHER,30,32
+25,VOLBEAT,30,32
+25,ILLUMISE,30,32
+25,BIDOOF,30,32
 #-------------------------------
 [186] # Frostflow Farm
 LandTall,20
@@ -539,7 +540,7 @@ Special,1
 #-------------------------------
 [187] # Prizca East
 FloweryGrass2,20
-25,SINISTEA,33,35
+25,INDEEDEE,33,35
 25,SMEARGLE,33,35
 25,FURFROU,33,35
 25,COMFEY,33,35
@@ -591,7 +592,7 @@ Mud,20
 13,SHELLOS_1,37,39
 25,STUNFISK,37,39
 Puddle,20
-25,FRILLISH,37,39
+33,FRILLISH,37,39
 34,WIMPOD,37,39
 33,MAREANIE,37,39
 #-------------------------------
@@ -609,7 +610,7 @@ Special,20
 #-------------------------------
 [211] # Shield
 Land,20
-25,NICKIT,38,38
+25,SPINDA,38,38
 25,SKARMORY,38,38
 25,PINSIR,38,38
 25,KANGASKHAN,38,38
@@ -701,10 +702,11 @@ FloweryGrass,20
 20,PETILIL,18,20
 20,SENTRET,18,20
 DarkCave
-25,ADIGLETT,18,20
-25,AGEODUDE,18,20
-25,GYAMASK,18,20
-25,GMEOWTH,18,20
+20,ADIGLETT,18,20
+20,AGEODUDE,18,20
+20,GYAMASK,18,20
+20,GMEOWTH,18,20
+20,SINISTEA,18,20
 Mud,20 # Post-surf
 20,DHELMISE,34,36
 20,SEVIPER,34,36
@@ -753,16 +755,14 @@ Land,20
 25,CARNIVINE,34,36
 25,MINCCINO,34,36
 LandSparse,20
-20,ORANGURU,34,36
-20,ABSOL,34,36
-20,DRAMPA,34,36
-20,SPINDA,34,36
-20,PASSIMIAN,34,36
+25,ORANGURU,34,36
+25,DRAMPA,34,36
+25,ABSOL,34,36
+25,PASSIMIAN,34,36
 Puddle
-25,FOONGUS,34,36
-25,CORPHISH,34,36	
-25,BIDOOF,34,36
-25,GIRAFARIG,34,36
+33,FOONGUS,34,36
+33,CORPHISH,34,36	
+34,GIRAFARIG,34,36
 #-------------------------------
 [218] # Abyssal Chamber
 Puddle

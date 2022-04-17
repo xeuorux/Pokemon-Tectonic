@@ -86,7 +86,7 @@
 82,DRAGONBREATH,Dragon Breath,007,60,DRAGON,Special,100,20,30,NearOther,0,bef,The user exhales a mighty gust that inflicts damage. It has a 30% chance to numb.
 83,DRAGONTAIL,Dragon Tail,0EC,60,DRAGON,Physical,90,10,0,NearOther,-6,abef,"The user knocks away the target and drags out another Pokémon in its party. In the wild, the battle ends."
 84,DUALCHOP,Dual Chop,0BD,40,DRAGON,Physical,100,15,0,NearOther,0,abef,The user attacks its target by hitting it with brutal strikes. The target is hit twice in a row.
-85,TWISTER,Twister,078,40,DRAGON,Special,100,20,30,AllNearFoes,0,be,The user whips up a small tornado to tear at the opposing team. It has a 30% chance to make targets flinch.
+85,TWISTER,Twister,078,40,DRAGON,Special,100,20,30,AllNearFoes,0,be,A small tornado hits the opposing team. It has a 30% chance to make targets flinch.
 86,DRAGONRAGE,Dragon Rage,06B,1,DRAGON,Special,100,10,0,NearOther,0,bef,This attack hits the target with a shock wave of pure rage. This attack always inflicts 40 HP damage.
 87,DRAGONDANCE,Dragon Dance,026,0,DRAGON,Status,0,20,0,User,0,do,"The user vigorously performs a mystic, powerful dance that boosts its Attack and Speed stats."
 88,BREAKINGSWIPE,Breaking Swipe,042,60,DRAGON,Physical,100,15,100,AllNearFoes,0,abef,"The user swings its tail wildly and attacks opposing Pokémon, lowering their Attack stats."
@@ -312,7 +312,7 @@
 301,HORNLEECH,Horn Leech,0DD,75,GRASS,Physical,100,10,0,NearOther,0,abef,The user drains the foe's energy with its horns. The user's HP is restored by half the damage inflicted.
 302,TROPKICK,Trop Kick,042,70,GRASS,Physical,100,15,100,NearOther,0,abef,The user lands an intense tropical kick on the target. This also lowers the target's Attack stat.
 303,LEAFTORNADO,Leaf Tornado,047,65,GRASS,Special,100,10,50,NearOther,0,bef,The user attacks its foe by encircling it in sharp leaves. It has a 50% chance to lower accuracy.
-304,MAGICALLEAF,Magical Leaf,0A5,60,GRASS,Special,0,20,0,NearOther,0,ef,"The user scatters curious leaves that chase the target. This attack will not miss and skips protections."
+304,MAGICALLEAF,Magical Leaf,0A5,60,GRASS,Special,0,20,0,NearOther,0,ef,"The user scatters leaves that chase the target. Can't miss and skips protections."
 305,NEEDLEARM,Needle Arm,00F,60,GRASS,Physical,100,15,30,NearOther,0,abe,The user attacks by wildly swinging its thorny arms. It has a 30% chance to make the target flinch.
 306,RAZORLEAF,Razor Leaf,000,55,GRASS,Physical,100,25,0,AllNearFoes,0,befh,Sharp-edged leaves are launched to slash at the opposing team. Critical hits land more easily.
 307,VINEWHIP,Vine Whip,504,40,GRASS,Physical,100,25,0,NearOther,0,abef,"The target is struck with slender, whiplike vines. Deals 25% more damage if the target moved first."
@@ -354,7 +354,7 @@
 341,DIG,Dig,0CA,90,GROUND,Physical,100,10,0,NearOther,0,abef,"The user burrows, then attacks on the second turn."
 342,DRILLRUN,Drill Run,000,80,GROUND,Physical,100,10,0,NearOther,0,abefh,The user crashes into its target while rotating its body like a drill. Critical hits land more easily.
 343,STOMPINGTANTRUM,Stomping Tantrum,166,85,GROUND,Physical,100,10,0,NearOther,0,abef,The user attacks driven by frustration. Power increases if previous move failed.
-344,BONECLUB,Bone Club,00F,65,GROUND,Physical,85,20,10,NearOther,0,be,The user clubs the target with a bone. It has a 10% chance to make the target flinch.
+344,BONECLUB,Bone Club,00F,65,GROUND,Physical,100,20,50,NearOther,0,be,The user clubs the target with a bone. It has a 50% chance to make the target flinch.
 345,MUDBOMB,Mud Bomb,047,65,GROUND,Special,100,10,30,NearOther,0,befn,The user launches a hard-packed mud ball to attack. It has a 30% chance to lower accuracy.
 346,BULLDOZE,Bulldoze,044,60,GROUND,Physical,100,20,100,AllNearOthers,0,bef,The user strikes everything around it by stomping on the ground. It reduces hit Pokémon's Speed.
 347,MUDSHOT,Mud Shot,044,60,GROUND,Special,100,15,100,NearOther,0,bef,The user attacks by shooting a beam of mud at the target. It also reduces the target's Speed.
@@ -609,7 +609,7 @@
 593,SHELLSIDEARM,Shell Side Arm,187,90,POISON,Special,100,10,25,NearOther,0,bef,"Inflicts physical or special damage, whichever will be more effective. This has a 25% chance to poison."
 #-------------------------------,,,,,,,,,,,,,
 594,PRISMATICLASER,Prismatic Laser,0C2,170,PSYCHIC,Special,100,10,0,NearOther,0,bef,The user shoots powerful lasers using the power of a prism. The user can't move on the next turn.
-595,PSYCHOBOOST,Psycho Boost,03F,140,PSYCHIC,Special,100,5,0,NearOther,0,bef,The user attacks the target at full power. The attack harshly reduces the user's Sp. Atk stat.
+595,PSYCHOBOOST,Psycho Boost,03F,130,PSYCHIC,Special,100,5,0,NearOther,0,bef,The user attacks the target at full power. The attack harshly reduces the user's Sp. Atk stat.
 596,FUTURESIGHT,Future Sight,111,120,PSYCHIC,Special,100,10,0,NearOther,0,,"Two turns after this move is used, a hunk of psychic energy attacks the target."
 597,SYNCHRONOISE,Synchronoise,123,120,PSYCHIC,Special,100,10,0,AllNearOthers,0,bef,"Using an odd shock wave, the user damages any Pokémon of the same type as the user."
 598,DREAMABSORB,Dream Absorb,0DE,70,PSYCHIC,Special,100,15,0,NearOther,0,bef,The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.
@@ -772,7 +772,7 @@
 752,DIAMONDFORCE,Diamond Force,000,90,ROCK,Special,100,15,0,NearOther,0,befh,"The user sprays diamonds at the target's weak points. Critical hits land more easily."
 753,CLASH,Clash,000,45,DRAGON,Physical,100,40,0,NearOther,0,abef,"The user harnesses inner battle instincts to strike at the target."
 754,JOLT,Jolt,007,40,ELECTRIC,Physical,100,30,10,NearOther,0,abef,"The user strikes the enemy while coated lightly with electricity. It has a 10% chance to numb."
-755,ELECTROSLASH,Electroslash,000,85,ELECTRIC,Physical,100,15,0,NearOther,0,abefhp,"The user harnesses a blade of lightning and slices at the target. Critical hits land more easily."
+755,ELECTROSLASH,Electroslash,000,90,ELECTRIC,Physical,100,15,0,NearOther,0,abefhp,"The user harnesses a blade of lightning and slices at the target. Critical hits land more easily."
 756,CURRENTCRASH,Current Crash,0FA,55,ELECTRIC,Physical,100,30,0,NearOther,0,abef,"The user wraps their body in electricity and crashes into the target. The user also takes 25% recoil."
 757,FAVOR,Favor,089,9,NORMAL,Special,100,20,0,NearOther,0,bef,"A full-power special attack that grows more powerful the more the user likes its Trainer."
 758,NATUREBUBBLE,Nature Bubble,020,40,GRASS,Special,100,35,10,NearOther,0,befn,"The user fires a small bubble of energy at the target. It has a 10% chance to raise user's Sp. Atk."
@@ -813,7 +813,7 @@
 793,INFERNOCHARGE,Inferno Charge,01F,90,FIRE,Physical,100,20,30,NearOther,0,abef,"The user cloaks itself in an inferno of flame and attacks. It has a 30% chance to raise Speed."
 794,FLAREUP,Flare Up,50E,65,FIRE,Physical,100,10,0,NearOther,0,bef,"The user targets the opponents soft spots with a fiery strike. Its power doubles if the target is burned."
 795,PERFUMEDPUNCH,Perfumed Punch,0A5,60,FAIRY,Physical,0,25,0,NearOther,0,abef,"The user throws a sweet-smelling punch which the target is unable to avoid."
-796,INFINITEFORCE,Infinite Force,50F,140,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user wields an exaggerated power to strike the target. The attack's recoil sharply reduces the user's Attack stat."
+796,INFINITEFORCE,Infinite Force,50F,130,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user wields an exaggerated power to strike the target. The attack's recoil sharply reduces the user's Attack stat."
 797,TANTRUM,Tantrum,0D2,120,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user goes on a wild tantrum for two to three turns. It then becomes confused, however."
 798,SLAG,Slag,005,80,STEEL,Special,100,10,30,NearOther,0,befn,"The user sprays mining waste at the target. It has a 30% chance to poison."
 799,MAGNETHRASH,Magnethrash,0A5,90,STEEL,Physical,0,15,0,NearOther,0,abef,"The user generates an intense magnetic connection between it and the target, striking it without fail."
@@ -885,7 +885,7 @@
 866,PUFFBALL,Puffball,529,0,GRASS,Status,100,15,0,NearOther,0,bcel,"The user bursts a ball of sleep-inducing powder. It fails unless the target hit the user this turn."
 867,MUDTHROW,Mud Throw,044,40,GROUND,Special,100,15,10,NearOther,0,bef,"The user attacks by hurling a blob of mud at the target. It has a 10% chance to reduce the target's Speed."
 868,BLINDINGSAND,Blinding Sand,047,40,GROUND,Special,100,10,100,NearOther,0,bef,"The user attacks the opponent by throwing sand at its eyes, reducing accuracy."
-869,PURIFYINGWATER,Purifying Water,548,50,WATER,Special,100,5,0,NearOther,0,bef,"The user shoots purified Water, healing the status problems of all the party Pokémon in the process."
+869,PURIFYINGWATER,Purifying Water,548,50,WATER,Special,100,5,0,NearOther,0,bef,"The user shoots purified Water, also healing the status problems of all the party Pokémon."
 870,CRITICALERROR,Critical Error,0A0,60,GHOST,Special,100,10,0,NearOther,0,bef,"The user causes a glitch in reality. This attack always results in a critical hit."
 871,PRIMALIMPACT,Primal Impact,0AD,90,NORMAL,Physical,100,10,0,NearOther,0,aef,"An attack empowered by the might of a lazy king. It skips and destroys protections."
 872,ADAMANTINEPRESS,Adamantine Press,000,95,ROCK,Physical,100,10,0,NearOther,0,abef,"The user presses their rock-hard body with great force onto the target."
@@ -903,7 +903,7 @@
 884,RAKE,Rake,000,55,BUG,Physical,0,25,0,NearOther,0,abef,"The user rakes the target with sharp claws."
 885,WATERSPIRAL,Water Spiral,16F,85,WATER,Special,100,15,0,NearOther,0,befn,"Fires an spiral of water at enemies, or a HP-restoring one at allies."
 886,SPATTERINGRAM,Spattering Ram,043,60,WATER,Physical,100,25,30,NearOther,0,abef,"The user rams the target like a ship. It has a 30% chance to lower Defense."
-887,BLOSSOM,Blossom,020,50,GRASS,Special,100,35,70,NearOther,0,befn,"A flower blooms underneath the target, dealing damage. It has a 70% chance to raise user's Sp. Atk."
+887,BLOSSOM,Blossom,020,50,GRASS,Special,100,35,70,NearOther,0,befn,"Flowers blooms underneath, dealing damage. It has a 70% chance to raise user's Sp. Atk."
 888,THRIVINGFORCE,Thriving Force,020,90,GRASS,Special,100,15,10,NearOther,0,befn,"The user attacks with the bursting power of nature. It has a 10% chance to raise user's Sp. Atk."
 889,TERRADRAIN,Terra Drain,0DD,100,GRASS,Special,50,15,0,NearOther,0,befh,A nutrient-draining attack. The user's HP is restored by 75% of the damage taken by the target.
 890,MENDINGSPRING,Mending Spring,0DA,40,WATER,Special,100,15,0,NearOther,0,bef,"The user opens a spring to blast the target, and applies Aqua Ring to itself."
@@ -936,7 +936,7 @@
 917,AURATRICK,Aura Trick,540,80,FAIRY,Special,100,10,0,NearOther,0,bef,"Damage increases with the user's Sp. Def stat, rather than it's Sp. Atk stat."
 918,DISTORT,Distort,043,40,FIGHTING,Special,100,35,10,NearOther,0,abef,"The user distorts the target's aura, damaging it. This has a 10% chance of reducing the target's defense."
 919,ADRENALASH,Adrenalash,020,90,FIGHTING,Special,100,15,20,NearOther,0,bef,"The user forms their excitement into a lash to strike the target, with a 10% chance of raising the user's Sp. Atk."
-920,EARTHRIFT,Earth Rift,50F,140,GROUND,Physical,100,10,0,NearOther,0,abef,"The user cracks the earth under the target with a massive strike. This sharply reduces the user's Attack stat."
+920,EARTHRIFT,Earth Rift,50F,130,GROUND,Physical,100,10,0,NearOther,0,abef,"The user cracks the earth under the target with a massive strike. This sharply reduces the user's Attack stat."
 921,UPINFLAMES,Up In Flames,541,80,FIRE,Special,100,10,0,NearOther,0,bef,"The user surrounds the target with fire which also destroys any 'clothing' items its holding."
 922,PROPELLANT,Propellant,542,110,FIRE,Physical,100,10,100,NearOther,0,abef,"The user explodes itself into the target. The target's speed also goes up drastically, however."
 923,PSYCHOBLADE,Psychoblade,000,90,PSYCHIC,Physical,100,10,0,NearOther,0,abefhp,"The user manifests a blade of psychic energy to slash the target. Has a higher chance for a critical hit."
@@ -972,7 +972,9 @@
 953,MULTISTRIKE,Multi-strike,0C0,14,NORMAL,Physical,100,35,0,NearOther,0,abefj,The target is hit two to five times in a row.
 954,MOUNTAINCRUSH,Mountain Crush,0FC,200,ROCK,Physical,50,10,0,NearOther,0,abef,"The user slams itself into the target with the power to destroy a mountain, taking 50% recoil."
 955,SMUSH,Smush,043,40,BUG,Physical,100,20,20,NearOther,0,abef,"The user crushes the target. It has a 20% chance to lower their Defense stat."
-956,ACIDRAIN,Rain Dance,100,0,WATER,Status,0,5,0,BothSides,0,,"The user summons a heavy rain that falls for five turns, powering up Water-type moves."
+956,ACIDRAIN,Acid Rain,100,0,POISON,Status,0,5,0,BothSides,0,,"The user summons a heavy rain that falls for five turns, powering up Water-type moves."
+957,ACIDBATH,Acid Bath,03C,120,POISON,Special,100,5,0,NearOther,0,bef,"The user and target bathe in acid. The target takes damage, and the user's Defenses are reduced."
+958,STINGINGJEALOUSY,Stinging Jealousy,553,70,POISON,Physical,100,5,100,AllNearFoes,0,bef,Attacks with energy from jealousy. All opposing Pokémon with stat boosts get poisoned.
 # Primeval Moves, for use only by avatars
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."

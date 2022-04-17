@@ -1022,7 +1022,12 @@ class PokeBattle_Move_104 < PokeBattle_Move
   def pbEffectGeneral(user)
     user.pbOpposingSide.effects[PBEffects::ToxicSpikes] += 1
     @battle.pbDisplay(_INTL("Poison spikes were scattered all around {1}'s feet!",
-       user.pbOpposingTeam(true)))
+      user.pbOpposingTeam(true)))
+    if user.pbOpposingSide.effects[PBEffects::FlameSpikes] > 0
+      user.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0
+      @battle.pbDisplay(_INTL("The flame spikes around {1}'s feet were brushed aside!",
+          user.pbOpposingTeam(true)))
+    end
   end
 end
 
