@@ -93,11 +93,15 @@ LandSparse,20
 #-------------------------------
 [59] # Mainland Dock
 Land,20
-20,TAILLOW,14,17
-20,CHINGLING,14,17
-20,GULPIN,14,17
-20,TIMBURR,14,17
-20,SCATTERBUG,14,17
+25,GULPIN,14,17
+25,CHINGLING,14,17
+25,TIMBURR,14,17
+25,SCATTERBUG,14,17
+Puddle
+25,FEEBAS,14,17
+25,BARBOACH,14,17
+25,MAGIKARP,14,17
+25,TAILLOW,14,17
 Special
 1,CARVANHA,15,15
 #-------------------------------
@@ -309,9 +313,9 @@ Land,20
 25,AXEW,17,20
 25,GOSSIFLEUR,17,20
 Puddle
-25,BARBOACH,17,20
+25,SKRELP,17,20
 25,BUIZEL,17,20
-25,MAGIKARP,17,20
+25,BIDOOF,17,20
 25,POLIWAG,17,20
 #-------------------------------
 [12] # Gigalith's Guts
@@ -355,7 +359,7 @@ Special,20
 #-------------------------------
 [98] # LuxTech Cold Storage Basement
 Special,20
-1,FEEBAS,15,15
+1,SEEL,15,15
 #-------------------------------
 [103] # Ghost Town Mart
 Special,20
@@ -405,9 +409,8 @@ LandSparse
 #-------------------------------
 [220] # Prizca Sewers East
 LandSparse,20
-33,GOLETT,33,35
-33,DRUDDIGON,33,35
-34,SKRELP,33,35
+50,GOLETT,33,35
+50,DRUDDIGON,33,35
 #-------------------------------
 [066] # Nemeth Apartments Attic
 Special,20
@@ -514,10 +517,9 @@ LandSparse
 25,DEWPIDER,30,32
 25,LICKITUNG,30,32
 Puddle
-25,CLAUNCHER,30,32
-25,VOLBEAT,30,32
-25,ILLUMISE,30,32
-25,BIDOOF,30,32
+33,CLAUNCHER,30,32
+33,VOLBEAT,30,32
+34,ILLUMISE,30,32
 #-------------------------------
 [186] # Frostflow Farm
 LandTall,20
