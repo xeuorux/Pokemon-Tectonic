@@ -975,6 +975,8 @@
 956,ACIDRAIN,Acid Rain,100,0,POISON,Status,0,5,0,BothSides,0,,"The user summons a heavy rain that falls for five turns, powering up Water-type moves."
 957,ACIDBATH,Acid Bath,03C,120,POISON,Special,100,5,0,NearOther,0,bef,"The user and target bathe in acid. The target takes damage, and the user's Defenses are reduced."
 958,STINGINGJEALOUSY,Stinging Jealousy,553,70,POISON,Physical,100,5,100,AllNearFoes,0,bef,Attacks with energy from jealousy. All opposing Pokémon with stat boosts get poisoned.
+959,STANDTOGETHER,Stand Together,554,0,FIGHTING,Status,0,40,0,User,0,d,"The user holds fast with its teammates, raising the Defense of itself and its allies."
+960,CAMARADERIE,Camaraderie,555,0,PSYCHIC,Status,0,40,0,User,0,d,"The user calms itself and its teammates, raising the Sp. Defense of itself and its allies."
 # Primeval Moves, for use only by avatars
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."

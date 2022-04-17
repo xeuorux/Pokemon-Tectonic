@@ -1192,7 +1192,10 @@ class PokeBattle_Move_096 < PokeBattle_Move
 	def pbMoveFailed?(user,targets)
 		# NOTE: Unnerve does not stop a Pokémon using this move.
 		item = user.item
-		if item.nil? || !item.is_berry? || !user.itemActive?
+		if item.nil?
+			@battle.pbDisplay(_INTL("But it failed!"))
+			return true		
+		elsif !item.is_berry? || !user.itemActive?
 		  @battle.pbDisplay(_INTL("But it failed!"))
 		  return true
 		end
@@ -1215,7 +1218,19 @@ class PokeBattle_Move_096 < PokeBattle_Move
     end
     return ret
   end
+  
+  
+  def pbBaseDamage(baseDmg,user,target)
+	echoln _INTL("user.item.nil? is {1}", user.item.nil?)
+	if user.item.nil?
+		return 1
+	else
+		return (user.item.is_berry? || user.itemActive?) ? pbNaturalGiftBaseDamage(user.item.id) : 1
+##    return pbNaturalGiftBaseDamage(user.item.id)
+	end
 end
+end
+
 
 class PokeBattle_Move
 	def removeProtections(target)
