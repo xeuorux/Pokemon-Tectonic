@@ -31,13 +31,14 @@ Pokemon = BLASFEMMIE,70
 #-------------------------------
 [BUGCATCHER,Colin]
 Policies = REMARKONSTARTER
-Pokemon = KRICKETOT,7
+Pokemon = KRICKETOT,8
     AbilityIndex = 0
-Pokemon = SNOM,8
+Pokemon = MVULPIX,9
     AbilityIndex = 0
+	Moves = COYGAZE,DAZZLE,SHADOW
 #-------------------------------
 [YOUNGSTER,Harvey]
-Pokemon = LUVDISC,7
+Pokemon = LUVDISC,8
     AbilityIndex = 0
 Pokemon = SEEDOT,8
     AbilityIndex = 0
@@ -50,7 +51,7 @@ Pokemon = PONYTA,8
     AbilityIndex = 0
 #-------------------------------
 [HIKER,Dave]
-Pokemon = GEODUDE,9
+Pokemon = GEODUDE,8
     AbilityIndex = 0
 Pokemon = TIMBURR,9
     AbilityIndex = 0
