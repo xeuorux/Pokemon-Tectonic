@@ -1,6 +1,6 @@
 Name         = BattleChanges                                     
 Version      = 1.0  
 Requires	 = StatTracking  
-Requires	 = PokedexRework                                                                    
+Requires	 = ChasmPokedex                                                                    
 Link         = https://reliccastle.com/link-to-the-plugin/               
 Credits      = Zeu
