@@ -481,7 +481,7 @@ class PokeBattle_Battler
     if Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::Prankster] &&
        target.pbHasType?(:DARK) && target.opposes?(user)
       PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
-      @battle.pbDisplay(_INTL("It doesn't affect {1} due to its Dark typing...",target.pbThis(true)))
+      @battle.pbDisplay(_INTL("The Prankster-boosted move doesn't affect {1} due to its Dark typing...",target.pbThis(true)))
       return false
     end
     # Airborne-based immunity to Ground moves

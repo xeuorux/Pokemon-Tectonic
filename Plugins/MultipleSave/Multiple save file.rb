@@ -719,8 +719,10 @@ class ScreenChooseFileSave
     textpos<<[_INTL("#{title}"),16*2+x,5*2+y,0,TEXTCOLOR,TEXTSHADOWCOLOR]
     textpos<<[_INTL("Badges:"),16*2+x,56*2+y,0,TEXTCOLOR,TEXTSHADOWCOLOR]
     textpos<<[trainer.badge_count.to_s,103*2+x,56*2+y,1,TEXTCOLOR,TEXTSHADOWCOLOR]
-    textpos<<[_INTL("Pokédex:"),16*2+x,72*2+y,0,TEXTCOLOR,TEXTSHADOWCOLOR]
-    textpos<<[trainer.pokedex.seen_count.to_s,103*2+x,72*2+y,1,TEXTCOLOR,TEXTSHADOWCOLOR]
+    #textpos<<[_INTL("Pokédex:"),16*2+x,72*2+y,0,TEXTCOLOR,TEXTSHADOWCOLOR]
+    #textpos<<[trainer.pokedex.seen_count.to_s,103*2+x,72*2+y,1,TEXTCOLOR,TEXTSHADOWCOLOR]
+	textpos<<[_INTL("Version:"),16*2+x,72*2+y,0,TEXTCOLOR,TEXTSHADOWCOLOR]
+	textpos<<[self.fileLoad[:game_version],103*2+x,72*2+y,1,TEXTCOLOR,TEXTSHADOWCOLOR]
     textpos<<[_INTL("Time:"),16*2+x,88*2+y,0,TEXTCOLOR,TEXTSHADOWCOLOR]
     hour = totalsec / 60 / 60
     min  = totalsec / 60 % 60

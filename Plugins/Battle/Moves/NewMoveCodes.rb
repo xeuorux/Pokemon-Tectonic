@@ -1747,3 +1747,22 @@ class PokeBattle_Move_552 < PokeBattle_WeatherMove
 	  @weatherType = :AcidRain
 	end
 end
+
+
+#===============================================================================
+# Poisons opposing Pokemon that have increased their stats. (Burning Jealousy)
+#===============================================================================
+class PokeBattle_Move_553 < PokeBattle_Move
+	def pbAdditionalEffect(user,target)
+	  return if target.damageState.substitute
+	  if target.pbCanPoison?(user,false,self) && target.statStagesUp?
+		target.pbPoison(user)
+	  end
+	end
+	
+	def getScore(score,user,target,skill=100)
+	  score -= 20
+	  score += 50 if target.statStagesUp? && target.pbCanPoison?(user,false,self)
+	  return score
+	end
+end
