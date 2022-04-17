@@ -279,8 +279,6 @@ LandSparse,20
 25,MORELULL,18,20
 25,EKANS,18,20
 25,WOOPER,18,20
-Special,20
-1,ADIGLETT,15,15
 #-------------------------------
 [8] # Velenz
 LandTall,20
