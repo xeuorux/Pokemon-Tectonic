@@ -1,5 +1,7 @@
-# Style value adjustments
+COMBINE_ATTACKING_STATS = true
+STYLE_VALUE_TOTAL = 50
 
+# Style value adjustments
 class Pokemon
 	# Max total EVs
 	EV_LIMIT      = 50
@@ -156,7 +158,11 @@ class StyleValueScene
   end
   
   def getStyleName(evs)
-	stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+	if !COMBINE_ATTACKING_STATS
+		stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+	else
+		stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_DEFENSE,:SPEED]
+	end
 	largeStats = []
 	stats.each do |stat|
 		largeStats.push(stat) if evs[stat] >= 13
@@ -277,14 +283,37 @@ class StyleValueScreen
     @scene.pbStartScene(pkmn)
 	@index = 0
 	stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
-	@pool = 50
+
+	resetEVs = false
+	if COMBINE_ATTACKING_STATS
+		resetEVs = true if pkmn.ev[:ATTACK] != pkmn.ev[:SPECIAL_ATTACK]
+	else !COMBINE_ATTACKING_STATS
+		if pkmn.ev[:ATTACK] == pkmn.ev[:SPECIAL_ATTACK]
+			total = 0
+			stats.each do |stat|
+				total += pkmn.ev[stat]
+			end
+			resetEVs = true if total > STYLE_VALUE_TOTAL
+		end 
+	end
+
+	if resetEVs
+		pbMessage(_INTL("Resetting style values due to non-conformity with rules."))
+		GameData::Stat.each_main do |s|
+			pkmn.ev[s.id]       = 8
+		end
+	end
+
+	@pool = STYLE_VALUE_TOTAL
 	stats.each do |stat|
+		next if stat == :SPECIAL_ATTACK && COMBINE_ATTACKING_STATS
 		@pool -= pkmn.ev[stat]
 	end
 	if @pool < 0
 		raise _INTL("{1} has more EVs than its supposed to be able to!",pkmn.name)
 	end
 	@scene.pool = @pool
+	updateStats(pkmn)
     loop do
 	  Graphics.update
       Input.update
@@ -301,9 +330,9 @@ class StyleValueScreen
 	  elsif Input.trigger?(Input::USE)
 		if @index == 6
 			pkmn.ev.each do |stat,value|
-				@pool += value
 				pkmn.ev[stat] = 0
 			end
+			@pool = STYLE_VALUE_TOTAL
 			@scene.pool = @pool
 			pbPlayDecisionSE
 			updateStats(pkmn)
@@ -337,14 +366,17 @@ class StyleValueScreen
 		@scene.drawNameAndStats
       elsif Input.repeat?(Input::RIGHT) && @index < 6
 		stat = stats[@index]
+		stat = :ATTACK if COMBINE_ATTACKING_STATS && stat == :SPECIAL_ATTACK
 		if pkmn.ev[stat] < 20 && @pool > 0
 			pkmn.ev[stat] = (pkmn.ev[stat] + 1)
 			@pool -= 1
+			pkmn.ev[:SPECIAL_ATTACK] = pkmn.ev[:ATTACK] if COMBINE_ATTACKING_STATS
 			@scene.pool = @pool
 			pbPlayDecisionSE
 			updateStats(pkmn)
 		elsif pkmn.ev[stat] == 20 && Input.trigger?(Input::RIGHT)
 			pkmn.ev[stat] = 0
+			pkmn.ev[:SPECIAL_ATTACK] = pkmn.ev[:ATTACK] if COMBINE_ATTACKING_STATS
 			@pool += 20
 			@scene.pool = @pool
 			pbPlayDecisionSE
@@ -354,14 +386,17 @@ class StyleValueScreen
 		end
 	  elsif Input.repeat?(Input::LEFT) && @index < 6
 	    stat = stats[@index]
+		stat = :ATTACK if COMBINE_ATTACKING_STATS && stat == :SPECIAL_ATTACK
 		if pkmn.ev[stat] > 0
 			pkmn.ev[stat] = (pkmn.ev[stat] - 1)
+			pkmn.ev[:SPECIAL_ATTACK] = pkmn.ev[:ATTACK] if COMBINE_ATTACKING_STATS
 			@pool += 1
 			@scene.pool = @pool
 			pbPlayDecisionSE
 			updateStats(pkmn)
 		elsif @pool > 0 && Input.trigger?(Input::LEFT)
 			pkmn.ev[stat] = [@pool,20].min
+			pkmn.ev[:SPECIAL_ATTACK] = pkmn.ev[:ATTACK] if COMBINE_ATTACKING_STATS
 			@pool -= pkmn.ev[stat]
 			@scene.pool = @pool
 			pbPlayDecisionSE
