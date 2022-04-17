@@ -1769,7 +1769,7 @@ end
 
 
 #===============================================================================
-# Raises Sp.Attack of user and team (Stand Together)
+# Raises Defense of user and team (Stand Together)
 #===============================================================================
 class PokeBattle_Move_554 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
@@ -1803,14 +1803,14 @@ end
 
 
 #===============================================================================
-# Raises Sp.Attack of user and team (CAMARADERIE)
+# Raises Sp. Def of user and team (CAMARADERIE)
 #===============================================================================
 class PokeBattle_Move_555 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
     return false if damagingMove?
 	failed = true
 	@battle.eachSameSideBattler(user) do |b|
-      next if !b.pbCanRaiseStatStage?(:SPECIALDEFENSE,user,self,true)
+      next if !b.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self,true)
       failed = false
       break
     end
@@ -1820,8 +1820,8 @@ class PokeBattle_Move_555 < PokeBattle_Move
 
   def pbEffectGeneral(user)
     @battle.eachSameSideBattler(user) do |b|
-        next if !b.pbCanRaiseStatStage?(:SPECIALDEFENSE,user,self,true)
-        b.pbRaiseStatStage(:SPECIALDEFENSE,1,user)
+        next if !b.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self,true)
+        b.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
     end
   end
   
@@ -1829,7 +1829,7 @@ class PokeBattle_Move_555 < PokeBattle_Move
 		@battle.battlers.each do |b|
 			pkmn = b.pokemon
 			next if !pkmn || !pkmn.able? || !b.opposes?
-			score -= b.stages[:SPECIALDEFENSE] * 10
+			score -= b.stages[:SPECIAL_DEFENSE] * 10
 		end
 		return score
 	end
