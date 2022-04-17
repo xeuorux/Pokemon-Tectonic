@@ -257,8 +257,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
         battle.pbHideAbilitySplash(b) if user.opposes?(b)
         next
       end
-      itemName = target.itemName
-      target.pbRemoveItem(false)
+      itemName = b.itemName
+      b.pbRemoveItem(false)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("{1} turned {2}'s {3} into gold!",user.pbThis,
            b.pbThis(true),itemName))
