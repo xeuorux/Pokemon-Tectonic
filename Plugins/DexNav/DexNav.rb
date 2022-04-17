@@ -325,6 +325,24 @@ Events.onMapChanging +=proc {|_sender,e|
 	$currentDexSearch = nil
 }
 
+unless defined?(generateWildHeldItem)
+	def generateWildHeldItem(pokemon,friskActive=false)
+		item = nil
+		items = pokemon.wildHoldItems
+		chances = [50,5,1]
+		itemrnd = rand(100)
+		itemrnd = [itemrnd-20,0].max if friskActive
+		if (items[0]==items[1] && items[1]==items[2]) || itemrnd<chances[0]
+		item = items[0]
+		elsif itemrnd<(chances[0]+chances[1])
+		item = items[1]
+		elsif itemrnd<(chances[0]+chances[1]+chances[2])
+		item = items[2]
+		end
+		return item
+	end
+end
+
 Events.onWildPokemonCreate += proc {|sender,e|
     pokemon = e[0]
 	next if pokemon.boss?
@@ -341,6 +359,7 @@ Events.onWildPokemonCreate += proc {|sender,e|
 			pokemon.form = species_data.form
 			pokemon.reset_moves
 			pokemon.learn_move($currentDexSearch[1]) if $currentDexSearch[1]
+			pokemon.item = generateWildHeldItem(pokemon,$Trainer.first_pokemon.hasAbility?(:FRISK))
 			# There is a higher chance for shininess
 			pokemon.shinyRerolls *= 2
 			$currentDexSearch = nil

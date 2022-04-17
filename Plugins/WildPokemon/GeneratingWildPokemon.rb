@@ -7,23 +7,12 @@
 def pbGenerateWildPokemon(species,level,isRoamer=false)
   genwildpoke = Pokemon.new(species,level)
   # Give the wild Pokémon a held item
-  items = genwildpoke.wildHoldItems
-  first_pkmn = $Trainer.first_pokemon
-  chances = [50,5,1]
-  itemrnd = rand(100)
-  itemrnd = [itemrnd-20,0].max if first_pkmn.hasAbility?(:FRISK)
-  if (items[0]==items[1] && items[1]==items[2]) || itemrnd<chances[0]
-    genwildpoke.item = items[0]
-  elsif itemrnd<(chances[0]+chances[1])
-    genwildpoke.item = items[1]
-  elsif itemrnd<(chances[0]+chances[1]+chances[2])
-    genwildpoke.item = items[2]
-  end
+  item = generateWildHeldItem(genwildpoke,$Trainer.first_pokemon.hasAbility?(:FRISK))
   # Shiny Charm makes shiny Pokémon more likely to generate
   if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
-	genwildpoke.shinyRerolls = 3
+	  genwildpoke.shinyRerolls = 3
   else
-	genwildpoke.shinyRerolls = 1
+	  genwildpoke.shinyRerolls = 1
   end
   # Trigger events that may alter the generated Pokémon further
   Events.onWildPokemonCreate.trigger(nil,genwildpoke)
@@ -34,6 +23,22 @@ def pbGenerateWildPokemon(species,level,isRoamer=false)
 	  genwildpoke.shiny = nil
   end
   return genwildpoke
+end
+
+def generateWildHeldItem(pokemon,friskActive=false)
+  item = nil
+  items = pokemon.wildHoldItems
+  chances = [50,5,1]
+  itemrnd = rand(100)
+  itemrnd = [itemrnd-20,0].max if friskActive
+  if (items[0]==items[1] && items[1]==items[2]) || itemrnd<chances[0]
+    item = items[0]
+  elsif itemrnd<(chances[0]+chances[1])
+    item = items[1]
+  elsif itemrnd<(chances[0]+chances[1]+chances[2])
+    item = items[2]
+  end
+  return item
 end
 
 class Pokemon
