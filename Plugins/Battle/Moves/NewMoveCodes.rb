@@ -1766,3 +1766,71 @@ class PokeBattle_Move_553 < PokeBattle_Move
 	  return score
 	end
 end
+
+
+#===============================================================================
+# Raises Sp.Attack of user and team (Stand Together)
+#===============================================================================
+class PokeBattle_Move_554 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    return false if damagingMove?
+	failed = true
+	@battle.eachSameSideBattler(user) do |b|
+      next if !b.pbCanRaiseStatStage?(:DEFENSE,user,self,true)
+      failed = false
+      break
+    end
+	@battle.pbDisplay(_INTL("But it failed!")) if failed
+    return failed
+  end
+
+  def pbEffectGeneral(user)
+    @battle.eachSameSideBattler(user) do |b|
+        next if !b.pbCanRaiseStatStage?(:DEFENSE,user,self,true)
+        b.pbRaiseStatStage(:DEFENSE,1,user)
+    end
+  end
+  
+	def getScore(score,user,target,skill=100)
+		@battle.battlers.each do |b|
+			pkmn = b.pokemon
+			next if !pkmn || !pkmn.able? || !b.opposes?
+			score -= b.stages[:DEFENSE] * 10
+		end
+		return score
+	end
+end
+
+
+#===============================================================================
+# Raises Sp.Attack of user and team (CAMARADERIE)
+#===============================================================================
+class PokeBattle_Move_555 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    return false if damagingMove?
+	failed = true
+	@battle.eachSameSideBattler(user) do |b|
+      next if !b.pbCanRaiseStatStage?(:SPECIALDEFENSE,user,self,true)
+      failed = false
+      break
+    end
+	@battle.pbDisplay(_INTL("But it failed!")) if failed
+    return failed
+  end
+
+  def pbEffectGeneral(user)
+    @battle.eachSameSideBattler(user) do |b|
+        next if !b.pbCanRaiseStatStage?(:SPECIALDEFENSE,user,self,true)
+        b.pbRaiseStatStage(:SPECIALDEFENSE,1,user)
+    end
+  end
+  
+	def getScore(score,user,target,skill=100)
+		@battle.battlers.each do |b|
+			pkmn = b.pokemon
+			next if !pkmn || !pkmn.able? || !b.opposes?
+			score -= b.stages[:SPECIALDEFENSE] * 10
+		end
+		return score
+	end
+end
