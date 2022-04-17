@@ -4267,7 +4267,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GYARADOS,Level,30
+Evolutions = GYARADOS,Level,36
 #-------------------------------
 [130]
 Name = Gyarados
@@ -11530,7 +11530,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MILOTIC,Level,30
+Evolutions = MILOTIC,Level,36
 #-------------------------------
 [350]
 Name = Milotic
@@ -11538,8 +11538,8 @@ InternalName = MILOTIC
 Type1 = WATER
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,60,79,81,100,125
-# Total = 540
+BaseStats = 95,50,79,81,88,125
+# Total = 518
 GenderRate = Female50Percent
 GrowthRate = Erratic
 BaseEXP = 189
