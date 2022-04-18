@@ -2293,6 +2293,7 @@ Pokemon = VIBRAVA,33
 	Item = BUGGEM
 Pokemon = CHANSEY,34
 	Item = EVIOLITE
+	Moves = SEISMICTOSS,LULLABY,POUT
 Pokemon = GRAPPLOCT,33
 #-------------------------------
 [AROMALADY3,Marion]
