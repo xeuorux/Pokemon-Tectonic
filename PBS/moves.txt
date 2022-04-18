@@ -466,7 +466,7 @@
 451,HEADTHROW,Head Throw,500,30,GRASS,Physical,85,20,0,NearOther,0,befn,Round objects are hurled at the target to strike three times in a row.
 452,BIND,Bind,0CF,15,NORMAL,Physical,85,20,0,NearOther,0,abef,Things such as long bodies or tentacles are used to bind and squeeze the foe for four to five turns.
 453,DOUBLESLAP,Double Slap,0C0,15,NORMAL,Physical,85,10,0,NearOther,0,abef,"The target is slapped repeatedly, back and forth, two to five times in a row."
-454,FURYATTACK,Fury Attack,0C0,20,FLYING,Physical,100,20,0,NearOther,0,abef,"The target is jabbed repeatedly with a horn or beak two to five times in a row."
+454,FURYPECKS,Fury Pecks,0C0,20,FLYING,Physical,100,20,0,NearOther,0,abef,"The target is jabbed repeatedly with a horn or beak two to five times in a row."
 455,WRAP,Wrap,0CF,15,NORMAL,Physical,100,20,0,NearOther,0,abef,"A long body or vines are used to wrap and squeeze the target for four to five turns."
 456,CONSTRICT,Constrict,044,10,NORMAL,Physical,100,35,10,NearOther,0,abef,"The foe is attacked with long, creeping tentacles or vines. It has a 10% to lower Speed."
 457,BIDE,Bide,0D4,1,NORMAL,Physical,0,10,0,None,1,abf,"The user endures attacks for two turns, then strikes back to cause double the damage taken."
