@@ -19,7 +19,7 @@ class PokeBattle_Move
         if Effectiveness.resistant?(b.damageState.typeMod);          effectiveness = 1
         elsif Effectiveness.super_effective?(b.damageState.typeMod); effectiveness = 2
         end
-		effectiveness = -1 if Effectiveness.ineffective?(b.damageState.typeMod)
+		    effectiveness = -1 if Effectiveness.ineffective?(b.damageState.typeMod)
         effectiveness = 4 if Effectiveness.hyper_effective?(b.damageState.typeMod)
         animArray.push([b,oldHP,effectiveness])
       end
@@ -598,13 +598,12 @@ class PokeBattle_Move
       ret = 0.5
       @battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!"))
     end
-      return ret
-    end
+    return ret
+  end
   
   def pbCalcTypeMod(moveType,user,target)
     return Effectiveness::NORMAL_EFFECTIVE if !moveType
-    return Effectiveness::NORMAL_EFFECTIVE if moveType == :GROUND &&
-       target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL)
+    return Effectiveness::NORMAL_EFFECTIVE if moveType == :GROUND && target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL)
     # Determine types
     tTypes = target.pbTypes(true)
     # Get effectivenesses
@@ -626,12 +625,15 @@ class PokeBattle_Move
 	
     # Late boss specific immunity abilities check
     if @battle.bossBattle?
-      if pbImmunityByAbility(user,target) 
+      if pbImmunityByAbility(user,target)
         if damagingMove?
           @battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
         else
           @battle.pbDisplay(_INTL("Except, within the avatar's aura, the move can pierce the immunity!"))
         end
+        ret /= 2
+      elsif damagingMove? && moveType == :GROUND && target.airborne? && !hitsFlyingTargets? && target.hasLevitate? && !@battle.moldBreaker
+        @battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
         ret /= 2
       end
     end

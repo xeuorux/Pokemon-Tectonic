@@ -450,9 +450,8 @@ class PokeBattle_Battler
     # Type immunity
     if move.damagingMove? && Effectiveness.ineffective?(typeMod)
       PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
-      if !user.boss && !target.boss
+      if !@battle.bossBattle?
         @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-        
         if !battle.wildBattle?
           if @battle.pbOwnedByPlayer?(target.index)
             # Trigger each opponent's dialogue
@@ -473,8 +472,7 @@ class PokeBattle_Battler
         end
         return false
       else
-        name = (user.boss ? user : target).pbThis(true)
-        @battle.pbDisplay(_INTL("Within {1}'s aura, immunities are resistances!",name))
+        @battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!"))
       end
     end
     # Dark-type immunity to moves made faster by Prankster
@@ -485,8 +483,7 @@ class PokeBattle_Battler
       return false
     end
     # Airborne-based immunity to Ground moves
-    if move.damagingMove? && move.calcType == :GROUND &&
-       target.airborne? && !move.hitsFlyingTargets?
+    if move.damagingMove? && move.calcType == :GROUND && target.airborne? && !move.hitsFlyingTargets?
       if target.hasLevitate? && !@battle.moldBreaker
         @battle.pbShowAbilitySplash(target)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -495,7 +492,7 @@ class PokeBattle_Battler
           @battle.pbDisplay(_INTL("{1} avoided the attack with {2}!",target.pbThis,target.abilityName))
         end
         @battle.pbHideAbilitySplash(target)
-        return false
+        return false unless @battle.bossBattle? # In boss battles, it just reduced damage by half (calced later)
       end
       if target.hasActiveItem?(:AIRBALLOON)
         @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!",target.pbThis,target.itemName))
