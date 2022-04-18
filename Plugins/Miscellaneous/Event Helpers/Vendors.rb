@@ -99,7 +99,16 @@ def malasadaVendor()
 	)
 end
 
+def isMixFossil?(item_symbol)
+	[:FOSSILIZEDBIRD,:FOSSILIZEDDRAKE,:FOSSILIZEDFISH,:FOSSILIZEDDINO].include?(item_symbol)
+end
+
 def reviveFossil(fossil)
+	if isMixFossil?(fossil)
+		pbMessage("My apologies, I don't know what to do with this type of fossil.")
+		return
+	end
+
 	fossilsToSpecies = {
 		:HELIXFOSSIL => :OMANYTE,
 		:DOMEFOSSIL => :KABUTO,
@@ -113,7 +122,7 @@ def reviveFossil(fossil)
 		:JAWFOSSIL => :TYRUNT,
 		:SAILFOSSIL => :AMAURA
 	}
-	
+
 	species = fossilsToSpecies[fossil] || nil
 	
 	if species.nil?
@@ -134,4 +143,64 @@ def reviveFossil(fossil)
 	pbMessage("It's done! Here is your newly revived Pokemon!")
 	
 	pbAddPokemon(species,15)
+end
+
+def reviveMixFossils(fossil1,fossil2)
+	if fossil1 == fossil2
+		pbMessage("The fossils can't be the same!")
+		return
+	end
+
+	fossilsToSpecies = {
+		[:FOSSILIZEDBIRD,:FOSSILIZEDDRAKE] => :DRACOZOLT,
+		[:FOSSILIZEDBIRD,:FOSSILIZEDDINO] => :ARCTOZOLT,
+		[:FOSSILIZEDFISH,:FOSSILIZEDDRAKE] => :DRACOVISH,
+		[:FOSSILIZEDFISH,:FOSSILIZEDDINO] => :ARCTOVISH
+	}
+
+	chosenSpecies = nil
+	fossilsToSpecies.each do |key,value|
+		if key.include?(fossil1) && key.include?(fossil2)
+			chosenSpecies = value
+			break
+		end
+	end
+
+	if species.nil?
+		pbMessage("Error! Could not determine how to revive the given fossils.")
+		return
+	end
+
+	pbMessage("The procedure has started, now just to wait...")
+	
+	blackFadeOutIn(30) {
+		$PokemonBag.pbDeleteItem(fossil1)
+		$PokemonBag.pbDeleteItem(fossil2)
+	}
+	
+	pbMessage("It's done! Here is your newly revived Pokemon!")
+	
+	pbAddPokemon(species,15)
+end
+
+def pbChooseMixFossilHead(var = 0)
+	ret = nil
+	pbFadeOutIn {
+	  scene = PokemonBag_Scene.new
+	  screen = PokemonBagScreen.new(scene,$PokemonBag)
+	  ret = screen.pbChooseItemScreen(Proc.new { |item| [:FOSSILIZEDBIRD,:FOSSILIZEDFISH] })
+	}
+	$game_variables[var] = ret || :NONE if var > 0
+	return ret
+end
+
+def pbChooseMixFossilBody(var = 0)
+	ret = nil
+	pbFadeOutIn {
+	  scene = PokemonBag_Scene.new
+	  screen = PokemonBagScreen.new(scene,$PokemonBag)
+	  ret = screen.pbChooseItemScreen(Proc.new { |item| [:FOSSILIZEDDRAKE,:FOSSILIZEDDINO] })
+	}
+	$game_variables[var] = ret || :NONE if var > 0
+	return ret
 end
