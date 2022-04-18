@@ -313,7 +313,7 @@ class PokeBattle_Battler
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
         return false
-      else
+      elsif move.pbTarget(user).targets_foe
         @battle.pbDisplay(_INTL("Quick Guard was ignored, and failed to protect {1}!",target.pbThis(true)))
       end
     end
@@ -325,7 +325,7 @@ class PokeBattle_Battler
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
         return false
-      else
+      elsif move.pbTarget(user).targets_foe
         @battle.pbDisplay(_INTL("{1}'s Protect was ignored!",target.pbThis))
       end
     end
@@ -342,7 +342,7 @@ class PokeBattle_Battler
           end
         end
         return false
-      else
+      elsif move.pbTarget(user).targets_foe
         @battle.pbDisplay(_INTL("{1}'s Obstruct was ignored!",target.pbThis))
       end
     end
@@ -359,7 +359,7 @@ class PokeBattle_Battler
           end
         end
         return false
-      else
+      elsif move.pbTarget(user).targets_foe
         @battle.pbDisplay(_INTL("{1}'s King's Shield was ignored!",target.pbThis))
       end
     end
@@ -381,7 +381,7 @@ class PokeBattle_Battler
           user.pbItemHPHealCheck
         end
         return false
-      else
+      elsif move.pbTarget(user).targets_foe
         @battle.pbDisplay(_INTL("{1}'s Spiky Shield was ignored!",target.pbThis))
       end
     end
@@ -396,7 +396,7 @@ class PokeBattle_Battler
           user.pbPoison(target) if user.pbCanPoison?(target,false)
         end
         return false
-      else
+      elsif move.pbTarget(user).targets_foe
         @battle.pbDisplay(_INTL("{1}'s Baneful Bunker was ignored!",target.pbThis))
       end
     end
@@ -411,7 +411,7 @@ class PokeBattle_Battler
           user.pbParalyze(target) if user.pbCanParalyze?(target,false)
         end
         return false
-      else
+      elsif move.pbTarget(user).targets_foe
         @battle.pbDisplay(_INTL("{1}'s Stunning Curl was ignored!",target.pbThis))
       end
     end
@@ -423,7 +423,7 @@ class PokeBattle_Battler
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
         return false
-      else
+      elsif move.pbTarget(user).targets_foe
         @battle.pbDisplay(_INTL("Mat Block was ignored, and failed to protect {1}!",target.pbThis(true)))
       end
     end
