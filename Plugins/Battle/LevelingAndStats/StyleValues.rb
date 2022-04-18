@@ -1,5 +1,6 @@
 COMBINE_ATTACKING_STATS = true
 STYLE_VALUE_TOTAL = 50
+DEFAULT_STYLE_VALUE = 10
 
 # Style value adjustments
 class Pokemon
@@ -300,7 +301,7 @@ class StyleValueScreen
 	if resetEVs
 		pbMessage(_INTL("Resetting style values due to non-conformity with rules."))
 		GameData::Stat.each_main do |s|
-			pkmn.ev[s.id]       = 8
+			pkmn.ev[s.id]       = DEFAULT_STYLE_VALUE
 		end
 	end
 
@@ -411,12 +412,12 @@ end
 
 def choosePokemonToStyle(pokemonVar = 1,nameVar = 3)
 	pbChooseStylePokemon(1,3, proc { |p|
-		p.ev[:ATTACK] != 8 ||
-		p.ev[:DEFENSE] != 8 ||
-		p.ev[:SPEED] != 8 ||
-		p.ev[:HP] != 8 ||
-		p.ev[:SPECIAL_ATTACK] != 8 ||
-		p.ev[:SPECIAL_DEFENSE] != 8
+		p.ev[:ATTACK] != DEFAULT_STYLE_VALUE ||
+		p.ev[:DEFENSE] != 1DEFAULT_STYLE_VALUE0 ||
+		p.ev[:SPEED] != DEFAULT_STYLE_VALUE ||
+		p.ev[:HP] != DEFAULT_STYLE_VALUE ||
+		p.ev[:SPECIAL_ATTACK] != DEFAULT_STYLE_VALUE ||
+		p.ev[:SPECIAL_DEFENSE] != DEFAULT_STYLE_VALUE
 		}
 	)
 end
