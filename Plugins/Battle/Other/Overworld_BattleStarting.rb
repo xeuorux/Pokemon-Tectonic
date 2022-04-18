@@ -84,8 +84,16 @@ def pbTrainerBattleCore(*args)
   randomOrder = $PokemonTemp.battleRules["randomOrder"] || false
   # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
   if $Trainer.able_pokemon_count == 0 || ($DEBUG && Input.press?(Input::CTRL))
-    pbMessage(_INTL("SKIPPING BATTLE...")) if $DEBUG
-    pbMessage(_INTL("AFTER WINNING...")) if $DEBUG && $Trainer.able_pokemon_count > 0
+    if $DEBUG
+      if pbConfirmMessageSerious(_INTL("Perfect battle?"))
+        $game_switches[94] = true
+        pbMessage(_INTL("SKIPPING BATTLE PERFECT..."))
+      else
+        $game_switches[94] = false
+        pbMessage(_INTL("SKIPPING BATTLE..."))
+      end
+      pbMessage(_INTL("AFTER WINNING...")) if $Trainer.able_pokemon_count > 0
+    end
     pbSet(outcomeVar,($Trainer.able_pokemon_count == 0) ? 0 : 1)   # Treat it as undecided/a win
     $PokemonTemp.clearBattleRules
     $PokemonGlobal.nextBattleBGM       = nil
