@@ -49,7 +49,7 @@ class Pokemon
     @ev               = {}
     GameData::Stat.each_main do |s|
       @iv[s.id]       = 0
-      @ev[s.id]       = 8
+      @ev[s.id]       = DEFAULT_STYLE_VALUE
     end
     if owner.is_a?(Owner)
       @owner = owner
