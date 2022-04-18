@@ -278,7 +278,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
 
 BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
   proc { |ability,battler,battle|
-    next unless target.item
+    next unless battler.item
+    next unless !battler.item.nil?
     next unless battler.itemActive?
     next unless CLOTHING_ITEMS.include?(battler.item)
     next unless battler.canHeal?
