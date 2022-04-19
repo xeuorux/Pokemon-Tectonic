@@ -1,18 +1,3 @@
-SaveData.register(:catching_minigame) do
-	ensure_class :CatchingMinigame
-	save_value { $catching_minigame }
-	load_value { |value| $catching_minigame = value }
-	new_game_value { CatchingMinigame.new }
-end
-
-SaveData.register_conversion(:catching_minigame_data_add) do
-  game_version '1.5.2'
-  display_title 'Adding Catching Minigame to pre 1.5.2 saves.'
-  to_all do |save_data|
-    save_data[:catching_minigame] = CatchingMinigame.new if !save_data.has_key?(:catching_minigame)
-  end
-end
-
 class CatchingMinigame
     attr_reader :turnsLeft
     attr_reader :baseLevelForScoring
@@ -66,7 +51,18 @@ class CatchingMinigame
         return [((255-rarity)/4.0 + (level - baseLevelForScoring) * 4).floor,0].max
     end
 
-    def end()
+    def spendTurn()
+      if @turnsLeft > 0
+        @turnsLeft -= 1
+      end
+      echoln("Turns Left in the Catching Minigame: #{@turnsLeft}")
+    end
+
+    def endIfNeeded()
+      endMinigame() if @turnsLeft == 0
+    end
+
+    def endMinigame()
         transferPlayer(@cutSceneLocation)
         pbWait(20)
         if @currentMaxScorePokemon.nil?
@@ -140,9 +136,28 @@ class CatchingMinigameBattle < PokeBattle_Battle
     $catching_minigame.submitForScoring(pkmn)
   end
 
+  def pbCommandPhaseLoop(isPlayer)
+    $catching_minigame.spendTurn() if isPlayer
+    super(isPlayer)
+  end
+
   def pbEndOfRoundPhase
     super
-    @decision = 3 if $catching_minigame.turnsLeft == 0 && @decision==0
+    if $catching_minigame.turnsLeft == 0
+      @decision = 3
+    else
+      pbDisplay("You have #{$catching_minigame.turnsLeft} turns left in the contest.")
+    end
+  end
+
+  def pbEndOfBattle
+    super
+    if $catching_minigame.turnsLeft == 0
+      pbMessage(_INTL("You've ran out of turns!"))
+      @decision = 3
+    else
+      pbMessage("You have #{$catching_minigame.turnsLeft} turns left in the contest.")
+    end
   end
 end
 
@@ -161,6 +176,7 @@ def pbCatchingMinigameWildBattle(species, level, outcomeVar=1, canRun=true, canL
     decision = pbCatchingMinigameWildBattleCore(species, level)
     # Used by the Poké Radar to update/break the chain
     Events.onWildBattleEnd.trigger(nil,species,level,decision)
+    $catching_minigame.endIfNeeded()
     # Return false if the player lost or drew the battle, and true if any other result
     return (decision!=2 && decision!=5)
   end
@@ -174,6 +190,7 @@ def pbCatchingMinigameWildBattle(species, level, outcomeVar=1, canRun=true, canL
     setBattleRule("double")
     # Perform the battle
     decision = pbCatchingMinigameWildBattleCore(species1, level1, species2, level2)
+    $catching_minigame.endIfNeeded()
     # Return false if the player lost or drew the battle, and true if any other result
     return (decision!=2 && decision!=5)
   end
