@@ -413,7 +413,7 @@ end
 def choosePokemonToStyle(pokemonVar = 1,nameVar = 3)
 	pbChooseStylePokemon(1,3, proc { |p|
 		p.ev[:ATTACK] != DEFAULT_STYLE_VALUE ||
-		p.ev[:DEFENSE] != 1DEFAULT_STYLE_VALUE0 ||
+		p.ev[:DEFENSE] != DEFAULT_STYLE_VALUE ||
 		p.ev[:SPEED] != DEFAULT_STYLE_VALUE ||
 		p.ev[:HP] != DEFAULT_STYLE_VALUE ||
 		p.ev[:SPECIAL_ATTACK] != DEFAULT_STYLE_VALUE ||
