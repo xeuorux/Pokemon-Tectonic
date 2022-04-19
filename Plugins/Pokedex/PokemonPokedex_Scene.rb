@@ -2,6 +2,8 @@ SEARCHES_STACK = true
 
 class PokemonPokedex_Scene
   def pbStartScene
+	generateSpeciesUseData()
+
     @sliderbitmap       	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_slider")
     @typebitmap         	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
     @shapebitmap        	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_shapes")
@@ -50,6 +52,33 @@ class PokemonPokedex_Scene
 	
     pbDeactivateWindows(@sprites)
     pbFadeInAndShow(@sprites)
+  end
+
+  def generateSpeciesUseData()
+		speciesUsed = {}
+		GameData::Species.each do |species_data|
+			next if species_data.form != 0
+			speciesUsed[species_data.species] = []
+		end
+		
+		trainerNamesCompleted = []
+		GameData::Trainer.each do |trainerData|
+			name = trainerData.real_name
+			next if trainerNamesCompleted.include?(name)
+			trainerNamesCompleted.push(name)
+			trainerData.pokemon.each do |partyEntry|
+				species = partyEntry[:species]
+				speciesUsed[species].push(trainerData)
+			end
+		end
+		
+		unusedPokemon = []
+		@speciesUseData = {}
+		speciesUsed.each do |species,arrayOfTrainerData|
+			arrayOfTrainerData.uniq!
+			arrayOfTrainerData.compact!
+			@speciesUseData[species] = arrayOfTrainerData.length
+		end
   end
   
   def pbEndScene
@@ -100,7 +129,10 @@ class PokemonPokedex_Scene
 		  evos = species_data.get_evolutions
 		  prevos = species_data.get_prevolutions
 		  
-		  ret.push([species, species_data.name, height, weight, i + 1, shift, type1, type2, color, shape, abilities, lvlmoves, tutormoves, eggmoves, evos, prevos])
+		  useCount = @speciesUseData[species] || 0
+
+		  ret.push([species, species_data.name, height, weight, i + 1, shift, type1, type2, 
+		  	color, shape, abilities, lvlmoves, tutormoves, eggmoves, evos, prevos, useCount])
 		end
 		return ret
 	end
@@ -1471,17 +1503,31 @@ class PokemonPokedex_Scene
 	end
 	
 	def sortByOther()
-		selections = [_INTL("Type"),_INTL("Gender Rate"),_INTL("Growth Rate"),_INTL("Catch Difficulty"),_INTL("Experience Grant"),_INTL("Cancel")]
-		statSelection = pbMessage("Sort by what?",selections,selections.length+1)
-	    return if statSelection == selections.length
+		cmdSortByType = -1
+		cmdSortByGenderRate = -1
+		cmdSortByGrowthRate = -1
+		cmdSortByCatchDifficulty = -1
+		cmdSortByExperienceGrant = -1
+		cmdSortByTrainerCount = -1
+		selections = []
+		selections[cmdSortByType = selections.length] = _INTL("Type")
+		selections[cmdSortByGenderRate = selections.length] = _INTL("Gender Rate")
+		selections[cmdSortByGrowthRate = selections.length] = _INTL("Growth Rate")
+		selections[cmdSortByCatchDifficulty = selections.length] = _INTL("Catch Difficulty")
+		selections[cmdSortByExperienceGrant = selections.length] = _INTL("Experience Grant")
+		selections[cmdSortByTrainerCount = selections.length] = _INTL("Trainers Using") if $DEBUG
+		selections.push(_INTL("Cancel"))
+		selection = pbMessage("Sort by what?",selections,selections.length+1)
+	    return if selection == selections.length
 		dexlist = @dexlist
+
 		typesCount = 0
 		GameData::Type.each { |t| typesCount += 1 if !t.pseudo_type && t.id != :SHADOW }
+
 		dexlist.sort_by! { |entry|
 			speciesData = GameData::Species.get(entry[0])
 			
-			case statSelection
-			when 0
+			if cmdSortByType > -1 && selection == cmdSortByType
 				types = [speciesData.type1,speciesData.type2]
 				types.sort_by!{ |type|
 					GameData::Type.get(type).id_number
@@ -1492,7 +1538,7 @@ class PokemonPokedex_Scene
 				end
 				
 				next value
-			when 1
+			elsif cmdSortByGenderRate > -1 && selection == cmdSortByGenderRate
 				case speciesData.gender_ratio
 				when :Genderless
 					next 300
@@ -1503,12 +1549,14 @@ class PokemonPokedex_Scene
 				end
 				genderRatioData = GameData::GenderRatio.get(speciesData.gender_ratio)
 				next genderRatioData.female_chance
-			when 2
+			elsif cmdSortByGrowthRate > -1 && selection == cmdSortByGrowthRate
 				next -GameData::GrowthRate.get(speciesData.growth_rate).id
-			when 3
+			elsif cmdSortByCatchDifficulty > -1 && selection == cmdSortByCatchDifficulty
 				next -speciesData.catch_rate
-			when 4
+			elsif cmdSortByExperienceGrant > -1 && selection == cmdSortByExperienceGrant
 				next speciesData.base_exp
+			elsif cmdSortByTrainerCount > -1 && selection == cmdSortByTrainerCount
+				next @speciesUseData[entry[0]] || 0
 			end
 		}
 		return dexlist

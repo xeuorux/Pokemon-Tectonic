@@ -1182,14 +1182,8 @@ class PokemonPokedexInfo_Scene
 		drawTextEx(overlay,xLeft,coordinateY,450,1,_INTL("Analysis of {1}",@title),base,shadow)
 		coordinateY += 34
 		
-		# Effective HP
-		
-		phep = fSpecies.base_stats[:HP] * fSpecies.base_stats[:DEFENSE]
-		shep = fSpecies.base_stats[:HP] * fSpecies.base_stats[:SPECIAL_DEFENSE]
-		phep /= 100
-		shep /= 100
-		effectiveHPs = "PEHP, SEHP: #{phep},#{shep}"
-		drawTextEx(overlay,xLeft,coordinateY,450,1,effectiveHPs,base,shadow)
+		# Use count
+		drawTextEx(overlay,xLeft,coordinateY,450,1,"Usage count: #{@dexlist[@index][16]}",base,shadow)
 		coordinateY += 32
 		
 		# Speed tier
