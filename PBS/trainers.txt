@@ -1253,18 +1253,16 @@ Pokemon = SHEDINJA,29
 [CLOWN,Klemens]
 Pokemon = AIPOM,27
     AbilityIndex = 1
-Pokemon = SWELLOW,28
-    AbilityIndex = 1
+Pokemon = DRIZZILE,28
 Pokemon = DRATINI,27
     AbilityIndex = 0
     Item = DRAGONGEM
 #-------------------------------
 [BACKPACKER_M,Freedom]
-Pokemon = SPINDA,27
+Pokemon = MTANGELA,27
     AbilityIndex = 0
-Pokemon = NATU,27
-    AbilityIndex = 1
-    Item = SITRUSBERRY
+	Item = SITRUSBERRY
+Pokemon = CORVISQUIRE,27
 Pokemon = GABITE,28
     AbilityIndex = 1
 #-------------------------------
@@ -1274,8 +1272,7 @@ Pokemon = VOLTORB,28
     Item = SITRUSBERRY
 Pokemon = ABOMASNOW,28
     AbilityIndex = 1
-Pokemon = NOCTOWL,27
-    AbilityIndex = 0
+Pokemon = GLINOONE,27
 #-------------------------------
 [LEADER_Rafael,Rafael]
 Policies = RAFAEL
