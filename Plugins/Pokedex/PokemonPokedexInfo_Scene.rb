@@ -76,6 +76,7 @@ class PokemonPokedexInfo_Scene
     @sprites["extraInfoOverlay"] = @extraInfoOverlay
 	
     @scroll = -1
+	@horizontalScroll = 0
 	@title = "Undefined"
 	pbSetSystemFont(@sprites["overlay"].bitmap)
     pbUpdateDummyPokemon
@@ -593,7 +594,7 @@ class PokemonPokedexInfo_Scene
         fSpecies = GameData::Species.get_species_form(@species,i[2])
         learnset = fSpecies.moves
         displayIndex = 0
-        @scrollableListLength = learnset.length
+        @scrollableLists = [learnset]
         learnset.each_with_index do |learnsetEntry,index|
           next if index<@scroll
           level = learnsetEntry[0]
@@ -742,43 +743,6 @@ class PokemonPokedexInfo_Scene
 		hash_of_arrays[key] = [newValue]
 	end
   end
-
-=begin
-  def drawPageTMMoves
-    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
-    overlay = @sprites["overlay"].bitmap
-    formname = "" 
-    base = Color.new(64,64,64)
-    shadow = Color.new(176,176,176)
-
-	selected_move = nil
-	xLeft = 36
-    for i in @available
-      if i[2]==@form
-        formname = i[0]
-        drawTextEx(overlay,xLeft,54,450,1,_INTL("TM Moves for {1}",@title),base,shadow)
-        fSpecies = GameData::Species.get_species_form(@species,i[2])
-        compatibleMoves = fSpecies.tutor_moves
-        @scrollableListLength = compatibleMoves.length
-        displayIndex = 0
-        compatibleMoves.each_with_index do |move,index|
-          next if index < @scroll
-		  color = base
-		  if index == @scroll
-			color = Color.new(255,100,80)
-			selected_move = move
-		  end
-		  moveName = getFormattedMoveName(move)
-          drawFormattedTextEx(overlay,xLeft,84+30*displayIndex,450,moveName,color,shadow)
-          displayIndex += 1
-          break if displayIndex >= 9
-        end
-      end
-    end
-	
-	drawMoveInfo(selected_move)
-  end
-=end
   
   def drawPageTutorMoves
     @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
@@ -800,29 +764,35 @@ class PokemonPokedexInfo_Scene
         compatibleMoves = firstSpecies.egg_moves + species_data.tutor_moves
 		compatibleMoves.uniq!
 		compatibleMoves.compact!
-		compatibleMoves.sort! { |a,b|
-			movaAData = GameData::Move.get(a)
-			movaBData = GameData::Move.get(b)
-
-			if movaAData.category != movaBData.category
-				next movaAData.category <=> movaBData.category
-			end
-			
-			next a <=> b
+		compatiblePhysMoves = compatibleMoves.select{ |move|
+			movaData = GameData::Move.get(move)
+			next movaData.category == 0
 		}
-        @scrollableListLength = compatibleMoves.length
-        displayIndex = 0
-        compatibleMoves.each_with_index do |move,index|
-          next if index < @scroll
-		  color = base
-		  if index == @scroll
-			color = Color.new(255,100,80)
-			selected_move = move
-		  end
-		  moveName = getFormattedMoveName(move)
-          drawFormattedTextEx(overlay,xLeft,60+30*displayIndex,450,moveName,color,shadow)
-          displayIndex += 1
-          break if displayIndex >= 10
+		compatibleSpecMoves = compatibleMoves.select{ |move|
+			movaData = GameData::Move.get(move)
+			next movaData.category == 1
+		}
+		compatibleStatusMoves = compatibleMoves.select{ |move|
+			movaData = GameData::Move.get(move)
+			next movaData.category == 2
+		}
+		@scrollableLists = [compatiblePhysMoves,compatibleSpecMoves,compatibleStatusMoves]
+		categoryName = ["Physical","Special","Status"][@horizontalScroll]
+		drawFormattedTextEx(overlay,xLeft,60,200,"<ac><b>#{categoryName}</b></ac>",base,shadow)
+		displayIndex = 1
+		listIndex = -1
+        @scrollableLists[@horizontalScroll].each_with_index do |move,index|
+			listIndex+= 1
+			next if listIndex < @scroll
+			color = base
+			if listIndex == @scroll
+				color = Color.new(255,100,80)
+				selected_move = move
+			end
+			moveName = getFormattedMoveName(move)
+			drawFormattedTextEx(overlay,xLeft,60+30*displayIndex,450,moveName,color,shadow)
+			displayIndex += 1
+			break if displayIndex >= 10
         end
       end
     end
@@ -1109,17 +1079,37 @@ class PokemonPokedexInfo_Scene
 			doRefresh = true
 		else Input.trigger?(Input::UP)
 			pbPlayCursorSE
-			@scroll = @scrollableListLength-1
+			@scroll = @scrollableLists[@horizontalScroll].length-1
 			doRefresh = true
 		end
       elsif Input.repeat?(Input::DOWN)
-		if @scroll < @scrollableListLength-1
+		if @scroll < @scrollableLists[@horizontalScroll].length-1
 			pbPlayCursorSE
 			@scroll += 1
 			doRefresh = true
 		else Input.trigger?(Input::DOWN)
 			pbPlayCursorSE
 			@scroll = 0
+			doRefresh = true
+		end
+	  elsif Input.repeat?(Input::LEFT)
+		if @horizontalScroll > 0
+			pbPlayCursorSE
+			@horizontalScroll -= 1
+			doRefresh = true
+		else Input.trigger?(Input::LEFT)
+			pbPlayCursorSE
+			@horizontalScroll = @scrollableLists.length-1
+			doRefresh = true
+		end
+	  elsif Input.repeat?(Input::RIGHT)
+		if @horizontalScroll < @scrollableLists.length-1
+			pbPlayCursorSE
+			@horizontalScroll += 1
+			doRefresh = true
+		else Input.trigger?(Input::RIGHT)
+			pbPlayCursorSE
+			@horizontalScroll = 0
 			doRefresh = true
 		end
       elsif Input.trigger?(Input::BACK)
@@ -1344,6 +1334,7 @@ class PokemonPokedexInfo_Scene
 			@page = 1 if @page<1
 			if @page!=oldpage
 			  @scroll = -1
+			  @horizontalScroll = 0
 			  pbPlayCursorSE
 			  dorefresh = true
 			end
@@ -1358,6 +1349,7 @@ class PokemonPokedexInfo_Scene
 			@page = 10 if @page>10
 			if @page!=oldpage
 			  @scroll = -1
+			  @horizontalScroll = 0
 			  pbPlayCursorSE
 			  dorefresh = true
 			end
