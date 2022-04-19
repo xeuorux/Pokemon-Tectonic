@@ -2526,7 +2526,7 @@ Pokemon = ARCANINE,40
 	Item = EJECTBUTTON
 #-------------------------------
 [TRAINER_Keoni,Keoni]
-Pokemon = MFURRET,22
+Pokemon = MSENTRET,22
 	Item = PSYCHICGEM
 Pokemon = ARATTATA,22
 	AbilityIndex = 0

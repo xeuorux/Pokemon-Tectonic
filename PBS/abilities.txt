@@ -60,7 +60,7 @@
 58,MINUS,Minus,"Ups Sp. Atk if another Pokémon has Plus or Minus."
 59,FORECAST,Forecast,"Castform transforms with the weather."
 60,STICKYHOLD,Sticky Hold,"Protects the Pokémon from item theft."
-61,SHEDSKIN,Shed Skin,"The Pokémon heals its own status problems each turn."
+61,SHEDSKIN,Shed Skin,"The Pokémon heals its own non-Sleep status problems each turn."
 62,GUTS,Guts,"Boosts Attack by 50% if statused. Ignores burn Attack reduction."
 63,MARVELSCALE,Marvel Scale,"Ups Defense if there is a status problem."
 64,LIQUIDOOZE,Liquid Ooze,"Damages attackers using any draining move."

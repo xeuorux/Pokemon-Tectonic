@@ -1268,7 +1268,7 @@ class PokemonPokedex_Scene
 					end
 					
 					moveData = GameData::Move.get(learnset_entry[1])
-					if types.include?(moveData.type)
+					if types.include?(moveData.type) && moveData.category != 2 # Damaging move
 						if learnLevel < 16
 							earlyStabDebt -= 1
 						elsif learnLevel < 32

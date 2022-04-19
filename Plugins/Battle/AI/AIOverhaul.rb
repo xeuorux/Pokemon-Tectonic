@@ -382,7 +382,7 @@ class PokeBattle_AI
         end
       end
     end
-    # Pokémon can't do anything (must have been in battle for at least 2 rounds)
+    # Pokémon can't do anything
     if !@battle.pbCanChooseAnyMove?(idxBattler)
       shouldSwitch = true
     end
@@ -489,6 +489,8 @@ class PokeBattle_AI
       
       shouldSwitch = true if damage >= (battler.hp * 0.5).floor
     end
+
+    # Determine who to swap into if at all
     if shouldSwitch
       PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is trying to find a teammate to swap into.")
       list = []
@@ -541,21 +543,21 @@ class PokeBattle_AI
         end
       end
       
-        if list.length>0
-         list.sort_by!{|entry| entry[1]}
+      if list.length > 0
+        list.sort_by!{|entry| entry[1]}
         PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are: #{list.to_s}")
-          if batonPass>=0 && @battle.pbRegisterMove(idxBattler,batonPass,false)
-            PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Baton Pass to avoid Perish Song")
-            return true
-          end
-          partySlotNumber = list[0][0]
-          if @battle.pbRegisterSwitch(idxBattler,partySlotNumber)
-            PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will switch with " +
-                        "#{@battle.pbParty(idxBattler)[partySlotNumber].name}")
-            return true
-          end
+        if batonPass >= 0 && @battle.pbRegisterMove(idxBattler,batonPass,false)
+          PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Baton Pass to avoid Perish Song")
+          return true
+        end
+        partySlotNumber = list[0][0]
+        if @battle.pbRegisterSwitch(idxBattler,partySlotNumber)
+          PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will switch with " +
+                      "#{@battle.pbParty(idxBattler)[partySlotNumber].name}")
+          return true
+        end
       else
-      PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) fails to find any swap candidates.")
+        PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) fails to find any swap candidates.")
       end
     end
     return false
