@@ -60,6 +60,16 @@ class PokemonPokedexInfo_Scene
     @sprites["downarrow"].y = 348
     @sprites["downarrow"].play
     @sprites["downarrow"].visible = false
+	@sprites["leftarrow"] = AnimatedSprite.new("Graphics/Pictures/leftarrow",8,40,28,2,@viewport)
+    @sprites["leftarrow"].x = 48
+    @sprites["leftarrow"].y = 56
+	@sprites["leftarrow"].play
+    @sprites["leftarrow"].visible = false
+    @sprites["rightarrow"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport)
+    @sprites["rightarrow"].x = 184
+    @sprites["rightarrow"].y = 56
+	@sprites["rightarrow"].play
+    @sprites["rightarrow"].visible = false
     @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
 	
 	# Create the move extra info display
@@ -1066,6 +1076,8 @@ class PokemonPokedexInfo_Scene
   
   def pbScroll
 	@scroll = 0
+	@sprites["leftarrow"].visible = @page == 7
+	@sprites["rightarrow"].visible = @page == 7
 	drawPage(@page)
     loop do
       Graphics.update
@@ -1122,6 +1134,8 @@ class PokemonPokedexInfo_Scene
         drawPage(@page)
       end
     end
+	@sprites["leftarrow"].visible = false
+	@sprites["rightarrow"].visible = false
   end
   
   def pbScrollEvolutions
