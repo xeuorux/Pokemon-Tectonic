@@ -1,4 +1,66 @@
 class PokeBattle_Battler
+    #=============================================================================
+  # Effect per hit
+  #=============================================================================
+  def pbEffectsOnMakingHit(move,user,target)
+    if target.damageState.calcDamage>0 && !target.damageState.substitute
+      # Target's ability
+      if target.abilityActive?(true)
+        oldHP = user.hp
+        BattleHandlers.triggerTargetAbilityOnHit(target.ability,user,target,move,@battle)
+        user.pbItemHPHealCheck if user.hp<oldHP
+      end
+      # User's ability
+      if user.abilityActive?(true)
+        BattleHandlers.triggerUserAbilityOnHit(user.ability,user,target,move,@battle)
+        user.pbItemHPHealCheck
+      end
+      # Target's item
+      if target.itemActive?(true)
+        oldHP = user.hp
+        BattleHandlers.triggerTargetItemOnHit(target.item,user,target,move,@battle)
+        user.pbItemHPHealCheck if user.hp<oldHP
+      end
+    end
+    if target.opposes?(user)
+      # Rage
+      if target.effects[PBEffects::Rage] && !target.fainted?
+        if target.pbCanRaiseStatStage?(:ATTACK,target)
+          @battle.pbDisplay(_INTL("{1}'s rage is building!",target.pbThis))
+          target.pbRaiseStatStage(:ATTACK,1,target)
+        end
+      end
+      # Beak Blast
+      if target.effects[PBEffects::BeakBlast]
+        PBDebug.log("[Lingering effect] #{target.pbThis}'s Beak Blast")
+        if move.pbContactMove?(user) && user.affectedByContactEffect?
+          user.pbBurn(target) if user.pbCanBurn?(target,false,self)
+        end
+      end
+      # Shell Trap (make the trapper move next if the trap was triggered)
+      if target.effects[PBEffects::ShellTrap] &&
+         @battle.choices[target.index][0]==:UseMove && !target.movedThisRound?
+        if target.damageState.hpLost>0 && !target.damageState.substitute && move.physicalMove?
+          target.tookPhysicalHit              = true
+          target.effects[PBEffects::MoveNext] = true
+          target.effects[PBEffects::Quash]    = 0
+        end
+      end
+      # Grudge
+      if target.effects[PBEffects::Grudge] && target.fainted?
+        move.pp = 0
+        @battle.pbDisplay(_INTL("{1}'s {2} lost all of its PP due to the grudge!",
+           user.pbThis,move.name))
+      end
+      # Destiny Bond (recording that it should apply)
+      if target.effects[PBEffects::DestinyBond] && target.fainted?
+        if user.effects[PBEffects::DestinyBondTarget]<0
+          user.effects[PBEffects::DestinyBondTarget] = target.index
+        end
+      end
+    end
+  end
+
 	#=============================================================================
   # Effects after all hits (i.e. at end of move usage)
   #=============================================================================
