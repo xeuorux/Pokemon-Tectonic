@@ -1175,8 +1175,7 @@ Pokemon = KROKOROK,26
 [GENTLEMAN3,Charles]
 Pokemon = NIDORINO,26
     AbilityIndex = 1
-Pokemon = DEERLING,26
-    AbilityIndex = 1
+Pokemon = SANDSHREW,26
 Pokemon = GREEDENT,27
     Moves = STOCKPILE,SWALLOW,SUPERFANG,BODYSLAM
     AbilityIndex = 0
@@ -2639,8 +2638,7 @@ Pokemon = TORTERRA,38
 [BOARDER,Lev]
 Pokemon = PINSIR,29
 	AbilityIndex = 0
-Pokemon = DEERLING,29
-	Form = 3
+Pokemon = BAYLEEF,29
 	Item = SITRUSBERRY
 Pokemon = TREVENANT,30
 	AbilityIndex = 0
