@@ -911,9 +911,17 @@ class PokeBattle_Move_196 < PokeBattle_Move_0E0
   end
   
   def getScore(score,user,target,skill=100)
-	score += 50
+	  score += 50
     score -= ((user.hp.to_f / user.totalhp.to_f) * 100).floor
-	return score
+	  return score
+  end
+
+  def pbSelfKO(user)
+    return if user.fainted?
+    reduction = user.totalhp / 2.0
+    reduction /= 4 if user.boss?
+    user.pbReduceHP(reduction.ceil,false)
+    user.pbItemHPHealCheck
   end
 end
 
