@@ -104,7 +104,8 @@ class CatchingMinigame
         when 61..70
             item = :RELICGOLD
         when 71..999
-            item = :MASTERBALL
+            item = :ULTRABALL
+            itemCount = 6
         end
         if !item.nil?
             pbMessage(_INTL("You've earned a reward!"))
