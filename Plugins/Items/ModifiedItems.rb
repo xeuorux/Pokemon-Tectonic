@@ -377,3 +377,21 @@ GameData::Evolution.register({
     next pkmn.species == parameter && !other_pkmn.hasItem?(:EVERSTONE) && !other_pkmn.hasItem?(:EVIOLITE)
   }
 })
+
+BattleHandlers::DamageCalcUserItem.add(:CHOICEBAND,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.33 if move.physicalMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:CHOICESPECS,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.33 if move.specialMove?
+  }
+)
+
+BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
+  proc { |item,battler,mult|
+    next mult * 1.33
+  }
+)
