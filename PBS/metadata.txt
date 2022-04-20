@@ -1048,6 +1048,12 @@ Bicycle = true
 BattleBack = 
 Environment = Volcano
 #-------------------------------
+[212]
+# Ruins Digsite
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
 [213]
 # Velenz Managerie
 Environment = Forest
