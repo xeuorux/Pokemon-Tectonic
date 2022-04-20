@@ -243,7 +243,7 @@ class PokemonStorageScreen
        _INTL("Jump"),
        _INTL("Wallpaper"),
        _INTL("Name"),
-	   _INTL("Visit PokÉstate"),
+	     _INTL("Visit PokÉstate"),
        _INTL("Cancel"),
     ]
     command = pbShowCommands(
@@ -273,7 +273,7 @@ class PokemonStorageScreen
 			pbDisplay("Can't Visit the PokÉstate while you have a Pokémon in your hand!")
 			return false
 		end
-		transferToEstate(@storage.currentBox)
+		  $PokEstate.transferToEstate(@storage.currentBox,0)
 		return true
     end
 	return false
