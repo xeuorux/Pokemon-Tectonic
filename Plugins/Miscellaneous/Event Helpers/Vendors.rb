@@ -166,7 +166,7 @@ def reviveMixFossils(fossil1,fossil2)
 		end
 	end
 
-	if species.nil?
+	if chosenSpecies.nil?
 		pbMessage("Error! Could not determine how to revive the given fossils.")
 		return
 	end
@@ -180,7 +180,7 @@ def reviveMixFossils(fossil1,fossil2)
 	
 	pbMessage("It's done! Here is your newly revived Pokemon!")
 	
-	pbAddPokemon(species,15)
+	pbAddPokemon(chosenSpecies,15)
 end
 
 def pbChooseMixFossilHead(var = 0)
@@ -188,7 +188,7 @@ def pbChooseMixFossilHead(var = 0)
 	pbFadeOutIn {
 	  scene = PokemonBag_Scene.new
 	  screen = PokemonBagScreen.new(scene,$PokemonBag)
-	  ret = screen.pbChooseItemScreen(Proc.new { |item| [:FOSSILIZEDBIRD,:FOSSILIZEDFISH] })
+	  ret = screen.pbChooseItemScreen(Proc.new { |item| [:FOSSILIZEDBIRD,:FOSSILIZEDFISH].include?(item) })
 	}
 	$game_variables[var] = ret || :NONE if var > 0
 	return ret
@@ -199,7 +199,7 @@ def pbChooseMixFossilBody(var = 0)
 	pbFadeOutIn {
 	  scene = PokemonBag_Scene.new
 	  screen = PokemonBagScreen.new(scene,$PokemonBag)
-	  ret = screen.pbChooseItemScreen(Proc.new { |item| [:FOSSILIZEDDRAKE,:FOSSILIZEDDINO] })
+	  ret = screen.pbChooseItemScreen(Proc.new { |item| [:FOSSILIZEDDRAKE,:FOSSILIZEDDINO].include?(item) })
 	}
 	$game_variables[var] = ret || :NONE if var > 0
 	return ret

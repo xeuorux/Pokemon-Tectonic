@@ -36,6 +36,23 @@ class PokemonEvolutionScene
 	end
 end
 
+def pbTopRightWindow(text, scene = nil, givenWidth=198)
+	window = Window_AdvancedTextPokemon.new(text)
+	window.width = givenWidth
+	window.x     = Graphics.width-window.width
+	window.y     = 0
+	window.z     = 99999
+	pbPlayDecisionSE
+	loop do
+	  Graphics.update
+	  Input.update
+	  window.update
+	  scene.pbUpdate if scene
+	  break if Input.trigger?(Input::USE)
+	end
+	window.dispose
+  end
+
 def showPokemonChanges(pokemon,&block)
 	# Mark down pre-change stats
 	oldTotalHP = pokemon.totalhp
@@ -50,20 +67,32 @@ def showPokemonChanges(pokemon,&block)
 	block.call
 	# Show the stat changes
 	hpDif = pokemon.totalhp-oldTotalHP
+	hpDifStr = hpDif.to_s
+	hpDifStr += " / " +  (((hpDif.to_f / oldTotalHP.to_f)*1000).ceil/10.0).to_s + "%" if $DEBUG
 	attackDif = pokemon.attack-oldAttack
+	attackDifStr = attackDif.to_s
+	attackDifStr += " / " +  (((attackDif.to_f / oldAttack.to_f)*1000).ceil/10.0).to_s + "%" if $DEBUG
 	defenseDif = pokemon.defense-oldDefense
+	defenseDifStr = defenseDif.to_s
+	defenseDifStr += " / " +  (((defenseDif.to_f / oldDefense.to_f)*1000).ceil/10.0).to_s + "%" if $DEBUG
 	spAtkDif = pokemon.spatk-oldSpAtk
+	spAtkDifStr = spAtkDif.to_s
+	spAtkDifStr += " / " +  (((spAtkDif.to_f / oldSpAtk.to_f)*1000).ceil/10.0).to_s + "%" if $DEBUG
 	spDefDif = pokemon.spdef-oldSpDef
+	spDefDifStr = spDefDif.to_s
+	spDefDifStr += " / " +  (((spDefDif.to_f / oldSpDef.to_f)*1000).ceil/10.0).to_s + "%" if $DEBUG
 	speedDif = pokemon.speed-oldSpeed
+	speedDifStr = speedDif.to_s
+	speedDifStr += " / " + (((speedDif.to_f / oldSpeed.to_f)*1000).ceil/10.0).to_s + "%" if $DEBUG
 	if hpDif != 0 || attackDif != 0 || defenseDif != 0 ||
 				spAtkDif != 0 || spDefDif != 0 || speedDif != 0
 		pbTopRightWindow(
 		   _INTL("Max. HP<r>#{hpDif >= 0 ? "+" : ""}{1}\r\nAttack<r>#{attackDif >= 0 ? "+" : ""}{2}\r\nDefense<r>#{defenseDif >= 0 ? "+" : ""}{3}\r\nSp. Atk<r>#{spAtkDif >= 0 ? "+" : ""}{4}\r\nSp. Def<r>#{spDefDif >= 0 ? "+" : ""}{5}\r\nSpeed<r>#{speedDif >= 0 ? "+" : ""}{6}",
-		   hpDif,attackDif,defenseDif,
-		   spAtkDif,spDefDif,speedDif))
+		   hpDifStr,attackDifStr,defenseDifStr,
+		   spAtkDifStr,spDefDifStr,speedDifStr), nil, $DEBUG ? 260 : 198)
 		pbTopRightWindow(
 		   _INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
-		   pokemon.totalhp,pokemon.attack,pokemon.defense,pokemon.spatk,pokemon.spdef,pokemon.speed))
+		   pokemon.totalhp,pokemon.attack,pokemon.defense,pokemon.spatk,pokemon.spdef,pokemon.speed), nil, $DEBUG ? 300 : 198)
 	end
 	# Show new ability if any
 	if pokemon.ability != oldAbility
