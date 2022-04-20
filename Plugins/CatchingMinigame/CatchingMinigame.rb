@@ -24,6 +24,7 @@ class CatchingMinigame
         @cutSceneLocation = cutSceneLocation
         @returnLocation = returnLocation
         @active = true
+        pbMessage(_INTL("Catch the best Pokemon you can in #{turnsGiven} turns of battle!"))
     end
 
     def active?
