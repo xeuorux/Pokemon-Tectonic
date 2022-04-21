@@ -82,8 +82,9 @@ Moves = THOUSANDARROWS,THOUSANDWAVES,COREENFORCER,LANDSWRATH
 [GENGAR]
 Turns = 2
 HPMult = 4
-Ability = LEVITATE
-Moves = SHADOWBALL
+Ability = SUDDENCHILL
+Moves = SHADOWBALL,PRIMEVALHAIL
+PostPrimeMoves = ICEBEAM
 #-----------------------------
 [ZOROARK]
 Turns = 1
