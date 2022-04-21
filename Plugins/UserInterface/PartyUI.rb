@@ -214,7 +214,7 @@ class PokemonPartyScreen
       cmdPokedex = -1
 	    cmdSetDown = -1
       # Build the commands
-      commands[cmdSetDown = commands.length]	  = _INTL("Set Down") if defined?($PokEstate.setDownIntoEstate) && isInEstate?()
+      commands[cmdSetDown = commands.length]	  = _INTL("Set Down") if defined?($PokEstate.setDownIntoEstate) && $PokEstate.isInEstate?()
 	    commands[cmdSummary = commands.length]      = _INTL("Summary")
       commands[cmdDebug = commands.length]        = _INTL("Debug") if $DEBUG
       if !pkmn.egg?
