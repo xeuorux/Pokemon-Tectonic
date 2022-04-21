@@ -140,7 +140,7 @@ PostPrimeMoves = AURATRICK
 #-------------------------------
 [RUNERIGUS]
 Turns = 1
-Ability = WANDERINGSPIRIT
+Ability = STOUT
 Moves = SHADOWCLAW,SANDTOMB,PRIMEVALSUNNYDAY
 PostPrimeMoves = FIREPUNCH
 HPMult = 6
