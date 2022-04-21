@@ -1,14 +1,14 @@
-SaveData.register(:pokestate_2) do
+SaveData.register(:pokestate_tracker) do
 	ensure_class :PokEstate
 	save_value { $PokEstate }
 	load_value { |value| $PokEstate = value }
 	new_game_value { PokEstate.new }
 end
 
-SaveData.register_conversion(:pokestate_2) do
+SaveData.register_conversion(:pokestate_tracker) do
   game_version '1.6.1'
   display_title 'Adding PokEstate object to pre 1.6.1 saves.'
   to_all do |save_data|
-    save_data[:pokestate_2] = PokEstate.new if !save_data.has_key?(:pokestate_2)
+    save_data[:pokestate_tracker] = PokEstate.new if !save_data.has_key?(:pokestate_tracker)
   end
 end

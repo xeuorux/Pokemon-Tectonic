@@ -424,6 +424,7 @@ class PokEstate
 	def incrementStoriesProgress()
 		@stories_progress += 1
 		if @stories_progress > STEPS_TILL_NEW_STORY
+			echoln("Deciding which boxes to give new stories to!")
 			@stories_progress = 0
 			for box in -1...$PokemonStorage.maxBoxes
 				next if @stories_count[box] >= MAX_STORIES_STORAGE
