@@ -8,7 +8,7 @@ class PokEstate
 		@estate_box = 0
 		@estate_teleport = nil
 		@stories_progress = 0
-		@stories_count = [1] * $PokemonStorage.maxBoxes
+		@stories_count = [1] * Settings::NUM_STORAGE_BOXES
 	end
 
 	def isInEstate?
