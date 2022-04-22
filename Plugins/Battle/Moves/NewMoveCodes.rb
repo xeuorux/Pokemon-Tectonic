@@ -1616,9 +1616,13 @@ class PokeBattle_Move_54B < PokeBattle_StatUpMove
 			user.pbOwnSide.effects[PBEffects::Spikes] = 0
 			@battle.pbDisplay(_INTL("{1} blew away spikes!",user.pbThis))
 		end
-		if user.pbOwnSide.effects[PBEffects::ToxicSpikes]>0
+		if user.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0
 			user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
 			@battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
+		end
+		if user.pbOwnSide.effects[PBEffects::FlameSpikes] > 0
+			user.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
+			@battle.pbDisplay(_INTL("{1} blew away flame spikes!",user.pbThis))
 		end
 		if user.pbOwnSide.effects[PBEffects::StickyWeb]
 			user.pbOwnSide.effects[PBEffects::StickyWeb] = false
@@ -1732,8 +1736,9 @@ class PokeBattle_Move_551 < PokeBattle_Move
 		if user.pbOpposingSide.effects[PBEffects::FlameSpikes] >= 1
 			return 0
 		end
-		score -= 30
-		score += 15*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
+		score -= 40
+		score += 10*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
+		score += 10*@battle.pbAbleNonActiveCount(user.idxOwnSide)
 		return score
   end
 end

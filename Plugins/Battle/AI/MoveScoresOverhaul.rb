@@ -1625,8 +1625,9 @@ class PokeBattle_AI
 				# Opponent can't switch in any Pokemon
 			score = 0
 			else
+				score -= 40
 				score += 10*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
-				score += [40,26,13][user.pbOpposingSide.effects[PBEffects::Spikes]]
+				score += 10*@battle.pbAbleNonActiveCount(user.idxOwnSide)
 			end
 		end
 	#---------------------------------------------------------------------------
@@ -1634,8 +1635,9 @@ class PokeBattle_AI
 		if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] >= 1
 			score = 0
 		else
-			score -= 30
-			score += 15*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
+			score -= 40
+			score += 10*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
+			score += 10*@battle.pbAbleNonActiveCount(user.idxOwnSide)
 		end
 	#---------------------------------------------------------------------------
 	when "105"
@@ -1652,7 +1654,9 @@ class PokeBattle_AI
 				# Opponent can't switch in any Pokemon
 				score = 0
 			else
+				score -= 40
 				score += 10*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
+				score += 10*@battle.pbAbleNonActiveCount(user.idxOwnSide)
 			end
 		end
 	#---------------------------------------------------------------------------

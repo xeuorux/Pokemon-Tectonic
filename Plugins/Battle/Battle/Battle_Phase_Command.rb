@@ -15,6 +15,18 @@ class PokeBattle_Battle
         @megaEvolution[side][i] = -1 if megaEvo>=0
       end
     end
+
+	# Soul Read alerts
+	@battlers.each do |b|
+		next unless b.hasActiveAbility?(:SOULREAD)
+		@battles.eachOpposing do |opp|
+			next if opp.lastMoveUsedType.nil?
+			next unless opp.pbTypes(true).include?(opp.lastMoveUsedType)
+			pbShowAbilitySplash(battler)
+			pbDisplay(_INTL("{1} reads {2}'s guilty soul!",b.pbThis,opp.pbThis(true)))
+			pbShowAbilitySplash(battler)
+		end
+	end
 	
 	# SWAPPED THE ORDER HERE OF PLAYER VS AI
 	

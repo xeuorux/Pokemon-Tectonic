@@ -176,3 +176,14 @@ BattleHandlers::UserAbilityOnHit.add(:NERVENUMBER,
     battle.pbHideAbilitySplash(user)
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:SOULREAD,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+	if !target.lastMoveUsedType.nil?
+		if !target.pbTypes(true).include?(target.lastMoveUsedType)
+			mults[:attack_multiplier] *= 2.0
+			echoln("Judging Eye applies!")
+		end
+	end
+  }
+)
