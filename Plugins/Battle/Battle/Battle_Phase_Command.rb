@@ -24,7 +24,7 @@ class PokeBattle_Battle
 			next unless opponent.pbTypes(true).include?(opponent.lastMoveUsedType)
 			pbShowAbilitySplash(battler)
 			pbDisplay(_INTL("{1} reads {2}'s guilty soul!",battler.pbThis,opponent.pbThis(true)))
-			pbShowAbilitySplash(battler)
+			pbRemoveAbilitySplash(battler)
 		end
 	end
 	
