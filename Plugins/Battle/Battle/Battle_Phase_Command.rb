@@ -19,7 +19,7 @@ class PokeBattle_Battle
 	# Soul Read alerts
 	@battlers.each do |b|
 		next unless b.hasActiveAbility?(:SOULREAD)
-		@battles.eachOpposing do |opp|
+		b.eachOpposing do |opp|
 			next if opp.lastMoveUsedType.nil?
 			next unless opp.pbTypes(true).include?(opp.lastMoveUsedType)
 			pbShowAbilitySplash(battler)

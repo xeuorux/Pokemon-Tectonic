@@ -580,7 +580,7 @@ Puddle,20
 25,TENTACOOL,36,38
 25,MANTYKE,36,38
 25,PINCURCHIN,36,38
-25,SEEl,36,38
+25,SEEL,36,38
 #-------------------------------
 [196] # Boiling Cave
 DarkCave,20
@@ -741,7 +741,6 @@ Land,20
 25,KLEFKI,38,40
 25,DELIBIRD,38,40
 25,MILCERY,38,40
-25,,38,40
 #-------------------------------
 [216] # Mountain Lake
 Land,20
