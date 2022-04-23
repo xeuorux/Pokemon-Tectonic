@@ -530,7 +530,7 @@ FloweryGrass2,20
 20,BOUFFALANT,32,34
 20,TOGEDEMARU,32,34
 20,TROPIUS,32,34
-20,MORPEKO,32,34
+20,SPHEAL,32,34
 20,DEDENNE,32,34
 Special,1
 1,CASTFORM,40,40
@@ -578,11 +578,11 @@ LandSparse,20
 34,DARUMAKA,36,38
 Puddle,20
 25,TENTACOOL,36,38
-25,STARYU,36,38
-25,PYUKUMUKU,36,38
+25,MANTYKE,36,38
 25,PINCURCHIN,36,38
+25,SEEl,36,38
 #-------------------------------
-[196] # Ocean Lava Zone
+[196] # Boiling Cave
 DarkCave,20
 33,DWEBBLE,37,39
 33,TURTONATOR,37,39
@@ -593,9 +593,9 @@ Mud,20
 13,SHELLOS_1,37,39
 25,STUNFISK,37,39
 Puddle,20
-33,FRILLISH,37,39
-34,WIMPOD,37,39
+33,PYUKUMUKU,37,39
 33,MAREANIE,37,39
+33,STARYU,36,38
 #-------------------------------
 [197] # Buried Ruins
 DarkCave
@@ -616,15 +616,10 @@ Land,20
 25,PINSIR,38,38
 25,KANGASKHAN,38,38
 LandSparse,20
-25,SEWADDLE,38,38
+25,STANTLER,38,38
 25,HAWLUCHA,38,38
 25,BOUNSWEET,38,38
 25,RUFFLET,36,39
-Puddle,20
-25,SEEL,38,38
-25,SPHEAL,38,38
-25,EISCUE,38,38
-25,STANTLER,38,38
 #-------------------------------
 [239] # Ocean Fishing Contest
 FishingContest,20
@@ -722,19 +717,18 @@ Land
 25,MINIOR,52,54
 25,CASTFORM,52,54
 #-------------------------------
-[214] # Gigalith's Guts Town
+[214] # Team Chasm HQ
 DarkCave
 25,ELGYEM,16,19
 25,MUNNA,16,19
 25,CARBINK,16,19
-Special
-1,UNOWN,16,19
 #-------------------------------
 [183] # Circuit Cave
 DarkCave
-33,ELEKID,38,38
-33,PLUSLE,38,38
-33,MINUN,38,38
+25,ELEKID,38,38
+25,PLUSLE,38,38
+25,MINUN,38,38
+25,MORPEKO,36,38
 #-------------------------------
 [219] # Regirock Cave
 DarkCave
@@ -747,13 +741,13 @@ Land,20
 25,KLEFKI,38,40
 25,DELIBIRD,38,40
 25,MILCERY,38,40
-25,CRYOGONAL,38,40
+25,,38,40
 #-------------------------------
 [216] # Mountain Lake
 Land,20
 25,CHATOT,34,36
 25,KOMALA,34,36
-25,CARNIVINE,34,36
+25,SEWADDLE,34,36
 25,MINCCINO,34,36
 LandSparse,20
 25,ORANGURU,34,36
@@ -761,15 +755,16 @@ LandSparse,20
 25,ABSOL,34,36
 25,PASSIMIAN,34,36
 Puddle
-33,FOONGUS,34,36
-33,CORPHISH,34,36	
-34,GIRAFARIG,34,36
+25,CARNIVINE,34,36
+25,FOONGUS,34,36
+25,CORPHISH,34,36	
+25,GIRAFARIG,34,36
 #-------------------------------
 [218] # Abyssal Chamber
 Puddle
 25,WIMPOD,35,37
 25,CHINCHOU,35,37
-25,MANTYKE,35,37
+25,FRILLISH,35,37
 25,RELICANTH,35,37
 #-------------------------------
 [234] # Ranger Recruitment
