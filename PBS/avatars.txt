@@ -271,7 +271,7 @@ Item = LAGGINGTAIL
 #-------------------------------
 [CELEBI]
 Turns = 3
-Ability = STARGUARDIAN
+Ability = GRASSYSURGE
 Moves = FUTURESIGHT,GIGADRAIN,PSYCHIC,GRASSKNOT
 HPMult = 3.5
 #-------------------------------

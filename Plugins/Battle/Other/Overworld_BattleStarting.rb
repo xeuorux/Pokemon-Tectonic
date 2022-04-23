@@ -138,12 +138,6 @@ def pbTrainerBattleCore(*args)
       foeItems.push(trainer.items)
     end
   end
-  # Check the legality of the trainer
-  if $DEBUG
-	foeParty.each do |pkmn|
-		checkLegality(pkmn)
-	end
-  end
   # Calculate who the player trainer(s) and their party are
   playerTrainers    = [$Trainer]
   playerParty       = $Trainer.party
@@ -304,45 +298,6 @@ class PokemonTemp
       raise _INTL("Battle rule \"{1}\" does not exist.", rule)
     end
   end
-end
-
-def checkLegality(pkmn)
-	species_data = GameData::Species.get_species_form(pkmn.species,pkmn.form)
-	if pkmn.species != :SMEARGLE
-		pkmn.moves.each do |move|
-			return if !move
-			moveID = move.id
-			next if pkmn.first_moves.include?(moveID)
-			next if species_data.tutor_moves.include?(moveID)
-			
-			firstSpecies = species_data
-			while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
-				firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
-			end
-			next if firstSpecies.egg_moves.include?(moveID)
-			
-			learnsViaLevel = false
-			species_data.moves.each do |learnset_entry|
-				break if learnset_entry[0] > pkmn.level
-				learnsViaLevel = true if learnset_entry[1] == moveID
-			end
-			next if learnsViaLevel
-			
-			pbMessage(_INTL("Legality error! #{moveID} is an illegal move for Pokemon #{pkmn.name}!"))
-		end
-	end
-	
-	# TO DO: check for illegal per evolution
-	prevolutions = species_data.get_prevolutions()
-	return if prevolutions.length == 0
-	prevo_info =  prevolutions[0] # Assume only one possible prevo
-	if [:Level,:LevelDay,:LevelNight,:LevelMale,:LevelFemale,:LevelRain,:LevelDarkInParty].include?(prevo_info[1])
-		if prevo_info[2] > pkmn.level
-			name = species_data.real_name
-			name += "(#{species_data.real_form_name})" if species_data.form != 0
-			pbMessage(_INTL("Legality error! Level #{pkmn.level} is too low to be able to aquire a #{name}!"))
-		end
-	end
 end
 
 #===============================================================================

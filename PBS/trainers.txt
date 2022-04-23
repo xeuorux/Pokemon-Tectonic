@@ -2561,7 +2561,7 @@ Pokemon = SWADLOON,26
 Pokemon = PIGNITE,27
 	AbilityIndex = 1
 	Item = FIREGEM
-Pokemon = SUNFLORA,27
+Pokemon = SUNKERN,27
 	AbilityIndex = 1
 	Item = HEATROCK
 #-------------------------------
