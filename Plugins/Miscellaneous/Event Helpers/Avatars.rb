@@ -1,9 +1,19 @@
+class Game_Event < Game_Character
+	attr_accessor :opacity
+end
+
 def defeatBoss(item=nil,count=1)
 	$PokemonGlobal.respawnPoint = nil
-	pbMessage("The avatar staggers, then drifts away into nothingness.")
-	blackFadeOutIn {
-		setMySwitch('A',true)
-	}
+
+	speed = 20
+	event = get_self
+	255.downto(0) do |i|
+		next if i % 3 != 0
+		event.opacity = i
+		pbWait(1)
+	end
+
+	setMySwitch('A',true)
 	return if item == nil
 	if count == 1
 		pbMessage("It left behind an item!")
