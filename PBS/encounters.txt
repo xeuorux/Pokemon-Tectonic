@@ -774,3 +774,7 @@ Puddle
 Special
 1,VULPIX,40,40
 #-------------------------------
+[243] # Chasm Base Mess Hall
+Special
+1,DEWPIDER,15,15
+#-------------------------------

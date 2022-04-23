@@ -28,7 +28,7 @@ MAPS_AVAILABLE_BY_CAP = {
 			193,196,203,	# Lapras Shore, Boiling Cave, Skeevee Eevee Pub
 			211,212,216,	# Shield, Ocean Fishing, Mountain Lake
 			218,230,232,	# Abyssal Chamber, Galarian Fan's House, Biologist's House
-			234             # Ranger Recruitment,
+			234,243         # Ranger Recruitment, Chasm Base Mess Hall
 			],
 	70 => [215			# Sky
 			]
