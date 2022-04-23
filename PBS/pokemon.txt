@@ -19542,8 +19542,8 @@ InternalName = JELLICENT
 Type1 = WATER
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,60,70,60,85,105
-# Total = 480
+BaseStats = 105,60,75,60,85,115
+# Total = 500
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 168
