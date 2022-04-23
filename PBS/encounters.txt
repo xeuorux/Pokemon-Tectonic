@@ -399,7 +399,7 @@ SewerFloor,20
 25,TRUBBISH,17,19
 #-------------------------------
 [223] # Prizca Sewers West
-LandSparse
+LandSparse,20
 33,ELGYEM,31,33
 33,MUNNA,31,33
 34,SIGILYPH,31,33
@@ -554,8 +554,8 @@ Special,1
 Special,1
 1,CHINCHOU,40,40
 #-------------------------------
-[189] # Catacombs
-DarkCave,20
+[189] # Catacombs Antechamber
+LandSparse,20
 33,SPIRITOMB,36,38
 33,MIMIKYU,36,38
 34,YAMASK,36,38
