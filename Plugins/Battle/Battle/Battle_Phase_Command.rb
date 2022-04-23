@@ -17,13 +17,13 @@ class PokeBattle_Battle
     end
 
 	# Soul Read alerts
-	@battlers.each do |b|
-		next unless b.hasActiveAbility?(:SOULREAD)
-		b.eachOpposing do |opp|
-			next if opp.lastMoveUsedType.nil?
-			next unless opp.pbTypes(true).include?(opp.lastMoveUsedType)
+	@battlers.each do |battler|
+		next unless battler.hasActiveAbility?(:SOULREAD)
+		battler.eachOpposing do |opponent|
+			next if opponent.lastMoveUsedType.nil?
+			next unless opponent.pbTypes(true).include?(opponent.lastMoveUsedType)
 			pbShowAbilitySplash(battler)
-			pbDisplay(_INTL("{1} reads {2}'s guilty soul!",b.pbThis,opp.pbThis(true)))
+			pbDisplay(_INTL("{1} reads {2}'s guilty soul!",battler.pbThis,opponent.pbThis(true)))
 			pbShowAbilitySplash(battler)
 		end
 	end
