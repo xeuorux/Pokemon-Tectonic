@@ -18,8 +18,9 @@ MAPS_AVAILABLE_BY_CAP = {
 			78,87,103,92,    	# LuxTech Main, LuxTech Rec Center, Ghost Town Mart, Ice Rink Lodge
 			32,71,74,			# Nemeth Apartments, Nemeth Apartments Room 103, Nemeth Apartments Room 203
 			91,65,85,			# Reading Ribombee Cafe, Nemeth Mart, Worried Man's House
-			213,214,219,			# Velenz Menagerie, Gigalith's Guts Town, Regirock Cave
-			217					# Candy Town
+			213,214,219,		# Velenz Menagerie, Gigalith's Guts Town, Regirock Cave
+			217,49,243,			# Candy Town, Tourist's House, Chasm Base Mess Hall
+			250					# Chasm Base Lab
 			],
 	55 => [155,29,47,		# Prizca West, Full Blast Records F2, Grand Hotal
 			34,183,180,		# Battle Fair, Circuit Cave, Priza West Mart
@@ -28,7 +29,7 @@ MAPS_AVAILABLE_BY_CAP = {
 			193,196,203,	# Lapras Shore, Boiling Cave, Skeevee Eevee Pub
 			211,212,216,	# Shield, Ocean Fishing, Mountain Lake
 			218,230,232,	# Abyssal Chamber, Galarian Fan's House, Biologist's House
-			234,243         # Ranger Recruitment, Chasm Base Mess Hall
+			234             # Ranger Recruitment    
 			],
 	70 => [215			# Sky
 			]

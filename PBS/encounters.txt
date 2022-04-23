@@ -23,6 +23,10 @@ Special,20
 Special,20
 1,ASANDSHREW,10,10
 #-------------------------------
+[049] # Tourist's House
+Special,20
+1,MINCCINO,10,10
+#-------------------------------
 [138] # Scenic Path
 Land,20
 25,IMPIDIMP,7,9
@@ -76,6 +80,8 @@ Puddle,20
 25,LUVDISC,7,9
 25,INKAY,7,9
 25,CLOBBOPUS,7,9
+Special,20
+1,SPHEAL,15,15
 #-------------------------------
 [26] # Seaside Grotto
 DarkCave,20
@@ -426,10 +432,6 @@ Special,20
 1,TIRTOUGA,10,10
 1,AMAURA,10,10
 1,TYRUNT,10,10
-1,DRACOZOLT,60,60
-1,DRACOVISH,60,60
-1,ARCTOVISH,60,60
-1,ARCTOZOLT,60,60
 #-------------------------------
 [129] # Barren Crag
 Land,20
@@ -777,4 +779,11 @@ Special
 [243] # Chasm Base Mess Hall
 Special
 1,DEWPIDER,15,15
+#-------------------------------
+[250] # Chasm Base Lab
+Special
+1,DRACOZOLT,40,40
+1,ARCTOZOLT,40,40
+1,DRACOVISH,40,40
+1,ARCTOVISH,40,40
 #-------------------------------
