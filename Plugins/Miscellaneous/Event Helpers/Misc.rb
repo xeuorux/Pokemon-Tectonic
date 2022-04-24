@@ -60,3 +60,26 @@ def playerIsOutdoors?
 		return false
 	end
 end
+
+def pokemonRaffle(species,level=10,cost=200,baseChance=3.0,chanceIncrease=1.5,disablingSwitch='B')
+	$PokemonGlobal.raffleChancesTried = {} if $PokemonGlobal.raffleChancesTried.nil?
+	$PokemonGlobal.raffleChancesTried[species] = 0 if !$PokemonGlobal.raffleChancesTried.include_key?(species)
+	speciesName = GameData::Species.get(species).real_name
+	if pbMessageConfirmSerious(_INTL("We're running a raffle. Would you like to sepnd $#{cost} on a chance to win a #{speciesName}?"))
+		if $Trainer.money < cost
+			pbMessage(_INTL("I'm sorry, but you don't seem to have enough money."))
+		else
+			$Trainer.money -= cost
+			pbMessage(_INTL("You hand over $#{cost}."))
+			chance = baseChance + chanceIncrease * $PokemonGlobal.raffleChancesTried[species]
+			pbMessage(_INTL("Alright, let me roll for you\\|.\\|.\\|."))
+			if pbRandom(100 < chance)
+				pbMessage(_INTL("Congratulations, you have won the raffle! Here is your #{speciesName}, as promised."))
+				pbAddPokemon(species,level)
+				setMySwitch(disablingSwitch,true)
+			else
+				pbMessage(_INTL("No luck! Try again next time."))
+			end
+		end
+	end
+end
