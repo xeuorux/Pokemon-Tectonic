@@ -22,7 +22,7 @@ MAPS_AVAILABLE_BY_CAP = {
 			217,49,243,			# Candy Town, Tourist's House, Chasm Base Mess Hall
 			250					# Chasm Base Lab
 			],
-	55 => [155,29,47,		# Prizca West, Full Blast Records F2, Grand Hotal
+	50 => [155,29,47,		# Prizca West, Full Blast Records F2, Grand Hotal
 			34,183,180,		# Battle Fair, Circuit Cave, Priza West Mart
 			185,186,		# Eleig Stretch, Farm Placeholder
 			187,189,202,	# Prizca East, Catacombs, Mountaineer's House

@@ -407,8 +407,8 @@ SewerFloor,20
 [223] # Prizca Sewers West
 LandSparse,20
 33,ELGYEM,31,33
-33,MUNNA,31,33
-34,SIGILYPH,31,33
+33,KLEFKI,31,33
+33,SIGILYPH,31,33
 #-------------------------------
 [220] # Prizca Sewers East
 LandSparse,20
@@ -568,19 +568,18 @@ Special,1
 #-------------------------------
 [193] # Lapras Shore
 Land,20
-25,CRABRAWLER,36,38
-25,LAPRAS,36,38
-25,HEATMOR,36,38
-25,DURANT,36,38
+33,CRABRAWLER,36,38
+33,HEATMOR,36,38
+33,DURANT,36,38
 LandSparse,20
 33,SLUGMA,36,38
 33,KECLEON,36,38
 34,DARUMAKA,36,38
 Puddle,20
+25,LAPRAS,36,38
 25,TENTACOOL,36,38
 25,MANTYKE,36,38
 25,PINCURCHIN,36,38
-25,SEEL,36,38
 #-------------------------------
 [196] # Boiling Cave
 DarkCave,20
@@ -609,17 +608,21 @@ Special,1
 Special,20
 1,EEVEE,40,40
 #-------------------------------
-[211] # Shield
+[211] # Twin Peaks
 Land,20
-25,SPINDA,38,38
-25,SKARMORY,38,38
-25,PINSIR,38,38
-25,KANGASKHAN,38,38
+20,SPINDA,37,39
+20,SKARMORY,37,39
+20,PINSIR,37,39
+20,KANGASKHAN,37,39
 LandSparse,20
-25,STANTLER,38,38
-25,HAWLUCHA,38,38
-25,BOUNSWEET,38,38
-25,RUFFLET,36,39
+25,HAWLUCHA,37,39
+25,BOUNSWEET,37,39
+25,RUFFLET,37,39
+25,DELIBIRD,37,39
+Puddle,20
+33,STANTLER,37,39
+33,EISCUE,37,39
+33,SEEL,37,39
 #-------------------------------
 [239] # Ocean Fishing Contest
 FishingContest,20
@@ -736,12 +739,6 @@ DarkCave
 33,LUNATONE,38,38
 33,SOLROCK,38,38
 #-------------------------------
-[217] # Candy Town
-Land,20
-25,KLEFKI,38,40
-25,DELIBIRD,38,40
-25,MILCERY,38,40
-#-------------------------------
 [216] # Mountain Lake
 Land,20
 25,CHATOT,34,36
@@ -781,3 +778,9 @@ Special
 1,DRACOVISH,40,40
 1,ARCTOVISH,40,40
 #-------------------------------
+[217] # Candy Town
+Land,20
+25,MILCERY,44,46
+25,RIOLU,44,46
+25,MAWILE,44,46
+25,ONIX,44,46
