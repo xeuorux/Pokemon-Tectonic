@@ -4664,8 +4664,8 @@ InternalName = AERODACTYL
 Type1 = ROCK
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,105,65,130,60,75
-# Total = 515
+BaseStats = 70,95,60,115,65,70
+# Total = 475
 GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 180
@@ -4690,6 +4690,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = -1
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = PTEROFLYTE,Level,41
 #-------------------------------
 [143]
 Name = Snorlax
@@ -30640,6 +30641,38 @@ BattlerEnemyX = -8
 BattlerEnemyY = 7
 BattlerShadowX = 0
 BattlerShadowSize = 3
+#-------------------------------
+[932]
+Name = Pteroflyte
+InternalName = PTEROFLYTE
+Type1 = ROCK
+Type2 = FLYING
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 80,110,65,140,65,85
+# Total = 545
+GenderRate = Female50Percent
+GrowthRate = Slow
+BaseEXP = 180
+EffortPoints = 0,0,0,2,0,0
+Rareness = 75
+Happiness = 70
+Abilities = ROCKHEAD,RECKLESS
+Moves = 1,BITE,1,CRASH,4,SUPERSONIC,8,WINGATTACK,12,SCARYFACE,16,FURYPECKS,20,STONECHARGE,24,BIRDSTRIKE,28,LASHOUT,32,ROCKSLIDE,36,CRUNCH,40,BRAVEBIRD,44,GRANITEHEAD,48,DRAGONDANCE,52,STONEEDGE,56,PURSUIT,60,ZEPHYRWING
+TutorMoves = CHILL,AERIALACE,AGILITY,AQUATAIL,ASSURANCE,BRUTALSWING,BULLDOZE,TREMOR,CRUNCH,DEFOG,DRAGONCLAW,DRAGONDANCE,DRAGONPULSE,DUALWINGBEAT,EARTHPOWER,EARTHQUAKE,ENDURE,FACADE,FIREBLAST,FIREFANG,FLAMETHROWER,FLY,GIGAIMPACT,HEATWAVE,HURRICANE,HYPERBEAM,ICEFANG,IRONHEAD,IRONTAIL,LASERFOCUS,METEORBEAM,PAYBACK,PROTECT,PSYCHICFANGS,RAINDANCE,REFLECT,REST,ROAR,ROCKBLAST,ROCKPOLISH,ROCKSLIDE,ROCKTOMB,ROOST,ROUND,SANDSTORM,SCARYFACE,SKYDROP,SLEEPTALK,SMACKDOWN,SMASH,SNORE,STEALTHROCK,STEELWING,STONEEDGE,SUBSTITUTE,SUNNYDAY,SWIFT,TAILWIND,TAUNT,THIEF,THUNDERFANG,TORMENT,ZEPHYRWING
+Compatibility = Flying
+StepsToHatch = 9180
+Height = 2.2
+Weight = 71.4
+Color = Purple
+Shape = Head
+Kind = Fossil
+Pokedex = In ancient times, this Pokemon was an apex predator. It has the strength to fly with a Tyrantrum in its claws.
+BattlerPlayerX = 0
+BattlerPlayerY = 14
+BattlerEnemyX = 0
+BattlerEnemyY = -1
+BattlerShadowX = 0
+BattlerShadowSize = 2
 #-------------------------------
 [2000]
 Name = A. Rattata
