@@ -566,6 +566,7 @@ class PokeBattle_AI
   # For switching. Determines the effectiveness of a potential switch-in against
   # an opposing battler.
   def pbCalcTypeModPokemonOffensive(user,target)
+    target = target.effects[PBEffects::Illusion] if target.effects[PBEffects::Illusion]
     mod1 = Effectiveness.calculate(user.type1,target.type1,target.type2)
     mod2 = Effectiveness::NORMAL_EFFECTIVE
     if user.type1 != user.type2
@@ -725,18 +726,18 @@ class PokeBattle_AI
 		  multipliers[:final_damage_multiplier] *= 1.5
 		end
 	when :Sandstorm
-		if target.pbHasType?(:ROCK) && move.specialMove?(type)
+		if target.pbHasTypeAI?(:ROCK) && move.specialMove?(type)
 		  multipliers[:defense_multiplier] *= 1.5
 		end
 	when :Hail
-		if target.pbHasType?(:ICE) && move.physicalMove?(type)
+		if target.pbHasTypeAI?(:ICE) && move.physicalMove?(type)
 		  multipliers[:defense_multiplier] *= 1.5
 		end
 	end
     # Critical hits - n/a
     # Random variance - n/a
     # STAB
-	if type && user.pbHasType?(type)
+	if type && user.pbHasTypeAI?(type)
 		if user.hasActiveAbility?(:ADAPTABILITY)
 			multipliers[:final_damage_multiplier] *= 2
 		else
@@ -894,6 +895,31 @@ class PokeBattle_AI
     end
 	  return modifiers[:base_accuracy] * accuracy / evasion
   end
+
+  def pbCalcTypeMod(moveType,user,target)
+    return Effectiveness::NORMAL_EFFECTIVE if !moveType
+    return Effectiveness::NORMAL_EFFECTIVE if moveType == :GROUND &&
+       target.pbHasTypeAI?(:FLYING) && target.hasActiveItem?(:IRONBALL)
+    # Determine types
+    tTypes = target.pbTypesAI(true)
+    # Get effectivenesses
+    typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
+    if moveType == :SHADOW
+      if target.shadowPokemon?
+        typeMods[0] = Effectiveness::NOT_VERY_EFFECTIVE_ONE
+      else
+        typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE
+      end
+    else
+      tTypes.each_with_index do |type,i|
+        typeMods[i] = pbCalcTypeModSingle(moveType,type,user,target)
+      end
+    end
+    # Multiply all effectivenesses together
+    ret = 1
+    typeMods.each { |m| ret *= m }
+    return ret
+  end
   
   #=============================================================================
   # Immunity to a move because of the target's ability, item or other effects
@@ -941,16 +967,38 @@ class PokeBattle_AI
     return true if move.soundMove? && target.hasActiveAbility?(:SOUNDPROOF)
     return true if move.bombMove? && target.hasActiveAbility?(:BULLETPROOF)
     if move.powderMove?
-      return true if target.pbHasType?(:GRASS)
+      return true if target.pbHasTypeAI?(:GRASS)
       return true if target.hasActiveAbility?(:OVERCOAT)
       return true if target.hasActiveItem?(:SAFETYGOGGLES)
     end
     return true if target.effects[PBEffects::Substitute]>0 && move.statusMove? &&
                     !move.ignoresSubstitute?(user) && user.index!=target.index
     return true if Settings::MECHANICS_GENERATION >= 7 && user.hasActiveAbility?(:PRANKSTER) &&
-                    target.pbHasType?(:DARK) && target.opposes?(user)
-    return true if move.priority>0 && @battle.field.terrain == :Psychic &&
+                    target.pbHasTypeAI?(:DARK) && target.opposes?(user)
+    return true if move.priority > 0 && @battle.field.terrain == :Psychic &&
                       target.affectedByTerrain? && target.opposes?(user) 
     return false
+  end
+
+  def pbRoughType(move,user,skill)
+    return move.pbCalcType(user)
+  end
+
+  def pbRoughStat(battler,stat,skill)
+    castBattler = (battler.effects[PBEffects::Illusion] && battler.pbOwnedByPlayer?) ? battler.effects[PBEffects::Illusion] : battler
+
+    return battler.pbSpeed if stat==:SPEED && !battler.effects[PBEffects::Illusion]
+    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    stage = battler.stages[stat]+6
+    value = 0
+    case stat
+    when :ATTACK          then value = castBattler.attack
+    when :DEFENSE         then value = castBattler.defense
+    when :SPECIAL_ATTACK  then value = castBattler.spatk
+    when :SPECIAL_DEFENSE then value = castBattler.spdef
+    when :SPEED           then value = castBattler.speed
+    end
+    return (value.to_f*stageMul[stage]/stageDiv[stage]).floor
   end
 end

@@ -47,7 +47,7 @@ class PokeBattle_AI
 		end
 	#---------------------------------------------------------------------------
 	when "013", "014", "015"
-		canConfuse = target.pbCanConfuse?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
+		canConfuse = target.pbCanConfuse?(user,false) && !target.hasActiveAbilityAI?(:MENTALBLOCK)
 		if canConfuse
 			score += 20
 		elsif move.statusMove?
@@ -57,12 +57,12 @@ class PokeBattle_AI
 	when "016"
 		canattract = true
 		agender = user.gender
-		ogender = target.gender
+		ogender = target.displayGender
 		if agender==2 || ogender==2 || agender==ogender
 			score = 0; canattract = false
 		elsif target.effects[PBEffects::Attract]>=0
 			score -= 80; canattract = false
-		elsif target.hasActiveAbility?(:OBLIVIOUS)
+		elsif target.hasActiveAbilityAI?(:OBLIVIOUS)
 			score -= 80; canattract = false
 		end
 		if canattract && target.hasActiveItem?(:DESTINYKNOT) &&
@@ -623,8 +623,8 @@ class PokeBattle_AI
 		end
 	#---------------------------------------------------------------------------
 	when "04E"
-		if user.gender==2 || target.gender==2 || user.gender==target.gender ||
-		 target.hasActiveAbility?(:OBLIVIOUS)
+		if user.gender == 2 || target.displayGender == 2 || user.gender == target.displayGender ||
+		 target.hasActiveAbilityAI?(:OBLIVIOUS)
 			score = 0
 			elsif move.statusMove?
 			if !target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
@@ -833,7 +833,7 @@ class PokeBattle_AI
 			user.eachMoveWithIndex do |m,i|
 				break if Settings::MECHANICS_GENERATION >= 6 && i>0
 				next if GameData::Type.get(m.type).pseudo_type
-				next if user.pbHasType?(m.type)
+				next if user.pbHasTypeAI?(m.type)
 				has_possible_type = true
 				break
 			end
@@ -858,7 +858,7 @@ class PokeBattle_AI
 			else
 				has_possible_type = false
 				GameData::Type.each do |t|
-				next if t.pseudo_type || user.pbHasType?(t.id) ||
+				next if t.pseudo_type || user.pbHasTypeAI?(t.id) ||
 						!Effectiveness.resistant_type?(target.lastMoveUsedType, t.id)
 				has_possible_type = true
 				break
@@ -919,9 +919,9 @@ class PokeBattle_AI
 		end
 	#---------------------------------------------------------------------------
 	when "062"
-		if !user.canChangeType? || target.pbTypes(true).length == 0
+		if !user.canChangeType? || target.pbTypesAI(true).length == 0
 			score = 0
-		elsif user.pbTypes == target.pbTypes &&
+		elsif user.pbTypesAI == target.pbTypesAI &&
 		 user.effects[PBEffects::Type3] == target.effects[PBEffects::Type3]
 			score = 0
 		end
@@ -1025,7 +1025,7 @@ class PokeBattle_AI
 		score += 30 if target.hp<=user.level
 	#---------------------------------------------------------------------------
 	when "070"
-		score = 0 if target.hasActiveAbility?(:STURDY)
+		score = 0 if target.hasActiveAbilityAI?(:STURDY)
 		score = 0 if target.level>user.level
 	#---------------------------------------------------------------------------
 	when "071"
@@ -1188,7 +1188,7 @@ class PokeBattle_AI
 	when "0A7"
 		if target.effects[PBEffects::Foresight]
 			score = 0
-		elsif target.pbHasType?(:GHOST)
+		elsif target.pbHasTypeAI?(:GHOST)
 			score += 70
 		elsif target.stages[:EVASION]<=0
 			score -= 60
@@ -1197,7 +1197,7 @@ class PokeBattle_AI
 	when "0A8"
 		if target.effects[PBEffects::MiracleEye]
 			score = 0
-		elsif target.pbHasType?(:DARK)
+		elsif target.pbHasTypeAI?(:DARK)
 			score += 70
 		elsif target.stages[:EVASION]<=0
 			score -= 60
@@ -1248,19 +1248,19 @@ class PokeBattle_AI
 	when "0B6"
 	#---------------------------------------------------------------------------
 	when "0B7"
-		score = 0 if target.effects[PBEffects::Torment] || target.hasActiveAbility?(:MENTALBLOCK)
+		score = 0 if target.effects[PBEffects::Torment] || target.hasActiveAbilityAI?(:MENTALBLOCK)
 	#---------------------------------------------------------------------------
 	when "0B8"
 		score = 0 if user.effects[PBEffects::Imprison]
 	#---------------------------------------------------------------------------
 	when "0B9"
-		score = 0 if target.effects[PBEffects::Disable] > 0 || target.hasActiveAbility?(:MENTALBLOCK)
+		score = 0 if target.effects[PBEffects::Disable] > 0 || target.hasActiveAbilityAI?(:MENTALBLOCK)
 	#---------------------------------------------------------------------------
 	when "0BA"
-		score = 0 if target.effects[PBEffects::Taunt] > 0 || target.hasActiveAbility?(:MENTALBLOCK)
+		score = 0 if target.effects[PBEffects::Taunt] > 0 || target.hasActiveAbilityAI?(:MENTALBLOCK)
 	#---------------------------------------------------------------------------
 	when "0BB"
-		score = 0 if target.effects[PBEffects::HealBlock] > 0 || target.hasActiveAbility?(:MENTALBLOCK)
+		score = 0 if target.effects[PBEffects::HealBlock] > 0 || target.hasActiveAbilityAI?(:MENTALBLOCK)
 	#---------------------------------------------------------------------------
 	when "0BC"
 		aspeed = pbRoughStat(user,:SPEED,skill)
@@ -1281,7 +1281,7 @@ class PokeBattle_AI
 				end
 			end
 		end
-		score = 0 if target.hasActiveAbility?(:MENTALBLOCK)
+		score = 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
 	#---------------------------------------------------------------------------
 	when "0BD"
 	#---------------------------------------------------------------------------
@@ -1376,14 +1376,14 @@ class PokeBattle_AI
 	when "0DC"
 		if target.effects[PBEffects::LeechSeed]>=0
 			score = 0
-		elsif target.pbHasType?(:GRASS)
+		elsif target.pbHasTypeAI?(:GRASS)
 			score = 0
 		else
 			score += 60 if user.turnCount==0
 		end
 	#---------------------------------------------------------------------------
 	when "0DD"
-		if target.hasActiveAbility?(:LIQUIDOOZE)
+		if target.hasActiveAbilityAI?(:LIQUIDOOZE)
 			score -= 70
 		else
 			score += 20 if user.hp<=user.totalhp/2
@@ -1392,7 +1392,7 @@ class PokeBattle_AI
 	when "0DE"
 		if !target.asleep?
 			score = 0
-		elsif target.hasActiveAbility?(:LIQUIDOOZE)
+		elsif target.hasActiveAbilityAI?(:LIQUIDOOZE)
 			score -= 70
 		else
 			score += 20 if user.hp<=user.totalhp/2
@@ -1471,7 +1471,7 @@ class PokeBattle_AI
 		score -= 40
 	#---------------------------------------------------------------------------
 	when "0EB"
-		if target.effects[PBEffects::Ingrain] || target.hasActiveAbility?(:SUCTIONCUPS)
+		if target.effects[PBEffects::Ingrain] || target.hasActiveAbilityAI?(:SUCTIONCUPS)
 			score = 0
 		else
 			ch = 0
@@ -1489,7 +1489,7 @@ class PokeBattle_AI
 	#---------------------------------------------------------------------------
 	when "0EC"
 		score -= 20
-		if !target.effects[PBEffects::Ingrain] && target.hasActiveAbility?(:SUCTIONCUPS)
+		if !target.effects[PBEffects::Ingrain] && target.hasActiveAbilityAI?(:SUCTIONCUPS)
 			score += 40 if target.pbOwnSide.effects[PBEffects::Spikes]>0
 			score += 40 if target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0
 			score += 50 if target.pbOwnSide.effects[PBEffects::FlameSpikes]>0
@@ -1529,7 +1529,7 @@ class PokeBattle_AI
 	when "0F2"
 		if !user.item && !target.item
 			score = 0
-		elsif target.hasActiveAbility?(:STICKYHOLD)
+		elsif target.hasActiveAbilityAI?(:STICKYHOLD)
 			score = 0
 		elsif user.hasActiveItem?([:FLAMEORB,:POISONORB,:STICKYBARB,:IRONBALL,
 								 :CHOICEBAND,:CHOICESCARF,:CHOICESPECS])
@@ -1601,14 +1601,14 @@ class PokeBattle_AI
 			elsif aspeed>ospeed
 				score -= 40
 			end
-			score -= 40 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET])
+			score -= 40 if target.hasActiveAbilityAI?([:GUTS,:MARVELSCALE,:QUICKFEET])
 		end
 	#---------------------------------------------------------------------------
 	when "0FE"
 		score -= 30
 		if target.pbCanBurn?(user,false)
 			score += 30
-			score -= 40 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST])
+			score -= 40 if target.hasActiveAbilityAI?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST])
 		end
 	#---------------------------------------------------------------------------
 	when "103"
@@ -1684,7 +1684,7 @@ class PokeBattle_AI
 		end
 	#---------------------------------------------------------------------------
 	when "10D"
-		if user.pbHasType?(:GHOST)
+		if user.pbHasTypeAI?(:GHOST)
 			if target.effects[PBEffects::Curse]
 				score = 0
 			elsif user.hp<=user.totalhp/2
@@ -1777,14 +1777,14 @@ class PokeBattle_AI
 			score -= 20 if user.effects[PBEffects::SkyDrop]>=0
 			score -= 20 if user.effects[PBEffects::MagnetRise]>0
 			score -= 20 if user.effects[PBEffects::Telekinesis]>0
-			score -= 20 if user.pbHasType?(:FLYING)
+			score -= 20 if user.pbHasTypeAI?(:FLYING)
 			score -= 20 if user.hasLevitate?
 			score -= 20 if user.hasActiveItem?(:AIRBALLOON)
 			score += 20 if target.effects[PBEffects::SkyDrop]>=0
 			score += 20 if target.effects[PBEffects::MagnetRise]>0
 			score += 20 if target.effects[PBEffects::Telekinesis]>0
 			score += 20 if target.inTwoTurnAttack?("0C9","0CC","0CE")	 # Fly, Bounce, Sky Drop
-			score += 20 if target.pbHasType?(:FLYING)
+			score += 20 if target.pbHasTypeAI?(:FLYING)
 			score += 20 if target.hasLevitate?
 			score += 20 if target.hasActiveItem?(:AIRBALLOON)
 		end
@@ -1809,7 +1809,7 @@ class PokeBattle_AI
 		score += 20 if target.effects[PBEffects::MagnetRise]>0
 		score += 20 if target.effects[PBEffects::Telekinesis]>0
 		score += 20 if target.inTwoTurnAttack?("0C9","0CC")	 # Fly, Bounce
-		score += 20 if target.pbHasType?(:FLYING)
+		score += 20 if target.pbHasTypeAI?(:FLYING)
 		score += 20 if target.hasLevitate?
 		score += 20 if target.hasActiveItem?(:AIRBALLOON)
 	#---------------------------------------------------------------------------
@@ -1826,8 +1826,8 @@ class PokeBattle_AI
 	when "122"
 	#---------------------------------------------------------------------------
 	when "123"
-		if !target.pbHasType?(user.type1) &&
-		 !target.pbHasType?(user.type2)
+		if !target.pbHasTypeAI?(user.type1) &&
+		 !target.pbHasTypeAI?(user.type2)
 			score = 0
 		end
 	#---------------------------------------------------------------------------
@@ -1849,21 +1849,21 @@ class PokeBattle_AI
 			elsif aspeed>ospeed
 				score -= 40
 			end
-			score -= 40 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET])
+			score -= 40 if target.hasActiveAbilityAI?([:GUTS,:MARVELSCALE,:QUICKFEET])
 		end
 	#---------------------------------------------------------------------------
 	when "128"
 		score += 20	 # Shadow moves are more preferable
 		if target.pbCanBurn?(user,false)
 			score += 30
-			score -= 40 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST])
+			score -= 40 if target.hasActiveAbilityAI?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST])
 		end
 	#---------------------------------------------------------------------------
 	when "129"
 		score += 20	 # Shadow moves are more preferable
 		if target.pbCanFreeze?(user,false)
 			score += 30
-			score -= 20 if target.hasActiveAbility?(:MARVELSCALE)
+			score -= 20 if target.hasActiveAbilityAI?(:MARVELSCALE)
 		end
 	#---------------------------------------------------------------------------
 	when "12A"
@@ -1972,12 +1972,12 @@ class PokeBattle_AI
 		end
 	#---------------------------------------------------------------------------
 	when "13A"
-		avg	= target.stages[:ATTACK]*10
-		avg += target.stages[:SPECIAL_ATTACK]*10
+		avg	= target.stages[:ATTACK] * 10
+		avg += target.stages[:SPECIAL_ATTACK] * 10
 		score += avg/2
 	#---------------------------------------------------------------------------
 	when "13B"
-		if !user.isSpecies?(:HOOPA) || user.form!=1
+		if !user.isSpecies?(:HOOPA) || user.form != 1
 			score = 0
 		else
 			score += 20 if target.stages[:DEFENSE]>0
@@ -2008,7 +2008,7 @@ class PokeBattle_AI
 	when "13E"
 		count = 0
 		@battle.eachBattler do |b|
-			if b.pbHasType?(:GRASS) && !b.airborne? &&
+			if b.pbHasTypeAI?(:GRASS) && !b.airborne? &&
 				(!b.statStageAtMax?(:ATTACK) || !b.statStageAtMax?(:SPECIAL_ATTACK))
 				count += 1
 				if user.opposes?(b)
@@ -2024,7 +2024,7 @@ class PokeBattle_AI
 	when "13F"
 		count = 0
 		@battle.eachBattler do |b|
-		if b.pbHasType?(:GRASS) && !b.statStageAtMax?(:DEFENSE)
+		if b.pbHasTypeAI?(:GRASS) && !b.statStageAtMax?(:DEFENSE)
 			count += 1
 			if user.opposes?(b)
 			score -= 20
@@ -2071,10 +2071,10 @@ class PokeBattle_AI
 		end
 	#---------------------------------------------------------------------------
 	when "142"
-		score = 0 if target.pbHasType?(:GHOST)
+		score = 0 if target.pbHasTypeAI?(:GHOST)
 	#---------------------------------------------------------------------------
 	when "143"
-		score = 0 if target.pbHasType?(:GRASS)
+		score = 0 if target.pbHasTypeAI?(:GRASS)
 	#---------------------------------------------------------------------------
 	when "144"
 	#---------------------------------------------------------------------------
@@ -2138,7 +2138,7 @@ class PokeBattle_AI
 		end
 	#---------------------------------------------------------------------------
 	when "14F"
-		if target.hasActiveAbility?(:LIQUIDOOZE)
+		if target.hasActiveAbilityAI?(:LIQUIDOOZE)
 			score -= 80
 		else
 			score += 40 if user.hp<=user.totalhp/2
@@ -2180,7 +2180,7 @@ class PokeBattle_AI
 				score -= 40 if target.effects[PBEffects::Yawn]>0
 				score += 10 if pbRoughStat(target,:DEFENSE,skill)>100
 				score += 10 if pbRoughStat(target,:SPECIAL_DEFENSE,skill)>100
-				score -= 40 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:TOXICBOOST])
+				score -= 40 if target.hasActiveAbilityAI?([:GUTS,:MARVELSCALE,:TOXICBOOST])
 			end
 			if target.pbCanLowerStatStage?(:SPEED,user)
 				score += target.stages[:SPEED]*10
@@ -2264,7 +2264,7 @@ class PokeBattle_AI
 		end
 	#---------------------------------------------------------------------------
 	when "162"
-		score = 0 if !user.pbHasType?(:FIRE)
+		score = 0 if !user.pbHasTypeAI?(:FIRE)
 	#---------------------------------------------------------------------------
 	when "163"
 	#---------------------------------------------------------------------------
@@ -2414,7 +2414,7 @@ def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,t
 		score += ([target.stages[:SPECIAL_ATTACK],0].max)*10
 		score += ([target.stages[:SPECIAL_DEFENSE],0].max)*10
 		score += ([target.stages[:EVASION],0].max)*10
-		score -= 30 if target.hasActiveAbility?(statusUpsideAbilities)
+		score -= 30 if target.hasActiveAbilityAI?(statusUpsideAbilities)
 	elsif status
 		score = 0 
 	end
@@ -2424,7 +2424,7 @@ end
 def getFreezeMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target.pbCanFreeze?(user,false)
 		score += 30
-		score -= 30 if target.hasActiveAbility?(statusUpsideAbilities)
+		score -= 30 if target.hasActiveAbilityAI?(statusUpsideAbilities)
 	elsif status
 		return 0
 	end
@@ -2434,7 +2434,7 @@ end
 def getPoisonMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target && target.pbCanPoison?(user,false)
 		score += 30
-		score -= 30 if target.hasActiveAbility?([:TOXICBOOST,:POISONHEAL].concat(statusUpsideAbilities))
+		score -= 30 if target.hasActiveAbilityAI?([:TOXICBOOST,:POISONHEAL].concat(statusUpsideAbilities))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && status
 	elsif status
 		return 0
@@ -2445,7 +2445,7 @@ end
 def getBurnMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target && target.pbCanBurn?(user,false)
 		score += 30
-		score -= 30 if target.hasActiveAbility?([:FLAREBOOST,:BURNHEAL].concat(statusUpsideAbilities))
+		score -= 30 if target.hasActiveAbilityAI?([:FLAREBOOST,:BURNHEAL].concat(statusUpsideAbilities))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && status
 	elsif status
 		return 0
@@ -2457,7 +2457,7 @@ def getFlinchingMoveScore(score,user,target,skill,policies)
 	userSpeed = pbRoughStat(user,:SPEED,skill)
 	targetSpeed = pbRoughStat(target,:SPEED,skill)
 	
-	if target.hasActiveAbility?(:INNERFOCUS) ||
+	if target.hasActiveAbilityAI?(:INNERFOCUS) ||
 			target.effects[PBEffects::Substitute] != 0 ||
 			target.effects[PBEffects::FlinchedAlready] ||
 			targetSpeed > userSpeed
@@ -2549,5 +2549,44 @@ class PokeBattle_Battler
 			break
 		end
 		return false
+	end
+
+	def hasActiveAbilityAI?(check_ability, ignore_fainted = false)
+		return false if @effects[PBEffects::Illusion] && pbOwnedByPlayer?
+		return false if !abilityActive?(ignore_fainted)
+		return check_ability.include?(@ability_id) if check_ability.is_a?(Array)
+		return self.ability == check_ability
+	end
+
+	# Returns the active types of this Pokémon. The array should not include the
+	# same type more than once, and should not include any invalid type numbers
+	# (e.g. -1).
+	def pbTypesAI(withType3=false)
+		if @effects[PBEffects::Illusion] && pbOwnedByPlayer?
+			ret = [@effects[PBEffects::Illusion].type1]
+			ret.push(@effects[PBEffects::Illusion].type2) if @effects[PBEffects::Illusion].type2 != @effects[PBEffects::Illusion].type1
+		else
+			ret = [@type1]
+			ret.push(@type2) if @type2!=@type1
+		end
+		# Burn Up erases the Fire-type.
+		ret.delete(:FIRE) if @effects[PBEffects::BurnUp]
+		# Roost erases the Flying-type. If there are no types left, adds the Normal-
+		# type.
+		if @effects[PBEffects::Roost]
+			ret.delete(:FLYING)
+			ret.push(:NORMAL) if ret.length == 0
+		end
+		# Add the third type specially.
+		if withType3 && @effects[PBEffects::Type3]
+			ret.push(@effects[PBEffects::Type3]) if !ret.include?(@effects[PBEffects::Type3])
+		end
+		return ret
+	end
+
+	def pbHasTypeAI?(type)
+		return false if !type
+		activeTypes = pbTypesAI(true)
+		return activeTypes.include?(GameData::Type.get(type).id)
 	end
 end
