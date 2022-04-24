@@ -228,7 +228,7 @@
 220,FIRELASH,Fire Lash,043,80,FIRE,Physical,100,15,100,NearOther,0,abef,The user strikes the target with a burning lash. This also lowers the target's Defense stat.
 221,FIREPLEDGE,Fire Pledge,107,80,FIRE,Special,100,10,0,NearOther,0,bef,"A column of fire hits opposing Pokémon. When used with its Grass equivalent, it makes a sea of fire."
 222,LAVAPLUME,Lava Plume,00A,80,FIRE,Special,100,15,30,AllNearOthers,0,bef,An inferno of scarlet flames torches everything around the user. It has a 30% chance to burn.
-223,FIREPUNCH,Fire Punch,00A,75,FIRE,Physical,100,15,10,NearOther,0,abefj,The target is punched with a fiery fist. It has a 10% chance to burn..
+223,FIREPUNCH,Fire Punch,00A,75,FIRE,Physical,100,15,10,NearOther,0,abefj,The target is punched with a fiery fist. It has a 10% chance to burn.
 224,MYSTICALFIRE,Mystical Fire,045,75,FIRE,Special,100,10,100,NearOther,0,bef,"The user attacks by breathing a special, hot fire. This also lowers the target's Sp. Atk stat."
 225,FLAMEBURST,Flame Burst,074,70,FIRE,Special,100,15,0,NearOther,0,bef,The user attacks the foe with a bursting flame. It also damages Pokémon next to the target.
 226,FIREFANG,Fire Fang,00B,65,FIRE,Physical,100,15,100,NearOther,0,abei,The user bites with flame-cloaked fangs. It has a 10% chance to flinch and a 10% chance to burn.
