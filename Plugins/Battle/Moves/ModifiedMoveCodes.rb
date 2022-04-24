@@ -1426,3 +1426,20 @@ class PokeBattle_Move_0EA < PokeBattle_Move
     end
   end
 end
+
+#===============================================================================
+# Cures user of burn, poison and paralysis. (Refresh)
+#===============================================================================
+class PokeBattle_Move_018 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    succeed = (user.burned? || user.poisoned? || user.paralyzed? || user.frozen?)
+    return !succeed
+  end
+
+  def pbEffectGeneral(user)
+    user.pbCureStatus(true,:BURN)
+    user.pbCureStatus(true,:POISON)
+    user.pbCureStatus(true,:PARALYSIS)
+    user.pbCureStatus(true,:FROZEN)
+  end
+end

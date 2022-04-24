@@ -542,7 +542,7 @@
 527,RECOVER,Recover,0D5,0,NORMAL,Status,0,5,0,User,0,d,"Restoring its own cells, the user restores its own HP by half of its max HP."
 528,RECYCLE,Recycle,0F6,0,NORMAL,Status,0,10,0,User,0,d,The user recycles a held item that has been used in battle so it can be used again.
 529,REFLECTTYPE,Reflect Type,062,0,NORMAL,Status,0,15,0,NearOther,0,b,"The user reflects the target's type, making it the same type as the target."
-530,REFRESH,Refresh,018,0,NORMAL,Status,0,20,0,User,0,d,"The user rests to cure itself of a poisoning, burn, or numbing."
+530,REFRESH,Refresh,018,0,NORMAL,Status,0,20,0,User,0,d,"The user rests to cure itself of poisoning, burn, numbing, or chill."
 531,ROAR,Roar,0EB,0,NORMAL,Status,0,20,0,NearOther,-6,cek,"The target is scared off and replaced by another Pokémon in its party. In the wild, the battle ends."
 532,SAFEGUARD,Safeguard,01A,0,NORMAL,Status,0,25,0,UserSide,0,d,The user creates a protective field that prevents status problems for five turns.
 533,SCARYFACE,Scary Face,04D,0,GHOST,Status,100,10,0,NearOther,0,bce,The user frightens the target with a scary face to harshly reduce its Speed stat.
