@@ -4664,7 +4664,7 @@ InternalName = AERODACTYL
 Type1 = ROCK
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,95,60,115,65,70
+BaseStats = 70,95,60,105,65,70
 # Total = 475
 GenderRate = Female50Percent
 GrowthRate = Slow
@@ -4690,7 +4690,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = -1
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PTEROFLYTE,Level,41
+Evolutions = PTEROFLYTE,Level,40
 #-------------------------------
 [143]
 Name = Snorlax
@@ -30648,7 +30648,7 @@ InternalName = PTEROFLYTE
 Type1 = ROCK
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,110,65,140,65,85
+BaseStats = 80,110,75,140,75,85
 # Total = 545
 GenderRate = Female50Percent
 GrowthRate = Slow
