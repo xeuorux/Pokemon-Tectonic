@@ -16,6 +16,10 @@ Gabs<s>derrondad
 papper<s>Jaggedthorn
 BlueObelisk<s>LucaSantosSims
 
+Playtesters
+Splitmoon<s>Sets
+Steeb<s>
+
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 
 Tilesheets
