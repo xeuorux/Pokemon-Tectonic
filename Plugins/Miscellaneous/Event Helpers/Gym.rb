@@ -61,7 +61,7 @@ def showGymChoices(notSureLabel="NotSure",basicTeamLabel="BasicTeam",fullTeamLab
 	elsif cmdBasicTeam > -1 && cmd == cmdBasicTeam
 		goToLabel(basicTeamLabel)
 	elsif cmdFullTeam > -1 && cmd == cmdFullTeam
-		goToLabel(cmdFullTeam)
+		goToLabel(fullTeamLabel)
 	end
 end
 
@@ -79,7 +79,7 @@ def showGymChoicesDoubles(notSureLabel="NotSure",basicTeamLabel="BasicTeam",full
 	elsif cmdBasicTeam > -1 && cmd == cmdBasicTeam
 		goToLabel(basicTeamLabel)
 	elsif cmdFullTeam > -1 && cmd == cmdFullTeam
-		goToLabel(cmdFullTeam)
+		goToLabel(fullTeamLabel)
 	end
 end
 
