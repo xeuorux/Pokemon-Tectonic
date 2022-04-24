@@ -31,7 +31,7 @@
 29,SKITTERSMACK,Skitter Smack,045,70,BUG,Physical,100,10,100,NearOther,0,abef,The user skitters behind the target to attack. This also lowers the target's Sp. Atk stat.
 #-------------------------------,,,,,,,,,,,,,
 30,HYPERSPACEFURY,Hyperspace Fury,13B,100,DARK,Physical,0,5,0,NearOther,0,ef,"Unleashes a barrage of multi-arm attacks, skipping and destroying protections. It always hits. The user's Defense stat falls."
-31,FOULPLAY,Foul Play,121,95,DARK,Physical,100,15,0,NearOther,0,abef,"The user turns the foe's power against it. It does more damage the higher the target's Attack stat."
+31,FOULPLAY,Foul Play,121,95,DARK,Physical,100,15,0,NearOther,0,abef,"Turns the foe's power against it, dealing damage using the target's Attack stat."
 32,DARKESTLARIAT,Darkest Lariat,0A9,85,DARK,Physical,100,10,0,NearOther,0,abef,"The user swings both arms and hits the target. Ignores the target's stat changes."
 33,NIGHTDAZE,Night Daze,047,85,DARK,Special,100,10,40,NearOther,0,bef,"The user lets loose a pitch-black shock wave at its target. It has a 40% chance to lower accuracy."
 34,CRUNCH,Crunch,043,80,DARK,Physical,100,15,20,NearOther,0,abefi,The user crunches up the target with sharp fangs. It has a 20% chance to lower Defense.
@@ -977,6 +977,7 @@
 958,STINGINGJEALOUSY,Stinging Jealousy,553,70,POISON,Physical,100,5,100,AllNearFoes,0,bef,Attacks with energy from jealousy. All opposing Pokémon with stat boosts get poisoned.
 959,STANDTOGETHER,Stand Together,554,0,FIGHTING,Status,0,40,0,User,0,d,"The user holds fast with its teammates, raising the Defense of itself and its allies."
 960,CAMARADERIE,Camaraderie,555,0,PSYCHIC,Status,0,40,0,User,0,d,"The user calms itself and its teammates, raising the Sp. Defense of itself and its allies."
+961,TRICKYTOXINS,Tricky Toxins,121,95,POISON,Special,100,15,0,NearOther,0,abef,"Uses hidden toxins to damage the opponent using their special attack stat."
 # Primeval Moves, for use only by avatars
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."
