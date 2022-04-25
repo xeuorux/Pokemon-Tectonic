@@ -883,7 +883,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SANDSLASH,Level,22
+Evolutions = SANDSLASH,Level,32
 #-------------------------------
 [28]
 Name = Sandslash
