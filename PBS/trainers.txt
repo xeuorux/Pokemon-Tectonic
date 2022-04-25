@@ -139,13 +139,13 @@ Pokemon = RIOLU,15
 #-------------------------------
 [LEADER_Lambert_2,Lambert]
 Policies = LAMBERT
+Pokemon = PANCHAM,15
+    Moves = SMASH,TAUNT,LEER,BITE
+    AbilityIndex = 0
 Pokemon = ZORUA,15
     Moves = HARSHWORDS,GRASSKNOT,SWIFT
     AbilityIndex = 0
     Item = SITRUSBERRY
-Pokemon = PANCHAM,15
-    Moves = SMASH,TAUNT,LEER,BITE
-    AbilityIndex = 0
 Pokemon = MACHOP,15
     Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
     AbilityIndex = 1
@@ -165,13 +165,13 @@ Pokemon = CROAGUNK,15
 #-------------------------------
 [LEADER_Lambert_2,Lambert,1]
 Policies = LAMBERT,CURSE_PERISH_SONGED
+Pokemon = PANCHAM,15
+    Moves = SMASH,TAUNT,LEER,BITE
+    AbilityIndex = 0
 Pokemon = ZORUA,15
     Moves = HARSHWORDS,GRASSKNOT,SWIFT
     AbilityIndex = 0
     Item = SITRUSBERRY
-Pokemon = PANCHAM,15
-    Moves = SMASH,TAUNT,LEER,BITE
-    AbilityIndex = 0
 Pokemon = MACHOP,15
     Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
     AbilityIndex = 1
