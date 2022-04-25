@@ -864,13 +864,13 @@ class PokeBattle_AI
   # Accura calculation
   #===========================================================================
   def pbRoughAccuracy(move,user,target,skill)
-    return00 if target.effects[PBEffects::Telekinesis] > 0
-    baseAc= move.accuracy
-	  return00 if baseAcc == 0
-    baseAc= move.pbBaseAccuracy(user,target)
-	  return00 if baseAcc == 0
-    # Get e move's type
-    type = bRoughType(move,user,skill)
+    return 0 if target.effects[PBEffects::Telekinesis] > 0
+    baseAcc = move.accuracy
+	  return 0 if baseAcc == 0
+    baseAcc = move.pbBaseAccuracy(user,target)
+	  return 0 if baseAcc == 0
+    # Get the move's type
+    type = pbRoughType(move,user,skill)
     # Calculate all modifier effects
     modifiers = {}
     modifiers[:base_accuracy]  = baseAcc
