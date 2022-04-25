@@ -18,6 +18,7 @@ class PokeBattle_Battle
 
 	# Soul Read alerts
 	@battlers.each do |battler|
+		next if battler.nil?
 		next unless battler.hasActiveAbility?(:SOULREAD)
 		battler.eachOpposing do |opponent|
 			next if opponent.lastMoveUsedType.nil?
