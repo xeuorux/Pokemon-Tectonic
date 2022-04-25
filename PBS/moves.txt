@@ -796,7 +796,7 @@
 776,CORRODE,Corrode,507,70,POISON,Special,100,20,10,NearOther,0,bef,"10% chance to reduce Sp. Def. Is super-effective on Steel-types."
 777,BREACH,Breach,174,90,WATER,Physical,100,10,0,NearOther,2,abef,"Only works on the first turn the user is in battle."
 778,WINTERWARNING,Winter Warning,111,140,ICE,Special,100,10,0,NearOther,0,,"Two turns after this move is used, extreme winter cold attacks the target."
-779,CRYSTALCRUSH,Crystal Crush,508,100,ICE,Physical,100,15,30,NearOther,0,abef,"The user crushes the target with their frosted body, taking massive damage themselves. It has a 30% chance to chill."
+779,CRYSTALCRUSH,Crystal Crush,508,100,ICE,Physical,100,15,30,NearOther,0,abef,"The user crushes the target, taking 33% recoil damage. It has a 30% chance to chill."
 780,VITALFORCE,Vital Force,08B,100,FIGHTING,Special,100,5,0,AllNearFoes,0,bef,"The user unleashes a vital energy wave. The lower the user's HP, the less powerful it becomes."
 781,CHIFLUX,Chi Flux,04C,50,FIGHTING,Special,100,25,100,NearOther,0,abef,"The user contorts the target's chi with a special technique, lowering its Defense."
 782,SHRED,Shred,509,80,DRAGON,Physical,100,15,0,NearOther,0,abef,"The user shreds through the opponents defenses, ignoring positive stat changes and abilities."
@@ -978,6 +978,7 @@
 959,STANDTOGETHER,Stand Together,554,0,FIGHTING,Status,0,40,0,User,0,d,"The user holds fast with its teammates, raising the Defense of itself and its allies."
 960,CAMARADERIE,Camaraderie,555,0,PSYCHIC,Status,0,40,0,User,0,d,"The user calms itself and its teammates, raising the Sp. Defense of itself and its allies."
 961,TRICKYTOXINS,Tricky Toxins,121,95,POISON,Special,100,15,0,NearOther,0,abef,"Uses hidden toxins to damage the opponent using their special attack stat."
+962,RANSACK,Ransack,0F1,60,NORMAL,Special,100,25,0,NearOther,0,abef,"The user skillfully blasts the target, then steals the target's held item."
 # Primeval Moves, for use only by avatars
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."

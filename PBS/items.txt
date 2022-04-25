@@ -290,8 +290,8 @@
 286,FRIENDBALL,Friend Ball,Friend Balls,3,300,A Poké Ball that makes caught Pokémon more friendly.,0,4,4,
 287,MOONBALL,Moon Ball,Moon Balls,3,300,A Poké Ball with 4x strength against Pokémon evolve with or from using a Moon Stone.,0,4,4,
 #-------------------------------,,,,,,,,,,
-288,TM00,TM00,TM00s,4,10000,The target is slugged by a punch thrown with muscle-packed power.,3,0,0,MEGAPUNCH
-289,TM01,TM01,TM01s,4,40000,The target is attacked by a kick launched with muscle-packed power.,3,0,0,MEGAKICK
+288,TM00,TM00,TM00s,4,10000,"The user skillfully blasts the target, then steals the target's held item.",3,0,0,RANSACK
+289,TM01,TM01,TM01s,4,10000,"The user endearingly approaches the target, then steals the target's held item.",3,0,0,COVET
 290,TM02,TM02,TM02s,4,10000,Numerous coins are hurled at the target to inflict damage. Money is earned after the battle.,3,0,0,PAYDAY
 291,TM03,TM03,TM03s,4,50000,The target is punched with a fiery fist. This may also leave the target with a burn.,3,0,0,FIREPUNCH
 292,TM04,TM04,TM04s,4,50000,The target is punched with an icy fist. This may also leave the target frozen.,3,0,0,ICEPUNCH
