@@ -47,18 +47,41 @@ DebugMenuCommands.register("renamemove", {
       Compiler.write_moves
 
       GameData::Species.each do |species_data|
+        changed = false
         modifiedLevelUpMoves = species_data.moves
         modifiedLevelUpMoves.map! { |moveEntry|
-          next [moveEntry[0],moveEntry[1] == oldMoveInternalName ? newMoveInternalName : oldMoveInternalName]
+          if moveEntry[1].to_s == oldMoveInternalName
+            changed = true
+            next [moveEntry[0], newMoveInternalName]
+          else
+            next moveEntry
+          end
         }
         modifiedTutorMoves = species_data.tutor_moves
         modifiedTutorMoves.map! { |moveSym|
-          next moveSym == oldMoveInternalName ? newMoveInternalName : oldMoveInternalName
+          if moveSym.to_s == oldMoveInternalName
+            changed = true
+            next newMoveInternalName
+          else
+            next moveSym
+          end
         }
         modifiedEggMoves = species_data.egg_moves
         modifiedEggMoves.map! { |moveSym|
-          next moveSym == oldMoveInternalName ? newMoveInternalName : oldMoveInternalName
+          if moveSym.to_s == oldMoveInternalName
+            changed = true
+            next newMoveInternalName
+          else
+            next moveSym
+          end
         }
+
+        if changed
+          echoln("Replacing the move on #{species_data.real_name}")
+        else
+          echoln("Skipping #{species_data.real_name}")
+          next
+        end
         
         new_species_hash = {
           :id                    => species_data.id,
@@ -103,15 +126,15 @@ DebugMenuCommands.register("renamemove", {
           :shadow_x              => species_data.shadow_x,
           :shadow_size           => species_data.shadow_size
         }
-        GameData::Species.DATA.delete(species_data_.id)
-        GameData::Species.DATA.delete(species_data_.id_number)
+        GameData::Species::DATA.delete(species_data.id)
+        GameData::Species::DATA.delete(species_data.id_number)
         GameData::Species.register(new_species_hash)
         GameData::Species.save
       end
+      echoln("Compiling species data")
       Compiler.write_pokemon
-      Compiler.write_pokemon_forms
 
-      pbMessage("Move successfully renamed!")
+      pbMessage("Move successfully renamed! Do manual replacements in pokemon_forms.txt")
 
       # Compiler.write_trainers
       break

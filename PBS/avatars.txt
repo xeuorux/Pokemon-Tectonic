@@ -497,7 +497,7 @@ Moves = SECRETSWORD
 Turns = 2
 HPMult = 2
 Ability = POISONPUNISH
-Moves = MUDSHOT,FLATTER,BADSTENCH
+Moves = MUDSHOT,FLATTER,STENCH
 #-----------------------------
 [SHUCKLE]
 Turns = 3

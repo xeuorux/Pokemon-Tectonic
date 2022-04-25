@@ -827,7 +827,7 @@
 762,RUMBLE,Rumble,076,45,GROUND,Physical,100,35,0,AllNearOthers,0,bef,"The user causes the earth to rumble, striking every Pokémon around it."
 763,TREMOR,Tremor,076,65,GROUND,Physical,100,20,0,AllNearOthers,0,bef,"The user slams the earth, causing all the Pokémon around it to tremble and take damage."
 764,COLDEMBRACE,Cold Embrace,00C,40,ICE,Physical,100,35,10,NearOther,0,abef,"The user grabs the target in a chilly embrace. It has a 10% chance to chill."
-765,BADSTENCH,Bad Stench,013,50,POISON,Special,100,25,20,NearOther,0,bef,"The user gives off a terrible stench towards the target. It has a 20% chance to confuse."
+765,STENCH,Stench,013,50,POISON,Special,100,25,20,NearOther,0,bef,"The user gives off a terrible stench towards the target. It has a 20% chance to confuse."
 766,BLINDSIDE,Blind Side,0A5,40,PSYCHIC,Physical,0,35,0,NearOther,0,aef,"The user skillfully attacks around the enemy's defenses. Skips protections, and always hits."
 767,SLURP,Slurp,0DD,25,BUG,Physical,100,25,0,NearOther,0,abef,"The user slurpsa bit of the target's blood. The user's HP is restored by half the damage dealt."
 768,KICKSTART,Kickstart,505,40,PSYCHIC,Physical,100,10,0,NearOther,1,abef,"The user encourages the target to attack right after the user. Always goes first."
