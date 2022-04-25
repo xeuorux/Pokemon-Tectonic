@@ -5477,7 +5477,7 @@ InternalName = SPINARAK
 Type1 = BUG
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,60,65,40,55,65
+BaseStats = 70,78,78,45,55,70
 # Total = 355
 GenderRate = Female50Percent
 GrowthRate = Fast
@@ -5511,7 +5511,7 @@ InternalName = ARIADOS
 Type1 = BUG
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 90,100,90,60,80,90
+BaseStats = 90,100,100,60,80,90
 # Total = 510
 GenderRate = Female50Percent
 GrowthRate = Fast
