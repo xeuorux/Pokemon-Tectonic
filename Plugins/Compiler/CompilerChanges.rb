@@ -21,15 +21,15 @@ module Compiler
          "species_evolutions.dat",
          "species_metrics.dat",
          "species_movesets.dat",
-		 "species_old.dat",
+         "species_old.dat",
          "tm.dat",
          "town_map.dat",
          "trainer_lists.dat",
          "trainer_types.dat",
          "trainers.dat",
          "types.dat",
-		 "policies.dat",
-		 "avatars.dat"
+         "policies.dat",
+         "avatars.dat"
       ]
       textFiles = [
          "abilities.txt",
@@ -41,7 +41,7 @@ module Compiler
          "moves.txt",
          "phone.txt",
          "pokemon.txt",
-		 "pokemon_old.txt",
+		     "pokemon_old.txt",
          "pokemonforms.txt",
          "regionaldexes.txt",
          "ribbons.txt",
@@ -51,8 +51,8 @@ module Compiler
          "trainers.txt",
          "trainertypes.txt",
          "types.txt",
-		 "policies.txt",
-		 "avatars.txt"
+		     "policies.txt",
+		     "avatars.txt"
       ]
       latestDataTime = 0
       latestTextTime = 0
@@ -1739,6 +1739,29 @@ module Compiler
           f.write(sprintf("    Happiness = %d\r\n", pkmn[:happiness])) if pkmn[:happiness]
           f.write(sprintf("    Ball = %s\r\n", pkmn[:poke_ball])) if pkmn[:poke_ball]
         end
+      end
+    }
+    pbSetWindowText(nil)
+    Graphics.update
+  end
+
+  #=============================================================================
+  # Save individual trainer data to PBS file
+  #=============================================================================
+  def write_avatars
+    File.open("PBS/avatars.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      GameData::Avatar.each do |avatar|
+        pbSetWindowText(_INTL("Writing avatar {1}...", avatar.id_number))
+        Graphics.update if avatar.id_number % 20 == 0
+        f.write("\#-------------------------------\r\n")
+        f.write(sprintf("[%s]\r\n", avatar.id))
+        f.write(sprintf("Ability = %s\r\n", avatar.ability))
+        f.write(sprintf("Moves = %s\r\n", avatar.moves.join(","))) if avatar.moves.length > 0
+        f.write(sprintf("PostPrimeMoves = %s\r\n", avatar.post_prime_moves.join(","))) if avatar.post_prime_moves.length > 0
+        f.write(sprintf("Turns = %s\r\n", avatar.num_turns))
+        f.write(sprintf("HPMult = %s\r\n", avatar.hp_mult))
+        f.write(sprintf("DMGMult = %s\r\n", avatar.dmg_mult))
       end
     }
     pbSetWindowText(nil)
