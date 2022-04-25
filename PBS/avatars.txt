@@ -90,7 +90,7 @@ PostPrimeMoves = ICEBEAM
 Turns = 1
 HPMult = 4
 Ability = ILLUSION
-Moves = ANGSTWAVE,PRIMEVALPOISONGAS
+Moves = MASSDESTRUCTION,PRIMEVALPOISONGAS
 PostPrimeMoves = SLUDGEWAVE
 #-------------------------------
 [GOURGEIST]
@@ -184,7 +184,7 @@ PostPrimeMoves = SPATTERINGRAM
 Turns = 2
 Ability = PRESSURE
 Moves = WHIRLPOOL,PURIFYINGWATER,PRIMEVALTAILWIND
-PostPrimeMoves = GALE
+PostPrimeMoves = COLDFRONT
 HPMult = 5
 #-------------------------------
 [ENTEI]
@@ -208,7 +208,7 @@ HPMult = 5
 Turns = 3
 HPMult = 8
 Ability = AIRLOCK
-Moves = DRAGONASCENT,ICEBEAM,REST,GALE
+Moves = DRAGONASCENT,ICEBEAM,REST,COLDFRONT
 #-------------------------------
 [KYOGRE]
 Turns = 3
@@ -236,7 +236,7 @@ HPMult = 3
 Turns = 2
 HPMult = 3
 Ability = SHIELDSDOWN
-Moves = POWERGEM,GALE
+Moves = POWERGEM,COLDFRONT
 #-------------------------------
 [PINSIR]
 Turns = 2
@@ -408,7 +408,7 @@ HPMult = 3
 Turns = 3
 HPMult = 8
 Ability = FROSTWINGS
-Moves = POWDERSNOW,SHEERCOLD,GALE
+Moves = POWDERSNOW,SHEERCOLD,COLDFRONT
 #-------------------------------
 [ZAPDOS]
 Turns = 3
@@ -477,7 +477,7 @@ Turns = 2
 HPMult = 10
 Ability = HEARTOFJUSTICE
 Item = EXPERTBELT
-Moves = GRANITEHEAD,TRAMPLE,PRIMEVALLEECHSEED
+Moves = BEDROCKBREAKER,TRAMPLE,PRIMEVALLEECHSEED
 PostPrimeMoves = LEAFBLADE
 #------------------------------
 [VIRIZION]
@@ -545,7 +545,7 @@ PostPrimeMoves = BUGBITE
 Turns = 1
 Ability = COMPETITIVE
 Moves = BRINE,WATERGUN,PRIMEVALSANDSTORM
-PostPrimeMoves = CRYSTALGLINT
+PostPrimeMoves = CRYSTALGLEAM
 HPMult = 5
 #-------------------------------
 [KANGASKHAN]
@@ -647,7 +647,7 @@ HPMult = 4
 [TOWERPODA]
 Turns = 2
 Ability = SANDSTREAM
-Moves = TWISTER,DRAGONROAR
+Moves = TWISTER,LOOMOVER
 HPMult = 4
 #-------------------------------
 [KRICKETUNE]
@@ -800,7 +800,7 @@ Item = POWERHERB
 Turns = 2
 HPMult = 4
 Ability = AUDACITY
-Moves = TERRADRAIN,DRAININGKISS,PRIMEVALPOISONGAS
+Moves = TERADRAIN,DRAININGKISS,PRIMEVALPOISONGAS
 PostPrimeMoves = VENOMLEECH
 Item = BIGROOT
 #-----------------------------
@@ -815,7 +815,7 @@ PostPrimeMoves = ELECTROBALL,ELECTROWEB
 Turns = 2
 HPMult = 4
 Ability = INTIMIDATE
-Moves = WINDBLADE,STICKYWEB,PRIMEVALRAINDANCE
+Moves = GALE,STICKYWEB,PRIMEVALRAINDANCE
 PostPrimeMoves = WATERSPIRAL
 #-----------------------------
 [CROBAT]
