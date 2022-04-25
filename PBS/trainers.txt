@@ -1562,14 +1562,14 @@ Pokemon = EMOLGA,33
     Item = SITRUSBERRY
 #-------------------------------
 [WAITRESS,Carmilla]
+Pokemon = DURANT,32
+    AbilityIndex = 1
+    Item = LIFEORB
 Pokemon = CLEFAIRY,32
     AbilityIndex = 0
     Item = ORANBERRY
 Pokemon = DUGTRIO,31
     AbilityIndex = 0
-Pokemon = DURANT,32
-    AbilityIndex = 1
-    Item = CHOICEBAND
 Pokemon = UNFEZANT,33
     AbilityIndex = 0
 #-------------------------------
