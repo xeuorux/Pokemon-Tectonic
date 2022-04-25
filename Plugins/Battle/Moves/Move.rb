@@ -494,26 +494,26 @@ class PokeBattle_Move
 		if user.burned? && physicalMove? && damageReducedByBurn? &&
 		   !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
 		  if !user.boss?
-			multipliers[:final_damage_multiplier] *= 2.0/3.0
+			  multipliers[:final_damage_multiplier] *= 2.0/3.0
 		  else
-			multipliers[:final_damage_multiplier] *= 4.0/5.0
+			  multipliers[:final_damage_multiplier] *= 4.0/5.0
 		  end
 		end
 		# Poison
 		if user.poisoned? && user.statusCount == 0 && specialMove? && damageReducedByBurn? &&
 		   !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:POISONHEAL)
 		  if !user.boss?
-			multipliers[:final_damage_multiplier] *= 2.0/3.0
+			  multipliers[:final_damage_multiplier] *= 2.0/3.0
 		  else
-			multipliers[:final_damage_multiplier] *= 4.0/5.0
+			  multipliers[:final_damage_multiplier] *= 4.0/5.0
 		  end
 		end
 		# Chill
 		if target.status == :FROZEN
 		  if !target.boss
-			multipliers[:final_damage_multiplier] *= 4.0/3.0
+			  multipliers[:final_damage_multiplier] *= 4.0/3.0
 		  else
-			multipliers[:final_damage_multiplier] *= 5.0/4.0
+			  multipliers[:final_damage_multiplier] *= 5.0/4.0
 		  end
 		end
 		# Aurora Veil, Reflect, Light Screen
