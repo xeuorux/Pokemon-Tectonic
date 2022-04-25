@@ -119,7 +119,7 @@ class PokeBattle_Move_01B < PokeBattle_Move
       msg = _INTL("{1}'s burn was healed.",user.pbThis)
     when :PARALYSIS
       target.pbParalyze(user)
-      msg = _INTL("{1} was cured of paralysis.",user.pbThis)
+      msg = _INTL("{1} was cured of numbing.",user.pbThis)
     when :FROZEN
       target.pbFreeze
       msg = _INTL("{1} was unchilled.",user.pbThis)

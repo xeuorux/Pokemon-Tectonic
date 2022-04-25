@@ -318,7 +318,7 @@ class PokeBattle_Battler
 				when :BURN
 				@battle.pbDisplay(_INTL("{1} was burned! Its Attack is reduced by a third!", pbThis))
 				when :PARALYSIS
-				@battle.pbDisplay(_INTL("{1} is numbed! It's slower and it's stat improvements are ignored!", pbThis))
+				@battle.pbDisplay(_INTL("{1} is numbed! It's slower and deals less damage!", pbThis))
 				when :FROZEN
 				@battle.pbDisplay(_INTL("{1} was chilled! It's slower and takes more damage!", pbThis))
 				end

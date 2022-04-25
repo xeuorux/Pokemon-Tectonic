@@ -2399,7 +2399,7 @@ end
 
 # Actually used for numbing now
 def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,twave=false)
-	wouldBeFailedTWave = skill>=PBTrainerAI.mediumSkill && twave && Effectiveness.ineffective?(pbCalcTypeMod(:ELECTRIC,user,target))
+	wouldBeFailedTWave = twave && Effectiveness.ineffective?(pbCalcTypeMod(:ELECTRIC,user,target))
 	if target.pbCanParalyze?(user,false) && !wouldBeFailedTWave
 		score += 10
 		aspeed = pbRoughStat(user,:SPEED,skill)
@@ -2409,11 +2409,11 @@ def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,t
 		elsif aspeed>ospeed
 			score -= 30
 		end
-		score += ([target.stages[:ATTACK],0].max)*10
-		score += ([target.stages[:DEFENSE],0].max)*10
-		score += ([target.stages[:SPECIAL_ATTACK],0].max)*10
-		score += ([target.stages[:SPECIAL_DEFENSE],0].max)*10
-		score += ([target.stages[:EVASION],0].max)*10
+		# score += ([target.stages[:ATTACK],0].max)*10
+		# score += ([target.stages[:DEFENSE],0].max)*10
+		# score += ([target.stages[:SPECIAL_ATTACK],0].max)*10
+		# score += ([target.stages[:SPECIAL_DEFENSE],0].max)*10
+		# score += ([target.stages[:EVASION],0].max)*10
 		score -= 30 if target.hasActiveAbilityAI?(statusUpsideAbilities)
 	elsif status
 		score = 0 
