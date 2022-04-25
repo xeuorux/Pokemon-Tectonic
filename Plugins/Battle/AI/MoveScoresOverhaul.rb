@@ -449,213 +449,10 @@ class PokeBattle_AI
 			score += 30 if target.stages[:ATTACK]<0
 		end
 	#---------------------------------------------------------------------------
-	when "042"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:ATTACK,user)
-				score = 0
-			else
-				score += target.stages[:ATTACK]*20
-				if target.hasPhysicalAttack?
-					score += 20
-				else
-					score = 0
-				end
-			end
-		else
-			score += 20 if target.stages[:ATTACK]>0
-			score += 20 if target.hasPhysicalAttack?
-		end
-	#---------------------------------------------------------------------------
-	when "043"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:DEFENSE,user)
-				score = 0
-			else
-				score += target.stages[:DEFENSE]*20
-			end
-		else
-			score += 20 if target.stages[:DEFENSE]>0
-		end
-	#---------------------------------------------------------------------------
-	when "044"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:SPEED,user)
-				score = 0
-			else
-				score += target.stages[:SPEED]*10
-				aspeed = pbRoughStat(user,:SPEED,skill)
-				ospeed = pbRoughStat(target,:SPEED,skill)
-				score += 30 if aspeed<ospeed && aspeed*2>ospeed
-			end
-		else
-			score += 20 if user.stages[:SPEED]>0
-		end
-	#---------------------------------------------------------------------------
-	when "045"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
-				score = 0
-			else
-				score += user.stages[:SPECIAL_ATTACK]*20
-				if skill>=PBTrainerAI.mediumSkill
-				hasSpecicalAttack = false
-				target.eachMove do |m|
-					next if !m.specialMove?(m.type)
-					hasSpecicalAttack = true
-					break
-				end
-				if hasSpecicalAttack
-					score += 20
-				else
-					score = 0
-				end
-				end
-			end
-		else
-			score += 20 if user.stages[:SPECIAL_ATTACK]>0
-			score += 20 if user.hasSpecialAttack?
-		end
-	#---------------------------------------------------------------------------
-	when "046"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user)
-				score = 0
-			else
-				score += target.stages[:SPECIAL_DEFENSE]*20
-			end
-		else
-			score += 20 if target.stages[:SPECIAL_DEFENSE]>0
-		end
-	#---------------------------------------------------------------------------
-	when "047"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:ACCURACY,user)
-				score = 0
-			else
-				score += target.stages[:ACCURACY]*10
-			end
-		else
-			score += 20 if target.stages[:ACCURACY]>0
-		end
-	#---------------------------------------------------------------------------
-	when "048"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:EVASION,user)
-				score = 0
-			else
-				score += target.stages[:EVASION]*10
-			end
-		else
-			score += 20 if target.stages[:EVASION]>0
-		end
-	#---------------------------------------------------------------------------
-	when "049"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:EVASION,user)
-				score = 0
-			else
-				score += target.stages[:EVASION]*10
-			end
-		else
-			score += 20 if target.stages[:EVASION]>0
-		end
-		score += 30 if target.pbOwnSide.effects[PBEffects::AuroraVeil]>0 ||
-					 target.pbOwnSide.effects[PBEffects::Reflect]>0 ||
-					 target.pbOwnSide.effects[PBEffects::LightScreen]>0 ||
-					 target.pbOwnSide.effects[PBEffects::Mist]>0 ||
-					 target.pbOwnSide.effects[PBEffects::Safeguard]>0
-		score -= 30 if target.pbOwnSide.effects[PBEffects::Spikes]>0 ||
-					 target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 ||
-					 target.pbOwnSide.effects[PBEffects::FlameSpikes]>0 ||
-					 target.pbOwnSide.effects[PBEffects::StealthRock]
-	#---------------------------------------------------------------------------
 	when "04A"
 		avg = target.stages[:ATTACK]*10
 		avg += target.stages[:DEFENSE]*10
 		score += avg/2
-	#---------------------------------------------------------------------------
-	when "04B"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:ATTACK,user)
-				score = 0
-			else
-				score += 40 if user.turnCount==0
-				score += target.stages[:ATTACK]*20
-				if target.hasPhysicalAttack?
-					score += 20
-				else
-					score = 0
-				end
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 20 if target.stages[:ATTACK]>0
-			score += 20 if target.hasPhysicalAttack?
-		end
-	#---------------------------------------------------------------------------
-	when "04C"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:DEFENSE,user)
-				score = 0
-			else
-				score += 40 if user.turnCount==0
-				score += target.stages[:DEFENSE]*20
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 20 if target.stages[:DEFENSE]>0
-		end
-	#---------------------------------------------------------------------------
-	when "04D"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:SPEED,user)
-				score = 0
-			else
-				score += 20 if user.turnCount==0
-				score += target.stages[:SPEED]*20
-				aspeed = pbRoughStat(user,:SPEED,skill)
-				ospeed = pbRoughStat(target,:SPEED,skill)
-				score += 30 if aspeed<ospeed && aspeed*2>ospeed
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 30 if target.stages[:SPEED]>0
-		end
-	#---------------------------------------------------------------------------
-	when "04E"
-		if user.gender == 2 || target.displayGender == 2 || user.gender == target.displayGender ||
-		 target.hasActiveAbilityAI?(:OBLIVIOUS)
-			score = 0
-			elsif move.statusMove?
-			if !target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
-				score = 0
-			else
-				score += 40 if user.turnCount==0
-				score += target.stages[:SPECIAL_ATTACK]*20
-				if target.hasSpecialAttack?
-					score += 20
-				else
-					score = 0
-				end
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 20 if target.stages[:SPECIAL_ATTACK]>0
-			score += 30 if target.hasSpecialAttack?
-		end
-	#---------------------------------------------------------------------------
-	when "04F"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user)
-				score = 0
-			else
-				score += 40 if user.turnCount==0
-				score += target.stages[:SPECIAL_DEFENSE]*20
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 20 if target.stages[:SPECIAL_DEFENSE]>0
-		end
 	#---------------------------------------------------------------------------
 	when "050"
 		if target.effects[PBEffects::Substitute]>0
@@ -1874,23 +1671,6 @@ class PokeBattle_AI
 			score = 0
 		end
 	#---------------------------------------------------------------------------
-	when "12B"
-		score += 20	 # Shadow moves are more preferable
-		if !target.pbCanLowerStatStage?(:DEFENSE,user)
-			score = 0
-		else
-			score += 40 if user.turnCount==0
-			score += target.stages[:DEFENSE]*20
-		end
-	#---------------------------------------------------------------------------
-	when "12C"
-		score += 20	 # Shadow moves are more preferable
-		if !target.pbCanLowerStatStage?(:EVASION,user)
-			score = 0
-		else
-			score += target.stages[:EVASION]*15
-		end
-	#---------------------------------------------------------------------------
 	when "12D"
 		score += 20	 # Shadow moves are more preferable
 	#---------------------------------------------------------------------------
@@ -1959,18 +1739,6 @@ class PokeBattle_AI
 			score -= target.stages[:SPECIAL_DEFENSE]*10
 		end
 	#---------------------------------------------------------------------------
-	when "139"
-		if !target.pbCanLowerStatStage?(:ATTACK,user)
-			score = 0
-		else
-			score += target.stages[:ATTACK]*20
-			if target.hasPhysicalAttack?
-				score += 20
-			else
-				score = 0
-			end
-		end
-	#---------------------------------------------------------------------------
 	when "13A"
 		avg	= target.stages[:ATTACK] * 10
 		avg += target.stages[:SPECIAL_ATTACK] * 10
@@ -1981,28 +1749,6 @@ class PokeBattle_AI
 			score = 0
 		else
 			score += 20 if target.stages[:DEFENSE]>0
-		end
-	#---------------------------------------------------------------------------
-	when "13C"
-		score += 20 if target.stages[:SPECIAL_ATTACK] > 0
-	#---------------------------------------------------------------------------
-	when "13D"
-		if move.statusMove?
-			if !target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
-				score = 0
-			else
-				score += 40 if user.turnCount==0
-				score += target.stages[:SPECIAL_ATTACK]*20
-				if target.hasSpecialAttack?
-					score += 20
-				else
-					score = 0
-				end
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 20 if target.stages[:SPECIAL_ATTACK]>0
-			score += 20 if target.hasSpecialAttack?
 		end
 	#---------------------------------------------------------------------------
 	when "13E"
@@ -2399,7 +2145,7 @@ end
 
 # Actually used for numbing now
 def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,twave=false)
-	wouldBeFailedTWave = skill>=PBTrainerAI.mediumSkill && twave && Effectiveness.ineffective?(pbCalcTypeMod(:ELECTRIC,user,target))
+	wouldBeFailedTWave = twave && Effectiveness.ineffective?(pbCalcTypeMod(:ELECTRIC,user,target))
 	if target.pbCanParalyze?(user,false) && !wouldBeFailedTWave
 		score += 10
 		aspeed = pbRoughStat(user,:SPEED,skill)
@@ -2409,11 +2155,11 @@ def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,t
 		elsif aspeed>ospeed
 			score -= 30
 		end
-		score += ([target.stages[:ATTACK],0].max)*10
-		score += ([target.stages[:DEFENSE],0].max)*10
-		score += ([target.stages[:SPECIAL_ATTACK],0].max)*10
-		score += ([target.stages[:SPECIAL_DEFENSE],0].max)*10
-		score += ([target.stages[:EVASION],0].max)*10
+		# score += ([target.stages[:ATTACK],0].max)*10
+		# score += ([target.stages[:DEFENSE],0].max)*10
+		# score += ([target.stages[:SPECIAL_ATTACK],0].max)*10
+		# score += ([target.stages[:SPECIAL_DEFENSE],0].max)*10
+		# score += ([target.stages[:EVASION],0].max)*10
 		score -= 30 if target.hasActiveAbilityAI?(statusUpsideAbilities)
 	elsif status
 		score = 0 

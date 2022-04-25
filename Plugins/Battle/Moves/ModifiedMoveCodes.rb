@@ -119,7 +119,7 @@ class PokeBattle_Move_01B < PokeBattle_Move
       msg = _INTL("{1}'s burn was healed.",user.pbThis)
     when :PARALYSIS
       target.pbParalyze(user)
-      msg = _INTL("{1} was cured of paralysis.",user.pbThis)
+      msg = _INTL("{1} was cured of numbing.",user.pbThis)
     when :FROZEN
       target.pbFreeze
       msg = _INTL("{1} was unchilled.",user.pbThis)
@@ -1384,6 +1384,21 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
       end
       @battle.field.terrain = :None
     end
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = super
+    score = 100 if score == 0
+    score += 30 if target.pbOwnSide.effects[PBEffects::AuroraVeil]>0 ||
+					 target.pbOwnSide.effects[PBEffects::Reflect]>0 ||
+					 target.pbOwnSide.effects[PBEffects::LightScreen]>0 ||
+					 target.pbOwnSide.effects[PBEffects::Mist]>0 ||
+					 target.pbOwnSide.effects[PBEffects::Safeguard]>0
+		score -= 30 if target.pbOwnSide.effects[PBEffects::Spikes]>0 ||
+					 target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 ||
+					 target.pbOwnSide.effects[PBEffects::FlameSpikes]>0 ||
+					 target.pbOwnSide.effects[PBEffects::StealthRock]
+    return score
   end
 end
 

@@ -311,9 +311,9 @@ class PokeBattle_Move
 	    calc = (calc.to_f + 1.0)/2.0 if user.boss?
       atk = (atk.to_f*calc).floor
     end
-	  if atkStage > 6 && user.paralyzed?
-		  atkStage = 6
-	  end
+	  # if atkStage > 6 && user.paralyzed?
+		#   atkStage = 6
+	  # end
     # Calculate target's defense stat
     defense, defStage = pbGetDefenseStats(user,target)
     if !user.hasActiveAbility?(:UNAWARE)
@@ -324,9 +324,9 @@ class PokeBattle_Move
 	    calc = (calc.to_f + 1.0)/2.0 if target.boss?
       defense = (defense.to_f*calc).floor
     end
-    if defStage > 6 && target.paralyzed?
-      defStage = 6
-    end
+    # if defStage > 6 && target.paralyzed?
+    #   defStage = 6
+    # end
     # Calculate all multiplier effects
     multipliers = {
       :base_damage_multiplier  => 1.0,
@@ -494,26 +494,34 @@ class PokeBattle_Move
 		if user.burned? && physicalMove? && damageReducedByBurn? &&
 		   !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
 		  if !user.boss?
-			multipliers[:final_damage_multiplier] *= 2.0/3.0
+			  multipliers[:final_damage_multiplier] *= 2.0/3.0
 		  else
-			multipliers[:final_damage_multiplier] *= 4.0/5.0
+			  multipliers[:final_damage_multiplier] *= 4.0/5.0
 		  end
 		end
 		# Poison
 		if user.poisoned? && user.statusCount == 0 && specialMove? && damageReducedByBurn? &&
 		   !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:POISONHEAL)
 		  if !user.boss?
-			multipliers[:final_damage_multiplier] *= 2.0/3.0
+			  multipliers[:final_damage_multiplier] *= 2.0/3.0
 		  else
-			multipliers[:final_damage_multiplier] *= 4.0/5.0
+			  multipliers[:final_damage_multiplier] *= 4.0/5.0
 		  end
 		end
 		# Chill
-		if target.status == :FROZEN
-		  if !target.boss
-			multipliers[:final_damage_multiplier] *= 4.0/3.0
+		if target.frozen?
+		  if !target.boss?
+			  multipliers[:final_damage_multiplier] *= 4.0/3.0
 		  else
-			multipliers[:final_damage_multiplier] *= 5.0/4.0
+			  multipliers[:final_damage_multiplier] *= 5.0/4.0
+		  end
+		end
+    # Chill
+		if user.paralyzed?
+		  if !user.boss?
+			  multipliers[:final_damage_multiplier] *= 3.0/4.0
+		  else
+			  multipliers[:final_damage_multiplier] *= 17.0/20.0
 		  end
 		end
 		# Aurora Veil, Reflect, Light Screen

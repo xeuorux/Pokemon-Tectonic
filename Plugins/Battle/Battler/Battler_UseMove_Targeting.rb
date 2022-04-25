@@ -109,15 +109,15 @@ class PokeBattle_Battler
       pbAddTarget(targets,user,newTarget,move,nearOnly)
       return targets
     end
-	# Bad Luck
+	  # Bad Luck
     targets = pbChangeTargetByAbility(:BADLUCK,move,user,targets,priority,nearOnly) if move.statusMove?() && !user.pbHasAnyStatus?
     # Epic Hero
-	maxDamage = 0
-	targets.each do |target|
-		baseDamage = move.pbBaseDamage(move.baseDamage,user,target).floor
-	end
-	targets = pbChangeTargetByAbility(:EPICHERO,move,user,targets,priority,nearOnly) if maxDamage >= 100
-	return targets
+    maxDamage = 0
+    targets.each do |target|
+        maxDamage = move.baseDamage if move.baseDamage > maxDamage
+    end
+    targets = pbChangeTargetByAbility(:EPICHERO,move,user,targets,priority,nearOnly) if maxDamage >= 100
+    return targets
   end
   
 	def pbChangeTargetByAbility(drawingAbility,move,user,targets,priority,nearOnly)

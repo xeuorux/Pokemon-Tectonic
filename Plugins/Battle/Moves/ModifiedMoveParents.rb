@@ -53,6 +53,58 @@ end
 #===============================================================================
 class PokeBattle_TargetStatDownMove < PokeBattle_Move
 	attr_accessor :statDown
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.hasActiveAbilityAI?(:CONTRARY) && target.opposes?(user)
+
+    reverse = target.hasActiveAbility?(:CONTRARY) && !target.opposes?(user)
+
+    statReducing = @statDown[0]
+    reductionAmount = @statDown[1]
+    if move.statusMove?
+			if !target.pbCanLowerStatStage?(statReducing,user)
+				score = 0 if !reverse
+			else
+				score += target.stages[statReducing]*20
+        score += 20 * (reductionAmount - 1)
+        if statReducing == :ATTACK
+				  if target.hasPhysicalAttack?
+					  score += 20
+				  else
+					  score = 0
+				  end
+        elsif statReducing == :SPECIAL_ATTACK
+          if target.hasSpecialAttack?
+					  score += 20
+				  else
+					  score = 0
+				  end
+        elsif statReducing == :SPEED
+          aspeed = pbRoughStat(user,:SPEED,skill)
+          ospeed = pbRoughStat(target,:SPEED,skill)
+          if !statReducing
+            if aspeed < ospeed
+              score += 20
+            else
+              score = 0
+            end
+          end
+        end
+			end
+		else
+			score += 20 if target.stages[statReducing] > 0
+      if statReducing == :ATTACK
+			  score += 20 if target.hasPhysicalAttack?
+      elsif statReducing == :SPECIAL_ATTACK
+        score += 20 if target.hasSpecialAttack?
+      elsif statReducing == :SPEED
+        aspeed = pbRoughStat(user,:SPEED,skill)
+				ospeed = pbRoughStat(target,:SPEED,skill)
+				score += 20 if aspeed < ospeed
+      end
+		end
+    return 0
+  end
 end
 
 class PokeBattle_FixedDamageMove
