@@ -61,7 +61,7 @@ class PokeBattle_TargetStatDownMove < PokeBattle_Move
 
     statReducing = @statDown[0]
     reductionAmount = @statDown[1]
-    if move.statusMove?
+    if statusMove?
 			if !target.pbCanLowerStatStage?(statReducing,user)
 				score = 0 if !reverse
 			else
