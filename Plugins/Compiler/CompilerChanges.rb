@@ -1624,6 +1624,36 @@ module Compiler
     pbSetWindowText(nil)
     Graphics.update
   end
+
+  def write_moves
+    File.open("PBS/moves.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      current_type = -1
+      GameData::Move.each do |m|
+        if current_type != m.type && m.id_number < 742
+          current_type = m.type
+          f.write("\#-------------------------------\r\n")
+        end
+        f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s\r\n",
+          m.id_number,
+          csvQuote(m.id.to_s),
+          csvQuote(m.real_name),
+          csvQuote(m.function_code),
+          m.base_damage,
+          m.type.to_s,
+          ["Physical", "Special", "Status"][m.category],
+          m.accuracy,
+          m.total_pp,
+          m.effect_chance,
+          m.target,
+          m.priority,
+          csvQuote(m.flags),
+          csvQuoteAlways(m.real_description)
+        ))
+      end
+    }
+    Graphics.update
+  end
   
   #=============================================================================
   # Save trainer type data to PBS file
