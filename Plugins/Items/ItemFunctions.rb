@@ -141,8 +141,8 @@ def pbEXPAdditionItem(pkmn,exp,item,scene)
 	
 	# Ask the player how many they'd like to apply
 	maxxp = pkmn.growth_rate.minimum_exp_for_level(level_cap)
-    maxlv = ((maxxp - current_exp) / exp.to_f).ceil
-    maximum = [maxlv,$PokemonBag.pbQuantity(item)].min # Max items which can be used
+  maxlv = ((maxxp - current_exp) / exp.to_f).ceil
+  maximum = [maxlv,$PokemonBag.pbQuantity(item)].min # Max items which can be used
 	if maximum > 1
 		params = ChooseNumberParams.new
 		params.setRange(1, maximum)
@@ -153,20 +153,20 @@ def pbEXPAdditionItem(pkmn,exp,item,scene)
 	else
 		qty = 1
 	end
-    return false if qty < 1
-    $PokemonBag.pbDeleteItem(item, qty - 1)
+  return false if qty < 1
+  $PokemonBag.pbDeleteItem(item, qty - 1)
 	scene.pbRefresh
 	
 	# Apply the new EXP, accounting for the level cap
-    pkmn.exp += exp * qty
+  pkmn.exp += exp * qty
 	pkmn.exp = [pkmn.exp,maxxp].min
-    display_exp = pkmn.exp - current_exp
+  display_exp = pkmn.exp - current_exp
 	new_level = pkmn.level
 	if new_level == level_cap
 		scene.pbDisplay(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.",pkmn.name,level_cap,display_exp))
     else
 		scene.pbDisplay(_INTL("{1} gained {2} Exp. Points!",pkmn.name,display_exp))
-    end
+  end
 	pkmn.changeHappiness("vitamin")
 	scene.pbRefresh
 	
@@ -177,46 +177,46 @@ def pbEXPAdditionItem(pkmn,exp,item,scene)
 	
 	# Show messages surrounding leveling up
 	attackdiff  = pkmn.attack
-    defensediff = pkmn.defense
-    speeddiff   = pkmn.speed
-    spatkdiff   = pkmn.spatk
-    spdefdiff   = pkmn.spdef
-    totalhpdiff = pkmn.totalhp
-    pkmn.calc_stats
-    scene.pbRefresh
-    pbMessage(_INTL("{1} grew to Lv. {2}!",pkmn.name,pkmn.level))
-    attackdiff  = pkmn.attack-attackdiff
-    defensediff = pkmn.defense-defensediff
-    speeddiff   = pkmn.speed-speeddiff
-    spatkdiff   = pkmn.spatk-spatkdiff
-    spdefdiff   = pkmn.spdef-spdefdiff
-    totalhpdiff = pkmn.totalhp-totalhpdiff
-    pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
-       totalhpdiff,attackdiff,defensediff,spatkdiff,spdefdiff,speeddiff),scene)
-    pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
-       pkmn.totalhp,pkmn.attack,pkmn.defense,pkmn.spatk,pkmn.spdef,pkmn.speed),scene)
+  defensediff = pkmn.defense
+  speeddiff   = pkmn.speed
+  spatkdiff   = pkmn.spatk
+  spdefdiff   = pkmn.spdef
+  totalhpdiff = pkmn.totalhp
+  pkmn.calc_stats
+  scene.pbRefresh
+  pbMessage(_INTL("{1} grew to Lv. {2}!",pkmn.name,pkmn.level))
+  attackdiff  = pkmn.attack-attackdiff
+  defensediff = pkmn.defense-defensediff
+  speeddiff   = pkmn.speed-speeddiff
+  spatkdiff   = pkmn.spatk-spatkdiff
+  spdefdiff   = pkmn.spdef-spdefdiff
+  totalhpdiff = pkmn.totalhp-totalhpdiff
+  pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
+      totalhpdiff,attackdiff,defensediff,spatkdiff,spdefdiff,speeddiff),scene)
+  pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
+      pkmn.totalhp,pkmn.attack,pkmn.defense,pkmn.spatk,pkmn.spdef,pkmn.speed),scene)
 	
 	# Learn new moves upon level up
 	movelist = pkmn.getMoveList
 	for i in movelist
 	  next if i[0] <= current_lvl
 	  break if i[0] > new_level
-	  pbLearnMove(pkmn,i[1],true) { scene.pbRefresh }
+	  pbLearnMove(pkmn,i[1],true)
 	end
 	
 	# Check for evolution
 	newspecies = pkmn.check_evolution_on_level_up
 	if newspecies
 	  pbFadeOutInWithMusic {
-		evo = PokemonEvolutionScene.new
-		evo.pbStartScreen(pkmn,newspecies)
-		evo.pbEvolution
-		evo.pbEndScreen
-		scene.pbRefresh
+      evo = PokemonEvolutionScene.new
+      evo.pbStartScreen(pkmn,newspecies)
+      evo.pbEvolution
+      evo.pbEndScreen
+      scene.pbRefresh
 	  }
 	end
 	
-    return true
+  return true
 end
 
 class PokemonParty_Scene
