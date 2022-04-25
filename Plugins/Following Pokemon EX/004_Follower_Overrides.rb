@@ -459,10 +459,10 @@ end
 #-------------------------------------------------------------------------------
 class DependentEvents
   def pbFollowEventAcrossMaps(leader,follower,instant = false,leaderIsTrueLeader = true)
-    areConnected = $MapFactory.areConnected?(leader.map.map_id,follower.map.map_id)
+    areConnectedOrSame = $MapFactory.areConnected?(leader.map.map_id,follower.map.map_id)
     # Get the rear facing tile of leader
     facingDirection = 10 - leader.direction
-    if !leaderIsTrueLeader && areConnected
+    if !leaderIsTrueLeader && areConnectedOrSame
       relativePos = $MapFactory.getThisAndOtherEventRelativePos(leader,follower)
       # Assumes leader and follower are both 1x1 tile in size
       if (relativePos[1] == 0 && relativePos[0] == 2)   # 2 spaces to the right of leader
@@ -482,7 +482,7 @@ class DependentEvents
 	
     mapTile = nil
 	
-    if areConnected
+    if areConnectedOrSame
       mapTile = findMapTilesForConnectedMaps(follower,leader,facings)
     else
       tile = $MapFactory.getFacingTile(facings[0],leader)
@@ -491,7 +491,7 @@ class DependentEvents
       mapTile = passable ? mapTile : nil
     end
 	
-	moveFollower(follower,leader,mapTile,instant)
+	  moveFollower(follower,leader,mapTile,instant)
   end
   
   def findMapTilesForConnectedMaps(follower,leader,facings)
@@ -502,7 +502,7 @@ class DependentEvents
       for i in 0...facings.length
         facing = facings[i]
         tile = $MapFactory.getFacingTile(facing,leader)
-		# Check for staircase shenanigans
+		    # Check for staircase shenanigans
         if GameData::TerrainTag.exists?(:StairLeft)
           currentTag = $game_player.pbTerrainTag
           if tile[1] > $game_player.x
@@ -516,15 +516,18 @@ class DependentEvents
             tile[2] -= 1 if currentTag == :StairRight
           end
         end
+        assumedTerrainTag = $MapFactory.getTerrainTag(tile[0],tile[1],tile[2])
+
         # Assumes leader is 1x1 tile in size
-        passable = tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
-        if i == 0 && !passable && tile &&
-           $MapFactory.getTerrainTag(tile[0],tile[1],tile[2]).ledge
-          # If the tile isn't passable and the tile is a ledge,
-          # get tile from further behind
+        passable = tile && ($MapFactory.isPassable?(tile[0],tile[1],tile[2],follower) || assumedTerrainTag.ice)
+
+        # If the tile isn't passable and the tile is a ledge,
+        # get tile from further behind
+        if i == 0 && !passable && tile && assumedTerrainTag.ledge
           tile = $MapFactory.getFacingTileFromPos(tile[0],tile[1],tile[2],facing)
           passable = tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
         end
+
         if passable
           relativePos = $MapFactory.getThisAndOtherPosRelativePos(
              follower,tile[0],tile[1],tile[2])
