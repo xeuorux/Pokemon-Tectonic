@@ -1015,7 +1015,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [189]
-# Catacombs Placeholder
+# Catacombs Antechamber
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1048,6 +1048,12 @@ Bicycle = true
 BattleBack = 
 Environment = Volcano
 #-------------------------------
+[211]
+# Twin Peaks
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
 [212]
 # Ruins Digsite
 Outdoor = false
@@ -1055,7 +1061,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [213]
-# Velenz Managerie
+# Velenz Menagerie
 Outdoor = true
 ShowArea = true
 Bicycle = true
