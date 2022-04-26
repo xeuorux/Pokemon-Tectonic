@@ -519,7 +519,12 @@ class DependentEvents
         assumedTerrainTag = $MapFactory.getTerrainTag(tile[0],tile[1],tile[2])
 
         # Assumes leader is 1x1 tile in size
-        passable = tile && ($MapFactory.isPassable?(tile[0],tile[1],tile[2],follower) || assumedTerrainTag.ice)
+        passable = false
+        if tile
+          passable = true if $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
+          passable = true if assumedTerrainTag.ice
+          passable = true if defined?(assumedTerrainTag.rock_climbable) && assumedTerrainTag.rock_climbable
+        end
 
         # If the tile isn't passable and the tile is a ledge,
         # get tile from further behind
@@ -545,18 +550,15 @@ class DependentEvents
   end
   
   def moveFollower(follower,leader,mapTile,instant)
-	if mapTile && follower.map.map_id == mapTile[0]
-      moveFollowerToSameMap(follower,leader,mapTile,instant)
+    if mapTile && follower.map.map_id == mapTile[0]
+        moveFollowerToSameMap(follower,leader,mapTile,instant)
     else
-      if !mapTile
-        # Make current position into leader's position
-        mapTile = [leader.map.map_id,leader.x,leader.y]
-      end
-      if follower.map.map_id == mapTile[0]
-        moveFollowerToNearbySpot(follower,leader,mapTile)
-      else
+      # Fall back on making current position into leader's position
+      mapTile = [leader.map.map_id,leader.x,leader.y] if !mapTile
+      if follower.map.map_id != mapTile[0]
         moveFollowerToDifferentMap(follower,leader,mapTile)
       end
+      moveFollowerToNearbySpot(follower,leader,mapTile)
     end
   end
   
@@ -610,40 +612,41 @@ class DependentEvents
   end
   
   def moveFollowerToNearbySpot(follower,leader,mapTile)
-	# Follower is on same map as leader
-	newPosX = leader.x
-	newPosY = leader.y
-	
-	# Try to find a nearby spot to place the pokemon
-	nearbySpots = [[-1,0],[0,1],[0,1],[0,-1]]
-	nearbySpots.each do |spot|
-		passable = $MapFactory.isPassable?(leader.map.map_id,newPosX+spot[0],newPosY+spot[1],follower)
-		if passable
-			newPosX += spot[0]
-			newPosY += spot[1]
-			break
-		end
-	end
-	
-	follower.moveto(newPosX,newPosY)
-	pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
+    echoln("Move a follower to a semi-random spot near the player.")
+    # Follower is on same map as leader
+    newPosX = leader.x
+    newPosY = leader.y
+    
+    # Try to find a nearby spot to place the pokemon
+    nearbySpotOffsets = [[-1,0],[0,1],[0,1],[0,-1]]
+    nearbySpotOffsets.each do |spot|
+      passable = $MapFactory.isPassable?(leader.map.map_id,newPosX+spot[0],newPosY+spot[1],follower)
+      if passable
+        newPosX += spot[0]
+        newPosY += spot[1]
+        break
+      end
+    end
+    pbFancyMoveTo(follower,newPosX, newPosY, leader)
+    pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
   end
   
   def moveFollowerToDifferentMap(follower,leader,mapTile)
-	# Follower will move to different map
-	events = $PokemonGlobal.dependentEvents
-	eventIndex = pbEnsureEvent(follower,mapTile[0])
-	if eventIndex >= 0
-	  newFollower = @realEvents[eventIndex]
-	  newEventData = events[eventIndex]
-	  newFollower.moveto(mapTile[1],mapTile[2])
-	  pbFancyMoveTo(newFollower,mapTile[1], mapTile[2], leader)
-	  newEventData[3] = mapTile[1]
-	  newEventData[4] = mapTile[2]
-	  if mapTile[0] == leader.map.map_id
-		 pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
-	  end
-	end
+    echoln("Transferring a follower to a different map.")
+    # Follower will move to different map
+    events = $PokemonGlobal.dependentEvents
+    eventIndex = pbEnsureEvent(follower,mapTile[0])
+    if eventIndex >= 0
+      newFollower = @realEvents[eventIndex]
+      newEventData = events[eventIndex]
+      newFollower.moveto(mapTile[1],mapTile[2])
+      pbFancyMoveTo(newFollower,mapTile[1], mapTile[2], leader)
+      newEventData[3] = mapTile[1]
+      newEventData[4] = mapTile[2]
+      if mapTile[0] == leader.map.map_id
+        pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
+      end
+    end
   end
 
   #Fix follower not being in the same spot upon save
