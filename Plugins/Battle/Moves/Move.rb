@@ -123,19 +123,25 @@ class PokeBattle_Move
 	  return if target.damageState.iceface
 	  return if defined?($PokemonSystem.show_effectiveness) && $PokemonSystem.show_effectiveness == 1
 	  if Effectiveness.hyper_effective?(target.damageState.typeMod)
-	  if numTargets>1
+	  if numTargets > 1
         @battle.pbDisplay(_INTL("It's hyper effective on {1}!",target.pbThis(true)))
       else
         @battle.pbDisplay(_INTL("It's hyper effective!"))
       end
     elsif Effectiveness.super_effective?(target.damageState.typeMod)
-      if numTargets>1
+      if numTargets > 1
         @battle.pbDisplay(_INTL("It's super effective on {1}!",target.pbThis(true)))
       else
         @battle.pbDisplay(_INTL("It's super effective!"))
       end
+    elsif Effectiveness.barely_effective?(target.damageState.typeMod)
+      if numTargets > 1
+        @battle.pbDisplay(_INTL("It's barely effective on {1}...",target.pbThis(true)))
+      else
+        @battle.pbDisplay(_INTL("It's barely effective..."))
+      end
     elsif Effectiveness.not_very_effective?(target.damageState.typeMod)
-      if numTargets>1
+      if numTargets > 1
         @battle.pbDisplay(_INTL("It's not very effective on {1}...",target.pbThis(true)))
       else
         @battle.pbDisplay(_INTL("It's not very effective..."))
