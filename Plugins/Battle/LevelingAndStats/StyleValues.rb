@@ -41,11 +41,12 @@ class StyleValueScene
     @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z=99999
     @sprites={}
-    addBackgroundPlane(@sprites,"bg","mysteryGiftbg",@viewport)
+    addBackgroundPlane(@sprites,"bg","stylevaluesbg",@viewport)
     @sprites["pokeicon"]=PokemonIconSprite.new(@pokemon,@viewport)
     @sprites["pokeicon"].setOffset(PictureOrigin::Center)
     @sprites["pokeicon"].x=36
     @sprites["pokeicon"].y=36
+	@sprites["pokeicon"].visible = false
     @sprites["overlay"]=BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
     pbSetSystemFont(@sprites["overlay"].bitmap)
     @sprites["msgwindow"]=Window_AdvancedTextPokemon.new("")
@@ -55,11 +56,11 @@ class StyleValueScene
 	#Create the left and right arrow sprites which surround the selected index
 	@index = 0
 	@sprites["leftarrow"] = AnimatedSprite.new("Graphics/Pictures/leftarrow",8,40,28,2,@viewport)
-    @sprites["leftarrow"].x       = 36
+    @sprites["leftarrow"].x       = 76
     @sprites["leftarrow"].y       = 78
     @sprites["leftarrow"].play
     @sprites["rightarrow"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport)
-    @sprites["rightarrow"].x       = 190
+    @sprites["rightarrow"].x       = 232
     @sprites["rightarrow"].y       = 78
     @sprites["rightarrow"].play
     
@@ -77,67 +78,73 @@ class StyleValueScene
 	base   = Color.new(248,248,248)
     shadow = Color.new(104,104,104)
 	
-	styleValueLabelX = 72
+	styleValueLabelX = 112
 	styleValueX = styleValueLabelX + 120
+	styleValueY = 52
 	
 	#Place the pokemon's name
-	textpos = [[_INTL("{1}", @pokemon.name),styleValueLabelX,2,0,Color.new(88,88,80),Color.new(168,184,184)]]
+	textpos = []
+	#textpos = [[_INTL("{1}", @pokemon.name),styleValueLabelX,2,0,Color.new(88,88,80),Color.new(168,184,184)]]
 	
 	# Place the pokemon's style values (stored as EVs)
 	textpos.concat([
-	   [_INTL("Style Values"),styleValueLabelX,42,0,base,shadow],
-       [_INTL("HP"),styleValueLabelX,82,0,base,shadow],
-       [sprintf("%d",@pokemon.ev[:HP]),styleValueX,82,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Attack"),styleValueLabelX,114,0,base,shadow],
-       [sprintf("%d",@pokemon.ev[:ATTACK]),styleValueX,114,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Defense"),styleValueLabelX,146,0,base,shadow],
-       [sprintf("%d",@pokemon.ev[:DEFENSE]),styleValueX,146,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Sp. Atk"),styleValueLabelX,178,0,base,shadow],
-       [sprintf("%d",@pokemon.ev[:SPECIAL_ATTACK]),styleValueX,178,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Sp. Def"),styleValueLabelX,210,0,base,shadow],
-       [sprintf("%d",@pokemon.ev[:SPECIAL_DEFENSE]),styleValueX,210,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Speed"),styleValueLabelX,242,0,base,shadow],
-       [sprintf("%d",@pokemon.ev[:SPEED]),styleValueX,242,1,Color.new(64,64,64),Color.new(176,176,176)],
+	   [_INTL("Style Values"),styleValueLabelX,styleValueY,0,base,shadow],
+       [_INTL("HP"),styleValueLabelX,styleValueY+40,0,base,shadow],
+       [sprintf("%d",@pokemon.ev[:HP]),styleValueX,styleValueY+40,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Attack"),styleValueLabelX,styleValueY+40+32*1,0,base,shadow],
+       [sprintf("%d",@pokemon.ev[:ATTACK]),styleValueX,styleValueY+40+32*1,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Defense"),styleValueLabelX,styleValueY+40+32*2,0,base,shadow],
+       [sprintf("%d",@pokemon.ev[:DEFENSE]),styleValueX,styleValueY+40+32*2,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Sp. Atk"),styleValueLabelX,styleValueY+40+32*3,0,base,shadow],
+       [sprintf("%d",@pokemon.ev[:SPECIAL_ATTACK]),styleValueX,styleValueY+40+32*3,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Sp. Def"),styleValueLabelX,styleValueY+40+32*4,0,base,shadow],
+       [sprintf("%d",@pokemon.ev[:SPECIAL_DEFENSE]),styleValueX,styleValueY+40+32*4,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Speed"),styleValueLabelX,styleValueY+40+32*5,0,base,shadow],
+       [sprintf("%d",@pokemon.ev[:SPEED]),styleValueX,styleValueY+40+32*5,1,Color.new(64,64,64),Color.new(176,176,176)],
     ])
 	
 	# Place the "reset all" button
 	red = Color.new(250,120,120)
-	textpos.push([_INTL("Reset"),styleValueLabelX,280,0,@index == 6 ? red : base,shadow])
-	textpos.push([_INTL("Confirm"),styleValueLabelX,320,0,@index == 7 ? red : base,shadow])
+	resetAndConfirmY = 296
+	textpos.push([_INTL("Reset"),styleValueLabelX-52,resetAndConfirmY,0,@index == 6 ? red : base,shadow])
+	textpos.push([_INTL("Confirm"),styleValueLabelX-52,resetAndConfirmY+40,0,@index == 7 ? red : base,shadow])
 	
 	# Place the pokemon's final resultant stats
-	finalStatLabelX = styleValueLabelX + 250
+	finalStatLabelX = styleValueLabelX + 208
 	finalStatX		= finalStatLabelX + 120
+	finalStatY = 52
     textpos.concat([
-	   [_INTL("Final Stats"),finalStatLabelX,42,0,base,shadow],
-       [_INTL("HP"),finalStatLabelX,82,0,base,shadow],
-       [sprintf("%d",@pokemon.totalhp),finalStatX,82,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Attack"),finalStatLabelX,114,0,base,shadow],
-       [sprintf("%d",@pokemon.attack),finalStatX,114,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Defense"),finalStatLabelX,146,0,base,shadow],
-       [sprintf("%d",@pokemon.defense),finalStatX,146,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Sp. Atk"),finalStatLabelX,178,0,base,shadow],
-       [sprintf("%d",@pokemon.spatk),finalStatX,178,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Sp. Def"),finalStatLabelX,210,0,base,shadow],
-       [sprintf("%d",@pokemon.spdef),finalStatX,210,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Speed"),finalStatLabelX,242,0,base,shadow],
-       [sprintf("%d",@pokemon.speed),finalStatX,242,1,Color.new(64,64,64),Color.new(176,176,176)],
+	   [_INTL("Final Stats"),finalStatLabelX,finalStatY,0,base,shadow],
+       [_INTL("HP"),finalStatLabelX,finalStatY+40+32*0,0,base,shadow],
+       [sprintf("%d",@pokemon.totalhp),finalStatX,finalStatY+40+32*0,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Attack"),finalStatLabelX,finalStatY+40+32*1,0,base,shadow],
+       [sprintf("%d",@pokemon.attack),finalStatX,finalStatY+40+32*1,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Defense"),finalStatLabelX,finalStatY+40+32*2,0,base,shadow],
+       [sprintf("%d",@pokemon.defense),finalStatX,finalStatY+40+32*2,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Sp. Atk"),finalStatLabelX,finalStatY+40+32*3,0,base,shadow],
+       [sprintf("%d",@pokemon.spatk),finalStatX,finalStatY+40+32*3,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Sp. Def"),finalStatLabelX,finalStatY+40+32*4,0,base,shadow],
+       [sprintf("%d",@pokemon.spdef),finalStatX,finalStatY+40+32*4,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Speed"),finalStatLabelX,finalStatY+40+32*5,0,base,shadow],
+       [sprintf("%d",@pokemon.speed),finalStatX,finalStatY+40+32*5,1,Color.new(64,64,64),Color.new(176,176,176)],
     ])
 	
 	# Place the style value pool
-	poolXLeft = finalStatLabelX - 100
+	poolXLeft = finalStatLabelX - 116
+	poolY = 296
 	textpos.concat([
-		[_INTL("Pool"),poolXLeft,280,0,base,shadow],
-		[sprintf("%d",@pool),poolXLeft,320,0,Color.new(64,64,64),Color.new(176,176,176)]
+		[_INTL("Pool"),poolXLeft,poolY,0,base,shadow],
+		[sprintf("%d",@pool),poolXLeft,poolY+40,0,Color.new(64,64,64),Color.new(176,176,176)]
 	])
 	
 	# Place the style name
 	styleXLeft = finalStatLabelX
+	styleNameY = 296
 	styleName = "Balanced"
 	styleName = getStyleName(@pokemon.ev)
 	textpos.concat([
-		[_INTL("Style"),styleXLeft,280,0,base,shadow],
-		[styleName,styleXLeft,320,0,Color.new(64,64,64),Color.new(176,176,176)]
+		[_INTL("Style"),styleXLeft,styleNameY,0,base,shadow],
+		[styleName,styleXLeft,styleNameY+40,0,Color.new(64,64,64),Color.new(176,176,176)]
 	])
 	
 	# Draw all the previously placed texts
@@ -145,7 +152,7 @@ class StyleValueScene
 	
 	# Put the arrows around the currently selected style value line
 	if @index < 6
-		@sprites["leftarrow"].y = @sprites["rightarrow"].y = 90+32*@index
+		@sprites["leftarrow"].y = @sprites["rightarrow"].y = 100+32*@index
 	else
 		@sprites["leftarrow"].y = @sprites["rightarrow"].y = -500
 	end
