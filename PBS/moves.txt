@@ -270,7 +270,7 @@
 257,DEFOG,Defog,049,0,FLYING,Status,0,15,0,NearOther,0,bce,"A strong wind blows away the foe's obstacles such as Light Screen. It also lowers their evasion."
 258,FEATHERDANCE,Feather Dance,04B,0,FLYING,Status,100,15,0,NearOther,0,bceo,"The user covers the target's body with a mass of down that harshly lowers its Attack stat."
 259,MIRRORMOVE,Mirror Move,0AE,0,FLYING,Status,0,20,0,NearOther,0,,"The user counters the target by mimicking the target's last move."
-260,ROOST,Roost,0D6,0,FLYING,Status,0,5,0,User,0,d,"The user lands and rests its body. It restores the user's HP by up to half of its max HP."
+260,ROOST,Roost,0D6,0,FLYING,Status,0,5,0,User,0,d,"Restores the user's HP by up to half of its max HP. User loses Flying-type this turn."
 261,TAILWIND,Tailwind,05B,0,FLYING,Status,0,15,0,UserSide,0,d,"The user whips up a turbulent whirlwind that ups the Speed of all party Pokémon for four turns."
 262,DUALWINGBEAT,Dual Wingbeat,0BD,40,FLYING,Physical,100,10,0,NearOther,0,abef,"The user slams the target with its wings. The target is hit twice in a row."
 #-------------------------------
