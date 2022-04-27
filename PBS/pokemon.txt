@@ -8435,7 +8435,7 @@ InternalName = BLAZIKEN
 Type1 = FIRE
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,120,85,65,110,70
+BaseStats = 80,120,85,65,120,70
 # Total = 530
 GenderRate = Female50Percent
 GrowthRate = Parabolic
