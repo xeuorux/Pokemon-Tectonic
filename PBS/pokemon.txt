@@ -8664,8 +8664,8 @@ Name = Linoone
 InternalName = LINOONE
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 78,100,61,110,67,61
-# Total = 477
+BaseStats = 93,100,61,110,67,61
+# Total = 492
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 147
@@ -16624,8 +16624,8 @@ Name = Watchog
 InternalName = WATCHOG
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,60,79,77,95,89
-# Total = 475
+BaseStats = 80,60,79,77,95,104
+# Total = 495
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 147
@@ -26997,8 +26997,8 @@ Name = Greedent
 InternalName = GREEDENT
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 120,95,95,20,55,95
-# Total = 480
+BaseStats = 137,95,95,20,55,95
+# Total = 497
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 161
