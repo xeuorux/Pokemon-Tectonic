@@ -118,15 +118,14 @@ class PokeBattle_Battler
 			case @battle.field.terrain
 			when :Electric
 				if newStatus == :SLEEP || newStatus == :FROZEN
-					@battle.pbDisplay(_INTL("{1} surrounds itself with electrified terrain!",
-						 pbThis(true))) if showMessages
+					@battle.pbDisplay(_INTL("{1} surrounds itself with electrified terrain!",pbThis(true))) if showMessages
 					return false
 				end
 			when :Misty
 				if newStatus == :POISON || newStatus == :Burn
-			@battle.pbDisplay(_INTL("{1} surrounds itself with fairy terrain!",pbThis(true))) if showMessages
-			return false
-		end
+					@battle.pbDisplay(_INTL("{1} surrounds itself with fairy terrain!",pbThis(true))) if showMessages
+					return false
+				end
 			end
 		end
 		# Uproar immunity

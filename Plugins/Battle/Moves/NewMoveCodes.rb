@@ -818,18 +818,17 @@ end
 #===============================================================================
 class PokeBattle_Move_528 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		if target.hp > target.totalhp / 2 || !target.pbCanSleep?(user,true,self)
+		if target.hp > target.totalhp / 2
 			@battle.pbDisplay(_INTL("But it failed!"))
 			return true
 		end
-		return false
+		return !target.pbCanSleep?(user,true,self)
 	end
 	
 	def getScore(score,user,target,skill=100)
 		score = sleepMoveAI(score,user,target,skill=100)
 		if score != 0 && target.hp > target.totalhp/2
-			score = 10
-			score = 0 if skill > PBTrainerAI.mediumSkill
+			score = 0
 		end
 		return score
 	end
@@ -840,11 +839,11 @@ end
 #===============================================================================
 class PokeBattle_Move_529 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		if !user.lastAttacker.include?(target.index) || !target.pbCanSleep?(user,true,self)
+		if !user.lastAttacker.include?(target.index)
 			@battle.pbDisplay(_INTL("But it failed!"))
 			return true
 		end
-		return false
+		return !target.pbCanSleep?(user,true,self)
 	end
 	
 	def getScore(score,user,target,skill=100)
@@ -1125,7 +1124,7 @@ class PokeBattle_Move_534 < PokeBattle_SleepMove
 			@battle.pbDisplay(_INTL("But it failed!"))
 			return true
 		end
-		return false
+		return !target.pbCanSleep?(user,true,self)
 	end
 	
 	def pbEffectAgainstTarget(user,target)
@@ -1137,8 +1136,7 @@ class PokeBattle_Move_534 < PokeBattle_SleepMove
 	def getScore(score,user,target,skill=100)
 		score = sleepMoveAI(score,user,target,skill=100)
 		if target.effects[PBEffects::Confusion] == 0 && target.effects[PBEffects::Charm] == 0
-			score = 10
-			score = 0 if skill>PBTrainerAI.mediumSkill
+			score = 0
 		end
 		return score
 	end
