@@ -108,11 +108,11 @@ class PokeBattle_Battle
           b.pbReduceHP(reduction,false)
           b.pbItemHPHealCheck
           b.pbFaint if b.fainted?
-        elsif b.pbHasType?(:POISON)
+        elsif b.pbHasType?(:POISON) || b.hasActiveAbility?(:POISONHEAL)
           pbDisplay(_INTL("{1} absorbs the acid rain!",b.pbThis))
           heal = b.totalhp/16
           heal /= 4 if b.boss?
-          b.pbRestoreHP(heal,false)
+          b.pbRecoverHP(heal,true)
         end
       end
     end
