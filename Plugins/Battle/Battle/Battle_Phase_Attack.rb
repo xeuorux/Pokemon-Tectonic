@@ -61,7 +61,7 @@ class PokeBattle_Battle
       end
       b.effects[PBEffects::Rage] = false if !pbChoseMoveFunctionCode?(i,"093")   # Rage
 	  b.effects[PBEffects::Enlightened] = false if !pbChoseMoveFunctionCode?(i,"515")   # Rage
-	  if @choices[i][0] = :UseMove
+	  if @choices[i][0] = :UseMove && @choices[i][1]
 		b.effects[PBEffects::Sentry] = @choices[i][2].statusMove?
 	  end
     end
