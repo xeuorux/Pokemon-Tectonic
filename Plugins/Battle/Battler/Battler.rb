@@ -258,8 +258,12 @@ class PokeBattle_Battler
     return check_item == @item_id
   end
 
-def hasHonorAura?
-    return hasActiveAbility?([:HONORAURA])
-end
+  def hasHonorAura?
+      return hasActiveAbility?([:HONORAURA])
+  end
+
+  def isLastAlive?
+    return !fainted? && @battle.pbGetOwnerFromBattleIndex(@index).able_pokemon_count == 1
+  end
 
 end

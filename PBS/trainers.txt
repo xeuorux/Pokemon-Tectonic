@@ -2132,7 +2132,7 @@ Pokemon = PTEROFLYTE,40
 [TRAINER_Zain,Zain]
 Policies = ZAIN
 Pokemon = LIEPARD,42
-    Moves = FAKEOUT,TAUNT,SUCKERPUNCH
+    Moves = FAKEOUT,NUZZLE,SUCKERPUNCH
     AbilityIndex = 0
     Item = NORMALGEM
 Pokemon = HARIYAMA,42
@@ -2154,7 +2154,7 @@ Pokemon = SERPERIOR,43
 [TRAINER_Zain,Zain,1]
 Policies = ZAIN,CURSE_SUBSTITUTED
 Pokemon = LIEPARD,42
-    Moves = FAKEOUT,TAUNT,SUCKERPUNCH
+    Moves = FAKEOUT,NUZZLE,SUCKERPUNCH
     AbilityIndex = 0
     Item = NORMALGEM
 Pokemon = HARIYAMA,42

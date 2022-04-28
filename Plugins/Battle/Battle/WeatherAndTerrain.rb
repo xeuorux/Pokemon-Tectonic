@@ -23,6 +23,7 @@ class PokeBattle_Battle
     when :StrongWinds then pbDisplay(_INTL("Mysterious strong winds are protecting Flying-type Pokémon!"))
     when :ShadowSky   then pbDisplay(_INTL("A shadow sky appeared!"))
     when :AcidRain    then pbDisplay(_INTL("Acidic rain began to fall!"))
+    when :Swarm       then pbDisplay(_INTL("A swarm of bugs gathers!"))
     end
     # Check for end of primordial weather, and weather-triggered form changes
     eachBattler { |b| b.pbCheckFormOnWeatherChange }
@@ -78,6 +79,12 @@ GameData::BattleWeather.register({
   :id        => :AcidRain,
   :name      => _INTL("Acid Rain"),
   :animation => "ShadowSky"
+})
+
+GameData::BattleWeather.register({
+  :id        => :Swarm,
+  :name      => _INTL("Swarm"),
+  :animation => "StrongWinds"
 })
 
 class PokeBattle_Battler

@@ -464,6 +464,10 @@ class PokeBattle_Move
 		  elsif type == :WATER
 			multipliers[:final_damage_multiplier] *= 1.5
 		  end
+    when :Swarm
+		  if type == :DRAGON || type == :BUG
+			  multipliers[:final_damage_multiplier] *= 1.5
+		  end
 		when :Sandstorm
 		  if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock
 			multipliers[:defense_multiplier] *= 1.5

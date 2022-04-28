@@ -33,6 +33,7 @@ class PokeBattle_Battle
       when :Hail      then pbDisplay(_INTL("The hail stopped."))
       when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
       when :Sandstorm then pbDisplay(_INTL("The acid rain stopped."))
+      when :Swarm     then pbDisplay(_INTL("The swarm dissipates."))
       end
       @field.weather = :None
       # Check for form changes caused by the weather changing
@@ -44,17 +45,20 @@ class PokeBattle_Battle
     # Weather continues
     weather_data = GameData::BattleWeather.try_get(@field.weather)
     pbCommonAnimation(weather_data.animation) if weather_data
+=begin
     case @field.weather
-#    when :Sun         then pbDisplay(_INTL("The sunlight is strong."))
-#    when :Rain        then pbDisplay(_INTL("Rain continues to fall."))
+    when :Sun         then pbDisplay(_INTL("The sunlight is strong."))
+    when :Rain        then pbDisplay(_INTL("Rain continues to fall."))
     when :Sandstorm   then pbDisplay(_INTL("The sandstorm is raging."))
     when :Hail        then pbDisplay(_INTL("The hail is crashing down."))
-#    when :HarshSun    then pbDisplay(_INTL("The sunlight is extremely harsh."))
-#    when :HeavyRain   then pbDisplay(_INTL("It is raining heavily."))
-#    when :StrongWinds then pbDisplay(_INTL("The wind is strong."))
+    when :HarshSun    then pbDisplay(_INTL("The sunlight is extremely harsh."))
+    when :HeavyRain   then pbDisplay(_INTL("It is raining heavily."))
+    when :StrongWinds then pbDisplay(_INTL("The wind is strong."))
     when :ShadowSky   then pbDisplay(_INTL("The shadow sky continues."))
-    when :AcidRain   then pbDisplay(_INTL("The acid rain continues to fall."))  
+    when :AcidRain   then pbDisplay(_INTL("The acid rain continues to fall."))
+    when :AcidRain   then pbDisplay(_INTL("The swarm is roiling.")) 
     end
+=end
     # Effects due to weather
     curWeather = pbWeather
     priority.each do |b|
@@ -108,11 +112,11 @@ class PokeBattle_Battle
           b.pbReduceHP(reduction,false)
           b.pbItemHPHealCheck
           b.pbFaint if b.fainted?
-        elsif b.pbHasType?(:POISON)
+        elsif b.pbHasType?(:POISON) || b.hasActiveAbility?(:POISONHEAL)
           pbDisplay(_INTL("{1} absorbs the acid rain!",b.pbThis))
           heal = b.totalhp/16
           heal /= 4 if b.boss?
-          b.pbRestoreHP(heal,false)
+          b.pbRecoverHP(heal,true)
         end
       end
     end
