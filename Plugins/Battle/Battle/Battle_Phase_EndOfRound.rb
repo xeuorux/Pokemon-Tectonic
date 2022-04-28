@@ -33,6 +33,7 @@ class PokeBattle_Battle
       when :Hail      then pbDisplay(_INTL("The hail stopped."))
       when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
       when :Sandstorm then pbDisplay(_INTL("The acid rain stopped."))
+      when :Swarm     then pbDisplay(_INTL("The swarm dissipates."))
       end
       @field.weather = :None
       # Check for form changes caused by the weather changing
@@ -54,7 +55,8 @@ class PokeBattle_Battle
     when :HeavyRain   then pbDisplay(_INTL("It is raining heavily."))
     when :StrongWinds then pbDisplay(_INTL("The wind is strong."))
     when :ShadowSky   then pbDisplay(_INTL("The shadow sky continues."))
-    when :AcidRain   then pbDisplay(_INTL("The acid rain continues to fall."))  
+    when :AcidRain   then pbDisplay(_INTL("The acid rain continues to fall."))
+    when :AcidRain   then pbDisplay(_INTL("The swarm is roiling.")) 
     end
 =end
     # Effects due to weather
