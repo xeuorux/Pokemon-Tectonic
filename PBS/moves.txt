@@ -916,7 +916,7 @@
 852,LIGHTNINGSHRIEK,Lightning Shriek,030,40,ELECTRIC,Special,100,5,100,NearOther,0,bef,"The user lets out an electric roar, damaging the target and sharply raising its speed."
 853,IGNITE,Ignite,00A,0,FIRE,Status,100,15,0,NearOther,0,bce,"The user sets the target on fire, inflicting a burn."
 854,TORRENTBLADE,Torrent Blade,000,90,WATER,Physical,100,15,0,NearOther,0,abefhp,"The user uses a jet of water like a sword and attacks by slashing. It has a high critical-hit ratio."
-855,STAREDOWN,Stare Down,535,100,DARK,Special,100,5,0,NearOther,2,bef,"The user stares harshly at the target, dealing double damage if they hurt the user this turn. Only usable on the first turn."
+855,STAREDOWN,Stare Down,535,100,DARK,Special,100,5,0,NearOther,2,bef,"The user stares, dealing double damage if they hurt the user this turn. Only usable on the first turn."
 856,INURE,Inure,531,0,ICE,Status,0,10,0,UserSide,0,d,"The user inures themselves to a harsh environment, shedding their type weaknesses."
 857,BREAKDANCE,Breakdance,532,0,FIGHTING,Status,0,20,0,User,0,do,"The user breakdances, sharply boosting its weakest stat and boosting its second weakest stat."
 858,SHIVERDANCE,Shiver Dance,525,0,ICE,Status,0,20,0,User,0,do,"The user shivers rhythmically. It boosts the user's Atk, Def, and Speed stats."
