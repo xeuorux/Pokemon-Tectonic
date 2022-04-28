@@ -13,3 +13,15 @@ BattleHandlers::SpeedCalcAbility.add(:BROODING,
 	next mult * (1.0 + dragonCount * 0.05) 
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:ARCANEFINALE,
+  proc { |ability,battler,mult|
+	  next mult *= 2 if battler.isLastAlive?
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:HEROICFINALE,
+  proc { |ability,battler,mult|
+  next mult *= 2 if battler.isLastAlive?
+  }
+)

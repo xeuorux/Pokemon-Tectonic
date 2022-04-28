@@ -390,6 +390,8 @@
 388,LUXURYTASTE,Luxury Taste,"At end of turn, heals 1/8th HP if holding a clothing item."
 389,CHILLOUT,Chill Out,"Has a 30% chance to chill targets when using special moves."
 390,DAUNTLESS,Dauntless,"Boosts Attack and Sp. Attack after knocking out any Pokémon."
+391,ARCANEFINALE,Arcane Finale,"Doubles Speed and Sp. Atk when only unfainted on team."
+392,HEROICFINALE,Heroic Finale,"Doubles Speed and Defenses when only unfainted on team."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."

@@ -187,3 +187,9 @@ BattleHandlers::DamageCalcUserAbility.add(:FROSTSONG,
     mults[:base_damage_multiplier] *= 1.5 if move.powerBoost
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:ARCANEFINALE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 2 if move.specialMove? && user.isLastAlive?
+  }
+)

@@ -71,9 +71,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:PARANOID,
 
 BattleHandlers::DamageCalcTargetAbility.add(:FORTIFIED,
   proc { |ability,user,target,move,mults,baseDmg,type|
-	if !user.movedThisRound?
+	if !target.movedThisRound?
 		mults[:final_damage_multiplier] *= 0.80
-    end
+  end
   }
 )
 
@@ -92,9 +92,15 @@ BattleHandlers::DamageCalcTargetAbility.add(:SNOWSHROUD,
 BattleHandlers::DamageCalcTargetAbility.add(:BROODING,
   proc { |ability,user,target,move,mults,baseDmg,type|
 	dragonCount = 0
-	user.battle.eachInTeamFromBattlerIndex(target.index) do |pkmn,i|
+	target.battle.eachInTeamFromBattlerIndex(target.index) do |pkmn,i|
 		dragonCount += 1 if pkmn.hasType?(:DRAGON)
 	end
 	mults[:final_damage_multiplier] /= (1.0 + dragonCount * 0.05) 
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:HEROICFINALE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] /= 2 if target.isLastAlive?
   }
 )
