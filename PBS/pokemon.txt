@@ -3086,8 +3086,8 @@ InternalName = GENGAR
 Type1 = GHOST
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,80,65,110,110,80
-# Total = 510
+BaseStats = 65,70,65,110,120,80
+# Total = 520
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 225
