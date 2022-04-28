@@ -295,3 +295,15 @@ BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
+  proc { |ability,user,targets,move,battle|
+    next if battle.pbAllFainted?(user.idxOpposingSide)
+    numFainted = 0
+    targets.each { |b| numFainted += 1 if b.damageState.fainted }
+    next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user)
+    user.pbRaiseStatStageByAbility(:ATTACK,numFainted,user)
+	next if numFainted==0 || !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user)
+	user.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,numFainted,user)
+  }
+)

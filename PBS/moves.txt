@@ -69,7 +69,7 @@
 66,JAWLOCK,Jaw Lock,17D,80,DARK,Physical,100,10,0,NearOther,0,bef,"Prevents the user and target from switching out until either of them faints or is switched out."
 67,FALSESURRENDER,False Surrender,0A5,80,DARK,Physical,0,10,0,NearOther,0,aef,"The user fakes the target out and stabs them with its disheveled hair. The attack never misses and skips protections."
 68,OBSTRUCT,Obstruct,180,0,DARK,Status,0,3,0,NearOther,4,,"Protects the user from all attacks. Physical attacks harshly lower the attacker's Defense stat."
-69,WICKEDBLOW,Wicked Blow,0A0,80,DARK,Physical,100,5,0,NearOther,0,abef,"The user strikes with a fierce blow of Dark Mastery. It always results in a critical hit"
+69,WICKEDBLOW,Wicked Blow,0A0,80,DARK,Physical,100,5,0,NearOther,0,abef,"The user strikes with a fierce blow of Dark Mastery. It always results in a critical hit."
 70,LASHOUT,Lash Out,194,75,DARK,Physical,100,5,100,NearOther,0,abef,"If the user's stats were lowered during the turn, the power of this move is doubled."
 71,FIERYWRATH,Fiery Wrath,00F,90,DARK,Special,100,10,20,AllNearFoes,0,ef,"The user transforms its wrath into a fire-like aura to attack. It has a 30% chance to make the target flinch."
 #-------------------------------
