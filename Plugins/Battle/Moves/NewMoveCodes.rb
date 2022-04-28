@@ -1753,7 +1753,7 @@ end
 
 
 #===============================================================================
-# Poisons opposing Pokemon that have increased their stats. (Burning Jealousy)
+# Poisons opposing Pokemon that have increased their stats. (Stinging Jealousy)
 #===============================================================================
 class PokeBattle_Move_553 < PokeBattle_Move
 	def pbAdditionalEffect(user,target)
@@ -1835,5 +1835,15 @@ class PokeBattle_Move_555 < PokeBattle_Move
 			score -= b.stages[:SPECIAL_DEFENSE] * 10
 		end
 		return score
+	end
+end
+
+#===============================================================================
+# Starts swarm weather. (Swarm)
+#===============================================================================
+class PokeBattle_Move_556 < PokeBattle_WeatherMove
+	def initialize(battle,move)
+	  super
+	  @weatherType = :Swarm
 	end
 end
