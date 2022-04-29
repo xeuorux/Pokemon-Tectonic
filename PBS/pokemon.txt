@@ -16751,7 +16751,7 @@ Name = Purrloin
 InternalName = PURRLOIN
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 66,60,47,47,60,76
+BaseStats = 60,66,76,47,60,47
 # Total = 356
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -16784,8 +16784,8 @@ Name = Liepard
 InternalName = LIEPARD
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 111,103,55,55,103,109
-# Total = 536
+BaseStats = 111,103,119,55,103,55
+# Total = 546
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 156
@@ -27259,8 +27259,8 @@ Name = Thievul
 InternalName = THIEVUL
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,95,63,90,63,125
-# Total = 536
+BaseStats = 103,95,63,90,63,125
+# Total = 539
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 159
