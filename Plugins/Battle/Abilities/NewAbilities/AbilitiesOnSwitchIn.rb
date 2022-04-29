@@ -143,3 +143,21 @@ BattleHandlers::AbilityOnSwitchIn.add(:POLLUTION,
     pbBattleWeatherAbility(:AcidRain, battler, battle)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:ARCANEFINALE,
+  proc { |ability,battler,battle|
+    next unless battler.isLastAlive?
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is the team's finale!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:HEROICFINALE,
+  proc { |ability,battler,battle|
+    next unless battler.isLastAlive?
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is the team's finale!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
