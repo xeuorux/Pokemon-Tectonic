@@ -2827,22 +2827,25 @@ Pokemon = ADUGTRIO,55
     AbilityIndex = 1
     Item = CHOICESCARF
 #-------------------------------
-[SCIENTIST_M4,Jacob]
-Pokemon = GRANBULL,55
-    AbilityIndex = 0
-    Item = EJECTBUTTON
-Pokemon = CONIFEAR,55
-    AbilityIndex = 1
-    Item = EJECTBUTTON
-Pokemon = SWANNA,55
-    AbilityIndex = 0
-    Item = EJECTBUTTON
-Pokemon = DROMERUPT,55
-    AbilityIndex = 0
-    Item = ORANBERRY
-Pokemon = NIBELONG,55
-    AbilityIndex = 1
-    Item = LIECHIBERRY
-Pokemon = ADUGTRIO,55
-    AbilityIndex = 1
-    Item = CHOICESCARF
+[AROMALADY3,Sieghilde]
+Pokemon = DUSKNOIR,46
+	AbilityIndex = 0
+	Item = LEFTOVERS
+Pokemon = MFURRET,47
+	Item = GROUNDGEM
+Pokemon = VENUSAUR,47
+	AbilityIndex = 1
+Pokemon = ZANGOOSE,48
+#-------------------------------
+[CYCLIST_F2,Lukka]
+Pokemon = BLISSEY,46
+	AbilityIndex = 1
+Pokemon = CONKELDURR,47
+	Item = MUSCLEBAND
+	AbilityIndex = 1
+Pokemon = ARCTOZOLT,48
+	AbilityIndex = 1
+	Item = ELECTRICGEM
+Pokemon = TOWERPODA,47
+	AbilityIndex = 1
+#-------------------------------
