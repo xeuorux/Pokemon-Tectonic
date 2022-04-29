@@ -2827,7 +2827,7 @@ Pokemon = ADUGTRIO,55
     AbilityIndex = 1
     Item = CHOICESCARF
 #-------------------------------
-[AROMALADY3,Sieghilde]
+[AROMALADY3,Henrietta]
 Pokemon = DUSKNOIR,46
 	AbilityIndex = 0
 	Item = LEFTOVERS
