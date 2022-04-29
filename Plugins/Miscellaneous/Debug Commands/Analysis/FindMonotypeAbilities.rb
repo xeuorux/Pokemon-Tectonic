@@ -1,5 +1,5 @@
 DebugMenuCommands.register("detectmonotypeabilities", {
-  "parent"      => "editorsmenu",
+  "parent"      => "analysis",
   "name"        => _INTL("Detect monotype abilities"),
   "description" => _INTL("See which abilities have too many usages by species-lines of the same type."),
   "effect"      => proc { |sprites, viewport|

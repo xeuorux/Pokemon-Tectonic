@@ -1,28 +1,34 @@
 DebugMenuCommands.register("analyzeitemdistribution", {
-  "parent"      => "editorsmenu",
+  "parent"      => "analysis",
   "name"        => _INTL("Analyze item distribution"),
   "description" => _INTL("Find the locations of all item distributions."),
   "effect"      => proc { |sprites, viewport|
 	mapData = Compiler::MapData.new
 	allItemsGiven = []
-    for id in mapData.mapinfos.keys.sort
-		map = mapData.getMap(id)
-		next if !map || !mapData.mapinfos[id]
-		mapName = mapData.mapinfos[id].name
-		for key in map.events.keys
-			itemsGiven = analyze_items(id,mapName,map.events[key])
-			allItemsGiven.concat(itemsGiven)
+	File.open("item_distribution.txt","wb") { |file|
+		for id in mapData.mapinfos.keys.sort
+			map = mapData.getMap(id)
+			next if !map || !mapData.mapinfos[id]
+			mapName = mapData.mapinfos[id].name
+			for key in map.events.keys
+				itemsGiven = analyze_items(id,mapName,map.events[key],file)
+				allItemsGiven.concat(itemsGiven)
+			end
 		end
-	end
 
-	echoln("All the items which have not a single distribution")
-	GameData::Item.each do |itemData|
-		echoln(itemData.id) if !allItemsGiven.include?(itemData.id)
-	end
+		echoln("All the items which have not a single distribution:")
+		GameData::Item.each_with_index do |itemData, index|
+			next if allItemsGiven.include?(itemData.id)
+			str = itemData.id.to_s + (index % 6 == 0 ? "\r\n" : ", ")
+			file.write(str) 
+		end
+	}
+
+	pbMessage(_INTL("Item distribution analysis written to item_distribution.txt"))
   }}
 )
 
-def analyze_items(map_id,map_name,event)
+def analyze_items(map_id,map_name,event,file)
 	return [] if !event || event.pages.length==0
 	itemsGiven = []
 	event.pages.each do |page|
@@ -34,11 +40,11 @@ def analyze_items(map_id,map_name,event)
 					itemName = match[1][1..-1]
 					eventName = event.name.gsub(",","")
 					itemCount = match[2] ? match[2] : 1
-					string = "#{map_id},#{map_name},#{event.id},#{eventName},#{itemName},#{itemCount}"
+					string = "#{map_id},#{map_name},#{event.id},#{eventName},#{itemName},#{itemCount}\r\n"
 					
 					itemsGiven.push(itemName.to_sym)
 					
-					echoln(string)
+					file.write(string)
 				end
 			end
 		end

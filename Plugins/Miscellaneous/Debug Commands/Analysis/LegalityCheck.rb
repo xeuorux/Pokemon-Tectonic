@@ -1,5 +1,5 @@
 DebugMenuCommands.register("checkbattlecontentlegality", {
-  "parent"      => "editorsmenu",
+  "parent"      => "analysis",
   "name"        => _INTL("Check Battle Legality"),
   "description" => _INTL("Check all trainer and avatar battles to find illegal elements."),
   "effect"      => proc { |sprites, viewport|
