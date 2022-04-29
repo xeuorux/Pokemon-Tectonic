@@ -16751,8 +16751,8 @@ Name = Purrloin
 InternalName = PURRLOIN
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,66,76,47,60,47
-# Total = 356
+BaseStats = 60,76,47,47,76,76
+# Total = 382
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 56
@@ -16777,14 +16777,14 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LIEPARD,Level,25
+Evolutions = LIEPARD,Level,28
 #-------------------------------
 [510]
 Name = Liepard
 InternalName = LIEPARD
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 111,103,119,55,103,55
+BaseStats = 81,103,55,85,103,119
 # Total = 546
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -27226,7 +27226,7 @@ Name = Nickit
 InternalName = NICKIT
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 68,60,40,62,40,75
+BaseStats = 68,60,75,62,40,40
 # Total = 345
 GenderRate = Female50Percent
 GrowthRate = Fast
@@ -27259,7 +27259,7 @@ Name = Thievul
 InternalName = THIEVUL
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 103,95,63,90,63,125
+BaseStats = 103,95,125,90,63,63
 # Total = 539
 GenderRate = Female50Percent
 GrowthRate = Fast
