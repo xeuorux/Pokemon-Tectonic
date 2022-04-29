@@ -131,3 +131,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:CLOVERSONG,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:SWARMCALL,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:Swarm, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:POLLUTION,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:AcidRain, battler, battle)
+  }
+)
