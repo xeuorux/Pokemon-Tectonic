@@ -922,7 +922,7 @@ class PokeBattle_AI
   end
 
   def moveFailureAlert(move,user,target,failureMessage)
-    echoln("Move #{move.id} used by #{user.pbThis(true)} against target #{target.pnThis(true)} due to #{failureMessage}")
+    echoln("Move #{move.id} used by #{user.pbThis(true)} against target #{target.pbThis(true)} due to #{failureMessage}")
   end
   
   #=============================================================================
