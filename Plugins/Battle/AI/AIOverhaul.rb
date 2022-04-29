@@ -920,6 +920,10 @@ class PokeBattle_AI
     typeMods.each { |m| ret *= m }
     return ret
   end
+
+  def moveFailureAlert(move,user,target,failureMessage)
+    echoln("Move #{move.id} used by #{user.pbThis(true)} against target #{target.pnThis(true)} due to #{failureMessage}")
+  end
   
   #=============================================================================
   # Immunity to a move because of the target's ability, item or other effects
@@ -928,55 +932,118 @@ class PokeBattle_AI
     type = pbRoughType(move,user,skill)
     typeMod = pbCalcTypeMod(type,user,target)
     # Type effectiveness
-    return true if (Effectiveness.ineffective?(typeMod) && !move.statusMove?) || score<=0
+    if (Effectiveness.ineffective?(typeMod) && !move.statusMove?)
+      moveFailureAlert(move,user,target,"inneffective type mod")
+      return true
+    end
     # Immunity due to ability/item/other effects
     case type
     when :GROUND
-      return true if target.airborne? && !move.hitsFlyingTargets?
+      if target.airborne? && !move.hitsFlyingTargets?
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
     when :FIRE
-      return true if target.hasActiveAbility?(:FLASHFIRE)
+      if target.hasActiveAbility?(:FLASHFIRE)
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
     when :WATER
-      return true if target.hasActiveAbility?([:DRYSKIN,:STORMDRAIN,:WATERABSORB])
+      if target.hasActiveAbility?([:DRYSKIN,:STORMDRAIN,:WATERABSORB])
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
     when :GRASS
-      return true if target.hasActiveAbility?(:SAPSIPPER)
+      if target.hasActiveAbility?(:SAPSIPPER)
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
     when :ELECTRIC
-      return true if target.hasActiveAbility?([:LIGHTNINGROD,:MOTORDRIVE,:VOLTABSORB])
+      if target.hasActiveAbility?([:LIGHTNINGROD,:MOTORDRIVE,:VOLTABSORB])
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
     when :ICE
-      return true if target.hasActiveAbility?(:COLDPROOF)
+      if target.hasActiveAbility?(:COLDPROOF)
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
     when :FLYING
-      return true if target.hasActiveAbility?(:AERODYNAMIC)
+      if target.hasActiveAbility?(:AERODYNAMIC)
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
     when :POISON
-      return true if target.hasActiveAbility?(:POISONABSORB)
+      if target.hasActiveAbility?(:POISONABSORB)
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
     when :FIGHTING
-      return true if target.hasActiveAbility?(:CHALLENGER)
+      if target.hasActiveAbility?(:CHALLENGER)
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true 
+      end
     when :DARK
-      return true if target.hasActiveAbility?(:HEARTOFJUSTICE)
+      if target.hasActiveAbility?(:HEARTOFJUSTICE)
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
     end
-    return true if Effectiveness.not_very_effective?(typeMod) &&
-                    target.hasActiveAbility?(:WONDERGUARD)
-    return true if move.damagingMove? && user.index!=target.index && !target.opposes?(user) &&
-                    target.hasActiveAbility?(:TELEPATHY)
-    return true if move.canMagicCoat? && target.hasActiveAbility?(:MAGICBOUNCE) &&
-                    target.opposes?(user)
+    if Effectiveness.not_very_effective?(typeMod) && target.hasActiveAbility?(:WONDERGUARD)
+      moveFailureAlert(move,user,target,"wonder guard immunity")
+      return true
+    end
+    if move.damagingMove? && user.index!=target.index && !target.opposes?(user) && target.hasActiveAbility?(:TELEPATHY)
+      moveFailureAlert(move,user,target,"telepathy ally immunity")
+      return true
+    end
+    if move.canMagicCoat? && target.hasActiveAbility?(:MAGICBOUNCE) && target.opposes?(user)
+      moveFailureAlert(move,user,target,"magic coat/bounce immunity")
+      return true
+    end
     # Account for magic bounc bouncing back side-effecting moves
     if move.canMagicCoat? && target == user
       user.eachOpposing do |b|
-        return true if b.hasActiveAbility?(:MAGICBOUNCE)
+        if b.hasActiveAbility?(:MAGICBOUNCE)
+          moveFailureAlert(move,user,target,"magic bounce whole side immunity")
+          return true
+        end
       end
     end
-    return true if move.soundMove? && target.hasActiveAbility?(:SOUNDPROOF)
-    return true if move.bombMove? && target.hasActiveAbility?(:BULLETPROOF)
-    if move.powderMove?
-      return true if target.pbHasTypeAI?(:GRASS)
-      return true if target.hasActiveAbility?(:OVERCOAT)
-      return true if target.hasActiveItem?(:SAFETYGOGGLES)
+    if move.soundMove? && target.hasActiveAbility?(:SOUNDPROOF)
+      moveFailureAlert(move,user,target,"soundproof immunity")
+      return true
     end
-    return true if target.effects[PBEffects::Substitute]>0 && move.statusMove? &&
-                    !move.ignoresSubstitute?(user) && user.index!=target.index
-    return true if Settings::MECHANICS_GENERATION >= 7 && user.hasActiveAbility?(:PRANKSTER) &&
-                    target.pbHasTypeAI?(:DARK) && target.opposes?(user)
-    return true if move.priority > 0 && @battle.field.terrain == :Psychic &&
-                      target.affectedByTerrain? && target.opposes?(user) 
+    if move.bombMove? && target.hasActiveAbility?(:BULLETPROOF)
+      moveFailureAlert(move,user,target,"bulletproof immunity")
+      return true
+    end
+    if move.powderMove?
+      if target.pbHasTypeAI?(:GRASS)
+        moveFailureAlert(move,user,target,"grass powder immunity")
+        return true
+      end
+      if target.hasActiveAbility?(:OVERCOAT)
+        moveFailureAlert(move,user,target,"overcoat powder immunity")
+        return true
+      end
+      if target.hasActiveItem?(:SAFETYGOGGLES)
+        moveFailureAlert(move,user,target,"safety-goggles powder immunity")
+        return true
+      end
+    end
+    if target.effects[PBEffects::Substitute]>0 && move.statusMove? && !move.ignoresSubstitute?(user) && user.index!=target.index
+      moveFailureAlert(move,user,target,"substitute immunity to most status moves")
+      return true
+    end
+    if user.hasActiveAbility?(:PRANKSTER) && target.pbHasTypeAI?(:DARK) && target.opposes?(user) && move.statusMove?
+      moveFailureAlert(move,user,target,"dark immunity to prankster boosted status moves")
+      return true
+    end
+    if move.priority > 0 && @battle.field.terrain == :Psychic && target.affectedByTerrain? && target.opposes?(user)
+      moveFailureAlert(move,user,target,"psychic terrain prevention of priority")
+      return true
+    end
     return false
   end
 
