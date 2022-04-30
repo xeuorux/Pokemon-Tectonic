@@ -55,7 +55,10 @@ class PokeBattle_TargetStatDownMove < PokeBattle_Move
 	attr_accessor :statDown
 
   def getScore(score,user,target,skill=100)
-    return 0 if target.hasActiveAbilityAI?(:CONTRARY) && target.opposes?(user)
+    if target.hasActiveAbilityAI?(:CONTRARY) && target.opposes?(user) && move.statusMove?
+      echoln("#{user.pbThis} doesn't want to use a target stat down move due to thinking the target #{target.pbThis(true)} has Contrary.")
+      return 0
+    end
 
     reverse = target.hasActiveAbility?(:CONTRARY) && !target.opposes?(user)
 
@@ -103,7 +106,7 @@ class PokeBattle_TargetStatDownMove < PokeBattle_Move
 				score += 20 if aspeed < ospeed
       end
 		end
-    return 0
+    return score
   end
 end
 

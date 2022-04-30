@@ -1,5 +1,5 @@
-DebugMenuCommands.register("countsmashables", {
-  "parent"      => "editorsmenu",
+DebugMenuCommands.register("analyzesmashables", {
+  "parent"      => "analysis",
   "name"        => _INTL("Count smashable rocks"),
   "description" => _INTL("Find the locations of all smashable rocks."),
   "effect"      => proc { |sprites, viewport|

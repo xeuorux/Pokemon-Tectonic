@@ -1,6 +1,6 @@
-DebugMenuCommands.register("viewdistribution", {
-  "parent"      => "editorsmenu",
-  "name"        => _INTL("View move distribution"),
+DebugMenuCommands.register("analyzedistribution", {
+  "parent"      => "analysis",
+  "name"        => _INTL("Analyze move distribution"),
   "description" => _INTL("See the total distribution of each move."),
   "effect"      => proc { |sprites, viewport|
 	move_counts = {}
@@ -19,7 +19,6 @@ DebugMenuCommands.register("viewdistribution", {
 		if species_data.form != 0
 			formName = species_data.real_form_name
 			formName.gsub!("%","") if formName
-			echoln("Skipping #{species_data.real_name} (#{formName})")
 			next
 		end
 		
@@ -62,9 +61,12 @@ DebugMenuCommands.register("viewdistribution", {
 	
 	move_counts = move_counts.sort_by{|move_id,counts| move_id}
 	
-	move_counts.each do |move_id,counts|
-		moveData = GameData::Move.get(move_id)
-		echoln("#{move_id},#{moveData.type},#{counts[0]},#{counts[1]},#{counts[2]},#{counts[3]},#{counts[4]},#{counts[5]}")
-	end
+	File.open("move_distribution.txt","wb") { |file|
+		move_counts.each do |move_id,counts|
+			moveData = GameData::Move.get(move_id)
+			file.write("#{move_id},#{moveData.type},#{counts[0]},#{counts[1]},#{counts[2]},#{counts[3]},#{counts[4]},#{counts[5]}\r\n")
+		end
+	}
+	pbMessage(_INTL("Move distribution analysis written to move_distribution.txt"))
   }
 })

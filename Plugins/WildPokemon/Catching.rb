@@ -24,10 +24,10 @@ module PokeBattle_BattleCommon
   #=============================================================================
   def pbCaptureCalc(pkmn,battler,catch_rate,ball)
     return 4 if $DEBUG && Input.press?(Input::CTRL)
-	return 4 if BallHandlers.isUnconditional?(ball,self,battler)
-	y = captureThresholdCalc(pkmn,battler,catch_rate,ball)
-	# Critical capture check
-	if Settings::ENABLE_CRITICAL_CAPTURES
+    return 4 if BallHandlers.isUnconditional?(ball,self,battler)
+    y = captureThresholdCalc(pkmn,battler,catch_rate,ball)
+    # Critical capture check
+    if Settings::ENABLE_CRITICAL_CAPTURES
       c = 0
       numOwned = $Trainer.pokedex.owned_count
       if numOwned>600;    c = 20
@@ -38,9 +38,10 @@ module PokeBattle_BattleCommon
       end
       # Calculate the number of shakes
       if c>0 && pbRandom(100)<c
-        @criticalCapture = true
-        return 4 if pbRandom(CATCH_BASE_CHANCE)<y
-        return 0
+        if pbRandom(CATCH_BASE_CHANCE)<y
+          @criticalCapture = true
+          return 4
+        end
       end
     end
     # Calculate the number of shakes

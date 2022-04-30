@@ -970,7 +970,7 @@ DMGMult = 1
 #-------------------------------
 [CROBAT]
 Ability = INFILTRATOR
-Moves = ZEPHYRWING,GUNKSHOT,PRIMEVALSANDSTORM
+Moves = AERIALACE,GUNKSHOT,PRIMEVALSANDSTORM
 PostPrimeMoves = ROCKSLIDE
 Turns = 3
 HPMult = 2.5

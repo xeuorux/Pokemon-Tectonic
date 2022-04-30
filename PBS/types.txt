@@ -48,7 +48,7 @@ Resistances = FIGHTING,GROUND,GRASS,PSYCHIC
 Name = Ghost
 InternalName = GHOST
 Weaknesses = GHOST,DARK
-Resistances = POISON
+Resistances = POISON,BUG
 Immunities = NORMAL,FIGHTING
 #-------------------------------
 [8]

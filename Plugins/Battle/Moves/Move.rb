@@ -470,19 +470,19 @@ class PokeBattle_Move
 		  end
 		when :Sandstorm
 		  if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock
-			multipliers[:defense_multiplier] *= 1.5
+			  multipliers[:defense_multiplier] *= 1.5
 		  end
 		when :Hail
 		  if target.pbHasType?(:ICE) && physicalMove?
-			multipliers[:defense_multiplier] *= 1.5
+			  multipliers[:defense_multiplier] *= 1.5
 		  end
 		end
 		# Critical hits
 		if target.damageState.critical
 		  if Settings::NEW_CRITICAL_HIT_RATE_MECHANICS
-			multipliers[:final_damage_multiplier] *= 1.5
+			  multipliers[:final_damage_multiplier] *= 1.5
 		  else
-			multipliers[:final_damage_multiplier] *= 2
+			  multipliers[:final_damage_multiplier] *= 2
 		  end
 		end
 		

@@ -189,6 +189,18 @@ BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
 	}
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:SWARMMOUTH,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Swarm,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:ACIDBODY,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:AcidRain,battler,battle)
+	}
+)
+
 BattleHandlers::TargetAbilityAfterMoveUse.add(:VENGEANCE,
   proc { |ability,target,user,move,switched,battle|
     next if !move.damagingMove?

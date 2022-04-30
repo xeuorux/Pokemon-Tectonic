@@ -1,7 +1,7 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 1,STENCH,Stench,"Attacks have a 50% chance to cause the target to flinch."
-2,DRIZZLE,Drizzle,"The Pokémon makes it rain if it appears in battle."
+2,DRIZZLE,Drizzle,"Makes it rain for 5 turns when it enters battle."
 3,SPEEDBOOST,Speed Boost,"Speed is raised at the end of each of its turns."
 4,BATTLEARMOR,Battle Armor,"The Pokémon is protected against critical hits."
 5,STURDY,Sturdy,"It cannot be knocked out with one hit."
@@ -44,7 +44,7 @@
 42,MAGNETPULL,Magnet Pull,"Prevents Steel-type Pokémon from escaping."
 43,SOUNDPROOF,Soundproof,"Gives full immunity to all sound-based moves."
 44,RAINDISH,Rain Dish,"The Pokémon gradually regains HP in rain."
-45,SANDSTREAM,Sand Stream,"The Pokémon summons a sandstorm in battle."
+45,SANDSTREAM,Sand Stream,"Summons a sandstorm for 5 turns when it enters battle."
 46,PRESSURE,Pressure,"The Pokémon raises the foe's PP usage."
 47,THICKFAT,Thick Fat,"Ups resistance to Fire- and Ice-type moves."
 48,EARLYBIRD,Early Bird,"The Pokémon awakens quickly from sleep."
@@ -69,7 +69,7 @@
 67,TORRENT,Torrent,"Powers up Water-type moves in a pinch."
 68,SWARM,Swarm,"Powers up Bug-type moves in a pinch."
 69,ROCKHEAD,Rock Head,"Protects the Pokémon from recoil damage."
-70,DROUGHT,Drought,"Turns the sunlight harsh if it is in battle."
+70,DROUGHT,Drought,"Intensifies sunlight for 5 turns when it enters battle."
 71,ARENATRAP,Arena Trap,"Prevents the foe from fleeing."
 72,VITALSPIRIT,Vital Spirit,"Prevents the Pokémon from falling asleep."
 73,WHITESMOKE,White Smoke,"Prevents other Pokémon from lowering its stats."
@@ -116,7 +116,7 @@
 114,STORMDRAIN,Storm Drain,"Draws in Water-type moves, is immune to them, and boosts Sp. Attack when hit."
 115,ICEBODY,Ice Body,"The Pokémon gradually regains HP in a hailstorm."
 116,SOLIDROCK,Solid Rock,"Reduces damage from super-effective attacks by 25%."
-117,SNOWWARNING,Snow Warning,"The Pokémon summons a hailstorm in battle."
+117,SNOWWARNING,Snow Warning,"Summons a hailstorm for 5 turns when it enters battle."
 118,HONEYGATHER,Honey Gather,"The Pokémon may gather Honey from somewhere."
 119,FRISK,Frisk,"The Pokémon can check a foe's held item. Makes wild Pokémon have items more often."
 120,RECKLESS,Reckless,"Powers up moves that have recoil damage."
@@ -252,7 +252,7 @@
 250,PROPELLERTAIL,Propeller Tail,"Ignores effects changing the target of a move.",
 251,LOUD,Loud,"Boosts power of sound-based moves by 30%.",
 252,RIPEN,Ripen,"Ripens Berries and doubles their effect.",
-253,SANDSPIT,Sand Burst,"Creates a sandstorm when it's hit by an attack.",
+253,SANDSPIT,Sand Burst,"Creates a sandstorm for 5 turns when hit by an attack.",
 254,SCREENCLEANER,Screen Cleaner,"Screens are nullified when entering battle.",
 255,STALWART,Stalwart,"Ignores effects changing the target of a move.",
 256,STEAMENGINE,Steam Engine,"Raises Speed massively when hit by a Fire- or Water-type move.",
@@ -340,13 +340,13 @@
 338,GARLANDGUARDIAN,Garland Guardian, "Creates a Safeguard upon entering the battle."
 339,FREERIDE,Free Ride, "Raises other allies speed upon entering the battle."
 340,HEATSAVOR,Heat Savor, "The Pokémon gradually recovers HP in sunny weather."
-341,FROSTSCATTER,Frost Scatter, "Creates a hailstorm when hit by an attack."
+341,FROSTSCATTER,Frost Scatter, "Creates a hailstorm for 5 turns when hit by an attack."
 342,POSITIVEOUTLOOK,Positive Outlook, "Raises Electric-type allies' special attack by 50%."
 343,NEGATIVEOUTLOOK,Negative Outlook, "Raises Electric-type allies' special defense by 50%."
 344,BADOMEN,Bad Omen, "Foretold moves hit one turn quicker."
 345,CLOVERSONG,Clover Song, "Sets a Lucky Chant upon entering the battle."
-346,INNERLIGHT,Inner Light, "Creates harsh sun when hit by an attack."
-347,STORMBRINGER,Stormbringer, "Creates heavy rain when hit by an attack."
+346,INNERLIGHT,Inner Light, "Creates harsh sun for 5 turns when hit by an attack."
+347,STORMBRINGER,Stormbringer, "Creates heavy rain for 5 turns when hit by an attack."
 348,ELECTRICFENCE,Electric Fence, "Inflicts 1/8th max HP damage to the foe when damaged on Electric Terrain."
 349,HONORAURA,Honor Aura, "Lowers priority of status moves used by any Pokemon."
 350,GARGANTUAN,Gargantuan, "Completely protects allies from multi-target moves."
@@ -392,6 +392,10 @@
 390,DAUNTLESS,Dauntless,"Boosts Attack and Sp. Attack after knocking out any Pokémon."
 391,ARCANEFINALE,Arcane Finale,"Doubles Speed and Sp. Atk when only unfainted on team."
 392,HEROICFINALE,Heroic Finale,"Doubles Speed and Defenses when only unfainted on team."
+393,SWARMCALL,Swarm Call,"Summons a swarm for 5 turns when it enters battle."
+394,POLLUTION,Pollution,"Summons acid rain for 5 turns when it enters battle."
+395,SWARMMOUTH,Swarm Call,"Summons a swarm for 5 turns when hit by an attack."
+396,ACIDBODY,Pollution,"Summons acid rain for 5 turns when hit by an attack."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
