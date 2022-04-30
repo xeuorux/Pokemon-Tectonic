@@ -35,7 +35,7 @@
 32,DARKESTLARIAT,Darkest Lariat,0A9,85,DARK,Physical,100,10,0,NearOther,0,abef,"The user swings both arms and hits the target. Ignores the target's stat changes."
 33,NIGHTDAZE,Night Daze,047,85,DARK,Special,100,10,40,NearOther,0,bef,"The user lets loose a pitch-black shock wave at its target. It has a 40% chance to lower accuracy."
 34,CRUNCH,Crunch,043,80,DARK,Physical,100,15,20,NearOther,0,abefi,"The user crunches up the target with sharp fangs. It has a 20% chance to lower Defense."
-35,DARKPULSE,Dark Pulse,00F,80,DARK,Special,100,15,20,Other,0,bem,"The user releases a horrible aura imbued with dark thoughts. It has a 20% chance to make the target flinch."
+35,DARKPULSE,Dark Pulse,00F,80,DARK,Special,100,15,20,Other,0,bem,"The user releases an aura imbued with dark thoughts. It has a 20% chance to flinch the target."
 36,THROATCHOP,Throat Chop,16C,80,DARK,Physical,100,15,100,NearOther,0,abef,"The user attacks the target's throat. The target cannot use sound-based moves for two turns."
 37,NIGHTSLASH,Night Slash,000,70,DARK,Physical,100,15,0,NearOther,0,abefhp,"The user slashes the target the instant an opportunity arises. Critical hits land more easily."
 38,SUCKERPUNCH,Sucker Punch,116,70,DARK,Physical,100,5,0,NearOther,1,abef,"This move enables the user to attack first. It fails if the target is not readying an attack, however."
