@@ -35,29 +35,11 @@ DebugMenuCommands.register("renamemovefrominput", {
 DebugMenuCommands.register("renamemovefromfile", {
   "parent"      => "editorsmenu",
   "name"        => _INTL("Rename Moves From File"),
-  "description" => _INTL("Rename an existing move in moves, species, forms, and trainers PBS files based on PBS/moverenames.txt."),
+  "description" => _INTL("Rename an existing move in moves, species, forms, and trainers PBS files based on PBS/move_renames.txt."),
   "effect"      => proc {
     begin
-      renamingHash = {}
-      filename = "PBS/move_renames.txt"
-      File.open(filename,"rb") { |f|
-        FileLineData.file = filename
-        lineno = 1
-        f.each_line { |line|
-          if lineno==1 && line[0].ord==0xEF && line[1].ord==0xBB && line[2].ord==0xBF
-            line = line[3,line.length-3]
-          end
-          line.sub!(/\s*\#.*$/,"")
-          line.sub!(/^\s+/,"")
-          line.sub!(/\s+$/,"")
-          if !line[/^\#/] && !line[/^\s*$/]
-            FileLineData.setLine(line,lineno)
-            line_items = line.split(",")
-            renamingHash[line_items[0]] = [line_items[1],line_items[2]]
-          end
-          lineno += 1
-        }
-      }
+      renamingHash = getRenamedMovesBatch()
+      
       renameMoves(renamingHash)
 
       Compiler.write_moves
@@ -72,12 +54,43 @@ DebugMenuCommands.register("renamemovefromfile", {
       echoln("Compiling avatar data")
       Compiler.write_avatars
       pbMessage("Mass rename completed.")
+
+      pbMessage("Create a new move rename save conversion, and rename \"move_renames.txt\" to \"move_renames_{X}.txt\"" +
+        " where {X} is the next highest number of all files you see (e.g." +
+        " If you see a \"move_renames_2.txt\", rename yours to \"move_renames_3\".txt)")
+      pbMessage("Or tell a programmer to do it for you :)")
     rescue
       pbMessage("Some sort of error has occured.")
     end
   }
 })
 
+def getRenamedMovesBatch(version = -1)
+  renamingHash = {}
+  if version != -1
+    filename = "PBS/move_renames_#{version}.txt"
+  else
+    filename = "PBS/move_renames.txt"
+  end
+  File.open(filename,"rb") { |f|
+    FileLineData.file = filename
+    lineno = 1
+    f.each_line { |line|
+      if lineno==1 && line[0].ord==0xEF && line[1].ord==0xBB && line[2].ord==0xBF
+        line = line[3,line.length-3]
+      end
+      line.sub!(/\s*\#.*$/,"")
+      line.sub!(/^\s+/,"")
+      line.sub!(/\s+$/,"")
+      if !line[/^\#/] && !line[/^\s*$/]
+        FileLineData.setLine(line,lineno)
+        line_items = line.split(",")
+        renamingHash[line_items[0]] = [line_items[1],line_items[2]]
+      end
+      lineno += 1
+    }
+  }
+end
 
 def renameMoves(renamingHash)
   renamingHash.delete_if { |key,value|
