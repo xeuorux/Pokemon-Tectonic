@@ -317,7 +317,7 @@ class PokemonLoadScreen
 		show_continue    = FileSave.count>0
 		commands[cmd_continue = commands.length] = _INTL('Load Game') if show_continue
 		commands[cmd_new_game = commands.length]  = _INTL('New Game')
-		commands[cmd_options = commands.length]   = _INTL('Options')
+		#commands[cmd_options = commands.length]   = _INTL('Options')
 		commands[cmd_debug = commands.length]     = _INTL('Debug') if $DEBUG
 		commands[cmd_quit = commands.length]      = _INTL('Quit Game')
 		@scene.pbStartScene(commands, false, nil, 0, 0)
@@ -338,11 +338,11 @@ class PokemonLoadScreen
 			@scene.pbEndScene
 			Game.start_new
 			return
-				when cmd_options
+		  when cmd_options
 			pbFadeOutIn do
-			  scene = PokemonOption_Scene.new
-			  screen = PokemonOptionScreen.new(scene)
-			  screen.pbStartScreen(true)
+			scene = PokemonOption_Scene.new
+			screen = PokemonOptionScreen.new(scene)
+			screen.pbStartScreen(true)
 			end
 		  when cmd_debug
 			pbFadeOutIn { pbDebugMenu(false) }

@@ -9,26 +9,26 @@ class PokemonSystem
 	attr_accessor :show_effectiveness
 
   def initialize
-    @textspeed   		= 1 # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
-    @battlescene 		= 0 # Battle effects (animations) (0=on, 1=off)
-    @battlestyle 		= 1 # Battle style (0=switch, 1=set)
-    @frame      		= 0 # Default window frame (see also Settings::MENU_WINDOWSKINS)
-    @textskin    		= 0 # Speech frame
-    @font        		= 0 # Font (see also Settings::FONT_OPTIONS)
-    @screensize  		= (Settings::SCREEN_SCALE * 2).floor - 1   # 0=half size, 1=full size, 2=full-and-a-half size, 3=double size
-    @language    		= 0 # Language (see also Settings::LANGUAGES in script PokemonSystem)
-    @runstyle    		= 0 # Default movement speed (0=walk, 1=run)
-    @bgmvolume  		= 30 # Volume of background music and ME
-    @sevolume    		= 30 # Volume of sound effects
-    @textinput   		= 1 # Text input mode (0=cursor, 1=keyboard)
-	@followers   		= 0	# Follower Pokemon enabled (0=true, 1=false)
-	@autosave	 		= 1	# Autosave enabled (0=true, 1=false)
-	@particle_effects 	= 0 # (0=true, 1=false)
-	@skip_fades 		= 1 # (0=true, 1=false)
-	@gendered_look 		= 0 # (0 = Masc, 1 = Fem)
-	@damage_numbers 	= 0 # (0=true, 1=false)
-	@show_item_descriptions = 0 # (0=true, 1=false)
-	@show_effectiveness = 0 # (0=true,1=false)
+    @textspeed   		        = 1 # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
+    @battlescene 		        = 0 # Battle effects (animations) (0=on, 1=off)
+    @battlestyle 		        = 1 # Battle style (0=switch, 1=set)
+    @frame      		        = 0 # Default window frame (see also Settings::MENU_WINDOWSKINS)
+    @textskin    		        = 0 # Speech frame
+    @font        		        = 0 # Font (see also Settings::FONT_OPTIONS)
+    @screensize  		        = (Settings::SCREEN_SCALE * 2).floor - 1   # 0=half size, 1=full size, 2=full-and-a-half size, 3=double size
+    @language    		        = 0 # Language (see also Settings::LANGUAGES in script PokemonSystem)
+    @runstyle    		        = 0 # Default movement speed (0=walk, 1=run)
+    @bgmvolume  		        = 30 # Volume of background music and ME
+    @sevolume    		        = 30 # Volume of sound effects
+    @textinput   		        = 1 # Text input mode (0=cursor, 1=keyboard)
+    @followers   		        = 0	# Follower Pokemon enabled (0=true, 1=false)
+    @autosave	 		          = 1	# Autosave enabled (0=true, 1=false)
+    @particle_effects 	    = 0 # (0=true, 1=false)
+    @skip_fades 		        = 1 # (0=true, 1=false)
+    @gendered_look 		      = 0 # (0 = Masc, 1 = Fem)
+    @damage_numbers 	      = 0 # (0=true, 1=false)
+    @show_item_descriptions = 0 # (0=true, 1=false)
+    @show_effectiveness     = 0 # (0=true,1=false)
   end
 end
 
@@ -113,54 +113,53 @@ class PokemonOption_Scene
 		EnumOption.new(_INTL("Damage Numbers"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.damage_numbers },
          proc { |value|
-			$PokemonSystem.damage_numbers = value
+			    $PokemonSystem.damage_numbers = value
          }
        )
 	)
 	@PokemonOptions.push(EnumOption.new(_INTL("Effectiveness Msgs"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.show_effectiveness },
          proc { |value|
-			$PokemonSystem.show_effectiveness = value
+			    $PokemonSystem.show_effectiveness = value
          }
        ))
 	@PokemonOptions.push(
 	   EnumOption.new(_INTL("Item Desc Popups"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.show_item_descriptions },
          proc { |value|
-			$PokemonSystem.show_item_descriptions = value
+			    $PokemonSystem.show_item_descriptions = value
          }
        )
 	)
 	@PokemonOptions.push(EnumOption.new(_INTL("Look"),[_INTL("Masc."),_INTL("Fem.")],
          proc { $PokemonSystem.gendered_look },
          proc { |value|
-			$PokemonSystem.gendered_look = value
-			pbChangePlayer(value)
+          pbChangePlayer(value)
          }
        )) if $PokemonGlobal
 	@PokemonOptions.push(EnumOption.new(_INTL("Autosave"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.autosave },
          proc { |value|
-			$PokemonSystem.autosave = value
+			    $PokemonSystem.autosave = value
          }
        ))
 	@PokemonOptions.push(EnumOption.new(_INTL("Pokemon Follow"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.followers },
          proc { |value|
-			$PokemonSystem.followers = value
+			      $PokemonSystem.followers = value
             pbToggleFollowingPokemon($PokemonSystem.followers == 0 ? "on" : "off",false)
          }
        )) if $PokemonGlobal
 	@PokemonOptions.push(EnumOption.new(_INTL("Particles (Adv.)"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.particle_effects },
          proc { |value|
-			$PokemonSystem.particle_effects = value
+			      $PokemonSystem.particle_effects = value
          }
        ))
 	@PokemonOptions.push(EnumOption.new(_INTL("Skip Fades"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.skip_fades },
          proc { |value|
-			$PokemonSystem.skip_fades = value
+			      $PokemonSystem.skip_fades = value
          }
        )) if $DEBUG
     @PokemonOptions = pbAddOnOptions(@PokemonOptions)
@@ -248,5 +247,13 @@ class Window_PokemonOption < Window_DrawableCommand
       pbDrawShadowText(self.contents,xpos,rect.y,optionwidth,rect.height,value,
          @selBaseColor,@selShadowColor)
     end
+  end
 end
+
+SaveData.register(:pokemon_system) do
+  ensure_class :PokemonSystem
+  save_value { $PokemonSystem }
+  load_value { |value| $PokemonSystem = value }
+  new_game_value { PokemonSystem.new }
+  from_old_format { |old_format| old_format[3] }
 end
