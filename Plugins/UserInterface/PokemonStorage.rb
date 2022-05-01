@@ -24,9 +24,9 @@ class PokemonStorageScreen
           next
         elsif selected[0]==-4   # Box name
           if pbBoxCommands
-			@scene.pbCloseBox
-			return true
-		  end
+			      @scene.pbCloseBox
+			      return true
+		      end
         else
           pokemon = @storage[selected[0],selected[1]]
           heldpoke = pbHeldPokemon
@@ -45,9 +45,8 @@ class PokemonStorageScreen
             cmdItem     = -1
             cmdMark     = -1
             cmdRelease  = -1
-			cmdPokedex  = -1
+			      cmdPokedex  = -1
             cmdDebug    = -1
-			cmdZoo		= -1
             cmdCancel   = -1
             if heldpoke
               helptext = _INTL("{1} is selected.",heldpoke.name)
@@ -57,13 +56,12 @@ class PokemonStorageScreen
               commands[cmdMove=commands.length]   = _INTL("Move")
             end
             commands[cmdSummary=commands.length]  = _INTL("Summary")
-			commands[cmdPokedex = commands.length]  = _INTL("Pokédex") if $Trainer.has_pokedex
+			      commands[cmdPokedex = commands.length]  = _INTL("Pokédex") if $Trainer.has_pokedex
             commands[cmdWithdraw=commands.length] = (selected[0]==-1) ? _INTL("Store") : _INTL("Withdraw")
             commands[cmdItem=commands.length]     = _INTL("Item")
             commands[cmdMark=commands.length]     = _INTL("Mark")
             commands[cmdRelease=commands.length]  = _INTL("Release")
             commands[cmdDebug=commands.length]    = _INTL("Debug") if $DEBUG
-			commands[cmdZoo=commands.length]	  = _INTL("Donate") if canBeSentToZoo((@heldpkmn) ? @heldpkmn : pokemon) && $PokemonGlobal.zooSeen
             commands[cmdCancel=commands.length]   = _INTL("Cancel")
             command=pbShowCommands(helptext,commands)
             if cmdMove>=0 && command==cmdMove   # Move/Shift/Place
@@ -82,31 +80,27 @@ class PokemonStorageScreen
               pbMark(selected,@heldpkmn)
             elsif cmdRelease>=0 && command==cmdRelease   # Release
               pbRelease(selected,@heldpkmn)
-			elsif cmdPokedex>=0 && command==cmdPokedex #Pokedex
-				if @heldpkmn
-					$Trainer.pokedex.register_last_seen(@heldpkmn)
-					pbFadeOutIn {
-						scene = PokemonPokedexInfo_Scene.new
-						screen = PokemonPokedexInfoScreen.new(scene)
-						screen.pbStartSceneSingle(@heldpkmn.species)
-								}			
-				else
-					$Trainer.pokedex.register_last_seen(pokemon)
-					pbFadeOutIn {
-						scene = PokemonPokedexInfo_Scene.new
-						screen = PokemonPokedexInfoScreen.new(scene)
-						screen.pbStartSceneSingle(pokemon.species)
-								}
-				end
-			elsif cmdZoo>=0 && command==cmdZoo # Donate to zoo
-			  pbDonate(selected,@heldpkmn)
-            elsif cmdDebug>=0 && command==cmdDebug   # Debug
-              pbPokemonDebug((@heldpkmn) ? @heldpkmn : pokemon,selected,heldpoke)
+            elsif cmdPokedex>=0 && command==cmdPokedex #Pokedex
+              if @heldpkmn
+                $Trainer.pokedex.register_last_seen(@heldpkmn)
+                pbFadeOutIn {
+                  scene = PokemonPokedexInfo_Scene.new
+                  screen = PokemonPokedexInfoScreen.new(scene)
+                  screen.pbStartSceneSingle(@heldpkmn.species)
+                }			
+              else
+                $Trainer.pokedex.register_last_seen(pokemon)
+                pbFadeOutIn {
+                  scene = PokemonPokedexInfo_Scene.new
+                  screen = PokemonPokedexInfoScreen.new(scene)
+                  screen.pbStartSceneSingle(pokemon.species)
+                }
+              end
             end
           end
         end
-      end
       @scene.pbCloseBox
+      end
     elsif command==1   # Withdraw
       @scene.pbStartBox(self,command)
       loop do

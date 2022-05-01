@@ -451,7 +451,7 @@ def pbChangeLevel(pkmn,newlevel,scene)
     movelist = pkmn.getMoveList
     for i in movelist
       next if i[0]!=pkmn.level
-      pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
+      pbLearnMove(pkmn,i[1],true)
     end
     # Check for evolution
     newspecies = pkmn.check_evolution_on_level_up
