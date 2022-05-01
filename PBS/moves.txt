@@ -897,7 +897,7 @@
 833,CRYSTALGLEAM,Crystal Gleam,000,60,ROCK,Special,100,20,0,NearOther,0,befh,"The user attacks with the bright glint of crystals. This move has a high chance to crit."
 834,WAILINGBLOW,Wailing Blow,010,80,GHOST,Physical,100,15,30,NearOther,0,abe,"The user attacks while wailing. This has a 30% chance to make the target flinch."
 835,SAPPINGWIND,Sapping Wind,00C,80,ICE,Special,100,15,30,NearOther,0,bef,"The user summons a wind that drains the target's vitality. This has a 30% chance to chill it."
-836,DREAMDANCE,Dream Dance,032,0,FAIRY,Status,0,20,0,User,0,do,"The user dances in tune with a dreamlike energy, drastically raising their Sp. Atk."
+836,DREAMDANCE,Dream Dance,032,0,FAIRY,Status,0,20,0,User,0,do,"The user dances in tune with a dreamlike energy, sharply raising their Sp. Atk."
 837,TONGUETWISTER,Tongue Twister,007,80,GHOST,Physical,100,10,50,NearOther,0,abef,"The target is pestered by a giant tongue. This has a 50% chance to numb it."
 838,SMOGSTORM,Smog Storm,005,80,POISON,Special,100,5,30,AllNearOthers,0,bef,"Summons a storm of poisonous gas to hit all nearby pokemon with a a 30% chance to poison."
 839,COLDSNOT,Cold Snot,005,65,ICE,Physical,100,25,30,NearOther,0,bef,"The user launches snot at the target. This has a 30% chance to poison the target."
