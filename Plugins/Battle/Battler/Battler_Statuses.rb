@@ -1,10 +1,12 @@
 class PokeBattle_Battler
 
 	def getStatuses()
-		statuses = [@status]
+		statuses = [self.ability == :COMATOSE ? :SLEEP : @status]
 		statuses.push(@bossStatus) if boss?
 		return statuses
 	end
+
+	
 
 	#=============================================================================
 	# Generalised checks for whether a status problem can be inflicted
@@ -30,10 +32,6 @@ class PokeBattle_Battler
 		if BattleHandlers.triggerStatusCheckAbilityNonIgnorable(self.ability,self,nil)
 			return true
 		end
-		return hasAnyStatusNoTrigger()
-	end
-	
-	def hasAnyStatusNoTrigger()
 		hasStatus = false
 		getStatuses().each do |status|
 			hasStatus = true if status != :NONE
@@ -89,18 +87,10 @@ class PokeBattle_Battler
 			end
 			return false
 		end
-		if !boss?
-			# Trying to replace a status problem with another one
-			if self.status != :NONE && !ignoreStatus && !selfInflicted
-				@battle.pbDisplay(_INTL("{1} already has a status problem...",pbThis(false))) if showMessages
-				return false
-			end
-		else
-			# Trying to give too many statuses
-			if !hasSpotsForStatus() && !ignoreStatus && !selfInflicted
-				@battle.pbDisplay(_INTL("{1} cannot have any more status problems...",pbThis(false))) if showMessages
-				return false
-			end
+		# Trying to give too many statuses
+		if !hasSpotsForStatus() && !ignoreStatus && !selfInflicted
+			@battle.pbDisplay(_INTL("{1} cannot have any more status problems...",pbThis(false))) if showMessages
+			return false
 		end
 		# Trying to inflict a status problem on a Pokémon behind a substitute
 		if @effects[PBEffects::Substitute]>0 && !(move && move.ignoresSubstitute?(user)) &&
@@ -284,7 +274,7 @@ class PokeBattle_Battler
 			self.status			= newStatus
 			self.statusCount	= newStatusCount
 		else
-			if @status == :NONE
+			if @status == :NONE && !hasActiveAbility?(:COMATOSE)
 				self.status			= newStatus
 				self.statusCount = newStatusCount
 			else

@@ -461,15 +461,6 @@ BattleHandlers::StatusCheckAbilityNonIgnorable.add(:COMATOSE,
     next false if !(validSpecies || isTransformed)
     next true if status.nil? || status == :SLEEP
   }
- )
- 
- BattleHandlers::StatusImmunityAbilityNonIgnorable.add(:COMATOSE,
-  proc { |ability,battler,status|
-    next true if battler.isSpecies?(:KOMALA) || battler.isSpecies?(:PARASECT)
-	validTransform = false
-	validTransform = true if battler.effects[PBEffects::TransformSpecies] == :PARASECT || battler.effects[PBEffects::TransformSpecies] == :KOMALA
-	next true if battler.effects[PBEffects::Transform] && validTransform
-  }
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:COMATOSE,
@@ -479,8 +470,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:COMATOSE,
     battle.pbHideAbilitySplash(battler)
   }
 )
-
-
 
 BattleHandlers::AbilityOnSwitchOut.add(:REGENERATOR,
   proc { |ability,battler,endOfBattle,battle=nil|
