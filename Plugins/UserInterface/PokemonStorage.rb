@@ -24,9 +24,9 @@ class PokemonStorageScreen
           next
         elsif selected[0]==-4   # Box name
           if pbBoxCommands
-			@scene.pbCloseBox
-			return true
-		  end
+			      @scene.pbCloseBox
+			      return true
+		      end
         else
           pokemon = @storage[selected[0],selected[1]]
           heldpoke = pbHeldPokemon
@@ -87,17 +87,20 @@ class PokemonStorageScreen
                   scene = PokemonPokedexInfo_Scene.new
                   screen = PokemonPokedexInfoScreen.new(scene)
                   screen.pbStartSceneSingle(@heldpkmn.species)
-                      }			
+                }			
               else
                 $Trainer.pokedex.register_last_seen(pokemon)
                 pbFadeOutIn {
                   scene = PokemonPokedexInfo_Scene.new
                   screen = PokemonPokedexInfoScreen.new(scene)
                   screen.pbStartSceneSingle(pokemon.species)
-                      }
+                }
               end
             end
+          end
+        end
       @scene.pbCloseBox
+      end
     elsif command==1   # Withdraw
       @scene.pbStartBox(self,command)
       loop do
