@@ -503,7 +503,7 @@ class PokeBattle_AI
         if spikes > 0
           spikesDmg = [8,6,4][spikes-1]
           if pkmn.hp <= pkmn.totalhp / spikesDmg
-            next if !pkmn.hasType?(:FLYING) && !pkmn.hasLevitate?
+            next if !pkmn.hasType?(:FLYING) && !pkmn.hasAbility?(:LEVITATE)
           end
         end
         typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
