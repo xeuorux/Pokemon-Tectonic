@@ -1,10 +1,11 @@
 PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:PARASECT,:SPORE],
-	proc { |speciesAndMoveCode,user,target,move|
+	proc { |speciesAndMove,user,target,move|
 		# Only use spore if no enemy is asleep
+		anyAsleep = false
 		user.battle.battlers.each do |b|
 			next if !b || !user.opposes?(b)
-			next false if b.asleep?
+			anyAsleep = true if b.asleep?
 		end
-		next true
+		next !anyAsleep
 	}
 )
