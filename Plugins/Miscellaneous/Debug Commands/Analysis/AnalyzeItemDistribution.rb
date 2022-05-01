@@ -16,10 +16,12 @@ DebugMenuCommands.register("analyzeitemdistribution", {
 			end
 		end
 
-		echoln("All the items which have not a single distribution:")
-		GameData::Item.each_with_index do |itemData, index|
+		file.write("All the items which have not a single distribution:")
+		writeIndex = 0
+		GameData::Item.each do |itemData|
 			next if allItemsGiven.include?(itemData.id)
-			str = itemData.id.to_s + (index % 6 == 0 ? "\r\n" : ", ")
+			str = itemData.id.to_s + (writeIndex % 6 == 0 ? "\r\n" : ", ")
+			writeIndex += 1
 			file.write(str) 
 		end
 	}
