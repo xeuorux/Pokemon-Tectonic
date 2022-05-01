@@ -1128,7 +1128,6 @@ class PokemonPokedex_Scene
 	def searchByMisc()
 		miscSearches = []
 		cmdMapFound = -1
-		cmdZooSection = -1
 		cmdWildItem = -1
 		cmdIsQuarantined = -1
 		cmdIsLegendary = -1
@@ -1143,8 +1142,6 @@ class PokemonPokedex_Scene
 		searchSelection = pbMessage("Which search?",miscSearches,miscSearches.length)
 		if cmdMapFound > -1 && searchSelection == cmdMapFound
 			return searchByMapFound() 
-		elsif cmdZooSection > -1 && searchSelection == cmdZooSection
-			return searchByZooSection()
 		elsif cmdIsQuarantined > -1 && searchSelection == cmdIsQuarantined
 			return searchByQuarantined()
 		elsif cmdIsLegendary > -1 && searchSelection == cmdIsLegendary
@@ -1186,31 +1183,6 @@ class PokemonPokedex_Scene
 		}
 		return dexlist
 	end
-	
-	def searchByZooSection
-		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
-		mapIDs = [31]
-		mapNames = [_INTL("Forest"),_INTL("Cancel")]
-		
-		sectionSelection = pbMessage("Which section?",mapNames,mapNames.length)
-		return if sectionSelection == mapNames.length - 1
-		
-		# Get all the names of the species given events on that map
-		mapID = mapIDs[sectionSelection]
-		map = $MapFactory.getMapNoAdd(mapID)
-		speciesPresent = []
-		map.events.each_value { |event|
-			speciesPresent.push(event.name.downcase)
-		}
-		
-		dexlist = dexlist.find_all { |item|
-				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
-				
-				next speciesPresent.include?(item[0].name.downcase)
-		}
-		return dexlist
-	end
-	
 	
 	def searchByMapFound
 		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
