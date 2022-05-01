@@ -10,12 +10,14 @@ end
 def renameAllSavedMovesInBatch(save_data,batch_number)
   move_renames = getRenamedMovesBatch(batch_number)
   save_data[:player].party.each do |pokemon|
+    newMoves = []
     pokemon.moves.map! { |move|
-      if MOVE_RENAMES.has_key?(move)
+      moveIDString = move.id.to_s
+      if move_renames.has_key?(moveIDString)
         echoln("Renaming #{move} on player's #{pokemon.name}")
-        next MOVE_RENAMES[move][0]
+        Pokemon::Move.new(move_renames[moveIDString][0].to_sym)
       else
-        next move
+        move
       end
     }
   end 
@@ -26,11 +28,12 @@ def renameAllSavedMovesInBatch(save_data,batch_number)
       pokemon = storage.boxes[i][j]
       if pokemon
         pokemon.moves.map! { |move|
-          if MOVE_RENAMES.has_key?(move)
+          moveIDString = move.id.to_s
+          if move_renames.has_key?(moveIDString)
             echoln("Renaming #{move} on player's #{pokemon.name}")
-            next MOVE_RENAMES[move][0]
+            Pokemon::Move.new(move_renames[moveIDString][0].to_sym)
           else
-            next move
+            move
           end
         }
       end

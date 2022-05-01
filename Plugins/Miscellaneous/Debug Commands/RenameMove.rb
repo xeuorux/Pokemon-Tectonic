@@ -90,6 +90,7 @@ def getRenamedMovesBatch(version = -1)
       lineno += 1
     }
   }
+  return renamingHash
 end
 
 def renameMoves(renamingHash)
