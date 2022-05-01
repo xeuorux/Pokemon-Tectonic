@@ -1848,3 +1848,27 @@ class PokeBattle_Move_556 < PokeBattle_WeatherMove
 	  @weatherType = :Swarm
 	end
 end
+
+
+#===============================================================================
+# Drains 2/3s if target hurt the user this turn (Trap Jaw)
+#===============================================================================
+
+class PokeBattle_Move_557 < PokeBattle_Move
+  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
+
+  def pbEffectAgainstTarget(user,target)
+    return if target.damageState.hpLost<=0
+	drain = false
+	 if @battle.choices[target.index][0]!=:None &&
+       ((@battle.choices[target.index][0]!=:UseMove &&
+       @battle.choices[target.index][0]!=:Shift) || target.movedThisRound?)
+      drain = true
+    end
+	return if !drain
+    hpGain = (target.damageState.hpLost*2/3).round
+	echoln _INTL("hp gain is [1]", hpGain)
+    user.pbRecoverHPFromDrain(hpGain,target) if drain
+  end
+  
+end
