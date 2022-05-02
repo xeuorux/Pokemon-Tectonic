@@ -70,7 +70,7 @@
 68,EVIOLITE,Eviolite,Eviolites,1,8000,"When held, it raises the Defense and Sp. Def if the holder can still evolve. Prevents evolution.",0,0,0,
 69,FLOATSTONE,Float Stone,Float Stones,1,4000,A very light stone. It reduces the weight of a Pokémon when held.,0,0,0,
 70,DESTINYKNOT,Destiny Knot,Destiny Knots,1,4000,"A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, so does the foe.",0,0,0,
-71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,1,4000,"If the holder of this item takes damage, the attacker will also be damaged upon contact.",0,0,0,
+71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,1,4000,"Damages attackers for 1/8 of their HP when they hit the holder with physical attacks.",0,0,0,
 72,EJECTBUTTON,Eject Button,Eject Buttons,1,4000,"If the holder is hit by an attack, it will switch with another Pokémon in your party.",0,0,0,
 73,REDCARD,Red Card,Red Cards,1,4000,"A card with a mysterious power. When the holder is struck by a foe, the attacker is removed from battle.",0,0,0,
 74,SHEDSHELL,Shed Shell,Shed Shells,1,4000,An item to be held by a Pokémon. This discarded carapace lets the holder switch out of battle without fail.,0,0,0,
@@ -846,6 +846,7 @@
 821,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,15000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0,
 822,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca.",0,0,6
 823,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokemon you find is shiny.",2,0,0,
+824,BUSTEDRADIO,Busted Radio,Busted Radios,1,4000,"Damages attackers for 1/8 of their HP when they hit the holder with special attacks.",0,0,0,
 # Dragon eggs
 850,DRATINIEGG,Dratini Egg,Dratini Eggs,1,10000,"An abandoned Dratini egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
 851,BAGONEGG,Bagon Egg,Bagon Eggs,1,10000,"An abandoned Bagon egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0

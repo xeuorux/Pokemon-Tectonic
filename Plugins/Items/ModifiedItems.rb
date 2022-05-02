@@ -306,9 +306,9 @@ BattleHandlers::TargetItemOnHit.add(:ROCKYHELMET,
   proc { |item,user,target,move,battle|
     next if !move.pbContactMove?(user) || !user.affectedByContactEffect?
     next if !user.takesIndirectDamage?
-	reduction = user.totalhp/6
-	reduction /= 4 if user.boss
-	user.damageState.displayedDamage = reduction
+	  reduction = user.totalhp/6
+	  reduction /= 4 if user.boss
+	  user.damageState.displayedDamage = reduction
     battle.scene.pbDamageAnimation(user)
     user.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} was hurt by the {2}!",user.pbThis,target.itemName))
