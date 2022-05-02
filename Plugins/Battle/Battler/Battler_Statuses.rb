@@ -32,6 +32,10 @@ class PokeBattle_Battler
 		if BattleHandlers.triggerStatusCheckAbilityNonIgnorable(self.ability,self,nil)
 			return true
 		end
+		return hasAnyStatusNoTrigger()
+	end
+	
+	def hasAnyStatusNoTrigger()
 		hasStatus = false
 		getStatuses().each do |status|
 			hasStatus = true if status != :NONE

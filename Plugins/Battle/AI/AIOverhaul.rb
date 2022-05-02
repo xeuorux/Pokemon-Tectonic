@@ -545,7 +545,10 @@ class PokeBattle_AI
       
       if list.length > 0
         list.sort_by!{|entry| entry[1]}
-        PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are: #{list.to_s}")
+        PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are:")
+        list.each do |listEntry|
+          PBDebug.log("#{battler.pbOwnSide[listEntry[0]].name}: #{listEntry[1]}")
+        end
         if batonPass >= 0 && @battle.pbRegisterMove(idxBattler,batonPass,false)
           PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Baton Pass to avoid Perish Song")
           return true
