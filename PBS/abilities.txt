@@ -197,7 +197,7 @@
 195,WATERCOMPACTION,Water Compaction,"Sharply ups Defense when hit by a Water-type move."
 196,MERCILESS,Merciless,"Its attacks are critical against poisoned targets."
 197,SHIELDSDOWN,Shields Down,"No shell when HP is half or less. Can't be Statused while has shell."
-198,STAKEOUT,Stakeout,"Deals doubles damage to a target's replacement."
+198,STAKEOUT,Stakeout,"Deals double damage to a target's replacement."
 199,WATERBUBBLE,Water Bubble,"Weakens incoming Fire-type moves, prevents burns, and doubles Water-type damage."
 200,STEELWORKER,Steelworker,"Powers up Steel-type moves by 50%."
 201,BERSERK,Berserk,"Ups Atk and Sp. Atk if a hit makes its HP half or less."
