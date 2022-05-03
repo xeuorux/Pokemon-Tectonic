@@ -565,7 +565,7 @@
 #-------------------------------
 524,PLAYNICE,Play Nice,139,0,FAIRY,Status,0,20,0,NearOther,0,ce,"The user and target become friends. The target loses its will to fight, lowering its Attack stat."
 #-------------------------------
-525,PROTECT,Protect,0AA,0,NORMAL,Status,0,3,0,User,4,,"It enables the user to evade all attacks. It always fails if it is used in succession."
+525,PROTECT,Protect,0AA,0,NORMAL,Status,0,3,0,User,4,,"It enables the user to evade all attacks. It fails if used in succession."
 #-------------------------------
 526,PSYCHUP,Psych Up,055,0,PSYCHIC,Status,0,10,0,NearOther,0,,"The user hypnotizes itself into copying any stat change made by the target."
 #-------------------------------

@@ -315,7 +315,7 @@
 310,TM22,TM22,TM22s,4,10000,Large boulders are hurled at the opposing team to inflict damage. They may also make the targets flinch.,3,0,0,ROCKSLIDE
 311,TM23,TM23,TM23s,4,10000,The user attacks and steals the target's item simultaneously. It can't steal if the user holds an item.,3,0,0,THIEF
 312,TM24,TM24,TM24s,4,10000,This attack can be used only if the user is asleep. The harsh noise may also make the target flinch.,3,0,0,SNORE
-313,TM25,TM25,TM25s,4,10000,Enables the user to evade all attacks. Its chance of failing rises if it is used in succession.,3,0,0,PROTECT
+313,TM25,TM25,TM25s,4,10000,It enables the user to evade all attacks. It fails if used in succession.,3,0,0,PROTECT
 314,TM26,TM26,TM26s,4,10000,The user frightens the target with a scary face to harshly lower its Speed stat.,3,0,0,SCARYFACE
 315,TM27,TM27,TM27s,4,10000,The user attacks with a gust of chilled air. This also lowers opposing Pokémon's Speed stats.,3,0,0,ICYWIND
 316,TM28,TM28,TM28s,4,6000,A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.,3,0,0,GIGADRAIN
