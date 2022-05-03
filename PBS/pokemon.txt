@@ -15311,8 +15311,8 @@ InternalName = RHYPERIOR
 Type1 = GROUND
 Type2 = ROCK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 115,120,90,40,105,85
-# Total = 555
+BaseStats = 115,120,90,30,120,85
+# Total = 560
 GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 241
