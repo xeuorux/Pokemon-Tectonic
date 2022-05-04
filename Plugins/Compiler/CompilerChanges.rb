@@ -151,7 +151,7 @@ module Compiler
       compile_pokemon_forms          # Depends on Species, Move, Item, Type, Ability
       yield(_INTL("Compiling Old Pokémon data"))
       compile_pokemon_old                # Depends on Move, Item, Type, Ability
-	  yield(_INTL("Compiling machine data"))
+	    yield(_INTL("Compiling machine data"))
       compile_move_compatibilities   # Depends on Species, Move
       yield(_INTL("Compiling shadow moveset data"))
       compile_shadow_movesets        # Depends on Species, Move
@@ -161,16 +161,16 @@ module Compiler
       compile_ribbons                # No dependencies
       yield(_INTL("Compiling encounter data"))
       compile_encounters             # Depends on Species
-	  yield(_INTL("Compiling Trainer policy data"))
-	  compile_trainer_policies
+	    yield(_INTL("Compiling Trainer policy data"))
+	    compile_trainer_policies
       yield(_INTL("Compiling Trainer type data"))
       compile_trainer_types          # No dependencies
       yield(_INTL("Compiling Trainer data"))
       compile_trainers               # Depends on Species, Item, Move
       yield(_INTL("Compiling battle Trainer data"))
       compile_trainer_lists          # Depends on TrainerType
-	  yield(_INTL("Compiling Avatar battle data"))
-	  compile_avatars				 # Depends on Species, Item, Move
+	    yield(_INTL("Compiling Avatar battle data"))
+	    compile_avatars				 # Depends on Species, Item, Move
       yield(_INTL("Compiling metadata"))
       compile_metadata               # Depends on TrainerType
       yield(_INTL("Compiling animations"))
@@ -1862,10 +1862,14 @@ module Compiler
         f.write(sprintf("[%s]\r\n", avatar.id))
         f.write(sprintf("Ability = %s\r\n", avatar.ability))
         f.write(sprintf("Moves = %s\r\n", avatar.moves.join(","))) if avatar.moves.length > 0
-        f.write(sprintf("PostPrimeMoves = %s\r\n", avatar.post_prime_moves.join(","))) if avatar.post_prime_moves.length > 0
+        if !avatar.post_prime_moves.join(",").equals(avatar.moves.join(","))
+          f.write(sprintf("PostPrimeMoves = %s\r\n", avatar.post_prime_moves.join(",")))
+        end
         f.write(sprintf("Turns = %s\r\n", avatar.num_turns))
         f.write(sprintf("HPMult = %s\r\n", avatar.hp_mult))
+        f.write(sprintf("Item = %s\r\n", avatar.item))
         f.write(sprintf("DMGMult = %s\r\n", avatar.dmg_mult))
+        f.write(sprintf("Form = %s\r\n", avatar.form))
       end
     }
     pbSetWindowText(nil)
