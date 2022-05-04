@@ -1584,7 +1584,7 @@ Pokemon = CLEFAIRY,32
     Item = ORANBERRY
 Pokemon = DUGTRIO,31
     AbilityIndex = 0
-Pokemon = CACTURN,33
+Pokemon = CACTURNE,33
     AbilityIndex = 1
 #-------------------------------
 [BIKER2,Chuck]
