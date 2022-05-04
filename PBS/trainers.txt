@@ -1584,8 +1584,8 @@ Pokemon = CLEFAIRY,32
     Item = ORANBERRY
 Pokemon = DUGTRIO,31
     AbilityIndex = 0
-Pokemon = UNFEZANT,33
-    AbilityIndex = 0
+Pokemon = CACTURN,33
+    AbilityIndex = 1
 #-------------------------------
 [BIKER2,Chuck]
 Pokemon = MUK,33
@@ -1767,10 +1767,10 @@ Pokemon = PIDGEOT,40
     Item = FOCUSSASH
 Pokemon = MINIOR,40
     AbilityIndex = 0
-Pokemon = ALTARIA,40
+Pokemon = TOGETIC,40
     AbilityIndex = 0
     Item = PETAYABERRY
-Pokemon = CACTURNE,40
+Pokemon = LAIRON,40
     AbilityIndex = 0
 #-------------------------------
 [ROUGHNECK,Reese]
