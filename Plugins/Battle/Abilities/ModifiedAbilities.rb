@@ -453,11 +453,12 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
 
 BattleHandlers::StatusCheckAbilityNonIgnorable.add(:COMATOSE,
   proc { |ability,battler,status|
+  validSpeciesList = [:PARSECT,:KOMALA,:MUSHARNA]
 	validTransform = false
-	validTransform = true if battler.effects[PBEffects::TransformSpecies] == :PARASECT || battler.effects[PBEffects::TransformSpecies] == :KOMALA
+	validTransform = true if validSpeciesList.include?(battler.effects[PBEffects::TransformSpecies])
 	isTransformed = false
 	isTransformed = battler.effects[PBEffects::Transform] && validTransform
-	validSpecies = battler.isSpecies?(:KOMALA) || battler.isSpecies?(:PARASECT)
+	validSpecies = validSpeciesList.include?(battler.species)
     next false if !(validSpecies || isTransformed)
     next true if status.nil? || status == :SLEEP
   }
