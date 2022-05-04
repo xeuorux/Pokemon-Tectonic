@@ -23,6 +23,7 @@ PostPrimeMoves = AERIALACE
 Turns = 2
 HPMult = 5.0
 DMGMult = 1
+Item = LUMBERRY
 #-------------------------------
 [SHAYMIN]
 Ability = AERODYNAMIC
@@ -31,11 +32,12 @@ PostPrimeMoves = WHITERAY
 Turns = 3
 HPMult = 4.5
 DMGMult = 1
+Form = 1
 #-------------------------------
 [JIRACHI]
 Ability = SERENEGRACE
 Moves = DOOMDESIRE,PSYBEAM,PRIMEVALBULKUP
-PostPrimeMoves = BRICKBREAK
+PostPrimeMoves = BRICKBREAK,SOULDEW
 Turns = 2
 HPMult = 5.0
 DMGMult = 1
@@ -47,6 +49,7 @@ PostPrimeMoves = ICEBEAM
 Turns = 3
 HPMult = 4.0
 DMGMult = 1
+Item = SITRUSBERRY
 #-------------------------------
 [ZAMAZENTA]
 Ability = DAUNTLESSSHIELD
@@ -55,6 +58,7 @@ PostPrimeMoves = STOMPINGTANTRUM
 Turns = 1
 HPMult = 3.5
 DMGMult = 1
+Form = 1
 #-------------------------------
 [ZACIAN]
 Ability = INTREPIDSWORD
@@ -63,6 +67,7 @@ PostPrimeMoves = FURYCUTTER
 Turns = 2
 HPMult = 2.5
 DMGMult = 1
+Form = 1
 #-------------------------------
 [XERNEAS]
 Ability = FAIRYAURA
@@ -71,6 +76,8 @@ PostPrimeMoves = GEOMANCY,MOONBLAST,THUNDERBOLT,WONDERROOM
 Turns = 3
 HPMult = 5.0
 DMGMult = 1
+Form = 1
+Item = POWERHERB
 #-------------------------------
 [ZYGARDE]
 Ability = AURABREAK
@@ -79,6 +86,7 @@ PostPrimeMoves = THOUSANDARROWS,THOUSANDWAVES,COREENFORCER,LANDSWRATH
 Turns = 3
 HPMult = 5.0
 DMGMult = 1
+Item = POWERHERB
 #-------------------------------
 [GENGAR]
 Ability = SUDDENCHILL
@@ -143,6 +151,7 @@ PostPrimeMoves = DOUBLEEDGE,HORNLEECH
 Turns = 2
 HPMult = 2.0
 DMGMult = 1
+Form = 1
 #-------------------------------
 [LEAFEON]
 Ability = LEAFGUARD
@@ -167,6 +176,7 @@ PostPrimeMoves = CUT,SCRATCH
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
+Item = MUSCLEBAND
 #-------------------------------
 [SCARODON]
 Ability = SCHADENFREUDE
@@ -175,6 +185,7 @@ PostPrimeMoves = AQUAINSTINCT,BRUTALSWING
 Turns = 2
 HPMult = 3.0
 DMGMult = 1
+Item = MUSCLEBAND
 #-------------------------------
 [WATCHOG]
 Ability = PARANOID
@@ -183,6 +194,7 @@ PostPrimeMoves = DISCHARGE
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
+Item = WISEGLASSES
 #-------------------------------
 [LINOONE]
 Ability = SCAVENGE
@@ -231,6 +243,7 @@ PostPrimeMoves = ORIGINPULSE,THUNDER,ICEBEAM,WATERSPOUT
 Turns = 3
 HPMult = 6.0
 DMGMult = 1
+Item = BLUEORB
 #-------------------------------
 [GROUDON]
 Ability = DROUGHT
@@ -239,6 +252,7 @@ PostPrimeMoves = PRECIPICEBLADES,ERUPTION,DRAGONCLAW,SOLARBEAM
 Turns = 3
 HPMult = 6.0
 DMGMult = 1
+Item = REDORB
 #-------------------------------
 [MAGNEZONE]
 Ability = LEVITATE
@@ -287,6 +301,7 @@ PostPrimeMoves = FOCUSENERGY,LEAFBLADE
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
+Item = LEEK
 #-------------------------------
 [PORYGONZ]
 Ability = DOWNLOAD
@@ -303,6 +318,7 @@ PostPrimeMoves = ADAMANTINEPRESS,ROCKAPULT
 Turns = 1
 HPMult = 5.0
 DMGMult = 1
+Item = LAGGINGTAIL
 #-------------------------------
 [CELEBI]
 Ability = GRASSYSURGE
@@ -547,10 +563,10 @@ DMGMult = 1
 [COBALION]
 Ability = HEARTOFJUSTICE
 Moves = METALBURST,REVERSAL,CLOSECOMBAT,DOUBLEEDGE
-PostPrimeMoves = METALBURST,REVERSAL,CLOSECOMBAT,DOUBLEEDGE
 Turns = 2
 HPMult = 10.0
 DMGMult = 1
+Item = ASSAULTVEST
 #-------------------------------
 [TERRAKION]
 Ability = HEARTOFJUSTICE
@@ -559,6 +575,7 @@ PostPrimeMoves = LEAFBLADE
 Turns = 2
 HPMult = 10.0
 DMGMult = 1
+Item = EXPERTBELT
 #-------------------------------
 [VIRIZION]
 Ability = HEARTOFJUSTICE
@@ -567,6 +584,7 @@ PostPrimeMoves = SUBSTITUTE,HORNLEECH,FOCUSPUNCH,SWORDSDANCE
 Turns = 3
 HPMult = 5.0
 DMGMult = 1
+Item = LEFTOVERS
 #-------------------------------
 [KELDEO]
 Ability = HEARTOFJUSTICE
@@ -615,6 +633,7 @@ PostPrimeMoves = ICEFANG,BULLDOZE
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
+Item = EXPERTBELT
 #-------------------------------
 [MIGHTYENA]
 Ability = INTIMIDATE
@@ -679,6 +698,7 @@ PostPrimeMoves = LIGHTSCREEN,XSCISSOR
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
+Item = LIGHTCLAY
 #-------------------------------
 [VESPIQUEN]
 Ability = UNNERVE
@@ -759,6 +779,7 @@ PostPrimeMoves = CLEARSMOG,BELCH
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
+Item = SITRUSBERRY
 #-------------------------------
 [TOWERPODA]
 Ability = SANDSTREAM
@@ -799,6 +820,7 @@ PostPrimeMoves = SOULRIP,SPORE
 Turns = 1
 HPMult = 6.0
 DMGMult = 1
+Item = MUSCLEBAND
 #-------------------------------
 [SUNFLORA]
 Ability = DROUGHT
@@ -871,6 +893,7 @@ PostPrimeMoves = STOCKPILE,SWALLOW,SPITUP
 Turns = 2
 HPMult = 3.0
 DMGMult = 1
+Item = ORANBERRY
 #-------------------------------
 [ORBEETLE]
 Ability = BRAINSCRAMBLE
@@ -879,6 +902,7 @@ PostPrimeMoves = CONFUSERAY,PSYCHICOVERLOAD,BUGBUZZ
 Turns = 2
 HPMult = 3.0
 DMGMult = 1
+Item = MENTALHERB
 #-------------------------------
 [TOUCANNON]
 Ability = SHEERFORCE
@@ -943,6 +967,7 @@ PostPrimeMoves = ICEBURN
 Turns = 3
 HPMult = 2.5
 DMGMult = 1
+Item = POWERHERB
 #-------------------------------
 [FLORGES]
 Ability = AUDACITY
@@ -951,6 +976,7 @@ PostPrimeMoves = VENOMLEECH
 Turns = 2
 HPMult = 5.0
 DMGMult = 1
+Item = BIGROOT
 #-------------------------------
 [GOODRA]
 Ability = GOOEY
@@ -975,6 +1001,7 @@ PostPrimeMoves = ROCKSLIDE
 Turns = 3
 HPMult = 3
 DMGMult = 1
+Item = ROCKGEM
 #-------------------------------
 [NOIVERN]
 Ability = INFILTRATOR

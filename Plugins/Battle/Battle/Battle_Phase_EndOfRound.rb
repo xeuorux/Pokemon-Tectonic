@@ -515,7 +515,7 @@ class PokeBattle_Battle
          _INTL("The swamp around {1} disappeared!",@battlers[side].pbTeam(true)))
       # Aurora Veil
       pbEORCountDownSideEffect(side,PBEffects::AuroraVeil,
-         _INTL("{1}'s Aurora Veil wore off!",@battlers[side].pbTeam(true)))
+         _INTL("{1}'s Aurora Veil wore off!",@battlers[side].pbTeam))
     end
     # Trick Room
     pbEORCountDownFieldEffect(PBEffects::TrickRoom,
