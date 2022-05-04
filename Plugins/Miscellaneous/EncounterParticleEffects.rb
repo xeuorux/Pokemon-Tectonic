@@ -17,14 +17,14 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
 				elsif tag == :FishingContest
 					$scene.spriteset.addUserAnimation(8, x, y, true, 1)
 				elsif tag == :SewerFloor
-				$scene.spriteset.addUserAnimation(18, x, y, true, 1)
+					$scene.spriteset.addUserAnimation(18, x, y, true, 1)
 				elsif tag == :DarkCave
 					$scene.spriteset.addUserAnimation(2, x, y, true, 1)
 				end
 			end
 		end
 	end
-	# Slide on ice
+	# Slide on ice and descend down waterfalls
     if event == $game_player
       currentTag = $game_player.pbTerrainTag
       if currentTag.waterfall_crest
