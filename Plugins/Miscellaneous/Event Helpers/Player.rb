@@ -72,7 +72,6 @@ def healPartyWithDelay()
 end
 
 def dexCompletionPercent(dexNumber = -1)
-{
 	ratio = 100.0 * $Trainer.pokedex.owned_count(dexNumber).to_f / pbGetRegionalDexLength(dexNumber).to_f
 	return ratio.floor
-}
+end
