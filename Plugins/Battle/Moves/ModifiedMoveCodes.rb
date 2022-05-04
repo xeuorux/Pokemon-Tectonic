@@ -141,6 +141,7 @@ class PokeBattle_Move_0E0
 		  user.pbReduceHP(user.hp-1,false)
 		  @battle.pbShowAbilitySplash(user)
 		  @battle.pbDisplay(_INTL("{1}'s {2} barely saves it!",user.pbThis,@name))
+      @battle.pbHideAbilitySplash(user)
 		else
 		  user.pbReduceHP(user.hp,false)
 		end

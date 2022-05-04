@@ -24,11 +24,17 @@ BattleHandlers::AbilityOnSwitchIn.add(:FRUSTRATE,
 
 BattleHandlers::AbilityOnSwitchIn.add(:HOLIDAYCHEER,
   proc { |ability,battler,battle|
-    battle.pbShowAbilitySplash(battler)
+    anyHealing = false
     battle.eachSameSideBattler(battler.index) do |b|
-      b.pbRecoverHP(b.totalhp*0.25)
+      anyHealing = true if b.hp < b.totalhp
     end
-    battle.pbHideAbilitySplash(battler)
+    if anyHealing
+      battle.pbShowAbilitySplash(battler)
+      battle.eachSameSideBattler(battler.index) do |b|
+        b.pbRecoverHP(b.totalhp*0.25)
+      end
+      battle.pbHideAbilitySplash(battler)
+    end
   }
 )
 

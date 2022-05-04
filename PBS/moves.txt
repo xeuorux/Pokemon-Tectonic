@@ -3,7 +3,7 @@
 1,MEGAHORN,Megahorn,000,120,BUG,Physical,85,10,0,NearOther,0,abef,"Using its tough and impressive horn, the user rams into the target with no letup."
 2,ATTACKORDER,Attack Order,000,90,BUG,Physical,100,15,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Critical hits land more easily."
 3,BUGBUZZ,Bug Buzz,045,90,BUG,Special,100,10,10,NearOther,0,befk,"The user vibrates its wings to make a damaging sound wave. It has a 10% chance to lower Sp. Atk."
-4,FIRSTIMPRESSION,First Impression,174,90,BUG,Physical,100,10,0,NearOther,2,abef,"Although this move has great power, it only works the first turn the user is in battle."
+4,FIRSTIMPRESSION,First Impression,174,90,BUG,Physical,100,10,0,NearOther,2,abef,"Only works on the first turn the user is in battle. This move always goes first."
 5,POLLENPUFF,Pollen Puff,16F,90,BUG,Special,100,15,0,NearOther,0,befn,"Fires an exploding pollen puff at enemies, or a HP-restoring one at allies."
 6,LEECHLIFE,Leech Life,0DD,80,BUG,Physical,100,10,0,NearOther,0,abef,"The user drains the target's blood. The user's HP is restored by half the damage taken by the target."
 7,LUNGE,Lunge,042,70,BUG,Physical,100,15,100,NearOther,0,abef,"The user makes a lunge at the target, attacking with full force. This lowers the target's Attack."
@@ -335,7 +335,7 @@
 320,LEECHSEED,Leech Seed,0DC,0,GRASS,Status,100,10,0,NearOther,0,bce,"A seed is planted on the target. It steals some HP from the target every turn."
 321,SLEEPPOWDER,Sleep Powder,003,0,GRASS,Status,75,15,0,NearOther,0,bcel,"The user scatters a big cloud of sleep-inducing dust around the target."
 322,SPIKYSHIELD,Spiky Shield,14C,0,GRASS,Status,0,3,0,User,4,,"Protects the user from attacks. Also damages physical attackers."
-323,SPORE,Spore,003,0,GRASS,Status,100,15,0,NearOther,-1,bcel,"The user scatters bursts of spores that induce sleep. This move has -1 priority."
+323,SPORE,Spore,003,0,GRASS,Status,100,15,0,NearOther,-1,bcel,"The user scatters bursts of spores that induce sleep. This move always goes last."
 324,STRENGTHSAP,Strength Sap,160,0,GRASS,Status,100,10,0,NearOther,0,bce,"Restores its own HP by the target's Attack stat amount, then lowers the target's Attack stat."
 325,STUNSPORE,Stun Spore,007,0,GRASS,Status,100,30,0,NearOther,0,bcel,"The user scatters a cloud of paralyzing powder. It leaves the target numb."
 326,SYNTHESIS,Synthesis,0D8,0,GRASS,Status,0,5,0,User,0,d,"The user restores its own HP. The amount of HP regained varies with the weather."
@@ -565,7 +565,7 @@
 #-------------------------------
 524,PLAYNICE,Play Nice,139,0,FAIRY,Status,0,20,0,NearOther,0,ce,"The user and target become friends. The target loses its will to fight, lowering its Attack stat."
 #-------------------------------
-525,PROTECT,Protect,0AA,0,NORMAL,Status,0,3,0,User,4,,"It enables the user to evade all attacks. It always fails if it is used in succession."
+525,PROTECT,Protect,0AA,0,NORMAL,Status,0,3,0,User,4,,"It enables the user to evade all attacks. It fails if used in succession."
 #-------------------------------
 526,PSYCHUP,Psych Up,055,0,PSYCHIC,Status,0,10,0,NearOther,0,,"The user hypnotizes itself into copying any stat change made by the target."
 #-------------------------------
@@ -839,7 +839,7 @@
 774,SOULRIP,Soul Rip,506,90,GHOST,Physical,100,15,0,NearOther,0,abef,"The user rips into the target's soul, dealing damage through their Sp. Def rather than their Defense."
 775,ENTOXIN,Entoxin,005,40,POISON,Physical,100,35,10,NearOther,0,abef,"The user pounds the opponent with a toxin-infused limb. It has a 10% chance to poison."
 776,CORRODE,Corrode,507,70,POISON,Special,100,20,10,NearOther,0,bef,"10% chance to reduce Sp. Def. Is super-effective on Steel-types."
-777,BREACH,Breach,174,90,WATER,Physical,100,10,0,NearOther,2,abef,"Only works on the first turn the user is in battle."
+777,BREACH,Breach,174,90,WATER,Physical,100,10,0,NearOther,2,abef,"Only works on the first turn the user is in battle. This move always goes first."
 778,WINTERWARNING,Winter Warning,111,140,ICE,Special,100,10,0,NearOther,0,,"Two turns after this move is used, extreme winter cold attacks the target."
 779,CRYSTALCRUSH,Crystal Crush,508,100,ICE,Physical,100,15,30,NearOther,0,abef,"The user crushes the target, taking 33% recoil damage. It has a 30% chance to chill."
 780,VITALFORCE,Vital Force,08B,100,FIGHTING,Special,100,5,0,AllNearFoes,0,bef,"The user unleashes a vital energy wave. The lower the user's HP, the less powerful it becomes."
@@ -927,7 +927,7 @@
 863,SUMMERDAZE,Summer Daze,527,0,GRASS,Status,100,15,0,NearOther,0,bcek,"The user plays a pleasant melody that lulls the target into a deep sleep under harsh sunlight."
 864,PACIFY,Pacify,534,0,PSYCHIC,Status,100,20,0,NearOther,0,bce,"The user employs hypnotic suggestion to make a confused or charmed target fall into a deep sleep."
 865,LULLABY,Lullaby,528,0,NORMAL,Status,100,15,0,NearOther,0,bcek,"A lullaby is sung in a calming voice that puts the target with half its HP or less left into a deep sleep."
-866,PUFFBALL,Puffball,529,0,GRASS,Status,100,15,0,NearOther,0,bcel,"The user bursts a ball of sleep-inducing powder. It fails unless the target hit the user this turn."
+866,PUFFBALL,Puffball,529,0,GRASS,Status,100,15,0,NearOther,0,bce,"The user bursts a ball of sleep-inducing powder. It fails unless the target hit the user this turn."
 867,MUDTHROW,Mud Throw,044,40,GROUND,Special,100,15,10,NearOther,0,bef,"The user attacks by hurling a blob of mud. It has a 10% chance to reduce the target's Speed."
 868,BLINDINGSAND,Blinding Sand,047,40,GROUND,Special,100,10,100,NearOther,0,bef,"The user attacks the opponent by throwing sand at its eyes, reducing accuracy."
 869,PURIFYINGWATER,Purifying Water,548,50,WATER,Special,100,5,0,NearOther,0,bef,"The user shoots purified Water, also healing the status problems of all the party Pokémon."
@@ -1013,7 +1013,7 @@
 949,CHIBLOCK,Chi Block,007,0,FIGHTING,Status,100,20,0,NearOther,0,abcef,"The user strikes the target's pressure points, numbing it."
 950,STUNNINGCURL,Stunning Curl,550,0,BUG,Status,0,3,0,User,4,,"Protects the user from attacks. Also numbs any attacker who attacks the user."
 951,FLAMESPIKES,Flame Spikes,551,0,FIRE,Status,0,20,0,FoeSide,0,c,"The user lays a trap of flaming spikes at the foe's feet. They burn foes that switch into battle."
-952,DROPKICK,Drop Kick,0FA,80,FIGHTING,Physical,0,25,100,NearFoe,0,abef,"User drops onto the targete with a kick, dealing 25% recoil to self."
+952,DROPKICK,Drop Kick,0FA,80,FIGHTING,Physical,0,25,100,NearFoe,0,abef,"User drops onto the target with a kick, dealing 25% recoil to self."
 953,MULTISTRIKE,Multi-strike,0C0,14,NORMAL,Physical,100,35,0,NearOther,0,abefj,"The target is hit two to five times in a row."
 954,MOUNTAINCRUSH,Mountain Crush,0FC,200,ROCK,Physical,50,10,0,NearOther,0,abef,"The user slams itself into the target with the power to destroy a mountain, taking 50% recoil."
 955,SMUSH,Smush,043,40,BUG,Physical,100,20,20,NearOther,0,abef,"The user crushes the target. It has a 20% chance to lower their Defense stat."

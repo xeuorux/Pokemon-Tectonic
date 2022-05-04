@@ -70,7 +70,7 @@
 68,EVIOLITE,Eviolite,Eviolites,1,8000,"When held, it raises the Defense and Sp. Def if the holder can still evolve. Prevents evolution.",0,0,0,
 69,FLOATSTONE,Float Stone,Float Stones,1,4000,A very light stone. It reduces the weight of a Pokémon when held.,0,0,0,
 70,DESTINYKNOT,Destiny Knot,Destiny Knots,1,4000,"A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, so does the foe.",0,0,0,
-71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,1,4000,"If the holder of this item takes damage, the attacker will also be damaged upon contact.",0,0,0,
+71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,1,4000,"Damages attackers for 1/8 of their HP when they hit the holder with physical attacks.",0,0,0,
 72,EJECTBUTTON,Eject Button,Eject Buttons,1,4000,"If the holder is hit by an attack, it will switch with another Pokémon in your party.",0,0,0,
 73,REDCARD,Red Card,Red Cards,1,4000,"A card with a mysterious power. When the holder is struck by a foe, the attacker is removed from battle.",0,0,0,
 74,SHEDSHELL,Shed Shell,Shed Shells,1,4000,An item to be held by a Pokémon. This discarded carapace lets the holder switch out of battle without fail.,0,0,0,
@@ -100,7 +100,7 @@
 98,ABSORBBULB,Absorb Bulb,Absorb Bulbs,1,4000,"A consumable bulb. If the holder is hit by a Water-type move, its Sp. Atk will rise.",0,0,0,
 99,CELLBATTERY,Cell Battery,Cell Batteries,1,4000,"A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise.",0,0,0,
 100,LIFEORB,Life Orb,Life Orbs,1,10000,"A held item. It boosts the power of moves by 30%, but at the cost of 10% HP on each hit.",0,0,0,
-101,EXPERTBELT,Expert Belt,Expert Belts,1,4000,An item to be held by a Pokémon. It is a well-worn belt that boosts the power of supereffective moves by 20%.,0,0,0,
+101,EXPERTBELT,Expert Belt,Expert Belts,1,4000,A well-worn belt that boosts the holder's supereffective moves by 20%.,0,0,0,
 102,METRONOME,Metronome,Metronomes,1,4000,A Pokémon held item that boosts a move used consecutively. Its effect is reset if another move is used.,0,0,0,
 103,MUSCLEBAND,Muscle Band,Muscle Bands,1,4000,An item to be held by a Pokémon. It is a headband that boosts the power of physical moves by 10%.,0,0,0,
 104,WISEGLASSES,Wise Glasses,Wise Glasses,1,4000,An item to be held by a Pokémon. It is a thick pair of glasses that boosts the power of special moves by 10%.,0,0,0,
@@ -315,7 +315,7 @@
 310,TM22,TM22,TM22s,4,10000,Large boulders are hurled at the opposing team to inflict damage. They may also make the targets flinch.,3,0,0,ROCKSLIDE
 311,TM23,TM23,TM23s,4,10000,The user attacks and steals the target's item simultaneously. It can't steal if the user holds an item.,3,0,0,THIEF
 312,TM24,TM24,TM24s,4,10000,This attack can be used only if the user is asleep. The harsh noise may also make the target flinch.,3,0,0,SNORE
-313,TM25,TM25,TM25s,4,10000,Enables the user to evade all attacks. Its chance of failing rises if it is used in succession.,3,0,0,PROTECT
+313,TM25,TM25,TM25s,4,10000,It enables the user to evade all attacks. It fails if used in succession.,3,0,0,PROTECT
 314,TM26,TM26,TM26s,4,10000,The user frightens the target with a scary face to harshly lower its Speed stat.,3,0,0,SCARYFACE
 315,TM27,TM27,TM27s,4,10000,The user attacks with a gust of chilled air. This also lowers opposing Pokémon's Speed stats.,3,0,0,ICYWIND
 316,TM28,TM28,TM28s,4,6000,A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.,3,0,0,GIGADRAIN
@@ -531,7 +531,7 @@
 522,DNASPLICERS,DNA Splicers,DNA Splicers,8,0,A splicer that fuses Kyurem and a certain Pokémon. They are said to have been one in the beginning.,5,0,6,
 523,REVEALGLASS,Reveal Glass,Reveal Glasses,8,0,A glass that reveals the truth. It is a mysterious glass that returns a Pokémon back to its original shape.,5,0,6,
 524,OVALCHARM,Oval Charm,Oval Charms,8,0,An oval charm said to increase the chance of Eggs being found at the Day Care.,0,0,6,
-525,SHINYCHARM,Shiny Charm,Shiny Charms,8,0,A shiny charm said to increase the chance of finding a Shiny Pokémon.,0,0,6,
+525,SHINYCHARM,Shiny Charm,Shiny Charms,8,0,A shiny charm which doubles the chance of finding a Shiny Pokémon.,0,0,6,
 #-------------------------------,,,,,,,,,,
 526,ICESTONE,Ice Stone,Ice Stones,1,3000,A peculiar stone that makes certain species of Pokémon evolve. It has a snowflake pattern.,1,0,7,
 527,JAWFOSSIL,Jaw Fossil,Jaw Fossils,1,5000,A fossil from a prehistoric Pokémon that once lived on the land. It appears to be part of a large jaw.,0,0,8,
@@ -839,13 +839,14 @@
 814,AEGISIDCARD,Aegis ID Card,Aegis ID Cards,8,0,"A forged ID card. It will let you pretend you work at Aegis Insurance.",0,0,6,
 815,INCRIMINATINGEVIDENCE,Incriminating Evidence,Incriminating Evidence,8,0,"A device containing evidence against Aegis Insurance.",0,0,6,
 816,TAROTAMULET,Tarot Amulet,Tarot Amulets,8,0,"An amulet which make certain battles harder and cursed. Can be toggled on or off.",2,0,6
-817,POWERLOCK,Power Lock,Power Locks,1,4000,"A held item. It set's the holder's Attack stat to 95.",0,0,0,
-818,GUARDLOCK,Guard Lock,Guard Locks,1,4000,"A held item. It set's the holder's Defense stat to 95.",0,0,0,
-819,ENERGYLOCK,Energy Lock,Energy Locks,1,4000,"A held item. It set's the holder's Sp. Atk. stat to 95.",0,0,0,
-820,WILLLOCK,Will Lock,Will Locks,1,4000,"A held item. It set's the holder's Sp. Def. stat to 95.",0,0,0,
+817,POWERLOCK,Power Lock,Power Locks,1,4000,"A held item. In battles, it sets the holder's base Attack stat to 95.",0,0,0,
+818,GUARDLOCK,Guard Lock,Guard Locks,1,4000,"A held item. In battles, it sets the holder's base Defense stat to 95.",0,0,0,
+819,ENERGYLOCK,Energy Lock,Energy Locks,1,4000,"A held item. In battles, it sets the holder's base Sp. Atk. stat to 95.",0,0,0,
+820,WILLLOCK,Will Lock,Will Locks,1,4000,"A held item. In battles, it sets the holder's base Sp. Def. stat to 95.",0,0,0,
 821,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,15000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0,
 822,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca.",0,0,6
 823,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokemon you find is shiny.",2,0,0,
+824,BUSTEDRADIO,Busted Radio,Busted Radios,1,4000,"Damages attackers for 1/8 of their HP when they hit the holder with special attacks.",0,0,0,
 # Dragon eggs
 850,DRATINIEGG,Dratini Egg,Dratini Eggs,1,10000,"An abandoned Dratini egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
 851,BAGONEGG,Bagon Egg,Bagon Eggs,1,10000,"An abandoned Bagon egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0

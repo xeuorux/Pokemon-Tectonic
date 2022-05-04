@@ -634,7 +634,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
       "{1} is glowing with health.",
       "{1} looks very happy.",
       "{1} put in extra effort just for {2}!",
-      "{1} is smelling the scents of the surounding air.",
+      "{1} is smelling the scents of the surrounding air.",
       "{1} is jumping with joy!",
       "{1} is still feeling great!",
       "{1} stretched out its body and is relaxing.",

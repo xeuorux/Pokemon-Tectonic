@@ -946,26 +946,26 @@ DMGMult = 1
 #-------------------------------
 [FLORGES]
 Ability = AUDACITY
-Moves = TERADRAIN,DRAININGKISS,PRIMEVALPOISONGAS
+Moves = DRAININGKISS,PRIMEVALPOISONGAS
 PostPrimeMoves = VENOMLEECH
 Turns = 2
-HPMult = 4.0
+HPMult = 5.0
 DMGMult = 1
 #-------------------------------
 [GOODRA]
 Ability = GOOEY
 Moves = CORRODE,CRIPPLINGBREATH,PRIMEVALLIGHTNINGDANCE
-PostPrimeMoves = ELECTROBALL,ELECTROWEB
+PostPrimeMoves = ELECTROBALL
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [MASQUERAIN]
 Ability = INTIMIDATE
-Moves = GALE,STICKYWEB,PRIMEVALRAINDANCE
-PostPrimeMoves = WATERSPIRAL
+Moves = GALE,PRIMEVALRAINDANCE
+PostPrimeMoves = BUBBLEBLAST
 Turns = 2
-HPMult = 4.0
+HPMult = 5.0
 DMGMult = 1
 #-------------------------------
 [CROBAT]
@@ -973,7 +973,7 @@ Ability = INFILTRATOR
 Moves = AERIALACE,GUNKSHOT,PRIMEVALSANDSTORM
 PostPrimeMoves = ROCKSLIDE
 Turns = 3
-HPMult = 2.5
+HPMult = 3
 DMGMult = 1
 #-------------------------------
 [NOIVERN]
@@ -982,7 +982,7 @@ Moves = DRAGONPULSE,HURRICANE,PRIMEVALSUNNYDAY
 PostPrimeMoves = FLAMETHROWER
 Turns = 2
 HPMult = 4.0
-DMGMult = 1
+DMGMult = 1.2
 #-------------------------------
 [MANDIBUZZ]
 Ability = IMPERVIOUS

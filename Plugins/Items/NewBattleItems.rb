@@ -40,3 +40,16 @@ BattleHandlers::DamageCalcTargetItem.add(:STRIKEVEST,
     mults[:defense_multiplier] *= 1.5 if move.physicalMove?
   }
 )
+
+BattleHandlers::TargetItemOnHit.add(:BUSTEDRADIO,
+  proc { |item,user,target,move,battle|
+    next if move.pbContactMove?(user)
+    next if !user.takesIndirectDamage?
+	  reduction = user.totalhp/6
+	  reduction /= 4 if user.boss
+	  user.damageState.displayedDamage = reduction
+    battle.scene.pbDamageAnimation(user)
+    user.pbReduceHP(reduction,false)
+    battle.pbDisplay(_INTL("{1} was hurt by the {2}!",user.pbThis,target.itemName))
+  }
+)

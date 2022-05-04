@@ -1,7 +1,9 @@
 class PokeBattle_Battler
+  LOCK_STAT = 95
+
 	def attack
 		if hasActiveItem?(:POWERLOCK)
-			return 95
+			return calcStatGlobal(LOCK_STAT,@level,@pokemon.ev[:ATTACK])
 		else
 			return @attack
 		end
@@ -10,13 +12,13 @@ class PokeBattle_Battler
 	def defense
 		if @battle.field.effects[PBEffects::WonderRoom]>0
 			if hasActiveItem?(:WILLLOCK)
-				return 95
+				return calcStatGlobal(LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
 			else
 				return @spdef 
 			end
 		else
 			if hasActiveItem?(:GUARDLOCK)
-				return 95
+				return calcStatGlobal(LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
 			else
 				return @defense
 			end
@@ -25,7 +27,7 @@ class PokeBattle_Battler
 	
 	def spatk
 		if hasActiveItem?(:ENERGYLOCK)
-			return 95
+			return calcStatGlobal(LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK])
 		else
 			return @spatk
 		end
@@ -34,13 +36,13 @@ class PokeBattle_Battler
 	def spdef
 		if @battle.field.effects[PBEffects::WonderRoom]>0
 			if hasActiveItem?(:GUARDLOCK)
-				return 95
+				return calcStatGlobal(LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
 			else
 				return @defense
 			end
 		else
 			if hasActiveItem?(:WILLLOCK)
-				return 95
+				return calcStatGlobal(LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
 			else
 				return @spdef 
 			end
@@ -225,7 +227,7 @@ class PokeBattle_Battler
     stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
     stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
     stage = @stages[:SPEED] + 6
-	stage = 6 if stage > 6 && paralyzed?
+	  stage = 6 if stage > 6 && paralyzed?
     speed = @speed*stageMul[stage]/stageDiv[stage]
     speedMult = 1.0
     # Ability effects that alter calculated Speed
@@ -243,11 +245,6 @@ class PokeBattle_Battler
     if (paralyzed? || frozen?) && !hasActiveAbility?(:QUICKFEET)
       speedMult /= (Settings::MECHANICS_GENERATION >= 7) ? 2 : 4
     end
-    # Badge multiplier
-    if @battle.internalBattle && pbOwnedByPlayer? &&
-       @battle.pbPlayer.badge_count >= Settings::NUM_BADGES_BOOST_SPEED
-      speedMult *= 1.1
-    end
     # Calculation
     return [(speed*speedMult).round,1].max
   end
@@ -263,7 +260,7 @@ class PokeBattle_Battler
   end
 
   def isLastAlive?
-    return !fainted? && @battle.pbGetOwnerFromBattleIndex(@index).able_pokemon_count == 1
+    return !fainted? && @battle.pbGetOwnerFromBattlerIndex(@index).able_pokemon_count == 1
   end
 
 end

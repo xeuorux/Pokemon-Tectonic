@@ -74,7 +74,7 @@ Resistances = BUG,STEEL,FIRE,GRASS,ICE
 Name = Water
 InternalName = WATER
 IsSpecialType = true
-Weaknesses = GRASS,ELECTRIC
+Weaknesses = GRASS,ELECTRIC,POISON
 Resistances = STEEL,FIRE,WATER,ICE
 #-------------------------------
 [12]

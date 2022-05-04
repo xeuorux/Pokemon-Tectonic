@@ -503,7 +503,7 @@ class PokeBattle_AI
         if spikes > 0
           spikesDmg = [8,6,4][spikes-1]
           if pkmn.hp <= pkmn.totalhp / spikesDmg
-            next if !pkmn.hasType?(:FLYING) && !pkmn.hasLevitate?
+            next if !pkmn.hasType?(:FLYING) && !pkmn.hasAbility?(:LEVITATE)
           end
         end
         typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
@@ -545,7 +545,12 @@ class PokeBattle_AI
       
       if list.length > 0
         list.sort_by!{|entry| entry[1]}
-        PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are: #{list.to_s}")
+        PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are:")
+        list.each do |listEntry|
+          enemyTrainer = @battle.pbGetOwnerFromBattlerIndex(battler.index)
+          allyPokemon = enemyTrainer.party[listEntry[0]]
+          PBDebug.log("#{allyPokemon.name}: #{listEntry[1]}")
+        end
         if batonPass >= 0 && @battle.pbRegisterMove(idxBattler,batonPass,false)
           PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Baton Pass to avoid Perish Song")
           return true
