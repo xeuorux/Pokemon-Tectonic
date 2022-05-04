@@ -260,7 +260,7 @@ class PokeBattle_Battler
   end
 
   def isLastAlive?
-    return !fainted? && @battle.pbGetOwnerFromBattleIndex(@index).able_pokemon_count == 1
+    return !fainted? && @battle.pbGetOwnerFromBattlerIndex(@index).able_pokemon_count == 1
   end
 
 end
