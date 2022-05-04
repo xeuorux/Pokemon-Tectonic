@@ -1,8 +1,8 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [0]
+Name = 
 Filename = mapRegion2.png
-Name = Makya
 Point = 18,14,Casaba Villa,,,,,
 Point = 19,14,Casaba Villa,,,,,
 Point = 17,14,Bluepoint Beach,,,,,
@@ -18,8 +18,8 @@ Point = 18,9,Grouz,,,,,
 Point = 19,9,Grouz Mine,,,,,
 Point = 18,8,Cave Path,,,,,
 Point = 18,7,Floral Rest,,,,,
-Point = 18,6,Desert Canal,,,,,
-Point = 18,5,Circuit Cave,,,,,
+Point = 18,6,Canal Desert,,,,,
+Point = 18,5,Canal Desert,,,,,
 Point = 17,7,Luxtech Campus,LuxTech Main,,,,
 Point = 16,8,Gigalith's Guts,Deep Layer,,,,
 Point = 16,7,County Park,,,,,
@@ -42,7 +42,11 @@ Point = 16,4,Battle Plaza,,,,,
 Point = 17,4,Prizca East,Capitol Building,,,,
 Point = 17,3,Prizca Castle,,,,,
 Point = 13,5,Frostflow Farms,,,,,
-#Point = 16,15,The Abyss,,,,,
-#Point = 17,4,Tournament Grounds,,,,,
-#Point = 16,5,Candy Factory,,,,,
 Point = 15,8,Mountain Climb,,,,,
+Point = 16,5,Prizca Sewers,,,,,
+Point = 17,5,Circuit Cave,,,,,
+Point = 18,4,Twin Peaks,,,,,
+Point = 19,4,Twin Peaks,,,,,
+Point = 20,4,Candy Town,,,,,
+Point = 14,6,Eleig River Crossing,,,,,
+Point = 14,5,Frostflow Farms,,,,,
