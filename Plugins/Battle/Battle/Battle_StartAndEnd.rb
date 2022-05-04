@@ -254,7 +254,7 @@ class PokeBattle_Battle
 	  
 	  # Curses effects here
 	  @curses.each do |curse_policy|
-		triggerBeginningOfTurnCurseEffect(curse_policy,self)
+	    triggerBeginningOfTurnCurseEffect(curse_policy,self)
 	  end
 	  
       # Command phase

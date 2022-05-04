@@ -487,15 +487,15 @@ class PokeBattle_Move
 		end
 		
 		# STAB
-		if type && user.pbHasType?(type)
-		  stab = 1.5
-		  
-		  if user.hasActiveAbility?(:ADAPTED)
-			  stab *= 4.0/3.0
-		  end
-		  
-		  multipliers[:final_damage_multiplier] *= stab
-		end
+    unless user.pbOwnedByPlayer? && @battle.curses.include?(:DULLED)
+      if type && user.pbHasType?(type)
+        stab = 1.5
+        if user.hasActiveAbility?(:ADAPTED)
+          stab *= 4.0/3.0
+        end
+        multipliers[:final_damage_multiplier] *= stab
+      end
+    end
 		
 		# Type effectiveness
 		typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
@@ -526,7 +526,7 @@ class PokeBattle_Move
 			  multipliers[:final_damage_multiplier] *= 5.0/4.0
 		  end
 		end
-    # Chill
+    # Numb
 		if user.paralyzed?
 		  if !user.boss?
 			  multipliers[:final_damage_multiplier] *= 3.0/4.0
