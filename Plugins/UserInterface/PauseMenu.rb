@@ -33,9 +33,11 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 		endscene = true
 		cmdTrainer  = -1
 		cmdLevelCap = -1
+		cmdMainQuestHelp = -1
 		infoCommands = []
 		infoCommands[cmdTrainer = infoCommands.length] = _INTL("#{$Trainer.name}'s Card")
 		infoCommands[cmdLevelCap = infoCommands.length] = _INTL("Level Cap") if LEVEL_CAPS_USED && $game_variables[26] > 0 && $Trainer.party_count > 0
+		infoCommands[cmdMainQuestHelp = infoCommands.length] = _INTL("What To Do?") if defined?($main_quest_tracker)
 		loop do
 			infoCommand = @scene.pbShowCommands(infoCommands)
 			if cmdTrainer >= 0 && infoCommand == cmdTrainer
@@ -46,12 +48,21 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 					screen.pbStartScreen
 					@scene.pbRefresh
 				}
-			elsif cmdLevelCap >=0 && infoCommand == cmdLevelCap
+			elsif cmdLevelCap > -1 && infoCommand == cmdLevelCap
 				cap = $game_variables[26]
 				msgwindow = pbCreateMessageWindow
 				pbMessageDisplay(msgwindow, _INTL("The current level cap is {1}.", cap))
 				pbMessageDisplay(msgwindow, _INTL("Once at level {1}, your Pokémon cannot gain experience or have Candies used on them.", cap))
 				pbMessageDisplay(msgwindow,"The level can be raised by defeating gym leaders.")
+				pbDisposeMessageWindow(msgwindow)
+			elsif cmdMainQuestHelp > - 1 && infoCommand == cmdMainQuestHelp
+				msgwindow = pbCreateMessageWindow
+				pbMessageDisplay(msgwindow,$main_quest_tracker.getCurrentStageName())
+				stageHelp = $main_quest_tracker.getCurrentStageHelp()
+				stageHelpLines = stageHelp.split(". ")
+				stageHelpLines.each do |line|
+					pbMessageDisplay(msgwindow,line + ".")
+				end
 				pbDisposeMessageWindow(msgwindow)
 			else
 				pbPlayCloseMenuSE
