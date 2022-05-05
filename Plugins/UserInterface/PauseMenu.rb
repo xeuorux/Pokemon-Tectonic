@@ -17,6 +17,51 @@ class PokemonPauseMenu_Scene
   end
 end
 
+class PokemonGameInfoMenu_Scene < PokemonPauseMenu_Scene
+end
+
+class PokemonGameInfoMenu < PokemonPauseMenu
+	def pbStartPokemonMenu
+		if !$Trainer
+			if $DEBUG
+			  pbMessage(_INTL("The player trainer was not defined, so the pause menu can't be displayed."))
+			  pbMessage(_INTL("Please see the documentation to learn how to set up the trainer player."))
+			end
+			return
+		end
+		@scene.pbStartScene
+		endscene = true
+		cmdTrainer  = -1
+		cmdLevelCap = -1
+		infoCommands = []
+		infoCommands[cmdTrainer = infoCommands.length] = _INTL("#{$Trainer.name}'s Card")
+		infoCommands[cmdLevelCap = infoCommands.length] = _INTL("Level Cap") if LEVEL_CAPS_USED && $game_variables[26] > 0 && $Trainer.party_count > 0
+		loop do
+			infoCommand = @scene.pbShowCommands(infoCommands)
+			if cmdTrainer >= 0 && infoCommand == cmdTrainer
+				pbPlayDecisionSE
+				pbFadeOutIn {
+					scene = PokemonTrainerCard_Scene.new
+					screen = PokemonTrainerCardScreen.new(scene)
+					screen.pbStartScreen
+					@scene.pbRefresh
+				}
+			elsif cmdLevelCap >=0 && infoCommand == cmdLevelCap
+				cap = $game_variables[26]
+				msgwindow = pbCreateMessageWindow
+				pbMessageDisplay(msgwindow, _INTL("The current level cap is {1}.", cap))
+				pbMessageDisplay(msgwindow, _INTL("Once at level {1}, your Pokémon cannot gain experience or have Candies used on them.", cap))
+				pbMessageDisplay(msgwindow,"The level can be raised by defeating gym leaders.")
+				pbDisposeMessageWindow(msgwindow)
+			else
+				pbPlayCloseMenuSE
+				break
+			end
+		end
+		@scene.pbEndScene if endscene
+	end
+end
+
 class PokemonPauseMenu
 	def pbStartPokemonMenu
 		if !$Trainer
@@ -32,12 +77,11 @@ class PokemonPauseMenu
 		cmdPokedex  = -1
 		cmdPokemon  = -1
 		cmdBag      = -1
-		cmdTrainer  = -1
 		cmdSave     = -1
 		cmdOption   = -1
 		cmdPokegear = -1
 		cmdDexnav	= -1
-		cmdLevelCap = -1
+		cmdGameInfo = -1
 		cmdDebug    = -1
 		cmdQuit     = -1
 		cmdEndGame  = -1
@@ -48,9 +92,7 @@ class PokemonPauseMenu
 		commands[cmdBag = commands.length]       = _INTL("Bag") if !pbInBugContest?
 		commands[cmdPokegear = commands.length]  = _INTL("Pokégear") if $Trainer.has_pokegear
 		commands[cmdDexnav = commands.length]	 = _INTL("DexNav") if !$catching_minigame.active?
-		showCapMenu = LEVEL_CAPS_USED && $game_variables[26] > 0 && $Trainer.party_count > 0
-		commands[cmdLevelCap = commands.length]  = _INTL("Level Cap") if showCapMenu
-		commands[cmdTrainer = commands.length]   = $Trainer.name
+		commands[cmdGameInfo = commands.length]  = _INTL("Game Info")
 		if pbInSafari?
 		  if Settings::SAFARI_STEPS <= 0
 			@scene.pbShowInfo(_INTL("Balls: {1}",pbSafariState.ballcount))
@@ -104,7 +146,7 @@ class PokemonPauseMenu
 				}
 			  end
 			end
-		  elsif cmdPokemon>=0 && command==cmdPokemon
+		  elsif cmdPokemon >= 0 && command == cmdPokemon
 			pbPlayDecisionSE
 			hiddenmove = nil
 			pbFadeOutIn {
@@ -118,7 +160,7 @@ class PokemonPauseMenu
 			  pbUseHiddenMove(hiddenmove[0],hiddenmove[1])
 			  return
 			end
-		  elsif cmdBag>=0 && command==cmdBag
+		  elsif cmdBag >=0 && command == cmdBag
 			pbPlayDecisionSE
 			item = nil
 			pbFadeOutIn {
@@ -132,7 +174,7 @@ class PokemonPauseMenu
 			  pbUseKeyItemInField(item)
 			  return
 			end
-		  elsif cmdPokegear>=0 && command==cmdPokegear
+		  elsif cmdPokegear >=0 && command == cmdPokegear
 			pbPlayDecisionSE
 			pbFadeOutIn {
 			  scene = PokemonPokegear_Scene.new
@@ -140,29 +182,22 @@ class PokemonPauseMenu
 			  screen.pbStartScreen
 			  @scene.pbRefresh
 			}
-		  elsif cmdDexnav>=0 && command==cmdDexnav
+		  elsif cmdDexnav >= 0 && command == cmdDexnav
 			pbPlayDecisionSE
 			pbFadeOutIn {
 				$viewport4.dispose
 				@scene = NewDexNav.new
 				return
 			}
-		  elsif cmdLevelCap>=0 && command==cmdLevelCap
-			cap = $game_variables[26]
-			msgwindow = pbCreateMessageWindow
-			pbMessageDisplay(msgwindow, _INTL("The current level cap is {1}.", cap))
-			pbMessageDisplay(msgwindow, _INTL("Once at level {1}, your Pokémon cannot gain experience or have Candies used on them.", cap))
-			pbMessageDisplay(msgwindow,"The level can be raised by defeating gym leaders.")
-			pbDisposeMessageWindow(msgwindow)
-		  elsif cmdTrainer>=0 && command==cmdTrainer
-			pbPlayDecisionSE
-			pbFadeOutIn {
-			  scene = PokemonTrainerCard_Scene.new
-			  screen = PokemonTrainerCardScreen.new(scene)
-			  screen.pbStartScreen
-			  @scene.pbRefresh
-			}
-		  elsif cmdQuit>=0 && command==cmdQuit
+		  elsif cmdGameInfo >= 0 && command == cmdGameInfo
+			storedLastMenuChoice = $PokemonTemp.menuLastChoice
+			$PokemonTemp.menuLastChoice = 0
+			scene = PokemonGameInfoMenu_Scene.new
+			screen = PokemonGameInfoMenu.new(scene)
+			screen.pbStartPokemonMenu
+			@scene.pbRefresh
+			$PokemonTemp.menuLastChoice = storedLastMenuChoice
+		  elsif cmdQuit >= 0 && command == cmdQuit
 			@scene.pbHideMenu
 			if pbInSafari?
 			  if pbConfirmMessage(_INTL("Would you like to leave the Safari Game right now?"))
@@ -182,7 +217,7 @@ class PokemonPauseMenu
 				pbShowMenu
 			  end
 			end
-		  elsif cmdSave>=0 && command==cmdSave
+		  elsif cmdSave >= 0 && command == cmdSave
 			@scene.pbHideMenu
 			scene = PokemonSave_Scene.new
 			screen = PokemonSaveScreen.new(scene)
@@ -193,7 +228,7 @@ class PokemonPauseMenu
 			else
 			  pbShowMenu
 			end
-		  elsif cmdOption>=0 && command==cmdOption
+		  elsif cmdOption >= 0 && command == cmdOption
 			pbPlayDecisionSE
 			pbFadeOutIn {
 			  scene = PokemonOption_Scene.new
@@ -202,13 +237,13 @@ class PokemonPauseMenu
 			  pbUpdateSceneMap
 			  @scene.pbRefresh
 			}
-		  elsif cmdDebug>=0 && command==cmdDebug
+		  elsif cmdDebug >= 0 && command == cmdDebug
 			pbPlayDecisionSE
 			pbFadeOutIn {
 			  pbDebugMenu
 			  @scene.pbRefresh
 			}
-		  elsif cmdEndGame>=0 && command==cmdEndGame
+		  elsif cmdEndGame >= 0 && command == cmdEndGame
 			@scene.pbHideMenu
 			if pbConfirmMessage(_INTL("Are you sure you want to quit the game?"))
 			  scene = PokemonSave_Scene.new
