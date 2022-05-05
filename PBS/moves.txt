@@ -882,7 +882,7 @@
 818,AQUAINSTINCT,Aqua Instinct,517,65,WATER,Physical,100,10,0,NearOther,0,bef,"The user preys on the target. This move goes first if the target is below half health."
 819,DRAGONBLOOD,Dragon Blood,51C,0,DRAGON,Status,0,5,0,User,0,d,"The user restores its own HP. The user then raises its Sp. Atk unless it was fully healed in the process."
 820,CREEPOUT,Creep Out,51D,50,BUG,Special,100,15,100,NearOther,0,bef,"The user preys on the target's fear of insects, giving it a weakness to the bug type."
-821,ROCKAPULT,Rockapult,51F,80,ROCK,Special,60,10,0,NearOther,0,bef,"The user throws a large rock at the target. If the move misses, it raises accuracy and Sp. Atk."
+821,ROCKAPULT,Rockapult,51F,140,ROCK,Special,50,10,0,NearOther,0,bef,"The user throws a large rock at the target. If it misses, the user raises accuracy."
 822,LAHAR,Lahar,51E,125,GROUND,Special,75,10,0,NearOther,0,bef,"The user causes a Mud Slide. If the move misses, it sharply raises Speed."
 823,STARFALL,Star Fall,520,50,ROCK,Special,100,15,100,NearOther,0,bef,"A star falls on the target. Witnessing this lucky star also increases the user's critical strike chance."
 824,BUBBLEBLAST,Bubble Blast,044,80,WATER,Special,100,15,30,NearOther,0,bef,"A blast of bubbles is shot at the target. It has a 30% chance to also lower its Speed stat."

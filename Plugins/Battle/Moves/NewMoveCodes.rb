@@ -633,21 +633,9 @@ end
 class PokeBattle_Move_51F < PokeBattle_Move
 	#This method is called if a move fails to hit all of its targets
 	def pbCrashDamage(user)
+		next if !user.pbCanRaiseStatStage?(:ACCURACY,user,self)
 		@battle.pbDisplay(_INTL("{1} adjusts its aim!",user.pbThis))
-		@statUp = [:SPECIAL_ATTACK,1,:ACCURACY,1]
-		showAnim = true
-		for i in 0...@statUp.length/2
-		  next if !user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
-		  if user.pbRaiseStatStage(@statUp[i*2],@statUp[i*2+1],user,showAnim)
-			showAnim = false
-		  end
-		end
-	end
-	
-	def getScore(score,user,target,skill=100)
-		score += 20
-		score -= user.stages[:SPEED] * 10
-		return score
+		user.pbRaiseStatStage(:ACCURACY,1,user,true)
 	end
 end
 
