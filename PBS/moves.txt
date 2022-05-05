@@ -903,7 +903,7 @@
 839,COLDSNOT,Cold Snot,005,65,ICE,Physical,100,25,30,NearOther,0,bef,"The user launches snot at the target. This has a 30% chance to poison the target."
 840,ENCHANTINGSONG,Enchanting Song,400,80,FAIRY,Special,100,15,30,AllNearOthers,0,befk,"An enchanting outcry. It has a 30% chance to charm every target."
 841,KALEIDOSCOPE,Kaleidoscope,400,60,FAIRY,Special,100,20,30,NearOther,0,bef,"The target is bombarded by crazy colors. There's a 30% chance it becomes charmed."
-842,TRAMPLE,Trample,044,80,GROUND,Physical,100,15,50,NearOther,0,bef,"The user tramples the target. It has a 50% chance to lower its speed stat."
+842,TRAMPLE,Trample,044,90,GROUND,Physical,100,15,15,NearOther,0,bef,"The user tramples the target. It has a 15% chance to lower its speed stat."
 843,DEMONSKISS,Demon's Kiss,526,0,DARK,Status,100,5,0,NearOther,0,bce,"By sacrificing half its HP, the user curses the target with a kiss, making it fall asleep."
 844,RUIN,Ruin,000,100,NORMAL,Special,100,10,0,NearOther,0,bef,"The user brings down a ruinous power on the target, damaging it."
 845,HARDFEELINGS,Hard Feelings,07E,70,NORMAL,Special,100,15,0,NearOther,0,bef,"Doubles its power if the user has a status condition. Ignores Poison attack reduction."
