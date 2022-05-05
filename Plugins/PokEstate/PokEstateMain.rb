@@ -1,3 +1,10 @@
+SaveData.register(:pokestate_tracker) do
+	ensure_class :PokEstate
+	save_value { $PokEstate }
+	load_value { |value| $PokEstate = value }
+	new_game_value { PokEstate.new }
+end
+
 class PokEstate
 	attr_reader   :estate_box
 	attr_reader   :estate_teleport

@@ -1,3 +1,10 @@
+SaveData.register(:catching_minigame) do
+	ensure_class :CatchingMinigame
+	save_value { $catching_minigame }
+	load_value { |value| $catching_minigame = value }
+	new_game_value { CatchingMinigame.new }
+end
+
 class CatchingMinigame
     attr_reader :turnsLeft
     attr_reader :baseLevelForScoring

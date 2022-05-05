@@ -1,3 +1,10 @@
+SaveData.register(:waypoints_tracker) do
+	ensure_class :WaypointsTracker
+	save_value { $waypoints_tracker }
+	load_value { |value| $waypoints_tracker = value }
+	new_game_value { WaypointsTracker.new }
+end
+
 class WaypointsTracker
 	attr_reader :activeWayPoints
 	

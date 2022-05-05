@@ -1,5 +1,12 @@
 MAPS_MAXIMUM = 500
 
+SaveData.register(:events_reset) do
+	ensure_class :ResetTracker
+	save_value { $reset_tracker }
+	load_value { |value| $reset_tracker = value }
+	new_game_value { ResetTracker.new }
+end
+
 class ResetTracker
 	attr_accessor :reset_table
   attr_accessor :respawn_tutorial
