@@ -633,7 +633,7 @@ end
 class PokeBattle_Move_51F < PokeBattle_Move
 	#This method is called if a move fails to hit all of its targets
 	def pbCrashDamage(user)
-		next if !user.pbCanRaiseStatStage?(:ACCURACY,user,self)
+		return if !user.pbCanRaiseStatStage?(:ACCURACY,user,self)
 		@battle.pbDisplay(_INTL("{1} adjusts its aim!",user.pbThis))
 		user.pbRaiseStatStage(:ACCURACY,1,user,true)
 	end
