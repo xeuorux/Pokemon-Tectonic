@@ -921,7 +921,7 @@ Pokemon = POOCHYENA,25
     AbilityIndex = 1
     Item = DARKGEM
 #-------------------------------
-[NURSE,Elliot]
+[NURSE,Ellen]
 Pokemon = CHANSEY,29
     AbilityIndex = 0
     Item = LEFTOVERS

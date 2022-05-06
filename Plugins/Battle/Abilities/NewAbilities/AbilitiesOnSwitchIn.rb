@@ -63,7 +63,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:MYSTICAURA,
 	if battle.field.effects[PBEffects::MagicRoom]==0
 		battle.pbShowAbilitySplash(battler)
 		battle.field.effects[PBEffects::MagicRoom] = 5
-		battle.pbDisplay(_INTL("{1}'s aura creates a bizzare area in which Pokemon's held items lose their effects!",battler.pbThis))
+		battle.pbDisplay(_INTL("{1}'s aura creates a bizarre area in which Pokemon's held items lose their effects!",battler.pbThis))
 		battle.pbHideAbilitySplash(battler)
 	end
   }

@@ -372,12 +372,14 @@ Events.onWildPokemonCreate += proc {|sender,e|
 # Gets a random ID of a legal egg move of the given species and returns it as a move object.
 def getRandomMentorMove(species)
 	return nil if !defined?($PokemonGlobal.dexNavEggMovesUnlocked) || !$PokemonGlobal.dexNavEggMovesUnlocked
-	firstSpecies = GameData::Species.get(species)
+	generatedSpeciesData = GameData::Species.get(species)
+	firstSpecies = generatedSpeciesData
 	while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
 		firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 	end
-	
-	moves = firstSpecies.egg_moves.concat(species.tutor_moves)
+	moves = firstSpecies.egg_moves.concat(generatedSpeciesData.tutor_moves)
+	moves.uniq!
+	moves.compact!
 	return moves.sample
 end
 
