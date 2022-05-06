@@ -4014,7 +4014,7 @@ InternalName = MRMIME
 Type1 = PSYCHIC
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 85,55,95,85,100,65
+BaseStats = 95,55,85,85,100,65
 # Total = 485
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -5445,7 +5445,7 @@ InternalName = LEDIAN
 Type1 = BUG
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 85,100,65,80,65,95
+BaseStats = 95,100,65,80,65,85
 # Total = 490
 GenderRate = Female50Percent
 GrowthRate = Fast
