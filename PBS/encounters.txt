@@ -433,12 +433,14 @@ Special,20
 1,AMAURA,10,10
 1,TYRUNT,10,10
 #-------------------------------
-[129] # Barren Crag
+[129] # Barren Crater
 Land,20
 25,NINCADA,18,20
 25,VULLABY,18,20
 25,SPOINK,18,20
 25,MTANGELA,18,20
+Special,1
+1,LILLIPUP,15,15
 #-------------------------------
 [130] # Canal Desert
 LandSparse,20
@@ -784,3 +786,7 @@ Land,20
 25,RIOLU,44,46
 25,MAWILE,44,46
 25,ONIX,44,46
+#-------------------------------
+[228] # Hidden Laboratory
+Special,1
+1,TYPENULL,35,35
