@@ -2829,91 +2829,99 @@ Pokemon = ADUGTRIO,55
 #-------------------------------
 [AROMALADY3,Henrietta]
 Pokemon = DUSKNOIR,46
-	AbilityIndex = 0
-	Item = LEFTOVERS
+    AbilityIndex = 0
+    Item = LEFTOVERS
 Pokemon = MFURRET,47
-	Item = GROUNDGEM
+    AbilityIndex = 0
+    Item = GROUNDGEM
 Pokemon = VENUSAUR,46
-	AbilityIndex = 1
+    AbilityIndex = 1
 Pokemon = ZANGOOSE,47
+    AbilityIndex = 1
 #-------------------------------
 [CYCLIST_F2,Lukka]
 Pokemon = BLISSEY,46
-	AbilityIndex = 1
+    AbilityIndex = 1
 Pokemon = CONKELDURR,47
-	Item = MUSCLEBAND
-	AbilityIndex = 1
+    AbilityIndex = 1
+    Item = MUSCLEBAND
 Pokemon = ARCLAMOR,47
-	Item = ELECTRICGEM
+    AbilityIndex = 1
+    Item = ELECTRICGEM
 Pokemon = TOWERPODA,46
-	AbilityIndex = 1
+    AbilityIndex = 1
 #-------------------------------
 [RUINMANIAC,Matteo]
 Pokemon = ARCTOZOLT,47
-	AbilityIndex = 1
-	Item = ROCKYHELMET
+    AbilityIndex = 1
+    Item = ROCKYHELMET
 Pokemon = DRACOZOLT,48
-	AbilityIndex = 1
+    AbilityIndex = 1
 Pokemon = DRACOVISH,48
-	AbilityIndex = 1
-	Item = DRAGONGEM
+    AbilityIndex = 1
+    Item = DRAGONGEM
 Pokemon = ARCTOVISH,47
-	AbilityIndex = 1
+    AbilityIndex = 1
 #-------------------------------
 [BACKPACKER_F,Mia]
 Pokemon = SAWSBUCK,47
-	Item = FAIRYGEM
+    AbilityIndex = 0
+    Item = FAIRYGEM
 Pokemon = SAWSBUCK,48
-	Form = 1
+    Form = 1
+    AbilityIndex = 0
 Pokemon = SAWSBUCK,47
-	Item = LIFEORB
-	Form = 2
+    Form = 2
+    AbilityIndex = 0
+    Item = LIFEORB
 Pokemon = SAWSBUCK,48
-	Form = 3
+    Form = 3
+    AbilityIndex = 0
 #-------------------------------
 [PARASOLLADY2,Ruoxi]
 Pokemon = APPLETUN,48
-	AbilityIndex = 0
-	Item = ORANBERRY
+    AbilityIndex = 0
+    Item = ORANBERRY
 Pokemon = MNINETALES,49
-	AbilityIndex = 0
+    AbilityIndex = 0
 Pokemon = BLAZIKEN,49
-	AbilityIndex = 0
+    AbilityIndex = 0
 Pokemon = LICKILICKY,48
-	Item = LEFTOVERS
-	AbilityIndex = 0
+    AbilityIndex = 0
+    Item = LEFTOVERS
 #-------------------------------
 [ELDER,Huy]
 Pokemon = SCOLIPEDE,48
-	Item = WEAKNESSPOLICY
-	AbilityIndex = 1
+    AbilityIndex = 1
+    Item = WEAKNESSPOLICY
 Pokemon = CRAWDAUNT,49
-	AbilityIndex = 0
+    AbilityIndex = 0
 Pokemon = CINDERACE,49
-	AbilityIndex = 0
+    AbilityIndex = 0
 Pokemon = FLORGES,48
-	Item = FLAMEORB
-	AbilityIndex = 1
+    AbilityIndex = 1
+    Item = FLAMEORB
 #-------------------------------
 [BLACKBELT,Santiago]
 Pokemon = DRAGONITE,49
-	AbilityIndex = 1
+    AbilityIndex = 1
 Pokemon = GIGANTEON,50
-	Item = NORMALGEM
+    AbilityIndex = 1
+    Item = NORMALGEM
 Pokemon = SOLROCK,50
-	AbilityIndex = 0
+    AbilityIndex = 0
 Pokemon = HITMONLEE,49
-	Item = MUSCLEBAND
-	AbilityIndex = 0
+    AbilityIndex = 0
+    Item = MUSCLEBAND
 #-------------------------------
 [GENTLEMAN,Nicholas]
 Pokemon = PASSIMIAN,49
+    AbilityIndex = 1
 Pokemon = WHISCASH,50
-	Item = SHELLBELL
-	AbilityIndex = 0
+    AbilityIndex = 0
+    Item = SHELLBELL
 Pokemon = HAXORUS,50
-	AbilityIndex = 0
+    AbilityIndex = 0
 Pokemon = PERRSERKER,49
-	Item = STEELGEM
-	AbilityIndex = 1
-#-------------------------------
+    AbilityIndex = 1
+    Item = STEELGEM

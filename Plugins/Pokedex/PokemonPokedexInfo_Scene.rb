@@ -1269,6 +1269,9 @@ class PokemonPokedexInfo_Scene
 		coversPercentOfMetaGame = (coversPercentOfMetaGame*10000).floor / 100.0
 		drawTextEx(overlay,xLeft,coordinateY,450,1,"Covers #{coversPercentOfMetaGame}% of final evos",base,shadow)
 		coordinateY += 32
+
+		drawTextEx(overlay,xLeft,coordinateY,450,6,"Notes: #{fSpecies.notes}",base,shadow)
+		coordinateY += 32
       end
     end
   end
