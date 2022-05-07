@@ -7,6 +7,7 @@ class PokeBattle_AI
 	TrainerChoseMoveDialogue                    = TrainerDialogueHandlerHash.new
 	PlayerChoseMoveDialogue						= TrainerDialogueHandlerHash.new
 	TrainerIsUsingMoveDialogue					= TrainerDialogueHandlerHash.new
+	PlayerIsUsingMoveDialogue					= TrainerDialogueHandlerHash.new
 	TrainerPokemonFaintedDialogue				= TrainerDialogueHandlerHash.new
 	PlayerPokemonFaintedDialogue				= TrainerDialogueHandlerHash.new
 	TrainerSendsOutPokemonDialogue				= TrainerDialogueHandlerHash.new
@@ -31,6 +32,11 @@ class PokeBattle_AI
 	
 	def self.triggerTrainerIsUsingMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue_array)
 		ret = TrainerIsUsingMoveDialogue.trigger(policy,battler,move,target,trainer_speaking,dialogue_array)
+		return (ret!=nil) ? ret : dialogue_array
+	end
+
+	def self.triggerPlayerIsUsingMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue_array)
+		ret = PlayerIsUsingMoveDialogue.trigger(policy,battler,move,target,trainer_speaking,dialogue_array)
 		return (ret!=nil) ? ret : dialogue_array
 	end
 	

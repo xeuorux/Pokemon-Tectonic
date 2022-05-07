@@ -50,16 +50,6 @@ PokeBattle_AI::PlayerPokemonFaintedDialogue.add(:DEBUG,
   }
 )
 
-PokeBattle_AI::PlayerPokemonFaintedDialogue.add(:PERFECTINGTUTORIAL,
-  proc { |policy,battler,trainer_speaking,dialogue_array|
-    if !trainer_speaking.policyStates[:FaintTutorialGiven]
-		dialogue_array.push("Heh, you aren't so tough!")
-		trainer_speaking.policyStates[:FaintTutorialGiven] = true
-	end
-    next dialogue_array
-  }
-)
-
 #===============================================================================
 # TrainerSendsOutPokemonDialogue handlers
 #===============================================================================

@@ -704,14 +704,22 @@ class PokeBattle_Move
     end
   
   def pbDisplayUseMessage(user,targets=[])
-    # Trigger dialogue for a trainer about to use a move
+    # Trigger dialogue for a trainer or the player about to use a move
     if @battle.opponent
-      idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(user.index)
-      trainer_speaking = @battle.opponent[idxTrainer] || nil
-      if !trainer_speaking.nil?
-        @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-          PokeBattle_AI.triggerTrainerIsUsingMoveDialogue(policy,user,self,targets,trainer_speaking,dialogue)
-        }
+      if user.pbOwnedByPlayer?
+        @opponent.each_with_index do |trainer_speaking,idxTrainer|
+          @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+            PokeBattle_AI.triggerPlayerIsUsingMoveDialogue(policy,user,self,targets,trainer_speaking,dialogue)
+          }
+        end	
+      else
+        idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(user.index)
+        trainer_speaking = @battle.opponent[idxTrainer] || nil
+        if !trainer_speaking.nil?
+          @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+            PokeBattle_AI.triggerTrainerIsUsingMoveDialogue(policy,user,self,targets,trainer_speaking,dialogue)
+          }
+        end
       end
     end
     
