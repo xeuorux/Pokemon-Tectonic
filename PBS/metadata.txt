@@ -62,7 +62,7 @@ Environment = None
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,10
+MapPosition = 0,13,9
 MapSize = 2,11
 Environment = TallGrass
 #-------------------------------
@@ -101,7 +101,7 @@ MapPosition = 0,14,10
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,14,10
+MapPosition = 0,17,8
 Environment = Cave
 #-------------------------------
 [013]
@@ -234,6 +234,7 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,18,13
 Environment = Forest
 #-------------------------------
 [031]
@@ -259,6 +260,7 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,16,4
 Environment = None
 #-------------------------------
 [035]
@@ -272,6 +274,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,19,9
 Environment = Cave
 #-------------------------------
 [037]
@@ -279,6 +282,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,13,7
 Environment = Snow
 #-------------------------------
 [038]
@@ -286,6 +290,7 @@ Environment = Snow
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,17,14
 Environment = Sand
 #-------------------------------
 [039]
@@ -356,6 +361,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,18,13
 Environment = Cave
 #-------------------------------
 [052]
@@ -369,12 +375,14 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,14,9
 #-------------------------------
 [054]
 # County Park
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,15,7
 Environment = Grass
 #-------------------------------
 [055]
@@ -382,6 +390,7 @@ Environment = Grass
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,18,7
 Environment = ForestGrass
 #-------------------------------
 [056]
@@ -389,6 +398,7 @@ Environment = ForestGrass
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,16,9
 #-------------------------------
 [057]
 # Németh Center
@@ -403,6 +413,7 @@ HealingSpot = 56,43,27
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,16,11
 Environment = Forest
 #-------------------------------
 [060]
@@ -410,6 +421,7 @@ Environment = Forest
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,16,10
 Environment = Forest
 #-------------------------------
 [061]
@@ -670,6 +682,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = false
 Weather = Blizzard,100
+MapPosition = 0,13,6
 Environment = Ice
 #-------------------------------
 [119]
@@ -683,6 +696,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,17,8
 Environment = Cave
 #-------------------------------
 [121]
@@ -690,6 +704,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,15,8
 Environment = Rock
 #-------------------------------
 [122]
@@ -697,6 +712,7 @@ Environment = Rock
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,17,6
 Environment = StillWater
 #-------------------------------
 [124]
@@ -707,11 +723,16 @@ Environment = Cave
 # Volcanic Cave
 Environment = Volcano
 #-------------------------------
+[126]
+# Sun Cave
+MapPosition = 0,13,8
+#-------------------------------
 [129]
 # Barren Crater
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,13,10
 Environment = Rock
 #-------------------------------
 [130]
@@ -719,6 +740,7 @@ Environment = Rock
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,18,5
 Environment = Sand
 #-------------------------------
 [134]
@@ -739,12 +761,14 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,18,14
 #-------------------------------
 [138]
 # Scenic Trail
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,19,13
 Environment = Forest
 #-------------------------------
 [140]
@@ -830,6 +854,7 @@ Bicycle = true
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,15,4
 #-------------------------------
 [157]
 # Traffic Control
@@ -976,6 +1001,9 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
+[181]
+# Casaba Island
+#-------------------------------
 [182]
 # Tangle Dungeon
 Outdoor = true
@@ -994,6 +1022,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,16,6
 Environment = Forest
 #-------------------------------
 [186]
@@ -1001,18 +1030,21 @@ Environment = Forest
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,13,5
 #-------------------------------
 [187]
 # Prizca East
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,17,4
 #-------------------------------
 [188]
 # Prizca Castle
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,17,3
 #-------------------------------
 [189]
 # Catacombs Antechamber
@@ -1032,6 +1064,7 @@ HealingSpot = 187,67,30
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,18,11
 Environment = Sand
 #-------------------------------
 [195]
@@ -1045,6 +1078,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,19,11
 BattleBack = 
 Environment = Volcano
 #-------------------------------
@@ -1053,12 +1087,14 @@ Environment = Volcano
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,18,4
 #-------------------------------
 [212]
 # Ruins Digsite
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,14,8
 #-------------------------------
 [213]
 # Velenz Menagerie
@@ -1072,19 +1108,26 @@ Environment = Forest
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,15,8
 #-------------------------------
 [220]
 # Prizca Sewers East
 Outdoor = false
 ShowArea = true
 Bicycle = false
+MapPosition = 0,17,4
 Environment = StillWater
+#-------------------------------
+[221]
+# Prizca Sewers
+MapPosition = 0,16,5
 #-------------------------------
 [222]
 # Prizca Sewers Tunnel
 Outdoor = false
 ShowArea = true
 Bicycle = false
+MapPosition = 0,16,5
 Environment = StillWater
 #-------------------------------
 [223]
@@ -1092,10 +1135,11 @@ Environment = StillWater
 Outdoor = false
 ShowArea = true
 Bicycle = false
+MapPosition = 0,16,4
 Environment = StillWater
 #-------------------------------
 [228]
-# Hidden Labratory
+# Hidden Laboratory
 Environment = None
 #-------------------------------
 [235]
