@@ -193,3 +193,9 @@ BattleHandlers::DamageCalcUserAbility.add(:ARCANEFINALE,
     mults[:base_damage_multiplier] *= 2 if move.specialMove? && user.isLastAlive?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:PHASESHIFT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if !user.lastMoveUsedType.nil? && type != user.lastMoveUsedType
+  }
+)
