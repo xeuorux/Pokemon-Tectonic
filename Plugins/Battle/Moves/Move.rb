@@ -46,7 +46,7 @@ class PokeBattle_Move
       target.damageState.disguise = true
       return
     end
-	# Ice Face will take the damage
+	  # Ice Face will take the damage
     if !@battle.moldBreaker && target.species == :EISCUE &&
        target.form==0 && target.ability == :ICEFACE && physicalMove?
       target.damageState.iceface = true
@@ -151,7 +151,7 @@ class PokeBattle_Move
   
   def pbHitEffectivenessMessages(user,target,numTargets=1)
     return if target.damageState.disguise
-	return if target.damageState.iceface
+  	return if target.damageState.iceface
     if target.damageState.substitute
       @battle.pbDisplay(_INTL("The substitute took damage for {1}!",target.pbThis(true)))
     end
@@ -182,7 +182,7 @@ class PokeBattle_Move
       end
       @battle.pbHideAbilitySplash(target)
       target.pbChangeForm(1,_INTL("{1}'s disguise was busted!",target.pbThis))
-	elsif target.damageState.iceface
+	  elsif target.damageState.iceface
       @battle.pbShowAbilitySplash(target)
       target.pbChangeForm(1,_INTL("{1} transformed!",target.pbThis))
       @battle.pbHideAbilitySplash(target)
@@ -254,7 +254,7 @@ class PokeBattle_Move
   #=============================================================================
   def pbAdditionalEffectChance(user,target,effectChance=0)
     return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
-	return 0 if target.effects[PBEffects::Enlightened]
+	  return 0 if target.effects[PBEffects::Enlightened]
     ret = (effectChance>0) ? effectChance : @addlEffect
     if Settings::MECHANICS_GENERATION >= 6 || @function != "0A4"   # Secret Power
       ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
@@ -269,7 +269,7 @@ class PokeBattle_Move
   def pbFlinchChance(user,target)
     return 0 if flinchingMove?
     return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
-	return 0 if target.effects[PBEffects::Enlightened]
+	  return 0 if target.effects[PBEffects::Enlightened]
     ret = 0
     if user.hasActiveAbility?(:STENCH,true)
       ret = 10
@@ -485,7 +485,6 @@ class PokeBattle_Move
 			  multipliers[:final_damage_multiplier] *= 2
 		  end
 		end
-		
 		# STAB
     unless user.pbOwnedByPlayer? && @battle.curses.include?(:DULLED)
       if type && user.pbHasType?(type)
@@ -496,7 +495,6 @@ class PokeBattle_Move
         multipliers[:final_damage_multiplier] *= stab
       end
     end
-		
 		# Type effectiveness
 		typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
 		multipliers[:final_damage_multiplier] *= typeEffect
@@ -538,25 +536,28 @@ class PokeBattle_Move
 		if !ignoresReflect? && !target.damageState.critical &&
 		   !user.hasActiveAbility?(:INFILTRATOR)
 		  if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
-			if @battle.pbSideBattlerCount(target)>1
-			  multipliers[:final_damage_multiplier] *= 2 / 3.0
-			else
-			  multipliers[:final_damage_multiplier] /= 2
-			end
+        if @battle.pbSideBattlerCount(target)>1
+          multipliers[:final_damage_multiplier] *= 2 / 3.0
+        else
+          multipliers[:final_damage_multiplier] /= 2
+        end
 		  elsif target.pbOwnSide.effects[PBEffects::Reflect] > 0 && physicalMove?
-			if @battle.pbSideBattlerCount(target)>1
-			  multipliers[:final_damage_multiplier] *= 2 / 3.0
-			else
-			  multipliers[:final_damage_multiplier] /= 2
-			end
+        if @battle.pbSideBattlerCount(target)>1
+          multipliers[:final_damage_multiplier] *= 2 / 3.0
+        else
+          multipliers[:final_damage_multiplier] /= 2
+        end
 		  elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && specialMove?
-			if @battle.pbSideBattlerCount(target) > 1
-			  multipliers[:final_damage_multiplier] *= 2 / 3.0
-			else
-			  multipliers[:final_damage_multiplier] /= 2
-			end
+        if @battle.pbSideBattlerCount(target) > 1
+          multipliers[:final_damage_multiplier] *= 2 / 3.0
+        else
+          multipliers[:final_damage_multiplier] /= 2
+        end
 		  end
 		end
+    if target.effects[PBEffects::StunningCurl]
+      multipliers[:final_damage_multiplier] /= 2
+    end
 		# Move-specific base damage modifiers
 		multipliers[:base_damage_multiplier] = pbBaseDamageMultiplier(multipliers[:base_damage_multiplier], user, target)
 		# Move-specific final damage modifiers

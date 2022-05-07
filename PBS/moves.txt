@@ -1011,7 +1011,7 @@
 947,REMOVALBEAM,Removal Beam,00C,85,NORMAL,Special,100,15,30,Other,0,befm,"The target is struck by a beam of negative energy. It has a 30% chance to chill."
 948,SLAY,Slay,54F,90,STEEL,Physical,100,15,0,NearOther,0,abefhp,"The user slashes at the target with a steel blade. Super-effective versus Dragon-types."
 949,CHIBLOCK,Chi Block,007,0,FIGHTING,Status,100,20,0,NearOther,0,abcef,"The user strikes the target's pressure points, numbing it."
-950,STUNNINGCURL,Stunning Curl,550,0,BUG,Status,0,3,0,User,4,,"Protects the user from attacks. Also numbs any attacker who attacks the user."
+950,STUNNINGCURL,Stunning Curl,550,0,BUG,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also numbs any attacker who attacks the user."
 951,FLAMESPIKES,Flame Spikes,551,0,FIRE,Status,0,20,0,FoeSide,0,c,"The user lays a trap of flaming spikes at the foe's feet. They burn foes that switch into battle."
 952,DROPKICK,Drop Kick,0FA,80,FIGHTING,Physical,0,25,100,NearFoe,0,abef,"User drops onto the target with a kick, dealing 25% recoil to self."
 953,MULTISTRIKE,Multi-strike,0C0,14,NORMAL,Physical,100,35,0,NearOther,0,abefj,"The target is hit two to five times in a row."
