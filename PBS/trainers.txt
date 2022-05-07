@@ -1,17 +1,17 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [YOUNGSTER,Joey]
-Pokemon = BIDOOF,50
-    Moves = TACKLE
+Pokemon = FERROSEED,50
+    Moves = SPIKES,STEALTHROCK
     AbilityIndex = 0
-Pokemon = BIDOOF,50
-    Moves = TACKLE
+Pokemon = SALANDIT,50
+    Moves = TOXICSPIKES,FLAMESPIKES
     AbilityIndex = 0
-Pokemon = BIDOOF,50
-    Moves = TACKLE
+Pokemon = FERROSEED,50
+    Moves = SPIKES,STEALTHROCK
     AbilityIndex = 0
-Pokemon = BIDOOF,50
-    Moves = TACKLE
+Pokemon = SALANDIT,50
+    Moves = TOXICSPIKES,FLAMESPIKES
     AbilityIndex = 0
 #-------------------------------
 [HIKER,Conroy]

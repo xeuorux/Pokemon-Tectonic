@@ -209,7 +209,7 @@ class PokeBattle_Battle
     end
     # Entry hazards
     # Stealth Rock
-    if battler.pbOwnSide.effects[PBEffects::StealthRock] && battler.takesIndirectDamage? &&
+    if battler.pbOwnSide.effects[PBEffects::StealthRock] && battler.takesIndirectDamage? && !battler.immuneToHazards? &&
        GameData::Type.exists?(:ROCK)
       bTypes = battler.pbTypes(true)
       eff = Effectiveness.calculate(:ROCK, bTypes[0], bTypes[1], bTypes[2])
@@ -225,7 +225,7 @@ class PokeBattle_Battle
       end
     end
     # Spikes
-    if battler.pbOwnSide.effects[PBEffects::Spikes]>0 && battler.takesIndirectDamage? &&
+    if battler.pbOwnSide.effects[PBEffects::Spikes]>0 && battler.takesIndirectDamage? && !battler.immuneToHazards? &&
        !battler.airborne?
       spikesDiv = [8,6,4][battler.pbOwnSide.effects[PBEffects::Spikes]-1]
       oldHP = battler.hp
@@ -237,7 +237,7 @@ class PokeBattle_Battle
       end
     end
     # Toxic Spikes
-    if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0 && !battler.fainted? &&
+    if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? &&
        !battler.airborne?
       if battler.pbHasType?(:POISON)
         battler.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
@@ -247,7 +247,7 @@ class PokeBattle_Battle
       end
     end
 	# Flame Spikes
-    if battler.pbOwnSide.effects[PBEffects::FlameSpikes] > 0 && !battler.fainted? &&
+    if battler.pbOwnSide.effects[PBEffects::FlameSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? &&
        !battler.airborne?
       if battler.pbHasType?(:FIRE)
         battler.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
@@ -257,7 +257,7 @@ class PokeBattle_Battle
       end
     end
     # Sticky Web
-    if battler.pbOwnSide.effects[PBEffects::StickyWeb] && !battler.fainted? &&
+    if battler.pbOwnSide.effects[PBEffects::StickyWeb] && !battler.fainted? && !battler.immuneToHazards?
        !battler.airborne?
       pbDisplay(_INTL("{1} was caught in a sticky web!",battler.pbThis))
       if battler.pbCanLowerStatStage?(:SPEED)
