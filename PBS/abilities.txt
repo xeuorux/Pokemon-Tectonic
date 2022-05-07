@@ -397,6 +397,7 @@
 395,SWARMMOUTH,Swarm Call,"Summons a swarm for 5 turns when hit by an attack."
 396,ACIDBODY,Pollution,"Summons acid rain for 5 turns when hit by an attack."
 397,PHASESHIFT,Phase Shift,"This Pokemon's moves deal 50% more damage if they're a different type than last."
+398,DOUBLECHECK,Double Check,"Deals 50% more damage to target's who have already taken damage this turn."
 # Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."

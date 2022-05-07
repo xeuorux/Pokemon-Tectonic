@@ -199,3 +199,9 @@ BattleHandlers::DamageCalcUserAbility.add(:PHASESHIFT,
     mults[:base_damage_multiplier] *= 1.5 if !user.lastMoveUsedType.nil? && type != user.lastMoveUsedType
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:DOUBLECHECK,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if target.tookDamage
+  }
+)
