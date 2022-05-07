@@ -233,30 +233,30 @@
 231,SHADOWSHIELD,Shadow Shield,"Resists damage while its HP is full."
 232,PRISMARMOR,Prism Armor,"Reduces damage from super-effective attacks."
 233,NEUROFORCE,Neuroforce,"Powers up moves that are super-effective."
-234,BALLFETCH,Ball Fetch,"Fetches the Poké Ball from the first failed throw.",
-235,COTTONDOWN,Cotton Down,"Lowers everyone else's Speed when hit by an attack.",
-236,DAUNTLESSSHIELD,Dauntless Shield,"Boosts Defense stat when the Pokémon enters a battle.",
-237,GORILLATACTICS,Gorilla Tactics,"Boosts Attack but only allows the use of one move.",
-238,GULPMISSILE,Gulp Missile,"Attacks with prey caught when using Surf or Dive.",
-239,HUNGERSWITCH,Hunger Switch,"It alternates between an Electric-type Mode and a Dark-type Mode.",
-240,ICEFACE,Ice Face,"Prevents a physical attack. Can be restored with hail.",
-241,ICESCALES,Ice Scales,"Halves the damage from special moves.",
-242,INTREPIDSWORD,Intrepid Sword,"Boosts Attack stat when the Pokémon enters a battle.",
-243,LIBERO,Libero,"Changes 2nd type to the type of the move it's about to use.",
-244,MIMICRY,Mimicry,"Changes the Pokémon's type depending on the terrain.",
-245,MIRRORARMOR,Mirror Armor,"Bounces back stat-lowering effects.",
-246,NEUTRALIZINGGAS,Neutralizing Gas,"Abilities will be nullified or will not be triggered.",
-247,PASTELVEIL,Pastel Veil,"Protects it and ally Pokémon from being poisoned.",
-248,PERISHBODY,Perish Body,"When it takes a hit, both Pokémon faint after 3 turns.",
-249,POWERSPOT,Power Spot,"Powers up nearby allies moves by 30%.",
-250,PROPELLERTAIL,Propeller Tail,"Ignores effects changing the target of a move.",
-251,LOUD,Loud,"Boosts power of sound-based moves by 30%.",
-252,RIPEN,Ripen,"Ripens Berries and doubles their effect.",
-253,SANDSPIT,Sand Burst,"Creates a sandstorm for 5 turns when hit by an attack.",
-254,SCREENCLEANER,Screen Cleaner,"Screens are nullified when entering battle.",
-255,STALWART,Stalwart,"Ignores effects changing the target of a move.",
-256,STEAMENGINE,Steam Engine,"Raises Speed massively when hit by a Fire- or Water-type move.",
-257,STEELYSPIRIT,Steely Spirit,"Powers up ally Pokémon's Steel-type moves.",
+234,BALLFETCH,Ball Fetch,"Fetches the Poké Ball from the first failed throw."
+235,COTTONDOWN,Cotton Down,"Lowers everyone else's Speed when hit by an attack."
+236,DAUNTLESSSHIELD,Dauntless Shield,"Boosts Defense stat when the Pokémon enters a battle."
+237,GORILLATACTICS,Gorilla Tactics,"Boosts Attack but only allows the use of one move."
+238,GULPMISSILE,Gulp Missile,"Attacks with prey caught when using Surf or Dive."
+239,HUNGERSWITCH,Hunger Switch,"It alternates between an Electric-type Mode and a Dark-type Mode."
+240,ICEFACE,Ice Face,"Prevents a physical attack. Can be restored with hail."
+241,ICESCALES,Ice Scales,"Halves the damage from special moves."
+242,INTREPIDSWORD,Intrepid Sword,"Boosts Attack stat when the Pokémon enters a battle."
+243,LIBERO,Libero,"Changes 2nd type to the type of the move it's about to use."
+244,MIMICRY,Mimicry,"Changes the Pokémon's type depending on the terrain."
+245,MIRRORARMOR,Mirror Armor,"Bounces back stat-lowering effects."
+246,NEUTRALIZINGGAS,Neutralizing Gas,"Abilities will be nullified or will not be triggered."
+247,PASTELVEIL,Pastel Veil,"Protects it and ally Pokémon from being poisoned."
+248,PERISHBODY,Perish Body,"When it takes a hit, both Pokémon faint after 3 turns."
+249,POWERSPOT,Power Spot,"Powers up nearby allies moves by 30%."
+250,PROPELLERTAIL,Propeller Tail,"Ignores effects changing the target of a move."
+251,LOUD,Loud,"Boosts power of sound-based moves by 30%."
+252,RIPEN,Ripen,"Ripens Berries and doubles their effect."
+253,SANDSPIT,Sand Burst,"Creates a sandstorm for 5 turns when hit by an attack."
+254,SCREENCLEANER,Screen Cleaner,"Screens are nullified when entering battle."
+255,STALWART,Stalwart,"Ignores effects changing the target of a move."
+256,STEAMENGINE,Steam Engine,"Raises Speed massively when hit by a Fire- or Water-type move."
+257,STEELYSPIRIT,Steely Spirit,"Powers up ally Pokémon's Steel-type moves."
 258,WANDERINGSPIRIT,Wandering Spirit,"Taking a physical hit exchanges Abilities."
 259,UNSEENFIST,Unseen Fist,"Physical moves negate all protection effects."
 260,QUICKDRAW,Quick Draw,"Enables the Pokémon to move first occasionally."
@@ -267,7 +267,6 @@
 265,GRIMNEIGH,Grim Neigh,"Boosts Sp. Atk after knocking out any Pokémon."
 266,ASONEICE,As One,"Possesses 2 abilities, Unnerve and Chilling Neigh"
 267,ASONEGHOST,As One,"Possesses 2 abilities, Unnerve and Grim Neigh"
-#-------------------------------
 268,FASCINATE,Fascinate,"Upon entry, lowers the foe's Special Attack stat by distracting them."
 269,PROUDFIRE,Proudfire,"Enemy Pokémon that switch in become burned."
 270,PALEOLITHIC,Paleolithic,"Powers up Rock-type moves by 50%."
@@ -337,22 +336,22 @@
 335,BARRIERMAKER,Barrier Maker,"Creates a Reflect upon entering the battle."
 336,MYSTICAURA,Mystic Aura,"Transforms the field to Magic Room upon entering the battle."
 337,TRICKSTER,Trickster,"Transforms the field to Trick Room upon entering the battle."
-338,GARLANDGUARDIAN,Garland Guardian, "Creates a Safeguard upon entering the battle."
-339,FREERIDE,Free Ride, "Raises other allies speed upon entering the battle."
-340,HEATSAVOR,Heat Savor, "The Pokémon gradually recovers HP in sunny weather."
-341,FROSTSCATTER,Frost Scatter, "Creates a hailstorm for 5 turns when hit by an attack."
-342,POSITIVEOUTLOOK,Positive Outlook, "Raises Electric-type allies' special attack by 50%."
-343,NEGATIVEOUTLOOK,Negative Outlook, "Raises Electric-type allies' special defense by 50%."
-344,BADOMEN,Bad Omen, "Foretold moves hit one turn quicker."
-345,CLOVERSONG,Clover Song, "Sets a Lucky Chant upon entering the battle."
-346,INNERLIGHT,Inner Light, "Creates harsh sun for 5 turns when hit by an attack."
-347,STORMBRINGER,Stormbringer, "Creates heavy rain for 5 turns when hit by an attack."
-348,ELECTRICFENCE,Electric Fence, "Inflicts 1/8th max HP damage to the foe when damaged on Electric Terrain."
-349,HONORAURA,Honor Aura, "Lowers priority of status moves used by any Pokemon."
-350,GARGANTUAN,Gargantuan, "Completely protects allies from multi-target moves."
-351,RUINOUS,Ruinous, "Every Pokemon on the battlefield deals 20% more move damage."
-352,FORTIFIED,Fortified, "Take 20% less damage from attacks on turns when it hasn't moved yet."
-353,SCAVENGE,Scavenge, "The user takes items used up by opponents."
+338,GARLANDGUARDIAN,Garland Guardian,"Creates a Safeguard upon entering the battle."
+339,FREERIDE,Free Ride,"Raises other allies speed upon entering the battle."
+340,HEATSAVOR,Heat Savor,"The Pokémon gradually recovers HP in sunny weather."
+341,FROSTSCATTER,Frost Scatter,"Creates a hailstorm for 5 turns when hit by an attack."
+342,POSITIVEOUTLOOK,Positive Outlook,"Raises Electric-type allies' special attack by 50%."
+343,NEGATIVEOUTLOOK,Negative Outlook,"Raises Electric-type allies' special defense by 50%."
+344,BADOMEN,Bad Omen,"Foretold moves hit one turn quicker."
+345,CLOVERSONG,Clover Song,"Sets a Lucky Chant upon entering the battle."
+346,INNERLIGHT,Inner Light,"Creates harsh sun for 5 turns when hit by an attack."
+347,STORMBRINGER,Stormbringer,"Creates heavy rain for 5 turns when hit by an attack."
+348,ELECTRICFENCE,Electric Fence,"Inflicts 1/8th max HP damage to the foe when damaged on Electric Terrain."
+349,HONORAURA,Honor Aura,"Lowers priority of status moves used by any Pokemon."
+350,GARGANTUAN,Gargantuan,"Completely protects allies from multi-target moves."
+351,RUINOUS,Ruinous,"Every Pokemon on the battlefield deals 20% more move damage."
+352,FORTIFIED,Fortified,"Take 20% less damage from attacks on turns when it hasn't moved yet."
+353,SCAVENGE,Scavenge,"The user takes items used up by opponents."
 354,BLIZZBOXER,Blizz Boxer,"Boosts Attack by 30% in hailstorms."
 355,DESERTSPIRIT,Desert Spirit,"Immune to ground type moves and sandstorm damage."
 356,SUDDENCHILL,Sudden Chill,"Special moves against this have a 30% chance to chill the attacker."
@@ -398,7 +397,6 @@
 396,ACIDBODY,Pollution,"Summons acid rain for 5 turns when hit by an attack."
 397,PHASESHIFT,Phase Shift,"This Pokemon's moves deal 50% more damage if they're a different type than last."
 398,DOUBLECHECK,Double Check,"Deals 50% more damage to target's who have already taken damage this turn."
-# Abilities which were previously cut/renamed
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

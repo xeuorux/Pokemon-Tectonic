@@ -3087,7 +3087,7 @@ Type1 = GHOST
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,70,65,110,120,80
-# Total = 520
+# Total = 510
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 225
@@ -3511,7 +3511,7 @@ InternalName = HITMONCHAN
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,110,88,77,35,115
-# Total = 480
+# Total = 490
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 159
@@ -5478,7 +5478,7 @@ Type1 = BUG
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 70,78,78,45,55,70
-# Total = 355
+# Total = 396
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 50
@@ -5512,7 +5512,7 @@ Type1 = BUG
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 90,100,100,60,80,90
-# Total = 510
+# Total = 520
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 140
@@ -6005,7 +6005,7 @@ Type1 = WATER
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 85,75,90,55,65,75
-# Total = 375
+# Total = 445
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 88
@@ -9375,7 +9375,7 @@ InternalName = SHROOMISH
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,70,65,45,70,65
-# Total = 370
+# Total = 380
 GenderRate = Female50Percent
 GrowthRate = Fluctuating
 BaseEXP = 59
@@ -9802,7 +9802,7 @@ Type1 = WATER
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,50,68,40,40,48
-# Total = 286
+# Total = 306
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 38
@@ -10705,10 +10705,12 @@ BattlerShadowSize = 2
 [325]
 Name = Spoink
 InternalName = SPOINK
+Notes = Made physical, bulkier
+Notes = SPOINK
 Type1 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,70,45,60,45,80
-# Total = 330
+# Total = 360
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 66
@@ -10738,10 +10740,11 @@ Evolutions = GRUMPIG,Level,32
 [326]
 Name = Grumpig
 InternalName = GRUMPIG
+Notes = Made physical, bulkier
 Type1 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 85,105,90,80,80,120
-# Total = 495
+# Total = 560
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 165
@@ -10840,7 +10843,7 @@ Type1 = BUG
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 70,70,50,90,95,50
-# Total = 420
+# Total = 425
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 119
@@ -17379,7 +17382,7 @@ Type1 = PSYCHIC
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 67,113,55,119,77,55
-# Total = 485
+# Total = 486
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 149
@@ -18144,7 +18147,7 @@ Type1 = GROUND
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,72,35,65,72,35
-# Total = 327
+# Total = 329
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 58
@@ -24846,7 +24849,7 @@ InternalName = LURANTIS
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 100,105,75,45,105,110
-# Total = 530
+# Total = 540
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 168
@@ -27226,7 +27229,7 @@ InternalName = NICKIT
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 72,61,72,44,61,72
-# Total = 381
+# Total = 382
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 49
