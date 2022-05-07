@@ -708,8 +708,8 @@ class PokeBattle_Move
     # Trigger dialogue for a trainer or the player about to use a move
     if @battle.opponent
       if user.pbOwnedByPlayer?
-        @opponent.each_with_index do |trainer_speaking,idxTrainer|
-          @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+        @battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
+          @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
             PokeBattle_AI.triggerPlayerIsUsingMoveDialogue(policy,user,self,targets,trainer_speaking,dialogue)
           }
         end	
