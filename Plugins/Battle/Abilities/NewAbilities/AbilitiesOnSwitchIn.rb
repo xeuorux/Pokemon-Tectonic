@@ -74,7 +74,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTER,
 	if battle.field.effects[PBEffects::TrickRoom]==0
 		battle.pbShowAbilitySplash(battler)
 		battle.field.effects[PBEffects::TrickRoom] = 5
-		battle.pbDisplay(_INTL("{1} twisted the dimensions!",battler.pbThis))
+		battle.pbDisplay(_INTL("{1} twisted the dimensions! Speed now functions in reverse!",battler.pbThis))
 		battle.pbHideAbilitySplash(battler)
 	end
   }
