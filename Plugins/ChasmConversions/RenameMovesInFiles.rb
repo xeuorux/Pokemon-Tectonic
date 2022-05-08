@@ -1,5 +1,5 @@
 SaveData.register_conversion(:move_renaming_0) do
-  game_version '9.9.9'
+  game_version '1.6.3'
   display_title 'Changing move names in Pokemon'
   to_all do |save_data|
     echoln("Checking for needed move renames!")
