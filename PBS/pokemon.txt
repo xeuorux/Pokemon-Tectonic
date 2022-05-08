@@ -17516,7 +17516,7 @@ Name = Timburr
 InternalName = TIMBURR
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,80,55,45,30,35
+BaseStats = 75,75,55,45,30,40
 # Total = 310
 GenderRate = Female25Percent
 GrowthRate = Parabolic
@@ -17549,7 +17549,7 @@ Name = Gurdurr
 InternalName = GURDURR
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,105,85,45,40,50
+BaseStats = 95,95,85,55,40,55
 # Total = 405
 GenderRate = Female25Percent
 GrowthRate = Parabolic
@@ -17581,7 +17581,7 @@ Name = Conkeldurr
 InternalName = CONKELDURR
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,140,95,65,55,65
+BaseStats = 120,120,95,65,55,65
 # Total = 515
 GenderRate = Female25Percent
 GrowthRate = Parabolic
