@@ -3149,6 +3149,7 @@ Evolutions = STEELIX,Level,33
 [96]
 Name = Drowzee
 InternalName = DROWZEE
+Notes = TODO: Make physical attacker
 Type1 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 70,48,65,52,58,100
@@ -4370,6 +4371,7 @@ BattlerShadowSize = 2
 [133]
 Name = Eevee
 InternalName = EEVEE
+Notes = TODO: Maybe a 2nd ability for each evo?
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,55,50,55,45,65
@@ -5278,6 +5280,7 @@ BattlerShadowSize = 3
 [161]
 Name = Sentret
 InternalName = SENTRET
+Notes = This line awaits a really unique signature ability we designed
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 70,66,54,50,35,75
@@ -10137,6 +10140,7 @@ Evolutions = MEDICHAM,Level,30
 [308]
 Name = Medicham
 InternalName = MEDICHAM
+Notes = TODO: Make sure the Special mentor moves have coverage distinctly different from Physical
 Type1 = FIGHTING
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -18709,6 +18713,7 @@ BattlerShadowSize = 2
 [568]
 Name = Trubbish
 InternalName = TRUBBISH
+Notes = TODO: Make special attacker
 Type1 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,50,62,75,40,62
@@ -19672,6 +19677,7 @@ BattlerShadowSize = 3
 [597]
 Name = Ferroseed
 InternalName = FERROSEED
+Notes = TODO: Make special attacker
 Type1 = GRASS
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -19740,6 +19746,7 @@ BattlerShadowSize = 2
 [599]
 Name = Klink
 InternalName = KLINK
+Notes = TODO: Make mixed
 Type1 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 45,65,80,30,25,70
@@ -20849,6 +20856,7 @@ BattlerShadowSize = 2
 [633]
 Name = Deino
 InternalName = DEINO
+Notes = TODO: Brainstorm Hydra topdown ability
 Type1 = DARK
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -25214,7 +25222,7 @@ BattlerShadowSize = 2
 [765]
 Name = Oranguru
 InternalName = ORANGURU
-Notes = rework moveset
+Notes = TODO: rework moveset
 Type1 = NORMAL
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -25248,7 +25256,7 @@ BattlerShadowSize = 2
 [766]
 Name = Passimian
 InternalName = PASSIMIAN
-Notes = rework moveset
+Notes = TODO: rework moveset
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 90,120,80,100,40,60
@@ -25415,7 +25423,7 @@ BattlerShadowSize = 2
 [771]
 Name = Pyukumuku
 InternalName = PYUKUMUKU
-Notes = rework moveset - add moves, timing
+Notes = TODO: rework moveset - add moves, timing
 Type1 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 115,30,130,5,30,130
@@ -27031,6 +27039,7 @@ BattlerShadowSize = 3
 [821]
 Name = Rookidee
 InternalName = ROOKIDEE
+Notes = TODO: Make special attacker
 Type1 = FLYING
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -31923,6 +31932,7 @@ BattlerShadowSize = 2
 [2500]
 Name = M. Zangoose
 InternalName = MZANGOOSE
+Notes = TODO: Make more custom abilities
 Type1 = FIGHTING
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
