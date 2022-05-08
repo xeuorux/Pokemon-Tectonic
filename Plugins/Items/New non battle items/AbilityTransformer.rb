@@ -9,11 +9,13 @@ ItemHandlers::UseOnPokemon.add(:ABILITYTRANSFORMER,proc { |item,pkmn,scene|
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
-  newabil = (pkmn.ability_index + 1) % 2
-  newabilname = GameData::Ability.get((newabil==0) ? abil1 : abil2).name
+  newabilindex = (pkmn.ability_index + 1) % 2
+  newabil = GameData::Ability.get((newabilindex==0) ? abil1 : abil2)
+  newabilname = newabil.name
   if scene.pbConfirm(_INTL("Would you like to change {1}'s Ability to {2}?",
      pkmn.name,newabilname))
-    pkmn.ability_index = newabil
+    pkmn.ability_index = newabilindex
+	pkmn.ability = newabil
     scene.pbRefresh
     scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!",pkmn.name,newabilname))
     next true
