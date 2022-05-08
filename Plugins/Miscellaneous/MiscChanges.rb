@@ -357,3 +357,34 @@ def pbChangePlayer(id)
   $Trainer.trainer_type = meta[0]
   $game_player.character_name = meta[1]
 end
+
+def pbStartTrade(pokemonIndex,newpoke,nickname,trainerName,trainerGender=0)
+  myPokemon = $Trainer.party[pokemonIndex]
+  opponent = NPCTrainer.new(trainerName,trainerGender)
+  opponent.id = $Trainer.make_foreign_ID
+  yourPokemon = nil
+  resetmoves = true
+  if newpoke.is_a?(Pokemon)
+    newpoke.owner = Pokemon::Owner.new_from_trainer(opponent)
+    yourPokemon = newpoke
+    resetmoves = false
+  else
+    species_data = GameData::Species.try_get(newpoke)
+    raise _INTL("Species does not exist ({1}).", newpoke) if !species_data
+    yourPokemon = Pokemon.new(species_data.id, myPokemon.level, opponent)
+  end
+  yourPokemon.name          = nickname
+  yourPokemon.obtain_method = 2   # traded
+  yourPokemon.reset_moves if resetmoves
+  yourPokemon.record_first_moves
+  $Trainer.pokedex.register(yourPokemon)
+  $Trainer.pokedex.set_owned(yourPokemon.species)
+  pbFadeOutInWithMusic {
+    evo = PokemonTrade_Scene.new
+    evo.pbStartScreen(myPokemon,yourPokemon,$Trainer.name,opponent.name)
+    evo.pbTrade
+    evo.pbEndScreen
+  }
+  $Trainer.party[pokemonIndex] = yourPokemon
+  refreshFollow(false)
+end
