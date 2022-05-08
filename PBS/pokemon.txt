@@ -25214,9 +25214,9 @@ BattlerShadowSize = 2
 [765]
 Name = Oranguru
 InternalName = ORANGURU
+Notes = rework moveset
 Type1 = NORMAL
 Type2 = PSYCHIC
-Notes = rework moveset
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 90,60,80,60,90,110
 # Total = 490
@@ -25248,8 +25248,8 @@ BattlerShadowSize = 2
 [766]
 Name = Passimian
 InternalName = PASSIMIAN
-Type1 = FIGHTING
 Notes = rework moveset
+Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 90,120,80,100,40,60
 # Total = 490
