@@ -70,10 +70,10 @@ class Pokemon
     @personalID       = rand(2 ** 16) | rand(2 ** 16) << 16
     @hp               = 1
     @totalhp          = 1
-	@hpMult			  = 1
-	@scaleFactor	  = 1
-	@dmgMult		  = 1
-	@battlingStreak	  = 0
+	  @hpMult			  = 1
+	  @scaleFactor	  = 1
+  	@dmgMult		  = 1
+	  @battlingStreak	  = 0
     calc_stats
     if @form == 0 && recheck_form
       f = MultipleForms.call("getFormOnCreation", self)
@@ -131,11 +131,11 @@ class PokeBattle_Battle
   # Gaining Experience
   #=============================================================================
   def pbGainExp
-	hasExpJAR = (GameData::Item.exists?(:EXPEZDISPENSER) && $PokemonBag.pbHasItem?(:EXPEZDISPENSER))
+	  hasExpJAR = (GameData::Item.exists?(:EXPEZDISPENSER) && $PokemonBag.pbHasItem?(:EXPEZDISPENSER))
     # Play wild victory music if it's the end of the battle (has to be here)
     @scene.pbWildBattleSuccess if wildBattle? && pbAllFainted?(1) && !pbAllFainted?(0)
     return if !@internalBattle || !@expGain
-	if bossBattle?
+	  if bossBattle?
       @battlers.each do |b|
         next if !b || !b.opposes?   # Can only gain Exp from fainted foes
         next if !b.fainted? || !b.boss
@@ -145,55 +145,57 @@ class PokeBattle_Battle
           b.participants.push(i)
           pbGainExpOne(i,b,0,[],[],hasExpJAR)
         end
-		b.boss = false
+        b.boss = false
       end
+    elsif wildBattle?
+      return
     else
-		# Go through each battler in turn to find the Pokémon that participated in
-		# battle against it, and award those Pokémon Exp
-		expAll = (GameData::Item.exists?(:EXPALL) && $PokemonBag.pbHasItem?(:EXPALL))
-		p1 = pbParty(0)
-		@battlers.each do |b|
-		  next unless b && b.opposes?   # Can only gain Exp from fainted foes
-		  next if b.participants.length==0
-		  next unless b.fainted? || b.captured
-		  # Count the number of participants
-		  numPartic = 0
-		  b.participants.each do |partic|
-			next unless p1[partic] && p1[partic].able? && pbIsOwner?(0,partic)
-			numPartic += 1
-		  end
-		  # Find which Pokémon have an Exp Share
-		  expShare = []
-		  if !expAll
-			eachInTeam(0,0) do |pkmn,i|
-			  next if !pkmn.able?
-			  next if !pkmn.hasItem?(:EXPSHARE) && GameData::Item.try_get(@initialItems[0][i]) != :EXPSHARE
-			  expShare.push(i)
-			end
-		  end
-		  # Calculate Exp gains for the participants
-		  if numPartic>0 || expShare.length>0 || expAll
-			# Gain Exp for participants
-			eachInTeam(0,0) do |pkmn,i|
-			  next if !pkmn.able?
-			  next unless b.participants.include?(i) || expShare.include?(i)
-			  pbGainExpOne(i,b,numPartic,expShare,expAll,hasExpJAR)
-			end
-			# Gain Exp for all other Pokémon because of Exp All
-			if expAll
-			  showMessage = true
-			  eachInTeam(0,0) do |pkmn,i|
-				next if !pkmn.able?
-				next if b.participants.include?(i) || expShare.include?(i)
-				pbDisplayPaused(_INTL("Your party Pokémon in waiting also got Exp. Points!")) if showMessage
-				showMessage = false
-				pbGainExpOne(i,b,numPartic,expShare,expAll,hasExpJAR,false)
-			  end
-			end
-		  end
-		  # Clear the participants array
-		  b.participants = []
-		end
+      # Go through each battler in turn to find the Pokémon that participated in
+      # battle against it, and award those Pokémon Exp
+      expAll = (GameData::Item.exists?(:EXPALL) && $PokemonBag.pbHasItem?(:EXPALL))
+      p1 = pbParty(0)
+      @battlers.each do |b|
+        next unless b && b.opposes?   # Can only gain Exp from fainted foes
+        next if b.participants.length==0
+        next unless b.fainted? || b.captured
+        # Count the number of participants
+        numPartic = 0
+        b.participants.each do |partic|
+        next unless p1[partic] && p1[partic].able? && pbIsOwner?(0,partic)
+        numPartic += 1
+        end
+        # Find which Pokémon have an Exp Share
+        expShare = []
+        if !expAll
+        eachInTeam(0,0) do |pkmn,i|
+          next if !pkmn.able?
+          next if !pkmn.hasItem?(:EXPSHARE) && GameData::Item.try_get(@initialItems[0][i]) != :EXPSHARE
+          expShare.push(i)
+        end
+        end
+        # Calculate Exp gains for the participants
+        if numPartic>0 || expShare.length>0 || expAll
+        # Gain Exp for participants
+        eachInTeam(0,0) do |pkmn,i|
+          next if !pkmn.able?
+          next unless b.participants.include?(i) || expShare.include?(i)
+          pbGainExpOne(i,b,numPartic,expShare,expAll,hasExpJAR)
+        end
+        # Gain Exp for all other Pokémon because of Exp All
+        if expAll
+          showMessage = true
+          eachInTeam(0,0) do |pkmn,i|
+          next if !pkmn.able?
+          next if b.participants.include?(i) || expShare.include?(i)
+          pbDisplayPaused(_INTL("Your party Pokémon in waiting also got Exp. Points!")) if showMessage
+          showMessage = false
+          pbGainExpOne(i,b,numPartic,expShare,expAll,hasExpJAR,false)
+          end
+        end
+        end
+        # Clear the participants array
+        b.participants = []
+      end
     end
   end
   
@@ -242,38 +244,38 @@ class PokeBattle_Battle
     else
       exp /= 7
     end
-	# Increase Exp gain based on battling streak
-	pkmn.battlingStreak = 0 if pkmn.battlingStreak.nil?
-	if pkmn.onHotStreak?
-		#pbDisplayPaused(_INTL("{1} benefits from its Hot Streak!",pkmn.name))
-		exp = (exp * 1.3).floor
-	end
+    # Increase Exp gain based on battling streak
+    pkmn.battlingStreak = 0 if pkmn.battlingStreak.nil?
+    if pkmn.onHotStreak?
+      #pbDisplayPaused(_INTL("{1} benefits from its Hot Streak!",pkmn.name))
+      exp = (exp * 1.3).floor
+    end
     # Modify Exp gain based on pkmn's held item
     i = BattleHandlers.triggerExpGainModifierItem(pkmn.item,pkmn,exp)
     if i<0
       i = BattleHandlers.triggerExpGainModifierItem(@initialItems[0][idxParty],pkmn,exp)
     end
     exp = i if i>=0
-	# If EXP in this battle is capped, store all XP instead of granting it
-	if @expCapped
-		@expStored += exp
-		return
-	end
+    # If EXP in this battle is capped, store all XP instead of granting it
+    if @expCapped
+      @expStored += exp
+      return
+    end
     # Make sure Exp doesn't exceed the maximum
-	level_cap = LEVEL_CAPS_USED ? $game_variables[26] : growth_rate.max_level
-    expFinal = growth_rate.add_exp(pkmn.exp, exp)
-	expLeftovers = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap))
-	# Calculates if there is excess exp and if it can be stored
-	if (expFinal > expLeftovers) && hasExpJAR
-		expLeftovers = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap+1))
-	else
-		expLeftovers = 0
-	end
-	expFinal = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap))
+    level_cap = LEVEL_CAPS_USED ? $game_variables[26] : growth_rate.max_level
+      expFinal = growth_rate.add_exp(pkmn.exp, exp)
+    expLeftovers = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap))
+    # Calculates if there is excess exp and if it can be stored
+    if (expFinal > expLeftovers) && hasExpJAR
+      expLeftovers = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap+1))
+    else
+      expLeftovers = 0
+    end
+  	expFinal = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap))
     expGained = expFinal-pkmn.exp
-	expLeftovers = expLeftovers-pkmn.exp
-	@expStored += expLeftovers if expLeftovers > 0
-	curLevel = pkmn.level
+	  expLeftovers = expLeftovers-pkmn.exp
+	  @expStored += expLeftovers if expLeftovers > 0
+  	curLevel = pkmn.level
     newLevel = growth_rate.level_from_exp(expFinal)
     if expGained == 0 and pkmn.level < level_cap
       pbDisplayPaused(_INTL("{1} gained 0 experience.",pkmn.name))
