@@ -27,7 +27,7 @@ PokeBattle_AI::BossBeginTurn.add(:GROUDON,
 		turnCount = battler.battle.turnCount
 		if turnCount == 0
 			battler.battle.numBossOnlyTurns = 1
-		elsif turnCount % 3 == 0 && @turnCount > 0
+		elsif turnCount % 3 == 0 && turnCount > 0
 			battler.battle.numBossOnlyTurns = 1
 		else
 			battler.battle.numBossOnlyTurns = 3
