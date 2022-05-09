@@ -5,22 +5,22 @@ def purchaseStarters(type,price=0)
 	token = (type.to_s + "TOKEN").to_sym
 	tokenName = GameData::Item.get(token).real_name
 	
-	pbMessage("Hello, and welcome to the Starters Store!")
-	pbMessage("I'm the #{typeName}-type starters salesperson!")
+	pbMessage(_INTL("Hello, and welcome to the Starters Store!"))
+	pbMessage(_INTL("I'm the #{typeName}-type starters salesperson!"))
 	if price > 0
-		pbMessage("You can buy a #{typeName}-type starter Pokemon from me if you have $#{price} and a #{tokenName}.")
+		pbMessage(_INTL("You can buy a #{typeName}-type starter Pokemon from me if you have $#{price} and a #{tokenName}."))
 	else
-		pbMessage("You can buy a #{typeName}-type starter Pokemon from me if you have a #{tokenName}.")
+		pbMessage(_INTL("You can buy a #{typeName}-type starter Pokemon from me if you have a #{tokenName}."))
 	end
 	if $Trainer.money < price
-		pbMessage("I'm sorry, but it seems as though you don't have that much money.")
+		pbMessage(_INTL("I'm sorry, but it seems as though you don't have that much money."))
 		return
 	end
 	if !$PlayerBag.pbHasItem?(token)
-		pbMessage("I'm sorry, but it seems as though you don't have a #{tokenName}.")
+		pbMessage(_INTL("I'm sorry, but it seems as though you don't have a #{tokenName}."))
 		return
 	end
-	pbMessage("Would you like to buy a #{typeName}-type starter Pokemon?")
+	pbMessage(_INTL("Which #{typeName}-type starter Pokemon would you like to look at?"))
 	
 	starterArray = []
 	case type
@@ -34,21 +34,35 @@ def purchaseStarters(type,price=0)
 		return
 	end
 	
-	result = pbShowCommands(nil,starterArray)
-	if result == 0
-		pbMessage("Understood, please come back if there's a #{typeName}-type starter Pokemon you'd like to purchase!")
-	else
-		starterChosenName = starterArray[result]
-		starterSpecies = starterChosenName.upcase.to_sym
-		pbAddPokemon(starterSpecies,10)
-		if price > 0
-			pbMessage("\\PN handed over $#{price} and a #{tokenName} in exchange.")
+	while true
+		result = pbShowCommands(nil,starterArray)
+
+		if result == 0
+			pbMessage(_INTL("Understood, please come back if there's a #{typeName}-type starter Pokemon you'd like to purchase!"))
+			break
 		else
-			pbMessage("\\PN handed over a #{tokenName} in exchange.")
+			starterChosenName = starterArray[result]
+			starterSpecies = starterChosenName.upcase.to_sym
+
+			choicesArray = ["View Pokedex", "Buy Pokemon", "Cancel"]
+			secondResult = pbShowCommands(nil,choicesArray,3)
+			case secondResult
+			when 1
+				pbAddPokemon(starterSpecies,10)
+				if price > 0
+					pbMessage(_INTL("\\PN handed over $#{price} and a #{tokenName} in exchange."))
+				else
+					pbMessage(_INTL("\\PN handed over a #{tokenName} in exchange."))
+				end
+				$Trainer.money -= price
+				$PlayerBag.pbDeleteItem(token)
+				pbMessage(_INTL("Thank you for shopping here at the Starters Store!"))
+				break
+			when 0
+				openSingleDexScreen(starterSpecies)
+			end
+			next
 		end
-		$Trainer.money -= price
-		$PlayerBag.pbDeleteItem(token)
-		pbMessage("Thank you for shopping here at the Starters Store!")
 	end
 end
 

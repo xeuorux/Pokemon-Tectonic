@@ -8,6 +8,18 @@ module Settings
 	DEX_SHOWS_ALL_FORMS = true
 end
 
+def openSingleDexScreen(pokemon)
+	if pokemon.respond_to?('species')
+		$Trainer.pokedex.register_last_seen(pokemon)
+		pokemon = pokemon.species
+	end
+	pbFadeOutIn {
+		scene = PokemonPokedexInfo_Scene.new
+		screen = PokemonPokedexInfoScreen.new(scene)
+		screen.pbStartSceneSingle(pokemon)
+	}
+end
+
 
 def unlockDex
   $Trainer.pokedex.unlock(-1)

@@ -18,9 +18,6 @@ class PokeBattle_Battle
 		return if idxTarget<0
 		pokemonTargeted = @battlers[idxTarget].pokemon
 		pokemonTargeted = @battlers[idxTarget].effects[PBEffects::Illusion] if @battlers[idxTarget].effects[PBEffects::Illusion]
-		$Trainer.pokedex.register_last_seen(pokemonTargeted)
-		scene = PokemonPokedexInfo_Scene.new
-		screen = PokemonPokedexInfoScreen.new(scene)
-		screen.pbStartSceneSingle(pokemonTargeted.species,true)
+		openSingleDexScreen(pokemonTargeted)
     end
 end
