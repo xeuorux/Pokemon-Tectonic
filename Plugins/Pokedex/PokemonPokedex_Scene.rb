@@ -1126,22 +1126,27 @@ class PokemonPokedex_Scene
 	end
 	
 	def searchByMisc()
-		miscSearches = []
-		cmdMapFound = -1
-		cmdWildItem = -1
-		cmdIsQuarantined = -1
-		cmdIsLegendary = -1
-		cmdMovesetConformance = -1
+		miscSearches 			= []
+		cmdMapFound 			= -1
+		cmdZooSection 			= -1
+		cmdWildItem 			= -1
+		cmdIsQuarantined 		= -1
+		cmdIsLegendary 			= -1
+		cmdMovesetConformance 	= -1
+		cmdOneAbility 			= -1
 		miscSearches[cmdMapFound = miscSearches.length] = _INTL("Map Found")
 		miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
 		miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined") if $DEBUG
 		miscSearches[cmdIsLegendary = miscSearches.length] = _INTL("Legendary")
 		miscSearches[cmdMovesetConformance = miscSearches.length] = _INTL("Moveset Noncomfority") if $DEBUG
+		miscSearches[cmdOneAbility = miscSearches.length] = _INTL("One Ability") if $DEBUG
 		miscSearches[cmdGeneration = miscSearches.length] = _INTL("Generation")
 		miscSearches.push(_INTL("Cancel"))
 		searchSelection = pbMessage("Which search?",miscSearches,miscSearches.length)
 		if cmdMapFound > -1 && searchSelection == cmdMapFound
 			return searchByMapFound() 
+		elsif cmdZooSection > -1 && searchSelection == cmdZooSection
+			return searchByZooSection()
 		elsif cmdIsQuarantined > -1 && searchSelection == cmdIsQuarantined
 			return searchByQuarantined()
 		elsif cmdIsLegendary > -1 && searchSelection == cmdIsLegendary
@@ -1152,7 +1157,22 @@ class PokemonPokedex_Scene
 			return searchByGeneration()
 		elsif cmdMovesetConformance > -1 && searchSelection == cmdMovesetConformance
 			return searchByMovesetConformance()
+		elsif cmdOneAbility > -1 && searchSelection == cmdOneAbility
+			return searchByOneAbility()
 		end
+	end
+
+	def searchByOneAbility()
+		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		
+		dexlist = dexlist.find_all { |dex_item|
+				next false if isLegendary(dex_item[0]) && !$Trainer.seen?(dex_item[0]) && !$DEBUG
+				
+				fSpecies = GameData::Species.get(dex_item[0])
+				
+				next fSpecies.abilities.length == 1
+		}
+		return dexlist
 	end
 	
 	def searchByWildItem
