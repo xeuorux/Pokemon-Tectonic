@@ -13,11 +13,15 @@ def openSingleDexScreen(pokemon)
 		$Trainer.pokedex.register_last_seen(pokemon)
 		pokemon = pokemon.species
 	end
+	ret = nil
 	pbFadeOutIn {
 		scene = PokemonPokedexInfo_Scene.new
 		screen = PokemonPokedexInfoScreen.new(scene)
-		screen.pbStartSceneSingle(pokemon)
+		ret = screen.pbStartSceneSingle(pokemon)
 	}
+	if ret.is_a?(Symbol)
+		openSingleDexScreen(ret)
+	end
 end
 
 
@@ -65,11 +69,7 @@ class PokeBattle_Scene
   # Shows the Pokédex entry screen for a newly caught Pokémon
   #=============================================================================
   def pbShowPokedex(species)
-    pbFadeOutIn {
-      scene = PokemonPokedexInfo_Scene.new
-      screen = PokemonPokedexInfoScreen.new(scene)
-      screen.pbStartSceneSingle(species)
-    }
+	openSingleDexScreen(species)
   end
 end
 
@@ -104,14 +104,6 @@ def describeEvolutionMethod(method,parameter=0)
     return "via a method the programmer was too lazy to describe"
 end
 
-def speciesEntry(species)
-	pbFadeOutIn {
-		scene = PokemonPokedexInfo_Scene.new
-		screen = PokemonPokedexInfoScreen.new(scene)
-		screen.pbStartSceneSingle(species)
-	}
-end
-
 module GameData
 	class Species
 		def get_prevolutions(exclude_invalid = false)
@@ -135,24 +127,6 @@ module GameData
 			spDefenseCalc = calcStatGlobal(base_stats[:SPECIAL_DEFENSE],EHP_LEVEL,8)
 			return [(hpCalc * spDefenseCalc / 100),1].max
 		end
-	end
-end
-
-class PokemonPokedexInfoScreen
-	def pbStartSceneSingle(species,battle=false)   # For use from a Pokémon's summary screen
-		region = -1
-		if Settings::USE_CURRENT_REGION_DEX
-		  region = pbGetCurrentRegion
-		  region = -1 if region >= $Trainer.pokedex.dexes_count - 1
-		else
-		  region = $PokemonGlobal.pokedexDex   # National Dex -1, regional Dexes 0, 1, etc.
-		end
-		dexnum = pbGetRegionalNumber(region,species)
-		dexnumshift = Settings::DEXES_WITH_OFFSETS.include?(region)
-		dexlist = [[species,GameData::Species.get(species).name,0,0,dexnum,dexnumshift]]
-		@scene.pbStartScene(dexlist,0,region,battle)
-		@scene.pbScene
-		@scene.pbEndScene
 	end
 end
 
@@ -219,3 +193,33 @@ def catchDifficultyFromRareness(rareness)
 	end
 	return "-"
 end
+
+def getEvolutionsRecursive(species_data)
+	evolutions = species_data.get_evolutions
+	if evolutions.length == 0
+		return {}
+	else
+		newEvolutions = {}
+		evolutions.each do |entry|
+			addToHashOfArrays(newEvolutions,species_data.species,entry)
+		end
+		evolutions.each do |evolutionEntry|
+			data = GameData::Species.get(evolutionEntry[0])
+			furtherEvos = getEvolutionsRecursive(data)
+			furtherEvos.each do |speciesInvolved,furtherEvolutionEntryArray|
+				furtherEvolutionEntryArray.each do |furtherEvolutionEntry|
+					addToHashOfArrays(newEvolutions,speciesInvolved,furtherEvolutionEntry)
+				end
+			end
+		end
+		return newEvolutions
+	end
+  end
+  
+  def addToHashOfArrays(hash_of_arrays,key,newValue)
+	if hash_of_arrays.has_key?(key)
+		hash_of_arrays[key].push(newValue)
+	else
+		hash_of_arrays[key] = [newValue]
+	end
+  end
