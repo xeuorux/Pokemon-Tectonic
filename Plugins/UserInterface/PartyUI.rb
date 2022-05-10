@@ -333,12 +333,7 @@ class PokemonPartyScreen
 		  pkmn.name=pbGet(5)
 		end
 	  elsif cmdPokedex >=0 && command==cmdPokedex
-      $Trainer.pokedex.register_last_seen(pkmn)
-      pbFadeOutIn {
-        scene = PokemonPokedexInfo_Scene.new
-        screen = PokemonPokedexInfoScreen.new(scene)
-        screen.pbStartSceneSingle(pkmn.species)
-      }
+      openSingleDexScreen(pkmn)
 	  elsif cmdSetDown >= 0 && command==cmdSetDown
       if $PokEstate.setDownIntoEstate(pkmn)
         @party[pkmnid] = nil
@@ -477,12 +472,7 @@ class PokeBattle_Scene
       elsif cmdSummary>=0 && command==cmdSummary   # Summary
         scene.pbSummary(idxParty,true)
 	  elsif cmdPokedex && command==cmdPokedex
-        $Trainer.pokedex.register_last_seen(modParty[idxParty])
-		pbFadeOutIn {
-		  dexscene = PokemonPokedexInfo_Scene.new
-		  dexscreen = PokemonPokedexInfoScreen.new(dexscene)
-		  dexscreen.pbStartSceneSingle(modParty[idxParty].species)
-		}
+        openSingleDexScreen(modParty[idxParty])
       end
     end
     # Close party screen

@@ -552,4 +552,40 @@ class PokemonSummary_Scene
 		# Draw all text
 		pbDrawTextPositions(overlay,textpos)
 	end
+
+	def pbOptions
+		dorefresh = false
+		commands   = []
+		cmdGiveItem = -1
+		cmdTakeItem = -1
+		cmdPokedex  = -1
+		cmdMark     = -1
+		if !@pokemon.egg?
+		  commands[cmdGiveItem = commands.length] = _INTL("Give item")
+		  commands[cmdTakeItem = commands.length] = _INTL("Take item") if @pokemon.hasItem?
+		  commands[cmdPokedex = commands.length]  = _INTL("View Pokédex") if $Trainer.has_pokedex
+		end
+		commands[cmdMark = commands.length]       = _INTL("Mark")
+		commands[commands.length]                 = _INTL("Cancel")
+		command = pbShowCommands(commands)
+		if cmdGiveItem>=0 && command==cmdGiveItem
+		  item = nil
+		  pbFadeOutIn {
+			scene = PokemonBag_Scene.new
+			screen = PokemonBagScreen.new(scene,$PokemonBag)
+			item = screen.pbChooseItemScreen(Proc.new { |itm| GameData::Item.get(itm).can_hold? })
+		  }
+		  if item
+			dorefresh = pbGiveItemToPokemon(item,@pokemon,self,@partyindex)
+		  end
+		elsif cmdTakeItem>=0 && command==cmdTakeItem
+		  dorefresh = pbTakeItemFromPokemon(@pokemon,self)
+		elsif cmdPokedex>=0 && command==cmdPokedex
+		  openSingleDexScreen(@pokemon)
+		  dorefresh = true
+		elsif cmdMark>=0 && command==cmdMark
+		  dorefresh = pbMarking(@pokemon)
+		end
+		return dorefresh
+	  end
 end

@@ -82,19 +82,9 @@ class PokemonStorageScreen
               pbRelease(selected,@heldpkmn)
             elsif cmdPokedex>=0 && command==cmdPokedex #Pokedex
               if @heldpkmn
-                $Trainer.pokedex.register_last_seen(@heldpkmn)
-                pbFadeOutIn {
-                  scene = PokemonPokedexInfo_Scene.new
-                  screen = PokemonPokedexInfoScreen.new(scene)
-                  screen.pbStartSceneSingle(@heldpkmn.species)
-                      }			
+                openSingleDexScreen(@heldpkmn)		
               else
-                $Trainer.pokedex.register_last_seen(pokemon)
-                pbFadeOutIn {
-                  scene = PokemonPokedexInfo_Scene.new
-                  screen = PokemonPokedexInfoScreen.new(scene)
-                  screen.pbStartSceneSingle(pokemon.species)
-                      }
+                openSingleDexScreen(pokemon)
               end
             elsif cmdDebug>=0 && command==cmdDebug   # Debug
               pbPokemonDebug((@heldpkmn) ? @heldpkmn : pokemon,selected,heldpoke)

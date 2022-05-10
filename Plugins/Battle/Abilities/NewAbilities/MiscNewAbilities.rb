@@ -66,10 +66,11 @@ BattleHandlers::AbilityOnEnemySwitchIn.add(:DETERRANT,
   proc { |ability,switcher,bearer,battle|
     PBDebug.log("[Ability triggered] #{bearer.pbThis}'s #{bearer.abilityName}")
     battle.pbShowAbilitySplash(bearer)
-    if switcher.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       switcher.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      battle.scene.pbDamageAnimation(user)
-      user.pbReduceHP(user.totalhp/8,false)
+    if switcher.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      battle.scene.pbDamageAnimation(switcher)
+      reduce = switcher.totalhp/8
+      reduce /= 4 if switcher.boss?
+      switcher.pbReduceHP(reduce,false)
       battle.pbDisplay(_INTL("{1} was attacked on sight!",user.pbThis))
     end
     battle.pbHideAbilitySplash(bearer)

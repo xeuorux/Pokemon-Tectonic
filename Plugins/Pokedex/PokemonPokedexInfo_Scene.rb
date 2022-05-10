@@ -697,9 +697,9 @@ class PokemonPokedexInfo_Scene
 		else
 			allEvolutions.each do |fromSpecies,evolutions|
 			  evolutions.each do |evolution|
+				  species = evolution[0]
 				  method = evolution[1]
 				  parameter = evolution[2]
-				  species = evolution[0]
 				  next if method.nil? || species.nil?
 				  speciesData = GameData::Species.get_species_form(species,i[2])
 				  next if speciesData.nil?
@@ -722,36 +722,6 @@ class PokemonPokedexInfo_Scene
         end
       end
     end
-  end
-  
-  def getEvolutionsRecursive(species_data)
-	evolutions = species_data.get_evolutions
-	if evolutions.length == 0
-		return {}
-	else
-		newEvolutions = {}
-		evolutions.each do |entry|
-			addToHashOfArrays(newEvolutions,species_data.species,entry)
-		end
-		evolutions.each do |evolutionEntry|
-			data = GameData::Species.get(evolutionEntry[0])
-			furtherEvos = getEvolutionsRecursive(data)
-			furtherEvos.each do |speciesInvolved,furtherEvolutionEntryArray|
-				furtherEvolutionEntryArray.each do |furtherEvolutionEntry|
-					addToHashOfArrays(newEvolutions,speciesInvolved,furtherEvolutionEntry)
-				end
-			end
-		end
-		return newEvolutions
-	end
-  end
-  
-  def addToHashOfArrays(hash_of_arrays,key,newValue)
-	if hash_of_arrays.has_key?(key)
-		hash_of_arrays[key].push(newValue)
-	else
-		hash_of_arrays[key] = [newValue]
-	end
   end
   
   def drawPageTutorMoves
