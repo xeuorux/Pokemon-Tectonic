@@ -27649,11 +27649,11 @@ BattlerShadowSize = 3
 [840]
 Name = Applin
 InternalName = APPLIN
+Notes = TODO: add level 60
 Type1 = GRASS
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,50,50,20,75,80
-Notes = TODO: add level 60
 # Total = 325
 GenderRate = Female50Percent
 GrowthRate = Erratic
@@ -27847,10 +27847,10 @@ BattlerShadowSize = 2
 [846]
 Name = Arrokuda
 InternalName = ARROKUDA
+Notes = TODO: rework moveset
 Type1 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 51,73,50,76,50,50
-Notes = TODO: rework moveset
 # Total = 350
 GenderRate = Female50Percent
 GrowthRate = Slow
@@ -27948,7 +27948,6 @@ Name = Toxtricity
 InternalName = TOXTRICITY
 Type1 = ELECTRIC
 Type2 = POISON
-Notes = 
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,88,60,70,94,60
 # Total = 437

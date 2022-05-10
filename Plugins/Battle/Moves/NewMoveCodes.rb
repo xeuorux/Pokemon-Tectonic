@@ -1561,7 +1561,6 @@ end
 class PokeBattle_Move_54A < PokeBattle_Move
 
 	def pbEffectAgainstTarget(user,target)
-		echoln "we made it"
 		return false if target.effects[PBEffects::Curse] == true
 		target.effects[PBEffects::Curse] = true
 		@battle.pbDisplay(_INTL("{1} was cursed!", target.pbThis))
@@ -1859,4 +1858,41 @@ class PokeBattle_Move_557 < PokeBattle_Move
     user.pbRecoverHPFromDrain(hpGain,target) if drain
   end
   
+end
+
+#===============================================================================
+# Forces the target to use a substitute (Doll Stitch)
+#===============================================================================
+class PokeBattle_Move_558 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		if target.boss
+			@battle.pbDisplay(_INTL("But it failed!"))
+			return true
+		end
+		if target.effects[PBEffects::Substitute]>0
+			@battle.pbDisplay(_INTL("{1} already has a substitute!",target.pbThis))
+			return true
+		end
+		@subLife = target.totalhp/4
+		@subLife = 1 if @subLife<1
+		if target.hp<=@subLife
+			@battle.pbDisplay(_INTL("But {1} does not have enough HP left to make a substitute!",target.pbThis))
+			return true
+		end
+		return false
+	end
+=begin	#this doesn't currently work - make work if other code doesn't
+  def pbOnStartUse(user,targets)
+    targets[0].pbReduceHP(@subLife,false,false)
+    targets[0].pbItemHPHealCheck
+  end
+=end
+  def pbEffectAgainstTarget(user,target)
+    target.pbReduceHP(@subLife,false,false)
+    target.pbItemHPHealCheck
+    target.effects[PBEffects::Trapping]     = 0
+    target.effects[PBEffects::TrappingMove] = nil
+    target.effects[PBEffects::Substitute]   = @subLife
+    @battle.pbDisplay(_INTL("{1} put {2} in a substitute!",user.pbThis,target.pbThis))
+  end
 end

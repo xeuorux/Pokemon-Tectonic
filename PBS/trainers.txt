@@ -16,17 +16,17 @@ Pokemon = SALANDIT,50
 #-------------------------------
 [HIKER,Conroy]
 Policies = CURSE_PERMANENT_SUN
-Pokemon = CLEFABLE,70
+Pokemon = CLEFABLE,5
     AbilityIndex = 1
-Pokemon = SNORLAX,70
+Pokemon = SNORLAX,5
     AbilityIndex = 1
-Pokemon = PRIMEAPE,70
+Pokemon = PRIMEAPE,5
     AbilityIndex = 0
-Pokemon = NIBELONG,70
+Pokemon = NIBELONG,5
     AbilityIndex = 1
-Pokemon = CONIFEAR,70
+Pokemon = CONIFEAR,5
     AbilityIndex = 1
-Pokemon = BLASFEMMIE,70
+Pokemon = BLASFEMMIE,5
     AbilityIndex = 0
 #-------------------------------
 [BUGCATCHER,Colin]
