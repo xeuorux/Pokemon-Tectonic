@@ -23,7 +23,7 @@ def openSingleDexScreen(pokemon)
 		openSingleDexScreen(ret)
 	end
 end
-
+alias speciesEntry openSingleDexScreen
 
 def unlockDex
   $Trainer.pokedex.unlock(-1)
