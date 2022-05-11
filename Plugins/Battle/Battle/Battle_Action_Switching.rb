@@ -246,7 +246,7 @@ class PokeBattle_Battle
         battler.pbPoison(nil,_INTL("{1} was poisoned by the poison spikes!",battler.pbThis))
       end
     end
-	# Flame Spikes
+	  # Flame Spikes
     if battler.pbOwnSide.effects[PBEffects::FlameSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? &&
        !battler.airborne?
       if battler.pbHasType?(:FIRE)
@@ -265,13 +265,13 @@ class PokeBattle_Battle
         battler.pbItemStatRestoreCheck
       end
     end
-	# Proudfire and similar abilities
-    if battler.battle.turnCount > 0
-      battler.battle.eachOtherSideBattler(battler.index) do |enemy|
-		  if enemy.abilityActive?
-			BattleHandlers.triggerAbilityOnEnemySwitchIn(enemy.ability,battler,enemy,battler.battle)
-		  end
-	  end
+	  # Proudfire and similar abilities
+    if @turnCount > 0
+      eachOtherSideBattler(battler.index) do |enemy|
+        if enemy.abilityActive?
+          BattleHandlers.triggerAbilityOnEnemySwitchIn(enemy.ability,battler,enemy,self)
+        end
+	    end
     end
     # Battler faints if it is knocked out because of an entry hazard above
     if battler.fainted?
@@ -281,7 +281,7 @@ class PokeBattle_Battle
       return false
     end
     battler.pbCheckForm
-	battlerEnterDialogue(battler)
+	  battlerEnterDialogue(battler)
     return true
   end
   

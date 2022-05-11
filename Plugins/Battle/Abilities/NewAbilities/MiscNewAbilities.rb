@@ -62,7 +62,7 @@ BattleHandlers::UserAbilityEndOfMove.copy(:HUBRIS,:GRIMNEIGH)
 # AbilityOnEnemySwitchIn handlers
 #===============================================================================
 
-BattleHandlers::AbilityOnEnemySwitchIn.add(:DETERRANT,
+BattleHandlers::AbilityOnEnemySwitchIn.add(:DETERRENT,
   proc { |ability,switcher,bearer,battle|
     PBDebug.log("[Ability triggered] #{bearer.pbThis}'s #{bearer.abilityName}")
     battle.pbShowAbilitySplash(bearer)
