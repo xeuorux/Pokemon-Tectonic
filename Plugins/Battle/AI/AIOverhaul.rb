@@ -544,7 +544,7 @@ class PokeBattle_AI
       end
       
       if list.length > 0
-        list.sort_by!{|entry| entry[1]}
+        list.sort_by!{|entry| -entry[1]}
         PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are:")
         list.each do |listEntry|
           enemyTrainer = @battle.pbGetOwnerFromBattlerIndex(battler.index)

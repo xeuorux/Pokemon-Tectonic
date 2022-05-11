@@ -286,7 +286,7 @@ BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
 	  reduce = user.totalhp/8
 	  reduce /= 4 if user.boss
-	  reduce.ceil
+	  reduce = reduce.ceil
 	  user.damageState.displayedDamage = reduce
 	  battle.scene.pbDamageAnimation(user)
       user.pbReduceHP(reduce,false)
