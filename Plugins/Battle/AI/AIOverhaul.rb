@@ -549,7 +549,7 @@ class PokeBattle_AI
         list.each do |listEntry|
           enemyTrainer = @battle.pbGetOwnerFromBattlerIndex(battler.index)
           allyPokemon = enemyTrainer.party[listEntry[0]]
-          PBDebug.log("#{allyPokemon.name}: #{listEntry[1]}")
+          PBDebug.log("#{allyPokemon.name || "Party member #{listEntry[0]}"}: #{listEntry[1]}")
         end
         if batonPass >= 0 && @battle.pbRegisterMove(idxBattler,batonPass,false)
           PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Baton Pass to avoid Perish Song")
