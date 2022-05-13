@@ -1,6 +1,6 @@
 MAIN_QUEST_STAGES = 
 {
-    :NO_HELP                        => "No assistance is available yet.",
+    :NO_HELP                        => "No assistance is available yet. This feature will be implemented in the future!",
     :INTRO                          => "Receive your first starter and your crucial starting items from Professor Tamarind.",
     :CASABA_START                   => "Search the island for Lambert, the first Makya league Gym Leader. Professor Tamarind said that he can be found somewhere in Bluepoint Beach, west of Casaba Villa.",
     :FIND_YOUR_FIRST_DYNAMITE       => "Find a Dynamite Stick to destroy the rock which blocks the way to Bluepoint Beach. You can find one in the Foreclosed Tunnel to the north of Casaba Villa.",
