@@ -32,3 +32,35 @@ def goToLabel(label_name)
 		temp_index += 1
 	  end
 end
+
+def playerDirectlyWest?
+	eventPosX = get_self.original_x
+	eventPosY = get_character(0).original_y
+	playerCheckPosX = eventPosX - 1
+	playerCheckPosY = eventPosY
+	return $game_player.x == playerCheckPosX && $game_player.y == playerCheckPosY
+end
+
+def playerDirectlyEast?
+	eventPosX = get_self.original_x
+	eventPosY = get_self.original_y
+	playerCheckPosX = eventPosX + 1
+	playerCheckPosY = eventPosY
+	return $game_player.x == playerCheckPosX && $game_player.y == playerCheckPosY
+end
+
+def playerDirectlyNorth?
+	eventPosX = get_self.original_x
+	eventPosY = get_self.original_y
+	playerCheckPosX = eventPosX
+	playerCheckPosY = eventPosY - 1
+	return $game_player.x == playerCheckPosX && $game_player.y == playerCheckPosY
+end
+
+def playerDirectlySouth?
+	eventPosX = get_self.original_x
+	eventPosY = get_self.original_y
+	playerCheckPosX = eventPosX
+	playerCheckPosY = eventPosY + 1
+	return $game_player.x == playerCheckPosX && $game_player.y == playerCheckPosY
+end
