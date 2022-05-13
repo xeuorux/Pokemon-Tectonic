@@ -26,7 +26,7 @@ end
 def defeatMultipleBosses(item=nil,count=1,eventIDs=[])
 	$PokemonGlobal.respawnPoint = nil
 
-	events = eventIDs.map! { |eventID| get_character(eventID)}
+	events = eventIDs.map { |eventID| get_character(eventID)}
 	255.downto(0) do |i|
 		next if i % 3 != 0
 		events.each do |event|
@@ -36,7 +36,7 @@ def defeatMultipleBosses(item=nil,count=1,eventIDs=[])
 	end
 
 	eventIDs.each do |id|
-		pbSetSelfSwitch(id,'A',true,$game_map.map_id)
+		pbSetSelfSwitch(id,'A',true)
 	end
 
 	return if item == nil
