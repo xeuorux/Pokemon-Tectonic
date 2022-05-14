@@ -2891,11 +2891,11 @@ Pokemon = LICKILICKY,48
     Item = LEFTOVERS
 #-------------------------------
 [ELDER,Huy]
+Pokemon = CRAWDAUNT,49
+    AbilityIndex = 0
 Pokemon = SCOLIPEDE,48
     AbilityIndex = 1
     Item = WEAKNESSPOLICY
-Pokemon = CRAWDAUNT,49
-    AbilityIndex = 0
 Pokemon = CINDERACE,49
     AbilityIndex = 0
 Pokemon = FLORGES,48
