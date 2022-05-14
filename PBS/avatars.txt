@@ -1018,3 +1018,20 @@ PostPrimeMoves = BONERUSH
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
+#-------------------------------
+[GARDEVOIR]
+Ability = FEEDBACK
+Moves = PSYCHOBOOST,PRIMEVALTORMENT
+PostPrimeMoves = DARKPULSE
+Turns = 2
+HPMult = 2.0
+DMGMult = 1
+#-------------------------------
+[GALLADE]
+Ability = SWORDSMAN
+Moves = CLOSECOMBAT,PRIMEVALLIGHTNINGDANCE
+PostPrimeMoves = ELECTROSLASH
+Turns = 2
+HPMult = 2.0
+DMGMult = 1
+#-------------------------------
