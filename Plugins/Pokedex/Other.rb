@@ -20,6 +20,7 @@ def openSingleDexScreen(pokemon)
 		ret = screen.pbStartSceneSingle(pokemon)
 	}
 	if ret.is_a?(Symbol)
+		echoln("Opening single dex screen from hyperlink to: #{ret}")
 		openSingleDexScreen(ret)
 	end
 end
@@ -214,12 +215,34 @@ def getEvolutionsRecursive(species_data)
 		end
 		return newEvolutions
 	end
-  end
+end
   
-  def addToHashOfArrays(hash_of_arrays,key,newValue)
+def getPrevolutionsRecursive(species_data)
+	prevolutions_array = species_data.get_prevolutions
+	if prevolutions_array.nil? || prevolutions_array.length == 0
+		return {}
+	else
+		newPrevolutions = {}
+		prevolutions_array.each do |evolutionEntry|
+			data = GameData::Species.get(evolutionEntry[0])
+			furtherPrevos = getPrevolutionsRecursive(data)
+			furtherPrevos.each do |speciesInvolved,furtherPrevolutionEntryArray|
+				furtherPrevolutionEntryArray.each do |furtherPrevolutionEntry|
+					addToHashOfArrays(newPrevolutions,speciesInvolved,furtherPrevolutionEntry)
+				end
+			end
+		end
+		prevolutions_array.each do |entry|
+			addToHashOfArrays(newPrevolutions,species_data.species,entry)
+		end
+		return newPrevolutions
+	end
+end
+
+def addToHashOfArrays(hash_of_arrays,key,newValue)
 	if hash_of_arrays.has_key?(key)
 		hash_of_arrays[key].push(newValue)
 	else
 		hash_of_arrays[key] = [newValue]
 	end
-  end
+end

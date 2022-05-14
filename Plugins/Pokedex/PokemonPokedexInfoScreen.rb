@@ -17,9 +17,16 @@ class PokemonPokedexInfoScreen
     dexlist = []
     species_data = GameData::Species.get(species)
 
+    mainSpeciesIndex = 0
+
     # Find all evolution tree members of the pokemon
     allSpecies = []
-    allSpecies = allSpecies.concat(species_data.get_prevolutions.map{|entry| entry[0]})
+    getPrevolutionsRecursive(species_data).each do |key, value|
+      value.each do |evo|
+        allSpecies.push(evo[0])
+      end
+    end
+    mainSpeciesIndex = allSpecies.length
     allSpecies.push(species)
     getEvolutionsRecursive(species_data).each do |key, value|
       value.each do |evo|
@@ -28,7 +35,6 @@ class PokemonPokedexInfoScreen
     end
     allSpecies.uniq!
     allSpecies.compact!
-    echoln("Opening the dex with species: #{allSpecies.to_s}")
 
     # Create a dexlist with all the evo members
     allSpecies.each do |sp|
@@ -38,7 +44,7 @@ class PokemonPokedexInfoScreen
     end
 
     # Start the scene
-		@scene.pbStartScene(dexlist,0,region,battle,true)
+		@scene.pbStartScene(dexlist,mainSpeciesIndex,region,battle,true)
 		ret = @scene.pbScene
 		@scene.pbEndScene
     return ret   # Last species viewed in dexlist
