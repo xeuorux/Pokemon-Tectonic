@@ -540,8 +540,18 @@ ShowArea = false
 Bicycle = false
 HealingSpot = 25,13,17
 #-------------------------------
+[083]
+# Chasm HQ Station
+Outdoor = false
+ShowArea = false
+Bicycle = false
+HealingSpot = 214,21,15
+#-------------------------------
 [084]
 # Jirachi's Chamber
+Outdoor = false
+ShowArea = false
+Bicycle = false
 Environment = Cave
 #-------------------------------
 [086]
@@ -1164,3 +1174,21 @@ Weather = HeavyRain,100
 #-------------------------------
 [241]
 # Grouz Mine Sinkhole
+#-------------------------------
+[243]
+# Chasm Base Mess Hall
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[250]
+# Chasm Base Lab
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[251]
+# Samorn's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
