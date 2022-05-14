@@ -25222,7 +25222,6 @@ BattlerShadowSize = 2
 [765]
 Name = Oranguru
 InternalName = ORANGURU
-Notes = TODO: rework moveset
 Type1 = NORMAL
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
