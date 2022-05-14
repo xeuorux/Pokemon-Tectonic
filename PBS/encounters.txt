@@ -583,7 +583,7 @@ Special,1
 Special,20
     1,EEVEE,40
 #-------------------------------
-[211] # Twin Peaks
+[211] # Split Peaks
 Land,20
     20,KANGASKHAN,37,39
     20,PINSIR,37,39

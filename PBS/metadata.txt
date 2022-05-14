@@ -1082,7 +1082,7 @@ BattleBack =
 Environment = Volcano
 #-------------------------------
 [211]
-# Twin Peaks
+# Split Peaks
 Outdoor = true
 ShowArea = true
 Bicycle = true
