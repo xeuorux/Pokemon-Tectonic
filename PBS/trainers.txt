@@ -2326,22 +2326,21 @@ Pokemon = CHIMECHO,34
     Item = SHELLBELL
 #-------------------------------
 [BEAUTY3,Ester]
-Pokemon = AMPHAROS,34
+Pokemon = AMPHAROS,42
     AbilityIndex = 0
-Pokemon = VIBRAVA,33
+Pokemon = SCARAPACE,44
     AbilityIndex = 1
     Item = BUGGEM
-Pokemon = CHANSEY,34
-    Moves = SEISMICTOSS,LULLABY,POUT
+Pokemon = MIMIKYU,43
     AbilityIndex = 0
-    Item = EVIOLITE
-Pokemon = GRAPPLOCT,33
+    Item = LIFEORB
+Pokemon = GRAPPLOCT,42
     AbilityIndex = 1
 #-------------------------------
 [AROMALADY3,Marion]
 Pokemon = VAPOREON,33
     AbilityIndex = 0
-Pokemon = WHIRLIPEDE,34
+Pokemon = VIBRAVA,34
     AbilityIndex = 1
     Item = LEFTOVERS
 Pokemon = FLOETTE,33
