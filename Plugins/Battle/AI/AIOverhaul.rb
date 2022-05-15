@@ -549,6 +549,7 @@ class PokeBattle_AI
         list.each do |listEntry|
           enemyTrainer = @battle.pbGetOwnerFromBattlerIndex(battler.index)
           allyPokemon = enemyTrainer.party[listEntry[0]]
+          next if allyPokemon.nil?
           PBDebug.log("#{allyPokemon.name || "Party member #{listEntry[0]}"}: #{listEntry[1]}")
         end
         if batonPass >= 0 && @battle.pbRegisterMove(idxBattler,batonPass,false)
