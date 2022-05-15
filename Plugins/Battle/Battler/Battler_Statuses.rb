@@ -6,8 +6,6 @@ class PokeBattle_Battler
 		return statuses
 	end
 
-	
-
 	#=============================================================================
 	# Generalised checks for whether a status problem can be inflicted
 	#=============================================================================
@@ -557,11 +555,6 @@ class PokeBattle_Battler
 			@battle.pbDisplay(_INTL("But it failed!")) if showMessages
 			return false
 		end
-		# Terrains immunity
-		if affectedByTerrain? && @battle.field.terrain == :Misty
-			@battle.pbDisplay(_INTL("{1} surrounds itself with misty terrain!",pbThis(true))) if showMessages
-			return false
-		end
 		if selfInflicted || !@battle.moldBreaker
 			if hasActiveAbility?(:OWNTEMPO)
 				if showMessages
@@ -590,9 +583,9 @@ class PokeBattle_Battler
 
 	def pbConfuse(msg=nil)
 		@effects[PBEffects::Confusion] = pbConfusionDuration
-	@effects[PBEffects::ConfusionChance] = 0
+		@effects[PBEffects::ConfusionChance] = 0
 		@battle.pbCommonAnimation("Confusion",self)
-		msg = _INTL("{1} became confused!",pbThis) if !msg || msg==""
+		msg = _INTL("{1} became confused! It will hit itself with its own Attack!",pbThis) if !msg || msg==""
 		@battle.pbDisplay(msg)
 		PBDebug.log("[Lingering effect] #{pbThis}'s confusion count is #{@effects[PBEffects::Confusion]}")
 		# Confusion cures
@@ -624,11 +617,6 @@ class PokeBattle_Battler
 			@battle.pbDisplay(_INTL("But it failed!")) if showMessages
 			return false
 		end
-		# Terrains immunity
-		if affectedByTerrain? && @battle.field.terrain == :Misty
-			@battle.pbDisplay(_INTL("{1} surrounds itself with misty terrain!",pbThis(true))) if showMessages
-			return false
-		end
 		if selfInflicted || !@battle.moldBreaker
 			if hasActiveAbility?(:OWNTEMPO)
 				if showMessages
@@ -657,9 +645,9 @@ class PokeBattle_Battler
 	
 	def pbCharm(msg=nil)
 		@effects[PBEffects::Charm] = pbCharmDuration
-	@effects[PBEffects::CharmChance] = 0
+		@effects[PBEffects::CharmChance] = 0
 		@battle.pbAnimation(:LUCKYCHANT,self,nil)
-		msg = _INTL("{1} became charmed!",pbThis) if !msg || msg==""
+		msg = _INTL("{1} became charmed! It will hit itself with its own Sp. Atk!",pbThis) if !msg || msg==""
 		@battle.pbDisplay(msg)
 		PBDebug.log("[Lingering effect] #{pbThis}'s charm count is #{@effects[PBEffects::Confusion]}")
 		# Charm cures
@@ -674,7 +662,7 @@ class PokeBattle_Battler
 
 	def pbCureCharm
 		@effects[PBEffects::Charm] = 0
-	@effects[PBEffects::CharmChance] = 0
+		@effects[PBEffects::CharmChance] = 0
 	end
 
 	#=============================================================================
@@ -749,7 +737,6 @@ class PokeBattle_Battler
 		return if hasActiveAbility?(:INNERFOCUS) && !@battle.moldBreaker
 		@effects[PBEffects::Flinch] = true
 	end
-	
 	
 	def pbCanFrozenSynchronize?(target)
 		return pbCanSynchronizeStatus?(:FROZEN, target)
