@@ -836,8 +836,8 @@ class PokemonPokedexInfo_Scene
 				category = "Powder"
 			when 'm'
 				category = "Pulse"
-			when 'n'
-				category = "Bomb"
+			# when 'n'
+			# 	category = "Bomb"
 			when 'o'
 				category = "Dance"
 			when 'p'
