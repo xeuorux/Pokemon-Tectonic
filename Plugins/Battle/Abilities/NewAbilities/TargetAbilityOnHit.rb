@@ -256,3 +256,16 @@ BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
     battle.pbHideAbilitySplash(target)
   }
 )
+
+
+BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
+  proc { |ability,user,target,move,battle|
+    next if !Effectiveness.resistant?(target.damageState.typeMod)
+	if target.pbCanRaiseStatStage?(:ATTACK,target) || target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
+		battle.pbShowAbilitySplash(target)
+		target.pbRaiseStatStageByAbility(:ATTACK,1,target,false) if target.pbCanRaiseStatStage?(:ATTACK,target)
+		target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target,false) if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
+		battle.pbHideAbilitySplash(target)
+	end
+  }
+)

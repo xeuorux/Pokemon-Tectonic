@@ -308,4 +308,5 @@ class PokeBattle_Battler
 				stages[:SPECIAL_DEFENSE] > 0 || stages[:ACCURACY] > 0 ||
 				stages[:EVASION] > 0
 	end
+  	
 end

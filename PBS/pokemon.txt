@@ -3016,9 +3016,9 @@ BattlerShadowSize = 3
 [92]
 Name = Gastly
 InternalName = GASTLY
+Notes = TODO: add additional moves
 Type1 = GHOST
 Type2 = POISON
-Notes = TODO: add additional moves
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 45,35,40,80,90,45
 # Total = 335
