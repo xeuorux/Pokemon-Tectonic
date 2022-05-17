@@ -730,7 +730,7 @@
 669,ROLLOUT,Rollout,544,30,ROCK,Physical,100,20,0,NearOther,0,abef,"The user continually rolls into the target over five turns. It becomes stronger each time it hits."
 670,ROCKBLAST,Rock Blast,0C0,25,ROCK,Physical,100,10,0,NearOther,0,befn,"The user hurls hard rocks at the target. Two to five rocks are launched in quick succession."
 671,ROCKPOLISH,Rock Polish,030,0,ROCK,Status,0,20,0,User,0,d,"The user polishes its body to reduce drag. It can sharply raise the Speed stat."
-672,SANDSTORM,Sandstorm,101,0,ROCK,Status,0,10,0,BothSides,0,,"Summons sandstorm for five turns. Damages non-Rock,non-Ground,non-Steel-types every turn. Rock-types get +50% Sp. Def."
+672,SANDSTORM,Sandstorm,101,0,ROCK,Status,0,10,0,BothSides,0,,"Summons sandstorm for five turns. Damages non-Rock, Ground, or Steel-types every turn. Rock-types get +50% Sp. Def."
 673,STEALTHROCK,Stealth Rock,105,0,ROCK,Status,0,20,0,FoeSide,0,c,"The user lays a trap of levitating stones around the foe. The trap hurts foes that switch into battle."
 674,WIDEGUARD,Wide Guard,0AC,0,ROCK,Status,0,10,0,UserSide,3,d,"The user and its allies are protected from wide-ranging attacks for a turn. Always fails if used in succession."
 675,TARSHOT,Tar Shot,186,0,ROCK,Status,0,15,0,NearOther,3,bce,"Pours sticky tar over the target, lowering its Speed stat and making it weak to Fire."
