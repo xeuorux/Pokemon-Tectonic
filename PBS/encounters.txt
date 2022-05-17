@@ -680,7 +680,7 @@ Puddle,21
     25,FOONGUS,34,36
     25,GIRAFARIG,34,36
 #-------------------------------
-[217] # Candy Town Placeholder
+[217] # Candy Town
 Land,20
     25,MAWILE,44,46
     25,MILCERY,44,46

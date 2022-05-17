@@ -218,6 +218,8 @@
 312,LEADER_Zoe_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,,[]
 313,LEADER_Noel,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,,[]
 314,LEADER_Noel_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,,[]
+315,LEADER_Victoire,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,,[]
+316,LEADER_Victoire_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,,[]
 400,DEVJUGGLER,Developer,80,,,,Male,,,[]
 401,DEVCOOLTRAINER_M4,Developer,80,,,,Male,,,[]
 402,DEVPSYCHIC_M,Developer,80,,,,Male,,,[]
