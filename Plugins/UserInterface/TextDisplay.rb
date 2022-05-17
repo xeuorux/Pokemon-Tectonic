@@ -22,6 +22,7 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   text.gsub!(/\\sign\[([^\]]*)\]/i) {   # \sign[something] gets turned into
     next "\\op\\cl\\ts[]\\w["+$1+"]"    # \op\cl\ts[]\w[something]
   }
+  text = globalMessageReplacements(text)
   text.gsub!(/\\\\/,"\5")
   text.gsub!(/\\1/,"\1")
   if $game_actors

@@ -162,11 +162,7 @@ class Interpreter
     end
     # Translate the text
     message = _MAPINTL($game_map.map_id, message)
-	message.gsub!("’","'")
-	message.gsub!("…","...")
-	message.gsub!("–","-")
-	message.gsub!("Pokemon","Pokémon")
-	message.gsub!("Pokedex","Pokédex")
+	  message = globalMessageReplacements(message)
     # Display the text, with commands/number choosing if appropriate
     @message_waiting = true   # Lets parallel process events work while a message is displayed
     if commands
@@ -387,4 +383,17 @@ def pbStartTrade(pokemonIndex,newpoke,nickname,trainerName,trainerGender=0)
   }
   $Trainer.party[pokemonIndex] = yourPokemon
   refreshFollow(false)
+end
+
+
+def globalMessageReplacements(message)
+    message.gsub!("’","'")
+  	message.gsub!("…","...")
+	  message.gsub!("–","-")
+	  message.gsub!("Pokemon","Pokémon")
+	  message.gsub!("Pokedex","Pokédex")
+    message.gsub!("PokeBall","PokéBall")
+    message.gsub!("PokEstate","PokÉstate")
+
+    return message
 end
