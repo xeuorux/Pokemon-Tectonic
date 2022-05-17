@@ -1216,7 +1216,7 @@ Pokemon = GOURGEIST,28
 Pokemon = CHARJABUG,28
     AbilityIndex = 0
 #-------------------------------
-[POKEMONRANGER_F2,Alyssa]
+[POKEMONRANGER_F2,Amahle]
 Pokemon = GROTLE,27
     AbilityIndex = 1
 Pokemon = LAMPENT,28
