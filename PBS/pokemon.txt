@@ -19751,7 +19751,7 @@ Notes = Made mixed, with level up only providing phys steel and spec electric, b
 Type1 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,55,80,30,55,70
-# Total = 335
+# Total = 345
 GenderRate = Genderless
 GrowthRate = Parabolic
 BaseEXP = 60
@@ -19784,7 +19784,7 @@ InternalName = KLANG
 Type1 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,75,98,50,75,82
-# Total = 445
+# Total = 455
 GenderRate = Genderless
 GrowthRate = Parabolic
 BaseEXP = 154
@@ -19816,7 +19816,7 @@ InternalName = KLINKLANG
 Type1 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 95,95,115,70,95,95
-# Total = 570
+# Total = 565
 GenderRate = Genderless
 GrowthRate = Parabolic
 BaseEXP = 234
