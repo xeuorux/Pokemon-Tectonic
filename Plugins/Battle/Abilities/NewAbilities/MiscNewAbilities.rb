@@ -328,3 +328,11 @@ BattleHandlers::AbilityOnBattlerFainting.add(:HEROICFINALE,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnStatLoss.add(:BELLIGERENT,
+  proc { |ability,battler,stat,user|
+    next if user && !user.opposes?(battler)
+    battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,2,battler)
+	battler.pbRaiseStatStageByAbility(:ATTACK,2,battler)
+  }
+)
