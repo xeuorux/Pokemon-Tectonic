@@ -106,3 +106,11 @@ class ItemIconSprite < SpriteWrapper
 		changeOrigin
 	end
 end
+
+def getAidKitCharges()
+	return $PokemonGlobal.teamHealerCurrentUses
+end
+
+def setAidKitCharges(num)
+	$PokemonGlobal.teamHealerCurrentUses = num
+end
