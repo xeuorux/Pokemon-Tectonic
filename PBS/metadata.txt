@@ -1119,6 +1119,13 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,15,8
 #-------------------------------
+[217]
+# Candy Town
+Outdoor = true
+ShowArea = true
+Bicycle = true
+Weather = Rain,10
+#-------------------------------
 [220]
 # Prizca Sewers East
 Outdoor = false
@@ -1189,6 +1196,43 @@ Bicycle = false
 #-------------------------------
 [251]
 # Samorn's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[253]
+# Bagon Den 2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[259]
+# Casey's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[260]
+# Under the Peaks
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[263]
+# Candy Town Center
+Outdoor = false
+ShowArea = false
+Bicycle = false
+HealingSpot = 217,27,31
+#-------------------------------
+[264]
+# Candy Town Mart
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[270]
+# Casey's Basement
 Outdoor = false
 ShowArea = false
 Bicycle = false
