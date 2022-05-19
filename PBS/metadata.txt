@@ -1056,7 +1056,7 @@ Bicycle = true
 MapPosition = 0,17,3
 #-------------------------------
 [189]
-# Catacombs Antechamber
+# Catacombs
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1120,7 +1120,7 @@ Bicycle = true
 MapPosition = 0,15,8
 #-------------------------------
 [217]
-# Candy Town
+# Sweetrock Harbor
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -1219,14 +1219,14 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [263]
-# Candy Town Center
+# Sweetrock Harbor Center
 Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 217,27,31
 #-------------------------------
 [264]
-# Candy Town Mart
+# Sweetrock Harbor Mart
 Outdoor = false
 ShowArea = false
 Bicycle = false

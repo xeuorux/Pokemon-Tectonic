@@ -674,7 +674,7 @@ Puddle,21
     25,FOONGUS,34,36
     25,GIRAFARIG,34,36
 #-------------------------------
-[217] # Candy Town
+[217] # Sweetrock Harbor
 Land,20
     25,MAWILE,44,46
     25,MILCERY,44,46
@@ -697,16 +697,16 @@ DarkCave,21
 [220] # Prizca Sewers East
 LandSparse,20
     25,DRUDDIGON,34,36
-    25,YAMASK,34,36
     25,MIMIKYU,34,36
     25,SPIRITOMB,34,36
+    25,YAMASK,34,36
 #-------------------------------
 [223] # Prizca Sewers West
 LandSparse,20
     25,ELGYEM,31,33
+    25,GOLETT,33,35
     25,KLEFKI,31,33
     25,SIGILYPH,31,33
-	25,GOLETT,33,35
 #-------------------------------
 [228] # Hidden Laboratory
 Special,1
