@@ -978,7 +978,7 @@
 914,MIASMA,Miasma,046,90,POISON,Special,100,15,10,NearOther,0,bef,"The user shoots a beam of harsh acid at the target. It has a 10% chance to lower Sp. Def."
 915,VENOMORTAR,Venomortar,005,100,POISON,Physical,50,10,100,NearOther,0,bef,"The user blasts a bundle of venom at the target, poisoning it."
 916,MOONIMPACT,Moon Impact,000,110,FAIRY,Physical,85,15,0,NearOther,0,abef,"The user attacks the target with the power of the moon."
-917,AURATRICK,Aura Trick,540,80,FAIRY,Special,100,10,0,NearOther,0,bef,"Damage increases with the user's Sp. Def stat, rather than it's Sp. Atk stat."
+917,AURATRICK,Aura Trick,540,80,FAIRY,Special,100,10,0,NearOther,0,bef,"Damage increases with the user's Sp. Def stat."
 918,DISTORT,Distort,043,40,FIGHTING,Special,100,35,10,NearOther,0,abef,"The user distorts the target's aura, damaging it. This has a 10% chance of reducing the target's defense."
 919,ADRENALASH,Adrenalash,020,90,FIGHTING,Special,100,15,20,NearOther,0,bef,"Forms their excitement into a lash with a 10% chance of raising the user's Sp. Atk."
 920,EARTHRIFT,Earth Rift,50F,130,GROUND,Physical,100,10,0,NearOther,0,abef,"The user cracks the earth under the target with a massive strike. This sharply reduces the user's Attack stat."
