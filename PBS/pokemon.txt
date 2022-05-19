@@ -22018,7 +22018,7 @@ Type1 = FIRE
 Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 89,68,82,109,116,66
-# Total = 529
+# Total = 530
 GenderRate = Female75Percent
 GrowthRate = Parabolic
 BaseEXP = 177
