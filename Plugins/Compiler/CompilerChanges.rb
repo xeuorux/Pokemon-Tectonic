@@ -1125,9 +1125,20 @@ end
             next if ev <= Pokemon::EV_STAT_LIMIT
             raise _INTL("Bad EV: {1} (must be 0-{2}).\r\n{3}", ev, Pokemon::EV_STAT_LIMIT, FileLineData.linereport)
           end
+          if COMBINE_ATTACKING_STATS
+            atkIndex = GameData::Stat.get(:ATTACK).pbs_order
+            spAtkIndex = GameData::Stat.get(:SPECIAL_ATTACK).pbs_order
+
+            if property_value[atkIndex] != property_value[spAtkIndex]
+              attackingStatsValue = [property_value[atkIndex],property_value[spAtkIndex]].max
+              property_value[atkIndex] = attackingStatsValue
+              property_value[spAtkIndex]
+            end
+          end
           ev_total = 0
           GameData::Stat.each_main do |s|
             next if s.pbs_order < 0
+            next if s == :SPECIAL_ATTACK && COMBINE_ATTACKING_STATS
             ev_total += (property_value[s.pbs_order] || property_value[0])
           end
           if ev_total > Pokemon::EV_LIMIT
