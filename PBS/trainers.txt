@@ -1216,7 +1216,7 @@ Pokemon = GOURGEIST,28
 Pokemon = CHARJABUG,28
     AbilityIndex = 0
 #-------------------------------
-[POKEMONRANGER_F2,Alyssa]
+[POKEMONRANGER_F2,Amahle]
 Pokemon = GROTLE,27
     AbilityIndex = 1
 Pokemon = LAMPENT,28
@@ -2970,3 +2970,68 @@ Pokemon = AGGRON,50
 Pokemon = DECEAT,50
     Moves = METEORMASH,LUNARJUSTICE,CRUNCH,SWORDSDANCE
     AbilityIndex = 0
+#-------------------------------
+[TRAINER_Sang,Sang]
+Pokemon = EXPLOUD,47
+    Name = Egret Ash
+    Gender = female
+    Moves = HYPERVOICE,FLAMETHROWER,ICEBEAM,SHADOWBALL
+    AbilityIndex = 1
+    Item = NORMALGEM
+Pokemon = ALAKAZAM,47
+    Name = Ibis Veil
+    Gender = male
+    Moves = TELEPORT,PSYCHIC,DAZZLINGGLEAM,CALMMIND
+    AbilityIndex = 1
+Pokemon = PRIMARINA,46
+    Name = Hawk Doll
+    Gender = female
+    Moves = SPARKLINGARIA,ENCHANTINGSONG,MENDINGSPRING,HYPERVOICE
+    AbilityIndex = 0
+Pokemon = KROOKODILE,46
+    Name = Stork Saw
+    Gender = male
+    Moves = EARTHQUAKE,CRUNCH,STAREDOWN,BULKUP
+    AbilityIndex = 0
+Pokemon = SCARAPACE,45
+    Name = Wren Glass
+    Gender = female
+    Moves = HUNTDOWN,STORMTHROW,XSCISSOR,BODYSLAM
+    AbilityIndex = 0
+Pokemon = KOMMOO,46
+    Name = Dove Abyss
+    Gender = male
+    Moves = CLANGINGSCALES,OUTRAGE,BODYPRESS,AURASPHERE
+    AbilityIndex = 0
+    Item = EJECTPACK
+#-------------------------------
+[POKEMONTRAINER_Yezera,Yezera,3]
+Pokemon = TOGEKISS,65
+    Name = Artemisia
+    Gender = female
+    Moves = AIRSLASH,MOONBLAST,ROOST,PSYSHOCK
+    AbilityIndex = 1
+    Item = BABIRIBERRY
+Pokemon = GYARADOS,65
+    Name = Asha
+    Gender = female
+    Moves = DRAGONDANCE,REND,CRASHDIVE,AQUAJET
+    AbilityIndex = 0
+    Item = LIFEORB
+Pokemon = HAEROBIC,65
+    Name = Amalthea
+    Gender = female
+    Moves = CLOSECOMBAT,FAKEOUT,COMETSMASH,STRAFE
+    AbilityIndex = 1
+    Item = STRIKEVEST
+Pokemon = CHANDELURE,65
+    Name = Auden
+    Gender = male
+    Moves = SHADOWBALL,FLAMETHROWER,THRIVINGFORCE,DARKPULSE
+    AbilityIndex = 1
+    Item = FOCUSSASH
+Pokemon = MAGNEZONE,65
+    Name = Anri
+    Moves = MAGNETRISE,ZAPCANNON,STEELBEAM,LIGHTSCREEN
+    AbilityIndex = 1
+    Item = SHUCABERRY

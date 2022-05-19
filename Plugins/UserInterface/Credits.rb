@@ -4,7 +4,7 @@ Major Contributors
 Zeu<s>Agentbla
 Divock<s>Brickbat
 Wakarimasensei<s>ali760
-Drawingbox<s>Zufaix
+Drawingbox<s>LucaSantosSims
 lichenprincess
 
 Other Contributors
@@ -14,7 +14,7 @@ Slaynoir<s>Maddie
 FurretKnight<s>Dtp81390
 Gabs<s>derrondad
 papper<s>Jaggedthorn
-BlueObelisk<s>LucaSantosSims
+BlueObelisk<s>Zufaix
 
 Playtesters
 Splitmoon<s>Sets
@@ -41,6 +41,8 @@ LilaTraube<s>seiyouh
 SpritersResource<s>Thatsowitty
 exiled-shadow<s>ausberge
 supercow<s>LunaMaddalena
+Alucus<s>The English Kiwi
+calisprojects.com
 
 
 Charsets

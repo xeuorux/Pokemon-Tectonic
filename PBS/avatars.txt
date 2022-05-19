@@ -272,10 +272,10 @@ DMGMult = 1
 #-------------------------------
 [PINSIR]
 Ability = MOXIE
-Moves = SUPERPOWER
-PostPrimeMoves = SUPERPOWER
+Moves = XSCISSOR,PRIMEVALTORMENT
+PostPrimeMoves = CRUNCH
 Turns = 2
-HPMult = 3.0
+HPMult = 5.0
 DMGMult = 1
 #-------------------------------
 [SHIINOTIC]
@@ -434,8 +434,8 @@ DMGMult = 1
 #-------------------------------
 [SKARMORY]
 Ability = SOUNDPROOF
-Moves = SPIKES,WHIRLWIND,DRILLPECK
-PostPrimeMoves = SPIKES,WHIRLWIND,DRILLPECK
+Moves = SPIKES,WHIRLWIND
+PostPrimeMoves = SPIKES,WHIRLWIND
 Turns = 1
 HPMult = 8.0
 DMGMult = 1
@@ -588,8 +588,8 @@ Item = LEFTOVERS
 #-------------------------------
 [KELDEO]
 Ability = HEARTOFJUSTICE
-Moves = SECRETSWORD
-PostPrimeMoves = SECRETSWORD
+Moves = SECRETSWORD,PRIMEVALIGNITE
+PostPrimeMoves = FIERYDANCE
 Turns = 3
 HPMult = 5.0
 DMGMult = 1
@@ -1033,5 +1033,66 @@ Moves = CLOSECOMBAT,PRIMEVALLIGHTNINGDANCE
 PostPrimeMoves = ELECTROSLASH
 Turns = 2
 HPMult = 2.0
+DMGMult = 1
+#-------------------------------
+[EISCUE]
+Ability = ICEFACE
+Moves = NERVEBREAK,HAIL
+Turns = 2
+HPMult = 4
+#-------------------------------
+[SLURPUFF]
+Ability = CANDYVEIL
+Moves = INFINITEFORCE,PRIMEVALLEECHSEED
+PostPrimeMoves = PARAPOLLEN
+Turns = 1
+HPMult = 7
+#-------------------------------
+[EXCADRILL]
+Ability = TOUGHCLAWS
+Moves = EARTHQUAKE,PRIMEVALDRAGONDANCE
+PostPrimeMoves = REND
+Turns = 2
+HPMult = 3.0
+DMGMult = 1
+#-------------------------------
+[DURANT]
+Ability = HEATPROOF
+Moves = IRONHEAD,PRIMEVALHAIL
+PostPrimeMoves = ICEFANG
+Turns = 2
+HPMult = 3.0
+DMGMult = 1
+#-------------------------------
+[RUBARIOR]
+Ability = MAGICBOUNCE
+Moves = MEFIRST,PRIMEVALMOONLIGHT
+PostPrimeMoves = DAZZLINGGLEAM
+Turns = 1
+HPMult = 5.0
+DMGMult = 1
+#-------------------------------
+[SALAZZLE]
+Ability = EXPERTISE
+Moves = ACIDBATH,OVERHEAT,PRIMEVALSTRINGSHOT
+PostPrimeMoves = LEECHLIFE
+Turns = 2
+HPMult = 3.0
+DMGMult = 1
+#-------------------------------
+[DECEAT]
+Ability = POWERUP
+Moves = SPIRITBREAK,PRIMEVALTORMENT
+PostPrimeMoves = SUCKERPUNCH
+Turns = 2
+HPMult = 3.0
+DMGMult = 1
+#-------------------------------
+[DIANCIE]
+Ability = CLEARBODY
+Moves = DIAMONDSTORM,PRIMEVALCURSE
+PostPrimeMoves = SPIRITSHACKLE
+Turns = 2
+HPMult = 5.0
 DMGMult = 1
 #-------------------------------
