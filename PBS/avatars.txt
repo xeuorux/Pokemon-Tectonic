@@ -1047,3 +1047,52 @@ Moves = INFINITEFORCE,PRIMEVALLEECHSEED
 PostPrimeMoves = PARAPOLLEN
 Turns = 1
 HPMult = 7
+#-------------------------------
+[EXCADRILL]
+Ability = TOUGHCLAWS
+Moves = EARTHQUAKE,PRIMEVALDRAGONDANCE
+PostPrimeMoves = REND
+Turns = 2
+HPMult = 3.0
+DMGMult = 1
+#-------------------------------
+[DURANT]
+Ability = HEATPROOF
+Moves = IRONHEAD,PRIMEVALHAIL
+PostPrimeMoves = ICEFANG
+Turns = 2
+HPMult = 3.0
+DMGMult = 1
+#-------------------------------
+[RUBARIOR]
+Ability = MAGICBOUNCE
+Moves = MEFIRST,PRIMEVALMOONLIGHT
+PostPrimeMoves = DAZZLINGGLEAM
+Turns = 1
+HPMult = 5.0
+DMGMult = 1
+#-------------------------------
+[SALAZZLE]
+Ability = EXPERTISE
+Moves = ACIDBATH,OVERHEAT,PRIMEVALSTRINGSHOT
+PostPrimeMoves = LEECHLIFE
+Turns = 2
+HPMult = 3.0
+DMGMult = 1
+#-------------------------------
+[DECEAT]
+Ability = POWERUP
+Moves = SPIRITBREAK,PRIMEVALTORMENT
+PostPrimeMoves = SUCKERPUNCH
+Turns = 2
+HPMult = 3.0
+DMGMult = 1
+#-------------------------------
+[DIANCIE]
+Ability = CLEARBODY
+Moves = DIAMONDSTORM,PRIMEVALCURSE
+PostPrimeMoves = SPIRITSHACKLE
+Turns = 2
+HPMult = 5.0
+DMGMult = 1
+#-------------------------------
