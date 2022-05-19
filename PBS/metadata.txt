@@ -701,7 +701,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [120]
-# Deep Layer
+# Hollowed Layer
 Outdoor = false
 ShowArea = true
 Bicycle = true

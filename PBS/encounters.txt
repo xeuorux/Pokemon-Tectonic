@@ -344,7 +344,7 @@ Land,20
     25,SNORUNT,16,19
     25,SWINUB,16,19
 #-------------------------------
-[120] # Deep Layer
+[120] # Hollowed Layer
 DarkCave,20
     20,BRONZOR,17,20
     20,DRILBUR,17,20
