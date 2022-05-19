@@ -187,3 +187,14 @@ BattleHandlers::DamageCalcUserAbility.add(:SOULREAD,
 	end
   }
 )
+
+
+
+BattleHandlers::UserAbilityOnHit.add(:SOUNDBARRIER,
+  proc { |ability,user,target,move,battle|
+    next if !move.soundMove?
+	if user.pbCanRaiseStatStage?(:DEFENSE,user)
+		user.pbRaiseStatStageByAbility(:DEFENSE,1,user)
+	end
+  }
+)

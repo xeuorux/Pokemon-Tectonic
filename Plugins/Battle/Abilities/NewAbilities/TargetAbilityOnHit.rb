@@ -269,3 +269,4 @@ BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
 	end
   }
 )
+
