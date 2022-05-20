@@ -56,7 +56,7 @@ class PokemonTilesetScene
             tileEditCommands[cmdRemoveUses = tileEditCommands.length] = _INTL("Remove Tile Uses")
             tileEditCommands[cmdEraseTile = tileEditCommands.length] = _INTL("Erase Tile")
             tileEditCommands[cmdSwapTile = tileEditCommands.length] = _INTL("Swap Tile") if false
-            tileEditCommands[cmdInsertLines = tileEditCommands.length] = _INTL("Insert Blank Lines")
+            tileEditCommands[cmdInsertLines = tileEditCommands.length] = _INTL("Insert Lines After")
             tileEditCommands[cmdDeleteLines = tileEditCommands.length] = _INTL("Delete Lines") if false
             pbMessage(_INTL("Which tileset edit would you like to perform?"))
             tileCommand = pbShowCommands(nil, tileEditCommands, -1)
@@ -101,7 +101,7 @@ class PokemonTilesetScene
               params = ChooseNumberParams.new
               params.setRange(0, 99)
               params.setDefaultValue(1)
-              rowsAdded = pbMessageChooseNumber(_INTL("How many rows would you like to add?"), params)
+              rowsAdded = pbMessageChooseNumber(_INTL("How many blank rows would you like to add after this one?"), params)
               next if rowsAdded.nil? || rowsAdded == 0
 
               nextLineY = @y + 1
@@ -115,8 +115,9 @@ class PokemonTilesetScene
               maxTileID = 0
               [@tileset.terrain_tags,@tileset.priorities,@tileset.passages].each_with_index do |table,index|
                 echoln("Editing metadata table #{index}")
+
+                # Move down the existing rows
                 (height + rowsAdded).downto(nextLineY + rowsAdded) do |y|
-                  #echoln("Moving row #{y} of the metadata")
                   for x in 0..TILES_PER_ROW do
                     oldTileID = tile_ID_from_coordinates(x,y-rowsAdded)
                     newTildID = tile_ID_from_coordinates(x,y)
@@ -124,6 +125,13 @@ class PokemonTilesetScene
 
                     minTileID = oldTileID if oldTileID < minTileID
                     maxTileID = oldTileID if oldTileID > maxTileID
+                  end
+                end
+
+                # Set the new rows to their default values
+                (nextLineY + rowsAdded).downto(nextLineY) do |y|
+                  for x in 0..TILES_PER_ROW do
+                    table[tile_ID_from_coordinates(x,y)] = 0
                   end
                 end
               end
