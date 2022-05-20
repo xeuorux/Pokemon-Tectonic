@@ -54,13 +54,52 @@ class PokemonTilesetScene
             set_terrain_tag_for_tile_ID(selected, pbMessageChooseNumber(_INTL("Set the terrain tag."), params))
             draw_overlay
           elsif Input.trigger?(Input::SPECIAL)
-            #selected = tile_ID_from_coordinates(@x, @y)
-            #@tileset.terrain_tags[selected] = 0
-            #@tileset.priorities[selected] = 0
-            #@tileset.passages[selected] = 0x00
-            #mapData.saveTilesets
-            #editTilesOnAllMaps(@tileset.id,[[49,0]])
-            draw_overlay
+            cmdRemoveUses = -1
+            cmdEraseTile = -1
+            cmdSwapTile = -1
+            cmdInsertLine = -1
+            cmdDeleteLine = -1
+            
+
+            tileEditCommands = [_INTL("Cancel")]
+            tileEditCommands[cmdRemoveUses = tileEditCommands.length] = _INTL("Remove Tile Uses")
+            tileEditCommands[cmdEraseTile = tileEditCommands.length] = _INTL("Erase Tile")
+            tileEditCommands[cmdSwapTile = tileEditCommands.length] = _INTL("Swap Tile") if false
+            tileEditCommands[cmdInsertLine = tileEditCommands.length] = _INTL("Insert Blank Line") if false
+            tileEditCommands[cmdDeleteLine = tileEditCommands.length] = _INTL("Delete Line") if false
+            pbMessage(_INTL("Which tileset edit would you like to perform?"))
+            tileCommand = pbShowCommands(nil, tileEditCommands, -1)
+
+            if cmdRemoveUses > -1 && tileCommand == cmdRemoveUses
+              selected = tile_ID_from_coordinates(@x, @y)
+              editTilesOnAllMaps(@tileset.id,[[selected,0]])
+              pbMessage(_INTL("Deleted all usages of this tile on all maps which use this tileset."))
+              draw_overlay
+            elsif cmdEraseTile > -1 && tileCommand == cmdEraseTile
+              selected = tile_ID_from_coordinates(@x, @y)
+              @tileset.terrain_tags[selected] = 0
+              @tileset.priorities[selected] = 0
+              @tileset.passages[selected] = 0x00
+              mapData.saveTilesets
+
+              tileDrawer = TileDrawingHelper.fromTileset(@tileset)
+              tileSetFileName = "Graphics/Tilesets/" + @tileset.tileset_name
+              tilesetBitmap = AnimatedBitmap.new(tileSetFileName)
+              bitmapTopLeftX = @x * TILE_SIZE
+              bitmapTopLeftY = @y * TILE_SIZE
+              bitmapBottomRightX = (@x + 1) * TILE_SIZE
+              bitmapBottomRightY = (@y + 1) * TILE_SIZE
+              blankColor = Color.new(0,0,0,0)
+              for x in bitmapTopLeftX..bitmapBottomRightX
+                for y in bitmapTopLeftY..bitmapBottomRightY
+                  tilesetBitmap.set_pixel(x,y,blankColor)
+                end
+              end
+              tilesetBitmap.to_file(tileSetFileName + '.png')
+            elsif cmdInsertLine > -1 && tileCommand == cmdInsertLine
+              # TODO
+              # .insert()
+            end
           end
         end
         close_screen
@@ -68,28 +107,36 @@ class PokemonTilesetScene
 
     # A changeset is an array of old tileIDs to new tileIDs
     def editTilesOnAllMaps(tileSetID,changeSet)
-        pbMessage("Applying a tile changeset to all maps using tileset #{tileSetID}.")
+        echoln("Applying a tile changeset to all maps using tileset #{tileSetID}.")
+
+        # Iterate over all maps
         mapData = Compiler::MapData.new
         for id in mapData.mapinfos.keys.sort
             map = mapData.getMap(id)
             next if !map || !mapData.mapinfos[id]
             mapName = mapData.mapinfos[id].name
+
+            # Skip the map unless it uses the tileset we're editing
             next unless map.tileset_id == tileSetID
+
+            # Iterate over every single space and layer of the map, making all needed changes
             anyChanges = false
-              for x in 0..map.data.xsize
-                for y in 0..map.data.ysize
-                  for z in 0...map.data.zsize
-                    currentID = map.data[x, y, z]
-                    changeSet.each do |change|
-                      next unless change[0] == currentID
-                      map.data[x,y,z] = change[1]
-                      anyChanges = true
-                      echoln("Swapping tile #{x},#{y},#{z} on map #{mapName}")
-                      break
-                    end
+            for x in 0..map.data.xsize
+              for y in 0..map.data.ysize
+                for z in 0...map.data.zsize
+                  currentID = map.data[x, y, z]
+                  changeSet.each do |change|
+                    next unless change[0] == currentID
+                    map.data[x,y,z] = change[1]
+                    anyChanges = true
+                    echoln("Swapping tile #{x},#{y},#{z} on map #{mapName}")
+                    break
                   end
                 end
               end
+            end
+
+            # If anything was actually changed, save the new map
             if anyChanges
               echoln("\tChanged #{mapName}")
               mapData.saveMap(id)
