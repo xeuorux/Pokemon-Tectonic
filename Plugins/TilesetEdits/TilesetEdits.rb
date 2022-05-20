@@ -58,7 +58,8 @@ class PokemonTilesetScene
             #@tileset.terrain_tags[selected] = 0
             #@tileset.priorities[selected] = 0
             #@tileset.passages[selected] = 0x00
-            editTilesOnAllMaps(@tileset.name,[[-8,7]])
+            #mapData.saveTilesets
+            #editTilesOnAllMaps(@tileset.id,[[49,0]])
             draw_overlay
           end
         end
@@ -66,30 +67,33 @@ class PokemonTilesetScene
       end
 
     # A changeset is an array of old tileIDs to new tileIDs
-    def editTilesOnAllMaps(tileSetName,changeSet)
-        pbMessage("Applying a tile changeset to all maps.")
+    def editTilesOnAllMaps(tileSetID,changeSet)
+        pbMessage("Applying a tile changeset to all maps using tileset #{tileSetID}.")
         mapData = Compiler::MapData.new
         for id in mapData.mapinfos.keys.sort
             map = mapData.getMap(id)
-            next unless map.tileset_name == tileSetName
             next if !map || !mapData.mapinfos[id]
             mapName = mapData.mapinfos[id].name
-
-            for layer in [0,1,2]
-              for x in map.width
-                for y in map.height
-                  currentID = map.data[x, y, layer]
-                  changeSet.each do |change|
-                    next unless change[0] == currentID
-                    map.data[x,y,layer] = change[1]
-                    break
+            next unless map.tileset_id == tileSetID
+            anyChanges = false
+              for x in 0..map.data.xsize
+                for y in 0..map.data.ysize
+                  for z in 0...map.data.zsize
+                    currentID = map.data[x, y, z]
+                    changeSet.each do |change|
+                      next unless change[0] == currentID
+                      map.data[x,y,z] = change[1]
+                      anyChanges = true
+                      echoln("Swapping tile #{x},#{y},#{z} on map #{mapName}")
+                      break
+                    end
                   end
                 end
               end
+            if anyChanges
+              echoln("\tChanged #{mapName}")
+              mapData.saveMap(id)
             end
-
-            mapData.saveMap(id)
-            mapData.saveTilesets
         end
     end
 end
