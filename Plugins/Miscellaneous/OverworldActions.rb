@@ -126,8 +126,9 @@ def autoSave
 		pbMessage(_INTL("\\se[]Auto-save failed.\\wtnp[30]"))
 	else
     iconSize = 24
-		$game_screen.pictures[1].show("auto_save_icon", [0,0], Graphics.width - iconSize, iconSize, 100, 100, 255,0)
-		$game_screen.pictures[1].move(60,[0,0],x,16,100,100,0,0)
+    x = Graphics.width - iconSize
+		$game_screen.pictures[1].show("auto_save_icon", [0,0],x, iconSize, 100, 100, 255,0)
+		$game_screen.pictures[1].move(60,[0,0],x,iconSize,100,100,0,0)
 	end
 end
 
