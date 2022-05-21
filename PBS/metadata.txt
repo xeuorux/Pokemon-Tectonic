@@ -1014,7 +1014,7 @@ Bicycle = false
 # Casaba Island
 #-------------------------------
 [182]
-# Tangle Dungeon
+# Sylvan Labyrinth
 Outdoor = true
 ShowArea = true
 Bicycle = true
