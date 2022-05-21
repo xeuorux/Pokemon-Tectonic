@@ -8668,7 +8668,7 @@ Name = Linoone
 InternalName = LINOONE
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 93,100,69,110,67,69
+BaseStats = 93,100,69,110,69,69
 # Total = 510
 GenderRate = Female50Percent
 GrowthRate = Medium

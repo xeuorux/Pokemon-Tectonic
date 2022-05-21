@@ -3068,3 +3068,27 @@ Pokemon = MAGNEZONE,65
     Moves = MAGNETRISE,ZAPCANNON,STEELBEAM,LIGHTSCREEN
     AbilityIndex = 1
     Item = SHUCABERRY
+#-------------------------------
+[KIMONOGIRL,Chiyo]
+Pokemon = DELPHOX,55
+    AbilityIndex = 1
+Pokemon = SWELLOW,56
+    AbilityIndex = 1
+    Item = POISONORB
+Pokemon = ARMALDO,57
+    AbilityIndex = 0
+Pokemon = MZANGOOSE,56
+    AbilityIndex = 0
+    Item = GHOSTGEM
+#-------------------------------
+[DRAGONTAMER,Bataar]
+Pokemon = FLYGON,57
+    AbilityIndex = 0
+Pokemon = MILOTIC,58
+    AbilityIndex = 1
+    Item = WEAKNESSPOLICY
+Pokemon = TOWERPODA,58
+    AbilityIndex = 1
+Pokemon = DRUDDIGON,59
+    AbilityIndex = 0
+    Item = LEFTOVERS

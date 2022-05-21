@@ -352,7 +352,7 @@ DarkCave,20
     20,ONIX,17,20
     20,TYNAMO,17,20
 #-------------------------------
-[121] # Mountain Climb
+[121] # Skyward Ascent
 Land,20
     20,CLEFFA,18,20
     20,CUBCHOO,18,20

@@ -1096,3 +1096,11 @@ Turns = 2
 HPMult = 5.0
 DMGMult = 1
 #-------------------------------
+[SALAMENCE]
+Ability = SCHADENFREUDE
+Moves = CALAMITOUSSLASH,ACROBATICS,PRIMEVALLASERFOCUS
+PostPrimeMoves = METEORMASH
+Turns = 2
+HPMult = 3.0
+DMGMult = 1
+#-------------------------------

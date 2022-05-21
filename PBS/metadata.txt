@@ -709,7 +709,7 @@ MapPosition = 0,17,8
 Environment = Cave
 #-------------------------------
 [121]
-# Mountain Climb
+# Skyward Ascent
 Outdoor = true
 ShowArea = true
 Bicycle = true
