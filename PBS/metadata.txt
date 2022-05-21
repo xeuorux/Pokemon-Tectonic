@@ -701,7 +701,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [120]
-# Deep Layer
+# Hollowed Layer
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -709,7 +709,7 @@ MapPosition = 0,17,8
 Environment = Cave
 #-------------------------------
 [121]
-# Mountain Climb
+# Skyward Ascent
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -1014,7 +1014,7 @@ Bicycle = false
 # Casaba Island
 #-------------------------------
 [182]
-# Tangle Dungeon
+# Sylvan Labyrinth
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -1056,7 +1056,7 @@ Bicycle = true
 MapPosition = 0,17,3
 #-------------------------------
 [189]
-# Catacombs Antechamber
+# Catacombs
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1118,6 +1118,13 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,15,8
+#-------------------------------
+[217]
+# Sweetrock Harbor
+Outdoor = true
+ShowArea = true
+Bicycle = true
+Weather = Rain,10
 #-------------------------------
 [220]
 # Prizca Sewers East
@@ -1189,6 +1196,43 @@ Bicycle = false
 #-------------------------------
 [251]
 # Samorn's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[253]
+# Bagon Den 2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[259]
+# Casey's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[260]
+# Under the Peaks
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[263]
+# Sweetrock Harbor Center
+Outdoor = false
+ShowArea = false
+Bicycle = false
+HealingSpot = 217,27,31
+#-------------------------------
+[264]
+# Sweetrock Harbor Mart
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[270]
+# Casey's Basement
 Outdoor = false
 ShowArea = false
 Bicycle = false

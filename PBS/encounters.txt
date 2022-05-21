@@ -344,7 +344,7 @@ Land,20
     25,SNORUNT,16,19
     25,SWINUB,16,19
 #-------------------------------
-[120] # Deep Layer
+[120] # Hollowed Layer
 DarkCave,20
     20,BRONZOR,17,20
     20,DRILBUR,17,20
@@ -352,7 +352,7 @@ DarkCave,20
     20,ONIX,17,20
     20,TYNAMO,17,20
 #-------------------------------
-[121] # Mountain Climb
+[121] # Skyward Ascent
 Land,20
     20,CLEFFA,18,20
     20,CUBCHOO,18,20
@@ -535,12 +535,6 @@ FloweryGrass2,20
 Special,1
     1,SEVIPER,40
 #-------------------------------
-[189] # Catacombs Antechamber
-LandSparse,20
-    34,YAMASK,36,38
-    33,MIMIKYU,36,38
-    33,SPIRITOMB,36,38
-#-------------------------------
 [193] # Lapras Shore
 Land,20
     33,CRABRAWLER,36,38
@@ -680,7 +674,7 @@ Puddle,21
     25,FOONGUS,34,36
     25,GIRAFARIG,34,36
 #-------------------------------
-[217] # Candy Town
+[217] # Sweetrock Harbor
 Land,20
     25,MAWILE,44,46
     25,MILCERY,44,46
@@ -702,14 +696,17 @@ DarkCave,21
 #-------------------------------
 [220] # Prizca Sewers East
 LandSparse,20
-    50,DRUDDIGON,33,35
-    50,GOLETT,33,35
+    25,DRUDDIGON,34,36
+    25,MIMIKYU,34,36
+    25,SPIRITOMB,34,36
+    25,YAMASK,34,36
 #-------------------------------
 [223] # Prizca Sewers West
 LandSparse,20
-    33,ELGYEM,31,33
-    33,KLEFKI,31,33
-    33,SIGILYPH,31,33
+    25,ELGYEM,31,33
+    25,GOLETT,33,35
+    25,KLEFKI,31,33
+    25,SIGILYPH,31,33
 #-------------------------------
 [228] # Hidden Laboratory
 Special,1
