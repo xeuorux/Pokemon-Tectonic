@@ -1,5 +1,5 @@
 class PokeBattle_Battler
-    #=============================================================================
+  #=============================================================================
   # Effect per hit
   #=============================================================================
   def pbEffectsOnMakingHit(move,user,target)
@@ -56,6 +56,14 @@ class PokeBattle_Battler
       if target.effects[PBEffects::DestinyBond] && target.fainted?
         if user.effects[PBEffects::DestinyBondTarget]<0
           user.effects[PBEffects::DestinyBondTarget] = target.index
+        end
+      end
+      # Stunning Curl
+      if target.effects[PBEffects::StunningCurl]
+        PBDebug.log("[Lingering effect] #{target.pbThis}'s Stunning Curl")
+        if user.pbCanParalyze?(target,false)
+          @battle.pbDisplay(_INTL("{1}'s stance causes the attack to bounce of akwardly!",target.pbThis))
+          user.pbParalyze(target)
         end
       end
     end
