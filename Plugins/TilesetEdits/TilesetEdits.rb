@@ -6,7 +6,7 @@ class PokemonTilesetScene
     @sprites = {}
     @sprites["title"] = Window_UnformattedTextPokemon.newWithSize(
        _INTL("Tileset Editor\r\nA/S: SCROLL\r\nZ: MENU\r\nD: ADV. EDITS"),
-       TILESET_WIDTH, 0, Graphics.width - TILESET_WIDTH, 128, @viewport)
+       TILESET_WIDTH, 0, Graphics.width - TILESET_WIDTH, 160, @viewport)
     @sprites["tileset"] = BitmapSprite.new(TILESET_WIDTH, Graphics.height, @viewport)
     @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
     pbSetSystemFont(@sprites["overlay"].bitmap)
@@ -70,23 +70,28 @@ class PokemonTilesetScene
             tileEditCommands = [_INTL("Cancel")]
             tileEditCommands[cmdRemoveUses = tileEditCommands.length] = _INTL("Remove Tile Uses")
             tileEditCommands[cmdEraseTile = tileEditCommands.length] = _INTL("Erase Tile")
-            tileEditCommands[cmdSwapTile = tileEditCommands.length] = _INTL("Swap Tile") if false
+            tileEditCommands[cmdSwapTile = tileEditCommands.length] = _INTL("Swap Tile")
             tileEditCommands[cmdInsertLines = tileEditCommands.length] = _INTL("Insert Lines After")
             tileEditCommands[cmdDeleteLines = tileEditCommands.length] = _INTL("Delete Lines Starting From")
-            pbMessage(_INTL("Which tileset edit would you like to perform?"))
-            tileCommand = pbShowCommands(nil, tileEditCommands, -1)
+            while true
+              pbMessage(_INTL("Which tileset edit would you like to perform?"))
+              tileCommand = pbShowCommands(nil, tileEditCommands, -1)
 
-            if cmdRemoveUses > -1 && tileCommand == cmdRemoveUses
-              selected = tile_ID_from_coordinates(@x, @y)
-              editTilesOnAllMaps(@tileset.id,[[selected,0]])
-              pbMessage(_INTL("Deleted all usages of this tile on all maps which use this tileset."))
-              draw_overlay
-            elsif cmdEraseTile > -1 && tileCommand == cmdEraseTile
-              eraseTile()
-            elsif cmdInsertLines > -1 && tileCommand == cmdInsertLines
-              next if !insertBlankLines()
-            elsif cmdDeleteLines > -1 && tileCommand == cmdDeleteLines
-              next if !deleteLines()
+              if cmdRemoveUses > -1 && tileCommand == cmdRemoveUses
+                selected = tile_ID_from_coordinates(@x, @y)
+                editTilesOnAllMaps(@tileset.id,[[selected,0]])
+                pbMessage(_INTL("Deleted all usages of this tile on all maps which use this tileset."))
+                draw_overlay
+              elsif cmdEraseTile > -1 && tileCommand == cmdEraseTile
+                eraseTile()
+              elsif cmdSwapTile > -1 && tileCommand == cmdSwapTile
+                next if !swapTiles()
+              elsif cmdInsertLines > -1 && tileCommand == cmdInsertLines
+                next if !insertBlankLines()
+              elsif cmdDeleteLines > -1 && tileCommand == cmdDeleteLines
+                next if !deleteLines()
+              end
+              break
             end
           end
         end
@@ -116,7 +121,7 @@ class PokemonTilesetScene
       tilesetBitmap.to_file(tileSetFileName + '.png')
 
       if pbConfirmMessageSerious(_INTL("Delete all references to this tile?"))
-        applyChangesetToAllMaps(@tileset.id,[[selected,0]])
+        applyChangeSetToAllMaps(@tileset.id,[[selected,0]])
       end
 
       saveTileSetChanges()
@@ -125,11 +130,88 @@ class PokemonTilesetScene
       draw_overlay
     end
 
+    def swapTiles()
+      selectedA = tile_ID_from_coordinates(@x, @y)
+
+      # Top left x, y
+      firstPosition = [(@x) * TILE_SIZE,(@y - 1) * TILE_SIZE]
+
+      # Width, height
+      selectedWidth = TILE_SIZE
+      selectedHeight = TILE_SIZE
+
+      pbMessage(_INTL("Choose the tile to swap it with."))
+
+      selectedB = nil
+      loop do
+        Graphics.update
+        Input.update
+        if Input.repeat?(Input::UP)
+          update_cursor_position(0, -1)
+        elsif Input.repeat?(Input::DOWN)
+          update_cursor_position(0, 1)
+        elsif Input.repeat?(Input::LEFT)
+          update_cursor_position(-1, 0)
+        elsif Input.repeat?(Input::RIGHT)
+          update_cursor_position(1, 0)
+        elsif Input.repeat?(Input::JUMPUP)
+          update_cursor_position(0, -@visible_height)
+        elsif Input.repeat?(Input::JUMPDOWN)
+          update_cursor_position(0, @visible_height)
+        elsif Input.trigger?(Input::USE)
+          selectedB = tile_ID_from_coordinates(@x, @y)
+          break
+        elsif Input.trigger?(Input::BACK)
+          pbMessage(_INTL("Cancelling swap."))
+          return
+        end
+      end
+
+      if selectedB.nil?
+        echoln("Unable to perform swap for some reason.")
+        return
+      end
+
+      secondPosition = [(@x) * TILE_SIZE,(@y - 1) * TILE_SIZE]
+
+      tempTerrainTag = @tileset.terrain_tags[selectedA]
+      tempPriority = @tileset.priorities[selectedA]
+      tempPassages = @tileset.passages[selectedA]
+
+      @tileset.terrain_tags[selectedA] = @tileset.terrain_tags[selectedB]
+      @tileset.priorities[selectedA] = @tileset.priorities[selectedB]
+      @tileset.passages[selectedA] = @tileset.passages[selectedB]
+
+      @tileset.terrain_tags[selectedB] = tempTerrainTag
+      @tileset.priorities[selectedB] = tempPriority
+      @tileset.passages[selectedB] = tempPassages
+
+      saveTileSetChanges()
+
+      # Edit the tileset image file
+      tileSetFileName = "Graphics/Tilesets/" + @tileset.tileset_name
+      tilesetBitmap = AnimatedBitmap.new(tileSetFileName).bitmap
+      for localX in 0..selectedWidth
+        for localY in 0..selectedHeight
+          firstX = firstPosition[0] + localX
+          firstY = firstPosition[1] + localY
+          secondX = secondPosition[0] + localX
+          secondY = secondPosition[1] + localY
+          tempPixel = tilesetBitmap.get_pixel(firstX,firstY)
+          tilesetBitmap.set_pixel(firstX,firstY,tilesetBitmap.get_pixel(secondX,secondY))
+          tilesetBitmap.set_pixel(secondX,secondY,tempPixel)
+        end
+      end
+      tilesetBitmap.to_file(tileSetFileName + '.png')
+
+      swapTilesOnAllMaps(@tileset.id,selectedA,selectedB)
+    end
+
     def insertBlankLines
       rowsToAdd = 1
       params = ChooseNumberParams.new
       params.setRange(0, 99)
-      params.setDefaultValue(1)
+      params.setDefaultValue(0)
       rowsToAdd = pbMessageChooseNumber(_INTL("How many blank rows would you like to add after this one?"), params)
       return false if rowsToAdd.nil? || rowsToAdd == 0
 
@@ -202,7 +284,7 @@ class PokemonTilesetScene
       rowsToDelete = 1
       params = ChooseNumberParams.new
       params.setRange(0, 99)
-      params.setDefaultValue(1)
+      params.setDefaultValue(0)
       rowsToDelete = pbMessageChooseNumber(_INTL("How many rows would you like to delete, starting with this one?"), params)
       return false if rowsToDelete.nil? || rowsToDelete == 0
 
@@ -262,7 +344,7 @@ class PokemonTilesetScene
     end
 
     # A changeset is an array of old tileIDs to new tileIDs
-    def applyChangesetToAllMaps(tileSetID,changeSet)
+    def applyChangeSetToAllMaps(tileSetID,changeSet)
         echoln("Applying a tile changeset to all maps using tileset #{tileSetID}.")
 
         # Iterate over all maps
@@ -312,7 +394,7 @@ class PokemonTilesetScene
           # Skip the map unless it uses the tileset we're editing
           next unless map.tileset_id == tileSetID
 
-          # Iterate over every change, then every single space and layer of the map, making all tile changed for each change
+          # For single space and layer of the map, apply the offset if the existing tile is within the given range
           anyChanges = false
           for x in 0..map.data.xsize
             for y in 0..map.data.ysize
@@ -332,7 +414,45 @@ class PokemonTilesetScene
             mapData.saveMap(id)
           end
       end
-  end
+    end
+
+    def swapTilesOnAllMaps(tileSetID,firstTile,secondTile)
+      echoln("Swapping tiles #{firstTile} and #{secondTile} to all maps using tileset #{tileSetID}.")
+
+      # Iterate over all maps
+      mapData = Compiler::MapData.new
+      for id in mapData.mapinfos.keys.sort
+          map = mapData.getMap(id)
+          next if !map || !mapData.mapinfos[id]
+          mapName = mapData.mapinfos[id].name
+
+          # Skip the map unless it uses the tileset we're editing
+          next unless map.tileset_id == tileSetID
+
+          # Iterate over every change, then every single space and layer of the map, making all tile changed for each change
+          anyChanges = false
+          for x in 0..map.data.xsize
+            for y in 0..map.data.ysize
+              for z in 0...map.data.zsize
+                currentID = map.data[x, y, z]
+                next if currentID.nil?
+                if currentID == firstTile
+                  map.data[x,y,z] = secondTile
+                  anyChanges = true
+                elsif currentID == secondTile
+                  map.data[x,y,z] = firstTile
+                end
+              end
+            end
+          end
+
+          # If anything was actually changed, save the new map
+          if anyChanges
+            echoln("\tChanged #{mapName}")
+            mapData.saveMap(id)
+          end
+      end
+    end
 
     def saveTileSetChanges
       save_data(@tilesets_data, "Data/Tilesets.rxdata")
