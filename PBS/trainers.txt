@@ -2308,10 +2308,10 @@ Pokemon = IVYSAUR,33
     AbilityIndex = 0
 Pokemon = DRAGONAIR,34
     AbilityIndex = 0
-    Item = DRAGONGEM
-Pokemon = PORYGON,33
+    Item = EVIOLITE
+Pokemon = DIGGERSBY,33
     AbilityIndex = 1
-    Item = FOCUSSASH
+    Item = NORMALGEM
 #-------------------------------
 [POKEMONRANGER_M2,Martel]
 Pokemon = FALINKS,34
