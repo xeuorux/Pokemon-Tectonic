@@ -189,7 +189,7 @@ module Compiler
       echoln ""
       System.reload_cache
 
-      write_all
+      write_all if pbConfirmMessageSerious(_INTL("Would you like to rewrite the PBS files from the compiled data?"))
     end
     pbSetWindowText(nil)
   end
