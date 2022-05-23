@@ -65,7 +65,7 @@ module Compiler
         write_all
         mustCompile = true
       end
-=begin
+
       # Check data files and PBS files, and recompile if any PBS file was edited
       # more recently than the data files were last created
       dataFiles.each do |filename|
@@ -87,8 +87,10 @@ module Compiler
         rescue SystemCallError
         end
       end
-      mustCompile |= (latestTextTime >= latestDataTime)
-=end
+      if !mustCompile && latestTextTime >= latestDataTime && pbConfirmMessageSerious(_INTL("At least one PBS file is younger than your .rxdata compiled files. Would you like to compile?"))
+        mustCompile = true
+      end
+
       # Should recompile if holding Ctrl
       Input.update
       mustCompile = true if Input.press?(Input::CTRL)
