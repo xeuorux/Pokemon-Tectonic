@@ -1124,7 +1124,7 @@ MapPosition = 0,15,8
 Outdoor = true
 ShowArea = true
 Bicycle = true
-Weather = Rain,10
+Weather = Rain,15
 #-------------------------------
 [220]
 # Prizca Sewers East
@@ -1200,11 +1200,17 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
+[252]
+# Jangmo-o Den 2
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
 [253]
 # Bagon Den 2
 Outdoor = false
 ShowArea = false
-Bicycle = false
+Bicycle = true
 #-------------------------------
 [259]
 # Casey's House
@@ -1218,21 +1224,48 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
+[262]
+# Sweetrock Harbor Buildings
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [263]
 # Sweetrock Harbor Center
 Outdoor = false
 ShowArea = false
 Bicycle = false
-HealingSpot = 217,27,31
+HealingSpot = 217,27,33
 #-------------------------------
 [264]
 # Sweetrock Harbor Mart
 Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[265]
+# Lightkeeper's House
+Outdoor = false
 ShowArea = false
-Bicycle = false
+Bicycle = true
+#-------------------------------
+[266]
+# Building Placeholder
 #-------------------------------
 [270]
 # Casey's Basement
 Outdoor = false
 ShowArea = false
 Bicycle = false
+#-------------------------------
+[271]
+# Lightkeeper's House F2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[272]
+# Underpeak Tunnels B2
+Outdoor = false
+ShowArea = true
+Bicycle = true
