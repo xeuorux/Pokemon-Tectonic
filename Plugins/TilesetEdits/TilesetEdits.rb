@@ -79,7 +79,7 @@ class PokemonTilesetScene
 
               if cmdRemoveUses > -1 && tileCommand == cmdRemoveUses
                 selected = tile_ID_from_coordinates(@x, @y)
-                editTilesOnAllMaps(@tileset.id,[[selected,0]])
+                applyChangeSetToAllMaps(@tileset.id,[[selected,0]])
                 pbMessage(_INTL("Deleted all usages of this tile on all maps which use this tileset."))
                 draw_overlay
               elsif cmdEraseTile > -1 && tileCommand == cmdEraseTile
@@ -106,8 +106,7 @@ class PokemonTilesetScene
       @tileset.bush_flags[selected] = 0
 
       # Add blank space on the tileset image file
-      tileSetFileName = "Graphics/Tilesets/" + @tileset.tileset_name
-      tilesetBitmap = AnimatedBitmap.new(tileSetFileName).bitmap
+      tilesetBitmap = RPG::Cache.load_bitmap("Graphics/Tilesets/", @tileset.tileset_name, 0)
       bitmapTopLeftX = (@x) * TILE_SIZE
       bitmapTopLeftY = (@y - 1) * TILE_SIZE
       bitmapBottomRightX = (@x + 1) * TILE_SIZE
@@ -118,7 +117,7 @@ class PokemonTilesetScene
           tilesetBitmap.set_pixel(x,y,blankColor)
         end
       end
-      tilesetBitmap.to_file(tileSetFileName + '.png')
+      tilesetBitmap.to_file("Graphics/Tilesets/" + @tileset.tileset_name + '.png')
 
       if pbConfirmMessageSerious(_INTL("Delete all references to this tile?"))
         applyChangeSetToAllMaps(@tileset.id,[[selected,0]])
@@ -186,25 +185,24 @@ class PokemonTilesetScene
       @tileset.priorities[selectedB] = tempPriority
       @tileset.passages[selectedB] = tempPassages
 
-      saveTileSetChanges()
-
       # Edit the tileset image file
-      tileSetFileName = "Graphics/Tilesets/" + @tileset.tileset_name
-      tilesetBitmap = AnimatedBitmap.new(tileSetFileName).bitmap
+      tilesetBitmap = RPG::Cache.load_bitmap("Graphics/Tilesets/", @tileset.tileset_name, 0)
       for localX in 0..selectedWidth
         for localY in 0..selectedHeight
           firstX = firstPosition[0] + localX
-          firstY = firstPosition[1] + localY
+          firstY = firstPosition[1] + localY - 2
           secondX = secondPosition[0] + localX
-          secondY = secondPosition[1] + localY
+          secondY = secondPosition[1] + localY - 2
           tempPixel = tilesetBitmap.get_pixel(firstX,firstY)
           tilesetBitmap.set_pixel(firstX,firstY,tilesetBitmap.get_pixel(secondX,secondY))
           tilesetBitmap.set_pixel(secondX,secondY,tempPixel)
         end
       end
-      tilesetBitmap.to_file(tileSetFileName + '.png')
+      tilesetBitmap.to_file("Graphics/Tilesets/" + @tileset.tileset_name + '.png')
 
       swapTilesOnAllMaps(@tileset.id,selectedA,selectedB)
+
+      saveTileSetChanges()
     end
 
     def insertBlankLines
@@ -249,8 +247,7 @@ class PokemonTilesetScene
 
       # Add blank space on the tileset image file
       echoln("Editing the tileset graphic file")
-      tileSetFileName = "Graphics/Tilesets/" + @tileset.tileset_name
-      tilesetBitmap = AnimatedBitmap.new(tileSetFileName).bitmap
+      tilesetBitmap = RPG::Cache.load_bitmap("Graphics/Tilesets/", @tileset.tileset_name, 0)
       offsetPixelsY = TILE_SIZE * rowsToAdd
       newTileSetBitmap = Bitmap.new(tilesetBitmap.width,tilesetBitmap.height + offsetPixelsY)
       blankColor = Color.new(0,0,0,0)
@@ -269,7 +266,7 @@ class PokemonTilesetScene
           end
         end
       end
-      newTileSetBitmap.to_file(tileSetFileName + '.png')
+      newTileSetBitmap.to_file("Graphics/Tilesets/" + @tileset.tileset_name + '.png')
 
       offsetTilesOnAllMaps(@tileset.id,TILES_PER_ROW * rowsToAdd,[minTileID,maxTileID])
 
@@ -316,8 +313,7 @@ class PokemonTilesetScene
 
       # Remove rows on the tileset image file
       echoln("Editing the tileset graphic file")
-      tileSetFileName = "Graphics/Tilesets/" + @tileset.tileset_name
-      tilesetBitmap = AnimatedBitmap.new(tileSetFileName).bitmap
+      tilesetBitmap = RPG::Cache.load_bitmap("Graphics/Tilesets/", @tileset.tileset_name, 0)
       offsetPixelsY = TILE_SIZE * rowsToDelete
       newTileSetBitmap = Bitmap.new(tilesetBitmap.width,tilesetBitmap.height - offsetPixelsY)
       firstPixelOfRemovedY = (@y - 1) * TILE_SIZE
@@ -332,7 +328,7 @@ class PokemonTilesetScene
           end
         end
       end
-      newTileSetBitmap.to_file(tileSetFileName + '.png')
+      newTileSetBitmap.to_file("Graphics/Tilesets/" + @tileset.tileset_name + '.png')
 
       offsetTilesOnAllMaps(@tileset.id,-TILES_PER_ROW * rowsToDelete,[minTileID,maxTileID])
 
