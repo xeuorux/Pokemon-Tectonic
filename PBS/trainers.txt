@@ -3092,3 +3092,32 @@ Pokemon = TOWERPODA,58
 Pokemon = DRUDDIGON,59
     AbilityIndex = 0
     Item = LEFTOVERS
+#-------------------------------
+[BEAUTY6,Brenda]
+Pokemon = BLASFEMMIE,50
+    Moves = FAIRYTERRAIN,ENCHANTINGSONG,DARKALLURE,RECOVER
+    AbilityIndex = 0
+    Item = MISTYSEED
+Pokemon = HATTERENE,50
+    AbilityIndex = 0
+Pokemon = HEATMOR,50
+    AbilityIndex = 1
+#-------------------------------
+[WORKER6,Paul]
+Pokemon = KLINKLANG,50
+    AbilityIndex = 0
+Pokemon = ZWEIHANDOR,50
+    AbilityIndex = 0
+Pokemon = SHIINOTIC,50
+    AbilityIndex = 1
+    Item = ORANBERRY
+#-------------------------------
+[SCIENTIST_M5,Sonatane]
+Pokemon = AROMATISSE,50
+    AbilityIndex = 0
+Pokemon = KLEFKI,50
+    AbilityIndex = 0
+    Item = LEFTOVERS
+Pokemon = CRYOGONAL,50
+    Moves = RECOVER,FLASHCANNON,NERVEBREAK,CHILL
+    AbilityIndex = 0

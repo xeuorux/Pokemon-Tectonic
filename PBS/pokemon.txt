@@ -28192,8 +28192,8 @@ InternalName = HATENNA
 Type1 = PSYCHIC
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 51,61,50,44,35,58
-# Total = 299
+BaseStats = 51,69,53,44,35,58
+# Total = 310
 GenderRate = AlwaysFemale
 GrowthRate = Slow
 BaseEXP = 53
@@ -28226,8 +28226,8 @@ InternalName = HATTREM
 Type1 = PSYCHIC
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 57,86,65,49,40,73
-# Total = 370
+BaseStats = 67,86,75,49,40,89
+# Total = 406
 GenderRate = AlwaysFemale
 GrowthRate = Slow
 BaseEXP = 130
@@ -28259,8 +28259,8 @@ InternalName = HATTERENE
 Type1 = PSYCHIC
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 57,136,95,29,90,103
-# Total = 510
+BaseStats = 87,136,100,29,80,108
+# Total = 540
 GenderRate = AlwaysFemale
 GrowthRate = Slow
 BaseEXP = 255
