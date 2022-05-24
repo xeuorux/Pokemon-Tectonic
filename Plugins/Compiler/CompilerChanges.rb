@@ -87,7 +87,7 @@ module Compiler
         rescue SystemCallError
         end
       end
-      if !mustCompile && latestTextTime >= latestDataTime && pbConfirmMessageSerious(_INTL("At least one PBS file is younger than your .rxdata compiled files. Would you like to compile?"))
+      if !mustCompile && latestTextTime >= latestDataTime && pbConfirmMessageSerious("At least one PBS file is younger than your .rxdata compiled files. Would you like to compile?")
         mustCompile = true
       end
 
