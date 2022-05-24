@@ -98,7 +98,7 @@ class PokemonTilesetScene
         close_screen
     end
 
-    def erareTile()
+    def eraseTile()
       selected = tile_ID_from_coordinates(@x, @y)
       @tileset.terrain_tags[selected] = 0
       @tileset.priorities[selected] = 0
