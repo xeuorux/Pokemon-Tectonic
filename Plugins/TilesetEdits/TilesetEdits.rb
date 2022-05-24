@@ -103,7 +103,6 @@ class PokemonTilesetScene
       @tileset.terrain_tags[selected] = 0
       @tileset.priorities[selected] = 0
       @tileset.passages[selected] = 0x00
-      @tileset.bush_flags[selected] = 0
 
       # Add blank space on the tileset image file
       tilesetBitmap = RPG::Cache.load_bitmap("Graphics/Tilesets/", @tileset.tileset_name, 0)
