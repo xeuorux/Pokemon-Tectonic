@@ -189,9 +189,9 @@ class PokemonTilesetScene
       for localX in 0..selectedWidth
         for localY in 0..selectedHeight
           firstX = firstPosition[0] + localX
-          firstY = firstPosition[1] + localY - 2
+          firstY = firstPosition[1] + localY
           secondX = secondPosition[0] + localX
-          secondY = secondPosition[1] + localY - 2
+          secondY = secondPosition[1] + localY
           tempPixel = tilesetBitmap.get_pixel(firstX,firstY)
           tilesetBitmap.set_pixel(firstX,firstY,tilesetBitmap.get_pixel(secondX,secondY))
           tilesetBitmap.set_pixel(secondX,secondY,tempPixel)
