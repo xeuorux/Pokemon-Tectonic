@@ -71,7 +71,7 @@ BattleHandlers::AbilityOnEnemySwitchIn.add(:DETERRENT,
       reduce = switcher.totalhp/8
       reduce /= 4 if switcher.boss?
       switcher.pbReduceHP(reduce,false)
-      battle.pbDisplay(_INTL("{1} was attacked on sight!",user.pbThis))
+      battle.pbDisplay(_INTL("{1} was attacked on sight!",switcher.pbThis))
     end
     battle.pbHideAbilitySplash(bearer)
   }
