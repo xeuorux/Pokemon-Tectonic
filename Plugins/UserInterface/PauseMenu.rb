@@ -102,7 +102,7 @@ class PokemonPauseMenu
 		commands[cmdPokemon = commands.length]   = _INTL("Pokémon") if $Trainer.party_count > 0
 		commands[cmdBag = commands.length]       = _INTL("Bag") if !pbInBugContest?
 		commands[cmdPokegear = commands.length]  = _INTL("Pokégear") if $Trainer.has_pokegear
-		commands[cmdDexnav = commands.length]	 = _INTL("DexNav") if !$catching_minigame.active?
+		commands[cmdDexnav = commands.length]	 = _INTL("DexNav")
 		commands[cmdGameInfo = commands.length]  = _INTL("Game Info")
 		if pbInSafari?
 		  if Settings::SAFARI_STEPS <= 0
@@ -194,18 +194,23 @@ class PokemonPauseMenu
 			  @scene.pbRefresh
 			}
 		  elsif cmdDexnav >= 0 && command == cmdDexnav
-			pbPlayDecisionSE
-			pbFadeOutIn {
-				$viewport4.dispose
-				@scene = NewDexNav.new
-				return
-			}
+			if !$catching_minigame.active?
+				pbPlayDecisionSE
+				pbFadeOutIn {
+					dexnavScene = NewDexNav.new
+					@scene.pbEndScene
+					return
+				}
+			else
+				pbPlayBuzzerSE
+				pbMessage(_INTL("The features of the DexNav are unavailable during this minigame."))
+			end
 		  elsif cmdGameInfo >= 0 && command == cmdGameInfo
 			storedLastMenuChoice = $PokemonTemp.menuLastChoice
 			$PokemonTemp.menuLastChoice = 0
-			scene = PokemonGameInfoMenu_Scene.new
-			screen = PokemonGameInfoMenu.new(scene)
-			screen.pbStartPokemonMenu
+			infoMenuScene = PokemonGameInfoMenu_Scene.new
+		  	infoMenuScreen = PokemonGameInfoMenu.new(infoMenuScene)
+			infoMenuScreen.pbStartPokemonMenu
 			@scene.pbRefresh
 			$PokemonTemp.menuLastChoice = storedLastMenuChoice
 		  elsif cmdQuit >= 0 && command == cmdQuit
