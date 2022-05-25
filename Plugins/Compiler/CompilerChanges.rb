@@ -87,19 +87,20 @@ module Compiler
         rescue SystemCallError
         end
       end
+      MessageTypes.loadMessageFile("Data/messages.dat")
       if !mustCompile && latestTextTime >= latestDataTime && pbConfirmMessageSerious("At least one PBS file is younger than your .rxdata compiled files. Would you like to compile?")
         mustCompile = true
       end
 
       # Should recompile if holding Ctrl
-      Input.update
-      mustCompile = true if Input.press?(Input::CTRL)
+      #Input.update
+      #mustCompile = true if Input.press?(Input::CTRL)
       # Delete old data files in preparation for recompiling
       if mustCompile
         for i in 0...dataFiles.length
           begin
             File.delete("Data/#{dataFiles[i]}") if safeExists?("Data/#{dataFiles[i]}")
-          rescue SystemCallError
+            rescue SystemCallError
           end
         end
       end
