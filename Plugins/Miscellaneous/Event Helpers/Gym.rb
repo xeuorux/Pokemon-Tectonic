@@ -1,5 +1,6 @@
 BADGE_COUNT_VARIABLE = 27
 SURFBOARD_PHONECALL_GLOBAL = 61
+CATACOMBS_PHONECALL_GLOBAL = 62
 
 def earnBadge(badgeNum)
 	badgeNames = [
@@ -31,6 +32,8 @@ def earnBadge(badgeNum)
 	
 	if totalBadges == 4
 		$PokemonGlobal.shouldProcSurfboardCall = true
+	elsif totalBadges == 6
+		$PokemonGlobal.shouldProcCatacombsCall = true
 	end
 	
 	refreshMapEvents()
@@ -38,12 +41,19 @@ end
 
 class PokemonGlobalMetadata
 	attr_accessor :shouldProcSurfboardCall
+	attr_accessor :shouldProcCatacombsCall
 end
 
 Events.onMapChange += proc { |_sender, e|
-	if $PokemonGlobal.shouldProcSurfboardCall && playerIsOutdoors?()
-		$game_switches[SURFBOARD_PHONECALL_GLOBAL] = true
-		$PokemonGlobal.shouldProcSurfboardCall = false
+	if playerIsOutdoors?()
+		if $PokemonGlobal.shouldProcSurfboardCall
+			$game_switches[SURFBOARD_PHONECALL_GLOBAL] = true
+			$PokemonGlobal.shouldProcSurfboardCall = false
+		end
+		if $PokemonGlobal.shouldProcCatacombsCall
+			$game_switches[CATACOMBS_PHONECALL_GLOBAL] = true
+			$PokemonGlobal.shouldProcCatacombsCall = false
+		end
 	end
 }
 
