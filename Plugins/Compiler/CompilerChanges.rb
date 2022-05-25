@@ -88,7 +88,7 @@ module Compiler
         end
       end
       MessageTypes.loadMessageFile("Data/messages.dat")
-      if !mustCompile && latestTextTime >= latestDataTime && pbConfirmMessageSerious("At least one PBS file is younger than your .rxdata compiled files. Would you like to compile?")
+      if !mustCompile && latestTextTime >= latestDataTime && pbConfirmMessageSerious("\\ts[]At least one PBS file is younger than your .rxdata compiled files. Would you like to compile?")
         mustCompile = true
       end
 
@@ -190,7 +190,7 @@ module Compiler
       echoln ""
       System.reload_cache
 
-      write_all if pbConfirmMessageSerious(_INTL("Would you like to rewrite the PBS files from the compiled data?"))
+      write_all if pbConfirmMessageSerious(_INTL("\\ts[]Would you like to rewrite the PBS files from the compiled data?"))
     end
     pbSetWindowText(nil)
   end
