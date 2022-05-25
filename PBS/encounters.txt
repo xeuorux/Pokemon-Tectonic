@@ -657,7 +657,7 @@ Land,21
     25,MINIOR,52,54
     25,WAILMER,52,54
 #-------------------------------
-[216] # Mountain Lake Placeholder
+[216] # Highland Lake
 Land,20
     25,CHATOT,34,36
     25,KOMALA,34,36
