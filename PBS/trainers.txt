@@ -1584,8 +1584,8 @@ Pokemon = CLEFAIRY,32
     Item = ORANBERRY
 Pokemon = DUGTRIO,31
     AbilityIndex = 0
-Pokemon = CACTURNE,33
-    AbilityIndex = 1
+Pokemon = AEXEGGUTOR,33
+    AbilityIndex = 0
 #-------------------------------
 [BIKER2,Chuck]
 Pokemon = MUK,33
@@ -3121,3 +3121,25 @@ Pokemon = KLEFKI,50
 Pokemon = CRYOGONAL,50
     Moves = RECOVER,FLASHCANNON,NERVEBREAK,CHILL
     AbilityIndex = 0
+#-------------------------------
+[CAMPER_F,Tanya]
+Pokemon = BOUFFALANT,42
+	AbilityIndex = 0
+	Item = SHELLBELL
+Pokemon = GASTRODON,43
+	AbilityIndex = 0
+Pokemon = DITTO,44
+Pokemon = CURSOLA,43
+	AbilityIndex = 1
+	Item = SITRUSBERRY
+#-------------------------------
+[POKEMONRANGER_M3,Grant]
+Pokemon = HIPPOWDON,43
+	Item = EJECTBUTTON
+Pokemon = CACTURNE,44
+	AbilityIndex = 0
+Pokemon = PROBOPASS,45
+	AbilityIndex = 1
+	Item = EXPERTBELT
+Pokemon = GOLURK,44
+	AbilityIndex = 0
