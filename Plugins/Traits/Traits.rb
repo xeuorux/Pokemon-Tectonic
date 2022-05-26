@@ -346,7 +346,7 @@ class Pokemon
 	if @happiness < 0
 		pbMessage("A recoverable error has occured. #{self.name}'s happiness was somehow below 0 when trying to gain happiness. Setting its Happiness to 0.")
 		@happiness = 0
-	else
+	elsif @happiness > 255
 		pbMessage("A recoverable error has occured. #{self.name}'s happiness was somehow above 255 when trying to gain happiness. Setting its Happiness to 255.")
 		@happiness = 255
 	end
