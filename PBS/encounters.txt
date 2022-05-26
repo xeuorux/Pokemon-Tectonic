@@ -504,10 +504,9 @@ LandTall,21
     25,HERACROSS,30,32
     25,SEWADDLE,30,32
 LandSparse,21
-    25,CARNIVINE,30,32
-    25,DEWPIDER,30,32
-    25,LICKITUNG,30,32
-	25,FOONGUS,30,32
+    33,CARNIVINE,30,32
+    33,DEWPIDER,30,32
+    34,LICKITUNG,30,32
 Puddle,21
     25,CLAUNCHER,30,32
     25,CORPHISH,30,32
@@ -664,7 +663,7 @@ Land,21
 [216] # Highland Lake
 Land,20
     25,CHATOT,34,36
-    25,WAILMER,34,36
+    25,FOONGUS,34,36
     25,ORANGURU,34,36
     25,PASSIMIAN,34,36
 LandTinted,20
@@ -682,10 +681,11 @@ Land,20
 #-------------------------------
 [218] # Abyssal Chamber Placeholder
 Puddle,21
-    25,CHINCHOU,35,37
-    25,FRILLISH,35,37
-    25,RELICANTH,35,37
-    25,WIMPOD,35,37
+    20,CHINCHOU,35,37
+    20,FRILLISH,35,37
+    20,RELICANTH,35,37
+    20,WIMPOD,35,37
+	20,WAILMER,35,37
 #-------------------------------
 [219] # Regirock Cave
 DarkCave,21
