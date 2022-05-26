@@ -347,11 +347,10 @@ Land,20
 #-------------------------------
 [120] # Hollowed Layer
 DarkCave,20
-    20,BRONZOR,17,20
-    20,DRILBUR,17,20
-    20,LARVITAR,17,20
-    20,ONIX,17,20
-    20,TYNAMO,17,20
+    25,BRONZOR,17,20
+    25,LARVITAR,17,20
+    25,ONIX,17,20
+    25,TYNAMO,17,20
 #-------------------------------
 [121] # Skyward Ascent
 Land,20
@@ -502,14 +501,16 @@ LandTall,21
     34,EMOLGA,30,32
     33,ESPURR,30,32
     33,HERACROSS,30,32
+	33,SEWADDLE,30,32
 LandSparse,21
-    34,FALINKS,30,32
+    34,CARNIVINE,30,32
     33,DEWPIDER,30,32
     33,LICKITUNG,30,32
 Puddle,21
-    34,ILLUMISE,30,32
-    33,CLAUNCHER,30,32
-    33,VOLBEAT,30,32
+    25,ILLUMISE,30,32
+    25,CLAUNCHER,30,32
+	25,CORPHISH,30,32
+    25,VOLBEAT,30,32
 #-------------------------------
 [186] # Frostflow Farms
 LandTall,20
@@ -528,7 +529,7 @@ Special,1
 #-------------------------------
 [187] # Prizca East
 FloweryGrass2,20
-    25,COMFEY,33,35
+    25,MINCCINO,33,35
     25,FURFROU,33,35
     25,INDEEDEE,33,35
     25,SMEARGLE,33,35
@@ -579,12 +580,13 @@ Special,20
 #-------------------------------
 [211] # Split Peaks
 Land,20
-    20,KANGASKHAN,37,39
+    20,ABSOL,37,39
     20,PINSIR,37,39
     20,SKARMORY,37,39
     20,SPINDA,37,39
+	20,KOMALA,34,36
 LandSparse,20
-    25,BOUNSWEET,37,39
+    25,DRILBUR,37,39
     25,DELIBIRD,37,39
     25,HAWLUCHA,37,39
     25,RUFFLET,37,39
@@ -660,26 +662,21 @@ Land,21
 [216] # Highland Lake
 Land,20
     25,CHATOT,34,36
-    25,KOMALA,34,36
-    25,MINCCINO,34,36
-    25,SEWADDLE,34,36
-LandSparse,20
-    25,ABSOL,34,36
-    25,DRAMPA,34,36
-    25,ORANGURU,34,36
-    25,PASSIMIAN,34,36
-Puddle,21
-    25,CARNIVINE,34,36
-    25,CORPHISH,34,36
     25,FOONGUS,34,36
+	25,ORANGURU,34,36
+    25,PASSIMIAN,34,36
+LandSparse,20
+    25,KANGASKHAN,34,36
+    25,DRAMPA,34,36
+	25,FALINKS,34,36
     25,GIRAFARIG,34,36
 #-------------------------------
 [217] # Sweetrock Harbor
 Land,20
-    25,MAWILE,44,46
+    25,FALINKS,44,46
     25,MILCERY,44,46
-    25,ONIX,44,46
-    25,RIOLU,44,46
+    25,BOUNSWEET,44,46
+    25,COMFEY,44,46
 #-------------------------------
 [218] # Abyssal Chamber Placeholder
 Puddle,21
