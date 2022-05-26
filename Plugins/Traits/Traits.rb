@@ -343,6 +343,14 @@ class Pokemon
   # Changes the happiness of this Pokémon depending on what happened to change it.
   # @param method [String] the happiness changing method (e.g. 'walking')
   def changeHappiness(method)
+	if @happiness < 0
+		pbMessage("A recoverable error has occured. #{self.name}'s happiness was somehow below 0 when trying to gain happiness. Setting its Happiness to 0.")
+		@happiness = 0
+	else
+		pbMessage("A recoverable error has occured. #{self.name}'s happiness was somehow above 255 when trying to gain happiness. Setting its Happiness to 255.")
+		@happiness = 255
+	end
+
     gain = 0
     happiness_range = @happiness / 100
     case method
