@@ -64,7 +64,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         msg = _INTL("{1}'s {2} chilled {3}! It's slower and takes more damage!!",target.pbThis,target.abilityName,user.pbThis(true))
       end
-      user.pbFreeze(mse)
+      user.pbFreeze(msg)
     end
     battle.pbHideAbilitySplash(target)
   }
