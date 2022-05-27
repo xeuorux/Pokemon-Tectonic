@@ -1028,6 +1028,7 @@
 964,TRAPJAW,Trap Jaw,557,85,GRASS,Physical,100,15,0,NearOther,0,abefi,"Lures an enemy into its jaws, draining 2/3 of damage dealt if they hit the user this turn."
 965,CAUSTICPUNCH,Caustic Punch,043,60,POISON,Physical,100,20,20,NearOther,0,abefj,"Hits an enemy with an acidic punch with a 20% chance to lower defense."
 966,DOLLSTITCH,Doll Stitch,558,0,GHOST,Status,0,10,0,NearOther,0,bc,"Forces the target to make a substitute by turning it into a doll."
+967,SEVER,Sever,000,90,DARK,Physical,100,10,0,NearOther,0,abefhp,"The user hacks the target with great violence. Critical hits land more easily."
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."
 1502,PRIMEVALRAINDANCE,Primeval Rain Dance,602,0,WATER,Status,0,1,0,BothSides,0,,"The user summons rain, surrounds itself with healing water, and becomes Water-type."
