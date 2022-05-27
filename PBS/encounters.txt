@@ -775,3 +775,13 @@ Special
     1,ARCTOZOLT,40
     1,DRACOVISH,40
     1,DRACOZOLT,40
+#-------------------------------
+[251] # Samorn's House
+Special
+    1,BAGON,5
+    1,DEINO,5
+    1,DRATINI,5
+    1,DREEPY,5
+    1,GIBLE,5
+    1,GOOMY,5
+    1,JANGMOO,5

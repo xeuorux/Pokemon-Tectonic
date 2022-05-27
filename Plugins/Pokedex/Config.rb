@@ -20,16 +20,17 @@ MAPS_AVAILABLE_BY_CAP = {
 			91,65,85,			# Reading Ribombee Cafe, Nemeth Mart, Worried Man's House
 			213,214,219,		# Velenz Menagerie, Gigalith's Guts Town, Regirock Cave
 			217,49,243,			# Candy Town, Tourist's House, Chasm Base Mess Hall
-			250					# Chasm Base Lab
+			251					# Samorn's House
 			],
 	50 => [155,29,47,		# Prizca West, Full Blast Records F2, Grand Hotal
 			34,183,180,		# Battle Fair, Circuit Cave, Priza West Mart
-			185,186,		# Eleig Stretch, Farm Placeholder
+			185,186, 239,		# Eleig Stretch, Farm Placeholder, Ocean Fishing Zone
 			187,189,202,	# Prizca East, Catacombs, Mountaineer's House
 			193,196,203,	# Lapras Shore, Boiling Cave, Skeevee Eevee Pub
 			211,212,216,	# Shield, Ocean Fishing, Mountain Lake
 			218,230,232,	# Abyssal Chamber, Galarian Fan's House, Biologist's House
-			234,228         # Ranger Recruitment, Hidden Laboratory 
+			234,220,228,         # Ranger Recruitment, Prizca Sewers East, Hidden Laboratory
+			223,250				# Prizca Sewers West, Chasm Base Lab
 			],
 	70 => [215			# Sky
 			]
