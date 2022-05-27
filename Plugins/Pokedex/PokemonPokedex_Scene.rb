@@ -137,6 +137,14 @@ class PokemonPokedex_Scene
 		return ret
 	end
 	
+	def searchStartingList()
+		return SEARCHES_STACK ? @dexlist : pbGetDexList
+	end
+
+	def autoDisqualifyFromSearch(species_sym)
+		return isLegendary(species_sym) && !$Trainer.seen?(species_sym) && !$DEBUG
+	end
+
 	def pbRefreshDexList(index=0)
 		dexlist = pbGetDexList
 		# Sort species in ascending order by Regional Dex number
@@ -664,9 +672,9 @@ class PokemonPokedex_Scene
 	  if nameInput && nameInput!=""
 		  reversed = nameInput[0] == '-'
 		  nameInput = nameInput[1..-1] if reversed
-		  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		  dexlist = searchStartingList()
 		  dexlist = dexlist.find_all { |item|
-			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+		  	next false if autoDisqualifyFromSearch(item[0])
 			searchPokeName = item[1]
 			value = searchPokeName.downcase.include?(nameInput.downcase) ^ reversed # Boolean XOR
 			next value
@@ -699,9 +707,9 @@ class PokemonPokedex_Scene
 					next
 				end
 
-				dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+				dexlist = searchStartingList()
 				dexlist = dexlist.find_all { |item|
-					next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+					next false if autoDisqualifyFromSearch(item[0])
 					searchPokeAbilities = item[10]
 					value = false
 					value = true if searchPokeAbilities.include?(actualAbility)
@@ -719,9 +727,9 @@ class PokemonPokedex_Scene
 			reversed = abilityDescriptionInput[0] == '-'
 			abilityDescriptionInput = abilityDescriptionInput[1..-1] if reversed
 
-			dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+			dexlist = searchStartingList()
 			dexlist = dexlist.find_all { |item|
-				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				next false if autoDisqualifyFromSearch(item[0])
 				searchPokeAbilities = item[10]
 				value = false
 				value = true if searchPokeAbilities[0] && GameData::Ability.get(searchPokeAbilities[0]).description.downcase.include?(abilityDescriptionInput.downcase)
@@ -775,9 +783,9 @@ class PokemonPokedex_Scene
 					next
 				end
 				
-				dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+				dexlist = searchStartingList()
 				dexlist = dexlist.find_all { |item|
-					next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+					next false if autoDisqualifyFromSearch(item[0])
 					contains = false
 					
 					# By level up
@@ -871,9 +879,9 @@ class PokemonPokedex_Scene
 				typesInputArray = [typesInputArray[0],typesInputArray[0]]
 			  end
 			  
-			  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+			  dexlist = searchStartingList()
 			  dexlist = dexlist.find_all { |item|
-				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				next false if autoDisqualifyFromSearch(item[0])
 				searchPokeType1 = item[6]
 				searchPokeType1Name = GameData::Type.get(searchPokeType1).real_name.downcase if searchPokeType1
 				searchPokeType2 = item[7]
@@ -900,9 +908,9 @@ class PokemonPokedex_Scene
 	  if evoMethodTextInput && evoMethodTextInput!=""
 		  reversed = evoMethodTextInput[0] == '-'
 		  evoMethodTextInput = evoMethodTextInput[1..-1] if reversed
-		  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		  dexlist = searchStartingList()
 		  dexlist = dexlist.find_all { |item|
-			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+			next false if autoDisqualifyFromSearch(item[0])
 			anyContain = false
 			# Evolutions
 			item[14].each do |evomethod|
@@ -930,9 +938,9 @@ class PokemonPokedex_Scene
 		  
 		  surfingAvailable = levelIntAttempt >= 35
 		  
-		  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		  dexlist = searchStartingList()
 		  dexlist = dexlist.find_all { |item|
-			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+			next false if autoDisqualifyFromSearch(item[0])
 			
 			speciesToCheckLocationsFor = [item[0]]
 			# Note each pre-evolution which could be the path to aquiring this pokemon by the given level
@@ -1031,10 +1039,10 @@ class PokemonPokedex_Scene
 	def searchByOwned()
 		selection = pbMessage("Which search?",[_INTL("Owned"),_INTL("Not Owned"),_INTL("Cancel")],3)
 	    if selection != 2 
-			dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+			dexlist = searchStartingList()
 			
 			dexlist = dexlist.find_all { |item|
-				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				next false if autoDisqualifyFromSearch(item[0])
 				
 				if selection == 1
 					next !$Trainer.owned?(item[0])
@@ -1079,9 +1087,9 @@ class PokemonPokedex_Scene
 		
 		comparitorA = stats[statSelection]
 		
-		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		dexlist = searchStartingList()
 		dexlist = dexlist.find_all { |item|
-			next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+			next false if autoDisqualifyFromSearch(item[0])
 			
 			species_data = GameData::Species.get(item[0])
 			
@@ -1134,6 +1142,7 @@ class PokemonPokedex_Scene
 		cmdIsLegendary 			= -1
 		cmdMovesetConformance 	= -1
 		cmdOneAbility 			= -1
+		cmdInvertList			= -1
 		miscSearches[cmdMapFound = miscSearches.length] = _INTL("Map Found")
 		miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
 		miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined") if $DEBUG
@@ -1141,6 +1150,7 @@ class PokemonPokedex_Scene
 		miscSearches[cmdMovesetConformance = miscSearches.length] = _INTL("Moveset Noncomfority") if $DEBUG
 		miscSearches[cmdOneAbility = miscSearches.length] = _INTL("One Ability") if $DEBUG
 		miscSearches[cmdGeneration = miscSearches.length] = _INTL("Generation")
+		miscSearches[cmdInvertList = miscSearches.length] = _INTL("Invert Current")
 		miscSearches.push(_INTL("Cancel"))
 		searchSelection = pbMessage("Which search?",miscSearches,miscSearches.length)
 		if cmdMapFound > -1 && searchSelection == cmdMapFound
@@ -1159,11 +1169,13 @@ class PokemonPokedex_Scene
 			return searchByMovesetConformance()
 		elsif cmdOneAbility > -1 && searchSelection == cmdOneAbility
 			return searchByOneAbility()
+		elsif cmdInvertList > -1 && searchSelection == cmdInvertList
+			return invertSearchList()
 		end
 	end
 
 	def searchByOneAbility()
-		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		dexlist = searchStartingList()
 		
 		dexlist = dexlist.find_all { |dex_item|
 				next false if isLegendary(dex_item[0]) && !$Trainer.seen?(dex_item[0]) && !$DEBUG
@@ -1176,7 +1188,7 @@ class PokemonPokedex_Scene
 	end
 	
 	def searchByWildItem
-		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		dexlist = searchStartingList()
 		
 		wildItemNameTextInput = pbEnterText("Search item name...", 0, 20)
 		return if wildItemNameTextInput.blank?
@@ -1205,7 +1217,7 @@ class PokemonPokedex_Scene
 	end
 	
 	def searchByMapFound
-		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		dexlist = searchStartingList()
 		
 		mapNameTextInput = pbEnterText("Search map name...", 0, 20)
 		return if mapNameTextInput.blank?
@@ -1225,7 +1237,7 @@ class PokemonPokedex_Scene
 		end
 		
 		dexlist = dexlist.find_all { |item|
-				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				next false if autoDisqualifyFromSearch(item[0])
 				
 				next speciesPresent.include?(item[0]) ^ reversed # Boolean XOR
 		}
@@ -1235,7 +1247,7 @@ class PokemonPokedex_Scene
 	def searchByQuarantined()
 		selection = pbMessage("Which search?",[_INTL("Quarantined"),_INTL("Not Quarantined"),_INTL("Cancel")],3)
 	    if selection != 2 
-			dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+			dexlist = searchStartingList()
 			
 			dexlist = dexlist.find_all { |item|	
 				if selection == 1
@@ -1250,11 +1262,11 @@ class PokemonPokedex_Scene
 	end
 	
 	def searchByMovesetConformance()
-		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		dexlist = searchStartingList()
 		
 		commandAny = -1
 		command4Tempo = -1
-		command60Max = -1
+		commandMaxLevelUp = -1
 		commandExcessiveLevel1s = -1
 		commandAbove70 = -1
 		commandNoEarlyStab = -1
@@ -1263,7 +1275,7 @@ class PokemonPokedex_Scene
 		commands = [_INTL("Cancel")]
 		commands[commandAny = commands.length] = _INTL("Any")
 		commands[command4Tempo = commands.length] = _INTL("Non-4-Tempo")
-		commands[command60Max = commands.length] = _INTL("Ends before 60")
+		commands[commandMaxLevelUp = commands.length] = _INTL("Ends before value")
 		commands[commandExcessiveLevel1s = commands.length] = _INTL("Too Many 1s")
 		commands[commandAbove70 = commands.length] = _INTL("Above 70")
 		commands[commandNoEarlyStab = commands.length] = _INTL("No Pre-16 Stab")
@@ -1271,6 +1283,17 @@ class PokemonPokedex_Scene
 		commands[commandNoBBStab = commands.length] = _INTL("No 32-44 Stab")
 		selection = pbMessage("Which rulebreakers?",commands,3)
 		unless selection == 0
+			checkedMaxLevel = 70
+			if commandMaxLevelUp > -1 && selection == commandMaxLevelUp
+				levelTextInput = pbEnterText("Pick final intended moveset level...", 0, 3)
+				if levelTextInput && levelTextInput!=""
+					checkedMaxLevel = levelTextInput.to_i
+					return nil if checkedMaxLevel == 0
+				else
+					return nil
+				end
+			end
+
 			dexlist = dexlist.find_all { |item|			
 				lvlmoves = item[11]
 				types = [item[6],item[7]]
@@ -1308,7 +1331,7 @@ class PokemonPokedex_Scene
 					next true
 				end
 				
-				if maxLevel < 60 && (selection == command60Max || selection == commandAny)
+				if maxLevel < checkedMaxLevel && (selection == commandMaxLevelUp || selection == commandAny)
 					next true
 				end
 				
@@ -1342,7 +1365,7 @@ class PokemonPokedex_Scene
 	def searchByLegendary()
 		selection = pbMessage("Which search?",[_INTL("Legendary"),_INTL("Not Legendary"),_INTL("Cancel")],3)
 	    if selection != 2 
-			dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+			dexlist = searchStartingList()
 			
 			dexlist = dexlist.find_all { |item|	
 				if selection == 1
@@ -1357,7 +1380,7 @@ class PokemonPokedex_Scene
 	end
 	
 	def searchByGeneration()
-		dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+		dexlist = searchStartingList()
 		
 		generationNumber = 0
 		while true
@@ -1379,13 +1402,22 @@ class PokemonPokedex_Scene
 		generationLastNumber = generationlastNumbers[generationNumber]
 		
 		dexlist = dexlist.find_all { |item|
-				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+				next false if autoDisqualifyFromSearch(item[0])
 				id = GameData::Species.get(item[0]).id_number
 				
 				isInChosenGeneration = id > generationFirstNumber &&
 										id <= generationLastNumber
 				
 				next isInChosenGeneration ^ reversed # Boolean XOR
+		}
+		return dexlist
+	end
+
+	def invertSearchList()
+		dexlist = pbGetDexList()
+		dexlist = dexlist.find_all { |item|
+			next false if autoDisqualifyFromSearch(item[0])
+			next !@dexlist.any? { |current_item| current_item[0] == item[0]}
 		}
 		return dexlist
 	end
@@ -1425,9 +1457,9 @@ class PokemonPokedex_Scene
 			  end
 			  next if invalid
 			  
-			  dexlist = SEARCHES_STACK ? @dexlist : pbGetDexList
+			  dexlist = searchStartingList()
 			  dexlist = dexlist.find_all { |item|
-				next false if isLegendary(item[0]) && !$Trainer.seen?(item[0]) && !$DEBUG
+			  	next false if autoDisqualifyFromSearch(item[0])
 				
 				result = true
 				
