@@ -11,6 +11,12 @@ class WaypointsTracker
 	def initialize()
 		@activeWayPoints = {}
 	end
+
+	def overwriteWaypoint(waypointName,mapID,wayPointLoc)
+		if @activeWayPoints.has_key?(waypointName)
+			@activeWayPoints[waypointName] = [mapID,wayPointLoc]
+		end
+	end
 	
 	def accessWaypoint(waypointName,event)
 		@activeWayPoints = {} if @activeWayPoints.nil?
