@@ -88,8 +88,8 @@ module Compiler
         end
       end
       MessageTypes.loadMessageFile("Data/messages.dat")
-      if !mustCompile && latestTextTime >= latestDataTime && pbConfirmMessageSerious("\\ts[]At least one PBS file is younger than your .rxdata compiled files. Would you like to compile?")
-        mustCompile = true
+      if !mustCompile && latestTextTime >= latestDataTime
+        echoln("!!!!!At least one PBS file is younger than your .rxdata compiled files!!!!!")
       end
 
       # Should recompile if holding Ctrl
