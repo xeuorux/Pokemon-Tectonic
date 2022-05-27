@@ -504,9 +504,9 @@ LandTall,21
     25,HERACROSS,30,32
     25,SEWADDLE,30,32
 LandSparse,21
+    34,LICKITUNG,30,32
     33,CARNIVINE,30,32
     33,DEWPIDER,30,32
-    34,LICKITUNG,30,32
 Puddle,21
     25,CLAUNCHER,30,32
     25,CORPHISH,30,32
@@ -684,8 +684,8 @@ Puddle,21
     20,CHINCHOU,35,37
     20,FRILLISH,35,37
     20,RELICANTH,35,37
+    20,WAILMER,35,37
     20,WIMPOD,35,37
-	20,WAILMER,35,37
 #-------------------------------
 [219] # Regirock Cave
 DarkCave,21

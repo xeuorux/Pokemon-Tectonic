@@ -2350,40 +2350,40 @@ Pokemon = AMUK,34
     AbilityIndex = 1
 #-------------------------------
 [SWIMMER_M3,Rhys]
-Pokemon = BELLOSSOM,37
+Pokemon = BELLOSSOM,42
     AbilityIndex = 0
     Item = FOCUSSASH
-Pokemon = SALAZZLE,37
+Pokemon = SALAZZLE,43
     AbilityIndex = 0
     Item = EXPERTBELT
-Pokemon = POLTEAGEIST,38
+Pokemon = POLTEAGEIST,42
     AbilityIndex = 0
-Pokemon = BIBAREL,39
+Pokemon = BIBAREL,43
     AbilityIndex = 1
     Item = NORMALGEM
 #-------------------------------
 [SWIMMER_F5,Shreya]
-Pokemon = QWILFISH,38
+Pokemon = QWILFISH,43
     AbilityIndex = 0
-Pokemon = MIGHTYENA,38
+Pokemon = MIGHTYENA,44
     AbilityIndex = 0
     Item = EJECTBUTTON
-Pokemon = MIENSHAO,39
+Pokemon = MIENSHAO,43
     AbilityIndex = 0
     Item = SHELLBELL
-Pokemon = PLUSLE,40
+Pokemon = PLUSLE,44
     AbilityIndex = 1
 #-------------------------------
 [SWIMMER_F2,Astrid]
-Pokemon = TENTACRUEL,38
+Pokemon = TENTACRUEL,42
     AbilityIndex = 0
-Pokemon = VOLBEAT,38
+Pokemon = VOLBEAT,43
     AbilityIndex = 0
     Item = CHOICESCARF
-Pokemon = PALOSSAND,39
+Pokemon = PALOSSAND,42
     AbilityIndex = 0
     Item = GANLONBERRY
-Pokemon = REUNICLUS,40
+Pokemon = REUNICLUS,43
     AbilityIndex = 0
 #-------------------------------
 [JUGGLER,Youcef]
@@ -3124,22 +3124,24 @@ Pokemon = CRYOGONAL,50
 #-------------------------------
 [CAMPER_F,Tanya]
 Pokemon = BOUFFALANT,42
-	AbilityIndex = 0
-	Item = SHELLBELL
+    AbilityIndex = 0
+    Item = SHELLBELL
 Pokemon = GASTRODON,43
-	AbilityIndex = 0
+    AbilityIndex = 0
 Pokemon = DITTO,44
+    AbilityIndex = 0
 Pokemon = CURSOLA,43
-	AbilityIndex = 1
-	Item = SITRUSBERRY
+    AbilityIndex = 1
+    Item = SITRUSBERRY
 #-------------------------------
 [POKEMONRANGER_M3,Grant]
 Pokemon = HIPPOWDON,43
-	Item = EJECTBUTTON
+    AbilityIndex = 1
+    Item = EJECTBUTTON
 Pokemon = CACTURNE,44
-	AbilityIndex = 0
+    AbilityIndex = 0
 Pokemon = PROBOPASS,45
-	AbilityIndex = 1
-	Item = EXPERTBELT
+    AbilityIndex = 1
+    Item = EXPERTBELT
 Pokemon = GOLURK,44
-	AbilityIndex = 0
+    AbilityIndex = 0
