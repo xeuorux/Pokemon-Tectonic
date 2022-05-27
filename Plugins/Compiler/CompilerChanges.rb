@@ -93,8 +93,9 @@ module Compiler
       end
 
       # Should recompile if holding Ctrl
-      #Input.update
-      #mustCompile = true if Input.press?(Input::CTRL)
+      Input.update
+      mustCompile = true if Input.press?(Input::CTRL)
+      
       # Delete old data files in preparation for recompiling
       if mustCompile
         for i in 0...dataFiles.length
