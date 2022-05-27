@@ -1,3 +1,13 @@
+DebugMenuCommands.register("terraintags", {
+  "parent"      => "editorsmenu",
+  "name"        => _INTL("Edit Tileset"),
+  "description" => _INTL("Edit tilesets by changing terrain tags, adding whitespace, swapping tiles around, etc."),
+  "always_show" => true,
+  "effect"      => proc {
+    pbFadeOutIn { pbTilesetScreen }
+  }
+})
+
 class PokemonTilesetScene
   def initialize
     @tilesets_data = load_data("Data/Tilesets.rxdata")
