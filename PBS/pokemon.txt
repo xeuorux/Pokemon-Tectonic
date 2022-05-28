@@ -4995,7 +4995,7 @@ Name = Chikorita
 InternalName = CHIKORITA
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 45,39,69,45,51,69
+BaseStats = 55,39,69,45,51,69
 # Total = 318
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -5028,7 +5028,7 @@ Name = Bayleef
 InternalName = BAYLEEF
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,44,87,60,67,87
+BaseStats = 75,44,87,60,67,87
 # Total = 405
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -5060,7 +5060,7 @@ Name = Meganium
 InternalName = MEGANIUM
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,57,110,80,88,110
+BaseStats = 100,57,110,80,88,110
 # Total = 525
 GenderRate = Female50Percent
 GrowthRate = Parabolic
