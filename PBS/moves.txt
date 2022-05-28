@@ -386,7 +386,7 @@
 369,GLACIATE,Glaciate,044,65,ICE,Special,100,10,100,AllNearFoes,0,bef,"The user attacks by blowing freezing cold air at the foe. This attack reduces the targets' Speed stat."
 370,ICEFANG,Ice Fang,00E,65,ICE,Physical,100,15,100,NearOther,0,abei,"The user bites with cold-infused fangs. It has a 10% chance to flinch and a 10% chance to chill."
 371,AVALANCHE,Avalanche,081,60,ICE,Physical,100,10,0,NearOther,-4,abef,"An attack move that inflicts double the damage if the user has been hurt by the foe in the same turn."
-372,FROSTBREATH,Frost Breath,0A0,60,ICE,Special,90,10,0,NearOther,0,bef,"The user blows a cold breath on the target. This attack always results in a critical hit."
+372,FROSTBREATH,Frost Breath,0A0,60,ICE,Special,100,10,0,NearOther,0,bef,"The user blows a cold breath on the target. This attack always results in a critical hit."
 373,ICYWIND,Icy Wind,044,55,ICE,Special,100,15,100,AllNearFoes,0,bef,"The user attacks with a gust of chilled air. It also lowers the targets' Speed stat."
 374,ICESHARD,Ice Shard,000,40,ICE,Physical,100,30,0,NearOther,1,bef,"The user flash freezes chunks of ice and hurls them at the target. This move always goes first."
 375,POWDERSNOW,Powder Snow,00C,40,ICE,Special,100,25,10,AllNearFoes,0,bef,"The user attacks with a chilling gust of powdery snow. It has a 10% chance to chill."
@@ -766,7 +766,7 @@
 #-------------------------------
 704,SNAPTRAP,Snap Trap,0CF,35,GRASS,Special,100,15,0,NearOther,0,abef,"The user snares the target in a snap trap for four to five turns."
 #-------------------------------
-705,STEELBEAM,Steel Beam,510,140,STEEL,Special,95,5,100,NearOther,0,bef,"Fires a beam of steel that it collected from its entire body. This also damages the user."
+705,STEELBEAM,Steel Beam,510,140,STEEL,Special,100,5,100,NearOther,0,bef,"Fires a beam of steel that it collected from its entire body. This also damages the user."
 #-------------------------------
 706,HYDROCANNON,Hydro Cannon,0C2,170,WATER,Special,100,5,0,NearOther,0,bef,"The target is hit with a watery blast. The user must rest on the next turn, however."
 707,WATERSPOUT,Water Spout,08B,150,WATER,Special,100,5,0,AllNearFoes,0,bef,"The user spouts water to damage the foe. The lower the user's HP, the less powerful it becomes."
