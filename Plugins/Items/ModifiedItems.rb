@@ -106,8 +106,6 @@ ItemHandlers::UseOnPokemon.add(:ICEHEAL,proc { |item,pkmn,scene|
   next true
 })
 
-ItemHandlers::UseOnPokemon.copy(:ICEHEAL,:ASPEARBERRY)
-
 BattleHandlers::EOREffectItem.add(:TOXICORB,
   proc { |item,battler,battle|
     next if !battler.pbCanPoison?(nil,false)
