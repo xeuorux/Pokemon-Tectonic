@@ -1272,6 +1272,7 @@ class PokemonPokedex_Scene
 		commandNoEarlyStab = -1
 		commandNoProgressStab = -1
 		commandNoBBStab = -1
+		comandDuplicateMoves = -1
 		commands = [_INTL("Cancel")]
 		commands[commandAny = commands.length] = _INTL("Any")
 		commands[command4Tempo = commands.length] = _INTL("Non-4-Tempo")
@@ -1281,6 +1282,7 @@ class PokemonPokedex_Scene
 		commands[commandNoEarlyStab = commands.length] = _INTL("No Pre-16 Stab")
 		commands[commandNoProgressStab = commands.length] = _INTL("No 16-31 Stab")
 		commands[commandNoBBStab = commands.length] = _INTL("No 32-44 Stab")
+		commands[commandDuplicateMoves = commands.length] = _INTL("Duplicate Moves")
 		selection = pbMessage("Which rulebreakers?",commands,3)
 		unless selection == 0
 			checkedMaxLevel = 70
@@ -1302,19 +1304,33 @@ class PokemonPokedex_Scene
 				typeCount = types.length
 				
 				anyNon4s = false
+				anyDuplicates = false
 				countOf1s = 0
 				maxLevel = 0
 				earlyStabDebt,progressStabDebt,bbStabDebt = typeCount,typeCount,typeCount
+
+				allMoves = []
+
 				lvlmoves.each do |learnset_entry|
 					learnLevel = learnset_entry[0]
+					moveSym = learnset_entry[1]
+
 					maxLevel = learnLevel if learnLevel > maxLevel
 					if learnLevel == 1
 						countOf1s += 1
 					elsif learnLevel % 4 != 0
 						anyNon4s = true
 					end
+
+					if learnLevel != 0
+						if allMoves.include?(moveSym)
+							anyDuplicates = true
+						else
+							allMoves.push(moveSym)
+						end
+					end
 					
-					moveData = GameData::Move.get(learnset_entry[1])
+					moveData = GameData::Move.get(moveSym)
 					if types.include?(moveData.type) && moveData.category != 2 # Damaging move
 						if learnLevel < 16
 							earlyStabDebt -= 1
@@ -1352,6 +1368,10 @@ class PokemonPokedex_Scene
 				end
 				
 				if bbStabDebt > 0 && (selection == commandNoBBStab || selection == commandAny)
+					next true
+				end
+
+				if anyDuplicates && (selection = commandDuplicateMoves || selection == commandAny)
 					next true
 				end
 				
