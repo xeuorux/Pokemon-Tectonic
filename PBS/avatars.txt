@@ -1101,6 +1101,13 @@ Ability = SCHADENFREUDE
 Moves = CALAMITOUSSLASH,ACROBATICS,PRIMEVALLASERFOCUS
 PostPrimeMoves = METEORMASH
 Turns = 2
-HPMult = 3.0
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
+[MAGCARGO]
+Ability = IMPERVIOUS
+Moves = LAVAPLUME,FLAMESPIKES,PRIMEVALLEECHSEED
+PostPrimeMoves = LEAFSTORM
+Turns = 2
+HPMult = 4
+DMGMult = 1
