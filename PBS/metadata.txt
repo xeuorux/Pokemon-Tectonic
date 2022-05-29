@@ -1250,7 +1250,10 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [266]
-# Building Placeholder
+# Berry Greenhouse
+Outdoor = true
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [270]
 # Casey's Basement
