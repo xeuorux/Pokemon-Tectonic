@@ -4996,7 +4996,7 @@ InternalName = CHIKORITA
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,39,69,45,51,69
-# Total = 318
+# Total = 328
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 64
@@ -5029,7 +5029,7 @@ InternalName = BAYLEEF
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,44,87,60,67,87
-# Total = 405
+# Total = 420
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 142
@@ -5061,7 +5061,7 @@ InternalName = MEGANIUM
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 100,57,110,80,88,110
-# Total = 525
+# Total = 545
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 236
@@ -28418,7 +28418,7 @@ BattlerShadowSize = 2
 [863]
 Name = Perrserker
 InternalName = PERRSERKER
-TODO: Fix moveset cadence
+Notes = TODO: Fix moveset cadence
 Type1 = STEEL
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
