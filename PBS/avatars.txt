@@ -562,16 +562,17 @@ DMGMult = 1
 #-------------------------------
 [COBALION]
 Ability = HEARTOFJUSTICE
-Moves = METALBURST,REVERSAL,CLOSECOMBAT,DOUBLEEDGE
+Moves = METALBURST,IRONHEAD,PRIMEVALRAINDANCE
+PostPrimeMoves = LIQUIDATION
 Turns = 2
 HPMult = 10.0
 DMGMult = 1
-Item = ASSAULTVEST
+Item = MUSCLEBAND
 #-------------------------------
 [TERRAKION]
 Ability = HEARTOFJUSTICE
-Moves = BEDROCKBREAKER,TRAMPLE,PRIMEVALLEECHSEED
-PostPrimeMoves = LEAFBLADE
+Moves = BEDROCKBREAKER,TRAMPLE,PRIMEVALTAILWIND
+PostPrimeMoves = STRAFE
 Turns = 2
 HPMult = 10.0
 DMGMult = 1
@@ -579,12 +580,12 @@ Item = EXPERTBELT
 #-------------------------------
 [VIRIZION]
 Ability = HEARTOFJUSTICE
-Moves = SUBSTITUTE,HORNLEECH,FOCUSPUNCH,SWORDSDANCE
-PostPrimeMoves = SUBSTITUTE,HORNLEECH,FOCUSPUNCH,SWORDSDANCE
-Turns = 3
-HPMult = 5.0
+Moves = SUBSTITUTE,HORNLEECH,PRIMEVALMOONLIGHT
+PostPrimeMoves = DAZZLINGGLEAM
+Turns = 2
+HPMult = 7.5
 DMGMult = 1
-Item = LEFTOVERS
+Item = MENTALHERB
 #-------------------------------
 [KELDEO]
 Ability = HEARTOFJUSTICE
@@ -593,6 +594,7 @@ PostPrimeMoves = FIERYDANCE
 Turns = 3
 HPMult = 5.0
 DMGMult = 1
+Item = LUMBERRY
 #-------------------------------
 [NIDOQUEEN]
 Ability = POISONPUNISH
