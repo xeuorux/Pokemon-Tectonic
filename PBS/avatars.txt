@@ -1111,3 +1111,27 @@ PostPrimeMoves = LEAFSTORM
 Turns = 2
 HPMult = 4
 DMGMult = 1
+#-------------------------------
+[AMOONGUSS]
+Ability = MERCILESS
+Moves = POISONGAS,GIGADRAIN,PRIMEVALSUNNYDAY
+PostPrimeMoves = FLAMETHROWER
+Turns = 1
+HPMult = 6
+DMGMult = 1
+#-------------------------------
+[WHISCASH]
+Ability = MENTALBLOCK
+Moves = CRASHDIVE,PRIMEVALHAIL
+PostPrimeMoves = FROSTBITE
+Turns = 2
+HPMult = 5
+DMGMult = 1
+#-------------------------------
+[TOGEKISS]
+Ability = SERENEGRACE
+Moves = AIRSLASH,MISTYEXPLOSION,PRIMEVALHEALBELL
+PostPrimeMoves = TRIATTACK
+Turns = 2
+HPMult = 6
+DMGMult = 1
