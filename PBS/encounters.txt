@@ -679,7 +679,7 @@ Land,20
     25,FALINKS,44,46
     25,MILCERY,44,46
 #-------------------------------
-[218] # Abyssal Chamber Placeholder
+[218] # Abyssal Cavern Placeholder
 Puddle,21
     20,CHINCHOU,35,37
     20,FRILLISH,35,37
