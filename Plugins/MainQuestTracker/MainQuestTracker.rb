@@ -32,3 +32,7 @@ class MainQuestTracker
 		return symbol.to_s.downcase.gsub("_"," ").split(/ |\_/).map(&:capitalize).join(" ")
 	end
 end
+
+def setMQStage(stageSym)
+	$main_quest_tracker.setMainQuestStage(stageSym)
+end
