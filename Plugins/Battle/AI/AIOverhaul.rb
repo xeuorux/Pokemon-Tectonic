@@ -669,7 +669,7 @@ class PokeBattle_AI
       # NOTE: These items aren't suitable for checking at the start of the
       #       round.
       itemBlacklist = [:EXPERTBELT,:LIFEORB]
-      if !itemBlacklist.include?(user.item_id) && user.item && !user.item.is_gem?
+      if !itemBlacklist.include?(user.item_id) && user.item && !user.item.is_gem? && !user.item.is_berry?
         BattleHandlers.triggerDamageCalcUserItem(user.item,
            user,target,move,multipliers,baseDmg,type)
       end
