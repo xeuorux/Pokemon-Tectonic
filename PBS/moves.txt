@@ -1031,7 +1031,7 @@
 967,SEVER,Sever,000,90,DARK,Physical,100,10,0,NearOther,0,abefhp,"The user hacks the target with great violence. Critical hits land more easily."
 968,EVAPORATE,Evaporate,559,GHOST,Status,0,5,0,User,1,d,"The user becomes Ghost-type only. Always goes first."
 969,DEADEND,Dead End,080,65,GHOST,Special,100,10,0,NearOther,0,bef,"If the target's HP is half or less, this attack will hit with double the power."
-970,PHANTOMGATE,Phantom Gate,55A,110,GHOST,Special,100,5,0,NearOther,0,bef,"The user opens its soul to unleash massive energy. This lowers the user's Sp. Atk and Sp. Def."
+970,PHANTOMGATE,Phantom Gate,55A,120,GHOST,Special,100,5,0,NearOther,0,bef,"The user opens its soul to unleash massive energy. This lowers the user's Sp. Atk and Sp. Def."
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."
 1502,PRIMEVALRAINDANCE,Primeval Rain Dance,602,0,WATER,Status,0,1,0,BothSides,0,,"The user summons rain, surrounds itself with healing water, and becomes Water-type."
