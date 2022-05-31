@@ -1896,3 +1896,23 @@ class PokeBattle_Move_558 < PokeBattle_Move
     @battle.pbDisplay(_INTL("{1} put {2} in a substitute!",user.pbThis,target.pbThis))
   end
 end
+
+#===============================================================================
+# Target becomes Ghost type. (Evaporate)
+#===============================================================================
+class PokeBattle_Move_559 < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+	  if !user.canChangeType? || !GameData::Type.exists?(:GHOST) ||
+		 !user.pbHasOtherType?(:GHOST)
+		@battle.pbDisplay(_INTL("But it failed!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectGeneral(user,target)
+	  user.pbChangeTypes(:GHOST)
+	  typeName = GameData::Type.get(:GHOST).name
+	  @battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
+	end
+  end
