@@ -1916,3 +1916,13 @@ class PokeBattle_Move_559 < PokeBattle_Move
 	  @battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
 	end
   end
+
+#===============================================================================
+# Lowers the user's Sp. Atk and Sp. Def (Phantom Gate)
+#===============================================================================
+class PokeBattle_Move_55A < PokeBattle_StatDownMove
+	def initialize(battle,move)
+	  super
+	  @statDown = [:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1]
+	end
+end
