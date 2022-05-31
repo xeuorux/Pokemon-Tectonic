@@ -8,8 +8,8 @@ BattleHandlers::DamageCalcTargetAbility.add(:SHIELDWALL,
 
 BattleHandlers::DamageCalcTargetAbility.add(:HEADSTRONG,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if user.battle.field.terrain == :Psychic
-      mults[:defense_multiplier] *= 1.5
+    if move.physicalMove? && user.battle.field.terrain == :Psychic
+      mults[:defense_multiplier] *= 2.0
     end
   }
 )
@@ -30,8 +30,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:SENTRY,
 
 BattleHandlers::DamageCalcTargetAbility.add(:DESERTARMOR,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    w = user.battle.pbWeather
-    if w==:Sandstorm && move.physicalMove?
+    if user.battle.pbWeather == :Sandstorm && move.physicalMove?
       mults[:defense_multiplier] *= 2
     end
   }
@@ -79,13 +78,13 @@ BattleHandlers::DamageCalcTargetAbility.add(:FORTIFIED,
 
 BattleHandlers::DamageCalcTargetAbility.add(:SANDSHROUD,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather==:Sandstorm
+    mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather == :Sandstorm
   }
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:SNOWSHROUD,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather==:Hail
+    mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather == :Hail
   }
 )
 
@@ -101,6 +100,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:BROODING,
 
 BattleHandlers::DamageCalcTargetAbility.add(:HEROICFINALE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] /= 2 if target.isLastAlive?
+    mults[:final_damage_multiplier] /= 2 if target.isLastAlive?
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:KEEPER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] *= 0.80 if target.battle.field.terrain != :None
   }
 )
