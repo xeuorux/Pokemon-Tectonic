@@ -27,8 +27,8 @@ Item = LUMBERRY
 #-------------------------------
 [SHAYMIN]
 Ability = AERODYNAMIC
-Moves = AIRSLASH,ANGELSKISS,PRIMEVALHEALBELL
-PostPrimeMoves = WHITERAY
+Moves = AIRSLASH,LEAFBLADE,PRIMEVALHEALBELL
+PostPrimeMoves = WHITERAY,KALEIDOSCOPE
 Turns = 3
 HPMult = 4.5
 DMGMult = 1
@@ -45,7 +45,7 @@ DMGMult = 1
 [YVELTAL]
 Ability = DARKAURA
 Moves = OBLIVIONWING,LASHOUT,PRIMEVALHAIL
-PostPrimeMoves = ICEBEAM
+PostPrimeMoves = ICEBEAM,DRAINPUNCH
 Turns = 3
 HPMult = 4.0
 DMGMult = 1
@@ -90,7 +90,7 @@ Item = POWERHERB
 #-------------------------------
 [GENGAR]
 Ability = SUDDENCHILL
-Moves = SHADOWBALL,PRIMEVALHAIL
+Moves = SHADOWBALL,ACIDSPRAY,PRIMEVALHAIL
 PostPrimeMoves = ICEBEAM
 Turns = 2
 HPMult = 4.0
@@ -99,7 +99,7 @@ DMGMult = 1
 [ZOROARK]
 Ability = ILLUSION
 Moves = MASSDESTRUCTION,PRIMEVALPOISONGAS
-PostPrimeMoves = SLUDGEWAVE
+PostPrimeMoves = SLUDGEWAVE,VENOMDRENCH
 Turns = 1
 HPMult = 4.0
 DMGMult = 1
@@ -729,23 +729,20 @@ DMGMult = 1
 [DODRIO]
 Ability = VITALSPIRIT
 Moves = PECK
-PostPrimeMoves = PECK
 Turns = 3
 HPMult = 1.5
 DMGMult = 1
 #-------------------------------
 [KLINKLANG]
 Ability = CLEARBODY
-Moves = GEARGRIND
-PostPrimeMoves = GEARGRIND
+Moves = GEARGRIND,THUNDERBOLT,CHARGE
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [AVALUGG]
-Ability = PRISMARMOR
-Moves = CRYSTALCRUSH
-PostPrimeMoves = CRYSTALCRUSH
+Ability = CHILLEDBODY
+Moves = CRYSTALCRUSH,CALAMITOUSSLASH,REST
 Turns = 1
 HPMult = 5.0
 DMGMult = 1
@@ -753,7 +750,6 @@ DMGMult = 1
 [ELECTIVIRE]
 Ability = STATIC
 Moves = PLASMAFISTS,FORCEPALM
-PostPrimeMoves = PLASMAFISTS,FORCEPALM
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -776,8 +772,7 @@ DMGMult = 1
 #-------------------------------
 [DONSTER]
 Ability = STENCH
-Moves = CLEARSMOG,BELCH
-PostPrimeMoves = CLEARSMOG,BELCH
+Moves = CLEARSMOG,MAGNETBOMB,BELCH
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -801,24 +796,22 @@ DMGMult = 1
 #-------------------------------
 [AURORUS]
 Ability = SNOWWARNING
-Moves = ICYWIND
-PostPrimeMoves = ICYWIND
+Moves = ICYWIND,ANCIENTPOWER
 Turns = 1
 HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [GYARADOS]
 Ability = INTIMIDATE
-Moves = WATERFALL,PRIMEVALLASERFOCUS
-PostPrimeMoves = IRONHEAD
+Moves = WATERFALL,REND,PRIMEVALLASERFOCUS
+PostPrimeMoves = IRONHEAD,CRUNCH
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [PARASECT]
 Ability = COMATOSE
-Moves = SOULRIP,SPORE
-PostPrimeMoves = SOULRIP,SPORE
+Moves = SOULRIP,XSCISSOR,SPORE
 Turns = 1
 HPMult = 6.0
 DMGMult = 1
@@ -874,15 +867,15 @@ DMGMult = 1
 #-------------------------------
 [ARBOK]
 Ability = SHEDSKIN
-Moves = POISONJAB,PRIMEVALSUNNYDAY
+Moves = POISONFANG,FEINTATTACK,PRIMEVALSUNNYDAY
 PostPrimeMoves = FIREFANG
 Turns = 2
-HPMult = 2.5
-DMGMult = 1
+HPMult = 4
+DMGMult = 1.5
 #-------------------------------
 [MARACTUS]
 Ability = GRIT
-Moves = GIGADRAIN,PRIMEVALLASERFOCUS
+Moves = GIGADRAIN,SPIKYSHIELD,PRIMEVALLASERFOCUS
 PostPrimeMoves = STEELBEAM
 Turns = 2
 HPMult = 4.0
