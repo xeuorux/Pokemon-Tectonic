@@ -113,11 +113,14 @@ class PokeBattle_AI
 		
 		# Use healing moves guarenteed if low on health and its not the first move of the turn
 		if move.is_a?(PokeBattle_HealingMove)
-			score = 99999
-			score = 0 if (user.hp.to_f/user.totalhp.to_f) > 0.25
-			score = 0 if user.battle.commandPhasesThisRound != 0
+			if (user.hp.to_f/user.totalhp.to_f) > 0.25 || user.battle.commandPhasesThisRound != 0
+				score = 0
+			else
+				score = 99999
+			end 
 		end
 		
+		# AI for enemy stat down moves
 		if !move.damagingMove? && move.is_a?(PokeBattle_TargetStatDownMove)
 			statDown = move.statDown[0]
 			maxStat = -99999
@@ -136,28 +139,22 @@ class PokeBattle_AI
 			end
 			score = target == maxStater ? 130 : 0
 		end
-		
-		# More likely to use damaging moves the more damage they do, and the less current HP you have
-		if move.damagingMove?
-			damageRatio = pbGetRealDamageBoss(move,user,target).to_f / user.hp.to_f
-			score = (score * (damageRatio+1.0)/2).floor
-		end
-		
+			
 		# Much more likely to use priority moves/flinching moves when that stuff can actually matter
 		if move.priority > 0 || move.flinchingMove?
 			if user.battle.commandPhasesThisRound == 0
 				score *= 2
 			else
-				score *= 0.5
+				score = 0
 			end
 		end
 		
-		# Nearly guarantee certain moves
+		# Guarantee certain moves
 		score = 99999 if PokeBattle_AI.triggerBossRequireMoveCode(move.function,move,user,target)
 		score = 99999 if PokeBattle_AI.triggerBossRequireMoveID(move.id,move,user,target)
 		score = 99999 if PokeBattle_AI.triggerBossSpeciesRequireMove(user.species,move,user,target)
 		
-		# Rejecting moves out of hand
+		# Rejecting moves
 		@battle.messagesBlocked = true
 		score = 0 if PokeBattle_AI.triggerBossRejectMoveCode(move.function,move,user,target)
 		score = 0 if PokeBattle_AI.triggerBossRejectMoveID(move.id,move,user,target)
@@ -180,10 +177,8 @@ class PokeBattle_AI
 		# Status inducing move and is a status move
 		# Check for specific target failure condition
 		if ["003","005","006","007","00A","00C"].include?(move.function) && move.statusMove?
-			score = 0 if move.pbFailsAgainstTarget?(user,target)
+			score /= 2 if move.pbFailsAgainstTarget?(user,target)
 		end
-		
-		score = 99999 if 
 		
 		@battle.messagesBlocked = false
 		

@@ -259,14 +259,7 @@ def pbGetAvatarBattleBGM(_wildParty)   # wildParty is an array of Pokémon objec
 		return $PokemonGlobal.nextBattleBGM.clone
 	end
 	ret = nil
-=begin
-	if !ret
-	# Check map metadata
-	map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
-	music = (map_metadata) ? map_metadata.wild_battle_BGM : nil
-	ret = pbStringToAudioFile(music) if music && music != ""
-	end
-=end
+
 	legend = false
 	_wildParty.each do |p|
 		legend = true if isLegendary?(p.species)
@@ -421,4 +414,9 @@ class BattleIntroAnimationSolo < PokeBattle_Animation
 		battler.moveTone(0,4,Tone.new(0,0,0,0))
 		battler.setCallback(0,[@sprites["pokemon_#{@idxBattler}"],:pbPlayIntroAnimation])
 	end
-  end
+end
+
+class PokeBattle_Battler
+	attr_accessor :choicesTaken
+	attr_accessor :lastMoveChosen
+end

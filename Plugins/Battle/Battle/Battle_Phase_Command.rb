@@ -69,9 +69,9 @@ class PokeBattle_Battle
 		loop do
 		  break if @decision!=0   # Battle ended, stop choosing actions
 		  idxBattler += 1
-		  break if idxBattler>=@battlers.length
-		  next if !@battlers[idxBattler] || pbOwnedByPlayer?(idxBattler)!=isPlayer
-		  next if @choices[idxBattler][0]!=:None    # Action is forced, can't choose one
+		  break if idxBattler >= @battlers.length
+		  next if !@battlers[idxBattler] || pbOwnedByPlayer?(idxBattler) != isPlayer
+		  next if @choices[idxBattler][0] != :None    # Action is forced, can't choose one
 		  next if !pbCanShowCommands?(idxBattler)   # Action is forced, can't choose one
 		  # AI controls this battler
 		  if @controlPlayer || !pbOwnedByPlayer?(idxBattler)
@@ -79,8 +79,16 @@ class PokeBattle_Battle
 			# Debug testing thing
 			@battleAI.beginAutoTester(@battlers[idxBattler]) if $DEBUG && Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
 		  
+			# Increment their choices taken
+			if @battlers[idxBattler].choicesTaken.nil?
+				@battlers[idxBattler].choicesTaken = 1
+			else
+				@battlers[idxBattler].choicesTaken += 1
+			end
+
 			# Have the AI choose an action
 			@battleAI.pbDefaultChooseEnemyCommand(idxBattler)
+
 			# If an AI trainer chose to use a move, trigger dialogue event for that trainer
 			if @opponent && @choices[idxBattler][0] == :UseMove
 				battler = @battlers[idxBattler]
