@@ -6368,7 +6368,7 @@ InternalName = WOOPER
 Type1 = WATER
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 64,60,60,45,48,48
+BaseStats = 64,60,48,45,48,60
 # Total = 325
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -6402,8 +6402,8 @@ InternalName = QUAGSIRE
 Type1 = WATER
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 115,105,105,55,65,65
-# Total = 510
+BaseStats = 115,105,85,55,65,105
+# Total = 530
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 151
@@ -6758,8 +6758,8 @@ InternalName = DUNSPARCE
 Type1 = NORMAL
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,70,80,60,105,65
-# Total = 480
+BaseStats = 100,70,75,60,105,90
+# Total = 500
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 145
@@ -6791,7 +6791,7 @@ InternalName = GLIGAR
 Type1 = GROUND
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,75,105,85,35,65
+BaseStats = 65,75,65,85,35,105
 # Total = 430
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -7225,7 +7225,7 @@ InternalName = SWINUB
 Type1 = ICE
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,60,50,50,40,40
+BaseStats = 60,60,40,50,40,50
 # Total = 300
 GenderRate = Female50Percent
 GrowthRate = Slow
@@ -7259,7 +7259,7 @@ InternalName = PILOSWINE
 Type1 = ICE
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,100,80,50,60,60
+BaseStats = 100,100,60,50,60,80
 # Total = 450
 GenderRate = Female50Percent
 GrowthRate = Slow
@@ -7590,7 +7590,7 @@ Name = Phanpy
 InternalName = PHANPY
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 90,60,60,40,40,40
+BaseStats = 90,60,40,40,40,60
 # Total = 330
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -7623,7 +7623,7 @@ Name = Donphan
 InternalName = DONPHAN
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 90,120,120,50,60,60
+BaseStats = 90,120,70,50,60,110
 # Total = 500
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -11848,7 +11848,6 @@ BattlerShadowSize = 2
 [359]
 Name = Absol
 InternalName = ABSOL
-TODO = Give 3-tempo mixed moveset
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,90,70,75,90,70
@@ -14821,7 +14820,7 @@ Name = Hippopotas
 InternalName = HIPPOPOTAS
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,40,65,35,80,60
+BaseStats = 75,40,55,35,80,70
 # Total = 355
 GenderRate = Female50Percent
 GrowthRate = Slow
@@ -14854,7 +14853,7 @@ Name = Hippowdon
 InternalName = HIPPOWDON
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,60,100,45,105,100
+BaseStats = 100,60,80,45,105,120
 # Total = 510
 GenderRate = Female50Percent
 GrowthRate = Slow
@@ -15575,7 +15574,7 @@ InternalName = GLISCOR
 Type1 = GROUND
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,95,125,95,45,75
+BaseStats = 75,95,75,95,45,125
 # Total = 510
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -15607,7 +15606,7 @@ InternalName = MAMOSWINE
 Type1 = ICE
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 110,130,80,80,70,60
+BaseStats = 110,130,60,80,70,80
 # Total = 530
 GenderRate = Female50Percent
 GrowthRate = Slow
@@ -18153,7 +18152,7 @@ InternalName = SANDILE
 Type1 = GROUND
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 50,72,35,65,72,35
+BaseStats = 50,72,30,65,72,40
 # Total = 329
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -18188,8 +18187,8 @@ InternalName = KROKOROK
 Type1 = GROUND
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 67,92,79,67,92,72
-# Total = 469
+BaseStats = 67,92,70,67,92,82
+# Total = 470
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 123
@@ -18222,7 +18221,7 @@ InternalName = KROOKODILE
 Type1 = GROUND
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,117,92,70,117,80
+BaseStats = 95,117,78,70,117,94
 # Total = 571
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -27765,7 +27764,7 @@ Name = Silicobra
 InternalName = SILICOBRA
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 52,35,70,46,57,55
+BaseStats = 52,35,55,46,57,70
 # Total = 315
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -27798,7 +27797,7 @@ Name = Sandaconda
 InternalName = SANDACONDA
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,65,90,65,85,60
+BaseStats = 65,65,60,65,85,90
 # Total = 430
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -30117,7 +30116,7 @@ InternalName = SAHARICANE
 Type1 = GROUND
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,85,105,85,115,70
+BaseStats = 80,85,70,85,115,105
 # Total = 540
 GenderRate = Female50Percent
 GrowthRate = Medium
