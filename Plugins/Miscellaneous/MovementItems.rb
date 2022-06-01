@@ -25,7 +25,6 @@ class Game_Map
 			# Ignore bridge tiles if not on a bridge
 			next if terrain.bridge && $PokemonGlobal.bridge == 0
 			# Make water tiles passable if player is surfing or has the surfboard
-			#echo("#{$PokemonBag.pbHasItem?(:SURFBOARD)}, #{errain.can_surf}, #{terrain.waterfall}\n")
 			return true if terrain.can_surf && !terrain.waterfall && ($PokemonGlobal.surfing || $PokemonBag.pbHasItem?(:SURFBOARD))
 			return true if terrain.rock_climbable && $PokemonBag.pbHasItem?(:CLIMBINGGEAR)
 			# Prevent cycling in really tall grass/on ice
@@ -52,9 +51,22 @@ Events.onStepTakenFieldMovement += proc { |_sender,e|
     if event == $game_player
 	  currentTag = $game_player.pbTerrainTag
       if currentTag.can_surf && !$PokemonGlobal.surfing && $PokemonGlobal.bridge == 0
-		pbStartSurfing()
+		pbStartSurfing(false)
 		$PokemonGlobal.call_refresh = [true,false]
       end
     end
   end
 }
+
+def pbStartSurfing(jump = true)
+	pbCancelVehicles
+	$PokemonEncounters.reset_step_count
+	$PokemonGlobal.surfing = true
+	pbUpdateVehicle
+	if jump
+		$PokemonTemp.surfJump = $MapFactory.getFacingCoords($game_player.x,$game_player.y,$game_player.direction)
+		pbJumpToward
+		$PokemonTemp.surfJump = nil
+	end
+	$game_player.check_event_trigger_here([1,2])
+  end
