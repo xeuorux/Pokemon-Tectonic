@@ -146,8 +146,8 @@ DMGMult = 1
 #-------------------------------
 [SAWSBUCK]
 Ability = SERENEGRACE
-Moves = DOUBLEEDGE,HORNLEECH
-PostPrimeMoves = DOUBLEEDGE,HORNLEECH
+Moves = DOUBLEEDGE,HORNLEECH,PRIMEVALFLOWSTATE
+PostPrimeMoves = WATERFALL
 Turns = 2
 HPMult = 2.0
 DMGMult = 1
@@ -169,28 +169,19 @@ Turns = 1
 HPMult = 6.0
 DMGMult = 1
 #-------------------------------
-[URSARING]
-Ability = CHALLENGER
-Moves = CUT,SCRATCH
-PostPrimeMoves = CUT,SCRATCH
-Turns = 2
-HPMult = 4.0
-DMGMult = 1
-Item = MUSCLEBAND
-#-------------------------------
 [SCARODON]
 Ability = SCHADENFREUDE
-Moves = AQUAINSTINCT,BRUTALSWING
-PostPrimeMoves = AQUAINSTINCT,BRUTALSWING
-Turns = 2
+Moves = AQUAJET,BITE,PRIMEVALSPIKES
+PostPrimeMoves = RUMBLE
+Turns = 3
 HPMult = 3.0
 DMGMult = 1
 Item = MUSCLEBAND
 #-------------------------------
 [WATCHOG]
 Ability = PARANOID
-Moves = WHITERAY,BEAM,PRIMEVALLIGHTNINGDANCE
-PostPrimeMoves = DISCHARGE
+Moves = WHITERAY,DISARMINGVOICE,PRIMEVALLIGHTNINGDANCE
+PostPrimeMoves = SHOCKWAVE,SIGNALBEAM
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -198,8 +189,8 @@ Item = WISEGLASSES
 #-------------------------------
 [LINOONE]
 Ability = SCAVENGE
-Moves = HEADBUTT,COVET,PRIMEVALRAINDANCE
-PostPrimeMoves = SPATTERINGRAM
+Moves = HEADBUTT,STEAMROLLER,COVET,PRIMEVALRAINDANCE
+PostPrimeMoves = SPATTERINGRAM,WILDCHARGE
 Turns = 1
 HPMult = 6.0
 DMGMult = 1
@@ -272,8 +263,8 @@ DMGMult = 1
 #-------------------------------
 [PINSIR]
 Ability = MOXIE
-Moves = XSCISSOR,PRIMEVALTORMENT
-PostPrimeMoves = CRUNCH
+Moves = XSCISSOR,CROSSCHOP,PRIMEVALTORMENT
+PostPrimeMoves = CRUNCH,REVERSAL
 Turns = 2
 HPMult = 5.0
 DMGMult = 1
@@ -293,15 +284,6 @@ PostPrimeMoves = MEDITATE,STOREDPOWER
 Turns = 2
 HPMult = 5.0
 DMGMult = 1
-#-------------------------------
-[SIRFETCHD]
-Ability = BREAKTHROUGH
-Moves = FOCUSENERGY,LEAFBLADE
-PostPrimeMoves = FOCUSENERGY,LEAFBLADE
-Turns = 2
-HPMult = 4.0
-DMGMult = 1
-Item = LEEK
 #-------------------------------
 [PORYGONZ]
 Ability = DOWNLOAD
@@ -661,17 +643,17 @@ Turns = 1
 HPMult = 5.0
 DMGMult = 1
 #-------------------------------
-[KANGASKHAN]
-Ability = INNERFOCUS
-Moves = RAGE,HEADBUTT,PRIMEVALCURSE
-PostPrimeMoves = SHADOWCLAW
-Turns = 2
-HPMult = 4.0
+[TEAMUJIN]
+Ability = PARENTALBOND
+Moves = STOMP,SMASH,PRIMEVALCURSE
+PostPrimeMoves = SHADOWCLAW,LUNGE
+Turns = 1
+HPMult = 5.0
 DMGMult = 1
 #-------------------------------
 [RAICHU]
 Ability = AUDACITY
-Moves = SHOCKWAVE,PRIMEVALGRASSYTERRAIN
+Moves = SHOCKWAVE,NUZZLE,PRIMEVALGRASSYTERRAIN
 PostPrimeMoves = MEGADRAIN
 Turns = 2
 HPMult = 2.5
@@ -695,8 +677,8 @@ DMGMult = 1
 #-------------------------------
 [LEDIAN]
 Ability = IRONFIST
-Moves = LIGHTSCREEN,XSCISSOR
-PostPrimeMoves = LIGHTSCREEN,XSCISSOR
+Moves = XSCISSOR,DRAINPUNCH
+PostPrimeMoves = XSCISSOR,DRAINPUNCH
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -704,8 +686,8 @@ Item = LIGHTCLAY
 #-------------------------------
 [VESPIQUEN]
 Ability = UNNERVE
-Moves = ATTACKORDER,PRIMEVALSPIKES
-PostPrimeMoves = RUMBLE
+Moves = ATTACKORDER,BOREALWIND,PRIMEVALSPIKES
+PostPrimeMoves = RUMBLE,HEALORDER
 Turns = 2
 HPMult = 3.5
 DMGMult = 1
@@ -720,8 +702,8 @@ DMGMult = 1
 #-------------------------------
 [ABSOLUS]
 Ability = BADOMEN
-Moves = MOONBLAST,NIGHTSLASH
-PostPrimeMoves = MOONBLAST,NIGHTSLASH
+Moves = MOONBLAST,NIGHTSLASH,PRIMEVALIGNITE
+PostPrimeMoves = FLAMETHROWER,FIRELASH
 Turns = 2
 HPMult = 3.5
 DMGMult = 1
@@ -892,8 +874,8 @@ Item = ORANBERRY
 #-------------------------------
 [ORBEETLE]
 Ability = BRAINSCRAMBLE
-Moves = CONFUSERAY,PSYCHICOVERLOAD,BUGBUZZ
-PostPrimeMoves = CONFUSERAY,PSYCHICOVERLOAD,BUGBUZZ
+Moves = PSYCHICOVERLOAD,PRIMEVALPOISONGAS
+PostPrimeMoves = CONFUSERAY,MIASMA
 Turns = 2
 HPMult = 3.0
 DMGMult = 1
@@ -909,7 +891,7 @@ DMGMult = 1
 #-------------------------------
 [LICKILICKY]
 Ability = MENTALBLOCK
-Moves = CRUSHGRIP,PRIMEVALCURSE
+Moves = CRUSHGRIP,CORRODE,PRIMEVALCURSE
 PostPrimeMoves = TONGUETWISTER
 Turns = 2
 HPMult = 4.0
@@ -925,7 +907,7 @@ DMGMult = 1
 #-------------------------------
 [CONIFEAR]
 Ability = FROSTSCATTER
-Moves = CRYSTALCRUSH,PRIMEVALFLOWSTATE
+Moves = CRYSTALCRUSH,WOODHAMMER,PRIMEVALFLOWSTATE
 PostPrimeMoves = LIQUIDATION
 Turns = 1
 HPMult = 6.0
@@ -949,7 +931,7 @@ DMGMult = 1
 #-------------------------------
 [DUBWOOL]
 Ability = FLUFFY
-Moves = BODYSLAM,PRIMEVALBULKUP
+Moves = BODYSLAM,COTTONGUARD,PRIMEVALBULKUP
 PostPrimeMoves = BODYPRESS
 Turns = 2
 HPMult = 4.5
@@ -966,8 +948,8 @@ Item = POWERHERB
 #-------------------------------
 [FLORGES]
 Ability = AUDACITY
-Moves = DRAININGKISS,PRIMEVALPOISONGAS
-PostPrimeMoves = VENOMLEECH
+Moves = DRAININGKISS,PETALBLIZZARD,PRIMEVALPOISONGAS
+PostPrimeMoves = ACIDBATH
 Turns = 2
 HPMult = 5.0
 DMGMult = 1
@@ -983,7 +965,7 @@ DMGMult = 1
 #-------------------------------
 [MASQUERAIN]
 Ability = INTIMIDATE
-Moves = GALE,PRIMEVALRAINDANCE
+Moves = GALE,CREEPOUT,PRIMEVALRAINDANCE
 PostPrimeMoves = BUBBLEBLAST
 Turns = 2
 HPMult = 5.0
@@ -1000,7 +982,7 @@ Item = ROCKGEM
 #-------------------------------
 [NOIVERN]
 Ability = INFILTRATOR
-Moves = DRAGONPULSE,HURRICANE,PRIMEVALSUNNYDAY
+Moves = DRAGONPULSE,AIRSLASH,PRIMEVALSUNNYDAY
 PostPrimeMoves = FLAMETHROWER
 Turns = 2
 HPMult = 4.0
@@ -1008,7 +990,7 @@ DMGMult = 1.2
 #-------------------------------
 [MANDIBUZZ]
 Ability = IMPERVIOUS
-Moves = KNOCKOFF,AIRSLASH,PRIMEVALSPIKES
+Moves = KNOCKOFF,COLDFRONT,PRIMEVALSPIKES
 PostPrimeMoves = BONERUSH
 Turns = 2
 HPMult = 4.0
@@ -1032,7 +1014,7 @@ DMGMult = 1
 #-------------------------------
 [EISCUE]
 Ability = ICEFACE
-Moves = NERVEBREAK,HAIL
+Moves = NERVEBREAK,BRINE,HAIL
 Turns = 2
 HPMult = 4
 #-------------------------------
@@ -1044,17 +1026,17 @@ Turns = 1
 HPMult = 7
 #-------------------------------
 [EXCADRILL]
-Ability = TOUGHCLAWS
-Moves = EARTHQUAKE,PRIMEVALDRAGONDANCE
+Ability = SANDRUSH
+Moves = EARTHQUAKE,IRONHEAD,PRIMEVALDRAGONDANCE
 PostPrimeMoves = REND
 Turns = 2
-HPMult = 3.0
+HPMult = 3.5
 DMGMult = 1
 #-------------------------------
 [DURANT]
 Ability = HEATPROOF
-Moves = IRONHEAD,PRIMEVALHAIL
-PostPrimeMoves = ICEFANG
+Moves = IRONHEAD,SKITTERSMACK,PRIMEVALSANDSTORM
+PostPrimeMoves = ROCKSLIDE
 Turns = 2
 HPMult = 3.0
 DMGMult = 1
@@ -1077,7 +1059,7 @@ DMGMult = 1
 #-------------------------------
 [DECEAT]
 Ability = POWERUP
-Moves = SPIRITBREAK,PRIMEVALTORMENT
+Moves = SPIRITBREAK,MAGNETHRASH,PRIMEVALTORMENT
 PostPrimeMoves = SUCKERPUNCH
 Turns = 2
 HPMult = 3.0
@@ -1085,7 +1067,7 @@ DMGMult = 1
 #-------------------------------
 [DIANCIE]
 Ability = CLEARBODY
-Moves = DIAMONDSTORM,PRIMEVALCURSE
+Moves = DIAMONDSTORM,ENCHANTINGSONG,PRIMEVALCURSE
 PostPrimeMoves = SPIRITSHACKLE
 Turns = 2
 HPMult = 5.0
@@ -1117,7 +1099,7 @@ DMGMult = 1
 #-------------------------------
 [WHISCASH]
 Ability = MENTALBLOCK
-Moves = CRASHDIVE,PRIMEVALHAIL
+Moves = CRASHDIVE,TREMOR,PRIMEVALHAIL
 PostPrimeMoves = FROSTBITE
 Turns = 2
 HPMult = 5
