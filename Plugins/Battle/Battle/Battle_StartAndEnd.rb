@@ -304,7 +304,7 @@ class PokeBattle_Battle
 	  @battlers.each do |b|
 		next if !b
 		next unless b.boss?
-		next unless b.hp < b.totalhp * 0.6
+		next unless b.hp < b.totalhp * 0.55
 		next if b.empowered
 		usedEmpoweredMove = false
 		b.eachMoveWithIndex do |move,index|
