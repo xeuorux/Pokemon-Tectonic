@@ -179,9 +179,23 @@ class PokeBattle_AI
 		if ["003","005","006","007","00A","00C"].include?(move.function) && move.statusMove?
 			score /= 2 if move.pbFailsAgainstTarget?(user,target)
 		end
-		
+
+		# Try very hard not to attack targets which are protected
+		isProtectedSingle = false
+		singleProtectEffects().each do |single_protect_effect|
+			if target.effects[single_protect_effect]
+				isProtectedSingle = true
+				break
+			end
+		end
+		score = 1 if isProtectedSingle
+
 		@battle.messagesBlocked = false
 		
 		return score
 	end
+end
+
+def protectStyleEffects()
+	return [PBEffects::Protect,PBEffects::Obstruct,PBEffects::KingsShield,PBEffects::SpikyShield,PBEffects::BanefulBunker,PBEffects::MatBlock]
 end
