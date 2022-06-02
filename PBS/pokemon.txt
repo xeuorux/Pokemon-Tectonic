@@ -9379,7 +9379,7 @@ Name = Shroomish
 InternalName = SHROOMISH
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,70,65,45,70,65
+BaseStats = 55,90,65,45,85,65
 # Total = 380
 GenderRate = Female50Percent
 GrowthRate = Fluctuating
@@ -9415,7 +9415,7 @@ InternalName = BRELOOM
 Type1 = GRASS
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,140,75,60,140,60
+BaseStats = 60,130,80,60,120,60
 # Total = 550
 GenderRate = Female50Percent
 GrowthRate = Fluctuating
