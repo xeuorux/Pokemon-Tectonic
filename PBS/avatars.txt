@@ -940,9 +940,9 @@ DMGMult = 1
 [GRIMMSNARL]
 Ability = RUINOUS
 Moves = SPIRITBREAK,PLAYROUGH,PRIMEVALHAIL
-PostPrimeMoves = ICEBURN
-Turns = 3
-HPMult = 2.5
+PostPrimeMoves = TRIPLEAXEL
+Turns = 2
+HPMult = 5
 DMGMult = 1
 Item = POWERHERB
 #-------------------------------
