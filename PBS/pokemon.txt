@@ -18050,7 +18050,7 @@ InternalName = PETILIL
 Type1 = GRASS
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 45,45,60,60,70,50
+BaseStats = 50,45,67,67,80,55
 # Total = 330
 GenderRate = Female50Percent
 GrowthRate = Medium
