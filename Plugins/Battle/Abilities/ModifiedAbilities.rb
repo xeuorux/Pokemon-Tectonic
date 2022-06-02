@@ -489,9 +489,9 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
     randomUp = []
     randomDown = []
     GameData::Stat.each_battle do |s|
-		next if s == :EVASION
-		randomUp.push(s.id) if battler.pbCanRaiseStatStage?(s.id, battler)
-		randomDown.push(s.id) if battler.pbCanLowerStatStage?(s.id, battler)
+      next if s == :EVASION || s == :ACCURACY
+      randomUp.push(s.id) if battler.pbCanRaiseStatStage?(s.id, battler)
+      randomDown.push(s.id) if battler.pbCanLowerStatStage?(s.id, battler)
     end
     next if randomUp.length==0 && randomDown.length==0
     battle.pbShowAbilitySplash(battler)
