@@ -631,18 +631,22 @@ class PokemonPokedex_Scene
   
   def acceptSearchResults2(&searchingBlock)
 	  pbPlayDecisionSE
-	  dexlist = searchingBlock.call
-	  if !dexlist
-		# Do nothing
-	  elsif dexlist.length==0
-		pbMessage(_INTL("No matching Pokémon were found."))
-	  else
-		@dexlist = dexlist
-		@sprites["pokedex"].commands = @dexlist
-		@sprites["pokedex"].index    = 0
-		@sprites["pokedex"].refresh
-		@searchResults = true
-		return true
+	  begin
+		dexlist = searchingBlock.call
+		if !dexlist
+			# Do nothing
+		elsif dexlist.length==0
+			pbMessage(_INTL("No matching Pokémon were found."))
+		else
+			@dexlist = dexlist
+			@sprites["pokedex"].commands = @dexlist
+			@sprites["pokedex"].index    = 0
+			@sprites["pokedex"].refresh
+			@searchResults = true
+			return true
+		end
+	  rescue
+		pbMessage(_INTL("An unknown error has occured."))
 	  end
 	  return false
   end
@@ -650,18 +654,22 @@ class PokemonPokedex_Scene
   def acceptSearchResults(&searchingBlock)
 	  pbPlayDecisionSE
 	  @sprites["pokedex"].active = false
-	  dexlist = searchingBlock.call
-	  if !dexlist
-		# Do nothing
-	  elsif dexlist.length==0
-		pbMessage(_INTL("No matching Pokémon were found."))
-	  else
-		@dexlist = dexlist
-		@sprites["pokedex"].commands = @dexlist
-		@sprites["pokedex"].index    = 0
-		@sprites["pokedex"].refresh
-		@searchResults = true
-		@sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_listsearch")
+	  begin
+		dexlist = searchingBlock.call
+		if !dexlist
+			# Do nothing
+		elsif dexlist.length==0
+			pbMessage(_INTL("No matching Pokémon were found."))
+		else
+			@dexlist = dexlist
+			@sprites["pokedex"].commands = @dexlist
+			@sprites["pokedex"].index    = 0
+			@sprites["pokedex"].refresh
+			@searchResults = true
+			@sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_listsearch")
+		end
+	  rescue
+		pbMessage(_INTL("An unknown error has occured."))
 	  end
 	  @sprites["pokedex"].active = true
 	  pbRefresh
@@ -1553,13 +1561,15 @@ class PokemonPokedex_Scene
 		cmdSortByCatchDifficulty = -1
 		cmdSortByExperienceGrant = -1
 		cmdSortByTrainerCount = -1
+		cmdSortByCoverageTypesCount = -1
 		selections = []
 		selections[cmdSortByType = selections.length] = _INTL("Type")
 		selections[cmdSortByGenderRate = selections.length] = _INTL("Gender Rate")
 		selections[cmdSortByGrowthRate = selections.length] = _INTL("Growth Rate")
 		selections[cmdSortByCatchDifficulty = selections.length] = _INTL("Catch Difficulty")
 		selections[cmdSortByExperienceGrant = selections.length] = _INTL("Experience Grant")
-		selections[cmdSortByTrainerCount = selections.length] = _INTL("Trainers Using") if $DEBUG
+		selections[cmdSortByTrainerCount = selections.length] = _INTL("Trainers Using (D)") if $DEBUG
+		selections[cmdSortByCoverageTypesCount = selections.length] = _INTL("Coverage Count (D)") if $DEBUG
 		selections.push(_INTL("Cancel"))
 		selection = pbMessage("Sort by what?",selections,selections.length+1)
 	    return if selection == selections.length
@@ -1601,6 +1611,8 @@ class PokemonPokedex_Scene
 				next speciesData.base_exp
 			elsif cmdSortByTrainerCount > -1 && selection == cmdSortByTrainerCount
 				next @speciesUseData[entry[0]] || 0
+			elsif cmdSortByCoverageTypesCount > -1 && selection == cmdSortByCoverageTypesCount
+				next get_bnb_coverage(speciesData).size
 			end
 		}
 		return dexlist

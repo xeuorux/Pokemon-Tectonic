@@ -246,3 +246,27 @@ def addToHashOfArrays(hash_of_arrays,key,newValue)
 		hash_of_arrays[key] = [newValue]
 	end
 end
+
+def get_bnb_coverage(species_data)
+	moves = []
+	species_data.moves.each do |learnsetEntry|
+		moves.push(learnsetEntry[1])
+	end
+	
+	moves.concat(species_data.egg_moves)
+	moves.concat(species_data.tutor_moves)
+	moves.uniq!
+	moves.compact!
+	
+	typesOfCoverage = []
+	moves.each do |move|
+		moveData = GameData::Move.get(move)
+		next if moveData.category == 2
+		next unless moveData.base_damage >= 75
+		typesOfCoverage.push(moveData.type)
+	end
+	typesOfCoverage.uniq!
+	typesOfCoverage.compact!
+
+	return typesOfCoverage
+end

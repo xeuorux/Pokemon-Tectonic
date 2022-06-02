@@ -1200,25 +1200,7 @@ class PokemonPokedexInfo_Scene
 		
 		# Coverage types
 		
-		moves = []
-		fSpecies.moves.each do |learnsetEntry|
-			moves.push(learnsetEntry[1])
-		end
-		
-		moves.concat(fSpecies.egg_moves)
-		moves.concat(fSpecies.tutor_moves)
-		moves.uniq!
-		moves.compact!
-		
-		typesOfCoverage = []
-		moves.each do |move|
-			moveData = GameData::Move.get(move)
-			next if moveData.category == 2
-			next unless moveData.base_damage >= 80
-			typesOfCoverage.push(moveData.type)
-		end
-		typesOfCoverage.uniq!
-		typesOfCoverage.compact!
+		typesOfCoverage = get_bnb_coverage(fSpecies)
 	
 		drawTextEx(overlay,xLeft,coordinateY,450,1,"BnB coverage: #{typesOfCoverage[0..[2,typesOfCoverage.length].min].to_s}",base,shadow)
 		coordinateY += 32
