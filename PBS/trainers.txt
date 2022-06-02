@@ -2359,7 +2359,7 @@ Pokemon = SALAZZLE,43
 Pokemon = POLTEAGEIST,42
     AbilityIndex = 0
 Pokemon = BIBAREL,43
-    AbilityIndex = 1
+    AbilityIndex = 0
     Item = NORMALGEM
 #-------------------------------
 [SWIMMER_F5,Shreya]
