@@ -1222,28 +1222,13 @@ class PokeBattle_Move_096 < PokeBattle_Move
   
   
   def pbBaseDamage(baseDmg,user,target)
-	echoln _INTL("user.item.nil? is {1}", user.item.nil?)
-	if user.item.nil?
-		return 1
-	else
-		return (user.item.is_berry? || user.itemActive?) ? pbNaturalGiftBaseDamage(user.item.id) : 1
-##    return pbNaturalGiftBaseDamage(user.item.id)
-	end
-end
-end
-
-
-class PokeBattle_Move
-	def removeProtections(target)
-		target.effects[PBEffects::BanefulBunker]          = false
-		target.effects[PBEffects::KingsShield]            = false
-		target.effects[PBEffects::Protect]                = false
-		target.effects[PBEffects::SpikyShield]            = false
-		target.pbOwnSide.effects[PBEffects::CraftyShield] = false
-		target.pbOwnSide.effects[PBEffects::MatBlock]     = false
-		target.pbOwnSide.effects[PBEffects::QuickGuard]   = false
-		target.pbOwnSide.effects[PBEffects::WideGuard]    = false
-	end
+    echoln _INTL("user.item.nil? is {1}", user.item.nil?)
+    if user.item.nil?
+      return 1
+    else
+      return (user.item.is_berry? || user.itemActive?) ? pbNaturalGiftBaseDamage(user.item.id) : 1
+    end
+  end
 end
 
 #===============================================================================
