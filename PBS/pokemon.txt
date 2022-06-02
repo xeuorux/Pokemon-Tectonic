@@ -1120,7 +1120,7 @@ Name = Clefairy
 InternalName = CLEFAIRY
 Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,80,65,45,80,90
+BaseStats = 80,70,70,55,85,80
 # Total = 440
 GenderRate = Female75Percent
 GrowthRate = Slow
@@ -1153,8 +1153,8 @@ Name = Clefable
 InternalName = CLEFABLE
 Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,100,90,75,100,90
-# Total = 555
+BaseStats = 100,85,85,75,100,95
+# Total = 530
 GenderRate = Female75Percent
 GrowthRate = Slow
 BaseEXP = 217
@@ -5679,8 +5679,8 @@ Name = Cleffa
 InternalName = CLEFFA
 Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,70,45,25,70,80
-# Total = 360
+BaseStats = 65,50,50,45,65,60
+# Total = 335
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 44
@@ -18052,7 +18052,7 @@ Type1 = GRASS
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,45,67,67,80,55
-# Total = 330
+# Total = 364
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 56
@@ -22053,7 +22053,7 @@ Type1 = FAIRY
 Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 48,38,52,42,66,81
-# Total = 294
+# Total = 327
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 61
@@ -22088,7 +22088,7 @@ Type1 = FAIRY
 Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 69,50,60,57,90,105
-# Total = 395
+# Total = 431
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 130
@@ -22122,7 +22122,7 @@ Type1 = FAIRY
 Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 85,65,80,75,112,130
-# Total = 510
+# Total = 547
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 248
@@ -24057,6 +24057,7 @@ Evolutions = PRIMARINA,Level,36
 [730]
 Name = Primarina
 InternalName = PRIMARINA
+Notes = TODO: Specially defensive ability to replace audacity
 Type1 = WATER
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
