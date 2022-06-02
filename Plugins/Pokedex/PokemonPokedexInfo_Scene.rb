@@ -353,10 +353,20 @@ class PokemonPokedexInfo_Scene
         total = 0
         baseStats.each_with_index do |stat, index|
           next if !stat
-          total += stat[1]
+		  statValue = stat[1]
+          total += statValue
           # Draw stat line
           drawTextEx(overlay,30,yBase+32*index,450,1,baseStatNames[index],base,shadow)
-          drawTextEx(overlay,136,yBase+32*index,450,1,stat[1].to_s,base,shadow)
+		  statString = statValue.to_s
+		  prevos = fSpecies.get_prevolutions
+		  if $DEBUG && prevos.length == 1
+			prevoSpeciesData = GameData::Species.get(prevos[0][0])
+			statSym = prevoSpeciesData.base_stats.keys[index]
+			prevoSpeciesStatValue = prevoSpeciesData.base_stats[statSym]
+		  	statUpgradePercentage = (((statValue.to_f / prevoSpeciesStatValue.to_f)-1) * 100).floor
+		  	statString += " (#{statUpgradePercentage})"
+		  end
+          drawTextEx(overlay,136,yBase+32*index,450,1,statString,base,shadow)
         end
         drawTextEx(overlay,30,yBase+32*6+14,450,1,"Total",base,shadow)
         drawTextEx(overlay,136,yBase+32*6+14,450,1,total.to_s,base,shadow)
