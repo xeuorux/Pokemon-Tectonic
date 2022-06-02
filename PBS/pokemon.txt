@@ -22051,7 +22051,7 @@ InternalName = FLABEBE
 Type1 = FAIRY
 Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 44,38,38,42,61,71
+BaseStats = 48,38,52,42,66,81
 # Total = 294
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -22086,7 +22086,7 @@ InternalName = FLOETTE
 Type1 = FAIRY
 Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 69,50,60,57,70,89
+BaseStats = 69,50,60,57,90,105
 # Total = 395
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -22120,7 +22120,7 @@ InternalName = FLORGES
 Type1 = FAIRY
 Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 85,60,80,65,90,130
+BaseStats = 85,65,80,75,112,130
 # Total = 510
 GenderRate = Female50Percent
 GrowthRate = Medium
