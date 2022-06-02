@@ -2785,7 +2785,7 @@ Pokemon = TAUROS,42
     Item = CHOPLEBERRY
 Pokemon = VIKAVOLT,43
     AbilityIndex = 1
-    Item = CHOICESPECS
+    Item = FOCUSSASH
 #-------------------------------
 [CLOWN,Dimesmart]
 Pokemon = MISMAGIUS,47

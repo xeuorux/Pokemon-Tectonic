@@ -79,6 +79,7 @@ class PokeBattle_AI
         preferredChoice = choices[pbAIRandom(choices.length)]
         PBDebug.log("[AI] #{user.pbThis} (#{user.index}) chooses #{user.moves[preferredChoice[0]].name} at random")
       elsif user.boss?
+        choices.reject!{|choice| choice[1] <= 0}
         guaranteedChoices, regularChoices = choices.partition {|choice| choice[1] >= 5000}
         if guaranteedChoices.length == 0
           if user.lastMoveChosen.nil?
@@ -101,10 +102,9 @@ class PokeBattle_AI
         preferredChoice = sortedChoices[0]
         PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.moves[preferredChoice[0]].name} is the highest rated choice")
       end
-
       @battle.pbRegisterMove(idxBattler,preferredChoice[0],false)
       @battle.pbRegisterTarget(idxBattler,preferredChoice[2]) if preferredChoice[2]>=0
-    else # If there are no calculated choices, create a list of the choices all scored the same, to be chosen between randomly later on
+    elsif !user.boss? # If there are no calculated choices, create a list of the choices all scored the same, to be chosen between randomly later on
       PBDebug.log("[AI] #{user.pbThis} (#{user.index}) scored no moves above a zero, resetting all choices to default")
       user.eachMoveWithIndex do |_m,i|
         next if !@battle.pbCanChooseMove?(idxBattler,i,false)

@@ -36,7 +36,7 @@ Form = 1
 #-------------------------------
 [JIRACHI]
 Ability = SERENEGRACE
-Moves = DOOMDESIRE,PSYBEAM,PRIMEVALBULKUP
+Moves = DOOMDESIRE,PSYBEAM,MIRRORSHOT,PRIMEVALBULKUP
 PostPrimeMoves = BRICKBREAK,LIFEDEW
 Turns = 2
 HPMult = 5.0
@@ -544,12 +544,12 @@ DMGMult = 1
 #-------------------------------
 [COBALION]
 Ability = HEARTOFJUSTICE
-Moves = METALBURST,IRONHEAD,PRIMEVALRAINDANCE
-PostPrimeMoves = LIQUIDATION
+Moves = METALBURST,IRONHEAD,AURASPHERE,PRIMEVALRAINDANCE
+PostPrimeMoves = RAZORSHELL
 Turns = 2
 HPMult = 10.0
 DMGMult = 1
-Item = MUSCLEBAND
+Item = ASSAULTVEST
 #-------------------------------
 [TERRAKION]
 Ability = HEARTOFJUSTICE
@@ -562,7 +562,7 @@ Item = EXPERTBELT
 #-------------------------------
 [VIRIZION]
 Ability = HEARTOFJUSTICE
-Moves = SUBSTITUTE,HORNLEECH,PRIMEVALMOONLIGHT
+Moves = SUBSTITUTE,HORNLEECH,LEAFBLADE,PRIMEVALMOONLIGHT
 PostPrimeMoves = DAZZLINGGLEAM
 Turns = 2
 HPMult = 7.5
@@ -923,7 +923,7 @@ DMGMult = 1
 #-------------------------------
 [REUNICLUS]
 Ability = MAGICGUARD
-Moves = PSYSHOCK,PRIMEVALTORMENT
+Moves = EXPANDINGFORCE,MIASMA,PRIMEVALTORMENT
 PostPrimeMoves = DARKPULSE
 Turns = 2
 HPMult = 4.0
@@ -954,6 +954,7 @@ Turns = 2
 HPMult = 5.0
 DMGMult = 1
 Item = BIGROOT
+Form = 0
 #-------------------------------
 [GOODRA]
 Ability = GOOEY
