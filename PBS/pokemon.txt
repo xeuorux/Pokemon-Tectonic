@@ -17979,6 +17979,7 @@ BattlerShadowSize = 2
 [546]
 Name = Cottonee
 InternalName = COTTONEE
+Notes = TODO: Make physically oriented, and not prankster (but maybe something with similar flavor?)
 Type1 = GRASS
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
