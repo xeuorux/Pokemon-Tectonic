@@ -42,8 +42,9 @@ SpritersResource<s>Thatsowitty
 exiled-shadow<s>ausberge
 supercow<s>LunaMaddalena
 Alucus<s>The English Kiwi
-calisprojects.com
-
+calisprojects.com<s>PandaInDaGame 
+Hek-el-grande<s>Kaliser
+Agentbla
 
 Charsets
 DiegoWT<s>PurpleZaffre
