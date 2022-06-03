@@ -19,6 +19,7 @@ class PokeBattle_AI
 	TrainerPokemonDiesToDOTDialogue				= TrainerDialogueHandlerHash.new
 	PlayerPokemonDiesToDOTDialogue				= TrainerDialogueHandlerHash.new
 	TerrainChangeDialogue						= TrainerDialogueHandlerHash.new
+	BattleSurvivedDialogue						= TrainerDialogueHandlerHash.new
 	
 	def self.triggerTrainerChoseMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue_array)
 		ret = TrainerChoseMoveDialogue.trigger(policy,battler,move,target,trainer_speaking,dialogue_array)
@@ -92,6 +93,11 @@ class PokeBattle_AI
 	
 	def self.triggerTerrainChangeDialogue(policy,old_terrain,new_terrain,trainer_speaking,dialogue_array)
 		ret = TerrainChangeDialogue.trigger(policy,old_terrain,new_terrain,trainer_speaking,dialogue_array)
+		return (ret!=nil) ? ret : dialogue_array
+	end
+
+	def self.triggerBattleSurvivedDialogue(policy,trainer_speaking,dialogue_array)
+		ret = BattleSurvivedDialogue.trigger(policy,trainer_speaking,dialogue_array)
 		return (ret!=nil) ? ret : dialogue_array
 	end
 end

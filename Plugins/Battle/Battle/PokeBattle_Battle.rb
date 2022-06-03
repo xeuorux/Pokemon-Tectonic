@@ -11,9 +11,10 @@ class PokeBattle_Battle
 	attr_accessor :expStored
 	attr_reader	  :curses
 	attr_accessor :expCapped
+  attr_accessor :turnsToSurvive
   
   def bossBattle?
-	return bossBattle
+	  return bossBattle
   end
 	
   #=============================================================================
@@ -88,17 +89,18 @@ class PokeBattle_Battle
     @moldBreaker       = false
     @runCommand        = 0
     @nextPickupUse     = 0
-	@ballsUsed		   = 0
-	@messagesBlocked   = false
-	@bossBattle		   = false
-	@numBossOnlyTurns  = 0
-	@autoTesting	   = false
-	@autoTestingIndex  = 1
-	@commandPhasesThisRound = 0
-	@honorAura		   = false
-	@curses			   = []
-	@expStored		   = 0
-	@expCapped		   = false
+    @ballsUsed		   = 0
+    @messagesBlocked   = false
+    @bossBattle		   = false
+    @numBossOnlyTurns  = 0
+    @autoTesting	   = false
+    @autoTestingIndex  = 1
+    @commandPhasesThisRound = 0
+    @honorAura		   = false
+    @curses			   = []
+    @expStored		   = 0
+    @expCapped		   = false
+    @turnsToSurvive  = -1
     if GameData::Move.exists?(:STRUGGLE)
       @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))
     else

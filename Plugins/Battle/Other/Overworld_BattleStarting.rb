@@ -1,3 +1,22 @@
+def setBattleRule(*args)
+  r = nil
+  for arg in args
+    if r
+      $PokemonTemp.recordBattleRule(r,arg)
+      r = nil
+    else
+      case arg.downcase
+      when "terrain", "weather", "environment", "environ", "backdrop",
+           "battleback", "base", "outcome", "outcomevar", "turnstosurvive"
+        r = arg
+        next
+      end
+      $PokemonTemp.recordBattleRule(arg)
+    end
+  end
+  raise _INTL("Argument {1} expected a variable after it but didn't have one.",r) if r
+end
+
 # Sets up various battle parameters and applies special rules.
 def pbPrepareBattle(battle)
   battleRules = $PokemonTemp.battleRules
@@ -15,6 +34,8 @@ def pbPrepareBattle(battle)
   battle.moneyGain = battleRules["moneyGain"] if !battleRules["moneyGain"].nil?
   # Whether the player is able to switch when an opponent's Pokémon faints
   battle.switchStyle = false
+  # How long the player can merely survive to draw the battle
+  battle.turnsToSurvive = battleRules["turnsToSurvive"] if !battleRules["turnsToSurvive"].nil?
   # Whether battle animations are shown
   battle.showAnims = ($PokemonSystem.battlescene==0)
   battle.showAnims = battleRules["battleAnims"] if !battleRules["battleAnims"].nil?
@@ -293,7 +314,8 @@ class PokemonTemp
     when "base"                   then rules["base"]           = var
     when "outcome", "outcomevar"  then rules["outcomeVar"]     = var
     when "nopartner"              then rules["noPartner"]      = true
-	when "randomorder";            rules["randomOrder"]    = true
+	  when "randomorder";           then rules["randomOrder"]    = true
+    when "turnstosurvive";        then rules["turnsToSurvive"] = var
     else
       raise _INTL("Battle rule \"{1}\" does not exist.", rule)
     end

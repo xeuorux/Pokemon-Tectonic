@@ -21,7 +21,7 @@ class PokeBattle_Battle
     logMsg += "#{pbParty(1).length} wild Pokémon)" if wildBattle?
     logMsg += "#{@opponent.length} trainer(s))" if trainerBattle?
     PBDebug.log(logMsg)
-	$game_switches[94] = false
+	  $game_switches[94] = false
     faintedBefore = $Trainer.able_pokemon_count # Record the number of fainted
     pbEnsureParticipants
     begin
@@ -30,28 +30,28 @@ class PokeBattle_Battle
       @decision = 0
       @scene.pbEndBattle(@decision)
     end
-	# End the effect of all curses
-	curses.each do |curse_policy|
-		triggerBattleEndCurse(curse_policy,self)
-	end
-	# Record if the fight was perfected
-	if $Trainer.able_pokemon_count == faintedBefore
-		$game_switches[94] = true 
-		pbMessage(_INTL("\\me[Battle perfected]You perfected the fight!")) if trainerBattle? && @decision == 1
-	end
-	# Update each of the player's pokemon's battling streak
-	if trainerBattle? || bossBattle?
-		pbParty(0).each_with_index do |pkmn,i|
-			wasOnStreak = pkmn.onHotStreak?
-			if pkmn.fainted? || [2,3].include?(@decision)
-				pkmn.battlingStreak = 0
-				pbMessage("#{pkmn.name}'s Hot Streak is now over.") if wasOnStreak
-			elsif @usedInBattle[0][i]
-				pkmn.battlingStreak += 1
-				pbMessage("#{pkmn.name} is on a Hot Streak!") if pkmn.onHotStreak? && !wasOnStreak
-			end
-		end
-	end
+    # End the effect of all curses
+    curses.each do |curse_policy|
+      triggerBattleEndCurse(curse_policy,self)
+    end
+    # Record if the fight was perfected
+    if $Trainer.able_pokemon_count == faintedBefore
+      $game_switches[94] = true 
+      pbMessage(_INTL("\\me[Battle perfected]You perfected the fight!")) if trainerBattle? && @decision == 1
+    end
+    # Update each of the player's pokemon's battling streak
+    if trainerBattle? || bossBattle?
+      pbParty(0).each_with_index do |pkmn,i|
+        wasOnStreak = pkmn.onHotStreak?
+        if pkmn.fainted? || [2,3].include?(@decision)
+          pkmn.battlingStreak = 0
+          pbMessage("#{pkmn.name}'s Hot Streak is now over.") if wasOnStreak
+        elsif @usedInBattle[0][i]
+          pkmn.battlingStreak += 1
+          pbMessage("#{pkmn.name} is on a Hot Streak!") if pkmn.onHotStreak? && !wasOnStreak
+        end
+      end
+    end
     return @decision
   end
   
@@ -243,19 +243,27 @@ class PokeBattle_Battle
         break
       end
       PBDebug.log("")
+
+      # The battle is a draw if the player survives a certain number of turns
+      # In survival battles
+      if @turnsToSurvive > 0 && @turnCount > @turnsToSurvive
+        triggerBattleSurvivedDialogue
+        @decision = 5
+        break
+      end
 	  
-	  # Allow bosses to set various things about themselves before their turn
-	  @battlers.each do |b|
-		next if !b || b.fainted || !b.boss
-		PokeBattle_AI.triggerBossBeginTurn(b.species,b)
-	  end
-	  
-	  @commandPhasesThisRound = 0
-	  
-	  # Curses effects here
-	  @curses.each do |curse_policy|
-	    triggerBeginningOfTurnCurseEffect(curse_policy,self)
-	  end
+      # Allow bosses to set various things about themselves before their turn
+      @battlers.each do |b|
+      next if !b || b.fainted || !b.boss
+        PokeBattle_AI.triggerBossBeginTurn(b.species,b)
+      end
+      
+      @commandPhasesThisRound = 0
+      
+      # Curses effects here
+      @curses.each do |curse_policy|
+        triggerBeginningOfTurnCurseEffect(curse_policy,self)
+      end
 	  
       # Command phase
       PBDebug.logonerr { pbCommandPhase }
@@ -264,43 +272,43 @@ class PokeBattle_Battle
       PBDebug.logonerr { pbAttackPhase }
       break if @decision>0
 	  
-	  @commandPhasesThisRound = 1
-	  
-	  # Boss phases after main phases
-	  if @numBossOnlyTurns > 0
-		for i in 1..@numBossOnlyTurns do
-		  @battlers.each do |b|
-			next if !b
-			if b.boss
-			  @lastRoundMoved = 0
-			end
-		  end
-		  # Command phase
-		  PBDebug.logonerr { pbExtraBossCommandPhase() }
-		  break if @decision>0
-		  
-		  @commandPhasesThisRound += 1
-		  
-		  # Attack phase
-		  PBDebug.logonerr { pbExtraBossAttackPhase() }
-		  break if @decision>0
-		end
-	  end
+      @commandPhasesThisRound = 1
+      
+      # Boss phases after main phases
+      if @numBossOnlyTurns > 0
+        for i in 1..@numBossOnlyTurns do
+          @battlers.each do |b|
+            next if !b
+            if b.boss
+              @lastRoundMoved = 0
+            end
+          end
+          # Command phase
+          PBDebug.logonerr { pbExtraBossCommandPhase() }
+          break if @decision>0
+          
+          @commandPhasesThisRound += 1
+          
+          # Attack phase
+          PBDebug.logonerr { pbExtraBossAttackPhase() }
+          break if @decision>0
+        end
+      end
 	  
       # End of round phase
       PBDebug.logonerr { pbEndOfRoundPhase }
       break if @decision>0
-	  @commandPhasesThisRound = 0
-	  
-	  useEmpoweredMoves()
-	  
-	  @turnCount += 1
+      @commandPhasesThisRound = 0
+      
+      useEmpoweredMoves()
+      
+      @turnCount += 1
     end
     pbEndOfBattle
   end
   
   def useEmpoweredMoves()
-	# Have bosses use empowered moves if appropriate
+	  # Have bosses use empowered moves if appropriate
 	  @battlers.each do |b|
 		next if !b
 		next unless b.boss?
@@ -330,6 +338,18 @@ class PokeBattle_Battle
 			@scene.pbRefresh
 		end
 	  end
+  end
+
+  # Enemy dialogue for when the battle ends due to rounds survived
+  def triggerBattleSurvivedDialogue()
+    if @opponent
+      # Trigger dialogue for each opponent
+      @opponent.each_with_index do |trainer_speaking,idxTrainer|
+        @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+          PokeBattle_AI.triggerBattleSurvivedDialogue(policy,trainer_speaking,dialogue)
+        }
+      end
+    end
   end
   
   def pbEndOfBattle

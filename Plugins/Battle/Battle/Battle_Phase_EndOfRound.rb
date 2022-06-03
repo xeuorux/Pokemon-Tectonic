@@ -45,20 +45,6 @@ class PokeBattle_Battle
     # Weather continues
     weather_data = GameData::BattleWeather.try_get(@field.weather)
     pbCommonAnimation(weather_data.animation) if weather_data
-=begin
-    case @field.weather
-    when :Sun         then pbDisplay(_INTL("The sunlight is strong."))
-    when :Rain        then pbDisplay(_INTL("Rain continues to fall."))
-    when :Sandstorm   then pbDisplay(_INTL("The sandstorm is raging."))
-    when :Hail        then pbDisplay(_INTL("The hail is crashing down."))
-    when :HarshSun    then pbDisplay(_INTL("The sunlight is extremely harsh."))
-    when :HeavyRain   then pbDisplay(_INTL("It is raining heavily."))
-    when :StrongWinds then pbDisplay(_INTL("The wind is strong."))
-    when :ShadowSky   then pbDisplay(_INTL("The shadow sky continues."))
-    when :AcidRain   then pbDisplay(_INTL("The acid rain continues to fall."))
-    when :AcidRain   then pbDisplay(_INTL("The swarm is roiling.")) 
-    end
-=end
     # Effects due to weather
     curWeather = pbWeather
     priority.each do |b|
@@ -235,11 +221,10 @@ class PokeBattle_Battle
     priority.each do |b|
       next if !b.effects[PBEffects::Ingrain]
       next if !b.canHeal?
-	if b.boss?
-		hpGain = b.totalhp/32
-	else
-		hpGain = b.totalhp/8
-	end
+      hpGain = b.totalhp/8
+      if b.boss?
+        hpGain /= 4
+      end
       hpGain = (hpGain*1.3).floor if b.hasActiveItem?(:BIGROOT)
       b.pbRecoverHP(hpGain)
       pbDisplay(_INTL("{1} absorbed nutrients with its roots!",b.pbThis))
@@ -253,7 +238,7 @@ class PokeBattle_Battle
       oldHP = b.hp
       oldHPRecipient = recipient.hp
       pbCommonAnimation("LeechSeed",recipient,b)
-	  healthFraction = b.boss ? 64 : 8
+	    healthFraction = b.boss ? 64 : 8
       hpLost = b.pbReduceHP(b.totalhp/healthFraction)
       recipient.pbRecoverHPFromDrain(hpLost,b,
          _INTL("{1}'s health is sapped by Leech Seed!",b.pbThis))
@@ -267,8 +252,8 @@ class PokeBattle_Battle
     priority.each do |b|
       next if !b.inHyperMode? || @choices[b.index][0]!=:UseMove
       reduction = b.totalhp/24
-	  reduction /= 4 if b.boss?
-	  b.damageState.displayedDamage = reduction
+	    reduction /= 4 if b.boss?
+	    b.damageState.displayedDamage = reduction
       @scene.pbDamageAnimation(b)
       b.pbReduceHP(reduction,false)
       pbDisplay(_INTL("The Hyper Mode attack hurts {1}!",b.pbThis(true)))
@@ -294,7 +279,7 @@ class PokeBattle_Battle
       elsif b.takesIndirectDamage?
         oldHP = b.hp
         dmg = b.totalhp/8
-		dmg = (dmg/4.0).round if b.boss
+		    dmg = (dmg/4.0).round if b.boss
         b.pbContinueStatus(:POISON) { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
@@ -363,7 +348,7 @@ class PokeBattle_Battle
       b.pbAbilitiesOnDamageTaken(oldHP)
       b.pbFaint if b.fainted?
     end
-	# Octolock
+	  # Octolock
     priority.each do |b|
       next if !b.effects[PBEffects::Octolock]
 	    octouser = @battlers[b.effects[PBEffects::OctolockUser]]
@@ -480,8 +465,9 @@ class PokeBattle_Battle
         pbJudgeCheckpoint(@battlers[perishSongUsers[0]])
       end
     end
+
     # Check for end of battle
-    if @decision>0
+    if @decision > 0
       pbGainExp
       return
     end
@@ -649,30 +635,30 @@ class PokeBattle_Battle
     @field.effects[PBEffects::FusionBolt]  = false
     @field.effects[PBEffects::FusionFlare] = false
 	
-	# Neutralizing Gas
-	pbCheckNeutralizingGas
+	  # Neutralizing Gas
+	  pbCheckNeutralizingGas
 	
     @endOfRound = false
   end
   
   # Enemy dialogue for victims of poison/burn
   def triggerDOTDeathDialogue(pokemon)
-	if @opponent
-		if pbOwnedByPlayer?(pokemon.index)
-			# Trigger dialogue for each opponent
-			@opponent.each_with_index do |trainer_speaking,idxTrainer|
-				@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					PokeBattle_AI.triggerPlayerPokemonDiesToDOTDialogue(policy,pokemon,trainer_speaking,dialogue)
-				}
-			end
-		else
-			# Trigger dialogue for the trainer whose pokemon died
-			idxTrainer = pbGetOwnerIndexFromBattlerIndex(pokemon.index)
-			trainer_speaking = @opponent[idxTrainer]
-			@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-				PokeBattle_AI.triggerTrainerPokemonDiesToDOTDialogue(policy,pokemon,trainer_speaking,dialogue)
-			}
-		end
-	end
+    if @opponent
+      if pbOwnedByPlayer?(pokemon.index)
+        # Trigger dialogue for each opponent
+        @opponent.each_with_index do |trainer_speaking,idxTrainer|
+          @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+            PokeBattle_AI.triggerPlayerPokemonDiesToDOTDialogue(policy,pokemon,trainer_speaking,dialogue)
+          }
+        end
+      else
+        # Trigger dialogue for the trainer whose pokemon died
+        idxTrainer = pbGetOwnerIndexFromBattlerIndex(pokemon.index)
+        trainer_speaking = @opponent[idxTrainer]
+        @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+          PokeBattle_AI.triggerTrainerPokemonDiesToDOTDialogue(policy,pokemon,trainer_speaking,dialogue)
+        }
+      end
+    end
   end
 end
