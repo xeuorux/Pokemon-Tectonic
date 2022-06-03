@@ -612,7 +612,7 @@ DMGMult = 1
 #-------------------------------
 [MAMOSWINE]
 Ability = THICKFAT
-Moves = ICEFANG,BULLDOZE
+Moves = ICEFANG,BULLDOZE,PRIMEVALTAILWIND
 PostPrimeMoves = ICEFANG,BULLDOZE
 Turns = 2
 HPMult = 4.0
@@ -621,23 +621,23 @@ Item = EXPERTBELT
 #-------------------------------
 [MIGHTYENA]
 Ability = INTIMIDATE
-Moves = BITE,TACKLE,PRIMEVALMOONLIGHT
+Moves = BITE,TAKEDOWN,PRIMEVALMOONLIGHT
 PostPrimeMoves = DISARMINGVOICE
 Turns = 2
-HPMult = 3.0
+HPMult = 3.5
 DMGMult = 1
 #-------------------------------
 [DIGNIPHITE]
 Ability = FASCINATE
-Moves = METALCLAW,PRIMEVALSTRINGSHOT
+Moves = SHOTPUT,TREADON,PRIMEVALSTRINGSHOT
 PostPrimeMoves = BUGBITE
-Turns = 2
+Turns = 3
 HPMult = 3.0
 DMGMult = 1
 #-------------------------------
 [MILOTIC]
 Ability = COMPETITIVE
-Moves = BRINE,WATERGUN,PRIMEVALSANDSTORM
+Moves = BRINE,TWISTER,PRIMEVALSANDSTORM
 PostPrimeMoves = CRYSTALGLEAM
 Turns = 1
 HPMult = 5.0
