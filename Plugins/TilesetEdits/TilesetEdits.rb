@@ -80,7 +80,7 @@ class PokemonTilesetScene
             tileEditCommands = [_INTL("Cancel")]
             tileEditCommands[cmdRemoveUses = tileEditCommands.length] = _INTL("Remove Tile Uses")
             tileEditCommands[cmdEraseTile = tileEditCommands.length] = _INTL("Erase Tile")
-            tileEditCommands[cmdSwapTile = tileEditCommands.length] = _INTL("Swap Tile")
+            tileEditCommands[cmdSwapTile = tileEditCommands.length] = _INTL("Swap Tiles")
             tileEditCommands[cmdInsertLines = tileEditCommands.length] = _INTL("Insert Lines After")
             tileEditCommands[cmdDeleteLines = tileEditCommands.length] = _INTL("Delete Lines Starting From")
             while true
@@ -91,7 +91,6 @@ class PokemonTilesetScene
                 selected = tile_ID_from_coordinates(@x, @y)
                 applyChangeSetToAllMaps(@tileset.id,[[selected,0]])
                 pbMessage(_INTL("Deleted all usages of this tile on all maps which use this tileset."))
-                draw_overlay
               elsif cmdEraseTile > -1 && tileCommand == cmdEraseTile
                 eraseTile()
               elsif cmdSwapTile > -1 && tileCommand == cmdSwapTile
@@ -101,11 +100,22 @@ class PokemonTilesetScene
               elsif cmdDeleteLines > -1 && tileCommand == cmdDeleteLines
                 next if !deleteLines()
               end
+              reload_tileset()
               break
             end
           end
         end
         close_screen
+    end
+
+    def reload_tileset()
+      currentX = @x
+      currentY = @y
+      load_tileset(@tileset.id)
+      @x = currentX
+      @y = currentY
+      draw_tiles
+      draw_overlay
     end
 
     def eraseTile()
@@ -133,24 +143,103 @@ class PokemonTilesetScene
       end
 
       saveTileSetChanges()
-
-      draw_tiles
-      draw_overlay
     end
 
     def swapTiles()
-      selectedA = tile_ID_from_coordinates(@x, @y)
+      # Select the opposite corners of the first selection area
+      selectedA1 = [@x,@y,tile_ID_from_coordinates(@x, @y)]
+      
+      pbMessage(_INTL("Select the bottom right tile of the first selection."))
+      selectedA2 = selectTile()
+      return if selectedA2.nil?
 
-      # Top left x, y
-      firstPosition = [(@x) * TILE_SIZE,(@y - 1) * TILE_SIZE]
+      # Calculate information about the first selection
+      selectionAFirstPixel = [(selectedA1[0]) * TILE_SIZE,(selectedA1[1] - 1) * TILE_SIZE]
+      selectionAWidth = selectedA2[0] - selectedA1[0] + 1
+      selectionAHeight = selectedA2[1] - selectedA1[1] + 1
 
-      # Width, height
-      selectedWidth = TILE_SIZE
-      selectedHeight = TILE_SIZE
+      # Select the opposite corners of the second selection area
+      selectedB1 = nil
+      selectedB2 = nil
+      selectionBFirstPixel = -1
+      loop do
+        pbMessage(_INTL("Select the top left tile of the second selection."))
+        selectedB1 = selectTile()
+        return if selectedB1.nil?
 
-      pbMessage(_INTL("Choose the tile to swap it with."))
+        pbMessage(_INTL("Select the bottom right tile of the second selection."))
+        selectedB2 = selectTile()
+        return if selectedB2.nil?
 
-      selectedB = nil
+        # Calculate information about the second selection
+        selectionBWidth = selectedB2[0] - selectedB1[0] + 1
+        selectionBHeight = selectedB2[1] - selectedB1[1] + 1
+
+        if selectionBWidth != selectionAWidth
+          pbMessage(_INTL("The second selection must be the same width as the first (#{selectionAWidth})."))
+        elsif selectionBHeight != selectionAHeight
+          pbMessage(_INTL("The second selection must be the same height as the first (#{selectionAHeight})."))
+        else
+          selectionBFirstPixel = [(selectedB1[0]) * TILE_SIZE,(selectedB1[1] - 1) * TILE_SIZE]
+          break
+        end
+      end
+
+      selectionWidth = selectionAWidth
+      selectionHeight = selectionAHeight
+      selectionPixelWidth = selectionWidth * TILE_SIZE
+      selectionPixelHeight = selectionHeight * TILE_SIZE
+
+      echoln("Attempting to begin swap from SelectionA (#{selectedA1[0]},#{selectedA1[1]} to " +
+        "#{selectedA2[0]},#{selectedA2[1]}) to SelectionB (#{selectedB1[0]},#{selectedB1[1]} to " +
+        "#{selectedB2[0]},#{selectedB2[1]}) which should both be width (#{selectionWidth} and height #{selectionHeight}")
+
+      # Edit the tileset metadata, and edit each map per tile changed
+      for localX in 0..selectionWidth
+        for localY in 0..selectionHeight
+          firstX = selectedA1[0] + localX
+          firstY = selectedA1[1] + localY
+          firstId = tile_ID_from_coordinates(firstX,firstY)
+          secondX = selectedB1[0] + localX
+          secondY = selectedB1[1] + localY
+          secondId = tile_ID_from_coordinates(firstX,firstY)
+
+          tempTerrainTag = @tileset.terrain_tags[firstId]
+          tempPriority = @tileset.priorities[firstId]
+          tempPassages = @tileset.passages[firstId]
+
+          @tileset.terrain_tags[firstId] = @tileset.terrain_tags[secondId]
+          @tileset.priorities[firstId] = @tileset.priorities[secondId]
+          @tileset.passages[firstId] = @tileset.passages[secondId]
+
+          @tileset.terrain_tags[secondId] = tempTerrainTag
+          @tileset.priorities[secondId] = tempPriority
+          @tileset.passages[secondId] = tempPassages
+
+          swapTilesOnAllMaps(@tileset.id,firstId,secondId)
+        end
+      end
+
+      # Edit the tileset image file
+      tilesetBitmap = RPG::Cache.load_bitmap("Graphics/Tilesets/", @tileset.tileset_name, 0)
+      for localPixelX in 0..selectionPixelWidth-1
+        for localPixelY in 0..selectionPixelHeight-1
+          firstPixelX = selectionAFirstPixel[0] + localPixelX
+          firstPixelY = selectionAFirstPixel[1] + localPixelY
+          secondPixelX = selectionBFirstPixel[0] + localPixelX
+          secondPixelY = selectionBFirstPixel[1] + localPixelY
+          tempPixel = tilesetBitmap.get_pixel(firstPixelX,firstPixelY)
+          tilesetBitmap.set_pixel(firstPixelX,firstPixelY,tilesetBitmap.get_pixel(secondPixelX,secondPixelY))
+          tilesetBitmap.set_pixel(secondPixelX,secondPixelY,tempPixel)
+        end
+      end
+      tilesetBitmap.to_file("Graphics/Tilesets/" + @tileset.tileset_name + '.png')
+
+      saveTileSetChanges()
+    end
+
+    def selectTile()
+      selectedTileInfo = nil
       loop do
         Graphics.update
         Input.update
@@ -167,51 +256,14 @@ class PokemonTilesetScene
         elsif Input.repeat?(Input::JUMPDOWN)
           update_cursor_position(0, @visible_height)
         elsif Input.trigger?(Input::USE)
-          selectedB = tile_ID_from_coordinates(@x, @y)
+          selectedTileInfo = [@x,@y,tile_ID_from_coordinates(@x, @y)]
           break
         elsif Input.trigger?(Input::BACK)
-          pbMessage(_INTL("Cancelling swap."))
-          return
+          pbMessage(_INTL("Cancelling."))
+          return nil
         end
       end
-
-      if selectedB.nil?
-        echoln("Unable to perform swap for some reason.")
-        return
-      end
-
-      secondPosition = [(@x) * TILE_SIZE,(@y - 1) * TILE_SIZE]
-
-      tempTerrainTag = @tileset.terrain_tags[selectedA]
-      tempPriority = @tileset.priorities[selectedA]
-      tempPassages = @tileset.passages[selectedA]
-
-      @tileset.terrain_tags[selectedA] = @tileset.terrain_tags[selectedB]
-      @tileset.priorities[selectedA] = @tileset.priorities[selectedB]
-      @tileset.passages[selectedA] = @tileset.passages[selectedB]
-
-      @tileset.terrain_tags[selectedB] = tempTerrainTag
-      @tileset.priorities[selectedB] = tempPriority
-      @tileset.passages[selectedB] = tempPassages
-
-      # Edit the tileset image file
-      tilesetBitmap = RPG::Cache.load_bitmap("Graphics/Tilesets/", @tileset.tileset_name, 0)
-      for localX in 0..selectedWidth
-        for localY in 0..selectedHeight
-          firstX = firstPosition[0] + localX
-          firstY = firstPosition[1] + localY
-          secondX = secondPosition[0] + localX
-          secondY = secondPosition[1] + localY
-          tempPixel = tilesetBitmap.get_pixel(firstX,firstY)
-          tilesetBitmap.set_pixel(firstX,firstY,tilesetBitmap.get_pixel(secondX,secondY))
-          tilesetBitmap.set_pixel(secondX,secondY,tempPixel)
-        end
-      end
-      tilesetBitmap.to_file("Graphics/Tilesets/" + @tileset.tileset_name + '.png')
-
-      swapTilesOnAllMaps(@tileset.id,selectedA,selectedB)
-
-      saveTileSetChanges()
+      return selectedTileInfo
     end
 
     def insertBlankLines
@@ -280,9 +332,6 @@ class PokemonTilesetScene
       offsetTilesOnAllMaps(@tileset.id,TILES_PER_ROW * rowsToAdd,[minTileID,maxTileID])
 
       saveTileSetChanges()
-
-      draw_tiles
-      draw_overlay
       return true
     end
 
@@ -342,9 +391,6 @@ class PokemonTilesetScene
       offsetTilesOnAllMaps(@tileset.id,-TILES_PER_ROW * rowsToDelete,[minTileID,maxTileID])
 
       saveTileSetChanges()
-
-      draw_tiles
-      draw_overlay
       return true
     end
 
