@@ -62,15 +62,15 @@ class PokeBattle_Battle
     @scene.pbStartBattle(self)
     # Show trainers on both sides sending out Pokémon
     pbStartBattleSendOut(sendOuts)
-	# Curses apply if at all
-	if @opponent && $PokemonGlobal.tarot_amulet_active
-		@opponent.each do |opponent|
-			opponent.policies.each do |policy|
-				cursesToAdd = triggerBattleStartApplyCurse(policy,self,[])
-				curses.concat(cursesToAdd)
-			end
-		end
-	end
+    # Curses apply if at all
+    if @opponent && $PokemonGlobal.tarot_amulet_active
+      @opponent.each do |opponent|
+        opponent.policies.each do |policy|
+          cursesToAdd = triggerBattleStartApplyCurse(policy,self,[])
+          curses.concat(cursesToAdd)
+        end
+      end
+    end
     # Weather announcement
     weather_data = GameData::BattleWeather.try_get(@field.weather)
     pbCommonAnimation(weather_data.animation) if weather_data
@@ -248,7 +248,7 @@ class PokeBattle_Battle
       # In survival battles
       if @turnsToSurvive > 0 && @turnCount > @turnsToSurvive
         triggerBattleSurvivedDialogue
-        @decision = 5
+        @decision = 6
         break
       end
 	  
@@ -361,26 +361,51 @@ class PokeBattle_Battle
 		  PBDebug.log("")
 		  PBDebug.log("***Player won***")
 		  if trainerBattle?
-			@scene.pbTrainerBattleSuccess
-			case @opponent.length
-			when 1
-			  pbDisplayPaused(_INTL("You defeated {1}!",@opponent[0].full_name))
-			when 2
-			  pbDisplayPaused(_INTL("You defeated {1} and {2}!",@opponent[0].full_name,
-				 @opponent[1].full_name))
-			when 3
-			  pbDisplayPaused(_INTL("You defeated {1}, {2} and {3}!",@opponent[0].full_name,
-				 @opponent[1].full_name,@opponent[2].full_name))
-			end
-			@opponent.each_with_index do |_t,i|
-			  if @endSpeeches[i] && @endSpeeches[i] != "" && @endSpeeches[i] != "..."
-				@scene.pbShowOpponent(i)
-				pbDisplayPaused(@endSpeeches[i].gsub(/\\[Pp][Nn]/,pbPlayer.name))
-			  end
-			end
+        @scene.pbTrainerBattleSuccess
+        case @opponent.length
+        when 1
+          pbDisplayPaused(_INTL("You defeated {1}!",@opponent[0].full_name))
+        when 2
+          pbDisplayPaused(_INTL("You defeated {1} and {2}!",@opponent[0].full_name,
+          @opponent[1].full_name))
+        when 3
+          pbDisplayPaused(_INTL("You defeated {1}, {2} and {3}!",@opponent[0].full_name,
+          @opponent[1].full_name,@opponent[2].full_name))
+        end
+        @opponent.each_with_index do |_t,i|
+          if @endSpeeches[i] && @endSpeeches[i] != "" && @endSpeeches[i] != "..."
+          @scene.pbShowOpponent(i)
+          pbDisplayPaused(@endSpeeches[i].gsub(/\\[Pp][Nn]/,pbPlayer.name))
+          end
+        end
 		  end
 		  # Gain money from winning a trainer battle, and from Pay Day
 		  pbGainMoney if @decision!=4
+		  # Hide remaining trainer
+		  @scene.pbShowOpponent(@opponent.length) if trainerBattle? && @caughtPokemon.length>0
+    #### WIN FROM TIMEOUT ####
+    when 6
+      PBDebug.log("")
+		  PBDebug.log("***Player won from time***")
+		  if trainerBattle?
+			  @scene.pbTrainerBattleSuccess
+        case @opponent.length
+        when 1
+          pbDisplayPaused(_INTL("You outlasted {1}.",@opponent[0].full_name))
+        when 2
+          pbDisplayPaused(_INTL("You outlasted {1} and {2}.",@opponent[0].full_name,
+          @opponent[1].full_name))
+        when 3
+          pbDisplayPaused(_INTL("You outlasted {1}, {2} and {3}.",@opponent[0].full_name,
+          @opponent[1].full_name,@opponent[2].full_name))
+        end
+        @opponent.each_with_index do |_t,i|
+          if @endSpeeches[i] && @endSpeeches[i] != "" && @endSpeeches[i] != "..."
+            @scene.pbShowOpponent(i)
+            pbDisplayPaused(@endSpeeches[i].gsub(/\\[Pp][Nn]/,pbPlayer.name))
+          end
+        end
+		  end
 		  # Hide remaining trainer
 		  @scene.pbShowOpponent(@opponent.length) if trainerBattle? && @caughtPokemon.length>0
 		##### LOSE, DRAW #####
@@ -389,26 +414,26 @@ class PokeBattle_Battle
 		  PBDebug.log("***Player lost***") if @decision==2
 		  PBDebug.log("***Player drew with opponent***") if @decision==5
 		  if @internalBattle
-			if trainerBattle?
-			  case @opponent.length
-			  when 1
-				pbDisplayPaused(_INTL("You lost against {1}!",@opponent[0].full_name))
-			  when 2
-				pbDisplayPaused(_INTL("You lost against {1} and {2}!",
-				   @opponent[0].full_name,@opponent[1].full_name))
-			  when 3
-				pbDisplayPaused(_INTL("You lost against {1}, {2} and {3}!",
-				   @opponent[0].full_name,@opponent[1].full_name,@opponent[2].full_name))
-			  end
-			end
-		  elsif @decision==2
-			if @opponent
-			  @opponent.each_with_index do |_t,i|
-				@scene.pbShowOpponent(i)
-				msg = (@endSpeechesWin[i] && @endSpeechesWin[i]!="") ? @endSpeechesWin[i] : "..."
-				pbDisplayPaused(msg.gsub(/\\[Pp][Nn]/,pbPlayer.name))
-			  end
-			end
+        if trainerBattle?
+          case @opponent.length
+          when 1
+          pbDisplayPaused(_INTL("You lost against {1}!",@opponent[0].full_name))
+          when 2
+          pbDisplayPaused(_INTL("You lost against {1} and {2}!",
+            @opponent[0].full_name,@opponent[1].full_name))
+          when 3
+          pbDisplayPaused(_INTL("You lost against {1}, {2} and {3}!",
+            @opponent[0].full_name,@opponent[1].full_name,@opponent[2].full_name))
+          end
+        end
+        elsif @decision==2
+        if @opponent
+          @opponent.each_with_index do |_t,i|
+          @scene.pbShowOpponent(i)
+          msg = (@endSpeechesWin[i] && @endSpeechesWin[i]!="") ? @endSpeechesWin[i] : "..."
+          pbDisplayPaused(msg.gsub(/\\[Pp][Nn]/,pbPlayer.name))
+          end
+        end
 		  end
 		##### CAUGHT WILD POKÉMON #####
 		when 4
