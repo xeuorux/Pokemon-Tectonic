@@ -1154,7 +1154,7 @@ InternalName = CLEFABLE
 Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 100,85,85,75,100,95
-# Total = 530
+# Total = 540
 GenderRate = Female75Percent
 GrowthRate = Slow
 BaseEXP = 217
@@ -9380,7 +9380,7 @@ InternalName = SHROOMISH
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,90,65,45,90,65
-# Total = 385
+# Total = 410
 GenderRate = Female50Percent
 GrowthRate = Fluctuating
 BaseEXP = 59
@@ -9416,7 +9416,7 @@ Type1 = GRASS
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,130,80,60,130,60
-# Total = 560
+# Total = 520
 GenderRate = Female50Percent
 GrowthRate = Fluctuating
 BaseEXP = 161
@@ -17419,7 +17419,7 @@ InternalName = DRILBUR
 Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,80,60,60,50,45
-# Total = 328
+# Total = 370
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 66
@@ -17453,7 +17453,7 @@ Type1 = GROUND
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 110,115,85,88,70,65
-# Total = 508
+# Total = 533
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 178
@@ -17881,7 +17881,7 @@ Type1 = BUG
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,55,79,57,50,49
-# Total = 335
+# Total = 340
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 52

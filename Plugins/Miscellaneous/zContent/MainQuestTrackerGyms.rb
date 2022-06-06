@@ -28,7 +28,7 @@ def setStageEarliestIncompleteGym(badgeArray)
         setMQStage(:FIND_EIGHTH_GYM)
     else
         setMQStage(:FIND_CHAMPIONSHIP)
-    else
+    end
 end
 
 # To be called whenever the player enters a gym
