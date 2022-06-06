@@ -36,3 +36,7 @@ end
 def setMQStage(stageSym)
 	$main_quest_tracker.setMainQuestStage(stageSym)
 end
+
+def getMQStage()
+	return $main_quest_tracker.getCurrentStageName()
+end
