@@ -1,9 +1,4 @@
-BADGE_COUNT_VARIABLE = 27
-SURFBOARD_PHONECALL_GLOBAL = 61
-CATACOMBS_PHONECALL_GLOBAL = 62
-
-def earnBadge(badgeNum)
-	badgeNames = [
+BADGE_NAMES = [
 		"Loyalty",
 		"Perseverance",
 		"Patience",
@@ -13,7 +8,30 @@ def earnBadge(badgeNum)
 		"Generosity",
 		"Mercy"
 	]
-	name = badgeNames[badgeNum-1]
+LEVEL_CAPS = [15,20,25,30,40,45,50,60,70]
+TOTAL_BADGES = 8
+BADGE_COUNT_VARIABLE = 27
+SURFBOARD_PHONECALL_GLOBAL = 61
+CATACOMBS_PHONECALL_GLOBAL = 62
+
+# Trigger params are badgeEarned, badgeCount, newLevelCap
+module Events
+	@@OnBadgeEarned = Event.new
+	
+	# e[0] is badge number earned, starting at 0
+	# e[1] is total badges earned
+	# e[2] is an array of size TOTAL_BADGES with false or true for whether has each badge in order
+	# e[3] is the intended level cap after earning this badge
+	def self.onBadgeEarned;     @@OnBadgeEarned;     end
+	def self.onBadgeEarned=(v); @@OnBadgeEarned = v; end
+end
+
+def earnBadge(badgeNum)
+	if badgeNum >= TOTAL_BADGES
+		raise _INTL("Badge Number #{badgeNum} is above the total number of badges.")
+	end
+
+	name = BADGE_NAMES[badgeNum-1]
 	pbMessage(_INTL("\\me[Badge get]You've earned the {1} Badge.",name))
 	$Trainer.badges[badgeNum-1]=true
 	$game_switches[3+badgeNum]=true # "Defeated Gym X" switch
@@ -21,41 +39,23 @@ def earnBadge(badgeNum)
 	
 	# Increase the level cap
 	totalBadges = 0
-	$Trainer.badges.each do |hasBadge|
+	badgesEarnedArray = []
+	$Trainer.badges.each_with_index do |hasBadge,index|
+		break if index >= TOTAL_BADGES
 		totalBadges += 1 if hasBadge
+		badgesEarnedArray.push(hasBadge)
 	end
-	levelCapsPerBadgeCount = [15,20,25,30,40,45,50,60,70]
-	pbSetLevelCap(levelCapsPerBadgeCount[totalBadges])
 	
-	# 
+	newLevelCap = LEVEL_CAPS[totalBadges]
+	pbSetLevelCap(newLevelCap)
+
+	BadgeEarned.trigger(self,badgeNum-1,totalBadges,badgesEarnedArray,newLevelCap)
+	
+	# Update the total badge count
 	$game_variables[BADGE_COUNT_VARIABLE] = totalBadges
-	
-	if totalBadges == 4
-		$PokemonGlobal.shouldProcSurfboardCall = true
-	elsif totalBadges == 6
-		$PokemonGlobal.shouldProcCatacombsCall = true
-	end
 	
 	refreshMapEvents()
 end
-
-class PokemonGlobalMetadata
-	attr_accessor :shouldProcSurfboardCall
-	attr_accessor :shouldProcCatacombsCall
-end
-
-Events.onMapChange += proc { |_sender, e|
-	if playerIsOutdoors?()
-		if $PokemonGlobal.shouldProcSurfboardCall
-			$game_switches[SURFBOARD_PHONECALL_GLOBAL] = true
-			$PokemonGlobal.shouldProcSurfboardCall = false
-		end
-		if $PokemonGlobal.shouldProcCatacombsCall
-			$game_switches[CATACOMBS_PHONECALL_GLOBAL] = true
-			$PokemonGlobal.shouldProcCatacombsCall = false
-		end
-	end
-}
 
 def showGymChoices(notSureLabel="NotSure",basicTeamLabel="BasicTeam",fullTeamLabel="FullTeam",amuletMatters = true)
 	cmdNotSure = -1
