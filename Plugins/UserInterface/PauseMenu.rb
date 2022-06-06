@@ -34,10 +34,12 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 		cmdTrainer  = -1
 		cmdLevelCap = -1
 		cmdMainQuestHelp = -1
+		cmdBattleGlossary = -1
 		infoCommands = []
 		infoCommands[cmdTrainer = infoCommands.length] = _INTL("#{$Trainer.name}'s Card")
 		infoCommands[cmdLevelCap = infoCommands.length] = _INTL("Level Cap") if LEVEL_CAPS_USED && $game_variables[26] > 0 && $Trainer.party_count > 0
 		infoCommands[cmdMainQuestHelp = infoCommands.length] = _INTL("What To Do?") if defined?($main_quest_tracker)
+		infoCommands[cmdBattleGlossary = infoCommands.length] = _INTL("Battle Glossary") if false
 		loop do
 			infoCommand = @scene.pbShowCommands(infoCommands)
 			if cmdTrainer >= 0 && infoCommand == cmdTrainer
@@ -64,6 +66,16 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 					pbMessageDisplay(msgwindow,line + ".")
 				end
 				pbDisposeMessageWindow(msgwindow)
+			elsif cmdBattleGlossary >- 1 && infoCommand == cmdBattleGlossary
+				loop do
+					id = pbListScreen(_INTL("Battle Glossary"), GlossaryEntryList.new(MAIN_GLOSSARY_HASH))
+					case id
+					when "Moves"
+						pbListScreen(_INTL("Move Glossary"), GlossaryEntryList.new(MOVE_GLOSSARY_HASH))
+					else
+						break
+					end
+				end
 			else
 				pbPlayCloseMenuSE
 				break
