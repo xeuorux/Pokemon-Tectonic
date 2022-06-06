@@ -1,19 +1,18 @@
-PokeBattle_AI::BossSpeciesRequireMove.add(:KYOGRE,
+#use water spout on turn one
+PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:KYOGRE,"08B"],
 	proc { |speciesAndMoveCode,user,target,move|
-		# Always use water spout on the first turn
-		next true if move.function == "08B" && user.battle.turnCount == 0
-		next true if move.id == :ORIGINPULSE && $game_variables[95] == 1
+		next user.battle.turnCount == 0
 	}
 )
 
-PokeBattle_AI::BossSpeciesRejectMove.add(:KYOGRE,
+#Use origin pulse every 3 turns after Water Spout
+PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:KYOGRE,:ORIGINPULSE],
 	proc { |speciesAndMoveCode,user,target,move|
-		# Never use water spout past the first turn
-		next true if move.function == "08B" && @user.battle.turnCount != 0
-		next true if move.id == :ORIGINPULSE && $game_variables[95] != 1
+		next user.battle.numBossOnlyTurns == 0 && @battle.turnCount > 0
 	}
 )
 
+#signals origin pulse
 PokeBattle_AI::BossDecidedOnMove.add(:KYOGRE,
 	proc { |species,move,user,target|
 		if move.function == "08B"
@@ -24,15 +23,16 @@ PokeBattle_AI::BossDecidedOnMove.add(:KYOGRE,
 	}
 )
 
+#every three turns after the first, change from normal move to origin pulse
 PokeBattle_AI::BossBeginTurn.add(:KYOGRE,
 	proc { |species,battler|
 		turnCount = battler.battle.turnCount
 		if turnCount == 0
-			$game_variables[95] = 1
-		elsif turnCount % 3 == 0 && @turnCount > 0
-			$game_variables[95] = 1
+			battler.battle.numBossOnlyTurns = 0
+		elsif turnCount % 3 == 0 && turnCount > 0
+			battler.battle.numBossOnlyTurns = 0
 		else
-			$game_variables[95] = 3
+			battler.battle.numBossOnlyTurns = 2
 		end
 	}
 )

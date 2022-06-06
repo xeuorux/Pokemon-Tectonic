@@ -1,4 +1,4 @@
-# Dragon Roar
+# Loom Over
 PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:TOWERPODA,"522"],
 	proc { |speciesAndMoveCode,user,target,move|
 		next user.battle.commandPhasesThisRound < 1
