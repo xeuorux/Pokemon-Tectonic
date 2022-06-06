@@ -1119,12 +1119,25 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,15,8
 #-------------------------------
+[216]
+# Highland Lake
+Outdoor = true
+ShowArea = true
+Bicycle = true
+Weather = Fog,10
+#-------------------------------
 [217]
 # Sweetrock Harbor
 Outdoor = true
 ShowArea = true
 Bicycle = true
-Weather = Rain,15
+Weather = Rain,10
+#-------------------------------
+[218]
+# Abyssal Cavern Placeholder
+Outdoor = false
+ShowArea = true
+Bicycle = true
 #-------------------------------
 [220]
 # Prizca Sewers East
@@ -1212,6 +1225,24 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 #-------------------------------
+[256]
+# Underwater River Placeholder
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[257]
+# Village Cave Placeholder
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[258]
+# Hometown Placeholder
+Outdoor = true
+ShowArea = true
+Bicycle = true
+#-------------------------------
 [259]
 # Casey's House
 Outdoor = false
@@ -1240,18 +1271,36 @@ HealingSpot = 217,27,33
 [264]
 # Sweetrock Harbor Mart
 Outdoor = false
-ShowArea = true
-Bicycle = true
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [265]
 # Lightkeeper's House
 Outdoor = false
 ShowArea = false
-Bicycle = true
+Bicycle = false
 #-------------------------------
 [266]
 # Berry Greenhouse
 Outdoor = true
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[267]
+# Blue Building 1
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[268]
+# Blue Building 2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[269]
+# Lighthouse Placeholder
+Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
@@ -1272,3 +1321,75 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[274]
+# Sweetrock Harbor Gym
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[275]
+# Sweetrock Harbor Gym Tour
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[276]
+# Sweetrock Harbor Gym Tour Left
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[277]
+# Sweetrock Harbor Gym Tour Right
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[278]
+# Sweetrock Harbor Gym Hallways
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[279]
+# Victoire's Office
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[280]
+# Sweetrock Harbor Gym R&D
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[281]
+# Sweetrock Harbor Gym Storage
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[284]
+# Red Building One
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[285]
+# Red Building Two
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[286]
+# Blue Building 1 Second Floor
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[287]
+# Blue Building 2 Second Floor
+Outdoor = false
+ShowArea = false
+Bicycle = false
