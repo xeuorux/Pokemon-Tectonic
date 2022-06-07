@@ -3178,3 +3178,13 @@ Pokemon = PROBOPASS,45
     Item = EXPERTBELT
 Pokemon = GOLURK,44
     AbilityIndex = 0
+#-------------------------------
+[TRAINER_Eifion,Eifion]
+Pokemon = HOUNDOOM,28
+    AbilityIndex = 1
+Pokemon = GROVYLE,29
+    AbilityIndex = 1
+Pokemon = MANECTRIC,29
+    AbilityIndex = 1
+Pokemon = PHIONE,30
+    AbilityIndex = 0
