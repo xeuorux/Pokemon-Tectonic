@@ -715,7 +715,7 @@ Special,1
 #-------------------------------
 [230] # Galarian Fan's House
 Special,1
-    1,SKARMORY,40
+    1,CRYOGONAL,40
 #-------------------------------
 [232] # Biologist's House
 Special,1
