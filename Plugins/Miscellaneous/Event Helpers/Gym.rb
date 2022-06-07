@@ -49,7 +49,7 @@ def earnBadge(badgeNum)
 	newLevelCap = LEVEL_CAPS[totalBadges]
 	pbSetLevelCap(newLevelCap)
 
-	BadgeEarned.trigger(self,badgeNum-1,totalBadges,badgesEarnedArray,newLevelCap)
+	Events.onBadgeEarned.trigger(self,badgeNum-1,totalBadges,badgesEarnedArray,newLevelCap)
 	
 	# Update the total badge count
 	$game_variables[BADGE_COUNT_VARIABLE] = totalBadges

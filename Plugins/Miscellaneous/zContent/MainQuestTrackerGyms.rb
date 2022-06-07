@@ -1,13 +1,13 @@
 # Set the proper main quest stage when you earn a new badge
 Events.onBadgeEarned += proc { |_sender,_e|
-    badgeEarned = e[0]
-    totalBadges = e[1]
-    badgeArray  = e[2]
+    badgeEarned = _e[0]
+    totalBadges = _e[1]
+    badgeArray  = _e[2]
     case badgeEarned+1
     when 0
         setMQStage(:MEET_TAMARIND_AT_DOCKS)
     when 1..7
-        setStageEarliestIncompleteGym
+        setStageEarliestIncompleteGym(totalBadges)
     end
 }
 

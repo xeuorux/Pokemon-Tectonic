@@ -1,5 +1,5 @@
 Events.onBadgeEarned += proc { |_sender,_e|
-    totalBadges = e[1]
+    totalBadges = _e[1]
     if totalBadges == 4
         $PokemonGlobal.shouldProcSurfboardCall = true
     elsif totalBadges == 6
@@ -7,7 +7,7 @@ Events.onBadgeEarned += proc { |_sender,_e|
     end
 }
 
-Events.onMapChange += proc { |_sender, e|
+Events.onMapChange += proc { |_sender, _e|
 	if playerIsOutdoors?()
 		if $PokemonGlobal.shouldProcSurfboardCall
 			$game_switches[SURFBOARD_PHONECALL_GLOBAL] = true
