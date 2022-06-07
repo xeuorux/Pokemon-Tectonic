@@ -37,7 +37,7 @@ def progressStageForGym()
     case getMQStage()
     when :FIND_SECOND_GYM
         setMQStage(:DEFEAT_SECOND_GYM)
-    when :FIND_THIRD_GYM
+    when :FIND_THIRD_GYM,:RETURN_HELENAS_PACKAGE
         setMQStage(:DEFEAT_THIRD_GYM)
     when :FIND_FOURTH_GYM,:FIND_RAFAEL
         setMQStage(:DEFEAT_FOURTH_GYM)

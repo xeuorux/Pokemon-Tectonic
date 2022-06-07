@@ -13,11 +13,14 @@ class MainQuestTracker
 	end
 
 	def setMainQuestStage(newStage)
+		oldStage = @mainQuestState
 		newStage = MAIN_QUEST_STAGES.keys[newStage] if newStage.is_a?(Integer)
 		if !MAIN_QUEST_STAGES.has_key?(newStage)
 			raise _INTL("#{newStage} is an invalid Main Quest Stage key.")
 		end
 		@mainQuestState = newStage
+
+		echoln("Changing the current Main Quest stage to #{oldStage} from #{newStage}")
 	end
 
 	def getCurrentStageName()
@@ -39,4 +42,10 @@ end
 
 def getMQStage()
 	return $main_quest_tracker.getCurrentStageName()
+end
+
+def progressMQStage(initialStage,nextStage)
+	if $main_quest_tracker.getCurrentStageName() == initialStage
+		$main_quest_tracker.setMainQuestStage(nextStage)
+	end
 end

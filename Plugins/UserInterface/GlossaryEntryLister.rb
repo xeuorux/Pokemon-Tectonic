@@ -8,9 +8,8 @@ MAIN_GLOSSARY_HASH = {
     "Avatars" => "What are avatars and what do they do?",
 }
 
-BASICS_GLOSSARY_HASH
-{
-    "Taking Turns" = "",
+BASICS_GLOSSARY_HASH = {
+    "Taking Turns" => "",
 }
 
 MOVE_GLOSSARY_HASH = {

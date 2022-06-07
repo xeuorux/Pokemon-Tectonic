@@ -69,4 +69,5 @@ def pbStartSurfing(jump = true)
 		$PokemonTemp.surfJump = nil
 	end
 	$game_player.check_event_trigger_here([1,2])
-  end
+	progressMQStage(:CROSS_ELEIG,:FIND_FIFTH_GYM)
+end
