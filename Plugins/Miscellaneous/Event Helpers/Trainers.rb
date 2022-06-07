@@ -161,14 +161,3 @@ def getFollowerPokemon(eventId=0)
     end
 	return followers
 end
-
-
-def pbTrainerBattleCursed(nonCursedInfoArray, cursedInfoArray)
-	if $PokemonGlobal.tarot_amulet_active
-		id = cursedInfoArray[2] || 0
-		pbTrainerBattle(cursedInfoArray[0], cursedInfoArray[1], nil, false, id)
-	else
-		id = nonCursedInfoArray[2] || 0
-		pbTrainerBattle(nonCursedInfoArray[0], nonCursedInfoArray[1], nil, false, id)
-	end
-end

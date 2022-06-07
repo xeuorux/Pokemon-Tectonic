@@ -271,7 +271,41 @@ def pbTrainerBattle(trainerID, trainerName, endSpeech=nil,
   end
   $PokemonTemp.waitingTrainer = nil
   # Return true if the player won the battle, and false if any other result
-  return (decision==1)
+  return (decision == 1 || decision == 6)
+end
+
+def pbDoubleTrainerBattle(trainerID1, trainerName1, trainerPartyID1, endSpeech1,
+  trainerID2, trainerName2, trainerPartyID2=0, endSpeech2=nil,
+  canLose=false, outcomeVar=1)
+  # Set some battle rules
+  setBattleRule("outcomeVar",outcomeVar) if outcomeVar!=1
+  setBattleRule("canLose") if canLose
+  setBattleRule("double")
+  # Perform the battle
+  decision = pbTrainerBattleCore(
+  [trainerID1,trainerName1,trainerPartyID1,endSpeech1],
+  [trainerID2,trainerName2,trainerPartyID2,endSpeech2]
+  )
+  # Return true if the player won the battle, and false if any other result
+  return (decision == 1 || decision == 6)
+end
+
+def pbTripleTrainerBattle(trainerID1, trainerName1, trainerPartyID1, endSpeech1,
+    trainerID2, trainerName2, trainerPartyID2, endSpeech2,
+    trainerID3, trainerName3, trainerPartyID3=0, endSpeech3=nil,
+    canLose=false, outcomeVar=1)
+  # Set some battle rules
+  setBattleRule("outcomeVar",outcomeVar) if outcomeVar!=1
+  setBattleRule("canLose") if canLose
+  setBattleRule("triple")
+  # Perform the battle
+  decision = pbTrainerBattleCore(
+  [trainerID1,trainerName1,trainerPartyID1,endSpeech1],
+  [trainerID2,trainerName2,trainerPartyID2,endSpeech2],
+  [trainerID3,trainerName3,trainerPartyID3,endSpeech3]
+  )
+  # Return true if the player won the battle, and false if any other result
+  return (decision == 1 || decision == 6)
 end
 
 def pbTrainerBattleRandom(trainerID, trainerName, partyID=0)
@@ -422,4 +456,14 @@ def pbTrainerBattleAutoTest(*args)
   #    5 - Draw
   pbSet(outcomeVar,decision)
   return decision
+end
+
+def pbTrainerBattleCursed(nonCursedInfoArray, cursedInfoArray)
+	if $PokemonGlobal.tarot_amulet_active
+		id = cursedInfoArray[2] || 0
+		return pbTrainerBattle(cursedInfoArray[0], cursedInfoArray[1], nil, false, id)
+	else
+		id = nonCursedInfoArray[2] || 0
+		return pbTrainerBattle(nonCursedInfoArray[0], nonCursedInfoArray[1], nil, false, id)
+	end
 end
