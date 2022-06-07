@@ -1113,3 +1113,10 @@ PostPrimeMoves = TRIATTACK
 Turns = 2
 HPMult = 6
 DMGMult = 1
+#-------------------------------
+[PHIONE]
+Ability = HYDRATION
+Moves = MENDINGSPRING,DOUSE
+Turns = 2
+HPMult = 4
+DMGMult = 1
