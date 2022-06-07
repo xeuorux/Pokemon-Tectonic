@@ -846,7 +846,7 @@
 781,CHIFLUX,Chi Flux,04C,50,FIGHTING,Special,100,25,100,NearOther,0,abef,"The user contorts the target's chi with a special technique, lowering its Defense."
 782,REND,Rend,509,80,DRAGON,Physical,100,15,0,NearOther,0,abef,"The user shreds through the opponents defenses, ignoring positive stat changes and abilities."
 783,CRIPPLINGBREATH,Crippling Breath,50A,70,DRAGON,Special,100,20,50,NearOther,0,bef,"Exhales magical fumes with a 50% chance to poison or burn the target depending on their stats."
-784,TORNADO,Tornado,078,80,DRAGON,Special,100,15,30,AllNearFoes,0,be,"The user whips up a vicious tornado to tear at the opposing team. It has a 30% chance to also make targets flinch."
+784,TORNADO,Tornado,078,80,DRAGON,Special,100,15,30,AllNearFoes,0,be,"The user whips up a tornado to tear at the enemy team. It has a 30% chance to make them flinch."
 785,HARSHVOICE,Harsh Voice,00F,40,DARK,Special,100,25,30,NearOther,0,bek,"The target is confronted with painful words. It has a 30% chance to make the target flinch."
 786,SLIGHT,Slight,50B,50,DARK,Special,100,25,0,NearOther,0,abefk,"When the user knocks out a target with this move, the user's Sp. Atk stat rises drastically."
 787,MASSDESTRUCTION,Mass Destruction,0FC,130,DARK,Special,100,10,0,AllNearOthers,0,bef,"The user launches a wave of anxious feelings which overhwhelms all nearby Pokémon. The user takes recoil damage."

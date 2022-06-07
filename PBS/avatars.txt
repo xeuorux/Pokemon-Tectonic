@@ -571,7 +571,7 @@ Item = MENTALHERB
 #-------------------------------
 [KELDEO]
 Ability = HEARTOFJUSTICE
-Moves = SECRETSWORD,PRIMEVALIGNITE
+Moves = SECRETSWORD,BUBBLEBLAST,PRIMEVALIGNITE
 PostPrimeMoves = FIERYDANCE
 Turns = 3
 HPMult = 5.0
@@ -902,7 +902,7 @@ Ability = ARMORPIERCING
 Moves = FIREBLAST,HYDROPUMP,PRIMEVALHEALBELL
 PostPrimeMoves = REMOVALBEAM
 Turns = 2
-HPMult = 3.0
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [CONIFEAR]
@@ -1086,8 +1086,8 @@ DMGMult = 1
 Ability = IMPERVIOUS
 Moves = LAVAPLUME,FLAMESPIKES,PRIMEVALLEECHSEED
 PostPrimeMoves = LEAFSTORM
-Turns = 2
-HPMult = 4
+Turns = 1
+HPMult = 7
 DMGMult = 1
 #-------------------------------
 [AMOONGUSS]
