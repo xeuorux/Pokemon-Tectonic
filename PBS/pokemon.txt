@@ -2547,8 +2547,8 @@ Name = Rapidash
 InternalName = RAPIDASH
 Type1 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,100,70,105,80,80
-# Total = 500
+BaseStats = 70,105,70,105,80,85
+# Total = 515
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 175
@@ -2614,8 +2614,8 @@ InternalName = SLOWBRO
 Type1 = WATER
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,75,110,30,100,80
-# Total = 490
+BaseStats = 100,75,110,30,100,80
+# Total = 495
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 172
@@ -6529,8 +6529,8 @@ InternalName = SLOWKING
 Type1 = WATER
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,75,80,30,100,110
-# Total = 490
+BaseStats = 100,75,80,30,100,110
+# Total = 495
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 172
@@ -19653,8 +19653,8 @@ InternalName = GALVANTULA
 Type1 = BUG
 Type2 = ELECTRIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,73,60,118,108,60
-# Total = 489
+BaseStats = 70,73,65,118,108,65
+# Total = 509
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 165
@@ -31272,8 +31272,8 @@ InternalName = GRAPIDASH
 Type1 = PSYCHIC
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,100,70,105,80,80
-# Total = 500
+BaseStats = 70,105,70,105,80,85
+# Total = 515
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 175
