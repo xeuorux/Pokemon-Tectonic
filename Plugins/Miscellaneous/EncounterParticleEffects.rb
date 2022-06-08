@@ -1,5 +1,5 @@
 
-# Show grass rustle animation, and auto-move the player over waterfalls and ice
+# Show grass rustle animation, and similar animations for other encounter tiles
 Events.onStepTakenFieldMovement += proc { |_sender, e|
   event = e[0]   # Get the event affected by field movement
   if $scene.is_a?(Scene_Map)
@@ -24,14 +24,5 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
 			end
 		end
 	end
-	# Slide on ice and descend down waterfalls
-    if event == $game_player
-      currentTag = $game_player.pbTerrainTag
-      if currentTag.waterfall_crest
-        pbDescendWaterfall
-      elsif currentTag.ice && !$PokemonGlobal.sliding
-        pbSlideOnIce
-      end
-    end
   end
 }
