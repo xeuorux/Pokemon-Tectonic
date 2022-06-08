@@ -205,3 +205,9 @@ BattleHandlers::DamageCalcUserAbility.add(:DOUBLECHECK,
     mults[:base_damage_multiplier] *= 1.5 if target.tookDamage
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:ERUDITE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5 if type == :PSYCHIC
+  }
+)
