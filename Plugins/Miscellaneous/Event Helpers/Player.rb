@@ -34,9 +34,9 @@ def unstowFollowerIfAllowed()
 	end
 end
 
-def transferPlayer(x,y,direction)
+def transferPlayer(x,y,direction,map_id = -1)
 	$game_temp.player_transferring = true
-	$game_temp.player_new_map_id    = $game_map.map_id
+	$game_temp.player_new_map_id    = map_id == -1 ? $game_map.map_id : map_id
 	$game_temp.player_new_x         = x
 	$game_temp.player_new_y         = y
 	$game_temp.player_new_direction = direction || $game_player.direction
