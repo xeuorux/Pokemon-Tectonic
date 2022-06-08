@@ -607,3 +607,32 @@ BattleHandlers::EORHealingAbility.add(:HYDRATION,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
+  proc { |ability,user,target,move,battle|
+    next if user.fainted?
+    next if user.effects[PBEffects::Disable]>0
+    regularMove = nil
+    user.eachMove do |m|
+      next if m.id!=user.lastRegularMoveUsed
+      regularMove = m
+      break
+    end
+    next if !regularMove || (regularMove.pp==0 && regularMove.total_pp>0)
+    next if battle.pbRandom(100)>=60
+    battle.pbShowAbilitySplash(target)
+    if !move.pbMoveFailedAromaVeil?(target,user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      user.effects[PBEffects::Disable]     = 3
+      user.effects[PBEffects::DisableMove] = regularMove.id
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1}'s {2} was disabled!",user.pbThis,regularMove.name))
+      else
+        battle.pbDisplay(_INTL("{1}'s {2} was disabled by {3}'s {4}!",
+           user.pbThis,regularMove.name,target.pbThis(true),target.abilityName))
+      end
+      battle.pbHideAbilitySplash(target)
+      user.pbItemStatusCureCheck
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
