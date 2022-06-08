@@ -321,7 +321,7 @@
 320,KILLJOY,Killjoy,"Pokémon can't dance."
 321,BADINFLUENCE,Bad Influence,"Healing moves can't be used."
 322,CHALLENGER,Challenger,"Immune to Fighting-type moves, and boosts Attack when hit by one."
-323,OCULAR,Ocular,"Boosts the accuracy of its allies and itself by 25%."
+323,OCULAR,Ocular,"Boosts the accuracy of its allies and itself by 50%."
 324,MENTALBLOCK,Mental Block,"Prevents Confusion/Charm, Taunt, Encore, Torment, Heal Block, and Disable."
 325,BREAKTHROUGH,Break Through,"Moves ignore immunities due to typing."
 326,BURNHEAL,Burn Heal,"Restores 1/8th HP each turn if burned, and ignores Burn Attack reduction."
