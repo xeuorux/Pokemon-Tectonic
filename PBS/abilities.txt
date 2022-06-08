@@ -401,6 +401,7 @@
 400,SOUNDBARRIER,Sound Barrier,"Raises the defense stat after using a sound-move."
 401,BELLIGERENT,Belligerent,"Sharply boosts offensive stats when a stat is lowered."
 402,KEEPER,Keeper,"Takes 20% less damage from attacks if there is a terrain."
+403,ERUDITE,Erudite,"Powers up Psychic-type moves by 50%."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
