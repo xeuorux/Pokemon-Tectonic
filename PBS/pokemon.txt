@@ -10611,6 +10611,7 @@ BattlerShadowSize = 3
 [322]
 Name = Numel
 InternalName = NUMEL
+Notes = TODO: Replace Solid Rock with something more offensively oriented?
 Type1 = FIRE
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
