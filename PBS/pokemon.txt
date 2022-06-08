@@ -3016,7 +3016,7 @@ BattlerShadowSize = 3
 [92]
 Name = Gastly
 InternalName = GASTLY
-Notes = TODO: add additional moves
+Notes = TODO: Replace Sudden Chill with chill ability which works with stat identity
 Type1 = GHOST
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
