@@ -2349,16 +2349,16 @@ Pokemon = FLOETTE,33
 Pokemon = AMUK,34
     AbilityIndex = 1
 #-------------------------------
-[SWIMMER_M3,Rhys]
-Pokemon = BELLOSSOM,42
+[HIKER2,Rhys]
+Pokemon = BELLOSSOM,43
     AbilityIndex = 0
     Item = FOCUSSASH
-Pokemon = SALAZZLE,43
+Pokemon = SALAZZLE,44
     AbilityIndex = 0
     Item = EXPERTBELT
-Pokemon = POLTEAGEIST,42
+Pokemon = POLTEAGEIST,43
     AbilityIndex = 0
-Pokemon = BIBAREL,43
+Pokemon = BIBAREL,44
     AbilityIndex = 0
     Item = NORMALGEM
 #-------------------------------
