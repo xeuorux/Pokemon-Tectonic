@@ -107,7 +107,8 @@ GameData::TerrainTag.register({
   :id_number              => 26,
   :must_walk              => true,
   :slows              	  => true,
-  :rock_climbable		  => true
+  :rock_climbable		      => true,
+  :must_walk              => true
 })
 
 GameData::TerrainTag.register({
