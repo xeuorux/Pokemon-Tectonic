@@ -58,14 +58,15 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 				pbMessageDisplay(msgwindow,"The level can be raised by defeating gym leaders.")
 				pbDisposeMessageWindow(msgwindow)
 			elsif cmdMainQuestHelp > - 1 && infoCommand == cmdMainQuestHelp
-				msgwindow = pbCreateMessageWindow
-				pbMessageDisplay(msgwindow,$main_quest_tracker.getCurrentStageName())
-				stageHelp = $main_quest_tracker.getCurrentStageHelp()
-				stageHelpLines = stageHelp.split(". ")
-				stageHelpLines.each do |line|
-					pbMessageDisplay(msgwindow,line + ".")
-				end
-				pbDisposeMessageWindow(msgwindow)
+				#msgwindow = pbCreateMessageWindow
+				# pbMessageDisplay(msgwindow,$main_quest_tracker.getCurrentStageName())
+				# stageHelp = $main_quest_tracker.getCurrentStageHelp()
+				# stageHelpLines = stageHelp.split(". ")
+				# stageHelpLines.each do |line|
+				# 	pbMessageDisplay(msgwindow,line + ".")
+				# end
+				#pbDisposeMessageWindow(msgwindow)
+				pbMessage("\\l[7]<b>" + $main_quest_tracker.getCurrentStageName() + "</b>\n" + $main_quest_tracker.getCurrentStageHelp())
 			elsif cmdBattleGlossary >- 1 && infoCommand == cmdBattleGlossary
 				loop do
 					id = pbListScreen(_INTL("Battle Glossary"), GlossaryEntryList.new(MAIN_GLOSSARY_HASH))
