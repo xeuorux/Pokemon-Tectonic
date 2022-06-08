@@ -56,6 +56,9 @@ Megs/Gigantamax Overworld Sprites
 Kidkatt<s>Larryturbo
 Princess-Phoenix<s>Sagedeoxys
 
+Reborn Icons
+smeargletail<s>ARandomTalkingBush
+
 Generation 8 Project
 Battler Sprites
 Gen 1-5 Pokemon Sprites - veekun
@@ -125,8 +128,6 @@ Pokémon is owned by:
 The Pokémon Company
 Nintendo
 Affiliated with Game Freak
-
-
 
 This is a non-profit fan-made game.
 No copyright infringements intended.
