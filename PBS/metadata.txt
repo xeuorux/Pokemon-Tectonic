@@ -1143,7 +1143,7 @@ Bicycle = true
 # Prizca Sewers East
 Outdoor = false
 ShowArea = true
-Bicycle = false
+Bicycle = true
 MapPosition = 0,17,4
 Environment = StillWater
 #-------------------------------
@@ -1155,7 +1155,7 @@ MapPosition = 0,16,5
 # Prizca Sewers Tunnel
 Outdoor = false
 ShowArea = true
-Bicycle = false
+Bicycle = true
 MapPosition = 0,16,5
 Environment = StillWater
 #-------------------------------
@@ -1163,7 +1163,7 @@ Environment = StillWater
 # Prizca Sewers West
 Outdoor = false
 ShowArea = true
-Bicycle = false
+Bicycle = true
 MapPosition = 0,16,4
 Environment = StillWater
 #-------------------------------
@@ -1369,6 +1369,12 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+#-------------------------------
+[282]
+# Deep Catacombs
+Outdoor = false
+ShowArea = false
+Bicycle = true
 #-------------------------------
 [284]
 # Red Building One
