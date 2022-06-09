@@ -23,7 +23,7 @@ module GameData
        "WildCaptureME"    => [18, "s"],
        "MapSize"          => [19, "us"],
        "Environment"      => [20, "e", :Environment],
-	   "TeleportBlocked"  => [21, "b"]
+	     "TeleportBlocked"  => [21, "b"]
     }
   
 		def self.editor_properties
@@ -48,7 +48,7 @@ module GameData
          ["WildCaptureME",    MEProperty,                         _INTL("Default ME played after catching a wild Pokémon on this map.")],
          ["MapSize",          MapSizeProperty,                    _INTL("The width of the map in Town Map squares, and a string indicating which squares are part of this map.")],
          ["Environment",      GameDataProperty.new(:Environment), _INTL("The default battle environment for battles on this map.")],
-		 ["TeleportBlocked",  BooleanProperty,					  _INTL("Whether the player is prevented from teleporting out of this map.")]
+		     ["TeleportBlocked",  BooleanProperty,					          _INTL("Whether the player is prevented from teleporting out of this map.")]
 	  ]
     end
 		
@@ -74,7 +74,7 @@ module GameData
       @wild_capture_ME      = hash[:wild_capture_ME]
       @town_map_size        = hash[:town_map_size]
       @battle_environment   = hash[:battle_environment]
-	  @teleport_blocked		= hash[:teleport_blocked]
+	    @teleport_blocked		  = hash[:teleport_blocked]
     end
 
     def property_from_string(str)
@@ -99,9 +99,84 @@ module GameData
       when "WildCaptureME"    then return @wild_capture_ME
       when "MapSize"          then return @town_map_size
       when "Environment"      then return @battle_environment
-	  when "TeleportBlocked"  then return @teleport_blocked
+	    when "TeleportBlocked"  then return @teleport_blocked
       end
       return nil
     end
+  end
+end
+
+def pbEditMetadata(map_id = 0)
+  mapinfos = pbLoadMapInfos
+  data = []
+  if map_id == 0   # Global metadata
+    map_name = _INTL("Global Metadata")
+    metadata = GameData::Metadata.get
+    properties = GameData::Metadata.editor_properties
+  else   # Map metadata
+    map_name = mapinfos[map_id].name
+    metadata = GameData::MapMetadata.try_get(map_id)
+    metadata = GameData::Metadata.new({}) if !metadata
+    properties = GameData::MapMetadata.editor_properties
+  end
+  properties.each do |property|
+    data.push(metadata.property_from_string(property[0]))
+  end
+  if pbPropertyList(map_name, data, properties, true)
+    if map_id == 0   # Global metadata
+      # Construct metadata hash
+      metadata_hash = {
+        :id                 => map_id,
+        :home               => data[0],
+        :wild_battle_BGM    => data[1],
+        :trainer_battle_BGM => data[2],
+        :wild_victory_ME    => data[3],
+        :trainer_victory_ME => data[4],
+        :wild_capture_ME    => data[5],
+        :surf_BGM           => data[6],
+        :bicycle_BGM        => data[7],
+        :player_A           => data[8],
+        :player_B           => data[9],
+        :player_C           => data[10],
+        :player_D           => data[11],
+        :player_E           => data[12],
+        :player_F           => data[13],
+        :player_G           => data[14],
+        :player_H           => data[15]
+      }
+      # Add metadata's data to records
+      GameData::Metadata.register(metadata_hash)
+      GameData::Metadata.save
+    else   # Map metadata
+      # Construct metadata hash
+      metadata_hash = {
+        :id                   => map_id,
+        :outdoor_map          => data[0],
+        :announce_location    => data[1],
+        :can_bicycle          => data[2],
+        :always_bicycle       => data[3],
+        :teleport_destination => data[4],
+        :weather              => data[5],
+        :town_map_position    => data[6],
+        :dive_map_id          => data[7],
+        :dark_map             => data[8],
+        :safari_map           => data[9],
+        :snap_edges           => data[10],
+        :random_dungeon       => data[11],
+        :battle_background    => data[12],
+        :wild_battle_BGM      => data[13],
+        :trainer_battle_BGM   => data[14],
+        :wild_victory_ME      => data[15],
+        :trainer_victory_ME   => data[16],
+        :wild_capture_ME      => data[17],
+        :town_map_size        => data[18],
+        :battle_environment   => data[19],
+        :teleport_blocked     => data[20]
+      }
+      # Add metadata's data to records
+      GameData::MapMetadata.register(metadata_hash)
+      GameData::MapMetadata.save
     end
+    Compiler.write_metadata
+  end
 end

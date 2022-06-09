@@ -556,6 +556,9 @@ Environment = Cave
 #-------------------------------
 [086]
 # Zigzagoon Nest
+Outdoor = false
+ShowArea = false
+Bicycle = false
 Environment = None
 #-------------------------------
 [087]
@@ -726,14 +729,23 @@ Environment = StillWater
 #-------------------------------
 [124]
 # Clearwater Cave
+Outdoor = false
+ShowArea = false
+Bicycle = false
 Environment = Cave
 #-------------------------------
 [125]
 # Volcanic Cave
+Outdoor = false
+ShowArea = false
+Bicycle = false
 Environment = Volcano
 #-------------------------------
 [126]
 # Sun Cave
+Outdoor = false
+ShowArea = false
+Bicycle = false
 MapPosition = 0,13,8
 #-------------------------------
 [129]
@@ -1012,12 +1024,16 @@ Bicycle = false
 #-------------------------------
 [181]
 # Casaba Island
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [182]
 # Sylvan Labyrinth
 Outdoor = true
 ShowArea = true
 Bicycle = true
+TeleportBlocked = true
 #-------------------------------
 [183]
 # Circuit Cave
@@ -1149,6 +1165,9 @@ Environment = StillWater
 #-------------------------------
 [221]
 # Prizca Sewers
+Outdoor = false
+ShowArea = false
+Bicycle = false
 MapPosition = 0,16,5
 #-------------------------------
 [222]
@@ -1169,6 +1188,9 @@ Environment = StillWater
 #-------------------------------
 [228]
 # Hidden Laboratory
+Outdoor = false
+ShowArea = false
+Bicycle = false
 Environment = None
 #-------------------------------
 [235]
@@ -1194,6 +1216,9 @@ Weather = HeavyRain,100
 #-------------------------------
 [241]
 # Grouz Mine Sinkhole
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [243]
 # Chasm Base Mess Hall
@@ -1333,18 +1358,21 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+TeleportBlocked = true
 #-------------------------------
 [276]
 # Sweetrock Harbor Gym Tour Part 1
 Outdoor = false
 ShowArea = false
 Bicycle = false
+TeleportBlocked = true
 #-------------------------------
 [277]
 # Sweetrock Harbor Gym Tour Part 2
 Outdoor = false
 ShowArea = false
 Bicycle = false
+TeleportBlocked = true
 #-------------------------------
 [278]
 # Sweetrock Harbor Gym Hallways

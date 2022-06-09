@@ -499,8 +499,8 @@ module Compiler
             :home               			=> contents["Home"],
             :wild_battle_BGM    			=> contents["WildBattleBGM"],
             :trainer_battle_BGM 			=> contents["TrainerBattleBGM"],
-			:avatar_battle_BGM 				=> contents["AvatarBattleBGM"],
-			:legendary_avatar_battle_BGM 	=> contents["LegendaryAvatarBattleBGM"],
+			      :avatar_battle_BGM 				=> contents["AvatarBattleBGM"],
+			      :legendary_avatar_battle_BGM 	=> contents["LegendaryAvatarBattleBGM"],
             :wild_victory_ME    			=> contents["WildVictoryME"],
             :trainer_victory_ME 			=> contents["TrainerVictoryME"],
             :wild_capture_ME    			=> contents["WildCaptureME"],
@@ -540,7 +540,8 @@ module Compiler
             :trainer_victory_ME   => contents["TrainerVictoryME"],
             :wild_capture_ME      => contents["WildCaptureME"],
             :town_map_size        => contents["MapSize"],
-            :battle_environment   => contents["Environment"]
+            :battle_environment   => contents["Environment"],
+            :teleport_blocked     => contents["TeleportBlocked"],
           }
           # Add metadata's data to records
           GameData::MapMetadata.register(metadata_hash)
@@ -1393,7 +1394,7 @@ end
             :wild_capture_ME      => contents["WildCaptureME"],
             :town_map_size        => contents["MapSize"],
             :battle_environment   => contents["Environment"],
-			:teleport_blocked	  => contents["TeleportBlocked"]
+			      :teleport_blocked	    => contents["TeleportBlocked"]
           }
           # Add metadata's data to records
           GameData::MapMetadata.register(metadata_hash)

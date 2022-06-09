@@ -3139,7 +3139,7 @@ Pokemon = DEDENNE,50
     AbilityIndex = 0
 Pokemon = RIOJIN,50
     AbilityIndex = 1
-	Item = LUMBERRY
+    Item = LUMBERRY
 Pokemon = CLEFABLE,50
     AbilityIndex = 0
 #-------------------------------
@@ -3148,7 +3148,7 @@ Pokemon = SENSIBELLE,50
     AbilityIndex = 1
 Pokemon = MSEVIPER,50
     AbilityIndex = 0
-	Item = ELECTRICGEM
+    Item = ELECTRICGEM
 Pokemon = DONSTER,50
     AbilityIndex = 1
 #-------------------------------
