@@ -1335,13 +1335,13 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [276]
-# Sweetrock Harbor Gym Tour Left
+# Sweetrock Harbor Gym Tour Part 1
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [277]
-# Sweetrock Harbor Gym Tour Right
+# Sweetrock Harbor Gym Tour Part 2
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1365,7 +1365,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [281]
-# Sweetrock Harbor Gym Storage
+# Sweetrock Harbor Gym Assembly Line
 Outdoor = false
 ShowArea = false
 Bicycle = false
