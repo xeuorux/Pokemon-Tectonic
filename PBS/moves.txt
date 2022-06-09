@@ -200,7 +200,7 @@
 191,SEISMICTOSS,Seismic Toss,06D,1,FIGHTING,Physical,100,20,0,NearOther,0,abef,"The target is thrown using the power of gravity. It inflicts damage equal to the user's level."
 192,BULKUP,Bulk Up,024,0,FIGHTING,Status,0,20,0,User,0,d,"The user tenses its muscles to bulk up its body, boosting both its Attack and Defense stats."
 193,DETECT,Detect,0AA,0,FIGHTING,Status,0,3,0,User,4,,"It enables the user to evade all attacks. It always fails if it is used in succession."
-194,MATBLOCK,Mat Block,149,0,FIGHTING,Status,0,10,0,UserSide,0,d,"Using a pulled-up mat as a shield, the user protects itself and its allies from damaging moves."
+194,MATBLOCK,Mat Block,149,0,FIGHTING,Status,0,3,0,UserSide,0,d,"The user protects itself and allies from damaging moves. It only works the first turn the user is in battle."
 195,QUICKGUARD,Quick Guard,0AB,0,FIGHTING,Status,0,15,0,UserSide,3,d,"The user protects itself and its allies from priority moves. It always fails if it is used in succession."
 196,OCTOLOCK,Octolock,181,0,FIGHTING,Status,100,15,0,NearOther,0,be,"Locks the target in and prevents fleeing. Lowers target's Defense and Sp. Def every turn."
 197,METEORASSAULT,Meteor Assault,0C2,170,FIGHTING,Physical,100,5,0,NearOther,0,bef,"Attacks wildly with its thick leek. The user can't move on the next turn."
