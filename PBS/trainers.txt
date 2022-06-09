@@ -3101,6 +3101,10 @@ Pokemon = MAGNEZONE,65
     Moves = MAGNETRISE,ZAPCANNON,STEELBEAM,LIGHTSCREEN
     AbilityIndex = 1
     Item = SHUCABERRY
+Pokemon = REGIROCK,65
+    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    AbilityIndex = 0
+    Item = LEFTOVERS
 #-------------------------------
 [KIMONOGIRL,Chiyo]
 Pokemon = DELPHOX,55
