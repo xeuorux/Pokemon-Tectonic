@@ -3116,14 +3116,14 @@ Pokemon = DRUDDIGON,59
     Item = LEFTOVERS
 #-------------------------------
 [BEAUTY6,Brenda]
+Pokemon = HEATMOR,50
+    AbilityIndex = 1
 Pokemon = BLASFEMMIE,50
     Moves = FAIRYTERRAIN,ENCHANTINGSONG,DARKALLURE,RECOVER
     AbilityIndex = 0
     Item = MISTYSEED
 Pokemon = HATTERENE,50
     AbilityIndex = 0
-Pokemon = HEATMOR,50
-    AbilityIndex = 1
 #-------------------------------
 [WORKER6,Paul]
 Pokemon = KLINKLANG,50
