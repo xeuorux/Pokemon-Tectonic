@@ -17,6 +17,7 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
 def pbDescendWaterfall
     if $game_player.direction != 2   # Can't descend if not facing down
         $game_player.move_down
+        return if $game_player.check_event_trigger_here([1,2])
     end
     terrain = $game_player.pbFacingTerrainTag
     return if !terrain.waterfall && !terrain.waterfall_crest
@@ -26,6 +27,7 @@ def pbDescendWaterfall
     $game_player.move_speed = 2
     loop do
         $game_player.move_down
+        break if $game_player.check_event_trigger_here([1,2])
         terrain = $game_player.pbTerrainTag
         break if !terrain.waterfall && !terrain.waterfall_crest
     end

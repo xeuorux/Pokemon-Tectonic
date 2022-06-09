@@ -1393,3 +1393,9 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+#-------------------------------
+[288]
+# Underwater River Sketch
+Outdoor = false
+ShowArea = true
+Bicycle = true
