@@ -14,21 +14,6 @@ Pokemon = SALANDIT,50
     Moves = TOXICSPIKES,FLAMESPIKES
     AbilityIndex = 0
 #-------------------------------
-[HIKER,Conroy]
-Policies = CURSE_PERMANENT_SUN
-Pokemon = CLEFABLE,5
-    AbilityIndex = 1
-Pokemon = SNORLAX,5
-    AbilityIndex = 1
-Pokemon = PRIMEAPE,5
-    AbilityIndex = 0
-Pokemon = NIBELONG,5
-    AbilityIndex = 1
-Pokemon = CONIFEAR,5
-    AbilityIndex = 1
-Pokemon = BLASFEMMIE,5
-    AbilityIndex = 0
-#-------------------------------
 [BUGCATCHER,Colin]
 Policies = REMARKONSTARTER
 Pokemon = KRICKETOT,8
@@ -3148,6 +3133,24 @@ Pokemon = ZWEIHANDOR,50
 Pokemon = SHIINOTIC,50
     AbilityIndex = 1
     Item = ORANBERRY
+#-------------------------------
+[CLERK_F,Rosalie]
+Pokemon = DEDENNE,50
+    AbilityIndex = 0
+Pokemon = RIOJIN,50
+    AbilityIndex = 1
+	Item = LUMBERRY
+Pokemon = CLEFABLE,50
+    AbilityIndex = 0
+#-------------------------------
+[LASS3,Carmen]
+Pokemon = SENSIBELLE,50
+    AbilityIndex = 1
+Pokemon = MSEVIPER,50
+    AbilityIndex = 0
+	Item = ELECTRICGEM
+Pokemon = DONSTER,50
+    AbilityIndex = 1
 #-------------------------------
 [SCIENTIST_M5,Sonatane]
 Pokemon = AROMATISSE,50

@@ -161,3 +161,16 @@ def getFollowerPokemon(eventId=0)
     end
 	return followers
 end
+
+def allTrainersBeaten(events)
+	events.each do |event_id|
+		trainerAOn = $game_self_switches[[$game_map.map_id,event_id,"A"]]
+		trainerDOn = $game_self_switches[[$game_map.map_id,event_id,"D"]]
+		trainerBeaten = trainerAOn || trainerDOn
+    	if !trainerBeaten
+			echoln("Trainer #{event_id} is not beaten yet: #{trainerAOn},#{trainerDOn}")
+			return false
+		end
+	end
+	return true
+end
