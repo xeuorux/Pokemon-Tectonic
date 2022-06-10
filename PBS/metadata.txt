@@ -1318,13 +1318,13 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [268]
-# Blue Building 2
+# Couples House
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [269]
-# Lighthouse Placeholder
+# Lighthouse Top Placeholder
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1411,7 +1411,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [285]
-# Red Building Two
+# Sweetrock Elementary
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1423,7 +1423,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [287]
-# Blue Building 2 Second Floor
+# Couples House F2
 Outdoor = false
 ShowArea = false
 Bicycle = false

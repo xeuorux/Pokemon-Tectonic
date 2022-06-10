@@ -3197,3 +3197,14 @@ Pokemon = MANECTRIC,29
     AbilityIndex = 1
 Pokemon = PHIONE,30
     AbilityIndex = 0
+#-------------------------------
+[SAILOR,Owein]
+Pokemon = FLAREON,50
+    AbilityIndex = 1
+Pokemon = DELIBIRD,50
+    AbilityIndex = 0
+Pokemon = WEAVILE,50
+    AbilityIndex = 1
+Pokemon = LYCANROC,50
+    Form = 2
+    AbilityIndex = 1
