@@ -50,6 +50,120 @@ def moveBackAndForth(length,initialDirection=Right,transverseLength=0,clockwise=
 	self.set_move_route(back_and_forth_route)
 end
 
+# Corners go NW, NE, SE, SW
+def conveyorBeltLogic(corners)
+	conveyor_route = getNewMoveRoute()
+	conveyor_route.repeat = true
+
+	westX = corners[0][0]
+	eastX = corners[1][0]
+	northY = corners[0][1]
+	southY = corners[2][1]
+
+	if westX >= eastX || northY >= southY
+		echoln("Failed to create a conveyor belt logic with these params.")
+		return
+	end
+
+	currentX = self.x
+	currentY = self.y
+	firstX = self.x
+	firstY = self.y
+	targetCornerIndex = getNextClockwiseCornerIndex(corners, currentX, currentY)
+	targetCorner = corners[targetCornerIndex]
+	echoln("The target corner is first set at index #{targetCornerIndex}: #{targetCorner}")
+
+	loop do
+		# Then, determine if should be opaque or not
+		if block_given?
+			opacity = yield currentX,currentY
+			conveyor_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Opacity,[opacity]))
+		end
+
+		case targetCornerIndex
+		when 0
+			conveyor_route.list.push(RPG::MoveCommand.new(Up/2))
+			currentY -= 1
+
+			echoln("Moving North")
+
+			if currentY == targetCorner[1]
+				targetCornerIndex = 1
+				targetCorner = corners[targetCornerIndex]
+				echoln("The target corner is changed to index #{targetCornerIndex}: #{targetCorner}")
+			end
+		when 1
+			conveyor_route.list.push(RPG::MoveCommand.new(Right/2))
+			currentX += 1
+
+			echoln("Moving East")
+
+			if currentX == targetCorner[0]
+				targetCornerIndex = 2
+				targetCorner = corners[targetCornerIndex]
+				echoln("The target corner is changed to index #{targetCornerIndex}: #{targetCorner}")
+			end
+		when 2
+			conveyor_route.list.push(RPG::MoveCommand.new(Down/2))
+			currentY += 1
+
+			echoln("Moving South")
+
+			if currentY == targetCorner[1]
+				targetCornerIndex = 3
+				targetCorner = corners[targetCornerIndex]
+				echoln("The target corner is changed to index #{targetCornerIndex}: #{targetCorner}")
+			end
+		when 3
+			conveyor_route.list.push(RPG::MoveCommand.new(Left/2))
+			currentX -= 1
+
+			echoln("Moving West")
+
+			if currentX == targetCorner[0]
+				targetCornerIndex = 0
+				targetCorner = corners[targetCornerIndex]
+				echoln("The target corner is changed to index #{targetCornerIndex}: #{targetCorner}")
+			end
+		end
+
+		# Stop moving if made it back to original positon
+		break if currentX == firstX && currentY == firstY
+	end
+
+	conveyor_route.list.push(RPG::MoveCommand.new(0)) # End of move route
+	
+	self.set_move_route(conveyor_route)
+end
+
+def getNextClockwiseCornerIndex(corners, currentX, currentY)
+	westX = corners[0][0]
+	eastX = corners[1][0]
+	northY = corners[0][1]
+	southY = corners[2][1]
+
+	nextCorner = 0
+	if currentY == northY
+		if currentX == eastX
+			nextCorner = 2
+		else
+			nextCorner = 1
+		end
+	elsif currentY == southY
+		if currentX == westX
+			nextCorner = 0
+		else
+			nextCorner = 3
+		end
+	else
+		if currentX == westX
+			nextCorner = 0
+		else
+			nextCorner = 2
+		end
+	end
+	return nextCorner
+end
 
 def modulateOpacityOverTime(speed)
 	currentOpacity = self.opacity
