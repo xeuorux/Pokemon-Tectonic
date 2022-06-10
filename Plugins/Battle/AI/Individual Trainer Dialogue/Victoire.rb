@@ -1,9 +1,14 @@
 PokeBattle_AI::PlayerPokemonFaintedDialogue.add(:VICTOIRE,
   proc { |policy,battler,trainer_speaking,dialogue_array|
-	if !trainer_speaking.policyStates[:LightningDeathDialogue] && !battler.lastFoeAttacker.nil? &&
-			!battler.lastFoeAttacker.lastMoveUsed.nil? && battler.lastFoeAttacker.lastMoveUsed == :THUNDER && battler.battle.pbWeather == :Rain
-		dialogue_array.push("Coup de foudre, coup de grace.")
-		trainer_speaking.policyStates[:LightningDeathDialogue] = true
+	if !trainer_speaking.policyStates[:LightningDeathDialogue] && battler.lastFoeAttacker.length > 0 && battler.battle.pbWeather == :Rain
+		anyLastMoveWasThunder = false
+		battler.lastFoeAttacker.each do |battler_index|
+			anyLastMoveWasThunder = true if battler.battle.battlers[battler_index].lastMoveUsed == :THUNDER
+		end
+		if anyLastMoveWasThunder
+			dialogue_array.push("Coup de foudre, coup de grace.")
+			trainer_speaking.policyStates[:LightningDeathDialogue] = true
+		end
 	end
     next dialogue_array
   }

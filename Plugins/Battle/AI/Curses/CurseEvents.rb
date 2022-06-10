@@ -2,6 +2,7 @@ class PokeBattle_Battle
 	BattleStartApplyCurse 				= HandlerHash2.new
 	BattleEndCurse						= HandlerHash2.new
 	BattlerEnterCurseEffect 			= HandlerHash2.new
+	BattlerFaintedCurseEffect			= HandlerHash2.new
 	EffectivenessChangeCurseEffect 		= HandlerHash2.new
 	MoveUsedCurseEffect					= HandlerHash2.new
 	BeginningOfTurnCurseEffect			= HandlerHash2.new
@@ -17,6 +18,11 @@ class PokeBattle_Battle
 	
 	def triggerBattlerEnterCurseEffect(curse_policy,battler,battle)
 		ret = BattlerEnterCurseEffect.trigger(curse_policy,battler,battle)
+		return ret || false
+	end
+
+	def triggerBattlerFaintedCurseEffect(curse_policy,battler,battle)
+		ret = BattlerFaintedCurseEffect.trigger(curse_policy,battler,battle)
 		return ret || false
 	end
 	

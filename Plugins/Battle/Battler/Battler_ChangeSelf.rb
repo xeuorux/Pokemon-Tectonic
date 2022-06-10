@@ -47,25 +47,13 @@ class PokeBattle_Battler
 		lastFoeAttacker.each do |foe|
 			@battle.battlers[foe].pokemon.addToKOCount()
 		end
+
+    # Trigger battler faint curses
+    @battle.curses.each do |curse_policy|
+      @battle.triggerBattlerFaintedCurseEffect(curse_policy,self,@battle)
+    end
 		
-		# Show dialogue reacting to the fainting
-		if @battle.opponent
-			if pbOwnedByPlayer?
-				# Trigger dialogue for each opponent
-				@battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
-					@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-						PokeBattle_AI.triggerPlayerPokemonFaintedDialogue(policy,self,trainer_speaking,dialogue)
-					}
-				end
-			else
-				# Trigger dialogue for the opponent which owns this
-				idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(@index)
-				trainer_speaking = @battle.opponent[idxTrainer]
-				@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					PokeBattle_AI.triggerTrainerPokemonFaintedDialogue(policy,self,trainer_speaking,dialogue)
-				}
-			end
-		end
+    showFaintDialogue()
 		
 		pbInitEffects(false)
 		# Reset status
@@ -92,6 +80,27 @@ class PokeBattle_Battler
 		# Check for end of primordial weather
 		@battle.pbEndPrimordialWeather
 	end
+
+  def showFaintDialogue()
+    # Show dialogue reacting to the fainting
+		if @battle.opponent
+			if pbOwnedByPlayer?
+				# Trigger dialogue for each opponent
+				@battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
+					@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+						PokeBattle_AI.triggerPlayerPokemonFaintedDialogue(policy,self,trainer_speaking,dialogue)
+					}
+				end
+			else
+				# Trigger dialogue for the opponent which owns this
+				idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(@index)
+				trainer_speaking = @battle.opponent[idxTrainer]
+				@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+					PokeBattle_AI.triggerTrainerPokemonFaintedDialogue(policy,self,trainer_speaking,dialogue)
+				}
+			end
+		end
+  end
 	
   #=============================================================================
   # Change type

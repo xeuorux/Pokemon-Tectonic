@@ -2991,6 +2991,33 @@ Pokemon = DECEAT,50
     Moves = METEORMASH,LUNARJUSTICE,CRUNCH,SWORDSDANCE
     AbilityIndex = 0
 #-------------------------------
+[LEADER_Victoire_2,Victoire,1]
+Policies = VICTOIRE,CURSE_VENGEANT
+Pokemon = BLASTOISE,50
+    Moves = FLASHCANNON,MENDINGSPRING,SURF,AURASPHERE
+    AbilityIndex = 0
+    Item = DAMPROCK
+Pokemon = TOGEDEMARU,50
+    Moves = THUNDER,SLAG,FLAMESPIKES,SPIKYSHIELD
+    AbilityIndex = 1
+    Item = AIRBALLOON
+Pokemon = HYMNUS,50
+    Moves = CALAMITOUSSLASH,PLAYROUGH,DRAGONDANCE,EARTHQUAKE
+    AbilityIndex = 1
+Pokemon = MISMAGIUS,50
+    Name = Cherchez
+    Gender = female
+    Moves = AURATRICK,SHADOWBALL,ENCHANTINGSONG,THUNDER
+    AbilityIndex = 1
+    Item = ASSAULTVEST
+Pokemon = AGGRON,50
+    Moves = BEDROCKBREAKER,IRONTAIL,AQUATAIL,FACADE
+    AbilityIndex = 1
+    Item = FOCUSSASH
+Pokemon = DECEAT,50
+    Moves = METEORMASH,LUNARJUSTICE,CRUNCH,SWORDSDANCE
+    AbilityIndex = 0
+#-------------------------------
 [TRAINER_Sang,Sang]
 Pokemon = EXPLOUD,47
     Name = Egret Ash

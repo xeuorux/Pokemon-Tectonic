@@ -176,7 +176,7 @@ class PokeBattle_Battle
       pbCommonAnimation("Shadow",battler)
       pbDisplay(_INTL("Oh!\nA Shadow Pokémon!"))
     end
-    # Trigger enter the field curses, if this is a player's pokemon
+    # Trigger enter the field curses
     curses.each do |curse|
       triggerBattlerEnterCurseEffect(curse,battler,self)
     end
