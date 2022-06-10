@@ -124,3 +124,8 @@ GameData::TerrainTag.register({
   :id_number              => 29,
   :can_surf               => false,
 })
+
+GameData::TerrainTag.register({
+  :id                     => :SouthConveyor,
+  :id_number              => 30,
+})

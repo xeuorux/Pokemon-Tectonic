@@ -5,7 +5,7 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
 	# Slide on ice and descend down waterfalls
     if event == $game_player
       currentTag = $game_player.pbTerrainTag
-      if currentTag.waterfall_crest || currentTag.waterfall
+      if slideDownTerrainTag(currentTag)
         pbDescendWaterfall
       elsif currentTag.ice && !$PokemonGlobal.sliding
         pbSlideOnIce
@@ -14,23 +14,24 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
   end
 }
 
+def slideDownTerrainTag(terrain)
+  return terrain.waterfall || terrain.waterfall_crest || terrain.id == :SouthConveyor
+end
+
 def pbDescendWaterfall
     if $game_player.direction != 2   # Can't descend if not facing down
         $game_player.move_down
         return if $game_player.check_event_trigger_here([1,2])
     end
     terrain = $game_player.pbFacingTerrainTag
-    return if !terrain.waterfall && !terrain.waterfall_crest
+    return if !slideDownTerrainTag(terrain)
     oldthrough   = $game_player.through
-    oldmovespeed = $game_player.move_speed
     $game_player.through    = true
-    $game_player.move_speed = 2
     loop do
         $game_player.move_down
         break if $game_player.check_event_trigger_here([1,2])
         terrain = $game_player.pbTerrainTag
-        break if !terrain.waterfall && !terrain.waterfall_crest
+        break if !slideDownTerrainTag(terrain)
     end
     $game_player.through    = oldthrough
-    $game_player.move_speed = oldmovespeed
 end
