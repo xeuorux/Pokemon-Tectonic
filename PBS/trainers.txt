@@ -2944,6 +2944,7 @@ Pokemon = PERRSERKER,49
     Item = STEELGEM
 #-------------------------------
 [LEADER_Victoire,Victoire]
+Policies = VICTOIRE
 Pokemon = DECEAT,50
     Moves = METEORMASH,LUNARJUSTICE,CRUNCH,SWORDSDANCE
     AbilityIndex = 0
@@ -2964,6 +2965,7 @@ Pokemon = HYMNUS,50
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Victoire_2,Victoire]
+Policies = VICTOIRE
 Pokemon = BLASTOISE,50
     Moves = FLASHCANNON,MENDINGSPRING,SURF,AURASPHERE
     AbilityIndex = 0
