@@ -85,22 +85,22 @@ module Randomizer
   end
   
   def self.getNewSpecies(oldSpecies)
-	newSpecies = nil
-	attempts = 1
-	while newSpecies == nil
-		possibleSpecies = self.all_species.sample
-		bstDiff = (pbBaseStatTotal(possibleSpecies) - pbBaseStatTotal(oldSpecies)).abs
-		acceptableDiff = [attempts * 5,60].min
-		acceptableDiff = 99999 if attempts > 100 # Failsafe
-		if !@@rules.include?(:SIMILAR_BST)
-			newSpecies = possibleSpecies
-		elsif bstDiff < acceptableDiff
-			echo("BST difference: #{bstDiff}\n")
-			newSpecies = possibleSpecies
-		end
-		attempts += 1
-	end
-	return newSpecies
+    newSpecies = nil
+    attempts = 0
+    while newSpecies == nil
+      possibleSpecies = self.all_species.sample
+      bstDiff = (effectiveBST(possibleSpecies) - effectiveBST(oldSpecies)).abs
+      acceptableDiff = [10+attempts * 5,60].min
+      acceptableDiff = 99999 if attempts > 1000 # Failsafe
+      if !@@rules.include?(:SIMILAR_BST)
+        newSpecies = possibleSpecies
+      elsif bstDiff < acceptableDiff
+        echo("Acceptable BST difference between #{oldSpecies} and #{possibleSpecies}: #{bstDiff} (#{acceptableDiff})\n")
+        newSpecies = possibleSpecies
+      end
+      attempts += 1
+    end
+    return newSpecies
   end
   
   #-----------------------------------------------------------------------------
@@ -470,11 +470,17 @@ module GameData
   end
 end
 
+def effectiveBST(species)
+  return 500 if [:SHEDINJA,:WISHIWASHI].include?(species)
+  ret = pbBaseStatTotal(species)
+  ret -= 50 if [:ARCHEN,:ARCHEOPS,:SLAKOTH,:SLAKING,:REGIGIGAS]
+  return ret
+end
+
 def pbBaseStatTotal(species)
   baseStats = GameData::Species.get(species).base_stats
   ret = 0
   baseStats.each { |k,v| ret += v }
-  ret += 200 if species == :SHEDINJA
   return ret
 end
 
