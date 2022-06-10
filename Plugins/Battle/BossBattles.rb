@@ -425,7 +425,7 @@ class PokeBattle_Battler
 		@pokemon.moves = []
 		moves.each do |m|
 			pokeMove = Pokemon::Move.new(m)
-			moveObject = PokeBattle_Move.from_pokemon_move(self,pokeMove)
+			moveObject = PokeBattle_Move.from_pokemon_move(@battle,pokeMove)
 			@moves.push(moveObject)
 			@pokemon.moves.push(pokeMove)
 		end
