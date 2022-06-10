@@ -1120,3 +1120,9 @@ Moves = MENDINGSPRING,DOUSE
 Turns = 2
 HPMult = 4
 DMGMult = 1
+#-------------------------------
+[DEOXYS]
+Ability = PRESSURE
+Moves = PSYCHIC,SPIKES
+Turns = 2
+HPMult = 12

@@ -419,4 +419,15 @@ end
 class PokeBattle_Battler
 	attr_accessor :choicesTaken
 	attr_accessor :lastMoveChosen
+
+	def assignMoveset(moves)
+		@moves = []
+		@pokemon.moves = []
+		moves.each do |m|
+			pokeMove = Pokemon::Move.new(m)
+			moveObject = PokeBattle_Move.from_pokemon_move(self,pokeMove)
+			@moves.push(moveObject)
+			@pokemon.moves.push(pokeMove)
+		end
+	end
 end

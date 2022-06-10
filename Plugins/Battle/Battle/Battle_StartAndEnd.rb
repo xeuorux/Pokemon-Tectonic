@@ -310,33 +310,26 @@ class PokeBattle_Battle
   def useEmpoweredMoves()
 	  # Have bosses use empowered moves if appropriate
 	  @battlers.each do |b|
-		next if !b
-		next unless b.boss?
-		next unless b.hp < b.totalhp * 0.55
-		next if b.empowered
-		usedEmpoweredMove = false
-		b.eachMoveWithIndex do |move,index|
-			next unless move.isEmpowered?
-			next if move.pp < 1
-			pbDisplayPaused(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
-			b.lastRoundMoved = 0
-			b.pbUseMove([:UseMove,index,move,-1,0])
-			usedEmpoweredMove = true
-		end
-		# Swap to post-empowerment moveset
-		if usedEmpoweredMove
-			avatar_data = GameData::Avatar.get(b.species.to_sym)
-			b.moves = []
-			b.pokemon.moves = []
-			avatar_data.post_prime_moves.each do |m|
-				pokeMove = Pokemon::Move.new(m)
-				moveObject = PokeBattle_Move.from_pokemon_move(self,pokeMove)
-				b.moves.push(moveObject)
-				b.pokemon.moves.push(pokeMove)
-			end
-			b.empowered = true
-			@scene.pbRefresh
-		end
+      next if !b
+      next unless b.boss?
+      next unless b.hp < b.totalhp * 0.55
+      next if b.empowered
+      usedEmpoweredMove = false
+      b.eachMoveWithIndex do |move,index|
+        next unless move.isEmpowered?
+        next if move.pp < 1
+        pbDisplayPaused(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
+        b.lastRoundMoved = 0
+        b.pbUseMove([:UseMove,index,move,-1,0])
+        usedEmpoweredMove = true
+      end
+      # Swap to post-empowerment moveset
+      if usedEmpoweredMove
+        avatar_data = GameData::Avatar.get(b.species.to_sym)
+        b.assignMoveset(avatar_data.post_prime_moves)
+        b.empowered = true
+        @scene.pbRefresh
+      end
 	  end
   end
 
