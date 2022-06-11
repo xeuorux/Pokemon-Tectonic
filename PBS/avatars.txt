@@ -297,7 +297,7 @@ DMGMult = 1
 Ability = FORTIFIED
 Moves = ADAMANTINEPRESS,ROCKAPULT
 PostPrimeMoves = ADAMANTINEPRESS,ROCKAPULT
-Turns = 1
+Turns = 2
 HPMult = 5.0
 DMGMult = 1
 Item = LAGGINGTAIL
@@ -1002,7 +1002,7 @@ Ability = FEEDBACK
 Moves = PSYCHOBOOST,PRIMEVALTORMENT
 PostPrimeMoves = DARKPULSE
 Turns = 2
-HPMult = 2.0
+HPMult = 3.0
 DMGMult = 1
 #-------------------------------
 [GALLADE]
@@ -1010,7 +1010,7 @@ Ability = SWORDSMAN
 Moves = CLOSECOMBAT,PRIMEVALLIGHTNINGDANCE
 PostPrimeMoves = ELECTROSLASH
 Turns = 2
-HPMult = 2.0
+HPMult = 3.0
 DMGMult = 1
 #-------------------------------
 [EISCUE]
@@ -1031,7 +1031,7 @@ Ability = SANDRUSH
 Moves = EARTHQUAKE,IRONHEAD,PRIMEVALDRAGONDANCE
 PostPrimeMoves = REND
 Turns = 2
-HPMult = 3.5
+HPMult = 4
 DMGMult = 1
 #-------------------------------
 [DURANT]
@@ -1039,7 +1039,7 @@ Ability = HEATPROOF
 Moves = IRONHEAD,SKITTERSMACK,PRIMEVALSANDSTORM
 PostPrimeMoves = ROCKSLIDE
 Turns = 2
-HPMult = 3.0
+HPMult = 4.5
 DMGMult = 1
 #-------------------------------
 [RUBARIOR]
@@ -1047,7 +1047,7 @@ Ability = MAGICBOUNCE
 Moves = MEFIRST,PRIMEVALMOONLIGHT
 PostPrimeMoves = DAZZLINGGLEAM
 Turns = 1
-HPMult = 5.0
+HPMult = 6.0
 DMGMult = 1
 #-------------------------------
 [SALAZZLE]
@@ -1055,7 +1055,7 @@ Ability = EXPERTISE
 Moves = ACIDBATH,OVERHEAT,PRIMEVALSTRINGSHOT
 PostPrimeMoves = LEECHLIFE
 Turns = 2
-HPMult = 3.0
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [DECEAT]
@@ -1063,7 +1063,7 @@ Ability = POWERUP
 Moves = SPIRITBREAK,MAGNETHRASH,PRIMEVALTORMENT
 PostPrimeMoves = SUCKERPUNCH
 Turns = 2
-HPMult = 3.0
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [DIANCIE]
@@ -1071,7 +1071,7 @@ Ability = CLEARBODY
 Moves = DIAMONDSTORM,ENCHANTINGSONG,PRIMEVALCURSE
 PostPrimeMoves = SPIRITSHACKLE
 Turns = 2
-HPMult = 5.0
+HPMult = 10.0
 DMGMult = 1
 #-------------------------------
 [SALAMENCE]
@@ -1079,7 +1079,7 @@ Ability = SCHADENFREUDE
 Moves = CALAMITOUSSLASH,ACROBATICS,PRIMEVALLASERFOCUS
 PostPrimeMoves = METEORMASH
 Turns = 2
-HPMult = 4.0
+HPMult = 5.0
 DMGMult = 1
 #-------------------------------
 [MAGCARGO]
