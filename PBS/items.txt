@@ -273,7 +273,7 @@
 269,SPORTBALL,Sport Ball,Sport Balls,3,300,"A special Poké Ball for the Bug-Catching Contest.",0,4,4
 270,NETBALL,Net Ball,Net Balls,3,400,"A somewhat different Poké Ball that works at 3.5x strength on Water- and Bug-type Pokémon.",0,4,4
 271,DIVEBALL,Dive Ball,Dive Balls,3,400,"A somewhat different Poké Ball that works at a 3.5x strength on Pokémon that live underwater.",0,4,4
-272,NESTBALL,Nest Ball,Nest Balls,3,400,"A somewhat different Poké Ball that works better the lower the Pokémon's level is below 30.",0,4,4
+272,NESTBALL,Nest Ball,Nest Balls,3,400,"A somewhat different Poké Ball that works better the lower the Pokémon's level is below your level cap.",0,4,4
 273,REPEATBALL,Repeat Ball,Repeat Balls,3,400,"A somewhat different Poké Ball that works at 3.5x strength on Pokémon species that were previously caught.",0,4,4
 274,TIMERBALL,Timer Ball,Timer Balls,3,400,"A somewhat different Ball that becomes up to 4x better the more turns there are in a battle.",0,4,4
 275,LUXURYBALL,Luxury Ball,Luxury Balls,3,800,"A comfortable Poké Ball that makes a caught wild Pokémon quickly grow friendly.",0,4,4

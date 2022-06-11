@@ -393,3 +393,17 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
     next mult * 1.33
   }
 )
+
+BallHandlers::ModifyCatchRate.add(:NESTBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
+  if LEVEL_CAPS_USED
+    baseLevel = $game_variables[26] - 5
+    if battler.level <= baseLevel
+      catchRate *= [(11 + baseLevel - battler.level) / 10.0, 1].max
+    end
+  else
+    if battler.level <= 30
+      catchRate *= [(41 - battler.level) / 10.0, 1].max
+    end
+  end
+  next catchRate
+})
