@@ -3151,6 +3151,8 @@ Pokemon = BLASFEMMIE,50
     Moves = FAIRYTERRAIN,ENCHANTINGSONG,DARKALLURE,RECOVER
     AbilityIndex = 0
     Item = MISTYSEED
+Pokemon = DONSTER,50
+    AbilityIndex = 1
 Pokemon = HATTERENE,50
     AbilityIndex = 0
 #-------------------------------
@@ -3178,8 +3180,8 @@ Pokemon = SENSIBELLE,50
 Pokemon = MSEVIPER,50
     AbilityIndex = 0
     Item = ELECTRICGEM
-Pokemon = DONSTER,50
-    AbilityIndex = 1
+Pokemon = TOGEKISS,50
+	AbilityIndex = 0
 #-------------------------------
 [SCIENTIST_M5,Sonatane]
 Pokemon = AROMATISSE,50
