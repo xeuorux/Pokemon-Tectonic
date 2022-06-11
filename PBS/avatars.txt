@@ -1022,7 +1022,7 @@ HPMult = 4
 [SLURPUFF]
 Ability = CANDYVEIL
 Moves = INFINITEFORCE,PRIMEVALLEECHSEED
-PostPrimeMoves = PARAPOLLEN
+PostPrimeMoves = PARAPOLLEN,POWERWHIP
 Turns = 1
 HPMult = 7
 #-------------------------------
