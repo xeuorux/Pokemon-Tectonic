@@ -76,8 +76,8 @@ class PokeBattle_AI
 		return (ret!=nil) ? ret : dialogue_array
 	end
 	
-	def self.triggerPlayerPokemonImmuneDialogue(policy,attacker,target,trainer_speaking,dialogue_array)
-		ret = PlayerPokemonImmuneDialogue.trigger(policy,attacker,target,trainer_speaking,dialogue_array)
+	def self.triggerPlayerPokemonImmuneDialogue(policy,attacker,target,isImmunityAbility,trainer_speaking,dialogue_array)
+		ret = PlayerPokemonImmuneDialogue.trigger(policy,attacker,target,isImmunityAbility,trainer_speaking,dialogue_array)
 		return (ret!=nil) ? ret : dialogue_array
 	end
 	
