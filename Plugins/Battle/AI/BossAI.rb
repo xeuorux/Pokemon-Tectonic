@@ -181,14 +181,16 @@ class PokeBattle_AI
 		end
 
 		# Try very hard not to attack targets which are protected
-		isProtectedSingle = false
-		singleProtectEffects().each do |single_protect_effect|
-			if target.effects[single_protect_effect]
-				isProtectedSingle = true
-				break
+		if !target.nil?
+			isProtectedSingle = false
+			singleProtectEffects().each do |single_protect_effect|
+				if target.effects[single_protect_effect]
+					isProtectedSingle = true
+					break
+				end
 			end
+			score = 1 if isProtectedSingle
 		end
-		score = 1 if isProtectedSingle
 
 		@battle.messagesBlocked = false
 		
