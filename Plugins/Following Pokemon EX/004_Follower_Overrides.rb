@@ -556,7 +556,7 @@ class DependentEvents
       # Fall back on making current position into leader's position
       mapTile = [leader.map.map_id,leader.x,leader.y] if !mapTile
       if follower.map.map_id != mapTile[0]
-        moveFollowerToDifferentMap(follower,leader,mapTile)
+        follower = moveFollowerToDifferentMap(follower,leader,mapTile)
       end
       moveFollowerToNearbySpot(follower,leader,mapTile)
     end
@@ -612,21 +612,34 @@ class DependentEvents
   end
   
   def moveFollowerToNearbySpot(follower,leader,mapTile)
-    echoln("Move a follower to a semi-random spot near the player.")
+    echoln("Moving a follower to a semi-random spot near the player at #{leader.x}, #{leader.y}.")
     # Follower is on same map as leader
     newPosX = leader.x
     newPosY = leader.y
     
     # Try to find a nearby spot to place the pokemon
-    nearbySpotOffsets = [[-1,0],[0,1],[0,1],[0,-1]]
+    # Try behind the player, then to their left, then their right, then finally ahead
+    nearbySpotOffsets = nil
+    case leader.direction
+    when Up
+      nearbySpotOffsets = [[0,1],[-1,0],[1,0],[0,-1]]
+    when Left
+      nearbySpotOffsets = [[1,0],[0,1],[0,-1],[0,-1]]
+    when Down
+      nearbySpotOffsets = [[0,-1],[1,0],[-1,0],[0,1]]
+    when Right
+      nearbySpotOffsets = [[-1,0],[0,-1],[0,1],[0,1]]
+    end
+    
     nearbySpotOffsets.each do |spot|
-      passable = $MapFactory.isPassable?(leader.map.map_id,newPosX+spot[0],newPosY+spot[1],follower)
+      passable = $MapFactory.isPassable?(leader.map.map_id,leader.x+spot[0],leader.y+spot[1],follower)
       if passable
         newPosX += spot[0]
         newPosY += spot[1]
         break
       end
     end
+    echoln("Moving a follower to #{newPosX}, #{newPosY}.")
     pbFancyMoveTo(follower,newPosX, newPosY, leader)
     pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
   end
@@ -637,16 +650,17 @@ class DependentEvents
     events = $PokemonGlobal.dependentEvents
     eventIndex = pbEnsureEvent(follower,mapTile[0])
     if eventIndex >= 0
-      newFollower = @realEvents[eventIndex]
+      follower = @realEvents[eventIndex]
       newEventData = events[eventIndex]
-      newFollower.moveto(mapTile[1],mapTile[2])
-      pbFancyMoveTo(newFollower,mapTile[1], mapTile[2], leader)
+      follower.moveto(mapTile[1],mapTile[2])
+      pbFancyMoveTo(follower,mapTile[1], mapTile[2], leader)
       newEventData[3] = mapTile[1]
       newEventData[4] = mapTile[2]
-      if mapTile[0] == leader.map.map_id
-        pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
-      end
+      # if mapTile[0] == leader.map.map_id
+      #   pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
+      # end
     end
+    return follower
   end
 
   #Fix follower not being in the same spot upon save
