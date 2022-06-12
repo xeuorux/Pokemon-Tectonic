@@ -672,7 +672,7 @@ Ability = DOWNLOAD
 Moves = TECHNOBLAST,FELLSTINGER,BUGBUZZ,ELECTROWEB
 PostPrimeMoves = TECHNOBLAST,FELLSTINGER,BUGBUZZ,ELECTROWEB
 Turns = 3
-HPMult = 6.0
+HPMult = 9.0
 DMGMult = 1
 #-------------------------------
 [LEDIAN]
