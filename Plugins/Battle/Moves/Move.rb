@@ -485,6 +485,10 @@ class PokeBattle_Move
 			  multipliers[:final_damage_multiplier] *= 2
 		  end
 		end
+    # Random variance
+    if !self.is_a?(PokeBattle_Confusion) && !self.is_a?(PokeBattle_Charm)
+      multipliers[:final_damage_multiplier] *= 0.9
+    end
 		# STAB
     unless user.pbOwnedByPlayer? && @battle.curses.include?(:DULLED)
       if type && user.pbHasType?(type)
