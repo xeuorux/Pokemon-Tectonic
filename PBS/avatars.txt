@@ -1044,7 +1044,7 @@ DMGMult = 1
 #-------------------------------
 [RUBARIOR]
 Ability = MAGICBOUNCE
-Moves = MEFIRST,PRIMEVALMOONLIGHT
+Moves = FOULPLAY,CURSE,PRIMEVALMOONLIGHT
 PostPrimeMoves = DAZZLINGGLEAM
 Turns = 1
 HPMult = 6.0
