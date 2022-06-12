@@ -36,6 +36,15 @@ def renameAllSavedMovesInBatch(save_data,batch_number)
             move
           end
         }
+        pokemon.first_moves.map! { |move_id|
+          moveIDString = move_id.to_s
+          if move_renames.has_key?(moveIDString)
+            echoln("Renaming #{move} on player's #{pokemon.name}'s first moves array")
+            move_renames[moveIDString][0].to_sym
+          else
+            move_id
+          end
+        }
       end
     end
   end
