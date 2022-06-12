@@ -295,8 +295,8 @@ DMGMult = 1
 #-------------------------------
 [RHYPERIOR]
 Ability = FORTIFIED
-Moves = ADAMANTINEPRESS,ROCKAPULT
-PostPrimeMoves = ADAMANTINEPRESS,ROCKAPULT
+Moves = TRAMPLE,ROCKAPULT
+PostPrimeMoves = TRAMPLE,ROCKAPULT
 Turns = 2
 HPMult = 5.0
 DMGMult = 1
@@ -1052,8 +1052,8 @@ DMGMult = 1
 #-------------------------------
 [SALAZZLE]
 Ability = EXPERTISE
-Moves = ACIDBATH,OVERHEAT,PRIMEVALSTRINGSHOT
-PostPrimeMoves = LEECHLIFE
+Moves = ACIDBATH,OVERHEAT,PRIMEVALCALMMIND
+PostPrimeMoves = EXPANDINGFORCE
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
