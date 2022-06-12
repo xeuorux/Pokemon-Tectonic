@@ -774,7 +774,7 @@ Bicycle = false
 # Ancient Meteorite
 Outdoor = false
 ShowArea = true
-Bicycle = false
+Bicycle = true
 Environment = Cave
 #-------------------------------
 [136]
