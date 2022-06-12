@@ -972,14 +972,13 @@ Turns = 2
 HPMult = 5.0
 DMGMult = 1
 #-------------------------------
-[CROBAT]
-Ability = INFILTRATOR
-Moves = AERIALACE,GUNKSHOT,PRIMEVALSANDSTORM
-PostPrimeMoves = ROCKSLIDE
-Turns = 3
-HPMult = 3
+[GOLURK]
+Ability = NOGUARD
+Moves = TRAMPLE,SHADOWBALL,PRIMEVALBULKUP
+PostPrimeMoves = DYNAMICPUNCH
+Turns = 2
+HPMult = 4.0
 DMGMult = 1
-Item = ROCKGEM
 #-------------------------------
 [NOIVERN]
 Ability = INFILTRATOR
@@ -987,7 +986,7 @@ Moves = DRAGONPULSE,AIRSLASH,PRIMEVALSUNNYDAY
 PostPrimeMoves = FLAMETHROWER
 Turns = 2
 HPMult = 4.0
-DMGMult = 1.2
+DMGMult = 1
 #-------------------------------
 [MANDIBUZZ]
 Ability = IMPERVIOUS
@@ -1064,6 +1063,14 @@ Moves = SPIRITBREAK,MAGNETHRASH,PRIMEVALTORMENT
 PostPrimeMoves = SUCKERPUNCH
 Turns = 2
 HPMult = 4.0
+DMGMult = 1
+#-------------------------------
+[CROBAT]
+Ability = INNERFOCUS
+Moves = ECHOLOCATE,LEECHLIFE,PRIMEVALHAIL
+PostPrimeMoves = FROSTBITE
+Turns = 2
+HPMult = 3.5
 DMGMult = 1
 #-------------------------------
 [DIANCIE]
