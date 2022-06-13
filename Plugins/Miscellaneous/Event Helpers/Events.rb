@@ -64,3 +64,15 @@ def playerDirectlySouth?
 	playerCheckPosY = eventPosY + 1
 	return $game_player.x == playerCheckPosX && $game_player.y == playerCheckPosY
 end
+
+def fadeSwitchOn(switchName = 'A')
+	blackFadeOutIn {
+		setMySwitch(switchName,true)
+	}
+end
+
+def fadeSwitchOff(switchName = 'A')
+	blackFadeOutIn {
+		setMySwitch(switchName,false)
+	}
+end
