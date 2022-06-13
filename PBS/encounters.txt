@@ -55,6 +55,7 @@ Puddle,21
     25,BIDOOF,17,20
     25,BUIZEL,17,20
     25,POLIWAG,17,20
+	25,SKRELP,17,20
 #-------------------------------
 [012] # Gigalith's Guts
 DarkCave,20
