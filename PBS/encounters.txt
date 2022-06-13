@@ -493,9 +493,9 @@ DarkCave,21
 #-------------------------------
 [185] # Eleig Stretch
 Land,21
+    34,MZANGOOSE,30,32
     33,DEERLING,30,32
     33,MSEVIPER,30,32
-    34,MZANGOOSE,30,32
 LandTall,21
     25,EMOLGA,30,32
     25,ESPURR,30,32
@@ -506,9 +506,9 @@ LandSparse,21
     33,CARNIVINE,30,32
     33,DEWPIDER,30,32
 Puddle,21
+    34,VOLBEAT,30,32
     33,CORPHISH,30,32
     33,ILLUMISE,30,32
-    34,VOLBEAT,30,32
 #-------------------------------
 [186] # Frostflow Farms
 LandTall,20
@@ -534,12 +534,12 @@ FloweryGrass2,20
 Special,1
     1,SEVIPER,40
 #-------------------------------
-[193] # Lapras Shore
+[193] # Volcanic Shore
 Land,20
+    25,COMFEY,36,38
     25,CRABRAWLER,36,38
-	25,PINCURCHIN,36,38
-	25,LAPRAS,36,38
-	25,COMFEY,36,38
+    25,LAPRAS,36,38
+    25,PINCURCHIN,36,38
 LandSparse,20
     34,DARUMAKA,36,38
     33,KECLEON,36,38
@@ -668,6 +668,17 @@ Land,20
     25,FALINKS,44,46
     25,MILCERY,44,46
 #-------------------------------
+[218] # Abyssal Cavern Placeholder
+Puddle,20
+    25,CHINCHOU,37,39
+    25,FRILLISH,37,39
+    25,RELICANTH,37,39
+    25,WIMPOD,37,39
+DarkCave,20
+    25,MAREANIE,37,39
+    25,UNOWN,37,39
+    25,WYNAUT,37,39
+#-------------------------------
 [219] # Regirock Cave
 DarkCave,21
     33,LUNATONE,38
@@ -764,24 +775,13 @@ Special
     1,GOOMY,5
     1,JANGMOO,5
 #-------------------------------
-[288] # Underground River
+[288] # Underwater River Sketch
 Puddle,20
+    25,MANTYKE,36,38
     25,PYUKUMUKU,36,38
     25,STARYU,36,38
-	25,MANTYKE,36,38
     25,TENTACOOL,36,38
 LandSparse,20
-	33,DURANT,36,38
+    33,CLAUNCHER,36,38
+    33,DURANT,36,38
     33,HEATMOR,36,38
-	33,CLAUNCHER,36,38
-#-------------------------------
-[218] # Abyssal Cavern Placeholder
-Puddle,20
-    25,CHINCHOU,37,39
-    25,FRILLISH,37,39
-    25,RELICANTH,37,39
-    25,WIMPOD,37,39
-DarkCave,20
-	25,MAREANIE,37,39
-	25,UNOWN,37,39
-	25,WYNAUT,37,39

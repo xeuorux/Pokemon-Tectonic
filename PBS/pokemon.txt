@@ -12420,8 +12420,8 @@ InternalName = METAGROSS
 Type1 = STEEL
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,135,130,70,95,90
-# Total = 600
+BaseStats = 80,135,130,70,80,90
+# Total = 585
 GenderRate = Genderless
 GrowthRate = Slow
 BaseEXP = 270
