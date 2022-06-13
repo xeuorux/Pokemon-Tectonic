@@ -55,7 +55,6 @@ Puddle,21
     25,BIDOOF,17,20
     25,BUIZEL,17,20
     25,POLIWAG,17,20
-    25,SKRELP,17,20
 #-------------------------------
 [012] # Gigalith's Guts
 DarkCave,20
@@ -494,10 +493,9 @@ DarkCave,21
 #-------------------------------
 [185] # Eleig Stretch
 Land,21
-    25,COMFEY,30,32
-    25,DEERLING,30,32
-    25,MSEVIPER,30,32
-    25,MZANGOOSE,30,32
+    33,DEERLING,30,32
+    33,MSEVIPER,30,32
+    34,MZANGOOSE,30,32
 LandTall,21
     25,EMOLGA,30,32
     25,ESPURR,30,32
@@ -508,10 +506,9 @@ LandSparse,21
     33,CARNIVINE,30,32
     33,DEWPIDER,30,32
 Puddle,21
-    25,CLAUNCHER,30,32
-    25,CORPHISH,30,32
-    25,ILLUMISE,30,32
-    25,VOLBEAT,30,32
+    33,CORPHISH,30,32
+    33,ILLUMISE,30,32
+    34,VOLBEAT,30,32
 #-------------------------------
 [186] # Frostflow Farms
 LandTall,20
@@ -539,18 +536,14 @@ Special,1
 #-------------------------------
 [193] # Lapras Shore
 Land,20
-    33,CRABRAWLER,36,38
-    33,DURANT,36,38
-    33,HEATMOR,36,38
+    25,CRABRAWLER,36,38
+	25,PINCURCHIN,36,38
+	25,LAPRAS,36,38
+	25,COMFEY,36,38
 LandSparse,20
     34,DARUMAKA,36,38
     33,KECLEON,36,38
     33,SLUGMA,36,38
-Puddle,20
-    25,LAPRAS,36,38
-    25,MANTYKE,36,38
-    25,PINCURCHIN,36,38
-    25,TENTACOOL,36,38
 #-------------------------------
 [196] # Boiling Cave
 DarkCave,20
@@ -562,10 +555,6 @@ Mud,20
     25,STUNFISK,37,39
     13,SHELLOS_1,37,39
     12,SHELLOS,37,39
-Puddle,20
-    33,MAREANIE,37,39
-    33,PYUKUMUKU,37,39
-    33,STARYU,36,38
 #-------------------------------
 [197] # Noel's House
 DarkCave,21
@@ -679,14 +668,6 @@ Land,20
     25,FALINKS,44,46
     25,MILCERY,44,46
 #-------------------------------
-[218] # Abyssal Cavern Placeholder
-Puddle,21
-    20,CHINCHOU,35,37
-    20,FRILLISH,35,37
-    20,RELICANTH,35,37
-    20,WAILMER,35,37
-    20,WIMPOD,35,37
-#-------------------------------
 [219] # Regirock Cave
 DarkCave,21
     33,LUNATONE,38
@@ -782,3 +763,25 @@ Special
     1,GIBLE,5
     1,GOOMY,5
     1,JANGMOO,5
+#-------------------------------
+[288] # Underground River
+Puddle,20
+    25,PYUKUMUKU,36,38
+    25,STARYU,36,38
+	25,MANTYKE,36,38
+    25,TENTACOOL,36,38
+LandSparse,20
+	33,DURANT,36,38
+    33,HEATMOR,36,38
+	33,CLAUNCHER,36,38
+#-------------------------------
+[218] # Abyssal Cavern Placeholder
+Puddle,20
+    25,CHINCHOU,37,39
+    25,FRILLISH,37,39
+    25,RELICANTH,37,39
+    25,WIMPOD,37,39
+DarkCave,20
+	25,MAREANIE,37,39
+	25,UNOWN,37,39
+	25,WYNAUT,37,39
