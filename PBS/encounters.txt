@@ -537,7 +537,7 @@ FloweryGrass2,20
 Special,1
     1,SEVIPER,40
 #-------------------------------
-[193] # Lapras Shore
+[193] # Volcanic Shore
 Land,20
     33,CRABRAWLER,36,38
     33,DURANT,36,38

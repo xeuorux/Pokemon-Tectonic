@@ -1085,7 +1085,7 @@ Bicycle = false
 HealingSpot = 187,67,30
 #-------------------------------
 [193]
-# Lapras Shore
+# Volcanic Shore
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -1251,7 +1251,7 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [256]
-# Underwater River Placeholder
+# Underwater River Entrance
 Outdoor = false
 ShowArea = true
 Bicycle = true

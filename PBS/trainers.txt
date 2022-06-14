@@ -3181,7 +3181,7 @@ Pokemon = MSEVIPER,50
     AbilityIndex = 0
     Item = ELECTRICGEM
 Pokemon = TOGEKISS,50
-	AbilityIndex = 0
+    AbilityIndex = 0
 #-------------------------------
 [SCIENTIST_M5,Sonatane]
 Pokemon = AROMATISSE,50
