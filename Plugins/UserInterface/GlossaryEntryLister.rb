@@ -27,19 +27,41 @@ MOVE_GLOSSARY_HASH = {
     "Physical Moves" => "Physical moves are notated by the symbol of a smashing fist. Their damage is based on the Attack (Atk) stat of the attacker and the Defense (Def) stat of the target.",
     "Special Moves" => "Special moves are notated by the symbol of a splash in water. Their is based on the Special Attack (Sp. Atk) of the attacker and the Special Defense (Sp. Def) of the target.",
     "Targeting" => "Most moves target only a single Pokemon, but many can target multiple Pokemon at once. Some moves differ in how far they can target in the bigger battle styles (doubles, triples).",
-    "Move Types" => "Just like Pokemon do, each move has a type. Attacking moves deal different amounts of damage to different Pokemon based on those Pokemon's types. This is called \"type effectiveness\".",
-    "Learning Moves" => "Pokemon learn new moves every few levels. They can also learn moves from the Move Tutors who sit in the left side of every PokeCenter.",
+    "Move Types" => "Every move has a type. Attacking moves deal different amounts of damage to different Pokemon based on those Pokemon's types. This is called \"type effectiveness\".",
+    "Learning Moves" => "Pokemon learn new moves as they level up. They can also learn moves from the \"Move Tutors\" who sit in the left side of every PokeCenter.",
 }
 
 TYPE_MATCHUPS_GLOSSARY_HASH = {
-    "Type Matchups" => "Each Pokemon has type weakness and type resiliancies based on its own type. Fpr example, Water deals double damage to Fire Types, and Fire deals half damage to Water Types.",
+    "Type Matchups" => "Each Pokemon has type weakness and type resiliancies based on its own type. eg. Water deals double damage to Fire, and Fire deals half damage to Water.",
     "Type Combinations" => "When a Pokemon has two types, its type weaknesses and resiliances multiply. A Pokemon can be weak from both of its types (double weak!), or resistant from both of its types (double resistant), or even weak with one type but immune with the other (immune!).",
     "Normal Effective" => "Normal Effective is the default effectiveness of all moves against a Pokemon.",
     "Super Effective" => "Super Effective moves deal double the damage compared to normal effective moves.",
     "Hyper Effective" => "Hyper Effective moves deal quadruple the damage compared to normal effective moves. This happens when a Pokemon is double weak to a type.",
     "Not Very Effective" => "Not Very Effective moves deal half the damage compared to normal effective moves.",
     "Barely Effective" => "Barely Effective moves deal one quarter the damage compared to normal effective moves. This happens when a Pokemon is double resistant to a type.",
-    "Ineffective" => "Ineffective moves deal no damage at all. This is also known as \"immune\". This happens when a Pokemon has an immunity from one or both of its types.",
+    "Ineffective" => "Ineffective moves deal no damage at all. This can happen if one of a Pokemon's types has an immunity to the attacking move type, even if the other is neutral (or even weak!).",
+}
+
+AQUIRING_POKEMON_HASH = {
+    "Why Get More?" => "Having choices of Pokemon is important when facing challenges. A team of six is a bare minimum--it's best to catch more and pull them from the PC as needed.",
+    "Methods of Aquiring" => "The two main methods of aquiring Pokemon are catching them from the wild, and receiving them from other trainers through gifts or trades.",
+    "Catching Basics" => "Wild Pokemon will attack you if you walk through patches of grass, dark ground in caves, or other wild terrain. You can catch these Pokemon by throwing PokeBalls at them.",
+    "Increase Catch Chance pt. 1" => "Catching a Pokemon isn't guarenteed. It's easier to catch Pokemon when their health has been lowered by your attacks, or when they have a status ailment.",
+    "Increase Catch Chance pt. 2" => "Every time a Pokemon breaks out of a ball, it'll be slightly easier to catch for the rest of the battle. You can check what your current catch chance is in the PokeBall menu.",
+    "Finding Wild Pokemon" => "Use the DexNav to get information on which Pokemon are available where you are. You can also use it to find more Pokemon of a species that you've already caught one of.",
+    "Trades" => "Throughout the world there will be people offering trades for Pokemon. Usually they want a different Pokemon, but sometimes they want money.",
+}
+
+STATS_HASH = {
+    "What are Stats?" => "Stats, short for Statistics, are the numbers which determine much of how your Pokemon performs in battle.",
+    "Checking Stats" => "Check your Pokemon's stats by looking at the second page of their summary screen, accessible through the Pokemon menu in the pause menu.",
+    "Stat Factors" => "Your Pokemon's stats are calculated from a combination of their species' \"Base Stats\", their own \"Style Values\", and extra modifications during battle.",
+    "Base Stats" => "Every species of Pokemon have base stats, which affect every Pokemon of that species. e.g. Every Raichu will be fast because the Raichu species has a high Speed base stat.",
+    "Style Values" => "Style Values are numbers which you can customize to change your Pokemon's stats (except HP). Style Values show as blue numbers on the stat page of the Pokemon summary.",
+    "Leveling and Evolution" => "Your Pokemon's stats will go up every time they level up. When Pokemon evolve, their stats change, almost always going up.",
+    "Accuracy and Evasion" => "Accuracy and Evasion are two stats which are only active in battle, starting at 100% each. They are only modified by in-battle changing effects.",
+    "Stat Stages" => "Effects can modify a Pokemon's stats during battle. These are called \"stat stages\". Stat stages multiply or divide the Pokemon's listed stat value.",
+    "Bounds of Stat Stages" => "Stat stages start at 0, and can increase up to +6 (4x) and down to -6 (.25x). Stat stages are reset when a Pokemon faints or is swapped out.",
 }
 
 class GlossaryEntryList
