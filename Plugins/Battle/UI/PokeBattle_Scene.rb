@@ -226,7 +226,7 @@ class PokeBattle_Scene
     if battler.moves[@lastMove[idxBattler]] && battler.moves[@lastMove[idxBattler]].id
       moveIndex = @lastMove[idxBattler]
     end
-    cw.shiftMode = 0
+    cw.shiftMode = (@battle.pbCanShift?(idxBattler)) ? 1 : 0
     cw.setIndexAndMode(moveIndex,(megaEvoPossible) ? 1 : 0)
     needFullRefresh = true
     needRefresh = false
@@ -274,8 +274,14 @@ class PokeBattle_Scene
         needRefresh = true
       elsif Input.trigger?(Input::ACTION)   # Toggle Extra Move Info
         pbPlayDecisionSE
-		cw.toggleExtraInfo()
+		    cw.toggleExtraInfo()
         needRefresh = true
+      elsif Input.trigger?(Input::SPECIAL)   # Shift
+        if cw.shiftMode>0
+          pbPlayDecisionSE
+          break if yield -3
+          needRefresh = true
+        end
       end
     end
     @lastMove[idxBattler] = cw.index

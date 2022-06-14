@@ -7,17 +7,17 @@ class FightMenuDisplay < BattleMenuBase
     self.y = Graphics.height-96
     @battler   = nil
     @shiftMode = 0
-	@extraInfoToggled = false
+	  @extraInfoToggled = false
     # NOTE: @mode is for the display of the Mega Evolution button.
     #       0=don't show, 1=show unpressed, 2=show pressed
     if USE_GRAPHICS
       # Create bitmaps
-      @buttonBitmap  			= AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_fight"))
-      @typeBitmap    			= AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
-      @megaEvoBitmap 			= AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_mega"))
-      @shiftBitmap   			= AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_shift"))
-	  @extraReminderBitmap 		= AnimatedBitmap.new(_INTL("Graphics/Pictures/Rework/extra_info_reminder_bottomless"))
-	  @moveInfoDisplayBitmap   	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/move_info_display"))
+      @buttonBitmap  			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_fight"))
+      @typeBitmap    			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+      @megaEvoBitmap 			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_mega"))
+      @shiftBitmap   			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_shift"))
+	    #@extraReminderBitmap 		= AnimatedBitmap.new(_INTL("Graphics/Pictures/Rework/extra_info_reminder_bottomless"))
+      @moveInfoDisplayBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/move_info_display"))
       # Create background graphic
       background = IconSprite.new(0,Graphics.height-96,viewport)
       background.setBitmap("Graphics/Pictures/Battle/overlay_fight")
@@ -67,19 +67,19 @@ class FightMenuDisplay < BattleMenuBase
       @shiftButton.x      = self.x+4
       @shiftButton.y      = self.y-@shiftBitmap.height
       addSprite("shiftButton",@shiftButton)
-	  # Create extra info reminder button
-	  @extraReminder = SpriteWrapper.new(viewport)
-	  @extraReminder.bitmap = @extraReminderBitmap.bitmap
-	  @extraReminder.x = self.x+4
-	  @extraReminder.y = self.y + 6 - @extraReminderBitmap.height
-	  addSprite("extraReminder",@extraReminder)
-	  # Create the move extra info display
-	  @moveInfoDisplay = SpriteWrapper.new(viewport)
+      # Create extra info reminder button
+      # @extraReminder = SpriteWrapper.new(viewport)
+      # @extraReminder.bitmap = @extraReminderBitmap.bitmap
+      # @extraReminder.x = self.x+4
+      # @extraReminder.y = self.y + 6 - @extraReminderBitmap.height
+      # addSprite("extraReminder",@extraReminder)
+      # Create the move extra info display
+      @moveInfoDisplay = SpriteWrapper.new(viewport)
       @moveInfoDisplay.bitmap = @moveInfoDisplayBitmap.bitmap
       @moveInfoDisplay.x      = self.x
       @moveInfoDisplay.y      = self.y-@moveInfoDisplayBitmap.height
       addSprite("moveInfoDisplay",@moveInfoDisplay)
-	  # Create overlay for selected move's extra info (shows move's BP, description)
+	    # Create overlay for selected move's extra info (shows move's BP, description)
       @extraInfoOverlay = BitmapSprite.new(@moveInfoDisplayBitmap.bitmap.width,@moveInfoDisplayBitmap.height,viewport)
       @extraInfoOverlay.x = self.x
       @extraInfoOverlay.y = self.y-@moveInfoDisplayBitmap.height
@@ -111,23 +111,22 @@ class FightMenuDisplay < BattleMenuBase
     @typeBitmap.dispose if @typeBitmap
     @megaEvoBitmap.dispose if @megaEvoBitmap
     @shiftBitmap.dispose if @shiftBitmap
-	@extraReminderBitmap if @extraReminderBitmap
-	@moveInfoDisplayBitmap.dispose if @moveInfoDisplayBitmap
+	  #@extraReminderBitmap if @extraReminderBitmap
+	  @moveInfoDisplayBitmap.dispose if @moveInfoDisplayBitmap
   end
   
   def visible=(value)
     super(value)
-	@sprites["moveInfoDisplay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
-	@sprites["extraInfoOverlay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
-	@sprites["extraReminder"].visible = !@extraInfoToggled && @visible if @sprites["extraReminder"]
+	  @sprites["moveInfoDisplay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
+	  @sprites["extraInfoOverlay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
+	  #@sprites["extraReminder"].visible = !@extraInfoToggled && @visible if @sprites["extraReminder"]
   end
   
   def toggleExtraInfo
-	@extraInfoToggled = !@extraInfoToggled
-	
-	@sprites["moveInfoDisplay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
-	@sprites["extraInfoOverlay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
-	@sprites["extraReminder"].visible = !@extraInfoToggled && @visible if @sprites["extraReminder"]
+    @extraInfoToggled = !@extraInfoToggled
+    @sprites["moveInfoDisplay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
+    @sprites["extraInfoOverlay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
+    #@sprites["extraReminder"].visible = !@extraInfoToggled && @visible if @sprites["extraReminder"]
   end
 
   def refreshMoveData(move)
@@ -160,14 +159,14 @@ class FightMenuDisplay < BattleMenuBase
       pbDrawTextPositions(@infoOverlay.bitmap,textPosPP)
     end
 	
-	# Extra move info display
-	@extraInfoOverlay.bitmap.clear
-	overlay = @extraInfoOverlay.bitmap
-	selected_move = GameData::Move.get(move.id)
-	
-	# Write power and accuracy values for selected move
-	# Write various bits of text
-	base   = Color.new(248,248,248)
+    # Extra move info display
+    @extraInfoOverlay.bitmap.clear
+    overlay = @extraInfoOverlay.bitmap
+    selected_move = GameData::Move.get(move.id)
+    
+    # Write power and accuracy values for selected move
+    # Write various bits of text
+    base   = Color.new(248,248,248)
     shadow = Color.new(104,104,104)
     textpos = [
        [_INTL("CATEGORY"),20,0,0,base,shadow],
@@ -175,8 +174,8 @@ class FightMenuDisplay < BattleMenuBase
        [_INTL("ACCURACY"),20,64,0,base,shadow]
     ]
 	
-	base = Color.new(64,64,64)
-	shadow = Color.new(176,176,176)
+    base = Color.new(64,64,64)
+    shadow = Color.new(176,176,176)
     case selected_move.base_damage
     when 0 then textpos.push(["---", 220, 32, 1, base, shadow])   # Status move
     when 1 then textpos.push(["???", 220, 32, 1, base, shadow])   # Variable power move
@@ -192,7 +191,7 @@ class FightMenuDisplay < BattleMenuBase
     # Draw selected move's damage category icon
     imagepos = [["Graphics/Pictures/category", 170, 8, 0, selected_move.category * 28, 64, 28]]
     pbDrawImagePositions(overlay, imagepos)
-	# Draw selected move's description
-	drawTextEx(overlay,8,108,210,5,selected_move.description,base,shadow)
+	  # Draw selected move's description
+	  drawTextEx(overlay,8,108,210,5,selected_move.description,base,shadow)
   end
 end
