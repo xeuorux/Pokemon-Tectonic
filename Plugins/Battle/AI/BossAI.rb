@@ -5,22 +5,42 @@ class BossBehaviourHash < HandlerHash2
 end
 
 class PokeBattle_AI
+	def self.AIErrorRecovered(error)
+		pbMessage(_INTL("A recoverable AI error has occured. Please report the following to a programmer."))
+		pbPrintException(error)
+	end
+
 	BossGetMoveIDScore					= MoveScoringHandlerHash.new
 	BossGetMoveCodeScore				= MoveScoringHandlerHash.new
 	BossSpeciesGetMoveScore				= MoveScoringHandlerHash.new
 
 	def self.triggerBossGetMoveIDScore(moveId,move,user,target,score)
-		ret = BossGetMoveIDScore.trigger(moveId,move,user,target,score)
+		ret = nil
+		begin
+			ret = BossGetMoveIDScore.trigger(moveId,move,user,target,score)
+		rescue
+			AIErrorRecovered($!)
+		end
 		return (ret!=nil) ? ret : score
 	end
 	
 	def self.triggerBossGetMoveCodeScore(moveCode,move,user,target,score)
-		ret = BossGetMoveCodeScore.trigger(moveCode,move,user,target,score)
+		ret = nil
+		begin
+			ret = BossGetMoveCodeScore.trigger(moveCode,move,user,target,score)
+		rescue
+			AIErrorRecovered($!)
+		end
 		return (ret!=nil) ? ret : score
 	end
 	
 	def self.triggerBossSpeciesGetMoveScore(bossSpecies,move,user,target,score)
-		ret = BossSpeciesGetMoveScore.trigger(bossSpecies,move,user,target,score)
+		ret = nil
+		begin
+			ret = BossSpeciesGetMoveScore.trigger(bossSpecies,move,user,target,score)
+		rescue
+			AIErrorRecovered($!)
+		end
 		return (ret!=nil) ? ret : score
 	end
 	
@@ -29,17 +49,32 @@ class PokeBattle_AI
 	BossSpeciesRejectMove				= MoveScoringHandlerHash.new
 	
 	def self.triggerBossRejectMoveID(moveId,move,user,target)
-		ret = BossRejectMoveID.trigger(moveId,move,user,target)
+		ret = nil
+		begin
+			ret = BossRejectMoveID.trigger(moveId,move,user,target)
+		rescue
+			AIErrorRecovered($!)
+		end
 		return (ret!=nil) ? ret : false
 	end
 	
 	def self.triggerBossRejectMoveCode(moveCode,move,user,target)
-		ret = BossRejectMoveCode.trigger(moveCode,move,user,target)
+		ret = nil
+		begin
+			ret = BossRejectMoveCode.trigger(moveCode,move,user,target)
+		rescue
+			AIErrorRecovered($!)
+		end
 		return (ret!=nil) ? ret : false
 	end
 	
 	def self.triggerBossSpeciesRejectMove(species,move,user,target)
-		ret = BossSpeciesRejectMove.trigger(species,move,user,target)
+		ret = nil
+		begin
+			ret = BossSpeciesRejectMove.trigger(species,move,user,target)
+		rescue
+			AIErrorRecovered($!)
+		end
 		return (ret!=nil) ? ret : false
 	end
 	
@@ -48,17 +83,32 @@ class PokeBattle_AI
 	BossSpeciesRequireMove				= MoveScoringHandlerHash.new
 	
 	def self.triggerBossRequireMoveID(moveId,move,user,target)
-		ret = BossRequireMoveID.trigger(moveId,move,user,target)
+		ret = nil
+		begin
+			ret = BossRequireMoveID.trigger(moveId,move,user,target)
+		rescue
+			AIErrorRecovered($!)
+		end
 		return (ret!=nil) ? ret : false
 	end
 	
 	def self.triggerBossRequireMoveCode(moveCode,move,user,target)
-		ret = BossRequireMoveCode.trigger(moveCode,move,user,target)
+		ret = nil
+		begin
+			ret = BossRequireMoveCode.trigger(moveCode,move,user,target)
+		rescue
+			AIErrorRecovered($!)
+		end
 		return (ret!=nil) ? ret : false
 	end
 	
 	def self.triggerBossSpeciesRequireMove(species,move,user,target)
-		ret = BossSpeciesRequireMove.trigger(species,move,user,target)
+		ret = nil
+		begin
+			ret = BossSpeciesRequireMove.trigger(species,move,user,target)
+		rescue
+			AIErrorRecovered($!)
+		end
 		return (ret!=nil) ? ret : false
 	end
 	
@@ -66,12 +116,22 @@ class PokeBattle_AI
 	BossSpeciesUseMoveIDIfAndOnlyIf				= MoveScoringHandlerHash.new
 	
 	def self.triggerBossSpeciesUseMoveCodeIfAndOnlyIf(speciesAndMoveCode,user,target,move)
-		ret = BossSpeciesUseMoveCodeIfAndOnlyIf.trigger(speciesAndMoveCode,user,target,move)
+		ret = nil
+		begin
+			ret = BossSpeciesUseMoveCodeIfAndOnlyIf.trigger(speciesAndMoveCode,user,target,move)
+		rescue
+			AIErrorRecovered($!)
+		end
 		return ret
 	end
 	
 	def self.triggerBossSpeciesUseMoveIDIfAndOnlyIf(speciesAndMoveID,user,target,move)
-		ret = BossSpeciesUseMoveIDIfAndOnlyIf.trigger(speciesAndMoveID,user,target,move)
+		ret = nil
+		begin
+			ret = BossSpeciesUseMoveIDIfAndOnlyIf.trigger(speciesAndMoveID,user,target,move)
+		rescue
+			AIErrorRecovered($!)
+		end
 		return ret
 	end
 	
@@ -79,11 +139,21 @@ class PokeBattle_AI
 	BossBeginTurn						= BossBehaviourHash.new
 	
 	def self.triggerBossDecidedOnMove(species,move,user,target)
-		return BossDecidedOnMove.trigger(species,move,user,target)
+		ret = nil
+		begin
+			return BossDecidedOnMove.trigger(species,move,user,target)
+		rescue
+			AIErrorRecovered($!)
+		end
 	end
 	
 	def self.triggerBossBeginTurn(species,battler)
-		return BossBeginTurn.trigger(species,battler)
+		ret = nil
+		begin
+			return BossBeginTurn.trigger(species,battler)
+		rescue
+			AIErrorRecovered($!)
+		end
 	end
 
 	def pbGetRealDamageBoss(move,user,target)
