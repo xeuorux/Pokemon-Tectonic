@@ -1,23 +1,45 @@
 MAIN_GLOSSARY_HASH = {
-    "Basic Battle Mechanics" => "How do battles work?",
+    "Basic Strategy" => "How do I win battles?",
     "Moves" => "What are moves and what are the differences between them?",
+    "Type Matchups" => "When and how are types better or worse against one another?",
+    "Aquiring Pokemon" => "How do I get more Pokemon?",
     "Stats" => "What are stats, and how do they effect battles?",
     "Abilities" => "How do abilities work?",
     "Held Items" => "What are held items and how to use them?",
     "Trainers" => "How do enemy trainers work?",
     "Avatars" => "What are avatars and what do they do?",
+    "Pokedex" => "How does the PokeDex work and how should I use it?",
+    "Advanced Team Building" => "How do I build extremely efficient teams?",
 }
 
 BASICS_GLOSSARY_HASH = {
-    "Taking Turns" => "",
+    "Winning Battles" => "You win a battle when all enemy Pokemon faint: reach 0 health points. You lose a battle if that happens to your Pokemon.",
+    "Basic Strategy" => "1. Have as many Pokemon as you can. 2. Level up your Pokemon as much as you can. 3. Abuse type matchups. 4. Start battles with healthy Pokemon.",
+    "Team Size" => "You can have a maximum of 6 Pokemon with you at any time. This is known as your \"team\". You can store extra Pokemon using the PC in any PokeCenter.",
+    "Levels" => "Each Pokemon has a level from 1 to 100. A Pokemon's level determines its stats as well as what moves it could learn. Reaching high enough levels also unlocks Evolution.",
+    "Type Matchups" => "Types are strong or weak vs other types. Having a variety of different types on your team helps you make sure you can take advantage of this.",
+    "Healing your Pokemon" => "Heal your Pokemon at PokeCenters between battles. You can often use the Aid Kit instead to save on traveling time.",
 }
 
 MOVE_GLOSSARY_HASH = {
-    "Attacking vs Status" => "Attacking moves deal damage. Status moves do not. Status moves are notated by a Yin/Yang symbol.",
+    "Attacking vs Status" => "Attacking moves deal damage. Status moves do not. Status moves are notated by a Yin/Yang symbol (White and Black intermixing).",
     "Physical vs Special" => "Attacking moves are split into Physical moves, and Special moves. Each of these categories uses different stats to determine how much damage is dealt to the target.",
-    "Physical Moves" => "Physical moves are notated by the symbol of a smashing fist. Theyir damage is based on the Attack (Atk) stat of the attacker and the Defense (Def) stat of the target.",
+    "Physical Moves" => "Physical moves are notated by the symbol of a smashing fist. Their damage is based on the Attack (Atk) stat of the attacker and the Defense (Def) stat of the target.",
     "Special Moves" => "Special moves are notated by the symbol of a splash in water. Their is based on the Special Attack (Sp. Atk) of the attacker and the Special Defense (Sp. Def) of the target.",
     "Targeting" => "Most moves target only a single Pokemon, but many can target multiple Pokemon at once. Some moves differ in how far they can target in the bigger battle styles (doubles, triples).",
+    "Move Types" => "Just like Pokemon do, each move has a type. Attacking moves deal different amounts of damage to different Pokemon based on those Pokemon's types. This is called \"type effectiveness\".",
+    "Learning Moves" => "Pokemon learn new moves every few levels. They can also learn moves from the Move Tutors who sit in the left side of every PokeCenter.",
+}
+
+TYPE_MATCHUPS_GLOSSARY_HASH = {
+    "Type Matchups" => "Each Pokemon has type weakness and type resiliancies based on its own type. Fpr example, Water deals double damage to Fire Types, and Fire deals half damage to Water Types.",
+    "Type Combinations" => "When a Pokemon has two types, its type weaknesses and resiliances multiply. A Pokemon can be weak from both of its types (double weak!), or resistant from both of its types (double resistant), or even weak with one type but immune with the other (immune!).",
+    "Normal Effective" => "Normal Effective is the default effectiveness of all moves against a Pokemon.",
+    "Super Effective" => "Super Effective moves deal double the damage compared to normal effective moves.",
+    "Hyper Effective" => "Hyper Effective moves deal quadruple the damage compared to normal effective moves. This happens when a Pokemon is double weak to a type.",
+    "Not Very Effective" => "Not Very Effective moves deal half the damage compared to normal effective moves.",
+    "Barely Effective" => "Barely Effective moves deal one quarter the damage compared to normal effective moves. This happens when a Pokemon is double resistant to a type.",
+    "Ineffective" => "Ineffective moves deal no damage at all. This is also known as \"immune\". This happens when a Pokemon has an immunity from one or both of its types.",
 }
 
 class GlossaryEntryList

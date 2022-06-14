@@ -36,10 +36,10 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 		cmdMainQuestHelp = -1
 		cmdBattleGlossary = -1
 		infoCommands = []
-		infoCommands[cmdTrainer = infoCommands.length] = _INTL("#{$Trainer.name}'s Card")
-		infoCommands[cmdLevelCap = infoCommands.length] = _INTL("Level Cap") if LEVEL_CAPS_USED && $game_variables[26] > 0 && $Trainer.party_count > 0
 		infoCommands[cmdMainQuestHelp = infoCommands.length] = _INTL("What Next?") if defined?($main_quest_tracker)
 		infoCommands[cmdBattleGlossary = infoCommands.length] = _INTL("Battle Glossary") if false
+		infoCommands[cmdTrainer = infoCommands.length] = _INTL("#{$Trainer.name}'s Card")
+		infoCommands[cmdLevelCap = infoCommands.length] = _INTL("Level Cap") if LEVEL_CAPS_USED && $game_variables[26] > 0 && $Trainer.party_count > 0
 		loop do
 			infoCommand = @scene.pbShowCommands(infoCommands)
 			if cmdTrainer >= 0 && infoCommand == cmdTrainer
@@ -71,8 +71,12 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 				loop do
 					id = pbListScreen(_INTL("Battle Glossary"), GlossaryEntryList.new(MAIN_GLOSSARY_HASH))
 					case id
+					when "Basic Strategy"
+						pbListScreen(_INTL("Basic Strategy"), GlossaryEntryList.new(BASICS_GLOSSARY_HASH))
 					when "Moves"
 						pbListScreen(_INTL("Move Glossary"), GlossaryEntryList.new(MOVE_GLOSSARY_HASH))
+					when "Type Matchups"
+						pbListScreen(_INTL("Type Matchups"), GlossaryEntryList.new(TYPE_MATCHUPS_GLOSSARY_HASH))
 					else
 						break
 					end
