@@ -2529,7 +2529,8 @@ Pokemon = FLOATZEL,70
     EV = 10,20,0,20,0,0
 Pokemon = URSHIFU,70
     Form = 1
-    AbilityIndex = 1
+	Moves = WICKEDBLOW,BULKUP,CLOSECOMBAT,FIREPUNCH
+    AbilityIndex = 0
     Item = WHITEHERB
     EV = 10,20,0,0,0,20
 #-------------------------------
@@ -3237,3 +3238,40 @@ Pokemon = WEAVILE,50
 Pokemon = LYCANROC,50
     Form = 2
     AbilityIndex = 1
+#-------------------------------
+[SCHOOLKID_M3,Jeremy]
+Pokemon = METAPOD,9
+#-------------------------------
+[FORMERCHAMP_Chara,Chara]
+Pokemon = BISHARP,70
+	Item = WEAKNESSPOLICY
+	AbilityIndex = 1
+	Moves = SLAY,AMBUSH,METALBURST,SEVER
+	EV = 0,20,0,20,0,10
+Pokemon = RIOJIN,70
+	Moves = FOCUSBLAST,STEELBEAM,VANGUARD,SHADOWBALL
+	Item = WIDELENS
+	AbilityIndex = 1
+	EV = 10,0,0,20,20,0
+Pokemon = MANDIBUZZ,70
+	Moves = KNOCKOFF,FOULPLAY,DEFOG,ROOST
+	AbilityIndex = 0
+	Item = LEFTOVERS
+	EV = 20,0,10,0,0,20
+Pokemon = ATLACROSS,70
+	AbilityIndex = 0
+	Moves = PINMISSILE,ROCKBLAST,FURYPECKS,BULKUP
+	Item = RAZORCLAW
+	EV = 10,20,0,20,0,0
+Pokemon = URSHIFU,70
+	Moves = WICKEDBLOW,ICEPUNCH,DRAINPUNCH,THUNDERPUNCH
+	Item = STRIKEVEST
+    EV = 10,20,0,0,0,20
+	AbilityIndex = 0
+Pokemon = SPIRITOMB,70
+	Moves = NASTYPLOT,WILLOWISP,HEX,DARKPULSE
+	Item = ORANBERRY
+	AbilityIndex = 1
+	EV = 20,0,0,0,10,20
+	
+	
