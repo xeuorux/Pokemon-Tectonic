@@ -1405,7 +1405,7 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [284]
-# Red Building One
+# Gamer's House
 Outdoor = false
 ShowArea = false
 Bicycle = false
