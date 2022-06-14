@@ -394,6 +394,12 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
   }
 )
 
+BattleHandlers::AccuracyCalcUserItem.add(:WIDELENS,
+  proc { |item,mods,user,target,move,type|
+    mods[:accuracy_multiplier] *= 1.35
+  }
+)
+
 BallHandlers::ModifyCatchRate.add(:NESTBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
   if LEVEL_CAPS_USED
     baseLevel = $game_variables[26] - 5

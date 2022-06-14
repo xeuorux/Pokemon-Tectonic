@@ -106,7 +106,7 @@
 104,WISEGLASSES,Wise Glasses,Wise Glasses,1,4000,"An item to be held by a Pokémon. It is a thick pair of glasses that boosts the power of special moves by 10%.",0,0,0
 105,RAZORCLAW,Razor Claw,Razor Claws,1,5000,"An item to be held by a Pokémon. It is a sharply hooked claw that ups the holder's critical-hit ratio.",0,0,0
 106,SCOPELENS,Scope Lens,Scope Lenses,1,4000,"An item to be held by a Pokémon. It is a lens that boosts the holder's critical-hit ratio.",0,0,0
-107,WIDELENS,Wide Lens,Wide Lenses,1,4000,"An item to be held by a Pokémon. It is a magnifying lens that slightly boosts the accuracy of moves.",0,0,0
+107,WIDELENS,Wide Lens,Wide Lenses,1,4000,"An item to be held by a Pokémon. It is a magnifying lens that boosts the accuracy of moves by 35%.",0,0,0
 108,ZOOMLENS,Zoom Lens,Zoom Lenses,1,4000,"An item to be held by a Pokémon. If the holder moves after its target, its accuracy will be boosted.",0,0,0
 109,KINGSROCK,King's Rock,King's Rocks,1,5000,"An item to be held by a Pokémon. When the holder inflicts damage, the target may flinch.",0,0,0
 110,RAZORFANG,Razor Fang,Razor Fangs,1,5000,"An item to be held by a Pokémon. It may make foes and allies flinch when the holder inflicts damage.",0,0,0
