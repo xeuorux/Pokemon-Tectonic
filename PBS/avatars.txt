@@ -1133,3 +1133,17 @@ Ability = PRESSURE
 Moves = PSYCHIC,SPIKES
 Turns = 2
 HPMult = 12
+#------------------------------
+[LANTURN]
+Ability = SHEERFORCE
+Moves = BUBBLEBLAST,THUNDERBOLT,PRIMEVALTAILWIND
+PostPrimeMoves = COLDFRONT
+Turns = 1
+HPMult = 6
+#------------------------------
+[SLOWKING]
+Ability = REALIST
+Moves = COSMICPOWER,EXTRASENSORY,PRIMEVALBULKUP
+PostPrimeMoves = TRAINEDOUTBURST
+Turns = 2
+HPMult = 5
