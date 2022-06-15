@@ -40,7 +40,7 @@ class PokeBattle_Battler
 		end
     return if @fainted   # Has already fainted properly
     if showMessage
-      if boss?
+      if !boss?
         @battle.pbDisplayBrief(_INTL("{1} fainted!",pbThis))
       else
         @battle.pbDisplayBrief(_INTL("{1} was destroyed!",pbThis))
