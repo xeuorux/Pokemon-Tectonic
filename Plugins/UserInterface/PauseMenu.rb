@@ -62,7 +62,7 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 			elsif cmdBattleGlossary >- 1 && infoCommand == cmdBattleGlossary
 				listIndex = 0
 				loop do
-					id, listIndex = pbListScreen(_INTL("Battle Glossary"), GlossaryEntryList.new(MAIN_GLOSSARY_HASH, listIndex))
+					id, listIndex = pbListScreen(_INTL("Battle Guide"), GlossaryEntryList.new(MAIN_GLOSSARY_HASH, listIndex))
 					case id
 					when "Basic Strategy"
 						pbListScreen(_INTL("Battle Strategy"), GlossaryEntryList.new(BASICS_GLOSSARY_HASH), false)
