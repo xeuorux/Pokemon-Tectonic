@@ -40,6 +40,7 @@ TYPE_MATCHUPS_GLOSSARY_HASH = {
     "Not Very Effective" => "Not Very Effective moves deal half the damage compared to normal effective moves.",
     "Barely Effective" => "Barely Effective moves deal one quarter the damage compared to normal effective moves. This happens when a Pokemon is double resistant to a type.",
     "Ineffective" => "Ineffective moves deal no damage at all. This can happen if one of a Pokemon's types has an immunity to the attacking move type, even if the other is neutral (or even weak!).",
+    "Looking Up Matchups" => "The 5th and 6th pages of a PokeDex entry show that Pokemon's type matchups. Open the PokeDex in battle to check matchups if you're not sure.",
 }
 
 AQUIRING_POKEMON_HASH = {
@@ -87,7 +88,8 @@ HELD_ITEMS_HASH = {
 
 TRAINERS_HASH = {
     "What are Enemy Trainers?" => "Enemy trainers are the Pokemon trainers you will battle throughout the game. Some block your path forwards (like Gym Leaders), others are optional.",
-    "Detecting Trainers" => "Trainers are people who have the first Pokemon of their team out with them. If a person doesn't have that, they either aren't a trainer, or are an inactive one.",
+    "Detecting Trainers" => "Trainers are people who have a companion Pokemon next to them. If a person doesn't have that, they either aren't a trainer, or are an inactive one.",
+    "Avoiding Trainers" => "Trainers will challenge you if they see you within 4 tiles of them. Avoid them by going out of that distance, sneaking around them, or waiting until they move.",
     "Trainer Inactivity" => "When you defeat a Trainer, they will become inactive until the next time you heal at a PokeCenter. This is indicated by them pulling their companion Pokemon back into its ball.",
     "Perfecting Fights" => "If you defeat a Trainer without any of your Pokemon fainting, you've \"perfected\" the fight. They will leave forever and drop experience candy as a reward.",
     "Enemy Teams" => "Enemy Trainers have their own teams of Pokemon with their own moves and held items. Its important to pay attention to these possibilities to win battles.",

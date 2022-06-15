@@ -84,6 +84,8 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 						pbListScreen(_INTL("Avatars"), GlossaryEntryList.new(AVATARS_HASH), false)
 					when "PokeDex"
 						pbListScreen(_INTL("PokeDex"), GlossaryEntryList.new(POKEDEX_HASH), false)
+					else
+						break
 					end
 				end
 			else
