@@ -38,8 +38,14 @@ class PokeBattle_Battler
 		  PBDebug.log("!!!***Can't faint with HP greater than 0")
 		  return
 		end
-		return if @fainted   # Has already fainted properly
-		@battle.pbDisplayBrief(_INTL("{1} fainted!",pbThis)) if showMessage
+    return if @fainted   # Has already fainted properly
+    if showMessage
+      if boss?
+        @battle.pbDisplayBrief(_INTL("{1} fainted!",pbThis))
+      else
+        @battle.pbDisplayBrief(_INTL("{1} was destroyed!",pbThis))
+      end
+    end
 		PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") if !showMessage
 		@battle.scene.pbFaintBattler(self)
 		
