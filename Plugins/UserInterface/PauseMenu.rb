@@ -58,31 +58,28 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 				pbMessageDisplay(msgwindow,"The level can be raised by defeating gym leaders.")
 				pbDisposeMessageWindow(msgwindow)
 			elsif cmdMainQuestHelp > - 1 && infoCommand == cmdMainQuestHelp
-				#msgwindow = pbCreateMessageWindow
-				# pbMessageDisplay(msgwindow,$main_quest_tracker.getCurrentStageName())
-				# stageHelp = $main_quest_tracker.getCurrentStageHelp()
-				# stageHelpLines = stageHelp.split(". ")
-				# stageHelpLines.each do |line|
-				# 	pbMessageDisplay(msgwindow,line + ".")
-				# end
-				#pbDisposeMessageWindow(msgwindow)
 				pbMessage("\\l[7]<b>" + $main_quest_tracker.getCurrentStageName() + "</b>\n" + $main_quest_tracker.getCurrentStageHelp())
 			elsif cmdBattleGlossary >- 1 && infoCommand == cmdBattleGlossary
+				listIndex = 0
 				loop do
-					id = pbListScreen(_INTL("Battle Glossary"), GlossaryEntryList.new(MAIN_GLOSSARY_HASH))
+					id, listIndex = pbListScreen(_INTL("Battle Glossary"), GlossaryEntryList.new(MAIN_GLOSSARY_HASH, listIndex))
 					case id
 					when "Basic Strategy"
-						pbListScreen(_INTL("Battle Strategy"), GlossaryEntryList.new(BASICS_GLOSSARY_HASH))
+						pbListScreen(_INTL("Battle Strategy"), GlossaryEntryList.new(BASICS_GLOSSARY_HASH), false)
 					when "Moves"
-						pbListScreen(_INTL("Moves"), GlossaryEntryList.new(MOVE_GLOSSARY_HASH))
+						pbListScreen(_INTL("Moves"), GlossaryEntryList.new(MOVE_GLOSSARY_HASH), false)
 					when "Type Matchups"
-						pbListScreen(_INTL("Type Matchups"), GlossaryEntryList.new(TYPE_MATCHUPS_GLOSSARY_HASH))
+						pbListScreen(_INTL("Type Matchups"), GlossaryEntryList.new(TYPE_MATCHUPS_GLOSSARY_HASH), false)
 					when "Aquiring Pokemon"
-						pbListScreen(_INTL("Aquiring Pokemon"), GlossaryEntryList.new(AQUIRING_POKEMON_HASH))
+						pbListScreen(_INTL("Aquiring Pokemon"), GlossaryEntryList.new(AQUIRING_POKEMON_HASH), false)
 					when "Stats"
-						pbListScreen(_INTL("Stats"), GlossaryEntryList.new(STATS_HASH))
-					else
-						break
+						pbListScreen(_INTL("Stats"), GlossaryEntryList.new(STATS_HASH), false)
+					when "Abilities"
+						pbListScreen(_INTL("Abilities"), GlossaryEntryList.new(ABILITIES_HASH), false)
+					when "Held Items"
+						pbListScreen(_INTL("Held Items"), GlossaryEntryList.new(HELD_ITEMS_HASH), false)
+					when "Trainers"
+						pbListScreen(_INTL("Trainers"), GlossaryEntryList.new(ENEMY_TRAINERS_HASH), false)
 					end
 				end
 			else
@@ -92,6 +89,54 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 		end
 		@scene.pbEndScene if endscene
 	end
+end
+
+def pbListScreen(title,lister,breakOnUse = true)
+	viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
+	viewport.z = 99999
+	list = pbListWindow([])
+	list.viewport = viewport
+	list.z        = 2
+	title = Window_UnformattedTextPokemon.newWithSize(title,
+	   Graphics.width / 2, 0, Graphics.width / 2, 64, viewport)
+	title.z = 2
+	lister.setViewport(viewport)
+	selectedmap = -1
+	commands = lister.commands
+	selindex = lister.startIndex
+	if commands.length == 0
+	  value = lister.value(-1)
+	  lister.dispose
+	  title.dispose
+	  list.dispose
+	  viewport.dispose
+	  return value
+	end
+	list.commands = commands
+	list.index    = selindex
+	loop do
+	  Graphics.update
+	  Input.update
+	  list.update
+	  if list.index != selectedmap
+		lister.refresh(list.index)
+		selectedmap = list.index
+	  end
+	  if Input.trigger?(Input::BACK)
+		selectedmap = -1
+		break
+	  elsif Input.trigger?(Input::USE) && breakOnUse
+		break
+	  end
+	end
+	value = lister.value(selectedmap)
+	finalListIndex = list.index
+	lister.dispose
+	title.dispose
+	list.dispose
+	viewport.dispose
+	Input.update
+	return value, finalListIndex
 end
 
 class PokemonPauseMenu

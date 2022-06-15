@@ -33,7 +33,7 @@ MOVE_GLOSSARY_HASH = {
 
 TYPE_MATCHUPS_GLOSSARY_HASH = {
     "Type Matchups" => "Each Pokemon has type weakness and type resiliancies based on its own type. eg. Water deals double damage to Fire, and Fire deals half damage to Water.",
-    "Type Combinations" => "When a Pokemon has two types, its type weaknesses and resiliances multiply. A Pokemon can be weak from both of its types (double weak!), or resistant from both of its types (double resistant), or even weak with one type but immune with the other (immune!).",
+    "Type Combinations" => "When a Pokemon has two types, its type weaknesses and resiliances multiply. A Pokemon can be double weak or double resistant, or immune even though one of their types is weak.",
     "Normal Effective" => "Normal Effective is the default effectiveness of all moves against a Pokemon.",
     "Super Effective" => "Super Effective moves deal double the damage compared to normal effective moves.",
     "Hyper Effective" => "Hyper Effective moves deal quadruple the damage compared to normal effective moves. This happens when a Pokemon is double weak to a type.",
@@ -57,25 +57,59 @@ STATS_HASH = {
     "Checking Stats" => "Check your Pokemon's stats by looking at the second page of their summary screen, accessible through the Pokemon menu in the pause menu.",
     "Stat Factors" => "Your Pokemon's stats are calculated from a combination of their species' \"Base Stats\", their own \"Style Values\", and extra modifications during battle.",
     "Base Stats" => "Every species of Pokemon have base stats, which affect every Pokemon of that species. e.g. Every Raichu will be fast because the Raichu species has a high Speed base stat.",
-    "Style Values" => "Style Values are numbers which you can customize to change your Pokemon's stats (except HP). Style Values show as blue numbers on the stat page of the Pokemon summary.",
+    "Style Values" => "Style Values are numbers which you can customize to change your Pokemon's stats (except HP). Style Values show as blue numbers on the stat page of the summary.",
     "Leveling and Evolution" => "Your Pokemon's stats will go up every time they level up. When Pokemon evolve, their stats change, almost always going up.",
     "Accuracy and Evasion" => "Accuracy and Evasion are two stats which are only active in battle, starting at 100% each. They are only modified by in-battle changing effects.",
     "Stat Stages" => "Effects can modify a Pokemon's stats during battle. These are called \"stat stages\". Stat stages multiply or divide the Pokemon's listed stat value.",
     "Bounds of Stat Stages" => "Stat stages start at 0, and can increase up to +6 (4x) and down to -6 (.25x). Stat stages are reset when a Pokemon faints or is swapped out.",
 }
 
+ABILITIES_HASH = {
+    "What are abilities?" => "Abilities are special powers that Pokemon can have based on their species. Most Pokemon can have one of 2 possible abilities.",
+    "Choosing Abilities" => "When you find or receive a Pokemon, it is random which ability it has of the two. You can use Ability Capsules to swap to the other.",
+    "Ability Effects" => "Abilities do a very wide variety of things. Using the PokeDex to read about an ability is the main way to know it does.",
+    "Conditional Abilities" => "Many abilities only perform their effects under certain contexts. Buiding around Weather and Terrain-synergy abilities is a common strategy.",
+    "Effect Of Evolution" => "A Pokemon's ability tends to stay the same when evolving, but can change. When this happens, the game will alert you.",
+    "Defeating Abilities" => "An enemy trainer's ability too much? Abilities like Neutralizing Gas, and moves like Gastro Acid, can supress abilities in battle.",
+    "Swapping Abilities" => "Moves like Skill Swap can be used to give a new ability to Pokemon during battle, enabling unique and creative team synergies.",
+}
+
+HELD_ITEMS_HASH = {
+    "What are Held Items?" => "Held items are items which you can give your Pokemon to benefit them during battle. They can increase their damage, heal them, or other things.",
+    "Equipping an item" => "You can give a Pokemon an item from that item's entry in your bag, or through that Pokemon in the summary screen. Not all items do an effect when held, so read carefully.",
+    "Berries" => "Berries are a common category of held item. On some condition, your Pokemon will eat the berry and get a benefit. Berries can be found by interacting with berry trees.",
+    "Sitrus and Oran" => "Sitrus Berry and Oran Berry are common berries which heal your Pokemon when at low health. If in doubt about what item to give, give them one of these.",
+    "Rematerializer" => "In Project Chasm, the rematerializer item gives you back items which are consumed during battles. You'll never run out of berries to use!",
+    "Wild Held Items" => "Wild Pokemon can be found holding items. These items sometimes have held effects, but often are other items they just so happen to hold.",
+    "Getting More" => "You will find more held items on the ground when traveling, or as gifts from people, or as the reward for defeating Avatars, or as purchasable items in shops.",
+}
+
+ENEMY_TRAINERS_HASH = {
+    "What are Enemy Trainers?" => "Enemy trainers are the Pokemon trainers you will battle throughout the game. Some block your path forwards (like Gym Leaders), others are optional.",
+    "Detecting Trainers" => "Trainers are people who have the first Pokemon of their team out with them. If a person doesn't have that, they either aren't a trainer, or are an inactive one.",
+    "Trainer Inactivity" => "When you defeat a Trainer, they will become inactive until the next time you heal at a PokeCenter. This is indicated by them pulling their companion Pokemon back into its ball.",
+    "Perfecting Fights" => "If you defeat a Trainer without any of your Pokemon fainting, you've \"perfected\" the fight. They will leave forever and drop experience candy as a reward.",
+    "Enemy Teams" => "Enemy Trainers have their own teams of Pokemon with their own moves and held items. Its important to pay attention to these possibilities to win battles.",
+    "Differences" => "The typical trainer has 3 Pokemon, but Gym Leaders will have more. Trainers with more Pokemon also have more move variety and more items on their Pokemon.",
+    "Cool Trainers" => "Cool Trainers are special trainers, noted by their grey hair and black clothes. Their teams are always 6 Pokemon, with a wide variety of moves, all with items. They're hard!",
+    "Trainer Behaviour" => "Individual trainers will always react to the same in-battle circumstances the same way. You can learn how to beat or even perfect a trainer through trial and error.",
+}
+
+AVATARS_HASH = {
+
+}
+
 class GlossaryEntryList
     attr_reader :glossaryHash
 
-    def initialize(hash)
+    def initialize(hash, startingIndex = 0)
         @pkmnList = Window_UnformattedTextPokemon.newWithSize("",
           Graphics.width / 2, 64, Graphics.width / 2, Graphics.height - 64)
         @pkmnList.z = 3
-        @selection = 0
+        @selection = @index = startingIndex
         @glossaryHash = hash
         @commands = []
         @ids = []
-        @index = 0
       end
     
     def dispose
