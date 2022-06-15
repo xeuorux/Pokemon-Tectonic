@@ -37,7 +37,7 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 		cmdBattleGlossary = -1
 		infoCommands = []
 		infoCommands[cmdMainQuestHelp = infoCommands.length] = _INTL("What Next?") if defined?($main_quest_tracker)
-		infoCommands[cmdBattleGlossary = infoCommands.length] = _INTL("Battle Glossary")
+		infoCommands[cmdBattleGlossary = infoCommands.length] = _INTL("Battle Guide")
 		infoCommands[cmdTrainer = infoCommands.length] = _INTL("#{$Trainer.name}'s Card")
 		infoCommands[cmdLevelCap = infoCommands.length] = _INTL("Level Cap") if LEVEL_CAPS_USED && $game_variables[26] > 0 && $Trainer.party_count > 0
 		loop do
@@ -79,7 +79,11 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 					when "Held Items"
 						pbListScreen(_INTL("Held Items"), GlossaryEntryList.new(HELD_ITEMS_HASH), false)
 					when "Trainers"
-						pbListScreen(_INTL("Trainers"), GlossaryEntryList.new(ENEMY_TRAINERS_HASH), false)
+						pbListScreen(_INTL("Trainers"), GlossaryEntryList.new(TRAINERS_HASH), false)
+					when "Avatars"
+						pbListScreen(_INTL("Avatars"), GlossaryEntryList.new(AVATARS_HASH), false)
+					when "PokeDex"
+						pbListScreen(_INTL("PokeDex"), GlossaryEntryList.new(POKEDEX_HASH), false)
 					end
 				end
 			else

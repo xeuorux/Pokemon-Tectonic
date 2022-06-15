@@ -8,8 +8,7 @@ MAIN_GLOSSARY_HASH = {
     "Held Items" => "What are held items and how to use them?",
     "Trainers" => "How do enemy trainers work?",
     "Avatars" => "What are avatars and what do they do?",
-    "Pokedex" => "How does the PokeDex work and how should I use it?",
-    "Advanced Team Building" => "How do I build extremely efficient teams?",
+    "PokeDex" => "What does the PokeDex do and how should I use it?",
 }
 
 BASICS_GLOSSARY_HASH = {
@@ -29,6 +28,7 @@ MOVE_GLOSSARY_HASH = {
     "Targeting" => "Most moves target only a single Pokemon, but many can target multiple Pokemon at once. Some moves differ in how far they can target in the bigger battle styles (doubles, triples).",
     "Move Types" => "Every move has a type. Attacking moves deal different amounts of damage to different Pokemon based on those Pokemon's types. This is called \"type effectiveness\".",
     "Learning Moves" => "Pokemon learn new moves as they level up. They can also learn moves from the \"Move Tutors\" who sit in the left side of every PokeCenter.",
+    "Who goes first?" => "In battle, the Pokemon with the higher speed stat gets to use their move first. Some moves are exceptions to this, always going first or always going last."
 }
 
 TYPE_MATCHUPS_GLOSSARY_HASH = {
@@ -61,7 +61,8 @@ STATS_HASH = {
     "Leveling and Evolution" => "Your Pokemon's stats will go up every time they level up. When Pokemon evolve, their stats change, almost always going up.",
     "Accuracy and Evasion" => "Accuracy and Evasion are two stats which are only active in battle, starting at 100% each. They are only modified by in-battle changing effects.",
     "Stat Stages" => "Effects can modify a Pokemon's stats during battle. These are called \"stat stages\". Stat stages multiply or divide the Pokemon's listed stat value.",
-    "Bounds of Stat Stages" => "Stat stages start at 0, and can increase up to +6 (4x) and down to -6 (.25x). Stat stages are reset when a Pokemon faints or is swapped out.",
+    "Bounds of Stat Stages" => "Stat stages start at 0, and can increase up to +6 (4x) and down to -6 (.25x). Stat stages are reset if you swap the Pokemon out or it faints.",
+    "Checking Stat Stages" => "You can check the current stat stages of each Pokemon on the battlefield using the Info button. It lists the numerical stage as well as resultant multiplier.",
 }
 
 ABILITIES_HASH = {
@@ -76,15 +77,15 @@ ABILITIES_HASH = {
 
 HELD_ITEMS_HASH = {
     "What are Held Items?" => "Held items are items which you can give your Pokemon to benefit them during battle. They can increase their damage, heal them, or other things.",
-    "Equipping an item" => "You can give a Pokemon an item from that item's entry in your bag, or through that Pokemon in the summary screen. Not all items do an effect when held, so read carefully.",
-    "Berries" => "Berries are a common category of held item. On some condition, your Pokemon will eat the berry and get a benefit. Berries can be found by interacting with berry trees.",
-    "Sitrus and Oran" => "Sitrus Berry and Oran Berry are common berries which heal your Pokemon when at low health. If in doubt about what item to give, give them one of these.",
-    "Rematerializer" => "In Project Chasm, the rematerializer item gives you back items which are consumed during battles. You'll never run out of berries to use!",
-    "Wild Held Items" => "Wild Pokemon can be found holding items. These items sometimes have held effects, but often are other items they just so happen to hold.",
+    "Equipping an item" => "You can give a Pokemon an item from your bag, or through the summary screen. Not all items do an effect when held, so read carefully.",
+    "Berries" => "Berries are a common held item. During battles, Pokemon will eat the berry to get a benefit. Get berries by picking from Berry Trees.",
+    "Sitrus and Oran Berry" => "Sitrus Berry and Oran Berry are common berries which heal your Pokemon when at low health. If in doubt about what item to give, give them one of these.",
+    "Rematerializer" => "In Project Chasm, the rematerializer regenerates held items which are consumed in battle. You'll never run out of berries!",
+    "Wild Held Items" => "Wild Pokemon can be found holding items. These items sometimes have held effects, but often don't.",
     "Getting More" => "You will find more held items on the ground when traveling, or as gifts from people, or as the reward for defeating Avatars, or as purchasable items in shops.",
 }
 
-ENEMY_TRAINERS_HASH = {
+TRAINERS_HASH = {
     "What are Enemy Trainers?" => "Enemy trainers are the Pokemon trainers you will battle throughout the game. Some block your path forwards (like Gym Leaders), others are optional.",
     "Detecting Trainers" => "Trainers are people who have the first Pokemon of their team out with them. If a person doesn't have that, they either aren't a trainer, or are an inactive one.",
     "Trainer Inactivity" => "When you defeat a Trainer, they will become inactive until the next time you heal at a PokeCenter. This is indicated by them pulling their companion Pokemon back into its ball.",
@@ -96,7 +97,27 @@ ENEMY_TRAINERS_HASH = {
 }
 
 AVATARS_HASH = {
+    "What are Avatars?" => "Avatars are powerful enemy Pokemon with unique properties that you will fight and destroy during your adventure. They cannot be caught.",
+    "Avatars are Healthy" => "Avatars have two health bars, which means they have a lot of health. Usually more than double the normal amount!",
+    "Multi-Attack" => "Avatars can attack multiple times each turn. Usually they attack twice, but some can attack three or even more times.",
+    "Two Statuses" => "Avatars are large, and have room for up to two status effects at a time. E.g. They could be Burned and Poisoned at the same time.",
+    "HP-Based Effects" => "Effects that damage based on a fraction of total HP are only one-fourth as powerful against avatars compared to normal Pokemon.",
+    "Stat-Modifying" => "Avatars are only half as effected by in-battle stat stage changes. For example, their attack is only given a 25% increase from a +1 boost.",
+    "Primeval Moves" => "When about half damaged, most avatars will use their one Primeval Move! Primeval Moves are powered up versions of other moves, which also change the Avatars type.",
+    "Attack Choice" => "Avatars usually only have a few moves to choose from. They usually alternate between their moves on successive attacks.",
+    "Target Choice" => "Avatars usually attack your healthiest Pokemon. However, they avoid attacking Pokemon that they've noticed are invulnerable by moves like Protect.",
+    "Experience Reward" => "When an Avatar is destroyed, every Pokemon on your team is given experience, even those that are fainted.",
+    "Legendary Avatars" => "Legendary Avatars are unique. You fight them with 3 Pokemon, they have 3 HP bars, and they have more moves with more smarts about how to use them.",
+}
 
+POKEDEX_HASH = {
+    "What is the PokeDex?" => "The PokeDex is an advanced encyclopedia about the over 900 Pokemon available in this game.",
+    "Single PokeDex" => "Access the PokeDex entry of a single Pokemon when looking at a Pokemon in the summary or the PC, or by using the Dex button in battles.",
+    "Full Pokdex" => "Access the full PokeDex from your pause menu, or by pressing D when using the Dex button in battles (while its waiting for you to select a battler).",
+    "Searching" => "When in the PokeDex, you can press your Special keybind (default Shift or Z) to open the first search page. There's dozens of searches to experiment with!",
+    "Combining Searches" => "You can begin a search while you're already looking at the results of a search. This will narrow down from what you were already looking at.",
+    "Storing Searches" => "When you press the cancel button while looking at a search, it will ask you if you'd like to cancel the search, or store it for the next time you open the PokeDex.",
+    "Moving Quickly" => "Use A to go up a page at a time, and S to go down a page. Use the number keys (1-9) to quickly go to one of the tab's of a Pokemon's PokeDex entry.",
 }
 
 class GlossaryEntryList
