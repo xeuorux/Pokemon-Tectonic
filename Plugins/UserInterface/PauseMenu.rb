@@ -62,28 +62,28 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 			elsif cmdBattleGlossary >- 1 && infoCommand == cmdBattleGlossary
 				listIndex = 0
 				loop do
-					id, listIndex = pbListScreen(_INTL("Battle Guide"), GlossaryEntryList.new(MAIN_GLOSSARY_HASH, listIndex))
+					id, listIndex = pbListScreen(_INTL("Battle Guide"), BattleGuideLister.new(MAIN_HASH, listIndex))
 					case id
 					when "Basic Strategy"
-						pbListScreen(_INTL("Battle Strategy"), GlossaryEntryList.new(BASICS_GLOSSARY_HASH), false)
+						pbListScreen(_INTL("Battle Strategy"), BattleGuideLister.new(BASICS_HASH), false)
 					when "Moves"
-						pbListScreen(_INTL("Moves"), GlossaryEntryList.new(MOVE_GLOSSARY_HASH), false)
+						pbListScreen(_INTL("Moves"), BattleGuideLister.new(MOVE__HASH), false)
 					when "Type Matchups"
-						pbListScreen(_INTL("Type Matchups"), GlossaryEntryList.new(TYPE_MATCHUPS_GLOSSARY_HASH), false)
+						pbListScreen(_INTL("Type Matchups"), BattleGuideLister.new(TYPE_MATCHUPS_HASH), false)
 					when "Aquiring Pokemon"
 						pbListScreen(_INTL("Aquiring Pokemon"), GlossaryEntryList.new(AQUIRING_POKEMON_HASH), false)
 					when "Stats"
-						pbListScreen(_INTL("Stats"), GlossaryEntryList.new(STATS_HASH), false)
+						pbListScreen(_INTL("Stats"), BattleGuideLister.new(STATS_HASH), false)
 					when "Abilities"
-						pbListScreen(_INTL("Abilities"), GlossaryEntryList.new(ABILITIES_HASH), false)
+						pbListScreen(_INTL("Abilities"), BattleGuideLister.new(ABILITIES_HASH), false)
 					when "Held Items"
-						pbListScreen(_INTL("Held Items"), GlossaryEntryList.new(HELD_ITEMS_HASH), false)
+						pbListScreen(_INTL("Held Items"), BattleGuideLister.new(HELD_ITEMS_HASH), false)
 					when "Trainers"
-						pbListScreen(_INTL("Trainers"), GlossaryEntryList.new(TRAINERS_HASH), false)
+						pbListScreen(_INTL("Trainers"), BattleGuideLister.new(TRAINERS_HASH), false)
 					when "Avatars"
-						pbListScreen(_INTL("Avatars"), GlossaryEntryList.new(AVATARS_HASH), false)
+						pbListScreen(_INTL("Avatars"), BattleGuideLister.new(AVATARS_HASH), false)
 					when "PokeDex"
-						pbListScreen(_INTL("PokeDex"), GlossaryEntryList.new(POKEDEX_HASH), false)
+						pbListScreen(_INTL("PokeDex"), BattleGuideLister.new(POKEDEX_HASH), false)
 					else
 						break
 					end
