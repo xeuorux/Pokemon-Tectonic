@@ -62,30 +62,30 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 			elsif cmdBattleGlossary >- 1 && infoCommand == cmdBattleGlossary
 				listIndex = 0
 				loop do
-					id, listIndex = pbListScreen(_INTL("Battle Guide"), BattleGuideLister.new(MAIN_HASH, listIndex))
+					id, listIndex = pbListScreenExtra(_INTL("Battle Guide"), BattleGuideLister.new(MAIN_HASH, listIndex))
 					case id
 					when "Basic Strategy"
-						pbListScreen(_INTL("Battle Strategy"), BattleGuideLister.new(BASICS_HASH), false)
+						pbListScreenExtra(_INTL("Battle Strategy"), BattleGuideLister.new(BASICS_HASH), false)
 					when "Moves"
-						pbListScreen(_INTL("Moves"), BattleGuideLister.new(MOVE_HASH), false)
+						pbListScreenExtra(_INTL("Moves"), BattleGuideLister.new(MOVE_HASH), false)
 					when "Type Matchups"
-						pbListScreen(_INTL("Type Matchups"), BattleGuideLister.new(TYPE_MATCHUPS_HASH), false)
+						pbListScreenExtra(_INTL("Type Matchups"), BattleGuideLister.new(TYPE_MATCHUPS_HASH), false)
 					when "Aquiring Pokemon"
-						pbListScreen(_INTL("Aquiring Pokemon"), GlossaryEntryList.new(AQUIRING_POKEMON_HASH), false)
+						pbListScreenExtra(_INTL("Aquiring Pokemon"), GlossaryEntryList.new(AQUIRING_POKEMON_HASH), false)
 					when "Stats"
-						pbListScreen(_INTL("Stats"), BattleGuideLister.new(STATS_HASH), false)
+						pbListScreenExtra(_INTL("Stats"), BattleGuideLister.new(STATS_HASH), false)
 					when "Abilities"
-						pbListScreen(_INTL("Abilities"), BattleGuideLister.new(ABILITIES_HASH), false)
+						pbListScreenExtra(_INTL("Abilities"), BattleGuideLister.new(ABILITIES_HASH), false)
 					when "Held Items"
-						pbListScreen(_INTL("Held Items"), BattleGuideLister.new(HELD_ITEMS_HASH), false)
+						pbListScreenExtra(_INTL("Held Items"), BattleGuideLister.new(HELD_ITEMS_HASH), false)
 					when "Status Conditions"
-						pbListScreen(_INTL("Status Conditions"), BattleGuideLister.new(STATUS_CONDITIONS_HASH), false)
+						pbListScreenExtra(_INTL("Status Conditions"), BattleGuideLister.new(STATUS_CONDITIONS_HASH), false)
 					when "Trainers"
-						pbListScreen(_INTL("Trainers"), BattleGuideLister.new(TRAINERS_HASH), false)
+						pbListScreenExtra(_INTL("Trainers"), BattleGuideLister.new(TRAINERS_HASH), false)
 					when "Avatars"
-						pbListScreen(_INTL("Avatars"), BattleGuideLister.new(AVATARS_HASH), false)
+						pbListScreenExtra(_INTL("Avatars"), BattleGuideLister.new(AVATARS_HASH), false)
 					when "PokeDex"
-						pbListScreen(_INTL("PokeDex"), BattleGuideLister.new(POKEDEX_HASH), false)
+						pbListScreenExtra(_INTL("PokeDex"), BattleGuideLister.new(POKEDEX_HASH), false)
 					else
 						break
 					end
@@ -99,7 +99,7 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 	end
 end
 
-def pbListScreen(title,lister,breakOnUse = true)
+def pbListScreenExtra(title,lister,breakOnUse = true)
 	viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
 	viewport.z = 99999
 	list = pbListWindow([])
