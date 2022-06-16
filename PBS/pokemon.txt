@@ -20829,9 +20829,9 @@ BattlerShadowSize = 2
 [632]
 Name = Durant
 InternalName = DURANT
+Notes = Ok, but like, what if we gave it Hustle again instead of sheer force because that's viable now w/ wide lens buff, not really op cause you're still giving up choice items
 Type1 = BUG
 Type2 = STEEL
-Notes = Ok, but like, what if we gave it Hustle again instead of sheer force because that's viable now w/ wide lens buff, not really op cause you're still giving up choice items
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 61,112,112,109,48,58
 # Total = 500
@@ -29986,9 +29986,9 @@ BattlerShadowSize = 2
 [911]
 Name = Absolus
 InternalName = ABSOLUS
+Notes = Can't we just have Bad Omen hit instantly since all of the foretold moves are off-stab? It isn't that crazy, right?
 Type1 = DARK
 Type2 = FAIRY
-Notes = Can't we just have Bad Omen hit instantly since all of the foretold moves are off-stab? It isn't that crazy, right?
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,120,70,105,120,70
 # Total = 560
@@ -30342,9 +30342,9 @@ BattlerShadowSize = 2
 [922]
 Name = Lapnessie
 InternalName = LAPNESSIE
+Notes = We have a lot of water/dragons, shouldn't this be ice/dragon for type variety? Could make frostsong be water instead of ice + rename it, would also want to do something about the "i use surf" identity
 Type1 = DRAGON
 Type2 = WATER
-Notes = We have a lot of water/dragons, shouldn't this be ice/dragon for type variety? Could make frostsong be water instead of ice + rename it, would also want to do something about the "i use surf" identity
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 135,80,85,70,115,100
 # Total = 585
