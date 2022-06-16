@@ -67,7 +67,7 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 					when "Basic Strategy"
 						pbListScreen(_INTL("Battle Strategy"), BattleGuideLister.new(BASICS_HASH), false)
 					when "Moves"
-						pbListScreen(_INTL("Moves"), BattleGuideLister.new(MOVE__HASH), false)
+						pbListScreen(_INTL("Moves"), BattleGuideLister.new(MOVE_HASH), false)
 					when "Type Matchups"
 						pbListScreen(_INTL("Type Matchups"), BattleGuideLister.new(TYPE_MATCHUPS_HASH), false)
 					when "Aquiring Pokemon"
@@ -78,6 +78,8 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 						pbListScreen(_INTL("Abilities"), BattleGuideLister.new(ABILITIES_HASH), false)
 					when "Held Items"
 						pbListScreen(_INTL("Held Items"), BattleGuideLister.new(HELD_ITEMS_HASH), false)
+					when "Status Conditions"
+						pbListScreen(_INTL("Status Conditions"), BattleGuideLister.new(STATUS_CONDITIONS_HASH), false)
 					when "Trainers"
 						pbListScreen(_INTL("Trainers"), BattleGuideLister.new(TRAINERS_HASH), false)
 					when "Avatars"
