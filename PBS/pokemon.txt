@@ -4275,8 +4275,8 @@ InternalName = GYARADOS
 Type1 = WATER
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,125,79,86,75,80
-# Total = 525
+BaseStats = 95,125,79,86,75,85
+# Total = 545
 GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 189
