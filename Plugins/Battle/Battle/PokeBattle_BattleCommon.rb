@@ -18,19 +18,16 @@ class PokeBattle_Battle
     end
     # Messages
     itemName = GameData::Item.get(ball).name
-    if battler.fainted?
-      if itemName.starts_with_vowel?
-        pbDisplay(_INTL("{1} threw an {2}!",pbPlayer.name,itemName))
-      else
-        pbDisplay(_INTL("{1} threw a {2}!",pbPlayer.name,itemName))
-      end
-      pbDisplay(_INTL("But there was no target..."))
-      return
-    end
-    if itemName.starts_with_vowel?
+    if ball == :BALLLAUNCHER
+      pbDisplayBrief(_INTL("{1} used the {2}!",pbPlayer.name,itemName))
+    elsif itemName.starts_with_vowel?
       pbDisplayBrief(_INTL("{1} threw an {2}!",pbPlayer.name,itemName))
     else
       pbDisplayBrief(_INTL("{1} threw a {2}!",pbPlayer.name,itemName))
+    end
+    if battler.fainted?
+      pbDisplay(_INTL("But there was no target..."))
+      return
     end
     # Animation of opposing trainer blocking Poké Balls (unless it's a Snag Ball
     # at a Shadow Pokémon)

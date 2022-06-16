@@ -866,6 +866,8 @@
 855,JANGMOOEGG,Jangmo-o Egg,Jangmo-o Eggs,1,10000,"An abandoned Jangmo-o egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
 856,DREEPYEGG,Dreepy Egg,Dreepy Eggs,1,10000,"An abandoned Dreepy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
 #-------------------------------
+857,BALLLAUNCHER,Ball Launcher,Ball Launchers,3,0,"A device which creates then launches regular Poké Balls, never running out.",0,9,4
+#-------------------------------
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6
