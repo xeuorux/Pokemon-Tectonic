@@ -637,12 +637,12 @@ end
     tr_type_names = []
     # Read each line of trainertypes.txt at a time and compile it into a trainer type
     pbCompilerEachCommentedLine(path) { |line, line_no|
-      line = pbGetCsvRecord(line, line_no, [0, "unsUSSSeUS",
+      line = pbGetCsvRecord(line, line_no, [0, "unsUSSSeUSs",
         nil, nil, nil, nil, nil, nil, nil, {
         "Male"   => 0, "M" => 0, "0" => 0,
         "Female" => 1, "F" => 1, "1" => 1,
         "Mixed"  => 2, "X" => 2, "2" => 2, "" => 2
-        }, nil, nil]
+        }, nil, nil, nil]
       )
       type_number = line[0]
       type_symbol = line[1].to_sym
@@ -651,13 +651,13 @@ end
       elsif GameData::TrainerType::DATA[type_symbol]
         raise _INTL("Trainer type ID '{1}' is used twice.\r\n{2}", type_symbol, FileLineData.linereport)
       end
-	  policies_array = []
-	  if line[9]
-		  policies_string_array = line[9].gsub!('[','').gsub!(']','').split(',')
-		  policies_string_array.each do |policy_string|
-			policies_array.push(policy_string.to_sym)
-		  end
-	  end
+      policies_array = []
+      if !line[10].nil?
+        policies_string_array = line[10].gsub!('[','').gsub!(']','').split(',')
+        policies_string_array.each do |policy_string|
+          policies_array.push(policy_string.to_sym)
+          end
+      end
       # Construct trainer type hash
       type_hash = {
         :id_number   => type_number,
@@ -669,6 +669,7 @@ end
         :intro_ME    => line[6],
         :gender      => line[7],
         :skill_level => line[8],
+        :skill_code  => line[9],
         :policies    => policies_array,
       }
       # Add trainer type's data to records
@@ -1990,28 +1991,28 @@ module Compiler
       add_PBS_header_to_file(f)
       f.write("\#-------------------------------\r\n")
       GameData::TrainerType.each do |t|
-		policiesString = ""
-		if t.policies
-		  policiesString += "["
-		  t.policies.each_with_index do |policy_symbol,index|
-			policiesString += policy_symbol.to_s
-			policiesString += "," if index < t.policies.length - 1
-		  end
-		  policiesString += "]"
+        policiesString = ""
+        if t.policies
+          policiesString += "["
+          t.policies.each_with_index do |policy_symbol,index|
+            policiesString += policy_symbol.to_s
+            policiesString += "," if index < t.policies.length - 1
+          end
+          policiesString += "]"
         end
 	  
         f.write(sprintf("%d,%s,%s,%d,%s,%s,%s,%s,%s,%s,%s\r\n",
-          t.id_number,
-          csvQuote(t.id.to_s),
-          csvQuote(t.real_name),
-          t.base_money,
-          csvQuote(t.battle_BGM),
-          csvQuote(t.victory_ME),
-          csvQuote(t.intro_ME),
-          ["Male", "Female", "Mixed"][t.gender],
-          (t.skill_level == t.base_money) ? "" : t.skill_level.to_s,
-          csvQuote(t.skill_code),
-		  policiesString
+        t.id_number,
+        csvQuote(t.id.to_s),
+        csvQuote(t.real_name),
+        t.base_money,
+        csvQuote(t.battle_BGM),
+        csvQuote(t.victory_ME),
+        csvQuote(t.intro_ME),
+        ["Male", "Female", "Mixed"][t.gender],
+        (t.skill_level == t.base_money) ? "" : t.skill_level.to_s,
+        csvQuote(t.skill_code),
+        policiesString
         ))
       end
     }
