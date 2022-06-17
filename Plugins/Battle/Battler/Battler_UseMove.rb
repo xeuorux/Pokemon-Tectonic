@@ -277,6 +277,7 @@ class PokeBattle_Battler
         b.damageState.reset
         b.damageState.initialHP = b.hp
         if !pbSuccessCheckAgainstTarget(move,user,b)
+          echoln("[DEBUG] #{b.pbThis} enters the unaffected damage state")
           b.damageState.unaffected = true
         end
       end
@@ -495,10 +496,10 @@ class PokeBattle_Battler
     targets.each { |b| b.damageState.resetPerHit }
     # Count a hit for Parental Bond (if it applies)
     user.effects[PBEffects::ParentalBond] -= 1 if user.effects[PBEffects::ParentalBond]>0
-	# Redirect Dragon Darts other hits
-	if move.function=="17C" && @battle.pbSideSize(targets[0].index)>1 && hitNum>0
-	  targets=pbChangeTargets(move,user,targets,1)
-	end
+    # Redirect Dragon Darts other hits
+    if move.function=="17C" && @battle.pbSideSize(targets[0].index)>1 && hitNum>0
+      targets=pbChangeTargets(move,user,targets,1)
+    end
     # Accuracy check (accuracy/evasion calc)
     if hitNum==0 || move.successCheckPerHit?
       targets.each do |b|
@@ -517,7 +518,7 @@ class PokeBattle_Battler
           pbMissMessage(move,user,b)
         end
         move.pbCrashDamage(user)
-		move.pbAllMissed(user,targets)
+		    move.pbAllMissed(user,targets)
         user.pbItemHPHealCheck
         pbCancelMoves
         return false

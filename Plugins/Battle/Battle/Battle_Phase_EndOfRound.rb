@@ -46,7 +46,7 @@ class PokeBattle_Battle
       end
     end
 
-    processTrappingDOTs(prioruty)
+    processTrappingDOTs(priority)
     
     countDownBattlerEffects(priority)
 
@@ -58,9 +58,9 @@ class PokeBattle_Battle
       return
     end
 
-    countDownSideEffects(priority)
+    countDownSideEffects()
 
-    countDownFieldEffects(priority)
+    countDownFieldEffects()
     
     # End of terrains
     pbEORTerrain

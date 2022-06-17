@@ -86,31 +86,6 @@ class PokeBattle_Battle
         if !pbOwnedByPlayer?(idxBattler)   # Opponent/ally is switching in
           next if wildBattle? && opposes?(idxBattler)   # Wild Pokémon can't switch
           idxPartyNew = pbSwitchInBetween(idxBattler)
-          opponent = pbGetOwnerFromBattlerIndex(idxBattler)
-=begin
-          # NOTE: The player is only offered the chance to switch their own
-          #       Pokémon when an opponent replaces a fainted Pokémon in single
-          #       battles. In double battles, etc. there is no such offer.
-          if @internalBattle && @switchStyle && trainerBattle? && pbSideSize(0)==1 &&
-             opposes?(idxBattler) && !@battlers[0].fainted? && !switched.include?(0) &&
-             pbCanChooseNonActive?(0) && @battlers[0].effects[PBEffects::Outrage]==0
-            idxPartyForName = idxPartyNew
-            enemyParty = pbParty(idxBattler)
-            if enemyParty[idxPartyNew].ability == :ILLUSION
-              new_index = pbLastInTeam(idxBattler)
-              idxPartyForName = new_index if new_index >= 0 && new_index != idxPartyNew
-            end
-            if pbDisplayConfirm(_INTL("{1} is about to send in {2}. Will you switch your Pokémon?",
-               opponent.full_name, enemyParty[idxPartyForName].name))
-              idxPlayerPartyNew = pbSwitchInBetween(0,false,true)
-              if idxPlayerPartyNew>=0
-                pbMessageOnRecall(@battlers[0])
-                pbRecallAndReplace(0,idxPlayerPartyNew)
-                switched.push(0)
-              end
-            end
-          end
-=end
           pbRecallAndReplace(idxBattler,idxPartyNew)
           switched.push(idxBattler)
         elsif trainerBattle? || bossBattle?   # Player switches in in a trainer battle or boss battle

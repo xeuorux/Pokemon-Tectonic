@@ -499,69 +499,12 @@ class PokeBattle_AI
     # Determine who to swap into if at all
     if shouldSwitch
       PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is trying to find a teammate to swap into.")
-      list = []
+      list = pbGetPartyWithSwapRatings(idxBattler)
+      party = @battle.pbParty(idxBattler)
+      list.delete_if {|val| !@battle.pbCanSwitch?(idxBattler,val[0]) || val[1] < 2}
 	  
-      @battle.pbParty(idxBattler).each_with_index do |pkmn,i|
-        next if !@battle.pbCanSwitch?(idxBattler,i)
-        # Will contain effects that recommend against switching
-        spikes = battler.pbOwnSide.effects[PBEffects::Spikes]
-        # Don't switch to this if too little HP
-        if spikes > 0
-          spikesDmg = [8,6,4][spikes-1]
-          if pkmn.hp <= pkmn.totalhp / spikesDmg
-            next if !pkmn.hasType?(:FLYING) && !pkmn.hasAbility?(:LEVITATE)
-          end
-        end
-        typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
-        if !moveType.nil?
-          typeModDefensive = pbCalcTypeMod(moveType,battler,battler.pbDirectOpposing(true))
-        end
-        
-        if !target.nil?
-          typeModOffensive = pbCalcTypeModPokemonOffensive(pkmn,target)
-        end
-        
-        typeMatchupScore = 0
-        # Modify the type matchup score based on the defensive matchup
-        if Effectiveness.ineffective?(typeModDefensive)
-          typeMatchupScore += 4
-        elsif Effectiveness.not_very_effective?(typeModDefensive)
-          typeMatchupScore += 2
-        elsif Effectiveness.hyper_effective?(typeModDefensive)
-          typeMatchupScore -= 4
-        elsif Effectiveness.super_effective?(typeModDefensive)
-          typeMatchupScore -= 2
-        end
-        # Modify the type matchup score based on the offensive matchup
-        if Effectiveness.ineffective?(typeModOffensive)
-          typeMatchupScore -= 2
-        elsif Effectiveness.not_very_effective?(typeModOffensive)
-          typeMatchupScore -= 1
-        elsif Effectiveness.hyper_effective?(typeModOffensive)
-          typeMatchupScore += 2
-        elsif Effectiveness.super_effective?(typeModOffensive)
-          typeMatchupScore += 1
-        end
-      
-        # If the score is worth it, swap into it
-        if typeMatchupScore >= 2
-            list.push([i,typeMatchupScore])
-        end
-      end
-      
       if list.length > 0
-        list.sort_by!{|entry| -entry[1]}
-        PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are:")
-        list.each do |listEntry|
-          enemyTrainer = @battle.pbGetOwnerFromBattlerIndex(battler.index)
-          allyPokemon = enemyTrainer.party[listEntry[0]]
-          next if allyPokemon.nil?
-          PBDebug.log("#{allyPokemon.name || "Party member #{listEntry[0]}"}: #{listEntry[1]}")
-        end
-        if batonPass >= 0 && @battle.pbRegisterMove(idxBattler,batonPass,false)
-          PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Baton Pass to avoid Perish Song")
-          return true
-        end
+        listSwapOutCandidates(battler,list)
         partySlotNumber = list[0][0]
         if @battle.pbRegisterSwitch(idxBattler,partySlotNumber)
           PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will switch with " +
@@ -573,6 +516,86 @@ class PokeBattle_AI
       end
     end
     return false
+  end
+
+  def listSwapOutCandidates(battler,list)
+    PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are:")
+    list.each do |listEntry|
+      enemyTrainer = @battle.pbGetOwnerFromBattlerIndex(battler.index)
+      allyPokemon = enemyTrainer.party[listEntry[0]]
+      next if allyPokemon.nil?
+      PBDebug.log("#{allyPokemon.name || "Party member #{listEntry[0]}"}: #{listEntry[1]}")
+    end
+  end
+
+  def pbDefaultChooseNewEnemy(idxBattler,party)
+    opposingBattler = @battle.battlers[idxBattler].pbDirectOpposing(true)
+    moveType = nil
+    if !opposingBattler.fainted? && opposingBattler.lastMoveUsed
+      moveData = GameData::Move.get(opposingBattler.lastMoveUsed)
+      moveType = moveData.type
+    end
+    list = pbGetPartyWithSwapRatings(idxBattler,opposingBattler,moveType)
+    list.delete_if {|val| !@battle.pbCanSwitchLax?(idxBattler,val[0])}
+    if list.length != 0
+      listSwapOutCandidates(@battle.battlers[idxBattler],list)
+      return list[0][0]
+    end
+    return -1 
+  end
+
+  # Rates every other Pokemon in the trainer's party with 
+  def pbGetPartyWithSwapRatings(idxBattler,target=nil,moveType = nil)
+    list = []
+    battler = @battle.battlers[idxBattler]
+    @battle.pbParty(idxBattler).each_with_index do |pkmn,i|
+      # Will contain effects that recommend against switching
+      spikes = battler.pbOwnSide.effects[PBEffects::Spikes]
+      # Don't switch to this if too little HP
+      if spikes > 0
+        spikesDmg = [8,6,4][spikes-1]
+        if pkmn.hp <= pkmn.totalhp / spikesDmg
+          if !pkmn.hasType?(:FLYING) && !pkmn.hasAbility?(:LEVITATE)
+            list.push([i,0])
+            next
+          end
+        end
+      end
+      typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
+      if !moveType.nil?
+        typeModDefensive = pbCalcTypeMod(moveType,battler,battler.pbDirectOpposing(true))
+      end
+      
+      if !target.nil?
+        typeModOffensive = pbCalcTypeModPokemonOffensive(pkmn,target)
+      end
+      
+      typeMatchupScore = 0
+      # Modify the type matchup score based on the defensive matchup
+      if Effectiveness.ineffective?(typeModDefensive)
+        typeMatchupScore += 4
+      elsif Effectiveness.not_very_effective?(typeModDefensive)
+        typeMatchupScore += 2
+      elsif Effectiveness.hyper_effective?(typeModDefensive)
+        typeMatchupScore -= 4
+      elsif Effectiveness.super_effective?(typeModDefensive)
+        typeMatchupScore -= 2
+      end
+      # Modify the type matchup score based on the offensive matchup
+      if Effectiveness.ineffective?(typeModOffensive)
+        typeMatchupScore -= 2
+      elsif Effectiveness.not_very_effective?(typeModOffensive)
+        typeMatchupScore -= 1
+      elsif Effectiveness.hyper_effective?(typeModOffensive)
+        typeMatchupScore += 2
+      elsif Effectiveness.super_effective?(typeModOffensive)
+        typeMatchupScore += 1
+      end
+    
+      list.push([i,typeMatchupScore])
+    end
+    list.sort_by!{|entry| -entry[1]}
+    return list
   end
   
   # For switching. Determines the effectiveness of a potential switch-in against
