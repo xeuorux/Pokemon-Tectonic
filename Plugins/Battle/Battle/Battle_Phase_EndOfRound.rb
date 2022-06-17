@@ -100,7 +100,7 @@ class PokeBattle_Battle
   # End Of Round weather
   #=============================================================================
   def pbEORWeather(priority)
-    echoln("[DEBUG] Counting down weathers")
+    PBDebug.log("[DEBUG] Counting down weathers")
 
     # NOTE: Primordial weather doesn't need to be checked here, because if it
     #       could wear off here, it will have worn off already.
@@ -191,7 +191,7 @@ class PokeBattle_Battle
   end
 
   def processForetoldMovesEOR()
-    echoln("[DEBUG] Counting down/using foretold moves")
+    PBDebug.log("[DEBUG] Counting down/using foretold moves")
 
     # Future Sight/Doom Desire
     @positions.each_with_index do |pos,idxPos|
@@ -235,7 +235,7 @@ class PokeBattle_Battle
   end
 
   def pbEORHealing(priority)
-    echoln("[DEBUG] Performing EoR healing effects")
+    PBDebug.log("[DEBUG] Performing EoR healing effects")
     # Wish
     @positions.each_with_index do |pos,idxPos|
       next if !pos || pos.effects[PBEffects::Wish]==0
@@ -286,7 +286,7 @@ class PokeBattle_Battle
   end
 
   def pbEORDamage(priority)
-    echoln("[DEBUG] Dealing EoR damage effects")
+    PBDebug.log("[DEBUG] Dealing EoR damage effects")
     # Sea of Fire damage (Fire Pledge + Grass Pledge combination)
     curWeather = pbWeather
     for side in 0...2
@@ -431,7 +431,7 @@ class PokeBattle_Battle
   end
 
   def countDownBattlerEffects(priority)
-    echoln("[DEBUG] Counting down/ending battler effects")
+    PBDebug.log("[DEBUG] Counting down/ending battler effects")
     # Taunt
     pbEORCountDownBattlerEffect(priority,PBEffects::Taunt) { |battler|
       pbDisplay(_INTL("{1}'s taunt wore off!",battler.pbThis))
@@ -485,7 +485,7 @@ class PokeBattle_Battle
   end
 
   def processTrappingDOTs(priority)
-    echoln("[DEBUG] Counting down/ending trapping DOTs")
+    PBDebug.log("[DEBUG] Counting down/ending trapping DOTs")
     priority.each do |b|
       next if b.fainted? || b.effects[PBEffects::Trapping]==0
       b.effects[PBEffects::Trapping] -= 1
@@ -524,7 +524,7 @@ class PokeBattle_Battle
   end
   
   def countDownPerishSong(priority)
-    echoln("[DEBUG] Counting down/ending perish song")
+    PBDebug.log("[DEBUG] Counting down/ending perish song")
     # Perish Song
     perishSongUsers = []
     priority.each do |b|
@@ -548,7 +548,7 @@ class PokeBattle_Battle
   end
 
   def countDownSideEffects()
-    echoln("[DEBUG] Counting down/ending side effects")
+    PBDebug.log("[DEBUG] Counting down/ending side effects")
     for side in 0...2
       # Reflect
       pbEORCountDownSideEffect(side,PBEffects::Reflect,
@@ -584,7 +584,7 @@ class PokeBattle_Battle
   end
 
   def countDownFieldEffects()
-    echoln("[DEBUG] Counting down/ending total field effects")
+    PBDebug.log("[DEBUG] Counting down/ending total field effects")
     # Trick Room
     pbEORCountDownFieldEffect(PBEffects::TrickRoom,
        _INTL("The twisted dimensions returned to normal!"))
@@ -606,7 +606,7 @@ class PokeBattle_Battle
   end
 
   def processTriggersEOR(priority)
-    echoln("[DEBUG] Processing EoR Triggers")
+    PBDebug.log("[DEBUG] Processing EoR Triggers")
 
     priority.each do |b|
       next if b.fainted?
@@ -646,7 +646,7 @@ class PokeBattle_Battle
   end
 
   def processBattlerEffectsEOR()
-    echoln("[DEBUG] Processing EoR Battler Effects")
+    PBDebug.log("[DEBUG] Processing EoR Battler Effects")
     # Reset/count down battler-specific effects (no messages)
     eachBattler do |b|
       b.effects[PBEffects::BanefulBunker]    = false
@@ -697,7 +697,7 @@ class PokeBattle_Battle
   end
 
   def processSideEffectsEOR()
-    echoln("[DEBUG] Processing EoR Side-Specific Effects")
+    PBDebug.log("[DEBUG] Processing EoR Side-Specific Effects")
     # Reset/count down side-specific effects (no messages)
     for side in 0...2
       @sides[side].effects[PBEffects::CraftyShield]         = false
@@ -713,7 +713,7 @@ class PokeBattle_Battle
   end
 
   def processFieldEffectsEOR()
-    echoln("[DEBUG] Processing EoR Total Field Effects")
+    PBDebug.log("[DEBUG] Processing EoR Total Field Effects")
     # Reset/count down field-specific effects (no messages)
     @field.effects[PBEffects::IonDeluge]   = false
     @field.effects[PBEffects::FairyLock]   -= 1 if @field.effects[PBEffects::FairyLock]>0
