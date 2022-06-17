@@ -910,6 +910,7 @@ Pokemon = POOCHYENA,25
 Pokemon = CHANSEY,29
     AbilityIndex = 0
     Item = LEFTOVERS
+	Moves = SEISMICTOSS,POUT,CHIBLOCK,LULLABY
 Pokemon = STANTLER,30
     AbilityIndex = 0
 Pokemon = ONIX,31
