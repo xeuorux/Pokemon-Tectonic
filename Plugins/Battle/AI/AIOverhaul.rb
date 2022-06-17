@@ -419,8 +419,13 @@ class PokeBattle_AI
         shouldSwitch = true
       end
     end
+    matchups = []
+    battler.eachOpposing do |opposingBattler|
+      matchup = rateMatchup(battler,battler.pokemon,opposingBattler,getRoughAttackingTypes(opposingBattler))
+      matchups.push(matchup)
+    end
+    currentMatchupRating = matchups.min
     # Don't swap for any above reason if we're in a good matchup
-    currentMatchupRating = rateMatchup(battler,battler,target,getRoughAttackingTypes(target))
     PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) thinks its current matchup is rated: #{currentMatchupRating}")
     if currentMatchupRating >= 2
       PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) decides to ignore low level swapping concerns due to being in a good matchup.")
@@ -511,16 +516,15 @@ class PokeBattle_AI
     # Determine who to swap into if at all
     if shouldSwitch
       PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is trying to find a teammate to swap into.")
-      list = pbGetPartyWithSwapRatings(idxBattler,target)
+      list = pbGetPartyWithSwapRatings(idxBattler)
       listSwapOutCandidates(battler,list)
-      party = @battle.pbParty(idxBattler)
-      list.delete_if {|val| !@battle.pbCanSwitch?(idxBattler,val[0]) || val[1] < 2}
+      list.delete_if {|val| !@battle.pbCanSwitch?(idxBattler,val[0]) || (val[1] - currentMatchupRating < 2)}
 	  
       if list.length > 0
         partySlotNumber = list[0][0]
         if @battle.pbRegisterSwitch(idxBattler,partySlotNumber)
           PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will switch with " +
-                      "#{@battle.pbParty(idxBattler)[partySlotNumber].name}")
+                      "#{@battle.pbParty(idxBattler)[partySlotNumber].name} due to it being rated at least 2 higher")
           return true
         end
       else
@@ -566,9 +570,7 @@ class PokeBattle_AI
   end
 
   def pbDefaultChooseNewEnemy(idxBattler,party)
-    opposingBattler = @battle.battlers[idxBattler].pbDirectOpposing(true)
-    moveType = nil
-    list = pbGetPartyWithSwapRatings(idxBattler,opposingBattler)
+    list = pbGetPartyWithSwapRatings(idxBattler)
     list.delete_if {|val| !@battle.pbCanSwitchLax?(idxBattler,val[0])}
     if list.length != 0
       listSwapOutCandidates(@battle.battlers[idxBattler],list)
@@ -578,7 +580,7 @@ class PokeBattle_AI
   end
 
   # Rates every other Pokemon in the trainer's party and returns a sorted list of the indices and swap in rating
-  def pbGetPartyWithSwapRatings(idxBattler,opposingBattler)
+  def pbGetPartyWithSwapRatings(idxBattler)
     list = []
     battler = @battle.battlers[idxBattler]
     @battle.pbParty(idxBattler).each_with_index do |pkmn,i|
@@ -594,7 +596,12 @@ class PokeBattle_AI
           end
         end
       end
-      list.push([i,rateMatchup(battler,pkmn,opposingBattler,getRoughAttackingTypes(opposingBattler))])
+      matchups = []
+      battler.eachOpposing do |opposingBattler|
+        matchup = rateMatchup(battler,pkmn,opposingBattler,getRoughAttackingTypes(opposingBattler))
+        matchups.push(matchup)
+      end
+      list.push([i,matchups.min])
     end
     list.sort_by!{|entry| -entry[1]}
     return list
@@ -614,9 +621,6 @@ class PokeBattle_AI
     if !opposingBattler.nil?
       typeModOffensive = pbCalcMaxOffensiveTypeMod(getPartyMemberAttackingTypes(partyPokemon),opposingBattler)
     end
-
-    PBDebug.log("[AI] Calced type mods from party pokemon #{partyPokemon.name} against the player: " +
-      "#{typeModOffensive.to_f / Effectiveness::NORMAL_EFFECTIVE},#{typeModDefensive.to_f / Effectiveness::NORMAL_EFFECTIVE}")
     
     typeMatchupScore = 0
     # Modify the type matchup score based on the defensive matchup

@@ -19,24 +19,13 @@ class PokeBattle_Move_001 < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-	score = 20
-    score = 0 if skill>=PBTrainerAI.mediumSkill
-	return score
+    return 0
   end
 end
 
 def getScoreForPuttingToSleep(score,user,target,skill=100)
-	score += 50
-	if skill>=PBTrainerAI.mediumSkill
-	  score = 0 if target.effects[PBEffects::Yawn]>0
-	end
-	if skill>=PBTrainerAI.highSkill
-	  score -= 50 if target.hasActiveAbility?(:MARVELSCALE)
-	end
-	if skill>=PBTrainerAI.bestSkill && target.pbHasMoveFunction?("011","0B4")   # Snore, Sleep Talk
-		score = 0
-	end
-	return score
+  return 0 if target.effects[PBEffects::Yawn] > 0
+	return score + 50
 end
 
 #===============================================================================
@@ -64,12 +53,12 @@ class PokeBattle_Move_003 < PokeBattle_SleepMove
   end
   
   def getScore(score,user,target,skill=100)
-	if target.pbCanSleep?(user,false)
-        score = getScoreForPuttingToSleep(score,user,target,skill=100)
-	elsif statusMove? && skill>=PBTrainerAI.mediumSkill
-        score = 0
-	end
-	return score
+    if target.pbCanSleep?(user,false)
+          score = getScoreForPuttingToSleep(score,user,target,skill=100)
+    elsif statusMove?
+          score = 0
+    end
+    return score
   end
 end
 
@@ -92,12 +81,12 @@ class PokeBattle_Move_004 < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-	if target.effects[PBEffects::Yawn]>0 || !target.pbCanSleep?(user,false)
-        score = 0 if skill>=PBTrainerAI.mediumSkill
-    else
-        score = getScoreForPuttingToSleep(score,user,target,skill=100)
-    end
-	return score / 2
+    if target.effects[PBEffects::Yawn] > 0 || !target.pbCanSleep?(user,false)
+          score = 0
+      else
+          score = getScoreForPuttingToSleep(score,user,target,skill)
+      end
+    return score / 2
   end
 end
 
