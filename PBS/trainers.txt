@@ -908,9 +908,9 @@ Pokemon = POOCHYENA,25
 #-------------------------------
 [NURSE,Ellen]
 Pokemon = CHANSEY,29
+    Moves = SEISMICTOSS,POUT,CHIBLOCK,LULLABY
     AbilityIndex = 0
     Item = LEFTOVERS
-	Moves = SEISMICTOSS,POUT,CHIBLOCK,LULLABY
 Pokemon = STANTLER,30
     AbilityIndex = 0
 Pokemon = ONIX,31
