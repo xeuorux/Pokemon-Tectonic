@@ -1,4 +1,66 @@
 #===============================================================================
+# Flusters the target.
+#===============================================================================
+class PokeBattle_FlusterMove < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+	  return false if damagingMove?
+	  return !target.pbCanFluster?(user,true,self)
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+	  return if damagingMove?
+	  target.pbFluster
+	end
+  
+	def pbAdditionalEffect(user,target)
+	  return if target.damageState.substitute
+	  return if !target.pbCanFluster?(user,false,self)
+	  target.pbFluster
+	end
+
+    def getScore(score,user,target,skill=100)
+        canFluster = target.pbCanFluster?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
+        if canFluster
+          score += 20
+        elsif statusMove?
+          score = 0
+        end
+        return score
+    end
+end
+
+#===============================================================================
+# Mystifies the target.
+#===============================================================================
+class PokeBattle_MystifyMove < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+	  return false if damagingMove?
+	  return !target.pbCanMystify?(user,true,self)
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+	  return if damagingMove?
+	  target.pbMystify
+	end
+  
+	def pbAdditionalEffect(user,target)
+	  return if target.damageState.substitute
+	  return if !target.pbCanMystify?(user,false,self)
+	  target.pbMystify
+	end
+
+    def getScore(score,user,target,skill=100)
+        canMystify = target.pbCanMystify?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
+        if canMystify
+          score += 20
+        elsif statusMove?
+          score = 0
+        end
+        return score
+    end
+end
+
+#===============================================================================
 # Pseudomove for charm damage.
 #===============================================================================
 class PokeBattle_Charm < PokeBattle_Move
@@ -43,21 +105,34 @@ class PokeBattle_CharmMove < PokeBattle_Move
     return if !target.pbCanCharm?(user,false,self)
     target.pbCharm
   end
+
+  def getScore(score,user,target,skill=100)
+	canCharm = target.pbCanCharm?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
+	if canCharm
+	  score += 20
+	elsif statusMove?
+	  score = 0
+	end
+	return score
+  end
 end
 
 #===============================================================================
 # Charms the target.
 #===============================================================================
 class PokeBattle_Move_400 < PokeBattle_CharmMove
-	def getScore(score,user,target,skill=100)
-	  canCharm = target.pbCanCharm?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
-	  if canCharm
-		score += 20
-	  elsif statusMove?
-		score = 0
-	  end
-	  return score
-	end
+end
+
+#===============================================================================
+# Flusters the target.
+#===============================================================================
+class PokeBattle_Move_401 < PokeBattle_FlusterMove
+end
+
+#===============================================================================
+# Mystifies the target.
+#===============================================================================
+class PokeBattle_Move_402 < PokeBattle_MystifyMove
 end
 
 #===============================================================================

@@ -79,11 +79,12 @@ class PokeBattle_Battler
 			if showMessages
 				msg = ""
 				case self.status
-				when :SLEEP		 then msg = _INTL("{1} is already asleep!", pbThis)
+				when :SLEEP		 	then msg = _INTL("{1} is already asleep!", pbThis)
 				when :POISON		then msg = _INTL("{1} is already poisoned!", pbThis)
 				when :BURN			then msg = _INTL("{1} already has a burn!", pbThis)
-				when :PARALYSIS then msg = _INTL("{1} is already numbed!", pbThis)
+				when :PARALYSIS 	then msg = _INTL("{1} is already numbed!", pbThis)
 				when :FROZEN		then msg = _INTL("{1} is already chilled!", pbThis)
+				when :FLUSTERED		then msg = _INTL("{1} is already flustered!", pbThis)
 				end
 				@battle.pbDisplay(msg)
 			end
@@ -141,9 +142,13 @@ class PokeBattle_Battler
 		when :BURN
 			hasImmuneType |= pbHasType?(:FIRE)
 		when :PARALYSIS
-			hasImmuneType |= pbHasType?(:ELECTRIC) && Settings::MORE_TYPE_EFFECTS
+			hasImmuneType |= pbHasType?(:ELECTRIC)
 		when :FROZEN
 			hasImmuneType |= pbHasType?(:ICE)
+		when :FLUSTERED
+			hasImmuneType |= pbHasType?(:PSYCHIC)
+		when :MYSTIFIED
+			hasImmuneType |= pbHasType?(:BUG)
 		end
 		if hasImmuneType
 			@battle.pbDisplay(_INTL("It doesn't affect {1}...",pbThis(true))) if showMessages
@@ -172,11 +177,13 @@ class PokeBattle_Battler
 				msg = ""
 				if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
 					case newStatus
-					when :SLEEP		 then msg = _INTL("{1} stays awake!", pbThis)
+					when :SLEEP		 	then msg = _INTL("{1} stays awake!", pbThis)
 					when :POISON		then msg = _INTL("{1} cannot be poisoned!", pbThis)
 					when :BURN			then msg = _INTL("{1} cannot be burned!", pbThis)
-					when :PARALYSIS then msg = _INTL("{1} cannot be numbed!", pbThis)
+					when :PARALYSIS 	then msg = _INTL("{1} cannot be numbed!", pbThis)
 					when :FROZEN		then msg = _INTL("{1} cannot be chilled!", pbThis)
+					when :FLUSTERED		then msg = _INTL("{1} cannot be flustered!", pbThis)
+					when :MYSTIFIED		then msg = _INTL("{1} cannot be mystified!", pbThis)
 					end
 				elsif immAlly
 					case newStatus
@@ -195,14 +202,22 @@ class PokeBattle_Battler
 					when :FROZEN
 						msg = _INTL("{1} cannot be chilled because of {2}'s {3}!",
 							 pbThis,immAlly.pbThis(true),immAlly.abilityName)
+					when :FLUSTERED
+						msg = _INTL("{1} cannot be flustered because of {2}'s {3}!",
+								pbThis,immAlly.pbThis(true),immAlly.abilityName)
+					when :MYSTIFIED
+						msg = _INTL("{1} cannot be mystified because of {2}'s {3}!",
+								pbThis,immAlly.pbThis(true),immAlly.abilityName)
 					end
 				else
 					case newStatus
-					when :SLEEP		 then msg = _INTL("{1} stays awake because of its {2}!", pbThis, abilityName)
+					when :SLEEP		 	then msg = _INTL("{1} stays awake because of its {2}!", pbThis, abilityName)
 					when :POISON		then msg = _INTL("{1}'s {2} prevents poisoning!", pbThis, abilityName)
 					when :BURN			then msg = _INTL("{1}'s {2} prevents burns!", pbThis, abilityName)
-					when :PARALYSIS then msg = _INTL("{1}'s {2} prevents numbing!", pbThis, abilityName)
+					when :PARALYSIS 	then msg = _INTL("{1}'s {2} prevents numbing!", pbThis, abilityName)
 					when :FROZEN		then msg = _INTL("{1}'s {2} prevents chilling!", pbThis, abilityName)
+					when :FLUSTERED		then msg = _INTL("{1}'s {2} prevents being flustered!", pbThis, abilityName)
+					when :MYSTIFIED		then msg = _INTL("{1}'s {2} prevents being mystified!", pbThis, abilityName)
 					end
 				end
 				@battle.pbDisplay(msg)
@@ -245,6 +260,10 @@ class PokeBattle_Battler
 			hasImmuneType |= pbHasType?(:ELECTRIC) && Settings::MORE_TYPE_EFFECTS
 		when :FROZEN
 			hasImmuneType |= pbHasType?(:ICE)
+		when :FLUSTERED
+			hasImmuneType |= pbHasType?(:PSYCHIC)
+		when :MYSTIFIED
+			hasImmuneType |= pbHasType?(:BUG)
 		end
 		return false if hasImmuneType
 		# Ability immunity
@@ -312,6 +331,10 @@ class PokeBattle_Battler
 				@battle.pbDisplay(_INTL("{1} is numbed! It's slower and deals less damage!", pbThis))
 				when :FROZEN
 				@battle.pbDisplay(_INTL("{1} was chilled! It's slower and takes more damage!", pbThis))
+				when :FLUSTERED
+				@battle.pbDisplay(_INTL("{1} is flustered! It'll take recoil from it's own Sp. Atk!", pbThis))
+				when :MYSTIFIED
+				@battle.pbDisplay(_INTL("{1} is mystified! It'll take recoil from it's own Sp. Atk!", pbThis))
 				end
 			end
 		end
@@ -473,26 +496,24 @@ class PokeBattle_Battler
 	#=============================================================================
 	def pbContinueStatus(statusToContinue = nil)
 		getStatuses().each do |oneStatus|
-		next if !statusToContinue.nil? && oneStatus != statusToContinue
-		if oneStatus == :POISON && @statusCount > 0
-			@battle.pbCommonAnimation("Toxic", self)
-		else
-			anim_name = GameData::Status.get(oneStatus).animation
-			@battle.pbCommonAnimation(anim_name, self) if anim_name
+			next if !statusToContinue.nil? && oneStatus != statusToContinue
+			if oneStatus == :POISON && @statusCount > 0
+				@battle.pbCommonAnimation("Toxic", self)
+			else
+				anim_name = GameData::Status.get(oneStatus).animation
+				@battle.pbCommonAnimation(anim_name, self) if anim_name
+			end
+			yield if block_given?
+			case oneStatus
+			when :SLEEP
+				@battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis))
+			when :POISON
+				@battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
+			when :BURN
+				@battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis))
+			end
+			PBDebug.log("[Status continues] #{pbThis}'s sleep count is #{@statusCount}") if oneStatus == :SLEEP
 		end
-		yield if block_given?
-		case oneStatus
-		when :SLEEP
-			@battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis))
-		when :POISON
-			@battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
-		when :BURN
-			@battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis))
-		when :FROZEN
-			@battle.pbDisplay(_INTL("{1} is frozen solid!", pbThis))
-		end
-		PBDebug.log("[Status continues] #{pbThis}'s sleep count is #{@statusCount}") if oneStatus == :SLEEP
-	end
 	end
 
 	def pbCureStatus(showMessages=true,statusToCure=nil)
@@ -513,14 +534,16 @@ class PokeBattle_Battler
 			end
 		end
 		
-		oldStatuses.each do |oldStatus|
+			oldStatuses.each do |oldStatus|
 			if showMessages
 				case oldStatus
-				when :SLEEP		 then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
+				when :SLEEP		 	then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
 				when :POISON		then @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", pbThis))
 				when :BURN			then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
-				when :PARALYSIS then @battle.pbDisplay(_INTL("{1} is no longer numbed.", pbThis))
-				when :FROZEN		then @battle.pbDisplay(_INTL("{1} thawed out!", pbThis))
+				when :PARALYSIS 	then @battle.pbDisplay(_INTL("{1} is no longer numbed.", pbThis))
+				when :FROZEN		then @battle.pbDisplay(_INTL("{1} warmed up!", pbThis))
+				when :FLUSTERED		then @battle.pbDisplay(_INTL("{1} is no longer flustered!", pbThis))
+				when :MYSTIFIED		then @battle.pbDisplay(_INTL("{1} is no longer mystified!", pbThis))
 				end
 			end
 	
@@ -543,7 +566,8 @@ class PokeBattle_Battler
 
 	#=============================================================================
 	# Confusion
-	#=============================================================================
+	#=============================================================================	
+=begin
 	def pbCanConfuse?(user=nil,showMessages=true,move=nil,selfInflicted=false)
 		return false if fainted?
 		if @effects[PBEffects::Confusion]>0
@@ -600,12 +624,14 @@ class PokeBattle_Battler
 
 	def pbCureConfusion
 		@effects[PBEffects::Confusion] = 0
-	@effects[PBEffects::ConfusionChance] = 0
+		@effects[PBEffects::ConfusionChance] = 0
 	end
+=end
 	
 	#=============================================================================
 	# Charm
 	#=============================================================================
+=begin
 	def pbCanCharm?(user=nil,showMessages=true,move=nil,selfInflicted=false)
 		return false if fainted?
 		if @effects[PBEffects::Charm]>0
@@ -664,71 +690,7 @@ class PokeBattle_Battler
 		@effects[PBEffects::Charm] = 0
 		@effects[PBEffects::CharmChance] = 0
 	end
-
-	#=============================================================================
-	# Attraction
-	#=============================================================================
-	def pbCanAttract?(user,showMessages=true)
-		return false if fainted?
-		return false if !user || user.fainted?
-		if @effects[PBEffects::Attract]>=0
-			@battle.pbDisplay(_INTL("{1} is unaffected!",pbThis)) if showMessages
-			return false
-		end
-		agender = user.gender
-		ogender = gender
-		if agender==2 || ogender==2 || agender==ogender
-			@battle.pbDisplay(_INTL("{1} is unaffected!",pbThis)) if showMessages
-			return false
-		end
-		if !@battle.moldBreaker
-			if hasActiveAbility?([:AROMAVEIL,:OBLIVIOUS])
-				if showMessages
-					@battle.pbShowAbilitySplash(self)
-					if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-						@battle.pbDisplay(_INTL("{1} is unaffected!",pbThis))
-					else
-						@battle.pbDisplay(_INTL("{1}'s {2} prevents romance!",pbThis,abilityName))
-					end
-					@battle.pbHideAbilitySplash(self)
-				end
-				return false
-			else
-				eachAlly do |b|
-					next if !b.hasActiveAbility?(:AROMAVEIL)
-					if showMessages
-						@battle.pbShowAbilitySplash(self)
-						if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-							@battle.pbDisplay(_INTL("{1} is unaffected!",pbThis))
-						else
-							@battle.pbDisplay(_INTL("{1}'s {2} prevents romance!",b.pbThis,b.abilityName))
-						end
-						@battle.pbHideAbilitySplash(self)
-					end
-					return true
-				end
-			end
-		end
-		return true
-	end
-
-	def pbAttract(user,msg=nil)
-		@effects[PBEffects::Attract] = user.index
-		@battle.pbCommonAnimation("Attract",self)
-		msg = _INTL("{1} fell in love!",pbThis) if nil_or_empty?(msg)
-		@battle.pbDisplay(msg)
-		# Destiny Knot
-		if hasActiveItem?(:DESTINYKNOT) && user.pbCanAttract?(self,false)
-			user.pbAttract(self,_INTL("{1} fell in love from the {2}!",user.pbThis(true),itemName))
-		end
-		# Attraction cures
-		pbItemStatusCureCheck
-		pbAbilityStatusCureCheck
-	end
-
-	def pbCureAttract
-		@effects[PBEffects::Attract] = -1
-	end
+=end
 
 	#=============================================================================
 	# Flinching
@@ -738,7 +700,39 @@ class PokeBattle_Battler
 		@effects[PBEffects::Flinch] = true
 	end
 	
+	#=============================================================================
+	# Frozen
+	#=============================================================================
 	def pbCanFrozenSynchronize?(target)
 		return pbCanSynchronizeStatus?(:FROZEN, target)
+	end
+
+	#=============================================================================
+	# Flustered
+	#=============================================================================
+	def poisoned?
+		return pbHasStatus?(:FLUSTERED)
+	end
+
+	def pbCanFluster?(user=nil,showMessages=true,move=nil)
+		return pbCanInflictStatus?(:FLUSTERED, user, showMessages, move)
+	end
+
+	def pbFluster(user=nil,msg=nil)
+		pbInflictStatus(:FLUSTERED,0,msg,user)
+	end
+	#=============================================================================
+	# Mystified
+	#=============================================================================
+	def mystified?
+		return pbHasStatus?(:MYSTIFY)
+	end
+
+	def pbCanMystify?(user=nil,showMessages=true,move=nil)
+		return pbCanInflictStatus?(:MYSTIFY, user, showMessages, move)
+	end
+
+	def pbMystify(user=nil,msg=nil)
+		pbInflictStatus(:MYSTIFY,0,msg,user)
 	end
 end
