@@ -3,7 +3,7 @@ MAIN_HASH = {
     "Moves"             => "What are moves and what are the differences between them?",
     "Type Matchups"     => "When and how are types better or worse against one another?",
     "Aquiring Pokémon"  => "How do I get more Pokémon?",
-    "Stats"             => "What are stats, and how do they effect battles?",
+    "Stats"             => "What are stats, and how do they affect battles?",
     "Abilities"         => "How do abilities work?",
     "Held Items"        => "What are held items and how to use them?",
     "Status Conditions" => "What are the Conditions a Pokémon can be afflicted with?",
@@ -15,10 +15,10 @@ MAIN_HASH = {
 BASICS_HASH = {
     "Winning Battles" => "You win a battle when all enemy Pokémon faint: reach 0 health points. You lose a battle if that happens to your Pokémon.",
     "Basic Strategy" => "1. Have as many Pokémon as you can. 2. Level up your Pokémon as much as you can. 3. Abuse type matchups. 4. Start battles with healthy Pokémon.",
-    "Team Size" => "You can have a maximum of 6 Pokémon with you at any time. This is known as your \"team\". You can store extra Pokémon using the PC in any PokeCenter.",
+    "Team Size" => "You can have a maximum of 6 Pokémon with you at any time. This is known as your \"team\". You can store extra Pokémon using the PC in any PokéCenter.",
     "Levels" => "Each Pokémon has a level from 1 to 70. A Pokémon's level determines its stats as well as what moves it could learn. Reaching high enough levels also unlocks Evolution.",
     "Type Matchups" => "Types are strong or weak against other types. Having a variety of different types on your team helps you take advantage of these relationships.",
-    "Healing your Pokémon" => "Heal your Pokémon at PokeCenters between battles. You can often use the Aid Kit instead to save on traveling time.",
+    "Healing your Pokémon" => "Heal your Pokémon at PokéCenters between battles. You can often use the Aid Kit instead to save on traveling time.",
     "Who goes first?" => "In battle, the Pokémon with the higher speed stat gets to use their move first. Some moves modify this. Speed ties are decided randomly.",
 }
 
@@ -30,10 +30,10 @@ MOVE_HASH = {
     "Targeting" => "Most moves target only a single Pokémon, but many can target multiple Pokémon at once. Some moves differ in how far they can target in the bigger battle styles (doubles, triples).",
     "Move Types" => "Every move has a type. Attacking moves deal different amounts of damage to different Pokémon based on those Pokémon's types. This is called \"type effectiveness\".",
     "Same-Type Bonus" => "Pokémon deal 50% more damage with moves the share a type with them. For example, a Raichu deals 50% more damage with an Electric move than a Normal move.",
-    "Learning Moves" => "Pokémon learn new moves as they level up. They can also learn moves from the \"Move Tutors\" who sit in the left side of every PokeCenter.",
+    "Learning Moves" => "Pokémon learn new moves as they level up. They can also learn moves from the \"Move Tutors\" who sit in the left side of every PokéCenter.",
     "Base Power" => "Moves with higher Base Power deal more damage. Some moves deal variable Base Power depending on the situation. Status moves have no base power.",
     "Accuracy" => "Accuracy is a move's chance of hitting. Most moves have 100% accuracy. Some effects can raise accuracy to let you use low-accuracy moves consistently.",
-    "Power Points" => "Power Points, or PP, is a number which limits how many times a move can be used. Healing at a PokeCenter or with the Aid Kit restores PP.",
+    "Power Points" => "Power Points, or PP, is a number which limits how many times a move can be used. Healing at a PokéCenter or with the Aid Kit restores PP.",
 }
 
 TYPE_MATCHUPS_HASH = {
@@ -48,12 +48,12 @@ TYPE_MATCHUPS_HASH = {
     "Looking Up Matchups" => "The 5th and 6th pages of a PokéDex entry show that Pokémon's type matchups. Open the PokéDex in battle to check matchups if you're not sure.",
 }
 
-AQUIRING_Pokémon_HASH = {
+AQUIRING_POKEMON_HASH = {
     "Why Get More?" => "Having choices of Pokémon is important when facing challenges. A team of six is a bare minimum--it's best to catch more and pull them from the PC as needed.",
     "Methods of Aquiring" => "The two main methods of aquiring Pokémon are catching them from the wild, and receiving them from other Trainers through gifts or trades.",
-    "Catching Basics" => "Wild Pokémon will attack you if you walk through patches of grass, dark ground in caves, or other wild terrain. You can catch these Pokémon by throwing Poke Balls at them.",
+    "Catching Basics" => "Wild Pokémon will attack you if you walk through patches of grass, dark ground in caves, or other wild terrain. You can catch these Pokémon by throwing Poké Balls at them.",
     "Increase Catch Chance pt. 1" => "Catching a Pokémon isn't guarenteed. It's easier to catch Pokémon when their health has been lowered by your attacks, or when they have a status ailment.",
-    "Increase Catch Chance pt. 2" => "Every time a Pokémon breaks out of a ball, it'll be slightly easier to catch for the rest of the battle. You can check what your current catch chance is in the Poke Ball menu.",
+    "Increase Catch Chance pt. 2" => "Every time a Pokémon breaks out of a ball, it'll be slightly easier to catch for the rest of the battle. You can check what your current catch chance is in the Poké Ball menu.",
     "Finding Wild Pokémon" => "Use the DexNav to get information on which Pokémon are available where you are. You can also use it to find more Pokémon of a species that you've already caught one of.",
     "Trades" => "Throughout the world there will be people offering trades for Pokémon. Usually they want a different Pokémon, but sometimes they want money.",
 }
@@ -94,12 +94,12 @@ HELD_ITEMS_HASH = {
 
 STATUS_CONDITIONS_HASH = {
     "What are Status Conditions?" => "Status Conditions are ailments a Pokémon can have which hurt or restrict them. They remain after swapping out, and even between battles.",
-    "Healing Status Conditions" => "Status Conditions are removed when you heal at the PokeCenter or when you use the Aid Kit.",
-    "Status Immunity" => "Type immunities do not prevent status moves of that type. However, some types have special inherent immunities to certain status ailment.",
-    "Burn" => "When burned, a Pokémon deals 33% less physical damage, and loses 1/8th of its health points every turn. Fire- and Ghost-types do the most burning. Fire-types can't be burned.",
-    "Poison" => "When poisoned, a Pokémon deals 33 less special damage, and loses 1/8th of its health points every turn. Poison- and Grass-types do the most poisoning. Poison- and Steel types can't be poisoned.",
+    "Healing Status Conditions" => "Status Conditions are removed when you heal at the PokéCenter or when you use the Aid Kit.",
+    "Status Immunity" => "Type immunities do not prevent status moves. However, some types give immunities to certain status conditions. Don't confuse these two!",
+    "Burn" => "When burned, a Pokémon deals 33% less physical damage, and loses 1/8th of its HP points every turn. Fire- and Ghost-types do the most burning. Fire is immune..",
+    "Poison" => "When poisoned, a Pokémon deals 33% less special damage, and loses 1/8th of its HP every turn. Poison- and Grass-types do the most poisoning. Poison/Steel are immune.",
     "Numb" => "When numbed, a Pokémon's speed is halved, and it deals 25% less damage. Electric- and Fighting-types do the most numbing. Electric-types can't be numbed.",
-    "Chill" => "When chilled, a Pokémon's speed is halved, and it deals 25% less damage. Ice- and Flying-types do the most chilling. Ice types can't be chilled.",
+    "Chill" => "When chilled, a Pokémon's speed is halved, and it takes 33% more damage. Ice- and Flying-types do the most chilling. Ice types can't be chilled.",
     "Sleep" => "A rarer status that causes a Pokémon to be unable to do anything for 3 turns. Psychic- and Grass-types put Pokémon to sleep the most often.",
 }
 
@@ -107,7 +107,7 @@ TRAINERS_HASH = {
     "What are Enemy Trainers?" => "Enemy Trainers are the Pokémon Trainers you will battle throughout the game. Some block your path forwards (like Gym Leaders), others are optional.",
     "Detecting Trainers" => "Trainers are people who have a companion Pokémon next to them. If a person doesn't have that, they either aren't a Trainer, or are an inactive one.",
     "Avoiding Trainers" => "Trainers will challenge you if they see you within 4 tiles of them. Avoid them by going out of that distance, sneaking around them, or waiting until they move.",
-    "Trainer Inactivity" => "When you defeat a Trainer, they will become inactive until the next time you heal at a PokeCenter. This is indicated by them returning their companion Pokémon to its Poke Ball.",
+    "Trainer Inactivity" => "When you defeat a Trainer, they will become inactive until the next time you heal at a PokéCenter. This is indicated by them returning their companion Pokémon to its Poké Ball.",
     "Perfecting Fights" => "If you defeat a Trainer without any of your Pokémon fainting, you've \"perfected\" the fight. They will leave forever and drop experience candy as a reward.",
     "Enemy Teams" => "Enemy Trainers have their own teams of Pokémon with their own moves and held items. Its important to pay attention to these possibilities to win battles.",
     "Differences" => "The typical trainer has 3 Pokémon, but Gym Leaders will have more. Trainers with more Pokémon also have more move variety and more items on their Pokémon.",
@@ -119,9 +119,9 @@ AVATARS_HASH = {
     "What are Avatars?" => "Avatars are powerful enemy Pokémon with unique properties that you will fight and destroy during your adventure. They cannot be caught.",
     "Avatars are Healthy" => "Avatars have two health bars, which means they have a lot of health. Usually more than double the normal amount!",
     "Multi-Attack" => "Avatars can attack multiple times each turn. Usually they attack twice, but some can attack three or even more times.",
-    "Two Statuses" => "Avatars are large, and have room for up to two status Conditions at a time. E.g. They could be Burned and Poisoned at the same time.",
+    "Two Statuses" => "Avatars are large, and have room for up to two status Conditions at a time. However, they are affected less than normal Pokémon.",
     "HP-Based Effects" => "Effects that damage based on a fraction of total HP are only one-fourth as powerful against avatars, compared to normal Pokémon.",
-    "Stat-Modifying" => "Avatars are only half as effected by in-battle stat stage changes. For example, their attack is only given a 25% increase from a +1 boost.",
+    "Stat-Modifying" => "Avatars are only half as affected by in-battle stat stage changes. For example, their attack is only given a 25% increase from a +1 boost.",
     "Primeval Moves" => "When about half damaged, most avatars will use their one Primeval Move! Primeval Moves are powered up versions of other moves, which also change the Avatars type.",
     "Attack Choice" => "Avatars usually only have a few moves to choose from. They usually alternate between their moves on successive attacks.",
     "Target Choice" => "Avatars usually attack your healthiest Pokémon. However, they avoid attacking Pokémon that they've noticed are invulnerable by moves like Protect.",
@@ -129,7 +129,7 @@ AVATARS_HASH = {
     "Legendary Avatars" => "Legendary Avatars are unique. You fight them with 3 Pokémon, they have 3 HP bars, and they have more moves with more smarts about how to use them.",
 }
 
-PokéDex_HASH = {
+POKEDEX_HASH = {
     "What is the PokéDex?" => "The PokéDex is an advanced encyclopedia about the 900+ Pokémon available in this game.",
     "Single PokéDex" => "Access the PokéDex entry of a single Pokémon when looking at a Pokémon in the summary or the PC, or by using the Dex button in battles.",
     "Full Pokdex" => "Access the full PokéDex from your pause menu, or by pressing D when using the Dex button in battles (while its waiting for you to select a battler).",
@@ -138,5 +138,5 @@ PokéDex_HASH = {
     "Storing Searches" => "When you press the cancel button while looking at a search, it will ask you if you'd like to cancel the search, or store it for the next time you open the PokéDex.",
     "Quick Navigation" => "Press A to go up a page at a time, or S to go down a page. Use the number keys (1-9) to quickly go to one of the tab's of a Pokémon's PokéDex entry.",
     "Move Details" => "Press the Use key (defaults to C) on the level up learnset or tutor moves tabs to begin scrolling the lists, and viewing details about individual moves.",
-    "Checking Evolutions" => "Press the Use key (defaults to C) on the evolutions tab to choose a Pokemon in the same evolutionary tree, and to warp to that Pokemon's PokéDex entry.",
+    "Checking Evolutions" => "Press the Use key (defaults to C) on the evolutions tab to choose a Pokémon in the same evolutionary tree, and to warp to that Pokémon's PokéDex entry.",
 }

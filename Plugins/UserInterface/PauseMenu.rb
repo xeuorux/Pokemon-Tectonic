@@ -70,8 +70,8 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 						pbListScreenExtra(_INTL("Moves"), BattleGuideLister.new(MOVE_HASH), false)
 					when "Type Matchups"
 						pbListScreenExtra(_INTL("Type Matchups"), BattleGuideLister.new(TYPE_MATCHUPS_HASH), false)
-					when "Aquiring Pokemon"
-						pbListScreenExtra(_INTL("Aquiring Pokemon"), GlossaryEntryList.new(AQUIRING_POKEMON_HASH), false)
+					when "Aquiring Pokémon"
+						pbListScreenExtra(_INTL("Aquiring Pokémon"), BattleGuideLister.new(AQUIRING_POKEMON_HASH), false)
 					when "Stats"
 						pbListScreenExtra(_INTL("Stats"), BattleGuideLister.new(STATS_HASH), false)
 					when "Abilities"
@@ -84,8 +84,8 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 						pbListScreenExtra(_INTL("Trainers"), BattleGuideLister.new(TRAINERS_HASH), false)
 					when "Avatars"
 						pbListScreenExtra(_INTL("Avatars"), BattleGuideLister.new(AVATARS_HASH), false)
-					when "PokeDex"
-						pbListScreenExtra(_INTL("PokeDex"), BattleGuideLister.new(POKEDEX_HASH), false)
+					when "PokéDex"
+						pbListScreenExtra(_INTL("PokéDex"), BattleGuideLister.new(POKEDEX_HASH), false)
 					else
 						break
 					end
