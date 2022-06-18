@@ -241,7 +241,7 @@
 316,LEADER_Victoire_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,,[]
 350,FORMERCHAMP_Casey,Former Champion,100,Battle champion iris,Battle victory champion,,Male,,,[]
 351,FORMERCHAMP_Scilla,Former Champion,100,Battle champion iris,Battle victory champion,,Female,,,[]
-352,FORMERCHAMP_Chara,Former Champion,Battle champion iris,Battle victory champion,,Female,,,[]
+352,FORMERCHAMP_Chara,Former Champion,100,Battle champion iris,Battle victory champion,,Female,,,[]
 400,DEVJUGGLER,Developer,80,,,,Male,,,[]
 401,DEVCOOLTRAINER_M4,Developer,80,,,,Male,,,[]
 402,DEVPSYCHIC_M,Developer,80,,,,Male,,,[]
