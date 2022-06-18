@@ -24,6 +24,10 @@ class MainQuestTracker
 		echoln("Changing the current Main Quest stage from #{oldStage} to #{newStage}")
 	end
 
+	def getCurrentStage()
+		return @mainQuestState
+	end
+
 	def getCurrentStageName()
 		return MainQuestTracker.getNiceNameForStageSymbol(@mainQuestState)
 	end
@@ -46,7 +50,7 @@ def getMQStage()
 end
 
 def progressMQStage(initialStage,nextStage)
-	if $main_quest_tracker.getCurrentStageName() == initialStage
+	if $main_quest_tracker.getCurrentStage() == initialStage
 		$main_quest_tracker.setMainQuestStage(nextStage)
 	end
 end
