@@ -2001,3 +2001,23 @@ class PokeBattle_Move_55A < PokeBattle_StatDownMove
 	  @statDown = [:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1]
 	end
 end
+
+
+#===============================================================================
+# Heals user to 100%. Only usable on first turn. (Fresh Start)
+#===============================================================================
+
+class PokeBattle_Move_55B < PokeBattle_HealingMove
+  def pbHealAmount(user)
+    return user.totalhp
+  end
+  
+  def pbMoveFailed?(user,targets)
+	if user.turncount > 1
+		@battle.pbDisplay(_INTL("But it failed!"))
+		return true
+	end
+	return super
+end
+
+end
