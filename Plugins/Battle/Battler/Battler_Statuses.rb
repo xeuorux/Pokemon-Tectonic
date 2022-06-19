@@ -131,27 +131,52 @@ class PokeBattle_Battler
 		end
 		# Type immunities
 		hasImmuneType = false
+		immuneType = nil
 		case newStatus
 		when :SLEEP
-			# No type is immune to sleep
+			if pbHasType?(:GRASS) && !selfInflicted
+				hasImmuneType = true
+				immuneType = :FAIRY
+			end
 		when :POISON
 			if !(user && user.hasActiveAbility?(:CORROSION))
-				hasImmuneType |= pbHasType?(:POISON)
-				hasImmuneType |= pbHasType?(:STEEL)
+				if pbHasType?(:POISON)
+					hasImmuneType = true
+					immuneType = :POISON
+				end
+				if pbHasType?(:STEEL)
+					hasImmuneType = true
+					immuneType = :STEEL
+				end
 			end
 		when :BURN
-			hasImmuneType |= pbHasType?(:FIRE)
+			if pbHasType?(:FIRE)
+				hasImmuneType = true
+				immuneType = :FAIRY
+			end
 		when :PARALYSIS
-			hasImmuneType |= pbHasType?(:ELECTRIC)
+			if pbHasType?(:ELECTRIC)
+				hasImmuneType = true
+				immuneType = :FAIRY
+			end
 		when :FROZEN
-			hasImmuneType |= pbHasType?(:ICE)
+			if pbHasType?(:ICE)
+				hasImmuneType = true
+				immuneType = :ICE
+			end
 		when :FLUSTERED
-			hasImmuneType |= pbHasType?(:PSYCHIC)
+			if pbHasType?(:PSYCHIC)
+				hasImmuneType = true
+				immuneType = :PSYCHIC
+			end
 		when :MYSTIFIED
-			hasImmuneType |= pbHasType?(:BUG)
+			if pbHasType?(:FAIRY)
+				hasImmuneType = true
+				immuneType = :FAIRY
+			end
 		end
 		if hasImmuneType
-			@battle.pbDisplay(_INTL("It doesn't affect {1}...",pbThis(true))) if showMessages
+			@battle.pbDisplay(_INTL("It doesn't affect {1} since it's an {2}-type...",pbThis(true),immuneType)) if showMessages
 			return false
 		end
 		# Ability immunity
@@ -260,10 +285,12 @@ class PokeBattle_Battler
 			hasImmuneType |= pbHasType?(:ELECTRIC) && Settings::MORE_TYPE_EFFECTS
 		when :FROZEN
 			hasImmuneType |= pbHasType?(:ICE)
+		when :SLEEP
+			hasImmuneType |= pbHasType?(:GRASS)
 		when :FLUSTERED
 			hasImmuneType |= pbHasType?(:PSYCHIC)
 		when :MYSTIFIED
-			hasImmuneType |= pbHasType?(:BUG)
+			hasImmuneType |= pbHasType?(:FAIRY)
 		end
 		return false if hasImmuneType
 		# Ability immunity
@@ -332,7 +359,7 @@ class PokeBattle_Battler
 				when :FROZEN
 				@battle.pbDisplay(_INTL("{1} was chilled! It's slower and takes more damage!", pbThis))
 				when :FLUSTERED
-				@battle.pbDisplay(_INTL("{1} is flustered! It'll take recoil from it's own Sp. Atk!", pbThis))
+				@battle.pbDisplay(_INTL("{1} is flustered! It'll take recoil from it's own Atk!", pbThis))
 				when :MYSTIFIED
 				@battle.pbDisplay(_INTL("{1} is mystified! It'll take recoil from it's own Sp. Atk!", pbThis))
 				end
@@ -710,7 +737,7 @@ class PokeBattle_Battler
 	#=============================================================================
 	# Flustered
 	#=============================================================================
-	def poisoned?
+	def flustered?
 		return pbHasStatus?(:FLUSTERED)
 	end
 

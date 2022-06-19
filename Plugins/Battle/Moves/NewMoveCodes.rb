@@ -1,4 +1,33 @@
 #===============================================================================
+# Pseudomove for charm damage.
+#===============================================================================
+class PokeBattle_Charm < PokeBattle_Move
+	def initialize(battle,move,basePower=50)
+	  @battle     = battle
+	  @realMove   = move
+	  @id         = 0
+	  @name       = ""
+	  @function   = "000"
+	  @baseDamage = basePower
+	  @type       = nil
+	  @category   = 1
+	  @accuracy   = 100
+	  @pp         = -1 
+	  @target     = 0
+	  @priority   = 0
+	  @flags      = ""
+	  @addlEffect = 0
+	  @calcType   = nil
+	  @powerBoost = false
+	  @snatched   = false
+	end
+  
+	def physicalMove?(thisType=nil);    return false;  end
+	def specialMove?(thisType=nil);     return true; end
+	def pbCritialOverride(user,target); return -1;    end
+  end
+
+#===============================================================================
 # Flusters the target.
 #===============================================================================
 class PokeBattle_FlusterMove < PokeBattle_Move
@@ -58,35 +87,6 @@ class PokeBattle_MystifyMove < PokeBattle_Move
         end
         return score
     end
-end
-
-#===============================================================================
-# Pseudomove for charm damage.
-#===============================================================================
-class PokeBattle_Charm < PokeBattle_Move
-  def initialize(battle,move)
-    @battle     = battle
-    @realMove   = move
-    @id         = 0
-    @name       = ""
-    @function   = "000"
-    @baseDamage = 50
-    @type       = nil
-    @category   = 1
-    @accuracy   = 100
-    @pp         = -1 
-    @target     = 0
-    @priority   = 0
-    @flags      = ""
-    @addlEffect = 0
-    @calcType   = nil
-    @powerBoost = false
-    @snatched   = false
-  end
-
-  def physicalMove?(thisType=nil);    return false;  end
-  def specialMove?(thisType=nil);     return true; end
-  def pbCritialOverride(user,target); return -1;    end
 end
 
 class PokeBattle_CharmMove < PokeBattle_Move

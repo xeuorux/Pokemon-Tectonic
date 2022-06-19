@@ -126,7 +126,7 @@ class PokeBattle_Battler
   # to have been used (even if it then fails for whatever reason).
   #=============================================================================
   def pbTryUseMove(choice,move,specialUsage,skipAccuracyCheck)
-	return true if move.isEmpowered?
+	  return true if move.isEmpowered?
     # Check whether it's possible for self to use the given move
     # NOTE: Encore has already changed the move being used, no need to have a
     #       check for it here.
@@ -202,12 +202,9 @@ class PokeBattle_Battler
         threshold = 50 + 50 * @effects[PBEffects::ConfusionChance]
         if (@battle.pbRandom(100)<threshold && !hasActiveAbility?([:HEADACHE,:TANGLEDFEET])) || ($DEBUG && Input.press?(Input::CTRL))
           @effects[PBEffects::ConfusionChance] = 0
-		  superEff = false
-		  @battle.eachOtherSideBattler(@index) do |b| # Brain Scramble
-			superEff = true if b.hasActiveAbility?(:BRAINSCRAMBLE)
-		  end
+          superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE,@index)
           pbConfusionDamage(_INTL("It hurt itself in its confusion!"),false,superEff)
-		  @effects[PBEffects::ConfusionChance] = -999
+		      @effects[PBEffects::ConfusionChance] = -999
           @lastMoveFailed = true
           return false
         else
@@ -227,12 +224,9 @@ class PokeBattle_Battler
         threshold = 50 + 50 * @effects[PBEffects::CharmChance]
         if (@battle.pbRandom(100)<threshold && !hasActiveAbility?([:HEADACHE,:TANGLEDFEET])) || ($DEBUG && Input.press?(Input::CTRL))
           @effects[PBEffects::CharmChance] = 0
-		  superEff = false
-		  @battle.eachOtherSideBattler(@index) do |b| # Brain Scramble
-			superEff = true if b.hasActiveAbility?(:BRAINSCRAMBLE)
-		  end
+          superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE,@index)
           pbConfusionDamage(_INTL("It's energy went wild due to the charm!"),true,superEff)
-		  @effects[PBEffects::CharmChance] = -999
+		      @effects[PBEffects::CharmChance] = -999
           @lastMoveFailed = true
           return false
         else

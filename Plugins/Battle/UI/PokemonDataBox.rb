@@ -163,10 +163,9 @@ class PokemonDataBox < SpriteWrapper
 		firstStatusY = 36
 		# Draw status icon
 		statuses = @battler.getStatuses()
+		s = 0
 		if statuses[0] != :NONE
-			s = GameData::Status.get(statuses[0]).id_number
-		else
-			s = 6
+			s = GameData::Status.get(statuses[0]).id_number + 1
 		end
 		statusWidth = @halvedStatus ? 22 : -1
 		imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+24,firstStatusY,

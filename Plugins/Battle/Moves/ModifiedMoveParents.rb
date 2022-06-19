@@ -27,13 +27,13 @@ end
 # Pseudomove for confusion damage.
 #===============================================================================
 class PokeBattle_Confusion < PokeBattle_Move
-  def initialize(battle,move)
+  def initialize(battle,move,basePower=50)
     @battle     = battle
     @realMove   = move
     @id         = 0
     @name       = ""
     @function   = "000"
-    @baseDamage = 50
+    @baseDamage = basePower
     @type       = nil
     @category   = 0
     @accuracy   = 100
