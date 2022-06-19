@@ -2021,3 +2021,17 @@ class PokeBattle_Move_55B < PokeBattle_HealingMove
 end
 
 end
+
+
+
+#===============================================================================
+# Two turn attack. Attacks first turn, skips second turn (if successful).
+#===============================================================================
+class PokeBattle_Move_55C < PokeBattle_Move
+  def pbEffectAfterAllHits(user,target)
+    if !target.damageState.fainted
+		user.effects[PBEffects::HyperBeam] = 2
+	end
+    user.currentMove = @id #ONLY PUT HERE BECAUSE IT WAS IN ORIGINAL HYPER BEAM CODE, PLEASE TEST
+  end
+end

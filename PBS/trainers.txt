@@ -14,6 +14,14 @@ Pokemon = SALANDIT,50
     Moves = TOXICSPIKES,FLAMESPIKES
     AbilityIndex = 0
 #-------------------------------
+[HIKER,Conroy]
+Pokemon = MACHOP,10
+    AbilityIndex = 0
+Pokemon = MACHOP,10
+    AbilityIndex = 0
+Pokemon = MACHOP,10
+    AbilityIndex = 0
+#-------------------------------
 [BUGCATCHER,Colin]
 Policies = REMARKONSTARTER
 Pokemon = KRICKETOT,8
