@@ -158,6 +158,11 @@ class PokemonTilesetScene
       selectionAWidth = selectedA2[0] - selectedA1[0] + 1
       selectionAHeight = selectedA2[1] - selectedA1[1] + 1
 
+      if selectionAWidth <= 0 || selectionAHeight <= 0
+        pbMessage(_INTL("Do not make selections with a negative height or width."))
+        return
+      end
+
       # Select the opposite corners of the second selection area
       selectedB1 = nil
       selectedB2 = nil
