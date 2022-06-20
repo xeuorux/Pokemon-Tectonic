@@ -52,6 +52,8 @@ Alucus<s>The English Kiwi
 calisprojects.com<s>PandaInDaGame 
 Hek-el-grande<s>Kaliser
 SailorVicious<s>Agentbla
+Shiney570<s>dirtywiggles
+Ekat
 
 
 Charsets
