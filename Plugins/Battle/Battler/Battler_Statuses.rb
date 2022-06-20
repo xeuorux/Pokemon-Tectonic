@@ -531,13 +531,19 @@ class PokeBattle_Battler
 				@battle.pbCommonAnimation(anim_name, self) if anim_name
 			end
 			yield if block_given?
-			case oneStatus
-			when :SLEEP
-				@battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis))
-			when :POISON
-				@battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
-			when :BURN
-				@battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis))
+			if !defined?($PokemonSystem.effectiveness_messages) || $PokemonSystem.effectiveness_messages == 0
+				case oneStatus
+				when :SLEEP
+					@battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis))
+				when :POISON
+					@battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
+				when :BURN
+					@battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis))
+				when :FLUSTERED
+					@battle.pbDisplay(_INTL("{1} was flustered, and attacked itself!", pbThis))
+				when :MYSTIFIED
+					@battle.pbDisplay(_INTL("{1} was mystified, and attacked itself!", pbThis))
+				end
 			end
 			PBDebug.log("[Status continues] #{pbThis}'s sleep count is #{@statusCount}") if oneStatus == :SLEEP
 		end
@@ -752,14 +758,14 @@ class PokeBattle_Battler
 	# Mystified
 	#=============================================================================
 	def mystified?
-		return pbHasStatus?(:MYSTIFY)
+		return pbHasStatus?(:MYSTIFIED)
 	end
 
 	def pbCanMystify?(user=nil,showMessages=true,move=nil)
-		return pbCanInflictStatus?(:MYSTIFY, user, showMessages, move)
+		return pbCanInflictStatus?(:MYSTIFIED, user, showMessages, move)
 	end
 
 	def pbMystify(user=nil,msg=nil)
-		pbInflictStatus(:MYSTIFY,0,msg,user)
+		pbInflictStatus(:MYSTIFIED,0,msg,user)
 	end
 end

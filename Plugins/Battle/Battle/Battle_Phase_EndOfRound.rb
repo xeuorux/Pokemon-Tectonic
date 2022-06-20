@@ -363,10 +363,10 @@ class PokeBattle_Battle
         b.pbContinueStatus(:POISON) { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
-		if b.fainted?
-			b.pbFaint 
-			triggerDOTDeathDialogue(b)
-		end
+        if b.fainted?
+          b.pbFaint 
+          triggerDOTDeathDialogue(b)
+        end
       end
     end
     # Damage from burn

@@ -36,7 +36,7 @@ class PokeBattle_Battler
     confusionMove.pbReduceDamage(self,self)
     self.hp -= @damageState.hpLost
     confusionMove.pbAnimateHitAndHPLost(self,[self])
-    @battle.pbDisplay(msg)   # "It hurt itself in its confusion!"
+    @battle.pbDisplay(msg) if !msg.nil?   # "It hurt itself in its confusion!"
 	  @battle.pbDisplay("It was super-effective!") if superEff
     confusionMove.pbRecordDamageLost(self,self)
     confusionMove.pbEndureKOMessage(self)

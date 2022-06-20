@@ -77,12 +77,10 @@ class PokeBattle_Battler
     if move.damagingMove?
       superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE,@index)
       if user.flustered?
-        @battle.pbCommonAnimation("Confusion", user)
-        pbConfusionDamage(_INTL("It was flustered, and also attacked itself!"),false,superEff,30)
+        pbContinueStatus(:FLUSTERED) { pbConfusionDamage(nil,false,superEff,30) }
       end
       if user.mystified?
-        @battle.pbCommonAnimation("Attract", user)
-        pbConfusionDamage(_INTL("It was mystified, and also attacked itself!"),true,superEff,30)
+        pbContinueStatus(:MYSTIFIED) { pbConfusionDamage(nil,true,superEff,30) }
       end
     end
     # Destiny Bond
