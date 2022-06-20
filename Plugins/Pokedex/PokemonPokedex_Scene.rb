@@ -173,22 +173,8 @@ class PokemonPokedex_Scene
 		zBase = Color.new(248,248,248)
 		zShadow = Color.new(0,0,0)
 		iconspecies = @sprites["pokedex"].species
-		iconspecies = nil if isLegendary(iconspecies) && !$Trainer.seen?(iconspecies)
-		# Write various bits of text
-
-		#@sprites["cursor_list"].setBitmap("Graphics/Pictures/Pokedex/cursor_list")
-		#zOverlay = @sprites["z_header"].bitmap
-		#zTextpos = [[_INTL("Z/SHIFT to search."),20,2,0,zBase,shadow]]
-		#pbDrawTextPositions(zOverlay,zTextpos)
+		iconspecies = nil if isLegendary(iconspecies) && !$Trainer.seen?(iconspecies) && !$DEBUG
 		dexname = _INTL("Pokédex")
-=begin
-		if $Trainer.pokedex.dexes_count > 1
-		  thisdex = Settings.pokedex_names[pbGetSavePositionIndex]
-		  if thisdex!=nil
-			dexname = (thisdex.is_a?(Array)) ? thisdex[0] : thisdex
-		  end
-		end
-=end
 		textpos = [
 		   [dexname,Graphics.width/10,-2,2,Color.new(248,248,248),Color.new(0,0,0)]
 		]
@@ -342,7 +328,7 @@ class PokemonPokedex_Scene
             break
           end
         elsif Input.trigger?(Input::USE)
-          if $Trainer.pokedex.seen?(@sprites["pokedex"].species) || !isLegendary(@sprites["pokedex"].species) || (Input.trigger?(Input::CTRL) && $DEBUG)
+          if $Trainer.pokedex.seen?(@sprites["pokedex"].species) || !isLegendary(@sprites["pokedex"].species) || $DEBUG
             pbPlayDecisionSE
             pbDexEntry(@sprites["pokedex"].index)
           end
@@ -1186,7 +1172,7 @@ class PokemonPokedex_Scene
 		dexlist = searchStartingList()
 		
 		dexlist = dexlist.find_all { |dex_item|
-				next false if isLegendary(dex_item[0]) && !$Trainer.seen?(dex_item[0]) && !$DEBUG
+				next false if autoDisqualifyFromSearch(dex_item[0])
 				
 				fSpecies = GameData::Species.get(dex_item[0])
 				
@@ -1204,22 +1190,22 @@ class PokemonPokedex_Scene
 		wildItemNameTextInput = wildItemNameTextInput[1..-1] if reversed
 		
 		dexlist = dexlist.find_all { |dex_item|
-				next false if isLegendary(dex_item[0]) && !$Trainer.seen?(dex_item[0]) && !$DEBUG
-				
-				fSpecies = GameData::Species.get(dex_item[0])
-				items = []
-				items.push(fSpecies.wild_item_common) if fSpecies.wild_item_common
-				items.push(fSpecies.wild_item_uncommon) if fSpecies.wild_item_uncommon
-				items.push(fSpecies.wild_item_rare) if fSpecies.wild_item_rare
-				items.uniq!
-				items.compact!
-				
-				itemNames = []
-				items.each_with_index do |item,index|
-					itemNames.push(GameData::Item.get(item).real_name.downcase)
-				end
-				
-				next itemNames.include?(wildItemNameTextInput.downcase) ^ reversed # Boolean XOR
+			next false if autoDisqualifyFromSearch(dex_item[0])
+			
+			fSpecies = GameData::Species.get(dex_item[0])
+			items = []
+			items.push(fSpecies.wild_item_common) if fSpecies.wild_item_common
+			items.push(fSpecies.wild_item_uncommon) if fSpecies.wild_item_uncommon
+			items.push(fSpecies.wild_item_rare) if fSpecies.wild_item_rare
+			items.uniq!
+			items.compact!
+			
+			itemNames = []
+			items.each_with_index do |item,index|
+				itemNames.push(GameData::Item.get(item).real_name.downcase)
+			end
+			
+			next itemNames.include?(wildItemNameTextInput.downcase) ^ reversed # Boolean XOR
 		}
 		return dexlist
 	end
