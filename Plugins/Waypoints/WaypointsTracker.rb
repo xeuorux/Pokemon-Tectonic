@@ -12,10 +12,16 @@ class WaypointsTracker
 		@activeWayPoints = {}
 	end
 
-	def overwriteWaypoint(waypointName,mapID,wayPointLoc)
+	def overwriteWaypoint(waypointName,mapID,wayPointInfo)
 		if @activeWayPoints.has_key?(waypointName)
-			@activeWayPoints[waypointName] = [mapID,wayPointLoc]
+			@activeWayPoints[waypointName] = [mapID,wayPointInfo]
+		elsif $DEBUG && Input.press?(Input::CTRL)
+			setWaypoint(waypointName,mapID,wayPointInfo)
 		end
+	end
+
+	def setWaypoint(waypointName,mapID,wayPointInfo)
+		@activeWayPoints[waypointName] = [mapID,wayPointInfo]
 	end
 	
 	def accessWaypoint(waypointName,event)
@@ -24,8 +30,7 @@ class WaypointsTracker
 		pbMessage(_INTL("#{WAYPOINT_ACCESS_MESSAGE}"))
 		if !@activeWayPoints.has_key?(waypointName)
 			pbMessage(_INTL("#{WAYPOINT_REGISTER_MESSAGE}"))
-			wayPointLoc = [event.event.x,event.event.y+1]
-			@activeWayPoints[waypointName] = [$game_map.map_id,wayPointLoc]
+			@activeWayPoints[waypointName] = [$game_map.map_id,event.id]
 		end
 		
 		if @activeWayPoints.length <= 1
@@ -41,9 +46,19 @@ class WaypointsTracker
 			if chosen != 0
 				chosenLocationName = names[chosen-1]
 				chosenLocation = @activeWayPoints[chosenLocationName]
-				$game_temp.player_new_map_id = chosenLocation[0]
-				$game_temp.player_new_x = chosenLocation[1][0]
-				$game_temp.player_new_y = chosenLocation[1][1]
+				$game_temp.player_new_map_id = waypointMap = chosenLocation[0]
+				waypointInfo = chosenLocation[1]
+				if waypointInfo.is_a?(Array)
+					$game_temp.player_new_x = waypointInfo[0]
+					$game_temp.player_new_y = waypointInfo[1]
+				else
+					# TODO find location of event with that ID on the waypointMap
+					mapData = Compiler::MapData.new
+					map = mapData.getMap(waypointMap)
+					event = map.events[waypointInfo]
+					$game_temp.player_new_x = event.x
+					$game_temp.player_new_y = event.y + 1
+				end
 				$game_temp.player_new_direction = 2
 				$game_temp.transition_processing = true
 				$game_temp.transition_name       = ""
