@@ -141,7 +141,7 @@ end
 class PokeBattle_Move_500 < PokeBattle_Move
   def multiHitMove?;           return true; end
   def pbNumHits(user,targets); return 3;    end
-  end
+end
   
 #===============================================================================
 # Maximizes accuracy.
@@ -1915,24 +1915,19 @@ end
 #===============================================================================
 # Drains 2/3s if target hurt the user this turn (Trap Jaw)
 #===============================================================================
-
 class PokeBattle_Move_557 < PokeBattle_Move
   def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
 
   def pbEffectAgainstTarget(user,target)
-    return if target.damageState.hpLost<=0
-	drain = false
-	 if @battle.choices[target.index][0]!=:None &&
-       ((@battle.choices[target.index][0]!=:UseMove &&
-       @battle.choices[target.index][0]!=:Shift) || target.movedThisRound?)
-      drain = true
-    end
-	return if !drain
+    return if target.damageState.hpLost <= 0
+	return if !user.lastAttacker.include?(target.index)
     hpGain = (target.damageState.hpLost*2/3).round
-	echoln _INTL("hp gain is [1]", hpGain)
     user.pbRecoverHPFromDrain(hpGain,target) if drain
   end
-  
+
+  def getScore(score,user,target,skill=100)
+	return getWantsToBeSlowerScore(score,user,target,skill,3)
+  end
 end
 
 #===============================================================================
@@ -1956,20 +1951,15 @@ class PokeBattle_Move_558 < PokeBattle_Move
 		end
 		return false
 	end
-=begin	#this doesn't currently work - make work if other code doesn't
-  def pbOnStartUse(user,targets)
-    targets[0].pbReduceHP(@subLife,false,false)
-    targets[0].pbItemHPHealCheck
-  end
-=end
-  def pbEffectAgainstTarget(user,target)
-    target.pbReduceHP(@subLife,false,false)
-    target.pbItemHPHealCheck
-    target.effects[PBEffects::Trapping]     = 0
-    target.effects[PBEffects::TrappingMove] = nil
-    target.effects[PBEffects::Substitute]   = @subLife
-    @battle.pbDisplay(_INTL("{1} put {2} in a substitute!",user.pbThis,target.pbThis))
-  end
+
+	def pbEffectAgainstTarget(user,target)
+		target.pbReduceHP(@subLife,false,false)
+		target.pbItemHPHealCheck
+		target.effects[PBEffects::Trapping]     = 0
+		target.effects[PBEffects::TrappingMove] = nil
+		target.effects[PBEffects::Substitute]   = @subLife
+		@battle.pbDisplay(_INTL("{1} put {2} in a substitute!",user.pbThis,target.pbThis))
+	end
 end
 
 #===============================================================================
@@ -1990,7 +1980,7 @@ class PokeBattle_Move_559 < PokeBattle_Move
 	  typeName = GameData::Type.get(:GHOST).name
 	  @battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
 	end
-  end
+end
 
 #===============================================================================
 # Lowers the user's Sp. Atk and Sp. Def (Phantom Gate)
@@ -2002,27 +1992,22 @@ class PokeBattle_Move_55A < PokeBattle_StatDownMove
 	end
 end
 
-
 #===============================================================================
 # Heals user to 100%. Only usable on first turn. (Fresh Start)
 #===============================================================================
-
 class PokeBattle_Move_55B < PokeBattle_HealingMove
-  def pbHealAmount(user)
-    return user.totalhp
-  end
-  
-  def pbMoveFailed?(user,targets)
-	if user.turncount > 1
-		@battle.pbDisplay(_INTL("But it failed!"))
-		return true
+	def pbHealAmount(user)
+		return user.totalhp
 	end
-	return super
+  
+	def pbMoveFailed?(user,targets)
+		if user.turncount > 1
+			@battle.pbDisplay(_INTL("But it failed!"))
+			return true
+		end
+		return super
+	end
 end
-
-end
-
-
 
 #===============================================================================
 # Two turn attack. Attacks first turn, skips second turn (if successful).
@@ -2034,4 +2019,153 @@ class PokeBattle_Move_55C < PokeBattle_Move
 	end
     user.currentMove = @id #ONLY PUT HERE BECAUSE IT WAS IN ORIGINAL HYPER BEAM CODE, PLEASE TEST
   end
+end
+
+#===============================================================================
+# Increases the target's Attack by 2 stages. Flusters the target. (new!Swagger)
+#===============================================================================
+class PokeBattle_Move_55D < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+	  failed = true
+	  targets.each do |b|
+		next if !b.pbCanRaiseStatStage?(:ATTACK,user,self) &&
+				!b.pbCanFluster?(user,false,self)
+		failed = false
+		break
+	  end
+	  if failed
+		@battle.pbDisplay(_INTL("But it failed!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+	  if target.pbCanRaiseStatStage?(:ATTACK,user,self)
+		target.pbRaiseStatStage(:ATTACK,2,user)
+	  end
+	  target.pbFluster if target.pbCanFluster?(user,false,self)
+	end
+end
+
+#===============================================================================
+# Increases the target's Sp. Atk. by 2 stages. Flusters the target. (new!Flatter)
+#===============================================================================
+class PokeBattle_Move_55E < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+	  failed = true
+	  targets.each do |b|
+		next if !b.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self) &&
+				!b.pbCanMystify?(user,false,self)
+		failed = false
+		break
+	  end
+	  if failed
+		@battle.pbDisplay(_INTL("But it failed!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+	  if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
+		target.pbRaiseStatStage(:SPECIAL_ATTACK,2,user)
+	  end
+	  target.pbMystify if target.pbCanMystify?(user,false,self)
+	end
+end
+
+#===============================================================================
+# User must use this move for 2 more rounds.
+# (new!Outrage, etc.)
+#===============================================================================
+class PokeBattle_Move_55F < PokeBattle_Move
+	def pbEffectAfterAllHits(user,target)
+	  if !target.damageState.unaffected && user.effects[PBEffects::Outrage] == 0
+		user.effects[PBEffects::Outrage] = 3
+		user.currentMove = @id
+	  end
+	  if user.effects[PBEffects::Outrage]>0
+		user.effects[PBEffects::Outrage] -= 1
+		if user.effects[PBEffects::Outrage]==0 && user.pbCanConfuseSelf?(false)
+		  @battle.pbDisplay(_INTL("{1} spun down from its attack.",user.pbThis))
+		end
+	  end
+	end
+end
+
+#===============================================================================
+# Flusters the target, and decreases its Defense by one stage. (Displace)
+#===============================================================================
+class PokeBattle_Move_560 < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+	  failed = true
+	  targets.each do |b|
+		next if !b.pbCanLowerStatStage?(:DEFENSE,user,self) &&
+				!b.pbCanFluster?(user,false,self)
+		failed = false
+		break
+	  end
+	  if failed
+		@battle.pbDisplay(_INTL("But it failed!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+	  if target.pbCanLowerStatStage?(:DEFENSE,user,self)
+		target.pbLowerStatStage(:DEFENSE,1,user)
+	  end
+	  target.pbFluster if target.pbCanFluster?(user,false,self)
+	end
+
+	def getScore(score,user,target,skill=100)
+        canFluster = target.pbCanFluster?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
+		score += 10 * target.stages[:DEFENSE]
+        if canFluster
+          score += 20
+        elsif statusMove?
+          score = 0
+        end
+        return score
+    end
+end
+
+#===============================================================================
+# Flusters the target, and decreases its Defense by one stage. (Mesmerize)
+#===============================================================================
+class PokeBattle_Move_561 < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+	  failed = true
+	  targets.each do |b|
+		next if !b.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self) &&
+				!b.pbCanMystify?(user,false,self)
+		failed = false
+		break
+	  end
+	  if failed
+		@battle.pbDisplay(_INTL("But it failed!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+		if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
+			target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
+		end
+		target.pbMystify if target.pbCanMystify?(user,false,self)
+	end
+
+	def getScore(score,user,target,skill=100)
+        canMystify = target.pbCanMystify?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
+		score += 10 * target.stages[:SPECIAL_DEFENSE]
+        if canMystify
+          score += 20
+        elsif statusMove?
+          score = 0
+        end
+        return score
+    end
 end

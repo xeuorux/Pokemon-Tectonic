@@ -46,30 +46,6 @@ class PokeBattle_AI
 			score = 0	 # Because it will fail here
 		end
 	#---------------------------------------------------------------------------
-	when "013", "014", "015"
-		canConfuse = target.pbCanConfuse?(user,false) && !target.hasActiveAbilityAI?(:MENTALBLOCK)
-		if canConfuse
-			score += 20
-		elsif move.statusMove?
-			score = 0
-		end
-	#---------------------------------------------------------------------------
-	when "016"
-		canattract = true
-		agender = user.gender
-		ogender = target.displayGender
-		if agender==2 || ogender==2 || agender==ogender
-			score = 0; canattract = false
-		elsif target.effects[PBEffects::Attract]>=0
-			score -= 80; canattract = false
-		elsif target.hasActiveAbilityAI?(:OBLIVIOUS)
-			score -= 80; canattract = false
-		end
-		if canattract && target.hasActiveItem?(:DESTINYKNOT) &&
-			user.pbCanAttract?(target,false)
-			score -= 30
-		end
-	#---------------------------------------------------------------------------
 	when "017" # Tri-Attack
 		score += 30 if target.status == :NONE
 	#---------------------------------------------------------------------------
@@ -1297,7 +1273,7 @@ class PokeBattle_AI
 		if !@battle.pbCanChooseNonActive?(user.index)
 			score -= 80
 		else
-			score -= 40 if user.effects[PBEffects::Confusion]>0
+			score -= 40 if user.effects[PBEffects::Confusion] > 0 || user.effects[PBEffects::Charm] > 0
 			total = 0
 			GameData::Stat.each_battle { |s| total += user.stages[s.id] }
 			if total <=0 || user.turnCount == 0

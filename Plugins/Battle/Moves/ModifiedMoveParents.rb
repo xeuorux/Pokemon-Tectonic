@@ -48,6 +48,18 @@ class PokeBattle_Confusion < PokeBattle_Move
   end
 end
 
+class PokeBattle_ConfuseMove < PokeBattle_Move
+  def getScore(score,user,target,skill=100)
+    canConfuse = target.pbCanConfuse?(user,false) && !target.hasActiveAbilityAI?(:MENTALBLOCK)
+		if canConfuse
+			score += 20
+		elsif move.statusMove?
+			score = 0
+		end
+    return score
+  end
+end
+
 #===============================================================================
 # Generic target's stat increase/decrease classes.
 #===============================================================================
