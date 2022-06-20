@@ -41,7 +41,7 @@ end
 def showAnimtion(animationID, eventId = 0)
 	event = nil
 	if pbMapInterpreterRunning?
-		event = get_character(event) if event.is_a?(Integer)
+		event = get_character(eventId)
 	else
 		event = self
 	end
