@@ -1,7 +1,15 @@
+BattleHandlers::DamageCalcUserAbility.add(:GUTS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.pbHasAnyStatus? && move.physicalMove?
+      mults[:attack_multiplier] *= 1.33
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:AUDACITY,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.pbHasAnyStatus? && move.specialMove?
-      mults[:attack_multiplier] *= 1.5
+      mults[:attack_multiplier] *= 1.33
     end
   }
 )

@@ -346,7 +346,7 @@ class PokeBattle_Battle
         if b.canHeal?
           anim_name = GameData::Status.get(:POISON).animation
           pbCommonAnimation(anim_name, b) if anim_name
-          recovery = b.totalhp/8
+          recovery = b.totalhp/12
           recovery /= 4 if b.boss?
           if !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages == 0
             pbShowAbilitySplash(b)
@@ -363,7 +363,7 @@ class PokeBattle_Battle
         end
       elsif b.takesIndirectDamage?
         oldHP = b.hp
-        dmg = b.totalhp/8
+        dmg = b.totalhp/12
 		    dmg = (dmg/4.0).round if b.boss
         b.pbContinueStatus(:POISON) { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck

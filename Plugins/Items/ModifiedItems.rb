@@ -413,3 +413,25 @@ BallHandlers::ModifyCatchRate.add(:NESTBALL,proc { |ball,catchRate,battle,battle
   end
   next catchRate
 })
+
+ItemHandlers::UseOnPokemon.add(:FLAMEORB,proc { |item,pkmn,scene|
+  if pkmn.fainted? || pkmn.status != :NONE || [:WATERVEIL,:WATERBUBBLE,:FAEVEIL].include?(pkmn.ability_id)
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  pkmn.status      = :BURN
+  pkmn.statusCount = 0
+  scene.pbRefresh
+  scene.pbDisplay(_INTL("{1} was burned.",pkmn.name))
+})
+
+ItemHandlers::UseOnPokemon.add(:POISONORB,proc { |item,pkmn,scene|
+  if pkmn.fainted? || pkmn.status != :NONE || [:IMMUNITY,:PASTELVEIL,:FAEVEIL].include?(pkmn.ability_id)
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  pkmn.status      = :POISON
+  pkmn.statusCount = 0
+  scene.pbRefresh
+  scene.pbDisplay(_INTL("{1} was poisoned.",pkmn.name))
+})
