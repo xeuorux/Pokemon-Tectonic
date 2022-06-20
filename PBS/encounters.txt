@@ -64,6 +64,10 @@ DarkCave,20
     25,ROGGENROLA,17,20
     25,ZUBAT,17,20
 #-------------------------------
+[019] # Reading Ribombee Café
+Special,20
+    1,MILCERY,15
+#-------------------------------
 [020] # Lengthy Glade
 Special,1
     1,GPONYTA,15
@@ -312,10 +316,6 @@ Special,20
 [090] # Employees' House
 Special,20
     1,SKORUPI,15
-#-------------------------------
-[19] # Reeding Ribombee Cafe
-Special,20
-    1,MILCERY,15
 #-------------------------------
 [092] # Ice Rink Lodge F2 Left Room
 Special,1
