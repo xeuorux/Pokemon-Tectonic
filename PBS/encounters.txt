@@ -313,7 +313,7 @@ Special,20
 Special,20
     1,SKORUPI,15
 #-------------------------------
-[091] # Ice Rink Lodge F2
+[19] # Reeding Ribombee Cafe
 Special,20
     1,MILCERY,15
 #-------------------------------
