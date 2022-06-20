@@ -176,7 +176,8 @@ class PokeBattle_Battler
 			end
 		end
 		if hasImmuneType
-			@battle.pbDisplay(_INTL("It doesn't affect {1} since it's an {2}-type...",pbThis(true),immuneType)) if showMessages
+			immuneTypeRealName = GameData::Type.get(immuneType).real_name
+			@battle.pbDisplay(_INTL("It doesn't affect {1} since it's an {2}-type...",pbThis(true),immuneTypeRealName)) if showMessages
 			return false
 		end
 		# Ability immunity
@@ -531,7 +532,7 @@ class PokeBattle_Battler
 				@battle.pbCommonAnimation(anim_name, self) if anim_name
 			end
 			yield if block_given?
-			if !defined?($PokemonSystem.effectiveness_messages) || $PokemonSystem.effectiveness_messages == 0
+			if !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages == 0
 				case oneStatus
 				when :SLEEP
 					@battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis))

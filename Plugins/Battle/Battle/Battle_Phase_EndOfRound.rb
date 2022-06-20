@@ -266,7 +266,8 @@ class PokeBattle_Battle
     priority.each do |b|
       next if !b.effects[PBEffects::AquaRing]
       next if !b.canHeal?
-      hpGain = b.totalhp/16
+      hpGain = b.totalhp/8
+      hpGain /= 4 if b.boss?
       hpGain = (hpGain*1.3).floor if b.hasActiveItem?(:BIGROOT)
       b.pbRecoverHP(hpGain)
       pbDisplay(_INTL("Aqua Ring restored {1}'s HP!",b.pbThis(true)))
@@ -276,9 +277,7 @@ class PokeBattle_Battle
       next if !b.effects[PBEffects::Ingrain]
       next if !b.canHeal?
       hpGain = b.totalhp/8
-      if b.boss?
-        hpGain /= 4
-      end
+      hpGain /= 4 if b.boss?
       hpGain = (hpGain*1.3).floor if b.hasActiveItem?(:BIGROOT)
       b.pbRecoverHP(hpGain)
       pbDisplay(_INTL("{1} absorbed nutrients with its roots!",b.pbThis))
@@ -347,14 +346,20 @@ class PokeBattle_Battle
         if b.canHeal?
           anim_name = GameData::Status.get(:POISON).animation
           pbCommonAnimation(anim_name, b) if anim_name
-          pbShowAbilitySplash(b)
-          b.pbRecoverHP(b.totalhp/8)
-          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+          recovery = b.totalhp/8
+          recovery /= 4 if b.boss?
+          if !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages == 0
+            pbShowAbilitySplash(b)
+            b.pbRecoverHP(recovery)
+            if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+              pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+            else
+              pbDisplay(_INTL("{1}'s {2} restored its HP.",b.pbThis,b.abilityName))
+            end
+            pbHideAbilitySplash(b)
           else
-            pbDisplay(_INTL("{1}'s {2} restored its HP.",b.pbThis,b.abilityName))
+            b.pbRecoverHP(recovery)
           end
-          pbHideAbilitySplash(b)
         end
       elsif b.takesIndirectDamage?
         oldHP = b.hp
@@ -377,19 +382,25 @@ class PokeBattle_Battle
         if b.canHeal?
           anim_name = GameData::Status.get(:BURN).animation
           pbCommonAnimation(anim_name, b) if anim_name
-          pbShowAbilitySplash(b)
-          b.pbRecoverHP(b.totalhp/8)
-          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+          recovery = b.totalhp/8
+          recovery /= 4 if b.boss?
+          if !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages == 0
+            pbShowAbilitySplash(b)
+            b.pbRecoverHP(recovery)
+            if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+              pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+            else
+              pbDisplay(_INTL("{1}'s {2} restored its HP.",b.pbThis,b.abilityName))
+            end
+            pbHideAbilitySplash(b)
           else
-            pbDisplay(_INTL("{1}'s {2} restored its HP.",b.pbThis,b.abilityName))
+            b.pbRecoverHP(recovery)
           end
-          pbHideAbilitySplash(b)
         end
 	    elsif b.takesIndirectDamage?
         oldHP = b.hp
         dmg = b.totalhp/8
-        dmg = (dmg/4.0).round if b.boss
+        dmg = (dmg/4.0).round if b.boss?
         b.pbContinueStatus(:BURN) { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
