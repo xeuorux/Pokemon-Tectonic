@@ -308,7 +308,7 @@
 307,ADAPTIVESKIN,Adaptive Skin,"The user raises the correct defense based on each hit taken."
 308,SANDSNIPER,Sand Sniper,"Cannot miss during sandstorms."
 309,STAMPEDE,Stampede,"The user's critical hit chance raises or lowers with its Speed."
-310,HOLIDAYCHEER,Holiday Cheer,"When entering battle, heals self and team for 25% of their max health."
+310,HOLIDAYCHEER,Holiday Cheer,"When entering battle, heals self and allies for 25% of their max health."
 311,CHILLEDBODY,Chilled Body,"Physical moves against the Pokémon have a 30% chance to chill the attacker."
 312,LINGERINGDAZE,Lingering Daze,"Enemies which wake up have their Sp. Atk and Sp. Def lowered."
 313,SHIELDWALL,Shield Wall,"Hyper-effective attacks deal 50% less."
