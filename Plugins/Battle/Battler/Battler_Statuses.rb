@@ -601,7 +601,6 @@ class PokeBattle_Battler
 	#=============================================================================
 	# Confusion
 	#=============================================================================	
-=begin
 	def pbCanConfuse?(user=nil,showMessages=true,move=nil,selfInflicted=false)
 		return false if fainted?
 		if @effects[PBEffects::Confusion]>0
@@ -660,12 +659,10 @@ class PokeBattle_Battler
 		@effects[PBEffects::Confusion] = 0
 		@effects[PBEffects::ConfusionChance] = 0
 	end
-=end
 	
 	#=============================================================================
 	# Charm
 	#=============================================================================
-=begin
 	def pbCanCharm?(user=nil,showMessages=true,move=nil,selfInflicted=false)
 		return false if fainted?
 		if @effects[PBEffects::Charm]>0
@@ -724,7 +721,6 @@ class PokeBattle_Battler
 		@effects[PBEffects::Charm] = 0
 		@effects[PBEffects::CharmChance] = 0
 	end
-=end
 
 	#=============================================================================
 	# Flinching

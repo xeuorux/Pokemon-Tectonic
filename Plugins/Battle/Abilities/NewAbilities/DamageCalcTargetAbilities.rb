@@ -109,3 +109,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:KEEPER,
     mults[:final_damage_multiplier] *= 0.80 if target.battle.field.terrain != :None
   }
 )
+
+
+BattleHandlers::DamageCalcTargetAbility.add(:MARVELSKIN,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if target.pbHasAnyStatus? && move.physicalMove?
+      mults[:defense_multiplier] *= 1.5
+    end
+  }
+)
