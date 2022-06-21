@@ -7390,8 +7390,8 @@ InternalName = DELIBIRD
 Type1 = ICE
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,50,85,110,85,85
-# Total = 495
+BaseStats = 100,50,85,110,85,85
+# Total = 515
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 116
