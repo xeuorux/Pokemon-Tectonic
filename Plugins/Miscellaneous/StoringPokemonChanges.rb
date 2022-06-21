@@ -99,6 +99,8 @@ def pbNicknameAndStore(pkmn)
   
   # Increase the caught count for the global metadata
   incrementDexNavCounts(false)
+
+  pbNickname(pkmn) if !pkmn.shadowPokemon? && (!defined?($PokemonSystem.nicknaming_prompt) || $PokemonSystem.nicknaming_prompt == 0)
   
   pbStorePokemon(pkmn)
 end
@@ -125,6 +127,13 @@ module PokeBattle_BattleCommon
   # Store caught Pokémon
   #=============================================================================
   def pbStorePokemon(pkmn)
+    # Nickname the Pokémon (unless it's a Shadow Pokémon)
+    if !pkmn.shadowPokemon? && (!defined?($PokemonSystem.nicknaming_prompt) || $PokemonSystem.nicknaming_prompt == 0)
+      if pbDisplayConfirm(_INTL("Would you like to give a nickname to {1}?", pkmn.name))
+        nickname = @scene.pbNameEntry(_INTL("{1}'s nickname?", pkmn.speciesName), pkmn)
+        pkmn.name = nickname
+      end
+    end
     # Store the Pokémon
     currentBox = @peer.pbCurrentBox
     storedBox  = @peer.pbStorePokemon(pbPlayer,pkmn)
@@ -150,7 +159,7 @@ module PokeBattle_BattleCommon
     @caughtPokemon.each do |pkmn|
       pbPlayer.pokedex.register(pkmn)   # In case the form changed upon leaving battle
 	  
-	  #Let the player know info about the individual pokemon they caught
+	    #Let the player know info about the individual pokemon they caught
       pbDisplayPaused(_INTL("You check {1}, and discover that its ability is {2}!",pkmn.name,pkmn.ability.name))
       
       if (pkmn.hasItem?)

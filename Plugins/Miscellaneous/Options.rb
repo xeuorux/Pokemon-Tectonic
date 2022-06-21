@@ -8,6 +8,7 @@ class PokemonSystem
 	attr_accessor :show_item_descriptions
 	attr_accessor :effectiveness_messages
   attr_accessor :status_effect_messages
+  attr_accessor :nicknaming_prompt
 
   def initialize
     @textspeed   		          = 1 # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
@@ -31,6 +32,7 @@ class PokemonSystem
     @show_item_descriptions   = 0 # (0=true, 1=false)
     @effectiveness_messages   = 0 # (0=true, 1=false)
     @status_effect_messages   = 0 # (0=true, 1=false)
+    @nicknaming_prompt        = 0 # (0=true, 1=false)
   end
 end
 
@@ -110,47 +112,55 @@ class PokemonOption_Scene
          proc { $PokemonSystem.textinput },
          proc { |value| $PokemonSystem.textinput = value }
        ),
-    ]
-	@PokemonOptions.push(
-		EnumOption.new(_INTL("Damage Numbers"),[_INTL("On"),_INTL("Off")],
+       EnumOption.new(_INTL("Nicknaming Prompt"),[_INTL("On"),_INTL("Off")],
+         proc { $PokemonSystem.nicknaming_prompt },
+         proc { |value|
+			    $PokemonSystem.nicknaming_prompt = value
+         }
+       ),
+       EnumOption.new(_INTL("Damage Numbers"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.damage_numbers },
          proc { |value|
 			    $PokemonSystem.damage_numbers = value
          }
-       )
-	)
-	@PokemonOptions.push(EnumOption.new(_INTL("Effectiveness Msgs"),[_INTL("On"),_INTL("Off")],
+       ),
+       EnumOption.new(_INTL("Effectiveness Msgs"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.effectiveness_messages },
          proc { |value|
 			    $PokemonSystem.effectiveness_messages = value
          }
-       ))
-  @PokemonOptions.push(EnumOption.new(_INTL("Status Condition Msgs"),[_INTL("On"),_INTL("Off")],
-       proc { $PokemonSystem.status_effect_messages },
-       proc { |value|
-        $PokemonSystem.status_effect_messages = value
-       }
-     ))
-	@PokemonOptions.push(
-	   EnumOption.new(_INTL("Item Desc Popups"),[_INTL("On"),_INTL("Off")],
+       ),
+      EnumOption.new(_INTL("Status Condition Msgs"),[_INTL("On"),_INTL("Off")],
+        proc { $PokemonSystem.status_effect_messages },
+        proc { |value|
+          $PokemonSystem.status_effect_messages = value
+        }
+      ),
+      EnumOption.new(_INTL("Item Desc Popups"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.show_item_descriptions },
          proc { |value|
 			    $PokemonSystem.show_item_descriptions = value
          }
-       )
-	)
+       ),
+      EnumOption.new(_INTL("Autosave"),[_INTL("On"),_INTL("Off")],
+        proc { $PokemonSystem.autosave },
+        proc { |value|
+          $PokemonSystem.autosave = value
+        }
+        ),
+      EnumOption.new(_INTL("Particles (Adv.)"),[_INTL("On"),_INTL("Off")],
+        proc { $PokemonSystem.particle_effects },
+        proc { |value|
+            $PokemonSystem.particle_effects = value
+        }
+      ),
+    ]
 	@PokemonOptions.push(EnumOption.new(_INTL("Look"),[_INTL("Masc."),_INTL("Fem.")],
          proc { $PokemonSystem.gendered_look },
          proc { |value|
           pbChangePlayer(value)
          }
        )) if $PokemonGlobal
-	@PokemonOptions.push(EnumOption.new(_INTL("Autosave"),[_INTL("On"),_INTL("Off")],
-         proc { $PokemonSystem.autosave },
-         proc { |value|
-			    $PokemonSystem.autosave = value
-         }
-       ))
 	@PokemonOptions.push(EnumOption.new(_INTL("Pokemon Follow"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.followers },
          proc { |value|
@@ -158,12 +168,6 @@ class PokemonOption_Scene
             pbToggleFollowingPokemon($PokemonSystem.followers == 0 ? "on" : "off",false)
          }
        )) if $PokemonGlobal
-	@PokemonOptions.push(EnumOption.new(_INTL("Particles (Adv.)"),[_INTL("On"),_INTL("Off")],
-         proc { $PokemonSystem.particle_effects },
-         proc { |value|
-			      $PokemonSystem.particle_effects = value
-         }
-       ))
 	@PokemonOptions.push(EnumOption.new(_INTL("Skip Fades"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.skip_fades },
          proc { |value|
