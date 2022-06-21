@@ -25,8 +25,6 @@ Tauxins<s>TheBreadDealer
 KickassKT<s>PandaNinjaPants
 Airiii<s>
 
-
-
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 
 Tilesheets
@@ -55,7 +53,6 @@ SailorVicious<s>Agentbla
 Shiney570<s>dirtywiggles
 Ekat
 
-
 Charsets
 DiegoWT<s>PurpleZaffre
 
@@ -68,6 +65,9 @@ Princess-Phoenix<s>Sagedeoxys
 
 Reborn Icons
 smeargletail<s>ARandomTalkingBush
+
+Pre-looped Music Pack
+ENLS
 
 Generation 8 Project
 Battler Sprites
