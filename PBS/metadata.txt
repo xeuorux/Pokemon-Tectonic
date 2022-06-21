@@ -1324,7 +1324,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [269]
-# Lighthouse Top Placeholder
+# Lighthouse Beacon
 Outdoor = false
 ShowArea = false
 Bicycle = false

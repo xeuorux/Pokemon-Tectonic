@@ -1,21 +1,13 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [YOUNGSTER,Joey]
-Pokemon = FERROSEED,50
-    Moves = SPIKES,STEALTHROCK
-    AbilityIndex = 0
-Pokemon = SALANDIT,50
-    Moves = TOXICSPIKES,FLAMESPIKES
-    AbilityIndex = 0
-Pokemon = FERROSEED,50
-    Moves = SPIKES,STEALTHROCK
-    AbilityIndex = 0
-Pokemon = SALANDIT,50
-    Moves = TOXICSPIKES,FLAMESPIKES
+Pokemon = MACHOP,10
+    Moves = DRAGONDANCE
     AbilityIndex = 0
 #-------------------------------
 [HIKER,Conroy]
 Pokemon = MACHOP,10
+    Moves = QUICKATTACK
     AbilityIndex = 0
 Pokemon = MACHOP,10
     AbilityIndex = 0
@@ -2947,8 +2939,8 @@ Pokemon = PASSIMIAN,49
 Pokemon = WHISCASH,50
     AbilityIndex = 0
     Item = SHELLBELL
-Pokemon = HAXORUS,50
-    AbilityIndex = 0
+Pokemon = NOIVERN,50
+    AbilityIndex = 1
 Pokemon = PERRSERKER,49
     AbilityIndex = 1
     Item = STEELGEM
@@ -3283,3 +3275,35 @@ Pokemon = SPIRITOMB,70
     AbilityIndex = 1
     Item = ORANBERRY
     EV = 20,10,0,0,10,20
+#-------------------------------
+[COOLTRAINER_F7,Nyx]
+Pokemon = MANTINE,50
+    Moves = SCALD,ENCHANTINGSONG,COLDFRONT,PSYBEAM
+    AbilityIndex = 1
+    Item = STRIKEVEST
+    EV = 20,20,0,0,20,10
+Pokemon = PACHIRISU,50
+    Moves = HYPERFANG,INERTIASHOCK,VOLTSWITCH,SEEDBOMB
+    AbilityIndex = 0
+    Item = STRIKEVEST
+    EV = 0,20,10,20,0,0
+Pokemon = CONIFEAR,50
+    Moves = INGRAIN,EARTHQUAKE,LEAFBLADE,BLIZZARD
+    AbilityIndex = 1
+    Item = WIDELENS
+    EV = 10,20,0,20,0,0
+Pokemon = INCINEROAR,50
+    Moves = DARKESTLARIAT,FLAMESPIKES,BLAZEKICK,IRONHEAD
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+    EV = 20,20,5,0,0,5
+Pokemon = ARIADOS,50
+    Moves = STICKYWEB,TOXICTHREAD,SWAGGER,FELLSTINGER
+    AbilityIndex = 1
+	Item = LEFTOVERS
+    EV = 20,0,10,0,0,20
+Pokemon = HAXORUS,50
+    Moves = OUTRAGE,XSCISSOR,ROCKSLIDE,CLOSECOMBAT
+    AbilityIndex = 0
+    Item = CHOICESCARF
+    EV = 0,20,0,20,0,10
