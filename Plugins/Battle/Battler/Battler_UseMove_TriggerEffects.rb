@@ -76,11 +76,13 @@ class PokeBattle_Battler
     # Flustered and Mystified triggers
     if move.damagingMove?
       superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE,@index)
+      selfHitBasePower = (14 + user.level * (3.0/5.0)).ceil
+      echoln("Self hit is base power #{selfHitBasePower}")
       if user.flustered?
-        pbContinueStatus(:FLUSTERED) { pbConfusionDamage(nil,false,superEff,30) }
+        pbContinueStatus(:FLUSTERED) { pbConfusionDamage(nil,false,superEff,selfHitBasePower) }
       end
       if user.mystified?
-        pbContinueStatus(:MYSTIFIED) { pbConfusionDamage(nil,true,superEff,30) }
+        pbContinueStatus(:MYSTIFIED) { pbConfusionDamage(nil,true,superEff,selfHitBasePower) }
       end
     end
     # Destiny Bond
