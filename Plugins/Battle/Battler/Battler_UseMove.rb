@@ -163,7 +163,7 @@ class PokeBattle_Battler
         end
       end
     end
-    # Dazzling/Queenly Majesty make the move fail here
+    # Move blocking abilities make the move fail here
     @battle.pbPriority(true).each do |b|
       next if !b || !b.abilityActive?
       if BattleHandlers.triggerMoveBlockingAbility(b.ability,b,user,targets,move,@battle)

@@ -123,6 +123,8 @@ BattleHandlers::MoveBlockingAbility.add(:KILLJOY,
   }
 )
 
+BattleHandlers::MoveBlockingAbility.copy(:DAZZLING,:ROYALMAJESTY)
+
 BattleHandlers::MoveBlockingAbility.add(:BADINFLUENCE,
   proc { |ability,bearer,user,targets,move,battle|
     next move.healingMove?
