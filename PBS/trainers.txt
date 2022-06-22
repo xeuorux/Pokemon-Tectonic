@@ -149,7 +149,7 @@ Pokemon = CROAGUNK,15
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Lambert_2,Lambert,1]
-Policies = LAMBERT,CURSE_PERISH_SONGED
+Policies = LAMBERT,CURSE_TORMENTED
 Pokemon = PANCHAM,15
     Moves = SMASH,TAUNT,LEER,BITE
     AbilityIndex = 0
@@ -497,7 +497,7 @@ Pokemon = LUXIO,25
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Helena_2,Helena,1]
-Policies = HELENA,CURSE_TORMENTED
+Policies = HELENA,CURSE_PERMANENT_ELECTRIC
 Pokemon = LANTURN,25
     Moves = DOUSE,SHOCKWAVE,VOLTSWITCH,EERIEIMPULSE
     AbilityIndex = 0
@@ -3022,6 +3022,7 @@ Pokemon = DECEAT,50
     AbilityIndex = 0
 #-------------------------------
 [TRAINER_Sang,Sang]
+Policies = CURSE_PERISH_SONGED
 Pokemon = EXPLOUD,47
     Name = Egret Ash
     Gender = female
