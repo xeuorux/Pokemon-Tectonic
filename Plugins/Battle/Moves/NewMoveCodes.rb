@@ -2179,3 +2179,13 @@ class PokeBattle_Move_562 < PokeBattle_Move
 	  return super
 	end
 end
+
+#===============================================================================
+# Effectiveness against Ghost-type is 2x. (Holly Charm)
+#===============================================================================
+class PokeBattle_Move_563 < PokeBattle_Move
+	def pbCalcTypeModSingle(moveType,defType,user,target)
+	  return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :GHOST
+	  return super
+	end
+end
