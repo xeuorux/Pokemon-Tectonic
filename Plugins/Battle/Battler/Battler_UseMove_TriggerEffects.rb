@@ -75,13 +75,14 @@ class PokeBattle_Battler
   def pbEffectsAfterMove(user,targets,move,numHits)
     # Flustered and Mystified triggers
     if move.damagingMove?
-      superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE,@index)
       selfHitBasePower = (14 + user.level * (3.0/5.0)).ceil
       echoln("Self hit is base power #{selfHitBasePower}")
       if user.flustered?
+        superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE,@index)
         pbContinueStatus(:FLUSTERED) { pbConfusionDamage(nil,false,superEff,selfHitBasePower) }
       end
       if user.mystified?
+        superEff = @battle.pbCheckOpposingAbility(:BRAINJAMMED,@index)
         pbContinueStatus(:MYSTIFIED) { pbConfusionDamage(nil,true,superEff,selfHitBasePower) }
       end
     end
