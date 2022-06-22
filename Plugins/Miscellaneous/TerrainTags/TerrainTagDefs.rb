@@ -129,3 +129,13 @@ GameData::TerrainTag.register({
   :id                     => :SouthConveyor,
   :id_number              => 30,
 })
+
+GameData::TerrainTag.register({
+  :id                     => :WallReplaceConcave,
+  :id_number              => 31,
+})
+
+GameData::TerrainTag.register({
+  :id                     => :WallReplaceConvex,
+  :id_number              => 32,
+})
