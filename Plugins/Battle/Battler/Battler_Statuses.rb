@@ -1,3 +1,7 @@
+BURNED_EXPLANATION = "Its Attack is reduced by a third"
+POISONED_EXPLANATION = "Its Sp. Atk is reduced by a third"
+NUMBED_EXPLANATION = "It's slower and deals less damage"
+CHILLED_EXPLANATION = "It's slower and takes more damage"
 MYSTIFIED_EXPLANATION = "It'll take recoil from its own Sp. Atk"
 FLUSTERED_EXPLANATION = "It'll take recoil from its own Attack"
 
@@ -351,19 +355,15 @@ class PokeBattle_Battler
 				when :SLEEP
 				@battle.pbDisplay(_INTL("{1} fell asleep!", pbThis))
 				when :POISON
-				if newStatusCount>0
-					@battle.pbDisplay(_INTL("{1} was toxified!", pbThis))
-				else
-					@battle.pbDisplay(_INTL("{1} was poisoned! Its Sp. Atk is reduced by a third!", pbThis))
-				end
+				@battle.pbDisplay(_INTL("{1} was poisoned! {2}!", pbThis, POISONED_EXPLANATION))
 				when :BURN
-				@battle.pbDisplay(_INTL("{1} was burned! Its Attack is reduced by a third!", pbThis))
+				@battle.pbDisplay(_INTL("{1} was burned! {2}!", pbThis, BURNED_EXPLANATION))
 				when :PARALYSIS
-				@battle.pbDisplay(_INTL("{1} is numbed! It's slower and deals less damage!", pbThis))
+				@battle.pbDisplay(_INTL("{1} is numbed! {2}!", pbThis, NUMBED_EXPLANATION))
 				when :FROZEN
-				@battle.pbDisplay(_INTL("{1} was chilled! It's slower and takes more damage!", pbThis))
+				@battle.pbDisplay(_INTL("{1} was chilled! {2}!", pbThis, CHILLED_EXPLANATION))
 				when :FLUSTERED
-				@battle.pbDisplay(_INTL("{1} is flustered! {2}}!", pbThis, FLUSTERED_EXPLANATION))
+				@battle.pbDisplay(_INTL("{1} is flustered! {2}!", pbThis, FLUSTERED_EXPLANATION))
 				when :MYSTIFIED
 				@battle.pbDisplay(_INTL("{1} is mystified! {2}!", pbThis, MYSTIFIED_EXPLANATION))
 				end

@@ -12,8 +12,8 @@ BattleHandlers::UserAbilityOnHit.add(:SHOCKSTYLE,
     elsif target.pbCanParalyze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} numbed {3}! It may be unable to move!",
-           user.pbThis,user.abilityName,target.pbThis(true))
+        msg = _INTL("{1}'s {2} numbed {3}! {4}!",
+           user.pbThis,user.abilityName,target.pbThis(true),NUMBED_EXPLANATION)
       end
       target.pbParalyze(msg)
     end
@@ -35,8 +35,8 @@ BattleHandlers::UserAbilityOnHit.add(:FROSTWINGS,
     elsif target.pbCanFreeze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} chilled {3}! Its speed and evasion are massively lowered!!",
-           user.pbThis,user.abilityName,target.pbThis(true))
+        msg = _INTL("{1}'s {2} chilled {3}! {4}!",
+           user.pbThis,user.abilityName,target.pbThis(true), CHILLED_EXPLANATION)
       end
       target.pbFreeze(msg)
     end
@@ -58,8 +58,8 @@ BattleHandlers::UserAbilityOnHit.add(:SHOCKWINGS,
     elsif target.pbCanParalyze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} numbed {3}! It may be unable to move!",
-           user.pbThis,user.abilityName,target.pbThis(true))
+        msg = _INTL("{1}'s {2} numbed {3}! {4}}!",
+           user.pbThis,user.abilityName,target.pbThis(true),NUMBED_EXPLANATION)
       end
       target.pbParalyze(msg)
     end
@@ -81,8 +81,8 @@ BattleHandlers::UserAbilityOnHit.add(:FLAMEWINGS,
     elsif target.pbCanBurn?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} burned {3}! Its Attack is reduced!",
-           user.pbThis,user.abilityName,target.pbThis(true))
+        msg = _INTL("{1}'s {2} burned {3}! {4}!",
+           user.pbThis,user.abilityName,target.pbThis(true), BURNED_EXPLANATION)
       end
       target.pbBurn(msg)
     end
@@ -103,7 +103,7 @@ BattleHandlers::UserAbilityOnHit.add(:BURNSKILL,
     elsif target.pbCanBurn?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} burned {3}! Its Attack is reduced by a third!",user.pbThis,user.abilityName,target.pbThis(true))
+        msg = _INTL("{1}'s {2} burned {3}! {4}}!",user.pbThis,user.abilityName,target.pbThis(true), BURNED_EXPLANATION)
       end
       target.pbBurn(user,msg)
     end
@@ -125,7 +125,7 @@ BattleHandlers::UserAbilityOnHit.add(:CHILLOUT,
     elsif target.pbCanFreeze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} chilled {3}! It's slower and takes more damage!",user.pbThis,user.abilityName,target.pbThis(true))
+        msg = _INTL("{1}'s {2} chilled {3}! {4}!",user.pbThis,user.abilityName,target.pbThis(true), CHILLED_EXPLANATION)
       end
       target.pbFreeze(msg)
     end

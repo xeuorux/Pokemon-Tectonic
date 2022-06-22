@@ -28,7 +28,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} poisoned {3}! Its Sp. Atk is reduced!",target.pbThis,target.abilityName,user.pbThis(true))
+        msg = _INTL("{1}'s {2} poisoned {3}! {4}}!",target.pbThis,target.abilityName,user.pbThis(true),POISONED_EXPLANATION)
       end
       user.pbPoison(target,msg)
     end
@@ -45,7 +45,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} chilled {3}! It's slower and takes more damage!",target.pbThis,target.abilityName,user.pbThis(true))
+        msg = _INTL("{1}'s {2} chilled {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),CHILLED_EXPLANATION)
       end
       user.pbFreeze(msg)
     end
@@ -62,7 +62,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} chilled {3}! It's slower and takes more damage!!",target.pbThis,target.abilityName,user.pbThis(true))
+        msg = _INTL("{1}'s {2} chilled {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),CHILLED_EXPLANATION)
       end
       user.pbFreeze(msg)
     end
@@ -268,8 +268,8 @@ BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} numbed {3}! It may be unable to move!",
-           target.pbThis,target.abilityName,user.pbThis(true))
+        msg = _INTL("{1}'s {2} numbed {3}! {4}!",
+           target.pbThis,target.abilityName,user.pbThis(true),NUMBED_EXPLANATION)
       end
       user.pbParalyze(target,msg)
     end
