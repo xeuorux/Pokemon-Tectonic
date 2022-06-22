@@ -1,3 +1,6 @@
+MYSTIFIED_EXPLANATION = "It'll take recoil from its own Sp. Atk"
+FLUSTERED_EXPLANATION = "It'll take recoil from its own Attack"
+
 class PokeBattle_Battler
 
 	def getStatuses()
@@ -360,9 +363,9 @@ class PokeBattle_Battler
 				when :FROZEN
 				@battle.pbDisplay(_INTL("{1} was chilled! It's slower and takes more damage!", pbThis))
 				when :FLUSTERED
-				@battle.pbDisplay(_INTL("{1} is flustered! It'll take recoil from it's own Atk!", pbThis))
+				@battle.pbDisplay(_INTL("{1} is flustered! {2}}!", pbThis, FLUSTERED_EXPLANATION))
 				when :MYSTIFIED
-				@battle.pbDisplay(_INTL("{1} is mystified! It'll take recoil from it's own Sp. Atk!", pbThis))
+				@battle.pbDisplay(_INTL("{1} is mystified! {2}!", pbThis, MYSTIFIED_EXPLANATION))
 				end
 			end
 		end
