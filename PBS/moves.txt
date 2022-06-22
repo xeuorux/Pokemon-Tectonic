@@ -1040,6 +1040,7 @@
 976,MAELSTROM,Maelstrom,0CF,75,WATER,Special,100,15,0,NearOther,0,bef,"Traps foes in a huge swirling whirlpool for three turns."
 977,CRIMSONSTORM,Crimson Storm,0CF,75,FIRE,Special,100,15,0,NearOther,0,bef,"The target becomes trapped within a vast tempest of fire that rages for three turns."
 978,VINEBIND,VINEBIND,0CF,45,GRASS,Physical,100,20,0,NearOther,0,abef,"Binds the foe with vines, trapping it for three turns."
+979,BLACKOUT,Blackout,562,90,DARK,Special,100,15,0,NearOther,0,abefhp,"The user removes the energy and light around the target. Super-Effective vs Electric-types."
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."
 1502,PRIMEVALRAINDANCE,Primeval Rain Dance,602,0,WATER,Status,0,1,0,BothSides,0,,"The user summons rain, surrounds itself with healing water, and becomes Water-type."

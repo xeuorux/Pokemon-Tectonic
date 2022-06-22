@@ -2169,3 +2169,13 @@ class PokeBattle_Move_561 < PokeBattle_Move
         return score
     end
 end
+
+#===============================================================================
+# Effectiveness against Electric-type is 2x. (Blackout)
+#===============================================================================
+class PokeBattle_Move_562 < PokeBattle_Move
+	def pbCalcTypeModSingle(moveType,defType,user,target)
+	  return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :ELECTRIC
+	  return super
+	end
+end
