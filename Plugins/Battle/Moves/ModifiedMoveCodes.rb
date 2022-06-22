@@ -394,7 +394,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
 end
 
 #===============================================================================
-# Trapping move. Traps for 5 or 6 rounds. Trapped Pokémon lose 1/16 of max HP
+# Trapping move. Traps for 3 rounds. Trapped Pokémon lose 1/8 of max HP
 # at end of each round.
 #===============================================================================
 class PokeBattle_Move_0CF < PokeBattle_Move
@@ -403,9 +403,9 @@ class PokeBattle_Move_0CF < PokeBattle_Move
     return if target.effects[PBEffects::Trapping]>0
     # Set trapping effect duration and info
     if user.hasActiveItem?(:GRIPCLAW)
-      target.effects[PBEffects::Trapping] = (Settings::MECHANICS_GENERATION >= 5) ? 8 : 6
+      target.effects[PBEffects::Trapping] = 6
     else
-      target.effects[PBEffects::Trapping] = 5+@battle.pbRandom(2)
+      target.effects[PBEffects::Trapping] = 3
     end
     target.effects[PBEffects::TrappingMove] = @id
     target.effects[PBEffects::TrappingUser] = user.index

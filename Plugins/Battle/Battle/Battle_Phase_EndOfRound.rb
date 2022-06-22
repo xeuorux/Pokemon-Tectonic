@@ -519,7 +519,7 @@ class PokeBattle_Battle
         if b.takesIndirectDamage?
           hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/8 : b.totalhp/16
           if @battlers[b.effects[PBEffects::TrappingUser]].hasActiveItem?(:BINDINGBAND)
-            hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/6 : b.totalhp/8
+            hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/4 : b.totalhp/8
           end
 		      hpLoss = (hpLoss/4.0).floor if b.boss
 		      b.damageState.displayedDamage = hpLoss
