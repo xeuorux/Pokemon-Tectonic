@@ -20,24 +20,24 @@ class PokeBattle_Scene
       # [one target physical, one target special, user status,
       #  multiple targets physical, multiple targets special, non-user status]
       typeDefaultAnim = {
-        :NORMAL   => [:TACKLE,       :SONICBOOM,    :DEFENSECURL, :EXPLOSION,  :SWIFT,        :TAILWHIP],
-        :FIGHTING => [:MACHPUNCH,    :AURASPHERE,   :DETECT,      nil,         nil,           nil],
-        :FLYING   => [:WINGATTACK,   :GUST,         :ROOST,       nil,         :AIRCUTTER,    :FEATHERDANCE],
-        :POISON   => [:POISONSTING,  :SLUDGE,       :ACIDARMOR,   nil,         :ACID,         :POISONPOWDER],
-        :GROUND   => [:SANDTOMB,     :MUDSLAP,      nil,          :EARTHQUAKE, :EARTHPOWER,   :MUDSPORT],
-        :ROCK     => [:ROCKTHROW,    :POWERGEM,     :ROCKPOLISH,  :ROCKSLIDE,  :ANCIENTPOWER, :SANDSTORM],
-        :BUG      => [:TWINEEDLE,    :BUGBUZZ,      :QUIVERDANCE, nil,         :STRUGGLEBUG,  :STRINGSHOT],
-        :GHOST    => [:LICK,         :SHADOWBALL,   :GRUDGE,      nil,         nil,           :CONFUSERAY],
-        :STEEL    => [:IRONHEAD,     :MIRRORSHOT,   :IRONDEFENSE, nil,         nil,           :METALSOUND],
-        :FIRE     => [:FIREPUNCH,    :EMBER,        :SUNNYDAY,    nil,         :INCINERATE,   :WILLOWISP],
-        :WATER    => [:CRABHAMMER,   :WATERPULSE,     :AQUARING,    nil,         :SURF,         :WATERSPORT],
-        :GRASS    => [:VINEWHIP,     :ENERGYBALL,    :COTTONGUARD, :RAZORLEAF,  nil,           :SPORE],
-        :ELECTRIC => [:THUNDERPUNCH, :THUNDERSHOCK, :CHARGE,      nil,         :DISCHARGE,    :THUNDERWAVE],
-        :PSYCHIC  => [:PSYCHOCUT,  :CONFUSION,    :CALMMIND,    nil,         :SYNCHRONOISE, :MIRACLEEYE],
-        :ICE      => [:ICEPUNCH,     :ICEBEAM,      :MIST,        nil,         :POWDERSNOW,   :HAIL],
-        :DRAGON   => [:DRAGONCLAW,   :DRAGONRAGE,   :DRAGONDANCE, nil,         :TWISTER,      nil],
-        :DARK     => [:PURSUIT,      :DARKPULSE,    :HONECLAWS,   nil,         :SNARL,        :EMBARGO],
-        :FAIRY    => [:TACKLE,       :FAIRYWIND,    :POUT,   nil,         :SWIFT,        :SWEETKISS]
+        :NORMAL   => [:TACKLE,       :SONICBOOM,    :DEFENSECURL, :EXPLOSION,     :SWIFT,          :TAILWHIP],
+        :FIGHTING => [:MACHPUNCH,    :AURASPHERE,   :DETECT,      nil,            nil,             nil],
+        :FLYING   => [:WINGATTACK,   :GUST,         :ROOST,       nil,            :AIRCUTTER,      :FEATHERDANCE],
+        :POISON   => [:POISONSTING,  :SLUDGE,       :ACIDARMOR,   nil,            :ACID,           :POISONPOWDER],
+        :GROUND   => [:SANDTOMB,     :MUDSLAP,      :SHOREUP,     :EARTHQUAKE,    :EARTHPOWER,     :MUDSPORT],
+        :ROCK     => [:ROCKTHROW,    :POWERGEM,     :ROCKPOLISH,  :ROCKSLIDE,     :ANCIENTPOWER,   :SANDSTORM],
+        :BUG      => [:TWINEEDLE,    :BUGBUZZ,      :QUIVERDANCE, nil,            :STRUGGLEBUG,    :STRINGSHOT],
+        :GHOST    => [:LICK,         :SHADOWBALL,   :GRUDGE,      nil,            nil,             :CONFUSERAY],
+        :STEEL    => [:IRONHEAD,     :MIRRORSHOT,   :IRONDEFENSE, nil,            nil,             :METALSOUND],
+        :FIRE     => [:FIREPUNCH,    :EMBER,        :SUNNYDAY,    nil,            :INCINERATE,     :WILLOWISP],
+        :WATER    => [:CRABHAMMER,   :WATERPULSE,   :AQUARING,    nil,            :SURF,           :WATERSPORT],
+        :GRASS    => [:VINEWHIP,     :ENERGYBALL,   :COTTONGUARD, :RAZORLEAF,     nil,             :SPORE],
+        :ELECTRIC => [:THUNDERPUNCH, :THUNDERSHOCK, :CHARGE,      nil,            :DISCHARGE,      :THUNDERWAVE],
+        :PSYCHIC  => [:PSYCHOCUT,    :CONFUSION,    :CALMMIND,    nil,            :SYNCHRONOISE,   :MIRACLEEYE],
+        :ICE      => [:ICEPUNCH,     :ICEBEAM,      :MIST,        nil,            :POWDERSNOW,     :HAIL],
+        :DRAGON   => [:DRAGONCLAW,   :DRAGONRAGE,   :DRAGONDANCE, :BREAKINGSWIPE, :TWISTER,        nil],
+        :DARK     => [:PURSUIT,      :DARKPULSE,    :HONECLAWS,   :BRUTALSWING,   :SNARL,          :EMBARGO],
+        :FAIRY    => [:PLAYROUGH,    :FAIRYWIND,    :POUT,        nil,            :DAZZLINGGLEAM,  :SWEETKISS]
       }
       if typeDefaultAnim[moveType]
         anims = typeDefaultAnim[moveType]
