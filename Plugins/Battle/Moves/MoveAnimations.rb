@@ -1,25 +1,4 @@
 class PokeBattle_Scene
-  #=============================================================================
-  # Loads a move/common animation
-  #=============================================================================
-  # Returns the animation ID to use for a given move/user. Returns nil if that
-  # move has no animations defined for it.
-  def pbFindMoveAnimDetails(move2anim,moveID,idxUser,hitNum=0)
-    id_number = GameData::Move.get(moveID).id_number
-    noFlip = false
-    if (idxUser&1)==0   # On player's side
-      anim = move2anim[0][id_number]
-    else                # On opposing side
-      anim = move2anim[1][id_number]
-      noFlip = true if anim
-      anim = move2anim[0][id_number] if !anim
-    end
-#    echoln (_INTL("anim is {1}\n hitNum = {2} \nanim + hitNum is {4}\n this method is returning ({2},{3})",anim,hitNum,noFlip,testVariable))
-#currently the bounce animation does not exist, but this is not likely why the pokemon is not disappearing
-    return [anim+hitNum,noFlip] if anim
-    return nil
-  end
-
   # Returns the animation ID to use for a given move. If the move has no
   # animations, tries to use a default move animation depending on the move's
   # type. If that default move animation doesn't exist, trues to use Tackle's

@@ -66,6 +66,13 @@ Princess-Phoenix<s>Sagedeoxys
 Reborn Icons
 smeargletail<s>ARandomTalkingBush
 
+Reborn Move Animations
+Smeargletail<s>Mde2001
+Autumn<s>VulpesDraconis
+Amethyst<s>Crim
+andracass<s>Koyoss
+Jan<s>
+
 Pre-looped Music Pack
 ENLS
 
