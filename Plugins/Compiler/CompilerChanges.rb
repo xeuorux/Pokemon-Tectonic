@@ -183,8 +183,8 @@ module Compiler
       compile_animations
       yield(_INTL("Converting events"))
       compile_events
-      yield(_INTL("Editing maps"))
-      edit_maps
+      #yield(_INTL("Editing maps"))
+      #edit_maps
       yield(_INTL("Saving messages"))
       pbSetTextMessages
       MessageTypes.saveMessages
