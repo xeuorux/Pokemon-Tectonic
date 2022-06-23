@@ -1039,7 +1039,7 @@
 975,SLAMSHUT,Slam Shut,0CF,75,WATER,Physical,100,15,0,NearOther,0,abef,"The target is crushed in the user's shell or claws, trapping it for three turns."
 976,MAELSTROM,Maelstrom,0CF,75,WATER,Special,100,15,0,NearOther,0,bef,"Traps foes in a huge swirling whirlpool for three turns."
 977,CRIMSONSTORM,Crimson Storm,0CF,75,FIRE,Special,100,15,0,NearOther,0,bef,"The target becomes trapped within a vast tempest of fire that rages for three turns."
-978,VINEBIND,VINEBIND,0CF,45,GRASS,Physical,100,20,0,NearOther,0,abef,"Binds the foe with vines, trapping it for three turns."
+978,VINEBIND,Vinebind,0CF,45,GRASS,Physical,100,20,0,NearOther,0,abef,"Binds the foe with vines, trapping it for three turns."
 979,BLACKOUT,Blackout,562,90,DARK,Special,100,15,0,NearOther,0,abefhp,"The user removes the energy and light around the target. Super effective vs Electric-types."
 980,HOLLYCHARM,Holly Charm,563,90,GRASS,Special,100,15,0,NearOther,0,abefhp,"The user attacks the target with the power of a warding charm. Super effective vs Ghost-types."
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
