@@ -2189,3 +2189,41 @@ class PokeBattle_Move_563 < PokeBattle_Move
 	  return super
 	end
 end
+
+
+#===============================================================================
+# Uses rest on both self and target. (Bedfellows)
+#===============================================================================
+class PokeBattle_Move_564 < PokeBattle_HealingMove
+  def pbMoveFailed?(user,targets)
+    if user.asleep?
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return true if !user.pbCanSleep?(user,true,self,true)
+    return true if super
+    return false
+  end
+  
+
+  def pbHealAmount(user)
+    return user.totalhp-user.hp
+  end
+  
+	def pbEffectAgainstTarget(user,target)
+		if !target.asleep?
+			hpGain = target.totalhp-target.hp
+			target.pbRecoverHP(hpGain)
+			@battle.pbDisplay(_INTL("{1} slept and became healthy!",target.pbThis))
+		end
+	end
+
+	def pbEffectGeneral(user)
+		if user.asleep? || !user.pbCanSleep?(user,true,self,true)
+			@battle.pbDisplay(_INTL("But it failed!"))
+		else
+			user.pbSleepSelf(_INTL("{1} slept and became healthy!",user.pbThis),3)
+			super
+		end
+	end
+end
