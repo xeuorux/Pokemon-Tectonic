@@ -156,7 +156,6 @@ Bicycle = false
 MapPosition = 0,13,10
 #-------------------------------
 [020]
-# Lengthy Glade
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -173,7 +172,7 @@ BattleBack = field
 MapSize = 1,11
 #-------------------------------
 [022]
-# Secret Grotto
+# False-Front House
 Outdoor = true
 ShowArea = true
 Bicycle = true
