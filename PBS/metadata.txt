@@ -1433,3 +1433,10 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[299]
+# Mainland Dock Center
+Outdoor = false
+ShowArea = false
+Bicycle = false
+HealingSpot = 59,28,19
