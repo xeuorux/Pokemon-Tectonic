@@ -21792,7 +21792,7 @@ InternalName = FLETCHLING
 Type1 = FIRE
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 55,60,53,72,50,48
+BaseStats = 55,70,53,72,40,48
 # Total = 338
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -21826,7 +21826,7 @@ InternalName = FLETCHINDER
 Type1 = FIRE
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 72,78,65,94,66,62
+BaseStats = 72,88,65,94,56,62
 # Total = 437
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -21859,8 +21859,8 @@ InternalName = TALONFLAME
 Type1 = FIRE
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 78,81,71,126,74,69
-# Total = 499
+BaseStats = 98,101,81,126,44,69
+# Total = 519
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 175
@@ -23308,8 +23308,8 @@ InternalName = KLEFKI
 Type1 = STEEL
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 57,80,91,75,80,87
-# Total = 470
+BaseStats = 57,80,131,75,80,122
+# Total = 545
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 165
@@ -24969,8 +24969,8 @@ InternalName = SALANDIT
 Type1 = POISON
 Type2 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 53,49,40,87,81,40
-# Total = 350
+BaseStats = 53,49,40,87,81,50
+# Total = 360
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 64
@@ -25004,8 +25004,8 @@ InternalName = SALAZZLE
 Type1 = POISON
 Type2 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 68,64,60,117,116,60
-# Total = 485
+BaseStats = 88,64,60,117,111,80
+# Total = 520
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 168
@@ -25202,8 +25202,8 @@ Name = Comfey
 InternalName = COMFEY
 Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 51,52,90,100,82,110
-# Total = 485
+BaseStats = 71,52,90,100,82,110
+# Total = 505
 GenderRate = Female75Percent
 GrowthRate = Fast
 BaseEXP = 170
@@ -28657,8 +28657,8 @@ InternalName = FALINKS
 Type1 = FIGHTING
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,100,100,75,60,60
-# Total = 490
+BaseStats = 95,100,100,75,60,100
+# Total = 530
 GenderRate = Genderless
 GrowthRate = Medium
 BaseEXP = 165
@@ -28689,8 +28689,8 @@ Name = Pincurchin
 InternalName = PINCURCHIN
 Type1 = ELECTRIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 58,101,95,15,91,85
-# Total = 445
+BaseStats = 68,101,95,15,91,85
+# Total = 455
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 152
