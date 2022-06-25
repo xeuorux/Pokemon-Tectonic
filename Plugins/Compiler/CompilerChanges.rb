@@ -183,8 +183,8 @@ module Compiler
       compile_animations
       yield(_INTL("Converting events"))
       compile_events
-      #yield(_INTL("Editing maps"))
-      #edit_maps
+      yield(_INTL("Editing maps"))
+      edit_maps
       yield(_INTL("Saving messages"))
       pbSetTextMessages
       MessageTypes.saveMessages
@@ -1496,6 +1496,8 @@ end
   end
 
   def edit_maps
+    wallReplaceConvexID = GameData::TerrainTag.get(:WallReplaceConvex).id_number
+  
     # Iterate over all maps
     mapData = Compiler::MapData.new
     tilesets_data = load_data("Data/Tilesets.rxdata")
@@ -1507,13 +1509,16 @@ end
         # Grab the tileset here
         tileset = tilesets_data[map.tileset_id]
 
+        next if tileset.nil?
+
         # Iterate over all tiles, finding the first with the relevant tag
         taggedPositions = []
         for x in 0..map.data.xsize
           for y in 0..map.data.ysize
             currentID = map.data[x, y, 1]
+            next if currentID.nil?
             currentTag = tileset.terrain_tags[currentID]
-            if currentTag == :WallReplaceConvex
+            if currentTag == wallReplaceConvexID
               taggedPositions.push([x,y])
             end
           end
@@ -1523,8 +1528,47 @@ end
 
         echoln("Map #{mapName} contains some WallReplaceConvex tiles")
 
-        if anyChanges
+        changeNum = 0
+        taggedPositions.each do |position|
+          taggedX = position[0]
+          taggedY = position[1]
+
+          touchedDirs = 0b0000 # North, East, South, West
+          taggedPositions.each do |position2|
+            posX = position2[0]
+            posY = position2[1]
+            # North
+            touchedDirs = touchedDirs | 0b1000 if posX == taggedX && posY == taggedY - 1
+            # East
+            touchedDirs = touchedDirs | 0b0100 if posY == taggedY && posX == taggedX + 1
+            # South
+            touchedDirs = touchedDirs | 0b0010 if posX == taggedX && posY == taggedY + 1
+            # West
+            touchedDirs = touchedDirs | 0b0001 if posY == taggedY && posX == taggedX - 1
+          end
+
+          tileIDToAdd = 0
+          if touchedDirs == 0b1100 # Northeast
+            tileIDToAdd = 1485
+          elsif touchedDirs == 0b1001 # NorthWest
+            tileIDToAdd = 1487
+          elsif touchedDirs == 0b0110 # Southeast
+            tileIDToAdd = 1469
+          elsif touchedDirs == 0b0011 # Southwest
+            tileIDToAdd = 1471
+          end
+
+          next if tileIDToAdd == 0
+
+          map.data[taggedX,taggedY,1] = tileIDToAdd
+          changeNum += 1
+        end
+
+        if changeNum > 0
+          echoln("Saving map after changing #{changeNum} tiles: #{mapName} (#{id})")
           mapData.saveMap(id)
+        else
+          echoln("Unable to make any changes to: #{mapName} (#{id})")
         end
     end
   end
