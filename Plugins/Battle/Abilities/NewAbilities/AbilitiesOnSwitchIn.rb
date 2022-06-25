@@ -152,7 +152,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:POLLUTION,
 
 BattleHandlers::AbilityOnSwitchIn.add(:ARCANEFINALE,
   proc { |ability,battler,battle|
-    next unless battler.isLastAlive?
+    next if !battler.isLastAlive?
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} is the team's finale!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
@@ -161,7 +161,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ARCANEFINALE,
 
 BattleHandlers::AbilityOnSwitchIn.add(:HEROICFINALE,
   proc { |ability,battler,battle|
-    next unless battler.isLastAlive?
+    next if !battler.isLastAlive?
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} is the team's finale!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)

@@ -267,7 +267,8 @@ class PokeBattle_Battler
 
   def isLastAlive?
     return false if @battle.wildBattle? && opposes?
-    return !fainted? && @battle.pbGetOwnerFromBattlerIndex(@index).able_pokemon_count == 1
+    return false if fainted?
+    return @battle.pbGetOwnerFromBattlerIndex(@index).able_pokemon_count == 1
   end
 
 end
