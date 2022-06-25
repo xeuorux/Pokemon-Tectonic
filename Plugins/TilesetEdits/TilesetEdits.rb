@@ -118,6 +118,35 @@ class PokemonTilesetScene
       draw_overlay
     end
 
+    def draw_tile_details
+      overlay = @sprites["overlay"].bitmap
+      tile_x = Graphics.width * 3 / 4 - TILE_SIZE
+      tile_y = Graphics.height / 2 - TILE_SIZE
+      tile_id = tile_ID_from_coordinates(@x, @y) || 0
+      # Draw tile (at 200% size)
+      @tilehelper.bltSmallTile(overlay, tile_x, tile_y, TILE_SIZE * 2, TILE_SIZE * 2, tile_id)
+      # Draw box around tile image
+      overlay.fill_rect(tile_x - 1,             tile_y - 1,             TILE_SIZE * 2 + 2, 1, Color.new(255, 255, 255))
+      overlay.fill_rect(tile_x - 1,             tile_y - 1,             1, TILE_SIZE * 2 + 2, Color.new(255, 255, 255))
+      overlay.fill_rect(tile_x - 1,             tile_y + TILE_SIZE * 2, TILE_SIZE * 2 + 2, 1, Color.new(255, 255, 255))
+      overlay.fill_rect(tile_x + TILE_SIZE * 2, tile_y - 1,             1, TILE_SIZE * 2 + 2, Color.new(255, 255, 255))
+      # Write terrain tag info about selected tile
+      terrain_tag = @tileset.terrain_tags[tile_id] || 0
+      if GameData::TerrainTag.exists?(terrain_tag)
+        terrain_tag_name = sprintf("%d: %s", terrain_tag, GameData::TerrainTag.get(terrain_tag).real_name)
+      else
+        terrain_tag_name = terrain_tag.to_s
+      end
+      textpos = [
+        [_INTL("Terrain Tag:"), tile_x + TILE_SIZE, tile_y + TILE_SIZE * 2 + 10, 2, Color.new(248, 248, 248), Color.new(40, 40, 40)],
+        [terrain_tag_name, tile_x + TILE_SIZE, tile_y + TILE_SIZE * 2 + 42, 2, Color.new(248, 248, 248), Color.new(40, 40, 40)],
+        [_INTL("Tile ID:"), tile_x + TILE_SIZE, tile_y + TILE_SIZE * 2 + 70, 2, Color.new(248, 248, 248), Color.new(40, 40, 40)],
+        [tile_id.to_s, tile_x + TILE_SIZE, tile_y + TILE_SIZE * 2 + 102, 2, Color.new(248, 248, 248), Color.new(40, 40, 40)],
+      ]
+      # Draw all text
+      pbDrawTextPositions(overlay, textpos)
+    end
+
     def eraseTile()
       selected = tile_ID_from_coordinates(@x, @y)
       @tileset.terrain_tags[selected] = 0
