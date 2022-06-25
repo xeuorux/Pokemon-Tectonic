@@ -587,7 +587,7 @@ end
 #===============================================================================
 # Poisons the target. Heals for 1/3 the damage dealt. (Venom Leech)
 #===============================================================================
-class PokeBattle_Move_51A < PokeBattle_PoisonMove
+class PokeBattle_Move_51A < PokeBattle_Move
   def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
   
   def pbEffectAgainstTarget(user,target)
@@ -597,7 +597,6 @@ class PokeBattle_Move_51A < PokeBattle_PoisonMove
   end
   
   def getScore(score,user,target,skill=100)
-    score -= 40 if target.pbCanPoison?(user,false)
 	score += 40 if user.hp < user.totalhp/2.0
 	return score
   end
