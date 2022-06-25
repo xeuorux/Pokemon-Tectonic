@@ -68,7 +68,7 @@ DarkCave,20
 Special,20
     1,MILCERY,15
 #-------------------------------
-[020]
+[020] # Lunar Island Placeholder
 Special,1
     1,GPONYTA,15
 #-------------------------------

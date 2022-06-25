@@ -1411,7 +1411,7 @@ Pokemon = CHARIZARD,40
     AbilityIndex = 0
 Pokemon = INDEEDEE,40
     AbilityIndex = 1
-	Item = SITRUSBERRY
+    Item = SITRUSBERRY
 Pokemon = WEAVILE,40
     AbilityIndex = 1
 Pokemon = LEAFEON,40
@@ -1432,7 +1432,7 @@ Pokemon = SPIRITOMB,40
     AbilityIndex = 1
 Pokemon = MAGMORTAR,40
     AbilityIndex = 0
-	Item = SITRUSBERRY
+    Item = SITRUSBERRY
 #-------------------------------
 [BURGLAR,Keith]
 Pokemon = ROSERADE,40
@@ -1442,7 +1442,7 @@ Pokemon = CRABOMINABLE,40
     AbilityIndex = 0
 Pokemon = MAGNEZONE,40
     AbilityIndex = 0
-	Item = SITRUSBERRY
+    Item = SITRUSBERRY
 Pokemon = EXEGGUTOR,40
     AbilityIndex = 0
 Pokemon = MANDIBUZZ,40
@@ -1494,7 +1494,7 @@ Pokemon = BEARTIC,40
     AbilityIndex = 1
 Pokemon = AROMATISSE,40
     AbilityIndex = 1
-	Item = SITRUSBERRY
+    Item = SITRUSBERRY
 #-------------------------------
 [BOARDER,Alex]
 Pokemon = ARCHEOPS,40
@@ -1506,7 +1506,7 @@ Pokemon = PELIPPER,40
     AbilityIndex = 0
 Pokemon = GLACEON,40
     AbilityIndex = 1
-	Item = SITRUSBERRY
+    Item = SITRUSBERRY
 Pokemon = TOXAPEX,40
     AbilityIndex = 0
 #-------------------------------
@@ -1524,7 +1524,7 @@ Pokemon = EXCADRILL,40
     AbilityIndex = 1
 Pokemon = STONJOURNER,40
     AbilityIndex = 1
-	Item = SITRUSBERRY
+    Item = SITRUSBERRY
 #-------------------------------
 [PICNICKER,Magdalena]
 Pokemon = SYLVEON,40
@@ -3318,35 +3318,35 @@ Pokemon = HAXORUS,50
 #-------------------------------
 [SCHOOLKID_F2,Renata]
 Pokemon = PAPELLUMEN,40
-	AbilityIndex = 0
+    AbilityIndex = 0
 Pokemon = FERALIGATR,40
-	AbilityIndex = 0
+    AbilityIndex = 0
 Pokemon = VENUSAUR,40
-	AbilityIndex = 0
-	Item = LEFTOVERS
+    AbilityIndex = 0
+    Item = LEFTOVERS
 Pokemon = DELCATTY,40
-	AbilityIndex = 0
+    AbilityIndex = 0
 Pokemon = CLAYDOL,40
-	AbilityIndex = 0
-	Item = SITRUSBERRY
+    AbilityIndex = 0
+    Item = SITRUSBERRY
 #-------------------------------
 [SCHOOLKID_M2,Kang]
 Pokemon = MAROWAK,40
-	AbilityIndex = 0
-	Item = SHELLBELL
-Pokemon = SCOLIPEDE,40
-	AbilityIndex = 0
-	Item = ASSAULTVEST
-Pokemon = GOGOAT,40
-	AbilityIndex = 1
-	Item = SITRUSBERRY
-Pokemon = TOGEKISS,40
-	AbilityIndex = 1
-	Item = STRIKEVEST
-Pokemon = GOTHITELLE,40
-	AbilityIndex = 0
-	Item = CHOICESPECS
-Pokemon = ROTOM,40
-	Form = 2
     AbilityIndex = 0
-	Item = SITRUSBERRY
+    Item = SHELLBELL
+Pokemon = SCOLIPEDE,40
+    AbilityIndex = 0
+    Item = ASSAULTVEST
+Pokemon = GOGOAT,40
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+Pokemon = TOGEKISS,40
+    AbilityIndex = 1
+    Item = STRIKEVEST
+Pokemon = GOTHITELLE,40
+    AbilityIndex = 0
+    Item = CHOICESPECS
+Pokemon = ROTOM,40
+    Form = 2
+    AbilityIndex = 0
+    Item = SITRUSBERRY

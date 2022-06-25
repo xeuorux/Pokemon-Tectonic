@@ -156,6 +156,7 @@ Bicycle = false
 MapPosition = 0,13,10
 #-------------------------------
 [020]
+# Lunar Island Placeholder
 Outdoor = true
 ShowArea = true
 Bicycle = true
