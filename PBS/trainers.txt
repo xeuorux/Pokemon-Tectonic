@@ -3333,13 +3333,11 @@ Pokemon = CLAYDOL,40
 [SCHOOLKID_M2,Kang]
 Pokemon = MAROWAK,40
     AbilityIndex = 0
-    Item = SHELLBELL
 Pokemon = SCOLIPEDE,40
     AbilityIndex = 0
     Item = ASSAULTVEST
 Pokemon = GOGOAT,40
     AbilityIndex = 1
-    Item = SITRUSBERRY
 Pokemon = TOGEKISS,40
     AbilityIndex = 1
     Item = STRIKEVEST
