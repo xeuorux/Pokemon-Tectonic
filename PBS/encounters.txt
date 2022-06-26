@@ -670,7 +670,7 @@ Land,20
     25,MILCERY,44,46
 #-------------------------------
 [218] # Abyssal Cavern Placeholder
-Puddle,20
+ActiveWater,20
     25,CHINCHOU,37,39
     25,FRILLISH,37,39
     25,RELICANTH,37,39
