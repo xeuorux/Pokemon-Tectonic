@@ -3407,3 +3407,39 @@ Pokemon = LAPNESSIE,55
     Moves = HYPERVOICE,DRAGONPULSE,BUBBLEBLAST,PSYCHIC
     AbilityIndex = 0
     Item = LEFTOVERS
+#-------------------------------
+[FIREBREATHER,Bradley]
+Pokemon = COMFEY,46
+    AbilityIndex = 0
+Pokemon = TALONFLAME,47
+    AbilityIndex = 1
+    Item = SHELLBELL
+Pokemon = GIGALITH,48
+    AbilityIndex = 1
+    Item = ROCKGEM
+Pokemon = STANTLER,47
+    AbilityIndex = 0
+#-------------------------------
+[SWIMMER_M3,Diego]
+Pokemon = PELIPPER,47
+    AbilityIndex = 0
+    Item = WACANBERRY
+Pokemon = EISCUE,48
+    AbilityIndex = 0
+    Item = LEFTOVERS
+Pokemon = MORPEKO,49
+    AbilityIndex = 0
+Pokemon = ATLACROSS,48
+    AbilityIndex = 0
+#-------------------------------
+[RUINMANIAC2,Nabil]
+Pokemon = VICTREEBEL,48
+    AbilityIndex = 1
+Pokemon = ILLUMISE,49
+    AbilityIndex = 0
+    Item = FAIRYGEM
+Pokemon = RHYPERIOR,50
+    AbilityIndex = 0
+Pokemon = NINJASK,49
+    AbilityIndex = 0
+    Item = LIFEORB

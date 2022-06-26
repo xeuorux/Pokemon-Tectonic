@@ -212,6 +212,7 @@
 209,POKEMONRANGER_M4,Pokémon Ranger,60,,,ELITETRAINER,Male,,,[]
 210,POKEMONRANGER_F3,Pokémon Ranger,60,,,ACETRAINER,Female,,,[]
 211,POKEMONRANGER_F4,Pokémon Ranger,60,,,ACETRAINER,Female,,,[]
+212,RUINMANIAC2,Ruin Maniac,48,,,BACKPACKER,Male,,,[]
 290,TRAINER_Eifion,Pokémon Trainer,100,,,,Male,,,[]
 291,TRAINER_Sang,Pokémon Trainer,100,,,,Male,,,[]
 292,TRAINER_Skyler,Pokémon Trainer,100,,,,Male,,,[]
