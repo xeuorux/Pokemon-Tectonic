@@ -3348,3 +3348,15 @@ Pokemon = ROTOM,40
     Form = 2
     AbilityIndex = 0
     Item = SITRUSBERRY
+#-------------------------------
+[BUGCATCHER2,Rangsan]
+Pokemon = SCEPTILE,55
+    AbilityIndex = 0
+Pokemon = FROSMOTH,55
+    AbilityIndex = 1
+    Item = WEAKNESSPOLICY
+Pokemon = KINGDRA,55
+    AbilityIndex = 1
+    Item = EXPERTBELT
+Pokemon = DURANT,55
+    AbilityIndex = 0
