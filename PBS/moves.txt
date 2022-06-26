@@ -1045,6 +1045,7 @@
 981,MUTUAL,Mutual,537,55,FIGHTING,Physical,100,30,0,NearOther,0,abef,"The user grabs the target, slamming both of them into the ground. The user takes 20% recoil."
 982,BEDFELLOWS,Bedfellows,564,0,NORMAL,Status,0,5,0,NearFoe,0,bce,"The user and the target both take a restful sleep, fully restoring their HPs and healing any status conditions."
 983,LOUNGE,Lounge,565,0,NORMAL,Status,0,5,0,User,-1,d,"The user lounges around with decadent laziness, restoring its HP by two/thirds of its maximum. This move always goes last."
+984,THUNDERCLAP,Thunderclap,00F,80,ELECTRIC,Physical,100,20,40,NearOther,0,be,"The user jabs the target with electric charges. It has a 40% chance to make the target flinch."
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type."
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type."
 1502,PRIMEVALRAINDANCE,Primeval Rain Dance,602,0,WATER,Status,0,1,0,BothSides,0,,"The user summons rain, surrounds itself with healing water, and becomes Water-type."
