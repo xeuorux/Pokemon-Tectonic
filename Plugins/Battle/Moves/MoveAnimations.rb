@@ -41,22 +41,22 @@ class PokeBattle_Scene
       }
       if typeDefaultAnim[moveType]
         anims = typeDefaultAnim[moveType]
-		#The the most correct possible animation
+        #The the most correct possible animation
         if GameData::Move.exists?(anims[moveKind])
           anim = pbFindMoveAnimDetails(move2anim, anims[moveKind], idxUser)
         end
-		#If the move is multitarget, but no such animation exists, try for the single target version
+        #If the move is multitarget, but no such animation exists, try for the single target version
         if !anim && moveKind >= 3 && GameData::Move.exists?(anims[moveKind - 3])
           anim = pbFindMoveAnimDetails(move2anim, anims[moveKind - 3], idxUser)
         end
-		# If not even the single target version exists, try the "user status" animatio
+        # If not even the single target version exists, try the "user status" animatio
         if !anim && GameData::Move.exists?(anims[2])
           anim = pbFindMoveAnimDetails(move2anim, anims[2], idxUser)
         end
-		# If not even the "user status" exists, fall back on the normal type
-		if !anim
-			anim = pbFindMoveAnimDetails(move2anim,typeDefaultAnim[:NORMAL][moveKind],idxUser)
-		end
+        # If not even the "user status" exists, fall back on the normal type
+        if !anim
+          anim = pbFindMoveAnimDetails(move2anim,typeDefaultAnim[:NORMAL][moveKind],idxUser)
+        end
       end
       return anim if anim
 	  
@@ -72,7 +72,6 @@ class PokeBattle_Scene
   #=============================================================================
   # Plays a move/common animation
   #=============================================================================
-  # Plays a move animation.
   def pbAnimation(moveID,user,targets,hitNum=0)
     animID = pbFindMoveAnimation(moveID,user.index,hitNum)
     return if !animID
@@ -80,7 +79,7 @@ class PokeBattle_Scene
     target = (targets && targets.is_a?(Array)) ? targets[0] : targets
     animations = pbLoadBattleAnimations
     return if !animations
-	speedMult = 1
+	  speedMult = [1,2,1][$PokemonSystem.battlescene]
     pbSaveShadows {
       if animID[1]   # On opposing side and using OppMove animation
         pbAnimationCore(animations[anim],target,user,true,speedMult)
@@ -152,12 +151,12 @@ class PBAnimationPlayerX
     @looping       = false
     @animbitmap    = nil   # Animation sheet graphic
     @frame         = -1
-    @framesPerTick = [Graphics.frame_rate/(20*speedMult),1].max   # 20 ticks per second
+    @framesPerTick = [(Graphics.frame_rate.to_f/(20.0*speedMult)).round,1].max   # 20 ticks per second
     @srcLine       = nil
     @dstLine       = nil
     @userOrig      = getSpriteCenter(@usersprite)
-	# Now assumes the target is in the direct center of the screen if one isn't given
-	# So that cells which focus on the target will be centered rather than at the top left
+	  # Now assumes the target is in the direct center of the screen if one isn't given
+	  # So that cells which focus on the target will be centered rather than at the top left
     @targetOrig    = @targetsprite ? getSpriteCenter(@targetsprite) : [@viewport.rect.width/2,@viewport.rect.height - 160]
     @oldbg         = []
     @oldfo         = []
