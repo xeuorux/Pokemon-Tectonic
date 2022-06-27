@@ -1150,7 +1150,7 @@ Bicycle = true
 Weather = Rain,10
 #-------------------------------
 [218]
-# Abyssal Cavern Placeholder
+# Abyssal Cavern
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1251,7 +1251,7 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [256]
-# Underwater River Entrance
+# Waterfall Secret
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1429,7 +1429,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [288]
-# Underwater River Sketch
+# Underground River
 Outdoor = false
 ShowArea = true
 Bicycle = true
