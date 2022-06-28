@@ -68,10 +68,6 @@ DarkCave,20
 Special,20
     1,MILCERY,15
 #-------------------------------
-[020] # Lunar Island Placeholder
-Special,1
-    1,GPONYTA,15
-#-------------------------------
 [025] # Grouz
 Land,20
     25,GOTHITA,15,18
@@ -786,3 +782,7 @@ LandSparse,20
     33,CLAUNCHER,36,38
     33,DURANT,36,38
     33,HEATMOR,36,38
+#-------------------------------
+[305] # Mainland Dock Warehouse
+Special,1
+    1,GPONYTA,15
