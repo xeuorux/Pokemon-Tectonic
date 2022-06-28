@@ -1370,7 +1370,7 @@ Pokemon = MZANGOOSE,60
 #-------------------------------
 [ULTRALAINIE,Lainie]
 Pokemon = SOLGALEO,65
-    Moves = SUNSTEELSTRIKE,FLAREBLITZ,MORNINGSUN,PSYCHICFANG
+    Moves = SUNSTEELSTRIKE,FLAREBLITZ,MORNINGSUN,PSYCHICFANGS
     AbilityIndex = 0
     Item = LEFTOVERS
 Pokemon = LUNALA,65
@@ -3319,9 +3319,9 @@ Pokemon = MANTINE,50
     AbilityIndex = 1
     Item = STRIKEVEST
     EV = 20,20,0,0,20,10
-Pokemon = PACHIRISU,50
-    Moves = SUPERFANG,ELECTROBALL,VOLTSWITCH,NUMB
-    AbilityIndex = 0
+Pokemon = MANERGETIC,50
+    Moves = FLAMETHROWER,ELECTROBALL,VOLTSWITCH,THUNDERBOLT
+    AbilityIndex = 1
     Item = STRIKEVEST
     EV = 0,20,10,20,0,0
 Pokemon = CONIFEAR,50
