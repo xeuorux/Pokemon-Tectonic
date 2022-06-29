@@ -1758,7 +1758,7 @@ Pokemon = AMPHAROS,43
 [BEAUTY,Gretchen]
 Pokemon = TSAREENA,43
     AbilityIndex = 1
-    Item = CHOICEBAND
+    Item = LIFEORB
 Pokemon = ESPEON,42
     AbilityIndex = 1
     Item = SITRUSBERRY
@@ -1825,7 +1825,7 @@ Pokemon = UNFEZANT,40
     AbilityIndex = 1
 Pokemon = TOUCANNON,40
     AbilityIndex = 0
-    Item = CHOICEBAND
+    Item = SCOPELENS
 Pokemon = SWANNA,40
     AbilityIndex = 0
     Item = FLYINGGEM
@@ -2309,7 +2309,7 @@ Pokemon = WHIMSICOTT,48
     Item = GRASSGEM
 Pokemon = RAPIDASH,47
     AbilityIndex = 1
-    Item = CHOICESCARF
+    Item = SHELLBELL
 #-------------------------------
 [JUGGLER,Mikael]
 Pokemon = GARCHOMP,48
@@ -2401,7 +2401,7 @@ Pokemon = TENTACRUEL,42
     AbilityIndex = 0
 Pokemon = VOLBEAT,43
     AbilityIndex = 0
-    Item = CHOICESCARF
+    Item = LIFEORB
 Pokemon = PALOSSAND,42
     AbilityIndex = 0
     Item = GANLONBERRY
