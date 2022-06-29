@@ -14,7 +14,7 @@ Pokemon = MACHOP,10
 Pokemon = MACHOP,10
     AbilityIndex = 0
 #-------------------------------
-[BUGCATCHER,Colin]
+[BUGCATCHER_F,Caitlyn]
 Policies = REMARKONSTARTER
 Pokemon = KRICKETOT,8
     AbilityIndex = 0
