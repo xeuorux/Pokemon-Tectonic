@@ -1434,3 +1434,26 @@ class PokeBattle_Move_018 < PokeBattle_Move
     user.pbCureStatus(true,:FROZEN)
   end
 end
+
+#===============================================================================
+# Two turn attack. Skips first turn, attacks second turn. (Dig)
+# (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
+#===============================================================================
+class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
+  def pbChargingTurnMessage(user,targets)
+    @battle.pbDisplay(_INTL("{1} burrowed its way under the ground!",user.pbThis))
+  end
+
+  def pbIsChargingTurn?(user)
+    ret = super
+    if !user.effects[PBEffects::TwoTurnAttack]
+      if @battle.pbWeather == :Sandstorm && user.hasActiveAbility?(:BURROWER)
+        @powerHerb = false
+        @chargingTurn = true
+        @damagingTurn = true
+        return false
+      end
+    end
+    return ret
+  end
+end

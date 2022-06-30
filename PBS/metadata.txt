@@ -993,7 +993,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [176]
-# Hero's Chamber
+# Heroes' Chamber
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1318,7 +1318,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [268]
-# Couples House
+# Couple's House
 Outdoor = false
 ShowArea = false
 Bicycle = false
