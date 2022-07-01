@@ -8774,7 +8774,7 @@ Type1 = BUG
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 80,110,50,115,110,60
-# Total = 485
+# Total = 525
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 178
@@ -8844,7 +8844,7 @@ Type1 = BUG
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 90,85,70,105,85,90
-# Total = 485
+# Total = 525
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 173
@@ -32322,7 +32322,7 @@ Name = M. Wurmple
 InternalName = MWURMPLE
 Type1 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 55,40,45,20,40,35
+BaseStats = 55,40,45,25,40,35
 # Total = 240
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -32393,7 +32393,7 @@ Type1 = BUG
 Type2 = ICE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 70,85,90,125,105,50
-# Total = 485
+# Total = 525
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 178
@@ -32422,8 +32422,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [2513]
-Name = Cascoon
-InternalName = CASCOON
+Name = M. Cascoon
+InternalName = MCASCOON
 Type1 = BUG
 Type2 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -32463,7 +32463,7 @@ Type1 = BUG
 Type2 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 90,100,70,125,70,70
-# Total = 485
+# Total = 525
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 173
@@ -32490,4 +32490,3 @@ BattlerEnemyX = 0
 BattlerEnemyY = 9
 BattlerShadowX = 0
 BattlerShadowSize = 2
-#-------------------------------

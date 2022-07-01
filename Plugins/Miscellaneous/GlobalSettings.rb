@@ -62,4 +62,9 @@ module Settings
   POKE_RADAR_ENCOUNTERS = []
   
   NUM_STORAGE_BOXES = 40
+
+  REGION_MAP_EXTRAS = [
+    [0, 51, 9, 5, "mapHiddenCave", false],
+    [0, 52, 17, 13, "mapHidden2x1Route", false]
+  ]
 end
