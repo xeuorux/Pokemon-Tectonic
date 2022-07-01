@@ -1253,7 +1253,7 @@ Bicycle = true
 [256]
 # Waterfall Secret
 Outdoor = false
-ShowArea = true
+ShowArea = false
 Bicycle = true
 #-------------------------------
 [257]
