@@ -3346,7 +3346,7 @@ Pokemon = HAXORUS,50
     EV = 0,20,0,20,0,10
 #-------------------------------
 [SCHOOLKID_F2,Renata]
-Pokemon = PAPELLUMEN,40
+Pokemon = DRAPION,40
     AbilityIndex = 0
 Pokemon = FERALIGATR,40
     AbilityIndex = 0
