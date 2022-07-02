@@ -143,7 +143,7 @@ class PokeBattle_Battler
 		when :SLEEP
 			if pbHasType?(:GRASS) && !selfInflicted
 				hasImmuneType = true
-				immuneType = :FAIRY
+				immuneType = :GRASS
 			end
 		when :POISON
 			if !(user && user.hasActiveAbility?(:CORROSION))
@@ -159,12 +159,12 @@ class PokeBattle_Battler
 		when :BURN
 			if pbHasType?(:FIRE)
 				hasImmuneType = true
-				immuneType = :FAIRY
+				immuneType = :FIRE
 			end
 		when :PARALYSIS
 			if pbHasType?(:ELECTRIC)
 				hasImmuneType = true
-				immuneType = :FAIRY
+				immuneType = :ELECTRIC
 			end
 		when :FROZEN
 			if pbHasType?(:ICE)
