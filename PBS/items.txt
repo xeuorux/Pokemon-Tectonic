@@ -281,7 +281,7 @@
 277,DUSKBALL,Dusk Ball,Dusk Balls,3,400,"A somewhat different Poké Ball which has 3x strength at night or in dark places like caves.",0,4,4
 278,HEALBALL,Heal Ball,Heal Balls,3,400,"A remedial Poké Ball that restores the caught Pokémon's HP and eliminates any status problem.",0,4,4
 279,QUICKBALL,Quick Ball,Quick Balls,3,800,"A somewhat different Poké Ball which has 5x strength on the first turn of a wild encounter.",0,4,4
-280,CHERISHBALL,Cherish Ball,Cherish Balls,3,0,"A quite rare Poké Ball that has been specially crafted to commemorate an occasion of some sort.",0,4,4
+280,CHERISHBALL,Cherish Ball,Cherish Balls,3,800,"A quite rare Poké Ball that has been specially crafted to commemorate an occasion of some sort.",0,4,4
 281,FASTBALL,Fast Ball,Fast Balls,3,300,"A Poké Ball with 4x strength against Pokémon species with 100 or more base speed.",0,4,4
 282,LEVELBALL,Level Ball,Level Balls,3,300,"A Poké Ball with much higher strength the higher your Pokémon's level is above the target.",0,4,4
 283,LUREBALL,Lure Ball,Lure Balls,3,300,"A Poké Ball with 5x strength against Pokémon encountered through fishing.",0,4,4
@@ -627,7 +627,7 @@
 617,BIGMALASADA,Big Malasada,Big Malasadas,2,350,"The Alola region's specialty--fried bread. It can be used once to heal all the status conditions of a Pokémon.",1,0,0
 618,ABILITYCAPSULE,Ability Capsule,Ability Capsule,2,3000,"A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used.",1,0,0
 #-------------------------------
-619,DREAMBALL,Dream Ball,Dream Balls,3,0,"A somewhat different Poké Ball that makes it easier to catch wild Pokémon while they're asleep.",0,4,4
+619,DREAMBALL,Dream Ball,Dream Balls,3,300,"A somewhat different Poké Ball that makes it easier to catch wild Pokémon while they're asleep.",0,4,4
 620,BEASTBALL,Beast Ball,Beast Balls,3,1000,"A special Poké Ball designed to catch Ultra Beasts. It has a low success rate for catching others.",0,4,4
 #-------------------------------
 621,TM95,TM95,TM95s,4,6000,"The user attacks with a blade of air that slices even the sky. This may also make the target flinch.",3,0,0,AIRSLASH
