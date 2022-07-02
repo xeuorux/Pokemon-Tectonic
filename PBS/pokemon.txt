@@ -24195,7 +24195,7 @@ BattlerShadowSize = 2
 [734]
 Name = Yungoos
 InternalName = YUNGOOS
-Notes = moveset cadence
+Notes = TODO: Rework moveset entirely
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,80,65,45,30,40
