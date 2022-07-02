@@ -65,157 +65,157 @@
 63,SHOALSALT,Shoal Salt,Shoal Salts,1,20,"Pure salt that can be discovered deep inside the Shoal Cave. A maniac will buy it for a high price.",0,0,0
 64,SHOALSHELL,Shoal Shell,Shoal Shells,1,20,"A pretty seashell that can be found deep inside the Shoal Cave. A maniac will buy it for a high price.",0,0,0
 65,ODDKEYSTONE,Odd Keystone,Odd Keystones,1,2100,"A vital item that is needed to keep a stone tower from collapsing. Voices can be heard from it occasionally.",0,0,0
-66,AIRBALLOON,Air Balloon,Air Balloons,1,4000,"An item to be held by a Pokémon. The holder will float in the air until hit. Once hit, this item will burst.",0,0,0
-67,BRIGHTPOWDER,Bright Powder,Bright Powders,1,4000,"An item to be held by a Pokémon. It casts a tricky glare that lowers the opponent's accuracy.",0,0,0
-68,EVIOLITE,Eviolite,Eviolites,1,8000,"When held, it raises the Defense and Sp. Def if the holder can still evolve. Prevents evolution.",0,0,0
-69,FLOATSTONE,Float Stone,Float Stones,1,4000,"A very light stone. It reduces the weight of a Pokémon when held.",0,0,0
-70,DESTINYKNOT,Destiny Knot,Destiny Knots,1,4000,"A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, so does the foe.",0,0,0
-71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,1,4000,"Damages attackers for 1/8 of their HP when they hit the holder with physical attacks.",0,0,0
-72,EJECTBUTTON,Eject Button,Eject Buttons,1,4000,"If the holder is hit by an attack, it will switch with another Pokémon in your party.",0,0,0
-73,REDCARD,Red Card,Red Cards,1,4000,"A card with a mysterious power. When the holder is struck by a foe, the attacker is removed from battle.",0,0,0
-74,SHEDSHELL,Shed Shell,Shed Shells,1,4000,"An item to be held by a Pokémon. This discarded carapace lets the holder switch out of battle without fail.",0,0,0
-75,SMOKEBALL,Smoke Ball,Smoke Balls,1,4000,"An item to be held by a Pokémon. It enables the holder to flee from any wild Pokémon without fail.",0,0,0
-76,LUCKYEGG,Lucky Egg,Lucky Eggs,1,10000,"An item to be held by a Pokémon. It is an egg filled with happiness that earns extra Exp. Points in battle.",0,0,0
-77,EXPSHARE,Exp. Share,Exp. Shares,1,3000,"An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling.",0,0,0
-78,AMULETCOIN,Amulet Coin,Amulet Coins,1,10000,"An item to be held by a Pokémon. It doubles a battle's prize money if the holding Pokémon joins in.",0,0,0
-79,SOOTHEBELL,Soothe Bell,Soothe Bells,1,4000,"An item to be held by a Pokémon. The comforting chime of this bell calms the holder, making it friendly.",0,0,0
-80,CLEANSETAG,Cleanse Tag,Cleanse Tags,1,5000,"An item to be held by a Pokémon. It helps keep wild Pokémon away if the holder is the first one in the party.",0,0,0
-81,CHOICEBAND,Choice Band,Choice Bands,1,10000,"Held item which ups Attack by 33%, but allows the use of only one move.",0,0,0
-82,CHOICESPECS,Choice Specs,Choice Specs,1,10000,"Held item which ups Sp. Atk by 33%, but allows the use of only one move.",0,0,0
-83,CHOICESCARF,Choice Scarf,Choice Scarves,1,10000,"Held item which boosts Speed by 33% but allows the use of only one move.",0,0,0
-84,HEATROCK,Heat Rock,Heat Rocks,1,4000,"A Pokémon held item that extends the duration of the move Sunny Day used by the holder.",0,0,0
-85,DAMPROCK,Damp Rock,Damp Rocks,1,4000,"A Pokémon held item that extends the duration of the move Rain Dance used by the holder.",0,0,0
-86,SMOOTHROCK,Smooth Rock,Smooth Rocks,1,4000,"A Pokémon held item that extends the duration of the move Sandstorm used by the holder.",0,0,0
-87,ICYROCK,Icy Rock,Icy Rocks,1,4000,"A Pokémon held item that extends the duration of the move Hail used by the holder.",0,0,0
-88,LIGHTCLAY,Light Clay,Light Clays,1,4000,"An item to be held by a Pokémon. Protective moves like Light Screen and Reflect will be effective longer.",0,0,0
-89,GRIPCLAW,Grip Claw,Grip Claws,1,4000,"A Pokémon held item that doubles the duration of multiturn trapping attacks.",0,0,0
-90,BINDINGBAND,Binding Band,Binding Bands,1,4000,"A band that doubles the damage dealt each turn by binding moves when held.",0,0,0
-91,BIGROOT,Big Root,Big Roots,1,4000,"A Pokémon held item that boosts the power of HP-stealing moves to let the holder recover more HP.",0,0,0
-92,BLACKSLUDGE,Black Sludge,Black Sludges,1,4000,"A held item that gradually restores the HP of Poison-type Pokémon. It inflicts damage on all other types.",0,0,0
-93,LEFTOVERS,Leftovers,Leftovers,1,10000,"An item to be held by a Pokémon. The holder's HP is gradually restored during battle.",0,0,0
-94,SHELLBELL,Shell Bell,Shell Bells,1,4000,"An item to be held by a Pokémon. The holder's HP is restored a little every time it inflicts damage.",0,0,0
-95,MENTALHERB,Mental Herb,Mental Herbs,1,8000,"An item to be held by a Pokémon. It snaps the holder out of a variety of mental warping effects.",0,0,0
-96,WHITEHERB,White Herb,White Herbs,1,8000,"An item to be held by a Pokémon. It restores any lowered stat in battle.",0,0,0
-97,POWERHERB,Power Herb,Power Herbs,1,8000,"A single-use item to be held by a Pokémon. It allows the immediate use of a move that charges up first.",0,0,0
-98,ABSORBBULB,Absorb Bulb,Absorb Bulbs,1,4000,"A consumable bulb. If the holder is hit by a Water-type move, its Sp. Atk will rise.",0,0,0
-99,CELLBATTERY,Cell Battery,Cell Batteries,1,4000,"A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise.",0,0,0
-100,LIFEORB,Life Orb,Life Orbs,1,10000,"A held item. It boosts the power of moves by 30%, but at the cost of 10% HP on each hit.",0,0,0
-101,EXPERTBELT,Expert Belt,Expert Belts,1,4000,"A well-worn belt that boosts the holder's supereffective moves by 20%.",0,0,0
-102,METRONOME,Metronome,Metronomes,1,4000,"A Pokémon held item that boosts a move used consecutively. Its effect is reset if another move is used.",0,0,0
-103,MUSCLEBAND,Muscle Band,Muscle Bands,1,4000,"An item to be held by a Pokémon. It is a headband that boosts the power of physical moves by 10%.",0,0,0
-104,WISEGLASSES,Wise Glasses,Wise Glasses,1,4000,"An item to be held by a Pokémon. It is a thick pair of glasses that boosts the power of special moves by 10%.",0,0,0
-105,RAZORCLAW,Razor Claw,Razor Claws,1,5000,"An item to be held by a Pokémon. It is a sharply hooked claw that ups the holder's critical-hit ratio.",0,0,0
-106,SCOPELENS,Scope Lens,Scope Lenses,1,4000,"An item to be held by a Pokémon. It is a lens that boosts the holder's critical-hit ratio.",0,0,0
-107,WIDELENS,Wide Lens,Wide Lenses,1,4000,"An item to be held by a Pokémon. It is a magnifying lens that boosts the accuracy of moves by 35%.",0,0,0
-108,ZOOMLENS,Zoom Lens,Zoom Lenses,1,4000,"An item to be held by a Pokémon. If the holder moves after its target, its accuracy will be boosted.",0,0,0
-109,KINGSROCK,King's Rock,King's Rocks,1,5000,"An item to be held by a Pokémon. When the holder inflicts damage, the target may flinch.",0,0,0
-110,RAZORFANG,Razor Fang,Razor Fangs,1,5000,"An item to be held by a Pokémon. It may make foes and allies flinch when the holder inflicts damage.",0,0,0
-111,LAGGINGTAIL,Lagging Tail,Lagging Tails,1,4000,"An item to be held by a Pokémon. It is tremendously heavy and makes the holder move slower than usual.",0,0,0
-112,QUICKCLAW,Quick Claw,Quick Claws,1,4000,"An item to be held by a Pokémon. A light, sharp claw that lets the bearer move first occasionally.",0,0,0
-113,FOCUSBAND,Focus Band,Focus Bands,1,4000,"An item to be held by a Pokémon. The holder may endure a potential KO attack, leaving it with just 1 HP.",0,0,0
-114,FOCUSSASH,Focus Sash,Focus Sashes,1,4000,"An item to be held by a Pokémon. If it has full HP, the holder will endure one potential KO attack, leaving 1 HP.",0,0,0
-115,FLAMEORB,Flame Orb,Flame Orbs,1,4000,"A bizarre orb that inflicts a burn on the holder in battle, or when used on a Pokémon.",5,0,0
-116,POISONORB,Poison Orb,Poison Orbs,1,4000,"A bizarre orb that poisons the holder in battle, or when used on a Pokémon.",5,0,0
-117,STICKYBARB,Sticky Barb,Sticky Barbs,1,4000,"A held item that damages the holder on every turn. It may latch on to Pokémon that touch the holder.",0,0,0
-118,IRONBALL,Iron Ball,Iron Balls,1,4000,"A Pokémon held item that cuts Speed. It makes Flying-type and levitating holders susceptible to Ground moves.",0,0,0
-119,RINGTARGET,Ring Target,Ring Targets,1,4000,"Moves that would otherwise have no effect will land on the Pokémon that holds it.",0,0,0
-120,MACHOBRACE,Macho Brace,Macho Braces,1,3000,"An item to be held by a Pokémon. It is a stiff, heavy brace that promotes strong growth but lowers Speed.",0,0,0
-121,POWERWEIGHT,Power Weight,Power Weights,1,3000,"A Pokémon held item that promotes HP gain on leveling, but reduces the Speed stat.",0,0,0
-122,POWERBRACER,Power Bracer,Power Bracers,1,3000,"A Pokémon held item that promotes Attack gain on leveling, but reduces the Speed stat.",0,0,0
-123,POWERBELT,Power Belt,Power Belts,1,3000,"A Pokémon held item that promotes Defense gain on leveling, but reduces the Speed stat.",0,0,0
-124,POWERLENS,Power Lens,Power Lenses,1,3000,"A Pokémon held item that promotes Sp. Atk gain on leveling, but reduces the Speed stat.",0,0,0
-125,POWERBAND,Power Band,Power Bands,1,3000,"A Pokémon held item that promotes Sp. Def gain on leveling, but reduces the Speed stat.",0,0,0
-126,POWERANKLET,Power Anklet,Power Anklets,1,3000,"A Pokémon held item that promotes Speed gain on leveling, but reduces the Speed stat.",0,0,0
-127,LAXINCENSE,Lax Incense,Lax Incenses,1,5000,"An item to be held by a Pokémon. The tricky aroma of this incense may make attacks miss the holder.",0,0,0
-128,FULLINCENSE,Full Incense,Full Incenses,1,5000,"An item to be held by a Pokémon. This exotic-smelling incense makes the holder bloated and slow moving.",0,0,0
-129,LUCKINCENSE,Luck Incense,Luck Incenses,1,11000,"An item to be held by a Pokémon. It doubles a battle's prize money if the holding Pokémon joins in.",0,0,0
-130,PUREINCENSE,Pure Incense,Pure Incenses,1,6000,"An item to be held by a Pokémon. It helps keep wild Pokémon away if the holder is the first one in the party.",0,0,0
-131,SEAINCENSE,Sea Incense,Sea Incenses,1,2000,"An item to be held by a Pokémon. It has a curious aroma that boosts the power of Water-type moves.",0,0,0
-132,WAVEINCENSE,Wave Incense,Wave Incenses,1,2000,"An item to be held by a Pokémon. It has a curious aroma that boosts the power of Water-type moves.",0,0,0
-133,ROSEINCENSE,Rose Incense,Rose Incenses,1,2000,"An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Grass-type moves.",0,0,0
-134,ODDINCENSE,Odd Incense,Odd Incenses,1,2000,"An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Psychic-type moves.",0,0,0
-135,ROCKINCENSE,Rock Incense,Rock Incenses,1,2000,"An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Rock-type moves.",0,0,0
-136,CHARCOAL,Charcoal,Charcoals,1,1000,"An item to be held by a Pokémon. It is a combustible fuel that boosts the power of Fire-type moves.",0,0,0
-137,MYSTICWATER,Mystic Water,Mystic Waters,1,1000,"An item to be held by a Pokémon. It is a teardrop-shaped gem that ups the power of Water-type moves.",0,0,0
-138,MAGNET,Magnet,Magnets,1,1000,"An item to be held by a Pokémon. It is a powerful magnet that boosts the power of Electric-type moves.",0,0,0
-139,MIRACLESEED,Miracle Seed,Miracle Seeds,1,1000,"An item to be held by a Pokémon. It is a seed imbued with life that ups the power of Grass-type moves.",0,0,0
-140,NEVERMELTICE,Never-Melt Ice,Never-Melt Ices,1,1000,"An item to be held by a Pokémon. It is a piece of ice that repels heat and boosts Ice-type moves.",0,0,0
-141,BLACKBELT,Black Belt,Black Belts,1,1000,"An item to be held by a Pokémon. It is a belt that boosts determination and Fighting-type moves.",0,0,0
-142,POISONBARB,Poison Barb,Poison Barbs,1,1000,"An item to be held by a Pokémon. It is a small, poisonous barb that ups the power of Poison-type moves.",0,0,0
-143,SOFTSAND,Soft Sand,Soft Sand,1,1000,"An item to be held by a Pokémon. It is a loose, silky sand that boosts the power of Ground-type moves.",0,0,0
-144,SHARPBEAK,Sharp Beak,Sharp Beaks,1,1000,"An item to be held by a Pokémon. It is a long, sharp beak that boosts the power of Flying-type moves.",0,0,0
-145,TWISTEDSPOON,Twisted Spoon,Twisted Spoons,1,1000,"An item to be held by a Pokémon. It is a spoon imbued with telekinetic power that boosts Psychic-type moves.",0,0,0
-146,SILVERPOWDER,Silver Powder,Silver Powders,1,1000,"An item to be held by a Pokémon. It is a shiny, silver powder that ups the power of Bug-type moves.",0,0,0
-147,HARDSTONE,Hard Stone,Hard Stones,1,1000,"An item to be held by a Pokémon. It is an unbreakable stone that ups the power of Rock-type moves.",0,0,0
-148,SPELLTAG,Spell Tag,Spell Tags,1,1000,"An item to be held by a Pokémon. It is a sinister, eerie tag that boosts the power of Ghost-type moves.",0,0,0
-149,DRAGONFANG,Dragon Fang,Dragon Fangs,1,1000,"An item to be held by a Pokémon. It is a hard and sharp fang that ups the power of Dragon-type moves.",0,0,0
-150,BLACKGLASSES,Black Glasses,Black Glasses,1,1000,"An item to be held by a Pokémon. It is a shady-looking pair of glasses that boosts Dark-type moves.",0,0,0
-151,METALCOAT,Metal Coat,Metal Coats,1,2000,"An item to be held by a Pokémon. It is a special metallic film that ups the power of Steel-type moves.",0,0,0
-152,SILKSCARF,Silk Scarf,Silk Scarves,1,1000,"An item to be held by a Pokémon. It is a sumptuous scarf that boosts the power of Normal-type moves.",0,0,0
-153,FLAMEPLATE,Flame Plate,Flame Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fire-type moves.",0,0,0
-154,SPLASHPLATE,Splash Plate,Splash Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Water-type moves.",0,0,0
-155,ZAPPLATE,Zap Plate,Zap Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Electric-type moves.",0,0,0
-156,MEADOWPLATE,Meadow Plate,Meadow Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Grass-type moves.",0,0,0
-157,ICICLEPLATE,Icicle Plate,Icicle Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ice-type moves.",0,0,0
-158,FISTPLATE,Fist Plate,Fist Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fighting-type moves.",0,0,0
-159,TOXICPLATE,Toxic Plate,Toxic Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Poison-type moves.",0,0,0
-160,EARTHPLATE,Earth Plate,Earth Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ground-type moves.",0,0,0
-161,SKYPLATE,Sky Plate,Sky Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Flying-type moves.",0,0,0
-162,MINDPLATE,Mind Plate,Mind Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Psychic-type moves.",0,0,0
-163,INSECTPLATE,Insect Plate,Insect Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Bug-type moves.",0,0,0
-164,STONEPLATE,Stone Plate,Stone Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Rock-type moves.",0,0,0
-165,SPOOKYPLATE,Spooky Plate,Spooky Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ghost-type moves.",0,0,0
-166,DRACOPLATE,Draco Plate,Draco Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Dragon-type moves.",0,0,0
-167,DREADPLATE,Dread Plate,Dread Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Dark-type moves.",0,0,0
-168,IRONPLATE,Iron Plate,Iron Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Steel-type moves.",0,0,0
-169,FIREGEM,Fire Gem,Fire Gems,1,1000,"A gem with an essence of fire. Boosts the power of a Fire-type move by 50% once per battle.",0,0,10
-170,WATERGEM,Water Gem,Water Gems,1,1000,"A gem with an essence of water. Boosts the power of a Water-type move by 50% once per battle.",0,0,10
-171,ELECTRICGEM,Electric Gem,Electric Gems,1,1000,"A gem with an essence of electricity. Boosts the power of an Electric-type move by 50% once per battle.",0,0,10
-172,GRASSGEM,Grass Gem,Grass Gems,1,1000,"A gem with an essence of nature. Boosts the power of a Grass-type move by 50% once per battle.",0,0,10
-173,ICEGEM,Ice Gem,Ice Gems,1,1000,"A gem with an essence of ice. Boosts the power of an Ice-type move by 50% once per battle.",0,0,10
-174,FIGHTINGGEM,Fighting Gem,Fighting Gems,1,1000,"A gem with an essence of combat. Boosts the power of a Fighting-type move by 50% once per battle.",0,0,10
-175,POISONGEM,Poison Gem,Poison Gems,1,1000,"A gem with an essence of poison. Boosts the power of a Poison-type move by 50% once per battle.",0,0,10
-176,GROUNDGEM,Ground Gem,Ground Gems,1,1000,"A gem with an essence of land. Boosts the power of a Ground-type move by 50% once per battle.",0,0,10
-177,FLYINGGEM,Flying Gem,Flying Gems,1,1000,"A gem with an essence of air. Boosts the power of a Flying-type move by 50% once per battle.",0,0,10
-178,PSYCHICGEM,Psychic Gem,Psychic Gems,1,1000,"A gem with an essence of the mind. Boosts the power of a Psychic-type move by 50% once per battle.",0,0,10
-179,BUGGEM,Bug Gem,Bug Gems,1,1000,"A gem with an insect-like essence. Boosts the power of a Bug-type move by 50% once per battle.",0,0,10
-180,ROCKGEM,Rock Gem,Rock Gems,1,1000,"A gem with an essence of rock. Boosts the power of a Rock-type move by 50% once per battle.",0,0,10
-181,GHOSTGEM,Ghost Gem,Ghost Gems,1,1000,"A gem with a spectral essence. Boosts the power of a Ghost-type move by 50% once per battle.",0,0,10
-182,DRAGONGEM,Dragon Gem,Dragon Gems,1,1000,"A gem with a draconic essence. Boosts the power of a Dragon-type move by 50% once per battle.",0,0,10
-183,DARKGEM,Dark Gem,Dark Gems,1,1000,"A gem with an essence of darkness. Boosts the power of a Dark-type move by 50% once per battle.",0,0,10
-184,STEELGEM,Steel Gem,Steel Gems,1,1000,"A gem with an essence of steel. Boosts the power of a Steel-type move by 50% once per battle.",0,0,10
-185,NORMALGEM,Normal Gem,Normal Gems,1,1000,"A gem with an ordinary essence. Boosts the power of a Normal-type move by 50% once per battle.",0,0,10
-186,LIGHTBALL,Light Ball,Light Balls,1,1000,"An item to be held by Pikachu. It is a puzzling orb that raises the Attack and Sp. Atk stat.",0,0,0
-187,LUCKYPUNCH,Lucky Punch,Lucky Punches,1,1000,"An item to be held by Chansey. It is a pair of gloves that boosts Chansey's critical-hit ratio.",0,0,0
-188,METALPOWDER,Metal Powder,Metal Powders,1,1000,"An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Defense stat.",0,0,0
-189,QUICKPOWDER,Quick Powder,Quick Powders,1,1000,"An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Speed stat.",0,0,0
-190,THICKCLUB,Thick Club,Thick Clubs,1,1000,"An item to be held by Cubone or Marowak. It is a hard bone of some sort that boosts the Attack stat.",0,0,0
-191,LEEK,Leek,Leeks,1,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0
-192,SOULDEW,Soul Dew,Soul Dews,1,0,"A wondrous orb to be held by either Latios or Latias. It raises the power of Psychic- and Dragon-type moves.",0,0,0
-193,DEEPSEATOOTH,Deep Sea Tooth,Deep Sea Teeth,1,2000,"An item to be held by Clamperl. A fang that gleams a sharp silver, it raises the Sp. Atk stat.",0,0,0
-194,DEEPSEASCALE,Deep Sea Scale,Deep Sea Scales,1,2000,"An item to be held by Clamperl. A scale that shines a faint pink, it raises the Sp. Def stat.",0,0,0
-195,ADAMANTORB,Adamant Orb,Adamant Orbs,1,10000,"A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves.",0,0,0
-196,LUSTROUSORB,Lustrous Orb,Lustrous Orbs,1,10000,"A beautifully glowing orb to be held by Palkia. It boosts the power of Dragon- and Water-type moves.",0,0,0
-197,GRISEOUSORB,Griseous Orb,Griseous Orbs,1,10000,"A glowing orb to be held by Giratina. It boosts the power of Dragon- and Ghost-type moves.",0,0,0
-198,DOUSEDRIVE,Douse Drive,Douse Drives,1,1000,"A cassette to be held by Genesect. It changes Techno Blast to a Water-type move.",0,0,0
-199,SHOCKDRIVE,Shock Drive,Shock Drives,1,1000,"A cassette to be held by Genesect. It changes Techno Blast to an Electric-type move.",0,0,0
-200,BURNDRIVE,Burn Drive,Burn Drives,1,1000,"A cassette to be held by Genesect. It changes Techno Blast to a Fire-type move.",0,0,0
-201,CHILLDRIVE,Chill Drive,Chill Drives,1,1000,"A cassette to be held by Genesect. It changes Techno Blast to an Ice-type move.",0,0,0
-202,EVERSTONE,Everstone,Everstones,1,3000,"An item to be held by a Pokémon. The Pokémon holding this peculiar stone is prevented from evolving.",0,0,0
-203,DRAGONSCALE,Dragon Scale,Dragon Scales,1,2000,"A thick and tough scale. Dragon-type Pokémon may be holding this item when caught.",0,0,0
-204,UPGRADE,Upgrade,Upgrades,1,2000,"A transparent device filled with all sorts of data. It was produced by Silph Co.",0,0,0
-205,DUBIOUSDISC,Dubious Disc,Dubious Discs,1,2000,"A transparent device overflowing with dubious data.  Its producer is unknown.",0,0,0
-206,PROTECTOR,Protector,Protectors,1,2000,"A protective item of some sort. It is extremely stiff and heavy. It is loved by a certain Pokémon.",0,0,0
-207,ELECTIRIZER,Electirizer,Electirizers,1,2000,"A box packed with a tremendous amount of electric energy. It is loved by a certain Pokémon.",0,0,0
-208,MAGMARIZER,Magmarizer,Magmarizers,1,2000,"A box packed with a tremendous amount of magma energy. It is loved by a certain Pokémon.",0,0,0
-209,REAPERCLOTH,Reaper Cloth,Reaper Cloths,1,2000,"A cloth imbued with horrifyingly strong spiritual energy. It is loved by a certain Pokémon.",0,0,0
-210,PRISMSCALE,Prism Scale,Prism Scales,1,2000,"A mysterious scale that evolves certain Pokémon. It shines in rainbow colors.",0,0,0
-211,OVALSTONE,Oval Stone,Oval Stones,1,2000,"A peculiar stone that makes certain species of Pokémon evolve. It is shaped like an egg.",0,0,0
-212,REDSCARF,Red Scarf,Red Scarves,1,100,"An item to be held by a Pokémon. It boosts the Cool aspect of the holder in a Contest.",0,0,0
-213,BLUESCARF,Blue Scarf,Blue Scarves,1,100,"An item to be held by a Pokémon. It boosts the Beauty aspect of the holder in a Contest.",0,0,0
-214,PINKSCARF,Pink Scarf,Pink Scarves,1,100,"An item to be held by a Pokémon. It boosts the Cute aspect of the holder in a Contest.",0,0,0
-215,GREENSCARF,Green Scarf,Green Scarves,1,100,"An item to be held by a Pokémon. It boosts the Smart aspect of the holder in a Contest.",0,0,0
-216,YELLOWSCARF,Yellow Scarf,Yellow Scarves,1,100,"An item to be held by a Pokémon. It boosts the Tough aspect of the holder in a Contest.",0,0,0
+66,AIRBALLOON,Air Balloon,Air Balloons,5,4000,"An item to be held by a Pokémon. The holder will float in the air until hit. Once hit, this item will burst.",0,0,0
+67,BRIGHTPOWDER,Bright Powder,Bright Powders,5,4000,"An item to be held by a Pokémon. It casts a tricky glare that lowers the opponent's accuracy.",0,0,0
+68,EVIOLITE,Eviolite,Eviolites,5,8000,"When held, it raises the Defense and Sp. Def if the holder can still evolve. Prevents evolution.",0,0,0
+69,FLOATSTONE,Float Stone,Float Stones,5,4000,"A very light stone. It reduces the weight of a Pokémon when held.",0,0,0
+70,DESTINYKNOT,Destiny Knot,Destiny Knots,5,4000,"A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, so does the foe.",0,0,0
+71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,5,4000,"Damages attackers for 1/8 of their HP when they hit the holder with physical attacks.",0,0,0
+72,EJECTBUTTON,Eject Button,Eject Buttons,5,4000,"If the holder is hit by an attack, it will switch with another Pokémon in your party.",0,0,0
+73,REDCARD,Red Card,Red Cards,5,4000,"A card with a mysterious power. When the holder is struck by a foe, the attacker is removed from battle.",0,0,0
+74,SHEDSHELL,Shed Shell,Shed Shells,5,4000,"An item to be held by a Pokémon. This discarded carapace lets the holder switch out of battle without fail.",0,0,0
+75,SMOKEBALL,Smoke Ball,Smoke Balls,5,4000,"An item to be held by a Pokémon. It enables the holder to flee from any wild Pokémon without fail.",0,0,0
+76,LUCKYEGG,Lucky Egg,Lucky Eggs,5,10000,"An item to be held by a Pokémon. It is an egg filled with happiness that earns extra Exp. Points in battle.",0,0,0
+77,EXPSHARE,Exp. Share,Exp. Shares,5,3000,"An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling.",0,0,0
+78,AMULETCOIN,Amulet Coin,Amulet Coins,5,10000,"An item to be held by a Pokémon. It doubles a battle's prize money if the holding Pokémon joins in.",0,0,0
+79,SOOTHEBELL,Soothe Bell,Soothe Bells,5,4000,"An item to be held by a Pokémon. The comforting chime of this bell calms the holder, making it friendly.",0,0,0
+80,CLEANSETAG,Cleanse Tag,Cleanse Tags,5,5000,"An item to be held by a Pokémon. It helps keep wild Pokémon away if the holder is the first one in the party.",0,0,0
+81,CHOICEBAND,Choice Band,Choice Bands,5,10000,"Held item which ups Attack by 33%, but allows the use of only one move.",0,0,0
+82,CHOICESPECS,Choice Specs,Choice Specs,5,10000,"Held item which ups Sp. Atk by 33%, but allows the use of only one move.",0,0,0
+83,CHOICESCARF,Choice Scarf,Choice Scarves,5,10000,"Held item which boosts Speed by 33% but allows the use of only one move.",0,0,0
+84,HEATROCK,Heat Rock,Heat Rocks,5,4000,"A Pokémon held item that extends the duration of the move Sunny Day used by the holder.",0,0,0
+85,DAMPROCK,Damp Rock,Damp Rocks,5,4000,"A Pokémon held item that extends the duration of the move Rain Dance used by the holder.",0,0,0
+86,SMOOTHROCK,Smooth Rock,Smooth Rocks,5,4000,"A Pokémon held item that extends the duration of the move Sandstorm used by the holder.",0,0,0
+87,ICYROCK,Icy Rock,Icy Rocks,5,4000,"A Pokémon held item that extends the duration of the move Hail used by the holder.",0,0,0
+88,LIGHTCLAY,Light Clay,Light Clays,5,4000,"An item to be held by a Pokémon. Protective moves like Light Screen and Reflect will be effective longer.",0,0,0
+89,GRIPCLAW,Grip Claw,Grip Claws,5,4000,"A Pokémon held item that doubles the duration of multiturn trapping attacks.",0,0,0
+90,BINDINGBAND,Binding Band,Binding Bands,5,4000,"A band that doubles the damage dealt each turn by binding moves when held.",0,0,0
+91,BIGROOT,Big Root,Big Roots,5,4000,"A Pokémon held item that boosts the power of HP-stealing moves to let the holder recover more HP.",0,0,0
+92,BLACKSLUDGE,Black Sludge,Black Sludges,5,4000,"A held item that gradually restores the HP of Poison-type Pokémon. It inflicts damage on all other types.",0,0,0
+93,LEFTOVERS,Leftovers,Leftovers,5,10000,"An item to be held by a Pokémon. The holder's HP is gradually restored during battle.",0,0,0
+94,SHELLBELL,Shell Bell,Shell Bells,5,4000,"An item to be held by a Pokémon. The holder's HP is restored a little every time it inflicts damage.",0,0,0
+95,MENTALHERB,Mental Herb,Mental Herbs,5,8000,"An item to be held by a Pokémon. It snaps the holder out of a variety of mental warping effects.",0,0,0
+96,WHITEHERB,White Herb,White Herbs,5,8000,"An item to be held by a Pokémon. It restores any lowered stat in battle.",0,0,0
+97,POWERHERB,Power Herb,Power Herbs,5,8000,"A single-use item to be held by a Pokémon. It allows the immediate use of a move that charges up first.",0,0,0
+98,ABSORBBULB,Absorb Bulb,Absorb Bulbs,5,4000,"A consumable bulb. If the holder is hit by a Water-type move, its Sp. Atk will rise.",0,0,0
+99,CELLBATTERY,Cell Battery,Cell Batteries,5,4000,"A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise.",0,0,0
+100,LIFEORB,Life Orb,Life Orbs,5,10000,"A held item. It boosts the power of moves by 30%, but at the cost of 10% HP on each hit.",0,0,0
+101,EXPERTBELT,Expert Belt,Expert Belts,5,4000,"A well-worn belt that boosts the holder's supereffective moves by 20%.",0,0,0
+102,METRONOME,Metronome,Metronomes,5,4000,"A Pokémon held item that boosts a move used consecutively. Its effect is reset if another move is used.",0,0,0
+103,MUSCLEBAND,Muscle Band,Muscle Bands,5,4000,"An item to be held by a Pokémon. It is a headband that boosts the power of physical moves by 10%.",0,0,0
+104,WISEGLASSES,Wise Glasses,Wise Glasses,5,4000,"An item to be held by a Pokémon. It is a thick pair of glasses that boosts the power of special moves by 10%.",0,0,0
+105,RAZORCLAW,Razor Claw,Razor Claws,5,5000,"An item to be held by a Pokémon. It is a sharply hooked claw that ups the holder's critical-hit ratio.",0,0,0
+106,SCOPELENS,Scope Lens,Scope Lenses,5,4000,"An item to be held by a Pokémon. It is a lens that boosts the holder's critical-hit ratio.",0,0,0
+107,WIDELENS,Wide Lens,Wide Lenses,5,4000,"An item to be held by a Pokémon. It is a magnifying lens that boosts the accuracy of moves by 35%.",0,0,0
+108,ZOOMLENS,Zoom Lens,Zoom Lenses,5,4000,"An item to be held by a Pokémon. If the holder moves after its target, its accuracy will be boosted.",0,0,0
+109,KINGSROCK,King's Rock,King's Rocks,5,5000,"An item to be held by a Pokémon. When the holder inflicts damage, the target may flinch.",0,0,0
+110,RAZORFANG,Razor Fang,Razor Fangs,5,5000,"An item to be held by a Pokémon. It may make foes and allies flinch when the holder inflicts damage.",0,0,0
+111,LAGGINGTAIL,Lagging Tail,Lagging Tails,5,4000,"An item to be held by a Pokémon. It is tremendously heavy and makes the holder move slower than usual.",0,0,0
+112,QUICKCLAW,Quick Claw,Quick Claws,5,4000,"An item to be held by a Pokémon. A light, sharp claw that lets the bearer move first occasionally.",0,0,0
+113,FOCUSBAND,Focus Band,Focus Bands,5,4000,"An item to be held by a Pokémon. The holder may endure a potential KO attack, leaving it with just 1 HP.",0,0,0
+114,FOCUSSASH,Focus Sash,Focus Sashes,5,4000,"An item to be held by a Pokémon. If it has full HP, the holder will endure one potential KO attack, leaving 1 HP.",0,0,0
+115,FLAMEORB,Flame Orb,Flame Orbs,5,4000,"A bizarre orb that inflicts a burn on the holder in battle, or when used on a Pokémon.",5,0,0
+116,POISONORB,Poison Orb,Poison Orbs,5,4000,"A bizarre orb that poisons the holder in battle, or when used on a Pokémon.",5,0,0
+117,STICKYBARB,Sticky Barb,Sticky Barbs,5,4000,"A held item that damages the holder on every turn. It may latch on to Pokémon that touch the holder.",0,0,0
+118,IRONBALL,Iron Ball,Iron Balls,5,4000,"A Pokémon held item that cuts Speed. It makes Flying-type and levitating holders susceptible to Ground moves.",0,0,0
+119,RINGTARGET,Ring Target,Ring Targets,5,4000,"Moves that would otherwise have no effect will land on the Pokémon that holds it.",0,0,0
+120,MACHOBRACE,Macho Brace,Macho Braces,5,3000,"An item to be held by a Pokémon. It is a stiff, heavy brace that promotes strong growth but lowers Speed.",0,0,0
+121,POWERWEIGHT,Power Weight,Power Weights,5,3000,"A Pokémon held item that promotes HP gain on leveling, but reduces the Speed stat.",0,0,0
+122,POWERBRACER,Power Bracer,Power Bracers,5,3000,"A Pokémon held item that promotes Attack gain on leveling, but reduces the Speed stat.",0,0,0
+123,POWERBELT,Power Belt,Power Belts,5,3000,"A Pokémon held item that promotes Defense gain on leveling, but reduces the Speed stat.",0,0,0
+124,POWERLENS,Power Lens,Power Lenses,5,3000,"A Pokémon held item that promotes Sp. Atk gain on leveling, but reduces the Speed stat.",0,0,0
+125,POWERBAND,Power Band,Power Bands,5,3000,"A Pokémon held item that promotes Sp. Def gain on leveling, but reduces the Speed stat.",0,0,0
+126,POWERANKLET,Power Anklet,Power Anklets,5,3000,"A Pokémon held item that promotes Speed gain on leveling, but reduces the Speed stat.",0,0,0
+127,LAXINCENSE,Lax Incense,Lax Incenses,5,5000,"An item to be held by a Pokémon. The tricky aroma of this incense may make attacks miss the holder.",0,0,0
+128,FULLINCENSE,Full Incense,Full Incenses,5,5000,"An item to be held by a Pokémon. This exotic-smelling incense makes the holder bloated and slow moving.",0,0,0
+129,LUCKINCENSE,Luck Incense,Luck Incenses,5,11000,"An item to be held by a Pokémon. It doubles a battle's prize money if the holding Pokémon joins in.",0,0,0
+130,PUREINCENSE,Pure Incense,Pure Incenses,5,6000,"An item to be held by a Pokémon. It helps keep wild Pokémon away if the holder is the first one in the party.",0,0,0
+131,SEAINCENSE,Sea Incense,Sea Incenses,5,2000,"An item to be held by a Pokémon. It has a curious aroma that boosts the power of Water-type moves.",0,0,0
+132,WAVEINCENSE,Wave Incense,Wave Incenses,5,2000,"An item to be held by a Pokémon. It has a curious aroma that boosts the power of Water-type moves.",0,0,0
+133,ROSEINCENSE,Rose Incense,Rose Incenses,5,2000,"An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Grass-type moves.",0,0,0
+134,ODDINCENSE,Odd Incense,Odd Incenses,5,2000,"An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Psychic-type moves.",0,0,0
+135,ROCKINCENSE,Rock Incense,Rock Incenses,5,2000,"An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Rock-type moves.",0,0,0
+136,CHARCOAL,Charcoal,Charcoals,5,1000,"An item to be held by a Pokémon. It is a combustible fuel that boosts the power of Fire-type moves.",0,0,0
+137,MYSTICWATER,Mystic Water,Mystic Waters,5,1000,"An item to be held by a Pokémon. It is a teardrop-shaped gem that ups the power of Water-type moves.",0,0,0
+138,MAGNET,Magnet,Magnets,5,1000,"An item to be held by a Pokémon. It is a powerful magnet that boosts the power of Electric-type moves.",0,0,0
+139,MIRACLESEED,Miracle Seed,Miracle Seeds,5,1000,"An item to be held by a Pokémon. It is a seed imbued with life that ups the power of Grass-type moves.",0,0,0
+140,NEVERMELTICE,Never-Melt Ice,Never-Melt Ices,5,1000,"An item to be held by a Pokémon. It is a piece of ice that repels heat and boosts Ice-type moves.",0,0,0
+141,BLACKBELT,Black Belt,Black Belts,5,1000,"An item to be held by a Pokémon. It is a belt that boosts determination and Fighting-type moves.",0,0,0
+142,POISONBARB,Poison Barb,Poison Barbs,5,1000,"An item to be held by a Pokémon. It is a small, poisonous barb that ups the power of Poison-type moves.",0,0,0
+143,SOFTSAND,Soft Sand,Soft Sand,5,1000,"An item to be held by a Pokémon. It is a loose, silky sand that boosts the power of Ground-type moves.",0,0,0
+144,SHARPBEAK,Sharp Beak,Sharp Beaks,5,1000,"An item to be held by a Pokémon. It is a long, sharp beak that boosts the power of Flying-type moves.",0,0,0
+145,TWISTEDSPOON,Twisted Spoon,Twisted Spoons,5,1000,"An item to be held by a Pokémon. It is a spoon imbued with telekinetic power that boosts Psychic-type moves.",0,0,0
+146,SILVERPOWDER,Silver Powder,Silver Powders,5,1000,"An item to be held by a Pokémon. It is a shiny, silver powder that ups the power of Bug-type moves.",0,0,0
+147,HARDSTONE,Hard Stone,Hard Stones,5,1000,"An item to be held by a Pokémon. It is an unbreakable stone that ups the power of Rock-type moves.",0,0,0
+148,SPELLTAG,Spell Tag,Spell Tags,5,1000,"An item to be held by a Pokémon. It is a sinister, eerie tag that boosts the power of Ghost-type moves.",0,0,0
+149,DRAGONFANG,Dragon Fang,Dragon Fangs,5,1000,"An item to be held by a Pokémon. It is a hard and sharp fang that ups the power of Dragon-type moves.",0,0,0
+150,BLACKGLASSES,Black Glasses,Black Glasses,5,1000,"An item to be held by a Pokémon. It is a shady-looking pair of glasses that boosts Dark-type moves.",0,0,0
+151,METALCOAT,Metal Coat,Metal Coats,5,2000,"An item to be held by a Pokémon. It is a special metallic film that ups the power of Steel-type moves.",0,0,0
+152,SILKSCARF,Silk Scarf,Silk Scarves,5,1000,"An item to be held by a Pokémon. It is a sumptuous scarf that boosts the power of Normal-type moves.",0,0,0
+153,FLAMEPLATE,Flame Plate,Flame Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fire-type moves.",0,0,0
+154,SPLASHPLATE,Splash Plate,Splash Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Water-type moves.",0,0,0
+155,ZAPPLATE,Zap Plate,Zap Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Electric-type moves.",0,0,0
+156,MEADOWPLATE,Meadow Plate,Meadow Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Grass-type moves.",0,0,0
+157,ICICLEPLATE,Icicle Plate,Icicle Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ice-type moves.",0,0,0
+158,FISTPLATE,Fist Plate,Fist Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fighting-type moves.",0,0,0
+159,TOXICPLATE,Toxic Plate,Toxic Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Poison-type moves.",0,0,0
+160,EARTHPLATE,Earth Plate,Earth Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ground-type moves.",0,0,0
+161,SKYPLATE,Sky Plate,Sky Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Flying-type moves.",0,0,0
+162,MINDPLATE,Mind Plate,Mind Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Psychic-type moves.",0,0,0
+163,INSECTPLATE,Insect Plate,Insect Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Bug-type moves.",0,0,0
+164,STONEPLATE,Stone Plate,Stone Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Rock-type moves.",0,0,0
+165,SPOOKYPLATE,Spooky Plate,Spooky Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ghost-type moves.",0,0,0
+166,DRACOPLATE,Draco Plate,Draco Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Dragon-type moves.",0,0,0
+167,DREADPLATE,Dread Plate,Dread Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Dark-type moves.",0,0,0
+168,IRONPLATE,Iron Plate,Iron Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Steel-type moves.",0,0,0
+169,FIREGEM,Fire Gem,Fire Gems,5,1000,"A gem with an essence of fire. Boosts the power of a Fire-type move by 50% once per battle.",0,0,10
+170,WATERGEM,Water Gem,Water Gems,5,1000,"A gem with an essence of water. Boosts the power of a Water-type move by 50% once per battle.",0,0,10
+171,ELECTRICGEM,Electric Gem,Electric Gems,5,1000,"A gem with an essence of electricity. Boosts the power of an Electric-type move by 50% once per battle.",0,0,10
+172,GRASSGEM,Grass Gem,Grass Gems,5,1000,"A gem with an essence of nature. Boosts the power of a Grass-type move by 50% once per battle.",0,0,10
+173,ICEGEM,Ice Gem,Ice Gems,5,1000,"A gem with an essence of ice. Boosts the power of an Ice-type move by 50% once per battle.",0,0,10
+174,FIGHTINGGEM,Fighting Gem,Fighting Gems,5,1000,"A gem with an essence of combat. Boosts the power of a Fighting-type move by 50% once per battle.",0,0,10
+175,POISONGEM,Poison Gem,Poison Gems,5,1000,"A gem with an essence of poison. Boosts the power of a Poison-type move by 50% once per battle.",0,0,10
+176,GROUNDGEM,Ground Gem,Ground Gems,5,1000,"A gem with an essence of land. Boosts the power of a Ground-type move by 50% once per battle.",0,0,10
+177,FLYINGGEM,Flying Gem,Flying Gems,5,1000,"A gem with an essence of air. Boosts the power of a Flying-type move by 50% once per battle.",0,0,10
+178,PSYCHICGEM,Psychic Gem,Psychic Gems,5,1000,"A gem with an essence of the mind. Boosts the power of a Psychic-type move by 50% once per battle.",0,0,10
+179,BUGGEM,Bug Gem,Bug Gems,5,1000,"A gem with an insect-like essence. Boosts the power of a Bug-type move by 50% once per battle.",0,0,10
+180,ROCKGEM,Rock Gem,Rock Gems,5,1000,"A gem with an essence of rock. Boosts the power of a Rock-type move by 50% once per battle.",0,0,10
+181,GHOSTGEM,Ghost Gem,Ghost Gems,5,1000,"A gem with a spectral essence. Boosts the power of a Ghost-type move by 50% once per battle.",0,0,10
+182,DRAGONGEM,Dragon Gem,Dragon Gems,5,1000,"A gem with a draconic essence. Boosts the power of a Dragon-type move by 50% once per battle.",0,0,10
+183,DARKGEM,Dark Gem,Dark Gems,5,1000,"A gem with an essence of darkness. Boosts the power of a Dark-type move by 50% once per battle.",0,0,10
+184,STEELGEM,Steel Gem,Steel Gems,5,1000,"A gem with an essence of steel. Boosts the power of a Steel-type move by 50% once per battle.",0,0,10
+185,NORMALGEM,Normal Gem,Normal Gems,5,1000,"A gem with an ordinary essence. Boosts the power of a Normal-type move by 50% once per battle.",0,0,10
+186,LIGHTBALL,Light Ball,Light Balls,5,1000,"An item to be held by Pikachu. It is a puzzling orb that raises the Attack and Sp. Atk stat.",0,0,0
+187,LUCKYPUNCH,Lucky Punch,Lucky Punches,5,1000,"An item to be held by Chansey. It is a pair of gloves that boosts Chansey's critical-hit ratio.",0,0,0
+188,METALPOWDER,Metal Powder,Metal Powders,5,1000,"An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Defense stat.",0,0,0
+189,QUICKPOWDER,Quick Powder,Quick Powders,5,1000,"An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Speed stat.",0,0,0
+190,THICKCLUB,Thick Club,Thick Clubs,5,1000,"An item to be held by Cubone or Marowak. It is a hard bone of some sort that boosts the Attack stat.",0,0,0
+191,LEEK,Leek,Leeks,5,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0
+192,SOULDEW,Soul Dew,Soul Dews,5,0,"A wondrous orb to be held by either Latios or Latias. It raises the power of Psychic- and Dragon-type moves.",0,0,0
+193,DEEPSEATOOTH,Deep Sea Tooth,Deep Sea Teeth,5,2000,"An item to be held by Clamperl. A fang that gleams a sharp silver, it raises the Sp. Atk stat.",0,0,0
+194,DEEPSEASCALE,Deep Sea Scale,Deep Sea Scales,5,2000,"An item to be held by Clamperl. A scale that shines a faint pink, it raises the Sp. Def stat.",0,0,0
+195,ADAMANTORB,Adamant Orb,Adamant Orbs,5,10000,"A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves.",0,0,0
+196,LUSTROUSORB,Lustrous Orb,Lustrous Orbs,5,10000,"A beautifully glowing orb to be held by Palkia. It boosts the power of Dragon- and Water-type moves.",0,0,0
+197,GRISEOUSORB,Griseous Orb,Griseous Orbs,5,10000,"A glowing orb to be held by Giratina. It boosts the power of Dragon- and Ghost-type moves.",0,0,0
+198,DOUSEDRIVE,Douse Drive,Douse Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to a Water-type move.",0,0,0
+199,SHOCKDRIVE,Shock Drive,Shock Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to an Electric-type move.",0,0,0
+200,BURNDRIVE,Burn Drive,Burn Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to a Fire-type move.",0,0,0
+201,CHILLDRIVE,Chill Drive,Chill Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to an Ice-type move.",0,0,0
+202,EVERSTONE,Everstone,Everstones,5,3000,"An item to be held by a Pokémon. The Pokémon holding this peculiar stone is prevented from evolving.",0,0,0
+203,DRAGONSCALE,Dragon Scale,Dragon Scales,5,2000,"A thick and tough scale. Dragon-type Pokémon may be holding this item when caught.",0,0,0
+204,UPGRADE,Upgrade,Upgrades,5,2000,"A transparent device filled with all sorts of data. It was produced by Silph Co.",0,0,0
+205,DUBIOUSDISC,Dubious Disc,Dubious Discs,5,2000,"A transparent device overflowing with dubious data.  Its producer is unknown.",0,0,0
+206,PROTECTOR,Protector,Protectors,5,2000,"A protective item of some sort. It is extremely stiff and heavy. It is loved by a certain Pokémon.",0,0,0
+207,ELECTIRIZER,Electirizer,Electirizers,5,2000,"A box packed with a tremendous amount of electric energy. It is loved by a certain Pokémon.",0,0,0
+208,MAGMARIZER,Magmarizer,Magmarizers,5,2000,"A box packed with a tremendous amount of magma energy. It is loved by a certain Pokémon.",0,0,0
+209,REAPERCLOTH,Reaper Cloth,Reaper Cloths,5,2000,"A cloth imbued with horrifyingly strong spiritual energy. It is loved by a certain Pokémon.",0,0,0
+210,PRISMSCALE,Prism Scale,Prism Scales,5,2000,"A mysterious scale that evolves certain Pokémon. It shines in rainbow colors.",0,0,0
+211,OVALSTONE,Oval Stone,Oval Stones,5,2000,"A peculiar stone that makes certain species of Pokémon evolve. It is shaped like an egg.",0,0,0
+212,REDSCARF,Red Scarf,Red Scarves,5,100,"An item to be held by a Pokémon. It boosts the Cool aspect of the holder in a Contest.",0,0,0
+213,BLUESCARF,Blue Scarf,Blue Scarves,5,100,"An item to be held by a Pokémon. It boosts the Beauty aspect of the holder in a Contest.",0,0,0
+214,PINKSCARF,Pink Scarf,Pink Scarves,5,100,"An item to be held by a Pokémon. It boosts the Cute aspect of the holder in a Contest.",0,0,0
+215,GREENSCARF,Green Scarf,Green Scarves,5,100,"An item to be held by a Pokémon. It boosts the Smart aspect of the holder in a Contest.",0,0,0
+216,YELLOWSCARF,Yellow Scarf,Yellow Scarves,5,100,"An item to be held by a Pokémon. It boosts the Tough aspect of the holder in a Contest.",0,0,0
 #-------------------------------
 217,POTION,Potion,Potions,2,200,"A spray-type medicine for wounds. It restores the HP of one Pokémon by just 40 points.",1,0,0
 218,SUPERPOTION,Super Potion,Super Potions,2,400,"A spray-type medicine for wounds. It restores the HP of one Pokémon by 80 points.",1,0,0
@@ -539,86 +539,86 @@
 530,YELLOWNECTAR,Yellow Nectar,Yellow Nectars,1,300,"A flower nectar obtained at Melemele Meadow. It changes the form of certain species of Pokémon.",1,0,0
 531,PINKNECTAR,Pink Nectar,Pink Nectars,1,300,"A flower nectar obtained from shrubs on Royal Avenue. It changes the form of certain species of Pokémon.",1,0,0
 532,PURPLENECTAR,Purple Nectar,Purple Nectars,1,300,"A flower nectar obtained at Poni Meadow. It changes the form of certain species of Pokémon.",1,0,0
-533,ASSAULTVEST,Assault Vest,Assault Vests,1,10000,"An item to be held by a Pokémon. This offensive vest raises Sp. Def but prevents the use of status moves.",0,0,0
-534,SAFETYGOGGLES,Safety Goggles,Safety Goggles,1,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0
-535,PROTECTIVEPADS,Protective Pads,Protective Pads,1,4000,"An item to be held by a Pokémon. They protect the holder from effects caused by making contact.",0,0,0
-536,TERRAINEXTENDER,Terrain Extender,Terrain Extenders,1,4000,"An item to be held by a Pokémon. It extends the duration of the terrain caused by the holder.",0,0,0
-537,ELECTRICSEED,Electric Seed,Electric Seeds,1,4000,"An item to be held by a Pokémon. It boosts Defense on Electric Terrain once per battle.",0,0,0
-538,PSYCHICSEED,Psychic Seed,Psychic Seeds,1,4000,"An item to be held by a Pokémon. It boosts Sp. Def on Psychic Terrain once per battle.",0,0,0
-539,MISTYSEED,Misty Seed,Misty Seeds,1,4000,"An item to be held by a Pokémon. It boosts Sp. Def on Misty Terrain once per battle.",0,0,0
-540,GRASSYSEED,Grassy Seed,Grassy Seeds,1,4000,"An item to be held by a Pokémon. It boosts Defense on Grassy Terrain once per battle.",0,0,0
-541,LUMINOUSMOSS,Luminous Moss,Luminous Mosses,1,4000,"An item to be held by a Pokémon. It boosts Sp. Def if hit by a Water-type attack once per battle.",0,0,0
-542,SNOWBALL,Snowball,Snowballs,1,4000,"An item to be held by a Pokémon. It boosts Attack if hit by an Ice-type attack once per battle.",0,0,0
-543,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,1,1000,"An item to be held by a Pokémon. The holder's Attack and Sp. Atk sharply increase if hit by a move it's weak to.",0,0,0
-544,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,1,4000,"An item to be held by a Pokémon. It boosts Speed when intimidated, fascinated, or frustrated once per battle.",0,0,0
-545,PIXIEPLATE,Pixie Plate,Pixie Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fairy-type moves.",0,0,0
-546,FAIRYGEM,Fairy Gem,Fairy Gems,1,1000,"A gem with an essence of the fey. Boosts the power of a Fairy-type move by 50% once per battle.",0,0,10
-547,FIREMEMORY,Fire Memory,Fire Memories,1,1000,"A memory disc containing Fire-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-548,WATERMEMORY,Water Memory,Water Memories,1,1000,"A memory disc containing Water-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-549,ELECTRICMEMORY,Electric Memory,Electric Memories,1,1000,"A memory disc containing Electric-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-550,GRASSMEMORY,Grass Memory,Grass Memories,1,1000,"A memory disc containing Grass-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-551,ICEMEMORY,Ice Memory,Ice Memories,1,1000,"A memory disc containing Ice-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-552,FIGHTINGMEMORY,Fighting Memory,Fighting Memories,1,1000,"A memory disc containing Fighting-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-553,POISONMEMORY,Poison Memory,Poison Memories,1,1000,"A memory disc containing Poison-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-554,GROUNDMEMORY,Ground Memory,Ground Memories,1,1000,"A memory disc containing Ground-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-555,FLYINGMEMORY,Flying Memory,Flying Memories,1,1000,"A memory disc containing Flying-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-556,PSYCHICMEMORY,Psychic Memory,Psychic Memories,1,1000,"A memory disc containing Psychic-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-557,BUGMEMORY,Bug Memory,Bug Memories,1,1000,"A memory disc containing Bug-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-558,ROCKMEMORY,Rock Memory,Rock Memories,1,1000,"A memory disc containing Rock-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-559,GHOSTMEMORY,Ghost Memory,Ghost Memories,1,1000,"A memory disc containing Ghost-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-560,DRAGONMEMORY,Dragon Memory,Dragon Memories,1,1000,"A memory disc containing Dragon-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-561,DARKMEMORY,Dark Memory,Dark Memories,1,1000,"A memory disc containing Dark-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-562,STEELMEMORY,Steel Memory,Steel Memories,1,1000,"A memory disc containing Steel-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-563,FAIRYMEMORY,Fairy Memory,Fairy Memories,1,1000,"A memory disc containing Fairy-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-564,VENUSAURITE,Venusaurite,Venusaurites,1,0,"One of a variety of mysterious Mega Stones. Have Venusaur hold it, and it will be able to Mega Evolve.",0,0,12
-565,CHARIZARDITEX,Charizardite X,Charizardites X,1,0,"One of a variety of mysterious Mega Stones. Have Charizard hold it, and it will be able to Mega Evolve.",0,0,12
-566,CHARIZARDITEY,Charizardite Y,Charizardites Y,1,0,"One of a variety of mysterious Mega Stones. Have Charizard hold it, and it will be able to Mega Evolve.",0,0,12
-567,BLASTOISINITE,Blastoisinite,Blastoisinites,1,0,"One of a variety of mysterious Mega Stones. Have Blastoise hold it, and it will be able to Mega Evolve.",0,0,12
-568,BEEDRILLITE,Beedrillite,Beedrillites,1,0,"One of a variety of mysterious Mega Stones. Have Beedrill hold it, and it will be able to Mega Evolve.",0,0,12
-569,PIDGEOTITE,Pidgeotite,Pidgeotites,1,0,"One of a variety of mysterious Mega Stones. Have Pidgeot hold it, and it will be able to Mega Evolve.",0,0,12
-570,ALAKAZITE,Alakazite,Alakazites,1,0,"One of a variety of mysterious Mega Stones. Have Alakazam hold it, and it will be able to Mega Evolve.",0,0,12
-571,SLOWBRONITE,Slowbronite,Slowbronites,1,0,"One of a variety of mysterious Mega Stones. Have Slowbro hold it, and it will be able to Mega Evolve.",0,0,12
-572,GENGARITE,Gengarite,Gengarites,1,0,"One of a variety of mysterious Mega Stones. Have Gengar hold it, and it will be able to Mega Evolve.",0,0,12
-573,KANGASKHANITE,Kangaskhanite,Kangaskhanites,1,0,"One of a variety of mysterious Mega Stones. Have Kangaskhan hold it, and it will be able to Mega Evolve.",0,0,12
-574,PINSIRITE,Pinsirite,Pinsirites,1,0,"One of a variety of mysterious Mega Stones. Have Pinsir hold it, and it will be able to Mega Evolve.",0,0,12
-575,GYARADOSITE,Gyaradosite,Gyaradosites,1,0,"One of a variety of mysterious Mega Stones. Have Gyarados hold it, and it will be able to Mega Evolve.",0,0,12
-576,AERODACTYLITE,Aerodactylite,Aerodactylites,1,0,"One of a variety of mysterious Mega Stones. Have Aerodactyl hold it, and it will be able to Mega Evolve.",0,0,12
-577,MEWTWONITEX,Mewtwonite X,Mewtwonites X,1,0,"One of a variety of mysterious Mega Stones. Have Mewtwo hold it, and it will be able to Mega Evolve.",0,0,12
-578,MEWTWONITEY,Mewtwonite Y,Mewtwonites Y,1,0,"One of a variety of mysterious Mega Stones. Have Mewtwo hold it, and it will be able to Mega Evolve.",0,0,12
-579,AMPHAROSITE,Ampharosite,Ampharosites,1,0,"One of a variety of mysterious Mega Stones. Have Ampharos hold it, and it will be able to Mega Evolve.",0,0,12
-580,STEELIXITE,Steelixite,Steelixites,1,0,"One of a variety of mysterious Mega Stones. Have Steelix hold it, and it will be able to Mega Evolve.",0,0,12
-581,SCIZORITE,Scizorite,Scizorites,1,0,"One of a variety of mysterious Mega Stones. Have Scizor hold it, and it will be able to Mega Evolve.",0,0,12
-582,HERACRONITE,Heracronite,Heracronites,1,0,"One of a variety of mysterious Mega Stones. Have Heracross hold it, and it will be able to Mega Evolve.",0,0,12
-583,HOUNDOOMINITE,Houndoominite,Houndoominites,1,0,"One of a variety of mysterious Mega Stones. Have Houndoom hold it, and it will be able to Mega Evolve.",0,0,12
-584,TYRANITARITE,Tyranitarite,Tyranitarites,1,0,"One of a variety of mysterious Mega Stones. Have Tyranitar hold it, and it will be able to Mega Evolve.",0,0,12
-585,SCEPTILITE,Sceptilite,Sceptilites,1,0,"One of a variety of mysterious Mega Stones. Have Sceptile hold it, and it will be able to Mega Evolve.",0,0,12
-586,BLAZIKENITE,Blazikenite,Blazikenites,1,0,"One of a variety of mysterious Mega Stones. Have Blaziken hold it, and it will be able to Mega Evolve.",0,0,12
-587,SWAMPERTITE,Swampertite,Swampertites,1,0,"One of a variety of mysterious Mega Stones. Have Swampert hold it, and it will be able to Mega Evolve.",0,0,12
-588,GARDEVOIRITE,Gardevoirite,Gardevoirites,1,0,"One of a variety of mysterious Mega Stones. Have Gardevoir hold it, and it will be able to Mega Evolve.",0,0,12
-589,SABLENITE,Sablenite,Sablenites,1,0,"One of a variety of mysterious Mega Stones. Have Sableye hold it, and it will be able to Mega Evolve.",0,0,12
-590,MAWILITE,Mawilite,Mawilites,1,0,"One of a variety of mysterious Mega Stones. Have Mawile hold it, and it will be able to Mega Evolve.",0,0,12
-591,AGGRONITE,Aggronite,Aggronites,1,0,"One of a variety of mysterious Mega Stones. Have Aggron hold it, and it will be able to Mega Evolve.",0,0,12
-592,MEDICHAMITE,Medichamite,Medichamites,1,0,"One of a variety of mysterious Mega Stones. Have Medicham hold it, and it will be able to Mega Evolve.",0,0,12
-593,MANECTITE,Manectite,Manectites,1,0,"One of a variety of mysterious Mega Stones. Have Manectric hold it, and it will be able to Mega Evolve.",0,0,12
-594,SHARPEDONITE,Sharpedonite,Sharpedonites,1,0,"One of a variety of mysterious Mega Stones. Have Sharpedo hold it, and it will be able to Mega Evolve.",0,0,12
-595,CAMERUPTITE,Cameruptite,Cameruptites,1,0,"One of a variety of mysterious Mega Stones. Have Camerupt hold it, and it will be able to Mega Evolve.",0,0,12
-596,ALTARIANITE,Altarianite,Altarianites,1,0,"One of a variety of mysterious Mega Stones. Have Altaria hold it, and it will be able to Mega Evolve.",0,0,12
-597,BANETTITE,Banettite,Banettites,1,0,"One of a variety of mysterious Mega Stones. Have Banette hold it, and it will be able to Mega Evolve.",0,0,12
-598,ABSOLITE,Absolite,Absolites,1,0,"One of a variety of mysterious Mega Stones. Have Absol hold it, and it will be able to Mega Evolve.",0,0,12
-599,GLALITITE,Glalitite,Glalitites,1,0,"One of a variety of mysterious Mega Stones. Have Glalie hold it, and it will be able to Mega Evolve.",0,0,12
-600,SALAMENCITE,Salamencite,Salamencites,1,0,"One of a variety of mysterious Mega Stones. Have Salamence hold it, and it will be able to Mega Evolve.",0,0,12
-601,METAGROSSITE,Metagrossite,Metagrossites,1,0,"One of a variety of mysterious Mega Stones. Have Metagross hold it, and it will be able to Mega Evolve.",0,0,12
-602,LATIASITE,Latiasite,Latiasites,1,0,"One of a variety of mysterious Mega Stones. Have Latias hold it, and it will be able to Mega Evolve.",0,0,12
-603,LATIOSITE,Latiosite,Latiosites,1,0,"One of a variety of mysterious Mega Stones. Have Latios hold it, and it will be able to Mega Evolve.",0,0,12
-604,LOPUNNITE,Lopunnite,Lopunnites,1,0,"One of a variety of mysterious Mega Stones. Have Lopunny hold it, and it will be able to Mega Evolve.",0,0,12
-605,GARCHOMPITE,Garchompite,Garchompites,1,0,"One of a variety of mysterious Mega Stones. Have Garchomp hold it, and it will be able to Mega Evolve.",0,0,12
-606,LUCARIONITE,Lucarionite,Lucarionites,1,0,"One of a variety of mysterious Mega Stones. Have Lucario hold it, and it will be able to Mega Evolve.",0,0,12
-607,ABOMASITE,Abomasite,Abomasites,1,0,"One of a variety of mysterious Mega Stones. Have Abomasnow hold it, and it will be able to Mega Evolve.",0,0,12
-608,GALLADITE,Galladite,Galladites,1,0,"One of a variety of mysterious Mega Stones. Have Gallade hold it, and it will be able to Mega Evolve.",0,0,12
-609,AUDINITE,Audinite,Audinites,1,0,"One of a variety of mysterious Mega Stones. Have Audino hold it, and it will be able to Mega Evolve.",0,0,12
-610,DIANCITE,Diancite,Diancites,1,0,"One of a variety of mysterious Mega Stones. Have Diancie hold it, and it will be able to Mega Evolve.",0,0,12
-611,REDORB,Red Orb,Red Orbs,1,0,"A shiny red orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
-612,BLUEORB,Blue Orb,Blue Orbs,1,0,"A shiny blue orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
+533,ASSAULTVEST,Assault Vest,Assault Vests,5,10000,"An item to be held by a Pokémon. This offensive vest raises Sp. Def but prevents the use of status moves.",0,0,0
+534,SAFETYGOGGLES,Safety Goggles,Safety Goggles,5,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0
+535,PROTECTIVEPADS,Protective Pads,Protective Pads,5,4000,"An item to be held by a Pokémon. They protect the holder from effects caused by making contact.",0,0,0
+536,TERRAINEXTENDER,Terrain Extender,Terrain Extenders,5,4000,"An item to be held by a Pokémon. It extends the duration of the terrain caused by the holder.",0,0,0
+537,ELECTRICSEED,Electric Seed,Electric Seeds,5,4000,"An item to be held by a Pokémon. It boosts Defense on Electric Terrain once per battle.",0,0,0
+538,PSYCHICSEED,Psychic Seed,Psychic Seeds,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def on Psychic Terrain once per battle.",0,0,0
+539,MISTYSEED,Misty Seed,Misty Seeds,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def on Misty Terrain once per battle.",0,0,0
+540,GRASSYSEED,Grassy Seed,Grassy Seeds,5,4000,"An item to be held by a Pokémon. It boosts Defense on Grassy Terrain once per battle.",0,0,0
+541,LUMINOUSMOSS,Luminous Moss,Luminous Mosses,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def if hit by a Water-type attack once per battle.",0,0,0
+542,SNOWBALL,Snowball,Snowballs,5,4000,"An item to be held by a Pokémon. It boosts Attack if hit by an Ice-type attack once per battle.",0,0,0
+543,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,5,1000,"An item to be held by a Pokémon. The holder's Attack and Sp. Atk sharply increase if hit by a move it's weak to.",0,0,0
+544,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,5,4000,"An item to be held by a Pokémon. It boosts Speed when intimidated, fascinated, or frustrated once per battle.",0,0,0
+545,PIXIEPLATE,Pixie Plate,Pixie Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fairy-type moves.",0,0,0
+546,FAIRYGEM,Fairy Gem,Fairy Gems,5,1000,"A gem with an essence of the fey. Boosts the power of a Fairy-type move by 50% once per battle.",0,0,10
+547,FIREMEMORY,Fire Memory,Fire Memories,5,1000,"A memory disc containing Fire-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+548,WATERMEMORY,Water Memory,Water Memories,5,1000,"A memory disc containing Water-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+549,ELECTRICMEMORY,Electric Memory,Electric Memories,5,1000,"A memory disc containing Electric-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+550,GRASSMEMORY,Grass Memory,Grass Memories,5,1000,"A memory disc containing Grass-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+551,ICEMEMORY,Ice Memory,Ice Memories,5,1000,"A memory disc containing Ice-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+552,FIGHTINGMEMORY,Fighting Memory,Fighting Memories,5,1000,"A memory disc containing Fighting-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+553,POISONMEMORY,Poison Memory,Poison Memories,5,1000,"A memory disc containing Poison-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+554,GROUNDMEMORY,Ground Memory,Ground Memories,5,1000,"A memory disc containing Ground-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+555,FLYINGMEMORY,Flying Memory,Flying Memories,5,1000,"A memory disc containing Flying-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+556,PSYCHICMEMORY,Psychic Memory,Psychic Memories,5,1000,"A memory disc containing Psychic-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+557,BUGMEMORY,Bug Memory,Bug Memories,5,1000,"A memory disc containing Bug-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+558,ROCKMEMORY,Rock Memory,Rock Memories,5,1000,"A memory disc containing Rock-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+559,GHOSTMEMORY,Ghost Memory,Ghost Memories,5,1000,"A memory disc containing Ghost-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+560,DRAGONMEMORY,Dragon Memory,Dragon Memories,5,1000,"A memory disc containing Dragon-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+561,DARKMEMORY,Dark Memory,Dark Memories,5,1000,"A memory disc containing Dark-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+562,STEELMEMORY,Steel Memory,Steel Memories,5,1000,"A memory disc containing Steel-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+563,FAIRYMEMORY,Fairy Memory,Fairy Memories,5,1000,"A memory disc containing Fairy-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+564,VENUSAURITE,Venusaurite,Venusaurites,5,0,"One of a variety of mysterious Mega Stones. Have Venusaur hold it, and it will be able to Mega Evolve.",0,0,12
+565,CHARIZARDITEX,Charizardite X,Charizardites X,5,0,"One of a variety of mysterious Mega Stones. Have Charizard hold it, and it will be able to Mega Evolve.",0,0,12
+566,CHARIZARDITEY,Charizardite Y,Charizardites Y,5,0,"One of a variety of mysterious Mega Stones. Have Charizard hold it, and it will be able to Mega Evolve.",0,0,12
+567,BLASTOISINITE,Blastoisinite,Blastoisinites,5,0,"One of a variety of mysterious Mega Stones. Have Blastoise hold it, and it will be able to Mega Evolve.",0,0,12
+568,BEEDRILLITE,Beedrillite,Beedrillites,5,0,"One of a variety of mysterious Mega Stones. Have Beedrill hold it, and it will be able to Mega Evolve.",0,0,12
+569,PIDGEOTITE,Pidgeotite,Pidgeotites,5,0,"One of a variety of mysterious Mega Stones. Have Pidgeot hold it, and it will be able to Mega Evolve.",0,0,12
+570,ALAKAZITE,Alakazite,Alakazites,5,0,"One of a variety of mysterious Mega Stones. Have Alakazam hold it, and it will be able to Mega Evolve.",0,0,12
+571,SLOWBRONITE,Slowbronite,Slowbronites,5,0,"One of a variety of mysterious Mega Stones. Have Slowbro hold it, and it will be able to Mega Evolve.",0,0,12
+572,GENGARITE,Gengarite,Gengarites,5,0,"One of a variety of mysterious Mega Stones. Have Gengar hold it, and it will be able to Mega Evolve.",0,0,12
+573,KANGASKHANITE,Kangaskhanite,Kangaskhanites,5,0,"One of a variety of mysterious Mega Stones. Have Kangaskhan hold it, and it will be able to Mega Evolve.",0,0,12
+574,PINSIRITE,Pinsirite,Pinsirites,5,0,"One of a variety of mysterious Mega Stones. Have Pinsir hold it, and it will be able to Mega Evolve.",0,0,12
+575,GYARADOSITE,Gyaradosite,Gyaradosites,5,0,"One of a variety of mysterious Mega Stones. Have Gyarados hold it, and it will be able to Mega Evolve.",0,0,12
+576,AERODACTYLITE,Aerodactylite,Aerodactylites,5,0,"One of a variety of mysterious Mega Stones. Have Aerodactyl hold it, and it will be able to Mega Evolve.",0,0,12
+577,MEWTWONITEX,Mewtwonite X,Mewtwonites X,5,0,"One of a variety of mysterious Mega Stones. Have Mewtwo hold it, and it will be able to Mega Evolve.",0,0,12
+578,MEWTWONITEY,Mewtwonite Y,Mewtwonites Y,5,0,"One of a variety of mysterious Mega Stones. Have Mewtwo hold it, and it will be able to Mega Evolve.",0,0,12
+579,AMPHAROSITE,Ampharosite,Ampharosites,5,0,"One of a variety of mysterious Mega Stones. Have Ampharos hold it, and it will be able to Mega Evolve.",0,0,12
+580,STEELIXITE,Steelixite,Steelixites,5,0,"One of a variety of mysterious Mega Stones. Have Steelix hold it, and it will be able to Mega Evolve.",0,0,12
+581,SCIZORITE,Scizorite,Scizorites,5,0,"One of a variety of mysterious Mega Stones. Have Scizor hold it, and it will be able to Mega Evolve.",0,0,12
+582,HERACRONITE,Heracronite,Heracronites,5,0,"One of a variety of mysterious Mega Stones. Have Heracross hold it, and it will be able to Mega Evolve.",0,0,12
+583,HOUNDOOMINITE,Houndoominite,Houndoominites,5,0,"One of a variety of mysterious Mega Stones. Have Houndoom hold it, and it will be able to Mega Evolve.",0,0,12
+584,TYRANITARITE,Tyranitarite,Tyranitarites,5,0,"One of a variety of mysterious Mega Stones. Have Tyranitar hold it, and it will be able to Mega Evolve.",0,0,12
+585,SCEPTILITE,Sceptilite,Sceptilites,5,0,"One of a variety of mysterious Mega Stones. Have Sceptile hold it, and it will be able to Mega Evolve.",0,0,12
+586,BLAZIKENITE,Blazikenite,Blazikenites,5,0,"One of a variety of mysterious Mega Stones. Have Blaziken hold it, and it will be able to Mega Evolve.",0,0,12
+587,SWAMPERTITE,Swampertite,Swampertites,5,0,"One of a variety of mysterious Mega Stones. Have Swampert hold it, and it will be able to Mega Evolve.",0,0,12
+588,GARDEVOIRITE,Gardevoirite,Gardevoirites,5,0,"One of a variety of mysterious Mega Stones. Have Gardevoir hold it, and it will be able to Mega Evolve.",0,0,12
+589,SABLENITE,Sablenite,Sablenites,5,0,"One of a variety of mysterious Mega Stones. Have Sableye hold it, and it will be able to Mega Evolve.",0,0,12
+590,MAWILITE,Mawilite,Mawilites,5,0,"One of a variety of mysterious Mega Stones. Have Mawile hold it, and it will be able to Mega Evolve.",0,0,12
+591,AGGRONITE,Aggronite,Aggronites,5,0,"One of a variety of mysterious Mega Stones. Have Aggron hold it, and it will be able to Mega Evolve.",0,0,12
+592,MEDICHAMITE,Medichamite,Medichamites,5,0,"One of a variety of mysterious Mega Stones. Have Medicham hold it, and it will be able to Mega Evolve.",0,0,12
+593,MANECTITE,Manectite,Manectites,5,0,"One of a variety of mysterious Mega Stones. Have Manectric hold it, and it will be able to Mega Evolve.",0,0,12
+594,SHARPEDONITE,Sharpedonite,Sharpedonites,5,0,"One of a variety of mysterious Mega Stones. Have Sharpedo hold it, and it will be able to Mega Evolve.",0,0,12
+595,CAMERUPTITE,Cameruptite,Cameruptites,5,0,"One of a variety of mysterious Mega Stones. Have Camerupt hold it, and it will be able to Mega Evolve.",0,0,12
+596,ALTARIANITE,Altarianite,Altarianites,5,0,"One of a variety of mysterious Mega Stones. Have Altaria hold it, and it will be able to Mega Evolve.",0,0,12
+597,BANETTITE,Banettite,Banettites,5,0,"One of a variety of mysterious Mega Stones. Have Banette hold it, and it will be able to Mega Evolve.",0,0,12
+598,ABSOLITE,Absolite,Absolites,5,0,"One of a variety of mysterious Mega Stones. Have Absol hold it, and it will be able to Mega Evolve.",0,0,12
+599,GLALITITE,Glalitite,Glalitites,5,0,"One of a variety of mysterious Mega Stones. Have Glalie hold it, and it will be able to Mega Evolve.",0,0,12
+600,SALAMENCITE,Salamencite,Salamencites,5,0,"One of a variety of mysterious Mega Stones. Have Salamence hold it, and it will be able to Mega Evolve.",0,0,12
+601,METAGROSSITE,Metagrossite,Metagrossites,5,0,"One of a variety of mysterious Mega Stones. Have Metagross hold it, and it will be able to Mega Evolve.",0,0,12
+602,LATIASITE,Latiasite,Latiasites,5,0,"One of a variety of mysterious Mega Stones. Have Latias hold it, and it will be able to Mega Evolve.",0,0,12
+603,LATIOSITE,Latiosite,Latiosites,5,0,"One of a variety of mysterious Mega Stones. Have Latios hold it, and it will be able to Mega Evolve.",0,0,12
+604,LOPUNNITE,Lopunnite,Lopunnites,5,0,"One of a variety of mysterious Mega Stones. Have Lopunny hold it, and it will be able to Mega Evolve.",0,0,12
+605,GARCHOMPITE,Garchompite,Garchompites,5,0,"One of a variety of mysterious Mega Stones. Have Garchomp hold it, and it will be able to Mega Evolve.",0,0,12
+606,LUCARIONITE,Lucarionite,Lucarionites,5,0,"One of a variety of mysterious Mega Stones. Have Lucario hold it, and it will be able to Mega Evolve.",0,0,12
+607,ABOMASITE,Abomasite,Abomasites,5,0,"One of a variety of mysterious Mega Stones. Have Abomasnow hold it, and it will be able to Mega Evolve.",0,0,12
+608,GALLADITE,Galladite,Galladites,5,0,"One of a variety of mysterious Mega Stones. Have Gallade hold it, and it will be able to Mega Evolve.",0,0,12
+609,AUDINITE,Audinite,Audinites,5,0,"One of a variety of mysterious Mega Stones. Have Audino hold it, and it will be able to Mega Evolve.",0,0,12
+610,DIANCITE,Diancite,Diancites,5,0,"One of a variety of mysterious Mega Stones. Have Diancie hold it, and it will be able to Mega Evolve.",0,0,12
+611,REDORB,Red Orb,Red Orbs,5,0,"A shiny red orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
+612,BLUEORB,Blue Orb,Blue Orbs,5,0,"A shiny blue orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
 613,WHIPPEDDREAM,Whipped Dream,Whipped Dreams,1,2000,"A soft and sweet treat made of fluffy, puffy and whirled cream. It's loved by a certain Pokémon.",0,0,0
 614,SACHET,Sachet,Sachets,1,2000,"A sachet filled with slightly overwhelming fragrant perfumes. Yet it's loved by a certain Pokémon.",0,0,0
 #-------------------------------
@@ -668,12 +668,12 @@
 653,JOLLYMINT,Jolly Mint,Jolly Mints,1,20,"When a Pokémon smells this mint, its Speed will grow more easily, but its Sp. Atk will grow more slowly.",1,0,0
 654,NAIVEMINT,Naive Mint,Naive Mints,1,20,"When a Pokémon smells this mint, its Speed will grow more easily, but its Sp. Def will grow more slowly.",1,0,0
 655,SERIOUSMINT,Serious Mint,Serious Mints,1,20,"When a Pokémon smells this mint, all of its stats will grow at an equal rate.",1,0,0
-656,BLUNDERPOLICY,Blunder Policy,Blunder Policy,1,4000,"Raises Speed sharply when a Pokémon misses with a move because of accuracy.",0,0,0
-657,EJECTPACK,Eject Pack,Eject Packs,1,4000,"An item to be held by a Pokémon. When the holder's stats are lowered, it will be switched out of battle.",0,0,0
-658,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,1,4000,"These boots prevent the effects of traps set on the battlefield.",0,0,0
-659,ROOMSERVICE,Room Service,Room Services,1,4000,"An item to be held by a Pokémon. Sharply lowers Speed when Trick Room takes effect.",0,0,0
-660,THROATSPRAY,Throat Spray,Throat Sprays,1,4000,"Raises Sp. Atk when the Pokémon uses a sound-based move.",0,0,0
-661,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,1,4000,"An item to be held by a Pokémon. It protects the holder from the effects of weather.",0,0,0
+656,BLUNDERPOLICY,Blunder Policy,Blunder Policy,5,4000,"Raises Speed sharply when a Pokémon misses with a move because of accuracy.",0,0,0
+657,EJECTPACK,Eject Pack,Eject Packs,5,4000,"An item to be held by a Pokémon. When the holder's stats are lowered, it will be switched out of battle.",0,0,0
+658,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,5,4000,"These boots prevent the effects of traps set on the battlefield.",0,0,0
+659,ROOMSERVICE,Room Service,Room Services,5,4000,"An item to be held by a Pokémon. Sharply lowers Speed when Trick Room takes effect.",0,0,0
+660,THROATSPRAY,Throat Spray,Throat Sprays,5,4000,"Raises Sp. Atk when the Pokémon uses a sound-based move.",0,0,0
+661,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"An item to be held by a Pokémon. It protects the holder from the effects of weather.",0,0,0
 #-------------------------------
 662,EXPCANDYXS,Exp. Candy XS,Exp. Candies XS,2,20,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.",1,0,0
 663,EXPCANDYS,Exp. Candy S,Exp. Candies S,2,240,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.",1,0,0
@@ -833,7 +833,7 @@
 #-------------------------------
 807,CLIMBINGGEAR,Climbing Gear,Climbing Gears,8,0,"A set of climbing gear, allowing you to climb on white rocks.",0,0,6
 #-------------------------------
-808,STRIKEVEST,Strike Vest,Strike Vests,1,10000,"An item to be held by a Pokémon. This offensive vest raises Defense but prevents the use of status moves.",0,0,0
+808,STRIKEVEST,Strike Vest,Strike Vests,5,10000,"An item to be held by a Pokémon. This offensive vest raises Defense but prevents the use of status moves.",0,0,0
 809,GRASSTOKEN,Grass Token,Grass Tokens,1,10000,"A token which can be exchanged for a Grass-type at the Starter Store.",0,0,0
 810,WATERTOKEN,Water Token,Water Tokens,1,10000,"A token which can be exchanged for a Water-type at the Starter Store.",0,0,0
 811,FIRETOKEN,Fire Token,Fire Tokens,1,10000,"A token which can be exchanged for a Fire-type at the Starter Store.",0,0,0
@@ -844,16 +844,16 @@
 815,INCRIMINATINGEVIDENCE,Incriminating Evidence,Incriminating Evidence,8,0,"A device containing evidence against Aegis Insurance.",0,0,6
 816,TAROTAMULET,Tarot Amulet,Tarot Amulets,8,0,"An amulet which make certain battles harder and cursed. Can be toggled on or off.",2,0,6
 #-------------------------------
-817,POWERLOCK,Power Lock,Power Locks,1,4000,"A held item. In battles, it sets the holder's base Attack stat to 95.",0,0,0
-818,GUARDLOCK,Guard Lock,Guard Locks,1,4000,"A held item. In battles, it sets the holder's base Defense stat to 95.",0,0,0
-819,ENERGYLOCK,Energy Lock,Energy Locks,1,4000,"A held item. In battles, it sets the holder's base Sp. Atk. stat to 95.",0,0,0
-820,WILLLOCK,Will Lock,Will Locks,1,4000,"A held item. In battles, it sets the holder's base Sp. Def. stat to 95.",0,0,0
+817,POWERLOCK,Power Lock,Power Locks,5,4000,"A held item. In battles, it sets the holder's base Attack stat to 95.",0,0,0
+818,GUARDLOCK,Guard Lock,Guard Locks,5,4000,"A held item. In battles, it sets the holder's base Defense stat to 95.",0,0,0
+819,ENERGYLOCK,Energy Lock,Energy Locks,5,4000,"A held item. In battles, it sets the holder's base Sp. Atk. stat to 95.",0,0,0
+820,WILLLOCK,Will Lock,Will Locks,5,4000,"A held item. In battles, it sets the holder's base Sp. Def. stat to 95.",0,0,0
 821,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,20000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0
 #-------------------------------
-822,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca.",0,0,6
+822,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca East.",0,0,6
 #-------------------------------
 823,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokemon you find is shiny.",2,0,0
-824,BUSTEDRADIO,Busted Radio,Busted Radios,1,4000,"Damages attackers for 1/8 of their HP when they hit the holder with special attacks.",0,0,0
+824,BUSTEDRADIO,Busted Radio,Busted Radios,5,4000,"Damages attackers for 1/8 of their HP when they hit the holder with special attacks.",0,0,0
 #-------------------------------
 825,ABILITYTRANSFORMER,Ability Transformer,Ability Transformers,8,0,"An infinitely usable device which allows a Pokemon with two abilities to switch abilities when used.",5,0,6
 826,FACTORYPASS,Factory Pass,Factory Passes,8,0,"A pass that grants you access through the locked door in Victoire's factory.",5,0,6

@@ -67,4 +67,18 @@ module Settings
     [0, 51, 9, 5, "mapHiddenCave", false],
     [0, 52, 17, 13, "mapHidden2x1Route", false]
   ]
+
+  # The names of each pocket of the Bag. Ignore the first entry ("").
+  def self.bag_pocket_names
+    return ["",
+      _INTL("Items"),
+      _INTL("Medicine"),
+      _INTL("Poké Balls"),
+      _INTL("TMs"),
+      _INTL("Held Items"),
+      _INTL("Mail"),
+      _INTL("Battle Items"),
+      _INTL("Key Items")
+    ]
+  end
 end
