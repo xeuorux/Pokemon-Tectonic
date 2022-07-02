@@ -26,6 +26,8 @@ module FollowerSettings
   PARALYSISTONE    = [120,120,72,150]
   FROZENTONE       = [112,150,150,150]
   SLEEPTONE        = [0,0,0,150]
+  FLUSTEREDTONE    = [120,60,130,150]
+  MYSTIFIEDTONE    = [160,100,100,150]
 
   # List of Pokemon that will always appear behind the player when surfing
   # Doesn't include any flying or water types because those are handled already
