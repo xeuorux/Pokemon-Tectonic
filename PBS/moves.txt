@@ -953,7 +953,7 @@
 889,TERADRAIN,Tera Drain,14F,100,GRASS,Special,50,15,0,NearOther,0,befh,"A nutrient-draining attack. The user's HP is restored by 75% of the damage taken by the target.",GIGADRAIN
 890,MENDINGSPRING,Mending Spring,0DA,40,WATER,Special,100,15,0,NearOther,0,bef,"The user opens a spring to blast the target, also healing themselves by 1/8th max HP each turn after.",WATERGUN
 891,INERTIASHOCK,Inertia Shock,53B,80,ELECTRIC,Special,100,10,10,NearOther,0,bef,"Deals 50% more damage if faster than the target. Lower's the user's Speed.",
-892,GEYSER,Geyser,53E,120,WATER,Special,100,5,0,NearOther,0,bef,"The user propels a geyser of water at the target. This causes the user's Sp. Atk and Sp. Def to decrease.",WATERSPOUT
+892,GEYSER,Geyser,53E,120,WATER,Special,100,5,0,NearOther,0,bef,"The user propels a geyser of water at the target. This decreases the user's Sp. Atk and Sp. Def.",WATERSPOUT
 893,NERVEBREAK,Nervebreak,53A,80,ICE,Special,100,15,100,NearOther,0,bef,"For the rest of the round, the target's healing is reversed.",
 894,FROSTBARB,Frost Barb,043,65,ICE,Physical,100,25,20,NearOther,0,abef,"The user jabs the target with a sharp icicle. It has a 20% chance to lower Defense.",
 895,ICECALIBUR,Icecalibur,043,90,ICE,Physical,100,25,10,NearOther,0,abefp,"The user slashes the target with ice like a sword. It has a 10% chance to lower Defense.",ICESHARD
