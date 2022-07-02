@@ -1,5 +1,13 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
+[COMBEE]
+Ability = HONEYGATHER
+Moves = HELPINGHAND
+PostPrimeMoves = HELPINGHAND
+Turns = 1
+HPMult = 3.0
+DMGMult = 1
+#-------------------------------
 [VIGOROTH]
 Ability = VITALSPIRIT
 Moves = SCRATCH,PRIMEVALDRAGONDANCE
