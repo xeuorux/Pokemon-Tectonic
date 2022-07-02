@@ -4,6 +4,6 @@ class Pokemon
   def compatible_with_move?(move_id)
     move_data = GameData::Move.try_get(move_id)
     return false if move_data.nil?
-    return species_data.mentorable_moves.include?(move_data.id)
+    return mentorable_moves.include?(move_data.id)
   end
 end
