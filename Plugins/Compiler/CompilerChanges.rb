@@ -2047,7 +2047,7 @@ module Compiler
           current_type = m.type
           f.write("\#-------------------------------\r\n")
         end
-        f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s\r\n",
+        f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s,%s\r\n",
           m.id_number,
           csvQuote(m.id.to_s),
           csvQuote(m.real_name),
@@ -2061,7 +2061,8 @@ module Compiler
           m.target,
           m.priority,
           csvQuote(m.flags),
-          csvQuoteAlways(m.real_description)
+          csvQuoteAlways(m.real_description),
+          m.animation_move.nil? ? "" : m.animation_move.to_s
         ))
       end
     }
@@ -2183,5 +2184,69 @@ module Compiler
     }
     pbSetWindowText(nil)
     Graphics.update
+  end
+
+  #=============================================================================
+  # Compile move data
+  #=============================================================================
+  def compile_moves(path = "PBS/moves.txt")
+    GameData::Move::DATA.clear
+    move_names        = []
+    move_descriptions = []
+    # Read each line of moves.txt at a time and compile it into an move
+    pbCompilerEachPreppedLine(path) { |line, line_no|
+      line = pbGetCsvRecord(line, line_no, [0, "vnssueeuuueissN",
+         nil, nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
+         nil, nil, nil, :Target, nil, nil, nil, nil
+      ])
+      move_number = line[0]
+      move_symbol = line[1].to_sym
+      if GameData::Move::DATA[move_number]
+        raise _INTL("Move ID number '{1}' is used twice.\r\n{2}", move_number, FileLineData.linereport)
+      elsif GameData::Move::DATA[move_symbol]
+        raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_symbol, FileLineData.linereport)
+      end
+      # Sanitise data
+      if line[6] == 2 && line[4] != 0
+        raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
+      elsif line[6] != 2 && line[4] == 0
+        print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
+        line[6] = 2
+      end
+      animation_move = line[14].nil? ? nil : line[14].to_sym
+      # Construct move hash
+      move_hash = {
+        :id_number        => move_number,
+        :id               => move_symbol,
+        :name             => line[2],
+        :function_code    => line[3],
+        :base_damage      => line[4],
+        :type             => line[5],
+        :category         => line[6],
+        :accuracy         => line[7],
+        :total_pp         => line[8],
+        :effect_chance    => line[9],
+        :target           => GameData::Target.get(line[10]).id,
+        :priority         => line[11],
+        :flags            => line[12],
+        :description      => line[13],
+        :animation_move   => animation_move
+      }
+      # Add move's data to records
+      GameData::Move.register(move_hash)
+      move_names[move_number]        = move_hash[:name]
+      move_descriptions[move_number] = move_hash[:description]
+    }
+    # Save all data
+    GameData::Move.save
+    MessageTypes.setMessages(MessageTypes::Moves, move_names)
+    MessageTypes.setMessages(MessageTypes::MoveDescriptions, move_descriptions)
+    Graphics.update
+
+    GameData::Move.each do |move_data|
+      next if move_data.animation_move.nil?
+      next if GameData::Move.exists?(move_data.animation_move)
+      raise _INTL("Move ID '{1}' was assigned an Animation Move property {2} that doesn't match with any other move.\r\n", move_data.id, move_data.animation_move)
+    end
   end
 end

@@ -1312,7 +1312,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [267]
-# Blue Building 1
+# Pokeball Crafter's House
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1417,7 +1417,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [286]
-# Blue Building 1 Second Floor
+# Pokeball Crafter's House F2
 Outdoor = false
 ShowArea = false
 Bicycle = false

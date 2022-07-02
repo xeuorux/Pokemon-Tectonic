@@ -1,4 +1,29 @@
 class PokeBattle_Scene
+  #=============================================================================
+  # Loads a move/common animation
+  #=============================================================================
+  # Returns the animation ID to use for a given move/user. Returns nil if that
+  # move has no animations defined for it.
+  def pbFindMoveAnimDetails(move2anim,moveID,idxUser,hitNum=0)
+    move_data = GameData::Move.get(moveID)
+    id_number = move_data.id_number
+    noFlip = false
+    if (idxUser&1)==0   # On player's side
+      anim = move2anim[0][id_number]
+    else                # On opposing side
+      anim = move2anim[1][id_number]
+      noFlip = true if !anim.nil?
+      anim = move2anim[0][id_number] if anim.nil?
+    end
+    return [anim+hitNum,noFlip] if !anim.nil?
+    # The move may be assigned to use the animation from another
+    if !move_data.animation_move.nil?
+      otherMoveAnim = pbFindMoveAnimDetails(move2anim,move_data.animation_move,idxUser,hitNum)
+      return otherMoveAnim if !otherMoveAnim.nil?
+    end
+    return nil
+  end
+
   # Returns the animation ID to use for a given move. If the move has no
   # animations, tries to use a default move animation depending on the move's
   # type. If that default move animation doesn't exist, trues to use Tackle's
