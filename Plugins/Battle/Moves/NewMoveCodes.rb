@@ -1183,7 +1183,11 @@ end
 #===============================================================================
 class PokeBattle_Move_534 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		if target.effects[PBEffects::Confusion] == 0 && target.effects[PBEffects::Charm] == 0
+		# if target.effects[PBEffects::Confusion] == 0 && target.effects[PBEffects::Charm] == 0
+		# 	@battle.pbDisplay(_INTL("But it failed!"))
+		# 	return true
+		# end
+		if !target.flustered? && !target.mystified?
 			@battle.pbDisplay(_INTL("But it failed!"))
 			return true
 		end
@@ -1191,16 +1195,13 @@ class PokeBattle_Move_534 < PokeBattle_SleepMove
 	end
 	
 	def pbEffectAgainstTarget(user,target)
-		target.pbCureConfusion
-		target.pbCureCharm
+		target.pbCureStatus(false,:FLUSTERED)
+		target.pbCureStatus(false,:MYSTIFIED)
 		target.pbSleep
 	end
 	
 	def getScore(score,user,target,skill=100)
 		score = sleepMoveAI(score,user,target,skill=100)
-		if target.effects[PBEffects::Confusion] == 0 && target.effects[PBEffects::Charm] == 0
-			score = 0
-		end
 		return score
 	end
 end
