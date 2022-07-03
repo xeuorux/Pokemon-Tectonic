@@ -10,7 +10,7 @@ PokeBattle_AI::TrainerSendsOutPokemonDialogue.add(:SAMORN,
 
 PokeBattle_AI::PlayerPokemonImmuneDialogue.add(:SAMORN,
   proc { |policy,attacker,target,isImmunityAbility,trainer_speaking,dialogue_array|
-	if attacker.species == :GARCHOMP !trainer_speaking.policyStates[:GarchompImmunityComment]
+	if attacker.species == :GARCHOMP && !trainer_speaking.policyStates[:GarchompImmunityComment]
 		dialogue_array.push("...!")
 		trainer_speaking.policyStates[:GarchompImmunityComment] = true
 	end
