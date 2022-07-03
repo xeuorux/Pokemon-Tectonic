@@ -11116,7 +11116,7 @@ InternalName = LUNATONE
 Type1 = ROCK
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 90,55,65,70,105,105
+BaseStats = 90,65,65,85,105,105
 # Total = 490
 GenderRate = Genderless
 GrowthRate = Fast
@@ -11151,7 +11151,7 @@ InternalName = SOLROCK
 Type1 = ROCK
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 90,105,105,70,55,65
+BaseStats = 90,105,105,85,65,65
 # Total = 490
 GenderRate = Genderless
 GrowthRate = Fast
@@ -18056,7 +18056,7 @@ InternalName = PETILIL
 Type1 = GRASS
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 50,45,67,67,80,55
+BaseStats = 50,45,67,57,85,60
 # Total = 364
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -18091,7 +18091,7 @@ InternalName = LILLIGANT
 Type1 = GRASS
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,60,85,90,115,90
+BaseStats = 70,65,100,75,115,85
 # Total = 510
 GenderRate = Female50Percent
 GrowthRate = Medium
