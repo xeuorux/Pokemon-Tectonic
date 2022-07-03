@@ -274,6 +274,7 @@ class PokeBattle_Battle
   	expFinal = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap))
     expGained = expFinal-pkmn.exp
 	  expLeftovers = expLeftovers-pkmn.exp
+    expLeftovers = (expLeftovers * 0.7).floor
 	  @expStored += expLeftovers if expLeftovers > 0
   	curLevel = pkmn.level
     newLevel = growth_rate.level_from_exp(expFinal)
@@ -351,8 +352,8 @@ class PokeBattle_Battle
         battler.pokemon.changeHappiness("levelup")
       end
     end
-	$PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
-	$PokemonGlobal.expJAR += expLeftovers if (expLeftovers > 0 && hasExpJAR)
+	  $PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
+	  $PokemonGlobal.expJAR += expLeftovers if (expLeftovers > 0 && hasExpJAR)
   end
 end
 
