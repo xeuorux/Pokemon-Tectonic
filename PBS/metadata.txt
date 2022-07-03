@@ -527,7 +527,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [081]
-# Cave Path
+# East Tunnel
 Outdoor = false
 ShowArea = true
 Bicycle = true

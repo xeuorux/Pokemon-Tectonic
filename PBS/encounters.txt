@@ -289,7 +289,7 @@ Special
 Special,20
     1,WIMPOD,15
 #-------------------------------
-[081] # Cave Path
+[081] # East Tunnel
 DarkCave,20
     20,CUBONE,17,20
     20,DURALUDON,17,20

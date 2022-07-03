@@ -65,6 +65,7 @@
 63,SHOALSALT,Shoal Salt,Shoal Salts,1,20,"Pure salt that can be discovered deep inside the Shoal Cave. A maniac will buy it for a high price.",0,0,0
 64,SHOALSHELL,Shoal Shell,Shoal Shells,1,20,"A pretty seashell that can be found deep inside the Shoal Cave. A maniac will buy it for a high price.",0,0,0
 65,ODDKEYSTONE,Odd Keystone,Odd Keystones,1,2100,"A vital item that is needed to keep a stone tower from collapsing. Voices can be heard from it occasionally.",0,0,0
+#-------------------------------
 66,AIRBALLOON,Air Balloon,Air Balloons,5,4000,"An item to be held by a Pokémon. The holder will float in the air until hit. Once hit, this item will burst.",0,0,0
 67,BRIGHTPOWDER,Bright Powder,Bright Powders,5,4000,"An item to be held by a Pokémon. It casts a tricky glare that lowers the opponent's accuracy.",0,0,0
 68,EVIOLITE,Eviolite,Eviolites,5,8000,"When held, it raises the Defense and Sp. Def if the holder can still evolve. Prevents evolution.",0,0,0
@@ -539,6 +540,7 @@
 530,YELLOWNECTAR,Yellow Nectar,Yellow Nectars,1,300,"A flower nectar obtained at Melemele Meadow. It changes the form of certain species of Pokémon.",1,0,0
 531,PINKNECTAR,Pink Nectar,Pink Nectars,1,300,"A flower nectar obtained from shrubs on Royal Avenue. It changes the form of certain species of Pokémon.",1,0,0
 532,PURPLENECTAR,Purple Nectar,Purple Nectars,1,300,"A flower nectar obtained at Poni Meadow. It changes the form of certain species of Pokémon.",1,0,0
+#-------------------------------
 533,ASSAULTVEST,Assault Vest,Assault Vests,5,10000,"An item to be held by a Pokémon. This offensive vest raises Sp. Def but prevents the use of status moves.",0,0,0
 534,SAFETYGOGGLES,Safety Goggles,Safety Goggles,5,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0
 535,PROTECTIVEPADS,Protective Pads,Protective Pads,5,4000,"An item to be held by a Pokémon. They protect the holder from effects caused by making contact.",0,0,0
@@ -619,6 +621,7 @@
 610,DIANCITE,Diancite,Diancites,5,0,"One of a variety of mysterious Mega Stones. Have Diancie hold it, and it will be able to Mega Evolve.",0,0,12
 611,REDORB,Red Orb,Red Orbs,5,0,"A shiny red orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
 612,BLUEORB,Blue Orb,Blue Orbs,5,0,"A shiny blue orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
+#-------------------------------
 613,WHIPPEDDREAM,Whipped Dream,Whipped Dreams,1,2000,"A soft and sweet treat made of fluffy, puffy and whirled cream. It's loved by a certain Pokémon.",0,0,0
 614,SACHET,Sachet,Sachets,1,2000,"A sachet filled with slightly overwhelming fragrant perfumes. Yet it's loved by a certain Pokémon.",0,0,0
 #-------------------------------
@@ -668,6 +671,7 @@
 653,JOLLYMINT,Jolly Mint,Jolly Mints,1,20,"When a Pokémon smells this mint, its Speed will grow more easily, but its Sp. Atk will grow more slowly.",1,0,0
 654,NAIVEMINT,Naive Mint,Naive Mints,1,20,"When a Pokémon smells this mint, its Speed will grow more easily, but its Sp. Def will grow more slowly.",1,0,0
 655,SERIOUSMINT,Serious Mint,Serious Mints,1,20,"When a Pokémon smells this mint, all of its stats will grow at an equal rate.",1,0,0
+#-------------------------------
 656,BLUNDERPOLICY,Blunder Policy,Blunder Policy,5,4000,"Raises Speed sharply when a Pokémon misses with a move because of accuracy.",0,0,0
 657,EJECTPACK,Eject Pack,Eject Packs,5,4000,"An item to be held by a Pokémon. When the holder's stats are lowered, it will be switched out of battle.",0,0,0
 658,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,5,4000,"These boots prevent the effects of traps set on the battlefield.",0,0,0
@@ -834,6 +838,7 @@
 807,CLIMBINGGEAR,Climbing Gear,Climbing Gears,8,0,"A set of climbing gear, allowing you to climb on white rocks.",0,0,6
 #-------------------------------
 808,STRIKEVEST,Strike Vest,Strike Vests,5,10000,"An item to be held by a Pokémon. This offensive vest raises Defense but prevents the use of status moves.",0,0,0
+#-------------------------------
 809,GRASSTOKEN,Grass Token,Grass Tokens,1,10000,"A token which can be exchanged for a Grass-type at the Starter Store.",0,0,0
 810,WATERTOKEN,Water Token,Water Tokens,1,10000,"A token which can be exchanged for a Water-type at the Starter Store.",0,0,0
 811,FIRETOKEN,Fire Token,Fire Tokens,1,10000,"A token which can be exchanged for a Fire-type at the Starter Store.",0,0,0
@@ -848,11 +853,13 @@
 818,GUARDLOCK,Guard Lock,Guard Locks,5,4000,"A held item. In battles, it sets the holder's base Defense stat to 95.",0,0,0
 819,ENERGYLOCK,Energy Lock,Energy Locks,5,4000,"A held item. In battles, it sets the holder's base Sp. Atk. stat to 95.",0,0,0
 820,WILLLOCK,Will Lock,Will Locks,5,4000,"A held item. In battles, it sets the holder's base Sp. Def. stat to 95.",0,0,0
+#-------------------------------
 821,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,20000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0
 #-------------------------------
 822,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca East.",0,0,6
 #-------------------------------
 823,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokemon you find is shiny.",2,0,0
+#-------------------------------
 824,BUSTEDRADIO,Busted Radio,Busted Radios,5,4000,"Damages attackers for 1/8 of their HP when they hit the holder with special attacks.",0,0,0
 #-------------------------------
 825,ABILITYTRANSFORMER,Ability Transformer,Ability Transformers,8,0,"An infinitely usable device which allows a Pokemon with two abilities to switch abilities when used.",5,0,6
