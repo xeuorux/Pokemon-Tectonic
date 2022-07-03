@@ -6,7 +6,7 @@ class PokemonBag
                 itemID = item_element[0]
                 itemCount = item_element[1]
                 if hashOfAllItems.has_key?(itemID)
-                    hashOfAllItems += itemCount
+                    hashOfAllItems[itemID] += itemCount
                 else
                     hashOfAllItems[itemID] = itemCount
                 end
