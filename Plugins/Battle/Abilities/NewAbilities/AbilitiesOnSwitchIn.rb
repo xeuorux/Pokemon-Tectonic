@@ -167,3 +167,12 @@ BattleHandlers::AbilityOnSwitchIn.add(:HEROICFINALE,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:ONTHEWIND,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.pbOwnSide.effects[PBEffects::Tailwind] = 4
+    battle.pbDisplay(_INTL("{1} flew in on a tailwind!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
