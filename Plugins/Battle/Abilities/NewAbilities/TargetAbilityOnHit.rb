@@ -290,3 +290,30 @@ BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:SEEDSCATTER,
+	proc { |ability,target,battler,move,battle|
+		battle.pbShowAbilitySplash(battler)
+		battle.pbStartTerrain(battler, :Grassy)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:PERCUSSIVEMAINTENANCE,
+	proc { |ability,target,battler,move,battle|
+		battle.pbShowAbilitySplash(battler)
+		battle.pbStartTerrain(battler, :Electric)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:CARAMELIZATION,
+	proc { |ability,target,battler,move,battle|
+		battle.pbShowAbilitySplash(battler)
+		battle.pbStartTerrain(battler, :Misty)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
+	proc { |ability,target,battler,move,battle|
+		battle.pbShowAbilitySplash(battler)
+		battle.pbStartTerrain(battler, :Psychic)
+	}
+)
