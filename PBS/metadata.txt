@@ -30,7 +30,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,12
+MapPosition = 0,17,9
 #-------------------------------
 [004]
 # Scientist's House
@@ -53,7 +53,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,11
+MapPosition = 0,17,7
 Environment = None
 #-------------------------------
 [007]
@@ -61,7 +61,7 @@ Environment = None
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,9
+MapPosition = 0,13,8
 MapSize = 2,11
 Environment = TallGrass
 #-------------------------------
@@ -70,7 +70,7 @@ Environment = TallGrass
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,12
+MapPosition = 0,12,9
 #-------------------------------
 [009]
 # House of Leaves
@@ -84,7 +84,7 @@ MapPosition = 0,14,10
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,10
+MapPosition = 0,15,8
 BattleBack = indoor3
 Environment = Rock
 #-------------------------------
@@ -93,14 +93,14 @@ Environment = Rock
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,14,10
+MapPosition = 0,15,6
 #-------------------------------
 [012]
 # Gigalith's Guts
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,8
+MapPosition = 0,16,8
 Environment = Cave
 #-------------------------------
 [013]
@@ -198,7 +198,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,15,8
+MapPosition = 0,18,9
 Environment = Grass
 #-------------------------------
 [026]
@@ -233,7 +233,7 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,13
+MapPosition = 0,18,14
 Environment = Forest
 #-------------------------------
 [031]
@@ -289,7 +289,7 @@ Environment = Snow
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,14
+MapPosition = 0,16,15
 Environment = Sand
 #-------------------------------
 [039]
@@ -360,7 +360,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,13
+MapPosition = 0,17,14
 Environment = Cave
 #-------------------------------
 [052]
@@ -531,6 +531,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,18,8
 Environment = Cave
 #-------------------------------
 [082]
@@ -761,7 +762,7 @@ Environment = Rock
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,5
+MapPosition = 0,19,6
 Environment = Sand
 #-------------------------------
 [134]
@@ -782,14 +783,14 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,14
+MapPosition = 0,17,15
 #-------------------------------
 [138]
 # Scenic Trail
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,19,13
+MapPosition = 0,18,14
 Environment = Forest
 #-------------------------------
 [140]
@@ -1033,6 +1034,7 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,14,9
 TeleportBlocked = true
 #-------------------------------
 [183]
@@ -1040,6 +1042,7 @@ TeleportBlocked = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,20,5
 Environment = Cave
 #-------------------------------
 [185]
@@ -1047,7 +1050,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,16,6
+MapPosition = 0,17,6
 Environment = Forest
 #-------------------------------
 [186]
@@ -1089,7 +1092,7 @@ HealingSpot = 187,67,30
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,11
+MapPosition = 0,18,14
 Environment = Sand
 #-------------------------------
 [195]
@@ -1103,7 +1106,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,19,11
+MapPosition = 0,18,14
 BattleBack = 
 Environment = Volcano
 #-------------------------------
@@ -1112,7 +1115,7 @@ Environment = Volcano
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,4
+MapPosition = 0,19,4
 #-------------------------------
 [212]
 # Ruins Digsite
@@ -1126,6 +1129,7 @@ MapPosition = 0,14,8
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,11,9
 Environment = Forest
 #-------------------------------
 [214]
@@ -1133,7 +1137,7 @@ Environment = Forest
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,15,8
+MapPosition = 0,16,8
 #-------------------------------
 [216]
 # Highland Lake
@@ -1141,6 +1145,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 Weather = Fog,10
+MapPosition = 0,11,5
 #-------------------------------
 [217]
 # Sweetrock Harbor
@@ -1148,12 +1153,14 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 Weather = Rain,10
+MapPosition = 0,21,3
 #-------------------------------
 [218]
 # Abyssal Cavern
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,9,5
 #-------------------------------
 [220]
 # Prizca Sewers East
@@ -1175,7 +1182,7 @@ MapPosition = 0,16,5
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,16,5
+MapPosition = 0,17,5
 Environment = StillWater
 #-------------------------------
 [223]
@@ -1183,7 +1190,7 @@ Environment = StillWater
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,16,4
+MapPosition = 0,16,5
 Environment = StillWater
 #-------------------------------
 [228]
@@ -1267,6 +1274,7 @@ Bicycle = true
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,10,4
 #-------------------------------
 [259]
 # Casey's House
@@ -1433,6 +1441,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,9,5
 #-------------------------------
 [299]
 # Mainland Dock Center

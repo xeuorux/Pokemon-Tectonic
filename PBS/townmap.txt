@@ -1,7 +1,7 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [0]
-Name = Unnamed
+Name = Makya
 Filename = mapRegion2.png
 Point = 18,14,Scenic Path/Windy Way,,,,,
 Point = 17,14,Foreclosed Tunnel,,,,,
