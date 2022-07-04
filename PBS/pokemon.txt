@@ -3109,7 +3109,7 @@ Pokedex = Hiding in people's shadows at night, it absorbs their heat. The chill 
 BattlerPlayerX = 0
 BattlerPlayerY = 17
 BattlerEnemyX = -2
-BattlerEnemyY = 7
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -32213,7 +32213,7 @@ WildItemUncommon = SPELLTAG
 BattlerPlayerX = 0
 BattlerPlayerY = 25
 BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MNINETALES,Item,DUSKSTONE
