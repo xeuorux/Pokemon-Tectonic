@@ -111,13 +111,6 @@ Bicycle = false
 HealingSpot = 37,35,11
 MapPosition = 0,14,10
 #-------------------------------
-[014]
-# LuxTech Buildings
-Outdoor = false
-ShowArea = false
-Bicycle = false
-MapPosition = 0,13,10
-#-------------------------------
 [015]
 # LuxTech Mart
 Outdoor = false
@@ -436,12 +429,6 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
-[063]
-# Németh Buildings
-Outdoor = false
-ShowArea = true
-Bicycle = false
-#-------------------------------
 [065]
 # Németh Mart
 Outdoor = false
@@ -576,12 +563,6 @@ Bicycle = false
 #-------------------------------
 [095]
 # Snowbird's House F2
-Outdoor = false
-ShowArea = false
-Bicycle = false
-#-------------------------------
-[099]
-# Velenz Buildings
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1287,12 +1268,6 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
-#-------------------------------
-[262]
-# Sweetrock Harbor Buildings
-Outdoor = false
-ShowArea = false
-Bicycle = false
 #-------------------------------
 [263]
 # Sweetrock Harbor Center
