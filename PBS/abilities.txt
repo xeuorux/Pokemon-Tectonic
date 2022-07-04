@@ -361,7 +361,7 @@
 360,QUICKTHINKING,Quick Thinking,"Doubled Speed in Psychic Terrain."
 361,HEADSTRONG,Headstrong,"Doubled Defense in Psychic Terrain."
 362,CANDYVEIL,Candy Veil,"Prevents itself and allies from falling asleep or being chilled."
-363,FAEVEIL,Fae Veil,"Prevents itself and allies from being poisoned or burned."
+363,FAEVEIL,Fae Veil,"Prevents itself and allies from being poisoned, burned, or numbed."
 364,EARTHLOCK,Earth Lock,"Suppresses the effects of terrains."
 365,DECEPTIVE,Deceptive,"Gives priority to status moves in Fairy Terrain."
 366,FRUSTRATE,Frustrate,"Upon entry, lowers the foe's Speed stat by impeding their movements."

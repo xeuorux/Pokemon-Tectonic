@@ -2,7 +2,7 @@
 #-------------------------------
 [YOUNGSTER,Joey]
 Pokemon = MACHOP,10
-    Moves = DRAGONDANCE
+    Moves = NUZZLE
     AbilityIndex = 0
 #-------------------------------
 [HIKER,Conroy]
