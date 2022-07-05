@@ -925,7 +925,7 @@
 861,PHANTOMBREAK,Phantom Break,523,120,GHOST,Physical,100,5,0,NearOther,0,abef,"Although this move has great power, it disables itself after use.",SHADOWPUNCH
 862,LOOMOVER,Loom Over,522,0,DRAGON,Status,0,15,0,NearOther,0,ce,"The user looms over the target with awful menace, causing their best stat to drop harshly.",SCARYFACE
 863,SUMMERDAZE,Summer Daze,527,0,GRASS,Status,100,15,0,NearOther,0,bcek,"The user plays a pleasant melody that lulls the target into a deep sleep under harsh sunlight.",GRASSWHISTLE
-864,PACIFY,Pacify,534,0,PSYCHIC,Status,100,20,0,NearOther,0,bce,"The user employs hypnotic suggestion to make a confused or charmed target fall into a deep sleep.",HYPNOSIS
+864,PACIFY,Pacify,534,0,PSYCHIC,Status,100,20,0,NearOther,0,bce,"The user employs hypnotic suggestion to make a flustered or mystified target fall into a deep sleep.",HYPNOSIS
 865,LULLABY,Lullaby,528,0,NORMAL,Status,100,15,0,NearOther,0,bcek,"A lullaby is sung in a calming voice that puts the target with half its HP or less left into a deep sleep.",SING
 866,PUFFBALL,Puffball,529,0,GRASS,Status,100,15,0,NearOther,0,bce,"The user bursts a ball of sleep-inducing powder. It fails unless the target hit the user this turn.",SLEEPPOWDER
 867,MUDTHROW,Mud Throw,044,40,GROUND,Special,100,15,10,NearOther,0,bef,"The user attacks by hurling a blob of mud. It has a 10% chance to reduce the target's Speed.",MUDSLAP
