@@ -997,7 +997,7 @@
 933,SEEDSURPRISE,Seed Surprise,096,1,NORMAL,Special,100,15,0,NearOther,0,bef,"The user draws power to attack by using its held Berry. The Berry determines its type and power.",NATURALGIFT
 934,SPOOKYSNUGGLING,Spooky Snuggling,54A,50,GHOST,Physical,100,10,0,NearOther,0,abef,"The user harnesses its jealousy to attack the opponent with ghostly hugs, cursing them.",
 935,DESERTDANCE,Desert Dance,54C,0,GROUND,Status,0,20,0,User,0,do,"The user boosts its Sp. Attack and Sp. Def. Doubles these increases in sandstorm and also increases Speed.",
-936,DUSTFORCE,Dust Force,54D,110,GROUND,Special,70,15,10,AllNearFoes,0,bef,"The user harnesses turbulent sands that can't miss in a sandstorm. Has a 50% chance to reduce a random stat.",SCORCHINGSANDS
+936,DUSTFORCE,Dust Force,54D,110,GROUND,Special,70,15,10,AllNearFoes,0,bef,"The user controls turbulent sands that can't miss in a sandstorm. 50% chance to reduce a random stat.",SCORCHINGSANDS
 937,BULLETTRAIN,Bullet Train,01F,90,STEEL,Physical,100,20,20,NearOther,0,abef,"The user becomes a pain train. It has a 20% chance to increase the user's Speed stat.",HEAVYSLAM
 938,POISONPOLLEN,Poison Pollen,005,0,GRASS,Status,100,35,0,NearOther,0,bce,"The user scatters a cloud of poisonous dust on the target. It poisons the target.",POISONPOWDER
 939,PARAPOLLEN,Para-Pollen,007,0,GRASS,Status,100,30,0,NearOther,0,bce,"The user scatters a cloud of painful dust that leaves the target numb.",STUNSPORE
