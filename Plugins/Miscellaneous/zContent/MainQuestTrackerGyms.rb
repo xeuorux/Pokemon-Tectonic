@@ -7,7 +7,7 @@ Events.onBadgeEarned += proc { |_sender,_e|
     when 0
         setMQStage(:MEET_TAMARIND_AT_DOCKS)
     when 1..7
-        setStageEarliestIncompleteGym(totalBadges)
+        setStageEarliestIncompleteGym(badgeArray)
     end
 }
 
