@@ -494,8 +494,8 @@ Land,21
     33,DEERLING,30,32
     33,MSEVIPER,30,32
 LandTall,21
-    20,EMOLGA,30,32
     40,ESPURR,30,32
+    20,EMOLGA,30,32
     20,HERACROSS,30,32
     20,SEWADDLE,30,32
 LandSparse,21
@@ -524,8 +524,8 @@ Special,1
 #-------------------------------
 [187] # Prizca East
 FloweryGrass2,20
-    20,FURFROU,33,35
     40,INDEEDEE,33,35
+    20,FURFROU,33,35
     20,MINCCINO,33,35
     20,SMEARGLE,33,35
 Special,1
