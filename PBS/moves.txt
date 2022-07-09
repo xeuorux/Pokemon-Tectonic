@@ -1050,7 +1050,7 @@
 986,MIRAGEFLARE,Mirage Flare,000,120,FLYING,Special,100,5,0,AllNearOthers,0,bef,"The user creates a storm using its flaming body, damaging everything around it.",
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type.",HEALBELL
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type.",SUNNYDAY
-1502,PRIMEVALRAINDANCE,Primeval Rain Dance,602,0,WATER,Status,0,1,0,BothSides,0,,"The user summons rain, surrounds itself with healing water, and becomes Water-type.",DRAGONDANCE
+1502,PRIMEVALRAINDANCE,Primeval Rain Dance,602,0,WATER,Status,0,1,0,BothSides,0,,"The user summons rain, surrounds itself with healing water, and becomes Water-type.",RAINDANCE
 1503,PRIMEVALLEECHSEED,Primeval Leech Seed,603,0,GRASS,Status,100,1,0,AllNearFoes,0,be,"Plants seeds on all near foes, draining HP each turn. User becomes Grass-type.",LEECHSEED
 1504,PRIMEVALLIGHTNINGDANCE,Primeval Lightning Dance,604,0,ELECTRIC,Status,0,1,0,User,0,do,"The user sharply boosts its Sp. Atk and Speed stats, and becomes Electric-type.",LIGHTNINGDANCE
 1505,PRIMEVALHAIL,Primeval Hail,605,0,ICE,Status,0,1,0,BothSides,0,,"The user summons a hail storm, chills all enemies, and becomes Ice-type.",HAIL
