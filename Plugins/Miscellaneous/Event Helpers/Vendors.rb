@@ -72,7 +72,7 @@ def weatherTMSell()
 		:TM33,
 		:TM34,
 		:TM35],
-		"Do you like anything you see?"
+		"Care to buy some?"
 	)
 end
 
@@ -82,7 +82,7 @@ def terrainTMSell()
 		:TM89,
 		:TM90,
 		:TM91],
-		"Do you like anything you see?"
+		"Care to buy some?"
 	)
 end
 
