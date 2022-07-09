@@ -252,13 +252,13 @@ class PokeBattle_Battle
     end
     # Modify Exp gain based on pkmn's held item
     i = BattleHandlers.triggerExpGainModifierItem(pkmn.item,pkmn,exp)
-    if i<0
+    if i < 0
       i = BattleHandlers.triggerExpGainModifierItem(@initialItems[0][idxParty],pkmn,exp)
     end
     exp = i if i>=0
     # If EXP in this battle is capped, store all XP instead of granting it
     if @expCapped
-      @expStored += exp
+      @expStored += (exp * 0.7).floor
       return
     end
     # Make sure Exp doesn't exceed the maximum
