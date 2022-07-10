@@ -121,7 +121,7 @@ class PokeBattle_Move
   def pbEffectivenessMessage(user,target,numTargets=1)
     return if target.damageState.disguise
 	  return if target.damageState.iceface
-	  return if defined?($PokemonSystem.show_effectiveness) && $PokemonSystem.show_effectiveness == 1
+	  return if defined?($PokemonSystem.effectiveness_messages) && $PokemonSystem.effectiveness_messages == 1
 	  if Effectiveness.hyper_effective?(target.damageState.typeMod)
 	  if numTargets > 1
         @battle.pbDisplay(_INTL("It's hyper effective on {1}!",target.pbThis(true)))
@@ -485,6 +485,10 @@ class PokeBattle_Move
 			  multipliers[:final_damage_multiplier] *= 2
 		  end
 		end
+    # Random variance
+    if !self.is_a?(PokeBattle_Confusion) && !self.is_a?(PokeBattle_Charm)
+      multipliers[:final_damage_multiplier] *= 0.9
+    end
 		# STAB
     unless user.pbOwnedByPlayer? && @battle.curses.include?(:DULLED)
       if type && user.pbHasType?(type)

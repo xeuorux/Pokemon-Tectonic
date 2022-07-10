@@ -24,20 +24,20 @@ class PokeBattle_Battler
 		@battle.eachBattler { |b| b.pbContinualAbilityChecks }   # Trace, end primordial weathers
 	end
   
-  def pbConfusionDamage(msg,charm=false,superEff=false)
+  def pbConfusionDamage(msg,charm=false,superEff=false,basePower=50)
     @damageState.reset
     @damageState.initialHP = @hp
-    confusionMove = charm ? PokeBattle_Charm.new(@battle,nil) : PokeBattle_Confusion.new(@battle,nil)
+    confusionMove = charm ? PokeBattle_Charm.new(@battle,nil,basePower) : PokeBattle_Confusion.new(@battle,nil,basePower)
     confusionMove.calcType = confusionMove.pbCalcType(self)   # nil
     @damageState.typeMod = confusionMove.pbCalcTypeMod(confusionMove.calcType,self,self)   # 8
-	@damageState.typeMod *= 2.0 if superEff
+	  @damageState.typeMod *= 2.0 if superEff
     confusionMove.pbCheckDamageAbsorption(self,self)
     confusionMove.pbCalcDamage(self,self)
     confusionMove.pbReduceDamage(self,self)
     self.hp -= @damageState.hpLost
     confusionMove.pbAnimateHitAndHPLost(self,[self])
-    @battle.pbDisplay(msg)   # "It hurt itself in its confusion!"
-	@battle.pbDisplay("It was super-effective!") if superEff
+    @battle.pbDisplay(msg) if !msg.nil?   # "It hurt itself in its confusion!"
+	  @battle.pbDisplay("It was super-effective!") if superEff
     confusionMove.pbRecordDamageLost(self,self)
     confusionMove.pbEndureKOMessage(self)
     pbFaint if fainted?
@@ -163,13 +163,13 @@ class PokeBattle_Battler
         end
       end
     end
-    # Dazzling/Queenly Majesty make the move fail here
+    # Move blocking abilities make the move fail here
     @battle.pbPriority(true).each do |b|
       next if !b || !b.abilityActive?
       if BattleHandlers.triggerMoveBlockingAbility(b.ability,b,user,targets,move,@battle)
-        @battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,move.name))
+        @battle.pbDisplayBrief(_INTL("{1} tried to use {2}!",user.pbThis,move.name))
         @battle.pbShowAbilitySplash(b)
-        @battle.pbDisplay(_INTL("{1} cannot use {2}!",user.pbThis,move.name))
+        @battle.pbDisplay(_INTL("But, {1} cannot use {2}!",user.pbThis,move.name))
         @battle.pbHideAbilitySplash(b)
         user.lastMoveFailed = true
         pbCancelMoves
@@ -277,6 +277,7 @@ class PokeBattle_Battler
         b.damageState.reset
         b.damageState.initialHP = b.hp
         if !pbSuccessCheckAgainstTarget(move,user,b)
+          echoln("[DEBUG] #{b.pbThis} enters the unaffected damage state")
           b.damageState.unaffected = true
         end
       end
@@ -495,10 +496,10 @@ class PokeBattle_Battler
     targets.each { |b| b.damageState.resetPerHit }
     # Count a hit for Parental Bond (if it applies)
     user.effects[PBEffects::ParentalBond] -= 1 if user.effects[PBEffects::ParentalBond]>0
-	# Redirect Dragon Darts other hits
-	if move.function=="17C" && @battle.pbSideSize(targets[0].index)>1 && hitNum>0
-	  targets=pbChangeTargets(move,user,targets,1)
-	end
+    # Redirect Dragon Darts other hits
+    if move.function=="17C" && @battle.pbSideSize(targets[0].index)>1 && hitNum>0
+      targets=pbChangeTargets(move,user,targets,1)
+    end
     # Accuracy check (accuracy/evasion calc)
     if hitNum==0 || move.successCheckPerHit?
       targets.each do |b|
@@ -517,7 +518,7 @@ class PokeBattle_Battler
           pbMissMessage(move,user,b)
         end
         move.pbCrashDamage(user)
-		move.pbAllMissed(user,targets)
+		    move.pbAllMissed(user,targets)
         user.pbItemHPHealCheck
         pbCancelMoves
         return false

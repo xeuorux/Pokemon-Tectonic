@@ -19,24 +19,13 @@ class PokeBattle_Move_001 < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-	score = 20
-    score = 0 if skill>=PBTrainerAI.mediumSkill
-	return score
+    return 0
   end
 end
 
 def getScoreForPuttingToSleep(score,user,target,skill=100)
-	score += 50
-	if skill>=PBTrainerAI.mediumSkill
-	  score = 0 if target.effects[PBEffects::Yawn]>0
-	end
-	if skill>=PBTrainerAI.highSkill
-	  score -= 50 if target.hasActiveAbility?(:MARVELSCALE)
-	end
-	if skill>=PBTrainerAI.bestSkill && target.pbHasMoveFunction?("011","0B4")   # Snore, Sleep Talk
-		score = 0
-	end
-	return score
+  return 0 if target.effects[PBEffects::Yawn] > 0
+	return score + 50
 end
 
 #===============================================================================
@@ -64,12 +53,12 @@ class PokeBattle_Move_003 < PokeBattle_SleepMove
   end
   
   def getScore(score,user,target,skill=100)
-	if target.pbCanSleep?(user,false)
-        score = getScoreForPuttingToSleep(score,user,target,skill=100)
-	elsif statusMove? && skill>=PBTrainerAI.mediumSkill
-        score = 0
-	end
-	return score
+    if target.pbCanSleep?(user,false)
+          score = getScoreForPuttingToSleep(score,user,target,skill=100)
+    elsif statusMove?
+          score = 0
+    end
+    return score
   end
 end
 
@@ -92,12 +81,12 @@ class PokeBattle_Move_004 < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-	if target.effects[PBEffects::Yawn]>0 || !target.pbCanSleep?(user,false)
-        score = 0 if skill>=PBTrainerAI.mediumSkill
-    else
-        score = getScoreForPuttingToSleep(score,user,target,skill=100)
-    end
-	return score / 2
+    if target.effects[PBEffects::Yawn] > 0 || !target.pbCanSleep?(user,false)
+          score = 0
+      else
+          score = getScoreForPuttingToSleep(score,user,target,skill)
+      end
+    return score / 2
   end
 end
 
@@ -405,7 +394,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
 end
 
 #===============================================================================
-# Trapping move. Traps for 5 or 6 rounds. Trapped Pokémon lose 1/16 of max HP
+# Trapping move. Traps for 3 rounds. Trapped Pokémon lose 1/8 of max HP
 # at end of each round.
 #===============================================================================
 class PokeBattle_Move_0CF < PokeBattle_Move
@@ -414,9 +403,9 @@ class PokeBattle_Move_0CF < PokeBattle_Move
     return if target.effects[PBEffects::Trapping]>0
     # Set trapping effect duration and info
     if user.hasActiveItem?(:GRIPCLAW)
-      target.effects[PBEffects::Trapping] = (Settings::MECHANICS_GENERATION >= 5) ? 8 : 6
+      target.effects[PBEffects::Trapping] = 6
     else
-      target.effects[PBEffects::Trapping] = 5+@battle.pbRandom(2)
+      target.effects[PBEffects::Trapping] = 3
     end
     target.effects[PBEffects::TrappingMove] = @id
     target.effects[PBEffects::TrappingUser] = user.index
@@ -1443,5 +1432,28 @@ class PokeBattle_Move_018 < PokeBattle_Move
     user.pbCureStatus(true,:POISON)
     user.pbCureStatus(true,:PARALYSIS)
     user.pbCureStatus(true,:FROZEN)
+  end
+end
+
+#===============================================================================
+# Two turn attack. Skips first turn, attacks second turn. (Dig)
+# (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
+#===============================================================================
+class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
+  def pbChargingTurnMessage(user,targets)
+    @battle.pbDisplay(_INTL("{1} burrowed its way under the ground!",user.pbThis))
+  end
+
+  def pbIsChargingTurn?(user)
+    ret = super
+    if !user.effects[PBEffects::TwoTurnAttack]
+      if @battle.pbWeather == :Sandstorm && user.hasActiveAbility?(:BURROWER)
+        @powerHerb = false
+        @chargingTurn = true
+        @damagingTurn = true
+        return false
+      end
+    end
+    return ret
   end
 end

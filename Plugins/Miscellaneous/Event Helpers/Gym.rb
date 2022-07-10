@@ -27,7 +27,7 @@ module Events
 end
 
 def earnBadge(badgeNum)
-	if badgeNum >= TOTAL_BADGES
+	if badgeNum > TOTAL_BADGES
 		raise _INTL("Badge Number #{badgeNum} is above the total number of badges.")
 	end
 

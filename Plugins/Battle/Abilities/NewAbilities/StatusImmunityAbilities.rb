@@ -12,13 +12,13 @@ BattleHandlers::StatusImmunityAbility.add(:ENERGETIC,
 
 BattleHandlers::StatusImmunityAbility.add(:FAEVEIL,
   proc { |ability,battler,status|
-    next true if status == :BURN || status == :POISON
+    next true if status == :BURN || status == :POISON || status == :PARALYSIS 
   }
 )
 
 BattleHandlers::StatusImmunityAllyAbility.add(:FAEVEIL,
   proc { |ability,battler,status|
-    next true if status == :BURN || status == :POISON
+    next true if status == :BURN || status == :POISON || status == :PARALYSIS 
   }
 )
 

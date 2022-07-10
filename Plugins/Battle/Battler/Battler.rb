@@ -1,9 +1,10 @@
 class PokeBattle_Battler
-  LOCK_STAT = 95
+  OFFENSIVE_LOCK_STAT = 120
+  DEFENSIVE_LOCK_STAT = 95
 
 	def attack
 		if hasActiveItem?(:POWERLOCK)
-			return calcStatGlobal(LOCK_STAT,@level,@pokemon.ev[:ATTACK])
+			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:ATTACK])
 		else
 			return @attack
 		end
@@ -12,13 +13,13 @@ class PokeBattle_Battler
 	def defense
 		if @battle.field.effects[PBEffects::WonderRoom]>0
 			if hasActiveItem?(:WILLLOCK)
-				return calcStatGlobal(LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
+				return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
 			else
 				return @spdef 
 			end
 		else
 			if hasActiveItem?(:GUARDLOCK)
-				return calcStatGlobal(LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
+				return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
 			else
 				return @defense
 			end
@@ -27,7 +28,7 @@ class PokeBattle_Battler
 	
 	def spatk
 		if hasActiveItem?(:ENERGYLOCK)
-			return calcStatGlobal(LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK])
+			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK])
 		else
 			return @spatk
 		end
@@ -36,13 +37,13 @@ class PokeBattle_Battler
 	def spdef
 		if @battle.field.effects[PBEffects::WonderRoom]>0
 			if hasActiveItem?(:GUARDLOCK)
-				return calcStatGlobal(LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
+				return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
 			else
 				return @defense
 			end
 		else
 			if hasActiveItem?(:WILLLOCK)
-				return calcStatGlobal(LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
+				return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
 			else
 				return @spdef 
 			end
@@ -62,7 +63,7 @@ class PokeBattle_Battler
 		return false if !takesIndirectDamage?
 		return false if pbHasType?(:GROUND) || pbHasType?(:ROCK) || pbHasType?(:STEEL)
 		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:STOUT,:DESERTSPIRIT])
+		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:STOUT,:DESERTSPIRIT,:BURROWER,:ARTIFICIALNOCTURNE])
 		return false if hasActiveItem?(:SAFETYGOGGLES)
 		return true
 	  end
@@ -267,7 +268,8 @@ class PokeBattle_Battler
 
   def isLastAlive?
     return false if @battle.wildBattle? && opposes?
-    return !fainted? && @battle.pbGetOwnerFromBattlerIndex(@index).able_pokemon_count == 1
+    return false if fainted?
+    return @battle.pbGetOwnerFromBattlerIndex(@index).able_pokemon_count == 1
   end
 
 end

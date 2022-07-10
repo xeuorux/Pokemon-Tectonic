@@ -37,7 +37,7 @@ def pbPrepareBattle(battle)
   # How long the player can merely survive to draw the battle
   battle.turnsToSurvive = battleRules["turnsToSurvive"] if !battleRules["turnsToSurvive"].nil?
   # Whether battle animations are shown
-  battle.showAnims = ($PokemonSystem.battlescene==0)
+  battle.showAnims = $PokemonSystem.battlescene != 2
   battle.showAnims = battleRules["battleAnims"] if !battleRules["battleAnims"].nil?
   # Terrain
   battle.defaultTerrain = battleRules["defaultTerrain"] if !battleRules["defaultTerrain"].nil?

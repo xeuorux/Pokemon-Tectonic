@@ -15,11 +15,93 @@ class PokeBattle_Battle
     end
   end
 
+  #=============================================================================
+  # End Of Round phase
+  #=============================================================================
+  def pbEndOfRoundPhase
+    PBDebug.log("")
+    PBDebug.log("[End of round]")
+    @endOfRound = true
+    @scene.pbBeginEndOfRoundPhase
+    pbCalculatePriority           # recalculate speeds
+    priority = pbPriority(true)   # in order of fastest -> slowest speeds only
+
+    pbEORWeather(priority)
+
+    processForetoldMovesEOR()
+    
+    pbEORHealing(priority)
+
+    pbEORDamage(priority)
+
+	  # Octolock
+    priority.each do |b|
+      next if !b.effects[PBEffects::Octolock]
+	    octouser = @battlers[b.effects[PBEffects::OctolockUser]]
+      if b.pbCanLowerStatStage?(:DEFENSE,octouser,self)
+        b.pbLowerStatStage(:DEFENSE,1,octouser,true,false,true)
+      end
+      if b.pbCanLowerStatStage?(:SPECIAL_DEFENSE,octouser,self)
+        b.pbLowerStatStage(:SPECIAL_DEFENSE,1,octouser,true,false,true)
+      end
+    end
+
+    processTrappingDOTs(priority)
+    
+    countDownBattlerEffects(priority)
+
+    countDownPerishSong(priority)
+
+    # Check for end of battle
+    if @decision > 0
+      pbGainExp
+      return
+    end
+
+    countDownSideEffects()
+
+    countDownFieldEffects()
+    
+    # End of terrains
+    pbEORTerrain
+
+    processTriggersEOR(priority)
+
+    pbGainExp
+
+    return if @decision > 0
+
+    # Form checks
+    priority.each { |b| b.pbCheckForm(true) }
+
+    # Switch Pokémon in if possible
+    pbEORSwitch
+    return if @decision > 0
+
+    # In battles with at least one side of size 3+, move battlers around if none
+    # are near to any foes
+    pbEORShiftDistantBattlers
+
+    # Try to make Trace work, check for end of primordial weather
+    priority.each { |b| b.pbContinualAbilityChecks }
+    
+    # Decrement or reset various effects that don't show messages when they leave
+    processBattlerEffectsEOR()
+    processSideEffectsEOR()
+    processFieldEffectsEOR()
+	
+	  # Neutralizing Gas
+	  pbCheckNeutralizingGas
+	
+    @endOfRound = false
+  end
 
   #=============================================================================
   # End Of Round weather
   #=============================================================================
   def pbEORWeather(priority)
+    PBDebug.log("[DEBUG] Counting down weathers")
+
     # NOTE: Primordial weather doesn't need to be checked here, because if it
     #       could wear off here, it will have worn off already.
     # Count down weather duration
@@ -108,19 +190,9 @@ class PokeBattle_Battle
     end
   end
 
+  def processForetoldMovesEOR()
+    PBDebug.log("[DEBUG] Counting down/using foretold moves")
 
-  #=============================================================================
-  # End Of Round phase
-  #=============================================================================
-  def pbEndOfRoundPhase
-    PBDebug.log("")
-    PBDebug.log("[End of round]")
-    @endOfRound = true
-    @scene.pbBeginEndOfRoundPhase
-    pbCalculatePriority           # recalculate speeds
-    priority = pbPriority(true)   # in order of fastest -> slowest speeds only
-    # Weather
-    pbEORWeather(priority)
     # Future Sight/Doom Desire
     @positions.each_with_index do |pos,idxPos|
       next if !pos || pos.effects[PBEffects::FutureSightCounter]==0
@@ -160,6 +232,10 @@ class PokeBattle_Battle
       pos.effects[PBEffects::FutureSightUserIndex]      = -1
       pos.effects[PBEffects::FutureSightUserPartyIndex] = -1
     end
+  end
+
+  def pbEORHealing(priority)
+    PBDebug.log("[DEBUG] Performing EoR healing effects")
     # Wish
     @positions.each_with_index do |pos,idxPos|
       next if !pos || pos.effects[PBEffects::Wish]==0
@@ -170,36 +246,14 @@ class PokeBattle_Battle
       @battlers[idxPos].pbRecoverHP(pos.effects[PBEffects::WishAmount])
       pbDisplay(_INTL("{1}'s wish came true!",wishMaker))
     end
-    # Sea of Fire damage (Fire Pledge + Grass Pledge combination)
-    curWeather = pbWeather
-    for side in 0...2
-      next if sides[side].effects[PBEffects::SeaOfFire]==0
-      next if [:Rain, :HeavyRain].include?(curWeather)
-      @battle.pbCommonAnimation("SeaOfFire") if side==0
-      @battle.pbCommonAnimation("SeaOfFireOpp") if side==1
-      priority.each do |b|
-        next if b.opposes?(side)
-        next if !b.takesIndirectDamage? || b.pbHasType?(:FIRE)
-        oldHP = b.hp
-		reduction = b.totalhp/8
-		reduction /= 4 if b.boss?
-		b.damageState.displayedDamage = reduction
-        @scene.pbDamageAnimation(b)
-        b.pbReduceHP(reduction,false)
-        pbDisplay(_INTL("{1} is hurt by the sea of fire!",b.pbThis))
-        b.pbItemHPHealCheck
-        b.pbAbilitiesOnDamageTaken(oldHP)
-        b.pbFaint if b.fainted?
-      end
-    end
     # Status-curing effects/abilities and HP-healing items
     priority.each do |b|
       next if b.fainted?
       # Grassy Terrain (healing)
       if @field.terrain == :Grassy && b.affectedByTerrain? && b.canHeal?
         PBDebug.log("[Lingering effect] Grassy Terrain heals #{b.pbThis(true)}")
-		amount = b.totalhp/16
-		amount /= 4 if b.boss?
+		    amount = b.totalhp/16
+		    amount /= 4 if b.boss?
         b.pbRecoverHP(amount)
         pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
       end
@@ -212,7 +266,8 @@ class PokeBattle_Battle
     priority.each do |b|
       next if !b.effects[PBEffects::AquaRing]
       next if !b.canHeal?
-      hpGain = b.totalhp/16
+      hpGain = b.totalhp/8
+      hpGain /= 4 if b.boss?
       hpGain = (hpGain*1.3).floor if b.hasActiveItem?(:BIGROOT)
       b.pbRecoverHP(hpGain)
       pbDisplay(_INTL("Aqua Ring restored {1}'s HP!",b.pbThis(true)))
@@ -222,12 +277,36 @@ class PokeBattle_Battle
       next if !b.effects[PBEffects::Ingrain]
       next if !b.canHeal?
       hpGain = b.totalhp/8
-      if b.boss?
-        hpGain /= 4
-      end
+      hpGain /= 4 if b.boss?
       hpGain = (hpGain*1.3).floor if b.hasActiveItem?(:BIGROOT)
       b.pbRecoverHP(hpGain)
       pbDisplay(_INTL("{1} absorbed nutrients with its roots!",b.pbThis))
+    end
+  end
+
+  def pbEORDamage(priority)
+    PBDebug.log("[DEBUG] Dealing EoR damage effects")
+    # Sea of Fire damage (Fire Pledge + Grass Pledge combination)
+    curWeather = pbWeather
+    for side in 0...2
+      next if sides[side].effects[PBEffects::SeaOfFire]==0
+      next if [:Rain, :HeavyRain].include?(curWeather)
+      @battle.pbCommonAnimation("SeaOfFire") if side==0
+      @battle.pbCommonAnimation("SeaOfFireOpp") if side==1
+      priority.each do |b|
+        next if b.opposes?(side)
+        next if !b.takesIndirectDamage? || b.pbHasType?(:FIRE)
+        oldHP = b.hp
+		    reduction = b.totalhp/8
+		    reduction /= 4 if b.boss?
+		    b.damageState.displayedDamage = reduction
+        @scene.pbDamageAnimation(b)
+        b.pbReduceHP(reduction,false)
+        pbDisplay(_INTL("{1} is hurt by the sea of fire!",b.pbThis))
+        b.pbItemHPHealCheck
+        b.pbAbilitiesOnDamageTaken(oldHP)
+        b.pbFaint if b.fainted?
+      end
     end
     # Leech Seed
     priority.each do |b|
@@ -267,26 +346,32 @@ class PokeBattle_Battle
         if b.canHeal?
           anim_name = GameData::Status.get(:POISON).animation
           pbCommonAnimation(anim_name, b) if anim_name
-          pbShowAbilitySplash(b)
-          b.pbRecoverHP(b.totalhp/8)
-          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+          recovery = b.totalhp/12
+          recovery /= 4 if b.boss?
+          if !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages == 0
+            pbShowAbilitySplash(b)
+            b.pbRecoverHP(recovery)
+            if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+              pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+            else
+              pbDisplay(_INTL("{1}'s {2} restored its HP.",b.pbThis,b.abilityName))
+            end
+            pbHideAbilitySplash(b)
           else
-            pbDisplay(_INTL("{1}'s {2} restored its HP.",b.pbThis,b.abilityName))
+            b.pbRecoverHP(recovery)
           end
-          pbHideAbilitySplash(b)
         end
       elsif b.takesIndirectDamage?
         oldHP = b.hp
-        dmg = b.totalhp/8
+        dmg = b.totalhp/12
 		    dmg = (dmg/4.0).round if b.boss
         b.pbContinueStatus(:POISON) { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
-		if b.fainted?
-			b.pbFaint 
-			triggerDOTDeathDialogue(b)
-		end
+        if b.fainted?
+          b.pbFaint 
+          triggerDOTDeathDialogue(b)
+        end
       end
     end
     # Damage from burn
@@ -297,19 +382,25 @@ class PokeBattle_Battle
         if b.canHeal?
           anim_name = GameData::Status.get(:BURN).animation
           pbCommonAnimation(anim_name, b) if anim_name
-          pbShowAbilitySplash(b)
-          b.pbRecoverHP(b.totalhp/8)
-          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+          recovery = b.totalhp/8
+          recovery /= 4 if b.boss?
+          if !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages == 0
+            pbShowAbilitySplash(b)
+            b.pbRecoverHP(recovery)
+            if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+              pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+            else
+              pbDisplay(_INTL("{1}'s {2} restored its HP.",b.pbThis,b.abilityName))
+            end
+            pbHideAbilitySplash(b)
           else
-            pbDisplay(_INTL("{1}'s {2} restored its HP.",b.pbThis,b.abilityName))
+            b.pbRecoverHP(recovery)
           end
-          pbHideAbilitySplash(b)
         end
 	    elsif b.takesIndirectDamage?
         oldHP = b.hp
         dmg = b.totalhp/8
-        dmg = (dmg/4.0).round if b.boss
+        dmg = (dmg/4.0).round if b.boss?
         b.pbContinueStatus(:BURN) { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
@@ -348,53 +439,10 @@ class PokeBattle_Battle
       b.pbAbilitiesOnDamageTaken(oldHP)
       b.pbFaint if b.fainted?
     end
-	  # Octolock
-    priority.each do |b|
-      next if !b.effects[PBEffects::Octolock]
-	    octouser = @battlers[b.effects[PBEffects::OctolockUser]]
-      if b.pbCanLowerStatStage?(:DEFENSE,octouser,self)
-        b.pbLowerStatStage(:DEFENSE,1,octouser,true,false,true)
-      end
-      if b.pbCanLowerStatStage?(:SPECIAL_DEFENSE,octouser,self)
-        b.pbLowerStatStage(:SPECIAL_DEFENSE,1,octouser,true,false,true)
-      end
-    end
-    # Trapping attacks (Bind/Clamp/Fire Spin/Magma Storm/Sand Tomb/Whirlpool/Wrap)
-    priority.each do |b|
-      next if b.fainted? || b.effects[PBEffects::Trapping]==0
-      b.effects[PBEffects::Trapping] -= 1
-      moveName = GameData::Move.get(b.effects[PBEffects::TrappingMove]).name
-      if b.effects[PBEffects::Trapping]==0
-        pbDisplay(_INTL("{1} was freed from {2}!",b.pbThis,moveName))
-      else
-        case b.effects[PBEffects::TrappingMove]
-        when :BIND        then pbCommonAnimation("Bind", b)
-        when :CLAMP       then pbCommonAnimation("Clamp", b)
-        when :FIRESPIN    then pbCommonAnimation("FireSpin", b)
-        when :MAGMASTORM  then pbCommonAnimation("MagmaStorm", b)
-        when :SANDTOMB    then pbCommonAnimation("SandTomb", b)
-        when :WRAP        then pbCommonAnimation("Wrap", b)
-        when :INFESTATION then pbCommonAnimation("Infestation", b)
-	    	when :SNAPTRAP 	  then pbCommonAnimation("SnapTrap",b)
-        when :THUNDERCAGE then pbCommonAnimation("ThunderCage",b)
-        else                   pbCommonAnimation("Wrap", b)
-        end
-        if b.takesIndirectDamage?
-          hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/8 : b.totalhp/16
-          if @battlers[b.effects[PBEffects::TrappingUser]].hasActiveItem?(:BINDINGBAND)
-            hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/6 : b.totalhp/8
-          end
-		      hpLoss = (hpLoss/4.0).floor if b.boss
-		      b.damageState.displayedDamage = hpLoss
-          @scene.pbDamageAnimation(b)
-          b.pbReduceHP(hpLoss,false)
-          pbDisplay(_INTL("{1} is hurt by {2}!",b.pbThis,moveName))
-          b.pbItemHPHealCheck
-          # NOTE: No need to call pbAbilitiesOnDamageTaken as b can't switch out.
-          b.pbFaint if b.fainted?
-        end
-      end
-    end
+  end
+
+  def countDownBattlerEffects(priority)
+    PBDebug.log("[DEBUG] Counting down/ending battler effects")
     # Taunt
     pbEORCountDownBattlerEffect(priority,PBEffects::Taunt) { |battler|
       pbDisplay(_INTL("{1}'s taunt wore off!",battler.pbThis))
@@ -445,6 +493,49 @@ class PokeBattle_Battle
         battler.pbSleep
       end
     }
+  end
+
+  def processTrappingDOTs(priority)
+    PBDebug.log("[DEBUG] Counting down/ending trapping DOTs")
+    priority.each do |b|
+      next if b.fainted? || b.effects[PBEffects::Trapping]==0
+      b.effects[PBEffects::Trapping] -= 1
+      moveName = GameData::Move.get(b.effects[PBEffects::TrappingMove]).name
+      if b.effects[PBEffects::Trapping]==0
+        pbDisplay(_INTL("{1} was freed from {2}!",b.pbThis,moveName))
+      else
+        case b.effects[PBEffects::TrappingMove]
+        when :BIND        then pbCommonAnimation("Bind", b)
+        when :CLAMP       then pbCommonAnimation("Clamp", b)
+        when :FIRESPIN    then pbCommonAnimation("FireSpin", b)
+        when :MAGMASTORM  then pbCommonAnimation("MagmaStorm", b)
+        when :SANDTOMB    then pbCommonAnimation("SandTomb", b)
+        when :WRAP        then pbCommonAnimation("Wrap", b)
+        when :INFESTATION then pbCommonAnimation("Infestation", b)
+	    	when :SNAPTRAP 	  then pbCommonAnimation("SnapTrap",b)
+        when :THUNDERCAGE then pbCommonAnimation("ThunderCage",b)
+        else                   pbCommonAnimation("Wrap", b)
+        end
+        if b.takesIndirectDamage?
+          hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/8 : b.totalhp/16
+          if @battlers[b.effects[PBEffects::TrappingUser]].hasActiveItem?(:BINDINGBAND)
+            hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/4 : b.totalhp/8
+          end
+		      hpLoss = (hpLoss/4.0).floor if b.boss
+		      b.damageState.displayedDamage = hpLoss
+          @scene.pbDamageAnimation(b)
+          b.pbReduceHP(hpLoss,false)
+          pbDisplay(_INTL("{1} is hurt by {2}!",b.pbThis,moveName))
+          b.pbItemHPHealCheck
+          # NOTE: No need to call pbAbilitiesOnDamageTaken as b can't switch out.
+          b.pbFaint if b.fainted?
+        end
+      end
+    end
+  end
+  
+  def countDownPerishSong(priority)
+    PBDebug.log("[DEBUG] Counting down/ending perish song")
     # Perish Song
     perishSongUsers = []
     priority.each do |b|
@@ -465,12 +556,10 @@ class PokeBattle_Battle
         pbJudgeCheckpoint(@battlers[perishSongUsers[0]])
       end
     end
+  end
 
-    # Check for end of battle
-    if @decision > 0
-      pbGainExp
-      return
-    end
+  def countDownSideEffects()
+    PBDebug.log("[DEBUG] Counting down/ending side effects")
     for side in 0...2
       # Reflect
       pbEORCountDownSideEffect(side,PBEffects::Reflect,
@@ -503,6 +592,10 @@ class PokeBattle_Battle
       pbEORCountDownSideEffect(side,PBEffects::AuroraVeil,
          _INTL("{1}'s Aurora Veil wore off!",@battlers[side].pbTeam))
     end
+  end
+
+  def countDownFieldEffects()
+    PBDebug.log("[DEBUG] Counting down/ending total field effects")
     # Trick Room
     pbEORCountDownFieldEffect(PBEffects::TrickRoom,
        _INTL("The twisted dimensions returned to normal!"))
@@ -521,8 +614,11 @@ class PokeBattle_Battle
     # Magic Room
     pbEORCountDownFieldEffect(PBEffects::MagicRoom,
        _INTL("Magic Room wore off, and held items' effects returned to normal!"))
-    # End of terrains
-    pbEORTerrain
+  end
+
+  def processTriggersEOR(priority)
+    PBDebug.log("[DEBUG] Processing EoR Triggers")
+
     priority.each do |b|
       next if b.fainted?
       # Hyper Mode (Shadow Pokémon)
@@ -558,18 +654,10 @@ class PokeBattle_Battle
       # Harvest, Pickup
       BattleHandlers.triggerEORGainItemAbility(b.ability,b,self) if b.abilityActive?
     end
-    pbGainExp
-    return if @decision>0
-    # Form checks
-    priority.each { |b| b.pbCheckForm(true) }
-    # Switch Pokémon in if possible
-    pbEORSwitch
-    return if @decision>0
-    # In battles with at least one side of size 3+, move battlers around if none
-    # are near to any foes
-    pbEORShiftDistantBattlers
-    # Try to make Trace work, check for end of primordial weather
-    priority.each { |b| b.pbContinualAbilityChecks }
+  end
+
+  def processBattlerEffectsEOR()
+    PBDebug.log("[DEBUG] Processing EoR Battler Effects")
     # Reset/count down battler-specific effects (no messages)
     eachBattler do |b|
       b.effects[PBEffects::BanefulBunker]    = false
@@ -617,6 +705,10 @@ class PokeBattle_Battle
       b.lastAttacker.clear
       b.lastFoeAttacker.clear
     end
+  end
+
+  def processSideEffectsEOR()
+    PBDebug.log("[DEBUG] Processing EoR Side-Specific Effects")
     # Reset/count down side-specific effects (no messages)
     for side in 0...2
       @sides[side].effects[PBEffects::CraftyShield]         = false
@@ -629,16 +721,15 @@ class PokeBattle_Battle
       @sides[side].effects[PBEffects::Round]                = false
       @sides[side].effects[PBEffects::WideGuard]            = false
     end
+  end
+
+  def processFieldEffectsEOR()
+    PBDebug.log("[DEBUG] Processing EoR Total Field Effects")
     # Reset/count down field-specific effects (no messages)
     @field.effects[PBEffects::IonDeluge]   = false
     @field.effects[PBEffects::FairyLock]   -= 1 if @field.effects[PBEffects::FairyLock]>0
     @field.effects[PBEffects::FusionBolt]  = false
     @field.effects[PBEffects::FusionFlare] = false
-	
-	  # Neutralizing Gas
-	  pbCheckNeutralizingGas
-	
-    @endOfRound = false
   end
   
   # Enemy dialogue for victims of poison/burn

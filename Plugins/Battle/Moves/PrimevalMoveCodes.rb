@@ -229,7 +229,7 @@ class PokeBattle_Move_616 < PokeBattle_Move
 	def healingMove?;       return true; end
 	
 	def pbEffectGeneral(user)
-		user.pbRecoverHP((user.totalhp/2.0).round)
+		user.pbRecoverHP((user.totalhp/3.0).round)
 		@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
 		
 		user.attack,user.spatk = user.spatk,user.attack
@@ -333,5 +333,21 @@ class PokeBattle_Move_622 < PokeBattle_Move_154
 		# TO DO
 		super
 		transformType(user,:ELECTRIC)
+	end
+end
+
+# Empowered Heal Order
+class PokeBattle_Move_623 < PokeBattle_Move
+	include EmpoweredMove
+	
+	def healingMove?;       return true; end
+	
+	def pbEffectGeneral(user)
+		user.pbRecoverHP((user.totalhp/3.0).round)
+		@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+		
+		@battle.addAvatarBattler(:COMBEE,battler.level)
+		
+		transformType(user,:BUG)
 	end
 end

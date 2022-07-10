@@ -62,7 +62,6 @@ class PokeBattle_AI
     end
     PBDebug.log(logMsg)
 	  
-    # Decide whether all choices are bad, and if so, try switching instead
     if !wildBattler && maxScore <= 40 && pbEnemyShouldWithdrawEx?(idxBattler,true)
       if $INTERNAL
         PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will try to switch due to terrible moves")
@@ -357,6 +356,9 @@ class PokeBattle_AI
     batonPass = -1
     skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill_level || 0
     battler = @battle.battlers[idxBattler]
+    owner = @battle.pbGetOwnerFromBattlerIndex(idxBattler)
+    policies = owner.policies || []
+
   	PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is determining whether it should swap (Defaulting to #{forceSwitch}).")
     
 	  target = battler.pbDirectOpposing(true)
@@ -414,8 +416,23 @@ class PokeBattle_AI
       opp = battler.pbDirectOpposing
       if opp.effects[PBEffects::HyperBeam]>0 ||
          (opp.hasActiveAbility?(:TRUANT) && opp.effects[PBEffects::Truant])
-        shouldSwitch = false
+        shouldSwitch = true
       end
+    end
+    matchups = []
+    battler.eachOpposing do |opposingBattler|
+      matchup = rateMatchup(battler,battler.pokemon,opposingBattler,getRoughAttackingTypes(opposingBattler))
+      matchups.push(matchup)
+    end
+    currentMatchupRating = matchups.min
+    # Don't swap for any above reason if we're in a good matchup
+    PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) thinks its current matchup is rated: #{currentMatchupRating}")
+    if currentMatchupRating >= 2
+      PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) decides to ignore low level swapping concerns due to being in a good matchup.")
+      shouldSwitch = false
+    elsif currentMatchupRating <= -2 && policies.include?(:PROACTIVE_MATCHUP_SWAPPER)
+      PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) decides to swap due to being in a bad matchup (Proactive Matchup Swapper Policy).")
+      shouldSwitch = true
     end
     # Pokémon is about to faint because of Perish Song
     if battler.effects[PBEffects::PerishSong]==1
@@ -499,73 +516,15 @@ class PokeBattle_AI
     # Determine who to swap into if at all
     if shouldSwitch
       PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is trying to find a teammate to swap into.")
-      list = []
+      list = pbGetPartyWithSwapRatings(idxBattler)
+      listSwapOutCandidates(battler,list)
+      list.delete_if {|val| !@battle.pbCanSwitch?(idxBattler,val[0]) || (val[1] - currentMatchupRating < 2)}
 	  
-      @battle.pbParty(idxBattler).each_with_index do |pkmn,i|
-        next if !@battle.pbCanSwitch?(idxBattler,i)
-        # Will contain effects that recommend against switching
-        spikes = battler.pbOwnSide.effects[PBEffects::Spikes]
-        # Don't switch to this if too little HP
-        if spikes > 0
-          spikesDmg = [8,6,4][spikes-1]
-          if pkmn.hp <= pkmn.totalhp / spikesDmg
-            next if !pkmn.hasType?(:FLYING) && !pkmn.hasAbility?(:LEVITATE)
-          end
-        end
-        typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
-        if !moveType.nil?
-          typeModDefensive = pbCalcTypeMod(moveType,battler,battler.pbDirectOpposing(true))
-        end
-        
-        if !target.nil?
-          typeModOffensive = pbCalcTypeModPokemonOffensive(pkmn,target)
-        end
-        
-        typeMatchupScore = 0
-        # Modify the type matchup score based on the defensive matchup
-        if Effectiveness.ineffective?(typeModDefensive)
-          typeMatchupScore += 4
-        elsif Effectiveness.not_very_effective?(typeModDefensive)
-          typeMatchupScore += 2
-        elsif Effectiveness.hyper_effective?(typeModDefensive)
-          typeMatchupScore -= 4
-        elsif Effectiveness.super_effective?(typeModDefensive)
-          typeMatchupScore -= 2
-        end
-        # Modify the type matchup score based on the offensive matchup
-        if Effectiveness.ineffective?(typeModOffensive)
-          typeMatchupScore -= 2
-        elsif Effectiveness.not_very_effective?(typeModOffensive)
-          typeMatchupScore -= 1
-        elsif Effectiveness.hyper_effective?(typeModOffensive)
-          typeMatchupScore += 2
-        elsif Effectiveness.super_effective?(typeModOffensive)
-          typeMatchupScore += 1
-        end
-      
-        # If the score is worth it, swap into it
-        if typeMatchupScore >= 2
-            list.push([i,typeMatchupScore])
-        end
-      end
-      
       if list.length > 0
-        list.sort_by!{|entry| -entry[1]}
-        PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are:")
-        list.each do |listEntry|
-          enemyTrainer = @battle.pbGetOwnerFromBattlerIndex(battler.index)
-          allyPokemon = enemyTrainer.party[listEntry[0]]
-          next if allyPokemon.nil?
-          PBDebug.log("#{allyPokemon.name || "Party member #{listEntry[0]}"}: #{listEntry[1]}")
-        end
-        if batonPass >= 0 && @battle.pbRegisterMove(idxBattler,batonPass,false)
-          PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Baton Pass to avoid Perish Song")
-          return true
-        end
         partySlotNumber = list[0][0]
         if @battle.pbRegisterSwitch(idxBattler,partySlotNumber)
           PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will switch with " +
-                      "#{@battle.pbParty(idxBattler)[partySlotNumber].name}")
+                      "#{@battle.pbParty(idxBattler)[partySlotNumber].name} due to it being rated at least 2 higher")
           return true
         end
       else
@@ -574,18 +533,127 @@ class PokeBattle_AI
     end
     return false
   end
-  
-  # For switching. Determines the effectiveness of a potential switch-in against
-  # an opposing battler.
-  def pbCalcTypeModPokemonOffensive(user,target)
-    target = target.effects[PBEffects::Illusion] if target.effects[PBEffects::Illusion]
-    mod1 = Effectiveness.calculate(user.type1,target.type1,target.type2)
-    mod2 = Effectiveness::NORMAL_EFFECTIVE
-    if user.type1 != user.type2
-      mod2 = Effectiveness.calculate(user.type2,target.type1,target.type2)
-      mod2 = mod2.to_f / Effectiveness::NORMAL_EFFECTIVE
+
+  def getRoughAttackingTypes(battler)
+    return nil if battler.fainted?
+    attackingTypes = [battler.pokemon.type1,battler.pokemon.type2]
+    if !battler.lastMoveUsed.nil?
+      moveData = GameData::Move.get(battler.lastMoveUsed)
+      attackingTypes.push(moveData.type)
     end
-    return [mod1,mod2].max
+    attackingTypes.uniq!
+    attackingTypes.compact!
+    return attackingTypes
+  end
+
+  def getPartyMemberAttackingTypes(pokemon)
+    attackingTypes = []
+
+    pokemon.moves.each do |move|
+      next if move.category == 2 # Status
+      attackingTypes.push(move.type)
+    end
+
+    attackingTypes.uniq!
+    attackingTypes.compact!
+    return attackingTypes
+  end
+
+  def listSwapOutCandidates(battler,list)
+    PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) swap out candidates are:")
+    list.each do |listEntry|
+      enemyTrainer = @battle.pbGetOwnerFromBattlerIndex(battler.index)
+      allyPokemon = enemyTrainer.party[listEntry[0]]
+      next if allyPokemon.nil?
+      PBDebug.log("#{allyPokemon.name || "Party member #{listEntry[0]}"}: #{listEntry[1]}")
+    end
+  end
+
+  def pbDefaultChooseNewEnemy(idxBattler,party)
+    list = pbGetPartyWithSwapRatings(idxBattler)
+    list.delete_if {|val| !@battle.pbCanSwitchLax?(idxBattler,val[0])}
+    if list.length != 0
+      listSwapOutCandidates(@battle.battlers[idxBattler],list)
+      return list[0][0]
+    end
+    return -1 
+  end
+
+  # Rates every other Pokemon in the trainer's party and returns a sorted list of the indices and swap in rating
+  def pbGetPartyWithSwapRatings(idxBattler)
+    list = []
+    battler = @battle.battlers[idxBattler]
+    @battle.pbParty(idxBattler).each_with_index do |pkmn,i|
+      # Will contain effects that recommend against switching
+      spikes = battler.pbOwnSide.effects[PBEffects::Spikes]
+      # Don't switch to this if too little HP
+      if spikes > 0
+        spikesDmg = [8,6,4][spikes-1]
+        if pkmn.hp <= pkmn.totalhp / spikesDmg
+          if !pkmn.hasType?(:FLYING) && !pkmn.hasAbility?(:LEVITATE)
+            list.push([i,-10])
+            next
+          end
+        end
+      end
+      matchups = []
+      battler.eachOpposing do |opposingBattler|
+        matchup = rateMatchup(battler,pkmn,opposingBattler,getRoughAttackingTypes(opposingBattler))
+        matchups.push(matchup)
+      end
+      list.push([i,matchups.min])
+    end
+    list.sort_by!{|entry| -entry[1]}
+    return list
+  end
+
+  # Battler is the battler object for the slot being analyzed
+  def rateMatchup(battler,partyPokemon,opposingBattler,attackingtypes=nil)
+    typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
+    typeModOffensive = Effectiveness::NORMAL_EFFECTIVE
+
+    # Get the worse defensive type mod among any of the player pokemon's attacking types
+    if !attackingtypes.nil?
+      typeModDefensive = pbCalcMaxOffensiveTypeMod(attackingtypes,partyPokemon)
+    end
+    
+    # Get the best offensive type mod among any of the party pokemon's attacking types
+    if !opposingBattler.nil?
+      typeModOffensive = pbCalcMaxOffensiveTypeMod(getPartyMemberAttackingTypes(partyPokemon),opposingBattler)
+    end
+    
+    typeMatchupScore = 0
+    # Modify the type matchup score based on the defensive matchup
+    if Effectiveness.ineffective?(typeModDefensive)
+      typeMatchupScore += 4
+    elsif Effectiveness.not_very_effective?(typeModDefensive)
+      typeMatchupScore += 2
+    elsif Effectiveness.hyper_effective?(typeModDefensive)
+      typeMatchupScore -= 4
+    elsif Effectiveness.super_effective?(typeModDefensive)
+      typeMatchupScore -= 2
+    end
+    # Modify the type matchup score based on the offensive matchup
+    if Effectiveness.ineffective?(typeModOffensive)
+      typeMatchupScore -= 2
+    elsif Effectiveness.not_very_effective?(typeModOffensive)
+      typeMatchupScore -= 1
+    elsif Effectiveness.hyper_effective?(typeModOffensive)
+      typeMatchupScore += 2
+    elsif Effectiveness.super_effective?(typeModOffensive)
+      typeMatchupScore += 1
+    end
+    return typeMatchupScore
+  end
+  
+  def pbCalcMaxOffensiveTypeMod(attackingTypes,victimPokemon)
+    victimPokemon = victimPokemon.effects[PBEffects::Illusion] if victimPokemon.is_a?(PokeBattle_Battler) && victimPokemon.effects[PBEffects::Illusion]
+    maxTypeMod = 0
+    attackingTypes.each do |attackingType|
+      mod = Effectiveness.calculate(attackingType,victimPokemon.type1,victimPokemon.type2)
+      maxTypeMod = mod if mod > maxTypeMod
+    end
+    return maxTypeMod
   end
   
   #=============================================================================
@@ -597,21 +665,11 @@ class PokeBattle_AI
     # Get the move's type
     type = pbRoughType(move,user,skill)
     ##### Calculate user's attack stat #####
-    atk = pbRoughStat(user,:ATTACK,skill)
-    if move.function=="121"   # Foul Play
-      atk = pbRoughStat(target,:ATTACK,skill)
-    elsif move.specialMove?(type)
-      if move.function=="121"   # Foul Play
-        atk = pbRoughStat(target,:SPECIAL_ATTACK,skill)
-      else
-        atk = pbRoughStat(user,:SPECIAL_ATTACK,skill)
-      end
-    end
+    atkStat, atkStage = move.pbGetAttackStats(user,target)
+    atk = pbRoughStatCalc(atkStat,atkStage)
     ##### Calculate target's defense stat #####
-    defense = pbRoughStat(target,:DEFENSE,skill)
-    if move.specialMove?(type) && move.function!="122"   # Psyshock
-      defense = pbRoughStat(target,:SPECIAL_DEFENSE,skill)
-    end
+    defStat, defStage = move.pbGetDefenseStats(user,target)
+    defense = pbRoughStatCalc(defStat,defStage)
     ##### Calculate all multiplier effects #####
     multipliers = {
       :base_damage_multiplier  => 1.0,
@@ -811,32 +869,32 @@ class PokeBattle_AI
     damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
     # "AI-specific calculations below"
     # Increased critical hit rates
-	c = 0
-	# Ability effects that alter critical hit rate
-	if c>=0 && user.abilityActive?
-		c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
-	end
-	if c>=0 && !moldBreaker && target.abilityActive?
-		c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
-	end
-	# Item effects that alter critical hit rate
-	if c>=0 && user.itemActive?
-		c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
-	end
-	if c>=0 && target.itemActive?
-		c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
-	end
-	# Other efffects
-	c = -1 if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
-	if c>=0
-		c += 1 if move.highCriticalRate?
-		c += user.effects[PBEffects::FocusEnergy]
-		c += 1 if user.inHyperMode? && move.type == :SHADOW
-	end
-	if c>=0
-		c = 4 if c>4
-		damage += damage*0.1*c
-	end
+    c = 0
+    # Ability effects that alter critical hit rate
+    if c>=0 && user.abilityActive?
+      c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
+    end
+    if c>=0 && !moldBreaker && target.abilityActive?
+      c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
+    end
+    # Item effects that alter critical hit rate
+    if c>=0 && user.itemActive?
+      c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
+    end
+    if c>=0 && target.itemActive?
+      c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
+    end
+    # Other efffects
+    c = -1 if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
+    if c>=0
+      c += 1 if move.highCriticalRate?
+      c += user.effects[PBEffects::FocusEnergy]
+      c += 1 if user.inHyperMode? && move.type == :SHADOW
+    end
+    if c>=0
+      c = 4 if c>4
+      damage += damage*0.1*c
+    end
 	  
     return damage.floor
   end
@@ -1063,12 +1121,16 @@ class PokeBattle_AI
     return move.pbCalcType(user)
   end
 
-  def pbRoughStat(battler,stat,skill)
-    castBattler = (battler.effects[PBEffects::Illusion] && battler.pbOwnedByPlayer?) ? battler.effects[PBEffects::Illusion] : battler
-
-    return battler.pbSpeed if stat==:SPEED && !battler.effects[PBEffects::Illusion]
+  def pbRoughStatCalc(atkStat,atkStage)
     stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
     stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    return (atkStat.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
+  end
+
+  def pbRoughStat(battler,stat,skill)
+    castBattler = (battler.effects[PBEffects::Illusion] && battler.pbOwnedByPlayer?) ? battler.effects[PBEffects::Illusion] : battler
+    return battler.pbSpeed if stat==:SPEED && !battler.effects[PBEffects::Illusion]
+    
     stage = battler.stages[stat]+6
     value = 0
     case stat
@@ -1078,6 +1140,6 @@ class PokeBattle_AI
     when :SPECIAL_DEFENSE then value = castBattler.spdef
     when :SPEED           then value = castBattler.speed
     end
-    return (value.to_f*stageMul[stage]/stageDiv[stage]).floor
+    return pbRoughStatCalc(value,stage)
   end
 end

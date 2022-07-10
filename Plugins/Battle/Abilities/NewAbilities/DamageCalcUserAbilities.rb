@@ -1,16 +1,33 @@
+BattleHandlers::DamageCalcUserAbility.add(:GUTS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.pbHasAnyStatus? && move.physicalMove?
+      mults[:attack_multiplier] *= 1.33
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:AUDACITY,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.pbHasAnyStatus? && move.specialMove?
-      mults[:attack_multiplier] *= 1.5
+      mults[:attack_multiplier] *= 1.33
     end
   }
 )
 
 BattleHandlers::DamageCalcUserAbility.add(:HEADACHE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mods[:attack_multiplier] *= 2.0 if user.effects[PBEffects::Confusion]>0 && move.specialMove?
+   # mods[:attack_multiplier] *= 2.0 if user.effects[PBEffects::Confusion]>0 && move.specialMove?
+   mods[:attack_multiplier] *= 2.0 if move.specialMove? && user.mystified?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:HEADACHE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+   # mods[:attack_multiplier] *= 2.0 if user.effects[PBEffects::Confusion]>0 && move.specialMove?
+   mods[:attack_multiplier] *= 2.0 if move.physicalMove? && user.flustered?
+  }
+)
+
 
 BattleHandlers::DamageCalcUserAbility.add(:POWERUP,
   proc { |ability,user,target,move,mults,baseDmg,type|

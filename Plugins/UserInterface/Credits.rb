@@ -5,20 +5,25 @@ Zeu<s>Agentbla
 Divock<s>Brickbat
 Wakarimasensei<s>ali760
 Drawingbox<s>LucaSantosSims
-lichenprincess
+lichenprincess<s>Jaggedthorn
+papper<s>IgnitedXSoul
 
 Other Contributors
-Arenastellez<s>IgnitedXSoul
+Arenastellez<s>Zufaix
 Fbarbarosa<s>ctWizard
 Slaynoir<s>Maddie
 FurretKnight<s>Dtp81390
 Gabs<s>derrondad
-papper<s>Jaggedthorn
-BlueObelisk<s>Zufaix
+BlueObelisk<s>
 
 Playtesters
 Splitmoon<s>Sets
-Steeb<s>
+Steeb<s>Licras
+HairyHoopa<s>Robinzh
+Phyrol<s>dragonwarrior
+Tauxins<s>TheBreadDealer
+KickassKT<s>PandaNinjaPants
+Airiii<s>
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 
@@ -44,7 +49,10 @@ supercow<s>LunaMaddalena
 Alucus<s>The English Kiwi
 calisprojects.com<s>PandaInDaGame 
 Hek-el-grande<s>Kaliser
-Agentbla
+SailorVicious<s>Agentbla
+Shiney570<s>dirtywiggles
+Ekat<s>MewTheMega
+Zeo254
 
 Charsets
 DiegoWT<s>PurpleZaffre
@@ -58,6 +66,16 @@ Princess-Phoenix<s>Sagedeoxys
 
 Reborn Icons
 smeargletail<s>ARandomTalkingBush
+
+Reborn Move Animations
+Smeargletail<s>Mde2001
+Autumn<s>VulpesDraconis
+Amethyst<s>Crim
+andracass<s>Koyoss
+Jan<s>
+
+Pre-looped Music Pack
+ENLS
 
 Generation 8 Project
 Battler Sprites

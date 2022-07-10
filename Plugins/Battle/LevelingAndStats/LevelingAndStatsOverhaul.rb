@@ -252,13 +252,13 @@ class PokeBattle_Battle
     end
     # Modify Exp gain based on pkmn's held item
     i = BattleHandlers.triggerExpGainModifierItem(pkmn.item,pkmn,exp)
-    if i<0
+    if i < 0
       i = BattleHandlers.triggerExpGainModifierItem(@initialItems[0][idxParty],pkmn,exp)
     end
     exp = i if i>=0
     # If EXP in this battle is capped, store all XP instead of granting it
     if @expCapped
-      @expStored += exp
+      @expStored += (exp * 0.7).floor
       return
     end
     # Make sure Exp doesn't exceed the maximum
@@ -274,6 +274,7 @@ class PokeBattle_Battle
   	expFinal = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap))
     expGained = expFinal-pkmn.exp
 	  expLeftovers = expLeftovers-pkmn.exp
+    expLeftovers = (expLeftovers * 0.7).floor
 	  @expStored += expLeftovers if expLeftovers > 0
   	curLevel = pkmn.level
     newLevel = growth_rate.level_from_exp(expFinal)
@@ -351,8 +352,8 @@ class PokeBattle_Battle
         battler.pokemon.changeHappiness("levelup")
       end
     end
-	$PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
-	$PokemonGlobal.expJAR += expLeftovers if (expLeftovers > 0 && hasExpJAR)
+	  $PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
+	  $PokemonGlobal.expJAR += expLeftovers if (expLeftovers > 0 && hasExpJAR)
   end
 end
 

@@ -16,6 +16,7 @@ module GameData
       @intro_ME    = hash[:intro_ME]
       @gender      = hash[:gender]      || 2
       @skill_level = hash[:skill_level] || @base_money
+      @skill_code  = hash[:skill_code]
       @policies	   = hash[:policies]	|| []
     end
   end

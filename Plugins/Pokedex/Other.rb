@@ -138,7 +138,7 @@ class Window_Pokedex < Window_DrawableCommand
 		species     = @commands[index][0]
 		indexNumber = @commands[index][4]
 		indexNumber -= 1 if @commands[index][5]
-		if !isLegendary(species) || $Trainer.seen?(species)
+		if !isLegendary(species) || $Trainer.seen?(species) || $DEBUG
 		  if $Trainer.owned?(species)
 			pbCopyBitmap(self.contents,@pokeballOwn.bitmap,rect.x-6,rect.y+8)
 		  else

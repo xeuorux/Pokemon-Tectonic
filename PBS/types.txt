@@ -103,7 +103,7 @@ Name = Ice
 InternalName = ICE
 IsSpecialType = true
 Weaknesses = FIGHTING,ROCK,STEEL,FIRE
-Resistances = ICE,WATER,FLYING
+Resistances = ICE,GROUND,FLYING
 #-------------------------------
 [16]
 Name = Dragon

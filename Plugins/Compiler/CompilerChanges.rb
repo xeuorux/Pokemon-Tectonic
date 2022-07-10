@@ -183,6 +183,8 @@ module Compiler
       compile_animations
       yield(_INTL("Converting events"))
       compile_events
+      yield(_INTL("Editing maps"))
+      edit_maps
       yield(_INTL("Saving messages"))
       pbSetTextMessages
       MessageTypes.saveMessages
@@ -637,12 +639,12 @@ end
     tr_type_names = []
     # Read each line of trainertypes.txt at a time and compile it into a trainer type
     pbCompilerEachCommentedLine(path) { |line, line_no|
-      line = pbGetCsvRecord(line, line_no, [0, "unsUSSSeUS",
+      line = pbGetCsvRecord(line, line_no, [0, "unsUSSSeUSs",
         nil, nil, nil, nil, nil, nil, nil, {
         "Male"   => 0, "M" => 0, "0" => 0,
         "Female" => 1, "F" => 1, "1" => 1,
         "Mixed"  => 2, "X" => 2, "2" => 2, "" => 2
-        }, nil, nil]
+        }, nil, nil, nil]
       )
       type_number = line[0]
       type_symbol = line[1].to_sym
@@ -651,13 +653,13 @@ end
       elsif GameData::TrainerType::DATA[type_symbol]
         raise _INTL("Trainer type ID '{1}' is used twice.\r\n{2}", type_symbol, FileLineData.linereport)
       end
-	  policies_array = []
-	  if line[9]
-		  policies_string_array = line[9].gsub!('[','').gsub!(']','').split(',')
-		  policies_string_array.each do |policy_string|
-			policies_array.push(policy_string.to_sym)
-		  end
-	  end
+      policies_array = []
+      if !line[10].nil?
+        policies_string_array = line[10].gsub!('[','').gsub!(']','').split(',')
+        policies_string_array.each do |policy_string|
+          policies_array.push(policy_string.to_sym)
+          end
+      end
       # Construct trainer type hash
       type_hash = {
         :id_number   => type_number,
@@ -669,6 +671,7 @@ end
         :intro_ME    => line[6],
         :gender      => line[7],
         :skill_level => line[8],
+        :skill_code  => line[9],
         :policies    => policies_array,
       }
       # Add trainer type's data to records
@@ -1419,7 +1422,7 @@ end
       changed = false
       map = mapData.getMap(id)
       next if !map || !mapData.mapinfos[id]
-	  mapName = mapData.mapinfos[id].name
+	    mapName = mapData.mapinfos[id].name
       pbSetWindowText(_INTL("Processing map {1} ({2})",id,mapName))
       for key in map.events.keys
         if Time.now.to_i-t>=5
@@ -1436,28 +1439,28 @@ end
           map.events[key] = newevent
           changed = true
         end
-		newevent = convert_chasm_style_trainers(map.events[key])
+		    newevent = convert_chasm_style_trainers(map.events[key])
         if newevent
           map.events[key] = newevent
           changed = true
         end
-		newevent = convert_avatars(map.events[key])
+		    newevent = convert_avatars(map.events[key])
         if newevent
           map.events[key] = newevent
           changed = true
         end
-		newevent = convert_placeholder_pokemon(map.events[key])
+		    newevent = convert_placeholder_pokemon(map.events[key])
         if newevent
           map.events[key] = newevent
           changed = true
         end
-		newevent = convert_overworld_pokemon(map.events[key])
+		    newevent = convert_overworld_pokemon(map.events[key])
         if newevent
           map.events[key] = newevent
           changed = true
         end
-		newevent = change_overworld_placeholders(map.events[key])
-		if newevent
+		    newevent = change_overworld_placeholders(map.events[key])
+		    if newevent
           map.events[key] = newevent
           changed = true
         end
@@ -1491,237 +1494,320 @@ end
     end
     save_data(commonEvents,"Data/CommonEvents.rxdata") if changed
   end
+
+  def edit_maps
+    wallReplaceConvexID = GameData::TerrainTag.get(:WallReplaceConvex).id_number
+  
+    # Iterate over all maps
+    mapData = Compiler::MapData.new
+    tilesets_data = load_data("Data/Tilesets.rxdata")
+    for id in mapData.mapinfos.keys.sort
+        map = mapData.getMap(id)
+        next if !map || !mapData.mapinfos[id]
+        mapName = mapData.mapinfos[id].name
+
+        # Grab the tileset here
+        tileset = tilesets_data[map.tileset_id]
+
+        next if tileset.nil?
+
+        # Iterate over all tiles, finding the first with the relevant tag
+        taggedPositions = []
+        for x in 0..map.data.xsize
+          for y in 0..map.data.ysize
+            currentID = map.data[x, y, 1]
+            next if currentID.nil?
+            currentTag = tileset.terrain_tags[currentID]
+            if currentTag == wallReplaceConvexID
+              taggedPositions.push([x,y])
+            end
+          end
+        end  
+
+        next if taggedPositions.length == 0
+
+        echoln("Map #{mapName} contains some WallReplaceConvex tiles")
+
+        changeNum = 0
+        taggedPositions.each do |position|
+          taggedX = position[0]
+          taggedY = position[1]
+
+          touchedDirs = 0b0000 # North, East, South, West
+          taggedPositions.each do |position2|
+            posX = position2[0]
+            posY = position2[1]
+            # North
+            touchedDirs = touchedDirs | 0b1000 if posX == taggedX && posY == taggedY - 1
+            # East
+            touchedDirs = touchedDirs | 0b0100 if posY == taggedY && posX == taggedX + 1
+            # South
+            touchedDirs = touchedDirs | 0b0010 if posX == taggedX && posY == taggedY + 1
+            # West
+            touchedDirs = touchedDirs | 0b0001 if posY == taggedY && posX == taggedX - 1
+          end
+
+          tileIDToAdd = 0
+          if touchedDirs == 0b1100 # Northeast
+            tileIDToAdd = 1485
+          elsif touchedDirs == 0b1001 # NorthWest
+            tileIDToAdd = 1487
+          elsif touchedDirs == 0b0110 # Southeast
+            tileIDToAdd = 1469
+          elsif touchedDirs == 0b0011 # Southwest
+            tileIDToAdd = 1471
+          end
+
+          next if tileIDToAdd == 0
+
+          map.data[taggedX,taggedY,1] = tileIDToAdd
+          changeNum += 1
+        end
+
+        if changeNum > 0
+          echoln("Saving map after changing #{changeNum} tiles: #{mapName} (#{id})")
+          mapData.saveMap(id)
+        else
+          echoln("Unable to make any changes to: #{mapName} (#{id})")
+        end
+    end
+  end
+
+  def tile_ID_from_coordinates(x, y)
+    return x * TILES_PER_AUTOTILE if y == 0   # Autotile
+    return TILESET_START_ID + (y - 1) * TILES_PER_ROW + x
+  end
   
   #=============================================================================
   # Convert events using the PHT command into fully fledged trainers
   #=============================================================================
   def convert_chasm_style_trainers(event)
-	return nil if !event || event.pages.length==0
-	match = event.name.match(/PHT\(([_a-zA-Z0-9]+),([_a-zA-Z]+),([0-9]+)\)/)
-	return nil if !match
-	ret = RPG::Event.new(event.x,event.y)
-	ret.name = "resettrainer(4)"
-	ret.id   = event.id
-	ret.pages = []
-	trainerTypeName = match[1]
-	return nil if !trainerTypeName || trainerTypeName == ""
-	trainerName = match[2]
-	trainerMaxLevel = match[3]
-	ret.pages = [3]
-	
-	# Create the first page, where the battle happens
-	firstPage = RPG::Event::Page.new
-	ret.pages[0] = firstPage
-	firstPage.graphic.character_name = trainerTypeName
-	firstPage.trigger = 2   # On event touch
-	firstPage.list = []
-	push_script(firstPage.list,"pbTrainerIntro(:#{trainerTypeName})")
-	push_script(firstPage.list,"pbNoticePlayer(get_self)")
-	push_text(firstPage.list,"Dialogue here.")
-	
-	push_branch(firstPage.list,"pbTrainerBattle(:#{trainerTypeName},\"#{trainerName}\")")
-	push_branch(firstPage.list,"$game_switches[94]",1)
-	push_text(firstPage.list,"Dialogue here.",2)
-	push_script(firstPage.list,"perfectTrainer(#{trainerMaxLevel})",2)
-	push_else(firstPage.list,2)
-	push_text(firstPage.list,"Dialogue here.",2)
-	push_script(firstPage.list,"defeatTrainer",2)
-    push_branch_end(firstPage.list,2)
-    push_branch_end(firstPage.list,1)
-	
-	push_script(firstPage.list,"pbTrainerEnd")
-	push_end(firstPage.list)
-	
-	# Create the second page, which has a talkable action-button graphic
-	secondPage = RPG::Event::Page.new
-	ret.pages[1] = secondPage
-	secondPage.graphic.character_name = trainerTypeName
-	secondPage.condition.self_switch_valid = true
-	secondPage.condition.self_switch_ch = "A"
-	secondPage.list = []
-	push_text(secondPage.list,"Dialogue here.")
-	push_end(secondPage.list)
-	
-	# Create the third page, which has no functionality and no graphic
-	thirdPage = RPG::Event::Page.new
-	ret.pages[2] = thirdPage
-	thirdPage.condition.self_switch_valid = true
-	thirdPage.condition.self_switch_ch = "D"
-	thirdPage.list = []
-	push_end(thirdPage.list)
-	
-	return ret
-  end
-  
-  #=============================================================================
-  # Convert events using the PHA name command into fully fledged avatars
-  #=============================================================================
-  def convert_avatars(event)
-	return nil if !event || event.pages.length==0
-	match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)(?:,([_a-zA-Z]+))?(?:,([_a-zA-Z0-9]+))?(?:,([0-9]+))?\).*/)
-	return nil if !match
-	ret = RPG::Event.new(event.x,event.y)
-	ret.name = "size(2,2)trainer(4)"
-	ret.id   = event.id
-	ret.pages = []
-	avatarSpecies = match[1]
-	legendary = isLegendary(avatarSpecies)
-	return nil if !avatarSpecies || avatarSpecies == ""
-	level = match[2]
-	directionText = match[3]
-	item = match[4] || nil
-	itemCount = match[5].to_i || 0
-	
-	direction = Down
-	if !directionText.nil?
-		case directionText.downcase
-		when "left"
-			direction = Left
-		when "right"
-			direction = Right
-		when "up"
-			direction = Up
-		else
-			direction = Down
-		end
-	end
-	
-	# Create the needed graphics
-	createBossGraphics(avatarSpecies)
-	
-	ret.pages = [2]
-	# Create the first page, where the battle happens
-	firstPage = RPG::Event::Page.new
-	ret.pages[0] = firstPage
-	firstPage.graphic.character_name = "zAvatar_#{avatarSpecies}"
-	firstPage.graphic.opacity = 180
-	firstPage.graphic.direction = direction
-	firstPage.trigger = 2   # On event touch
-	firstPage.step_anime = true # Animate while still
-	firstPage.list = []
-	push_script(firstPage.list,"pbNoticePlayer(get_self)")
-	push_script(firstPage.list,"introduceAvatar(:#{avatarSpecies})")
-	push_branch(firstPage.list,"pb#{legendary ? "Big" : "Small"}AvatarBattle([:#{avatarSpecies},#{level}])")
-	if item.nil?
-		push_script(firstPage.list,"defeatBoss",1)
-	else
-		if itemCount > 1
-			push_script(firstPage.list,"defeatBoss(:#{item},#{itemCount})",1)
-		else
-			push_script(firstPage.list,"defeatBoss(:#{item})",1)
-		end
-	end
-    push_branch_end(firstPage.list,1)
-	push_end(firstPage.list)
-	
-	# Create the second page, which has nothing
-	secondPage = RPG::Event::Page.new
-	ret.pages[1] = secondPage
-	secondPage.condition.self_switch_valid = true
-	secondPage.condition.self_switch_ch = "A"
-	
-	return ret
-  end
-  
-  #=============================================================================
-  # Convert events using the PHP name command into fully fledged overworld pokemon
-  #=============================================================================
-  def convert_placeholder_pokemon(event)
-	return nil if !event || event.pages.length==0
-	match = event.name.match(/.*PHP\(([a-zA-Z0-9]+)(?:_([0-9]*))?(?:,([_a-zA-Z]+))?.*/)
-	return nil if !match
-	species = match[1]
-	return if !species
-	species = species.upcase
-	form	= match[2]
-	form = 0 if !form || form == ""
-	speciesData = GameData::Species.get(species.to_sym)
-	return if !speciesData
-	directionText = match[3]
-	direction = Down
-	if !directionText.nil?
-		case directionText.downcase
-		when "left"
-			direction = Left
-		when "right"
-			direction = Right
-		when "up"
-			direction = Up
-		else
-			direction = Down
-		end
-	end
-	
-	echoln("Converting event: #{species},#{form},#{direction}")
-	
-	ret = RPG::Event.new(event.x,event.y)
-	ret.name = "resetfollower"
-	ret.id   = event.id
-	ret.pages = [3]
-	
-	# Create the first page, where the cry happens
-	firstPage = RPG::Event::Page.new
-	ret.pages[0] = firstPage
-	fileName = species
-	fileName += "_" + form.to_s if form != 0
-	firstPage.graphic.character_name = "Followers/#{fileName}"
-	firstPage.graphic.direction = direction
-	firstPage.step_anime = true # Animate while still
-	firstPage.trigger = 0 # Action button
-	firstPage.list = []
-	push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesData.id,form))
-	push_script(firstPage.list,sprintf("pbMessage(\"#{speciesData.real_name} cries out!\")",))
-	push_end(firstPage.list)
-	
-	# Create the second page, which has nothing
-	secondPage = RPG::Event::Page.new
-	ret.pages[1] = secondPage
-	secondPage.condition.self_switch_valid = true
-	secondPage.condition.self_switch_ch = "A"
-	
-	# Create the third page, which has nothing
-	thirdPage = RPG::Event::Page.new
-	ret.pages[2] = thirdPage
-	thirdPage.condition.self_switch_valid = true
-	thirdPage.condition.self_switch_ch = "D"
-	
-	return ret
+    return nil if !event || event.pages.length==0
+    match = event.name.match(/PHT\(([_a-zA-Z0-9]+),([_a-zA-Z]+),([0-9]+)\)/)
+    return nil if !match
+    ret = RPG::Event.new(event.x,event.y)
+    ret.name = "resettrainer(4)"
+    ret.id   = event.id
+    ret.pages = []
+    trainerTypeName = match[1]
+    return nil if !trainerTypeName || trainerTypeName == ""
+    trainerName = match[2]
+    trainerMaxLevel = match[3]
+    ret.pages = [3]
+    
+    # Create the first page, where the battle happens
+    firstPage = RPG::Event::Page.new
+    ret.pages[0] = firstPage
+    firstPage.graphic.character_name = trainerTypeName
+    firstPage.trigger = 2   # On event touch
+    firstPage.list = []
+    push_script(firstPage.list,"pbTrainerIntro(:#{trainerTypeName})")
+    push_script(firstPage.list,"pbNoticePlayer(get_self)")
+    push_text(firstPage.list,"Dialogue here.")
+    
+    push_branch(firstPage.list,"pbTrainerBattle(:#{trainerTypeName},\"#{trainerName}\")")
+    push_branch(firstPage.list,"$game_switches[94]",1)
+    push_text(firstPage.list,"Dialogue here.",2)
+    push_script(firstPage.list,"perfectTrainer(#{trainerMaxLevel})",2)
+    push_else(firstPage.list,2)
+    push_text(firstPage.list,"Dialogue here.",2)
+    push_script(firstPage.list,"defeatTrainer",2)
+      push_branch_end(firstPage.list,2)
+      push_branch_end(firstPage.list,1)
+    
+    push_script(firstPage.list,"pbTrainerEnd")
+    push_end(firstPage.list)
+    
+    # Create the second page, which has a talkable action-button graphic
+    secondPage = RPG::Event::Page.new
+    ret.pages[1] = secondPage
+    secondPage.graphic.character_name = trainerTypeName
+    secondPage.condition.self_switch_valid = true
+    secondPage.condition.self_switch_ch = "A"
+    secondPage.list = []
+    push_text(secondPage.list,"Dialogue here.")
+    push_end(secondPage.list)
+    
+    # Create the third page, which has no functionality and no graphic
+    thirdPage = RPG::Event::Page.new
+    ret.pages[2] = thirdPage
+    thirdPage.condition.self_switch_valid = true
+    thirdPage.condition.self_switch_ch = "D"
+    thirdPage.list = []
+    push_end(thirdPage.list)
+    
+    return ret
+    end
+    
+    #=============================================================================
+    # Convert events using the PHA name command into fully fledged avatars
+    #=============================================================================
+    def convert_avatars(event)
+    return nil if !event || event.pages.length==0
+    match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)(?:,([_a-zA-Z]+))?(?:,([_a-zA-Z0-9]+))?(?:,([0-9]+))?\).*/)
+    return nil if !match
+    ret = RPG::Event.new(event.x,event.y)
+    ret.name = "size(2,2)trainer(4)"
+    ret.id   = event.id
+    ret.pages = []
+    avatarSpecies = match[1]
+    legendary = isLegendary(avatarSpecies)
+    return nil if !avatarSpecies || avatarSpecies == ""
+    level = match[2]
+    directionText = match[3]
+    item = match[4] || nil
+    itemCount = match[5].to_i || 0
+    
+    direction = Down
+    if !directionText.nil?
+      case directionText.downcase
+      when "left"
+        direction = Left
+      when "right"
+        direction = Right
+      when "up"
+        direction = Up
+      else
+        direction = Down
+      end
+    end
+    
+    # Create the needed graphics
+    createBossGraphics(avatarSpecies)
+    
+    ret.pages = [2]
+    # Create the first page, where the battle happens
+    firstPage = RPG::Event::Page.new
+    ret.pages[0] = firstPage
+    firstPage.graphic.character_name = "zAvatar_#{avatarSpecies}"
+    firstPage.graphic.opacity = 180
+    firstPage.graphic.direction = direction
+    firstPage.trigger = 2   # On event touch
+    firstPage.step_anime = true # Animate while still
+    firstPage.list = []
+    push_script(firstPage.list,"pbNoticePlayer(get_self)")
+    push_script(firstPage.list,"introduceAvatar(:#{avatarSpecies})")
+    push_branch(firstPage.list,"pb#{legendary ? "Big" : "Small"}AvatarBattle([:#{avatarSpecies},#{level}])")
+    if item.nil?
+      push_script(firstPage.list,"defeatBoss",1)
+    else
+      if itemCount > 1
+        push_script(firstPage.list,"defeatBoss(:#{item},#{itemCount})",1)
+      else
+        push_script(firstPage.list,"defeatBoss(:#{item})",1)
+      end
+    end
+      push_branch_end(firstPage.list,1)
+    push_end(firstPage.list)
+    
+    # Create the second page, which has nothing
+    secondPage = RPG::Event::Page.new
+    ret.pages[1] = secondPage
+    secondPage.condition.self_switch_valid = true
+    secondPage.condition.self_switch_ch = "A"
+    
+    return ret
+    end
+    
+    #=============================================================================
+    # Convert events using the PHP name command into fully fledged overworld pokemon
+    #=============================================================================
+    def convert_placeholder_pokemon(event)
+    return nil if !event || event.pages.length==0
+    match = event.name.match(/.*PHP\(([a-zA-Z0-9]+)(?:_([0-9]*))?(?:,([_a-zA-Z]+))?.*/)
+    return nil if !match
+    species = match[1]
+    return if !species
+    species = species.upcase
+    form	= match[2]
+    form = 0 if !form || form == ""
+    speciesData = GameData::Species.get(species.to_sym)
+    return if !speciesData
+    directionText = match[3]
+    direction = Down
+    if !directionText.nil?
+      case directionText.downcase
+      when "left"
+        direction = Left
+      when "right"
+        direction = Right
+      when "up"
+        direction = Up
+      else
+        direction = Down
+      end
+    end
+    
+    echoln("Converting event: #{species},#{form},#{direction}")
+    
+    ret = RPG::Event.new(event.x,event.y)
+    ret.name = "resetfollower"
+    ret.id   = event.id
+    ret.pages = [3]
+    
+    # Create the first page, where the cry happens
+    firstPage = RPG::Event::Page.new
+    ret.pages[0] = firstPage
+    fileName = species
+    fileName += "_" + form.to_s if form != 0
+    firstPage.graphic.character_name = "Followers/#{fileName}"
+    firstPage.graphic.direction = direction
+    firstPage.step_anime = true # Animate while still
+    firstPage.trigger = 0 # Action button
+    firstPage.list = []
+    push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesData.id,form))
+    push_script(firstPage.list,sprintf("pbMessage(\"#{speciesData.real_name} cries out!\")",))
+    push_end(firstPage.list)
+    
+    # Create the second page, which has nothing
+    secondPage = RPG::Event::Page.new
+    ret.pages[1] = secondPage
+    secondPage.condition.self_switch_valid = true
+    secondPage.condition.self_switch_ch = "A"
+    
+    # Create the third page, which has nothing
+    thirdPage = RPG::Event::Page.new
+    ret.pages[2] = thirdPage
+    thirdPage.condition.self_switch_valid = true
+    thirdPage.condition.self_switch_ch = "D"
+    
+    return ret
   end
   
   #=============================================================================
   # Convert events using the overworld name command to use the correct graphic.
   #=============================================================================
   def convert_overworld_pokemon(event)
-	return nil if !event || event.pages.length==0
-	match = event.name.match(/(.*)?overworld\(([a-zA-Z0-9]+)\)(.*)?/)
-	return nil if !match
-	nameStuff = match[1] || ""
-	nameStuff += match[3] || ""
-	nameStuff += match[2] || ""
-	species = match[2]
-	return nil if !species
-	
-	event.name = nameStuff
-	event.pages.each do |page|
-		next if page.graphic.character_name != "00Overworld Placeholder"
-		page.graphic.character_name = "Followers/#{species}" 
-	end
-	
-	return event
+    return nil if !event || event.pages.length==0
+    match = event.name.match(/(.*)?overworld\(([a-zA-Z0-9]+)\)(.*)?/)
+    return nil if !match
+    nameStuff = match[1] || ""
+    nameStuff += match[3] || ""
+    nameStuff += match[2] || ""
+    species = match[2]
+    return nil if !species
+    
+    event.name = nameStuff
+    event.pages.each do |page|
+      next if page.graphic.character_name != "00Overworld Placeholder"
+      page.graphic.character_name = "Followers/#{species}" 
+    end
+    
+    return event
+    end
+    
+    def change_overworld_placeholders(event)
+    return nil if !event || event.pages.length==0
+    return nil unless event.name.downcase.include?("boxplaceholder")
+    
+    return nil
+    #event.pages.each do |page|
+    #	page.move_type = 1
+    #end
+    
+    return event
+    end
   end
-  
-  def change_overworld_placeholders(event)
-	return nil if !event || event.pages.length==0
-	return nil unless event.name.downcase.include?("boxplaceholder")
-	
-	return nil
-	#event.pages.each do |page|
-	#	page.move_type = 1
-	#end
-	
-	return event
-  end
-end
 
 module GameData
 	def self.load_all
@@ -1961,7 +2047,7 @@ module Compiler
           current_type = m.type
           f.write("\#-------------------------------\r\n")
         end
-        f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s\r\n",
+        f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s,%s\r\n",
           m.id_number,
           csvQuote(m.id.to_s),
           csvQuote(m.real_name),
@@ -1975,7 +2061,8 @@ module Compiler
           m.target,
           m.priority,
           csvQuote(m.flags),
-          csvQuoteAlways(m.real_description)
+          csvQuoteAlways(m.real_description),
+          m.animation_move.nil? ? "" : m.animation_move.to_s
         ))
       end
     }
@@ -1990,28 +2077,28 @@ module Compiler
       add_PBS_header_to_file(f)
       f.write("\#-------------------------------\r\n")
       GameData::TrainerType.each do |t|
-		policiesString = ""
-		if t.policies
-		  policiesString += "["
-		  t.policies.each_with_index do |policy_symbol,index|
-			policiesString += policy_symbol.to_s
-			policiesString += "," if index < t.policies.length - 1
-		  end
-		  policiesString += "]"
+        policiesString = ""
+        if t.policies
+          policiesString += "["
+          t.policies.each_with_index do |policy_symbol,index|
+            policiesString += policy_symbol.to_s
+            policiesString += "," if index < t.policies.length - 1
+          end
+          policiesString += "]"
         end
 	  
         f.write(sprintf("%d,%s,%s,%d,%s,%s,%s,%s,%s,%s,%s\r\n",
-          t.id_number,
-          csvQuote(t.id.to_s),
-          csvQuote(t.real_name),
-          t.base_money,
-          csvQuote(t.battle_BGM),
-          csvQuote(t.victory_ME),
-          csvQuote(t.intro_ME),
-          ["Male", "Female", "Mixed"][t.gender],
-          (t.skill_level == t.base_money) ? "" : t.skill_level.to_s,
-          csvQuote(t.skill_code),
-		  policiesString
+        t.id_number,
+        csvQuote(t.id.to_s),
+        csvQuote(t.real_name),
+        t.base_money,
+        csvQuote(t.battle_BGM),
+        csvQuote(t.victory_ME),
+        csvQuote(t.intro_ME),
+        ["Male", "Female", "Mixed"][t.gender],
+        (t.skill_level == t.base_money) ? "" : t.skill_level.to_s,
+        csvQuote(t.skill_code),
+        policiesString
         ))
       end
     }
@@ -2097,5 +2184,69 @@ module Compiler
     }
     pbSetWindowText(nil)
     Graphics.update
+  end
+
+  #=============================================================================
+  # Compile move data
+  #=============================================================================
+  def compile_moves(path = "PBS/moves.txt")
+    GameData::Move::DATA.clear
+    move_names        = []
+    move_descriptions = []
+    # Read each line of moves.txt at a time and compile it into an move
+    pbCompilerEachPreppedLine(path) { |line, line_no|
+      line = pbGetCsvRecord(line, line_no, [0, "vnssueeuuueissN",
+         nil, nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
+         nil, nil, nil, :Target, nil, nil, nil, nil
+      ])
+      move_number = line[0]
+      move_symbol = line[1].to_sym
+      if GameData::Move::DATA[move_number]
+        raise _INTL("Move ID number '{1}' is used twice.\r\n{2}", move_number, FileLineData.linereport)
+      elsif GameData::Move::DATA[move_symbol]
+        raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_symbol, FileLineData.linereport)
+      end
+      # Sanitise data
+      if line[6] == 2 && line[4] != 0
+        raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
+      elsif line[6] != 2 && line[4] == 0
+        print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
+        line[6] = 2
+      end
+      animation_move = line[14].nil? ? nil : line[14].to_sym
+      # Construct move hash
+      move_hash = {
+        :id_number        => move_number,
+        :id               => move_symbol,
+        :name             => line[2],
+        :function_code    => line[3],
+        :base_damage      => line[4],
+        :type             => line[5],
+        :category         => line[6],
+        :accuracy         => line[7],
+        :total_pp         => line[8],
+        :effect_chance    => line[9],
+        :target           => GameData::Target.get(line[10]).id,
+        :priority         => line[11],
+        :flags            => line[12],
+        :description      => line[13],
+        :animation_move   => animation_move
+      }
+      # Add move's data to records
+      GameData::Move.register(move_hash)
+      move_names[move_number]        = move_hash[:name]
+      move_descriptions[move_number] = move_hash[:description]
+    }
+    # Save all data
+    GameData::Move.save
+    MessageTypes.setMessages(MessageTypes::Moves, move_names)
+    MessageTypes.setMessages(MessageTypes::MoveDescriptions, move_descriptions)
+    Graphics.update
+
+    GameData::Move.each do |move_data|
+      next if move_data.animation_move.nil?
+      next if GameData::Move.exists?(move_data.animation_move)
+      raise _INTL("Move ID '{1}' was assigned an Animation Move property {2} that doesn't match with any other move.\r\n", move_data.id, move_data.animation_move)
+    end
   end
 end

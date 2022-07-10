@@ -1,12 +1,25 @@
 class PokemonRegionMap_Scene
-	  def pbStartScene(aseditor=false,mode=0)
+  def pbStartScene(aseditor=false,mode=0)
     @editor = aseditor
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z = 99999
     @sprites = {}
     @mapdata = pbLoadTownMapData
-    map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
-    playerpos = (map_metadata) ? map_metadata.town_map_position : nil
+    
+    # Get the player position metadata of either the current map
+    # Or the lowest parent map in the hierarchy, if possible
+    mapInfos = pbLoadMapInfos
+    mapIDChecking = $game_map.map_id
+    playerpos = nil
+    while mapIDChecking >= 1 && playerpos.nil?
+      map_metadata = GameData::MapMetadata.try_get(mapIDChecking)
+      if map_metadata.nil? || map_metadata.town_map_position.nil?
+        mapIDChecking = mapInfos[mapIDChecking].parent_id
+      else
+        playerpos = map_metadata.town_map_position
+      end
+    end
+
     if !playerpos
       mapindex = 0
       @map     = @mapdata[0]
@@ -86,8 +99,7 @@ class PokemonRegionMap_Scene
     @sprites["cursor"].viewport = @viewport
     @sprites["cursor"].x        = -SQUAREWIDTH/2+(@mapX*SQUAREWIDTH)+(Graphics.width-@sprites["map"].bitmap.width)/2
     @sprites["cursor"].y        = -SQUAREHEIGHT/2+(@mapY*SQUAREHEIGHT)+(Graphics.height-@sprites["map"].bitmap.height)/2
-    echoln("Cursor starting loc: #{@sprites["cursor"].x},#{@sprites["cursor"].y}")
-	@sprites["cursor"].play
+    @sprites["cursor"].play
     @changed = false
     pbFadeInAndShow(@sprites) { pbUpdate }
     return true

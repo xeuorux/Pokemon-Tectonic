@@ -46,22 +46,29 @@ def transferPlayer(x,y,direction,map_id = -1)
 	$game_temp.transition_name       = ""
 end
 
-def mapTransitionTransfer(map_id,x,y)
-	pbSEPlay('Exit Door',80)
-	blackFadeOutIn {
-		distanceX = $game_player.x - get_self.x
-		distanceY = $game_player.y - get_self.y
+def mapTransitionTransfer(map_id,x,y,fade=true)
+	pbSEPlay('Exit Door',80) if fade
+	distanceX = $game_player.x - get_self.x
+	distanceY = $game_player.y - get_self.y
+	if fade
+		blackFadeOutIn {
+			teleportPlayer(map_id,x + distanceX,y + distanceY)
+		}
+	else
+		teleportPlayer(map_id,x + distanceX,y + distanceY)
+	end
+end
 
-		$game_temp.player_transferring = true
-		$game_temp.player_new_map_id    = map_id || $game_map.map_id
-		$game_temp.player_new_x         = x + distanceX
-		$game_temp.player_new_y         = y + distanceY
-		$game_temp.player_new_direction = $game_player.direction
-		
-		Graphics.freeze
-		$game_temp.transition_processing = true
-		$game_temp.transition_name       = ""
-	}
+def teleportPlayer(map_id,x,y)
+	$game_temp.player_transferring = true
+	$game_temp.player_new_map_id    = map_id || $game_map.map_id
+	$game_temp.player_new_x         = x
+	$game_temp.player_new_y         = y
+	$game_temp.player_new_direction = $game_player.direction
+	
+	Graphics.freeze
+	$game_temp.transition_processing = true
+	$game_temp.transition_name       = ""
 end
 
 def healPartyWithDelay()

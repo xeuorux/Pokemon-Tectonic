@@ -18,9 +18,9 @@ BattleHandlers::StatLossImmunityAbility.add(:BIGPECKS,
 BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
   proc { |ability,battler,user,status|
     next if !user || user.index==battler.index
+    next if !user.pbCanSynchronizeStatus?(status, battler)
     case status
     when :POISON
-      if user.pbCanPoisonSynchronize?(battler)
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -28,9 +28,7 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         end
         user.pbPoison(nil,msg,(battler.getStatusCount(:POISON)>0))
         battler.battle.pbHideAbilitySplash(battler)
-      end
     when :BURN
-      if user.pbCanBurnSynchronize?(battler)
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -38,9 +36,7 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         end
         user.pbBurn(nil,msg)
         battler.battle.pbHideAbilitySplash(battler)
-      end
     when :PARALYSIS
-      if user.pbCanParalyzeSynchronize?(battler)
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -49,9 +45,7 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         end
         user.pbParalyze(nil,msg)
         battler.battle.pbHideAbilitySplash(battler)
-      end
-	when :FROZEN
-      if user.pbCanFrozenSynchronize?(battler)
+	  when :FROZEN
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -60,7 +54,6 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         end
         user.pbFreeze(nil,msg)
         battler.battle.pbHideAbilitySplash(battler)
-      end
     end
   }
 )

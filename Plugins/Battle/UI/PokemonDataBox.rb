@@ -163,21 +163,13 @@ class PokemonDataBox < SpriteWrapper
 		firstStatusY = 36
 		# Draw status icon
 		statuses = @battler.getStatuses()
-		if statuses[0] != :NONE
-			s = GameData::Status.get(statuses[0]).id_number
-		else
-			s = 6
-		end
+		statusID = GameData::Status.get(statuses[0]).id_number
 		statusWidth = @halvedStatus ? 22 : -1
 		imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+24,firstStatusY,
-			 0,(s-1)*STATUS_ICON_HEIGHT,statusWidth,STATUS_ICON_HEIGHT])
+			 0,statusID*STATUS_ICON_HEIGHT,statusWidth,STATUS_ICON_HEIGHT])
 		# Draw status icon for bosses
 		if statuses.length > 1
-			if statuses[1] != :NONE
-				s = GameData::Status.get(statuses[1]).id_number
-			else
-				s = 6
-			end
+			statusID2 = GameData::Status.get(statuses[1]).id_number
 			x = @spriteBaseX + 24
 			x += 22 if @halvedStatus
 			y = firstStatusY
@@ -185,7 +177,7 @@ class PokemonDataBox < SpriteWrapper
 			statusXRect = @halvedStatus ? 22 : 0
 			statusWidth = @halvedStatus ? 22 : -1
 			imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",x,y,
-				 statusXRect,(s-1)*STATUS_ICON_HEIGHT,statusWidth,STATUS_ICON_HEIGHT])
+				 statusXRect,statusID2*STATUS_ICON_HEIGHT,statusWidth,STATUS_ICON_HEIGHT])
 		end
 		# Refresh type bars
 		types = @battler.pbTypes(true)

@@ -113,6 +113,16 @@ BattleHandlers::StatusCureAbility.add(:MENTALBLOCK,
 		battler.effects[PBEffects::HealBlock]  = 0
 		battler.battle.pbHideAbilitySplash(battler)
 	end
+	if battler.flustered?
+		battler.battle.pbShowAbilitySplash(battler)
+		battler.pbCureStatus(true,:FLUSTERED)
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+	if battler.mystified?
+		battler.battle.pbShowAbilitySplash(battler)
+		battler.pbCureStatus(true,:MYSTIFIED)
+		battler.battle.pbHideAbilitySplash(battler)
+	end
   }
 )
 

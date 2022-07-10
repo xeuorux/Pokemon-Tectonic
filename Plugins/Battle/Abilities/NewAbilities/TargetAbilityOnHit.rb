@@ -28,7 +28,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} poisoned {3}! Its Sp. Atk is reduced!",target.pbThis,target.abilityName,user.pbThis(true))
+        msg = _INTL("{1}'s {2} poisoned {3}! {4}}!",target.pbThis,target.abilityName,user.pbThis(true),POISONED_EXPLANATION)
       end
       user.pbPoison(target,msg)
     end
@@ -45,7 +45,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} chilled {3}! It's slower and takes more damage!",target.pbThis,target.abilityName,user.pbThis(true))
+        msg = _INTL("{1}'s {2} chilled {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),CHILLED_EXPLANATION)
       end
       user.pbFreeze(msg)
     end
@@ -62,7 +62,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} chilled {3}! It's slower and takes more damage!!",target.pbThis,target.abilityName,user.pbThis(true))
+        msg = _INTL("{1}'s {2} chilled {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),CHILLED_EXPLANATION)
       end
       user.pbFreeze(msg)
     end
@@ -86,16 +86,26 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
     next if target.fainted?
     next if move.pbContactMove?(user)
     next if battle.pbRandom(100)>=30
-	next if target.effects[PBEffects::Charm] > 0
+	  # next if target.effects[PBEffects::Charm] > 0
+    # battle.pbShowAbilitySplash(target)
+    # if user.pbCanCharm?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+    #    user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    #   msg = nil
+    #   if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+    #     msg = _INTL("{1}'s {2} charmed {3}!",target.pbThis,
+    #        target.abilityName,user.pbThis(true))
+    #   end
+    #   user.pbCharm
+    # end
+    # battle.pbHideAbilitySplash(target)
+    next if user.mystified?
     battle.pbShowAbilitySplash(target)
-    if user.pbCanCharm?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if user.target.pbCanMystify?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} charmed {3}!",target.pbThis,
-           target.abilityName,user.pbThis(true))
+        msg = _INTL("{1}'s {2} mystified {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),MYSTIFIED_EXPLANATION)
       end
-      user.pbCharm
+      user.pbMystify(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -104,18 +114,28 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
 BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
   proc { |ability,user,target,move,battle|
     next if target.fainted?
-    next unless move.pbContactMove?(user)
+    next if !move.pbContactMove?(user)
     next if battle.pbRandom(100)>=30
-	next if target.effects[PBEffects::Confusion] > 0
+	  # next if target.effects[PBEffects::Confusion] > 0
+    # battle.pbShowAbilitySplash(target)
+    # if user.pbCanConfuse?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+    #    user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    #   msg = nil
+    #   if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+    #     msg = _INTL("{1}'s {2} confused {3}!",target.pbThis,
+    #        target.abilityName,user.pbThis(true))
+    #   end
+    #   user.pbConfuse
+    # end
+    # battle.pbHideAbilitySplash(target)
+    next if user.flustered?
     battle.pbShowAbilitySplash(target)
-    if user.pbCanConfuse?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if user.target.pbCanFluster?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} confused {3}!",target.pbThis,
-           target.abilityName,user.pbThis(true))
+        msg = _INTL("{1}'s {2} flustered {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),FLUSTERED_EXPLANATION)
       end
-      user.pbConfuse
+      user.pbFluster(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -248,8 +268,8 @@ BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} numbed {3}! It may be unable to move!",
-           target.pbThis,target.abilityName,user.pbThis(true))
+        msg = _INTL("{1}'s {2} numbed {3}! {4}!",
+           target.pbThis,target.abilityName,user.pbThis(true),NUMBED_EXPLANATION)
       end
       user.pbParalyze(target,msg)
     end
@@ -270,3 +290,30 @@ BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:SEEDSCATTER,
+	proc { |ability,target,battler,move,battle|
+		battle.pbShowAbilitySplash(battler)
+		battle.pbStartTerrain(battler, :Grassy)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:PERCUSSIVEMAINTENANCE,
+	proc { |ability,target,battler,move,battle|
+		battle.pbShowAbilitySplash(battler)
+		battle.pbStartTerrain(battler, :Electric)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:CARAMELIZATION,
+	proc { |ability,target,battler,move,battle|
+		battle.pbShowAbilitySplash(battler)
+		battle.pbStartTerrain(battler, :Misty)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
+	proc { |ability,target,battler,move,battle|
+		battle.pbShowAbilitySplash(battler)
+		battle.pbStartTerrain(battler, :Psychic)
+	}
+)

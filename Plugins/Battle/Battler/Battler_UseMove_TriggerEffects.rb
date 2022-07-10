@@ -73,6 +73,19 @@ class PokeBattle_Battler
   # Effects after all hits (i.e. at end of move usage)
   #=============================================================================
   def pbEffectsAfterMove(user,targets,move,numHits)
+    # Flustered and Mystified triggers
+    if move.damagingMove?
+      selfHitBasePower = (14 + user.level * (3.0/5.0)).ceil
+      echoln("Self hit is base power #{selfHitBasePower}")
+      if user.flustered?
+        superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE,@index)
+        pbContinueStatus(:FLUSTERED) { pbConfusionDamage(nil,false,superEff,selfHitBasePower) }
+      end
+      if user.mystified?
+        superEff = @battle.pbCheckOpposingAbility(:BRAINJAMMED,@index)
+        pbContinueStatus(:MYSTIFIED) { pbConfusionDamage(nil,true,superEff,selfHitBasePower) }
+      end
+    end
     # Destiny Bond
     # NOTE: Although Destiny Bond is similar to Grudge, they don't apply at
     #       the same time (although Destiny Bond does check whether it's going

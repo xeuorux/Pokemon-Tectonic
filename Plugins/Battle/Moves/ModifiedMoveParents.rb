@@ -27,13 +27,13 @@ end
 # Pseudomove for confusion damage.
 #===============================================================================
 class PokeBattle_Confusion < PokeBattle_Move
-  def initialize(battle,move)
+  def initialize(battle,move,basePower=50)
     @battle     = battle
     @realMove   = move
     @id         = 0
     @name       = ""
     @function   = "000"
-    @baseDamage = 50
+    @baseDamage = basePower
     @type       = nil
     @category   = 0
     @accuracy   = 100
@@ -45,6 +45,18 @@ class PokeBattle_Confusion < PokeBattle_Move
     @calcType   = nil
     @powerBoost = false
     @snatched   = false
+  end
+end
+
+class PokeBattle_ConfuseMove < PokeBattle_Move
+  def getScore(score,user,target,skill=100)
+    canConfuse = target.pbCanConfuse?(user,false) && !target.hasActiveAbilityAI?(:MENTALBLOCK)
+		if canConfuse
+			score += 20
+		elsif move.statusMove?
+			score = 0
+		end
+    return score
   end
 end
 
