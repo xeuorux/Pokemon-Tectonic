@@ -100,7 +100,7 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
     # battle.pbHideAbilitySplash(target)
     next if user.mystified?
     battle.pbShowAbilitySplash(target)
-    if user.target.pbCanMystify?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if user.pbCanMystify?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         msg = _INTL("{1}'s {2} mystified {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),MYSTIFIED_EXPLANATION)
@@ -130,7 +130,7 @@ BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
     # battle.pbHideAbilitySplash(target)
     next if user.flustered?
     battle.pbShowAbilitySplash(target)
-    if user.target.pbCanFluster?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if user.pbCanFluster?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         msg = _INTL("{1}'s {2} flustered {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),FLUSTERED_EXPLANATION)
