@@ -197,7 +197,7 @@ LandTall,20
     25,SPRITZEE,16,19
     25,VENONAT,16,19
 #-------------------------------
-[054] # County Park
+[301] # County Park
 Land,20
     20,BUNEARY,14,17
     20,BUNNELBY,14,17
