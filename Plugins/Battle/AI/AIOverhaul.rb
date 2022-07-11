@@ -183,12 +183,11 @@ class PokeBattle_AI
 	# Get a score for the given move being used against the given target
 	#=============================================================================
 	def pbGetMoveScore(move,user,target,skill=100,policies=[])
-		skill = PBTrainerAI.minimumSkill if skill<PBTrainerAI.minimumSkill
 		score = 100
 		score = pbGetMoveScoreFunctionCode(score,move,user,target,skill,policies)
 		if score.nil?
-			echoln("#{user.pbThis} unable to score #{move.id} against target #{target.pbThis(false)}")
-			return 0
+			echoln("#{user.pbThis} unable to score #{move.id} against target #{target.pbThis(false)} assuming 50")
+			return 50
 		end
 		
 		# Never use a move that would fail outright
@@ -196,9 +195,15 @@ class PokeBattle_AI
 		user.turnCount += 1
 		if move.pbMoveFailed?(user,[target])
 			score = 0
-      echoln("#{user.pbThis} scores the move #{move.id} as 0 against target #{target.pbThis(false)} due to it being predicted to fail.")
+      echoln("#{user.pbThis} scores the move #{move.id} as 0 due to it being predicted to fail.")
 		end
-		user.turnCount -= 1
+		
+    if move.pbFailsAgainstTarget?(user,target)
+			score = 0
+      echoln("#{user.pbThis} scores the move #{move.id} as 0 against target #{target.pbThis(false)} due to it being predicted to fail against that target.")
+		end
+
+    user.turnCount -= 1
 		@battle.messagesBlocked = false
 		
 		# Don't prefer moves that are ineffective because of abilities or effects
