@@ -798,12 +798,6 @@ class PokeBattle_Move_191 < PokeBattle_TwoTurnMove
       user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
     end
   end
-  
-  def getScore(score,user,target,skill=100)
-	score += 20
-	score -= ((user.hp.to_f / user.totalhp.to_f) * 50).floor
-	return score
-  end
 end
 
 
