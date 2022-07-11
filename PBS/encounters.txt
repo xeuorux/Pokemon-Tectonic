@@ -197,24 +197,6 @@ LandTall,20
     25,SPRITZEE,16,19
     25,VENONAT,16,19
 #-------------------------------
-[301] # County Park
-Land,20
-    20,BUNEARY,14,17
-    20,BUNNELBY,14,17
-    20,FLETCHLING,14,17
-    20,HATENNA,14,17
-    20,KRICKETOT,14,17
-FloweryGrass,20
-    25,CUTIEFLY,14,17
-    25,LEDYBA,14,17
-    25,SUNKERN,14,17
-    25,SWABLU,14,17
-LandTinted,20
-    50,SAWK,14,17
-    50,THROH,14,17
-Special,1
-    1,DRIFLOON,14,17
-#-------------------------------
 [055] # Floral Rest
 FloweryGrass,20
     25,BONSLY,15,18
@@ -781,6 +763,24 @@ LandSparse,20
     33,CLAUNCHER,36,38
     33,DURANT,36,38
     33,HEATMOR,36,38
+#-------------------------------
+[301] # County Park
+Land,20
+    20,BUNEARY,14,17
+    20,BUNNELBY,14,17
+    20,FLETCHLING,14,17
+    20,HATENNA,14,17
+    20,KRICKETOT,14,17
+FloweryGrass,20
+    25,CUTIEFLY,14,17
+    25,LEDYBA,14,17
+    25,SUNKERN,14,17
+    25,SWABLU,14,17
+LandTinted,20
+    50,SAWK,14,17
+    50,THROH,14,17
+Special,1
+    1,DRIFLOON,14,17
 #-------------------------------
 [305] # Mainland Dock Warehouse
 Special,1
