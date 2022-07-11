@@ -934,24 +934,28 @@ end
 class PokeBattle_Move_52B < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
-    if !target.pbCanConfuse?(user,true,self) && !target.pbCanCharm?(user,true,self)
-		@battle.pbDisplay(_INTL("But it failed!")) 
-		return true
+    # if !target.pbCanConfuse?(user,true,self) && !target.pbCanCharm?(user,true,self)
+	# 	@battle.pbDisplay(_INTL("But it failed!")) 
+	# 	return true
+	# end
+	if !target.pbCanFluster?(user,true,self) && !target.pbCanMystify?(user,true,self)
+	 	@battle.pbDisplay(_INTL("But it failed!")) 
+	 	return true
 	end
 	return false
   end
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    confuseOrCharm(target)
+    flusterOrMystify(target)
   end
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-	confuseOrCharm(user,target)
+	flusterOrMystify(user,target)
   end
-  
-  def confuseOrCharm(user,target)
+
+  def flusterOrMystify(user,target)
 	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
 	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
 	attackStage = target.stages[:ATTACK]+6
@@ -959,16 +963,31 @@ class PokeBattle_Move_52B < PokeBattle_Move
 	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
 	spAtk = (target.spatk.to_f*stageMul[spAtkStage].to_f/stageDiv[spAtkStage].to_f).floor
 	
-    if target.pbCanConfuse?(user,false,self) && attack >= spAtk
-		target.pbConfuse
-	elsif target.pbCanCharm?(user,false,self) && spAtk >= attack
-		target.pbCharm
+    if target.pbCanFluster?(user,false,self) && attack >= spAtk
+		target.pbFluster
+	elsif target.pbCanMystify?(user,false,self) && spAtk >= attack
+		target.pbMystify
 	end
   end
   
+#   def confuseOrCharm(user,target)
+# 	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+# 	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+# 	attackStage = target.stages[:ATTACK]+6
+# 	attack = (target.attack.to_f*stageMul[attackStage].to_f/stageDiv[attackStage].to_f).floor
+# 	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
+# 	spAtk = (target.spatk.to_f*stageMul[spAtkStage].to_f/stageDiv[spAtkStage].to_f).floor
+	
+#     if target.pbCanConfuse?(user,false,self) && attack >= spAtk
+# 		target.pbConfuse
+# 	elsif target.pbCanCharm?(user,false,self) && spAtk >= attack
+# 		target.pbCharm
+# 	end
+#   end
+  
   def getScore(score,user,target,skill=100)
-		score += target.pbCanConfuse?(user,false) ? 20 : -20
-		score += target.pbCanCharm?(user,false) ? 20 : -20
+		score += target.pbCanMystify?(user,false) ? 20 : -20
+		score += target.pbCanFluster?(user,false) ? 20 : -20
 		return score
   end
 end
@@ -1179,7 +1198,7 @@ end
 
 
 #===============================================================================
-# Puts the target to sleep. Fails unless the target is charmed or confused. (Pacify)
+# Puts the target to sleep. Fails unless the target is mystified or flustered. (Pacify)
 #===============================================================================
 class PokeBattle_Move_534 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
@@ -2087,7 +2106,7 @@ class PokeBattle_Move_55F < PokeBattle_Move
 	  end
 	  if user.effects[PBEffects::Outrage]>0
 		user.effects[PBEffects::Outrage] -= 1
-		if user.effects[PBEffects::Outrage]==0 && user.pbCanConfuseSelf?(false)
+		if user.effects[PBEffects::Outrage]==0
 		  @battle.pbDisplay(_INTL("{1} spun down from its attack.",user.pbThis))
 		end
 	  end
