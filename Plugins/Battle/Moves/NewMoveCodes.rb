@@ -2250,7 +2250,7 @@ end
 #===============================================================================
 # Heals user by 2/3 of its max HP.
 #===============================================================================
-class PokeBattle_Move_0D5 < PokeBattle_HealingMove
+class PokeBattle_Move_565 < PokeBattle_HealingMove
 	def pbHealAmount(user)
 	  return (user.totalhp*2.0/3.0).round
 	end
