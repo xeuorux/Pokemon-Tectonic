@@ -20082,8 +20082,8 @@ InternalName = CHANDELURE
 Type1 = GHOST
 Type2 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,55,90,80,145,90
-# Total = 520
+BaseStats = 70,55,90,80,145,90
+# Total = 530
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 234
