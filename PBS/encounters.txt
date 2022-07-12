@@ -57,13 +57,6 @@ Puddle,21
     25,POLIWAG,17,20
     25,SKRELP,17,20
 #-------------------------------
-[012] # Gigalith's Guts
-DarkCave,20
-    25,ARON,17,20
-    25,BALTOY,17,20
-    25,ROGGENROLA,17,20
-    25,ZUBAT,17,20
-#-------------------------------
 [019] # Reading Ribombee Café
 Special,20
     1,MILCERY,15
@@ -160,6 +153,13 @@ Puddle,20
     25,LUVDISC,7,9
 Special,20
     1,SPHEAL,15
+#-------------------------------
+[040] # Gigalith's Guts
+DarkCave,20
+    25,ARON,17,20
+    25,BALTOY,17,20
+    25,ROGGENROLA,17,20
+    25,ZUBAT,17,20
 #-------------------------------
 [047] # Grand Hotel
 Special,1
@@ -753,6 +753,13 @@ Special
     1,GOOMY,5
     1,JANGMOO,5
 #-------------------------------
+[258] # Hometown Placeholder
+Land,20
+    25,BUNEARY,43,45
+    25,NICKIT,43,45
+    25,PICHU,43,45
+    25,ROOKIDEE,43,45
+#-------------------------------
 [288] # Underground River
 Puddle,20
     25,MANTYKE,36,38
@@ -785,11 +792,3 @@ Special,1
 [305] # Mainland Dock Warehouse
 Special,1
     1,GPONYTA,15
-#-------------------------------
-[258] # Hometown Placeholder
-Land,20
-    25,BUNEARY,43,45
-    25,NICKIT,43,45
-    25,PICHU,43,45
-    25,ROOKIDEE,43,45
-#-------------------------------

@@ -95,14 +95,6 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,15,6
 #-------------------------------
-[012]
-# Gigalith's Guts
-Outdoor = false
-ShowArea = true
-Bicycle = true
-MapPosition = 0,16,8
-Environment = Cave
-#-------------------------------
 [013]
 # Svait Station
 Outdoor = false
@@ -292,6 +284,14 @@ ShowArea = false
 Bicycle = false
 HealingSpot = 136,35,14
 #-------------------------------
+[040]
+# Gigalith's Guts
+Outdoor = false
+ShowArea = true
+Bicycle = true
+MapPosition = 0,16,8
+Environment = Cave
+#-------------------------------
 [041]
 # Casaba Gym
 Outdoor = false
@@ -368,14 +368,6 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,14,9
-#-------------------------------
-[301]
-# County Park
-Outdoor = true
-ShowArea = true
-Bicycle = true
-MapPosition = 0,15,7
-Environment = Grass
 #-------------------------------
 [055]
 # Floral Rest
@@ -1424,3 +1416,11 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 59,28,19
+#-------------------------------
+[301]
+# County Park
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 0,15,7
+Environment = Grass

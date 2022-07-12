@@ -1162,3 +1162,10 @@ Moves = SHOCKWAVE,STENCH,PRIMEVALHEALORDER
 PostPrimeMoves = CLACKACLACK
 Turns = 2
 HPMult = 4
+#------------------------------
+[GIGALITH]
+Ability = ROCKHEAD
+Moves = ROCKTOMB,SHARPEN,PRIMEVALELECTRICTERRAIN
+PostPrimeMoves = WILDCHARGE
+Turns = 1
+HPMult = 5
