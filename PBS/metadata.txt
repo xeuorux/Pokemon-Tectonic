@@ -564,7 +564,6 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
-HealingSpot = 8,55,11
 #-------------------------------
 [101]
 # Dream Space
@@ -676,6 +675,7 @@ Environment = Ice
 Outdoor = false
 ShowArea = false
 Bicycle = false
+HealingSpot = 8,51,47
 #-------------------------------
 [120]
 # Hollowed Layer
