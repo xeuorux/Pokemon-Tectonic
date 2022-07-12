@@ -1228,7 +1228,7 @@ end
 #===============================================================================
 # Can only be used on the first turn. Deals more damage if the user was hurt this turn. (Stare Down)
 #===============================================================================
-class PokeBattle_Move535 < PokeBattle_Move
+class PokeBattle_Move_535 < PokeBattle_Move
 	def pbMoveFailed?(user,targets)
 		if user.turnCount > 1
 			@battle.pbDisplay(_INTL("But it failed!"))
