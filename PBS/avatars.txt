@@ -122,8 +122,8 @@ DMGMult = 1
 #-------------------------------
 [MAGMORTAR]
 Ability = BURNSKILL
-Moves = FLAMETHROWER,PRIMEVALLEECHSEED
-PostPrimeMoves = BLOSSOM
+Moves = FLAMETHROWER,MIASMA,PRIMEVALCURSE
+PostPrimeMoves = SOULDRAIN
 Turns = 2
 HPMult = 3.0
 DMGMult = 1
@@ -1099,8 +1099,8 @@ DMGMult = 1
 #-------------------------------
 [MAGCARGO]
 Ability = IMPERVIOUS
-Moves = LAVAPLUME,FLAMESPIKES,PRIMEVALLEECHSEED
-PostPrimeMoves = LEAFSTORM
+Moves = LAVAPLUME,POWERGEM,PRIMEVALPSYCHICTERRAIN
+PostPrimeMoves = INFERNO,STONEEDGE
 Turns = 1
 HPMult = 7
 DMGMult = 1
@@ -1169,3 +1169,11 @@ Moves = ROCKTOMB,SHARPEN,PRIMEVALELECTRICTERRAIN
 PostPrimeMoves = WILDCHARGE
 Turns = 1
 HPMult = 5
+#-------------------------------
+[RAPIDASH]
+Ability = HARSH
+Moves = FLAMESPIKES,FLAMECHARGE,PRIMEVALLEECHSEED
+PostPrimeMoves = HORNLEECH
+Turns = 1
+HPMult = 4
+DMGMult = 1
