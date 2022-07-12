@@ -274,6 +274,7 @@ class PokeBattle_Move_0EB < PokeBattle_Move
   def ignoresSubstitute?(user); return true; end
 
   def pbFailsAgainstTarget?(user,target)
+    return true if target.boss?
     if target.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
       @battle.pbShowAbilitySplash(target)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -292,10 +293,6 @@ class PokeBattle_Move_0EB < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    if @battle.wildBattle? && (target.level > user.level || target.boss)
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
     if @battle.trainerBattle? || @battle.bossBattle?
       canSwitch = false
       @battle.eachInTeamFromBattlerIndex(target.index) do |_pkmn,i|
@@ -307,12 +304,15 @@ class PokeBattle_Move_0EB < PokeBattle_Move
         @battle.pbDisplay(_INTL("But it failed!"))
         return true
       end
+    elsif @battle.wildBattle? && (target.level > user.level)
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
     end
     return false
   end
   
   def pbEffectGeneral(user)
-	# Escaped from battle
+	  # Escaped from battle
     @battle.decision = 3 if @battle.wildBattle? && !@battle.bossBattle? # A boss battle
   end
 
