@@ -319,8 +319,9 @@ class PokeBattle_Move_621 < PokeBattle_Move_155
 	include EmpoweredMove
 	
 	def pbEffectGeneral(user)
-		# TO DO
 		super
+		battler.pbRaiseStatStage(:ATTACK,1,battler)
+		battler.pbRaiseStatStage(:SPECIAL_ATTACK,1,battler)
 		transformType(user,:GRASS)
 	end
 end
@@ -330,14 +331,37 @@ class PokeBattle_Move_622 < PokeBattle_Move_154
 	include EmpoweredMove
 	
 	def pbEffectGeneral(user)
-		# TO DO
 		super
+		user.effects[PBEffects::Charge] = 2
+    	@battle.pbDisplay(_INTL("{1} began charging power!",user.pbThis))
 		transformType(user,:ELECTRIC)
 	end
 end
 
+# Empowered Psychic Terrain
+class PokeBattle_Move_623 < PokeBattle_Move_173
+	include EmpoweredMove
+	
+	def pbEffectGeneral(user)
+		super
+		battler.pbRaiseStatStage(:ACCURACY,3,battler)
+		transformType(user,:PSYCHIC)
+	end
+end
+
+# Empowered Fairy Terrain
+class PokeBattle_Move_624 < PokeBattle_Move_156
+	include EmpoweredMove
+	
+	def pbEffectGeneral(user)
+		super
+		# TODO
+		transformType(user,:FAIRY)
+	end
+end
+
 # Empowered Heal Order
-class PokeBattle_Move_623 < PokeBattle_Move
+class PokeBattle_Move_625 < PokeBattle_Move
 	include EmpoweredMove
 	
 	def healingMove?;       return true; end
