@@ -785,3 +785,11 @@ Special,1
 [305] # Mainland Dock Warehouse
 Special,1
     1,GPONYTA,15
+#-------------------------------
+[258] # Hometown Placeholder
+Land,20
+    25,BUNEARY,43,45
+    25,NICKIT,43,45
+    25,PICHU,43,45
+    25,ROOKIDEE,43,45
+#-------------------------------
