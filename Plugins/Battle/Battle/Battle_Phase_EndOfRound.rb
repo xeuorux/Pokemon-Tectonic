@@ -410,6 +410,20 @@ class PokeBattle_Battle
         end
       end
     end
+    # Damage from fluster or mystified
+    priority.each do |b|
+      selfHitBasePower = (20 + b.level * (3.0/5.0))
+      selfHitBasePower /= 2.0 if b.boss?
+      selfHitBasePower = selfHitBasePower.ceil
+      if b.flustered?
+        superEff = pbCheckOpposingAbility(:BRAINSCRAMBLE,b.index)
+        b.pbContinueStatus(:FLUSTERED) { b.pbConfusionDamage(nil,false,superEff,selfHitBasePower) }
+      end
+      if b.mystified?
+        superEff = pbCheckOpposingAbility(:BRAINJAMMED,b.index)
+        b.pbContinueStatus(:MYSTIFIED) { b.pbConfusionDamage(nil,true,superEff,selfHitBasePower) }
+      end
+    end
     # Damage from sleep (Nightmare)
     priority.each do |b|
       b.effects[PBEffects::Nightmare] = false if !b.asleep?
