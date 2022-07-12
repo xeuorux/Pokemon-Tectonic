@@ -17,6 +17,7 @@ class PokeBattle_Move_600 < PokeBattle_Move_019
 	
 	def pbEffectGeneral(user)
 		super
+		super
 		@battle.eachSameSideBattler(user) do |b|
 			b.pbRecoverHP(b.totalhp / 4)
 		end
