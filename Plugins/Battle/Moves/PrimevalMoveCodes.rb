@@ -375,3 +375,23 @@ class PokeBattle_Move_625 < PokeBattle_Move
 		transformType(user,:BUG)
 	end
 end
+
+# Empowered Gastro Acid
+class PokeBattle_Move_626 < PokeBattle_Move_068
+	include EmpoweredMove
+	
+	def pbFailsAgainstTarget?(user,target)
+	  if target.unstoppableAbility? && !target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
+		@battle.pbDisplay(_INTL("But it failed!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+		super
+		target.pbLowerStatStage(:SPECIAL_DEFENSE,user,self)
+
+		transformType(user,:POISON)
+	end
+end

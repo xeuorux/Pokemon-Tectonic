@@ -2,8 +2,8 @@ BURNED_EXPLANATION = "Its Attack is reduced by a third"
 POISONED_EXPLANATION = "Its Sp. Atk is reduced by a third"
 NUMBED_EXPLANATION = "It's slower and deals less damage"
 CHILLED_EXPLANATION = "It's slower and takes more damage"
-MYSTIFIED_EXPLANATION = "It'll take recoil from its own Sp. Atk"
-FLUSTERED_EXPLANATION = "It'll take recoil from its own Attack"
+MYSTIFIED_EXPLANATION = "It'll hurt itself with its own Sp. Atk"
+FLUSTERED_EXPLANATION = "It'll hurt itself with its own Attack"
 
 class PokeBattle_Battler
 

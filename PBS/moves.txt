@@ -1074,6 +1074,7 @@
 1523,PRIMEVALFAIRYTERRAIN,Primeval Fairy Terrain,623,0,FAIRY,Status,0,1,0,BothSides,0,,"Sets Fairy Terrain, TODO, and user becomes Fairy-type.",FAIRYTERRAIN
 1524,PRIMEVALPSYCHICTERRAIN,Primeval Psychic Terrain,624,0,PSYCHIC,Status,0,1,0,BothSides,0,,"Sets Psychic Terrain, drastically raises Accuracy, and user becomes Psychic-type.",PSYCHICTERRAIN
 1525,PRIMEVALHEALORDER,Primeval Heal Order,625,0,BUG,Status,0,1,0,User,0,d,"The user regains up to half of its max HP, summons an allied Combee, and becomes Bug-type",HEALORDER
+1526,PRIMEVALGASTROACID,Primeval Gastro Acid,626,0,POISON,Status,100,1,0,AllNearFoes,0,bce,"The user negates all enemy abilities, reduces their Sp. Def, and becomes Poison-type.",
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered.",
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch.",
 2002,CONFUSION,Confusion,401,50,PSYCHIC,Special,100,25,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It may also leave the target flustered.",
