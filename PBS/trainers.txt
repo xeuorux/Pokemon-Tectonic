@@ -1161,7 +1161,7 @@ Pokemon = SEADRA,26
 Pokemon = KROKOROK,26
     AbilityIndex = 1
 #-------------------------------
-[GENTLEMAN3,Charles]
+[DANDY,Charles]
 Pokemon = NIDORINO,26
     AbilityIndex = 1
 Pokemon = SANDSHREW,26
