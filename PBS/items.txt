@@ -877,6 +877,9 @@
 #-------------------------------
 858,LIGHTHOUSEKEYCARD,Lighthouse Keycard,Lighthouse Keycards,8,0,"A colorful keycard. It grants access to elevator at the Sweetrock Harbor Lighthouse.",0,0,6
 859,MILKBONETREAT,Milk Bone Treat,Milk Bone Treats,8,0,"It would be a delicious treat if you were a Pokémon.",0,0,6
+#-------------------------------
+860,DIGITSLIP,Digit Slip,Digit Slips,1,0,"A slip of paper with one digit of the code for the lock to Rafael's gym door.",0,0,0
+#-------------------------------
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6

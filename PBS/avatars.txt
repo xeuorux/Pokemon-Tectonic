@@ -128,20 +128,12 @@ Turns = 2
 HPMult = 3.0
 DMGMult = 1
 #-------------------------------
-[ELDEGOSS]
-Ability = GRASSYSURGE
-Moves = POISONPOLLEN,MAGICALLEAF
-PostPrimeMoves = POISONPOLLEN,MAGICALLEAF
-Turns = 2
-HPMult = 4.0
-DMGMult = 1
-#-------------------------------
 [MANIKLAW]
 Ability = INSOMNIA
-Moves = SOULCLAW,SHADOWCLAW
-PostPrimeMoves = SOULCLAW,SHADOWCLAW
+Moves = SHADOWCLAW,SLASH,PRIMEVALHEALORDER
+PostPrimeMoves = RAKE
 Turns = 2
-HPMult = 3.0
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [MISMAGIUS]
