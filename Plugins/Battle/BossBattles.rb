@@ -272,12 +272,12 @@ def pbGetAvatarBattleBGM(_wildParty)   # wildParty is an array of Pokémon objec
 	return ret
 end
 
-def createBossGraphics(species_internal_name,overworldMult=1.5,battleMult=1.3)
+def createBossGraphics(species_internal_name,overworldMult=1.5,battleMult=1.5)
 	# Create the overworld sprite
 	begin
 		overworldBitmap = AnimatedBitmap.new('Graphics/Characters/Followers/' + species_internal_name)
 		copiedOverworldBitmap = overworldBitmap.copy
-		bossifiedOverworld = increaseSize(copiedOverworldBitmap.bitmap,overworldMult)
+		bossifiedOverworld = bossify(copiedOverworldBitmap.bitmap,overworldMult)
 		bossifiedOverworld.to_file('Graphics/Characters/zAvatar_' + species_internal_name + '.png')
 	rescue Exception
 		e = $!
