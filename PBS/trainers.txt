@@ -2955,7 +2955,7 @@ Pokemon = CINDERACE,49
     AbilityIndex = 0
 Pokemon = FLORGES,48
     AbilityIndex = 1
-    Item = FLAMEORB
+    Item = OCCABERRY
 #-------------------------------
 [BLACKBELT,Santiago]
 Pokemon = DRAGONITE,49
