@@ -101,8 +101,10 @@ class PokeBattle_AI
         preferredChoice = sortedChoices[0]
         PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.moves[preferredChoice[0]].name} is the highest rated choice")
       end
-      @battle.pbRegisterMove(idxBattler,preferredChoice[0],false)
-      @battle.pbRegisterTarget(idxBattler,preferredChoice[2]) if preferredChoice[2]>=0
+      if preferredChoice != nil
+        @battle.pbRegisterMove(idxBattler,preferredChoice[0],false)
+        @battle.pbRegisterTarget(idxBattler,preferredChoice[2]) if preferredChoice[2]>=0
+      end
     elsif !user.boss? # If there are no calculated choices, create a list of the choices all scored the same, to be chosen between randomly later on
       PBDebug.log("[AI] #{user.pbThis} (#{user.index}) scored no moves above a zero, resetting all choices to default")
       user.eachMoveWithIndex do |_m,i|
@@ -115,15 +117,23 @@ class PokeBattle_AI
       end
     end
     # if there is somehow still no choice, randomly choose a move from the choices and register it
-    if !@battle.choices[idxBattler][2]
-      echoln("All AI protocols have failed or fallen through, picking at random.")
-      randNum = pbAIRandom(totalScore)
-      choices.each do |c|
-        randNum -= c[1]
-        next if randNum >= 0
-        @battle.pbRegisterMove(idxBattler,c[0],false)
-        @battle.pbRegisterTarget(idxBattler,c[2]) if c[2]>=0
-        break
+    if @battle.choices[idxBattler][2].nil?
+      if !user.boss?
+        echoln("All AI protocols have failed or fallen through, picking at random since it's not a boss.")
+        randNum = pbAIRandom(totalScore)
+        choices.each do |c|
+          randNum -= c[1]
+          next if randNum >= 0
+          @battle.pbRegisterMove(idxBattler,c[0],false)
+          @battle.pbRegisterTarget(idxBattler,c[2]) if c[2]>=0
+          break
+        end
+      else
+        echoln("All AI protocols have failed or fallen through, picking struggle since it's a boss.")
+        @battle.choices[idxBattler][0] = :UseMove    # "Use move"
+        @battle.choices[idxBattler][1] = -1          # Index of move to be used
+        @battle.choices[idxBattler][2] = @struggle   # Struggle PokeBattle_Move object
+        @battle.choices[idxBattler][3] = -1          # No target chosen yet
       end
     end
     # Log the result
