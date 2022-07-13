@@ -23,6 +23,10 @@ class WaypointsTracker
 	def setWaypoint(waypointName,mapID,wayPointInfo)
 		@activeWayPoints[waypointName] = [mapID,wayPointInfo]
 	end
+
+	def deleteWaypoint(waypointName)
+		@activeWayPoints.delete(waypointName)
+	end
 	
 	def accessWaypoint(waypointName,event)
 		@activeWayPoints = {} if @activeWayPoints.nil?
