@@ -124,7 +124,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:RUINOUS,
 BattleHandlers::AbilityOnSwitchIn.add(:HONORAURA,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1}'s is honorable! Status moves lose priority!",battler.pbThis))
+    battle.pbDisplay(_INTL("{1} is honorable! Status moves lose priority!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
