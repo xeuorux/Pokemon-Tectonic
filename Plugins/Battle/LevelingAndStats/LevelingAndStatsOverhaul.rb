@@ -263,7 +263,7 @@ class PokeBattle_Battle
     end
     # Make sure Exp doesn't exceed the maximum
     level_cap = LEVEL_CAPS_USED ? $game_variables[26] : growth_rate.max_level
-      expFinal = growth_rate.add_exp(pkmn.exp, exp)
+    expFinal = growth_rate.add_exp(pkmn.exp, exp)
     expLeftovers = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap))
     # Calculates if there is excess exp and if it can be stored
     if (expFinal > expLeftovers) && hasExpJAR
@@ -287,23 +287,22 @@ class PokeBattle_Battle
       if newLevel == level_cap
         if expGained != 0
           pbDisplayPaused(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.",pkmn.name,level_cap,expGained))
-		end
+		    end
       else
-		if !pkmn.onHotStreak?
-			pbDisplayPaused(_INTL("{1} got {2} Exp. Points!",pkmn.name,expGained))
-		else
-			pbDisplayPaused(_INTL("{1} got a Hot Streak boosted {2} Exp. Points!",pkmn.name,expGained))
-		end
+        if !pkmn.onHotStreak?
+          pbDisplayPaused(_INTL("{1} got {2} Exp. Points!",pkmn.name,expGained))
+        else
+          pbDisplayPaused(_INTL("{1} got a Hot Streak boosted {2} Exp. Points!",pkmn.name,expGained))
+        end
       end
-	 #pbDisplayPaused(_INTL("{1} exp was put into the EXP-EZ Dispenser.",expLeftovers)) if expLeftovers > 0
     end
-    if newLevel<curLevel
+    if newLevel < curLevel
       debugInfo = "Levels: #{curLevel}->#{newLevel} | Exp: #{pkmn.exp}->#{expFinal} | gain: #{expGained}"
       raise RuntimeError.new(
          _INTL("{1}'s new level is less than its\r\ncurrent level, which shouldn't happen.\r\n[Debug: {2}]",
          pkmn.name,debugInfo))
     end
-	if newLevel > level_cap
+	  if newLevel > level_cap
       raise RuntimeError.new(
          _INTL("{1}'s new level is greater than the level cap, which shouldn't happen.\r\n[Debug: {2}]",
          pkmn.name,debugInfo))
@@ -324,7 +323,7 @@ class PokeBattle_Battle
       @scene.pbEXPBar(battler,levelMinExp,levelMaxExp,tempExp1,tempExp2)
       tempExp1 = tempExp2
       curLevel += 1
-      if curLevel>newLevel
+      if curLevel > newLevel
         # Gained all the Exp now, end the animation
         pkmn.calc_stats
         battler.pbUpdate(false) if battler
@@ -348,7 +347,7 @@ class PokeBattle_Battle
       # Learn all moves learned at this level
       moveList = pkmn.getMoveList
       moveList.each { |m| pbLearnMove(idxParty,m[1]) if m[0]==curLevel }
-	  if battler && battler.pokemon
+	    if battler && battler.pokemon
         battler.pokemon.changeHappiness("levelup")
       end
     end
