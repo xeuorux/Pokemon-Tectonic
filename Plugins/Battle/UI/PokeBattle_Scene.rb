@@ -89,7 +89,7 @@ class PokeBattle_Scene
 		areaUIpoint = Graphics.height/4
 		indicator_Y = Graphics.height/3
 		indicator_X = Graphics.width/30
-    end
+  end
 	
 	def pbChangePokemon(idxBattler,pkmn)
 		idxBattler = idxBattler.index if idxBattler.respond_to?("index")
@@ -666,9 +666,11 @@ class PokeBattle_Scene
 
   
   def pbCreateBackdropSprites
-    case @battle.time
-    when 1 then time = "eve"
-    when 2 then time = "night"
+    if GameData::MapMetadata.exists?($game_map.map_id) && GameData::MapMetadata.get($game_map.map_id).outdoor_map
+      case @battle.time
+      when 1 then time = "eve"
+      when 2 then time = "night"
+      end
     end
     # Put everything together into backdrop, bases and message bar filenames
     backdropFilename = @battle.backdrop

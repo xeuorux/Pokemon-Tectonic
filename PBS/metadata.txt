@@ -298,6 +298,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 BattleBack = 
+Environment = None
 #-------------------------------
 [042]
 # Zeraora's Chamber
@@ -757,6 +758,8 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,15
+BattleBack = 
+Environment = Grass
 #-------------------------------
 [138]
 # Scenic Trail
@@ -1032,6 +1035,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,13,5
+Environment = Ice
 #-------------------------------
 [187]
 # Prizca East
@@ -1046,6 +1050,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,3
+Environment = None
 #-------------------------------
 [189]
 # Catacombs
@@ -1089,6 +1094,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,19,4
+Environment = Rock
 #-------------------------------
 [212]
 # Ruins Digsite
@@ -1127,6 +1133,7 @@ ShowArea = true
 Bicycle = true
 Weather = Rain,10
 MapPosition = 0,21,3
+Environment = Grass
 #-------------------------------
 [218]
 # Abyssal Cavern
@@ -1134,6 +1141,8 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,9,5
+BattleBack = cave1_water
+Environment = Underwater
 #-------------------------------
 [220]
 # Prizca Sewers East
@@ -1260,6 +1269,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+Environment = Cave
 #-------------------------------
 [263]
 # Sweetrock Harbor Center
@@ -1321,6 +1331,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+Environment = Cave
 #-------------------------------
 [274]
 # Sweetrock Harbor Gym
@@ -1333,6 +1344,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+Environment = None
 TeleportBlocked = true
 #-------------------------------
 [276]
@@ -1340,6 +1352,7 @@ TeleportBlocked = true
 Outdoor = false
 ShowArea = false
 Bicycle = false
+Environment = None
 TeleportBlocked = true
 #-------------------------------
 [277]
@@ -1347,6 +1360,7 @@ TeleportBlocked = true
 Outdoor = false
 ShowArea = false
 Bicycle = false
+Environment = None
 TeleportBlocked = true
 #-------------------------------
 [278]
@@ -1360,18 +1374,21 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+Environment = None
 #-------------------------------
 [280]
 # Sweetrock Harbor Gym R&D
 Outdoor = false
 ShowArea = false
 Bicycle = false
+Environment = None
 #-------------------------------
 [281]
 # Sweetrock Harbor Gym Assembly Line
 Outdoor = false
 ShowArea = false
 Bicycle = false
+Environment = None
 #-------------------------------
 [282]
 # Deep Catacombs
@@ -1409,6 +1426,11 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,9,5
+Environment = Cave
+#-------------------------------
+[291]
+# Deoxys's Chamber
+Environment = Cave
 #-------------------------------
 [299]
 # Mainland Dock Center
