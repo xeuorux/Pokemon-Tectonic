@@ -19,7 +19,7 @@ class PokeBattle_Move_600 < PokeBattle_Move_019
 		super
 		super
 		@battle.eachSameSideBattler(user) do |b|
-			b.pbRecoverHP(b.totalhp / 4)
+			b.pbRecoverHP((b.totalhp/4.0).round)
 		end
 		transformType(user,:NORMAL)
 	end
@@ -230,7 +230,7 @@ class PokeBattle_Move_616 < PokeBattle_Move
 	def healingMove?;       return true; end
 	
 	def pbEffectGeneral(user)
-		user.pbRecoverHP((user.totalhp/3.0).round)
+		user.pbRecoverHP((user.totalhp/4.0).round)
 		@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
 		
 		user.attack,user.spatk = user.spatk,user.attack
@@ -344,7 +344,7 @@ class PokeBattle_Move_623 < PokeBattle_Move
 	def healingMove?;       return true; end
 	
 	def pbEffectGeneral(user)
-		user.pbRecoverHP((user.totalhp/3.0).round)
+		user.pbRecoverHP((user.totalhp/4.0).round)
 		@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
 		
 		@battle.addAvatarBattler(:COMBEE,battler.level)
