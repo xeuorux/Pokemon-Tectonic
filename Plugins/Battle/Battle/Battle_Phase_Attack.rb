@@ -78,4 +78,39 @@ class PokeBattle_Battle
     pbAttackPhaseMegaEvolution
     pbAttackPhaseMoves
   end
+
+  #=============================================================================
+  # Attack phase
+  #=============================================================================
+  def pbExtraAttackPhase
+    @scene.pbBeginAttackPhase
+    # Reset certain effects
+    @battlers.each_with_index do |b,i|
+      next if !b
+      @successStates[i].clear
+      if @choices[i][0]!=:UseMove && @choices[i][0]!=:Shift && @choices[i][0]!=:SwitchOut
+        b.effects[PBEffects::DestinyBond] = false
+        b.effects[PBEffects::Grudge]      = false
+      end
+      b.effects[PBEffects::Rage] = false if !pbChoseMoveFunctionCode?(i,"093")   # Rage
+    end
+    PBDebug.log("")
+    # Calculate move order for this round
+    pbCalculatePriority(true)
+    # Perform actions
+    pbAttackPhasePriorityChangeMessages
+    pbAttackPhaseCall
+    pbAttackPhaseSwitch
+    return if @decision>0
+    pbAttackPhaseItems
+    return if @decision>0
+    pbAttackPhaseMegaEvolution
+    
+	pbPriority.each do |b|
+        next if b.fainted?
+		next if @commandPhasesThisRound > b.extraMovesPerTurn
+        next unless @choices[b.index][0]==:UseMove
+        b.pbProcessTurn(@choices[b.index])
+      end
+  end
 end

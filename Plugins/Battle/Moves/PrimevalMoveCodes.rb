@@ -1,4 +1,5 @@
 module EmpoweredMove
+	def empowered?; return true; end
 	def isEmpowered?; return true; end
 	
 	def pbMoveFailed?(user,targets); return false; end
@@ -395,4 +396,19 @@ class PokeBattle_Move_626 < PokeBattle_Move_068
 
 		transformType(user,:POISON)
 	end
+end
+
+
+########################################################
+### DAMAGING MOVES
+########################################################
+
+# Empowered Meteor Mash
+class PokeBattle_Move_636 < PokeBattle_Move_01C
+	include EmpoweredMove
+end
+
+# Empowered Ice Beam
+class PokeBattle_Move_637 < PokeBattle_Move_00C
+	include EmpoweredMove
 end

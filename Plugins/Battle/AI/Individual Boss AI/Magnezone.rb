@@ -1,7 +1,7 @@
 # Lock On
 PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:MAGNEZONE,"0A6"],
   proc { |speciesAndMove,user,target,move|
-	next user.battle.commandPhasesThisRound == user.battle.numBossOnlyTurns
+	next user.lastMoveThisTurn?
   }
 )
 

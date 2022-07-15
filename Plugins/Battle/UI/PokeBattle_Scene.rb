@@ -107,8 +107,9 @@ class PokeBattle_Scene
 		end
   end
 
-  def setAggroCursorOnIndex(index)
+  def setAggroCursorOnIndex(index,extraAggro = false)
     @sprites["aggro_cursor_#{index}"].visible = true
+    @sprites["aggro_cursor_#{index}"].extraAggro = extraAggro
   end
 	
 	def pbChangePokemon(idxBattler,pkmn)

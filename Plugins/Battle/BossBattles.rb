@@ -63,7 +63,6 @@ def pbAvatarBattleCore(*args)
   Events.onStartBattle.trigger(nil)
   # Generate wild Pokémon based on the species and level
   foeParty = []
-  numTurns = 0
   
   respawnFollower = false
   for arg in args
@@ -72,8 +71,7 @@ def pbAvatarBattleCore(*args)
 			species = GameData::Species.get(arg[i*2]).id
 			pkmn = pbGenerateWildPokemon(species,arg[i*2+1])
 			pkmn.boss = true
-			newNumTurns = setAvatarProperties(pkmn)
-			numTurns = [newNumTurns,numTurns].max
+			setAvatarProperties(pkmn)
 			foeParty.push(pkmn)
 		end
 	end
@@ -103,7 +101,6 @@ def pbAvatarBattleCore(*args)
   # Create the battle class (the mechanics side of it)
   battle = PokeBattle_Battle.new(scene,playerParty,foeParty,playerTrainers,nil)
   battle.party1starts = playerPartyStarts
-  battle.numBossOnlyTurns = numTurns - 1
   battle.bossBattle = true
   # Set various other properties in the battle class
   pbPrepareBattle(battle)
@@ -143,11 +140,9 @@ def setAvatarProperties(pkmn)
 	pkmn.ability = avatar_data.ability
 	pkmn.hpMult = avatar_data.hp_mult
 	pkmn.dmgMult = avatar_data.dmg_mult
-	pkmn.scaleFactor = avatar_data.size_mult
+	pkmn.extraMovesPerTurn = avatar_data.num_turns - 1
 	
 	pkmn.calc_stats()
-	
-	return avatar_data.num_turns
 end
 
 
@@ -188,62 +183,6 @@ class Pokemon
 	def boss?
 		return boss
 	end
-end
-
-class PokeBattle_Battle 
-  def pbExtraBossCommandPhase()
-    @scene.pbBeginCommandPhase
-    # Reset choices if commands can be shown
-    @battlers.each_with_index do |b,i|
-      next if !b
-      pbClearChoice(i) if pbCanShowCommands?(i)
-    end
-    # Reset choices to perform Mega Evolution if it wasn't done somehow
-    for side in 0...2
-      @megaEvolution[side].each_with_index do |megaEvo,i|
-        @megaEvolution[side][i] = -1 if megaEvo>=0
-      end
-    end
-    pbCommandPhaseLoop(false)
-  end
-  
-  #=============================================================================
-  # Attack phase
-  #=============================================================================
-  def pbExtraBossAttackPhase
-    @scene.pbBeginAttackPhase
-    # Reset certain effects
-    @battlers.each_with_index do |b,i|
-      next if !b
-      b.turnCount += 1 if !b.fainted?
-      @successStates[i].clear
-      if @choices[i][0]!=:UseMove && @choices[i][0]!=:Shift && @choices[i][0]!=:SwitchOut
-        b.effects[PBEffects::DestinyBond] = false
-        b.effects[PBEffects::Grudge]      = false
-      end
-      b.effects[PBEffects::Rage] = false if !pbChoseMoveFunctionCode?(i,"093")   # Rage
-    end
-    PBDebug.log("")
-    # Calculate move order for this round
-    pbCalculatePriority(true)
-    # Perform actions
-    pbAttackPhasePriorityChangeMessages
-    pbAttackPhaseCall
-    pbAttackPhaseSwitch
-    return if @decision>0
-    pbAttackPhaseItems
-    return if @decision>0
-    pbAttackPhaseMegaEvolution
-    
-	
-	pbPriority.each do |b|
-        next if b.fainted?
-        next unless @choices[b.index][0]==:UseMove
-        if b.boss
-          b.pbProcessTurn(@choices[b.index])
-        end
-      end
-  end
 end
 
 def pbPlayerPartyMaxLevel(countFainted = false)

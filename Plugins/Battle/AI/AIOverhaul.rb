@@ -3,7 +3,12 @@ class PokeBattle_AI
     return if pbEnemyShouldWithdraw?(idxBattler)
     return if @battle.pbAutoFightMenu(idxBattler) #Battle palace shenanigans
 	  @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
-    pbChooseMoves(idxBattler)
+    user        = @battle.battlers[idxBattler]
+    if user.boss?
+      pbChooseMovesBoss(idxBattler)
+    else
+      pbChooseMovesTrainer(idxBattler)
+    end
   end
   
   #=============================================================================
@@ -17,15 +22,111 @@ class PokeBattle_AI
     end
     return false
   end
+
+  def logMoveChoices(user,choices)
+    # Log the available choices
+    logMsg = "[AI] Move choices for #{user.pbThis(true)} (#{user.index}): "
+    choices.each_with_index do |c,i|
+      logMsg += "#{user.moves[c[0]].name}=#{c[1]}"
+      logMsg += " (target #{c[2]})" if c[2]>=0
+      logMsg += " [E]" if user.moves[c[0]].empowered?
+      logMsg += ", " if i < choices.length-1
+    end
+    PBDebug.log(logMsg)
+  end
+
+  def pbChooseMovesBoss(idxBattler)
+    user        = @battle.battlers[idxBattler]
+    # Get scores and targets for each move
+    # NOTE: A move is only added to the choices array if it has a non-zero
+    #       score.
+    choices     = []
+    user.eachMoveWithIndex do |_m,i|
+      next if !@battle.pbCanChooseMove?(idxBattler,i,false)
+      pbRegisterMoveWild(user,i,choices)
+    end
+    logMoveChoices(user,choices)
+	
+    # If there are valid choices, pick among them
+	  if choices.length > 0
+      # Determine the most preferred move
+      preferredChoice = nil
+      
+      choices.reject!{|choice| choice[1] <= 0}
+
+      # Seperate the choices that the boss specific AI picked out from the others
+      empoweredDamagingChoices, choices = choices.partition {|choice| user.moves[choice[0]].isEmpowered?}
+      guaranteedChoices, regularChoices = choices.partition {|choice| choice[1] >= 5000}
+
+      if guaranteedChoices.length == 0
+        echoln("Counting down to use primeval damaging move: #{user.primevalTimer}") if empoweredDamagingChoices.length > 0
+        if empoweredDamagingChoices.length > 0 && user.primevalTimer > 2
+          preferredChoice = empoweredDamagingChoices[0]
+          user.primevalTimer = 0
+        else
+          if user.lastMoveChosen.nil?
+            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) won't try to exlude any moves based on last move chosen, because thats nil")
+          elsif regularChoices.length >= 2
+            regularChoices.reject!{|regular_choice| user.moves[regular_choice[0]].id == user.lastMoveChosen}
+            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will try not to pick #{user.lastMoveChosen} this turn since that was the last move it chose")
+          else
+            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) only has one valid choice, so it won't exclude #{user.lastMoveChosen} (its last chosen move)")
+          end
+          sortedChoices = regularChoices.sort_by{|choice| -choice[1]}
+          preferredChoice = sortedChoices[0]
+          PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.moves[preferredChoice[0]].name} is the highest rated of its remaining choices")
+        end
+      else
+        preferredChoice = guaranteedChoices[0]
+        PBDebug.log("[AI] #{user.pbThis} (#{user.index}) chooses #{user.moves[preferredChoice[0]].name}, since is the first listed among its guaranteed moves")
+      end
+
+      if preferredChoice != nil
+        @battle.pbRegisterMove(idxBattler,preferredChoice[0],false)
+        @battle.pbRegisterTarget(idxBattler,preferredChoice[2]) if preferredChoice[2]>=0
+      end
+    end
+
+    # if there is somehow still no choice, choose to use Struggle
+    if @battle.choices[idxBattler][2].nil?
+      echoln("All AI protocols have failed or fallen through, picking struggle since it's a boss.")
+        @battle.choices[idxBattler][0] = :UseMove    # "Use move"
+        @battle.choices[idxBattler][1] = -1          # Index of move to be used
+        @battle.choices[idxBattler][2] = @struggle   # Struggle PokeBattle_Move object
+        @battle.choices[idxBattler][3] = -1          # No target chosen yet
+    end
+
+    # Log the result
+    if @battle.choices[idxBattler][2]
+      user.lastMoveChosen = @battle.choices[idxBattler][2].id
+      PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will use #{@battle.choices[idxBattler][2].name}")
+    end
+	
+    choice = @battle.choices[idxBattler]
+    move = choice[2]
+    target = choice[3]
+    
+    extraAggro = false
+    if move.empowered? && move.damagingMove?
+      @battle.pbDisplay(_INTL("#{user.pbThis} is winding up a big attack!"))
+      extraAggro = true
+      user.extraMovesPerTurn = 0
+    else
+      user.resetExtraMovesPerTurn
+      PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,target)
+    end
+
+    # Set the avatar aggro cursors on the targets of the choice
+    targets = user.pbFindTargets(choice,move,user)
+    targets.each do |target|
+      echoln("Enabling the avatar aggro cursor at index #{target.index}")
+      @battle.scene.setAggroCursorOnIndex(target.index,extraAggro)
+    end
+  end
   
-  #=============================================================================
-  # Main move-choosing method (moves with higher scores are more likely to be
-  # chosen)
-  #=============================================================================
   def pbChooseMoves(idxBattler)
     user        = @battle.battlers[idxBattler]
     wildBattler = (@battle.wildBattle? && @battle.opposes?(idxBattler))
-    trueWildBattler = wildBattler && !user.boss?
     skill       = 0
 	  policies    = []
     if !wildBattler
@@ -54,13 +155,7 @@ class PokeBattle_AI
       maxScore = c[1] if maxScore<c[1]
     end
     # Log the available choices
-    logMsg = "[AI] Move choices for #{user.pbThis(true)} (#{user.index}): "
-    choices.each_with_index do |c,i|
-      logMsg += "#{user.moves[c[0]].name}=#{c[1]}"
-      logMsg += " (target #{c[2]})" if c[2]>=0
-      logMsg += ", " if i<choices.length-1
-    end
-    PBDebug.log(logMsg)
+    logMoveChoices(user,choices)
 	  
     if !wildBattler && maxScore <= 40 && pbEnemyShouldWithdrawEx?(idxBattler,true)
       if $INTERNAL
@@ -74,28 +169,9 @@ class PokeBattle_AI
       # Determine the most preferred move
       preferredChoice = nil
 
-		  if trueWildBattler
+		  if wildBattler
         preferredChoice = choices[pbAIRandom(choices.length)]
         PBDebug.log("[AI] #{user.pbThis} (#{user.index}) chooses #{user.moves[preferredChoice[0]].name} at random")
-      elsif user.boss?
-        choices.reject!{|choice| choice[1] <= 0}
-        guaranteedChoices, regularChoices = choices.partition {|choice| choice[1] >= 5000}
-        if guaranteedChoices.length == 0
-          if user.lastMoveChosen.nil?
-            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) won't try to exlude any moves based on last move chosen, because thats nil")
-          elsif regularChoices.length >= 2
-            regularChoices.reject!{|regular_choice| user.moves[regular_choice[0]].id == user.lastMoveChosen}
-            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will try not to pick #{user.lastMoveChosen} this turn since that was the last move it chose")
-          else
-            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) only has one valid choice, so it won't exclude #{user.lastMoveChosen} (its last chosen move)")
-          end
-          sortedChoices = regularChoices.sort_by{|choice| -choice[1]}
-          preferredChoice = sortedChoices[0]
-          PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.moves[preferredChoice[0]].name} is the highest rated of its remaining choices")
-        else
-          preferredChoice = guaranteedChoices[0]
-          PBDebug.log("[AI] #{user.pbThis} (#{user.index}) chooses #{user.moves[preferredChoice[0]].name}, since is the first listed among its guaranteed moves")
-        end
       else
         sortedChoices = choices.sort_by{|choice| -choice[1]}
         preferredChoice = sortedChoices[0]
@@ -105,7 +181,7 @@ class PokeBattle_AI
         @battle.pbRegisterMove(idxBattler,preferredChoice[0],false)
         @battle.pbRegisterTarget(idxBattler,preferredChoice[2]) if preferredChoice[2]>=0
       end
-    elsif !user.boss? # If there are no calculated choices, create a list of the choices all scored the same, to be chosen between randomly later on
+    else # If there are no calculated choices, create a list of the choices all scored the same, to be chosen between randomly later on
       PBDebug.log("[AI] #{user.pbThis} (#{user.index}) scored no moves above a zero, resetting all choices to default")
       user.eachMoveWithIndex do |_m,i|
         next if !@battle.pbCanChooseMove?(idxBattler,i,false)
@@ -118,22 +194,14 @@ class PokeBattle_AI
     end
     # if there is somehow still no choice, randomly choose a move from the choices and register it
     if @battle.choices[idxBattler][2].nil?
-      if !user.boss?
-        echoln("All AI protocols have failed or fallen through, picking at random since it's not a boss.")
-        randNum = pbAIRandom(totalScore)
-        choices.each do |c|
-          randNum -= c[1]
-          next if randNum >= 0
-          @battle.pbRegisterMove(idxBattler,c[0],false)
-          @battle.pbRegisterTarget(idxBattler,c[2]) if c[2]>=0
-          break
-        end
-      else
-        echoln("All AI protocols have failed or fallen through, picking struggle since it's a boss.")
-        @battle.choices[idxBattler][0] = :UseMove    # "Use move"
-        @battle.choices[idxBattler][1] = -1          # Index of move to be used
-        @battle.choices[idxBattler][2] = @struggle   # Struggle PokeBattle_Move object
-        @battle.choices[idxBattler][3] = -1          # No target chosen yet
+      echoln("All AI protocols have failed or fallen through, picking at random.")
+      randNum = pbAIRandom(totalScore)
+      choices.each do |c|
+        randNum -= c[1]
+        next if randNum >= 0
+        @battle.pbRegisterMove(idxBattler,c[0],false)
+        @battle.pbRegisterTarget(idxBattler,c[2]) if c[2]>=0
+        break
       end
     end
     # Log the result
@@ -145,17 +213,6 @@ class PokeBattle_AI
     choice = @battle.choices[idxBattler]
     move = choice[2]
     target = choice[3]
-    
-    if user.boss?
-      PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,target)
-
-      # Set the avatar aggro cursors on the targets of the choice
-      targets = user.pbFindTargets(choice,move,user)
-      targets.each do |target|
-        echoln("Enabling the avatar aggro cursor at index #{target.index}")
-        @battle.scene.setAggroCursorOnIndex(target.index)
-      end
-    end
   end
   
   # Trainer Pokémon calculate how much they want to use each of their moves.
@@ -306,7 +363,7 @@ class PokeBattle_AI
   
   def pbRegisterMoveWild(user,idxMove,choices)
     move = user.moves[idxMove]
-	  return if move.isEmpowered? # Never ever use empowered moves normally
+	  return if move.isEmpowered? && !move.damagingMove? # Never ever use empowered status moves normally
 
     target_data = move.pbTarget(user)
     if target_data.num_targets > 1

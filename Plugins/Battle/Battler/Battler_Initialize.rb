@@ -1,8 +1,10 @@
 class PokeBattle_Battler
-	attr_accessor :boss
-	attr_accessor :empowered
-	attr_reader :bossStatus
-	attr_reader :bossStatusCount
+	attr_accessor 	:boss
+	attr_accessor 	:empowered
+	attr_accessor	:extraMovesPerTurn
+	attr_reader 	:bossStatus
+	attr_reader 	:bossStatusCount
+	attr_accessor 	:primevalTimer
 	
 	def bossStatus=(value)
 		@effects[PBEffects::Truant] = false if @bossStatus == :SLEEP && value != :SLEEP
@@ -22,6 +24,22 @@ class PokeBattle_Battler
 	
 	def empowered?
 		return empowered
+	end
+
+	def extraMovesPerTurn
+		return @pokemon.extraMovesPerTurn || 0
+	end
+
+	def extraMovesPerTurn=(val)
+		@pokemon.extraMovesPerTurn = val
+	end
+
+	def resetExtraMovesPerTurn
+		@pokemon.extraMovesPerTurn = GameData::Avatar.get(@species).num_turns - 1
+	end
+
+	def lastMoveThisTurn?
+		return @battle.commandPhasesThisRound == extraMovesPerTurn
 	end
 
 	def pbInitBlank
@@ -47,6 +65,8 @@ class PokeBattle_Battler
 		@bossStatus		= :NONE
 		@bossStatusCount = 0
 		@empowered 		= false
+		@primevalTimer	= 0
+		@extraMovesPerTurn	= 0
 	end
   
   # Used by Future Sight only, when Future Sight's user is no longer in battle.

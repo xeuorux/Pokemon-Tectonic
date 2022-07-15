@@ -1,5 +1,7 @@
 class PokeBattle_Move
 	def isEmpowered?; return false; end
+  alias empowered? isEmpowered?
+  
 	def pbAllMissed(user, targets); end
 
   #=============================================================================

@@ -92,6 +92,12 @@ class PokeBattle_Battle
 	
 	  # Neutralizing Gas
 	  pbCheckNeutralizingGas
+
+    # Increase primeval timers
+    priority.each do |b|
+      next if !b.boss?
+	    b.primevalTimer += 1
+    end
 	
     @endOfRound = false
   end

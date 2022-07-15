@@ -21,7 +21,7 @@ PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:XERNEAS,"124"],
 
 PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:XERNEAS,"14E"],
 	proc { |speciesAndMoveCode,user,target|
-		next user.turnCount % 2 == 1 && user.battle.commandPhasesThisRound == user.battle.numBossOnlyTurns
+		next user.turnCount % 2 == 1 && user.lastMoveThisTurn?
 	}
 )
 
