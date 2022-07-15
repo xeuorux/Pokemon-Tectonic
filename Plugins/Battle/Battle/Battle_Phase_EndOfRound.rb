@@ -412,7 +412,7 @@ class PokeBattle_Battle
     end
     # Damage from fluster or mystified
     priority.each do |b|
-      selfHitBasePower = (20 + b.level * (3.0/5.0))
+      selfHitBasePower = (25 + b.level * (3.0/5.0))
       selfHitBasePower = selfHitBasePower.ceil
       if b.flustered?
         superEff = pbCheckOpposingAbility(:BRAINSCRAMBLE,b.index)
