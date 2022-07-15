@@ -261,33 +261,24 @@ def pbChooseList(commands, default = 0, cancelValue = -1, sortType = 1)
       itemID = commands[cmd[1]][2] || commands[cmd[1]][0]
       sortMode = (sortMode + 1) % 2
       sorting = true
-	elsif cmd[0] == 2   # Go to first matching
+    elsif cmd[0] == 2   # Go to first matching
       text = pbEnterText("Enter selection.",0,20).downcase
-	  if text.blank?
-		sorting = true
-		next
-	  end
-	  changed = false
-	  commands.each_with_index { |command, i|
-		next if i < itemIndex
-		if command[2].to_s.downcase.start_with?(text)
-			itemIndex = i
-			changed = true
-		end
-	  }
-	  if !changed
-		  commands.each_with_index { |command, i|
-			break if i > itemIndex
-			if command[2].to_s.downcase.start_with?(text)
-				itemIndex = i
-				changed = true
-			end
-		  }
-	  end
-	  pbMessage(_INTL("Could not find a command entry matching that input.")) if !changed
-	  sorting = true
+      if text.blank?
+        sorting = true
+        next
+      end
+      changed = false
+      commands.each_with_index { |command, i|
+        next if i == itemIndex
+        if command[1].downcase.start_with?(text) || command[2].to_s.downcase.start_with?(text) # Real name, or ID
+          itemIndex = i
+          changed = true
+        end
+      }
+      pbMessage(_INTL("Could not find a command entry matching that input.")) if !changed
+      sorting = true
+      end
     end
-  end
   cmdwin.dispose
   return itemID
 end
@@ -397,4 +388,71 @@ def globalMessageReplacements(message)
     message.gsub!("PokEstate","PokÉstate")
 
     return message
+end
+
+def pbListScreen(title,lister)
+  viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
+  viewport.z = 99999
+  list = pbListWindow([])
+  list.viewport = viewport
+  list.z        = 2
+  title = Window_UnformattedTextPokemon.newWithSize(title,
+     Graphics.width / 2, 0, Graphics.width / 2, 64, viewport)
+  title.z = 2
+  lister.setViewport(viewport)
+  selectedIndex = -1
+  commands = lister.commands
+  selindex = lister.startIndex
+  if commands.length==0
+    value = lister.value(-1)
+    lister.dispose
+    title.dispose
+    list.dispose
+    viewport.dispose
+    return value
+  end
+  list.commands = commands
+  list.index    = selindex
+  loop do
+    Graphics.update
+    Input.update
+    list.update
+    if list.index != selectedIndex
+      lister.refresh(list.index)
+      selectedIndex = list.index
+    end
+    if Input.trigger?(Input::BACK)
+      selectedIndex = -1
+      break
+    elsif Input.trigger?(Input::USE)
+      break
+    elsif Input.trigger?(Input::SPECIAL)
+      inputText = pbEnterText("Enter selection.",0,20).downcase
+      if inputText.blank?
+        next
+      end
+
+      newIndex = -1
+      list.commands.each_with_index do |command,index|
+        echoln("List item #{index} is #{command.to_s.downcase}")
+        if command.to_s.downcase.include?(inputText)
+          newIndex = index
+          break
+        end
+      end
+
+      if newIndex == -1
+        pbMessage(_INTL("Could not find a command entry matching that input."))
+      else
+        list.index = newIndex
+      end
+    end
+  end
+  value = lister.value(selectedIndex)
+  lister.dispose
+  title.dispose
+  list.dispose
+  viewport.dispose
+  Input.update
+  return value
 end
