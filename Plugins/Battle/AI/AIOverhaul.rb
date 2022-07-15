@@ -142,10 +142,20 @@ class PokeBattle_AI
       PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will use #{@battle.choices[idxBattler][2].name}")
     end
 	
-    move = @battle.choices[idxBattler][2]
-    target = @battle.choices[idxBattler][3]
+    choice = @battle.choices[idxBattler]
+    move = choice[2]
+    target = choice[3]
     
-    PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,target) if user.boss?
+    if user.boss?
+      PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,target)
+
+      # Set the avatar aggro cursors on the targets of the choice
+      targets = user.pbFindTargets(choice,move,user)
+      targets.each do |target|
+        echoln("Enabling the avatar aggro cursor at index #{target.index}")
+        @battle.scene.setAggroCursorOnIndex(target.index)
+      end
+    end
   end
   
   # Trainer Pokémon calculate how much they want to use each of their moves.

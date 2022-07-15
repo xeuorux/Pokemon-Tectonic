@@ -321,8 +321,8 @@ class PokeBattle_Move_621 < PokeBattle_Move_155
 	
 	def pbEffectGeneral(user)
 		super
-		battler.pbRaiseStatStage(:ATTACK,1,battler)
-		battler.pbRaiseStatStage(:SPECIAL_ATTACK,1,battler)
+		user.pbRaiseStatStage(:ATTACK,1,battler)
+		user.pbRaiseStatStage(:SPECIAL_ATTACK,1,battler)
 		transformType(user,:GRASS)
 	end
 end
