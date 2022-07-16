@@ -557,7 +557,7 @@
 517,MINIMIZE,Minimize,034,0,NORMAL,Status,0,10,0,User,0,d,"The user compresses its body to make itself look smaller, which sharply raises its evasiveness.",
 518,MORNINGSUN,Morning Sun,0D8,0,NORMAL,Status,0,5,0,User,0,d,"The user restores its own HP. The amount of HP regained varies with the weather.",
 519,NATUREPOWER,Nature Power,0B3,0,NORMAL,Status,0,20,0,NearOther,0,,"An attack that makes use of nature's power. Its effects vary depending on the user's environment.",
-520,NOBLEROAR,Noble Roar,13A,0,NORMAL,Status,0,30,0,NearOther,0,bcek,"Letting out a noble roar, the user intimidates the target and lowers its Attack and Sp. Atk.",
+520,NOBLEROAR,Noble Roar,13A,0,NORMAL,Status,0,30,0,AllNearFoes,0,bcek,"Letting out a noble roar, the user intimidates all nearby foes and lowers their Attack and Sp. Atk.",
 521,ODORSLEUTH,Odor Sleuth,0A7,0,NORMAL,Status,0,40,0,NearOther,0,bce,"Enables the user to hit a Ghost type with any type of move. It also enables the user to hit an evasive foe.",
 #-------------------------------
 522,PAINSPLIT,Pain Split,05A,0,GHOST,Status,0,20,0,NearOther,0,be,"The user adds its HP to the target's HP, then equally shares the combined HP with the target.",
@@ -945,7 +945,7 @@
 881,BIRDSTRIKE,Bird Strike,0FA,90,FLYING,Physical,100,20,0,Other,0,abef,"A reckless, charge attack from the air. It also damages the user by 25% of the damage dealt.",BRAVEBIRD
 882,TERRAFORM,Terraform,538,70,ROCK,Special,100,15,0,AllNearOthers,0,bef,"Churns rocks throughout the area, dealing damage to all nearby Pokémon and removing any active terrain.",
 883,PREDICTIONSTRIKE,Prediction Strike,0A5,90,PSYCHIC,Physical,0,15,0,Other,0,abef,"The user perfectly predicts the target's future location, then strikes. It lands without fail.",ZENHEADBUTT
-884,RAKE,Rake,000,55,BUG,Physical,0,25,0,NearOther,0,abef,"The user rakes the target with sharp claws.",FURYCUTTER
+884,RAKE,Rake,000,65,BUG,Physical,0,25,0,NearOther,0,abef,"The user rakes the target with sharp claws.",FURYCUTTER
 885,WATERSPIRAL,Water Spiral,16F,85,WATER,Special,100,15,0,NearOther,0,befn,"Fires a spiral of water at enemies, or a HP-restoring one at allies.",
 886,SPATTERINGRAM,Spattering Ram,043,60,WATER,Physical,100,25,30,NearOther,0,abef,"The user rams the target like a ship. It has a 30% chance to lower Defense.",
 887,BLOSSOM,Blossom,020,50,GRASS,Special,100,35,70,NearOther,0,befn,"Flowers blooms underneath, dealing damage. It has a 70% chance to raise user's Sp. Atk.",GRASSPLEDGE
