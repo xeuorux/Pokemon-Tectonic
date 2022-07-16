@@ -172,8 +172,8 @@ DMGMult = 1
 [SCARODON]
 Ability = SCHADENFREUDE
 Moves = AQUAJET,BITE,PRIMEVALSPIKES
-PostPrimeMoves = RUMBLE
-Turns = 3
+PostPrimeMoves = RUMBLE,BRUTALSWING
+Turns = 2
 HPMult = 3.0
 DMGMult = 1
 Item = MUSCLEBAND
@@ -191,8 +191,8 @@ Item = WISEGLASSES
 Ability = SCAVENGE
 Moves = HEADBUTT,STEAMROLLER,COVET,PRIMEVALRAINDANCE
 PostPrimeMoves = SPATTERINGRAM,WILDCHARGE
-Turns = 1
-HPMult = 6.0
+Turns = 2
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [SUICUNE]
@@ -637,10 +637,10 @@ DMGMult = 1
 #-------------------------------
 [MILOTIC]
 Ability = COMPETITIVE
-Moves = BRINE,TWISTER,PRIMEVALSANDSTORM
-PostPrimeMoves = CRYSTALGLEAM
-Turns = 1
-HPMult = 5.0
+Moves = BUBBLEBEAM,TWISTER,PRIMEVALTWISTER,PRIMEVALSANDSTORM
+PostPrimeMoves = CRYSTALGLEAM,BRINE
+Turns = 2
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [TEAMUJIN]
@@ -1151,19 +1151,12 @@ PostPrimeMoves = TRAINEDOUTBURST
 Turns = 2
 HPMult = 5
 #------------------------------
-[ARCLAMOR]
-Ability = LOUD
-Moves = SHOCKWAVE,STENCH,PRIMEVALHEALORDER
-PostPrimeMoves = CLACKACLACK
-Turns = 2
-HPMult = 4
-#------------------------------
 [GIGALITH]
 Ability = ROCKHEAD
 Moves = ROCKTOMB,SHARPEN,PRIMEVALELECTRICTERRAIN
-PostPrimeMoves = WILDCHARGE
-Turns = 1
-HPMult = 5
+PostPrimeMoves = WILDCHARGE,GRANITEHEAD,PRIMEVALROCKTOMB
+Turns = 2
+HPMult = 4
 #-------------------------------
 [RAPIDASH]
 Ability = HARSH

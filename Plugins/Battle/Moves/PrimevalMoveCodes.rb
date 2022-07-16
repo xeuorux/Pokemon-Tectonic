@@ -412,3 +412,8 @@ end
 class PokeBattle_Move_637 < PokeBattle_Move_00C
 	include EmpoweredMove
 end
+
+# Empowered Rock Tomb
+class PokeBattle_Move_638 < PokeBattle_Move_04D
+	include EmpoweredMove
+end
