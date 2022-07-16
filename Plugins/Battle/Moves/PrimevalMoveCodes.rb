@@ -435,3 +435,8 @@ end
 class PokeBattle_Move_639 < PokeBattle_Move_02D
 	include EmpoweredMove
 end
+
+# Empowered Thunderbolt
+class PokeBattle_Move_639 < PokeBattle_Move_02D
+	include EmpoweredMove
+end

@@ -1246,13 +1246,13 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [257]
-# Village Cave Placeholder
+# Old Cave Sketch
 Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
 [258]
-# Hometown Placeholder
+# Hometown Prototype
 Outdoor = true
 ShowArea = true
 Bicycle = true

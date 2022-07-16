@@ -753,7 +753,7 @@ Special
     1,GOOMY,5
     1,JANGMOO,5
 #-------------------------------
-[258] # Hometown Placeholder
+[258] # Hometown Prototype
 Land,20
     25,BUNEARY,43,45
     25,NICKIT,43,45
