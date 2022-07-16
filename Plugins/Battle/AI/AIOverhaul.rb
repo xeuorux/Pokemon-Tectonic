@@ -7,7 +7,7 @@ class PokeBattle_AI
     if user.boss?
       pbChooseMovesBoss(idxBattler)
     else
-      pbChooseMovesTrainer(idxBattler)
+      pbChooseMoves(idxBattler)
     end
   end
   
