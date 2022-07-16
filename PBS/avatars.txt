@@ -174,7 +174,7 @@ Ability = SCHADENFREUDE
 Moves = AQUAJET,BITE,PRIMEVALSPIKES
 PostPrimeMoves = RUMBLE,BRUTALSWING
 Turns = 2
-HPMult = 3.0
+HPMult = 3.5
 DMGMult = 1
 Item = MUSCLEBAND
 #-------------------------------
@@ -402,8 +402,8 @@ DMGMult = 1
 Ability = SOUNDPROOF
 Moves = SPIKES,STEELWING,PRIMEVALWHIRLWIND
 PostPrimeMoves = DUALWINGBEAT,COLDFRONT
-Turns = 1
-HPMult = 8.0
+Turns = 2
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [WAILORD]
@@ -594,34 +594,17 @@ Turns = 2
 HPMult = 2.0
 DMGMult = 1
 #-------------------------------
-[MAMOSWINE]
-Ability = THICKFAT
-Moves = ICEFANG,BULLDOZE,PRIMEVALTAILWIND
-PostPrimeMoves = ICEFANG,BULLDOZE
-Turns = 2
-HPMult = 4.0
-DMGMult = 1
-Item = EXPERTBELT
-#-------------------------------
 [MIGHTYENA]
 Ability = INTIMIDATE
 Moves = BITE,TAKEDOWN,PRIMEVALMOONLIGHT
 PostPrimeMoves = DISARMINGVOICE
 Turns = 2
-HPMult = 3.5
-DMGMult = 1
-#-------------------------------
-[DIGNIPHITE]
-Ability = FASCINATE
-Moves = SHOTPUT,TREADON,PRIMEVALSTRINGSHOT
-PostPrimeMoves = BUGBITE
-Turns = 3
-HPMult = 3.0
+HPMult = 4
 DMGMult = 1
 #-------------------------------
 [MILOTIC]
 Ability = COMPETITIVE
-Moves = BUBBLEBEAM,TWISTER,PRIMEVALSANDSTORM
+Moves = DAZZLE,TWISTER,PRIMEVALSANDSTORM
 PostPrimeMoves = CRYSTALGLEAM,BRINE
 Turns = 2
 HPMult = 4.0
@@ -671,15 +654,15 @@ Item = LIGHTCLAY
 [VESPIQUEN]
 Ability = UNNERVE
 Moves = ATTACKORDER,BOREALWIND,PRIMEVALSPIKES
-PostPrimeMoves = RUMBLE,HEALORDER
+PostPrimeMoves = RUMBLE,NOBLEROAR
 Turns = 2
-HPMult = 3.5
+HPMult = 4
 DMGMult = 1
 #-------------------------------
 [AGOLEM]
 Ability = GALVANIZE
-Moves = TAKEDOWN,FLAIL
-PostPrimeMoves = TAKEDOWN,FLAIL
+Moves = STEALTHROCK,NUMB,TACKLE,PRIMEVALHEALORDER
+PostPrimeMoves = STEAMROLLER,FLAIL
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -690,13 +673,6 @@ Moves = MOONBLAST,NIGHTSLASH,PRIMEVALIGNITE
 PostPrimeMoves = FLAMETHROWER,FIRELASH
 Turns = 2
 HPMult = 3.5
-DMGMult = 1
-#-------------------------------
-[DODRIO]
-Ability = VITALSPIRIT
-Moves = PECK
-Turns = 3
-HPMult = 1.5
 DMGMult = 1
 #-------------------------------
 [KLINKLANG]
@@ -711,8 +687,8 @@ DMGMult = 1
 Ability = CHILLEDBODY
 Moves = ICEFANG,DRAGONCLAW,PRIMEVALICEBEAM,PRIMEVALHAIL
 PostPrimeMoves = FROSTBITE,CRUNCH
-Turns = 1
-HPMult = 5.0
+Turns = 2
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [ELECTIVIRE]
@@ -1049,10 +1025,10 @@ DMGMult = 1
 #-------------------------------
 [MAGCARGO]
 Ability = IMPERVIOUS
-Moves = LAVAPLUME,POWERGEM,PRIMEVALPSYCHICTERRAIN
+Moves = IGNITE,POWERGEM,PRIMEVALPSYCHICTERRAIN
 PostPrimeMoves = INFERNO,MINDWARP
-Turns = 1
-HPMult = 7
+Turns = 2
+HPMult = 4
 DMGMult = 1
 #-------------------------------
 [AMOONGUSS]
@@ -1115,8 +1091,8 @@ HPMult = 4
 #-------------------------------
 [RAPIDASH]
 Ability = HARSH
-Moves = FLAMESPIKES,FLAMECHARGE,PRIMEVALLEECHSEED
+Moves = IGNITE,FLAMECHARGE,PRIMEVALLEECHSEED
 PostPrimeMoves = HORNLEECH
-Turns = 1
+Turns = 2
 HPMult = 4
 DMGMult = 1
