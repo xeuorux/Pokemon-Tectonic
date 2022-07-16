@@ -398,7 +398,7 @@ class PokeBattle_Move_626 < PokeBattle_Move_068
 	end
 end
 
-
+# Empowered Rock Polish
 class PokeBattle_Move_627 < PokeBattle_Move_030
 	include EmpoweredMove
 
@@ -409,6 +409,15 @@ class PokeBattle_Move_627 < PokeBattle_Move_030
 		@battle.pbDisplay(_INTL("{1} gained two extra moves per turn!",user.pbThis))
 
 		transformType(user,:ROCK)
+	end
+end
+
+# Empowered Whirlwind
+class PokeBattle_Move_628 < PokeBattle_Move_0EB
+	include EmpoweredMove
+
+	def pbEffectGeneral(user)
+		transformType(user,:FLYING)
 	end
 end
 

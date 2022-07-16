@@ -131,34 +131,34 @@ DMGMult = 1
 [MANIKLAW]
 Ability = INSOMNIA
 Moves = SHADOWCLAW,SLASH,PRIMEVALHEALORDER
-PostPrimeMoves = RAKE
+PostPrimeMoves = RAKE,SOULCLAW
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [MISMAGIUS]
 Ability = SNOWWARNING
-Moves = ICYWIND,SOULDRAIN
+Moves = DAZZLINGGLEAM,DEADEND,PRIMEVALHAIL
 PostPrimeMoves = ICYWIND,SOULDRAIN
 Turns = 2
-HPMult = 3.0
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [SAWSBUCK]
 Ability = SERENEGRACE
 Moves = DOUBLEEDGE,HORNLEECH,PRIMEVALFLOWSTATE
-PostPrimeMoves = WATERFALL
+PostPrimeMoves = WATERFALL,CRASHDIVE
 Turns = 2
-HPMult = 2.0
+HPMult = 3
 DMGMult = 1
 Form = 1
 #-------------------------------
 [LEAFEON]
 Ability = LEAFGUARD
-Moves = RAZORLEAF,PRIMEVALMOONLIGHT
-PostPrimeMoves = AURATRICK
-Turns = 1
-HPMult = 3.0
+Moves = RAZORLEAF,BODYSLAM,PRIMEVALMOONLIGHT
+PostPrimeMoves = AURATRICK,HYPERVOICE
+Turns = 2
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [RUNERIGUS]
@@ -295,28 +295,12 @@ DMGMult = 1
 #-------------------------------
 [RHYPERIOR]
 Ability = FORTIFIED
-Moves = TRAMPLE,ROCKAPULT
-PostPrimeMoves = TRAMPLE,ROCKAPULT
+Moves = TRAMPLE,ROCKAPULT,PRIMEVALIGNITE
+PostPrimeMoves = FIREBLAST,STONEEDGE
 Turns = 2
-HPMult = 5.0
+HPMult = 4.5
 DMGMult = 1
 Item = LAGGINGTAIL
-#-------------------------------
-[CELEBI]
-Ability = GRASSYSURGE
-Moves = FUTURESIGHT,GIGADRAIN,PSYCHIC,GRASSKNOT
-PostPrimeMoves = FUTURESIGHT,GIGADRAIN,PSYCHIC,GRASSKNOT
-Turns = 3
-HPMult = 3.5
-DMGMult = 1
-#-------------------------------
-[SHIFTRY]
-Ability = EARLYBIRD
-Moves = LEAFTORNADO,THIEF,FLING
-PostPrimeMoves = LEAFTORNADO,THIEF,FLING
-Turns = 2
-HPMult = 5.0
-DMGMult = 1
 #-------------------------------
 [INCINEROAR]
 Ability = ARENATRAP
@@ -416,8 +400,8 @@ DMGMult = 1
 #-------------------------------
 [SKARMORY]
 Ability = SOUNDPROOF
-Moves = SPIKES,WHIRLWIND
-PostPrimeMoves = SPIKES,WHIRLWIND
+Moves = SPIKES,STEELWING,PRIMEVALWHIRLWIND
+PostPrimeMoves = DUALWINGBEAT,COLDFRONT
 Turns = 1
 HPMult = 8.0
 DMGMult = 1
@@ -765,24 +749,9 @@ Item = SITRUSBERRY
 #-------------------------------
 [TOWERPODA]
 Ability = SANDSTREAM
-Moves = TWISTER,LOOMOVER
-PostPrimeMoves = TWISTER,LOOMOVER
+Moves = TWISTER,LOOMOVER,PRIMEVALSANDSTORM
+PostPrimeMoves = POWERGEM,LOOMOVER
 Turns = 2
-HPMult = 4.0
-DMGMult = 1
-#-------------------------------
-[KRICKETUNE]
-Ability = LOUD
-Moves = ECHOEDVOICE,BUGBUZZ
-PostPrimeMoves = ECHOEDVOICE,BUGBUZZ
-Turns = 1
-HPMult = 4.0
-DMGMult = 1
-#-------------------------------
-[AURORUS]
-Ability = SNOWWARNING
-Moves = ICYWIND,ANCIENTPOWER
-Turns = 1
 HPMult = 4.0
 DMGMult = 1
 #-------------------------------
@@ -804,18 +773,18 @@ Item = MUSCLEBAND
 #-------------------------------
 [SUNFLORA]
 Ability = DROUGHT
-Moves = GROWTH,ESSENCEARROW
-PostPrimeMoves = GROWTH,ESSENCEARROW
-Turns = 1
+Moves = GROWTH,ESSENCEARROW,PRIMEVALSUNNYDAY
+PostPrimeMoves = BURNINGJEALOUSY,ABSORB
+Turns = 2
 HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [HONCHKROW]
 Ability = DRIZZLE
-Moves = HURRICANE,FOULPLAY
-PostPrimeMoves = HURRICANE,FOULPLAY
-Turns = 1
-HPMult = 5.0
+Moves = GALE,FOULPLAY,PRIMEVALRAINDANCE
+PostPrimeMoves = WATERPULSE,HURRICANE
+Turns = 2
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [SIMISAGE]
@@ -902,40 +871,32 @@ DMGMult = 1
 #-------------------------------
 [OCTILLERY]
 Ability = ARMORPIERCING
-Moves = FIREBLAST,HYDROPUMP,PRIMEVALHEALBELL
-PostPrimeMoves = REMOVALBEAM
+Moves = FLAMETHROWER,BUBBLEBLAST,PRIMEVALHEALBELL
+PostPrimeMoves = REMOVALBEAM,WRINGOUT
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [CONIFEAR]
-Ability = FROSTSCATTER
+Ability = FRUSTRATE
 Moves = CRYSTALCRUSH,WOODHAMMER,PRIMEVALFLOWSTATE
-PostPrimeMoves = LIQUIDATION
-Turns = 1
-HPMult = 6.0
-DMGMult = 1
-#-------------------------------
-[HIPPOWDON]
-Ability = SANDSTREAM
-Moves = HEATWAVE,STEALTHROCK,SLACKOFF
-PostPrimeMoves = HEATWAVE,STEALTHROCK,SLACKOFF
-Turns = 1
-HPMult = 5.0
+PostPrimeMoves = LIQUIDATION,HORNLEECH
+Turns = 2
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [REUNICLUS]
 Ability = MAGICGUARD
 Moves = EXPANDINGFORCE,MIASMA,PRIMEVALTORMENT
-PostPrimeMoves = DARKPULSE
+PostPrimeMoves = DARKPULSE,POISONGAS
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [DUBWOOL]
 Ability = FLUFFY
-Moves = BODYSLAM,COTTONGUARD,PRIMEVALBULKUP
-PostPrimeMoves = BODYPRESS
+Moves = CHAOSWHEEL,COTTONSPORE,PRIMEVALBULKUP
+PostPrimeMoves = BODYPRESS,COTTONGUARD
 Turns = 2
 HPMult = 4.5
 DMGMult = 1
@@ -952,7 +913,7 @@ Item = POWERHERB
 [FLORGES]
 Ability = AUDACITY
 Moves = DRAININGKISS,PETALBLIZZARD,PRIMEVALGASTROACID
-PostPrimeMoves = ACIDBATH
+PostPrimeMoves = ACIDBATH,BLOSSOM
 Turns = 2
 HPMult = 5.0
 DMGMult = 1
@@ -961,16 +922,16 @@ Form = 0
 #-------------------------------
 [GOODRA]
 Ability = GOOEY
-Moves = CORRODE,CRIPPLINGBREATH,PRIMEVALLIGHTNINGDANCE
-PostPrimeMoves = ELECTROBALL
+Moves = CORRODE,DRAGONBREATH,PRIMEVALLIGHTNINGDANCE
+PostPrimeMoves = ELECTROBALL,DRAGONBREATH
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [MASQUERAIN]
 Ability = INTIMIDATE
-Moves = GALE,CREEPOUT,PRIMEVALRAINDANCE
-PostPrimeMoves = BUBBLEBLAST
+Moves = AIRSLASH,CREEPOUT,PRIMEVALRAINDANCE
+PostPrimeMoves = BUBBLEBLAST,WATERSPOUT
 Turns = 2
 HPMult = 5.0
 DMGMult = 1
@@ -978,7 +939,7 @@ DMGMult = 1
 [GOLURK]
 Ability = NOGUARD
 Moves = TRAMPLE,SHADOWBALL,PRIMEVALBULKUP
-PostPrimeMoves = DYNAMICPUNCH
+PostPrimeMoves = LEER,DYNAMICPUNCH
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -986,7 +947,7 @@ DMGMult = 1
 [NOIVERN]
 Ability = INFILTRATOR
 Moves = DRAGONPULSE,AIRSLASH,PRIMEVALSUNNYDAY
-PostPrimeMoves = FLAMETHROWER
+PostPrimeMoves = FLAMETHROWER,SNARL
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -1015,23 +976,17 @@ Turns = 2
 HPMult = 3.0
 DMGMult = 1
 #-------------------------------
-[EISCUE]
-Ability = ICEFACE
-Moves = NERVEBREAK,BRINE,HAIL
-Turns = 2
-HPMult = 4
-#-------------------------------
 [SLURPUFF]
 Ability = CANDYVEIL
 Moves = INFINITEFORCE,PRIMEVALLEECHSEED
-PostPrimeMoves = PARAPOLLEN,POWERWHIP
+PostPrimeMoves = PARAPOLLEN,SEEDBOMB
 Turns = 1
 HPMult = 7
 #-------------------------------
 [EXCADRILL]
 Ability = SANDRUSH
-Moves = EARTHQUAKE,IRONHEAD,PRIMEVALDRAGONDANCE
-PostPrimeMoves = REND
+Moves = TREMOR,MAGNETHRASH,PRIMEVALDRAGONDANCE
+PostPrimeMoves = REND,IRONHEAD
 Turns = 2
 HPMult = 4
 DMGMult = 1
@@ -1039,7 +994,7 @@ DMGMult = 1
 [DURANT]
 Ability = HEATPROOF
 Moves = IRONHEAD,SKITTERSMACK,PRIMEVALSANDSTORM
-PostPrimeMoves = ROCKSLIDE
+PostPrimeMoves = ROCKSLIDE,LEECHLIFE
 Turns = 2
 HPMult = 4.5
 DMGMult = 1
@@ -1047,7 +1002,7 @@ DMGMult = 1
 [RUBARIOR]
 Ability = MAGICBOUNCE
 Moves = FOULPLAY,CURSE,PRIMEVALMOONLIGHT
-PostPrimeMoves = DAZZLINGGLEAM
+PostPrimeMoves = DAZZLINGGLEAM,TRICKYTOXINS
 Turns = 1
 HPMult = 6.0
 DMGMult = 1
@@ -1055,7 +1010,7 @@ DMGMult = 1
 [SALAZZLE]
 Ability = EXPERTISE
 Moves = ACIDBATH,OVERHEAT,PRIMEVALCALMMIND
-PostPrimeMoves = EXPANDINGFORCE
+PostPrimeMoves = EXPANDINGFORCE,CRIPPLINGBREATH
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -1079,15 +1034,15 @@ DMGMult = 1
 [DIANCIE]
 Ability = CLEARBODY
 Moves = DIAMONDSTORM,ENCHANTINGSONG,PRIMEVALCURSE
-PostPrimeMoves = SPIRITSHACKLE
+PostPrimeMoves = SPIRITSHACKLE,AURASPHERE
 Turns = 2
 HPMult = 10.0
 DMGMult = 1
 #-------------------------------
 [SALAMENCE]
 Ability = SCHADENFREUDE
-Moves = CALAMITOUSSLASH,ACROBATICS,PRIMEVALLASERFOCUS
-PostPrimeMoves = METEORMASH
+Moves = CALAMITOUSSLASH,STRAFE,PRIMEVALLASERFOCUS
+PostPrimeMoves = METEORMASH,CRIPPLINGBREATH
 Turns = 2
 HPMult = 5.0
 DMGMult = 1
@@ -1095,7 +1050,7 @@ DMGMult = 1
 [MAGCARGO]
 Ability = IMPERVIOUS
 Moves = LAVAPLUME,POWERGEM,PRIMEVALPSYCHICTERRAIN
-PostPrimeMoves = INFERNO,STONEEDGE
+PostPrimeMoves = INFERNO,MINDWARP
 Turns = 1
 HPMult = 7
 DMGMult = 1
@@ -1103,7 +1058,7 @@ DMGMult = 1
 [AMOONGUSS]
 Ability = MERCILESS
 Moves = POISONGAS,GIGADRAIN,PRIMEVALSUNNYDAY
-PostPrimeMoves = FLAMETHROWER
+PostPrimeMoves = FLAMETHROWER,GROWTH
 Turns = 1
 HPMult = 6
 DMGMult = 1
@@ -1111,7 +1066,7 @@ DMGMult = 1
 [WHISCASH]
 Ability = MENTALBLOCK
 Moves = CRASHDIVE,TREMOR,PRIMEVALHAIL
-PostPrimeMoves = FROSTBITE
+PostPrimeMoves = FROSTBITE,TRAMPLE
 Turns = 2
 HPMult = 5
 DMGMult = 1
@@ -1119,7 +1074,7 @@ DMGMult = 1
 [TOGEKISS]
 Ability = SERENEGRACE
 Moves = AIRSLASH,MISTYEXPLOSION,PRIMEVALHEALBELL
-PostPrimeMoves = TRIATTACK
+PostPrimeMoves = TRIATTACK,FLEURCANNON
 Turns = 2
 HPMult = 6
 DMGMult = 1
@@ -1140,14 +1095,14 @@ HPMult = 12
 [LANTURN]
 Ability = SHEERFORCE
 Moves = BUBBLEBLAST,THUNDERBOLT,PRIMEVALTAILWIND
-PostPrimeMoves = COLDFRONT
+PostPrimeMoves = COLDFRONT,SLUSHSPRAY
 Turns = 1
 HPMult = 6
 #------------------------------
 [SLOWKING]
 Ability = REALIST
 Moves = COSMICPOWER,EXTRASENSORY,PRIMEVALBULKUP
-PostPrimeMoves = TRAINEDOUTBURST
+PostPrimeMoves = MEDITATE,TRAINEDOUTBURST
 Turns = 2
 HPMult = 5
 #------------------------------
