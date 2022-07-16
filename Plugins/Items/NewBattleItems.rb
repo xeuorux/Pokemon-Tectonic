@@ -41,6 +41,12 @@ BattleHandlers::DamageCalcTargetItem.add(:STRIKEVEST,
   }
 )
 
+BattleHandlers::SpeedCalcItem.add(:SEVENLEAGUEBOOTS,
+  proc { |item,battler,mult|
+    next mult*1.1
+  }
+)
+
 BattleHandlers::TargetItemOnHit.add(:BUSTEDRADIO,
   proc { |item,user,target,move,battle|
     next if move.pbContactMove?(user)
