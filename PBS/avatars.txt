@@ -255,10 +255,10 @@ DMGMult = 1
 #-------------------------------
 [MINIOR]
 Ability = SHIELDSDOWN
-Moves = POWERGEM,COLDFRONT
-PostPrimeMoves = POWERGEM,COLDFRONT
+Moves = STARFALL,BOREALWIND,PRIMEVALANCIENTPOWER,PRIMEVALROCKPOLISH
+PostPrimeMoves = SHATTERSHOT,GUST
 Turns = 2
-HPMult = 3.0
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [PINSIR]
@@ -637,7 +637,7 @@ DMGMult = 1
 #-------------------------------
 [MILOTIC]
 Ability = COMPETITIVE
-Moves = BUBBLEBEAM,TWISTER,PRIMEVALTWISTER,PRIMEVALSANDSTORM
+Moves = BUBBLEBEAM,TWISTER,PRIMEVALSANDSTORM
 PostPrimeMoves = CRYSTALGLEAM,BRINE
 Turns = 2
 HPMult = 4.0
@@ -654,7 +654,7 @@ DMGMult = 1
 [RAICHU]
 Ability = AUDACITY
 Moves = SHOCKWAVE,NUZZLE,PRIMEVALGRASSYTERRAIN
-PostPrimeMoves = MEGADRAIN
+PostPrimeMoves = MEGADRAIN,DISCHARGE
 Turns = 2
 HPMult = 2.5
 DMGMult = 1

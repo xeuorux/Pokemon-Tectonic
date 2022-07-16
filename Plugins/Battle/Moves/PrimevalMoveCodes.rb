@@ -120,8 +120,8 @@ class PokeBattle_Move_608 < PokeBattle_Move_05B
   def pbEffectGeneral(user)
     user.pbOwnSide.effects[PBEffects::Tailwind] = 99999
 	@battle.pbDisplay(_INTL("A permanent Tailwind blew from behind {1}!",user.pbTeam(true)))
-	@battle.numBossOnlyTurns += 1
 	@battle.eachSameSideBattler(user) do |b|
+		b.effects[PBEffects::ExtraTurns] = 1
 		@battle.pbDisplay(_INTL("{1} gained an extra attack!",user.pbThis))
 	end
 	transformType(user,:FLYING)
@@ -399,6 +399,19 @@ class PokeBattle_Move_626 < PokeBattle_Move_068
 end
 
 
+class PokeBattle_Move_627 < PokeBattle_Move_030
+	include EmpoweredMove
+
+	def pbEffectGeneral
+		super
+		user.effects[PBEffects::ExtraTurns] = 2
+
+		@battle.pbDisplay(_INTL("{1} gained two extra moves per turn!",user.pbThis))
+
+		transformType(user,:ROCK)
+	end
+end
+
 ########################################################
 ### DAMAGING MOVES
 ########################################################
@@ -415,5 +428,10 @@ end
 
 # Empowered Rock Tomb
 class PokeBattle_Move_638 < PokeBattle_Move_04D
+	include EmpoweredMove
+end
+
+# Empowered Ancient Power
+class PokeBattle_Move_639 < PokeBattle_Move_02D
 	include EmpoweredMove
 end

@@ -1074,10 +1074,12 @@
 1523,PRIMEVALFAIRYTERRAIN,Primeval Fairy Terrain,623,0,FAIRY,Status,0,1,0,BothSides,0,,"Sets Fairy Terrain, TODO, and user becomes Fairy-type.",FAIRYTERRAIN
 1524,PRIMEVALPSYCHICTERRAIN,Primeval Psychic Terrain,624,0,PSYCHIC,Status,0,1,0,BothSides,0,,"Sets Psychic Terrain, drastically raises Accuracy, and user becomes Psychic-type.",PSYCHICTERRAIN
 1525,PRIMEVALHEALORDER,Primeval Heal Order,625,0,BUG,Status,0,1,0,User,0,d,"The user regains up to half of its max HP, summons an allied Combee, and becomes Bug-type",HEALORDER
-1526,PRIMEVALGASTROACID,Primeval Gastro Acid,626,0,POISON,Status,100,1,0,AllNearFoes,0,bce,"The user negates all enemy abilities, reduces their Sp. Def, and becomes Poison-type.",
-1536,PRIMEVALMETEORMASH,Primeval Meteor Mash,636,140,STEEL,Physical,100,10,100,NearOther,0,abefj,"The target is obliterated by a meteoric strike, which raises the user's attack.",
-1537,PRIMEVALICEBEAM,Primeval Ice Beam,637,140,ICE,Special,100,10,100,NearOther,0,bef,"The target is struck with an absolute zero beam of energy, chilling it.",
-1538,PRIMEVALROCKTOMB,Rock Tomb,638,80,ROCK,Physical,100,10,100,AllNearFoes,0,bef,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",
+1526,PRIMEVALGASTROACID,Primeval Gastro Acid,626,0,POISON,Status,100,1,0,AllNearFoes,0,bce,"The user negates all enemy abilities, reduces their Sp. Def, and becomes Poison-type.",GASTROACID
+1527,PRIMEVALROCKPOLISH,Primeval Rock Polish,627,0,ROCK,Status,0,1,0,User,0,d,"The sharply raises its speed, gains an extra two moves per turn, and becomes Rock-type.",ROCKPOLISH
+1536,PRIMEVALMETEORMASH,Primeval Meteor Mash,636,140,STEEL,Physical,100,10,100,NearOther,0,abefj,"The target is obliterated by a meteoric strike, which raises the user's attack.",METEORMASH
+1537,PRIMEVALICEBEAM,Primeval Ice Beam,637,140,ICE,Special,100,10,100,NearOther,0,bef,"The target is struck with an absolute zero beam of energy, chilling it.",ICEBEAM
+1538,PRIMEVALROCKTOMB,Rock Tomb,638,80,ROCK,Physical,100,10,100,AllNearFoes,0,bef,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
+1539,PRIMEVALANCIENTPOWER,Primeval Ancient Power,639,60,ROCK,Special,100,10,100,NearOther,0,bef,"The user attacks with a prehistoric power which raises all its stats",ANCIENTPOWER
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered.",
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch.",
 2002,CONFUSION,Confusion,401,50,PSYCHIC,Special,100,25,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It may also leave the target flustered.",

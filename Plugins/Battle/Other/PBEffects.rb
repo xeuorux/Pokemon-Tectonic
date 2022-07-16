@@ -32,10 +32,13 @@ module PBEffects
 	IceBall				= 139
 	RollOut				= 140
 	Gargantuan			= 141
-	EmpoweredMoonlight  = 142
-	EmpoweredEndure		= 143
-	EmpoweredLaserFocus = 144
-	StunningCurl		= 145
+	StunningCurl		= 142
+
+
+    ExtraTurns          = 199
+    EmpoweredMoonlight  = 200
+	EmpoweredEndure		= 201
+	EmpoweredLaserFocus = 202
 	
 	#===========================================================================
     # These effects apply to a side

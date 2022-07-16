@@ -27,7 +27,9 @@ class PokeBattle_Battler
 	end
 
 	def extraMovesPerTurn
-		return @pokemon.extraMovesPerTurn || 0
+		val = @pokemon.extraMovesPerTurn || 0
+		val += effects[PBEffects::ExtraTurns]
+		return val
 	end
 
 	def extraMovesPerTurn=(val)
@@ -355,5 +357,6 @@ class PokeBattle_Battler
 		@effects[PBEffects::EmpoweredEndure]     = 0
 		@effects[PBEffects::EmpoweredMoonlight]  = false
 		@effects[PBEffects::EmpoweredLaserFocus] = false
+		@effects[PBEffects::EmpoweredRockPolish] = 0
     end
 end
