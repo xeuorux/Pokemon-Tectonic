@@ -114,6 +114,7 @@ class PokeBattle_AI
       @battle.pbDisplay(_INTL("#{user.pbThis} is winding up a big attack!"))
       extraAggro = true
       user.extraMovesPerTurn = 0
+      user.primevalTimer = 0
     else
       user.resetExtraMovesPerTurn
       PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,targets)
