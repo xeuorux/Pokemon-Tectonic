@@ -1586,12 +1586,12 @@ end
     match = event.name.match(/PHT\(([_a-zA-Z0-9]+),([_a-zA-Z]+),([0-9]+)\)/)
     return nil if !match
     ret = RPG::Event.new(event.x,event.y)
-    ret.name = "resettrainer(4)"
     ret.id   = event.id
     ret.pages = []
     trainerTypeName = match[1]
     return nil if !trainerTypeName || trainerTypeName == ""
     trainerName = match[2]
+    ret.name = "resettrainer(4) - " + trainerTypeName + " " + trainerName
     trainerMaxLevel = match[3]
     ret.pages = [3]
     
@@ -1647,10 +1647,10 @@ end
     match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)(?:,([_a-zA-Z]+))?(?:,([_a-zA-Z0-9]+))?(?:,([0-9]+))?\).*/)
     return nil if !match
     ret = RPG::Event.new(event.x,event.y)
-    ret.name = "size(2,2)trainer(4)"
     ret.id   = event.id
     ret.pages = []
     avatarSpecies = match[1]
+    ret.name = "size(2,2)trainer(4) - " + avatarSpecies
     legendary = isLegendary(avatarSpecies)
     return nil if !avatarSpecies || avatarSpecies == ""
     level = match[2]
