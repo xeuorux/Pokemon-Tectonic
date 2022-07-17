@@ -455,7 +455,7 @@ class PokemonPartyScreen
 		annot = []
 		for pkmn in @party
 		  styled = styledProc.call(pkmn)
-		  annot.push((styled) ? _INTL("STYLED") : _INTL("NOT STYLED"))
+		  annot.push((styled) ? _INTL("RESTYLE") : _INTL("FIRST STYLE"))
 		end
 		ret = -1
 		@scene.pbStartScene(@party,
