@@ -44,6 +44,7 @@ class PokeBattle_AI
     user.eachMoveWithIndex do |_m,i|
       if !@battle.pbCanChooseMove?(idxBattler,i,false)
         echoln("The boss can't choose: #{_m.name}")
+        next
       end
       pbRegisterMoveBoss(user,i,choices)
     end

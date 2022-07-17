@@ -323,8 +323,8 @@ class PokeBattle_Move_621 < PokeBattle_Move_155
 	
 	def pbEffectGeneral(user)
 		super
-		user.pbRaiseStatStage(:ATTACK,1,battler)
-		user.pbRaiseStatStage(:SPECIAL_ATTACK,1,battler)
+		user.pbRaiseStatStage(:ATTACK,1,user)
+		user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
 		transformType(user,:GRASS)
 	end
 end
@@ -448,6 +448,6 @@ class PokeBattle_Move_639 < PokeBattle_Move_02D
 end
 
 # Empowered Thunderbolt
-class PokeBattle_Move_639 < PokeBattle_Move_02D
+class PokeBattle_Move_640 < PokeBattle_Move_007
 	include EmpoweredMove
 end

@@ -100,7 +100,6 @@ class PokeBattle_Scene
   end
 
   def setAggroCursorsOff
-    echoln("Disabling all aggro cursors")
     @battle.battlers.each_with_index do |b,i|
 		  next if !b
       @sprites["aggro_cursor_#{i}"].visible = false
