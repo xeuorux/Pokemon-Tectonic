@@ -29,11 +29,11 @@ class PokeBattle_Struggle < PokeBattle_Move
 
   def pbEffectAfterAllHits(user,target)
     return if target.damageState.unaffected
-	if user.boss?
-		user.pbReduceHP((user.totalhp/16.0).round,false)
+	  if user.boss?
+		  user.pbReduceHP((user.totalhp/16.0).round,false)
     else
-		user.pbReduceHP((user.totalhp/4.0).round,false)
-	end
+		  user.pbReduceHP((user.totalhp/4.0).round,false)
+	  end
     @battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
     user.pbItemHPHealCheck
   end

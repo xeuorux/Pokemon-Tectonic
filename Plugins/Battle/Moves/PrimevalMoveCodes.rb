@@ -46,6 +46,7 @@ class PokeBattle_Move_602 < PokeBattle_Move_100
 		super
 		user.effects[PBEffects::AquaRing] = true
 		@battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
+		@battle.pbAnimation(:AQUARING, user, [user])
 		transformType(user,:WATER)
 	end
 end
@@ -336,6 +337,7 @@ class PokeBattle_Move_622 < PokeBattle_Move_154
 		super
 		user.effects[PBEffects::Charge] = 2
     	@battle.pbDisplay(_INTL("{1} began charging power!",user.pbThis))
+		@battle.pbAnimation(:CHARGE, user, [user])
 		transformType(user,:ELECTRIC)
 	end
 end
@@ -371,7 +373,7 @@ class PokeBattle_Move_625 < PokeBattle_Move
 	def pbEffectGeneral(user)
 		user.pbRecoverHP((user.totalhp/4.0).round)
 		@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
-		
+		@battle.pbDisplay(_INTL("{1} summons a helper!",user.pbThis))
 		@battle.addAvatarBattler(:COMBEE,battler.level)
 		
 		transformType(user,:BUG)

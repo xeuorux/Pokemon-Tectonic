@@ -42,8 +42,10 @@ class PokeBattle_AI
     #       score.
     choices     = []
     user.eachMoveWithIndex do |_m,i|
-      next if !@battle.pbCanChooseMove?(idxBattler,i,false)
-      pbRegisterMoveWild(user,i,choices)
+      if !@battle.pbCanChooseMove?(idxBattler,i,false)
+        echoln("The boss can't choose: #{_m.name}")
+      end
+      pbRegisterMoveBoss(user,i,choices)
     end
     logMoveChoices(user,choices)
 	
@@ -90,21 +92,19 @@ class PokeBattle_AI
     # if there is somehow still no choice, choose to use Struggle
     if @battle.choices[idxBattler][2].nil?
       echoln("All AI protocols have failed or fallen through, picking struggle since it's a boss.")
-        @battle.choices[idxBattler][0] = :UseMove    # "Use move"
-        @battle.choices[idxBattler][1] = -1          # Index of move to be used
-        @battle.choices[idxBattler][2] = @struggle   # Struggle PokeBattle_Move object
-        @battle.choices[idxBattler][3] = -1          # No target chosen yet
+      @battle.choices[idxBattler][0] = :UseMove    # "Use move"
+      @battle.choices[idxBattler][1] = -1          # Index of move to be used
+      @battle.choices[idxBattler][2] = @struggle   # Struggle PokeBattle_Move object
+      @battle.choices[idxBattler][3] = -1          # No target chosen yet
     end
 
-    # Log the result
-    if @battle.choices[idxBattler][2]
-      user.lastMoveChosen = @battle.choices[idxBattler][2].id
-      PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will use #{@battle.choices[idxBattler][2].name}")
-    end
-	
     choice = @battle.choices[idxBattler]
     move = choice[2]
     target = choice[3]
+
+    # Log the result
+    user.lastMoveChosen = move.id
+    PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will use #{move.name}")
     
     extraAggro = false
     if move.empowered? && move.damagingMove?
@@ -361,28 +361,27 @@ class PokeBattle_AI
 	end
 
   
-  def pbRegisterMoveWild(user,idxMove,choices)
+  def pbRegisterMoveBoss(user,idxMove,choices)
     move = user.moves[idxMove]
-	  return if move.isEmpowered? && !move.damagingMove? # Never ever use empowered status moves normally
+    # Never ever use empowered status moves normally
+	  if move.isEmpowered? && !move.damagingMove?
+      echoln("Scoring #{move.name} a 0 due to it being an empowered status move.")
+      return
+    end 
 
     target_data = move.pbTarget(user)
     if target_data.num_targets > 1
       # If move affects multiple battlers and you don't choose a particular one
       totalScore = 0
-      
       if move.damagingMove?
         targets = []
         @battle.eachBattler do |b|
           next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
           next if !user.opposes?(b)
           targets.push(b)
-          if user.boss?
-            score = pbGetMoveScoreBoss(move,user,b)
-            targetPercent = b.hp.to_f / b.totalhp.to_f
-            score = (score*(1.0 + 0.5 * targetPercent)).floor
-          else
-            score = 100
-          end
+          score = pbGetMoveScoreBoss(move,user,b)
+          targetPercent = b.hp.to_f / b.totalhp.to_f
+          score = (score*(1.0 + 0.5 * targetPercent)).floor
           totalScore += score
         end
         if targets.length() != 0
@@ -391,20 +390,16 @@ class PokeBattle_AI
           totalScore = 0
         end
       else
-        if user.boss?
-          totalScore = pbGetMoveScoreBoss(move,user,nil)
-        else
-          totalScore = 100
-        end
+        totalScore = pbGetMoveScoreBoss(move,user,nil)
       end
-      choices.push([idxMove,totalScore,-1]) if totalScore > 0
+      if totalScore > 0
+        choices.push([idxMove,totalScore,-1])
+      else
+        echoln("Scoring #{move.name} a 0.")
+      end
     elsif target_data.num_targets == 0
       # If move has no targets, affects the user, a side or the whole field
-      if user.boss
-        score = pbGetMoveScoreBoss(move,user,user)
-      else
-        score = 100
-      end
+      score = pbGetMoveScoreBoss(move,user,user)
       choices.push([idxMove,score,-1])
     else
       # If move affects one battler and you have to choose which one
@@ -413,16 +408,16 @@ class PokeBattle_AI
         next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
         next if target_data.targets_foe && !user.opposes?(b)
 		    
-        if user.boss?
-          score = pbGetMoveScoreBoss(move,user,b)
-          if move.damagingMove?
-            targetPercent = b.hp.to_f / b.totalhp.to_f
-            score = (score*(1.0 + 0.5 * targetPercent)).floor
-          end
-        else
-          score = 100
+        score = pbGetMoveScoreBoss(move,user,b)
+        if move.damagingMove?
+          targetPercent = b.hp.to_f / b.totalhp.to_f
+          score = (score*(1.0 + 0.5 * targetPercent)).floor
         end
-        scoresAndTargets.push([score,b.index]) if score > 0
+        if score > 0
+          scoresAndTargets.push([score,b.index])
+        else
+          echoln("Scoring #{move.name} a 0.")
+        end
       end
       if scoresAndTargets.length>0
         # Get the one best target for the move

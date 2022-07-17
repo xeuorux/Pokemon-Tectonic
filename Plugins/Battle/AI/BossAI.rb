@@ -190,35 +190,6 @@ class PokeBattle_AI
 			end 
 		end
 		
-		# AI for enemy stat down moves
-		if !move.damagingMove? && move.is_a?(PokeBattle_TargetStatDownMove)
-			statDown = move.statDown[0]
-			maxStat = -99999
-			maxStater = nil
-			@battle.battlers.each do |b|
-				next if !b || !user.opposes?(b)
-				stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-				stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-				stat      = b.plainStats[statDown]
-				statStage = b.stages[statDown]+6
-				stat = (stat.to_f*stageMul[statStage]/stageDiv[statStage]).floor
-				if stat > maxStat
-					maxStat = stat
-					maxStater = b
-				end
-			end
-			score = target == maxStater ? 130 : 0
-		end
-			
-		# Much more likely to use priority moves/flinching moves when that stuff can actually matter
-		if move.priority > 0 || move.flinchingMove?
-			if user.battle.commandPhasesThisRound == 0
-				score *= 2
-			else
-				score = 0
-			end
-		end
-		
 		# Guarantee certain moves
 		score = 99999 if PokeBattle_AI.triggerBossRequireMoveCode(move.function,move,user,target)
 		score = 99999 if PokeBattle_AI.triggerBossRequireMoveID(move.id,move,user,target)
@@ -241,13 +212,15 @@ class PokeBattle_AI
 
 		# Never use a move that would fail outright
 		if move.pbMoveFailed?(user,[target])
-			score = 0
+			echoln("Scoring #{move.name} a 0 due to being predicted to fail entirely")
+			return 0
 		end
 		
 		# Status inducing move and is a status move
 		# Check for specific target failure condition
-		if ["003","005","006","007","00A","00C"].include?(move.function) && move.statusMove?
-			score /= 2 if move.pbFailsAgainstTarget?(user,target)
+		if !target.nil? && move.pbFailsAgainstTarget?(user,target)
+			echoln("Scoring #{move.name} a 0 due to being predicted to fail against the target")
+			return 0
 		end
 
 		# Try very hard not to attack targets which are protected

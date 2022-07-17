@@ -106,9 +106,8 @@ class PokeBattle_Battle
     return if @decision>0
     pbAttackPhaseMegaEvolution
     
-	pbPriority.each do |b|
+	  pbPriority.each do |b|
         next if b.fainted?
-		next if @commandPhasesThisRound > b.extraMovesPerTurn
         next unless @choices[b.index][0]==:UseMove
         b.pbProcessTurn(@choices[b.index])
       end
