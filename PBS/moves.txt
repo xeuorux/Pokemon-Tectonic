@@ -1081,7 +1081,11 @@
 1537,PRIMEVALICEBEAM,Primeval Ice Beam,637,160,ICE,Special,100,10,100,NearOther,0,bef,"The target is struck with an absolute zero beam of energy, chilling it.",ICEBEAM
 1538,PRIMEVALROCKTOMB,Primeval Rock Tomb,638,90,ROCK,Physical,100,10,100,AllNearFoes,0,bef,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
 1539,PRIMEVALANCIENTPOWER,Primeval Ancient Power,639,80,ROCK,Special,100,10,100,NearOther,0,bef,"The user attacks with a prehistoric power which raises all its stats",ANCIENTPOWER
-1540,PRIMEVALTHUNDERBOLT,Primeval Thunderbolt,640,160,ELECTRIC,Special,100,1,100,NearOther,0,bef,"A powerful electric blast is let loose on the target, numbing it.",
+1540,PRIMEVALTHUNDERBOLT,Primeval Thunderbolt,640,160,ELECTRIC,Special,100,1,100,NearOther,0,bef,"A powerful electric blast is let loose on the target, numbing it.",THUNDERBOLT
+1541,PRIMEVALFLAREBLITZ,Primeval Flare Blitz,641,200,FIRE,Physical,100,10,0,NearOther,0,abef,"The user cloaks itself in fire and charges at the foe. The user also takes 33% recoil.",FLAREBLITZ
+1542,PRIMEVALMETALCLAW,Primeval Metal Claw,642,50,STEEL,Physical,100,35,100,NearOther,0,abef,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
+1543,PRIMEVALSLASH,Primeval Slash,643,100,NORMAL,Physical,100,20,0,NearOther,0,abefp,"The target is attacked with a slash of claws or blades, always critting.",SLASH
+1544,PRIMEVALBRICKBREAK,Primeval Brick Break,644,100,FIGHTING,Physical,100,15,100,NearOther,0,abef,"The user attacks with a swift chop, destroying barriers, and drastically reducing the target's defense.",BRICKBREAK
 2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered.",
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch.",
 2002,CONFUSION,Confusion,401,50,PSYCHIC,Special,100,25,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It may also leave the target flustered.",

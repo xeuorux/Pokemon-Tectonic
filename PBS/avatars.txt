@@ -528,69 +528,45 @@ DMGMult = 1
 #-------------------------------
 [COBALION]
 Ability = HEARTOFJUSTICE
-Moves = IRONHEAD,AURASPHERE,PRIMEVALRAINDANCE
-PostPrimeMoves = RAZORSHELL,SWORDSDANCE
+Moves = IRONHEAD,AURASPHERE,PRIMEVALMETALCLAW,PRIMEVALRAINDANCE
+PostPrimeMoves = RAZORSHELL,MAGNETHRASH
 Turns = 2
-HPMult = 10.0
+HPMult = 8.0
 DMGMult = 1
 Item = LUMBERRY
 #-------------------------------
 [TERRAKION]
 Ability = HEARTOFJUSTICE
-Moves = BEDROCKBREAKER,TRAMPLE,PRIMEVALTAILWIND
-PostPrimeMoves = STRAFE,BLAZEKICK,ICECALIBUR
+Moves = BEDROCKBREAKER,TRAMPLE,PRIMEVALBRICKBREAK,PRIMEVALTAILWIND
+PostPrimeMoves = STRAFE,ICECALIBUR
 Turns = 2
-HPMult = 10.0
+HPMult = 8.0
 DMGMult = 1
 Item = EXPERTBELT
 #-------------------------------
 [VIRIZION]
 Ability = HEARTOFJUSTICE
-Moves = SUBSTITUTE,HORNLEECH,LEAFBLADE,PRIMEVALMOONLIGHT
-PostPrimeMoves = DAZZLINGGLEAM,LUNARJUSTICE
+Moves = HORNLEECH,SACREDSWORD,PRIMEVALSLASH,PRIMEVALMOONLIGHT
+PostPrimeMoves = LUNARJUSTICE,GRASSKNOT
 Turns = 2
-HPMult = 7.5
+HPMult = 8.0
 DMGMult = 1
 Item = MENTALHERB
 #-------------------------------
 [KELDEO]
 Ability = HEARTOFJUSTICE
 Moves = SECRETSWORD,BUBBLEBLAST,PRIMEVALIGNITE
-PostPrimeMoves = FIERYDANCE
-Turns = 3
-HPMult = 5.0
+PostPrimeMoves = FIERYDANCE,DOUSE
+Turns = 2
+HPMult = 8.0
 DMGMult = 1
 Item = LEFTOVERS
-#-------------------------------
-[NIDOQUEEN]
-Ability = POISONPUNISH
-Moves = MUDSHOT,FLATTER,STENCH
-PostPrimeMoves = MUDSHOT,FLATTER,STENCH
-Turns = 2
-HPMult = 2.0
-DMGMult = 1
 #-------------------------------
 [SHUCKLE]
 Ability = GLUTTONY
 Moves = POWERTRIP,GIGAIMPACT,STEALTHROCK
 PostPrimeMoves = POWERTRIP,GIGAIMPACT,STEALTHROCK
 Turns = 3
-HPMult = 2.0
-DMGMult = 1
-#-------------------------------
-[SWALOT]
-Ability = GLUTTONY
-Moves = POISONGAS,ACID
-PostPrimeMoves = POISONGAS,ACID
-Turns = 2
-HPMult = 2.0
-DMGMult = 1
-#-------------------------------
-[TORKOAL]
-Ability = IMPERVIOUS
-Moves = IGNITE,FLAMEBURST
-PostPrimeMoves = IGNITE,FLAMEBURST
-Turns = 2
 HPMult = 2.0
 DMGMult = 1
 #-------------------------------
@@ -620,10 +596,10 @@ DMGMult = 1
 #-------------------------------
 [RAICHU]
 Ability = AUDACITY
-Moves = SHOCKWAVE,NUZZLE,PRIMEVALGRASSYTERRAIN
-PostPrimeMoves = MEGADRAIN,DISCHARGE,PRIMEVALTHUNDERBOLT
+Moves = SHOCKWAVE,NUMB,PRIMEVALTHUNDERBOLT,PRIMEVALGRASSYTERRAIN
+PostPrimeMoves = MEGADRAIN,DISCHARGE
 Turns = 2
-HPMult = 2.5
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [ELECTRODE]
@@ -644,8 +620,8 @@ DMGMult = 1
 #-------------------------------
 [LEDIAN]
 Ability = IRONFIST
-Moves = XSCISSOR,DRAINPUNCH
-PostPrimeMoves = XSCISSOR,DRAINPUNCH
+Moves = XSCISSOR,BRICKBREAK,PRIMEVALELECTRICTERRAIN
+PostPrimeMoves = THUNDERPUNCH,DRAINPUNCH
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -669,10 +645,10 @@ DMGMult = 1
 #-------------------------------
 [ABSOLUS]
 Ability = BADOMEN
-Moves = MOONBLAST,NIGHTSLASH,PRIMEVALIGNITE
-PostPrimeMoves = FLAMETHROWER,FIRELASH
+Moves = KALEIDOSCOPE,NIGHTSLASH,PRIMEVALIGNITE
+PostPrimeMoves = FIRELASH,DARKPULSE,PRIMEVALFLAREBLITZ
 Turns = 2
-HPMult = 3.5
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [KLINKLANG]

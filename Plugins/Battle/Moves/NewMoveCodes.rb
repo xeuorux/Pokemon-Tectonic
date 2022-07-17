@@ -546,6 +546,7 @@ end
 class PokeBattle_Move_518 < PokeBattle_HealingMove
   def pbOnStartUse(user,targets)
     @healAmount = (user.totalhp*1/3.0).round
+	@healAmount /= 4.0 if user.boss?
   end
   
   def pbMoveFailed?(user,targets)

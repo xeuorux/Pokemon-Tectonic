@@ -451,3 +451,55 @@ end
 class PokeBattle_Move_640 < PokeBattle_Move_007
 	include EmpoweredMove
 end
+
+# Empowered Flareblitz
+class PokeBattle_Move_641 < PokeBattle_Move_0FB
+	include EmpoweredMove
+end
+
+# Empowered Metal Claw
+class PokeBattle_Move_642 < PokeBattle_Move_01C
+	include EmpoweredMove
+
+	def multiHitMove?;           return true; end
+  	def pbNumHits(user,targets); return 2;    end
+end
+
+# Empowered Slash
+class PokeBattle_Move_643 < PokeBattle_Move_0A0
+	include EmpoweredMove
+end
+
+# Primeval Brick Break
+class PokeBattle_Move_644 < PokeBattle_TargetStatDownMove
+	def ignoresReflect?; return true; end
+
+  	def pbEffectGeneral(user)
+		if user.pbOpposingSide.effects[PBEffects::LightScreen]>0
+		user.pbOpposingSide.effects[PBEffects::LightScreen] = 0
+		@battle.pbDisplay(_INTL("{1}'s Light Screen wore off!",user.pbOpposingTeam))
+		end
+		if user.pbOpposingSide.effects[PBEffects::Reflect]>0
+		user.pbOpposingSide.effects[PBEffects::Reflect] = 0
+		@battle.pbDisplay(_INTL("{1}'s Reflect wore off!",user.pbOpposingTeam))
+		end
+		if user.pbOpposingSide.effects[PBEffects::AuroraVeil]>0
+		user.pbOpposingSide.effects[PBEffects::AuroraVeil] = 0
+		@battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!",user.pbOpposingTeam))
+		end
+	end
+
+	def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
+		if user.pbOpposingSide.effects[PBEffects::LightScreen]>0 ||
+		user.pbOpposingSide.effects[PBEffects::Reflect]>0 ||
+		user.pbOpposingSide.effects[PBEffects::AuroraVeil]>0
+		hitNum = 1   # Wall-breaking anim
+		end
+		super
+	end
+
+	def initialize(battle,move)
+	  super
+	  @statDown = [:DEFENSE,3]
+	end
+end
