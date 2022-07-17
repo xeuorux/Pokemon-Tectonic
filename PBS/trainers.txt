@@ -815,11 +815,11 @@ Pokemon = CROBAT,40
     EV = 10,20,0,20,0,0
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,1]
-Pokemon = MAGNETON,25
-    Moves = LIGHTSCREEN,SHOCKWAVE,MIRRORSHOT
-    AbilityIndex = 1
 Pokemon = MORGREM,25
     Moves = REFLECT,ASSURANCE,PERFUMEDPUNCH
+    AbilityIndex = 1
+Pokemon = MAGNETON,25
+    Moves = LIGHTSCREEN,SHOCKWAVE,MIRRORSHOT
     AbilityIndex = 1
 Pokemon = POLIWHIRL,25
     Moves = SPATTERINGRAM,BRICKBREAK,HELPINGHAND
