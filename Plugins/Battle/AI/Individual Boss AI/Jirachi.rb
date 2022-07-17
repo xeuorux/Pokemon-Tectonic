@@ -11,7 +11,7 @@ PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:JIRACHI,:LIFEDEW],
 )
 
 PokeBattle_AI::BossDecidedOnMove.add(:JIRACHI,
-	proc { |species,move,user,target|
+	proc { |species,move,user,targets|
 		if move.id == :LIFEDEW
 			user.battle.pbDisplay(_INTL("#{user.pbThis} takes a passive stance, inspecting its wounds."))
 		end

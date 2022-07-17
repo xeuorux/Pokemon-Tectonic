@@ -15,7 +15,7 @@ PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:KYOGRE,:ORIGINPULSE],
 
 #signals origin pulse
 PokeBattle_AI::BossDecidedOnMove.add(:KYOGRE,
-	proc { |species,move,user,target|
+	proc { |species,move,user,targets|
 		if move.function == "08B"
 			user.battle.pbDisplay(_INTL("The avatar is clearly preparing a massive opening attack!"))
 			user.extraMovesPerTurn = 0

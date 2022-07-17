@@ -15,7 +15,7 @@ PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:GROUDON,:PRECIPICEBLADES],
 
 #signals precipice blades
 PokeBattle_AI::BossDecidedOnMove.add(:GROUDON,
-	proc { |species,move,user,target|
+	proc { |species,move,user,targets|
 		if move.function == "08B"
 			user.battle.pbDisplay(_INTL("The avatar is clearly preparing a massive opening attack!"))
 			user.extraMovesPerTurn = 0

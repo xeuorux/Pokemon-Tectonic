@@ -138,10 +138,10 @@ class PokeBattle_AI
 	BossDecidedOnMove				 	= BossBehaviourHash.new
 	BossBeginTurn						= BossBehaviourHash.new
 	
-	def self.triggerBossDecidedOnMove(species,move,user,target)
+	def self.triggerBossDecidedOnMove(species,move,user,targets)
 		ret = nil
 		begin
-			return BossDecidedOnMove.trigger(species,move,user,target)
+			return BossDecidedOnMove.trigger(species,move,user,targets)
 		rescue
 			AIErrorRecovered($!)
 		end

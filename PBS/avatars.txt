@@ -174,7 +174,7 @@ Ability = SCHADENFREUDE
 Moves = AQUAJET,BITE,PRIMEVALSPIKES
 PostPrimeMoves = RUMBLE,BRUTALSWING
 Turns = 2
-HPMult = 3.5
+HPMult = 4.5
 DMGMult = 1
 Item = MUSCLEBAND
 #-------------------------------

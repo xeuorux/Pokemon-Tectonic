@@ -63,7 +63,7 @@ class PokeBattle_AI
 
       if guaranteedChoices.length == 0
         echoln("Counting down to use primeval damaging move: #{user.primevalTimer}") if empoweredDamagingChoices.length > 0
-        if empoweredDamagingChoices.length > 0 && user.primevalTimer > 2
+        if empoweredDamagingChoices.length > 0 && user.primevalTimer >= 2
           preferredChoice = empoweredDamagingChoices[0]
           user.primevalTimer = 0
         else
@@ -95,7 +95,7 @@ class PokeBattle_AI
       echoln("All AI protocols have failed or fallen through, picking struggle since it's a boss.")
       @battle.choices[idxBattler][0] = :UseMove    # "Use move"
       @battle.choices[idxBattler][1] = -1          # Index of move to be used
-      @battle.choices[idxBattler][2] = @struggle   # Struggle PokeBattle_Move object
+      @battle.choices[idxBattler][2] = @battle.struggle   # Struggle PokeBattle_Move object
       @battle.choices[idxBattler][3] = -1          # No target chosen yet
     end
 
@@ -106,6 +106,8 @@ class PokeBattle_AI
     # Log the result
     user.lastMoveChosen = move.id
     PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will use #{move.name}")
+
+    targets = user.pbFindTargets(choice,move,user)
     
     extraAggro = false
     if move.empowered? && move.damagingMove?
@@ -114,14 +116,14 @@ class PokeBattle_AI
       user.extraMovesPerTurn = 0
     else
       user.resetExtraMovesPerTurn
-      PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,target)
+      PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,targets)
     end
 
-    # Set the avatar aggro cursors on the targets of the choice
-    targets = user.pbFindTargets(choice,move,user)
-    targets.each do |target|
-      echoln("Enabling the avatar aggro cursor at index #{target.index}")
-      @battle.scene.setAggroCursorOnIndex(target.index,extraAggro)
+    if @battle.commandPhasesThisRound == 0
+      # Set the avatar aggro cursors on the targets of the choice
+      targets.each do |target|
+        @battle.scene.setAggroCursorOnIndex(target.index,extraAggro)
+      end
     end
   end
   

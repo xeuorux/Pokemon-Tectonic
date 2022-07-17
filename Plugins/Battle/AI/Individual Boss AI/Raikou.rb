@@ -6,7 +6,7 @@ PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:RAIKOU,:LIGHTNINGSHRIEK],
 
 
 PokeBattle_AI::BossDecidedOnMove.add(:RAIKOU,
-	proc { |species,move,user,target|
+	proc { |species,move,user,targets|
 		if move.id == :LIGHTNINGSHRIEK
 			user.battle.pbDisplay(_INTL("#{user.pbThis} opens its mouth up wide!"))
 		end

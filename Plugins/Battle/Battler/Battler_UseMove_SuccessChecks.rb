@@ -40,11 +40,11 @@ class PokeBattle_Battler
       end
       return false
     end
-    # Choice Band
+    # Choice Items
     if @effects[PBEffects::ChoiceBand]
       if hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) &&
          pbHasMove?(@effects[PBEffects::ChoiceBand])
-        if move.id!=@effects[PBEffects::ChoiceBand]
+        if move.id != @effects[PBEffects::ChoiceBand] && move.id != :STRUGGLE
           if showMessages
             msg = _INTL("{1} allows the use of only {2}!",itemName,
                GameData::Move.get(@effects[PBEffects::ChoiceBand]).name)
@@ -56,7 +56,7 @@ class PokeBattle_Battler
         @effects[PBEffects::ChoiceBand] = nil
       end
     end
-	# Gorilla Tactics
+	  # Gorilla Tactics
     if @effects[PBEffects::GorillaTactics]
       if hasActiveAbility?(:GORILLATACTICS)
         if move.id != @effects[PBEffects::GorillaTactics]
