@@ -279,4 +279,11 @@ class PokeBattle_Battler
     return false if hasActiveAbility?(:KLUTZ,ignoreFainted)
     return true
   end
+
+  def protected?
+    invulnerableProtectEffects().each do |effectID|
+      return true if @effects[effectID]
+    end
+    return false
+  end
 end

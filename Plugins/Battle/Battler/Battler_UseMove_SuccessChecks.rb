@@ -278,8 +278,8 @@ class PokeBattle_Battler
       return false
     end
     # Crafty Shield
-    if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index!=target.index && move.function != "17C"
-       move.statusMove? && !move.pbTarget(user).targets_all && !unseenfist
+    if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index != target.index && 
+        move.statusMove? && !move.pbTarget(user).targets_all && !unseenfist
       @battle.pbCommonAnimation("CraftyShield",target)
       @battle.pbDisplay(_INTL("Crafty Shield protected {1}!",target.pbThis(true)))
       target.damageState.protected = true
@@ -288,7 +288,7 @@ class PokeBattle_Battler
     end
     # Wide Guard
     if target.pbOwnSide.effects[PBEffects::WideGuard] && user.index!=target.index &&
-       move.pbTarget(user).num_targets > 1 &&
+       move.pbTarget(user).num_targets > 1 && !move.smartSpreadsTargets? &&
        (Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?) && !unseenfist
       @battle.pbCommonAnimation("WideGuard",target)
       @battle.pbDisplay(_INTL("Wide Guard protected {1}!",target.pbThis(true)))

@@ -224,23 +224,13 @@ class PokeBattle_AI
 		end
 
 		# Try very hard not to attack targets which are protected
-		if !target.nil?
-			isProtectedSingle = false
-			singleProtectEffects().each do |single_protect_effect|
-				if target.effects[single_protect_effect]
-					isProtectedSingle = true
-					break
-				end
-			end
-			score = 1 if isProtectedSingle
+		if !target.nil? && target.protected?
+			echoln("Scoring #{move.name} a 1 due to the target being protected this turn")
+			return 1
 		end
 
 		@battle.messagesBlocked = false
 		
 		return score
 	end
-end
-
-def protectStyleEffects()
-	return [PBEffects::Protect,PBEffects::Obstruct,PBEffects::KingsShield,PBEffects::SpikyShield,PBEffects::BanefulBunker,PBEffects::MatBlock]
 end

@@ -257,9 +257,9 @@ class PokeBattle_Battler
         end
       end
     end
-	# Redirect Dragon Darts first hit if necessary
-    if move.function=="17C" && @battle.pbSideSize(targets[0].index)>1
-      targets=pbChangeTargets(move,user,targets,0)
+	  # Redirect Dragon Darts and similar moves first hit if necessary
+    if move.smartSpreadsTargets? && @battle.pbSideSize(targets[0].index) > 1
+      targets = pbChangeTargets(move,user,targets,0)
     end
     #---------------------------------------------------------------------------
     magicCoater  = -1
@@ -497,8 +497,8 @@ class PokeBattle_Battler
     # Count a hit for Parental Bond (if it applies)
     user.effects[PBEffects::ParentalBond] -= 1 if user.effects[PBEffects::ParentalBond]>0
     # Redirect Dragon Darts other hits
-    if move.function=="17C" && @battle.pbSideSize(targets[0].index)>1 && hitNum>0
-      targets=pbChangeTargets(move,user,targets,1)
+    if move.smartSpreadsTargets? && @battle.pbSideSize(targets[0].index) > 1 && hitNum > 0
+      targets = pbChangeTargets(move,user,targets,1)
     end
     # Accuracy check (accuracy/evasion calc)
     if hitNum==0 || move.successCheckPerHit?
