@@ -50,7 +50,6 @@ class PokeBattle_Battler
 		end
 	end
 
-
 	def hasActiveAbility?(check_ability, ignore_fainted = false)
 		return false if !abilityActive?(ignore_fainted)
 		return check_ability.include?(@ability_id) if check_ability.is_a?(Array)
@@ -130,7 +129,7 @@ class PokeBattle_Battler
   #       the item - the code existing is enough to cause the loop).
   def abilityActive?(ignore_fainted = false)
     return false if fainted? && !ignore_fainted
-	return false if @battle.field.effects[PBEffects::NeutralizingGas]
+	  return false if @battle.field.effects[PBEffects::NeutralizingGas]
     return false if @effects[PBEffects::GastroAcid]
     return true
   end
@@ -275,7 +274,7 @@ class PokeBattle_Battler
   def itemActive?(ignoreFainted=false)
     return false if fainted? && !ignoreFainted
     return false if @effects[PBEffects::Embargo]>0
-    return false if user.pbOwnSide.effects[PBEffects::EmpoweredEmbargo]
+    return false if pbOwnSide().effects[PBEffects::EmpoweredEmbargo]
     return false if @battle.field.effects[PBEffects::MagicRoom]>0
     return false if hasActiveAbility?(:KLUTZ,ignoreFainted)
     return true
