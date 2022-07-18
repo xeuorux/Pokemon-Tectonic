@@ -409,7 +409,7 @@
 408,ONTHEWIND,On the Wind,"Sets a Tailwind upon entering the battle."
 409,SEEDSCATTER,Seed Scatter,"Sets Grassy Terrain for 5 turns when hit by an attack."
 410,PERCUSSIVEMAINTENANCE,Percussive Maintenance,"Sets Electric Terrain for 5 turns when hit by an attack."
-411,CARAMELIZATION,Caramelization,"Sets Fairy Terrain for 5 turns when hit by an attack."
+411,MISTCRAFT,Mistcraft,"Sets Fairy Terrain for 5 turns when hit by an attack."
 412,CLEVERRESPONSE,Clever Response,"Sets Psychic Terrain for 5 turns when hit by an attack."
 413,ARTIFICIALNOCTURNE,Artificial Nocturne,"In a sandstorm, immune to Fairy, Bug, and Fire-type moves and restores HP if hit by one."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
