@@ -188,8 +188,6 @@ BattleHandlers::DamageCalcUserAbility.add(:SOULREAD,
   }
 )
 
-
-
 BattleHandlers::UserAbilityOnHit.add(:SOUNDBARRIER,
   proc { |ability,user,target,move,battle|
     next if !move.soundMove?
