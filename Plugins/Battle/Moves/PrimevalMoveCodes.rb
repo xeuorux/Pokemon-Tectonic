@@ -359,7 +359,14 @@ class PokeBattle_Move_624 < PokeBattle_Move_156
 	
 	def pbEffectGeneral(user)
 		super
-		# TODO
+		
+		@battle.eachSameSideBattler(user) do |b|
+			b.pbRaiseStatStage(:ATTACK,1,user)
+			b.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+			b.pbRaiseStatStage(:DEFENSE,1,user)
+			b.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+		end
+
 		transformType(user,:FAIRY)
 	end
 end
@@ -420,6 +427,25 @@ class PokeBattle_Move_628 < PokeBattle_Move_0EB
 
 	def pbEffectGeneral(user)
 		transformType(user,:FLYING)
+	end
+end
+
+# Empowered Embargo
+class PokeBattle_Move_629 < PokeBattle_Move
+	include EmpoweredMove
+
+	def pbMoveFailed?(user,targets)
+		if user.pbOpposingSide.effects[PBEffects::EmpoweredEmbargo]
+		  @battle.pbDisplay(_INTL("But it failed!"))
+		  return true
+		end
+		return false
+	end
+	
+	def pbEffectGeneral(user)
+		user.pbOpposingSide.effects[PBEffects::EmpoweredEmbargo] = true
+		@battle.pbDisplay(_INTL("{1} and the rest of it's team can no longer use items!",
+			user.pbOpposingTeam(true)))
 	end
 end
 

@@ -1071,12 +1071,13 @@
 1520,PRIMEVALFLOWSTATE,Primeval Flow State,620,0,WATER,Status,100,1,100,User,0,d,"The user TODO, boosts its Atk. and Sp. Def, and becomes a Water-type.",FLOWSTATE
 1521,PRIMEVALGRASSYTERRAIN,Primeval Grassy Terrain,621,0,GRASS,Status,0,1,0,BothSides,0,,"Sets Grassy Terrain, raises both attacking stats, and user becomes Grass-type.",GRASSYTERRAIN
 1522,PRIMEVALELECTRICTERRAIN,Primeval Electric Terrain,622,0,ELECTRIC,Status,0,1,0,BothSides,0,,"Sets Electric Terrain, charges up next Electric-type move, and user becomes Electric-type.",ELECTRICTERRAIN
-1523,PRIMEVALFAIRYTERRAIN,Primeval Fairy Terrain,623,0,FAIRY,Status,0,1,0,BothSides,0,,"Sets Fairy Terrain, TODO, and user becomes Fairy-type.",FAIRYTERRAIN
+1523,PRIMEVALFAIRYTERRAIN,Primeval Fairy Terrain,623,0,FAIRY,Status,0,1,0,BothSides,0,,"Sets Fairy Terrain, buffs all the attacking and defending stats of all allies, and user becomes Fairy-type.",FAIRYTERRAIN
 1524,PRIMEVALPSYCHICTERRAIN,Primeval Psychic Terrain,624,0,PSYCHIC,Status,0,1,0,BothSides,0,,"Sets Psychic Terrain, drastically raises Accuracy, and user becomes Psychic-type.",PSYCHICTERRAIN
 1525,PRIMEVALHEALORDER,Primeval Heal Order,625,0,BUG,Status,0,1,0,User,0,d,"The user regains up to half of its max HP, summons an allied Combee, and becomes Bug-type",HEALORDER
 1526,PRIMEVALGASTROACID,Primeval Gastro Acid,626,0,POISON,Status,100,1,0,AllNearFoes,0,bce,"The user negates all enemy abilities, reduces their Sp. Def, and becomes Poison-type.",GASTROACID
 1527,PRIMEVALROCKPOLISH,Primeval Rock Polish,627,0,ROCK,Status,0,1,0,User,0,d,"The sharply raises its speed, gains an extra two moves per turn, and becomes Rock-type.",ROCKPOLISH
 1528,PRIMEVALWHIRLWIND,Primeval Whirlwind,628,0,FLYING,Status,0,1,0,AllNearFoes,-6,ce,"All near foes are forced to switch out, and the user becomes Flying-type.",WHIRLWIND
+1529,PRIMEVALEMBARGO,Primeval Embargo,629,0,DARK,Status,100,1,0,FoeSide,0,bce,"It prevents the target from using its held item. Its Trainer is also prevented from using items on it.",EMBARGO
 1536,PRIMEVALMETEORMASH,Primeval Meteor Mash,636,160,STEEL,Physical,100,10,100,NearOther,0,abefj,"The target is obliterated by a meteoric strike, which raises the user's attack.",METEORMASH
 1537,PRIMEVALICEBEAM,Primeval Ice Beam,637,160,ICE,Special,100,10,100,NearOther,0,bef,"The target is struck with an absolute zero beam of energy, chilling it.",ICEBEAM
 1538,PRIMEVALROCKTOMB,Primeval Rock Tomb,638,90,ROCK,Physical,100,10,100,AllNearFoes,0,bef,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB

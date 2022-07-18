@@ -272,4 +272,12 @@ class PokeBattle_Battler
     return @battle.pbGetOwnerFromBattlerIndex(@index).able_pokemon_count == 1
   end
 
+  def itemActive?(ignoreFainted=false)
+    return false if fainted? && !ignoreFainted
+    return false if @effects[PBEffects::Embargo]>0
+    return false if user.pbOwnSide.effects[PBEffects::EmpoweredEmbargo]
+    return false if @battle.field.effects[PBEffects::MagicRoom]>0
+    return false if hasActiveAbility?(:KLUTZ,ignoreFainted)
+    return true
+  end
 end

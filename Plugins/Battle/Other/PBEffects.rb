@@ -44,6 +44,7 @@ module PBEffects
     # These effects apply to a side
     #===========================================================================
 	FlameSpikes			= 22
+    EmpoweredEmbargo    = 23
 	
 	#===========================================================================
     # These effects apply to the battle (i.e. both sides)

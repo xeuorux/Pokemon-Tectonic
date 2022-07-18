@@ -263,7 +263,7 @@ DMGMult = 1
 #-------------------------------
 [PINSIR]
 Ability = MOXIE
-Moves = XSCISSOR,CROSSCHOP,PRIMEVALTORMENT
+Moves = XSCISSOR,CROSSCHOP,PRIMEVALEMBARGO
 PostPrimeMoves = CRUNCH,REVERSAL
 Turns = 2
 HPMult = 5.0
@@ -683,17 +683,10 @@ Turns = 2
 HPMult = 4.0
 DMGMult = 1
 #-------------------------------
-[MAGIKARP]
-Ability = SWIFTSWIM
-Moves = SPLASH
-PostPrimeMoves = SPLASH
-Turns = 3
-HPMult = 2.0
-DMGMult = 1
-#-------------------------------
 [DONSTER]
 Ability = STENCH
-Moves = CLEARSMOG,MAGNETBOMB,BELCH
+Moves = CLEARSMOG,MAGNETBOMB,PRIMEVALEMBARGO
+PostPrimeMoves = LASHOUT,MIASMA,BELCH
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -839,7 +832,7 @@ DMGMult = 1
 #-------------------------------
 [REUNICLUS]
 Ability = MAGICGUARD
-Moves = EXPANDINGFORCE,MIASMA,PRIMEVALTORMENT
+Moves = EXPANDINGFORCE,MIASMA,PRIMEVALEMBARGO
 PostPrimeMoves = DARKPULSE,POISONGAS
 Turns = 2
 HPMult = 4.0
