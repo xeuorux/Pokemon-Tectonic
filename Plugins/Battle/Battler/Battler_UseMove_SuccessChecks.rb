@@ -161,7 +161,7 @@ class PokeBattle_Battler
           return false
         end
       end
-	end
+	  end
     # Obedience check
     return false if !pbObedienceCheck?(choice)
     # Truant
@@ -212,7 +212,7 @@ class PokeBattle_Battler
         end
       end
     end
-	# Charm
+	  # Charm
     if @effects[PBEffects::Charm]>0
       @effects[PBEffects::Charm] -= 1
       if @effects[PBEffects::Charm]<=0
@@ -273,7 +273,7 @@ class PokeBattle_Battler
     return false if move.pbFailsAgainstTarget?(user,target)
     # Immunity to priority moves because of Psychic Terrain
     if @battle.field.terrain == :Psychic && target.affectedByTerrain? && target.opposes?(user) &&
-       @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
+       @battle.choices[user.index][4] > 0   # Move priority saved from pbCalculatePriority
       @battle.pbDisplay(_INTL("{1} surrounds itself with psychic terrain!",target.pbThis))
       return false
     end
@@ -420,6 +420,7 @@ class PokeBattle_Battler
         return false
       end
     end
+    # Move fails due to type immunity ability (Except against or by a boss)
     if !user.boss? && !target.boss
       if move.pbImmunityByAbility(user,target) 
         triggerImmunityDialogue(target,true)

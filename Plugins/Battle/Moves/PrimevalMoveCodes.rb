@@ -529,3 +529,13 @@ class PokeBattle_Move_644 < PokeBattle_TargetStatDownMove
 	  @statDown = [:DEFENSE,3]
 	end
 end
+
+# Empowered Cross Poison
+class PokeBattle_Move_645 < PokeBattle_Move
+	include EmpoweredMove
+
+	def pbCritialOverride(user,target)
+		return 1 if target.poisoned?
+		return 0
+	end
+end
