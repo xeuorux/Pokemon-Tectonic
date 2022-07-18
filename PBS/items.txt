@@ -881,6 +881,7 @@
 860,DIGITSLIP,Digit Slip,Digit Slips,1,0,"A slip of paper with one digit of the code for the lock to Rafael's gym door.",0,0,0
 #-------------------------------
 861,SEVENLEAGUEBOOTS,Seven-League Boots,Seven-League Boots,5,4000,"An item to be held by a Pokémon. They are boots that boost speed by 10%.",0,0,0
+862,PERFORMANCEANALYZER,Performance Analyzer,Performance Analyzers,8,0,"A hi-tech recording device which increases your Pokemon's experience gained from Trainer battles by 20%.",0,0,6
 #-------------------------------
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
