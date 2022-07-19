@@ -261,7 +261,7 @@ def bossify(bitmap,scaleFactor)
   copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
   for x in 0..copiedBitmap.width
 	for y in 0..copiedBitmap.height
-	  color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor)
+	  color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor - 1)
 	  color.alpha   = [color.alpha,140].min
 	  color.red     = [color.red + 50,255].min
 	  color.blue    = [color.blue + 50,255].min
