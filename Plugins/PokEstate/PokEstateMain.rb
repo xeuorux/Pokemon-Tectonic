@@ -8,13 +8,17 @@ end
 class DexCompletionAwardHandlerHash < HandlerHash2
 	def trigger(symbols, newAwardsArray)
 		handlers = @hash.reject{|key,value| symbols.include?(key)}
-		
 		handlers.each do |handlerID,handler|
 			next if handler.nil?
-			newAward = handler.call($Trainer.pokedex)
-			if !newAward.nil?
-				newAward.push(handlerID)
-				newAwardsArray.push(newAward)
+			begin
+				newAward = handler.call($Trainer.pokedex)
+				if !newAward.nil?
+					newAward.push(handlerID)
+					newAwardsArray.push(newAward)
+				end
+			rescue
+				pbMessage(_INTL("A recoverable error has occured. Please report the following to a programmer."))
+				pbPrintException($!)
 			end
 		end
 
@@ -28,7 +32,8 @@ class PokEstate
 	attr_reader   :stories_progress
 	attr_reader   :stories_count
 
-	GrantAwards = DexCompletionAwardHandlerHash.new
+	GrantAwards 			= DexCompletionAwardHandlerHash.new
+	LoadDataDependentAwards = Event.new
 
 	def initialize()
 		@estate_box = 0
@@ -195,8 +200,10 @@ class PokEstate
 		commandLandscape = -1
 		commandReceiveUpdate = -1
 		commandCancel = -1
+		commandScrubAwards = -1
 		commands = []
 		commands[commandLandscape = commands.length] = _INTL("Landscape")
+		commands[commandScrubAwards = commands.length] = _INTL("Scrub Awards") if COMPLETION_AWARDS_FEATURE_AVAILABLE && $DEBUG
 		commands[commandReceiveUpdate = commands.length] = _INTL("Hear Story") if STORIES_FEATURE_AVAILABLE
 		commands[commandCancel = commands.length] = _INTL("Cancel")
 		
@@ -206,6 +213,9 @@ class PokEstate
 			changeLandscape()
 		elsif commandReceiveUpdate > -1 && command == commandReceiveUpdate
 			tryHearStory()
+		elsif commandScrubAwards > -1 && command == commandScrubAwards
+			@awardsGranted.clear
+			pbMessage(_INTL("Scrubbed awards."))
 		end
 	end
 
@@ -235,6 +245,9 @@ class PokEstate
 				break
 			end
 		end
+
+		# Load all data dependent events
+		LoadDataDependentAwards.trigger
 	
 		# Load all the pokemon into the placeholders
 		events = $game_map.events.values.shuffle()
@@ -491,7 +504,6 @@ class PokEstate
 	def incrementStoriesProgress()
 		@stories_progress += 1
 		if @stories_progress > STEPS_TILL_NEW_STORY
-			echoln("Deciding which boxes to give new stories to!")
 			@stories_progress = 0
 			for box in -1...$PokemonStorage.maxBoxes
 				next if @stories_count[box] >= MAX_STORIES_STORAGE
@@ -500,7 +512,6 @@ class PokEstate
 				chance = NEW_STORY_PERCENT_CHANCE_PER_POKEMON * count
 				if rand(100) < chance
 					@stories_count[box] += 1 
-					echoln("A new story is now available at PokEstate plot #{box}!")
 				end
 			end
 		end
