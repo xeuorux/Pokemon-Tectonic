@@ -1411,8 +1411,7 @@ class PokemonPokedex_Scene
 			end
 		end
 		
-		generationlastNumbers = [0,151,251,386,493,649,721,809,898]
-		generationFirstNumber = generationlastNumbers[generationNumber-1]
+		generationFirstNumber = GENERATION_END_IDS[generationNumber-1]
 		generationLastNumber = generationlastNumbers[generationNumber]
 		
 		dexlist = dexlist.find_all { |item|

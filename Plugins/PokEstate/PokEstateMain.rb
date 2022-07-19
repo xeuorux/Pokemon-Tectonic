@@ -5,17 +5,42 @@ SaveData.register(:pokestate_tracker) do
 	new_game_value { PokEstate.new }
 end
 
+class DexCompletionAwardHandlerHash < HandlerHash2
+	def trigger(symbols, newAwardsArray)
+		handlers = @hash.reject{|key,value| symbols.include?(key)}
+		
+		handlers.each do |handlerID,handler|
+			next if handler.nil?
+			newAward = handler.call($Trainer.pokedex)
+			if !newAward.nil?
+				newAward.push(handlerID)
+				newAwardsArray.push(newAward)
+			end
+		end
+
+		return newAwardsArray
+	end
+end
+
 class PokEstate
 	attr_reader   :estate_box
 	attr_reader   :estate_teleport
 	attr_reader   :stories_progress
 	attr_reader   :stories_count
 
+	GrantAwards = DexCompletionAwardHandlerHash.new
+
 	def initialize()
 		@estate_box = 0
 		@estate_teleport = nil
 		@stories_progress = 0
 		@stories_count = [1] * Settings::NUM_STORAGE_BOXES
+		@awardsGranted = []
+	end
+
+	def awardsGranted()
+		@awardsGranted = [] if @awardsGranted.nil?
+		return @awardsGranted
 	end
 
 	def isInEstate?
@@ -129,6 +154,41 @@ class PokEstate
 		elsif commandGoToOtherPlot > -1 && command == commandGoToOtherPlot
 			transferToEstateOfChoice()
 		end
+	end
+
+	def careTakerInteraction
+		if COMPLETION_AWARDS_FEATURE_AVAILABLE
+			newAwards = findNewAwards()
+			if newAwards.length != 0
+				if newAwards.length == 1
+					pbMessage(_INTL("You've earned a new PokéDex completion reward!"))
+				else
+					pbMessage(_INTL("You've earned #{newAwards.length} new PokéDex completion rewards!"))
+				end
+				newAwards.each do |newAwardInfo|
+					awardReward = newAwardInfo[0]
+					awardDescription = newAwardInfo[1]
+					pbMessage(_INTL("For collecting #{awardDescription}, please take this."))
+					if awardReward.is_a?(Array)
+						pbReceiveItem(awardReward[0],awardReward[1])
+					else
+						pbReceiveItem(awardReward)
+					end
+					awardsGranted.push(newAwardInfo[2])
+				end
+			end
+		end
+		caretakerChoices()
+	end
+
+	def awardGranted?(awardID)
+		return awardsGranted.include?(awardID)
+	end
+
+	def findNewAwards
+		newAwardsArray = []
+		newAwardsArray = GrantAwards.trigger(awardsGranted,newAwardsArray)
+		return newAwardsArray
 	end
 	
 	def caretakerChoices()
@@ -252,7 +312,7 @@ class PokEstate
 		firstPage.trigger = 0 # Action button
 		firstPage.list = []
 		push_text(firstPage.list,"Hello, I am the caretaker of this plot.")
-		push_script(firstPage.list,sprintf("$PokEstate.caretakerChoices()",))
+		push_script(firstPage.list,sprintf("$PokEstate.careTakerInteraction()",))
 		firstPage.list.push(RPG::EventCommand.new(0,0,[]))
 		
 		event.event.pages[0] = firstPage
