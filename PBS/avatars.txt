@@ -269,30 +269,6 @@ Turns = 2
 HPMult = 5.0
 DMGMult = 1
 #-------------------------------
-[SHIINOTIC]
-Ability = FASCINATE
-Moves = STRENGTHSAP,MOONBLAST
-PostPrimeMoves = STRENGTHSAP,MOONBLAST
-Turns = 2
-HPMult = 3.0
-DMGMult = 1
-#-------------------------------
-[MEDICHAM]
-Ability = ENERGYUP
-Moves = MEDITATE,STOREDPOWER
-PostPrimeMoves = MEDITATE,STOREDPOWER
-Turns = 2
-HPMult = 5.0
-DMGMult = 1
-#-------------------------------
-[PORYGONZ]
-Ability = DOWNLOAD
-Moves = BURNUP,TRIATTACK,CONVERSION,CONVERSION2
-PostPrimeMoves = BURNUP,TRIATTACK,CONVERSION,CONVERSION2
-Turns = 3
-HPMult = 2.5
-DMGMult = 1
-#-------------------------------
 [RHYPERIOR]
 Ability = FORTIFIED
 Moves = TRAMPLE,ROCKAPULT,PRIMEVALIGNITE
@@ -301,102 +277,6 @@ Turns = 2
 HPMult = 4.5
 DMGMult = 1
 Item = LAGGINGTAIL
-#-------------------------------
-[INCINEROAR]
-Ability = ARENATRAP
-Moves = TAUNT,SWAGGER,BURNINGJEALOUSY,FLAREBLITZ
-PostPrimeMoves = TAUNT,SWAGGER,BURNINGJEALOUSY,FLAREBLITZ
-Turns = 3
-HPMult = 3.0
-DMGMult = 1
-#-------------------------------
-[TOXAPEX]
-Ability = LIMBER
-Moves = BANEFULBUNKER,VENOSHOCK,LIQUIDATION,TOXICSPIKES
-PostPrimeMoves = BANEFULBUNKER,VENOSHOCK,LIQUIDATION,TOXICSPIKES
-Turns = 2
-HPMult = 6.0
-DMGMult = 1
-#-------------------------------
-[AEGISLASH]
-Ability = STANCECHANGE
-Moves = KINGSSHIELD,IRONHEAD,SWORDSDANCE,SACREDSWORD
-PostPrimeMoves = KINGSSHIELD,IRONHEAD,SWORDSDANCE,SACREDSWORD
-Turns = 3
-HPMult = 2.0
-DMGMult = 1
-#-------------------------------
-[HARIYAMA]
-Ability = BURNHEAL
-Moves = REVERSAL,BELLYDRUM,DRAINPUNCH,STRENGTH
-PostPrimeMoves = REVERSAL,BELLYDRUM,DRAINPUNCH,STRENGTH
-Turns = 2
-HPMult = 3.0
-DMGMult = 1
-#-------------------------------
-[TOXTRICITY]
-Ability = LOUD
-Moves = ACID,BELCH,OVERDRIVE,SWAGGER
-PostPrimeMoves = ACID,BELCH,OVERDRIVE,SWAGGER
-Turns = 3
-HPMult = 3.0
-DMGMult = 1
-#-------------------------------
-[GARCHOMP]
-Ability = SANDSHROUD
-Moves = OUTRAGE,CALAMITOUSSLASH,SANDSTORM,REST
-PostPrimeMoves = OUTRAGE,CALAMITOUSSLASH,SANDSTORM,REST
-Turns = 2
-HPMult = 5.0
-DMGMult = 1
-#-------------------------------
-[ANINETALES]
-Ability = SNOWSHROUD
-Moves = ICYWIND,HAIL,AURORAVEIL,BLIZZARD
-PostPrimeMoves = ICYWIND,HAIL,AURORAVEIL,BLIZZARD
-Turns = 2
-HPMult = 5.0
-DMGMult = 1
-#-------------------------------
-[LUDICOLO]
-Ability = RAINDISH
-Moves = RAINDANCE,GIGADRAIN,LEECHSEED,AQUARING
-PostPrimeMoves = RAINDANCE,GIGADRAIN,LEECHSEED,AQUARING
-Turns = 2
-HPMult = 4.0
-DMGMult = 1
-#-------------------------------
-[CHARIZARD]
-Ability = SOLARPOWER
-Moves = SUNNYDAY,FLAMETHROWER,FIREBLAST,CRIPPLINGBREATH
-PostPrimeMoves = SUNNYDAY,FLAMETHROWER,FIREBLAST,CRIPPLINGBREATH
-Turns = 4
-HPMult = 3.0
-DMGMult = 1
-#-------------------------------
-[SNORLAX]
-Ability = THICKFAT
-Moves = BODYSLAM,REST,SLEEPTALK,YAWN
-PostPrimeMoves = BODYSLAM,REST,SLEEPTALK,YAWN
-Turns = 1
-HPMult = 8.0
-DMGMult = 1
-#-------------------------------
-[GOLISOPOD]
-Ability = EMERGENCYEXIT
-Moves = XSCISSOR,FIRSTIMPRESSION,SWORDSDANCE,LIQUIDATION
-PostPrimeMoves = XSCISSOR,FIRSTIMPRESSION,SWORDSDANCE,LIQUIDATION
-Turns = 3
-HPMult = 6.0
-DMGMult = 1
-#-------------------------------
-[AGGRON]
-Ability = HEAVYMETAL
-Moves = DRAGONTAIL,STEALTHROCK,ROCKSLIDE,CRUNCH
-PostPrimeMoves = DRAGONTAIL,STEALTHROCK,ROCKSLIDE,CRUNCH
-Turns = 2
-HPMult = 5.0
-DMGMult = 1
 #-------------------------------
 [SKARMORY]
 Ability = SOUNDPROOF
@@ -411,62 +291,6 @@ Ability = PRESSURE
 Moves = BODYPRESS,BODYSLAM,SELFDESTRUCT,SURF
 PostPrimeMoves = BODYPRESS,BODYSLAM,SELFDESTRUCT,SURF
 Turns = 1
-HPMult = 10.0
-DMGMult = 1
-#-------------------------------
-[KOMMOO]
-Ability = SOUNDPROOF
-Moves = CLANGOROUSSOUL,CALAMITOUSSLASH,MEGAPUNCH,CLANGINGSCALES
-PostPrimeMoves = CLANGOROUSSOUL,CALAMITOUSSLASH,MEGAPUNCH,CLANGINGSCALES
-Turns = 3
-HPMult = 3.0
-DMGMult = 1
-#-------------------------------
-[METAGROSS]
-Ability = CLEARBODY
-Moves = METEORMASH,REFLEXOVERDRIVE,ZENHEADBUTT,FLOWSTATE
-PostPrimeMoves = METEORMASH,REFLEXOVERDRIVE,ZENHEADBUTT,FLOWSTATE
-Turns = 3
-HPMult = 4.0
-DMGMult = 1
-#-------------------------------
-[SPINDA]
-Ability = DISORIENT
-Moves = DOUBLEEDGE,COPYCAT,THRASH
-PostPrimeMoves = DOUBLEEDGE,COPYCAT,THRASH
-Turns = 2
-HPMult = 3.0
-DMGMult = 1
-#-------------------------------
-[CRADILY]
-Ability = SUCTIONCUPS
-Moves = INGRAIN,LEECHSEED,GIGADRAIN,SOAK
-PostPrimeMoves = INGRAIN,LEECHSEED,GIGADRAIN,SOAK
-Turns = 3
-HPMult = 3.0
-DMGMult = 1
-#-------------------------------
-[ARTICUNO]
-Ability = FROSTWINGS
-Moves = POWDERSNOW,SHEERCOLD,COLDFRONT
-PostPrimeMoves = POWDERSNOW,SHEERCOLD,COLDFRONT
-Turns = 3
-HPMult = 8.0
-DMGMult = 1
-#-------------------------------
-[ZAPDOS]
-Ability = SHOCKWINGS
-Moves = AIRSLASH,THUNDERBOLT,SCARYFACE,ELECTROBALL
-PostPrimeMoves = AIRSLASH,THUNDERBOLT,SCARYFACE,ELECTROBALL
-Turns = 3
-HPMult = 10.0
-DMGMult = 1
-#-------------------------------
-[MOLTRES]
-Ability = FLAMEWINGS
-Moves = WILLOWISP,ROOST,FLY,FIRESPIN
-PostPrimeMoves = WILLOWISP,ROOST,FLY,FIRESPIN
-Turns = 3
 HPMult = 10.0
 DMGMult = 1
 #-------------------------------

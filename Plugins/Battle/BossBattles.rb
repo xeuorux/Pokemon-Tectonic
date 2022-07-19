@@ -245,23 +245,12 @@ def createBossGraphics(species_internal_name,overworldMult=1.5,battleMult=1.5)
 		pbPrintException(e)
 	end
 end
-
-def increaseSize(bitmap,scaleFactor)
-	copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
-	for x in 0..copiedBitmap.width
-		for y in 0..copiedBitmap.height
-		  color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor)
-		  copiedBitmap.set_pixel(x,y,color)
-		end
-	end
-	return copiedBitmap
-end
-  
-def bossify(bitmap,scaleFactor)
+ 
+def bossify(bitmap,scaleFactor,verticalOffset = 0)
   copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
   for x in 0..copiedBitmap.width
 	for y in 0..copiedBitmap.height
-	  color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor - 1)
+	  color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor + verticalOffset)
 	  color.alpha   = [color.alpha,140].min
 	  color.red     = [color.red + 50,255].min
 	  color.blue    = [color.blue + 50,255].min
