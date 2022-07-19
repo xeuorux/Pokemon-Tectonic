@@ -16,7 +16,13 @@ end
 class Player < Trainer
     # Represents the player's Pokédex.
     class Pokedex
+        def resetOwnershipCache()
+            @ownedFromGeneration = {}
+            @ownedOfType = {}
+        end
+
         def ownedFromGeneration(generationNumber)
+            return @ownedFromGeneration[generationNumber] if @ownedFromGeneration.has_key?(generationNumber)
             count = 0
             GameData::Species.each do |speciesData|
                 next if speciesData.form != 0
@@ -24,10 +30,12 @@ class Player < Trainer
                 next if !@owned[speciesData.species]
                 count += 1
             end
+            @ownedFromGeneration[generationNumber] = count
             return count
         end
 
         def ownedOfType(type)
+            return @ownedOfType[type] if @ownedOfType.has_key?(type)
             count = 0
             GameData::Species.each do |speciesData|
                 next if speciesData.form != 0
@@ -35,6 +43,7 @@ class Player < Trainer
                 next if !@owned[speciesData.species]
                 count += 1
             end
+            @ownedOfType[type] = count
             return count
         end
     end

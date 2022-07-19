@@ -192,6 +192,7 @@ class PokEstate
 
 	def findNewAwards
 		newAwardsArray = []
+		$Trainer.pokedex.resetOwnershipCache()
 		newAwardsArray = GrantAwards.trigger(awardsGranted,newAwardsArray)
 		return newAwardsArray
 	end
