@@ -3,7 +3,7 @@ class PokeBattle_AI
     return if pbEnemyShouldWithdraw?(idxBattler)
     return if @battle.pbAutoFightMenu(idxBattler) #Battle palace shenanigans
 	  @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
-    user        = @battle.battlers[idxBattler]
+    user = @battle.battlers[idxBattler]
     if user.boss?
       pbChooseMovesBoss(idxBattler)
     else
@@ -62,22 +62,32 @@ class PokeBattle_AI
       guaranteedChoices, regularChoices = choices.partition {|choice| choice[1] >= 5000}
 
       if guaranteedChoices.length == 0
-        echoln("Counting down to use primeval damaging move: #{user.primevalTimer}") if empoweredDamagingChoices.length > 0
         if empoweredDamagingChoices.length > 0 && user.primevalTimer >= 2
           preferredChoice = empoweredDamagingChoices[0]
           user.primevalTimer = 0
+          PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will use a primeval attacking move since there exists at least one, and the timer is high enough")
         else
-          if user.lastMoveChosen.nil?
-            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) won't try to exlude any moves based on last move chosen, because thats nil")
-          elsif regularChoices.length >= 2
-            regularChoices.reject!{|regular_choice| user.moves[regular_choice[0]].id == user.lastMoveChosen}
-            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will try not to pick #{user.lastMoveChosen} this turn since that was the last move it chose")
-          else
-            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) only has one valid choice, so it won't exclude #{user.lastMoveChosen} (its last chosen move)")
+          if @battle.commandPhasesThisRound > 0 && !user.lastMoveChosen.nil? && regularChoices.length >= 2
+            targetingSize = user.indexesTargetedThisTurn.length
+            targetingSize = 2 if targetingSize > 2
+            regularChoices.reject!{|regular_choice| user.moves[regular_choice[0]].pbTarget(user).num_targets != targetingSize}
+            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will not use moves with different targeting from its first move. It's left with the following:")
+            logMoveChoices(user,choices)
           end
-          sortedChoices = regularChoices.sort_by{|choice| -choice[1]}
-          preferredChoice = sortedChoices[0]
-          PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.moves[preferredChoice[0]].name} is the highest rated of its remaining choices")
+
+          if preferredChoice.nil?
+            if user.lastMoveChosen.nil?
+              PBDebug.log("[AI] #{user.pbThis} (#{user.index}) won't try to exlude any moves based on last move chosen, because thats nil")
+            elsif regularChoices.length >= 2
+              regularChoices.reject!{|regular_choice| user.moves[regular_choice[0]].id == user.lastMoveChosen}
+              PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will try not to pick #{user.lastMoveChosen} this turn since that was the last move it chose")
+            else
+              PBDebug.log("[AI] #{user.pbThis} (#{user.index}) only has one valid choice, so it won't exclude #{user.lastMoveChosen} (its last chosen move)")
+            end
+            sortedChoices = regularChoices.sort_by{|choice| -choice[1]}
+            preferredChoice = sortedChoices[0]
+            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.moves[preferredChoice[0]].name} is the highest rated of its remaining choices")
+          end
         end
       else
         preferredChoice = guaranteedChoices[0]
@@ -120,10 +130,14 @@ class PokeBattle_AI
       PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,targets)
     end
 
-    if @battle.commandPhasesThisRound == 0
+    user.indexesTargetedThisTurn = []
+    if @battle.commandPhasesThisRound == 0 && move.damagingMove?
       # Set the avatar aggro cursors on the targets of the choice
       targets.each do |target|
-        @battle.scene.setAggroCursorOnIndex(target.index,extraAggro)
+        index = target.index
+        @battle.scene.setAggroCursorOnIndex(index,extraAggro)
+
+        user.indexesTargetedThisTurn.push(index)
       end
     end
   end
@@ -423,10 +437,20 @@ class PokeBattle_AI
           echoln("Scoring #{move.name} a 0.")
         end
       end
-      if scoresAndTargets.length>0
+      if scoresAndTargets.length >= 1
+        chosenST = nil
+        # Try to target the same pokemon as before in the same turn
+        if scoresAndTargets.length >= 2 && @battle.commandPhasesThisRound >= 1
+          chosenST = scoresAndTargets.find { |scoreAndTarget| user.indexesTargetedThisTurn.include?(scoreAndTarget[1]) }
+        end
+
         # Get the one best target for the move
-        scoresAndTargets.sort! { |a,b| b[0]<=>a[0] }
-        choices.push([idxMove,scoresAndTargets[0][0],scoresAndTargets[0][1]])
+        if chosenST.nil?
+          scoresAndTargets.sort! { |a,b| b[0] <=> a[0] }
+          chosenST = scoresAndTargets[0]
+        end
+
+        choices.push([idxMove,chosenST[0],chosenST[1]]) if !chosenST.nil?
       end
     end
   end

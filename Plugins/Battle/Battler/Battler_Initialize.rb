@@ -5,6 +5,7 @@ class PokeBattle_Battler
 	attr_reader 	:bossStatus
 	attr_reader 	:bossStatusCount
 	attr_accessor 	:primevalTimer
+	attr_accessor	:indexesTargetedThisTurn
 	
 	def bossStatus=(value)
 		@effects[PBEffects::Truant] = false if @bossStatus == :SLEEP && value != :SLEEP
@@ -69,6 +70,7 @@ class PokeBattle_Battler
 		@empowered 		= false
 		@primevalTimer	= 0
 		@extraMovesPerTurn	= 0
+		@indexesTargetedThisTurn	= []
 	end
   
   # Used by Future Sight only, when Future Sight's user is no longer in battle.
@@ -198,6 +200,10 @@ class PokeBattle_Battler
 		@lastRoundMoveFailed   = false
 		@movesUsed             = []
 		@turnCount             = 0
+		@empowered			   = false
+		@primevalTimer		   = 0
+		@extraMovesPerTurn	   = 0
+		@indexesTargetedThisTurn   = []
 		@effects[PBEffects::Attract]             = -1
 		@battle.eachBattler do |b|   # Other battlers no longer attracted to self
 		  b.effects[PBEffects::Attract] = -1 if b.effects[PBEffects::Attract]==@index

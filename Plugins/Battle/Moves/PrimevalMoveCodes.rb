@@ -401,7 +401,7 @@ class PokeBattle_Move_626 < PokeBattle_Move_068
   
 	def pbEffectAgainstTarget(user,target)
 		super
-		target.pbLowerStatStage(:SPECIAL_DEFENSE,user,self)
+		target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
 
 		transformType(user,:POISON)
 	end

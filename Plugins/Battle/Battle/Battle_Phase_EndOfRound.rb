@@ -723,6 +723,7 @@ class PokeBattle_Battle
       b.lastRoundMoveFailed                  = b.lastMoveFailed
       b.lastAttacker.clear
       b.lastFoeAttacker.clear
+      b.indexesTargetedThisTurn.clear
     end
   end
 
