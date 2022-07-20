@@ -175,7 +175,6 @@ MapPosition = 0,15,8
 Outdoor = false
 ShowArea = false
 Bicycle = false
-MapPosition = 0,15,8
 Environment = Cave
 #-------------------------------
 [025]
@@ -192,7 +191,6 @@ Outdoor = false
 ShowArea = true
 Bicycle = false
 BicycleAlways = false
-MapPosition = 0,15,8
 Environment = Cave
 #-------------------------------
 [027]
@@ -1070,7 +1068,7 @@ HealingSpot = 187,67,30
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,14
+MapPosition = 0,17,13
 Environment = Sand
 #-------------------------------
 [195]
@@ -1084,7 +1082,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,14
+MapPosition = 0,18,13
 BattleBack = 
 Environment = Volcano
 #-------------------------------

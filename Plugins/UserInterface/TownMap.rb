@@ -1,3 +1,12 @@
+class PokemonRegionMapScreen
+  def pbStartTotemScreen
+    @scene.pbStartScene(false,2)
+    ret = @scene.pbMapScene(2)
+    @scene.pbEndScene
+    return ret
+  end
+end
+
 class PokemonRegionMap_Scene
   def pbStartScene(aseditor=false,mode=0)
     @editor = aseditor
@@ -8,17 +17,7 @@ class PokemonRegionMap_Scene
     
     # Get the player position metadata of either the current map
     # Or the lowest parent map in the hierarchy, if possible
-    mapInfos = pbLoadMapInfos
-    mapIDChecking = $game_map.map_id
-    playerpos = nil
-    while mapIDChecking >= 1 && playerpos.nil?
-      map_metadata = GameData::MapMetadata.try_get(mapIDChecking)
-      if map_metadata.nil? || map_metadata.town_map_position.nil?
-        mapIDChecking = mapInfos[mapIDChecking].parent_id
-      else
-        playerpos = map_metadata.town_map_position
-      end
-    end
+    playerpos = getDisplayedPositionOfGameMap($game_map.map_id)
 
     if !playerpos
       mapindex = 0
@@ -35,6 +34,7 @@ class PokemonRegionMap_Scene
       @map     = @mapdata[playerpos[0]]
       @mapX    = playerpos[1]
       @mapY    = playerpos[2]
+      map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
       mapsize = map_metadata.town_map_size
       if mapsize && mapsize[0] && mapsize[0]>0
         sqwidth  = mapsize[0]
@@ -79,7 +79,7 @@ class PokemonRegionMap_Scene
       @sprites["player"].x = -SQUAREWIDTH/2+(@mapX*SQUAREWIDTH)+(Graphics.width-@sprites["map"].bitmap.width)/2
       @sprites["player"].y = -SQUAREHEIGHT/2+(@mapY*SQUAREHEIGHT)+(Graphics.height-@sprites["map"].bitmap.height)/2
     end
-    if mode>0
+    if mode == 1
       k = 0
       for i in LEFT..RIGHT
         for j in TOP..BOTTOM
@@ -94,14 +94,128 @@ class PokemonRegionMap_Scene
           end
         end
       end
+    elsif mode == 2
+      wayPointsUnlocked = $waypoints_tracker.activeWayPoints
+      wayPointsUnlocked.each_with_index do |activeWaypoint,index|
+        waypointName = activeWaypoint[0]
+        waypointInfo = activeWaypoint[1]
+        mapDisplayPosition = $waypoints_tracker.mapPositionHash[waypointName]
+        if mapDisplayPosition.nil?
+          pbMessage(_INTL("No proper map position is known for totem ID #{waypointName}. Please inform a programmer about this."))
+          next
+        end
+        xPos = mapDisplayPosition[1]
+        yPos = mapDisplayPosition[2]
+        @sprites["point#{index}"] = AnimatedSprite.create("Graphics/Pictures/mapTotem",2,16)
+        @sprites["point#{index}"].viewport = @viewport
+        @sprites["point#{index}"].x        = -SQUAREWIDTH / 2 + (xPos * SQUAREWIDTH) + (Graphics.width - @sprites["map"].bitmap.width) / 2
+        @sprites["point#{index}"].y        = -SQUAREHEIGHT / 2 + (yPos * SQUAREHEIGHT) + (Graphics.height - @sprites["map"].bitmap.height) / 2
+        @sprites["point#{index}"].play
+      end
     end
     @sprites["cursor"] = AnimatedSprite.create("Graphics/Pictures/mapCursor",2,5)
     @sprites["cursor"].viewport = @viewport
-    @sprites["cursor"].x        = -SQUAREWIDTH/2+(@mapX*SQUAREWIDTH)+(Graphics.width-@sprites["map"].bitmap.width)/2
-    @sprites["cursor"].y        = -SQUAREHEIGHT/2+(@mapY*SQUAREHEIGHT)+(Graphics.height-@sprites["map"].bitmap.height)/2
+    @sprites["cursor"].x        = -SQUAREWIDTH / 2 + (@mapX * SQUAREWIDTH) + (Graphics.width - @sprites["map"].bitmap.width) / 2
+    @sprites["cursor"].y        = -SQUAREHEIGHT / 2 + (@mapY * SQUAREHEIGHT) + (Graphics.height - @sprites["map"].bitmap.height) / 2
     @sprites["cursor"].play
     @changed = false
     pbFadeInAndShow(@sprites) { pbUpdate }
     return true
   end
+
+  def pbMapScene(mode=0)
+    xOffset = 0
+    yOffset = 0
+    newX = 0
+    newY = 0
+    @sprites["cursor"].x = -SQUAREWIDTH/2+(@mapX*SQUAREWIDTH)+(Graphics.width-@sprites["map"].bitmap.width)/2
+    @sprites["cursor"].y = -SQUAREHEIGHT/2+(@mapY*SQUAREHEIGHT)+(Graphics.height-@sprites["map"].bitmap.height)/2
+    loop do
+      Graphics.update
+      Input.update
+      pbUpdate
+      if xOffset!=0 || yOffset!=0
+        distancePerFrame = 8*20/Graphics.frame_rate
+        xOffset += (xOffset>0) ? -distancePerFrame : (xOffset<0) ? distancePerFrame : 0
+        yOffset += (yOffset>0) ? -distancePerFrame : (yOffset<0) ? distancePerFrame : 0
+        @sprites["cursor"].x = newX-xOffset
+        @sprites["cursor"].y = newY-yOffset
+        next
+      end
+      @sprites["mapbottom"].maplocation = pbGetMapLocation(@mapX,@mapY)
+      @sprites["mapbottom"].mapdetails  = pbGetMapDetails(@mapX,@mapY)
+      ox = 0
+      oy = 0
+      case Input.dir8
+      when 1   # lower left
+        oy = 1 if @mapY<BOTTOM
+        ox = -1 if @mapX>LEFT
+      when 2   # down
+        oy = 1 if @mapY<BOTTOM
+      when 3   # lower right
+        oy = 1 if @mapY<BOTTOM
+        ox = 1 if @mapX<RIGHT
+      when 4   # left
+        ox = -1 if @mapX>LEFT
+      when 6   # right
+        ox = 1 if @mapX<RIGHT
+      when 7   # upper left
+        oy = -1 if @mapY>TOP
+        ox = -1 if @mapX>LEFT
+      when 8   # up
+        oy = -1 if @mapY>TOP
+      when 9   # upper right
+        oy = -1 if @mapY>TOP
+        ox = 1 if @mapX<RIGHT
+      end
+      if ox!=0 || oy!=0
+        @mapX += ox
+        @mapY += oy
+        xOffset = ox*SQUAREWIDTH
+        yOffset = oy*SQUAREHEIGHT
+        newX = @sprites["cursor"].x+xOffset
+        newY = @sprites["cursor"].y+yOffset
+      end
+      if Input.trigger?(Input::BACK)
+        if @editor && @changed
+          if pbConfirmMessage(_INTL("Save changes?")) { pbUpdate }
+            pbSaveMapData
+          end
+          if pbConfirmMessage(_INTL("Exit from the map?")) { pbUpdate }
+            break
+          end
+        else
+          break
+        end
+      elsif Input.trigger?(Input::USE) && mode == 1   # Choosing an area to fly to
+        healspot = pbGetHealingSpot(@mapX,@mapY)
+        if healspot
+          if $PokemonGlobal.visitedMaps[healspot[0]] || ($DEBUG && Input.press?(Input::CTRL))
+            return healspot
+          end
+        end
+      elsif Input.trigger?(Input::USE) && mode == 2  # Choosing an area to totem teleport to
+        totemAtSpot = $waypoints_tracker.getTotemAtMapPosition(@mapX,@mapY)
+        return totemAtSpot if !totemAtSpot.nil?
+      elsif Input.trigger?(Input::USE) && @editor   # Intentionally after other USE input check
+        pbChangeMapLocation(@mapX,@mapY)
+      end
+    end
+    pbPlayCloseMenuSE
+    return nil
+  end
+end
+
+def getDisplayedPositionOfGameMap(gameMapID)
+  mapInfos = pbLoadMapInfos
+  displayedPosition = nil
+  while gameMapID >= 1 && displayedPosition.nil?
+    map_metadata = GameData::MapMetadata.try_get(gameMapID)
+    if map_metadata.nil? || map_metadata.town_map_position.nil?
+      gameMapID = mapInfos[gameMapID].parent_id
+    else
+      displayedPosition = map_metadata.town_map_position
+    end
+  end
+  return displayedPosition
 end
