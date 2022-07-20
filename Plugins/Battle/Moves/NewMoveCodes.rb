@@ -214,13 +214,13 @@ class PokeBattle_Move_505 < PokeBattle_Move
     return true if pbMoveFailedTargetAlreadyMoved?(target)
     # Target was going to move next anyway (somehow)
     if target.effects[PBEffects::MoveNext]
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} was already going to move next!"))
       return true
     end
     # Target didn't choose to use a move this round
     oppMove = @battle.choices[target.index][2]
     if !oppMove
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("But it failed, #{target.pbThis(true)} isn't set to use a move this turn!"))
       return true
     end
     return false
@@ -331,7 +331,7 @@ class PokeBattle_Move_50A < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
     if !target.pbCanBurn?(user,true,self) && !target.pbCanPoison?(user,true,self)
-		@battle.pbDisplay(_INTL("But it failed!")) 
+		@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can neither be burned or poisoned!")) 
 		return true
 	end
 	return false
@@ -609,7 +609,7 @@ end
 class PokeBattle_Move_51B < PokeBattle_Move
   def pbMoveFailed?(user,targets)
     if !user.pbHasType?(:ICE)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is not Ice-type!"))
       return true
     end
     return false
@@ -861,7 +861,7 @@ end
 class PokeBattle_Move_527 < PokeBattle_SleepMove
 	def pbMoveFailed?(user,targets)
 		if @battle.pbWeather != :Sun
-			@battle.pbDisplay(_INTL("But it failed!"))
+			@battle.pbDisplay(_INTL("But it failed, since the weather is not Sunny!"))
 			return true
 		end
 		return false
@@ -883,7 +883,7 @@ end
 class PokeBattle_Move_528 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
 		if target.hp > target.totalhp / 2
-			@battle.pbDisplay(_INTL("But it failed!"))
+			@battle.pbDisplay(_INTL("But it failed, #{target.pbThis(true)} is above half health!"))
 			return true
 		end
 		return !target.pbCanSleep?(user,true,self)
@@ -904,7 +904,7 @@ end
 class PokeBattle_Move_529 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
 		if !user.lastAttacker.include?(target.index)
-			@battle.pbDisplay(_INTL("But it failed!"))
+			@battle.pbDisplay(_INTL("But it failed, since the #{target.pbThis(true)} didn't attack #{user.pbThis(true)} this turn!"))
 			return true
 		end
 		return !target.pbCanSleep?(user,true,self)
@@ -940,7 +940,7 @@ class PokeBattle_Move_52B < PokeBattle_Move
 	# 	return true
 	# end
 	if !target.pbCanFluster?(user,true,self) && !target.pbCanMystify?(user,true,self)
-	 	@battle.pbDisplay(_INTL("But it failed!")) 
+	 	@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} cannot be flustered or mystified!")) 
 	 	return true
 	end
 	return false
@@ -1117,7 +1117,7 @@ class PokeBattle_Move_530 < PokeBattle_Move
       failed = false
       break
     end
-	@battle.pbDisplay(_INTL("But it failed!")) if failed
+	@battle.pbDisplay(_INTL(", since none of your current battlers can have their Attack raised!")) if failed
     return failed
   end
 
@@ -1145,7 +1145,7 @@ class PokeBattle_Move_531 < PokeBattle_Move
 	def pbMoveFailed?(user,targets)
 		return false if damagingMove?
 		if user.effects[PBEffects::Inured]
-			@battle.pbDisplay(_INTL("But it failed!"))
+			@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already inured!"))
 			return true
 		end
 		return false
@@ -1208,7 +1208,7 @@ class PokeBattle_Move_534 < PokeBattle_SleepMove
 		# 	return true
 		# end
 		if !target.flustered? && !target.mystified?
-			@battle.pbDisplay(_INTL("But it failed!"))
+			@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is neither flustered nor mystified!"))
 			return true
 		end
 		return !target.pbCanSleep?(user,true,self)
@@ -1232,7 +1232,7 @@ end
 class PokeBattle_Move_535 < PokeBattle_Move
 	def pbMoveFailed?(user,targets)
 		if user.turnCount > 1
-			@battle.pbDisplay(_INTL("But it failed!"))
+			@battle.pbDisplay(_INTL("But it failed, since it isn't #{user.pbThis(true)} first turn out!"))
 			return true
 		end
 		return false
@@ -1627,7 +1627,7 @@ class PokeBattle_Move_549 < PokeBattle_Move
       failed = false
       break
     end
-	@battle.pbDisplay(_INTL("But it failed!")) if failed
+	@battle.pbDisplay(_INTL("But it failed, since none of your current battlers can have their Sp. Atk raised!")) if failed
     return failed
   end
 
@@ -1796,7 +1796,7 @@ end
 class PokeBattle_Move_551 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
     if user.pbOpposingSide.effects[PBEffects::FlameSpikes]>=1
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("But it failed, since the opposing side already has Flame Spikes!"))
       return true
     end
     return false
@@ -1866,7 +1866,7 @@ class PokeBattle_Move_554 < PokeBattle_Move
       failed = false
       break
     end
-	@battle.pbDisplay(_INTL("But it failed!")) if failed
+	@battle.pbDisplay(_INTL("But it failed, since none of your current battlers can have their Defense raised!")) if failed
     return failed
   end
 
@@ -1900,7 +1900,7 @@ class PokeBattle_Move_555 < PokeBattle_Move
       failed = false
       break
     end
-	@battle.pbDisplay(_INTL("But it failed!")) if failed
+	@battle.pbDisplay(_INTL("But it failed, since none of your current battlers can have their Sp. Def raised!")) if failed
     return failed
   end
 
@@ -1956,7 +1956,7 @@ end
 class PokeBattle_Move_558 < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
 		if target.boss
-			@battle.pbDisplay(_INTL("But it failed!"))
+			@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is an Avatar!"))
 			return true
 		end
 		if target.effects[PBEffects::Substitute]>0
@@ -1987,9 +1987,12 @@ end
 #===============================================================================
 class PokeBattle_Move_559 < PokeBattle_Move
 	def pbMoveFailed?(user,targets)
-	  if !user.canChangeType? || !GameData::Type.exists?(:GHOST) ||
-		 !user.pbHasOtherType?(:GHOST)
-		@battle.pbDisplay(_INTL("But it failed!"))
+	  if !user.canChangeType?
+		@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't change its type!"))
+		return true
+	  end
+	  if !user.pbHasOtherType?(:GHOST)
+		@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already only a Ghost-type!"))
 		return true
 	  end
 	  return false
@@ -2022,7 +2025,7 @@ class PokeBattle_Move_55B < PokeBattle_HealingMove
   
 	def pbMoveFailed?(user,targets)
 		if user.turncount > 1
-			@battle.pbDisplay(_INTL("But it failed!"))
+			@battle.pbDisplay(_INTL("But it failed, since it's not #{user.pbThis(true)}'s first turn out!"))
 			return true
 		end
 		return super
@@ -2210,21 +2213,22 @@ class PokeBattle_Move_563 < PokeBattle_Move
 	end
 end
 
-
 #===============================================================================
 # Uses rest on both self and target. (Bedfellows)
 #===============================================================================
 class PokeBattle_Move_564 < PokeBattle_HealingMove
   def pbMoveFailed?(user,targets)
     if user.asleep?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already asleep!"))
       return true
     end
-    return true if !user.pbCanSleep?(user,true,self,true)
+    if !user.pbCanSleep?(user,true,self,true)
+		@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} cannot fall asleep!"))
+		return true
+	end
     return true if super
     return false
   end
-  
 
   def pbHealAmount(user)
     return user.totalhp-user.hp
@@ -2272,6 +2276,7 @@ class PokeBattle_Move_566 < PokeBattle_Move
     end
     return ret
   end
+  
   def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
     return if user.fainted? || numHits==0
     targetSwitched = true
