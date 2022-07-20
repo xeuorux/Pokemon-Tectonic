@@ -359,6 +359,7 @@ class PokeBattle_Battler
 		@effects[PBEffects::Gargantuan]			 = 0
 		@effects[PBEffects::NerveBreak]   		 = false
 		@effects[PBEffects::StunningCurl]		 = false
+		@effects[PBEffects::RedHotRetreat]       = false
 		
 		@effects[PBEffects::EmpoweredEndure]     = 0
 		@effects[PBEffects::EmpoweredMoonlight]  = false

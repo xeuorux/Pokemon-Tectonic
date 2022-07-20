@@ -33,7 +33,7 @@ module PBEffects
 	RollOut				= 140
 	Gargantuan			= 141
 	StunningCurl		= 142
-
+    RedHotRetreat       = 143
 
     ExtraTurns          = 199
     EmpoweredMoonlight  = 200

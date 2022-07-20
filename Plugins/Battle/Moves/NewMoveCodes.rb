@@ -2293,3 +2293,15 @@ class PokeBattle_Move_566 < PokeBattle_Move
     user.pbEffectsOnSwitchIn(true)
   end
 end
+
+#===============================================================================
+# User is protected against moves with the "B" flag this round. If a Pokémon
+# attacks with the user with a special attack while this effect applies, that Pokémon is
+# burned. (Red-Hot Retreat)
+#===============================================================================
+class PokeBattle_Move_567 < PokeBattle_ProtectMove
+	def initialize(battle,move)
+	  super
+	  @effect = PBEffects::RedHotRetreat
+	end
+end

@@ -386,12 +386,27 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
-        if move.pbContactMove?(user) && user.affectedByContactEffect?
+        if move.physicalMove?
           user.pbPoison(target) if user.pbCanPoison?(target,false)
         end
         return false
       elsif move.pbTarget(user).targets_foe
         @battle.pbDisplay(_INTL("{1}'s Baneful Bunker was ignored!",target.pbThis))
+      end
+    end
+    # Baneful Bunker
+    if target.effects[PBEffects::RedHotRetreat]
+      if move.canProtectAgainst? && !unseenfist
+        @battle.pbCommonAnimation("RedHotRetreat",target)
+        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+        target.damageState.protected = true
+        @battle.successStates[user.index].protected = true
+        if move.specialMove?
+          user.pbBurn(target) if user.pbCanBurn?(target,false)
+        end
+        return false
+      elsif move.pbTarget(user).targets_foe
+        @battle.pbDisplay(_INTL("{1}'s Red Hot Retreat was ignored!",target.pbThis))
       end
     end
     # Mat Block
