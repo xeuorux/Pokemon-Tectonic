@@ -2256,3 +2256,40 @@ class PokeBattle_Move_565 < PokeBattle_HealingMove
 	  return (user.totalhp*2.0/3.0).round
 	end
   end
+
+#===============================================================================
+# Returns user to party for swap, deals more damage the lower HP the user has.
+#===============================================================================
+class PokeBattle_Move_566 < PokeBattle_Move
+  def pbBaseDamage(baseDmg,user,target)
+    ret = 20
+    n = 48*user.hp/user.totalhp
+    if n<2;     ret = 200
+    elsif n<5;  ret = 150
+    elsif n<10; ret = 100
+    elsif n<17; ret = 80
+    elsif n<33; ret = 40
+    end
+    return ret
+  end
+  def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
+    return if user.fainted? || numHits==0
+    targetSwitched = true
+    targets.each do |b|
+      targetSwitched = false if !switchedBattlers.include?(b.index)
+    end
+    return if targetSwitched
+    return if !@battle.pbCanChooseNonActive?(user.index)
+    @battle.pbDisplay(_INTL("{1} went back to {2}!",user.pbThis,
+       @battle.pbGetOwnerName(user.index)))
+    @battle.pbPursuit(user.index)
+    return if user.fainted?
+    newPkmn = @battle.pbGetReplacementPokemonIndex(user.index)   # Owner chooses
+    return if newPkmn<0
+    @battle.pbRecallAndReplace(user.index,newPkmn)
+    @battle.pbClearChoice(user.index)   # Replacement Pokémon does nothing this round
+    @battle.moldBreaker = false
+    switchedBattlers.push(user.index)
+    user.pbEffectsOnSwitchIn(true)
+  end
+end
