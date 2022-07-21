@@ -93,8 +93,8 @@ class PokeBattle_Battle
 
   def pbCheckNeutralizingGas(battler=nil)
     # Battler = the battler to switch out. 
-	# Should be specified when called from pbAttackPhaseSwitch
-	# Should be nil when called from pbEndOfRoundPhase
+	  # Should be specified when called from pbAttackPhaseSwitch
+	  # Should be nil when called from pbEndOfRoundPhase
     return if !@field.effects[PBEffects::NeutralizingGas]
     return if battler && (battler.ability != :NEUTRALIZINGGAS || 
 		battler.effects[PBEffects::GastroAcid])

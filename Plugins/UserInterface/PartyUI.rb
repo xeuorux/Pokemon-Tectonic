@@ -54,7 +54,7 @@ class PokemonPartyPanel < SpriteWrapper
     refresh
   end
   
-    def refresh
+  def refresh
     return if disposed?
     return if @refreshing
     @refreshing = true
@@ -183,8 +183,7 @@ end
 
 class PokemonPartyScreen
 	def pbPokemonScreen
-    @scene.pbStartScene(@party,
-       (@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."),nil)
+    @scene.pbStartScene(@party,(@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."),nil)
     loop do
       @scene.pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
       pkmnid = @scene.pbChoosePokemon(false,-1,1)
@@ -202,32 +201,23 @@ class PokemonPartyScreen
       commands   = []
       cmdSummary = -1
       cmdDebug   = -1
-      cmdMoves   = [-1] * pkmn.numMoves
       cmdSwitch  = -1
       cmdMail    = -1
       cmdItem    = -1
 	    cmdRename  = -1
       cmdPokedex = -1
 	    cmdSetDown = -1
+      cmdSendPC  = -1
       # Build the commands
-      commands[cmdSetDown = commands.length]	  = _INTL("Set Down") if defined?($PokEstate.setDownIntoEstate) && $PokEstate.isInEstate?()
+      commands[cmdSetDown = commands.length]	    = _INTL("Set Down") if defined?($PokEstate.setDownIntoEstate) && $PokEstate.isInEstate?()
 	    commands[cmdSummary = commands.length]      = _INTL("Summary")
       commands[cmdDebug = commands.length]        = _INTL("Debug") if $DEBUG
-      if !pkmn.egg?
-        # Check for hidden moves and add any that were found
-        pkmn.moves.each_with_index do |m, i|
-          if [:MILKDRINK, :SOFTBOILED].include?(m.id) ||
-             HiddenMoveHandlers.hasHandler(m.id)
-            commands[cmdMoves[i] = commands.length] = [m.name, 1]
-          end
-        end
-      end
       commands[cmdSwitch = commands.length]       = _INTL("Switch") if @party.length>1
       if !pkmn.egg?
-		if $Trainer.has_pokedex
+		    if $Trainer.has_pokedex
           commands[cmdPokedex = commands.length]  = _INTL("Pokédex")
         end
-		if !pkmn.shadowPokemon?
+		    if !pkmn.shadowPokemon?
           commands[cmdRename = commands.length]   = _INTL("Rename")
         end
         if pkmn.mail
@@ -236,77 +226,24 @@ class PokemonPartyScreen
           commands[cmdItem = commands.length]     = _INTL("Item")
         end
       end
+      commands[cmdSendPC = commands.length]       = _INTL("Send to PC") if @party.length>1
       commands[commands.length]                   = _INTL("Cancel")
       command = @scene.pbShowCommands(_INTL("Do what with {1}?",pkmn.name),commands)
       havecommand = false
-      cmdMoves.each_with_index do |cmd, i|
-        next if cmd < 0 || cmd != command
-        havecommand = true
-        if [:MILKDRINK, :SOFTBOILED].include?(pkmn.moves[i].id)
-          amt = [(pkmn.totalhp/5).floor,1].max
-          if pkmn.hp<=amt
-            pbDisplay(_INTL("Not enough HP..."))
-            break
-          end
-          @scene.pbSetHelpText(_INTL("Use on which Pokémon?"))
-          oldpkmnid = pkmnid
-          loop do
-            @scene.pbPreSelect(oldpkmnid)
-            pkmnid = @scene.pbChoosePokemon(true,pkmnid)
-            break if pkmnid<0
-            newpkmn = @party[pkmnid]
-            movename = pkmn.moves[i].name
-            if pkmnid==oldpkmnid
-              pbDisplay(_INTL("{1} can't use {2} on itself!",pkmn.name,movename))
-            elsif newpkmn.egg?
-              pbDisplay(_INTL("{1} can't be used on an Egg!",movename))
-            elsif newpkmn.hp==0 || newpkmn.hp==newpkmn.totalhp
-              pbDisplay(_INTL("{1} can't be used on that Pokémon.",movename))
-            else
-              pkmn.hp -= amt
-              hpgain = pbItemRestoreHP(newpkmn,amt)
-              @scene.pbDisplay(_INTL("{1}'s HP was restored by {2} points.",newpkmn.name,hpgain))
-              pbRefresh
-            end
-            break if pkmn.hp<=amt
-          end
-          @scene.pbSelect(oldpkmnid)
-          pbRefresh
-          break
-        elsif pbCanUseHiddenMove?(pkmn,pkmn.moves[i].id)
-          if pbConfirmUseHiddenMove(pkmn,pkmn.moves[i].id)
-            @scene.pbEndScene
-            if pkmn.moves[i].id == :FLY
-              scene = PokemonRegionMap_Scene.new(-1,false)
-              screen = PokemonRegionMapScreen.new(scene)
-              ret = screen.pbStartFlyScreen
-              if ret
-                $PokemonTemp.flydata=ret
-                return [pkmn,pkmn.moves[i].id]
-              end
-              @scene.pbStartScene(@party,
-                 (@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
-              break
-            end
-            return [pkmn,pkmn.moves[i].id]
-          end
-        end
-      end
-      next if havecommand
-      if cmdSummary>=0 && command==cmdSummary
+      if cmdSummary >= 0 && command == cmdSummary
         @scene.pbSummary(pkmnid) {
           @scene.pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
         }
-      elsif cmdDebug>=0 && command==cmdDebug
+      elsif cmdDebug >= 0 && command == cmdDebug
         pbPokemonDebug(pkmn,pkmnid)
-      elsif cmdSwitch>=0 && command==cmdSwitch
+      elsif cmdSwitch >= 0 && command == cmdSwitch
         @scene.pbSetHelpText(_INTL("Move to where?"))
         oldpkmnid = pkmnid
         pkmnid = @scene.pbChoosePokemon(true)
-        if pkmnid>=0 && pkmnid!=oldpkmnid
+        if pkmnid >= 0 && pkmnid != oldpkmnid
           pbSwitch(oldpkmnid,pkmnid)
         end
-      elsif cmdMail>=0 && command==cmdMail
+      elsif cmdMail >= 0 && command==cmdMail
         command = @scene.pbShowCommands(_INTL("Do what with the mail?"),
            [_INTL("Read"),_INTL("Take"),_INTL("Cancel")])
         case command
@@ -320,24 +257,41 @@ class PokemonPartyScreen
             pbRefreshSingle(pkmnid)
           end
         end
-	  elsif cmdRename >= 0 && command==cmdRename
-		currentName = pkmn.name
-		pbTextEntry("#{currentName}'s nickname?",0,10,5)
-		if pbGet(5)=="" || pbGet(5)==currentName
-		  pkmn.name=currentName
-		else
-		  pkmn.name=pbGet(5)
-		end
-	  elsif cmdPokedex >=0 && command==cmdPokedex
-      openSingleDexScreen(pkmn)
-	  elsif cmdSetDown >= 0 && command==cmdSetDown
-      if $PokEstate.setDownIntoEstate(pkmn)
-        @party[pkmnid] = nil
-        @party.compact!
-        @scene.pbHardRefresh
-        break
-      end
-    elsif cmdItem>=0 && command==cmdItem
+      elsif cmdRename >= 0 && command == cmdRename
+        currentName = pkmn.name
+        pbTextEntry("#{currentName}'s nickname?",0,10,5)
+        if pbGet(5)=="" || pbGet(5)==currentName
+          pkmn.name = currentName
+        else
+          pkmn.name = pbGet(5)
+        end
+      elsif cmdPokedex >=0 && command == cmdPokedex
+        openSingleDexScreen(pkmn)
+      elsif cmdSendPC >= 0 && command == cmdSendPC
+        if $Trainer.able_pokemon_count == 1 && pkmn.able?
+          pbDisplay(_INTL("You can't send back your only able Pokémon!"))
+        elsif pbConfirm(_INTL("Are you sure you'd like to send back #{pkmn.name}?"))
+          if pkmn.hasItem?
+            itemName = GameData::Item.get(pkmn.item).real_name
+            if pbConfirmMessageSerious(_INTL("{1} is holding an {2}. Would you like to take it before transferring?", pkmn.name, itemName))
+              pbTakeItemFromPokemon(pkmn,self)
+              @scene.pbRefresh
+            end
+          end
+          pbStorePokemonInPC(pkmn)
+          @party[pkmnid] = nil
+          @party.compact!
+          pbSEPlay("PC close")
+          @scene.pbHardRefresh
+        end
+      elsif cmdSetDown >= 0 && command == cmdSetDown
+        if $PokEstate.setDownIntoEstate(pkmn)
+          @party[pkmnid] = nil
+          @party.compact!
+          @scene.pbHardRefresh
+          break
+        end
+      elsif cmdItem >= 0 && command == cmdItem
         itemcommands = []
         cmdUseItem   = -1
         cmdGiveItem  = -1
