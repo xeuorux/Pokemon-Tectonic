@@ -2217,22 +2217,22 @@ end
 # Uses rest on both self and target. (Bedfellows)
 #===============================================================================
 class PokeBattle_Move_564 < PokeBattle_HealingMove
-  def pbMoveFailed?(user,targets)
-    if user.asleep?
-      @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already asleep!"))
-      return true
-    end
-    if !user.pbCanSleep?(user,true,self,true)
-		@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} cannot fall asleep!"))
+	def pbMoveFailed?(user,targets)
+		if user.asleep?
+		@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already asleep!"))
 		return true
+		end
+		if !user.pbCanSleep?(user,true,self,true)
+			@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} cannot fall asleep!"))
+			return true
+		end
+		return true if super
+		return false
 	end
-    return true if super
-    return false
-  end
 
-  def pbHealAmount(user)
-    return user.totalhp-user.hp
-  end
+	def pbHealAmount(user)
+		return user.totalhp-user.hp
+	end
   
 	def pbEffectAgainstTarget(user,target)
 		if !target.asleep?
@@ -2259,12 +2259,12 @@ class PokeBattle_Move_565 < PokeBattle_HealingMove
 	def pbHealAmount(user)
 	  return (user.totalhp*2.0/3.0).round
 	end
-  end
+end
 
 #===============================================================================
 # Returns user to party for swap, deals more damage the lower HP the user has.
 #===============================================================================
-class PokeBattle_Move_566 < PokeBattle_Move
+class PokeBattle_Move_566 < PokeBattle_Move_0EE
   def pbBaseDamage(baseDmg,user,target)
     ret = 20
     n = 48*user.hp/user.totalhp
@@ -2275,27 +2275,6 @@ class PokeBattle_Move_566 < PokeBattle_Move
     elsif n<33; ret = 40
     end
     return ret
-  end
-  
-  def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
-    return if user.fainted? || numHits==0
-    targetSwitched = true
-    targets.each do |b|
-      targetSwitched = false if !switchedBattlers.include?(b.index)
-    end
-    return if targetSwitched
-    return if !@battle.pbCanChooseNonActive?(user.index)
-    @battle.pbDisplay(_INTL("{1} went back to {2}!",user.pbThis,
-       @battle.pbGetOwnerName(user.index)))
-    @battle.pbPursuit(user.index)
-    return if user.fainted?
-    newPkmn = @battle.pbGetReplacementPokemonIndex(user.index)   # Owner chooses
-    return if newPkmn<0
-    @battle.pbRecallAndReplace(user.index,newPkmn)
-    @battle.pbClearChoice(user.index)   # Replacement Pokémon does nothing this round
-    @battle.moldBreaker = false
-    switchedBattlers.push(user.index)
-    user.pbEffectsOnSwitchIn(true)
   end
 end
 
@@ -2308,5 +2287,33 @@ class PokeBattle_Move_567 < PokeBattle_ProtectMove
 	def initialize(battle,move)
 	  super
 	  @effect = PBEffects::RedHotRetreat
+	end
+end
+
+#===============================================================================
+# Reduces the target's defense by one stage.
+# After inflicting damage, user switches out. Ignores trapping moves.
+# (Rip Turn)
+#===============================================================================
+class PokeBattle_Move_568 < PokeBattle_Move_0EE
+	def initialize(battle,move)
+		super
+		@statDown = [:DEFENSE,1]
+	  end
+
+	def pbFailsAgainstTarget?(user,target)
+		return false if damagingMove?
+		return !target.pbCanLowerStatStage?(@statDown[0],user,self,true)
+	end
+	
+	def pbEffectAgainstTarget(user,target)
+		return if damagingMove?
+		target.pbLowerStatStage(@statDown[0],@statDown[1],user)
+	end
+
+	def pbAdditionalEffect(user,target)
+		return if target.damageState.substitute
+		return if !target.pbCanLowerStatStage?(@statDown[0],user,self)
+		target.pbLowerStatStage(@statDown[0],@statDown[1],user)
 	end
 end
