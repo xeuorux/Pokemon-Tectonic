@@ -28,10 +28,6 @@ class WaypointsTracker
 		@activeWayPoints.delete(waypointName)
 	end
 
-	def getWaypointAtMapPosition(x,y)
-		mapPositionHash
-	end
-
 	def mapPositionHash
 		return generateMapPositionHash
 	end
@@ -46,7 +42,7 @@ class WaypointsTracker
 		return mapPositionHash
 	end
 	
-	def getTotemAtMapPosition(x,y)
+	def getWaypointAtMapPosition(x,y)
 		mapPositionHash.each do |waypointName,displayedPosition|
 			if displayedPosition[1] == x && displayedPosition[2] == y
 				return waypointName
@@ -86,7 +82,7 @@ class WaypointsTracker
 				pbFadeOutIn {
 					scene = PokemonRegionMap_Scene.new(-1,false)
 					screen = PokemonRegionMapScreen.new(scene)
-					chosenTotem = screen.pbStartTotemScreen
+					chosenTotem = screen.pbStartWaypointScreen
 				}
 				chosenLocation = @activeWayPoints[chosenTotem] if !chosenTotem.nil?
 			end

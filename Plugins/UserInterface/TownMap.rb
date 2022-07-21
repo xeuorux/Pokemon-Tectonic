@@ -1,5 +1,5 @@
 class PokemonRegionMapScreen
-  def pbStartTotemScreen
+  def pbStartWaypointScreen
     @scene.pbStartScene(false,2)
     ret = @scene.pbMapScene(2)
     @scene.pbEndScene
@@ -142,7 +142,7 @@ class PokemonRegionMap_Scene
         @sprites["cursor"].y = newY-yOffset
         next
       end
-      @sprites["mapbottom"].waypointName = $waypoints_tracker.getTotemAtMapPosition(@mapX,@mapY) || ""
+      @sprites["mapbottom"].waypointName = $waypoints_tracker.getWaypointAtMapPosition(@mapX,@mapY) || ""
       @sprites["mapbottom"].maplocation = pbGetMapLocation(@mapX,@mapY)
       @sprites["mapbottom"].mapdetails  = pbGetMapDetails(@mapX,@mapY)
       ox = 0
@@ -195,9 +195,9 @@ class PokemonRegionMap_Scene
             return healspot
           end
         end
-      elsif Input.trigger?(Input::USE) && mode == 2  # Choosing an area to totem teleport to
-        totemAtSpot = $waypoints_tracker.getTotemAtMapPosition(@mapX,@mapY)
-        return totemAtSpot if !totemAtSpot.nil?
+      elsif Input.trigger?(Input::USE) && mode == 2  # Choosing an area to waypoint teleport to
+        waypointAtSpot = $waypoints_tracker.getWaypointAtMapPosition(@mapX,@mapY)
+        return waypointAtSpot if !waypointAtSpot.nil?
       elsif Input.trigger?(Input::USE) && @editor   # Intentionally after other USE input check
         pbChangeMapLocation(@mapX,@mapY)
       end
