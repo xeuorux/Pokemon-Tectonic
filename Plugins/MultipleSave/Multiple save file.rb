@@ -506,7 +506,7 @@ class ScreenChooseFileSave
 	  mapname = pbGetMapNameFromId(mapid)
       mapname.gsub!(/\\PN/,trainer.name)
       string = _INTL("#{saveIDThisSlot}: #{trainer.name} / #{mapname}")
-      x = 24*2 + 36; y = 16*2 + 5 + 48*i
+      x = 24*2 + 18; y = 16*2 + 5 + 48*i
       textpos<<[string,x,y,0,BaseColor,ShadowColor] 
     }
     (font.nil?)? pbSetSystemFont(bitmap) : bitmap.font.name = font
@@ -678,10 +678,8 @@ class ScreenChooseFileSave
   # Color
   TEXTCOLOR             = Color.new(232,232,232)
   TEXTSHADOWCOLOR       = Color.new(136,136,136)
-  MALETEXTCOLOR         = Color.new(56,160,248)
-  MALETEXTSHADOWCOLOR   = Color.new(56,104,168)
-  FEMALETEXTCOLOR       = Color.new(240,72,88)
-  FEMALETEXTSHADOWCOLOR = Color.new(160,64,64)
+  NAMETEXTCOLOR         = Color.new(61,139,48)
+  NAMETEXTSHADOWCOLOR   = Color.new(31,71,24)
   
   # Draw information (text)
   def drawInfor(type,font=nil)
@@ -735,13 +733,7 @@ class ScreenChooseFileSave
     else
       textpos<<[_INTL("{1}m",min),103*2+x,88*2+y,1,TEXTCOLOR,TEXTSHADOWCOLOR]
     end
-    if trainer.male?
-      textpos<<[trainer.name,56*2+x,32*2+y,0,MALETEXTCOLOR,MALETEXTSHADOWCOLOR]
-    elsif
-      textpos<<[trainer.name,56*2+x,32*2+y,0,FEMALETEXTCOLOR,FEMALETEXTSHADOWCOLOR]
-    else
-      textpos<<[trainer.name,56*2+x,32*2+y,0,TEXTCOLOR,TEXTSHADOWCOLOR]
-    end
+    textpos<<[trainer.name,56*2+x,32*2+y,0,NAMETEXTCOLOR,NAMETEXTSHADOWCOLOR]
 	mapid = self.fileLoad[:map_factory].map.map_id
     mapname = pbGetMapNameFromId(mapid)
     mapname.gsub!(/\\PN/,trainer.name)
