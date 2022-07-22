@@ -74,7 +74,10 @@ class PokeBattle_Battle
         @megaEvolution[side][i] = -1 if megaEvo>=0
       end
     end
-    pbCommandPhaseLoop(false)
+    # Choose actions for the round (AI first, then player)
+    pbCommandPhaseLoop(false)   # AI chooses their actions
+	return if @decision!=0   # Battle ended, stop choosing actions
+    pbCommandPhaseLoop(true)   # Player chooses their actions
   end
 
 	def pbCommandPhaseLoop(isPlayer)
