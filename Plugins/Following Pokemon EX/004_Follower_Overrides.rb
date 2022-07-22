@@ -612,7 +612,6 @@ class DependentEvents
   end
   
   def moveFollowerToNearbySpot(follower,leader,mapTile)
-    echoln("Moving a follower to a semi-random spot near the player at #{leader.x}, #{leader.y}.")
     # Follower is on same map as leader
     newPosX = leader.x
     newPosY = leader.y

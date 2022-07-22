@@ -34,7 +34,6 @@ def useAidKit()
 		return 0
 	else
 		$PokemonGlobal.teamHealerCurrentUses -= 1
-		echoln("Aid kit info: #{AID_KIT_BASE_HEALING},#{HEALING_UPGRADE_AMOUNT},#{$PokemonGlobal.teamHealerUpgrades}")
 		healAmount = AID_KIT_BASE_HEALING + HEALING_UPGRADE_AMOUNT * $PokemonGlobal.teamHealerUpgrades
 		pbMessage(_INTL("Healing your entire team by {1}.",healAmount))
 		charges = $PokemonGlobal.teamHealerCurrentUses

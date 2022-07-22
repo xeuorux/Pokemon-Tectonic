@@ -46,7 +46,6 @@ module FileSave
 		saveNameArray.each do |saveName|
 			File.open(saveName) do |file|
 				fileLastModifiedTime = file.mtime.to_f
-				echoln("Save \"#{saveName}\" was last modified at #{fileLastModifiedTime}")
 				if fileLastModifiedTime > lastModifiedTime
 					lastModifiedSaveName = saveName
 					lastModifiedTime = fileLastModifiedTime
