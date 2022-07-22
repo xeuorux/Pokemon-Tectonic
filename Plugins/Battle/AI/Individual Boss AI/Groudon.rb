@@ -8,7 +8,7 @@ PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:GROUDON,"08B"],
 # PRECIPICE BLADES
 PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:GROUDON,:PRECIPICEBLADES],
 	proc { |speciesAndMoveCode,user,target,move|
-		turnCount = battler.battle.turnCount
+		turnCount = user.battle.turnCount
 		next turnCount > 0 && turnCount % 3 == 0
 	}
 )

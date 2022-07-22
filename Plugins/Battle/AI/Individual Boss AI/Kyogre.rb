@@ -8,7 +8,7 @@ PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:KYOGRE,"08B"],
 #Use origin pulse every 3 turns after Water Spout
 PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:KYOGRE,:ORIGINPULSE],
 	proc { |speciesAndMoveCode,user,target,move|
-		turnCount = battler.battle.turnCount
+		turnCount = user.battle.turnCount
 		next turnCount > 0 && turnCount % 3 == 0
 	}
 )
