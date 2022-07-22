@@ -90,3 +90,27 @@ def pokemonRaffle(species,level=10,cost=200,baseChance=5.0,chanceIncrease=1.5,di
 		end
 	end
 end
+
+# Gives the blue orb, and does a little scene where the cave brightens and the rain
+def kyogreDefeated(eventID)
+	timeTaken = Graphics.frame_rate * 2
+	defeatBoss(:BLUEORB)
+	pbWait(Graphics.frame_rate)
+	pbSetSelfSwitch(eventID,'A',true)
+	$game_screen.weather(:None,0,timeTaken)
+	$game_map.start_fog_opacity_change(100, timeTaken)
+	pbWait(timeTaken)
+	pbSetSelfSwitch(eventID,'B',true)
+end
+
+# Gives the red orb, and does a little scene where the cave darkens and the bright sunshine dissapears
+def groudonDefeated(eventID)
+	timeTaken = Graphics.frame_rate * 2
+	defeatBoss(:REDORB)
+	pbWait(Graphics.frame_rate)
+	pbSetSelfSwitch(eventID,'A',true)
+	$game_screen.weather(:None,0,timeTaken)
+	$game_map.start_fog_opacity_change(50, timeTaken)
+	pbWait(timeTaken)
+	pbSetSelfSwitch(eventID,'B',true)
+end
