@@ -753,14 +753,14 @@ Special
     1,GOOMY,5
     1,JANGMOO,5
 #-------------------------------
-[257] # Old Cave Sketch
+[257] # Cave of Hatching
 LandSparse,20
     25,CUBONE,42,44
     25,LARVITAR,42,44
     25,MAGNEMITE,42,44
     25,ZUBAT,42,44
 #-------------------------------
-[258] # Hometown Prototype
+[258] # Whitebloom Town
 Land,20
     25,BUNEARY,43,45
     25,NICKIT,43,45

@@ -1244,13 +1244,13 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [257]
-# Old Cave Sketch
+# Cave of Hatching
 Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
 [258]
-# Hometown Prototype
+# Whitebloom Town
 Outdoor = true
 ShowArea = true
 Bicycle = true

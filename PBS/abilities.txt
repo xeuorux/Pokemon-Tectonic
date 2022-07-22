@@ -108,7 +108,7 @@
 106,AFTERMATH,Aftermath,"Damages the physical attacker landing the finishing hit."
 107,ANTICIPATION,Anticipation,"Senses a foe's dangerous moves."
 108,FOREWARN,Forewarn,"Determines what moves a foe has."
-109,UNAWARE,Unaware,"Ignores any stat changes in the Pokémon."
+109,UNAWARE,Unaware,"Ignores any stat changes in opponents."
 110,TINTEDLENS,Tinted Lens,"Powers up \"not very effective\" moves."
 111,FILTER,Filter,"Reduces damage from super-effective attacks."
 112,SLOWSTART,Slow Start,"Halves Attack and Speed for 3 turns."
