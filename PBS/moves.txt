@@ -1050,7 +1050,7 @@
 986,MIRAGEFLARE,Mirage Flare,000,120,FLYING,Special,100,5,0,AllNearOthers,0,bef,"The user creates a storm using its flaming body, damaging everything around it.",
 987,HAREHEROICS,Hare Heroics,566,1,NORMAL,Physical,100,20,0,NearOther,0,abef,"Deals more damage the less HP the user has. After attacking, it returns to switch with a party Pokémon.",
 988,RIPTURN,Rip Turn,568,70,WATER,Physical,100,10,0,NearOther,100,abef,"Deals damage, lowering the target's defense. After attacking, it returns to switch with a party Pokémon.",
-988,REDHOTRETREAT,Red-Hot Retreat,567,0,FIRE,Status,0,3,0,User,4,,"Protects the user from attacks. Also burns any attacker who specially attacks the user.",WITHDRAW
+989,REDHOTRETREAT,Red-Hot Retreat,567,0,FIRE,Status,0,3,0,User,4,,"Protects the user from attacks. Also burns any attacker who specially attacks the user.",WITHDRAW
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type.",HEALBELL
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type.",SUNNYDAY
 1502,PRIMEVALRAINDANCE,Primeval Rain Dance,602,0,WATER,Status,0,1,0,BothSides,0,,"The user summons rain, surrounds itself with healing water, and becomes Water-type.",RAINDANCE
