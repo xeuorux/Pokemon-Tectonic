@@ -85,7 +85,7 @@
 83,ANGERPOINT,Anger Point,"Maxes Attack after taking a critical hit."
 84,UNBURDEN,Unburden,"Raises Speed if a held item is consumed in battle."
 85,HEATPROOF,Heatproof,"Takes 50% less damage from Fire-type moves."
-86,SIMPLE,Simple,"The Pokémon is prone to wild stat changes."
+86,SIMPLE,Simple,"Stat changes in the Pokemon are doubled."
 87,DRYSKIN,Dry Skin,"Reduces HP if it is hot. Water restores HP."
 88,DOWNLOAD,Download,"Boosts one Attacking stat according to a foe's defenses."
 89,IRONFIST,Iron Fist,"Boosts the power of punching moves by 30%."
