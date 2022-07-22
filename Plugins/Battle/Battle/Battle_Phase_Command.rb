@@ -87,8 +87,9 @@ class PokeBattle_Battle
 		  idxBattler += 1
 		  break if idxBattler >= @battlers.length
 		  battler = @battlers[idxBattler]
+		  next if battler.nil?
+		  next if pbOwnedByPlayer?(idxBattler) != isPlayer
 		  next if @commandPhasesThisRound > battler.extraMovesPerTurn
-		  next if !battler || pbOwnedByPlayer?(idxBattler) != isPlayer
 		  next if @choices[idxBattler][0] != :None    # Action is forced, can't choose one
 		  next if !pbCanShowCommands?(idxBattler)   # Action is forced, can't choose one
 		  # AI controls this battler

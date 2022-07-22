@@ -1080,7 +1080,7 @@
 1526,PRIMEVALGASTROACID,Primeval Gastro Acid,626,0,POISON,Status,100,1,0,AllNearFoes,0,bce,"The user negates all enemy abilities, reduces their Sp. Def, and becomes Poison-type.",GASTROACID
 1527,PRIMEVALROCKPOLISH,Primeval Rock Polish,627,0,ROCK,Status,0,1,0,User,0,d,"The sharply raises its speed, gains an extra two moves per turn, and becomes Rock-type.",ROCKPOLISH
 1528,PRIMEVALWHIRLWIND,Primeval Whirlwind,628,0,FLYING,Status,0,1,0,AllNearFoes,-6,ce,"All near foes are forced to switch out, and the user becomes Flying-type.",WHIRLWIND
-1529,PRIMEVALEMBARGO,Primeval Embargo,629,0,DARK,Status,100,1,0,FoeSide,0,bce,"It prevents the target from using its held item. Its Trainer is also prevented from using items on it.",EMBARGO
+1529,PRIMEVALEMBARGO,Primeval Embargo,629,0,DARK,Status,100,1,0,FoeSide,0,bce,"The enemy side is prevented from using items for the rest of the battle, and the user becomes Dark-type.",EMBARGO
 1536,PRIMEVALMETEORMASH,Primeval Meteor Mash,636,160,STEEL,Physical,100,10,100,NearOther,0,abefj,"The target is obliterated by a meteoric strike, which raises the user's attack.",METEORMASH
 1537,PRIMEVALICEBEAM,Primeval Ice Beam,637,160,ICE,Special,100,10,100,NearOther,0,bef,"The target is struck with an absolute zero beam of energy, chilling it.",ICEBEAM
 1538,PRIMEVALROCKTOMB,Primeval Rock Tomb,638,90,ROCK,Physical,100,10,100,AllNearFoes,0,bef,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
