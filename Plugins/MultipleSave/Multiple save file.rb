@@ -395,6 +395,7 @@ class PokemonLoadScreen
 		  pbPlayDecisionSE if command != cmd_quit
 		  case command
 		  when cmd_continue
+			$storenamefilesave = lastModifiedSaveName
 			Game.set_up_system
 			Game.load(SaveData.read_from_file(lastModifiedSaveName,true))
 			@scene.pbEndScene
