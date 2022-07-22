@@ -583,7 +583,7 @@ LandSparse,20
     20,KARRABLAST,18,20
     20,SHELMET,18,20
     20,VULPIX,18,20
-LandTinted,20
+FloweryGrass2,20
     20,PANPOUR,18,20
     20,PANSAGE,18,20
     20,PANSEAR,18,20
@@ -634,7 +634,7 @@ Land,20
     25,FOONGUS,34,36
     25,ORANGURU,34,36
     25,PASSIMIAN,34,36
-LandTinted,20
+LandTall,20
     25,DRAMPA,34,36
     25,FALINKS,34,36
     25,GIRAFARIG,34,36
@@ -790,7 +790,7 @@ FloweryGrass,20
     25,LEDYBA,14,17
     25,SUNKERN,14,17
     25,SWABLU,14,17
-LandTinted,20
+LandSparse,20
     50,SAWK,14,17
     50,THROH,14,17
 Special,1
