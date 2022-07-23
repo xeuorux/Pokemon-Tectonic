@@ -2774,7 +2774,7 @@ Pokemon = PINSIR,29
 Pokemon = BAYLEEF,29
     AbilityIndex = 1
     Item = SITRUSBERRY
-Pokemon = TREVENANT,30
+Pokemon = AGRAVELER,30
     AbilityIndex = 0
 #-------------------------------
 [SKIER_F2,Valeriya]
