@@ -117,8 +117,8 @@ class BattleInfoDisplay < SpriteWrapper
 	for effect in 0..30
 		effectValue = @battle.field.effects[effect]
 		next if effectValue.nil?
-		# next if effectValue == false
-		# next if effectValue.is_a?(Integer) && effectValue <= 0
+		next if effectValue == false
+		next if effectValue.is_a?(Integer) && effectValue <= 0
 		effectName = labelBattleEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
@@ -131,8 +131,8 @@ class BattleInfoDisplay < SpriteWrapper
 		for effect in 0..30
 			effectValue = @battle.sides[side].effects[effect]
 			next if effectValue.nil?
-			# next if effectValue == false
-			# next if effectValue.is_a?(Integer) && effectValue <= 0
+			next if effectValue == false
+			next if effectValue.is_a?(Integer) && effectValue <= 0
 			effectName = labelSideEffect(effect)
 			next if effectName.blank?
 			effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
@@ -142,6 +142,8 @@ class BattleInfoDisplay < SpriteWrapper
 	end
 	
 	# Render out the field effects
+	scrollingBoundYMin = 36
+	scrollingBoundYMax = 300
 	if fieldEffects.length != 0
 		scrolling = true if fieldEffects.length > 8
 		index = 0
@@ -149,13 +151,17 @@ class BattleInfoDisplay < SpriteWrapper
 		for repeat in 0...repeats
 			fieldEffects.each do |effectName|
 				index += 1
-				calcedY = 50 + 32 * index
+				calcedY = 60 + 32 * index
 				if scrolling
 					calcedY -= @fieldScrollingValue
 					calcedY += 8
 				end
-				next if calcedY < 34 || calcedY > 286
-				textToDraw.push([effectName,wholeFieldX,calcedY,0,base,shadow])
+				next if calcedY < scrollingBoundYMin || calcedY > scrollingBoundYMax
+				distanceFromFade = [calcedY - scrollingBoundYMin,scrollingBoundYMax - calcedY].min
+				textAlpha = ([distanceFromFade / 20.0,1.0].min * 255).floor
+				textBase = Color.new(base.red,base.blue,base.green,textAlpha)
+				textShadow = Color.new(shadow.red,shadow.blue,shadow.green,textAlpha)
+				textToDraw.push([effectName,wholeFieldX,calcedY,0,textBase,textShadow])
 			end
 		end
 	else
@@ -500,9 +506,9 @@ class BattleInfoDisplay < SpriteWrapper
     pbUpdateSpriteHash(@sprites)
 	if @individual.nil?
 		@battlerScrollingValue = 0
-		@fieldScrollingValue += 2
+		@fieldScrollingValue += 1
 	else
-		@battlerScrollingValue += 2
+		@battlerScrollingValue += 1
 		@fieldScrollingValue = 0
 	end
   end
