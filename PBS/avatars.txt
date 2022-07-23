@@ -13,7 +13,7 @@ Ability = VITALSPIRIT
 Moves = SCRATCH,PRIMEVALDRAGONDANCE
 PostPrimeMoves = CLASH
 Turns = 2
-HPMult = 2.0
+HPMult = 2.5
 DMGMult = 1
 #-------------------------------
 [BIDOOF]
@@ -29,7 +29,8 @@ Ability = QUICKFEET
 Moves = THUNDERPUNCH,PRIMEVALTAILWIND
 PostPrimeMoves = AERIALACE
 Turns = 2
-HPMult = 5.0
+HPMult = 4.0
+DMGResist = 0.3
 DMGMult = 1
 Item = LUMBERRY
 #-------------------------------
@@ -37,9 +38,10 @@ Item = LUMBERRY
 Ability = AERODYNAMIC
 Moves = AIRSLASH,LEAFBLADE,PRIMEVALHEALBELL
 PostPrimeMoves = WHITERAY,KALEIDOSCOPE
-Turns = 3
-HPMult = 4.5
+Turns = 2
+HPMult = 5
 DMGMult = 1
+DMGResist = 0.3
 Form = 1
 #-------------------------------
 [JIRACHI]
@@ -47,15 +49,17 @@ Ability = SERENEGRACE
 Moves = DOOMDESIRE,PSYBEAM,MIRRORSHOT,PRIMEVALBULKUP
 PostPrimeMoves = BRICKBREAK,LIFEDEW
 Turns = 2
-HPMult = 5.0
+HPMult = 4.0
+DMGResist = 0.3
 DMGMult = 1
 #-------------------------------
 [YVELTAL]
 Ability = DARKAURA
 Moves = OBLIVIONWING,LASHOUT,PRIMEVALHAIL
 PostPrimeMoves = ICEBEAM,DRAINPUNCH
-Turns = 3
-HPMult = 4.0
+Turns = 2
+HPMult = 6.0
+DMGResist = 0.3
 DMGMult = 1
 Item = SITRUSBERRY
 #-------------------------------
@@ -63,8 +67,9 @@ Item = SITRUSBERRY
 Ability = DAUNTLESSSHIELD
 Moves = IRONHEAD,CLOSECOMBAT,PRIMEVALSPIKES
 PostPrimeMoves = STOMPINGTANTRUM
-Turns = 1
-HPMult = 3.5
+Turns = 2
+HPMult = 3
+DMGResist = 0.3
 DMGMult = 1
 Form = 1
 #-------------------------------
@@ -73,7 +78,8 @@ Ability = INTREPIDSWORD
 Moves = SACREDSWORD,PLAYROUGH,PRIMEVALSTRINGSHOT
 PostPrimeMoves = FURYCUTTER
 Turns = 2
-HPMult = 2.5
+HPMult = 3
+DMGResist = 0.3
 DMGMult = 1
 Form = 1
 #-------------------------------
@@ -81,9 +87,10 @@ Form = 1
 Ability = FAIRYAURA
 Moves = GEOMANCY,MOONBLAST,THUNDERBOLT,WONDERROOM
 PostPrimeMoves = GEOMANCY,MOONBLAST,THUNDERBOLT,WONDERROOM
-Turns = 3
-HPMult = 5.0
+Turns = 2
+HPMult = 6.0
 DMGMult = 1
+DMGResist = 0.3
 Form = 1
 Item = POWERHERB
 #-------------------------------
@@ -92,9 +99,19 @@ Ability = AURABREAK
 Moves = THOUSANDWAVES,COREENFORCER,PRIMEVALSTRINGSHOT
 PostPrimeMoves = FIRELASH,THOUSANDARROWS
 Turns = 2
-HPMult = 10.0
+HPMult = 6.0
 DMGMult = 1
 Item = SOFTSAND
+DMGResist = 0.3
+#-------------------------------
+[DIANCIE]
+Ability = CLEARBODY
+Moves = DIAMONDSTORM,ENCHANTINGSONG,PRIMEVALCURSE
+PostPrimeMoves = SPIRITSHACKLE,AURASPHERE
+Turns = 2
+HPMult = 6.0
+DMGMult = 1
+DMGResist = 0.3
 #-------------------------------
 [GENGAR]
 Ability = SUDDENCHILL
@@ -200,7 +217,8 @@ Ability = PRESSURE
 Moves = WHIRLPOOL,PURIFYINGWATER,MUDSHOT,PRIMEVALTAILWIND
 PostPrimeMoves = COLDFRONT,ICEFANG
 Turns = 2
-HPMult = 6.5
+HPMult = 4.0
+DMGResist = 0.3
 DMGMult = 1
 #-------------------------------
 [ENTEI]
@@ -208,7 +226,8 @@ Ability = PRESSURE
 Moves = INCINERATE,INFERNOCHARGE,AURASPHERE,PRIMEVALCALMMIND
 PostPrimeMoves = EXTRASENSORY,CRUNCH
 Turns = 2
-HPMult = 5.0
+HPMult = 4.0
+DMGResist = 0.3
 DMGMult = 1
 #-------------------------------
 [RAIKOU]
@@ -216,7 +235,8 @@ Ability = PRESSURE
 Moves = LIGHTNINGSHRIEK,ELECTROBALL,SIGNALBEAM,PRIMEVALTORMENT
 PostPrimeMoves = DARKPULSE,IRONHEAD
 Turns = 2
-HPMult = 5.0
+HPMult = 4.0
+DMGResist = 0.3
 DMGMult = 1
 #-------------------------------
 [RAYQUAZA]
@@ -231,8 +251,9 @@ DMGMult = 1
 Ability = DRIZZLE
 Moves = ORIGINPULSE,THUNDER,ICEBEAM,WATERSPOUT
 PostPrimeMoves = ORIGINPULSE,THUNDER,ICEBEAM,WATERSPOUT
-Turns = 3
+Turns = 2
 HPMult = 6.0
+DMGResist = 0.3
 DMGMult = 1
 Item = BLUEORB
 #-------------------------------
@@ -240,8 +261,9 @@ Item = BLUEORB
 Ability = DROUGHT
 Moves = PRECIPICEBLADES,ERUPTION,DRAGONCLAW,SOLARBEAM
 PostPrimeMoves = PRECIPICEBLADES,ERUPTION,DRAGONCLAW,SOLARBEAM
-Turns = 3
+Turns = 2
 HPMult = 6.0
+DMGResist = 0.3
 DMGMult = 1
 Item = REDORB
 #-------------------------------
@@ -318,22 +340,6 @@ Turns = 1
 HPMult = 3.0
 DMGMult = 1
 #-------------------------------
-[DIALGA]
-Ability = STALWART
-Moves = ROAROFTIME,DRAGONCLAW,IRONTAIL,FLASHCANNON
-PostPrimeMoves = ROAROFTIME,DRAGONCLAW,IRONTAIL,FLASHCANNON
-Turns = 1
-HPMult = 8.0
-DMGMult = 1
-#-------------------------------
-[PALKIA]
-Ability = REALIST
-Moves = SPACIALREND,LIQUIDATION
-PostPrimeMoves = SPACIALREND,LIQUIDATION
-Turns = 3
-HPMult = 6.0
-DMGMult = 1
-#-------------------------------
 [CRESSELIA]
 Ability = LEVITATE
 Moves = HELPINGHAND,PSYCHIC
@@ -355,7 +361,8 @@ Ability = HEARTOFJUSTICE
 Moves = IRONHEAD,AURASPHERE,PRIMEVALMETALCLAW,PRIMEVALRAINDANCE
 PostPrimeMoves = RAZORSHELL,MAGNETHRASH
 Turns = 2
-HPMult = 8.0
+HPMult = 6.0
+DMGResist = 0.3
 DMGMult = 1
 Item = LUMBERRY
 #-------------------------------
@@ -364,7 +371,8 @@ Ability = HEARTOFJUSTICE
 Moves = BEDROCKBREAKER,TRAMPLE,PRIMEVALBRICKBREAK,PRIMEVALTAILWIND
 PostPrimeMoves = STRAFE,ICECALIBUR
 Turns = 2
-HPMult = 8.0
+HPMult = 6.0
+DMGResist = 0.3
 DMGMult = 1
 Item = EXPERTBELT
 #-------------------------------
@@ -373,7 +381,8 @@ Ability = HEARTOFJUSTICE
 Moves = HORNLEECH,SACREDSWORD,PRIMEVALSLASH,PRIMEVALMOONLIGHT
 PostPrimeMoves = LUNARJUSTICE,GRASSKNOT
 Turns = 2
-HPMult = 8.0
+HPMult = 6.0
+DMGResist = 0.3
 DMGMult = 1
 Item = MENTALHERB
 #-------------------------------
@@ -382,7 +391,8 @@ Ability = HEARTOFJUSTICE
 Moves = SECRETSWORD,BUBBLEBLAST,PRIMEVALIGNITE
 PostPrimeMoves = FIERYDANCE,DOUSE
 Turns = 2
-HPMult = 8.0
+HPMult = 6.0
+DMGResist = 0.3
 DMGMult = 1
 Item = LEFTOVERS
 #-------------------------------
@@ -438,8 +448,9 @@ DMGMult = 1
 Ability = DOWNLOAD
 Moves = TECHNOBLAST,FELLSTINGER,BUGBUZZ,ELECTROWEB
 PostPrimeMoves = TECHNOBLAST,FELLSTINGER,BUGBUZZ,ELECTROWEB
-Turns = 3
-HPMult = 9.0
+Turns = 2
+HPMult = 6.0
+DMGResist = 0.3
 DMGMult = 1
 #-------------------------------
 [LEDIAN]
@@ -633,7 +644,7 @@ DMGMult = 1
 [LICKILICKY]
 Ability = MENTALBLOCK
 Moves = CRUSHGRIP,CORRODE,PRIMEVALCURSE
-PostPrimeMoves = TONGUETWISTER
+PostPrimeMoves = TONGUETWISTER,ACIDSPRAY
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -798,14 +809,6 @@ Moves = ECHOLOCATE,LEECHLIFE,PRIMEVALHAIL
 PostPrimeMoves = FROSTBITE
 Turns = 2
 HPMult = 3.5
-DMGMult = 1
-#-------------------------------
-[DIANCIE]
-Ability = CLEARBODY
-Moves = DIAMONDSTORM,ENCHANTINGSONG,PRIMEVALCURSE
-PostPrimeMoves = SPIRITSHACKLE,AURASPHERE
-Turns = 2
-HPMult = 10.0
 DMGMult = 1
 #-------------------------------
 [SALAMENCE]

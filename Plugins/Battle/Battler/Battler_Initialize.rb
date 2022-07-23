@@ -6,6 +6,8 @@ class PokeBattle_Battler
 	attr_reader 	:bossStatusCount
 	attr_accessor 	:primevalTimer
 	attr_accessor	:indexesTargetedThisTurn
+	attr_accessor	:dmgMult
+	attr_accessor	:dmgResist
 	
 	def bossStatus=(value)
 		@effects[PBEffects::Truant] = false if @bossStatus == :SLEEP && value != :SLEEP
@@ -71,6 +73,8 @@ class PokeBattle_Battler
 		@primevalTimer	= 0
 		@extraMovesPerTurn	= 0
 		@indexesTargetedThisTurn	= []
+		@dmgMult = 1
+		@dmgResist = 0
 	end
   
   # Used by Future Sight only, when Future Sight's user is no longer in battle.
@@ -101,6 +105,8 @@ class PokeBattle_Battler
     @iv           = {}
     GameData::Stat.each_main { |s| @iv[s.id] = pkmn.iv[s.id] }
     @dummy        = true
+	@dmgMult   = 1
+	@dmgResist = 0
   end
 
 
@@ -124,6 +130,8 @@ class PokeBattle_Battler
     @speed        = pkmn.speed
     @status       = pkmn.status
     @statusCount  = pkmn.statusCount
+	@dmgMult	  = pkmn.dmgMult
+	@dmgResist	  = pkmn.dmgResist
 	@boss		  = pkmn.boss
     @pokemon      = pkmn
     @pokemonIndex = idxParty

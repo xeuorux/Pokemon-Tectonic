@@ -11,6 +11,7 @@ module GameData
 		attr_reader :size_mult
 		attr_reader :hp_mult
 		attr_reader :dmg_mult
+		attr_reader :dmg_resist
 	
 		DATA = {}
 		DATA_FILENAME = "avatars.dat"
@@ -25,6 +26,7 @@ module GameData
 		  "HPMult"				=> [:hp_mult,			"f"],
 		  "SizeMult" 			=> [:size_mult,     	"F"],
 		  "DMGMult"				=> [:dmg_mult,			"F"],
+		  "DMGResist"			=> [:dmg_resist,		"F"],
 		}
 
 		extend ClassMethods
@@ -42,6 +44,7 @@ module GameData
 		  @size_mult		= hash[:size_mult] || 1.3
 		  @hp_mult			= hash[:hp_mult]
 		  @dmg_mult 		= hash[:dmg_mult] || 1
+		  @dmg_resist		= hash[:dmg_resist] || 0
 		end
 	end
 end

@@ -1,6 +1,7 @@
 class Pokemon
 	attr_accessor :hpMult
 	attr_accessor :dmgMult
+  attr_accessor :dmgResist
 	attr_accessor :battlingStreak
   attr_accessor :extraMovesPerTurn
 	
@@ -70,6 +71,7 @@ class Pokemon
     @totalhp          = 1
     @hpMult		        = 1
   	@dmgMult		      = 1
+    @dmgResist        = 0
     @extraMovesPerTurn = 0
 	  @battlingStreak	  = 0
     calc_stats
@@ -101,14 +103,9 @@ class Pokemon
     GameData::Stat.each_main do |s|
       if s.id == :HP
         stats[s.id] = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id])
-        if boss
-          stats[s.id] *= hpMult
-        end
+        stats[s.id] *= hpMult
       elsif (s.id == :ATTACK) || (s.id == :SPECIAL_ATTACK)
         stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
-        if boss
-          stats[s.id] *= dmgMult
-        end
       else
         stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
       end

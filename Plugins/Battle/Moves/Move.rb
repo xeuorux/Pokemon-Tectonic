@@ -439,6 +439,10 @@ class PokeBattle_Move
 			multipliers[:base_damage_multiplier] /= 3
 		  end
 		end
+    # Battler properites
+    multipliers[:base_damage_multiplier] *= user.dmgMult
+    multipliers[:base_damage_multiplier] *= [0,(1.0 - target.dmgResist.to_f)].max
+    echoln("User's damage mult is #{user.dmgMult} and the target's damage resist is #{target.dmgResist}")
 		# Terrain moves
 		case @battle.field.terrain
 		when :Electric
@@ -489,7 +493,7 @@ class PokeBattle_Move
 			  multipliers[:final_damage_multiplier] *= 2
 		  end
 		end
-    # Random variance
+    # Random variance (What used to be for that)
     if !self.is_a?(PokeBattle_Confusion) && !self.is_a?(PokeBattle_Charm)
       multipliers[:final_damage_multiplier] *= 0.9
     end

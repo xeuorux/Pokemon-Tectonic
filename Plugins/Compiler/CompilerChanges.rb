@@ -451,6 +451,7 @@ module Compiler
 				:item		 		=> contents["Item"],
 				:hp_mult	 		=> contents["HPMult"],
 				:dmg_mult			=> contents["DMGMult"],
+        :dmg_resist			=> contents["DMGResist"],
 				:size_mult	 		=> contents["SizeMult"],
 			}
 			avatar_number += 1
@@ -2179,6 +2180,7 @@ module Compiler
         f.write(sprintf("HPMult = %s\r\n", avatar.hp_mult))
         f.write(sprintf("Item = %s\r\n", avatar.item))
         f.write(sprintf("DMGMult = %s\r\n", avatar.dmg_mult))
+        f.write(sprintf("DMGResist = %s\r\n", avatar.dmg_resist))
         f.write(sprintf("Form = %s\r\n", avatar.form))
       end
     }

@@ -140,6 +140,7 @@ def setAvatarProperties(pkmn)
 	pkmn.ability = avatar_data.ability
 	pkmn.hpMult = avatar_data.hp_mult
 	pkmn.dmgMult = avatar_data.dmg_mult
+	pkmn.dmgResist = avatar_data.dmg_resist
 	pkmn.extraMovesPerTurn = avatar_data.num_turns - 1
 	
 	pkmn.calc_stats()
