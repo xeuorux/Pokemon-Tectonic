@@ -81,6 +81,7 @@ class PokeBattle_Battler
 	def pbCanInflictStatus?(newStatus,user,showMessages,move=nil,ignoreStatus=false)
 		return false if fainted?
 		selfInflicted = (user && user.index==@index)
+		statusDoublingCurse = pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
 		# Already have that status problem
 		if getStatuses().include?(newStatus) && !ignoreStatus
 			if showMessages
@@ -104,17 +105,12 @@ class PokeBattle_Battler
 		end
 		# Trying to inflict a status problem on a Pokémon behind a substitute
 		if @effects[PBEffects::Substitute]>0 && !(move && move.ignoresSubstitute?(user)) &&
-			 !selfInflicted
+			 !selfInflicted && !statusDoublingCurse
 			@battle.pbDisplay(_INTL("It doesn't affect {1} behind its substitute...",pbThis(true))) if showMessages
 			return false
 		end
-		# Weather immunity
-		if newStatus == :FROZEN && [:Sun, :HarshSun].include?(@battle.pbWeather)
-			@battle.pbDisplay(_INTL("It doesn't affect {1} due to the sunny weather...",pbThis(true))) if showMessages
-			return false
-		end
 		# Terrains immunity
-		if affectedByTerrain?
+		if affectedByTerrain? && !statusDoublingCurse
 			case @battle.field.terrain
 			when :Electric
 				if newStatus == :SLEEP || newStatus == :FROZEN
@@ -129,7 +125,7 @@ class PokeBattle_Battler
 			end
 		end
 		# Uproar immunity
-		if newStatus == :SLEEP && !(hasActiveAbility?(:SOUNDPROOF) && !@battle.moldBreaker)
+		if newStatus == :SLEEP && !(hasActiveAbility?(:SOUNDPROOF) && !@battle.moldBreaker) && !statusDoublingCurse
 			@battle.eachBattler do |b|
 				next if b.effects[PBEffects::Uproar]==0
 				@battle.pbDisplay(_INTL("But the uproar kept {1} awake!",pbThis(true))) if showMessages
@@ -260,7 +256,7 @@ class PokeBattle_Battler
 		end
 		# Safeguard immunity
 		if pbOwnSide.effects[PBEffects::Safeguard]>0 && !selfInflicted && move &&
-			 !(user && user.hasActiveAbility?(:INFILTRATOR))
+			 !(user && user.hasActiveAbility?(:INFILTRATOR)) && !statusDoublingCurse
 			@battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!",pbThis)) if showMessages
 			return false
 		end

@@ -105,6 +105,10 @@ class PokeBattle_Battle
       @struggle = PokeBattle_Struggle.new(self, nil)
     end
   end
+
+  def curseActive?(curseID)
+    return @curses.include?(curseID)
+  end
   
   #=============================================================================
   # Messages and animations

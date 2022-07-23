@@ -511,38 +511,28 @@ class PokeBattle_Move
 		typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
 		multipliers[:final_damage_multiplier] *= typeEffect
 		# Burn
-		if user.burned? && physicalMove? && damageReducedByBurn? &&
-		   !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
-		  if !user.boss?
-			  multipliers[:final_damage_multiplier] *= 2.0/3.0
-		  else
-			  multipliers[:final_damage_multiplier] *= 4.0/5.0
-		  end
+		if user.burned? && physicalMove? && damageReducedByBurn? && !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
+      damageReduction = user.boss? ? (1.0/5.0) : (1.0/3.0)
+      damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
 		end
 		# Poison
-		if user.poisoned? && user.statusCount == 0 && specialMove? && damageReducedByBurn? &&
-		   !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:POISONHEAL)
-		  if !user.boss?
-			  multipliers[:final_damage_multiplier] *= 2.0/3.0
-		  else
-			  multipliers[:final_damage_multiplier] *= 4.0/5.0
-		  end
+		if user.poisoned? && user.statusCount == 0 && specialMove? && damageReducedByBurn? && !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:POISONHEAL)
+       damageReduction = user.boss? ? (1.0/5.0) : (1.0/3.0)
+       damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+       multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
 		end
 		# Chill
 		if target.frozen?
-		  if !target.boss?
-			  multipliers[:final_damage_multiplier] *= 4.0/3.0
-		  else
-			  multipliers[:final_damage_multiplier] *= 5.0/4.0
-		  end
+      damageIncrease = target.boss? ? (1.0/5.0) : (1.0/3.0)
+      damageIncrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:final_damage_multiplier] *= (1.0 + damageIncrease)
 		end
     # Numb
 		if user.paralyzed?
-		  if !user.boss?
-			  multipliers[:final_damage_multiplier] *= 3.0/4.0
-		  else
-			  multipliers[:final_damage_multiplier] *= 17.0/20.0
-		  end
+      damageReduction = user.boss? ? (3.0/20.0) : (1.0/4.0)
+      damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
 		end
 		# Aurora Veil, Reflect, Light Screen
 		if !ignoresReflect? && !target.damageState.critical &&

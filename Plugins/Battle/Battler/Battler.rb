@@ -248,8 +248,15 @@ class PokeBattle_Battler
     speedMult *= 2 if pbOwnSide.effects[PBEffects::Tailwind]>0
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp]>0
     # Paralysis and Chill
-    if (paralyzed? || frozen?) && !hasActiveAbility?(:QUICKFEET)
-      speedMult /= (Settings::MECHANICS_GENERATION >= 7) ? 2 : 4
+    if !hasActiveAbility?(:QUICKFEET)
+      if paralyzed?
+        speedMult /= (Settings::MECHANICS_GENERATION >= 7) ? 2 : 4
+        speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      end
+      if frozen?
+        speedMult /= (Settings::MECHANICS_GENERATION >= 7) ? 2 : 4
+        speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      end
     end
     # Calculation
     return [(speed*speedMult).round,1].max

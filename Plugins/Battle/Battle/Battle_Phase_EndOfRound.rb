@@ -371,6 +371,7 @@ class PokeBattle_Battle
         oldHP = b.hp
         dmg = b.totalhp/12
 		    dmg = (dmg/4.0).round if b.boss
+        dmg *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
         b.pbContinueStatus(:POISON) { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
@@ -407,6 +408,7 @@ class PokeBattle_Battle
         oldHP = b.hp
         dmg = b.totalhp/8
         dmg = (dmg/4.0).round if b.boss?
+        dmg *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
         b.pbContinueStatus(:BURN) { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
@@ -420,6 +422,7 @@ class PokeBattle_Battle
     priority.each do |b|
       selfHitBasePower = (25 + b.level * (3.0/5.0))
       selfHitBasePower = selfHitBasePower.ceil
+      selfHitBasePower *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
       if b.flustered?
         superEff = pbCheckOpposingAbility(:BRAINSCRAMBLE,b.index)
         b.pbContinueStatus(:FLUSTERED) { b.pbConfusionDamage(nil,false,superEff,selfHitBasePower) }

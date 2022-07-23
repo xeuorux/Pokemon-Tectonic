@@ -318,7 +318,7 @@ Pokemon = CAMERUPT,20
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Eko_2,Eko,1]
-Policies = PRIORITIZEDOTS,EKO,CURSE_SPIKES
+Policies = PRIORITIZEDOTS,EKO,CURSE_STATUS_DOUBLED
 Pokemon = SALANDIT,20
     Moves = POISONGAS,STENCH,EMBER,IGNITE
     AbilityIndex = 1
