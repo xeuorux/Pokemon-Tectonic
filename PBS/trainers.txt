@@ -1693,7 +1693,7 @@ Pokemon = INFERNAPE,42
 Pokemon = AGGRON,42
     AbilityIndex = 0
 #-------------------------------
-[COLLECTOR,Evan]
+[COLLECTOR,Mirko]
 Pokemon = ARAICHU,41
     AbilityIndex = 1
 Pokemon = RILLABOOM,42
