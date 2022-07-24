@@ -32042,8 +32042,8 @@ Kind = Unblinking
 Pokedex = The eye on its stomach enables its psychic powers and never blinks. Dirt and dust is telekinetically repelled.
 BattlerPlayerX = 0
 BattlerPlayerY = 17
-BattlerEnemyX = 0
-BattlerEnemyY = 12
+BattlerEnemyX = 1
+BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MFURRET,Level,26
@@ -32075,10 +32075,10 @@ Kind = Long Sight
 Pokedex = It burrows at night, leaving only the eye on its stomach exposed. The eye will stare into space while the rest of it sleeps.
 BattlerPlayerX = 0
 BattlerPlayerY = 6
-BattlerEnemyX = -4
-BattlerEnemyY = 9
+BattlerEnemyX = -3
+BattlerEnemyY = 14
 BattlerShadowX = 0
-BattlerShadowSize = 3
+BattlerShadowSize = 2
 #-------------------------------
 [2503]
 Name = M. Seviper
@@ -32109,10 +32109,10 @@ Pokedex = Its iron body is impenetrable to nearly all attacks. When coiled, it c
 WildItemUncommon = SHEDSHELL
 BattlerPlayerX = 0
 BattlerPlayerY = 19
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerEnemyX = 4
+BattlerEnemyY = 12
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [2504]
 Name = M. Tangela
@@ -32142,8 +32142,8 @@ Kind = Gorgon
 Pokedex = Though it looks like a plant, its green color comes from its jade scales. Looking into its the eyes is said to bring three years of bad luck.
 BattlerPlayerX = 0
 BattlerPlayerY = 27
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerEnemyX = -1
+BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MTANGROWTH,Level,34
@@ -32175,10 +32175,10 @@ Kind = Gorgon
 Pokedex = While the snakes covering it are hard as granite, its skin is soft. Predators attacking its unprotected limbs have to contend with its powerful digging claws.
 BattlerPlayerX = 0
 BattlerPlayerY = 16
-BattlerEnemyX = 0
-BattlerEnemyY = 8
+BattlerEnemyX = 3
+BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [2506]
 Name = M. Vulpix
@@ -32208,8 +32208,8 @@ Pokedex = It constantly demands treats and gifts from its Trainer. Those who don
 WildItemUncommon = SPELLTAG
 BattlerPlayerX = 0
 BattlerPlayerY = 25
-BattlerEnemyX = 0
-BattlerEnemyY = 15
+BattlerEnemyX = 1
+BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MNINETALES,Item,DUSKSTONE
@@ -32245,7 +32245,7 @@ BattlerPlayerY = 13
 BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [2508]
 Name = M. Sinistea
@@ -32275,11 +32275,11 @@ Kind = Ice Tea
 Pokedex = It spends days relaxing on the beach. Its rest is often interrupted by someone who confuses it for a drink.
 FormName = Phony Form
 BattlerPlayerX = 0
-BattlerPlayerY = 25
-BattlerEnemyX = -5
-BattlerEnemyY = 25
+BattlerPlayerY = 20
+BattlerEnemyX = -7
+BattlerEnemyY = 23
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 1
 Evolutions = MPOLTEAGEIST,Item,ICESTONE
 #-------------------------------
 [2509]
@@ -32309,8 +32309,8 @@ Kind = Ice Tea
 Pokedex = Despite its refreshing scent, those who drink of its colorful liquid are swiftly put into a deep sleep.
 BattlerPlayerX = 0
 BattlerPlayerY = 10
-BattlerEnemyX = -5
-BattlerEnemyY = 8
+BattlerEnemyX = -4
+BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
