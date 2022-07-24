@@ -89,6 +89,9 @@ class PokeBattle_MystifyMove < PokeBattle_Move
     end
 end
 
+#===============================================================================
+# Charms the target.
+#===============================================================================
 class PokeBattle_CharmMove < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
@@ -118,6 +121,37 @@ class PokeBattle_CharmMove < PokeBattle_Move
 end
 
 #===============================================================================
+# Frostbite's the target.
+#===============================================================================
+class PokeBattle_FrostbiteMove < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+	  return false if damagingMove?
+	  return !target.pbCanFrostbite?(user,true,self)
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+	  return if damagingMove?
+	  target.pbFrostbite
+	end
+  
+	def pbAdditionalEffect(user,target)
+	  return if target.damageState.substitute
+	  return if !target.pbCanFrostbite?(user,false,self)
+	  target.pbFrostbite
+	end
+
+    def getScore(score,user,target,skill=100)
+        canFrostbite = target.pbCanFrostbite?(user,false)
+        if canFrostbite
+          score += 20
+        elsif statusMove?
+          score = 0
+        end
+        return score
+    end
+end
+
+#===============================================================================
 # Charms the target.
 #===============================================================================
 class PokeBattle_Move_400 < PokeBattle_CharmMove
@@ -133,6 +167,12 @@ end
 # Mystifies the target.
 #===============================================================================
 class PokeBattle_Move_402 < PokeBattle_MystifyMove
+end
+
+#===============================================================================
+# Frostbite's the target.
+#===============================================================================
+class PokeBattle_Move_403 < PokeBattle_FrostbiteMove
 end
 
 #===============================================================================

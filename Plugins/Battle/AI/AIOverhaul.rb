@@ -923,45 +923,51 @@ class PokeBattle_AI
     typemod = pbCalcTypeMod(type,user,target)
     multipliers[:final_damage_multiplier] *= typemod.to_f / Effectiveness::NORMAL_EFFECTIVE
     # Burn
-	if user.status == :BURN && move.physicalMove?(type) &&
-	 !user.hasActiveAbility?(:GUTS) && !move.damageReducedByBurn?
-		if !user.boss
-			multipliers[:final_damage_multiplier] *= 2.0/3.0
-		else
-			multipliers[:final_damage_multiplier] *= 4.0/5.0
-		end
-	end
-	# Poison
-	if user.status == :POISON && move.specialMove?(type) &&
-	 !user.hasActiveAbility?(:AUDACITY) && !move.damageReducedByBurn?
-		if !user.boss
-			multipliers[:final_damage_multiplier] *= 2.0/3.0
-		else
-			multipliers[:final_damage_multiplier] *= 4.0/5.0
-		end
-	end
-    # Aurora Veil, Reflect, Light Screen
-	if !move.ignoresReflect? && !user.hasActiveAbility?(:INFILTRATOR)
-		if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
-		  if @battle.pbSideBattlerCount(target) > 1
-			multipliers[:final_damage_multiplier] *= 2 / 3.0
-		  else
-			multipliers[:final_damage_multiplier] /= 2
-		  end
-		elsif target.pbOwnSide.effects[PBEffects::Reflect] > 0 && move.physicalMove?(type)
-		  if @battle.pbSideBattlerCount(target) > 1
-			multipliers[:final_damage_multiplier] *= 2 / 3.0
-		  else
-			multipliers[:final_damage_multiplier] /= 2
-		  end
-		elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && move.specialMove?(type)
-		  if @battle.pbSideBattlerCount(target) > 1
-			multipliers[:final_damage_multiplier] *= 2 / 3.0
-		  else
-			multipliers[:final_damage_multiplier] /= 2
-		  end
-		end
-	end
+    if user.burned? && move.physicalMove?(type) &&
+        !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL) && !move.damageReducedByBurn?
+      if !user.boss
+        multipliers[:final_damage_multiplier] *= 2.0/3.0
+      else
+        multipliers[:final_damage_multiplier] *= 4.0/5.0
+      end
+    end
+    # Poison
+    if user.poisoned? && move.specialMove?(type) &&
+        !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:POISONHEAL) && !move.damageReducedByBurn?
+      if !user.boss
+        multipliers[:final_damage_multiplier] *= 2.0/3.0
+      else
+        multipliers[:final_damage_multiplier] *= 4.0/5.0
+      end
+    end
+    # Frostbite
+    if user.frostbitten? && move.specialMove?(type) && !move.damageReducedByBurn? && !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:FROSTHEAL)
+      damageReduction = user.boss? ? (1.0/5.0) : (1.0/3.0)
+      damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
+    end
+      # Aurora Veil, Reflect, Light Screen
+    if !move.ignoresReflect? && !user.hasActiveAbility?(:INFILTRATOR)
+      if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
+        if @battle.pbSideBattlerCount(target) > 1
+        multipliers[:final_damage_multiplier] *= 2 / 3.0
+        else
+        multipliers[:final_damage_multiplier] /= 2
+        end
+      elsif target.pbOwnSide.effects[PBEffects::Reflect] > 0 && move.physicalMove?(type)
+        if @battle.pbSideBattlerCount(target) > 1
+        multipliers[:final_damage_multiplier] *= 2 / 3.0
+        else
+        multipliers[:final_damage_multiplier] /= 2
+        end
+      elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && move.specialMove?(type)
+        if @battle.pbSideBattlerCount(target) > 1
+        multipliers[:final_damage_multiplier] *= 2 / 3.0
+        else
+        multipliers[:final_damage_multiplier] /= 2
+        end
+      end
+    end
     # Move-specific base damage modifiers
     # TODO
     # Move-specific final damage modifiers

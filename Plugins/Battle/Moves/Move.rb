@@ -522,6 +522,12 @@ class PokeBattle_Move
        damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
        multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
 		end
+    # Frostbite
+		if user.frostbitten? && specialMove? && damageReducedByBurn? && !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:FROSTHEAL)
+      damageReduction = user.boss? ? (1.0/5.0) : (1.0/3.0)
+      damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
+   end
 		# Chill
 		if target.frozen?
       damageIncrease = target.boss? ? (1.0/5.0) : (1.0/3.0)
