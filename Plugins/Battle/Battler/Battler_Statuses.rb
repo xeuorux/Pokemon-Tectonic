@@ -3,8 +3,8 @@ POISONED_EXPLANATION = "Its Speed is halved"
 FROSTBITE_EXPLANATION = "Its Sp. Atk is reduced by a third"
 NUMBED_EXPLANATION = "Its Speed is halved, and it will deal one third less damage"
 CHILLED_EXPLANATION = "Its speed is halved, and it will take one third more damage"
-MYSTIFIED_EXPLANATION = "It'll hurt itself with its own Sp. Atk"
-FLUSTERED_EXPLANATION = "It'll hurt itself with its own Attack"
+MYSTIFIED_EXPLANATION = "Its Defense is reduced by a third"
+FLUSTERED_EXPLANATION = "Its Sp. Def is reduced by a third"
 
 class PokeBattle_Battler
 

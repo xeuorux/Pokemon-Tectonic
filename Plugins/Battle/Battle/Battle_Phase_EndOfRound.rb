@@ -420,7 +420,7 @@ class PokeBattle_Battle
     end
     # Damage from fluster or mystified
     priority.each do |b|
-      selfHitBasePower = (25 + b.level * (3.0/5.0))
+      selfHitBasePower = (20 + b.level * (3.0/5.0))
       selfHitBasePower = selfHitBasePower.ceil
       selfHitBasePower *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
       if b.flustered?
