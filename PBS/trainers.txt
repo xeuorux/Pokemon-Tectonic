@@ -1244,9 +1244,9 @@ Pokemon = AIPOM,27
     AbilityIndex = 1
 Pokemon = DRIZZILE,28
     AbilityIndex = 0
-Pokemon = DRATINI,27
-    AbilityIndex = 0
-    Item = DRAGONGEM
+	Item = WATERGEM
+Pokemon = HERACROSS,27
+    AbilityIndex = 1
 #-------------------------------
 [BACKPACKER_M,Freedom]
 Pokemon = MTANGELA,27
