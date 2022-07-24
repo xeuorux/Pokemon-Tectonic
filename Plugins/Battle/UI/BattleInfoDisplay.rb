@@ -67,7 +67,7 @@ class BattleInfoDisplay < SpriteWrapper
 	# Draw the
 	battlerNameX = 24
 	battlerCursorX = 160
-	yPos = 12
+	yPos = 8
 	battlerIndex = 0
 
 	# Entries for allies
@@ -81,7 +81,7 @@ class BattleInfoDisplay < SpriteWrapper
 	end
 
 	# Entries for enemies
-	yPos += 12
+	yPos = 180
 	@battle.eachOtherSideBattler do |b|
 		next if !b
 		textToDraw.push([b.name,battlerNameX,yPos + 4,0,base,shadow])
@@ -186,7 +186,7 @@ class BattleInfoDisplay < SpriteWrapper
 		battlerName += " (#{speciesData.real_name})"
 		battlerName += " [#{speciesData.real_form_name}]" if speciesData.form != 0
 	end
-	textToDraw.push([battlerName,180,10,0,base,shadow])
+	textToDraw.push([battlerName,256,0,2,base,shadow])
 	index = 0
 	
 	stageMulMainStat = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
@@ -196,7 +196,13 @@ class BattleInfoDisplay < SpriteWrapper
     stageDivBattleStat = [9,8,7,6,5,4, 3, 3,3,3,3,3,3]
 	
 	# Stat Stages
-	textToDraw.push(["Stat Stages",24,42,0,base,shadow])
+	statStagesSectionTopY = 56
+	statLabelX = 24
+	statStageX = 124
+	statMultX = 184
+	textToDraw.push(["Stat",statLabelX,statStagesSectionTopY,0,base,shadow])
+	textToDraw.push(["Stage",statStageX,statStagesSectionTopY-12,0,base,shadow])
+	textToDraw.push(["Mult",statMultX,statStagesSectionTopY,0,base,shadow])
 	
 	statsToNames = {
 	:ATTACK => "Atk",
@@ -209,10 +215,10 @@ class BattleInfoDisplay < SpriteWrapper
 	}
 	
 	statsToNames.each do |stat,name|
-		y = 90 + 32 * index
+		y = statStagesSectionTopY + 36 + 40 * index
 	
 		statData = GameData::Stat.get(stat)
-		textToDraw.push([name,24,y,0,base,shadow])
+		textToDraw.push([name,statLabelX,y,0,base,shadow])
 		
 		stage = battler.stages[stat]
 		stageZero = stage == 0
@@ -222,6 +228,11 @@ class BattleInfoDisplay < SpriteWrapper
 		end
 		stageLabel = "+" + stageLabel if stage > 0
 		
+		x = statStageX
+		x -= 12 if !stageZero
+		mainColor = @battle.bossBattle? ? bossBase : base
+		textToDraw.push([stageLabel,x,y,0,mainColor,shadow])
+
 		if !stageZero
 			#Percentages
 			stageMul = statData.type == :battle ? stageMulBattleStat : stageMulMainStat
@@ -229,19 +240,16 @@ class BattleInfoDisplay < SpriteWrapper
 			adjustedStage = stage + 6
 			mult = stageMul[adjustedStage].to_f/stageDiv[adjustedStage].to_f
 			mult = (1.0+mult)/2.0 if battler.boss?
-			stageLabel = "#{stageLabel} (#{mult.round(2)}x)"
+			multLabel = mult.round(2).to_s + "x"
+			textToDraw.push([multLabel,statMultX,y,0,mainColor,shadow])
 		end
-		
-		x = 106
-		x -= 12 if !stageZero
-		mainColor = @battle.bossBattle? ? bossBase : base
-		textToDraw.push([stageLabel,x,y,0,mainColor,shadow])
 		
 		index += 1
 	end
 	
 	# Effects
-	textToDraw.push(["Effects",240,42,0,base,shadow])
+	battlerEffectsX = 280
+	textToDraw.push(["Effects",battlerEffectsX,statStagesSectionTopY,0,base,shadow])
 	
 	# Battler effects
 	battlerEffects = []
@@ -249,10 +257,10 @@ class BattleInfoDisplay < SpriteWrapper
 	for effect in 0..150
 		effectValue = battler.effects[effect]
 		next if effectValue.nil?
-		next if effectValue == false
-		next if effectValue.is_a?(Integer) && effectValue <= 0
-		next if effect == PBEffects::ProtectRate && effectValue <= 1
-		next if effect == PBEffects::Unburden && !battler.hasActiveAbility?(:UNBURDEN)
+		# next if effectValue == false
+		# next if effectValue.is_a?(Integer) && effectValue <= 0
+		# next if effect == PBEffects::ProtectRate && effectValue <= 1
+		# next if effect == PBEffects::Unburden && !battler.hasActiveAbility?(:UNBURDEN)
 		effectName = labelBattlerEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
@@ -263,8 +271,8 @@ class BattleInfoDisplay < SpriteWrapper
 	for effect in 0..30
 		effectValue = @battle.positions[battler.index].effects[effect]
 		next if effectValue.nil?
-		next if effectValue == false
-		next if effectValue.is_a?(Integer) && effectValue <= 0
+		# next if effectValue == false
+		# next if effectValue.is_a?(Integer) && effectValue <= 0
 		effectName = labelSlotEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
@@ -274,16 +282,26 @@ class BattleInfoDisplay < SpriteWrapper
 	scrolling = true if battlerEffects.length > 8
 	
 	# Print all the battler effects to screen
+	scrollingBoundYMin = 84
+	scrollingBoundYMax = 336
 	index = 0
 	repeats = scrolling ? 2 : 1
-	for repeat in 0...repeats
-		battlerEffects.each do |effectName|
-			index += 1
-			calcedY = 90 + 32 * index
-			calcedY -= @battlerScrollingValue if scrolling
-			next if calcedY < 74 || calcedY > 326
-			textToDraw.push([effectName,240,calcedY,0,base,shadow])
+	if battlerEffects.length != 0
+		for repeat in 0...repeats
+			battlerEffects.each do |effectName|
+				index += 1
+				calcedY = statStagesSectionTopY + 40 + 32 * index
+				calcedY -= @battlerScrollingValue if scrolling
+				next if calcedY < scrollingBoundYMin || calcedY > scrollingBoundYMax
+				distanceFromFade = [calcedY - scrollingBoundYMin,scrollingBoundYMax - calcedY].min
+				textAlpha = ([distanceFromFade / 20.0,1.0].min * 255).floor
+				textBase = Color.new(base.red,base.blue,base.green,textAlpha)
+				textShadow = Color.new(shadow.red,shadow.blue,shadow.green,textAlpha)
+				textToDraw.push([effectName,battlerEffectsX,calcedY,0,textBase,textShadow])
+			end
 		end
+	else
+		textToDraw.push(["None",battlerEffectsX,statStagesSectionTopY + 36,0,base,shadow])
 	end
 	
 	# Reset the scrolling once its scrolled through the entire list once
@@ -435,8 +453,12 @@ class BattleInfoDisplay < SpriteWrapper
 		"Nerve Broken",
 		"Ice Ball",
 		"Roll Out",
-		"Protected By Gargantuan",
-		"Empowered Moonlight"
+		"", # Gargantuan
+		"", # Stunning Curl
+		"", # Red-Hot Retreat
+		"Empowered Moonlight",
+		"Empowered Endure",
+		"Empowered Laser Focus",
 	][effectNumber] || ""
   end
   
@@ -450,7 +472,7 @@ class BattleInfoDisplay < SpriteWrapper
 		"", # Lunar Dance
 		"", # Wish
 		"Wishing For",
-		"" # Wish Maker
+		"", # Wish Maker
 	][effectNumber] || ""
   end
   
@@ -470,7 +492,7 @@ class BattleInfoDisplay < SpriteWrapper
 			"Water Sport",
 			"Wonder Room",
 			"Fortune",
-			"Neutralizing Gas"
+			"Neutralizing Gas",
 		][effectNumber] || ""
 	end
 
@@ -497,7 +519,10 @@ class BattleInfoDisplay < SpriteWrapper
 			"Swamp",
 			"Tailwind",
 			"Poison Spikes", # Toxic Spikes,
-			"" # Wide Guard
+			"", # Wide Guard
+			"Flame Spikes",
+			"EmpoweredEmbargo",
+			"Frost Spikes",
 		][effectNumber] || ""
 	end
  

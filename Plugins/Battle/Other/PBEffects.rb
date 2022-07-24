@@ -35,10 +35,10 @@ module PBEffects
 	StunningCurl		= 142
     RedHotRetreat       = 143
 
-    ExtraTurns          = 199
-    EmpoweredMoonlight  = 200
-	EmpoweredEndure		= 201
-	EmpoweredLaserFocus = 202
+    ExtraTurns          = 144
+    EmpoweredMoonlight  = 145
+	EmpoweredEndure		= 146
+	EmpoweredLaserFocus = 147
 	
 	#===========================================================================
     # These effects apply to a side
