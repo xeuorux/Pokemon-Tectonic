@@ -233,6 +233,12 @@ BattleHandlers::CriticalCalcUserAbility.add(:HARSH,
   }
 )
 
+BattleHandlers::CriticalCalcUserAbility.add(:BITTER,
+  proc { |ability,user,target,c|
+    next 99 if target.frostbitten?
+  }
+)
+
 BattleHandlers::MoveBaseTypeModifierAbility.add(:FROSTSONG,
   proc { |ability,user,move,type|
     next unless move.soundMove?

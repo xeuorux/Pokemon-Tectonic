@@ -364,14 +364,14 @@ class PokeBattle_Move_509 < PokeBattle_Move
 end
 
 #===============================================================================
-# Burns or poisons the target, whichever hits the target's better base stat.
+# Burns or frostbites the target, whichever hits the target's better base stat.
 # (Crippling Breath)
 #===============================================================================
 class PokeBattle_Move_50A < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
-    if !target.pbCanBurn?(user,true,self) && !target.pbCanPoison?(user,true,self)
-		@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can neither be burned or poisoned!")) 
+    if !target.pbCanBurn?(user,true,self) && !target.pbCanFrostbite?(user,true,self)
+		@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can neither be burned or frostbitten!")) 
 		return true
 	end
 	return false
@@ -379,15 +379,15 @@ class PokeBattle_Move_50A < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    burnOrPoison(target)
+    burnOrFrostbite(target)
   end
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-	burnOrPoison(user,target)
+	burnOrFrostbite(user,target)
   end
   
-  def burnOrPoison(user,target)
+  def burnOrFrostbite(user,target)
 	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
 	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
 	attackStage = target.stages[:ATTACK]+6
@@ -397,14 +397,14 @@ class PokeBattle_Move_50A < PokeBattle_Move
 	
     if target.pbCanBurn?(user,false,self) && attack >= spAtk
 		target.pbBurn(user)
-	elsif target.pbCanPoison?(user,false,self) && spAtk >= attack
-		target.pbPoison(user)
+	elsif target.pbCanFrostbite?(user,false,self) && spAtk >= attack
+		target.pbFrostbite(user)
 	end
   end
   
   def getScore(score,user,target,skill=100)
 	score += target.pbCanBurn?(user,false,self) ? 20 : -20
-	score += target.pbCanPoison?(user,false,self) ? 20 : -20
+	score += target.pbCanFrostbite?(user,false,self) ? 20 : -20
 	return score
   end
 end
@@ -427,11 +427,11 @@ class PokeBattle_Move_50B < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is doubled if the target is chilled. (Frostbite)
+# Power is doubled if the target is frostbitten. (Ice Impact)
 #===============================================================================
 class PokeBattle_Move_50C < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    if target.frozen? &&
+    if target.frostbitten? &&
        (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
       baseDmg *= 2
     end
@@ -521,8 +521,8 @@ end
 class PokeBattle_Move_514 < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if target.damageState.unaffected
-	user.pbPoison(nil, _INTL("{1} is poisoned by the grime! Their Sp. Atk is reduced!",
-       user.pbThis),false)
+	user.pbPoison(nil, _INTL("{1} is poisoned by the grime! {2}",
+       user.pbThis,POISONED_EXPLANATION),false)
   end
   
   def getScore(score,user,target,skill=100)
@@ -626,21 +626,9 @@ class PokeBattle_Move_519 < PokeBattle_StatDownMove
 end
 
 #===============================================================================
-# Poisons the target. Heals for 1/3 the damage dealt. (Venom Leech)
+# OPEN SLOT
 #===============================================================================
 class PokeBattle_Move_51A < PokeBattle_Move
-  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
-  
-  def pbEffectAgainstTarget(user,target)
-    return if target.damageState.hpLost<=0
-    hpGain = (target.damageState.hpLost/3.0).round
-    user.pbRecoverHPFromDrain(hpGain,target)
-  end
-  
-  def getScore(score,user,target,skill=100)
-	score += 40 if user.hp < user.totalhp/2.0
-	return score
-  end
 end
 
 #===============================================================================
@@ -1312,16 +1300,9 @@ class PokeBattle_Move_536 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# User takes recoil damage equal to 1/5 of the damage this move dealt.
+# OPEN SLOT
 #===============================================================================
-class PokeBattle_Move_537 < PokeBattle_RecoilMove
-  def pbRecoilDamage(user,target)
-    return (target.damageState.totalHPLost/5.0).round
-  end
-  
-  def getScore(score,user,target,skill=100)
-		return score - 10
-  end
+class PokeBattle_Move_537 < PokeBattle_Move
 end
 
 #===============================================================================
@@ -1563,9 +1544,9 @@ class PokeBattle_Move_544 < PokeBattle_Move
 end
 
 #===============================================================================
-# Heals for 1/3 the damage dealt. (new!Drain Punch)
+# Heals for 1/3 the damage dealt. (new!Drain Punch, Venom Leech)
 #===============================================================================
-class PokeBattle_Move_545 < PokeBattle_PoisonMove
+class PokeBattle_Move_545 < PokeBattle_Move
   def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
   
   def pbEffectAgainstTarget(user,target)
@@ -1601,8 +1582,8 @@ class PokeBattle_Move_547 < PokeBattle_Move
     return if target.damageState.substitute
     case @battle.pbRandom(3)
     when 0 then target.pbPoison(user) if target.pbCanPoison?(user, false, self)
-    when 1 then target.pbFreeze if target.pbCanFreeze?(user, false, self)
-    when 2 then target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
+    when 1 then target.pbFluster if target.pbCanFluster?(user, false, self)
+    when 2 then target.pbMystify(user) if target.pbCanMystify?(user, false, self)
     end
   end
 end
@@ -1745,6 +1726,10 @@ class PokeBattle_Move_54B < PokeBattle_StatUpMove
 			user.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
 			@battle.pbDisplay(_INTL("{1} blew away flame spikes!",user.pbThis))
 		end
+		if user.pbOwnSide.effects[PBEffects::FrostSpikes] > 0
+			user.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
+			@battle.pbDisplay(_INTL("{1} blew away frost spikes!",user.pbThis))
+		end
 		if user.pbOwnSide.effects[PBEffects::StickyWeb]
 			user.pbOwnSide.effects[PBEffects::StickyWeb] = false
 			@battle.pbDisplay(_INTL("{1} blew away sticky webs!",user.pbThis))
@@ -1849,7 +1834,12 @@ class PokeBattle_Move_551 < PokeBattle_Move
 	if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] > 0
 		user.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
 		@battle.pbDisplay(_INTL("The poison spikes around {1}'s feet were brushed aside!",
-       		user.pbOpposingTeam(true)))
+			user.pbOpposingTeam(true)))
+	end
+		if user.pbOpposingSide.effects[PBEffects::FrostSpikes] > 0
+		user.pbOpposingSide.effects[PBEffects::FrostSpikes] = 0
+		@battle.pbDisplay(_INTL("The frost spikes around {1}'s feet were brushed aside!",
+			user.pbOpposingTeam(true)))
 	end
   end
   
@@ -2355,5 +2345,55 @@ class PokeBattle_Move_568 < PokeBattle_Move_0EE
 		return if target.damageState.substitute
 		return if !target.pbCanLowerStatStage?(@statDown[0],user,self)
 		target.pbLowerStatStage(@statDown[0],@statDown[1],user)
+	end
+end
+
+#===============================================================================
+# Entry hazard. Lays frostbite spikes on the opposing side.
+# (Frost Spikes)
+#===============================================================================
+class PokeBattle_Move_569 < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+	  if user.pbOpposingSide.effects[PBEffects::FrostSpikes]>=1
+		@battle.pbDisplay(_INTL("But it failed, since the opposing side already has frost spikes!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectGeneral(user)
+		user.pbOpposingSide.effects[PBEffects::FrostSpikes] += 1
+		@battle.pbDisplay(_INTL("Frost spikes were scattered all around {1}'s feet!",
+			user.pbOpposingTeam(true)))
+		if user.pbOpposingSide.effects[PBEffects::FlameSpikes] > 0
+			user.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0
+			@battle.pbDisplay(_INTL("The flame spikes around {1}'s feet were brushed aside!",
+				user.pbOpposingTeam(true)))
+		end
+		if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] > 0
+			user.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
+			@battle.pbDisplay(_INTL("The poison spikes around {1}'s feet were brushed aside!",
+				user.pbOpposingTeam(true)))
+		end
+	end
+	
+	def getScore(score,user,target,skill=100)
+		  if user.pbOpposingSide.effects[PBEffects::FrostSpikes] >= 1
+			  return 0
+		  end
+		  score -= 40
+		  score += 10*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
+		  score += 10*@battle.pbAbleNonActiveCount(user.idxOwnSide)
+		  return score
+	end
+end
+  
+#===============================================================================
+# 50% more damage in hailstorm. Leap Out.
+#===============================================================================
+class PokeBattle_Move_570 < PokeBattle_Move
+	def pbBaseDamageMultiplier(damageMult,user,target)
+		damageMult *= 1.5 if @battle.pbWeather == :Hail
+		return damageMult
 	end
 end

@@ -45,6 +45,7 @@ module PBEffects
     #===========================================================================
 	FlameSpikes			= 22
     EmpoweredEmbargo    = 23
+    FrostSpikes			= 24
 	
 	#===========================================================================
     # These effects apply to the battle (i.e. both sides)

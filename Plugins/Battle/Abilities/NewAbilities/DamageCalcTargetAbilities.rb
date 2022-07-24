@@ -118,3 +118,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:MARVELSKIN,
     end
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:COLDPROOF,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] /= 2 if type == :ICE
+  }
+)

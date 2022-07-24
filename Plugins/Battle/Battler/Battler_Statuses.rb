@@ -1,8 +1,8 @@
-BURNED_EXPLANATION = "Its Attack is reduced by a third"
-POISONED_EXPLANATION = "Its Sp. Atk is reduced by a third"
+BURNED_EXPLANATION = "It Attack is reduced by a third"
+POISONED_EXPLANATION = "Its Speed is halved"
 FROSTBITE_EXPLANATION = "Its Sp. Atk is reduced by a third"
-NUMBED_EXPLANATION = "It's slower and deals less damage"
-CHILLED_EXPLANATION = "It's slower and takes more damage"
+NUMBED_EXPLANATION = "Its Speed is halved, and it will deal one third less damage"
+CHILLED_EXPLANATION = "Its speed is halved, and it will take one third more damage"
 MYSTIFIED_EXPLANATION = "It'll hurt itself with its own Sp. Atk"
 FLUSTERED_EXPLANATION = "It'll hurt itself with its own Attack"
 
@@ -115,7 +115,7 @@ class PokeBattle_Battler
 		if affectedByTerrain? && !statusDoublingCurse
 			case @battle.field.terrain
 			when :Electric
-				if newStatus == :SLEEP || newStatus == :FROZEN
+				if newStatus == :SLEEP || newStatus == :PARALYSIS
 					@battle.pbDisplay(_INTL("{1} surrounds itself with electrified terrain!",pbThis(true))) if showMessages
 					return false
 				end

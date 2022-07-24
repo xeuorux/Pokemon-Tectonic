@@ -116,7 +116,7 @@ DMGResist = 0.3
 [GENGAR]
 Ability = SUDDENCHILL
 Moves = SHADOWBALL,ACIDSPRAY,PRIMEVALHAIL
-PostPrimeMoves = ICEBEAM
+PostPrimeMoves = ICEBEAM,LEAPOUT
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -496,8 +496,8 @@ DMGMult = 1
 #-------------------------------
 [AVALUGG]
 Ability = CHILLEDBODY
-Moves = ICEFANG,DRAGONCLAW,PRIMEVALICEBEAM,PRIMEVALHAIL
-PostPrimeMoves = FROSTBITE,CRUNCH
+Moves = ICEFANG,DRAGONCLAW,PRIMEVALICEBEAM,PRIMEVALCHILL
+PostPrimeMoves = ICEIMPACT,CRUNCH
 Turns = 2
 HPMult = 4.0
 DMGMult = 1
@@ -683,8 +683,8 @@ DMGMult = 1
 #-------------------------------
 [GRIMMSNARL]
 Ability = RUINOUS
-Moves = SPIRITBREAK,PLAYROUGH,PRIMEVALHAIL
-PostPrimeMoves = TRIPLEAXEL
+Moves = SPIRITBREAK,CRUNCH,PRIMEVALCHILL
+PostPrimeMoves = TRIPLEAXEL,PLAYROUGH
 Turns = 2
 HPMult = 5
 DMGMult = 1
@@ -805,10 +805,10 @@ DMGMult = 1
 #-------------------------------
 [CROBAT]
 Ability = INNERFOCUS
-Moves = ECHOLOCATE,LEECHLIFE,PRIMEVALHAIL
-PostPrimeMoves = FROSTBITE
+Moves = ECHOLOCATE,XSCISSOR,PRIMEVALHAIL
+PostPrimeMoves = ICEFANG,LEECHLIFE
 Turns = 2
-HPMult = 3.5
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [SALAMENCE]
@@ -837,8 +837,8 @@ DMGMult = 1
 #-------------------------------
 [WHISCASH]
 Ability = MENTALBLOCK
-Moves = CRASHDIVE,TREMOR,PRIMEVALHAIL
-PostPrimeMoves = FROSTBITE,TRAMPLE
+Moves = CRASHDIVE,TREMOR,PRIMEVALCHILL
+PostPrimeMoves = ICEIMPACT,TRAMPLE
 Turns = 2
 HPMult = 5
 DMGMult = 1

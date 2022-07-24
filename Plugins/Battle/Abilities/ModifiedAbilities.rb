@@ -596,6 +596,7 @@ BattleHandlers::EORHealingAbility.add(:SHEDSKIN,
     battler.pbCureStatus(true,:BURN)
     battler.pbCureStatus(true,:PARALYSIS)
     battler.pbCureStatus(true,:FROZEN)
+    battler.pbCureStatus(true,:FROSTBITE)
     battle.pbHideAbilitySplash(battler)
   }
 )

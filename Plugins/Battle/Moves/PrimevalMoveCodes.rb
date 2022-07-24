@@ -83,8 +83,8 @@ class PokeBattle_Move_605 < PokeBattle_Move_102
 	def pbEffectGeneral(user)
 		super
 		@battle.eachOtherSideBattler(user) do |b|
-			next unless b.pbCanFreeze?(user,true,self)
-			b.pbFreeze()
+			next if !b.pbCanLowerStatStage?(:SPEED,user,self)
+			b.pbLowerStatStage(:SPEED,2,user)
 	    end
 		transformType(user,:ICE)
 	end
@@ -253,7 +253,7 @@ class PokeBattle_Move_617 < PokeBattle_Move
 	def pbEffectGeneral(user)
 		super
 		@battle.eachOtherSideBattler(user) do |b|
-			next unless b.pbCanPoison?(user,true,self)
+			next if !b.pbCanPoison?(user,true,self)
 			b.pbPoison(user)
 	    end
 		transformType(user,:POISON)
@@ -280,21 +280,7 @@ class PokeBattle_Move_619 < PokeBattle_Move
 	def pbEffectGeneral(user)
 		super
 		@battle.eachOtherSideBattler(user) do |b|
-			next unless b.pbCanBurn?(user,true,self)
-			b.pbBurn(user)
-	    end
-		transformType(user,:FIRE)
-	end
-end
-
-# Empowered Ignite
-class PokeBattle_Move_619 < PokeBattle_Move
-	include EmpoweredMove
-
-	def pbEffectGeneral(user)
-		super
-		@battle.eachOtherSideBattler(user) do |b|
-			next unless b.pbCanBurn?(user,true,self)
+			next if !b.pbCanBurn?(user,true,self)
 			b.pbBurn(user)
 	    end
 		transformType(user,:FIRE)
@@ -449,6 +435,20 @@ class PokeBattle_Move_629 < PokeBattle_Move
 	end
 end
 
+# Empowered Chill
+class PokeBattle_Move_630 < PokeBattle_Move
+	include EmpoweredMove
+
+	def pbEffectGeneral(user)
+		super
+		@battle.eachOtherSideBattler(user) do |b|
+			next if !b.pbCanFrostbite?(user,true,self)
+			b.pbFrostbite(user)
+	    end
+		transformType(user,:ICE)
+	end
+end
+
 ########################################################
 ### DAMAGING MOVES
 ########################################################
@@ -459,7 +459,7 @@ class PokeBattle_Move_636 < PokeBattle_Move_01C
 end
 
 # Empowered Ice Beam
-class PokeBattle_Move_637 < PokeBattle_Move_00C
+class PokeBattle_Move_637 < PokeBattle_Move_51B
 	include EmpoweredMove
 end
 

@@ -250,11 +250,11 @@ class PokeBattle_Battler
     # Paralysis and Chill
     if !hasActiveAbility?(:QUICKFEET)
       if paralyzed?
-        speedMult /= (Settings::MECHANICS_GENERATION >= 7) ? 2 : 4
+        speedMult /= 2
         speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
       end
-      if frozen?
-        speedMult /= (Settings::MECHANICS_GENERATION >= 7) ? 2 : 4
+      if poisoned?
+        speedMult /= 2
         speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
       end
     end

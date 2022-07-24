@@ -23,7 +23,7 @@ BattleHandlers::UserAbilityOnHit.add(:SHOCKSTYLE,
 
 BattleHandlers::UserAbilityOnHit.add(:FROSTWINGS,
   proc { |ability,user,target,move,battle|
-    next if target.frozen? || battle.pbRandom(100)>=20
+    next if target.frostbitten? || battle.pbRandom(100)>=20
     next if move.type != :FLYING
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
