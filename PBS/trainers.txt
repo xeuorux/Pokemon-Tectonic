@@ -1244,7 +1244,7 @@ Pokemon = AIPOM,27
     AbilityIndex = 1
 Pokemon = DRIZZILE,28
     AbilityIndex = 0
-	Item = WATERGEM
+    Item = WATERGEM
 Pokemon = HERACROSS,27
     AbilityIndex = 1
 #-------------------------------
