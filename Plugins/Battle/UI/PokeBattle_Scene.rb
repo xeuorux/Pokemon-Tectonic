@@ -73,9 +73,7 @@ class PokeBattle_Scene
 		  next if !b
 		  @sprites["dataBox_#{i}"] = PokemonDataBox.new(b,@battle.pbSideSize(i),@viewport)
 		  pbCreatePokemonSprite(i)
-      cursor = AggroCursor.new(b,@battle.pbSideSize(i),@viewport)
-      @sprites["aggro_cursor_#{i}"] = cursor
-      cursor.visible = false
+      createAggroCursor(b,i)
 		end
 		# Wild battle, so set up the Pokémon sprite(s) accordingly
 		if @battle.wildBattle?
@@ -94,6 +92,12 @@ class PokeBattle_Scene
 		indicator_X = Graphics.width/30
   end
 
+  def createAggroCursor(battler,index)
+    cursor = AggroCursor.new(battler,@battle.pbSideSize(index),@viewport)
+    @sprites["aggro_cursor_#{index}"] = cursor
+    cursor.visible = false
+  end
+
   def pbBeginCommandPhase
     @sprites["messageWindow"].text = ""
     setAggroCursorsOff()
@@ -101,7 +105,10 @@ class PokeBattle_Scene
 
   def setAggroCursorsOff
     @battle.battlers.each_with_index do |b,i|
-		  next if !b
+		  next if b.nil?
+      if @sprites["aggro_cursor_#{i}"].nil?
+        createAggroCursor(b,i)
+      end
       @sprites["aggro_cursor_#{i}"].visible = false
 		end
   end

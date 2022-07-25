@@ -285,7 +285,7 @@ class PokeBattle_Battle
 			databox.visible = true
 		end
 
-		# Create the new avatar's battle sprite
+		# Create a dummy sprite for the avatar
 		scene.pbCreatePokemonSprite(battlerIndexNew)
 		
 		# Move existing sprites around
@@ -299,7 +299,6 @@ class PokeBattle_Battle
 		end
 
 		# Create the new avatar's battle sprite
-		scene.pbCreatePokemonSprite(battlerIndexNew)
 		pkmnSprite = @scene.sprites["pokemon_#{battlerIndexNew}"]
 		pkmnSprite.tone    = Tone.new(-80,-80,-80)
 
