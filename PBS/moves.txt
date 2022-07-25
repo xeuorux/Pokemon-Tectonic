@@ -327,7 +327,7 @@
 312,GRASSKNOT,Grass Knot,09A,1,GRASS,Special,100,20,0,NearOther,0,abef,"The user snares the target with grass and trips it. The heavier the target, the greater the damage.",
 313,AROMATHERAPY,Aromatherapy,019,0,GRASS,Status,0,5,0,UserAndAllies,0,d,"The user releases a soothing scent that heals all status problems affecting the user's party.",
 314,COTTONGUARD,Cotton Guard,038,0,GRASS,Status,0,10,0,User,0,d,"The user protects itself by wrapping its body in soft cotton, drastically raising its Defense stat.",
-315,COTTONSPORE,Cotton Spore,04D,0,GRASS,Status,100,40,0,AllNearFoes,0,bcel,"The user releases cotton-like spores that cling to the foe, harshly reducing its Speed stat.",
+315,COTTONSPORE,Cotton Spore,04D,0,GRASS,Status,100,40,0,AllNearFoes,0,bce,"The user releases cotton-like spores that cling to the foe, harshly reducing its Speed stat.",
 316,FORESTSCURSE,Forest's Curse,143,0,GRASS,Status,100,20,0,NearOther,0,bce,"The user puts a forest curse on the target. The target is now Grass type as well.",
 317,GRASSWHISTLE,Grass Whistle,003,0,GRASS,Status,55,15,0,NearOther,0,bcek,"The user plays a pleasant melody that lulls the target into a deep sleep.",
 318,GRASSYTERRAIN,Grassy Terrain,155,0,GRASS,Status,0,10,0,BothSides,0,,"For five turns, Grass-type moves are boosted, and grounded Pokémon restore HP every turn.",
