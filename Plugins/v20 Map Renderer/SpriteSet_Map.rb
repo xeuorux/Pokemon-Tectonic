@@ -44,6 +44,7 @@ class Spriteset_Map
 
     def update
         @@viewport3.tone = Tone.new(0, 0, 0, 0)
+        pbDayNightTint($scene.map_renderer)
         if @panorama_name!=@map.panorama_name || @panorama_hue!=@map.panorama_hue
           @panorama_name = @map.panorama_name
           @panorama_hue  = @map.panorama_hue
