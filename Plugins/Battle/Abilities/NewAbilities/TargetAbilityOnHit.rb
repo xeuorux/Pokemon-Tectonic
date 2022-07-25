@@ -292,24 +292,24 @@ BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
 
 BattleHandlers::TargetAbilityOnHit.add(:SEEDSCATTER,
 	proc { |ability,target,battler,move,battle|
-    terrainSetAbility(:Grassy)
+    terrainSetAbility(:Grassy,battler,battle)
 	}
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:PERCUSSIVEMAINTENANCE,
 	proc { |ability,target,battler,move,battle|
-    terrainSetAbility(:Electric)
+    terrainSetAbility(:Electric,battler,battle)
 	}
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:MISTCRAFT,
 	proc { |ability,target,battler,move,battle|
-		terrainSetAbility(:Misty)
+		terrainSetAbility(:Misty,battler,battle)
 	}
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
 	proc { |ability,target,battler,move,battle|
-    terrainSetAbility(:Psychic)
+    terrainSetAbility(:Psychic,battler,battle)
 	}
 )
