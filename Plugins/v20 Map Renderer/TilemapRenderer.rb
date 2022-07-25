@@ -442,7 +442,7 @@ class TilemapRenderer
       # Check for map change
       if @current_map_id != $game_map.map_id
         if MapFactoryHelper.hasConnections?(@current_map_id)
-          offsets = $map_factory.getRelativePos(@current_map_id, 0, 0, $game_map.map_id, 0, 0)
+          offsets = $MapFactory.getRelativePos(@current_map_id, 0, 0, $game_map.map_id, 0, 0)
           if offsets
             @tile_offset_x -= offsets[0]
             @tile_offset_y -= offsets[1]
@@ -565,7 +565,7 @@ class TilemapRenderer
         visited[i] = []
         @tiles_vertical_count.times { |j| visited[i][j] = false }
       end
-      $map_factory.maps.each do |map|
+      $MapFactory.maps.each do |map|
         # Calculate x/y ranges of tile sprites that represent them
         map_display_x = (map.display_x.to_f / Game_Map::X_SUBPIXELS).round
         map_display_x = ((map_display_x + (Graphics.width / 2)) * ZOOM_X) - (Graphics.width / 2) if ZOOM_X != 1
