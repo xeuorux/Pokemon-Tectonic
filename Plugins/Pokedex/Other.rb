@@ -1,3 +1,25 @@
+class PokemonGlobalMetadata
+	def pokedexStars
+	  @pokedexStars = {} if @pokedexStars.nil?
+	  return @pokedexStars
+	end
+
+	def speciesStarred?(species)
+		if !pokedexStars.has_key?(species)
+			pokedexStars[species] = false
+		end
+		return pokedexStars[species]
+	end
+
+	def toggleStarred(species)
+		if !pokedexStars.has_key?(species)
+			pokedexStars[species] = true
+		else
+			pokedexStars[species] = !pokedexStars[species]
+		end
+	end
+end
+
 module Settings
 	USE_CURRENT_REGION_DEX = true
 	def self.pokedex_names
@@ -72,28 +94,6 @@ def describeEvolutionMethod(method,parameter=0)
 	when :Shedinja; return "also if you have an empty pokeball and party slot"
     end
     return "via a method the programmer was too lazy to describe"
-end
-
-class Window_Pokedex < Window_DrawableCommand
-	def drawItem(index,_count,rect)
-		return if index>=self.top_row+self.page_item_max
-		rect = Rect.new(rect.x+16,rect.y,rect.width-16,rect.height)
-		species     = @commands[index][0]
-		indexNumber = @commands[index][4]
-		indexNumber -= 1 if @commands[index][5]
-		if !isLegendary(species) || $Trainer.seen?(species) || $DEBUG
-		  if $Trainer.owned?(species)
-			pbCopyBitmap(self.contents,@pokeballOwn.bitmap,rect.x-6,rect.y+8)
-		  else
-			pbCopyBitmap(self.contents,@pokeballSeen.bitmap,rect.x-6,rect.y+8)
-		  end
-		  text = sprintf("%03d%s %s",indexNumber," ",@commands[index][1])
-		else
-		  text = sprintf("%03d  ----------",indexNumber)
-		end
-		pbDrawShadowText(self.contents,rect.x+36,rect.y+6,rect.width,rect.height,
-		   text,self.baseColor,self.shadowColor)
-	end
 end
 
 def catchDifficultyFromRareness(rareness)
