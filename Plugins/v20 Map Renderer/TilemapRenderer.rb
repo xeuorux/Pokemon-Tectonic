@@ -42,6 +42,7 @@ class TilemapRenderer
   #    1 => [["Sand shore"], ["Flowers2"]],
   #    2 => [[], ["Flowers2", "Waterfall", "Waterfall crest", "Waterfall bottom"]],
   #    6 => [["Water rock", "Sea deep"], []]
+      24 => [["Tall Grass3","Tall Grass3","Tall Grass3","Tall Grass3","Tall Grass3","Tall Grass3","Tall Grass3"],["Tall Grass3","Tall Grass3","Tall Grass3","Tall Grass3","Tall Grass3"]]
     }
   
     #=============================================================================
@@ -338,6 +339,7 @@ class TilemapRenderer
   
     def add_extra_autotiles(tileset_id)
       return if !EXTRA_AUTOTILES[tileset_id]
+      echoln("Adding extra autotiles for tileset_id #{tileset_id}")
       EXTRA_AUTOTILES[tileset_id].each do |arr|
         arr.each { |filename| add_autotile(filename) }
       end
@@ -345,6 +347,7 @@ class TilemapRenderer
   
     def remove_extra_autotiles(tileset_id)
       return if !EXTRA_AUTOTILES[tileset_id]
+      echoln("Removing extra autotiles for tileset_id #{tileset_id}")
       EXTRA_AUTOTILES[tileset_id].each do |arr|
         arr.each { |filename| remove_autotile(filename) }
       end
