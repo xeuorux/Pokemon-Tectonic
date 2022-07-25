@@ -128,9 +128,9 @@ BattleHandlers::StatusCureAbility.add(:MENTALBLOCK,
 
 BattleHandlers::StatusCureAbility.add(:ENERGETIC,
   proc { |ability,battler|
-	if battler.hasStatusNoTrigger(:CHILL)
+	if battler.hasStatusNoTrigger(:POISON)
 		battler.battle.pbShowAbilitySplash(battler)
-		battler.pbCureStatus(true,:CHILL)
+		battler.pbCureStatus(true,:POISON)
 		battler.battle.pbHideAbilitySplash(battler)
 	end
 	if battler.hasStatusNoTrigger(:PARALYSIS)

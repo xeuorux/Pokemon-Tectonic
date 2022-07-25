@@ -17,9 +17,23 @@ def refillAidKit(doubled = false)
 end
 
 def useAidKit()
-	if $PokemonGlobal.teamHealerCurrentUses > 0
+	alreadyHealthy = true
+	$Trainer.party.each do |p|
+		next if p.egg?
+		alreadyHealthy = false if p.hp < p.totalhp
+		alreadyHealthy = false if p.status != :NONE
+		p.moves.each do |move|
+			alreadyHealthy = false if move.pp != move.total_pp
+		end
+	end
+	if $PokemonGlobal.teamHealerCurrentUses <= 0
+		pbMessage(_INTL("You are out of charges."))
+		return 0
+	elsif alreadyHealthy
+		pbMessage(_INTL("Your entire team is already fully healed!"))
+		return 0
+	else
 		$PokemonGlobal.teamHealerCurrentUses -= 1
-		echoln("Aid kit info: #{AID_KIT_BASE_HEALING},#{HEALING_UPGRADE_AMOUNT},#{$PokemonGlobal.teamHealerUpgrades}")
 		healAmount = AID_KIT_BASE_HEALING + HEALING_UPGRADE_AMOUNT * $PokemonGlobal.teamHealerUpgrades
 		pbMessage(_INTL("Healing your entire team by {1}.",healAmount))
 		charges = $PokemonGlobal.teamHealerCurrentUses
@@ -35,9 +49,6 @@ def useAidKit()
 		refreshFollow(false)
 		pbMessage(_INTL("Your entire team is healthy!")) if fullyHealed
 		return 1
-	else
-		pbMessage(_INTL("You are out of charges."))
-		return 0
 	end
 end
 

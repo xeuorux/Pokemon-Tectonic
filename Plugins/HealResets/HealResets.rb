@@ -51,7 +51,7 @@ class ResetTracker
     
     # Set up the player to experience the tutorial soon, if first time
     if anyTrainersRespawned && !@respawns_tutorialized
-      @respawn_tutorial = 5
+      @respawn_tutorial = 3
     else
       @respawn_tutorial = 0
     end

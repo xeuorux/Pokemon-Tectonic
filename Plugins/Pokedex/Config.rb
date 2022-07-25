@@ -9,8 +9,8 @@ MAPS_AVAILABLE_BY_CAP = {
 	30 => [60,56,66,123,		# Shipping Lane, Nemeth, Nemeth Attic, Nemeth Academy
 			142,140,141, 		# Starters Store Maps
 			3,25,55,6,81,	 	# Savannah Route, Mining Camp, Flower Fields, LuxTech Campus, Cave Path
-			54,37,7,8,53, 		# Crossroads, Svait, Wet Walkways, The Tangle
-			117,36,10,12, 		# Ice Cave, Abandoned Mine, Jungle Temple, Gigalith's Guts
+			301,37,7,8,53, 		# County Park, Svait, Wet Walkways, The Tangle
+			117,36,10,40, 		# Ice Cave, Abandoned Mine, Jungle Temple, Gigalith's Guts
 			13,11,122,120, 		# Cave Path, River Route, Sewer, Deep Layer
 			121,130,129,59, 	# Mountain Climb, Canal Desert, Barren Crater, Mainland Dock
 			96,98,126, 			# Luxtech Cold Storage, LuxTech Cold Storage Basement, Sun Cave
@@ -20,7 +20,7 @@ MAPS_AVAILABLE_BY_CAP = {
 			91,65,85,			# Reading Ribombee Cafe, Nemeth Mart, Worried Man's House
 			213,214,219,		# Velenz Menagerie, Gigalith's Guts Town, Regirock Cave
 			217,49,243,			# Candy Town, Tourist's House, Chasm Base Mess Hall
-			251					# Samorn's House
+			251,305				# Samorn's House, Mainland Dock Warehouse
 			],
 	50 => [155,29,47,		# Prizca West, Full Blast Records F2, Grand Hotal
 			34,183,180,		# Battle Fair, Circuit Cave, Priza West Mart

@@ -278,6 +278,8 @@ end
 # (Dragon Darts)
 #===============================================================================
 class PokeBattle_Move_17C < PokeBattle_Move_0BD
+  def smartSpreadsTargets?; return true; end
+
   def pbNumHits(user,targets)
     return 1 if targets.length > 1
     return 2
@@ -797,12 +799,6 @@ class PokeBattle_Move_191 < PokeBattle_TwoTurnMove
     if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
       user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
     end
-  end
-  
-  def getScore(score,user,target,skill=100)
-	score += 20
-	score -= ((user.hp.to_f / user.totalhp.to_f) * 50).floor
-	return score
   end
 end
 

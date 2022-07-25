@@ -23,23 +23,23 @@ class PokeBattle_Battle
       BattleHandlers.triggerTargetAbilityOnHit(battler.ability,nil,battler,nil,self)
     end
     # Mega Evolve
-	if !battler.boss
-		trainerName = pbGetOwnerName(idxBattler)
-		case battler.pokemon.megaMessage
-		when 1   # Rayquaza
-		  pbDisplay(_INTL("{1}'s fervent wish has reached {2}!",trainerName,battler.pbThis))
-		else
-		  pbDisplay(_INTL("{1}'s {2} is reacting to {3}'s {4}!",
-			 battler.pbThis,battler.itemName,trainerName,pbGetMegaRingName(idxBattler)))
-		end
-	else
-		case battler.pokemon.megaMessage
-		when 1   # Rayquaza
-		  pbDisplay(_INTL("{1}'s is inspired by the echo of an ancient wish!",battler.pbThis))
-		else
-		  pbDisplay(_INTL("{1}'s reacts to an unknown power!",battler.pbThis))
-		end
-	end
+    if !battler.boss
+      trainerName = pbGetOwnerName(idxBattler)
+      case battler.pokemon.megaMessage
+      when 1   # Rayquaza
+        pbDisplay(_INTL("{1}'s fervent wish has reached {2}!",trainerName,battler.pbThis))
+      else
+        pbDisplay(_INTL("{1}'s {2} is reacting to {3}'s {4}!",
+        battler.pbThis,battler.itemName,trainerName,pbGetMegaRingName(idxBattler)))
+      end
+    else
+      case battler.pokemon.megaMessage
+      when 1   # Rayquaza
+        pbDisplay(_INTL("{1}'s is inspired by the echo of an ancient wish!",battler.pbThis))
+      else
+        pbDisplay(_INTL("{1}'s reacts to an unknown power!",battler.pbThis))
+      end
+    end
     pbCommonAnimation("MegaEvolution",battler)
     battler.pokemon.makeMega
     battler.form = battler.pokemon.form

@@ -8,7 +8,7 @@ BADGE_NAMES = [
 		"Generosity",
 		"Mercy"
 	]
-LEVEL_CAPS = [15,20,25,30,40,45,50,60,70]
+LEVEL_CAPS = [15,20,25,30,40,45,55,65,70]
 TOTAL_BADGES = 8
 BADGE_COUNT_VARIABLE = 27
 SURFBOARD_PHONECALL_GLOBAL = 61
@@ -27,7 +27,7 @@ module Events
 end
 
 def earnBadge(badgeNum)
-	if badgeNum >= TOTAL_BADGES
+	if badgeNum > TOTAL_BADGES
 		raise _INTL("Badge Number #{badgeNum} is above the total number of badges.")
 	end
 

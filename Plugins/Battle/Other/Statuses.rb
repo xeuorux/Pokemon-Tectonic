@@ -11,3 +11,10 @@ GameData::Status.register({
   :name      => _INTL("Mystified"),
   :animation => "Attract"
 })
+
+GameData::Status.register({
+  :id        => :FROSTBITE,
+  :id_number => 8,
+  :name      => _INTL("Frostbitten"),
+  :animation => "Frozen"
+})

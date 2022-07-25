@@ -23,6 +23,33 @@ class WaypointsTracker
 	def setWaypoint(waypointName,mapID,wayPointInfo)
 		@activeWayPoints[waypointName] = [mapID,wayPointInfo]
 	end
+
+	def deleteWaypoint(waypointName)
+		@activeWayPoints.delete(waypointName)
+	end
+
+	def mapPositionHash
+		return generateMapPositionHash
+	end
+
+	def generateMapPositionHash()
+		mapPositionHash = {}
+		activeWayPoints.each do |waypointName,waypointInfo|
+			mapID = waypointInfo[0]
+			displayedPosition = getDisplayedPositionOfGameMap(mapID)
+			mapPositionHash[waypointName] = displayedPosition 
+		end
+		return mapPositionHash
+	end
+	
+	def getWaypointAtMapPosition(x,y)
+		mapPositionHash.each do |waypointName,displayedPosition|
+			if displayedPosition[1] == x && displayedPosition[2] == y
+				return waypointName
+			end
+		end
+		return nil
+	end
 	
 	def accessWaypoint(waypointName,event)
 		@activeWayPoints = {} if @activeWayPoints.nil?
@@ -36,16 +63,31 @@ class WaypointsTracker
 		if @activeWayPoints.length <= 1
 			pbMessage(_INTL("#{WAYPOINT_UNABLE_MESSAGE}"))
 		else
-			commands = [_INTL("Cancel")]
-			names = @activeWayPoints.sort_by {|key,value| value[0]}.map {|value| value[0]}
-			names.delete_if{|name| name == waypointName}
-			names.each do |name|
-				commands.push(_INTL(name))
+			chosenLocation = nil
+			if CHOOSE_BY_LIST
+				commands = [_INTL("Cancel")]
+				names = @activeWayPoints.sort_by {|key,value| value[0]}.map {|value| value[0]}
+				names.delete_if{|name| name == waypointName}
+				names.each do |name|
+					commands.push(_INTL(name))
+				end
+				chosen = pbMessage(_INTL("#{WAYPOINT_CHOOSE_MESSAGE}"),commands,0)
+				if chosen != 0
+					chosenLocationName = names[chosen-1]
+					chosenLocation = @activeWayPoints[chosenLocationName]
+				end
+			else
+				pbMessage(_INTL("#{WAYPOINT_CHOOSE_MESSAGE}"))
+				chosenTotem = nil
+				pbFadeOutIn {
+					scene = PokemonRegionMap_Scene.new(-1,false)
+					screen = PokemonRegionMapScreen.new(scene)
+					chosenTotem = screen.pbStartWaypointScreen
+				}
+				chosenLocation = @activeWayPoints[chosenTotem] if !chosenTotem.nil?
 			end
-			chosen = pbMessage(_INTL("#{WAYPOINT_CHOOSE_MESSAGE}"),commands,0)
-			if chosen != 0
-				chosenLocationName = names[chosen-1]
-				chosenLocation = @activeWayPoints[chosenLocationName]
+
+			if !chosenLocation.nil?
 				$game_temp.player_new_map_id = waypointMap = chosenLocation[0]
 				waypointInfo = chosenLocation[1]
 				if waypointInfo.is_a?(Array)

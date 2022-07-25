@@ -57,20 +57,9 @@ Puddle,21
     25,POLIWAG,17,20
     25,SKRELP,17,20
 #-------------------------------
-[012] # Gigalith's Guts
-DarkCave,20
-    25,ARON,17,20
-    25,BALTOY,17,20
-    25,ROGGENROLA,17,20
-    25,ZUBAT,17,20
-#-------------------------------
 [019] # Reading Ribombee Café
 Special,20
     1,MILCERY,15
-#-------------------------------
-[020]
-Special,1
-    1,GPONYTA,15
 #-------------------------------
 [025] # Grouz
 Land,20
@@ -165,6 +154,13 @@ Puddle,20
 Special,20
     1,SPHEAL,15
 #-------------------------------
+[040] # Gigalith's Guts
+DarkCave,20
+    25,ARON,17,20
+    25,BALTOY,17,20
+    25,ROGGENROLA,17,20
+    25,ZUBAT,17,20
+#-------------------------------
 [047] # Grand Hotel
 Special,1
     1,ZANGOOSE,40
@@ -200,24 +196,6 @@ LandTall,20
     25,SIZZLIPEDE,16,19
     25,SPRITZEE,16,19
     25,VENONAT,16,19
-#-------------------------------
-[054] # County Park
-Land,20
-    20,BUNEARY,14,17
-    20,BUNNELBY,14,17
-    20,FLETCHLING,14,17
-    20,HATENNA,14,17
-    20,KRICKETOT,14,17
-FloweryGrass,20
-    25,CUTIEFLY,14,17
-    25,LEDYBA,14,17
-    25,SUNKERN,14,17
-    25,SWABLU,14,17
-LandTinted,20
-    50,SAWK,14,17
-    50,THROH,14,17
-Special,1
-    1,DRIFLOON,14,17
 #-------------------------------
 [055] # Floral Rest
 FloweryGrass,20
@@ -293,7 +271,7 @@ Special
 Special,20
     1,WIMPOD,15
 #-------------------------------
-[081] # Cave Path
+[081] # East Tunnel
 DarkCave,20
     20,CUBONE,17,20
     20,DURALUDON,17,20
@@ -498,10 +476,10 @@ Land,21
     33,DEERLING,30,32
     33,MSEVIPER,30,32
 LandTall,21
-    25,EMOLGA,30,32
-    25,ESPURR,30,32
-    25,HERACROSS,30,32
-    25,SEWADDLE,30,32
+    40,ESPURR,30,32
+    20,EMOLGA,30,32
+    20,HERACROSS,30,32
+    20,SEWADDLE,30,32
 LandSparse,21
     34,LICKITUNG,30,32
     33,CARNIVINE,30,32
@@ -528,10 +506,10 @@ Special,1
 #-------------------------------
 [187] # Prizca East
 FloweryGrass2,20
-    25,FURFROU,33,35
-    25,INDEEDEE,33,35
-    25,MINCCINO,33,35
-    25,SMEARGLE,33,35
+    40,INDEEDEE,33,35
+    20,FURFROU,33,35
+    20,MINCCINO,33,35
+    20,SMEARGLE,33,35
 Special,1
     1,SEVIPER,40
 #-------------------------------
@@ -605,7 +583,7 @@ LandSparse,20
     20,KARRABLAST,18,20
     20,SHELMET,18,20
     20,VULPIX,18,20
-LandTinted,20
+FloweryGrass2,20
     20,PANPOUR,18,20
     20,PANSAGE,18,20
     20,PANSEAR,18,20
@@ -656,7 +634,7 @@ Land,20
     25,FOONGUS,34,36
     25,ORANGURU,34,36
     25,PASSIMIAN,34,36
-LandTinted,20
+LandTall,20
     25,DRAMPA,34,36
     25,FALINKS,34,36
     25,GIRAFARIG,34,36
@@ -669,8 +647,8 @@ Land,20
     25,FALINKS,44,46
     25,MILCERY,44,46
 #-------------------------------
-[218] # Abyssal Cavern Placeholder
-Puddle,20
+[218] # Abyssal Cavern
+ActiveWater,20
     25,CHINCHOU,37,39
     25,FRILLISH,37,39
     25,RELICANTH,37,39
@@ -737,7 +715,6 @@ FishingContest,20
     3,FRILLISH,30,38
     3,GCORSOLA,30,38
     3,GOLDEEN,30,38
-    3,GSLOWPOKE,30,38
     3,HORSEA,30,38
     3,INKAY,30,38
     3,LUVDISC,30,38
@@ -776,7 +753,21 @@ Special
     1,GOOMY,5
     1,JANGMOO,5
 #-------------------------------
-[288] # Underwater River Sketch
+[257] # Cave of Hatching
+LandSparse,20
+    25,CUBONE,42,44
+    25,LARVITAR,42,44
+    25,MAGNEMITE,42,44
+    25,ZUBAT,42,44
+#-------------------------------
+[258] # Whitebloom Town
+Land,20
+    25,BUNEARY,43,45
+    25,NICKIT,43,45
+    25,PICHU,43,45
+    25,ROOKIDEE,43,45
+#-------------------------------
+[288] # Underground River
 Puddle,20
     25,MANTYKE,36,38
     25,PYUKUMUKU,36,38
@@ -786,3 +777,25 @@ LandSparse,20
     33,CLAUNCHER,36,38
     33,DURANT,36,38
     33,HEATMOR,36,38
+#-------------------------------
+[301] # County Park
+Land,20
+    20,BUNEARY,14,17
+    20,BUNNELBY,14,17
+    20,FLETCHLING,14,17
+    20,HATENNA,14,17
+    20,KRICKETOT,14,17
+FloweryGrass,20
+    25,CUTIEFLY,14,17
+    25,LEDYBA,14,17
+    25,SUNKERN,14,17
+    25,SWABLU,14,17
+LandSparse,20
+    50,SAWK,14,17
+    50,THROH,14,17
+Special,1
+    1,DRIFLOON,14,17
+#-------------------------------
+[305] # Mainland Dock Warehouse
+Special,1
+    1,GPONYTA,15

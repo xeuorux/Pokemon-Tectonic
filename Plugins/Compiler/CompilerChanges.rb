@@ -183,8 +183,8 @@ module Compiler
       compile_animations
       yield(_INTL("Converting events"))
       compile_events
-      #yield(_INTL("Editing maps"))
-      #edit_maps
+      yield(_INTL("Editing maps"))
+      edit_maps
       yield(_INTL("Saving messages"))
       pbSetTextMessages
       MessageTypes.saveMessages
@@ -451,6 +451,7 @@ module Compiler
 				:item		 		=> contents["Item"],
 				:hp_mult	 		=> contents["HPMult"],
 				:dmg_mult			=> contents["DMGMult"],
+        :dmg_resist			=> contents["DMGResist"],
 				:size_mult	 		=> contents["SizeMult"],
 			}
 			avatar_number += 1
@@ -1496,6 +1497,8 @@ end
   end
 
   def edit_maps
+    wallReplaceConvexID = GameData::TerrainTag.get(:WallReplaceConvex).id_number
+  
     # Iterate over all maps
     mapData = Compiler::MapData.new
     tilesets_data = load_data("Data/Tilesets.rxdata")
@@ -1507,13 +1510,16 @@ end
         # Grab the tileset here
         tileset = tilesets_data[map.tileset_id]
 
+        next if tileset.nil?
+
         # Iterate over all tiles, finding the first with the relevant tag
         taggedPositions = []
         for x in 0..map.data.xsize
           for y in 0..map.data.ysize
             currentID = map.data[x, y, 1]
+            next if currentID.nil?
             currentTag = tileset.terrain_tags[currentID]
-            if currentTag == :WallReplaceConvex
+            if currentTag == wallReplaceConvexID
               taggedPositions.push([x,y])
             end
           end
@@ -1523,8 +1529,47 @@ end
 
         echoln("Map #{mapName} contains some WallReplaceConvex tiles")
 
-        if anyChanges
+        changeNum = 0
+        taggedPositions.each do |position|
+          taggedX = position[0]
+          taggedY = position[1]
+
+          touchedDirs = 0b0000 # North, East, South, West
+          taggedPositions.each do |position2|
+            posX = position2[0]
+            posY = position2[1]
+            # North
+            touchedDirs = touchedDirs | 0b1000 if posX == taggedX && posY == taggedY - 1
+            # East
+            touchedDirs = touchedDirs | 0b0100 if posY == taggedY && posX == taggedX + 1
+            # South
+            touchedDirs = touchedDirs | 0b0010 if posX == taggedX && posY == taggedY + 1
+            # West
+            touchedDirs = touchedDirs | 0b0001 if posY == taggedY && posX == taggedX - 1
+          end
+
+          tileIDToAdd = 0
+          if touchedDirs == 0b1100 # Northeast
+            tileIDToAdd = 1485
+          elsif touchedDirs == 0b1001 # NorthWest
+            tileIDToAdd = 1487
+          elsif touchedDirs == 0b0110 # Southeast
+            tileIDToAdd = 1469
+          elsif touchedDirs == 0b0011 # Southwest
+            tileIDToAdd = 1471
+          end
+
+          next if tileIDToAdd == 0
+
+          map.data[taggedX,taggedY,1] = tileIDToAdd
+          changeNum += 1
+        end
+
+        if changeNum > 0
+          echoln("Saving map after changing #{changeNum} tiles: #{mapName} (#{id})")
           mapData.saveMap(id)
+        else
+          echoln("Unable to make any changes to: #{mapName} (#{id})")
         end
     end
   end
@@ -1542,12 +1587,12 @@ end
     match = event.name.match(/PHT\(([_a-zA-Z0-9]+),([_a-zA-Z]+),([0-9]+)\)/)
     return nil if !match
     ret = RPG::Event.new(event.x,event.y)
-    ret.name = "resettrainer(4)"
     ret.id   = event.id
     ret.pages = []
     trainerTypeName = match[1]
     return nil if !trainerTypeName || trainerTypeName == ""
     trainerName = match[2]
+    ret.name = "resettrainer(4) - " + trainerTypeName + " " + trainerName
     trainerMaxLevel = match[3]
     ret.pages = [3]
     
@@ -1603,10 +1648,10 @@ end
     match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)(?:,([_a-zA-Z]+))?(?:,([_a-zA-Z0-9]+))?(?:,([0-9]+))?\).*/)
     return nil if !match
     ret = RPG::Event.new(event.x,event.y)
-    ret.name = "size(2,2)trainer(4)"
     ret.id   = event.id
     ret.pages = []
     avatarSpecies = match[1]
+    ret.name = "size(2,2)trainer(4) - " + avatarSpecies
     legendary = isLegendary(avatarSpecies)
     return nil if !avatarSpecies || avatarSpecies == ""
     level = match[2]
@@ -2003,7 +2048,7 @@ module Compiler
           current_type = m.type
           f.write("\#-------------------------------\r\n")
         end
-        f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s\r\n",
+        f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s,%s\r\n",
           m.id_number,
           csvQuote(m.id.to_s),
           csvQuote(m.real_name),
@@ -2017,7 +2062,8 @@ module Compiler
           m.target,
           m.priority,
           csvQuote(m.flags),
-          csvQuoteAlways(m.real_description)
+          csvQuoteAlways(m.real_description),
+          m.animation_move.nil? ? "" : m.animation_move.to_s
         ))
       end
     }
@@ -2134,10 +2180,75 @@ module Compiler
         f.write(sprintf("HPMult = %s\r\n", avatar.hp_mult))
         f.write(sprintf("Item = %s\r\n", avatar.item))
         f.write(sprintf("DMGMult = %s\r\n", avatar.dmg_mult))
+        f.write(sprintf("DMGResist = %s\r\n", avatar.dmg_resist))
         f.write(sprintf("Form = %s\r\n", avatar.form))
       end
     }
     pbSetWindowText(nil)
     Graphics.update
+  end
+
+  #=============================================================================
+  # Compile move data
+  #=============================================================================
+  def compile_moves(path = "PBS/moves.txt")
+    GameData::Move::DATA.clear
+    move_names        = []
+    move_descriptions = []
+    # Read each line of moves.txt at a time and compile it into an move
+    pbCompilerEachPreppedLine(path) { |line, line_no|
+      line = pbGetCsvRecord(line, line_no, [0, "vnssueeuuueissN",
+         nil, nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
+         nil, nil, nil, :Target, nil, nil, nil, nil
+      ])
+      move_number = line[0]
+      move_symbol = line[1].to_sym
+      if GameData::Move::DATA[move_number]
+        raise _INTL("Move ID number '{1}' is used twice.\r\n{2}", move_number, FileLineData.linereport)
+      elsif GameData::Move::DATA[move_symbol]
+        raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_symbol, FileLineData.linereport)
+      end
+      # Sanitise data
+      if line[6] == 2 && line[4] != 0
+        raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
+      elsif line[6] != 2 && line[4] == 0
+        print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
+        line[6] = 2
+      end
+      animation_move = line[14].nil? ? nil : line[14].to_sym
+      # Construct move hash
+      move_hash = {
+        :id_number        => move_number,
+        :id               => move_symbol,
+        :name             => line[2],
+        :function_code    => line[3],
+        :base_damage      => line[4],
+        :type             => line[5],
+        :category         => line[6],
+        :accuracy         => line[7],
+        :total_pp         => line[8],
+        :effect_chance    => line[9],
+        :target           => GameData::Target.get(line[10]).id,
+        :priority         => line[11],
+        :flags            => line[12],
+        :description      => line[13],
+        :animation_move   => animation_move
+      }
+      # Add move's data to records
+      GameData::Move.register(move_hash)
+      move_names[move_number]        = move_hash[:name]
+      move_descriptions[move_number] = move_hash[:description]
+    }
+    # Save all data
+    GameData::Move.save
+    MessageTypes.setMessages(MessageTypes::Moves, move_names)
+    MessageTypes.setMessages(MessageTypes::MoveDescriptions, move_descriptions)
+    Graphics.update
+
+    GameData::Move.each do |move_data|
+      next if move_data.animation_move.nil?
+      next if GameData::Move.exists?(move_data.animation_move)
+      raise _INTL("Move ID '{1}' was assigned an Animation Move property {2} that doesn't match with any other move.\r\n", move_data.id, move_data.animation_move)
+    end
   end
 end

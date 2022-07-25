@@ -2,12 +2,12 @@ class PokeBattle_Battler
   #=============================================================================
   # Redirect attack to another target
   #=============================================================================
-  def pbChangeTargets(move,user,targets,dragondarts=-1)
+  def pbChangeTargets(move,user,targets,smartSpread = -1)
     target_data = move.pbTarget(user)
     return targets if @battle.switching   # For Pursuit interrupting a switch
     return targets if move.cannotRedirect?
-    return targets if move.function != "17C" && (!target_data.can_target_one_foe? || targets.length!=1)
-	# Stalwart / Propeller Tail
+    return targets if !move.smartSpreadsTargets? && (!target_data.can_target_one_foe? || targets.length != 1)
+	  # Stalwart / Propeller Tail
     allySwitched = false
     ally = -1
     user.eachOpposing do |b|
@@ -26,15 +26,15 @@ class PokeBattle_Battler
       return targets
     end
     return targets if user.hasActiveAbility?(:STALWART) || user.hasActiveAbility?(:PROPELLERTAIL)
-	return targets if move.function == "182"
+	  return targets if move.function == "182"
     priority = @battle.pbPriority(true)
     nearOnly = !target_data.can_choose_distant_target?
-    # Spotlight (takes priority over Follow Me/Rage Powder/Lightning Rod/Storm Drain)
+    # Spotlight (takes priority over Follow Me/Rage Powder or redirection abilities)
     newTarget = nil; strength = 100   # Lower strength takes priority
     priority.each do |b|
       next if b.fainted? || b.effects[PBEffects::SkyDrop]>=0
-      next if b.effects[PBEffects::Spotlight]==0 ||
-              b.effects[PBEffects::Spotlight]>=strength
+      next if b.effects[PBEffects::Spotlight] == 0 ||
+              b.effects[PBEffects::Spotlight] >= strength
       next if !b.opposes?(user)
       next if nearOnly && !b.near?(user)
       newTarget = b
@@ -46,46 +46,32 @@ class PokeBattle_Battler
       pbAddTarget(targets,user,newTarget,move,nearOnly)
       return targets
     end
-	# Dragon Darts redirection
-    if dragondarts>=0
-      newTargets=[]
-      neednewtarget=false
+	  # Dragon Darts-style redirection
+    # Smart Spread -1 means no spread, 0 means first hit, 1 means 2nd or further hit
+    if smartSpread >= 0
+      newTargets  = []
+      needNewTarget = false
       # Check if first use has to be redirected
-      if dragondarts==0
+      if smartSpread == 0
         targets.each do |b|
-          next if !b.effects[PBEffects::Protect] &&
-          !(b.effects[PBEffects::QuickGuard] && @battle.choices[user.index][4]>0) &&
-          !b.effects[PBEffects::SpikyShield] &&
-          !b.effects[PBEffects::BanefulBunker] &&
-          !b.effects[PBEffects::Obstruct] &&
-          !invulnerableTwoTurnAttack?(b,move) &&
-          !move.pbImmunityByAbility(user,b) &&
-          !Effectiveness.ineffective_type?(move.type,b.type1,b.type2) &&
-          move.pbAccuracyCheck(user,b)
-          next neednewtarget=true
+          moveWillSucceed = true
+          next if !moveWillFail(user,b,move)
+          next needNewTarget = true
         end
       end
       # Redirect first use if necessary or get another target on each consecutive use
-      if neednewtarget || dragondarts==1
+      if needNewTarget || smartSpread == 1
         targets[0].eachAlly do |b|
-		  next if b.index == user.index && dragondarts==1 # Don't attack yourself on the second hit.
-          next if b.effects[PBEffects::Protect] ||
-          (b.effects[PBEffects::QuickGuard] && @battle.choices[user.index][4]>0) ||
-          b.effects[PBEffects::SpikyShield] ||
-          b.effects[PBEffects::BanefulBunker] ||
-          b.effects[PBEffects::Obstruct] ||
-          invulnerableTwoTurnAttack?(b,move)||
-          move.pbImmunityByAbility(user,b) ||
-          Effectiveness.ineffective_type?(move.type,b.type1,b.type2) ||
-          !move.pbAccuracyCheck(user,b)
+          next if b.index == user.index && smartSpread == 1 # Don't attack yourself on the second hit.
+          next if moveWillFail(user,b,move)
           newTargets.push(b)
-		  b.damageState.unaffected = false
-		  # In double battle, the pokémon might keep this state from a hit from the ally.
+		      b.damageState.unaffected = false
+		      # In double battle, the pokémon might keep this state from a hit from the ally.
           break
         end
       end
       # Final target
-      targets=newTargets if newTargets.length!=0
+      targets = newTargets if newTargets.length!=0
       # Reduce PP if the new target has Pressure
       if targets[0].hasActiveAbility?(:PRESSURE)
         user.pbReducePP(move) # Reduce PP
@@ -118,6 +104,16 @@ class PokeBattle_Battler
     end
     targets = pbChangeTargetByAbility(:EPICHERO,move,user,targets,priority,nearOnly) if maxDamage >= 100
     return targets
+  end
+
+  def moveWillFail(user,target,move)
+    return true if (target.effects[PBEffects::QuickGuard] && @battle.choices[user.index][4]>0)
+    return true if target.protected?
+    return true if invulnerableTwoTurnAttack?(target,move)
+    return true if move.pbImmunityByAbility(user,target)
+    return true if Effectiveness.ineffective_type?(move.type,target.type1,target.type2)
+    return true if !move.pbAccuracyCheck(user,target)
+    return false
   end
   
 	def pbChangeTargetByAbility(drawingAbility,move,user,targets,priority,nearOnly)

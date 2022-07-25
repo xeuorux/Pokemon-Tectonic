@@ -233,6 +233,12 @@ BattleHandlers::CriticalCalcUserAbility.add(:HARSH,
   }
 )
 
+BattleHandlers::CriticalCalcUserAbility.add(:BITTER,
+  proc { |ability,user,target,c|
+    next 99 if target.frostbitten?
+  }
+)
+
 BattleHandlers::MoveBaseTypeModifierAbility.add(:FROSTSONG,
   proc { |ability,user,move,type|
     next unless move.soundMove?
@@ -311,7 +317,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
 BattleHandlers::AbilityOnBattlerFainting.add(:ARCANEFINALE,
   proc { |ability,battler,fainted,battle|
     next if battler.opposes?(fainted)
-    next unless battler.isLastAlive?
+    next if !battler.isLastAlive?
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} is the team's finale!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
@@ -321,7 +327,7 @@ BattleHandlers::AbilityOnBattlerFainting.add(:ARCANEFINALE,
 BattleHandlers::AbilityOnBattlerFainting.add(:HEROICFINALE,
   proc { |ability,battler,fainted,battle|
     next if battler.opposes?(fainted)
-    next unless battler.isLastAlive?
+    next if !battler.isLastAlive?
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} is the team's finale!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)

@@ -1,7 +1,10 @@
 class PokeBattle_Battle
   # Used for causing weather by a move or by an ability.
   def pbStartWeather(user,newWeather,fixedDuration=false,showAnim=true)
-    return if @field.weather==newWeather
+    if @field.weather == newWeather
+      pbHideAbilitySplash(user) if user
+      return
+    end
     @field.weather = newWeather
     duration = (fixedDuration) ? 5 : -1
     if duration>0 && user && user.itemActive?
@@ -11,7 +14,6 @@ class PokeBattle_Battle
     @field.weatherDuration = duration
     weather_data = GameData::BattleWeather.try_get(@field.weather)
     pbCommonAnimation(weather_data.animation) if showAnim && weather_data
-    ##@scene.pbAreaUI(newWeather)
     pbHideAbilitySplash(user) if user
     case @field.weather
     when :Sun         then pbDisplay(_INTL("The sunlight turned harsh!"))
@@ -31,33 +33,36 @@ class PokeBattle_Battle
   end
 
   def pbStartTerrain(user,newTerrain,fixedDuration=true)
-    return if @field.terrain==newTerrain
+    if @field.terrain == newTerrain
+      pbHideAbilitySplash(user) if user
+      return
+    end
     old_terrain = @field.terrain
-      @field.terrain = newTerrain
-      duration = (fixedDuration) ? 5 : -1
-      if duration>0 && user && user.itemActive?
-        duration = BattleHandlers.triggerTerrainExtenderItem(user.item,newTerrain,duration,user,self)
-      end
-      @field.terrainDuration = duration
-      terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
-      pbCommonAnimation(terrain_data.animation) if terrain_data
-      case @field.terrain
-      when :Electric
-        pbDisplay(_INTL("An electric current runs across the battlefield!"))
-        pbDisplay(_INTL("Pokemon cannot fall asleep or be chilled!"))
-      when :Grassy
-        pbDisplay(_INTL("Grass grew to cover the battlefield!"))
-        pbDisplay(_INTL("All Pokemon are healed each turn!"))
-      when :Misty
-        pbDisplay(_INTL("Fae mist swirled about the battlefield!"))
-        pbDisplay(_INTL("Pokemon cannot be burned or poisoned!"))
-      when :Psychic
-        pbDisplay(_INTL("The battlefield got weird!"))
-        pbDisplay(_INTL("Priority moves are prevented!"))
-      end
+    @field.terrain = newTerrain
+    duration = (fixedDuration) ? 5 : -1
+    if duration>0 && user && user.itemActive?
+      duration = BattleHandlers.triggerTerrainExtenderItem(user.item,newTerrain,duration,user,self)
+    end
+    @field.terrainDuration = duration
+    terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
+    pbCommonAnimation(terrain_data.animation) if terrain_data
+    case @field.terrain
+    when :Electric
+      pbDisplay(_INTL("An electric current runs across the battlefield!"))
+      pbDisplay(_INTL("Pokemon cannot fall asleep or be chilled!"))
+    when :Grassy
+      pbDisplay(_INTL("Grass grew to cover the battlefield!"))
+      pbDisplay(_INTL("All Pokemon are healed each turn!"))
+    when :Misty
+      pbDisplay(_INTL("Fae mist swirled about the battlefield!"))
+      pbDisplay(_INTL("Pokemon cannot be burned or poisoned!"))
+    when :Psychic
+      pbDisplay(_INTL("The battlefield got weird!"))
+      pbDisplay(_INTL("Priority moves are prevented!"))
+    end
     pbHideAbilitySplash(user) if user
-      # Check for terrain seeds that boost stats in a terrain
-      eachBattler { |b| b.pbItemTerrainStatBoostCheck }
+    # Check for terrain seeds that boost stats in a terrain
+    eachBattler { |b| b.pbItemTerrainStatBoostCheck }
     
     # Trigger dialogue for each opponent
     if @opponent

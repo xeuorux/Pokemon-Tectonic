@@ -1,5 +1,9 @@
 class PokeBattle_Move
 	def isEmpowered?; return false; end
+  alias empowered? isEmpowered?
+
+  def smartSpreadsTargets?; return false; end
+  
 	def pbAllMissed(user, targets); end
 
   #=============================================================================
@@ -435,6 +439,10 @@ class PokeBattle_Move
 			multipliers[:base_damage_multiplier] /= 3
 		  end
 		end
+    # Battler properites
+    multipliers[:base_damage_multiplier] *= user.dmgMult
+    multipliers[:base_damage_multiplier] *= [0,(1.0 - target.dmgResist.to_f)].max
+    echoln("User's damage mult is #{user.dmgMult} and the target's damage resist is #{target.dmgResist}")
 		# Terrain moves
 		case @battle.field.terrain
 		when :Electric
@@ -469,13 +477,25 @@ class PokeBattle_Move
 			  multipliers[:final_damage_multiplier] *= 1.5
 		  end
 		when :Sandstorm
-		  if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock
+		  if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock/Psystrike
 			  multipliers[:defense_multiplier] *= 1.5
 		  end
 		when :Hail
-		  if target.pbHasType?(:ICE) && physicalMove?
+		  if target.pbHasType?(:ICE) && physicalMove? && @function != "506"   # Soul Claw/Rip
 			  multipliers[:defense_multiplier] *= 1.5
 		  end
+		end
+    # Fluster
+		if user.flustered? && physicalMove? && @function != "122" && !user.hasActiveAbility?(:FLUSTERFLOCK)
+      defenseDecrease = target.boss? ? (1.0/5.0) : (1.0/3.0)
+      defenseDecrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:defense_multiplier] *= (1.0 - defenseDecrease)
+		end
+    # Mystified
+		if user.mystified? && specialMove? && @function != "506" && !user.hasActiveAbility?(:HEADACHE)
+      defenseDecrease = target.boss? ? (1.0/5.0) : (1.0/3.0)
+      defenseDecrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:defense_multiplier] *= (1.0 - defenseDecrease)
 		end
 		# Critical hits
 		if target.damageState.critical
@@ -485,7 +505,7 @@ class PokeBattle_Move
 			  multipliers[:final_damage_multiplier] *= 2
 		  end
 		end
-    # Random variance
+    # Random variance (What used to be for that)
     if !self.is_a?(PokeBattle_Confusion) && !self.is_a?(PokeBattle_Charm)
       multipliers[:final_damage_multiplier] *= 0.9
     end
@@ -503,38 +523,22 @@ class PokeBattle_Move
 		typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
 		multipliers[:final_damage_multiplier] *= typeEffect
 		# Burn
-		if user.burned? && physicalMove? && damageReducedByBurn? &&
-		   !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
-		  if !user.boss?
-			  multipliers[:final_damage_multiplier] *= 2.0/3.0
-		  else
-			  multipliers[:final_damage_multiplier] *= 4.0/5.0
-		  end
+		if user.burned? && physicalMove? && damageReducedByBurn? && !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
+      damageReduction = user.boss? ? (1.0/5.0) : (1.0/3.0)
+      damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
 		end
-		# Poison
-		if user.poisoned? && user.statusCount == 0 && specialMove? && damageReducedByBurn? &&
-		   !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:POISONHEAL)
-		  if !user.boss?
-			  multipliers[:final_damage_multiplier] *= 2.0/3.0
-		  else
-			  multipliers[:final_damage_multiplier] *= 4.0/5.0
-		  end
-		end
-		# Chill
-		if target.frozen?
-		  if !target.boss?
-			  multipliers[:final_damage_multiplier] *= 4.0/3.0
-		  else
-			  multipliers[:final_damage_multiplier] *= 5.0/4.0
-		  end
-		end
+    # Frostbite
+		if user.frostbitten? && specialMove? && damageReducedByBurn? && !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:FROSTHEAL)
+      damageReduction = user.boss? ? (1.0/5.0) : (1.0/3.0)
+      damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
+    end
     # Numb
 		if user.paralyzed?
-		  if !user.boss?
-			  multipliers[:final_damage_multiplier] *= 3.0/4.0
-		  else
-			  multipliers[:final_damage_multiplier] *= 17.0/20.0
-		  end
+      damageReduction = user.boss? ? (3.0/20.0) : (1.0/4.0)
+      damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
 		end
 		# Aurora Veil, Reflect, Light Screen
 		if !ignoresReflect? && !target.damageState.critical &&

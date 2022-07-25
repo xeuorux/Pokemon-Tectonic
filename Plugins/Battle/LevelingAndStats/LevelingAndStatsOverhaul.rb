@@ -1,131 +1,5 @@
 LEVEL_CAPS_USED = true
 
-class Pokemon
-	attr_accessor :hpMult
-	attr_accessor :scaleFactor
-	attr_accessor :dmgMult
-	attr_accessor :battlingStreak
-	
-  # Creates a new Pokémon object.
-  # @param species [Symbol, String, Integer] Pokémon species
-  # @param level [Integer] Pokémon level
-  # @param owner [Owner, Player, NPCTrainer] Pokémon owner (the player by default)
-  # @param withMoves [TrueClass, FalseClass] whether the Pokémon should have moves
-  # @param rechech_form [TrueClass, FalseClass] whether to auto-check the form
-  def initialize(species, level, owner = $Trainer, withMoves = true, recheck_form = true)
-    species_data = GameData::Species.get(species)
-    @species          = species_data.species
-    @form             = species_data.form
-    @forced_form      = nil
-    @time_form_set    = nil
-    self.level        = level
-    @steps_to_hatch   = 0
-    heal_status
-    @gender           = nil
-    @shiny            = nil
-    @ability_index    = nil
-    @ability          = nil
-    @nature           = nil
-    @nature_for_stats = nil
-    @item             = nil
-    @mail             = nil
-    @moves            = []
-    reset_moves if withMoves
-    @first_moves      = []
-    @ribbons          = []
-    @cool             = 0
-    @beauty           = 0
-    @cute             = 0
-    @smart            = 0
-    @tough            = 0
-    @sheen            = 0
-    @pokerus          = 0
-    @name             = nil
-    @happiness        = species_data.happiness
-    @poke_ball        = :POKEBALL
-    @markings         = 0
-    @iv               = {}
-    @ivMaxed          = {}
-    @ev               = {}
-    GameData::Stat.each_main do |s|
-      @iv[s.id]       = 0
-      @ev[s.id]       = DEFAULT_STYLE_VALUE
-    end
-    if owner.is_a?(Owner)
-      @owner = owner
-    elsif owner.is_a?(Player) || owner.is_a?(NPCTrainer)
-      @owner = Owner.new_from_trainer(owner)
-    else
-      @owner = Owner.new(0, '', 2, 2)
-    end
-    @obtain_method    = 0   # Met
-    @obtain_method    = 4 if $game_switches && $game_switches[Settings::FATEFUL_ENCOUNTER_SWITCH]
-    @obtain_map       = ($game_map) ? $game_map.map_id : 0
-    @obtain_text      = nil
-    @obtain_level     = level
-    @hatched_map      = 0
-    @timeReceived     = pbGetTimeNow.to_i
-    @timeEggHatched   = nil
-    @fused            = nil
-    @personalID       = rand(2 ** 16) | rand(2 ** 16) << 16
-    @hp               = 1
-    @totalhp          = 1
-	  @hpMult			  = 1
-	  @scaleFactor	  = 1
-  	@dmgMult		  = 1
-	  @battlingStreak	  = 0
-    calc_stats
-    if @form == 0 && recheck_form
-      f = MultipleForms.call("getFormOnCreation", self)
-      if f
-        self.form = f
-        reset_moves if withMoves
-      end
-    end
-  end
-  
-  def onHotStreak?()
-	return @battlingStreak >= 2
-  end
-  
-  def nature
-    @nature = GameData::Nature.get(0).id # ALWAYS RETURN NEUTRAL
-    return GameData::Nature.try_get(@nature)
-  end
-  
-  # Recalculates this Pokémon's stats.
-  def calc_stats
-    base_stats = self.baseStats
-    this_level = self.level
-    this_IV    = self.calcIV
-    # Calculate stats
-    stats = {}
-    GameData::Stat.each_main do |s|
-      if s.id == :HP
-        stats[s.id] = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id])
-        if boss
-          stats[s.id] *= hpMult
-        end
-      elsif (s.id == :ATTACK) || (s.id == :SPECIAL_ATTACK)
-        stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
-        if boss
-          stats[s.id] *= dmgMult
-        end
-      else
-        stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
-      end
-    end
-    hpDiff = @totalhp - @hp
-    @totalhp = stats[:HP]
-    @hp      = (fainted? ? 0 : (@totalhp - hpDiff))
-    @attack  = stats[:ATTACK]
-    @defense = stats[:DEFENSE]
-    @spatk   = stats[:SPECIAL_ATTACK]
-    @spdef   = stats[:SPECIAL_DEFENSE]
-    @speed   = stats[:SPEED]
-  end
-end
-
 class PokeBattle_Battle
   #=============================================================================
   # Gaining Experience
@@ -231,7 +105,15 @@ class PokeBattle_Battle
     end
     return if exp<=0
     # Pokémon gain more Exp from trainer battles
-    exp = (exp*1.8).floor if trainerBattle?
+    if trainerBattle?
+      exp = exp * 1.5
+      if $PokemonBag.pbHasItem?(:PERFORMANCEANALYZER2)
+        exp = exp * 1.25
+      elsif $PokemonBag.pbHasItem?(:PERFORMANCEANALYZER)
+        exp = exp * 1.2
+      end
+      exp = exp.floor
+    end 
     # Scale the gained Exp based on the gainer's level (or not)
     if Settings::SCALED_EXP_FORMULA
       exp /= 5
@@ -252,18 +134,18 @@ class PokeBattle_Battle
     end
     # Modify Exp gain based on pkmn's held item
     i = BattleHandlers.triggerExpGainModifierItem(pkmn.item,pkmn,exp)
-    if i<0
+    if i < 0
       i = BattleHandlers.triggerExpGainModifierItem(@initialItems[0][idxParty],pkmn,exp)
     end
     exp = i if i>=0
     # If EXP in this battle is capped, store all XP instead of granting it
     if @expCapped
-      @expStored += exp
+      @expStored += (exp * 0.7).floor
       return
     end
     # Make sure Exp doesn't exceed the maximum
     level_cap = LEVEL_CAPS_USED ? $game_variables[26] : growth_rate.max_level
-      expFinal = growth_rate.add_exp(pkmn.exp, exp)
+    expFinal = growth_rate.add_exp(pkmn.exp, exp)
     expLeftovers = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap))
     # Calculates if there is excess exp and if it can be stored
     if (expFinal > expLeftovers) && hasExpJAR
@@ -274,6 +156,7 @@ class PokeBattle_Battle
   	expFinal = expFinal.clamp(0,growth_rate.minimum_exp_for_level(level_cap))
     expGained = expFinal-pkmn.exp
 	  expLeftovers = expLeftovers-pkmn.exp
+    expLeftovers = (expLeftovers * 0.7).floor
 	  @expStored += expLeftovers if expLeftovers > 0
   	curLevel = pkmn.level
     newLevel = growth_rate.level_from_exp(expFinal)
@@ -286,23 +169,22 @@ class PokeBattle_Battle
       if newLevel == level_cap
         if expGained != 0
           pbDisplayPaused(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.",pkmn.name,level_cap,expGained))
-		end
+		    end
       else
-		if !pkmn.onHotStreak?
-			pbDisplayPaused(_INTL("{1} got {2} Exp. Points!",pkmn.name,expGained))
-		else
-			pbDisplayPaused(_INTL("{1} got a Hot Streak boosted {2} Exp. Points!",pkmn.name,expGained))
-		end
+        if !pkmn.onHotStreak?
+          pbDisplayPaused(_INTL("{1} got {2} Exp. Points!",pkmn.name,expGained))
+        else
+          pbDisplayPaused(_INTL("{1} got a Hot Streak boosted {2} Exp. Points!",pkmn.name,expGained))
+        end
       end
-	 #pbDisplayPaused(_INTL("{1} exp was put into the EXP-EZ Dispenser.",expLeftovers)) if expLeftovers > 0
     end
-    if newLevel<curLevel
+    if newLevel < curLevel
       debugInfo = "Levels: #{curLevel}->#{newLevel} | Exp: #{pkmn.exp}->#{expFinal} | gain: #{expGained}"
       raise RuntimeError.new(
          _INTL("{1}'s new level is less than its\r\ncurrent level, which shouldn't happen.\r\n[Debug: {2}]",
          pkmn.name,debugInfo))
     end
-	if newLevel > level_cap
+	  if newLevel > level_cap
       raise RuntimeError.new(
          _INTL("{1}'s new level is greater than the level cap, which shouldn't happen.\r\n[Debug: {2}]",
          pkmn.name,debugInfo))
@@ -323,7 +205,7 @@ class PokeBattle_Battle
       @scene.pbEXPBar(battler,levelMinExp,levelMaxExp,tempExp1,tempExp2)
       tempExp1 = tempExp2
       curLevel += 1
-      if curLevel>newLevel
+      if curLevel > newLevel
         # Gained all the Exp now, end the animation
         pkmn.calc_stats
         battler.pbUpdate(false) if battler
@@ -347,12 +229,12 @@ class PokeBattle_Battle
       # Learn all moves learned at this level
       moveList = pkmn.getMoveList
       moveList.each { |m| pbLearnMove(idxParty,m[1]) if m[0]==curLevel }
-	  if battler && battler.pokemon
+	    if battler && battler.pokemon
         battler.pokemon.changeHappiness("levelup")
       end
     end
-	$PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
-	$PokemonGlobal.expJAR += expLeftovers if (expLeftovers > 0 && hasExpJAR)
+	  $PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
+	  $PokemonGlobal.expJAR += expLeftovers if (expLeftovers > 0 && hasExpJAR)
   end
 end
 

@@ -1,9 +1,10 @@
-BURNED_EXPLANATION = "Its Attack is reduced by a third"
-POISONED_EXPLANATION = "Its Sp. Atk is reduced by a third"
-NUMBED_EXPLANATION = "It's slower and deals less damage"
-CHILLED_EXPLANATION = "It's slower and takes more damage"
-MYSTIFIED_EXPLANATION = "It'll take recoil from its own Sp. Atk"
-FLUSTERED_EXPLANATION = "It'll take recoil from its own Attack"
+BURNED_EXPLANATION = "It Attack is reduced by a third"
+POISONED_EXPLANATION = "Its Speed is halved"
+FROSTBITE_EXPLANATION = "Its Sp. Atk is reduced by a third"
+NUMBED_EXPLANATION = "Its Speed is halved, and it will deal one third less damage"
+CHILLED_EXPLANATION = "Its speed is halved, and it will take one third more damage"
+FLUSTERED_EXPLANATION = "Its Defense is reduced by a third"
+MYSTIFIED_EXPLANATION = "Its Sp. Def is reduced by a third"
 
 class PokeBattle_Battler
 
@@ -81,6 +82,7 @@ class PokeBattle_Battler
 	def pbCanInflictStatus?(newStatus,user,showMessages,move=nil,ignoreStatus=false)
 		return false if fainted?
 		selfInflicted = (user && user.index==@index)
+		statusDoublingCurse = pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
 		# Already have that status problem
 		if getStatuses().include?(newStatus) && !ignoreStatus
 			if showMessages
@@ -92,6 +94,7 @@ class PokeBattle_Battler
 				when :PARALYSIS 	then msg = _INTL("{1} is already numbed!", pbThis)
 				when :FROZEN		then msg = _INTL("{1} is already chilled!", pbThis)
 				when :FLUSTERED		then msg = _INTL("{1} is already flustered!", pbThis)
+				when :FROSTBITE		then msg = _INTL("{1} is already frostbitten!", pbThis)
 				end
 				@battle.pbDisplay(msg)
 			end
@@ -104,32 +107,27 @@ class PokeBattle_Battler
 		end
 		# Trying to inflict a status problem on a Pokémon behind a substitute
 		if @effects[PBEffects::Substitute]>0 && !(move && move.ignoresSubstitute?(user)) &&
-			 !selfInflicted
+			 !selfInflicted && !statusDoublingCurse
 			@battle.pbDisplay(_INTL("It doesn't affect {1} behind its substitute...",pbThis(true))) if showMessages
 			return false
 		end
-		# Weather immunity
-		if newStatus == :FROZEN && [:Sun, :HarshSun].include?(@battle.pbWeather)
-			@battle.pbDisplay(_INTL("It doesn't affect {1} due to the sunny weather...",pbThis(true))) if showMessages
-			return false
-		end
 		# Terrains immunity
-		if affectedByTerrain?
+		if affectedByTerrain? && !statusDoublingCurse
 			case @battle.field.terrain
 			when :Electric
-				if newStatus == :SLEEP || newStatus == :FROZEN
+				if newStatus == :SLEEP || newStatus == :PARALYSIS
 					@battle.pbDisplay(_INTL("{1} surrounds itself with electrified terrain!",pbThis(true))) if showMessages
 					return false
 				end
 			when :Misty
-				if newStatus == :POISON || newStatus == :Burn
+				if newStatus == :POISON || newStatus == :BURN || newStatus == :FROSTBITE
 					@battle.pbDisplay(_INTL("{1} surrounds itself with fairy terrain!",pbThis(true))) if showMessages
 					return false
 				end
 			end
 		end
 		# Uproar immunity
-		if newStatus == :SLEEP && !(hasActiveAbility?(:SOUNDPROOF) && !@battle.moldBreaker)
+		if newStatus == :SLEEP && !(hasActiveAbility?(:SOUNDPROOF) && !@battle.moldBreaker) && !statusDoublingCurse
 			@battle.eachBattler do |b|
 				next if b.effects[PBEffects::Uproar]==0
 				@battle.pbDisplay(_INTL("But the uproar kept {1} awake!",pbThis(true))) if showMessages
@@ -143,7 +141,7 @@ class PokeBattle_Battler
 		when :SLEEP
 			if pbHasType?(:GRASS) && !selfInflicted
 				hasImmuneType = true
-				immuneType = :FAIRY
+				immuneType = :GRASS
 			end
 		when :POISON
 			if !(user && user.hasActiveAbility?(:CORROSION))
@@ -159,14 +157,14 @@ class PokeBattle_Battler
 		when :BURN
 			if pbHasType?(:FIRE)
 				hasImmuneType = true
-				immuneType = :FAIRY
+				immuneType = :FIRE
 			end
 		when :PARALYSIS
 			if pbHasType?(:ELECTRIC)
 				hasImmuneType = true
-				immuneType = :FAIRY
+				immuneType = :ELECTRIC
 			end
-		when :FROZEN
+		when :FROZEN,:FROSTBITE
 			if pbHasType?(:ICE)
 				hasImmuneType = true
 				immuneType = :ICE
@@ -217,6 +215,7 @@ class PokeBattle_Battler
 					when :FROZEN		then msg = _INTL("{1} cannot be chilled!", pbThis)
 					when :FLUSTERED		then msg = _INTL("{1} cannot be flustered!", pbThis)
 					when :MYSTIFIED		then msg = _INTL("{1} cannot be mystified!", pbThis)
+					when :FROSTBITE		then msg = _INTL("{1} cannot be frostbitten!", pbThis)
 					end
 				elsif immAlly
 					case newStatus
@@ -241,6 +240,9 @@ class PokeBattle_Battler
 					when :MYSTIFIED
 						msg = _INTL("{1} cannot be mystified because of {2}'s {3}!",
 								pbThis,immAlly.pbThis(true),immAlly.abilityName)
+					when :FROSTBITE
+						msg = _INTL("{1} cannot be frostbitten because of {2}'s {3}!",
+								pbThis,immAlly.pbThis(true),immAlly.abilityName)
 					end
 				else
 					case newStatus
@@ -251,6 +253,7 @@ class PokeBattle_Battler
 					when :FROZEN		then msg = _INTL("{1}'s {2} prevents chilling!", pbThis, abilityName)
 					when :FLUSTERED		then msg = _INTL("{1}'s {2} prevents being flustered!", pbThis, abilityName)
 					when :MYSTIFIED		then msg = _INTL("{1}'s {2} prevents being mystified!", pbThis, abilityName)
+					when :FROSTBITE		then msg = _INTL("{1}'s {2} prevents being frostbitten!", pbThis, abilityName)
 					end
 				end
 				@battle.pbDisplay(msg)
@@ -260,7 +263,7 @@ class PokeBattle_Battler
 		end
 		# Safeguard immunity
 		if pbOwnSide.effects[PBEffects::Safeguard]>0 && !selfInflicted && move &&
-			 !(user && user.hasActiveAbility?(:INFILTRATOR))
+			 !(user && user.hasActiveAbility?(:INFILTRATOR)) && !statusDoublingCurse
 			@battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!",pbThis)) if showMessages
 			return false
 		end
@@ -291,7 +294,7 @@ class PokeBattle_Battler
 			hasImmuneType |= pbHasType?(:FIRE)
 		when :PARALYSIS
 			hasImmuneType |= pbHasType?(:ELECTRIC) && Settings::MORE_TYPE_EFFECTS
-		when :FROZEN
+		when :FROZEN,:FROSTBITE
 			hasImmuneType |= pbHasType?(:ICE)
 		when :SLEEP
 			hasImmuneType |= pbHasType?(:GRASS)
@@ -366,6 +369,8 @@ class PokeBattle_Battler
 				@battle.pbDisplay(_INTL("{1} is flustered! {2}!", pbThis, FLUSTERED_EXPLANATION))
 				when :MYSTIFIED
 				@battle.pbDisplay(_INTL("{1} is mystified! {2}!", pbThis, MYSTIFIED_EXPLANATION))
+				when :FROSTBITE
+				@battle.pbDisplay(_INTL("{1} is frostbitten! {2}!", pbThis, FROSTBITE_EXPLANATION))
 				end
 			end
 		end
@@ -767,5 +772,24 @@ class PokeBattle_Battler
 
 	def pbMystify(user=nil,msg=nil)
 		pbInflictStatus(:MYSTIFIED,0,msg,user)
+	end
+
+	#=============================================================================
+	# Frostbite
+	#=============================================================================
+	def frostbitten?
+		return pbHasStatus?(:FROSTBITE)
+	end
+
+	def pbCanFrostbite?(user, showMessages, move = nil)
+		return pbCanInflictStatus?(:FROSTBITE, user, showMessages, move)
+	end
+
+	def pbCanFrostbiteSynchronize?(target)
+		return pbCanSynchronizeStatus?(:FROSTBITE, target)
+	end
+
+	def pbFrostbite(user=nil,msg=nil)
+		pbInflictStatus(:FROSTBITE,0,msg,user)
 	end
 end

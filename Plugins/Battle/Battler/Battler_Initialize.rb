@@ -1,8 +1,13 @@
 class PokeBattle_Battler
-	attr_accessor :boss
-	attr_accessor :empowered
-	attr_reader :bossStatus
-	attr_reader :bossStatusCount
+	attr_accessor 	:boss
+	attr_accessor 	:empowered
+	attr_accessor	:extraMovesPerTurn
+	attr_reader 	:bossStatus
+	attr_reader 	:bossStatusCount
+	attr_accessor 	:primevalTimer
+	attr_accessor	:indexesTargetedThisTurn
+	attr_accessor	:dmgMult
+	attr_accessor	:dmgResist
 	
 	def bossStatus=(value)
 		@effects[PBEffects::Truant] = false if @bossStatus == :SLEEP && value != :SLEEP
@@ -22,6 +27,24 @@ class PokeBattle_Battler
 	
 	def empowered?
 		return empowered
+	end
+
+	def extraMovesPerTurn
+		val = @pokemon.extraMovesPerTurn || 0
+		val += effects[PBEffects::ExtraTurns]
+		return val
+	end
+
+	def extraMovesPerTurn=(val)
+		@pokemon.extraMovesPerTurn = val
+	end
+
+	def resetExtraMovesPerTurn
+		@pokemon.extraMovesPerTurn = GameData::Avatar.get(@species).num_turns - 1
+	end
+
+	def lastMoveThisTurn?
+		return @battle.commandPhasesThisRound == extraMovesPerTurn
 	end
 
 	def pbInitBlank
@@ -47,6 +70,11 @@ class PokeBattle_Battler
 		@bossStatus		= :NONE
 		@bossStatusCount = 0
 		@empowered 		= false
+		@primevalTimer	= 0
+		@extraMovesPerTurn	= 0
+		@indexesTargetedThisTurn	= []
+		@dmgMult = 1
+		@dmgResist = 0
 	end
   
   # Used by Future Sight only, when Future Sight's user is no longer in battle.
@@ -77,6 +105,8 @@ class PokeBattle_Battler
     @iv           = {}
     GameData::Stat.each_main { |s| @iv[s.id] = pkmn.iv[s.id] }
     @dummy        = true
+	@dmgMult   = 1
+	@dmgResist = 0
   end
 
 
@@ -100,6 +130,8 @@ class PokeBattle_Battler
     @speed        = pkmn.speed
     @status       = pkmn.status
     @statusCount  = pkmn.statusCount
+	@dmgMult	  = pkmn.dmgMult
+	@dmgResist	  = pkmn.dmgResist
 	@boss		  = pkmn.boss
     @pokemon      = pkmn
     @pokemonIndex = idxParty
@@ -176,6 +208,10 @@ class PokeBattle_Battler
 		@lastRoundMoveFailed   = false
 		@movesUsed             = []
 		@turnCount             = 0
+		@empowered			   = false
+		@primevalTimer		   = 0
+		@extraMovesPerTurn	   = 0
+		@indexesTargetedThisTurn   = []
 		@effects[PBEffects::Attract]             = -1
 		@battle.eachBattler do |b|   # Other battlers no longer attracted to self
 		  b.effects[PBEffects::Attract] = -1 if b.effects[PBEffects::Attract]==@index
@@ -331,9 +367,11 @@ class PokeBattle_Battler
 		@effects[PBEffects::Gargantuan]			 = 0
 		@effects[PBEffects::NerveBreak]   		 = false
 		@effects[PBEffects::StunningCurl]		 = false
+		@effects[PBEffects::RedHotRetreat]       = false
 		
 		@effects[PBEffects::EmpoweredEndure]     = 0
 		@effects[PBEffects::EmpoweredMoonlight]  = false
 		@effects[PBEffects::EmpoweredLaserFocus] = false
+		@effects[PBEffects::ExtraTurns] = 0
     end
 end

@@ -39,15 +39,15 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
 BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
   proc { |ability,user,target,move,battle|
     next unless move.specialMove?
-    next if user.frozen? || battle.pbRandom(100)>=30
+    next if user.frostbite? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
-    if user.pbCanFreeze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+    if user.pbCanFrostbite?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} chilled {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),CHILLED_EXPLANATION)
+        msg = _INTL("{1}'s {2} frostbit {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),FROSTBITE_EXPLANATION)
       end
-      user.pbFreeze(msg)
+      user.pbFrostbite(msg)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -56,15 +56,15 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
 BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
   proc { |ability,user,target,move,battle|
     next if !move.pbContactMove?(user)
-    next if user.frozen? || battle.pbRandom(100)>=30
+    next if user.frostbite? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
-    if user.pbCanFreeze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+    if user.pbCanFrostbite?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} chilled {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),CHILLED_EXPLANATION)
+        msg = _INTL("{1}'s {2} frostbit {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),FROSTBITE_EXPLANATION)
       end
-      user.pbFreeze(msg)
+      user.pbFrostbite(msg)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -100,7 +100,7 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
     # battle.pbHideAbilitySplash(target)
     next if user.mystified?
     battle.pbShowAbilitySplash(target)
-    if user.target.pbCanMystify?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if user.pbCanMystify?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         msg = _INTL("{1}'s {2} mystified {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),MYSTIFIED_EXPLANATION)
@@ -130,7 +130,7 @@ BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
     # battle.pbHideAbilitySplash(target)
     next if user.flustered?
     battle.pbShowAbilitySplash(target)
-    if user.target.pbCanFluster?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if user.pbCanFluster?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         msg = _INTL("{1}'s {2} flustered {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),FLUSTERED_EXPLANATION)
@@ -290,3 +290,26 @@ BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:SEEDSCATTER,
+	proc { |ability,target,battler,move,battle|
+    terrainSetAbility(:Grassy)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:PERCUSSIVEMAINTENANCE,
+	proc { |ability,target,battler,move,battle|
+    terrainSetAbility(:Electric)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:MISTCRAFT,
+	proc { |ability,target,battler,move,battle|
+		terrainSetAbility(:Misty)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
+	proc { |ability,target,battler,move,battle|
+    terrainSetAbility(:Psychic)
+	}
+)

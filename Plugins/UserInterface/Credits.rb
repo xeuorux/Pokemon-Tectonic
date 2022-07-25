@@ -51,7 +51,8 @@ calisprojects.com<s>PandaInDaGame
 Hek-el-grande<s>Kaliser
 SailorVicious<s>Agentbla
 Shiney570<s>dirtywiggles
-Ekat
+Ekat<s>MewTheMega
+Zeo254
 
 Charsets
 DiegoWT<s>PurpleZaffre

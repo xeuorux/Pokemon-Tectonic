@@ -70,8 +70,8 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 						pbListScreenExtra(_INTL("Moves"), BattleGuideLister.new(MOVE_HASH), false)
 					when "Type Matchups"
 						pbListScreenExtra(_INTL("Type Matchups"), BattleGuideLister.new(TYPE_MATCHUPS_HASH), false)
-					when "Aquiring Pokémon"
-						pbListScreenExtra(_INTL("Aquiring Pokémon"), BattleGuideLister.new(AQUIRING_POKEMON_HASH), false)
+					when "Acquiring Pokémon"
+						pbListScreenExtra(_INTL("Acquiring Pokémon"), BattleGuideLister.new(ACQUIRING_POKEMON_HASH), false)
 					when "Stats"
 						pbListScreenExtra(_INTL("Stats"), BattleGuideLister.new(STATS_HASH), false)
 					when "Abilities"

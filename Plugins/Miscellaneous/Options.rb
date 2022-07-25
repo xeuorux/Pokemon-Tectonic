@@ -12,7 +12,7 @@ class PokemonSystem
 
   def initialize
     @textspeed   		          = 1 # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
-    @battlescene 		          = 0 # Battle effects (animations) (0=on, 1=off)
+    @battlescene 		          = 0 # Battle effects (animations) (0=on, 1=fast, 2=off)
     @battlestyle 		          = 1 # Battle style (0=switch, 1=set)
     @frame      		          = 0 # Default window frame (see also Settings::MENU_WINDOWSKINS)
     @textskin    		          = 0 # Speech frame
@@ -86,7 +86,7 @@ class PokemonOption_Scene
            MessageConfig.pbSetTextSpeed(MessageConfig.pbSettingToTextSpeed(value))
          }
        ),
-       EnumOption.new(_INTL("Battle Effects"),[_INTL("On"),_INTL("Off")],
+       EnumOption.new(_INTL("Battle Effects"),[_INTL("Standard"),_INTL("Fast"),_INTL("Off")],
          proc { $PokemonSystem.battlescene },
          proc { |value| $PokemonSystem.battlescene = value }
        ),

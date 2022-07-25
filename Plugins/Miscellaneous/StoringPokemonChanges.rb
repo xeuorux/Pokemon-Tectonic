@@ -6,28 +6,28 @@ def pbStorePokemon(pkmn)
   end
   pkmn.record_first_moves
   if $Trainer.party_full?
-	storingPokemon = pkmn
-	if pbConfirmMessageSerious(_INTL("Would you like to add {1} to your party?", pkmn.name))
-	  pbMessage(_INTL("Choose which Pokemon will be sent back to the PC."))
-	  #if Y, select pokemon to store instead
-	  pbChoosePokemon(1,3)
-	  chosen = $game_variables[1]
-	  #Didn't cancel
-	  if chosen != -1
-		storingPokemon = $Trainer.party[chosen]
-		
-		if storingPokemon.hasItem?
-			itemName = GameData::Item.get(storingPokemon.item).real_name
-			if pbConfirmMessageSerious(_INTL("{1} is holding an {2}. Would you like to take it before transferring?", storingPokemon.name, itemName))
-				pbTakeItemFromPokemon(storingPokemon)
-			end
-		end
-		
-		$Trainer.party[chosen] = pkmn
-		
-		refreshFollow
-	  end
-	end
+    storingPokemon = pkmn
+    if pbConfirmMessageSerious(_INTL("Would you like to add {1} to your party?", pkmn.name))
+      pbMessage(_INTL("Choose which Pokemon will be sent back to the PC."))
+      #if Y, select pokemon to store instead
+      pbChoosePokemon(1,3)
+      chosen = $game_variables[1]
+      #Didn't cancel
+      if chosen != -1
+        storingPokemon = $Trainer.party[chosen]
+        
+        if storingPokemon.hasItem?
+          itemName = GameData::Item.get(storingPokemon.item).real_name
+          if pbConfirmMessageSerious(_INTL("{1} is holding an {2}. Would you like to take it before transferring?", storingPokemon.name, itemName))
+            pbTakeItemFromPokemon(storingPokemon)
+          end
+        end
+        
+        $Trainer.party[chosen] = pkmn
+        
+        refreshFollow
+      end
+    end
     pbStorePokemonInPC(storingPokemon)
   else
     $Trainer.party[$Trainer.party.length] = pkmn
@@ -67,18 +67,16 @@ end
 
 def pbStorePokemonInPC(pkmn)
 	oldcurbox = $PokemonStorage.currentBox
-    storedbox = $PokemonStorage.pbStoreCaught(pkmn)
-    curboxname = $PokemonStorage[oldcurbox].name
-    boxname = $PokemonStorage[storedbox].name
-    creator = nil
-    creator = pbGetStorageCreator if $Trainer.seen_storage_creator
-    if storedbox != oldcurbox
-      pbMessage(_INTL("Box \"{1}\" on the Pokémon Storage PC was full.\1", curboxname))
-      pbMessage(_INTL("{1} was transferred to box \"{2}.\"", pkmn.name, boxname))
-    else
-      pbMessage(_INTL("{1} was transferred to the Pokémon Storage PC.\1", pkmn.name))
-      pbMessage(_INTL("It was stored in box \"{1}.\"", boxname))
-    end
+  storedbox = $PokemonStorage.pbStoreCaught(pkmn)
+  curboxname = $PokemonStorage[oldcurbox].name
+  boxname = $PokemonStorage[storedbox].name
+  if storedbox != oldcurbox
+    pbMessage(_INTL("Box \"{1}\" on the Pokémon Storage PC was full.\1", curboxname))
+    pbMessage(_INTL("{1} was transferred to box \"{2}.\"", pkmn.name, boxname))
+  else
+    pbMessage(_INTL("{1} was transferred to the Pokémon Storage PC.\1", pkmn.name))
+    pbMessage(_INTL("It was stored in box \"{1}.\"", boxname))
+  end
 end
 
 def pbNicknameAndStore(pkmn)
@@ -94,7 +92,7 @@ def pbNicknameAndStore(pkmn)
   pbMessage(_INTL("You check {1}, and discover that its ability is {2}!",pkmn.name,pkmn.ability.name))
   
   if (pkmn.hasItem?)
-	pbMessage(_INTL("The {1} is holding an {2}!",pkmn.name,pkmn.item.name))
+	  pbMessage(_INTL("The {1} is holding an {2}!",pkmn.name,pkmn.item.name))
   end
   
   # Increase the caught count for the global metadata
@@ -127,17 +125,10 @@ module PokeBattle_BattleCommon
   # Store caught Pokémon
   #=============================================================================
   def pbStorePokemon(pkmn)
-    # Nickname the Pokémon (unless it's a Shadow Pokémon)
-    if !pkmn.shadowPokemon? && (!defined?($PokemonSystem.nicknaming_prompt) || $PokemonSystem.nicknaming_prompt == 0)
-      if pbDisplayConfirm(_INTL("Would you like to give a nickname to {1}?", pkmn.name))
-        nickname = @scene.pbNameEntry(_INTL("{1}'s nickname?", pkmn.speciesName), pkmn)
-        pkmn.name = nickname
-      end
-    end
     # Store the Pokémon
     currentBox = @peer.pbCurrentBox
     storedBox  = @peer.pbStorePokemon(pbPlayer,pkmn)
-    if storedBox<0
+    if storedBox < 0
       pbDisplayPaused(_INTL("{1} has been added to your party.",pkmn.name))
       @initialItems[0][pbPlayer.party.length-1] = pkmn.item_id if @initialItems
       return
@@ -145,7 +136,7 @@ module PokeBattle_BattleCommon
     # Messages saying the Pokémon was stored in a PC box
     curBoxName = @peer.pbBoxName(currentBox)
     boxName    = @peer.pbBoxName(storedBox)
-    if storedBox!=currentBox
+    if storedBox != currentBox
       pbDisplayPaused(_INTL("Box \"{1}\" on the Pokémon Storage PC was full.",curBoxName))
       pbDisplayPaused(_INTL("{1} was transferred to box \"{2}\".",pkmn.name,boxName))
     else
@@ -178,46 +169,54 @@ module PokeBattle_BattleCommon
       # Record a Shadow Pokémon's species as having been caught
       pbPlayer.pokedex.set_shadow_pokemon_owned(pkmn.species) if pkmn.shadowPokemon?
 	  
-	  # Increase the caught count for the global metadata
-	  incrementDexNavCounts(true)
+	    # Increase the caught count for the global metadata
+	    incrementDexNavCounts(true)
 
-	  #Check Party Size
+        # Nickname the Pokémon (unless it's a Shadow Pokémon)
+      if !pkmn.shadowPokemon? && (!defined?($PokemonSystem.nicknaming_prompt) || $PokemonSystem.nicknaming_prompt == 0)
+        if pbDisplayConfirm(_INTL("Would you like to give a nickname to {1}?", pkmn.name))
+          nickname = @scene.pbNameEntry(_INTL("{1}'s nickname?", pkmn.speciesName), pkmn)
+          pkmn.name = nickname
+        end
+      end
+
+	    #Check Party Size
       if $Trainer.party_full?
         #Y/N option to store newly caught
         if pbDisplayConfirmSerious(_INTL("Would you like to add {1} to your party?", pkmn.name))
           pbDisplay(_INTL("Choose which Pokemon will be sent back to the PC."))
-		  #if Y, select pokemon to store instead
+		      #if Y, select pokemon to store instead
           pbChoosePokemon(1,3)
-		  chosen = $game_variables[1]
+		      chosen = $game_variables[1]
           #Didn't cancel
           if chosen != -1
-			 chosenPokemon = $Trainer.party[chosen]
-			 @peer.pbOnLeavingBattle(self,chosenPokemon,@usedInBattle[0][chosen],true)   # Reset form
-		  
-			# Find the battler which matches with the chosen pokemon	
-			chosenBattler = nil
-			eachSameSideBattler() do |battler|
-				next unless battler.pokemon == chosenPokemon
-				chosenBattler = battler
-				break
-			end
-			# Handle the chosen pokemon leaving battle, if it was in battle
-			if !chosenBattler.nil? && chosenBattler.abilityActive?
-				BattleHandlers.triggerAbilityOnSwitchOut(chosenBattler.ability,chosenBattler,true,self)
-			end
-			
-			chosenPokemon.item = @initialItems[0][chosen]
-			@initialItems[0][chosen] = pkmn.item
-			
-			if chosenPokemon.hasItem?
-				itemName = GameData::Item.get(chosenPokemon.item).real_name
-				if pbConfirmMessageSerious(_INTL("{1} is holding an {2}. Would you like to take it before transferring?", chosenPokemon.name, itemName))
-					pbTakeItemFromPokemon(chosenPokemon)
-				end
-			end
-			
-			pbStorePokemon(chosenPokemon)
-			$Trainer.party[chosen] = pkmn
+            chosenPokemon = $Trainer.party[chosen]
+            @peer.pbOnLeavingBattle(self,chosenPokemon,@usedInBattle[0][chosen],true)   # Reset form
+        
+            # Find the battler which matches with the chosen pokemon	
+            chosenBattler = nil
+            eachSameSideBattler() do |battler|
+              next unless battler.pokemon == chosenPokemon
+              chosenBattler = battler
+              break
+            end
+            # Handle the chosen pokemon leaving battle, if it was in battle
+            if !chosenBattler.nil? && chosenBattler.abilityActive?
+              BattleHandlers.triggerAbilityOnSwitchOut(chosenBattler.ability,chosenBattler,true,self)
+            end
+            
+            chosenPokemon.item = @initialItems[0][chosen]
+            @initialItems[0][chosen] = pkmn.item
+            
+            if chosenPokemon.hasItem?
+              itemName = GameData::Item.get(chosenPokemon.item).real_name
+              if pbConfirmMessageSerious(_INTL("{1} is holding an {2}. Would you like to take it before transferring?", chosenPokemon.name, itemName))
+                pbTakeItemFromPokemon(chosenPokemon)
+              end
+            end
+            
+            pbStorePokemon(chosenPokemon)
+            $Trainer.party[chosen] = pkmn
           else
             # Store caught Pokémon if cancelled
             pbStorePokemon(pkmn)
@@ -226,9 +225,9 @@ module PokeBattle_BattleCommon
           # Store caught Pokémon
           pbStorePokemon(pkmn)
         end
-	  else
-		# Store caught Pokémon
-		pbStorePokemon(pkmn)
+	    else
+        # Store caught Pokémon
+        pbStorePokemon(pkmn)
       end
     end
     @caughtPokemon.clear

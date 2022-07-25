@@ -1,4 +1,4 @@
-EXP_PER_EXTRA_SMALL = 350
+EXP_PER_EXTRA_SMALL = 250
 
 class PokemonGlobalMetadata
 	attr_accessor :expJARUpgraded

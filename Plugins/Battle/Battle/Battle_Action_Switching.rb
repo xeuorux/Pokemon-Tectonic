@@ -231,6 +231,16 @@ class PokeBattle_Battle
           battler.pbBurn(nil,_INTL("{1} was burned by the flame spikes!",battler.pbThis))
       end
     end
+    # Frost Spikes
+    if battler.pbOwnSide.effects[PBEffects::FrostSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? &&
+      !battler.airborne?
+     if battler.pbHasType?(:ICE)
+       battler.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
+       pbDisplay(_INTL("{1} absorbed the frost spikes!",battler.pbThis))
+     elsif battler.pbCanFrostbite?(nil,false)
+         battler.pbFrostbite(nil,_INTL("{1} was frostbitten by the frost spikes!",battler.pbThis))
+     end
+   end
     # Sticky Web
     if battler.pbOwnSide.effects[PBEffects::StickyWeb] && !battler.fainted? && !battler.immuneToHazards?
        !battler.airborne?

@@ -26,14 +26,6 @@ GameData::TerrainTag.register({
   :slows				  => true
 })
 
-
-GameData::TerrainTag.register({
-  :id                     => :ActiveWater,
-  :id_number              => 18,
-  :battle_environment     => :Water,
-  :can_surf               => true
-})
-
 # Puddle
 GameData::TerrainTag.register({
   :id                     => :Puddle,
@@ -138,4 +130,11 @@ GameData::TerrainTag.register({
 GameData::TerrainTag.register({
   :id                     => :WallReplaceConvex,
   :id_number              => 32,
+})
+
+GameData::TerrainTag.register({
+  :id                     => :ActiveWater,
+  :id_number              => 33,
+  :battle_environment     => :Water,
+  :can_surf               => true
 })

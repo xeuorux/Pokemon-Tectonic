@@ -455,7 +455,7 @@ class PokemonPartyScreen
 		annot = []
 		for pkmn in @party
 		  styled = styledProc.call(pkmn)
-		  annot.push((styled) ? _INTL("STYLED") : _INTL("NOT STYLED"))
+		  annot.push((styled) ? _INTL("RESTYLE") : _INTL("FIRST STYLE"))
 		end
 		ret = -1
 		@scene.pbStartScene(@party,
@@ -475,21 +475,21 @@ end
 
 def styleValuesTrainer()
 	if isTempSwitchOff?("A")
-		pbMessage(_INTL("I'm the Style Values adjuster. I can adjust your Pokémon's Style values."))
-		pbMessage(_INTL("1 point in a Style Value for a stat is equivalent to 1 point in the same base stat."))
+		pbMessage(_INTL("I'm the Style Points adjuster. I can adjust your Pokémon's Style Points any time."))
+		pbMessage(_INTL("To add Style Points to a stat, you'll have to remove them from another."))
 		setTempSwitchOn("A")
 	end
-	if pbConfirmMessage(_INTL("Would you like to adjust the Style Values of any of your Pokémon?"))
+	if pbConfirmMessage(_INTL("Would you like to adjust the Style Points of any of your Pokémon?"))
 		while true do
 			choosePokemonToStyle()
 			if $game_variables[1] < 0
-				pbMessage(_INTL("If your Pokémon need to have their Style Values adjusted, come to me."))
+				pbMessage(_INTL("If your Pokémon need to have their Style Points adjusted, come to me."))
 				break
 			else
 				pbStyleValueScreen(pbGetPokemon(1))
 			end
 		end
 	else
-		pbMessage(_INTL("If your Pokémon need to have their Style Values adjusted, come to me."))
+		pbMessage(_INTL("If your Pokémon need to have their Style Points adjusted, come to me."))
 	end
 end

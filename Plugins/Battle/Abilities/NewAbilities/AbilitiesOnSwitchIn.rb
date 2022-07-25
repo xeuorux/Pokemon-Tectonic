@@ -124,7 +124,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:RUINOUS,
 BattleHandlers::AbilityOnSwitchIn.add(:HONORAURA,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1}'s is honorable! Status moves lose priority!",battler.pbThis))
+    battle.pbDisplay(_INTL("{1} is honorable! Status moves lose priority!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -152,7 +152,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:POLLUTION,
 
 BattleHandlers::AbilityOnSwitchIn.add(:ARCANEFINALE,
   proc { |ability,battler,battle|
-    next unless battler.isLastAlive?
+    next if !battler.isLastAlive?
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} is the team's finale!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
@@ -161,9 +161,18 @@ BattleHandlers::AbilityOnSwitchIn.add(:ARCANEFINALE,
 
 BattleHandlers::AbilityOnSwitchIn.add(:HEROICFINALE,
   proc { |ability,battler,battle|
-    next unless battler.isLastAlive?
+    next if !battler.isLastAlive?
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} is the team's finale!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:ONTHEWIND,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.pbOwnSide.effects[PBEffects::Tailwind] = 4
+    battle.pbDisplay(_INTL("{1} flew in on a tailwind!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )

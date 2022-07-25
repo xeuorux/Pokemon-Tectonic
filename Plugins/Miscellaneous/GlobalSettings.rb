@@ -1,8 +1,8 @@
 module Settings
-  GAME_VERSION = "1.7.0"
+  GAME_VERSION = "1.9.0"
 
   # The maximum level Pokémon can reach.
-  MAXIMUM_LEVEL        = 70
+  MAXIMUM_LEVEL        = 71
   # The odds of a wild Pokémon/bred egg having Pokérus (out of 65536).
   POKERUS_CHANCE       = 0
   # Whether poisoned Pokémon will lose HP while walking around in the field.
@@ -62,4 +62,23 @@ module Settings
   POKE_RADAR_ENCOUNTERS = []
   
   NUM_STORAGE_BOXES = 40
+
+  REGION_MAP_EXTRAS = [
+    [0, 51, 9, 5, "mapHiddenCave", false],
+    [0, 52, 17, 13, "mapHidden2x1Route", false]
+  ]
+
+  # The names of each pocket of the Bag. Ignore the first entry ("").
+  def self.bag_pocket_names
+    return ["",
+      _INTL("Items"),
+      _INTL("Medicine"),
+      _INTL("Poké Balls"),
+      _INTL("TMs"),
+      _INTL("Held Items"),
+      _INTL("Sell Items"),
+      _INTL("Battle Items"),
+      _INTL("Key Items")
+    ]
+  end
 end
