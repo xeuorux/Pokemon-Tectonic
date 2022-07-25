@@ -257,10 +257,10 @@ class BattleInfoDisplay < SpriteWrapper
 	for effect in 0..150
 		effectValue = battler.effects[effect]
 		next if effectValue.nil?
-		# next if effectValue == false
-		# next if effectValue.is_a?(Integer) && effectValue <= 0
-		# next if effect == PBEffects::ProtectRate && effectValue <= 1
-		# next if effect == PBEffects::Unburden && !battler.hasActiveAbility?(:UNBURDEN)
+		next if effectValue == false
+		next if effectValue.is_a?(Integer) && effectValue <= 0
+		next if effect == PBEffects::ProtectRate && effectValue <= 1
+		next if effect == PBEffects::Unburden && !battler.hasActiveAbility?(:UNBURDEN)
 		effectName = labelBattlerEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
@@ -271,8 +271,8 @@ class BattleInfoDisplay < SpriteWrapper
 	for effect in 0..30
 		effectValue = @battle.positions[battler.index].effects[effect]
 		next if effectValue.nil?
-		# next if effectValue == false
-		# next if effectValue.is_a?(Integer) && effectValue <= 0
+		next if effectValue == false
+		next if effectValue.is_a?(Integer) && effectValue <= 0
 		effectName = labelSlotEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
