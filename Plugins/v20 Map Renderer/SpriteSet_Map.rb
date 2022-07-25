@@ -38,11 +38,12 @@ class Spriteset_Map
         @weather = nil
         for i in 0...@usersprites.length
             @usersprites[i].dispose
-          end
+        end
         @usersprites.clear
     end
 
     def update
+        @@viewport3.tone = Tone.new(0, 0, 0, 0)
         if @panorama_name!=@map.panorama_name || @panorama_hue!=@map.panorama_hue
           @panorama_name = @map.panorama_name
           @panorama_hue  = @map.panorama_hue
@@ -90,7 +91,7 @@ class Spriteset_Map
         @@viewport1.update
         @@viewport3.update
         for i in 0...@usersprites.length
-            @usersprites[i].update if !@usersprites[i].disposed?
-          end
+          @usersprites[i].update if !@usersprites[i].disposed?
+        end
     end
 end
