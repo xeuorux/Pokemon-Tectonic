@@ -546,8 +546,8 @@ DMGMult = 1
 [PARASECT]
 Ability = COMATOSE
 Moves = SOULRIP,XSCISSOR,SPORE
-Turns = 1
-HPMult = 6.0
+Turns = 2
+HPMult = 4.0
 DMGMult = 1
 Item = MUSCLEBAND
 #-------------------------------
