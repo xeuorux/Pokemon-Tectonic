@@ -999,36 +999,6 @@ class PokeBattle_Move_162 < PokeBattle_Move
 end
 
 #===============================================================================
-# Entry hazard. Lays poison spikes on the opposing side (max. 1 layers).
-# (Poison Spikes)
-#===============================================================================
-class PokeBattle_Move_104 < PokeBattle_Move
-  def pbMoveFailed?(user,targets)
-    if user.pbOpposingSide.effects[PBEffects::ToxicSpikes]>=1
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    return false
-  end
-
-  def pbEffectGeneral(user)
-    user.pbOpposingSide.effects[PBEffects::ToxicSpikes] += 1
-    @battle.pbDisplay(_INTL("Poison spikes were scattered all around {1}'s feet!",
-      user.pbOpposingTeam(true)))
-    if user.pbOpposingSide.effects[PBEffects::FlameSpikes] > 0
-      user.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0
-      @battle.pbDisplay(_INTL("The flame spikes around {1}'s feet were brushed aside!",
-          user.pbOpposingTeam(true)))
-    end
-    if user.pbOpposingSide.effects[PBEffects::FrostSpikes] > 0
-      user.pbOpposingSide.effects[PBEffects::FrostSpikes] = 0
-      @battle.pbDisplay(_INTL("The frost spikes around {1}'s feet were brushed aside!",
-          user.pbOpposingTeam(true)))
-    end
-  end
-end
-
-#===============================================================================
 # Protect Nerf: Now instantly fails on second try.
 # (Protect/Detect/etc.)
 #===============================================================================

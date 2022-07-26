@@ -202,23 +202,36 @@ class PokeBattle_Battle
     # Spikes
     if battler.pbOwnSide.effects[PBEffects::Spikes]>0 && battler.takesIndirectDamage? && !battler.immuneToHazards? &&
        !battler.airborne?
-      spikesDiv = [8,6,4][battler.pbOwnSide.effects[PBEffects::Spikes]-1]
+      spikesIndex = battler.pbOwnSide.effects[PBEffects::Spikes] - 1
+      spikesDiv = [8,6,4][spikesIndex]
       oldHP = battler.hp
       battler.pbReduceHP(battler.totalhp/spikesDiv,false)
-      pbDisplay(_INTL("{1} is hurt by the spikes!",battler.pbThis))
+      layerLabel = ["layer","2 layers","3 layers"][spikesIndex]
+      pbDisplay(_INTL("{1} is hurt by the {2} of spikes!",battler.pbThis,layerLabel))
       battler.pbItemHPHealCheck
       if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
         return pbOnActiveOne(battler)   # For replacement battler
       end
     end
-    # Toxic Spikes
+    # Poison Spikes
     if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? &&
        !battler.airborne?
       if battler.pbHasType?(:POISON)
         battler.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
         pbDisplay(_INTL("{1} absorbed the poison spikes!",battler.pbThis))
       elsif battler.pbCanPoison?(nil,false)
-        battler.pbPoison(nil,_INTL("{1} was poisoned by the poison spikes!",battler.pbThis))
+        if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] >= 2
+          battler.pbPoison(nil,_INTL("{1} was poisoned by the poison spikes!",battler.pbThis))
+        else
+          battler.pbReduceHP(battler.totalhp/16,false)
+          pbDisplay(_INTL("{1} was hurt by the thin layer of poison spikes!",battler.pbThis))
+          battler.pbItemHPHealCheck
+          if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+            return pbOnActiveOne(battler)   # For replacement battler
+          end
+        end
+      else
+        pbDisplay(_INTL("{1} was unaffected by the poison spikes.",battler.pbThis))
       end
     end
 	  # Flame Spikes
@@ -228,18 +241,40 @@ class PokeBattle_Battle
         battler.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
         pbDisplay(_INTL("{1} absorbed the flame spikes!",battler.pbThis))
       elsif battler.pbCanBurn?(nil,false)
+        if battler.pbOwnSide.effects[PBEffects::FlameSpikes] >= 2
           battler.pbBurn(nil,_INTL("{1} was burned by the flame spikes!",battler.pbThis))
+        else
+          battler.pbReduceHP(battler.totalhp/16,false)
+          pbDisplay(_INTL("{1} was hurt by the thin layer of flame spikes!",battler.pbThis))
+          battler.pbItemHPHealCheck
+          if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+            return pbOnActiveOne(battler)   # For replacement battler
+          end
+        end
+      else
+        pbDisplay(_INTL("{1} was unaffected by the flame spikes.",battler.pbThis))
       end
     end
     # Frost Spikes
     if battler.pbOwnSide.effects[PBEffects::FrostSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? &&
       !battler.airborne?
-     if battler.pbHasType?(:ICE)
-       battler.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
-       pbDisplay(_INTL("{1} absorbed the frost spikes!",battler.pbThis))
-     elsif battler.pbCanFrostbite?(nil,false)
-         battler.pbFrostbite(nil,_INTL("{1} was frostbitten by the frost spikes!",battler.pbThis))
-     end
+      if battler.pbHasType?(:ICE)
+        battler.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
+        pbDisplay(_INTL("{1} absorbed the frost spikes!",battler.pbThis))
+      elsif battler.pbCanFrostbite?(nil,false)
+        if battler.pbOwnSide.effects[PBEffects::FrostSpikes] >= 2
+          battler.pbFrostbite(nil,_INTL("{1} was frostbitten by the frost spikes!",battler.pbThis))
+        else
+          battler.pbReduceHP(battler.totalhp/16,false)
+          pbDisplay(_INTL("{1} was hurt by the thin layer of frost spikes!",battler.pbThis))
+          battler.pbItemHPHealCheck
+          if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+            return pbOnActiveOne(battler)   # For replacement battler
+          end
+        end
+      else
+        pbDisplay(_INTL("{1} was unaffected by the frost spikes.",battler.pbThis))
+      end
    end
     # Sticky Web
     if battler.pbOwnSide.effects[PBEffects::StickyWeb] && !battler.fainted? && !battler.immuneToHazards?
