@@ -404,10 +404,7 @@ class PokemonPokedex_Scene
   def modifyTutorLearnability()
 	while true
 		moveNameInput = pbEnterText("Move name...", 0, 16)
-		if moveNameInput && moveNameInput!=""
-			reversed = moveNameInput[0] == '-'
-			moveNameInput = moveNameInput[1..-1] if reversed
-			
+		if moveNameInput && moveNameInput!=""	
 			actualMoveID = nil
 			GameData::Move.each do |moveData|
 				if moveData.real_name.downcase == moveNameInput.downcase
@@ -420,8 +417,28 @@ class PokemonPokedex_Scene
 				next
 			end
 
-			tutorActionSelection = pbMessage("Do what with #{actualMoveID}?",[_INTL("Teach"),_INTL("Remove"),_INTL("Cancel")],3)
-	  		return if tutorActionSelection == 2
+			tutorActionSelection = pbMessage("Do what with #{actualMoveID}?",[_INTL("Teach"),_INTL("Remove"),_INTL("Replace"),_INTL("Cancel")],4)
+	  		return if tutorActionSelection == 3
+
+			if tutorActionSelection == 2
+				while true
+					replacementMoveNameInput = pbEnterText("Move name...", 0, 16)
+					if replacementMoveNameInput && replacementMoveNameInput != ""				
+						replacementActualMoveID = nil
+						GameData::Move.each do |moveData|
+							if moveData.real_name.downcase == replacementMoveNameInput.downcase
+								replacementActualMoveID = moveData.id
+								break
+							end
+						end
+						if replacementActualMoveID.nil?
+							pbMessage(_INTL("Invalid input: {1}", replacementMoveNameInput))
+							next
+						end
+					end
+					break
+				end
+			end
 
 			lineBehaviourSelection = pbMessage("Do what with same line?",[_INTL("Both"),_INTL("Prevos"),_INTL("Evos"),_INTL("Neither"),_INTL("Cancel")],5)
 	  		return if tutorActionSelection == 4
@@ -465,6 +482,17 @@ class PokemonPokedex_Scene
 					speciesData = GameData::Species.get(species)
 					next if !speciesData.tutor_moves.include?(actualMoveID)
 					speciesData.tutor_moves.delete(actualMoveID)
+					echoln(species)
+					speciesEdited += 1
+				end
+			elsif tutorActionSelection == 2
+				echoln("Replacing #{actualMoveID} in tutor movesets with #{replacementActualMoveID}:")
+				speciesToEdit.each do |species|
+					speciesData = GameData::Species.get(species)
+					next if !speciesData.tutor_moves.include?(actualMoveID)
+					next if speciesData.tutor_moves.include?(replacementActualMoveID)
+					speciesData.tutor_moves.delete(actualMoveID)
+					speciesData.tutor_moves.push(replacementActualMoveID)
 					echoln(species)
 					speciesEdited += 1
 				end
