@@ -394,9 +394,88 @@ class PokemonPokedex_Scene
 			 end
 		elsif Input.pressex?(0x49) && $DEBUG # I, for Investigation
 			printDexListInvestigation()
+		elsif Input.pressex?(0x54) && $DEBUG # T, for Tutor
+			modifyTutorLearnability()
 		end
       end
     }
+  end
+
+  def modifyTutorLearnability()
+	while true
+		moveNameInput = pbEnterText("Move name...", 0, 16)
+		if moveNameInput && moveNameInput!=""
+			reversed = moveNameInput[0] == '-'
+			moveNameInput = moveNameInput[1..-1] if reversed
+			
+			actualMoveID = nil
+			GameData::Move.each do |moveData|
+				if moveData.real_name.downcase == moveNameInput.downcase
+					actualMoveID = moveData.id
+					break
+				end
+			end
+			if actualMoveID.nil?
+				pbMessage(_INTL("Invalid input: {1}", moveNameInput))
+				next
+			end
+
+			tutorActionSelection = pbMessage("Do what with #{actualMoveID}?",[_INTL("Teach"),_INTL("Remove"),_INTL("Cancel")],3)
+	  		return if tutorActionSelection == 2
+
+			lineBehaviourSelection = pbMessage("Do what with same line?",[_INTL("Both"),_INTL("Prevos"),_INTL("Evos"),_INTL("Neither"),_INTL("Cancel")],5)
+	  		return if tutorActionSelection == 4
+			
+			speciesToEdit = []
+			@dexlist.each do |dexlist_entry|
+				species = dexlist_entry[0]
+				speciesData = GameData::Species.get(species)
+				speciesToEdit.push(species)
+
+				# Grab the prevos
+				if lineBehaviourSelection == 0 || lineBehaviourSelection == 1
+					getPrevosInLineAsList(speciesData).each do |prevoSpecies|
+						speciesToEdit.push(prevoSpecies)
+					end
+				end
+
+				# Grab the prevos
+				if lineBehaviourSelection == 0 || lineBehaviourSelection == 2
+					getEvosInLineAsList(speciesData).each do |evoSpecies|
+						speciesToEdit.push(evoSpecies)
+					end
+				end
+			end
+
+			speciesToEdit.uniq!
+			speciesToEdit.compact!
+			speciesEdited = 0
+			if tutorActionSelection == 0
+				echoln("Adding #{actualMoveID} to tutor movesets:")
+				speciesToEdit.each do |species|
+					speciesData = GameData::Species.get(species)
+					next if speciesData.tutor_moves.include?(actualMoveID)
+					speciesData.tutor_moves.push(actualMoveID)
+					echoln(species)
+					speciesEdited += 1
+				end
+			elsif tutorActionSelection == 1
+				echoln("Deleting #{actualMoveID} from tutor movesets:")
+				speciesToEdit.each do |species|
+					speciesData = GameData::Species.get(species)
+					next if !speciesData.tutor_moves.include?(actualMoveID)
+					speciesData.tutor_moves.delete(actualMoveID)
+					echoln(species)
+					speciesEdited += 1
+				end
+			end
+			pbMessage("#{speciesEdited} species tutor movesets edited!")
+
+			GameData::Species.save
+			Compiler.write_pokemon
+		end
+		break
+	end
   end
 
   def printDexListInvestigation()
