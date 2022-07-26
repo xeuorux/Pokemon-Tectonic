@@ -434,7 +434,7 @@
 414,RELICSONG,Relic Song,003,75,NORMAL,Special,100,10,10,AllNearFoes,0,befk,"An ancient song appeals to the hearts of those listening. It has a 10% chance to induce sleep.",
 415,CHIPAWAY,Chip Away,0A9,70,NORMAL,Physical,100,20,0,NearOther,0,abef,"Seeking an opening, the user strikes continually. The foe's stat changes don't affect the damage.",
 416,DIZZYPUNCH,Dizzy Punch,401,85,NORMAL,Physical,100,10,20,NearOther,0,abefj,"The target is hit with rhythmically launched punches that have a 20% chance to fluster.",
-417,FACADE,Facade,07E,70,NORMAL,Physical,100,20,0,NearOther,0,abef,"Doubles its power if the user has a status condition. Ignores Burn attack reduction.",
+417,FACADE,Facade,07E,70,NORMAL,Physical,100,20,0,NearOther,0,abef,"Doubles its power if the user has a status condition. Ignores burn Attack reduction.",
 418,HEADBUTT,Headbutt,007,60,NORMAL,Physical,100,15,20,NearOther,0,abe,"The user sticks out its head and attacks by charging into the foe. It has a 20% chance to numb.",
 419,RETALIATE,Retaliate,085,70,NORMAL,Physical,100,5,0,NearOther,0,abef,"Gets revenge for a fainted ally. If an ally fainted in the last turn, this attack's damage increases.",
 420,SECRETPOWER,Secret Power,0A4,70,NORMAL,Physical,100,20,30,NearOther,0,be,"The user attacks with a secret power. Its added effects vary depending on the user's environment.",
@@ -906,7 +906,7 @@
 842,TRAMPLE,Trample,044,90,GROUND,Physical,100,15,15,NearOther,0,bef,"The user tramples the target. It has a 15% chance to lower the target's Speed stat.",STOMPINGTANTRUM
 843,DEMONSKISS,Demon's Kiss,526,0,DARK,Status,100,5,0,NearOther,0,bce,"By sacrificing half its HP, the user curses the target with a kiss, making it fall asleep.",LOVELYKISS
 844,RUIN,Ruin,000,100,NORMAL,Special,100,10,0,NearOther,0,bef,"The user brings down a ruinous power on the target, damaging it.",JUDGMENT
-845,HARDFEELINGS,Hard Feelings,07E,70,NORMAL,Special,100,15,0,NearOther,0,bef,"Doubles its power if the user has a status condition. Ignores Poison attack reduction.",
+845,HARDFEELINGS,Hard Feelings,07E,70,NORMAL,Special,100,15,0,NearOther,0,bef,"Doubles its power if the user has a status condition. Ignores frostbite Sp. Atk reduction.",
 846,SOULDRAIN,Soul Drain,52C,30,GHOST,Special,100,20,100,NearOther,0,bef,"The user absorbs the target's soul, lowering its Sp. Def and draining its life in the process.",NIGHTSHADE
 847,SHADOWPASS,Shadowpass,52D,40,DARK,Special,100,15,0,AllNearOthers,0,bce,"Darkness rolls over the field, damaging all other Pokémon, ending weather, and healing statuses.",
 848,MAJESTICGLARE,Majestic Glare,52B,70,DRAGON,Special,100,15,50,NearOther,0,bef,"50% chance to confuse or charm based on which of the target's attacking stats are higher.",FREEZINGGLARE
