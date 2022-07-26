@@ -3153,7 +3153,7 @@ InternalName = DROWZEE
 Type1 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 70,63,65,52,48,100
-# Total = 393
+# Total = 398
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 66
@@ -3186,7 +3186,7 @@ InternalName = HYPNO
 Type1 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 90,93,85,72,68,115
-# Total = 518
+# Total = 523
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 169
@@ -27868,7 +27868,7 @@ InternalName = ARROKUDA
 Type1 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 51,97,50,105,50,50
-# Total = 350
+# Total = 403
 GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 56
@@ -27901,7 +27901,7 @@ InternalName = BARRASKEWDA
 Type1 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 61,125,65,140,65,65
-# Total = 506
+# Total = 521
 GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 172

@@ -215,6 +215,8 @@
 212,RUINMANIAC2,Ruin Maniac,48,,,BACKPACKER,Male,,,[]
 213,BUGCATCHER_F,Bug Catcher,16,,,YOUNGSTER,Female,,,[]
 214,DANDY,Dandy,160,,,PARASOL,Male,,,[]
+215,PSYCHIC_F3,Psychic,32,,,PSYCHIC,Female,,,[]
+216,PSYCHIC_M3,Psychic,32,,,PSYCHIC,Male,,,[]
 290,TRAINER_Eifion,Pokémon Trainer,100,,,,Male,,,[]
 291,TRAINER_Sang,Pokémon Trainer,100,,,,Male,,,[]
 292,TRAINER_Skyler,Pokémon Trainer,100,,,,Male,,,[]

@@ -3233,27 +3233,27 @@ Pokemon = CRYOGONAL,55
     AbilityIndex = 0
 #-------------------------------
 [CAMPER_F,Tanya]
-Pokemon = BOUFFALANT,42
+Pokemon = BOUFFALANT,46
     AbilityIndex = 0
     Item = SHELLBELL
-Pokemon = GASTRODON,43
+Pokemon = GASTRODON,47
     AbilityIndex = 0
-Pokemon = DITTO,44
+Pokemon = DITTO,48
     AbilityIndex = 0
-Pokemon = CURSOLA,43
+Pokemon = CURSOLA,47
     AbilityIndex = 1
     Item = SITRUSBERRY
 #-------------------------------
 [POKEMONRANGER_M3,Grant]
-Pokemon = HIPPOWDON,43
+Pokemon = HIPPOWDON,49
     AbilityIndex = 1
     Item = EJECTBUTTON
-Pokemon = CACTURNE,44
+Pokemon = CACTURNE,50
     AbilityIndex = 0
-Pokemon = PROBOPASS,45
+Pokemon = PROBOPASS,51
     AbilityIndex = 1
     Item = EXPERTBELT
-Pokemon = GOLURK,44
+Pokemon = GOLURK,52
     AbilityIndex = 0
 #-------------------------------
 [TRAINER_Eifion,Eifion]
@@ -3467,38 +3467,38 @@ Pokemon = LAPNESSIE,60
     Item = LEFTOVERS
 #-------------------------------
 [FIREBREATHER,Bradley]
-Pokemon = COMFEY,46
+Pokemon = COMFEY,49
     AbilityIndex = 0
-Pokemon = TALONFLAME,47
+Pokemon = TALONFLAME,50
     AbilityIndex = 1
     Item = SHELLBELL
-Pokemon = GIGALITH,48
+Pokemon = GIGALITH,51
     AbilityIndex = 1
     Item = ROCKGEM
-Pokemon = STANTLER,47
+Pokemon = STANTLER,50
     AbilityIndex = 0
 #-------------------------------
 [SWIMMER_M3,Diego]
-Pokemon = PELIPPER,47
+Pokemon = PELIPPER,50
     AbilityIndex = 0
     Item = WACANBERRY
-Pokemon = EISCUE,48
+Pokemon = EISCUE,51
     AbilityIndex = 0
     Item = LEFTOVERS
-Pokemon = MORPEKO,49
+Pokemon = MORPEKO,52
     AbilityIndex = 0
-Pokemon = ATLACROSS,48
+Pokemon = ATLACROSS,51
     AbilityIndex = 0
 #-------------------------------
 [RUINMANIAC2,Nabil]
-Pokemon = VICTREEBEL,48
+Pokemon = VICTREEBEL,51
     AbilityIndex = 1
-Pokemon = ILLUMISE,49
+Pokemon = ILLUMISE,52
     AbilityIndex = 0
     Item = FAIRYGEM
-Pokemon = RHYPERIOR,50
+Pokemon = RHYPERIOR,53
     AbilityIndex = 0
-Pokemon = NINJASK,49
+Pokemon = NINJASK,52
     AbilityIndex = 0
     Item = LIFEORB
 #-------------------------------
@@ -3534,3 +3534,23 @@ Pokemon = SCARAPACE,57
     Gender = female
     Moves = HUNTDOWN,STORMTHROW,XSCISSOR,BODYSLAM
     AbilityIndex = 0
+#-------------------------------
+[VETERAN_F,Emily]
+Pokemon = SAMUROTT,61
+    AbilityIndex = 1
+Pokemon = PAPELLUMEN,62
+    AbilityIndex = 1
+Pokemon = DODRIO,63
+    AbilityIndex = 0
+Pokemon = ROSERADE,62
+    AbilityIndex = 0
+#-------------------------------
+[PSYCHIC_F3,Felicia]
+Pokemon = GENGAR,62
+    AbilityIndex = 0
+Pokemon = LEAVANNY,63
+    AbilityIndex = 1
+Pokemon = AVALUGG,64
+    AbilityIndex = 0
+Pokemon = ABSOLUS,63
+    AbilityIndex = 1
