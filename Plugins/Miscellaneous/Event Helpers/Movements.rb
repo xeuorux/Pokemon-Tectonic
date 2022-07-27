@@ -280,7 +280,6 @@ def modulateOrbHueOverTime()
 			calculatedHue = calculatedHue.round
 			calculatedHue = calculatedHue.clamp(0,maxHue)
 			params = [self.character_name,calculatedHue,self.direction,self.pattern]
-			echoln("#{params}")
 			new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Graphic,params))
 			new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Wait,[1]))
 		end

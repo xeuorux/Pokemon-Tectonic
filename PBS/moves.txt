@@ -44,7 +44,7 @@
 41,BITE,Bite,00F,40,DARK,Physical,100,25,30,NearOther,0,abei,"The target is bitten with viciously sharp fangs. It has a 30% chance to make the target flinch.",
 42,BRUTALSWING,Brutal Swing,000,60,DARK,Physical,100,20,0,AllNearOthers,0,abef,"The user swings its body around violently to inflict damage on everything in its vicinity.",
 43,FEINTATTACK,Feint Attack,0A5,60,DARK,Physical,0,20,0,NearOther,0,abef,"The user draws up to the foe disarmingly, then throws a sucker punch. It hits without fail.",
-44,THIEF,Thief,0F1,60,DARK,Physical,100,25,0,NearOther,0,abef,"The user attacks and steals the foe's held item simultaneously. It can't steal if the user holds an item.",
+44,THIEF,Thief,0F1,60,DARK,Physical,100,25,0,NearOther,0,abef,"The user attacks and steals the foe's held item simultaneously. Items stolen from wild Pokémon are stored.",
 45,SNARL,Snarl,045,55,DARK,Special,100,15,100,AllNearFoes,0,befk,"The user yells as if it is ranting about something, making the target's Sp. Atk stat decrease.",
 46,PAYBACK,Payback,084,50,DARK,Physical,100,10,0,NearOther,0,abef,"If the user moves after the target, this attack's power will be doubled.",
 47,PURSUIT,Pursuit,088,40,DARK,Physical,100,20,0,NearOther,0,abef,"An attack move that inflicts double damage if used on a target that is switching out of battle.",
@@ -442,7 +442,7 @@
 422,SMELLINGSALTS,Smelling Salts,07C,70,NORMAL,Physical,100,10,0,NearOther,0,abef,"This attack inflicts double damage on a numbed foe. It also cures the target's numbing, however.",
 423,HORNATTACK,Horn Attack,000,65,NORMAL,Physical,100,25,0,NearOther,0,abef,"The target is jabbed with a sharply pointed horn to inflict damage.",
 424,STOMP,Stomp,010,65,NORMAL,Physical,100,20,30,NearOther,0,abe,"The target is stomped with a big foot. It has a 30% chance to make the target flinch.",
-425,COVET,Covet,0F1,60,NORMAL,Physical,100,25,0,NearOther,0,abef,"The user endearingly approaches the target, then steals the target's held item.",
+425,COVET,Covet,0F1,60,NORMAL,Physical,100,25,0,NearOther,0,abef,"The user endearingly approaches the target, then steals the target's held item. Items stolen from wild Pokémon are stored.",
 426,HIDDENPOWER,Hidden Power,090,60,NORMAL,Special,100,15,0,NearOther,0,bef,"A unique attack that varies in type and intensity depending on the Pokémon using it.",
 427,ROUND,Round,083,60,NORMAL,Special,100,15,0,NearOther,0,befk,"The user attacks with a song. Others can join in the Round and make the attack do greater damage.",
 428,SWIFT,Swift,0A5,60,NORMAL,Special,0,20,0,AllNearFoes,0,bef,"Star-shaped rays are shot at the opposing team. This attack never misses and skips protections.",
@@ -1023,7 +1023,7 @@
 959,STANDTOGETHER,Stand Together,554,0,FIGHTING,Status,0,40,0,User,0,d,"The user holds fast with its teammates, raising the Defense of itself and its allies.",
 960,CAMARADERIE,Camaraderie,555,0,PSYCHIC,Status,0,40,0,User,0,d,"The user calms itself and its teammates, raising the Sp. Def of itself and its allies.",
 961,TRICKYTOXINS,Tricky Toxins,121,95,POISON,Special,100,15,0,NearOther,0,abef,"Uses hidden toxins to damage the opponent using their Sp. Atk stat.",VENOSHOCK
-962,RANSACK,Ransack,0F1,60,NORMAL,Special,100,25,0,NearOther,0,abef,"The user skillfully blasts the target, then steals the target's held item.",
+962,RANSACK,Ransack,0F1,60,NORMAL,Special,100,25,0,NearOther,0,abef,"The user skillfully blasts the target, then steals the target's held item. Items stolen from wild Pokémon are stored.",
 963,SWARM,Swarm,556,0,BUG,Status,0,5,0,BothSides,0,,"Summons a swarm for five turns, powering up Bug and Dragon-type moves.",
 964,TRAPJAW,Trap Jaw,557,85,GRASS,Physical,100,15,0,NearOther,0,abefi,"Lures an enemy into its jaws, draining 2/3 of damage dealt if they hit the user this turn.",
 965,CAUSTICPUNCH,Caustic Punch,043,60,POISON,Physical,100,20,20,NearOther,0,abefj,"Hits an enemy with an acidic punch with a 20% chance to lower Defense.",POISONJAB

@@ -8,6 +8,7 @@ def pbGenerateWildPokemon(species,level,isRoamer=false)
   genwildpoke = Pokemon.new(species,level)
   # Give the wild Pokémon a held item
   item = generateWildHeldItem(genwildpoke,$Trainer.first_pokemon.hasAbility?(:FRISK))
+  genwildpoke.item = item
   # Shiny Charm makes shiny Pokémon more likely to generate
   if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
 	  genwildpoke.shinyRerolls = 2

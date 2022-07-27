@@ -769,28 +769,31 @@ class PokeBattle_Move_138 < PokeBattle_TargetMultiStatUpMove
 end
 
 #===============================================================================
-# User steals the target's item, if the user has none itself. (Covet, Thief)
-# Items stolen from wild Pokémon are kept after the battle.
+# User steals the target's item, if the user has none itself. (Covet, Ransack, Thief)
+# Items stolen from wild Pokémon are added directly to the bag.
 #===============================================================================
 class PokeBattle_Move_0F1 < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't thieve, except if they are bosses
     return if user.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
-    return if !target.item || user.item
+    return if !target.item
+    return if user.item && @battle.trainerBattle?
     return if target.unlosableItem?(target.item)
     return if user.unlosableItem?(target.item)
     return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
     itemName = target.itemName
-    user.item = target.item
     # Permanently steal the item from wild Pokémon
     if @battle.wildBattle? && target.opposes? && !@battle.bossBattle?
-	    $PokemonBag.pbStoreItem(target.item,1)
+      tempItem = target.item
+      @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,target.pbThis(true),itemName))
       target.pbRemoveItem
+      pbReceiveItem(tempItem)
     else
+      @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,target.pbThis(true),itemName))
+      user.item = target.item
       target.pbRemoveItem(false)
     end
-    @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,target.pbThis(true),itemName))
     user.pbHeldItemTriggerCheck
   end
 end
