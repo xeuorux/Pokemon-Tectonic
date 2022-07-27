@@ -65,7 +65,7 @@ Special,20
 Land,20
     25,GOTHITA,15,18
     25,PAWNIARD,15,18
-    25,TOXEL,15,18
+    25,RUFFLET,15,18
     25,TYROGUE,15,18
 Special,20
     1,BLIPBUG,15
@@ -92,10 +92,10 @@ Special,1
 #-------------------------------
 [030] # Windy Way
 Land,20
-    25,IGGLYBUFF,8,10
     25,MAREEP,8,10
     25,RALTS,8,10
     25,ROCKRUFF,8,10
+    25,SEEDOT,8,10
 LandTall,20
     25,STARLY,8,10
     25,STUNKY,8,10
@@ -120,6 +120,9 @@ Special,20
     1,APPLIN,10
     1,KRABBY,10
     1,NUMEL,10
+    1,PATRAT,10
+    1,SKWOVET,10
+    1,ZIGZAGOON,10
 #-------------------------------
 [036] # Grouz Mine
 DarkCave,20
@@ -140,7 +143,7 @@ Land,20
     25,AZURILL,7,9
     25,EXEGGCUTE,7,9
     25,HOUNDOUR,7,9
-    25,WINGULL,7,9
+    25,TOXEL,7,9
 LandSparse,20
     25,GRUBBIN,7,9
     25,HONEDGE,7,9
@@ -150,7 +153,7 @@ Puddle,20
     25,CLOBBOPUS,7,9
     25,HORSEA,7,9
     25,INKAY,7,9
-    25,LUVDISC,7,9
+    25,WINGULL,7,9
 Special,20
     1,SPHEAL,15
 #-------------------------------
@@ -240,9 +243,9 @@ Special
 #-------------------------------
 [060] # Shipping Lane
 Land,20
+    20,IGGLYBUFF,14,17
     20,MEOWTH,14,17
     20,MSENTRET,14,17
-    20,SEEDOT,14,17
     20,STUFFUL,14,17
     20,VENIPEDE,14,17
 LandTall,20
@@ -549,16 +552,15 @@ Special,20
 #-------------------------------
 [211] # Split Peaks
 Land,20
-    20,ABSOL,37,39
-    20,KOMALA,34,36
-    20,PINSIR,37,39
-    20,SKARMORY,37,39
-    20,SPINDA,37,39
+    25,ABSOL,37,39
+    25,KOMALA,34,36
+    25,PINSIR,37,39
+    25,SPINDA,37,39
 LandSparse,20
     25,DELIBIRD,37,39
     25,DRILBUR,37,39
     25,HAWLUCHA,37,39
-    25,RUFFLET,37,39
+    25,SKARMORY,37,39
 Puddle,20
     33,EISCUE,37,39
     33,SEEL,37,39
@@ -769,14 +771,15 @@ Land,20
 #-------------------------------
 [288] # Underground River
 Puddle,20
+    25,LUVDISC,36,38
     25,MANTYKE,36,38
-    25,PYUKUMUKU,36,38
     25,STARYU,36,38
     25,TENTACOOL,36,38
 LandSparse,20
-    33,CLAUNCHER,36,38
-    33,DURANT,36,38
-    33,HEATMOR,36,38
+    25,CLAUNCHER,36,38
+    25,DURANT,36,38
+    25,HEATMOR,36,38
+    25,PYUKUMUKU,36,38
 #-------------------------------
 [301] # County Park
 Land,20
