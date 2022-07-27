@@ -160,10 +160,11 @@ class PokeBattle_Move
       @battle.pbDisplay(_INTL("The substitute took damage for {1}!",target.pbThis(true)))
     end
     if target.damageState.critical
-      if numTargets>1
-        @battle.pbDisplay(_INTL("A critical hit on {1}!",target.pbThis(true)))
+      onAddendum = numTargets > 1 ? " on #{target.pbThis(true)}" : ""
+      if target.damageState.forced_critical
+        @battle.pbDisplay(_INTL("#{user.pbThis} performed a critical attack#{onAddendum}!",))
       else
-        @battle.pbDisplay(_INTL("A critical hit!"))
+        @battle.pbDisplay(_INTL("A critical hit#{onAddendum}!"))
       end
     end
     # Effectiveness message, for moves with 1 hit
@@ -213,9 +214,10 @@ class PokeBattle_Move
   # Checks whether the move should have modified priority
 	def priorityModification(user,target); return 0; end
 	
-	# Returns whether the move will be a critical hit.
+	# Returns whether the move will be a critical hit
+  # And whether the critical hit was forced by an effect
 	def pbIsCritical?(user,target)
-		return false if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
+		return [false,false] if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
 		# Set up the critical hit ratios
 		ratios = [16,8,4,2,1]
 		c = 0
@@ -233,24 +235,24 @@ class PokeBattle_Move
 		if c>=0 && target.itemActive?
 		  c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
 		end
-		return false if c<0
+		return [false,false] if c<0
 		# Move-specific "always/never a critical hit" effects
 		case pbCritialOverride(user,target)
-		when 1  then return true
-		when -1 then return false
+		when 1  then return [true,true]
+		when -1 then return [false,false]
 		end
 		# Other effects
-		return true if c>50   # Merciless
-		return true if user.effects[PBEffects::LaserFocus]>0 ||
+		return [true,true] if c > 50   # Merciless and similar abilities
+		return [true,true] if user.effects[PBEffects::LaserFocus] > 0 ||
 			user.effects[PBEffects::EmpoweredLaserFocus]
-		return false if user.boss?
+		return [false,false] if user.boss?
 		c += 1 if highCriticalRate?
 		c += user.effects[PBEffects::FocusEnergy]
 		c += 1 if user.effects[PBEffects::LuckyStar]
 		c = ratios.length-1 if c>=ratios.length
 		echoln("Critical hit stage: #{c}")
 		# Calculation
-		return @battle.pbRandom(ratios[c])==0
+		return [@battle.pbRandom(ratios[c]) == 0,false]
     end
   
   #=============================================================================
@@ -310,7 +312,7 @@ class PokeBattle_Move
     # Get the move's type
     type = @calcType   # nil is treated as physical
     # Calculate whether this hit deals critical damage
-    target.damageState.critical = pbIsCritical?(user,target)
+    target.damageState.critical,target.damageState.forced_critical = pbIsCritical?(user,target)
     # Calcuate base power of move
     baseDmg = pbBaseDamage(@baseDamage,user,target)
     # Calculate user's attack stat
