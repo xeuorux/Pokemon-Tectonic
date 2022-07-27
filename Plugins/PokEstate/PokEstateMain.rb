@@ -140,7 +140,7 @@ class PokEstate
 		chosenPaper = pbMessage(_INTL("Pick the landscape you'd like for this plot."),papers[0],papers[0].length,nil,index)
 		return if chosenPaper == papers[0].length - 1 || chosenPaper == index
 		$PokemonStorage[estate_box].background = chosenPaper
-		transferToEstate(estate_box)
+		transferToEstate(estate_box,3)
 	end
 	
 	def truckChoices()
