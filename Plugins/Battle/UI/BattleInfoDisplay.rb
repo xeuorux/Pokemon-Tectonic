@@ -158,7 +158,7 @@ class BattleInfoDisplay < SpriteWrapper
 				end
 				next if calcedY < scrollingBoundYMin || calcedY > scrollingBoundYMax
 				distanceFromFade = [calcedY - scrollingBoundYMin,scrollingBoundYMax - calcedY].min
-				textAlpha = ([distanceFromFade / 20.0,1.0].min * 255).floor
+				textAlpha = scrolling ? ([distanceFromFade / 20.0,1.0].min * 255).floor : 255
 				textBase = Color.new(base.red,base.blue,base.green,textAlpha)
 				textShadow = Color.new(shadow.red,shadow.blue,shadow.green,textAlpha)
 				textToDraw.push([effectName,wholeFieldX,calcedY,0,textBase,textShadow])
@@ -196,13 +196,16 @@ class BattleInfoDisplay < SpriteWrapper
     stageDivBattleStat = [9,8,7,6,5,4, 3, 3,3,3,3,3,3]
 	
 	# Stat Stages
-	statStagesSectionTopY = 56
-	statLabelX = 24
-	statStageX = 124
-	statMultX = 184
+	statStagesSectionTopY = 52
+	statLabelX = 20
+	statStageX = 116
+	statMultX = 172
+	statValueX = 232
+	battlerEffectsX = 308
 	textToDraw.push(["Stat",statLabelX,statStagesSectionTopY,0,base,shadow])
-	textToDraw.push(["Stage",statStageX,statStagesSectionTopY-12,0,base,shadow])
+	textToDraw.push(["Stage",statStageX-16,statStagesSectionTopY,0,base,shadow])
 	textToDraw.push(["Mult",statMultX,statStagesSectionTopY,0,base,shadow])
+	textToDraw.push(["Value",statValueX,statStagesSectionTopY,0,base,shadow])
 	
 	statsToNames = {
 	:ATTACK => "Atk",
@@ -214,8 +217,10 @@ class BattleInfoDisplay < SpriteWrapper
 	:EVASION => "Evade"
 	}
 	
+	# Display the info about each stat
+	statValues = battler.plainStats
 	statsToNames.each do |stat,name|
-		y = statStagesSectionTopY + 36 + 40 * index
+		y = statStagesSectionTopY + 40 + 40 * index
 	
 		statData = GameData::Stat.get(stat)
 		textToDraw.push([name,statLabelX,y,0,base,shadow])
@@ -233,23 +238,27 @@ class BattleInfoDisplay < SpriteWrapper
 		mainColor = @battle.bossBattle? ? bossBase : base
 		textToDraw.push([stageLabel,x,y,0,mainColor,shadow])
 
-		if !stageZero
-			#Percentages
-			stageMul = statData.type == :battle ? stageMulBattleStat : stageMulMainStat
-			stageDiv = statData.type == :battle ? stageDivBattleStat : stageDivMainStat
-			adjustedStage = stage + 6
-			mult = stageMul[adjustedStage].to_f/stageDiv[adjustedStage].to_f
-			mult = (1.0+mult)/2.0 if battler.boss?
-			multLabel = mult.round(2).to_s + "x"
-			textToDraw.push([multLabel,statMultX,y,0,mainColor,shadow])
-		end
+		#Percentages
+		stageMul = statData.type == :battle ? stageMulBattleStat : stageMulMainStat
+		stageDiv = statData.type == :battle ? stageDivBattleStat : stageDivMainStat
+		adjustedStage = stage + 6
+		mult = stageMul[adjustedStage].to_f/stageDiv[adjustedStage].to_f
+		mult = (1.0+mult)/2.0 if battler.boss?
+		value = statValues[stat] || 100
+		value = (value * mult).floor.to_s
+		
+		# Draw the multiplier label
+		multLabel = mult.round(2).to_s + "x"
+		textToDraw.push([multLabel,statMultX,y,0,mainColor,shadow])
+
+		# Draw the resultant value label
+		textToDraw.push([value,statValueX,y,0,mainColor,shadow])
 		
 		index += 1
 	end
 	
 	# Effects
-	battlerEffectsX = 280
-	textToDraw.push(["Effects",battlerEffectsX,statStagesSectionTopY,0,base,shadow])
+	textToDraw.push(["Battler Effects",battlerEffectsX,statStagesSectionTopY,0,base,shadow])
 	
 	# Battler effects
 	battlerEffects = []
@@ -290,11 +299,11 @@ class BattleInfoDisplay < SpriteWrapper
 		for repeat in 0...repeats
 			battlerEffects.each do |effectName|
 				index += 1
-				calcedY = statStagesSectionTopY + 40 + 32 * index
+				calcedY = statStagesSectionTopY + 4 + 32 * index
 				calcedY -= @battlerScrollingValue if scrolling
 				next if calcedY < scrollingBoundYMin || calcedY > scrollingBoundYMax
 				distanceFromFade = [calcedY - scrollingBoundYMin,scrollingBoundYMax - calcedY].min
-				textAlpha = ([distanceFromFade / 20.0,1.0].min * 255).floor
+				textAlpha = scrolling ? ([distanceFromFade / 20.0,1.0].min * 255).floor : 255
 				textBase = Color.new(base.red,base.blue,base.green,textAlpha)
 				textShadow = Color.new(shadow.red,shadow.blue,shadow.green,textAlpha)
 				textToDraw.push([effectName,battlerEffectsX,calcedY,0,textBase,textShadow])
