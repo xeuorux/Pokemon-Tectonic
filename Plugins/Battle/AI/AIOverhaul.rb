@@ -708,7 +708,7 @@ class PokeBattle_AI
       end
       list.push([i,matchups.min])
     end
-    list.sort_by!{|entry| -entry[1]}
+    list.sort_by!{|entry| entry[1].nil? ? 9999 : -entry[1]}
     return list
   end
 
