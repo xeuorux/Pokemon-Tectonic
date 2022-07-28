@@ -362,7 +362,7 @@
 346,BULLDOZE,Bulldoze,044,60,GROUND,Physical,100,20,100,AllNearOthers,0,bef,"The user strikes everything around it by stomping on the ground. It reduces hit Pokémon's Speed.",
 347,MUDSHOT,Mud Shot,044,60,GROUND,Special,100,15,100,NearOther,0,bef,"The user attacks by shooting a beam of mud at the target. It also reduces the target's Speed.",
 348,BONEMERANG,Bonemerang,0BD,50,GROUND,Physical,100,10,0,NearOther,0,bef,"The user throws the bone it holds. The bone loops to hit the target twice, coming and going.",
-349,SANDTOMB,Sand Tomb,0CF,45,GROUND,Physical,100,20,0,NearOther,0,bef,"The user traps the target inside a harshly raging sandstorm for four to five turns.",
+349,SANDTOMB,Sand Tomb,0CF,45,GROUND,Physical,100,20,0,NearOther,0,bef,"The user traps the target inside a harshly raging sandstorm for three turns.",
 350,BONERUSH,Bone Rush,0C0,25,GROUND,Physical,100,10,0,NearOther,0,bef,"The user strikes the target with a hard bone two to five times in a row.",
 351,MUDSLAP,Mud-Slap,047,20,GROUND,Special,100,10,100,NearOther,0,bef,"The user hurls mud in the target's face to inflict damage and lower its accuracy.",
 352,FISSURE,Fissure,070,1,GROUND,Physical,30,5,0,NearOther,0,be,"The user opens up a fissure in the ground and drops the foe in. The target instantly faints if it hits.",
@@ -1054,6 +1054,7 @@
 990,FROSTSPIKES,Frost Spikes,569,0,ICE,Status,0,20,0,FoeSide,0,c,"The user lays poison spikes on the foe's side. One layer hurts switched in foes, two layers frostbites them",
 991,SANDTOSS,Sand Toss,00A,40,GROUND,Special,100,35,10,NearOther,0,abef,"The user tosses hot desert sand on the target. It has a 10% chance to burn.",SCORCHINGSANDS
 992,DUSTDEVIL,Dust Devil,00A,60,GROUND,Special,100,25,20,NearOther,0,abef,"The user whips up a hot desert twister to attack the target. It has a 20% chance to burn.",SCORCHINGSANDS
+349,SANDVORTEX,Sand Vortex,0CF,110,GROUND,Special,100,20,0,NearOther,0,bef,"A gigantic sandy pit traps the target for three turns.",SANDTOMB
 1500,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dk,"The user heals itself and allies and removes their statuses, and becomes Normal-type.",HEALBELL
 1501,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type.",SUNNYDAY
 1502,PRIMEVALRAINDANCE,Primeval Rain Dance,602,0,WATER,Status,0,1,0,BothSides,0,,"The user summons rain, surrounds itself with healing water, and becomes Water-type.",RAINDANCE
