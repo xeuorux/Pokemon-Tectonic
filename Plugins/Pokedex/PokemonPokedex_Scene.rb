@@ -441,7 +441,7 @@ class PokemonPokedex_Scene
 			end
 
 			lineBehaviourSelection = pbMessage("Do what with same line?",[_INTL("Both"),_INTL("Prevos"),_INTL("Evos"),_INTL("Neither"),_INTL("Cancel")],5)
-	  		return if tutorActionSelection == 4
+	  		return if lineBehaviourSelection == 4
 			
 			speciesToEdit = []
 			@dexlist.each do |dexlist_entry|
