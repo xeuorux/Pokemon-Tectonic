@@ -94,7 +94,7 @@ module Compiler
 
       # Should recompile if holding Ctrl
       Input.update
-      mustCompile = true if Input.press?(Input::CTRL)
+      mustCompile = true if Input.press?(Input::CTRL) || ARGV.include?("compile")
       
       # Delete old data files in preparation for recompiling
       if mustCompile
@@ -193,7 +193,7 @@ module Compiler
       echoln ""
       System.reload_cache
 
-      write_all if pbConfirmMessageSerious(_INTL("\\ts[]Would you like to rewrite the PBS files from the compiled data?"))
+      write_all if ARGV.include?("compile") || pbConfirmMessageSerious(_INTL("\\ts[]Would you like to rewrite the PBS files from the compiled data?"))
     end
     pbSetWindowText(nil)
   end
