@@ -64,7 +64,8 @@ DebugMenuCommands.register("analyzedistribution", {
 	File.open("move_distribution.txt","wb") { |file|
 		move_counts.each do |move_id,counts|
 			moveData = GameData::Move.get(move_id)
-			file.write("#{move_id},#{moveData.type},#{counts[0]},#{counts[1]},#{counts[2]},#{counts[3]},#{counts[4]},#{counts[5]}\r\n")
+			categoryLabel = ["PHYSICAL","SPECIAL","STATUS"][moveData.category]
+			file.write("#{move_id},#{moveData.type},#{categoryLabel},#{counts[0]},#{counts[1]},#{counts[2]},#{counts[3]},#{counts[4]},#{counts[5]}\r\n")
 		end
 	}
 	pbMessage(_INTL("Move distribution analysis written to move_distribution.txt"))
