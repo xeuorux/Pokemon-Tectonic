@@ -7095,7 +7095,7 @@ InternalName = TEDDIURSA
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,90,80,55,50,60
-# Total = 375
+# Total = 395
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 66
@@ -7128,7 +7128,7 @@ InternalName = URSARING
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 100,130,85,65,75,75
-# Total = 510
+# Total = 530
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 175
