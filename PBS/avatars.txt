@@ -182,8 +182,8 @@ DMGMult = 1
 Ability = STOUT
 Moves = SHADOWCLAW,SANDTOMB,PRIMEVALSUNNYDAY
 PostPrimeMoves = FIREPUNCH
-Turns = 1
-HPMult = 6.0
+Turns = 2
+HPMult = 4.5
 DMGMult = 1
 #-------------------------------
 [SCARODON]
