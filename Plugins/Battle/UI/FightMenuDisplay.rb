@@ -1,3 +1,15 @@
+TEXT_BASE_COLOR   = Color.new(0,0,0)
+TEXT_SHADOW_COLOR = Color.new(248,248,248)
+
+EFFECTIVENESS_COLORS = [
+    Color.new(160,160,160),TEXT_SHADOW_COLOR,   # Light gray, ineffective effective
+     Color.new(133,122,71),TEXT_SHADOW_COLOR,   # Yellow gray, barely effective
+     Color.new(80,80,80),TEXT_SHADOW_COLOR,   # Gray, not very effective
+     TEXT_BASE_COLOR,TEXT_SHADOW_COLOR,                # Black, neutral
+     Color.new(132,65,21),TEXT_SHADOW_COLOR,       # Orange-red, super effective
+     Color.new(140,3,69),TEXT_SHADOW_COLOR,       # Bright purple, hyper effective
+  ]
+
 class FightMenuDisplay < BattleMenuBase
   attr_reader :extraInfoToggled
 
@@ -151,13 +163,41 @@ class FightMenuDisplay < BattleMenuBase
     type_number = GameData::Type.get(move.type).id_number
     @typeIcon.src_rect.y = type_number * TYPE_ICON_HEIGHT
     # PP text
-    if move.total_pp>0
-      ppFraction = [(4.0*move.pp/move.total_pp).ceil,3].min
-      textPosPP = []
-      textPosPP.push([_INTL("PP: {1}/{2}",move.pp,move.total_pp),
-         448,44,2,PP_COLORS[ppFraction*2],PP_COLORS[ppFraction*2+1]])
-      pbDrawTextPositions(@infoOverlay.bitmap,textPosPP)
+    # if move.total_pp>0
+    #   ppFraction = [(4.0*move.pp/move.total_pp).ceil,3].min
+    #   textPosPP = []
+    #   textPosPP.push([_INTL("PP: {1}/{2}",move.pp,move.total_pp),
+    #      448,44,2,PP_COLORS[ppFraction*2],PP_COLORS[ppFraction*2+1]])
+    #   pbDrawTextPositions(@infoOverlay.bitmap,textPosPP)
+    # end
+    
+    # Find the possible targets of the selected move
+    effectivenessTextPos = nil
+    effectivenessTextX = 448
+    effectivenessTextY = 44
+    if move.damagingMove?
+      begin
+        typeOfMove = move.pbCalcType(@battler)
+        targetingData = move.pbTarget(@battler)
+        maxEffectiveness = 0
+        @battler.eachOpposing do |opposingBattler|
+          next if !@battler.battle.pbMoveCanTarget?(@battler.index,opposingBattler.index,targetingData)
+          effectiveness = move.pbCalcTypeMod(typeOfMove,@battler,opposingBattler)
+          maxEffectiveness = effectiveness if effectiveness > maxEffectiveness
+        end
+
+        effectivenessCategory = maxEffectiveness == 0 ? 0 : Math.log(maxEffectiveness * 4 / Effectiveness::NORMAL_EFFECTIVE, 2) + 1
+        effectivenessDescription = [_INTL("Ineffective"),_INTL("Barely"),_INTL("Not Very"),_INTL("Neutral"),_INTL("Super"),_INTL("Hyper")][effectivenessCategory]
+        effectivenessTextPos = [effectivenessDescription,effectivenessTextX,effectivenessTextY,2,
+          EFFECTIVENESS_COLORS[effectivenessCategory*2],EFFECTIVENESS_COLORS[effectivenessCategory*2+1]]
+      rescue
+        effectivenessTextPos = ["ERROR",effectivenessTextX,44,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
+      end
+    else
+      effectivenessTextPos = ["Status",effectivenessTextX,44,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
     end
+
+    pbDrawTextPositions(@infoOverlay.bitmap,[effectivenessTextPos]) if !effectivenessTextPos.nil?
 	
     # Extra move info display
     @extraInfoOverlay.bitmap.clear
