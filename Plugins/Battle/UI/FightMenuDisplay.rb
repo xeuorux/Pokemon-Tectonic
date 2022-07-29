@@ -86,15 +86,16 @@ class FightMenuDisplay < BattleMenuBase
       # @extraReminder.y = self.y + 6 - @extraReminderBitmap.height
       # addSprite("extraReminder",@extraReminder)
       # Create the move extra info display
+      moveInfoDisplayY = self.y-@moveInfoDisplayBitmap.height
       @moveInfoDisplay = SpriteWrapper.new(viewport)
       @moveInfoDisplay.bitmap = @moveInfoDisplayBitmap.bitmap
       @moveInfoDisplay.x      = self.x
-      @moveInfoDisplay.y      = self.y-@moveInfoDisplayBitmap.height
+      @moveInfoDisplay.y      = moveInfoDisplayY
       addSprite("moveInfoDisplay",@moveInfoDisplay)
 	    # Create overlay for selected move's extra info (shows move's BP, description)
       @extraInfoOverlay = BitmapSprite.new(@moveInfoDisplayBitmap.bitmap.width,@moveInfoDisplayBitmap.height,viewport)
       @extraInfoOverlay.x = self.x
-      @extraInfoOverlay.y = self.y-@moveInfoDisplayBitmap.height
+      @extraInfoOverlay.y = moveInfoDisplayY
       pbSetNarrowFont(@extraInfoOverlay.bitmap)
       addSprite("extraInfoOverlay",@extraInfoOverlay)
     else
@@ -211,7 +212,8 @@ class FightMenuDisplay < BattleMenuBase
     textpos = [
        [_INTL("CATEGORY"),20,0,0,base,shadow],
        [_INTL("POWER"),20,32,0,base,shadow],
-       [_INTL("ACCURACY"),20,64,0,base,shadow]
+       [_INTL("ACCURACY"),20,64,0,base,shadow],
+       [_INTL("PP"),20,96,0,base,shadow]
     ]
 	
     base = Color.new(64,64,64)
@@ -219,19 +221,24 @@ class FightMenuDisplay < BattleMenuBase
     case selected_move.base_damage
     when 0 then textpos.push(["---", 220, 32, 1, base, shadow])   # Status move
     when 1 then textpos.push(["???", 220, 32, 1, base, shadow])   # Variable power move
-    else        textpos.push([selected_move.base_damage.to_s, 220, 32, 1, base, shadow])
+    else        textpos.push([selected_move.base_damage.to_s, 220, 32, 2, base, shadow])
     end
     if selected_move.accuracy == 0
       textpos.push(["---", 220, 64, 1, base, shadow])
     else
-      textpos.push(["#{selected_move.accuracy}%", 220 + overlay.text_size("%").width, 64, 1, base, shadow])
+      textpos.push(["#{selected_move.accuracy}%", 220, 64, 2, base, shadow])
+    end
+    if selected_move.total_pp>0
+      ppFraction = [(4.0*move.pp/move.total_pp).ceil,3].min
+      textpos.push([_INTL("{1}/{2}",move.pp,move.total_pp),
+        220,96,2,PP_COLORS[ppFraction*2],PP_COLORS[ppFraction*2+1]])
     end
     # Draw all text
     pbDrawTextPositions(overlay, textpos)
     # Draw selected move's damage category icon
-    imagepos = [["Graphics/Pictures/category", 170, 8, 0, selected_move.category * 28, 64, 28]]
+    imagepos = [["Graphics/Pictures/category", 192, 8, 0, selected_move.category * 28, 64, 28]]
     pbDrawImagePositions(overlay, imagepos)
 	  # Draw selected move's description
-	  drawTextEx(overlay,8,108,210,5,selected_move.description,base,shadow)
+	  drawTextEx(overlay,8,140,264,4,selected_move.description,base,shadow)
   end
 end
