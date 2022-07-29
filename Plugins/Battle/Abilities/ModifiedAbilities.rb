@@ -639,3 +639,9 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
     battle.pbHideAbilitySplash(target)
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:HUSTLE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5
+  }
+)
