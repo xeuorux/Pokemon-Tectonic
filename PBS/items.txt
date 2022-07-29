@@ -718,7 +718,7 @@
 690,CATCHINGCHARM,Catching Charm,Catching Charms,8,0,"Holding it is said to increase the chance of getting a critical catch. Curiously, the charm doesn't shake much.",0,0,6
 691,INFINITEROPE,Escape Rope,Escape Ropes,8,0,"A long, durable rope. Use it to escape instantly from a cave or a dungeon.",2,0,6
 #-------------------------------
-692,TM100,TM100,TM100s,4,4000,"",3,0,0,FLOWSTATE
+692,TM100,TM100,TM100s,4,4000,,3,0,0,FLOWSTATE
 693,TM101,TM101,TM101s,4,6000,"The user drops onto the target with its full body weight. This may also leave the target numbed.",3,0,0,BODYSLAM
 694,TM102,TM102,TM102s,4,6000,"The target is scorched with an intense blast of fire. This may also leave the target with a burn.",3,0,0,FLAMETHROWER
 695,TM103,TM103,TM103s,4,16000,"The target is blasted by a huge volume of water launched under great pressure.",3,0,0,HYDROPUMP
@@ -752,7 +752,7 @@
 723,TM131,TM131,TM131s,4,10000,"The target is slammed with a steel-hard tail. This may also lower the target's Defense stat.",3,0,0,IRONTAIL
 724,TM132,TM132,TM132s,4,6000,"The user crunches up the target with sharp fangs. This may also lower the target's Defense stat.",3,0,0,CRUNCH
 725,TM133,TM133,TM133s,4,6000,"The user hurls a shadowy blob at the target. This may also lower the target's Sp. Def stat.",3,0,0,SHADOWBALL
-726,TM134,TM134,TM134s,4,6000,"The user lays a trap of frozen spikes at the foe's feet. They frostbite foes that switch into battle.",3,0,0,FROSTSPIKES
+726,TM134,TM134,TM134s,4,4000,"The user lays a trap of frozen spikes at the foe's feet. They frostbite foes that switch into battle.",3,0,0,FROSTSPIKES
 727,TM135,TM135,TM135s,4,6000,"The user whips up a vicious tornado to tear at opposing Pokémon. This may also make them flinch.",3,0,0,UPROAR
 728,TM136,TM136,TM136s,4,6000,"The user attacks by exhaling hot breath on opposing Pokémon. This may also leave those Pokémon with a burn.",3,0,0,HEATWAVE
 729,TM137,TM137,TM137s,4,4000,"The target is taunted into a rage that allows it to use only attack moves for three turns.",3,0,0,TAUNT
@@ -786,7 +786,7 @@
 757,TM165,TM165,TM165s,4,10000,"The user draws power from nature and fires it at the target. This may also lower the target's Sp. Def stat.",3,0,0,ENERGYBALL
 758,TM166,TM166,TM166s,4,16000,"The user tucks in its wings and charges from a low altitude. This also damages the user quite a lot.",3,0,0,BRAVEBIRD
 759,TM167,TM167,TM167s,4,6000,"The user makes the ground under the foe erupt with power. It may also lower the target's Sp. Def.",3,0,0,EARTHPOWER
-760,TM168,TM168,TM168s,4,4000,"",3,0,0,VANGUARD
+760,TM168,TM168,TM168s,4,4000,,3,0,0,VANGUARD
 761,TM169,TM169,TM169s,4,6000,"The user focuses its willpower to its head and attacks the target. This may also make the target flinch.",3,0,0,ZENHEADBUTT
 762,TM170,TM170,TM170s,4,6000,"The user gathers all its light energy and releases it all at once. This may also lower the target's Sp. Def stat.",3,0,0,FLASHCANNON
 763,TM171,TM171,TM171s,4,16000,"A storm of sharp leaves is whipped up. The attack's recoil sharply reduces the user's Sp. Atk stat.",3,0,0,LEAFSTORM
