@@ -214,8 +214,7 @@ class PokeBattle_Battle
       end
     end
     # Poison Spikes
-    if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? &&
-       !battler.airborne?
+    if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
       if battler.pbHasType?(:POISON)
         battler.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
         pbDisplay(_INTL("{1} absorbed the poison spikes!",battler.pbThis))
@@ -235,8 +234,7 @@ class PokeBattle_Battle
       end
     end
 	  # Flame Spikes
-    if battler.pbOwnSide.effects[PBEffects::FlameSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? &&
-       !battler.airborne?
+    if battler.pbOwnSide.effects[PBEffects::FlameSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
       if battler.pbHasType?(:FIRE)
         battler.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
         pbDisplay(_INTL("{1} absorbed the flame spikes!",battler.pbThis))
@@ -256,8 +254,7 @@ class PokeBattle_Battle
       end
     end
     # Frost Spikes
-    if battler.pbOwnSide.effects[PBEffects::FrostSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? &&
-      !battler.airborne?
+    if battler.pbOwnSide.effects[PBEffects::FrostSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
       if battler.pbHasType?(:ICE)
         battler.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
         pbDisplay(_INTL("{1} absorbed the frost spikes!",battler.pbThis))
@@ -277,8 +274,7 @@ class PokeBattle_Battle
       end
    end
     # Sticky Web
-    if battler.pbOwnSide.effects[PBEffects::StickyWeb] && !battler.fainted? && !battler.immuneToHazards?
-       !battler.airborne?
+    if battler.pbOwnSide.effects[PBEffects::StickyWeb] && !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
       pbDisplay(_INTL("{1} was caught in a sticky web!",battler.pbThis))
       if battler.pbCanLowerStatStage?(:SPEED)
         battler.pbLowerStatStage(:SPEED,1,nil)
