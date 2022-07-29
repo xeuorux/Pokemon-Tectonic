@@ -1008,7 +1008,7 @@
 944,DAZZLE,Dazzle,045,0,NORMAL,Status,100,40,0,AllNearFoes,0,bce,"The user dazzles nearby foes with a display of light or sound. Their Sp. Atk stat is lowered.",DAZZLINGGLEAM
 945,SMIRK,Smirk,046,0,NORMAL,Status,100,30,0,AllNearFoes,0,bce,"The user smirks with confidence. The Sp. Def of nearby enemies is reduced.",SCARYFACE
 946,STOREFUEL,Store Fuel,54E,0,FIRE,Status,0,20,0,User,0,d,"The user stores its fuel for future attacks. This raises its Sp. Atk, Sp. Def, and accuracy.",
-947,REMOVALBEAM,Removal Beam,403,85,NORMAL,Special,100,15,30,Other,0,befm,"The target is struck by a beam of negative energy. It has a 30% chance to frostbite.",WEATHERBALL
+947,REMOVALBEAM,Removal Beam,007,85,NORMAL,Special,100,15,30,Other,0,befm,"The target is struck by a beam of negative energy. It has a 30% chance to numb.",WEATHERBALL
 948,SLAY,Slay,54F,90,STEEL,Physical,100,15,0,NearOther,0,abefhp,"The user slashes at the target with a steel blade. Super effective versus Dragon-types.",SACREDSWORD
 949,CHIBLOCK,Chi Block,007,0,FIGHTING,Status,100,20,0,NearOther,0,abcef,"The user strikes the target's pressure points, numbing it.",
 950,STUNNINGCURL,Stunning Curl,550,0,BUG,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also numbs any attacker who attacks the user.",DEFENSECURL
