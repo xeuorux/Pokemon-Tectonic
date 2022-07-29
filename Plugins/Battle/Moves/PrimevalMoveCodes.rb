@@ -397,7 +397,7 @@ end
 class PokeBattle_Move_627 < PokeBattle_Move_030
 	include EmpoweredMove
 
-	def pbEffectGeneral
+	def pbEffectGeneral(user)
 		super
 		user.effects[PBEffects::ExtraTurns] = 2
 
