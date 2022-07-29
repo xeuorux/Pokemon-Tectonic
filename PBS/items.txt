@@ -302,7 +302,7 @@
 292,TM04,TM04,TM04s,4,50000,"The target is punched with an icy fist. This may also leave the target frozen.",3,0,0,ICEPUNCH
 293,TM05,TM05,TM05s,4,50000,"The target is punched with an electrified fist. This may also leave the target numbed.",3,0,0,THUNDERPUNCH
 294,TM06,TM06,TM06s,4,10000,"The user flies up into the sky and then strikes its target on the next turn.",3,0,0,FLY
-295,TM07,TM07,TM07s,4,6000,"Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.",3,0,0,PINMISSILE
+295,TM07,TM07,TM07s,4,10000,"The user crushes the target with evil intent. This deals double damage if the target has a status condition.",3,0,0,CRUELTY
 296,TM08,TM08,TM08s,4,50000,"The target is attacked with a powerful beam. The user can't move on the next turn.",3,0,0,HYPERBEAM
 297,TM09,TM09,TM09s,4,50000,"The user charges at the target using every bit of its power. The user can't move on the next turn.",3,0,0,GIGAIMPACT
 298,TM10,TM10,TM10s,4,10000,"The user scatters curious leaves that chase the target. This attack never misses.",3,0,0,MAGICALLEAF
@@ -752,7 +752,7 @@
 723,TM131,TM131,TM131s,4,10000,"The target is slammed with a steel-hard tail. This may also lower the target's Defense stat.",3,0,0,IRONTAIL
 724,TM132,TM132,TM132s,4,6000,"The user crunches up the target with sharp fangs. This may also lower the target's Defense stat.",3,0,0,CRUNCH
 725,TM133,TM133,TM133s,4,6000,"The user hurls a shadowy blob at the target. This may also lower the target's Sp. Def stat.",3,0,0,SHADOWBALL
-726,TM134,TM134,TM134s,4,6000,"Two turns after this move is used, a hunk of psychic energy attacks the target.",3,0,0,FUTURESIGHT
+726,TM134,TM134,TM134s,4,6000,"The user lays a trap of frozen spikes at the foe's feet. They frostbite foes that switch into battle.",3,0,0,FROSTSPIKES
 727,TM135,TM135,TM135s,4,6000,"The user whips up a vicious tornado to tear at opposing Pokémon. This may also make them flinch.",3,0,0,UPROAR
 728,TM136,TM136,TM136s,4,6000,"The user attacks by exhaling hot breath on opposing Pokémon. This may also leave those Pokémon with a burn.",3,0,0,HEATWAVE
 729,TM137,TM137,TM137s,4,4000,"The target is taunted into a rage that allows it to use only attack moves for three turns.",3,0,0,TAUNT

@@ -371,7 +371,7 @@
 355,ROTOTILLER,Rototiller,13E,0,GROUND,Status,0,10,0,AllBattlers,0,,"The user tills the soil to encourage plant growth. This raises the Attack and Sp. Atk of Grass types.",
 356,SANDATTACK,Sand Attack,047,0,GROUND,Status,100,15,0,NearOther,0,bce,"Sand is hurled in the target's face, reducing its accuracy.",
 357,SHOREUP,Shore Up,16D,0,GROUND,Status,0,5,0,User,0,d,"The user regains up to half of its max HP. It restores more HP in a sandstorm.",
-358,SPIKES,Spikes,103,0,GROUND,Status,0,20,0,FoeSide,0,c,"The user lays a trap of spikes at the foe's feet. The trap hurts foes that switch into battle.",
+358,SPIKES,Spikes,103,0,GROUND,Status,0,20,0,FoeSide,0,c,"The user lays a trap of spikes at the foe's feet. Foes that switch into battle are hurt a bit for each layer.",
 359,SCORCHINGSANDS,Scorching Sands,00A,80,GROUND,Special,100,10,30,NearOther,0,abef,"Throws scorching sand at the target to attack. It has a 30% chance to burn.",
 #-------------------------------
 360,FREEZESHOCK,Freeze Shock,0C5,140,ICE,Physical,100,5,30,NearOther,0,bef,"On the second turn, the user hits the foe with electrically charged ice. It has a 30% chance to numb.",
@@ -1012,7 +1012,7 @@
 948,SLAY,Slay,54F,90,STEEL,Physical,100,15,0,NearOther,0,abefhp,"The user slashes at the target with a steel blade. Super effective versus Dragon-types.",SACREDSWORD
 949,CHIBLOCK,Chi Block,007,0,FIGHTING,Status,100,20,0,NearOther,0,abcef,"The user strikes the target's pressure points, numbing it.",
 950,STUNNINGCURL,Stunning Curl,550,0,BUG,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also numbs any attacker who attacks the user.",DEFENSECURL
-951,FLAMESPIKES,Flame Spikes,551,0,FIRE,Status,0,20,0,FoeSide,0,c,"The user lays flame spikes on the foe's side. One layer hurts switched in foes, two layers burns them",
+951,FLAMESPIKES,Flame Spikes,551,0,FIRE,Status,0,20,0,FoeSide,0,c,"The user lays flame spikes on the foe's side. One layer hurts switched in foes, two layers burns them.",
 952,DROPKICK,Drop Kick,0FA,80,FIGHTING,Physical,0,25,100,NearFoe,0,abef,"The user drops onto the target with a kick, dealing 25% recoil to self.",JUMPKICK
 953,MULTISTRIKE,Multi-strike,0C0,14,NORMAL,Physical,100,35,0,NearOther,0,abefj,"The target is hit two to five times in a row.",
 954,MOUNTAINCRUSH,Mountain Crush,0FC,200,ROCK,Physical,50,10,0,NearOther,0,abef,"The user slams itself into the target with the power to destroy a mountain, taking 50% recoil.",
@@ -1023,7 +1023,7 @@
 959,STANDTOGETHER,Stand Together,554,0,FIGHTING,Status,0,40,0,User,0,d,"The user holds fast with its teammates, raising the Defense of itself and its allies.",
 960,CAMARADERIE,Camaraderie,555,0,PSYCHIC,Status,0,40,0,User,0,d,"The user calms itself and its teammates, raising the Sp. Def of itself and its allies.",
 961,TRICKYTOXINS,Tricky Toxins,121,95,POISON,Special,100,15,0,NearOther,0,abef,"Uses hidden toxins to damage the opponent using their Sp. Atk stat.",VENOSHOCK
-962,RANSACK,Ransack,0F1,60,NORMAL,Special,100,25,0,NearOther,0,abef,"The user skillfully blasts the target, then steals the target's held item. Items stolen from wild Pokémon are stored.",
+962,RANSACK,Ransack,0F1,60,NORMAL,Special,100,25,0,NearOther,0,abef,"The user skillfully blasts the target, then steals their item. Items stolen from wild Pokémon are stored.",
 963,SWARM,Swarm,556,0,BUG,Status,0,5,0,BothSides,0,,"Summons a swarm for five turns, powering up Bug and Dragon-type moves.",
 964,TRAPJAW,Trap Jaw,557,85,GRASS,Physical,100,15,0,NearOther,0,abefi,"Lures an enemy into its jaws, draining 2/3 of damage dealt if they hit the user this turn.",
 965,CAUSTICPUNCH,Caustic Punch,043,60,POISON,Physical,100,20,20,NearOther,0,abefj,"Hits an enemy with an acidic punch with a 20% chance to lower Defense.",POISONJAB

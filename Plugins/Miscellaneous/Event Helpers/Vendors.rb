@@ -86,6 +86,16 @@ def terrainTMSell()
 	)
 end
 
+def spikesTMSell()
+	pbPokemonMart(
+		[:TM123,
+		:TM134,
+		:TM151,
+		:TM154],
+		"Care to buy some?"
+	)
+end
+
 def fossilSell()
 	pbPokemonMart(
 		[:HELIXFOSSIL,
