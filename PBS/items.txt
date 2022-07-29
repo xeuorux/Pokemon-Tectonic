@@ -718,7 +718,7 @@
 690,CATCHINGCHARM,Catching Charm,Catching Charms,8,0,"Holding it is said to increase the chance of getting a critical catch. Curiously, the charm doesn't shake much.",0,0,6
 691,INFINITEROPE,Escape Rope,Escape Ropes,8,0,"A long, durable rope. Use it to escape instantly from a cave or a dungeon.",2,0,6
 #-------------------------------
-692,TM100,TM100,TM100s,4,4000,"A frenetic dance to uplift the fighting spirit. This sharply raises the user's Attack stat.",3,0,0,SWORDSDANCE
+692,TM100,TM100,TM100s,4,4000,"",3,0,0,FLOWSTATE
 693,TM101,TM101,TM101s,4,6000,"The user drops onto the target with its full body weight. This may also leave the target numbed.",3,0,0,BODYSLAM
 694,TM102,TM102,TM102s,4,6000,"The target is scorched with an intense blast of fire. This may also leave the target with a burn.",3,0,0,FLAMETHROWER
 695,TM103,TM103,TM103s,4,16000,"The target is blasted by a huge volume of water launched under great pressure.",3,0,0,HYDROPUMP
@@ -786,7 +786,7 @@
 757,TM165,TM165,TM165s,4,10000,"The user draws power from nature and fires it at the target. This may also lower the target's Sp. Def stat.",3,0,0,ENERGYBALL
 758,TM166,TM166,TM166s,4,16000,"The user tucks in its wings and charges from a low altitude. This also damages the user quite a lot.",3,0,0,BRAVEBIRD
 759,TM167,TM167,TM167s,4,6000,"The user makes the ground under the foe erupt with power. It may also lower the target's Sp. Def.",3,0,0,EARTHPOWER
-760,TM168,TM168,TM168s,4,4000,"The user stimulates its brain by thinking bad thoughts. This sharply raises the user's Sp. Atk stat.",3,0,0,NASTYPLOT
+760,TM168,TM168,TM168s,4,4000,"",3,0,0,VANGUARD
 761,TM169,TM169,TM169s,4,6000,"The user focuses its willpower to its head and attacks the target. This may also make the target flinch.",3,0,0,ZENHEADBUTT
 762,TM170,TM170,TM170s,4,6000,"The user gathers all its light energy and releases it all at once. This may also lower the target's Sp. Def stat.",3,0,0,FLASHCANNON
 763,TM171,TM171,TM171s,4,16000,"A storm of sharp leaves is whipped up. The attack's recoil sharply reduces the user's Sp. Atk stat.",3,0,0,LEAFSTORM
