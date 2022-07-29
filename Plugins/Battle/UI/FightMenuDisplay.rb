@@ -1,17 +1,15 @@
-TEXT_BASE_COLOR   = Color.new(0,0,0)
-TEXT_SHADOW_COLOR = Color.new(248,248,248)
 
-EFFECTIVENESS_COLORS = [
+class FightMenuDisplay < BattleMenuBase
+  attr_reader :extraInfoToggled
+
+  EFFECTIVENESS_COLORS = [
     Color.new(160,160,160),TEXT_SHADOW_COLOR,   # Light gray, ineffective effective
      Color.new(133,122,71),TEXT_SHADOW_COLOR,   # Yellow gray, barely effective
-     Color.new(80,80,80),TEXT_SHADOW_COLOR,   # Gray, not very effective
+     Color.new(100,100,100),TEXT_SHADOW_COLOR,   # Gray, not very effective
      TEXT_BASE_COLOR,TEXT_SHADOW_COLOR,                # Black, neutral
      Color.new(132,65,21),TEXT_SHADOW_COLOR,       # Orange-red, super effective
      Color.new(140,3,69),TEXT_SHADOW_COLOR,       # Bright purple, hyper effective
   ]
-
-class FightMenuDisplay < BattleMenuBase
-  attr_reader :extraInfoToggled
 
   def initialize(viewport,z)
     super(viewport)
@@ -188,7 +186,7 @@ class FightMenuDisplay < BattleMenuBase
         end
 
         effectivenessCategory = maxEffectiveness == 0 ? 0 : Math.log(maxEffectiveness * 4 / Effectiveness::NORMAL_EFFECTIVE, 2) + 1
-        effectivenessDescription = [_INTL("Ineffective"),_INTL("Barely"),_INTL("Not Very"),_INTL("Neutral"),_INTL("Super"),_INTL("Hyper")][effectivenessCategory]
+        effectivenessDescription = [_INTL("Ineffective"),_INTL("Barely"),_INTL("Not Very"),_INTL("Neutral"),_INTL("Super"),_INTL("Hyper"),_INTL("Hyper")][effectivenessCategory]
         effectivenessTextPos = [effectivenessDescription,effectivenessTextX,effectivenessTextY,2,
           EFFECTIVENESS_COLORS[effectivenessCategory*2],EFFECTIVENESS_COLORS[effectivenessCategory*2+1]]
       rescue
