@@ -39,7 +39,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
 BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
   proc { |ability,user,target,move,battle|
     next unless move.specialMove?
-    next if user.frostbite? || battle.pbRandom(100)>=30
+    next if user.frostbitten? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
     if user.pbCanFrostbite?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
@@ -56,7 +56,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
 BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
   proc { |ability,user,target,move,battle|
     next if !move.pbContactMove?(user)
-    next if user.frostbite? || battle.pbRandom(100)>=30
+    next if user.frostbitten? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
     if user.pbCanFrostbite?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
