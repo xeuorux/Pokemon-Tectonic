@@ -123,9 +123,9 @@ DMGMult = 1
 #-------------------------------
 [ZOROARK]
 Ability = ILLUSION
-Moves = MASSDESTRUCTION,PRIMEVALPOISONGAS
+Moves = MASSDESTRUCTION,REMOVALBEAM,PRIMEVALPOISONGAS
 PostPrimeMoves = SLUDGEWAVE,VENOMDRENCH
-Turns = 1
+Turns = 2
 HPMult = 4.0
 DMGMult = 1
 #-------------------------------
@@ -423,9 +423,9 @@ DMGMult = 1
 [TEAMUJIN]
 Ability = PARENTALBOND
 Moves = STOMP,SMASH,PRIMEVALCURSE
-PostPrimeMoves = SHADOWCLAW,LUNGE
-Turns = 1
-HPMult = 5.0
+PostPrimeMoves = SHADOWCLAW,PULVERIZE
+Turns = 2
+HPMult = 4.0
 DMGMult = 1
 #-------------------------------
 [RAICHU]
@@ -592,11 +592,19 @@ HPMult = 1.0
 DMGMult = 1
 #-------------------------------
 [CLEFABLE]
-Ability = FRIENDGUARD
-Moves = DAZZLINGGLEAM
-PostPrimeMoves = DAZZLINGGLEAM
+Ability = MAGICGUARD
+Moves = LIGHTSCREEN,LUNARJUSTICE,PRIMEVALHEALBELL
+PostPrimeMoves = BODYSLAM,COACHING
 Turns = 1
-HPMult = 2.0
+HPMult = 2.5
+DMGMult = 1
+#-------------------------------
+[BEHEEYEM]
+Ability = ANALYTIC
+Moves = PSYCHIC,FLATTER,PRIMEVALEMBARGO
+PostPrimeMoves = DARKPULSE,STOREDPOWER
+Turns = 1
+HPMult = 2.5
 DMGMult = 1
 #-------------------------------
 [ARBOK]
@@ -760,8 +768,8 @@ DMGMult = 1
 Ability = CANDYVEIL
 Moves = INFINITEFORCE,PRIMEVALLEECHSEED
 PostPrimeMoves = PARAPOLLEN,SEEDBOMB
-Turns = 1
-HPMult = 7
+Turns = 2
+HPMult = 4
 #-------------------------------
 [EXCADRILL]
 Ability = SANDRUSH
@@ -783,8 +791,8 @@ DMGMult = 1
 Ability = MAGICBOUNCE
 Moves = FOULPLAY,CURSE,PRIMEVALMOONLIGHT
 PostPrimeMoves = DAZZLINGGLEAM,TRICKYTOXINS
-Turns = 1
-HPMult = 6.0
+Turns = 2
+HPMult = 4.5
 DMGMult = 1
 #-------------------------------
 [SALAZZLE]
@@ -792,7 +800,7 @@ Ability = EXPERTISE
 Moves = ACIDBATH,OVERHEAT,PRIMEVALCALMMIND
 PostPrimeMoves = EXPANDINGFORCE,CRIPPLINGBREATH
 Turns = 2
-HPMult = 4.0
+HPMult = 4.5
 DMGMult = 1
 #-------------------------------
 [DECEAT]
@@ -800,7 +808,7 @@ Ability = POWERUP
 Moves = SPIRITBREAK,MAGNETHRASH,PRIMEVALTORMENT
 PostPrimeMoves = SUCKERPUNCH,CRUNCH
 Turns = 2
-HPMult = 4.0
+HPMult = 4.5
 DMGMult = 1
 #-------------------------------
 [CROBAT]
@@ -808,7 +816,7 @@ Ability = INNERFOCUS
 Moves = ECHOLOCATE,XSCISSOR,PRIMEVALHAIL
 PostPrimeMoves = ICEFANG,LEECHLIFE
 Turns = 2
-HPMult = 4.0
+HPMult = 4.5
 DMGMult = 1
 #-------------------------------
 [SALAMENCE]
@@ -824,15 +832,15 @@ Ability = IMPERVIOUS
 Moves = IGNITE,POWERGEM,PRIMEVALPSYCHICTERRAIN
 PostPrimeMoves = INFERNO,MINDWARP
 Turns = 2
-HPMult = 4
+HPMult = 4.5
 DMGMult = 1
 #-------------------------------
 [AMOONGUSS]
 Ability = MERCILESS
 Moves = POISONGAS,GIGADRAIN,PRIMEVALSUNNYDAY
 PostPrimeMoves = FLAMETHROWER,GROWTH
-Turns = 1
-HPMult = 6
+Turns = 2
+HPMult = 4.5
 DMGMult = 1
 #-------------------------------
 [WHISCASH]
@@ -848,7 +856,7 @@ Ability = SERENEGRACE
 Moves = AIRSLASH,MISTYEXPLOSION,PRIMEVALHEALBELL
 PostPrimeMoves = TRIATTACK,FLEURCANNON
 Turns = 2
-HPMult = 6
+HPMult = 5
 DMGMult = 1
 #-------------------------------
 [PHIONE]
@@ -867,9 +875,9 @@ HPMult = 12
 [LANTURN]
 Ability = SHEERFORCE
 Moves = BUBBLEBLAST,THUNDERBOLT,PRIMEVALTAILWIND
-PostPrimeMoves = COLDFRONT,SLUSHSPRAY
-Turns = 1
-HPMult = 6
+PostPrimeMoves = COLDFRONT,LAHAR
+Turns = 2
+HPMult = 4.5
 #------------------------------
 [SLOWKING]
 Ability = REALIST
