@@ -8107,6 +8107,7 @@ Evolutions = PUPITAR,Level,22
 Name = Pupitar
 InternalName = PUPITAR
 Type1 = ROCK
+Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 80,84,80,51,65,80
 # Total = 440
