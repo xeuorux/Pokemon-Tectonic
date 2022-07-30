@@ -937,7 +937,7 @@
 873,CLAMOR,Clamor,0D1,75,NORMAL,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep.",UPROAR
 874,COMETSMASH,Comet Smash,01C,95,NORMAL,Physical,100,10,20,NearOther,0,abefj,"The user throws a comet-like punch. It has a 20% chance to raise Attack.",
 875,DOUBLEPUNCH,Double Punch,0BD,45,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user punches the target twice in quick succession.",
-876,PULVERIZE,Pulverize,01C,120,NORMAL,Physical,85,5,10,NearOther,0,abefj,"The user pulverize the target with both its fists. It has a 10% chance to raise Attack.",
+876,PULVERIZE,Pulverize,01C,100,NORMAL,Physical,80,5,10,NearOther,0,abefj,"The user pulverize the target with both its fists. It has a 50% chance to raise Attack.",
 877,PUMMEL,Pummel,01C,55,NORMAL,Physical,100,20,50,NearOther,0,abefj,"The user warms up by treating the target as a punching bag. This has a 60% chance to raise Attack.",
 878,SLICE,Slice,000,95,NORMAL,Physical,100,15,0,NearOther,0,abefhp,"The target is cut by a clean slice. Critical hits land more easily.",SLASH
 879,FURY,Fury,093,60,NORMAL,Physical,100,15,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle.",RAGE
