@@ -1495,3 +1495,17 @@ class PokeBattle_Move_018 < PokeBattle_Move
     user.pbCureStatus
   end
 end
+
+#===============================================================================
+# Target's berry/Gem is destroyed. (Incinerate)
+#===============================================================================
+class PokeBattle_Move_0F5 < PokeBattle_Move
+  def pbEffectWhenDealingDamage(user,target)
+    return if target.damageState.substitute || target.damageState.berryWeakened
+    return if !target.item || (!target.item.is_berry? &&
+              !(Settings::MECHANICS_GENERATION >= 6 && target.item.is_gem?))
+    itemName = target.itemName
+    target.pbRemoveItem
+    @battle.pbDisplay(_INTL("{1}'s {2} was incinerated!",target.pbThis,itemName))
+  end
+end
