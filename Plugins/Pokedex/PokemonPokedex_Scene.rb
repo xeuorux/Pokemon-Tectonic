@@ -387,6 +387,12 @@ class PokemonPokedex_Scene
 		  pbMessage("Added #{@sprites["pokedex"].species}")
 		elsif Input.pressex?(0x42) && $DEBUG # B, for Battle
 		  pbWildBattle(@sprites["pokedex"].species, $game_variables[26])
+		elsif Input.pressex?(0x4F) && $DEBUG # O, for bOss
+		  begin
+			pbSmallAvatarBattle([@sprites["pokedex"].species.to_sym, $game_variables[26]])
+		  rescue
+			pbMessage(_INTL("Unable to start Avatar battle."))
+		  end
 		elsif Input.pressex?(0x50) && $DEBUG # P, for Print
 			echoln("Printing the entirety of the current dex list.")
 			 @dexlist.each do |dexEntry|
