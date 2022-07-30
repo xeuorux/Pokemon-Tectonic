@@ -156,9 +156,7 @@ Environment = Forest
 Outdoor = false
 ShowArea = true
 Bicycle = false
-MapPosition = 0,14,8
-BattleBack = field
-MapSize = 1,11
+BattleBack = elite2
 #-------------------------------
 [022]
 # False-Front House
@@ -299,8 +297,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = false
-BattleBack = 
-Environment = None
+BattleBack = elite3
 #-------------------------------
 [042]
 # Zeraora's Chamber
@@ -358,6 +355,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,14
+BattleBack = cave1
 Environment = Cave
 #-------------------------------
 [052]
@@ -379,7 +377,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,18,7
-Environment = ForestGrass
+Environment = Graveyard
 #-------------------------------
 [056]
 # Németh
@@ -387,6 +385,8 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,16,9
+BattleBack = city
+Environment = None
 #-------------------------------
 [057]
 # Németh Center
@@ -402,6 +402,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,16,11
+BattleBack = field
 Environment = Forest
 #-------------------------------
 [060]
@@ -410,7 +411,8 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,16,10
-Environment = Forest
+BattleBack = field
+Environment = Grass
 #-------------------------------
 [061]
 # Sailor's House
@@ -424,6 +426,7 @@ HealingSpot = 59,26,20
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = elite8
 #-------------------------------
 [065]
 # Németh Mart
@@ -515,6 +518,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,18,8
+BattleBack = indoor3
 Environment = Cave
 #-------------------------------
 [082]
@@ -544,6 +548,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = indoor3
 Environment = None
 #-------------------------------
 [087]
@@ -575,6 +580,8 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = distortion
+Environment = None
 #-------------------------------
 [102]
 # Velenz Center
@@ -706,6 +713,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,6
+BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
 [124]
@@ -713,6 +721,7 @@ Environment = StillWater
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = forest
 Environment = Cave
 #-------------------------------
 [125]
@@ -720,6 +729,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = cave1
 Environment = Volcano
 #-------------------------------
 [126]
@@ -728,6 +738,8 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 MapPosition = 0,13,8
+BattleBack = cave1
+Environment = Cave
 #-------------------------------
 [129]
 # Barren Crater
@@ -735,6 +747,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,13,10
+BattleBack = rocky
 Environment = Rock
 #-------------------------------
 [130]
@@ -743,6 +756,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,19,6
+BattleBack = sand
 Environment = Sand
 #-------------------------------
 [134]
@@ -750,12 +764,15 @@ Environment = Sand
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = elite7
+Environment = None
 #-------------------------------
 [135]
 # Ancient Meteorite
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = cave2
 Environment = Cave
 #-------------------------------
 [136]
@@ -764,7 +781,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,15
-BattleBack = 
+BattleBack = field
 Environment = Grass
 #-------------------------------
 [138]
@@ -773,6 +790,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,18,14
+BattleBack = forest
 Environment = Forest
 #-------------------------------
 [140]
@@ -926,12 +944,16 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = indoor1
+Environment = None
 #-------------------------------
 [168]
 # Aegislash Insurance F3
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = indoor1
+Environment = None
 #-------------------------------
 [169]
 # PokEstate 14 - Simple
@@ -950,6 +972,8 @@ Bicycle = true
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = indoor1
+Environment = None
 #-------------------------------
 [172]
 # PokEstate 12 - Sky
@@ -962,6 +986,8 @@ Bicycle = true
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = indoor1
+Environment = None
 #-------------------------------
 [174]
 # Worn Shed
@@ -994,12 +1020,16 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = indoor2
+Environment = None
 #-------------------------------
 [179]
 # Chasm Dev F2
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = indoor2
+Environment = None
 #-------------------------------
 [180]
 # Prizca West Mart
@@ -1019,6 +1049,8 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,14,9
+BattleBack = forest
+Environment = Grass
 TeleportBlocked = true
 #-------------------------------
 [183]
@@ -1027,6 +1059,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,20,5
+BattleBack = cave1
 Environment = Cave
 #-------------------------------
 [185]
@@ -1044,6 +1077,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,13,5
+BattleBack = field
 Environment = Ice
 #-------------------------------
 [187]
@@ -1052,6 +1086,8 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,4
+BattleBack = city
+Environment = None
 #-------------------------------
 [188]
 # Prizca Castle
@@ -1059,6 +1095,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,3
+BattleBack = city
 Environment = None
 #-------------------------------
 [189]
@@ -1066,6 +1103,8 @@ Environment = None
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = indoor3
+Environment = None
 #-------------------------------
 [191]
 # Prizca East Center
@@ -1080,6 +1119,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,13
+BattleBack = sand
 Environment = Sand
 #-------------------------------
 [195]
@@ -1087,6 +1127,7 @@ Environment = Sand
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = elite5
 #-------------------------------
 [196]
 # Boiling Cave
@@ -1094,7 +1135,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,18,13
-BattleBack = 
+BattleBack = cave2
 Environment = Volcano
 #-------------------------------
 [211]
@@ -1103,6 +1144,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,19,4
+BattleBack = rocky
 Environment = Rock
 #-------------------------------
 [212]
@@ -1111,6 +1153,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,14,8
+BattleBack = rocky
 #-------------------------------
 [213]
 # Velenz Menagerie
@@ -1118,6 +1161,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,11,9
+BattleBack = forest
 Environment = Forest
 #-------------------------------
 [214]
@@ -1126,6 +1170,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,16,8
+BattleBack = cave1
 #-------------------------------
 [216]
 # Highland Lake
@@ -1134,6 +1179,7 @@ ShowArea = true
 Bicycle = true
 Weather = Fog,10
 MapPosition = 0,11,5
+BattleBack = cave3
 #-------------------------------
 [217]
 # Sweetrock Harbor
@@ -1150,7 +1196,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,9,5
-BattleBack = cave1_water
+BattleBack = cave3
 Environment = Underwater
 #-------------------------------
 [220]
@@ -1159,6 +1205,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,4
+BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
 [221]
@@ -1174,6 +1221,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,5
+BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
 [223]
@@ -1182,6 +1230,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,16,5
+BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
 [228]
@@ -1391,7 +1440,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
-BattleBack = indoor3
+BattleBack = champion2
 Environment = None
 #-------------------------------
 [280]
@@ -1462,6 +1511,15 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 59,28,19
+BattleBack = field
+Environment = Grass
+#-------------------------------
+[300]
+# Team Chasm HQ Gym
+Outdoor = false
+ShowArea = true
+Bicycle = false
+BattleBack = champion1
 #-------------------------------
 [301]
 # County Park
