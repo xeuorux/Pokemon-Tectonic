@@ -29,6 +29,8 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,9
+Environment = TallGrass
+BattleBack = field
 #-------------------------------
 [004]
 # Scientist's House
@@ -36,6 +38,8 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 MapPosition = 0,13,12
+BattleBack = indoor1
+Environment = None
 #-------------------------------
 [005]
 # Secret Location
@@ -79,6 +83,8 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 MapPosition = 0,14,10
+Environment = None
+BattleBack = indoor3
 #-------------------------------
 [010]
 # Six Spire Cave
@@ -128,6 +134,7 @@ ShowArea = false
 Bicycle = false
 MapPosition = 0,13,10
 Environment = None
+BattleBack = indoor3
 #-------------------------------
 [018]
 # Mine Head's House F2
@@ -142,6 +149,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 MapPosition = 0,13,10
+BattleBack = indoor1
 #-------------------------------
 [020]
 # Lunar Island Placeholder
@@ -150,6 +158,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,13,10
 Environment = Forest
+BattleBack = forest
 #-------------------------------
 [021]
 # LuxTech Gym
@@ -220,6 +229,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,18,14
 Environment = Forest
+BattleBack = forest
 #-------------------------------
 [031]
 # Pokemon Zoo - Forest
@@ -246,6 +256,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,16,4
 Environment = None
+BattleBack = city
 #-------------------------------
 [035]
 # Impromptu Lab
@@ -268,6 +279,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,13,7
 Environment = Snow
+BattleBack = city
 #-------------------------------
 [038]
 # Bluepoint Beach
@@ -276,6 +288,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,16,15
 Environment = Sand
+BattleBack = sand
 #-------------------------------
 [039]
 # Casaba Center
@@ -290,7 +303,8 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,16,8
-Environment = Cave
+Environment = City
+BattleBack = cave1
 #-------------------------------
 [041]
 # Casaba Gym
@@ -306,12 +320,6 @@ ShowArea = false
 Bicycle = true
 BattleBack = wcave
 Environment = Cave
-#-------------------------------
-[043]
-# Németh Apartments F2
-Outdoor = false
-ShowArea = false
-Bicycle = true
 #-------------------------------
 [044]
 # Lambert's House
@@ -335,12 +343,6 @@ Bicycle = false
 # Grand Hotel
 Outdoor = false
 ShowArea = false
-Bicycle = false
-#-------------------------------
-[048]
-# Name Rater's House
-Outdoor = false
-ShowArea = true
 Bicycle = false
 #-------------------------------
 [049]
@@ -370,6 +372,8 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,14,9
+Environment = Forest
+BattleBack = forest
 #-------------------------------
 [055]
 # Floral Rest
@@ -377,6 +381,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,18,7
+BattleBack = field
 Environment = Graveyard
 #-------------------------------
 [056]
@@ -638,18 +643,24 @@ Bicycle = true
 Outdoor = false
 ShowArea = false
 Bicycle = true
+Environment = Cave
+BattleBack = cave1
 #-------------------------------
 [111]
 # Collapsed Passage
 Outdoor = false
 ShowArea = false
 Bicycle = true
+Environment = Cave
+BattleBack = cave1
 #-------------------------------
 [112]
 # Sunken Building Middle
 Outdoor = false
 ShowArea = false
 Bicycle = false
+Environment = None
+BattleBack = indoor3
 #-------------------------------
 [113]
 # East Underground Entrance
@@ -662,18 +673,24 @@ Bicycle = true
 Outdoor = false
 ShowArea = false
 Bicycle = true
+Environment = cave
+BattleBack = cave1
 #-------------------------------
 [115]
 # Weird Sinkhole
 Outdoor = false
 ShowArea = false
 Bicycle = true
+Environment = cave
+BattleBack = cave1
 #-------------------------------
 [116]
 # East Cave House
 Outdoor = false
 ShowArea = false
 Bicycle = false
+Environment = None
+BattleBack = indoor3
 #-------------------------------
 [117]
 # Ice Cave
@@ -682,6 +699,7 @@ ShowArea = true
 Bicycle = false
 Weather = Blizzard,100
 MapPosition = 0,13,6
+BattleBack = cave1
 Environment = Ice
 #-------------------------------
 [119]
@@ -698,6 +716,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,17,8
 Environment = Cave
+BattleBack = cave3
 #-------------------------------
 [121]
 # Skyward Ascent
@@ -706,6 +725,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,15,8
 Environment = Rock
+BattleBack = rocky
 #-------------------------------
 [122]
 # Prizca Sewers South
@@ -756,7 +776,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,19,6
-BattleBack = sand
+BattleBack = 
 Environment = Sand
 #-------------------------------
 [134]
