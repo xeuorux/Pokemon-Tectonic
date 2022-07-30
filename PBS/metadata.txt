@@ -279,7 +279,7 @@ Environment = Sand
 Outdoor = false
 ShowArea = false
 Bicycle = false
-HealingSpot = 136,35,14
+HealingSpot = 136,45,14
 #-------------------------------
 [040]
 # Gigalith's Guts
