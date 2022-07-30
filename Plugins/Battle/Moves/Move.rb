@@ -733,6 +733,13 @@ class PokeBattle_Move
         end
       end
     end
+
+    if zMove? && !@specialUseZMove
+      @battle.pbCommonAnimation("ZPower",user,nil) if @battle.scene.pbCommonAnimationExists?("ZPower")
+      PokeBattle_ZMove.from_status_move(@battle, @id, user) if statusMove?
+      @battle.pbDisplay(_INTL("{1} surrounded itself with its Z-Power!",user.pbThis)) if !statusMove?
+      @battle.pbDisplay(_INTL("{1} unleashed its full force Z-Move!",user.pbThis))
+    end
     
     if isEmpowered?
       pbMessage(_INTL("\\ts[{3}]{1} used <c2=06644bd2>{2}</c2>!",user.pbThis,@name,MessageConfig.pbGetTextSpeed() * 2))
