@@ -22,8 +22,6 @@ Outdoor = true
 ShowArea = true
 Bicycle = false
 MapPosition = 0,13,12
-BattleBack = field
-Environment = Cave
 #-------------------------------
 [003]
 # The Shift
@@ -44,7 +42,7 @@ MapPosition = 0,13,12
 Outdoor = true
 ShowArea = true
 Bicycle = true
-BattleBack = field
+BattleBack = wcave
 Environment = Cave
 #-------------------------------
 [006]
@@ -53,6 +51,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,7
+BattleBack = city
 Environment = None
 #-------------------------------
 [007]
@@ -61,6 +60,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,13,8
+BattleBack = forest
 MapSize = 2,11
 Environment = TallGrass
 #-------------------------------
@@ -70,6 +70,8 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,12,9
+BattleBack = forest
+Environment = TallGrass
 #-------------------------------
 [009]
 # House of Leaves
@@ -84,7 +86,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,15,8
-BattleBack = indoor3
+BattleBack = rocky
 Environment = Rock
 #-------------------------------
 [011]
@@ -93,6 +95,8 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,15,6
+BattleBack = forest
+Environment = Forest
 #-------------------------------
 [013]
 # Svait Station
@@ -173,7 +177,8 @@ MapPosition = 0,15,8
 # Shaymin's Chamber
 Outdoor = false
 ShowArea = false
-Bicycle = false
+Bicycle = true
+BattleBack = wcave
 Environment = Cave
 #-------------------------------
 [025]
@@ -301,7 +306,8 @@ Environment = None
 # Zeraora's Chamber
 Outdoor = false
 ShowArea = false
-Bicycle = false
+Bicycle = true
+BattleBack = wcave
 Environment = Cave
 #-------------------------------
 [043]
@@ -529,7 +535,8 @@ HealingSpot = 214,21,15
 # Jirachi's Chamber
 Outdoor = false
 ShowArea = false
-Bicycle = false
+Bicycle = true
+BattleBack = wcave
 Environment = Cave
 #-------------------------------
 [086]
@@ -598,6 +605,8 @@ Bicycle = true
 Outdoor = false
 ShowArea = false
 Bicycle = true
+BattleBack = wcave
+Environment = Cave
 #-------------------------------
 [107]
 # Connor's Yard
@@ -970,7 +979,9 @@ Bicycle = false
 # Heroes' Chamber
 Outdoor = false
 ShowArea = false
-Bicycle = false
+Bicycle = true
+BattleBack = wcave
+Environment = Cave
 #-------------------------------
 [177]
 # Battle Plaza Market
@@ -1024,6 +1035,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,17,6
+BattleBack = forest
 Environment = Forest
 #-------------------------------
 [186]
@@ -1177,6 +1189,7 @@ Environment = StillWater
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = indoor2
 Environment = None
 #-------------------------------
 [235]
@@ -1199,6 +1212,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = false
 Weather = HeavyRain,100
+BattleBack = water
 #-------------------------------
 [241]
 # Grouz Mine Sinkhole
@@ -1247,6 +1261,7 @@ Bicycle = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = rocky
 #-------------------------------
 [258]
 # Whitebloom Town
@@ -1266,6 +1281,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = cave3
 Environment = Cave
 #-------------------------------
 [263]
@@ -1328,6 +1344,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = cave3
 Environment = Cave
 #-------------------------------
 [274]
@@ -1341,6 +1358,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = indoor3
 Environment = None
 TeleportBlocked = true
 #-------------------------------
@@ -1349,6 +1367,7 @@ TeleportBlocked = true
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = indoor3
 Environment = None
 TeleportBlocked = true
 #-------------------------------
@@ -1357,6 +1376,7 @@ TeleportBlocked = true
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = indoor3
 Environment = None
 TeleportBlocked = true
 #-------------------------------
@@ -1371,6 +1391,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = indoor3
 Environment = None
 #-------------------------------
 [280]
@@ -1392,6 +1413,7 @@ Environment = None
 Outdoor = false
 ShowArea = false
 Bicycle = true
+BattleBack = cave2
 #-------------------------------
 [284]
 # Gamer's House
@@ -1423,10 +1445,15 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,9,5
+BattleBack = cave3
 Environment = Cave
 #-------------------------------
 [291]
 # Deoxys's Chamber
+Outdoor = false
+ShowArea = false
+Bicycle = true
+BattleBack = wcave
 Environment = Cave
 #-------------------------------
 [299]
@@ -1442,4 +1469,13 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,15,7
+BattleBack = field
 Environment = Grass
+#-------------------------------
+[303]
+# Zygarde's Chamber
+Outdoor = false
+ShowArea = false
+Bicycle = true
+BattleBack = wcave
+Environment = Cave
