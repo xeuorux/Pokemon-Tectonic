@@ -512,6 +512,8 @@ end
 
 # Primeval Brick Break
 class PokeBattle_Move_644 < PokeBattle_TargetStatDownMove
+	include EmpoweredMove
+
 	def ignoresReflect?; return true; end
 
   	def pbEffectGeneral(user)
