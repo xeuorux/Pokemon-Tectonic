@@ -39,6 +39,7 @@ module PBEffects
     EmpoweredMoonlight  = 145
 	EmpoweredEndure		= 146
 	EmpoweredLaserFocus = 147
+    EmpoweredDestinyBond= 148
 	
 	#===========================================================================
     # These effects apply to a side

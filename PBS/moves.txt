@@ -1117,6 +1117,7 @@
 3028,PRIMEVALWHIRLWIND,Primeval Whirlwind,628,0,FLYING,Status,0,1,0,AllNearFoes,-6,ce,"All near foes are forced to switch out, and the user becomes Flying-type.",WHIRLWIND
 3029,PRIMEVALEMBARGO,Primeval Embargo,629,0,DARK,Status,100,1,0,FoeSide,0,bce,"The enemy side is prevented from using items for the rest of the battle, and the user becomes Dark-type.",EMBARGO
 3030,PRIMEVALCHILL,Primeval Chill,630,0,ICE,Status,100,1,0,AllNearFoes,0,be,"The user inflicts frostbite on all nearby foes. User becomes an Ice-type.",CHILL
+3031,PRIMEVALDESTINYBOND,Primeval Destiny Bond,631,0,GHOST,Status,0,1,0,User,0,,"Attackers against the user suffer recoil for the rest of the battle. User becomes a Ghost-type.",DESTINYBOND
 3036,PRIMEVALMETEORMASH,Primeval Meteor Mash,636,160,STEEL,Physical,100,10,100,NearOther,0,abefj,"The target is obliterated by a meteoric strike, which raises the user's attack.",METEORMASH
 3037,PRIMEVALICEBEAM,Primeval Ice Beam,637,160,ICE,Special,100,10,100,NearOther,0,bef,"The target is struck with an absolute zero beam of energy, frostbiting it.",ICEBEAM
 3038,PRIMEVALROCKTOMB,Primeval Rock Tomb,638,90,ROCK,Physical,100,10,100,AllNearFoes,0,bef,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
@@ -1126,4 +1127,4 @@
 3042,PRIMEVALMETALCLAW,Primeval Metal Claw,642,50,STEEL,Physical,100,35,100,NearOther,0,abef,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
 3043,PRIMEVALSLASH,Primeval Slash,643,100,NORMAL,Physical,100,20,0,NearOther,0,abefp,"The target is attacked with a slash of claws or blades, always critting.",SLASH
 3044,PRIMEVALBRICKBREAK,Primeval Brick Break,644,100,FIGHTING,Physical,100,15,100,NearOther,0,abef,"The user attacks with a swift chop, destroying barriers, and drastically reducing the target's defense.",BRICKBREAK
-3045,PRIMEVALCROSSPOISON,Cross Poison,645,70,POISON,Physical,100,10,10,AllNearFoes,0,abefp,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",
+3045,PRIMEVALCROSSPOISON,Primeval Cross Poison,645,70,POISON,Physical,100,10,10,AllNearFoes,0,abefp,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",

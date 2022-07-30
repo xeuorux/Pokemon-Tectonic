@@ -372,6 +372,7 @@ class PokeBattle_Battler
 		@effects[PBEffects::EmpoweredEndure]     = 0
 		@effects[PBEffects::EmpoweredMoonlight]  = false
 		@effects[PBEffects::EmpoweredLaserFocus] = false
+		@effects[PBEffects::EmpoweredDestinyBond] = false
 		@effects[PBEffects::ExtraTurns] = 0
     end
 end

@@ -381,7 +381,19 @@ class PokeBattle_Battler
         end
       end
       # Move-specific effects after all hits
-      targets.each { |b| move.pbEffectAfterAllHits(user,b) }
+      targets.each { |targetBattler|
+        move.pbEffectAfterAllHits(user,targetBattler)
+        if targetBattler.effects[PBEffects::EmpoweredDestinyBond]
+          next if targetBattler.damageState.unaffected
+          next if !user.takesIndirectDamage?
+          next if user.hasActiveAbility?(:ROCKHEAD)
+          amt = (targetBattler.damageState.totalHPLost/2.0).round
+          amt = 1 if amt<1
+          @battle.pbDisplay(_INTL("{1}'s destiny is bonded with {2}!",user.pbThis,targetBattler.pbThis(true)))
+          user.pbReduceHP(amt,false)
+          user.pbItemHPHealCheck
+        end
+      }
 	  
 	  # Curses about move usage
 	  @battle.curses.each do |curse_policy|

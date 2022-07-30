@@ -449,6 +449,20 @@ class PokeBattle_Move_630 < PokeBattle_Move
 	end
 end
 
+# Empowered Destiny Bond
+class PokeBattle_Move_631 < PokeBattle_Move
+	include EmpoweredMove
+
+	def pbEffectGeneral(user)
+		super
+		user.effects[PBEffects::EmpoweredDestinyBond] = true
+
+		@battle.pbDisplay(_INTL("Attacks against {1} will incur half recoil!",user.pbThis))
+
+		transformType(user,:GHOST)
+	end
+end
+
 ########################################################
 ### DAMAGING MOVES
 ########################################################
