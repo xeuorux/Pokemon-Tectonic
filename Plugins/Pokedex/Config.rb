@@ -30,7 +30,7 @@ MAPS_AVAILABLE_BY_CAP = {
 			211,212,216,	# Shield, Ocean Fishing, Mountain Lake
 			218,230,232,	# Abyssal Chamber, Galarian Fan's House, Biologist's House
 			234,220,228,         # Ranger Recruitment, Prizca Sewers East, Hidden Laboratory
-			223,250				# Prizca Sewers West, Chasm Base Lab
+			223,250,288,				# Prizca Sewers West, Chasm Base Lab, Underground River
 			],
 	70 => [215			# Sky
 			]
