@@ -51,6 +51,7 @@ module PBEffects
 	#===========================================================================
     # These effects apply to the battle (i.e. both sides)
     #===========================================================================
-	Fortune = 13
-	NeutralizingGas = 14
+	Fortune             = 13
+	NeutralizingGas     = 14
+    PuzzleRoom          = 15
 end

@@ -116,7 +116,7 @@ class PokeBattle_Battle
     if @field.weatherDuration==0
       case @field.weather
       when :Sun       then pbDisplay(_INTL("The sunlight faded."))
-      when :Rain      then pbDisplay(_INTL("The rain stopped."))
+      when :Rain      then pbDisplay(_INTL("The rain stpped."))
       when :Sandstorm then pbDisplay(_INTL("The sandstorm subsided."))
       when :Hail      then pbDisplay(_INTL("The hail stopped."))
       when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
@@ -636,6 +636,9 @@ class PokeBattle_Battle
     # Magic Room
     pbEORCountDownFieldEffect(PBEffects::MagicRoom,
        _INTL("Magic Room wore off, and held items' effects returned to normal!"))
+    # Puzzle Room
+    pbEORCountDownFieldEffect(PBEffects::PuzzleRoom,
+       _INTL("Puzzle Room wore off, and Attack and Sp. Atk stats returned to normal!"))
   end
 
   def processTriggersEOR(priority)

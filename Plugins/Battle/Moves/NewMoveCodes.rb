@@ -626,9 +626,23 @@ class PokeBattle_Move_519 < PokeBattle_StatDownMove
 end
 
 #===============================================================================
-# OPEN SLOT
+# For 5 rounds, Pokemon's Attack and Sp. Atk are swapped. (Puzzle Room)
 #===============================================================================
 class PokeBattle_Move_51A < PokeBattle_Move
+	def pbEffectGeneral(user)
+	  if @battle.field.effects[PBEffects::PuzzleRoom]>0
+		@battle.field.effects[PBEffects::PuzzleRoom] = 0
+		@battle.pbDisplay(_INTL("The area returned to normal!"))
+	  else
+		@battle.field.effects[PBEffects::PuzzleRoom] = 5
+		@battle.pbDisplay(_INTL("It created a puzzling area in which Pokémon's Attack and Sp. Atk are swapped!"))
+	  end
+	end
+  
+	def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
+	  return if @battle.field.effects[PBEffects::PuzzleRoom] > 0   # No animation
+	  super
+	end
 end
 
 #===============================================================================
@@ -2311,7 +2325,7 @@ end
 #===============================================================================
 # 50% more damage in hailstorm. (Leap Out.)
 #===============================================================================
-class PokeBattle_Move_570 < PokeBattle_Move
+class PokeBattle_Move_56A < PokeBattle_Move
 	def pbBaseDamageMultiplier(damageMult,user,target)
 		damageMult *= 1.5 if @battle.pbWeather == :Hail
 		return damageMult

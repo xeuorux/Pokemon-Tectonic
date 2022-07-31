@@ -352,7 +352,7 @@ SewerFloor,20
     25,SOLOSIS,17,19
     25,TRUBBISH,17,19
 #-------------------------------
-[123] # Németh Academy
+[123] # Németh College
 Special,20
     1,AERODACTYL,30
     1,AMAURA,10

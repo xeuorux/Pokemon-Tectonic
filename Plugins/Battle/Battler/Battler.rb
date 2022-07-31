@@ -3,52 +3,68 @@ class PokeBattle_Battler
   DEFENSIVE_LOCK_STAT = 95
 
 	def attack
-		if hasActiveItem?(:POWERLOCK)
-			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:ATTACK])
-		else
-			return @attack
-		end
+    if @battle.field.effects[PBEffects::PuzzleRoom] > 0
+      return sp_atk_no_room
+    else
+      return attack_no_room
+    end
 	end
 	
 	def defense
-		if @battle.field.effects[PBEffects::WonderRoom]>0
-			if hasActiveItem?(:WILLLOCK)
-				return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
-			else
-				return @spdef 
-			end
+		if @battle.field.effects[PBEffects::WonderRoom] > 0
+			return sp_def_no_room
 		else
-			if hasActiveItem?(:GUARDLOCK)
-				return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
-			else
-				return @defense
-			end
+			return defense_no_room
 		end
 	end
 	
 	def spatk
-		if hasActiveItem?(:ENERGYLOCK)
-			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK])
-		else
-			return @spatk
-		end
+		if @battle.field.effects[PBEffects::PuzzleRoom] > 0
+      return attack_no_room
+    else
+      return sp_atk_no_room
+    end
 	end
 	
 	def spdef
 		if @battle.field.effects[PBEffects::WonderRoom]>0
-			if hasActiveItem?(:GUARDLOCK)
-				return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
-			else
-				return @defense
-			end
+			return defense_no_room
 		else
-			if hasActiveItem?(:WILLLOCK)
-				return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
-			else
-				return @spdef 
-			end
+			return sp_def_no_room
 		end
 	end
+
+  def attack_no_room
+    if hasActiveItem?(:POWERLOCK)
+      return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:ATTACK])
+    else
+      return @attack
+    end
+  end
+
+  def defense_no_room
+    if hasActiveItem?(:GUARDLOCK)
+      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
+    else
+      return @defense
+    end
+  end
+
+  def sp_atk_no_room
+    if hasActiveItem?(:ENERGYLOCK)
+			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK])
+		else
+			return @spatk
+		end
+  end
+  
+  def sp_def_no_room
+    if hasActiveItem?(:WILLLOCK)
+      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
+    else
+      return @spdef 
+    end
+  end
 
 	def hasActiveAbility?(check_ability, ignore_fainted = false)
 		return false if !abilityActive?(ignore_fainted)
