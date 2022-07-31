@@ -262,3 +262,4 @@
 409,DEVHEXMANIAC,Developer,80,,,,Female,,,[]
 410,DEVMAID2,Developer,80,,,,Female,,,[]
 411,DEVCLERK_M2,Developer,80,,,,Male,,,[]
+412,ABSOL,Wild,100,,,,Wild,,,[]

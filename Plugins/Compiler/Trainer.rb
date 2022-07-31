@@ -128,3 +128,7 @@ class Pokemon
 		end
 	end
 end
+
+class Trainer
+	def wild?;           return GameData::TrainerType.get(@trainer_type).wild?;     end
+end

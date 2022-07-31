@@ -644,7 +644,8 @@ end
         nil, nil, nil, nil, nil, nil, nil, {
         "Male"   => 0, "M" => 0, "0" => 0,
         "Female" => 1, "F" => 1, "1" => 1,
-        "Mixed"  => 2, "X" => 2, "2" => 2, "" => 2
+        "Mixed"  => 2, "X" => 2, "2" => 2, "" => 2,
+        "Wild"   => 3, "W" => 3, "3" => 3
         }, nil, nil, nil]
       )
       type_number = line[0]
@@ -2096,7 +2097,7 @@ module Compiler
         csvQuote(t.battle_BGM),
         csvQuote(t.victory_ME),
         csvQuote(t.intro_ME),
-        ["Male", "Female", "Mixed"][t.gender],
+        ["Male", "Female", "Mixed", "Wild"][t.gender],
         (t.skill_level == t.base_money) ? "" : t.skill_level.to_s,
         csvQuote(t.skill_code),
         policiesString

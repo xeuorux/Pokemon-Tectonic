@@ -3586,3 +3586,7 @@ Pokemon = PYUKUMUKU,65
     AbilityIndex = 0
     Item = LEFTOVERS
     EV = 20,0,20,0,0,10
+#-------------------------------
+[ABSOL,Absol]
+Pokemon = ABSOL,20
+    AbilityIndex = 1

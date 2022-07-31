@@ -190,15 +190,19 @@ class PokeBattle_Battle
         next if side==0 && i==0   # The player's message is shown last
         msg += "\r\n" if msg.length>0
         sent = sendOuts[side][i]
-        case sent.length
-        when 1
-          msg += _INTL("{1} sent out {2}!",t.full_name,@battlers[sent[0]].name)
-        when 2
-          msg += _INTL("{1} sent out {2} and {3}!",t.full_name,
-             @battlers[sent[0]].name,@battlers[sent[1]].name)
-        when 3
-          msg += _INTL("{1} sent out {2}, {3} and {4}!",t.full_name,
-             @battlers[sent[0]].name,@battlers[sent[1]].name,@battlers[sent[2]].name)
+        if !t.wild?
+          case sent.length
+          when 1
+            msg += _INTL("{1} sent out {2}!",t.full_name,@battlers[sent[0]].name)
+          when 2
+            msg += _INTL("{1} sent out {2} and {3}!",t.full_name,
+              @battlers[sent[0]].name,@battlers[sent[1]].name)
+          when 3
+            msg += _INTL("{1} sent out {2}, {3} and {4}!",t.full_name,
+              @battlers[sent[0]].name,@battlers[sent[1]].name,@battlers[sent[2]].name)
+          end
+        else
+          msg += _INTL("The {1} joined in!",t.full_name)
         end
         toSendOut.concat(sent)
       end
