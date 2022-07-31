@@ -40,10 +40,14 @@ class PokeBattle_Battler
 		end
     return if @fainted   # Has already fainted properly
     if showMessage
-      if !boss?
-        @battle.pbDisplayBrief(_INTL("{1} fainted!",pbThis))
+      if boss?
+        if isSpecies?(:PHIONE)
+          @battle.pbDisplayBrief(_INTL("{1} was defeated!",pbThis))
+        else
+          @battle.pbDisplayBrief(_INTL("{1} was destroyed!",pbThis))
+        end
       else
-        @battle.pbDisplayBrief(_INTL("{1} was destroyed!",pbThis))
+        @battle.pbDisplayBrief(_INTL("{1} fainted!",pbThis))
       end
     end
 		PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") if !showMessage
@@ -127,9 +131,9 @@ class PokeBattle_Battler
       @effects[PBEffects::Type3] = nil
     end
     @effects[PBEffects::BurnUp] 		= false
-	@effects[PBEffects::ColdConversion] = false
+	  @effects[PBEffects::ColdConversion] = false
     @effects[PBEffects::Roost]  		= false
-	@battle.scene.pbRefresh()
+  	@battle.scene.pbRefresh()
   end
   
   def pbCheckFormOnWeatherChange
