@@ -367,7 +367,7 @@
 357,TM69,TM69,TM69s,4,10000,"The user tears at the target with blades formed by psychic power. Critical hits land more easily.",3,0,0,PSYCHOCUT
 358,TM70,TM70,TM70s,4,50000,"The user creates a bizarre area in which slower Pokémon get to move first for five turns.",3,0,0,TRICKROOM
 359,TM71,TM71,TM71s,4,50000,"The user creates a bizarre area in which Pokémon's Defense and Sp. Def stats are swapped for five turns.",3,0,0,WONDERROOM
-360,TM72,TM72,TM72s,4,50000,"",3,0,0,PUZZLEROOM
+360,TM72,TM72,TM72s,4,50000,,3,0,0,PUZZLEROOM
 361,TM73,TM73,TM73s,4,6000,"A slashing attack with a poisonous blade that may also poison the target. Critical hits land more easily.",3,0,0,CROSSPOISON
 362,TM74,TM74,TM74s,4,10000,"The user drenches the target in a special poison goo. This move's power is doubled if the target is poisoned.",3,0,0,VENOSHOCK
 363,TM75,TM75,TM75s,4,10000,"The user makes a swift attack on the target's legs, which lowers the target's Speed stat.",3,0,0,LOWSWEEP
