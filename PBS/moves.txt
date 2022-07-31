@@ -1026,7 +1026,7 @@
 962,RANSACK,Ransack,0F1,60,NORMAL,Special,100,25,0,NearOther,0,abef,"The user skillfully blasts the target, then steals their item. Items stolen from wild Pokémon are stored.",
 963,SWARM,Swarm,556,0,BUG,Status,0,5,0,BothSides,0,,"Summons a swarm for five turns, powering up Bug and Dragon-type moves.",
 964,TRAPJAW,Trap Jaw,557,85,GRASS,Physical,100,15,0,NearOther,0,abefi,"Lures an enemy into its jaws, draining 2/3 of damage dealt if they hit the user this turn.",
-965,CAUSTICPUNCH,Caustic Punch,043,60,POISON,Physical,100,20,20,NearOther,0,abefj,"Hits an enemy with an acidic punch with a 20% chance to lower Defense.",POISONJAB
+965,CAUSTICPUNCH,Caustic Punch,0F5,65,POISON,Physical,100,20,0,NearOther,0,abefj,"Hits an enemy with an acidic punch which destroys gems and berries.",POISONJAB
 966,DOLLSTITCH,Doll Stitch,558,0,GHOST,Status,0,10,0,NearOther,0,bc,"Forces the target to make a substitute by turning it into a doll.",
 967,SEVER,Sever,000,90,DARK,Physical,100,10,0,NearOther,0,abefhp,"The user hacks the target with great violence. Critical hits land more easily.",NIGHTSLASH
 968,EVAPORATE,Evaporate,559,0,GHOST,Status,0,5,0,User,1,d,"The user becomes Ghost-type only. Always goes first.",
