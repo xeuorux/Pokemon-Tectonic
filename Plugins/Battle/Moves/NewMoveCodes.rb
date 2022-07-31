@@ -779,7 +779,7 @@ class PokeBattle_Move_521 < PokeBattle_Move
 end
 
 #===============================================================================
-# Target's highest move is drastically reduced. (Dragon Roar)
+# Target's highest move is drastically reduced. (Loom Over)
 #===============================================================================
 class PokeBattle_Move_522 < PokeBattle_TargetMultiStatDownMove
   def pbFailsAgainstTarget?(user,target)
