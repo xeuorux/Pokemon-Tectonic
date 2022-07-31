@@ -72,7 +72,7 @@ class PokeBattle_AI
             targetingSize = 2 if targetingSize > 2
             regularChoices.reject!{|regular_choice| user.moves[regular_choice[0]].pbTarget(user).num_targets != targetingSize}
             PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will not use moves with different targeting from its first move. It's left with the following:")
-            logMoveChoices(user,choices)
+            logMoveChoices(user,regularChoices)
           end
 
           if preferredChoice.nil?
@@ -86,12 +86,14 @@ class PokeBattle_AI
             end
             sortedChoices = regularChoices.sort_by{|choice| -choice[1]}
             preferredChoice = sortedChoices[0]
-            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.moves[preferredChoice[0]].name} is the highest rated of its remaining choices")
+            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.moves[preferredChoice[0]].name}" +
+              "is the highest rated of its remaining choices") if !preferredChoice.nil?
           end
         end
       else
         preferredChoice = guaranteedChoices[0]
-        PBDebug.log("[AI] #{user.pbThis} (#{user.index}) chooses #{user.moves[preferredChoice[0]].name}, since is the first listed among its guaranteed moves")
+        PBDebug.log("[AI] #{user.pbThis} (#{user.index}) chooses #{user.moves[preferredChoice[0]].name}" +
+          ", since is the first listed among its guaranteed moves") if !preferredChoice.nil?
       end
 
       if preferredChoice != nil
@@ -131,7 +133,7 @@ class PokeBattle_AI
     end
 
     user.indexesTargetedThisTurn = []
-    if @battle.commandPhasesThisRound == 0 && move.damagingMove?
+    if @battle.commandPhasesThisRound == 0
       # Set the avatar aggro cursors on the targets of the choice
       targets.each do |target|
         index = target.index

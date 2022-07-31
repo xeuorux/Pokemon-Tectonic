@@ -49,6 +49,7 @@ class PokeBattle_Battle
   # Attack phase
   #=============================================================================
   def pbAttackPhase
+    @messagesBlocked = false
     @scene.pbBeginAttackPhase
     # Reset certain effects
     @battlers.each_with_index do |b,i|

@@ -210,25 +210,23 @@ class PokeBattle_AI
 			score = useMoveIFF ? 99999 : 0
 		end
 
-		# Never use a move that would fail outright
-		if move.pbMoveFailed?(user,[target])
-			echoln("Scoring #{move.name} a 0 due to being predicted to fail entirely")
-			return 0
-		end
-		
-		# Status inducing move and is a status move
-		# Check for specific target failure condition
-		if !target.nil? && move.pbFailsAgainstTarget?(user,target)
-			echoln("Scoring #{move.name} a 0 due to being predicted to fail against the target")
-			return 0
-		end
-
 		# Try very hard not to attack targets which are protected
 		if !target.nil? && target.protected?
 			echoln("Scoring #{move.name} a 1 due to the target being protected this turn")
-			return 1
+			score = 2
 		end
 
+		# Try very hard not to use a move that would fail against the target
+		if !target.nil? && move.pbFailsAgainstTarget?(user,target)
+			echoln("Scoring #{move.name} a 0 due to being predicted to fail against the target")
+			score = 1
+		end
+
+		# Never use a move that would fail outright
+		if move.pbMoveFailed?(user,[target])
+			echoln("Scoring #{move.name} a 0 due to being predicted to fail entirely")
+			score = 0
+		end
 		@battle.messagesBlocked = false
 		
 		return score

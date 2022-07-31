@@ -788,7 +788,7 @@ class PokeBattle_Move_522 < PokeBattle_TargetMultiStatDownMove
       @statArray.push(s.id) if target.pbCanLowerStatStage?(s.id,user,self)
     end
     if @statArray.length==0
-      @battle.pbDisplay(_INTL("{1}'s stats won't go any lower!",target.pbThis))
+      @battle.pbDisplay(_INTL("But it fails, since none of {1}'s stats can be lowered!",target.pbThis))
       return true
     end
     return false
