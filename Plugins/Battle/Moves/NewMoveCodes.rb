@@ -1314,9 +1314,21 @@ class PokeBattle_Move_536 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# OPEN SLOT
+# Frostbites opposing Pokemon that have increased their stats. (Freezing Jealousy)
 #===============================================================================
 class PokeBattle_Move_537 < PokeBattle_Move
+	def pbAdditionalEffect(user,target)
+	  return if target.damageState.substitute
+	  if target.pbCanFrostbite?(user,false,self) && target.statStagesUp?
+		target.pbFrostbite(user)
+	  end
+	end
+	
+	def getScore(score,user,target,skill=100)
+	  score -= 20
+	  score += 50 if target.statStagesUp? && target.pbCanFrostbite?(user,false,self)
+	  return score
+	end
 end
 
 #===============================================================================
