@@ -16,6 +16,7 @@ class PokeBattle_ActiveField
       @effects[PBEffects::HappyHour]       = false
       @effects[PBEffects::IonDeluge]       = false
       @effects[PBEffects::MagicRoom]       = 0
+      @effects[PBEffects::PuzzleRoom]      = 0
       @effects[PBEffects::MudSportField]   = 0
       @effects[PBEffects::PayDay]          = 0
       @effects[PBEffects::TrickRoom]       = 0
