@@ -2,15 +2,6 @@
 class FightMenuDisplay < BattleMenuBase
   attr_reader :extraInfoToggled
 
-  EFFECTIVENESS_COLORS = [
-    Color.new(160,160,160),TEXT_SHADOW_COLOR,   # Light gray, ineffective effective
-     Color.new(133,122,71),TEXT_SHADOW_COLOR,   # Yellow gray, barely effective
-     Color.new(100,100,100),TEXT_SHADOW_COLOR,   # Gray, not very effective
-     TEXT_BASE_COLOR,TEXT_SHADOW_COLOR,                # Black, neutral
-     Color.new(132,65,21),TEXT_SHADOW_COLOR,       # Orange-red, super effective
-     Color.new(140,3,69),TEXT_SHADOW_COLOR,       # Bright purple, hyper effective
-  ]
-
   def initialize(viewport,z)
     super(viewport)
     self.x = 0
@@ -140,6 +131,8 @@ class FightMenuDisplay < BattleMenuBase
     #@sprites["extraReminder"].visible = !@extraInfoToggled && @visible if @sprites["extraReminder"]
   end
 
+  EFFECTIVENESS_SHADOW_COLOR = Color.new(160, 160, 168)
+
   def refreshMoveData(move)
     # Write PP and type of the selected move
     if !USE_GRAPHICS
@@ -186,10 +179,18 @@ class FightMenuDisplay < BattleMenuBase
           maxEffectiveness = effectiveness if effectiveness > maxEffectiveness
         end
 
-        effectivenessCategory = maxEffectiveness == 0 ? 0 : Math.log(maxEffectiveness * 4 / Effectiveness::NORMAL_EFFECTIVE, 2) + 1
+        case maxEffectiveness/Effectiveness::NORMAL_EFFECTIVE.to_f
+        when 0          then effectivenessCategory = 0
+        when 0.25       then effectivenessCategory = 1
+        when 0.5 	      then effectivenessCategory = 2
+        when 1 		    	then effectivenessCategory = 3
+        when 2 			    then effectivenessCategory = 4
+        when 4 			    then effectivenessCategory = 5
+        end
+
         effectivenessDescription = [_INTL("Ineffective"),_INTL("Barely"),_INTL("Not Very"),_INTL("Neutral"),_INTL("Super"),_INTL("Hyper"),_INTL("Hyper")][effectivenessCategory]
         effectivenessTextPos = [effectivenessDescription,effectivenessTextX,effectivenessTextY,2,
-          EFFECTIVENESS_COLORS[effectivenessCategory*2],EFFECTIVENESS_COLORS[effectivenessCategory*2+1]]
+          EFFECTIVENESS_COLORS[effectivenessCategory],EFFECTIVENESS_SHADOW_COLOR]
       rescue
         effectivenessTextPos = ["ERROR",effectivenessTextX,44,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
       end

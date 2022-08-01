@@ -19,12 +19,7 @@ class PokeBattle_Move
         next if (side==0 && b.opposes?(user)) || (side==1 && !b.opposes?(user))
         oldHP = b.hp+b.damageState.hpLost
         PBDebug.log("[Move damage] #{b.pbThis} lost #{b.damageState.hpLost} HP (#{oldHP}=>#{b.hp})")
-        effectiveness = 0
-        if Effectiveness.resistant?(b.damageState.typeMod);          effectiveness = 1
-        elsif Effectiveness.super_effective?(b.damageState.typeMod); effectiveness = 2
-        end
-		    effectiveness = -1 if Effectiveness.ineffective?(b.damageState.typeMod)
-        effectiveness = 4 if Effectiveness.hyper_effective?(b.damageState.typeMod)
+        effectiveness = b.damageState.typeMod / Effectiveness::NORMAL_EFFECTIVE
         animArray.push([b,oldHP,effectiveness])
       end
       if animArray.length>0

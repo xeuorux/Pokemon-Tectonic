@@ -1,0 +1,16 @@
+
+INEFFECTIVE_COLOR           = Color.new(180,180,200) # Light gray
+BARELY_EFFECTIVE_COLOR      = Color.new(133,122,71) # Yellow gray
+NOT_VERY_EFFECTIVE_COLOR    = Color.new(100,100,110) # Gray
+NEUTRAL_COLOR               = Color.new(80, 80, 88) # Black
+SUPER_EFFECTIVE_COLOR       = Color.new(220,40,40) # Orange-red
+HYPER_EFFECTIVE_COLOR       = Color.new(250,50,250) # Bright purple
+
+EFFECTIVENESS_COLORS = [
+    INEFFECTIVE_COLOR,
+    BARELY_EFFECTIVE_COLOR,
+    NOT_VERY_EFFECTIVE_COLOR,
+    NEUTRAL_COLOR,
+    SUPER_EFFECTIVE_COLOR,
+    HYPER_EFFECTIVE_COLOR,
+]
