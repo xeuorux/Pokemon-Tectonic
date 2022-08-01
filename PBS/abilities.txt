@@ -417,6 +417,7 @@
 416,BITTER,Bitter,"Its attacks are critical against frostbitten targets."
 417,STABILITY,Stability,"Cannot be Poisoned, Burned, or Frostbitten."
 418,PUZZLINGAURA,Puzzling Aura,"Transforms the field to Puzzle Room upon for 5 turns on entering the battle."
+419,DIREDIVERSION,Dire Diversion,"It can avoid being knocked out by sacrificing its held item."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

@@ -96,6 +96,10 @@ class PokeBattle_Move
         damage -= 1
 		    damageAdjusted = true
 		    target.effects[PBEffects::EmpoweredEndure] -= 1
+      elsif target.hasActiveAbility?(:DIREDIVERSION) && !target.item.nil? && target.itemActive? && !@battle.moldBreaker
+        target.damageState.direDiversion = true
+        damage -= 1
+        damageAdjusted = true
       elsif damage==target.totalhp
         if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
           target.damageState.sturdy = true
@@ -208,6 +212,9 @@ class PokeBattle_Move
     elsif target.damageState.focusBand
       @battle.pbCommonAnimation("UseItem",target)
       @battle.pbDisplay(_INTL("{1} hung on using its Focus Band!",target.pbThis))
+    elsif target.damageState.direDiversion
+      @battle.pbDisplay(_INTL("{1} blocked the hit with its item! It barely hung on!",target.pbThis))
+      target.pbConsumeItem
     end
   end
   
