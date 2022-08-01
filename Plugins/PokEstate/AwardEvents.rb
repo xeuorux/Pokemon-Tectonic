@@ -72,17 +72,17 @@ SMALL_ROUTES =
     136, # Casaba Villa
     138, # Scenic Trail
     30, # Windy Way
-    051, # Foreclosed Tunnel
+    51, # Foreclosed Tunnel
     26, # Bluepoint Grotto
 
-    059, # Mainland Dock
-    060, # Shipping Lane
+    59, # Mainland Dock
+    60, # Shipping Lane
     130, # Canal Desert
 
-    003, # The Shift
-    055, # Floral Rest
-    011, # Eleig River Crossing
-    007, # Wet Walkways
+    3, # The Shift
+    55, # Floral Rest
+    11, # Eleig River Crossing
+    7, # Wet Walkways
 
     186, # Frostflow Farms
     216, # Highland Lake
@@ -97,7 +97,7 @@ SMALL_ROUTES =
 BIG_ROUTES = 
 [
     38, # Bluepoint Beach
-    053, # The Tangle
+    53, # The Tangle
     301, # County Park
     185, # Eleig Stretch
     211, # Split Peaks
