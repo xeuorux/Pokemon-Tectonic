@@ -131,11 +131,11 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
     when "ff"
       facewindow.dispose if facewindow
       facewindow = FaceWindowVX.new(param)
-	when "i"
+	  when "i"
       facewindow.dispose if facewindow
-	  icon_location = GameData::Item.icon_filename(param)
+	    icon_location = GameData::Item.icon_filename(param)
       facewindow = PictureWindow.new(icon_location)
-	  facewindow.visible = false
+	    facewindow.visible = false
     when "ch"
       cmds = param.clone
       cmdvariable = pbCsvPosInt!(cmds)
@@ -169,14 +169,15 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   msgwindow.text = text
   Graphics.frame_reset if Graphics.frame_rate>40
   loop do
-    if signWaitCount>0
+    if signWaitCount > 0
       signWaitCount -= 1
+      signWaitCount = 0 if Input.trigger?(Input::USE)
       if atTop
         msgwindow.y = -msgwindow.height*signWaitCount/signWaitTime
-		facewindow.y = -facewindow.height*signWaitCount/signWaitTime if facewindow
+		    facewindow.y = -facewindow.height*signWaitCount/signWaitTime if facewindow
       else
         msgwindow.y = Graphics.height-msgwindow.height*(signWaitTime-signWaitCount)/signWaitTime
-		facewindow.y = Graphics.height-facewindow.height*(signWaitTime-signWaitCount)/signWaitTime if facewindow
+		    facewindow.y = Graphics.height-facewindow.height*(signWaitTime-signWaitCount)/signWaitTime if facewindow
       end
     end
     for i in 0...controls.length
@@ -191,24 +192,24 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
         pbPositionNearMsgWindow(facewindow,msgwindow,:left)
         facewindow.viewport = msgwindow.viewport
         facewindow.z        = msgwindow.z
-	  when "i"
+	    when "i"
         facewindow.dispose if facewindow
         icon_location = GameData::Item.icon_filename(param)
         facewindow = PictureWindow.new(icon_location)
         pbPositionNearMsgWindow(facewindow,msgwindow,:left)
         facewindow.viewport = msgwindow.viewport
         facewindow.z        = msgwindow.z
-		facewindow.x = 0
-		if signWaitCount>0
-			if atTop
-				facewindow.y = -facewindow.height*signWaitCount/signWaitTime if facewindow
-			else
-				facewindow.y = Graphics.height-facewindow.height*(signWaitTime-signWaitCount)/signWaitTime if facewindow
-			end
-		end
-	  when "or"
-	    msgwindow.x			= 60
-		msgwindow.width		-= 60
+		    facewindow.x = 0
+        if signWaitCount>0
+          if atTop
+            facewindow.y = -facewindow.height*signWaitCount/signWaitTime if facewindow
+          else
+            facewindow.y = Graphics.height-facewindow.height*(signWaitTime-signWaitCount)/signWaitTime if facewindow
+          end
+        end
+	    when "or"
+        msgwindow.x			= 60
+        msgwindow.width		-= 60
       when "ff"
         facewindow.dispose if facewindow
         facewindow = FaceWindowVX.new(param)
