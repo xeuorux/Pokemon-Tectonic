@@ -1058,7 +1058,8 @@
 994,PUZZLEROOM,Puzzle Room,51A,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates a puzzling area in which Pokémon's Attack and Sp. Atk are swapped.",MAGICROOM
 995,SHIVER,Shiver,403,0,GHOST,Status,100,15,0,NearOther,0,bce,"The user drains heat from the air around the target, causing it to be frostbitten.",
 996,FRIGIDJEALOUSY,Frigid Jealousy,537,70,ICE,Special,100,15,100,AllNearFoes,0,bef,"Attacks with emotion from jealousy. All opposing Pokémon with stat boosts get frostbitten.",
-997,CORECOLLAPSE,Core Collapse,0FG,200,PSYCHIC,Physical,100,10,0,AllNearOthers,1,bef,"The user lets go. This move always goes first. The user also takes 100% recoil.",EXPLOSION
+997,CORECOLLAPSE,Core Collapse,56B,200,PSYCHIC,Physical,100,10,0,AllNearOthers,1,bef,"The user lets go. This move always goes first. The user also takes 100% recoil.",EXPLOSION
+828,PATTERNRELEASE,Pattern Release,56C,30,PSYCHIC,Physical,100,10,0,RandomNearFoe,0,abef,"Unveiling its ears, the released psychic frenzy causes the user to attack 3-5 times for three turns.",FURYSWIPES
 1500,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered.",
 1501,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch.",
 1502,CONFUSION,Confusion,401,50,PSYCHIC,Special,100,25,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It may also leave the target flustered.",

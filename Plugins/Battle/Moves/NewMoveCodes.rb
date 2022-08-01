@@ -2347,8 +2347,23 @@ end
 #===============================================================================
 # 100% Recoil Move
 #===============================================================================
-class PokeBattle_Move_0FG < PokeBattle_RecoilMove
+class PokeBattle_Move_56B < PokeBattle_RecoilMove
   def pbRecoilDamage(user,target)
     return (target.damageState.totalHPLost/1.0).round
   end
 end
+
+#===============================================================================
+# Hits 3-5 times, for three turns in a row. (Pattern Release)
+#===============================================================================
+class PokeBattle_Move_56C < PokeBattle_Move_55F
+	def multiHitMove?; return true; end
+  
+	def pbNumHits(user,targets)
+	  hitChances = [3,3,3,4,4,5]
+	  r = @battle.pbRandom(hitChances.length)
+	  r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
+	  return hitChances[r]
+	end
+end
+  
