@@ -106,7 +106,7 @@ class StyleValueScene
 	# Place the "reset all" button
 	red = Color.new(250,120,120)
 	resetAndConfirmY = 296
-	textpos.push([_INTL("Reset"),styleValueLabelX-52,resetAndConfirmY,0,@index == 6 ? red : base,shadow])
+	textpos.push([_INTL("Free All"),styleValueLabelX-52,resetAndConfirmY,0,@index == 6 ? red : base,shadow])
 	textpos.push([_INTL("Confirm"),styleValueLabelX-52,resetAndConfirmY+40,0,@index == 7 ? red : base,shadow])
 	
 	# Place the pokemon's final resultant stats
