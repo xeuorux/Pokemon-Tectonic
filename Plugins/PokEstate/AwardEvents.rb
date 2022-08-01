@@ -102,3 +102,31 @@ BIG_ROUTES =
     185, # Eleig Stretch
     211, # Split Peaks
 ]
+
+PokEstate::LoadDataDependentAwards += proc {   
+    SMALL_ROUTES.each do |routeID|
+        routeName = pbGetMapNameFromId(routeID)
+        id = ("ROUTE" + routeName + "AWARD").to_sym
+        PokEstate::GrantAwards.add(id,
+            proc { |pokedex|
+                if pokedex.allOwnedFromRoute?(routeID)
+                    next [:NUGGET,_INTL("all species on #{routeName}")]
+                end
+                next
+            }
+        )
+    end
+
+    BIG_ROUTES.each do |routeID|
+        routeName = pbGetMapNameFromId(routeID)
+        id = ("ROUTE" + routeName + "AWARD").to_sym
+        PokEstate::GrantAwards.add(id,
+            proc { |pokedex|
+                if pokedex.allOwnedFromRoute?(routeID)
+                    next [:RELICGOLD,_INTL("all species on #{routeName}")]
+                end
+                next
+            }
+        )
+    end
+}

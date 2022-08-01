@@ -21,6 +21,19 @@ class Player < Trainer
             @ownedOfType = {}
         end
 
+        def allOwnedFromRoute?(routeMapID)
+            encounterDataOnRoute = GameData::Encounter.get(routeMapID,$PokemonGlobal.encounter_version)
+            encounterDataOnRoute.types.each do |key,slots|
+                next if !slots
+                slots.each { |slot|
+                    species_data = GameData::Species.get(slot[1])
+                    next if species_data.form != 0
+                    return false if !@owned[species_data.species]
+                }
+            end
+            return true
+        end
+
         def ownedFromGeneration(generationNumber)
             return @ownedFromGeneration[generationNumber] if @ownedFromGeneration.has_key?(generationNumber)
             count = 0

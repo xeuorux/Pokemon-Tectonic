@@ -170,16 +170,41 @@ class PokEstate
 				else
 					pbMessage(_INTL("You've earned #{newAwards.length} new PokéDex completion rewards!"))
 				end
-				newAwards.each do |newAwardInfo|
-					awardReward = newAwardInfo[0]
-					awardDescription = newAwardInfo[1]
-					pbMessage(_INTL("For collecting #{awardDescription}, please take this."))
-					if awardReward.is_a?(Array)
-						pbReceiveItem(awardReward[0],awardReward[1])
-					else
-						pbReceiveItem(awardReward)
+				if newAwards.length < 5
+					newAwards.each do |newAwardInfo|
+						awardReward = newAwardInfo[0]
+						awardDescription = newAwardInfo[1]
+						pbMessage(_INTL("For collecting #{awardDescription}, please take this."))
+						if awardReward.is_a?(Array)
+							pbReceiveItem(awardReward[0],awardReward[1])
+						else
+							pbReceiveItem(awardReward)
+						end
+						awardsGranted.push(newAwardInfo[2])
 					end
-					awardsGranted.push(newAwardInfo[2])
+				else
+					pbMessage(_INTL("That's so many! I'll just give you all the rewards at once."))
+					itemsToGrantHash = {}
+					newAwards.each do |newAwardInfo|
+						awardReward = newAwardInfo[0]
+						awardDescription = newAwardInfo[1]
+						itemCount = 1
+						if awardReward.is_a?(Array)
+							itemGrant = awardReward[0]
+							itemCount = awardReward[1]
+						else
+							itemGrant = awardReward
+						end
+						awardsGranted.push(newAwardInfo[2])
+						if !itemsToGrantHash.has_key?(itemGrant)
+							itemsToGrantHash[itemGrant] = itemCount
+						else
+							itemsToGrantHash[itemGrant] += itemCount
+						end
+					end
+					itemsToGrantHash.each do |item,count|
+						pbReceiveItem(item,count)
+					end
 				end
 			end
 		end

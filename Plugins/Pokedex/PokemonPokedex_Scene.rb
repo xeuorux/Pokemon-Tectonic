@@ -383,16 +383,24 @@ class PokemonPokedex_Scene
 		  @sprites["pokedex"].refresh
 		  pbRefresh
 		elsif Input.pressex?(0x47) && $DEBUG # G, for Get
-		  pbAddPokemonSilent(@sprites["pokedex"].species,$game_variables[26])
-		  pbMessage("Added #{@sprites["pokedex"].species}")
+			pbAddPokemonSilent(@sprites["pokedex"].species,$game_variables[26])
+			pbMessage("Added #{@sprites["pokedex"].species}")
 		elsif Input.pressex?(0x42) && $DEBUG # B, for Battle
-		  pbWildBattle(@sprites["pokedex"].species, $game_variables[26])
-		elsif Input.pressex?(0x4F) && $DEBUG # O, for bOss
-		  begin
-			pbSmallAvatarBattle([@sprites["pokedex"].species.to_sym, $game_variables[26]])
-		  rescue
-			pbMessage(_INTL("Unable to start Avatar battle."))
-		  end
+			if !Input.press?(Input::CTRL)
+		  		pbWildBattle(@sprites["pokedex"].species, $game_variables[26])
+			else
+				begin
+					pbSmallAvatarBattle([@sprites["pokedex"].species.to_sym, $game_variables[26]])
+				rescue
+					pbMessage(_INTL("Unable to start Avatar battle."))
+				end
+			end
+		elsif Input.pressex?(0x4F) && $DEBUG # O, for Own
+			@dexlist.each do |dexlist_entry|
+				entrySpecies = dexlist_entry[0]
+				$Trainer.pokedex.set_owned(entrySpecies, false)
+			end
+			pbMessage("Marked as owned every species on current list.")
 		elsif Input.pressex?(0x50) && $DEBUG # P, for Print
 			echoln("Printing the entirety of the current dex list.")
 			 @dexlist.each do |dexEntry|
@@ -1088,7 +1096,6 @@ class PokemonPokedex_Scene
 					
 					levelThreshold = currentPrevo[2]
 					if levelThreshold <= levelIntAttempt
-						#echoln("Adding #{currentPrevo[0]} to the checks for #{item[0]} based on level evo.")
 						speciesToCheckLocationsFor.push(currentPrevo[0])
 					else
 						break
@@ -1106,7 +1113,6 @@ class PokemonPokedex_Scene
 					end
 					if itemAvailable
 						speciesToCheckLocationsFor.push(currentPrevo[0])
-						#echoln("Adding #{currentPrevo[0]} to the checks for #{item[0]} based on item evo.") if itemAvailable
 					else
 						break
 					end
