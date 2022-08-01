@@ -418,6 +418,43 @@ class PokeBattle_Battle
         end
       end
     end
+    # Damage from frostbite
+    priority.each do |b|
+	    next if b.fainted?
+      next if !b.frostbitten?
+	    if b.hasActiveAbility?(:FROSTHEAL)
+        if b.canHeal?
+          anim_name = GameData::Status.get(:FREEZE).animation
+          pbCommonAnimation(anim_name, b) if anim_name
+          recovery = b.totalhp/8
+          recovery /= 4 if b.boss?
+          if !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages == 0
+            pbShowAbilitySplash(b)
+            b.pbRecoverHP(recovery)
+            if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+              pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+            else
+              pbDisplay(_INTL("{1}'s {2} restored its HP.",b.pbThis,b.abilityName))
+            end
+            pbHideAbilitySplash(b)
+          else
+            b.pbRecoverHP(recovery)
+          end
+        end
+	    elsif b.takesIndirectDamage?
+        oldHP = b.hp
+        dmg = b.totalhp/8
+        dmg = (dmg/4.0).round if b.boss?
+        dmg *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
+        b.pbContinueStatus(:FROSTBITE) { b.pbReduceHP(dmg,false) }
+        b.pbItemHPHealCheck
+        b.pbAbilitiesOnDamageTaken(oldHP)
+        if b.fainted?
+          b.pbFaint 
+          triggerDOTDeathDialogue(b)
+        end
+      end
+    end
     # Damage from fluster or mystified
     priority.each do |b|
       selfHitBasePower = (20 + b.level * (3.0/5.0))

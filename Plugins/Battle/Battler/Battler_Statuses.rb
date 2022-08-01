@@ -548,6 +548,8 @@ class PokeBattle_Battler
 					@battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
 				when :BURN
 					@battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis))
+				when :FROSTBITE
+					@battle.pbDisplay(_INTL("{1} was hurt by frostbite!", pbThis))
 				when :FLUSTERED
 					@battle.pbDisplay(_INTL("{1} was flustered, and attacked itself!", pbThis))
 				when :MYSTIFIED
