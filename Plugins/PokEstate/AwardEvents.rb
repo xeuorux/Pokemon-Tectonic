@@ -63,3 +63,42 @@ PokEstate::LoadDataDependentAwards += proc {
         end
     end
 }
+
+##############################################
+# ROUTE REWARDS
+##############################################
+SMALL_ROUTES =
+[
+    136, # Casaba Villa
+    138, # Scenic Trail
+    30, # Windy Way
+    051, # Foreclosed Tunnel
+    26, # Bluepoint Grotto
+
+    059, # Mainland Dock
+    060, # Shipping Lane
+    130, # Canal Desert
+
+    003, # The Shift
+    055, # Floral Rest
+    011, # Eleig River Crossing
+    007, # Wet Walkways
+
+    186, # Frostflow Farms
+    216, # Highland Lake
+
+    193, # Volcanic Shore
+    196, # Boiling Cave
+
+    288, # Underground River
+    218, # Abyssal Cavern
+]
+
+BIG_ROUTES = 
+[
+    38, # Bluepoint Beach
+    053, # The Tangle
+    301, # County Park
+    185, # Eleig Stretch
+    211, # Split Peaks
+]
