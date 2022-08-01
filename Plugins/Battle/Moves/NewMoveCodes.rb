@@ -2343,3 +2343,12 @@ class PokeBattle_Move_56A < PokeBattle_Move
 		return damageMult
 	end
 end
+
+#===============================================================================
+# 100% Recoil Move
+#===============================================================================
+class PokeBattle_Move_0FG < PokeBattle_RecoilMove
+  def pbRecoilDamage(user,target)
+    return (target.damageState.totalHPLost/1.0).round
+  end
+end
