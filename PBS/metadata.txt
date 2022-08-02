@@ -1558,3 +1558,11 @@ ShowArea = false
 Bicycle = true
 BattleBack = wcave
 Environment = Cave
+#-------------------------------
+[199]
+# Xerneas's Chamber
+Outdoor = false
+ShowArea = false
+Bicycle = true
+BattleBack = wcave
+Environment = Cave
