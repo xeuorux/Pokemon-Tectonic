@@ -476,7 +476,7 @@ class PokeBattle_AI
     end
 
 	  # Switch if previously hit hard by a super effective move
-    if !shouldSwitch && battler.turnCount > 1
+    if !shouldSwitch && battler.turnCount > 1 && !policies.include?(:PROACTIVE_MATCHUP_SWAPPER)
       if !moveType.nil?
         typeMod = pbCalcTypeMod(moveType,target,battler)
         if Effectiveness.super_effective?(typeMod)
