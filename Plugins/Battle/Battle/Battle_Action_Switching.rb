@@ -222,6 +222,7 @@ class PokeBattle_Battle
         if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] >= 2
           battler.pbPoison(nil,_INTL("{1} was poisoned by the poison spikes!",battler.pbThis))
         else
+          oldHP = battler.hp
           battler.pbReduceHP(battler.totalhp/16,false)
           pbDisplay(_INTL("{1} was hurt by the thin layer of poison spikes!",battler.pbThis))
           battler.pbItemHPHealCheck
@@ -242,6 +243,7 @@ class PokeBattle_Battle
         if battler.pbOwnSide.effects[PBEffects::FlameSpikes] >= 2
           battler.pbBurn(nil,_INTL("{1} was burned by the flame spikes!",battler.pbThis))
         else
+          oldHP = battler.hp
           battler.pbReduceHP(battler.totalhp/16,false)
           pbDisplay(_INTL("{1} was hurt by the thin layer of flame spikes!",battler.pbThis))
           battler.pbItemHPHealCheck
@@ -262,6 +264,7 @@ class PokeBattle_Battle
         if battler.pbOwnSide.effects[PBEffects::FrostSpikes] >= 2
           battler.pbFrostbite(nil,_INTL("{1} was frostbitten by the frost spikes!",battler.pbThis))
         else
+          oldHP = battler.hp
           battler.pbReduceHP(battler.totalhp/16,false)
           pbDisplay(_INTL("{1} was hurt by the thin layer of frost spikes!",battler.pbThis))
           battler.pbItemHPHealCheck
