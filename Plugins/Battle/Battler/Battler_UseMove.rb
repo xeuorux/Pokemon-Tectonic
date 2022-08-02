@@ -300,6 +300,7 @@ class PokeBattle_Battler
       end
       # Get the number of hits
       numHits = move.pbNumHits(user,targets)
+      numHits *= 2 if user.effects[PBEffects::VolleyStance]
       # Process each hit in turn
       realNumHits = 0
       for i in 0...numHits

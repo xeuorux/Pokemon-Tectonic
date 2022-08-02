@@ -1159,6 +1159,14 @@ MapPosition = 0,18,13
 BattleBack = cave2
 Environment = Volcano
 #-------------------------------
+[199]
+# Xerneas's Chamber
+Outdoor = false
+ShowArea = false
+Bicycle = true
+BattleBack = wcave
+Environment = Cave
+#-------------------------------
 [211]
 # Split Peaks
 Outdoor = true
@@ -1553,14 +1561,6 @@ Environment = Grass
 #-------------------------------
 [303]
 # Zygarde's Chamber
-Outdoor = false
-ShowArea = false
-Bicycle = true
-BattleBack = wcave
-Environment = Cave
-#-------------------------------
-[199]
-# Xerneas's Chamber
 Outdoor = false
 ShowArea = false
 Bicycle = true

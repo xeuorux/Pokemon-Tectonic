@@ -2367,3 +2367,20 @@ class PokeBattle_Move_56C < PokeBattle_Move_55F
 	end
 end
   
+#===============================================================================
+# Future attacks hits twice as many times (Volley Stance)
+#===============================================================================
+class PokeBattle_Move_56D < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+	  if user.effects[PBEffects::VolleyStance]
+		@battle.pbDisplay(_INTL("But it failed!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectGeneral(user)
+	  user.effects[PBEffects::VolleyStance] = true
+	  @battle.pbDisplay(_INTL("{1} takes a stance to begin bombardment!",user.pbThis))
+	end
+end

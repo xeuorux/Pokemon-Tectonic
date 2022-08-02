@@ -40,6 +40,8 @@ module PBEffects
 	EmpoweredEndure		= 146
 	EmpoweredLaserFocus = 147
     EmpoweredDestinyBond= 148
+
+    VolleyStance        = 149
 	
 	#===========================================================================
     # These effects apply to a side
