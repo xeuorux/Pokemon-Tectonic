@@ -61,10 +61,10 @@ class PokeBattle_Battle
         b.effects[PBEffects::Grudge]      = false
       end
       b.effects[PBEffects::Rage] = false if !pbChoseMoveFunctionCode?(i,"093")   # Rage
-	  b.effects[PBEffects::Enlightened] = false if !pbChoseMoveFunctionCode?(i,"515")   # Rage
-	  if @choices[i][0] == :UseMove && @choices[i][1]
-		b.effects[PBEffects::Sentry] = @choices[i][2].statusMove?
-	  end
+	    b.effects[PBEffects::Enlightened] = false if !pbChoseMoveFunctionCode?(i,"515")   # Rage
+      if @choices[i][0] == :UseMove && @choices[i][1]
+      b.effects[PBEffects::Sentry] = @choices[i][2].statusMove?
+      end
     end
     PBDebug.log("")
     # Calculate move order for this round
@@ -107,10 +107,11 @@ class PokeBattle_Battle
     return if @decision>0
     pbAttackPhaseMegaEvolution
     
-	  pbPriority.each do |b|
-        next if b.fainted?
-        next unless @choices[b.index][0]==:UseMove
-        b.pbProcessTurn(@choices[b.index])
+	  pbPriority.each do |battler|
+        next if battler.fainted?
+        next unless @choices[battler.index][0]==:UseMove
+        next if @commandPhasesThisRound - 1 > battler.extraMovesPerTurn
+        b.pbProcessTurn(@choices[battler.index])
       end
   end
 end

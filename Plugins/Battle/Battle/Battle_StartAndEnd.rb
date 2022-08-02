@@ -272,6 +272,9 @@ class PokeBattle_Battle
       # Command phase
       PBDebug.logonerr { pbCommandPhase }
       break if @decision > 0
+
+      @commandPhasesThisRound = 1
+
       # Attack phase
       PBDebug.logonerr { pbAttackPhase }
       break if @decision > 0
@@ -283,8 +286,6 @@ class PokeBattle_Battle
       end
 
       echoln("There should be #{numExtraPhasesThisTurn} extra command attack phases this turn.")
-
-      @commandPhasesThisRound = 1
       
       # Boss phases after main phases
       if numExtraPhasesThisTurn > 0
