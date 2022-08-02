@@ -7906,7 +7906,7 @@ BattlerEnemyX = 4
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = MAGMAR,Level,2
+Evolutions = MAGMAR,Level,22
 #-------------------------------
 [241]
 Name = Miltank
