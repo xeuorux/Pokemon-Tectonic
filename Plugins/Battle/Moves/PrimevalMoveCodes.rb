@@ -432,6 +432,8 @@ class PokeBattle_Move_629 < PokeBattle_Move
 		user.pbOpposingSide.effects[PBEffects::EmpoweredEmbargo] = true
 		@battle.pbDisplay(_INTL("{1} and the rest of it's team can no longer use items!",
 			user.pbOpposingTeam(true)))
+
+		transformType(user,:DARK)
 	end
 end
 
