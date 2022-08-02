@@ -3590,3 +3590,12 @@ Pokemon = PYUKUMUKU,65
 [ABSOL,Absol]
 Pokemon = ABSOL,20
     AbilityIndex = 1
+#-------------------------------
+[BUGCATCHER_F,Lovina]
+Pokemon = DEWPIDER,27
+    AbilityIndex = 0
+Pokemon = GFARFETCHD,28
+    AbilityIndex = 0
+    Item = FIGHTINGGEM
+Pokemon = ALCREMIE,27
+    AbilityIndex = 0
