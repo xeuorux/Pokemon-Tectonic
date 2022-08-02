@@ -3057,6 +3057,40 @@ Pokemon = DECEAT,55
     AbilityIndex = 0
 #-------------------------------
 [TRAINER_Sang,Sang]
+Pokemon = EXPLOUD,47
+    Name = Egret Ash
+    Gender = female
+    Moves = HYPERVOICE,FLAMETHROWER,ICEBEAM,SHADOWBALL
+    AbilityIndex = 1
+    Item = NORMALGEM
+Pokemon = ALAKAZAM,47
+    Name = Ibis Veil
+    Gender = male
+    Moves = TELEPORT,PSYCHIC,DAZZLINGGLEAM,CALMMIND
+    AbilityIndex = 1
+Pokemon = PRIMARINA,46
+    Name = Hawk Doll
+    Gender = female
+    Moves = SPARKLINGARIA,ENCHANTINGSONG,MENDINGSPRING,HYPERVOICE
+    AbilityIndex = 0
+Pokemon = KROOKODILE,46
+    Name = Stork Saw
+    Gender = male
+    Moves = EARTHQUAKE,CRUNCH,STAREDOWN,BULKUP
+    AbilityIndex = 0
+Pokemon = SCARAPACE,45
+    Name = Wren Glass
+    Gender = female
+    Moves = HUNTDOWN,STORMTHROW,XSCISSOR,BODYSLAM
+    AbilityIndex = 0
+Pokemon = KOMMOO,46
+    Name = Dove Abyss
+    Gender = male
+    Moves = CLANGINGSCALES,OUTRAGE,BODYPRESS,AURASPHERE
+    AbilityIndex = 0
+    Item = EJECTPACK
+#-------------------------------
+[TRAINER_Sang,Sang,1]
 Policies = CURSE_PERISH_SONGED
 Pokemon = EXPLOUD,47
     Name = Egret Ash
