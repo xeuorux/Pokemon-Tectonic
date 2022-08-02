@@ -111,7 +111,7 @@ class PokeBattle_Battle
         next if battler.fainted?
         next unless @choices[battler.index][0]==:UseMove
         next if @commandPhasesThisRound - 1 > battler.extraMovesPerTurn
-        b.pbProcessTurn(@choices[battler.index])
+        battler.pbProcessTurn(@choices[battler.index])
       end
   end
 end
