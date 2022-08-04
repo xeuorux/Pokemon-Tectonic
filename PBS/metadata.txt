@@ -21,14 +21,13 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = false
-MapPosition = 0,13,12
 #-------------------------------
 [003]
 # The Shift
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,9
+MapPosition = 0,13,12
 BattleBack = field
 Environment = TallGrass
 #-------------------------------
@@ -37,7 +36,6 @@ Environment = TallGrass
 Outdoor = false
 ShowArea = false
 Bicycle = true
-MapPosition = 0,13,12
 BattleBack = indoor1
 Environment = None
 #-------------------------------
@@ -54,8 +52,9 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,7
+MapPosition = 0,12,8
 BattleBack = city
+MapSize = 2,1100
 Environment = None
 #-------------------------------
 [007]
@@ -63,7 +62,7 @@ Environment = None
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,8
+MapPosition = 0,7,10
 BattleBack = forest
 MapSize = 2,11
 Environment = TallGrass
@@ -73,8 +72,9 @@ Environment = TallGrass
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,12,9
+MapPosition = 0,4,11
 BattleBack = forest
+MapSize = 2,1100
 Environment = TallGrass
 #-------------------------------
 [009]
@@ -82,7 +82,6 @@ Environment = TallGrass
 Outdoor = false
 ShowArea = false
 Bicycle = false
-MapPosition = 0,14,10
 BattleBack = indoor3
 Environment = None
 #-------------------------------
@@ -91,7 +90,6 @@ Environment = None
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,15,8
 BattleBack = rocky
 Environment = Rock
 #-------------------------------
@@ -100,7 +98,7 @@ Environment = Rock
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,15,6
+MapPosition = 0,10,6
 BattleBack = forest
 Environment = Forest
 #-------------------------------
@@ -110,14 +108,12 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 37,35,11
-MapPosition = 0,14,10
 #-------------------------------
 [015]
 # LuxTech Mart
 Outdoor = false
 ShowArea = false
 Bicycle = false
-MapPosition = 0,13,10
 #-------------------------------
 [016]
 # LuxTech Center
@@ -125,14 +121,12 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 6,25,28
-MapPosition = 0,13,10
 #-------------------------------
 [017]
 # Mine Head's House
 Outdoor = false
 ShowArea = false
 Bicycle = false
-MapPosition = 0,13,10
 BattleBack = indoor3
 Environment = None
 #-------------------------------
@@ -141,14 +135,12 @@ Environment = None
 Outdoor = false
 ShowArea = false
 Bicycle = false
-MapPosition = 0,13,10
 #-------------------------------
 [019]
 # Reading Ribombee Café
 Outdoor = false
 ShowArea = false
 Bicycle = false
-MapPosition = 0,13,10
 BattleBack = indoor1
 #-------------------------------
 [020]
@@ -178,7 +170,6 @@ Bicycle = true
 Outdoor = true
 ShowArea = true
 Bicycle = false
-MapPosition = 0,15,8
 #-------------------------------
 [024]
 # Shaymin's Chamber
@@ -193,7 +184,8 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,9
+MapPosition = 0,15,12
+MapSize = 2,1100
 Environment = Grass
 #-------------------------------
 [026]
@@ -254,7 +246,7 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,16,4
+MapPosition = 0,12,3
 BattleBack = city
 Environment = None
 #-------------------------------
@@ -269,7 +261,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,19,9
+MapPosition = 0,16,12
 Environment = Cave
 #-------------------------------
 [037]
@@ -277,7 +269,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,7
+MapPosition = 0,7,8
 BattleBack = city
 Environment = Snow
 #-------------------------------
@@ -302,7 +294,7 @@ HealingSpot = 136,45,14
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,16,8
+MapPosition = 0,11,10
 BattleBack = cave1
 Environment = None
 #-------------------------------
@@ -371,7 +363,7 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,14,9
+MapPosition = 0,8,13
 BattleBack = forest
 Environment = Forest
 #-------------------------------
@@ -380,7 +372,7 @@ Environment = Forest
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,7
+MapPosition = 0,15,9
 BattleBack = field
 Environment = Graveyard
 #-------------------------------
@@ -389,8 +381,9 @@ Environment = Graveyard
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,16,9
+MapPosition = 0,11,13
 BattleBack = city
+MapSize = 2,1100
 Environment = None
 #-------------------------------
 [057]
@@ -406,7 +399,7 @@ HealingSpot = 56,43,27
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,16,11
+MapPosition = 0,11,17
 BattleBack = field
 Environment = Forest
 #-------------------------------
@@ -415,7 +408,7 @@ Environment = Forest
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,16,10
+MapPosition = 0,11,15
 BattleBack = field
 Environment = Grass
 #-------------------------------
@@ -522,7 +515,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,8
+MapPosition = 0,15,11
 BattleBack = indoor3
 Environment = Cave
 #-------------------------------
@@ -698,7 +691,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = false
 Weather = Blizzard,100
-MapPosition = 0,13,6
+MapPosition = 0,7,7
 BattleBack = cave1
 Environment = Ice
 #-------------------------------
@@ -714,7 +707,7 @@ HealingSpot = 8,51,47
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,8
+MapPosition = 0,13,11
 BattleBack = cave3
 Environment = Cave
 #-------------------------------
@@ -723,7 +716,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,15,8
+MapPosition = 0,11,11
 BattleBack = rocky
 Environment = Rock
 #-------------------------------
@@ -732,7 +725,7 @@ Environment = Rock
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,6
+MapPosition = 0,13,7
 BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
@@ -741,6 +734,7 @@ Environment = StillWater
 Outdoor = false
 ShowArea = false
 Bicycle = false
+MapPosition = 0,14,11
 BattleBack = forest
 Environment = Cave
 #-------------------------------
@@ -749,6 +743,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = false
+MapPosition = 0,9,9
 BattleBack = cave1
 Environment = Volcano
 #-------------------------------
@@ -757,7 +752,7 @@ Environment = Volcano
 Outdoor = false
 ShowArea = false
 Bicycle = false
-MapPosition = 0,13,8
+MapPosition = 0,6,9
 BattleBack = cave1
 Environment = Cave
 #-------------------------------
@@ -766,7 +761,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,10
+MapPosition = 0,5,13
 BattleBack = rocky
 Environment = Rock
 #-------------------------------
@@ -775,7 +770,7 @@ Environment = Rock
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,19,6
+MapPosition = 0,16,7
 BattleBack = sand
 Environment = Sand
 #-------------------------------
@@ -896,7 +891,8 @@ Bicycle = true
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,15,4
+MapPosition = 0,9,3
+MapSize = 2,1111
 #-------------------------------
 [157]
 # Traffic Control
@@ -1068,7 +1064,7 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,14,9
+MapPosition = 0,8,14
 BattleBack = forest
 Environment = Grass
 TeleportBlocked = true
@@ -1078,7 +1074,7 @@ TeleportBlocked = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,20,5
+MapPosition = 0,16,6
 BattleBack = cave1
 Environment = Cave
 #-------------------------------
@@ -1087,7 +1083,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,6
+MapPosition = 0,13,6
 BattleBack = forest
 Environment = Forest
 #-------------------------------
@@ -1096,7 +1092,7 @@ Environment = Forest
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,5
+MapPosition = 0,7,6
 BattleBack = field
 Environment = Ice
 #-------------------------------
@@ -1105,8 +1101,9 @@ Environment = Ice
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,4
+MapPosition = 0,14,3
 BattleBack = city
+MapSize = 2,1111
 Environment = None
 #-------------------------------
 [188]
@@ -1114,7 +1111,7 @@ Environment = None
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,3
+MapPosition = 0,14,2
 BattleBack = city
 Environment = None
 #-------------------------------
@@ -1123,7 +1120,7 @@ Environment = None
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,5
+MapPosition = 0,14,2
 BattleBack = indoor3
 Environment = None
 #-------------------------------
@@ -1172,7 +1169,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,19,4
+MapPosition = 0,17,3
 BattleBack = rocky
 Environment = Rock
 #-------------------------------
@@ -1181,7 +1178,7 @@ Environment = Rock
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,14,8
+MapPosition = 0,9,11
 BattleBack = rocky
 #-------------------------------
 [213]
@@ -1189,7 +1186,7 @@ BattleBack = rocky
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,11,9
+MapPosition = 0,4,11
 BattleBack = forest
 Environment = Forest
 #-------------------------------
@@ -1198,7 +1195,7 @@ Environment = Forest
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,16,8
+MapPosition = 0,10,11
 BattleBack = cave1
 #-------------------------------
 [216]
@@ -1207,7 +1204,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 Weather = Fog,10
-MapPosition = 0,11,5
+MapPosition = 0,5,6
 BattleBack = cave3
 #-------------------------------
 [217]
@@ -1216,7 +1213,8 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 Weather = Rain,10
-MapPosition = 0,21,3
+MapPosition = 0,19,3
+MapSize = 2,1110
 Environment = Grass
 #-------------------------------
 [218]
@@ -1224,7 +1222,6 @@ Environment = Grass
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,9,5
 BattleBack = cave3
 Environment = Underwater
 #-------------------------------
@@ -1233,7 +1230,7 @@ Environment = Underwater
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,4
+MapPosition = 0,14,3
 BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
@@ -1242,14 +1239,14 @@ Environment = StillWater
 Outdoor = false
 ShowArea = false
 Bicycle = false
-MapPosition = 0,16,5
+MapPosition = 0,12,6
 #-------------------------------
 [222]
 # Prizca Sewers Tunnel
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,5
+MapPosition = 0,13,5
 BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
@@ -1258,7 +1255,7 @@ Environment = StillWater
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,16,5
+MapPosition = 0,12,4
 BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
@@ -1333,12 +1330,14 @@ Bicycle = true
 Outdoor = false
 ShowArea = false
 Bicycle = true
+MapPosition = 0,4,5
 #-------------------------------
 [257]
 # Cave of Hatching
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,5,4
 BattleBack = rocky
 #-------------------------------
 [258]
@@ -1346,7 +1345,7 @@ BattleBack = rocky
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,10,4
+MapPosition = 0,5,3
 #-------------------------------
 [259]
 # Casey's House
@@ -1522,9 +1521,12 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,9,5
 BattleBack = cave3
 Environment = Cave
+#-------------------------------
+[290]
+# Sweetrock Lighthouse F1
+MapPosition = 0,20,3
 #-------------------------------
 [291]
 # Deoxys's Chamber
@@ -1555,7 +1557,7 @@ BattleBack = champion1
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,15,7
+MapPosition = 0,10,8
 BattleBack = field
 Environment = Grass
 #-------------------------------
@@ -1566,3 +1568,7 @@ ShowArea = false
 Bicycle = true
 BattleBack = wcave
 Environment = Cave
+#-------------------------------
+[315]
+# Ancient Antechamber
+MapPosition = 0,14,10
