@@ -538,10 +538,6 @@ Mud,20
     13,SHELLOS_1,37,39
     12,SHELLOS,37,39
 #-------------------------------
-[197] # Noel's House
-DarkCave,21
-    100,UNOWN,31,33
-#-------------------------------
 [202] # Mountaineer's House
 Special,1
     1,ORICORIO,40
