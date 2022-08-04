@@ -50,10 +50,51 @@ class PokeBattle_Battler
 		return true
 	end
 
+  def pbCanLowerStatStage?(stat,user=nil,move=nil,showFailMsg=false,ignoreContrary=false)
+    return false if fainted?
+    # Contrary
+    if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
+      return pbCanRaiseStatStage?(stat,user,move,showFailMsg,true)
+    end
+    if !user || user.index!=@index   # Not self-inflicted
+      if @effects[PBEffects::Substitute]>0 && !(move && move.ignoresSubstitute?(user))
+        @battle.pbDisplay(_INTL("{1} is protected by its substitute!",pbThis)) if showFailMsg
+        return false
+      end
+      if pbOwnSide.effects[PBEffects::Mist]>0 &&
+         !(user && user.hasActiveAbility?(:INFILTRATOR))
+        @battle.pbDisplay(_INTL("{1} is protected by Mist!",pbThis)) if showFailMsg
+        return false
+      end
+      if abilityActive?
+        return false if BattleHandlers.triggerStatLossImmunityAbility(
+           self.ability,self,stat,@battle,showFailMsg) if !@battle.moldBreaker
+        return false if BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(
+           self.ability,self,stat,@battle,showFailMsg)
+      end
+      if !@battle.moldBreaker
+        eachAlly do |b|
+          next if !b.abilityActive?
+          return false if BattleHandlers.triggerStatLossImmunityAllyAbility(
+             b.ability,b,self,stat,@battle,showFailMsg)
+        end
+      end
+    elsif hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
+      return false
+    end
+    # Check the stat stage
+    if statStageAtMin?(stat)
+      @battle.pbDisplay(_INTL("{1}'s {2} won't go any lower!",
+         pbThis, GameData::Stat.get(stat).name)) if showFailMsg
+      return false
+    end
+    return true
+  end
+
 	def pbLowerStatStage(stat,increment,user,showAnim=true,ignoreContrary=false,ignoreMirrorArmor=false)
-		# Mirror Armor
+		# Mirror Armor, only if not self inflicted
 		if !ignoreMirrorArmor && hasActiveAbility?(:MIRRORARMOR) && (!user || user.index!=@index) && 
-		  !@battle.moldBreaker && pbCanLowerStatStage?(stat)
+		    !@battle.moldBreaker && pbCanLowerStatStage?(stat)
 		  battle.pbShowAbilitySplash(self)
 		  @battle.pbDisplay(_INTL("{1}'s Mirror Armor activated!",pbThis))
 		  if !user
@@ -74,6 +115,10 @@ class PokeBattle_Battler
 		if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
 		  return pbRaiseStatStage(stat,increment,user,showAnim,true)
 		end
+    # Stubborn
+    if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
+      return false
+    end
 		# Perform the stat stage change
 		increment = pbLowerStatStageBasic(stat,increment,ignoreContrary)
 		return false if increment<=0
@@ -93,9 +138,9 @@ class PokeBattle_Battler
 	end
   
   def pbLowerStatStageByCause(stat,increment,user,cause,showAnim=true,ignoreContrary=false,ignoreMirrorArmor=false)
-	# Mirror Armor
+	  # Mirror Armor
     if !ignoreMirrorArmor && hasActiveAbility?(:MIRRORARMOR) && (!user || user.index!=@index) && 
-	  !@battle.moldBreaker && pbCanLowerStatStage?(stat)
+	      !@battle.moldBreaker && pbCanLowerStatStage?(stat)
       battle.pbShowAbilitySplash(self)
       @battle.pbDisplay(_INTL("{1}'s Mirror Armor activated!",pbThis))
       if !user
@@ -104,11 +149,11 @@ class PokeBattle_Battler
       end
       if !user.hasActiveAbility?(:MIRRORARMOR) && user.pbCanLowerStatStage?(stat,nil,nil,true)
         user.pbLowerStatStageByAbility(stat,increment,user,splashAnim=false,checkContact=false)
-		# Trigger user's abilities upon stat loss
-		if user.abilityActive?
-		  BattleHandlers.triggerAbilityOnStatLoss(user.ability,user,stat,self)
-		end
+      # Trigger user's abilities upon stat loss
+      if user.abilityActive?
+        BattleHandlers.triggerAbilityOnStatLoss(user.ability,user,stat,self)
       end
+    end
       battle.pbHideAbilitySplash(self)
       return false
     end
@@ -116,7 +161,7 @@ class PokeBattle_Battler
     if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
       return pbRaiseStatStageByCause(stat,increment,user,cause,showAnim,true)
     end
-	# Royal Scales
+	  # Stubborn
     if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
       return false
     end
@@ -141,7 +186,7 @@ class PokeBattle_Battler
     if abilityActive?
       BattleHandlers.triggerAbilityOnStatLoss(self.ability,self,stat,user)
     end
-	@effects[PBEffects::LashOut] = true
+	  @effects[PBEffects::LashOut] = true
     return true
   end
   
@@ -158,13 +203,13 @@ class PokeBattle_Battler
       end
       return false
     end
-	if hasActiveAbility?(:INNERFOCUS)
-		@battle.pbShowAbilitySplash(self,true)
-		@battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-             pbThis,abilityName,user.pbThis(true),user.abilityName))
-		@battle.pbHideAbilitySplash(self)
-		return false
-	end
+    if hasActiveAbility?(:INNERFOCUS)
+      @battle.pbShowAbilitySplash(self,true)
+      @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
+              pbThis,abilityName,user.pbThis(true),user.abilityName))
+      @battle.pbHideAbilitySplash(self)
+      return false
+    end
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       return pbLowerStatStageByAbility(:ATTACK,1,user,false)
     end
@@ -210,13 +255,13 @@ class PokeBattle_Battler
       end
       return false
     end
-	if hasActiveAbility?(:INNERFOCUS)
-		@battle.pbShowAbilitySplash(self,true)
-		@battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-             pbThis,abilityName,user.pbThis(true),user.abilityName))
-		@battle.pbHideAbilitySplash(self)
-		return false
-	end
+    if hasActiveAbility?(:INNERFOCUS)
+      @battle.pbShowAbilitySplash(self,true)
+      @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
+              pbThis,abilityName,user.pbThis(true),user.abilityName))
+      @battle.pbHideAbilitySplash(self)
+      return false
+    end
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       return pbLowerStatStageByAbility(:SPECIAL_ATTACK,1,user,false)
     end
@@ -262,13 +307,13 @@ class PokeBattle_Battler
       end
       return false
     end
-	if hasActiveAbility?(:INNERFOCUS)
-		@battle.pbShowAbilitySplash(self,true)
-		@battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-             pbThis,abilityName,user.pbThis(true),user.abilityName))
-		@battle.pbHideAbilitySplash(self)
-		return false
-	end
+    if hasActiveAbility?(:INNERFOCUS)
+      @battle.pbShowAbilitySplash(self,true)
+      @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
+              pbThis,abilityName,user.pbThis(true),user.abilityName))
+      @battle.pbHideAbilitySplash(self)
+      return false
+    end
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       return pbLowerStatStageByAbility(:SPEED,1,user,false)
     end
