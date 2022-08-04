@@ -2384,3 +2384,41 @@ class PokeBattle_Move_56D < PokeBattle_Move
 	  @battle.pbDisplay(_INTL("{1} takes a stance to begin bombardment!",user.pbThis))
 	end
 end
+
+class PokeBattle_Move_56E < PokeBattle_MultiStatUpMove
+	def usableWhenAsleep?; return true; end
+
+	def pbEffectGeneral(user)
+		if user.pbCanRaiseStatStage?(:ATTACK,user,self)
+		  user.pbRaiseStatStage(:ATTACK,1,user)
+		end
+		if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
+		  user.pbRaiseStatStage(:DEFENSE,1,user)
+		end
+		if user.pbCanRaiseStatStage?(:SPEED,user,self)
+		  user.pbRaiseStatStage(:SPEED,1,user)
+		end
+		if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
+		  user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+		end
+		if user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
+		  user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+		end
+	end
+  
+	def pbMoveFailed?(user,targets)
+		if !user.asleep?
+			@battle.pbDisplay(_INTL("But it failed!"))
+			return true
+		end
+		if !user.pbCanRaiseStatStage?(:ATTACK,user,self,true) &&
+			!user.pbCanRaiseStatStage?(:DEFENSE,user,self,true) &&
+			!user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,true) &&
+			!user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self,true) &&
+			!user.pbCanRaiseStatStage?(:SPEED,user,self,true)
+		@battle.pbDisplay(_INTL("But it failed!"))
+		return true
+		end
+	  	return false
+	end
+end

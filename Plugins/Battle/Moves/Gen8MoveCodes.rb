@@ -398,18 +398,18 @@ class PokeBattle_Move_17F < PokeBattle_MultiStatUpMove
       user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
     end
 
-	user.effects[PBEffects::NoRetreat] = true
+	  user.effects[PBEffects::NoRetreat] = true
     if !(user.effects[PBEffects::MeanLook]>=0 || user.effects[PBEffects::Trapping]>0 ||
        user.effects[PBEffects::JawLock] || user.effects[PBEffects::OctolockUser]>=0)
       @battle.pbDisplay(_INTL("{1} can no longer escape because it used No Retreat!",user.pbThis))
     end
   end
   
-  def getScore(score,user,target,skill=100)
-	score += 40 if user.turnCount == 0
-	score -= 40 if user.hp<user.totalhp/2
-	score = 0 if user.effects[PBEffects::NoRetreat]
-	return score
+    def getScore(score,user,target,skill=100)
+	    score += 40 if user.turnCount == 0
+	    score -= 40 if user.hp<user.totalhp/2
+	    score = 0 if user.effects[PBEffects::NoRetreat]
+	  return score
   end
 end
 
