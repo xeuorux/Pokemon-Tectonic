@@ -900,3 +900,11 @@ PostPrimeMoves = HORNLEECH
 Turns = 2
 HPMult = 4
 DMGMult = 1
+#-------------------------------
+[ZWEIHANDOR]
+Ability = BERSERK
+Moves = BULLETPUNCH,RAKE,PRIMEVALSPIKES
+PostPrimeMoves = RUMBLE,XSCISSOR
+Turns = 2
+HPMult = 4
+DMGMult = 1
