@@ -851,33 +851,35 @@ Pokemon = DARTRIX,25
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,2]
 Policies = YEZERA
-Pokemon = VOLBEAT,30
+Pokemon = VOLBEAT,35
     AbilityIndex = 1
     Item = SITRUSBERRY
-Pokemon = HYPNO,31
+Pokemon = HYPNO,35
     AbilityIndex = 1
-Pokemon = MALAMAR,31
+Pokemon = MALAMAR,35
     AbilityIndex = 0
-Pokemon = MILTANK,32
+Pokemon = MILTANK,35
     AbilityIndex = 0
     Item = LEFTOVERS
+Pokemon = EISCUE,35
+    AbilityIndex = 0
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,7]
 Policies = YEZERA,CURSE_TYPE_WEAKENED
-Pokemon = VOLBEAT,30
+Pokemon = VOLBEAT,35
     AbilityIndex = 1
     Item = SITRUSBERRY
-Pokemon = HYPNO,31
+Pokemon = HYPNO,35
     AbilityIndex = 1
-Pokemon = MALAMAR,31
+Pokemon = MALAMAR,35
     AbilityIndex = 0
-Pokemon = MILTANK,32
+Pokemon = MILTANK,35
     AbilityIndex = 0
     Item = LEFTOVERS
-Pokemon = RHYDON,32
+Pokemon = RHYDON,35
     AbilityIndex = 0
     Item = ROCKGEM
-Pokemon = EISCUE,32
+Pokemon = EISCUE,35
     AbilityIndex = 0
 #-------------------------------
 [SCHOOLKID_M,Louis]
