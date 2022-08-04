@@ -367,7 +367,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [053]
-# The Tangle
+# Jungle Path
 Outdoor = true
 ShowArea = true
 Bicycle = true
