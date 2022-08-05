@@ -1,7 +1,7 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [0]
-Name = 
+Name = Makya
 Filename = mapRegion2.png
 Point = 22,18,Casaba Villa,,,,,
 Point = 22,17,Scenic Trail,,,,,
@@ -51,13 +51,13 @@ Point = 11,8,County Park,,,,,
 Point = 10,8,County Park,,,,,
 Point = 8,8,County Park,,,,,
 Point = 15,12,Grouz,,,,,
-Point = 16,12,Grouz,,,,,Grouz Mine
+Point = 16,12,Grouz,Grouz Mine,,,,
 Point = 15,11,East Tunnel,,,,,
 Point = 15,10,Floral Rest,,,,,
 Point = 15,9,Floral Rest,,,,,
 Point = 15,8,Floral Rest,,,,,
 Point = 14,8,Floral Rest,,,,,
-Point = 13,8,LuxTech Campus,,,,,LuxTech Main
+Point = 13,8,LuxTech Campus,LuxTech Main,,,,
 Point = 12,8,LuxTech Campus,,,,,
 Point = 16,7,Canal Desert,,,,,
 Point = 15,7,Canal Desert,,,,,
