@@ -303,7 +303,7 @@
 288,LEAFSTORM,Leaf Storm,03F,130,GRASS,Special,100,5,0,NearOther,0,bef,"A storm of sharp is whipped up. Harshly reduces the user's Sp. Atk stat.",
 289,SOLARBLADE,Solar Blade,0C4,125,GRASS,Physical,100,10,0,NearOther,0,abefp,"The user gathers light energy into a blade, attacking the target on the next turn.",
 290,PETALDANCE,Petal Dance,55F,120,GRASS,Special,100,10,0,RandomNearFoe,0,abefo,"The user attacks by scattering petals for three turns.",
-291,POWERWHIP,Power Whip,53C,120,GRASS,Physical,70,10,0,NearOther,0,abef,"The user violently whirls to lash the target. Can't miss if the target has already moved this turn.",
+291,POWERWHIP,Power Whip,53C,120,GRASS,Physical,70,10,0,NearOther,0,abef,"The user violently whirls to lash the target. Can't miss if the target has already attacked this turn.",
 292,SEEDFLARE,Seed Flare,04F,120,GRASS,Special,85,5,40,NearOther,0,bef,"The user generates a shock wave from within its body. It has a 40% chance to harshly lower Sp. Def.",
 293,SOLARBEAM,Solar Beam,0C4,120,GRASS,Special,100,10,0,NearOther,0,bef,"A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn.",
 294,WOODHAMMER,Wood Hammer,0FB,120,GRASS,Physical,100,15,0,NearOther,0,abef,"The user slams its rugged body into the target to attack. The user also takes 33% recoil.",
@@ -319,7 +319,7 @@
 304,MAGICALLEAF,Magical Leaf,0A5,60,GRASS,Special,0,20,0,NearOther,0,ef,"The user scatters leaves that chase the target. Can't miss and skips protections.",
 305,NEEDLEARM,Needle Arm,00F,60,GRASS,Physical,100,15,50,NearOther,0,abe,"The user attacks by wildly swinging its thorny arms. It has a 50% chance to make the target flinch.",
 306,RAZORLEAF,Razor Leaf,000,55,GRASS,Physical,100,25,0,AllNearFoes,0,befh,"Sharp-edged leaves are launched to slash at the opposing team. Critical hits land more easily.",
-307,VINEWHIP,Vine Whip,504,40,GRASS,Physical,100,25,0,NearOther,0,abef,"The target is struck with slender, whiplike vines. Deals 25% more damage if the target moved first.",
+307,VINEWHIP,Vine Whip,504,40,GRASS,Physical,100,25,0,NearOther,0,abef,"The target is struck with slender, whiplike vines. Deals 25% more damage if the target attacked first.",
 308,LEAFAGE,Leafage,000,40,GRASS,Physical,100,40,0,NearOther,0,bef,"The user attacks by pelting the target with leaves. Critical hits land more easily.",
 309,MEGADRAIN,Mega Drain,0DD,40,GRASS,Special,100,15,0,NearOther,0,befh,"A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.",
 310,BULLETSEED,Bullet Seed,0C0,25,GRASS,Physical,100,30,0,NearOther,0,befn,"The user forcefully shoots seeds at the target. Two to five seeds are shot in rapid succession.",
@@ -821,7 +821,7 @@
 756,CURRENTCRASH,Current Crash,537,55,ELECTRIC,Physical,100,30,0,NearOther,0,abef,"The user wraps their body in electricity and crashes into the target. The user also takes 20% recoil.",WILDCHARGE
 757,FAVOR,Favor,089,9,NORMAL,Special,100,20,0,NearOther,0,bef,"A full-power special attack that grows more powerful the more the user likes its Trainer.",RETURN
 758,ESSENCEARROW,Essence Arrow,020,40,GRASS,Special,100,35,10,NearOther,0,befn,"The user fires a small bolt of energy at the target. It has a 10% chance to raise user's Sp. Atk.",ENERGYBALL
-759,ROOTWRACK,Rootwrack,504,60,GRASS,Physical,100,25,0,NearOther,0,bef,"The user sends its roots to attack. Deals 25% more damage if the target moved first.",VINEWHIP
+759,ROOTWRACK,Rootwrack,504,60,GRASS,Physical,100,25,0,NearOther,0,bef,"The user sends its roots to attack. Deals 25% more damage if the target atatcked first.",VINEWHIP
 760,EAGERTICKLING,Eager Tickling,042,40,FAIRY,Physical,100,30,10,NearOther,0,abef,"The user tickles the target excessively, damaging it. This has a 10% chance to lower Attack.",PLAYROUGH
 761,TREADON,Tread On,044,40,GROUND,Physical,100,35,10,NearOther,0,abef,"The user attacks the opposing Pokémon by trampling it. It has a 10% chance to lower Speed.",STOMPINGTANTRUM
 762,RUMBLE,Rumble,076,45,GROUND,Physical,100,35,0,AllNearOthers,0,bef,"The user causes the earth to rumble, striking every Pokémon around it.",EARTHQUAKE
@@ -1063,7 +1063,7 @@
 999,THUNDERBELLY,Thunder Belly,56B,200,ELECTRIC,Physical,100,10,0,AllNearFoes,0,abef,"The user take's an entire grid of power into its belly, then slams the target. The user takes 100% recoil.",BODYSLAM
 1000,VOLLEYSTANCE,Volley Stance,56D,0,STEEL,Status,0,10,0,User,0,d,"The user takes a stance with its dual cannons. Until it switches out, each special attack hits twice.",FOCUSENERGY
 1001,ASTRALDREAM,Astral Dream,56C,0,PSYCHIC,Status,0,10,0,User,0,d,"This move raises all the user's stats. Can only be used while asleep.",
-1002,VINEFRENZY,Vine Frenzy,044,70,GRASS,Physical,100,10,100,AllNearFoes,0,abef,"The user spurs hundreds of vines to ensnare all enemies, lowering their Speed.",
+1002,VINEMAZE,Vine Maze,56F,70,GRASS,Physical,100,10,100,AllNearFoes,0,abef,"The user spurs hundreds of vines to ensnare all enemies, lowering the speed of any that moved first.",
 1500,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered.",
 1501,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch.",
 1502,CONFUSION,Confusion,401,50,PSYCHIC,Special,100,25,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It may also leave the target flustered.",

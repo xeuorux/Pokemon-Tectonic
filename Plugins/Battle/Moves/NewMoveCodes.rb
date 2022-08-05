@@ -229,9 +229,8 @@ end
 #===============================================================================
 class PokeBattle_Move_504 < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    if @battle.choices[target.index][0]!=:None &&
-       ((@battle.choices[target.index][0]!=:UseMove &&
-       @battle.choices[target.index][0]!=:Shift) || target.movedThisRound?)
+    targetChoice = @battle.choices[target.index][0]
+	if targetChoice == :UseMove && target.movedThisRound?
       baseDmg *= 1.25
     end
     return baseDmg
@@ -1417,19 +1416,20 @@ end
 
 
 #===============================================================================
-# Can't miss if attacking a target that already hit you this turn. (new!Power Whip)
+# Can't miss if attacking a target that already used an attack this turn. (new!Power Whip)
 #===============================================================================
 class PokeBattle_Move_53C < PokeBattle_Move
     def pbAccuracyCheck(user,target)
-	if @battle.choices[target.index][0]!=:None && target.movedThisRound?
-      return true
-    end
-	return super
-  end
+		targetChoice = @battle.choices[target.index][0]
+		if targetChoice == :UseMove && target.movedThisRound?
+			return true
+		end
+		return super
+	end
   
-  def getScore(score,user,target,skill=100)
-	return getWantsToBeSlowerScore(score,user,target,skill,2)
-  end
+	def getScore(score,user,target,skill=100)
+		return getWantsToBeSlowerScore(score,user,target,skill,2)
+	end
 end
 
 #===============================================================================
@@ -2385,6 +2385,9 @@ class PokeBattle_Move_56D < PokeBattle_Move
 	end
 end
 
+#===============================================================================
+# Raises all stats, but only if user is asleep. (Astral Dream)
+#===============================================================================
 class PokeBattle_Move_56E < PokeBattle_MultiStatUpMove
 	def usableWhenAsleep?; return true; end
 
@@ -2420,5 +2423,22 @@ class PokeBattle_Move_56E < PokeBattle_MultiStatUpMove
 		return true
 		end
 	  	return false
+	end
+end
+
+#===============================================================================
+# Lower's the Speed of all targets whom have moved this round. (Vine Maze)
+#===============================================================================
+class PokeBattle_Move_56F < PokeBattle_Move
+	def pbAdditionalEffect(user,target)
+		return if target.damageState.substitute
+		targetChoice = @battle.choices[target.index][0]
+		if targetChoice == :UseMove && target.movedThisRound? && target.pbCanLowerStatStage?(:SPEED,user,self)
+			target.pbLowerStatStage(:SPEED,1,user)
+		end
+	end
+	
+	def getScore(score,user,target,skill=100)
+	  return getWantsToBeSlowerScore(score,user,target,skill,2)
 	end
 end
