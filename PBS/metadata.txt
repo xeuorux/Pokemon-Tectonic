@@ -219,7 +219,7 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,14
+MapPosition = 0,22,16
 BattleBack = forest
 Environment = Forest
 #-------------------------------
@@ -278,7 +278,7 @@ Environment = Snow
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,16,15
+MapPosition = 0,20,18
 BattleBack = sand
 Environment = Sand
 #-------------------------------
@@ -348,7 +348,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,14
+MapPosition = 0,21,16
 BattleBack = cave1
 Environment = Cave
 #-------------------------------
@@ -795,8 +795,8 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,15
 BattleBack = field
+MapSize = 2,1100
 Environment = Grass
 #-------------------------------
 [138]
@@ -804,7 +804,7 @@ Environment = Grass
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,14
+MapPosition = 0,22,17
 BattleBack = forest
 Environment = Forest
 #-------------------------------
