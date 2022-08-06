@@ -91,6 +91,7 @@ Environment = None
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,8,12
 BattleBack = rocky
 Environment = Rock
 #-------------------------------
@@ -797,6 +798,7 @@ Environment = None
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,11,11
 BattleBack = cave2
 Environment = Cave
 #-------------------------------
@@ -1167,7 +1169,7 @@ BattleBack = elite5
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,18,13
+MapPosition = 0,22,14
 BattleBack = cave2
 Environment = Volcano
 #-------------------------------
@@ -1176,6 +1178,7 @@ Environment = Volcano
 Outdoor = false
 ShowArea = false
 Bicycle = true
+MapPosition = 0,15,3
 BattleBack = wcave
 Environment = Cave
 #-------------------------------
@@ -1550,6 +1553,7 @@ MapPosition = 0,20,3
 Outdoor = false
 ShowArea = false
 Bicycle = true
+MapPosition = 0,19,4
 BattleBack = wcave
 Environment = Cave
 #-------------------------------
