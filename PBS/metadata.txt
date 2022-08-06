@@ -27,8 +27,9 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,12
+MapPosition = 0,12,12
 BattleBack = field
+MapSize = 3,111100
 Environment = TallGrass
 #-------------------------------
 [004]
@@ -54,7 +55,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,12,8
 BattleBack = city
-MapSize = 2,1100
+MapSize = 2,11
 Environment = None
 #-------------------------------
 [007]
@@ -62,9 +63,9 @@ Environment = None
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,7,10
+MapPosition = 0,7,9
 BattleBack = forest
-MapSize = 2,11
+MapSize = 1,111
 Environment = TallGrass
 #-------------------------------
 [008]
@@ -74,7 +75,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,4,11
 BattleBack = forest
-MapSize = 2,1100
+MapSize = 2,11
 Environment = TallGrass
 #-------------------------------
 [009]
@@ -98,8 +99,9 @@ Environment = Rock
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,10,6
+MapPosition = 0,10,5
 BattleBack = forest
+MapSize = 1,111
 Environment = Forest
 #-------------------------------
 [013]
@@ -185,7 +187,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,15,12
-MapSize = 2,1100
+MapSize = 2,11
 Environment = Grass
 #-------------------------------
 [026]
@@ -246,8 +248,9 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,12,3
+MapPosition = 0,11,3
 BattleBack = city
+MapSize = 1,1
 Environment = None
 #-------------------------------
 [035]
@@ -278,8 +281,9 @@ Environment = Snow
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,20,18
+MapPosition = 0,19,18
 BattleBack = sand
+MapSize = 2,11
 Environment = Sand
 #-------------------------------
 [039]
@@ -294,8 +298,9 @@ HealingSpot = 136,45,14
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,11,10
+MapPosition = 0,10,10
 BattleBack = cave1
+MapSize = 3,111001
 Environment = None
 #-------------------------------
 [041]
@@ -363,8 +368,9 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,8,13
+MapPosition = 0,7,13
 BattleBack = forest
+MapSize = 3,111
 Environment = Forest
 #-------------------------------
 [055]
@@ -372,8 +378,9 @@ Environment = Forest
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,15,9
+MapPosition = 0,14,8
 BattleBack = field
+MapSize = 2,110101
 Environment = Graveyard
 #-------------------------------
 [056]
@@ -381,9 +388,9 @@ Environment = Graveyard
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,11,13
+MapPosition = 0,10,13
 BattleBack = city
-MapSize = 2,1100
+MapSize = 2,11
 Environment = None
 #-------------------------------
 [057]
@@ -410,6 +417,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,11,15
 BattleBack = field
+MapSize = 1,111
 Environment = Grass
 #-------------------------------
 [061]
@@ -716,8 +724,9 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,11,11
+MapPosition = 0,11,10
 BattleBack = rocky
+MapSize = 1,111
 Environment = Rock
 #-------------------------------
 [122]
@@ -770,8 +779,9 @@ Environment = Rock
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,16,7
+MapPosition = 0,15,7
 BattleBack = sand
+MapSize = 3,111
 Environment = Sand
 #-------------------------------
 [134]
@@ -795,8 +805,9 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,21,18
 BattleBack = field
-MapSize = 2,1100
+MapSize = 2,11
 Environment = Grass
 #-------------------------------
 [138]
@@ -806,6 +817,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,22,17
 BattleBack = forest
+MapSize = 1,1
 Environment = Forest
 #-------------------------------
 [140]
@@ -1083,8 +1095,9 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,6
+MapPosition = 0,12,6
 BattleBack = forest
+MapSize = 4,1111
 Environment = Forest
 #-------------------------------
 [186]
@@ -1094,6 +1107,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,7,6
 BattleBack = field
+MapSize = 2,11
 Environment = Ice
 #-------------------------------
 [187]
@@ -1136,8 +1150,9 @@ HealingSpot = 187,67,30
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,17,13
+MapPosition = 0,21,14
 BattleBack = sand
+MapSize = 2,11
 Environment = Sand
 #-------------------------------
 [195]
@@ -1171,6 +1186,7 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,17,3
 BattleBack = rocky
+MapSize = 1,111
 Environment = Rock
 #-------------------------------
 [212]
@@ -1204,8 +1220,9 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 Weather = Fog,10
-MapPosition = 0,5,6
+MapPosition = 0,5,5
 BattleBack = cave3
+MapSize = 1,11
 #-------------------------------
 [217]
 # Sweetrock Harbor
@@ -1557,8 +1574,9 @@ BattleBack = champion1
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,10,8
+MapPosition = 0,8,8
 BattleBack = field
+MapSize = 4,1111
 Environment = Grass
 #-------------------------------
 [303]
