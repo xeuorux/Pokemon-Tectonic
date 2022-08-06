@@ -683,7 +683,7 @@ class PokeBattle_Battler
     @currentMove = nil
     # Reset counters for moves which increase them when used in succession
     @effects[PBEffects::FuryCutter]    = 0
-	@effects[PBEffects::IceBall]   	   = 0
-	@effects[PBEffects::RollOut]    = 0
+	  @effects[PBEffects::IceBall]   	   = 0
+	  @effects[PBEffects::RollOut]       = 0
   end
 end

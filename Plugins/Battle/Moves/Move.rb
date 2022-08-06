@@ -61,7 +61,7 @@ class PokeBattle_Move
       damage = target.effects[PBEffects::Substitute] if damage>target.effects[PBEffects::Substitute]
       target.damageState.hpLost       = damage
       target.damageState.totalHPLost += damage
-	  target.damageState.displayedDamage = damage
+	    target.damageState.displayedDamage = damage
       return
     end
     # Disguise takes the damage
@@ -102,6 +102,10 @@ class PokeBattle_Move
 		      damageAdjusted = true
         elsif target.hasActiveItem?(:FOCUSSASH) && target.hp==target.totalhp
           target.damageState.focusSash = true
+          damage -= 1
+		      damageAdjusted = true
+        elsif target.hasActiveItem?(:CASSBERRY) && target.hp==target.totalhp
+          target.damageState.endureBerry = true
           damage -= 1
 		      damageAdjusted = true
         elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100)<10
@@ -209,6 +213,10 @@ class PokeBattle_Move
       @battle.pbDisplay(_INTL("{1} hung on using its Focus Band!",target.pbThis))
     elsif target.damageState.direDiversion
       @battle.pbDisplay(_INTL("{1} blocked the hit with its item! It barely hung on!",target.pbThis))
+      target.pbConsumeItem
+    elsif target.damageState.endureBerry
+      itemName = GameData::Item.get(target.item).real_name
+      @battle.pbDisplay(_INTL("{1} hung on by consuming its {2}!",target.pbThis,itemName))
       target.pbConsumeItem
     end
   end

@@ -899,4 +899,6 @@
 906,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
 907,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
 #-------------------------------
-2009,TOXICORB,MISSINGNO Orb,Poison Orbs,1,4000,"An item that shouldn't exist.",0,0,0
+1000,CASSBERRY,Cass Berry,Cass Berries,5,0,"If held by a Pokémon, it hangs on at 1 HP if it would be fainted from full health.",0,0,5
+#-------------------------------
+2009,TOXICORB,MISSINGNO Orb,MISSINGNO Orbs,1,4000,"An item that shouldn't exist.",0,0,0
