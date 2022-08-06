@@ -130,7 +130,11 @@ class PokemonPokedex_Scene
 		  evos = species_data.get_evolutions
 		  prevos = species_data.get_prevolutions
 		  
-		  useCount = @speciesUseData[species] || 0
+		  if $DEBUG
+		  	useCount = @speciesUseData[species] || 0
+		  else
+			useCount = 0
+		  end
 
 		  ret.push([species, species_data.name, height, weight, i + 1, shift, type1, type2, 
 		  	color, shape, abilities, lvlmoves, tutormoves, eggmoves, evos, prevos, useCount])
