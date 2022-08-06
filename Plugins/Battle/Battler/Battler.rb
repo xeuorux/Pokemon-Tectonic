@@ -3,53 +3,68 @@ class PokeBattle_Battler
   DEFENSIVE_LOCK_STAT = 95
 
 	def attack
-		if hasActiveItem?(:POWERLOCK)
-			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:ATTACK])
-		else
-			return @attack
-		end
+    if @battle.field.effects[PBEffects::PuzzleRoom] > 0
+      return sp_atk_no_room
+    else
+      return attack_no_room
+    end
 	end
 	
 	def defense
-		if @battle.field.effects[PBEffects::WonderRoom]>0
-			if hasActiveItem?(:WILLLOCK)
-				return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
-			else
-				return @spdef 
-			end
+		if @battle.field.effects[PBEffects::WonderRoom] > 0
+			return sp_def_no_room
 		else
-			if hasActiveItem?(:GUARDLOCK)
-				return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
-			else
-				return @defense
-			end
+			return defense_no_room
 		end
 	end
 	
 	def spatk
-		if hasActiveItem?(:ENERGYLOCK)
-			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK])
-		else
-			return @spatk
-		end
+		if @battle.field.effects[PBEffects::PuzzleRoom] > 0
+      return attack_no_room
+    else
+      return sp_atk_no_room
+    end
 	end
 	
 	def spdef
 		if @battle.field.effects[PBEffects::WonderRoom]>0
-			if hasActiveItem?(:GUARDLOCK)
-				return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
-			else
-				return @defense
-			end
+			return defense_no_room
 		else
-			if hasActiveItem?(:WILLLOCK)
-				return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
-			else
-				return @spdef 
-			end
+			return sp_def_no_room
 		end
 	end
 
+  def attack_no_room
+    if hasActiveItem?(:POWERLOCK)
+      return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:ATTACK])
+    else
+      return @attack
+    end
+  end
+
+  def defense_no_room
+    if hasActiveItem?(:GUARDLOCK)
+      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
+    else
+      return @defense
+    end
+  end
+
+  def sp_atk_no_room
+    if hasActiveItem?(:ENERGYLOCK)
+			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK])
+		else
+			return @spatk
+		end
+  end
+  
+  def sp_def_no_room
+    if hasActiveItem?(:WILLLOCK)
+      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
+    else
+      return @spdef 
+    end
+  end
 
 	def hasActiveAbility?(check_ability, ignore_fainted = false)
 		return false if !abilityActive?(ignore_fainted)
@@ -130,7 +145,7 @@ class PokeBattle_Battler
   #       the item - the code existing is enough to cause the loop).
   def abilityActive?(ignore_fainted = false)
     return false if fainted? && !ignore_fainted
-	return false if @battle.field.effects[PBEffects::NeutralizingGas]
+	  return false if @battle.field.effects[PBEffects::NeutralizingGas]
     return false if @effects[PBEffects::GastroAcid]
     return true
   end
@@ -249,8 +264,15 @@ class PokeBattle_Battler
     speedMult *= 2 if pbOwnSide.effects[PBEffects::Tailwind]>0
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp]>0
     # Paralysis and Chill
-    if (paralyzed? || frozen?) && !hasActiveAbility?(:QUICKFEET)
-      speedMult /= (Settings::MECHANICS_GENERATION >= 7) ? 2 : 4
+    if !hasActiveAbility?(:QUICKFEET)
+      if paralyzed?
+        speedMult /= 2
+        speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      end
+      if poisoned?
+        speedMult /= 2
+        speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      end
     end
     # Calculation
     return [(speed*speedMult).round,1].max
@@ -272,4 +294,19 @@ class PokeBattle_Battler
     return @battle.pbGetOwnerFromBattlerIndex(@index).able_pokemon_count == 1
   end
 
+  def itemActive?(ignoreFainted=false)
+    return false if fainted? && !ignoreFainted
+    return false if @effects[PBEffects::Embargo]>0
+    return false if pbOwnSide().effects[PBEffects::EmpoweredEmbargo]
+    return false if @battle.field.effects[PBEffects::MagicRoom]>0
+    return false if hasActiveAbility?(:KLUTZ,ignoreFainted)
+    return true
+  end
+
+  def protected?
+    invulnerableProtectEffects().each do |effectID|
+      return true if @effects[effectID]
+    end
+    return false
+  end
 end

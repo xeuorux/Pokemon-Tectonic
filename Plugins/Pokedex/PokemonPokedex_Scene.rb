@@ -2,7 +2,7 @@ SEARCHES_STACK = true
 
 class PokemonPokedex_Scene
   def pbStartScene
-	generateSpeciesUseData()
+	generateSpeciesUseData() if $DEBUG
 
     @sliderbitmap       	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_slider")
     @typebitmap         	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
@@ -41,6 +41,7 @@ class PokemonPokedex_Scene
 	
 	# Load stored search
 	storedIndex = $PokemonGlobal.pokedexIndex[pbGetSavePositionIndex]
+
 	if $PokemonGlobal.stored_search
 		@dexlist = $PokemonGlobal.stored_search
 		@searchResults = true
@@ -148,7 +149,13 @@ class PokemonPokedex_Scene
 	def pbRefreshDexList(index=0)
 		dexlist = pbGetDexList
 		# Sort species in ascending order by Regional Dex number
-		dexlist.sort! { |a,b| a[4]<=>b[4] }
+		dexlist.sort! { |a,b|
+			valA = a[4]
+			valB = b[4]
+			valA -= 5000 if $PokemonGlobal.speciesStarred?(a[0])
+			valB -= 5000 if $PokemonGlobal.speciesStarred?(b[0])
+			next valA <=> valB
+		}
 		@dexlist = dexlist
 		refreshDexListGraphics(index)
 	end
@@ -303,26 +310,34 @@ class PokemonPokedex_Scene
           @sprites["pokedex"].active = true
         elsif Input.trigger?(Input::BACK)
           if @searchResults
-			storeCommand = -1
-			cancelCommand = -1
-			cancelAndCloseCommand = -1
-			commands = []
-			commands[cancelCommand = commands.length] = _INTL("Cancel Search")
-			commands[cancelAndCloseCommand = commands.length] = _INTL("Cancel Search and Exit")
-			commands[storeCommand = commands.length] = _INTL("Store Search and Exit")
-			result = pbMessage(_INTL("You have an active search. What would you like to do?"),commands,0)
-            if result == storeCommand
+			if Input.press?(Input::CTRL)
 				$PokemonGlobal.stored_search = @dexlist
 				pbPlayCloseMenuSE
 				break
-			elsif result == cancelCommand
+			else
 				pbPlayCancelSE
 				pbCloseSearch
-			elsif result == cancelAndCloseCommand
-				pbCloseSearch
-				pbPlayCloseMenuSE
-				break
 			end
+			# storeCommand = -1
+			# cancelCommand = -1
+			# cancelAndCloseCommand = -1
+			# commands = []
+			# # commands[cancelCommand = commands.length] = _INTL("Cancel Search")
+			# # commands[cancelAndCloseCommand = commands.length] = _INTL("Cancel Search and Exit")
+			# # commands[storeCommand = commands.length] = _INTL("Store Search and Exit")
+			# # result = pbMessage(_INTL("You have an active search. What would you like to do?"),commands,0)
+            # # if result == storeCommand
+			# # 	$PokemonGlobal.stored_search = @dexlist
+			# # 	pbPlayCloseMenuSE
+			# # 	break
+			# # elsif result == cancelCommand
+			# # 	pbPlayCancelSE
+			# # 	pbCloseSearch
+			# # elsif result == cancelAndCloseCommand
+			# # 	pbCloseSearch
+			# # 	pbPlayCloseMenuSE
+			# # 	break
+			# # end
           else
             pbPlayCloseMenuSE
             break
@@ -332,6 +347,13 @@ class PokemonPokedex_Scene
             pbPlayDecisionSE
             pbDexEntry(@sprites["pokedex"].index)
           end
+		elsif Input.trigger?(Input::SPECIAL)
+			if $PokemonGlobal.toggleStarred(@sprites["pokedex"].species)
+				pbPlayDecisionSE
+			else
+				pbPlayCancelSE
+			end
+			@sprites["pokedex"].refresh
 		elsif Input.pressex?(:NUMBER_1)
 		  acceptSearchResults {
 			searchBySpeciesName()
@@ -361,72 +383,197 @@ class PokemonPokedex_Scene
 		  @sprites["pokedex"].refresh
 		  pbRefresh
 		elsif Input.pressex?(0x47) && $DEBUG # G, for Get
-		  pbAddPokemonSilent(@sprites["pokedex"].species,$game_variables[26])
-		  pbMessage("Added #{@sprites["pokedex"].species}")
+			pbAddPokemonSilent(@sprites["pokedex"].species,$game_variables[26])
+			pbMessage("Added #{@sprites["pokedex"].species}")
 		elsif Input.pressex?(0x42) && $DEBUG # B, for Battle
-		  pbWildBattle(@sprites["pokedex"].species, $game_variables[26])
+			if !Input.press?(Input::CTRL)
+		  		pbWildBattle(@sprites["pokedex"].species, $game_variables[26])
+			else
+				begin
+					pbSmallAvatarBattle([@sprites["pokedex"].species.to_sym, $game_variables[26]])
+				rescue
+					pbMessage(_INTL("Unable to start Avatar battle."))
+				end
+			end
+		elsif Input.pressex?(0x4F) && $DEBUG # O, for Own
+			@dexlist.each do |dexlist_entry|
+				entrySpecies = dexlist_entry[0]
+				$Trainer.pokedex.set_owned(entrySpecies, false)
+			end
+			pbMessage("Marked as owned every species on current list.")
 		elsif Input.pressex?(0x50) && $DEBUG # P, for Print
 			echoln("Printing the entirety of the current dex list.")
 			 @dexlist.each do |dexEntry|
 				echoln(dexEntry[0])
 			 end
 		elsif Input.pressex?(0x49) && $DEBUG # I, for Investigation
-		  # Find information about the currently displayed list
-		  typesCount = {}
-		  GameData::Type.each do |typesData|
-			next if typesData.id == :QMARKS
-			typesCount[typesData.id] = 0
-		  end
-		  total = 0
-		  @dexlist.each do |dexEntry|
-			next if isLegendary(dexEntry[0]) || isQuarantined(dexEntry[0])
-			speciesData = GameData::Species.get(dexEntry[0])
-			disqualify = false
-			speciesData.get_evolutions().each do |evolutionEntry|
-				evoSpecies = evolutionEntry[0]
-				@dexlist.each do |searchDexEntry|
-					if searchDexEntry[0] == evoSpecies
-						disqualify = true
-					end
-					break if disqualify
-				end
-				break if disqualify
-			end
-			next if disqualify
-			typesCount[speciesData.type1] += 1
-			typesCount[speciesData.type2] += 1 if speciesData.type2 != speciesData.type1
-			total += 1
-		  end
-		  
-		  typesCount = typesCount.sort_by{|type,count| -count}
-		  
-		  # Find information about the whole game list
-		  
-		  wholeGameTypesCount = {}
-		  GameData::Type.each do |typesData|
-			next if typesData.id == :QMARKS
-			wholeGameTypesCount[typesData.id] = 0
-		  end
-		  pbGetDexList.each do |dexEntry|
-			next if isLegendary(dexEntry[0]) || isQuarantined(dexEntry[0])
-			speciesData = GameData::Species.get(dexEntry[0])
-			next if speciesData.get_evolutions().length > 0
-			wholeGameTypesCount[speciesData.type1] += 1
-			wholeGameTypesCount[speciesData.type2] += 1 if speciesData.type2 != speciesData.type1
-		  end
-		  
-		  # Display investigation
-		  
-		  echoln("Investigation of the currently displayed dexlist:")
-		  echoln("Type,Count,PercentOfCurrentList,PercentageTypeCompletion")
-		  typesCount.each do |type,count|
-			percentOfThisList = ((count.to_f/total.to_f) * 10000).floor / 100.0
-			percentOfTypeIsInThisMap = ((count.to_f/wholeGameTypesCount[type].to_f) * 10000).floor / 100.0
-			echoln("#{type},#{count},#{percentOfThisList},#{percentOfTypeIsInThisMap}")
-		  end
+			printDexListInvestigation()
+		elsif Input.pressex?(0x54) && $DEBUG # T, for Tutor
+			modifyTutorLearnability()
 		end
       end
     }
+  end
+
+  def modifyTutorLearnability()
+	while true
+		moveNameInput = pbEnterText("Move name...", 0, 16)
+		if moveNameInput && moveNameInput!=""	
+			actualMoveID = nil
+			GameData::Move.each do |moveData|
+				if moveData.real_name.downcase == moveNameInput.downcase
+					actualMoveID = moveData.id
+					break
+				end
+			end
+			if actualMoveID.nil?
+				pbMessage(_INTL("Invalid input: {1}", moveNameInput))
+				next
+			end
+
+			tutorActionSelection = pbMessage("Do what with #{actualMoveID}?",[_INTL("Teach"),_INTL("Remove"),_INTL("Replace"),_INTL("Cancel")],4)
+	  		return if tutorActionSelection == 3
+
+			if tutorActionSelection == 2
+				while true
+					replacementMoveNameInput = pbEnterText("Move name...", 0, 16)
+					if replacementMoveNameInput && replacementMoveNameInput != ""				
+						replacementActualMoveID = nil
+						GameData::Move.each do |moveData|
+							if moveData.real_name.downcase == replacementMoveNameInput.downcase
+								replacementActualMoveID = moveData.id
+								break
+							end
+						end
+						if replacementActualMoveID.nil?
+							pbMessage(_INTL("Invalid input: {1}", replacementMoveNameInput))
+							next
+						end
+					end
+					break
+				end
+			end
+
+			lineBehaviourSelection = pbMessage("Do what with same line?",[_INTL("Both"),_INTL("Prevos"),_INTL("Evos"),_INTL("Neither"),_INTL("Cancel")],5)
+	  		return if lineBehaviourSelection == 4
+			
+			speciesToEdit = []
+			@dexlist.each do |dexlist_entry|
+				species = dexlist_entry[0]
+				speciesData = GameData::Species.get(species)
+				speciesToEdit.push(species)
+
+				# Grab the prevos
+				if lineBehaviourSelection == 0 || lineBehaviourSelection == 1
+					getPrevosInLineAsList(speciesData).each do |prevoSpecies|
+						speciesToEdit.push(prevoSpecies)
+					end
+				end
+
+				# Grab the prevos
+				if lineBehaviourSelection == 0 || lineBehaviourSelection == 2
+					getEvosInLineAsList(speciesData).each do |evoSpecies|
+						speciesToEdit.push(evoSpecies)
+					end
+				end
+			end
+
+			speciesToEdit.uniq!
+			speciesToEdit.compact!
+			speciesEdited = 0
+			if tutorActionSelection == 0
+				echoln("Adding #{actualMoveID} to tutor movesets:")
+				speciesToEdit.each do |species|
+					speciesData = GameData::Species.get(species)
+					next if speciesData.tutor_moves.include?(actualMoveID)
+					speciesData.tutor_moves.push(actualMoveID)
+					echoln(species)
+					speciesEdited += 1
+				end
+			elsif tutorActionSelection == 1
+				echoln("Deleting #{actualMoveID} from tutor movesets:")
+				speciesToEdit.each do |species|
+					speciesData = GameData::Species.get(species)
+					next if !speciesData.tutor_moves.include?(actualMoveID)
+					speciesData.tutor_moves.delete(actualMoveID)
+					echoln(species)
+					speciesEdited += 1
+				end
+			elsif tutorActionSelection == 2
+				echoln("Replacing #{actualMoveID} in tutor movesets with #{replacementActualMoveID}:")
+				speciesToEdit.each do |species|
+					speciesData = GameData::Species.get(species)
+					next if !speciesData.tutor_moves.include?(actualMoveID)
+					next if speciesData.tutor_moves.include?(replacementActualMoveID)
+					speciesData.tutor_moves.delete(actualMoveID)
+					speciesData.tutor_moves.push(replacementActualMoveID)
+					echoln(species)
+					speciesEdited += 1
+				end
+			end
+			pbMessage("#{speciesEdited} species tutor movesets edited!")
+
+			GameData::Species.save
+			Compiler.write_pokemon
+		end
+		break
+	end
+  end
+
+  def printDexListInvestigation()
+	# Find information about the currently displayed list
+	typesCount = {}
+	GameData::Type.each do |typesData|
+	next if typesData.id == :QMARKS
+	typesCount[typesData.id] = 0
+	end
+	total = 0
+	@dexlist.each do |dexEntry|
+	next if isLegendary(dexEntry[0]) || isQuarantined(dexEntry[0])
+	speciesData = GameData::Species.get(dexEntry[0])
+	disqualify = false
+	speciesData.get_evolutions().each do |evolutionEntry|
+		evoSpecies = evolutionEntry[0]
+		@dexlist.each do |searchDexEntry|
+			if searchDexEntry[0] == evoSpecies
+				disqualify = true
+			end
+			break if disqualify
+		end
+		break if disqualify
+	end
+	next if disqualify
+	typesCount[speciesData.type1] += 1
+	typesCount[speciesData.type2] += 1 if speciesData.type2 != speciesData.type1
+	total += 1
+	end
+	
+	typesCount = typesCount.sort_by{|type,count| -count}
+	
+	# Find information about the whole game list
+	
+	wholeGameTypesCount = {}
+	GameData::Type.each do |typesData|
+	next if typesData.id == :QMARKS
+	wholeGameTypesCount[typesData.id] = 0
+	end
+	pbGetDexList.each do |dexEntry|
+	next if isLegendary(dexEntry[0]) || isQuarantined(dexEntry[0])
+	speciesData = GameData::Species.get(dexEntry[0])
+	next if speciesData.get_evolutions().length > 0
+	wholeGameTypesCount[speciesData.type1] += 1
+	wholeGameTypesCount[speciesData.type2] += 1 if speciesData.type2 != speciesData.type1
+	end
+	
+	# Display investigation
+	
+	echoln("Investigation of the currently displayed dexlist:")
+	echoln("Type,Count,PercentOfCurrentList,PercentageTypeCompletion")
+	typesCount.each do |type,count|
+	percentOfThisList = ((count.to_f/total.to_f) * 10000).floor / 100.0
+	percentOfTypeIsInThisMap = ((count.to_f/wholeGameTypesCount[type].to_f) * 10000).floor / 100.0
+	echoln("#{type},#{count},#{percentOfThisList},#{percentOfTypeIsInThisMap}")
+	end
   end
   
   def pbCloseSearch
@@ -487,7 +634,7 @@ class PokemonPokedex_Scene
 	xLeft2 += 4
 	page2textpos = [
 	   [_INTL("Choose a Search"),Graphics.width/2,-2,2,shadow,base],
-       [_INTL("Owned"),xLeft,68,0,base,shadow],
+       [_INTL("Collecting"),xLeft,68,0,base,shadow],
        [_INTL("Stats"),xLeft2,68,0,base,shadow],
        [_INTL("Matchups"),xLeft,164,0,base,shadow],
        [_INTL("Filters"),xLeft2,164,0,base,shadow],
@@ -574,7 +721,7 @@ class PokemonPokedex_Scene
 		  }
 		when 6
 		  searchChanged = acceptSearchResults2 {
-			searchByOwned()
+			searchByCollecting()
 		  }
 		when 7
 		  searchChanged = acceptSearchResults2 {
@@ -949,7 +1096,6 @@ class PokemonPokedex_Scene
 					
 					levelThreshold = currentPrevo[2]
 					if levelThreshold <= levelIntAttempt
-						#echoln("Adding #{currentPrevo[0]} to the checks for #{item[0]} based on level evo.")
 						speciesToCheckLocationsFor.push(currentPrevo[0])
 					else
 						break
@@ -967,7 +1113,6 @@ class PokemonPokedex_Scene
 					end
 					if itemAvailable
 						speciesToCheckLocationsFor.push(currentPrevo[0])
-						#echoln("Adding #{currentPrevo[0]} to the checks for #{item[0]} based on item evo.") if itemAvailable
 					else
 						break
 					end
@@ -1030,18 +1175,24 @@ class PokemonPokedex_Scene
   end
 
 
-	def searchByOwned()
-		selection = pbMessage("Which search?",[_INTL("Owned"),_INTL("Not Owned"),_INTL("Cancel")],3)
-	    if selection != 2 
+	def searchByCollecting()
+		selection = pbMessage("Which search?",[_INTL("Starred"),_INTL("Owned"),_INTL("Not Starred"),_INTL("Not Owned"),_INTL("Cancel")],3)
+	    if selection != 4 
 			dexlist = searchStartingList()
 			
 			dexlist = dexlist.find_all { |item|
-				next false if autoDisqualifyFromSearch(item[0])
+				species = item[0]
+				next false if autoDisqualifyFromSearch(species)
 				
-				if selection == 1
-					next !$Trainer.owned?(item[0])
-				else
-					next $Trainer.owned?(item[0])
+				case selection
+				when 0
+					next $PokemonGlobal.speciesStarred?(species)
+				when 1
+					next $Trainer.owned?(species)
+				when 2
+					next !$PokemonGlobal.speciesStarred?(species)
+				when 3
+					next !$Trainer.owned?(species)
 				end
 			}
 			
@@ -1411,9 +1562,8 @@ class PokemonPokedex_Scene
 			end
 		end
 		
-		generationlastNumbers = [0,151,251,386,493,649,721,809,898]
-		generationFirstNumber = generationlastNumbers[generationNumber-1]
-		generationLastNumber = generationlastNumbers[generationNumber]
+		generationFirstNumber = GENERATION_END_IDS[generationNumber-1]
+		generationLastNumber = GENERATION_END_IDS[generationNumber]
 		
 		dexlist = dexlist.find_all { |item|
 				next false if autoDisqualifyFromSearch(item[0])

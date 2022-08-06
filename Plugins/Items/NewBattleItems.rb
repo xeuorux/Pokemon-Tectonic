@@ -30,14 +30,26 @@ BattleHandlers::UserItemAfterMoveUse.add(:THROATSPRAY,
 BattleHandlers::EOREffectItem.add(:POISONORB,
   proc { |item,battler,battle|
     next if !battler.pbCanPoison?(nil,false)
-    battler.pbPoison(nil,_INTL("{1} was poisoned by the {2}!",
-       battler.pbThis,battler.itemName),false)
+    battler.pbPoison(nil,_INTL("{1} was poisoned by the {2}! {3}!",battler.pbThis,battler.itemName,POISONED_EXPLANATION))
+  }
+)
+
+BattleHandlers::EOREffectItem.add(:FROSTORB,
+  proc { |item,battler,battle|
+    next if !battler.pbCanFrostbite?(nil,false)
+    battler.pbFrostbite(nil,_INTL("{1} was burned by the {2}! {3}!",battler.pbThis,battler.itemName,FROSTBITE_EXPLANATION))
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:STRIKEVEST,
   proc { |item,user,target,move,mults,baseDmg,type|
     mults[:defense_multiplier] *= 1.5 if move.physicalMove?
+  }
+)
+
+BattleHandlers::SpeedCalcItem.add(:SEVENLEAGUEBOOTS,
+  proc { |item,battler,mult|
+    next mult*1.1
   }
 )
 

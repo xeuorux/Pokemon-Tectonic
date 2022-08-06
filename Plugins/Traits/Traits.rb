@@ -136,7 +136,7 @@ class Pokemon
 	]
 
 	def trait1
-		return nil if happiness < PERSONALITY_THRESHOLD_ONE
+		return nil if @happiness < PERSONALITY_THRESHOLD_ONE
 		while @Trait1.nil? || @Trait1 == @Trait2 || @Trait1 == @Trait3
 			@Trait1 = TRAITS.sample
 		end
@@ -144,7 +144,7 @@ class Pokemon
 	end
 	  
 	def trait2
-	    return nil if happiness < PERSONALITY_THRESHOLD_TWO
+	    return nil if @happiness < PERSONALITY_THRESHOLD_TWO
 		while @Trait2.nil? || @Trait2 == @Trait1 || @Trait2 == @Trait3
 			@Trait2 = TRAITS.sample
 		end
@@ -152,7 +152,7 @@ class Pokemon
 	end
 	  
 	def trait3
-		return nil if happiness < PERSONALITY_THRESHOLD_THREE
+		return nil if @happiness < PERSONALITY_THRESHOLD_THREE
 		while @Trait3.nil? || @Trait3 == @Trait1 || @Trait3 == @Trait2
 			@Trait3 = TRAITS.sample
 		end
@@ -277,7 +277,7 @@ class Pokemon
 				"Puns",
 				"Mushrooms"]
 	def like
-		return nil if happiness < PERSONALITY_THRESHOLD_FOUR
+		return nil if @happiness < PERSONALITY_THRESHOLD_FOUR
 		while @Like.nil? || @Like == @Dislike
 			@Like = LIKES.sample
 		end
@@ -332,6 +332,7 @@ class Pokemon
 					"Chalkboards",
 					"Open Ocean",
 					"Boats"]
+
 	def dislike
 		return nil if happiness < PERSONALITY_THRESHOLD_FOUR
 		while @Dislike.nil? || @Dislike == @Like
@@ -343,14 +344,6 @@ class Pokemon
   # Changes the happiness of this Pokémon depending on what happened to change it.
   # @param method [String] the happiness changing method (e.g. 'walking')
   def changeHappiness(method)
-	if @happiness < 0
-		pbMessage("A recoverable error has occured. #{self.name}'s happiness was somehow below 0 when trying to gain happiness. Setting its Happiness to 0.")
-		@happiness = 0
-	elsif @happiness > 255
-		pbMessage("A recoverable error has occured. #{self.name}'s happiness was somehow above 255 when trying to gain happiness. Setting its Happiness to 255.")
-		@happiness = 255
-	end
-
     gain = 0
     happiness_range = @happiness / 100
     case method

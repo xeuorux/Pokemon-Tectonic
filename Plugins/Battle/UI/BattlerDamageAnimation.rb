@@ -21,6 +21,8 @@ class BattlerDamageAnimation < PokeBattle_Animation
 		@sprites["damage_display"] = @damageDisplaySprite
     end
 
+	DAMAGE_POPUP_SHADOW_COLOR = Color.new(248,248,248)
+
 	def createProcesses
 		batSprite = @sprites["pokemon_#{@idxBattler}"]
 		shaSprite = @sprites["shadow_#{@idxBattler}"]
@@ -53,19 +55,19 @@ class BattlerDamageAnimation < PokeBattle_Animation
 				framesForOpacity /= 4
 			end
 			
-			base = Color.new(72,72,72)
 			case @effectiveness
-			when 0 then base = Color.new(72,72,72)
-			when 1 then base = Color.new(130,130,130)
-			when 2 then base = Color.new(220,40,40)
-			when 4 then base = Color.new(250,50,250)
+			when 0      then effectivenessCategory = 0
+			when 0.25   then effectivenessCategory = 1
+			when 0.5 	then effectivenessCategory = 2
+			when 1 		then effectivenessCategory = 3
+			when 2 		then effectivenessCategory = 4
+			when 4 		then effectivenessCategory = 5
 			end
-			
-			shadow = Color.new(248,248,248)
+			color = EFFECTIVENESS_COLORS[effectivenessCategory]
 			
 			damageX = batSprite.x
 			damageY = batSprite.y - 140
-			pbDrawTextPositions(@damageDisplayBitmap,[[@damageDealt.to_s,damageX,damageY,2,base,shadow,true]])
+			pbDrawTextPositions(@damageDisplayBitmap,[[@damageDealt.to_s,damageX,damageY,2,color,DAMAGE_POPUP_SHADOW_COLOR,true]])
 		
 			if @fastHitAnimation
 				movementFrameStart = 1
@@ -86,12 +88,16 @@ class BattlerDamageAnimation < PokeBattle_Animation
 		# Animation
 		delay = 0
 		case @effectiveness
-		when 0 then battler.setSE(delay, "Battle damage normal")
-		when 1 then battler.setSE(delay, "Battle damage weak")
-		when 2 then battler.setSE(delay, "Battle damage super")
-		when 4 then battler.setSE(delay, "Battle damage hyper") # HYPER EFFECTIVE DAMAGE !!
+		when 0.25,0.5 	then battler.setSE(delay, "Battle damage weak")
+		when 1 			then battler.setSE(delay, "Battle damage normal")
+		when 2 			then battler.setSE(delay, "Battle damage super")
+		when 4 			then battler.setSE(delay, "Battle damage hyper")
 		end
-		flashesCount = @fastHitAnimation ? 1 : 4
+		if @fastHitAnimation
+			flashesCount = 1
+		else
+			flashesCount = $PokemonSystem.battlescene == 1 ? flashesCount = 2 : 4
+		end
 		flashesCount.times do   # 4 flashes, each lasting 0.2 (4/20) seconds
 		  battler.setVisible(delay,false)
 		  shadow.setVisible(delay,false)

@@ -49,13 +49,13 @@ class PokeBattle_Scene
 		  partyBar.mirror  = true if side==0   # Player's lineup bar only
 		  partyBar.visible = false
 		  for i in 0...PokeBattle_SceneConstants::NUM_BALLS
-			ball = pbAddSprite("partyBall_#{side}_#{i}",0,0,nil,@viewport)
-			ball.z       = 121
-			ball.visible = false
+        ball = pbAddSprite("partyBall_#{side}_#{i}",0,0,nil,@viewport)
+        ball.z       = 121
+        ball.visible = false
 		  end
 		  # Ability splash bars
 		  if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-			@sprites["abilityBar_#{side}"] = AbilitySplashBar.new(side,@viewport)
+			  @sprites["abilityBar_#{side}"] = AbilitySplashBar.new(side,@viewport)
 		  end
 		end
 		# Player's and partner trainer's back sprite
@@ -65,7 +65,7 @@ class PokeBattle_Scene
 		# Opposing trainer(s) sprites
 		if @battle.trainerBattle?
 		  @battle.opponent.each_with_index do |p,i|
-			pbCreateTrainerFrontSprite(i,p.trainer_type,@battle.opponent.length)
+			  pbCreateTrainerFrontSprite(i,p.trainer_type,@battle.opponent.length)
 		  end
 		end
 		# Data boxes and Pokémon sprites
@@ -73,6 +73,7 @@ class PokeBattle_Scene
 		  next if !b
 		  @sprites["dataBox_#{i}"] = PokemonDataBox.new(b,@battle.pbSideSize(i),@viewport)
 		  pbCreatePokemonSprite(i)
+      createAggroCursor(b,i)
 		end
 		# Wild battle, so set up the Pokémon sprite(s) accordingly
 		if @battle.wildBattle?
@@ -89,7 +90,33 @@ class PokeBattle_Scene
 		areaUIpoint = Graphics.height/4
 		indicator_Y = Graphics.height/3
 		indicator_X = Graphics.width/30
-    end
+  end
+
+  def createAggroCursor(battler,index)
+    cursor = AggroCursor.new(battler,@battle.pbSideSize(index),@viewport)
+    @sprites["aggro_cursor_#{index}"] = cursor
+    cursor.visible = false
+  end
+
+  def pbBeginCommandPhase
+    @sprites["messageWindow"].text = ""
+    setAggroCursorsOff()
+  end
+
+  def setAggroCursorsOff
+    @battle.battlers.each_with_index do |b,i|
+		  next if b.nil?
+      if @sprites["aggro_cursor_#{i}"].nil?
+        createAggroCursor(b,i)
+      end
+      @sprites["aggro_cursor_#{i}"].visible = false
+		end
+  end
+
+  def setAggroCursorOnIndex(index,extraAggro = false)
+    @sprites["aggro_cursor_#{index}"].visible = true
+    @sprites["aggro_cursor_#{index}"].extraAggro = extraAggro
+  end
 	
 	def pbChangePokemon(idxBattler,pkmn)
 		idxBattler = idxBattler.index if idxBattler.respond_to?("index")
@@ -101,7 +128,7 @@ class PokeBattle_Scene
 		# Set visibility of battler's shadow
 		shadowSprite.visible = pkmn.species_data.shows_shadow? if shadowSprite && !back
 		shadowSprite.visible = false if pkmn.boss
-	  end
+  end
 
   #=============================================================================
   # The player chooses a main command for a Pokémon
@@ -666,9 +693,11 @@ class PokeBattle_Scene
 
   
   def pbCreateBackdropSprites
-    case @battle.time
-    when 1 then time = "eve"
-    when 2 then time = "night"
+    if GameData::MapMetadata.exists?($game_map.map_id) && GameData::MapMetadata.get($game_map.map_id).outdoor_map
+      case @battle.time
+      when 1 then time = "eve"
+      when 2 then time = "night"
+      end
     end
     # Put everything together into backdrop, bases and message bar filenames
     backdropFilename = @battle.backdrop

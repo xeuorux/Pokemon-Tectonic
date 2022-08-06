@@ -5,17 +5,47 @@ SaveData.register(:pokestate_tracker) do
 	new_game_value { PokEstate.new }
 end
 
+class DexCompletionAwardHandlerHash < HandlerHash2
+	def trigger(symbols, newAwardsArray)
+		handlers = @hash.reject{|key,value| symbols.include?(key)}
+		handlers.each do |handlerID,handler|
+			next if handler.nil?
+			begin
+				newAward = handler.call($Trainer.pokedex)
+				if !newAward.nil?
+					newAward.push(handlerID)
+					newAwardsArray.push(newAward)
+				end
+			rescue
+				pbMessage(_INTL("A recoverable error has occured. Please report the following to a programmer."))
+				pbPrintException($!)
+			end
+		end
+
+		return newAwardsArray
+	end
+end
+
 class PokEstate
 	attr_reader   :estate_box
 	attr_reader   :estate_teleport
 	attr_reader   :stories_progress
 	attr_reader   :stories_count
 
+	GrantAwards 			= DexCompletionAwardHandlerHash.new
+	LoadDataDependentAwards = Event.new
+
 	def initialize()
 		@estate_box = 0
 		@estate_teleport = nil
 		@stories_progress = 0
 		@stories_count = [1] * Settings::NUM_STORAGE_BOXES
+		@awardsGranted = []
+	end
+
+	def awardsGranted()
+		@awardsGranted = [] if @awardsGranted.nil?
+		return @awardsGranted
 	end
 
 	def isInEstate?
@@ -110,7 +140,7 @@ class PokEstate
 		chosenPaper = pbMessage(_INTL("Pick the landscape you'd like for this plot."),papers[0],papers[0].length,nil,index)
 		return if chosenPaper == papers[0].length - 1 || chosenPaper == index
 		$PokemonStorage[estate_box].background = chosenPaper
-		transferToEstate(estate_box)
+		transferToEstate(estate_box,3)
 	end
 	
 	def truckChoices()
@@ -130,13 +160,76 @@ class PokEstate
 			transferToEstateOfChoice()
 		end
 	end
+
+	def careTakerInteraction
+		if COMPLETION_AWARDS_FEATURE_AVAILABLE
+			newAwards = findNewAwards()
+			if newAwards.length != 0
+				if newAwards.length == 1
+					pbMessage(_INTL("You've earned a new PokéDex completion reward!"))
+				else
+					pbMessage(_INTL("You've earned #{newAwards.length} new PokéDex completion rewards!"))
+				end
+				if newAwards.length < 5
+					newAwards.each do |newAwardInfo|
+						awardReward = newAwardInfo[0]
+						awardDescription = newAwardInfo[1]
+						pbMessage(_INTL("For collecting #{awardDescription}, please take this."))
+						if awardReward.is_a?(Array)
+							pbReceiveItem(awardReward[0],awardReward[1])
+						else
+							pbReceiveItem(awardReward)
+						end
+						awardsGranted.push(newAwardInfo[2])
+					end
+				else
+					pbMessage(_INTL("That's so many! I'll just give you all the rewards at once."))
+					itemsToGrantHash = {}
+					newAwards.each do |newAwardInfo|
+						awardReward = newAwardInfo[0]
+						awardDescription = newAwardInfo[1]
+						itemCount = 1
+						if awardReward.is_a?(Array)
+							itemGrant = awardReward[0]
+							itemCount = awardReward[1]
+						else
+							itemGrant = awardReward
+						end
+						awardsGranted.push(newAwardInfo[2])
+						if !itemsToGrantHash.has_key?(itemGrant)
+							itemsToGrantHash[itemGrant] = itemCount
+						else
+							itemsToGrantHash[itemGrant] += itemCount
+						end
+					end
+					itemsToGrantHash.each do |item,count|
+						pbReceiveItem(item,count)
+					end
+				end
+			end
+		end
+		caretakerChoices()
+	end
+
+	def awardGranted?(awardID)
+		return awardsGranted.include?(awardID)
+	end
+
+	def findNewAwards
+		newAwardsArray = []
+		$Trainer.pokedex.resetOwnershipCache()
+		newAwardsArray = GrantAwards.trigger(awardsGranted,newAwardsArray)
+		return newAwardsArray
+	end
 	
 	def caretakerChoices()
 		commandLandscape = -1
 		commandReceiveUpdate = -1
 		commandCancel = -1
+		commandScrubAwards = -1
 		commands = []
 		commands[commandLandscape = commands.length] = _INTL("Landscape")
+		commands[commandScrubAwards = commands.length] = _INTL("Scrub Awards") if COMPLETION_AWARDS_FEATURE_AVAILABLE && $DEBUG
 		commands[commandReceiveUpdate = commands.length] = _INTL("Hear Story") if STORIES_FEATURE_AVAILABLE
 		commands[commandCancel = commands.length] = _INTL("Cancel")
 		
@@ -146,6 +239,9 @@ class PokEstate
 			changeLandscape()
 		elsif commandReceiveUpdate > -1 && command == commandReceiveUpdate
 			tryHearStory()
+		elsif commandScrubAwards > -1 && command == commandScrubAwards
+			@awardsGranted.clear
+			pbMessage(_INTL("Scrubbed awards."))
 		end
 	end
 
@@ -175,6 +271,9 @@ class PokEstate
 				break
 			end
 		end
+
+		# Load all data dependent events
+		LoadDataDependentAwards.trigger
 	
 		# Load all the pokemon into the placeholders
 		events = $game_map.events.values.shuffle()
@@ -252,7 +351,7 @@ class PokEstate
 		firstPage.trigger = 0 # Action button
 		firstPage.list = []
 		push_text(firstPage.list,"Hello, I am the caretaker of this plot.")
-		push_script(firstPage.list,sprintf("$PokEstate.caretakerChoices()",))
+		push_script(firstPage.list,sprintf("$PokEstate.careTakerInteraction()",))
 		firstPage.list.push(RPG::EventCommand.new(0,0,[]))
 		
 		event.event.pages[0] = firstPage
@@ -431,7 +530,6 @@ class PokEstate
 	def incrementStoriesProgress()
 		@stories_progress += 1
 		if @stories_progress > STEPS_TILL_NEW_STORY
-			echoln("Deciding which boxes to give new stories to!")
 			@stories_progress = 0
 			for box in -1...$PokemonStorage.maxBoxes
 				next if @stories_count[box] >= MAX_STORIES_STORAGE
@@ -440,7 +538,6 @@ class PokEstate
 				chance = NEW_STORY_PERCENT_CHANCE_PER_POKEMON * count
 				if rand(100) < chance
 					@stories_count[box] += 1 
-					echoln("A new story is now available at PokEstate plot #{box}!")
 				end
 			end
 		end

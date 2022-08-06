@@ -40,11 +40,11 @@ class PokeBattle_Battler
       end
       return false
     end
-    # Choice Band
+    # Choice Items
     if @effects[PBEffects::ChoiceBand]
       if hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) &&
          pbHasMove?(@effects[PBEffects::ChoiceBand])
-        if move.id!=@effects[PBEffects::ChoiceBand]
+        if move.id != @effects[PBEffects::ChoiceBand] && move.id != :STRUGGLE
           if showMessages
             msg = _INTL("{1} allows the use of only {2}!",itemName,
                GameData::Move.get(@effects[PBEffects::ChoiceBand]).name)
@@ -56,7 +56,7 @@ class PokeBattle_Battler
         @effects[PBEffects::ChoiceBand] = nil
       end
     end
-	# Gorilla Tactics
+	  # Gorilla Tactics
     if @effects[PBEffects::GorillaTactics]
       if hasActiveAbility?(:GORILLATACTICS)
         if move.id != @effects[PBEffects::GorillaTactics]
@@ -161,7 +161,7 @@ class PokeBattle_Battler
           return false
         end
       end
-	end
+	  end
     # Obedience check
     return false if !pbObedienceCheck?(choice)
     # Truant
@@ -212,7 +212,7 @@ class PokeBattle_Battler
         end
       end
     end
-	# Charm
+	  # Charm
     if @effects[PBEffects::Charm]>0
       @effects[PBEffects::Charm] -= 1
       if @effects[PBEffects::Charm]<=0
@@ -273,13 +273,13 @@ class PokeBattle_Battler
     return false if move.pbFailsAgainstTarget?(user,target)
     # Immunity to priority moves because of Psychic Terrain
     if @battle.field.terrain == :Psychic && target.affectedByTerrain? && target.opposes?(user) &&
-       @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
+       @battle.choices[user.index][4] > 0   # Move priority saved from pbCalculatePriority
       @battle.pbDisplay(_INTL("{1} surrounds itself with psychic terrain!",target.pbThis))
       return false
     end
     # Crafty Shield
-    if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index!=target.index && move.function != "17C"
-       move.statusMove? && !move.pbTarget(user).targets_all && !unseenfist
+    if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index != target.index && 
+        move.statusMove? && !move.pbTarget(user).targets_all && !unseenfist
       @battle.pbCommonAnimation("CraftyShield",target)
       @battle.pbDisplay(_INTL("Crafty Shield protected {1}!",target.pbThis(true)))
       target.damageState.protected = true
@@ -288,7 +288,7 @@ class PokeBattle_Battler
     end
     # Wide Guard
     if target.pbOwnSide.effects[PBEffects::WideGuard] && user.index!=target.index &&
-       move.pbTarget(user).num_targets > 1 &&
+       move.pbTarget(user).num_targets > 1 && !move.smartSpreadsTargets? &&
        (Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?) && !unseenfist
       @battle.pbCommonAnimation("WideGuard",target)
       @battle.pbDisplay(_INTL("Wide Guard protected {1}!",target.pbThis(true)))
@@ -386,12 +386,27 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
-        if move.pbContactMove?(user) && user.affectedByContactEffect?
+        if move.physicalMove?
           user.pbPoison(target) if user.pbCanPoison?(target,false)
         end
         return false
       elsif move.pbTarget(user).targets_foe
         @battle.pbDisplay(_INTL("{1}'s Baneful Bunker was ignored!",target.pbThis))
+      end
+    end
+    # Baneful Bunker
+    if target.effects[PBEffects::RedHotRetreat]
+      if move.canProtectAgainst? && !unseenfist
+        @battle.pbCommonAnimation("RedHotRetreat",target)
+        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+        target.damageState.protected = true
+        @battle.successStates[user.index].protected = true
+        if move.specialMove?
+          user.pbBurn(target) if user.pbCanBurn?(target,false)
+        end
+        return false
+      elsif move.pbTarget(user).targets_foe
+        @battle.pbDisplay(_INTL("{1}'s Red Hot Retreat was ignored!",target.pbThis))
       end
     end
     # Mat Block
@@ -420,6 +435,7 @@ class PokeBattle_Battler
         return false
       end
     end
+    # Move fails due to type immunity ability (Except against or by a boss)
     if !user.boss? && !target.boss
       if move.pbImmunityByAbility(user,target) 
         triggerImmunityDialogue(target,true)

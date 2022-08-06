@@ -67,8 +67,8 @@ def pbPrepareBattle(battle)
     backdrop = battleRules["backdrop"]
   elsif $PokemonGlobal.nextBattleBack
     backdrop = $PokemonGlobal.nextBattleBack
-  elsif $PokemonGlobal.surfing
-    backdrop = "water"   # This applies wherever you are, including in caves
+  #elsif $PokemonGlobal.surfing
+  #  backdrop = "water"   # This applies wherever you are, including in caves
   elsif GameData::MapMetadata.exists?($game_map.map_id)
     back = GameData::MapMetadata.get($game_map.map_id).battle_background
     backdrop = back if back && back != ""

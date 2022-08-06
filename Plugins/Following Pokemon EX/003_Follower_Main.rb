@@ -403,6 +403,7 @@ def pbHiddenMoveAnimation(pokemon,followAnim = true)
   end
 end
 
+
 #-------------------------------------------------------------------------------
 # New sendout animation for Followers to slide in when sent out for the 1st time in battle
 #-------------------------------------------------------------------------------
@@ -420,7 +421,7 @@ class PokeballPlayerSendOutAnimation < PokeBattle_Animation
     @pictureSprites = []   # For all the sprites
     @tempSprites    = []   # For sprites that exist only for this animation
     @animDone       = false
-    if $PokemonTemp.dependentEvents.can_refresh? && battler.index == 0 && startBattle
+    if @trainer.wild? || ($PokemonTemp.dependentEvents.can_refresh? && battler.index == 0 && startBattle)
       createFollowerProcesses
     else
       createProcesses

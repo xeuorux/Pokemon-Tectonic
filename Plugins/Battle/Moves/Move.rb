@@ -1,5 +1,9 @@
 class PokeBattle_Move
 	def isEmpowered?; return false; end
+  alias empowered? isEmpowered?
+
+  def smartSpreadsTargets?; return false; end
+  
 	def pbAllMissed(user, targets); end
 
   #=============================================================================
@@ -15,12 +19,7 @@ class PokeBattle_Move
         next if (side==0 && b.opposes?(user)) || (side==1 && !b.opposes?(user))
         oldHP = b.hp+b.damageState.hpLost
         PBDebug.log("[Move damage] #{b.pbThis} lost #{b.damageState.hpLost} HP (#{oldHP}=>#{b.hp})")
-        effectiveness = 0
-        if Effectiveness.resistant?(b.damageState.typeMod);          effectiveness = 1
-        elsif Effectiveness.super_effective?(b.damageState.typeMod); effectiveness = 2
-        end
-		    effectiveness = -1 if Effectiveness.ineffective?(b.damageState.typeMod)
-        effectiveness = 4 if Effectiveness.hyper_effective?(b.damageState.typeMod)
+        effectiveness = b.damageState.typeMod / Effectiveness::NORMAL_EFFECTIVE
         animArray.push([b,oldHP,effectiveness])
       end
       if animArray.length>0
@@ -92,6 +91,10 @@ class PokeBattle_Move
         damage -= 1
 		    damageAdjusted = true
 		    target.effects[PBEffects::EmpoweredEndure] -= 1
+      elsif target.hasActiveAbility?(:DIREDIVERSION) && !target.item.nil? && target.itemActive? && !@battle.moldBreaker
+        target.damageState.direDiversion = true
+        damage -= 1
+        damageAdjusted = true
       elsif damage==target.totalhp
         if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
           target.damageState.sturdy = true
@@ -156,10 +159,11 @@ class PokeBattle_Move
       @battle.pbDisplay(_INTL("The substitute took damage for {1}!",target.pbThis(true)))
     end
     if target.damageState.critical
-      if numTargets>1
-        @battle.pbDisplay(_INTL("A critical hit on {1}!",target.pbThis(true)))
+      onAddendum = numTargets > 1 ? " on #{target.pbThis(true)}" : ""
+      if target.damageState.forced_critical
+        @battle.pbDisplay(_INTL("#{user.pbThis} performed a critical attack#{onAddendum}!",))
       else
-        @battle.pbDisplay(_INTL("A critical hit!"))
+        @battle.pbDisplay(_INTL("A critical hit#{onAddendum}!"))
       end
     end
     # Effectiveness message, for moves with 1 hit
@@ -203,15 +207,19 @@ class PokeBattle_Move
     elsif target.damageState.focusBand
       @battle.pbCommonAnimation("UseItem",target)
       @battle.pbDisplay(_INTL("{1} hung on using its Focus Band!",target.pbThis))
+    elsif target.damageState.direDiversion
+      @battle.pbDisplay(_INTL("{1} blocked the hit with its item! It barely hung on!",target.pbThis))
+      target.pbConsumeItem
     end
   end
   
   # Checks whether the move should have modified priority
 	def priorityModification(user,target); return 0; end
 	
-	# Returns whether the move will be a critical hit.
+	# Returns whether the move will be a critical hit
+  # And whether the critical hit was forced by an effect
 	def pbIsCritical?(user,target)
-		return false if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
+		return [false,false] if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
 		# Set up the critical hit ratios
 		ratios = [16,8,4,2,1]
 		c = 0
@@ -229,24 +237,24 @@ class PokeBattle_Move
 		if c>=0 && target.itemActive?
 		  c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
 		end
-		return false if c<0
+		return [false,false] if c<0
 		# Move-specific "always/never a critical hit" effects
 		case pbCritialOverride(user,target)
-		when 1  then return true
-		when -1 then return false
+		when 1  then return [true,true]
+		when -1 then return [false,false]
 		end
 		# Other effects
-		return true if c>50   # Merciless
-		return true if user.effects[PBEffects::LaserFocus]>0 ||
+		return [true,true] if c > 50   # Merciless and similar abilities
+		return [true,true] if user.effects[PBEffects::LaserFocus] > 0 ||
 			user.effects[PBEffects::EmpoweredLaserFocus]
-		return false if user.boss?
+		return [false,false] if user.boss?
 		c += 1 if highCriticalRate?
 		c += user.effects[PBEffects::FocusEnergy]
 		c += 1 if user.effects[PBEffects::LuckyStar]
 		c = ratios.length-1 if c>=ratios.length
 		echoln("Critical hit stage: #{c}")
 		# Calculation
-		return @battle.pbRandom(ratios[c])==0
+		return [@battle.pbRandom(ratios[c]) == 0,false]
     end
   
   #=============================================================================
@@ -306,7 +314,7 @@ class PokeBattle_Move
     # Get the move's type
     type = @calcType   # nil is treated as physical
     # Calculate whether this hit deals critical damage
-    target.damageState.critical = pbIsCritical?(user,target)
+    target.damageState.critical,target.damageState.forced_critical = pbIsCritical?(user,target)
     # Calcuate base power of move
     baseDmg = pbBaseDamage(@baseDamage,user,target)
     # Calculate user's attack stat
@@ -435,6 +443,10 @@ class PokeBattle_Move
 			multipliers[:base_damage_multiplier] /= 3
 		  end
 		end
+    # Battler properites
+    multipliers[:base_damage_multiplier] *= user.dmgMult
+    multipliers[:base_damage_multiplier] *= [0,(1.0 - target.dmgResist.to_f)].max
+    echoln("User's damage mult is #{user.dmgMult} and the target's damage resist is #{target.dmgResist}")
 		# Terrain moves
 		case @battle.field.terrain
 		when :Electric
@@ -469,13 +481,25 @@ class PokeBattle_Move
 			  multipliers[:final_damage_multiplier] *= 1.5
 		  end
 		when :Sandstorm
-		  if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock
+		  if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock/Psystrike
 			  multipliers[:defense_multiplier] *= 1.5
 		  end
 		when :Hail
-		  if target.pbHasType?(:ICE) && physicalMove?
+		  if target.pbHasType?(:ICE) && physicalMove? && @function != "506"   # Soul Claw/Rip
 			  multipliers[:defense_multiplier] *= 1.5
 		  end
+		end
+    # Fluster
+		if user.flustered? && physicalMove? && @function != "122" && !user.hasActiveAbility?(:FLUSTERFLOCK)
+      defenseDecrease = target.boss? ? (1.0/5.0) : (1.0/3.0)
+      defenseDecrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:defense_multiplier] *= (1.0 - defenseDecrease)
+		end
+    # Mystified
+		if user.mystified? && specialMove? && @function != "506" && !user.hasActiveAbility?(:HEADACHE)
+      defenseDecrease = target.boss? ? (1.0/5.0) : (1.0/3.0)
+      defenseDecrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:defense_multiplier] *= (1.0 - defenseDecrease)
 		end
 		# Critical hits
 		if target.damageState.critical
@@ -485,7 +509,7 @@ class PokeBattle_Move
 			  multipliers[:final_damage_multiplier] *= 2
 		  end
 		end
-    # Random variance
+    # Random variance (What used to be for that)
     if !self.is_a?(PokeBattle_Confusion) && !self.is_a?(PokeBattle_Charm)
       multipliers[:final_damage_multiplier] *= 0.9
     end
@@ -503,38 +527,22 @@ class PokeBattle_Move
 		typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
 		multipliers[:final_damage_multiplier] *= typeEffect
 		# Burn
-		if user.burned? && physicalMove? && damageReducedByBurn? &&
-		   !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
-		  if !user.boss?
-			  multipliers[:final_damage_multiplier] *= 2.0/3.0
-		  else
-			  multipliers[:final_damage_multiplier] *= 4.0/5.0
-		  end
+		if user.burned? && physicalMove? && damageReducedByBurn? && !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
+      damageReduction = user.boss? ? (1.0/5.0) : (1.0/3.0)
+      damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
 		end
-		# Poison
-		if user.poisoned? && user.statusCount == 0 && specialMove? && damageReducedByBurn? &&
-		   !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:POISONHEAL)
-		  if !user.boss?
-			  multipliers[:final_damage_multiplier] *= 2.0/3.0
-		  else
-			  multipliers[:final_damage_multiplier] *= 4.0/5.0
-		  end
-		end
-		# Chill
-		if target.frozen?
-		  if !target.boss?
-			  multipliers[:final_damage_multiplier] *= 4.0/3.0
-		  else
-			  multipliers[:final_damage_multiplier] *= 5.0/4.0
-		  end
-		end
+    # Frostbite
+		if user.frostbitten? && specialMove? && damageReducedByBurn? && !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:FROSTHEAL)
+      damageReduction = user.boss? ? (1.0/5.0) : (1.0/3.0)
+      damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
+    end
     # Numb
 		if user.paralyzed?
-		  if !user.boss?
-			  multipliers[:final_damage_multiplier] *= 3.0/4.0
-		  else
-			  multipliers[:final_damage_multiplier] *= 17.0/20.0
-		  end
+      damageReduction = user.boss? ? (3.0/20.0) : (1.0/4.0)
+      damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+      multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
 		end
 		# Aurora Veil, Reflect, Light Screen
 		if !ignoresReflect? && !target.damageState.critical &&
@@ -726,6 +734,13 @@ class PokeBattle_Move
           }
         end
       end
+    end
+
+    if zMove? && !@specialUseZMove
+      @battle.pbCommonAnimation("ZPower",user,nil) if @battle.scene.pbCommonAnimationExists?("ZPower")
+      PokeBattle_ZMove.from_status_move(@battle, @id, user) if statusMove?
+      @battle.pbDisplay(_INTL("{1} surrounded itself with its Z-Power!",user.pbThis)) if !statusMove?
+      @battle.pbDisplay(_INTL("{1} unleashed its full force Z-Move!",user.pbThis))
     end
     
     if isEmpowered?

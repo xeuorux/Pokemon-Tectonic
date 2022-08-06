@@ -168,7 +168,16 @@ def allTrainersBeaten(events)
 		trainerDOn = $game_self_switches[[$game_map.map_id,event_id,"D"]]
 		trainerBeaten = trainerAOn || trainerDOn
     	if !trainerBeaten
-			echoln("Trainer #{event_id} is not beaten yet: #{trainerAOn},#{trainerDOn}")
+			return false
+		end
+	end
+	return true
+end
+
+def allTrainersPerfected(events)
+	events.each do |event_id|
+		trainerDOn = $game_self_switches[[$game_map.map_id,event_id,"D"]]
+    	if !trainerDOn
 			return false
 		end
 	end

@@ -19,5 +19,7 @@ module GameData
       @skill_code  = hash[:skill_code]
       @policies	   = hash[:policies]	|| []
     end
+
+    def wild?; return @gender == 3; end
   end
 end

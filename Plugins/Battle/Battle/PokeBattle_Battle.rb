@@ -4,7 +4,6 @@ class PokeBattle_Battle
 	attr_accessor :commandPhasesThisRound
 	attr_accessor :battleAI
 	attr_accessor :bossBattle
-	attr_accessor :numBossOnlyTurns
 	attr_accessor :autoTesting
 	attr_accessor :autoTestingIndex
 	attr_accessor :honorAura
@@ -92,7 +91,6 @@ class PokeBattle_Battle
     @ballsUsed		   = 0
     @messagesBlocked   = false
     @bossBattle		   = false
-    @numBossOnlyTurns  = 0
     @autoTesting	   = false
     @autoTestingIndex  = 1
     @commandPhasesThisRound = 0
@@ -106,6 +104,10 @@ class PokeBattle_Battle
     else
       @struggle = PokeBattle_Struggle.new(self, nil)
     end
+  end
+
+  def curseActive?(curseID)
+    return @curses.include?(curseID)
   end
   
   #=============================================================================

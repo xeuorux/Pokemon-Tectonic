@@ -69,6 +69,17 @@ BattleHandlers::AbilityOnSwitchIn.add(:MYSTICAURA,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
+  proc { |ability,battler,battle|
+	if battle.field.effects[PBEffects::PuzzleRoom] == 0
+		battle.pbShowAbilitySplash(battler)
+		battle.field.effects[PBEffects::PuzzleRoom] = 5
+		battle.pbDisplay(_INTL("{1}'s aura creates a puzzling area in which Pokemon's Attack and Sp. Atk are swapped!",battler.pbThis))
+		battle.pbHideAbilitySplash(battler)
+	end
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTER,
   proc { |ability,battler,battle|
 	if battle.field.effects[PBEffects::TrickRoom]==0

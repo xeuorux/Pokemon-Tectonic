@@ -612,7 +612,6 @@ class DependentEvents
   end
   
   def moveFollowerToNearbySpot(follower,leader,mapTile)
-    echoln("Moving a follower to a semi-random spot near the player at #{leader.x}, #{leader.y}.")
     # Follower is on same map as leader
     newPosX = leader.x
     newPosY = leader.y
@@ -639,13 +638,11 @@ class DependentEvents
         break
       end
     end
-    echoln("Moving a follower to #{newPosX}, #{newPosY}.")
     pbFancyMoveTo(follower,newPosX, newPosY, leader)
     pbTurnTowardEvent(follower,leader) if !follower.move_route_forcing
   end
   
   def moveFollowerToDifferentMap(follower,leader,mapTile)
-    echoln("Transferring a follower to a different map.")
     # Follower will move to different map
     events = $PokemonGlobal.dependentEvents
     eventIndex = pbEnsureEvent(follower,mapTile[0])

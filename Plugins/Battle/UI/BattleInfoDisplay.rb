@@ -15,7 +15,9 @@ class BattleInfoDisplay < SpriteWrapper
 	@selected	  			= 0
 	@individual   			= nil
 	@field					= false
-	@backgroundBitmap  		= AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/battle_info")
+	@battleInfoMain			= AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/battle_info_main")
+	@battleInfoIndividual	= AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/battle_info_individual")
+	@backgroundBitmap  		= @battleInfoMain
 	@statusCursorBitmap  	= AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/cursor_status")
 	
 	@contents = BitmapWrapper.new(@backgroundBitmap.width,@backgroundBitmap.height)
@@ -31,7 +33,8 @@ class BattleInfoDisplay < SpriteWrapper
   
   def dispose
     pbDisposeSpriteHash(@sprites)
-    @backgroundBitmap.dispose
+    @battleInfoMain.dispose
+	@battleInfoIndividual.dispose
     super
   end
   
@@ -44,12 +47,14 @@ class BattleInfoDisplay < SpriteWrapper
   
   def refresh
     self.bitmap.clear
-	# Draw background panel
-    self.bitmap.blt(0,0,@backgroundBitmap.bitmap,Rect.new(0,0,@backgroundBitmap.width,@backgroundBitmap.height))
 	
 	if @individual
+		@backgroundBitmap  		= @battleInfoIndividual
+		self.bitmap.blt(0,0,@backgroundBitmap.bitmap,Rect.new(0,0,@backgroundBitmap.width,@backgroundBitmap.height))
 		drawIndividualBattlerInfo(@individual)
 	else
+		@backgroundBitmap  		= @battleInfoMain
+		self.bitmap.blt(0,0,@backgroundBitmap.bitmap,Rect.new(0,0,@backgroundBitmap.width,@backgroundBitmap.height))
 		drawWholeBattleInfo()
 	end
   end
@@ -59,41 +64,60 @@ class BattleInfoDisplay < SpriteWrapper
     shadow = Color.new(168,184,184)
 	textToDraw = []
 	
-	index = 0.2
+	# Draw the
+	battlerNameX = 24
+	battlerCursorX = 160
+	yPos = 8
 	battlerIndex = 0
+
+	# Entries for allies
 	@battle.eachSameSideBattler do |b|
 		next if !b
-		y = 50 * index
-		textToDraw.push([b.name,24,y,0,base,shadow])
+		textToDraw.push([b.name,battlerNameX,yPos + 4,0,base,shadow])
 		cursorX = @selected == battlerIndex ? @statusCursorBitmap.width/2 : 0
-		self.bitmap.blt(180,y,@statusCursorBitmap.bitmap,Rect.new(cursorX,0,@statusCursorBitmap.width/2,@statusCursorBitmap.height))
-		index += 1
+		self.bitmap.blt(battlerCursorX,yPos,@statusCursorBitmap.bitmap,Rect.new(cursorX,0,@statusCursorBitmap.width/2,@statusCursorBitmap.height))
+		yPos += 52
 		battlerIndex += 1
 	end
-	index += 0.2
+
+	# Entries for enemies
+	yPos = 180
 	@battle.eachOtherSideBattler do |b|
 		next if !b
-		y = 50 * index
-		textToDraw.push([b.name,24,y,0,base,shadow])
+		textToDraw.push([b.name,battlerNameX,yPos + 4,0,base,shadow])
 		cursorX = @selected == battlerIndex ? @statusCursorBitmap.width/2 : 0
-		self.bitmap.blt(180,y,@statusCursorBitmap.bitmap,Rect.new(cursorX,0,@statusCursorBitmap.width/2,@statusCursorBitmap.height))
-		index += 1
+		self.bitmap.blt(battlerCursorX,yPos,@statusCursorBitmap.bitmap,Rect.new(cursorX,0,@statusCursorBitmap.width/2,@statusCursorBitmap.height))
+		yPos += 52
 		battlerIndex += 1
 	end
 	
-	weatherName = GameData::BattleWeather.get(@battle.field.weather).real_name
-	terrainName = GameData::BattleTerrain.get(@battle.field.terrain).real_name
-	textToDraw.push([_INTL("Weather: {1}",weatherName),24,326,0,base,shadow])
-	textToDraw.push([_INTL("Terrain: {1}",terrainName),224,326,0,base,shadow])
+	weatherAndTerrainY = 336
+	weatherMessage = "No Weather"
+	if @battle.field.weather != :None
+		weatherName = GameData::BattleWeather.get(@battle.field.weather).real_name
+		weatherDuration = @battle.field.weatherDuration
+		weatherMessage = _INTL("{1} Weather ({2})",weatherName,weatherDuration)
+	end
+	
+	textToDraw.push([weatherMessage,24,weatherAndTerrainY,0,base,shadow])
+
+	terrainMessage = "No Terrain"
+	if @battle.field.terrain != :None
+		terrainName = GameData::BattleTerrain.get(@battle.field.terrain).real_name
+		terrainDuration = @battle.field.terrainDuration
+		terrainMessage = _INTL("{1} Terrain ({2})",terrainName, terrainDuration)
+	end
+	textToDraw.push([terrainMessage,256+24,weatherAndTerrainY,0,base,shadow])
 	
 	# Whole field effects
-	wholeFieldX = 326
-	textToDraw.push([_INTL("Whole Field"),wholeFieldX+60,10,2,base,shadow])
+	wholeFieldX = 332
+	textToDraw.push([_INTL("Field Effects"),wholeFieldX+60,0,2,base,shadow])
 	
 	fieldEffects = []
 	for effect in 0..30
 		effectValue = @battle.field.effects[effect]
-		next if effectValue.nil? || effectValue == false
+		next if effectValue.nil?
+		next if effectValue == false
 		next if effectValue.is_a?(Integer) && effectValue <= 0
 		effectName = labelBattleEffect(effect)
 		next if effectName.blank?
@@ -106,7 +130,8 @@ class BattleInfoDisplay < SpriteWrapper
 	for side in 0..1
 		for effect in 0..30
 			effectValue = @battle.sides[side].effects[effect]
-			next if effectValue.nil? || effectValue == false
+			next if effectValue.nil?
+			next if effectValue == false
 			next if effectValue.is_a?(Integer) && effectValue <= 0
 			effectName = labelSideEffect(effect)
 			next if effectName.blank?
@@ -117,17 +142,30 @@ class BattleInfoDisplay < SpriteWrapper
 	end
 	
 	# Render out the field effects
-	scrolling = true if fieldEffects.length > 8
-	index = 0
-	repeats = scrolling ? 2 : 1
-	for repeat in 0...repeats
-		fieldEffects.each do |effectName|
-			index += 1
-			calcedY = 50 + 32 * index
-			calcedY -= @fieldScrollingValue if scrolling
-			next if calcedY < 34 || calcedY > 286
-			textToDraw.push([effectName,wholeFieldX,calcedY,0,base,shadow])
+	scrollingBoundYMin = 36
+	scrollingBoundYMax = 300
+	if fieldEffects.length != 0
+		scrolling = true if fieldEffects.length > 8
+		index = 0
+		repeats = scrolling ? 2 : 1
+		for repeat in 0...repeats
+			fieldEffects.each do |effectName|
+				index += 1
+				calcedY = 60 + 32 * index
+				if scrolling
+					calcedY -= @fieldScrollingValue
+					calcedY += 8
+				end
+				next if calcedY < scrollingBoundYMin || calcedY > scrollingBoundYMax
+				distanceFromFade = [calcedY - scrollingBoundYMin,scrollingBoundYMax - calcedY].min
+				textAlpha = scrolling ? ([distanceFromFade / 20.0,1.0].min * 255).floor : 255
+				textBase = Color.new(base.red,base.blue,base.green,textAlpha)
+				textShadow = Color.new(shadow.red,shadow.blue,shadow.green,textAlpha)
+				textToDraw.push([effectName,wholeFieldX,calcedY,0,textBase,textShadow])
+			end
 		end
+	else
+		textToDraw.push(["None",wholeFieldX,44,0,base,shadow])
 	end
 	
 	# Reset the scrolling once its scrolled through the entire list once
@@ -148,7 +186,7 @@ class BattleInfoDisplay < SpriteWrapper
 		battlerName += " (#{speciesData.real_name})"
 		battlerName += " [#{speciesData.real_form_name}]" if speciesData.form != 0
 	end
-	textToDraw.push([battlerName,180,10,0,base,shadow])
+	textToDraw.push([battlerName,256,0,2,base,shadow])
 	index = 0
 	
 	stageMulMainStat = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
@@ -158,7 +196,16 @@ class BattleInfoDisplay < SpriteWrapper
     stageDivBattleStat = [9,8,7,6,5,4, 3, 3,3,3,3,3,3]
 	
 	# Stat Stages
-	textToDraw.push(["Stat Stages",24,42,0,base,shadow])
+	statStagesSectionTopY = 52
+	statLabelX = 20
+	statStageX = 116
+	statMultX = 172
+	statValueX = 232
+	battlerEffectsX = 308
+	textToDraw.push(["Stat",statLabelX,statStagesSectionTopY,0,base,shadow])
+	textToDraw.push(["Stage",statStageX-16,statStagesSectionTopY,0,base,shadow])
+	textToDraw.push(["Mult",statMultX,statStagesSectionTopY,0,base,shadow])
+	textToDraw.push(["Value",statValueX,statStagesSectionTopY,0,base,shadow])
 	
 	statsToNames = {
 	:ATTACK => "Atk",
@@ -170,11 +217,13 @@ class BattleInfoDisplay < SpriteWrapper
 	:EVASION => "Evade"
 	}
 	
+	# Display the info about each stat
+	statValues = battler.plainStats
 	statsToNames.each do |stat,name|
-		y = 90 + 32 * index
+		y = statStagesSectionTopY + 40 + 40 * index
 	
 		statData = GameData::Stat.get(stat)
-		textToDraw.push([name,24,y,0,base,shadow])
+		textToDraw.push([name,statLabelX,y,0,base,shadow])
 		
 		stage = battler.stages[stat]
 		stageZero = stage == 0
@@ -184,33 +233,40 @@ class BattleInfoDisplay < SpriteWrapper
 		end
 		stageLabel = "+" + stageLabel if stage > 0
 		
-		if !stageZero
-			#Percentages
-			stageMul = statData.type == :battle ? stageMulBattleStat : stageMulMainStat
-			stageDiv = statData.type == :battle ? stageDivBattleStat : stageDivMainStat
-			adjustedStage = stage + 6
-			mult = stageMul[adjustedStage].to_f/stageDiv[adjustedStage].to_f
-			mult = (1.0+mult)/2.0 if battler.boss?
-			stageLabel = "#{stageLabel} (#{mult.round(2)}x)"
-		end
-		
-		x = 106
+		x = statStageX
 		x -= 12 if !stageZero
 		mainColor = @battle.bossBattle? ? bossBase : base
 		textToDraw.push([stageLabel,x,y,0,mainColor,shadow])
+
+		#Percentages
+		stageMul = statData.type == :battle ? stageMulBattleStat : stageMulMainStat
+		stageDiv = statData.type == :battle ? stageDivBattleStat : stageDivMainStat
+		adjustedStage = stage + 6
+		mult = stageMul[adjustedStage].to_f/stageDiv[adjustedStage].to_f
+		mult = (1.0+mult)/2.0 if battler.boss?
+		value = statValues[stat] || 100
+		value = (value * mult).floor.to_s
+		
+		# Draw the multiplier label
+		multLabel = mult.round(2).to_s + "x"
+		textToDraw.push([multLabel,statMultX,y,0,mainColor,shadow])
+
+		# Draw the resultant value label
+		textToDraw.push([value,statValueX,y,0,mainColor,shadow])
 		
 		index += 1
 	end
 	
 	# Effects
-	textToDraw.push(["Effects",240,42,0,base,shadow])
+	textToDraw.push(["Battler Effects",battlerEffectsX,statStagesSectionTopY,0,base,shadow])
 	
 	# Battler effects
 	battlerEffects = []
 	
 	for effect in 0..150
 		effectValue = battler.effects[effect]
-		next if effectValue.nil? || effectValue == false
+		next if effectValue.nil?
+		next if effectValue == false
 		next if effectValue.is_a?(Integer) && effectValue <= 0
 		next if effect == PBEffects::ProtectRate && effectValue <= 1
 		next if effect == PBEffects::Unburden && !battler.hasActiveAbility?(:UNBURDEN)
@@ -223,7 +279,8 @@ class BattleInfoDisplay < SpriteWrapper
 	# Slot effects
 	for effect in 0..30
 		effectValue = @battle.positions[battler.index].effects[effect]
-		next if effectValue.nil? || effectValue == false
+		next if effectValue.nil?
+		next if effectValue == false
 		next if effectValue.is_a?(Integer) && effectValue <= 0
 		effectName = labelSlotEffect(effect)
 		next if effectName.blank?
@@ -234,16 +291,26 @@ class BattleInfoDisplay < SpriteWrapper
 	scrolling = true if battlerEffects.length > 8
 	
 	# Print all the battler effects to screen
+	scrollingBoundYMin = 84
+	scrollingBoundYMax = 336
 	index = 0
 	repeats = scrolling ? 2 : 1
-	for repeat in 0...repeats
-		battlerEffects.each do |effectName|
-			index += 1
-			calcedY = 90 + 32 * index
-			calcedY -= @battlerScrollingValue if scrolling
-			next if calcedY < 74 || calcedY > 326
-			textToDraw.push([effectName,240,calcedY,0,base,shadow])
+	if battlerEffects.length != 0
+		for repeat in 0...repeats
+			battlerEffects.each do |effectName|
+				index += 1
+				calcedY = statStagesSectionTopY + 4 + 32 * index
+				calcedY -= @battlerScrollingValue if scrolling
+				next if calcedY < scrollingBoundYMin || calcedY > scrollingBoundYMax
+				distanceFromFade = [calcedY - scrollingBoundYMin,scrollingBoundYMax - calcedY].min
+				textAlpha = scrolling ? ([distanceFromFade / 20.0,1.0].min * 255).floor : 255
+				textBase = Color.new(base.red,base.blue,base.green,textAlpha)
+				textShadow = Color.new(shadow.red,shadow.blue,shadow.green,textAlpha)
+				textToDraw.push([effectName,battlerEffectsX,calcedY,0,textBase,textShadow])
+			end
 		end
+	else
+		textToDraw.push(["None",battlerEffectsX,statStagesSectionTopY + 36,0,base,shadow])
 	end
 	
 	# Reset the scrolling once its scrolled through the entire list once
@@ -395,8 +462,12 @@ class BattleInfoDisplay < SpriteWrapper
 		"Nerve Broken",
 		"Ice Ball",
 		"Roll Out",
-		"Protected By Gargantuan",
-		"Empowered Moonlight"
+		"", # Gargantuan
+		"", # Stunning Curl
+		"", # Red-Hot Retreat
+		"Empowered Moonlight",
+		"Empowered Endure",
+		"Empowered Laser Focus",
 	][effectNumber] || ""
   end
   
@@ -410,7 +481,7 @@ class BattleInfoDisplay < SpriteWrapper
 		"", # Lunar Dance
 		"", # Wish
 		"Wishing For",
-		"" # Wish Maker
+		"", # Wish Maker
 	][effectNumber] || ""
   end
   
@@ -430,7 +501,7 @@ class BattleInfoDisplay < SpriteWrapper
 			"Water Sport",
 			"Wonder Room",
 			"Fortune",
-			"Neutralizing Gas"
+			"Neutralizing Gas",
 		][effectNumber] || ""
 	end
 
@@ -457,7 +528,10 @@ class BattleInfoDisplay < SpriteWrapper
 			"Swamp",
 			"Tailwind",
 			"Poison Spikes", # Toxic Spikes,
-			"" # Wide Guard
+			"", # Wide Guard
+			"Flame Spikes",
+			"EmpoweredEmbargo",
+			"Frost Spikes",
 		][effectNumber] || ""
 	end
  
@@ -466,9 +540,9 @@ class BattleInfoDisplay < SpriteWrapper
     pbUpdateSpriteHash(@sprites)
 	if @individual.nil?
 		@battlerScrollingValue = 0
-		@fieldScrollingValue += 2
+		@fieldScrollingValue += 1
 	else
-		@battlerScrollingValue += 2
+		@battlerScrollingValue += 1
 		@fieldScrollingValue = 0
 	end
   end

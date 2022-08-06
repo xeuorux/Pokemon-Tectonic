@@ -1,5 +1,5 @@
-PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:DONSTER,:BELCH],
+PokeBattle_AI::BossSpeciesRejectMove.add([:DONSTER,:MIASMA],
   proc { |speciesAndMove,user,target,move|
-	  next true
+	  next user.belched?
   }
 )

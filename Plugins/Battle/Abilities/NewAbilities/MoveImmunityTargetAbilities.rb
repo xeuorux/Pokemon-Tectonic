@@ -10,9 +10,9 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FLYTRAP,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.add(:COLDPROOF,
+BattleHandlers::MoveImmunityTargetAbility.add(:COLDRECEPTION,
   proc { |ability,user,target,move,type,battle|
-    next pbBattleMoveImmunityStatAbility(user,target,move,type,:ICE,:SPECIAL_DEFENSE,1,battle)
+    next pbBattleMoveImmunityStatAbility(user,target,move,type,:ICE,:ATTACK,1,battle)
   }
 )
 

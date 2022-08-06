@@ -154,21 +154,21 @@ class PokemonOption_Scene
             $PokemonSystem.particle_effects = value
         }
       ),
-    ]
-	@PokemonOptions.push(EnumOption.new(_INTL("Look"),[_INTL("Masc."),_INTL("Fem.")],
+      EnumOption.new(_INTL("Look"),[_INTL("Masc."),_INTL("Fem.")],
          proc { $PokemonSystem.gendered_look },
          proc { |value|
           pbChangePlayer(value)
          }
-       )) if $PokemonGlobal
-	@PokemonOptions.push(EnumOption.new(_INTL("Pokemon Follow"),[_INTL("On"),_INTL("Off")],
+      ),
+	    EnumOption.new(_INTL("Pokemon Follow"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.followers },
          proc { |value|
 			      $PokemonSystem.followers = value
             pbToggleFollowingPokemon($PokemonSystem.followers == 0 ? "on" : "off",false)
          }
-       )) if $PokemonGlobal
-	@PokemonOptions.push(EnumOption.new(_INTL("Skip Fades"),[_INTL("On"),_INTL("Off")],
+      ),
+    ]
+	  @PokemonOptions.push(EnumOption.new(_INTL("Skip Fades"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.skip_fades },
          proc { |value|
 			      $PokemonSystem.skip_fades = value
@@ -189,6 +189,7 @@ class PokemonOption_Scene
     pbFadeInAndShow(@sprites) { pbUpdate }
   end
  end
+
  module MessageConfig
 	def self.pbSettingToTextSpeed(speed)
 		case speed

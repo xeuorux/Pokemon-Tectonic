@@ -115,6 +115,13 @@ Golisopod User<s>UberDunsparce
 Porting to v19
 Golisopod User<s>Maruno
 
+Z-Move Scripts
+Marcello
+Zumi<s>Ice Cream Sand Witch
+Amethyst<s>Jan
+Sardines<s>Inuki
+StCooler<s>Lucidious89
+
 "Pokémon Essentials" was created by:
 Flameguru
 Poccil (Peter O.)

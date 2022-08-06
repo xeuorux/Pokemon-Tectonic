@@ -94,7 +94,7 @@ module Compiler
 
       # Should recompile if holding Ctrl
       Input.update
-      mustCompile = true if Input.press?(Input::CTRL)
+      mustCompile = true if Input.press?(Input::CTRL) || ARGV.include?("compile")
       
       # Delete old data files in preparation for recompiling
       if mustCompile
@@ -193,7 +193,7 @@ module Compiler
       echoln ""
       System.reload_cache
 
-      write_all if pbConfirmMessageSerious(_INTL("\\ts[]Would you like to rewrite the PBS files from the compiled data?"))
+      write_all if ARGV.include?("compile") || pbConfirmMessageSerious(_INTL("\\ts[]Would you like to rewrite the PBS files from the compiled data?"))
     end
     pbSetWindowText(nil)
   end
@@ -451,6 +451,7 @@ module Compiler
 				:item		 		=> contents["Item"],
 				:hp_mult	 		=> contents["HPMult"],
 				:dmg_mult			=> contents["DMGMult"],
+        :dmg_resist			=> contents["DMGResist"],
 				:size_mult	 		=> contents["SizeMult"],
 			}
 			avatar_number += 1
@@ -643,7 +644,8 @@ end
         nil, nil, nil, nil, nil, nil, nil, {
         "Male"   => 0, "M" => 0, "0" => 0,
         "Female" => 1, "F" => 1, "1" => 1,
-        "Mixed"  => 2, "X" => 2, "2" => 2, "" => 2
+        "Mixed"  => 2, "X" => 2, "2" => 2, "" => 2,
+        "Wild"   => 3, "W" => 3, "3" => 3
         }, nil, nil, nil]
       )
       type_number = line[0]
@@ -1586,12 +1588,12 @@ end
     match = event.name.match(/PHT\(([_a-zA-Z0-9]+),([_a-zA-Z]+),([0-9]+)\)/)
     return nil if !match
     ret = RPG::Event.new(event.x,event.y)
-    ret.name = "resettrainer(4)"
     ret.id   = event.id
     ret.pages = []
     trainerTypeName = match[1]
     return nil if !trainerTypeName || trainerTypeName == ""
     trainerName = match[2]
+    ret.name = "resettrainer(4) - " + trainerTypeName + " " + trainerName
     trainerMaxLevel = match[3]
     ret.pages = [3]
     
@@ -1647,10 +1649,10 @@ end
     match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)(?:,([_a-zA-Z]+))?(?:,([_a-zA-Z0-9]+))?(?:,([0-9]+))?\).*/)
     return nil if !match
     ret = RPG::Event.new(event.x,event.y)
-    ret.name = "size(2,2)trainer(4)"
     ret.id   = event.id
     ret.pages = []
     avatarSpecies = match[1]
+    ret.name = "size(2,2)trainer(4) - " + avatarSpecies
     legendary = isLegendary(avatarSpecies)
     return nil if !avatarSpecies || avatarSpecies == ""
     level = match[2]
@@ -2095,7 +2097,7 @@ module Compiler
         csvQuote(t.battle_BGM),
         csvQuote(t.victory_ME),
         csvQuote(t.intro_ME),
-        ["Male", "Female", "Mixed"][t.gender],
+        ["Male", "Female", "Mixed", "Wild"][t.gender],
         (t.skill_level == t.base_money) ? "" : t.skill_level.to_s,
         csvQuote(t.skill_code),
         policiesString
@@ -2179,6 +2181,7 @@ module Compiler
         f.write(sprintf("HPMult = %s\r\n", avatar.hp_mult))
         f.write(sprintf("Item = %s\r\n", avatar.item))
         f.write(sprintf("DMGMult = %s\r\n", avatar.dmg_mult))
+        f.write(sprintf("DMGResist = %s\r\n", avatar.dmg_resist))
         f.write(sprintf("Form = %s\r\n", avatar.form))
       end
     }

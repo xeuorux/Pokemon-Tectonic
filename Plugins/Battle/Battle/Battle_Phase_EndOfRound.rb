@@ -92,6 +92,12 @@ class PokeBattle_Battle
 	
 	  # Neutralizing Gas
 	  pbCheckNeutralizingGas
+
+    # Increase primeval timers
+    priority.each do |b|
+      next if !b.boss?
+	    b.primevalTimer += 1
+    end
 	
     @endOfRound = false
   end
@@ -110,7 +116,7 @@ class PokeBattle_Battle
     if @field.weatherDuration==0
       case @field.weather
       when :Sun       then pbDisplay(_INTL("The sunlight faded."))
-      when :Rain      then pbDisplay(_INTL("The rain stopped."))
+      when :Rain      then pbDisplay(_INTL("The rain stpped."))
       when :Sandstorm then pbDisplay(_INTL("The sandstorm subsided."))
       when :Hail      then pbDisplay(_INTL("The hail stopped."))
       when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
@@ -365,6 +371,7 @@ class PokeBattle_Battle
         oldHP = b.hp
         dmg = b.totalhp/12
 		    dmg = (dmg/4.0).round if b.boss
+        dmg *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
         b.pbContinueStatus(:POISON) { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
@@ -401,7 +408,45 @@ class PokeBattle_Battle
         oldHP = b.hp
         dmg = b.totalhp/8
         dmg = (dmg/4.0).round if b.boss?
+        dmg *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
         b.pbContinueStatus(:BURN) { b.pbReduceHP(dmg,false) }
+        b.pbItemHPHealCheck
+        b.pbAbilitiesOnDamageTaken(oldHP)
+        if b.fainted?
+          b.pbFaint 
+          triggerDOTDeathDialogue(b)
+        end
+      end
+    end
+    # Damage from frostbite
+    priority.each do |b|
+	    next if b.fainted?
+      next if !b.frostbitten?
+	    if b.hasActiveAbility?(:FROSTHEAL)
+        if b.canHeal?
+          anim_name = GameData::Status.get(:FREEZE).animation
+          pbCommonAnimation(anim_name, b) if anim_name
+          recovery = b.totalhp/8
+          recovery /= 4 if b.boss?
+          if !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages == 0
+            pbShowAbilitySplash(b)
+            b.pbRecoverHP(recovery)
+            if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+              pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+            else
+              pbDisplay(_INTL("{1}'s {2} restored its HP.",b.pbThis,b.abilityName))
+            end
+            pbHideAbilitySplash(b)
+          else
+            b.pbRecoverHP(recovery)
+          end
+        end
+	    elsif b.takesIndirectDamage?
+        oldHP = b.hp
+        dmg = b.totalhp/8
+        dmg = (dmg/4.0).round if b.boss?
+        dmg *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
+        b.pbContinueStatus(:FROSTBITE) { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
         if b.fainted?
@@ -412,8 +457,9 @@ class PokeBattle_Battle
     end
     # Damage from fluster or mystified
     priority.each do |b|
-      selfHitBasePower = (25 + b.level * (3.0/5.0))
+      selfHitBasePower = (20 + b.level * (3.0/5.0))
       selfHitBasePower = selfHitBasePower.ceil
+      selfHitBasePower *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
       if b.flustered?
         superEff = pbCheckOpposingAbility(:BRAINSCRAMBLE,b.index)
         b.pbContinueStatus(:FLUSTERED) { b.pbConfusionDamage(nil,false,superEff,selfHitBasePower) }
@@ -627,6 +673,9 @@ class PokeBattle_Battle
     # Magic Room
     pbEORCountDownFieldEffect(PBEffects::MagicRoom,
        _INTL("Magic Room wore off, and held items' effects returned to normal!"))
+    # Puzzle Room
+    pbEORCountDownFieldEffect(PBEffects::PuzzleRoom,
+       _INTL("Puzzle Room wore off, and Attack and Sp. Atk stats returned to normal!"))
   end
 
   def processTriggersEOR(priority)
@@ -710,6 +759,7 @@ class PokeBattle_Battle
 	    b.effects[PBEffects::LashOut]			     = false
 	    b.effects[PBEffects::StunningCurl]     = false
       b.effects[PBEffects::Sentry]           = false
+      b.effects[PBEffects::RedHotRetreat]    = false
       b.lastHPLost                           = 0
       b.lastHPLostFromFoe                    = 0
       b.tookDamage                           = false
@@ -717,6 +767,7 @@ class PokeBattle_Battle
       b.lastRoundMoveFailed                  = b.lastMoveFailed
       b.lastAttacker.clear
       b.lastFoeAttacker.clear
+      b.indexesTargetedThisTurn.clear
     end
   end
 

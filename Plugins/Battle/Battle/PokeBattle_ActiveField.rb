@@ -16,12 +16,13 @@ class PokeBattle_ActiveField
       @effects[PBEffects::HappyHour]       = false
       @effects[PBEffects::IonDeluge]       = false
       @effects[PBEffects::MagicRoom]       = 0
+      @effects[PBEffects::PuzzleRoom]      = 0
       @effects[PBEffects::MudSportField]   = 0
       @effects[PBEffects::PayDay]          = 0
       @effects[PBEffects::TrickRoom]       = 0
       @effects[PBEffects::WaterSportField] = 0
       @effects[PBEffects::WonderRoom]      = 0
-	  @effects[PBEffects::Fortune]      = 0
+	    @effects[PBEffects::Fortune]      = 0
       @defaultWeather  = :None
       @weather         = :None
       @weatherDuration = 0
@@ -57,7 +58,9 @@ class PokeBattle_ActiveSide
       @effects[PBEffects::Swamp]              = 0
       @effects[PBEffects::Tailwind]           = 0
       @effects[PBEffects::ToxicSpikes]        = 0
-	  @effects[PBEffects::FlameSpikes]        = 0
+	    @effects[PBEffects::FlameSpikes]        = 0
+      @effects[PBEffects::FrostSpikes]        = 0
       @effects[PBEffects::WideGuard]          = false
+      @effects[PBEffects::EmpoweredEmbargo]   = false
     end
 end

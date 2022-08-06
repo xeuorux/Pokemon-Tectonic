@@ -32,19 +32,28 @@ module PBEffects
 	IceBall				= 139
 	RollOut				= 140
 	Gargantuan			= 141
-	EmpoweredMoonlight  = 142
-	EmpoweredEndure		= 143
-	EmpoweredLaserFocus = 144
-	StunningCurl		= 145
+	StunningCurl		= 142
+    RedHotRetreat       = 143
+
+    ExtraTurns          = 144
+    EmpoweredMoonlight  = 145
+	EmpoweredEndure		= 146
+	EmpoweredLaserFocus = 147
+    EmpoweredDestinyBond= 148
+
+    VolleyStance        = 149
 	
 	#===========================================================================
     # These effects apply to a side
     #===========================================================================
 	FlameSpikes			= 22
+    EmpoweredEmbargo    = 23
+    FrostSpikes			= 24
 	
 	#===========================================================================
     # These effects apply to the battle (i.e. both sides)
     #===========================================================================
-	Fortune = 13
-	NeutralizingGas = 14
+	Fortune             = 13
+	NeutralizingGas     = 14
+    PuzzleRoom          = 15
 end

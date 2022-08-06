@@ -24,7 +24,7 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          msg = _INTL("{1}'s {2} poisoned {3}! Its Sp. Atk is reduced!",battler.pbThis,battler.abilityName,user.pbThis(true))
+          msg = _INTL("{1}'s {2} poisoned {3}! {4}!",battler.pbThis,battler.abilityName,user.pbThis(true),POISONED_EXPLANATION)
         end
         user.pbPoison(nil,msg,(battler.getStatusCount(:POISON)>0))
         battler.battle.pbHideAbilitySplash(battler)
@@ -32,7 +32,7 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          msg = _INTL("{1}'s {2} burned {3}! Its Attack is reduced!",battler.pbThis,battler.abilityName,user.pbThis(true))
+          msg = _INTL("{1}'s {2} burned {3}! {4}!",battler.pbThis,battler.abilityName,user.pbThis(true),BURNED_EXPLANATION)
         end
         user.pbBurn(nil,msg)
         battler.battle.pbHideAbilitySplash(battler)
@@ -40,8 +40,8 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          msg = _INTL("{1}'s {2} numbed {3}! It's slower and it's stat improvements are ignored!",
-             battler.pbThis,battler.abilityName,user.pbThis(true))
+          msg = _INTL("{1}'s {2} numbed {3}! {4}!",
+             battler.pbThis,battler.abilityName,user.pbThis(true),NUMBED_EXPLANATION)
         end
         user.pbParalyze(nil,msg)
         battler.battle.pbHideAbilitySplash(battler)
@@ -49,10 +49,19 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          msg = _INTL("{1}'s {2} chilled {3}! It's slowed and takes more damage!",
-             battler.pbThis,battler.abilityName,user.pbThis(true))
+          msg = _INTL("{1}'s {2} chilled {3}! {4}}",
+             battler.pbThis,battler.abilityName,user.pbThis(true),CHILLED_EXPLANATION)
         end
         user.pbFreeze(nil,msg)
+        battler.battle.pbHideAbilitySplash(battler)
+     when :FROSTBITE
+        battler.battle.pbShowAbilitySplash(battler)
+        msg = nil
+        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          msg = _INTL("{1}'s {2} frostbit {3}! {4}}!",
+             battler.pbThis,battler.abilityName,user.pbThis(true),FROSTBITE_EXPLANATION)
+        end
+        user.pbFrostbite(nil,msg)
         battler.battle.pbHideAbilitySplash(battler)
     end
   }
@@ -587,6 +596,7 @@ BattleHandlers::EORHealingAbility.add(:SHEDSKIN,
     battler.pbCureStatus(true,:BURN)
     battler.pbCureStatus(true,:PARALYSIS)
     battler.pbCureStatus(true,:FROZEN)
+    battler.pbCureStatus(true,:FROSTBITE)
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -627,5 +637,11 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
       user.pbItemStatusCureCheck
     end
     battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:HUSTLE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5
   }
 )

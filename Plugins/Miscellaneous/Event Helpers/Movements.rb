@@ -251,3 +251,41 @@ def chooseDirection(directions,width,height)
 		
 	self.set_move_route(new_route)
 end
+
+def modulateOrbHueOverTime()
+	calculatedHue = self.character_hue
+	
+	new_move_route = getNewMoveRoute()
+	new_move_route.repeat = true
+	
+	maxHue = 160
+	[maxHue,0].each do |hueTarget|
+		targetReached = false
+		while !targetReached
+			distanceFromPoles = [(maxHue - calculatedHue).abs, calculatedHue.abs].min
+			speed = (1 + distanceFromPoles / 12.0).floor
+			if calculatedHue < hueTarget
+				calculatedHue += speed
+				if calculatedHue > hueTarget
+					calculatedHue = hueTarget
+					targetReached = true
+				end
+			else
+				calculatedHue -= speed
+				if calculatedHue < hueTarget
+					calculatedHue = hueTarget
+					targetReached = true
+				end
+			end
+			calculatedHue = calculatedHue.round
+			calculatedHue = calculatedHue.clamp(0,maxHue)
+			params = [self.character_name,calculatedHue,self.direction,self.pattern]
+			new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Graphic,params))
+			new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Wait,[1]))
+		end
+	end
+	
+	new_move_route.list.push(RPG::MoveCommand.new(0))
+	
+	self.set_move_route(new_move_route)
+end

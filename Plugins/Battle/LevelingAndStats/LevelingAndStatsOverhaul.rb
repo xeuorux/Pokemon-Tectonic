@@ -1,131 +1,5 @@
 LEVEL_CAPS_USED = true
 
-class Pokemon
-	attr_accessor :hpMult
-	attr_accessor :scaleFactor
-	attr_accessor :dmgMult
-	attr_accessor :battlingStreak
-	
-  # Creates a new Pokémon object.
-  # @param species [Symbol, String, Integer] Pokémon species
-  # @param level [Integer] Pokémon level
-  # @param owner [Owner, Player, NPCTrainer] Pokémon owner (the player by default)
-  # @param withMoves [TrueClass, FalseClass] whether the Pokémon should have moves
-  # @param rechech_form [TrueClass, FalseClass] whether to auto-check the form
-  def initialize(species, level, owner = $Trainer, withMoves = true, recheck_form = true)
-    species_data = GameData::Species.get(species)
-    @species          = species_data.species
-    @form             = species_data.form
-    @forced_form      = nil
-    @time_form_set    = nil
-    self.level        = level
-    @steps_to_hatch   = 0
-    heal_status
-    @gender           = nil
-    @shiny            = nil
-    @ability_index    = nil
-    @ability          = nil
-    @nature           = nil
-    @nature_for_stats = nil
-    @item             = nil
-    @mail             = nil
-    @moves            = []
-    reset_moves if withMoves
-    @first_moves      = []
-    @ribbons          = []
-    @cool             = 0
-    @beauty           = 0
-    @cute             = 0
-    @smart            = 0
-    @tough            = 0
-    @sheen            = 0
-    @pokerus          = 0
-    @name             = nil
-    @happiness        = species_data.happiness
-    @poke_ball        = :POKEBALL
-    @markings         = 0
-    @iv               = {}
-    @ivMaxed          = {}
-    @ev               = {}
-    GameData::Stat.each_main do |s|
-      @iv[s.id]       = 0
-      @ev[s.id]       = DEFAULT_STYLE_VALUE
-    end
-    if owner.is_a?(Owner)
-      @owner = owner
-    elsif owner.is_a?(Player) || owner.is_a?(NPCTrainer)
-      @owner = Owner.new_from_trainer(owner)
-    else
-      @owner = Owner.new(0, '', 2, 2)
-    end
-    @obtain_method    = 0   # Met
-    @obtain_method    = 4 if $game_switches && $game_switches[Settings::FATEFUL_ENCOUNTER_SWITCH]
-    @obtain_map       = ($game_map) ? $game_map.map_id : 0
-    @obtain_text      = nil
-    @obtain_level     = level
-    @hatched_map      = 0
-    @timeReceived     = pbGetTimeNow.to_i
-    @timeEggHatched   = nil
-    @fused            = nil
-    @personalID       = rand(2 ** 16) | rand(2 ** 16) << 16
-    @hp               = 1
-    @totalhp          = 1
-	  @hpMult			  = 1
-	  @scaleFactor	  = 1
-  	@dmgMult		  = 1
-	  @battlingStreak	  = 0
-    calc_stats
-    if @form == 0 && recheck_form
-      f = MultipleForms.call("getFormOnCreation", self)
-      if f
-        self.form = f
-        reset_moves if withMoves
-      end
-    end
-  end
-  
-  def onHotStreak?()
-	return @battlingStreak >= 2
-  end
-  
-  def nature
-    @nature = GameData::Nature.get(0).id # ALWAYS RETURN NEUTRAL
-    return GameData::Nature.try_get(@nature)
-  end
-  
-  # Recalculates this Pokémon's stats.
-  def calc_stats
-    base_stats = self.baseStats
-    this_level = self.level
-    this_IV    = self.calcIV
-    # Calculate stats
-    stats = {}
-    GameData::Stat.each_main do |s|
-      if s.id == :HP
-        stats[s.id] = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id])
-        if boss
-          stats[s.id] *= hpMult
-        end
-      elsif (s.id == :ATTACK) || (s.id == :SPECIAL_ATTACK)
-        stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
-        if boss
-          stats[s.id] *= dmgMult
-        end
-      else
-        stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
-      end
-    end
-    hpDiff = @totalhp - @hp
-    @totalhp = stats[:HP]
-    @hp      = (fainted? ? 0 : (@totalhp - hpDiff))
-    @attack  = stats[:ATTACK]
-    @defense = stats[:DEFENSE]
-    @spatk   = stats[:SPECIAL_ATTACK]
-    @spdef   = stats[:SPECIAL_DEFENSE]
-    @speed   = stats[:SPEED]
-  end
-end
-
 class PokeBattle_Battle
   #=============================================================================
   # Gaining Experience
@@ -231,7 +105,15 @@ class PokeBattle_Battle
     end
     return if exp<=0
     # Pokémon gain more Exp from trainer battles
-    exp = (exp*1.8).floor if trainerBattle?
+    if trainerBattle?
+      exp = exp * 1.5
+      if $PokemonBag.pbHasItem?(:PERFORMANCEANALYZER2)
+        exp = exp * 1.25
+      elsif $PokemonBag.pbHasItem?(:PERFORMANCEANALYZER)
+        exp = exp * 1.2
+      end
+      exp = exp.floor
+    end 
     # Scale the gained Exp based on the gainer's level (or not)
     if Settings::SCALED_EXP_FORMULA
       exp /= 5

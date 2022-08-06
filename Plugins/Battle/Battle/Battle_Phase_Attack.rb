@@ -49,6 +49,7 @@ class PokeBattle_Battle
   # Attack phase
   #=============================================================================
   def pbAttackPhase
+    @messagesBlocked = false
     @scene.pbBeginAttackPhase
     # Reset certain effects
     @battlers.each_with_index do |b,i|
@@ -60,10 +61,10 @@ class PokeBattle_Battle
         b.effects[PBEffects::Grudge]      = false
       end
       b.effects[PBEffects::Rage] = false if !pbChoseMoveFunctionCode?(i,"093")   # Rage
-	  b.effects[PBEffects::Enlightened] = false if !pbChoseMoveFunctionCode?(i,"515")   # Rage
-	  if @choices[i][0] == :UseMove && @choices[i][1]
-		b.effects[PBEffects::Sentry] = @choices[i][2].statusMove?
-	  end
+	    b.effects[PBEffects::Enlightened] = false if !pbChoseMoveFunctionCode?(i,"515")   # Rage
+      if @choices[i][0] == :UseMove && @choices[i][1]
+      b.effects[PBEffects::Sentry] = @choices[i][2].statusMove?
+      end
     end
     PBDebug.log("")
     # Calculate move order for this round
@@ -77,5 +78,40 @@ class PokeBattle_Battle
     return if @decision>0
     pbAttackPhaseMegaEvolution
     pbAttackPhaseMoves
+  end
+
+  #=============================================================================
+  # Attack phase
+  #=============================================================================
+  def pbExtraAttackPhase
+    @scene.pbBeginAttackPhase
+    # Reset certain effects
+    @battlers.each_with_index do |b,i|
+      next if !b
+      @successStates[i].clear
+      if @choices[i][0]!=:UseMove && @choices[i][0]!=:Shift && @choices[i][0]!=:SwitchOut
+        b.effects[PBEffects::DestinyBond] = false
+        b.effects[PBEffects::Grudge]      = false
+      end
+      b.effects[PBEffects::Rage] = false if !pbChoseMoveFunctionCode?(i,"093")   # Rage
+    end
+    PBDebug.log("")
+    # Calculate move order for this round
+    pbCalculatePriority(true)
+    # Perform actions
+    pbAttackPhasePriorityChangeMessages
+    pbAttackPhaseCall
+    pbAttackPhaseSwitch
+    return if @decision>0
+    pbAttackPhaseItems
+    return if @decision>0
+    pbAttackPhaseMegaEvolution
+    
+	  pbPriority.each do |battler|
+        next if battler.fainted?
+        next unless @choices[battler.index][0]==:UseMove
+        next if @commandPhasesThisRound - 1 > battler.extraMovesPerTurn
+        battler.pbProcessTurn(@choices[battler.index])
+      end
   end
 end

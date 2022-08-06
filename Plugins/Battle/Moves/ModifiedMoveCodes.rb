@@ -555,13 +555,13 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
        30 => [:ABSORBBULB,:ADRENALINEORB,:AMULETCOIN,:BINDINGBAND,:BLACKBELT,
               :BLACKGLASSES,:BLACKSLUDGE,:BOTTLECAP,:CELLBATTERY,:CHARCOAL,
               :CLEANSETAG,:DEEPSEASCALE,:DRAGONSCALE,:EJECTBUTTON,:ESCAPEROPE,
-              :EXPSHARE,:FLAMEORB,:FLOATSTONE,:FLUFFYTAIL,:GOLDBOTTLECAP,
+              :EXPSHARE,:FLAMEORB,:POISONORB,:FROSTORB,:FLOATSTONE,:FLUFFYTAIL,:GOLDBOTTLECAP,
               :HEARTSCALE,:HONEY,:KINGSROCK,:LIFEORB,:LIGHTBALL,:LIGHTCLAY,
               :LUCKYEGG,:LUMINOUSMOSS,:MAGNET,:METALCOAT,:METRONOME,
               :MIRACLESEED,:MYSTICWATER,:NEVERMELTICE,:PASSORB,:POKEDOLL,
               :POKETOY,:PRISMSCALE,:PROTECTIVEPADS,:RAZORFANG,:SACREDASH,
               :SCOPELENS,:SHELLBELL,:SHOALSALT,:SHOALSHELL,:SMOKEBALL,:SNOWBALL,
-              :SOULDEW,:SPELLTAG,:POISONORB,:TWISTEDSPOON,:UPGRADE,
+              :SOULDEW,:SPELLTAG,:TWISTEDSPOON,:UPGRADE,
               # Healing items
               :ANTIDOTE,:AWAKENING,:BERRYJUICE,:BIGMALASADA,:BLUEFLUTE,
               :BURNHEAL,:CASTELIACONE,:ELIXIR,:ENERGYPOWDER,:ENERGYROOT,:ETHER,
@@ -642,7 +642,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
   end
 
   def pbMoveFailed?(user,targets)
-	pbCheckFlingSuccess(user)
+	  pbCheckFlingSuccess(user)
     if @willFail
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
@@ -653,14 +653,16 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
     return if target.damageState.substitute
     return if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
-	return if target.effects[PBEffects::Enlightened]
+	  return if target.effects[PBEffects::Enlightened]
     case user.item_id
     when :POISONBARB
       target.pbPoison(user) if target.pbCanPoison?(user,false,self)
     when :POISONORB
-      target.pbPoison(user,nil) if target.pbCanPoison?(user,false,self)
+      target.pbPoison(user) if target.pbCanPoison?(user,false,self)
     when :FLAMEORB
       target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+    when :FROSTORB
+      target.pbFrostbite(user) if target.pbCanFrostbite?(user,false,self)
     when :LIGHTBALL
       target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
     when :KINGSROCK, :RAZORFANG
@@ -767,28 +769,31 @@ class PokeBattle_Move_138 < PokeBattle_TargetMultiStatUpMove
 end
 
 #===============================================================================
-# User steals the target's item, if the user has none itself. (Covet, Thief)
-# Items stolen from wild Pokémon are kept after the battle.
+# User steals the target's item, if the user has none itself. (Covet, Ransack, Thief)
+# Items stolen from wild Pokémon are added directly to the bag.
 #===============================================================================
 class PokeBattle_Move_0F1 < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't thieve, except if they are bosses
     return if user.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
-    return if !target.item || user.item
+    return if !target.item
+    return if user.item && @battle.trainerBattle?
     return if target.unlosableItem?(target.item)
     return if user.unlosableItem?(target.item)
     return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
     itemName = target.itemName
-    user.item = target.item
     # Permanently steal the item from wild Pokémon
     if @battle.wildBattle? && target.opposes? && !@battle.bossBattle?
-	    $PokemonBag.pbStoreItem(target.item,1)
+      tempItem = target.item
+      @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,target.pbThis(true),itemName))
       target.pbRemoveItem
+      pbReceiveItem(tempItem)
     else
+      @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,target.pbThis(true),itemName))
+      user.item = target.item
       target.pbRemoveItem(false)
     end
-    @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,target.pbThis(true),itemName))
     user.pbHeldItemTriggerCheck
   end
 end
@@ -992,31 +997,6 @@ class PokeBattle_Move_162 < PokeBattle_Move
       user.effects[PBEffects::BurnUp] = true
       @battle.pbDisplay(_INTL("{1} burned itself out!",user.pbThis))
 	  @battle.scene.pbRefresh()
-    end
-  end
-end
-
-#===============================================================================
-# Entry hazard. Lays poison spikes on the opposing side (max. 1 layers).
-# (Poison Spikes)
-#===============================================================================
-class PokeBattle_Move_104 < PokeBattle_Move
-  def pbMoveFailed?(user,targets)
-    if user.pbOpposingSide.effects[PBEffects::ToxicSpikes]>=1
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    return false
-  end
-
-  def pbEffectGeneral(user)
-    user.pbOpposingSide.effects[PBEffects::ToxicSpikes] += 1
-    @battle.pbDisplay(_INTL("Poison spikes were scattered all around {1}'s feet!",
-      user.pbOpposingTeam(true)))
-    if user.pbOpposingSide.effects[PBEffects::FlameSpikes] > 0
-      user.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0
-      @battle.pbDisplay(_INTL("The flame spikes around {1}'s feet were brushed aside!",
-          user.pbOpposingTeam(true)))
     end
   end
 end
@@ -1276,7 +1256,8 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
     return false if targetSide.effects[PBEffects::StealthRock] ||
                     targetSide.effects[PBEffects::Spikes]>0 ||
                     targetSide.effects[PBEffects::ToxicSpikes]>0 ||
-					targetSide.effects[PBEffects::FlameSpikes]>0 ||
+					          targetSide.effects[PBEffects::FlameSpikes]>0 ||
+                    targetSide.effects[PBEffects::FrostSpikes]>0 ||
                     targetSide.effects[PBEffects::StickyWeb]
     return false if Settings::MECHANICS_GENERATION >= 6 &&
                     (targetOpposingSide.effects[PBEffects::StealthRock] ||
@@ -1333,12 +1314,19 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
       target.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0 if Settings::MECHANICS_GENERATION >= 6
       @battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
     end
-	if target.pbOwnSide.effects[PBEffects::FlameSpikes]>0 ||
+	  if target.pbOwnSide.effects[PBEffects::FlameSpikes]>0 ||
        (Settings::MECHANICS_GENERATION >= 6 &&
        target.pbOpposingSide.effects[PBEffects::FlameSpikes]>0)
       target.pbOwnSide.effects[PBEffects::FlameSpikes]      = 0
       target.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0 if Settings::MECHANICS_GENERATION >= 6
       @battle.pbDisplay(_INTL("{1} blew away flame spikes!",user.pbThis))
+    end
+    if target.pbOwnSide.effects[PBEffects::FrostSpikes]>0 ||
+      (Settings::MECHANICS_GENERATION >= 6 &&
+      target.pbOpposingSide.effects[PBEffects::FrostSpikes] > 0)
+     target.pbOwnSide.effects[PBEffects::FrostSpikes]      = 0
+     target.pbOpposingSide.effects[PBEffects::FrostSpikes] = 0 if Settings::MECHANICS_GENERATION >= 6
+     @battle.pbDisplay(_INTL("{1} blew away frost spikes!",user.pbThis))
     end
     if target.pbOwnSide.effects[PBEffects::StickyWeb] ||
        (Settings::MECHANICS_GENERATION >= 6 &&
@@ -1373,6 +1361,7 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
 		score -= 30 if target.pbOwnSide.effects[PBEffects::Spikes]>0 ||
 					 target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 ||
 					 target.pbOwnSide.effects[PBEffects::FlameSpikes]>0 ||
+           target.pbOwnSide.effects[PBEffects::FrostSpikes]>0 ||
 					 target.pbOwnSide.effects[PBEffects::StealthRock]
     return score
   end
@@ -1473,5 +1462,50 @@ class PokeBattle_Move_015 < PokeBattle_FlusterMove
       return 0
     end
     return super
+  end
+end
+
+#===============================================================================
+# Burns, frostbites, or numbs the target. (Tri Attack)
+#===============================================================================
+class PokeBattle_Move_017 < PokeBattle_Move
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    case @battle.pbRandom(3)
+    when 0 then target.pbBurn(user) if target.pbCanBurn?(user, false, self)
+    when 1 then target.pbFrostbite if target.pbCanFrostbite?(user, false, self)
+    when 2 then target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
+    end
+  end
+end
+
+#===============================================================================
+# Cures user of any status condition. (Refresh)
+#===============================================================================
+class PokeBattle_Move_018 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    if !user.pbHasAnyStatus?
+      @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has no status condition!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    user.pbCureStatus
+  end
+end
+
+#===============================================================================
+# Target's berry/Gem is destroyed. (Incinerate)
+#===============================================================================
+class PokeBattle_Move_0F5 < PokeBattle_Move
+  def pbEffectWhenDealingDamage(user,target)
+    return if target.damageState.substitute || target.damageState.berryWeakened
+    return if !target.item || (!target.item.is_berry? &&
+              !(Settings::MECHANICS_GENERATION >= 6 && target.item.is_gem?))
+    itemName = target.itemName
+    target.pbRemoveItem
+    @battle.pbDisplay(_INTL("{1}'s {2} was incinerated!",target.pbThis,itemName))
   end
 end

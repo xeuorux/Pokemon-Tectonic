@@ -39,7 +39,7 @@ def isCat?(species)
 	array = [:MEOWTH,:PERSIAN,:AMEOWTH,:APERSIAN,:GMEOWTH,:PERRSERKER,:ESPEON,:FLAREON,:GLACEON,
 		:JOLTEON,:LEAFEON,:SYLVEON,:UMBREON,:VAPOREON,:SKITTY,:DELCATTY,:ZANGOOSE,:MZANGOOSE,:ABSOL,
 		:ABSOLUS,:SHINX,:LUXIO,:LUXRAY,:GLAMEOW,:PURUGLY,:PURRLOIN,:LIEPARD,:LITLEO,:PYROAR,:ESPURR,
-		:MEOWSTIC,:LITTEN,:TORRACAT,:INCINEROAR]
+		:MEOWSTIC,:LITTEN,:TORRACAT,:INCINEROAR,:GIGANTEON]
 	return array.include?(species)
 end
 
@@ -50,6 +50,51 @@ end
 
 def isBat?(species)
 	array = [:ZUBAT,:GOLBAT,:CROBAT,:GLIGAR,:GLISCOR,:WOOBAT,:SWOOBAT,:NOIBAT,:NOIVERN]
+	return array.include?(species)
+end
+
+def isKnight?(species)
+	array = [:CORVIKNIGHT,:GALLADE,:ESCAVALIER,:BISHARP,:SIRFETCHD,:SAMUROTT,:GOLURK,:ROSERADE]
+	return array.include?(species)
+end
+
+def isFrog?(species)
+	array = [:BULBASAUR,:IVYSAUR,:VENUSAUR,:POLIWHIRL,:POLIWRATH,:POLITOED,:POLIWAG,:SEISMITOAD,:PALPITOAD,:TYMPOLE,:FROAKIE,:FROGADIER,:GRENINJA,:TOXICROAK,:CROAGUNK]
+	return array.include?(species)
+end
+
+def isQuestionable?(species)
+	array = [:LUCARIO,:GARDEVOIR,:UMBREON,:CHARIZARD,:HAEROBIC,:ZOROARK,:DELPHOX,:ARCANINE,:GLACEON,:BLAZIKEN,:SYLVEON,:ZANGOOSE,:VAPOREON,:RAICHU,:TYPHLOSION,:ESPEON,:GOODRA,:CINDERACE,:SALAZZLE]
+	return array.include?(species)
+end
+
+def isBandMember?(species)
+	array = [:WIGGLYTUFF,:JIGGLYPUFF,:IGGLYBUFF,:WHISMUR,:LOUDRED,:EXPLOUD,:PRIMARINA,:BRIONNE,:POPPLIO,:KRICKETUNE,:KRICKETOT,:CHATOT,:TOXEL,:TOXTRICITY,:ARCLAMOR,:MARACTUS,:RILLABOOM,:THWACKEY,:GROOKEY,:NOIBAT,:NOIVERN]
+	return array.include?(species)
+end
+
+def isTMNT?(species)
+	array = [:CARRACOSTA,:TIRTOUGA,:TORKOAL,:TORTERRA,:GROTLE,:TURTWIG,:CHEWTLE,:DREDNAW,:SEISMAW,:SQUIRTLE,:WARTORTLE,:BLASTOISE,:RATICATE,:RATTATA,:CUBONE,:MAROWAK]
+	return array.include?(species)
+end
+
+def isKing?(species)
+	array = [:KINGDRA,:KINGLER,:NIDOKING,:SLAKING,:SLOWKING,:GSLOWKING,:SEAKING]
+	return array.include?(species)
+end
+
+def isQueen?(species)
+	array = [:VESPIQUEN,:TSAREENA,:GARDEVOIR,:NIDOQUEEN,:SALAZZLE]
+	return array.include?(species)
+end
+
+def isSmasher?(species)
+	array = [:LUCARIO,:PIKACHU,:GRENINJA,:CHARIZARD,:JIGGLYPUFF,:IVYSAUR,:LUCARIO,:SQUIRTLE]
+	return array.include?(species)
+end
+
+def isPirateCrew?(species)
+	array = [:EMPOLEON,:AMBIPOM,:DHELMISE,:OCTILLERY,:SCARODON,:RUBARIOR,:CHATOT,:BLASTOISE,:CRAWDAUNT]
 	return array.include?(species)
 end
 
@@ -89,4 +134,28 @@ def pokemonRaffle(species,level=10,cost=200,baseChance=5.0,chanceIncrease=1.5,di
 			$PokemonGlobal.raffleChancesTried[species] += 1
 		end
 	end
+end
+
+# Gives the blue orb, and does a little scene where the cave brightens and the rain
+def kyogreDefeated(eventID)
+	timeTaken = Graphics.frame_rate * 2
+	defeatBoss(:BLUEORB)
+	pbWait(Graphics.frame_rate)
+	pbSetSelfSwitch(eventID,'A',true)
+	$game_screen.weather(:None,0,timeTaken)
+	$game_map.start_fog_opacity_change(100, timeTaken)
+	pbWait(timeTaken)
+	pbSetSelfSwitch(eventID,'B',true)
+end
+
+# Gives the red orb, and does a little scene where the cave darkens and the bright sunshine dissapears
+def groudonDefeated(eventID)
+	timeTaken = Graphics.frame_rate * 2
+	defeatBoss(:REDORB)
+	pbWait(Graphics.frame_rate)
+	pbSetSelfSwitch(eventID,'A',true)
+	$game_screen.weather(:None,0,timeTaken)
+	$game_map.start_fog_opacity_change(50, timeTaken)
+	pbWait(timeTaken)
+	pbSetSelfSwitch(eventID,'B',true)
 end

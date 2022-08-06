@@ -61,6 +61,25 @@ class PokeBattle_Battle
 	end
   end
 
+  def pbExtraCommandPhase()
+    @scene.pbBeginCommandPhase
+    # Reset choices if commands can be shown
+    @battlers.each_with_index do |b,i|
+      next if !b
+      pbClearChoice(i) if pbCanShowCommands?(i)
+    end
+    # Reset choices to perform Mega Evolution if it wasn't done somehow
+    for side in 0...2
+      @megaEvolution[side].each_with_index do |megaEvo,i|
+        @megaEvolution[side][i] = -1 if megaEvo>=0
+      end
+    end
+    # Choose actions for the round (AI first, then player)
+    pbCommandPhaseLoop(false)   # AI chooses their actions
+	return if @decision!=0   # Battle ended, stop choosing actions
+    pbCommandPhaseLoop(true)   # Player chooses their actions
+  end
+
 	def pbCommandPhaseLoop(isPlayer)
 		# NOTE: Doing some things (e.g. running, throwing a Poké Ball) takes up all
 		#       your actions in a round.
@@ -70,14 +89,17 @@ class PokeBattle_Battle
 		  break if @decision!=0   # Battle ended, stop choosing actions
 		  idxBattler += 1
 		  break if idxBattler >= @battlers.length
-		  next if !@battlers[idxBattler] || pbOwnedByPlayer?(idxBattler) != isPlayer
+		  battler = @battlers[idxBattler]
+		  next if battler.nil?
+		  next if pbOwnedByPlayer?(idxBattler) != isPlayer
+		  next if @commandPhasesThisRound > battler.extraMovesPerTurn
 		  next if @choices[idxBattler][0] != :None    # Action is forced, can't choose one
 		  next if !pbCanShowCommands?(idxBattler)   # Action is forced, can't choose one
 		  # AI controls this battler
 		  if @controlPlayer || !pbOwnedByPlayer?(idxBattler)
 			next if @autoTesting
 			# Debug testing thing
-			@battleAI.beginAutoTester(@battlers[idxBattler]) if $DEBUG && Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
+			@battleAI.beginAutoTester(battler) if $DEBUG && Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
 		  
 			# Increment their choices taken
 			if @battlers[idxBattler].choicesTaken.nil?

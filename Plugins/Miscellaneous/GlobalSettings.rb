@@ -1,5 +1,5 @@
 module Settings
-  GAME_VERSION = "1.8.1"
+  GAME_VERSION = "1.9.0"
 
   # The maximum level Pokémon can reach.
   MAXIMUM_LEVEL        = 71
@@ -64,8 +64,8 @@ module Settings
   NUM_STORAGE_BOXES = 40
 
   REGION_MAP_EXTRAS = [
-    [0, 51, 9, 5, "mapHiddenCave", false],
-    [0, 52, 17, 13, "mapHidden2x1Route", false]
+    [0, 51, 0, 0, "Abyssal Cave", false],
+    [0, 52, 0, 0, "Volcanic Shore", false]
   ]
 
   # The names of each pocket of the Bag. Ignore the first entry ("").
@@ -76,7 +76,7 @@ module Settings
       _INTL("Poké Balls"),
       _INTL("TMs"),
       _INTL("Held Items"),
-      _INTL("Mail"),
+      _INTL("Sell Items"),
       _INTL("Battle Items"),
       _INTL("Key Items")
     ]

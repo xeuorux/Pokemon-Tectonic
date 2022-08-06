@@ -9,8 +9,8 @@ MAPS_AVAILABLE_BY_CAP = {
 	30 => [60,56,66,123,		# Shipping Lane, Nemeth, Nemeth Attic, Nemeth Academy
 			142,140,141, 		# Starters Store Maps
 			3,25,55,6,81,	 	# Savannah Route, Mining Camp, Flower Fields, LuxTech Campus, Cave Path
-			54,37,7,8,53, 		# Crossroads, Svait, Wet Walkways, The Tangle
-			117,36,10,12, 		# Ice Cave, Abandoned Mine, Jungle Temple, Gigalith's Guts
+			301,37,7,8,53, 		# County Park, Svait, Wet Walkways, The Tangle
+			117,36,10,40, 		# Ice Cave, Abandoned Mine, Jungle Temple, Gigalith's Guts
 			13,11,122,120, 		# Cave Path, River Route, Sewer, Deep Layer
 			121,130,129,59, 	# Mountain Climb, Canal Desert, Barren Crater, Mainland Dock
 			96,98,126, 			# Luxtech Cold Storage, LuxTech Cold Storage Basement, Sun Cave
@@ -30,7 +30,7 @@ MAPS_AVAILABLE_BY_CAP = {
 			211,212,216,	# Shield, Ocean Fishing, Mountain Lake
 			218,230,232,	# Abyssal Chamber, Galarian Fan's House, Biologist's House
 			234,220,228,         # Ranger Recruitment, Prizca Sewers East, Hidden Laboratory
-			223,250				# Prizca Sewers West, Chasm Base Lab
+			223,250,288,				# Prizca Sewers West, Chasm Base Lab, Underground River
 			],
 	70 => [215			# Sky
 			]

@@ -1,7 +1,9 @@
 class PokeBattle_DamageState
 	attr_accessor :iceface         # Ice Face ability used
 	attr_accessor :displayedDamage
-	
+	attr_accessor :forced_critical
+	attr_accessor :direDiversion
+
 	def resetPerHit
 		@missed        		= false
 		@calcDamage    		= 0
@@ -16,5 +18,7 @@ class PokeBattle_DamageState
 		@endured       		= false
 		@berryWeakened 		= false
 		@iceface       		= false
+		@forced_critical	= false
+		@direDiversion		= false
 	end
 end

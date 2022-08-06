@@ -190,15 +190,19 @@ class PokeBattle_Battle
         next if side==0 && i==0   # The player's message is shown last
         msg += "\r\n" if msg.length>0
         sent = sendOuts[side][i]
-        case sent.length
-        when 1
-          msg += _INTL("{1} sent out {2}!",t.full_name,@battlers[sent[0]].name)
-        when 2
-          msg += _INTL("{1} sent out {2} and {3}!",t.full_name,
-             @battlers[sent[0]].name,@battlers[sent[1]].name)
-        when 3
-          msg += _INTL("{1} sent out {2}, {3} and {4}!",t.full_name,
-             @battlers[sent[0]].name,@battlers[sent[1]].name,@battlers[sent[2]].name)
+        if !t.wild?
+          case sent.length
+          when 1
+            msg += _INTL("{1} sent out {2}!",t.full_name,@battlers[sent[0]].name)
+          when 2
+            msg += _INTL("{1} sent out {2} and {3}!",t.full_name,
+              @battlers[sent[0]].name,@battlers[sent[1]].name)
+          when 3
+            msg += _INTL("{1} sent out {2}, {3} and {4}!",t.full_name,
+              @battlers[sent[0]].name,@battlers[sent[1]].name,@battlers[sent[2]].name)
+          end
+        else
+          msg += _INTL("The {1} joined in!",t.full_name)
         end
         toSendOut.concat(sent)
       end
@@ -267,31 +271,39 @@ class PokeBattle_Battle
 	  
       # Command phase
       PBDebug.logonerr { pbCommandPhase }
-      break if @decision>0
+      break if @decision > 0
+
+      @commandPhasesThisRound = 1
+
       # Attack phase
       PBDebug.logonerr { pbAttackPhase }
-      break if @decision>0
+      break if @decision > 0
 	  
-      @commandPhasesThisRound = 1
+      numExtraPhasesThisTurn = 0
+      @battlers.each do |b|
+        next if !b
+        numExtraPhasesThisTurn = b.extraMovesPerTurn if b.extraMovesPerTurn > numExtraPhasesThisTurn
+      end
+
+      echoln("There should be #{numExtraPhasesThisTurn} extra command attack phases this turn.")
       
       # Boss phases after main phases
-      if @numBossOnlyTurns > 0
-        for i in 1..@numBossOnlyTurns do
+      if numExtraPhasesThisTurn > 0
+        for i in 1..numExtraPhasesThisTurn do
+          echoln("Extra phase begins")
           @battlers.each do |b|
             next if !b
-            if b.boss
-              @lastRoundMoved = 0
-            end
+            @lastRoundMoved = 0
           end
           # Command phase
-          PBDebug.logonerr { pbExtraBossCommandPhase() }
+          PBDebug.logonerr { pbExtraCommandPhase() }
           break if @decision>0
           
           @commandPhasesThisRound += 1
           
           # Attack phase
-          PBDebug.logonerr { pbExtraBossAttackPhase() }
-          break if @decision>0
+          PBDebug.logonerr { pbExtraAttackPhase() }
+          break if @decision > 0
         end
       end
 	  
@@ -300,14 +312,14 @@ class PokeBattle_Battle
       break if @decision>0
       @commandPhasesThisRound = 0
       
-      useEmpoweredMoves()
+      useEmpoweredStatusMoves()
       
       @turnCount += 1
     end
     pbEndOfBattle
   end
   
-  def useEmpoweredMoves()
+  def useEmpoweredStatusMoves()
 	  # Have bosses use empowered moves if appropriate
 	  @battlers.each do |b|
       next if !b
@@ -316,7 +328,8 @@ class PokeBattle_Battle
       next if b.empowered
       usedEmpoweredMove = false
       b.eachMoveWithIndex do |move,index|
-        next unless move.isEmpowered?
+        next if move.damagingMove?
+        next if !move.isEmpowered?
         next if move.pp < 1
         pbDisplayPaused(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
         b.lastRoundMoved = 0
@@ -327,6 +340,7 @@ class PokeBattle_Battle
       if usedEmpoweredMove
         avatar_data = GameData::Avatar.get(b.species.to_sym)
         b.assignMoveset(avatar_data.post_prime_moves)
+        b.primevalTimer = 0
         b.empowered = true
         @scene.pbRefresh
       end

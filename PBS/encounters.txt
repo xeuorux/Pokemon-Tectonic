@@ -57,13 +57,6 @@ Puddle,21
     25,POLIWAG,17,20
     25,SKRELP,17,20
 #-------------------------------
-[012] # Gigalith's Guts
-DarkCave,20
-    25,ARON,17,20
-    25,BALTOY,17,20
-    25,ROGGENROLA,17,20
-    25,ZUBAT,17,20
-#-------------------------------
 [019] # Reading Ribombee Café
 Special,20
     1,MILCERY,15
@@ -72,7 +65,7 @@ Special,20
 Land,20
     25,GOTHITA,15,18
     25,PAWNIARD,15,18
-    25,TOXEL,15,18
+    25,RUFFLET,15,18
     25,TYROGUE,15,18
 Special,20
     1,BLIPBUG,15
@@ -99,10 +92,10 @@ Special,1
 #-------------------------------
 [030] # Windy Way
 Land,20
-    25,IGGLYBUFF,8,10
     25,MAREEP,8,10
     25,RALTS,8,10
     25,ROCKRUFF,8,10
+    25,SEEDOT,8,10
 LandTall,20
     25,STARLY,8,10
     25,STUNKY,8,10
@@ -127,6 +120,9 @@ Special,20
     1,APPLIN,10
     1,KRABBY,10
     1,NUMEL,10
+    1,PATRAT,10
+    1,SKWOVET,10
+    1,ZIGZAGOON,10
 #-------------------------------
 [036] # Grouz Mine
 DarkCave,20
@@ -147,7 +143,7 @@ Land,20
     25,AZURILL,7,9
     25,EXEGGCUTE,7,9
     25,HOUNDOUR,7,9
-    25,WINGULL,7,9
+    25,TOXEL,7,9
 LandSparse,20
     25,GRUBBIN,7,9
     25,HONEDGE,7,9
@@ -157,9 +153,16 @@ Puddle,20
     25,CLOBBOPUS,7,9
     25,HORSEA,7,9
     25,INKAY,7,9
-    25,LUVDISC,7,9
+    25,WINGULL,7,9
 Special,20
     1,SPHEAL,15
+#-------------------------------
+[040] # Gigalith's Guts
+DarkCave,20
+    25,ARON,17,20
+    25,BALTOY,17,20
+    25,ROGGENROLA,17,20
+    25,ZUBAT,17,20
 #-------------------------------
 [047] # Grand Hotel
 Special,1
@@ -180,7 +183,7 @@ Mud,40
     33,MAKUHITA,9,11
     33,MUDBRAY,9,11
 #-------------------------------
-[053] # The Tangle
+[053] # Jungle Path
 Land,20
     25,NATU,16,19
     25,PURRLOIN,16,19
@@ -196,24 +199,6 @@ LandTall,20
     25,SIZZLIPEDE,16,19
     25,SPRITZEE,16,19
     25,VENONAT,16,19
-#-------------------------------
-[054] # County Park
-Land,20
-    20,BUNEARY,14,17
-    20,BUNNELBY,14,17
-    20,FLETCHLING,14,17
-    20,HATENNA,14,17
-    20,KRICKETOT,14,17
-FloweryGrass,20
-    25,CUTIEFLY,14,17
-    25,LEDYBA,14,17
-    25,SUNKERN,14,17
-    25,SWABLU,14,17
-LandTinted,20
-    50,SAWK,14,17
-    50,THROH,14,17
-Special,1
-    1,DRIFLOON,14,17
 #-------------------------------
 [055] # Floral Rest
 FloweryGrass,20
@@ -258,9 +243,9 @@ Special
 #-------------------------------
 [060] # Shipping Lane
 Land,20
+    20,IGGLYBUFF,14,17
     20,MEOWTH,14,17
     20,MSENTRET,14,17
-    20,SEEDOT,14,17
     20,STUFFUL,14,17
     20,VENIPEDE,14,17
 LandTall,20
@@ -367,7 +352,7 @@ SewerFloor,20
     25,SOLOSIS,17,19
     25,TRUBBISH,17,19
 #-------------------------------
-[123] # Németh Academy
+[123] # Németh College
 Special,20
     1,AERODACTYL,30
     1,AMAURA,10
@@ -553,10 +538,6 @@ Mud,20
     13,SHELLOS_1,37,39
     12,SHELLOS,37,39
 #-------------------------------
-[197] # Noel's House
-DarkCave,21
-    100,UNOWN,31,33
-#-------------------------------
 [202] # Mountaineer's House
 Special,1
     1,ORICORIO,40
@@ -567,16 +548,15 @@ Special,20
 #-------------------------------
 [211] # Split Peaks
 Land,20
-    20,ABSOL,37,39
-    20,KOMALA,34,36
-    20,PINSIR,37,39
-    20,SKARMORY,37,39
-    20,SPINDA,37,39
+    25,ABSOL,37,39
+    25,KOMALA,34,36
+    25,PINSIR,37,39
+    25,SPINDA,37,39
 LandSparse,20
     25,DELIBIRD,37,39
     25,DRILBUR,37,39
     25,HAWLUCHA,37,39
-    25,RUFFLET,37,39
+    25,SKARMORY,37,39
 Puddle,20
     33,EISCUE,37,39
     33,SEEL,37,39
@@ -601,7 +581,7 @@ LandSparse,20
     20,KARRABLAST,18,20
     20,SHELMET,18,20
     20,VULPIX,18,20
-LandTinted,20
+FloweryGrass2,20
     20,PANPOUR,18,20
     20,PANSAGE,18,20
     20,PANSEAR,18,20
@@ -652,7 +632,7 @@ Land,20
     25,FOONGUS,34,36
     25,ORANGURU,34,36
     25,PASSIMIAN,34,36
-LandTinted,20
+LandTall,20
     25,DRAMPA,34,36
     25,FALINKS,34,36
     25,GIRAFARIG,34,36
@@ -771,16 +751,49 @@ Special
     1,GOOMY,5
     1,JANGMOO,5
 #-------------------------------
+[257] # Cave of Hatching
+LandSparse,20
+    25,CUBONE,42,44
+    25,LARVITAR,42,44
+    25,MAGNEMITE,42,44
+    25,ZUBAT,42,44
+#-------------------------------
+[258] # Whitebloom Town
+Land,20
+    25,BUNEARY,43,45
+    25,NICKIT,43,45
+    25,PICHU,43,45
+    25,ROOKIDEE,43,45
+#-------------------------------
 [288] # Underground River
 Puddle,20
+    25,LUVDISC,36,38
     25,MANTYKE,36,38
-    25,PYUKUMUKU,36,38
     25,STARYU,36,38
     25,TENTACOOL,36,38
 LandSparse,20
-    33,CLAUNCHER,36,38
-    33,DURANT,36,38
-    33,HEATMOR,36,38
+    25,CLAUNCHER,36,38
+    25,DURANT,36,38
+    25,HEATMOR,36,38
+    25,PYUKUMUKU,36,38
+#-------------------------------
+[301] # County Park
+Land,20
+    20,BUNEARY,14,17
+    20,BUNNELBY,14,17
+    20,FLETCHLING,14,17
+    20,HATENNA,14,17
+    20,KRICKETOT,14,17
+FloweryGrass,20
+    25,CUTIEFLY,14,17
+    25,LEDYBA,14,17
+    25,SUNKERN,14,17
+    25,SWABLU,14,17
+LandSparse,20
+    50,SAWK,14,17
+    50,THROH,14,17
+Special,1
+    1,DRIFLOON,14,17
 #-------------------------------
 [305] # Mainland Dock Warehouse
 Special,1

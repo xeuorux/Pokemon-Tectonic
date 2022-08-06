@@ -20,7 +20,7 @@ GameData::TerrainTag.register({
 GameData::TerrainTag.register({
   :id                     => :Mud,
   :id_number              => 17,
-  :battle_environment     => :Rock,
+  :battle_environment     => :Mud,
   :land_wild_encounters	  => true,
   :must_walk              => true,
   :slows				  => true
@@ -30,7 +30,7 @@ GameData::TerrainTag.register({
 GameData::TerrainTag.register({
   :id                     => :Puddle,
   :id_number              => 18,
-  :battle_environment     => :StillWater,
+  :battle_environment     => :Puddle,
   :land_wild_encounters	  => true,
 })
 
@@ -74,7 +74,7 @@ GameData::TerrainTag.register({
   :id                     => :SewerFloor,
   :id_number              => 24,
   :land_wild_encounters   => true,
-  :battle_environment     => :Neutral
+  :battle_environment     => :Puddle
 })
 
 # Sewer Water

@@ -864,7 +864,7 @@ class PokemonPokedexInfo_Scene
   def getNameForEncounterType(encounterType)
 	case encounterType
 	when :Land
-		return "Thick Grass"
+		return "Grass"
 	when :LandSparse
 		return "Sparse Grass"
 	when :LandTall

@@ -257,9 +257,9 @@ class PokeBattle_Battler
         end
       end
     end
-	# Redirect Dragon Darts first hit if necessary
-    if move.function=="17C" && @battle.pbSideSize(targets[0].index)>1
-      targets=pbChangeTargets(move,user,targets,0)
+	  # Redirect Dragon Darts and similar moves first hit if necessary
+    if move.smartSpreadsTargets? && @battle.pbSideSize(targets[0].index) > 1
+      targets = pbChangeTargets(move,user,targets,0)
     end
     #---------------------------------------------------------------------------
     magicCoater  = -1
@@ -300,6 +300,7 @@ class PokeBattle_Battler
       end
       # Get the number of hits
       numHits = move.pbNumHits(user,targets)
+      numHits *= 2 if user.effects[PBEffects::VolleyStance] && move.specialMove?
       # Process each hit in turn
       realNumHits = 0
       for i in 0...numHits
@@ -381,7 +382,19 @@ class PokeBattle_Battler
         end
       end
       # Move-specific effects after all hits
-      targets.each { |b| move.pbEffectAfterAllHits(user,b) }
+      targets.each { |targetBattler|
+        move.pbEffectAfterAllHits(user,targetBattler)
+        if targetBattler.effects[PBEffects::EmpoweredDestinyBond]
+          next if targetBattler.damageState.unaffected
+          next if !user.takesIndirectDamage?
+          next if user.hasActiveAbility?(:ROCKHEAD)
+          amt = (targetBattler.damageState.totalHPLost/2.0).round
+          amt = 1 if amt<1
+          @battle.pbDisplay(_INTL("{1}'s destiny is bonded with {2}!",user.pbThis,targetBattler.pbThis(true)))
+          user.pbReduceHP(amt,false)
+          user.pbItemHPHealCheck
+        end
+      }
 	  
 	  # Curses about move usage
 	  @battle.curses.each do |curse_policy|
@@ -497,8 +510,8 @@ class PokeBattle_Battler
     # Count a hit for Parental Bond (if it applies)
     user.effects[PBEffects::ParentalBond] -= 1 if user.effects[PBEffects::ParentalBond]>0
     # Redirect Dragon Darts other hits
-    if move.function=="17C" && @battle.pbSideSize(targets[0].index)>1 && hitNum>0
-      targets=pbChangeTargets(move,user,targets,1)
+    if move.smartSpreadsTargets? && @battle.pbSideSize(targets[0].index) > 1 && hitNum > 0
+      targets = pbChangeTargets(move,user,targets,1)
     end
     # Accuracy check (accuracy/evasion calc)
     if hitNum==0 || move.successCheckPerHit?

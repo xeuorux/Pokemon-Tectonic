@@ -5,7 +5,9 @@
 3,MAXREPEL,Max Repel,Max Repels,1,900,"An item that prevents wild Pokémon from appearing for 250 steps after its use.",2,0,0
 4,BLACKFLUTE,Black Flute,Black Flutes,1,400,"A black flute made from blown glass. Its melody makes wild Pokémon less likely to appear.",2,0,0
 5,WHITEFLUTE,White Flute,White Flutes,1,500,"A white flute made from blown glass. Its melody makes wild Pokémon more likely to appear.",2,0,0
-6,HONEY,Honey,Honey,1,1500,"A sweet honey with a sweeter aroma. It can be sold to shops for $750.",2,0,0
+#-------------------------------
+6,HONEY,Honey,Honey,6,1500,"A sweet honey with a sweeter aroma. It can be sold to shops for $750.",2,0,0
+#-------------------------------
 7,ESCAPEROPE,Escape Rope,Escape Ropes,1,1000,"A long, durable rope. Use it to escape instantly from a cave or a dungeon.",2,0,0
 8,REDSHARD,Red Shard,Red Shards,1,1000,"A small red shard. It appears to be from some sort of implement made long ago.",0,0,0
 9,YELLOWSHARD,Yellow Shard,Yellow Shards,1,1000,"A small yellow shard. It appears to be from some sort of implement made long ago.",0,0,0
@@ -36,28 +38,30 @@
 34,ARMORFOSSIL,Armor Fossil,Armor Fossils,1,5000,"A fossil from a prehistoric Pokémon that lived on the land. It appears to be part of a collar.",0,0,8
 35,COVERFOSSIL,Cover Fossil,Cover Fossils,1,5000,"A fossil of an ancient Pokémon that lived in the sea in ancient times. It appears to be part of its back.",0,0,8
 36,PLUMEFOSSIL,Plume Fossil,Plume Fossils,1,5000,"A fossil of an ancient Pokémon that flew in the sky in ancient times. It appears to be part of its wing.",0,0,8
-37,PRETTYFEATHER,Pretty Feather,Pretty Feathers,1,3000,"A beautiful feather. It can be sold to shops for $1500.",0,0,0
-38,TINYMUSHROOM,Tiny Mushroom,Tiny Mushrooms,1,500,"A small and rare mushroom. It can be sold to shops for $250.",0,0,0
-39,BIGMUSHROOM,Big Mushroom,Big Mushrooms,1,5000,"A large and rare mushroom. It can be sold to shops for $2500.",0,0,0
-40,BALMMUSHROOM,Balm Mushroom,Balm Mushrooms,1,15000,"A rare mushroom which gives off a nice fragrance. It can be sold to shops for $7500.",0,0,0
-41,PEARL,Pearl,Pearls,1,2000,"A somewhat-small pearl that sparkles in a pretty silver color. It can be sold to shops for $1000.",0,0,0
-42,BIGPEARL,Big Pearl,Big Pearls,1,8000,"A quite-large pearl that sparkles in a pretty silver color. It can be sold to shops for $4000.",0,0,0
-43,PEARLSTRING,Pearl String,Pearl Strings,1,20000,"Very large pearls that sparkle in a pretty silver color. It can be sold to shops for $10000.",0,0,0
-44,STARDUST,Stardust,Stardusts,1,3000,"Lovely, red-colored sand with a loose, silky feel. It can be sold to shops for $1500.",0,0,0
-45,STARPIECE,Star Piece,Star Pieces,1,12000,"A shard of a pretty gem that sparkles in a red color. It can be sold to shops for $6000.",0,0,0
-46,COMETSHARD,Comet Shard,Comet Shards,1,25000,"A shard which fell to the ground when a comet approached. It can be sold to shops for $12500.",0,0,0
-47,NUGGET,Gold Nugget,Gold Nuggets,1,10000,"A nugget of pure gold that gives off a lustrous gleam. It can be sold to shops for $5000.",0,0,0
-48,BIGNUGGET,Big Nugget,Big Nuggets,1,40000,"A big nugget of pure gold that gives off a lustrous gleam. It can be sold to shops for $20000.",0,0,0
-49,HEARTSCALE,Heart Scale,Heart Scales,1,100,"A pretty, heart-shaped scale that is extremely rare. It glows faintly in the colors of the rainbow.",0,0,0
-50,SLOWPOKETAIL,Slowpoke Tail,Slowpoke Tails,1,10000,"A very tasty tail of something. It can be sold to shops for $5000.",0,0,0
-51,RAREBONE,Rare Bone,Rare Bones,1,5000,"A bone that is extremely valuable for Pokémon archaeology. It can be sold to shops for $2500.",0,0,0
-52,RELICCOPPER,Relic Copper,Relic Coppers,1,2000,"A copper coin used in a civilization about 3,000 years ago. It can be sold to shops for $1000.",0,0,0
-53,RELICSILVER,Relic Silver,Relic Silvers,1,10000,"A silver coin used in a civilization about 3,000 years ago. It can be sold to shops for $5000.",0,0,0
-54,RELICGOLD,Relic Gold,Relic Golds,1,20000,"A gold coin used in a civilization about 3,000 years ago. It can be sold to shops for $10,000.",0,0,0
-55,RELICVASE,Relic Vase,Relic Vases,1,100000,"A vase made in a civilization about 3,000 years ago. It can be sold to shops for $50,000.",0,0,0
-56,RELICBAND,Relic Band,Relic Bands,1,200000,"A bracelet made in a civilization about 3,000 years ago. It can be sold to shops for $100,000.",0,0,0
-57,RELICSTATUE,Relic Statue,Relic Statues,1,600000,"A stone figure made in a civilization about 3,000 years ago. Can be sold for $300,000",0,0,0
-58,RELICCROWN,Relic Crown,Relic Crowns,1,0,"A crown made in a civilization about 3,000 years ago. A maniac will buy it for a high price.",0,0,0
+#-------------------------------
+37,PRETTYFEATHER,Pretty Feather,Pretty Feathers,6,3000,"A beautiful feather. It can be sold to shops for $1500.",0,0,0
+38,TINYMUSHROOM,Tiny Mushroom,Tiny Mushrooms,6,500,"A small and rare mushroom. It can be sold to shops for $250.",0,0,0
+39,BIGMUSHROOM,Big Mushroom,Big Mushrooms,6,5000,"A large and rare mushroom. It can be sold to shops for $2500.",0,0,0
+40,BALMMUSHROOM,Balm Mushroom,Balm Mushrooms,6,15000,"A rare mushroom which gives off a nice fragrance. It can be sold to shops for $7500.",0,0,0
+41,PEARL,Pearl,Pearls,6,2000,"A somewhat-small pearl that sparkles in a pretty silver color. It can be sold to shops for $1000.",0,0,0
+42,BIGPEARL,Big Pearl,Big Pearls,6,8000,"A quite-large pearl that sparkles in a pretty silver color. It can be sold to shops for $4000.",0,0,0
+43,PEARLSTRING,Pearl String,Pearl Strings,6,20000,"Very large pearls that sparkle in a pretty silver color. It can be sold to shops for $10000.",0,0,0
+44,STARDUST,Stardust,Stardusts,6,3000,"Lovely, red-colored sand with a loose, silky feel. It can be sold to shops for $1500.",0,0,0
+45,STARPIECE,Star Piece,Star Pieces,6,12000,"A shard of a pretty gem that sparkles in a red color. It can be sold to shops for $6000.",0,0,0
+46,COMETSHARD,Comet Shard,Comet Shards,6,25000,"A shard which fell to the ground when a comet approached. It can be sold to shops for $12500.",0,0,0
+47,NUGGET,Gold Nugget,Gold Nuggets,6,10000,"A nugget of pure gold that gives off a lustrous gleam. It can be sold to shops for $5000.",0,0,0
+48,BIGNUGGET,Big Nugget,Big Nuggets,6,40000,"A big nugget of pure gold that gives off a lustrous gleam. It can be sold to shops for $20000.",0,0,0
+49,HEARTSCALE,Heart Scale,Heart Scales,6,100,"A pretty, heart-shaped scale that is extremely rare. It glows faintly in the colors of the rainbow.",0,0,0
+50,SLOWPOKETAIL,Slowpoke Tail,Slowpoke Tails,6,10000,"A very tasty tail of something. It can be sold to shops for $5000.",0,0,0
+51,RAREBONE,Rare Bone,Rare Bones,6,5000,"A bone that is extremely valuable for Pokémon archaeology. It can be sold to shops for $2500.",0,0,0
+52,RELICCOPPER,Relic Copper,Relic Coppers,6,2000,"A copper coin used in a civilization about 3,000 years ago. It can be sold to shops for $1000.",0,0,0
+53,RELICSILVER,Relic Silver,Relic Silvers,6,10000,"A silver coin used in a civilization about 3,000 years ago. It can be sold to shops for $5000.",0,0,0
+54,RELICGOLD,Relic Gold,Relic Golds,6,20000,"A gold coin used in a civilization about 3,000 years ago. It can be sold to shops for $10,000.",0,0,0
+55,RELICVASE,Relic Vase,Relic Vases,6,100000,"A vase made in a civilization about 3,000 years ago. It can be sold to shops for $50,000.",0,0,0
+56,RELICBAND,Relic Band,Relic Bands,6,200000,"A bracelet made in a civilization about 3,000 years ago. It can be sold to shops for $100,000.",0,0,0
+57,RELICSTATUE,Relic Statue,Relic Statues,6,600000,"A stone figure made in a civilization about 3,000 years ago. Can be sold for $300,000",0,0,0
+58,RELICCROWN,Relic Crown,Relic Crowns,6,0,"A crown made in a civilization about 3,000 years ago. A maniac will buy it for a high price.",0,0,0
+#-------------------------------
 59,GROWTHMULCH,Growth Mulch,Growth Mulch,1,200,"A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.",0,0,11
 60,DAMPMULCH,Damp Mulch,Damp Mulch,1,200,"A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.",0,0,11
 61,STABLEMULCH,Stable Mulch,Stable Mulch,1,200,"A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.",0,0,11
@@ -298,7 +302,7 @@
 292,TM04,TM04,TM04s,4,50000,"The target is punched with an icy fist. This may also leave the target frozen.",3,0,0,ICEPUNCH
 293,TM05,TM05,TM05s,4,50000,"The target is punched with an electrified fist. This may also leave the target numbed.",3,0,0,THUNDERPUNCH
 294,TM06,TM06,TM06s,4,10000,"The user flies up into the sky and then strikes its target on the next turn.",3,0,0,FLY
-295,TM07,TM07,TM07s,4,6000,"Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.",3,0,0,PINMISSILE
+295,TM07,TM07,TM07s,4,10000,"The user crushes the target with evil intent. This deals double damage if the target has a status condition.",3,0,0,CRUELTY
 296,TM08,TM08,TM08s,4,50000,"The target is attacked with a powerful beam. The user can't move on the next turn.",3,0,0,HYPERBEAM
 297,TM09,TM09,TM09s,4,50000,"The user charges at the target using every bit of its power. The user can't move on the next turn.",3,0,0,GIGAIMPACT
 298,TM10,TM10,TM10s,4,10000,"The user scatters curious leaves that chase the target. This attack never misses.",3,0,0,MAGICALLEAF
@@ -363,7 +367,7 @@
 357,TM69,TM69,TM69s,4,10000,"The user tears at the target with blades formed by psychic power. Critical hits land more easily.",3,0,0,PSYCHOCUT
 358,TM70,TM70,TM70s,4,50000,"The user creates a bizarre area in which slower Pokémon get to move first for five turns.",3,0,0,TRICKROOM
 359,TM71,TM71,TM71s,4,50000,"The user creates a bizarre area in which Pokémon's Defense and Sp. Def stats are swapped for five turns.",3,0,0,WONDERROOM
-360,TM72,TM72,TM72s,4,50000,"The user creates a bizarre area in which Pokémon's held items lose their effects for five turns.",3,0,0,MAGICROOM
+360,TM72,TM72,TM72s,4,50000,"The user creates a puzzling area in which Pokémon's Attack and Sp. Atk are swapped.",3,0,0,PUZZLEROOM
 361,TM73,TM73,TM73s,4,6000,"A slashing attack with a poisonous blade that may also poison the target. Critical hits land more easily.",3,0,0,CROSSPOISON
 362,TM74,TM74,TM74s,4,10000,"The user drenches the target in a special poison goo. This move's power is doubled if the target is poisoned.",3,0,0,VENOSHOCK
 363,TM75,TM75,TM75s,4,10000,"The user makes a swift attack on the target's legs, which lowers the target's Speed stat.",3,0,0,LOWSWEEP
@@ -714,7 +718,7 @@
 690,CATCHINGCHARM,Catching Charm,Catching Charms,8,0,"Holding it is said to increase the chance of getting a critical catch. Curiously, the charm doesn't shake much.",0,0,6
 691,INFINITEROPE,Escape Rope,Escape Ropes,8,0,"A long, durable rope. Use it to escape instantly from a cave or a dungeon.",2,0,6
 #-------------------------------
-692,TM100,TM100,TM100s,4,4000,"A frenetic dance to uplift the fighting spirit. This sharply raises the user's Attack stat.",3,0,0,SWORDSDANCE
+692,TM100,TM100,TM100s,4,4000,,3,0,0,FLOWSTATE
 693,TM101,TM101,TM101s,4,6000,"The user drops onto the target with its full body weight. This may also leave the target numbed.",3,0,0,BODYSLAM
 694,TM102,TM102,TM102s,4,6000,"The target is scorched with an intense blast of fire. This may also leave the target with a burn.",3,0,0,FLAMETHROWER
 695,TM103,TM103,TM103s,4,16000,"The target is blasted by a huge volume of water launched under great pressure.",3,0,0,HYDROPUMP
@@ -748,7 +752,7 @@
 723,TM131,TM131,TM131s,4,10000,"The target is slammed with a steel-hard tail. This may also lower the target's Defense stat.",3,0,0,IRONTAIL
 724,TM132,TM132,TM132s,4,6000,"The user crunches up the target with sharp fangs. This may also lower the target's Defense stat.",3,0,0,CRUNCH
 725,TM133,TM133,TM133s,4,6000,"The user hurls a shadowy blob at the target. This may also lower the target's Sp. Def stat.",3,0,0,SHADOWBALL
-726,TM134,TM134,TM134s,4,6000,"Two turns after this move is used, a hunk of psychic energy attacks the target.",3,0,0,FUTURESIGHT
+726,TM134,TM134,TM134s,4,4000,"The user lays a trap of frozen spikes at the foe's feet. They frostbite foes that switch into battle.",3,0,0,FROSTSPIKES
 727,TM135,TM135,TM135s,4,6000,"The user whips up a vicious tornado to tear at opposing Pokémon. This may also make them flinch.",3,0,0,UPROAR
 728,TM136,TM136,TM136s,4,6000,"The user attacks by exhaling hot breath on opposing Pokémon. This may also leave those Pokémon with a burn.",3,0,0,HEATWAVE
 729,TM137,TM137,TM137s,4,4000,"The target is taunted into a rage that allows it to use only attack moves for three turns.",3,0,0,TAUNT
@@ -782,7 +786,7 @@
 757,TM165,TM165,TM165s,4,10000,"The user draws power from nature and fires it at the target. This may also lower the target's Sp. Def stat.",3,0,0,ENERGYBALL
 758,TM166,TM166,TM166s,4,16000,"The user tucks in its wings and charges from a low altitude. This also damages the user quite a lot.",3,0,0,BRAVEBIRD
 759,TM167,TM167,TM167s,4,6000,"The user makes the ground under the foe erupt with power. It may also lower the target's Sp. Def.",3,0,0,EARTHPOWER
-760,TM168,TM168,TM168s,4,4000,"The user stimulates its brain by thinking bad thoughts. This sharply raises the user's Sp. Atk stat.",3,0,0,NASTYPLOT
+760,TM168,TM168,TM168s,4,4000,,3,0,0,VANGUARD
 761,TM169,TM169,TM169s,4,6000,"The user focuses its willpower to its head and attacks the target. This may also make the target flinch.",3,0,0,ZENHEADBUTT
 762,TM170,TM170,TM170s,4,6000,"The user gathers all its light energy and releases it all at once. This may also lower the target's Sp. Def stat.",3,0,0,FLASHCANNON
 763,TM171,TM171,TM171s,4,16000,"A storm of sharp leaves is whipped up. The attack's recoil sharply reduces the user's Sp. Atk stat.",3,0,0,LEAFSTORM
@@ -877,6 +881,15 @@
 #-------------------------------
 858,LIGHTHOUSEKEYCARD,Lighthouse Keycard,Lighthouse Keycards,8,0,"A colorful keycard. It grants access to elevator at the Sweetrock Harbor Lighthouse.",0,0,6
 859,MILKBONETREAT,Milk Bone Treat,Milk Bone Treats,8,0,"It would be a delicious treat if you were a Pokémon.",0,0,6
+860,DIGITSLIP,Digit Slip,Digit Slips,8,0,"A slip of paper with one digit of the code for the lock to Rafael's gym door.",0,0,0
+#-------------------------------
+861,SEVENLEAGUEBOOTS,Seven-League Boots,Seven-League Boots,5,4000,"An item to be held by a Pokémon. They are boots that boost speed by 10%.",0,0,0
+#-------------------------------
+862,PERFORMANCEANALYZER,Performance Analyzer,Performance Analyzers,8,0,"A hi-tech recording device which increases your Pokemon's experience gained from Trainer battles by 20%.",0,0,6
+863,PERFORMANCEANALYZER2,Performance Analyzer 2,Performance Analyzers 2,8,0,"An upgraded, hi-tech recording device which increases the experience gained from Trainer battles by 25%.",0,0,6
+#-------------------------------
+864,FROSTORB,Frost Orb,Frost Orbs,5,4000,"A bizarre orb that inflicts frostbite on the holder in battle, or when used on a Pokémon.",5,0,0
+#-------------------------------
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6

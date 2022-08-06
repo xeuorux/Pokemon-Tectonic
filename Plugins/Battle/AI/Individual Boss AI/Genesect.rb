@@ -11,6 +11,15 @@ PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:GENESECT,"150"],
 	}
 )
 
+PokeBattle_AI::BossDecidedOnMove.add(:GENESECT,
+	proc { |species,move,user,target|
+		if move.id == ":FELLSTINGER"
+			user.battle.pbDisplay(_INTL("#{user.pbThis} aims its stinger at #{target.name}!"))
+			user.extraMovesPerTurn = 0
+		end
+	}
+)
+
 PokeBattle_AI::BossBeginTurn.add(:GENESECT,
 	proc { |species,battler|
 		next if battler.turnCount != 0

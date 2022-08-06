@@ -353,6 +353,7 @@ Events.onWildPokemonCreate += proc {|sender,e|
 		species = species_data.species
 		# If the generated pokemon can actually be found here
 		if $PokemonEncounters.speciesEncounterableInType(species,currentTileEncounterType)
+			echoln("Overwriting the discovered wild pokemon with a #{species}!")
 			pokemon.species = species
 			pokemon.name = GameData::Species.get(pokemon.species).name
 			pokemon.ability_index = $currentDexSearch[2]
