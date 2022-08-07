@@ -242,7 +242,7 @@
 240,ICEFACE,Ice Face,"Prevents a physical attack. Restored at the end of its turn, in a Hailstorm."
 241,ICESCALES,Ice Scales,"Halves the damage from special moves."
 242,INTREPIDSWORD,Intrepid Sword,"Boosts Attack stat when the Pokémon enters a battle."
-243,LIBERO,Libero,"Changes 2nd type to the type of the move it's about to use."
+243,LIBERO,Libero,"It changes type to that of the move it's about to use."
 244,MIMICRY,Mimicry,"Changes the Pokémon's type depending on the terrain."
 245,MIRRORARMOR,Mirror Armor,"Bounces back stat-lowering effects."
 246,NEUTRALIZINGGAS,Neutralizing Gas,"Abilities will be nullified or will not be triggered."
