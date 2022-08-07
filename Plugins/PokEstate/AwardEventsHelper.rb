@@ -21,10 +21,11 @@ class Player < Trainer
             @ownedOfType = {}
         end
 
-        def allOwnedFromRoute?(routeMapID)
+        def allOwnedFromRoute?(routeMapID,ignoreSpecial = true)
             encounterDataOnRoute = GameData::Encounter.get(routeMapID,$PokemonGlobal.encounter_version)
             encounterDataOnRoute.types.each do |key,slots|
                 next if !slots
+                next if key == :Special && ignoreSpecial
                 slots.each { |slot|
                     species_data = GameData::Species.get(slot[1])
                     next if species_data.form != 0
