@@ -88,15 +88,6 @@ BattleHandlers::AccuracyCalcUserAbility.add(:SANDSNIPER,
 )
 
 #===============================================================================
-# CriticalCalcUserAbility handlers
-#===============================================================================
-BattleHandlers::CriticalCalcUserAbility.add(:STAMPEDE,
-  proc { |ability,user,target,c|
-    next c+user.stages[:SPEED]
-  }
-)
-
-#===============================================================================
 # EOREffectAbility handlers
 #===============================================================================
 BattleHandlers::EOREffectAbility.add(:ASTRALBODY,
@@ -224,18 +215,6 @@ BattleHandlers::StatLossImmunityAbility.add(:IMPERVIOUS,
       battle.pbHideAbilitySplash(battler)
     end
     next true
-  }
-)
-
-BattleHandlers::CriticalCalcUserAbility.add(:HARSH,
-  proc { |ability,user,target,c|
-    next 99 if target.burned?
-  }
-)
-
-BattleHandlers::CriticalCalcUserAbility.add(:BITTER,
-  proc { |ability,user,target,c|
-    next 99 if target.frostbitten?
   }
 )
 
