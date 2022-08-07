@@ -138,7 +138,7 @@
 136,MULTISCALE,Multiscale,"Reduces damage when HP is full."
 137,TOXICBOOST,Toxic Boost,"Powers up physical attacks when poisoned."
 138,FLAREBOOST,Flare Boost,"Powers up special attacks when burned."
-139,HARVEST,Harvest,"Has a 50% chance to create another Berry after one is used. Always activates in sunshine."
+139,HARVEST,Harvest,"At end of turn, 50% chance to regenerate used berry. 100% in sunshine."
 140,TELEPATHY,Telepathy,"Anticipates an ally's attack and dodges it."
 141,MOODY,Moody,"Raises one attacking or defending stat and lowers another at the end of each turn."
 142,OVERCOAT,Overcoat,"Protects the Pokémon from damage from weather."
