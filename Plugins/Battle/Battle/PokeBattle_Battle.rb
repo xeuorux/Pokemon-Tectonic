@@ -15,6 +15,11 @@ class PokeBattle_Battle
   def bossBattle?
 	  return bossBattle
   end
+  
+  def roomActive?
+    return @field.effects[PBEffects::PuzzleRoom] || @field.effects[PBEffects::WonderRoom] ||
+        @field.effects[PBEffects::MagicRoom] || @field.effects[PBEffects::TrickRoom]
+  end
 	
   #=============================================================================
   # Creating the battle class
