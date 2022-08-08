@@ -1491,3 +1491,49 @@ class PokeBattle_Move_0F5 < PokeBattle_Move
     @battle.pbDisplay(_INTL("{1}'s {2} was incinerated!",target.pbThis,itemName))
   end
 end
+
+#===============================================================================
+# For 4 rounds, disables the target's non-damaging moves. (Taunt)
+#===============================================================================
+class PokeBattle_Move_0BA < PokeBattle_Move
+  def ignoresSubstitute?(user); return statusMove?; end
+
+  def pbFailsAgainstTarget?(user,target)
+    return false if damagingMove?
+    if target.effects[PBEffects::Taunt]>0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return true if pbMoveFailedAromaVeil?(user,target)
+    if Settings::MECHANICS_GENERATION >= 6 && target.hasActiveAbility?(:OBLIVIOUS) &&
+       !@battle.moldBreaker
+      @battle.pbShowAbilitySplash(target)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        @battle.pbDisplay(_INTL("But it failed!"))
+      else
+        @battle.pbDisplay(_INTL("But it failed because of {1}'s {2}!",
+           target.pbThis(true),target.abilityName))
+      end
+      @battle.pbHideAbilitySplash(target)
+      return true
+    end
+    return false
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    return if damagingMove?
+    target.effects[PBEffects::Taunt] = 4
+    @battle.pbDisplay(_INTL("{1} fell for the taunt!",target.pbThis))
+    target.pbItemStatusCureCheck
+  end
+
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    return if target.effects[PBEffects::Taunt] > 0
+    return true if pbMoveFailedAromaVeil?(user,target)
+    return if Settings::MECHANICS_GENERATION >= 6 && target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
+    target.effects[PBEffects::Taunt] = 4
+    @battle.pbDisplay(_INTL("{1} fell for the taunt!",target.pbThis))
+    target.pbItemStatusCureCheck
+  end
+end
