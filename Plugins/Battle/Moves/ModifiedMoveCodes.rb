@@ -1448,24 +1448,6 @@ class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# Confuses the target. Accuracy perfect in rain, 50% in sunshine. Hits some
-# semi-invulnerable targets. (Hurricane)
-#===============================================================================
-class PokeBattle_Move_015 < PokeBattle_FlusterMove
-  def hitsFlyingTargets?; return true; end
-
-  def pbBaseAccuracy(user,target)
-    case @battle.pbWeather
-    when :Sun, :HarshSun
-      return 50
-    when :Rain, :HeavyRain
-      return 0
-    end
-    return super
-  end
-end
-
-#===============================================================================
 # Burns, frostbites, or numbs the target. (Tri Attack)
 #===============================================================================
 class PokeBattle_Move_017 < PokeBattle_Move

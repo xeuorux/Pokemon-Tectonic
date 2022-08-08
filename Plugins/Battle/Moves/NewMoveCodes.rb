@@ -2442,3 +2442,21 @@ class PokeBattle_Move_56F < PokeBattle_Move
 	  return getWantsToBeSlowerScore(score,user,target,skill,2)
 	end
 end
+
+#===============================================================================
+# Flusters the target. Accuracy perfect in rain, 50% in sunshine. Hits some
+# semi-invulnerable targets. (Hurricane)
+#===============================================================================
+class PokeBattle_Move_570 < PokeBattle_FlusterMove
+	def hitsFlyingTargets?; return true; end
+  
+	def pbBaseAccuracy(user,target)
+	  case @battle.pbWeather
+	  when :Sun, :HarshSun
+		return 50
+	  when :Rain, :HeavyRain
+		return 0
+	  end
+	  return super
+	end
+end
