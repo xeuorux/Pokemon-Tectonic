@@ -250,7 +250,7 @@
 237,ZEPHYRWING,Zephyr Wing,536,130,FLYING,Physical,100,5,30,Other,0,bef,"The user flies up to sharply raise its Sp. Def in the first turn, then rams the foe on the second.",
 238,BRAVEBIRD,Brave Bird,0FB,120,FLYING,Physical,100,15,0,Other,0,abef,"The user tucks in its wings and charges from a low altitude. The user also takes 33% recoil.",
 239,DRAGONASCENT,Dragon Ascent,03C,120,FLYING,Physical,100,5,0,NearOther,0,abef,"The user soars upward and drops at high speeds. This lowers the user's Defenses.",
-240,HURRICANE,Hurricane,015,110,FLYING,Special,70,10,30,Other,0,bef,"The user wraps its foe in a fierce wind that flies up into the sky. It has a 30% chance to confuse.",
+240,HURRICANE,Hurricane,570,110,FLYING,Special,70,10,30,Other,0,bef,"Can't miss in rain, less accuracy in sun. It has a 30% chance to fluster.",
 241,AEROBLAST,Aeroblast,000,95,FLYING,Special,100,5,0,Other,0,befh,"A vortex of air is shot at the target to inflict damage. Critical hits land more easily.",
 242,BEAKBLAST,Beak Blast,172,100,FLYING,Physical,100,15,0,NearOther,0,bfn,"The user heats up its beak before attacking. Physically attacking in this time results in a burn.",
 243,FLY,Fly,0C9,90,FLYING,Physical,100,15,0,Other,0,abef,"The user soars, then strikes on the second turn.",
