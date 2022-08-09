@@ -549,7 +549,7 @@ Special,20
 [211] # Split Peaks
 Land,20
     25,ABSOL,37,39
-    25,KOMALA,34,36
+    25,KOMALA,37,36
     25,PINSIR,37,39
     25,SPINDA,37,39
 LandSparse,20
@@ -798,3 +798,16 @@ Special,1
 [305] # Mainland Dock Warehouse
 Special,1
     1,GPONYTA,15
+#-------------------------------
+[316] # Ocean Route
+ActiveWater,20
+    20,MANTYKE,37,39
+    20,CARVANHA,37,39
+    20,WAILMER,37,39
+	20,TENTACOOL,37,39
+	20,CHINCHOU,37,39
+LandSparse,20
+	25,SEEL,37,39
+	25,CRAWBRAWLER,37,39
+    25,PINCURCHIN,36,38
+	25,LAPRAS,37,39
