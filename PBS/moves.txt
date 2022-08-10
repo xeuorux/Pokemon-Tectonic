@@ -1138,3 +1138,4 @@
 3043,PRIMEVALSLASH,Primeval Slash,643,100,NORMAL,Physical,100,20,0,NearOther,0,abefp,"The target is attacked with a slash of claws or blades, always critting.",SLASH
 3044,PRIMEVALBRICKBREAK,Primeval Brick Break,644,100,FIGHTING,Physical,100,15,100,NearOther,0,abef,"The user attacks with a swift chop, destroying barriers, and drastically reducing the target's defense.",BRICKBREAK
 3045,PRIMEVALCROSSPOISON,Primeval Cross Poison,645,70,POISON,Physical,100,10,10,AllNearFoes,0,abefp,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",
+3046,PHOTONEDGE,Photon Edge,007,75,ELECTRIC,Physical,100,20,40,NearOther,0,abeh,"The user moves at light-speed to cut the enemy instantaneously. Has a 40% chance of paralysing the opponent."
