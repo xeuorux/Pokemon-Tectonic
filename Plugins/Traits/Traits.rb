@@ -516,7 +516,7 @@ class Pokemon
 					"Mirrors",
 					"Cemeteries",
 					"Embarrassment",
-					"Masks",
+					"Airplanes",
 					"Gaining Weight",
 					"Medicine",
 					"Being Watched",
