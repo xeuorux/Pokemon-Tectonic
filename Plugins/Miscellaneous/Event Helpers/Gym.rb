@@ -8,7 +8,6 @@ BADGE_NAMES = [
 		"Generosity",
 		"Mercy"
 	]
-LEVEL_CAPS = [15,20,25,30,40,45,55,65,70]
 TOTAL_BADGES = 8
 BADGE_COUNT_VARIABLE = 27
 SURFBOARD_PHONECALL_GLOBAL = 61
@@ -37,7 +36,6 @@ def earnBadge(badgeNum)
 	$game_switches[3+badgeNum]=true # "Defeated Gym X" switch
 	pbWait(120)
 	
-	# Increase the level cap
 	totalBadges = 0
 	badgesEarnedArray = []
 	$Trainer.badges.each_with_index do |hasBadge,index|
@@ -46,15 +44,19 @@ def earnBadge(badgeNum)
 		badgesEarnedArray.push(hasBadge)
 	end
 	
-	newLevelCap = LEVEL_CAPS[totalBadges]
-	pbSetLevelCap(newLevelCap)
-
 	Events.onBadgeEarned.trigger(self,badgeNum-1,totalBadges,badgesEarnedArray,newLevelCap)
 	
 	# Update the total badge count
 	$game_variables[BADGE_COUNT_VARIABLE] = totalBadges
+
+	giveBattleReport()
 	
 	refreshMapEvents()
+end
+
+def giveBattleReport()
+	pbMessage(_INTL("The Performance Analyzer whirs, then begins printing.",name))
+	pbReceiveItem(:BATTLEREPORT)
 end
 
 def showGymChoices(notSureLabel="NotSure",basicTeamLabel="BasicTeam",fullTeamLabel="FullTeam",amuletMatters = true)

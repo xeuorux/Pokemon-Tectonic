@@ -238,33 +238,6 @@ class PokeBattle_Battle
   end
 end
 
-LEVEL_CAP_VAR = 26
-
-def pbIncreaseLevelCap(increase)
-	return if !LEVEL_CAPS_USED
-	pbSetLevelCap($game_variables[LEVEL_CAP_VAR] + increase)
-end
-
-def pbSetLevelCap(newCap)
-	return if !LEVEL_CAPS_USED
-	$game_variables[LEVEL_CAP_VAR] = newCap
-	pbMessage(_INTL("\\wmLevel cap raised to {1}!\\me[Bug catching 3rd]\\wtnp[80]\1",newCap))
-end
-
-ItemHandlers::UseOnPokemon.add(:RARECANDY,proc { |item,pkmn,scene|
-  if pkmn.level>=GameData::GrowthRate.max_level || pkmn.shadowPokemon?
-    scene.pbDisplay(_INTL("It won't have any effect."))
-    next false
-  elsif LEVEL_CAPS_USED && (pkmn.level + 1) > $game_variables[26]
-      scene.pbDisplay(_INTL("It won't have any effect due to the level cap at #{$game_variables[26]}."))
-      next false
-  end
-  pbChangeLevel(pkmn,pkmn.level+1,scene)
-  scene.pbHardRefresh
-  next true
-})
-
-
 # @return [Integer] the maximum HP of this Pokémon
 def calcHPGlobal(base, level, sv)
 	return 1 if base == 1   # For Shedinja

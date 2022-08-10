@@ -16,7 +16,8 @@ class Window_PokemonBag < Window_DrawableCommand
           textpos.push(
              [@adapter.getDisplayName(item),rect.x,rect.y-2,false,baseColor,shadowColor]
           )
-          if GameData::Item.get(item).is_important? && item != :DYNAMITESTICK
+          itemData = GameData::Item.get(item)
+          if itemData.is_important? && !itemData.is_consumable_key_item?
             if @bag.pbIsRegistered?(item)
               pbDrawImagePositions(self.contents,[
                  ["Graphics/Pictures/Bag/icon_register",rect.x+rect.width-72,rect.y+8,0,0,-1,24]

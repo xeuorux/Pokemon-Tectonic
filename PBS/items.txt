@@ -819,7 +819,7 @@
 790,TM198,TM198,TM198s,4,6000,"The user slams into the target using a full-force blast of water. This may also lower the target's Defense stat.",3,0,0,LIQUIDATION
 791,TM199,TM199,TM199s,4,6000,"Damage increases with the user's Defense stat.",3,0,0,BODYPRESS
 #-------------------------------
-792,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,0,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,6
+792,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,0,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,13
 793,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,"A peculiar stone that makes certain species of Pokémon evolve.",1,0,7
 794,ALOLANWREATH,Alolan Wreath,Alolan Wreathes,1,1500,"A beautiful floral wreath from Alola that makes certain species of Pokémon evolve.",1,0,7
 #-------------------------------
@@ -888,7 +888,9 @@
 862,PERFORMANCEANALYZER,Performance Analyzer,Performance Analyzers,8,0,"A hi-tech recording device which increases your Pokemon's experience gained from Trainer battles by 20%.",0,0,6
 863,PERFORMANCEANALYZER2,Performance Analyzer 2,Performance Analyzers 2,8,0,"An upgraded, hi-tech recording device which increases the experience gained from Trainer battles by 25%.",0,0,6
 #-------------------------------
-864,FROSTORB,Frost Orb,Frost Orbs,5,4000,"A bizarre orb that inflicts frostbite on the holder in battle, or when used on a Pokémon.",5,0,0
+864,BATTLEREPORT,Battle Report,Battle Reports,1,0,"A detailed report on how to improve as a trainer. Read it to raise your level cap by 5.",2,0,13
+#-------------------------------
+865,FROSTORB,Frost Orb,Frost Orbs,5,4000,"A bizarre orb that inflicts frostbite on the holder in battle, or when used on a Pokémon.",5,0,0
 #-------------------------------
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
