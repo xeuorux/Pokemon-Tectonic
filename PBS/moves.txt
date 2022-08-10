@@ -1065,7 +1065,7 @@
 1001,ASTRALDREAM,Astral Dream,56C,0,PSYCHIC,Status,0,10,0,User,0,d,"This move raises all the user's stats. Can only be used while asleep.",COSMICPOWER
 1002,VINEMAZE,Vine Maze,56F,70,GRASS,Physical,100,10,100,AllNearFoes,0,abef,"The user spurs hundreds of vines to ensnare all enemies, lowering the speed of any that moved first.",FRENZYPLANT
 1003,JOKEJOLT,Joke Jolt,0BA,30,ELECTRIC,Special,100,10,100,NearOther,0,bef,"The target is pranked by a jolt of electricity. They are taunted and unable to use status moves for 3 turns.",
-1004,PHOTONEDGE,Photon Edge,007,70,ELECTRIC,Physical,100,20,40,NearOther,0,abeh,"The user slices with claws of light that has a 40% chance to numb. Critical hits land more easily."
+1004,PHOTONEDGE,Photon Edge,007,70,ELECTRIC,Physical,100,20,40,NearOther,0,abeh,"The user slices with claws of light that have a 40% chance to numb. Critical hits land more easily."
 1500,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered.",
 1501,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch.",
 1502,CONFUSION,Confusion,401,50,PSYCHIC,Special,100,25,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It may also leave the target flustered.",
