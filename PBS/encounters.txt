@@ -799,15 +799,15 @@ Special,1
 Special,1
     1,GPONYTA,15
 #-------------------------------
-[316] # Ocean Route
+[316] # Sandstone Estuary
 ActiveWater,20
-    20,MANTYKE,37,39
     20,CARVANHA,37,39
+    20,CHINCHOU,37,39
+    20,MANTYKE,37,39
+    20,TENTACOOL,37,39
     20,WAILMER,37,39
-	20,TENTACOOL,37,39
-	20,CHINCHOU,37,39
 LandSparse,20
-	25,SEEL,37,39
-	25,CRABRAWLER,37,39
+    25,CRABRAWLER,37,39
+    25,LAPRAS,37,39
     25,PINCURCHIN,37,39
-	25,LAPRAS,37,39
+    25,SEEL,37,39
