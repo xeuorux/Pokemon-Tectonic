@@ -1252,7 +1252,7 @@ class PokeBattle_Move_534 < PokeBattle_SleepMove
 			@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is neither flustered nor mystified!"))
 			return true
 		end
-		return !target.pbCanSleep?(user,true,self)
+		return !target.pbCanSleep?(user,true,self,true)
 	end
 	
 	def pbEffectAgainstTarget(user,target)
