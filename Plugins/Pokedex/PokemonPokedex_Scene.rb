@@ -3,6 +3,7 @@ SEARCHES_STACK = true
 class PokemonPokedex_Scene
   def pbStartScene
 	generateSpeciesUseData() if $DEBUG
+	generateSignaturesData() if $DEBUG
 
     @sliderbitmap       	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_slider")
     @typebitmap         	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
@@ -80,6 +81,11 @@ class PokemonPokedex_Scene
 			arrayOfTrainerData.compact!
 			@speciesUseData[species] = arrayOfTrainerData.length
 		end
+  end
+
+  def generateSignaturesData
+		@signatureAbilities = getSignatureAbilities()
+		@signatureMoves 	= getSignatureMoves()
   end
   
   def pbEndScene
@@ -1291,6 +1297,10 @@ class PokemonPokedex_Scene
 		cmdIsLegendary 			= -1
 		cmdMovesetConformance 	= -1
 		cmdOneAbility 			= -1
+		cmdHasSignatureMove 	= -1
+		cmdHasSignatureAbility 	= -1
+		cmdHasSignature 		= -1
+		cmdOneAbility 			= -1
 		cmdInvertList			= -1
 		miscSearches[cmdMapFound = miscSearches.length] = _INTL("Map Found")
 		miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
@@ -1298,6 +1308,9 @@ class PokemonPokedex_Scene
 		miscSearches[cmdIsLegendary = miscSearches.length] = _INTL("Legendary")
 		miscSearches[cmdMovesetConformance = miscSearches.length] = _INTL("Moveset Noncomfority") if $DEBUG
 		miscSearches[cmdOneAbility = miscSearches.length] = _INTL("One Ability") if $DEBUG
+		miscSearches[cmdHasSignatureMove = miscSearches.length] = _INTL("Signature Move") if $DEBUG
+		miscSearches[cmdHasSignatureAbility = miscSearches.length] = _INTL("Signature Ability") if $DEBUG
+		miscSearches[cmdHasSignature = miscSearches.length] = _INTL("Signature") if $DEBUG
 		miscSearches[cmdGeneration = miscSearches.length] = _INTL("Generation")
 		miscSearches[cmdInvertList = miscSearches.length] = _INTL("Invert Current")
 		miscSearches.push(_INTL("Cancel"))
@@ -1318,6 +1331,12 @@ class PokemonPokedex_Scene
 			return searchByMovesetConformance()
 		elsif cmdOneAbility > -1 && searchSelection == cmdOneAbility
 			return searchByOneAbility()
+		elsif cmdHasSignatureMove > -1 && searchSelection == cmdHasSignatureMove
+			return searchBySignatureMove()
+		elsif cmdHasSignatureAbility > -1 && searchSelection == cmdHasSignatureAbility
+			return searchBySignatureAbility()
+		elsif cmdHasSignature > -1 && searchSelection == cmdHasSignature
+			return searchBySignature()
 		elsif cmdInvertList > -1 && searchSelection == cmdInvertList
 			return invertSearchList()
 		end
@@ -1332,6 +1351,45 @@ class PokemonPokedex_Scene
 				fSpecies = GameData::Species.get(dex_item[0])
 				
 				next fSpecies.abilities.length == 1
+		}
+		return dexlist
+	end
+
+	def searchBySignatureMove()
+		dexlist = searchStartingList()
+		
+		dexlist = dexlist.find_all { |dex_item|
+				next false if autoDisqualifyFromSearch(dex_item[0])
+				
+				fSpecies = GameData::Species.get(dex_item[0])
+				
+				next @signatureMoves.has_value?(fSpecies.id)
+		}
+		return dexlist
+	end
+
+	def searchBySignatureAbility()
+		dexlist = searchStartingList()
+		
+		dexlist = dexlist.find_all { |dex_item|
+				next false if autoDisqualifyFromSearch(dex_item[0])
+				
+				fSpecies = GameData::Species.get(dex_item[0])
+				
+				next @signatureAbilities.has_value?(fSpecies.id)
+		}
+		return dexlist
+	end
+
+	def searchBySignature()
+		dexlist = searchStartingList()
+		
+		dexlist = dexlist.find_all { |dex_item|
+				next false if autoDisqualifyFromSearch(dex_item[0])
+				
+				fSpecies = GameData::Species.get(dex_item[0])
+				
+				next @signatureMoves.has_value?(fSpecies.id) || @signatureAbilities.has_value?(fSpecies.id)
 		}
 		return dexlist
 	end
