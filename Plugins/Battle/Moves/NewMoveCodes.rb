@@ -2473,3 +2473,26 @@ class PokeBattle_Move_571 < PokeBattle_Move
 	  return ret
 	end
 end
+
+#===============================================================================
+# Puts the target to sleep if they are statused. 
+#===============================================================================
+class PokeBattle_Move_572 < PokeBattle_SleepMove
+	def pbFailsAgainstTarget?(user,target)
+		return false if damagingMove?
+		return !target.pbCanSleep?(user,true,self,true)
+	end
+	
+	def pbEffectAgainstTarget(user,target)
+		if target.flustered? || target.mystified? || target.burned? || target.frostbitten? || target.paralyzed? || target.poisoned?
+			target.pbCureStatus(false)
+			target.pbSleep
+			target.pbLowerStatStage(:DEFENSE,1,user)
+		end
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score = sleepMoveAI(score,user,target,skill=100)
+		return score
+	end
+end
