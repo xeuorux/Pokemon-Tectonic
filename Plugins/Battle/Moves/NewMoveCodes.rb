@@ -2460,3 +2460,16 @@ class PokeBattle_Move_570 < PokeBattle_FlusterMove
 	  return super
 	end
 end
+
+#===============================================================================
+# Power increases if the user is below half health. (Frantic Fang)
+#===============================================================================
+class PokeBattle_Move_571 < PokeBattle_Move
+	def pbBaseDamage(baseDmg,user,target)
+	  ret = baseDmg
+	  if user.hp <= user.totalhp / 2
+		ret *= 2
+	  end
+	  return ret
+	end
+end
