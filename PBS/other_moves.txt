@@ -1,4 +1,5 @@
-﻿2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered.",
+﻿# See the documentation on the wiki to learn how to edit this file.
+2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered.",
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch.",
 2002,CONFUSION,Confusion,401,50,PSYCHIC,Special,100,25,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It may also leave the target flustered.",
 2003,ROCKSMASH,Rock Smash,043,40,FIGHTING,Physical,100,15,50,NearOther,0,abef,"The user attacks with a punch that can shatter a rock. It may also lower the foe's Defense stat.",
