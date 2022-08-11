@@ -147,7 +147,6 @@ module Compiler
       compile_abilities              # No dependencies
       yield(_INTL("Compiling move data"))
       compile_moves                  # Depends on Type
-      compile_moves("PBS/other_moves.txt")
       yield(_INTL("Compiling item data"))
       compile_items                  # Depends on Move
       yield(_INTL("Compiling berry plant data"))
@@ -2222,54 +2221,56 @@ module Compiler
   #=============================================================================
   # Compile move data
   #=============================================================================
-  def compile_moves(path = "PBS/moves.txt")
+  def compile_moves()
     GameData::Move::DATA.clear
     move_names        = []
     move_descriptions = []
-    # Read each line of moves.txt at a time and compile it into an move
-    pbCompilerEachPreppedLine(path) { |line, line_no|
-      line = pbGetCsvRecord(line, line_no, [0, "vnssueeuuueissN",
-         nil, nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
-         nil, nil, nil, :Target, nil, nil, nil, nil
-      ])
-      move_number = line[0]
-      move_symbol = line[1].to_sym
-      if GameData::Move::DATA[move_number]
-        raise _INTL("Move ID number '{1}' is used twice.\r\n{2}", move_number, FileLineData.linereport)
-      elsif GameData::Move::DATA[move_symbol]
-        raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_symbol, FileLineData.linereport)
-      end
-      # Sanitise data
-      if line[6] == 2 && line[4] != 0
-        raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
-      elsif line[6] != 2 && line[4] == 0
-        print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
-        line[6] = 2
-      end
-      animation_move = line[14].nil? ? nil : line[14].to_sym
-      # Construct move hash
-      move_hash = {
-        :id_number        => move_number,
-        :id               => move_symbol,
-        :name             => line[2],
-        :function_code    => line[3],
-        :base_damage      => line[4],
-        :type             => line[5],
-        :category         => line[6],
-        :accuracy         => line[7],
-        :total_pp         => line[8],
-        :effect_chance    => line[9],
-        :target           => GameData::Target.get(line[10]).id,
-        :priority         => line[11],
-        :flags            => line[12],
-        :description      => line[13],
-        :animation_move   => animation_move
+    ["PBS/moves.txt","PBS/other_moves.txt"].each do |path|
+      # Read each line of moves.txt at a time and compile it into an move
+      pbCompilerEachPreppedLine(path) { |line, line_no|
+        line = pbGetCsvRecord(line, line_no, [0, "vnssueeuuueissN",
+          nil, nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
+          nil, nil, nil, :Target, nil, nil, nil, nil
+        ])
+        move_number = line[0]
+        move_symbol = line[1].to_sym
+        if GameData::Move::DATA[move_number]
+          raise _INTL("Move ID number '{1}' is used twice.\r\n{2}", move_number, FileLineData.linereport)
+        elsif GameData::Move::DATA[move_symbol]
+          raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_symbol, FileLineData.linereport)
+        end
+        # Sanitise data
+        if line[6] == 2 && line[4] != 0
+          raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
+        elsif line[6] != 2 && line[4] == 0
+          print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
+          line[6] = 2
+        end
+        animation_move = line[14].nil? ? nil : line[14].to_sym
+        # Construct move hash
+        move_hash = {
+          :id_number        => move_number,
+          :id               => move_symbol,
+          :name             => line[2],
+          :function_code    => line[3],
+          :base_damage      => line[4],
+          :type             => line[5],
+          :category         => line[6],
+          :accuracy         => line[7],
+          :total_pp         => line[8],
+          :effect_chance    => line[9],
+          :target           => GameData::Target.get(line[10]).id,
+          :priority         => line[11],
+          :flags            => line[12],
+          :description      => line[13],
+          :animation_move   => animation_move
+        }
+        # Add move's data to records
+        GameData::Move.register(move_hash)
+        move_names[move_number]        = move_hash[:name]
+        move_descriptions[move_number] = move_hash[:description]
       }
-      # Add move's data to records
-      GameData::Move.register(move_hash)
-      move_names[move_number]        = move_hash[:name]
-      move_descriptions[move_number] = move_hash[:description]
-    }
+    end
     # Save all data
     GameData::Move.save
     MessageTypes.setMessages(MessageTypes::Moves, move_names)
