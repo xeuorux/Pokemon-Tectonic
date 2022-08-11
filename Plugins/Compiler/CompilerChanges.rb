@@ -147,6 +147,7 @@ module Compiler
       compile_abilities              # No dependencies
       yield(_INTL("Compiling move data"))
       compile_moves                  # Depends on Type
+      compile_moves("PBS/other_moves.txt")
       yield(_INTL("Compiling item data"))
       compile_items                  # Depends on Move
       yield(_INTL("Compiling berry plant data"))
@@ -2045,6 +2046,35 @@ module Compiler
       add_PBS_header_to_file(f)
       current_type = -1
       GameData::Move.each do |m|
+        break if m.id_number >= 2000
+        if current_type != m.type && m.id_number < 742
+          current_type = m.type
+          f.write("\#-------------------------------\r\n")
+        end
+        f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s,%s\r\n",
+          m.id_number,
+          csvQuote(m.id.to_s),
+          csvQuote(m.real_name),
+          csvQuote(m.function_code),
+          m.base_damage,
+          m.type.to_s,
+          ["Physical", "Special", "Status"][m.category],
+          m.accuracy,
+          m.total_pp,
+          m.effect_chance,
+          m.target,
+          m.priority,
+          csvQuote(m.flags),
+          csvQuoteAlways(m.real_description),
+          m.animation_move.nil? ? "" : m.animation_move.to_s
+        ))
+      end
+    }
+    File.open("PBS/other_moves.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      current_type = -1
+      GameData::Move.each do |m|
+        next if m.id_number < 2000
         if current_type != m.type && m.id_number < 742
           current_type = m.type
           f.write("\#-------------------------------\r\n")
