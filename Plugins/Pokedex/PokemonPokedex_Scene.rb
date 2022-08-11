@@ -1382,16 +1382,24 @@ class PokemonPokedex_Scene
 	end
 
 	def searchBySignature()
-		dexlist = searchStartingList()
-		
-		dexlist = dexlist.find_all { |dex_item|
-				next false if autoDisqualifyFromSearch(dex_item[0])
-				
-				fSpecies = GameData::Species.get(dex_item[0])
-				
-				next @signatureMoves.has_value?(fSpecies.id) || @signatureAbilities.has_value?(fSpecies.id)
-		}
-		return dexlist
+		selection = pbMessage("Which search?",[_INTL("Has Signature"),_INTL("Doesn't"),_INTL("Cancel")],3)
+	    if selection != 2 
+			dexlist = searchStartingList()
+			
+			dexlist = dexlist.find_all { |dex_item|
+					next false if autoDisqualifyFromSearch(dex_item[0])
+					
+					fSpecies = GameData::Species.get(dex_item[0])
+					
+					if selection == 0
+						next @signatureMoves.has_value?(fSpecies.id) || @signatureAbilities.has_value?(fSpecies.id)
+					else
+						next !@signatureMoves.has_value?(fSpecies.id) && !@signatureAbilities.has_value?(fSpecies.id)
+					end
+			}
+			return dexlist
+		end
+		return nil
 	end
 	
 	def searchByWildItem
