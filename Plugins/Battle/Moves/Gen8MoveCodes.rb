@@ -603,8 +603,8 @@ class PokeBattle_Move_187 < PokeBattle_Move_005
   end
   
   def getScore(score,user,target,skill=100)
-	score = getPoisonMoveScore(score,user,target,skill,statusMove?)
-	return score
+	  score = getPoisonMoveScore(score,user,target,skill,[],statusMove?)
+	  return score
   end
 end
 

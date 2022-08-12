@@ -2020,7 +2020,7 @@ class PokeBattle_Move_55B < PokeBattle_HealingMove
 	end
   
 	def pbMoveFailed?(user,targets)
-		if user.turncount > 1
+		if user.turnCount > 1
 			@battle.pbDisplay(_INTL("But it failed, since it's not #{user.pbThis(true)}'s first turn out!"))
 			return true
 		end

@@ -13,44 +13,41 @@ class PokeBattle_AI
 		statuses = [proc {|b| b.pbCureStatus(false)},proc {|b| b.pbSleep("false")},proc {|b| b.pbPoison(nil,"false")},
 			proc {|b| b.pbBurn(nil,"false")},proc {|b| b.pbParalyze(nil,"false")},proc {|b| b.pbFreeze("false")},
 			proc {|b| b.pbConfuse("false")},proc {|b| b.pbCharm("false")}]
-		skill = [PBTrainerAI.minimumSkill,PBTrainerAI.mediumSkill,PBTrainerAI.highSkill,PBTrainerAI.bestSkill]
 		
 		opponent = nil
 		user.eachOpposing do |b|
 			opponent = b
 		end
 		
-		statuses.each do |statusUser|
-			statusUser.call(user)
-			statuses.each do |statusOpponent|
-				statusOpponent.call(opponent)
-				hpTotals.each do |hpTotalUser|
-					user.hp = hpTotalUser.call(user)
-					hpTotals.each do |hpTotalOpponent|
-						opponent.hp = hpTotalOpponent.call(opponent)
-						@battle.scene.pbUpdate
-						skill.each do |skill|
-							testAllMoveScores(user,skill)
-						end
-					end
-				end
-			end
-		end
+		# statuses.each do |statusUser|
+		# 	statusUser.call(user)
+		# 	statuses.each do |statusOpponent|
+		# 		statusOpponent.call(opponent)
+		# 		hpTotals.each do |hpTotalUser|
+		# 			user.hp = hpTotalUser.call(user)
+		# 			hpTotals.each do |hpTotalOpponent|
+		# 				opponent.hp = hpTotalOpponent.call(opponent)
+		# 				@battle.scene.pbUpdate
+		# 				testAllMoveScores(user)
+		# 			end
+		# 		end
+		# 	end
+		# end
 		
+		@battle.scene.pbUpdate
+		testAllMoveScores(user)
 		
 	end
 
-	def testAllMoveScores(user,skill=100,show_analysis=false)
+	def testAllMoveScores(user,show_analysis=false)
 		scores = []
 		target = []
-		skipTheseMoves = [:SHEERCOLD,:GUILLOTINE,:FISSURE,:HORNDRILL]
 		GameData::Move.each { |move|    # Get any one move
 			score = 0
-			next if skipTheseMoves.include?(move.id)
 			begin
 				moveObject = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(move.id))
 				target = user.pbFindTargets([nil,nil,nil,-1],moveObject,user)
-				newChoice = pbEvaluateMoveTrainer(user,moveObject,skill)
+				newChoice = pbEvaluateMoveTrainer(user,moveObject,100)
 				if newChoice
 					score = newChoice[0]
 					target = newChoice[1]
