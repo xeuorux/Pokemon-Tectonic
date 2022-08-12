@@ -135,7 +135,7 @@
 #-------------------------------
 129,THUNDERCAGE,Thunder Cage,0CF,75,ELECTRIC,Special,100,15,0,NearOther,0,bef,"The user traps the target in a cage of sparking electricity for three turns.",
 #-------------------------------
-130,LIGHTOFRUIN,Light of Ruin,0FC,140,FAIRY,Special,100,5,0,NearOther,0,bef,"Fires a powerful beam of light drawn from the Eternal Flower. The user also takes 50% recoil.",
+130,LIGHTOFRUIN,Light of Ruin,0FC,130,FAIRY,Special,100,5,0,NearOther,0,bef,"Fires a powerful beam of light drawn from the Eternal Flower. The user also takes 50% recoil.",
 131,FLEURCANNON,Fleur Cannon,03F,130,FAIRY,Special,100,5,0,NearOther,0,bef,"The user unleashes a strong beam. Harshly lowers the user's Sp. Atk stat.",
 132,MOONBLAST,Moonblast,045,90,FAIRY,Special,100,15,10,NearOther,0,bef,"The user attacks by borrowing the power of the moon. It has a 10% chance to lower Sp. Atk.",
 133,PLAYROUGH,Play Rough,042,90,FAIRY,Physical,100,10,10,NearOther,0,abef,"The user plays rough with the target and attacks it. It has a 10% chance to lower Atk.",
