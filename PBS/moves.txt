@@ -1070,3 +1070,7 @@
 1006,TRANQUILTUNE,Tranquil Tune,572,65,FAIRY,Special,100,10,0,NearOther,0,befk,"The user sings an odd melody. If the target is statused, puts it to sleep and lowers its Defense.",SING
 1007,SUGARBALL,Sugar Ball,08D,1,FAIRY,Special,100,5,0,NearOther,0,befn,"The user tackles the target with a sugary spin. The slower the user, the greater the damage.",
 1008,SILTSURGE,Silt Surge,044,70,WATER,Special,100,15,100,AllNearOthers,0,bef,"The user attacks with a wave of murky water, which hits everyone nearby and lowers their Speed.",MUDDYWATER
+1009,PLUNDER,Plunder,109,90,STEEL,Physical,100,20,0,NearOther,0,abef,"The user loots the target for gold. Money is earned after battle.",
+1010,ROYALTRIBUTE,Royal Tribute,109,90,DARK,Special,100,20,0,NearOther,0,bef,"The user demands tribute from their subjects. Money is earned after battle.",
+1011,LONGFORTUNE,Long Fortune,109,90,DRAGON,Physical,100,20,0,NearOther,0,bef,"The target is unfortunate, but others will have good luck. Money is earned after battle.",
+1012,WALLETSNATCH,Wallet Snatch,109,90,NORMAL,Physical,100,20,0,NearOther,0,abef,"The user pushes the target into the enemy Trainer, then pickpockets them. Money is earned after battle.",
