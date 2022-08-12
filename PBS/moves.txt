@@ -1076,3 +1076,4 @@
 1012,CHACHING,Cha-ching,109,90,NORMAL,Physical,100,20,0,NearOther,0,abef,"The user crashes with the full force of The Market. Money is earned after battle.",
 1013,LEYLINEBURST,Leyline Burst,573,110,PSYCHIC,Special,100,10,0,NearOther,0,bef,"Psychic energy is sent though an earthen conduit, erupting under the target. This move is both Psychic and Ground-type.",EARTHPOWER
 1014,HARDPLACE,Hard Place,000,574,ROCK,Physical,0,10,0,NearOther,0,abef,"The user slams the target into a nearby hard object. Increases power the higher the Defense of any ally.",HEADSMASH
+1015,DRAGONRIDE,Dragon Ride,575,0,DRAGON,Status,0,5,0,NearAlly,0,,"The user doubles the ally's Speed and Attack. If the user faints, the rider does too. The user cannot switch out.",

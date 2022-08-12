@@ -353,9 +353,9 @@ class PokeBattle_Battler
 		@effects[PBEffects::BallFetch]           = 0
 		@effects[PBEffects::LashOut]             = false
 		@effects[PBEffects::BurningJealousy]     = false
-		  @effects[PBEffects::Obstruct]            = false
-		  @effects[PBEffects::TarShot]             = false
-		  @effects[PBEffects::BlunderPolicy]       = false
+		@effects[PBEffects::Obstruct]            = false
+		@effects[PBEffects::TarShot]             = false
+		@effects[PBEffects::BlunderPolicy]       = false
 		@effects[PBEffects::SwitchedAlly]        = -1
 		
 		@effects[PBEffects::FlinchedAlready]     = false
@@ -369,11 +369,18 @@ class PokeBattle_Battler
 		@effects[PBEffects::StunningCurl]		 = false
 		@effects[PBEffects::RedHotRetreat]       = false
 		@effects[PBEffects::VolleyStance]        = false
+		@effects[PBEffects::OnDragonRide]    	 = false
+		@effects[PBEffects::GivingDragonRideTo]  = -1
 		
 		@effects[PBEffects::EmpoweredEndure]     = 0
 		@effects[PBEffects::EmpoweredMoonlight]  = false
 		@effects[PBEffects::EmpoweredLaserFocus] = false
 		@effects[PBEffects::EmpoweredDestinyBond] = false
 		@effects[PBEffects::ExtraTurns] = 0
+
+		@battle.eachBattler do |b|   # Other battlers no longer giving a dragon ride to self
+			next if b.effects[PBEffects::GivingDragonRideTo] != @index
+			b.effects[PBEffects::GivingDragonRideTo]     	  = -1
+		end
     end
 end

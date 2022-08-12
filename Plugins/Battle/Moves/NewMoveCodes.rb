@@ -2505,3 +2505,27 @@ class PokeBattle_Move_574 < PokeBattle_Move
 	  	return [(highestDefense/300).round(-1),20].max
 	end
 end
+
+class PokeBattle_Move_575 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+	  if target.effects[PBEffects::OnDragonRide]
+		@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already on a dragon ride!"))
+		return true
+	  end
+	  if user.effects[PBEffects::GivingDragonRideTo] != -1
+		@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis} is already giving a dragon ride!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+	  target.effects[PBEffects::OnDragonRide]     	= true
+	  user.effects[PBEffects::GivingDragonRideTo] 	= target.index
+	  @battle.pbDisplay(_INTL("{1} gives {2} a ride on its back!",user.pbThis,target.pbThis(true)))
+	end
+	
+	def getScore(score,user,target,skill=100)
+	  return 0 if user.hp < user.totalhp / 2
+	end
+end

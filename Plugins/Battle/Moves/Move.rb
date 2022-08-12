@@ -444,13 +444,17 @@ class PokeBattle_Move
 		if type == :FIRE
 		  @battle.eachBattler do |b|
 			next if !b.effects[PBEffects::WaterSport]
-			multipliers[:base_damage_multiplier] /= 3
+			  multipliers[:base_damage_multiplier] /= 3
 			break
 		  end
 		  if @battle.field.effects[PBEffects::WaterSportField]>0
-			multipliers[:base_damage_multiplier] /= 3
+			  multipliers[:base_damage_multiplier] /= 3
 		  end
 		end
+    # Dragon Ride
+    if user.effects[PBEffects::OnDragonRide] && physicalMove?
+      multipliers[:final_damage_multiplier] *= 1.5
+    end
     # Battler properites
     multipliers[:base_damage_multiplier] *= user.dmgMult
     multipliers[:base_damage_multiplier] *= [0,(1.0 - target.dmgResist.to_f)].max

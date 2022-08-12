@@ -42,6 +42,8 @@ module PBEffects
     EmpoweredDestinyBond= 148
 
     VolleyStance        = 149
+    GivingDragonRideTo  = 150
+    OnDragonRide        = 151
 	
 	#===========================================================================
     # These effects apply to a side

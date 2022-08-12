@@ -465,9 +465,13 @@ class BattleInfoDisplay < SpriteWrapper
 		"", # Gargantuan
 		"", # Stunning Curl
 		"", # Red-Hot Retreat
-		"Empowered Moonlight",
-		"Empowered Endure",
-		"Empowered Laser Focus",
+		"Primeval Moonlight",
+		"Primeval Endure",
+		"Primeval Laser Focus",
+		"Primeval Destiny Bond",
+		"Volley Stance",
+		"Giving Dragon Ride",
+		"Riding Dragon",
 	][effectNumber] || ""
   end
   

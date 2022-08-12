@@ -263,6 +263,7 @@ class PokeBattle_Battler
     # Other effects
     speedMult *= 2 if pbOwnSide.effects[PBEffects::Tailwind]>0
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp]>0
+    speedMult *= 2 if @effects[PBEffects::OnDragonRide]
     # Paralysis and Chill
     if !hasActiveAbility?(:QUICKFEET)
       if paralyzed?

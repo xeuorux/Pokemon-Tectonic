@@ -64,6 +64,16 @@ class PokeBattle_Battler
     end
 		
     showFaintDialogue()
+
+    if @effects[PBEffects::GivingDragonRideTo] != -1
+      otherBattler = @battle.battlers[@effects[PBEffects::GivingDragonRideTo]]
+      damageDealt = otherBattler.hp
+      otherBattler.damageState.displayedDamage = damageDealt
+      @battle.scene.pbDamageAnimation(otherBattler)
+      otherBattler.pbReduceHP(damageDealt,false)
+      @battle.pbDisplay(_INTL("{1} fell to the ground!",otherBattler.pbThis))
+      otherBattler.pbFaint
+    end
 		
 		pbInitEffects(false)
 		# Reset status
