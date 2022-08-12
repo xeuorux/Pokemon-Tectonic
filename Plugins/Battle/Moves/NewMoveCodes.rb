@@ -625,26 +625,6 @@ class PokeBattle_Move_519 < PokeBattle_StatDownMove
 end
 
 #===============================================================================
-# For 5 rounds, Pokemon's Attack and Sp. Atk are swapped. (Puzzle Room)
-#===============================================================================
-class PokeBattle_Move_51A < PokeBattle_Move
-	def pbEffectGeneral(user)
-	  if @battle.field.effects[PBEffects::PuzzleRoom]>0
-		@battle.field.effects[PBEffects::PuzzleRoom] = 0
-		@battle.pbDisplay(_INTL("The area returned to normal!"))
-	  else
-		@battle.field.effects[PBEffects::PuzzleRoom] = 5
-		@battle.pbDisplay(_INTL("It created a puzzling area in which Pokémon's Attack and Sp. Atk are swapped!"))
-	  end
-	end
-  
-	def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
-	  return if @battle.field.effects[PBEffects::PuzzleRoom] > 0   # No animation
-	  super
-	end
-end
-
-#===============================================================================
 # User loses their Ice type. Fails if user is not Ice-type. (Cold Conversion)
 #===============================================================================
 class PokeBattle_Move_51B < PokeBattle_Move
