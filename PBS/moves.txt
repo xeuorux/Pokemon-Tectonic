@@ -167,7 +167,7 @@
 158,SUPERPOWER,Superpower,03B,120,FIGHTING,Physical,100,5,0,NearOther,0,abef,"The user attacks the target with great power. However, it also lowers the user's Attack and Defense.",
 159,CROSSCHOP,Cross Chop,000,90,FIGHTING,Physical,100,15,0,NearOther,0,abefh,"The user delivers a double chop with its forearms crossed. Critical hits land more easily.",
 160,DYNAMICPUNCH,Dynamic Punch,401,100,FIGHTING,Physical,50,5,100,NearOther,0,abefj,"The user punches the target with full, concentrated power. It flusters the target if it hits.",
-161,FLYINGPRESS,Flying Press,144,100,FIGHTING,Physical,100,10,0,Other,0,abef,"The user dives down onto the target from the sky. This move is Fighting and Flying type simultaneously.",
+161,FLYINGPRESS,Flying Press,144,100,FIGHTING,Physical,100,10,0,Other,0,abef,"The user dives down onto the target from the sky. This move is both Fighting and Flying-type.",
 162,HAMMERARM,Hammer Arm,03E,100,FIGHTING,Physical,100,10,0,NearOther,0,abefj,"The user swings and hits with its strong and heavy fist. It lowers the user's Speed, however.",
 163,JUMPKICK,Jump Kick,10B,100,FIGHTING,Physical,90,10,0,NearOther,0,abef,"The user jumps up high, then strikes with a kick. If the kick misses, the user hurts itself.",
 164,SACREDSWORD,Sacred Sword,0A9,90,FIGHTING,Physical,100,15,0,NearOther,0,abefp,"The user attacks by slicing with its long horns. The target's stat changes don't affect the damage.",
@@ -1074,3 +1074,4 @@
 1010,ROYALTRIBUTE,Royal Tribute,109,90,DARK,Special,100,20,0,NearOther,0,bef,"The user demands tribute from their subjects. Money is earned after battle.",
 1011,LONGFORTUNE,Long Fortune,109,90,DRAGON,Physical,100,20,0,NearOther,0,bef,"The target is unfortunate, but others will have good luck. Money is earned after battle.",
 1012,WALLETSNATCH,Wallet Snatch,109,90,NORMAL,Physical,100,20,0,NearOther,0,abef,"The user pushes the target into the enemy Trainer, then pickpockets them. Money is earned after battle.",
+1013,LEYLINEBURST,Leyline Burst,573,80,PSYCHIC,Special,100,10,0,NearOther,0,bef,"Psychic energy is sent though an earthen conduit, erupting under the target. This move is both Psychic and Ground-type.",EARTHPOWER
