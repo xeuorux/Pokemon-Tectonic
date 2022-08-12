@@ -1069,3 +1069,4 @@
 1005,FRANTICFANG,Frantic Fang,571,60,NORMAL,Physical,100,10,0,NearOther,0,abei,"Channeling fear, the user chomps down on the target. Deals double damage if the user is below half health.",HYPERFANG
 1006,TRANQUILTUNE,Tranquil Tune,572,65,FAIRY,Special,100,10,0,NearOther,0,befk,"The user sings an odd melody. If the target is statused, puts it to sleep and lowers its Defense.",SING
 1007,SUGARBALL,Sugar Ball,08D,1,FAIRY,Special,100,5,0,NearOther,0,befn,"The user tackles the target with a sugary spin. The slower the user, the greater the damage.",
+1008,SILTSURGE,Silt Surge,044,70,WATER,Special,100,15,100,AllNearOthers,0,bef,"The user attacks with a wave of murky water, which hits everyone nearby and lowers their Speed.",MUDDYWATER
