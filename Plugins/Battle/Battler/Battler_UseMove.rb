@@ -487,14 +487,14 @@ class PokeBattle_Battler
       if showAbilitySplash
         @battle.pbShowAbilitySplash(forcedMoveUser,true)
       end
-      @battle.pbDisplay(usageMessage)
+      @battle.pbDisplay(usageMessage) if !usageMessage.nil?
       if showAbilitySplash
         @battle.pbHideAbilitySplash(forcedMoveUser)
       end
       PBDebug.logonerr{
-        forcedMoveUser.effects[moveUsageEffect] = true
-        forcedMoveUser.pbUseMoveSimple(moveID,preTarget,idxMove,specialUsage)
-        forcedMoveUser.effects[moveUsageEffect] = false
+        forcedMoveUser.effects[moveUsageEffect] = true if !moveUsageEffect.nil?
+        forcedMoveUser.pbUseMoveSimple(moveID,target,idxMove,specialUsage)
+        forcedMoveUser.effects[moveUsageEffect] = false if !moveUsageEffect.nil?
       }
       forcedMoveUser.lastRoundMoved = oldLastRoundMoved
       if specialUsage

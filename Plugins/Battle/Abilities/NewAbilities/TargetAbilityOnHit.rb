@@ -150,10 +150,10 @@ BattleHandlers::TargetAbilityOnHit.add(:GRIT,
 BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
   proc { |ability,user,target,move,battle|
     if move.physicalMove?
-		target.pbRaiseStatStageByAbility(:DEFENSE,1,target)
-	else
-		target.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,target)
-	end
+		  target.pbRaiseStatStageByAbility(:DEFENSE,1,target)
+	  else
+		  target.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,target)
+	  end
   }
 )
 
@@ -312,4 +312,12 @@ BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
 	proc { |ability,target,battler,move,battle|
     terrainSetAbility(:Psychic,battler,battle)
 	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:RELUCTANTBLADE,
+  proc { |ability,user,target,move,battle|
+    if move.physicalMove?
+      target.forceUseMove(target,:LEAFAGE,user.index,-1,true,nil,nil,true)
+	  end
+  }
 )
