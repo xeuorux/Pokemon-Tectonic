@@ -437,65 +437,72 @@ class PokeBattle_Battler
     @battle.eachBattler { |b| @battle.successStates[b.index].updateSkill }
     # Shadow Pokémon triggering Hyper Mode
     pbHyperMode if @battle.choices[@index][0]!=:None   # Not if self is replaced
-	# Refresh the scene to account for changes to pokemon status
-	@battle.scene.pbRefresh()
+    # Refresh the scene to account for changes to pokemon status
+    @battle.scene.pbRefresh()
     # End of move usage
     pbEndTurn(choice)
     # Instruct
     @battle.eachBattler do |b|
       next if !b.effects[PBEffects::Instruct] || !b.lastMoveUsed
       b.effects[PBEffects::Instruct] = false
-      idxMove = -1
-      b.eachMoveWithIndex { |m,i| idxMove = i if m.id==b.lastMoveUsed }
-      next if idxMove<0
-      oldLastRoundMoved = b.lastRoundMoved
-      @battle.pbDisplay(_INTL("{1} used the move instructed by {2}!",b.pbThis,user.pbThis(true)))
-      PBDebug.logonerr{
-        b.effects[PBEffects::Instructed] = true
-        b.pbUseMoveSimple(b.lastMoveUsed,b.lastRegularMoveTarget,idxMove,false)
-        b.effects[PBEffects::Instructed] = false
+      # Don't force the move if the pokemon someone no longer has that move
+      moveIndex = -1
+      b.eachMoveWithIndex { |m,i|
+        if m.id==b.lastMoveUsed
+          moveIndex = i
+        end
       }
-      b.lastRoundMoved = oldLastRoundMoved
-      @battle.pbJudge
-      return if @battle.decision>0
+      next if moveIndex<0
+      moveID = b.lastMoveUsed
+      usageMessage = _INTL("{1} used the move instructed by {2}!",b.pbThis,user.pbThis(true))
+      preTarget = b.lastRegularMoveTarget
+      forceUseMove(b,moveID,preTarget,-1,false,usageMessage,PBEffects::Instructed,false)
     end
     # Dancer
     if !@effects[PBEffects::Dancer] && !user.lastMoveFailed && realNumHits>0 &&
-       !move.snatched && magicCoater<0 && @battle.pbCheckGlobalAbility(:DANCER) &&
-       move.danceMove?
+          !move.snatched && magicCoater < 0 && @battle.pbCheckGlobalAbility(:DANCER) && move.danceMove?
       dancers = []
       @battle.pbPriority(true).each do |b|
         dancers.push(b) if b.index!=user.index && b.hasActiveAbility?(:DANCER)
       end
       while dancers.length>0
         nextUser = dancers.pop
-        oldLastRoundMoved = nextUser.lastRoundMoved
-        # NOTE: Petal Dance being used because of Dancer shouldn't lock the
-        #       Dancer into using that move, and shouldn't contribute to its
-        #       turn counter if it's already locked into Petal Dance.
-        oldOutrage = nextUser.effects[PBEffects::Outrage]
-        nextUser.effects[PBEffects::Outrage] += 1 if nextUser.effects[PBEffects::Outrage]>0
-        oldCurrentMove = nextUser.currentMove
         preTarget = choice[3]
-        preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
-        @battle.pbShowAbilitySplash(nextUser,true)
-        @battle.pbHideAbilitySplash(nextUser)
-        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} kept the dance going with {2}!",
-             nextUser.pbThis,nextUser.abilityName))
-        end
-        PBDebug.logonerr{
-          nextUser.effects[PBEffects::Dancer] = true
-          nextUser.pbUseMoveSimple(move.id,preTarget)
-          nextUser.effects[PBEffects::Dancer] = false
-        }
-        nextUser.lastRoundMoved = oldLastRoundMoved
-        nextUser.effects[PBEffects::Outrage] = oldOutrage
-        nextUser.currentMove = oldCurrentMove
-        @battle.pbJudge
-        return if @battle.decision>0
+        preTarget = user.index if forcedMoveUser.opposes?(user) || !forcedMoveUser.opposes?(preTarget)
+        forceUseMove(nextUser,move.id,preTarget,-1,true,nil,PBEffects::Dancer,true)
       end
     end
+  end
+
+  def forceUseMove(forcedMoveUser,moveID,target=-1,idxMove=-1,specialUsage=true,usageMessage=nil,moveUsageEffect=nil,showAbilitySplash=false)
+      oldLastRoundMoved = forcedMoveUser.lastRoundMoved
+      if specialUsage
+        # NOTE: Petal Dance being used shouldn't lock the
+        #       battler into using that move, and shouldn't contribute to its
+        #       turn counter if it's already locked into Petal Dance.
+        oldCurrentMove = forcedMoveUser.currentMove
+        oldOutrage = forcedMoveUser.effects[PBEffects::Outrage]
+        forcedMoveUser.effects[PBEffects::Outrage] += 1 if forcedMoveUser.effects[PBEffects::Outrage]>0
+      end
+      if showAbilitySplash
+        @battle.pbShowAbilitySplash(forcedMoveUser,true)
+      end
+      @battle.pbDisplay(usageMessage)
+      if showAbilitySplash
+        @battle.pbHideAbilitySplash(forcedMoveUser)
+      end
+      PBDebug.logonerr{
+        forcedMoveUser.effects[moveUsageEffect] = true
+        forcedMoveUser.pbUseMoveSimple(moveID,preTarget,idxMove,specialUsage)
+        forcedMoveUser.effects[moveUsageEffect] = false
+      }
+      forcedMoveUser.lastRoundMoved = oldLastRoundMoved
+      if specialUsage
+        forcedMoveUser.effects[PBEffects::Outrage] = oldOutrage
+        forcedMoveUser.currentMove = oldCurrentMove
+      end
+      @battle.pbJudge
+      return if @battle.decision>0
   end
   
   #=============================================================================
