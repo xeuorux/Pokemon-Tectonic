@@ -147,12 +147,14 @@ class PokeBattle_Battle
 			@battlers.each do |b|
 				b.hp = b.totalhp
 				b.pbCureStatus(false)
+				b.pbResetStatStages()
+				b.pbInitPokemon(b.pkmn,b.index)
 			end
 			next
 		  end
 		  
 		  commandsEnd = false   # Whether to cancel choosing all other actions this round
-		  loop do
+		  loop doc
 			cmd = pbCommandMenu(idxBattler,actioned.length==1)
 			# If being Sky Dropped, can't do anything except use a move
 			if cmd>0 && @battlers[idxBattler].effects[PBEffects::SkyDrop]>=0

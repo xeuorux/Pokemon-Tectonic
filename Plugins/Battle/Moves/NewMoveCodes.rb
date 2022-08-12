@@ -1994,7 +1994,7 @@ class PokeBattle_Move_559 < PokeBattle_Move
 	  return false
 	end
   
-	def pbEffectGeneral(user,target)
+	def pbEffectGeneral(user)
 	  user.pbChangeTypes(:GHOST)
 	  typeName = GameData::Type.get(:GHOST).name
 	  @battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))

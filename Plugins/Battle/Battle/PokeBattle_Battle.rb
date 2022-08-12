@@ -97,7 +97,7 @@ class PokeBattle_Battle
     @messagesBlocked   = false
     @bossBattle		   = false
     @autoTesting	   = false
-    @autoTestingIndex  = 1
+    @autoTestingIndex  = 901
     @commandPhasesThisRound = 0
     @honorAura		   = false
     @curses			   = []

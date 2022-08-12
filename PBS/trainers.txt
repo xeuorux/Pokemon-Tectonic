@@ -3,6 +3,7 @@
 [BATTLEGIRL,Tester]
 Pokemon = SLAKING,70
     Moves = TACKLE
+    AbilityIndex = 1
 #-------------------------------
 [YOUNGSTER,Joey]
 Pokemon = MACHOP,10

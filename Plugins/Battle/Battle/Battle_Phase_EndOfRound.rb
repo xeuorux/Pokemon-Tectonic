@@ -564,11 +564,11 @@ class PokeBattle_Battle
         pbDisplay(_INTL("{1} was freed from {2}!",b.pbThis,moveName))
       else
         case b.effects[PBEffects::TrappingMove]
-        when :BIND        then pbCommonAnimation("Bind", b)
-        when :CLAMP       then pbCommonAnimation("Clamp", b)
-        when :FIRESPIN    then pbCommonAnimation("FireSpin", b)
+        when :BIND,:VINEBIND        then pbCommonAnimation("Bind", b)
+        when :CLAMP,:SLAMSHUT       then pbCommonAnimation("Clamp", b)
+        when :FIRESPIN,:CRIMSONSTORM    then pbCommonAnimation("FireSpin", b)
         when :MAGMASTORM  then pbCommonAnimation("MagmaStorm", b)
-        when :SANDTOMB    then pbCommonAnimation("SandTomb", b)
+        when :SANDTOMB,:SANDVORTEX    then pbCommonAnimation("SandTomb", b)
         when :WRAP        then pbCommonAnimation("Wrap", b)
         when :INFESTATION then pbCommonAnimation("Infestation", b)
 	    	when :SNAPTRAP 	  then pbCommonAnimation("SnapTrap",b)
