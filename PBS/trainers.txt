@@ -2092,7 +2092,7 @@ Pokemon = SUDOWOODO,40
     Moves = STRENGTHSAP,TEARFULLOOK,POWERGEM,THRIVINGFORCE
     AbilityIndex = 1
 Pokemon = PTEROFLYTE,40
-    Moves = IRONHEAD,GRANITEHEAD,BRAVEBIRD,CRUNCH
+    Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
     AbilityIndex = 1
     Item = SITRUSBERRY
 #-------------------------------
@@ -2119,7 +2119,7 @@ Pokemon = SUDOWOODO,40
     Moves = STRENGTHSAP,TEARFULLOOK,POWERGEM,THRIVINGFORCE
     AbilityIndex = 1
 Pokemon = PTEROFLYTE,40
-    Moves = IRONHEAD,GRANITEHEAD,BRAVEBIRD,CRUNCH
+    Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
     AbilityIndex = 1
     Item = SITRUSBERRY
 #-------------------------------
@@ -2149,7 +2149,7 @@ Pokemon = MANTINE,40
     AbilityIndex = 1
     Item = LEFTOVERS
 Pokemon = PTEROFLYTE,40
-    Moves = IRONHEAD,GRANITEHEAD,BRAVEBIRD,CRUNCH
+    Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
     AbilityIndex = 1
     Item = SITRUSBERRY
 #-------------------------------
