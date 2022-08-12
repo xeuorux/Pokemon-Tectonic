@@ -317,7 +317,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
 BattleHandlers::TargetAbilityOnHit.add(:RELUCTANTBLADE,
   proc { |ability,user,target,move,battle|
     if move.physicalMove?
-      target.forceUseMove(target,:LEAFAGE,user.index,-1,true,nil,nil,true)
+      battle.forceUseMove(target,:LEAFAGE,user.index,true,nil,nil,true)
 	  end
   }
 )

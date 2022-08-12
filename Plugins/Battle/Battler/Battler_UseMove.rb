@@ -456,7 +456,7 @@ class PokeBattle_Battler
       moveID = b.lastMoveUsed
       usageMessage = _INTL("{1} used the move instructed by {2}!",b.pbThis,user.pbThis(true))
       preTarget = b.lastRegularMoveTarget
-      forceUseMove(b,moveID,preTarget,-1,false,usageMessage,PBEffects::Instructed,false)
+      @battle.forceUseMove(b,moveID,preTarget,false,usageMessage,PBEffects::Instructed,false)
     end
     # Dancer
     if !@effects[PBEffects::Dancer] && !user.lastMoveFailed && realNumHits>0 &&
@@ -469,40 +469,9 @@ class PokeBattle_Battler
         nextUser = dancers.pop
         preTarget = choice[3]
         preTarget = user.index if forcedMoveUser.opposes?(user) || !forcedMoveUser.opposes?(preTarget)
-        forceUseMove(nextUser,move.id,preTarget,-1,true,nil,PBEffects::Dancer,true)
+        @battle.forceUseMove(nextUser,move.id,preTarget,true,nil,PBEffects::Dancer,true)
       end
     end
-  end
-
-  def forceUseMove(forcedMoveUser,moveID,target=-1,idxMove=-1,specialUsage=true,usageMessage=nil,moveUsageEffect=nil,showAbilitySplash=false)
-      oldLastRoundMoved = forcedMoveUser.lastRoundMoved
-      if specialUsage
-        # NOTE: Petal Dance being used shouldn't lock the
-        #       battler into using that move, and shouldn't contribute to its
-        #       turn counter if it's already locked into Petal Dance.
-        oldCurrentMove = forcedMoveUser.currentMove
-        oldOutrage = forcedMoveUser.effects[PBEffects::Outrage]
-        forcedMoveUser.effects[PBEffects::Outrage] += 1 if forcedMoveUser.effects[PBEffects::Outrage]>0
-      end
-      if showAbilitySplash
-        @battle.pbShowAbilitySplash(forcedMoveUser,true)
-      end
-      @battle.pbDisplay(usageMessage) if !usageMessage.nil?
-      if showAbilitySplash
-        @battle.pbHideAbilitySplash(forcedMoveUser)
-      end
-      PBDebug.logonerr{
-        forcedMoveUser.effects[moveUsageEffect] = true if !moveUsageEffect.nil?
-        forcedMoveUser.pbUseMoveSimple(moveID,target,idxMove,specialUsage)
-        forcedMoveUser.effects[moveUsageEffect] = false if !moveUsageEffect.nil?
-      }
-      forcedMoveUser.lastRoundMoved = oldLastRoundMoved
-      if specialUsage
-        forcedMoveUser.effects[PBEffects::Outrage] = oldOutrage
-        forcedMoveUser.currentMove = oldCurrentMove
-      end
-      @battle.pbJudge
-      return if @battle.decision>0
   end
   
   #=============================================================================
