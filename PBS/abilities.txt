@@ -427,3 +427,4 @@
 1005,PUNKROCK,Punk Rock,"Boosts power and resistance of sound moves."
 1006,MISTYSURGE,Misty Surge,"Turns the ground into Fairy Terrain when entering battle."
 1007,SANDSPIT,Sand Spit,"Summons a sandstorm for 5 turns when hit by an attack."
+1008,INDUSTRIALIZE,Industrialize,"Grants immunity to Steel-type moves and raises Speed if hit by one."

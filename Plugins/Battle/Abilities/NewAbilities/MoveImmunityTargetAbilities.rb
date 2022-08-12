@@ -41,3 +41,9 @@ BattleHandlers::MoveImmunityTargetAbility.add(:ARTIFICIALNOCTURNE,
 	end
   }
 )
+
+BattleHandlers::MoveImmunityTargetAbility.add(:INDUSTRIALIZE,
+  proc { |ability,user,target,move,type,battle|
+    next pbBattleMoveImmunityStatAbility(user,target,move,type,:STEEL,:SPEED,1,battle)
+  }
+)
