@@ -124,3 +124,16 @@ BattleHandlers::DamageCalcTargetAbility.add(:COLDPROOF,
     mults[:base_damage_multiplier] /= 2 if type == :ICE
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:WEATHERSENSES,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.field.weather == :None
+      next
+    else
+      weatherDuration = user.battle.field.weatherDuration
+      damageReduction = 0.1 * weatherDuration
+      echoln("Reducing damage taken by #{damageReduction} due to weather sense")
+      mults[:final_damage_multiplier] *= 1.0 - damageReduction
+    end
+  }
+)

@@ -187,3 +187,11 @@ BattleHandlers::AbilityOnSwitchIn.add(:ONTHEWIND,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:AQUASNEAK,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} snuck into the water! It's next attack can't miss or be protected against!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)

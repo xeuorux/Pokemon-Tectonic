@@ -228,3 +228,9 @@ BattleHandlers::DamageCalcUserAbility.add(:ERUDITE,
     mults[:attack_multiplier] *= 1.5 if type == :PSYCHIC
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:DRAGONSLAYER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 2.0 if target.hasType?(:DRAGON)
+  }
+)

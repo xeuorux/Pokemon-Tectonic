@@ -620,6 +620,20 @@ class PokeBattle_Battler
       # Animate battlers fainting (checks all battlers rather than just targets
       # because Flame Burst's splash damage affects non-targets)
       @battle.pbPriority(true).each { |b| b.pbFaint if b && b.fainted? }
+    else
+      if !user.poisoned?
+        # Secretion Secret
+        targets.each do |target|
+          next if target.damageState.unaffected
+          if target.hasActiveAbility?(:SECRETIONSECRET)
+            battle.pbShowAbilitySplash(target)
+            if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+              user.pbPoison(target,nil)
+            end
+            battle.pbHideAbilitySplash(target)
+          end
+        end
+      end
     end
     @battle.pbJudgeCheckpoint(user,move)
     # Main effect (recoil/drain, etc.)
