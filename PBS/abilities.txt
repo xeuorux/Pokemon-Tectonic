@@ -435,4 +435,4 @@
 1013,HEATCYCLE,Heat Cycle,"Each turn, sharply raises Speed and loses HP. If Speed was maxed, instead Speed and HP are reset."
 1014,WEATHERSENSES,Weather Senses,"Takes 10% less move damage for each turn remaining on the current weather."
 1015,SECRETIONSECRET,Secretion Secret,"When an enemy hits this with a status move, they become poisoned."
-1016,DRAGONSLAYER,Dragon Slayer,"Deals double damage to Dragon-types."
+1016,DRAGONSLAYER,Dragon Slayer,"Immune to Dragon-type moves. Deals double damage to Dragon-types."

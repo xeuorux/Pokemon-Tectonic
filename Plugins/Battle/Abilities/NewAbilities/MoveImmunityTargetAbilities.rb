@@ -47,3 +47,14 @@ BattleHandlers::MoveImmunityTargetAbility.add(:INDUSTRIALIZE,
     next pbBattleMoveImmunityStatAbility(user,target,move,type,:STEEL,:SPEED,1,battle)
   }
 )
+
+BattleHandlers::MoveImmunityTargetAbility.add(:DRAGONSLAYER,
+  proc { |ability,user,target,move,type,battle|
+    next false if user.index==target.index
+    next false if type != :DRAGON
+    battle.pbShowAbilitySplash(target)
+    battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+    battle.pbHideAbilitySplash(target)
+    next true
+  }
+)
