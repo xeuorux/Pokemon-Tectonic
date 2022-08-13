@@ -43,6 +43,17 @@ class PokeBattle_Battler
     pbFaint if fainted?
     pbItemHPHealCheck
   end
+
+  # If there's an effect that causes damage before a move is used
+  # This deals with the possible ramifications of that
+  def cleanupPreMoveDamage(user,oldHP)
+    user.pbFaint if user.fainted?
+    @battle.pbGainExp   # In case user is KO'd by this
+    user.pbItemHPHealCheck
+    if user.pbAbilitiesOnDamageTaken(oldHP)
+      user.pbEffectsOnSwitchIn(true)
+    end
+  end
   
   #=============================================================================
   # Master "use move" method
@@ -207,12 +218,7 @@ class PokeBattle_Battler
       if ![:Rain, :HeavyRain].include?(@battle.pbWeather) && user.takesIndirectDamage?
         oldHP = user.hp
         user.pbReduceHP((user.totalhp/4.0).round,false)
-        user.pbFaint if user.fainted?
-        @battle.pbGainExp   # In case user is KO'd by this
-        user.pbItemHPHealCheck
-        if user.pbAbilitiesOnDamageTaken(oldHP)
-          user.pbEffectsOnSwitchIn(true)
-        end
+        cleanupPreMoveDamage(use,oldHP)
       end
       pbCancelMoves
       pbEndTurn(choice)
@@ -298,6 +304,31 @@ class PokeBattle_Battler
           end
         end
       end
+      # Needle Fur
+      if targets.length > 0 && move.damagingMove?
+        targets.each do |b|
+          next if b.damageState.unaffected
+          if b.hasActiveAbility?(:NEEDLEFUR)
+            @battle.pbShowAbilitySplash(b)
+            if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+             @battle.scene.pbDamageAnimation(user)
+             upgradedNeedleFur = b.hp < b.totalhp / 2
+             reduction = user.totalhp/10
+             reduction /= 4 if user.boss?
+             reduction *= 2 if upgradedNeedleFur
+             oldHP = user.hp
+             user.pbReduceHP(reduction,false)
+             if !upgradedNeedleFur
+               @battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
+             else
+              @battle.pbDisplay(_INTL("{1}'s fur is standing sharp! {2} is hurt!",b.pbThis,user.pbThis))
+             end
+             cleanupPreMoveDamage(user,oldHP)
+           end
+            @battle.pbHideAbilitySplash(b)
+          end
+        end
+      end
       # Get the number of hits
       numHits = move.pbNumHits(user,targets)
       numHits *= 2 if user.effects[PBEffects::VolleyStance] && move.specialMove?
@@ -338,7 +369,7 @@ class PokeBattle_Battler
       # Effectiveness message for multi-hit moves
       # NOTE: No move is both multi-hit and multi-target, and the messages below
       #       aren't quite right for such a hypothetical move.
-      if numHits>1
+      if numHits > 1
         if move.damagingMove?
           targets.each do |b|
             next if b.damageState.unaffected || b.damageState.substitute
@@ -396,33 +427,33 @@ class PokeBattle_Battler
         end
       }
 	  
-	  # Curses about move usage
-	  @battle.curses.each do |curse_policy|
-			@battle.triggerMoveUsedCurseEffect(curse_policy,self,choice[3],move)
-	  end
-	  
-	  if !battle.wildBattle?
-		  # Triggers dialogue for each target hit
-		  targets.each do |t|
-			next unless t.damageState.totalHPLost > 0
-			if @battle.pbOwnedByPlayer?(t.index)
-				# Trigger each opponent's dialogue
-				@battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
-					@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-						trainer = @battle.opponent[idxTrainer]
-						PokeBattle_AI.triggerPlayerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
-					}
-				end
-			else
-				# Trigger just this pokemon's trainer's dialogue
-				idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(index)
-				trainer_speaking = @battle.opponent[idxTrainer]
-				@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					PokeBattle_AI.triggerTrainerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
-				}
-			end
-		  end
-	  end
+      # Curses about move usage
+      @battle.curses.each do |curse_policy|
+        @battle.triggerMoveUsedCurseEffect(curse_policy,self,choice[3],move)
+      end
+      
+      if !battle.wildBattle?
+        # Triggers dialogue for each target hit
+        targets.each do |t|
+          next unless t.damageState.totalHPLost > 0
+          if @battle.pbOwnedByPlayer?(t.index)
+            # Trigger each opponent's dialogue
+            @battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
+              @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+                trainer = @battle.opponent[idxTrainer]
+                PokeBattle_AI.triggerPlayerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
+              }
+            end
+          else
+            # Trigger just this pokemon's trainer's dialogue
+            idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(index)
+            trainer_speaking = @battle.opponent[idxTrainer]
+            @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+              PokeBattle_AI.triggerTrainerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
+            }
+          end
+        end
+      end
       # Faint if 0 HP
       targets.each { |b| b.pbFaint if b && b.fainted? }
       user.pbFaint if user.fainted?

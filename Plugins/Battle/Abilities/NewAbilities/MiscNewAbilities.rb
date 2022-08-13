@@ -22,7 +22,7 @@ end
 BattleHandlers::StatLossImmunityAbility.copy(:CLEARBODY,:WHITESMOKE,:STUBBORN)
 
 #===============================================================================
-# UserAbilityEndOfMove handlers
+# UserAbilityOfMove handlers
 #===============================================================================
 BattleHandlers::UserAbilityEndOfMove.add(:DEEPSTING,
   proc { |ability,user,targets,move,battle|
@@ -84,24 +84,6 @@ BattleHandlers::AbilityOnEnemySwitchIn.add(:DETERRENT,
 BattleHandlers::AccuracyCalcUserAbility.add(:SANDSNIPER,
   proc { |ability,mods,user,target,move,type|
     mods[:base_accuracy] = 0 if user.battle.pbWeather == :Sandstorm
-  }
-)
-
-#===============================================================================
-# EOREffectAbility handlers
-#===============================================================================
-BattleHandlers::EOREffectAbility.add(:ASTRALBODY,
-  proc { |ability,battler,battle|
-	next unless battle.field.terrain==:Misty
-    next if !battler.canHeal?
-	battle.pbShowAbilitySplash(battler)
-    battler.pbRecoverHP(battler.totalhp/16)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
-    end
-    battle.pbHideAbilitySplash(battler)
   }
 )
 
@@ -261,23 +243,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
       battle.pbHideAbilitySplash(user)
       break
     end
-  }
-)
-
-BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
-  proc { |ability,battler,battle|
-    next unless battler.hasActiveItem?(CLOTHING_ITEMS)
-    next unless battler.canHeal?
-    battle.pbShowAbilitySplash(battler)
-    recover = battler.totalhp/8
-    recover /= 4 if battler.boss?
-    battler.pbRecoverHP(recover)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
-    end
-    battle.pbHideAbilitySplash(battler)
   }
 )
 

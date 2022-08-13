@@ -695,6 +695,7 @@ class PokeBattle_Move
     # "Always hit" effects and "always hit" accuracy
     return true if target.effects[PBEffects::Telekinesis]>0
     return true if target.effects[PBEffects::Minimize] && tramplesMinimize?(1)
+    return true if user.ability == :AQUASNEAK && user.turnCount <= 1
     baseAcc = pbBaseAccuracy(user,target)
     return true if baseAcc==0
     # Calculate all multiplier effects
@@ -716,17 +717,17 @@ class PokeBattle_Move
     evasion  = 100.0 * stageMul[evaStage].to_f / stageDiv[evaStage].to_f
     accuracy = (accuracy.to_f * modifiers[:accuracy_multiplier].to_f).round
     if user.boss?
-        accuracy = (accuracy.to_f + 100.0) / 2.0
-      end
-      evasion  = (evasion.to_f  * modifiers[:evasion_multiplier].to_f).round
-    if target.boss?
-        evasion = (evasion.to_f + 100.0) / 2.0
-      end
-      evasion = 1 if evasion < 1
-      # Calculation
-    calc = accuracy.to_f / evasion.to_f
-      return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
+      accuracy = (accuracy.to_f + 100.0) / 2.0
     end
+    evasion  = (evasion.to_f  * modifiers[:evasion_multiplier].to_f).round
+    if target.boss?
+      evasion = (evasion.to_f + 100.0) / 2.0
+    end
+    evasion = 1 if evasion < 1
+    # Calculation
+    calc = accuracy.to_f / evasion.to_f
+    return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
+  end
   
   def pbDisplayUseMessage(user,targets=[])
     # Trigger dialogue for a trainer or the player about to use a move
