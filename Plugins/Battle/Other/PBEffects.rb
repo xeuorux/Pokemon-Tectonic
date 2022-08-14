@@ -44,6 +44,7 @@ module PBEffects
     VolleyStance        = 149
     GivingDragonRideTo  = 150
     OnDragonRide        = 151
+    ShimmeringHeat      = 152
 	
 	#===========================================================================
     # These effects apply to a side

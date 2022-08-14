@@ -759,6 +759,7 @@ class PokeBattle_Battle
 	    b.effects[PBEffects::StunningCurl]     = false
       b.effects[PBEffects::Sentry]           = false
       b.effects[PBEffects::RedHotRetreat]    = false
+      b.effects[PBEffects::ShimmeringHeat]   = false
       b.lastHPLost                           = 0
       b.lastHPLostFromFoe                    = 0
       b.tookDamage                           = false

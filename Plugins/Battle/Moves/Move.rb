@@ -455,6 +455,10 @@ class PokeBattle_Move
     if user.effects[PBEffects::OnDragonRide] && physicalMove?
       multipliers[:final_damage_multiplier] *= 1.5
     end
+    # Shimmering Heat
+    if target.effects[PBEffects::ShimmeringHeat]
+      multipliers[:final_damage_multiplier] *= 0.67
+    end
     # Battler properites
     multipliers[:base_damage_multiplier] *= user.dmgMult
     multipliers[:base_damage_multiplier] *= [0,(1.0 - target.dmgResist.to_f)].max

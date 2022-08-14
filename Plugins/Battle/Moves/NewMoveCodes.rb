@@ -1494,9 +1494,10 @@ class PokeBattle_Move_541 < PokeBattle_Move
   def pbEffectWhenDealingDamage(user,target)
     return if target.damageState.substitute || target.damageState.berryWeakened
     return if !target.item
-	return if !CLOTHING_ITEMS.include?(target.item)
+	return if !CLOTHING_ITEMS.include?(target.item.id)
+	itemName = target.itemName
     target.pbRemoveItem
-    @battle.pbDisplay(_INTL("{1}'s {2} was incinerated!",target.pbThis,target.itemName))
+    @battle.pbDisplay(_INTL("{1}'s {2} went up in flames!",target.pbThis,itemName))
   end
 end
 
@@ -2545,5 +2546,18 @@ class PokeBattle_Move_576 < PokeBattle_TwoTurnMove
   
 	def pbChargingTurnEffect(user,target)
 		@battle.pbStartWeather(user,@weatherType,true,false)
+	end
+end
+
+#===============================================================================
+# The user takes 33% less damage until end of this turn.
+# (Shimmering Heat)
+#===============================================================================
+class PokeBattle_Move_577 < PokeBattle_Move
+	def pbEffectAfterAllHits(user,target)
+		if !user.effects[PBEffects::ShimmeringHeat]
+			@battle.pbDisplay(_INTL("{1} is obscured by the shimmering haze!",user.pbThis))
+			user.effects[PBEffects::ShimmeringHeat] = true
+		end
 	end
 end
