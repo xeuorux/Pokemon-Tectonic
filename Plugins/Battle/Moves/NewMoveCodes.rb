@@ -2506,6 +2506,10 @@ class PokeBattle_Move_574 < PokeBattle_Move
 	end
 end
 
+#===============================================================================
+# Doubles an allies Attack and Speed. The user cannot swap out of battle.
+# If the user faints, so too does that ally. (Dragon Ride)
+#===============================================================================
 class PokeBattle_Move_575 < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
 	  if target.effects[PBEffects::OnDragonRide]
@@ -2527,5 +2531,19 @@ class PokeBattle_Move_575 < PokeBattle_Move
 	
 	def getScore(score,user,target,skill=100)
 	  return 0 if user.hp < user.totalhp / 2
+	end
+end
+
+#===============================================================================
+# Two turn attack. Sets rain first turn, attacks second turn.
+# (Archaic Deluge)
+#===============================================================================
+class PokeBattle_Move_576 < PokeBattle_TwoTurnMove
+	def pbChargingTurnMessage(user,targets)
+	  @battle.pbDisplay(_INTL("{1} begins the flood!",user.pbThis))
+	end
+  
+	def pbChargingTurnEffect(user,target)
+		@battle.pbStartWeather(user,@weatherType,true,false)
 	end
 end
