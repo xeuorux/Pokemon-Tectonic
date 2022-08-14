@@ -74,11 +74,12 @@ class PokeBattle_Battler
 	end
 	alias hasWorkingAbility hasActiveAbility?
 
+  
 	def takesSandstormDamage?
 		return false if !takesIndirectDamage?
 		return false if pbHasType?(:GROUND) || pbHasType?(:ROCK) || pbHasType?(:STEEL)
 		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:STOUT,:DESERTSPIRIT,:BURROWER,:ARTIFICIALNOCTURNE])
+		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:STOUT,:DESERTSPIRIT,:BURROWER,:ARTIFICIALNOCTURNE,:WEATHERSENSES])
 		return false if hasActiveItem?(:SAFETYGOGGLES)
 		return true
 	  end
@@ -87,7 +88,7 @@ class PokeBattle_Battler
 		return false if !takesIndirectDamage?
 		return false if pbHasType?(:ICE) || pbHasType?(:STEEL) || pbHasType?(:GHOST)
 		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:STOUT,:SNOWWARNING,:BLIZZBOXER])
+		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:STOUT,:SNOWWARNING,:BLIZZBOXER,:WEATHERSENSES])
 		return false if hasActiveItem?(:SAFETYGOGGLES)
 		return true
 	end
