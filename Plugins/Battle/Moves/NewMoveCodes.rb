@@ -2545,7 +2545,16 @@ class PokeBattle_Move_576 < PokeBattle_TwoTurnMove
 	end
   
 	def pbChargingTurnEffect(user,target)
-		@battle.pbStartWeather(user,@weatherType,true,false)
+		@battle.pbStartWeather(user,:Rain,true,false)
+	end
+
+	def getScore(score,user,target,skill=100)
+		if @battle.field.weather != :Rain
+			score += 50
+		else
+			score -= 50
+		end
+		return score
 	end
 end
 
@@ -2559,5 +2568,34 @@ class PokeBattle_Move_577 < PokeBattle_Move
 			@battle.pbDisplay(_INTL("{1} is obscured by the shimmering haze!",user.pbThis))
 			user.effects[PBEffects::ShimmeringHeat] = true
 		end
+	end
+
+	def getScore(score,user,target,skill=100)
+		return getWantsToBeFasterScore(score,user,target,skill,3)
+	end
+end
+
+#===============================================================================
+# Revives a Grass-type party member back to 50% HP. (Breathe Life)
+#===============================================================================
+class PokeBattle_Move_578 < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+		@battle.pbParty(user.index).each do |pkmn|
+			next if !pkmn
+			next if !pkmn.fainted?
+			return false
+		end
+		@battle.pbDisplay(_INTL("But it failed, since there are no fainted Grass-type party members!"))
+		return true
+	end
+  
+	def pbEffectGeneral(user)
+		selectPartyMemberForEffect(user.index,proc { |pkmn|
+			next pkmn.hasType?(:GRASS) && pkmn.fainted?
+	  	}) { |pkmn|
+			pkmn.heal_HP
+			pkmn.heal_status
+			@battle.pbDisplay(_INTL("{1} recovered all the way to full health!",pkmn.name))
+		}
 	end
 end

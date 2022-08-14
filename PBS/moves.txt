@@ -1049,7 +1049,7 @@
 985,SINISTERSPINES,Sinister Spines,116,70,GRASS,Physical,100,5,0,NearOther,1,abef,"This move enables the user to attack first. It fails if the target is not readying an attack, however.",SPIKECANNON
 986,MIRAGEFLARE,Mirage Flare,000,120,FLYING,Special,100,5,0,AllNearOthers,0,bef,"The user creates a storm using its flaming body, damaging everything around it.",
 987,HAREHEROICS,Hare Heroics,566,1,NORMAL,Physical,100,20,0,NearOther,0,abef,"Deals more damage the less HP the user has. After attacking, it returns to switch with a party Pokémon.",
-988,RIPTURN,Rip Turn,568,70,WATER,Physical,100,10,0,NearOther,100,abef,"Deals damage, lowering the target's defense. After attacking, it returns to switch with a party Pokémon.",
+988,RIPTURN,Rip Turn,568,70,WATER,Physical,100,10,100,NearOther,0,abef,"Deals damage, lowering the target's defense. After attacking, it returns to switch with a party Pokémon.",
 989,REDHOTRETREAT,Red-Hot Retreat,567,0,FIRE,Status,0,3,0,User,4,,"Protects the user from attacks. Also burns any attacker who specially attacks the user.",WITHDRAW
 990,FROSTSPIKES,Frost Spikes,569,0,ICE,Status,0,20,0,FoeSide,0,c,"The user lays poison spikes on the foe's side. One layer hurts switched in foes, two layers frostbites them",
 991,SANDTOSS,Sand Toss,00A,40,GROUND,Special,100,35,10,NearOther,0,bef,"The user tosses hot desert sand on the target. It has a 10% chance to burn.",SCORCHINGSANDS
@@ -1076,8 +1076,9 @@
 1012,CHACHING,Cha-ching,109,90,NORMAL,Physical,100,20,0,NearOther,0,abef,"The user crashes with the full force of The Market. Money is earned after battle.",
 1013,LEYLINEBURST,Leyline Burst,573,110,PSYCHIC,Special,100,10,0,NearOther,0,bef,"Psychic energy is sent though an earthen conduit, erupting under the target. This move is both Psychic and Ground-type.",EARTHPOWER
 1014,HARDPLACE,Hard Place,000,574,ROCK,Physical,0,10,0,NearOther,0,abef,"The user slams the target into a nearby hard object. Increases power the higher the Defense of any ally.",HEADSMASH
-1015,DRAGONRIDE,Dragon Ride,575,0,DRAGON,Status,0,5,0,NearAlly,0,,"The user doubles the ally's Speed and Attack. If the user faints, the rider does too. The user cannot switch out.",
-1016,MAGMAROAR,Magma Roar,530,50,FIRE,Physical,0,40,0,User,0,d,"The user roar's with the force of a volcano, raising the Attack of itself and allies.",
-1017,BLAZINGSPEED,BLAZINGSPEED,000,65,FIRE,Physical,100,5,0,NearOther,2,abef,"The user charges the target at blazing-fast speed. This attack always goes before any other move.",
-1018,ARCHAICDELUGE,Archaic Deluge,576,80,WATER,Special,100,5,30,Other,0,bef,"Summons Rain for five turns on the first turn, then overwhelms the foe with water on the second.",
-1019,SHIMMERINGHEAT,Shimmering Heat,577,75,FIRE,Special,100,10,10,AllNearFoes,0,bef,"The user attacks with heat, creating an obscuring wall of shimmering haze. The user takes 33% less damage this turn.",
+1015,DRAGONRIDE,Dragon Ride,575,0,DRAGON,Status,0,5,0,NearAlly,0,,"The user doubles the ally's Speed and Attack. If the user faints, the rider does too. The user cannot switch out.",COACHING
+1016,MAGMAROAR,Magma Roar,530,50,FIRE,Physical,0,40,0,User,0,d,"The user roar's with the force of a volcano, raising the Attack of itself and allies.",ROAR
+1017,BLAZINGSPEED,BLAZINGSPEED,000,65,FIRE,Physical,100,5,0,NearOther,2,abef,"The user charges the target at blazing-fast speed. This attack always goes before any other move.",FLAMECHARGE
+1018,ARCHAICDELUGE,Archaic Deluge,576,80,WATER,Special,100,5,30,Other,0,bef,"Summons Rain for five turns on the first turn, then overwhelms the foe with water on the second.",SURF
+1019,SHIMMERINGHEAT,Shimmering Heat,577,75,FIRE,Special,100,10,10,AllNearFoes,0,bef,"The user attacks with heat, creating an obscuring wall of haze. The user takes 33% less damage this turn.",HEATWAVE
+1020,BREATHELIFE,Breathe Life,578,0,GRASS,Status,0,1,0,None,0,,"Restores a fainted Grass-type party member to full health.",GRASSYTERRAIN
