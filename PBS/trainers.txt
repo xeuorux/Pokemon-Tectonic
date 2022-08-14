@@ -3640,3 +3640,39 @@ Pokemon = GFARFETCHD,28
     Item = FIGHTINGGEM
 Pokemon = ALCREMIE,27
     AbilityIndex = 0
+#-------------------------------
+[SWIMMER_F4,Yvonne]
+Pokemon = BEHEEYEM,56
+    AbilityIndex = 1
+    Item = REINFORCINGROD
+Pokemon = ABSOLUS,57
+    AbilityIndex = 1
+Pokemon = EMPOLEON,58
+    AbilityIndex = 0
+    Item = STEELGEM
+Pokemon = RHYPERIOR,57
+    AbilityIndex = 0
+#-------------------------------
+[SWIMMER_F6,Kiana]
+Pokemon = JELLICENT,58
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+Pokemon = DIGNIPHITE,59
+    AbilityIndex = 0
+Pokemon = TSAREENA,60
+    AbilityIndex = 0
+    Item = STRIKEVEST
+Pokemon = BEWEAR,59
+    AbilityIndex = 0
+#-------------------------------
+[SAILOR2,Angelo]
+Pokemon = DELCATTY,57
+    AbilityIndex = 0
+Pokemon = RILLABOOM,58
+    AbilityIndex = 1
+Pokemon = STARAPTOR,59
+    AbilityIndex = 1
+    Item = LIFEORB
+Pokemon = ZOROARK,58
+    AbilityIndex = 0
+    Item = DARKGEM
