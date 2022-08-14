@@ -430,7 +430,7 @@
 1008,RELUCTANTBLADE,Relucant Blade,"When hit with a physical move, hits back instantly with Leafage."
 1009,BRILLIANTFLURRY,Brilliant Flurry,"If an attack lowers its HP to half or less, lower's the attacker's Attack, Sp. Atk, and Speed."
 1010,INDUSTRIALIZE,Industrialize,"Grants immunity to Steel-type moves and raises Speed if hit by one."
-1011,AQUASNEAK,Aqua Sneak,"On the first turn sent out, the Pokémon cannot miss and ignores Protections."
+1011,AQUASNEAK,Aqua Sneak,"On the first turn sent out, the Pokémon always crits, can't miss, and ignores protections."
 1012,NEEDLEFUR,Needle Fur,"Before Pokemon attack this, they take 1/10th HP damage. Twice that if this is below half health."
 1013,HEATCYCLE,Heat Cycle,"Each turn, sharply raises Speed and loses HP. If Speed was maxed, instead Speed and HP are reset."
 1014,WEATHERSENSES,Weather Senses,"Takes 10% less move damage for each turn remaining on the current weather."

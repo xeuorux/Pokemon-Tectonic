@@ -695,7 +695,6 @@ class PokeBattle_Move
     # "Always hit" effects and "always hit" accuracy
     return true if target.effects[PBEffects::Telekinesis]>0
     return true if target.effects[PBEffects::Minimize] && tramplesMinimize?(1)
-    return true if user.ability == :AQUASNEAK && user.turnCount <= 1
     baseAcc = pbBaseAccuracy(user,target)
     return true if baseAcc==0
     # Calculate all multiplier effects

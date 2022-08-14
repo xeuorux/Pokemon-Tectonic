@@ -21,3 +21,9 @@ BattleHandlers::CriticalCalcUserAbility.add(:WALLNINJA,
     next 99 if user.battle.roomActive?
   }
 )
+
+BattleHandlers::CriticalCalcUserAbility.add(:AQUASNEAK,
+  proc { |ability,user,target,c|
+    next 99 if user.turnCount <= 1
+  }
+)

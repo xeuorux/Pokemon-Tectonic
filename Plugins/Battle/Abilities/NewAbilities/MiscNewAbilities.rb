@@ -87,6 +87,12 @@ BattleHandlers::AccuracyCalcUserAbility.add(:SANDSNIPER,
   }
 )
 
+BattleHandlers::AccuracyCalcUserAbility.add(:AQUASNEAK,
+  proc { |ability,mods,user,target,move,type|
+    mods[:base_accuracy] = 0 if user.turnCount <= 1
+  }
+)
+
 #===============================================================================
 # MoveBlockingAbility handlers
 #===============================================================================
