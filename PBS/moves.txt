@@ -1078,3 +1078,4 @@
 1014,HARDPLACE,Hard Place,000,574,ROCK,Physical,0,10,0,NearOther,0,abef,"The user slams the target into a nearby hard object. Increases power the higher the Defense of any ally.",HEADSMASH
 1015,DRAGONRIDE,Dragon Ride,575,0,DRAGON,Status,0,5,0,NearAlly,0,,"The user doubles the ally's Speed and Attack. If the user faints, the rider does too. The user cannot switch out.",
 1016,MAGMAROAR,Magma Roar,530,50,FIRE,Physical,0,40,0,User,0,d,"The user roar's with the force of a volcano, raising the Attack of itself and allies.",
+1017,BLAZINGSPEED,BLAZINGSPEED,000,65,FIRE,Physical,100,5,0,NearOther,2,abef,"The user charges the target at blazing-fast speed. This attack always goes before any other move.",
