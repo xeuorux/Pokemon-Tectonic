@@ -2890,101 +2890,101 @@ Pokemon = ADUGTRIO,55
     Item = CHOICESCARF
 #-------------------------------
 [AROMALADY3,Henrietta]
-Pokemon = DUSKNOIR,46
+Pokemon = DUSKNOIR,51
     AbilityIndex = 0
     Item = LEFTOVERS
-Pokemon = MFURRET,47
+Pokemon = MFURRET,52
     AbilityIndex = 0
     Item = GROUNDGEM
-Pokemon = VENUSAUR,46
+Pokemon = VENUSAUR,51
     AbilityIndex = 1
-Pokemon = ZANGOOSE,47
+Pokemon = ZANGOOSE,53
     AbilityIndex = 1
 #-------------------------------
 [CYCLIST_F2,Lukka]
-Pokemon = BLISSEY,46
+Pokemon = BLISSEY,51
     AbilityIndex = 1
-Pokemon = CONKELDURR,47
+Pokemon = CONKELDURR,52
     AbilityIndex = 1
     Item = MUSCLEBAND
-Pokemon = ARCLAMOR,47
+Pokemon = ARCLAMOR,52
     AbilityIndex = 1
     Item = ELECTRICGEM
-Pokemon = TOWERPODA,46
+Pokemon = TOWERPODA,53
     AbilityIndex = 1
 #-------------------------------
 [RUINMANIAC,Matteo]
-Pokemon = ARCTOZOLT,47
+Pokemon = ARCTOZOLT,52
     AbilityIndex = 1
     Item = ROCKYHELMET
-Pokemon = DRACOZOLT,48
+Pokemon = DRACOZOLT,53
     AbilityIndex = 1
-Pokemon = DRACOVISH,48
+Pokemon = DRACOVISH,53
     AbilityIndex = 1
     Item = DRAGONGEM
-Pokemon = ARCTOVISH,47
+Pokemon = ARCTOVISH,52
     AbilityIndex = 1
 #-------------------------------
 [BACKPACKER_F,Mia]
-Pokemon = SAWSBUCK,47
+Pokemon = SAWSBUCK,52
     AbilityIndex = 0
     Item = FAIRYGEM
-Pokemon = SAWSBUCK,48
+Pokemon = SAWSBUCK,53
     Form = 1
     AbilityIndex = 0
-Pokemon = SAWSBUCK,47
+Pokemon = SAWSBUCK,53
     Form = 2
     AbilityIndex = 0
     Item = LIFEORB
-Pokemon = SAWSBUCK,48
+Pokemon = SAWSBUCK,52
     Form = 3
     AbilityIndex = 0
 #-------------------------------
 [PARASOLLADY2,Ruoxi]
-Pokemon = APPLETUN,48
+Pokemon = APPLETUN,54
     AbilityIndex = 0
     Item = ORANBERRY
-Pokemon = MNINETALES,49
+Pokemon = MNINETALES,54
     AbilityIndex = 0
-Pokemon = BLAZIKEN,49
+Pokemon = BLAZIKEN,54
     AbilityIndex = 0
-Pokemon = LICKILICKY,48
+Pokemon = LICKILICKY,53
     AbilityIndex = 0
     Item = LEFTOVERS
 #-------------------------------
 [ELDER,Huy]
-Pokemon = CRAWDAUNT,49
+Pokemon = CRAWDAUNT,54
     AbilityIndex = 0
-Pokemon = SCOLIPEDE,48
+Pokemon = SCOLIPEDE,53
     AbilityIndex = 1
     Item = WEAKNESSPOLICY
-Pokemon = CINDERACE,49
+Pokemon = CINDERACE,54
     AbilityIndex = 0
-Pokemon = FLORGES,48
+Pokemon = FLORGES,53
     AbilityIndex = 1
     Item = OCCABERRY
 #-------------------------------
 [BLACKBELT,Santiago]
-Pokemon = DRAGONITE,49
+Pokemon = DRAGONITE,54
     AbilityIndex = 1
-Pokemon = GIGANTEON,50
+Pokemon = GIGANTEON,55
     AbilityIndex = 1
     Item = NORMALGEM
-Pokemon = SOLROCK,50
+Pokemon = SOLROCK,55
     AbilityIndex = 0
-Pokemon = HITMONLEE,49
+Pokemon = HITMONLEE,54
     AbilityIndex = 0
     Item = MUSCLEBAND
 #-------------------------------
 [GENTLEMAN,Nicholas]
-Pokemon = PASSIMIAN,49
+Pokemon = PASSIMIAN,54
     AbilityIndex = 1
-Pokemon = WHISCASH,50
+Pokemon = WHISCASH,55
     AbilityIndex = 0
     Item = SHELLBELL
-Pokemon = NOIVERN,50
+Pokemon = NOIVERN,55
     AbilityIndex = 1
-Pokemon = PERRSERKER,49
+Pokemon = PERRSERKER,54
     AbilityIndex = 1
     Item = STEELGEM
 #-------------------------------
