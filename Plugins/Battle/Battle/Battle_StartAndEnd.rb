@@ -22,7 +22,7 @@ class PokeBattle_Battle
     logMsg += "#{@opponent.length} trainer(s))" if trainerBattle?
     PBDebug.log(logMsg)
 	  $game_switches[94] = false
-    faintedBefore = $Trainer.able_pokemon_count # Record the number of fainted
+    ableBeforeFight = $Trainer.able_pokemon_count # Record the number of fainted
     pbEnsureParticipants
     begin
       pbStartBattleCore
@@ -35,7 +35,7 @@ class PokeBattle_Battle
       triggerBattleEndCurse(curse_policy,self)
     end
     # Record if the fight was perfected
-    if $Trainer.able_pokemon_count == faintedBefore
+    if $Trainer.able_pokemon_count == ableBeforeFight
       $game_switches[94] = true 
       pbMessage(_INTL("\\me[Battle perfected]You perfected the fight!")) if trainerBattle? && @decision == 1
     end

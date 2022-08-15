@@ -118,12 +118,16 @@ class PokeBattle_Battler
   # Returns the active types of this Pokémon. The array should not include the
   # same type more than once, and should not include any invalid type numbers
   # (e.g. -1).
-  def pbTypes(withType3=false)
-    ret = [@type1]
-    ret.push(@type2) if @type2!=@type1
+  def pbTypes(withType3=false,allowIllusions=false)
+    # If the pokemon is disguised as another pokemon, fake its type bars
+		if allowIllusions && @effects[PBEffects::Illusion]
+			ret = @effects[PBEffects::Illusion].types
+    else
+      ret = @pokemon.types
+		end
     # Burn Up erases the Fire-type.
     ret.delete(:FIRE) if @effects[PBEffects::BurnUp]
-	# Cold Conversion erases the Ice-type.
+	  # Cold Conversion erases the Ice-type.
     ret.delete(:ICE) if @effects[PBEffects::ColdConversion]
     # Roost erases the Flying-type. If there are no types left, adds the Normal-
     # type.

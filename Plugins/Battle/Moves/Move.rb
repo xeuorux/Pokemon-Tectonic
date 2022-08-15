@@ -632,11 +632,11 @@ class PokeBattle_Move
     return ret
   end
   
-  def pbCalcTypeMod(moveType,user,target)
+  def pbCalcTypeMod(moveType,user,target,allowIllusions=false)
     return Effectiveness::NORMAL_EFFECTIVE if !moveType
     return Effectiveness::NORMAL_EFFECTIVE if moveType == :GROUND && target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL)
     # Determine types
-    tTypes = target.pbTypes(true)
+    tTypes = target.pbTypes(true,allowIllusions)
     # Get effectivenesses
     typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
     if moveType == :SHADOW

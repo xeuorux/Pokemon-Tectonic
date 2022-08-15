@@ -407,9 +407,16 @@ class PokemonPokedex_Scene
 			pbMessage("Marked as owned every species on current list.")
 		elsif Input.pressex?(0x50) && $DEBUG # P, for Print
 			echoln("Printing the entirety of the current dex list.")
-			 @dexlist.each do |dexEntry|
-				echoln(dexEntry[0])
-			 end
+			if Input.press?(Input::CTRL)
+				@dexlist.each do |dexEntry|
+					echoln(dexEntry[0])
+				end
+			else
+				@dexlist.each do |dexEntry|
+					echoln(GameData::Species.get(dexEntry[0]).real_name)
+				end
+			end
+			pbMessage("Printed the current list to the console.")
 		elsif Input.pressex?(0x49) && $DEBUG # I, for Investigation
 			printDexListInvestigation()
 		elsif Input.pressex?(0x54) && $DEBUG # T, for Tutor
