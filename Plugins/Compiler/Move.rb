@@ -1,6 +1,7 @@
 module GameData
     class Move
         attr_reader :animation_move
+        attr_reader :signature_of
 
         def initialize(hash)
           @id                 = hash[:id]
@@ -18,8 +19,16 @@ module GameData
           @flags              = hash[:flags]
           @real_description   = hash[:description] || "???"
           @animation_move     = hash[:animation_move]
+          @signature_of       = nil
         end
 
+        # The highest evolution of a line
+        def signature_of=(val)
+          @signature_of = val
+        end
 
+        def is_signature?()
+          return !@signature_of.nil?
+        end
     end
 end

@@ -159,6 +159,8 @@ module Compiler
       compile_pokemon_old                # Depends on Move, Item, Type, Ability
 	    yield(_INTL("Compiling machine data"))
       compile_move_compatibilities   # Depends on Species, Move
+      yield(_INTL("Compiling signature metadata"))
+      compile_signature_metadata
       yield(_INTL("Compiling shadow moveset data"))
       compile_shadow_movesets        # Depends on Species, Move
       yield(_INTL("Compiling Regional Dexes"))
@@ -2282,5 +2284,24 @@ module Compiler
       next if GameData::Move.exists?(move_data.animation_move)
       raise _INTL("Move ID '{1}' was assigned an Animation Move property {2} that doesn't match with any other move.\r\n", move_data.id, move_data.animation_move)
     end
+  end
+
+  def compile_signature_metadata
+    signatureMoveInfo = getSignatureMoves()
+
+    signatureMoveInfo.each do |moveID,signatureHolder|
+      GameData::Move.get(moveID).signature_of = signatureHolder
+    end
+
+    signatureAbilityInfo = getSignatureAbilities()
+
+    signatureAbilityInfo.each do |abilityID,signatureHolder|
+      GameData::Ability.get(abilityID).signature_of = signatureHolder
+    end
+
+    # Save all data
+    GameData::Move.save
+    GameData::Ability.save
+    Graphics.update
   end
 end

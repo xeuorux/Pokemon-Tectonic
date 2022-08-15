@@ -1,4 +1,8 @@
 class PokemonPokedexInfo_Scene
+
+	SIGNATURE_COLOR = Color.new(71,115,28)
+	SIGNATURE_SHADOW = Color.new(180,197,161)
+
   def pbStartScene(dexlist,index,region,battle=false,linksEnabled=false)
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z = 99999
@@ -289,7 +293,13 @@ class PokemonPokedexInfo_Scene
         drawTextEx(overlay,30,92,450,1,"Ability 1",base,shadow)
         if (abilities[0])
 		  ability1 = GameData::Ability.get(abilities[0])
-          drawTextEx(overlay,30,128,450,1,ability1.real_name,base,shadow)
+		  abilityNameColor = base
+		  abilityNameShadow = shadow
+		  if ability1.is_signature?
+			abilityNameColor = SIGNATURE_COLOR
+			abilityNameShadow = SIGNATURE_SHADOW
+		  end
+          drawTextEx(overlay,30,128,450,1,ability1.real_name,abilityNameColor,abilityNameShadow)
           drawTextEx(overlay,30,160,450,2,ability1.real_description,base,shadow)
         else
           drawTextEx(overlay,30,128,450,1,"None",base,shadow)
@@ -298,7 +308,13 @@ class PokemonPokedexInfo_Scene
         drawTextEx(overlay,30,92+142,450,1,"Ability 2",base,shadow)
         if (abilities[1])
           ability2 = GameData::Ability.get(abilities[1])
-          drawTextEx(overlay,30,128+142,450,1,ability2.real_name,base,shadow)
+		  abilityNameColor = base
+		  abilityNameShadow = shadow
+		  if ability2.is_signature?
+			abilityNameColor = SIGNATURE_COLOR
+			abilityNameShadow = SIGNATURE_SHADOW
+		  end
+          drawTextEx(overlay,30,128+142,450,1,ability2.real_name,abilityNameColor,abilityNameShadow)
           drawTextEx(overlay,30,160+142,450,2,ability2.real_description,base,shadow)
         else
           drawTextEx(overlay,30,128+142,450,1,"None",base,shadow)
@@ -587,7 +603,14 @@ class PokemonPokedexInfo_Scene
 			moveName = "<i>#{moveName}</i>"
 		end
 	end
-	return moveName
+	if move_data.is_signature?
+		color = SIGNATURE_COLOR
+		shadow = SIGNATURE_SHADOW
+	else
+		color = Color.new(64,64,64)
+		shadow = Color.new(176,176,176)
+	end
+	return moveName,color,shadow
   end
   
   def isAnyEvolutionOfType(species_data,type)
@@ -604,8 +627,6 @@ class PokemonPokedexInfo_Scene
     @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
     overlay = @sprites["overlay"].bitmap
     formname = ""
-    base = Color.new(64,64,64)
-    shadow = Color.new(176,176,176)
 	selected_move = nil
 	xLeft = 36
     for i in @available
@@ -625,14 +646,14 @@ class PokemonPokedexInfo_Scene
             levelLabel = "E"
           end
           # Draw stat line
-		  color = base 
+		  moveName,moveColor,moveshadow = getFormattedMoveName(move)
 		  if index == @scroll
-			color = Color.new(255,100,80)
+			moveColor = getSelectedColor(moveColor)
+			moveshadow = getSelectedColor(moveshadow)
 			selected_move = move
 		  end
-		  moveName = getFormattedMoveName(move)
-		  drawTextEx(overlay,xLeft,60+30*displayIndex,450,1,levelLabel,color,shadow)
-          drawFormattedTextEx(overlay,xLeft+30,60+30*displayIndex,450,moveName,color,shadow)
+		  drawTextEx(overlay,xLeft,60+30*displayIndex,450,1,levelLabel,moveColor,moveshadow)
+          drawFormattedTextEx(overlay,xLeft+30,60+30*displayIndex,450,moveName,moveColor,moveshadow)
           displayIndex += 1
           break if displayIndex >= 10
         end
@@ -751,6 +772,7 @@ class PokemonPokedexInfo_Scene
 		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
 			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 		end
+
         compatibleMoves = firstSpecies.egg_moves + species_data.tutor_moves
 		compatibleMoves.uniq!
 		compatibleMoves.compact!
@@ -774,13 +796,13 @@ class PokemonPokedexInfo_Scene
         @scrollableLists[@horizontalScroll].each_with_index do |move,index|
 			listIndex+= 1
 			next if listIndex < @scroll
-			color = base
+			moveName,moveColor,moveShadow = getFormattedMoveName(move)
 			if listIndex == @scroll
-				color = Color.new(255,100,80)
+				moveColor = getSelectedColor(moveColor)
+				moveshadow = getSelectedColor(moveshadow)
 				selected_move = move
 			end
-			moveName = getFormattedMoveName(move)
-			drawFormattedTextEx(overlay,xLeft,60+30*displayIndex,450,moveName,color,shadow)
+			drawFormattedTextEx(overlay,xLeft,60+30*displayIndex,450,moveName,moveColor,moveShadow)
 			displayIndex += 1
 			break if displayIndex >= 10
         end
@@ -788,6 +810,12 @@ class PokemonPokedexInfo_Scene
     end
 	
 	drawMoveInfo(selected_move)
+  end
+
+  def getSelectedColor(color)
+	magnitude = (color.red + color.green + color.blue)/3
+
+	return Color.new(magnitude * 1.2,magnitude*0.8,magnitude*0.8)
   end
   
   def drawMoveInfo(selected_move)
