@@ -908,3 +908,11 @@ PostPrimeMoves = RUMBLE,XSCISSOR
 Turns = 2
 HPMult = 4
 DMGMult = 1
+#-------------------------------
+[KINGDRA]
+Ability = ANALYTIC
+Moves = MAJESTICGLARE,BUBBLEBLAST,PRIMEVALDESTINYBOND
+PostPrimeMoves = SLUDGEWAVE,SPECTRALTHIEF
+Turns = 2
+HPMult = 4
+DMGMult = 1

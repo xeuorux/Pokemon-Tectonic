@@ -3676,3 +3676,47 @@ Pokemon = STARAPTOR,59
 Pokemon = ZOROARK,58
     AbilityIndex = 0
     Item = DARKGEM
+#-------------------------------
+[COOLTRAINER_F7,Reina]
+Pokemon = GOTHITELLE,60
+    Moves = CORECOLLAPSE,DESTINYBOND,BLACKOUT,MOONLIGHT
+    AbilityIndex = 1
+    Item = SHELLBELL
+    EV = 20,20,10,0,20,0
+Pokemon = GWEEZING,60
+    Moves = MISTYEXPLOSION,DESTINYBOND,SLUDGEBOMB,OVERHEAT
+    AbilityIndex = 0
+    Item = TERRAINEXTENDER
+    EV = 0,20,20,0,0,10
+Pokemon = VAPOREON,60
+    Moves = FLIPTURN,ICEBEAM,UPINFLAMES,GEYSER
+    AbilityIndex = 1
+    Item = EJECTPACK
+    EV = 10,20,20,0,20,0
+Pokemon = CRUSTLE,60
+    Moves = BEDROCKBREAKER,SHELLSMASH,LEECHLIFE,EARTHQUAKE
+    AbilityIndex = 0
+    Item = ORANBERRY
+    EV = 20,20,0,0,0,10
+Pokemon = ZEBSTRIKA,60
+    Moves = VOLTTACKLE,BOUNCE,DOUBLEEDGE,DRILLRUN
+    AbilityIndex = 1
+    Item = CHOICEBAND
+    EV = 10,20,0,20,0,0
+Pokemon = DRAGAPULT,60
+    Moves = SKITTERSMACK,PHANTOMBREAK,DRAGONDARTS,WAILINGBLOW
+    AbilityIndex = 1
+    Item = MUSCLEBAND
+    EV = 0,20,0,20,0,10
+#-------------------------------
+[TUBER_F2,Hana]
+Pokemon = RATICATE,57
+    AbilityIndex = 1
+    Item = NORMALGEM
+Pokemon = CONKELDURR,58
+    AbilityIndex = 1
+Pokemon = SAHARICANE,59
+    AbilityIndex = 1
+Pokemon = KLAWSAR,58
+    AbilityIndex = 0
+    Item = LIFEORB
