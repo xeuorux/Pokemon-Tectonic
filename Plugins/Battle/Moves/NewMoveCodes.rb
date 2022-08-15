@@ -2576,7 +2576,7 @@ class PokeBattle_Move_577 < PokeBattle_Move
 end
 
 #===============================================================================
-# Revives a Grass-type party member back to 50% HP. (Breathe Life)
+# Revives a Grass-type party member back to 100% HP. (Breathe Life)
 #===============================================================================
 class PokeBattle_Move_578 < PokeBattle_Move
 	def pbMoveFailed?(user,targets)
@@ -2597,5 +2597,29 @@ class PokeBattle_Move_578 < PokeBattle_Move
 			pkmn.heal_status
 			@battle.pbDisplay(_INTL("{1} recovered all the way to full health!",pkmn.name))
 		}
+	end
+end
+
+#===============================================================================
+# Numb's the target. If they are already numbed, curses them instead. (Spectral Tongue)
+#===============================================================================
+class PokeBattle_Move_579 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		if target.paralyzed?
+			if target.effects[PBEffects::Curse]
+				@battle.pbDisplay(_INTL("But it failed, since the target is already cursed!"))
+			end
+		else
+			return !target.pbCanParalyze?(user,true,self)
+		end
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+		if target.paralyzed?
+			@battle.pbDisplay(_INTL("{1} laid a curse on {2}!",user.pbThis,target.pbThis(true)))
+    		target.effects[PBEffects::Curse] = true
+		else
+			target.pbParalyze(user)
+		end
 	end
 end
