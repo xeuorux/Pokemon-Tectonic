@@ -110,7 +110,7 @@
 108,FOREWARN,Forewarn,"Determines what moves a foe has."
 109,UNAWARE,Unaware,"Ignores any stat changes in opponents."
 110,TINTEDLENS,Tinted Lens,"Powers up \"not very effective\" moves."
-111,FILTER,Filter,"Reduces damage from super-effective attacks."
+111,FILTER,Filter,"Reduces damage from super-effective attacks by 25%."
 112,SLOWSTART,Slow Start,"Halves Attack and Speed for 3 turns."
 113,SCRAPPY,Scrappy,"Enables moves to hit Ghost-type Pokémon."
 114,STORMDRAIN,Storm Drain,"Draws in Water-type moves, is immune to them, and boosts Sp. Atk when hit."
