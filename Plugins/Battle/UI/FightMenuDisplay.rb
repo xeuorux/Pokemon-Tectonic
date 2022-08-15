@@ -175,7 +175,7 @@ class FightMenuDisplay < BattleMenuBase
         maxEffectiveness = 0
         @battler.eachOpposing do |opposingBattler|
           next if !@battler.battle.pbMoveCanTarget?(@battler.index,opposingBattler.index,targetingData)
-          effectiveness = move.pbCalcTypeMod(typeOfMove,@battler,opposingBattler)
+          effectiveness = move.pbCalcTypeMod(typeOfMove,@battler,opposingBattler,true)
           maxEffectiveness = effectiveness if effectiveness > maxEffectiveness
         end
 

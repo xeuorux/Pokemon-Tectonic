@@ -180,11 +180,7 @@ class PokemonDataBox < SpriteWrapper
 				 statusXRect,statusID2*STATUS_ICON_HEIGHT,statusWidth,STATUS_ICON_HEIGHT])
 		end
 		# Refresh type bars
-		types = @battler.pbTypes(true)
-		# If the pokemon is disguised as another pokemon, fake its type bars
-		if @battler.effects[PBEffects::Illusion]
-			types = @battler.effects[PBEffects::Illusion].types
-		end
+		types = @battler.pbTypes(true,true)
 		if types[0]
 			@type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number * TYPE_ICON_HEIGHT
 			@type1Icon.visible = true if @battler.effects[PBEffects::Transform] && @showTypes
