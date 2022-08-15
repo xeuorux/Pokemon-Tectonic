@@ -35,7 +35,7 @@ class PokeBattle_Battle
       triggerBattleEndCurse(curse_policy,self)
     end
     # Record if the fight was perfected
-    if $Trainer.able_pokemon_count == ableBeforeFight
+    if $Trainer.able_pokemon_count >= ableBeforeFight
       $game_switches[94] = true 
       pbMessage(_INTL("\\me[Battle perfected]You perfected the fight!")) if trainerBattle? && @decision == 1
     end
