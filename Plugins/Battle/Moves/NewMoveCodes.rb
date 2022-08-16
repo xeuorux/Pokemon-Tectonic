@@ -2456,7 +2456,7 @@ class PokeBattle_Move_571 < PokeBattle_Move
 end
 
 #===============================================================================
-# Puts the target to sleep if they are statused. 
+# Puts the target to sleep if they are statused. (Tranquil Tune)
 #===============================================================================
 class PokeBattle_Move_572 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
@@ -2622,4 +2622,47 @@ class PokeBattle_Move_579 < PokeBattle_Move
 			target.pbParalyze(user)
 		end
 	end
+end
+
+#===============================================================================
+# Transfers the user's status to the target (Vicious Cleaning)
+#===============================================================================
+class PokeBattle_Move_580 < PokeBattle_Move
+	msg = ""
+	def pbEffectAgainstTarget(user,target)
+		case user.status
+			when :SLEEP
+			  target.pbSleep
+			  user.pbCureStatus
+			  msg = _INTL("{1} woke up.",user.pbThis)
+			when :POISON
+			  target.pbPoison(user,nil,user.statusCount!=0)
+			  user.pbCureStatus
+			  msg = _INTL("{1} was cured of its poisoning.",user.pbThis)
+			when :BURN
+			  target.pbBurn(user)
+			  user.pbCureStatus
+			  msg = _INTL("{1}'s burn was healed.",user.pbThis)
+			when :PARALYSIS
+			  target.pbParalyze(user)
+			  user.pbCureStatus
+			  msg = _INTL("{1} was cured of paralysis.",user.pbThis)
+			when :FROSTBITE
+			  target.pbFrostbite
+			  user.pbCureStatus
+			  msg = _INTL("{1} was thawed out.",user.pbThis)
+			when :FLUSTERED
+			 target.pbMystify
+			 user.pbCureStatus
+			 msg = _INTL("{1} regained footing.",user.pbThis)
+			when :MYSTIFIED
+			 target.pbFluster
+			 user.pbCureStatus
+			 msg = _INTL("{1} broke their spell.",user.pbThis)
+		end
+		if msg!=""
+		  @battle.pbDisplay(msg)
+		end
+	end
+    
 end
