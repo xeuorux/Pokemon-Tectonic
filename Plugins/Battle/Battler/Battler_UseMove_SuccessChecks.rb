@@ -423,19 +423,25 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("Mat Block was ignored, and failed to protect {1}!",target.pbThis(true)))
       end
     end
-    # Magic Coat/Magic Bounce
+    # Magic Coat/Magic Bounce/Magic Shield
     if move.canMagicCoat? && !target.semiInvulnerable? && target.opposes?(user)
       if target.effects[PBEffects::MagicCoat]
         target.damageState.magicCoat = true
         target.effects[PBEffects::MagicCoat] = false
         return false
       end
-      if target.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker &&
-         !target.effects[PBEffects::MagicBounce]
+      if target.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker #&& !target.effects[PBEffects::MagicBounce]
         target.damageState.magicBounce = true
         target.effects[PBEffects::MagicBounce] = true
         return false
       end
+      if target.hasActiveAbility?(:MAGICSHIELD) && !@battle.moldBreaker
+        @battle.pbShowAbilitySplash(target)
+        target.damageState.protected = true
+        @battle.pbDisplay(_INTL("{1} shielded itself from the {2}!",target.pbThis,move.name))
+        @battle.pbHideAbilitySplash(target)
+       return false
+     end
     end
     # Move fails due to type immunity ability (Except against or by a boss)
     if !user.boss? && !target.boss

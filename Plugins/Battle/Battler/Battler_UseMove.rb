@@ -270,6 +270,7 @@ class PokeBattle_Battler
     #---------------------------------------------------------------------------
     magicCoater  = -1
     magicBouncer = -1
+    magicShielder = -1
     if targets.length == 0 && move.pbTarget(user).num_targets > 0 && !move.worksWithNoTargets?
       # def pbFindTargets should have found a target(s), but it didn't because
       # they were all fainted
@@ -287,7 +288,7 @@ class PokeBattle_Battler
           b.damageState.unaffected = true
         end
       end
-      # Magic Coat/Magic Bounce checks (for moves which don't target Pokémon)
+      # Magic Coat/Magic Bounce/Magic Shield checks (for moves which don't target Pokémon)
       if targets.length==0 && move.canMagicCoat?
         @battle.pbPriority(true).each do |b|
           next if b.fainted? || !b.opposes?(user)
@@ -296,10 +297,16 @@ class PokeBattle_Battler
             magicCoater = b.index
             b.effects[PBEffects::MagicCoat] = false
             break
-          elsif b.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker &&
-             !b.effects[PBEffects::MagicBounce]
+          elsif b.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker #&& !b.effects[PBEffects::MagicBounce]
             magicBouncer = b.index
             b.effects[PBEffects::MagicBounce] = true
+            break
+          elsif b.hasActiveAbility?(:MAGICSHIELD) && !@battle.moldBreaker
+            magicShielder = b.index
+            @battle.pbShowAbilitySplash(b)
+            @battle.pbDisplay(_INTL("{1} shielded its side from the {2}!",b.pbThis,move.name))
+            @battle.pbHideAbilitySplash(b)
+            user.lastMoveFailed = true
             break
           end
         end
@@ -334,28 +341,29 @@ class PokeBattle_Battler
       numHits *= 2 if user.effects[PBEffects::VolleyStance] && move.specialMove?
       # Process each hit in turn
       realNumHits = 0
-      for i in 0...numHits
-        break if magicCoater>=0 || magicBouncer>=0
-        success = pbProcessMoveHit(move,user,targets,i,skipAccuracyCheck,numHits > 1)
-        if !success
-          if i==0 && targets.length>0
-            hasFailed = false
-            targets.each do |t|
-              next if t.damageState.protected
-              hasFailed = t.damageState.unaffected
-              break if !t.damageState.unaffected
+      if magicCoater < 0 || magicBouncer < 0 || magicShielder < 0
+        for i in 0...numHits
+          success = pbProcessMoveHit(move,user,targets,i,skipAccuracyCheck,numHits > 1)
+          if !success
+            if i==0 && targets.length>0
+              hasFailed = false
+              targets.each do |t|
+                next if t.damageState.protected
+                hasFailed = t.damageState.unaffected
+                break if !t.damageState.unaffected
+              end
+              user.lastMoveFailed = hasFailed
             end
-            user.lastMoveFailed = hasFailed
+            break
           end
-          break
+          realNumHits += 1
+          break if user.fainted?
+          break if user.asleep?
+          # NOTE: If a multi-hit move becomes disabled partway through doing those
+          #       hits (e.g. by Cursed Body), the rest of the hits continue as
+          #       normal.
+          break if !targets.any? { |t| !t.fainted? }   # All targets are fainted
         end
-        realNumHits += 1
-        break if user.fainted?
-        break if user.asleep?
-        # NOTE: If a multi-hit move becomes disabled partway through doing those
-        #       hits (e.g. by Cursed Body), the rest of the hits continue as
-        #       normal.
-        break if !targets.any? { |t| !t.fainted? }   # All targets are fainted
       end
       # Battle Arena only - attack is successful
       @battle.successStates[user.index].useState = 2

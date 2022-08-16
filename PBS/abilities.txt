@@ -155,7 +155,7 @@
 153,MOXIE,Moxie,"Raises Attack after knocking out any Pokémon."
 154,HEARTOFJUSTICE,Heart of Justice,"Immune to Dark-type moves, and boosts Attack when hit by one."
 155,RATTLED,Rattled,"Some move types scare it and boost its Speed."
-156,MAGICBOUNCE,Magic Bounce,"Reflects status-changing moves."
+156,MAGICBOUNCE,Magic Bounce,"Reflects enemy status moves that target this Pokémon or its side of the field."
 157,SAPSIPPER,Sap Sipper,"Immune to Grass-type moves, and boosts Attack when hit by one."
 158,PRANKSTER,Prankster,"Gives priority to a status move."
 159,SANDFORCE,Sand Force,"Boosts the power of Rock-, Ground-, and Steel-type moves by 30% in sandstorm."
@@ -436,3 +436,4 @@
 1014,WEATHERSENSES,Weather Senses,"Takes 10% less move damage for each turn remaining on the current weather."
 1015,SECRETIONSECRET,Secretion Secret,"When an enemy hits this with a status move, they become poisoned."
 1016,DRAGONSLAYER,Dragon Slayer,"Immune to Dragon-type moves. Deals double damage to Dragon-types."
+1017,MAGICSHIELD,Magic Shield,"Negates enemy status moves that target this Pokémon or its side of the field."
