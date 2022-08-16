@@ -646,14 +646,14 @@ class PokemonPokedexInfo_Scene
             levelLabel = "E"
           end
           # Draw stat line
-		  moveName,moveColor,moveshadow = getFormattedMoveName(move)
+		  moveName,moveColor,moveShadow = getFormattedMoveName(move)
 		  if index == @scroll
 			moveColor = getSelectedColor(moveColor)
-			moveshadow = getSelectedColor(moveshadow)
+			moveShadow = getSelectedColor(moveShadow)
 			selected_move = move
 		  end
-		  drawTextEx(overlay,xLeft,60+30*displayIndex,450,1,levelLabel,moveColor,moveshadow)
-          drawFormattedTextEx(overlay,xLeft+30,60+30*displayIndex,450,moveName,moveColor,moveshadow)
+		  drawTextEx(overlay,xLeft,60+30*displayIndex,450,1,levelLabel,moveColor,moveShadow)
+          drawFormattedTextEx(overlay,xLeft+30,60+30*displayIndex,450,moveName,moveColor,moveShadow)
           displayIndex += 1
           break if displayIndex >= 10
         end
@@ -799,7 +799,7 @@ class PokemonPokedexInfo_Scene
 			moveName,moveColor,moveShadow = getFormattedMoveName(move)
 			if listIndex == @scroll
 				moveColor = getSelectedColor(moveColor)
-				moveshadow = getSelectedColor(moveshadow)
+				moveShadow = getSelectedColor(moveShadow)
 				selected_move = move
 			end
 			drawFormattedTextEx(overlay,xLeft,60+30*displayIndex,450,moveName,moveColor,moveShadow)
