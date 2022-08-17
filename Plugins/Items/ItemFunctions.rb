@@ -20,7 +20,7 @@ def pbItemBall(item,quantity=1)
     else
       pbMessage(_INTL("\\me[{1}]You found a \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname))
     end
-	showItemDescription(item)
+	  showItemDescription(item)
     pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
        itemname,pocket,PokemonBag.pocketNames()[pocket]))
     return true
@@ -80,7 +80,7 @@ def showItemDescription(item)
 	if !$PokemonGlobal.hadItemYet[item.id]
 		$PokemonGlobal.hadItemYet[item.id] = true
 		if $PokemonSystem.show_item_descriptions == 0
-			pbMessage(_INTL("\\cl\\l[4]\\op\\wu\\i[{1}]\\or{2}\\wt[30]",item.id,item.real_description))
+			pbMessage(_INTL("\\cl\\l[4]\\op\\wu\\i[{1}]\\or{2}\\wt[30]",item.id,item.description))
 		end
 	end
 end
