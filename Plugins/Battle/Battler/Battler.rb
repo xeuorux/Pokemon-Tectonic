@@ -269,7 +269,7 @@ class PokeBattle_Battler
         speedMult /= 2
         speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
       end
-      if poisoned?
+      if poisoned? && !hasActiveAbility?(:POISONHEAL)
         speedMult /= 2
         speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
       end
