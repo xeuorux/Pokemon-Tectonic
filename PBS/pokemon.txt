@@ -9838,7 +9838,9 @@ Incense = SEAINCENSE
 [299]
 Name = Nosepass
 InternalName = NOSEPASS
+Notes = Replace Electric coverage with Psychic
 Type1 = ROCK
+Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,45,95,30,55,100
 # Total = 375
