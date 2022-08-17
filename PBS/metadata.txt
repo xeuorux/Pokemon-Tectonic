@@ -1594,3 +1594,11 @@ Environment = Cave
 [315]
 # Ancient Antechamber
 MapPosition = 0,14,10
+#-------------------------------
+[316]
+# Sandstone Estuary
+Outdoor = true
+ShowArea = true
+Bicycle = true
+BattleBack = sand
+Environment = Sand
