@@ -11821,7 +11821,7 @@ Type1 = PSYCHIC
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 95,50,80,80,95,125
-# Total = 510
+# Total = 525
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 159
@@ -14283,7 +14283,7 @@ Type1 = PSYCHIC
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,40,60,60,75,95
-# Total = 320
+# Total = 405
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 57
