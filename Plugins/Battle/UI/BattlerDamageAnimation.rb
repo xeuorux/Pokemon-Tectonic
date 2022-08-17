@@ -55,13 +55,19 @@ class BattlerDamageAnimation < PokeBattle_Animation
 				framesForOpacity /= 4
 			end
 			
-			case @effectiveness
-			when 0      then effectivenessCategory = 0
-			when 0.25   then effectivenessCategory = 1
-			when 0.5 	then effectivenessCategory = 2
-			when 1 		then effectivenessCategory = 3
-			when 2 		then effectivenessCategory = 4
-			when 4 		then effectivenessCategory = 5
+			effectivenessCategory = 3
+			if @effectiveness <= 0
+				effectivenessCategory = 0
+			elsif @effectiveness < 0.5
+				effectivenessCategory = 1
+			elsif @effectiveness < 1
+				effectivenessCategory = 2
+			elsif @effectiveness < 2
+				effectivenessCategory = 3
+			elsif @effectiveness < 4
+				effectivenessCategory = 4
+			else
+				effectivenessCategory = 5
 			end
 			color = EFFECTIVENESS_COLORS[effectivenessCategory]
 			
