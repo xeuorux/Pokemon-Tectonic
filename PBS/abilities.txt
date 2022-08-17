@@ -89,7 +89,7 @@
 87,DRYSKIN,Dry Skin,"Reduces HP if it is hot. Water restores HP."
 88,DOWNLOAD,Download,"Boosts one Attacking stat according to a foe's defenses."
 89,IRONFIST,Iron Fist,"Boosts the power of punching moves by 30%."
-90,POISONHEAL,Poison Heal,"Restores 1/12th HP each turn if poisoned, and ignores Poison Sp. Atk. reduction."
+90,POISONHEAL,Poison Heal,"Restores 1/12th HP each turn if poisoned, and ignores Poison Speed reduction."
 91,ADAPTED,Adapted,"Powers up moves of the same type by 33%."
 92,SKILLLINK,Skill Link,"Maximizes the frequency of multi-strike moves."
 93,HYDRATION,Hydration,"Heals status problems each turn if it is raining."
