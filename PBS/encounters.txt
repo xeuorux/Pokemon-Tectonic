@@ -475,9 +475,10 @@ DarkCave,21
 #-------------------------------
 [185] # Eleig Stretch
 Land,21
-    34,MZANGOOSE,30,32
-    33,DEERLING,30,32
-    33,MSEVIPER,30,32
+    25,MZANGOOSE,30,32
+    25,DEERLING,30,32
+    25,MSEVIPER,30,32
+	25,STANTLER,30,32
 LandTall,21
     40,ESPURR,30,32
     20,EMOLGA,30,32
@@ -557,10 +558,6 @@ LandSparse,20
     25,DRILBUR,37,39
     25,HAWLUCHA,37,39
     25,SKARMORY,37,39
-Puddle,20
-    33,EISCUE,37,39
-    33,SEEL,37,39
-    33,STANTLER,37,39
 #-------------------------------
 [213] # Velenz Menagerie
 Land,20
@@ -807,7 +804,8 @@ ActiveWater,20
     20,TENTACOOL,37,39
     20,WAILMER,37,39
 LandSparse,20
-    25,CRABRAWLER,37,39
-    25,LAPRAS,37,39
-    25,PINCURCHIN,37,39
-    25,SEEL,37,39
+    20,CRABRAWLER,37,39
+    20,LAPRAS,37,39
+    20,PINCURCHIN,37,39
+    20,SEEL,37,39
+	20,EISCUE,37,39
