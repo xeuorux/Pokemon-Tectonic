@@ -625,18 +625,14 @@ class PokeBattle_Move
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE
     end
     
-    if @battle.bossBattle? && ret == 0
-      ret = 0.5
-      @battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!"))
-    end
     return ret
   end
   
-  def pbCalcTypeMod(moveType,user,target,allowIllusions=false)
+  def pbCalcTypeMod(moveType,user,target,uiOnlyCheck=false)
     return Effectiveness::NORMAL_EFFECTIVE if !moveType
     return Effectiveness::NORMAL_EFFECTIVE if moveType == :GROUND && target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL)
     # Determine types
-    tTypes = target.pbTypes(true,allowIllusions)
+    tTypes = target.pbTypes(true,uiOnlyCheck)
     # Get effectivenesses
     typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
     if moveType == :SHADOW
@@ -647,7 +643,12 @@ class PokeBattle_Move
       end
     else
       tTypes.each_with_index do |type,i|
-        typeMods[i] = pbCalcTypeModSingle(moveType,type,user,target)
+        newTypeMod = pbCalcTypeModSingle(moveType,type,user,target)
+        if @battle.bossBattle? && newTypeMod == 0
+          newTypeMod = 0.5
+          @battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!")) if !uiOnlyCheck
+        end
+        typeMods[i] = newTypeMod
       end
     end
     # Multiply all effectivenesses together
@@ -655,15 +656,11 @@ class PokeBattle_Move
     typeMods.each { |m| ret *= m }
 	
     # Late boss specific immunity abilities check
-    if @battle.bossBattle?
+    if !uiOnlyCheck && @battle.bossBattle? && damagingMove?
       if pbImmunityByAbility(user,target)
-        if damagingMove?
-          @battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
-        else
-          @battle.pbDisplay(_INTL("Except, within the avatar's aura, the move can pierce the immunity!"))
-        end
+        @battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
         ret /= 2
-      elsif damagingMove? && moveType == :GROUND && target.airborne? && !hitsFlyingTargets? && target.hasLevitate? && !@battle.moldBreaker
+      elsif moveType == :GROUND && target.airborne? && !hitsFlyingTargets? && target.hasLevitate? && !@battle.moldBreaker
         @battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
         ret /= 2
       end
