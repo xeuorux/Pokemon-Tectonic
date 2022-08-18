@@ -119,4 +119,6 @@ class Pokemon
     @spdef   = stats[:SPECIAL_DEFENSE]
     @speed   = stats[:SPEED]
   end
+
+  
 end
