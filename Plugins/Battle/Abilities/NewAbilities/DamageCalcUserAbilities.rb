@@ -145,7 +145,7 @@ BattleHandlers::DamageCalcUserAbility.add(:STORMFRONT,
 
 BattleHandlers::DamageCalcUserAbility.add(:STRATAGEM,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if type == :Rock
+    if type == :ROCK
       mults[:base_damage_multiplier] *= 1.5
     end
   }
@@ -232,5 +232,13 @@ BattleHandlers::DamageCalcUserAbility.add(:ERUDITE,
 BattleHandlers::DamageCalcUserAbility.add(:DRAGONSLAYER,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 2.0 if target.hasType?(:DRAGON)
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:PECKINGORDER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if type == :FLYING
+      mults[:base_damage_multiplier] *= 1.5
+    end
   }
 )

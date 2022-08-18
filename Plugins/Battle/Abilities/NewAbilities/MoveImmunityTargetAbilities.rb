@@ -58,3 +58,14 @@ BattleHandlers::MoveImmunityTargetAbility.add(:DRAGONSLAYER,
     next true
   }
 )
+
+BattleHandlers::MoveImmunityTargetAbility.add(:PECKINGORDER,
+  proc { |ability,user,target,move,type,battle|
+    next false if user.index==target.index
+    next false if type != :FLYING
+    battle.pbShowAbilitySplash(target)
+    battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+    battle.pbHideAbilitySplash(target)
+    next true
+  }
+)
