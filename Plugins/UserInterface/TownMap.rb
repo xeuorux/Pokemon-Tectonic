@@ -19,12 +19,12 @@ class PokemonRegionMap_Scene
     # Or the lowest parent map in the hierarchy, if possible
     playerpos = getDisplayedPositionOfGameMap($game_map.map_id)
 
-    if !playerpos
+    if playerpos.nil?
       mapindex = 0
       @map     = @mapdata[0]
       @mapX    = LEFT
       @mapY    = TOP
-    elsif @region>=0 && @region!=playerpos[0] && @mapdata[@region]
+    elsif @region >= 0 && @region != playerpos[0] && !@mapdata[@region].nil?
       mapindex = @region
       @map     = @mapdata[@region]
       @mapX    = LEFT
@@ -35,15 +35,17 @@ class PokemonRegionMap_Scene
       @mapX    = playerpos[1]
       @mapY    = playerpos[2]
       map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
-      mapsize = map_metadata.town_map_size
-      if mapsize && mapsize[0] && mapsize[0]>0
-        sqwidth  = mapsize[0]
-        sqheight = (mapsize[1].length*1.0/mapsize[0]).ceil
-        if sqwidth>1
-          @mapX += ($game_player.x*sqwidth/$game_map.width).floor
-        end
-        if sqheight>1
-          @mapY += ($game_player.y*sqheight/$game_map.height).floor
+      if !map_metadata.nil?
+        mapsize = map_metadata.town_map_size
+        if !mapsize.nil? && mapsize[0] && mapsize[0]>0
+          sqwidth  = mapsize[0]
+          sqheight = (mapsize[1].length*1.0/mapsize[0]).ceil
+          if sqwidth>1
+            @mapX += ($game_player.x*sqwidth/$game_map.width).floor
+          end
+          if sqheight>1
+            @mapY += ($game_player.y*sqheight/$game_map.height).floor
+          end
         end
       end
     end
