@@ -909,7 +909,7 @@
 845,HARDFEELINGS,Hard Feelings,07E,70,NORMAL,Special,100,15,0,NearOther,0,bef,"Doubles its power if the user has a status condition. Ignores frostbite Sp. Atk reduction.",
 846,SOULDRAIN,Soul Drain,52C,30,GHOST,Special,100,20,100,NearOther,0,bef,"The user absorbs the target's soul, lowering its Sp. Def and draining its life in the process.",NIGHTSHADE
 847,SHADOWPASS,Shadowpass,52D,40,DARK,Special,100,15,0,AllNearOthers,0,bce,"Darkness rolls over the field, damaging all other Pokémon, ending weather, and healing statuses.",
-848,MAJESTICGLARE,Majestic Glare,52B,70,DRAGON,Special,100,15,50,NearOther,0,bef,"50% chance to confuse or charm based on which of the target's attacking stats are higher.",FREEZINGGLARE
+848,MAJESTICGLARE,Majestic Glare,52B,70,DRAGON,Special,100,15,50,NearOther,0,bef,"50% chance to fluster or mystify based on which of the target's attacking stats are higher.",FREEZINGGLARE
 849,ECHOLOCATE,Echolocate,52E,0,FLYING,Status,0,15,0,AllNearFoes,0,cek,"Harshly lowers the target's Defense and evasion. This move can't miss and skips protections.",SUPERSONIC
 850,WINGSPANECLIPSE,Wingspan Eclipse,52F,0,DRAGON,Status,0,15,0,AllNearFoes,0,bce,"The Pokémon blots out the sky with huge wings, ending weather. It also lowers the opponent's Attack.",
 851,ALLERGY,Allergy,04D,70,BUG,Special,100,15,100,NearOther,0,bef,"The user makes the target have an allergic reaction. This harshly reduces its Speed.",
