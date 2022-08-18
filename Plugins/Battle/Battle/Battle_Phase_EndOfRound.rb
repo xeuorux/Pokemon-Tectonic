@@ -424,7 +424,7 @@ class PokeBattle_Battle
       next if !b.frostbitten?
 	    if b.hasActiveAbility?(:FROSTHEAL)
         if b.canHeal?
-          anim_name = GameData::Status.get(:FREEZE).animation
+          anim_name = GameData::Status.get(:FROSTBITE).animation
           pbCommonAnimation(anim_name, b) if anim_name
           recovery = b.totalhp/8
           recovery /= 4 if b.boss?
