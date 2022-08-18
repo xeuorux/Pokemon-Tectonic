@@ -1093,7 +1093,7 @@ end
           :name         => line_data[1],
           :version      => line_data[2] || 0,
           :pokemon      => [],
-		  :policies		=> []
+		      :policies		  => []
         }
         current_pkmn = nil
         trainer_names[trainer_id] = trainer_hash[:name]
@@ -1171,9 +1171,9 @@ end
             :species => property_value[0],
             :level   => property_value[1]
           }
-		  # The default ability index for a given species of a given trainer should be chaotic, but not random
-		  current_pkmn[:ability_index] = (trainer_hash[:name] + current_pkmn[:species].to_s).hash % 2
-		  trainer_hash[line_schema[0]].push(current_pkmn)
+          # The default ability index for a given species of a given trainer should be chaotic, but not random
+          current_pkmn[:ability_index] = (trainer_hash[:name] + current_pkmn[:species].to_s).hash % 2
+          trainer_hash[line_schema[0]].push(current_pkmn)
         else
           if !current_pkmn
             raise _INTL("Pokémon hasn't been defined yet!\r\n{1}", FileLineData.linereport)

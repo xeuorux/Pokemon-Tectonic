@@ -3720,3 +3720,6 @@ Pokemon = SAHARICANE,59
 Pokemon = KLAWSAR,58
     AbilityIndex = 0
     Item = LIFEORB
+#-------------------------------
+# [MASKEDVILLAIN,Crimson]
+# [MASKEDVILLAIN2,Teal]
