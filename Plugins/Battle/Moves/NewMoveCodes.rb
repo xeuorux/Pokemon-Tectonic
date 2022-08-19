@@ -1204,8 +1204,8 @@ class PokeBattle_Move_532 < PokeBattle_Move
 		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
 		statsRanked = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
 		statsRanked.sort_by { |s| user.stats[s].to_f * stageMul[user.stages[s]+6] / stageDiv[user.stages[s]+6] }
-		user.pbRaiseStatStageBasic(statsRanked[0],2)
-		user.pbRaiseStatStageBasic(statsRanked[1],1)
+		user.pbRaiseStatStage(statsRanked[0],2,user,true)
+		user.pbRaiseStatStage(statsRanked[1],1,user,false)
 	end
 	
 	def getScore(score,user,target,skill=100)
@@ -2721,6 +2721,42 @@ class PokeBattle_Move_583 < PokeBattle_Move
 		end
 		score += 20
 		score -= user.stages[:SPEED] * 20
+		return score
+	end
+end
+
+#===============================================================================
+# Raises the target's worst three stats by one stage. (Guiding Aroma)
+#===============================================================================
+class PokeBattle_Move_584 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		@statArray = []
+		GameData::Stat.each_battle do |s|
+		  @statArray.push(s.id) if target.pbCanRaiseStatStage?(s.id,user,self)
+		end
+		if @statArray.length==0
+		  @battle.pbDisplay(_INTL("{1}'s stats won't go any higher!",user.pbThis))
+		  return true
+		end
+		return false
+	end
+	
+	def pbEffectAgainstTarget(user,target)
+		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+		statsRanked = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+		statsRanked.sort_by { |s| user.stats[s].to_f * stageMul[user.stages[s]+6] / stageDiv[user.stages[s]+6] }
+		target.pbRaiseStatStage(statsRanked[0],1,user,true)
+		target.pbRaiseStatStage(statsRanked[1],1,user,true)
+		target.pbRaiseStatStage(statsRanked[2],1,user,true)
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score += 20 if user.turnCount == 0
+		stats = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+		stats.each do |s|
+			score -= target.stages[s] * 5
+		end
 		return score
 	end
 end

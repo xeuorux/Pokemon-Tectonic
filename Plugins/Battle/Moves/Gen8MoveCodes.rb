@@ -57,16 +57,15 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-	##echoln target.opposes?(user)
-	return 0 if target.opposes?(user)
-    failed = true
-	for i in 0...@statUp.length/2
-	  score -= target.stages[@statUp[i*2]] * 10
-      failed = false if target.pbCanRaiseStatStage?(@statUp[i*2],user,self)
-      break
-    end
-	score = 0 if failed
-	return score
+    return 0 if target.opposes?(user)
+      failed = true
+    for i in 0...@statUp.length/2
+      score -= target.stages[@statUp[i*2]] * 10
+        failed = false if target.pbCanRaiseStatStage?(@statUp[i*2],user,self)
+        break
+      end
+    score = 0 if failed
+    return score
   end
 end
 
