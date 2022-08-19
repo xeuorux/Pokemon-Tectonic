@@ -191,6 +191,12 @@ BattleHandlers::TargetAbilityOnHit.add(:ELECTRICFENCE,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:SANDBURST,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Sandstorm,battler,battle)
+	}
+)
+
 BattleHandlers::TargetAbilityOnHit.add(:INNERLIGHT,
 	proc { |ability,target,battler,move,battle|
 		pbBattleWeatherAbility(:Sun,battler,battle)
