@@ -129,12 +129,11 @@ class PokeBattle_Battler
   # (e.g. -1).
   def pbTypes(withType3=false,allowIllusions=false)
     # If the pokemon is disguised as another pokemon, fake its type bars
-		if allowIllusions && @effects[PBEffects::Illusion]
+		if allowIllusions && !@effects[PBEffects::Illusion].nil?
 			ret = @effects[PBEffects::Illusion].types
-    elsif !@pokemon.nil?
-      ret = @pokemon.types
     else
-      ret = []
+      ret = [@type1]
+      ret.push(@type2) if @type2!=@type1
 		end
     # Burn Up erases the Fire-type.
     ret.delete(:FIRE) if @effects[PBEffects::BurnUp]
