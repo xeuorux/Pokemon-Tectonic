@@ -2666,3 +2666,19 @@ class PokeBattle_Move_580 < PokeBattle_Move
 	end
     
 end
+#===============================================================================
+# Puts the target to sleep, the lowers the user's speed by 2 stages
+#===============================================================================
+class PokeBattle_Move_581 < PokeBattle_Move_003
+	def pbFailsAgainstTarget?(user,target)
+		return !target.pbCanSleep?(user,true,self,true)
+	end
+	def pbEffectAgainstTarget(user,target)
+		target.pbSleep
+		user.pbLowerStatStage(:SPEED,2,user)
+	end
+	def getScore(score,user,target,skill=100)
+		score = sleepMoveAI(score,user,target,skill=100)
+		return score
+	end
+end
