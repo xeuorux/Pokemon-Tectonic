@@ -432,6 +432,7 @@
 431,PECKINGORDER,Pecking Order,"Flying-type moves deal 50% more damage, and this is immune to Flying-type moves."
 432,BOULDERNEST,Boulder Nest,"If an attack lowers its HP to half or less, lays a trap of levitating stones around the attacker."
 433,FLYBY,Fly By,"Hits opponent with Gust when withdrawn from battle."
+434,ODDAURA,Odd Aura,"Transforms the field to Odd Room upon for 5 turns on entering the battle."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

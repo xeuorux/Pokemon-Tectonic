@@ -675,6 +675,9 @@ class PokeBattle_Battle
     # Puzzle Room
     pbEORCountDownFieldEffect(PBEffects::PuzzleRoom,
        _INTL("Puzzle Room wore off, and Attack and Sp. Atk stats returned to normal!"))
+	# Odd Room
+    pbEORCountDownFieldEffect(PBEffects::OddRoom,
+       _INTL("Odd Room wore off, and Offensive and Defensive stats returned to normal!"))
   end
 
   def processTriggersEOR(priority)

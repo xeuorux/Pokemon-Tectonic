@@ -59,4 +59,5 @@ module PBEffects
 	Fortune             = 13
 	NeutralizingGas     = 14
     PuzzleRoom          = 15
+	OddRoom				= 16
 end

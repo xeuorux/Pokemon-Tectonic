@@ -18,7 +18,8 @@ class PokeBattle_Battle
   
   def roomActive?
     return @field.effects[PBEffects::PuzzleRoom] || @field.effects[PBEffects::WonderRoom] ||
-        @field.effects[PBEffects::MagicRoom] || @field.effects[PBEffects::TrickRoom]
+        @field.effects[PBEffects::MagicRoom] || @field.effects[PBEffects::TrickRoom] ||
+		@field.effects[PBEffects::OddRoom]
   end
 	
   #=============================================================================

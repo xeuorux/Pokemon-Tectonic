@@ -195,3 +195,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:AQUASNEAK,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
+  proc { |ability,battler,battle|
+	if battle.field.effects[PBEffects::OddRoom] == 0
+		battle.pbShowAbilitySplash(battler)
+		battle.field.effects[PBEffects::OddRoom] = getRoomDuration(battler)
+		battle.pbDisplay(_INTL("{1}'s aura creates an odd area in which Pokémon's Offensive and Defensive stats are swapped!",battler.pbThis))
+		battle.pbHideAbilitySplash(battler)
+	end
+  }
+)

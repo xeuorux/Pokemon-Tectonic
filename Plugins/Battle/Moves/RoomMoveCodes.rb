@@ -89,3 +89,24 @@ class PokeBattle_Move_0F9 < PokeBattle_Move
       super
     end
 end
+
+#===============================================================================
+# For 5 rounds, swaps all battlers' offensive and defensive stats (Sp. Def <-> Sp. Atk / Def <-> Atk).
+# (Odd Room)
+#===============================================================================
+class PokeBattle_Move_582 < PokeBattle_Move
+    def pbEffectGeneral(user)
+      if @battle.field.effects[PBEffects::OddRoom]>0
+        @battle.field.effects[PBEffects::OddRoom] = 0
+        @battle.pbDisplay(_INTL("Odd Room wore off, and Offensive and Defensive stats returned to normal"))
+      else
+        @battle.field.effects[PBEffects::OddRoom] = getRoomDuration(user)
+        @battle.pbDisplay(_INTL("It created an odd area in which Pokémon's Offensive and Defensive stats are swapped!"))
+      end
+    end
+  
+    def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
+      return if @battle.field.effects[PBEffects::OddRoom]>0   # No animation
+      super
+    end
+end

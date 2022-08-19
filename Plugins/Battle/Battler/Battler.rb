@@ -3,16 +3,20 @@ class PokeBattle_Battler
   DEFENSIVE_LOCK_STAT = 95
 
 	def attack
-    if @battle.field.effects[PBEffects::PuzzleRoom] > 0
-      return sp_atk_no_room
-    else
-      return attack_no_room
-    end
+		if @battle.field.effects[PBEffects::PuzzleRoom] > 0
+		  return sp_atk_no_room
+		elsif @battle.field.effects[PBEffects::OddRoom] > 0
+		  return defense_no_room
+		else
+		  return attack_no_room
+		end
 	end
 	
 	def defense
 		if @battle.field.effects[PBEffects::WonderRoom] > 0
 			return sp_def_no_room
+		elsif @battle.field.effects[PBEffects::OddRoom] > 0
+			return attack_no_room
 		else
 			return defense_no_room
 		end
@@ -20,17 +24,21 @@ class PokeBattle_Battler
 	
 	def spatk
 		if @battle.field.effects[PBEffects::PuzzleRoom] > 0
-      return attack_no_room
-    else
-      return sp_atk_no_room
-    end
+		  return attack_no_room
+		elsif @battle.field.effects[PBEffects::OddRoom] > 0
+		  return sp_def_no_room
+		else
+		  return sp_atk_no_room
+		end
 	end
 	
 	def spdef
 		if @battle.field.effects[PBEffects::WonderRoom]>0
 			return defense_no_room
+		elsif @battle.field.effects[PBEffects::OddRoom] > 0
+		  return sp_atk_no_room
 		else
-			return sp_def_no_room
+		  return sp_def_no_room
 		end
 	end
 

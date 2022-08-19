@@ -1085,3 +1085,4 @@
 1021,SPECTRALTONGUE,Spectral Tongue,579,0,GHOST,Status,100,10,0,NearOther,0,abcef,"The user licks the target, numbing them, or cursing them if they're already numbed.",
 1022,VICIOUSCLEANING,Vicious Cleaning,580,80,NORMAL,Special,100,10,0,NearOther,0,be,"The user the flings dirty oil on its fur. If statused, it transfers it to the target.",ACIDSPRAY
 1023,SEDATINGDUST,Sedating Dust,581,0,BUG,Status,100,10,0,NearOther,0,bce,"The user spreads a soothing dust. It puts the target to sleep, but sharply reduces the user's Speed stat.",POISONPOWDER
+1024,ODDROOM,Odd Room,582,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates an odd area in which Pokémon's Offensive and Defensive stats are swapped.",MAGICROOM
