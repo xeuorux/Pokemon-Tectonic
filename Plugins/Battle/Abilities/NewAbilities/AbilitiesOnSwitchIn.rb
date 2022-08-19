@@ -206,3 +206,9 @@ BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
 	end
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:CONVICTION,
+  proc { |ability,battler,battle|
+    battle.forceUseMove(battler,:ENDURE,battler,true,nil,nil,true)
+  }
+)
