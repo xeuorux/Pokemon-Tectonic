@@ -2666,8 +2666,9 @@ class PokeBattle_Move_580 < PokeBattle_Move
 	end
     
 end
+
 #===============================================================================
-# Puts the target to sleep, the lowers the user's speed by 2 stages
+# Puts the target to sleep, then lowers the user's speed by 2 stages (Sedating Dust)
 #===============================================================================
 class PokeBattle_Move_581 < PokeBattle_Move_003
 	def pbFailsAgainstTarget?(user,target)
@@ -2679,6 +2680,47 @@ class PokeBattle_Move_581 < PokeBattle_Move_003
 	end
 	def getScore(score,user,target,skill=100)
 		score = sleepMoveAI(score,user,target,skill=100)
+		return score
+	end
+end
+
+#===============================================================================
+# Restores health by 33% and raises Speed by one stage. (Mulch Meal)
+#===============================================================================
+class PokeBattle_Move_583 < PokeBattle_Move
+	def healingMove?;       return true; end
+
+	def pbHealAmount(user)
+		return(user.totalhp/3.0).round
+	end
+  
+	def pbMoveFailed?(user,targets)
+	  if user.hp == user.totalhp && !user.pbCanRaiseStatStage?(:SPEED,user,self,true)
+		@battle.pbDisplay(_INTL("But it failed!",user.pbThis))
+		return true
+	  end
+	end
+  
+	def pbEffectGeneral(user)
+		if user.hp != user.totalhp
+			amt = pbHealAmount(user)
+			user.pbRecoverHP(amt)
+			@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+		end
+
+		if user.pbCanRaiseStatStage?(:SPEED,user,self,false)
+	  		user.pbRaiseStatStage(:SPEED,@statUp[1],user)
+		end
+	end
+
+	def getScore(score,user,target,skill=100)
+		if user.hp < user.totalhp / 2
+			score += 40
+		else
+			score -= 40
+		end
+		score += 20
+		score -= user.stages[:SPEED] * 20
 		return score
 	end
 end
