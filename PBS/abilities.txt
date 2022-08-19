@@ -430,6 +430,7 @@
 429,DRAGONSLAYER,Dragon Slayer,"Immune to Dragon-type moves. Deals double damage to Dragon-types."
 430,MAGICSHIELD,Magic Shield,"Negates enemy status moves that target this Pokémon or its side of the field."
 431,PECKINGORDER,Pecking Order,"Flying-type moves deal 50% more damage, and this is immune to Flying-type moves."
+432,BOULDERNEST,Boulder Nest,"If an attack lowers its HP to half or less, lays a trap of levitating stones around the attacker."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

@@ -122,14 +122,6 @@ BattleHandlers::AccuracyCalcUserAllyAbility.add(:OCULAR,
 #===============================================================================
 #other handlers
 #==============================================================================
-BattleHandlers::TargetAbilityAfterMoveUse.add(:ADRENALINERUSH,
-  proc { |ability,target,user,move,switched,battle|
-    next if !move.damagingMove?
-    next if target.damageState.initialHP<target.totalhp/2 || target.hp>=target.totalhp/2
-	target.pbRaiseStatStageByAbility(:SPEED,2,target) if target.pbCanRaiseStatStage?(:SPEED,target)
-  }
-)
-
 BattleHandlers::UserAbilityEndOfMove.add(:SCHADENFREUDE,
   proc { |ability,battler,targets,move,battle|
     numFainted = 0
@@ -289,24 +281,5 @@ BattleHandlers::AbilityOnStatLoss.add(:BELLIGERENT,
     next if user && !user.opposes?(battler)
     battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,2,battler)
 	  battler.pbRaiseStatStageByAbility(:ATTACK,2,battler)
-  }
-)
-
-BattleHandlers::TargetAbilityAfterMoveUse.add(:BRILLIANTFLURRY,
-  proc { |ability,target,user,move,switched,battle|
-    next if !move.damagingMove?
-    next if target.damageState.initialHP < target.totalhp/2 || target.hp >= target.totalhp/2
-    next if !user.pbCanLowerStatStage?(:ATTACK,target) && !user.pbCanLowerStatStage?(:SPECIAL_ATTACK,target) && !user.pbCanLowerStatStage?(:SPEED,target)
-    battle.pbShowAbilitySplash(target)
-    if user.pbCanLowerStatStage?(:ATTACK,target,nil,true)
-      user.pbLowerStatStage(:ATTACK,1,target)
-    end
-    if user.pbCanLowerStatStage?(:SPECIAL_ATTACK,target,nil,true)
-      user.pbLowerStatStage(:SPECIAL_ATTACK,1,target)
-    end
-    if user.pbCanLowerStatStage?(:SPEED,target,nil,true)
-      user.pbLowerStatStage(:SPEED,1,target)
-    end
-    battle.pbHideAbilitySplash(target)
   }
 )
