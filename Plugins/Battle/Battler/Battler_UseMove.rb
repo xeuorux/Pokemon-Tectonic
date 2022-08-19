@@ -715,4 +715,24 @@ class PokeBattle_Battler
 	  @effects[PBEffects::IceBall]   	   = 0
 	  @effects[PBEffects::RollOut]       = 0
   end
+
+  #=============================================================================
+  # Simple "use move" method, used when a move calls another move and for Future
+  # Sight's attack
+  #=============================================================================
+  def pbUseMoveSimple(moveID,target=-1,idxMove=-1,specialUsage=true)
+    choice = []
+    choice[0] = :UseMove   # "Use move"
+    choice[1] = idxMove    # Index of move to be used in user's moveset
+    if idxMove>=0
+      choice[2] = @moves[idxMove]
+    else
+      choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
+      choice[2].pp = -1
+    end
+    choice[3] = target     # Target (-1 means no target yet)
+    choice[4] = 0
+    PBDebug.log("[Move usage] #{pbThis} started using the called/simple move #{choice[2].name}")
+    pbUseMove(choice,specialUsage)
+  end
 end
