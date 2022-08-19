@@ -5,7 +5,7 @@ class PokeBattle_Battler
 	def attack
 		if @battle.field.effects[PBEffects::PuzzleRoom] > 0 && @battle.field.effects[PBEffects::OddRoom] > 0
 			return sp_def_no_room
-		elsif @battle.field.effects[PBEffects::PuzzleRoom > 0 && !(@battle.field.effects[PBEffects::OddRoom] > 0)
+		elsif @battle.field.effects[PBEffects::PuzzleRoom] > 0 && !(@battle.field.effects[PBEffects::OddRoom] > 0)
 			return sp_atk_no_room
 		elsif @battle.field.effects[PBEffects::OddRoom] > 0 && !(@battle.field.effects[PBEffects::PuzzleRoom] > 0)
 			return defense_no_room
@@ -31,7 +31,7 @@ class PokeBattle_Battler
 			return defense_no_room
 		elsif @battle.field.effects[PBEffects::PuzzleRoom] > 0 && !(@battle.field.effects[PBEffects::OddRoom] > 0)
 			return attack_no_room
-		elsif @battle.field.effects[PBEffects::OddRoom] > 0 !(@battle.field.effects[PBEffects::PuzzleRoom] > 0)
+		elsif @battle.field.effects[PBEffects::OddRoom] > 0 && !(@battle.field.effects[PBEffects::PuzzleRoom] > 0)
 			return sp_def_no_room
 		else
 			return sp_atk_no_room
