@@ -1203,7 +1203,7 @@ class PokeBattle_Move_532 < PokeBattle_Move
 		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
 		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
 		statsRanked = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
-		statsRanked.sort_by { |s| user.stats[s].to_f * stageMul[user.stages[s]+6] / stageDiv[user.stages[s]+6] }
+		statsRanked = statsRanked.sort_by { |s| user.plainStats[s].to_f * stageMul[user.stages[s]+6] / stageDiv[user.stages[s]+6] }
 		user.pbRaiseStatStage(statsRanked[0],2,user,true)
 		user.pbRaiseStatStage(statsRanked[1],1,user,false)
 	end
@@ -2709,7 +2709,7 @@ class PokeBattle_Move_583 < PokeBattle_Move
 		end
 
 		if user.pbCanRaiseStatStage?(:SPEED,user,self,false)
-	  		user.pbRaiseStatStage(:SPEED,@statUp[1],user)
+	  		user.pbRaiseStatStage(:SPEED,1,user)
 		end
 	end
 
@@ -2745,10 +2745,10 @@ class PokeBattle_Move_584 < PokeBattle_Move
 		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
 		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
 		statsRanked = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
-		statsRanked.sort_by { |s| user.stats[s].to_f * stageMul[user.stages[s]+6] / stageDiv[user.stages[s]+6] }
+		statsRanked = statsRanked.sort_by { |s| target.plainStats[s].to_f * stageMul[target.stages[s]+6] / stageDiv[target.stages[s]+6] }
 		target.pbRaiseStatStage(statsRanked[0],1,user,true)
-		target.pbRaiseStatStage(statsRanked[1],1,user,true)
-		target.pbRaiseStatStage(statsRanked[2],1,user,true)
+		target.pbRaiseStatStage(statsRanked[1],1,user,false)
+		target.pbRaiseStatStage(statsRanked[2],1,user,false)
 	end
 	
 	def getScore(score,user,target,skill=100)
@@ -2758,5 +2758,24 @@ class PokeBattle_Move_584 < PokeBattle_Move
 			score -= target.stages[s] * 5
 		end
 		return score
+	end
+end
+
+#===============================================================================
+# Raises the user's Sp. Atk, and the user's attacks become spread. (Flare Witch)
+#===============================================================================
+class PokeBattle_Move_585 < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+	  if user.effects[PBEffects::FlareWitch] && !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,true)
+		@battle.pbDisplay(_INTL("But it failed!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectGeneral(user)
+		user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+	  	user.effects[PBEffects::FlareWitch] = true
+	  	@battle.pbDisplay(_INTL("{1} breaks open its witch powers!",user.pbThis))
 	end
 end

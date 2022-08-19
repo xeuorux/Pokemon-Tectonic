@@ -45,6 +45,7 @@ module PBEffects
     GivingDragonRideTo  = 150
     OnDragonRide        = 151
     ShimmeringHeat      = 152
+    FlareWitch          = 153
 	
 	#===========================================================================
     # These effects apply to a side

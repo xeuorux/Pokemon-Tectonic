@@ -856,4 +856,13 @@ class PokeBattle_Move
     end
     pkmnScene.pbEndScene
   end
+
+  def pbTarget(user)
+    targetData = GameData::Target.get(@target)
+    if damagingMove? && targetData.can_target_one_foe? && user.effects[PBEffects::FlareWitch]
+      return GameData::Target.get(:AllNearFoes)
+    else
+      return targetData
+    end
+  end
 end

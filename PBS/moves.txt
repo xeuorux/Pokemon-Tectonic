@@ -1087,4 +1087,5 @@
 1023,SEDATINGDUST,Sedating Dust,581,0,BUG,Status,100,10,0,NearOther,0,bce,"The user spreads a soothing dust. It puts the target to sleep, but sharply reduces the user's Speed stat.",POISONPOWDER
 1024,ODDROOM,Odd Room,582,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates an odd area in which Pokémon's Offensive and Defensive stats are swapped.",MAGICROOM
 1025,MULCHMEAL,Mulch Meal,583,0,GRASS,Status,0,5,0,User,0,d,"The user eats decaying leaves, restoring its HP by 33% and raising its Speed.",RECOVER
-1026,GUIDINGAROMA,Decorate,584,0,BUG,Status,0,15,0,NearAlly,0,,"The user raises the target's three worst stats by using a helpful sweet scent.",AROMATICMIST
+1026,GUIDINGAROMA,Guiding Aroma,584,0,BUG,Status,0,15,0,NearAlly,0,,"The user raises the target's three worst stats by using a helpful sweet scent.",AROMATICMIST
+1027,FLAREWITCH,Flare Witch,585,0,FIRE,Status,0,10,0,User,0,d,"For the rest of the battle, the user's attacks spread to hit all nearby foes.",

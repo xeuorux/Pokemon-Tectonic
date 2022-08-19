@@ -372,6 +372,7 @@ class PokeBattle_Battler
 		@effects[PBEffects::OnDragonRide]    	 = false
 		@effects[PBEffects::GivingDragonRideTo]  = -1
 		@effects[PBEffects::ShimmeringHeat]		 = false
+		@effects[PBEffects::FlareWitch]		 = false
 		
 		@effects[PBEffects::EmpoweredEndure]     = 0
 		@effects[PBEffects::EmpoweredMoonlight]  = false
