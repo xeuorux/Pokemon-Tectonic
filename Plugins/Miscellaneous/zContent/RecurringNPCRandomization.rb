@@ -5,11 +5,19 @@ SaveData.register(:npc_randomization) do
 	new_game_value { NPCRandomization.new }
 end
 
+# Recurring NPC IDs
+# Imogene - 0
+# Alessa - 1
+# Skylar - 2
+# Keoni - 3
+# Eifion - 4 
+# Candy - 5
+
 class NPCRandomization
     attr_reader :chosenNPC1
     attr_reader :chosenNPC2
-    attr_reader :npc1Expelled
-    attr_reader :npc2Expelled
+    attr_reader :npc1Traitor
+    attr_reader :npc2Traitor
 
     def initialize
         @chosenNPC1 = Random.rand(6) # Random number between 0 and 5 inclusive
@@ -18,31 +26,31 @@ class NPCRandomization
             break if @chosenNPC2 != @chosenNPC1
         end
         echoln("The chosen random NPC ids are: #{@chosenNPC1} and #{chosenNPC2}")
-        @npc1Expelled = false
-        @npc2Expelled = false
+        @npc1Traitor = false
+        @npc2Traitor = false
     end
 
     def wasNPCIdSelected?(npcID)
         return @chosenNPC1 == npcID || @chosenNPC2 == npcID
     end
 
-    def expelNPC(npcID)
+    def traitorizeNPC(npcID)
         if @chosenNPC1 == npcID
-            @npc1Expelled = true
+            @npc1Traitor = true
         elsif @chosenNPC2 == npcID
-            @npc2Expelled = true
+            @npc2Traitor = true
         else
-            pbMessage(_INTL("The submitted NPC ID could not be expelled as it was not randomly selected on this playthrough: #{npcID}"))
+            pbMessage(_INTL("The submitted NPC ID could not be made traitor as it was not randomly selected on this playthrough: #{npcID}"))
             pbMessage(_INTL("This is a recoverable error. Please alert a programmer."))
         end
     end
 end
 
 # The ordering of the team versions in trainers.txt should be
-# NPC team 1, NPC team 1 cursed, NPC team 2, NPC team 2 cursed, etc.
+# NPC team 0, NPC team 0 cursed, NPC team 1, NPC team 1 cursed, etc.
 # [MASKEDVILLAIN,Crimson]
 # [MASKEDVILLAIN2,Teal]
-def randomNPCTrainerBattle(trainerClass,trainerIDs,isRandom1)
+def randomNPCTrainerBattle(isRandom1)
     trainerVersion = isRandom1 ? $npc_randomization.chosenNPC1 : $npc_randomization.chosenNPC2
     trainerVersion *= 2
     if $PokemonGlobal.tarot_amulet_active
@@ -55,12 +63,10 @@ def randomNPCTrainerBattle(trainerClass,trainerIDs,isRandom1)
     return pbTrainerBattle(trainerType,"Masked Villain",nil, false, trainerVersion)
 end
 
-def pbTrainerBattleCursed(nonCursedInfoArray, cursedInfoArray)
-	if $PokemonGlobal.tarot_amulet_active
-		id = cursedInfoArray[2] || 0
-		return pbTrainerBattle(cursedInfoArray[0], cursedInfoArray[1], nil, false, id)
-	else
-		id = nonCursedInfoArray[2] || 0
-		return pbTrainerBattle(nonCursedInfoArray[0], nonCursedInfoArray[1], nil, false, id)
-	end
+def fightVillainCrimson()
+    randomNPCTrainerBattle(true)
+end
+
+def fightVillainTeal()
+    randomNPCTrainerBattle(false)
 end
