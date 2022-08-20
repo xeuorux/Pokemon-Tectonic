@@ -1,4 +1,3 @@
-
 class FightMenuDisplay < BattleMenuBase
   attr_reader :extraInfoToggled
 
@@ -19,6 +18,7 @@ class FightMenuDisplay < BattleMenuBase
       @shiftBitmap   			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_shift"))
 	    #@extraReminderBitmap 		= AnimatedBitmap.new(_INTL("Graphics/Pictures/Rework/extra_info_reminder_bottomless"))
       @moveInfoDisplayBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/move_info_display"))
+      @ppUsageUpBitmap        = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/pp_usage_up"))
       # Create background graphic
       background = IconSprite.new(0,Graphics.height-96,viewport)
       background.setBitmap("Graphics/Pictures/Battle/overlay_fight")
@@ -115,6 +115,7 @@ class FightMenuDisplay < BattleMenuBase
     @shiftBitmap.dispose if @shiftBitmap
 	  #@extraReminderBitmap if @extraReminderBitmap
 	  @moveInfoDisplayBitmap.dispose if @moveInfoDisplayBitmap
+    @ppUsageUpBitmap.dispose if @ppUsageUpBitmap
   end
   
   def visible=(value)
@@ -129,6 +130,47 @@ class FightMenuDisplay < BattleMenuBase
     @sprites["moveInfoDisplay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
     @sprites["extraInfoOverlay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
     #@sprites["extraReminder"].visible = !@extraInfoToggled && @visible if @sprites["extraReminder"]
+  end
+
+  def refreshButtonNames
+    moves = (@battler) ? @battler.moves : []
+    if !USE_GRAPHICS
+      # Fill in command window
+      commands = []
+      for i in 0...[4, moves.length].max
+        commands.push((moves[i]) ? moves[i].name : "-")
+      end
+      @cmdWindow.commands = commands
+      return
+    end
+    # Draw move names onto overlay
+    @overlay.bitmap.clear
+    textPos = []
+    @buttons.each_with_index do |button,i|
+      next if !@visibility["button_#{i}"]
+      move = moves[i]
+      x = button.x-self.x+button.src_rect.width/2
+      y = button.y-self.y+2
+      moveNameBase = TEXT_BASE_COLOR
+      if move.type
+        # NOTE: This takes a colour from a particular pixel in the button
+        #       graphic and makes the move name's base colour that same colour.
+        #       The pixel is at coordinates 10,34 in the button box. If you
+        #       change the graphic, you may want to change/remove the below line
+        #       of code to ensure the font is an appropriate colour.
+        moveNameBase = button.bitmap.get_pixel(10,button.src_rect.y+34)
+      end
+      textPos.push([move.name,x,y,2,moveNameBase,TEXT_SHADOW_COLOR])
+    end
+    pbDrawTextPositions(@overlay.bitmap,textPos)
+    @buttons.each_with_index do |button,i|
+      next if !@visibility["button_#{i}"]
+      if @battler && @battler.lastMoveUsed && @battler.lastMoveUsed == moves[i].id && !@battler.lastMoveFailed
+        x = button.x-self.x+button.src_rect.width - 32
+        y = button.y-self.y+4
+        @overlay.bitmap.blt(x,y+2,@ppUsageUpBitmap.bitmap,Rect.new(0,0,@ppUsageUpBitmap.width,@ppUsageUpBitmap.height))
+      end
+    end
   end
 
   EFFECTIVENESS_SHADOW_COLOR = Color.new(160, 160, 168)

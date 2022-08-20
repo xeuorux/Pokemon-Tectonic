@@ -293,4 +293,17 @@ class PokeBattle_Battler
       end
     end
   end
+
+  def pbReducePP(move)
+    return true if usingMultiTurnAttack?
+    return true if move.pp < 0          # Don't reduce PP for special calls of moves
+    return true if move.total_pp <= 0   # Infinite PP, can always be used
+    return false if move.pp == 0        # Ran out of PP, couldn't reduce
+    reductionAmount = 1
+    if @lastMoveUsed && @lastMoveUsed == move.id && !@lastMoveFailed
+      reductionAmount = 3
+    end
+    pbSetPP(move,move.pp - reductionAmount) if move.pp > 0
+    return true
+  end
 end
