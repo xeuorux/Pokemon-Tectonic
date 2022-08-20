@@ -1040,8 +1040,8 @@
 976,MAELSTROM,Maelstrom,0CF,75,WATER,Special,100,15,0,NearOther,0,bef,"Traps foes in a huge swirling whirlpool for three turns.",WHIRLPOOL
 977,CRIMSONSTORM,Crimson Storm,0CF,75,FIRE,Special,100,15,0,NearOther,0,bef,"The target becomes trapped within a vast tempest of fire that rages for three turns.",FIRESPIN
 978,VINEBIND,Vinebind,0CF,45,GRASS,Physical,100,20,0,NearOther,0,abef,"Binds the foe with vines, trapping it for three turns.",GRASSKNOT
-979,BLACKOUT,Blackout,562,90,DARK,Special,100,15,0,NearOther,0,abefhp,"The user removes the energy and light around the target. Super effective vs Electric-types.",DARKVOID
-980,HOLLYCHARM,Holly Charm,563,90,GRASS,Special,100,15,0,NearOther,0,abefhp,"The user attacks the target with the power of a warding charm. Super effective vs Ghost-types.",MAGICALLEAF
+979,BLACKOUT,Blackout,562,90,DARK,Special,100,15,0,NearOther,0,bef,"The user removes the energy and light around the target. Super effective vs Electric-types.",DARKVOID
+980,HOLLYCHARM,Holly Charm,563,90,GRASS,Special,100,15,0,NearOther,0,bef,"The user attacks the target with the power of a warding charm. Super effective vs Ghost-types.",MAGICALLEAF
 981,MUTUAL,Mutual,537,55,FIGHTING,Physical,100,30,0,NearOther,0,abef,"The user grabs the target, slamming both of them into the ground. The user takes 20% recoil.",SUBMISSION
 982,BEDFELLOWS,Bedfellows,564,0,NORMAL,Status,0,5,0,NearFoe,0,bce,"The user and the target both take a restful sleep, fully restoring their HPs and healing any status conditions.",REST
 983,LOUNGE,Lounge,565,0,NORMAL,Status,0,5,0,User,-1,d,"The user lounges around with decadent laziness, restoring its HP by two/thirds of its maximum. This move always goes last.",SLACKOFF
@@ -1091,3 +1091,4 @@
 1027,FLAREWITCH,Flare Witch,585,0,FIRE,Status,0,10,0,User,0,d,"For the rest of the battle, the user's attacks spread to hit all nearby foes.",
 1028,BATTLETRANCE,Battle Trance,55F,120,FIGHTING,Physical,100,10,0,NearOther,0,abefh,"The user relentlessly combos and attacks for three turns. Critical hits land more easily.",
 1029,CRUELWHIPBLADE,Cruel Whipblade,585,30,GRASS,Physical,100,15,0,NearOther,0,abefp,"The user flicks its thorns, dealing damage and setting a layer of Poison Spikes.",
+1030,HONORLESSSTING,Honorless Sting,586,105,POISON,Physical,100,15,0,NearOther,0,abef,"The user uses venom that turns the target's body against it. Super effective vs Fighting-types.",POISONSTING

@@ -2825,3 +2825,12 @@ class PokeBattle_Move_585 < PokeBattle_Move
     end
 
 end
+#===============================================================================
+# Effectiveness against Fighting-type is 2x. (Honorless Sting)
+#===============================================================================
+class PokeBattle_Move_586 < PokeBattle_Move
+	def pbCalcTypeModSingle(moveType,defType,user,target)
+	  return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :FIGHTING
+	  return super
+	end
+end
