@@ -758,7 +758,7 @@ LandSparse,20
 [258] # Whitebloom Town
 Land,20
     25,BUNEARY,43,45
-    25,NICKIT,43,45
+    25,KRICKETOT,43,45
     25,PICHU,43,45
     25,ROOKIDEE,43,45
 #-------------------------------

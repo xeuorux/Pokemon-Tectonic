@@ -310,8 +310,8 @@ DMGMult = 1
 #-------------------------------
 [WAILORD]
 Ability = PRESSURE
-Moves = BODYPRESS,BODYSLAM,SELFDESTRUCT,SURF
-PostPrimeMoves = BODYPRESS,BODYSLAM,SELFDESTRUCT,SURF
+Moves = BODYSLAM,SURF,PRIMEVALHEALBELL
+PostPrimeMoves = SELFDESTRUCT
 Turns = 1
 HPMult = 10.0
 DMGMult = 1
@@ -914,5 +914,12 @@ Ability = ANALYTIC
 Moves = MAJESTICGLARE,BUBBLEBLAST,PRIMEVALDESTINYBOND
 PostPrimeMoves = SLUDGEWAVE,SPECTRALTHIEF
 Turns = 2
+HPMult = 4
+DMGMult = 1
+#-------------------------------
+[KRICKETUNE]
+Ability = FASCINATE
+Moves = BIDE
+Turns = 1
 HPMult = 4
 DMGMult = 1
