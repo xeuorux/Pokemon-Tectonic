@@ -943,7 +943,7 @@
 879,FURY,Fury,093,60,NORMAL,Physical,100,15,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle.",RAGE
 880,SPELLBIND,Spellbind,402,0,FAIRY,Status,100,10,0,NearOther,0,bce,"Mystifies the target by putting them under a magical spell.",
 881,BIRDSTRIKE,Bird Strike,0FA,90,FLYING,Physical,100,20,0,Other,0,abef,"A reckless, charge attack from the air. It also damages the user by 25% of the damage dealt.",BRAVEBIRD
-882,TERRAFORM,Terraform,538,70,ROCK,Special,100,15,0,AllNearOthers,0,bef,"Churns rocks throughout the area, dealing damage to all nearby Pokémon and removing any active terrain.",
+882,TERRAFORM,Terraform,538,70,ROCK,Special,100,15,0,AllNearOthers,0,bef,"Churns nearby rocks, dealing damage to nearby Pokémon and removing active terrain.",
 883,PREDICTIONSTRIKE,Prediction Strike,0A5,90,PSYCHIC,Physical,0,15,0,Other,0,abef,"The user perfectly predicts the target's future location, then strikes. It lands without fail.",ZENHEADBUTT
 884,RAKE,Rake,000,65,BUG,Physical,0,25,0,NearOther,0,abef,"The user rakes the target with sharp claws.",FURYCUTTER
 885,WATERSPIRAL,Water Spiral,16F,85,WATER,Special,100,15,0,NearOther,0,befn,"Fires a spiral of water at enemies, or a HP-restoring one at allies.",
