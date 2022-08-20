@@ -188,7 +188,7 @@ class FightMenuDisplay < BattleMenuBase
         when 4 			    then effectivenessCategory = 5
         end
 
-        effectivenessDescription = [_INTL("Ineffective"),_INTL("Barely"),_INTL("Not Very"),_INTL("Neutral"),_INTL("Super"),_INTL("Hyper"),_INTL("Hyper")][effectivenessCategory]
+        effectivenessDescription = [_INTL("No Effect"),_INTL("Barely"),_INTL("Not Very"),_INTL("Neutral"),_INTL("Super"),_INTL("Hyper"),_INTL("Hyper")][effectivenessCategory]
         effectivenessTextPos = [effectivenessDescription,effectivenessTextX,effectivenessTextY,2,
           EFFECTIVENESS_COLORS[effectivenessCategory],EFFECTIVENESS_SHADOW_COLOR]
       rescue
