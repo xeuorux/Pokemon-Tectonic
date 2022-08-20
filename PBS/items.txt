@@ -763,7 +763,7 @@
 734,TM142,TM142,TM142s,4,6000,"The user lets loose a horribly echoing shout with the power to inflict damage.",3,0,0,HYPERVOICE
 735,TM143,TM143,TM143s,4,16000,"The user attacks the target at full power. The attack's recoil harshly lowers the user's Sp. Atk stat.",3,0,0,OVERHEAT
 736,TM144,TM144,TM144s,4,4000,"The user absorbs a mystical power from space to raise its Defense and Sp. Def stats.",3,0,0,COSMICPOWER
-737,TM145,TM145,TM145s,4,50000,"",3,0,0,ODDROOM
+737,TM145,TM145,TM145s,4,50000,,3,0,0,ODDROOM
 738,TM146,TM146,TM146s,4,4000,"The user hardens its body's surface like iron, sharply raising its Defense stat.",3,0,0,IRONDEFENSE
 739,TM147,TM147,TM147s,4,6000,"The user slashes the target with huge sharp claws.",3,0,0,DRAGONCLAW
 740,TM148,TM148,TM148s,4,4000,"The user tenses its muscles to bulk up its body, raising both its Attack and Defense stats.",3,0,0,BULKUP
