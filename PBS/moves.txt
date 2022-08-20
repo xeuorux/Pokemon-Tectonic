@@ -628,7 +628,7 @@
 571,CROSSPOISON,Cross Poison,005,70,POISON,Physical,100,20,10,NearOther,0,abefhp,"A slashing attack with a poisonous blade that has a 20% chance to poison. Critical hits land more easily.",
 572,SLUDGE,Sludge,005,65,POISON,Special,100,20,30,NearOther,0,bef,"Unsanitary sludge is hurled at the target. It has a 30% chance to poison.",
 573,VENOSHOCK,Venoshock,07B,65,POISON,Special,100,10,0,NearOther,0,bef,"The user drenches the foe in a special poisonous liquid. Its power doubles if the target is poisoned.",
-574,CLEARSMOG,Clear Smog,050,50,POISON,Special,0,15,0,NearOther,0,bef,"The user attacks by throwing a clump of special mud. All of the target's stat changes are returned to normal.",
+574,CLEARSMOG,Clear Smog,050,50,POISON,Special,0,15,0,NearOther,0,bef,"The user attacks with a cloud of white smoke. All of the target's stat changes are returned to normal.",
 575,POISONFANG,Poison Fang,005,60,POISON,Physical,100,15,50,NearOther,0,abefi,"The user bites the target with toxic fangs with a 50% chance to poison.",
 576,POISONTAIL,Poison Tail,005,50,POISON,Physical,100,25,10,NearOther,0,abefh,"The user hits the target with its tail. It has a 10% chance to poison. Critical hits land more easily.",
 577,ACID,Acid,046,40,POISON,Special,100,30,10,AllNearFoes,0,bef,"The foe is attacked with a spray of harsh acid. It has a 10% chance to lower Sp. Def.",
@@ -646,7 +646,7 @@
 589,TOXICSPIKES,Toxic Spikes,104,0,POISON,Status,0,20,0,FoeSide,0,c,"The user lays a trap of poison spikes at the foe's feet. They poison foes that switch into battle.",
 590,TOXICTHREAD,Toxic Thread,159,0,POISON,Status,100,20,0,NearOther,0,bce,"The user shoots poisonous threads to poison the target and lower the target's Speed stat.",
 591,VENOMDRENCH,Venom Drench,140,0,POISON,Status,100,20,0,AllNearFoes,0,bc,"Foes are drenched in an odd liquid that lowers the Attack, Sp. Atk, and Speed of poisoned Pokémon.",
-592,CORROSIVEGAS,Corrosive Gas,201,0,POISON,Status,100,40,0,AllNearOthers,0,,"The user surrounds everything around it with highly acidic gas and melts away items they hold.",
+592,CORROSIVEGAS,Corrosive Gas,18F,0,POISON,Status,100,40,0,AllNearOthers,0,,"The user surrounds everything around it with highly acidic gas and melts away items they hold.",
 593,SHELLSIDEARM,Shell Side Arm,187,90,POISON,Special,100,10,25,NearOther,0,bef,"Inflicts physical or special damage, whichever will be more effective. This has a 25% chance to poison.",
 #-------------------------------
 594,PRISMATICLASER,Prismatic Laser,0C2,170,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user shoots powerful lasers using the power of a prism. The user can't move on the next turn.",
@@ -1092,3 +1092,5 @@
 1028,BATTLETRANCE,Battle Trance,55F,120,FIGHTING,Physical,100,10,0,NearOther,0,abefh,"The user relentlessly combos and attacks for three turns. Critical hits land more easily.",
 1029,CRUELWHIPBLADE,Cruel Whipblade,587,30,GRASS,Physical,100,15,0,NearOther,0,abefp,"The user flicks its thorns, dealing damage and setting a layer of Poison Spikes.",
 1030,HONORLESSSTING,Honorless Sting,586,105,POISON,Physical,100,15,0,NearOther,0,abef,"The user uses venom that turns the target's body against it. Super effective vs Fighting-types.",POISONSTING
+1031,MURKYFOG,Murky Fog,050,75,POISON,Special,0,10,0,NearOther,0,bef,"The user attacks with a pitch black fog. All of the target's stat changes are returned to normal.",
+1032,SLIMEBALL,Slimeball,18F,80,POISON,Special,100,15,0,AllNearOthers,0,bef,"The user attacks with cloying slime, rendering the target's item sticky and unusable.",

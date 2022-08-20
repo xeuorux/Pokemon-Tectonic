@@ -768,7 +768,7 @@ class PokeBattle_Move_18F < PokeBattle_Move
     return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
     itemName = target.itemName
     target.pbRemoveItem(false)
-    @battle.pbDisplay(_INTL("{1} dropped its {2}!",target.pbThis,itemName))
+    @battle.pbDisplay(_INTL("{1}'s {2} became unusuable, so it dropped it!",target.pbThis,itemName))
   end
 end
 
