@@ -859,7 +859,7 @@
 794,FLAREUP,Flare Up,50E,65,FIRE,Physical,100,10,0,NearOther,0,bef,"The user targets the opponents soft spots with a fiery strike. Its power doubles if the target is burned.",FIREPUNCH
 795,PERFUMEDPUNCH,Perfumed Punch,0A5,60,FAIRY,Physical,0,25,0,NearOther,0,abef,"The user throws a sweet-smelling punch which the target is unable to avoid.",SPIRITBREAK
 796,INFINITEFORCE,Infinite Force,50F,130,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user wields an exaggerated power to strike the target. Sharply reduces the user's Attack stat.",SPIRITBREAK
-797,TANTRUM,Tantrum,55F,120,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user goes on a wild tantrum for three turns.",THRASH
+797,TANTRUM,Tantrum,55F,120,FAIRY,Physical,100,10,0,RandomNearFoe,0,abef,"The user goes on a wild tantrum for three turns.",THRASH
 798,SLAG,Slag,005,80,STEEL,Special,100,10,30,NearOther,0,befn,"The user sprays mining waste at the target. It has a 30% chance to poison.",STEELBEAM
 799,MAGNETHRASH,Magnethrash,0A5,90,STEEL,Physical,0,15,0,NearOther,0,abef,"The user generates an intense magnetic connection between it and the target, striking it without fail.",METALCLAW
 800,MAGNETWAVE,Magnet Wave,402,40,STEEL,Special,100,35,10,NearOther,0,bef,"The target is hit by a wave of magnetic energy. It has a 10% chance to mystify.",
@@ -1089,3 +1089,4 @@
 1025,MULCHMEAL,Mulch Meal,583,0,GRASS,Status,0,5,0,User,0,d,"The user eats decaying leaves, restoring its HP by 33% and raising its Speed.",RECOVER
 1026,GUIDINGAROMA,Guiding Aroma,584,0,BUG,Status,0,15,0,NearAlly,0,,"The user raises the target's three worst stats by using a helpful sweet scent.",AROMATICMIST
 1027,FLAREWITCH,Flare Witch,585,0,FIRE,Status,0,10,0,User,0,d,"For the rest of the battle, the user's attacks spread to hit all nearby foes.",
+1028,BATTLETRANCE,Battle Trance,55F,120,FIGHTING,Physical,100,10,0,NearOther,0,abefh,"The user relentlessly combos and attacks for three turns. Critical hits land more easily.",
