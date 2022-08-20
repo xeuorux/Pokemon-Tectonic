@@ -192,7 +192,7 @@
 183,VACUUMWAVE,Vacuum Wave,000,40,FIGHTING,Special,100,30,0,NearOther,1,bef,"The user whirls its fists to send a wave of pure vacuum at the target. This move always goes first.",
 184,DOUBLEKICK,Double Kick,0BD,30,FIGHTING,Physical,100,30,0,NearOther,0,abef,"The target is quickly kicked twice in succession using both feet.",
 185,ARMTHRUST,Arm Thrust,0C0,15,FIGHTING,Physical,100,20,0,NearOther,0,abef,"The user looses a flurry of open-palmed arm thrusts that hit two to five times in a row.",
-186,TRIPLEKICK,Triple Kick,0BF,10,FIGHTING,Physical,90,10,0,NearOther,0,abef,"A consecutive three-kick attack that becomes more powerful with each successive hit.",
+186,TRIPLEKICK,Triple Kick,0BF,20,FIGHTING,Physical,100,10,0,NearOther,0,abef,"A consecutive three-kick attack that becomes more powerful with each successive hit.",
 187,COUNTER,Counter,071,1,FIGHTING,Physical,100,20,0,None,-5,abf,"A retaliation move that counters any physical attack, inflicting double the damage taken.",
 188,FINALGAMBIT,Final Gambit,000,1,FIGHTING,Special,100,5,0,NearOther,0,bf,"The user risks all to attack the foe. The user faints but does damage equal to its HP.",
 189,LOWKICK,Low Kick,09A,1,FIGHTING,Physical,100,20,0,NearOther,0,abef,"A powerful low kick that makes the foe fall over. It inflicts greater damage on heavier foes.",
