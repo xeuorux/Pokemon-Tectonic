@@ -1090,3 +1090,4 @@
 1026,GUIDINGAROMA,Guiding Aroma,584,0,BUG,Status,0,15,0,NearAlly,0,,"The user raises the target's three worst stats by using a helpful sweet scent.",AROMATICMIST
 1027,FLAREWITCH,Flare Witch,585,0,FIRE,Status,0,10,0,User,0,d,"For the rest of the battle, the user's attacks spread to hit all nearby foes.",
 1028,BATTLETRANCE,Battle Trance,55F,120,FIGHTING,Physical,100,10,0,NearOther,0,abefh,"The user relentlessly combos and attacks for three turns. Critical hits land more easily.",
+1029,CRUELWHIPBLADE,Cruel Whipblade,585,30,GRASS,Physical,100,15,0,NearOther,0,abefp,"The user flicks its thorns, dealing damage and setting a layer of Poison Spikes.",
