@@ -472,6 +472,8 @@ class BattleInfoDisplay < SpriteWrapper
 		"Volley Stance",
 		"Giving Dragon Ride",
 		"Riding Dragon",
+		"Shimmering Heat",
+		"Flare Witch",
 	][effectNumber] || ""
   end
   
@@ -506,6 +508,8 @@ class BattleInfoDisplay < SpriteWrapper
 			"Wonder Room",
 			"Fortune",
 			"Neutralizing Gas",
+			"Puzzle Room",
+			"Odd Room",
 		][effectNumber] || ""
 	end
 
