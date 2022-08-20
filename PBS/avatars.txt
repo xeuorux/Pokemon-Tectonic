@@ -916,3 +916,10 @@ PostPrimeMoves = SLUDGEWAVE,SPECTRALTHIEF
 Turns = 2
 HPMult = 4
 DMGMult = 1
+#-------------------------------
+[KRICKETUNE]
+Ability = FASCINATE
+Moves = BIDE
+Turns = 1
+HPMult = 4
+DMGMult = 1
