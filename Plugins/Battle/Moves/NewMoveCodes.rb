@@ -2628,43 +2628,34 @@ end
 # Transfers the user's status to the target (Vicious Cleaning)
 #===============================================================================
 class PokeBattle_Move_580 < PokeBattle_Move
-	msg = ""
 	def pbEffectAgainstTarget(user,target)
-		case user.status
-			when :SLEEP
-			  target.pbSleep
-			  user.pbCureStatus
-			  msg = _INTL("{1} woke up.",user.pbThis)
-			when :POISON
-			  target.pbPoison(user,nil,user.statusCount!=0)
-			  user.pbCureStatus
-			  msg = _INTL("{1} was cured of its poisoning.",user.pbThis)
-			when :BURN
-			  target.pbBurn(user)
-			  user.pbCureStatus
-			  msg = _INTL("{1}'s burn was healed.",user.pbThis)
-			when :PARALYSIS
-			  target.pbParalyze(user)
-			  user.pbCureStatus
-			  msg = _INTL("{1} was cured of paralysis.",user.pbThis)
-			when :FROSTBITE
-			  target.pbFrostbite
-			  user.pbCureStatus
-			  msg = _INTL("{1} was thawed out.",user.pbThis)
-			when :FLUSTERED
-			 target.pbMystify
-			 user.pbCureStatus
-			 msg = _INTL("{1} regained footing.",user.pbThis)
-			when :MYSTIFIED
-			 target.pbFluster
-			 user.pbCureStatus
-			 msg = _INTL("{1} broke their spell.",user.pbThis)
-		end
-		if msg!=""
-		  @battle.pbDisplay(msg)
+		user.getStatuses().each do |status|
+			next if status == :NONE
+			if target.pbCanInflictStatus?(status,user,false,self)
+				case status
+				when :SLEEP
+				target.pbSleep
+				when :POISON
+				target.pbPoison(user,nil,user.statusCount!=0)
+				when :BURN
+				target.pbBurn(user)
+				when :PARALYSIS
+				target.pbParalyze(user)
+				when :FROSTBITE
+				target.pbFrostbite
+				when :FLUSTERED
+				target.pbMystify
+				when :MYSTIFIED
+				target.pbFluster
+				end
+			else
+				statusData = GameData::Status.get(status)
+				@battle.pbDisplay(_INTL("{1} tries to transfer its {2} to {3}, but...",user.pbThis,statusData.real_name,target.pbThis(true)))
+				target.pbCanInflictStatus?(status,user,true,self)
+			end
+			user.pbCureStatus(status)
 		end
 	end
-    
 end
 
 #===============================================================================
@@ -2781,9 +2772,19 @@ class PokeBattle_Move_585 < PokeBattle_Move
 end
 
 #===============================================================================
+# Effectiveness against Fighting-type is 2x. (Honorless Sting)
+#===============================================================================
+class PokeBattle_Move_586 < PokeBattle_Move
+	def pbCalcTypeModSingle(moveType,defType,user,target)
+	  return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :FIGHTING
+	  return super
+	end
+end
+
+#===============================================================================
 # Damaging move that sets Poison Spikes. (Cruel Whipblade)
 #===============================================================================
-class PokeBattle_Move_585 < PokeBattle_Move
+class PokeBattle_Move_587 < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
 		return false if damagingMove?
 	end
@@ -2823,14 +2824,4 @@ class PokeBattle_Move_585 < PokeBattle_Move
         score += 10*@battle.pbAbleNonActiveCount(user.idxOwnSide)
         return score
     end
-
-end
-#===============================================================================
-# Effectiveness against Fighting-type is 2x. (Honorless Sting)
-#===============================================================================
-class PokeBattle_Move_586 < PokeBattle_Move
-	def pbCalcTypeModSingle(moveType,defType,user,target)
-	  return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :FIGHTING
-	  return super
-	end
 end
