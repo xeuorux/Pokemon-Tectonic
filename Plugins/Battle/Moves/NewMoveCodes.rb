@@ -2468,7 +2468,7 @@ class PokeBattle_Move_572 < PokeBattle_SleepMove
 		if target.flustered? || target.mystified? || target.burned? || target.frostbitten? || target.paralyzed? || target.poisoned?
 			target.pbCureStatus(false)
 			target.pbSleep
-			target.pbLowerStatStage(:DEFENSE,1,user)
+			user.pbRaiseStatStage(:ATTACK,1,user)
 		end
 	end
 	
