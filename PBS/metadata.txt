@@ -195,7 +195,7 @@ Environment = Grass
 # Bluepoint Grotto
 Outdoor = false
 ShowArea = true
-Bicycle = false
+Bicycle = true
 BicycleAlways = false
 Environment = Cave
 #-------------------------------

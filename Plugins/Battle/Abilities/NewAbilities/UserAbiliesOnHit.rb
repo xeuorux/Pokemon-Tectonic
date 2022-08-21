@@ -32,13 +32,13 @@ BattleHandlers::UserAbilityOnHit.add(:FROSTWINGS,
         battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
       end
       battle.pbHideAbilitySplash(target)
-    elsif target.pbCanFreeze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    elsif target.pbCanFrostbite?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} chilled {3}! {4}!",
+        msg = _INTL("{1}'s {2} frostbit {3}! {4}!",
            user.pbThis,user.abilityName,target.pbThis(true), CHILLED_EXPLANATION)
       end
-      target.pbFreeze(msg)
+      target.pbFrostbite(msg)
     end
     battle.pbHideAbilitySplash(user)
   }
@@ -122,12 +122,12 @@ BattleHandlers::UserAbilityOnHit.add(:CHILLOUT,
         battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
       end
       battle.pbHideAbilitySplash(target)
-    elsif target.pbCanFreeze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    elsif target.pbCanFrostbite?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} chilled {3}! {4}!",user.pbThis,user.abilityName,target.pbThis(true), CHILLED_EXPLANATION)
+        msg = _INTL("{1}'s {2} frostbit {3}! {4}!",user.pbThis,user.abilityName,target.pbThis(true), CHILLED_EXPLANATION)
       end
-      target.pbFreeze(msg)
+      target.pbFrostbite(msg)
     end
     battle.pbHideAbilitySplash(user)
 	}

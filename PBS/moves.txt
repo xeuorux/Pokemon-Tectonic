@@ -1092,7 +1092,7 @@
 1028,BATTLETRANCE,Battle Trance,55F,120,FIGHTING,Physical,100,10,0,NearOther,0,abefh,"The user relentlessly combos and attacks for three turns. Critical hits land more easily.",
 1029,CRUELWHIPBLADE,Cruel Whipblade,587,30,GRASS,Physical,100,15,0,NearOther,0,abefp,"The user flicks its thorns, dealing damage and setting a layer of Poison Spikes.",
 1030,HONORLESSSTING,Honorless Sting,586,105,POISON,Physical,100,15,0,NearOther,0,abef,"The user uses venom that turns the target's body against it. Super effective vs Fighting-types.",POISONSTING
-1031,MURKYFOG,Murky Fog,050,75,POISON,Special,0,10,0,NearOther,0,bef,"The user attacks with a pitch black fog. All of the target's stat changes are returned to normal.",
-1032,SLIMEBALL,Slimeball,18F,80,POISON,Special,100,15,0,AllNearOthers,0,bef,"The user attacks with cloying slime, rendering the target's item sticky and unusable.",
-1033,LEAFBLAST,Leaf Blast,03C,70,GRASS,Special,100,15,0,NearOther,0,befn,"The user sheds a part of it to attack. This lowers the user's Defenses.",
+1031,MURKYFOG,Murky Fog,050,75,POISON,Special,0,10,0,NearOther,0,bef,"The user attacks with a pitch black fog. All of the target's stat changes are returned to normal.",SMOKESCREEN
+1032,SLIMEBALL,Slimeball,18F,80,POISON,Special,100,15,0,AllNearOthers,0,bef,"The user attacks with cloying slime, rendering the target's item sticky and unusable.",SLUDGEBOMB
+1033,LEAFBLAST,Leaf Blast,03C,70,GRASS,Special,100,15,0,NearOther,0,befn,"The user sheds a part of it to attack. This lowers the user's Defenses.",LEAFTORNADO
 1034,INCISION,Incision,03E,65,DARK,Physical,100,15,0,NearOther,0,abefhp,"The user precisely cuts. Critical hits land more easily, but lowers the user's speed.",NIGHTSLASH
