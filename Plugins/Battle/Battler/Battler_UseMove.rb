@@ -423,6 +423,7 @@ class PokeBattle_Battler
       # Move-specific effects after all hits
       targets.each { |targetBattler|
         move.pbEffectAfterAllHits(user,targetBattler)
+        move.pbEffectOnNumHits(user,targetBattler,realNumHits)
         if targetBattler.effects[PBEffects::EmpoweredDestinyBond]
           next if targetBattler.damageState.unaffected
           next if !user.takesIndirectDamage?

@@ -6,6 +6,8 @@ class PokeBattle_Move
   
 	def pbAllMissed(user, targets); end
 
+  def pbEffectOnNumHits(user,target,numHits); end   # Move effects that occur after all hits, which base themselves on how many hits landed
+
   #=============================================================================
   # Animate the damage dealt, including lowering the HP
   #=============================================================================

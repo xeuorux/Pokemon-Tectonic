@@ -2717,7 +2717,7 @@ class PokeBattle_Move_583 < PokeBattle_Move
 end
 
 #===============================================================================
-# Raises the target's worst three stats by one stage. (Guiding Aroma)
+# Raises the target's worst three stats by one stage each. (Guiding Aroma)
 #===============================================================================
 class PokeBattle_Move_584 < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
@@ -2793,8 +2793,7 @@ class PokeBattle_Move_587 < PokeBattle_Move
 		user.pbOpposingSide.effects[PBEffects::ToxicSpikes] += 1
 		if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] > 2
 			user.pbOpposingSide.effects[PBEffects::ToxicSpikes] == 2
-			@battle.pbDisplay(_INTL("No new spikes were set since the opposing side already has two layers of poison spikes!"))
-			return false
+			return
 		end 
         if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] == 2
             @battle.pbDisplay(_INTL("The second layer of poison spikes were scattered all around {1}'s feet!",
@@ -2824,4 +2823,36 @@ class PokeBattle_Move_587 < PokeBattle_Move
         score += 10*@battle.pbAbleNonActiveCount(user.idxOwnSide)
         return score
     end
+end
+
+#===============================================================================
+# If it faints the target, you gain lots of money after the battle. (Plunder)
+#===============================================================================
+class PokeBattle_Move_588 < PokeBattle_Move
+	def pbEffectAfterAllHits(user,target)
+		return if !target.damageState.fainted
+		if user.pbOwnedByPlayer?
+			@battle.field.effects[PBEffects::PayDay] += 10*user.level
+		end
+		@battle.pbDisplay(_INTL("Coins fell out of {1}'s pockets!",target.pbThis(true)))
+	end
+end
+
+#===============================================================================
+# Attacks two to five times. Gains money for each hit. (Plunder)
+#===============================================================================
+class PokeBattle_Move_589 < PokeBattle_Move_0C0
+	def pbEffectOnNumHits(user,target,numHits)
+		return if !target.damageState.fainted
+		coinsGenerated = 2 * user.level * numHits
+		if user.pbOwnedByPlayer?
+			@battle.field.effects[PBEffects::PayDay] += coinsGenerated
+		end
+		@battle.pbDisplay(_INTL("{1} coins were scattered everywhere!",coinsGenerated))
+		if numHits == 5
+			@battle.pbDisplay(_INTL("How fortunate!",coinsGenerated))
+		elsif numHits == 0
+			@battle.pbDisplay(_INTL("How unfortunate! Better luck next time.",coinsGenerated))
+		end
+	end
 end
