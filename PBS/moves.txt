@@ -1074,7 +1074,7 @@
 1010,ROYALTRIBUTE,Royal Tribute,109,90,DARK,Special,100,20,0,NearOther,0,bef,"The user demands tribute from their subjects. Money is earned after battle.",
 1011,LONGFORTUNE,Long Fortune,109,90,DRAGON,Physical,100,20,0,NearOther,0,bef,"The target is unfortunate, but others will have good luck. Money is earned after battle.",
 1012,CHACHING,Cha-ching,109,90,NORMAL,Physical,100,20,0,NearOther,0,abef,"The user crashes with the full force of The Market. Money is earned after battle.",
-1013,LEYLINEBURST,Leyline Burst,573,110,PSYCHIC,Special,100,10,0,NearOther,0,bef,"Psychic energy is sent though an earthen conduit, erupting under the target. This move is both Psychic and Ground-type.",EARTHPOWER
+1013,LEYLINEBURST,Leyline Burst,573,110,PSYCHIC,Special,100,10,0,NearOther,0,bef,"Psychic energy is sent through an earthen conduit, erupting under the target. This move is both Psychic and Ground-type.",EARTHPOWER
 1014,HARDPLACE,Hard Place,000,574,ROCK,Physical,0,10,0,NearOther,0,abef,"The user slams the target into a nearby hard object. Increases power the higher the Defense of any ally.",HEADSMASH
 1015,DRAGONRIDE,Dragon Ride,575,0,DRAGON,Status,0,5,0,NearAlly,0,,"The user doubles the ally's Speed and Attack. If the user faints, the rider does too. The user cannot switch out.",COACHING
 1016,MAGMAROAR,Magma Roar,530,50,FIRE,Physical,0,40,0,User,0,d,"The user roar's with the force of a volcano, raising the Attack of itself and allies.",ROAR
@@ -1094,3 +1094,5 @@
 1030,HONORLESSSTING,Honorless Sting,586,105,POISON,Physical,100,15,0,NearOther,0,abef,"The user uses venom that turns the target's body against it. Super effective vs Fighting-types.",POISONSTING
 1031,MURKYFOG,Murky Fog,050,75,POISON,Special,0,10,0,NearOther,0,bef,"The user attacks with a pitch black fog. All of the target's stat changes are returned to normal.",
 1032,SLIMEBALL,Slimeball,18F,80,POISON,Special,100,15,0,AllNearOthers,0,bef,"The user attacks with cloying slime, rendering the target's item sticky and unusable.",
+1033,LEAFBLAST,Leaf Blast,03C,70,GRASS,Special,100,15,0,NearOther,0,befn,"The user sheds a part of it to attack. This lowers the user's Defenses.",
+1034,INCISION,Incision,03E,65,DARK,Physical,100,15,0,NearOther,0,abefhp,"The user precisely cuts. Critical hits land more easily, but lowers the user's speed.",NIGHTSLASH
