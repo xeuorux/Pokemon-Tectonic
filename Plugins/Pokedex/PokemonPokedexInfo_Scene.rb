@@ -1,7 +1,7 @@
 class PokemonPokedexInfo_Scene
 
-	SIGNATURE_COLOR = Color.new(71,115,28)
-	SIGNATURE_SHADOW = Color.new(180,197,161)
+	SIGNATURE_COLOR = Color.new(61,105,28)
+	SIGNATURE_SHADOW = Color.new(160,177,141)
 
   def pbStartScene(dexlist,index,region,battle=false,linksEnabled=false)
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
@@ -290,7 +290,10 @@ class PokemonPokedexInfo_Scene
         fSpecies = GameData::Species.get_species_form(@species,i[2])
         abilities = fSpecies.abilities
         #ability 1
-        drawTextEx(overlay,30,92,450,1,"Ability 1",base,shadow)
+		abilityTextX = 30
+		abilityIDLabelX = 380
+		ability1Y = 76
+		drawTextEx(overlay,abilityIDLabelX,ability1Y,450,1,"Ability 1",base,shadow)
         if (abilities[0])
 		  ability1 = GameData::Ability.get(abilities[0])
 		  abilityNameColor = base
@@ -299,13 +302,14 @@ class PokemonPokedexInfo_Scene
 			abilityNameColor = SIGNATURE_COLOR
 			abilityNameShadow = SIGNATURE_SHADOW
 		  end
-          drawTextEx(overlay,30,128,450,1,ability1.real_name,abilityNameColor,abilityNameShadow)
-          drawTextEx(overlay,30,160,450,2,ability1.real_description,base,shadow)
+          drawTextEx(overlay,abilityTextX,ability1Y,450,1,ability1.real_name,abilityNameColor,abilityNameShadow)
+          drawTextEx(overlay,abilityTextX,ability1Y + 32,450,3,ability1.real_description,base,shadow)
         else
-          drawTextEx(overlay,30,128,450,1,"None",base,shadow)
+          drawTextEx(overlay,abilityTextX,128,450,1,"None",base,shadow)
         end
         #ability 1
-        drawTextEx(overlay,30,92+142,450,1,"Ability 2",base,shadow)
+		ability2Y = 236
+        drawTextEx(overlay,abilityIDLabelX,ability2Y,450,1,"Ability 2",base,shadow)
         if (abilities[1])
           ability2 = GameData::Ability.get(abilities[1])
 		  abilityNameColor = base
@@ -314,10 +318,10 @@ class PokemonPokedexInfo_Scene
 			abilityNameColor = SIGNATURE_COLOR
 			abilityNameShadow = SIGNATURE_SHADOW
 		  end
-          drawTextEx(overlay,30,128+142,450,1,ability2.real_name,abilityNameColor,abilityNameShadow)
-          drawTextEx(overlay,30,160+142,450,2,ability2.real_description,base,shadow)
+          drawTextEx(overlay,abilityTextX,ability2Y,450,1,ability2.real_name,abilityNameColor,abilityNameShadow)
+          drawTextEx(overlay,abilityTextX,ability2Y + 32,450,3,ability2.real_description,base,shadow)
         else
-          drawTextEx(overlay,30,128+142,450,1,"None",base,shadow)
+          drawTextEx(overlay,abilityTextX,ability2Y,450,1,"None",base,shadow)
         end
       end
     end
