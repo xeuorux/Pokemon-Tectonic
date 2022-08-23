@@ -607,6 +607,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = true
+BattleBack = elite6
 #-------------------------------
 [105]
 # Southeast Sinkhole
@@ -627,6 +628,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = true
+BattleBack = elite6
 #-------------------------------
 [108]
 # Sinkhole House Yard
