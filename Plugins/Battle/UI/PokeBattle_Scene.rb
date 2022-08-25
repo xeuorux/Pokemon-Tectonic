@@ -320,75 +320,68 @@ class PokeBattle_Scene
 	totalBattlers = @battle.pbSideBattlerCount + @battle.pbOpposingBattlerCount
 	doRefresh = false
     loop do
-	  pbUpdate(cw)
-	  cw.refresh
-	  Graphics.update
+      pbUpdate(cw)
+      cw.refresh
+      Graphics.update
       if Input.trigger?(Input::B)
         pbPlayCancelSE
-		break
-	  elsif Input.trigger?(Input::UP) && cw.individual.nil?
-		cw.selected -= 1
-		if (cw.selected < 0)
-			cw.selected = totalBattlers - 1
-		end
-		pbPlayDecisionSE
-	  elsif Input.trigger?(Input::DOWN) && cw.individual.nil?
-		cw.selected += 1
-		if (cw.selected >= totalBattlers)
-			cw.selected = 0
-		end
-		pbPlayDecisionSE
-	  elsif Input.trigger?(Input::SPECIAL) && cw.individual.nil? && $DEBUG
-
-		for effect in 0..15 do
-			@battle.field.effects[effect] = true
-		end
-		for side in 0..1
-			for effect in 0..15 do
-				@battle.sides[side].effects[effect] = true
-			end
-		end
-=begin
-		for effect in 0..30 do
-			@battle.positions[0].effects[effect] = true
-		end
-		for effect in 0..150 do
-			@battle.battlers[0].effects[effect] = true
-		end
-=end
-		
-		@battle.battlers[0].effects[PBEffects::Illusion] = false
-		@battle.battlers[0].effects[PBEffects::ProtectRate] = false
-		pbPlayDecisionSE
-	  elsif Input.trigger?(Input::USE)
-		battler = nil
-		index = 0
-		selectedBattler = nil
-		@battle.eachSameSideBattler do |b|
-			if index == cw.selected
-				selectedBattler = b
-				pbPlayDecisionSE
-				break;
-			end
-			index += 1
-		end
-		if !selectedBattler
-			@battle.eachOtherSideBattler do |b|
-				if index == cw.selected
-					selectedBattler = b
-					pbPlayDecisionSE
-					break;
-				end
-				index += 1
-			end
-		end
-		if selectedBattler
-			cw.individual = selectedBattler
-			pbIndividualBattlerInfoMenu(cw)
-		end
+        break
+      elsif Input.trigger?(Input::UP) && cw.individual.nil?
+        cw.selected -= 1
+        if (cw.selected < 0)
+          cw.selected = totalBattlers - 1
+        end
+        pbPlayCursorSE
+      elsif Input.trigger?(Input::DOWN) && cw.individual.nil?
+        cw.selected += 1
+        if (cw.selected >= totalBattlers)
+          cw.selected = 0
+        end
+        pbPlayCursorSE
+      elsif Input.trigger?(Input::SPECIAL) && cw.individual.nil? && $DEBUG
+        #truthifyAllEffects()
+        
+        @battle.battlers[0].effects[PBEffects::Illusion] = false
+        @battle.battlers[0].effects[PBEffects::ProtectRate] = false
+        pbPlayDecisionSE
+      elsif Input.trigger?(Input::USE)
+        battler = nil
+        index = 0
+        selectedBattler = nil
+        @battle.eachSameSideBattler do |b|
+          if index == cw.selected
+            selectedBattler = b
+            pbPlayDecisionSE
+            break;
+          end
+          index += 1
+        end
+        if !selectedBattler
+          @battle.eachOtherSideBattler do |b|
+            if index == cw.selected
+              selectedBattler = b
+              pbPlayDecisionSE
+              break;
+            end
+            index += 1
+          end
+        end
+        if selectedBattler
+          cw.individual = selectedBattler
+          pbIndividualBattlerInfoMenu(cw)
+        end
       end
     end
-	cw.dispose
+	  cw.dispose
+  end
+
+  def truthifyAllEffects
+    for effect in 0..30 do
+      @battle.positions[0].effects[effect] = true
+    end
+    for effect in 0..150 do
+      @battle.battlers[0].effects[effect] = true
+    end
   end
   
   def pbIndividualBattlerInfoMenu(display)
