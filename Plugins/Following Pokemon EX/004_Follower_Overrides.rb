@@ -525,6 +525,7 @@ class DependentEvents
           passable = true if assumedTerrainTag.ice
           passable = true if defined?(assumedTerrainTag.rock_climbable) && assumedTerrainTag.rock_climbable
         end
+        passable = true if $PokemonGlobal.bridge > 0
 
         # If the tile isn't passable and the tile is a ledge,
         # get tile from further behind
