@@ -1,6 +1,8 @@
 # Store save file after load save file
 $storenamefilesave = nil
 
+DIR_SCREENSHOTS = "Screenshots"
+
 # Some methods for checking save file
 module FileSave
 	# Set name of folder
@@ -994,7 +996,8 @@ end
 def pbScreenCapture
   t = pbGetTimeNow
   filestart = t.strftime("[%Y-%m-%d] %H_%M_%S.%L")
-  capturefile = sprintf("Save Game/%s.png", filestart)
+  Dir.mkdir(DIR_SCREENSHOTS) if !safeExists?(DIR_SCREENSHOTS)
+  capturefile = sprintf("%s/%s.png", DIR_SCREENSHOTS, filestart)
   Graphics.screenshot(capturefile)
   pbSEPlay("Pkmn exp full") if FileTest.audio_exist?("Audio/SE/Pkmn exp full")
 end
