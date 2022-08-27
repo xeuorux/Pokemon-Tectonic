@@ -30456,8 +30456,8 @@ Name = Giganteon
 InternalName = GIGANTEON
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 120,100,100,100,60,100
-# Total = 580
+BaseStats = 120,90,90,80,70,100
+# Total = 550
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 184
