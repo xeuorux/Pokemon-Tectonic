@@ -55,7 +55,7 @@ def earnBadge(badgeNum)
 end
 
 def giveBattleReport()
-	pbMessage(_INTL("The Performance Analyzer whirs, then begins printing.",name))
+	pbMessage(_INTL("The Performance Analyzer whirs, then begins printing."))
 	pbReceiveItem(:BATTLEREPORT)
 end
 
