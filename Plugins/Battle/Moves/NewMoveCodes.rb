@@ -2644,9 +2644,9 @@ class PokeBattle_Move_580 < PokeBattle_Move
 				when :FROSTBITE
 				target.pbFrostbite
 				when :FLUSTERED
-				target.pbMystify
-				when :MYSTIFIED
 				target.pbFluster
+				when :MYSTIFIED
+				target.pbMystify
 				end
 			else
 				statusData = GameData::Status.get(status)
@@ -2839,7 +2839,7 @@ class PokeBattle_Move_588 < PokeBattle_Move
 end
 
 #===============================================================================
-# Attacks two to five times. Gains money for each hit. (Plunder)
+# Attacks two to five times. Gains money for each hit. (Sacred Lots)
 #===============================================================================
 class PokeBattle_Move_589 < PokeBattle_Move_0C0
 	def pbEffectOnNumHits(user,target,numHits)
@@ -2855,4 +2855,17 @@ class PokeBattle_Move_589 < PokeBattle_Move_0C0
 			@battle.pbDisplay(_INTL("How unfortunate! Better luck next time.",coinsGenerated))
 		end
 	end
+end
+
+#===============================================================================
+# Power is quintupled if the target is poisoned. (Vipershock)
+#===============================================================================
+class PokeBattle_Move_590 < PokeBattle_Move
+  def pbBaseDamage(baseDmg,user,target)
+    if target.poisoned? &&
+       (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
+      baseDmg *= 3
+    end
+    return baseDmg
+  end
 end

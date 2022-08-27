@@ -1096,3 +1096,4 @@
 1032,SLIMEBALL,Slimeball,18F,80,POISON,Special,100,15,0,AllNearOthers,0,bef,"The user attacks with cloying slime, rendering the target's item sticky and unusable.",SLUDGEBOMB
 1033,LEAFBLAST,Leaf Blast,03C,70,GRASS,Special,100,15,0,NearOther,0,befn,"The user sheds a part of it to attack. This lowers the user's Defenses.",LEAFTORNADO
 1034,INCISION,Incision,03E,65,DARK,Physical,100,15,0,NearOther,0,abefhp,"The user precisely cuts. Critical hits land more easily, but lowers the user's speed.",NIGHTSLASH
+1035,VIPERSHOCK,Vipershock,590,80,POISON,Physical,100,5,0,NearOther,0,abef,"The user finishes off its prey. Power is tripled against poisoned targets.",POISONFANG
