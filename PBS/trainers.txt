@@ -1550,49 +1550,47 @@ Pokemon = BEWEAR,55
     Moves = LEER,BODYSLAM
     AbilityIndex = 0
 #-------------------------------
-[COOLTRAINER_M2,Georgio]
-Pokemon = SCEPTILE,40
-    AbilityIndex = 0
-Pokemon = MACHAMP,40
-    AbilityIndex = 1
-    Item = FIGHTINGGEM
-Pokemon = BISHARP,40
-    AbilityIndex = 0
-Pokemon = BEARTIC,40
-    AbilityIndex = 1
-Pokemon = AROMATISSE,40
-    AbilityIndex = 1
-    Item = SITRUSBERRY
-#-------------------------------
 [BOARDER,Alex]
-Pokemon = ARCHEOPS,40
+Pokemon = HITMONTOP,35
     AbilityIndex = 0
-    Item = CHOICEBAND
-Pokemon = MORPEKO,40
+    Item = EJECTBUTTON
+Pokemon = NINJASK,35
     AbilityIndex = 0
-Pokemon = PELIPPER,40
-    AbilityIndex = 0
-Pokemon = GLACEON,40
+    Item = LIFEORB
+Pokemon = GMRMIME,35
     AbilityIndex = 1
-    Item = SITRUSBERRY
-Pokemon = TOXAPEX,40
+Pokemon = ARAICHU,35
+    AbilityIndex = 1
+Pokemon = GOLDUCK,35
+    AbilityIndex = 1
+#-------------------------------
+[JOGGER,Georgio]
+Pokemon = BISHARP,35
+    AbilityIndex = 1
+    Item = WEAKNESSPOLICY
+Pokemon = GWEEZING,35
+    AbilityIndex = 0
+Pokemon = AEXEGGUTOR,35
+    AbilityIndex = 0
+Pokemon = SNORLAX,35
+    AbilityIndex = 0
+    Item = LEFTOVERS
+Pokemon = BEAUTIFLY,35
     AbilityIndex = 0
 #-------------------------------
 [TWINS2,Bella and Meghan]
-Pokemon = EISCUE,40
+Pokemon = EXCADRILL,35
+    AbilityIndex = 1
+Pokemon = SIGILYPH,35
+    AbilityIndex = 1
+    Item = LIGHTCLAY
+Pokemon = ARAQUANID,35
+    AbilityIndex = 1
+Pokemon = GSLOWKING,35
     AbilityIndex = 0
-Pokemon = SIGILYPH,40
+    Item = SALACBERRY
+Pokemon = TANGROWTH,35
     AbilityIndex = 1
-Pokemon = ARAQUANID,40
-    AbilityIndex = 1
-Pokemon = CINCCINO,40
-    AbilityIndex = 1
-    Item = LEFTOVERS
-Pokemon = EXCADRILL,40
-    AbilityIndex = 1
-Pokemon = STONJOURNER,40
-    AbilityIndex = 1
-    Item = SITRUSBERRY
 #-------------------------------
 [PICNICKER,Magdalena]
 Pokemon = SYLVEON,40
