@@ -760,7 +760,7 @@ BattleBack = cave1
 Environment = Volcano
 #-------------------------------
 [126]
-# Sun Cave
+# Vibrant Cave
 Outdoor = false
 ShowArea = false
 Bicycle = false

@@ -366,7 +366,7 @@ Special,20
     1,TIRTOUGA,10
     1,TYRUNT,10
 #-------------------------------
-[126] # Sun Cave
+[126] # Vibrant Cave
 LandSparse,20
     34,DUNSPARCE,18,20
     33,JOLTIK,18,20

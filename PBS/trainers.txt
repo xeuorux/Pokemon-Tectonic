@@ -1443,78 +1443,110 @@ Pokemon = MUNNA,30
     AbilityIndex = 0
 #-------------------------------
 [POKEMANIAC,Nikos]
-Pokemon = CHARIZARD,40
-    AbilityIndex = 0
-Pokemon = INDEEDEE,40
-    AbilityIndex = 1
-    Item = SITRUSBERRY
-Pokemon = WEAVILE,40
-    AbilityIndex = 1
-Pokemon = LEAFEON,40
+Pokemon = LEAFEON,35
     AbilityIndex = 1
     Item = GRASSGEM
-Pokemon = SHARPEDO,40
+Pokemon = WEAVILE,35
     AbilityIndex = 1
+Pokemon = HYPNO,35
+    AbilityIndex = 1
+Pokemon = GUMSHOOS,35
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+Pokemon = ALTARIA,35
+    AbilityIndex = 0
 #-------------------------------
 [ROUGHNECK,Randall]
-Pokemon = CROBAT,40
+Pokemon = GLACEON,35
+    AbilityIndex = 1
+Pokemon = OCTILLERY,35
+    AbilityIndex = 1
+Pokemon = CROBAT,35
     AbilityIndex = 0
     Item = FLYINGGEM
-Pokemon = VILEPLUME,40
+Pokemon = SHIFTRY,35
     AbilityIndex = 1
-Pokemon = OCTILLERY,40
-    AbilityIndex = 1
-Pokemon = SPIRITOMB,40
-    AbilityIndex = 1
-Pokemon = MAGMORTAR,40
+Pokemon = STEELIX,35
     AbilityIndex = 0
     Item = SITRUSBERRY
 #-------------------------------
 [BURGLAR,Keith]
-Pokemon = ROSERADE,40
-    AbilityIndex = 0
-    Item = LIFEORB
-Pokemon = CRABOMINABLE,40
-    AbilityIndex = 0
-Pokemon = MAGNEZONE,40
+Pokemon = PRIMEAPE,35
+    AbilityIndex = 1
+Pokemon = ASANDSLASH,35
+    AbilityIndex = 1
+Pokemon = AGOLEM,35
     AbilityIndex = 0
     Item = SITRUSBERRY
-Pokemon = EXEGGUTOR,40
+Pokemon = EXEGGUTOR,35
     AbilityIndex = 0
-Pokemon = MANDIBUZZ,40
+Pokemon = MANDIBUZZ,35
     AbilityIndex = 0
     Item = LEFTOVERS
 #-------------------------------
 [DRAGONTAMER,Georgius]
-Pokemon = DRUDDIGON,40
-    Moves = FLAMETHROWER,TORNADO
+Pokemon = DRUDDIGON,25
+    Moves = STANDTOGETHER,CRIPPLINGBREATH
     AbilityIndex = 0
-Pokemon = NOIVERN,40
-    Moves = DRAGONPULSE,AIRSLASH
+Pokemon = NOIBAT,25
+    Moves = MEGADRAIN,BOREALWIND
     AbilityIndex = 1
-Pokemon = TYRANTRUM,40
-    Moves = GRANITEHEAD,DRAGONCLAW
+Pokemon = TYRUNT,25
+    Moves = GRANITEHEAD,LASHOUT
     AbilityIndex = 1
 #-------------------------------
 [SAGE,Rennyo]
-Pokemon = GARDEVOIR,40
+Pokemon = KIRLIA,25
     Moves = LIFEDEW,HELPINGHAND
     AbilityIndex = 0
-Pokemon = XATU,40
+Pokemon = NATU,25
     Moves = HEALPULSE,HELPINGHAND
     AbilityIndex = 0
-Pokemon = DELIBIRD,40
-    Moves = TAILWIND,PACKAGE
+Pokemon = DELIBIRD,25
+    Moves = TAILWIND,AURORABEAM
     AbilityIndex = 1
 #-------------------------------
 [HARLEQUIN,Vincenzi]
-Pokemon = LEAVANNY,40
-    Moves = STRINGSHOT,LEAFBLADE
+Pokemon = SWADLOON,25
+    Moves = STRINGSHOT,RAZORLEAF
     AbilityIndex = 0
-Pokemon = PRIMARINA,40
+Pokemon = POPPLIO,25
     Moves = GROWL,SPARKLINGARIA
     AbilityIndex = 0
-Pokemon = BEWEAR,40
+Pokemon = STUFFUL,25
+    Moves = LEER,PUMMEL
+    AbilityIndex = 0
+#-------------------------------
+[DRAGONTAMER,Georgius,1]
+Pokemon = DRUDDIGON,55
+    Moves = STANDTOGETHER,FLAMETHROWER
+    AbilityIndex = 0
+Pokemon = NOIVERN,55
+    Moves = GIGADRAIN,AIRSLASH
+    AbilityIndex = 1
+Pokemon = TYRANTRUM,55
+    Moves = BEDROCKBREAKER,CRUNCH
+    AbilityIndex = 1
+#-------------------------------
+[SAGE,Rennyo,1]
+Pokemon = GARDEVOIR,55
+    Moves = LIFEDEW,HELPINGHAND
+    AbilityIndex = 0
+Pokemon = XATU,55
+    Moves = HEALPULSE,HELPINGHAND
+    AbilityIndex = 0
+Pokemon = DELIBIRD,55
+    Moves = TAILWIND,PACKAGE
+    AbilityIndex = 1
+#-------------------------------
+[HARLEQUIN,Vincenzi,1]
+Pokemon = LEAVANNY,55
+    Moves = STRINGSHOT,LEAFBLADE
+    AbilityIndex = 0
+Pokemon = PRIMARINA,55
+    Moves = GROWL,SPARKLINGARIA
+    AbilityIndex = 0
+Pokemon = BEWEAR,55
     Moves = LEER,BODYSLAM
     AbilityIndex = 0
 #-------------------------------
@@ -3724,9 +3756,11 @@ Pokemon = KLAWSAR,58
 [POKEMONTRAINER_Yezera,Yezera,9]
 Pokemon = REGIDRAGO,65
     Moves = DRAGONENERGY,DRAGONBLOOD,HAMMERARM,CRUNCH
+    AbilityIndex = 1
     Item = DRAGONGEM
 Pokemon = REGIELEKI,65
     Moves = ELECTROWEB,ELECTROBALL,LIGHTSCREEN,REFLECT
+    AbilityIndex = 0
     Item = FOCUSSASH
 Pokemon = TOGEKISS,65
     Name = Artemisia
