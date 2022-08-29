@@ -52,6 +52,10 @@ class PokEstate
 		return $game_map.map_id == FALLBACK_MAP_ID || ESTATE_MAP_IDS.include?($game_map.map_id)
 	end
 
+	def estateFirstVisit()
+		transferToEstate(0,0)
+	end
+
 	def transferToEstate(boxNum = 0,entrance=-1)
 		@estate_box = boxNum
 		background = $PokemonStorage[boxNum].background
@@ -350,7 +354,7 @@ class PokEstate
 		firstPage.graphic.character_name = caretakerSprite
 		firstPage.trigger = 0 # Action button
 		firstPage.list = []
-		push_text(firstPage.list,"Hello, I am the caretaker of this plot.")
+		push_text(firstPage.list,"Welcome back to the PokÉstate, young master.")
 		push_script(firstPage.list,sprintf("$PokEstate.careTakerInteraction()",))
 		firstPage.list.push(RPG::EventCommand.new(0,0,[]))
 		

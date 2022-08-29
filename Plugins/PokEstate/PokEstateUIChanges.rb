@@ -214,13 +214,19 @@ def pbPokeCenterPC
     pbMessage(_INTL("\\se[PC open]The Pokémon Storage System was opened."))
     command = 0
     loop do
-        commands = [_INTL("Organize Boxes"),
-            _INTL("Withdraw Pokémon"),
-            _INTL("Deposit Pokémon"),
-            _INTL("Visit PokÉstate"),
-            _INTL("Log Out")]
+        commands = []
+        organizeCommand = -1
+        widthdrawCommand = -1
+        depositCommand = -1
+        visitEstateCommand = -1
+        logOutCommand = -1
+        commands[organizeCommand = commands.length] = _INTL("Organize Boxes") 
+        commands[widthdrawCommand = commands.length] = _INTL("Withdraw Pokémon") 
+        commands[depositCommand = commands.length] = _INTL("Deposit Pokémon") 
+        commands[visitEstateCommand = commands.length] = _INTL("Visit PokÉstate") if !$game_switches[ESTATE_DISABLED_SWITCH]
+        commands[logOutCommand = commands.length] = _INTL("Log Out") 
         command = pbShowCommands(nil,commands,-1)
-        if command>=0 && command<3
+        if command == organizeCommand || command == widthdrawCommand || command == depositCommand
             if command==1   # Withdraw
                 if $PokemonStorage.party_full?
                     pbMessage(_INTL("Your party is full!"))
@@ -241,7 +247,7 @@ def pbPokeCenterPC
                 screen = PokemonStorageScreen.new(scene,$PokemonStorage)
                 return if screen.pbStartScreen(command)
             }
-        elsif command == 3 # Estate
+        elsif visitEstateCommand != -1 && command == visitEstateCommand
             break if $PokEstate.transferToEstateOfChoice()
         else
             break
