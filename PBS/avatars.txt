@@ -3,7 +3,6 @@
 [COMBEE]
 Ability = HONEYGATHER
 Moves1 = HELPINGHAND,TACKLE
-Turns = 2
 HPMult = 3.0
 #-------------------------------
 [VIGOROTH]
@@ -20,7 +19,7 @@ Turns = 1
 HPMult = 10.0
 #-------------------------------
 [ZERAORA]
-Ability = QUICKFEET
+Ability = VOLTABSORB
 Moves1 = THUNDERPUNCH,PRIMEVALTAILWIND
 Moves2 = AERIALACE,PRIMEVALBULKUP
 Moves3 = FORCEPALM
@@ -91,7 +90,7 @@ HPMult = 6.0
 DMGResist = 0.3
 #-------------------------------
 [GENGAR]
-Ability = SUDDENCHILL
+Ability = CHILLOUT
 Moves1 = SHADOWBALL,ACIDSPRAY,PRIMEVALHAIL
 Moves2 = ICEBEAM,LEAPOUT
 HPMult = 4.0
@@ -159,7 +158,7 @@ HPMult = 4.0
 Item = WISEGLASSES
 #-------------------------------
 [LINOONE]
-Ability = SCAVENGE
+Ability = GLUTTONY
 Moves1 = HEADBUTT,STEAMROLLER,COVET,PRIMEVALRAINDANCE
 Moves2 = SPATTERINGRAM,WILDCHARGE
 HPMult = 4.0
@@ -209,7 +208,7 @@ Item = REDORB
 DMGResist = 0.3
 #-------------------------------
 [MAGNEZONE]
-Ability = LEVITATE
+Ability = NOGUARD
 Moves1 = FLASHCANNON,LOCKON,ZAPCANNON
 Turns = 3
 HPMult = 3.0
@@ -234,7 +233,7 @@ HPMult = 4.5
 Item = LAGGINGTAIL
 #-------------------------------
 [SKARMORY]
-Ability = SOUNDPROOF
+Ability = MENTALBLOCK
 Moves1 = SPIKES,STEELWING,PRIMEVALWHIRLWIND
 Moves2 = DUALWINGBEAT,COLDFRONT
 HPMult = 4.0
@@ -339,7 +338,7 @@ Moves2 = MEGADRAIN,DISCHARGE
 HPMult = 4.0
 #-------------------------------
 [ELECTRODE]
-Ability = SOUNDPROOF
+Ability = BUNKERDOWN
 Moves1 = DISCHARGE,PRIMEVALSTRINGSHOT
 Moves2 = SIGNALBEAM
 HPMult = 4.0
@@ -376,7 +375,7 @@ Moves2 = FIRELASH,DARKPULSE,PRIMEVALFLAREBLITZ
 HPMult = 4.0
 #-------------------------------
 [KLINKLANG]
-Ability = CLEARBODY
+Ability = FULLMETALBODY
 Moves1 = MIRRORSHOT,DISCHARGE,PRIMEVALMETEORMASH,PRIMEVALLASERFOCUS
 Moves2 = GEARGRIND,WILDCHARGE
 HPMult = 4.0
@@ -539,7 +538,7 @@ HPMult = 5.0
 Item = POWERHERB
 #-------------------------------
 [FLORGES]
-Ability = AUDACITY
+Ability = CLOVERSONG
 Moves1 = DRAININGKISS,PETALBLIZZARD,PRIMEVALGASTROACID
 Moves2 = ACIDBATH,BLOSSOM
 HPMult = 5.0
@@ -642,7 +641,7 @@ Moves2 = INFERNO,MINDWARP
 HPMult = 4.5
 #-------------------------------
 [AMOONGUSS]
-Ability = MERCILESS
+Ability = REGENERATOR
 Moves1 = POISONGAS,GIGADRAIN,PRIMEVALSUNNYDAY
 Moves2 = FLAMETHROWER,GROWTH
 HPMult = 4.5
