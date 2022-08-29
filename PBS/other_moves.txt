@@ -55,13 +55,14 @@
 3022,PRIMEVALELECTRICTERRAIN,Primeval Electric Terrain,622,0,ELECTRIC,Status,0,1,0,BothSides,0,,"Sets Electric Terrain, charges up next Electric-type move, and user becomes Electric-type.",ELECTRICTERRAIN
 3023,PRIMEVALFAIRYTERRAIN,Primeval Fairy Terrain,623,0,FAIRY,Status,0,1,0,BothSides,0,,"Sets Fairy Terrain, buffs all the attacking and defending stats of all allies, and user becomes Fairy-type.",FAIRYTERRAIN
 3024,PRIMEVALPSYCHICTERRAIN,Primeval Psychic Terrain,624,0,PSYCHIC,Status,0,1,0,BothSides,0,,"Sets Psychic Terrain, drastically raises Accuracy, and user becomes Psychic-type.",PSYCHICTERRAIN
-3025,PRIMEVALHEALORDER,Primeval Heal Order,625,0,BUG,Status,0,1,0,User,0,d,"The user regains up to half of its max HP, summons an allied Combee, and becomes Bug-type",HEALORDER
+3025,PRIMEVALHEALORDER,Primeval Heal Order,625,0,BUG,Status,0,1,0,User,0,d,"The user restores 1/8th of its HP, summons an allied Combee, and becomes Bug-type",HEALORDER
 3026,PRIMEVALGASTROACID,Primeval Gastro Acid,626,0,POISON,Status,100,1,0,AllNearFoes,0,bce,"The user negates all enemy abilities, reduces their Sp. Def, and becomes Poison-type.",GASTROACID
 3027,PRIMEVALROCKPOLISH,Primeval Rock Polish,627,0,ROCK,Status,0,1,0,User,0,d,"The sharply raises its speed, gains an extra two moves per turn, and becomes Rock-type.",ROCKPOLISH
 3028,PRIMEVALWHIRLWIND,Primeval Whirlwind,628,0,FLYING,Status,0,1,0,AllNearFoes,-6,ce,"All near foes are forced to switch out, and the user becomes Flying-type.",WHIRLWIND
 3029,PRIMEVALEMBARGO,Primeval Embargo,629,0,DARK,Status,100,1,0,FoeSide,0,bce,"The enemy side is prevented from using items for the rest of the battle, and the user becomes Dark-type.",EMBARGO
 3030,PRIMEVALCHILL,Primeval Chill,630,0,ICE,Status,100,1,0,AllNearFoes,0,be,"The user inflicts frostbite on all nearby foes. User becomes an Ice-type.",CHILL
 3031,PRIMEVALDESTINYBOND,Primeval Destiny Bond,631,0,GHOST,Status,0,1,0,User,0,,"Attackers against the user suffer recoil for the rest of the battle. User becomes a Ghost-type.",DESTINYBOND
+3032,PRIMEVALSHOREUP,Primeval Shore Up,632,0,GROUND,Status,0,1,0,User,0,d,"The user restores 1/8th of its HP, TODO, and becomes Ground-type.",
 3036,PRIMEVALMETEORMASH,Primeval Meteor Mash,636,160,STEEL,Physical,100,10,100,NearOther,0,abefj,"The target is obliterated by a meteoric strike, which raises the user's attack.",METEORMASH
 3037,PRIMEVALICEBEAM,Primeval Ice Beam,637,160,ICE,Special,100,10,100,NearOther,0,bef,"The target is struck with an absolute zero beam of energy, frostbiting it.",ICEBEAM
 3038,PRIMEVALROCKTOMB,Primeval Rock Tomb,638,90,ROCK,Physical,100,10,100,AllNearFoes,0,bef,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
