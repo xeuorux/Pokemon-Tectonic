@@ -44,7 +44,7 @@ def earnBadge(badgeNum)
 		badgesEarnedArray.push(hasBadge)
 	end
 	
-	Events.onBadgeEarned.trigger(self,badgeNum-1,totalBadges,badgesEarnedArray,newLevelCap)
+	Events.onBadgeEarned.trigger(self,badgeNum-1,totalBadges,badgesEarnedArray)
 	
 	# Update the total badge count
 	$game_variables[BADGE_COUNT_VARIABLE] = totalBadges
