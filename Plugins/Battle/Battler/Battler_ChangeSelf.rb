@@ -304,7 +304,7 @@ class PokeBattle_Battler
       reductionAmount = 3
     end
     newPPAmount = [move.pp - reductionAmount,0].max
-    pbSetPP(move,newPPAmount) if move.pp > 0
+    pbSetPP(move,newPPAmount)
     return true
   end
 end
