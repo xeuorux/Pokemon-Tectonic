@@ -150,7 +150,7 @@ class PokeBattle_Battle
 		    reduction = b.totalhp/16
 		    reduction *= 2 if !pbCheckGlobalAbility(:SHRAPNELSTORM).nil?
 		    reduction /= 4 if b.boss?
-		    b.damageState.displayedDamage = reduction
+		    b.damageState.displayedDamage = reduction.round
 		    @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
@@ -161,7 +161,7 @@ class PokeBattle_Battle
         reduction = b.totalhp/16
 	    	reduction *= 2 if !pbCheckGlobalAbility(:BITTERCOLD).nil?
 		    reduction /= 4 if b.boss?
-		    b.damageState.displayedDamage = reduction
+		    b.damageState.displayedDamage = reduction.round
 		    @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
@@ -171,7 +171,7 @@ class PokeBattle_Battle
         pbDisplay(_INTL("{1} is hurt by the shadow sky!",b.pbThis))
         reduction = b.totalhp/16
 		    reduction /= 4 if b.boss?
-		    b.damageState.displayedDamage = reduction
+		    b.damageState.displayedDamage = reduction.round
 		    @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
@@ -181,7 +181,7 @@ class PokeBattle_Battle
           pbDisplay(_INTL("{1} is hurt by the acid rain!",b.pbThis))
           reduction = b.totalhp/16
           reduction /= 4 if b.boss?
-          b.damageState.displayedDamage = reduction
+          b.damageState.displayedDamage = reduction.round
           @scene.pbDamageAnimation(b)
           b.pbReduceHP(reduction,false)
           b.pbItemHPHealCheck
@@ -305,7 +305,7 @@ class PokeBattle_Battle
         oldHP = b.hp
 		    reduction = b.totalhp/8
 		    reduction /= 4 if b.boss?
-		    b.damageState.displayedDamage = reduction
+		    b.damageState.displayedDamage = reduction.round
         @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         pbDisplay(_INTL("{1} is hurt by the sea of fire!",b.pbThis))
@@ -338,7 +338,7 @@ class PokeBattle_Battle
       next if !b.inHyperMode? || @choices[b.index][0]!=:UseMove
       reduction = b.totalhp/24
 	    reduction /= 4 if b.boss?
-	    b.damageState.displayedDamage = reduction
+	    b.damageState.displayedDamage = reduction.round
       @scene.pbDamageAnimation(b)
       b.pbReduceHP(reduction,false)
       pbDisplay(_INTL("The Hyper Mode attack hurts {1}!",b.pbThis(true)))
@@ -580,7 +580,7 @@ class PokeBattle_Battle
             hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/4 : b.totalhp/8
           end
 		      hpLoss = (hpLoss/4.0).floor if b.boss
-		      b.damageState.displayedDamage = hpLoss
+		      b.damageState.displayedDamage = hpLoss.round
           @scene.pbDamageAnimation(b)
           b.pbReduceHP(hpLoss,false)
           pbDisplay(_INTL("{1} is hurt by {2}!",b.pbThis,moveName))
