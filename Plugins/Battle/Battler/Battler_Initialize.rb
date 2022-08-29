@@ -1,6 +1,6 @@
 class PokeBattle_Battler
 	attr_accessor 	:boss
-	attr_accessor 	:empowered
+	attr_accessor 	:avatarPhase
 	attr_accessor	:extraMovesPerTurn
 	attr_reader 	:bossStatus
 	attr_reader 	:bossStatusCount
@@ -26,7 +26,7 @@ class PokeBattle_Battler
 	end
 	
 	def empowered?
-		return empowered
+		return @avatarPhase > 1
 	end
 
 	def extraMovesPerTurn
@@ -208,7 +208,7 @@ class PokeBattle_Battler
 		@lastRoundMoveFailed   = false
 		@movesUsed             = []
 		@turnCount             = 0
-		@empowered			   = false
+		@avatarPhase		   = 1
 		@primevalTimer		   = 0
 		@extraMovesPerTurn	   = 0
 		@indexesTargetedThisTurn   = []

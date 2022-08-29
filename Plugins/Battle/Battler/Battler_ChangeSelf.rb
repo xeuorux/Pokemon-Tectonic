@@ -303,7 +303,8 @@ class PokeBattle_Battler
     if @lastMoveUsed && @lastMoveUsed == move.id && !@lastMoveFailed
       reductionAmount = 3
     end
-    pbSetPP(move,move.pp - reductionAmount) if move.pp > 0
+    newPPAmount = [move.pp - reductionAmount,0].max
+    pbSetPP(move,newPPAmount) if move.pp > 0
     return true
   end
 end

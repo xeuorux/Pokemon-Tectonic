@@ -132,7 +132,7 @@ def setAvatarProperties(pkmn)
 	pkmn.forced_form = avatar_data.form if avatar_data.form != 0
 
 	pkmn.forget_all_moves()
-	avatar_data.moves.each do |move|
+	avatar_data.moves1.each do |move|
 		pkmn.learn_move(move)
 	end
 	

@@ -465,6 +465,23 @@ class PokeBattle_Move_631 < PokeBattle_Move
 	end
 end
 
+# Empowered Shore Up
+class PokeBattle_Move_632 < PokeBattle_Move
+	include EmpoweredMove
+	
+	def healingMove?;       return true; end
+	
+	def pbEffectGeneral(user)
+
+		# TODO
+
+		user.pbRecoverHP((user.totalhp/8.0).round)
+		@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+		
+		transformType(user,:GROUND)
+	end
+end
+
 ########################################################
 ### DAMAGING MOVES
 ########################################################
