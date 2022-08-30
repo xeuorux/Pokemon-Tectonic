@@ -1,7 +1,8 @@
 class AbilitySplashBar < SpriteWrapper
     SPECIES_ICON_SRC_Y = 8
     SPECIES_ICON_SRC_HEIGHT = 76
-    SPECIES_ICON_X_POS = 0
+    SPECIES_ICON_X_POS_OWN = 180
+    SPECIES_ICON_X_POS_ENEMY = 12
     SPECIES_ICON_Y_POS = 0
     SPECIES_IRON_OPACITY_MULT = 0.6 # Between 0 and 1, 1 meaning fully opaque
 
@@ -48,7 +49,11 @@ class AbilitySplashBar < SpriteWrapper
     def x=(value)
         super
         @bgSprite.x = value
-        @speciesIcon.x = value + SPECIES_ICON_X_POS
+        offset = 0
+        if !@battler.nil?
+            offset = @battler.opposes? ? SPECIES_ICON_X_POS_ENEMY : SPECIES_ICON_X_POS_OWN
+        end
+        @speciesIcon.x = value + offset
     end
 
     def y=(value)
