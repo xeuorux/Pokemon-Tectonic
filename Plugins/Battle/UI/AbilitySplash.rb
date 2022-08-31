@@ -43,6 +43,9 @@ class AbilitySplashBar < SpriteWrapper
         @speciesIcon.src_rect.y = SPECIES_ICON_SRC_Y
         @speciesIcon.src_rect.height = SPECIES_ICON_SRC_HEIGHT
         @speciesIcon.src_rect.width = @speciesIcon.bitmap.width / 2
+        if !@battler.opposes?
+            @speciesIcon.mirror = true
+        end
         refresh
     end
 
