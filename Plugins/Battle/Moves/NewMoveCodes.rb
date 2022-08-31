@@ -2860,7 +2860,7 @@ end
 #===============================================================================
 # Power is tripled if the target is poisoned. (Vipershock)
 #===============================================================================
-class PokeBattle_Move_590 < PokeBattle_Move
+class PokeBattle_Move_58A < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
     if target.poisoned? &&
        (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
@@ -2871,13 +2871,25 @@ class PokeBattle_Move_590 < PokeBattle_Move
 end
 
 #===============================================================================
-# Counts as a use of Rollout, Iceball, or Furycutter. (Rollout)
+# Counts as a use of Rollout, Iceball, or Furycutter. (On A Roll)
 #===============================================================================
-class PokeBattle_Move_591 < PokeBattle_Move
+class PokeBattle_Move_58B < PokeBattle_Move
 	def pbChangeUsageCounters(user,specialUsage)
 		super
 		user.effects[PBEffects::FuryCutter]	= 1
 		user.effects[PBEffects::IceBall]	= 1
   		user.effects[PBEffects::RollOut]	= 1
+	end
+end
+
+#===============================================================================
+# The user's Speed raises two stages, and it gains the Flying-type. (Mach Flight)
+#===============================================================================
+class PokeBattle_Move_58C < PokeBattle_Move_030
+	def pbEffectGeneral(user)
+		super
+		user.effects[PBEffects::Type3] = :FLYING
+    	typeName = GameData::Type.get(:FLYING).name
+    	@battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
 	end
 end
