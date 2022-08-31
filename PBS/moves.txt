@@ -918,7 +918,7 @@
 854,TORRENTBLADE,Torrent Blade,000,90,WATER,Physical,100,15,0,NearOther,0,abefhp,"The user uses a jet of water like a sword and attacks by slashing. Critical hits land more easily.",RAZORSHELL
 855,STAREDOWN,Stare Down,535,100,DARK,Special,100,5,0,NearOther,2,bef,"Stares harshly, dealing double damage if they hurt the user this turn. Only usable on the first turn.",FREEZINGGLARE
 856,INURE,Inure,531,0,ICE,Status,0,10,0,UserSide,0,d,"The user inures themselves to a harsh environment, shedding their type weaknesses.",
-857,BREAKDANCE,Breakdance,532,0,FIGHTING,Status,0,20,0,User,0,do,"The user breakdances, sharply boosting its weakest stat and boosting its second weakest stat.",
+857,BREAKDANCE,Breakdance,532,0,FIGHTING,Status,0,20,0,User,0,do,"The user improvises a dance, sharply raising its weakest stat, and raising its second weakest stat.",
 858,SHIVERDANCE,Shiver Dance,525,0,ICE,Status,0,20,0,User,0,do,"The user shivers rhythmically. It boosts the user's Attack, Defense, and Speed stats.",
 859,AMBUSH,Ambush,174,130,DARK,Physical,100,10,0,NearOther,2,abef,"The user ambushes the target. This only works the first turn the user is in battle.",NIGHTSLASH
 860,STITCHUP,Stitch Up,524,0,GHOST,Status,0,5,0,User,0,d,"The user restores two thirds of its own HP. Then, this move is disabled.",RECOVER
@@ -1087,7 +1087,7 @@
 1023,SEDATINGDUST,Sedating Dust,581,0,BUG,Status,100,10,0,NearOther,0,bce,"The user spreads a soothing dust. It puts the target to sleep, but sharply reduces the user's Speed stat.",POISONPOWDER
 1024,ODDROOM,Odd Room,582,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates an odd area in which Pokémon's Offensive and Defensive stats are swapped.",MAGICROOM
 1025,MULCHMEAL,Mulch Meal,583,0,GRASS,Status,0,5,0,User,0,d,"The user eats decaying leaves, restoring its HP by 33% and raising its Speed.",RECOVER
-1026,GUIDINGAROMA,Guiding Aroma,584,0,BUG,Status,0,15,0,NearAlly,0,,"The user raises the target's three worst stats by using a helpful sweet scent.",AROMATICMIST
+1026,GUIDINGAROMA,Guiding Aroma,584,0,BUG,Status,0,15,0,NearAlly,0,,"The user raises the target's three lowest stats by using a helpful scent.",AROMATICMIST
 1027,FLAREWITCH,Flare Witch,585,0,FIRE,Status,0,10,0,User,0,d,"For the rest of the battle, the user's attacks spread to hit all nearby foes.",
 1028,BATTLETRANCE,Battle Trance,55F,120,FIGHTING,Physical,100,10,0,NearOther,0,abefh,"The user relentlessly combos and attacks for three turns. Critical hits land more easily.",
 1029,CRUELWHIPBLADE,Cruel Whipblade,587,30,GRASS,Physical,100,15,0,NearOther,0,abefp,"The user flicks its thorns, dealing damage and setting a layer of Poison Spikes.",

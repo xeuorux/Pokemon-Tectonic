@@ -1187,10 +1187,12 @@ end
 # Raises worst stat two stages, second worst stat by one stage. (Breakdance)
 #===============================================================================
 class PokeBattle_Move_532 < PokeBattle_Move
+	MAIN_BATTLE_STATS = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+
 	def pbFailsAgainstTarget?(user,target)
 		@statArray = []
-		GameData::Stat.each_battle do |s|
-		  @statArray.push(s.id) if user.pbCanRaiseStatStage?(s.id,user,self)
+		MAIN_BATTLE_STATS.each do |statID|
+		  @statArray.push(statID) if user.pbCanRaiseStatStage?(statID,user,self)
 		end
 		if @statArray.length==0
 		  @battle.pbDisplay(_INTL("{1}'s stats won't go any higher!",user.pbThis))
@@ -1202,16 +1204,14 @@ class PokeBattle_Move_532 < PokeBattle_Move
 	def pbEffectGeneral(user)
 		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
 		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-		statsRanked = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
-		statsRanked = statsRanked.sort_by { |s| user.plainStats[s].to_f * stageMul[user.stages[s]+6] / stageDiv[user.stages[s]+6] }
+		statsRanked = MAIN_BATTLE_STATS.sort_by { |s| user.plainStats[s].to_f * stageMul[user.stages[s]+6] / stageDiv[user.stages[s]+6] }
 		user.pbRaiseStatStage(statsRanked[0],2,user,true)
 		user.pbRaiseStatStage(statsRanked[1],1,user,false)
 	end
 	
 	def getScore(score,user,target,skill=100)
 		score += 20 if user.turnCount == 0
-		stats = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
-		stats.each do |s|
+		MAIN_BATTLE_STATS.each do |s|
 			score -= user.stages[s] * 5
 		end
 		return score
