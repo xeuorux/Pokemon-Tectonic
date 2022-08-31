@@ -14689,7 +14689,7 @@ InternalName = GARCHOMP
 Type1 = DRAGON
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 108,125,95,97,80,75
+BaseStats = 108,125,105,87,80,75
 # Total = 580
 GenderRate = Female50Percent
 GrowthRate = Slow
