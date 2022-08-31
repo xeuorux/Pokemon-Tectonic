@@ -2858,7 +2858,7 @@ class PokeBattle_Move_589 < PokeBattle_Move_0C0
 end
 
 #===============================================================================
-# Power is quintupled if the target is poisoned. (Vipershock)
+# Power is tripled if the target is poisoned. (Vipershock)
 #===============================================================================
 class PokeBattle_Move_590 < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
@@ -2868,4 +2868,16 @@ class PokeBattle_Move_590 < PokeBattle_Move
     end
     return baseDmg
   end
+end
+
+#===============================================================================
+# Counts as a use of Rollout, Iceball, or Furycutter. (Rollout)
+#===============================================================================
+class PokeBattle_Move_591 < PokeBattle_Move
+	def pbChangeUsageCounters(user,specialUsage)
+		super
+		user.effects[PBEffects::FuryCutter]	= 1
+		user.effects[PBEffects::IceBall]	= 1
+  		user.effects[PBEffects::RollOut]	= 1
+	end
 end
