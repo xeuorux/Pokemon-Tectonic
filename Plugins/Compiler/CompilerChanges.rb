@@ -385,8 +385,8 @@ module Compiler
   end
   
   def pbEachAvatarFileSection(f)
-	pbEachFileSectionEx(f) { |section,name|
-      yield section,name if block_given? && name[/^[a-zA-Z0-9]+$/]
+    pbEachFileSectionEx(f) { |section,name|
+        yield section,name if block_given? && name[/^[a-zA-Z0-9_]+$/]
     }
   end
   
@@ -407,7 +407,7 @@ module Compiler
 			# Raise an error if a species is invalid or used twice
 			if avatar_species == ""
 			  raise _INTL("An Avatar entry name can't be blank (PBS/avatars.txt).")
-			elsif GameData::Avatar::DATA[avatar_symbol]
+			elsif !GameData::Avatar::DATA[avatar_symbol].nil?
 			  raise _INTL("Avatar name '{1}' is used twice.\r\n{2}", avatar_species, FileLineData.linereport)
 			end
 
@@ -470,6 +470,8 @@ module Compiler
 			avatar_number += 1
 			# Add trainer avatar's data to records
 			GameData::Avatar.register(avatar_hash)
+
+      echoln("Registering #{avatar_symbol} in the avatar data")
 		}
     }
 

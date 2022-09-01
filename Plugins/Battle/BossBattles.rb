@@ -68,9 +68,11 @@ def pbAvatarBattleCore(*args)
   for arg in args
     if arg.is_a?(Array)
 		for i in 0...arg.length/2
-			species = GameData::Species.get(arg[i*2]).id
-			pkmn = pbGenerateWildPokemon(species,arg[i*2+1])
+			speciesData = GameData::Species.get(arg[i*2])
+			pkmn = pbGenerateWildPokemon(speciesData.species,arg[i*2+1])
+			pkmn.forced_form = speciesData.form
 			pkmn.boss = true
+			pkmn.name += " " + speciesData.real_form_name if speciesData.form != 0
 			setAvatarProperties(pkmn)
 			foeParty.push(pkmn)
 		end
@@ -127,7 +129,14 @@ def pbAvatarBattleCore(*args)
 end
 
 def setAvatarProperties(pkmn)
-	avatar_data = GameData::Avatar.get(pkmn.species.to_sym)
+	avatar_data = nil
+	if pkmn.form != 0
+		speciesFormSymbol = (pkmn.species.to_s + "_" + pkmn.form.to_s).to_sym
+		avatar_data = GameData::Avatar.try_get(speciesFormSymbol)
+	end
+	if avatar_data.nil?
+		avatar_data = GameData::Avatar.get(pkmn.species.to_sym)
+	end
 
 	pkmn.forced_form = avatar_data.form if avatar_data.form != 0
 

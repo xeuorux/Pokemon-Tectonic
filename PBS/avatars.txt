@@ -28,10 +28,17 @@ Item = LUMBERRY
 DMGResist = 0.3
 #-------------------------------
 [SHAYMIN]
+Ability = FLOWERVEIL
+Moves1 = ANGELSKISS,MEGADRAIN,PRIMEVALFAIRYTERRAIN
+Moves2 = DAZZLINGGLEAM,SEEDFLARE
+HPMult = 3.0
+DMGResist = 0.3
+#-------------------------------
+[SHAYMIN_1]
 Ability = AERODYNAMIC
-Moves1 = AIRSLASH,LEAFBLADE,PRIMEVALHEALBELL
-Moves2 = WHITERAY,KALEIDOSCOPE
-HPMult = 5.0
+Moves1 = GALE,HEATWAVE,PRIMEVALENDURE
+Moves2 = FEATHERDANCE,WHITERAY
+HPMult = 3.0
 DMGResist = 0.3
 Form = 1
 #-------------------------------

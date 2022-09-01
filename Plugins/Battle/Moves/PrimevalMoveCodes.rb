@@ -334,7 +334,7 @@ class PokeBattle_Move_623 < PokeBattle_Move_173
 	
 	def pbEffectGeneral(user)
 		super
-		battler.pbRaiseStatStage(:ACCURACY,3,battler)
+		user.pbRaiseStatStage(:ACCURACY,3,user)
 		transformType(user,:PSYCHIC)
 	end
 end

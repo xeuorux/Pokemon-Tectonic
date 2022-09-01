@@ -1114,8 +1114,7 @@ class PokeBattle_Move_0DA < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is doubled if the target is using Dig. Power is halved if Grassy Terrain
-# is in effect. Hits some semi-invulnerable targets. (Earthquake)
+# Power is doubled if the target is using Dig. Hits some semi-invulnerable targets. (Earthquake)
 #===============================================================================
 class PokeBattle_Move_076 < PokeBattle_Move
   def hitsDiggingTargets?; return true; end
