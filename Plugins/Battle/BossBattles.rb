@@ -10,7 +10,7 @@ module GameData
 		ret = self.front_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?)
 	  end
 	  
-	  if ret && pkmn.boss
+	  if ret && pkmn.boss?
 		filename = 'Graphics/Pokemon/Avatars/' + species.to_s
 		filename += '_' + pkmn.form.to_s if pkmn.form != 0
 		filename += '_back' if back
@@ -19,7 +19,7 @@ module GameData
 	  end
 	  
 	  alter_bitmap_function = MultipleForms.getFunction(species, "alterBitmap")
-	  if ret && !pkmn.boss && alter_bitmap_function
+	  if ret && !pkmn.boss? && alter_bitmap_function
 		new_ret = ret.copy
 		ret.dispose
 		new_ret.each { |bitmap| alter_bitmap_function.call(pkmn, bitmap) }
@@ -357,5 +357,11 @@ class PokeBattle_Battler
 			@moves.push(moveObject)
 			@pokemon.moves.push(pokeMove)
 		end
+		@lastMoveChosen = nil
+	end
+
+	def pbChangeFormBoss(formID,formChangeMessage)
+		@pokemon.forced_form = formID
+		pbChangeForm(formID, formChangeMessage)
 	end
 end

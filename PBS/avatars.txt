@@ -80,7 +80,7 @@ Form = 1
 #-------------------------------
 [ZYGARDE]
 Ability = AURABREAK
-Moves1 = INFERNOCHARGE,RECOVER
+Moves1 = INFERNOCHARGE,TRAMPLE,RECOVER
 HPMult = 8.0
 Item = SOFTSAND
 DMGResist = 0.3

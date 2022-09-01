@@ -500,7 +500,7 @@ class PokeBattle_Move_634 < PokeBattle_Move
 	def pbEffectGeneral(user)
 		super
 		@battle.pbDisplay(_INTL("{1} sees everything!",user.pbThis))
-		@battle.pbDisplay(_INTL("It will take 50% less attack damage for 3 turns!",user.pbThis))
+		@battle.pbDisplay(_INTL("It's protected from half of all attack damage for 3 turns!",user.pbThis))
 		user.effects[PBEffects::EmpoweredDetect] = 3
 		transformType(user,:FIGHTING)
 	end

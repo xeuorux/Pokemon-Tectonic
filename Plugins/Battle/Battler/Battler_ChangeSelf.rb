@@ -300,7 +300,7 @@ class PokeBattle_Battler
     return true if move.total_pp <= 0   # Infinite PP, can always be used
     return false if move.pp == 0        # Ran out of PP, couldn't reduce
     reductionAmount = 1
-    if @lastMoveUsed && @lastMoveUsed == move.id && !@lastMoveFailed
+    if !boss? && @lastMoveUsed && @lastMoveUsed == move.id && !@lastMoveFailed
       reductionAmount = 3
     end
     newPPAmount = [move.pp - reductionAmount,0].max
