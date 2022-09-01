@@ -43,6 +43,10 @@ class PokeBattle_Battler
 		@pokemon.extraMovesPerTurn = GameData::Avatar.get(@species).num_turns - 1
 	end
 
+	def firstMoveThisTurn?
+		return @battle.commandPhasesThisRound == 0
+	end
+
 	def lastMoveThisTurn?
 		return @battle.commandPhasesThisRound == extraMovesPerTurn
 	end
@@ -379,6 +383,7 @@ class PokeBattle_Battler
 		@effects[PBEffects::EmpoweredLaserFocus] = false
 		@effects[PBEffects::EmpoweredDestinyBond] = false
 		@effects[PBEffects::ExtraTurns] = 0
+		@effects[PBEffects::EmpoweredDetect]     = 0
 
 		@battle.eachBattler do |b|   # Other battlers no longer giving a dragon ride to self
 			next if b.effects[PBEffects::GivingDragonRideTo] != @index

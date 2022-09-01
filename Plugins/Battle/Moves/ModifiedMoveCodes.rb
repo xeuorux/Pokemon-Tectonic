@@ -1537,3 +1537,14 @@ class PokeBattle_Move_0BA < PokeBattle_Move
     target.pbItemStatusCureCheck
   end
 end
+
+#===============================================================================
+# Heals user by 1/2 of its max HP.
+#===============================================================================
+class PokeBattle_Move_0D5 < PokeBattle_HealingMove
+  def pbHealAmount(user)
+    healAmount = user.totalhp/2.0
+    healAmount /= 4 if user.boss?
+    return healAmount.round
+  end
+end

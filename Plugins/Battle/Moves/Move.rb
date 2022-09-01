@@ -588,6 +588,9 @@ class PokeBattle_Move
     if target.effects[PBEffects::StunningCurl]
       multipliers[:final_damage_multiplier] /= 2
     end
+    if target.effects[PBEffects::EmpoweredDetect]
+      multipliers[:final_damage_multiplier] /= 2
+    end
 		# Move-specific base damage modifiers
 		multipliers[:base_damage_multiplier] = pbBaseDamageMultiplier(multipliers[:base_damage_multiplier], user, target)
 		# Move-specific final damage modifiers

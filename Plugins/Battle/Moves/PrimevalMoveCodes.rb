@@ -482,6 +482,30 @@ class PokeBattle_Move_632 < PokeBattle_Move
 	end
 end
 
+# Empowered Loom Over
+class PokeBattle_Move_633 < PokeBattle_Move
+	include EmpoweredMove
+	
+	def pbEffectGeneral(user)
+		super
+
+		transformType(user,:DRAGON)
+	end
+end
+
+# Empowered Detect
+class PokeBattle_Move_634 < PokeBattle_Move
+	include EmpoweredMove
+	
+	def pbEffectGeneral(user)
+		super
+		@battle.pbDisplay(_INTL("{1} sees everything!",user.pbThis))
+		@battle.pbDisplay(_INTL("It will take 50% less attack damage for 3 turns!",user.pbThis))
+		user.effects[PBEffects::EmpoweredDetect] = 3
+		transformType(user,:FIGHTING)
+	end
+end
+
 ########################################################
 ### DAMAGING MOVES
 ########################################################
@@ -573,4 +597,14 @@ class PokeBattle_Move_645 < PokeBattle_Move
 		return 1 if target.poisoned?
 		return 0
 	end
+end
+
+# Empowered Solar Beam
+class PokeBattle_Move_646 < PokeBattle_Move_0C4
+	include EmpoweredMove
+end
+
+# Empowered Power Gem
+class PokeBattle_Move_647 < PokeBattle_Move_402
+	include EmpoweredMove
 end
