@@ -543,14 +543,17 @@ class PokeBattle_Battle
     pbEORCountDownBattlerEffect(priority,PBEffects::Embargo) { |battler|
       pbDisplay(_INTL("{1} can use items again!",battler.pbThis))
       battler.pbItemTerrainStatBoostCheck
-	  battler.pbItemFieldEffectCheck
+	    battler.pbItemFieldEffectCheck
     }
     # Yawn
     pbEORCountDownBattlerEffect(priority,PBEffects::Yawn) { |battler|
-      if battler.pbCanSleepYawn?
-        PBDebug.log("[Lingering effect] #{battler.pbThis} fell asleep because of Yawn")
-        battler.pbSleep
-      end
+        if battler.pbCanSleepYawn?
+          PBDebug.log("[Lingering effect] #{battler.pbThis} fell asleep because of Yawn")
+          battler.pbSleep
+        end
+    }
+    pbEORCountDownBattlerEffect(priority,PBEffects::EmpoweredDetect) { |battler|
+      pbDisplay(_INTL("{1}'s Primeval Detect wore off!",battler.pbThis))
     }
   end
 

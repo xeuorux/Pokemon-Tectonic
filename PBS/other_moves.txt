@@ -63,6 +63,8 @@
 3030,PRIMEVALCHILL,Primeval Chill,630,0,ICE,Status,100,1,0,AllNearFoes,0,be,"The user inflicts frostbite on all nearby foes. User becomes an Ice-type.",CHILL
 3031,PRIMEVALDESTINYBOND,Primeval Destiny Bond,631,0,GHOST,Status,0,1,0,User,0,,"Attackers against the user suffer recoil for the rest of the battle. User becomes a Ghost-type.",DESTINYBOND
 3032,PRIMEVALSHOREUP,Primeval Shore Up,632,0,GROUND,Status,0,1,0,User,0,d,"The user restores 1/8th of its HP, TODO, and becomes Ground-type.",
+3033,PRIMEVALLOOMOVER,Primeval Loom Over,633,0,DRAGON,Status,0,1,0,AllNearFoes,0,ce,"The user harshly lowers each near foes best stat, and becomes Dragon-type.",SCARYFACE
+3034,PRIMEVALDETECT,Primeval Detect,634,0,FIGHTING,Status,0,1,0,User,4,,"The user takes 50% less attack damage for 3 turns, and becomes Fighting-type.",
 3036,PRIMEVALMETEORMASH,Primeval Meteor Mash,636,160,STEEL,Physical,100,10,100,NearOther,0,abefj,"The target is obliterated by a meteoric strike, which raises the user's attack.",METEORMASH
 3037,PRIMEVALICEBEAM,Primeval Ice Beam,637,160,ICE,Special,100,10,100,NearOther,0,bef,"The target is struck with an absolute zero beam of energy, frostbiting it.",ICEBEAM
 3038,PRIMEVALROCKTOMB,Primeval Rock Tomb,638,90,ROCK,Physical,100,10,100,AllNearFoes,0,bef,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
@@ -73,3 +75,5 @@
 3043,PRIMEVALSLASH,Primeval Slash,643,100,NORMAL,Physical,100,20,0,NearOther,0,abefp,"The target is attacked with a slash of claws or blades, always critting.",SLASH
 3044,PRIMEVALBRICKBREAK,Primeval Brick Break,644,100,FIGHTING,Physical,100,15,100,NearOther,0,abef,"The user attacks with a swift chop, destroying barriers, and drastically reducing the target's defense.",BRICKBREAK
 3045,PRIMEVALCROSSPOISON,Primeval Cross Poison,645,70,POISON,Physical,100,10,10,AllNearFoes,0,abefp,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",
+3046,PRIMEVALSOLARBEAM,Primeval Solar Beam,646,170,GRASS,Special,100,10,0,AllNearFoes,0,bef,"A two-turn attack. The user gathers light, then blasts all near foes on the second turn.",
+3047,PRIMEVALPOWERGEM,Primeval Power Gem,647,120,ROCK,Special,100,20,100,NearOther,0,bef,"The user attacks with a sparkling gem-like ray, mystifying the target.",
