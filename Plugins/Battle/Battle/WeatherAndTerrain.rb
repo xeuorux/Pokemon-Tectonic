@@ -49,7 +49,7 @@ class PokeBattle_Battle
     case @field.terrain
     when :Electric
       pbDisplay(_INTL("An electric current runs across the battlefield!"))
-      pbDisplay(_INTL("Pokemon cannot fall asleep or be chilled!"))
+      pbDisplay(_INTL("Pokemon cannot fall asleep, be flustered or be mystified!"))
     when :Grassy
       pbDisplay(_INTL("Grass grew to cover the battlefield!"))
       pbDisplay(_INTL("All Pokemon are healed each turn!"))
