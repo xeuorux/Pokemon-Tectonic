@@ -20,7 +20,7 @@ MAPS_AVAILABLE_BY_CAP = {
 			91,65,85,			# Reading Ribombee Cafe, Nemeth Mart, Worried Man's House
 			213,214,219,		# Velenz Menagerie, Gigalith's Guts Town, Regirock Cave
 			217,49,243,			# Candy Town, Tourist's House, Chasm Base Mess Hall
-			251,305				# Samorn's House, Mainland Dock Warehouse
+			251,305,321			# Samorn's House, Mainland Dock Warehouse, Crater Station Backroom
 			],
 	50 => [155,29,47,		# Prizca West, Full Blast Records F2, Grand Hotal
 			34,183,180,		# Battle Fair, Circuit Cave, Priza West Mart

@@ -808,3 +808,7 @@ LandSparse,20
 [323] # HQ Station Backroom
 Special
     1,WIMPOD,15
+#-------------------------------
+[321] # Crater Station Backroom
+Special
+    1,KANGASKHAN,15
