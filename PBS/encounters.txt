@@ -270,10 +270,6 @@ Special
 Special
     1,GYAMASK,15
 #-------------------------------
-[078] # LuxTech Main
-Special,20
-    1,WIMPOD,15
-#-------------------------------
 [081] # East Tunnel
 DarkCave,20
     20,CUBONE,17,20
@@ -808,3 +804,7 @@ LandSparse,20
     20,LAPRAS,37,39
     20,PINCURCHIN,37,39
     20,SEEL,37,39
+#-------------------------------
+[323] # HQ Station Backroom
+Special
+    1,WIMPOD,15
