@@ -2503,7 +2503,7 @@ class PokeBattle_Move_574 < PokeBattle_Move
 		user.eachAlly do |ally_battler|
 			highestDefense = ally_battler.defense if ally_battler.defense > highestDefense
 		end
-	  	return [(highestDefense/300).round(-1),20].max
+	  	return [highestDefense,40].max
 	end
 end
 
@@ -2667,7 +2667,15 @@ class PokeBattle_Move_581 < PokeBattle_Move_003
 	end
 	def pbEffectAgainstTarget(user,target)
 		target.pbSleep
-		user.pbLowerStatStage(:SPEED,2,user)
+		if user.hasActiveAbility?(:CONTRARY)
+			user.stages[:SPEED] = 6
+			@battle.pbCommonAnimation("StatUp",user)
+			@battle.pbDisplay(_INTL("{1} maximized its Speed!",user.pbThis))
+		elsif user.hasActiveAbility?(:STUBBORN)
+			user.stages[:SPEED] = -6
+			@battle.pbCommonAnimation("StatDown",user)
+			@battle.pbDisplay(_INTL("{1} minimized its Speed!",user.pbThis))
+		end
 	end
 	def getScore(score,user,target,skill=100)
 		score = sleepMoveAI(score,user,target,skill=100)
@@ -2892,4 +2900,11 @@ class PokeBattle_Move_58C < PokeBattle_Move_030
     	typeName = GameData::Type.get(:FLYING).name
     	@battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
 	end
+end
+
+#===============================================================================
+# Guaranteed to crit, but lowers the user's speed. (Incision)
+#===============================================================================
+class PokeBattle_Move_58D < PokeBattle_Move_03E
+	def pbCritialOverride(user,target); return 1; end
 end
