@@ -1513,44 +1513,6 @@ class PokeBattle_Move_542 < PokeBattle_Move
 end
 
 #===============================================================================
-# Power doubles for each consecutive use. (Ice Ball)
-#===============================================================================
-class PokeBattle_Move_543 < PokeBattle_Move
-  def pbChangeUsageCounters(user,specialUsage)
-    oldVal = user.effects[PBEffects::IceBall]
-    super
-    maxMult = 1
-    while (@baseDamage<<(maxMult-1))<160
-      maxMult += 1   # 1-4 for base damage of 20, 1-3 for base damage of 40
-    end
-    user.effects[PBEffects::IceBall] = (oldVal>=maxMult) ? maxMult : oldVal+1
-  end
-
-  def pbBaseDamage(baseDmg,user,target)
-    return baseDmg<<(user.effects[PBEffects::IceBall]-1)
-  end
-end
-
-#===============================================================================
-# Power doubles for each consecutive use. (Rollout)
-#===============================================================================
-class PokeBattle_Move_544 < PokeBattle_Move
-  def pbChangeUsageCounters(user,specialUsage)
-    oldVal = user.effects[PBEffects::RollOut]
-    super
-    maxMult = 1
-    while (@baseDamage<<(maxMult-1))<160
-      maxMult += 1   # 1-4 for base damage of 20, 1-3 for base damage of 40
-    end
-    user.effects[PBEffects::RollOut] = (oldVal>=maxMult) ? maxMult : oldVal+1
-  end
-
-  def pbBaseDamage(baseDmg,user,target)
-    return baseDmg<<(user.effects[PBEffects::RollOut]-1)
-  end
-end
-
-#===============================================================================
 # Heals for 1/3 the damage dealt. (new!Drain Punch, Venom Leech)
 #===============================================================================
 class PokeBattle_Move_545 < PokeBattle_Move
@@ -1567,8 +1529,6 @@ class PokeBattle_Move_545 < PokeBattle_Move
 	return score
   end
 end
-
-
 
 #===============================================================================
 # Always critical hit vs Opponents with raised stats (Glitter Slash)
@@ -2883,10 +2843,13 @@ end
 #===============================================================================
 class PokeBattle_Move_58B < PokeBattle_Move
 	def pbChangeUsageCounters(user,specialUsage)
+		oldFury = user.effects[PBEffects::FuryCutter]
+		oldIceBall = user.effects[PBEffects::IceBall]
+		oldRollOut = user.effects[PBEffects::RollOut]
 		super
-		user.effects[PBEffects::FuryCutter]	= 1
-		user.effects[PBEffects::IceBall]	= 1
-  		user.effects[PBEffects::RollOut]	= 1
+		user.effects[PBEffects::FuryCutter]	= [oldFury+1,4].min
+		user.effects[PBEffects::IceBall]	= [oldIceBall+1,4].min
+  		user.effects[PBEffects::RollOut]	= [oldRollOut+1,4].min
 	end
 end
 
