@@ -1,8 +1,6 @@
 class PokemonPokedexInfo_Scene
 
-	SIGNATURE_COLOR = Color.new(61,105,28)
-	SIGNATURE_SHADOW = Color.new(160,177,141)
-	SIGNATURE_OUTLINE = Color.new(211,175,44)
+	SIGNATURE_COLOR = Color.new(211,175,44)
 
   def pbStartScene(dexlist,index,region,battle=false,linksEnabled=false)
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
@@ -306,7 +304,8 @@ class PokemonPokedexInfo_Scene
 		  abilityNameText = ability1.real_name
 		  if ability1.is_signature?
 			abilityNameText = "<outln>" + abilityNameText + "</outln>"
-			abilityNameShadow = SIGNATURE_OUTLINE
+			abilityNameColor = SIGNATURE_COLOR
+			abilityNameShadow = base
 		  end
           drawFormattedTextEx(overlay,abilityTextX,ability1Y,450,abilityNameText,abilityNameColor,abilityNameShadow)
           drawTextEx(overlay,abilityTextX,ability1Y + 32,450,3,ability1.real_description,base,shadow)
@@ -323,7 +322,8 @@ class PokemonPokedexInfo_Scene
 		  abilityNameText = ability2.real_name
 		  if ability2.is_signature?
 			abilityNameText = "<outln>" + abilityNameText + "</outln>"
-			abilityNameShadow = SIGNATURE_OUTLINE
+			abilityNameColor = SIGNATURE_COLOR
+			abilityNameShadow = base
 		  end
           drawFormattedTextEx(overlay,abilityTextX,ability2Y,450,abilityNameText,abilityNameColor,abilityNameShadow)
           drawTextEx(overlay,abilityTextX,ability2Y + 32,450,3,ability2.real_description,base,shadow)
@@ -619,11 +619,11 @@ class PokemonPokedexInfo_Scene
 	color = Color.new(64,64,64)
 	if move_data.is_signature?
 		if isSTAB
-			moveName = "<outln>" + moveName + "</outln>"
-		else
 			moveName = "<outln2>" + moveName + "</outln2>"
+		else
+			moveName = "<outln>" + moveName + "</outln>"
 		end
-		shadow = SIGNATURE_OUTLINE
+		shadow = SIGNATURE_COLOR
 	else
 		shadow = Color.new(176,176,176)
 	end

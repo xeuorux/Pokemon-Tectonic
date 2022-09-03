@@ -1319,9 +1319,9 @@ class PokemonPokedex_Scene
 		miscSearches[cmdIsLegendary = miscSearches.length] = _INTL("Legendary")
 		miscSearches[cmdMovesetConformance = miscSearches.length] = _INTL("Moveset Noncomfority") if $DEBUG
 		miscSearches[cmdOneAbility = miscSearches.length] = _INTL("One Ability") if $DEBUG
-		miscSearches[cmdHasSignatureMove = miscSearches.length] = _INTL("Signature Move") if $DEBUG
-		miscSearches[cmdHasSignatureAbility = miscSearches.length] = _INTL("Signature Ability") if $DEBUG
-		miscSearches[cmdHasSignature = miscSearches.length] = _INTL("Signature") if $DEBUG
+		miscSearches[cmdHasSignatureMove = miscSearches.length] = _INTL("Signature Move")
+		miscSearches[cmdHasSignatureAbility = miscSearches.length] = _INTL("Signature Ability")
+		miscSearches[cmdHasSignature = miscSearches.length] = _INTL("Signature (D)") if $DEBUG
 		miscSearches[cmdAvatarData = miscSearches.length] = _INTL("Avatar Data") if $DEBUG
 		miscSearches[cmdGeneration = miscSearches.length] = _INTL("Generation")
 		miscSearches[cmdInvertList = miscSearches.length] = _INTL("Invert Current")
