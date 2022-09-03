@@ -387,8 +387,8 @@ class PokeBattle_Move_50A < PokeBattle_Move
   end
   
   def burnOrFrostbite(user,target)
-	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+	stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+	stageDiv = PokeBattle_Battler::STAGE_MULTIPLIERS
 	attackStage = target.stages[:ATTACK]+6
 	attack = (target.attack.to_f*stageMul[attackStage].to_f/stageDiv[attackStage].to_f).floor
 	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
@@ -788,8 +788,8 @@ class PokeBattle_Move_522 < PokeBattle_TargetMultiStatDownMove
   end
   
   def pbEffectAgainstTarget(user,target)
-	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+	stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+	stageDiv = PokeBattle_Battler::STAGE_DIVISORS
 	bestStat = :ATTACK
 	bestStatValue = -100
     GameData::Stat.each_battle do |s|
@@ -978,8 +978,8 @@ class PokeBattle_Move_52B < PokeBattle_Move
   end
 
   def flusterOrMystify(user,target)
-	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+	stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+	stageDiv = PokeBattle_Battler::STAGE_DIVISORS
 	attackStage = target.stages[:ATTACK]+6
 	attack = (target.attack.to_f*stageMul[attackStage].to_f/stageDiv[attackStage].to_f).floor
 	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
@@ -991,21 +991,6 @@ class PokeBattle_Move_52B < PokeBattle_Move
 		target.pbMystify
 	end
   end
-  
-#   def confuseOrCharm(user,target)
-# 	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-# 	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-# 	attackStage = target.stages[:ATTACK]+6
-# 	attack = (target.attack.to_f*stageMul[attackStage].to_f/stageDiv[attackStage].to_f).floor
-# 	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
-# 	spAtk = (target.spatk.to_f*stageMul[spAtkStage].to_f/stageDiv[spAtkStage].to_f).floor
-	
-#     if target.pbCanConfuse?(user,false,self) && attack >= spAtk
-# 		target.pbConfuse
-# 	elsif target.pbCanCharm?(user,false,self) && spAtk >= attack
-# 		target.pbCharm
-# 	end
-#   end
   
   def getScore(score,user,target,skill=100)
 		score += target.pbCanMystify?(user,false) ? 20 : -20
@@ -1202,8 +1187,8 @@ class PokeBattle_Move_532 < PokeBattle_Move
 	end
 	
 	def pbEffectGeneral(user)
-		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+		stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+		stageDiv = PokeBattle_Battler::STAGE_DIVISORS
 		statsRanked = MAIN_BATTLE_STATS.sort_by { |s| user.plainStats[s].to_f * stageMul[user.stages[s]+6] / stageDiv[user.stages[s]+6] }
 		user.pbRaiseStatStage(statsRanked[0],2,user,true)
 		user.pbRaiseStatStage(statsRanked[1],1,user,false)
@@ -2461,7 +2446,14 @@ class PokeBattle_Move_574 < PokeBattle_Move
 	def pbBaseDamage(baseDmg,user,target)
 	  	highestDefense = 0
 		user.eachAlly do |ally_battler|
-			highestDefense = ally_battler.defense if ally_battler.defense > highestDefense
+			calcedDefense = ally_battler.defense
+			stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+    		stageDiv = PokeBattle_Battler::STAGE_DIVISORS
+			defStage = ally_battler.stages[:DEFENSE] + 6
+			stageModifier = stageMul[defStage].to_f / stageDiv[defStage].to_f
+	    	stageModifier = (stageModifier.to_f + 1.0)/2.0 if ally_battler.boss?
+			calcedDefense = (calcedDefense.to_f * stageModifier * 0.5).floor
+			highestDefense = calcedDefense if calcedDefense > highestDefense
 		end
 	  	return [highestDefense,40].max
 	end
@@ -2701,8 +2693,8 @@ class PokeBattle_Move_584 < PokeBattle_Move
 	end
 	
 	def pbEffectAgainstTarget(user,target)
-		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+		stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+		stageDiv = PokeBattle_Battler::STAGE_DIVISORS
 		statsRanked = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
 		statsRanked = statsRanked.sort_by { |s| target.plainStats[s].to_f * stageMul[target.stages[s]+6] / stageDiv[target.stages[s]+6] }
 		target.pbRaiseStatStage(statsRanked[0],1,user,true)
