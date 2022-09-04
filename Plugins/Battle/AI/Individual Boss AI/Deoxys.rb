@@ -1,6 +1,6 @@
 ATTACK_FORM_MOVESET = [:PSYCHOBOOST,:INFINITEFORCE]
-DEFENSE_FORM_MOVESET = [:COSMICPOWER,:LIFEDEW]
-SPEED_FORM_MOVESET = [:ZENHEADBUTT,:THUNDERBOLT]
+DEFENSE_FORM_MOVESET = [:COSMICPOWER,:RECOVER]
+SPEED_FORM_MOVESET = [:ZENHEADBUTT,:ELECTROBALL]
 
 PokeBattle_AI::BossBeginTurn.add(:DEOXYS,
 	proc { |species,battler|
@@ -11,20 +11,20 @@ PokeBattle_AI::BossBeginTurn.add(:DEOXYS,
 		if turnCount != 0
             if battler.hp < battler.totalhp * 0.25
                 if battler.form != 1
-                    battler.form = 1
-                    battle.pbDisplay(_INTL("The avatar of Deoxys turns to Attack Form!"))
+                    formChangeMessage = _INTL("The avatar of Deoxys turns to Attack Form!")
+                    battler.pbChangeFormBoss(1,formChangeMessage)
                     battler.assignMoveset(ATTACK_FORM_MOVESET)
                 end
             elsif battler.hp < battler.totalhp * 0.5
                 if battler.form != 2
-                    battler.form = 2
-                    battle.pbDisplay(_INTL("The avatar of Deoxys turns to Defense Form!"))
+                    formChangeMessage = _INTL("The avatar of Deoxys turns to Defense Form!")
+                    battler.pbChangeFormBoss(2,formChangeMessage)
                     battler.assignMoveset(DEFENSE_FORM_MOVESET)
                 end
             elsif battler.hp < battler.totalhp * 0.75
                 if battler.form != 3
-                    battler.form = 3
-                    battle.pbDisplay(_INTL("The avatar of Deoxys turns to Speed Form!"))
+                    formChangeMessage = _INTL("The avatar of Deoxys turns to Speed Form!")
+                    battler.pbChangeFormBoss(3,formChangeMessage)
                     battler.assignMoveset(SPEED_FORM_MOVESET)
                 end
             end

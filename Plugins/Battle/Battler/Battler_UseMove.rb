@@ -43,6 +43,17 @@ class PokeBattle_Battler
     pbFaint if fainted?
     pbItemHPHealCheck
   end
+
+  # If there's an effect that causes damage before a move is used
+  # This deals with the possible ramifications of that
+  def cleanupPreMoveDamage(user,oldHP)
+    user.pbFaint if user.fainted?
+    @battle.pbGainExp   # In case user is KO'd by this
+    user.pbItemHPHealCheck
+    if user.pbAbilitiesOnDamageTaken(oldHP)
+      user.pbEffectsOnSwitchIn(true)
+    end
+  end
   
   #=============================================================================
   # Master "use move" method
@@ -207,12 +218,7 @@ class PokeBattle_Battler
       if ![:Rain, :HeavyRain].include?(@battle.pbWeather) && user.takesIndirectDamage?
         oldHP = user.hp
         user.pbReduceHP((user.totalhp/4.0).round,false)
-        user.pbFaint if user.fainted?
-        @battle.pbGainExp   # In case user is KO'd by this
-        user.pbItemHPHealCheck
-        if user.pbAbilitiesOnDamageTaken(oldHP)
-          user.pbEffectsOnSwitchIn(true)
-        end
+        cleanupPreMoveDamage(use,oldHP)
       end
       pbCancelMoves
       pbEndTurn(choice)
@@ -264,6 +270,7 @@ class PokeBattle_Battler
     #---------------------------------------------------------------------------
     magicCoater  = -1
     magicBouncer = -1
+    magicShielder = -1
     if targets.length == 0 && move.pbTarget(user).num_targets > 0 && !move.worksWithNoTargets?
       # def pbFindTargets should have found a target(s), but it didn't because
       # they were all fainted
@@ -281,7 +288,7 @@ class PokeBattle_Battler
           b.damageState.unaffected = true
         end
       end
-      # Magic Coat/Magic Bounce checks (for moves which don't target Pokémon)
+      # Magic Coat/Magic Bounce/Magic Shield checks (for moves which don't target Pokémon)
       if targets.length==0 && move.canMagicCoat?
         @battle.pbPriority(true).each do |b|
           next if b.fainted? || !b.opposes?(user)
@@ -290,11 +297,42 @@ class PokeBattle_Battler
             magicCoater = b.index
             b.effects[PBEffects::MagicCoat] = false
             break
-          elsif b.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker &&
-             !b.effects[PBEffects::MagicBounce]
+          elsif b.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker #&& !b.effects[PBEffects::MagicBounce]
             magicBouncer = b.index
             b.effects[PBEffects::MagicBounce] = true
             break
+          elsif b.hasActiveAbility?(:MAGICSHIELD) && !@battle.moldBreaker
+            magicShielder = b.index
+            @battle.pbShowAbilitySplash(b)
+            @battle.pbDisplay(_INTL("{1} shielded its side from the {2}!",b.pbThis,move.name))
+            @battle.pbHideAbilitySplash(b)
+            user.lastMoveFailed = true
+            break
+          end
+        end
+      end
+      # Needle Fur
+      if targets.length > 0 && move.damagingMove?
+        targets.each do |b|
+          next if b.damageState.unaffected
+          if b.hasActiveAbility?(:NEEDLEFUR)
+            @battle.pbShowAbilitySplash(b)
+            if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+             @battle.scene.pbDamageAnimation(user)
+             upgradedNeedleFur = b.hp < b.totalhp / 2
+             reduction = user.totalhp/10
+             reduction /= 4 if user.boss?
+             reduction *= 2 if upgradedNeedleFur
+             oldHP = user.hp
+             user.pbReduceHP(reduction,false)
+             if !upgradedNeedleFur
+               @battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
+             else
+              @battle.pbDisplay(_INTL("{1}'s fur is standing sharp! {2} is hurt!",b.pbThis,user.pbThis))
+             end
+             cleanupPreMoveDamage(user,oldHP)
+           end
+            @battle.pbHideAbilitySplash(b)
           end
         end
       end
@@ -303,28 +341,29 @@ class PokeBattle_Battler
       numHits *= 2 if user.effects[PBEffects::VolleyStance] && move.specialMove?
       # Process each hit in turn
       realNumHits = 0
-      for i in 0...numHits
-        break if magicCoater>=0 || magicBouncer>=0
-        success = pbProcessMoveHit(move,user,targets,i,skipAccuracyCheck,numHits > 1)
-        if !success
-          if i==0 && targets.length>0
-            hasFailed = false
-            targets.each do |t|
-              next if t.damageState.protected
-              hasFailed = t.damageState.unaffected
-              break if !t.damageState.unaffected
+      if magicCoater < 0 || magicBouncer < 0 || magicShielder < 0
+        for i in 0...numHits
+          success = pbProcessMoveHit(move,user,targets,i,skipAccuracyCheck,numHits > 1)
+          if !success
+            if i==0 && targets.length>0
+              hasFailed = false
+              targets.each do |t|
+                next if t.damageState.protected
+                hasFailed = t.damageState.unaffected
+                break if !t.damageState.unaffected
+              end
+              user.lastMoveFailed = hasFailed
             end
-            user.lastMoveFailed = hasFailed
+            break
           end
-          break
+          realNumHits += 1
+          break if user.fainted?
+          break if user.asleep?
+          # NOTE: If a multi-hit move becomes disabled partway through doing those
+          #       hits (e.g. by Cursed Body), the rest of the hits continue as
+          #       normal.
+          break if !targets.any? { |t| !t.fainted? }   # All targets are fainted
         end
-        realNumHits += 1
-        break if user.fainted?
-        break if user.asleep?
-        # NOTE: If a multi-hit move becomes disabled partway through doing those
-        #       hits (e.g. by Cursed Body), the rest of the hits continue as
-        #       normal.
-        break if !targets.any? { |t| !t.fainted? }   # All targets are fainted
       end
       # Battle Arena only - attack is successful
       @battle.successStates[user.index].useState = 2
@@ -338,7 +377,7 @@ class PokeBattle_Battler
       # Effectiveness message for multi-hit moves
       # NOTE: No move is both multi-hit and multi-target, and the messages below
       #       aren't quite right for such a hypothetical move.
-      if numHits>1
+      if numHits > 1
         if move.damagingMove?
           targets.each do |b|
             next if b.damageState.unaffected || b.damageState.substitute
@@ -384,6 +423,7 @@ class PokeBattle_Battler
       # Move-specific effects after all hits
       targets.each { |targetBattler|
         move.pbEffectAfterAllHits(user,targetBattler)
+        move.pbEffectOnNumHits(user,targetBattler,realNumHits)
         if targetBattler.effects[PBEffects::EmpoweredDestinyBond]
           next if targetBattler.damageState.unaffected
           next if !user.takesIndirectDamage?
@@ -396,33 +436,33 @@ class PokeBattle_Battler
         end
       }
 	  
-	  # Curses about move usage
-	  @battle.curses.each do |curse_policy|
-			@battle.triggerMoveUsedCurseEffect(curse_policy,self,choice[3],move)
-	  end
-	  
-	  if !battle.wildBattle?
-		  # Triggers dialogue for each target hit
-		  targets.each do |t|
-			next unless t.damageState.totalHPLost > 0
-			if @battle.pbOwnedByPlayer?(t.index)
-				# Trigger each opponent's dialogue
-				@battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
-					@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-						trainer = @battle.opponent[idxTrainer]
-						PokeBattle_AI.triggerPlayerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
-					}
-				end
-			else
-				# Trigger just this pokemon's trainer's dialogue
-				idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(index)
-				trainer_speaking = @battle.opponent[idxTrainer]
-				@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					PokeBattle_AI.triggerTrainerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
-				}
-			end
-		  end
-	  end
+      # Curses about move usage
+      @battle.curses.each do |curse_policy|
+        @battle.triggerMoveUsedCurseEffect(curse_policy,self,choice[3],move)
+      end
+      
+      if !battle.wildBattle?
+        # Triggers dialogue for each target hit
+        targets.each do |t|
+          next unless t.damageState.totalHPLost > 0
+          if @battle.pbOwnedByPlayer?(t.index)
+            # Trigger each opponent's dialogue
+            @battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
+              @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+                trainer = @battle.opponent[idxTrainer]
+                PokeBattle_AI.triggerPlayerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
+              }
+            end
+          else
+            # Trigger just this pokemon's trainer's dialogue
+            idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(index)
+            trainer_speaking = @battle.opponent[idxTrainer]
+            @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+              PokeBattle_AI.triggerTrainerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
+            }
+          end
+        end
+      end
       # Faint if 0 HP
       targets.each { |b| b.pbFaint if b && b.fainted? }
       user.pbFaint if user.fainted?
@@ -437,63 +477,39 @@ class PokeBattle_Battler
     @battle.eachBattler { |b| @battle.successStates[b.index].updateSkill }
     # Shadow Pokémon triggering Hyper Mode
     pbHyperMode if @battle.choices[@index][0]!=:None   # Not if self is replaced
-	# Refresh the scene to account for changes to pokemon status
-	@battle.scene.pbRefresh()
+    # Refresh the scene to account for changes to pokemon status
+    @battle.scene.pbRefresh()
     # End of move usage
     pbEndTurn(choice)
     # Instruct
     @battle.eachBattler do |b|
       next if !b.effects[PBEffects::Instruct] || !b.lastMoveUsed
       b.effects[PBEffects::Instruct] = false
-      idxMove = -1
-      b.eachMoveWithIndex { |m,i| idxMove = i if m.id==b.lastMoveUsed }
-      next if idxMove<0
-      oldLastRoundMoved = b.lastRoundMoved
-      @battle.pbDisplay(_INTL("{1} used the move instructed by {2}!",b.pbThis,user.pbThis(true)))
-      PBDebug.logonerr{
-        b.effects[PBEffects::Instructed] = true
-        b.pbUseMoveSimple(b.lastMoveUsed,b.lastRegularMoveTarget,idxMove,false)
-        b.effects[PBEffects::Instructed] = false
+      # Don't force the move if the pokemon someone no longer has that move
+      moveIndex = -1
+      b.eachMoveWithIndex { |m,i|
+        if m.id==b.lastMoveUsed
+          moveIndex = i
+        end
       }
-      b.lastRoundMoved = oldLastRoundMoved
-      @battle.pbJudge
-      return if @battle.decision>0
+      next if moveIndex<0
+      moveID = b.lastMoveUsed
+      usageMessage = _INTL("{1} used the move instructed by {2}!",b.pbThis,user.pbThis(true))
+      preTarget = b.lastRegularMoveTarget
+      @battle.forceUseMove(b,moveID,preTarget,false,usageMessage,PBEffects::Instructed,false)
     end
     # Dancer
     if !@effects[PBEffects::Dancer] && !user.lastMoveFailed && realNumHits>0 &&
-       !move.snatched && magicCoater<0 && @battle.pbCheckGlobalAbility(:DANCER) &&
-       move.danceMove?
+          !move.snatched && magicCoater < 0 && @battle.pbCheckGlobalAbility(:DANCER) && move.danceMove?
       dancers = []
       @battle.pbPriority(true).each do |b|
         dancers.push(b) if b.index!=user.index && b.hasActiveAbility?(:DANCER)
       end
       while dancers.length>0
         nextUser = dancers.pop
-        oldLastRoundMoved = nextUser.lastRoundMoved
-        # NOTE: Petal Dance being used because of Dancer shouldn't lock the
-        #       Dancer into using that move, and shouldn't contribute to its
-        #       turn counter if it's already locked into Petal Dance.
-        oldOutrage = nextUser.effects[PBEffects::Outrage]
-        nextUser.effects[PBEffects::Outrage] += 1 if nextUser.effects[PBEffects::Outrage]>0
-        oldCurrentMove = nextUser.currentMove
         preTarget = choice[3]
-        preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
-        @battle.pbShowAbilitySplash(nextUser,true)
-        @battle.pbHideAbilitySplash(nextUser)
-        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} kept the dance going with {2}!",
-             nextUser.pbThis,nextUser.abilityName))
-        end
-        PBDebug.logonerr{
-          nextUser.effects[PBEffects::Dancer] = true
-          nextUser.pbUseMoveSimple(move.id,preTarget)
-          nextUser.effects[PBEffects::Dancer] = false
-        }
-        nextUser.lastRoundMoved = oldLastRoundMoved
-        nextUser.effects[PBEffects::Outrage] = oldOutrage
-        nextUser.currentMove = oldCurrentMove
-        @battle.pbJudge
-        return if @battle.decision>0
+        preTarget = user.index if forcedMoveUser.opposes?(user) || !forcedMoveUser.opposes?(preTarget)
+        @battle.forceUseMove(nextUser,move.id,preTarget,true,nil,PBEffects::Dancer,true)
       end
     end
   end
@@ -613,6 +629,20 @@ class PokeBattle_Battler
       # Animate battlers fainting (checks all battlers rather than just targets
       # because Flame Burst's splash damage affects non-targets)
       @battle.pbPriority(true).each { |b| b.pbFaint if b && b.fainted? }
+    else
+      if !user.poisoned?
+        # Secretion Secret
+        targets.each do |target|
+          next if target.damageState.unaffected
+          if target.hasActiveAbility?(:SECRETIONSECRET)
+            battle.pbShowAbilitySplash(target)
+            if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+              user.pbPoison(target,nil)
+            end
+            battle.pbHideAbilitySplash(target)
+          end
+        end
+      end
     end
     @battle.pbJudgeCheckpoint(user,move)
     # Main effect (recoil/drain, etc.)
@@ -683,7 +713,27 @@ class PokeBattle_Battler
     @currentMove = nil
     # Reset counters for moves which increase them when used in succession
     @effects[PBEffects::FuryCutter]    = 0
-	@effects[PBEffects::IceBall]   	   = 0
-	@effects[PBEffects::RollOut]    = 0
+	  @effects[PBEffects::IceBall]   	   = 0
+	  @effects[PBEffects::RollOut]       = 0
+  end
+
+  #=============================================================================
+  # Simple "use move" method, used when a move calls another move and for Future
+  # Sight's attack
+  #=============================================================================
+  def pbUseMoveSimple(moveID,target=-1,idxMove=-1,specialUsage=true)
+    choice = []
+    choice[0] = :UseMove   # "Use move"
+    choice[1] = idxMove    # Index of move to be used in user's moveset
+    if idxMove>=0
+      choice[2] = @moves[idxMove]
+    else
+      choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
+      choice[2].pp = -1
+    end
+    choice[3] = target     # Target (-1 means no target yet)
+    choice[4] = 0
+    PBDebug.log("[Move usage] #{pbThis} started using the called/simple move #{choice[2].name}")
+    pbUseMove(choice,specialUsage)
   end
 end

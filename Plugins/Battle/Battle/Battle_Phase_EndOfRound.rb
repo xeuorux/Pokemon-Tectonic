@@ -150,7 +150,7 @@ class PokeBattle_Battle
 		    reduction = b.totalhp/16
 		    reduction *= 2 if !pbCheckGlobalAbility(:SHRAPNELSTORM).nil?
 		    reduction /= 4 if b.boss?
-		    b.damageState.displayedDamage = reduction
+		    b.damageState.displayedDamage = reduction.round
 		    @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
@@ -161,7 +161,7 @@ class PokeBattle_Battle
         reduction = b.totalhp/16
 	    	reduction *= 2 if !pbCheckGlobalAbility(:BITTERCOLD).nil?
 		    reduction /= 4 if b.boss?
-		    b.damageState.displayedDamage = reduction
+		    b.damageState.displayedDamage = reduction.round
 		    @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
@@ -171,7 +171,7 @@ class PokeBattle_Battle
         pbDisplay(_INTL("{1} is hurt by the shadow sky!",b.pbThis))
         reduction = b.totalhp/16
 		    reduction /= 4 if b.boss?
-		    b.damageState.displayedDamage = reduction
+		    b.damageState.displayedDamage = reduction.round
 		    @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
@@ -181,7 +181,7 @@ class PokeBattle_Battle
           pbDisplay(_INTL("{1} is hurt by the acid rain!",b.pbThis))
           reduction = b.totalhp/16
           reduction /= 4 if b.boss?
-          b.damageState.displayedDamage = reduction
+          b.damageState.displayedDamage = reduction.round
           @scene.pbDamageAnimation(b)
           b.pbReduceHP(reduction,false)
           b.pbItemHPHealCheck
@@ -305,7 +305,7 @@ class PokeBattle_Battle
         oldHP = b.hp
 		    reduction = b.totalhp/8
 		    reduction /= 4 if b.boss?
-		    b.damageState.displayedDamage = reduction
+		    b.damageState.displayedDamage = reduction.round
         @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         pbDisplay(_INTL("{1} is hurt by the sea of fire!",b.pbThis))
@@ -338,7 +338,7 @@ class PokeBattle_Battle
       next if !b.inHyperMode? || @choices[b.index][0]!=:UseMove
       reduction = b.totalhp/24
 	    reduction /= 4 if b.boss?
-	    b.damageState.displayedDamage = reduction
+	    b.damageState.displayedDamage = reduction.round
       @scene.pbDamageAnimation(b)
       b.pbReduceHP(reduction,false)
       pbDisplay(_INTL("The Hyper Mode attack hurts {1}!",b.pbThis(true)))
@@ -543,14 +543,17 @@ class PokeBattle_Battle
     pbEORCountDownBattlerEffect(priority,PBEffects::Embargo) { |battler|
       pbDisplay(_INTL("{1} can use items again!",battler.pbThis))
       battler.pbItemTerrainStatBoostCheck
-	  battler.pbItemFieldEffectCheck
+	    battler.pbItemFieldEffectCheck
     }
     # Yawn
     pbEORCountDownBattlerEffect(priority,PBEffects::Yawn) { |battler|
-      if battler.pbCanSleepYawn?
-        PBDebug.log("[Lingering effect] #{battler.pbThis} fell asleep because of Yawn")
-        battler.pbSleep
-      end
+        if battler.pbCanSleepYawn?
+          PBDebug.log("[Lingering effect] #{battler.pbThis} fell asleep because of Yawn")
+          battler.pbSleep
+        end
+    }
+    pbEORCountDownBattlerEffect(priority,PBEffects::EmpoweredDetect) { |battler|
+      pbDisplay(_INTL("{1}'s Primeval Detect wore off!",battler.pbThis))
     }
   end
 
@@ -564,16 +567,15 @@ class PokeBattle_Battle
         pbDisplay(_INTL("{1} was freed from {2}!",b.pbThis,moveName))
       else
         case b.effects[PBEffects::TrappingMove]
-        when :BIND        then pbCommonAnimation("Bind", b)
-        when :CLAMP       then pbCommonAnimation("Clamp", b)
-        when :FIRESPIN    then pbCommonAnimation("FireSpin", b)
-        when :MAGMASTORM  then pbCommonAnimation("MagmaStorm", b)
-        when :SANDTOMB    then pbCommonAnimation("SandTomb", b)
-        when :WRAP        then pbCommonAnimation("Wrap", b)
-        when :INFESTATION then pbCommonAnimation("Infestation", b)
-	    	when :SNAPTRAP 	  then pbCommonAnimation("SnapTrap",b)
-        when :THUNDERCAGE then pbCommonAnimation("ThunderCage",b)
-        else                   pbCommonAnimation("Wrap", b)
+        when :BIND,:VINEBIND            then pbCommonAnimation("Bind", b)
+        when :CLAMP,:SLAMSHUT           then pbCommonAnimation("Clamp", b)
+        when :FIRESPIN,:CRIMSONSTORM    then pbCommonAnimation("FireSpin", b)
+        when :MAGMASTORM                then pbCommonAnimation("MagmaStorm", b)
+        when :SANDTOMB,:SANDVORTEX      then pbCommonAnimation("SandTomb", b)
+        when :INFESTATION               then pbCommonAnimation("Infestation", b)
+	    	when :SNAPTRAP 	                then pbCommonAnimation("SnapTrap",b)
+        when :THUNDERCAGE               then pbCommonAnimation("ThunderCage",b)
+        else                            pbCommonAnimation("Wrap", b)
         end
         if b.takesIndirectDamage?
           hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/8 : b.totalhp/16
@@ -581,7 +583,7 @@ class PokeBattle_Battle
             hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/4 : b.totalhp/8
           end
 		      hpLoss = (hpLoss/4.0).floor if b.boss
-		      b.damageState.displayedDamage = hpLoss
+		      b.damageState.displayedDamage = hpLoss.round
           @scene.pbDamageAnimation(b)
           b.pbReduceHP(hpLoss,false)
           pbDisplay(_INTL("{1} is hurt by {2}!",b.pbThis,moveName))
@@ -676,6 +678,9 @@ class PokeBattle_Battle
     # Puzzle Room
     pbEORCountDownFieldEffect(PBEffects::PuzzleRoom,
        _INTL("Puzzle Room wore off, and Attack and Sp. Atk stats returned to normal!"))
+	# Odd Room
+    pbEORCountDownFieldEffect(PBEffects::OddRoom,
+       _INTL("Odd Room wore off, and Offensive and Defensive stats returned to normal!"))
   end
 
   def processTriggersEOR(priority)
@@ -760,6 +765,7 @@ class PokeBattle_Battle
 	    b.effects[PBEffects::StunningCurl]     = false
       b.effects[PBEffects::Sentry]           = false
       b.effects[PBEffects::RedHotRetreat]    = false
+      b.effects[PBEffects::ShimmeringHeat]   = false
       b.lastHPLost                           = 0
       b.lastHPLostFromFoe                    = 0
       b.tookDamage                           = false

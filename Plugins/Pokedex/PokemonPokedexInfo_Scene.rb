@@ -1,4 +1,7 @@
 class PokemonPokedexInfo_Scene
+
+	SIGNATURE_COLOR = Color.new(211,175,44)
+
   def pbStartScene(dexlist,index,region,battle=false,linksEnabled=false)
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z = 99999
@@ -71,7 +74,10 @@ class PokemonPokedexInfo_Scene
 	@sprites["rightarrow"].play
     @sprites["rightarrow"].visible = false
     @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
-	
+	@sprites["selectionarrow"] = IconSprite.new(0,0,@viewport)
+    @sprites["selectionarrow"].setBitmap("Graphics/Pictures/selarrow")
+	@sprites["selectionarrow"].visible = false
+	@sprites["selectionarrow"].x = 32
 	# Create the move extra info display
 	@moveInfoDisplay = SpriteWrapper.new(@viewport)
     @moveInfoDisplay.bitmap = @moveInfoDisplayBitmap.bitmap
@@ -169,7 +175,7 @@ class PokemonPokedexInfo_Scene
   def drawPage(page)
     overlay = @sprites["overlay"].bitmap
     overlay.clear
-    # Make certain sprites visible
+    # Make certain sprites visible or invisible
 	@sprites["infosprite"].visible    = (@page==1)
     @sprites["areamap"].visible       = false if @sprites["areamap"] #(@page==7) if @sprites["areamap"]
     @sprites["areahighlight"].visible = false if @sprites["areahighlight"] #(@page==7) if @sprites["areahighlight"]
@@ -180,6 +186,7 @@ class PokemonPokedexInfo_Scene
 	@sprites["moveInfoDisplay"].visible = @page==6 || @page ==7  if @sprites["moveInfoDisplay"]
 	@sprites["extraInfoOverlay"].visible = @page==6 || @page ==7 if @sprites["extraInfoOverlay"]
 	@sprites["extraInfoOverlay"].bitmap.clear if @sprites["extraInfoOverlay"]
+	@sprites["selectionarrow"].visible = false
 	# Draw page title
 	overlay = @sprites["overlay"].bitmap
 	base = Color.new(219, 240, 240)
@@ -286,22 +293,42 @@ class PokemonPokedexInfo_Scene
         fSpecies = GameData::Species.get_species_form(@species,i[2])
         abilities = fSpecies.abilities
         #ability 1
-        drawTextEx(overlay,30,92,450,1,"Ability 1",base,shadow)
+		abilityTextX = 30
+		abilityIDLabelX = 380
+		ability1Y = 76
+		drawTextEx(overlay,abilityIDLabelX,ability1Y,450,1,"Ability 1",base,shadow)
         if (abilities[0])
 		  ability1 = GameData::Ability.get(abilities[0])
-          drawTextEx(overlay,30,128,450,1,ability1.real_name,base,shadow)
-          drawTextEx(overlay,30,160,450,2,ability1.real_description,base,shadow)
+		  abilityNameColor = base
+		  abilityNameShadow = shadow
+		  abilityNameText = ability1.real_name
+		  if ability1.is_signature?
+			abilityNameText = "<outln>" + abilityNameText + "</outln>"
+			abilityNameColor = SIGNATURE_COLOR
+			abilityNameShadow = base
+		  end
+          drawFormattedTextEx(overlay,abilityTextX,ability1Y,450,abilityNameText,abilityNameColor,abilityNameShadow)
+          drawTextEx(overlay,abilityTextX,ability1Y + 32,450,3,ability1.real_description,base,shadow)
         else
-          drawTextEx(overlay,30,128,450,1,"None",base,shadow)
+          drawTextEx(overlay,abilityTextX,128,450,1,"None",base,shadow)
         end
         #ability 1
-        drawTextEx(overlay,30,92+142,450,1,"Ability 2",base,shadow)
+		ability2Y = 236
+        drawTextEx(overlay,abilityIDLabelX,ability2Y,450,1,"Ability 2",base,shadow)
         if (abilities[1])
           ability2 = GameData::Ability.get(abilities[1])
-          drawTextEx(overlay,30,128+142,450,1,ability2.real_name,base,shadow)
-          drawTextEx(overlay,30,160+142,450,2,ability2.real_description,base,shadow)
+		  abilityNameColor = base
+		  abilityNameShadow = shadow
+		  abilityNameText = ability2.real_name
+		  if ability2.is_signature?
+			abilityNameText = "<outln>" + abilityNameText + "</outln>"
+			abilityNameColor = SIGNATURE_COLOR
+			abilityNameShadow = base
+		  end
+          drawFormattedTextEx(overlay,abilityTextX,ability2Y,450,abilityNameText,abilityNameColor,abilityNameShadow)
+          drawTextEx(overlay,abilityTextX,ability2Y + 32,450,3,ability2.real_description,base,shadow)
         else
-          drawTextEx(overlay,30,128+142,450,1,"None",base,shadow)
+          drawTextEx(overlay,abilityTextX,ability2Y,450,1,"None",base,shadow)
         end
       end
     end
@@ -580,14 +607,27 @@ class PokemonPokedexInfo_Scene
     fSpecies = GameData::Species.get_species_form(@species,@form)
 	move_data = GameData::Move.get(move)
 	moveName = move_data.real_name
+	isSTAB = false
 	if move_data.category < 2 # Is a damaging move
 		if [fSpecies.type1,fSpecies.type2].include?(move_data.type) # Is STAB for the main pokemon
 			moveName = "<b>#{moveName}</b>"
+			isSTAB = true
 		elsif isAnyEvolutionOfType(fSpecies,move_data.type)
 			moveName = "<i>#{moveName}</i>"
 		end
 	end
-	return moveName
+	color = Color.new(64,64,64)
+	if move_data.is_signature?
+		if isSTAB
+			moveName = "<outln2>" + moveName + "</outln2>"
+		else
+			moveName = "<outln>" + moveName + "</outln>"
+		end
+		shadow = SIGNATURE_COLOR
+	else
+		shadow = Color.new(176,176,176)
+	end
+	return moveName,color,shadow
   end
   
   def isAnyEvolutionOfType(species_data,type)
@@ -604,8 +644,6 @@ class PokemonPokedexInfo_Scene
     @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
     overlay = @sprites["overlay"].bitmap
     formname = ""
-    base = Color.new(64,64,64)
-    shadow = Color.new(176,176,176)
 	selected_move = nil
 	xLeft = 36
     for i in @available
@@ -615,26 +653,31 @@ class PokemonPokedexInfo_Scene
         learnset = fSpecies.moves
         displayIndex = 0
         @scrollableLists = [learnset]
-        learnset.each_with_index do |learnsetEntry,index|
-          next if index<@scroll
-          level = learnsetEntry[0]
-          move = learnsetEntry[1]
-          return if !move || !level
-          levelLabel = level.to_s
-          if level == 0
-            levelLabel = "E"
-          end
-          # Draw stat line
-		  color = base 
-		  if index == @scroll
-			color = Color.new(255,100,80)
-			selected_move = move
-		  end
-		  moveName = getFormattedMoveName(move)
-		  drawTextEx(overlay,xLeft,60+30*displayIndex,450,1,levelLabel,color,shadow)
-          drawFormattedTextEx(overlay,xLeft+30,60+30*displayIndex,450,moveName,color,shadow)
-          displayIndex += 1
-          break if displayIndex >= 10
+        learnset.each_with_index do |learnsetEntry,listIndex|
+			next if listIndex < @scroll
+			level = learnsetEntry[0]
+			move = learnsetEntry[1]
+			return if !move || !level
+			levelLabel = level.to_s
+			if level == 0
+				levelLabel = "E"
+			end
+			# Draw stat line
+			moveName,moveColor,moveShadow = getFormattedMoveName(move)
+			offsetX = 0
+			if listIndex == @scroll
+				offsetX = 12
+				selected_move = move
+			end
+			moveDrawY = 60 + 30 * displayIndex
+			drawTextEx(overlay,xLeft + offsetX,moveDrawY,450,1,levelLabel,moveColor,moveShadow)
+			drawFormattedTextEx(overlay,xLeft+30 + offsetX,moveDrawY,450,moveName,moveColor,moveShadow)
+			if listIndex == @scroll
+				@sprites["selectionarrow"].y = moveDrawY - 4
+				@sprites["selectionarrow"].visible = true
+			end
+			displayIndex += 1
+			break if displayIndex >= 10
         end
       end
     end
@@ -751,6 +794,7 @@ class PokemonPokedexInfo_Scene
 		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
 			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 		end
+
         compatibleMoves = firstSpecies.egg_moves + species_data.tutor_moves
 		compatibleMoves.uniq!
 		compatibleMoves.compact!
@@ -774,13 +818,18 @@ class PokemonPokedexInfo_Scene
         @scrollableLists[@horizontalScroll].each_with_index do |move,index|
 			listIndex+= 1
 			next if listIndex < @scroll
-			color = base
+			moveName,moveColor,moveShadow = getFormattedMoveName(move)
+			offsetX = 0
 			if listIndex == @scroll
-				color = Color.new(255,100,80)
 				selected_move = move
+				offsetX = 12
 			end
-			moveName = getFormattedMoveName(move)
-			drawFormattedTextEx(overlay,xLeft,60+30*displayIndex,450,moveName,color,shadow)
+			moveDrawY = 60 + 30 * displayIndex
+			drawFormattedTextEx(overlay,xLeft + offsetX,moveDrawY,450,moveName,moveColor,moveShadow)
+			if listIndex == @scroll
+				@sprites["selectionarrow"].y = moveDrawY - 4
+				@sprites["selectionarrow"].visible = true
+			end
 			displayIndex += 1
 			break if displayIndex >= 10
         end

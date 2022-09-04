@@ -195,7 +195,7 @@ Environment = Grass
 # Bluepoint Grotto
 Outdoor = false
 ShowArea = true
-Bicycle = false
+Bicycle = true
 BicycleAlways = false
 Environment = Cave
 #-------------------------------
@@ -607,6 +607,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = true
+BattleBack = elite6
 #-------------------------------
 [105]
 # Southeast Sinkhole
@@ -627,6 +628,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = true
+BattleBack = elite6
 #-------------------------------
 [108]
 # Sinkhole House Yard
@@ -758,7 +760,7 @@ BattleBack = cave1
 Environment = Volcano
 #-------------------------------
 [126]
-# Sun Cave
+# Vibrant Cave
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1594,3 +1596,11 @@ Environment = Cave
 [315]
 # Ancient Antechamber
 MapPosition = 0,14,10
+#-------------------------------
+[316]
+# Sandstone Estuary
+Outdoor = true
+ShowArea = true
+Bicycle = true
+BattleBack = sand
+Environment = Sand

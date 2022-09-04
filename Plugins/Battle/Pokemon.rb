@@ -63,7 +63,7 @@ class Pokemon
     @obtain_text      = nil
     @obtain_level     = level
     @hatched_map      = 0
-    @timeReceived     = pbGetTimeNow.to_i
+    @timeReceived     = Time.now.to_i
     @timeEggHatched   = nil
     @fused            = nil
     @personalID       = rand(2 ** 16) | rand(2 ** 16) << 16
@@ -119,4 +119,6 @@ class Pokemon
     @spdef   = stats[:SPECIAL_DEFENSE]
     @speed   = stats[:SPEED]
   end
+
+  
 end

@@ -64,6 +64,16 @@ class PokeBattle_Battler
     end
 		
     showFaintDialogue()
+
+    if @effects[PBEffects::GivingDragonRideTo] != -1
+      otherBattler = @battle.battlers[@effects[PBEffects::GivingDragonRideTo]]
+      damageDealt = otherBattler.hp
+      otherBattler.damageState.displayedDamage = damageDealt
+      @battle.scene.pbDamageAnimation(otherBattler)
+      otherBattler.pbReduceHP(damageDealt,false)
+      @battle.pbDisplay(_INTL("{1} fell to the ground!",otherBattler.pbThis))
+      otherBattler.pbFaint
+    end
 		
 		pbInitEffects(false)
 		# Reset status
@@ -282,5 +292,19 @@ class PokeBattle_Battler
         pbChangeForm(newForm,_INTL("{1} transformed into its Complete Forme!",pbThis))
       end
     end
+  end
+
+  def pbReducePP(move)
+    return true if usingMultiTurnAttack?
+    return true if move.pp < 0          # Don't reduce PP for special calls of moves
+    return true if move.total_pp <= 0   # Infinite PP, can always be used
+    return false if move.pp == 0        # Ran out of PP, couldn't reduce
+    reductionAmount = 1
+    if !boss? && @lastMoveUsed && @lastMoveUsed == move.id && !@lastMoveFailed
+      reductionAmount = 3
+    end
+    newPPAmount = [move.pp - reductionAmount,0].max
+    pbSetPP(move,newPPAmount)
+    return true
   end
 end

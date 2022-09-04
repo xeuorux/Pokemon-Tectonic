@@ -984,9 +984,6 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
   end
 end
 
-
-
-
 #===============================================================================
 # User loses their Fire type. Fails if user is not Fire-type. (Burn Up)
 #===============================================================================
@@ -1114,8 +1111,7 @@ class PokeBattle_Move_0DA < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is doubled if the target is using Dig. Power is halved if Grassy Terrain
-# is in effect. Hits some semi-invulnerable targets. (Earthquake)
+# Power is doubled if the target is using Dig. Hits some semi-invulnerable targets. (Earthquake)
 #===============================================================================
 class PokeBattle_Move_076 < PokeBattle_Move
   def hitsDiggingTargets?; return true; end
@@ -1489,5 +1485,115 @@ class PokeBattle_Move_0F5 < PokeBattle_Move
     itemName = target.itemName
     target.pbRemoveItem
     @battle.pbDisplay(_INTL("{1}'s {2} was incinerated!",target.pbThis,itemName))
+  end
+end
+
+#===============================================================================
+# For 4 rounds, disables the target's non-damaging moves. (Taunt)
+#===============================================================================
+class PokeBattle_Move_0BA < PokeBattle_Move
+  def ignoresSubstitute?(user); return statusMove?; end
+
+  def pbFailsAgainstTarget?(user,target)
+    return false if damagingMove?
+    if target.effects[PBEffects::Taunt]>0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return true if pbMoveFailedAromaVeil?(user,target)
+    if Settings::MECHANICS_GENERATION >= 6 && target.hasActiveAbility?(:OBLIVIOUS) &&
+       !@battle.moldBreaker
+      @battle.pbShowAbilitySplash(target)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        @battle.pbDisplay(_INTL("But it failed!"))
+      else
+        @battle.pbDisplay(_INTL("But it failed because of {1}'s {2}!",
+           target.pbThis(true),target.abilityName))
+      end
+      @battle.pbHideAbilitySplash(target)
+      return true
+    end
+    return false
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    return if damagingMove?
+    target.effects[PBEffects::Taunt] = 4
+    @battle.pbDisplay(_INTL("{1} fell for the taunt!",target.pbThis))
+    target.pbItemStatusCureCheck
+  end
+
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    return if target.effects[PBEffects::Taunt] > 0
+    return true if pbMoveFailedAromaVeil?(user,target)
+    return if Settings::MECHANICS_GENERATION >= 6 && target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
+    target.effects[PBEffects::Taunt] = 4
+    @battle.pbDisplay(_INTL("{1} fell for the taunt!",target.pbThis))
+    target.pbItemStatusCureCheck
+  end
+end
+
+#===============================================================================
+# Heals user by 1/2 of its max HP.
+#===============================================================================
+class PokeBattle_Move_0D5 < PokeBattle_HealingMove
+  def pbHealAmount(user)
+    healAmount = user.totalhp/2.0
+    healAmount /= 4 if user.boss?
+    return healAmount.round
+  end
+end
+
+#===============================================================================
+# Decreases the target's Attack by 1 stage. Heals user by an amount equal to the
+# target's Attack stat (after applying stat stages, before this move decreases
+# it). (Strength Sap)
+#===============================================================================
+class PokeBattle_Move_160 < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    # Calculate target's effective attack value
+    stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+    stageDiv = PokeBattle_Battler::STAGE_DIVISORS
+    atk      = target.attack
+    atkStage = target.stages[:ATTACK]+6
+    healAmt = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
+    # Reduce target's Attack stat
+    if target.pbCanLowerStatStage?(:ATTACK,user,self)
+      target.pbLowerStatStage(:ATTACK,1,user)
+    end
+    # Heal user
+    if target.hasActiveAbility?(:LIQUIDOOZE)
+      @battle.pbShowAbilitySplash(target)
+      user.pbReduceHP(healAmt)
+      @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!",user.pbThis))
+      @battle.pbHideAbilitySplash(target)
+      user.pbItemHPHealCheck
+    elsif user.canHeal?
+      healAmt = (healAmt*1.3).floor if user.hasActiveItem?(:BIGROOT)
+      user.pbRecoverHP(healAmt)
+      @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+    end
+  end
+end
+
+#===============================================================================
+# Ignores all abilities that alter this move's success or damage. This move is
+# physical if user's Attack is higher than its Special Attack (after applying
+# stat stages), and special otherwise. (Photon Geyser)
+#===============================================================================
+class PokeBattle_Move_164 < PokeBattle_Move_163
+  def pbOnStartUse(user,targets)
+    # Calculate user's effective attacking value
+    stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+    stageDiv = PokeBattle_Battler::STAGE_DIVISORS
+    atk        = user.attack
+    atkStage   = user.stages[:ATTACK]+6
+    realAtk    = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
+    spAtk      = user.spatk
+    spAtkStage = user.stages[:SPECIAL_ATTACK]+6
+    realSpAtk  = (spAtk.to_f*stageMul[spAtkStage]/stageDiv[spAtkStage]).floor
+    # Determine move's category
+    @calcCategory = (realAtk>realSpAtk) ? 0 : 1
   end
 end

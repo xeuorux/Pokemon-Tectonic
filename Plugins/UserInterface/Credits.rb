@@ -37,7 +37,7 @@ UltimoSpriter<s>PeekyChew
 Cuddlesthefatcat<s>Pablus94
 Hydrargirium<s>zetavares852
 TyranitarDark<s>ChaoticCherryCake
-aveontrainer<s>kane89
+AveonTrainer<s>kane89
 carchagui<s>Princess Phoenix
 DormDude<s>Rayquaza-dot
 Vazquinho<s>Yveltalchannel
@@ -52,7 +52,20 @@ Hek-el-grande<s>Kaliser
 SailorVicious<s>Agentbla
 Shiney570<s>dirtywiggles
 Ekat<s>MewTheMega
-Zeo254
+Zeo254<s>Tristantine The Great
+HauntedArtStudio<s>Wraitex
+YuukiMokuya<s>CNickC
+WilsonScarloxy<s>Minorthreat0987
+PurpleZaffre<s>Akizakura16
+WildDeadHero<s>Derlo
+Flurmimon<s>The-Red-Ex
+The_Jacko_Art<s>Voltseon
+WesleyFG<s>Shawn Frost
+NSora-96<s>Minorthreat0987
+DarkDragonn<s>rafa-cac
+Newtiteuf<s>moca
+
+
 
 Charsets
 DiegoWT<s>PurpleZaffre

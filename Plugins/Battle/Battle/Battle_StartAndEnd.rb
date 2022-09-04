@@ -29,6 +29,13 @@ class PokeBattle_Battle
     rescue BattleAbortedException
       @decision = 0
       @scene.pbEndBattle(@decision)
+    rescue StandardError
+      pbMessage(_INTL("\\wmA major error has occured! Please screen-shot the following error message and share it in our bug channel.")) if $DEBUG
+      pbPrintException($!)
+      pbMessage(_INTL("\\wmRather than crashing, we will give the victory to you.")) if $DEBUG
+      pbMessage(_INTL("\\wmPlease don't abuse this functionality.")) if $DEBUG
+      @decision = 1
+      @scene.pbEndBattle(@decision)
     end
     # End the effect of all curses
     curses.each do |curse_policy|
@@ -324,8 +331,10 @@ class PokeBattle_Battle
 	  @battlers.each do |b|
       next if !b
       next unless b.boss?
-      next unless b.hp < b.totalhp * 0.55
-      next if b.empowered
+      avatarData = GameData::Avatar.get(b.species.to_sym)
+      next if b.avatarPhase == avatarData.num_phases
+      hpFraction = 1 - (b.avatarPhase.to_f / avatarData.num_phases.to_f)
+      next if b.hp > b.totalhp * hpFraction
       usedEmpoweredMove = false
       b.eachMoveWithIndex do |move,index|
         next if move.damagingMove?
@@ -338,10 +347,13 @@ class PokeBattle_Battle
       end
       # Swap to post-empowerment moveset
       if usedEmpoweredMove
-        avatar_data = GameData::Avatar.get(b.species.to_sym)
-        b.assignMoveset(avatar_data.post_prime_moves)
+        b.avatarPhase += 1
+        movesetToAssign = [avatarData.moves1,avatarData.moves2,avatarData.moves3][b.avatarPhase-1]
+        if movesetToAssign.nil?
+          echoln("ERROR: Unable to change moveset.")
+        end
+        b.assignMoveset(movesetToAssign)
         b.primevalTimer = 0
-        b.empowered = true
         @scene.pbRefresh
       end
 	  end

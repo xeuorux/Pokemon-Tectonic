@@ -270,10 +270,6 @@ Special
 Special
     1,GYAMASK,15
 #-------------------------------
-[078] # LuxTech Main
-Special,20
-    1,WIMPOD,15
-#-------------------------------
 [081] # East Tunnel
 DarkCave,20
     20,CUBONE,17,20
@@ -366,7 +362,7 @@ Special,20
     1,TIRTOUGA,10
     1,TYRUNT,10
 #-------------------------------
-[126] # Sun Cave
+[126] # Vibrant Cave
 LandSparse,20
     34,DUNSPARCE,18,20
     33,JOLTIK,18,20
@@ -475,22 +471,22 @@ DarkCave,21
 #-------------------------------
 [185] # Eleig Stretch
 Land,21
-    34,MZANGOOSE,30,32
-    33,DEERLING,30,32
-    33,MSEVIPER,30,32
-LandTall,21
-    40,ESPURR,30,32
-    20,EMOLGA,30,32
-    20,HERACROSS,30,32
-    20,SEWADDLE,30,32
-LandSparse,21
-    34,LICKITUNG,30,32
-    33,CARNIVINE,30,32
-    33,DEWPIDER,30,32
+    25,EMOLGA,30,32
+    25,MSEVIPER,30,32
+    25,MZANGOOSE,30,32
+    25,STANTLER,30,32
+LandTall,25
+    25,CARNIVINE,30,32
+    25,DEWPIDER,30,32
+    25,HERACROSS,30,32
+    25,LICKITUNG,30,32
+    25,SEWADDLE,30,32
 Puddle,21
-    34,VOLBEAT,30,32
-    33,CORPHISH,30,32
-    33,ILLUMISE,30,32
+    40,ESPURR,23,25
+    20,CORPHISH,23,25
+    20,DEERLING,23,25
+    20,ILLUMISE,23,25
+    20,VOLBEAT,23,25
 #-------------------------------
 [186] # Frostflow Farms
 LandTall,20
@@ -549,7 +545,7 @@ Special,20
 [211] # Split Peaks
 Land,20
     25,ABSOL,37,39
-    25,KOMALA,34,36
+    25,KOMALA,37,39
     25,PINSIR,37,39
     25,SPINDA,37,39
 LandSparse,20
@@ -557,10 +553,6 @@ LandSparse,20
     25,DRILBUR,37,39
     25,HAWLUCHA,37,39
     25,SKARMORY,37,39
-Puddle,20
-    33,EISCUE,37,39
-    33,SEEL,37,39
-    33,STANTLER,37,39
 #-------------------------------
 [213] # Velenz Menagerie
 Land,20
@@ -761,7 +753,7 @@ LandSparse,20
 [258] # Whitebloom Town
 Land,20
     25,BUNEARY,43,45
-    25,NICKIT,43,45
+    25,KRICKETOT,43,45
     25,PICHU,43,45
     25,ROOKIDEE,43,45
 #-------------------------------
@@ -798,3 +790,25 @@ Special,1
 [305] # Mainland Dock Warehouse
 Special,1
     1,GPONYTA,15
+#-------------------------------
+[316] # Sandstone Estuary
+ActiveWater,20
+    20,CARVANHA,37,39
+    20,CHINCHOU,37,39
+    20,MANTYKE,37,39
+    20,TENTACOOL,37,39
+    20,WAILMER,37,39
+LandSparse,20
+    20,CRABRAWLER,37,39
+    20,EISCUE,37,39
+    20,LAPRAS,37,39
+    20,PINCURCHIN,37,39
+    20,SEEL,37,39
+#-------------------------------
+[321] # Crater Station Backroom
+Special
+    1,KANGASKHAN,15
+#-------------------------------
+[323] # HQ Station Backroom
+Special
+    1,WIMPOD,15

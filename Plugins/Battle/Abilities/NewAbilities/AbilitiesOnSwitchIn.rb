@@ -62,7 +62,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:MYSTICAURA,
   proc { |ability,battler,battle|
 	if battle.field.effects[PBEffects::MagicRoom]==0
 		battle.pbShowAbilitySplash(battler)
-		battle.field.effects[PBEffects::MagicRoom] = 5
+		battle.field.effects[PBEffects::MagicRoom] = getRoomDuration(battler)
 		battle.pbDisplay(_INTL("{1}'s aura creates a bizarre area in which Pokemon's held items lose their effects!",battler.pbThis))
 		battle.pbHideAbilitySplash(battler)
 	end
@@ -73,7 +73,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
   proc { |ability,battler,battle|
 	if battle.field.effects[PBEffects::PuzzleRoom] == 0
 		battle.pbShowAbilitySplash(battler)
-		battle.field.effects[PBEffects::PuzzleRoom] = 5
+		battle.field.effects[PBEffects::PuzzleRoom] = getRoomDuration(battler)
 		battle.pbDisplay(_INTL("{1}'s aura creates a puzzling area in which Pokemon's Attack and Sp. Atk are swapped!",battler.pbThis))
 		battle.pbHideAbilitySplash(battler)
 	end
@@ -84,7 +84,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTER,
   proc { |ability,battler,battle|
 	if battle.field.effects[PBEffects::TrickRoom]==0
 		battle.pbShowAbilitySplash(battler)
-		battle.field.effects[PBEffects::TrickRoom] = 5
+		battle.field.effects[PBEffects::TrickRoom] = getRoomDuration(battler)
 		battle.pbDisplay(_INTL("{1} twisted the dimensions! Speed now functions in reverse!",battler.pbThis))
 		battle.pbHideAbilitySplash(battler)
 	end
@@ -185,5 +185,30 @@ BattleHandlers::AbilityOnSwitchIn.add(:ONTHEWIND,
     battler.pbOwnSide.effects[PBEffects::Tailwind] = 4
     battle.pbDisplay(_INTL("{1} flew in on a tailwind!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:AQUASNEAK,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} snuck into the water!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
+  proc { |ability,battler,battle|
+	if battle.field.effects[PBEffects::OddRoom] == 0
+		battle.pbShowAbilitySplash(battler)
+		battle.field.effects[PBEffects::OddRoom] = getRoomDuration(battler)
+		battle.pbDisplay(_INTL("{1}'s aura creates an odd area in which Pokémon's Offensive and Defensive stats are swapped!",battler.pbThis))
+		battle.pbHideAbilitySplash(battler)
+	end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:CONVICTION,
+  proc { |ability,battler,battle|
+    battle.forceUseMove(battler,:ENDURE,battler,true,nil,nil,true)
   }
 )

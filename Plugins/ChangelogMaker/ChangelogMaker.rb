@@ -21,7 +21,7 @@ DebugMenuCommands.register("generatechangelogrange", {
 	end
 	lastNumberAttempt = lastNumberInput.to_i
 	return nil if lastNumberAttempt == 0
-	printChangeLogBetween(firstNumberAttempt,lastNumberAttempt)
+	createChangeLogBetween(firstNumberAttempt,lastNumberAttempt)
   }
 })
 
@@ -30,31 +30,38 @@ DebugMenuCommands.register("generatechangelog", {
   "name"        => _INTL("Generate species changelog"),
   "description" => _INTL("See the changelog for each species between the Old and New pokemon.txt files."),
   "effect"      => proc { |sprites, viewport|
-	printChangeLogBetween(1,9999)
+  createChangeLogBetween(1,9999)
   }
 })
 
-def printChangeLogBetween(firstNumberAttempt,lastNumberAttempt)
+DebugMenuCommands.register("generatechangelogpergen", {
+  "parent"      => "changelog",
+  "name"        => _INTL("Generate changelog per generation"),
+  "description" => _INTL("Generate a species changelog per generation of Pokemon"),
+  "effect"      => proc { |sprites, viewport|
+	if !safeIsDirectory?("Changelogs")
+		Dir.mkdir("Changelogs") rescue nil
+	end
+	for index in 1...GENERATION_END_IDS.length
+		startID = GENERATION_END_IDS[index-1] + 1
+		endID = GENERATION_END_IDS[index]
+		echoln("Creating the changelog between the IDs of #{startID} and #{endID}")
+		createChangeLogBetween(startID,endID,"Changelogs/changelog_gen#{index.to_s}.txt")
+	end
+  }
+})
+
+def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 	unchanged = []
 	
-	generationLastNumbers = [0,151,251,386,493,649,721,809,898]
-	currentGeneration = 0
-
 	stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
 	statNames = {:HP => "HP",:ATTACK => "Attack",:DEFENSE => "Defense",:SPECIAL_ATTACK => "Sp. Atk",:SPECIAL_DEFENSE => "Sp. Def",:SPEED => "Speed"}
 	
-	File.open("changelog.txt","wb") { |f|
-
+	File.open(fileName,"wb") { |f|
 		GameData::SpeciesOld.each do |species_data|
 			next if species_data.form != 0
-			next if species_data.id_number < firstNumberAttempt
-			break if species_data.id_number > lastNumberAttempt
-			
-			if species_data.id_number > generationLastNumbers[currentGeneration]
-				currentGeneration += 1
-				
-				f.write("GENERATION #{currentGeneration}\r\n")
-			end
+			next if species_data.id_number < firstID
+			break if species_data.id_number > lastID
 			
 			newSpeciesData = GameData::Species.get(species_data.id) || nil
 			next if newSpeciesData.nil?
@@ -251,5 +258,5 @@ def printChangeLogBetween(firstNumberAttempt,lastNumberAttempt)
 		end
 		f.write("Species that were unchanged: #{unchanged.to_s}")
 	}
-	pbMessage(_INTL("Species changelog written to changelog.txt"))
+	pbMessage(_INTL("Species changelog written to #{fileName}"))
 end

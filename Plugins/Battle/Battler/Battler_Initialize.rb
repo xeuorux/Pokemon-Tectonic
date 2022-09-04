@@ -1,6 +1,6 @@
 class PokeBattle_Battler
 	attr_accessor 	:boss
-	attr_accessor 	:empowered
+	attr_accessor 	:avatarPhase
 	attr_accessor	:extraMovesPerTurn
 	attr_reader 	:bossStatus
 	attr_reader 	:bossStatusCount
@@ -26,7 +26,7 @@ class PokeBattle_Battler
 	end
 	
 	def empowered?
-		return empowered
+		return @avatarPhase > 1
 	end
 
 	def extraMovesPerTurn
@@ -41,6 +41,10 @@ class PokeBattle_Battler
 
 	def resetExtraMovesPerTurn
 		@pokemon.extraMovesPerTurn = GameData::Avatar.get(@species).num_turns - 1
+	end
+
+	def firstMoveThisTurn?
+		return @battle.commandPhasesThisRound == 0
 	end
 
 	def lastMoveThisTurn?
@@ -208,7 +212,7 @@ class PokeBattle_Battler
 		@lastRoundMoveFailed   = false
 		@movesUsed             = []
 		@turnCount             = 0
-		@empowered			   = false
+		@avatarPhase		   = 1
 		@primevalTimer		   = 0
 		@extraMovesPerTurn	   = 0
 		@indexesTargetedThisTurn   = []
@@ -353,9 +357,9 @@ class PokeBattle_Battler
 		@effects[PBEffects::BallFetch]           = 0
 		@effects[PBEffects::LashOut]             = false
 		@effects[PBEffects::BurningJealousy]     = false
-		  @effects[PBEffects::Obstruct]            = false
-		  @effects[PBEffects::TarShot]             = false
-		  @effects[PBEffects::BlunderPolicy]       = false
+		@effects[PBEffects::Obstruct]            = false
+		@effects[PBEffects::TarShot]             = false
+		@effects[PBEffects::BlunderPolicy]       = false
 		@effects[PBEffects::SwitchedAlly]        = -1
 		
 		@effects[PBEffects::FlinchedAlready]     = false
@@ -369,11 +373,21 @@ class PokeBattle_Battler
 		@effects[PBEffects::StunningCurl]		 = false
 		@effects[PBEffects::RedHotRetreat]       = false
 		@effects[PBEffects::VolleyStance]        = false
+		@effects[PBEffects::OnDragonRide]    	 = false
+		@effects[PBEffects::GivingDragonRideTo]  = -1
+		@effects[PBEffects::ShimmeringHeat]		 = false
+		@effects[PBEffects::FlareWitch]		 = false
 		
 		@effects[PBEffects::EmpoweredEndure]     = 0
 		@effects[PBEffects::EmpoweredMoonlight]  = false
 		@effects[PBEffects::EmpoweredLaserFocus] = false
 		@effects[PBEffects::EmpoweredDestinyBond] = false
 		@effects[PBEffects::ExtraTurns] = 0
+		@effects[PBEffects::EmpoweredDetect]     = 0
+
+		@battle.eachBattler do |b|   # Other battlers no longer giving a dragon ride to self
+			next if b.effects[PBEffects::GivingDragonRideTo] != @index
+			b.effects[PBEffects::GivingDragonRideTo]     	  = -1
+		end
     end
 end

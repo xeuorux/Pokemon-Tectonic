@@ -303,14 +303,21 @@ def renameMoves(renamingHash)
   end
 
   GameData::Avatar.each do |avatar_data|
-    newMoves = avatar_data.moves.map { |move|
+    newMoves1 = avatar_data.moves1.map { |move|
       if renamingHash.has_key?(move.to_s)
         next renamingHash[move.to_s][0].to_sym
       else
         next move
       end
     }
-    newPPMoves = avatar_data.post_prime_moves.map { |move|
+    newMoves2 = avatar_data.moves2.map { |move|
+      if renamingHash.has_key?(move.to_s)
+        next renamingHash[move.to_s][0].to_sym
+      else
+        next move
+      end
+    }
+    newMoves3 = avatar_data.moves3.map { |move|
       if renamingHash.has_key?(move.to_s)
         next renamingHash[move.to_s][0].to_sym
       else
@@ -322,8 +329,9 @@ def renameMoves(renamingHash)
       :id_number   		    => avatar_data.id_number,
       :turns		 		      => avatar_data.num_turns,
       :form		 		        => avatar_data.form,
-      :moves		 		      => newMoves,
-      :post_prime_moves	  => newPPMoves,
+      :moves1		 		      => newMoves1,
+      :moves2		 		      => newMoves2,
+      :moves3		 		      => newMoves3,
       :ability	 		      => avatar_data.ability,
       :item		 		        => avatar_data.item,
       :hp_mult	 		      => avatar_data.hp_mult,

@@ -6,6 +6,8 @@ class PokeBattle_Move
   
 	def pbAllMissed(user, targets); end
 
+  def pbEffectOnNumHits(user,target,numHits); end   # Move effects that occur after all hits, which base themselves on how many hits landed
+
   #=============================================================================
   # Animate the damage dealt, including lowering the HP
   #=============================================================================
@@ -61,7 +63,7 @@ class PokeBattle_Move
       damage = target.effects[PBEffects::Substitute] if damage>target.effects[PBEffects::Substitute]
       target.damageState.hpLost       = damage
       target.damageState.totalHPLost += damage
-	  target.damageState.displayedDamage = damage
+	    target.damageState.displayedDamage = damage
       return
     end
     # Disguise takes the damage
@@ -102,6 +104,10 @@ class PokeBattle_Move
 		      damageAdjusted = true
         elsif target.hasActiveItem?(:FOCUSSASH) && target.hp==target.totalhp
           target.damageState.focusSash = true
+          damage -= 1
+		      damageAdjusted = true
+        elsif target.hasActiveItem?(:CASSBERRY) && target.hp==target.totalhp
+          target.damageState.endureBerry = true
           damage -= 1
 		      damageAdjusted = true
         elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100)<10
@@ -210,6 +216,10 @@ class PokeBattle_Move
     elsif target.damageState.direDiversion
       @battle.pbDisplay(_INTL("{1} blocked the hit with its item! It barely hung on!",target.pbThis))
       target.pbConsumeItem
+    elsif target.damageState.endureBerry
+      itemName = GameData::Item.get(target.item).real_name
+      @battle.pbDisplay(_INTL("{1} hung on by consuming its {2}!",target.pbThis,itemName))
+      target.pbConsumeItem
     end
   end
   
@@ -309,8 +319,8 @@ class PokeBattle_Move
       target.damageState.calcDamage = 1
       return
     end
-    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+    stageDiv = PokeBattle_Battler::STAGE_DIVISORS
     # Get the move's type
     type = @calcType   # nil is treated as physical
     # Calculate whether this hit deals critical damage
@@ -325,9 +335,6 @@ class PokeBattle_Move
 	    calc = (calc.to_f + 1.0)/2.0 if user.boss?
       atk = (atk.to_f*calc).floor
     end
-	  # if atkStage > 6 && user.paralyzed?
-		#   atkStage = 6
-	  # end
     # Calculate target's defense stat
     defense, defStage = pbGetDefenseStats(user,target)
     if !user.hasActiveAbility?(:UNAWARE)
@@ -338,9 +345,6 @@ class PokeBattle_Move
 	    calc = (calc.to_f + 1.0)/2.0 if target.boss?
       defense = (defense.to_f*calc).floor
     end
-    # if defStage > 6 && target.paralyzed?
-    #   defStage = 6
-    # end
     # Calculate all multiplier effects
     multipliers = {
       :base_damage_multiplier  => 1.0,
@@ -436,13 +440,21 @@ class PokeBattle_Move
 		if type == :FIRE
 		  @battle.eachBattler do |b|
 			next if !b.effects[PBEffects::WaterSport]
-			multipliers[:base_damage_multiplier] /= 3
+			  multipliers[:base_damage_multiplier] /= 3
 			break
 		  end
 		  if @battle.field.effects[PBEffects::WaterSportField]>0
-			multipliers[:base_damage_multiplier] /= 3
+			  multipliers[:base_damage_multiplier] /= 3
 		  end
 		end
+    # Dragon Ride
+    if user.effects[PBEffects::OnDragonRide] && physicalMove?
+      multipliers[:final_damage_multiplier] *= 1.5
+    end
+    # Shimmering Heat
+    if target.effects[PBEffects::ShimmeringHeat]
+      multipliers[:final_damage_multiplier] *= 0.67
+    end
     # Battler properites
     multipliers[:base_damage_multiplier] *= user.dmgMult
     multipliers[:base_damage_multiplier] *= [0,(1.0 - target.dmgResist.to_f)].max
@@ -568,6 +580,9 @@ class PokeBattle_Move
 		  end
 		end
     if target.effects[PBEffects::StunningCurl]
+      multipliers[:final_damage_multiplier] /= 2
+    end
+    if target.effects[PBEffects::EmpoweredDetect]
       multipliers[:final_damage_multiplier] /= 2
     end
 		# Move-specific base damage modifiers
@@ -701,17 +716,17 @@ class PokeBattle_Move
     evasion  = 100.0 * stageMul[evaStage].to_f / stageDiv[evaStage].to_f
     accuracy = (accuracy.to_f * modifiers[:accuracy_multiplier].to_f).round
     if user.boss?
-        accuracy = (accuracy.to_f + 100.0) / 2.0
-      end
-      evasion  = (evasion.to_f  * modifiers[:evasion_multiplier].to_f).round
-    if target.boss?
-        evasion = (evasion.to_f + 100.0) / 2.0
-      end
-      evasion = 1 if evasion < 1
-      # Calculation
-    calc = accuracy.to_f / evasion.to_f
-      return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
+      accuracy = (accuracy.to_f + 100.0) / 2.0
     end
+    evasion  = (evasion.to_f  * modifiers[:evasion_multiplier].to_f).round
+    if target.boss?
+      evasion = (evasion.to_f + 100.0) / 2.0
+    end
+    evasion = 1 if evasion < 1
+    # Calculation
+    calc = accuracy.to_f / evasion.to_f
+    return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
+  end
   
   def pbDisplayUseMessage(user,targets=[])
     # Trigger dialogue for a trainer or the player about to use a move
@@ -808,5 +823,45 @@ class PokeBattle_Move
     ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
                 user.pbOwnSide.effects[PBEffects::Rainbow]>0
     return ret
+  end
+
+  def selectPartyMemberForEffect(idxBattler,selectableProc=nil)
+    # Get player's party
+    party    = @battle.pbParty(idxBattler)
+    partyPos = @battle.pbPartyOrder(idxBattler)
+    partyStart, _partyEnd = @battle.pbTeamIndexRangeFromBattlerIndex(idxBattler)
+    modParty = @battle.pbPlayerDisplayParty(idxBattler)
+    # Start party screen
+    pkmnScene = PokemonParty_Scene.new
+    pkmnScreen = PokemonPartyScreen.new(pkmnScene,modParty)
+    #pkmnScreen.pbStartScene(_INTL("Use move on which Pokémon?"),@battle.pbNumPositions(0,0))
+    idxParty = -1
+    # Loop while in party screen
+    loop do
+      # Select a Pokémon
+      idxParty = pkmnScreen.pbChooseAblePokemon(selectableProc)
+      next if idxParty < 0
+      idxPartyRet = -1
+      partyPos.each_with_index do |pos,i|
+        next if pos!=idxParty+partyStart
+        idxPartyRet = i
+        break
+      end
+      next if idxPartyRet < 0
+      pkmn = party[idxPartyRet]
+      next if !pkmn || pkmn.egg?
+      yield pkmn
+      break
+    end
+    pkmnScene.pbEndScene
+  end
+
+  def pbTarget(user)
+    targetData = GameData::Target.get(@target)
+    if damagingMove? && targetData.can_target_one_foe? && user.effects[PBEffects::FlareWitch]
+      return GameData::Target.get(:AllNearFoes)
+    else
+      return targetData
+    end
   end
 end

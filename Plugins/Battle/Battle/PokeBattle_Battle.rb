@@ -18,7 +18,8 @@ class PokeBattle_Battle
   
   def roomActive?
     return @field.effects[PBEffects::PuzzleRoom] || @field.effects[PBEffects::WonderRoom] ||
-        @field.effects[PBEffects::MagicRoom] || @field.effects[PBEffects::TrickRoom]
+        @field.effects[PBEffects::MagicRoom] || @field.effects[PBEffects::TrickRoom] ||
+		@field.effects[PBEffects::OddRoom]
   end
 	
   #=============================================================================
@@ -97,7 +98,7 @@ class PokeBattle_Battle
     @messagesBlocked   = false
     @bossBattle		   = false
     @autoTesting	   = false
-    @autoTestingIndex  = 1
+    @autoTestingIndex  = 901
     @commandPhasesThisRound = 0
     @honorAura		   = false
     @curses			   = []
@@ -136,6 +137,41 @@ class PokeBattle_Battle
   
   def pbDisplayConfirmSerious(msg)
     return @scene.pbDisplayConfirmMessageSerious(msg) if !messagesBlocked
+  end
+
+  # moveIDOrIndex is either the index of the move on the user's move list (Integer)
+  # or it's the ID of the move to be used (Symbol)
+  def forceUseMove(forcedMoveUser,moveIDOrIndex,target=-1,specialUsage=true,usageMessage=nil,moveUsageEffect=nil,showAbilitySplash=false)
+      oldLastRoundMoved = forcedMoveUser.lastRoundMoved
+      if specialUsage
+        # NOTE: Petal Dance being used shouldn't lock the
+        #       battler into using that move, and shouldn't contribute to its
+        #       turn counter if it's already locked into Petal Dance.
+        oldCurrentMove = forcedMoveUser.currentMove
+        oldOutrage = forcedMoveUser.effects[PBEffects::Outrage]
+        forcedMoveUser.effects[PBEffects::Outrage] += 1 if forcedMoveUser.effects[PBEffects::Outrage]>0
+      end
+      if showAbilitySplash
+        pbShowAbilitySplash(forcedMoveUser,true)
+      end
+      pbDisplay(usageMessage) if !usageMessage.nil?
+      if showAbilitySplash
+        pbHideAbilitySplash(forcedMoveUser)
+      end
+      moveID = moveIDOrIndex.is_a?(Symbol) ? moveIDOrIndex : nil
+      moveIndex = moveIDOrIndex.is_a?(Integer) ? moveIDOrIndex : -1
+      PBDebug.logonerr{
+        forcedMoveUser.effects[moveUsageEffect] = true if !moveUsageEffect.nil?
+        forcedMoveUser.pbUseMoveSimple(moveID,target,moveIndex,specialUsage)
+        forcedMoveUser.effects[moveUsageEffect] = false if !moveUsageEffect.nil?
+      }
+      forcedMoveUser.lastRoundMoved = oldLastRoundMoved
+      if specialUsage
+        forcedMoveUser.effects[PBEffects::Outrage] = oldOutrage
+        forcedMoveUser.currentMove = oldCurrentMove
+      end
+      pbJudge()
+      return if @decision>0
   end
 end
 

@@ -40,6 +40,7 @@ class PokeBattle_Battle
     if battler.effects[PBEffects::Trapping]>0 ||
        battler.effects[PBEffects::MeanLook]>=0 ||
        battler.effects[PBEffects::Ingrain] ||
+       battler.effects[PBEffects::GivingDragonRideTo] != -1 ||
        @field.effects[PBEffects::FairyLock]>0
       partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
       return true
@@ -305,24 +306,24 @@ class PokeBattle_Battle
   end
   
   def battlerEnterDialogue(battler)
-	if !wildBattle?
-		# Trigger dialogue for this pokemon
-		if pbOwnedByPlayer?(battler.index)
-			# Trigger each opponent's dialogue
-			@opponent.each_with_index do |trainer_speaking,idxTrainer|
-				@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					trainer = @opponent[idxTrainer]
-					PokeBattle_AI.triggerPlayerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue)
-				}
-			end
-		else
-			# Trigger just this pokemon's trainer's dialogue
-			idxTrainer = pbGetOwnerIndexFromBattlerIndex(battler.index)
-			trainer_speaking = @opponent[idxTrainer]
-			@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-				PokeBattle_AI.triggerTrainerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue)
-			}
-		end
-	end
+    if !wildBattle?
+      # Trigger dialogue for this pokemon
+      if pbOwnedByPlayer?(battler.index)
+        # Trigger each opponent's dialogue
+        @opponent.each_with_index do |trainer_speaking,idxTrainer|
+          @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+            trainer = @opponent[idxTrainer]
+            PokeBattle_AI.triggerPlayerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue)
+          }
+        end
+      else
+        # Trigger just this pokemon's trainer's dialogue
+        idxTrainer = pbGetOwnerIndexFromBattlerIndex(battler.index)
+        trainer_speaking = @opponent[idxTrainer]
+        @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+          PokeBattle_AI.triggerTrainerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue)
+        }
+      end
+    end
   end
 end

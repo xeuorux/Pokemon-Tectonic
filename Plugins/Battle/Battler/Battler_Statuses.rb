@@ -115,7 +115,7 @@ class PokeBattle_Battler
 		if affectedByTerrain? && !statusDoublingCurse
 			case @battle.field.terrain
 			when :Electric
-				if newStatus == :SLEEP || newStatus == :PARALYSIS
+				if newStatus == :SLEEP || newStatus == :FLUSTERED || newStatus == :MYSTIFIED
 					@battle.pbDisplay(_INTL("{1} surrounds itself with electrified terrain!",pbThis(true))) if showMessages
 					return false
 				end

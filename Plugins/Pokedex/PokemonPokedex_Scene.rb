@@ -3,6 +3,7 @@ SEARCHES_STACK = true
 class PokemonPokedex_Scene
   def pbStartScene
 	generateSpeciesUseData() if $DEBUG
+	generateSignaturesData() if $DEBUG
 
     @sliderbitmap       	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_slider")
     @typebitmap         	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
@@ -80,6 +81,11 @@ class PokemonPokedex_Scene
 			arrayOfTrainerData.compact!
 			@speciesUseData[species] = arrayOfTrainerData.length
 		end
+  end
+
+  def generateSignaturesData
+		@signatureAbilities = getSignatureAbilities()
+		@signatureMoves 	= getSignatureMoves()
   end
   
   def pbEndScene
@@ -389,15 +395,18 @@ class PokemonPokedex_Scene
 		elsif Input.pressex?(0x47) && $DEBUG # G, for Get
 			pbAddPokemonSilent(@sprites["pokedex"].species,$game_variables[26])
 			pbMessage("Added #{@sprites["pokedex"].species}")
-		elsif Input.pressex?(0x42) && $DEBUG # B, for Battle
-			if !Input.press?(Input::CTRL)
-		  		pbWildBattle(@sprites["pokedex"].species, $game_variables[26])
-			else
-				begin
-					pbSmallAvatarBattle([@sprites["pokedex"].species.to_sym, $game_variables[26]])
-				rescue
-					pbMessage(_INTL("Unable to start Avatar battle."))
+		elsif Input.pressex?(0x57) && $DEBUG # W, for Wild Pokemon
+			pbWildBattle(@sprites["pokedex"].species, $game_variables[26])
+		elsif Input.pressex?(0x42) && $DEBUG # B, for Boss
+			begin
+				species = @sprites["pokedex"].species
+				if isLegendary?(species)
+					pbBigAvatarBattle([species.to_sym, $game_variables[26]])
+				else
+					pbSmallAvatarBattle([species.to_sym, $game_variables[26]])
 				end
+			rescue
+				pbMessage(_INTL("Unable to start Avatar battle."))
 			end
 		elsif Input.pressex?(0x4F) && $DEBUG # O, for Own
 			@dexlist.each do |dexlist_entry|
@@ -1298,6 +1307,11 @@ class PokemonPokedex_Scene
 		cmdIsLegendary 			= -1
 		cmdMovesetConformance 	= -1
 		cmdOneAbility 			= -1
+		cmdHasSignatureMove 	= -1
+		cmdHasSignatureAbility 	= -1
+		cmdHasSignature 		= -1
+		cmdAvatarData			= -1
+		cmdOneAbility 			= -1
 		cmdInvertList			= -1
 		miscSearches[cmdMapFound = miscSearches.length] = _INTL("Map Found")
 		miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
@@ -1305,6 +1319,10 @@ class PokemonPokedex_Scene
 		miscSearches[cmdIsLegendary = miscSearches.length] = _INTL("Legendary")
 		miscSearches[cmdMovesetConformance = miscSearches.length] = _INTL("Moveset Noncomfority") if $DEBUG
 		miscSearches[cmdOneAbility = miscSearches.length] = _INTL("One Ability") if $DEBUG
+		miscSearches[cmdHasSignatureMove = miscSearches.length] = _INTL("Signature Move")
+		miscSearches[cmdHasSignatureAbility = miscSearches.length] = _INTL("Signature Ability")
+		miscSearches[cmdHasSignature = miscSearches.length] = _INTL("Signature (D)") if $DEBUG
+		miscSearches[cmdAvatarData = miscSearches.length] = _INTL("Avatar Data") if $DEBUG
 		miscSearches[cmdGeneration = miscSearches.length] = _INTL("Generation")
 		miscSearches[cmdInvertList = miscSearches.length] = _INTL("Invert Current")
 		miscSearches.push(_INTL("Cancel"))
@@ -1325,6 +1343,14 @@ class PokemonPokedex_Scene
 			return searchByMovesetConformance()
 		elsif cmdOneAbility > -1 && searchSelection == cmdOneAbility
 			return searchByOneAbility()
+		elsif cmdHasSignatureMove > -1 && searchSelection == cmdHasSignatureMove
+			return searchBySignatureMove()
+		elsif cmdHasSignatureAbility > -1 && searchSelection == cmdHasSignatureAbility
+			return searchBySignatureAbility()
+		elsif cmdAvatarData > -1 && searchSelection == cmdAvatarData
+			return searchByHasAvatarData()
+		elsif cmdHasSignature > -1 && searchSelection == cmdHasSignature
+			return searchBySignature()
 		elsif cmdInvertList > -1 && searchSelection == cmdInvertList
 			return invertSearchList()
 		end
@@ -1341,6 +1367,96 @@ class PokemonPokedex_Scene
 				next fSpecies.abilities.length == 1
 		}
 		return dexlist
+	end
+
+	def searchBySignatureMove()
+		dexlist = searchStartingList()
+		
+		dexlist = dexlist.find_all { |dex_item|
+				next false if autoDisqualifyFromSearch(dex_item[0])
+
+				hasSignatureMove = false
+				
+				# By level up
+				item[11].each do |learnset_entry|
+					if GameData::Move.get(learnset_entry[1]).is_signature?
+						hasSignatureMove = true
+						break
+					end
+				end
+
+				next true if hasSignatureMove
+				
+				# Egg moves
+				item[13].each do |move|
+					if GameData::Move.get(move).is_signature?
+						hasSignatureMove = true
+						break
+					end
+				end
+
+				next true if hasSignatureMove
+				
+				# Tutor moves
+				item[12].each do |move|
+					if GameData::Move.get(move).is_signature?
+						hasSignatureMove = true
+						break
+					end
+				end
+
+				next hasSignatureMove
+		}
+		return dexlist
+	end
+
+	def searchBySignatureAbility()
+		dexlist = searchStartingList()
+		
+		dexlist = dexlist.find_all { |dex_item|
+				next false if autoDisqualifyFromSearch(dex_item[0])
+				
+				hasSignatureAbility = false
+				dex_item[10].each do |ability|
+					hasSignatureAbility = true if GameData::Ability.get(ability).is_signature?
+				end
+				next hasSignatureAbility
+		}
+		return dexlist
+	end
+
+	def searchByHasAvatarData()
+		dexlist = searchStartingList()
+		
+		dexlist = dexlist.find_all { |dex_item|
+				next false if autoDisqualifyFromSearch(dex_item[0])
+				
+				fSpecies = GameData::Species.get(dex_item[0])
+				
+				next GameData::Avatar.exists?(fSpecies.species)
+		}
+		return dexlist
+	end
+
+	def searchBySignature()
+		selection = pbMessage("Which search?",[_INTL("Has Signature"),_INTL("Doesn't"),_INTL("Cancel")],3)
+	    if selection != 2 
+			dexlist = searchStartingList()
+			
+			dexlist = dexlist.find_all { |dex_item|
+					next false if autoDisqualifyFromSearch(dex_item[0])
+					
+					fSpecies = GameData::Species.get(dex_item[0])
+					
+					if selection == 0
+						next @signatureMoves.has_value?(fSpecies.id) || @signatureAbilities.has_value?(fSpecies.id)
+					else
+						next !@signatureMoves.has_value?(fSpecies.id) && !@signatureAbilities.has_value?(fSpecies.id)
+					end
+			}
+			return dexlist
+		end
+		return nil
 	end
 	
 	def searchByWildItem

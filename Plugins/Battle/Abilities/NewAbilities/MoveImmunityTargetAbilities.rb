@@ -35,9 +35,37 @@ BattleHandlers::MoveImmunityTargetAbility.add(:HEARTOFJUSTICE,
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:ARTIFICIALNOCTURNE,
-  proc { |ability,user,target,move,type,battle,mult|
+  proc { |ability,user,target,move,type,battle|
 	if user.battle.pbWeather == :Sandstorm
 		next (pbBattleMoveImmunityHealAbility(user,target,move,type,:BUG,battle) || pbBattleMoveImmunityHealAbility(user,target,move,type,:FAIRY,battle) || pbBattleMoveImmunityHealAbility(user,target,move,type,:FIRE,battle))
 	end
+  }
+)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:INDUSTRIALIZE,
+  proc { |ability,user,target,move,type,battle|
+    next pbBattleMoveImmunityStatAbility(user,target,move,type,:STEEL,:SPEED,1,battle)
+  }
+)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:DRAGONSLAYER,
+  proc { |ability,user,target,move,type,battle|
+    next false if user.index==target.index
+    next false if type != :DRAGON
+    battle.pbShowAbilitySplash(target)
+    battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+    battle.pbHideAbilitySplash(target)
+    next true
+  }
+)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:PECKINGORDER,
+  proc { |ability,user,target,move,type,battle|
+    next false if user.index==target.index
+    next false if type != :FLYING
+    battle.pbShowAbilitySplash(target)
+    battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+    battle.pbHideAbilitySplash(target)
+    next true
   }
 )

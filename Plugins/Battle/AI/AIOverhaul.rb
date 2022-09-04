@@ -549,8 +549,8 @@ class PokeBattle_AI
     if battler.effects[PBEffects::ConfusionChance] >= 1
 		  #Calculate the damage the confusionMove would do
       confusionMove = PokeBattle_Confusion.new(@battle,nil)
-      stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-      stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+      stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+      stageDiv = PokeBattle_Battler::STAGE_DIVISORS
       # Get the move's type
       type = confusionMove.calcType
       # Calcuate base power of move
@@ -586,8 +586,8 @@ class PokeBattle_AI
     if battler.effects[PBEffects::CharmChance] >= 1
 		  #Calculate the damage the charmMove would do
       charmMove = PokeBattle_Charm.new(@battle,nil)
-		  stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-		  stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+		  stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+		  stageDiv = PokeBattle_Battler::STAGE_DIVISORS
       # Get the move's type
       type = charmMove.calcType
       # Calcuate base power of move
@@ -1235,8 +1235,8 @@ class PokeBattle_AI
   end
 
   def pbRoughStatCalc(atkStat,atkStage)
-    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+    stageDiv = PokeBattle_Battler::STAGE_DIVISORS
     return (atkStat.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
   end
 

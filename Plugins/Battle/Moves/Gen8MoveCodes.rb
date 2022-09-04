@@ -57,16 +57,15 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-	##echoln target.opposes?(user)
-	return 0 if target.opposes?(user)
-    failed = true
-	for i in 0...@statUp.length/2
-	  score -= target.stages[@statUp[i*2]] * 10
-      failed = false if target.pbCanRaiseStatStage?(@statUp[i*2],user,self)
-      break
-    end
-	score = 0 if failed
-	return score
+    return 0 if target.opposes?(user)
+      failed = true
+    for i in 0...@statUp.length/2
+      score -= target.stages[@statUp[i*2]] * 10
+        failed = false if target.pbCanRaiseStatStage?(@statUp[i*2],user,self)
+        break
+      end
+    score = 0 if failed
+    return score
   end
 end
 
@@ -603,8 +602,8 @@ class PokeBattle_Move_187 < PokeBattle_Move_005
   end
   
   def getScore(score,user,target,skill=100)
-	score = getPoisonMoveScore(score,user,target,skill,statusMove?)
-	return score
+	  score = getPoisonMoveScore(score,user,target,skill,[],statusMove?)
+	  return score
   end
 end
 
@@ -769,7 +768,7 @@ class PokeBattle_Move_18F < PokeBattle_Move
     return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
     itemName = target.itemName
     target.pbRemoveItem(false)
-    @battle.pbDisplay(_INTL("{1} dropped its {2}!",target.pbThis,itemName))
+    @battle.pbDisplay(_INTL("{1}'s {2} became unusuable, so it dropped it!",target.pbThis,itemName))
   end
 end
 

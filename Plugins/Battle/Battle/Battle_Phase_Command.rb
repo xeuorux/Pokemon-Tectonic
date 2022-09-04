@@ -1,84 +1,88 @@
 class PokeBattle_Battle
-  #=============================================================================
-  # Command phase
-  #=============================================================================
-  def pbCommandPhase
-    @scene.pbBeginCommandPhase
-    # Reset choices if commands can be shown
-    @battlers.each_with_index do |b,i|
-      next if !b
-      pbClearChoice(i) if pbCanShowCommands?(i)
-    end
-    # Reset choices to perform Mega Evolution if it wasn't done somehow
-    for side in 0...2
-      @megaEvolution[side].each_with_index do |megaEvo,i|
-        @megaEvolution[side][i] = -1 if megaEvo>=0
-      end
-    end
-
-	# Soul Read alerts
-	@battlers.each do |battler|
-		next if battler.nil?
-		next unless battler.hasActiveAbility?(:SOULREAD)
-		battler.eachOpposing do |opponent|
-			next if opponent.lastMoveUsedType.nil?
-			next if opponent.pbTypes(true).include?(opponent.lastMoveUsedType)
-			pbShowAbilitySplash(battler)
-			pbDisplay(_INTL("{1} reads {2}'s guilty soul!",battler.pbThis,opponent.pbThis(true)))
-			pbHideAbilitySplash(battler)
+	#=============================================================================
+	# Command phase
+	#=============================================================================
+	def pbCommandPhase
+		@scene.pbBeginCommandPhase
+		# Reset choices if commands can be shown
+		@battlers.each_with_index do |b,i|
+		next if !b
+		pbClearChoice(i) if pbCanShowCommands?(i)
 		end
-	end
-	
-	# SWAPPED THE ORDER HERE OF PLAYER VS AI
-	
-    # Choose actions for the round (AI first, then player)
-    pbCommandPhaseLoop(false)   # AI chooses their actions
-	
-    return if @decision!=0   # Battle ended, stop choosing actions
-    pbCommandPhaseLoop(true)   # Player chooses their actions
-	
-	# For each pokemon the player decided to use a move with, trigger the trainer dialogue method
-	# for any trainers which can do so
-	if @opponent
-		idxBattler = -1
-		loop do
-		  idxBattler += 1
-		  break if idxBattler>=@battlers.length
-		  next if !@battlers[idxBattler] || !pbOwnedByPlayer?(idxBattler)
-		  if @choices[idxBattler][0] == :UseMove
-				battler = @battlers[idxBattler]
-				move = @choices[idxBattler][2]
-				target = @choices[idxBattler][3] == -1 ? nil : @battlers[@choices[idxBattler][3]]
-				
-				# Trigger dialogue for each opponent
-				@opponent.each_with_index do |trainer_speaking,idxTrainer|
-					@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-						PokeBattle_AI.triggerPlayerChoseMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue)
-					}
-				end	
+		# Reset choices to perform Mega Evolution if it wasn't done somehow
+		for side in 0...2
+			@megaEvolution[side].each_with_index do |megaEvo,i|
+				@megaEvolution[side][i] = -1 if megaEvo>=0
+			end
+		end
+
+		preSelectionAlerts()
+		
+		# SWAPPED THE ORDER HERE OF PLAYER VS AI
+		
+		# Choose actions for the round (AI first, then player)
+		pbCommandPhaseLoop(false)   # AI chooses their actions
+		
+		return if @decision!=0   # Battle ended, stop choosing actions
+		pbCommandPhaseLoop(true)   # Player chooses their actions
+		
+		# For each pokemon the player decided to use a move with, trigger the trainer dialogue method
+		# for any trainers which can do so
+		if @opponent
+			idxBattler = -1
+			loop do
+			idxBattler += 1
+			break if idxBattler>=@battlers.length
+			next if !@battlers[idxBattler] || !pbOwnedByPlayer?(idxBattler)
+			if @choices[idxBattler][0] == :UseMove
+					battler = @battlers[idxBattler]
+					move = @choices[idxBattler][2]
+					target = @choices[idxBattler][3] == -1 ? nil : @battlers[@choices[idxBattler][3]]
+					
+					# Trigger dialogue for each opponent
+					@opponent.each_with_index do |trainer_speaking,idxTrainer|
+						@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+							PokeBattle_AI.triggerPlayerChoseMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue)
+						}
+					end	
+				end
 			end
 		end
 	end
-  end
 
-  def pbExtraCommandPhase()
-    @scene.pbBeginCommandPhase
-    # Reset choices if commands can be shown
-    @battlers.each_with_index do |b,i|
-      next if !b
-      pbClearChoice(i) if pbCanShowCommands?(i)
-    end
-    # Reset choices to perform Mega Evolution if it wasn't done somehow
-    for side in 0...2
-      @megaEvolution[side].each_with_index do |megaEvo,i|
-        @megaEvolution[side][i] = -1 if megaEvo>=0
-      end
-    end
-    # Choose actions for the round (AI first, then player)
-    pbCommandPhaseLoop(false)   # AI chooses their actions
-	return if @decision!=0   # Battle ended, stop choosing actions
-    pbCommandPhaseLoop(true)   # Player chooses their actions
-  end
+	def preSelectionAlerts()
+		# Soul Read alerts
+		@battlers.each do |battler|
+			next if battler.nil?
+			next unless battler.hasActiveAbility?(:SOULREAD)
+			battler.eachOpposing do |opponent|
+				next if opponent.lastMoveUsedType.nil?
+				next if opponent.pbTypes(true).include?(opponent.lastMoveUsedType)
+				pbShowAbilitySplash(battler)
+				pbDisplay(_INTL("{1} reads {2}'s guilty soul!",battler.pbThis,opponent.pbThis(true)))
+				pbHideAbilitySplash(battler)
+			end
+		end
+	end
+
+	def pbExtraCommandPhase()
+		@scene.pbBeginCommandPhase
+		# Reset choices if commands can be shown
+		@battlers.each_with_index do |b,i|
+		next if !b
+		pbClearChoice(i) if pbCanShowCommands?(i)
+		end
+		# Reset choices to perform Mega Evolution if it wasn't done somehow
+		for side in 0...2
+		@megaEvolution[side].each_with_index do |megaEvo,i|
+			@megaEvolution[side][i] = -1 if megaEvo>=0
+		end
+		end
+		# Choose actions for the round (AI first, then player)
+		pbCommandPhaseLoop(false)   # AI chooses their actions
+		return if @decision!=0   # Battle ended, stop choosing actions
+		pbCommandPhaseLoop(true)   # Player chooses their actions
+	end
 
 	def pbCommandPhaseLoop(isPlayer)
 		# NOTE: Doing some things (e.g. running, throwing a Poké Ball) takes up all
@@ -147,6 +151,8 @@ class PokeBattle_Battle
 			@battlers.each do |b|
 				b.hp = b.totalhp
 				b.pbCureStatus(false)
+				b.pbResetStatStages()
+				b.pbInitPokemon(b.pkmn,b.index)
 			end
 			next
 		  end

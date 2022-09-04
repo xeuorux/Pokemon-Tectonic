@@ -22,7 +22,7 @@ end
 BattleHandlers::StatLossImmunityAbility.copy(:CLEARBODY,:WHITESMOKE,:STUBBORN)
 
 #===============================================================================
-# UserAbilityEndOfMove handlers
+# UserAbilityOfMove handlers
 #===============================================================================
 BattleHandlers::UserAbilityEndOfMove.add(:DEEPSTING,
   proc { |ability,user,targets,move,battle|
@@ -87,21 +87,9 @@ BattleHandlers::AccuracyCalcUserAbility.add(:SANDSNIPER,
   }
 )
 
-#===============================================================================
-# EOREffectAbility handlers
-#===============================================================================
-BattleHandlers::EOREffectAbility.add(:ASTRALBODY,
-  proc { |ability,battler,battle|
-	next unless battle.field.terrain==:Misty
-    next if !battler.canHeal?
-	battle.pbShowAbilitySplash(battler)
-    battler.pbRecoverHP(battler.totalhp/16)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
-    end
-    battle.pbHideAbilitySplash(battler)
+BattleHandlers::AccuracyCalcUserAbility.add(:AQUASNEAK,
+  proc { |ability,mods,user,target,move,type|
+    mods[:base_accuracy] = 0 if user.turnCount <= 1
   }
 )
 
@@ -134,14 +122,6 @@ BattleHandlers::AccuracyCalcUserAllyAbility.add(:OCULAR,
 #===============================================================================
 #other handlers
 #==============================================================================
-BattleHandlers::TargetAbilityAfterMoveUse.add(:ADRENALINERUSH,
-  proc { |ability,target,user,move,switched,battle|
-    next if !move.damagingMove?
-    next if target.damageState.initialHP<target.totalhp/2 || target.hp>=target.totalhp/2
-	target.pbRaiseStatStageByAbility(:SPEED,2,target) if target.pbCanRaiseStatStage?(:SPEED,target)
-  }
-)
-
 BattleHandlers::UserAbilityEndOfMove.add(:SCHADENFREUDE,
   proc { |ability,battler,targets,move,battle|
     numFainted = 0
@@ -264,23 +244,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
   }
 )
 
-BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
-  proc { |ability,battler,battle|
-    next unless battler.hasActiveItem?(CLOTHING_ITEMS)
-    next unless battler.canHeal?
-    battle.pbShowAbilitySplash(battler)
-    recover = battler.totalhp/8
-    recover /= 4 if battler.boss?
-    battler.pbRecoverHP(recover)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
-    end
-    battle.pbHideAbilitySplash(battler)
-  }
-)
-
 BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
   proc { |ability,user,targets,move,battle|
     next if battle.pbAllFainted?(user.idxOpposingSide)
@@ -317,6 +280,6 @@ BattleHandlers::AbilityOnStatLoss.add(:BELLIGERENT,
   proc { |ability,battler,stat,user|
     next if user && !user.opposes?(battler)
     battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,2,battler)
-	battler.pbRaiseStatStageByAbility(:ATTACK,2,battler)
+	  battler.pbRaiseStatStageByAbility(:ATTACK,2,battler)
   }
 )

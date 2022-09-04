@@ -207,22 +207,25 @@ class PokemonStorageScreen
   end
   
   def pbBoxCommands
-    commands = [
-       _INTL("Jump"),
-       _INTL("Wallpaper"),
-       _INTL("Name"),
-	     _INTL("Visit PokÉstate"),
-       _INTL("Cancel"),
-    ]
+    commands = []
+    jumpCommand = -1
+    wallPaperCommand = -1
+    nameCommand = -1
+    visitEstateCommand = -1
+    cancelCommand = -1
+    commands[jumpCommand = commands.length] = _INTL("Jump")
+    commands[wallPaperCommand = commands.length] = _INTL("Wallpaper")
+    commands[nameCommand = commands.length] = _INTL("Name")
+    commands[visitEstateCommand = commands.length] = _INTL("Visit PokÉstate") if defined?(PokEstate) && !$game_switches[ESTATE_DISABLED_SWITCH]
+    commands[cancelCommand = commands.length] = _INTL("Cancel")
     command = pbShowCommands(
        _INTL("What do you want to do?"),commands)
-    case command
-    when 0
+    if command == jumpCommand
       destbox = @scene.pbChooseBox(_INTL("Jump to which Box?"))
       if destbox>=0
         @scene.pbJumpToBox(destbox)
       end
-    when 1
+    elsif command == wallPaperCommand
       papers = @storage.availableWallpapers
       index = 0
       for i in 0...papers[1].length
@@ -234,9 +237,9 @@ class PokemonStorageScreen
       if wpaper>=0
         @scene.pbChangeBackground(papers[1][wpaper])
       end
-    when 2
+    elsif command == nameCommand
 		  @scene.pbBoxName(_INTL("Box name?"),0,12)
-	  when 3
+	  elsif visitEstateCommand != -1 && command == visitEstateCommand
       if heldpkmn
         pbDisplay("Can't Visit the PokÉstate while you have a Pokémon in your hand!")
         return false

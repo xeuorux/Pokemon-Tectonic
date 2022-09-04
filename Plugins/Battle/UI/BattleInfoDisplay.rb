@@ -1,3 +1,6 @@
+HIGHEST_STAT_BASE = Color.new(139,52,34)
+LOWEST_STAT_BASE = Color.new(60,55,112)
+
 class BattleInfoDisplay < SpriteWrapper
 	attr_accessor   :battle
 	attr_accessor   :selected
@@ -187,7 +190,6 @@ class BattleInfoDisplay < SpriteWrapper
 		battlerName += " [#{speciesData.real_form_name}]" if speciesData.form != 0
 	end
 	textToDraw.push([battlerName,256,0,2,base,shadow])
-	index = 0
 	
 	stageMulMainStat = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
 	stageDivMainStat = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
@@ -216,27 +218,30 @@ class BattleInfoDisplay < SpriteWrapper
 	:ACCURACY => "Acc",
 	:EVASION => "Evade"
 	}
+
+	# Hash containing info about each stat
+	# Each key is a symbol of a stat
+	# Each value is an array of [statName, statStage, statMult, statFinalValue]
+	calculatedStatInfo = {}
 	
 	# Display the info about each stat
 	statValues = battler.plainStats
+	highestStat = nil
+	highestStatValue = -65536 # I chose these caps somewhat arbitrarily
+	lowestStat = nil
+	lowestStatValue = 65536
 	statsToNames.each do |stat,name|
-		y = statStagesSectionTopY + 40 + 40 * index
-	
+		statValuesArray = []
+		
 		statData = GameData::Stat.get(stat)
-		textToDraw.push([name,statLabelX,y,0,base,shadow])
+		statValuesArray.push(name)
 		
+		# Stat stage
 		stage = battler.stages[stat]
-		stageZero = stage == 0
-		stageLabel = stage.to_s
-		if !stageZero && battler.boss?
-			stageLabel = (stage/2.0).round(1).to_s
+		if stage != 0 && battler.boss?
+			stage = (stage/2.0).round(1)
 		end
-		stageLabel = "+" + stageLabel if stage > 0
-		
-		x = statStageX
-		x -= 12 if !stageZero
-		mainColor = @battle.bossBattle? ? bossBase : base
-		textToDraw.push([stageLabel,x,y,0,mainColor,shadow])
+		statValuesArray.push(stage)
 
 		#Percentages
 		stageMul = statData.type == :battle ? stageMulBattleStat : stageMulMainStat
@@ -244,16 +249,67 @@ class BattleInfoDisplay < SpriteWrapper
 		adjustedStage = stage + 6
 		mult = stageMul[adjustedStage].to_f/stageDiv[adjustedStage].to_f
 		mult = (1.0+mult)/2.0 if battler.boss?
-		value = statValues[stat] || 100
-		value = (value * mult).floor.to_s
 		
-		# Draw the multiplier label
-		multLabel = mult.round(2).to_s + "x"
+		statValuesArray.push(mult)
+
+		# Draw the final stat value label
+		value = statValues[stat] || 100 # 100 is for accuracy and evasion
+		value = (value * mult).floor
+		statValuesArray.push(value)
+
+		# Track the highest and lowest main battle stat (not accuracy or evasion)
+		if statData.type == :main_battle
+			if value > highestStatValue
+				highestStat = stat
+				highestStatValue = value
+			end
+
+			if value < lowestStatValue
+				lowestStat = stat
+				lowestStatValue = value
+			end
+		end
+		
+		calculatedStatInfo[stat] = statValuesArray
+	end
+
+	index = 0
+	calculatedStatInfo.each do |stat,calculatedInfo|
+		name 		= calculatedInfo[0]
+		stage 		= calculatedInfo[1]
+		statMult 	= calculatedInfo[2]
+		statValue 	= calculatedInfo[3]
+
+		# Calculate text display info
+		y = statStagesSectionTopY + 40 + 40 * index
+		statValueAddendum = ""
+		if stat == highestStat
+			mainColor = HIGHEST_STAT_BASE
+			statValueAddendum = " H"
+		elsif stat == lowestStat
+			mainColor = LOWEST_STAT_BASE
+			statValueAddendum = " L"
+		else
+			mainColor = base
+		end
+
+		# Display the stat's name
+		textToDraw.push([name,statLabelX,y,0,mainColor,shadow])
+
+		# Display the stat stage
+		x = statStageX
+		x -= 12 if stage != 0
+		stageLabel = stage.to_s
+		stageLabel = "+" + stageLabel if stage > 0
+		textToDraw.push([stageLabel,x,y,0,mainColor,shadow])
+
+		# Display the stat multiplier
+		multLabel = statMult.round(2).to_s + "x"
 		textToDraw.push([multLabel,statMultX,y,0,mainColor,shadow])
 
-		# Draw the resultant value label
-		textToDraw.push([value,statValueX,y,0,mainColor,shadow])
-		
+		# Display the final calculated stat
+		textToDraw.push([statValue.to_s + statValueAddendum,statValueX,y,0,mainColor,shadow])
+
 		index += 1
 	end
 	
@@ -465,9 +521,15 @@ class BattleInfoDisplay < SpriteWrapper
 		"", # Gargantuan
 		"", # Stunning Curl
 		"", # Red-Hot Retreat
-		"Empowered Moonlight",
-		"Empowered Endure",
-		"Empowered Laser Focus",
+		"Primeval Moonlight",
+		"Primeval Endure",
+		"Primeval Laser Focus",
+		"Primeval Destiny Bond",
+		"Volley Stance",
+		"Giving Dragon Ride",
+		"Riding Dragon",
+		"Shimmering Heat",
+		"Flare Witch",
 	][effectNumber] || ""
   end
   
@@ -502,6 +564,8 @@ class BattleInfoDisplay < SpriteWrapper
 			"Wonder Room",
 			"Fortune",
 			"Neutralizing Gas",
+			"Puzzle Room",
+			"Odd Room",
 		][effectNumber] || ""
 	end
 

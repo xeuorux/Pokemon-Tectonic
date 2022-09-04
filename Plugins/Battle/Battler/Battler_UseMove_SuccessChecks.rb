@@ -264,7 +264,9 @@ class PokeBattle_Battler
   #=============================================================================
   def pbSuccessCheckAgainstTarget(move,user,target)
 	  # Unseen Fist
-    unseenfist = user.ability == :UNSEENFIST && move.contactMove?
+    protectionIgnoredByAbility = false
+    protectionIgnoredByAbility = true if user.ability == :UNSEENFIST && move.contactMove?
+    protectionIgnoredByAbility = true if user.ability == :AQUASNEAK && user.turnCount <= 1
     typeMod = move.pbCalcTypeMod(move.calcType,user,target)
     target.damageState.typeMod = typeMod
     # Two-turn attacks can't fail here in the charging turn
@@ -279,7 +281,7 @@ class PokeBattle_Battler
     end
     # Crafty Shield
     if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index != target.index && 
-        move.statusMove? && !move.pbTarget(user).targets_all && !unseenfist
+        move.statusMove? && !move.pbTarget(user).targets_all && !protectionIgnoredByAbility
       @battle.pbCommonAnimation("CraftyShield",target)
       @battle.pbDisplay(_INTL("Crafty Shield protected {1}!",target.pbThis(true)))
       target.damageState.protected = true
@@ -289,7 +291,7 @@ class PokeBattle_Battler
     # Wide Guard
     if target.pbOwnSide.effects[PBEffects::WideGuard] && user.index!=target.index &&
        move.pbTarget(user).num_targets > 1 && !move.smartSpreadsTargets? &&
-       (Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?) && !unseenfist
+       (Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?) && !protectionIgnoredByAbility
       @battle.pbCommonAnimation("WideGuard",target)
       @battle.pbDisplay(_INTL("Wide Guard protected {1}!",target.pbThis(true)))
       target.damageState.protected = true
@@ -301,7 +303,7 @@ class PokeBattle_Battler
     ######################################################
     # Quick Guard
     if target.pbOwnSide.effects[PBEffects::QuickGuard] && @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
-      if move.canProtectAgainst? && !unseenfist
+      if move.canProtectAgainst? && !protectionIgnoredByAbility
         @battle.pbCommonAnimation("QuickGuard",target)
         @battle.pbDisplay(_INTL("Quick Guard protected {1}!",target.pbThis(true)))
         target.damageState.protected = true
@@ -313,7 +315,7 @@ class PokeBattle_Battler
     end
     # Protect
     if target.effects[PBEffects::Protect]
-      if move.canProtectAgainst? && !unseenfist
+      if move.canProtectAgainst? && !protectionIgnoredByAbility
         @battle.pbCommonAnimation("Protect",target)
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
@@ -325,7 +327,7 @@ class PokeBattle_Battler
     end
     # Obstruct
     if target.effects[PBEffects::Obstruct]
-      if move.canProtectAgainst? && !unseenfist
+      if move.canProtectAgainst? && !protectionIgnoredByAbility
         @battle.pbCommonAnimation("Obstruct",target)
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
@@ -342,7 +344,7 @@ class PokeBattle_Battler
     end
     # King's Shield
     if target.effects[PBEffects::KingsShield] && move.damagingMove?
-      if move.canProtectAgainst? && !unseenfist
+      if move.canProtectAgainst? && !protectionIgnoredByAbility
         @battle.pbCommonAnimation("KingsShield",target)
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
@@ -359,7 +361,7 @@ class PokeBattle_Battler
     end
     # Spiky Shield
     if target.effects[PBEffects::SpikyShield]
-      if move.canProtectAgainst? && !unseenfist
+      if move.canProtectAgainst? && !protectionIgnoredByAbility
         @battle.pbCommonAnimation("SpikyShield",target)
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
@@ -381,7 +383,7 @@ class PokeBattle_Battler
     end
     # Baneful Bunker
     if target.effects[PBEffects::BanefulBunker]
-      if move.canProtectAgainst? && !unseenfist
+      if move.canProtectAgainst? && !protectionIgnoredByAbility
         @battle.pbCommonAnimation("BanefulBunker",target)
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
@@ -396,7 +398,7 @@ class PokeBattle_Battler
     end
     # Baneful Bunker
     if target.effects[PBEffects::RedHotRetreat]
-      if move.canProtectAgainst? && !unseenfist
+      if move.canProtectAgainst? && !protectionIgnoredByAbility
         @battle.pbCommonAnimation("RedHotRetreat",target)
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
@@ -411,7 +413,7 @@ class PokeBattle_Battler
     end
     # Mat Block
     if target.pbOwnSide.effects[PBEffects::MatBlock] && move.damagingMove?
-      if move.canProtectAgainst? && !unseenfist
+      if move.canProtectAgainst? && !protectionIgnoredByAbility
         # NOTE: Confirmed no common animation for this effect.
         @battle.pbDisplay(_INTL("{1} was blocked by the kicked-up mat!",move.name))
         target.damageState.protected = true
@@ -421,19 +423,25 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("Mat Block was ignored, and failed to protect {1}!",target.pbThis(true)))
       end
     end
-    # Magic Coat/Magic Bounce
+    # Magic Coat/Magic Bounce/Magic Shield
     if move.canMagicCoat? && !target.semiInvulnerable? && target.opposes?(user)
       if target.effects[PBEffects::MagicCoat]
         target.damageState.magicCoat = true
         target.effects[PBEffects::MagicCoat] = false
         return false
       end
-      if target.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker &&
-         !target.effects[PBEffects::MagicBounce]
+      if target.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker #&& !target.effects[PBEffects::MagicBounce]
         target.damageState.magicBounce = true
         target.effects[PBEffects::MagicBounce] = true
         return false
       end
+      if target.hasActiveAbility?(:MAGICSHIELD) && !@battle.moldBreaker
+        @battle.pbShowAbilitySplash(target)
+        target.damageState.protected = true
+        @battle.pbDisplay(_INTL("{1} shielded itself from the {2}!",target.pbThis,move.name))
+        @battle.pbHideAbilitySplash(target)
+       return false
+     end
     end
     # Move fails due to type immunity ability (Except against or by a boss)
     if !user.boss? && !target.boss

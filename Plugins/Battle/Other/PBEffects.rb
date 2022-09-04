@@ -42,6 +42,12 @@ module PBEffects
     EmpoweredDestinyBond= 148
 
     VolleyStance        = 149
+    GivingDragonRideTo  = 150
+    OnDragonRide        = 151
+    ShimmeringHeat      = 152
+    FlareWitch          = 153
+
+    EmpoweredDetect     = 154
 	
 	#===========================================================================
     # These effects apply to a side
@@ -56,4 +62,5 @@ module PBEffects
 	Fortune             = 13
 	NeutralizingGas     = 14
     PuzzleRoom          = 15
+	OddRoom				= 16
 end

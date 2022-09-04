@@ -387,8 +387,8 @@ class PokeBattle_Move_50A < PokeBattle_Move
   end
   
   def burnOrFrostbite(user,target)
-	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+	stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+	stageDiv = PokeBattle_Battler::STAGE_MULTIPLIERS
 	attackStage = target.stages[:ATTACK]+6
 	attack = (target.attack.to_f*stageMul[attackStage].to_f/stageDiv[attackStage].to_f).floor
 	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
@@ -625,26 +625,6 @@ class PokeBattle_Move_519 < PokeBattle_StatDownMove
 end
 
 #===============================================================================
-# For 5 rounds, Pokemon's Attack and Sp. Atk are swapped. (Puzzle Room)
-#===============================================================================
-class PokeBattle_Move_51A < PokeBattle_Move
-	def pbEffectGeneral(user)
-	  if @battle.field.effects[PBEffects::PuzzleRoom]>0
-		@battle.field.effects[PBEffects::PuzzleRoom] = 0
-		@battle.pbDisplay(_INTL("The area returned to normal!"))
-	  else
-		@battle.field.effects[PBEffects::PuzzleRoom] = 5
-		@battle.pbDisplay(_INTL("It created a puzzling area in which Pokémon's Attack and Sp. Atk are swapped!"))
-	  end
-	end
-  
-	def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
-	  return if @battle.field.effects[PBEffects::PuzzleRoom] > 0   # No animation
-	  super
-	end
-end
-
-#===============================================================================
 # User loses their Ice type. Fails if user is not Ice-type. (Cold Conversion)
 #===============================================================================
 class PokeBattle_Move_51B < PokeBattle_Move
@@ -808,8 +788,8 @@ class PokeBattle_Move_522 < PokeBattle_TargetMultiStatDownMove
   end
   
   def pbEffectAgainstTarget(user,target)
-	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+	stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+	stageDiv = PokeBattle_Battler::STAGE_DIVISORS
 	bestStat = :ATTACK
 	bestStatValue = -100
     GameData::Stat.each_battle do |s|
@@ -998,8 +978,8 @@ class PokeBattle_Move_52B < PokeBattle_Move
   end
 
   def flusterOrMystify(user,target)
-	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+	stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+	stageDiv = PokeBattle_Battler::STAGE_DIVISORS
 	attackStage = target.stages[:ATTACK]+6
 	attack = (target.attack.to_f*stageMul[attackStage].to_f/stageDiv[attackStage].to_f).floor
 	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
@@ -1011,21 +991,6 @@ class PokeBattle_Move_52B < PokeBattle_Move
 		target.pbMystify
 	end
   end
-  
-#   def confuseOrCharm(user,target)
-# 	stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-# 	stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-# 	attackStage = target.stages[:ATTACK]+6
-# 	attack = (target.attack.to_f*stageMul[attackStage].to_f/stageDiv[attackStage].to_f).floor
-# 	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
-# 	spAtk = (target.spatk.to_f*stageMul[spAtkStage].to_f/stageDiv[spAtkStage].to_f).floor
-	
-#     if target.pbCanConfuse?(user,false,self) && attack >= spAtk
-# 		target.pbConfuse
-# 	elsif target.pbCanCharm?(user,false,self) && spAtk >= attack
-# 		target.pbCharm
-# 	end
-#   end
   
   def getScore(score,user,target,skill=100)
 		score += target.pbCanMystify?(user,false) ? 20 : -20
@@ -1207,10 +1172,12 @@ end
 # Raises worst stat two stages, second worst stat by one stage. (Breakdance)
 #===============================================================================
 class PokeBattle_Move_532 < PokeBattle_Move
+	MAIN_BATTLE_STATS = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+
 	def pbFailsAgainstTarget?(user,target)
 		@statArray = []
-		GameData::Stat.each_battle do |s|
-		  @statArray.push(s.id) if user.pbCanRaiseStatStage?(s.id,user,self)
+		MAIN_BATTLE_STATS.each do |statID|
+		  @statArray.push(statID) if user.pbCanRaiseStatStage?(statID,user,self)
 		end
 		if @statArray.length==0
 		  @battle.pbDisplay(_INTL("{1}'s stats won't go any higher!",user.pbThis))
@@ -1220,18 +1187,16 @@ class PokeBattle_Move_532 < PokeBattle_Move
 	end
 	
 	def pbEffectGeneral(user)
-		stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-		stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-		statsRanked = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
-		statsRanked.sort_by { |s| user.stats[s].to_f * stageMul[user.stages[s]+6] / stageDiv[user.stages[s]+6] }
-		user.pbRaiseStatStageBasic(statsRanked[0],2)
-		user.pbRaiseStatStageBasic(statsRanked[1],1)
+		stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+		stageDiv = PokeBattle_Battler::STAGE_DIVISORS
+		statsRanked = MAIN_BATTLE_STATS.sort_by { |s| user.plainStats[s].to_f * stageMul[user.stages[s]+6] / stageDiv[user.stages[s]+6] }
+		user.pbRaiseStatStage(statsRanked[0],2,user,true)
+		user.pbRaiseStatStage(statsRanked[1],1,user,false)
 	end
 	
 	def getScore(score,user,target,skill=100)
 		score += 20 if user.turnCount == 0
-		stats = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
-		stats.each do |s|
+		MAIN_BATTLE_STATS.each do |s|
 			score -= user.stages[s] * 5
 		end
 		return score
@@ -1514,9 +1479,10 @@ class PokeBattle_Move_541 < PokeBattle_Move
   def pbEffectWhenDealingDamage(user,target)
     return if target.damageState.substitute || target.damageState.berryWeakened
     return if !target.item
-	return if !CLOTHING_ITEMS.include?(target.item)
+	return if !CLOTHING_ITEMS.include?(target.item.id)
+	itemName = target.itemName
     target.pbRemoveItem
-    @battle.pbDisplay(_INTL("{1}'s {2} was incinerated!",target.pbThis,target.itemName))
+    @battle.pbDisplay(_INTL("{1}'s {2} went up in flames!",target.pbThis,itemName))
   end
 end
 
@@ -1528,44 +1494,6 @@ class PokeBattle_Move_542 < PokeBattle_Move
     return if target.damageState.substitute
     return if !target.pbCanRaiseStatStage?(:SPEED,user,self)
     target.pbRaiseStatStage(:SPEED,2,user)
-  end
-end
-
-#===============================================================================
-# Power doubles for each consecutive use. (Ice Ball)
-#===============================================================================
-class PokeBattle_Move_543 < PokeBattle_Move
-  def pbChangeUsageCounters(user,specialUsage)
-    oldVal = user.effects[PBEffects::IceBall]
-    super
-    maxMult = 1
-    while (@baseDamage<<(maxMult-1))<160
-      maxMult += 1   # 1-4 for base damage of 20, 1-3 for base damage of 40
-    end
-    user.effects[PBEffects::IceBall] = (oldVal>=maxMult) ? maxMult : oldVal+1
-  end
-
-  def pbBaseDamage(baseDmg,user,target)
-    return baseDmg<<(user.effects[PBEffects::IceBall]-1)
-  end
-end
-
-#===============================================================================
-# Power doubles for each consecutive use. (Rollout)
-#===============================================================================
-class PokeBattle_Move_544 < PokeBattle_Move
-  def pbChangeUsageCounters(user,specialUsage)
-    oldVal = user.effects[PBEffects::RollOut]
-    super
-    maxMult = 1
-    while (@baseDamage<<(maxMult-1))<160
-      maxMult += 1   # 1-4 for base damage of 20, 1-3 for base damage of 40
-    end
-    user.effects[PBEffects::RollOut] = (oldVal>=maxMult) ? maxMult : oldVal+1
-  end
-
-  def pbBaseDamage(baseDmg,user,target)
-    return baseDmg<<(user.effects[PBEffects::RollOut]-1)
   end
 end
 
@@ -1586,8 +1514,6 @@ class PokeBattle_Move_545 < PokeBattle_Move
 	return score
   end
 end
-
-
 
 #===============================================================================
 # Always critical hit vs Opponents with raised stats (Glitter Slash)
@@ -2014,7 +1940,7 @@ class PokeBattle_Move_559 < PokeBattle_Move
 	  return false
 	end
   
-	def pbEffectGeneral(user,target)
+	def pbEffectGeneral(user)
 	  user.pbChangeTypes(:GHOST)
 	  typeName = GameData::Type.get(:GHOST).name
 	  @battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
@@ -2040,7 +1966,7 @@ class PokeBattle_Move_55B < PokeBattle_HealingMove
 	end
   
 	def pbMoveFailed?(user,targets)
-		if user.turncount > 1
+		if user.turnCount > 1
 			@battle.pbDisplay(_INTL("But it failed, since it's not #{user.pbThis(true)}'s first turn out!"))
 			return true
 		end
@@ -2459,4 +2385,481 @@ class PokeBattle_Move_570 < PokeBattle_FlusterMove
 	  end
 	  return super
 	end
+end
+
+#===============================================================================
+# Power increases if the user is below half health. (Frantic Fang)
+#===============================================================================
+class PokeBattle_Move_571 < PokeBattle_Move
+	def pbBaseDamage(baseDmg,user,target)
+	  ret = baseDmg
+	  if user.hp <= user.totalhp / 2
+		ret *= 2
+	  end
+	  return ret
+	end
+end
+
+#===============================================================================
+# Puts the target to sleep if they are statused. (Tranquil Tune)
+#===============================================================================
+class PokeBattle_Move_572 < PokeBattle_SleepMove
+	def pbFailsAgainstTarget?(user,target)
+		return false if damagingMove?
+		return !target.pbCanSleep?(user,true,self,true)
+	end
+	
+	def pbEffectAgainstTarget(user,target)
+		if target.flustered? || target.mystified? || target.burned? || target.frostbitten? || target.paralyzed? || target.poisoned?
+			target.pbCureStatus(false)
+			target.pbSleep
+			user.pbRaiseStatStage(:ATTACK,1,user)
+		end
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score = sleepMoveAI(score,user,target,skill=100)
+		return score
+	end
+end
+
+#===============================================================================
+# Type effectiveness is multiplied by the Ground-type's effectiveness against
+# the target. (Leyline Burst)
+#===============================================================================
+class PokeBattle_Move_573 < PokeBattle_Move
+	def pbCalcTypeModSingle(moveType,defType,user,target)
+	  ret = super
+	  if GameData::Type.exists?(:GROUND)
+		groundEff = Effectiveness.calculate_one(:GROUND, defType)
+		ret *= groundEff.to_f / Effectiveness::NORMAL_EFFECTIVE_ONE
+	  end
+	  return ret
+	end
+end
+  
+
+#===============================================================================
+# Power increases with the highest allies defense. (Hard Place)
+#===============================================================================
+class PokeBattle_Move_574 < PokeBattle_Move
+	def pbBaseDamage(baseDmg,user,target)
+	  	highestDefense = 0
+		user.eachAlly do |ally_battler|
+			calcedDefense = ally_battler.defense
+			stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+    		stageDiv = PokeBattle_Battler::STAGE_DIVISORS
+			defStage = ally_battler.stages[:DEFENSE] + 6
+			stageModifier = stageMul[defStage].to_f / stageDiv[defStage].to_f
+	    	stageModifier = (stageModifier.to_f + 1.0)/2.0 if ally_battler.boss?
+			calcedDefense = (calcedDefense.to_f * stageModifier * 0.5).floor
+			highestDefense = calcedDefense if calcedDefense > highestDefense
+		end
+	  	return [highestDefense,40].max
+	end
+end
+
+#===============================================================================
+# Doubles an allies Attack and Speed. The user cannot swap out of battle.
+# If the user faints, so too does that ally. (Dragon Ride)
+#===============================================================================
+class PokeBattle_Move_575 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+	  if target.effects[PBEffects::OnDragonRide]
+		@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already on a dragon ride!"))
+		return true
+	  end
+	  if user.effects[PBEffects::GivingDragonRideTo] != -1
+		@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis} is already giving a dragon ride!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+	  target.effects[PBEffects::OnDragonRide]     	= true
+	  user.effects[PBEffects::GivingDragonRideTo] 	= target.index
+	  @battle.pbDisplay(_INTL("{1} gives {2} a ride on its back!",user.pbThis,target.pbThis(true)))
+	end
+	
+	def getScore(score,user,target,skill=100)
+	  return 0 if user.hp < user.totalhp / 2
+	end
+end
+
+#===============================================================================
+# Two turn attack. Sets rain first turn, attacks second turn.
+# (Archaic Deluge)
+#===============================================================================
+class PokeBattle_Move_576 < PokeBattle_TwoTurnMove
+	def pbChargingTurnMessage(user,targets)
+	  @battle.pbDisplay(_INTL("{1} begins the flood!",user.pbThis))
+	end
+  
+	def pbChargingTurnEffect(user,target)
+		@battle.pbStartWeather(user,:Rain,true,false)
+	end
+
+	def getScore(score,user,target,skill=100)
+		if @battle.field.weather != :Rain
+			score += 50
+		else
+			score -= 50
+		end
+		return score
+	end
+end
+
+#===============================================================================
+# The user takes 33% less damage until end of this turn.
+# (Shimmering Heat)
+#===============================================================================
+class PokeBattle_Move_577 < PokeBattle_Move
+	def pbEffectAfterAllHits(user,target)
+		if !user.effects[PBEffects::ShimmeringHeat]
+			@battle.pbDisplay(_INTL("{1} is obscured by the shimmering haze!",user.pbThis))
+			user.effects[PBEffects::ShimmeringHeat] = true
+		end
+	end
+
+	def getScore(score,user,target,skill=100)
+		return getWantsToBeFasterScore(score,user,target,skill,3)
+	end
+end
+
+#===============================================================================
+# Revives a Grass-type party member back to 100% HP. (Breathe Life)
+#===============================================================================
+class PokeBattle_Move_578 < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+		@battle.pbParty(user.index).each do |pkmn|
+			next if !pkmn
+			next if !pkmn.fainted?
+			return false
+		end
+		@battle.pbDisplay(_INTL("But it failed, since there are no fainted Grass-type party members!"))
+		return true
+	end
+  
+	def pbEffectGeneral(user)
+		selectPartyMemberForEffect(user.index,proc { |pkmn|
+			next pkmn.hasType?(:GRASS) && pkmn.fainted?
+	  	}) { |pkmn|
+			pkmn.heal_HP
+			pkmn.heal_status
+			@battle.pbDisplay(_INTL("{1} recovered all the way to full health!",pkmn.name))
+		}
+	end
+end
+
+#===============================================================================
+# Numb's the target. If they are already numbed, curses them instead. (Spectral Tongue)
+#===============================================================================
+class PokeBattle_Move_579 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		if target.paralyzed?
+			if target.effects[PBEffects::Curse]
+				@battle.pbDisplay(_INTL("But it failed, since the target is already cursed!"))
+			end
+		else
+			return !target.pbCanParalyze?(user,true,self)
+		end
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+		if target.paralyzed?
+			@battle.pbDisplay(_INTL("{1} laid a curse on {2}!",user.pbThis,target.pbThis(true)))
+    		target.effects[PBEffects::Curse] = true
+		else
+			target.pbParalyze(user)
+		end
+	end
+end
+
+#===============================================================================
+# Transfers the user's status to the target (Vicious Cleaning)
+#===============================================================================
+class PokeBattle_Move_580 < PokeBattle_Move
+	def pbEffectAgainstTarget(user,target)
+		user.getStatuses().each do |status|
+			next if status == :NONE
+			if target.pbCanInflictStatus?(status,user,false,self)
+				case status
+				when :SLEEP
+				target.pbSleep
+				when :POISON
+				target.pbPoison(user,nil,user.statusCount!=0)
+				when :BURN
+				target.pbBurn(user)
+				when :PARALYSIS
+				target.pbParalyze(user)
+				when :FROSTBITE
+				target.pbFrostbite
+				when :FLUSTERED
+				target.pbFluster
+				when :MYSTIFIED
+				target.pbMystify
+				end
+			else
+				statusData = GameData::Status.get(status)
+				@battle.pbDisplay(_INTL("{1} tries to transfer its {2} to {3}, but...",user.pbThis,statusData.real_name,target.pbThis(true)))
+				target.pbCanInflictStatus?(status,user,true,self)
+			end
+			user.pbCureStatus(status)
+		end
+	end
+end
+
+#===============================================================================
+# Puts the target to sleep, then lowers the user's speed by 2 stages (Sedating Dust)
+#===============================================================================
+class PokeBattle_Move_581 < PokeBattle_Move_003
+	def pbFailsAgainstTarget?(user,target)
+		return !target.pbCanSleep?(user,true,self,true)
+	end
+	def pbEffectAgainstTarget(user,target)
+		target.pbSleep
+		if user.hasActiveAbility?(:CONTRARY)
+			user.stages[:SPEED] = 6
+			@battle.pbCommonAnimation("StatUp",user)
+			@battle.pbDisplay(_INTL("{1} maximized its Speed!",user.pbThis))
+		elsif user.hasActiveAbility?(:STUBBORN)
+			user.stages[:SPEED] = -6
+			@battle.pbCommonAnimation("StatDown",user)
+			@battle.pbDisplay(_INTL("{1} minimized its Speed!",user.pbThis))
+		end
+	end
+	def getScore(score,user,target,skill=100)
+		score = sleepMoveAI(score,user,target,skill=100)
+		return score
+	end
+end
+
+#===============================================================================
+# Restores health by 33% and raises Speed by one stage. (Mulch Meal)
+#===============================================================================
+class PokeBattle_Move_583 < PokeBattle_Move
+	def healingMove?;       return true; end
+
+	def pbHealAmount(user)
+		return(user.totalhp/3.0).round
+	end
+  
+	def pbMoveFailed?(user,targets)
+	  if user.hp == user.totalhp && !user.pbCanRaiseStatStage?(:SPEED,user,self,true)
+		@battle.pbDisplay(_INTL("But it failed!",user.pbThis))
+		return true
+	  end
+	end
+  
+	def pbEffectGeneral(user)
+		if user.hp != user.totalhp
+			amt = pbHealAmount(user)
+			user.pbRecoverHP(amt)
+			@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+		end
+
+		if user.pbCanRaiseStatStage?(:SPEED,user,self,false)
+	  		user.pbRaiseStatStage(:SPEED,1,user)
+		end
+	end
+
+	def getScore(score,user,target,skill=100)
+		if user.hp < user.totalhp / 2
+			score += 40
+		else
+			score -= 40
+		end
+		score += 20
+		score -= user.stages[:SPEED] * 20
+		return score
+	end
+end
+
+#===============================================================================
+# Raises the target's worst three stats by one stage each. (Guiding Aroma)
+#===============================================================================
+class PokeBattle_Move_584 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		@statArray = []
+		GameData::Stat.each_battle do |s|
+		  @statArray.push(s.id) if target.pbCanRaiseStatStage?(s.id,user,self)
+		end
+		if @statArray.length==0
+		  @battle.pbDisplay(_INTL("{1}'s stats won't go any higher!",user.pbThis))
+		  return true
+		end
+		return false
+	end
+	
+	def pbEffectAgainstTarget(user,target)
+		stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+		stageDiv = PokeBattle_Battler::STAGE_DIVISORS
+		statsRanked = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+		statsRanked = statsRanked.sort_by { |s| target.plainStats[s].to_f * stageMul[target.stages[s]+6] / stageDiv[target.stages[s]+6] }
+		target.pbRaiseStatStage(statsRanked[0],1,user,true)
+		target.pbRaiseStatStage(statsRanked[1],1,user,false)
+		target.pbRaiseStatStage(statsRanked[2],1,user,false)
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score += 20 if user.turnCount == 0
+		stats = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+		stats.each do |s|
+			score -= target.stages[s] * 5
+		end
+		return score
+	end
+end
+
+#===============================================================================
+# Raises the user's Sp. Atk, and the user's attacks become spread. (Flare Witch)
+#===============================================================================
+class PokeBattle_Move_585 < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+	  if user.effects[PBEffects::FlareWitch] && !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,true)
+		@battle.pbDisplay(_INTL("But it failed!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectGeneral(user)
+		user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+	  	user.effects[PBEffects::FlareWitch] = true
+	  	@battle.pbDisplay(_INTL("{1} breaks open its witch powers!",user.pbThis))
+	end
+end
+
+#===============================================================================
+# Effectiveness against Fighting-type is 2x. (Honorless Sting)
+#===============================================================================
+class PokeBattle_Move_586 < PokeBattle_Move
+	def pbCalcTypeModSingle(moveType,defType,user,target)
+	  return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :FIGHTING
+	  return super
+	end
+end
+
+#===============================================================================
+# Damaging move that sets Poison Spikes. (Cruel Whipblade)
+#===============================================================================
+class PokeBattle_Move_587 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		return false if damagingMove?
+	end
+	
+	def pbEffectGeneral(user)
+		user.pbOpposingSide.effects[PBEffects::ToxicSpikes] += 1
+		if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] > 2
+			user.pbOpposingSide.effects[PBEffects::ToxicSpikes] == 2
+			return
+		end 
+        if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] == 2
+            @battle.pbDisplay(_INTL("The second layer of poison spikes were scattered all around {1}'s feet!",
+			user.pbOpposingTeam(true)))
+        else
+            @battle.pbDisplay(_INTL("Poison spikes were scattered all around {1}'s feet!",
+			user.pbOpposingTeam(true)))
+        end
+        if user.pbOpposingSide.effects[PBEffects::FlameSpikes] > 0
+            user.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0
+            @battle.pbDisplay(_INTL("The flame spikes around {1}'s feet were brushed aside!",
+                user.pbOpposingTeam(true)))
+        end
+        if user.pbOpposingSide.effects[PBEffects::FrostSpikes] > 0
+            user.pbOpposingSide.effects[PBEffects::FrostSpikes] = 0
+            @battle.pbDisplay(_INTL("The frost spikes around {1}'s feet were brushed aside!",
+                user.pbOpposingTeam(true)))
+        end
+    end
+
+    def getScore(score,user,target,skill=100)
+        if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] >= 1
+            return 0
+        end
+        score -= 40
+        score += 10*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
+        score += 10*@battle.pbAbleNonActiveCount(user.idxOwnSide)
+        return score
+    end
+end
+
+#===============================================================================
+# If it faints the target, you gain lots of money after the battle. (Plunder)
+#===============================================================================
+class PokeBattle_Move_588 < PokeBattle_Move
+	def pbEffectAfterAllHits(user,target)
+		return if !target.damageState.fainted
+		if user.pbOwnedByPlayer?
+			@battle.field.effects[PBEffects::PayDay] += 10*user.level
+		end
+		@battle.pbDisplay(_INTL("Coins fell out of {1}'s pockets!",target.pbThis(true)))
+	end
+end
+
+#===============================================================================
+# Attacks two to five times. Gains money for each hit. (Sacred Lots)
+#===============================================================================
+class PokeBattle_Move_589 < PokeBattle_Move_0C0
+	def pbEffectOnNumHits(user,target,numHits)
+		return if !target.damageState.fainted
+		coinsGenerated = 2 * user.level * numHits
+		if user.pbOwnedByPlayer?
+			@battle.field.effects[PBEffects::PayDay] += coinsGenerated
+		end
+		@battle.pbDisplay(_INTL("{1} coins were scattered everywhere!",coinsGenerated))
+		if numHits == 5
+			@battle.pbDisplay(_INTL("How fortunate!",coinsGenerated))
+		elsif numHits == 0
+			@battle.pbDisplay(_INTL("How unfortunate! Better luck next time.",coinsGenerated))
+		end
+	end
+end
+
+#===============================================================================
+# Power is tripled if the target is poisoned. (Vipershock)
+#===============================================================================
+class PokeBattle_Move_58A < PokeBattle_Move
+  def pbBaseDamage(baseDmg,user,target)
+    if target.poisoned? &&
+       (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
+      baseDmg *= 3
+    end
+    return baseDmg
+  end
+end
+
+#===============================================================================
+# Counts as a use of Rollout, Iceball, or Furycutter. (On A Roll)
+#===============================================================================
+class PokeBattle_Move_58B < PokeBattle_Move
+	def pbChangeUsageCounters(user,specialUsage)
+		oldFury = user.effects[PBEffects::FuryCutter]
+		oldIceBall = user.effects[PBEffects::IceBall]
+		oldRollOut = user.effects[PBEffects::RollOut]
+		super
+		user.effects[PBEffects::FuryCutter]	= [oldFury+1,4].min
+		user.effects[PBEffects::IceBall]	= [oldIceBall+1,4].min
+  		user.effects[PBEffects::RollOut]	= [oldRollOut+1,4].min
+	end
+end
+
+#===============================================================================
+# The user's Speed raises two stages, and it gains the Flying-type. (Mach Flight)
+#===============================================================================
+class PokeBattle_Move_58C < PokeBattle_Move_030
+	def pbEffectGeneral(user)
+		super
+		user.effects[PBEffects::Type3] = :FLYING
+    	typeName = GameData::Type.get(:FLYING).name
+    	@battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
+	end
+end
+
+#===============================================================================
+# Guaranteed to crit, but lowers the user's speed. (Incision)
+#===============================================================================
+class PokeBattle_Move_58D < PokeBattle_Move_03E
+	def pbCritialOverride(user,target); return 1; end
 end

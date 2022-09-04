@@ -159,6 +159,8 @@ module Compiler
       compile_pokemon_old                # Depends on Move, Item, Type, Ability
 	    yield(_INTL("Compiling machine data"))
       compile_move_compatibilities   # Depends on Species, Move
+      yield(_INTL("Compiling signature metadata"))
+      compile_signature_metadata
       yield(_INTL("Compiling shadow moveset data"))
       compile_shadow_movesets        # Depends on Species, Move
       yield(_INTL("Compiling Regional Dexes"))
@@ -383,13 +385,13 @@ module Compiler
   end
   
   def pbEachAvatarFileSection(f)
-	pbEachFileSectionEx(f) { |section,name|
-      yield section,name if block_given? && name[/^[a-zA-Z0-9]+$/]
+    pbEachFileSectionEx(f) { |section,name|
+        yield section,name if block_given? && name[/^[a-zA-Z0-9_]+$/]
     }
   end
   
   def compile_avatars(path = "PBS/avatars.txt")
-	GameData::Avatar::DATA.clear
+	  GameData::Avatar::DATA.clear
     # Read from PBS file
     File.open("PBS/avatars.txt", "rb") { |f|
 		FileLineData.file = "PBS/avatars.txt"   # For error reporting
@@ -405,16 +407,18 @@ module Compiler
 			# Raise an error if a species is invalid or used twice
 			if avatar_species == ""
 			  raise _INTL("An Avatar entry name can't be blank (PBS/avatars.txt).")
-			elsif GameData::Avatar::DATA[avatar_symbol]
+			elsif !GameData::Avatar::DATA[avatar_symbol].nil?
 			  raise _INTL("Avatar name '{1}' is used twice.\r\n{2}", avatar_species, FileLineData.linereport)
 			end
+
+      speciesData = GameData::Species.get_species_form(avatar_species,contents["Form"].to_i || 0)
 			
 			# Go through schema hash of compilable data and compile this section
 			for key in schema.keys
 				# Skip empty properties, or raise an error if a required property is
 				# empty
 				if contents[key].nil? || contents[key] == ""
-					if ["Turns", "Ability", "Moves", "HPMult"].include?(key)
+					if ["Ability", "Moves1"].include?(key)
 						raise _INTL("The entry {1} is required in PBS/avatars.txt section {2}.", key, avatar_species)
 					end
 					contents[key] = nil
@@ -428,35 +432,46 @@ module Compiler
 			  
 			    # Sanitise data
 				case key
-				when "Moves"
-					if contents["Moves"].length > 4
-						raise _INTL("The Moves entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
+				when "Moves1"
+					if contents["Moves1"].length > 4
+						raise _INTL("The {1} entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
 					end
-				when "PostPrimeMoves"
-					if contents["PostPrimeMoves"].length > 4
-						raise _INTL("The Post Prime Moves entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
+        when "Moves2"
+					if contents["Moves2"].length > 4
+						raise _INTL("The {1} entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
 					end
+        when "Moves3"
+					if contents["Moves3"].length > 4
+						raise _INTL("The {1} entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
+					end
+        when "Ability"
+          if !speciesData.abilities.concat(speciesData.hidden_abilities).include?(contents["Ability"].to_sym)
+            echoln(_INTL("Ability {1} is not legal for the Avatar defined in PBS/avatars.txt section {2}.", contents["Ability"], avatar_species))
+          end
 				end
 			end
 			
 			# Construct avatar hash
 			avatar_hash = {
-				:id          		=> avatar_symbol,
-				:id_number   		=> avatar_number,
-				:turns		 		=> contents["Turns"],
-				:form		 		=> contents["Form"],
-				:moves		 		=> contents["Moves"],
-				:post_prime_moves	=> contents["PostPrimeMoves"],
-				:ability	 		=> contents["Ability"],
-				:item		 		=> contents["Item"],
-				:hp_mult	 		=> contents["HPMult"],
-				:dmg_mult			=> contents["DMGMult"],
-        :dmg_resist			=> contents["DMGResist"],
-				:size_mult	 		=> contents["SizeMult"],
+				:id          		    => avatar_symbol,
+				:id_number   		    => avatar_number,
+				:turns		 		      => contents["Turns"],
+				:form		 		        => contents["Form"],
+				:moves1		 		      => contents["Moves1"],
+        :moves2		 		      => contents["Moves2"],
+        :moves3		 		      => contents["Moves3"],
+				:ability	 		      => contents["Ability"],
+				:item		 		        => contents["Item"],
+				:hp_mult	 		      => contents["HPMult"],
+				:dmg_mult			      => contents["DMGMult"],
+        :dmg_resist			    => contents["DMGResist"],
+				:size_mult	 		    => contents["SizeMult"],
 			}
 			avatar_number += 1
 			# Add trainer avatar's data to records
 			GameData::Avatar.register(avatar_hash)
+
+      echoln("Registering #{avatar_symbol} in the avatar data")
 		}
     }
 
@@ -1091,7 +1106,7 @@ end
           :name         => line_data[1],
           :version      => line_data[2] || 0,
           :pokemon      => [],
-		  :policies		=> []
+		      :policies		  => []
         }
         current_pkmn = nil
         trainer_names[trainer_id] = trainer_hash[:name]
@@ -1169,9 +1184,9 @@ end
             :species => property_value[0],
             :level   => property_value[1]
           }
-		  # The default ability index for a given species of a given trainer should be chaotic, but not random
-		  current_pkmn[:ability_index] = (trainer_hash[:name] + current_pkmn[:species].to_s).hash % 2
-		  trainer_hash[line_schema[0]].push(current_pkmn)
+          # The default ability index for a given species of a given trainer should be chaotic, but not random
+          current_pkmn[:ability_index] = (trainer_hash[:name] + current_pkmn[:species].to_s).hash % 2
+          trainer_hash[line_schema[0]].push(current_pkmn)
         else
           if !current_pkmn
             raise _INTL("Pokémon hasn't been defined yet!\r\n{1}", FileLineData.linereport)
@@ -2045,6 +2060,35 @@ module Compiler
       add_PBS_header_to_file(f)
       current_type = -1
       GameData::Move.each do |m|
+        break if m.id_number >= 2000
+        if current_type != m.type && m.id_number < 742
+          current_type = m.type
+          f.write("\#-------------------------------\r\n")
+        end
+        f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s,%s\r\n",
+          m.id_number,
+          csvQuote(m.id.to_s),
+          csvQuote(m.real_name),
+          csvQuote(m.function_code),
+          m.base_damage,
+          m.type.to_s,
+          ["Physical", "Special", "Status"][m.category],
+          m.accuracy,
+          m.total_pp,
+          m.effect_chance,
+          m.target,
+          m.priority,
+          csvQuote(m.flags),
+          csvQuoteAlways(m.real_description),
+          m.animation_move.nil? ? "" : m.animation_move.to_s
+        ))
+      end
+    }
+    File.open("PBS/other_moves.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      current_type = -1
+      GameData::Move.each do |m|
+        next if m.id_number < 2000
         if current_type != m.type && m.id_number < 742
           current_type = m.type
           f.write("\#-------------------------------\r\n")
@@ -2122,12 +2166,12 @@ module Compiler
         else
           f.write(sprintf("[%s,%s]\r\n", trainer.trainer_type, trainer.real_name))
         end
-		if trainer.policies && trainer.policies.length > 0
-		  policiesString = ""
-		  trainer.policies.each_with_index do |policy_symbol,index|
-			policiesString += policy_symbol.to_s
-			policiesString += "," if index < trainer.policies.length - 1
-		  end
+		    if trainer.policies && trainer.policies.length > 0
+          policiesString = ""
+          trainer.policies.each_with_index do |policy_symbol,index|
+            policiesString += policy_symbol.to_s
+            policiesString += "," if index < trainer.policies.length - 1
+          end
           f.write(sprintf("Policies = %s\r\n", policiesString))
         end
         f.write(sprintf("Items = %s\r\n", trainer.items.join(","))) if trainer.items.length > 0
@@ -2173,16 +2217,15 @@ module Compiler
         f.write("\#-------------------------------\r\n")
         f.write(sprintf("[%s]\r\n", avatar.id))
         f.write(sprintf("Ability = %s\r\n", avatar.ability))
-        f.write(sprintf("Moves = %s\r\n", avatar.moves.join(","))) if avatar.moves.length > 0
-        if !avatar.post_prime_moves.join(",").equals(avatar.moves.join(","))
-          f.write(sprintf("PostPrimeMoves = %s\r\n", avatar.post_prime_moves.join(",")))
-        end
-        f.write(sprintf("Turns = %s\r\n", avatar.num_turns))
-        f.write(sprintf("HPMult = %s\r\n", avatar.hp_mult))
-        f.write(sprintf("Item = %s\r\n", avatar.item))
-        f.write(sprintf("DMGMult = %s\r\n", avatar.dmg_mult))
-        f.write(sprintf("DMGResist = %s\r\n", avatar.dmg_resist))
-        f.write(sprintf("Form = %s\r\n", avatar.form))
+        f.write(sprintf("Moves1 = %s\r\n", avatar.moves1.join(",")))
+        f.write(sprintf("Moves2 = %s\r\n", avatar.moves2.join(","))) if !avatar.moves2.nil? && avatar.num_phases >= 2
+        f.write(sprintf("Moves3 = %s\r\n", avatar.moves3.join(","))) if !avatar.moves3.nil? && avatar.num_phases >= 3
+        f.write(sprintf("Turns = %s\r\n", avatar.num_turns)) if avatar.num_turns != 2.0
+        f.write(sprintf("HPMult = %s\r\n", avatar.hp_mult)) if avatar.num_turns != 4.0
+        f.write(sprintf("Item = %s\r\n", avatar.item)) if !avatar.item.nil?
+        f.write(sprintf("DMGMult = %s\r\n", avatar.dmg_mult)) if avatar.dmg_mult != 1.0
+        f.write(sprintf("DMGResist = %s\r\n", avatar.dmg_resist)) if avatar.dmg_resist != 0.0
+        f.write(sprintf("Form = %s\r\n", avatar.form)) if avatar.form != 0
       end
     }
     pbSetWindowText(nil)
@@ -2192,54 +2235,56 @@ module Compiler
   #=============================================================================
   # Compile move data
   #=============================================================================
-  def compile_moves(path = "PBS/moves.txt")
+  def compile_moves()
     GameData::Move::DATA.clear
     move_names        = []
     move_descriptions = []
-    # Read each line of moves.txt at a time and compile it into an move
-    pbCompilerEachPreppedLine(path) { |line, line_no|
-      line = pbGetCsvRecord(line, line_no, [0, "vnssueeuuueissN",
-         nil, nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
-         nil, nil, nil, :Target, nil, nil, nil, nil
-      ])
-      move_number = line[0]
-      move_symbol = line[1].to_sym
-      if GameData::Move::DATA[move_number]
-        raise _INTL("Move ID number '{1}' is used twice.\r\n{2}", move_number, FileLineData.linereport)
-      elsif GameData::Move::DATA[move_symbol]
-        raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_symbol, FileLineData.linereport)
-      end
-      # Sanitise data
-      if line[6] == 2 && line[4] != 0
-        raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
-      elsif line[6] != 2 && line[4] == 0
-        print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
-        line[6] = 2
-      end
-      animation_move = line[14].nil? ? nil : line[14].to_sym
-      # Construct move hash
-      move_hash = {
-        :id_number        => move_number,
-        :id               => move_symbol,
-        :name             => line[2],
-        :function_code    => line[3],
-        :base_damage      => line[4],
-        :type             => line[5],
-        :category         => line[6],
-        :accuracy         => line[7],
-        :total_pp         => line[8],
-        :effect_chance    => line[9],
-        :target           => GameData::Target.get(line[10]).id,
-        :priority         => line[11],
-        :flags            => line[12],
-        :description      => line[13],
-        :animation_move   => animation_move
+    ["PBS/moves.txt","PBS/other_moves.txt"].each do |path|
+      # Read each line of moves.txt at a time and compile it into an move
+      pbCompilerEachPreppedLine(path) { |line, line_no|
+        line = pbGetCsvRecord(line, line_no, [0, "vnssueeuuueissN",
+          nil, nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
+          nil, nil, nil, :Target, nil, nil, nil, nil
+        ])
+        move_number = line[0]
+        move_symbol = line[1].to_sym
+        if GameData::Move::DATA[move_number]
+          raise _INTL("Move ID number '{1}' is used twice.\r\n{2}", move_number, FileLineData.linereport)
+        elsif GameData::Move::DATA[move_symbol]
+          raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_symbol, FileLineData.linereport)
+        end
+        # Sanitise data
+        if line[6] == 2 && line[4] != 0
+          raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
+        elsif line[6] != 2 && line[4] == 0
+          print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
+          line[6] = 2
+        end
+        animation_move = line[14].nil? ? nil : line[14].to_sym
+        # Construct move hash
+        move_hash = {
+          :id_number        => move_number,
+          :id               => move_symbol,
+          :name             => line[2],
+          :function_code    => line[3],
+          :base_damage      => line[4],
+          :type             => line[5],
+          :category         => line[6],
+          :accuracy         => line[7],
+          :total_pp         => line[8],
+          :effect_chance    => line[9],
+          :target           => GameData::Target.get(line[10]).id,
+          :priority         => line[11],
+          :flags            => line[12],
+          :description      => line[13],
+          :animation_move   => animation_move
+        }
+        # Add move's data to records
+        GameData::Move.register(move_hash)
+        move_names[move_number]        = move_hash[:name]
+        move_descriptions[move_number] = move_hash[:description]
       }
-      # Add move's data to records
-      GameData::Move.register(move_hash)
-      move_names[move_number]        = move_hash[:name]
-      move_descriptions[move_number] = move_hash[:description]
-    }
+    end
     # Save all data
     GameData::Move.save
     MessageTypes.setMessages(MessageTypes::Moves, move_names)
@@ -2251,5 +2296,49 @@ module Compiler
       next if GameData::Move.exists?(move_data.animation_move)
       raise _INTL("Move ID '{1}' was assigned an Animation Move property {2} that doesn't match with any other move.\r\n", move_data.id, move_data.animation_move)
     end
+  end
+
+  def compile_signature_metadata
+    signatureMoveInfo = getSignatureMoves()
+
+    signatureMoveInfo.each do |moveID,signatureHolder|
+      GameData::Move.get(moveID).signature_of = signatureHolder
+    end
+
+    signatureAbilityInfo = getSignatureAbilities()
+
+    signatureAbilityInfo.each do |abilityID,signatureHolder|
+      GameData::Ability.get(abilityID).signature_of = signatureHolder
+    end
+
+    # Save all data
+    GameData::Move.save
+    GameData::Ability.save
+    Graphics.update
+  end
+
+  #=============================================================================
+  # Save all data to PBS files
+  #=============================================================================
+  def write_all
+    write_town_map
+    write_connections
+    write_phone
+    write_types
+    write_abilities
+    write_moves
+    write_items
+    write_berry_plants
+    write_pokemon
+    write_pokemon_forms
+    write_shadow_movesets
+    write_regional_dexes
+    write_ribbons
+    write_encounters
+    write_trainer_types
+    write_trainers
+    write_trainer_lists
+    write_avatars
+    write_metadata
   end
 end

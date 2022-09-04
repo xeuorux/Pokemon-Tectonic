@@ -72,10 +72,10 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
     pbWait(72)
     pbMessage(_INTL("{1}'s burn looks painful.",pkmn.name))
-  when :FROZEN
+  when :FROSTBITE
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
     pbWait(72)
-    pbMessage(_INTL("{1} seems very cold. It's chilled to the bone!",pkmn.name))
+    pbMessage(_INTL("{1} seems very cold. It's frostbitten!",pkmn.name))
   when :SLEEP
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal, x, y)
     pbWait(72)
@@ -84,6 +84,18 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
     pbWait(72)
     pbMessage(_INTL("{1} is standing still and twitching.",pkmn.name))
+  when :FLUSTERED
+    $scene.spriteset.addUserAnimation(4,x,y)
+    pbWait(72)
+    pbMessage(_INTL("{1} looks dazed and confused.",pkmn.name))
+  when :MYSTIFIED
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Love,x,y)
+    pbWait(72)
+    pbMessage(_INTL("{1} is distracted by a magical daydream.",pkmn.name))
+  when :FROZEN
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
+    pbWait(72)
+    pbMessage(_INTL("{1} seems very cold. It's frozen solid!",pkmn.name))
   end
   next true if pkmn.status != :NONE
 }

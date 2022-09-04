@@ -1,4 +1,8 @@
 class PokeBattle_Battler
+  # These are not yet used everywhere they should be. Do not modify and expect consistent results.
+  STAGE_MULTIPLIERS = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+  STAGE_DIVISORS    = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+
 	def pbRaiseStatStage(stat,increment,user,showAnim=true,ignoreContrary=false)
 		# Contrary
 		if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker

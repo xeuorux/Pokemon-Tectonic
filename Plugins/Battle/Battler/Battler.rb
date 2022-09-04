@@ -3,32 +3,48 @@ class PokeBattle_Battler
   DEFENSIVE_LOCK_STAT = 95
 
 	def attack
-    if @battle.field.effects[PBEffects::PuzzleRoom] > 0
-      return sp_atk_no_room
-    else
-      return attack_no_room
-    end
+		if @battle.field.effects[PBEffects::PuzzleRoom] > 0 && @battle.field.effects[PBEffects::OddRoom] > 0
+			return sp_def_no_room
+		elsif @battle.field.effects[PBEffects::PuzzleRoom] > 0 && !(@battle.field.effects[PBEffects::OddRoom] > 0)
+			return sp_atk_no_room
+		elsif @battle.field.effects[PBEffects::OddRoom] > 0 && !(@battle.field.effects[PBEffects::PuzzleRoom] > 0)
+			return defense_no_room
+		else
+			return attack_no_room
+		end
 	end
 	
 	def defense
-		if @battle.field.effects[PBEffects::WonderRoom] > 0
+		if @battle.field.effects[PBEffects::PuzzleRoom] > 0 && @battle.field.effects[PBEffects::OddRoom] > 0
+			return sp_atk_no_room
+		elsif @battle.field.effects[PBEffects::PuzzleRoom] > 0 && !(@battle.field.effects[PBEffects::OddRoom] > 0)
 			return sp_def_no_room
+		elsif @battle.field.effects[PBEffects::OddRoom] > 0 && !(@battle.field.effects[PBEffects::PuzzleRoom] > 0)
+			return attack_no_room
 		else
 			return defense_no_room
 		end
 	end
 	
 	def spatk
-		if @battle.field.effects[PBEffects::PuzzleRoom] > 0
-      return attack_no_room
-    else
-      return sp_atk_no_room
-    end
+		if @battle.field.effects[PBEffects::PuzzleRoom] > 0 && @battle.field.effects[PBEffects::OddRoom] > 0
+			return defense_no_room
+		elsif @battle.field.effects[PBEffects::PuzzleRoom] > 0 && !(@battle.field.effects[PBEffects::OddRoom] > 0)
+			return attack_no_room
+		elsif @battle.field.effects[PBEffects::OddRoom] > 0 && !(@battle.field.effects[PBEffects::PuzzleRoom] > 0)
+			return sp_def_no_room
+		else
+			return sp_atk_no_room
+		end
 	end
 	
 	def spdef
-		if @battle.field.effects[PBEffects::WonderRoom]>0
+		if @battle.field.effects[PBEffects::PuzzleRoom] > 0 && @battle.field.effects[PBEffects::OddRoom] > 0
+			return attack_no_room
+		elsif @battle.field.effects[PBEffects::PuzzleRoom] > 0 && !(@battle.field.effects[PBEffects::OddRoom] > 0)
 			return defense_no_room
+		elsif @battle.field.effects[PBEffects::OddRoom] > 0 && !(@battle.field.effects[PBEffects::PuzzleRoom] > 0)
+			return sp_atk_no_room
 		else
 			return sp_def_no_room
 		end
@@ -74,11 +90,12 @@ class PokeBattle_Battler
 	end
 	alias hasWorkingAbility hasActiveAbility?
 
+  
 	def takesSandstormDamage?
 		return false if !takesIndirectDamage?
 		return false if pbHasType?(:GROUND) || pbHasType?(:ROCK) || pbHasType?(:STEEL)
 		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:STOUT,:DESERTSPIRIT,:BURROWER,:ARTIFICIALNOCTURNE])
+		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:STOUT,:DESERTSPIRIT,:BURROWER,:ARTIFICIALNOCTURNE,:WEATHERSENSES])
 		return false if hasActiveItem?(:SAFETYGOGGLES)
 		return true
 	  end
@@ -87,7 +104,7 @@ class PokeBattle_Battler
 		return false if !takesIndirectDamage?
 		return false if pbHasType?(:ICE) || pbHasType?(:STEEL) || pbHasType?(:GHOST)
 		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:STOUT,:SNOWWARNING,:BLIZZBOXER])
+		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:STOUT,:SNOWWARNING,:BLIZZBOXER,:WEATHERSENSES])
 		return false if hasActiveItem?(:SAFETYGOGGLES)
 		return true
 	end
@@ -251,8 +268,8 @@ class PokeBattle_Battler
   #=============================================================================
   def pbSpeed
     return 1 if fainted?
-    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    stageMul = STAGE_MULTIPLIERS
+    stageDiv = STAGE_DIVISORS
     stage = @stages[:SPEED] + 6
 	  stage = 6 if stage > 6 && paralyzed?
     speed = @speed*stageMul[stage]/stageDiv[stage]
@@ -268,6 +285,7 @@ class PokeBattle_Battler
     # Other effects
     speedMult *= 2 if pbOwnSide.effects[PBEffects::Tailwind]>0
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp]>0
+    speedMult *= 2 if @effects[PBEffects::OnDragonRide]
     # Paralysis and Chill
     if !hasActiveAbility?(:QUICKFEET)
       if paralyzed?

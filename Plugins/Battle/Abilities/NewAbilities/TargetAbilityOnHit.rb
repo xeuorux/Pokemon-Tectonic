@@ -150,10 +150,10 @@ BattleHandlers::TargetAbilityOnHit.add(:GRIT,
 BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
   proc { |ability,user,target,move,battle|
     if move.physicalMove?
-		target.pbRaiseStatStageByAbility(:DEFENSE,1,target)
-	else
-		target.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,target)
-	end
+		  target.pbRaiseStatStageByAbility(:DEFENSE,1,target)
+	  else
+		  target.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,target)
+	  end
   }
 )
 
@@ -225,24 +225,6 @@ BattleHandlers::TargetAbilityOnHit.add(:ACIDBODY,
 	proc { |ability,target,battler,move,battle|
 		pbBattleWeatherAbility(:AcidRain,battler,battle)
 	}
-)
-
-BattleHandlers::TargetAbilityAfterMoveUse.add(:VENGEANCE,
-  proc { |ability,target,user,move,switched,battle|
-    next if !move.damagingMove?
-    next if target.damageState.initialHP<target.totalhp/2 || target.hp>=target.totalhp/2
-	battle.pbShowAbilitySplash(target)
-	if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-	  reduce = user.totalhp/4
-	  reduce /= 4 if user.boss
-	  reduce = reduce.floor
-	  user.damageState.displayedDamage = reduce
-	  battle.scene.pbDamageAnimation(user)
-      user.pbReduceHP(reduce,false)
-      battle.pbDisplay(_INTL("{1} was punished!",user.pbThis))
-    end
-	battle.pbHideAbilitySplash(target)
-  }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:SNAKEPIT,
@@ -318,4 +300,12 @@ BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
 	proc { |ability,target,battler,move,battle|
     terrainSetAbility(:Psychic,battler,battle)
 	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:RELUCTANTBLADE,
+  proc { |ability,user,target,move,battle|
+    if move.physicalMove?
+      battle.forceUseMove(target,:LEAFAGE,user.index,true,nil,nil,true)
+	  end
+  }
 )
