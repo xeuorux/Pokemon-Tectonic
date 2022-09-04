@@ -1374,10 +1374,38 @@ class PokemonPokedex_Scene
 		
 		dexlist = dexlist.find_all { |dex_item|
 				next false if autoDisqualifyFromSearch(dex_item[0])
+
+				hasSignatureMove = false
 				
-				fSpecies = GameData::Species.get(dex_item[0])
+				# By level up
+				item[11].each do |learnset_entry|
+					if GameData::Move.get(learnset_entry[1]).is_signature?
+						hasSignatureMove = true
+						break
+					end
+				end
+
+				next true if hasSignatureMove
 				
-				next @signatureMoves.has_value?(fSpecies.id)
+				# Egg moves
+				item[13].each do |move|
+					if GameData::Move.get(move).is_signature?
+						hasSignatureMove = true
+						break
+					end
+				end
+
+				next true if hasSignatureMove
+				
+				# Tutor moves
+				item[12].each do |move|
+					if GameData::Move.get(move).is_signature?
+						hasSignatureMove = true
+						break
+					end
+				end
+
+				next hasSignatureMove
 		}
 		return dexlist
 	end
@@ -1388,9 +1416,11 @@ class PokemonPokedex_Scene
 		dexlist = dexlist.find_all { |dex_item|
 				next false if autoDisqualifyFromSearch(dex_item[0])
 				
-				fSpecies = GameData::Species.get(dex_item[0])
-				
-				next @signatureAbilities.has_value?(fSpecies.id)
+				hasSignatureAbility = false
+				dex_item[10].each do |ability|
+					hasSignatureAbility = true if GameData::Ability.get(ability).is_signature?
+				end
+				next hasSignatureAbility
 		}
 		return dexlist
 	end
