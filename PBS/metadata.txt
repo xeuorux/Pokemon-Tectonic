@@ -123,7 +123,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
-HealingSpot = 6,25,28
+HealingSpot = 6,25,32
 #-------------------------------
 [017]
 # Mine Head's House
