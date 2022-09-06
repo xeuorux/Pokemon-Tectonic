@@ -149,18 +149,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:CLOVERSONG,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:SWARMCALL,
-  proc { |ability,battler,battle|
-    pbBattleWeatherAbility(:Swarm, battler, battle)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:POLLUTION,
-  proc { |ability,battler,battle|
-    pbBattleWeatherAbility(:AcidRain, battler, battle)
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:ARCANEFINALE,
   proc { |ability,battler,battle|
     next if !battler.isLastAlive?

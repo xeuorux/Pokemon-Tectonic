@@ -114,15 +114,7 @@ class PokeBattle_Battle
     @field.weatherDuration -= 1 if @field.weatherDuration>0
     # Weather wears off
     if @field.weatherDuration==0
-      case @field.weather
-      when :Sun       then pbDisplay(_INTL("The sunlight faded."))
-      when :Rain      then pbDisplay(_INTL("The rain stpped."))
-      when :Sandstorm then pbDisplay(_INTL("The sandstorm subsided."))
-      when :Hail      then pbDisplay(_INTL("The hail stopped."))
-      when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
-      when :Sandstorm then pbDisplay(_INTL("The acid rain stopped."))
-      when :Swarm     then pbDisplay(_INTL("The swarm dissipates."))
-      end
+      endWeather()
       @field.weather = :None
       # Check for form changes caused by the weather changing
       eachBattler { |b| b.pbCheckFormOnWeatherChange }

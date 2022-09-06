@@ -1085,18 +1085,7 @@ end
 class PokeBattle_Move_52F < PokeBattle_Move_042
 	def pbEffectGeneral(user)
 		if @battle.field.weather != :None
-			case @battle.field.weather
-			  when :Sun       then @battle.pbDisplay(_INTL("The sunlight faded."))
-			  when :Rain      then @battle.pbDisplay(_INTL("The rain stopped."))
-			  when :Sandstorm then @battle.pbDisplay(_INTL("The sandstorm subsided."))
-			  when :Hail      then @battle.pbDisplay(_INTL("The hail stopped."))
-			  when :ShadowSky then @battle.pbDisplay(_INTL("The shadow sky faded."))
-			  when :HeavyRain then @battle.pbDisplay("The heavy rain has lifted!")
-			  when :HarshSun  then @battle.pbDisplay("The harsh sunlight faded!")
-			  when :StrongWinds then @battle.pbDisplay("The mysterious air current has dissipated!")
-			end
-			@battle.field.weather 			= :None
-			@battle.field.weatherDuration  = 0
+			@battle.endWeather()
 		end
 	end
 	
@@ -2497,7 +2486,7 @@ class PokeBattle_Move_576 < PokeBattle_TwoTurnMove
 	end
   
 	def pbChargingTurnEffect(user,target)
-		@battle.pbStartWeather(user,:Rain,true,false)
+		@battle.pbStartWeather(user,:Rain,5,false)
 	end
 
 	def getScore(score,user,target,skill=100)
