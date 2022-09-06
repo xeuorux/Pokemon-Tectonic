@@ -166,7 +166,6 @@ class PokemonPauseMenu
 		cmdOption   = -1
 		cmdPokegear = -1
 		cmdDexnav	= -1
-		cmdTribalBonus = -1
 		cmdGameInfo = -1
 		cmdDebug    = -1
 		cmdQuit     = -1
@@ -178,7 +177,6 @@ class PokemonPauseMenu
 		commands[cmdBag = commands.length]       = _INTL("Bag") if !pbInBugContest?
 		commands[cmdPokegear = commands.length]  = _INTL("Pokégear") if $Trainer.has_pokegear
 		commands[cmdDexnav = commands.length]	 = _INTL("DexNav")
-		commands[cmdTribalBonus = commands.length]	 = _INTL("Tribal Bonus")
 		commands[cmdGameInfo = commands.length]  = _INTL("Game Info")
 		if pbInSafari?
 		  if Settings::SAFARI_STEPS <= 0
@@ -281,12 +279,6 @@ class PokemonPauseMenu
 				pbPlayBuzzerSE
 				pbMessage(_INTL("The features of the DexNav are unavailable during this minigame."))
 			end
-		  elsif cmdTribalBonus >= 0 && command == cmdTribalBonus
-			pbFadeOutIn {
-					tribalBonusScene = TribalBonusScene.new
-					@scene.pbEndScene
-					return
-				}
 		  elsif cmdGameInfo >= 0 && command == cmdGameInfo
 			storedLastMenuChoice = $PokemonTemp.menuLastChoice
 			$PokemonTemp.menuLastChoice = 0
