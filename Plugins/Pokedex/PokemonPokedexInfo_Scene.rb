@@ -1,7 +1,6 @@
 class PokemonPokedexInfo_Scene
 
 	SIGNATURE_COLOR = Color.new(211,175,44)
-	PAGE_TITLES = ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES", "EVOLUTIONS", "AREA", "FORMS", "TRIBES", "ANALYSIS"]
 
   def pbStartScene(dexlist,index,region,battle=false,linksEnabled=false)
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
@@ -192,17 +191,14 @@ class PokemonPokedexInfo_Scene
 	overlay = @sprites["overlay"].bitmap
 	base = Color.new(219, 240, 240)
 	shadow   = Color.new(88, 88, 80)
-	#remove tribes page if not using tribes plugin
-	pageTitle = PAGE_TITLES[page-1]
+	pageTitles = ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES", "EVOLUTIONS", "AREA", "FORMS", "ANALYSIS"]
+	pageTitle = pageTitles[page-1]
 	drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
 	xPos = 240
-	#shift x position so that double digit page number does not overlap with the right facing arrow
 	xPos -= 14 if @page >= 10
-	drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/#{PAGE_TITLES.length() - 1}]</outln2>", base, shadow, 18)
+	drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/#{10}]</outln2>", base, shadow, 18)
     # Draw species name on top right
 	speciesName = GameData::Species.get(@species).real_name
-	#shift x position so that species name does not overlap with the right facing arrow
-	xPos +=14 if @page >=10
 	drawFormattedTextEx(overlay, xPos+104, 2, Graphics.width, "<outln2>#{speciesName}</outln2>", base, shadow, 18)
 	# Draw page-specific information
     case page
@@ -216,8 +212,7 @@ class PokemonPokedexInfo_Scene
     when 8; drawPageEvolution
 	when 9; drawPageArea
 	when 10; drawPageForms
-	when 11; drawPageTribes
-	when 12; drawPageDEBUG
+	when 11; drawPageDEBUG
     end
   end
 
@@ -1202,33 +1197,6 @@ class PokemonPokedexInfo_Scene
     end
 	return nil
   end
-
-  def drawPageTribes
-    overlay = @sprites["overlay"].bitmap
-    base = Color.new(88,88,88)
-    shadow = Color.new(168,184,184)
-    xLeft = 36
-    coordinateY = 54
-
-    # Title Text
-    drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("{1}'s Tribes", @title), base, shadow)
-    
-    # Everything else
-    if @available.length() >= 2 && @available[0][0] == "Male" && @available[1][0] == "Female"    # Only give me 1 element in the case where the 2 forms are only gender.
-        available = [@available[0]]
-    else
-        available = @available
-    end
-
-    for i in available
-        if i[2] == @form
-            fSpecies = GameData::Species.get_species_form(@species, @form)
-            compatibility = fSpecies.compatibility.to_s
-            coordinateY += 30
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL(compatibility), base, shadow)
-        end
-    end
-  end
   
   def drawPageDEBUG
     @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_evolution"))
@@ -1406,7 +1374,7 @@ class PokemonPokedexInfo_Scene
 			highestRightRepeat = repeats
 			oldpage = @page
 			@page += 1
-			@page = PAGE_TITLES.length()-1 if @page>PAGE_TITLES.length()-1
+			@page = 10 if @page>10
 			if @page!=oldpage
 			  @scroll = -1
 			  @horizontalScroll = 0
@@ -1437,7 +1405,7 @@ class PokemonPokedexInfo_Scene
 	elsif Input.press?(Input::ACTION) && $DEBUG
 		@scroll = -1
 		pbPlayCursorSE
-		@page = 12
+		@page = 11
 		dorefresh = true
 	else
 		highestLeftRepeat = 0

@@ -1,7 +1,6 @@
 module GameData
     class Species
         attr_reader :notes
-        attr_reader :egg_groups
 
         def self.schema(compiling_forms = false)
             ret = {
@@ -116,13 +115,5 @@ module GameData
       def notes
           return @notes
       end
-
-
-      #comment this out if not using Tribes Plugin
-      def compatibility
-        return @egg_groups
-      end
-
     end
 end
-
