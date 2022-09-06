@@ -1,8 +1,6 @@
 class TribalBonusScene
     def initialize()
-
         @tribalBonus = TribalBonus.new 
-
 
         # Set up the two viewports to hold UI elements
         @viewport1 = Viewport.new(0, 0, Graphics.width, Graphics.height)
@@ -28,14 +26,31 @@ class TribalBonusScene
         @sprites["nav_arrow"].play
 	
         pbFadeInAndShow(@sprites)
+
+        displayTribalBonuses()
     end
 
-    
     def dispose
         pbFadeOutAndHide(@sprites) {pbUpdate}
         pbDisposeSpriteHash(@sprites)
         @viewport1.dispose
         @viewport2.dispose
         @viewport3.dispose
+    end
+
+    def displayTribalBonuses()
+        overlay = @sprites["overlay"].bitmap
+        base = Color.new(88,88,88)
+        shadow = Color.new(168,184,184)
+        xLeft = 36
+        coordinateY = 34
+    
+        @tribalBonus.tribes.each {|tribe, count|
+            if count > 0
+                tribeName = @tribalBonus.tribeNames[tribe]
+                drawTextEx(overlay, xLeft, coordinateY += 30, 450, 1, _INTL("{1}: {2}", tribeName, count), base, shadow)
+            end
+        }
+
     end
 end
