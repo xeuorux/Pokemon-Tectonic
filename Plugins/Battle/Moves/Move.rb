@@ -262,7 +262,6 @@ class PokeBattle_Move
 		c += user.effects[PBEffects::FocusEnergy]
 		c += 1 if user.effects[PBEffects::LuckyStar]
 		c = ratios.length-1 if c>=ratios.length
-		echoln("Critical hit stage: #{c}")
 		# Calculation
 		return [@battle.pbRandom(ratios[c]) == 0,false]
     end
@@ -353,6 +352,9 @@ class PokeBattle_Move
       :final_damage_multiplier => 1.0
     }
     pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
+    echoln("The calculated base damage multiplier: #{multipliers[:base_damage_multiplier]}")
+    echoln("The calculated attack and defense multipliers: #{multipliers[:attack_multiplier]},#{multipliers[:defense_multiplier]}")
+    echoln("The calculated final damage multiplier: #{multipliers[:final_damage_multiplier]}")
     # Main damage calculation
     baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
     atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
@@ -368,12 +370,12 @@ class PokeBattle_Move
 		if (@battle.pbCheckGlobalAbility(:DARKAURA) && type == :DARK) ||
 		   (@battle.pbCheckGlobalAbility(:FAIRYAURA) && type == :FAIRY)
 		  if @battle.pbCheckGlobalAbility(:AURABREAK)
-			multipliers[:base_damage_multiplier] *= 2 / 3.0
+			  multipliers[:base_damage_multiplier] *= 2 / 3.0
 		  else
-			multipliers[:base_damage_multiplier] *= 4 / 3.0
+			  multipliers[:base_damage_multiplier] *= 4 / 3.0
 		  end
 		end
-		if (@battle.pbCheckGlobalAbility(:RUINOUS))
+		if @battle.pbCheckGlobalAbility(:RUINOUS)
 			multipliers[:base_damage_multiplier] *= 1.2
 		end
 		# Ability effects that alter damage
@@ -429,11 +431,11 @@ class PokeBattle_Move
 		if type == :ELECTRIC
 		  @battle.eachBattler do |b|
 			next if !b.effects[PBEffects::MudSport]
-			multipliers[:base_damage_multiplier] /= 3
-			break
+			  multipliers[:base_damage_multiplier] /= 3
+			  break
 		  end
 		  if @battle.field.effects[PBEffects::MudSportField]>0
-			multipliers[:base_damage_multiplier] /= 3
+			  m ultipliers[:base_damage_multiplier] /= 3
 		  end
 		end
 		# Water Sport
@@ -453,6 +455,7 @@ class PokeBattle_Move
     end
     # Shimmering Heat
     if target.effects[PBEffects::ShimmeringHeat]
+      echoln("Target is protected by Shimmering Heat")
       multipliers[:final_damage_multiplier] *= 0.67
     end
     # Battler properites
@@ -471,7 +474,8 @@ class PokeBattle_Move
 		  multipliers[:base_damage_multiplier] *= 1.3 if type == :FAIRY && target.affectedByTerrain?
 		end
 		# Multi-targeting attacks
-		if numTargets>1
+		if numTargets > 1
+      echoln("Reducing damage dealt due to being a spread move")
 		  multipliers[:final_damage_multiplier] *= 0.75
 		end
 		# Weather
@@ -526,17 +530,21 @@ class PokeBattle_Move
       multipliers[:final_damage_multiplier] *= 0.9
     end
 		# STAB
-    unless user.pbOwnedByPlayer? && @battle.curses.include?(:DULLED)
+    if !user.pbOwnedByPlayer? || !@battle.curses.include?(:DULLED)
       if type && user.pbHasType?(type)
         stab = 1.5
         if user.hasActiveAbility?(:ADAPTED)
           stab *= 4.0/3.0
+        elsif user.hasActiveAbility?(:ULTRAADAPTED)
+          stab *= 3.0/2.0
         end
         multipliers[:final_damage_multiplier] *= stab
+        echoln("Applying a STAB multiplier of #{stab}")
       end
     end
 		# Type effectiveness
 		typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
+    echoln("Applying a type effectiveness multiplier of #{typeEffect}")
 		multipliers[:final_damage_multiplier] *= typeEffect
 		# Burn
 		if user.burned? && physicalMove? && damageReducedByBurn? && !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
@@ -582,7 +590,7 @@ class PokeBattle_Move
     if target.effects[PBEffects::StunningCurl]
       multipliers[:final_damage_multiplier] /= 2
     end
-    if target.effects[PBEffects::EmpoweredDetect]
+    if target.effects[PBEffects::EmpoweredDetect] > 0
       multipliers[:final_damage_multiplier] /= 2
     end
 		# Move-specific base damage modifiers
