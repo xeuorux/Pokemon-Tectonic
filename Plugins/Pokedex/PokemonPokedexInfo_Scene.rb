@@ -1204,7 +1204,6 @@ class PokemonPokedexInfo_Scene
   end
 
   def drawPageTribes
-    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_evolution"))
     overlay = @sprites["overlay"].bitmap
     base = Color.new(88,88,88)
     shadow = Color.new(168,184,184)
