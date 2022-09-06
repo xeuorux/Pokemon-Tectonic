@@ -1378,7 +1378,7 @@ class PokemonPokedex_Scene
 				hasSignatureMove = false
 				
 				# By level up
-				item[11].each do |learnset_entry|
+				dex_item[11].each do |learnset_entry|
 					if GameData::Move.get(learnset_entry[1]).is_signature?
 						hasSignatureMove = true
 						break
@@ -1388,7 +1388,7 @@ class PokemonPokedex_Scene
 				next true if hasSignatureMove
 				
 				# Egg moves
-				item[13].each do |move|
+				dex_item[13].each do |move|
 					if GameData::Move.get(move).is_signature?
 						hasSignatureMove = true
 						break
@@ -1398,7 +1398,7 @@ class PokemonPokedex_Scene
 				next true if hasSignatureMove
 				
 				# Tutor moves
-				item[12].each do |move|
+				dex_item[12].each do |move|
 					if GameData::Move.get(move).is_signature?
 						hasSignatureMove = true
 						break
