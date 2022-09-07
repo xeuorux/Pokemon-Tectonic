@@ -1147,7 +1147,22 @@ class PokeBattle_AI
         return true
       end
     when :ICE
-      if target.hasActiveAbility?(:COLDPROOF)
+      if target.hasActiveAbility?(:COLDRECEPTION)
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
+    when :DRAGON
+      if target.hasActiveAbility?(:DRAGONSLAYER)
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
+    when :FLYING
+      if target.hasActiveAbility?(:PECKINGORDER)
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
+    when :STEEL
+      if target.hasActiveAbility?(:INDUSTRIALIZE)
         moveFailureAlert(move,user,target,"immunity ability")
         return true
       end
@@ -1168,6 +1183,11 @@ class PokeBattle_AI
       end
     when :DARK
       if target.hasActiveAbility?(:HEARTOFJUSTICE)
+        moveFailureAlert(move,user,target,"immunity ability")
+        return true
+      end
+    when :FAIRY
+      if target.hasActiveAbility?(:ARTIFICIALNOCTURNE)
         moveFailureAlert(move,user,target,"immunity ability")
         return true
       end

@@ -36,9 +36,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:HEARTOFJUSTICE,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:ARTIFICIALNOCTURNE,
   proc { |ability,user,target,move,type,battle|
-	if user.battle.pbWeather == :Sandstorm
-		next (pbBattleMoveImmunityHealAbility(user,target,move,type,:BUG,battle) || pbBattleMoveImmunityHealAbility(user,target,move,type,:FAIRY,battle) || pbBattleMoveImmunityHealAbility(user,target,move,type,:FIRE,battle))
-	end
+    next pbBattleMoveImmunityHealAbility(user,target,move,type,:FAIRY,battle)
   }
 )
 
