@@ -460,6 +460,7 @@ class PokemonPokedexInfo_Scene
 		#type2 = GameData::Type.get(fSpecies.type2)
         
 		immuneTypes = []
+		barelyEffectiveTypes = []
 		resistentTypes = []
 		weakTypes = []
 		hyperWeakTypes = []
@@ -471,6 +472,8 @@ class PokemonPokedexInfo_Scene
 			
 			if Effectiveness.ineffective?(effect)
 				immuneTypes.push(t)
+			elsif Effectiveness.barely_effective?(effect)
+				barelyEffectiveTypes.push(t)
 			elsif Effectiveness.not_very_effective?(effect)
 				resistentTypes.push(t)
 			elsif Effectiveness.hyper_effective?(effect)
@@ -480,15 +483,14 @@ class PokemonPokedexInfo_Scene
 			end
 		end
 		weakTypes = [].concat(hyperWeakTypes,weakTypes)
+		resistentTypes = [].concat(barelyEffectiveTypes,resistentTypes)
 
 		#Draw the types the pokemon is weak to
 		drawTextEx(overlay,xLeft,yBase,450,1,_INTL("Weak:"),base,shadow)
 		if weakTypes.length == 0
 			drawTextEx(overlay,xLeft,yBase+30,450,1,_INTL("None"),base,shadow)
 		else
-
 			weakTypes.each_with_index do |t,index|
-				#drawTextEx(overlay,30,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
 				type_number = GameData::Type.get(t).id_number
 				typerect = Rect.new(0, type_number*32, 96, 32)
 				bitmapUsed = hyperWeakTypes.include?(t) ? @types_emphasized_bitmap.bitmap : @typebitmap.bitmap
@@ -503,10 +505,10 @@ class PokemonPokedexInfo_Scene
 			drawTextEx(overlay,xLeft+resistOffset,yBase+30,450,1,_INTL("None"),base,shadow)
 		else
 			resistentTypes.each_with_index do |t,index|
-				#drawTextEx(overlay,150,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
 				type_number = GameData::Type.get(t).id_number
 				typerect = Rect.new(0, type_number*32, 96, 32)
-				overlay.blt(xLeft+resistOffset + (index >= 7 ? 100 : 0), yBase+30+36*(index % 7), @typebitmap.bitmap, typerect)
+				bitmapUsed = barelyEffectiveTypes.include?(t) ? @types_emphasized_bitmap.bitmap : @typebitmap.bitmap
+				overlay.blt(xLeft+resistOffset + (index >= 7 ? 100 : 0), yBase+30+36*(index % 7), bitmapUsed, typerect)
 			end
 		end
 		
