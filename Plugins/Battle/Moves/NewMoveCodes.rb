@@ -2193,7 +2193,7 @@ class PokeBattle_Move_565 < PokeBattle_HealingMove
 end
 
 #===============================================================================
-# Returns user to party for swap, deals more damage the lower HP the user has.
+# Returns user to party for swap, deals more damage the lower HP the user has. (Hare Heroics)
 #===============================================================================
 class PokeBattle_Move_566 < PokeBattle_Move_0EE
   def pbBaseDamage(baseDmg,user,target)
@@ -2851,4 +2851,23 @@ end
 #===============================================================================
 class PokeBattle_Move_58D < PokeBattle_Move_03E
 	def pbCritialOverride(user,target); return 1; end
+end
+
+#===============================================================================
+# Returns user to party for swap and lays a layer of spikes. (Caltrop Style)
+#===============================================================================
+class PokeBattle_Move_58E < PokeBattle_Move_0EE
+	def pbMoveFailed?(user,targets)
+		if user.pbOpposingSide.effects[PBEffects::Spikes]>=3
+		  @battle.pbDisplay(_INTL("But it failed!"))
+		  return true
+		end
+		return false
+	  end
+	
+	  def pbEffectGeneral(user)
+		user.pbOpposingSide.effects[PBEffects::Spikes] += 1
+		@battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
+		   user.pbOpposingTeam(true)))
+	  end
 end

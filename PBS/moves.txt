@@ -1099,3 +1099,4 @@
 1035,VIPERSHOCK,Vipershock,58A,80,POISON,Physical,100,5,0,NearOther,0,abef,"The user finishes off its prey. Power is tripled against poisoned targets.",POISONFANG
 1036,ONAROLL,On A Roll,58B,70,GROUND,Physical,100,20,0,NearOther,0,bef,"The user attacks while balled up. This counts as a usage of Fury Cutter, Rollout, or Ice Ball.",ROLLOUT
 1037,MACHFLIGHT,Mach Flight,58C,0,FLYING,Status,0,20,0,User,0,d,"The user takes off at sonic speeds, raising its Speed by 2 stages and gaining the Flying type.",AGILITY
+1038,CALTROPSTYLE,Caltrop Style,58E,50,DARK,Special,100,20,0,NearOther,0,bef,"Attacks and sets a layer of Spikes. Afterwards, it returns to switch with a party Pokémon.",
