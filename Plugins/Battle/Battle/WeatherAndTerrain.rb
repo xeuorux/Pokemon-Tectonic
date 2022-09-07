@@ -38,7 +38,7 @@ class PokeBattle_Battle
 
   def displayResetWeatherMessage()
     case @field.weather
-    when :Sun         then pbDisplay(_INTL("The harsh sunlight continues!"))
+    when :Sun         then pbDisplay(_INTL("The sunshine continues!"))
     when :Rain        then pbDisplay(_INTL("The rain shows no sign of stopping!"))
     when :Sandstorm   then pbDisplay(_INTL("The sandstorm returns to full strength!"))
     when :Hail        then pbDisplay(_INTL("The hail keeps coming!"))
@@ -50,7 +50,7 @@ class PokeBattle_Battle
   
   def displayFreshWeatherMessage()
     case @field.weather
-    when :Sun         then pbDisplay(_INTL("The sunlight turned harsh!"))
+    when :Sun         then pbDisplay(_INTL("The sun is shining in the sky!"))
     when :Rain        then pbDisplay(_INTL("It started to rain!"))
     when :Sandstorm   then pbDisplay(_INTL("A sandstorm brewed!"))
     when :Hail        then pbDisplay(_INTL("It started to hail!"))
@@ -66,7 +66,7 @@ class PokeBattle_Battle
   def endWeather()
     return if @field.weather == :None
     case @field.weather
-      when :Sun         then pbDisplay(_INTL("The sunlight faded."))
+      when :Sun         then pbDisplay(_INTL("The sunshine faded."))
       when :Rain        then pbDisplay(_INTL("The rain stopped."))
       when :Sandstorm   then pbDisplay(_INTL("The sandstorm subsided."))
       when :Hail        then pbDisplay(_INTL("The hail stopped."))
@@ -140,14 +140,3 @@ GameData::BattleWeather.register({
   :name      => _INTL("Swarm"),
   :animation => "StrongWinds"
 })
-
-class PokeBattle_Battler
-    def takesAcidRainDamage?
-        return false if !takesIndirectDamage?
-        return false if pbHasType?(:POISON) || pbHasType?(:DARK)
-        return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-        return false if hasActiveAbility?([:OVERCOAT])
-        return false if hasActiveItem?(:SAFETYGOGGLES)
-        return true
-      end
-end

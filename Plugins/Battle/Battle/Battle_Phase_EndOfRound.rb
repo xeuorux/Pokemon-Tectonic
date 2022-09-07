@@ -138,7 +138,7 @@ class PokeBattle_Battle
       case curWeather
       when :Sandstorm
         next if !b.takesSandstormDamage?
-        pbDisplay(_INTL("{1} is buffeted by the sandstorm!",b.pbThis))
+        pbDisplay(_INTL("{1} is buffeted by the sandstorm!",b.pbThis)) if 
 		    reduction = b.totalhp/16
 		    reduction *= 2 if !pbCheckGlobalAbility(:SHRAPNELSTORM).nil?
 		    reduction /= 4 if b.boss?

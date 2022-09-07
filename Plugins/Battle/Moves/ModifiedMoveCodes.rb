@@ -1597,3 +1597,32 @@ class PokeBattle_Move_164 < PokeBattle_Move_163
     @calcCategory = (realAtk>realSpAtk) ? 0 : 1
   end
 end
+
+
+#===============================================================================
+# Paralyzes the target. Accuracy perfect in rain. Hits flying semi-invulnerable targets. (Thunder)
+#===============================================================================
+class PokeBattle_Move_008 < PokeBattle_ParalysisMove
+  def immuneToRainDebuff?; return false; end
+
+  def pbBaseAccuracy(user,target)
+    return 0 if [:Rain, :HeavyRain].include?(@battle.pbWeather)
+    return super
+  end
+end
+
+#===============================================================================
+# Power is doubled in weather. Type changes depending on the weather. (Weather Ball)
+#===============================================================================
+class PokeBattle_Move_087 < PokeBattle_Move
+  def immuneToRainDebuff?; return true; end
+  def immuneToSunDebuff?; return true; end
+end
+
+#===============================================================================
+# Two turn attack. Skips first turn, attacks second turn. (Solar Beam, Solar Blade)
+# Power halved in all weather except sunshine. In sunshine, takes 1 turn instead.
+#===============================================================================
+class PokeBattle_Move_0C4 < PokeBattle_TwoTurnMove
+  def immuneToSunDebuff?; return true; end
+end
