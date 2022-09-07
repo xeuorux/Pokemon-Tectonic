@@ -1028,21 +1028,7 @@ end
 #===============================================================================
 class PokeBattle_Move_52D < PokeBattle_Move
 	def pbEffectGeneral(user)
-		if @battle.field.weather != :None
-			case @battle.field.weather
-			  when :Sun       then @battle.pbDisplay(_INTL("The sunlight faded."))
-			  when :Rain      then @battle.pbDisplay(_INTL("The rain stopped."))
-			  when :Sandstorm then @battle.pbDisplay(_INTL("The sandstorm subsided."))
-			  when :Hail      then @battle.pbDisplay(_INTL("The hail stopped."))
-			  when :ShadowSky then @battle.pbDisplay(_INTL("The shadow sky faded."))
-			  when :HeavyRain then @battle.pbDisplay("The heavy rain has lifted!")
-			  when :HarshSun  then @battle.pbDisplay("The harsh sunlight faded!")
-			  when :StrongWinds then @battle.pbDisplay("The mysterious air current has dissipated!")
-			end
-			@battle.field.weather 			= :None
-			@battle.field.weatherDuration  = 0
-		end
-		
+		@battle.endWeather()
 		@battle.battlers.each do |b|
 			pkmn = b.pokemon
 			next if !pkmn || !pkmn.able? || pkmn.status == :NONE
@@ -2359,19 +2345,15 @@ class PokeBattle_Move_56F < PokeBattle_Move
 end
 
 #===============================================================================
-# Flusters the target. Accuracy perfect in rain, 50% in sunshine. Hits some
-# semi-invulnerable targets. (Hurricane)
+# Flusters the target. Accuracy perfect in rain. Hits flying semi-invuln targets. (Hurricane)
 #===============================================================================
 class PokeBattle_Move_570 < PokeBattle_FlusterMove
+	def immuneToRainDebuff?; return true; end
+
 	def hitsFlyingTargets?; return true; end
   
 	def pbBaseAccuracy(user,target)
-	  case @battle.pbWeather
-	  when :Sun, :HarshSun
-		return 50
-	  when :Rain, :HeavyRain
-		return 0
-	  end
+	  return 0 if [:Rain, :HeavyRain].include?(@battle.pbWeather)
 	  return super
 	end
 end
@@ -2858,16 +2840,26 @@ end
 #===============================================================================
 class PokeBattle_Move_58E < PokeBattle_Move_0EE
 	def pbMoveFailed?(user,targets)
+		return false if damagingMove?
 		if user.pbOpposingSide.effects[PBEffects::Spikes]>=3
 		  @battle.pbDisplay(_INTL("But it failed!"))
 		  return true
 		end
 		return false
-	  end
+	end
 	
-	  def pbEffectGeneral(user)
+	def pbEffectGeneral(user)
+		return if damagingMove?
 		user.pbOpposingSide.effects[PBEffects::Spikes] += 1
 		@battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
-		   user.pbOpposingTeam(true)))
-	  end
+		user.pbOpposingTeam(true)))
+	end
+
+	def pbAdditionalEffect(user,target)
+		return if !damagingMove?
+		return if user.pbOpposingSide.effects[PBEffects::Spikes]>=3
+		user.pbOpposingSide.effects[PBEffects::Spikes] += 1
+		@battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
+			user.pbOpposingTeam(true)))
+	end
 end
