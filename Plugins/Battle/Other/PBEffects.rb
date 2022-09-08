@@ -48,6 +48,12 @@ module PBEffects
     FlareWitch          = 153
 
     EmpoweredDetect     = 154
+
+    #===========================================================================
+    # These effects apply to a battler position
+    #===========================================================================
+    Refuge              = 9
+    RefugeMaker         = 10
 	
 	#===========================================================================
     # These effects apply to a side
@@ -63,4 +69,5 @@ module PBEffects
 	NeutralizingGas     = 14
     PuzzleRoom          = 15
 	OddRoom				= 16
+    
 end

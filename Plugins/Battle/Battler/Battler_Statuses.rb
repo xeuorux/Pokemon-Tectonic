@@ -19,7 +19,7 @@ class PokeBattle_Battler
 	#=============================================================================
 	# NOTE: Not all "does it have this status?" checks use this method. If the
 	#			 check is leading up to curing self of that status condition, then it
-	#			 will look at the value of @status directly instead - if it is that
+	#			 will look at hasStatusNoTrigger instead - if it is that
 	#			 status condition then it is curable. This method only checks for
 	#			 "counts as having that status", which includes Comatose which can't be
 	#			 cured.
@@ -578,12 +578,13 @@ class PokeBattle_Battler
 			end
 		end
 		
-			oldStatuses.each do |oldStatus|
+		oldStatuses.each do |oldStatus|
 			if showMessages
 				case oldStatus
 				when :SLEEP		 	then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
 				when :POISON		then @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", pbThis))
 				when :BURN			then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
+				when :FROSTBITE		then @battle.pbDisplay(_INTL("{1}'s frostbite was healed.", pbThis))
 				when :PARALYSIS 	then @battle.pbDisplay(_INTL("{1} is no longer numbed.", pbThis))
 				when :FROZEN		then @battle.pbDisplay(_INTL("{1} warmed up!", pbThis))
 				when :FLUSTERED		then @battle.pbDisplay(_INTL("{1} is no longer flustered!", pbThis))

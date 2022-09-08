@@ -6,10 +6,6 @@ module BattleHandlers
 		AbilityOnEnemySwitchIn.trigger(ability,switcher,bearer,battle)
 	end
 	
-	def self.triggerAbilityOnSwitchOut(ability,battler,endOfBattle,battle)
-		AbilityOnSwitchOut.trigger(ability,battler,endOfBattle,battle)
-    end
-	
 	def self.triggerMoveImmunityAllyAbility(ability,user,target,move,type,battle,ally)
 		ret = MoveImmunityAllyAbility.trigger(ability,user,target,move,type,battle,ally)
 		return (ret!=nil) ? ret : false
@@ -251,8 +247,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
     next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user)
     user.pbRaiseStatStageByAbility(:ATTACK,numFainted,user)
-	next if numFainted==0 || !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user)
-	user.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,numFainted,user)
+	  next if numFainted==0 || !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user)
+	  user.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,numFainted,user)
   }
 )
 
@@ -281,5 +277,12 @@ BattleHandlers::AbilityOnStatLoss.add(:BELLIGERENT,
     next if user && !user.opposes?(battler)
     battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,2,battler)
 	  battler.pbRaiseStatStageByAbility(:ATTACK,2,battler)
+  }
+)
+
+BattleHandlers::AbilityOnStatLoss.add(:IMPERIOUS,
+  proc { |ability,battler,stat,user|
+    next if user && !user.opposes?(battler)
+    battler.pbRaiseStatStageByAbility(:SPEED,2,battler)
   }
 )

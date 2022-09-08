@@ -484,7 +484,7 @@ class PokeBattle_Battle
 		@battlers.each do |b|
 		  next if !b
 		  pbCancelChoice(b.index)   # Restore unused items to Bag
-		  BattleHandlers.triggerAbilityOnSwitchOut(b.ability,b,true,self) if b.abilityActive?
+		  BattleHandlers.triggerAbilityOnSwitchOut(b.ability,b,true) if b.abilityActive?
 		end
 		pbParty(0).each_with_index do |pkmn,i|
 		  next if !pkmn
