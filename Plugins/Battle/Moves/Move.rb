@@ -801,7 +801,7 @@ class PokeBattle_Move
         @battle.pbDisplay(_INTL("{1}'s attack is dampened by the rain.",user.pbThis))
       end
       if applySunDebuff?(user)
-        @battle.pbDisplay(_INTL("{1} is blinded by the harsh sunlight.",user.pbThis))
+        @battle.pbDisplay(_INTL("{1} is blinded by the bright sunshine.",user.pbThis))
       end
     end
   end

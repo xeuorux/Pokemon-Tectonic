@@ -1253,12 +1253,14 @@ class PokemonPokedexInfo_Scene
 		
 		typesOfCoverage = get_bnb_coverage(fSpecies)
 	
-		drawTextEx(overlay,xLeft,coordinateY,450,1,"BnB coverage: #{typesOfCoverage[0..[2,typesOfCoverage.length].min].to_s}",base,shadow)
+		drawTextEx(overlay,xLeft,coordinateY,450,1,"BnB coverage #{typesOfCoverage.length}: #{typesOfCoverage[0..[2,typesOfCoverage.length].min].to_s}",base,shadow)
 		coordinateY += 32
 		for index in 1..10
-			break if typesOfCoverage.length <= 5 * index
-			drawTextEx(overlay,xLeft,coordinateY,450,1,"#{typesOfCoverage[(5 * index)...[(5 * (index+1)),typesOfCoverage.length].min].to_s}",base,shadow)
+			rangeStart = (5 * index) - 2
+			rangeEnd = [rangeStart + 5,typesOfCoverage.length].min
+			drawTextEx(overlay,xLeft,coordinateY,450,1,"#{typesOfCoverage[rangeStart...rangeEnd].to_s}",base,shadow)
 			coordinateY += 32
+			break if rangeEnd == typesOfCoverage.length
 		end
 		
 		# Metagame coverage
