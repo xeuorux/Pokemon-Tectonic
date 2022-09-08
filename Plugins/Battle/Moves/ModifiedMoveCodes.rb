@@ -1626,3 +1626,18 @@ end
 class PokeBattle_Move_0C4 < PokeBattle_TwoTurnMove
   def immuneToSunDebuff?; return true; end
 end
+
+#===============================================================================
+# Freezes the target. May cause the target to flinch. (Ice Fang)
+#===============================================================================
+class PokeBattle_Move_00E < PokeBattle_Move
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    chance = pbAdditionalEffectChance(user,target,10)
+    return if chance==0
+    if @battle.pbRandom(100)<chance
+      target.pbFrostbite if target.pbCanFrostbite?(user,false,self)
+    end
+    target.pbFlinch(user) if @battle.pbRandom(100)<chance
+  end
+end
