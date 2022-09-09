@@ -391,7 +391,7 @@ class PokemonPokedexInfo_Scene
 			statSym = prevoSpeciesData.base_stats.keys[index]
 			prevoSpeciesStatValue = prevoSpeciesData.base_stats[statSym]
 		  	statUpgradePercentage = (((statValue.to_f / prevoSpeciesStatValue.to_f)-1) * 100).floor
-		  	statString += " (#{statUpgradePercentage})"
+		  	statString += " (#{statUpgradePercentage})" if Input.press?(Input::CTRL)
 		  end
           drawTextEx(overlay,136,yBase+32*index,450,1,statString,base,shadow)
         end
