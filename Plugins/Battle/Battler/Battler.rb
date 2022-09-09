@@ -101,7 +101,7 @@ class PokeBattle_Battler
     return false if !affectedByWeatherDownsides?
     return false if pbHasType?(:FIRE) || pbHasType?(:GRASS)
     return false if hasActiveAbility?([:DROUGHT,:INNERLIGHT])
-		return false if hasActiveAbility?([:CHLOROPHYLL,:SOLARPOWER,:LEAFGUARD,:FLOWERGIFT,:MIDNIGHTSUN,:HARVEST,:SUNCHASER,:HEATSAVOR])
+		return false if hasActiveAbility?([:CHLOROPHYLL,:SOLARPOWER,:LEAFGUARD,:FLOWERGIFT,:MIDNIGHTSUN,:HARVEST,:SUNCHASER,:HEATSAVOR,:BLINDINGLIGHT])
     return true
   end
 
@@ -109,7 +109,7 @@ class PokeBattle_Battler
     return false if !affectedByWeatherDownsides?
     return false if pbHasType?(:WATER) || pbHasType?(:ELECTRIC)
     return false if hasActiveAbility?([:DRIZZLE,:STORMBRINGER])
-		return false if hasActiveAbility?([:SWIFTSWIM,:RAINDISH,:HYDRATION,:TIDALFORCE,:STORMFRONT])
+		return false if hasActiveAbility?([:SWIFTSWIM,:RAINDISH,:HYDRATION,:TIDALFORCE,:STORMFRONT,:RAINPRISM,:DREARYCLOUDS])
     return true
   end
   
@@ -129,7 +129,7 @@ class PokeBattle_Battler
     return false if hasActiveItem?(:SAFETYGOGGLES)
 		return false if pbHasType?(:ICE) || pbHasType?(:STEEL) || pbHasType?(:GHOST)
     return false if hasActiveAbility?([:SNOWWARNING,:FROSTSCATTER])
-		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:BLIZZBOXER,:SLUSHRUSH,:ICEFACE,:BITTERCOLD])
+		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:BLIZZBOXER,:SLUSHRUSH,:ICEFACE,:BITTERCOLD,:ECTOPARTICLES])
 		return true
 	end
 

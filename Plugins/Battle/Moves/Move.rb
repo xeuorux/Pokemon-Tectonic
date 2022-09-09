@@ -500,13 +500,21 @@ class PokeBattle_Move
 		  if type == :FIRE
 			  multipliers[:final_damage_multiplier] *= @battle.pbWeather == :HarshSun ? 1.5 : 1.3
       elsif applySunDebuff?(user)
-        multipliers[:final_damage_multiplier] *= 0.85
+        if @battle.pbCheckGlobalAbility(:BLINDINGLIGHT)
+          multipliers[:final_damage_multiplier] *= 0.7
+        else
+          multipliers[:final_damage_multiplier] *= 0.85
+        end
 		  end
 		when :Rain, :HeavyRain
       if type == :WATER
 			  multipliers[:final_damage_multiplier] *= @battle.pbWeather == :HeavyRain ? 1.5 : 1.3
       elsif applyRainDebuff?(user)
-        multipliers[:final_damage_multiplier] *= 0.85
+        if @battle.pbCheckGlobalAbility(:DREARYCLOUDS)
+          multipliers[:final_damage_multiplier] *= 0.7
+        else
+          multipliers[:final_damage_multiplier] *= 0.85
+        end
 		  end
     when :Swarm
 		  if type == :DRAGON || type == :BUG
@@ -797,11 +805,22 @@ class PokeBattle_Move
           end
         end
       end
-      if applyRainDebuff?(user)
-        @battle.pbDisplay(_INTL("{1}'s attack is dampened by the rain.",user.pbThis))
-      end
-      if applySunDebuff?(user)
-        @battle.pbDisplay(_INTL("{1} is blinded by the bright sunshine.",user.pbThis))
+      # Display messages letting the player know that weather is debuffing a move (if it is)
+      if $PokemonSystem.weather_messages == 0
+        if applyRainDebuff?(user)
+          if @battle.pbCheckGlobalAbility(:DREARYCLOUDS)
+            @battle.pbDisplay(_INTL("{1}'s attack is dampened a lot by the dreary rain.",user.pbThis))
+          else
+            @battle.pbDisplay(_INTL("{1}'s attack is dampened by the rain.",user.pbThis))
+          end
+        end
+        if applySunDebuff?(user)
+          if @battle.pbCheckGlobalAbility(:BLINDINGLIGHT)
+            @battle.pbDisplay(_INTL("{1} is blinded by the bright light of the sun.",user.pbThis))
+          else
+            @battle.pbDisplay(_INTL("{1} is distracted by the shining sun.",user.pbThis))
+          end
+        end
       end
     end
   end

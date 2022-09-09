@@ -69,6 +69,14 @@ BattleHandlers::DamageCalcUserAbility.add(:MIDNIGHTSUN,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:RAINPRISM,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.pbWeather==:Rain && type == :FAIRY
+      mults[:base_damage_multiplier] *= 1.5
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:SUNCHASER,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.battle.pbWeather==:Sun && move.physicalMove?

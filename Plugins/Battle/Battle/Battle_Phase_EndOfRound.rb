@@ -9,7 +9,7 @@ class PokeBattle_Battle
         pbDisplay(msg)
         if effect==PBEffects::MagicRoom
           pbPriority(true).each { |b| b.pbItemTerrainStatBoostCheck }
-		  pbPriority(true).each { |b| b.pbItemFieldEffectCheck }
+		      pbPriority(true).each { |b| b.pbItemFieldEffectCheck }
         end
       end
     end
@@ -127,6 +127,8 @@ class PokeBattle_Battle
     pbCommonAnimation(weather_data.animation) if weather_data
     # Effects due to weather
     curWeather = pbWeather
+    showWeatherMessages = $PokemonSystem.weather_messages == 0
+    hailDamage = 0
     priority.each do |b|
       # Weather-related abilities
       if b.abilityActive?
@@ -138,51 +140,82 @@ class PokeBattle_Battle
       case curWeather
       when :Sandstorm
         next if !b.takesSandstormDamage?
-        pbDisplay(_INTL("{1} is buffeted by the sandstorm!",b.pbThis)) if 
+        damageDoubled = !pbCheckGlobalAbility(:SHRAPNELSTORM).nil?
+        if showWeatherMessages
+          if damageDoubled
+            pbDisplay(_INTL("{1} is shredded by the razor-sharp shrapnel!",b.pbThis))
+          else
+            pbDisplay(_INTL("{1} is buffeted by the sandstorm!",b.pbThis))
+          end
+        end
 		    reduction = b.totalhp/16
-		    reduction *= 2 if !pbCheckGlobalAbility(:SHRAPNELSTORM).nil?
+		    reduction *= 2 if damageDoubled
 		    reduction /= 4 if b.boss?
-		    b.damageState.displayedDamage = reduction.round
+        reduction = reduction.round
+		    b.damageState.displayedDamage = reduction
 		    @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
         b.pbFaint if b.fainted?
       when :Hail
         next if !b.takesHailDamage?
-        pbDisplay(_INTL("{1} is buffeted by the hail!",b.pbThis))
+        damageDoubled = !pbCheckGlobalAbility(:BITTERCOLD).nil?
+        if showWeatherMessages
+          if damageDoubled
+            pbDisplay(_INTL("{1} is pummeled by the bitterly cold hail!",b.pbThis))
+          else
+            pbDisplay(_INTL("{1} is buffeted by the hail!",b.pbThis))
+          end
+        end
         reduction = b.totalhp/16
-	    	reduction *= 2 if !pbCheckGlobalAbility(:BITTERCOLD).nil?
+	    	reduction *= 2 if damageDoubled
 		    reduction /= 4 if b.boss?
-		    b.damageState.displayedDamage = reduction.round
+        reduction = reduction.round
+        hailDamage += reduction
+		    b.damageState.displayedDamage = reduction
 		    @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
         b.pbFaint if b.fainted?
       when :ShadowSky
         next if !b.takesShadowSkyDamage?
-        pbDisplay(_INTL("{1} is hurt by the shadow sky!",b.pbThis))
+        pbDisplay(_INTL("{1} is hurt by the shadow sky!",b.pbThis))if showWeatherMessages
         reduction = b.totalhp/16
 		    reduction /= 4 if b.boss?
-		    b.damageState.displayedDamage = reduction.round
+        reduction = reduction.round
+		    b.damageState.displayedDamage = reduction
 		    @scene.pbDamageAnimation(b)
         b.pbReduceHP(reduction,false)
         b.pbItemHPHealCheck
         b.pbFaint if b.fainted?
       when :AcidRain
         if !b.takesAcidRainDamage?
-          pbDisplay(_INTL("{1} is hurt by the acid rain!",b.pbThis))
+          pbDisplay(_INTL("{1} is hurt by the acid rain!",b.pbThis)) if showWeatherMessages
           reduction = b.totalhp/16
           reduction /= 4 if b.boss?
-          b.damageState.displayedDamage = reduction.round
+          reduction = reduction.round
+          b.damageState.displayedDamage = reduction
           @scene.pbDamageAnimation(b)
           b.pbReduceHP(reduction,false)
           b.pbItemHPHealCheck
           b.pbFaint if b.fainted?
         elsif b.pbHasType?(:POISON) || b.hasActiveAbility?(:POISONHEAL)
-          pbDisplay(_INTL("{1} absorbs the acid rain!",b.pbThis))
+          pbDisplay(_INTL("{1} absorbs the acid rain!",b.pbThis)) if showWeatherMessages
           heal = b.totalhp/16
           heal /= 4 if b.boss?
           b.pbRecoverHP(heal,true)
+        end
+      end
+    end
+    # Ectoparticles
+    if hailDamage > 0
+      priority.each do |b|
+        if b.hasActiveAbility?(:ECTOPARTICLES)
+          pbShowAbilitySplash(b)
+          heal = hailDamage
+          heal /= 4 if b.boss?
+          b.pbRecoverHP(heal,true)
+          pbHideAbilitySplash(b)
         end
       end
     end

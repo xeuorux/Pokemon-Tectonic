@@ -7,6 +7,7 @@ class PokemonSystem
 	attr_accessor :damage_numbers
 	attr_accessor :show_item_descriptions
 	attr_accessor :effectiveness_messages
+  attr_accessor :weather_messages
   attr_accessor :status_effect_messages
   attr_accessor :nicknaming_prompt
 
@@ -31,6 +32,7 @@ class PokemonSystem
     @damage_numbers 	        = 0 # (0=true, 1=false)
     @show_item_descriptions   = 0 # (0=true, 1=false)
     @effectiveness_messages   = 0 # (0=true, 1=false)
+    @weather_messages         = 0 # (0=true, 1=false)
     @status_effect_messages   = 0 # (0=true, 1=false)
     @nicknaming_prompt        = 0 # (0=true, 1=false)
   end
@@ -128,6 +130,12 @@ class PokemonOption_Scene
          proc { $PokemonSystem.effectiveness_messages },
          proc { |value|
 			    $PokemonSystem.effectiveness_messages = value
+         }
+       ),
+       EnumOption.new(_INTL("Weather Msgs"),[_INTL("On"),_INTL("Off")],
+         proc { $PokemonSystem.weather_messages },
+         proc { |value|
+			    $PokemonSystem.weather_messages = value
          }
        ),
       EnumOption.new(_INTL("Status Condition Msgs"),[_INTL("On"),_INTL("Off")],

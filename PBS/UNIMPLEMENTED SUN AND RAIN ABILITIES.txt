@@ -1,7 +1,0 @@
-438,BLINDINGLIGHT,Blinding Light,"In sunshine, affected Pokémon deal even less attack damage."
-# Sobble line? Wingull line? The former feels like better flavor to me, but the latter better mechanics.
-439,DREARYCLOUDS,Dreary Clouds,"In rain, affected Pokémon deal even less attack damage."
-# Swablu line?
-440,RAINPRISM,RAINPRISM,"Powers up Fairy-type moves by 50% in rain."
-# Rain ability that buffs itself and allies
-# A complex slower/more defensive ability

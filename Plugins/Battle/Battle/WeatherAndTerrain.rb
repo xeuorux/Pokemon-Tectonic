@@ -32,7 +32,7 @@ class PokeBattle_Battle
       eachBattler { |b| b.pbCheckFormOnWeatherChange }
       pbEndPrimordialWeather
     end
-    pbDisplay(_INTL("It'll last for {1} more turns!",@field.weatherDuration - 1))
+    pbDisplay(_INTL("It'll last for {1} more turns!",@field.weatherDuration - 1)) if $PokemonSystem.weather_messages == 0
     pbHideAbilitySplash(user) if user
   end
 
