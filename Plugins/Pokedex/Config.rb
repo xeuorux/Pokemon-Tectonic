@@ -8,10 +8,10 @@ MAPS_AVAILABLE_BY_CAP = {
 	], 
 	30 => [60,56,66,123,		# Shipping Lane, Nemeth, Nemeth Attic, Nemeth Academy
 			142,140,141, 		# Starters Store Maps
-			3,25,55,6,81,	 	# Savannah Route, Mining Camp, Flower Fields, LuxTech Campus, Cave Path
+			3,25,55,6,326,	 	# Savannah Route, Mining Camp, Flower Fields, LuxTech Campus, King's Path
 			301,37,7,8,53, 		# County Park, Svait, Wet Walkways, The Tangle
 			117,36,10,40, 		# Ice Cave, Abandoned Mine, Jungle Temple, Gigalith's Guts
-			13,11,122,120, 		# Cave Path, River Route, Sewer, Deep Layer
+			11,122,120, 		# River Route, Sewer, Deep Layer
 			121,130,129,59, 	# Mountain Climb, Canal Desert, Barren Crater, Mainland Dock
 			96,98,126, 			# Luxtech Cold Storage, LuxTech Cold Storage Basement, Sun Cave
 			4,20,86,       		# Scientist's House, Lengthy Glade, Zigzagoon Nest, LuxTech Cold Storage Basement

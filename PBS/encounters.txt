@@ -270,7 +270,7 @@ Special
 Special
     1,GYAMASK,15
 #-------------------------------
-[081] # East Tunnel
+[326] # King's Barrows
 DarkCave,20
     20,CUBONE,17,20
     20,DURALUDON,17,20
