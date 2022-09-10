@@ -2863,3 +2863,14 @@ class PokeBattle_Move_58E < PokeBattle_Move_0EE
 			user.pbOpposingTeam(true)))
 	end
 end
+
+#===============================================================================
+# Faints the opponant if they are below 1/3 HP. (Cull)
+#===============================================================================
+class PokeBattle_Move_58B < PokeBattle_FixedDamageMove
+	def pbFixedDamage(user,target)
+		if target.hp < (target.totalhp / 3)
+			return target.hp
+		end	
+	end
+end
