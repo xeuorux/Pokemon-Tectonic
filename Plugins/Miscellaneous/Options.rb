@@ -2,6 +2,7 @@ class PokemonSystem
 	attr_accessor :followers
 	attr_accessor :autosave
 	attr_accessor :particle_effects
+  attr_accessor :screenshake
 	attr_accessor :skip_fades
 	attr_accessor :gendered_look
 	attr_accessor :damage_numbers
@@ -27,6 +28,7 @@ class PokemonSystem
     @followers   		          = 0	# Follower Pokemon enabled (0=true, 1=false)
     @autosave	 		            = 1	# Autosave enabled (0=true, 1=false)
     @particle_effects 	      = 0 # (0=true, 1=false)
+    @screenshake              = 0 # (0=true, 1=false)
     @skip_fades 		          = 1 # (0=true, 1=false)
     @gendered_look 		        = 0 # (0 = Masc, 1 = Fem)
     @damage_numbers 	        = 0 # (0=true, 1=false)
@@ -160,6 +162,12 @@ class PokemonOption_Scene
         proc { $PokemonSystem.particle_effects },
         proc { |value|
             $PokemonSystem.particle_effects = value
+        }
+      ),
+      EnumOption.new(_INTL("Screenshake (Adv.)"),[_INTL("On"),_INTL("Off")],
+        proc { $PokemonSystem.screenshake },
+        proc { |value|
+            $PokemonSystem.screenshake = value
         }
       ),
       EnumOption.new(_INTL("Look"),[_INTL("Masc."),_INTL("Fem.")],
