@@ -46,6 +46,14 @@ class NPCRandomization
     end
 end
 
+def wasNPCIdSelected?(npcID)
+    return $npc_randomization.wasNPCIdSelected?(npcID)
+end
+
+def traitorizeNPC(npcID)
+    $npc_randomization.traitorizeNPC(npcID)
+end
+
 # The ordering of the team versions in trainers.txt should be
 # NPC team 0, NPC team 0 cursed, NPC team 1, NPC team 1 cursed, etc.
 # [MASKEDVILLAIN,Crimson]
