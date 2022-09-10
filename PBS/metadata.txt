@@ -1604,3 +1604,14 @@ ShowArea = true
 Bicycle = true
 BattleBack = sand
 Environment = Sand
+#-------------------------------
+[318]
+# Tournament Grounds
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 0,12,2
+#-------------------------------
+[324]
+# Waiting Room
+TeleportBlocked = true
