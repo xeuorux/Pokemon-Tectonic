@@ -34,6 +34,16 @@ class NPCRandomization
         return @chosenNPC1 == npcID || @chosenNPC2 == npcID
     end
 
+    #for villain meeting 1
+    def wasNPCIdSelected1?(npcID)
+        return @chosenNPC1 == npcID
+    end
+
+    #for villain meeting 2
+    def wasNPCIdSelected2?(npcID)
+        return @chosenNPC2 == npcID
+    end
+
     def traitorizeNPC(npcID)
         if @chosenNPC1 == npcID
             @npc1Traitor = true
@@ -52,6 +62,16 @@ end
 
 def traitorizeNPC(npcID)
     $npc_randomization.traitorizeNPC(npcID)
+end
+
+#for villain meeting 1
+def wasNPCIdSelected1?(npcID)
+    return $npc_randomization.wasNPCIdSelected1?(npcID)
+end
+
+#for villain meeting 2
+def wasNPCIdSelected2?(npcID)
+    return $npc_randomization.wasNPCIdSelected2?(npcID)
 end
 
 # The ordering of the team versions in trainers.txt should be
