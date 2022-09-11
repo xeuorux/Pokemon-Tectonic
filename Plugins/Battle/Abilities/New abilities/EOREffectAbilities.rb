@@ -30,19 +30,19 @@ BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
   }
 )
 
-BattleHandlers::EOREffectAbility.add(:HEATCYCLE,
+BattleHandlers::EOREffectAbility.add(:WARMTHCYCLE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     if !battler.statStageAtMax?(:SPEED)
         if battler.pbCanRaiseStatStage?(:SPEED)
-            battle.pbDisplay(_INTL("{1} heats up!",battler.pbThis))
+            battle.pbDisplay(_INTL("{1} warms up!",battler.pbThis))
             battler.pbRaiseStatStage(:SPEED,2,battler)
             damage = battler.totalhp/8
             damage /= 4 if battler.boss?
             battler.pbReduceHP(damage)
         end
     else
-        battle.pbDisplay(_INTL("{1} vents its heat!",battler.pbThis))
+        battle.pbDisplay(_INTL("{1} vents its stored heat!",battler.pbThis))
         battler.pbLowerStatStage(:SPEED,6,battler)
         battler.pbRecoverHP(battler.totalhp - battler.hp)
         battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
