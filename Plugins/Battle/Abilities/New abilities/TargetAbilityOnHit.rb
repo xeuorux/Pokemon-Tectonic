@@ -248,7 +248,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SEEDSCATTER,
 	}
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:PERCUSSIVEMAINTENANCE,
+BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
 	proc { |ability,target,battler,move,battle|
     terrainSetAbility(:Electric,battler,battle)
 	}
