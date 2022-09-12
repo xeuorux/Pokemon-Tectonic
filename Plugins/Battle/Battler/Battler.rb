@@ -90,6 +90,8 @@ class PokeBattle_Battler
 	end
 	alias hasWorkingAbility hasActiveAbility?
 
+  alias hasType? pbHasType?
+
   def affectedByWeatherDownsides?
     return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
     return false if hasActiveAbility?([:STOUT,:WEATHERSENSES])
