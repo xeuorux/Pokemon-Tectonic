@@ -5,7 +5,7 @@ class PokeBattle_Battler
 		amt = @totalhp-@hp if amt>@totalhp-@hp
 		amt = 1 if amt<1 && @hp<@totalhp
 		if effects[PBEffects::NerveBreak]
-			@battle.pbDisplay(_INTL("{1} healing is reversed because of their broken nerves!",pbThis))
+			@battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!",pbThis))
 			amt *= -1
 		end
 		oldHP = @hp
