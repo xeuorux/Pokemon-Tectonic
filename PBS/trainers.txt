@@ -3783,3 +3783,177 @@ Pokemon = TYRANITAR,65
     Moves = CRUNCH,ROCKSLIDE,EARTHQUAKE,IRONTAIL
     AbilityIndex = 1
     Item = ASSAULTVEST
+#-------------------------------
+[MASKEDVILLAIN,Masked Villain]
+Pokemon = REGIROCK,55
+    AbilityIndex = 1
+Pokemon = GOTHITELLE,55
+    AbilityIndex = 1
+Pokemon = SHEDINJA,55
+    AbilityIndex = 0
+Pokemon = CORVIKNIGHT,55
+    AbilityIndex = 1
+Pokemon = GLISCOR,55
+    AbilityIndex = 1
+Pokemon = DELPHOX,55
+    AbilityIndex = 1
+#-------------------------------
+[MASKEDVILLAIN,Masked Villain,1]
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIROCK,55
+    AbilityIndex = 1
+Pokemon = GOTHITELLE,55
+    AbilityIndex = 1
+Pokemon = SHEDINJA,55
+    AbilityIndex = 0
+Pokemon = CORVIKNIGHT,55
+    AbilityIndex = 1
+Pokemon = GLISCOR,55
+    AbilityIndex = 1
+Pokemon = DELPHOX,55
+    AbilityIndex = 1
+#-------------------------------
+[MASKEDVILLAIN,Masked Villain,2]
+Pokemon = REGIROCK,55
+    AbilityIndex = 1
+Pokemon = APPLETUN,55
+    AbilityIndex = 0
+Pokemon = MAGNEZONE,55
+    AbilityIndex = 0
+Pokemon = TYRANTRUM,55
+    AbilityIndex = 1
+Pokemon = GOODRA,55
+    AbilityIndex = 1
+Pokemon = HAXORUS,55
+    AbilityIndex = 1
+#-------------------------------
+[MASKEDVILLAIN,Masked Villain,3]
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIROCK,55
+    AbilityIndex = 1
+Pokemon = APPLETUN,55
+    AbilityIndex = 0
+Pokemon = MAGNEZONE,55
+    AbilityIndex = 0
+Pokemon = TYRANTRUM,55
+    AbilityIndex = 1
+Pokemon = GOODRA,55
+    AbilityIndex = 1
+Pokemon = HAXORUS,55
+    AbilityIndex = 1
+#-------------------------------
+[MASKEDVILLAIN,Masked Villain,4]
+Pokemon = REGIROCK,55
+    AbilityIndex = 1
+Pokemon = ABSOLUS,55
+    AbilityIndex = 1
+Pokemon = NINETALES,55
+    AbilityIndex = 1
+Pokemon = MILOTIC,55
+    AbilityIndex = 1
+Pokemon = FLORGES,55
+    AbilityIndex = 0
+Pokemon = HYMNUS,55
+    AbilityIndex = 0
+#-------------------------------
+[MASKEDVILLAIN,Masked Villain,5]
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIROCK,55
+    AbilityIndex = 1
+Pokemon = ABSOLUS,55
+    AbilityIndex = 1
+Pokemon = NINETALES,55
+    AbilityIndex = 1
+Pokemon = MILOTIC,55
+    AbilityIndex = 1
+Pokemon = FLORGES,55
+    AbilityIndex = 0
+Pokemon = HYMNUS,55
+    AbilityIndex = 0
+#-------------------------------
+[MASKEDVILLAIN,Masked Villain,6]
+Pokemon = REGIROCK,55
+    AbilityIndex = 1
+Pokemon = MFURRET,55
+    AbilityIndex = 1
+Pokemon = MPOLTEAGEIST,55
+    AbilityIndex = 0
+Pokemon = GDARMANITAN,55
+    AbilityIndex = 1
+Pokemon = AMUK,55
+    AbilityIndex = 0
+Pokemon = AGOLEM,55
+    AbilityIndex = 1
+#-------------------------------
+[MASKEDVILLAIN,Masked Villain,7]
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIROCK,55
+    AbilityIndex = 1
+Pokemon = MFURRET,55
+    AbilityIndex = 1
+Pokemon = MPOLTEAGEIST,55
+    AbilityIndex = 0
+Pokemon = GDARMANITAN,55
+    AbilityIndex = 1
+Pokemon = AMUK,55
+    AbilityIndex = 0
+Pokemon = AGOLEM,55
+    AbilityIndex = 1
+#-------------------------------
+[MASKEDVILLAIN,Masked Villain,8]
+Pokemon = REGIROCK,55
+    AbilityIndex = 1
+Pokemon = HOUNDOMINUS,55
+    AbilityIndex = 0
+Pokemon = SCEPTILE,55
+    AbilityIndex = 0
+Pokemon = MANERGETIC,55
+    AbilityIndex = 1
+Pokemon = PHIONE,55
+    AbilityIndex = 0
+Pokemon = GIGANTEON,55
+    AbilityIndex = 0
+#-------------------------------
+[MASKEDVILLAIN,Masked Villain,9]
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIROCK,55
+    AbilityIndex = 1
+Pokemon = HOUNDOMINUS,55
+    AbilityIndex = 0
+Pokemon = SCEPTILE,55
+    AbilityIndex = 0
+Pokemon = MANERGETIC,55
+    AbilityIndex = 1
+Pokemon = PHIONE,55
+    AbilityIndex = 0
+Pokemon = GIGANTEON,55
+    AbilityIndex = 0
+#-------------------------------
+[MASKEDVILLAIN,Masked Villain,10]
+Pokemon = REGIROCK,55
+    AbilityIndex = 1
+Pokemon = GALLADE,55
+    AbilityIndex = 1
+Pokemon = GRAPIDASH,55
+    AbilityIndex = 0
+Pokemon = STARAPTOR,55
+    AbilityIndex = 0
+Pokemon = ARCANINE,55
+    AbilityIndex = 0
+Pokemon = FLOATZEL,55
+    AbilityIndex = 0
+#-------------------------------
+[MASKEDVILLAIN,Masked Villain,11]
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIROCK,55
+    AbilityIndex = 1
+Pokemon = GALLADE,55
+    AbilityIndex = 1
+Pokemon = GRAPIDASH,55
+    AbilityIndex = 0
+Pokemon = STARAPTOR,55
+    AbilityIndex = 0
+Pokemon = ARCANINE,55
+    AbilityIndex = 0
+Pokemon = FLOATZEL,55
+    AbilityIndex = 0

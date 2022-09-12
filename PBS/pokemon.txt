@@ -14957,7 +14957,7 @@ Type1 = POISON
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 58,76,55,60,61,70
-# Total = 385
+# Total = 380
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 60

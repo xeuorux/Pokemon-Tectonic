@@ -270,14 +270,6 @@ Special
 Special
     1,GYAMASK,15
 #-------------------------------
-[326] # King's Barrows
-DarkCave,20
-    20,CUBONE,17,20
-    20,DURALUDON,17,20
-    20,MAWILE,17,20
-    20,SABLEYE,17,20
-    20,WOOBAT,17,20
-#-------------------------------
 [085] # Worried Man's House
 Special,20
     1,HORSEA,15
@@ -812,3 +804,11 @@ Special
 [323] # HQ Station Backroom
 Special
     1,WIMPOD,15
+#-------------------------------
+[326] # King's Barrows
+DarkCave,20
+    20,CUBONE,17,20
+    20,DURALUDON,17,20
+    20,MAWILE,17,20
+    20,SABLEYE,17,20
+    20,WOOBAT,17,20
