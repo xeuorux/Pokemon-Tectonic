@@ -96,6 +96,7 @@ class PokeBattle_Battler
     return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
     return false if hasActiveAbility?([:STOUT,:WEATHERSENSES])
 		return false if hasActiveItem?(:UTILITYUMBRELLA)
+    return false if @battle.pbCheckAlliedAbility(:HIGHRISE,@index)
     return true
   end
 
