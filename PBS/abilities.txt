@@ -86,7 +86,7 @@
 84,UNBURDEN,Unburden,"Raises Speed if a held item is consumed in battle."
 85,HEATPROOF,Heatproof,"Takes 50% less damage from Fire-type moves."
 86,SIMPLE,Simple,"Stat changes in the Pokemon are doubled."
-87,DRYSKIN,Dry Skin,"Reduces HP if it is hot. Water restores HP."
+87,DRYSKIN,Dry Skin,"Restores 1/8 HP in rain, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves."
 88,DOWNLOAD,Download,"Boosts one Attacking stat according to a foe's defenses."
 89,IRONFIST,Iron Fist,"Boosts the power of punching moves by 30%."
 90,POISONHEAL,Poison Heal,"Restores 1/12th HP each turn if poisoned, and ignores Poison Speed reduction."
