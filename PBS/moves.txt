@@ -1102,3 +1102,4 @@
 1038,CALTROPSTYLE,Caltrop Style,58E,50,DARK,Special,100,20,0,NearOther,0,bef,"Attacks and sets a layer of Spikes. Afterwards, it returns to switch with a party Pokémon.",
 1039,CULL,Cull,58F,40,DARK,Special,100,10,0,NearOther,0,bef,"The user tries to pick off a weak target. If the target is below 1/3 HP, they instantly faint.",
 1040,TRIPLETHREAT,Triple Threat,017,80,DRAGON,Special,100,10,60,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. It has a 20% chance each to numb, burn, or frostbite.",
+1041,ERODINGFOAM,Eroding Foam,590,40,WATER,Special,100,25,100,NearOther,0,abef,"The user spews alkaline bubbles that melt the target, drastically lowering their defense.",BUBBLEBEAM

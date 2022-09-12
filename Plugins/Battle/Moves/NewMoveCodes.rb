@@ -2867,10 +2867,20 @@ end
 #===============================================================================
 # Faints the opponant if they are below 1/3 HP. (Cull)
 #===============================================================================
-class PokeBattle_Move_58B < PokeBattle_FixedDamageMove
+class PokeBattle_Move_58F < PokeBattle_FixedDamageMove
 	def pbFixedDamage(user,target)
 		if target.hp < (target.totalhp / 3)
 			return target.hp
 		end	
 	end
 end
+
+#===============================================================================
+# Decreases the target's Defense by 3 stages. (Eroding Foam)
+#===============================================================================
+class PokeBattle_Move_590 < PokeBattle_TargetStatDownMove
+	def initialize(battle,move)
+	  super
+	  @statDown = [:DEFENSE,3]
+	end
+  end
