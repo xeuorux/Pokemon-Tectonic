@@ -2883,4 +2883,20 @@ class PokeBattle_Move_590 < PokeBattle_TargetStatDownMove
 	  super
 	  @statDown = [:DEFENSE,3]
 	end
+end
+
+#===============================================================================
+# Power increases the taller the user is than the target. (Cocodrop)
+#===============================================================================
+class PokeBattle_Move_591 < PokeBattle_Move
+	def pbBaseDamage(baseDmg,user,target)
+	  ret = 40
+	  n = (user.pbHeight/target.pbHeight).floor
+	  if n>=5;    ret = 120
+	  elsif n>=4; ret = 100
+	  elsif n>=3; ret = 80
+	  elsif n>=2; ret = 60
+	  end
+	  return ret
+	end
   end

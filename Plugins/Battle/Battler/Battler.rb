@@ -369,4 +369,10 @@ class PokeBattle_Battler
     end
     return false
   end
+
+  def pbHeight
+    ret = (@pokemon) ? @pokemon.weight : 500
+    ret = 1 if ret<1
+    return ret.max
+  end
 end
