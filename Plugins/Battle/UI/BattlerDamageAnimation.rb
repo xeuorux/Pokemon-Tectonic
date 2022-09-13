@@ -6,7 +6,7 @@ class BattlerDamageAnimation < PokeBattle_Animation
 		@idxBattler    = idxBattler
 		@effectiveness = effectiveness
 		@battler = battler
-		@damageDealt = battler.damageState.displayedDamage
+		@damageDealt = battler.damageState.displayedDamage.round
 		battler.damageState.displayedDamage = 0
 		@damageDisplayBitmap = BitmapWrapper.new(Graphics.width,Graphics.height)
 		@damageDisplaySprite = SpriteWrapper.new(@viewport)
@@ -73,7 +73,8 @@ class BattlerDamageAnimation < PokeBattle_Animation
 			
 			damageX = batSprite.x
 			damageY = batSprite.y - 140
-			pbDrawTextPositions(@damageDisplayBitmap,[[@damageDealt.to_s,damageX,damageY,2,color,DAMAGE_POPUP_SHADOW_COLOR,true]])
+			damageDisplayLabel = @damageDealt.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/,"\1#{","}")
+			pbDrawTextPositions(@damageDisplayBitmap,[[damageDisplayLabel,damageX,damageY,2,color,DAMAGE_POPUP_SHADOW_COLOR,true]])
 		
 			if @fastHitAnimation
 				movementFrameStart = 1
