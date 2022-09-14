@@ -444,6 +444,7 @@
 443,ECTOPARTICLES,Ecto-Particles,"Restores HP based on damage from hail."
 444,HIGHRISE,High-rise,"The Pokémon and its allies are immune to weather downsides."
 445,DAWNBURST,Dawn Burst,"On the first turn, its attacks burn the target."
+446,ROAST,Roast,"When the Pokémon eats a Berry, it raises its attacking stats."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
