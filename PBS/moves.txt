@@ -1103,4 +1103,5 @@
 1039,CULL,Cull,58F,40,DARK,Special,100,10,0,NearOther,0,bef,"The user tries to pick off a weak target. If the target is below 1/3 HP, they instantly faint.",NIGHTSLASH
 1040,TRIPLETHREAT,Triple Threat,017,80,DRAGON,Special,100,10,60,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. It has a 20% chance each to numb, burn, or frostbite.",TRIATTACK
 1041,ERODINGFOAM,Eroding Foam,590,40,WATER,Special,100,25,100,NearOther,0,abef,"The user spews alkaline bubbles that melt the target, drastically lowering their defense.",BUBBLEBEAM
-1042,COCODROP,Coco Drop,591,1,GRASS,Physical,100,15,0,NearOther,0,abef,"The user drops a coconut from high up. The taller the user compared to the target, the greater the damage.",BARRAGE
+1042,COCODROP,Coco Drop,591,1,GRASS,Physical,100,15,0,NearOther,0,abef,"The user drops a coconut from high up. The taller the user compared to the target, the greater the damage.",SEEDBOMB
+1043,LIGHTNINGSPEAR,Lightning Spear,592,90,ELECTRIC,Special,100,15,0,NearOther,0,bef,"Shoots a damaging spear at enemies, or a Speed and Sp. Def buffing electric charge at allies.",THUNDERBOLT

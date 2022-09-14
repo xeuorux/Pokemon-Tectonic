@@ -2900,3 +2900,39 @@ class PokeBattle_Move_591 < PokeBattle_Move
 	  return ret
 	end
   end
+
+#===============================================================================
+# Damages target if target is a foe, or buff's the target's Speed and
+# Sp. Def is it's an ally. (Lightning Spear)
+#===============================================================================
+class PokeBattle_Move_592 < PokeBattle_Move
+	def pbOnStartUse(user,targets)
+	  @buffing = false
+	  @buffing = !user.opposes?(targets[0]) if targets.length>0
+	end
+  
+	def pbFailsAgainstTarget?(user,target)
+		return false if !@buffing
+		return true if !target.pbCanRaiseStatStage?(:SPEED,user,self,true) && !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self,true)
+    	return false
+	end
+  
+	def pbDamagingMove?
+	  return false if @buffing
+	  return super
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+	  return if !@buffing
+	  target.pbRaiseStatStage(:SPEED,1,user,self) if target.pbCanRaiseStatStage?(:SPEED,user,self)
+	  target.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user,self) if target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
+	end
+  
+	def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
+	  if @buffing
+		@battle.pbAnimation(:CHARGE,user,targets,hitNum) if showAnimation
+	  else
+		super
+	  end
+	end
+end
