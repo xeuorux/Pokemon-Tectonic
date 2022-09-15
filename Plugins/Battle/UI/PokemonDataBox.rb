@@ -138,7 +138,8 @@ class PokemonDataBox < SpriteWrapper
 		# Draw shiny icon
 		if @battler.shiny?
 		  shinyX = (@battler.opposes?(0)) ? 214 : -6   # Foe's/player's
-		  imagePos.push(["Graphics/Pictures/shiny",@spriteBaseX+shinyX,36])
+		  shinyIconFileName = @battler.shiny_variant? ? "Graphics/Pictures/shiny_variant" : "Graphics/Pictures/shiny"
+		  imagePos.push([shinyIconFileName,@spriteBaseX+shinyX,36])
 		end
 		# Draw Mega Evolution/Primal Reversion icon
 		if @battler.mega?

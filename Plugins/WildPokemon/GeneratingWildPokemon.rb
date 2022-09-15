@@ -23,6 +23,7 @@ def pbGenerateWildPokemon(species,level,isRoamer=false)
       genwildpoke.personalID = rand(2 ** 16) | rand(2 ** 16) << 16
 	    genwildpoke.shiny = nil
   end
+  genwildpoke.shiny_variant = true if genwildpoke.shiny? && rand(4) < 1
   return genwildpoke
 end
 
@@ -44,4 +45,15 @@ end
 
 class Pokemon
 	attr_accessor :shinyRerolls
+  attr_accessor :shiny_variant
+
+  def shiny_variant?
+    return shiny_variant
+  end
+end
+
+class PokeBattle_Battler
+  def shiny_variant?
+    return @pokemon.shiny_variant?
+  end
 end

@@ -1,36 +1,3 @@
-module GameData
-  class Species  
-	def self.sprite_bitmap_from_pokemon(pkmn, back = false, species = nil)
-	  species = pkmn.species if !species
-	  species = GameData::Species.get(species).species   # Just to be sure it's a symbol
-	  return self.egg_sprite_bitmap(species, pkmn.form) if pkmn.egg?
-	  if back
-		ret = self.back_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?)
-	  else
-		ret = self.front_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?)
-	  end
-	  
-	  if ret && pkmn.boss?
-		filename = 'Graphics/Pokemon/Avatars/' + species.to_s
-		filename += '_' + pkmn.form.to_s if pkmn.form != 0
-		filename += '_back' if back
-		echoln("Accessing boss battle sprite: #{filename}")
-		ret = AnimatedBitmap.new(filename)
-	  end
-	  
-	  alter_bitmap_function = MultipleForms.getFunction(species, "alterBitmap")
-	  if ret && !pkmn.boss? && alter_bitmap_function
-		new_ret = ret.copy
-		ret.dispose
-		new_ret.each { |bitmap| alter_bitmap_function.call(pkmn, bitmap) }
-		ret = new_ret
-	  end
-	  return ret
-	end
-  end
-end
-
-
 def pbBigAvatarBattle(*args)
 	rule = "3v#{args.length}"
 	setBattleRule(rule)
