@@ -408,7 +408,7 @@
 390,LASTRESORT,Last Resort,125,140,NORMAL,Physical,100,5,0,NearOther,0,abef,"This move can be used only after the user has used all the other moves it knows in the battle.",
 391,SKULLBASH,Skull Bash,0C8,140,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user tucks in to sharply raise its Defense in the first turn, then rams the foe on the second.",
 392,DOUBLEEDGE,Double-Edge,0FB,120,NORMAL,Physical,100,15,0,NearOther,0,abef,"A reckless, life-risking tackle. The user also takes 33% recoil.",
-393,HEADCHARGE,Head Charge,502,170,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user charges its head into the foe, using its powerful guard hair. The user takes 2/3 of the damage as recoil.",
+393,HEADCHARGE,Head Charge,502,170,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user charges its head into the foe. As a result, it takes 2/3 of the damage as recoil.",
 394,MEGAKICK,Mega Kick,000,120,NORMAL,Physical,80,5,0,NearOther,0,abef,"The target is attacked by a kick launched with muscle-packed power.",
 395,TECHNOBLAST,Techno Blast,09F,120,NORMAL,Special,100,5,0,NearOther,0,bef,"The user fires a beam of light at its target. The type changes depending on the Drive the user holds.",
 396,THRASH,Thrash,55F,120,NORMAL,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks for three turns.",
@@ -1044,7 +1044,7 @@
 980,HOLLYCHARM,Holly Charm,563,90,GRASS,Special,100,15,0,NearOther,0,bef,"The user attacks the target with the power of a warding charm. Super effective vs Ghost-types.",MAGICALLEAF
 981,MUTUAL,Mutual,537,55,FIGHTING,Physical,100,30,0,NearOther,0,abef,"The user grabs the target, slamming both of them into the ground. The user takes 20% recoil.",SUBMISSION
 982,BEDFELLOWS,Bedfellows,564,0,NORMAL,Status,0,5,0,NearFoe,0,bce,"The user and the target both take a restful sleep, fully restoring their HPs and healing any status conditions.",REST
-983,LOUNGE,Lounge,565,0,NORMAL,Status,0,5,0,User,-1,d,"The user lounges around with decadent laziness, restoring its HP by two/thirds of its maximum. This move always goes last.",SLACKOFF
+983,LOUNGE,Lounge,565,0,NORMAL,Status,0,5,0,User,-1,d,"The user lounges around with decadent laziness, restoring its HP by 66%. This move always goes last.",SLACKOFF
 984,THUNDERCLAP,Thunderclap,00F,80,ELECTRIC,Physical,100,20,40,NearOther,0,abe,"The user jabs the target with electric charges. It has a 40% chance to make the target flinch.",SPARK
 985,SINISTERSPINES,Sinister Spines,116,70,GRASS,Physical,100,5,0,NearOther,1,abef,"This move enables the user to attack first. It fails if the target is not readying an attack, however.",SPIKECANNON
 986,MIRAGEFLARE,Mirage Flare,000,120,FLYING,Special,100,5,0,AllNearOthers,0,bef,"The user creates a storm using its flaming body, damaging everything around it.",
