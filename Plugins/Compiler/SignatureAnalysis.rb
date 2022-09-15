@@ -60,7 +60,13 @@ def getMoveLearnableGroups()
 		species_data.tutor_moves.each do |tutorMoveID|
 			move_counts[tutorMoveID][groupIndex].push(species_data.id)
 		end
-		species_data.egg_moves.each do |eggMoveID|
+
+		firstSpecies = species_data
+		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
+			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
+		end
+
+		firstSpecies.egg_moves.each do |eggMoveID|
 			move_counts[eggMoveID][groupIndex].push(species_data.id)
 		end
 	end
