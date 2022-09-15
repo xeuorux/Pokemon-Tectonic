@@ -605,19 +605,39 @@ class PokemonPokedexInfo_Scene
     end
   end
   
-  def getFormattedMoveName(move)
+  def getFormattedMoveName(move,maxWidth = 99999)
     fSpecies = GameData::Species.get_species_form(@species,@form)
 	move_data = GameData::Move.get(move)
 	moveName = move_data.real_name
-	isSTAB = false
-	if move_data.category < 2 # Is a damaging move
-		if [fSpecies.type1,fSpecies.type2].include?(move_data.type) # Is STAB for the main pokemon
-			moveName = "<b>#{moveName}</b>"
-			isSTAB = true
-		elsif isAnyEvolutionOfType(fSpecies,move_data.type)
-			moveName = "<i>#{moveName}</i>"
+
+	isSTAB = move_data.category < 2 && [fSpecies.type1,fSpecies.type2].include?(move_data.type)
+
+	# Chop letters off of excessively long names to make them fit into the maximum width
+	overlay = @sprites["overlay"].bitmap
+	expectedMoveNameWidth = overlay.text_size(moveName).width
+	expectedMoveNameWidth *= 1.2 if isSTAB
+	if expectedMoveNameWidth > maxWidth
+		charactersToShave = 3
+		loop do
+			testString = moveName[0..-charactersToShave] + "..."
+			expectedTestStringWidth = overlay.text_size(testString).width
+			expectedTestStringWidth *= 1.2 if isSTAB
+			excessWidth = expectedTestStringWidth - maxWidth
+			break if excessWidth <= 0
+			charactersToShave += 1
 		end
+		echoln("Shaving off #{charactersToShave} characters from #{moveName}")
+		moveName = moveName[0..-charactersToShave] + "..."
 	end
+	
+	# Add formatting based on if the move is the same type as the user
+	# Or of any of its evolutions
+	if isSTAB
+		moveName = "<b>#{moveName}</b>"
+	elsif move_data.category < 2 && isAnyEvolutionOfType(fSpecies,move_data.type)
+		moveName = "<i>#{moveName}</i>"
+	end
+
 	color = Color.new(64,64,64)
 	if move_data.is_signature?
 		if isSTAB
@@ -665,8 +685,9 @@ class PokemonPokedexInfo_Scene
 				levelLabel = "E"
 			end
 			# Draw stat line
-			moveName,moveColor,moveShadow = getFormattedMoveName(move)
 			offsetX = 0
+			maxWidth = displayIndex == 0 ? 250 : 170
+			moveName,moveColor,moveShadow = getFormattedMoveName(move,maxWidth)
 			if listIndex == @scroll
 				offsetX = 12
 				selected_move = move
@@ -817,24 +838,29 @@ class PokemonPokedexInfo_Scene
 		drawFormattedTextEx(overlay,xLeft,60,200,"<ac><b>#{categoryName}</b></ac>",base,shadow)
 		displayIndex = 1
 		listIndex = -1
-        @scrollableLists[@horizontalScroll].each_with_index do |move,index|
-			listIndex+= 1
-			next if listIndex < @scroll
-			moveName,moveColor,moveShadow = getFormattedMoveName(move)
-			offsetX = 0
-			if listIndex == @scroll
-				selected_move = move
-				offsetX = 12
+		if @scrollableLists[@horizontalScroll].length > 0
+			@scrollableLists[@horizontalScroll].each_with_index do |move,index|
+				listIndex+= 1
+				next if listIndex < @scroll
+				maxWidth = displayIndex == 0 ? 250 : 200
+				moveName,moveColor,moveShadow = getFormattedMoveName(move,maxWidth)
+				offsetX = 0
+				if listIndex == @scroll
+					selected_move = move
+					offsetX = 12
+				end
+				moveDrawY = 60 + 30 * displayIndex
+				drawFormattedTextEx(overlay,xLeft + offsetX,moveDrawY,450,moveName,moveColor,moveShadow)
+				if listIndex == @scroll
+					@sprites["selectionarrow"].y = moveDrawY - 4
+					@sprites["selectionarrow"].visible = true
+				end
+				displayIndex += 1
+				break if displayIndex >= 10
 			end
-			moveDrawY = 60 + 30 * displayIndex
-			drawFormattedTextEx(overlay,xLeft + offsetX,moveDrawY,450,moveName,moveColor,moveShadow)
-			if listIndex == @scroll
-				@sprites["selectionarrow"].y = moveDrawY - 4
-				@sprites["selectionarrow"].visible = true
-			end
-			displayIndex += 1
-			break if displayIndex >= 10
-        end
+		else
+			drawFormattedTextEx(overlay,xLeft+60,90,450,"None",base,shadow)
+		end
       end
     end
 	
