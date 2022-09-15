@@ -766,7 +766,7 @@
 #-------------------------------
 704,SNAPTRAP,Snap Trap,0CF,75,GRASS,Special,100,15,0,NearOther,0,abef,"The user snares the target in a snap trap for three turns.",
 #-------------------------------
-705,STEELBEAM,Steel Beam,510,140,STEEL,Special,100,5,100,NearOther,0,bef,"Fires a beam of steel that it collected from its entire body. This also damages the user.",
+705,STEELBEAM,Steel Beam,510,140,STEEL,Special,100,5,100,NearOther,0,bef,"Fires a beam of steel that it collected from its entire body. he user loses half current HP.",
 #-------------------------------
 706,HYDROCANNON,Hydro Cannon,0C2,170,WATER,Special,100,5,0,NearOther,0,bef,"The target is hit with a watery blast. The user must rest on the next turn, however.",
 707,WATERSPOUT,Water Spout,08B,150,WATER,Special,100,5,0,AllNearFoes,0,bef,"The user spouts water to damage the foe. The lower the user's HP, the less powerful it becomes.",
@@ -1105,3 +1105,4 @@
 1041,ERODINGFOAM,Eroding Foam,590,40,WATER,Special,100,25,100,NearOther,0,abef,"The user spews alkaline bubbles that melt the target, drastically lowering their defense.",BUBBLEBEAM
 1042,COCODROP,Coco Drop,591,1,GRASS,Physical,100,15,0,NearOther,0,abef,"The user drops a coconut from high up. The taller the user compared to the target, the greater the damage.",SEEDBOMB
 1043,LIGHTNINGSPEAR,Lightning Spear,592,90,ELECTRIC,Special,100,15,0,NearOther,0,bef,"Shoots a damaging spear at enemies, or a Speed and Sp. Def buffing electric charge at allies.",THUNDERBOLT
+1044,TARVOLLEY,Tar Volley,592,35,FIRE,Special,100,10,100,AllNearFoes,0,abef,"The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets Speed.",

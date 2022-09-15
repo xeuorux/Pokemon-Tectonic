@@ -2941,3 +2941,25 @@ class PokeBattle_Move_592 < PokeBattle_Move
 	  end
 	end
 end
+
+#===============================================================================
+# In singles, this move hits the target twice. In doubles, this move hits each
+# target once. If one of the two opponents protects or while semi-invulnerable
+# or is a Fairy-type Pokémon, it hits the opponent that doesn't protect twice.
+# In Doubles, not affected by WideGuard.
+# Each target hit loses 1 stage of Speed. (Tar Volley)
+#===============================================================================
+class PokeBattle_Move_592 < PokeBattle_Move_0BD
+	def smartSpreadsTargets?; return true; end
+  
+	def pbNumHits(user,targets)
+	  return 1 if targets.length > 1
+	  return 2
+	end
+
+	def pbAdditionalEffect(user,target)
+		return if target.damageState.substitute
+		return if !target.pbCanLowerStatStage?(:SPEED,user,self)
+		target.pbLowerStatStage(:SPEED,1,user)
+	end
+end
