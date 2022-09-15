@@ -1599,16 +1599,21 @@ end
 
 
 #===============================================================================
-# Deals damage and curses the target. (SPOOOKY SNUGGLING)
+# Deals damage and curses the target. (Spooky Snuggling)
 #===============================================================================
 class PokeBattle_Move_54A < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		if target.effects[PBEffects::Curse]
+			@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already cursed!"))
+			return true
+		end
+		return false
+	end
 
 	def pbEffectAgainstTarget(user,target)
-		return false if target.effects[PBEffects::Curse] == true
 		target.effects[PBEffects::Curse] = true
 		@battle.pbDisplay(_INTL("{1} was cursed!", target.pbThis))
 	end
-	
 end
 
 

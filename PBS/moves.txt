@@ -995,7 +995,7 @@
 931,MINDLINK,Mind Link,549,0,PSYCHIC,Status,0,40,0,User,0,d,"The user syncs its mind with its teammates, raising the Sp. Atk of itself and its allies.",CONFUSION
 932,BULLETCHARGE,Bullet Charge,01F,60,STEEL,Physical,100,20,20,NearOther,0,abef,"The user embraces gunpowder to rocket at its foe. It has a 20% chance to increase its Speed stat.",BULLETPUNCH
 933,SEEDSURPRISE,Seed Surprise,096,1,NORMAL,Special,100,15,0,NearOther,0,bef,"The user draws power to attack by using its held Berry. The Berry determines its type and power.",NATURALGIFT
-934,SPOOKYSNUGGLING,Spooky Snuggling,54A,50,GHOST,Physical,100,10,0,NearOther,0,abef,"The user harnesses its jealousy to attack the opponent with ghostly hugs, cursing them.",
+934,SPOOKYSNUGGLING,Spooky Snuggling,54A,0,GHOST,Status,100,5,0,NearOther,0,abef,"The user harnesses its jealousy to attack the opponent with ghostly hugs, cursing them.",
 935,DESERTDANCE,Desert Dance,54C,0,GROUND,Status,0,20,0,User,0,do,"The user boosts its Sp. Attack and Sp. Def. Doubles these increases in sandstorm and also increases Speed.",
 936,DUSTFORCE,Dust Force,54D,110,GROUND,Special,70,15,10,AllNearFoes,0,bef,"The user controls turbulent sands that can't miss in a sandstorm. 50% chance to reduce a random stat.",SCORCHINGSANDS
 937,BULLETTRAIN,Bullet Train,01F,90,STEEL,Physical,100,20,20,NearOther,0,abef,"The user becomes a pain train. It has a 20% chance to increase the user's Speed stat.",HEAVYSLAM

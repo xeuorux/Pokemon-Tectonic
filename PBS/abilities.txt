@@ -53,7 +53,7 @@
 51,KEENEYE,Keen Eye,"Prevents other Pokémon from lowering accuracy."
 52,HYPERCUTTER,Hyper Cutter,"Prevents other Pokémon from lowering Attack or Sp. Atk stat."
 53,PICKUP,Pickup,"The Pokémon may pick up items."
-54,TRUANT,Truant,"Every other turn, Pokémon can't use any move but Slack Off."
+54,TRUANT,Truant,"Every other turn, this Pokémon can't use any move but Slack Off."
 55,HUSTLE,Hustle,"Boosts move damage by 50%, but lowers accuracy by 20%."
 56,CUTECHARM,Cute Charm,"Physical moves against the Pokémon have a 30% chance to cause infatuation."
 57,PLUS,Plus,"Ups Sp. Atk if another Pokémon has Plus or Minus."

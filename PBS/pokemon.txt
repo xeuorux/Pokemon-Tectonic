@@ -11077,6 +11077,7 @@ BattlerShadowSize = 2
 [336]
 Name = Seviper
 InternalName = SEVIPER
+Notes = TODO: Remove merciless
 Type1 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 93,110,95,65,60,95
@@ -13753,6 +13754,7 @@ BattlerShadowSize = 2
 [417]
 Name = Pachirisu
 InternalName = PACHIRISU
+Notes = TODO: Bad luck becomes its signature
 Type1 = ELECTRIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 80,75,75,115,75,110
