@@ -532,7 +532,7 @@ class PokeBattle_Move_639 < PokeBattle_Move_02D
 end
 
 # Empowered Thunderbolt
-class PokeBattle_Move_640 < PokeBattle_Move_007
+class PokeBattle_Move_640 < PokeBattle_ParalysisMove
 	include EmpoweredMove
 end
 

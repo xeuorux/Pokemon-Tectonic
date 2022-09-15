@@ -795,8 +795,8 @@ class PokeBattle_Move
     if damagingMove?
       if !multiHitMove?
         targets.each do |target|
-          bp = pbBaseDamage(baseDamage,user,target).floor
-          if bp != baseDamage
+          bp = pbBaseDamage(@baseDamage,user,target).floor
+          if bp != @baseDamage
             if targets.length == 1
               @battle.pbDisplayBrief(_INTL("Its base power was adjusted to {1}!",bp))
             else
