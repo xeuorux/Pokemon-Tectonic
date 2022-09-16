@@ -137,3 +137,11 @@ BattleHandlers::DamageCalcTargetAbility.add(:WEATHERSENSES,
     end
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:SOLARCELL,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.pbWeather == :Sun && move.specialMove?
+      mults[:defense_multiplier] *= 1.25
+    end
+  }
+)
