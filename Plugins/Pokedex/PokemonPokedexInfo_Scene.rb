@@ -119,13 +119,18 @@ class PokemonPokedexInfo_Scene
     species_data = GameData::Species.get_species_form(@species, @form)
 	@title = species_data.real_form_name ? "#{species_data.real_name} (#{species_data.real_form_name})" : species_data.real_name
     @sprites["infosprite"].setSpeciesBitmap(@species,@gender,@form)
+	forceShiny = $DEBUG && Input.press?(Input::CTRL)
     if @sprites["formfront"]
-      @sprites["formfront"].setSpeciesBitmap(@species,@gender,@form)
+      @sprites["formfront"].setSpeciesBitmap(@species,@gender,@form,forceShiny)
     end
     if @sprites["formback"]
-      @sprites["formback"].setSpeciesBitmap(@species,@gender,@form,false,false,true)
-      @sprites["formback"].y = 256
-      @sprites["formback"].y += species_data.back_sprite_y * 2
+	  if forceShiny
+		@sprites["formback"].setSpeciesBitmapHueShifted(@species,@gender,@form,forceShiny)
+	  else
+		@sprites["formback"].setSpeciesBitmap(@species,@gender,@form,false,false,true)
+		@sprites["formback"].y = 256
+      	@sprites["formback"].y += species_data.back_sprite_y * 2
+	  end
     end
     if @sprites["formicon"]
       @sprites["formicon"].pbSetParams(@species,@gender,@form)
