@@ -258,3 +258,11 @@ BattleHandlers::DamageCalcUserAbility.add(:SOLARCELL,
     end
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:HARSHHUNTER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.pbWeather == :Sandstorm && move.physicalMove?
+      mults[:base_damage_multiplier] *= 1.3
+    end
+  }
+)

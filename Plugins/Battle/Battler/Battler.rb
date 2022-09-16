@@ -104,7 +104,7 @@ class PokeBattle_Battler
     return false if !affectedByWeatherDownsides?
     return false if pbHasType?(:FIRE) || pbHasType?(:GRASS)
     return false if hasActiveAbility?([:DROUGHT,:INNERLIGHT])
-		return false if hasActiveAbility?([:CHLOROPHYLL,:SOLARPOWER,:LEAFGUARD,:FLOWERGIFT,:MIDNIGHTSUN,:HARVEST,:SUNCHASER,:HEATSAVOR,:BLINDINGLIGHT])
+		return false if hasActiveAbility?([:CHLOROPHYLL,:SOLARPOWER,:LEAFGUARD,:FLOWERGIFT,:MIDNIGHTSUN,:HARVEST,:SUNCHASER,:HEATSAVOR,:BLINDINGLIGHT,:SOLARCELL,:ROAST])
     return true
   end
 
@@ -122,7 +122,7 @@ class PokeBattle_Battler
     return false if hasActiveItem?(:SAFETYGOGGLES)
 		return false if pbHasType?(:GROUND) || pbHasType?(:ROCK) || pbHasType?(:STEEL)
     return false if hasActiveAbility?([:SANDSTREAM,:SANDBURST])
-		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:DESERTSPIRIT,:BURROWER,:SHRAPNELSTORM])
+		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:DESERTSPIRIT,:BURROWER,:SHRAPNELSTORM,:HARSHHUNTER])
 		return true
   end
 

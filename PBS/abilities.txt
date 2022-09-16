@@ -446,6 +446,7 @@
 445,DAWNBURST,Dawn Burst,"On the first turn, its attacks burn the target."
 446,ROAST,Roast,"When the Pokémon eats a Berry, it raises its attacking stats."
 447,SOLARCELL,Solar Cell,"In sunshine, gets 25% boost to Sp. Atk and Sp. Def."
+448,HARSHHUNTER,Harsh Hunter,"In sandstorm, Attack is boosted by 30%."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
