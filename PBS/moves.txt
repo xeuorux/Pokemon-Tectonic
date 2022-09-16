@@ -530,7 +530,7 @@
 496,FORESIGHT,Foresight,0A7,0,NORMAL,Status,0,40,0,NearOther,0,bce,"Enables the user to hit a Ghost type with any kind of move. It also enables the user to hit an evasive foe.",
 497,GLARE,Glare,007,0,NORMAL,Status,100,30,0,NearOther,0,bce,"The user intimidates the target by staring at it to cause numbing.",
 498,GROWL,Growl,042,0,NORMAL,Status,100,40,0,AllNearFoes,0,bcek,"The user growls, scaring nearby foes. Their Attack stat is lowered.",
-499,GROWTH,Growth,028,0,NORMAL,Status,0,20,0,User,0,d,"The user's body grows all at once, raising the Atk and Sp. Atk stats.",
+499,GROWTH,Growth,028,0,GRASS,Status,0,20,0,User,0,d,"The user's body grows all at once, raising the Atk and Sp. Atk stats.",
 500,HAPPYHOUR,Happy Hour,157,0,NORMAL,Status,0,30,0,UserSide,0,,"Using Happy Hour doubles the amount of prize money received after battle.",
 501,HARDEN,Harden,01D,0,NORMAL,Status,0,30,0,User,0,d,"The user stiffens all the muscles in its body to raise its Defense stat.",
 502,HEALBELL,Heal Bell,019,0,NORMAL,Status,0,5,0,UserAndAllies,0,dk,"The user makes a soothing bell chime to heal the status problems of all the party Pokémon.",
