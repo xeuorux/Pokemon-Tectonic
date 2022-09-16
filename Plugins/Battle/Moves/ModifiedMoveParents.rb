@@ -259,6 +259,11 @@ class PokeBattle_WeatherMove < PokeBattle_Move
   end
 
   def pbMoveFailed?(user,targets)
+    return false if damagingMove?
+    return primevalWeatherPresent?
+  end
+
+  def primevalWeatherPresent?()
     case @battle.field.weather
     when :HarshSun
       @battle.pbDisplay(_INTL("The extremely harsh sunlight was not lessened at all!"))
@@ -274,11 +279,15 @@ class PokeBattle_WeatherMove < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    @battle.pbStartWeather(user,@weatherType,@durationSet,false)
+    @battle.pbStartWeather(user,@weatherType,@durationSet,false) if !primevalWeatherPresent?()
   end
 
   def getScore(score,user,target,skill=100)
-    score += 20
+    if damagingMove?
+      score += 60
+    else
+      score += 20
+    end
     if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE)
 			score = 0
 		elsif @battle.pbWeather == :Sun
