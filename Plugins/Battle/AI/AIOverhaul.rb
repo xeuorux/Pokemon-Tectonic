@@ -136,6 +136,7 @@ class PokeBattle_AI
     if @battle.commandPhasesThisRound == 0
       # Set the avatar aggro cursors on the targets of the choice
       targets.each do |target|
+        next if !target.opposes?(user)
         index = target.index
         @battle.scene.setAggroCursorOnIndex(index,extraAggro)
 
