@@ -22,7 +22,6 @@ end
 
 def shiftPokemonBitmapHue(baseBitmap, pokemon)
     shift = pokemon.hueShift
-    echoln("Shifting bitmap hue by #{shift}")
     ret = baseBitmap.copy
     baseBitmap.dispose
     ret.each { |bitmap| bitmap.hue_change(shift) }
@@ -36,7 +35,6 @@ def shiftSpeciesBitmapHue(baseBitmap, species)
         firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
     end
     hueShift = hue_shift_from_id(firstSpecies.id_number)
-    echoln("Shifting bitmap hue by #{hueShift}")
     ret = baseBitmap.copy
     baseBitmap.dispose
     ret.each { |bitmap| bitmap.hue_change(hueShift) }
