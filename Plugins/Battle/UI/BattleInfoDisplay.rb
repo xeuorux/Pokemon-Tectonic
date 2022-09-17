@@ -124,7 +124,7 @@ class BattleInfoDisplay < SpriteWrapper
 		next if effectValue.is_a?(Integer) && effectValue <= 0
 		effectName = labelBattleEffect(effect)
 		next if effectName.blank?
-		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
 		fieldEffects.push(effectName)
 	end
 	
@@ -138,7 +138,7 @@ class BattleInfoDisplay < SpriteWrapper
 			next if effectValue.is_a?(Integer) && effectValue <= 0
 			effectName = labelSideEffect(effect)
 			next if effectName.blank?
-			effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+			effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
 			effectName += side == 0 ? " [A]" : " [E]"
 			fieldEffects.push(effectName)
 		end
@@ -328,7 +328,7 @@ class BattleInfoDisplay < SpriteWrapper
 		next if effect == PBEffects::Unburden && !battler.hasActiveAbility?(:UNBURDEN)
 		effectName = labelBattlerEffect(effect)
 		next if effectName.blank?
-		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
 		battlerEffects.push(effectName)
 	end
 	
@@ -340,7 +340,7 @@ class BattleInfoDisplay < SpriteWrapper
 		next if effectValue.is_a?(Integer) && effectValue <= 0
 		effectName = labelSlotEffect(effect)
 		next if effectName.blank?
-		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
 		battlerEffects.push(effectName)
 	end
 	
@@ -484,7 +484,7 @@ class BattleInfoDisplay < SpriteWrapper
 		"Trapped By User",
 		"Truant",
 		"2-Turn Attack",
-		"",
+		"Added Type",
 		"Unburden",
 		"Uproar Restless",
 		"Water Sport",
