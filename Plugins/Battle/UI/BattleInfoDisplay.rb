@@ -1,6 +1,8 @@
 HIGHEST_STAT_BASE = Color.new(139,52,34)
 LOWEST_STAT_BASE = Color.new(60,55,112)
 
+DEBUGGING_EFFECT_DISPLAY = false
+
 class BattleInfoDisplay < SpriteWrapper
 	attr_accessor   :battle
 	attr_accessor   :selected
@@ -119,9 +121,11 @@ class BattleInfoDisplay < SpriteWrapper
 	fieldEffects = []
 	for effect in 0..30
 		effectValue = @battle.field.effects[effect]
-		next if effectValue.nil?
-		next if effectValue == false
-		next if effectValue.is_a?(Integer) && effectValue <= 0
+		if !DEBUGGING_EFFECT_DISPLAY
+			next if effectValue.nil?
+			next if effectValue == false
+			next if effectValue.is_a?(Integer) && effectValue <= 0
+		end
 		effectName = labelBattleEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
@@ -133,9 +137,11 @@ class BattleInfoDisplay < SpriteWrapper
 	for side in 0..1
 		for effect in 0..30
 			effectValue = @battle.sides[side].effects[effect]
-			next if effectValue.nil?
-			next if effectValue == false
-			next if effectValue.is_a?(Integer) && effectValue <= 0
+			if !DEBUGGING_EFFECT_DISPLAY
+				next if effectValue.nil?
+				next if effectValue == false
+				next if effectValue.is_a?(Integer) && effectValue <= 0
+			end
 			effectName = labelSideEffect(effect)
 			next if effectName.blank?
 			effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
@@ -321,9 +327,11 @@ class BattleInfoDisplay < SpriteWrapper
 	
 	for effect in 0..150
 		effectValue = battler.effects[effect]
-		next if effectValue.nil?
-		next if effectValue == false
-		next if effectValue.is_a?(Integer) && effectValue <= 0
+		if !DEBUGGING_EFFECT_DISPLAY
+			next if effectValue.nil?
+			next if effectValue == false
+			next if effectValue.is_a?(Integer) && effectValue <= 0
+		end
 		next if effect == PBEffects::ProtectRate && effectValue <= 1
 		next if effect == PBEffects::Unburden && !battler.hasActiveAbility?(:UNBURDEN)
 		effectName = labelBattlerEffect(effect)
@@ -335,9 +343,11 @@ class BattleInfoDisplay < SpriteWrapper
 	# Slot effects
 	for effect in 0..30
 		effectValue = @battle.positions[battler.index].effects[effect]
-		next if effectValue.nil?
-		next if effectValue == false
-		next if effectValue.is_a?(Integer) && effectValue <= 0
+		if !DEBUGGING_EFFECT_DISPLAY
+			next if effectValue.nil?
+			next if effectValue == false && !DEBUGGING_EFFECT_DISPLAY
+			next if effectValue.is_a?(Integer) && effectValue <= 0
+		end
 		effectName = labelSlotEffect(effect)
 		next if effectName.blank?
 		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
