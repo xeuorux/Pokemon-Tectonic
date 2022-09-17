@@ -45,15 +45,4 @@ end
 
 class Pokemon
 	attr_accessor :shinyRerolls
-  attr_accessor :shiny_variant
-
-  def shiny_variant?
-    return shiny_variant
-  end
-end
-
-class PokeBattle_Battler
-  def shiny_variant?
-    return @pokemon.shiny_variant?
-  end
 end

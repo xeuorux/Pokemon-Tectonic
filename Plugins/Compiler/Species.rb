@@ -131,8 +131,12 @@ module GameData
           filename += '_' + pkmn.form.to_s if pkmn.form != 0
           filename += '_back' if back
           ret = AnimatedBitmap.new(filename)
-        elsif !pkmn.egg? && pkmn.shiny? && pkmn.shiny_variant # EXPERIMENTAL COLOR CHANGING
-          ret = shiftSpeciesBitmapHue(ret,species)
+        elsif !pkmn.egg?
+          if pkmn.shiny? && pkmn.shiny_variant
+            ret = shiftSpeciesBitmapHue(ret,species)
+          else
+            ret = shiftPokemonBitmapHue(ret,pkmn)
+          end
         end
         
         alter_bitmap_function = MultipleForms.getFunction(species, "alterBitmap")

@@ -1,3 +1,34 @@
+class Pokemon
+    attr_accessor :shiny_variant
+
+    def shiny_variant?
+        return shiny_variant
+    end
+
+    def hueShift
+        # if !defined?(@hueShift) || @hueShift.nil?
+        #     @hueShift = -5 + (@personalID ^ @owner.id) % 10
+        # end
+        # return @hueShift
+        return -10 + (@personalID ^ @owner.id) % 20
+    end
+end
+
+class PokeBattle_Battler
+    def shiny_variant?
+        return @pokemon.shiny_variant?
+    end
+end
+
+def shiftPokemonBitmapHue(baseBitmap, pokemon)
+    shift = pokemon.hueShift
+    echoln("Shifting bitmap hue by #{shift}")
+    ret = baseBitmap.copy
+    baseBitmap.dispose
+    ret.each { |bitmap| bitmap.hue_change(shift) }
+    return ret
+end
+
 def shiftSpeciesBitmapHue(baseBitmap, species)
     species_data = GameData::Species.get(species)
     firstSpecies = species_data
