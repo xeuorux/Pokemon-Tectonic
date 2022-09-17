@@ -993,8 +993,32 @@ class PokeBattle_Move_162 < PokeBattle_Move
     if !user.effects[PBEffects::BurnUp]
       user.effects[PBEffects::BurnUp] = true
       @battle.pbDisplay(_INTL("{1} burned itself out!",user.pbThis))
-	  @battle.scene.pbRefresh()
+	    @battle.scene.pbRefresh()
     end
+  end
+end
+
+#===============================================================================
+# Gives target the Grass type. (Forest's Curse)
+#===============================================================================
+class PokeBattle_Move_143 < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    target.effects[PBEffects::Type3] = :GRASS
+    typeName = GameData::Type.get(:GRASS).name
+    @battle.pbDisplay(_INTL("{1} transformed into the {2} type!",target.pbThis,typeName))
+    @battle.scene.pbRefresh()
+  end
+end
+
+#===============================================================================
+# Gives target the Ghost type. (Trick-or-Treat)
+#===============================================================================
+class PokeBattle_Move_142 < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    target.effects[PBEffects::Type3] = :GHOST
+    typeName = GameData::Type.get(:GHOST).name
+    @battle.pbDisplay(_INTL("{1} transformed into the {2} type!",target.pbThis,typeName))
+    @battle.scene.pbRefresh()
   end
 end
 

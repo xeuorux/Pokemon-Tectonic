@@ -183,25 +183,27 @@ class PokemonDataBox < SpriteWrapper
 				 statusXRect,statusID2*STATUS_ICON_HEIGHT,statusWidth,STATUS_ICON_HEIGHT])
 		end
 		# Refresh type bars
-		types = @battler.pbTypes(true,true)
-		iconHeight = @thinBox ? TYPE_ICON_THIN_HEIGHT : TYPE_ICON_HEIGHT
-		if types[0]
-			@type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number * iconHeight
-			@type1Icon.visible = true if @battler.effects[PBEffects::Transform] && @showTypes
-		else
-			@type1Icon.visible = false
-		end
-		if types[1]
-			@type2Icon.src_rect.y = GameData::Type.get(types[1]).id_number * iconHeight if types[1]
-			@type2Icon.visible = true if @battler.effects[PBEffects::Transform] && @showTypes
-		else
-			@type2Icon.visible = false
-		end
-		if types[2]
-			@type3Icon.src_rect.y = GameData::Type.get(types[2]).id_number * iconHeight if types[2]
-			@type3Icon.visible = true if @battler.effects[PBEffects::Transform] && @showTypes
-		else
-			@type3Icon.visible = false
+		if visible && @showTypes
+			types = @battler.pbTypes(true,true)
+			iconHeight = @thinBox ? TYPE_ICON_THIN_HEIGHT : TYPE_ICON_HEIGHT
+			if types[0]
+				@type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number * iconHeight
+				@type1Icon.visible = true
+			else
+				@type1Icon.visible = false
+			end
+			if types[1]
+				@type2Icon.src_rect.y = GameData::Type.get(types[1]).id_number * iconHeight
+				@type2Icon.visible = true
+			else
+				@type2Icon.visible = false
+			end
+			if types[2]
+				@type3Icon.src_rect.y = GameData::Type.get(types[2]).id_number * iconHeight
+				@type3Icon.visible = true
+			else
+				@type3Icon.visible = false
+			end
 		end
 		pbDrawImagePositions(self.bitmap,imagePos)
 		#self.update
