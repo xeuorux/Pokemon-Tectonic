@@ -30,5 +30,26 @@ module GameData
         def is_signature?()
           return !@signature_of.nil?
         end
+
+        def total_pp
+          case @total_pp
+          when 0..10
+            return @total_pp
+          when 10..14
+            return 10
+          when 15..19
+            return 12
+          when 20..24
+            return 15
+          when 25..29
+            return 20
+          when 30..34
+            return 25
+          when 35..40
+            return 30
+          else
+            return 30
+          end
+        end
     end
 end
