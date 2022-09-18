@@ -1605,6 +1605,12 @@ Bicycle = true
 BattleBack = sand
 Environment = Sand
 #-------------------------------
+[317]
+# Tournament Arena
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [318]
 # Tournament Grounds
 Outdoor = true
@@ -1614,4 +1620,30 @@ MapPosition = 0,12,2
 #-------------------------------
 [324]
 # Waiting Room
-TeleportBlocked = true
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[325]
+# Ticketing Gate
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[326]
+# The Barrows
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[328]
+# Suspicious Shed
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[329]
+# Tournament Lobby
+Outdoor = false
+ShowArea = false
+Bicycle = false
