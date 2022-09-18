@@ -1748,3 +1748,40 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
     user.pbUseMoveSimple(@metronomeMove)
   end
 end
+
+#===============================================================================
+# Power is chosen at random. Power is doubled if the target is using Dig. Hits
+# some semi-invulnerable targets. (Magnitude)
+#===============================================================================
+class PokeBattle_Move_095 < PokeBattle_Move
+  def pbDisplayUseMessage(user,targets=[])
+    chooseBasePower(user,targets)
+    super
+  end
+
+  def pbOnStartUse(user,targets); end # NOTHING
+
+  def chooseBasePower(user,targets)
+    baseDmg = [10,30,50,70,90,110,150]
+    magnitudes = [
+       4,
+       5,5,
+       6,6,6,6,
+       7,7,7,7,7,7,
+       8,8,8,8,
+       9,9,
+       10
+    ]
+    magni = magnitudes[@battle.pbRandom(magnitudes.length)]
+    @magnitudeBP = baseDmg[magni-4]
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+    return @magnitudeBP
+  end
+
+  def pbModifyDamage(damageMult,user,target)
+    damageMult *= 2 if target.inTwoTurnAttack?("0CA")   # Dig
+    return damageMult
+  end
+end
