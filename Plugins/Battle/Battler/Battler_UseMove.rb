@@ -508,7 +508,7 @@ class PokeBattle_Battler
       while dancers.length>0
         nextUser = dancers.pop
         preTarget = choice[3]
-        preTarget = user.index if forcedMoveUser.opposes?(user) || !forcedMoveUser.opposes?(preTarget)
+        preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
         @battle.forceUseMove(nextUser,move.id,preTarget,true,nil,PBEffects::Dancer,true)
       end
     end
