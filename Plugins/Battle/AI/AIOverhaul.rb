@@ -71,18 +71,18 @@ class PokeBattle_AI
             targetingSize = user.indexesTargetedThisTurn.length
             targetingSize = 2 if targetingSize > 2
             regularChoices.reject!{|regular_choice| user.moves[regular_choice[0]].pbTarget(user).num_targets != targetingSize}
-            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will not use moves with different targeting from its first move. It's left with the following:")
+            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will not use moves with a number of targets other than #{targetingSize}. It's left with the following:")
             logMoveChoices(user,regularChoices)
           end
 
           if preferredChoice.nil?
-            if user.lastMoveChosen.nil?
-              PBDebug.log("[AI] #{user.pbThis} (#{user.index}) won't try to exlude any moves based on last move chosen, because thats nil")
-            elsif regularChoices.length >= 2
-              regularChoices.reject!{|regular_choice| user.moves[regular_choice[0]].id == user.lastMoveChosen}
-              PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will try not to pick #{user.lastMoveChosen} this turn since that was the last move it chose")
-            else
-              PBDebug.log("[AI] #{user.pbThis} (#{user.index}) only has one valid choice, so it won't exclude #{user.lastMoveChosen} (its last chosen move)")
+            if !user.lastMoveChosen.nil?
+              if regularChoices.length >= 2
+                regularChoices.reject!{|regular_choice| user.moves[regular_choice[0]].id == user.lastMoveChosen}
+                PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will try not to pick #{user.lastMoveChosen} this turn since that was the last move it chose")
+              else
+                PBDebug.log("[AI] #{user.pbThis} (#{user.index}) only has one valid choice, so it won't exclude #{user.lastMoveChosen} (its last chosen move)")
+              end
             end
             sortedChoices = regularChoices.sort_by{|choice| -choice[1]}
             preferredChoice = sortedChoices[0]
@@ -132,8 +132,8 @@ class PokeBattle_AI
       PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,targets)
     end
 
-    user.indexesTargetedThisTurn = []
     if @battle.commandPhasesThisRound == 0
+      user.indexesTargetedThisTurn = []
       # Set the avatar aggro cursors on the targets of the choice
       targets.each do |target|
         index = target.index
