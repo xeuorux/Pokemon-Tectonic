@@ -17,6 +17,7 @@ class PokeBattle_Move_600 < PokeBattle_Move_019
 	include EmpoweredMove
 	
 	def pbEffectGeneral(user)
+		# Double supers here is intentional
 		super
 		super
 		@battle.eachSameSideBattler(user) do |b|
