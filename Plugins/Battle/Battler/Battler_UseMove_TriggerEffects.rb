@@ -134,16 +134,16 @@ class PokeBattle_Battler
     hpNow = user.hp   # Intentionally determined now, before Shell Bell
     # Target's held item (Eject Button, Red Card)
     switchByItem = []
-    @battle.pbPriority(true).each do |b|
-      next if !targets.any? { |targetB| targetB.index==b.index }
-      next if b.damageState.unaffected || b.damageState.calcDamage==0 ||
-         switchedBattlers.include?(b.index)
-      next if !b.itemActive?
-      BattleHandlers.triggerTargetItemAfterMoveUse(b.item,b,user,move,switchByItem,@battle)
-	  # Eject Pack
-	  if b.effects[PBEffects::LashOut]
-		BattleHandlers.triggerItemOnStatLoss(b.item,b,user,move,switchByItem,@battle)
-	  end 
+      @battle.pbPriority(true).each do |b|
+        next if !targets.any? { |targetB| targetB.index==b.index }
+        next if b.damageState.unaffected || b.damageState.calcDamage==0 ||
+          switchedBattlers.include?(b.index)
+        next if !b.itemActive?
+        BattleHandlers.triggerTargetItemAfterMoveUse(b.item,b,user,move,switchByItem,@battle)
+      # Eject Pack
+      if b.effects[PBEffects::LashOut]
+      BattleHandlers.triggerItemOnStatLoss(b.item,b,user,move,switchByItem,@battle)
+      end 
     end
     @battle.moldBreaker = false if switchByItem.include?(user.index)
     @battle.pbPriority(true).each do |b|

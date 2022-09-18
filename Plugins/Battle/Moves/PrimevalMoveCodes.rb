@@ -17,6 +17,7 @@ class PokeBattle_Move_600 < PokeBattle_Move_019
 	include EmpoweredMove
 	
 	def pbEffectGeneral(user)
+		# Double supers here is intentional
 		super
 		super
 		@battle.eachSameSideBattler(user) do |b|
@@ -531,7 +532,7 @@ class PokeBattle_Move_639 < PokeBattle_Move_02D
 end
 
 # Empowered Thunderbolt
-class PokeBattle_Move_640 < PokeBattle_Move_007
+class PokeBattle_Move_640 < PokeBattle_ParalysisMove
 	include EmpoweredMove
 end
 

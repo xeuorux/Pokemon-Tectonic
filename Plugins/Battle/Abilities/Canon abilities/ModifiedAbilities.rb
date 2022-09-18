@@ -425,13 +425,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
   }
 )
 
-BattleHandlers::AbilityOnSwitchOut.add(:NATURALCURE,
-  proc { |ability,battler,endOfBattle,battle=nil|
-    PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
-    battler.pbCureStatus(false)
-  }
-)
-
 BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
   proc { |ability,user,target,move,battle|
     next if !move.pbContactMove?(user)
@@ -483,6 +476,13 @@ BattleHandlers::AbilityOnSwitchOut.add(:REGENERATOR,
     next if endOfBattle
     PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
     battler.pbRecoverHP(battler.totalhp/3,false,false)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchOut.add(:NATURALCURE,
+  proc { |ability,battler,endOfBattle|
+    PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
+    battler.pbCureStatus(false)
   }
 )
 

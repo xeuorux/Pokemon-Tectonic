@@ -1312,6 +1312,7 @@ class PokemonPokedex_Scene
 		cmdHasSignature 		= -1
 		cmdAvatarData			= -1
 		cmdOneAbility 			= -1
+		cmdHasCoverageType		= - 1
 		cmdInvertList			= -1
 		miscSearches[cmdMapFound = miscSearches.length] = _INTL("Map Found")
 		miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
@@ -1322,7 +1323,8 @@ class PokemonPokedex_Scene
 		miscSearches[cmdHasSignatureMove = miscSearches.length] = _INTL("Signature Move")
 		miscSearches[cmdHasSignatureAbility = miscSearches.length] = _INTL("Signature Ability")
 		miscSearches[cmdHasSignature = miscSearches.length] = _INTL("Signature (D)") if $DEBUG
-		miscSearches[cmdAvatarData = miscSearches.length] = _INTL("Avatar Data") if $DEBUG
+		miscSearches[cmdAvatarData = miscSearches.length] = _INTL("Avatar Data (D)") if $DEBUG
+		miscSearches[cmdHasCoverageType = miscSearches.length] = _INTL("Has Coverage Type (D)") if $DEBUG
 		miscSearches[cmdGeneration = miscSearches.length] = _INTL("Generation")
 		miscSearches[cmdInvertList = miscSearches.length] = _INTL("Invert Current")
 		miscSearches.push(_INTL("Cancel"))
@@ -1351,8 +1353,47 @@ class PokemonPokedex_Scene
 			return searchByHasAvatarData()
 		elsif cmdHasSignature > -1 && searchSelection == cmdHasSignature
 			return searchBySignature()
+		elsif cmdHasCoverageType > -1 && searchSelection == cmdHasCoverageType
+			return searchByHasCoverageType()
 		elsif cmdInvertList > -1 && searchSelection == cmdInvertList
 			return invertSearchList()
+		end
+	end
+
+	def searchByHasCoverageType()
+
+		while true
+			typeInput = pbEnterText("Search type...", 0, 100)
+			typeInput.downcase!
+			if typeInput && typeInput != ""
+				reversed = typeInput[0] == '-'
+				typeInput = typeInput[1..-1] if reversed
+				
+				# Don't do the search if one of the input type names isn't an actual type
+				realTypeSymbol = nil
+				GameData::Type.each do |type_data|
+					if type_data.real_name.downcase == typeInput
+						realTypeSymbol = type_data.id
+						break
+					end
+				end
+				if realTypeSymbol.nil?
+					pbMessage(_INTL("Invalid input: {1}", typeInput))
+					next
+				end
+
+				dexlist = searchStartingList()
+				
+				dexlist = dexlist.find_all { |dex_item|
+						next false if autoDisqualifyFromSearch(dex_item[0])
+						
+						fSpecies = GameData::Species.get(dex_item[0])
+						typesOfCoverage = get_bnb_coverage(fSpecies)
+						
+						next typesOfCoverage.include?(realTypeSymbol) ^ reversed # Boolean XOR
+				}
+				return dexlist
+			end
 		end
 	end
 
@@ -1821,6 +1862,8 @@ class PokemonPokedex_Scene
 		cmdSortByType = -1
 		cmdSortByGenderRate = -1
 		cmdSortByGrowthRate = -1
+		cmdSortByHeight = -1
+		cmdSortByWeight = -1
 		cmdSortByCatchDifficulty = -1
 		cmdSortByExperienceGrant = -1
 		cmdSortByTrainerCount = -1
@@ -1829,6 +1872,8 @@ class PokemonPokedex_Scene
 		selections[cmdSortByType = selections.length] = _INTL("Type")
 		selections[cmdSortByGenderRate = selections.length] = _INTL("Gender Rate")
 		selections[cmdSortByGrowthRate = selections.length] = _INTL("Growth Rate")
+		selections[cmdSortByHeight = selections.length] = _INTL("Height")
+		selections[cmdSortByWeight = selections.length] = _INTL("Weight")
 		selections[cmdSortByCatchDifficulty = selections.length] = _INTL("Catch Difficulty")
 		selections[cmdSortByExperienceGrant = selections.length] = _INTL("Experience Grant")
 		selections[cmdSortByTrainerCount = selections.length] = _INTL("Trainers Using (D)") if $DEBUG
@@ -1866,6 +1911,10 @@ class PokemonPokedex_Scene
 				end
 				genderRatioData = GameData::GenderRatio.get(speciesData.gender_ratio)
 				next genderRatioData.female_chance
+			elsif cmdSortByHeight > -1 && selection == cmdSortByHeight
+				next -speciesData.height
+			elsif cmdSortByWeight > -1 && selection == cmdSortByWeight
+				next -speciesData.weight
 			elsif cmdSortByGrowthRate > -1 && selection == cmdSortByGrowthRate
 				next -GameData::GrowthRate.get(speciesData.growth_rate).id
 			elsif cmdSortByCatchDifficulty > -1 && selection == cmdSortByCatchDifficulty

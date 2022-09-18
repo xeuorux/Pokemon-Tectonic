@@ -252,8 +252,42 @@ class PokeBattle_MultiStatUpMove
 end
 
 class PokeBattle_WeatherMove < PokeBattle_Move
+  def initialize(battle,move)
+    super
+    @weatherType = :None
+    @durationSet = 5
+  end
+
+  def pbMoveFailed?(user,targets)
+    return false if damagingMove?
+    return primevalWeatherPresent?
+  end
+
+  def primevalWeatherPresent?()
+    case @battle.field.weather
+    when :HarshSun
+      @battle.pbDisplay(_INTL("The extremely harsh sunlight was not lessened at all!"))
+      return true
+    when :HeavyRain
+      @battle.pbDisplay(_INTL("There is no relief from this heavy rain!"))
+      return true
+    when :StrongWinds
+      @battle.pbDisplay(_INTL("The mysterious air current blows on regardless!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    @battle.pbStartWeather(user,@weatherType,@durationSet,false) if !primevalWeatherPresent?()
+  end
+
   def getScore(score,user,target,skill=100)
-    score += 20
+    if damagingMove?
+      score += 60
+    else
+      score += 20
+    end
     if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE)
 			score = 0
 		elsif @battle.pbWeather == :Sun

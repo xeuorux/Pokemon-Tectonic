@@ -508,7 +508,7 @@ class PokeBattle_Battler
       while dancers.length>0
         nextUser = dancers.pop
         preTarget = choice[3]
-        preTarget = user.index if forcedMoveUser.opposes?(user) || !forcedMoveUser.opposes?(preTarget)
+        preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
         @battle.forceUseMove(nextUser,move.id,preTarget,true,nil,PBEffects::Dancer,true)
       end
     end
@@ -683,10 +683,9 @@ class PokeBattle_Battler
     targets.each do |b|
       next if b.damageState.unaffected
       next if !b.damageState.berryWeakened
-	  name = b.itemName
-	  name = "berry" if name == ""
+	    name = b.itemName
       @battle.pbDisplay(_INTL("The {1} weakened the damage to {2}!",name,b.pbThis(true)))
-      b.pbConsumeItem if b.item
+      b.pbHeldItemTriggered(b.item) if b.item
     end
     targets.each { |b| b.pbFaint if b && b.fainted? }
     user.pbFaint if user.fainted?

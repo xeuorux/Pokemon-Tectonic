@@ -69,6 +69,14 @@ BattleHandlers::DamageCalcUserAbility.add(:MIDNIGHTSUN,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:RAINPRISM,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.pbWeather==:Rain && type == :FAIRY
+      mults[:base_damage_multiplier] *= 1.5
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:SUNCHASER,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.battle.pbWeather==:Sun && move.physicalMove?
@@ -113,9 +121,9 @@ BattleHandlers::DamageCalcUserAbility.add(:SWORDSMAN,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:SUNCHASER,
+BattleHandlers::DamageCalcUserAbility.add(:TIDALFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if user.battle.pbWeather==:Rain && move.specialMove?
+    if user.battle.pbWeather == :Rain && move.specialMove?
       mults[:base_damage_multiplier] *= 1.3
     end
   }
@@ -239,6 +247,22 @@ BattleHandlers::DamageCalcUserAbility.add(:PECKINGORDER,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if type == :FLYING
       mults[:base_damage_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:SOLARCELL,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.pbWeather == :Sun && move.specialMove?
+      mults[:base_damage_multiplier] *= 1.25
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:HARSHHUNTER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.pbWeather == :Sandstorm && move.physicalMove?
+      mults[:base_damage_multiplier] *= 1.3
     end
   }
 )

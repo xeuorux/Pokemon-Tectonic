@@ -183,6 +183,15 @@ class PokeBattle_Battle
       battler.eachMove { |m| m.pp = m.total_pp }
       @positions[battler.index].effects[PBEffects::LunarDance] = false
     end
+    # Refuge
+    if @positions[battler.index].effects[PBEffects::Refuge] && battler.hasAnyStatusNoTrigger()
+      pbCommonAnimation("HealingWish",battler)
+      refugeMaker = pbThisEx(battler.index,@positions[battler.index].effects[PBEffects::RefugeMaker])
+      pbDisplay(_INTL("{1} refuge comforts {2}!",refugeMaker,battler.pbThis(true)))
+      battler.pbCureStatus()
+      @positions[battler.index].effects[PBEffects::Refuge] = false
+      @positions[battler.index].effects[PBEffects::RefugeMaker] = -1
+    end
     # Entry hazards
     # Stealth Rock
     if battler.pbOwnSide.effects[PBEffects::StealthRock] && battler.takesIndirectDamage? && !battler.immuneToHazards? &&

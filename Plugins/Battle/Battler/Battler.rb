@@ -116,24 +116,61 @@ class PokeBattle_Battler
 	end
 	alias hasWorkingAbility hasActiveAbility?
 
+  alias hasType? pbHasType?
+
+  def affectedByWeatherDownsides?
+    return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
+    return false if hasActiveAbility?([:STOUT,:WEATHERSENSES])
+		return false if hasActiveItem?(:UTILITYUMBRELLA)
+    return false if @battle.pbCheckAlliedAbility(:HIGHRISE,@index)
+    return true
+  end
+
+  def debuffedBySun?
+    return false if !affectedByWeatherDownsides?
+    return false if pbHasType?(:FIRE) || pbHasType?(:GRASS)
+    return false if hasActiveAbility?([:DROUGHT,:INNERLIGHT])
+		return false if hasActiveAbility?([:CHLOROPHYLL,:SOLARPOWER,:LEAFGUARD,:FLOWERGIFT,:MIDNIGHTSUN,:HARVEST,:SUNCHASER,:HEATSAVOR,:BLINDINGLIGHT,:SOLARCELL,:ROAST])
+    return true
+  end
+
+  def debuffedByRain?
+    return false if !affectedByWeatherDownsides?
+    return false if pbHasType?(:WATER) || pbHasType?(:ELECTRIC)
+    return false if hasActiveAbility?([:DRIZZLE,:STORMBRINGER])
+		return false if hasActiveAbility?([:SWIFTSWIM,:RAINDISH,:HYDRATION,:TIDALFORCE,:STORMFRONT,:RAINPRISM,:DREARYCLOUDS])
+    return true
+  end
   
 	def takesSandstormDamage?
-		return false if !takesIndirectDamage?
+		return false if !affectedByWeatherDownsides?
+    return false if !takesIndirectDamage?
+    return false if hasActiveItem?(:SAFETYGOGGLES)
 		return false if pbHasType?(:GROUND) || pbHasType?(:ROCK) || pbHasType?(:STEEL)
-		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:STOUT,:DESERTSPIRIT,:BURROWER,:ARTIFICIALNOCTURNE,:WEATHERSENSES])
-		return false if hasActiveItem?(:SAFETYGOGGLES)
+    return false if hasActiveAbility?([:SANDSTREAM,:SANDBURST])
+		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:DESERTSPIRIT,:BURROWER,:SHRAPNELSTORM,:HARSHHUNTER])
 		return true
-	  end
+  end
 
 	def takesHailDamage?
+    return false if !affectedByWeatherDownsides?
 		return false if !takesIndirectDamage?
+    return false if hasActiveItem?(:SAFETYGOGGLES)
 		return false if pbHasType?(:ICE) || pbHasType?(:STEEL) || pbHasType?(:GHOST)
-		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:STOUT,:SNOWWARNING,:BLIZZBOXER,:WEATHERSENSES])
-		return false if hasActiveItem?(:SAFETYGOGGLES)
+    return false if hasActiveAbility?([:SNOWWARNING,:FROSTSCATTER])
+		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:BLIZZBOXER,:SLUSHRUSH,:ICEFACE,:BITTERCOLD,:ECTOPARTICLES])
 		return true
 	end
+
+  def takesAcidRainDamage?
+    return false if !affectedByWeatherDownsides?
+    return false if !takesIndirectDamage?
+    return false if hasActiveItem?(:SAFETYGOGGLES)
+    return false if pbHasType?(:POISON) || pbHasType?(:DARK)
+    return false if hasActiveAbility?([:POLLUTION,:ACIDBODY])
+		return false if hasActiveAbility?([:OVERCOAT])
+    return true
+  end
 	
 	def shiny?
 		return false if boss?
@@ -357,5 +394,11 @@ class PokeBattle_Battler
       return true if @effects[effectID]
     end
     return false
+  end
+
+  def pbHeight
+    ret = (@pokemon) ? @pokemon.weight : 500
+    ret = 1 if ret<1
+    return ret.max
   end
 end

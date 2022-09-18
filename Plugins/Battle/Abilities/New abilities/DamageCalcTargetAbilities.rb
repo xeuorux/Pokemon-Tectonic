@@ -131,9 +131,17 @@ BattleHandlers::DamageCalcTargetAbility.add(:WEATHERSENSES,
       next
     else
       weatherDuration = user.battle.field.weatherDuration
-      damageReduction = 0.1 * weatherDuration
-      echoln("Reducing damage taken by #{damageReduction} due to weather sense")
-      mults[:final_damage_multiplier] *= 1.0 - damageReduction
+      damageReduction = 0.07 * weatherDuration
+      damageMult = [[1.0 - damageReduction,1].min,0].max
+      mults[:final_damage_multiplier] *= damageMult
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:SOLARCELL,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.pbWeather == :Sun && move.specialMove?
+      mults[:defense_multiplier] *= 1.25
     end
   }
 )

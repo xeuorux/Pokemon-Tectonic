@@ -202,7 +202,7 @@ module PokeBattle_BattleCommon
             end
             # Handle the chosen pokemon leaving battle, if it was in battle
             if !chosenBattler.nil? && chosenBattler.abilityActive?
-              BattleHandlers.triggerAbilityOnSwitchOut(chosenBattler.ability,chosenBattler,true,self)
+              BattleHandlers.triggerAbilityOnSwitchOut(chosenBattler.ability,chosenBattler,true)
             end
             
             chosenPokemon.item = @initialItems[0][chosen]

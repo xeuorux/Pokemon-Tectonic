@@ -115,6 +115,14 @@ class PokeBattle_Battle
   def curseActive?(curseID)
     return @curses.include?(curseID)
   end
+
+  def pbCheckAlliedAbility(abil,idxBattler=0,nearOnly=false)
+    eachSameSideBattler(idxBattler) do |b|
+      next if nearOnly && !b.near?(idxBattler)
+      return b if b.hasActiveAbility?(abil)
+    end
+    return nil
+  end
   
   #=============================================================================
   # Messages and animations

@@ -1,6 +1,12 @@
+RAIN_DEBUFF_ACTIVE = true
+SUN_DEBUFF_ACTIVE = true
+
 class PokeBattle_Move
 	def isEmpowered?; return false; end
   alias empowered? isEmpowered?
+
+  def immuneToRainDebuff?; return false; end
+  def immuneToSunDebuff?; return false; end
 
   def smartSpreadsTargets?; return false; end
   
@@ -225,11 +231,20 @@ class PokeBattle_Move
   
   # Checks whether the move should have modified priority
 	def priorityModification(user,target); return 0; end
+
+  def applyRainDebuff?(user)
+    return RAIN_DEBUFF_ACTIVE && !immuneToRainDebuff?() && [:Rain, :HeavyRain].include?(@battle.field.weather) && user.debuffedByRain?
+  end
+
+  def applySunDebuff?(user)
+    return SUN_DEBUFF_ACTIVE && !immuneToSunDebuff?() && [:Sun, :HarshSun].include?(@battle.field.weather) && user.debuffedBySun?
+  end
 	
 	# Returns whether the move will be a critical hit
   # And whether the critical hit was forced by an effect
 	def pbIsCritical?(user,target)
 		return [false,false] if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
+    return [false,false] if applySunDebuff?(user)
 		# Set up the critical hit ratios
 		ratios = [16,8,4,2,1]
 		c = 0
@@ -262,7 +277,6 @@ class PokeBattle_Move
 		c += user.effects[PBEffects::FocusEnergy]
 		c += 1 if user.effects[PBEffects::LuckyStar]
 		c = ratios.length-1 if c>=ratios.length
-		echoln("Critical hit stage: #{c}")
 		# Calculation
 		return [@battle.pbRandom(ratios[c]) == 0,false]
     end
@@ -271,6 +285,7 @@ class PokeBattle_Move
   # Additional effect chance
   #=============================================================================
   def pbAdditionalEffectChance(user,target,effectChance=0)
+    return 0 if applyRainDebuff?(user)
     return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
 	  return 0 if target.effects[PBEffects::Enlightened]
     ret = (effectChance>0) ? effectChance : @addlEffect
@@ -353,6 +368,9 @@ class PokeBattle_Move
       :final_damage_multiplier => 1.0
     }
     pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
+    echoln("The calculated base damage multiplier: #{multipliers[:base_damage_multiplier]}")
+    echoln("The calculated attack and defense multipliers: #{multipliers[:attack_multiplier]},#{multipliers[:defense_multiplier]}")
+    echoln("The calculated final damage multiplier: #{multipliers[:final_damage_multiplier]}")
     # Main damage calculation
     baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
     atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
@@ -368,12 +386,12 @@ class PokeBattle_Move
 		if (@battle.pbCheckGlobalAbility(:DARKAURA) && type == :DARK) ||
 		   (@battle.pbCheckGlobalAbility(:FAIRYAURA) && type == :FAIRY)
 		  if @battle.pbCheckGlobalAbility(:AURABREAK)
-			multipliers[:base_damage_multiplier] *= 2 / 3.0
+			  multipliers[:base_damage_multiplier] *= 2 / 3.0
 		  else
-			multipliers[:base_damage_multiplier] *= 4 / 3.0
+			  multipliers[:base_damage_multiplier] *= 4 / 3.0
 		  end
 		end
-		if (@battle.pbCheckGlobalAbility(:RUINOUS))
+		if @battle.pbCheckGlobalAbility(:RUINOUS)
 			multipliers[:base_damage_multiplier] *= 1.2
 		end
 		# Ability effects that alter damage
@@ -429,11 +447,11 @@ class PokeBattle_Move
 		if type == :ELECTRIC
 		  @battle.eachBattler do |b|
 			next if !b.effects[PBEffects::MudSport]
-			multipliers[:base_damage_multiplier] /= 3
-			break
+			  multipliers[:base_damage_multiplier] /= 3
+			  break
 		  end
 		  if @battle.field.effects[PBEffects::MudSportField]>0
-			multipliers[:base_damage_multiplier] /= 3
+			  m ultipliers[:base_damage_multiplier] /= 3
 		  end
 		end
 		# Water Sport
@@ -453,6 +471,7 @@ class PokeBattle_Move
     end
     # Shimmering Heat
     if target.effects[PBEffects::ShimmeringHeat]
+      echoln("Target is protected by Shimmering Heat")
       multipliers[:final_damage_multiplier] *= 0.67
     end
     # Battler properites
@@ -471,26 +490,35 @@ class PokeBattle_Move
 		  multipliers[:base_damage_multiplier] *= 1.3 if type == :FAIRY && target.affectedByTerrain?
 		end
 		# Multi-targeting attacks
-		if numTargets>1
+		if numTargets > 1
+      echoln("Reducing damage dealt due to being a spread move")
 		  multipliers[:final_damage_multiplier] *= 0.75
 		end
 		# Weather
 		case @battle.pbWeather
 		when :Sun, :HarshSun
 		  if type == :FIRE
-			multipliers[:final_damage_multiplier] *= 1.5
-		  elsif type == :WATER
-			multipliers[:final_damage_multiplier] /= 2
+			  multipliers[:final_damage_multiplier] *= @battle.pbWeather == :HarshSun ? 1.5 : 1.3
+      elsif applySunDebuff?(user)
+        if @battle.pbCheckGlobalAbility(:BLINDINGLIGHT)
+          multipliers[:final_damage_multiplier] *= 0.7
+        else
+          multipliers[:final_damage_multiplier] *= 0.85
+        end
 		  end
 		when :Rain, :HeavyRain
-		  if type == :FIRE
-			multipliers[:final_damage_multiplier] /= 2
-		  elsif type == :WATER
-			multipliers[:final_damage_multiplier] *= 1.5
+      if type == :WATER
+			  multipliers[:final_damage_multiplier] *= @battle.pbWeather == :HeavyRain ? 1.5 : 1.3
+      elsif applyRainDebuff?(user)
+        if @battle.pbCheckGlobalAbility(:DREARYCLOUDS)
+          multipliers[:final_damage_multiplier] *= 0.7
+        else
+          multipliers[:final_damage_multiplier] *= 0.85
+        end
 		  end
     when :Swarm
 		  if type == :DRAGON || type == :BUG
-			  multipliers[:final_damage_multiplier] *= 1.5
+			  multipliers[:final_damage_multiplier] *= 1.3
 		  end
 		when :Sandstorm
 		  if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock/Psystrike
@@ -526,17 +554,21 @@ class PokeBattle_Move
       multipliers[:final_damage_multiplier] *= 0.9
     end
 		# STAB
-    unless user.pbOwnedByPlayer? && @battle.curses.include?(:DULLED)
+    if !user.pbOwnedByPlayer? || !@battle.curses.include?(:DULLED)
       if type && user.pbHasType?(type)
         stab = 1.5
         if user.hasActiveAbility?(:ADAPTED)
           stab *= 4.0/3.0
+        elsif user.hasActiveAbility?(:ULTRAADAPTED)
+          stab *= 3.0/2.0
         end
         multipliers[:final_damage_multiplier] *= stab
+        echoln("Applying a STAB multiplier of #{stab}")
       end
     end
 		# Type effectiveness
 		typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
+    echoln("Applying a type effectiveness multiplier of #{typeEffect}")
 		multipliers[:final_damage_multiplier] *= typeEffect
 		# Burn
 		if user.burned? && physicalMove? && damageReducedByBurn? && !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
@@ -582,7 +614,7 @@ class PokeBattle_Move
     if target.effects[PBEffects::StunningCurl]
       multipliers[:final_damage_multiplier] /= 2
     end
-    if target.effects[PBEffects::EmpoweredDetect]
+    if target.effects[PBEffects::EmpoweredDetect] > 0
       multipliers[:final_damage_multiplier] /= 2
     end
 		# Move-specific base damage modifiers
@@ -760,14 +792,33 @@ class PokeBattle_Move
     else
       @battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
     end
-    if damagingMove? && !multiHitMove?
-      targets.each do |target|
-        bp = pbBaseDamage(baseDamage,user,target).floor
-        if bp != baseDamage
-          if targets.length == 1
-            @battle.pbDisplayBrief(_INTL("Its base power was adjusted to {1}!",bp))
+    if damagingMove?
+      if !multiHitMove?
+        targets.each do |target|
+          bp = pbBaseDamage(@baseDamage,user,target).floor
+          if bp != @baseDamage
+            if targets.length == 1
+              @battle.pbDisplayBrief(_INTL("Its base power was adjusted to {1}!",bp))
+            else
+              @battle.pbDisplayBrief(_INTL("Its base power was adjusted to {1} against {2}!",bp,target.pbThis(true)))
+            end
+          end
+        end
+      end
+      # Display messages letting the player know that weather is debuffing a move (if it is)
+      if $PokemonSystem.weather_messages == 0
+        if applyRainDebuff?(user)
+          if @battle.pbCheckGlobalAbility(:DREARYCLOUDS)
+            @battle.pbDisplay(_INTL("{1}'s attack is dampened a lot by the dreary rain.",user.pbThis))
           else
-            @battle.pbDisplayBrief(_INTL("Its base power was adjusted to {1} against {2}!",bp,target.pbThis(true)))
+            @battle.pbDisplay(_INTL("{1}'s attack is dampened by the rain.",user.pbThis))
+          end
+        end
+        if applySunDebuff?(user)
+          if @battle.pbCheckGlobalAbility(:BLINDINGLIGHT)
+            @battle.pbDisplay(_INTL("{1} is blinded by the bright light of the sun.",user.pbThis))
+          else
+            @battle.pbDisplay(_INTL("{1} is distracted by the shining sun.",user.pbThis))
           end
         end
       end

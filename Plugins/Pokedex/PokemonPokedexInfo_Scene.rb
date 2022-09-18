@@ -120,13 +120,18 @@ class PokemonPokedexInfo_Scene
     species_data = GameData::Species.get_species_form(@species, @form)
 	@title = species_data.real_form_name ? "#{species_data.real_name} (#{species_data.real_form_name})" : species_data.real_name
     @sprites["infosprite"].setSpeciesBitmap(@species,@gender,@form)
+	forceShiny = $DEBUG && Input.press?(Input::CTRL)
     if @sprites["formfront"]
-      @sprites["formfront"].setSpeciesBitmap(@species,@gender,@form)
+      @sprites["formfront"].setSpeciesBitmap(@species,@gender,@form,forceShiny)
     end
     if @sprites["formback"]
-      @sprites["formback"].setSpeciesBitmap(@species,@gender,@form,false,false,true)
-      @sprites["formback"].y = 256
-      @sprites["formback"].y += species_data.back_sprite_y * 2
+	  if forceShiny
+		@sprites["formback"].setSpeciesBitmapHueShifted(@species,@gender,@form,forceShiny)
+	  else
+		@sprites["formback"].setSpeciesBitmap(@species,@gender,@form,false,false,true)
+		@sprites["formback"].y = 256
+      	@sprites["formback"].y += species_data.back_sprite_y * 2
+	  end
     end
     if @sprites["formicon"]
       @sprites["formicon"].pbSetParams(@species,@gender,@form)
@@ -396,7 +401,7 @@ class PokemonPokedexInfo_Scene
 			statSym = prevoSpeciesData.base_stats.keys[index]
 			prevoSpeciesStatValue = prevoSpeciesData.base_stats[statSym]
 		  	statUpgradePercentage = (((statValue.to_f / prevoSpeciesStatValue.to_f)-1) * 100).floor
-		  	statString += " (#{statUpgradePercentage})"
+		  	statString += " (#{statUpgradePercentage})" if Input.press?(Input::CTRL)
 		  end
           drawTextEx(overlay,136,yBase+32*index,450,1,statString,base,shadow)
         end
@@ -465,6 +470,7 @@ class PokemonPokedexInfo_Scene
 		#type2 = GameData::Type.get(fSpecies.type2)
         
 		immuneTypes = []
+		barelyEffectiveTypes = []
 		resistentTypes = []
 		weakTypes = []
 		hyperWeakTypes = []
@@ -476,6 +482,8 @@ class PokemonPokedexInfo_Scene
 			
 			if Effectiveness.ineffective?(effect)
 				immuneTypes.push(t)
+			elsif Effectiveness.barely_effective?(effect)
+				barelyEffectiveTypes.push(t)
 			elsif Effectiveness.not_very_effective?(effect)
 				resistentTypes.push(t)
 			elsif Effectiveness.hyper_effective?(effect)
@@ -485,15 +493,14 @@ class PokemonPokedexInfo_Scene
 			end
 		end
 		weakTypes = [].concat(hyperWeakTypes,weakTypes)
+		resistentTypes = [].concat(barelyEffectiveTypes,resistentTypes)
 
 		#Draw the types the pokemon is weak to
 		drawTextEx(overlay,xLeft,yBase,450,1,_INTL("Weak:"),base,shadow)
 		if weakTypes.length == 0
 			drawTextEx(overlay,xLeft,yBase+30,450,1,_INTL("None"),base,shadow)
 		else
-
 			weakTypes.each_with_index do |t,index|
-				#drawTextEx(overlay,30,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
 				type_number = GameData::Type.get(t).id_number
 				typerect = Rect.new(0, type_number*32, 96, 32)
 				bitmapUsed = hyperWeakTypes.include?(t) ? @types_emphasized_bitmap.bitmap : @typebitmap.bitmap
@@ -508,10 +515,10 @@ class PokemonPokedexInfo_Scene
 			drawTextEx(overlay,xLeft+resistOffset,yBase+30,450,1,_INTL("None"),base,shadow)
 		else
 			resistentTypes.each_with_index do |t,index|
-				#drawTextEx(overlay,150,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
 				type_number = GameData::Type.get(t).id_number
 				typerect = Rect.new(0, type_number*32, 96, 32)
-				overlay.blt(xLeft+resistOffset + (index >= 7 ? 100 : 0), yBase+30+36*(index % 7), @typebitmap.bitmap, typerect)
+				bitmapUsed = barelyEffectiveTypes.include?(t) ? @types_emphasized_bitmap.bitmap : @typebitmap.bitmap
+				overlay.blt(xLeft+resistOffset + (index >= 7 ? 100 : 0), yBase+30+36*(index % 7), bitmapUsed, typerect)
 			end
 		end
 		
@@ -608,19 +615,39 @@ class PokemonPokedexInfo_Scene
     end
   end
   
-  def getFormattedMoveName(move)
+  def getFormattedMoveName(move,maxWidth = 99999)
     fSpecies = GameData::Species.get_species_form(@species,@form)
 	move_data = GameData::Move.get(move)
 	moveName = move_data.real_name
-	isSTAB = false
-	if move_data.category < 2 # Is a damaging move
-		if [fSpecies.type1,fSpecies.type2].include?(move_data.type) # Is STAB for the main pokemon
-			moveName = "<b>#{moveName}</b>"
-			isSTAB = true
-		elsif isAnyEvolutionOfType(fSpecies,move_data.type)
-			moveName = "<i>#{moveName}</i>"
+
+	isSTAB = move_data.category < 2 && [fSpecies.type1,fSpecies.type2].include?(move_data.type)
+
+	# Chop letters off of excessively long names to make them fit into the maximum width
+	overlay = @sprites["overlay"].bitmap
+	expectedMoveNameWidth = overlay.text_size(moveName).width
+	expectedMoveNameWidth *= 1.2 if isSTAB
+	if expectedMoveNameWidth > maxWidth
+		charactersToShave = 3
+		loop do
+			testString = moveName[0..-charactersToShave] + "..."
+			expectedTestStringWidth = overlay.text_size(testString).width
+			expectedTestStringWidth *= 1.2 if isSTAB
+			excessWidth = expectedTestStringWidth - maxWidth
+			break if excessWidth <= 0
+			charactersToShave += 1
 		end
+		echoln("Shaving off #{charactersToShave} characters from #{moveName}")
+		moveName = moveName[0..-charactersToShave] + "..."
 	end
+	
+	# Add formatting based on if the move is the same type as the user
+	# Or of any of its evolutions
+	if isSTAB
+		moveName = "<b>#{moveName}</b>"
+	elsif move_data.category < 2 && isAnyEvolutionOfType(fSpecies,move_data.type)
+		moveName = "<i>#{moveName}</i>"
+	end
+
 	color = Color.new(64,64,64)
 	if move_data.is_signature?
 		if isSTAB
@@ -668,8 +695,9 @@ class PokemonPokedexInfo_Scene
 				levelLabel = "E"
 			end
 			# Draw stat line
-			moveName,moveColor,moveShadow = getFormattedMoveName(move)
 			offsetX = 0
+			maxWidth = displayIndex == 0 ? 250 : 170
+			moveName,moveColor,moveShadow = getFormattedMoveName(move,maxWidth)
 			if listIndex == @scroll
 				offsetX = 12
 				selected_move = move
@@ -820,24 +848,29 @@ class PokemonPokedexInfo_Scene
 		drawFormattedTextEx(overlay,xLeft,60,200,"<ac><b>#{categoryName}</b></ac>",base,shadow)
 		displayIndex = 1
 		listIndex = -1
-        @scrollableLists[@horizontalScroll].each_with_index do |move,index|
-			listIndex+= 1
-			next if listIndex < @scroll
-			moveName,moveColor,moveShadow = getFormattedMoveName(move)
-			offsetX = 0
-			if listIndex == @scroll
-				selected_move = move
-				offsetX = 12
+		if @scrollableLists[@horizontalScroll].length > 0
+			@scrollableLists[@horizontalScroll].each_with_index do |move,index|
+				listIndex+= 1
+				next if listIndex < @scroll
+				maxWidth = displayIndex == 0 ? 250 : 200
+				moveName,moveColor,moveShadow = getFormattedMoveName(move,maxWidth)
+				offsetX = 0
+				if listIndex == @scroll
+					selected_move = move
+					offsetX = 12
+				end
+				moveDrawY = 60 + 30 * displayIndex
+				drawFormattedTextEx(overlay,xLeft + offsetX,moveDrawY,450,moveName,moveColor,moveShadow)
+				if listIndex == @scroll
+					@sprites["selectionarrow"].y = moveDrawY - 4
+					@sprites["selectionarrow"].visible = true
+				end
+				displayIndex += 1
+				break if displayIndex >= 10
 			end
-			moveDrawY = 60 + 30 * displayIndex
-			drawFormattedTextEx(overlay,xLeft + offsetX,moveDrawY,450,moveName,moveColor,moveShadow)
-			if listIndex == @scroll
-				@sprites["selectionarrow"].y = moveDrawY - 4
-				@sprites["selectionarrow"].visible = true
-			end
-			displayIndex += 1
-			break if displayIndex >= 10
-        end
+		else
+			drawFormattedTextEx(overlay,xLeft+60,90,450,"None",base,shadow)
+		end
       end
     end
 	
@@ -1284,12 +1317,14 @@ class PokemonPokedexInfo_Scene
 		
 		typesOfCoverage = get_bnb_coverage(fSpecies)
 	
-		drawTextEx(overlay,xLeft,coordinateY,450,1,"BnB coverage: #{typesOfCoverage[0..[2,typesOfCoverage.length].min].to_s}",base,shadow)
+		drawTextEx(overlay,xLeft,coordinateY,450,1,"BnB coverage #{typesOfCoverage.length}: #{typesOfCoverage[0..[2,typesOfCoverage.length].min].to_s}",base,shadow)
 		coordinateY += 32
 		for index in 1..10
-			break if typesOfCoverage.length <= 5 * index
-			drawTextEx(overlay,xLeft,coordinateY,450,1,"#{typesOfCoverage[(5 * index)...[(5 * (index+1)),typesOfCoverage.length].min].to_s}",base,shadow)
+			rangeStart = (5 * index) - 2
+			rangeEnd = [rangeStart + 5,typesOfCoverage.length].min
+			drawTextEx(overlay,xLeft,coordinateY,450,1,"#{typesOfCoverage[rangeStart...rangeEnd].to_s}",base,shadow)
 			coordinateY += 32
+			break if rangeEnd == typesOfCoverage.length
 		end
 		
 		# Metagame coverage

@@ -1028,21 +1028,7 @@ end
 #===============================================================================
 class PokeBattle_Move_52D < PokeBattle_Move
 	def pbEffectGeneral(user)
-		if @battle.field.weather != :None
-			case @battle.field.weather
-			  when :Sun       then @battle.pbDisplay(_INTL("The sunlight faded."))
-			  when :Rain      then @battle.pbDisplay(_INTL("The rain stopped."))
-			  when :Sandstorm then @battle.pbDisplay(_INTL("The sandstorm subsided."))
-			  when :Hail      then @battle.pbDisplay(_INTL("The hail stopped."))
-			  when :ShadowSky then @battle.pbDisplay(_INTL("The shadow sky faded."))
-			  when :HeavyRain then @battle.pbDisplay("The heavy rain has lifted!")
-			  when :HarshSun  then @battle.pbDisplay("The harsh sunlight faded!")
-			  when :StrongWinds then @battle.pbDisplay("The mysterious air current has dissipated!")
-			end
-			@battle.field.weather 			= :None
-			@battle.field.weatherDuration  = 0
-		end
-		
+		@battle.endWeather()
 		@battle.battlers.each do |b|
 			pkmn = b.pokemon
 			next if !pkmn || !pkmn.able? || pkmn.status == :NONE
@@ -1085,18 +1071,7 @@ end
 class PokeBattle_Move_52F < PokeBattle_Move_042
 	def pbEffectGeneral(user)
 		if @battle.field.weather != :None
-			case @battle.field.weather
-			  when :Sun       then @battle.pbDisplay(_INTL("The sunlight faded."))
-			  when :Rain      then @battle.pbDisplay(_INTL("The rain stopped."))
-			  when :Sandstorm then @battle.pbDisplay(_INTL("The sandstorm subsided."))
-			  when :Hail      then @battle.pbDisplay(_INTL("The hail stopped."))
-			  when :ShadowSky then @battle.pbDisplay(_INTL("The shadow sky faded."))
-			  when :HeavyRain then @battle.pbDisplay("The heavy rain has lifted!")
-			  when :HarshSun  then @battle.pbDisplay("The harsh sunlight faded!")
-			  when :StrongWinds then @battle.pbDisplay("The mysterious air current has dissipated!")
-			end
-			@battle.field.weather 			= :None
-			@battle.field.weatherDuration  = 0
+			@battle.endWeather()
 		end
 	end
 	
@@ -1624,16 +1599,21 @@ end
 
 
 #===============================================================================
-# Deals damage and curses the target. (SPOOOKY SNUGGLING)
+# Deals damage and curses the target. (Spooky Snuggling)
 #===============================================================================
 class PokeBattle_Move_54A < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		if target.effects[PBEffects::Curse]
+			@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already cursed!"))
+			return true
+		end
+		return false
+	end
 
 	def pbEffectAgainstTarget(user,target)
-		return false if target.effects[PBEffects::Curse] == true
 		target.effects[PBEffects::Curse] = true
 		@battle.pbDisplay(_INTL("{1} was cursed!", target.pbThis))
 	end
-	
 end
 
 
@@ -2204,7 +2184,7 @@ class PokeBattle_Move_565 < PokeBattle_HealingMove
 end
 
 #===============================================================================
-# Returns user to party for swap, deals more damage the lower HP the user has.
+# Returns user to party for swap, deals more damage the lower HP the user has. (Hare Heroics)
 #===============================================================================
 class PokeBattle_Move_566 < PokeBattle_Move_0EE
   def pbBaseDamage(baseDmg,user,target)
@@ -2370,19 +2350,15 @@ class PokeBattle_Move_56F < PokeBattle_Move
 end
 
 #===============================================================================
-# Flusters the target. Accuracy perfect in rain, 50% in sunshine. Hits some
-# semi-invulnerable targets. (Hurricane)
+# Flusters the target. Accuracy perfect in rain. Hits flying semi-invuln targets. (Hurricane)
 #===============================================================================
 class PokeBattle_Move_570 < PokeBattle_FlusterMove
+	def immuneToRainDebuff?; return true; end
+
 	def hitsFlyingTargets?; return true; end
   
 	def pbBaseAccuracy(user,target)
-	  case @battle.pbWeather
-	  when :Sun, :HarshSun
-		return 50
-	  when :Rain, :HeavyRain
-		return 0
-	  end
+	  return 0 if [:Rain, :HeavyRain].include?(@battle.pbWeather)
 	  return super
 	end
 end
@@ -2497,7 +2473,7 @@ class PokeBattle_Move_576 < PokeBattle_TwoTurnMove
 	end
   
 	def pbChargingTurnEffect(user,target)
-		@battle.pbStartWeather(user,:Rain,true,false)
+		@battle.pbStartWeather(user,:Rain,5,false)
 	end
 
 	def getScore(score,user,target,skill=100)
@@ -2862,4 +2838,128 @@ end
 #===============================================================================
 class PokeBattle_Move_58D < PokeBattle_Move_03E
 	def pbCritialOverride(user,target); return 1; end
+end
+
+#===============================================================================
+# Returns user to party for swap and lays a layer of spikes. (Caltrop Style)
+#===============================================================================
+class PokeBattle_Move_58E < PokeBattle_Move_0EE
+	def pbMoveFailed?(user,targets)
+		return false if damagingMove?
+		if user.pbOpposingSide.effects[PBEffects::Spikes]>=3
+		  @battle.pbDisplay(_INTL("But it failed!"))
+		  return true
+		end
+		return false
+	end
+	
+	def pbEffectGeneral(user)
+		return if damagingMove?
+		user.pbOpposingSide.effects[PBEffects::Spikes] += 1
+		@battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
+		user.pbOpposingTeam(true)))
+	end
+
+	def pbAdditionalEffect(user,target)
+		return if !damagingMove?
+		return if user.pbOpposingSide.effects[PBEffects::Spikes]>=3
+		user.pbOpposingSide.effects[PBEffects::Spikes] += 1
+		@battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
+			user.pbOpposingTeam(true)))
+	end
+end
+
+#===============================================================================
+# Faints the opponant if they are below 1/3 HP. (Cull)
+#===============================================================================
+class PokeBattle_Move_58F < PokeBattle_FixedDamageMove
+	def pbFixedDamage(user,target)
+		if target.hp < (target.totalhp / 3)
+			return target.hp
+		end	
+	end
+end
+
+#===============================================================================
+# Decreases the target's Defense by 3 stages. (Eroding Foam)
+#===============================================================================
+class PokeBattle_Move_590 < PokeBattle_TargetStatDownMove
+	def initialize(battle,move)
+	  super
+	  @statDown = [:DEFENSE,3]
+	end
+end
+
+#===============================================================================
+# Power increases the taller the user is than the target. (Cocodrop)
+#===============================================================================
+class PokeBattle_Move_591 < PokeBattle_Move
+	def pbBaseDamage(baseDmg,user,target)
+	  ret = 40
+	  n = (user.pbHeight/target.pbHeight).floor
+	  if n>=5;    ret = 120
+	  elsif n>=4; ret = 100
+	  elsif n>=3; ret = 80
+	  elsif n>=2; ret = 60
+	  end
+	  return ret
+	end
+  end
+
+#===============================================================================
+# Damages target if target is a foe, or buff's the target's Speed and
+# Sp. Def is it's an ally. (Lightning Spear)
+#===============================================================================
+class PokeBattle_Move_592 < PokeBattle_Move
+	def pbOnStartUse(user,targets)
+	  @buffing = false
+	  @buffing = !user.opposes?(targets[0]) if targets.length>0
+	end
+  
+	def pbFailsAgainstTarget?(user,target)
+		return false if !@buffing
+		return true if !target.pbCanRaiseStatStage?(:SPEED,user,self,true) && !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self,true)
+    	return false
+	end
+  
+	def pbDamagingMove?
+	  return false if @buffing
+	  return super
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+	  return if !@buffing
+	  target.pbRaiseStatStage(:SPEED,1,user,self) if target.pbCanRaiseStatStage?(:SPEED,user,self)
+	  target.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user,self) if target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
+	end
+  
+	def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
+	  if @buffing
+		@battle.pbAnimation(:CHARGE,user,targets,hitNum) if showAnimation
+	  else
+		super
+	  end
+	end
+end
+
+#===============================================================================
+# In singles, this move hits the target twice. In doubles, this move hits each
+# target once. If one of the two opponents protects or while semi-invulnerable
+# or is a Fairy-type Pokémon, it hits the opponent that doesn't protect twice.
+# In Doubles, not affected by WideGuard.
+# Each target hit loses 1 stage of Speed. (Tar Volley)
+#===============================================================================
+class PokeBattle_Move_592 < PokeBattle_Move_0BD
+	def smartSpreadsTargets?; return true; end
+  
+	def pbNumHits(user,targets)
+	  return 1 if targets.length > 1
+	  return 2
+	end
+
+	def pbAdditionalEffect(user,target)
+		return if target.damageState.substitute
+		return if !target.pbCanLowerStatStage?(:SPEED,user,self)
+		target.pbLowerStatStage(:SPEED,1,user)
+	end
 end

@@ -57,10 +57,10 @@
 52,RELICCOPPER,Relic Copper,Relic Coppers,6,2000,"A copper coin used in a civilization about 3,000 years ago. It can be sold to shops for $1000.",0,0,0
 53,RELICSILVER,Relic Silver,Relic Silvers,6,10000,"A silver coin used in a civilization about 3,000 years ago. It can be sold to shops for $5000.",0,0,0
 54,RELICGOLD,Relic Gold,Relic Golds,6,20000,"A gold coin used in a civilization about 3,000 years ago. It can be sold to shops for $10,000.",0,0,0
-55,RELICVASE,Relic Vase,Relic Vases,6,100000,"A vase made in a civilization about 3,000 years ago. It can be sold to shops for $50,000.",0,0,0
-56,RELICBAND,Relic Band,Relic Bands,6,200000,"A bracelet made in a civilization about 3,000 years ago. It can be sold to shops for $100,000.",0,0,0
-57,RELICSTATUE,Relic Statue,Relic Statues,6,600000,"A stone figure made in a civilization about 3,000 years ago. Can be sold for $300,000",0,0,0
-58,RELICCROWN,Relic Crown,Relic Crowns,6,0,"A crown made in a civilization about 3,000 years ago. A maniac will buy it for a high price.",0,0,0
+55,RELICVASE,Relic Vase,Relic Vases,6,60000,"A vase made in a civilization about 3,000 years ago. It can be sold to shops for $30,000.",0,0,0
+56,RELICBAND,Relic Band,Relic Bands,6,160000,"A bracelet made in a civilization about 3,000 years ago. It can be sold to shops for $80,000.",0,0,0
+57,RELICSTATUE,Relic Statue,Relic Statues,6,300000,"A stone figure made in a civilization about 3,000 years ago. Can be sold for $150,000.",0,0,0
+58,RELICCROWN,Relic Crown,Relic Crowns,6,600000,"A crown made in a civilization about 3,000 years ago. Can be sold for $300,000.",0,0,0
 #-------------------------------
 59,GROWTHMULCH,Growth Mulch,Growth Mulch,1,200,"A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.",0,0,11
 60,DAMPMULCH,Damp Mulch,Damp Mulch,1,200,"A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.",0,0,11
@@ -681,7 +681,7 @@
 658,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,5,4000,"These boots prevent the effects of traps set on the battlefield.",0,0,0
 659,ROOMSERVICE,Room Service,Room Services,5,4000,"An item to be held by a Pokémon. Sharply lowers Speed when Trick Room takes effect.",0,0,0
 660,THROATSPRAY,Throat Spray,Throat Sprays,5,4000,"Raises Sp. Atk when the Pokémon uses a sound-based move.",0,0,0
-661,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"An item to be held by a Pokémon. It protects the holder from the effects of weather.",0,0,0
+661,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"An item to be held by a Pokémon. It protects the holder from the negative effects of weather.",0,0,0
 #-------------------------------
 662,EXPCANDYXS,Exp. Candy XS,Exp. Candies XS,2,20,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.",1,0,0
 663,EXPCANDYS,Exp. Candy S,Exp. Candies S,2,240,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.",1,0,0
@@ -892,6 +892,8 @@
 #-------------------------------
 865,FROSTORB,Frost Orb,Frost Orbs,5,4000,"A bizarre orb that inflicts frostbite on the holder in battle, or when used on a Pokémon.",5,0,0
 866,REINFORCINGROD,Reinforcing Rod,Reinforcing Rods,5,4000,"An item to be held by a Pokémon. It extends the duration of Rooms created by the holder.",0,0,0
+867,SIGILLEFTHALF,Sigil Left Half,Sigils Left Half,8,0,"The left half of the sigil of an ancient order of knights."
+868,SIGILRIGHTHALF,Sigil Right Half,Sigils Right Half,8,0,"The right half of the sigil of an ancient order of knights."
 #-------------------------------
 867,CHASMIDCARD,Chasm ID Card,Chasm ID Cards,8,0,"An ID card which unlocks gates and doors with Team Chasm coloring.",0,0,6
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6

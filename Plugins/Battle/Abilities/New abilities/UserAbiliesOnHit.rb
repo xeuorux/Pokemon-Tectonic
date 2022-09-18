@@ -191,8 +191,31 @@ BattleHandlers::DamageCalcUserAbility.add(:SOULREAD,
 BattleHandlers::UserAbilityOnHit.add(:SOUNDBARRIER,
   proc { |ability,user,target,move,battle|
     next if !move.soundMove?
-	if user.pbCanRaiseStatStage?(:DEFENSE,user)
-		user.pbRaiseStatStageByAbility(:DEFENSE,1,user)
-	end
+    if user.pbCanRaiseStatStage?(:DEFENSE,user)
+      user.pbRaiseStatStageByAbility(:DEFENSE,1,user)
+    end
+  }
+)
+
+BattleHandlers::UserAbilityOnHit.add(:DAWNBURST,
+  proc { |ability,user,target,move,battle|
+    next if target.burned?
+    next if user.turnCount > 1
+    battle.pbShowAbilitySplash(user)
+    if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+      battle.pbShowAbilitySplash(target)
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+      end
+      battle.pbHideAbilitySplash(target)
+    elsif target.pbCanBurn?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} burned {3}! {4}!",
+           user.pbThis,user.abilityName,target.pbThis(true), BURNED_EXPLANATION)
+      end
+      target.pbBurn(msg)
+    end
+    battle.pbHideAbilitySplash(user)
   }
 )
