@@ -768,7 +768,7 @@
 #-------------------------------
 704,SNAPTRAP,Snap Trap,0CF,75,GRASS,Special,100,15,0,NearOther,0,abef,"The user snares the target in a snap trap for three turns.",
 #-------------------------------
-705,STEELBEAM,Steel Beam,510,140,STEEL,Special,100,5,100,NearOther,0,bef,"Fires a beam of steel that it collected from its entire body. he user loses half current HP.",
+705,STEELBEAM,Steel Beam,510,140,STEEL,Special,100,5,100,NearOther,0,bef,"Fires a beam of steel that it collected from its entire body. The user loses half its current HP.",
 #-------------------------------
 706,HYDROCANNON,Hydro Cannon,0C2,170,WATER,Special,100,5,0,NearOther,0,bef,"The target is hit with a watery blast. The user must rest on the next turn, however.",
 707,WATERSPOUT,Water Spout,08B,150,WATER,Special,100,5,0,AllNearFoes,0,bef,"The user spouts water to damage the foe. The lower the user's HP, the less powerful it becomes.",
