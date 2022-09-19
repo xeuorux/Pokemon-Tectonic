@@ -563,12 +563,10 @@ class PokeBattle_Move
           stab *= 3.0/2.0
         end
         multipliers[:final_damage_multiplier] *= stab
-        echoln("Applying a STAB multiplier of #{stab}")
       end
     end
 		# Type effectiveness
 		typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
-    echoln("Applying a type effectiveness multiplier of #{typeEffect}")
 		multipliers[:final_damage_multiplier] *= typeEffect
 		# Burn
 		if user.burned? && physicalMove? && damageReducedByBurn? && !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
