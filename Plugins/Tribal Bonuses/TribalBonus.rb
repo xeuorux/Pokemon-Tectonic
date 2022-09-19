@@ -65,26 +65,45 @@ class TribalBonus
             :SPEED => 0,
         }
 
-        # Return early if the pokemon is the enemy pokemon. We assume no mirror matches in the battle
-        if $Trainer.party.any?{|partyPokemon| partyPokemon.name == pokemon.name}
-            return tribeBonuses
-        end
-
         form = pokemon.form
         species = pokemon.species
         fSpecies = GameData::Species.get_species_form(species, form)
         compatibilities = fSpecies.compatibility
         compatibilities.each {|compatibility|
-            # If there are 2+ pokemon of the same tribe, add 10 bonus attack
-            if @tribes[compatibility] >= 2
+            # NOTE: We intentionally do not affect the HP stat due to its technical complexity
+            # TODO: Fix bonuses
+            if compatibility == :Monster && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 1
+            elsif compatibility == :Water1 && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 2
+            elsif compatibility == :Bug && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 3
+            elsif compatibility == :Flying && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 4
+            elsif compatibility == :Field && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 5
+            elsif compatibility == :Fairy && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 6
+            elsif compatibility == :Grass && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 7
+            elsif compatibility == :Humanlike && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 8
+            elsif compatibility == :Water3 && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 9
+            elsif compatibility == :Mineral && @tribes[compatibility] >= 2
                 tribeBonuses[:ATTACK] += 10
-            # TODO: Add all other tribe bonuses here
+            elsif compatibility == :Amorphous && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 11
+            elsif compatibility == :Water2 && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 12
+            elsif compatibility == :Ditto && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 13
+            elsif compatibility == :Dragon && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 14
+            elsif compatibility == :Undiscovered && @tribes[compatibility] >= 2
+                tribeBonuses[:ATTACK] += 15
             end
         }
-
-        # TODO: Remove
-        echoln pokemon.name
-        echoln tribeBonuses
 
         return tribeBonuses
     end
