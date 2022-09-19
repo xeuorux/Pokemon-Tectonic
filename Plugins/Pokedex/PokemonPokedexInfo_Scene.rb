@@ -1245,7 +1245,7 @@ class PokemonPokedexInfo_Scene
     coordinateY = 54
 
     # Title Text
-    drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("{1}'s Tribes", @title), base, shadow)
+    drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("{1}'s Tribes:", @title), base, shadow)
     
     # Everything else
     if @available.length() >= 2 && @available[0][0] == "Male" && @available[1][0] == "Female"    # Only give me 1 element in the case where the 2 forms are only gender.
@@ -1254,12 +1254,15 @@ class PokemonPokedexInfo_Scene
         available = @available
     end
 
+	# Get the mapping of Compatibility to user friendly name
+	tribalBonus = TribalBonus.new
+	tribeNames = tribalBonus.tribeNames
+
     for i in available
         if i[2] == @form
-            fSpecies = GameData::Species.get_species_form(@species, @form)
-            compatibility = fSpecies.compatibility.to_s
-            coordinateY += 30
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL(compatibility), base, shadow)
+			GameData::Species.get_species_form(@species, @form).compatibility.each {|compatibility|
+				drawTextEx(overlay, xLeft, coordinateY += 30, 450, 1, _INTL(tribeNames[compatibility]), base, shadow)
+			}
         end
     end
   end
