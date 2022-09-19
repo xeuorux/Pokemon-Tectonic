@@ -4,7 +4,7 @@ class PokemonDataBox < SpriteWrapper
 	EXP_BAR_FILL_TIME  = 0.5
 	# Maximum time in seconds to make a change to the HP bar.
 	HP_BAR_CHANGE_TIME = 0.5
-	
+	PokemonDataBox
 	TYPE_ICON_HEIGHT = 18
 	TYPE_ICON_THIN_HEIGHT = 20
 	NAME_BASE_COLOR = Color.new(255,255,255)
@@ -69,6 +69,8 @@ class PokemonDataBox < SpriteWrapper
 		  @spriteBaseX = 16
 		end
 		case sideSize
+		when 1
+			@spriteY -= 20 if @bossGraphics && @legendary
 		when 2
 		  @spriteX += [-12,  12,  0,  0][@battler.index]
 		  @spriteY += [-20, -34, 34, 20][@battler.index]

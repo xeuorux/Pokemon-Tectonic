@@ -17,6 +17,18 @@ class PokeBattle_Scene
 		return pbShowCommands(msg,[_INTL("No"),_INTL("Yes")],0)==1
 	end
 
+  def getDisplayBallCount(side)
+    numBalls = PokeBattle_SceneConstants::NUM_BALLS
+    if side == 0
+      numBalls *= @battle.player.length
+    else
+      return 0 if @battle.wildBattle?
+      numBalls *= @battle.opponent.length
+    end
+    echoln("The display ball count for side #{side} is #{numBalls}")
+    return numBalls
+  end
+
 	def pbInitSprites
 		@sprites = {}
 		# The background image and each side's base graphic
@@ -48,7 +60,7 @@ class PokeBattle_Scene
 		  partyBar.z       = 120
 		  partyBar.mirror  = true if side==0   # Player's lineup bar only
 		  partyBar.visible = false
-		  for i in 0...PokeBattle_SceneConstants::NUM_BALLS
+		  for i in 0...getDisplayBallCount(side)
         ball = pbAddSprite("partyBall_#{side}_#{i}",0,0,nil,@viewport)
         ball.z       = 121
         ball.visible = false
@@ -173,12 +185,12 @@ class PokeBattle_Scene
     pbShowWindow(COMMAND_BOX)
     cw = @sprites["commandWindow"]
     cw.setTexts(texts)
-	initIndex = @lastCmd[idxBattler]
-	initIndex = 0 if @lastCmd[idxBattler] == 3
+    initIndex = @lastCmd[idxBattler]
+    initIndex = 0 if @lastCmd[idxBattler] == 3
     cw.setIndexAndMode(initIndex,mode)
     pbSelectBattler(idxBattler)
     hasPokeballs = $PokemonBag.pockets()[3].any?{|itemrecord| itemrecord[1] > 0}
-	onlyOneOpponent = @battle.pbOpposingBattlerCount == 1
+	  onlyOneOpponent = @battle.pbOpposingBattlerCount == 1
     ret = -1
     loop do
       oldIndex = cw.index
@@ -637,53 +649,6 @@ class PokeBattle_Scene
     # Fade back into battle screen (if not already showing it)
     pbFadeInAndShow(@sprites,visibleSprites) if !wasTargeting
   end
-  
-  def pbDamageAnimation(battler,effectiveness=0)
-    @briefMessage = false
-    # Damage animation
-    damageAnim = BattlerDamageAnimation.new(@sprites,@viewport,battler.index,effectiveness,battler)
-    loop do
-      damageAnim.update
-      pbUpdate
-      break if damageAnim.animDone?
-    end
-    damageAnim.dispose
-  end
-  
-  # Animates battlers flashing and data boxes' HP bars because of damage taken
-  # by an attack. targets is an array, which are all animated simultaneously.
-  # Each element in targets is also an array: [battler, old HP, effectiveness]
-  def pbHitAndHPLossAnimation(targets,fastHitAnimation=false)
-    @briefMessage = false
-    # Set up animations
-    damageAnims = []
-    targets.each do |t|
-		anim = BattlerDamageAnimation.new(@sprites,@viewport,t[0].index,t[2],t[0],fastHitAnimation)
-		damageAnims.push(anim)
-		@sprites["dataBox_#{t[0].index}"].animateHP(t[1],t[0].hp,t[0].totalhp,fastHitAnimation)
-    end
-    # Update loop
-    loop do
-      damageAnims.each { |a| a.update }
-      pbUpdate
-      allDone = true
-      targets.each do |t|
-        next if !@sprites["dataBox_#{t[0].index}"].animatingHP
-        allDone = false
-        break
-      end
-      next if !allDone
-      damageAnims.each do |a|
-        next if a.animDone?
-        allDone = false
-        break
-      end
-      next if !allDone
-      break
-    end
-    damageAnims.each { |a| a.dispose }
-  end
-
   
   def pbCreateBackdropSprites
     if GameData::MapMetadata.exists?($game_map.map_id) && GameData::MapMetadata.get($game_map.map_id).outdoor_map
