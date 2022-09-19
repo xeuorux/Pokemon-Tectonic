@@ -423,7 +423,7 @@
 405,BODYSLAM,Body Slam,007,85,NORMAL,Physical,100,15,30,NearOther,0,abef,"The user drops onto the target with its full body weight. It has a 30% chance to numb.",
 406,EXTREMESPEED,Extreme Speed,000,80,NORMAL,Physical,100,5,0,NearOther,2,abef,"The user charges the target at blinding speed. This attack always goes before any other move.",
 407,HYPERFANG,Hyper Fang,00F,80,NORMAL,Physical,100,15,40,NearOther,0,abei,"The user bites hard on the target with its sharp front fangs. It has a 40% to make the target flinch.",
-408,MEGAPUNCH,Mega Punch,000,80,NORMAL,Physical,85,20,0,NearOther,0,abefj,"The target is slugged by a punch thrown with muscle-packed power.",
+408,MEGAPUNCH,Mega Punch,000,100,NORMAL,Physical,100,20,0,NearOther,0,abefj,"The target is slugged by a punch thrown with muscle-packed power.",
 #-------------------------------
 409,RAZORWIND,Razor Wind,0C3,80,FLYING,Special,100,10,0,AllNearFoes,0,befp,"A two-turn attack. Blades of wind hit the foe on the second turn. Critical hits land more easily.",
 #-------------------------------
