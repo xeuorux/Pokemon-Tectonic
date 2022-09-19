@@ -66,7 +66,7 @@ class TribalBonusScene
         @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_evolution"))
 
         @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport1)
-        # pbSetSystemFont(@sprites["overlay"].bitmap)
+        pbSetSystemFont(@sprites["overlay"].bitmap)
 
         pbFadeInAndShow(@sprites) { pbUpdate }
         drawPage()
@@ -153,3 +153,4 @@ class TribalBonusScreen
         @scene.pbEndScene
     end
   end
+  
