@@ -114,7 +114,7 @@ def randomNPCTrainerBattle(isRandom1)
     trainerType = isRandom1 ? "MASKEDVILLAIN" : "MASKEDVILLAIN2"
     trainerName = isRandom1 ? "Crimson" : "Teal"
 
-    return pbTrainerBattle(trainerType,"Masked Villain",nil, false, trainerVersion)
+    return pbTrainerBattle(trainerType,trainerName,nil, false, trainerVersion)
 end
 
 def fightVillainCrimson()

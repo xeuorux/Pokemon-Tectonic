@@ -3784,7 +3784,7 @@ Pokemon = TYRANITAR,65
     AbilityIndex = 1
     Item = ASSAULTVEST
 #-------------------------------
-[MASKEDVILLAIN,Masked Villain]
+[MASKEDVILLAIN,Crimson]
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 1
@@ -3806,7 +3806,7 @@ Pokemon = GOLISOPOD,55
     Moves = FIRSTIMPRESSION,CROSSCHOP,WATERFALL,XSCISSOR
     AbilityIndex = 0
 #-------------------------------
-[MASKEDVILLAIN,Masked Villain,1]
+[MASKEDVILLAIN,Crimson,1]
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
@@ -3833,7 +3833,7 @@ Pokemon = GOLISOPOD,55
     AbilityIndex = 0
     Item = BUGGEM
 #-------------------------------
-[MASKEDVILLAIN,Masked Villain,2]
+[MASKEDVILLAIN,Crimson,2]
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 1
@@ -3855,7 +3855,7 @@ Pokemon = RILLABOOM,55
     Moves = GRASSYGLIDE,KNOCKOFF,SWORDSDANCE,ACROBATICS
     AbilityIndex = 1
 #-------------------------------
-[MASKEDVILLAIN,Masked Villain,3]
+[MASKEDVILLAIN,Crimson,3]
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
@@ -3882,7 +3882,7 @@ Pokemon = RILLABOOM,55
     AbilityIndex = 1
     Item = FLYINGGEM
 #-------------------------------
-[MASKEDVILLAIN,Masked Villain,4]
+[MASKEDVILLAIN,Crimson,4]
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 1
@@ -3904,7 +3904,7 @@ Pokemon = PALMANTRA,55
     Moves = ADRENALASH,EXTRASENSORY,DEADEND,CALMMIND
     AbilityIndex = 1
 #-------------------------------
-[MASKEDVILLAIN,Masked Villain,5]
+[MASKEDVILLAIN,Crimson,5]
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
@@ -3931,7 +3931,7 @@ Pokemon = PALMANTRA,55
     AbilityIndex = 1
     Item = LIFEORB
 #-------------------------------
-[MASKEDVILLAIN,Masked Villain,6]
+[MASKEDVILLAIN,Crimson,6]
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 1
@@ -3953,7 +3953,7 @@ Pokemon = AGOLEM,55
     Moves = ROCKSLIDE,DOUBLEEDGE,EXPLOSION,SUPERPOWER
     AbilityIndex = 0
 #-------------------------------
-[MASKEDVILLAIN,Masked Villain,7]
+[MASKEDVILLAIN,Crimson,7]
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
@@ -3980,7 +3980,7 @@ Pokemon = AGOLEM,55
     AbilityIndex = 0
     Item = ELECTRICGEM
 #-------------------------------
-[MASKEDVILLAIN,Masked Villain,8]
+[MASKEDVILLAIN,Crimson,8]
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 1
@@ -4002,7 +4002,7 @@ Pokemon = GIGANTEON,55
     Moves = DOUBLEPUNCH,QUICKATTACK,RECOVER,FACADE
     AbilityIndex = 0
 #-------------------------------
-[MASKEDVILLAIN,Masked Villain,9]
+[MASKEDVILLAIN,Crimson,9]
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
@@ -4029,7 +4029,7 @@ Pokemon = GIGANTEON,55
     AbilityIndex = 0
     Item = LEFTOVERS
 #-------------------------------
-[MASKEDVILLAIN,Masked Villain,10]
+[MASKEDVILLAIN,Crimson,10]
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 1
@@ -4055,7 +4055,7 @@ Pokemon = GOLURK,55
     Moves = INFERNO,LAHAR,PROFANE,ZAPCANNON
     AbilityIndex = 1
 #-------------------------------
-[MASKEDVILLAIN,Masked Villain,11]
+[MASKEDVILLAIN,Crimson,11]
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
@@ -4086,9 +4086,9 @@ Pokemon = GOLURK,55
     AbilityIndex = 1
     Item = GROUNDGEM
 #-------------------------------
-[MASKEDVILLAIN2,Masked Villain]
+[MASKEDVILLAIN2,Teal]
 Pokemon = REGICE,55
-    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
 Pokemon = GOTHITELLE,55
     Moves = CORECOLLAPSE,MASSDESTRUCTION,MOONLIGHT,BLACKOUT
@@ -4108,12 +4108,12 @@ Pokemon = GOLISOPOD,55
     Moves = FIRSTIMPRESSION,CROSSCHOP,WATERFALL,XSCISSOR
     AbilityIndex = 0
 #-------------------------------
-[MASKEDVILLAIN2,Masked Villain,1]
+[MASKEDVILLAIN2,Teal,1]
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGICE,55
-    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
-    Item = ROCKGEM
+    Item = ICEGEM
 Pokemon = GOTHITELLE,55
     Moves = CORECOLLAPSE,MASSDESTRUCTION,MOONLIGHT,BLACKOUT
     AbilityIndex = 0
@@ -4135,9 +4135,9 @@ Pokemon = GOLISOPOD,55
     AbilityIndex = 0
     Item = BUGGEM
 #-------------------------------
-[MASKEDVILLAIN2,Masked Villain,2]
+[MASKEDVILLAIN2,Teal,2]
 Pokemon = REGICE,55
-    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
 Pokemon = FORRETRESS,55
     Moves = POISONSPIKES,STEALTHROCK,EXPLOSION
@@ -4157,12 +4157,12 @@ Pokemon = RILLABOOM,55
     Moves = GRASSYGLIDE,KNOCKOFF,SWORDSDANCE,ACROBATICS
     AbilityIndex = 1
 #-------------------------------
-[MASKEDVILLAIN2,Masked Villain,3]
+[MASKEDVILLAIN2,Teal,3]
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGICE,55
-    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
-    Item = ROCKGEM
+    Item = ICEGEM
 Pokemon = FORRETRESS,55
     Moves = POISONSPIKES,STEALTHROCK,EXPLOSION
     AbilityIndex = 1
@@ -4184,9 +4184,9 @@ Pokemon = RILLABOOM,55
     AbilityIndex = 1
     Item = FLYINGGEM
 #-------------------------------
-[MASKEDVILLAIN2,Masked Villain,4]
+[MASKEDVILLAIN2,Teal,4]
 Pokemon = REGICE,55
-    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
 Pokemon = ABSOLUS,55
     Moves = INFINITEFORCE,DARKALLURE,THUNDERBOLT,NASTYPLOT
@@ -4206,12 +4206,12 @@ Pokemon = PALMANTRA,55
     Moves = ADRENALASH,EXTRASENSORY,DEADEND,CALMMIND
     AbilityIndex = 1
 #-------------------------------
-[MASKEDVILLAIN2,Masked Villain,5]
+[MASKEDVILLAIN2,Teal,5]
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGICE,55
-    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
-    Item = ROCKGEM
+    Item = ICEGEM
 Pokemon = ABSOLUS,55
     Moves = INFINITEFORCE,DARKALLURE,THUNDERBOLT,NASTYPLOT
     AbilityIndex = 1
@@ -4233,9 +4233,9 @@ Pokemon = PALMANTRA,55
     AbilityIndex = 1
     Item = LIFEORB
 #-------------------------------
-[MASKEDVILLAIN2,Masked Villain,6]
+[MASKEDVILLAIN2,Teal,6]
 Pokemon = REGICE,55
-    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
 Pokemon = MFURRET,55
     Moves = UNDERMINE,STOMPINGTANTRUM,PSYCHICFANGS,POWERUPPUNCH
@@ -4255,12 +4255,12 @@ Pokemon = AGOLEM,55
     Moves = ROCKSLIDE,DOUBLEEDGE,EXPLOSION,SUPERPOWER
     AbilityIndex = 0
 #-------------------------------
-[MASKEDVILLAIN2,Masked Villain,7]
+[MASKEDVILLAIN2,Teal,7]
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGICE,55
-    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
-    Item = ROCKGEM
+    Item = ICEGEM
 Pokemon = MFURRET,55
     Moves = UNDERMINE,STOMPINGTANTRUM,PSYCHICFANGS,POWERUPPUNCH
     AbilityIndex = 1
@@ -4282,9 +4282,9 @@ Pokemon = AGOLEM,55
     AbilityIndex = 0
     Item = ELECTRICGEM
 #-------------------------------
-[MASKEDVILLAIN2,Masked Villain,8]
+[MASKEDVILLAIN2,Teal,8]
 Pokemon = REGICE,55
-    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
 Pokemon = HOUNDOMINUS,55
     Moves = NASTYPLOT,MASSDESTRUCTION,FLAMETHROWER,SUCKERPUNCH
@@ -4304,12 +4304,12 @@ Pokemon = GIGANTEON,55
     Moves = DOUBLEPUNCH,QUICKATTACK,RECOVER,FACADE
     AbilityIndex = 0
 #-------------------------------
-[MASKEDVILLAIN2,Masked Villain,9]
+[MASKEDVILLAIN2,Teal,9]
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGICE,55
-    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
-    Item = ROCKGEM
+    Item = ICEGEM
 Pokemon = HOUNDOMINUS,55
     Moves = NASTYPLOT,MASSDESTRUCTION,FLAMETHROWER,SUCKERPUNCH
     AbilityIndex = 1
@@ -4331,9 +4331,9 @@ Pokemon = GIGANTEON,55
     AbilityIndex = 0
     Item = LEFTOVERS
 #-------------------------------
-[MASKEDVILLAIN2,Masked Villain,10]
+[MASKEDVILLAIN2,Teal,10]
 Pokemon = REGICE,55
-    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
 Pokemon = GALLADE,55
     Gender = female
@@ -4357,12 +4357,12 @@ Pokemon = GOLURK,55
     Moves = INFERNO,LAHAR,PROFANE,ZAPCANNON
     AbilityIndex = 1
 #-------------------------------
-[MASKEDVILLAIN2,Masked Villain,11]
+[MASKEDVILLAIN2,Teal,11]
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGICE,55
-    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
-    Item = ROCKGEM
+    Item = ICEGEM
 Pokemon = GALLADE,55
     Gender = female
     Moves = SWORDSDANCE,DRAINPUNCH,LUNARJUSTICE,SLAY
