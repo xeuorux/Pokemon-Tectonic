@@ -2082,15 +2082,26 @@ Pokemon = ARCHEOPS,40
     AbilityIndex = 0
     Item = SITRUSBERRY
 #-------------------------------
-[LEADER_Bence_2,Bence,1]
-Policies = BENCE,CURSE_TYPE_FRAGILE
+[LEADER_Bence_2,Bence]
 Pokemon = STARAPTOR,40
     Moves = DUALWINGBEAT,CLOSECOMBAT,UTURN,QUICKATTACK
     AbilityIndex = 0
-Pokemon = BASTIODON,40
-    Moves = TAUNT,SPIKES,SWAGGER,IRONHEAD
+Pokemon = STONJOURNER,40
+    Name = Agnes
+    Gender = female
+    Moves = BODYPRESS,ROCKSLIDE,STEALTHROCK,HEAVYSLAM
+    AbilityIndex = 1
+    Item = SALACBERRY
+Pokemon = JUMPLUFF,40
+    Moves = GIGADRAIN,ALLERGY,AIRSLASH,SYNTHESIS
     AbilityIndex = 0
-    Item = LEFTOVERS
+    Item = GRASSGEM
+#-------------------------------
+[LEADER_Bence_2,Bence,1]
+Policies = BENCE,CURSE_NO_MERCY
+Pokemon = STARAPTOR,40
+    Moves = DUALWINGBEAT,CLOSECOMBAT,UTURN,QUICKATTACK
+    AbilityIndex = 0
 Pokemon = JUMPLUFF,40
     Moves = GIGADRAIN,ALLERGY,AIRSLASH,SYNTHESIS
     AbilityIndex = 0
@@ -2131,48 +2142,6 @@ Pokemon = PTEROFLYTE,40
     AbilityIndex = 1
     Item = SITRUSBERRY
 #-------------------------------
-[LEADER_Zoe_2,Zoé,1]
-Policies = ZOE,CURSE_TYPE_FRAGILE
-Pokemon = CRADILY,40
-    Moves = GIGADRAIN,DIAMONDFORCE,BRINE,LEECHSEED
-    AbilityIndex = 1
-Pokemon = MANTINE,40
-    Name = 1 Second
-    Gender = male
-    Moves = ROOST,AIRSLASH,SCALD,ICYWIND
-    AbilityIndex = 1
-    Item = LEFTOVERS
-Pokemon = HAWLUCHA,40
-    Moves = FLYINGPRESS,DRAINPUNCH,SWORDSDANCE,TAILWIND
-    AbilityIndex = 0
-    Item = LIFEORB
-Pokemon = BRAVIARY,40
-    Moves = POWERUPPUNCH,MACHPUNCH,BIRDSTRIKE,SHADOWCLAW
-    AbilityIndex = 0
-    Item = SITRUSBERRY
-Pokemon = SUDOWOODO,40
-    Moves = STRENGTHSAP,TEARFULLOOK,POWERGEM,THRIVINGFORCE
-    AbilityIndex = 1
-Pokemon = PTEROFLYTE,40
-    Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
-    AbilityIndex = 1
-    Item = SITRUSBERRY
-#-------------------------------
-[LEADER_Bence_2,Bence]
-Pokemon = STARAPTOR,40
-    Moves = DUALWINGBEAT,CLOSECOMBAT,UTURN,QUICKATTACK
-    AbilityIndex = 0
-Pokemon = STONJOURNER,40
-    Name = Agnes
-    Gender = female
-    Moves = BODYPRESS,ROCKSLIDE,STEALTHROCK,HEAVYSLAM
-    AbilityIndex = 1
-    Item = SALACBERRY
-Pokemon = JUMPLUFF,40
-    Moves = GIGADRAIN,ALLERGY,AIRSLASH,SYNTHESIS
-    AbilityIndex = 0
-    Item = GRASSGEM
-#-------------------------------
 [LEADER_Zoe_2,Zoé]
 Pokemon = CRADILY,40
     Moves = GIGADRAIN,DIAMONDFORCE,BRINE,LEECHSEED
@@ -2183,6 +2152,29 @@ Pokemon = MANTINE,40
     Moves = ROOST,AIRSLASH,SCALD,ICYWIND
     AbilityIndex = 1
     Item = LEFTOVERS
+Pokemon = PTEROFLYTE,40
+    Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+#-------------------------------
+[LEADER_Zoe_2,Zoé,1]
+Policies = ZOE
+Pokemon = CRADILY,40
+    Moves = GIGADRAIN,DIAMONDFORCE,BRINE,LEECHSEED
+    AbilityIndex = 1
+Pokemon = MANTINE,40
+    Name = 1 Second
+    Gender = male
+    Moves = ROOST,AIRSLASH,SCALD,ICYWIND
+    AbilityIndex = 1
+    Item = LEFTOVERS
+Pokemon = BRAVIARY,40
+    Moves = POWERUPPUNCH,MACHPUNCH,BIRDSTRIKE,SHADOWCLAW
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+Pokemon = SUDOWOODO,40
+    Moves = STRENGTHSAP,TEARFULLOOK,POWERGEM,THRIVINGFORCE
+    AbilityIndex = 1
 Pokemon = PTEROFLYTE,40
     Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
     AbilityIndex = 1
