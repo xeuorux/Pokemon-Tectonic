@@ -283,9 +283,10 @@ class PokemonPauseMenu
 			end
 		  elsif cmdTribalBonus >= 0 && command == cmdTribalBonus
 			pbFadeOutIn {
-					tribalBonusScene = TribalBonusScene.new
-					@scene.pbEndScene
-					return
+					scene = TribalBonusScene.new
+					screen = TribalBonusScreen.new(scene)
+					screen.pbStartScreen
+					@scene.pbRefresh
 				}
 		  elsif cmdGameInfo >= 0 && command == cmdGameInfo
 			storedLastMenuChoice = $PokemonTemp.menuLastChoice

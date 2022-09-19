@@ -38,6 +38,25 @@ class TribalBonus
             :Undiscovered => "Undiscovered"
         }
 
+        # Map tribe names to their bonuses
+        @bonusDescriptions = {
+            :Monster => "Placeholder Text 1",
+            :Water1 => "Placeholder Text 2",
+            :Bug => "Placeholder Text 3",
+            :Flying => "Placeholder Text 4",
+            :Field => "Placeholder Text 5",
+            :Fairy => "Placeholder Text 6",
+            :Grass => "Placeholder Text 7",
+            :Humanlike => "Placeholder Text 8",
+            :Water3 => "Placeholder Text 9",
+            :Mineral => "Placeholder Text 10",
+            :Amorphous => "Placeholder Text 11",
+            :Water2 => "Placeholder Text 12",
+            :Ditto => "Placeholder Text 13",
+            :Dragon => "Placeholder Text 14",
+            :Undiscovered =>  "Placeholder Text 15"
+        }
+
         updateTribeCount()
     end
 
@@ -114,5 +133,9 @@ class TribalBonus
 
     def tribeNames
         return @tribeNames
+    end
+
+    def bonusDescriptions
+        return @bonusDescriptions
     end
 end
