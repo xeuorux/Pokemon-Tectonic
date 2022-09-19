@@ -892,8 +892,8 @@
 #-------------------------------
 865,FROSTORB,Frost Orb,Frost Orbs,5,4000,"A bizarre orb that inflicts frostbite on the holder in battle, or when used on a Pokémon.",5,0,0
 866,REINFORCINGROD,Reinforcing Rod,Reinforcing Rods,5,4000,"An item to be held by a Pokémon. It extends the duration of Rooms created by the holder.",0,0,0
-867,SIGILLEFTHALF,Sigil Left Half,Sigils Left Half,8,0,"The left half of the sigil of an ancient order of knights."
-868,SIGILRIGHTHALF,Sigil Right Half,Sigils Right Half,8,0,"The right half of the sigil of an ancient order of knights."
+868,SIGILLEFTHALF,Sigil Left Half,Sigils Left Half,8,0,"The left half of the sigil of an ancient order of knights.",5,0,0
+869,SIGILRIGHTHALF,Sigil Right Half,Sigils Right Half,8,0,"The right half of the sigil of an ancient order of knights.",5,0,0
 #-------------------------------
 867,CHASMIDCARD,Chasm ID Card,Chasm ID Cards,8,0,"An ID card which unlocks gates and doors with Team Chasm coloring.",0,0,6
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
