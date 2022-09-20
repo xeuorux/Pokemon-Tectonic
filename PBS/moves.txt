@@ -249,7 +249,7 @@
 #-------------------------------
 237,ZEPHYRWING,Zephyr Wing,536,130,FLYING,Physical,100,5,30,Other,0,bef,"The user flies up to sharply raise its Sp. Def in the first turn, then rams the foe on the second.",
 238,BRAVEBIRD,Brave Bird,0FB,120,FLYING,Physical,100,15,0,Other,0,abef,"The user tucks in its wings and charges from a low altitude. The user also takes 33% recoil.",
-239,DRAGONASCENT,Dragon Ascent,03C,120,FLYING,Physical,100,5,0,NearOther,0,abef,"The user soars upward and drops at high speeds. This lowers the user's Defenses.",
+239,DRAGONASCENT,Dragon Ascent,03C,120,FLYING,Physical,100,5,0,NearOther,0,abef,"The user soars upward and drops at high speeds. This lowers the user's defenses.",
 240,HURRICANE,Hurricane,570,110,FLYING,Special,70,10,30,Other,0,bef,"Can't miss in rain, less accuracy in sun. It has a 30% chance to fluster.",
 241,AEROBLAST,Aeroblast,000,95,FLYING,Special,100,5,0,Other,0,befh,"A vortex of air is shot at the target to inflict damage. Critical hits land more easily.",
 242,BEAKBLAST,Beak Blast,172,100,FLYING,Physical,100,15,0,NearOther,0,bfn,"The user heats up its beak before attacking. Physically attacking in this time results in a burn.",
@@ -853,7 +853,7 @@
 786,SLIGHT,Slight,50B,50,DARK,Special,100,25,0,NearOther,0,abefk,"When the user knocks out a target with this move, the user's Sp. Atk stat rises drastically.",
 787,MASSDESTRUCTION,Mass Destruction,0FC,130,DARK,Special,100,10,0,AllNearOthers,0,bef,"The user emits a wave of anxious feelings which overhwhelms all nearby Pokémon, taking 50% recoil.",BRUTALSWING
 788,ICEIMPACT,Ice Impact,50C,65,ICE,Physical,100,10,0,NearOther,0,bef,"The user targets the target's coldest spots. Its power doubles if the target is frostbitten.",ICEPUNCH
-789,HALTINGCOLD,Halting Cold,044,75,ICE,Special,100,15,50,NearOther,0,bef,"The user attacks with numbingly cold wild. It reduces the target's Speed.",ICYWIND
+789,HALTINGCOLD,Halting Cold,044,75,ICE,Special,100,15,50,NearOther,0,bef,"The user attacks with numbingly cold wiNd. It reduces the target's Speed.",ICYWIND
 790,CHIBURST,Chi Burst,03F,130,FIGHTING,Special,100,5,0,NearOther,0,bef,"The user attacks with a big burst of its inner energy. This sharply reduces the user's Sp. Atk stat.",AURASPHERE
 791,TRAINEDOUTBURST,Trained Outburst,08E,20,FIGHTING,Special,100,10,0,NearOther,0,befk,"The user attacks with focus. The more the user's stats are raised, the greater the damage.",BOOMBURST
 792,BEARHUG,Bear Hug,0CF,85,FIGHTING,Physical,100,15,0,NearOther,0,bef,"The user traps the target in a hugely strong hug for three turns.",CONSTRICT
@@ -879,7 +879,7 @@
 812,FLOWSTATE,Flow State,512,0,WATER,Status,100,20,100,User,0,d,"The user gains an instinctual knowledge of battle, boosting both its Attack and Sp. Def stats.",
 814,COLDCONVERSION,Cold Conversion,51B,130,ICE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user uses up its Ice-type.",ICEBEAM
 815,VENOMLEECH,Venom Leech,545,70,POISON,Physical,100,10,20,NearOther,0,abef,"The user chomps with venomous teeth. The user's HP is restored by a third of the damage dealt.",POISONFANG
-816,REFLEXOVERDRIVE,Reflex Overdrive,519,110,PSYCHIC,Physical,0,10,0,Other,0,abef,"Lands without fail and lowers the user's defense and speed.",
+816,REFLEXOVERDRIVE,Reflex Overdrive,519,110,PSYCHIC,Physical,0,10,0,Other,0,abef,"Lands without fail and lowers the user's Defense and Speed.",
 817,DOUSE,Douse,518,40,WATER,Special,100,10,0,NearFoe,0,bef,"The user douses the target, healing itself by a third of its maximum HP in the process.",BRINE
 818,AQUAINSTINCT,Aqua Instinct,517,65,WATER,Physical,100,10,0,NearOther,0,bef,"The user preys on the target. This move goes first if the target is below half health.",FISHIOUSREND
 819,DRAGONBLOOD,Dragon Blood,51C,0,DRAGON,Status,0,5,0,User,0,d,"The user restores its own HP. The user then raises its Sp. Atk unless it was fully healed in the process.",
@@ -944,7 +944,7 @@
 878,SLICE,Slice,000,95,NORMAL,Physical,100,15,0,NearOther,0,abefhp,"The target is cut by a clean slice. Critical hits land more easily.",SLASH
 879,FURY,Fury,093,60,NORMAL,Physical,100,15,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle.",RAGE
 880,SPELLBIND,Spellbind,402,0,FAIRY,Status,100,10,0,NearOther,0,bce,"Mystifies the target by putting them under a magical spell.",
-881,BIRDSTRIKE,Bird Strike,0FA,90,FLYING,Physical,100,20,0,Other,0,abef,"A reckless, charge attack from the air. It also damages the user by 25% of the damage dealt.",BRAVEBIRD
+881,BIRDSTRIKE,Bird Strike,0FA,90,FLYING,Physical,100,20,0,Other,0,abef,"A reckless charge attack from the air. It also damages the user by 25% of the damage dealt.",BRAVEBIRD
 882,TERRAFORM,Terraform,538,70,ROCK,Special,100,15,0,AllNearOthers,0,bef,"Churns nearby rocks, dealing damage to nearby Pokémon and removing active terrain.",
 883,PREDICTIONSTRIKE,Prediction Strike,0A5,90,PSYCHIC,Physical,0,15,0,Other,0,abef,"The user perfectly predicts the target's future location, then strikes. It lands without fail.",ZENHEADBUTT
 884,RAKE,Rake,000,65,BUG,Physical,0,25,0,NearOther,0,abef,"The user rakes the target with sharp claws.",FURYCUTTER
