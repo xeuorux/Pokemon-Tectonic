@@ -19,6 +19,7 @@ class PokeBattle_Battler
   def applyFractionalDamage(fraction,showDamageAnimation=true,basedOnCurrentHP=false)
     oldHP = @hp
     fraction /= 4.0 if boss?
+    fraction *= 2 if @battle.pbCheckOpposingAbility(:AGGRAVATE,@index)
     if basedOnCurrentHP
       reduction = (@hp * fraction).ceil
     else

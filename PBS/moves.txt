@@ -334,7 +334,7 @@
 319,INGRAIN,Ingrain,0DB,0,GRASS,Status,0,20,0,User,0,d,"The user lays roots that restore its HP on every turn. Because it is rooted, it can't switch out.",
 320,LEECHSEED,Leech Seed,0DC,0,GRASS,Status,100,10,0,NearOther,0,bce,"A seed is planted on the target. It steals some HP from the target every turn.",
 321,SLEEPPOWDER,Sleep Powder,003,0,GRASS,Status,75,15,0,NearOther,0,bcel,"The user scatters a big cloud of sleep-inducing dust around the target.",
-322,SPIKYSHIELD,Spiky Shield,14C,0,GRASS,Status,0,3,0,User,4,,"Protects the user from attacks. Also damages physical attackers.",
+322,SPIKYSHIELD,Spiky Shield,14C,0,GRASS,Status,0,3,0,User,4,,"Protects the user from attacks. Physical attackers take 1/8th HP damage.",
 323,SPORE,Spore,003,0,GRASS,Status,100,15,0,NearOther,-1,bcel,"The user scatters bursts of spores that induce sleep. This move always goes last.",
 324,STRENGTHSAP,Strength Sap,160,0,GRASS,Status,100,10,0,NearOther,0,bce,"Restores its own HP by the target's Attack stat amount, then lowers the target's Attack stat.",
 325,STUNSPORE,Stun Spore,007,0,GRASS,Status,100,30,0,NearOther,0,bcel,"The user scatters a cloud of paralyzing powder. It leaves the target numb.",
@@ -1110,3 +1110,4 @@
 1044,TARVOLLEY,Tar Volley,592,35,FIRE,Special,100,10,100,AllNearFoes,0,bef,"The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets Speed.",
 1045,WAXINGWATER,Waxing Water,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with lunar power, then summons rain for five turns.",
 1046,HEATGYRE,Heat Gyre,0FF,50,FIRE,Physical,0,10,0,NearFoe,0,abef,"Spins into the target while emitting heat, then summons sunshine for five turns.",
+1047,DRAININGKISS,Draining Kiss,14F,70,FAIRY,Special,100,10,0,NearOther,0,abef,"The user steals the target's HP with a kiss. The user's HP is restored by over half of the damage dealt.",
