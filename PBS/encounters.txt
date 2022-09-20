@@ -476,7 +476,7 @@ LandTall,25
 Puddle,21
     40,ESPURR,23,25
     20,CORPHISH,23,25
-    20,DEERLING,23,25
+    20,DEERLING_1,23,25
     20,ILLUMISE,23,25
     20,VOLBEAT,23,25
 #-------------------------------
