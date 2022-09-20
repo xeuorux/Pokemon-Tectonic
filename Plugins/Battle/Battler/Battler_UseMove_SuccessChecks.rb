@@ -332,9 +332,9 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
-        if move.pbContactMove?(user) && user.affectedByContactEffect?
+        if move.physical?
           if user.pbCanLowerStatStage?(:DEFENSE)
-          user.pbLowerStatStage(:DEFENSE,2,nil)
+            user.pbLowerStatStage(:DEFENSE,2,nil)
           end
         end
         return false
@@ -349,7 +349,7 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
-        if move.pbContactMove?(user) && user.affectedByContactEffect?
+        if move.physicalMove?
           if user.pbCanLowerStatStage?(:ATTACK)
           user.pbLowerStatStage(:ATTACK,1,nil)
           end
@@ -366,13 +366,29 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
-        if move.pbContactMove?(user) && user.affectedByContactEffect?
+        if move.physicalMove?
           @battle.pbDisplay(_INTL("{1} was hurt!",user.pbThis))
           user.applyFractionalDamage(1.0/8.0)
         end
         return false
       elsif move.pbTarget(user).targets_foe
         @battle.pbDisplay(_INTL("{1}'s Spiky Shield was ignored!",target.pbThis))
+      end
+    end
+    # Mirror Shield
+    if target.effects[PBEffects::MirrorShield]
+      if move.canProtectAgainst? && !protectionIgnoredByAbility
+        @battle.pbCommonAnimation("MirrorShield",target)
+        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+        target.damageState.protected = true
+        @battle.successStates[user.index].protected = true
+        if move.specialMove?
+          @battle.pbDisplay(_INTL("{1} was hurt!",user.pbThis))
+          user.applyFractionalDamage(1.0/8.0)
+        end
+        return false
+      elsif move.pbTarget(user).targets_foe
+        @battle.pbDisplay(_INTL("{1}'s Mirror Shield was ignored!",target.pbThis))
       end
     end
     # Baneful Bunker
@@ -390,7 +406,7 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("{1}'s Baneful Bunker was ignored!",target.pbThis))
       end
     end
-    # Baneful Bunker
+    # Red-Hot Retreat
     if target.effects[PBEffects::RedHotRetreat]
       if move.canProtectAgainst? && !protectionIgnoredByAbility
         @battle.pbCommonAnimation("RedHotRetreat",target)

@@ -2959,3 +2959,15 @@ class PokeBattle_Move_592 < PokeBattle_Move_0BD
 		target.pbLowerStatStage(:SPEED,1,user)
 	end
 end
+
+#===============================================================================
+# User is protected against moves with the "B" flag this round. If a Pokémon
+# attacks with the user with a special attack while this effect applies, that Pokémon
+# takes 1/8th chip damage. (Red-Hot Retreat)
+#===============================================================================
+class PokeBattle_Move_593 < PokeBattle_ProtectMove
+	def initialize(battle,move)
+	  super
+	  @effect = PBEffects::MirrorShield
+	end
+end
