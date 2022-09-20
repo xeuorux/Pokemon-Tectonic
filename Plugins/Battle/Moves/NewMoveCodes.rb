@@ -2396,15 +2396,15 @@ class PokeBattle_Move_572 < PokeBattle_SleepMove
 end
 
 #===============================================================================
-# Type effectiveness is multiplied by the Ground-type's effectiveness against
+# Type effectiveness is multiplied by the Psychic-type's effectiveness against
 # the target. (Leyline Burst)
 #===============================================================================
 class PokeBattle_Move_573 < PokeBattle_Move
 	def pbCalcTypeModSingle(moveType,defType,user,target)
 	  ret = super
-	  if GameData::Type.exists?(:GROUND)
-		groundEff = Effectiveness.calculate_one(:GROUND, defType)
-		ret *= groundEff.to_f / Effectiveness::NORMAL_EFFECTIVE_ONE
+	  if GameData::Type.exists?(:PSYCHIC)
+		psychicEffectiveness = Effectiveness.calculate_one(:PSYCHIC, defType)
+		ret *= psychicEffectiveness.to_f / Effectiveness::NORMAL_EFFECTIVE_ONE
 	  end
 	  return ret
 	end
