@@ -1840,3 +1840,23 @@ class PokeBattle_Move_095 < PokeBattle_Move
     return damageMult
   end
 end
+
+#===============================================================================
+# Freezes the target. Effectiveness against Water-type is 2x. (Freeze-Dry)
+#===============================================================================
+class PokeBattle_Move_135 < PokeBattle_FrostbiteMove
+  def pbCalcTypeModSingle(moveType,defType,user,target)
+    return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :WATER
+    return super
+  end
+end
+
+#===============================================================================
+# Freezes the target. Accuracy perfect in hail. (Blizzard)
+#===============================================================================
+class PokeBattle_Move_00D < PokeBattle_FrostbiteMove
+  def pbBaseAccuracy(user,target)
+    return 0 if @battle.pbWeather == :Hail
+    return super
+  end
+end

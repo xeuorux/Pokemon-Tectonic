@@ -5,20 +5,26 @@ class PokeBattle_Move
 		else
 			oldStatus = (battler) ? battler.status : pkmn.status
 			curedName = (battler) ? battler.pbThis : pkmn.name
-		  	pkmn.status      = :NONE
-		  	pkmn.statusCount = 0
+      pkmn.status      = :NONE
+      pkmn.statusCount = 0
 			case oldStatus
-			when :SLEEP
-				@battle.pbDisplay(_INTL("{1} was woken from sleep.",curedName))
-			when :POISON
-				@battle.pbDisplay(_INTL("{1} was cured of its poisoning.",curedName))
-			when :BURN
-				@battle.pbDisplay(_INTL("{1}'s burn was healed.",curedName))
-			when :PARALYSIS
-				@battle.pbDisplay(_INTL("{1} was cured of numb.",curedName))
-			when :FROZEN
-				@battle.pbDisplay(_INTL("{1} was unchilled.",curedName))
-			end
+        when :SLEEP
+          @battle.pbDisplay(_INTL("{1} was woken from sleep.",curedName))
+        when :POISON
+          @battle.pbDisplay(_INTL("{1} was cured of its poisoning.",curedName))
+        when :BURN
+          @battle.pbDisplay(_INTL("{1}'s burn was healed.",curedName))
+        when :PARALYSIS
+          @battle.pbDisplay(_INTL("{1} was cured of numb.",curedName))
+        when :FROZEN
+          @battle.pbDisplay(_INTL("{1} warmed up.",curedName))
+        when :FROSTBITE
+          @battle.pbDisplay(_INTL("{1} frostbite was healed.",curedName))
+        when :FLUSTERED
+          @battle.pbDisplay(_INTL("{1} is no longer flustered.",curedName))
+        when :FROZEN
+          @battle.pbDisplay(_INTL("{1} is no longer mystified.",curedName))
+        end
     	end
   end
 end
