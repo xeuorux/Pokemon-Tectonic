@@ -30,10 +30,8 @@ BattleHandlers::AbilityOnEnemySwitchIn.add(:DETERRENT,
     battle.pbShowAbilitySplash(bearer)
     if switcher.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       battle.scene.pbDamageAnimation(switcher)
-      reduce = switcher.totalhp/8
-      reduce /= 4 if switcher.boss?
-      switcher.pbReduceHP(reduce,false)
       battle.pbDisplay(_INTL("{1} was attacked on sight!",switcher.pbThis))
+      switcher.applyFractionalDamage(1.0/8.0)
     end
     battle.pbHideAbilitySplash(bearer)
   }

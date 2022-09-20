@@ -482,10 +482,8 @@ class PokeBattle_Move_511 < PokeBattle_Move
 	def pbEffectAfterAllHits(user,target)
 		return if target.damageState.unaffected
 		return if !user.takesIndirectDamage?
-		amt = (user.hp / 3).ceil
-		user.pbReduceHP(amt,false)
 		@battle.pbDisplay(_INTL("{1} loses one third of its health in recoil!",user.pbThis))
-		user.pbItemHPHealCheck
+		user.applyFractionalDamage(1.0/3.0,true,true)
 	end
 	
 	def getScore(score,user,target,skill=100)
@@ -859,15 +857,13 @@ end
 # Puts the target to sleep. User loses half of their max HP as recoil. (Demon's Kiss)
 #===============================================================================
 class PokeBattle_Move_526 < PokeBattle_SleepMove
-  def pbEffectAgainstTarget(user,target)
-    target.pbSleep
-	return if !user.takesIndirectDamage?
-    return if user.hasActiveAbility?(:ROCKHEAD)
-    amt = (user.totalhp/2.0).ceil
-    user.pbReduceHP(amt,false)
-    @battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
-    user.pbItemHPHealCheck
-  end
+	def pbEffectAgainstTarget(user,target)
+		target.pbSleep
+		return if !user.takesIndirectDamage?
+		return if user.hasActiveAbility?(:ROCKHEAD)
+		@battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
+		user.applyFractionalDamage(1.0/2.0)
+	end
   
     def getScore(score,user,target,skill=100)
 		score -= 50 if user.hp <= user.totalhp/2

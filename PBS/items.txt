@@ -75,7 +75,7 @@
 68,EVIOLITE,Eviolite,Eviolites,5,8000,"When held, it raises the Defense and Sp. Def if the holder can still evolve. Prevents evolution.",0,0,0
 69,FLOATSTONE,Float Stone,Float Stones,5,4000,"A very light stone. It reduces the weight of a Pokémon when held.",0,0,0
 70,DESTINYKNOT,Destiny Knot,Destiny Knots,5,4000,"A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, so does the foe.",0,0,0
-71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,5,4000,"Damages attackers for 1/8 of their HP when they hit the holder with physical attacks.",0,0,0
+71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with physical attacks.",0,0,0
 72,EJECTBUTTON,Eject Button,Eject Buttons,5,4000,"If the holder is hit by an attack, it will switch with another Pokémon in your party.",0,0,0
 73,REDCARD,Red Card,Red Cards,5,4000,"A card with a mysterious power. When the holder is struck by a foe, the attacker is removed from battle.",0,0,0
 74,SHEDSHELL,Shed Shell,Shed Shells,5,4000,"An item to be held by a Pokémon. This discarded carapace lets the holder switch out of battle without fail.",0,0,0
@@ -864,7 +864,7 @@
 #-------------------------------
 823,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokemon you find is shiny.",2,0,0
 #-------------------------------
-824,BUSTEDRADIO,Busted Radio,Busted Radios,5,4000,"Damages attackers for 1/8 of their HP when they hit the holder with special attacks.",0,0,0
+824,BUSTEDRADIO,Busted Radio,Busted Radios,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with special attacks.",0,0,0
 #-------------------------------
 825,ABILITYTRANSFORMER,Ability Transformer,Ability Transformers,8,0,"An infinitely usable device which allows a Pokemon with two abilities to switch abilities when used.",5,0,6
 826,FACTORYPASS,Factory Pass,Factory Passes,8,0,"A pass that grants you access through the locked door in Victoire's factory.",5,0,6

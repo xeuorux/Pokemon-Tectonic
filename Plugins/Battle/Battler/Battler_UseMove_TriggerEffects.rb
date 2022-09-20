@@ -81,7 +81,6 @@ class PokeBattle_Battler
       dbName = @battle.battlers[user.effects[PBEffects::DestinyBondTarget]].pbThis
       @battle.pbDisplay(_INTL("{1} took its attacker down with it!",dbName))
       user.pbReduceHP(user.hp,false)
-      user.pbItemHPHealCheck
       user.pbFaint
       @battle.pbJudgeCheckpoint(user)
     end

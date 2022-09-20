@@ -3,17 +3,13 @@ BattleHandlers::TargetAbilityOnHit.add(:FEEDBACK,
     next if !move.specialMove?(user)
     battle.pbShowAbilitySplash(target)
     if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      battle.scene.pbDamageAnimation(user)
-	  reduce = user.totalhp/8
-	  reduce /= 4 if user.boss
-	  reduce.ceil
-      user.pbReduceHP(reduce,false)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
       else
         battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
            target.pbThis(true),target.abilityName))
       end
+      user.applyFractionalDamage(1.0/8.0)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -174,39 +170,14 @@ BattleHandlers::TargetAbilityOnHit.add(:ELECTRICFENCE,
 	echoln target.battle.field.terrain == :Electric
     next unless target.battle.field.terrain == :Electric
     battle.pbShowAbilitySplash(target)
-    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      battle.scene.pbDamageAnimation(user)
-      reduce = user.totalhp/8
-	  reduce /= 4 if user.boss
-      user.pbReduceHP(reduce,false)
+    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) && user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
       else
         battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
            target.pbThis(true),target.abilityName))
       end
-    end
-    battle.pbHideAbilitySplash(target)
-  }
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:SNAKEPIT,
-  proc { |ability,user,target,move,battle|
-    next unless battle.field.terrain == :Grassy
-    battle.pbShowAbilitySplash(target)
-    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      battle.scene.pbDamageAnimation(user)
-	  reduce = user.totalhp/8
-	  reduce /= 4 if user.boss
-	  reduce.ceil
-      user.pbReduceHP(reduce,false)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
-           target.pbThis(true),target.abilityName))
-      end
+      user.applyFractionalDamage(1.0/6.0)
     end
     battle.pbHideAbilitySplash(target)
   }

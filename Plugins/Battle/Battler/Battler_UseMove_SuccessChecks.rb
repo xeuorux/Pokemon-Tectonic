@@ -367,14 +367,8 @@ class PokeBattle_Battler
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
         if move.pbContactMove?(user) && user.affectedByContactEffect?
-          reduction = user.totalhp/8
-          reduction /= 4 if user.boss?
-          reduction = reduction.floor
-          user.damageState.displayedDamage = reduction
-          @battle.scene.pbDamageAnimation(user)
-          user.pbReduceHP(reduction,false)
           @battle.pbDisplay(_INTL("{1} was hurt!",user.pbThis))
-          user.pbItemHPHealCheck
+          user.applyFractionalDamage(1.0/8.0)
         end
         return false
       elsif move.pbTarget(user).targets_foe

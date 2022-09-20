@@ -132,8 +132,9 @@ class PokeBattle_Battle
     priority.each do |b|
       # Weather-related abilities
       if b.abilityActive?
+        oldHP = b.hp
         BattleHandlers.triggerEORWeatherAbility(b.ability,curWeather,b,self)
-        b.pbFaint if b.fainted?
+        b.pbHealthLossChecks(oldHP)
       end
       # Weather damage
       # NOTE:
@@ -148,15 +149,9 @@ class PokeBattle_Battle
             pbDisplay(_INTL("{1} is buffeted by the sandstorm!",b.pbThis))
           end
         end
-		    reduction = b.totalhp/16
-		    reduction *= 2 if damageDoubled
-		    reduction /= 4 if b.boss?
-        reduction = reduction.round
-		    b.damageState.displayedDamage = reduction
-		    @scene.pbDamageAnimation(b)
-        b.pbReduceHP(reduction,false)
-        b.pbItemHPHealCheck
-        b.pbFaint if b.fainted?
+        fraction = 1.0/16.0
+        fraction *= 2 if damageDoubled
+        b.applyFractionalDamage(fraction)
       when :Hail
         next if !b.takesHailDamage?
         damageDoubled = !pbCheckGlobalAbility(:BITTERCOLD).nil?
@@ -167,38 +162,19 @@ class PokeBattle_Battle
             pbDisplay(_INTL("{1} is buffeted by the hail!",b.pbThis))
           end
         end
-        reduction = b.totalhp/16
-	    	reduction *= 2 if damageDoubled
-		    reduction /= 4 if b.boss?
-        reduction = reduction.round
-        hailDamage += reduction
-		    b.damageState.displayedDamage = reduction
-		    @scene.pbDamageAnimation(b)
-        b.pbReduceHP(reduction,false)
-        b.pbItemHPHealCheck
-        b.pbFaint if b.fainted?
+        fraction = 1.0/16.0
+        fraction *= 2 if damageDoubled
+        hailDamage += b.applyFractionalDamage(fraction)
       when :ShadowSky
         next if !b.takesShadowSkyDamage?
         pbDisplay(_INTL("{1} is hurt by the shadow sky!",b.pbThis))if showWeatherMessages
-        reduction = b.totalhp/16
-		    reduction /= 4 if b.boss?
-        reduction = reduction.round
-		    b.damageState.displayedDamage = reduction
-		    @scene.pbDamageAnimation(b)
-        b.pbReduceHP(reduction,false)
-        b.pbItemHPHealCheck
-        b.pbFaint if b.fainted?
+        fraction = 1.0/16.0
+        b.applyFractionalDamage(fraction)
       when :AcidRain
         if !b.takesAcidRainDamage?
           pbDisplay(_INTL("{1} is hurt by the acid rain!",b.pbThis)) if showWeatherMessages
-          reduction = b.totalhp/16
-          reduction /= 4 if b.boss?
-          reduction = reduction.round
-          b.damageState.displayedDamage = reduction
-          @scene.pbDamageAnimation(b)
-          b.pbReduceHP(reduction,false)
-          b.pbItemHPHealCheck
-          b.pbFaint if b.fainted?
+          fraction = 1.0/16.0
+          b.applyFractionalDamage(fraction)
         elsif b.pbHasType?(:POISON) || b.hasActiveAbility?(:POISONHEAL)
           pbDisplay(_INTL("{1} absorbs the acid rain!",b.pbThis)) if showWeatherMessages
           heal = b.totalhp/16
@@ -280,13 +256,18 @@ class PokeBattle_Battle
     # Status-curing effects/abilities and HP-healing items
     priority.each do |b|
       next if b.fainted?
-      # Grassy Terrain (healing)
-      if @field.terrain == :Grassy && b.affectedByTerrain? && b.canHeal?
-        PBDebug.log("[Lingering effect] Grassy Terrain heals #{b.pbThis(true)}")
-		    amount = b.totalhp/16
-		    amount /= 4 if b.boss?
-        b.pbRecoverHP(amount)
-        pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+      # Grassy Terrain
+      if @field.terrain == :Grassy && b.affectedByTerrain?
+        PBDebug.log("[Lingering effect] Grassy Terrain affects #{b.pbThis(true)}")
+        if pbCheckOpposingAbility(:SNAKEPIT)
+          pbDisplay(_INTL("{1} is lashed at by the pit of snakes!",b.pbThis))
+          b.applyFractionalDamage(1.0/16.0)
+        elsif b.canHeal?
+          amount = b.totalhp/16
+          amount /= 4 if b.boss?
+          b.pbRecoverHP(amount)
+          pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+        end
       end
       # Healer, Hydration, Shed Skin
       BattleHandlers.triggerEORHealingAbility(b.ability,b,self) if b.abilityActive?
@@ -327,16 +308,8 @@ class PokeBattle_Battle
       priority.each do |b|
         next if b.opposes?(side)
         next if !b.takesIndirectDamage? || b.pbHasType?(:FIRE)
-        oldHP = b.hp
-		    reduction = b.totalhp/8
-		    reduction /= 4 if b.boss?
-		    b.damageState.displayedDamage = reduction.round
-        @scene.pbDamageAnimation(b)
-        b.pbReduceHP(reduction,false)
         pbDisplay(_INTL("{1} is hurt by the sea of fire!",b.pbThis))
-        b.pbItemHPHealCheck
-        b.pbAbilitiesOnDamageTaken(oldHP)
-        b.pbFaint if b.fainted?
+        b.applyFractionalDamage(1.0/8.0)
       end
     end
     # Leech Seed
@@ -345,29 +318,20 @@ class PokeBattle_Battle
       next if !b.takesIndirectDamage?
       recipient = @battlers[b.effects[PBEffects::LeechSeed]]
       next if !recipient || recipient.fainted?
-      oldHP = b.hp
-      oldHPRecipient = recipient.hp
       pbCommonAnimation("LeechSeed",recipient,b)
-	    healthFraction = b.boss ? 64 : 8
-      hpLost = b.pbReduceHP(b.totalhp/healthFraction)
+      oldHPRecipient = recipient.hp
+	    fraction = 1.0/8.0
+      hpLost = b.applyFractionalDamage(fraction,false)
       recipient.pbRecoverHPFromDrain(hpLost,b,
          _INTL("{1}'s health is sapped by Leech Seed!",b.pbThis))
-      recipient.pbAbilitiesOnDamageTaken(oldHPRecipient) if recipient.hp<oldHPRecipient
-      b.pbItemHPHealCheck
-      b.pbAbilitiesOnDamageTaken(oldHP)
-      b.pbFaint if b.fainted?
+      recipient.pbAbilitiesOnDamageTaken(oldHPRecipient) if recipient.hp < oldHPRecipient
       recipient.pbFaint if recipient.fainted?
     end
     # Damage from Hyper Mode (Shadow Pokémon)
     priority.each do |b|
       next if !b.inHyperMode? || @choices[b.index][0]!=:UseMove
-      reduction = b.totalhp/24
-	    reduction /= 4 if b.boss?
-	    b.damageState.displayedDamage = reduction.round
-      @scene.pbDamageAnimation(b)
-      b.pbReduceHP(reduction,false)
       pbDisplay(_INTL("The Hyper Mode attack hurts {1}!",b.pbThis(true)))
-      b.pbFaint if b.fainted?
+      b.applyFractionalDamage(1.0/24.0)
     end
     # Damage from poisoning
     priority.each do |b|
@@ -393,15 +357,10 @@ class PokeBattle_Battle
           end
         end
       elsif b.takesIndirectDamage?
-        oldHP = b.hp
-        dmg = b.totalhp/12
-		    dmg = (dmg/4.0).round if b.boss
-        dmg *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
-        b.pbContinueStatus(:POISON) { b.pbReduceHP(dmg,false) }
-        b.pbItemHPHealCheck
-        b.pbAbilitiesOnDamageTaken(oldHP)
+        fraction = 1.0/8.0
+        fraction *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
+        b.pbContinueStatus(:POISON) { b.applyFractionalDamage(fraction) }
         if b.fainted?
-          b.pbFaint 
           triggerDOTDeathDialogue(b)
         end
       end
@@ -430,15 +389,10 @@ class PokeBattle_Battle
           end
         end
 	    elsif b.takesIndirectDamage?
-        oldHP = b.hp
-        dmg = b.totalhp/8
-        dmg = (dmg/4.0).round if b.boss?
-        dmg *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
-        b.pbContinueStatus(:BURN) { b.pbReduceHP(dmg,false) }
-        b.pbItemHPHealCheck
-        b.pbAbilitiesOnDamageTaken(oldHP)
+        fraction = 1.0/8.0
+        fraction *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
+        b.pbContinueStatus(:BURN) { b.applyFractionalDamage(fraction) }
         if b.fainted?
-          b.pbFaint 
           triggerDOTDeathDialogue(b)
         end
       end
@@ -467,15 +421,10 @@ class PokeBattle_Battle
           end
         end
 	    elsif b.takesIndirectDamage?
-        oldHP = b.hp
-        dmg = b.totalhp/8
-        dmg = (dmg/4.0).round if b.boss?
-        dmg *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
-        b.pbContinueStatus(:FROSTBITE) { b.pbReduceHP(dmg,false) }
-        b.pbItemHPHealCheck
-        b.pbAbilitiesOnDamageTaken(oldHP)
+        fraction = 1.0/8.0
+        fraction *= 2 if b.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
+        b.pbContinueStatus(:FROSTBITE) { b.applyFractionalDamage(fraction) }
         if b.fainted?
-          b.pbFaint 
           triggerDOTDeathDialogue(b)
         end
       end
@@ -498,30 +447,14 @@ class PokeBattle_Battle
     priority.each do |b|
       b.effects[PBEffects::Nightmare] = false if !b.asleep?
       next if !b.effects[PBEffects::Nightmare] || !b.takesIndirectDamage?
-      oldHP = b.hp
-      if b.boss
-        b.pbReduceHP(b.totalhp/16)
-      else
-        b.pbReduceHP(b.totalhp/4)
-      end
       pbDisplay(_INTL("{1} is locked in a nightmare!",b.pbThis))
-      b.pbItemHPHealCheck
-      b.pbAbilitiesOnDamageTaken(oldHP)
-      b.pbFaint if b.fainted?
+      b.applyFractionalDamage(fraction)
     end
     # Curse
     priority.each do |b|
       next if !b.effects[PBEffects::Curse] || !b.takesIndirectDamage?
-      oldHP = b.hp
-      if b.boss
-        b.pbReduceHP(b.totalhp/16)
-      else
-        b.pbReduceHP(b.totalhp/4)
-      end
       pbDisplay(_INTL("{1} is afflicted by the curse!",b.pbThis))
-      b.pbItemHPHealCheck
-      b.pbAbilitiesOnDamageTaken(oldHP)
-      b.pbFaint if b.fainted?
+      b.applyFractionalDamage(1.0/4.0,false)
     end
   end
 
@@ -603,18 +536,10 @@ class PokeBattle_Battle
         else                            pbCommonAnimation("Wrap", b)
         end
         if b.takesIndirectDamage?
-          hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/8 : b.totalhp/16
-          if @battlers[b.effects[PBEffects::TrappingUser]].hasActiveItem?(:BINDINGBAND)
-            hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/4 : b.totalhp/8
-          end
-		      hpLoss = (hpLoss/4.0).floor if b.boss
-		      b.damageState.displayedDamage = hpLoss.round
-          @scene.pbDamageAnimation(b)
-          b.pbReduceHP(hpLoss,false)
+          fraction = (Settings::MECHANICS_GENERATION >= 6) ? 1.0/8.0 : 1.0/16.0
+          fraction *= 2 if @battlers[b.effects[PBEffects::TrappingUser]].hasActiveItem?(:BINDINGBAND)
           pbDisplay(_INTL("{1} is hurt by {2}!",b.pbThis,moveName))
-          b.pbItemHPHealCheck
-          # NOTE: No need to call pbAbilitiesOnDamageTaken as b can't switch out.
-          b.pbFaint if b.fainted?
+          b.applyFractionalDamage(fraction)
         end
       end
     end
@@ -632,7 +557,6 @@ class PokeBattle_Battle
         perishSongUsers.push(b.effects[PBEffects::PerishSongUser])
         b.pbReduceHP(b.hp)
       end
-      b.pbItemHPHealCheck
       b.pbFaint if b.fainted?
     end
     if perishSongUsers.length>0

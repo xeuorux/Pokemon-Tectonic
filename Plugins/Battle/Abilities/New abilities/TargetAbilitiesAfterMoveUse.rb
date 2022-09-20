@@ -16,17 +16,11 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:VENGEANCE,
   proc { |ability,target,user,move,switched,battle|
     next if !move.damagingMove?
     next if !target.knockedBelowHalf?
-	battle.pbShowAbilitySplash(target)
-	if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-	  reduce = user.totalhp/4
-	  reduce /= 4 if user.boss
-	  reduce = reduce.floor
-	  user.damageState.displayedDamage = reduce
-	  battle.scene.pbDamageAnimation(user)
-      user.pbReduceHP(reduce,false)
-      battle.pbDisplay(_INTL("{1} was punished!",user.pbThis))
+    battle.pbShowAbilitySplash(target)
+    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      user.applyFractionalDamage(1.0/4.0)
     end
-	battle.pbHideAbilitySplash(target)
+    battle.pbHideAbilitySplash(target)
   }
 )
 
