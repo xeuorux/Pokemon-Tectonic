@@ -9940,7 +9940,7 @@ InternalName = SABLEYE
 Type1 = DARK
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,60,75,50,60,60
+BaseStats = 75,60,90,55,60,40
 # Total = 380
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -24663,7 +24663,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = TOXAPEX,Level,48
+Evolutions = TOXAPEX,Level,42
 #-------------------------------
 [748]
 Name = Toxapex
@@ -29739,7 +29739,7 @@ InternalName = RUBARIOR
 Type1 = DARK
 Type2 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 125,75,125,20,75,80
+BaseStats = 120,75,150,30,75,50
 # Total = 500
 GenderRate = Female50Percent
 GrowthRate = Parabolic
