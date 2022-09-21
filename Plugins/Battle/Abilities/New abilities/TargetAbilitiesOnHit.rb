@@ -244,3 +244,9 @@ BattleHandlers::TargetAbilityOnHit.add(:RELUCTANTBLADE,
 	  end
   }
 )
+
+BattleHandlers::TargetAbilityOnHit.add(:WIBBLEWOBBLE,
+  proc { |ability,user,target,move,battle|
+      battle.forceUseMove(target,:POWERSPLIT,user.index,true,nil,nil,true)
+  }
+)
