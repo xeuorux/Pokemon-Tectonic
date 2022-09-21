@@ -1,9 +1,10 @@
 def invulnerableProtectEffects()
-    return [PBEffects::Protect,PBEffects::Obstruct,PBEffects::KingsShield,PBEffects::SpikyShield,PBEffects::BanefulBunker,PBEffects::RedHotRetreat,PBEffects::MatBlock]
+    return [PBEffects::Protect,PBEffects::Obstruct,PBEffects::KingsShield,PBEffects::SpikyShield,
+        PBEffects::BanefulBunker,PBEffects::RedHotRetreat,PBEffects::MatBlock,PBEffects::MirrorShield]
   end
 
 def singleProtectEffects()
-    return [PBEffects::BanefulBunker,PBEffects::RedHotRetreat,PBEffects::KingsShield,PBEffects::Protect,PBEffects::SpikyShield]
+    return [PBEffects::BanefulBunker,PBEffects::RedHotRetreat,PBEffects::KingsShield,PBEffects::Protect,PBEffects::SpikyShield,PBEffects::MirrorShield]
 end
 
 def sideProtectEffects()

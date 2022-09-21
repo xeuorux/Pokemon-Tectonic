@@ -288,20 +288,14 @@ BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
   proc { |ability,user,target,move,battle|
     next if !move.pbContactMove?(user)
     battle.pbShowAbilitySplash(target)
-    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-	  reduce = user.totalhp/8
-	  reduce /= 4 if user.boss
-	  reduce = reduce.ceil
-	  user.damageState.displayedDamage = reduce
-	  battle.scene.pbDamageAnimation(user)
-      user.pbReduceHP(reduce,false)
+    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) && user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
       else
         battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
            target.pbThis(true),target.abilityName))
       end
+      user.applyFractionalDamage(1.0/8.0)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -315,20 +309,14 @@ BattleHandlers::EOREffectAbility.add(:BADDREAMS,
       next if !b.near?(battler) || !b.asleep?
       battle.pbShowAbilitySplash(battler)
       next if !b.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      oldHP = b.hp
-	  reduce = b.totalhp/8
-	  reduce /= 4 if b.boss
-      b.pbReduceHP(reduce)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("{1} is tormented!",b.pbThis))
       else
         battle.pbDisplay(_INTL("{1} is tormented by {2}'s {3}!",b.pbThis,
            battler.pbThis(true),battler.abilityName))
       end
+      b.applyFractionalDamage(1.0/8.0,false)
       battle.pbHideAbilitySplash(battler)
-      b.pbItemHPHealCheck
-      b.pbAbilitiesOnDamageTaken(oldHP)
-      b.pbFaint if b.fainted?
     end
   }
 )
@@ -353,14 +341,9 @@ BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
         next
       end
     end
-    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-	  reduce = user.totalhp/4
-	  reduce /= 4 if user.boss
-	  user.damageState.displayedDamage = reduce
-	  battle.scene.pbDamageAnimation(user)
-      user.pbReduceHP(reduce,false)
+    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) && user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       battle.pbDisplay(_INTL("{1} was caught in the aftermath!",user.pbThis))
+      b.applyFractionalDamage(1.0/4.0)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -371,15 +354,19 @@ BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
     next if !target.fainted? || user.dummy
     battle.pbShowAbilitySplash(target)
     if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      user.damageState.displayedDamage = target.damageState.hpLost
-	  battle.scene.pbDamageAnimation(user)
-      user.pbReduceHP(target.damageState.hpLost,false)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
       else
         battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
            target.pbThis(true),target.abilityName))
       end
+      oldHP = user.hp
+      damageTaken = target.damageState.hpLost
+      damageTaken /= 4 if target.boss?
+      user.damageState.displayedDamage = damageTaken
+	    battle.scene.pbDamageAnimation(user)
+      user.pbReduceHP(damageTaken,false)
+      user.pbHealthLossChecks(oldHP)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -523,13 +510,9 @@ BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
     case weather
     when :Sun, :HarshSun
       battle.pbShowAbilitySplash(battler)
-	  reduction = battler.totalhp/8
-	  battler.damageState.displayedDamage = reduction
-      battle.scene.pbDamageAnimation(battler)
-      battler.pbReduceHP(reduction,false)
       battle.pbDisplay(_INTL("{1} was hurt by the sunlight!",battler.pbThis))
+      battler.applyFractionalDamage(1.0/8.0)
       battle.pbHideAbilitySplash(battler)
-      battler.pbItemHPHealCheck
     when :Rain, :HeavyRain
       next if !battler.canHeal?
       battle.pbShowAbilitySplash(battler)
@@ -548,14 +531,9 @@ BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
   proc { |ability,weather,battler,battle|
     next unless [:Sun, :HarshSun].include?(weather)
     battle.pbShowAbilitySplash(battler)
-	reduction = battler.totalhp/8
-	reduction /= 4 if battler.boss?
-	battler.damageState.displayedDamage = reduction
-	battle.scene.pbDamageAnimation(battler)
-    battler.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} was hurt by the sunlight!",battler.pbThis))
+    battler.applyFractionalDamage(1.0/8.0)
     battle.pbHideAbilitySplash(battler)
-    battler.pbItemHPHealCheck
   }
 )
 

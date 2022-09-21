@@ -48,6 +48,7 @@ module PBEffects
     FlareWitch          = 153
 
     EmpoweredDetect     = 154
+    MirrorShield        = 155
 
     #===========================================================================
     # These effects apply to a battler position

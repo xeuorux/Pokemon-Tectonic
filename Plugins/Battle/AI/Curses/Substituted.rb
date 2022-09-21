@@ -14,7 +14,7 @@ PokeBattle_Battle::BattlerEnterCurseEffect.add(:CURSE_SUBSTITUTED,
 		subLife = battler.totalhp/4
 		subLife = 1 if subLife<1
 		battler.pbReduceHP(subLife,false,false)
-		battler.pbItemHPHealCheck
+		battler.pbHealthLossChecks()
 		battler.effects[PBEffects::Trapping]     = 0
 		battler.effects[PBEffects::TrappingMove] = nil
 		battler.effects[PBEffects::Substitute]   = subLife

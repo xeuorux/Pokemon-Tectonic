@@ -4,7 +4,7 @@ class PokemonDataBox < SpriteWrapper
 	EXP_BAR_FILL_TIME  = 0.5
 	# Maximum time in seconds to make a change to the HP bar.
 	HP_BAR_CHANGE_TIME = 0.5
-	
+	PokemonDataBox
 	TYPE_ICON_HEIGHT = 18
 	TYPE_ICON_THIN_HEIGHT = 20
 	NAME_BASE_COLOR = Color.new(255,255,255)
@@ -36,7 +36,7 @@ class PokemonDataBox < SpriteWrapper
 		refresh
 	end
 	
-	  def initializeDataBoxGraphic(sideSize)
+	def initializeDataBoxGraphic(sideSize)
 		onPlayerSide = ((@battler.index%2)==0)
 		# Get the data box graphic and set whether the HP numbers/Exp bar are shown
 		if sideSize==1   # One Pokémon on side, use the regular data box BG
@@ -69,6 +69,8 @@ class PokemonDataBox < SpriteWrapper
 		  @spriteBaseX = 16
 		end
 		case sideSize
+		when 1
+			@spriteY -= 20 if @bossGraphics && @legendary
 		when 2
 		  @spriteX += [-12,  12,  0,  0][@battler.index]
 		  @spriteY += [-20, -34, 34, 20][@battler.index]
@@ -183,27 +185,26 @@ class PokemonDataBox < SpriteWrapper
 				 statusXRect,statusID2*STATUS_ICON_HEIGHT,statusWidth,STATUS_ICON_HEIGHT])
 		end
 		# Refresh type bars
-		if visible && @showTypes
-			types = @battler.pbTypes(true,true)
-			iconHeight = @thinBox ? TYPE_ICON_THIN_HEIGHT : TYPE_ICON_HEIGHT
-			if types[0]
-				@type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number * iconHeight
-				@type1Icon.visible = true
-			else
-				@type1Icon.visible = false
-			end
-			if types[1]
-				@type2Icon.src_rect.y = GameData::Type.get(types[1]).id_number * iconHeight
-				@type2Icon.visible = true
-			else
-				@type2Icon.visible = false
-			end
-			if types[2]
-				@type3Icon.src_rect.y = GameData::Type.get(types[2]).id_number * iconHeight
-				@type3Icon.visible = true
-			else
-				@type3Icon.visible = false
-			end
+		types = @battler.pbTypes(true,true)
+		iconHeight = @thinBox ? TYPE_ICON_THIN_HEIGHT : TYPE_ICON_HEIGHT
+		iconsVisible = visible && @showTypes
+		if types[0]
+			@type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number * iconHeight
+			@type1Icon.visible = iconsVisible
+		else
+			@type1Icon.visible = false
+		end
+		if types[1]
+			@type2Icon.src_rect.y = GameData::Type.get(types[1]).id_number * iconHeight
+			@type2Icon.visible = iconsVisible
+		else
+			@type2Icon.visible = false
+		end
+		if types[2]
+			@type3Icon.src_rect.y = GameData::Type.get(types[2]).id_number * iconHeight
+			@type3Icon.visible = iconsVisible
+		else
+			@type3Icon.visible = false
 		end
 		pbDrawImagePositions(self.bitmap,imagePos)
 		#self.update

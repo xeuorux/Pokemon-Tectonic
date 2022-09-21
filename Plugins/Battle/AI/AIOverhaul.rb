@@ -467,10 +467,8 @@ class PokeBattle_AI
     return pbEnemyShouldWithdrawEx?(idxBattler)
   end
      
-  def pbEnemyShouldWithdrawEx?(idxBattler,switchingBias=-2)
+  def pbEnemyShouldWithdrawEx?(idxBattler,switchingBias=0)
     return false if @battle.wildBattle?
-    batonPass = -1
-    skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill_level || 0
     battler = @battle.battlers[idxBattler]
     owner = @battle.pbGetOwnerFromBattlerIndex(idxBattler)
     policies = owner.policies || []
@@ -485,7 +483,7 @@ class PokeBattle_AI
       moveType = moveData.type
     end
 
-	  # Switch if previously hit hard by a super effective move
+	  # Switch if previously hit by a super or hyper effective move
     if battler.turnCount > 1 && !policies.include?(:PROACTIVE_MATCHUP_SWAPPER)
       if !moveType.nil?
         typeMod = pbCalcTypeMod(moveType,target,battler)
@@ -523,6 +521,19 @@ class PokeBattle_AI
         switchingBias -= 2
       end
     end
+    # Pokémon is about to faint because of Perish Song
+    if battler.effects[PBEffects::PerishSong]==1
+      switchingBias += 10
+    end
+    # Should swap when confusion self-damage is likely to deal it a bunch of damage this turn
+    if battler.effects[PBEffects::ConfusionChance] >= 1
+		  switchingBias += 2 if highDamageFromConfusion(battler)
+    end
+	  # Should swap when charm self-damage is likely to deal it a bunch of damage this turn
+    if battler.effects[PBEffects::CharmChance] >= 1
+		  switchingBias += 2 if highDamageFromConfusion(battler)
+    end
+
     if policies.include?(:PROACTIVE_MATCHUP_SWAPPER) # Used for Cool Trainers
       matchups = []
       battler.eachOpposing do |opposingBattler|
@@ -532,18 +543,10 @@ class PokeBattle_AI
       currentMatchupRating = matchups.min
       PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) thinks its current matchup is rated: #{currentMatchupRating}")
       switchingBias -= currentMatchupRating
-    end
-    # Pokémon is about to faint because of Perish Song
-    if battler.effects[PBEffects::PerishSong]==1
-      switchingBias += 10
-    end
-    # Should swap when confusion self-damage is likely to deal it a bunch of damage this turn
-    if battler.effects[PBEffects::ConfusionChance] >= 1
-		  switchingBias += 4 if highDamageFromConfusion(battler)
-    end
-	  # Should swap when charm self-damage is likely to deal it a bunch of damage this turn
-    if battler.effects[PBEffects::CharmChance] >= 1
-		  switchingBias += 4 if highDamageFromConfusion(battler)
+    else
+      if switchingBias <= 0
+        return false
+      end
     end
 
     # Determine who to swap into if at all

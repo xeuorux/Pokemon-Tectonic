@@ -482,10 +482,8 @@ class PokeBattle_Move_511 < PokeBattle_Move
 	def pbEffectAfterAllHits(user,target)
 		return if target.damageState.unaffected
 		return if !user.takesIndirectDamage?
-		amt = (user.hp / 3).ceil
-		user.pbReduceHP(amt,false)
 		@battle.pbDisplay(_INTL("{1} loses one third of its health in recoil!",user.pbThis))
-		user.pbItemHPHealCheck
+		user.applyFractionalDamage(1.0/3.0,true,true)
 	end
 	
 	def getScore(score,user,target,skill=100)
@@ -859,15 +857,13 @@ end
 # Puts the target to sleep. User loses half of their max HP as recoil. (Demon's Kiss)
 #===============================================================================
 class PokeBattle_Move_526 < PokeBattle_SleepMove
-  def pbEffectAgainstTarget(user,target)
-    target.pbSleep
-	return if !user.takesIndirectDamage?
-    return if user.hasActiveAbility?(:ROCKHEAD)
-    amt = (user.totalhp/2.0).ceil
-    user.pbReduceHP(amt,false)
-    @battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
-    user.pbItemHPHealCheck
-  end
+	def pbEffectAgainstTarget(user,target)
+		target.pbSleep
+		return if !user.takesIndirectDamage?
+		return if user.hasActiveAbility?(:ROCKHEAD)
+		@battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
+		user.applyFractionalDamage(1.0/2.0)
+	end
   
     def getScore(score,user,target,skill=100)
 		score -= 50 if user.hp <= user.totalhp/2
@@ -2400,15 +2396,15 @@ class PokeBattle_Move_572 < PokeBattle_SleepMove
 end
 
 #===============================================================================
-# Type effectiveness is multiplied by the Ground-type's effectiveness against
+# Type effectiveness is multiplied by the Psychic-type's effectiveness against
 # the target. (Leyline Burst)
 #===============================================================================
 class PokeBattle_Move_573 < PokeBattle_Move
 	def pbCalcTypeModSingle(moveType,defType,user,target)
 	  ret = super
-	  if GameData::Type.exists?(:GROUND)
-		groundEff = Effectiveness.calculate_one(:GROUND, defType)
-		ret *= groundEff.to_f / Effectiveness::NORMAL_EFFECTIVE_ONE
+	  if GameData::Type.exists?(:PSYCHIC)
+		psychicEffectiveness = Effectiveness.calculate_one(:PSYCHIC, defType)
+		ret *= psychicEffectiveness.to_f / Effectiveness::NORMAL_EFFECTIVE_ONE
 	  end
 	  return ret
 	end
@@ -2961,5 +2957,17 @@ class PokeBattle_Move_592 < PokeBattle_Move_0BD
 		return if target.damageState.substitute
 		return if !target.pbCanLowerStatStage?(:SPEED,user,self)
 		target.pbLowerStatStage(:SPEED,1,user)
+	end
+end
+
+#===============================================================================
+# User is protected against moves with the "B" flag this round. If a Pokémon
+# attacks with the user with a special attack while this effect applies, that Pokémon
+# takes 1/8th chip damage. (Red-Hot Retreat)
+#===============================================================================
+class PokeBattle_Move_593 < PokeBattle_ProtectMove
+	def initialize(battle,move)
+	  super
+	  @effect = PBEffects::MirrorShield
 	end
 end

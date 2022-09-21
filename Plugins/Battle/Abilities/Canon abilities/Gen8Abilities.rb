@@ -184,7 +184,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
       battle.scene.pbChangePokemon(target,target.pokemon)
       battle.scene.pbDamageAnimation(user)
       if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-        user.pbReduceHP(user.totalhp/4,false)
+        user.applyFractionalDamage(1.0/4.0)
       end
       if gulpform==1
         user.pbLowerStatStageByAbility(:DEFENSE,1,target,false)

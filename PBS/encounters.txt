@@ -202,8 +202,8 @@ LandTall,20
 #-------------------------------
 [055] # Floral Rest
 FloweryGrass,20
+	25,STUFFUL,14,17
     25,BONSLY,15,18
-    25,DUSKULL,15,18
     25,SHUPPET,15,18
     5,FLABEBE,15,18
     5,FLABEBE_1,15,18
@@ -243,11 +243,10 @@ Special
 #-------------------------------
 [060] # Shipping Lane
 Land,20
-    20,IGGLYBUFF,14,17
-    20,MEOWTH,14,17
-    20,MSENTRET,14,17
-    20,STUFFUL,14,17
-    20,VENIPEDE,14,17
+    25,IGGLYBUFF,14,17
+    25,MEOWTH,14,17
+    25,MSENTRET,14,17
+    25,VENIPEDE,14,17
 LandTall,20
     25,DIGLETT,14,17
     25,PIKIPEK,14,17
@@ -317,7 +316,7 @@ Land,20
 [120] # Hollowed Layer
 DarkCave,20
     25,BRONZOR,17,20
-    25,LARVITAR,17,20
+    25,DURALUDON,17,20
     25,ONIX,17,20
     25,TYNAMO,17,20
 #-------------------------------
@@ -362,10 +361,11 @@ LandSparse,20
 #-------------------------------
 [129] # Barren Crater
 Land,20
-    25,MTANGELA,18,20
-    25,NINCADA,18,20
-    25,SPOINK,18,20
-    25,VULLABY,18,20
+    20,MTANGELA,18,20
+    20,NINCADA,18,20
+    20,SPOINK,18,20
+    20,VULLABY,18,20
+	20,LARVITAR,18,20
 Special,1
     1,LILLIPUP,15
 #-------------------------------
@@ -476,7 +476,7 @@ LandTall,25
 Puddle,21
     40,ESPURR,23,25
     20,CORPHISH,23,25
-    20,DEERLING,23,25
+    20,DEERLING_1,23,25
     20,ILLUMISE,23,25
     20,VOLBEAT,23,25
 #-------------------------------
@@ -805,10 +805,10 @@ Special
 Special
     1,WIMPOD,15
 #-------------------------------
-[326] # King's Barrows
+[326] # The Barrows
 DarkCave,20
     20,CUBONE,17,20
-    20,DURALUDON,17,20
+    20,DUSKULL,17,20
     20,MAWILE,17,20
     20,SABLEYE,17,20
     20,WOOBAT,17,20

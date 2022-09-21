@@ -30,10 +30,8 @@ BattleHandlers::AbilityOnEnemySwitchIn.add(:DETERRENT,
     battle.pbShowAbilitySplash(bearer)
     if switcher.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       battle.scene.pbDamageAnimation(switcher)
-      reduce = switcher.totalhp/8
-      reduce /= 4 if switcher.boss?
-      switcher.pbReduceHP(reduce,false)
       battle.pbDisplay(_INTL("{1} was attacked on sight!",switcher.pbThis))
+      switcher.applyFractionalDamage(1.0/8.0)
     end
     battle.pbHideAbilitySplash(bearer)
   }
@@ -142,7 +140,7 @@ BattleHandlers::OnBerryConsumedAbility.add(:ROAST,
 #==============================================================================
 BattleHandlers::EORWeatherAbility.add(:HEATSAVOR,
   proc { |ability,weather,battler,battle|
-    next unless [:Sun, :HarshSun].include?(weather)
+    next if ![:Sun, :HarshSun].include?(weather)
     next if !battler.canHeal?
     battle.pbShowAbilitySplash(battler)
     battler.pbRecoverHP(battler.totalhp/16)
@@ -183,9 +181,18 @@ BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR,:IMPERVIOUS)
 
 BattleHandlers::MoveBaseTypeModifierAbility.add(:FROSTSONG,
   proc { |ability,user,move,type|
-    next unless move.soundMove?
-    next unless GameData::Type.exists?(:ICE)
+    next if !move.soundMove?
+    next if !GameData::Type.exists?(:ICE)
     move.powerBoost = true
     next :ICE
+  }
+)
+
+BattleHandlers::MoveBaseTypeModifierAbility.add(:BLADETRAINED,
+  proc { |ability,user,move,type|
+    next if !move.slashMove?
+    next if !GameData::Type.exists?(:FIGHTING)
+    move.powerBoost = true
+    next :FIGHTING
   }
 )

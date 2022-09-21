@@ -467,3 +467,16 @@ def pbTrainerBattleCursed(nonCursedInfoArray, cursedInfoArray)
 		return pbTrainerBattle(nonCursedInfoArray[0], nonCursedInfoArray[1], nil, false, id)
 	end
 end
+
+def pbDoubleTrainerBattleCursed(nonCursedInfoArrayArray, cursedInfoArrayArray)
+  arrayToPickFrom = $PokemonGlobal.tarot_amulet_active ? cursedInfoArrayArray : nonCursedInfoArrayArray
+  firstTrainerArray = arrayToPickFrom[0]
+  firstTrainerClass = firstTrainerArray[0]
+  firstTrainerName = firstTrainerArray[1]
+  firstTrainerId = firstTrainerArray[2] || 0
+  secondTrainerArray = arrayToPickFrom[1]
+  secondTrainerClass = secondTrainerArray[0]
+  secondTrainerName = secondTrainerArray[1]
+  secondTrainerId = secondTrainerArray[2] || 0
+  return pbDoubleTrainerBattle(firstTrainerClass, firstTrainerName, firstTrainerId, nil, secondTrainerClass, secondTrainerName, secondTrainerId, nil)
+end

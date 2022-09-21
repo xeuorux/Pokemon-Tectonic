@@ -75,7 +75,7 @@
 68,EVIOLITE,Eviolite,Eviolites,5,8000,"When held, it raises the Defense and Sp. Def if the holder can still evolve. Prevents evolution.",0,0,0
 69,FLOATSTONE,Float Stone,Float Stones,5,4000,"A very light stone. It reduces the weight of a Pokémon when held.",0,0,0
 70,DESTINYKNOT,Destiny Knot,Destiny Knots,5,4000,"A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, so does the foe.",0,0,0
-71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,5,4000,"Damages attackers for 1/8 of their HP when they hit the holder with physical attacks.",0,0,0
+71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with physical attacks.",0,0,0
 72,EJECTBUTTON,Eject Button,Eject Buttons,5,4000,"If the holder is hit by an attack, it will switch with another Pokémon in your party.",0,0,0
 73,REDCARD,Red Card,Red Cards,5,4000,"A card with a mysterious power. When the holder is struck by a foe, the attacker is removed from battle.",0,0,0
 74,SHEDSHELL,Shed Shell,Shed Shells,5,4000,"An item to be held by a Pokémon. This discarded carapace lets the holder switch out of battle without fail.",0,0,0
@@ -403,7 +403,7 @@
 393,ASPEARBERRY,Aspear Berry,Aspear Berries,5,0,"It may be held by a Pokémon to unchill it.",0,0,5
 394,LEPPABERRY,Leppa Berry,Leppa Berries,5,0,"It may be held by a Pokémon to restore a move's PP by 10.",0,0,5
 395,ORANBERRY,Oran Berry,Oran Berries,5,0,"It may be held by a Pokémon to heal the user by 33% in a pinch.",0,0,5
-396,PERSIMBERRY,Persim Berry,Persim Berries,5,0,"It may be held by a Pokémon to recover from confusion or charm.",0,0,5
+396,PERSIMBERRY,Persim Berry,Persim Berries,5,0,"It may be held by a Pokémon to recover from being flustered.",0,0,5
 397,LUMBERRY,Lum Berry,Lum Berries,5,0,"It may be held by a Pokémon to recover from any status problem.",0,0,5
 398,SITRUSBERRY,Sitrus Berry,Sitrus Berries,5,0,"If held by a Pokémon, it heals its HP by 25% at half health.",0,0,5
 399,FIGYBERRY,Figy Berry,Figy Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
@@ -429,7 +429,7 @@
 419,SPELONBERRY,Spelon Berry,Spelon Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
 420,PAMTREBERRY,Pamtre Berry,Pamtre Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
 421,WATMELBERRY,Watmel Berry,Watmel Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-422,DURINBERRY,Durin Berry,Durin Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+422,DURINBERRY,Durin Berry,Durin Berries,5,0,"It may be held by a Pokémon to recover from being mystified.",0,0,5
 423,BELUEBERRY,Belue Berry,Belue Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
 424,OCCABERRY,Occa Berry,Occa Berries,5,0,"Weakens a supereffective Fire-type attack against the holding Pokémon.",0,0,5
 425,PASSHOBERRY,Passho Berry,Passho Berries,5,0,"Weakens a supereffective Water-type attack against the holding Pokémon.",0,0,5
@@ -864,7 +864,7 @@
 #-------------------------------
 823,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokemon you find is shiny.",2,0,0
 #-------------------------------
-824,BUSTEDRADIO,Busted Radio,Busted Radios,5,4000,"Damages attackers for 1/8 of their HP when they hit the holder with special attacks.",0,0,0
+824,BUSTEDRADIO,Busted Radio,Busted Radios,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with special attacks.",0,0,0
 #-------------------------------
 825,ABILITYTRANSFORMER,Ability Transformer,Ability Transformers,8,0,"An infinitely usable device which allows a Pokemon with two abilities to switch abilities when used.",5,0,6
 826,FACTORYPASS,Factory Pass,Factory Passes,8,0,"A pass that grants you access through the locked door in Victoire's factory.",5,0,6
@@ -892,10 +892,10 @@
 #-------------------------------
 865,FROSTORB,Frost Orb,Frost Orbs,5,4000,"A bizarre orb that inflicts frostbite on the holder in battle, or when used on a Pokémon.",5,0,0
 866,REINFORCINGROD,Reinforcing Rod,Reinforcing Rods,5,4000,"An item to be held by a Pokémon. It extends the duration of Rooms created by the holder.",0,0,0
-868,SIGILLEFTHALF,Sigil Left Half,Sigils Left Half,8,0,"The left half of the sigil of an ancient order of knights.",5,0,0
-869,SIGILRIGHTHALF,Sigil Right Half,Sigils Right Half,8,0,"The right half of the sigil of an ancient order of knights.",5,0,0
 #-------------------------------
 867,CHASMIDCARD,Chasm ID Card,Chasm ID Cards,8,0,"An ID card which unlocks gates and doors with Team Chasm coloring.",0,0,6
+868,SIGILLEFTHALF,Sigil Left Half,Sigils Left Half,8,0,"The left half of the sigil of an ancient order of knights.",5,0,0
+869,SIGILRIGHTHALF,Sigil Right Half,Sigils Right Half,8,0,"The right half of the sigil of an ancient order of knights.",5,0,0
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6

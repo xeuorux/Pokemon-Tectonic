@@ -57,11 +57,7 @@ BattleHandlers::TargetItemOnHit.add(:BUSTEDRADIO,
   proc { |item,user,target,move,battle|
     next if move.pbContactMove?(user)
     next if !user.takesIndirectDamage?
-	  reduction = user.totalhp/6
-	  reduction /= 4 if user.boss
-	  user.damageState.displayedDamage = reduction
-    battle.scene.pbDamageAnimation(user)
-    user.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} was hurt by the {2}!",user.pbThis,target.itemName))
+    user.applyFractionalDamage(1.0/6.0)
   }
 )

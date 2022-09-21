@@ -147,15 +147,11 @@ BattleHandlers::TargetItemOnHit.add(:JABOCABERRY,
     next if !move.physicalMove?
     next if !user.takesIndirectDamage?
     battle.pbCommonAnimation("EatBerry",target)
-	reduction = user.totalhp/8
-	if target.hasActiveAbility?(:RIPEN)
-		reduction *= 2
-	end
-	user.damageState.displayedDamage = reduction
-	battle.scene.pbDamageAnimation(user)
-	user.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",target.pbThis,
        target.itemName,user.pbThis(true)))
+    fraction = 1.0/8.0
+    fraction *= 2 if target.hasActiveAbility?(:RIPEN)
+    user.applyFractionalDamage(fraction)
     target.pbHeldItemTriggered(item)
   }
 )
@@ -166,15 +162,11 @@ BattleHandlers::TargetItemOnHit.add(:ROWAPBERRY,
     next if !move.specialMove?
     next if !user.takesIndirectDamage?
     battle.pbCommonAnimation("EatBerry",target)
-    reduction = user.totalhp/8
-	if target.hasActiveAbility?(:RIPEN)
-		reduction *= 2
-	end
-	user.damageState.displayedDamage = reduction
-	battle.scene.pbDamageAnimation(user)
-	user.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",target.pbThis,
        target.itemName,user.pbThis(true)))
+    fraction = 1.0/8.0
+    fraction *= 2 if target.hasActiveAbility?(:RIPEN)
+    user.applyFractionalDamage(fraction)
     target.pbHeldItemTriggered(item)
   }
 )
@@ -281,48 +273,12 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:MARANGABERRY,
 )
 
 
-BattleHandlers::TargetItemOnHit.add(:JABOCABERRY,
-  proc { |item,user,target,move,battle|
-    next if !target.canConsumeBerry?
-    next if !move.physicalMove?
-    next if !user.takesIndirectDamage?
-    battle.pbCommonAnimation("EatBerry",target)
-    battle.scene.pbDamageAnimation(user)
-	reduce = user.totalhp/8
-	reduce /= 4 if user.boss
-    user.pbReduceHP(reduce,false)
-    battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",target.pbThis,
-       target.itemName,user.pbThis(true)))
-    target.pbHeldItemTriggered(item)
-  }
-)
-
-BattleHandlers::TargetItemOnHit.add(:ROWAPBERRY,
-  proc { |item,user,target,move,battle|
-    next if !target.canConsumeBerry?
-    next if !move.specialMove?
-    next if !user.takesIndirectDamage?
-    battle.pbCommonAnimation("EatBerry",target)
-    battle.scene.pbDamageAnimation(user)
-    reduce = user.totalhp/8
-	reduce /= 4 if user.boss
-    user.pbReduceHP(reduce,false)
-    battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",target.pbThis,
-       target.itemName,user.pbThis(true)))
-    target.pbHeldItemTriggered(item)
-  }
-)
-
 BattleHandlers::TargetItemOnHit.add(:ROCKYHELMET,
   proc { |item,user,target,move,battle|
     next if !move.pbContactMove?(user) || !user.affectedByContactEffect?
     next if !user.takesIndirectDamage?
-	  reduction = user.totalhp/6
-	  reduction /= 4 if user.boss
-	  user.damageState.displayedDamage = reduction
-    battle.scene.pbDamageAnimation(user)
-    user.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} was hurt by the {2}!",user.pbThis,target.itemName))
+    user.applyFractionalDamage(1.0/6.0)
   }
 )
 
@@ -368,16 +324,8 @@ BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
 BattleHandlers::EOREffectItem.add(:STICKYBARB,
   proc { |item,battler,battle|
     next if !battler.takesIndirectDamage?
-    oldHP = battler.hp
-	reduction = battler.totalhp/8
-	reduction /= 4 if battler.boss?
-	battler.damageState.displayedDamage = reduction
-    battle.scene.pbDamageAnimation(battler)
-    battler.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} is hurt by its {2}!",battler.pbThis,battler.itemName))
-    battler.pbItemHPHealCheck
-    battler.pbAbilitiesOnDamageTaken(oldHP)
-    battler.pbFaint if battler.fainted?
+    battler.applyFractionalDamage(1.0/8.0)
   }
 )
 

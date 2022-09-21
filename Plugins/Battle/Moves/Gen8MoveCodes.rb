@@ -172,7 +172,7 @@ class PokeBattle_Move_179 < PokeBattle_Move
     if user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
       user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
     end
-    user.pbReduceHP(user.totalhp/3,false)
+    user.applyFractionalDamage(1.0/3.0)
   end
   
   def getScore(score,user,target,skill=100)
@@ -823,8 +823,6 @@ class PokeBattle_Move_192 < PokeBattle_Move
   end
 end
 
-
-
 #===============================================================================
 # Reduces Defense and Raises Speed after all hits (Scale Shot)
 #===============================================================================
@@ -844,8 +842,6 @@ class PokeBattle_Move_193 < PokeBattle_Move_0C0
 	return score
   end
 end
-
-
 
 #===============================================================================
 # Double damage if stats were lowered that turn. (Lash Out)
@@ -895,7 +891,7 @@ end
 
 
 #===============================================================================
-# Self KO. Boosted Damage when on Misty Terrain (Misty Explosion)
+# User loses half their max health. Boosted Damage when on Misty Terrain (Misty Explosion)
 #===============================================================================
 class PokeBattle_Move_196 < PokeBattle_Move_0E0
   def pbBaseDamage(baseDmg,user,target)
@@ -913,10 +909,7 @@ class PokeBattle_Move_196 < PokeBattle_Move_0E0
 
   def pbSelfKO(user)
     return if user.fainted?
-    reduction = user.totalhp / 2.0
-    reduction /= 4 if user.boss?
-    user.pbReduceHP(reduction.ceil,false)
-    user.pbItemHPHealCheck
+    user.applyFractionalDamage(1.0/2.0,false)
   end
 end
 
@@ -994,10 +987,8 @@ class PokeBattle_Move_510 < PokeBattle_Move
 	def pbEffectAfterAllHits(user,target)
 		return if target.damageState.unaffected
 		return if !user.takesIndirectDamage?
-		amt = (user.hp / 2).ceil
-		user.pbReduceHP(amt,false)
 		@battle.pbDisplay(_INTL("{1} loses half its health in recoil!",user.pbThis))
-		user.pbItemHPHealCheck
+    user.applyFractionalDamage(1.0/2.0,true,true)
 	end
 	
 	def getScore(score,user,target,skill=100)

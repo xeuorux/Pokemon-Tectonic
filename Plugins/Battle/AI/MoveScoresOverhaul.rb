@@ -19,8 +19,8 @@ class PokeBattle_AI
 		score = getBurnMoveScore(score,user,target,skill,policies,move.statusMove?)
 		score = getFlinchingMoveScore(score,user,target,skill,policies) if move.function == "00B"
 	#---------------------------------------------------------------------------
-	when "00C", "00D", "00E","135"
-		score = getFreezeMoveScore(score,user,target,skill,policies,move.statusMove?)
+	when "00C", "00D", "00E","135", "403"
+		score = getFrostbiteMoveScore(score,user,target,skill,policies,move.statusMove?)
 		score = getFlinchingMoveScore(score,user,target,skill,policies) if move.function == "00E"
 	#---------------------------------------------------------------------------
 	when "00F" # Flinching move
@@ -2143,16 +2143,6 @@ def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,t
 	return score
 end
 
-def getFreezeMoveScore(score,user,target,skill=100,policies=[],status=false)
-	if target.pbCanFreeze?(user,false)
-		score += 30
-		score -= 30 if target.hasActiveAbilityAI?(statusUpsideAbilities)
-	elsif status
-		return 0
-	end
-	return score
-end
-
 def getPoisonMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target && target.pbCanPoison?(user,false)
 		score += 30
@@ -2168,6 +2158,17 @@ def getBurnMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target && target.pbCanBurn?(user,false)
 		score += 30
 		score -= 30 if target.hasActiveAbilityAI?([:FLAREBOOST,:BURNHEAL].concat(statusUpsideAbilities))
+		score = 9999 if policies.include?(:PRIORITIZEDOTS) && status
+	elsif status
+		return 0
+	end
+	return score
+end
+
+def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],status=false)
+	if target.pbCanFrostbite?(user,false)
+		score += 30
+		score -= 30 if target.hasActiveAbilityAI?([:FROSTHEAL].concat(statusUpsideAbilities))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && status
 	elsif status
 		return 0

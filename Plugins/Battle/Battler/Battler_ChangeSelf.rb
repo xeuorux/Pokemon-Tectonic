@@ -1,4 +1,39 @@
 class PokeBattle_Battler
+  # Helper method for performing the two checks that are supposed to occur whenever the battler loses HP
+  # From a special effect. E.g. sandstorm DOT, ability triggers
+  # Returns whether or not the pokemon faints
+  def pbHealthLossChecks(oldHP = -1)
+    pbItemHPHealCheck()
+    if fainted?
+      pbFaint()
+      return true
+    elsif oldHP > -1
+      pbAbilitiesOnDamageTaken(oldHP) 
+    end
+    return false
+  end
+
+  # Applies damage effects that are based on a fraction of the battler's total HP
+  # Returns how much damage ended up dealt
+  # Accounts for bosses taking reduced fractional damage
+  def applyFractionalDamage(fraction,showDamageAnimation=true,basedOnCurrentHP=false)
+    oldHP = @hp
+    fraction /= 4.0 if boss?
+    fraction *= 2 if @battle.pbCheckOpposingAbility(:AGGRAVATE,@index)
+    if basedOnCurrentHP
+      reduction = (@hp * fraction).ceil
+    else
+      reduction = (@totalhp * fraction).ceil
+    end
+    if showDamageAnimation
+      @damageState.displayedDamage = reduction
+      @battle.scene.pbDamageAnimation(self)
+    end
+    pbReduceHP(reduction,false)
+    fainted = pbHealthLossChecks(oldHP)
+    return reduction
+  end
+
 	def pbRecoverHP(amt,anim=true,anyAnim=true)
 		raise _INTL("Told to recover a negative amount") if amt<0
 		amt = amt.round
@@ -15,7 +50,7 @@ class PokeBattle_Battler
 		raise _INTL("HP greater than total HP") if @hp>@totalhp
 		@battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt>0
 		return amt
-    end
+  end
 
 	def pbRecoverHPFromDrain(amt,target,msg=nil)
 		if target.hasActiveAbility?(:LIQUIDOOZE)
@@ -31,7 +66,6 @@ class PokeBattle_Battler
 		  end
 		end
 	end
-
 
 	def pbFaint(showMessage=true)
 		if !fainted?

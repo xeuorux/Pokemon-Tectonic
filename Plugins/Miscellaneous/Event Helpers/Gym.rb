@@ -101,8 +101,8 @@ def showGymChoicesBenceZoe(notSureLabel="NotSure",basicTeamLabel="BasicTeam",dou
 	cmdDoublesTeam = -1
 	commands = []
 	commands[cmdNotSure = commands.length]  = _INTL("I'm not sure")
-	commands[cmdBasicTeam = commands.length]  = (amuletMatters && $PokemonGlobal.tarot_amulet_active) ? _INTL("Your Full Team (CURSED)") : _INTL("Just You")
-	commands[cmdDoublesTeam = commands.length]  = _INTL("Both of you (Advanced)")
+	commands[cmdBasicTeam = commands.length]  =  _INTL("Just You")
+	commands[cmdDoublesTeam = commands.length]  = (amuletMatters && $PokemonGlobal.tarot_amulet_active) ? _INTL("Both of you (CURSED)") : _INTL("Both of you (Advanced)")
 	cmd = pbShowCommands(nil,commands)
 	if cmdNotSure > -1 && cmd == cmdNotSure
 		goToLabel(notSureLabel)
@@ -111,6 +111,10 @@ def showGymChoicesBenceZoe(notSureLabel="NotSure",basicTeamLabel="BasicTeam",dou
 	elsif cmdDoublesTeam > -1 && cmd == cmdDoublesTeam
 		goToLabel(doublesTeamLabel)
 	end
+end
+
+def doubleBattleBenceZoe()
+	return pbDoubleTrainerBattleCursed([[:LEADER_Zoe_2,"Zoé",0],[:LEADER_Bence_2,"Bence",0]],[[:LEADER_Zoe_2,"Zoé",1],[:LEADER_Bence_2,"Bence",1]])
 end
 
 def receivedGymRewardYet?(index)
