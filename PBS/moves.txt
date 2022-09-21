@@ -1114,3 +1114,4 @@
 1048,UNFURL,Unfurl,594,75,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user attacks by spreading its body wide. Its power doubles if defense curl was used previously.",BODYSLAM
 1049,BUILTDIFFERENT,Built Different,595,0,FIGHTING,Status,0,15,0,User,0,d,"The user spectacularly flexes, raising its Defense by 2 stages and gaining the Rock type.",ROCKPOLISH
 1050,SILKSUNDER,Silk Sunder,0EE,70,FIRE,Physical,100,15,0,NearOther,0,abefhp,"After attacking, it returns to switch with a party Pokémon. Critical hits land more easily.",
+1051,DEATHMARK,Death Mark,596,0,DARK,Status,0,1,0,NearOther,0,ce,"Maximizes the user's Attack, but minimizes the user's Speed. The target becomes unable to flee.",MEANLOOK

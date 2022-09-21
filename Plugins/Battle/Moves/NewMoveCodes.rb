@@ -2583,7 +2583,7 @@ class PokeBattle_Move_580 < PokeBattle_Move
 end
 
 #===============================================================================
-# Puts the target to sleep, then lowers the user's speed by 2 stages (Sedating Dust)
+# Puts the target to sleep, then minimizes the user's speed. (Sedating Dust)
 #===============================================================================
 class PokeBattle_Move_581 < PokeBattle_Move_003
 	def pbFailsAgainstTarget?(user,target)
@@ -2595,7 +2595,7 @@ class PokeBattle_Move_581 < PokeBattle_Move_003
 			user.stages[:SPEED] = 6
 			@battle.pbCommonAnimation("StatUp",user)
 			@battle.pbDisplay(_INTL("{1} maximized its Speed!",user.pbThis))
-		elsif user.hasActiveAbility?(:STUBBORN)
+		elsif !user.hasActiveAbility?(:STUBBORN)
 			user.stages[:SPEED] = -6
 			@battle.pbCommonAnimation("StatDown",user)
 			@battle.pbDisplay(_INTL("{1} minimized its Speed!",user.pbThis))
@@ -2987,7 +2987,7 @@ class PokeBattle_Move_594 < PokeBattle_Move
 end
 
 #===============================================================================
-# Power doubles if has the Defense Curl effect, which it consumes. (Built Different)
+# Changes user's type to Rock. (Built Different)
 #===============================================================================
 class PokeBattle_Move_595 < PokeBattle_Move_02F
 	def pbEffectGeneral(user)
@@ -2997,3 +2997,26 @@ class PokeBattle_Move_595 < PokeBattle_Move_02F
 		@battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
 	end
 end
+
+#===============================================================================
+# Maximizes Attack, Minimizes Speed, target cannot escape (Death Mark)
+#===============================================================================
+class PokeBattle_Move_596 < PokeBattle_Move_0EF
+	def pbEffectAfterAllHits(user,target)
+		if user.hasActiveAbility?(:CONTRARY)
+			user.stages[:SPEED] = 6
+			@battle.pbCommonAnimation("StatUp",user)
+			@battle.pbDisplay(_INTL("{1} maximized its Speed!",user.pbThis))
+			user.stages[:ATTACK] = -6
+			@battle.pbCommonAnimation("StatDown",user)
+			@battle.pbDisplay(_INTL("{1} minimized its Attack!",user.pbThis))
+		elsif !user.hasActiveAbility?(:STUBBORN)
+			user.stages[:SPEED] = -6
+			@battle.pbCommonAnimation("StatDown",user)
+			@battle.pbDisplay(_INTL("{1} minimized its Speed!",user.pbThis))
+			user.stages[:ATTACK] = 6
+			@battle.pbCommonAnimation("StatUp",user)
+			@battle.pbDisplay(_INTL("{1} maximized its Attack!",user.pbThis))
+		end
+	end
+ end
