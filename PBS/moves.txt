@@ -1111,4 +1111,4 @@
 1045,WAXINGWATER,Waxing Water,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with lunar tides, then summons rain for five turns.",SURF
 1046,HEATGYRE,Heat Gyre,0FF,50,FIRE,Physical,0,10,0,NearFoe,0,abef,"Spins into the target while emitting heat, then summons sunshine for five turns.",FLAMEWHEEL
 1047,MIRRORSHIELD,Mirror Shield,593,0,STEEL,Status,0,3,0,User,4,,"Protects the user from attacks. Special attackers take 1/8th HP damage.",PROTECT
-1048,HAYROLL,Hay Roll,544,30,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user rolls into the target. Its power doubles if it hits in succession.",ROLLOUT
+1048,UNFURL,Unfurl,594,75,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user attacks by spreading its body wide. Its power doubles if defense curl was used previously.",BODYSLAM

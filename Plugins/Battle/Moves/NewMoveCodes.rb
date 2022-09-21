@@ -2963,11 +2963,25 @@ end
 #===============================================================================
 # User is protected against moves with the "B" flag this round. If a Pokémon
 # attacks with the user with a special attack while this effect applies, that Pokémon
-# takes 1/8th chip damage. (Red-Hot Retreat)
+# takes 1/8th chip damage. (Mirror Shield)
 #===============================================================================
 class PokeBattle_Move_593 < PokeBattle_ProtectMove
 	def initialize(battle,move)
 	  super
 	  @effect = PBEffects::MirrorShield
+	end
+end
+
+#===============================================================================
+# Power doubles if has the Defense Curl effect, which it consumes. (Unfurl)
+#===============================================================================
+class PokeBattle_Move_594 < PokeBattle_Move
+	def pbBaseDamage(baseDmg,user,target)
+		baseDmg *= 2 if user.effects[PBEffects::DefenseCurl]
+		return baseDmg
+	end
+
+	def pbEffectAfterAllHits(user,target)
+		user.effects[PBEffects::DefenseCurl] = false
 	end
 end
