@@ -384,7 +384,7 @@
 383,ENVY,Envy,"This Pokémon's moves have priority against single targets with increased stats."
 384,SNAKEPIT,Snake Pit,"Grassy Terrain harms opponents rather than healing them."
 385,PETRIFYING,Petrifying,"Attacks against the Pokémon has a 30% chance to cause numbing."
-386,FROSTSONG,Frost Song,"Sound-based attacks turn Ice-type and are boosted by 30%."
+386,FROSTSONG,Frost Song,"Sound-based attacks turn Ice-type and are boosted by 50%."
 387,GILD,Gild,"Turns the held item of a Pokémon it hits into gold coins for you to take."
 388,LUXURYTASTE,Luxury Taste,"At end of turn, heals 1/8th HP if holding a clothing item."
 389,CHILLOUT,Chill Out,"Has a 30% chance to frostbite targets when using special moves."
@@ -456,3 +456,4 @@
 1005,PUNKROCK,Punk Rock,"Boosts power and resistance of sound moves."
 1006,MISTYSURGE,Misty Surge,"Turns the ground into Fairy Terrain for 5 turns when entering battle."
 1007,SANDSPIT,Sand Spit,"Summons a sandstorm for 4 turns when hit by an attack."
+1008,BLADETRAINED,Blade Trained,"Slashing attacks turn Fighting-type and are boosted by 50%."
