@@ -225,6 +225,9 @@ class BattleInfoDisplay < SpriteWrapper
 	:EVASION => "Evade"
 	}
 
+	tribalBonus = TribalBonus.new
+	pokemonTribalBonus = tribalBonus.getTribeBonuses(battler.pokemon)
+
 	# Hash containing info about each stat
 	# Each key is a symbol of a stat
 	# Each value is an array of [statName, statStage, statMult, statFinalValue]
@@ -260,7 +263,8 @@ class BattleInfoDisplay < SpriteWrapper
 
 		# Draw the final stat value label
 		value = statValues[stat] || 100 # 100 is for accuracy and evasion
-		value = (value * mult).floor
+		valueBonus = pokemonTribalBonus[stat] || 0
+		value = ((value + valueBonus) * mult).floor
 		statValuesArray.push(value)
 
 		# Track the highest and lowest main battle stat (not accuracy or evasion)
