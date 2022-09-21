@@ -202,9 +202,9 @@ LandTall,20
 #-------------------------------
 [055] # Floral Rest
 FloweryGrass,20
-	25,STUFFUL,14,17
     25,BONSLY,15,18
     25,SHUPPET,15,18
+    25,STUFFUL,14,17
     5,FLABEBE,15,18
     5,FLABEBE_1,15,18
     5,FLABEBE_2,15,18
@@ -361,11 +361,11 @@ LandSparse,20
 #-------------------------------
 [129] # Barren Crater
 Land,20
+    20,LARVITAR,18,20
     20,MTANGELA,18,20
     20,NINCADA,18,20
     20,SPOINK,18,20
     20,VULLABY,18,20
-	20,LARVITAR,18,20
 Special,1
     1,LILLIPUP,15
 #-------------------------------
