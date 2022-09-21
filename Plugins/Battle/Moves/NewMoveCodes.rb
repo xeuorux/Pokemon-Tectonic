@@ -2985,3 +2985,15 @@ class PokeBattle_Move_594 < PokeBattle_Move
 		user.effects[PBEffects::DefenseCurl] = false
 	end
 end
+
+#===============================================================================
+# Power doubles if has the Defense Curl effect, which it consumes. (Built Different)
+#===============================================================================
+class PokeBattle_Move_595 < PokeBattle_Move_02F
+	def pbEffectGeneral(user)
+		super
+		user.effects[PBEffects::Type3] = :ROCK
+		typeName = GameData::Type.get(:ROCK).name
+		@battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
+	end
+end
