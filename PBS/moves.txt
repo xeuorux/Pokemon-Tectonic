@@ -1107,7 +1107,7 @@
 1041,ERODINGFOAM,Eroding Foam,590,40,WATER,Special,100,25,100,NearOther,0,bef,"The user spews alkaline bubbles that melt the target, drastically lowering their Defense.",BUBBLEBEAM
 1042,COCODROP,Coco Drop,591,1,GRASS,Physical,100,15,0,NearOther,0,abef,"The user drops a coconut from high up. The taller the user compared to the target, the greater the damage.",SEEDBOMB
 1043,LIGHTNINGSPEAR,Lightning Spear,592,90,ELECTRIC,Special,100,15,0,NearOther,0,bef,"Shoots a damaging spear at enemies, or a Sp. Def and Speed buffing electric charge at allies.",THUNDERBOLT
-1044,TARVOLLEY,Tar Volley,592,35,FIRE,Special,100,10,100,AllNearFoes,0,bef,"The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets Speed.",
-1045,WAXINGWATER,Waxing Water,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with lunar power, then summons rain for five turns.",
-1046,HEATGYRE,Heat Gyre,0FF,50,FIRE,Physical,0,10,0,NearFoe,0,abef,"Spins into the target while emitting heat, then summons sunshine for five turns.",
-1047,MIRRORSHIELD,Mirror Shield,593,0,STEEL,Status,0,3,0,User,4,,"Protects the user from attacks. Special attackers take 1/8th HP damage.",
+1044,TARVOLLEY,Tar Volley,592,35,FIRE,Special,100,10,100,AllNearFoes,0,bef,"The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets Speed.",SMOKESCREEN
+1045,WAXINGWATER,Waxing Water,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with lunar tides, then summons rain for five turns.",SURF
+1046,HEATGYRE,Heat Gyre,0FF,50,FIRE,Physical,0,10,0,NearFoe,0,abef,"Spins into the target while emitting heat, then summons sunshine for five turns.",FLAMEWHEEL
+1047,MIRRORSHIELD,Mirror Shield,593,0,STEEL,Status,0,3,0,User,4,,"Protects the user from attacks. Special attackers take 1/8th HP damage.",PROTECT
