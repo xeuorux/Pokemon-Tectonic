@@ -2999,7 +2999,7 @@ class PokeBattle_Move_595 < PokeBattle_Move_02F
 end
 
 #===============================================================================
-# Maximizes Attack, Minimizes Speed, target cannot escape (Death Mark)
+# Maximizes Attack, minimizes Speed, target cannot escape. (Death Mark)
 #===============================================================================
 class PokeBattle_Move_596 < PokeBattle_Move_0EF
 	def pbEffectAfterAllHits(user,target)
@@ -3010,10 +3010,12 @@ class PokeBattle_Move_596 < PokeBattle_Move_0EF
 			user.stages[:ATTACK] = -6
 			@battle.pbCommonAnimation("StatDown",user)
 			@battle.pbDisplay(_INTL("{1} minimized its Attack!",user.pbThis))
-		elsif !user.hasActiveAbility?(:STUBBORN)
-			user.stages[:SPEED] = -6
-			@battle.pbCommonAnimation("StatDown",user)
-			@battle.pbDisplay(_INTL("{1} minimized its Speed!",user.pbThis))
+		else
+			if !user.hasActiveAbility?(:STUBBORN)
+				user.stages[:SPEED] = -6
+				@battle.pbCommonAnimation("StatDown",user)
+				@battle.pbDisplay(_INTL("{1} minimized its Speed!",user.pbThis))
+			end
 			user.stages[:ATTACK] = 6
 			@battle.pbCommonAnimation("StatUp",user)
 			@battle.pbDisplay(_INTL("{1} maximized its Attack!",user.pbThis))
