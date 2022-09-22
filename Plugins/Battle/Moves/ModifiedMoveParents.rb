@@ -302,3 +302,37 @@ class PokeBattle_WeatherMove < PokeBattle_Move
     return score
   end
 end
+
+#===============================================================================
+# Protect move.
+#===============================================================================
+class PokeBattle_ProtectMove < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    if @sidedEffect
+      if user.pbOwnSide.effects[@effect]
+        user.effects[PBEffects::ProtectRate] = 1
+        @battle.pbDisplay(_INTL("But it failed!"))
+        return true
+      end
+    elsif user.effects[@effect]
+      user.effects[PBEffects::ProtectRate] = 1
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    if (!@sidedEffect || Settings::MECHANICS_GENERATION <= 5) &&
+        user.effects[PBEffects::ProtectRate]>1
+      user.effects[PBEffects::ProtectRate] = 1
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+  
+  def pbMoveFailedNoSpecial?(user,targets)
+    if pbMoveFailedLastInRound?(user)
+      user.effects[PBEffects::ProtectRate] = 1
+      return true
+    end
+    return false
+  end
+end

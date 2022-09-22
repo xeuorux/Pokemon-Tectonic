@@ -207,6 +207,14 @@ class PokeBattle_Battler
       pbEndTurn(choice)
       return
     end
+    # "But it failed!" checks, when the move is not a special usage
+    if !specialUsage && move.pbMoveFailedNoSpecial?(user,targets)
+      PBDebug.log(sprintf("[Move failed] In function code %s's def pbMoveFailedNoSpecial?",move.function))
+      user.lastMoveFailed = true
+      pbCancelMoves
+      pbEndTurn(choice)
+      return
+    end
     # Perform set-up actions and display messages
     # Messages include Magnitude's number and Pledge moves' "it's a combo!"
     move.pbOnStartUse(user,targets)
