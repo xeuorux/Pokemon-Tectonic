@@ -244,47 +244,7 @@ class PokeBattle_Scene
   end
 end
 
-# Add a check for dependent events in the passablity method
-class Game_Map
-  alias follow_passable? passable?
-  def passable?(x, y, d, self_event=nil)
-    ret = follow_passable?(x,y,d,self_event)
-    if !$game_temp.player_transferring && pbGetFollowerDependentEvent && self_event != $game_player
-      dependent = pbGetFollowerDependentEvent
-      return false if self_event != dependent && dependent.x == x && dependent.y == y
-    end
-    return ret
-  end
-
-  def passableStrict?(x, y, d, self_event = nil)
-    return false if !valid?(x, y)
-    for event in events.values
-      next if event == self_event || event.tile_id < 0 || event.through
-      next if !event.at_coordinate?(x, y)
-      return true if GameData::TerrainTag.try_get(@terrain_tags[event.tile_id]).ignore_passability
-      return true if GameData::TerrainTag.try_get(@terrain_tags[event.tile_id]).ice
-      return true if GameData::TerrainTag.try_get(@terrain_tags[event.tile_id]).ledge
-      return true if GameData::TerrainTag.try_get(@terrain_tags[event.tile_id]).can_surf
-      return true if GameData::TerrainTag.try_get(@terrain_tags[event.tile_id]).bridge
-      return false if @passages[event.tile_id] & 0x0f != 0
-      return true if @priorities[event.tile_id] == 0
-    end
-    for i in [2, 1, 0]
-      tile_id = data[x, y, i]
-      return true if GameData::TerrainTag.try_get(@terrain_tags[tile_id]).ignore_passability
-      return true if GameData::TerrainTag.try_get(@terrain_tags[tile_id]).ice
-      return true if GameData::TerrainTag.try_get(@terrain_tags[tile_id]).ledge
-      return true if GameData::TerrainTag.try_get(@terrain_tags[tile_id]).can_surf
-      return true if GameData::TerrainTag.try_get(@terrain_tags[tile_id]).bridge
-      return false if @passages[tile_id] & 0x0f != 0
-      return true if @priorities[tile_id] == 0
-    end
-    return true
-  end
-end
-
 module Game
-
   class << self
     alias follower_load load
     def load(save_data)
@@ -338,10 +298,9 @@ class Sprite_Character
 
   attr_accessor :steps
 
-# Change the initialize and update method to add Footprints
-if defined?(footsteps_initialize)
+  # Change the initialize and update method to add Footprints
+  if defined?(footsteps_initialize)
   alias follow_init footsteps_initialize
-
 
   def initialize(viewport, character = nil, is_follower = false)
     @viewport = viewport
@@ -349,7 +308,6 @@ if defined?(footsteps_initialize)
     follow_init(@viewport, character)
     @steps = []
   end
-
 
   def update
     follow_update
@@ -366,8 +324,7 @@ if defined?(footsteps_initialize)
         else
           make_steps = true
         end
-      elsif @character.respond_to?(:name) && !(EVENTNAME_MAY_NOT_INCLUDE.include?(@character.name) &&
-             FILENAME_MAY_NOT_INCLUDE.include?(@character.character_name))
+      elsif @character.respond_to?(:name) && !(EVENTNAME_MAY_NOT_INCLUDE.include?(@character.name) && FILENAME_MAY_NOT_INCLUDE.include?(@character.character_name))
         tilesetid = @character.map.instance_eval { @map.tileset_id }
         make_steps = [2,1,0].any? do |e|
           tile_id = @character.map.data[@old_x, @old_y, e]

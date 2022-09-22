@@ -20,12 +20,19 @@ class PokeBattle_Battler
     end
 end
 
-def shiftPokemonBitmapHue(baseBitmap, pokemon)
-    shift = pokemon.hueShift
+def shiftBitmapHue(baseBitmap, hueShift)
     ret = baseBitmap.copy
     baseBitmap.dispose
-    ret.each { |bitmap| bitmap.hue_change(shift) }
+    if ret.respond_to?('each')
+        ret.each { |bitmap| bitmap.hue_change(hueShift) }
+    else
+        ret.hue_change(hueShift)
+    end
     return ret
+end
+
+def shiftPokemonBitmapHue(baseBitmap, pokemon)
+    return shiftBitmapHue(baseBitmap,pokemon.hueShift)
 end
 
 def shiftSpeciesBitmapHue(baseBitmap, species)

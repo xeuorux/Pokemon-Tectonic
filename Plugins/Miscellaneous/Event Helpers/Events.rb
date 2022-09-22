@@ -2,6 +2,20 @@ def pbSetSelfSwitch(eventid, switch_name, value, mapid = -1)
 	$game_system.map_interpreter.pbSetSelfSwitch(eventid, switch_name, value, mapid)
 end
 
+def pbSetAllSwitches(eventid, value, mapid = -1)
+	['A','B','C','D'].each do |switch|
+		pbSetSelfSwitch(eventid, switch, value, mapid)
+	end
+end
+
+def pbSetOnlySwitch(eventid, switch_name, value, mapid = -1)
+	['A','B','C','D'].each do |switch|
+		processedValue = value
+		processedValue = !processedValue if switch == switch_name
+		pbSetSelfSwitch(eventid, switch, value, mapid)
+	end
+end
+
 def setMySwitch(switch,value)
 	pbSetSelfSwitch(get_self.id,switch,value)
 end
