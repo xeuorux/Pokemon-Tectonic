@@ -1023,39 +1023,6 @@ class PokeBattle_Move_142 < PokeBattle_Move
 end
 
 #===============================================================================
-# Protect Nerf: Now instantly fails on second try.
-# (Protect/Detect/etc.)
-#===============================================================================
-class PokeBattle_ProtectMove < PokeBattle_Move
-
-  def pbMoveFailed?(user,targets)
-    if @sidedEffect
-      if user.pbOwnSide.effects[@effect]
-        user.effects[PBEffects::ProtectRate] = 1
-        @battle.pbDisplay(_INTL("But it failed!"))
-        return true
-      end
-    elsif user.effects[@effect]
-      user.effects[PBEffects::ProtectRate] = 1
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    if (!@sidedEffect || Settings::MECHANICS_GENERATION <= 5) &&
-       user.effects[PBEffects::ProtectRate]>1
-      user.effects[PBEffects::ProtectRate] = 1
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    if pbMoveFailedLastInRound?(user)
-      user.effects[PBEffects::ProtectRate] = 1
-      return true
-    end
-    return false
-  end
-
-end
-
-#===============================================================================
 # User gains half the HP it inflicts as damage. Fails if target is not asleep.
 # (Dream Eater)
 #===============================================================================
@@ -1084,11 +1051,6 @@ class PokeBattle_Move_0DE < PokeBattle_Move
     return
   end
 end
-
-
-
-
-
 
 #===============================================================================
 # User is Ghost: User loses 1/2 of max HP, and curses the target.
@@ -1858,5 +1820,28 @@ class PokeBattle_Move_00D < PokeBattle_FrostbiteMove
   def pbBaseAccuracy(user,target)
     return 0 if @battle.pbWeather == :Hail
     return super
+  end
+end
+
+#===============================================================================
+# Reduces the user's HP by half of max, and sets its Attack to maximum.
+# (Belly Drum)
+#===============================================================================
+class PokeBattle_Move_03A < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    hpLoss = [user.totalhp/2,1].max
+    if user.hp<=hpLoss
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return true if !user.pbCanRaiseStatStage?(:ATTACK,user,self,true)
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    hpLoss = [user.totalhp/2,1].max
+    user.pbReduceHP(hpLoss,false)
+    user.pbMaximizeStatStage(:ATTACK,user,self)
+    user.pbItemHPHealCheck
   end
 end

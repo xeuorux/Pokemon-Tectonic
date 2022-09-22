@@ -186,10 +186,13 @@ end
 #===============================================================================
 # Maximizes accuracy.
 #===============================================================================
-class PokeBattle_Move_501 < PokeBattle_StatUpMove
-  def initialize(battle,move)
-    super
-    @statUp = [:ACCURACY,12]
+class PokeBattle_Move_501 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+	return !user.pbCanRaiseStatStage?(:ACCURACY,user,self,true)
+  end
+
+  def pbEffectGeneral(user)
+	user.pbMaximizeStatStage(:ACCURACY,user,self)
   end
   
   def getScore(score,user,target,skill=100)
@@ -2591,15 +2594,7 @@ class PokeBattle_Move_581 < PokeBattle_Move_003
 	end
 	def pbEffectAgainstTarget(user,target)
 		target.pbSleep
-		if user.hasActiveAbility?(:CONTRARY)
-			user.stages[:SPEED] = 6
-			@battle.pbCommonAnimation("StatUp",user)
-			@battle.pbDisplay(_INTL("{1} maximized its Speed!",user.pbThis))
-		elsif !user.hasActiveAbility?(:STUBBORN)
-			user.stages[:SPEED] = -6
-			@battle.pbCommonAnimation("StatDown",user)
-			@battle.pbDisplay(_INTL("{1} minimized its Speed!",user.pbThis))
-		end
+		user.pbMinimizeStatStage(:SPEED,user,self)
 	end
 	def getScore(score,user,target,skill=100)
 		score = sleepMoveAI(score,user,target,skill=100)
@@ -2987,7 +2982,7 @@ class PokeBattle_Move_594 < PokeBattle_Move
 end
 
 #===============================================================================
-# Changes user's type to Rock. (Built Different)
+# User's defense is raised two stages, and changes user's type to Rock. (Built Different)
 #===============================================================================
 class PokeBattle_Move_595 < PokeBattle_Move_02F
 	def pbEffectGeneral(user)
@@ -2999,26 +2994,41 @@ class PokeBattle_Move_595 < PokeBattle_Move_02F
 end
 
 #===============================================================================
-# Maximizes Attack, minimizes Speed, target cannot escape. (Death Mark)
+# Maximizes attack, minimizes Speed, target cannot escape. (Death Mark)
 #===============================================================================
-class PokeBattle_Move_596 < PokeBattle_Move_0EF
-	def pbEffectAfterAllHits(user,target)
-		if user.hasActiveAbility?(:CONTRARY)
-			user.stages[:SPEED] = 6
-			@battle.pbCommonAnimation("StatUp",user)
-			@battle.pbDisplay(_INTL("{1} maximized its Speed!",user.pbThis))
-			user.stages[:ATTACK] = -6
-			@battle.pbCommonAnimation("StatDown",user)
-			@battle.pbDisplay(_INTL("{1} minimized its Attack!",user.pbThis))
-		else
-			if !user.hasActiveAbility?(:STUBBORN)
-				user.stages[:SPEED] = -6
-				@battle.pbCommonAnimation("StatDown",user)
-				@battle.pbDisplay(_INTL("{1} minimized its Speed!",user.pbThis))
-			end
-			user.stages[:ATTACK] = 6
-			@battle.pbCommonAnimation("StatUp",user)
-			@battle.pbDisplay(_INTL("{1} maximized its Attack!",user.pbThis))
+class PokeBattle_Move_596 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		if target.effects[PBEffects::MeanLook] >= 0 && !user.pbCanRaiseStatStage?(:ATTACK) && !user.pbCanLowerStatStage?(:SPEED)
+		  @battle.pbDisplay(_INTL("But it failed!"))
+		  return true
+		end
+		return false
+	end
+
+	def pbEffectAgainstTarget(user,target)
+		if target.effects[PBEffects::MeanLook] < 0
+			target.effects[PBEffects::MeanLook] = user.index
+    		battle.pbDisplay(_INTL("{1} can no longer escape!",target.pbThis))
 		end
 	end
+
+	def pbEffectGeneral(user)
+		user.pbMinimizeStatStage(:SPEED,user,self)
+		user.pbMaximizeStatStage(:ATTACK,user,self)
+	end
  end
+
+#===============================================================================
+# User's side takes 50% less attack damage this turn. (Bulwark)
+#===============================================================================
+class PokeBattle_Move_597 < PokeBattle_ProtectMove
+	def initialize(battle,move)
+	  super
+	  @effect      = PBEffects::Bulwark
+	  @sidedEffect = true
+	end
+
+	def pbProtectMessage(user)
+		@battle.pbDisplay(_INTL("{1} spread its arms to guard {2}!",@name,user.pbTeam(true)))
+	end
+end

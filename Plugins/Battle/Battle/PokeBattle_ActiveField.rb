@@ -63,6 +63,7 @@ class PokeBattle_ActiveSide
       @effects[PBEffects::FrostSpikes]        = 0
       @effects[PBEffects::WideGuard]          = false
       @effects[PBEffects::EmpoweredEmbargo]   = false
+      @effects[PBEffects::Bulwark]            = false
     end
 end
 

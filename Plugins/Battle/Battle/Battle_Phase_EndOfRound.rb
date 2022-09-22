@@ -740,6 +740,7 @@ class PokeBattle_Battle
       @sides[side].effects[PBEffects::QuickGuard]           = false
       @sides[side].effects[PBEffects::Round]                = false
       @sides[side].effects[PBEffects::WideGuard]            = false
+      @sides[side].effects[PBEffects::Bulwark]              = false
     end
   end
 

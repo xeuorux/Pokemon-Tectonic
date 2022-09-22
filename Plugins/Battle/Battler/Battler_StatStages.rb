@@ -358,4 +358,26 @@ class PokeBattle_Battler
 				stages[:EVASION] > 0
 	end
   	
+
+  def pbMinimizeStatStage(stat,user=nil,move=nil,ignoreContrary=false)
+		if hasActiveAbility?(:CONTRARY) && !ignoreContrary
+			pbMaximizeStatStage(stat,user,move,true)
+		elsif pbCanLowerStatStage?(stat,user,move,true,ignoreContrary)
+			@stages[stat] = -6
+			@battle.pbCommonAnimation("StatDown",self)
+      statName = GameData::Stat.get(stat).real_name
+			@battle.pbDisplay(_INTL("{1} minimized its {2}!",self.pbThis, statName))
+		end
+	end
+
+	def pbMaximizeStatStage(stat,user=nil,move=nil,ignoreContrary=false)
+		if hasActiveAbility?(:CONTRARY) && !ignoreContrary
+			pbMinimizeStatStage(stat,user,move,true)
+		elsif pbCanRaiseStatStage?(stat,user,move,true,ignoreContrary)
+			@stages[stat] = 6
+			@battle.pbCommonAnimation("StatUp",self)
+      statName = GameData::Stat.get(stat).real_name
+			@battle.pbDisplay(_INTL("{1} maximizes its {2}!",self.pbThis, statName))
+		end
+	end
 end

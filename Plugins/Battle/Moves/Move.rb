@@ -433,7 +433,7 @@ class PokeBattle_Move
 		end
 		# Parental Bond's second attack
 		if user.effects[PBEffects::ParentalBond]==1
-		  multipliers[:base_damage_multiplier] /= 4
+		  multipliers[:base_damage_multiplier] *= 0.5
 		end
 		# Other
 		if user.effects[PBEffects::MeFirst]
@@ -449,22 +449,22 @@ class PokeBattle_Move
 		if type == :ELECTRIC
 		  @battle.eachBattler do |b|
 			next if !b.effects[PBEffects::MudSport]
-			  multipliers[:base_damage_multiplier] /= 3
+			  multipliers[:base_damage_multiplier] /= 3.0
 			  break
 		  end
 		  if @battle.field.effects[PBEffects::MudSportField]>0
-			  m ultipliers[:base_damage_multiplier] /= 3
+			  m ultipliers[:base_damage_multiplier] /= 3.0
 		  end
 		end
 		# Water Sport
 		if type == :FIRE
 		  @battle.eachBattler do |b|
 			next if !b.effects[PBEffects::WaterSport]
-			  multipliers[:base_damage_multiplier] /= 3
+			  multipliers[:base_damage_multiplier] /= 3.0
 			break
 		  end
 		  if @battle.field.effects[PBEffects::WaterSportField]>0
-			  multipliers[:base_damage_multiplier] /= 3
+			  multipliers[:base_damage_multiplier] /= 3.0
 		  end
 		end
     # Dragon Ride
@@ -589,33 +589,35 @@ class PokeBattle_Move
       multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
 		end
 		# Aurora Veil, Reflect, Light Screen
-		if !ignoresReflect? && !target.damageState.critical &&
-		   !user.hasActiveAbility?(:INFILTRATOR)
+		if !ignoresReflect? && !target.damageState.critical && !user.hasActiveAbility?(:INFILTRATOR)
 		  if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
         if @battle.pbSideBattlerCount(target)>1
           multipliers[:final_damage_multiplier] *= 2 / 3.0
         else
-          multipliers[:final_damage_multiplier] /= 2
+          multipliers[:final_damage_multiplier] *= 0.5
         end
 		  elsif target.pbOwnSide.effects[PBEffects::Reflect] > 0 && physicalMove?
         if @battle.pbSideBattlerCount(target)>1
           multipliers[:final_damage_multiplier] *= 2 / 3.0
         else
-          multipliers[:final_damage_multiplier] /= 2
+          multipliers[:final_damage_multiplier] *= 0.5
         end
 		  elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && specialMove?
         if @battle.pbSideBattlerCount(target) > 1
           multipliers[:final_damage_multiplier] *= 2 / 3.0
         else
-          multipliers[:final_damage_multiplier] /= 2
+          multipliers[:final_damage_multiplier] *= 0.5
         end
 		  end
 		end
     if target.effects[PBEffects::StunningCurl]
-      multipliers[:final_damage_multiplier] /= 2
+      multipliers[:final_damage_multiplier] *= 0.5
     end
     if target.effects[PBEffects::EmpoweredDetect] > 0
-      multipliers[:final_damage_multiplier] /= 2
+      multipliers[:final_damage_multiplier] *= 0.5
+    end
+    if target.pbOwnSide.effects[PBEffects::Bulwark]
+      multipliers[:final_damage_multiplier] *= 0.5
     end
 		# Move-specific base damage modifiers
 		multipliers[:base_damage_multiplier] = pbBaseDamageMultiplier(multipliers[:base_damage_multiplier], user, target)

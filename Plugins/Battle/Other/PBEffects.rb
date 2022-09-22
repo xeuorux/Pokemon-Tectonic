@@ -62,6 +62,7 @@ module PBEffects
 	FlameSpikes			= 22
     EmpoweredEmbargo    = 23
     FrostSpikes			= 24
+    Bulwark             = 25
 	
 	#===========================================================================
     # These effects apply to the battle (i.e. both sides)
@@ -70,5 +71,4 @@ module PBEffects
 	NeutralizingGas     = 14
     PuzzleRoom          = 15
 	OddRoom				= 16
-    
 end
