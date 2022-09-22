@@ -315,8 +315,8 @@ Land,20
 #-------------------------------
 [120] # Hollowed Layer
 DarkCave,20
-    25,BRONZOR,17,20
     25,BALTOY,17,20
+    25,BRONZOR,17,20
     25,LARVITAR,17,20
     25,TYNAMO,17,20
 #-------------------------------
@@ -361,9 +361,9 @@ LandSparse,20
 #-------------------------------
 [129] # Barren Crater
 Land,20
-    20,ROGGENROLA,18,20
     20,MTANGELA,18,20
     20,NINCADA,18,20
+    20,ROGGENROLA,18,20
     20,SPOINK,18,20
     20,VULLABY,18,20
 Special,1
@@ -600,9 +600,9 @@ Mud,20
 [214] # Team Chasm HQ
 DarkCave,21
     25,CARBINK,16,19
+    25,DURALUDON,16,19
     25,ELGYEM,16,19
     25,MUNNA,16,19
-	25,DURALUDON,16,19
 #-------------------------------
 [215] # Sky Placeholder
 Land,21
