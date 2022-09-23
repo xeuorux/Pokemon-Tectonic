@@ -616,7 +616,7 @@ Moves2 = REND,IRONHEAD
 HPMult = 4.0
 #-------------------------------
 [DURANT]
-Ability = HEATPROOF
+Ability = TUNNELMAKER
 Moves1 = IRONHEAD,SKITTERSMACK,PRIMEVALSANDSTORM
 Moves2 = ROCKSLIDE,LEECHLIFE
 HPMult = 4.5
