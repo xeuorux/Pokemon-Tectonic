@@ -27,7 +27,7 @@ DebugMenuCommands.register("seteventswitch", {
           break if tileCommand == 0
           switchName = ['A','B','C','D'][tileCommand-1]
           $game_self_switches[[chosenMap, chosenEvent, switchName]] = !$game_self_switches[[chosenMap, chosenEvent, switchName]]
-          pbRefreshSceneMap
+          $MapFactory.getMap(chosenMap, false).need_refresh = true if $MapFactory.hasMap?(chosenMap)
         end
       end
     end
