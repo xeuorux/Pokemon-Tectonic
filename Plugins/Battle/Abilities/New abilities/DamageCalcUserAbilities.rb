@@ -272,3 +272,9 @@ BattleHandlers::DamageCalcUserAbility.add(:HARSHHUNTER,
     end
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:TUNNELMAKER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5 if type == :GROUND
+  }
+)

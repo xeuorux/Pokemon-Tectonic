@@ -14,7 +14,8 @@ Fbarbarosa<s>ctWizard
 Slaynoir<s>Maddie
 FurretKnight<s>Dtp81390
 Gabs<s>derrondad
-BlueObelisk<s>
+BlueObelisk<s>Dark?
+MrPanda1
 
 Playtesters
 Splitmoon<s>Sets
