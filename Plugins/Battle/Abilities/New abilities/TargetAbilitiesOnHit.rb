@@ -250,3 +250,11 @@ BattleHandlers::TargetAbilityOnHit.add(:WIBBLEWOBBLE,
       battle.forceUseMove(target,:POWERSPLIT,user.index,true,nil,nil,true)
   }
 )
+
+BattleHandlers::TargetAbilityOnHit.add(:CONSTRICTOR,
+  proc { |ability,user,target,move,battle|
+    if move.physicalMove?
+      battle.forceUseMove(target,:BIND,user.index,true,nil,nil,true)
+	  end
+  }
+)
