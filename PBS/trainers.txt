@@ -3341,8 +3341,10 @@ Pokemon = LYCANROC,55
     AbilityIndex = 1
 #-------------------------------
 [SCHOOLKID_M3,Jeremy]
-Pokemon = METAPOD,9
-    AbilityIndex = 0
+Pokemon = PAWNIARD,9
+    Moves = SUCKERPUNCH,BULLETPUNCH,ENDEAVOR
+    AbilityIndex = 1
+    Item = SHELLBELL
 #-------------------------------
 [FORMERCHAMP_Chara,Chara]
 Pokemon = BISHARP,70
