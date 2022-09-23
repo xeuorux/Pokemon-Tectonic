@@ -36,7 +36,7 @@ class Game_Map
           passage = @passages[tileID]
           return false if passage & bit != 0
           return false if passage & 0x0f == 0x0f
-          return true if @priorities[tileID] == 0
+          return true if @priorities[tileID] == 0 && !event.name[/passablemult/]
         end
         return playerPassable?(x, y, d, self_event) if self_event==$game_player
         # All other events
