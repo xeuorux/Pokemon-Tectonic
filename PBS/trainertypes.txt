@@ -256,6 +256,7 @@
 352,FORMERCHAMP_Chara,Former Champion,100,Battle champion iris,Battle victory champion,,Female,,,[]
 353,ULTRALAINIE,Ultra,100,Battle champion iris,Battle victory champion,,Female,,,[]
 354,FORMERCHAMP_Elise,Former Champion,100,Battle champion iris,Battle victory champion,,Female,,,[]
+355,FORMERCHAMP_Vincent,Former Champion,100,Battle champion iris,Battle victory champion,,Male,,,[]
 400,DEVJUGGLER,Developer,80,,,,Male,,,[]
 401,DEVCOOLTRAINER_M4,Developer,80,,,,Male,,,[]
 402,DEVPSYCHIC_M,Developer,80,,,,Male,,,[]
