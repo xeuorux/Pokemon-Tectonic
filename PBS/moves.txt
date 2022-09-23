@@ -1116,3 +1116,4 @@
 1050,SUMMERSUNDER,Summer Sunder,0EE,70,GRASS,Physical,100,15,0,NearOther,0,abefhp,"After slashing, it returns to switch with a party Pokémon. Critical hits land more easily.",XSCISSOR
 1051,DEATHMARK,Death Mark,596,0,DARK,Status,0,1,0,NearOther,0,ce,"Maximizes the user's Attack, but minimizes the user's Speed. The target becomes unable to flee.",MEANLOOK
 1052,BULWARK,Bulwark,597,0,FIGHTING,Status,0,3,0,UserSide,3,d,"The user and its allies take 50% less attack damage this turn. Always fails if used in succession.",
+1053,SNOWYSORROWS,Snowy Sorrows,598,30,ICE,Special,100,12,0,NearOther,0,befk,"The user incants a snowy curse, dealing damage and setting a layer of Frost Spikes.",PERISHSONG

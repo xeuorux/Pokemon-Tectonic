@@ -3032,3 +3032,47 @@ class PokeBattle_Move_597 < PokeBattle_ProtectMove
 		@battle.pbDisplay(_INTL("{1} spread its arms to guard {2}!",@name,user.pbTeam(true)))
 	end
 end
+
+#===============================================================================
+# Damaging move that sets Frost Spikes. (Snowy Sorrows)
+#===============================================================================
+class PokeBattle_Move_598 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		return false if damagingMove?
+	end
+	
+	def pbEffectGeneral(user)
+		user.pbOpposingSide.effects[PBEffects::FrostSpikes] += 1
+		if user.pbOpposingSide.effects[PBEffects::FrostSpikes] > 2
+			user.pbOpposingSide.effects[PBEffects::FrostSpikes] == 2
+			return
+		end 
+        if user.pbOpposingSide.effects[PBEffects::FrostSpikes] == 2
+            @battle.pbDisplay(_INTL("The second layer of frost spikes were scattered all around {1}'s feet!",
+			user.pbOpposingTeam(true)))
+        else
+            @battle.pbDisplay(_INTL("Frost spikes were scattered all around {1}'s feet!",
+			user.pbOpposingTeam(true)))
+        end
+        if user.pbOpposingSide.effects[PBEffects::FlameSpikes] > 0
+            user.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0
+            @battle.pbDisplay(_INTL("The flame spikes around {1}'s feet were brushed aside!",
+                user.pbOpposingTeam(true)))
+        end
+        if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] > 0
+            user.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
+            @battle.pbDisplay(_INTL("The frost spikes around {1}'s feet were brushed aside!",
+                user.pbOpposingTeam(true)))
+        end
+    end
+
+    def getScore(score,user,target,skill=100)
+        if user.pbOpposingSide.effects[PBEffects::FrostSpikes] >= 1
+            return 0
+        end
+        score -= 40
+        score += 10*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
+        score += 10*@battle.pbAbleNonActiveCount(user.idxOwnSide)
+        return score
+    end
+end
