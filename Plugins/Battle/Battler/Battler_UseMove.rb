@@ -10,7 +10,7 @@ class PokeBattle_Battler
 		  end
     end
     # Choice Items
-		if !@effects[PBEffects:f:ChoiceBand] && hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
+		if !@effects[PBEffects:ChoiceBand] && hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
 		  if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
 			  @effects[PBEffects::ChoiceBand] = @lastMoveUsed
 		  elsif @lastRegularMoveUsed && pbHasMove?(@lastRegularMoveUsed)
