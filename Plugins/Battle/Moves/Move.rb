@@ -287,7 +287,6 @@ class PokeBattle_Move
   # Additional effect chance
   #=============================================================================
   def pbAdditionalEffectChance(user,target,effectChance=0)
-    return 0 if applyRainDebuff?(user)
     return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
 	  return 0 if target.effects[PBEffects::Enlightened]
     ret = (effectChance>0) ? effectChance : @addlEffect
@@ -295,6 +294,7 @@ class PokeBattle_Move
       ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
                   user.pbOwnSide.effects[PBEffects::Rainbow]>0
     end
+    ret /= 2 if applyRainDebuff?(user)
     ret = 100 if $DEBUG && Input.press?(Input::CTRL)
     return ret
   end
