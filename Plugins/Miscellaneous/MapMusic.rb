@@ -2,7 +2,6 @@
 def getMusicSettingPseudoParentIDOfGameMap(gameMapID)
     mapInfos = pbLoadMapInfos
     currentlyViewingMapID = gameMapID
-    echoln("Finding the right music settings map for game map ID #{gameMapID}")
     # Keep looping until a suitable map is found, or until there is no more parents to check
     while currentlyViewingMapID >= 1
       mapData = load_data(sprintf("Data/Map%03d.rxdata", currentlyViewingMapID))
@@ -24,7 +23,6 @@ class Game_Map
         id = @map_id if id == -1
         mapWithRightSettingsID = getMusicSettingPseudoParentIDOfGameMap(id)
         currentMap = load_data(sprintf("Data/Map%03d.rxdata", mapWithRightSettingsID))
-        echoln("Grabbing music data from map #{mapWithRightSettingsID} #{pbGetMapNameFromId(mapWithRightSettingsID)}")
         return currentMap
     end
 

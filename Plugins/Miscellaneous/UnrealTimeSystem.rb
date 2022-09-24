@@ -156,7 +156,8 @@ module PBDayNight
           Graphics.frame_rate*UnrealTime::TONE_CHECK_INTERVAL
         )
         if toneNeedUpdate
-          getToneInternal
+          getToneInternal()
+          applyOutdoorFog()
           @dayNightToneLastUpdate = Graphics.frame_count
         end
         return @cachedTone
@@ -232,9 +233,13 @@ if UnrealTime::ENABLED
     attr_accessor :extraYears 
     
     def addNewFrameCount
-      return if (UnrealTime::SWITCH_STOPS>0 && 
-        $game_switches[UnrealTime::SWITCH_STOPS])
-      self.newFrameCount+=1
+      return if (UnrealTime::SWITCH_STOPS>0 && $game_switches[UnrealTime::SWITCH_STOPS])
+      if $DEBUG && Input.press?(Input::CTRL) && Input.pressex?(0x54) # T, for time
+        self.newFrameCount += 100
+        PBDayNight.sheduleToneRefresh
+      else
+        self.newFrameCount += 1
+      end
     end
     
     def newFrameCount
