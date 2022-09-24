@@ -10,7 +10,7 @@ class PokeBattle_Battler
 		  end
     end
     # Choice Items
-		if !@effects[PBEffects::ChoiceBand] && hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
+		if !@effects[PBEffects:f:ChoiceBand] && hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
 		  if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
 			  @effects[PBEffects::ChoiceBand] = @lastMoveUsed
 		  elsif @lastRegularMoveUsed && pbHasMove?(@lastRegularMoveUsed)
@@ -348,8 +348,10 @@ class PokeBattle_Battler
       numHits = move.pbNumHits(user,targets)
       numHits *= 2 if user.effects[PBEffects::VolleyStance] && move.specialMove?
       # Process each hit in turn
+      # Skip all hits if the move is being magic coated, magic bounced, or magic shielded
       realNumHits = 0
-      if magicCoater < 0 || magicBouncer < 0 || magicShielder < 0
+      moveIsMagicked = magicCoater >= 0 || magicBouncer >= 0 || magicShielder >= 0
+      if !moveIsMagicked
         for i in 0...numHits
           success = pbProcessMoveHit(move,user,targets,i,skipAccuracyCheck,numHits > 1)
           if !success
@@ -414,7 +416,7 @@ class PokeBattle_Battler
         targets.each { |otherB| otherB.pbFaint if otherB && otherB.fainted? }
         user.pbFaint if user.fainted?
       end
-      # Magic Coat's bouncing back (move has no targets)
+      # Magic Coat and Magic Bounce's bouncing back (move has no targets)
       if magicCoater>=0 || magicBouncer>=0
         mc = @battle.battlers[(magicCoater>=0) ? magicCoater : magicBouncer]
         if !mc.fainted?
