@@ -286,7 +286,7 @@ Moves2 = DUALWINGBEAT,COLDFRONT
 HPMult = 4.0
 #-------------------------------
 [WAILORD]
-Ability = PRESSURE
+Ability = GARGANTUAN
 Moves1 = BODYSLAM,SURF,PRIMEVALHEALBELL
 Moves2 = SELFDESTRUCT
 Turns = 1
