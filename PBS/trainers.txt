@@ -4478,3 +4478,12 @@ Pokemon = ROTOM,70
 	Moves = OVERHEAT,HEX,WILLOWISP,SUBSTITUTE
 	Item = LEFTOVERS
 	EV = 20,0,15,0,0,15
+    #-------------------------------
+    [GUITARIST3,Mai]
+    Pokemon = SUNKERN,22
+        AbilityIndex = 1
+        Item = HEATROCK
+    Pokemon = NATU,23
+        AbilityIndex = 1
+    Pokemon = DARUMAKA,24
+        AbilityIndex = 0
