@@ -484,7 +484,7 @@ class PokeBattle_Move_632 < PokeBattle_Move
 end
 
 # Empowered Loom Over
-class PokeBattle_Move_633 < PokeBattle_Move
+class PokeBattle_Move_633 < PokeBattle_Move_522
 	include EmpoweredMove
 	
 	def pbEffectGeneral(user)
