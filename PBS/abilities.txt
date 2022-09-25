@@ -405,7 +405,7 @@
 404,MARVELSKIN,Marvel Skin,"Boosts Sp. Def by 50% if has a status condition."
 405,BRAINJAMMED,Brain Jammed,"Mystified self-damage is super effective."
 406,FLUSTERFLOCK,Fluster Flock,"Doubles Attack if the Pokémon is flustered. Immune to fluster Defense reduction."
-407,BURROWER,Burrower,"Dig and Undermine hit instantly in sandstorm."
+407,BURROWER,Burrower,"Dig and Undermine hit instantly."
 408,ONTHEWIND,On the Wind,"Sets a Tailwind upon entering the battle."
 409,SEEDSCATTER,Seed Scatter,"Sets Grassy Terrain for 5 turns when hit by an attack."
 410,THUNDERSTRUCK,Thunderstruck,"Sets Electric Terrain for 5 turns when hit by an attack."

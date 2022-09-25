@@ -257,6 +257,25 @@ class PokeBattle_Battler
     end
     return true
   end
+
+  def doesProtectionEffectNegateThisMove?(effectDisplayName,move,user,target,protectionIgnoredByAbility,animationName=nil)
+    if move.canProtectAgainst? && !protectionIgnoredByAbility
+      @battle.pbCommonAnimation(animationName,target) if !animationName.nil?
+      @battle.pbDisplay(_INTL("{1} protected {2}!",effectDisplayName,target.pbThis(true)))
+      if user.boss?
+        @battle.pbDisplay(_INTL("Actually, {1} partially pierces through!",user.pbThis))
+        target.damageState.partiallyProtected = true
+      else
+        target.damageState.protected = true
+        @battle.successStates[user.index].protected = true
+        yield
+        return true
+      end
+    elsif move.pbTarget(user).targets_foe
+      @battle.pbDisplay(_INTL("{1} was ignored, and failed to protect {2}!",effectDisplayName,target.pbThis(true)))
+    end
+    return false
+  end
   
   #=============================================================================
   # Initial success check against the target. Done once before the first hit.
@@ -303,135 +322,69 @@ class PokeBattle_Battler
     ######################################################
     # Quick Guard
     if target.pbOwnSide.effects[PBEffects::QuickGuard] && @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("QuickGuard",target)
-        @battle.pbDisplay(_INTL("Quick Guard protected {1}!",target.pbThis(true)))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("Quick Guard was ignored, and failed to protect {1}!",target.pbThis(true)))
-      end
+      return false if doesProtectionEffectNegateThisMove?("Quick Guard",move,user,target,protectionIgnoredByAbility,"QuickGuard")
     end
     # Protect
     if target.effects[PBEffects::Protect]
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("Protect",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s Protect was ignored!",target.pbThis))
-      end
+      return false if doesProtectionEffectNegateThisMove?("Protect",move,user,target,protectionIgnoredByAbility,"Protect")
     end
     # Obstruct
     if target.effects[PBEffects::Obstruct]
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("Obstruct",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
+      return false if doesProtectionEffectNegateThisMove?("Obstruct",move,user,target,protectionIgnoredByAbility,"Obstruct") {
         if move.physical?
           if user.pbCanLowerStatStage?(:DEFENSE)
             user.pbLowerStatStage(:DEFENSE,2,nil)
           end
         end
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s Obstruct was ignored!",target.pbThis))
-      end
+      }
     end
     # King's Shield
     if target.effects[PBEffects::KingsShield] && move.damagingMove?
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("KingsShield",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
+      return false if doesProtectionEffectNegateThisMove?("King's Shield",move,user,target,protectionIgnoredByAbility,"KingsShield") {
         if move.physicalMove?
           if user.pbCanLowerStatStage?(:ATTACK)
           user.pbLowerStatStage(:ATTACK,1,nil)
           end
         end
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s King's Shield was ignored!",target.pbThis))
-      end
+      }
     end
     # Spiky Shield
     if target.effects[PBEffects::SpikyShield]
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("SpikyShield",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
+      return false if doesProtectionEffectNegateThisMove?("Spiky Shield",move,user,target,protectionIgnoredByAbility,"SpikyShield") {
         if move.physicalMove?
           @battle.pbDisplay(_INTL("{1} was hurt!",user.pbThis))
           user.applyFractionalDamage(1.0/8.0)
         end
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s Spiky Shield was ignored!",target.pbThis))
-      end
+      }
     end
     # Mirror Shield
     if target.effects[PBEffects::MirrorShield]
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("MirrorShield",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
+      return false if doesProtectionEffectNegateThisMove?("Mirror Shield",move,user,target,protectionIgnoredByAbility,"MirrorShield") {
         if move.specialMove?
           @battle.pbDisplay(_INTL("{1} was hurt!",user.pbThis))
           user.applyFractionalDamage(1.0/8.0)
         end
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s Mirror Shield was ignored!",target.pbThis))
-      end
+      }
     end
     # Baneful Bunker
     if target.effects[PBEffects::BanefulBunker]
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("BanefulBunker",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
+      return false if doesProtectionEffectNegateThisMove?("Baneful Bunker",move,user,target,protectionIgnoredByAbility,"BanefulBunker") {
         if move.physicalMove?
           user.pbPoison(target) if user.pbCanPoison?(target,false)
         end
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s Baneful Bunker was ignored!",target.pbThis))
-      end
+      }
     end
     # Red-Hot Retreat
     if target.effects[PBEffects::RedHotRetreat]
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("RedHotRetreat",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
+      return false if doesProtectionEffectNegateThisMove?("Red Hot Retreat",move,user,target,protectionIgnoredByAbility,"RedHotRetreat") {
         if move.specialMove?
           user.pbBurn(target) if user.pbCanBurn?(target,false)
         end
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s Red Hot Retreat was ignored!",target.pbThis))
-      end
+      }
     end
     # Mat Block
     if target.pbOwnSide.effects[PBEffects::MatBlock] && move.damagingMove?
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        # NOTE: Confirmed no common animation for this effect.
-        @battle.pbDisplay(_INTL("{1} was blocked by the kicked-up mat!",move.name))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("Mat Block was ignored, and failed to protect {1}!",target.pbThis(true)))
-      end
+      return false if doesProtectionEffectNegateThisMove?("Mat Block",move,user,target,protectionIgnoredByAbility)
     end
     # Magic Coat/Magic Bounce/Magic Shield
     if move.canMagicCoat? && !target.semiInvulnerable? && target.opposes?(user)

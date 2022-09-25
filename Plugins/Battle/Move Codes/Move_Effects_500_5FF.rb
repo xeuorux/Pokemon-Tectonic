@@ -1,181 +1,4 @@
 #===============================================================================
-# Pseudomove for charm damage.
-#===============================================================================
-class PokeBattle_Charm < PokeBattle_Move
-	def initialize(battle,move,basePower=50)
-	  @battle     = battle
-	  @realMove   = move
-	  @id         = 0
-	  @name       = ""
-	  @function   = "000"
-	  @baseDamage = basePower
-	  @type       = nil
-	  @category   = 1
-	  @accuracy   = 100
-	  @pp         = -1 
-	  @target     = 0
-	  @priority   = 0
-	  @flags      = ""
-	  @addlEffect = 0
-	  @calcType   = nil
-	  @powerBoost = false
-	  @snatched   = false
-	end
-  
-	def physicalMove?(thisType=nil);    return false;  end
-	def specialMove?(thisType=nil);     return true; end
-	def pbCritialOverride(user,target); return -1;    end
-  end
-
-#===============================================================================
-# Flusters the target.
-#===============================================================================
-class PokeBattle_FlusterMove < PokeBattle_Move
-	def pbFailsAgainstTarget?(user,target)
-	  return false if damagingMove?
-	  return !target.pbCanFluster?(user,true,self)
-	end
-  
-	def pbEffectAgainstTarget(user,target)
-	  return if damagingMove?
-	  target.pbFluster
-	end
-  
-	def pbAdditionalEffect(user,target)
-	  return if target.damageState.substitute
-	  return if !target.pbCanFluster?(user,false,self)
-	  target.pbFluster
-	end
-
-    def getScore(score,user,target,skill=100)
-        canFluster = target.pbCanFluster?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
-        if canFluster
-          score += 20
-        elsif statusMove?
-          score = 0
-        end
-        return score
-    end
-end
-
-#===============================================================================
-# Mystifies the target.
-#===============================================================================
-class PokeBattle_MystifyMove < PokeBattle_Move
-	def pbFailsAgainstTarget?(user,target)
-	  return false if damagingMove?
-	  return !target.pbCanMystify?(user,true,self)
-	end
-  
-	def pbEffectAgainstTarget(user,target)
-	  return if damagingMove?
-	  target.pbMystify
-	end
-  
-	def pbAdditionalEffect(user,target)
-	  return if target.damageState.substitute
-	  return if !target.pbCanMystify?(user,false,self)
-	  target.pbMystify
-	end
-
-    def getScore(score,user,target,skill=100)
-        canMystify = target.pbCanMystify?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
-        if canMystify
-          score += 20
-        elsif statusMove?
-          score = 0
-        end
-        return score
-    end
-end
-
-#===============================================================================
-# Charms the target.
-#===============================================================================
-class PokeBattle_CharmMove < PokeBattle_Move
-  def pbFailsAgainstTarget?(user,target)
-    return false if damagingMove?
-    return !target.pbCanCharm?(user,true,self)
-  end
-
-  def pbEffectAgainstTarget(user,target)
-    return if damagingMove?
-    target.pbCharm
-  end
-
-  def pbAdditionalEffect(user,target)
-    return if target.damageState.substitute
-    return if !target.pbCanCharm?(user,false,self)
-    target.pbCharm
-  end
-
-  def getScore(score,user,target,skill=100)
-	canCharm = target.pbCanCharm?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
-	if canCharm
-	  score += 20
-	elsif statusMove?
-	  score = 0
-	end
-	return score
-  end
-end
-
-#===============================================================================
-# Frostbite's the target.
-#===============================================================================
-class PokeBattle_FrostbiteMove < PokeBattle_Move
-	def pbFailsAgainstTarget?(user,target)
-	  return false if damagingMove?
-	  return !target.pbCanFrostbite?(user,true,self)
-	end
-  
-	def pbEffectAgainstTarget(user,target)
-	  return if damagingMove?
-	  target.pbFrostbite
-	end
-  
-	def pbAdditionalEffect(user,target)
-	  return if target.damageState.substitute
-	  return if !target.pbCanFrostbite?(user,false,self)
-	  target.pbFrostbite
-	end
-
-    def getScore(score,user,target,skill=100)
-        canFrostbite = target.pbCanFrostbite?(user,false)
-        if canFrostbite
-          score += 20
-        elsif statusMove?
-          score = 0
-        end
-        return score
-    end
-end
-
-#===============================================================================
-# Charms the target.
-#===============================================================================
-class PokeBattle_Move_400 < PokeBattle_CharmMove
-end
-
-#===============================================================================
-# Flusters the target.
-#===============================================================================
-class PokeBattle_Move_401 < PokeBattle_FlusterMove
-end
-
-#===============================================================================
-# Mystifies the target.
-#===============================================================================
-class PokeBattle_Move_402 < PokeBattle_MystifyMove
-end
-
-#===============================================================================
-# Frostbite's the target.
-#===============================================================================
-class PokeBattle_Move_403 < PokeBattle_FrostbiteMove
-end
-
-#===============================================================================
 # Hits thrice.
 #===============================================================================
 class PokeBattle_Move_500 < PokeBattle_Move
@@ -476,6 +299,23 @@ class PokeBattle_Move_50F < PokeBattle_StatDownMove
   def getScore(score,user,target,skill=100)
 	return score + user.stages[:ATTACK]*10
   end
+end
+
+#===============================================================================
+# User loses half their hp in recoil. (Steel Beam)
+#===============================================================================
+class PokeBattle_Move_510 < PokeBattle_Move
+	def pbEffectAfterAllHits(user,target)
+		return if target.damageState.unaffected
+		return if !user.takesIndirectDamage?
+		@battle.pbDisplay(_INTL("{1} loses half its health in recoil!",user.pbThis))
+    user.applyFractionalDamage(1.0/2.0,true,true)
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score += 50 - ((user.hp.to_f / user.totalhp.to_f) * 100).floor
+		return score
+	end
 end
 
 #===============================================================================

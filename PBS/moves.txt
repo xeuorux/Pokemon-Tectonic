@@ -1006,7 +1006,7 @@
 940,COTTONDUST,Cotton Dust,04D,0,GRASS,Status,100,30,0,AllNearFoes,0,bce,"The user releases cotton-like spores that cling to the foe, harshly reducing its Speed stat.",COTTONSPORE
 941,BLACKPOWDER,Blackpowder,148,0,BUG,Status,100,15,0,NearOther,0,bce,"The target is covered in a powder that explodes if it uses a Fire-type move.",POWDER
 942,MAGICDUST,Magic Dust,197,0,PSYCHIC,Status,100,15,0,NearOther,0,bce,"The user scatters a cloud of magic dust that changes the target to Psychic type.",MAGICPOWDER
-943,KRAKENCLUTCHES,Kraken Clutches,0CF,75,WATER,Physical,100,10,0,NearOther,0,abef,"The target is trapped by monstrous tentacles for three turns.",CLAMP
+943,KRAKENCLUTCHES,Kraken Clutches,0CF,75,WATER,Physical,100,10,0,NearOther,0,abef,"The target is trapped by monstrous tentacles for three turns.",WRAP
 944,DAZZLE,Dazzle,045,0,NORMAL,Status,100,30,0,AllNearFoes,0,bce,"The user dazzles nearby foes with a display of light or sound. Their Sp. Atk stat is lowered.",DAZZLINGGLEAM
 945,SMIRK,Smirk,046,0,NORMAL,Status,100,25,0,AllNearFoes,0,bce,"The user smirks with confidence. The Sp. Def of nearby enemies is reduced.",SCARYFACE
 946,STOREFUEL,Store Fuel,54E,0,FIRE,Status,0,15,0,User,0,d,"The user stores its fuel for future attacks. This raises its Sp. Atk, Sp. Def, and accuracy.",
