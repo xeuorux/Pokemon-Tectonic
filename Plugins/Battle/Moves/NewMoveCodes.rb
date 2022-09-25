@@ -3076,3 +3076,12 @@ class PokeBattle_Move_598 < PokeBattle_Move
         return score
     end
 end
+
+#===============================================================================
+# User takes recoil damage equal to 1/5 of the damage this move dealt.
+#===============================================================================
+class PokeBattle_Move_599 < PokeBattle_RecoilMove
+	def pbRecoilDamage(user,target)
+	  return (target.damageState.totalHPLost/5.0).round
+	end
+end

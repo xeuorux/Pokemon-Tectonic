@@ -263,7 +263,7 @@
 250,AIRCUTTER,Air Cutter,000,60,FLYING,Special,100,20,0,AllNearFoes,0,befhp,"The user launches razor-like wind to slash the opposing team. Critical hits land more easily.",
 251,PLUCK,Pluck,0F4,60,FLYING,Physical,100,15,0,Other,0,abef,"The user pecks the target. If the target is holding a Berry, the user eats it and gains its effect.",
 252,SKYDROP,Sky Drop,0CE,60,FLYING,Physical,100,10,0,Other,0,abef,"The user takes the foe into the sky, then drops it on the next turn. The foe cannot attack while airborne.",
-253,WINGATTACK,Wing Attack,537,55,FLYING,Physical,100,30,0,Other,0,abef,"The target is struck with large, imposing wings. The user also takes 20% recoil.",
+253,WINGATTACK,Wing Attack,599,55,FLYING,Physical,100,30,0,Other,0,abef,"The target is struck with large, imposing wings. The user also takes 20% recoil.",
 254,ACROBATICS,Acrobatics,086,55,FLYING,Physical,100,12,0,Other,0,abef,"The user nimbly strikes the foe. This attack does more damage if the user is not holding an item.",
 255,GUST,Gust,077,40,FLYING,Special,100,30,0,Other,0,bef,"A gust of wind is whipped up by wings and launched at the target to inflict damage.",
 256,PECK,Peck,000,45,FLYING,Physical,100,30,0,Other,0,abef,"The target is jabbed with a sharply pointed beak or horn.",
@@ -820,7 +820,7 @@
 753,CLASH,Clash,000,45,DRAGON,Physical,100,30,0,NearOther,0,abef,"The user harnesses inner battle instincts to strike at the target.",DRAGONCLAW
 754,JOLT,Jolt,007,40,ELECTRIC,Physical,100,25,10,NearOther,0,abef,"The user strikes the enemy while coated lightly with electricity. It has a 10% chance to numb.",SPARK
 755,ELECTROSLASH,Electroslash,000,90,ELECTRIC,Physical,100,12,0,NearOther,0,abefhp,"The user harnesses a blade of lightning and slices at the target. Critical hits land more easily.",SPARK
-756,CURRENTCRASH,Current Crash,537,55,ELECTRIC,Physical,100,25,0,NearOther,0,abef,"The user wraps their body in electricity and crashes into the target. The user also takes 20% recoil.",WILDCHARGE
+756,CURRENTCRASH,Current Crash,599,55,ELECTRIC,Physical,100,25,0,NearOther,0,abef,"The user wraps their body in electricity and crashes into the target. The user also takes 20% recoil.",WILDCHARGE
 757,FAVOR,Favor,089,9,NORMAL,Special,100,15,0,NearOther,0,bef,"A full-power special attack that grows more powerful the more the user likes its Trainer.",RETURN
 758,ESSENCEARROW,Essence Arrow,020,40,GRASS,Special,100,30,10,NearOther,0,befn,"The user fires a small bolt of energy at the target. It has a 10% chance to raise user's Sp. Atk.",ENERGYBALL
 759,ROOTWRACK,Rootwrack,504,60,GRASS,Physical,100,20,0,NearOther,0,bef,"The user sends its roots to attack. Deals 25% more damage if the target attacked first.",VINEWHIP
@@ -865,7 +865,7 @@
 798,SLAG,Slag,005,80,STEEL,Special,100,10,30,NearOther,0,befn,"The user sprays mining waste at the target. It has a 30% chance to poison.",STEELBEAM
 799,MAGNETHRASH,Magnethrash,0A5,90,STEEL,Physical,0,12,0,NearOther,0,abef,"The user generates an intense magnetic connection between it and the target, striking it without fail.",METALCLAW
 800,MAGNETWAVE,Magnet Wave,402,40,STEEL,Special,100,30,10,NearOther,0,bef,"The target is hit by a wave of magnetic energy. It has a 10% chance to mystify.",
-801,CRASH,Crash,537,55,ROCK,Physical,100,25,0,NearOther,0,abef,"The user slams the target with blunt force, taking 20% recoil.",HEADSMASH
+801,CRASH,Crash,599,55,ROCK,Physical,100,25,0,NearOther,0,abef,"The user slams the target with blunt force, taking 20% recoil.",HEADSMASH
 802,GRANITEHEAD,Granite Head,0FB,85,ROCK,Physical,100,12,0,NearOther,0,abef,"The user charges into the target with its stony body. The user also takes 33% recoil.",HEADSMASH
 803,BEDROCKBREAKER,Bedrock Breaker,0FB,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user smashes its rock-hard head into the target. The user also takes 33% recoil.",HEADSMASH
 804,TEMPEST,Tempest,401,100,FLYING,Special,50,10,100,Other,0,bef,"Chaotic winds push the target around, flustering the target.",HURRICANE
@@ -1044,7 +1044,7 @@
 978,VINEBIND,Vinebind,0CF,45,GRASS,Physical,100,15,0,NearOther,0,abef,"Binds the foe with vines, trapping it for three turns.",GRASSKNOT
 979,BLACKOUT,Blackout,562,90,DARK,Special,100,12,0,NearOther,0,bef,"The user removes the energy and light around the target. Super effective vs Electric-types.",DARKVOID
 980,HOLLYCHARM,Holly Charm,563,90,GRASS,Special,100,12,0,NearOther,0,bef,"The user attacks the target with the power of a warding charm. Super effective vs Ghost-types.",MAGICALLEAF
-981,MUTUAL,Mutual,537,55,FIGHTING,Physical,100,25,0,NearOther,0,abef,"The user grabs the target, slamming both of them into the ground. The user takes 20% recoil.",SUBMISSION
+981,MUTUAL,Mutual,599,55,FIGHTING,Physical,100,25,0,NearOther,0,abef,"The user grabs the target, slamming both of them into the ground. The user takes 20% recoil.",SUBMISSION
 982,BEDFELLOWS,Bedfellows,564,0,NORMAL,Status,0,5,0,NearFoe,0,bce,"The user and the target both take a restful sleep, fully restoring their HPs and healing any status conditions.",REST
 983,LOUNGE,Lounge,565,0,NORMAL,Status,0,5,0,User,-1,d,"The user lounges around with decadent laziness, restoring its HP by 66%. This move always goes last.",SLACKOFF
 984,THUNDERCLAP,Thunderclap,00F,80,ELECTRIC,Physical,100,15,40,NearOther,0,abe,"The user jabs the target with electric charges. It has a 40% chance to make the target flinch.",SPARK
