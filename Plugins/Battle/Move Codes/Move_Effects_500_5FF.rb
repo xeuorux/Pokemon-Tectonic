@@ -563,7 +563,6 @@ class PokeBattle_Move_51E < PokeBattle_Move
 	end
 end
 
-
 #===============================================================================
 # If the move misses, the user gains Special Attack and Accuracy. (Rockapult)
 #===============================================================================
@@ -1586,6 +1585,48 @@ class PokeBattle_Move_550 < PokeBattle_ProtectMove
 end
 
 #===============================================================================
+# Entry hazard. Lays burn spikes on the opposing side.
+# (Flame Spikes)
+#===============================================================================
+class PokeBattle_Move_551 < PokeBattle_Move
+    def pbMoveFailed?(user,targets)
+        if user.pbOpposingSide.effects[PBEffects::FlameSpikes] >= 2
+            @battle.pbDisplay(_INTL("But it failed, since the opposing side already has two layers of flame spikes!"))
+            return true
+        end
+        return false
+    end
+  
+    def pbEffectGeneral(user)
+        user.pbOpposingSide.effects[PBEffects::FlameSpikes] += 1
+        if user.pbOpposingSide.effects[PBEffects::FlameSpikes] == 2
+            @battle.pbDisplay(_INTL("The second layer of flame spikes were scattered all around {1}'s feet!",
+            user.pbOpposingTeam(true)))
+        else
+            @battle.pbDisplay(_INTL("Flame spikes were scattered all around {1}'s feet!",
+            user.pbOpposingTeam(true)))
+        end
+        if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] > 0
+            user.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
+            @battle.pbDisplay(_INTL("The poison spikes around {1}'s feet were brushed aside!",
+                user.pbOpposingTeam(true)))
+        end
+            if user.pbOpposingSide.effects[PBEffects::FrostSpikes] > 0
+            user.pbOpposingSide.effects[PBEffects::FrostSpikes] = 0
+            @battle.pbDisplay(_INTL("The frost spikes around {1}'s feet were brushed aside!",
+                user.pbOpposingTeam(true)))
+        end
+    end
+    
+    def getScore(score,user,target,skill=100)
+        if user.pbOpposingSide.effects[PBEffects::FlameSpikes] >= 2
+            return 0
+        end
+        return getHazardSettingMoveScore(score,user,target,skill)
+    end
+end
+
+#===============================================================================
 # Starts acid rain weather. (Acid Rain)
 #===============================================================================
 class PokeBattle_Move_552 < PokeBattle_WeatherMove
@@ -2077,6 +2118,48 @@ class PokeBattle_Move_568 < PokeBattle_Move_0EE
 		return if !target.pbCanLowerStatStage?(@statDown[0],user,self)
 		target.pbLowerStatStage(@statDown[0],@statDown[1],user)
 	end
+end
+
+#===============================================================================
+# Entry hazard. Lays frostbite spikes on the opposing side.
+# (Frost Spikes)
+#===============================================================================
+class PokeBattle_Move_569 < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+	  if user.pbOpposingSide.effects[PBEffects::FrostSpikes] >= 2
+		@battle.pbDisplay(_INTL("But it failed, since the opposing side already has two layers of frost spikes!"))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectGeneral(user)
+		user.pbOpposingSide.effects[PBEffects::FrostSpikes] += 1
+		if user.pbOpposingSide.effects[PBEffects::FrostSpikes] == 2
+            @battle.pbDisplay(_INTL("The second layer of frost spikes were scattered all around {1}'s feet!",
+			user.pbOpposingTeam(true)))
+        else
+            @battle.pbDisplay(_INTL("Frost spikes were scattered all around {1}'s feet!",
+			user.pbOpposingTeam(true)))
+        end
+		if user.pbOpposingSide.effects[PBEffects::FlameSpikes] > 0
+			user.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0
+			@battle.pbDisplay(_INTL("The flame spikes around {1}'s feet were brushed aside!",
+				user.pbOpposingTeam(true)))
+		end
+		if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] > 0
+			user.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
+			@battle.pbDisplay(_INTL("The poison spikes around {1}'s feet were brushed aside!",
+				user.pbOpposingTeam(true)))
+		end
+	end
+	
+    def getScore(score,user,target,skill=100)
+        if user.pbOpposingSide.effects[PBEffects::FrostSpikes] >= 2
+            return 0
+        end
+        return getHazardSettingMoveScore(score,user,target,skill)
+    end
 end
   
 #===============================================================================

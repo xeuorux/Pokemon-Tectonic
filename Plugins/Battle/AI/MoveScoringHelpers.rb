@@ -105,6 +105,24 @@ def sleepMoveAI(score,user,target,skill=100)
 	return score
 end
 
+def getHazardSettingMoveScore(score,user,target,skill=100)
+	score -= 40
+	canChoose = false
+	user.eachOpposing do |b|
+		next if !user.battle.pbCanChooseNonActive?(b.index)
+		canChoose = true
+		break
+	end
+	if !canChoose
+		# Opponent can't switch in any Pokemon
+		return 0
+	else
+		score += 20 * @battle.pbAbleNonActiveCount(user.idxOpposingSide)
+		score += 10 * @battle.pbAbleNonActiveCount(user.idxOwnSide)
+	end
+	return score
+end
+
 #=============================================================================
 # Get approximate properties for a battler
 #=============================================================================

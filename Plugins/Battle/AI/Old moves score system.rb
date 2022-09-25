@@ -1385,53 +1385,10 @@ class PokeBattle_AI
 		end
 	#---------------------------------------------------------------------------
 	when "103"
-		if user.pbOpposingSide.effects[PBEffects::Spikes]>=3
-			score = 0
-		else
-			canChoose = false
-			user.eachOpposing do |b|
-				next if !@battle.pbCanChooseNonActive?(b.index)
-				canChoose = true
-				break
-			end
-			if !canChoose
-				# Opponent can't switch in any Pokemon
-			score = 0
-			else
-				score -= 40
-				score += 10*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
-				score += 10*@battle.pbAbleNonActiveCount(user.idxOwnSide)
-			end
-		end
 	#---------------------------------------------------------------------------
 	when "104"
-		if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] >= 1
-			score = 0
-		else
-			score -= 40
-			score += 10*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
-			score += 10*@battle.pbAbleNonActiveCount(user.idxOwnSide)
-		end
 	#---------------------------------------------------------------------------
 	when "105"
-		if user.pbOpposingSide.effects[PBEffects::StealthRock]
-			score = 0
-		else
-			canChoose = false
-			user.eachOpposing do |b|
-				next if !@battle.pbCanChooseNonActive?(b.index)
-				canChoose = true
-				break
-			end
-			if !canChoose
-				# Opponent can't switch in any Pokemon
-				score = 0
-			else
-				score -= 40
-				score += 10*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
-				score += 10*@battle.pbAbleNonActiveCount(user.idxOwnSide)
-			end
-		end
 	#---------------------------------------------------------------------------
 	when "106"
 	#---------------------------------------------------------------------------
@@ -1877,7 +1834,6 @@ class PokeBattle_AI
 	when "152"
 	#---------------------------------------------------------------------------
 	when "153"
-		score = 0 if user.pbOpposingSide.effects[PBEffects::StickyWeb]
 	#---------------------------------------------------------------------------
 	when "154"
 	#---------------------------------------------------------------------------
