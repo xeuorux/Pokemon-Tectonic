@@ -184,7 +184,7 @@
 182,PIXILATE,Pixilate,"Normal-type moves become Fairy-type and power up by 30%."
 183,GOOEY,Gooey,"Physical moves against it lower the attacker's Speed stat."
 184,AERILATE,Aerilate,"Normal-type moves become Flying-type and power up by 30%."
-185,PARENTALBOND,Parental Bond,"Child attacks after the parent, for 30% of the previous damage."
+185,PARENTALBOND,Parental Bond,"Child attacks after the parent, for 25% of the previous damage."
 186,DARKAURA,Dark Aura,"Powers up each Pokémon's Dark-type moves."
 187,FAIRYAURA,Fairy Aura,"Powers up each Pokémon's Fairy-type moves."
 188,AURABREAK,Aura Break,"Reverses \"Aura\" Abilities to weaken affected moves."
