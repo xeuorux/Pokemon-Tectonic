@@ -268,7 +268,7 @@ class PokeBattle_Battler
       else
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
-        yield
+        yield if block_given?
         return true
       end
     elsif move.pbTarget(user).targets_foe
