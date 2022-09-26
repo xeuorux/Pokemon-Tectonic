@@ -27964,7 +27964,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = TOXTRICITY,Level,27
+Evolutions = TOXTRICITY,Level,22
 #-------------------------------
 [849]
 Name = Toxtricity
@@ -27998,7 +27998,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ARCLAMOR,Level,48
+Evolutions = ARCLAMOR,Level,43
 #-------------------------------
 [850]
 Name = Sizzlipede
