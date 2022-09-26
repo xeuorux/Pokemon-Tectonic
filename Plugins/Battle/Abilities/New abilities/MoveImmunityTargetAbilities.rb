@@ -34,7 +34,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:HEARTOFJUSTICE,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.add(:ARTIFICIALNOCTURNE,
+BattleHandlers::MoveImmunityTargetAbility.add(:HEARTLESS,
   proc { |ability,user,target,move,type,battle|
     next pbBattleMoveImmunityHealAbility(user,target,move,type,:FAIRY,battle)
   }

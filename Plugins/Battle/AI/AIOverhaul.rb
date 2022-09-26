@@ -1150,7 +1150,7 @@ class PokeBattle_AI
         return true
       end
     when :FAIRY
-      if target.hasActiveAbility?(:ARTIFICIALNOCTURNE)
+      if target.hasActiveAbility?(:HEARTLESS)
         moveFailureAlert(move,user,target,"immunity ability")
         return true
       end
