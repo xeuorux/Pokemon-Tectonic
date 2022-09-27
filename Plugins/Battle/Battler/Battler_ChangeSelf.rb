@@ -215,7 +215,7 @@ class PokeBattle_Battler
         pbChangeForm(0,_INTL("{1} transformed!",pbThis))
       end
     end
-	# Eiscue - Ice Face
+	  # Eiscue - Ice Face
     if @species == :EISCUE && hasActiveAbility?(:ICEFACE) && @battle.pbWeather == :Hail
       if @form==1
         @battle.pbShowAbilitySplash(self,true)

@@ -239,7 +239,7 @@
 237,GORILLATACTICS,Gorilla Tactics,"Boosts Attack but only allows the use of one move."
 238,GULPMISSILE,Gulp Missile,"Attacks with prey caught when using Surf or Dive."
 239,HUNGERSWITCH,Hunger Switch,"It alternates between an Electric-type Mode and a Dark-type Mode."
-240,ICEFACE,Ice Face,"Prevents a physical attack. Restored at the end of its turn, in a Hailstorm."
+240,ICEFACE,Ice Face,"Prevents a physical attack. Restored if its hailing when it enters, or when hail begins."
 241,ICESCALES,Ice Scales,"Halves the damage from special moves."
 242,INTREPIDSWORD,Intrepid Sword,"Boosts Attack stat when the Pokémon enters a battle."
 243,LIBERO,Libero,"It changes type to that of the move it's about to use."
