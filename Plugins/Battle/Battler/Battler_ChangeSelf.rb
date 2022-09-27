@@ -18,7 +18,7 @@ class PokeBattle_Battler
   # Accounts for bosses taking reduced fractional damage
   def applyFractionalDamage(fraction,showDamageAnimation=true,basedOnCurrentHP=false)
     oldHP = @hp
-    fraction /= 4.0 if boss?
+    fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
     fraction *= 2 if @battle.pbCheckOpposingAbility(:AGGRAVATE,@index)
     if basedOnCurrentHP
       reduction = (@hp * fraction).ceil
@@ -36,6 +36,7 @@ class PokeBattle_Battler
 
 	def pbRecoverHP(amt,anim=true,anyAnim=true)
 		raise _INTL("Told to recover a negative amount") if amt<0
+    amt *= 1.5 if hasActiveAbility?(:ROOTED)
 		amt = amt.round
 		amt = @totalhp-@hp if amt>@totalhp-@hp
 		amt = 1 if amt<1 && @hp<@totalhp
@@ -61,8 +62,8 @@ class PokeBattle_Battler
 		  pbItemHPHealCheck
 		else
 		  if canHeal?
-			amt = (amt*1.3).floor if hasActiveItem?(:BIGROOT)
-			pbRecoverHP(amt)
+        amt = (amt*1.3).floor if hasActiveItem?(:BIGROOT)
+        pbRecoverHP(amt)
 		  end
 		end
 	end
@@ -214,7 +215,7 @@ class PokeBattle_Battler
         pbChangeForm(0,_INTL("{1} transformed!",pbThis))
       end
     end
-	# Eiscue - Ice Face
+	  # Eiscue - Ice Face
     if @species == :EISCUE && hasActiveAbility?(:ICEFACE) && @battle.pbWeather == :Hail
       if @form==1
         @battle.pbShowAbilitySplash(self,true)

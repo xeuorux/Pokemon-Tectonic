@@ -1,5 +1,6 @@
 BattleHandlers::AbilityOnSwitchOut.add(:FLYBY,
   proc { |ability,battler,endOfBattle|
+    next if endOfBattle
     battler.battle.forceUseMove(battler,:GUST,-1,true,nil,nil,true)
   }
 )

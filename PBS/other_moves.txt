@@ -1,17 +1,17 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
-2000,CHARM,Charm,04B,0,FAIRY,Status,100,20,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered.",
+2000,CHARM,Charm,04B,0,FAIRY,Status,100,15,0,NearOther,0,bce,"The user charmingly gazes at the foe, making it less wary. The target's Attack is harshly lowered.",
 2001,SKYATTACK,Sky Attack,0C7,140,FLYING,Physical,90,5,30,Other,0,beh,"A second-turn attack move where critical hits land more easily. It may also make the target flinch.",
-2002,CONFUSION,Confusion,401,50,PSYCHIC,Special,100,25,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It may also leave the target flustered.",
-2003,ROCKSMASH,Rock Smash,043,40,FIGHTING,Physical,100,15,50,NearOther,0,abef,"The user attacks with a punch that can shatter a rock. It may also lower the foe's Defense stat.",
+2002,CONFUSION,Confusion,401,50,PSYCHIC,Special,100,20,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It may also leave the target flustered.",
+2003,ROCKSMASH,Rock Smash,043,40,FIGHTING,Physical,100,12,50,NearOther,0,abef,"The user attacks with a punch that can shatter a rock. It may also lower the foe's Defense stat.",
 2004,DRAGONRUSH,Dragon Rush,010,100,DRAGON,Physical,75,10,20,NearOther,0,abe,"The user tackles the foe while exhibiting overwhelming menace. It may also make the target flinch.",
 2005,SMARTSTRIKE,Smart Strike,0A5,70,STEEL,Physical,0,10,0,NearOther,0,aef,"The user stabs the target with a sharp horn. This attack never misses. Skips protections.",
 2006,SWEETKISS,Sweet Kiss,401,0,FAIRY,Status,75,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that causes flustering.",
-2007,SONICBOOM,Sonic Boom,06A,1,NORMAL,Special,90,20,0,NearOther,0,bef,"The target is hit with a destructive shock wave that always inflicts 20 HP damage.",
-2008,PRESENT,Present,094,1,NORMAL,Physical,90,15,0,NearOther,0,bef,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however.",
+2007,SONICBOOM,Sonic Boom,06A,1,NORMAL,Special,90,15,0,NearOther,0,bef,"The target is hit with a destructive shock wave that always inflicts 20 HP damage.",
+2008,PRESENT,Present,094,1,NORMAL,Physical,90,12,0,NearOther,0,bef,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however.",
 2009,MISTYTERRAIN,Misty Terrain,156,0,FAIRY,Status,0,10,0,BothSides,0,,"The user covers the ground with mist for five turns. Grounded Pokémon can't gain status conditions.",
-2010,THUNDERWAVE,Thunder Wave,007,0,ELECTRIC,Status,100,20,0,NearOther,0,bce,"A weak electric charge is launched at the target. It causes paralysis if it hits.",
-2011,DREAMEATER,Dream Eater,0DE,70,PSYCHIC,Special,100,15,0,NearOther,0,bef,"The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.",
-2012,FURYATTACK,Fury Attack,0C0,20,NORMAL,Physical,100,20,0,NearOther,0,abef,"The target is jabbed repeatedly with a horn or beak two to five times in a row.",
+2010,THUNDERWAVE,Thunder Wave,007,0,ELECTRIC,Status,100,15,0,NearOther,0,bce,"A weak electric charge is launched at the target. It causes paralysis if it hits.",
+2011,DREAMEATER,Dream Eater,0DE,70,PSYCHIC,Special,100,12,0,NearOther,0,bef,"The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.",
+2012,FURYATTACK,Fury Attack,0C0,20,NORMAL,Physical,100,15,0,NearOther,0,abef,"The target is jabbed repeatedly with a horn or beak two to five times in a row.",
 2500,BREAKNECKBLITZ,Breakneck Blitz,Z000,1,NORMAL,Physical,0,1,0,NearOther,0,fz,"The user builds up its momentum using its Z-Power and crashes into the target at full speed.",
 2501,ALLOUTPUMMELING,All-Out Pummeling,Z000,1,FIGHTING,Physical,0,1,0,NearOther,0,fz,"The user rams an energy orb created by its Z-Power into the target with full force.",
 2502,SUPERSONICSKYSTRIKE,Supersonic Skystrike,Z000,1,FLYING,Physical,0,1,0,NearOther,0,fz,"The user soars up with its Z-Power and plummets toward the target at full speed.",
@@ -71,9 +71,9 @@
 3039,PRIMEVALANCIENTPOWER,Primeval Ancient Power,639,80,ROCK,Special,100,10,100,NearOther,0,bef,"The user attacks with a prehistoric power which raises all its stats",ANCIENTPOWER
 3040,PRIMEVALTHUNDERBOLT,Primeval Thunderbolt,640,160,ELECTRIC,Special,100,1,100,NearOther,0,bef,"A powerful electric blast is let loose on the target, numbing it.",THUNDERBOLT
 3041,PRIMEVALFLAREBLITZ,Primeval Flare Blitz,641,200,FIRE,Physical,100,10,0,NearOther,0,abef,"The user cloaks itself in fire and charges at the foe. The user also takes 33% recoil.",FLAREBLITZ
-3042,PRIMEVALMETALCLAW,Primeval Metal Claw,642,50,STEEL,Physical,100,35,100,NearOther,0,abef,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
-3043,PRIMEVALSLASH,Primeval Slash,643,100,NORMAL,Physical,100,20,0,NearOther,0,abefp,"The target is attacked with a slash of claws or blades, always critting.",SLASH
-3044,PRIMEVALBRICKBREAK,Primeval Brick Break,644,100,FIGHTING,Physical,100,15,100,NearOther,0,abef,"The user attacks with a swift chop, destroying barriers, and drastically reducing the target's defense.",BRICKBREAK
+3042,PRIMEVALMETALCLAW,Primeval Metal Claw,642,50,STEEL,Physical,100,30,100,NearOther,0,abef,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
+3043,PRIMEVALSLASH,Primeval Slash,643,100,NORMAL,Physical,100,15,0,NearOther,0,abefp,"The target is attacked with a slash of claws or blades, always critting.",SLASH
+3044,PRIMEVALBRICKBREAK,Primeval Brick Break,644,100,FIGHTING,Physical,100,12,100,NearOther,0,abef,"The user attacks with a swift chop, destroying barriers, and drastically reducing the target's defense.",BRICKBREAK
 3045,PRIMEVALCROSSPOISON,Primeval Cross Poison,645,70,POISON,Physical,100,10,10,AllNearFoes,0,abefp,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",
 3046,PRIMEVALSOLARBEAM,Primeval Solar Beam,646,170,GRASS,Special,100,10,0,AllNearFoes,0,bef,"A two-turn attack. The user gathers light, then blasts all near foes on the second turn.",
-3047,PRIMEVALPOWERGEM,Primeval Power Gem,647,120,ROCK,Special,100,20,100,NearOther,0,bef,"The user attacks with a sparkling gem-like ray, mystifying the target.",
+3047,PRIMEVALPOWERGEM,Primeval Power Gem,647,120,ROCK,Special,100,15,100,NearOther,0,bef,"The user attacks with a sparkling gem-like ray, mystifying the target.",

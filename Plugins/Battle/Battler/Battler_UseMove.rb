@@ -207,6 +207,14 @@ class PokeBattle_Battler
       pbEndTurn(choice)
       return
     end
+    # "But it failed!" checks, when the move is not a special usage
+    if !specialUsage && move.pbMoveFailedNoSpecial?(user,targets)
+      PBDebug.log(sprintf("[Move failed] In function code %s's def pbMoveFailedNoSpecial?",move.function))
+      user.lastMoveFailed = true
+      pbCancelMoves
+      pbEndTurn(choice)
+      return
+    end
     # Perform set-up actions and display messages
     # Messages include Magnitude's number and Pledge moves' "it's a combo!"
     move.pbOnStartUse(user,targets)
@@ -340,8 +348,10 @@ class PokeBattle_Battler
       numHits = move.pbNumHits(user,targets)
       numHits *= 2 if user.effects[PBEffects::VolleyStance] && move.specialMove?
       # Process each hit in turn
+      # Skip all hits if the move is being magic coated, magic bounced, or magic shielded
       realNumHits = 0
-      if magicCoater < 0 || magicBouncer < 0 || magicShielder < 0
+      moveIsMagicked = magicCoater >= 0 || magicBouncer >= 0 || magicShielder >= 0
+      if !moveIsMagicked
         for i in 0...numHits
           success = pbProcessMoveHit(move,user,targets,i,skipAccuracyCheck,numHits > 1)
           if !success
@@ -406,7 +416,7 @@ class PokeBattle_Battler
         targets.each { |otherB| otherB.pbFaint if otherB && otherB.fainted? }
         user.pbFaint if user.fainted?
       end
-      # Magic Coat's bouncing back (move has no targets)
+      # Magic Coat and Magic Bounce's bouncing back (move has no targets)
       if magicCoater>=0 || magicBouncer>=0
         mc = @battle.battlers[(magicCoater>=0) ? magicCoater : magicBouncer]
         if !mc.fainted?
@@ -698,11 +708,11 @@ class PokeBattle_Battler
   # Cancels the use of multi-turn moves and counters thereof. Note that Hyper
   # Beam's effect is NOT cancelled.
   def pbCancelMoves(full_cancel = false)
-    # Outragers get confused anyway if they are disrupted during their final
-    # turn of using the move
-    if @effects[PBEffects::Outrage]==1 && pbCanConfuseSelf?(false) && !full_cancel
-      pbConfuse(_INTL("{1} became confused due to fatigue!",pbThis))
-    end
+    # # Outragers get confused anyway if they are disrupted during their final
+    # # turn of using the move
+    # if @effects[PBEffects::Outrage]==1 && pbCanConfuseSelf?(false) && !full_cancel
+    #   pbConfuse(_INTL("{1} became confused due to fatigue!",pbThis))
+    # end
     # Cancel usage of most multi-turn moves
     @effects[PBEffects::TwoTurnAttack] = nil
     @effects[PBEffects::Rollout]       = 0

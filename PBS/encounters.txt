@@ -160,8 +160,8 @@ Special,20
 [040] # Gigalith's Guts
 DarkCave,20
     25,ARON,17,20
-    25,BALTOY,17,20
-    25,ROGGENROLA,17,20
+    25,MROGGENROLA,17,20
+    25,NOSEPASS,17,20
     25,ZUBAT,17,20
 #-------------------------------
 [047] # Grand Hotel
@@ -175,7 +175,7 @@ Special,20
 [051] # Foreclosed Tunnel
 DarkCave,20
     25,GASTLY,9,11
-    25,NOSEPASS,9,11
+    25,ONIX,9,11
     25,ROLYCOLY,9,11
     25,TRAPINCH,9,11
 Mud,40
@@ -202,9 +202,9 @@ LandTall,20
 #-------------------------------
 [055] # Floral Rest
 FloweryGrass,20
-	25,STUFFUL,14,17
     25,BONSLY,15,18
     25,SHUPPET,15,18
+    25,STUFFUL,14,17
     5,FLABEBE,15,18
     5,FLABEBE_1,15,18
     5,FLABEBE_2,15,18
@@ -315,9 +315,9 @@ Land,20
 #-------------------------------
 [120] # Hollowed Layer
 DarkCave,20
+    25,BALTOY,17,20
     25,BRONZOR,17,20
-    25,DURALUDON,17,20
-    25,ONIX,17,20
+    25,LARVITAR,17,20
     25,TYNAMO,17,20
 #-------------------------------
 [121] # Skyward Ascent
@@ -363,9 +363,9 @@ LandSparse,20
 Land,20
     20,MTANGELA,18,20
     20,NINCADA,18,20
+    20,ROGGENROLA,18,20
     20,SPOINK,18,20
     20,VULLABY,18,20
-	20,LARVITAR,18,20
 Special,1
     1,LILLIPUP,15
 #-------------------------------
@@ -600,6 +600,7 @@ Mud,20
 [214] # Team Chasm HQ
 DarkCave,21
     25,CARBINK,16,19
+    25,DURALUDON,16,19
     25,ELGYEM,16,19
     25,MUNNA,16,19
 #-------------------------------

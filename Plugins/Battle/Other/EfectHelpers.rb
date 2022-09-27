@@ -8,7 +8,7 @@ def singleProtectEffects()
 end
 
 def sideProtectEffects()
-    return [PBEffects::CraftyShield,PBEffects::MatBlock,PBEffects::QuickGuard,PBEffects::WideGuard]
+    return [PBEffects::CraftyShield,PBEffects::MatBlock,PBEffects::QuickGuard,PBEffects::WideGuard,PBEffects::Bulwark]
 end
   
 class PokeBattle_Move

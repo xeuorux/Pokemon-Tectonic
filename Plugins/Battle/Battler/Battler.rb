@@ -64,7 +64,7 @@ class PokeBattle_Battler
     atk_bonus = getBonus(:ATTACK)
 
     if hasActiveItem?(:POWERLOCK)
-      return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:ATTACK] + atk_bonus)
+      return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:ATTACK] + atk_bonus,hasActiveAbility?(:STYLISH))
     else
       return @attack + atk_bonus
     end
@@ -74,7 +74,7 @@ class PokeBattle_Battler
     defense_bonus = getBonus(:DEFENSE)
 
     if hasActiveItem?(:GUARDLOCK)
-      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE] + defense_bonus)
+      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE] + defense_bonus,hasActiveAbility?(:STYLISH))
     else
       return @defense + defense_bonus
     end
@@ -84,7 +84,7 @@ class PokeBattle_Battler
     spatk_bonus = getBonus(:SPECIAL_ATTACK)
 
     if hasActiveItem?(:ENERGYLOCK)
-			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK] + spatk_bonus)
+			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK] + spatk_bonus,hasActiveAbility?(:STYLISH))
 		else
 			return @spatk + spatk_bonus
 		end
@@ -94,7 +94,7 @@ class PokeBattle_Battler
     spdef_bonus = getBonus(:SPECIAL_DEFENSE)
 
     if hasActiveItem?(:WILLLOCK)
-      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE] + spdef_bonus)
+      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE] + spdef_bonus,hasActiveAbility?(:STYLISH))
     else
       return @spdef + spdef_bonus
     end
@@ -394,4 +394,58 @@ class PokeBattle_Battler
     ret = 1 if ret<1
     return ret.max
   end
+
+  # Applies to both losing self's ability (i.e. being replaced by another) and
+  # having self's ability be negated.
+  def unstoppableAbility?(abil = nil)
+    abil = @ability_id if !abil
+    abil = GameData::Ability.try_get(abil)
+    return false if !abil
+    ability_blacklist = [
+      # Form-changing abilities
+      :BATTLEBOND,
+      :DISGUISE,
+      :MULTITYPE,
+      :POWERCONSTRUCT,
+      :SCHOOLING,
+      :SHIELDSDOWN,
+      :STANCECHANGE,
+      :ZENMODE,
+      # Abilities intended to be inherent properties of a certain species
+      :COMATOSE,
+      :RKSSYSTEM,
+      # Abilities with undefined behaviour if they were replaced or moved around
+      :STYLISH
+    ]
+    return ability_blacklist.include?(abil.id)
+  end
+
+    # Applies to gaining the ability.
+    def ungainableAbility?(abil = nil)
+      abil = @ability_id if !abil
+      abil = GameData::Ability.try_get(abil)
+      return false if !abil
+      ability_blacklist = [
+        # Form-changing abilities
+        :BATTLEBOND,
+        :DISGUISE,
+        :FLOWERGIFT,
+        :FORECAST,
+        :MULTITYPE,
+        :POWERCONSTRUCT,
+        :SCHOOLING,
+        :SHIELDSDOWN,
+        :STANCECHANGE,
+        :ZENMODE,
+        # Appearance-changing abilities
+        :ILLUSION,
+        :IMPOSTER,
+        # Abilities intended to be inherent properties of a certain species
+        :COMATOSE,
+        :RKSSYSTEM,
+        # Abilities with undefined behaviour if they were replaced or moved around
+        :STYLISH
+      ]
+      return ability_blacklist.include?(abil.id)
+    end
 end

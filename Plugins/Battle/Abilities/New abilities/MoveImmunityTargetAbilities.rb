@@ -34,7 +34,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:HEARTOFJUSTICE,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.add(:ARTIFICIALNOCTURNE,
+BattleHandlers::MoveImmunityTargetAbility.add(:HEARTLESS,
   proc { |ability,user,target,move,type,battle|
     next pbBattleMoveImmunityHealAbility(user,target,move,type,:FAIRY,battle)
   }
@@ -65,5 +65,11 @@ BattleHandlers::MoveImmunityTargetAbility.add(:PECKINGORDER,
     battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
     battle.pbHideAbilitySplash(target)
     next true
+  }
+)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:FINESUGAR,
+  proc { |ability,user,target,move,type,battle|
+    next pbBattleMoveImmunityHealAbility(user,target,move,type,:FIRE,battle)
   }
 )

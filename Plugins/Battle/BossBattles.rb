@@ -1,3 +1,6 @@
+# All HP based effects will deal less damage the higher this is
+BOSS_HP_BASED_EFFECT_RESISTANCE = 4
+
 def pbBigAvatarBattle(*args)
 	rule = "3v#{args.length}"
 	setBattleRule(rule)

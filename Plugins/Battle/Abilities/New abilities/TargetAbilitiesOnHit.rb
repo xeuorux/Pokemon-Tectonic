@@ -244,3 +244,17 @@ BattleHandlers::TargetAbilityOnHit.add(:RELUCTANTBLADE,
 	  end
   }
 )
+
+BattleHandlers::TargetAbilityOnHit.add(:WIBBLEWOBBLE,
+  proc { |ability,user,target,move,battle|
+      battle.forceUseMove(target,:POWERSPLIT,user.index,true,nil,nil,true)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:CONSTRICTOR,
+  proc { |ability,user,target,move,battle|
+    if move.physicalMove?
+      battle.forceUseMove(target,:BIND,user.index,true,nil,nil,true)
+	  end
+  }
+)

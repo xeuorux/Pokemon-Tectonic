@@ -152,7 +152,7 @@ class PokeBattle_Battle
 				b.hp = b.totalhp
 				b.pbCureStatus(false)
 				b.pbResetStatStages()
-				b.pbInitPokemon(b.pkmn,b.index)
+				b.pbInitPokemon(b.pokemon,b.index)
 			end
 			next
 		  end

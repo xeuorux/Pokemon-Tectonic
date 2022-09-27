@@ -4,6 +4,7 @@ class PokeBattle_DamageState
 	attr_accessor :forced_critical
 	attr_accessor :direDiversion
 	attr_accessor :endureBerry
+	attr_accessor :partiallyProtected
 
 	def resetPerHit
 		@missed        		= false
@@ -22,5 +23,6 @@ class PokeBattle_DamageState
 		@forced_critical	= false
 		@direDiversion		= false
 		@endureBerry		= false
+		@partiallyProtected	= false
 	end
 end

@@ -370,7 +370,7 @@ class PokeBattle_Battler
 				when :MYSTIFIED
 				@battle.pbDisplay(_INTL("{1} is mystified! {2}!", pbThis, MYSTIFIED_EXPLANATION))
 				when :FROSTBITE
-				@battle.pbDisplay(_INTL("{1} is frostbitten! {2}!", pbThis, FROSTBITE_EXPLANATION))
+				@battle.pbDisplay(_INTL("{1} was frostbitten! {2}!", pbThis, FROSTBITE_EXPLANATION))
 				end
 			end
 		end

@@ -153,6 +153,28 @@ BattleHandlers::EORWeatherAbility.add(:HEATSAVOR,
   }
 )
 
+BattleHandlers::EORWeatherAbility.add(:FINESUGAR,
+  proc { |ability,weather,battler,battle|
+    case weather
+    when :Rain, :HeavyRain
+      battle.pbShowAbilitySplash(battler)
+      battle.pbDisplay(_INTL("{1} was hurt by the rain!",battler.pbThis))
+      battler.applyFractionalDamage(1.0/8.0)
+      battle.pbHideAbilitySplash(battler)
+    when :Sun, :HarshSun
+      next if !battler.canHeal?
+      battle.pbShowAbilitySplash(battler)
+      battler.pbRecoverHP(battler.totalhp/8)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+      else
+        battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
+      end
+      battle.pbHideAbilitySplash(battler)
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAllyAbility.add(:POSITIVEOUTLOOK,
   proc { |ability,user,target,move,mults,baseDmg,type|
 			mults[:base_damage_multiplier] *= 1.50 	if user.pbHasType?(:ELECTRIC) && move.specialMove?
