@@ -9,6 +9,8 @@ class PokeBattle_Battler
       @tribalBonus = TribalBonus.new
     end
 
+    # If the pokemon index is an even number, it is our pokemon. If odd, it is the enemy pokemon.
+    # Enemies should not be recieving Tribal Bonuses.
     return @index % 2 == 0 ? @tribalBonus.getTribeBonuses(@pokemon)[stat] : 0
   end
 
