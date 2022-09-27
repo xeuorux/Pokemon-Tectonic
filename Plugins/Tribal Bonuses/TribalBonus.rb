@@ -40,21 +40,21 @@ class TribalBonus
 
         # Map tribe names to their bonuses
         @bonusDescriptions = {
-            :Monster => "Placeholder Text 1",
-            :Water1 => "Placeholder Text 2",
-            :Bug => "Placeholder Text 3",
-            :Flying => "Placeholder Text 4",
-            :Field => "Placeholder Text 5",
-            :Fairy => "Placeholder Text 6",
-            :Grass => "Placeholder Text 7",
-            :Humanlike => "Placeholder Text 8",
-            :Water3 => "Placeholder Text 9",
-            :Mineral => "Placeholder Text 10",
-            :Amorphous => "Placeholder Text 11",
-            :Water2 => "Placeholder Text 12",
-            :Ditto => "Placeholder Text 13",
-            :Dragon => "Placeholder Text 14",
-            :Undiscovered =>  "Placeholder Text 15"
+            :Monster => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Water1 => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Bug => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Flying => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Field => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Fairy => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Grass => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Humanlike => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Water3 => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Mineral => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Amorphous => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Water2 => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Ditto => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Dragon => "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD.",
+            :Undiscovered =>  "2 Pokémon of this type will give +3 ATK, +3 DEF, +3 SP. ATK, +3 SP. DEF, and +3 SPD."
         }
 
         updateTribeCount()
@@ -90,37 +90,96 @@ class TribalBonus
         compatibilities = fSpecies.compatibility
         compatibilities.each {|compatibility|
             # NOTE: We intentionally do not affect the HP stat due to its technical complexity
-            # TODO: Fix bonuses
             if compatibility == :Monster && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 1
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Water1 && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 2
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Bug && @tribes[compatibility] >= 2
                 tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Flying && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 4
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Field && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 5
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Fairy && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 6
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Grass && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 7
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Humanlike && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 8
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Water3 && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 9
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Mineral && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 10
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Amorphous && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 11
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Water2 && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 12
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Ditto && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 13
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Dragon && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 14
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             elsif compatibility == :Undiscovered && @tribes[compatibility] >= 2
-                tribeBonuses[:ATTACK] += 15
+                tribeBonuses[:ATTACK] += 3
+                tribeBonuses[:DEFENSE] += 3
+                tribeBonuses[:SPECIAL_ATTACK] += 3
+                tribeBonuses[:SPECIAL_DEFENSE] += 3
+                tribeBonuses[:SPEED] += 3
             end
         }
 
