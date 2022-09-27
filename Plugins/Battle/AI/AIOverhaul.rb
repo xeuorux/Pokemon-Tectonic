@@ -1090,7 +1090,7 @@ class PokeBattle_AI
         return true
       end
     when :FIRE
-      if target.hasActiveAbility?(:FLASHFIRE)
+      if target.hasActiveAbility?([:FLASHFIRE,:FINESUGAR])
         moveFailureAlert(move,user,target,"immunity ability")
         return true
       end

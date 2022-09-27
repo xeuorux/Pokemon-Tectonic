@@ -145,3 +145,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:SOLARCELL,
     end
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:FINESUGAR,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.25 if type == :WATER
+  }
+)

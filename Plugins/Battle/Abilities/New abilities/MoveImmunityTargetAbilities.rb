@@ -67,3 +67,9 @@ BattleHandlers::MoveImmunityTargetAbility.add(:PECKINGORDER,
     next true
   }
 )
+
+BattleHandlers::MoveImmunityTargetAbility.add(:FINESUGAR,
+  proc { |ability,user,target,move,type,battle|
+    next pbBattleMoveImmunityHealAbility(user,target,move,type,:FIRE,battle)
+  }
+)
