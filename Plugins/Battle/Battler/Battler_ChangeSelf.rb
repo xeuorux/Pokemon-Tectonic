@@ -36,6 +36,7 @@ class PokeBattle_Battler
 
 	def pbRecoverHP(amt,anim=true,anyAnim=true)
 		raise _INTL("Told to recover a negative amount") if amt<0
+    amt *= 1.5 if hasActiveAbility?(:ROOTED)
 		amt = amt.round
 		amt = @totalhp-@hp if amt>@totalhp-@hp
 		amt = 1 if amt<1 && @hp<@totalhp
@@ -61,8 +62,8 @@ class PokeBattle_Battler
 		  pbItemHPHealCheck
 		else
 		  if canHeal?
-			amt = (amt*1.3).floor if hasActiveItem?(:BIGROOT)
-			pbRecoverHP(amt)
+        amt = (amt*1.3).floor if hasActiveItem?(:BIGROOT)
+        pbRecoverHP(amt)
 		  end
 		end
 	end
