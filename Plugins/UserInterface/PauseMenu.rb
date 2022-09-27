@@ -178,7 +178,7 @@ class PokemonPauseMenu
 		commands[cmdBag = commands.length]       = _INTL("Bag") if !pbInBugContest?
 		commands[cmdPokegear = commands.length]  = _INTL("Pokégear") if $Trainer.has_pokegear
 		commands[cmdDexnav = commands.length]	 = _INTL("DexNav")
-		commands[cmdTribalBonus = commands.length]	 = _INTL("Tribal Bonus")
+		commands[cmdTribalBonus = commands.length]	 = _INTL("Tribal Bonus") if defined?(TribalBonus)
 		commands[cmdGameInfo = commands.length]  = _INTL("Game Info")
 		if pbInSafari?
 		  if Settings::SAFARI_STEPS <= 0

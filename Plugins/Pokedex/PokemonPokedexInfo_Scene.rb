@@ -1254,14 +1254,11 @@ class PokemonPokedexInfo_Scene
         available = @available
     end
 
-	# Get the mapping of Compatibility to user friendly name
-	tribalBonus = TribalBonus.new
-	tribeNames = tribalBonus.tribeNames
-
     for i in available
         if i[2] == @form
-			GameData::Species.get_species_form(@species, @form).compatibility.each {|compatibility|
-				drawTextEx(overlay, xLeft, coordinateY += 30, 450, 1, _INTL(tribeNames[compatibility]), base, shadow)
+			speciesFormData = GameData::Species.get_species_form(@species, @form)
+			speciesFormData.compatibility.each {|compatibility|
+				drawTextEx(overlay, xLeft, coordinateY += 30, 450, 1, _INTL($Tribal_Bonuses.getTribeName(compatibility)), base, shadow)
 			}
         end
     end
@@ -1476,7 +1473,7 @@ class PokemonPokedexInfo_Scene
 	elsif Input.press?(Input::ACTION) && $DEBUG
 		@scroll = -1
 		pbPlayCursorSE
-		@page = 12
+		@page = PAGE_TITLES.length
 		dorefresh = true
 	else
 		highestLeftRepeat = 0

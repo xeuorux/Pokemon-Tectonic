@@ -32,12 +32,18 @@ class TribalBonusScene
         @sprites["scroll_arrow_up"].visible = false
         @sprites["scroll_arrow_down"].visible = false
 
-        @tribalBonus.tribes.each {|tribe, count|
+        drewAny = false
+        $Tribal_Bonuses.tribeCounts.each {|tribe, count|
             if count > 0
-                tribeName = @tribalBonus.tribeNames[tribe]
-                drawTextEx(overlay, xLeft, coordinateY += 30, 450, 1, _INTL("{1}: {2}", tribeName, count), base, shadow)
+                tribeName = $Tribal_Bonuses.getTribeName(tribe)
+                coordinateY += 30
+                drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("{1}: {2}", tribeName, count), base, shadow)
+                drewAny = true
             end
         }
+        if !drewAny
+            drawTextEx(overlay, xLeft, coordinateY + 30, 450, 1, _INTL("None"), base, shadow)
+        end
     end
 
     def displayTribalInfo()
@@ -75,7 +81,7 @@ class TribalBonusScene
     end
 
     def pbStartScene
-        @tribalBonus = TribalBonus.new
+        $Tribal_Bonuses.updateTribeCount()
         @page = 1
 
         # Set up the two viewports to hold UI elements
@@ -105,13 +111,22 @@ class TribalBonusScene
         @sprites["scroll_arrow_down"].visible = false
         @sprites["scroll_arrow_down"].play
 
-        @tribalBonus.bonusDescriptions.each {|tribe, bonusDescription|
-            tribeName = @tribalBonus.tribeNames[tribe]
+        TRIBAL_DEFINITIONS.each {|tribe, tribeDefinition|
+            tribeName = tribeDefinition[0]
+            tribalThresholdEntries = tribeDefinition[1]
+
             @displayText << tribeName + ":"
 
-            break_string(bonusDescription, 40).each {|line|
-                @displayText << line
-            }
+            tribalThresholdEntries.each do |tribalThresholdEntry|
+                threshold = tribalThresholdEntry[0]
+                statBonusesHash = tribalThresholdEntry[1]
+                statBonusesDescription = tribalThresholdEntry[2]
+                bonusDescription = "#{threshold} battlers in this category will get #{statBonusesDescription}"
+
+                break_string(bonusDescription, 40).each {|line|
+                    @displayText << line
+                }
+            end
             @displayText << "" # Blank line
         }
 

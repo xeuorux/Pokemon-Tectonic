@@ -1,17 +1,11 @@
 class PokeBattle_Battler
   OFFENSIVE_LOCK_STAT = 120
   DEFENSIVE_LOCK_STAT = 95
-  
-  attr_accessor :tribalBonus
 
   def getBonus(stat)
-    if !tribalBonus
-      @tribalBonus = TribalBonus.new
-    end
-
-    # If the pokemon index is an even number, it is our pokemon. If odd, it is the enemy pokemon.
-    # Enemies should not be recieving Tribal Bonuses.
-    return @index % 2 == 0 ? @tribalBonus.getTribeBonuses(@pokemon)[stat] : 0
+    return 0 if !pbOwnedByPlayer? || !defined?(TribalBonus)
+    bonus = $Tribal_Bonuses.getTribeBonuses(@pokemon)[stat]
+    return bonus
   end
 
 	def attack
@@ -66,7 +60,7 @@ class PokeBattle_Battler
     atk_bonus = getBonus(:ATTACK)
 
     if hasActiveItem?(:POWERLOCK)
-      return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:ATTACK] + atk_bonus,hasActiveAbility?(:STYLISH))
+      return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:ATTACK],hasActiveAbility?(:STYLISH)) + atk_bonus
     else
       return @attack + atk_bonus
     end
@@ -76,7 +70,7 @@ class PokeBattle_Battler
     defense_bonus = getBonus(:DEFENSE)
 
     if hasActiveItem?(:GUARDLOCK)
-      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE] + defense_bonus,hasActiveAbility?(:STYLISH))
+      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE],hasActiveAbility?(:STYLISH)) + defense_bonus
     else
       return @defense + defense_bonus
     end
@@ -86,7 +80,7 @@ class PokeBattle_Battler
     spatk_bonus = getBonus(:SPECIAL_ATTACK)
 
     if hasActiveItem?(:ENERGYLOCK)
-			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK] + spatk_bonus,hasActiveAbility?(:STYLISH))
+			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK],hasActiveAbility?(:STYLISH)) + spatk_bonus
 		else
 			return @spatk + spatk_bonus
 		end
@@ -96,7 +90,7 @@ class PokeBattle_Battler
     spdef_bonus = getBonus(:SPECIAL_DEFENSE)
 
     if hasActiveItem?(:WILLLOCK)
-      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE] + spdef_bonus,hasActiveAbility?(:STYLISH))
+      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE],hasActiveAbility?(:STYLISH)) + spdef_bonus
     else
       return @spdef + spdef_bonus
     end
