@@ -4,8 +4,7 @@ class PokeBattle_Battler
 
   def getBonus(stat)
     return 0 if !pbOwnedByPlayer? || !defined?(TribalBonus)
-    bonus = $Tribal_Bonuses.getTribeBonuses(@pokemon)[stat]
-    return bonus
+    return $Tribal_Bonuses.getTribeBonuses(@pokemon)[stat]
   end
 
 	def attack

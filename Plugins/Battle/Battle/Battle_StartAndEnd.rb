@@ -23,6 +23,7 @@ class PokeBattle_Battle
     PBDebug.log(logMsg)
 	  $game_switches[94] = false
     ableBeforeFight = $Trainer.able_pokemon_count # Record the number of fainted
+    $Tribal_Bonuses.updateTribeCount()
     pbEnsureParticipants
     begin
       pbStartBattleCore
