@@ -6,6 +6,7 @@ class TribalBonusScene
         overlay = @sprites["overlay"].bitmap
         overlay.clear
 
+
         base = Color.new(219, 240, 240)
         shadow   = Color.new(88, 88, 80)
         pageTitle = PAGE_TITLES[@page-1]
@@ -27,6 +28,10 @@ class TribalBonusScene
         xLeft = 36
         coordinateY = 34
     
+        # Make sure arrows are hidden
+        @sprites["scroll_arrow_up"].visible = false
+        @sprites["scroll_arrow_down"].visible = false
+
         @tribalBonus.tribes.each {|tribe, count|
             if count > 0
                 tribeName = @tribalBonus.tribeNames[tribe]
@@ -122,8 +127,6 @@ class TribalBonusScene
 
     def pbScene
         returnIndex = -1
-        highestLeftRepeat = 0
-        highestRightRepeat = 0
 
         Graphics.update
         Input.update
@@ -131,60 +134,42 @@ class TribalBonusScene
         dorefresh = false
         
         if Input.repeat?(Input::LEFT)
-            highestRightRepeat = 0
-            repeats = 1 + Input.time?(Input::LEFT) / 100000
-            if  repeats > highestLeftRepeat
-                highestLeftRepeat = repeats
-                oldpage = @page
+            # Go to previous page if not already on the first page
+            if @page > 1
                 @page -= 1
-                @page = 1 if @page<1
-                if @page!=oldpage
-                    @scroll = -1
-                    @horizontalScroll = 0
-                    pbPlayCursorSE
-                    dorefresh = true
-                end
+                dorefresh = true
             end
             returnIndex = @page
         elsif Input.repeat?(Input::RIGHT)
-            highestLeftRepeat = 0
-            repeats = 1 + Input.time?(Input::RIGHT) / 100000
-            if repeats > highestRightRepeat
-                highestRightRepeat = repeats
-                oldpage = @page
+            # Go to next page if not already on the last page
+            if @page < PAGE_TITLES.length()
                 @page += 1
-                @page = PAGE_TITLES.length() if @page>PAGE_TITLES.length()
-                if @page!=oldpage
-                    @scroll = -1
-                    @horizontalScroll = 0
-                    pbPlayCursorSE
-                    dorefresh = true
-                end
+                dorefresh = true
             end
             returnIndex = @page
         elsif Input.repeat?(Input::UP)
+            # Scroll up on the Tribal Info page if not already at the top
             if @offset > 0
                 @offset = @offset - 1
                 dorefresh = true
-                pbPlayCursorSE
             end
             returnIndex = @page + @offset
         elsif Input.repeat?(Input::DOWN)
+            # Scroll down on the Tribal Info page if not already at the bottom
             if @offset < @displayText.length - @linesToShow
                 @offset = @offset + 1
                 dorefresh = true
-                pbPlayCursorSE
             end
             returnIndex = @page + @offset
         elsif Input.repeat?(Input::BACK)
             returnIndex = -1
         else
-            highestLeftRepeat = 0
-            highestRightRepeat = 0
             returnIndex = @page
         end
-            
+        
+        # If the page has changed, redraw the page
         if dorefresh
+            pbPlayCursorSE
             drawPage()
         end
         
