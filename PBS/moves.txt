@@ -396,7 +396,7 @@
 379,AURORAVEIL,Aurora Veil,167,0,ICE,Status,0,15,0,UserSide,0,d,"This move reduces damage from attacks for five turns. This can be used only in a hailstorm.",
 380,HAIL,Hail,102,0,ICE,Status,0,10,0,BothSides,0,,"Summons hail for five turns. Damages non-Ice,non-Ghost-types every turn.",
 381,HAZE,Haze,051,0,ICE,Status,0,25,0,BothSides,0,,"The user creates a haze that eliminates every stat change among all the Pokémon engaged in battle.",
-382,MIST,Mist,056,0,ICE,Status,0,25,0,UserSide,0,d,"The user cloaks its body with a white mist that prevents any of its stats from being cut for five turns.",
+382,MIST,Mist,056,0,ICE,Status,0,25,0,UserSide,0,d,"The user cloaks its body with a white mist that prevents any of its or its allies stats from being cut for ten turns.",
 383,TRIPLEAXEL,Triple Axel,0BF,20,ICE,Physical,90,10,0,NearOther,0,abef,"A consecutive three-kick attack that becomes more powerful with each successful hit.",
 384,GLACIALLANCE,Glacial Lance,000,130,ICE,Physical,100,5,0,NearOther,0,bef,"The user attacks by hurling a blizzard-cloaked icicle lance at opposing Pokémon.",
 #-------------------------------

@@ -1572,7 +1572,7 @@ class PokeBattle_Move_055 < PokeBattle_Move
 end
 
 #===============================================================================
-# For 5 rounds, user's and ally's stat stages cannot be lowered by foes. (Mist)
+# For 10 rounds, user's and ally's stat stages cannot be lowered by foes. (Mist)
 #===============================================================================
 class PokeBattle_Move_056 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
@@ -1584,7 +1584,7 @@ class PokeBattle_Move_056 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    user.pbOwnSide.effects[PBEffects::Mist] = 5
+    user.pbOwnSide.effects[PBEffects::Mist] = 10
     @battle.pbDisplay(_INTL("{1} became shrouded in mist!",user.pbTeam))
   end
 end
