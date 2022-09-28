@@ -347,13 +347,13 @@ class PokeBattle_Move
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
         # Fluster
-        if user.flustered? && physicalMove? && @function != "122" && !user.hasActiveAbility?(:FLUSTERFLOCK) && !user.hasActiveAbility?(:MARVELSCALE)
+        if target.flustered? && physicalMove? && @function != "122" && !target.hasActiveAbility?([:FLUSTERFLOCK,:MARVELSCALE])
             defenseDecrease = target.boss? ? (1.0/5.0) : (1.0/3.0)
             defenseDecrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             multipliers[:defense_multiplier] *= (1.0 - defenseDecrease)
         end
         # Mystified
-        if user.mystified? && specialMove? && @function != "506" && !user.hasActiveAbility?(:HEADACHE) && !user.hasActiveAbility?(:MARVELSKIN)
+        if target.mystified? && specialMove? && @function != "506" && !target.hasActiveAbility?([:HEADACHE,:MARVELSKIN])
             defenseDecrease = target.boss? ? (1.0/5.0) : (1.0/3.0)
             defenseDecrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             multipliers[:defense_multiplier] *= (1.0 - defenseDecrease)
