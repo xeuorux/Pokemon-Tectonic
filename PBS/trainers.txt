@@ -4473,14 +4473,15 @@ Pokemon = ARCLAMOR,70
 	EV = 0,10,0,20,20,0
 Pokemon = MGIGALITH,70
 	AbilityIndex = 0
-	Moves = DOUSE,FREEZEDRY,DIAMONDFORCE,BLOSSOM
+	Moves = DOUSE,PSYCHIC,DIAMONDFORCE,BLOSSOM
 	Item = LEFTOVERS
 	EV = 20,0,15,0,0,15
 Pokemon = ARAICHU,70
 	AbilityIndex = 1
 	Moves = RISINGVOLTAGE,VOLTSWITCH,HYDROPUMP,PSYCHIC
 	Item = CHOICESPECS
-    #-------------------------------
+	EV = 20,0,0,10,20,0
+#-------------------------------
     [GUITARIST3,Mai]
     Pokemon = SUNKERN,22
         AbilityIndex = 1
