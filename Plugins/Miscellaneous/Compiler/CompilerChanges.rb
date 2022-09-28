@@ -470,8 +470,6 @@ module Compiler
 			avatar_number += 1
 			# Add trainer avatar's data to records
 			GameData::Avatar.register(avatar_hash)
-
-      echoln("Registering #{avatar_symbol} in the avatar data")
 		}
     }
 
