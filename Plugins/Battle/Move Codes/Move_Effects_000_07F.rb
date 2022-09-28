@@ -1049,7 +1049,7 @@ class PokeBattle_Move_03F < PokeBattle_StatDownMove
 end
 
 #===============================================================================
-# Increases the target's Special Attack by 1 stage. Confuses the target. (Flatter)
+# Increases the target's Special Attack by 2 stages. Charms the target. (Old!Flatter)
 #===============================================================================
 class PokeBattle_Move_040 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
@@ -1073,10 +1073,16 @@ class PokeBattle_Move_040 < PokeBattle_Move
     end
     target.pbCharm if target.pbCanCharm?(user,false,self)
   end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.pbCanCharm?(user,false,self)
+    score += 30 if !target.hasSpecialAttack?
+    return score
+  end
 end
 
 #===============================================================================
-# Increases the target's Attack by 2 stages. Confuses the target. (Swagger)
+# Increases the target's Attack by 2 stages. Confuses the target. (Old!Swagger)
 #===============================================================================
 class PokeBattle_Move_041 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
@@ -1099,6 +1105,12 @@ class PokeBattle_Move_041 < PokeBattle_Move
       target.pbRaiseStatStage(:ATTACK,2,user)
     end
     target.pbConfuse if target.pbCanConfuse?(user,false,self)
+  end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.pbCanConfuse?(user,false,self)
+    score += 30 if !target.hasPhysicalAttack?
+    return score
   end
 end
 
@@ -1400,11 +1412,19 @@ end
 #===============================================================================
 class PokeBattle_Move_050 < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
-    if target.damageState.calcDamage>0 && !target.damageState.substitute &&
-       target.hasAlteredStatStages?
+    if target.damageState.calcDamage > 0 && !target.damageState.substitute && target.hasAlteredStatStages?
       target.pbResetStatStages
       @battle.pbDisplay(_INTL("{1}'s stat changes were removed!",target.pbThis))
     end
+  end
+  
+  def getScore(score,user,target,skill=100)
+    if target.effects[PBEffects::Substitute] == 0 && target.hasAlteredStatStages?
+			GameData::Stat.each_battle do |s|
+				score += target.stages[s.id] * 10
+			end
+		end
+    return score
   end
 end
 
@@ -1429,6 +1449,19 @@ class PokeBattle_Move_051 < PokeBattle_Move
     @battle.eachBattler { |b| b.pbResetStatStages }
     @battle.pbDisplay(_INTL("All stat changes were eliminated!"))
   end
+
+  def getScore(score,user,target,skill=100)
+		@battle.eachBattler do |b|
+			totalStages = 0
+			GameData::Stat.each_battle { |s| totalStages += b.stages[s.id] }
+			if b.opposes?(user)
+				score += totalStages * 10
+			else
+				score -= totalStages * 10
+			end
+		end
+    return score
+  end
 end
 
 #===============================================================================
@@ -1442,6 +1475,20 @@ class PokeBattle_Move_052 < PokeBattle_Move
       user.stages[s],target.stages[s] = target.stages[s],user.stages[s]
     end
     @battle.pbDisplay(_INTL("{1} switched all changes to its Attack and Sp. Atk with the target!",user.pbThis))
+  end
+
+  def getScore(score,user,target,skill=100)
+    aatk = user.stages[:ATTACK]
+		aspa = user.stages[:SPECIAL_ATTACK]
+		oatk = target.stages[:ATTACK]
+		ospa = target.stages[:SPECIAL_ATTACK]
+		if aatk >= oatk && aspa >= ospa
+			score -= 80
+		else
+			score += (oatk-aatk)*10
+			score += (ospa-aspa)*10
+		end
+    return score
   end
 end
 
@@ -1457,6 +1504,20 @@ class PokeBattle_Move_053 < PokeBattle_Move
     end
     @battle.pbDisplay(_INTL("{1} switched all changes to its Defense and Sp. Def with the target!",user.pbThis))
   end
+
+  def getScore(score,user,target,skill=100)
+    adef = user.stages[:DEFENSE]
+		aspd = user.stages[:SPECIAL_DEFENSE]
+		odef = target.stages[:DEFENSE]
+		ospd = target.stages[:SPECIAL_DEFENSE]
+		if adef >= odef && aspd >= ospd
+			score -= 80
+		else
+			score += (odef  -adef) * 10
+			score += (ospd - aspd) * 10
+		end
+    return score
+  end
 end
 
 #===============================================================================
@@ -1470,6 +1531,16 @@ class PokeBattle_Move_054 < PokeBattle_Move
       user.stages[s.id],target.stages[s.id] = target.stages[s.id],user.stages[s.id]
     end
     @battle.pbDisplay(_INTL("{1} switched stat changes with the target!",user.pbThis))
+  end
+
+  def getScore(score,user,target,skill=100)
+    userStages = 0; targetStages = 0
+    GameData::Stat.each_battle do |s|
+      userStages	 += user.stages[s.id]
+      targetStages += target.stages[s.id]
+    end
+    score += (targetStages-userStages)*10
+    return score
   end
 end
 
@@ -1486,6 +1557,17 @@ class PokeBattle_Move_055 < PokeBattle_Move
       user.effects[PBEffects::LaserFocus]  = target.effects[PBEffects::LaserFocus]
     end
     @battle.pbDisplay(_INTL("{1} copied {2}'s stat changes!",user.pbThis,target.pbThis(true)))
+  end
+
+  def getScore(score,user,target,skill=100)
+    equal = true
+    GameData::Stat.each_battle do |s|
+      stagediff = target.stages[s.id] - user.stages[s.id]
+      score += stagediff * 10
+      equal = false if stagediff != 0
+    end
+    score = 0 if equal
+    return score
   end
 end
 
@@ -1516,6 +1598,19 @@ class PokeBattle_Move_057 < PokeBattle_Move
     user.effects[PBEffects::PowerTrick] = !user.effects[PBEffects::PowerTrick]
     @battle.pbDisplay(_INTL("{1} switched its Attack and Defense!",user.pbThis))
   end
+
+  def getScore(score,user,target,skill=100)
+    aatk = pbRoughStat(user,:ATTACK,skill)
+		adef = pbRoughStat(user,:DEFENSE,skill)
+		if aatk == adef || user.effects[PBEffects::PowerTrick]	 # No flip-flopping
+			return 0
+		elsif adef > aatk	 # Prefer a higher Attack
+			score += 50
+		else
+			score -= 50
+		end
+    return score
+  end
 end
 
 #===============================================================================
@@ -1529,6 +1624,21 @@ class PokeBattle_Move_058 < PokeBattle_Move
     user.attack = target.attack = newatk
     user.spatk  = target.spatk  = newspatk
     @battle.pbDisplay(_INTL("{1} shared its power with the target!",user.pbThis))
+  end
+
+  def getScore(score,user,target,skill=100)
+    aatk	 = pbRoughStat(user,:ATTACK,skill)
+		aspatk = pbRoughStat(user,:SPECIAL_ATTACK,skill)
+		oatk	 = pbRoughStat(target,:ATTACK,skill)
+		ospatk = pbRoughStat(target,:SPECIAL_ATTACK,skill)
+		if aatk < oatk && aspatk<ospatk
+			score += 50
+		elsif aatk + aspatk < oatk+ospatk
+			score += 30
+		else
+			score -= 50
+		end
+    return score
   end
 end
 
@@ -1544,6 +1654,21 @@ class PokeBattle_Move_059 < PokeBattle_Move
     user.spdef   = target.spdef   = newspdef
     @battle.pbDisplay(_INTL("{1} shared its guard with the target!",user.pbThis))
   end
+
+  def getScore(score,user,target,skill=100)
+    adef	 = pbRoughStat(user,:DEFENSE,skill)
+		aspdef = pbRoughStat(user,:SPECIAL_DEFENSE,skill)
+		odef	 = pbRoughStat(target,:DEFENSE,skill)
+		ospdef = pbRoughStat(target,:SPECIAL_DEFENSE,skill)
+		if adef < odef && aspdef < ospdef
+			score += 50
+		elsif adef + aspdef < odef + ospdef
+			score += 30
+		else
+			score -= 50
+		end
+    return score
+  end
 end
 
 #===============================================================================
@@ -1551,25 +1676,34 @@ end
 #===============================================================================
 class PokeBattle_Move_05A < PokeBattle_Move
     def pbFailsAgainstTarget?(user,target)
-		if target.boss
+		if target.boss?
 			@battle.pbDisplay(_INTL("But it failed!"))
 			return true
 		end
 		return false
 	end
 
-    def pbEffectAgainstTarget(user,target)
-        newHP = (user.hp+target.hp)/2
-        if user.hp>newHP;    user.pbReduceHP(user.hp-newHP,false,false)
-        elsif user.hp<newHP; user.pbRecoverHP(newHP-user.hp,false)
-        end
-        if target.hp>newHP;    target.pbReduceHP(target.hp-newHP,false,false)
-        elsif target.hp<newHP; target.pbRecoverHP(newHP-target.hp,false)
-        end
-        @battle.pbDisplay(_INTL("The battlers shared their pain!"))
-        user.pbItemHPHealCheck
-        target.pbItemHPHealCheck
+  def pbEffectAgainstTarget(user,target)
+      newHP = (user.hp+target.hp)/2
+      if user.hp>newHP;    user.pbReduceHP(user.hp-newHP,false,false)
+      elsif user.hp<newHP; user.pbRecoverHP(newHP-user.hp,false)
+      end
+      if target.hp>newHP;    target.pbReduceHP(target.hp-newHP,false,false)
+      elsif target.hp<newHP; target.pbRecoverHP(newHP-target.hp,false)
+      end
+      @battle.pbDisplay(_INTL("The battlers shared their pain!"))
+      user.pbItemHPHealCheck
+      target.pbItemHPHealCheck
+  end
+
+  def getScore(score,user,target,skill=100)
+    if user.hp >= (user.hp + target.hp) / 2
+      score = 0
+    else
+      score += 40
     end
+    return score
+  end
 end
 
 #===============================================================================
@@ -1587,6 +1721,11 @@ class PokeBattle_Move_05B < PokeBattle_Move
   def pbEffectGeneral(user)
     user.pbOwnSide.effects[PBEffects::Tailwind] = 4
     @battle.pbDisplay(_INTL("The Tailwind blew from behind {1}!",user.pbTeam(true)))
+  end
+
+  def getScore(score,user,target,skill=100)
+    score += 30 if @battle.pbSideSize(user.index)
+    return score
   end
 end
 
@@ -2150,9 +2289,9 @@ class PokeBattle_Move_069 < PokeBattle_Move
     user.pbTransform(target)
   end
 
-  def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
-    super
-    @battle.scene.pbChangePokemon(user,targets[0].pokemon)
+  def getScore(score,user,target,skill=100)
+    score += 100
+    return score
   end
 end
 

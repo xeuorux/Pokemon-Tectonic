@@ -58,148 +58,10 @@ class PokeBattle_AI
 			score = 0
 		end
 	#---------------------------------------------------------------------------
-	when "040"
-		if !target.pbCanConfuse?(user,false)
-			score = 0
-		else
-			score += 30 if target.stages[:SPECIAL_ATTACK]<0
-		end
-	#---------------------------------------------------------------------------
-	when "041"
-		if !target.pbCanConfuse?(user,false)
-			score = 0
-		else
-			score += 30 if target.stages[:ATTACK]<0
-		end
-	#---------------------------------------------------------------------------
-	when "04A"
+	when "04A" # Tickle
 		avg = target.stages[:ATTACK]*10
 		avg += target.stages[:DEFENSE]*10
 		score += avg/2
-	#---------------------------------------------------------------------------
-	when "050"
-		if target.effects[PBEffects::Substitute]>0
-			score = 0
-		else
-			avg = 0; anyChange = false
-			GameData::Stat.each_battle do |s|
-				next if target.stages[s.id]==0
-				avg += target.stages[s.id]
-				anyChange = true
-			end
-			if anyChange
-				score += avg*10
-			else
-				score = 0
-			end
-		end
-	#---------------------------------------------------------------------------
-	when "051"
-		stages = 0
-		@battle.eachBattler do |b|
-			totalStages = 0
-			GameData::Stat.each_battle { |s| totalStages += b.stages[s.id] }
-			if b.opposes?(user)
-				stages += totalStages
-			else
-				stages -= totalStages
-			end
-		end
-		score += stages*10
-	#---------------------------------------------------------------------------
-	when "052"
-		aatk = user.stages[:ATTACK]
-		aspa = user.stages[:SPECIAL_ATTACK]
-		oatk = target.stages[:ATTACK]
-		ospa = target.stages[:SPECIAL_ATTACK]
-		if aatk >= oatk && aspa >= ospa
-			score -= 80
-		else
-			score += (oatk-aatk)*10
-			score += (ospa-aspa)*10
-		end
-	#---------------------------------------------------------------------------
-	when "053"
-		adef = user.stages[:DEFENSE]
-		aspd = user.stages[:SPECIAL_DEFENSE]
-		odef = target.stages[:DEFENSE]
-		ospd = target.stages[:SPECIAL_DEFENSE]
-		if adef>=odef && aspd>=ospd
-			score -= 80
-		else
-			score += (odef-adef)*10
-			score += (ospd-aspd)*10
-		end
-	#---------------------------------------------------------------------------
-	when "054"
-		userStages = 0; targetStages = 0
-		GameData::Stat.each_battle do |s|
-			userStages	 += user.stages[s.id]
-			targetStages += target.stages[s.id]
-		end
-		score += (targetStages-userStages)*10
-	#---------------------------------------------------------------------------
-	when "055"
-		equal = true
-		GameData::Stat.each_battle do |s|
-			stagediff = target.stages[s.id] - user.stages[s.id]
-			score += stagediff*10
-			equal = false if stagediff!=0
-		end
-		score = 0 if equal
-	#---------------------------------------------------------------------------
-	when "056"
-		score = 0 if user.pbOwnSide.effects[PBEffects::Mist]>0
-	#---------------------------------------------------------------------------
-	when "057"
-		aatk = pbRoughStat(user,:ATTACK,skill)
-		adef = pbRoughStat(user,:DEFENSE,skill)
-		if aatk==adef ||
-			 user.effects[PBEffects::PowerTrick]	 # No flip-flopping
-			score = 0
-		elsif adef>aatk	 # Prefer a higher Attack
-			score += 30
-		else
-			score -= 30
-		end
-	#---------------------------------------------------------------------------
-	when "058"
-		aatk	 = pbRoughStat(user,:ATTACK,skill)
-		aspatk = pbRoughStat(user,:SPECIAL_ATTACK,skill)
-		oatk	 = pbRoughStat(target,:ATTACK,skill)
-		ospatk = pbRoughStat(target,:SPECIAL_ATTACK,skill)
-		if aatk<oatk && aspatk<ospatk
-			score += 50
-		elsif aatk+aspatk<oatk+ospatk
-			score += 30
-		else
-			score -= 50
-		end
-	#---------------------------------------------------------------------------
-	when "059"
-		adef	 = pbRoughStat(user,:DEFENSE,skill)
-		aspdef = pbRoughStat(user,:SPECIAL_DEFENSE,skill)
-		odef	 = pbRoughStat(target,:DEFENSE,skill)
-		ospdef = pbRoughStat(target,:SPECIAL_DEFENSE,skill)
-		if adef<odef && aspdef<ospdef
-			score += 50
-		elsif adef+aspdef<odef+ospdef
-			score += 30
-		else
-			score -= 50
-		end
-	#---------------------------------------------------------------------------
-	when "05A"
-		if target.effects[PBEffects::Substitute]>0
-			score = 0
-		elsif user.hp>=(user.hp+target.hp)/2
-			score = 0
-		else
-			score += 40
-		end
-	#---------------------------------------------------------------------------
-	when "05B"
-		score = 0 if user.pbOwnSide.effects[PBEffects::Tailwind]>0
 	#---------------------------------------------------------------------------
 	when "05C"
 		moveBlacklist = [
@@ -416,9 +278,6 @@ class PokeBattle_AI
 		else
 			score = 0 if [:MULTITYPE, :RKSSYSTEM, :SLOWSTART, :TRUANT].include?(target.ability_id)
 		end
-	#---------------------------------------------------------------------------
-	when "069"
-		score -= 70
 	#---------------------------------------------------------------------------
 	when "06A"
 		if target.hp<=20

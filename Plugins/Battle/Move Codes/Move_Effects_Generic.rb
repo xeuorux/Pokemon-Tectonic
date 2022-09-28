@@ -893,15 +893,15 @@ class PokeBattle_FlusterMove < PokeBattle_Move
 	  target.pbFluster
 	end
 
-    def getScore(score,user,target,skill=100)
-        canFluster = target.pbCanFluster?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
-        if canFluster
-          score += 20
-        elsif statusMove?
-          score = 0
-        end
-        return score
-    end
+  def getScore(score,user,target,skill=100)
+      canFluster = target.pbCanFluster?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
+      if canFluster
+        score += 20
+      elsif statusMove?
+        score = 0
+      end
+      return score
+  end
 end
 
 #===============================================================================
