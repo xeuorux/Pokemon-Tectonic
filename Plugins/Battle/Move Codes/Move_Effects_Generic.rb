@@ -208,7 +208,7 @@ class PokeBattle_ConfuseMove < PokeBattle_Move
     canConfuse = target.pbCanConfuse?(user,false) && !target.hasActiveAbilityAI?(:MENTALBLOCK)
 		if canConfuse
 			score += 20
-		elsif move.statusMove?
+		elsif statusMove?
 			score = 0
 		end
     return score
@@ -234,6 +234,36 @@ class PokeBattle_StatUpMove < PokeBattle_Move
       user.pbRaiseStatStage(@statUp[0],@statUp[1],user)
     end
   end
+
+  def getScore(score,user,target,skill=100)
+    statToRaise = @statUp[0]
+    statRaiseAmount = @statUp[1]
+
+    # Stat up moves tend to be strong on the first turn
+    if user.turnCount == 0
+      if damagingMove?
+        score += 20 
+      else
+        score += 50
+      end	
+    end
+
+    score += 20 if statRaiseAmount > 1	 # Stat up moves that raise stats multiple times are better
+    score += 20 if statRaiseAmount > 2	 # Stat up moves that raise stats multiple times are better
+
+    # Wont use this move if it boosts an offensive
+		# Stat that the pokemon can't actually use
+    if !damagingMove?
+		  return 0 if statToRaise == :ATTACK && !user.hasPhysicalAttack?
+		  return 0 if statToRaise == :SPECIAL_ATTACK && !user.hasSpecialAttack?
+    end
+	
+		score -= user.stages[statToRaise]*10
+
+    score -= 10 if ![:ATTACK,:SPECIAL_ATTACK].include?(statToRaise) # Boost moves that dont up offensives are worse
+		
+		return score
+	end
 end
 
 class PokeBattle_MultiStatUpMove < PokeBattle_Move
@@ -274,25 +304,36 @@ class PokeBattle_MultiStatUpMove < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-		score += 50 if user.turnCount == 0	 # Multi-stat up moves are often great on the first turn
-	
-		# Return 0 if all the stats upped by this move are already at max
-		stagesMaxxed = true
+    # Stat up moves tend to be strong on the first turn
+    if user.turnCount == 0
+      if damagingMove?
+        score += 20 
+      else
+        score += 50
+      end	
+    end
+
+    score += 20 # Multi stat up moves are generally strong
+
+    # Analyze each stat up entry
 		upsPhysicalAttack = false
 		upsSpecialAttack = false
+    totalStats = 0
 		for i in 0...@statUp.length/2
 			statSym = @statUp[i*2]
-			stagesMaxxed = false if !user.statStageAtMax?(statSym)
-			score -= user.stages[statSym]*10 # Reduce the score for each existing stage
+			score -= user.stages[statSym] * 10 # Reduce the score for each existing stage
 			upsPhysicalAttack = true if statSym == :ATTACK
 			upsSpecialAttack = true if statSym == :SPECIAL_ATTACK
+      totalStats += 1
 		end
-		return 0 if stagesMaxxed
 
-		# Wont use this move if it boosts an offensive
-		# Stat that the pokemon can't actually use
-		return 0 if upsPhysicalAttack && !upsSpecialAttack && !user.hasPhysicalAttack?
-		return 0 if !upsPhysicalAttack && upsSpecialAttack && !user.hasSpecialAttack?
+    score += 20 if totalStats > 2	 # Stat up moves that raise 3 or more stats are better
+
+		# Check if it boosts an offensive stat that the pokemon can't actually use
+    if !damagingMove?
+      return 0 if upsPhysicalAttack && !upsSpecialAttack && !user.hasPhysicalAttack?
+      return 0 if !upsPhysicalAttack && upsSpecialAttack && !user.hasSpecialAttack?
+    end
 
 		score -= 10 if !upsPhysicalAttack && !upsSpecialAttack # Boost moves that dont up offensives are worse
 		
@@ -310,6 +351,19 @@ class PokeBattle_StatDownMove < PokeBattle_Move
         showAnim = false
       end
     end
+  end
+
+  def getScore
+    average = 0
+    count = 0
+    for i in 0...@statUp.length/2
+			statSym = @statUp[i*2]
+			average += user.stages[statSym] * 10 # Reduce the score for each existing stage
+      count += 1
+		end
+
+		score += average/count
+    return score
   end
 end
 

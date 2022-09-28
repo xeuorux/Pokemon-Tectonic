@@ -248,6 +248,12 @@ class PokeBattle_Move_011 < PokeBattle_FlinchMove
     end
     return false
   end
+
+  def getScore(score,user,target,skill=100)
+    score += 100
+    score = getFlinchingMoveScore(score,user,target,skill,policies)
+    return score
+  end
 end
 
 #===============================================================================
@@ -261,6 +267,12 @@ class PokeBattle_Move_012 < PokeBattle_FlinchMove
       return true
     end
     return false
+  end
+
+  def getScore(score,user,target,skill=100)
+    score += 50
+    score = getFlinchingMoveScore(score,user,target,skill,policies)
+    return score
   end
 end
 
@@ -330,6 +342,11 @@ class PokeBattle_Move_017 < PokeBattle_Move
     when 2 then target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
     end
   end
+
+  def getScore(score,user,target,skill=100)
+    score += 30 if target.hasSpotsForStatus?()
+    return score
+  end
 end
 
 #===============================================================================
@@ -346,6 +363,11 @@ class PokeBattle_Move_018 < PokeBattle_Move
 
   def pbEffectGeneral(user)
     user.pbCureStatus
+  end
+
+  def getScore(score,user,target,skill=100)
+    score += 30
+    return score
   end
 end
 
@@ -442,6 +464,15 @@ class PokeBattle_Move_019 < PokeBattle_Move
       @battle.pbDisplay(_INTL("A bell chimed!"))
     end
   end
+
+  def getScore(score,user,target,skill=100)
+    statuses = 0
+		@battle.pbParty(user.index).each do |pkmn|
+			statuses += 1 if pkmn && pkmn.status != :NONE
+		end
+		score += 20*statuses
+    return score
+  end
 end
 
 #===============================================================================
@@ -460,6 +491,15 @@ class PokeBattle_Move_01A < PokeBattle_Move
   def pbEffectGeneral(user)
     user.pbOwnSide.effects[PBEffects::Safeguard] = 5
     @battle.pbDisplay(_INTL("{1} became cloaked in a mystical veil!",user.pbTeam))
+  end
+
+  def getScore(score,user,target,skill=100)
+    if user.hasSpotsForStatus?
+			score += 30
+		else
+			score -= 30
+		end
+    return score
   end
 end
 
@@ -559,6 +599,21 @@ class PokeBattle_Move_021 < PokeBattle_StatUpMove
     @battle.pbDisplay(_INTL("{1} began charging power!",user.pbThis))
     super
   end
+
+  def getScore(score,user,target,skill=100)
+    foundMove = false
+		user.eachMove do |m|
+			next if m.type != :ELECTRIC || !m.damagingMove?
+			foundMove = true
+			break
+		end
+    if foundMove
+      score += 20
+    else
+      score -= 20
+    end
+    super
+  end
 end
 
 #===============================================================================
@@ -586,6 +641,13 @@ class PokeBattle_Move_023 < PokeBattle_Move
   def pbEffectGeneral(user)
     user.effects[PBEffects::FocusEnergy] = 2
     @battle.pbDisplay(_INTL("{1} is getting pumped!",user.pbThis))
+  end
+
+  def getScore(score,user,target,skill=100)
+    score -= 20
+    score += 20 if user.turnCount == 0
+    score += 40 if user.hasActiveAbility?([:SUPERLUCK,:SNIPER])
+    return score
   end
 end
 
@@ -727,6 +789,11 @@ class PokeBattle_Move_030 < PokeBattle_StatUpMove
     super
     @statUp = [:SPEED,2]
   end
+
+  def getScore(score,user,target,skill=100)
+    score += 40 if user.hasActiveAbility?(:STAMPEDE)
+    super
+  end
 end
 
 #===============================================================================
@@ -830,6 +897,19 @@ class PokeBattle_Move_035 < PokeBattle_Move
       end
     end
   end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if !user.hasDamagingAttack?
+
+    score += 50 if user.turnCount == 0
+
+    score -= user.stages[:ATTACK]*20
+		score -= user.stages[:SPEED]*20
+		score -= user.stages[:SPECIAL_ATTACK]*20
+		score += user.stages[:DEFENSE]*10
+		score += user.stages[:SPECIAL_DEFENSE]*10
+    return score
+  end
 end
 
 #===============================================================================
@@ -904,6 +984,15 @@ class PokeBattle_Move_03A < PokeBattle_Move
     user.pbReduceHP(hpLoss,false)
     user.pbMaximizeStatStage(:ATTACK,user,self)
     user.pbItemHPHealCheck
+  end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if !user.hasPhysicalAttack?
+
+    score += 50 if user.turnCount == 0
+
+    score -= user.stages[:ATTACK]*20
+    return score
   end
 end
 

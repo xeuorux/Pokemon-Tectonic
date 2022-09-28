@@ -33,6 +33,7 @@ class PokeBattle_Battler
 	def hasStatusNoTrigger(checkStatus)
 		return getStatuses().include?(checkStatus)
 	end
+	alias hasStatusNoTrigger? hasStatusNoTrigger
 
 	def pbHasAnyStatus?
 		if BattleHandlers.triggerStatusCheckAbilityNonIgnorable(self.ability,self,nil)
@@ -48,6 +49,7 @@ class PokeBattle_Battler
 		end
 		return hasStatus
 	end
+	alias hasAnyStatusNoTrigger? hasAnyStatusNoTrigger
 	
 	def hasSpotsForStatus()
 		hasSpots = false
@@ -56,6 +58,7 @@ class PokeBattle_Battler
 		end
 		return hasSpots
 	end
+	alias hasSpotsForStatus? hasSpotsForStatus
 	
 	def reduceStatusCount(statusToReduce = nil)
 		if statusToReduce.nil?

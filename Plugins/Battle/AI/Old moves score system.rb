@@ -30,88 +30,7 @@ class PokeBattle_AI
 		score = getFlinchingMoveScore(score,user,target,skill,policies)
 		score += 30 if target.effects[PBEffects::Minimize]
 	#---------------------------------------------------------------------------
-	when "011"
-		if user.asleep?
-			score += 100	 # Because it can only be used while asleep
-			score = getFlinchingMoveScore(score,user,target,skill,policies)
-		else
-			score = 0	 # Because it will fail here
-		end
-	#---------------------------------------------------------------------------
-	when "012"
-		if user.turnCount==0
-			score += 50
-			score = getFlinchingMoveScore(score,user,target,skill,policies)
-		else
-			score = 0	 # Because it will fail here
-		end
-	#---------------------------------------------------------------------------
-	when "017" # Tri-Attack
-		score += 30 if target.status == :NONE
-	#---------------------------------------------------------------------------
-	when "018"
-		case user.status
-		when :POISON
-			score += 40
-			if user.hp<user.totalhp/8
-				score += 60
-			elsif user.hp<(user.effects[PBEffects::Toxic]+1)*user.totalhp/16
-				score += 60
-			end
-		when :BURN, :PARALYSIS
-			score += 40
-		else
-			score = 0
-		end
-	#---------------------------------------------------------------------------
-	when "019"
-		statuses = 0
-		@battle.pbParty(user.index).each do |pkmn|
-			statuses += 1 if pkmn && pkmn.status != :NONE
-		end
-		if statuses==0
-			score -= 80
-		else
-			score += 20*statuses
-		end
-	#---------------------------------------------------------------------------
-	when "01A"
-		if user.pbOwnSide.effects[PBEffects::Safeguard]>0
-			score -= 80
-		elsif user.status != :NONE
-			score -= 40
-		else
-			score += 30
-		end
-	#---------------------------------------------------------------------------
-	when "01B"
-		if user.status == :NONE
-			score = 0
-		else
-			score += 40
-		end
-	#---------------------------------------------------------------------------
-	when "01C"
-		if move.statusMove?
-			if user.statStageAtMax?(:ATTACK)
-				score = 0
-			elsif user.paralyzed?
-				score -= 40
-				score -= [user.stages[:ATTACK],0].min*20
-			else
-				score -= user.stages[:ATTACK]*20
-				if target.hasPhysicalAttack?
-					score += 20
-				else
-					score = 0
-				end
-			end
-		else
-			score += 20 if user.stages[:ATTACK]<0
-			score += 20 if user.hasPhysicalAttack?
-		end
-	#---------------------------------------------------------------------------
-	when "01D", "01E", "0C8"
+	when "0C8" # SKULL BASH
 		if move.statusMove?
 			if user.statStageAtMax?(:DEFENSE)
 				score = 0
@@ -125,207 +44,7 @@ class PokeBattle_AI
 			score += 20 if user.stages[:DEFENSE]<0
 		end
 	#---------------------------------------------------------------------------
-	when "01F"
-		if move.statusMove?
-			if user.statStageAtMax?(:SPEED)
-				score = 0
-			elsif user.paralyzed?
-				score -= 40
-				score -= [user.stages[:SPEED],0].min*20
-			else
-				score -= user.stages[:SPEED]*10
-				aspeed = pbRoughStat(user,:SPEED,skill)
-				ospeed = pbRoughStat(target,:SPEED,skill)
-				score += 30 if aspeed<ospeed && aspeed*2>ospeed
-			end
-		else
-			score += 20 if user.stages[:SPEED]<0
-		end
-	#---------------------------------------------------------------------------
-	when "020"
-		if move.statusMove?
-			if user.statStageAtMax?(:SPECIAL_ATTACK)
-				score = 0
-			elsif user.paralyzed?
-				score -= 40
-				score -= [user.stages[:SPECIAL_ATTACK],0].min*20
-			else
-				score -= user.stages[:SPECIAL_ATTACK]*20
-				if user.hasSpecialAttack?
-					score += 20
-				else
-					score = 0
-				end
-			end
-		else
-			score += 20 if user.stages[:SPECIAL_ATTACK]<0
-			score += 20 if user.hasSpecialAttack?
-		end
-	#---------------------------------------------------------------------------
-	when "021"
-		foundMove = false
-		user.eachMove do |m|
-			next if m.type != :ELECTRIC || !m.damagingMove?
-			foundMove = true
-			break
-		end
-
-		score += 20 if foundMove
-		if move.statusMove?
-			if user.statStageAtMax?(:SPECIAL_DEFENSE)
-				score = 0
-			else
-				score -= user.stages[:SPECIAL_DEFENSE]*20
-			end
-		else
-			score += 20 if user.stages[:SPECIAL_DEFENSE]<0
-		end
-	#---------------------------------------------------------------------------
-	when "022"
-		if move.statusMove?
-			if user.statStageAtMax?(:EVASION)
-				score = 0
-			elsif user.paralyzed?
-				score -= 40
-				score -= [user.stages[:EVASION],0].min*20
-			else
-				score -= user.stages[:EVASION]*10
-			end
-		else
-			score += 20 if user.stages[:EVASION]<0
-		end
-	#---------------------------------------------------------------------------
-	when "023"
-		if move.statusMove?
-			if user.effects[PBEffects::FocusEnergy]>=2
-				score = 0
-			else
-				score += 30
-			end
-		else
-			score += 30 if user.effects[PBEffects::FocusEnergy]<2
-		end
-	#---------------------------------------------------------------------------
-	when "02E"
-		if move.statusMove?
-			if user.statStageAtMax?(:ATTACK)
-				score = 0
-			elsif user.paralyzed?
-				score -= 40
-				score -= [user.stages[:ATTACK],0].min*20
-			else
-				score += 40 if user.turnCount==0
-				score -= user.stages[:ATTACK]*20
-				if user.hasPhysicalAttack?
-					score += 20
-				else
-					score = 0
-				end
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 20 if user.stages[:ATTACK]<0
-			score += 20 if user.hasPhysicalAttack?
-		end
-	#---------------------------------------------------------------------------
-	when "02F"
-		if move.statusMove?
-			if user.statStageAtMax?(:DEFENSE)
-				score = 0
-			elsif user.paralyzed?
-				score -= 40
-				score -= [user.stages[:DEFENSE],0].min*20
-			else
-				score += 40 if user.turnCount==0
-				score -= user.stages[:DEFENSE]*20
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 20 if user.stages[:DEFENSE]<0
-		end
-	#---------------------------------------------------------------------------
-	when "030", "031"
-		if move.statusMove?
-			if user.statStageAtMax?(:SPEED)
-				score = 0
-			elsif user.paralyzed?
-				score -= 40
-				score -= [user.stages[:SPEED],0].min*20
-			else
-				score += 20 if user.turnCount==0
-				score -= user.stages[:SPEED]*10
-				aspeed = pbRoughStat(user,:SPEED,skill)
-				ospeed = pbRoughStat(target,:SPEED,skill)
-				score += 30 if aspeed<ospeed && aspeed*2>ospeed
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 20 if user.stages[:SPEED]<0
-		end
-	#---------------------------------------------------------------------------
-	when "032"
-		if move.statusMove?
-			if user.statStageAtMax?(:SPECIAL_ATTACK)
-				score = 0
-			elsif user.paralyzed?
-				score -= 40
-				score -= [user.stages[:SPECIAL_ATTACK],0].min*20
-			else
-				score += 40 if user.turnCount==0
-				score -= user.stages[:SPECIAL_ATTACK]*20
-				if user.hasSpecialAttack?
-					score += 20
-				else
-					score = 0
-				end
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 20 if user.stages[:SPECIAL_ATTACK]<0
-			score += 20 if user.hasSpecialAttack?
-		end
-	#---------------------------------------------------------------------------
-	when "033"
-		if move.statusMove?
-			if user.statStageAtMax?(:SPECIAL_DEFENSE)
-				score = 0
-			elsif user.paralyzed?
-				score -= 40
-				score -= [user.stages[:SPECIAL_DEFENSE],0].min*20
-			else
-				score += 40 if user.turnCount==0
-				score -= user.stages[:SPECIAL_DEFENSE]*20
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 20 if user.stages[:SPECIAL_DEFENSE]<0
-		end
-	#---------------------------------------------------------------------------
-	when "034"
-		if move.statusMove?
-			if user.statStageAtMax?(:EVASION)
-				score = 0
-			elsif user.paralyzed?
-				score -= 40
-				score -= [user.stages[:EVASION],0].min*20
-			else
-				score += 40 if user.turnCount==0
-				score -= user.stages[:EVASION]*10
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 20 if user.stages[:EVASION]<0
-		end
-	#---------------------------------------------------------------------------
-	when "035"
-		score -= user.stages[:ATTACK]*20
-		score -= user.stages[:SPEED]*20
-		score -= user.stages[:SPECIAL_ATTACK]*20
-		score += user.stages[:DEFENSE]*10
-		score += user.stages[:SPECIAL_DEFENSE]*10
-		score += 20 if user.hasDamagingAttack?
-	#---------------------------------------------------------------------------
-	when "037"
+	when "037" # Accupressure
 		avgStat = 0; canChangeStat = false
 		GameData::Stat.each_battle do |s|
 			next if target.statStageAtMax?(s.id)
@@ -338,78 +57,6 @@ class PokeBattle_AI
 		else
 			score = 0
 		end
-	#---------------------------------------------------------------------------
-	when "038"
-		if move.statusMove?
-			if user.statStageAtMax?(:DEFENSE)
-				score = 0
-			elsif user.paralyzed?
-				score -= 40
-				score -= [user.stages[:DEFENSE],0].min*20
-			else
-				score += 40 if user.turnCount==0
-				score -= user.stages[:DEFENSE]*30
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 30 if user.stages[:DEFENSE]<0
-		end
-	#---------------------------------------------------------------------------
-	when "039"
-		if move.statusMove?
-			if user.statStageAtMax?(:SPECIAL_ATTACK)
-				score = 0
-			elsif user.paralyzed?
-				score -= 40
-				score -= [user.stages[:SPECIAL_ATTACK],0].min*20
-			else
-				score += 40 if user.turnCount==0
-				score -= user.stages[:SPECIAL_ATTACK]*30
-				if user.hasSpecialAttack?
-					score += 20
-				else
-					score = 0
-				end
-			end
-		else
-			score += 10 if user.turnCount==0
-			score += 30 if user.stages[:SPECIAL_ATTACK]<0
-			score += 30 if user.hasSpecialAttack?
-		end
-	#---------------------------------------------------------------------------
-	when "03A"
-		if user.statStageAtMax?(:ATTACK) || user.hp<=user.totalhp/2 || user.paralyzed?
-			score = 0
-		else
-			score += (6-user.stages[:ATTACK])*10
-			if user.hasPhysicalAttack?
-				score += 40
-			else
-				score = 0
-			end
-		end
-	#---------------------------------------------------------------------------
-	when "03B"
-		avg = user.stages[:ATTACK]*10
-		avg += user.stages[:DEFENSE]*10
-		score += avg/2
-	#---------------------------------------------------------------------------
-	when "03C"
-		avg = user.stages[:DEFENSE]*10
-		avg += user.stages[:SPECIAL_DEFENSE]*10
-		score += avg/2
-	#---------------------------------------------------------------------------
-	when "03D"
-		avg = user.stages[:DEFENSE]*10
-		avg += user.stages[:SPEED]*10
-		avg += user.stages[:SPECIAL_DEFENSE]*10
-		score += (avg/3).floor
-	#---------------------------------------------------------------------------
-	when "03E"
-		score += user.stages[:SPEED]*10
-	#---------------------------------------------------------------------------
-	when "03F"
-		score += user.stages[:SPECIAL_ATTACK]*10
 	#---------------------------------------------------------------------------
 	when "040"
 		if !target.pbCanConfuse?(user,false)
@@ -834,32 +481,14 @@ class PokeBattle_AI
 			score += 10
 		end
 	#---------------------------------------------------------------------------
-	when "075"
-	#---------------------------------------------------------------------------
-	when "076"
-	#---------------------------------------------------------------------------
-	when "077"
-	#---------------------------------------------------------------------------
 	when "078"
 		score = getFlinchingMoveScore(score,user,target,skill,policies)
-	#---------------------------------------------------------------------------
-	when "079"
-	#---------------------------------------------------------------------------
-	when "07A"
-	#---------------------------------------------------------------------------
-	when "07B"
 	#---------------------------------------------------------------------------
 	when "07C"
 		score -= 20 if target.status == :PARALYSIS	 # Will cure status
 	#---------------------------------------------------------------------------
 	when "07D"
 		score -= 20 if target.status == :SLEEP && target.statusCount > 1
-	#---------------------------------------------------------------------------
-	when "07E"
-	#---------------------------------------------------------------------------
-	when "07F"
-	#---------------------------------------------------------------------------
-	when "080"
 	#---------------------------------------------------------------------------
 	when "081"
 		attspeed = pbRoughStat(user,:SPEED,skill)
@@ -880,53 +509,11 @@ class PokeBattle_AI
 		oppspeed = pbRoughStat(target,:SPEED,skill)
 		score += 30 if oppspeed>attspeed
 	#---------------------------------------------------------------------------
-	when "085"
-	#---------------------------------------------------------------------------
-	when "086"
-	#---------------------------------------------------------------------------
-	when "087"
-	#---------------------------------------------------------------------------
-	when "088"
-	#---------------------------------------------------------------------------
-	when "089"
-	#---------------------------------------------------------------------------
-	when "08A"
-	#---------------------------------------------------------------------------
-	when "08B"
-	#---------------------------------------------------------------------------
-	when "08C"
-	#---------------------------------------------------------------------------
-	when "08D"
-	#---------------------------------------------------------------------------
-	when "08E"
-	#---------------------------------------------------------------------------
-	when "08F"
-	#---------------------------------------------------------------------------
-	when "090"
-	#---------------------------------------------------------------------------
-	when "091"
-	#---------------------------------------------------------------------------
-	when "092"
-	#---------------------------------------------------------------------------
 	when "093"
 		score += 25 if user.effects[PBEffects::Rage]
 	#---------------------------------------------------------------------------
-	when "094"
-	#---------------------------------------------------------------------------
-	when "095"
-	#---------------------------------------------------------------------------
 	when "096"
 		score = 0 if !user.item || !user.item.is_berry? || !user.itemActive?
-	#---------------------------------------------------------------------------
-	when "097"
-	#---------------------------------------------------------------------------
-	when "098"
-	#---------------------------------------------------------------------------
-	when "099"
-	#---------------------------------------------------------------------------
-	when "09A"
-	#---------------------------------------------------------------------------
-	when "09B"
 	#---------------------------------------------------------------------------
 	when "09C"
 		score = 0 if !user.hasAlly?
@@ -937,10 +524,6 @@ class PokeBattle_AI
 	when "09E"
 		score = 0 if user.effects[PBEffects::WaterSport]
 	#---------------------------------------------------------------------------
-	when "09F"
-	#---------------------------------------------------------------------------
-	when "0A0"
-	#---------------------------------------------------------------------------
 	when "0A1"
 		score = 0 if user.pbOwnSide.effects[PBEffects::LuckyChant]>0
 	#---------------------------------------------------------------------------
@@ -949,10 +532,6 @@ class PokeBattle_AI
 	#---------------------------------------------------------------------------
 	when "0A3"
 		score = 0 if user.pbOwnSide.effects[PBEffects::LightScreen]>0
-	#---------------------------------------------------------------------------
-	when "0A4"
-	#---------------------------------------------------------------------------
-	when "0A5"
 	#---------------------------------------------------------------------------
 	when "0A6"
 		score = 0 if target.effects[PBEffects::Substitute]>0
@@ -988,26 +567,10 @@ class PokeBattle_AI
 			score += 30 if target.effects[PBEffects::TwoTurnAttack]
 		end
 	#---------------------------------------------------------------------------
-	when "0AB"
-	#---------------------------------------------------------------------------
-	when "0AC"
-	#---------------------------------------------------------------------------
-	when "0AD"
-	#---------------------------------------------------------------------------
 	when "0AE"
 		score -= 20
 		score = 0 if !target.lastRegularMoveUsed ||
 			 !GameData::Move.get(target.lastRegularMoveUsed).flags[/e/]	 # Not copyable by Mirror Move
-	#---------------------------------------------------------------------------
-	when "0AF"
-	#---------------------------------------------------------------------------
-	when "0B0"
-	#---------------------------------------------------------------------------
-	when "0B1"
-	#---------------------------------------------------------------------------
-	when "0B2"
-	#---------------------------------------------------------------------------
-	when "0B3"
 	#---------------------------------------------------------------------------
 	when "0B4"
 		if user.asleep?
@@ -1015,10 +578,6 @@ class PokeBattle_AI
 		else
 			score = 0
 		end
-	#---------------------------------------------------------------------------
-	when "0B5"
-	#---------------------------------------------------------------------------
-	when "0B6"
 	#---------------------------------------------------------------------------
 	when "0B7"
 		score = 0 if target.effects[PBEffects::Torment] || target.hasActiveAbilityAI?(:MENTALBLOCK)
@@ -1056,47 +615,15 @@ class PokeBattle_AI
 		end
 		score = 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
 	#---------------------------------------------------------------------------
-	when "0BD"
-	#---------------------------------------------------------------------------
-	when "0BF"
-	#---------------------------------------------------------------------------
-	when "0C0"
-	#---------------------------------------------------------------------------
-	when "0C1"
-	#---------------------------------------------------------------------------
-	when "0C2"
-	#---------------------------------------------------------------------------
-	when "0C3"
-	#---------------------------------------------------------------------------
-	when "0C4"
-	#---------------------------------------------------------------------------
 	when "0C7"
 		score += 20 if user.effects[PBEffects::FocusEnergy]>0
 		score = getFlinchingMoveScore(score,user,target,skill,policies)
-	#---------------------------------------------------------------------------
-	when "0C9"
-	#---------------------------------------------------------------------------
-	when "0CA"
-	#---------------------------------------------------------------------------
-	when "0CB"
-	#---------------------------------------------------------------------------
-	when "0CC"
-	#---------------------------------------------------------------------------
-	when "0CD"
-	#---------------------------------------------------------------------------
-	when "0CE"
 	#---------------------------------------------------------------------------
 	when "0CF"
 		score += 40 if target.effects[PBEffects::Trapping]==0
 	#---------------------------------------------------------------------------
 	when "0D0"
 		score += 40 if target.effects[PBEffects::Trapping]==0
-	#---------------------------------------------------------------------------
-	when "0D1"
-	#---------------------------------------------------------------------------
-	when "0D2"
-	#---------------------------------------------------------------------------
-	when "0D3"
 	#---------------------------------------------------------------------------
 	when "0D4"
 		if user.hp<=user.totalhp/4
@@ -1191,8 +718,6 @@ class PokeBattle_AI
 		else
 			score -= user.hp*100/user.totalhp
 		end
-	#---------------------------------------------------------------------------
-	when "0E1"
 	#---------------------------------------------------------------------------
 	when "0E2"
 		if !target.pbCanLowerStatStage?(:ATTACK,user) &&
@@ -1384,20 +909,6 @@ class PokeBattle_AI
 			score -= 40 if target.hasActiveAbilityAI?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST])
 		end
 	#---------------------------------------------------------------------------
-	when "103"
-	#---------------------------------------------------------------------------
-	when "104"
-	#---------------------------------------------------------------------------
-	when "105"
-	#---------------------------------------------------------------------------
-	when "106"
-	#---------------------------------------------------------------------------
-	when "107"
-	#---------------------------------------------------------------------------
-	when "108"
-	#---------------------------------------------------------------------------
-	when "109"
-	#---------------------------------------------------------------------------
 	when "10A"
 		score += 20 if user.pbOpposingSide.effects[PBEffects::AuroraVeil]>0
 		score += 20 if user.pbOpposingSide.effects[PBEffects::Reflect]>0
@@ -1533,8 +1044,6 @@ class PokeBattle_AI
 			score = 0
 		end
 	#---------------------------------------------------------------------------
-	when "11B"
-	#---------------------------------------------------------------------------
 	when "11C"
 		score += 20 if target.effects[PBEffects::MagnetRise]>0
 		score += 20 if target.effects[PBEffects::Telekinesis]>0
@@ -1543,27 +1052,11 @@ class PokeBattle_AI
 		score += 20 if target.hasLevitate?
 		score += 20 if target.hasActiveItem?(:AIRBALLOON)
 	#---------------------------------------------------------------------------
-	when "11D"
-	#---------------------------------------------------------------------------
-	when "11E"
-	#---------------------------------------------------------------------------
-	when "11F"
-	#---------------------------------------------------------------------------
-	when "120"
-	#---------------------------------------------------------------------------
-	when "121"
-	#---------------------------------------------------------------------------
-	when "122"
-	#---------------------------------------------------------------------------
 	when "123"
 		if !target.pbHasTypeAI?(user.type1) &&
 		 !target.pbHasTypeAI?(user.type2)
 			score = 0
 		end
-	#---------------------------------------------------------------------------
-	when "124"
-	#---------------------------------------------------------------------------
-	when "125"
 	#---------------------------------------------------------------------------
 	when "126"
 		score += 20	 # Shadow moves are more preferable
@@ -1762,10 +1255,6 @@ class PokeBattle_AI
 		ospeed = pbRoughStat(target,:SPEED,skill)
 		score = 0 if aspeed>ospeed
 	#---------------------------------------------------------------------------
-	when "146"
-	#---------------------------------------------------------------------------
-	when "147"
-	#---------------------------------------------------------------------------
 	when "148"
 		aspeed = pbRoughStat(user,:SPEED,skill)
 		ospeed = pbRoughStat(target,:SPEED,skill)
@@ -1782,8 +1271,6 @@ class PokeBattle_AI
 			score = 0	 # Because it will fail here
 		end
 	#---------------------------------------------------------------------------
-	when "14A"
-	#---------------------------------------------------------------------------
 	when "14B", "14C"
 		if user.effects[PBEffects::ProtectRate]>1 ||
 		 target.effects[PBEffects::HyperBeam]>0
@@ -1793,8 +1280,6 @@ class PokeBattle_AI
 		score += 50 if user.turnCount==0
 		score += 30 if target.effects[PBEffects::TwoTurnAttack]
 		end
-	#---------------------------------------------------------------------------
-	when "14D"
 	#---------------------------------------------------------------------------
 	when "14E"
 		if user.statStageAtMax?(:SPECIAL_ATTACK) &&
@@ -1830,16 +1315,6 @@ class PokeBattle_AI
 		avg	= target.stages[:ATTACK]*10
 		avg += target.stages[:SPECIAL_ATTACK]*10
 		score += avg/2
-	#---------------------------------------------------------------------------
-	when "152"
-	#---------------------------------------------------------------------------
-	when "153"
-	#---------------------------------------------------------------------------
-	when "154"
-	#---------------------------------------------------------------------------
-	when "155"
-	#---------------------------------------------------------------------------
-	when "156"
 	#---------------------------------------------------------------------------
 	when "157"
 		score = 0
@@ -1944,10 +1419,6 @@ class PokeBattle_AI
 	when "162"
 		score = 0 if !user.pbHasTypeAI?(:FIRE)
 	#---------------------------------------------------------------------------
-	when "163"
-	#---------------------------------------------------------------------------
-	when "164"
-	#---------------------------------------------------------------------------
 	when "165"
 		if skill>=PBTrainerAI.mediumSkill
 		 	userSpeed	 = pbRoughStat(user,:SPEED,skill)
@@ -1958,8 +1429,6 @@ class PokeBattle_AI
 		else
 			score += 30
 		end
-	#---------------------------------------------------------------------------
-	when "166"
 	#---------------------------------------------------------------------------
 	when "167"
 		if user.pbOwnSide.effects[PBEffects::AuroraVeil]>0 || @battle.pbWeather != :Hail
@@ -1978,8 +1447,6 @@ class PokeBattle_AI
 			score += 30 if target.effects[PBEffects::TwoTurnAttack]
 			score += 20	 # Because of possible poisoning
 		end
-	#---------------------------------------------------------------------------
-	when "169"
 	#---------------------------------------------------------------------------
 	when "16A"
 		score = 0 if !target.hasAlly?
@@ -2054,8 +1521,6 @@ class PokeBattle_AI
 	#---------------------------------------------------------------------------
 	when "172"
 		score += 20	 # Because of possible burning
-	#---------------------------------------------------------------------------
-	when "173"
 	#---------------------------------------------------------------------------
 	when "174"
 		score = 0 if user.turnCount > 0
