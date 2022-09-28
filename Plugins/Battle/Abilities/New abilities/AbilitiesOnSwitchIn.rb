@@ -200,3 +200,5 @@ BattleHandlers::AbilityOnSwitchIn.add(:CONVICTION,
     battle.forceUseMove(battler,:ENDURE,battler,true,nil,nil,true)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.copy(:FAIRYSURGE,:MISTYSURGE)
