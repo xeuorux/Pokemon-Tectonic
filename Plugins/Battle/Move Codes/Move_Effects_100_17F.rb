@@ -1483,16 +1483,9 @@ end
   
   #===============================================================================
   # Type effectiveness is multiplied by the Flying-type's effectiveness against
-  # the target. Does double damage and has perfect accuracy if the target is
-  # Minimized. (Flying Press)
+  # the target. (Flying Press)
   #===============================================================================
-  class PokeBattle_Move_144 < PokeBattle_Move
-    def tramplesMinimize?(param=1)
-      return true if param==1 && Settings::MECHANICS_GENERATION >= 6   # Perfect accuracy
-      return true if param==2   # Double damage
-      return super
-    end
-  
+  class PokeBattle_Move_144 < PokeBattle_Move  
     def pbCalcTypeModSingle(moveType,defType,user,target)
       ret = super
       if GameData::Type.exists?(:FLYING)
@@ -2525,13 +2518,11 @@ end
   end
   
   #===============================================================================
-  # Hits twice. Causes the target to flinch. Does double damage and has perfect
-  # accuracy if the target is Minimized. (Double Iron Bash)
+  # Hits twice. Causes the target to flinch. (Double Iron Bash)
   #===============================================================================
   class PokeBattle_Move_175 < PokeBattle_FlinchMove
     def multiHitMove?;              return true; end
     def pbNumHits(user,targets);    return 2;    end
-    def tramplesMinimize?(param=1); return true; end
   end
 
   #===============================================================================
@@ -2731,6 +2722,10 @@ class PokeBattle_Move_17C < PokeBattle_Move_0BD
 
   def pbNumHits(user,targets)
     return 1 if targets.length > 1
+    return 2
+  end
+
+  def pbNumHitsAI(user,targets,skill=100)
     return 2
   end
 end

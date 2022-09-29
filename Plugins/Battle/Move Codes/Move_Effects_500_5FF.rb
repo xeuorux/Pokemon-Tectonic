@@ -98,18 +98,16 @@ class PokeBattle_Move_505 < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-    if skill>=PBTrainerAI.mediumSkill
-		if !target.opposes? # Targeting a player's pokemon
-		    # If damage looks like its going to kill the enemy, allow the move, otherwise don't
-			damage = @battle.battleAI.pbRoughDamage(self,user,target,skill,baseDamage)
-			score = damage >= target.hp ? 150 : 0
-		else
-			# If damage looks like its going to kill or mostly kill the ally, don't allow the move
-			damage = @battle.battleAI.pbRoughDamage(self,user,target,skill,baseDamage)
-			return 0 if damage >= target.hp * 0.8
-			score += target.level*4
-			score -= pbRoughStat(target,:SPEED,skill) * 2
-		end
+	if !target.opposes? # Targeting a player's pokemon
+		# If damage looks like its going to kill the enemy, allow the move, otherwise don't
+		damage = @battle.battleAI.pbTotalDamageAI(self,user,target,skill,baseDmg)
+		score = damage >= target.hp ? 150 : 0
+	else
+		# If damage looks like its going to kill or mostly kill the ally, don't allow the move
+		damage = @battle.battleAI.pbTotalDamageAI(self,user,target,skill,baseDmg)
+		return 0 if damage >= target.hp * 0.8
+		score += target.level*4
+		score -= pbRoughStat(target,:SPEED,skill) * 2
 	end
 	return score
   end
@@ -1165,9 +1163,9 @@ class PokeBattle_Move_53B < PokeBattle_StatDownMove
     @statDown = [:SPEED,1]
   end
   
-  def pbModifyDamage(damageMult,user,target)
-    damageMult *= 1.5 if user.pbSpeed > target.pbSpeed
-    return damageMult
+  def pbBaseDamage(baseDmg,user,target)
+    baseDmg *= 1.5 if user.pbSpeed > target.pbSpeed
+    return baseDmg.round
   end
 end
 
@@ -1287,6 +1285,26 @@ class PokeBattle_Move_542 < PokeBattle_Move
     return if !target.pbCanRaiseStatStage?(:SPEED,user,self)
     target.pbRaiseStatStage(:SPEED,2,user)
   end
+end
+
+#===============================================================================
+# Power doubles for each consecutive use. (Ice Ball)
+#===============================================================================
+class PokeBattle_Move_543 < PokeBattle_DoublingMove
+    def initialize(battle, move)
+        super
+        @usageCountEffect = PBEffects::IceBall
+    end
+end
+  
+#===============================================================================
+# Power doubles for each consecutive use. (Rollout)
+#===============================================================================
+class PokeBattle_Move_544 < PokeBattle_DoublingMove
+    def initialize(battle, move)
+        super
+        @usageCountEffect = PBEffects::RollOut
+    end
 end
 
 #===============================================================================

@@ -95,7 +95,8 @@ class PokeBattle_Battler
     end
   end
 
-	def hasActiveAbility?(check_ability, ignore_fainted = false)
+	def hasActiveAbility?(check_ability, ignore_fainted = false, checkingForAI = false)
+    return hasActiveAbilityAI?(check_ability, ignore_fainted) if checkingForAI
 		return false if !abilityActive?(ignore_fainted)
 		return check_ability.include?(@ability_id) if check_ability.is_a?(Array)
     return false if self.ability.nil?
@@ -105,57 +106,85 @@ class PokeBattle_Battler
 
   alias hasType? pbHasType?
 
-  def affectedByWeatherDownsides?
+  def affectedByWeatherDownsides?(checkingForAI=false)
     return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-    return false if hasActiveAbility?([:STOUT,:WEATHERSENSES])
+    return false if shouldAbilityApply?([:STOUT,:WEATHERSENSES],checkingForAI)
 		return false if hasActiveItem?(:UTILITYUMBRELLA)
     return false if @battle.pbCheckAlliedAbility(:HIGHRISE,@index)
     return true
   end
 
-  def debuffedBySun?
-    return false if !affectedByWeatherDownsides?
-    return false if pbHasType?(:FIRE) || pbHasType?(:GRASS)
-    return false if hasActiveAbility?([:DROUGHT,:INNERLIGHT])
-		return false if hasActiveAbility?([:CHLOROPHYLL,:SOLARPOWER,:LEAFGUARD,:FLOWERGIFT,:MIDNIGHTSUN,:HARVEST,:SUNCHASER,:HEATSAVOR,:BLINDINGLIGHT,:SOLARCELL,:ROAST])
+  def debuffedBySun?(checkingForAI=false)
+    return false if !affectedByWeatherDownsides?(checkingForAI)
+    return false if shouldTypeApply?(:FIRE,checkingForAI) || shouldTypeApply?(:GRASS,checkingForAI)
+    setterAbilities = [:DROUGHT,:INNERLIGHT]
+    synergyAbilities = [:CHLOROPHYLL,:SOLARPOWER,:LEAFGUARD,:FLOWERGIFT,:MIDNIGHTSUN,:HARVEST,:SUNCHASER,:HEATSAVOR,:BLINDINGLIGHT,:SOLARCELL,:ROAST]
+    return false if shouldAbilityApply?(setterAbilities,checkingForAI) || shouldAbilityApply?(synergyAbilities,checkingForAI)
     return true
   end
 
-  def debuffedByRain?
-    return false if !affectedByWeatherDownsides?
-    return false if pbHasType?(:WATER) || pbHasType?(:ELECTRIC)
-    return false if hasActiveAbility?([:DRIZZLE,:STORMBRINGER])
-		return false if hasActiveAbility?([:SWIFTSWIM,:RAINDISH,:HYDRATION,:TIDALFORCE,:STORMFRONT,:RAINPRISM,:DREARYCLOUDS])
+  def debuffedByRain?(checkingForAI=false)
+    return false if !affectedByWeatherDownsides?(checkingForAI)
+    return false if shouldTypeApply?(:WATER,checkingForAI) || shouldTypeApply?(:ELECTRIC,checkingForAI)
+    setterAbilities = [:DRIZZLE,:STORMBRINGER]
+    synergyAbilities = [:SWIFTSWIM,:RAINDISH,:HYDRATION,:TIDALFORCE,:STORMFRONT,:RAINPRISM,:DREARYCLOUDS]
+    return false if shouldAbilityApply?(setterAbilities,checkingForAI) || shouldAbilityApply?(synergyAbilities,checkingForAI)
     return true
   end
   
-	def takesSandstormDamage?
-		return false if !affectedByWeatherDownsides?
+	def takesSandstormDamage?(checkingForAI=false)
+		return false if !affectedByWeatherDownsides?(checkingForAI)
     return false if !takesIndirectDamage?
     return false if hasActiveItem?(:SAFETYGOGGLES)
-		return false if pbHasType?(:GROUND) || pbHasType?(:ROCK) || pbHasType?(:STEEL)
-    return false if hasActiveAbility?([:SANDSTREAM,:SANDBURST])
-		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:DESERTSPIRIT,:BURROWER,:SHRAPNELSTORM,:HARSHHUNTER])
+		return false if shouldTypeApply?(:GROUND,checkingForAI) || shouldTypeApply?(:ROCK,checkingForAI) || shouldTypeApply?(:STEEL,checkingForAI)
+    setterAbilities = [:SANDSTREAM,:SANDBURST]
+    synergyAbilities = [:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:DESERTSPIRIT,:BURROWER,:SHRAPNELSTORM,:HARSHHUNTER]
+    return false if shouldAbilityApply?(setterAbilities,checkingForAI) || shouldAbilityApply?(synergyAbilities,checkingForAI)
 		return true
   end
 
-	def takesHailDamage?
-    return false if !affectedByWeatherDownsides?
+	def takesHailDamage?(checkingForAI=false)
+    return false if !affectedByWeatherDownsides?(checkingForAI)
 		return false if !takesIndirectDamage?
     return false if hasActiveItem?(:SAFETYGOGGLES)
-		return false if pbHasType?(:ICE) || pbHasType?(:STEEL) || pbHasType?(:GHOST)
-    return false if hasActiveAbility?([:SNOWWARNING,:FROSTSCATTER])
-		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:BLIZZBOXER,:SLUSHRUSH,:ICEFACE,:BITTERCOLD,:ECTOPARTICLES])
+		return false if shouldTypeApply?(:ICE,checkingForAI) || shouldTypeApply?(:GHOST,checkingForAI) || shouldTypeApply?(:STEEL,checkingForAI)
+    setterAbilities = [:SNOWWARNING,:FROSTSCATTER]
+    synergyAbilities = [:OVERCOAT,:ICEBODY,:SNOWSHROUD,:BLIZZBOXER,:SLUSHRUSH,:ICEFACE,:BITTERCOLD,:ECTOPARTICLES]
+    return false if shouldAbilityApply?(setterAbilities,checkingForAI) || shouldAbilityApply?(synergyAbilities,checkingForAI)
 		return true
 	end
 
-  def takesAcidRainDamage?
-    return false if !affectedByWeatherDownsides?
+  def takesAcidRainDamage?(checkingForAI=false)
+    return false if !affectedByWeatherDownsides?(checkingForAI)
     return false if !takesIndirectDamage?
     return false if hasActiveItem?(:SAFETYGOGGLES)
-    return false if pbHasType?(:POISON) || pbHasType?(:DARK)
-    return false if hasActiveAbility?([:POLLUTION,:ACIDBODY])
-		return false if hasActiveAbility?([:OVERCOAT])
+    return false if shouldTypeApply?(:POISON,checkingForAI) || shouldTypeApply?(:DARK,checkingForAI)
+    setterAbilities = [:POLLUTION,:ACIDBODY]
+    synergyAbilities = [:OVERCOAT]
+    return false if shouldAbilityApply?(setterAbilities,checkingForAI) || shouldAbilityApply?(synergyAbilities,checkingForAI)
+    return true
+  end
+
+  def airborne?(checkingForAI=false)
+    return false if hasActiveItem?(:IRONBALL)
+    return false if @effects[PBEffects::Ingrain]
+    return false if @effects[PBEffects::SmackDown]
+    return false if @battle.field.effects[PBEffects::Gravity] > 0
+    return true if shouldTypeApply?(:FLYING,checkingForAI)
+    return true if hasLevitate?(checkingForAI) && !@battle.moldBreaker
+    return true if hasActiveItem?(:AIRBALLOON)
+    return true if @effects[PBEffects::MagnetRise] > 0
+    return true if @effects[PBEffects::Telekinesis] > 0
+    return false
+  end
+
+  def hasLevitate?(checkingForAI=false)
+		return shouldAbilityApply?([:LEVITATE, :DESERTSPIRIT],checkingForAI)
+	end
+
+  def affectedByTerrain?(checkingForAI=false)
+    return false if airborne?(checkingForAI)
+    return false if semiInvulnerable?
     return true
   end
 	
@@ -279,24 +308,7 @@ class PokeBattle_Battler
     ]
     return ability_blacklist.include?(abil.id)
   end
-  
-	def hasLevitate?
-		return hasActiveAbility?([:LEVITATE, :DESERTSPIRIT])
-	end
-	
-	def airborne?
-		return false if hasActiveItem?(:IRONBALL)
-		return false if @effects[PBEffects::Ingrain]
-		return false if @effects[PBEffects::SmackDown]
-		return false if @battle.field.effects[PBEffects::Gravity] > 0
-		return true if pbHasType?(:FLYING)
-		return true if hasLevitate? && !@battle.moldBreaker
-		return true if hasActiveItem?(:AIRBALLOON)
-		return true if @effects[PBEffects::MagnetRise] > 0
-		return true if @effects[PBEffects::Telekinesis] > 0
-		return false
-	end
-  
+
   # permanent is whether the item is lost even after battle. Is false for Knock
   # Off.
 	def pbRemoveItem(permanent = true)
@@ -415,37 +427,36 @@ class PokeBattle_Battler
     return ability_blacklist.include?(abil.id)
   end
 
-    # Applies to gaining the ability.
-    def ungainableAbility?(abil = nil)
-      abil = @ability_id if !abil
-      abil = GameData::Ability.try_get(abil)
-      return false if !abil
-      ability_blacklist = [
-        # Form-changing abilities
-        :BATTLEBOND,
-        :DISGUISE,
-        :FLOWERGIFT,
-        :FORECAST,
-        :MULTITYPE,
-        :POWERCONSTRUCT,
-        :SCHOOLING,
-        :SHIELDSDOWN,
-        :STANCECHANGE,
-        :ZENMODE,
-        # Appearance-changing abilities
-        :ILLUSION,
-        :IMPOSTER,
-        # Abilities intended to be inherent properties of a certain species
-        :COMATOSE,
-        :RKSSYSTEM,
-        # Abilities with undefined behaviour if they were replaced or moved around
-        :STYLISH
-      ]
-      return ability_blacklist.include?(abil.id)
-    end
-
-    def ownersPolicies
-      return [] if pbOwnedByPlayer?
-      return @battle.pbGetOwnerFromBattlerIndex(@index).policies
-    end
+  # Applies to gaining the ability.
+  def ungainableAbility?(abil = nil)
+    abil = @ability_id if !abil
+    abil = GameData::Ability.try_get(abil)
+    return false if !abil
+    ability_blacklist = [
+      # Form-changing abilities
+      :BATTLEBOND,
+      :DISGUISE,
+      :FLOWERGIFT,
+      :FORECAST,
+      :MULTITYPE,
+      :POWERCONSTRUCT,
+      :SCHOOLING,
+      :SHIELDSDOWN,
+      :STANCECHANGE,
+      :ZENMODE,
+      # Appearance-changing abilities
+      :ILLUSION,
+      :IMPOSTER,
+      # Abilities intended to be inherent properties of a certain species
+      :COMATOSE,
+      :RKSSYSTEM,
+      # Abilities with undefined behaviour if they were replaced or moved around
+      :STYLISH
+    ]
+    return ability_blacklist.include?(abil.id)
+  end
+    
+	def canGulpMissile?
+		return @species == :CRAMORANT && hasActiveAbility?(:GULPMISSILE) && @form==0
+	end
 end

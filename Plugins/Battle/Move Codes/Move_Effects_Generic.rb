@@ -550,6 +550,10 @@ class PokeBattle_FixedDamageMove < PokeBattle_Move
     target.damageState.calcDamage = pbFixedDamage(user,target)
     target.damageState.calcDamage = 1 if target.damageState.calcDamage<1
   end
+
+  def pbBaseDamageAI(baseDmg,user,target,skill=100)
+    return pbFixedDamage(user,target)
+  end
 end
 
 #===============================================================================
@@ -1090,5 +1094,21 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
       end
     score = 0 if failed
     return score
+  end
+end
+
+class PokeBattle_DoublingMove < PokeBattle_Move
+  def pbChangeUsageCounters(user,specialUsage)
+      oldVal = user.effects[@usageCountEffect]
+      super
+      user.effects[@usageCountEffect] = [oldVal + 1,4].min
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+      return baseDmg<<(user.effects[@usageCountEffect]-1)
+  end
+
+  def pbBaseDamageAI(baseDmg,user,target,skill=100)
+      return baseDmg<<(user.effects[PBEffects::FuryCutter])
   end
 end

@@ -92,7 +92,6 @@ class PokeBattle_Move
     def pbAccuracyCheck(user,target)
         # "Always hit" effects and "always hit" accuracy
         return true if target.effects[PBEffects::Telekinesis]>0
-        return true if target.effects[PBEffects::Minimize] && tramplesMinimize?(1)
         baseAcc = pbBaseAccuracy(user,target)
         return true if baseAcc==0
         # Calculate all multiplier effects
@@ -235,9 +234,13 @@ class PokeBattle_Move
         baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
         atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
         defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
-        damage  = (((2.0 * user.level / 5 + 2).floor * baseDmg * atk / defense).floor / 50).floor + 2
+        damage  = calcBasicDamage(baseDmg,user.level,atk,defense)
         damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
         target.damageState.calcDamage = damage
+    end
+
+    def calcBasicDamage(base_damage,attacker_level,user_attacking_stat,target_defending_stat)
+        damage  = (((2.0 * attacker_level / 5 + 2).floor * base_damage * user_attacking_stat / target_defending_stat).floor / 50).floor + 2
     end
     
     def pbCalcAbilityDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
@@ -276,7 +279,7 @@ class PokeBattle_Move
         end
     end
 
-    def pbCalcTerrainDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
+    def pbCalcTerrainDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
         # Terrain moves
         case @battle.field.terrain
         when :Electric
@@ -290,12 +293,12 @@ class PokeBattle_Move
         end
     end
 
-    def pbCalcWeatherDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
+    def pbCalcWeatherDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
         case @battle.pbWeather
         when :Sun, :HarshSun
             if type == :FIRE
                 multipliers[:final_damage_multiplier] *= @battle.pbWeather == :HarshSun ? 1.5 : 1.3
-            elsif applySunDebuff?(user)
+            elsif applySunDebuff?(user,checkingForAI)
                 if @battle.pbCheckGlobalAbility(:BLINDINGLIGHT)
                     multipliers[:final_damage_multiplier] *= 0.7
                 else
@@ -304,8 +307,8 @@ class PokeBattle_Move
             end
         when :Rain, :HeavyRain
             if type == :WATER
-                    multipliers[:final_damage_multiplier] *= @battle.pbWeather == :HeavyRain ? 1.5 : 1.3
-            elsif applyRainDebuff?(user)
+                multipliers[:final_damage_multiplier] *= @battle.pbWeather == :HeavyRain ? 1.5 : 1.3
+            elsif applyRainDebuff?(user,checkingForAI)
                 if @battle.pbCheckGlobalAbility(:DREARYCLOUDS)
                     multipliers[:final_damage_multiplier] *= 0.7
                 else
@@ -317,25 +320,25 @@ class PokeBattle_Move
                 multipliers[:final_damage_multiplier] *= 1.3
             end
         when :Sandstorm
-            if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock/Psystrike
+            if target.shouldTypeApply?(:ROCK,checkingForAI) && specialMove? && @function != "122"   # Psyshock/Psystrike
                 multipliers[:defense_multiplier] *= 1.5
             end
         when :Hail
-            if target.pbHasType?(:ICE) && physicalMove? && @function != "506"   # Soul Claw/Rip
+            if target.shouldTypeApply?(:ICE,checkingForAI) && physicalMove? && @function != "506"   # Soul Claw/Rip
                 multipliers[:defense_multiplier] *= 1.5
             end
         end
     end
 
-    def pbCalcStatusesDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
+    def pbCalcStatusesDamageMultipliers(user,target,multipliers,checkingForAI=false)
         # Burn
-        if user.burned? && physicalMove? && damageReducedByBurn? && !user.hasActiveAbility?(:GUTS) && !user.hasActiveAbility?(:BURNHEAL)
+        if user.burned? && physicalMove? && damageReducedByBurn? && !user.shouldAbilityApply?(:GUTS,checkingForAI) && !user.shouldAbilityApply?(:BURNHEAL,checkingForAI)
             damageReduction = user.boss? ? (1.0/5.0) : (1.0/3.0)
             damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
         # Frostbite
-        if user.frostbitten? && specialMove? && damageReducedByBurn? && !user.hasActiveAbility?(:AUDACITY) && !user.hasActiveAbility?(:FROSTHEAL)
+        if user.frostbitten? && specialMove? && damageReducedByBurn? && !user.shouldAbilityApply?(:AUDACITY,checkingForAI) && !user.shouldAbilityApply?(:FROSTHEAL,checkingForAI)
             damageReduction = user.boss? ? (1.0/5.0) : (1.0/3.0)
             damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
@@ -347,40 +350,40 @@ class PokeBattle_Move
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
         # Fluster
-        if target.flustered? && physicalMove? && @function != "122" && !target.hasActiveAbility?([:FLUSTERFLOCK,:MARVELSCALE])
+        if target.flustered? && physicalMove? && @function != "122" && !target.shouldAbilityApply?([:FLUSTERFLOCK,:MARVELSCALE],checkingForAI)
             defenseDecrease = target.boss? ? (1.0/5.0) : (1.0/3.0)
             defenseDecrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             multipliers[:defense_multiplier] *= (1.0 - defenseDecrease)
         end
         # Mystified
-        if target.mystified? && specialMove? && @function != "506" && !target.hasActiveAbility?([:HEADACHE,:MARVELSKIN])
+        if target.mystified? && specialMove? && @function != "506" && !target.shouldAbilityApply?([:HEADACHE,:MARVELSKIN],checkingForAI)
             defenseDecrease = target.boss? ? (1.0/5.0) : (1.0/3.0)
             defenseDecrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             multipliers[:defense_multiplier] *= (1.0 - defenseDecrease)
         end
     end
 
-    def pbCalcProtectionsDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
+    def pbCalcProtectionsDamageMultipliers(user,target,multipliers,checkingForAI=false)
         # Aurora Veil, Reflect, Light Screen
-        if !ignoresReflect? && !target.damageState.critical && !user.hasActiveAbility?(:INFILTRATOR)
+        if !ignoresReflect? && !target.damageState.critical && !user.shouldAbilityApply?(:INFILTRATOR,checkingForAI)
             if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
-            if @battle.pbSideBattlerCount(target)>1
-                multipliers[:final_damage_multiplier] *= 2 / 3.0
-            else
-                multipliers[:final_damage_multiplier] *= 0.5
-            end
-        elsif target.pbOwnSide.effects[PBEffects::Reflect] > 0 && physicalMove?
-            if @battle.pbSideBattlerCount(target)>1
-                multipliers[:final_damage_multiplier] *= 2 / 3.0
-            else
-                multipliers[:final_damage_multiplier] *= 0.5
-            end
-        elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && specialMove?
-            if @battle.pbSideBattlerCount(target) > 1
-                multipliers[:final_damage_multiplier] *= 2 / 3.0
-            else
-                multipliers[:final_damage_multiplier] *= 0.5
-            end
+                if @battle.pbSideBattlerCount(target)>1
+                    multipliers[:final_damage_multiplier] *= 2 / 3.0
+                else
+                    multipliers[:final_damage_multiplier] *= 0.5
+                end
+            elsif target.pbOwnSide.effects[PBEffects::Reflect] > 0 && physicalMove?
+                if @battle.pbSideBattlerCount(target)>1
+                    multipliers[:final_damage_multiplier] *= 2 / 3.0
+                else
+                    multipliers[:final_damage_multiplier] *= 0.5
+                end
+            elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && specialMove?
+                if @battle.pbSideBattlerCount(target) > 1
+                    multipliers[:final_damage_multiplier] *= 2 / 3.0
+                else
+                    multipliers[:final_damage_multiplier] *= 0.5
+                end
             end
         end
         # Partial protection moves
@@ -399,14 +402,14 @@ class PokeBattle_Move
         end
     end
 
-    def pbCalcTypeBasedDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
+    def pbCalcTypeBasedDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
         # STAB
         if !user.pbOwnedByPlayer? || !@battle.curses.include?(:DULLED)
             if type && user.pbHasType?(type)
                 stab = 1.5
-                if user.hasActiveAbility?(:ADAPTED)
+                if user.shouldAbilityApply?(:ADAPTED,checkingForAI)
                     stab *= 4.0/3.0
-                elsif user.hasActiveAbility?(:ULTRAADAPTED)
+                elsif user.shouldAbilityApply?(:ULTRAADAPTED,checkingForAI)
                     stab *= 3.0/2.0
                 end
                 multipliers[:final_damage_multiplier] *= stab
@@ -422,20 +425,20 @@ class PokeBattle_Move
         # Mud Sport
         if type == :ELECTRIC
             @battle.eachBattler do |b|
-            next if !b.effects[PBEffects::MudSport]
+                next if !b.effects[PBEffects::MudSport]
                 multipliers[:base_damage_multiplier] /= 3.0
                 break
             end
             if @battle.field.effects[PBEffects::MudSportField]>0
-                m ultipliers[:base_damage_multiplier] /= 3.0
+                multipliers[:base_damage_multiplier] /= 3.0
             end
         end
         # Water Sport
         if type == :FIRE
             @battle.eachBattler do |b|
-            next if !b.effects[PBEffects::WaterSport]
+                next if !b.effects[PBEffects::WaterSport]
                 multipliers[:base_damage_multiplier] /= 3.0
-            break
+                break
             end
             if @battle.field.effects[PBEffects::WaterSportField]>0
                 multipliers[:base_damage_multiplier] /= 3.0
@@ -445,10 +448,11 @@ class PokeBattle_Move
       
     def pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
         pbCalcAbilityDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
-        pbCalcTerrainDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
-        pbCalcWeatherDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
-        pbCalcStatusesDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
-        pbCalcTypeBasedDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
+        pbCalcTerrainDamageMultipliers(user,target,type,multipliers)
+        pbCalcWeatherDamageMultipliers(user,target,type,multipliers)
+        pbCalcStatusesDamageMultipliers(user,target,multipliers)
+        pbCalcProtectionsDamageMultipliers(user,target,multipliers)
+        pbCalcTypeBasedDamageMultipliers(user,target,type,multipliers)
         # Item effects that alter damage
         if user.itemActive?
             BattleHandlers.triggerDamageCalcUserItem(user.item,

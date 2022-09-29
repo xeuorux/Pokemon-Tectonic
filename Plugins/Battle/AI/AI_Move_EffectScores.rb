@@ -526,14 +526,14 @@ class PokeBattle_AI
 				score -= 20 if user.effects[PBEffects::MagnetRise]>0
 				score -= 20 if user.effects[PBEffects::Telekinesis]>0
 				score -= 20 if user.pbHasTypeAI?(:FLYING)
-				score -= 20 if user.hasLevitate?
+				score -= 20 if user.hasLevitate?(true)
 				score -= 20 if user.hasActiveItem?(:AIRBALLOON)
 				score += 20 if target.effects[PBEffects::SkyDrop]>=0
 				score += 20 if target.effects[PBEffects::MagnetRise]>0
 				score += 20 if target.effects[PBEffects::Telekinesis]>0
 				score += 20 if target.inTwoTurnAttack?("0C9","0CC","0CE")	 # Fly, Bounce, Sky Drop
 				score += 20 if target.pbHasTypeAI?(:FLYING)
-				score += 20 if target.hasLevitate?
+				score += 20 if target.hasLevitate?(true)
 				score += 20 if target.hasActiveItem?(:AIRBALLOON)
 			end
 		#---------------------------------------------------------------------------
@@ -556,7 +556,7 @@ class PokeBattle_AI
 			score += 20 if target.effects[PBEffects::Telekinesis]>0
 			score += 20 if target.inTwoTurnAttack?("0C9","0CC")	 # Fly, Bounce
 			score += 20 if target.pbHasTypeAI?(:FLYING)
-			score += 20 if target.hasLevitate?
+			score += 20 if target.hasLevitate?(true)
 			score += 20 if target.hasActiveItem?(:AIRBALLOON)
 		#---------------------------------------------------------------------------
 		when "123"

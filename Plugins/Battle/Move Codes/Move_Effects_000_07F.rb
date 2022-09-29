@@ -98,15 +98,8 @@ end
 #===============================================================================
 # Paralyzes the target.
 # Thunder Wave: Doesn't affect target if move's type has no effect on it.
-# Body Slam: Does double damage and has perfect accuracy if target is Minimized.
 #===============================================================================
 class PokeBattle_Move_007 < PokeBattle_ParalysisMove
-  def tramplesMinimize?(param=1)
-    # Perfect accuracy and double damage (for Body Slam only)
-    return Settings::MECHANICS_GENERATION >= 6 if @id == :BODYSLAM
-    return super
-  end
-
   def pbFailsAgainstTarget?(user,target)
     if @id == :THUNDERWAVE && Effectiveness.ineffective?(target.damageState.typeMod)
       @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
@@ -223,16 +216,9 @@ class PokeBattle_Move_00F < PokeBattle_FlinchMove
 end
 
 #===============================================================================
-# Causes the target to flinch. Does double damage and has perfect accuracy if
-# the target is Minimized. (Dragon Rush, Steamroller, Stomp)
+# Causes the target to flinch. (Dragon Rush, Steamroller, Stomp)
 #===============================================================================
 class PokeBattle_Move_010 < PokeBattle_FlinchMove
-  def tramplesMinimize?(param=1)
-    return super if @id == :DRAGONRUSH && Settings::MECHANICS_GENERATION <= 5
-    return true if param==1 && Settings::MECHANICS_GENERATION >= 6   # Perfect accuracy
-    return true if param==2   # Double damage
-    return super
-  end
 end
 
 #===============================================================================
