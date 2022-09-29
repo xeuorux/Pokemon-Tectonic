@@ -1920,8 +1920,8 @@ Name = Arcanine
 InternalName = ARCANINE
 Type1 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,105,70,85,80,70
-# Total = 490
+BaseStats = 100,110,85,95,80,85
+# Total = 555
 GenderRate = Female25Percent
 GrowthRate = Medium
 BaseEXP = 194
