@@ -443,4 +443,9 @@ class PokeBattle_Battler
       ]
       return ability_blacklist.include?(abil.id)
     end
+
+    def ownersPolicies
+      return [] if pbOwnedByPlayer?
+      return @battle.pbGetOwnerFromBattlerIndex(@index).policies
+    end
 end

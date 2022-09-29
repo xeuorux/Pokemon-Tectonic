@@ -22,6 +22,10 @@ module GameData
           @signature_of       = nil
         end
 
+        def damaging?
+          return physical? || special?
+        end
+
         # The highest evolution of a line
         def signature_of=(val)
           @signature_of = val

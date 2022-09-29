@@ -2533,12 +2533,6 @@ end
     def pbNumHits(user,targets);    return 2;    end
     def tramplesMinimize?(param=1); return true; end
   end
-  
-  # NOTE: If you're inventing new move effects, use function code 176 and onwards.
-  #       Actually, you might as well use high numbers like 500+ (up to FFFF),
-  #       just to make sure later additions to Essentials don't clash with your
-  #       new effects.
-  
 
   #===============================================================================
 # Chance to paralyze the target. Fail if the user is not a Morpeko.

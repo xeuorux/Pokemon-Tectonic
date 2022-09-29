@@ -95,6 +95,11 @@ class PokeBattle_SleepMove < PokeBattle_Move
     return if target.damageState.substitute
     target.pbSleep if target.pbCanSleep?(user,false,self)
   end
+  
+  def getScore(score,user,target,skill=100)
+    score = getSleepMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+    return score
+  end
 end
 
 class PokeBattle_PoisonMove < PokeBattle_Move
@@ -117,6 +122,11 @@ class PokeBattle_PoisonMove < PokeBattle_Move
     return if target.damageState.substitute
     target.pbPoison(user,nil,@toxic) if target.pbCanPoison?(user,false,self)
   end
+
+  def getScore(score,user,target,skill=100)
+    score = getPoisonMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+    return score
+  end
 end
 
 class PokeBattle_ParalysisMove < PokeBattle_Move
@@ -133,6 +143,11 @@ class PokeBattle_ParalysisMove < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
     target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?,@id == :NUMB)
+    return score
   end
 end
 
@@ -151,6 +166,11 @@ class PokeBattle_BurnMove < PokeBattle_Move
     return if target.damageState.substitute
     target.pbBurn(user) if target.pbCanBurn?(user,false,self)
   end
+
+  def getScore(score,user,target,skill=100)
+    score = getBurnMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+    return score
+  end
 end
 
 class PokeBattle_FreezeMove < PokeBattle_Move
@@ -168,6 +188,11 @@ class PokeBattle_FreezeMove < PokeBattle_Move
     return if target.damageState.substitute
     target.pbFreeze if target.pbCanFreeze?(user,false,self)
   end
+
+  def getScore(score,user,target,skill=100)
+    echoln("AI should never use freezing moves")
+    return 0
+  end
 end
 
 #===============================================================================
@@ -184,6 +209,11 @@ class PokeBattle_FlinchMove < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
     target.pbFlinch(user)
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = getFlinchingMoveScore(score,user,target,skill,user.ownersPolicies)
+    return score
   end
 end
 
@@ -986,15 +1016,10 @@ class PokeBattle_FrostbiteMove < PokeBattle_Move
 	  target.pbFrostbite
 	end
 
-    def getScore(score,user,target,skill=100)
-        canFrostbite = target.pbCanFrostbite?(user,false)
-        if canFrostbite
-          score += 20
-        elsif statusMove?
-          score = 0
-        end
-        return score
-    end
+  def getScore(score,user,target,skill=100)
+    score = getFrostbiteMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+    return score
+  end
 end
 
 class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move

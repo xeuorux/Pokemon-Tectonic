@@ -48,15 +48,6 @@ class PokeBattle_Move_003 < PokeBattle_SleepMove
     newForm = (user.Form+1)%2
     user.pbChangeForm(newForm,_INTL("{1} transformed!",user.pbThis))
   end
-
-  def getScore(score,user,target,skill=100)
-    if target.pbCanSleep?(user,false)
-          score = getScoreForPuttingToSleep(score,user,target,skill=100)
-    elsif statusMove?
-          score = 0
-    end
-    return score
-  end
 end
 
 #===============================================================================
@@ -78,12 +69,9 @@ class PokeBattle_Move_004 < PokeBattle_Move
     end
     
     def getScore(score,user,target,skill=100)
-        if target.effects[PBEffects::Yawn] > 0 || !target.pbCanSleep?(user,false)
-            score = 0
-        else
-            score = getScoreForPuttingToSleep(score,user,target,skill)
-        end
-        return score / 2
+        score = getSleepMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+        score -= 30
+        return score
     end
 end
 
@@ -158,6 +146,12 @@ class PokeBattle_Move_009 < PokeBattle_Move
     end
     target.pbFlinch(user) if @battle.pbRandom(100)<chance
   end
+
+  def getScore(score,user,target,skill=100)
+    score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+		score = getFlinchingMoveScore(score,user,target,skill,user.ownersPolicies)
+    return score
+  end
 end
 
 #===============================================================================
@@ -180,6 +174,12 @@ class PokeBattle_Move_00B < PokeBattle_Move
       target.pbBurn(user) if target.pbCanBurn?(user,false,self)
     end
     target.pbFlinch(user) if @battle.pbRandom(100)<chance
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = getBurnMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+		score = getFlinchingMoveScore(score,user,target,skill,user.ownersPolicies)
+    return score
   end
 end
 
@@ -251,8 +251,7 @@ class PokeBattle_Move_011 < PokeBattle_FlinchMove
 
   def getScore(score,user,target,skill=100)
     score += 100
-    score = getFlinchingMoveScore(score,user,target,skill,policies)
-    return score
+    super
   end
 end
 
@@ -271,8 +270,7 @@ class PokeBattle_Move_012 < PokeBattle_FlinchMove
 
   def getScore(score,user,target,skill=100)
     score += 50
-    score = getFlinchingMoveScore(score,user,target,skill,policies)
-    return score
+    super
   end
 end
 
@@ -646,7 +644,7 @@ class PokeBattle_Move_023 < PokeBattle_Move
   def getScore(score,user,target,skill=100)
     score -= 20
     score += 20 if user.turnCount == 0
-    score += 40 if user.hasActiveAbility?([:SUPERLUCK,:SNIPER])
+    score += 40 if user.hasActiveAbilityAI?([:SUPERLUCK,:SNIPER])
     return score
   end
 end
@@ -791,7 +789,7 @@ class PokeBattle_Move_030 < PokeBattle_StatUpMove
   end
 
   def getScore(score,user,target,skill=100)
-    score += 40 if user.hasActiveAbility?(:STAMPEDE)
+    score += 40 if user.hasActiveAbilityAI?(:STAMPEDE)
     super
   end
 end
@@ -1392,7 +1390,7 @@ class PokeBattle_Move_04E < PokeBattle_TargetStatDownMove
 
   def pbAdditionalEffect(user,target)
     return if user.gender==2 || target.gender==2 || user.gender==target.gender
-    return if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
+    return if target.hasActiveAbilityAI?(:OBLIVIOUS) && !@battle.moldBreaker
     super
   end
 end
@@ -2117,8 +2115,7 @@ class PokeBattle_Move_065 < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    if target.ungainableAbility? ||
-       [:POWEROFALCHEMY, :RECEIVER, :TRACE, :WONDERGUARD].include?(target.ability_id)
+    if target.ungainableAbility? || [:POWEROFALCHEMY, :RECEIVER, :TRACE, :WONDERGUARD].include?(target.ability_id)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2135,6 +2132,12 @@ class PokeBattle_Move_065 < PokeBattle_Move
     @battle.pbHideAbilitySplash(user)
     user.pbOnAbilityChanged(oldAbil)
     user.pbEffectsOnSwitchIn
+  end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.hasActiveAbilityAI?(DOWNSIDE_ABILITIES)
+		score += 100 if user.hasActiveAbilityAI?(DOWNSIDE_ABILITIES)
+    return score
   end
 end
 
@@ -2172,6 +2175,18 @@ class PokeBattle_Move_066 < PokeBattle_Move
     @battle.pbHideAbilitySplash(target)
     target.pbOnAbilityChanged(oldAbil)
     target.pbEffectsOnSwitchIn
+  end
+
+  def getScore(score,user,target,skill=100)
+    score -= 30
+		if user.hasActiveAbilityAI?(DOWNSIDE_ABILITIES)
+      if user.opposes?(target)
+        score += 60
+      else
+        return 0
+      end
+    end
+    return score
   end
 end
 
@@ -2242,6 +2257,13 @@ class PokeBattle_Move_067 < PokeBattle_Move
     user.pbEffectsOnSwitchIn
     target.pbEffectsOnSwitchIn
   end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.hasActiveAbilityAI?(DOWNSIDE_ABILITIES)
+    score -= 40
+		score += 100 if user.hasActiveAbilityAI?(DOWNSIDE_ABILITIES)
+    return score
+  end
 end
 
 #===============================================================================
@@ -2261,6 +2283,18 @@ class PokeBattle_Move_068 < PokeBattle_Move
     target.effects[PBEffects::Truant]     = false
     @battle.pbDisplay(_INTL("{1}'s Ability was suppressed!",target.pbThis))
     target.pbOnAbilityChanged(target.ability)
+  end
+
+  def getScore(score,user,target,skill=100)
+    if target.hasActiveAbilityAI?(DOWNSIDE_ABILITIES)
+      if user.opposes?(target)
+        return 0
+      else
+        score += 40
+      end
+    end
+    score -= 20
+    return score
   end
 end
 
@@ -2361,6 +2395,11 @@ class PokeBattle_Move_06F < PokeBattle_FixedDamageMove
     max = (user.level*3/2).floor
     return min+@battle.pbRandom(max-min+1)
   end
+
+  def getScore(score,user,target,skill=100)
+    echoln("The AI will never use Psywave.")
+    return 0
+  end
 end
 
 #===============================================================================
@@ -2409,6 +2448,11 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
       @battle.pbDisplay(_INTL("It's a one-hit KO!"))
     end
   end
+
+  def getScore(score,user,target,skill=100)
+    echoln("The AI will never use a OHKO move.")
+    return 0
+  end
 end
 #===============================================================================
 # Counters a physical move used against the user this round, with 2x the power.
@@ -2433,6 +2477,15 @@ class PokeBattle_Move_071 < PokeBattle_FixedDamageMove
     dmg = user.effects[PBEffects::Counter]*2
     dmg = 1 if dmg==0
     return dmg
+  end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.effects[PBEffects::HyperBeam] > 0
+		return 0 if user.hp/user.totalhp <= 0.5
+    return 0 if target.lastMoveUsed.nil?
+		moveData = GameData::Move.get(target.lastMoveUsed)
+    score += 100 if moveData.physical?
+    return score
   end
 end
 
@@ -2460,6 +2513,15 @@ class PokeBattle_Move_072 < PokeBattle_FixedDamageMove
     dmg = 1 if dmg==0
     return dmg
   end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.effects[PBEffects::HyperBeam] > 0
+		return 0 if user.hp/user.totalhp <= 0.5
+    return 0 if target.lastMoveUsed.nil?
+		moveData = GameData::Move.get(target.lastMoveUsed)
+    score += 100 if moveData.special?
+    return score
+  end
 end
 
 #===============================================================================
@@ -2486,6 +2548,15 @@ class PokeBattle_Move_073 < PokeBattle_FixedDamageMove
     dmg = (user.lastHPLostFromFoe*1.5).floor
     dmg = 1 if dmg==0
     return dmg
+  end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.effects[PBEffects::HyperBeam] > 0
+		return 0 if user.hp/user.totalhp <= 0.5
+    return 0 if target.lastMoveUsed.nil?
+		moveData = GameData::Move.get(target.lastMoveUsed)
+    score += 50 if moveData.damaging?
+    return score
   end
 end
 
@@ -2520,6 +2591,14 @@ class PokeBattle_Move_074 < PokeBattle_Move
     end
     switchedAlly.each { |b| b.pbEffectsOnSwitchIn(true) }
   end
+
+  def getScore(score,user,target,skill=100)
+    target.eachAlly do |b|
+			next if !b.near?(target)
+			score += 10
+		end
+    return score
+  end
 end
 
 #===============================================================================
@@ -2535,14 +2614,16 @@ class PokeBattle_Move_075 < PokeBattle_Move
   end
 
   def pbEffectAfterAllHits(user,target)
-    if !target.damageState.unaffected && !target.damageState.protected &&
-	  !target.damageState.missed &&
-	  user.species == :CRAMORANT &&
-      user.hasActiveAbility?(:GULPMISSILE) && user.form==0
+    if !target.damageState.unaffected && !target.damageState.protected && !target.damageState.missed && user.canGulpMissile?
       user.form=2
       user.form=1 if user.hp>(user.totalhp/2)
       @battle.scene.pbChangePokemon(user,user.pokemon)
     end
+  end
+
+  def getScore(score,user,target,skill=100)
+    score += 40 if user.canGulpMissile?
+    return score
   end
 end
 
@@ -2655,8 +2736,7 @@ end
 #===============================================================================
 class PokeBattle_Move_07C < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    if target.paralyzed? &&
-       (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
+    if target.paralyzed? && (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
       baseDmg *= 2
     end
     return baseDmg
@@ -2665,8 +2745,7 @@ class PokeBattle_Move_07C < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if target.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
-    return if target.status != :PARALYSIS
-    target.pbCureStatus
+    target.pbCureStatus(true,:PARALYSIS)
   end
 end
 
@@ -2685,8 +2764,7 @@ class PokeBattle_Move_07D < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if target.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
-    return if target.status != :SLEEP
-    target.pbCureStatus
+    target.pbCureStatus(true,:SLEEP)
   end
 end
 

@@ -1085,8 +1085,9 @@ class PokeBattle_Move_536 < PokeBattle_TwoTurnMove
   end
   
   def getScore(score,user,target,skill=100)
-		score += user.hp > user.totalhp/2 ? 50 : -50
-		return score
+	score += user.hp > user.totalhp/2 ? 50 : -50
+	score -= user.stages[:SPECIAL_DEFENSE] * 10
+	return score
   end
 end
 
@@ -2303,21 +2304,22 @@ end
 #===============================================================================
 class PokeBattle_Move_572 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		return false if damagingMove?
+		if target.pbHasAnyStatus?
+			@battle.pbDisplay(_INTL("But it failed, because #{target.pbThis(true)} doesn't have a status!"))
+			return true
+		end
 		return !target.pbCanSleep?(user,true,self,true)
 	end
 	
 	def pbEffectAgainstTarget(user,target)
-		if target.flustered? || target.mystified? || target.burned? || target.frostbitten? || target.paralyzed? || target.poisoned?
-			target.pbCureStatus(false)
-			target.pbSleep
-			user.pbRaiseStatStage(:ATTACK,1,user)
-		end
+		target.pbCureStatus(false)
+		target.pbSleep
+		user.pbRaiseStatStage(:ATTACK,1,user) if user.pbCanRaiseStatStage(:ATTACK,user,self)
 	end
-	
+
 	def getScore(score,user,target,skill=100)
-		score = sleepMoveAI(score,user,target,skill=100)
-		return score
+		score += 30 if user.hasPhysicalAttack?
+		super
 	end
 end
 

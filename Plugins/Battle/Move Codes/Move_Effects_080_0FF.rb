@@ -1971,6 +1971,11 @@ class PokeBattle_Move_080 < PokeBattle_Move
       return if target.damageState.substitute
       target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
     end
+
+    def getScore(score,user,target,skill=100)
+      score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+      return score
+    end
   end
   
   #===============================================================================
@@ -1985,6 +1990,11 @@ class PokeBattle_Move_080 < PokeBattle_Move
     def pbAdditionalEffect(user,target)
       return if target.damageState.substitute
       target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+    end
+
+    def getScore(score,user,target,skill=100)
+      score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+      return score
     end
   end
   
@@ -2003,6 +2013,11 @@ class PokeBattle_Move_080 < PokeBattle_Move
       return if target.damageState.substitute
       target.pbFlinch(user)
     end
+
+    def getScore(score,user,target,skill=100)
+      score = getFlinchingMoveScore(score,user,target,skill,user.ownersPolicies)
+      return score
+    end
   end
   
   #===============================================================================
@@ -2018,6 +2033,12 @@ class PokeBattle_Move_080 < PokeBattle_Move
       if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
         user.pbRaiseStatStage(:DEFENSE,2,user)
       end
+    end
+
+    def getScore(score,user,target,skill=100)
+      score += user.hp > user.totalhp/2 ? 50 : -50
+      score -= user.stages[:DEFENSE] * 10
+      return score
     end
   end
   
@@ -2061,14 +2082,19 @@ class PokeBattle_Move_080 < PokeBattle_Move
   # (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
   #===============================================================================
   class PokeBattle_Move_0CB < PokeBattle_TwoTurnMove
+
     def pbChargingTurnMessage(user,targets)
       @battle.pbDisplay(_INTL("{1} hid underwater!",user.pbThis))
-      if user.species == :CRAMORANT &&
-        user.hasActiveAbility?(:GULPMISSILE) && user.form==0
-        user.form=2
-        user.form=1 if user.hp>(user.totalhp/2)
+      if user.canGulpMissile?
+        user.form = 2
+        user.form = 1 if user.hp > (user.totalhp / 2)
         @battle.scene.pbChangePokemon(user,user.pokemon)
       end
+    end
+
+    def getScore(score,user,target,skill=100)
+      score += 40 if user.canGulpMissile?
+      return score
     end
   end
   

@@ -1,6 +1,6 @@
-def statusUpsideAbilities()
-	return [:GUTS,:AUDACITY,:MARVELSCALE,:QUICKFEET]
-end
+DOWNSIDE_ABILITIES = [:SLOWSTART,:DEFEATIST,:TRUANT]
+
+STATUS_UPSIDE_ABILITIES = [:GUTS,:AUDACITY,:MARVELSCALE,:MARVELSKIN,:QUICKFEET]
 
 # Actually used for numbing now
 def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,twave=false)
@@ -14,12 +14,7 @@ def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,t
 		elsif aspeed>ospeed
 			score -= 30
 		end
-		# score += ([target.stages[:ATTACK],0].max)*10
-		# score += ([target.stages[:DEFENSE],0].max)*10
-		# score += ([target.stages[:SPECIAL_ATTACK],0].max)*10
-		# score += ([target.stages[:SPECIAL_DEFENSE],0].max)*10
-		# score += ([target.stages[:EVASION],0].max)*10
-		score -= 30 if target.hasActiveAbilityAI?(statusUpsideAbilities)
+		score -= 30 if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
 	elsif status
 		score = 0 
 	end
@@ -29,7 +24,7 @@ end
 def getPoisonMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target && target.pbCanPoison?(user,false)
 		score += 30
-		score -= 30 if target.hasActiveAbilityAI?([:TOXICBOOST,:POISONHEAL].concat(statusUpsideAbilities))
+		score -= 30 if target.hasActiveAbilityAI?([:TOXICBOOST,:POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && status
 	elsif status
 		return 0
@@ -40,7 +35,7 @@ end
 def getBurnMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target && target.pbCanBurn?(user,false)
 		score += 30
-		score -= 30 if target.hasActiveAbilityAI?([:FLAREBOOST,:BURNHEAL].concat(statusUpsideAbilities))
+		score -= 30 if target.hasActiveAbilityAI?([:FLAREBOOST,:BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && status
 	elsif status
 		return 0
@@ -51,7 +46,7 @@ end
 def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],status=false)
 	if target.pbCanFrostbite?(user,false)
 		score += 30
-		score -= 30 if target.hasActiveAbilityAI?([:FROSTHEAL].concat(statusUpsideAbilities))
+		score -= 30 if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && status
 	elsif status
 		return 0
@@ -59,23 +54,22 @@ def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],status=false)
 	return score
 end
 
-def getScoreForPuttingToSleep(score,user,target,skill=100)
-	return 0 if target.effects[PBEffects::Yawn] > 0
-	  return score + 50
+def getSleepMoveScore(score,user,target,skill=100,policies=[],status=false)
+	return 0 if status && target.effects[PBEffects::Yawn] > 0
+	score += 100
+	return score
 end
 
 def getFlinchingMoveScore(score,user,target,skill,policies)
 	userSpeed = pbRoughStat(user,:SPEED,skill)
-	targetSpeed = pbRoughStat(target,:SPEED,skill)
-	
-	if target.hasActiveAbilityAI?(:INNERFOCUS) ||
-			target.effects[PBEffects::Substitute] != 0 ||
-			target.effects[PBEffects::FlinchedAlready] ||
-			targetSpeed > userSpeed
-		score -= 20
-	else
-		score += 20
-	end
+    targetSpeed = pbRoughStat(target,:SPEED,skill)
+    
+    if target.hasActiveAbilityAI?(:INNERFOCUS) || target.effects[PBEffects::Substitute] != 0 ||
+          target.effects[PBEffects::FlinchedAlready] || targetSpeed > userSpeed
+      score -= 30
+    else
+      score += 30
+    end
 	return score
 end
 
@@ -90,17 +84,6 @@ def getWantsToBeSlowerScore(score,user,target,skill=100,magnitude=1)
 		score += 10 * magnitude
 	else
 		score -= 10 * magnitude
-	end
-	return score
-end
-
-def sleepMoveAI(score,user,target,skill=100)
-	score += 50 * (target.hp / target.totalhp)
-	score += target.stages[:ATTACK] * 10
-	score += target.stages[:SPECIAL_ATTACK] * 10
-	if !target.pbCanSleep?(user,false)
-		score = 10
-		score = 0 if skill > PBTrainerAI.mediumSkill
 	end
 	return score
 end
@@ -220,5 +203,9 @@ class PokeBattle_Battler
 		return false if !type
 		activeTypes = pbTypesAI(true)
 		return activeTypes.include?(GameData::Type.get(type).id)
+	end
+
+	def canGulpMissile?
+		return @species == :CRAMORANT && hasActiveAbility?(:GULPMISSILE) && @form==0
 	end
 end
