@@ -73,14 +73,14 @@ def getFlinchingMoveScore(score,user,target,skill,policies)
 	return score
 end
 
-def getWantsToBeFasterScore(score,user,target,skill=100,magnitude=1)
-	return getWantsToBeSlowerScore(score,user,target,skill,-magnitude)
+def getWantsToBeFasterScore(score,user,other,skill=100,magnitude=1)
+	return getWantsToBeSlowerScore(score,user,other,skill,-magnitude)
 end
 
-def getWantsToBeSlowerScore(score,user,target,skill=100,magnitude=1)
+def getWantsToBeSlowerScore(score,user,other,skill=100,magnitude=1)
 	userSpeed = pbRoughStat(user,:SPEED,skill)
-	targetSpeed = pbRoughStat(target,:SPEED,skill)
-	if userSpeed<targetSpeed
+	otherSpeed = pbRoughStat(other,:SPEED,skill)
+	if userSpeed < otherSpeed
 		score += 10 * magnitude
 	else
 		score -= 10 * magnitude

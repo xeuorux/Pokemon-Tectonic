@@ -22,10 +22,6 @@ class PokeBattle_Move
   def slashMove?;        return @flags[/p/]; end
   def contactMove?;      return physicalMove? end
 
-  def getScore(score,user,target,skill=100)
-		return score
-	end
-
   def pbTarget(user)
     targetData = GameData::Target.get(@target)
     if damagingMove? && targetData.can_target_one_foe? && user.effects[PBEffects::FlareWitch]
@@ -33,5 +29,16 @@ class PokeBattle_Move
     else
       return targetData
     end
+  end
+
+  ########################################################
+  ### AI functions
+  ########################################################
+  def getScore(score,user,target,skill=100)
+		return score
+	end
+
+  def pbBaseDamageAI(baseDmg,user,target,skill=100)
+    super(baseDmg,user,target)
   end
 end

@@ -24,25 +24,6 @@ class PokeBattle_AI
 			avg += target.stages[:DEFENSE]*10
 			score += avg/2
 		#---------------------------------------------------------------------------
-		when "081"
-			attspeed = pbRoughStat(user,:SPEED,skill)
-			oppspeed = pbRoughStat(target,:SPEED,skill)
-			score += 30 if oppspeed>attspeed
-		#---------------------------------------------------------------------------
-		when "082"
-			score += 20 if @battle.pbOpposingBattlerCount(user)>1
-		#---------------------------------------------------------------------------
-		when "083"
-			user.eachAlly do |b|
-				next if !b.pbHasMove?(move.id)
-				score += 20
-			end
-		#---------------------------------------------------------------------------
-		when "084"
-			attspeed = pbRoughStat(user,:SPEED,skill)
-			oppspeed = pbRoughStat(target,:SPEED,skill)
-			score += 30 if oppspeed>attspeed
-		#---------------------------------------------------------------------------
 		when "093"
 			score += 25 if user.effects[PBEffects::Rage]
 		#---------------------------------------------------------------------------

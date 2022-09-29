@@ -17,6 +17,11 @@ class PokeBattle_Move_080 < PokeBattle_Move
       baseDmg *= 2 if user.lastAttacker.include?(target.index)
       return baseDmg
     end
+
+    def getScore(score,user,target,skill=100)
+      score = getWantsToBeSlowerScore(score,user,target,skill,4)
+      return score
+    end
   end
   
   #===============================================================================
@@ -26,6 +31,15 @@ class PokeBattle_Move_080 < PokeBattle_Move
     def pbBaseDamage(baseDmg,user,target)
       baseDmg *= 2 if target.tookDamage
       return baseDmg
+    end
+
+    def getScore(score,user,target,skill=100)
+      score -= 20
+      user.eachAlly do |b|
+        next if !b.hasDamagingAttack?
+        score += 40 if pbRoughStat(b,:SPEED,skill) > pbRoughStat(user,:SPEED,skill)
+      end
+      return score
     end
   end
   
@@ -49,6 +63,13 @@ class PokeBattle_Move_080 < PokeBattle_Move
         break
       end
     end
+
+    def getScore(score,user,target,skill=100)
+      user.eachAlly do |b|
+        next if !b.pbHasMove?(@id)
+        score += 30
+      end
+    end
   end
   
   #===============================================================================
@@ -62,6 +83,11 @@ class PokeBattle_Move_080 < PokeBattle_Move
         baseDmg *= 2
       end
       return baseDmg
+    end
+
+    def getScore(score,user,target,skill=100)
+      score = getWantsToBeSlowerScore(score,user,target,skill,4)
+      return score
     end
   end
   
@@ -271,6 +297,10 @@ class PokeBattle_Move_080 < PokeBattle_Move
   
     def pbBaseDamage(baseDmg,user,target)
       return baseDmg<<(user.effects[PBEffects::FuryCutter]-1)
+    end
+
+    def pbBaseDamageAI(baseDmg,user,target)
+      return baseDmg<<(user.effects[PBEffects::FuryCutter])
     end
   end
   
