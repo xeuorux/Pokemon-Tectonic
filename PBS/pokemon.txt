@@ -9180,7 +9180,7 @@ Type1 = WATER
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 105,55,115,70,100,80
-# Total = 490
+# Total = 525
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 154
@@ -11184,7 +11184,7 @@ InternalName = BARBOACH
 Type1 = WATER
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,70,55,70,65,65
+BaseStats = 80,70,55,60,55,75
 # Total = 395
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -11218,7 +11218,7 @@ InternalName = WHISCASH
 Type1 = WATER
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 110,100,75,100,95,95
+BaseStats = 110,100,85,80,95,105
 # Total = 575
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -22292,7 +22292,7 @@ InternalName = FURFROU
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 120,80,80,80,80,80
-# Total = 515
+# Total = 520
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 165
@@ -27842,7 +27842,7 @@ Type1 = FLYING
 Type2 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,105,55,95,95,95
-# Total = 500
+# Total = 520
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 166
