@@ -320,7 +320,7 @@ class PokeBattle_Move_080 < PokeBattle_Move
     end
   
     def pbFailsAgainstTarget?(user,target)
-      return false if @presentDmg>0
+      return false if @presentDmg.nil? || @presentDmg>0
       if !target.canHeal?
         @battle.pbDisplay(_INTL("But it failed!"))
         return true
@@ -2481,7 +2481,7 @@ class PokeBattle_Move_080 < PokeBattle_Move
   #===============================================================================
   class PokeBattle_Move_0DA < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      alse if damagingMove?
+      return false if damagingMove?
       if user.effects[PBEffects::AquaRing]
         @battle.pbDisplay(_INTL("But it failed!"))
         return true

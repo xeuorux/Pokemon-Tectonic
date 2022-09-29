@@ -383,11 +383,11 @@ class PokeBattle_StatDownMove < PokeBattle_Move
     end
   end
 
-  def getScore
+  def getScore(score,user,target,skill=100)
     average = 0
     count = 0
-    for i in 0...@statUp.length/2
-			statSym = @statUp[i*2]
+    for i in 0...@statDown.length/2
+			statSym = @statDown[i*2]
 			average += user.stages[statSym] * 10 # Reduce the score for each existing stage
       count += 1
 		end

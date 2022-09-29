@@ -709,8 +709,7 @@ class PokeBattle_Move_526 < PokeBattle_SleepMove
   
     def getScore(score,user,target,skill=100)
 		score -= 50 if user.hp <= user.totalhp/2
-		score = sleepMoveAI(score,user,target,skill=100)
-		return score
+		super
 	end
 end
 
@@ -725,15 +724,6 @@ class PokeBattle_Move_527 < PokeBattle_SleepMove
 		end
 		return false
 	end
-	
-	def getScore(score,user,target,skill=100)
-		score = sleepMoveAI(score,user,target,skill=100)
-		if score != 0 && @battle.pbWeather != :Sun
-			score = 10
-			score = 0 if skill > PBTrainerAI.mediumSkill
-		end
-		return score
-	end
 end
 
 #===============================================================================
@@ -746,14 +736,6 @@ class PokeBattle_Move_528 < PokeBattle_SleepMove
 			return true
 		end
 		return !target.pbCanSleep?(user,true,self)
-	end
-	
-	def getScore(score,user,target,skill=100)
-		score = sleepMoveAI(score,user,target,skill=100)
-		if score != 0 && target.hp > target.totalhp/2
-			score = 0
-		end
-		return score
 	end
 end
 
@@ -770,9 +752,10 @@ class PokeBattle_Move_529 < PokeBattle_SleepMove
 	end
 	
 	def getScore(score,user,target,skill=100)
-		score = sleepMoveAI(score,user,target,skill)
-		score = getWantsToBeSlowerScore(score,user,target,skill,5)
-		return score
+		userSpeed = pbRoughStat(user,:SPEED,skill)
+		targetSpeed = pbRoughStat(target,:SPEED,skill)
+		return 0 if userSpeed > targetSpeed
+		super
 	end
 end
 
@@ -1038,11 +1021,6 @@ class PokeBattle_Move_534 < PokeBattle_SleepMove
 		target.pbCureStatus(false,:MYSTIFIED)
 		target.pbSleep
 	end
-	
-	def getScore(score,user,target,skill=100)
-		score = sleepMoveAI(score,user,target,skill=100)
-		return score
-	end
 end
 
 #===============================================================================
@@ -1212,7 +1190,7 @@ class PokeBattle_Move_53C < PokeBattle_Move
 end
 
 #===============================================================================
-# Heals user by 1/8 of their max health, but does not fail at full health. (Mending Spring)
+# Heals user by 1/8 of their max health, but does not fail at full health. (???)
 #===============================================================================
 class PokeBattle_Move_53D < PokeBattle_HealingMove
   def pbOnStartUse(user,targets)
@@ -1228,10 +1206,10 @@ class PokeBattle_Move_53D < PokeBattle_HealingMove
   end
   
   def getScore(score,user,target,skill=100)
-		score -= 10
-		score += 20 if user.hp < user.totalhp
-		score += 20 if user.hp < user.totalhp/2.0
-		return score
+	score -= 10
+	score += 20 if user.hp < user.totalhp
+	score += 20 if user.hp < user.totalhp/2.0
+	return score
   end
 end
 
@@ -1458,13 +1436,12 @@ end
 
 #===============================================================================
 # Removes trapping moves, entry hazards and Leech Seed on user/user's side. Raises speed by 1.
-# (new Rapid Spin)
+# (new!Rapid Spin)
 #===============================================================================
 class PokeBattle_Move_54B < PokeBattle_StatUpMove
 	def initialize(battle,move)
 		super
 		@statUp = [:SPEED,1]
-		echoln "did this work"
 	end
 	
 	def pbEffectAfterAllHits(user,target)
@@ -2513,17 +2490,19 @@ end
 #===============================================================================
 # Puts the target to sleep, then minimizes the user's speed. (Sedating Dust)
 #===============================================================================
-class PokeBattle_Move_581 < PokeBattle_Move_003
+class PokeBattle_Move_581 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
 		return !target.pbCanSleep?(user,true,self,true)
 	end
+
 	def pbEffectAgainstTarget(user,target)
 		target.pbSleep
 		user.pbMinimizeStatStage(:SPEED,user,self)
 	end
+
 	def getScore(score,user,target,skill=100)
-		score = sleepMoveAI(score,user,target,skill=100)
-		return score
+		score -= user.stages[:SPEED] * 5
+		super
 	end
 end
 

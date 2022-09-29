@@ -25,7 +25,6 @@ class PokeBattle_Scene
       return 0 if @battle.wildBattle?
       numBalls *= @battle.opponent.length
     end
-    echoln("The display ball count for side #{side} is #{numBalls}")
     return numBalls
   end
 

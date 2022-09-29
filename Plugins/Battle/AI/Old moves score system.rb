@@ -163,12 +163,8 @@ class PokeBattle_AI
 			end
 		#---------------------------------------------------------------------------
 		when "0D5", "0D6"
-			if user.hp==user.totalhp || (skill>=PBTrainerAI.mediumSkill && !user.canHeal?)
-				score = 0
-			else
-				score += 50
-				score -= user.hp*100/user.totalhp
-			end
+			score += 50
+			score -= user.hp*100/user.totalhp
 		#---------------------------------------------------------------------------
 		when "0D7"
 			score = 0 if @battle.positions[user.index].effects[PBEffects::Wish]>0
@@ -950,13 +946,9 @@ class PokeBattle_AI
 			score = 0 if !user.pbHasTypeAI?(:FIRE)
 		#---------------------------------------------------------------------------
 		when "165"
-			if skill>=PBTrainerAI.mediumSkill
-				userSpeed	 = pbRoughStat(user,:SPEED,skill)
-				targetSpeed = pbRoughStat(target,:SPEED,skill)
-				if userSpeed<targetSpeed
-					score += 30
-				end
-			else
+			userSpeed	 = pbRoughStat(user,:SPEED,skill)
+			targetSpeed = pbRoughStat(target,:SPEED,skill)
+			if userSpeed<targetSpeed
 				score += 30
 			end
 		#---------------------------------------------------------------------------
@@ -1058,7 +1050,7 @@ class PokeBattle_AI
 			begin
 				score = move.getScore(score,user,target,skill=100)
 			rescue
-				echoln("FAILURE IN THE SCORING SYSTEM FOR MOVE #{move.name}")
+				echoln("FAILURE IN THE SCORING SYSTEM FOR MOVE #{move.name} #{move.function}")
 				score = 100
 			end
 		end
