@@ -6,11 +6,8 @@ class Pokemon
     end
 
     def hueShift
-        # if !defined?(@hueShift) || @hueShift.nil?
-        #     @hueShift = -5 + (@personalID ^ @owner.id) % 10
-        # end
-        # return @hueShift
-        return -10 + (@personalID ^ @owner.id) % 20
+        hueShiftRange = 20 # Should be a positive number
+        return (-(hueShiftRange/2) + (@personalID ^ @owner.id) % hueShiftRange).round
     end
 end
 
