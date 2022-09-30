@@ -917,9 +917,8 @@ Abilities = MENTALBLOCK
 FormName = Midnight
 Type1 = ROCK
 Type2 = DARK
-BaseStats = 85,115,75,82,55,75
+BaseStats = 93,120,75,82,55,75
 Abilities = NOGUARD
-Moves = 0,COUNTER,1,COUNTER,1,REVERSAL,1,TAUNT,1,TACKLE,1,LEER,1,SANDATTACK,1,BITE,4,SANDATTACK,7,BITE,12,HOWL,15,ROCKTHROW,18,ODORSLEUTH,23,ROCKTOMB,26,ROAR,29,STEALTHROCK,34,ROCKSLIDE,37,SCARYFACE,40,CRUNCH,45,ROCKCLIMB,48,STONEEDGE
 Height = 1.1
 Color = Red
 Shape = BipedalTail
@@ -931,9 +930,8 @@ BattlerShadowSize = 3
 #-------------------------------
 [LYCANROC,2]
 FormName = Dusk
-BaseStats = 75,115,65,112,55,65
+BaseStats = 85,125,70,95,55,70
 Abilities = SANDRUSH
-Moves = 0,SUCKERPUNCH,1,SUCKERPUNCH,1,TACKLE,1,LEER,1,GROWL,8,ROCKTHROW,12,BITE,16,HOWL,20,BRUTALSWING,24,ROCKTOMB,30,ROAR,36,ROCKSLIDE,42,CRUNCH,48,SCARYFACE,54,STEALTHROCK,60,STONEEDGE
 Pokedex = Bathed in the setting sun of evening, Lycanroc has undergone a special kind of evolution. An intense fighting spirit underlies its calmness.
 #-------------------------------
 [WISHIWASHI,1]
