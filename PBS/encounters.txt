@@ -813,3 +813,11 @@ DarkCave,20
     20,MAWILE,17,20
     20,SABLEYE,17,20
     20,WOOBAT,17,20
+#-------------------------------
+[335] # Svait Sauna Underground
+Land,20
+    20,DARUMAKA,17,20
+    20,DWEBBLE,17,20
+    20,SLUGMA,17,20
+    20,TORKOAL,17,20
+    20,TURTONATOR,17,20

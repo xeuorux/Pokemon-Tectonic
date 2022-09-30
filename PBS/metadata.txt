@@ -1618,6 +1618,13 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,12,2
 #-------------------------------
+[320]
+# Svait Station Backroom
+Outdoor = false
+ShowArea = false
+Bicycle = false
+Weather = Fog,100
+#-------------------------------
 [324]
 # Waiting Room
 Outdoor = false
@@ -1647,3 +1654,10 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+#-------------------------------
+[335]
+# Svait Sauna Underground
+Outdoor = false
+ShowArea = false
+Bicycle = false
+Weather = Fog,100
