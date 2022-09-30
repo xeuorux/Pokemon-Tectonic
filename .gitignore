@@ -23,3 +23,4 @@ switching_analysis.txt
 *_backup*
 move_distribution.txt
 changelog.txt
+*.lnk
