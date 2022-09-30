@@ -321,6 +321,11 @@ class PokeBattle_Move_093 < PokeBattle_Move
   def pbEffectGeneral(user)
     user.effects[PBEffects::Rage] = true
   end
+
+  def getScore(score,user,target,skill=100)
+    score += 30 if user.hp > user.totalhp/2
+    return score
+  end
 end
 
 #===============================================================================
@@ -960,6 +965,17 @@ class PokeBattle_Move_0A7 < PokeBattle_Move
     target.effects[PBEffects::Foresight] = true
     @battle.pbDisplay(_INTL("{1} was identified!",target.pbThis))
   end
+
+  def getScore(score,user,target,skill=100)
+    if target.effects[PBEffects::Foresight]
+      score = 0
+    elsif target.pbHasTypeAI?(:GHOST,true)
+      score += 70
+    elsif target.stages[:EVASION]<=0
+      score -= 60
+    end
+    return score
+  end
 end
 
 #===============================================================================
@@ -972,6 +988,17 @@ class PokeBattle_Move_0A8 < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
     target.effects[PBEffects::MiracleEye] = true
     @battle.pbDisplay(_INTL("{1} was identified!",target.pbThis))
+  end
+
+  def getScore(score,user,target,skill=100)
+    if target.effects[PBEffects::MiracleEye]
+      score = 0
+    elsif target.pbHasTypeAI?(:DARK)
+      score += 70
+    elsif target.stages[:EVASION]<=0
+      score -= 60
+    end
+    return score
   end
 end
 
@@ -1056,6 +1083,11 @@ class PokeBattle_Move_0AE < PokeBattle_Move
 
   def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
     # No animation
+  end
+
+  def getScore(score,user,target,skill=100)
+    score -= 20
+    return score
   end
 end
 
@@ -1605,7 +1637,7 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
       next if @moveBlacklistSignatures.include?(move_data.id)
       next if @moveBlacklistCut.include?(move_data.id)
       next if move_data.type == :SHADOW
-      next if PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(move_id)).empowered?
+      next if @battle.getBattleMoveInstanceFromID(move_id).empowered?
       @metronomeMove = move_data.id
       break
     end
@@ -1640,6 +1672,11 @@ class PokeBattle_Move_0B7 < PokeBattle_Move
     target.effects[PBEffects::Torment] = true
     @battle.pbDisplay(_INTL("{1} was subjected to torment!",target.pbThis))
     target.pbItemStatusCureCheck
+  end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
+    return score
   end
 end
 
@@ -1694,6 +1731,11 @@ class PokeBattle_Move_0B9 < PokeBattle_Move
         GameData::Move.get(target.lastRegularMoveUsed).name))
     target.pbItemStatusCureCheck
   end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
+    return score
+  end
 end
 
 #===============================================================================
@@ -1740,6 +1782,11 @@ class PokeBattle_Move_0BA < PokeBattle_Move
     @battle.pbDisplay(_INTL("{1} fell for the taunt!",target.pbThis))
     target.pbItemStatusCureCheck
   end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
+    return score
+  end
 end
 
 #===============================================================================
@@ -1759,6 +1806,11 @@ class PokeBattle_Move_0BB < PokeBattle_Move
     target.effects[PBEffects::HealBlock] = 5
     @battle.pbDisplay(_INTL("{1} was prevented from healing!",target.pbThis))
     target.pbItemStatusCureCheck
+  end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
+    return score
   end
 end
 
@@ -1830,6 +1882,23 @@ class PokeBattle_Move_0BC < PokeBattle_Move
     @battle.pbDisplay(_INTL("{1} received an encore!",target.pbThis))
     target.pbItemStatusCureCheck
   end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
+    userSpeed = pbRoughStat(user,:SPEED,skill)
+    targetSpeed = pbRoughStat(target,:SPEED,skill)
+    if userSpeed > targetSpeed
+      return 0 if target.lastRegularMoveUsed.nil?
+      moveData = GameData::Move.get(target.lastRegularMoveUsed)
+      if moveData.category == 2 && [:User, :BothSides].include?(moveData.target)
+        score += 100
+      elsif moveData.category != 2 && moveData.target == :NearOther &&
+          Effectiveness.ineffective?(pbCalcTypeMod(moveData.type, target, user))
+        score += 100
+      end
+    end
+    return score
+  end
 end
 
 #===============================================================================
@@ -1898,7 +1967,7 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
     if user.hasActiveAbilityAI?(:SKILLLINK)
       return 5
     end
-    return 19.0/6.0
+    return 19.0/6.0 # Average
   end
 
   def pbBaseDamage(baseDmg,user,target)
@@ -2427,6 +2496,15 @@ class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
   def pbBaseDamageAI(baseDmg,user,target,skill=100)
     return 60
   end
+
+  def getScore(score,user,target,skill=100)
+    if user.hp <= user.totalhp/4
+      score = 0
+    elsif user.hp <= user.totalhp/2
+      score -= 50
+    end
+    return score
+  end
 end
 
 #===============================================================================
@@ -2477,6 +2555,11 @@ class PokeBattle_Move_0D7 < PokeBattle_Move
     @battle.positions[user.index].effects[PBEffects::WishAmount] = (user.totalhp/2.0).round
     @battle.positions[user.index].effects[PBEffects::WishMaker]  = user.pokemonIndex
   end
+
+  def getScore(score,user,target,skill=100)
+    score += (user.totalhp / user.level) * 5
+    return score
+  end
 end
 
 #===============================================================================
@@ -2497,6 +2580,15 @@ class PokeBattle_Move_0D8 < PokeBattle_HealingMove
 
   def pbHealAmount(user)
     return @healAmount
+  end
+
+  def getScore(score,user,target,skill=100)
+    when :Sun, :HarshSun
+      score += 50
+    else
+      return 0
+    end
+    super
   end
 end
 
@@ -2520,6 +2612,13 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
 
   def pbEffectGeneral(user)
     user.pbSleepSelf(_INTL("{1} slept and became healthy!",user.pbThis),3)
+    super
+  end
+
+  def getScore(score,user,target,skill=100)
+    score -= 30
+    score += 30 if user.status != :NONE
+    score += 30 if user.hasSleepAttack?
     super
   end
 end
@@ -2550,6 +2649,11 @@ class PokeBattle_Move_0DA < PokeBattle_Move
     user.effects[PBEffects::AquaRing] = true
     @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
   end
+
+  def getScore(score,user,target,skill=100)
+    score += 20 if user.turnCount == 0
+    return score
+  end
 end
 
 #===============================================================================
@@ -2568,6 +2672,11 @@ class PokeBattle_Move_0DB < PokeBattle_Move
   def pbEffectGeneral(user)
     user.effects[PBEffects::Ingrain] = true
     @battle.pbDisplay(_INTL("{1} planted its roots!",user.pbThis))
+  end
+
+  def getScore(score,user,target,skill=100)
+    score += 20 if user.turnCount == 0
+    return score
   end
 end
 
@@ -2597,44 +2706,32 @@ class PokeBattle_Move_0DC < PokeBattle_Move
     target.effects[PBEffects::LeechSeed] = user.index
     @battle.pbDisplay(_INTL("{1} was seeded!",target.pbThis))
   end
+
+  def getScore(score,user,target,skill=100)
+    score += 20 if user.turnCount == 0
+    return score
+  end
 end
 
 #===============================================================================
 # User gains half the HP it inflicts as damage.
 #===============================================================================
-class PokeBattle_Move_0DD < PokeBattle_Move
-  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
-
-  def pbEffectAgainstTarget(user,target)
-    return if target.damageState.hpLost<=0
-    hpGain = (target.damageState.hpLost/2.0).round
-    user.pbRecoverHPFromDrain(hpGain,target)
-  end
+class PokeBattle_Move_0DD < PokeBattle_DrainMove
+  def drainFactor(user,target); return 0.5; end
 end
 
 #===============================================================================
 # User gains half the HP it inflicts as damage. Deals double damage if the target is asleep.
 # (Dream Eater)
 #===============================================================================
-class PokeBattle_Move_0DE < PokeBattle_Move
-  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
-
-  def pbFailsAgainstTarget?(user,target)
-    return false
-  end
+class PokeBattle_Move_0DE < PokeBattle_DrainMove
+  def drainFactor(user,target); return 0.5; end
 
   def pbBaseDamage(baseDmg,user,target)
     if target.asleep?
         baseDmg *= 2
     end
     return baseDmg
-  end
-
-  def pbEffectWhenDealingDamage(user,target)
-    return if target.damageState.hpLost<=0 || !target.asleep?
-    hpGain = (target.damageState.hpLost/2.0).round
-    user.pbRecoverHPFromDrain(hpGain,target)
-    user.battle.pbDisplay(_INTL("{1} ate {2}'s dream!", user.pbThis, target.pbThis)) if target.asleep?
   end
 end
 
@@ -2662,6 +2759,19 @@ class PokeBattle_Move_0DF < PokeBattle_Move
     end
     target.pbRecoverHP(hpGain)
     @battle.pbDisplay(_INTL("{1}'s HP was restored.",target.pbThis))
+  end
+
+  def getScore(score,user,target,skill=100)
+    return if user.opposes?(target) && !target.effects[PBEffects::NerveBreak]
+    return if !user.opposes?(target) && target.effects[PBEffects::NerveBreak]
+    
+    score += 20
+    score += 10 if target.hasActiveAbilityAI?(:ROOTED)
+    score += 10 if target.hasActiveItem?(:BIGROOT)
+    if target.hp <= target.totalhp/2
+      score += 20
+    end
+    return score
   end
 end
 
@@ -2692,7 +2802,7 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
 
   def pbSelfKO(user)
     return if user.fainted?
-    if user.hasActiveAbility?(:BUNKERDOWN) && user.hp==user.totalhp 
+    if user.bunkeringDown?
       user.pbReduceHP(user.hp-1,false)
       @battle.pbShowAbilitySplash(user)
       @battle.pbDisplay(_INTL("{1}'s {2} barely saves it!",user.pbThis,@name))
@@ -2701,6 +2811,16 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
       user.pbReduceHP(user.hp,false)
     end
     user.pbItemHPHealCheck
+  end
+
+  def getScore(score,user,target,skill=100)
+    reserves = @battle.pbAbleNonActiveCount(user.idxOwnSide)
+    return 0 if reserves == 0 # don't want to lose or draw
+    if !user.bunkeringDown?(true)
+      return 0 if user.hp > user.totalhp / 2
+      score -= 20
+    end
+    return score
   end
 end
 
@@ -2728,6 +2848,11 @@ class PokeBattle_Move_0E1 < PokeBattle_FixedDamageMove
     user.pbReduceHP(user.hp,false)
     user.pbItemHPHealCheck
   end
+
+  def getScore(score,user,target,skill=100)
+    score = getSelfKOMoveScore(score,user,target,skill)
+    return score
+  end
 end
 
 #===============================================================================
@@ -2750,6 +2875,12 @@ class PokeBattle_Move_0E2 < PokeBattle_TargetMultiStatDownMove
     return if user.fainted?
     user.pbReduceHP(user.hp,false)
     user.pbItemHPHealCheck
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = getSelfKOMoveScore(score,user,target,skill)
+    score -= 20
+    super
   end
 end
 
@@ -2774,6 +2905,12 @@ class PokeBattle_Move_0E3 < PokeBattle_Move
     user.pbItemHPHealCheck
     @battle.positions[user.index].effects[PBEffects::HealingWish] = true
   end
+
+  def getScore(score,user,target,skill=100)
+    score = getSelfKOMoveScore(score,user,target,skill)
+    score -= 20
+    return score
+  end
 end
 
 #===============================================================================
@@ -2796,6 +2933,12 @@ class PokeBattle_Move_0E4 < PokeBattle_Move
     user.pbReduceHP(user.hp,false)
     user.pbItemHPHealCheck
     @battle.positions[user.index].effects[PBEffects::LunarDance] = true
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = getSelfKOMoveScore(score,user,target,skill)
+    score -= 20
+    return score
   end
 end
 
@@ -2830,6 +2973,11 @@ class PokeBattle_Move_0E5 < PokeBattle_Move
     super
     @battle.pbDisplay(_INTL("All Pokémon that hear the song will faint in three turns!"))
   end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if @battle.pbAbleNonActiveCount(user.idxOwnSide) == 0
+    return score
+  end
 end
 
 #===============================================================================
@@ -2840,6 +2988,12 @@ class PokeBattle_Move_0E6 < PokeBattle_Move
   def pbEffectGeneral(user)
     user.effects[PBEffects::Grudge] = true
     @battle.pbDisplay(_INTL("{1} wants its target to bear a grudge!",user.pbThis))
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = getSelfKOMoveScore(score,user,target,skill)
+    score -= 20
+    return score
   end
 end
 
@@ -2874,6 +3028,11 @@ class PokeBattle_Move_0E8 < PokeBattle_ProtectMove
   def pbProtectMessage(user)
     @battle.pbDisplay(_INTL("{1} braced itself!",user.pbThis))
   end
+
+  def getScore(score,user,target,skill=100)
+    score -= 40 if user.hp > user.totalhp / 2
+    super
+  end
 end
 
 #===============================================================================
@@ -2882,6 +3041,15 @@ end
 #===============================================================================
 class PokeBattle_Move_0E9 < PokeBattle_Move
   def nonLethal?(user,target); return true; end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.hp == 1
+
+    if target.hp <= target.totalhp/2
+      score -= 50
+    end
+    return score
+  end
 end
 
 #===============================================================================
@@ -2921,6 +3089,11 @@ class PokeBattle_Move_0EA < PokeBattle_Move
       @battle.moldBreaker = false
       user.pbEffectsOnSwitchIn(true)
     end
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = getSwitchOutMoveScore(score,user,target,skill)
+    return score
   end
 end
 
@@ -2989,12 +3162,17 @@ class PokeBattle_Move_0EB < PokeBattle_Move
       switchedBattlers.push(b.index)
       roarSwitched.push(b.index)
     end
-    if roarSwitched.length>0
+    if roarSwitched.length > 0
       @battle.moldBreaker = false if roarSwitched.include?(user.index)
       @battle.pbPriority(true).each do |b|
         b.pbEffectsOnSwitchIn(true) if roarSwitched.include?(b.index)
       end
     end
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = getForceOutMoveScore(score,user,target,skill,statusMove?)
+    return score
   end
 end
 
@@ -3029,12 +3207,17 @@ class PokeBattle_Move_0EC < PokeBattle_Move
       switchedBattlers.push(b.index)
       roarSwitched.push(b.index)
     end
-    if roarSwitched.length>0
+    if roarSwitched.length > 0
       @battle.moldBreaker = false if roarSwitched.include?(user.index)
       @battle.pbPriority(true).each do |b|
         b.pbEffectsOnSwitchIn(true) if roarSwitched.include?(b.index)
       end
     end
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = getForceOutMoveScore(score,user,target,skill,statusMove?)
+    return score
   end
 end
 
@@ -3064,6 +3247,20 @@ class PokeBattle_Move_0ED < PokeBattle_Move
     switchedBattlers.push(user.index)
     user.pbEffectsOnSwitchIn(true)
   end
+
+  def getScore(score,user,target,skill=100)
+    total = 0
+    GameData::Stat.each_battle { |s| total += user.stages[s.id] }
+    if total <= 0 || user.turnCount == 0
+      return 0
+    else
+      score += total * 10
+      score += 75 if !user.hasDamagingAttack?
+    end
+    score = getSwitchOutMoveScore(score,user,target,skill)
+    score -= 40 if user.effects[PBEffects::Confusion] > 0 || user.effects[PBEffects::Charm] > 0
+    return score
+  end
 end
 
 #===============================================================================
@@ -3090,6 +3287,12 @@ class PokeBattle_Move_0EE < PokeBattle_Move
     @battle.moldBreaker = false
     switchedBattlers.push(user.index)
     user.pbEffectsOnSwitchIn(true)
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = getSwitchOutMoveScore(score,user,target,skill)
+    score += 20
+    return score
   end
 end
 
@@ -3119,6 +3322,11 @@ class PokeBattle_Move_0EF < PokeBattle_Move
     target.effects[PBEffects::MeanLook] = user.index
     @battle.pbDisplay(_INTL("{1} can no longer escape!",target.pbThis))
   end
+
+  def getScore(score,user,target,skill=100)
+    score -= 20 if damagingMove? && target.effects[PBEffects::MeanLook]
+    return score
+  end
 end
 
 #===============================================================================
@@ -3137,14 +3345,15 @@ class PokeBattle_Move_0F0 < PokeBattle_Move
   end
 
   def pbEffectWhenDealingDamage(user,target)
-    return if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't knock off, but bosses can
-    return if user.fainted?
-    return if target.damageState.unaffected || target.damageState.substitute
-    return if !target.item || target.unlosableItem?(target.item)
-    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    return if !canRemoveItem?(user,target)
     itemName = target.itemName
     target.pbRemoveItem(false)
     @battle.pbDisplay(_INTL("{1} dropped its {2}!",target.pbThis,itemName))
+  end
+
+  def getScore(score,user,target,skill=100)
+    score += 20 if canRemoveItem?(user,target,true)
+    return score
   end
 end
 
@@ -3154,14 +3363,7 @@ end
 #===============================================================================
 class PokeBattle_Move_0F1 < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
-    return if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't thieve, except if they are bosses
-    return if user.fainted?
-    return if target.damageState.unaffected || target.damageState.substitute
-    return if !target.item
-    return if user.item && @battle.trainerBattle?
-    return if target.unlosableItem?(target.item)
-    return if user.unlosableItem?(target.item)
-    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    return if !canStealItem?(user,target)
     itemName = target.itemName
     # Permanently steal the item from wild Pokémon
     if @battle.wildBattle? && target.opposes? && !@battle.bossBattle?
@@ -3175,6 +3377,11 @@ class PokeBattle_Move_0F1 < PokeBattle_Move
       target.pbRemoveItem(false)
     end
     user.pbHeldItemTriggerCheck
+  end
+
+  def getScore(score,user,target,skill=100)
+    score += 30 if canStealItem?(user,target,true)
+    return score
   end
 end
 
@@ -3232,6 +3439,16 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
     user.pbHeldItemTriggerCheck
     target.pbHeldItemTriggerCheck
   end
+
+  def getScore(score,user,target,skill=100)
+    if user.hasActiveItem?([:FLAMEORB,:POISONORB,:STICKYBARB,:IRONBALL,
+      :CHOICEBAND,:CHOICESCARF,:CHOICESPECS])
+      score += 50
+    elsif !user.item && target.item
+      return 0 if user.lastMoveUsed && GameData::Move.get(user.lastMoveUsed).function_code == "0F2"	 # Trick/Switcheroo
+    end
+    return score
+  end
 end
 
 #===============================================================================
@@ -3274,22 +3491,44 @@ class PokeBattle_Move_0F3 < PokeBattle_Move
     @battle.pbDisplay(_INTL("{1} received {2} from {3}!",target.pbThis,itemName,user.pbThis(true)))
     target.pbHeldItemTriggerCheck
   end
+
+  def getScore(score,user,target,skill=100)
+    if user.hasActiveItem?([:FLAMEORB,:POISONORB,:STICKYBARB,:IRONBALL,
+      :CHOICEBAND,:CHOICESCARF,:CHOICESPECS])
+      if user.opposes?(target)
+        score += 50
+      else
+        return 0
+      end
+    end
+    return score
+  end
 end
 
 #===============================================================================
 # User consumes target's berry and gains its effect. (Bug Bite, Pluck)
 #===============================================================================
 class PokeBattle_Move_0F4 < PokeBattle_Move
+  def canPluckBerry?(user,target)
+    return false if target.fainted?
+    return false if target.damageState.berryWeakened
+    return false if !target.item.is_berry?
+    return true
+  end
+
   def pbEffectWhenDealingDamage(user,target)
-    return if user.fainted? || target.fainted?
-    return if target.damageState.unaffected || target.damageState.substitute || target.damageState.berryWeakened
-    return if !target.item || !target.item.is_berry?
-    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
-    item = target.item
-    itemName = target.itemName
-    target.pbRemoveItem
-    @battle.pbDisplay(_INTL("{1} stole and ate its target's {2}!",user.pbThis,itemName))
+    return if !canRemoveItem?(user,target)
+    return if !canPluckBerry?(user,target)
+    item = target.ite
+    itemName = target.itemNam
+    target.pbRemoveIte
+    @battle.pbDisplay(_INTL("{1 stole and ate its target's {2}!",user.pbThis,itemName))
     user.pbHeldItemTriggerCheck(item,false)
+  end
+
+  def getScore(score,user,target,skill=100)
+    score += 30 if canRemoveItem?(user,target) && canPluckBerry?(user,target)
+    return score
   end
 end
 
@@ -3297,13 +3536,23 @@ end
 # Target's berry/Gem is destroyed. (Incinerate)
 #===============================================================================
 class PokeBattle_Move_0F5 < PokeBattle_Move
+  def canIncinerateTargetsItem?(target)
+    return false if target.damageState.substitute || target.damageState.berryWeakened
+    return false if !target.item
+    return false if !target.item.is_berry? && !target.item.is_gem?
+    return true
+  end
+
   def pbEffectWhenDealingDamage(user,target)
-    return if target.damageState.substitute || target.damageState.berryWeakened
-    return if !target.item || (!target.item.is_berry? &&
-              !(Settings::MECHANICS_GENERATION >= 6 && target.item.is_gem?))
+    return if !canIncinerateTargetsItem?(target)
     itemName = target.itemName
     target.pbRemoveItem
     @battle.pbDisplay(_INTL("{1}'s {2} was incinerated!",target.pbThis,itemName))
+  end
+
+  def getScore(score,user,target,skill=100)
+    score += 30 if canIncinerateTargetsItem?(target)
+    return score
   end
 end
 
@@ -3333,6 +3582,11 @@ class PokeBattle_Move_0F6 < PokeBattle_Move
       @battle.pbDisplay(_INTL("{1} found a {2}!",user.pbThis,itemName))
     end
     user.pbHeldItemTriggerCheck
+  end
+
+  def getScore(score,user,target,skill=100)
+    score += 30
+    return score
   end
 end
 
@@ -3548,6 +3802,11 @@ class PokeBattle_Move_0F8 < PokeBattle_Move
     target.effects[PBEffects::Embargo] = 5
     @battle.pbDisplay(_INTL("{1} can't use items anymore!",target.pbThis))
   end
+
+  def getScore(score,user,target,skill=100)
+    score -= 20
+    return score
+  end
 end
 
 #===============================================================================
@@ -3567,18 +3826,14 @@ end
 # User takes recoil damage equal to 1/4 of the damage this move dealt.
 #===============================================================================
 class PokeBattle_Move_0FA < PokeBattle_RecoilMove
-  def pbRecoilDamage(user,target)
-    return (target.damageState.totalHPLost/4.0).round
-  end
+  def recoilFactor;  return 0.25; end
 end
 
 #===============================================================================
 # User takes recoil damage equal to 1/3 of the damage this move dealt.
 #===============================================================================
 class PokeBattle_Move_0FB < PokeBattle_RecoilMove
-  def pbRecoilDamage(user,target)
-    return (target.damageState.totalHPLost/3.0).round
-  end
+  def recoilFactor;  return (1.0/3.0); end
 end
 
 #===============================================================================
@@ -3586,23 +3841,24 @@ end
 # (Head Smash, Light of Ruin)
 #===============================================================================
 class PokeBattle_Move_0FC < PokeBattle_RecoilMove
-  def pbRecoilDamage(user,target)
-    return (target.damageState.totalHPLost/2.0).round
-  end
+  def recoilFactor;  return 0.5; end
 end
 
 #===============================================================================
 # User takes recoil damage equal to 1/3 of the damage this move dealt.
-# May paralyze the target. (Volt Tackle)
+# May paralyze the target. (Not currently used)
 #===============================================================================
 class PokeBattle_Move_0FD < PokeBattle_RecoilMove
-  def pbRecoilDamage(user,target)
-    return (target.damageState.totalHPLost/3.0).round
-  end
+  def recoilFactor;  return (1.0/3.0); end
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
     target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies)
+    super
   end
 end
 
@@ -3611,13 +3867,16 @@ end
 # May burn the target. (Flare Blitz)
 #===============================================================================
 class PokeBattle_Move_0FE < PokeBattle_RecoilMove
-  def pbRecoilDamage(user,target)
-    return (target.damageState.totalHPLost/3.0).round
-  end
+  def recoilFactor;  return (1.0/3.0); end
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
     target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+  end
+
+  def getScore(score,user,target,skill=100)
+    score = getBurnMoveScore(score,user,target,skill,user.ownersPolicies)
+    super
   end
 end
 

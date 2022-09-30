@@ -26,6 +26,16 @@ class PokeBattle_Battler
 		return false
 	end
 
+	def hasSleepAttack?
+		eachMove do |m|
+			battleMove = @battle.getBattleMoveInstanceFromID(m.id)
+			next if !battleMove.usableWhenAsleep?
+			return true
+			break
+		end
+		return false
+	end
+
 	def hasAlly?
 		eachAlly do |b|
 			return true

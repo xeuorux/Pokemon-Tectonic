@@ -531,6 +531,10 @@ class PokeBattle_TargetMultiStatDownMove < PokeBattle_Move
       end
     end
   end
+
+  def getScore(score,user,target,skill=100)
+    return score # TODO: write this
+  end
 end
 
 #===============================================================================
@@ -654,6 +658,15 @@ class PokeBattle_HealingMove < PokeBattle_Move
     user.pbRecoverHP(amt)
     @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
   end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if user.effects[PBEffects::NerveBreak]
+    score += 20
+    if user.hp <= user.totalhp/2
+      score += 20
+    end
+    return score
+  end
 end
 
 #===============================================================================
@@ -661,17 +674,27 @@ end
 #===============================================================================
 class PokeBattle_RecoilMove < PokeBattle_Move
   def recoilMove?;                 return true; end
-  def pbRecoilDamage(user,target); return 1;    end
+
+  def recoilFactor;  return 0.0; end
+
+  def pbRecoilDamage(user,target)
+    return (target.damageState.totalHPLost * recoilFactor()).round
+  end
 
   def pbEffectAfterAllHits(user,target)
     return if target.damageState.unaffected
     return if !user.takesIndirectDamage?
     return if user.hasActiveAbility?(:ROCKHEAD)
     amt = pbRecoilDamage(user,target)
-    amt = 1 if amt<1
+    amt = 1 if amt < 1
     user.pbReduceHP(amt,false)
     @battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
     user.pbItemHPHealCheck
+  end
+
+  def getScore(score,user,target,skill=100)
+    score -= 60 * recoilFactor()
+    return score
   end
 end
 
@@ -703,7 +726,7 @@ class PokeBattle_ProtectMove < PokeBattle_Move
       return true
     end
     if (!@sidedEffect || Settings::MECHANICS_GENERATION <= 5) &&
-        user.effects[PBEffects::ProtectRate]>1
+        user.effects[PBEffects::ProtectRate] > 1
       user.effects[PBEffects::ProtectRate] = 1
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
@@ -735,6 +758,12 @@ class PokeBattle_ProtectMove < PokeBattle_Move
     else
       @battle.pbDisplay(_INTL("{1} protected itself!",user.pbThis))
     end
+  end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if target.effects[PBEffects::HyperBeam] > 0 # Don't protect yourself from a target that can't even attack this turn
+    score += 100 if target.effects[PBEffects::TwoTurnAttack]
+    return score
   end
 end
 
@@ -1135,4 +1164,37 @@ class PokeBattle_RoomMove < PokeBattle_Move
 	  return if @battle.field.effects[@roomEffect] > 0   # No animation
 	  super
 	end
+
+  def getScore(score,user,target,skill=100)
+    return 0 if @battle.field.effects[@roomEffect] > 0
+    return score
+  end
+end
+
+class PokeBattle_DrainMove < PokeBattle_Move
+  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
+
+  def drainFactor(user,target); return 0.0; end
+
+  def shouldDrain?(user,target); return true; end
+
+  def pbEffectAgainstTarget(user,target)
+    return if target.damageState.hpLost <= 0 || !shouldDrain?(user,target)
+    hpGain = (target.damageState.hpLost * drainFactor(user,target)).round
+    user.pbRecoverHPFromDrain(hpGain,target)
+  end
+
+  def getScore(score,user,target,skill=100)
+    drainScore = 10
+    drainScore += 40 * drainFactor()
+    drainScore += 20 if user.hasActiveAbilityAI?(:ROOTED)
+    drainScore += 20 if user.hasActiveItem?(:BIGROOT)
+    drainScore += 20 if user.hp <= user.totalhp/2
+    if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.effects[PBEffects::NerveBreak]
+      score -= drainScore
+    else
+      score += drainScore
+    end
+    return score
+  end
 end

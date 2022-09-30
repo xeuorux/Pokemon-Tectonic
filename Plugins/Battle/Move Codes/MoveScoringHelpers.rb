@@ -56,7 +56,11 @@ end
 
 def getSleepMoveScore(score,user,target,skill=100,policies=[],status=false)
 	return 0 if status && target.effects[PBEffects::Yawn] > 0
-	score += 100
+	if target.hasSleepAttack?
+		score += 20
+	else
+		score += 100
+	end
 	return score
 end
 
@@ -103,5 +107,39 @@ def getHazardSettingMoveScore(score,user,target,skill=100)
 		score += 20 * @battle.pbAbleNonActiveCount(user.idxOpposingSide)
 		score += 10 * @battle.pbAbleNonActiveCount(user.idxOwnSide)
 	end
+	return score
+end
+
+def getSelfKOMoveScore(score,user,target,skill=100)
+	reserves = user.battle.pbAbleNonActiveCount(user.idxOwnSide)
+	return 0 if reserves == 0 # don't want to lose or draw
+	return 0 if user.hp > user.totalhp / 2
+	score -= 30 if user.hp > user.totalhp / 8
+	return score
+end
+
+def hazardWeightOnSide(side)
+	hazardWeight = 0
+	hazardWeight += 20 * side.effects[PBEffects::Spikes]
+	hazardWeight += 20 * side.effects[PBEffects::ToxicSpikes]
+	hazardWeight += 20 * side.effects[PBEffects::FlameSpikes]
+	hazardWeight += 20 * side.effects[PBEffects::FrostSpikes]
+	hazardWeight += 50 if side.effects[PBEffects::StealthRock]
+	return hazardWeight
+end
+
+def getSwitchOutMoveScore(score,user,target,skill=100)
+	score -= 10
+	score -= hazardWeightOnSide(user.pbOwnSide)
+	return score
+end
+
+def getForceOutMoveScore(score,user,target,skill=100,statusMove=false)
+	count = 0
+	@battle.pbParty(target.index).each_with_index do |pkmn,i|
+		count += 1 if @battle.pbCanSwitchLax?(target.index,i)
+	end
+	return 0 if count
+	score += hazardWeightOnSide(target.pbOwnSide)
 	return score
 end

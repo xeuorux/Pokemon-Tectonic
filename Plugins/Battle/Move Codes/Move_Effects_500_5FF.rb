@@ -19,7 +19,7 @@ class PokeBattle_Move_501 < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-	score -= (user.stages[:ACCURACY] - 6)*10
+	score -= (user.stages[:ACCURACY] - 6) * 10
 	score = 0 if user.statStageAtMax?(:ACCURACY)
 	return score
   end
@@ -30,21 +30,14 @@ end
 # (Head Charge)
 #===============================================================================
 class PokeBattle_Move_502 < PokeBattle_RecoilMove
-  def pbRecoilDamage(user,target)
-    return (2.0*target.damageState.totalHPLost/3.0).round
-  end
-  
-  def getScore(score,user,target,skill=100)
-	score -= 30
-	return score
-  end
+	def recoilFactor;  return (2.0/3.0); end
 end
 
 #===============================================================================
 # Increases the user's Sp. Atk and Speed by 1 stage each. (Lightning Dance)
 #===============================================================================
 class PokeBattle_Move_503 < PokeBattle_MultiStatUpMove
-  def initialize(battle,move)
+  def initialize(battle, move)
     super
     @statUp = [:SPECIAL_ATTACK,1,:SPEED,1]
   end
@@ -141,21 +134,9 @@ end
 
 
 #===============================================================================
-# Recoil and freeze chance move. (Crystal Crush)
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_508 < PokeBattle_RecoilMove
-  def pbRecoilDamage(user,target)
-    return (target.damageState.totalHPLost/3.0).round
-  end
-
-  def pbAdditionalEffect(user,target)
-    return if target.damageState.substitute
-    target.pbFreeze if target.pbCanFreeze?(user,false,self)
-  end
-  
-  def getScore(score,user,target,skill=100)
-	return getFreezeMoveScore(score,user,target,skill=100) - 30
-  end
+class PokeBattle_Move_508 < PokeBattle_Move
 end
 
 #===============================================================================
@@ -833,25 +814,20 @@ end
 #===============================================================================
 # User gains 1/2 the HP it inflicts as damage. Lower's Sp. Def. (Soul Drain)
 #===============================================================================
-class PokeBattle_Move_52C < PokeBattle_Move
-  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
+class PokeBattle_Move_52C < PokeBattle_DrainMove
+	def drainFactor(user,target); return 0.5; end
 
-  def pbEffectAgainstTarget(user,target)
-    return if target.damageState.hpLost<=0
-    hpGain = (target.damageState.hpLost*0.5).round
-    user.pbRecoverHPFromDrain(hpGain,target)
-  end
+	def pbAdditionalEffect(user,target)
+		return if target.damageState.substitute
+		return if !target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
+		target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
+	end
   
-  def pbAdditionalEffect(user,target)
-    return if target.damageState.substitute
-    return if !target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
-    target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
-  end
-  
-  def getScore(score,user,target,skill=100)
-		score += 50 if target.hp > target.totalhp/2
-		return score
-  end
+	def getScore(score,user,target,skill=100)
+		score += 20 if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
+		score += 20 if target.hp > target.totalhp/2
+		super
+	end
 end
 
 #===============================================================================
@@ -1322,19 +1298,8 @@ end
 #===============================================================================
 # Heals for 1/3 the damage dealt. (new!Drain Punch, Venom Leech)
 #===============================================================================
-class PokeBattle_Move_545 < PokeBattle_Move
-  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
-  
-  def pbEffectAgainstTarget(user,target)
-    return if target.damageState.hpLost<=0
-    hpGain = (target.damageState.hpLost/3.0).round
-    user.pbRecoverHPFromDrain(hpGain,target)
-  end
-  
-  def getScore(score,user,target,skill=100)
-	score += 40 if user.hp < user.totalhp/2.0
-	return score
-  end
+class PokeBattle_Move_545 < PokeBattle_DrainMove
+	def drainFactor(user,target); return (1.0/3.0); end
 end
 
 #===============================================================================
@@ -2184,9 +2149,7 @@ end
 # 100% Recoil Move
 #===============================================================================
 class PokeBattle_Move_56B < PokeBattle_RecoilMove
-  def pbRecoilDamage(user,target)
-    return (target.damageState.totalHPLost/1.0).round
-  end
+    def recoilFactor;  return 1.0; end
 end
 
 #===============================================================================
@@ -3028,7 +2991,5 @@ end
 # User takes recoil damage equal to 1/5 of the damage this move dealt.
 #===============================================================================
 class PokeBattle_Move_599 < PokeBattle_RecoilMove
-	def pbRecoilDamage(user,target)
-	  return (target.damageState.totalHPLost/5.0).round
-	end
+	def recoilFactor;  return 0.2; end
 end

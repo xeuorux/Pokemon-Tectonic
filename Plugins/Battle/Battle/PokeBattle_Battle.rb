@@ -181,6 +181,10 @@ class PokeBattle_Battle
       pbJudge()
       return if @decision>0
   end
+
+  def getBattleMoveInstanceFromID(move_id)
+    return PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(move_id))
+  end
 end
 
 

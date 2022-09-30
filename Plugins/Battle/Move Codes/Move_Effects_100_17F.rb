@@ -1053,9 +1053,7 @@ end
 # User takes recoil damage equal to 1/2 of its current HP. (Shadow End)
 #===============================================================================
 class PokeBattle_Move_130 < PokeBattle_RecoilMove
-  def pbRecoilDamage(user,target)
-    return (target.damageState.totalHPLost/2.0).round
-  end
+  def recoilFactor;  return 0.5; end
 
   def pbEffectAfterAllHits(user,target)
     return if user.fainted? || target.damageState.unaffected
@@ -1657,14 +1655,8 @@ end
   #===============================================================================
   # User gains 3/4 the HP it inflicts as damage. (Draining Kiss, Oblivion Wing)
   #===============================================================================
-  class PokeBattle_Move_14F < PokeBattle_Move
-    def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
-  
-    def pbEffectAgainstTarget(user,target)
-      return if target.damageState.hpLost<=0
-      hpGain = (target.damageState.hpLost*0.75).round
-      user.pbRecoverHPFromDrain(hpGain,target)
-    end
+  class PokeBattle_Move_14F < PokeBattle_DrainMove
+    def drainFactor(user,target); return 0.75; end
   end
   
   #===============================================================================
@@ -1708,6 +1700,11 @@ end
       @battle.moldBreaker = false if switcher.index==user.index
       switchedBattlers.push(switcher.index)
       switcher.pbEffectsOnSwitchIn(true)
+    end
+
+    def getScore(score,user,target,skill=100)
+      score = getSwitchOutMoveScore(score,user,target,skill)
+      return score
     end
   end
   

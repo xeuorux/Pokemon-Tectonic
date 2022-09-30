@@ -460,6 +460,10 @@ class PokeBattle_Battler
 		return @species == :CRAMORANT && hasActiveAbility?(:GULPMISSILE) && @form==0
 	end
 
+  def bunkeringDown?(checkingForAI=false)
+    return shouldAbilityApply?(:BUNKERDOWN,checkingForAI) && user.hp == user.totalhp 
+  end
+
   def getRoomDuration()
     if hasActiveItem?(:REINFORCINGROD)
       return 8

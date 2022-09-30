@@ -50,4 +50,20 @@ class PokeBattle_Move
   def pbNumHitsAI(user,target,skill=100)
     pbNumHits(user,target)
   end
+
+  def canRemoveItem?(user,target,checkingForAI=false)
+    return false if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't knock off, but bosses can
+    return false if user.fainted?
+    return false if target.damageState.unaffected || target.damageState.substitute
+    return false if !target.item || target.unlosableItem?(target.item)
+    return false if target.shouldAbilityApply?(:STICKYHOLD,checkingForAI) && !@battle.moldBreaker
+    return true
+  end
+
+  def canStealItem?(user,target,checkingForAI=false)
+    return false if !canRemoveItem?(user,target)
+    return false if user.item && @battle.trainerBattle?
+    return false if user.unlosableItem?(target.item)
+    return true
+  end
 end
