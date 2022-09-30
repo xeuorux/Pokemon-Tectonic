@@ -30,7 +30,8 @@ class PokeBattle_AI
         # Switch if previously hit by a super or hyper effective move
         if battler.turnCount > 1 && !policies.include?(:PROACTIVE_MATCHUP_SWAPPER)
             if !moveType.nil?
-                typeMod = pbCalcTypeModAI(moveType,target,battler,target.lastMoveUsed)
+                moveUsed = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(target.lastMoveUsed))
+                typeMod = pbCalcTypeModAI(moveType,target,battler,moveUsed)
                 if Effectiveness.hyper_effective?(typeMod)
                     switchingBias += 4
                 elsif Effectiveness.super_effective?(typeMod)
