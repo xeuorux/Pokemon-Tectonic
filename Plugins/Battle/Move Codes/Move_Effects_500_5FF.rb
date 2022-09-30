@@ -464,6 +464,18 @@ class PokeBattle_Move_519 < PokeBattle_StatDownMove
 end
 
 #===============================================================================
+# For 5 rounds, Pokemon's Attack and Sp. Atk are swapped. (Puzzle Room)
+#===============================================================================
+class PokeBattle_Move_51A < PokeBattle_RoomMove
+	def initialize(battle,move)
+	  super
+	  @roomEffect = PBEffects::PuzzleRoom
+	  @areaName = "puzzling"
+	  @description = PUZZLE_ROOM_DESCRIPTION
+	end
+end
+
+#===============================================================================
 # User loses their Ice type. Fails if user is not Ice-type. (Cold Conversion)
 #===============================================================================
 class PokeBattle_Move_51B < PokeBattle_Move
@@ -2521,6 +2533,19 @@ class PokeBattle_Move_581 < PokeBattle_SleepMove
 	def getScore(score,user,target,skill=100)
 		score -= user.stages[:SPEED] * 5
 		super
+	end
+end
+
+#===============================================================================
+# For 5 rounds, swaps all battlers' offensive and defensive stats (Sp. Def <-> Sp. Atk and Def <-> Atk).
+# (Odd Room)
+#===============================================================================
+class PokeBattle_Move_582 < PokeBattle_Move
+	def initialize(battle,move)
+	  super
+	  @roomEffect = PBEffects::OddRoom
+	  @areaName = "odd"
+	  @description = ODD_ROOM_DESCRIPTION
 	end
 end
 

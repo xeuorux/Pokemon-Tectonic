@@ -21,3 +21,9 @@ class PokeBattle_Move
         end
     end
 end
+
+PUZZLE_ROOM_DESCRIPTION = "puzzling area in which Pokémon's Attack and Sp. Atk are swapped"
+TRICK_ROOM_DESCRIPTION = "tricky area in which Speed functions in reverse"
+WONDER_ROOM_DESCRIPTION = "wondrous area in which the Defense and Sp. Def stats are swapped"
+MAGIC_ROOM_DESCRIPTION = "bizarre area in which Pokémon's held items lose their effects"
+ODD_ROOM_DESCRIPTION = "odd area in which Pokémon's Offensive and Defensive stats are swapped"

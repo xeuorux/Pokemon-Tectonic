@@ -839,20 +839,12 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   # For 5 rounds, for each priority bracket, slow Pokémon move before fast ones.
   # (Trick Room)
   #===============================================================================
-  class PokeBattle_Move_11F < PokeBattle_Move
-    def pbEffectGeneral(user)
-      if @battle.field.effects[PBEffects::TrickRoom]>0
-        @battle.field.effects[PBEffects::TrickRoom] = 0
-        @battle.pbDisplay(_INTL("{1} reverted the dimensions!",user.pbThis))
-      else
-        @battle.field.effects[PBEffects::TrickRoom] = 5
-        @battle.pbDisplay(_INTL("{1} twisted the dimensions!",user.pbThis))
-      end
-    end
-  
-    def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
-      return if @battle.field.effects[PBEffects::TrickRoom]>0   # No animation
+  class PokeBattle_Move_11F < PokeBattle_RoomMove
+    def initialize(battle,move)
       super
+      @roomEffect = PBEffects::TrickRoom
+      @areaName = "tricky"
+      @description = TRICK_ROOM_DESCRIPTION
     end
   end
   
@@ -935,20 +927,12 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   # For 5 rounds, swaps all battlers' base Defense with base Special Defense.
   # (Wonder Room)
   #===============================================================================
-  class PokeBattle_Move_124 < PokeBattle_Move
-    def pbEffectGeneral(user)
-      if @battle.field.effects[PBEffects::WonderRoom]>0
-        @battle.field.effects[PBEffects::WonderRoom] = 0
-        @battle.pbDisplay(_INTL("Wonder Room wore off, and the Defense and Sp. Def stats returned to normal!"))
-      else
-        @battle.field.effects[PBEffects::WonderRoom] = 5
-        @battle.pbDisplay(_INTL("It created a bizarre area in which the Defense and Sp. Def stats are swapped!"))
-      end
-    end
-  
-    def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
-      return if @battle.field.effects[PBEffects::WonderRoom]>0   # No animation
+  class PokeBattle_Move_124 < PokeBattle_RoomMove
+    def initialize(battle,move)
       super
+      @roomEffect = PBEffects::WonderRoom
+      @areaName = "wondrous"
+      @description = WONDER_ROOM_DESCRIPTION
     end
   end
   

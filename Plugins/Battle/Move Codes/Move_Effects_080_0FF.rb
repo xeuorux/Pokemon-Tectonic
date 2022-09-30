@@ -3557,19 +3557,11 @@ end
 # Held items can still change hands, but can't be thrown. (Magic Room)
 #===============================================================================
 class PokeBattle_Move_0F9 < PokeBattle_Move
-  def pbEffectGeneral(user)
-    if @battle.field.effects[PBEffects::MagicRoom]>0
-      @battle.field.effects[PBEffects::MagicRoom] = 0
-      @battle.pbDisplay(_INTL("The area returned to normal!"))
-    else
-      @battle.field.effects[PBEffects::MagicRoom] = 5
-      @battle.pbDisplay(_INTL("It created a bizarre area in which Pokémon's held items lose their effects!"))
-    end
-  end
-
-  def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
-    return if @battle.field.effects[PBEffects::MagicRoom]>0   # No animation
+  def initialize(battle,move)
     super
+    @roomEffect = PBEffects::MagicRoom
+    @areaName = "magical"
+    @description = MAGIC_ROOM_DESCRIPTION
   end
 end
 

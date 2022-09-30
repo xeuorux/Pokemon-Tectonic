@@ -1112,3 +1112,27 @@ class PokeBattle_DoublingMove < PokeBattle_Move
       return baseDmg<<(user.effects[PBEffects::FuryCutter])
   end
 end
+
+class PokeBattle_RoomMove < PokeBattle_Move
+  def initialize(battle,move)
+    super
+    @roomEffect = -1
+    @areaName = ""
+    @description = ""
+  end
+
+  def pbEffectGeneral(user)
+	  if @battle.field.effects[@roomEffect] > 0
+		  @battle.field.effects[@roomEffect] = 0
+		  @battle.pbDisplay(_INTL("{1} removed the {2}.",user.pbThis,@areaName))
+	  else
+		  @battle.field.effects[@roomEffect] = getRoomDuration(user)
+		  @battle.pbDisplay(_INTL("{1} created a {2}.",user.pbThis,@areaName))
+	  end
+	end
+  
+	def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
+	  return if @battle.field.effects[@roomEffect] > 0   # No animation
+	  super
+	end
+end

@@ -459,4 +459,12 @@ class PokeBattle_Battler
 	def canGulpMissile?
 		return @species == :CRAMORANT && hasActiveAbility?(:GULPMISSILE) && @form==0
 	end
+
+  def getRoomDuration()
+    if hasActiveItem?(:REINFORCINGROD)
+      return 8
+    else
+      return 5
+    end
+  end
 end
