@@ -467,4 +467,12 @@ class PokeBattle_Battler
       return 5
     end
   end
+
+  def getScreenDuration()
+    if hasActiveItem?(:LIGHTCLAY)
+      return 8
+    else
+      return 5
+    end
+  end
 end

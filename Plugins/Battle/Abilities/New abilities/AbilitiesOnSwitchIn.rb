@@ -41,9 +41,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:HOLIDAYCHEER,
 BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battler.pbOwnSide.effects[PBEffects::LightScreen] = 5
-    battler.pbOwnSide.effects[PBEffects::LightScreen] = 8 if battler.hasActiveItem?(:LIGHTCLAY)
-    battle.pbDisplay(_INTL("{1} put up a Light Screen!",battler.pbThis))
+    battler.pbOwnSide.effects[PBEffects::LightScreen] = battler.getScreenDuration()
+    battle.pbDisplay(_INTL("{1}'s Special Defense is raised!",battler.pbTeam))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -51,9 +50,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
 BattleHandlers::AbilityOnSwitchIn.add(:BARRIERMAKER,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battler.pbOwnSide.effects[PBEffects::Reflect] = 5
-    battler.pbOwnSide.effects[PBEffects::Reflect] = 8 if battler.hasActiveItem?(:LIGHTCLAY)
-    battle.pbDisplay(_INTL("{1} put up a Reflect!",battler.pbThis))
+    battler.pbOwnSide.effects[PBEffects::Reflect] = battler.getScreenDuration()
+    battle.pbDisplay(_INTL("{1}'s Defense is raised!",battler.pbTeam))
     battle.pbHideAbilitySplash(battler)
   }
 )
