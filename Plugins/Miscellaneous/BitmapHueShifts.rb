@@ -6,7 +6,7 @@ class Pokemon
     end
 
     def hueShift
-        hueShiftRange = 20 # Should be a positive number
+        hueShiftRange = 35 # Should be a positive number
         return (-(hueShiftRange/2) + (@personalID ^ @owner.id) % hueShiftRange).round
     end
 end
