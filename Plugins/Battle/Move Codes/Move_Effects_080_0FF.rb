@@ -1938,7 +1938,7 @@ class PokeBattle_Move_0C1 < PokeBattle_Move
   end
 
   def pbNumHits(user,targets)
-    calculateBeatUpList(user) if @beatUpList.blank?
+    calculateBeatUpList(user) if @beatUpList.empty?
     return @beatUpList.length
   end
 
@@ -1953,7 +1953,7 @@ class PokeBattle_Move_0C1 < PokeBattle_Move
   end
 
   def pbBaseDamageAI(baseDmg,user,target,skill=100)
-    calculateBeatUpList(user) if @beatUpList.blank?
+    calculateBeatUpList(user) if @beatUpList.empty?
     totalAttack = 0
     @beatUpList.each do |i|
       totalAttack += @battle.pbParty(user.index)[i].baseStats[:ATTACK]
