@@ -1117,3 +1117,7 @@
 1051,DEATHMARK,Death Mark,596,0,DARK,Status,0,1,0,NearOther,0,ce,"Maximizes the user's Attack, but minimizes the user's Speed. The target becomes unable to flee.",MEANLOOK
 1052,BULWARK,Bulwark,597,0,FIGHTING,Status,0,3,0,UserSide,3,d,"The user and its allies take 50% less attack damage this turn. Always fails if used in succession.",
 1053,SNOWYSORROWS,Snowy Sorrows,598,30,ICE,Special,100,12,0,NearOther,0,befk,"The user incants a snowy curse, dealing damage and setting a layer of Frost Spikes.",PERISHSONG
+1054,INVOKESUN,Invoke Sun,59A,0,FIRE,Status,0,10,0,NearOther,0,bce,"The user burns the target, then summons sunshine for four turns.",SUNNYDAY
+1055,INVOKESAND,Invite Sand,59D,0,ROCK,Status,0,10,0,NearOther,0,bce,"The user poisons the target, then summons sandstorm for four turns.",SANDSTORM
+1056,INVOKERAIN,Invoke Rain,59B,0,WATER,Status,0,10,0,NearOther,0,bce,"The user numbs the target, then summons rain for four turns.",RAINDANCE
+1057,INVOKEHAIL,Invoke Hail,59C,0,ICE,Status,0,10,0,NearOther,0,bce,"The user frostbites the target, then summons hail for four turns.",HAIL

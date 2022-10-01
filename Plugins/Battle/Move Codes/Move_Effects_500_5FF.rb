@@ -2993,3 +2993,84 @@ end
 class PokeBattle_Move_599 < PokeBattle_RecoilMove
 	def recoilFactor;  return 0.2; end
 end
+
+#===============================================================================
+# Burns the target and sets Sun
+#===============================================================================
+class PokeBattle_Move_59A < PokeBattle_Move_0FF
+	def pbFailsAgainstTarget?(user,target)
+		return false if damagingMove?
+		return !target.pbCanBurn?(user,true,self)
+	end
+	
+	def pbEffectAgainstTarget(user,target)
+		return if damagingMove?
+		target.pbBurn(user)
+	end
+	
+	def pbAdditionalEffect(user,target)
+		return if target.damageState.substitute
+		target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+	end
+end
+
+#===============================================================================
+# Numbs the target and sets Rain
+#===============================================================================
+class PokeBattle_Move_59B < PokeBattle_Move_100
+	def pbFailsAgainstTarget?(user,target)
+		return false if damagingMove?
+		return !target.pbCanParalyze?(user,true,self)
+	end
+	
+	def pbEffectAgainstTarget(user,target)
+		return if damagingMove?
+		target.pbParalyze(user)
+	end
+	
+	def pbAdditionalEffect(user,target)
+		return if target.damageState.substitute
+		target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+	end
+end
+
+#===============================================================================
+# Frostbites the target and sets Hail
+#===============================================================================
+class PokeBattle_Move_59C < PokeBattle_Move_102
+	def pbFailsAgainstTarget?(user,target)
+		return false if damagingMove?
+		return !target.pbCanFrostbite?(user,true,self)
+	end
+	
+	def pbEffectAgainstTarget(user,target)
+		return if damagingMove?
+		target.pbFrostbite
+	end
+	
+	def pbAdditionalEffect(user,target)
+		return if target.damageState.substitute
+		return if !target.pbCanFrostbite?(user,false,self)
+		target.pbFrostbite
+	end
+end
+
+#===============================================================================
+# Poisons the target and sets Sandstorm
+#===============================================================================
+class PokeBattle_Move_59D < PokeBattle_Move_101
+	def pbFailsAgainstTarget?(user,target)
+		return false if damagingMove?
+		return !target.pbCanPoison?(user,true,self)
+	end
+	
+	def pbEffectAgainstTarget(user,target)
+		return if damagingMove?
+		target.pbPoison(user,nil,@toxic)
+	end
+	
+	def pbAdditionalEffect(user,target)
+		return if target.damageState.substitute
+		target.pbPoison(user,nil,@toxic) if target.pbCanPoison?(user,false,self)
+	end
+end
