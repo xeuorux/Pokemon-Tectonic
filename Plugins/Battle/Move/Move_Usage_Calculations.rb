@@ -125,12 +125,12 @@ class PokeBattle_Move
         return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
     end
 
-    def applyRainDebuff?(user)
-        return RAIN_DEBUFF_ACTIVE && !immuneToRainDebuff?() && [:Rain, :HeavyRain].include?(@battle.field.weather) && user.debuffedByRain?
+    def applyRainDebuff?(user,checkingForAI=false)
+        return RAIN_DEBUFF_ACTIVE && !immuneToRainDebuff?() && [:Rain, :HeavyRain].include?(@battle.field.weather) && user.debuffedByRain?(checkingForAI)
     end
 
-    def applySunDebuff?(user)
-        return SUN_DEBUFF_ACTIVE && !immuneToSunDebuff?() && [:Sun, :HarshSun].include?(@battle.field.weather) && user.debuffedBySun?
+    def applySunDebuff?(user,checkingForAI=false)
+        return SUN_DEBUFF_ACTIVE && !immuneToSunDebuff?() && [:Sun, :HarshSun].include?(@battle.field.weather) && user.debuffedBySun?(checkingForAI)
     end
 
     # Returns whether the move will be a critical hit
