@@ -157,7 +157,7 @@ module PBDayNight
         )
         if toneNeedUpdate
           getToneInternal()
-          applyOutdoorFog()
+          applyOutdoorEffects()
           @dayNightToneLastUpdate = Graphics.frame_count
         end
         return @cachedTone
