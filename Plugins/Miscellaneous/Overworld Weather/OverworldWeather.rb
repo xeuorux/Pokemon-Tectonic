@@ -160,6 +160,7 @@ module RPG
         end
       end
 
+      # Ranges from 0 to 1
       def intensityRating()
         return @weather_max / MAX_SPRITES.to_f
       end
@@ -264,7 +265,7 @@ module RPG
           sprite.y = @oy - sprite.bitmap.height + rand(Graphics.height + sprite.bitmap.height * 2)
           lifetimes[index] = (30 + rand(20)) * 0.01   # 0.3-0.5 seconds
         else
-          x_speed = @weatherTypes[weather_type][0].particle_delta_x
+          x_speed = @weatherTypes[weather_type][0].particle_delta_x * intensityRating()
           y_speed = @weatherTypes[weather_type][0].particle_delta_y
           gradient = x_speed.to_f / y_speed
           if gradient.abs >= 1
@@ -302,8 +303,10 @@ module RPG
         if @weatherTypes[weather_type][0].category == :Rain && (index % 2) != 0   # Splash
           sprite.opacity = (lifetimes[index] < 0.2) ? 255 : 0   # 0.2 seconds
         else
-          dist_x = @weatherTypes[weather_type][0].particle_delta_x * delta_t
-          dist_y = @weatherTypes[weather_type][0].particle_delta_y * delta_t
+          particleVelX = @weatherTypes[weather_type][0].particle_delta_x  * intensityRating()
+          particleVelY = @weatherTypes[weather_type][0].particle_delta_y
+          dist_x = particleVelX * delta_t
+          dist_y = particleVelY * delta_t
           sprite.x += dist_x
           sprite.y += dist_y
           if weather_type == :Snow
@@ -329,7 +332,7 @@ module RPG
           weather_type = @target_type
         end
         # Move the tiles based on the weather's intended tile movement
-        @tile_x += @weatherTypes[weather_type][0].tile_delta_x * delta_t
+        @tile_x += @weatherTypes[weather_type][0].tile_delta_x * delta_t * intensityRating()
         @tile_y += @weatherTypes[weather_type][0].tile_delta_y * delta_t
 
         # Move the tiles in the opposite direction as the player
@@ -413,7 +416,8 @@ module RPG
           @sun_magnitude = @weather_max if @sun_magnitude != @weather_max && @sun_magnitude != -@weather_max
           @sun_magnitude *= -1 if (@sun_magnitude > 0 && @sun_strength > @sun_magnitude) ||
                                   (@sun_magnitude < 0 && @sun_strength < 0)
-          @sun_strength += @sun_magnitude.to_f * Graphics.delta_s / 1.0   # 0.4 seconds per half flash
+          halfFlashTime = (2.0 - intensityRating())
+          @sun_strength += @sun_magnitude.to_f * Graphics.delta_s / halfFlashTime
           tone_red += @sun_strength
           tone_green += @sun_strength
           tone_blue += @sun_strength / 2
@@ -540,6 +544,9 @@ module RPG
             ensureTiles
             recalculate_tileing
             opacity = (intensityRating() * 255).floor
+            if @type == :Dusty
+              opacity /= 2
+            end
             @tiles.each_with_index do |sprite, index|
                 return if !sprite || !sprite.bitmap || !sprite.visible
                 sprite.x = (@ox + @tile_x + (index % @tiles_wide) * sprite.bitmap.width).round

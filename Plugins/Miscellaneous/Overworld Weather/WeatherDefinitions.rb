@@ -24,7 +24,7 @@ GameData::Weather.register({
   :particle_delta_x => -4800,
   :particle_delta_y => 4800,
   :tone_proc        => proc { |strength|
-    next Tone.new(-strength * 3 / 2, -strength * 3 / 2, -strength * 3 / 2, 20)
+    next Tone.new(-strength * 3, -strength * 3, -strength * 3, 20)
   }
 })
 
@@ -47,7 +47,7 @@ GameData::Weather.register({
   :category         => :Hail,
   :graphics         => [["blizzard_1", "blizzard_2", "blizzard_3", "blizzard_4"], ["blizzard_tile"]],
   :particle_delta_x => -960,
-  :particle_delta_y => 240,
+  :particle_delta_y => 480,
   :tile_delta_x     => -1440,
   :tile_delta_y     => 720,
   :tone_proc        => proc { |strength|
@@ -87,7 +87,7 @@ GameData::Weather.register({
   :id_number        => 7,
   :category         => :Sun,
   :tone_proc        => proc { |strength|
-    next Tone.new(2 * strength, 2 * strength, strength, 0)
+    next Tone.new(strength, strength, strength/2, 0)
   }
 })
 
@@ -98,4 +98,16 @@ GameData::Weather.register({
   :tile_delta_x     => -32,
   :tile_delta_y     => 0,
   :graphics         => [nil, ["fog_tile"]]
+})
+
+GameData::Weather.register({
+  :id               => :Dusty,
+  :id_number        => 9,
+  :category         => :Sandstorm,
+  :graphics         => [nil, ["dust_tile"]],
+  :tile_delta_x     => -60,
+  :tile_delta_y     => 0,
+  :tone_proc        => proc { |strength|
+    next Tone.new(strength / 4, 0, -strength / 4, 0)
+  }
 })
