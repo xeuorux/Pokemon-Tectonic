@@ -1823,26 +1823,27 @@ end
 # Increases the target's Attack by 2 stages. Flusters the target. (new!Swagger)
 #===============================================================================
 class PokeBattle_Move_55D < PokeBattle_Move
-	def pbMoveFailed?(user,targets)
-	  failed = true
-	  targets.each do |b|
-		next if !b.pbCanRaiseStatStage?(:ATTACK,user,self) &&
-				!b.pbCanFluster?(user,false,self)
-		failed = false
-		break
-	  end
-	  if failed
-		@battle.pbDisplay(_INTL("But it failed!"))
-		return true
-	  end
-	  return false
+	def pbFailsAgainstTarget?(user,target)
+		if target.pbCanRaiseStatStage?(:ATTACK,user,self,false) && target.pbCanFluster?(user,false,self)
+			@battle.pbDisplay(_INTL("But it failed!"))
+		  break
+		end
+		return false
 	end
   
 	def pbEffectAgainstTarget(user,target)
-	  if target.pbCanRaiseStatStage?(:ATTACK,user,self)
-		target.pbRaiseStatStage(:ATTACK,2,user)
-	  end
-	  target.pbFluster if target.pbCanFluster?(user,false,self)
+		target.pbRaiseStatStage(:ATTACK,2,user) if target.pbCanRaiseStatStage?(:ATTACK,user,self)
+	  	target.pbFluster if target.pbCanFluster?(user,true,self)
+	end
+
+	def getScore(score,user,target,skill=100)
+		score = getFlusterMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+		if !target.hasPhysicalAttack?
+			score += 30
+		else
+			score -= 30
+		end
+		return score
 	end
 end
 
@@ -1850,26 +1851,27 @@ end
 # Increases the target's Sp. Atk. by 2 stages. Flusters the target. (new!Flatter)
 #===============================================================================
 class PokeBattle_Move_55E < PokeBattle_Move
-	def pbMoveFailed?(user,targets)
-	  failed = true
-	  targets.each do |b|
-		next if !b.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self) &&
-				!b.pbCanMystify?(user,false,self)
-		failed = false
+	def pbFailsAgainstTarget?(user,target)
+	  if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,false) && target.pbCanMystify?(user,false,self)
+	  	@battle.pbDisplay(_INTL("But it failed!"))
 		break
-	  end
-	  if failed
-		@battle.pbDisplay(_INTL("But it failed!"))
-		return true
 	  end
 	  return false
 	end
   
 	def pbEffectAgainstTarget(user,target)
-	  if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-		target.pbRaiseStatStage(:SPECIAL_ATTACK,2,user)
-	  end
-	  target.pbMystify if target.pbCanMystify?(user,false,self)
+		target.pbRaiseStatStage(:SPECIAL_ATTACK,2,user) if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
+	  	target.pbMystify if target.pbCanMystify?(user,true,self)
+	end
+
+	def getScore(score,user,target,skill=100)
+		score = getMystifyMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+		if !target.hasSpecialAttack?
+			score += 30
+		else
+			score -= 30
+		end
+		return score
 	end
 end
 
@@ -2997,80 +2999,47 @@ end
 #===============================================================================
 # Burns the target and sets Sun
 #===============================================================================
-class PokeBattle_Move_59A < PokeBattle_Move_0FF
-	def pbFailsAgainstTarget?(user,target)
-		return false if damagingMove?
-		return !target.pbCanBurn?(user,true,self)
-	end
-	
-	def pbEffectAgainstTarget(user,target)
-		return if damagingMove?
-		target.pbBurn(user)
-	end
-	
-	def pbAdditionalEffect(user,target)
-		return if target.damageState.substitute
-		target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+class PokeBattle_Move_59A < PokeBattle_InvokeMove
+	def initialize(battle,move)
+		super
+		@weatherType = :Sun
+		@durationSet = 4
+		@statusToApply = :BURN
 	end
 end
 
 #===============================================================================
 # Numbs the target and sets Rain
 #===============================================================================
-class PokeBattle_Move_59B < PokeBattle_Move_100
-	def pbFailsAgainstTarget?(user,target)
-		return false if damagingMove?
-		return !target.pbCanParalyze?(user,true,self)
-	end
-	
-	def pbEffectAgainstTarget(user,target)
-		return if damagingMove?
-		target.pbParalyze(user)
-	end
-	
-	def pbAdditionalEffect(user,target)
-		return if target.damageState.substitute
-		target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+class PokeBattle_Move_59B < PokeBattle_InvokeMove
+	def initialize(battle,move)
+		super
+		@weatherType = :Rain
+		@durationSet = 4
+		@statusToApply = :PARALYSIS
 	end
 end
 
 #===============================================================================
 # Frostbites the target and sets Hail
 #===============================================================================
-class PokeBattle_Move_59C < PokeBattle_Move_102
-	def pbFailsAgainstTarget?(user,target)
-		return false if damagingMove?
-		return !target.pbCanFrostbite?(user,true,self)
-	end
-	
-	def pbEffectAgainstTarget(user,target)
-		return if damagingMove?
-		target.pbFrostbite
-	end
-	
-	def pbAdditionalEffect(user,target)
-		return if target.damageState.substitute
-		return if !target.pbCanFrostbite?(user,false,self)
-		target.pbFrostbite
+class PokeBattle_Move_59C < PokeBattle_InvokeMove
+	def initialize(battle,move)
+		super
+		@weatherType = :Hail
+		@durationSet = 4
+		@statusToApply = :FROSTBITE
 	end
 end
 
 #===============================================================================
 # Poisons the target and sets Sandstorm
 #===============================================================================
-class PokeBattle_Move_59D < PokeBattle_Move_101
-	def pbFailsAgainstTarget?(user,target)
-		return false if damagingMove?
-		return !target.pbCanPoison?(user,true,self)
-	end
-	
-	def pbEffectAgainstTarget(user,target)
-		return if damagingMove?
-		target.pbPoison(user,nil,@toxic)
-	end
-	
-	def pbAdditionalEffect(user,target)
-		return if target.damageState.substitute
-		target.pbPoison(user,nil,@toxic) if target.pbCanPoison?(user,false,self)
+class PokeBattle_Move_59D < PokeBattle_InvokeMove
+	def initialize(battle,move)
+		super
+		@weatherType = :Sandstorm
+		@durationSet = 4
+		@statusToApply = :POISON
 	end
 end

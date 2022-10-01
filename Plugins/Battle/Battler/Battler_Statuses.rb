@@ -97,6 +97,7 @@ class PokeBattle_Battler
 				when :PARALYSIS 	then msg = _INTL("{1} is already numbed!", pbThis)
 				when :FROZEN		then msg = _INTL("{1} is already chilled!", pbThis)
 				when :FLUSTERED		then msg = _INTL("{1} is already flustered!", pbThis)
+				when :MYSTIFIED		then msg = _INTL("{1} is already mystified!", pbThis)
 				when :FROSTBITE		then msg = _INTL("{1} is already frostbitten!", pbThis)
 				end
 				@battle.pbDisplay(msg)

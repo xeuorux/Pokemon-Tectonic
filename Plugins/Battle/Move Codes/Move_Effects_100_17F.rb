@@ -2348,6 +2348,11 @@ end
       target.pbRecoverHP(hpGain)
       @battle.pbDisplay(_INTL("{1}'s HP was restored.",target.pbThis))
     end
+
+    def getScore(score,user,target,skill=100)
+      score = getTargetedHealingMoveScore(score,user,target,skill)
+      return score
+    end
   end
   
   #===============================================================================
@@ -2393,6 +2398,13 @@ end
       hitNum = 1 if @healing   # Healing anim
       super
     end
+
+    def getScore(score,user,target,skill=100)
+      if !user.opposes?(target)
+        score = getTargetedHealingMoveScore(score,user,target,skill)
+      end
+      return score
+    end
   end
   
   #===============================================================================
@@ -2424,6 +2436,15 @@ end
       user.pbReduceHP((user.totalhp/2.0).round,false)
       user.pbItemHPHealCheck
     end
+
+    def getScore(score,user,target,skill=100)
+      if user.hp <= user.totalhp / 2
+        reserves = user.battle.pbAbleNonActiveCount(user.idxOwnSide)
+	      return 0 if reserves == 0 # don't want to lose or draw
+      end
+      score -= 40
+      return score
+    end
   end
   
   #===============================================================================
@@ -2452,6 +2473,11 @@ end
       end
       return false
     end
+
+    def getScore(score,user,target,skill=100)
+      score = 0 if !target.hasPhysicalAttack?
+      return score
+    end
   end
   
   #===============================================================================
@@ -2463,6 +2489,11 @@ end
       user.effects[PBEffects::BeakBlast] = true
       @battle.pbCommonAnimation("BeakBlast",user)
       @battle.pbDisplay(_INTL("{1} started heating up its beak!",user.pbThis))
+    end
+
+    def getScore(score,user,target,skill=100)
+      score += 30 if target.hasPhysicalAttack?
+      return score
     end
   end
   

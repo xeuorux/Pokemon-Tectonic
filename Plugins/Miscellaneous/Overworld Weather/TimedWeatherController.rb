@@ -36,7 +36,6 @@ def applyOutdoorEffects()
         currentDayOfWeek = pbGetTimeNow.day % 6
 
         weatherIntensityToday = weatherIntensityByDay(pbGetTimeNow.day)
-        echoln("Today (day #{pbGetTimeNow.day}) weather intensity is #{weatherIntensityToday}")
 
         weatherSym = :None
         strength = 2
@@ -90,7 +89,6 @@ def applyOutdoorEffects()
             applyFog('')
         end
 
-        echoln("Setting weather: #{weatherSym} #{strength}")
         $game_screen.weather(weatherSym, strength, 20, false)
     else
         applyFog('')

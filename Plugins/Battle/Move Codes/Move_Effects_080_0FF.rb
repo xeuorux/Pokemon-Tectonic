@@ -2762,15 +2762,7 @@ class PokeBattle_Move_0DF < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    return if user.opposes?(target) && !target.effects[PBEffects::NerveBreak]
-    return if !user.opposes?(target) && target.effects[PBEffects::NerveBreak]
-    
-    score += 20
-    score += 10 if target.hasActiveAbilityAI?(:ROOTED)
-    score += 10 if target.hasActiveItem?(:BIGROOT)
-    if target.hp <= target.totalhp/2
-      score += 20
-    end
+    score = getTargetedHealingMoveScore(score,user,target,skill)
     return score
   end
 end

@@ -779,38 +779,25 @@ class PokeBattle_WeatherMove < PokeBattle_Move
 
   def pbMoveFailed?(user,targets)
     return false if damagingMove?
-    return primevalWeatherPresent?
-  end
-
-  def primevalWeatherPresent?()
-    case @battle.field.weather
-    when :HarshSun
-      @battle.pbDisplay(_INTL("The extremely harsh sunlight was not lessened at all!"))
-      return true
-    when :HeavyRain
-      @battle.pbDisplay(_INTL("There is no relief from this heavy rain!"))
-      return true
-    when :StrongWinds
-      @battle.pbDisplay(_INTL("The mysterious air current blows on regardless!"))
-      return true
-    end
-    return false
+    return @battle.primevalWeatherPresent?
   end
 
   def pbEffectGeneral(user)
-    @battle.pbStartWeather(user,@weatherType,@durationSet,false) if !primevalWeatherPresent?()
+    @battle.pbStartWeather(user,@weatherType,@durationSet,false) if !@battle.primevalWeatherPresent?
   end
 
   def getScore(score,user,target,skill=100)
     if damagingMove?
       score += 60
-    else
+    elsif user.turnCount == 0
       score += 20
     end
-    if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE)
-			score = 0
-		elsif @battle.pbWeather == :Sun
-			score = 0
+    if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == @weatherType
+      if !damagingMove?
+        return 0
+      else
+        score -= 60
+      end
     end
     return score
   end
@@ -957,12 +944,7 @@ class PokeBattle_FlusterMove < PokeBattle_Move
 	end
 
   def getScore(score,user,target,skill=100)
-      canFluster = target.pbCanFluster?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
-      if canFluster
-        score += 20
-      elsif statusMove?
-        score = 0
-      end
+      score = getFlusterMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
       return score
   end
 end
@@ -988,12 +970,7 @@ class PokeBattle_MystifyMove < PokeBattle_Move
 	end
 
   def getScore(score,user,target,skill=100)
-      canMystify = target.pbCanMystify?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
-      if canMystify
-        score += 20
-      elsif statusMove?
-        score = 0
-      end
+      score = getMystifyMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
       return score
   end
 end
@@ -1195,6 +1172,43 @@ class PokeBattle_DrainMove < PokeBattle_Move
     else
       score += drainScore
     end
+    return score
+  end
+end
+
+#===============================================================================
+# Weather and status inducing move.
+#===============================================================================
+class PokeBattle_InvokeMove < PokeBattle_Move
+  def initialize(battle,move)
+    super
+    @weatherType = :None
+    @durationSet = 4
+    @statusToApply = nil
+  end
+
+  def pbFailsAgainstTarget?(user,target)
+    if @battle.primevalWeatherPresent?(false) && target.pbCanInflictStatus?(@statusToApply,user,false,self)
+      @battle.pbDisplay(_INTL("But it failed!"))
+      # Todo: Make this message more detailed
+    end
+  end
+
+  def pbEffectAgainstTarget(user,target)
+		target.pbBurn(user) if target.pbCanInflictStatus?(@statusToApply,user,true,self)
+    @battle.pbStartWeather(user,@weatherType,@durationSet,false) if !@battle.primevalWeatherPresent?()
+	end
+
+  def getScore(score,user,target,skill=100)
+    if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.primevalWeatherPresent?(false)
+			score -= 40
+		elsif @battle.pbWeather == @weatherType
+			score -= 20
+    elsif user.turnCount == 0
+      score += 20
+    end
+    statusScore = getStatusSettingMoveScore(@statusToApply,0,user,target,skill,user.ownersPolicies,statusMove?)
+    score += statusScore
     return score
   end
 end

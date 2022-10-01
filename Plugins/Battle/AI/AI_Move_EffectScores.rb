@@ -591,38 +591,6 @@ class PokeBattle_AI
 				score -= user.hp*100/user.totalhp
 				score += 30 if @battle.field.terrain == :Grassy
 			end
-		#---------------------------------------------------------------------------
-		when "16F"
-			if !target.opposes?(user)
-				if target.hp == target.totalhp || !target.canHeal?
-					score = 0
-				else
-					score += 50
-					score -= target.hp*100/target.totalhp
-				end
-			end
-		#---------------------------------------------------------------------------
-		when "170"
-			reserves = @battle.pbAbleNonActiveCount(user.idxOwnSide)
-			foes		 = @battle.pbAbleNonActiveCount(user.idxOpposingSide)
-			if @battle.pbCheckGlobalAbility(:DAMP)
-				score = 0
-			elsif reserves==0 && foes>0
-				score = 0	 # don't want to lose
-			elsif reserves==0 && foes==0
-				score += 80	 # want to draw
-			else
-				score -= (user.totalhp-user.hp)*75/user.totalhp
-			end
-		#---------------------------------------------------------------------------
-		when "171"
-			score = 0 if !target.hasPhysicalAttack?
-		#---------------------------------------------------------------------------
-		when "172"
-			score += 20	 # Because of possible burning
-		#---------------------------------------------------------------------------
-		when "174"
-			score = 0 if user.turnCount > 0
 		else
 			begin
 				score = move.getScore(score,user,target,skill=100)

@@ -2,8 +2,31 @@ DOWNSIDE_ABILITIES = [:SLOWSTART,:DEFEATIST,:TRUANT]
 
 STATUS_UPSIDE_ABILITIES = [:GUTS,:AUDACITY,:MARVELSCALE,:MARVELSKIN,:QUICKFEET]
 
+def getStatusSettingMoveScore(statusApplying,score,user,target,skill=100,policies=[],statusMove=false)
+	case statusApplying
+	when :SLEEP
+		return getSleepMoveScore(score,user,target,skill,policies,statusMove)
+	when :POISON
+		return getPoisonMoveScore(score,user,target,skill,policies,statusMove)
+	when :BURN
+		return getBurnMoveScore(score,user,target,skill,policies,statusMove)
+	when :FROSTBITE
+		return getFrostbiteMoveScore(score,user,target,skill,policies,statusMove)
+	when :PARALYSIS
+		return getParalysisMoveScore(score,user,target,skill,policies,statusMove)
+	when :FROZEN
+		return 0
+	when :FLUSTERED
+		return getFlusterMoveScore(score,user,target,skill,policies,statusMove)
+	when :MYSTIFIED
+		return getMystifyMoveScore(score,user,target,skill,policies,statusMove)
+	end
+
+	return score
+end
+
 # Actually used for numbing now
-def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,twave=false)
+def getParalysisMoveScore(score,user,target,skill=100,policies=[],statusMove=false,twave=false)
 	wouldBeFailedTWave = twave && Effectiveness.ineffective?(pbCalcTypeMod(:ELECTRIC,user,target))
 	if target.pbCanParalyze?(user,false) && !wouldBeFailedTWave
 		score += 10
@@ -14,52 +37,78 @@ def getParalysisMoveScore(score,user,target,skill=100,policies=[],status=false,t
 		elsif aspeed>ospeed
 			score -= 30
 		end
-		score -= 30 if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
-	elsif status
-		score = 0 
+		score -= 60 if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
+	elsif statusMove
+		return 0
 	end
 	return score
 end
 
-def getPoisonMoveScore(score,user,target,skill=100,policies=[],status=false)
+def getPoisonMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	if target && target.pbCanPoison?(user,false)
 		score += 30
-		score -= 30 if target.hasActiveAbilityAI?([:TOXICBOOST,:POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
-		score = 9999 if policies.include?(:PRIORITIZEDOTS) && status
-	elsif status
+		score -= 60 if target.hasActiveAbilityAI?([:TOXICBOOST,:POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
+		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
+	elsif statusMove
 		return 0
 	end
 	return score
 end
 
-def getBurnMoveScore(score,user,target,skill=100,policies=[],status=false)
+def getBurnMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	if target && target.pbCanBurn?(user,false)
 		score += 30
-		score -= 30 if target.hasActiveAbilityAI?([:FLAREBOOST,:BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
-		score = 9999 if policies.include?(:PRIORITIZEDOTS) && status
-	elsif status
+		score -= 60 if target.hasActiveAbilityAI?([:FLAREBOOST,:BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
+		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
+	elsif statusMove
 		return 0
 	end
 	return score
 end
 
-def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],status=false)
+def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	if target.pbCanFrostbite?(user,false)
 		score += 30
-		score -= 30 if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
-		score = 9999 if policies.include?(:PRIORITIZEDOTS) && status
-	elsif status
+		score -= 60 if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
+		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
+	elsif statusMove
 		return 0
 	end
 	return score
 end
 
-def getSleepMoveScore(score,user,target,skill=100,policies=[],status=false)
-	return 0 if status && target.effects[PBEffects::Yawn] > 0
+def getSleepMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+	return 0 if statusMove && target.effects[PBEffects::Yawn] > 0
 	if target.hasSleepAttack?
 		score += 20
 	else
 		score += 100
+	end
+	return score
+end
+
+def getFlusterMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+	canFluster = target.pbCanFluster?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
+	if canFluster
+		score += 20
+		score += 20 if user.hasPhysicalAttack?
+		score -= 60 if target.hasActiveAbilityAI?([:FLUSTERFLOCK].concat(STATUS_UPSIDE_ABILITIES))
+		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
+	elsif statusMove?
+		return 0
+	end
+	return score
+end
+
+def getMystifyMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+	canMystify = target.pbCanMystify?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
+    if canMystify
+		score += 20
+		score += 20 if user.hasSpecialAttack?
+		score -= 60 if target.hasActiveAbilityAI?([:HEADACHE].concat(STATUS_UPSIDE_ABILITIES))
+		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
+	elsif statusMove?
+		return 0
 	end
 	return score
 end
@@ -141,5 +190,26 @@ def getForceOutMoveScore(score,user,target,skill=100,statusMove=false)
 	end
 	return 0 if count
 	score += hazardWeightOnSide(target.pbOwnSide)
+	return score
+end
+
+def getSelfKOMoveScore(score,user,target,skill=100)
+	reserves = user.battle.pbAbleNonActiveCount(user.idxOwnSide)
+	return 0 if reserves == 0 # don't want to lose or draw
+	return 0 if user.hp > user.totalhp / 2
+	score -= 30 if user.hp > user.totalhp / 8
+	return score
+end
+
+def getTargetedHealingMoveScore(score,user,target,skill)
+	return 0 if user.opposes?(target) && !target.effects[PBEffects::NerveBreak]
+    return 0 if !user.opposes?(target) && target.effects[PBEffects::NerveBreak]
+
+	score += 20 if target.hasActiveAbilityAI?(:ROOTED)
+    score += 10 if target.hasActiveAbilityAI?(:ROOTED)
+    score += 10 if target.hasActiveItem?(:BIGROOT)
+    if target.hp <= target.totalhp / 2
+      score += 20
+    end
 	return score
 end
