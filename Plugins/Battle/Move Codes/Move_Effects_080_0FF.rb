@@ -2583,7 +2583,7 @@ class PokeBattle_Move_0D8 < PokeBattle_HealingMove
   end
 
   def getScore(score,user,target,skill=100)
-    when :Sun, :HarshSun
+    if [:Sun, :HarshSun].include?(@battle.pbWeather)
       score += 50
     else
       return 0
