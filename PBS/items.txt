@@ -786,7 +786,7 @@
 757,TM165,TM165,TM165s,4,10000,"The user draws power from nature and fires it at the target. This may also lower the target's Sp. Def stat.",3,0,0,ENERGYBALL
 758,TM166,TM166,TM166s,4,16000,"The user tucks in its wings and charges from a low altitude. This also damages the user quite a lot.",3,0,0,BRAVEBIRD
 759,TM167,TM167,TM167s,4,6000,"The user makes the ground under the foe erupt with power. It may also lower the target's Sp. Def.",3,0,0,EARTHPOWER
-760,TM168,TM168,TM168s,4,4000,,3,0,0,VANGUARD
+760,TM168,TM168,TM168s,4,4000,"The user enters a protective stance, boosting both its Defense and Sp. Atk stats.",3,0,0,VANGUARD
 761,TM169,TM169,TM169s,4,6000,"The user focuses its willpower to its head and attacks the target. This may also make the target flinch.",3,0,0,ZENHEADBUTT
 762,TM170,TM170,TM170s,4,6000,"The user gathers all its light energy and releases it all at once. This may also lower the target's Sp. Def stat.",3,0,0,FLASHCANNON
 763,TM171,TM171,TM171s,4,16000,"A storm of sharp leaves is whipped up. The attack's recoil sharply reduces the user's Sp. Atk stat.",3,0,0,LEAFSTORM
