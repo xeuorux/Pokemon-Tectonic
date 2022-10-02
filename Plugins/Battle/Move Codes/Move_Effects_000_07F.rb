@@ -97,16 +97,8 @@ end
 
 #===============================================================================
 # Paralyzes the target.
-# Thunder Wave: Doesn't affect target if move's type has no effect on it.
 #===============================================================================
 class PokeBattle_Move_007 < PokeBattle_ParalysisMove
-  def pbFailsAgainstTarget?(user,target)
-    if @id == :THUNDERWAVE && Effectiveness.ineffective?(target.damageState.typeMod)
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-      return true
-    end
-    return super
-  end
 end
 
 #===============================================================================
@@ -247,7 +239,7 @@ end
 #===============================================================================
 class PokeBattle_Move_012 < PokeBattle_FlinchMove
   def pbMoveFailed?(user,targets)
-    if user.turnCount > 1
+    if !user.firstTurn?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -255,8 +247,8 @@ class PokeBattle_Move_012 < PokeBattle_FlinchMove
   end
 
   def getScore(score,user,target,skill=100)
-    score += 50
-    super
+    score = getFlinchingMoveScore(score,user,target,skill,user.ownersPolicies,10)
+    return score
   end
 end
 
@@ -328,7 +320,10 @@ class PokeBattle_Move_017 < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    score += 30 if target.hasSpotsForStatus?()
+    policies = user.ownersPolicies
+    score = getBurnMoveScore(score,user,target,skill,policies,statusMove?)
+    score = getFrostbiteMoveScore(score,user,target,skill,policies,statusMove?)
+    score = getParalysisMoveScore(score,user,target,skill,policies,statusMove?)
     return score
   end
 end
@@ -629,7 +624,7 @@ class PokeBattle_Move_023 < PokeBattle_Move
 
   def getScore(score,user,target,skill=100)
     score -= 20
-    score += 20 if user.turnCount == 0
+    score += 20 if user.firstTurn?
     score += 40 if user.hasActiveAbilityAI?([:SUPERLUCK,:SNIPER])
     return score
   end
@@ -885,7 +880,7 @@ class PokeBattle_Move_035 < PokeBattle_Move
   def getScore(score,user,target,skill=100)
     return 0 if !user.hasDamagingAttack?
 
-    score += 50 if user.turnCount == 0
+    score += 50 if user.firstTurn?
 
     score -= user.stages[:ATTACK]*20
 		score -= user.stages[:SPEED]*20
@@ -973,7 +968,7 @@ class PokeBattle_Move_03A < PokeBattle_Move
   def getScore(score,user,target,skill=100)
     return 0 if !user.hasPhysicalAttack?
 
-    score += 50 if user.turnCount == 0
+    score += 50 if user.firstTurn?
 
     score -= user.stages[:ATTACK]*20
     return score
@@ -1197,7 +1192,7 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
                     (targetOpposingSide.effects[PBEffects::StealthRock] ||
                     targetOpposingSide.effects[PBEffects::Spikes]>0 ||
                     targetOpposingSide.effects[PBEffects::ToxicSpikes]>0 ||
-					targetOpposingSide.effects[PBEffects::FlameSpikes]>0 ||
+					          targetOpposingSide.effects[PBEffects::FlameSpikes]>0 ||
                     targetOpposingSide.effects[PBEffects::StickyWeb])
     return false if Settings::MECHANICS_GENERATION >= 8 && @battle.field.terrain != :None
     return super
@@ -1287,16 +1282,15 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
   def getScore(score,user,target,skill=100)
     score = super
     score = 100 if score == 0
-    score += 30 if target.pbOwnSide.effects[PBEffects::AuroraVeil]>0 ||
+    # Dislike removing hazards that affect the enemy
+    score -= hazardWeightOnSide(target.pbOwnSide)
+    # Like removing hazards that affect us
+    score += hazardWeightOnSide(target.pbOpposingSide)
+    score += 50 if target.pbOwnSide.effects[PBEffects::AuroraVeil]>0 ||
 					 target.pbOwnSide.effects[PBEffects::Reflect]>0 ||
 					 target.pbOwnSide.effects[PBEffects::LightScreen]>0 ||
 					 target.pbOwnSide.effects[PBEffects::Mist]>0 ||
 					 target.pbOwnSide.effects[PBEffects::Safeguard]>0
-		score -= 30 if target.pbOwnSide.effects[PBEffects::Spikes]>0 ||
-					 target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 ||
-					 target.pbOwnSide.effects[PBEffects::FlameSpikes]>0 ||
-           target.pbOwnSide.effects[PBEffects::FrostSpikes]>0 ||
-					 target.pbOwnSide.effects[PBEffects::StealthRock]
     score += 30 if @battle.field.terrain != :None
     return score
   end
@@ -2708,10 +2702,7 @@ end
 #===============================================================================
 class PokeBattle_Move_07B < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    if target.poisoned? &&
-       (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
-      baseDmg *= 2
-    end
+    baseDmg *= 2 if target.poisoned?
     return baseDmg
   end
 end
@@ -2722,9 +2713,7 @@ end
 #===============================================================================
 class PokeBattle_Move_07C < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    if target.paralyzed? && (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
-      baseDmg *= 2
-    end
+    baseDmg *= 2 if target.paralyzed?
     return baseDmg
   end
 
@@ -2740,10 +2729,7 @@ end
 #===============================================================================
 class PokeBattle_Move_07D < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    if target.asleep? &&
-       (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
-      baseDmg *= 2
-    end
+    baseDmg *= 2 if target.asleep?
     return baseDmg
   end
 
@@ -2768,14 +2754,11 @@ class PokeBattle_Move_07E < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is doubled if the target has a status problem. (Hex)
+# Power is doubled if the target has a status problem. (Hex, Cruelty)
 #===============================================================================
 class PokeBattle_Move_07F < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    if target.pbHasAnyStatus? &&
-       (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
-      baseDmg *= 2
-    end
+    baseDmg *= 2 if target.pbHasAnyStatus?
     return baseDmg
   end
 end

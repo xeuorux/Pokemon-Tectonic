@@ -94,7 +94,7 @@ end
 class PokeBattle_Move_085 < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
     lrf = user.pbOwnSide.effects[PBEffects::LastRoundFainted]
-    baseDmg *= 2 if lrf>=0 && lrf==@battle.turnCount-1
+    baseDmg *= 2 if lrf >= 0 && lrf == @battle.turnCount - 1
     return baseDmg
   end
 end
@@ -932,6 +932,11 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
     when 14 then id = :PSYWAVE if GameData::Move.exists?(:PSYWAVE)
     end
     super
+  end
+
+  def getScore(score,user,target,skill=100)
+    score -= 20 if target.substituted?
+    return score
   end
 end
 
@@ -1784,7 +1789,11 @@ class PokeBattle_Move_0BA < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
+    if damagingMove?
+      score -= 50 if target.hasActiveAbilityAI?(:MENTALBLOCK) || target.substituted?
+    else
+      return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
+    end
     return score
   end
 end
@@ -2070,6 +2079,11 @@ class PokeBattle_Move_0C4 < PokeBattle_TwoTurnMove
   def pbChargingTurnMessage(user,targets)
     @battle.pbDisplay(_INTL("{1} took in sunlight!",user.pbThis))
   end
+
+  def getScore(score,user,target,skill=100)
+    score += 50 if [:Sun, :HarshSun].include?(@battle.pbWeather)
+    super
+  end
 end
 
 #===============================================================================
@@ -2228,6 +2242,11 @@ class PokeBattle_Move_0CC < PokeBattle_TwoTurnMove
     return if target.damageState.substitute
     target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
   end
+
+  def getScore(score,user,target,skill=100)
+    score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+    return score
+  end
 end
 
 #===============================================================================
@@ -2310,7 +2329,7 @@ class PokeBattle_Move_0CE < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# Trapping move. Traps for 5 or 6 rounds. Trapped Pokémon lose 1/16 of max HP
+# Trapping move. Traps for 3 or 6 rounds. Trapped Pokémon lose 1/16 of max HP
 # at end of each round.
 #===============================================================================
 class PokeBattle_Move_0CF < PokeBattle_Move
@@ -2347,6 +2366,12 @@ class PokeBattle_Move_0CF < PokeBattle_Move
     end
     @battle.pbDisplay(msg)
   end
+
+  def getScore(score,user,target,skill=100)
+    score -= 20 # Annoying AI move tax
+    score -= 20 if target.effects[PBEffects::Trapping] > 0 || target.substituted?
+    return score
+  end
 end
 
 #===============================================================================
@@ -2382,47 +2407,23 @@ class PokeBattle_Move_0D1 < PokeBattle_Move
       b.pbCureStatus
     end
   end
+
+  def getScore(score,user,target,skill=100)
+    score -= 20
+    return score
+  end
 end
 
 #===============================================================================
-# User must use this move for 1 or 2 more rounds. At end, user becomes confused.
-# (Outrage, Petal Dange, Thrash)
+# (No longer used)
 #===============================================================================
 class PokeBattle_Move_0D2 < PokeBattle_Move
-  def pbEffectAfterAllHits(user,target)
-    if !target.damageState.unaffected && user.effects[PBEffects::Outrage]==0
-      user.effects[PBEffects::Outrage] = 2+@battle.pbRandom(2)
-      user.currentMove = @id
-    end
-    if user.effects[PBEffects::Outrage]>0
-      user.effects[PBEffects::Outrage] -= 1
-      if user.effects[PBEffects::Outrage]==0 && user.pbCanConfuseSelf?(false)
-        user.pbConfuse(_INTL("{1} became confused due to fatigue!",user.pbThis))
-      end
-    end
-  end
 end
 
 #===============================================================================
-# User must use this move for 4 more rounds. Power doubles each round.
-# Power is also doubled if user has curled up. (No longer used)
+# (No longer used)
 #===============================================================================
 class PokeBattle_Move_0D3 < PokeBattle_Move
-  def pbBaseDamage(baseDmg,user,target)
-    shift = (5 - user.effects[PBEffects::Rollout])   # 0-4, where 0 is most powerful
-    shift = 0 if user.effects[PBEffects::Rollout] == 0   # For first turn
-    shift += 1 if user.effects[PBEffects::DefenseCurl]
-    baseDmg *= 2**shift
-    return baseDmg
-  end
-
-  def pbEffectAfterAllHits(user,target)
-    if !target.damageState.unaffected && user.effects[PBEffects::Rollout] == 0
-      user.effects[PBEffects::Rollout] = 5
-      user.currentMove = @id
-    end
-    user.effects[PBEffects::Rollout] -= 1 if user.effects[PBEffects::Rollout] > 0
-  end
 end
 
 #===============================================================================
@@ -2498,10 +2499,12 @@ class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
   end
 
   def getScore(score,user,target,skill=100)
-    if user.hp <= user.totalhp/4
+    if user.hp <= user.totalhp / 4
       score = 0
-    elsif user.hp <= user.totalhp/2
-      score -= 50
+    elsif user.hp <= user.totalhp / 2
+      score -= 30
+    else
+      score += 30
     end
     return score
   end
@@ -2651,7 +2654,7 @@ class PokeBattle_Move_0DA < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    score += 20 if user.turnCount == 0
+    score += 20 if user.firstTurn?
     return score
   end
 end
@@ -2675,7 +2678,7 @@ class PokeBattle_Move_0DB < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    score += 20 if user.turnCount == 0
+    score += 20 if user.firstTurn?
     return score
   end
 end
@@ -2708,7 +2711,7 @@ class PokeBattle_Move_0DC < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    score += 20 if user.turnCount == 0
+    score += 20 if user.firstTurn?
     return score
   end
 end
@@ -2762,7 +2765,7 @@ class PokeBattle_Move_0DF < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    score = getTargetedHealingMoveScore(score,user,target,skill)
+    score = getHealingMoveScore(score,user,target,skill)
     return score
   end
 end
@@ -3243,7 +3246,7 @@ class PokeBattle_Move_0ED < PokeBattle_Move
   def getScore(score,user,target,skill=100)
     total = 0
     GameData::Stat.each_battle { |s| total += user.stages[s.id] }
-    if total <= 0 || user.turnCount == 0
+    if total <= 0 || user.firstTurn?
       return 0
     else
       score += total * 10
@@ -3316,6 +3319,7 @@ class PokeBattle_Move_0EF < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
+    score -= 20 # Annoying AI move tax
     score -= 20 if damagingMove? && target.effects[PBEffects::MeanLook]
     return score
   end
@@ -3528,8 +3532,12 @@ end
 # Target's berry/Gem is destroyed. (Incinerate)
 #===============================================================================
 class PokeBattle_Move_0F5 < PokeBattle_Move
-  def canIncinerateTargetsItem?(target)
-    return false if target.damageState.substitute || target.damageState.berryWeakened
+  def canIncinerateTargetsItem?(target,checkingForAI=false)
+    if checkingForAI
+      return false if target.substituted?
+    else
+      return false if target.damageState.substitute || target.damageState.berryWeakened
+    end
     return false if !target.item
     return false if !target.item.is_berry? && !target.item.is_gem?
     return true
@@ -3838,7 +3846,7 @@ end
 
 #===============================================================================
 # User takes recoil damage equal to 1/3 of the damage this move dealt.
-# May paralyze the target. (Not currently used)
+# May paralyze the target. (Volt Tackle)
 #===============================================================================
 class PokeBattle_Move_0FD < PokeBattle_RecoilMove
   def recoilFactor;  return (1.0/3.0); end

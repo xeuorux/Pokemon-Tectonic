@@ -26,12 +26,37 @@ class PokeBattle_Battler
 		return false
 	end
 
+	def hasStatusMove?
+		eachMove do |m|
+			next if !m.statusMove?
+			return true
+			break
+		end
+		return false
+	end
+
 	def hasSleepAttack?
 		eachMove do |m|
 			battleMove = @battle.getBattleMoveInstanceFromID(m.id)
 			next if !battleMove.usableWhenAsleep?
 			return true
 			break
+		end
+		return false
+	end
+
+	def hasSoundMove?
+		user.eachMove do |m|
+			next if !m.soundMove?
+			return true
+		end
+		return false
+	end
+
+	def hasStatusPunishMove?
+		user.eachMove do |m|
+			next if !m.id == "07F"
+			return true
 		end
 		return false
 	end
@@ -103,5 +128,19 @@ class PokeBattle_Battler
 	def ownersPolicies
 		return [] if pbOwnedByPlayer?
 		return @battle.pbGetOwnerFromBattlerIndex(@index).policies
+	end
+
+	def substituted?
+		return @effects[PBEffects::Substitute] > 0
+	end
+
+	def eachPotentialAttacker(categoryOnly=-1)
+		user.eachOpposing(true) do |b|
+			next if b.effects[PBEffects::HyperBeam] > 0 # Don't protect yourself from a target that can't even attack this turn
+			next if categoryOnly == 0 && !b.hasPhysicalAttack?
+			next if categoryOnly == 1 && !b.hasSpecialAttack?
+			next if categoryOnly == 2 && !b.hasStatusMove?
+			yield b
+		end
 	end
 end

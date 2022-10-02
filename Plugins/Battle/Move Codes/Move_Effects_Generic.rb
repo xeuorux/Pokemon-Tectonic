@@ -146,7 +146,7 @@ class PokeBattle_ParalysisMove < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?,@id == :NUMB)
+    score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
     return score
   end
 end
@@ -270,7 +270,7 @@ class PokeBattle_StatUpMove < PokeBattle_Move
     statRaiseAmount = @statUp[1]
 
     # Stat up moves tend to be strong on the first turn
-    if user.turnCount == 0
+    if user.firstTurn?
       if damagingMove?
         score += 20 
       else
@@ -335,15 +335,11 @@ class PokeBattle_MultiStatUpMove < PokeBattle_Move
 
   def getScore(score,user,target,skill=100)
     # Stat up moves tend to be strong on the first turn
-    if user.turnCount == 0
-      if damagingMove?
-        score += 20 
-      else
-        score += 50
-      end	
+    if user.firstTurn? && !damagingMove?
+        score += 30
     end
 
-    score += 20 # Multi stat up moves are generally strong
+    score += 30 if user.hp > user.totalhp
 
     # Analyze each stat up entry
 		upsPhysicalAttack = false
@@ -619,7 +615,7 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
   end
 
   def pbChargingTurnEffect(user,target)
-    # Skull Bash/Sky Drop are the only two-turn moves with an effect here, and
+    # Skull Bash/Sky Drop/Zephyr Wing are the only two-turn moves with an effect here, and
     # the latter just records the target is being Sky Dropped
   end
 
@@ -635,6 +631,12 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
   def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
     hitNum = 1 if @chargingTurn && !@damagingTurn   # Charging anim
     super
+  end
+
+  def getScore(score,user,target,skill=100)
+    score -= 30 if !user.firstTurn?
+    score -= 30 if !user.hasActiveItem?(:POWERHERB)
+    return score
   end
 end
 
@@ -660,11 +662,7 @@ class PokeBattle_HealingMove < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    return 0 if user.effects[PBEffects::NerveBreak]
-    score += 20
-    if user.hp <= user.totalhp/2
-      score += 20
-    end
+    score = getHealingMoveScore(score,user,target,skill,5)
     return score
   end
 end
@@ -761,9 +759,12 @@ class PokeBattle_ProtectMove < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    return 0 if target.effects[PBEffects::HyperBeam] > 0 # Don't protect yourself from a target that can't even attack this turn
-    score += 100 if target.effects[PBEffects::TwoTurnAttack]
-    return score
+    newScore = 0
+    user.eachPotentialAttacker do |b|
+      newScore += 80
+      newScore += 50 if b.effects[PBEffects::TwoTurnAttack]
+    end
+    return newScore
   end
 end
 
@@ -789,7 +790,7 @@ class PokeBattle_WeatherMove < PokeBattle_Move
   def getScore(score,user,target,skill=100)
     if damagingMove?
       score += 60
-    elsif user.turnCount == 0
+    elsif user.firstTurn?
       score += 20
     end
     if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == @weatherType
@@ -1204,7 +1205,7 @@ class PokeBattle_InvokeMove < PokeBattle_Move
 			score -= 40
 		elsif @battle.pbWeather == @weatherType
 			score -= 20
-    elsif user.turnCount == 0
+    elsif user.firstTurn?
       score += 20
     end
     statusScore = getStatusSettingMoveScore(@statusToApply,0,user,target,skill,user.ownersPolicies,statusMove?)
@@ -1212,3 +1213,106 @@ class PokeBattle_InvokeMove < PokeBattle_Move
     return score
   end
 end
+
+#===============================================================================
+# Terrain-setting move.
+#===============================================================================
+class PokeBattle_TerrainMove < PokeBattle_Move
+  def initialize(battle,move)
+    super
+    @terrainType = :None
+    @durationSet = 5
+  end
+
+  def pbMoveFailed?(user,targets)
+    if @battle.field.terrain == @terrainType
+      @battle.pbDisplay(_INTL("But it failed, since that Terrain is already present!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    @battle.pbStartTerrain(user, @terrainType)
+  end
+
+  def getScore(score,user,target,skill=100)
+    if damagingMove?
+      score += 60
+    elsif user.firstTurn?
+      score += 20
+    end
+    if @battle.field.terrain == @weatherType
+      if !damagingMove?
+        return 0
+      else
+        score -= 60
+      end
+    end
+    return score
+  end
+end
+
+  #===============================================================================
+  # Type-inducing entry hazard move.
+  # Removes similar spikes when setting.
+  # If a damaging move, sets the hazard on the side of the target.
+  # If a status move, sets the hazard on the side of the user's opponent
+  #===============================================================================
+  class PokeBattle_TypeSpikeMove < PokeBattle_Move
+
+    # Every subclass of this needs to assign something to @spikeEffect, and then call super
+    def initialize(battle,move)
+      @spikeInfo = {
+        PBEffects::ToxicSpikes => "Toxic",
+        PBEffects::FlameSpikes => "Flame",
+        PBEffects::FrostSpikes => "Frost",
+      }
+      super
+      @spikeName = @spikeInfo[@spikeEffect]
+    end
+
+    def pbMoveFailed?(user,targets)
+        return false if !damagingMove?
+        if user.pbOpposingSide.effects[] >= 2
+            @battle.pbDisplay(_INTL("But it failed, since the opposing side already has two layers of #{@spikeName.downcase} spikes!"))
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        return if damagingMove?
+        addSpikeLayer(user.pbOpposingSide,user.pbOpposingTeam(true))
+    end
+
+    def pbEffectAgainstTarget(user,target)
+      return if !damagingMove?
+      addSpikeLayer(target.pbOwnSide,target.pbTeam(true))
+    end
+
+    def addSpikeLayer(side,teamLabel)
+      side.effects[@spikeEffect] += 1
+      if side.effects[@spikeEffect] == 2
+          @battle.pbDisplay(_INTL("The second layer of #{@spikeName.downcase} spikes were scattered all around {1}'s feet!",teamLabel))
+      else
+          @battle.pbDisplay(_INTL("#{@spikeName} spikes were scattered all around {1}'s feet!",teamLabel))
+      end
+
+      @spikeInfo.each do |spike|
+        next if spike == @spikeEffect
+        if side.effects[@spikeEffect] > 0
+          side.effects[@spikeEffect] = 0
+          otherName = TYPE_SPIKES[spike]
+          @battle.pbDisplay(_INTL("The #{otherName.downcase} spikes around {1}'s feet were brushed aside!",teamLabel))
+        end
+      end
+    end
+
+    def getScore(score,user,target,skill=100)
+      side = damagingMove? ? target.pbOwnSide : user.pbOpposingSide
+      score -= statusSpikesWeightOnSide(side,[@spikeEffect])
+      score = getHazardSettingMoveScore(score,user,target,skill)
+      return score
+    end
+  end

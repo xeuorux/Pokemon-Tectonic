@@ -129,7 +129,7 @@ class PokeBattle_Battle
   end
 
   def primevalWeatherPresent?(showMessages=true)
-    case @battle.field.weather
+    case @field.weather
     when :HarshSun
       @battle.pbDisplay(_INTL("The extremely harsh sunlight was not lessened at all!")) if showMessages
       return true

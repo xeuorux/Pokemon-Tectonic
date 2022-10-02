@@ -54,7 +54,11 @@ class PokeBattle_Move
   def canRemoveItem?(user,target,checkingForAI=false)
     return false if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't knock off, but bosses can
     return false if user.fainted?
-    return false if target.damageState.unaffected || target.damageState.substitute
+    if checkingForAI
+      return false if target.substituted?
+    else
+      return false if target.damageState.unaffected || target.damageState.substitute
+    end
     return false if !target.item || target.unlosableItem?(target.item)
     return false if target.shouldAbilityApply?(:STICKYHOLD,checkingForAI) && !@battle.moldBreaker
     return true
@@ -66,4 +70,6 @@ class PokeBattle_Move
     return false if user.unlosableItem?(target.item)
     return true
   end
+
+  def hasKOEffect?(user,target); return false; end
 end

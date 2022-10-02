@@ -479,4 +479,16 @@ class PokeBattle_Battler
       return 5
     end
   end
+
+  # Yields each unfainted opposing Pokémon.
+  def eachOpposing(nearOnly=false)
+    @battle.battlers.each do |b|
+      next if nearOnly && !near?(b)
+      yield b if b && !b.fainted? && b.opposes?(@index)
+    end
+  end
+
+  def firstTurn?
+    return @turnCount == 0
+  end
 end

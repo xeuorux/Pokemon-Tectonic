@@ -166,7 +166,11 @@ class PokeBattle_AI
         # Convert damage to percentage of target's remaining HP
         damagePercentage = realDamage*100.0/target.hp
         # Adjust score
-        damagePercentage = 200 if damagePercentage >= 100   # Extremely prefer lethal damage
+        if damagePercentage >= 100   # Prefer lethal damage
+            damagePercentage = 150
+            damagePercentage = 300 if move.hasKOEffect?(user,target)
+        end
+        
         score = (score * 0.75 + damagePercentage * 1.25).to_i
         return score
     end

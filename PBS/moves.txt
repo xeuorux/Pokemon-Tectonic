@@ -68,7 +68,7 @@
 65,TORMENT,Torment,0B7,0,DARK,Status,100,12,0,NearOther,0,bce,"The user torments and enrages the foe, making it incapable of using the same move twice in a row.",
 66,JAWLOCK,Jaw Lock,17D,80,DARK,Physical,100,10,0,NearOther,0,bef,"Prevents the user and target from switching out until either of them faints or is switched out.",
 67,FALSESURRENDER,False Surrender,0A5,80,DARK,Physical,0,10,0,NearOther,0,aef,"The user fakes the target out and stabs them with its disheveled hair. The attack never misses and skips protections.",
-68,OBSTRUCT,Obstruct,180,0,DARK,Status,0,3,0,NearOther,4,,"Protects the user from all attacks. Physical attacks harshly lower the attacker's Defense stat.",
+68,OBSTRUCT,Obstruct,180,0,DARK,Status,0,3,0,User,4,,"Protects the user from all attacks. Physical attacks harshly lower the attacker's Defense stat.",
 69,WICKEDBLOW,Wicked Blow,0A0,80,DARK,Physical,100,5,0,NearOther,0,abef,"The user strikes with a fierce blow of Dark Mastery. It always results in a critical hit.",
 70,LASHOUT,Lash Out,194,75,DARK,Physical,100,5,100,NearOther,0,abef,"If the user's stats were lowered during the turn, the power of this move is doubled.",
 71,FIERYWRATH,Fiery Wrath,00F,90,DARK,Special,100,10,50,AllNearFoes,0,ef,"The user transforms its wrath into a fire-like aura to attack. It has a 50% chance to make the target flinch.",
@@ -98,7 +98,7 @@
 94,DRAGONENERGY,Dragon Energy,08B,150,DRAGON,Special,100,5,0,AllNearFoes,0,ef,"Attacks all enemy Pokémon with pure vitality. It's power decreases with the user's HP.",
 #-------------------------------
 95,BOLTSTRIKE,Bolt Strike,007,130,ELECTRIC,Physical,85,5,20,NearOther,0,abef,"The user charges at its foe, surrounding itself with lightning. It has a 20% chance to numb.",
-96,VOLTTACKLE,Volt Tackle,0FB,120,ELECTRIC,Physical,100,12,0,NearOther,0,abef,"The user electrifies itself, then charges at the foe. The user also takes 33% recoil.",
+96,VOLTTACKLE,Volt Tackle,0FD,120,ELECTRIC,Physical,100,12,10,NearOther,0,abef,"The user charges at the foe while electrified. The user also takes 33% recoil. This has a 10% chance to numb.",
 97,ZAPCANNON,Zap Cannon,007,100,ELECTRIC,Special,50,5,100,NearOther,0,befn,"The user fires an electric blast like a cannon to inflict damage and cause numbing.",
 98,THUNDER,Thunder,008,110,ELECTRIC,Special,70,10,30,NearOther,0,bef,"A wicked thunderbolt is dropped on the foe to inflict damage. It has a 30% chance to numb.",
 99,FUSIONBOLT,Fusion Bolt,079,100,ELECTRIC,Physical,100,5,0,NearOther,0,bef,"The user throws down a giant thunderbolt. It does more damage if influenced by an enormous flame.",
@@ -216,7 +216,7 @@
 206,BLUEFLARE,Blue Flare,00A,130,FIRE,Special,85,5,20,NearOther,0,bef,"The user attacks by engulfing the foe in a beautiful, yet intense, blue flame. It has a 20% chance to burn.",
 207,BURNUP,Burn Up,162,130,FIRE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user uses up its Fire-typing.",
 208,OVERHEAT,Overheat,03F,130,FIRE,Special,100,5,0,NearOther,0,bef,"The user attacks the target at full power. Sharply reduces the user's Sp. Atk stat.",
-209,FLAREBLITZ,Flare Blitz,0FB,120,FIRE,Physical,100,12,10,NearOther,0,abef,"The user cloaks itself in fire and charges at the foe. The user also takes 33% recoil.",
+209,FLAREBLITZ,Flare Blitz,0FB,120,FIRE,Physical,100,12,10,NearOther,0,abef,"The user charges at the foe while on fire. The user also takes 33% recoil. This has a 10% chance to burn.",
 210,FIREBLAST,Fire Blast,00A,110,FIRE,Special,85,5,10,NearOther,0,bef,"The foe is attacked with an intense blast of all-consuming fire. It has a 10% chance to burn.",
 211,FUSIONFLARE,Fusion Flare,07A,100,FIRE,Special,100,5,0,NearOther,0,bef,"The user brings down a giant flame. It does more damage if influenced by an enormous thunderbolt.",
 212,INFERNO,Inferno,00A,100,FIRE,Special,50,5,100,NearOther,0,bef,"The user attacks by engulfing the target in an intense fire. It leaves the target with a burn.",
@@ -1004,7 +1004,7 @@
 938,POISONPOLLEN,Poison Pollen,005,0,GRASS,Status,100,30,0,NearOther,0,bce,"The user scatters a cloud of poisonous dust on the target. It poisons the target.",POISONPOWDER
 939,PARAPOLLEN,Para-Pollen,007,0,GRASS,Status,100,25,0,NearOther,0,bce,"The user scatters a cloud of painful dust that leaves the target numb.",STUNSPORE
 940,COTTONDUST,Cotton Dust,04D,0,GRASS,Status,100,30,0,AllNearFoes,0,bce,"The user releases cotton-like spores that cling to the foe, harshly reducing its Speed stat.",COTTONSPORE
-941,BLACKPOWDER,Blackpowder,148,0,BUG,Status,100,15,0,NearOther,0,bce,"The target is covered in a powder that explodes if it uses a Fire-type move.",POWDER
+941,BLACKPOWDER,Blackpowder,148,0,BUG,Status,100,15,0,NearOther,1,bce,"The target is covered in a powder that explodes if it uses a Fire-type move. It always goes first.",POWDER
 942,MAGICDUST,Magic Dust,197,0,PSYCHIC,Status,100,15,0,NearOther,0,bce,"The user scatters a cloud of magic dust that changes the target to Psychic type.",MAGICPOWDER
 943,KRAKENCLUTCHES,Kraken Clutches,0CF,75,WATER,Physical,100,10,0,NearOther,0,abef,"The target is trapped by monstrous tentacles for three turns.",WRAP
 944,DAZZLE,Dazzle,045,0,NORMAL,Status,100,30,0,AllNearFoes,0,bce,"The user dazzles nearby foes with a display of light or sound. Their Sp. Atk stat is lowered.",DAZZLINGGLEAM
@@ -1092,7 +1092,7 @@
 1026,GUIDINGAROMA,Guiding Aroma,584,0,BUG,Status,0,12,0,NearAlly,0,,"The user raises the target's three lowest stats by using a helpful scent.",AROMATICMIST
 1027,FLAREWITCH,Flare Witch,585,0,FIRE,Status,0,10,0,User,0,d,"Raises Sp. Atk. Until switch out, the user's attacks spread to hit all nearby foes.",
 1028,WHIPTRANCE,Whip Trance,55F,120,FIGHTING,Special,100,10,0,NearOther,0,abefh,"The user relentlessly attacks with its whip-like hands for three turns. Critical hits land more easily.",
-1029,CRUELWHIPBLADE,Cruel Whipblade,587,30,GRASS,Physical,100,12,0,NearOther,0,abefp,"The user flicks its thorns, dealing damage and setting a layer of Poison Spikes.",
+1029,CRUELWHIPBLADE,Cruel Whipblade,104,30,GRASS,Physical,100,12,0,NearOther,0,abefp,"The user flicks its thorns, dealing damage and setting a layer of Poison Spikes around the target.",
 1030,HONORLESSSTING,Honorless Sting,586,105,POISON,Physical,100,12,0,NearOther,0,abef,"The user uses venom that turns the target's body against it. Super effective vs Fighting-types.",POISONSTING
 1031,MURKYFOG,Murky Fog,050,85,POISON,Special,0,10,0,NearOther,0,bef,"The user attacks with a pitch black fog. All of the target's stat changes are returned to normal.",SMOKESCREEN
 1032,SLIMEBALL,Slimeball,18F,80,POISON,Special,100,12,0,AllNearOthers,0,bef,"The user attacks with cloying slime, rendering the target's item sticky and unusable.",SLUDGEBOMB
@@ -1116,7 +1116,7 @@
 1050,SUMMERSUNDER,Summer Sunder,0EE,70,GRASS,Physical,100,15,0,NearOther,0,abefhp,"After slashing, it returns to switch with a party Pokémon. Critical hits land more easily.",XSCISSOR
 1051,DEATHMARK,Death Mark,596,0,DARK,Status,0,1,0,NearOther,0,ce,"Maximizes the user's Attack, but minimizes the user's Speed. The target becomes unable to flee.",MEANLOOK
 1052,BULWARK,Bulwark,597,0,FIGHTING,Status,0,3,0,UserSide,3,d,"The user and its allies take 50% less attack damage this turn. Always fails if used in succession.",
-1053,SNOWYSORROWS,Snowy Sorrows,598,30,ICE,Special,100,12,0,NearOther,0,befk,"The user incants a snowy curse, dealing damage and setting a layer of Frost Spikes.",PERISHSONG
+1053,SNOWYSORROWS,Snowy Sorrows,569,30,ICE,Special,100,12,0,NearOther,0,befk,"The user incants a snowy curse, dealing damage and setting a layer of Frost Spikes around the target.",PERISHSONG
 1054,INVOKESUN,Invoke Sun,59A,0,FIRE,Status,0,10,0,NearOther,0,bce,"The user burns the target, then summons sunshine for four turns.",SUNNYDAY
 1055,INVOKESAND,Invite Sand,59D,0,ROCK,Status,0,10,0,NearOther,0,bce,"The user poisons the target, then summons sandstorm for four turns.",SANDSTORM
 1056,INVOKERAIN,Invoke Rain,59B,0,WATER,Status,0,10,0,NearOther,0,bce,"The user numbs the target, then summons rain for four turns.",RAINDANCE

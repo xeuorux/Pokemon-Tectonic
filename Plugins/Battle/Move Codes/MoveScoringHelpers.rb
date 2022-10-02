@@ -26,18 +26,18 @@ def getStatusSettingMoveScore(statusApplying,score,user,target,skill=100,policie
 end
 
 # Actually used for numbing now
-def getParalysisMoveScore(score,user,target,skill=100,policies=[],statusMove=false,twave=false)
-	wouldBeFailedTWave = twave && Effectiveness.ineffective?(pbCalcTypeMod(:ELECTRIC,user,target))
-	if target.pbCanParalyze?(user,false) && !wouldBeFailedTWave
+def getParalysisMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+	if target && target.pbCanParalyze?(user,false)
 		score += 10
 		aspeed = pbRoughStat(user,:SPEED,skill)
 		ospeed = pbRoughStat(target,:SPEED,skill)
-		if aspeed<ospeed
+		if aspeed < ospeed
 			score += 30
-		elsif aspeed>ospeed
+		elsif aspeed > ospeed
 			score -= 30
 		end
 		score -= 60 if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
+		score += 50 if statusMove && user.hasStatusPunishMove?
 	elsif statusMove
 		return 0
 	end
@@ -49,6 +49,7 @@ def getPoisonMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 		score += 30
 		score -= 60 if target.hasActiveAbilityAI?([:TOXICBOOST,:POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
+		score += 50 if statusMove && user.hasStatusPunishMove?
 	elsif statusMove
 		return 0
 	end
@@ -60,6 +61,7 @@ def getBurnMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 		score += 30
 		score -= 60 if target.hasActiveAbilityAI?([:FLAREBOOST,:BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
+		score += 50 if statusMove && user.hasStatusPunishMove?
 	elsif statusMove
 		return 0
 	end
@@ -71,6 +73,7 @@ def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],statusMove=fal
 		score += 30
 		score -= 60 if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
+		score += 50 if statusMove && user.hasStatusPunishMove?
 	elsif statusMove
 		return 0
 	end
@@ -84,6 +87,7 @@ def getSleepMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	else
 		score += 100
 	end
+	score += 50 if statusMove && user.hasStatusPunishMove?
 	return score
 end
 
@@ -94,6 +98,7 @@ def getFlusterMoveScore(score,user,target,skill=100,policies=[],statusMove=false
 		score += 20 if user.hasPhysicalAttack?
 		score -= 60 if target.hasActiveAbilityAI?([:FLUSTERFLOCK].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
+		score += 50 if statusMove && user.hasStatusPunishMove?
 	elsif statusMove?
 		return 0
 	end
@@ -107,21 +112,22 @@ def getMystifyMoveScore(score,user,target,skill=100,policies=[],statusMove=false
 		score += 20 if user.hasSpecialAttack?
 		score -= 60 if target.hasActiveAbilityAI?([:HEADACHE].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
+		score += 50 if statusMove && user.hasStatusPunishMove?
 	elsif statusMove?
 		return 0
 	end
 	return score
 end
 
-def getFlinchingMoveScore(score,user,target,skill,policies)
+def getFlinchingMoveScore(score,user,target,skill,policies,magnitude=3)
 	userSpeed = pbRoughStat(user,:SPEED,skill)
     targetSpeed = pbRoughStat(target,:SPEED,skill)
     
-    if target.hasActiveAbilityAI?(:INNERFOCUS) || target.effects[PBEffects::Substitute] != 0 ||
+    if target.hasActiveAbilityAI?(:INNERFOCUS) || target.effects[PBEffects::Substitute] > 0 ||
           target.effects[PBEffects::FlinchedAlready] || targetSpeed > userSpeed
-      score -= 30
+      score -= magnitude * 10
     else
-      score += 30
+      score += magnitude * 10
     end
 	return score
 end
@@ -167,13 +173,19 @@ def getSelfKOMoveScore(score,user,target,skill=100)
 	return score
 end
 
-def hazardWeightOnSide(side)
+def statusSpikesWeightOnSide(side,excludeEffects=[])
 	hazardWeight = 0
-	hazardWeight += 20 * side.effects[PBEffects::Spikes]
-	hazardWeight += 20 * side.effects[PBEffects::ToxicSpikes]
-	hazardWeight += 20 * side.effects[PBEffects::FlameSpikes]
-	hazardWeight += 20 * side.effects[PBEffects::FrostSpikes]
-	hazardWeight += 50 if side.effects[PBEffects::StealthRock]
+	hazardWeight += 20 * side.effects[PBEffects::ToxicSpikes] if !excludeEffects.include?(PBEffects::ToxicSpikes)
+	hazardWeight += 20 * side.effects[PBEffects::FlameSpikes] if !excludeEffects.include?(PBEffects::FlameSpikes)
+	hazardWeight += 20 * side.effects[PBEffects::FrostSpikes] if !excludeEffects.include?(PBEffects::FrostSpikes)
+	return 0
+end
+
+def hazardWeightOnSide(side,excludeEffects=[])
+	hazardWeight = 0
+	hazardWeight += 20 * side.effects[PBEffects::Spikes] if !excludeEffects.include?(PBEffects::Spikes)
+	hazardWeight += 50 if side.effects[PBEffects::StealthRock] if !excludeEffects.include?(PBEffects::StealthRock)
+	hazardWeight += statusSpikesWeightOnSide(side,excludeEffects)
 	return hazardWeight
 end
 
@@ -184,6 +196,7 @@ def getSwitchOutMoveScore(score,user,target,skill=100)
 end
 
 def getForceOutMoveScore(score,user,target,skill=100,statusMove=false)
+	return 0 if target.substituted?
 	count = 0
 	@battle.pbParty(target.index).each_with_index do |pkmn,i|
 		count += 1 if @battle.pbCanSwitchLax?(target.index,i)
@@ -201,15 +214,17 @@ def getSelfKOMoveScore(score,user,target,skill=100)
 	return score
 end
 
-def getTargetedHealingMoveScore(score,user,target,skill)
+def getHealingMoveScore(score,user,target,skill=100,magnitude=5)
 	return 0 if user.opposes?(target) && !target.effects[PBEffects::NerveBreak]
     return 0 if !user.opposes?(target) && target.effects[PBEffects::NerveBreak]
-
-	score += 20 if target.hasActiveAbilityAI?(:ROOTED)
-    score += 10 if target.hasActiveAbilityAI?(:ROOTED)
-    score += 10 if target.hasActiveItem?(:BIGROOT)
     if target.hp <= target.totalhp / 2
-      score += 20
+      	score += magnitude * 10
+	  	score += 10 if target.hasActiveAbilityAI?(:ROOTED)
+    	score += 10 if target.hasActiveItem?(:BIGROOT)
     end
+	if !user.opposes?(target)
+		score += target.stages[:DEFENSE] * 2 * magnitude
+		score += target.stages[:SPECIAL_DEFENSE] * 2 * magnitude
+	end
 	return score
 end
