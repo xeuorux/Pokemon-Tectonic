@@ -1626,7 +1626,10 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
         :MISTYTERRAIN,
         :THUNDERWAVE,
         :DREAMEATER,
-        :FURYATTACK
+        :FURYATTACK,
+        :MAGNETICFLUX,
+        :SPITE,
+        :GRUDGE,
     ]
   end
 
@@ -2809,8 +2812,7 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    reserves = @battle.pbAbleNonActiveCount(user.idxOwnSide)
-    return 0 if reserves == 0 # don't want to lose or draw
+    return 0 if !user.alliesInReserve?
     if !user.bunkeringDown?(true)
       return 0 if user.hp > user.totalhp / 2
       score -= 20
@@ -2944,7 +2946,7 @@ class PokeBattle_Move_0E5 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
     failed = true
     targets.each do |b|
-      next if b.effects[PBEffects::PerishSong]>0   # Heard it before
+      next if b.effects[PBEffects::PerishSong] > 0   # Heard it before
       failed = false
       break
     end
@@ -2970,7 +2972,7 @@ class PokeBattle_Move_0E5 < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    return 0 if @battle.pbAbleNonActiveCount(user.idxOwnSide) == 0
+    return 0 if !user.alliesInReserve?
     return score
   end
 end

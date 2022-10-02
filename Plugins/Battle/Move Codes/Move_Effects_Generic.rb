@@ -268,25 +268,27 @@ class PokeBattle_StatUpMove < PokeBattle_Move
   def getScore(score,user,target,skill=100)
     statToRaise = @statUp[0]
     statRaiseAmount = @statUp[1]
-
-    # Stat up moves tend to be strong on the first turn
-    if user.firstTurn?
-      if damagingMove?
-        score += 20 
-      else
-        score += 50
-      end	
-    end
-
-    score += 20 if statRaiseAmount > 1	 # Stat up moves that raise stats multiple times are better
-    score += 20 if statRaiseAmount > 2	 # Stat up moves that raise stats multiple times are better
-
+    
     # Wont use this move if it boosts an offensive
 		# Stat that the pokemon can't actually use
     if !damagingMove?
 		  return 0 if statToRaise == :ATTACK && !user.hasPhysicalAttack?
 		  return 0 if statToRaise == :SPECIAL_ATTACK && !user.hasSpecialAttack?
     end
+
+    # Stat up moves tend to be strong on the first turn
+    score += 50 if user.firstTurn? && !damagingMove?
+
+    # Stat up moves tend to be strong when you are protected by a substitute
+	  score += 30 if target.substituted?
+
+    # Feel more free to use the move the fewer pokemon that can attack you this turn
+    user.eachPotentialAttacker do |b|
+      score -= 20
+    end
+
+    score += 20 if statRaiseAmount > 1	 # Stat up moves that raise stats multiple times are better
+    score += 20 if statRaiseAmount > 2	 # Stat up moves that raise stats multiple times are better
 	
 		score -= user.stages[statToRaise]*10
 
@@ -297,6 +299,8 @@ class PokeBattle_StatUpMove < PokeBattle_Move
 end
 
 class PokeBattle_MultiStatUpMove < PokeBattle_Move
+  # Each subclass of this must initialize a @statUp in its initialization method
+
   def pbMoveFailed?(user,targets)
     return false if damagingMove?
     failed = true
@@ -334,35 +338,7 @@ class PokeBattle_MultiStatUpMove < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    # Stat up moves tend to be strong on the first turn
-    if user.firstTurn? && !damagingMove?
-        score += 30
-    end
-
-    score += 30 if user.hp > user.totalhp
-
-    # Analyze each stat up entry
-		upsPhysicalAttack = false
-		upsSpecialAttack = false
-    totalStats = 0
-		for i in 0...@statUp.length/2
-			statSym = @statUp[i*2]
-			score -= user.stages[statSym] * 10 # Reduce the score for each existing stage
-			upsPhysicalAttack = true if statSym == :ATTACK
-			upsSpecialAttack = true if statSym == :SPECIAL_ATTACK
-      totalStats += 1
-		end
-
-    score += 20 if totalStats > 2	 # Stat up moves that raise 3 or more stats are better
-
-		# Check if it boosts an offensive stat that the pokemon can't actually use
-    if !damagingMove?
-      return 0 if upsPhysicalAttack && !upsSpecialAttack && !user.hasPhysicalAttack?
-      return 0 if !upsPhysicalAttack && upsSpecialAttack && !user.hasSpecialAttack?
-    end
-
-		score -= 10 if !upsPhysicalAttack && !upsSpecialAttack # Boost moves that dont up offensives are worse
-		
+    score = getMultiStatUpMoveScore(@statUp,score,user,target,skill,statusMove?)
 		return score
 	end
 end
@@ -647,8 +623,13 @@ class PokeBattle_HealingMove < PokeBattle_Move
   def healingMove?;       return true; end
   def pbHealAmount(user); return 1;    end
 
+  def initialize(battle,move)
+    @scoringMagnitude = 5
+    super
+  end
+
   def pbMoveFailed?(user,targets)
-    if user.hp==user.totalhp
+    if user.hp == user.totalhp
       @battle.pbDisplay(_INTL("{1}'s HP is full!",user.pbThis))
       return true
     end
@@ -657,12 +638,14 @@ class PokeBattle_HealingMove < PokeBattle_Move
 
   def pbEffectGeneral(user)
     amt = pbHealAmount(user)
-    user.pbRecoverHP(amt)
-    @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+    if amt > 0
+      user.pbRecoverHP(amt)
+      @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+    end
   end
 
   def getScore(score,user,target,skill=100)
-    score = getHealingMoveScore(score,user,target,skill,5)
+    score = getHealingMoveScore(score,user,target,skill,@scoringMagnitude)
     return score
   end
 end
@@ -1034,6 +1017,9 @@ class PokeBattle_FrostbiteMove < PokeBattle_Move
 end
 
 class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
+
+  # Each subclass of this must initialize a @statUp in its initialization method
+
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
     failed = true
@@ -1092,16 +1078,9 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-    return 0 if target.opposes?(user)
-      failed = true
-    for i in 0...@statUp.length/2
-      score -= target.stages[@statUp[i*2]] * 10
-        failed = false if target.pbCanRaiseStatStage?(@statUp[i*2],user,self)
-        break
-      end
-    score = 0 if failed
-    return score
-  end
+    score = getMultiStatUpMoveScore(@statUp,score,user,target,skill,statusMove?)
+		return score
+	end
 end
 
 class PokeBattle_DoublingMove < PokeBattle_Move

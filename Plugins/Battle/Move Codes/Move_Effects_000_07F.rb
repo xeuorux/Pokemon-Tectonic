@@ -921,6 +921,16 @@ class PokeBattle_Move_037 < PokeBattle_Move
     stat = @statArray[@battle.pbRandom(@statArray.length)]
     target.pbRaiseStatStage(stat,2,user)
   end
+
+  def getScore(score,user,target,skill=100)
+    score -= 20 # Annoying moves tax
+    statStageTotal = 0
+    GameData::Stat.each_battle do |s|
+      statStageTotal += target.stages[s.id]
+    end
+    score -= statStageTotal * 5
+    return score
+  end
 end
 
 #===============================================================================

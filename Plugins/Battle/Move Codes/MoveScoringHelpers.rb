@@ -155,13 +155,10 @@ def getHazardSettingMoveScore(score,user,target,skill=100)
 		canChoose = true
 		break
 	end
-	if !canChoose
-		# Opponent can't switch in any Pokemon
-		return 0
-	else
-		score += 20 * @battle.pbAbleNonActiveCount(user.idxOpposingSide)
-		score += 10 * @battle.pbAbleNonActiveCount(user.idxOwnSide)
-	end
+	return 0 if !canChoose # Opponent can't switch in any Pokemon
+		
+	score += 20 * user.enemiesInReserveCount
+	score += 10 * user.alliesInReserveCount
 	return score
 end
 
@@ -185,6 +182,7 @@ def hazardWeightOnSide(side,excludeEffects=[])
 	hazardWeight = 0
 	hazardWeight += 20 * side.effects[PBEffects::Spikes] if !excludeEffects.include?(PBEffects::Spikes)
 	hazardWeight += 50 if side.effects[PBEffects::StealthRock] if !excludeEffects.include?(PBEffects::StealthRock)
+	hazardWeight += 20 if side.effects[PBEffects::StickyWeb]
 	hazardWeight += statusSpikesWeightOnSide(side,excludeEffects)
 	return hazardWeight
 end
@@ -226,5 +224,45 @@ def getHealingMoveScore(score,user,target,skill=100,magnitude=5)
 		score += target.stages[:DEFENSE] * 2 * magnitude
 		score += target.stages[:SPECIAL_DEFENSE] * 2 * magnitude
 	end
+	return score
+end
+
+def getMultiStatUpMoveScore(statUp,score,user,target,skill=100,statusMove=true)
+    # Stat up moves tend to be strong on the first turn
+    score += 50 if target.firstTurn? && statusMove
+
+	# Stat up moves tend to be strong when you have HP to use
+    score += 30 if target.hp > target.totalhp / 2
+	
+	# Stat up moves tend to be strong when you are protected by a substitute
+	score += 30 if target.substituted?
+
+    # Feel more free to use the move the fewer pokemon that can attack the buff receiver this turn
+    target.eachPotentialAttacker do |b|
+      score -= 20
+    end
+
+    # Analyze each stat up entry
+	upsPhysicalAttack = false
+	upsSpecialAttack = false
+	totalStats = 0
+	for i in 0...statUp.length/2
+		statSymbol = statUp[i*2]
+		score -= target.stages[statSymbol] * 10 # Reduce the score for each existing stage
+		upsPhysicalAttack = true if statSymbol == :ATTACK
+		upsSpecialAttack = true if statSymbol == :SPECIAL_ATTACK
+		totalStats += 1
+	end
+
+    score += 20 if totalStats > 2	 # Stat up moves that raise 3 or more stats are better
+
+	# Check if it boosts an offensive stat that the pokemon can't actually use
+    if statusMove
+      return 0 if upsPhysicalAttack && !upsSpecialAttack && !target.hasPhysicalAttack?
+      return 0 if !upsPhysicalAttack && upsSpecialAttack && !target.hasSpecialAttack?
+    end
+
+	score -= 10 if !upsPhysicalAttack && !upsSpecialAttack # Boost moves that dont up offensives are worse
+	
 	return score
 end

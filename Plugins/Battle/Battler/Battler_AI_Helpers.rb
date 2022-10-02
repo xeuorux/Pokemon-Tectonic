@@ -54,12 +54,15 @@ class PokeBattle_Battler
 	end
 
 	def hasStatusPunishMove?
-		user.eachMove do |m|
-			next if !m.id == "07F"
-			return true
-		end
-		return false
+		return pbHasMoveFunction?("07F") # Hex, Cruelty
 	end
+
+	def pbHasAttackingType?(check_type)
+		return false if !check_type
+		check_type = GameData::Type.get(check_type).id
+		eachMove { |m| return true if m.type == check_type && m.damagingMove? }
+		return false
+	  end
 
 	def hasAlly?
 		eachAlly do |b|
@@ -67,6 +70,22 @@ class PokeBattle_Battler
 			break
 		end
 		return false
+	end
+
+	def alliesInReserveCount
+		return @battle.pbAbleNonActiveCount(idxOwnSide)
+	end
+
+	def alliesInReserve?
+		return alliesInReserveCount() != 0
+	end
+
+	def enemiesInReserveCount
+		return @battle.pbAbleNonActiveCount(idxOpposingSide)
+	end
+
+	def enemiesInReserve?
+		return enemiesInReserveCount() != 0
 	end
 
      # A helper method that diverts to an AI-based check or a true calculation check as appropriate
@@ -140,6 +159,13 @@ class PokeBattle_Battler
 			next if categoryOnly == 0 && !b.hasPhysicalAttack?
 			next if categoryOnly == 1 && !b.hasSpecialAttack?
 			next if categoryOnly == 2 && !b.hasStatusMove?
+			yield b
+		end
+	end
+
+	def eachPotentialDamager(categoryOnly=-1)
+		eachPotentialAttacker do |b|
+			next if b.hasDamagingAttack?
 			yield b
 		end
 	end
