@@ -98,7 +98,8 @@ class PokeBattle_AI
         PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) is trying to find a teammate to swap into. Its switching bias is #{switchingBias}.")
         list = pbGetPartyWithSwapRatings(idxBattler)
         listSwapOutCandidates(battler,list)
-        list.delete_if {|val| !@battle.pbCanSwitch?(idxBattler,val[0]) || (switchingBias + val[1] < 0)}
+        list.delete_if {|val| !@battle.pbCanSwitch?(idxBattler,val[0]) || (switchingBias + val[1] <= 1)}
+        # Only considers swapping into pokemon whose rating would be at least a +2 upgrade
     
         if list.length > 0
             partySlotNumber = list[0][0]
