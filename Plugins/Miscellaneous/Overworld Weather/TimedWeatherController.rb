@@ -139,9 +139,9 @@ def applyOutdoorEffects()
     if weather_metadata.nil?
         weatherSym,strength = getWeatherForTimeAndMap(pbGetTimeNow,map_id)
 
-        if [:None,:Rain,:Overcast].include?(weatherSym)
+        if [:None,:Rain,:Overcast,:Snow].include?(weatherSym)
             speed = 6
-            if [:Rain,:Overcast].include?(weatherSym)
+            if [:Rain,:Overcast,:Snow].include?(weatherSym)
                 speed -= strength * 2
             end
             speed = [speed,0].max
@@ -149,7 +149,7 @@ def applyOutdoorEffects()
             velY = (Math.sin((pbGetTimeNow.hour + 2 + pbGetTimeNow.day) / 12.0 * Math::PI) * speed).round
 
             opacity = 50
-            if [:Rain,:Overcast].include?(weatherSym)
+            if [:Rain,:Overcast,:Snow].include?(weatherSym)
                 opacity -= strength * 4
             end
             applyFog('clouds_fog_texture_high_contrast',0,opacity,velX,velY,2)
