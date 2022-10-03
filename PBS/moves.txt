@@ -397,7 +397,7 @@
 380,HAIL,Hail,102,0,ICE,Status,0,10,0,BothSides,0,,"Summons hail for five turns. Damages non-Ice,non-Ghost-types every turn.",
 381,HAZE,Haze,051,0,ICE,Status,0,25,0,BothSides,0,,"The user creates a haze that eliminates every stat change among all the Pokémon engaged in battle.",
 382,MIST,Mist,056,0,ICE,Status,0,25,0,UserSide,0,d,"The user cloaks its body with a white mist that prevents any of its or its allies stats from being cut for ten turns.",
-383,TRIPLEAXEL,Triple Axel,0BF,20,ICE,Physical,90,10,0,NearOther,0,abef,"A consecutive three-kick attack that becomes more powerful with each successful hit.",
+383,TRIPLEAXEL,Triple Axel,0BF,20,ICE,Physical,100,10,0,NearOther,0,abef,"A consecutive three-kick attack that becomes more powerful with each successful hit.",
 384,GLACIALLANCE,Glacial Lance,000,130,ICE,Physical,100,5,0,NearOther,0,bef,"The user attacks by hurling a blizzard-cloaked icicle lance at opposing Pokémon.",
 #-------------------------------
 385,EXPLOSION,Explosion,0E0,350,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,"The user explodes to inflict damage on those around it. The user faints upon using this move.",
@@ -1067,7 +1067,7 @@
 1001,ASTRALDREAM,Astral Dream,56C,0,PSYCHIC,Status,0,10,0,User,0,d,"This move raises all the user's stats. Can only be used while asleep.",COSMICPOWER
 1002,VINEMAZE,Vine Maze,56F,70,GRASS,Physical,100,10,100,AllNearFoes,0,abef,"The user spurs hundreds of vines to ensnare all enemies, lowering the speed of any that moved first.",FRENZYPLANT
 1003,JOKEJOLT,Joke Jolt,0BA,30,ELECTRIC,Special,100,10,100,NearOther,0,bef,"The target is pranked by an electric jolt. They are taunted and unable to use status moves for 3 turns.",THUNDERSHOCK
-1004,PHOTONEDGE,Photon Edge,007,70,ELECTRIC,Physical,100,15,40,NearOther,0,abeh,"The user slices with claws of light that have a 40% chance to numb. Critical hits land more easily.",
+1004,PHOTONEDGE,Photon Edge,007,85,ELECTRIC,Physical,100,15,50,NearOther,0,abeh,"The user slices with claws of light that have a 50% chance to numb. Critical hits land more easily.",
 1005,FRANTICFANG,Frantic Fang,571,60,NORMAL,Physical,100,10,0,NearOther,0,abei,"Channeling fear, the user bites the target. Deals double damage if the user is below half health.",HYPERFANG
 1006,TRANQUILTUNE,Tranquil Tune,572,0,FAIRY,Status,100,10,0,NearOther,0,befk,"The user sings an odd melody. If the target is statused, puts it to sleep and raises the user's Attack.",SING
 1007,SUGARBALL,Sugar Ball,08D,1,FAIRY,Special,100,5,0,NearOther,0,befn,"The user tackles the target with a sugary spin. The slower the user, the greater the damage.",
