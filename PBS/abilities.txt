@@ -455,6 +455,7 @@
 454,STYLISH,Stylish,"This Pokémon benefits twice as much from style points."
 455,ROOTED,Rooted,"This Pokemon gets 50% more healing from all sources."
 456,FINESUGAR,Fine Sugar,"Restores 1/8 HP in sun, 1/4 when hit by Fire-type moves. Loses 1/8 in rain, takes 25% more from Water-type moves."
+457,RAMMINGSPEED,Ramming Speed,"Attack is boosted by 30% if a Tailwind is blowing."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

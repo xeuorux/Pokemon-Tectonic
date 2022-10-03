@@ -278,3 +278,11 @@ BattleHandlers::DamageCalcUserAbility.add(:TUNNELMAKER,
     mults[:attack_multiplier] *= 1.5 if type == :GROUND
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:RAMMINGSPEED,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if move.physicalMove? && user.pbOwnSide.effects[PBEffects::Tailwind] > 0
+      mults[:attack_multiplier] *= 1.30
+    end
+  }
+)
