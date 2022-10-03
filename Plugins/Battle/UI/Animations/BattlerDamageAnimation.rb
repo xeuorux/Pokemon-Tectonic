@@ -92,14 +92,17 @@ class BattlerDamageAnimation < PokeBattle_Animation
 		# Set up battler/shadow sprite
 		battler = addSprite(batSprite,PictureOrigin::Bottom)
 		shadow  = addSprite(shaSprite,PictureOrigin::Center)
-		# Animation
-		delay = 0
-		case @effectiveness
-		when 0.25,0.5 	then battler.setSE(delay, "Battle damage weak")
-		when 1 			then battler.setSE(delay, "Battle damage normal")
-		when 2 			then battler.setSE(delay, "Battle damage super")
-		when 4 			then battler.setSE(delay, "Battle damage hyper")
+
+		if @effectiveness < 1
+			battler.setSE(delay, "Battle damage weak")
+		elsif @effectiveness < 2
+			battler.setSE(delay, "Battle damage normal")
+		elsif @effectiveness < 4
+			battler.setSE(delay, "Battle damage super")
+		else
+			battler.setSE(delay, "Battle damage hyper")
 		end
+
 		if @fastHitAnimation
 			flashesCount = 1
 		else
