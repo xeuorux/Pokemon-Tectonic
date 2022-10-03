@@ -1062,7 +1062,7 @@
 996,FRIGIDJEALOUSY,Frigid Jealousy,537,70,ICE,Special,100,12,100,AllNearFoes,0,bef,"Attacks with emotion from jealousy. All opposing Pokémon with stat boosts get frostbitten.",
 997,CORECOLLAPSE,Core Collapse,0FC,120,PSYCHIC,Special,100,10,0,AllNearOthers,1,bef,"Astral energy explodes around the target. This move always goes first. The user also takes 50% recoil.",EXPANDINGFORCE
 998,PATTERNRELEASE,Pattern Release,56C,35,PSYCHIC,Physical,100,10,0,RandomNearFoe,0,abef,"Unveiling its ears, the released psychic frenzy causes the user to attack 3-5 times for three turns.",FURYSWIPES
-999,THUNDERBELLY,Thunder Belly,56B,200,ELECTRIC,Physical,100,10,0,AllNearFoes,0,abef,"The user take's an entire grid of power into its belly to slam the target. The user takes 100% recoil.",BODYSLAM
+999,THUNDERBELLY,Thunder Belly,56B,200,ELECTRIC,Physical,100,10,0,AllNearFoes,0,abef,"The user takes an entire grid of power into its belly to slam the target. The user takes 100% recoil.",BODYSLAM
 1000,VOLLEYSTANCE,Volley Stance,56D,0,STEEL,Status,0,10,0,User,0,d,"The user prepares its dual cannons. Until switch out, each special attack hits twice.",FOCUSENERGY
 1001,ASTRALDREAM,Astral Dream,56C,0,PSYCHIC,Status,0,10,0,User,0,d,"This move raises all the user's stats. Can only be used while asleep.",COSMICPOWER
 1002,VINEMAZE,Vine Maze,56F,70,GRASS,Physical,100,10,100,AllNearFoes,0,abef,"The user spurs hundreds of vines to ensnare all enemies, lowering the speed of any that moved first.",FRENZYPLANT
