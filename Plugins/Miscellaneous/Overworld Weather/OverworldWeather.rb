@@ -39,7 +39,7 @@ module RPG
         @tile_x               = 0.0
         @tile_y               = 0.0
         @sun_magnitude        = 0   # +/- maximum addition to sun tone
-        @sun_strength         = 0   # Current addition to sun tone (0 to @sun_magnitude)
+        @sun_tone_shift         = 0   # Current addition to sun tone (0 to @sun_magnitude)
         @time_until_flash     = 0
         @sprites              = []
         @sprite_lifetimes     = []
@@ -415,7 +415,7 @@ module RPG
         if weather_type == :Sun
           maxMagnitude = 30 * intensityRating()
           @sun_magnitude = maxMagnitude if @sun_magnitude != maxMagnitude && @sun_magnitude != -maxMagnitude
-          @sun_magnitude *= -1 if (@sun_magnitude > 0 && @sun_strength > @sun_magnitude) || (@sun_magnitude < 0 && @sun_strength < 0)
+          @sun_magnitude *= -1 if (@sun_magnitude > 0 && @sun_tone_shift > @sun_magnitude) || (@sun_magnitude < 0 && @sun_tone_shift < 0)
           halfFlashTime = (2.0 - intensityRating())
           @sun_tone_shift += @sun_magnitude.to_f * Graphics.delta_s / halfFlashTime
           tone_red += @sun_tone_shift

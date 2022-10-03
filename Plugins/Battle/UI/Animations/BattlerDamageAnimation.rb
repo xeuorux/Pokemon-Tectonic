@@ -93,6 +93,7 @@ class BattlerDamageAnimation < PokeBattle_Animation
 		battler = addSprite(batSprite,PictureOrigin::Bottom)
 		shadow  = addSprite(shaSprite,PictureOrigin::Center)
 
+		delay = 0
 		if @effectiveness < 1
 			battler.setSE(delay, "Battle damage weak")
 		elsif @effectiveness < 2
