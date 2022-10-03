@@ -413,14 +413,14 @@ module RPG
         end
         # Modify base tone
         if weather_type == :Sun
-          @sun_magnitude = @weather_max if @sun_magnitude != @weather_max && @sun_magnitude != -@weather_max
-          @sun_magnitude *= -1 if (@sun_magnitude > 0 && @sun_strength > @sun_magnitude) ||
-                                  (@sun_magnitude < 0 && @sun_strength < 0)
+          maxMagnitude = 30 * intensityRating()
+          @sun_magnitude = maxMagnitude if @sun_magnitude != maxMagnitude && @sun_magnitude != -maxMagnitude
+          @sun_magnitude *= -1 if (@sun_magnitude > 0 && @sun_strength > @sun_magnitude) || (@sun_magnitude < 0 && @sun_strength < 0)
           halfFlashTime = (2.0 - intensityRating())
-          @sun_strength += @sun_magnitude.to_f * Graphics.delta_s / halfFlashTime
-          tone_red += @sun_strength
-          tone_green += @sun_strength
-          tone_blue += @sun_strength / 2
+          @sun_tone_shift += @sun_magnitude.to_f * Graphics.delta_s / halfFlashTime
+          tone_red += @sun_tone_shift
+          tone_green += @sun_tone_shift
+          tone_blue += @sun_tone_shift / 2
         end
         # Apply screen tone
         @viewport.tone.set(tone_red * fraction, tone_green * fraction,

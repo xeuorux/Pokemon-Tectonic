@@ -87,7 +87,7 @@ GameData::Weather.register({
   :id_number        => 7,
   :category         => :Sun,
   :tone_proc        => proc { |strength|
-    next Tone.new(strength, strength, strength/2, 0)
+    next Tone.new(strength * 3/4, strength * 3/4, strength * 3/8, 0)
   }
 })
 
@@ -109,5 +109,15 @@ GameData::Weather.register({
   :tile_delta_y     => 0,
   :tone_proc        => proc { |strength|
     next Tone.new(strength / 4, 0, -strength / 4, 0)
+  }
+})
+
+GameData::Weather.register({
+  :id               => :Overcast,
+  :id_number        => 10,   # Must be 1 (preset RMXP weather)
+  :category         => :Rain,
+  :graphics         => [],   # Last is splash
+  :tone_proc        => proc { |strength|
+    next Tone.new(-strength * 2 / 3, -strength * 2 / 3, -strength * 2 / 3, 10)
   }
 })

@@ -49,6 +49,83 @@ CONSTANT_FOG_MAPS = [
 
 # Every other map is assumed to be temperate, with potential for both hot days, cold days, wet days, and dry days in equal measure
 
+def getWeatherForTimeAndMap(time,map_id)
+    clockHour = time.hour
+    hours = (time - UnrealTime.initial_date).to_i / (60 * 60)
+
+    # Both of these go from -3 to +3
+    hotnessThisHour = (3 * Math.sin(hours / 31.0) * Math.sin(hours / 87.0))
+    hotnessThisHour += 0.45 # The game takes place in summer
+    hotnessThisHour = hotnessThisHour.round
+
+    wetnessThisHour = (3 * Math.cos(hours / 31.0) * Math.cos(hours / 87.0))
+    wetnessThisHour = wetnessThisHour.round
+
+    echoln("Hour #{hours} hotness/wetness: #{hotnessThisHour}, #{wetnessThisHour}")
+
+    # Hotter near noon, colder near midnight
+    # Up to + 1 and down to -1
+    hotness = hotnessThisHour
+    hotness += (1 - (clockHour - 11).abs / 6).round
+
+    # Wetter near 6 AM and 6 PM, dryer neat midnight and noon
+    # Up to + 1 and down to -1
+    wetness = wetnessThisHour
+    wetness += (1 - 2 * [(clockHour - 5).abs / 6,(clockHour - 17).abs / 6].min).round
+
+    echoln("Hotness/wetness after time of day mod: #{hotness}, #{wetness}")
+
+    if HOT_MAPS.include?(map_id)
+        hotness += 1
+    elsif COLD_MAPS.include?(map_id)
+        hotness -= 1
+    end
+
+    if WET_MAPS.include?(map_id)
+        wetness += 1
+    elsif DRY_MAPS.include?(map_id)
+        wetness -= 1
+    end
+
+    echoln("Hotness/wetness after map mod: #{hotness}, #{wetness}")
+
+    weatherSym = :None
+
+    # Within this section, strength is treated as between 1-5
+    strength = 1
+    if CONSTANT_FOG_MAPS.include?(map_id)
+        weatherSym = :Fog
+    else
+        hotWetness = hotness + wetness
+        hotDryness = hotness - wetness
+        coldWetness = -hotness + wetness
+        coldDryness = -hotness - wetness
+        
+        if hotness > 0 && wetness > 0 && hotWetness >= 4
+            weatherSym, strength = getHotWetWeather(hotWetness - 3)
+            strength *= 2
+        elsif hotness > 0 && wetness < 0 && hotDryness >= 4
+            weatherSym, strength = getHotDryWeather(hotDryness - 3)
+            strength *= 2
+        elsif hotness < 0 && wetness > 0 && coldWetness >= 4
+            weatherSym, strength = getColdWetWeather(coldWetness - 3)
+            strength *= 2
+        elsif hotness < 0 && wetness < 0 && coldDryness >= 4
+            weatherSym, strength = getColdDryWeather(coldDryness - 3)
+            strength *= 2
+        elsif hotness >= 3
+            weatherSym, strength = getHotWeather(hotness - 2)
+        elsif hotness <= -3
+            weatherSym, strength = getColdWeather(-hotness - 2)
+        elsif wetness >= 3
+            weatherSym, strength = getWetWeather(wetness - 2)
+        elsif wetness <= -3
+            weatherSym, strength = getDryWeather(-wetness - 2)
+        end
+    end
+    return weatherSym, strength
+end
+
 def weatherRNGByHour(totalHours)
     return (Math.sin(day * 2.0) * Math.sin(day * 4.0) * Math.sin(day * 8.0)).abs
 end
@@ -60,87 +137,19 @@ def applyOutdoorEffects()
     weather_metadata = GameData::MapMetadata.try_get(map_id).weather
 
     if weather_metadata.nil?
-        currentClockHour = pbGetTimeNow.hour
-        currentDayOfMonth = pbGetTimeNow.day
-        hours = (pbGetTimeNow - UnrealTime.initial_date).to_i / (60 * 60)
+        weatherSym,strength = getWeatherForTimeAndMap(pbGetTimeNow,map_id)
 
-        # Both of these go from -3 to +3
-        hotnessThisHour = (3 * Math.sin(hours / 31.0) * Math.sin(hours / 87.0)).round
-        wetnessThisHour = (3 * Math.cos(hours / 31.0) * Math.cos(hours / 87.0)).round
-
-        echoln("Hour #{hours} hotness/wetness: #{hotnessThisHour}, #{wetnessThisHour}")
-
-        # Hotter near noon, colder near midnight
-        # Up to + 1 and down to -1
-        currentHotness = hotnessThisHour
-        currentHotness += (1 - (currentClockHour - 11).abs / 6).round
-
-        # Wetter near 6 AM and 6 PM, dryer neat midnight and noon
-        # Up to + 1 and down to -1
-        currentWetness = wetnessThisHour
-        currentWetness += (1 - 2 * [(currentClockHour - 5).abs / 6,(currentClockHour - 17).abs / 6].min).round
-
-        echoln("Hotness/wetness after time of day mod: #{currentHotness}, #{currentWetness}")
-
-        if HOT_MAPS.include?(map_id)
-            currentHotness += 1
-        elsif COLD_MAPS.include?(map_id)
-            currentHotness -= 1
-        end
-
-        if WET_MAPS.include?(map_id)
-            currentWetness += 1
-        elsif DRY_MAPS.include?(map_id)
-            currentWetness -= 1
-        end
-
-        echoln("Hotness/wetness after map mod: #{currentHotness}, #{currentWetness}")
-
-        weatherSym = :None
-
-        # Within this section, strength is treated as between 1-5
-        strength = 1
-        if CONSTANT_FOG_MAPS.include?(map_id)
-            weatherSym = :Fog
-        else
-            hotWetness = currentHotness + currentWetness
-            hotDryness = currentHotness - currentWetness
-            coldWetness = -currentHotness + currentWetness
-            coldDryness = -currentHotness - currentWetness
-            
-            if currentHotness > 0 && currentWetness > 0 && hotWetness >= 4
-                weatherSym, strength = getHotWetWeather(hotWetness - 3)
-                strength *= 2
-            elsif currentHotness > 0 && currentWetness < 0 && hotDryness >= 4
-                weatherSym, strength = getHotDryWeather(hotDryness - 3)
-                strength *= 2
-            elsif currentHotness < 0 && currentWetness > 0 && coldWetness >= 4
-                weatherSym, strength = getColdWetWeather(coldWetness - 3)
-                strength *= 2
-            elsif currentHotness < 0 && currentWetness < 0 && coldDryness >= 4
-                weatherSym, strength = getColdDryWeather(coldDryness - 3)
-                strength *= 2
-            elsif currentHotness >= 3
-                weatherSym, strength = getHotWeather(currentHotness - 2)
-            elsif currentHotness <= -3
-                weatherSym, strength = getColdWeather(-currentHotness - 2)
-            elsif currentWetness >= 3
-                weatherSym, strength = getWetWeather(currentWetness - 2)
-            elsif currentWetness <= -3
-                weatherSym, strength = getDryWeather(-currentWetness - 2)
-            end
-        end
-
-        if [:None,:Rain].include?(weatherSym)
+        if [:None,:Rain,:Overcast].include?(weatherSym)
             speed = 6
-            if weatherSym == :Rain
-                speed -= strength
+            if [:Rain,:Overcast].include?(weatherSym)
+                speed -= strength * 2
             end
-            velX = (Math.sin(currentClockHour / 12.0 * Math::PI) * speed).round
-            velY = (Math.sin((currentClockHour + 2 + currentDayOfMonth) / 12.0 * Math::PI) * speed).round
+            speed = [speed,0].max
+            velX = (Math.sin(pbGetTimeNow.hour / 12.0 * Math::PI) * speed).round
+            velY = (Math.sin((pbGetTimeNow.hour + 2 + pbGetTimeNow.day) / 12.0 * Math::PI) * speed).round
 
             opacity = 50
-            if weatherSym == :Rain
+            if [:Rain,:Overcast].include?(weatherSym)
                 opacity -= strength * 4
             end
             applyFog('clouds_fog_texture_high_contrast',0,opacity,velX,velY,2)
@@ -171,7 +180,7 @@ def getDryWeather(strength)
 end
 
 def getHotWetWeather(strength)
-    weatherSym = :Rain
+    weatherSym = :Overcast
 
     if strength >= 4
         weatherSym = :Storm
