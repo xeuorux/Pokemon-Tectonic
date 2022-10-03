@@ -210,8 +210,10 @@ class PokeBattle_AI
     #=============================================================================
     def pbMoveBaseDamageAI(move,user,target,skill)
       baseDmg = move.baseDamage
-      baseDmg = move.pbBaseDamageAI(baseDmg,user,target,skill)
-      baseDmg = move.pbBaseDamageMultiplier(baseDmg,user,target)
+      baseDmg,isFixedDamage = move.pbBaseDamageAI(baseDmg,user,target,skill)
+      if !isFixedDamage
+        baseDmg = move.pbBaseDamageMultiplier(baseDmg,user,target)
+      end
       return baseDmg
     end
   

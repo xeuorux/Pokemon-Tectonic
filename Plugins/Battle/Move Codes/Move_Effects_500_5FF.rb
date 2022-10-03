@@ -93,11 +93,11 @@ class PokeBattle_Move_505 < PokeBattle_Move
   def getScore(score,user,target,skill=100)
 	if !target.opposes? # Targeting a player's pokemon
 		# If damage looks like its going to kill the enemy, allow the move, otherwise don't
-		damage = @battle.battleAI.pbTotalDamageAI(self,user,target,skill,baseDmg)
+		damage = @battle.battleAI.pbTotalDamageAI(self,user,target,skill,baseDamage)
 		score = damage >= target.hp ? 150 : 0
 	else
 		# If damage looks like its going to kill or mostly kill the ally, don't allow the move
-		damage = @battle.battleAI.pbTotalDamageAI(self,user,target,skill,baseDmg)
+		damage = @battle.battleAI.pbTotalDamageAI(self,user,target,skill,baseDamage)
 		return 0 if damage >= target.hp * 0.8
 		score += target.level*4
 		score -= pbRoughStat(target,:SPEED,skill) * 2
@@ -2689,7 +2689,8 @@ class PokeBattle_Move_58F < PokeBattle_FixedDamageMove
 	def pbFixedDamage(user,target)
 		if target.hp < (target.totalhp / 3)
 			return target.hp
-		end	
+		end
+		return nil
 	end
 end
 
@@ -2762,14 +2763,7 @@ end
 # In Doubles, not affected by WideGuard.
 # Each target hit loses 1 stage of Speed. (Tar Volley)
 #===============================================================================
-class PokeBattle_Move_592 < PokeBattle_Move_0BD
-	def smartSpreadsTargets?; return true; end
-  
-	def pbNumHits(user,targets)
-	  return 1 if targets.length > 1
-	  return 2
-	end
-
+class PokeBattle_Move_592 < PokeBattle_Move_17C
 	def pbAdditionalEffect(user,target)
 		return if target.damageState.substitute
 		return if !target.pbCanLowerStatStage?(:SPEED,user,self)

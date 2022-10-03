@@ -233,7 +233,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
 
     def getScore(score,user,target,skill=100)
-      score += 20 if user.firstTurn
+      score += 20 if user.firstTurn?
       user.eachOpposing(true) do |b|
         if b.effects[PBEffects::HyperBeam] > 0
           score += 50
@@ -489,7 +489,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 
     def getScore(score,user,target,skill=100)
       return 0 if !user.alliesInReserve?
-      score += 20 if user.firstTurn
+      score += 20 if user.firstTurn?
       return score
     end
   end
@@ -782,7 +782,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 
     def getScore(score,user,target,skill=100)
       score -= 20
-      score -= 20 if !user.firstTurn
+      score -= 20 if !user.firstTurn?
       user.eachOpposing(true) do |b|
         if b.pbHasAttackingType?(:GROUND)
           score += 50
@@ -1656,9 +1656,9 @@ end
         netStages += target.stages[s.id]
       end
       if user.opposes?(target)
-        score += stagesScore * 10
+        score += netStages * 10
       else
-        score -= stagesScore * 10
+        score -= netStages * 10
       end
       return score
     end
@@ -3144,7 +3144,7 @@ class PokeBattle_Move_17C < PokeBattle_Move_0BD
     return 2
   end
 
-  def pbNumHitsAI(user,targets,skill=100)
+  def pbNumHitsAI(user,target,skill=100)
     return 2
   end
 end

@@ -46,7 +46,7 @@ class PokeBattle_Battler
 	end
 
 	def hasSoundMove?
-		user.eachMove do |m|
+		eachMove do |m|
 			next if !m.soundMove?
 			return true
 		end
@@ -154,18 +154,11 @@ class PokeBattle_Battler
 	end
 
 	def eachPotentialAttacker(categoryOnly=-1)
-		user.eachOpposing(true) do |b|
+		eachOpposing(true) do |b|
 			next if b.effects[PBEffects::HyperBeam] > 0 # Don't protect yourself from a target that can't even attack this turn
 			next if categoryOnly == 0 && !b.hasPhysicalAttack?
 			next if categoryOnly == 1 && !b.hasSpecialAttack?
 			next if categoryOnly == 2 && !b.hasStatusMove?
-			yield b
-		end
-	end
-
-	def eachPotentialDamager(categoryOnly=-1)
-		eachPotentialAttacker do |b|
-			next if b.hasDamagingAttack?
 			yield b
 		end
 	end

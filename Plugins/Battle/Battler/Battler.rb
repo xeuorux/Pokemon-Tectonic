@@ -397,9 +397,9 @@ class PokeBattle_Battler
   end
 
   def pbHeight
-    ret = (@pokemon) ? @pokemon.weight : 500
+    ret = (@pokemon) ? @pokemon.height : 2.0
     ret = 1 if ret<1
-    return ret.max
+    return ret
   end
 
   # Applies to both losing self's ability (i.e. being replaced by another) and

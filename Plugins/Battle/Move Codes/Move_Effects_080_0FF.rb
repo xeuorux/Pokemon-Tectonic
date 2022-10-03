@@ -974,7 +974,7 @@ class PokeBattle_Move_0A7 < PokeBattle_Move
   def getScore(score,user,target,skill=100)
     if target.effects[PBEffects::Foresight]
       score = 0
-    elsif target.pbHasTypeAI?(:GHOST,true)
+    elsif target.pbHasTypeAI?(:GHOST)
       score += 70
     elsif target.stages[:EVASION]<=0
       score -= 60

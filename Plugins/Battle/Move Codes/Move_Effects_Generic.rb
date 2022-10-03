@@ -522,13 +522,23 @@ class PokeBattle_FixedDamageMove < PokeBattle_Move
 	end
 
   def pbCalcDamage(user,target,numTargets=1)
-    target.damageState.critical   = false
-    target.damageState.calcDamage = pbFixedDamage(user,target)
-    target.damageState.calcDamage = 1 if target.damageState.calcDamage<1
+    fixedDamage = pbFixedDamage(user,target)
+    if !fixedDamage.nil?
+      target.damageState.critical   = false
+      target.damageState.calcDamage = 
+      target.damageState.calcDamage = 1 if target.damageState.calcDamage < 1
+    else
+      super
+    end
   end
 
   def pbBaseDamageAI(baseDmg,user,target,skill=100)
-    return pbFixedDamage(user,target)
+    fixedDamage = pbFixedDamage(user,target)
+    if !fixedDamage.nil?
+      return fixedDamage,true
+    else
+      return super,false
+    end
   end
 end
 
@@ -1143,7 +1153,7 @@ class PokeBattle_DrainMove < PokeBattle_Move
 
   def getScore(score,user,target,skill=100)
     drainScore = 10
-    drainScore += 40 * drainFactor()
+    drainScore += 40 * drainFactor(user,target)
     drainScore += 20 if user.hasActiveAbilityAI?(:ROOTED)
     drainScore += 20 if user.hasActiveItem?(:BIGROOT)
     drainScore += 20 if user.hp <= user.totalhp/2
@@ -1252,17 +1262,17 @@ end
     end
 
     def pbMoveFailed?(user,targets)
-        return false if !damagingMove?
-        if user.pbOpposingSide.effects[] >= 2
-            @battle.pbDisplay(_INTL("But it failed, since the opposing side already has two layers of #{@spikeName.downcase} spikes!"))
-            return true
-        end
-        return false
+      return false if !damagingMove?
+      if user.pbOpposingSide.effects[@spikeEffect] >= 2
+          @battle.pbDisplay(_INTL("But it failed, since the opposing side already has two layers of #{@spikeName.downcase} spikes!"))
+          return true
+      end
+      return false
     end
 
     def pbEffectGeneral(user)
-        return if damagingMove?
-        addSpikeLayer(user.pbOpposingSide,user.pbOpposingTeam(true))
+      return if damagingMove?
+      addSpikeLayer(user.pbOpposingSide,user.pbOpposingTeam(true))
     end
 
     def pbEffectAgainstTarget(user,target)
