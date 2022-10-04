@@ -5,9 +5,33 @@ class Pokemon
         return shiny_variant
     end
 
+    def colorShiftID
+        colorShiftID = 0
+        if @owner.id == $Trainer.id
+            colorShiftID = @personalID ^ @owner.id
+        else
+            #asciiName = @owner.name.encode("ASCII", "UTF-8", :replace)
+            @owner.name.each_byte do |byte|
+                colorShiftID += byte.to_i
+            end
+            name().each_byte do |byte|
+                colorShiftID += byte.to_i
+            end
+        end
+        return colorShiftID
+    end
+
+    # Should be a positive number
+    HUE_SHIFT_RANGE = 25
+
     def hueShift
-        hueShiftRange = 35 # Should be a positive number
-        return (-(hueShiftRange/2) + (@personalID ^ @owner.id) % hueShiftRange).round
+        id = colorShiftID()
+        shift = 0
+        if id != 0
+            shift = (-(HUE_SHIFT_RANGE/2.0) + (id % HUE_SHIFT_RANGE)).round
+        end
+        echoln("#{name()}'s hue is shifted by #{shift} from ID #{id}")
+        return shift
     end
 end
 

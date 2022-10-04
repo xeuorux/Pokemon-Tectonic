@@ -54,7 +54,7 @@
 51,PUNISHMENT,Punishment,08F,1,DARK,Physical,100,5,0,NearOther,0,abef,"This attack's power increases the more the target has powered up with stat changes.",
 52,DARKVOID,Dark Void,003,0,DARK,Status,100,1,0,AllNearFoes,-1,bce,"Targets are dragged into a world of total darkness that makes them sleep. This move always goes last.",
 53,EMBARGO,Embargo,0F8,0,DARK,Status,100,12,0,NearOther,0,bce,"It prevents the target from using its held item. Its Trainer is also prevented from using items on it.",
-54,FAKETEARS,Fake Tears,04F,0,DARK,Status,100,15,0,NearOther,0,bce,"The user feigns crying to fluster the target, harshly lowering its Sp. Def stat.",
+54,FAKETEARS,Fake Tears,04F,0,DARK,Status,100,15,0,NearOther,0,bce,"The user feigns crying to worry the target, harshly lowering its Sp. Def stat.",
 55,FLATTER,Flatter,55E,0,DARK,Status,100,12,0,NearOther,0,bce,"Flattery is used to mystify the target. However, it also sharply raises the target's Sp. Atk stat.",
 56,HONECLAWS,Hone Claws,029,0,DARK,Status,0,12,0,User,0,d,"The user sharpens its claws to boost its Attack stat and accuracy.",
 57,MEMENTO,Memento,0E2,0,DARK,Status,100,10,0,NearOther,0,be,"The user faints when using this move. In return, it harshly lowers the target's Attack and Sp. Atk.",
