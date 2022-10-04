@@ -1253,7 +1253,7 @@ end
     # Every subclass of this needs to assign something to @spikeEffect, and then call super
     def initialize(battle,move)
       @spikeInfo = {
-        PBEffects::ToxicSpikes => "Toxic",
+        PBEffects::ToxicSpikes => "Poison",
         PBEffects::FlameSpikes => "Flame",
         PBEffects::FrostSpikes => "Frost",
       }
@@ -1262,7 +1262,7 @@ end
     end
 
     def pbMoveFailed?(user,targets)
-      return false if !damagingMove?
+      return false if damagingMove?
       if user.pbOpposingSide.effects[@spikeEffect] >= 2
           @battle.pbDisplay(_INTL("But it failed, since the opposing side already has two layers of #{@spikeName.downcase} spikes!"))
           return true
@@ -1288,11 +1288,10 @@ end
           @battle.pbDisplay(_INTL("#{@spikeName} spikes were scattered all around {1}'s feet!",teamLabel))
       end
 
-      @spikeInfo.each do |spike|
-        next if spike == @spikeEffect
-        if side.effects[@spikeEffect] > 0
-          side.effects[@spikeEffect] = 0
-          otherName = @spikeInfo[spike]
+      @spikeInfo.each do |otherSpikeEffect,otherName|
+        next if otherSpikeEffect == @spikeEffect
+        if side.effects[otherSpikeEffect] > 0
+          side.effects[otherSpikeEffect] = 0
           @battle.pbDisplay(_INTL("The #{otherName.downcase} spikes around {1}'s feet were brushed aside!",teamLabel))
         end
       end
