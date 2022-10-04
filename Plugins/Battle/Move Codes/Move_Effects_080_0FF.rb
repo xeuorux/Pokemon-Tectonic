@@ -382,8 +382,6 @@ end
 # some semi-invulnerable targets. (Magnitude)
 #===============================================================================
 class PokeBattle_Move_095 < PokeBattle_Move
-  def hitsDiggingTargets?; return true; end
-
   def pbDisplayUseMessage(user,targets=[])
     chooseBasePower(user,targets)
     super
@@ -410,11 +408,6 @@ class PokeBattle_Move_095 < PokeBattle_Move
 
   def pbBaseDamageAI(baseDmg,user,target,skill=100)
     return 71
-  end
-
-  def pbModifyDamage(damageMult,user,target)
-    damageMult *= 2 if target.inTwoTurnAttack?("0CA")   # Dig
-    return damageMult
   end
 end
 
@@ -1630,6 +1623,8 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
         :MAGNETICFLUX,
         :SPITE,
         :GRUDGE,
+        :CONSTRICT,
+        :WRAP,
     ]
   end
 
@@ -2378,17 +2373,9 @@ class PokeBattle_Move_0CF < PokeBattle_Move
 end
 
 #===============================================================================
-# Trapping move. Traps for 5 or 6 rounds. Trapped Pokémon lose 1/16 of max HP
-# at end of each round. (Whirlpool)
-# Power is doubled if target is using Dive. Hits some semi-invulnerable targets.
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_0D0 < PokeBattle_Move_0CF
-  def hitsDivingTargets?; return true; end
-
-  def pbModifyDamage(damageMult,user,target)
-    damageMult *= 2 if target.inTwoTurnAttack?("0CB")   # Dive
-    return damageMult
-  end
+class PokeBattle_Move_0D0 < PokeBattle_Move
 end
 
 #===============================================================================

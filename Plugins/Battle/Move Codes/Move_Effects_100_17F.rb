@@ -834,6 +834,12 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   #===============================================================================
   class PokeBattle_Move_11B < PokeBattle_Move
     def hitsFlyingTargets?; return true; end
+
+    def pbBaseDamage(baseDmg,user,target)
+      baseDmg *= 2 if target.inTwoTurnAttack?("0C9","0CC","0CE") ||  # Fly/Bounce/Sky Drop
+                      target.effects[PBEffects::SkyDrop]>=0
+      return baseDmg
+    end
   end
   
   #===============================================================================

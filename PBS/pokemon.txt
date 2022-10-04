@@ -18992,7 +18992,7 @@ Type1 = PSYCHIC
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 177,50,70,92,90,70
-# Total = 554
+# Total = 549
 GenderRate = Female75Percent
 GrowthRate = Parabolic
 BaseEXP = 221

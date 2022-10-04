@@ -266,18 +266,13 @@ end
 
 #===============================================================================
 # Confuses the target. Accuracy perfect in rain, 50% in sunshine. Hits some
-# semi-invulnerable targets. (Hurricane)
+# semi-invulnerable targets. (old!Hurricane)
 #===============================================================================
 class PokeBattle_Move_015 < PokeBattle_ConfuseMove
   def hitsFlyingTargets?; return true; end
 
   def pbBaseAccuracy(user,target)
-    case @battle.pbWeather
-    when :Sun, :HarshSun
-      return 50
-    when :Rain, :HeavyRain
-      return 0
-    end
+    return 0 if [:Rain, :HeavyRain].include?(@battle.pbWeather)
     return super
   end
 end
@@ -2396,8 +2391,6 @@ end
 # OHKO. Accuracy increases by difference between levels of user and target.
 #===============================================================================
 class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
-  def hitsDiggingTargets?; return @id == :FISSURE; end
-
   def pbFailsAgainstTarget?(user,target)
     if target.level>user.level
       @battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
@@ -2630,31 +2623,15 @@ class PokeBattle_Move_076 < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is doubled if the target is using Bounce, Fly or Sky Drop. Hits some
-# semi-invulnerable targets. (Gust)
+# (Not currently used)
 #===============================================================================
 class PokeBattle_Move_077 < PokeBattle_Move
-  def hitsFlyingTargets?; return true; end
-
-  def pbBaseDamage(baseDmg,user,target)
-    baseDmg *= 2 if target.inTwoTurnAttack?("0C9","0CC","0CE") ||  # Fly/Bounce/Sky Drop
-                    target.effects[PBEffects::SkyDrop]>=0
-    return baseDmg
-  end
 end
 
 #===============================================================================
-# Power is doubled if the target is using Bounce, Fly or Sky Drop. Hits some
-# semi-invulnerable targets. May make the target flinch. (Twister)
+# (Currently unused.)
 #===============================================================================
-class PokeBattle_Move_078 < PokeBattle_FlinchMove
-  def hitsFlyingTargets?; return true; end
-
-  def pbBaseDamage(baseDmg,user,target)
-    baseDmg *= 2 if target.inTwoTurnAttack?("0C9","0CC","0CE") ||  # Fly/Bounce/Sky Drop
-                    target.effects[PBEffects::SkyDrop]>=0
-    return baseDmg
-  end
+class PokeBattle_Move_078 < PokeBattle_Move
 end
 
 #===============================================================================
