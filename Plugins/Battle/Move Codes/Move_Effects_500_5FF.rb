@@ -800,7 +800,6 @@ class PokeBattle_Move_52B < PokeBattle_Move
 	
     if target.pbCanFluster?(user,true,self) && attack >= spAtk
 		target.pbFluster
-	elsif target.pbCanMystify?(user,false,self) && spAtk >= attack
 	elsif target.pbCanMystify?(user,true,self) && spAtk >= attack
 		target.pbMystify
 	end
