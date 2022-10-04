@@ -525,7 +525,7 @@ class PokeBattle_FixedDamageMove < PokeBattle_Move
     fixedDamage = pbFixedDamage(user,target)
     if !fixedDamage.nil?
       target.damageState.critical   = false
-      target.damageState.calcDamage = 
+      target.damageState.calcDamage = fixedDamage
       target.damageState.calcDamage = 1 if target.damageState.calcDamage < 1
     else
       super
