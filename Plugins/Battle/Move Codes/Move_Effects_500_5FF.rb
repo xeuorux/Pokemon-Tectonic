@@ -773,7 +773,7 @@ class PokeBattle_Move_52B < PokeBattle_Move
 	# 	@battle.pbDisplay(_INTL("But it failed!")) 
 	# 	return true
 	# end
-	if !target.pbCanFluster?(user,true,self) && !target.pbCanMystify?(user,true,self)
+	if !target.pbCanFluster?(user,false,self) && !target.pbCanMystify?(user,false,self)
 	 	@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} cannot be flustered or mystified!")) 
 	 	return true
 	end
@@ -798,9 +798,10 @@ class PokeBattle_Move_52B < PokeBattle_Move
 	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
 	spAtk = (target.spatk.to_f*stageMul[spAtkStage].to_f/stageDiv[spAtkStage].to_f).floor
 	
-    if target.pbCanFluster?(user,false,self) && attack >= spAtk
+    if target.pbCanFluster?(user,true,self) && attack >= spAtk
 		target.pbFluster
 	elsif target.pbCanMystify?(user,false,self) && spAtk >= attack
+	elsif target.pbCanMystify?(user,true,self) && spAtk >= attack
 		target.pbMystify
 	end
   end
@@ -1321,9 +1322,9 @@ class PokeBattle_Move_547 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
     case @battle.pbRandom(3)
-    when 0 then target.pbPoison(user) if target.pbCanPoison?(user, false, self)
-    when 1 then target.pbFluster if target.pbCanFluster?(user, false, self)
-    when 2 then target.pbMystify(user) if target.pbCanMystify?(user, false, self)
+    when 0 then target.pbPoison(user) if target.pbCanPoison?(user, true, self)
+    when 1 then target.pbFluster if target.pbCanFluster?(user, true, self)
+    when 2 then target.pbMystify(user) if target.pbCanMystify?(user, true, self)
     end
   end
 end
@@ -1868,26 +1869,17 @@ end
 # Flusters the target, and decreases its Defense by one stage. (Displace)
 #===============================================================================
 class PokeBattle_Move_560 < PokeBattle_Move
-	def pbMoveFailed?(user,targets)
-	  failed = true
-	  targets.each do |b|
-		next if !b.pbCanLowerStatStage?(:DEFENSE,user,self) &&
-				!b.pbCanFluster?(user,false,self)
-		failed = false
-		break
-	  end
-	  if failed
-		@battle.pbDisplay(_INTL("But it failed!"))
-		return true
-	  end
-	  return false
+	def pbFailsAgainstTarget?(user,target)
+		if target.pbCanLowerStatStage?(:DEFENSE,user,self) && target.pbCanFluster?(user,false,self)
+			@battle.pbDisplay(_INTL("But it failed!"))
+		  return true
+		end
+		return false
 	end
   
 	def pbEffectAgainstTarget(user,target)
-	  if target.pbCanLowerStatStage?(:DEFENSE,user,self)
-		target.pbLowerStatStage(:DEFENSE,1,user)
-	  end
-	  target.pbFluster if target.pbCanFluster?(user,false,self)
+		target.pbLowerStatStage(:DEFENSE,1,user) if target.pbCanLowerStatStage?(:DEFENSE,user,self,true)
+	  	target.pbFluster if target.pbCanFluster?(user,true,self)
 	end
 
 	def getScore(score,user,target,skill=100)
@@ -1906,25 +1898,16 @@ end
 # Flusters the target, and decreases its Defense by one stage. (Mesmerize)
 #===============================================================================
 class PokeBattle_Move_561 < PokeBattle_Move
-	def pbMoveFailed?(user,targets)
-	  failed = true
-	  targets.each do |b|
-		next if !b.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self) &&
-				!b.pbCanMystify?(user,false,self)
-		failed = false
-		break
-	  end
-	  if failed
-		@battle.pbDisplay(_INTL("But it failed!"))
-		return true
-	  end
-	  return false
+	def pbFailsAgainstTarget?(user,target)
+		if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self) && target.pbCanMystify?(user,false,self)
+			@battle.pbDisplay(_INTL("But it failed!"))
+		  return true
+		end
+		return false
 	end
   
 	def pbEffectAgainstTarget(user,target)
-		if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
-			target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
-		end
+		target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user) if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self,true)
 		target.pbMystify if target.pbCanMystify?(user,false,self)
 	end
 

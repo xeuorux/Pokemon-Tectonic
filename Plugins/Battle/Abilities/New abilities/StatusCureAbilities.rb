@@ -30,15 +30,6 @@ BattleHandlers::StatusCureAbility.add(:LIMBER,
   }
 )
 
-BattleHandlers::StatusCureAbility.add(:COLDPROOF,
-  proc { |ability,battler|
-    next if !battler.hasStatusNoTrigger(:FROZEN)
-    battler.battle.pbShowAbilitySplash(battler)
-    battler.pbCureStatus(true,:FROZEN)
-    battler.battle.pbHideAbilitySplash(battler)
-  }
-)
-
 BattleHandlers::StatusCureAbility.add(:OWNTEMPO,
   proc { |ability,battler|
     if battler.effects[PBEffects::Confusion]!=0
@@ -136,6 +127,31 @@ BattleHandlers::StatusCureAbility.add(:ENERGETIC,
 	if battler.hasStatusNoTrigger(:PARALYSIS)
 		battler.battle.pbShowAbilitySplash(battler)
 		battler.pbCureStatus(true,:PARALYSIS)
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+	if battler.hasStatusNoTrigger(:FROZEN)
+		battler.battle.pbShowAbilitySplash(battler)
+		battler.pbCureStatus(true,:FROZEN)
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+  }	
+)
+
+BattleHandlers::StatusCureAbility.add(:STABILITY,
+  proc { |ability,battler|
+	if battler.hasStatusNoTrigger(:POISON)
+		battler.battle.pbShowAbilitySplash(battler)
+		battler.pbCureStatus(true,:POISON)
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+	if battler.hasStatusNoTrigger(:BURN)
+		battler.battle.pbShowAbilitySplash(battler)
+		battler.pbCureStatus(true,:BURN)
+		battler.battle.pbHideAbilitySplash(battler)
+	end
+	if battler.hasStatusNoTrigger(:FROSTBITE)
+		battler.battle.pbShowAbilitySplash(battler)
+		battler.pbCureStatus(true,:FROSTBITE)
 		battler.battle.pbHideAbilitySplash(battler)
 	end
   }	

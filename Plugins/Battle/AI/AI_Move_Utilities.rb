@@ -371,17 +371,17 @@ class PokeBattle_AI
         # Increased critical hit rates
         c = 0
         # Ability effects that alter critical hit rate
-        if c>=0 && user.abilityActive?
+        if c >= 0 && user.abilityActive?
           c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
         end
-        if c>=0 && !moldBreaker && target.abilityActive?
+        if c >= 0 && !moldBreaker && target.abilityActive?
           c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
         end
         # Item effects that alter critical hit rate
-        if c>=0 && user.itemActive?
+        if c >= 0 && user.itemActive?
           c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
         end
-        if c>=0 && target.itemActive?
+        if c >= 0 && target.itemActive?
           c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
         end
 
@@ -395,14 +395,16 @@ class PokeBattle_AI
 
         # Other efffects
         c = -1 if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
+
         if c >= 0
           c += 1 if move.highCriticalRate?
           c += user.effects[PBEffects::FocusEnergy]
           c += 1 if user.inHyperMode? && move.type == :SHADOW
         end
+
         if c >= 0
           c = 5 if c > 5
-          damage += damage*0.1*c
+          damage += damage * 0.1 * c
         end
 
         numHits = move.pbNumHitsAI(user,target,skill)

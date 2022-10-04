@@ -759,7 +759,7 @@ class PokeBattle_Battler
 		return pbHasStatus?(:FLUSTERED)
 	end
 
-	def pbCanFluster?(user=nil,showMessages=true,move=nil)
+	def pbCanFluster?(user,showMessages,move=nil)
 		return pbCanInflictStatus?(:FLUSTERED, user, showMessages, move)
 	end
 
@@ -773,7 +773,7 @@ class PokeBattle_Battler
 		return pbHasStatus?(:MYSTIFIED)
 	end
 
-	def pbCanMystify?(user=nil,showMessages=true,move=nil)
+	def pbCanMystify?(user,showMessages,move=nil)
 		return pbCanInflictStatus?(:MYSTIFIED, user, showMessages, move)
 	end
 

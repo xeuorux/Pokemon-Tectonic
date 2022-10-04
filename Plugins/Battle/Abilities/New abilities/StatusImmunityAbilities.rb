@@ -4,6 +4,12 @@ BattleHandlers::StatusImmunityAbility.add(:ENERGETIC,
   }
 )
 
+BattleHandlers::StatusImmunityAbility.add(:STABILITY,
+  proc { |ability,battler,status|
+	next true if status == :BURN || status == :FROSTBITE || status == :POISON
+  }
+)
+
 BattleHandlers::StatusImmunityAbility.add(:FAEVEIL,
   proc { |ability,battler,status|
     next true if status == :BURN || status == :FROSTBITE || status == :PARALYSIS 
