@@ -2224,7 +2224,7 @@ end
 #===============================================================================
 class PokeBattle_Move_572 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		if target.pbHasAnyStatus?
+		if !target.pbHasAnyStatus?
 			@battle.pbDisplay(_INTL("But it failed, because #{target.pbThis(true)} doesn't have a status!"))
 			return true
 		end

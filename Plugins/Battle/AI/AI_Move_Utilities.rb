@@ -338,8 +338,8 @@ class PokeBattle_AI
         end
 
         # Type effectiveness
-        typemod = pbCalcTypeModAI(type,user,target,move)
-        multipliers[:final_damage_multiplier] *= typemod.to_f / Effectiveness::NORMAL_EFFECTIVE
+        typemod = pbCalcTypeModAI(type,user,target,move) / Effectiveness::NORMAL_EFFECTIVE.to_f
+        multipliers[:final_damage_multiplier] *= typemod.to_f 
 
         # Terrain
         move.pbCalcTerrainDamageMultipliers(user,target,type,multipliers,true)
@@ -395,19 +395,19 @@ class PokeBattle_AI
 
         # Other efffects
         c = -1 if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
-        if c>=0
+        if c >= 0
           c += 1 if move.highCriticalRate?
           c += user.effects[PBEffects::FocusEnergy]
           c += 1 if user.inHyperMode? && move.type == :SHADOW
         end
-        if c>=0
-          c = 5 if c>5
+        if c >= 0
+          c = 5 if c > 5
           damage += damage*0.1*c
         end
 
         numHits = move.pbNumHitsAI(user,target,skill)
         totalDamage = damage * numHits
-        
+                
         return totalDamage.floor
     end
   
