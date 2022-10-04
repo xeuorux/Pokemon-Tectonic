@@ -223,12 +223,15 @@ class PokeBattle_AI
     def pbTotalDamageAI(move,user,target,skill,baseDmg)
         # Get the move's type
         type = pbRoughType(move,user,skill)
+
         ##### Calculate user's attack stat #####
         atkStat, atkStage = move.pbGetAttackStats(user,target)
         atk = pbRoughStatCalc(atkStat,atkStage)
+
         ##### Calculate target's defense stat #####
         defStat, defStage = move.pbGetDefenseStats(user,target)
         defense = pbRoughStatCalc(defStat,defStage)
+
         ##### Calculate all multiplier effects #####
         multipliers = {
           :base_damage_multiplier  => 1.0,
@@ -236,15 +239,19 @@ class PokeBattle_AI
           :defense_multiplier      => 1.0,
           :final_damage_multiplier => 1.0
         }
+
         # Ability effects that alter damage
         moldBreaker = false
+
         if target.hasMoldBreaker?
           moldBreaker = true
         end
+
         if user.abilityActive?
           # NOTE: These abilities aren't suitable for checking at the start of the
           #       round.
           abilityBlacklist = [:ANALYTIC,:SNIPER,:TINTEDLENS,:AERILATE,:PIXILATE,:REFRIGERATE]
+
           canCheck = true
           abilityBlacklist.each do |m|
               next if move.id != m
@@ -263,6 +270,7 @@ class PokeBattle_AI
               user,target,move,multipliers,baseDmg,type)
           end
         end
+
         if !moldBreaker && target.abilityActive?
           # NOTE: These abilities aren't suitable for checking at the start of the
           #       round.
@@ -278,6 +286,7 @@ class PokeBattle_AI
               user,target,move,multipliers,baseDmg,type)
           end
         end
+
         if !moldBreaker
           target.eachAlly do |b|
               next if !b.abilityActive?
@@ -285,6 +294,7 @@ class PokeBattle_AI
                 user,target,move,multipliers,baseDmg,type)
           end
         end
+
         # Item effects that alter damage
         # NOTE: Type-boosting gems aren't suitable for checking at the start of the
         #       round.
@@ -297,6 +307,7 @@ class PokeBattle_AI
               user,target,move,multipliers,baseDmg,type)
           end
         end
+
         if target.itemActive?
           # NOTE: Type-weakening berries aren't suitable for checking at the start
           #       of the round.
@@ -305,6 +316,7 @@ class PokeBattle_AI
               user,target,move,multipliers,baseDmg,type)
           end
         end
+
         # Global abilities
         if (@battle.pbCheckGlobalAbility(:DARKAURA) && type == :DARK) ||
               (@battle.pbCheckGlobalAbility(:FAIRYAURA) && type == :FAIRY)
@@ -314,6 +326,7 @@ class PokeBattle_AI
               multipliers[:base_damage_multiplier] *= 4 / 3.0
             end
         end
+
         # Parental Bond
         if user.hasActiveAbility?(:PARENTALBOND)
           multipliers[:base_damage_multiplier] *= 1.25
@@ -324,6 +337,10 @@ class PokeBattle_AI
             multipliers[:final_damage_multiplier] *= 0.75
         end
 
+        # Type effectiveness
+        typemod = pbCalcTypeModAI(type,user,target,move)
+        multipliers[:final_damage_multiplier] *= typemod.to_f / Effectiveness::NORMAL_EFFECTIVE
+
         # Terrain
         move.pbCalcTerrainDamageMultipliers(user,target,type,multipliers,true)
 
@@ -331,6 +348,8 @@ class PokeBattle_AI
         move.pbCalcWeatherDamageMultipliers(user,target,type,multipliers,true)
 
         # STAB, etc.
+        # This skips type effectiveness checks when calling for the AI
+        # Due to that otherwise relying on damage state
         move.pbCalcTypeBasedDamageMultipliers(user,target,type,multipliers,true)
         
         # Statuses
@@ -365,6 +384,7 @@ class PokeBattle_AI
         if c>=0 && target.itemActive?
           c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
         end
+
         # Critical override
         case move.pbCritialOverride(user,target)
         when -1
@@ -372,6 +392,7 @@ class PokeBattle_AI
         when 1
           c = 9999
         end
+
         # Other efffects
         c = -1 if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
         if c>=0

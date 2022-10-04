@@ -163,8 +163,10 @@ class PokeBattle_AI
         # Calculate how much damage the move will do (roughly)
         baseDmg = pbMoveBaseDamageAI(move,user,target,skill)
         realDamage = pbTotalDamageAI(move,user,target,skill,baseDmg)
+
         # Convert damage to percentage of target's remaining HP
         damagePercentage = realDamage*100.0/target.hp
+        
         # Adjust score
         if damagePercentage >= 100   # Prefer lethal damage
             damagePercentage = 150

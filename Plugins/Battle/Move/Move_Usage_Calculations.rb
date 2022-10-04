@@ -82,7 +82,7 @@ class PokeBattle_Move
         end
         # Type effectiveness changing curses
         @battle.curses.each do |curse|
-        ret = @battle.triggerEffectivenessChangeCurseEffect(curse,moveType,user,target,ret)
+            ret = @battle.triggerEffectivenessChangeCurseEffect(curse,moveType,user,target,ret)
         end
         return ret
     end
@@ -415,13 +415,18 @@ class PokeBattle_Move
                 multipliers[:final_damage_multiplier] *= stab
             end
         end
-        # Type effectiveness
-        typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
-        multipliers[:final_damage_multiplier] *= typeEffect
+
+        if !checkingForAI
+            # Type effectiveness
+            typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
+            multipliers[:final_damage_multiplier] *= typeEffect
+        end
+
         # Charge
         if user.effects[PBEffects::Charge]>0 && type == :ELECTRIC
             multipliers[:base_damage_multiplier] *= 2
         end
+        
         # Mud Sport
         if type == :ELECTRIC
             @battle.eachBattler do |b|
@@ -433,6 +438,7 @@ class PokeBattle_Move
                 multipliers[:base_damage_multiplier] /= 3.0
             end
         end
+
         # Water Sport
         if type == :FIRE
             @battle.eachBattler do |b|
