@@ -1292,7 +1292,7 @@ end
         next if spike == @spikeEffect
         if side.effects[@spikeEffect] > 0
           side.effects[@spikeEffect] = 0
-          otherName = TYPE_SPIKES[spike]
+          otherName = @spikeInfo[spike]
           @battle.pbDisplay(_INTL("The #{otherName.downcase} spikes around {1}'s feet were brushed aside!",teamLabel))
         end
       end
