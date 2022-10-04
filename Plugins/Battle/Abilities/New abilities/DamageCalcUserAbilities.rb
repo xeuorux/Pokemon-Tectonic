@@ -286,3 +286,9 @@ BattleHandlers::DamageCalcUserAbility.add(:RAMMINGSPEED,
     end
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:RADIATE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.3 if move.specialMove?
+  }
+)
