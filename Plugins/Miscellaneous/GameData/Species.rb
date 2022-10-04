@@ -140,8 +140,9 @@ module GameData
         elsif !pkmn.egg?
           if pkmn.shiny? && pkmn.shiny_variant
             ret = shiftSpeciesBitmapHue(ret,species)
-          else
+          elsif $PokemonSystem.color_shifts == 0
             ret = shiftPokemonBitmapHue(ret,pkmn)
+            ret = shiftPokemonBitmapShade(ret,pkmn)
           end
         end
         

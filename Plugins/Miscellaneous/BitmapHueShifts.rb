@@ -22,15 +22,28 @@ class Pokemon
     end
 
     # Should be a positive number
-    HUE_SHIFT_RANGE = 25
+    HUE_SHIFT_RANGE = 20
 
     def hueShift
         id = colorShiftID()
         shift = 0
-        if id != 0
+        if HUE_SHIFT_RANGE > 0 && id != 0
             shift = (-(HUE_SHIFT_RANGE/2.0) + (id % HUE_SHIFT_RANGE)).round
         end
         echoln("#{name()}'s hue is shifted by #{shift} from ID #{id}")
+        return shift
+    end
+
+    # Should be a positive number
+    SHADE_SHIFT_RANGE = 80
+
+    def shadeShift
+        id = colorShiftID()
+        shift = 0
+        if SHADE_SHIFT_RANGE > 0 && id != 0
+            shift = (-(SHADE_SHIFT_RANGE/2.0) + ((id ^ 65970697) % SHADE_SHIFT_RANGE)).round
+        end
+        echoln("#{name()}'s shade is shifted by #{shift} from ID #{id}")
         return shift
     end
 end
@@ -52,8 +65,47 @@ def shiftBitmapHue(baseBitmap, hueShift)
     return ret
 end
 
+def shiftBitmapShade(baseBitmap, shadeShift)
+    ret = baseBitmap.copy
+    baseBitmap.dispose
+    if ret.respond_to?('each')
+        ret.each { |bitmap| shade_change(bitmap,shadeShift) }
+    else
+        shade_change(ret,shadeShift)
+    end
+    return ret
+end
+
+def shade_change(bitmap,shift)
+    shiftMult = 1 + shift / 255.0
+    contrastShift = (shift * (1.0/2.0)).abs
+    contrastFactor = (259.0 * (contrastShift + 255.0)) / (255.0 * (259.0 - contrastShift));
+    for x in 0...bitmap.width
+        for y in 0...bitmap.height
+            color = bitmap.get_pixel(x,y)
+            next if color.alpha == 0
+            # Increase brightness
+            r = color.red * shiftMult
+            g = color.green * shiftMult
+            b = color.blue * shiftMult
+            # Increase contrast
+            r  = (contrastFactor * (r - 128) + 128)
+            g = (contrastFactor * (g - 128) + 128)
+            b  = (contrastFactor * (b - 128) + 128)
+            color.red   = [[r.round,0].max,255].min
+            color.green = [[g.round,0].max,255].min
+            color.blue  = [[b.round,0].max,255].min
+            bitmap.set_pixel(x,y,color)
+        end
+    end
+end
+
 def shiftPokemonBitmapHue(baseBitmap, pokemon)
     return shiftBitmapHue(baseBitmap,pokemon.hueShift)
+end
+
+def shiftPokemonBitmapShade(baseBitmap,pokemon)
+    return shiftBitmapShade(baseBitmap,pokemon.shadeShift)
 end
 
 def shiftSpeciesBitmapHue(baseBitmap, species)

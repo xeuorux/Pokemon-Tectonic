@@ -11,6 +11,7 @@ class PokemonSystem
   attr_accessor :weather_messages
   attr_accessor :status_effect_messages
   attr_accessor :nicknaming_prompt
+  attr_accessor :color_shifts
 
   def initialize
     @textspeed   		          = 1 # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
@@ -27,6 +28,7 @@ class PokemonSystem
     @textinput   		          = 1 # Text input mode (0=cursor, 1=keyboard)
     @followers   		          = 0	# Follower Pokemon enabled (0=true, 1=false)
     @autosave	 		            = 1	# Autosave enabled (0=true, 1=false)
+    @color_shifts             = 0 # (0=true, 1=false)
     @particle_effects 	      = 0 # (0=true, 1=false)
     @screenshake              = 0 # (0=true, 1=false)
     @skip_fades 		          = 1 # (0=true, 1=false)
@@ -158,6 +160,12 @@ class PokemonOption_Scene
           $PokemonSystem.autosave = value
         }
         ),
+      EnumOption.new(_INTL("Color Shifts (Adv.)"),[_INTL("On"),_INTL("Off")],
+        proc { $PokemonSystem.color_shifts },
+        proc { |value|
+            $PokemonSystem.color_shifts = value
+        }
+      ),
       EnumOption.new(_INTL("Particles (Adv.)"),[_INTL("On"),_INTL("Off")],
         proc { $PokemonSystem.particle_effects },
         proc { |value|
