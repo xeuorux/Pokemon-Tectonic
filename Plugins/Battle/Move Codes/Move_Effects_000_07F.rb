@@ -383,32 +383,8 @@ class PokeBattle_Move_019 < PokeBattle_Move
     return target.status == :NONE
   end
 
-  def pbAromatherapyHeal(pkmn,battler=nil)
-    oldStatus = (battler) ? battler.status : pkmn.status
-    curedName = (battler) ? battler.pbThis : pkmn.name
-    if battler
-      battler.pbCureStatus(false)
-    else
-      pkmn.status      = :NONE
-      pkmn.statusCount = 0
-    end
-    case oldStatus
-    when :SLEEP
-      @battle.pbDisplay(_INTL("{1} was woken from sleep.",curedName))
-    when :POISON
-      @battle.pbDisplay(_INTL("{1} was cured of its poisoning.",curedName))
-    when :BURN
-      @battle.pbDisplay(_INTL("{1}'s burn was healed.",curedName))
-    when :PARALYSIS
-      @battle.pbDisplay(_INTL("{1} was cured of paralysis.",curedName))
-    when :FROZEN
-      @battle.pbDisplay(_INTL("{1} was thawed out.",curedName))
-    end
-  end
-
   def pbEffectAgainstTarget(user,target)
-    # Cure all Pokémon in battle on the user's side.
-    pbAromatherapyHeal(target.pokemon,target)
+    pbAromatherapyHeal(target)
   end
 
   def pbEffectGeneral(user)
@@ -417,14 +393,14 @@ class PokeBattle_Move_019 < PokeBattle_Move
     if pbTarget(user) == :UserSide
       @battle.eachSameSideBattler(user) do |b|
         next if b.status == :NONE
-        pbAromatherapyHeal(b.pokemon,b)
+        pbAromatherapyHeal(b)
       end
     end
     # Cure all Pokémon in the user's and partner trainer's party.
     # NOTE: This intentionally affects the partner trainer's inactive Pokémon
     #       too.
     @battle.pbParty(user.index).each_with_index do |pkmn,i|
-      next if !pkmn || !pkmn.able? || pkmn.status == :NONE
+      next if pkmn.nil? || !pkmn.able?
       next if @battle.pbFindBattler(i,user)   # Skip Pokémon in battle
       pbAromatherapyHeal(pkmn)
     end

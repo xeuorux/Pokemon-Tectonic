@@ -217,7 +217,7 @@
     end
   
     def pbEffectAgainstTarget(user,target)
-        target.pbCureStatus
+      target.pbCureStatus
       if target.hp != target.totalhp && target.canHeal?
         hpGain = (target.totalhp/4.0).round
         target.pbRecoverHP(hpGain)

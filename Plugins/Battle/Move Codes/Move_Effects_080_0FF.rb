@@ -2387,14 +2387,14 @@ end
 #===============================================================================
 class PokeBattle_Move_0D1 < PokeBattle_Move
   def pbEffectGeneral(user)
-    return if user.effects[PBEffects::Uproar]>0
+    return if user.effects[PBEffects::Uproar] > 0
     user.effects[PBEffects::Uproar] = 3
     user.currentMove = @id
     @battle.pbDisplay(_INTL("{1} caused an uproar!",user.pbThis))
     @battle.pbPriority(true).each do |b|
-      next if b.fainted? || b.status != :SLEEP
+      next if b.fainted?
       next if b.hasActiveAbility?(:SOUNDPROOF)
-      b.pbCureStatus
+      b.pbCureStatus(true,:SLEEP)
     end
   end
 

@@ -31,6 +31,18 @@ class PokeBattle_Move
     end
   end
 
+  def pbAromatherapyHeal(pokemonOrBattler)
+    if pokemonOrBattler.is_a?(PokeBattle_Battler)
+      pokemonOrBattler.pbCureStatus
+    elsif pokemonOrBattler.status != :NONE
+      oldStatus = pokemonOrBattler.status
+      pokemonOrBattler.status      = :NONE
+      pokemonOrBattler.statusCount = 0
+
+      Battler.showStatusCureMessage(oldStatus,pokemonOrBattler,@battle)
+    end
+  end
+
   ########################################################
   ### AI functions
   ########################################################
@@ -72,4 +84,5 @@ class PokeBattle_Move
   end
 
   def hasKOEffect?(user,target); return false; end
+  
 end

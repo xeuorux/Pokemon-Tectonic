@@ -583,18 +583,7 @@ class PokeBattle_Battler
 		end
 		
 		oldStatuses.each do |oldStatus|
-			if showMessages
-				case oldStatus
-				when :SLEEP		 	then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
-				when :POISON		then @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", pbThis))
-				when :BURN			then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
-				when :FROSTBITE		then @battle.pbDisplay(_INTL("{1}'s frostbite was healed.", pbThis))
-				when :PARALYSIS 	then @battle.pbDisplay(_INTL("{1} is no longer numbed.", pbThis))
-				when :FROZEN		then @battle.pbDisplay(_INTL("{1} warmed up!", pbThis))
-				when :FLUSTERED		then @battle.pbDisplay(_INTL("{1} is no longer flustered!", pbThis))
-				when :MYSTIFIED		then @battle.pbDisplay(_INTL("{1} is no longer mystified!", pbThis))
-				end
-			end
+			PokeBattle_Battler.showStatusCureMessage(oldStatus, self, @battle) if showMessages
 	
 			# Lingering Daze
 			if oldStatus == :SLEEP
@@ -611,6 +600,20 @@ class PokeBattle_Battler
 	
 		@battle.scene.pbRefreshOne(@index)
 		PBDebug.log("[Status change] #{pbThis}'s status was cured")
+	end
+
+	def self.showStatusCureMessage(status,pokemonOrBattler,battle)
+		curedName = pokemonOrBattler.is_a?(PokeBattle_Battler) ? pokemonOrBattler.pbThis : pokemonOrBattler.name
+		case status
+		when :SLEEP		 	then battle.pbDisplay(_INTL("{1} woke up!", curedName))
+		when :POISON		then battle.pbDisplay(_INTL("{1} was cured of its poisoning.", curedName))
+		when :BURN			then battle.pbDisplay(_INTL("{1}'s burn was healed.", curedName))
+		when :FROSTBITE		then battle.pbDisplay(_INTL("{1}'s frostbite was healed.", curedName))
+		when :PARALYSIS 	then battle.pbDisplay(_INTL("{1} is no longer numbed.", curedName))
+		when :FROZEN		then battle.pbDisplay(_INTL("{1} warmed up!", curedName))
+		when :FLUSTERED		then battle.pbDisplay(_INTL("{1} is no longer flustered!", curedName))
+		when :MYSTIFIED		then battle.pbDisplay(_INTL("{1} is no longer mystified!", curedName))
+		end
 	end
 
 	#=============================================================================
