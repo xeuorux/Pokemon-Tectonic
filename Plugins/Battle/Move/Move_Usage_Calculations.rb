@@ -527,8 +527,9 @@ class PokeBattle_Move
         return 0 if target.effects[PBEffects::Enlightened]
         ret = (effectChance>0) ? effectChance : @addlEffect
         if Settings::MECHANICS_GENERATION >= 6 || @function != "0A4"   # Secret Power
-        ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
-                    user.pbOwnSide.effects[PBEffects::Rainbow]>0
+            ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
+            ret *= 2 if user.pbOwnSide.effects[PBEffects::Rainbow] > 0
+            ret *= 4 if windMove? && user.hasActiveAbility?(:FUMIGATE)
         end
         ret /= 2 if applyRainDebuff?(user)
         ret = 100 if $DEBUG && Input.press?(Input::CTRL)
