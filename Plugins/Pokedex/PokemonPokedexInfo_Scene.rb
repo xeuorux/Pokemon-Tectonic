@@ -939,6 +939,8 @@ class PokemonPokedexInfo_Scene
 				category = "Dance"
 			when 'p'
 				category = "Blade"
+			when 'q'
+				category = "Wind"
 			end
 		end
 		

@@ -20,6 +20,7 @@ class PokeBattle_Move
 	def priorityModification(user,target); return 0; end
 
   def slashMove?;        return @flags[/p/]; end
+  def windMove?;        return @flags[/q/]; end
   def contactMove?;      return physicalMove? end
 
   def pbTarget(user)
