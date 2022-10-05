@@ -25,3 +25,16 @@ BattleHandlers::SpeedCalcAbility.add(:HEROICFINALE,
   next mult *= 2 if battler.isLastAlive?
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:FEROCIOUS,
+  proc { |ability,battler,mult|
+  active = false
+  battler.eachOpposing do |b|
+    next if b.hp >= b.totalhp/2
+    active = true
+    break
+  end
+  mult *= 2 if active
+  next mult
+  }
+)
