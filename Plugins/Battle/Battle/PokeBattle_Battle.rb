@@ -192,7 +192,9 @@ end
     return if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
     @scene.pbShowAbilitySplash(battler)
     if delay
-      Graphics.frame_rate.times { @scene.pbUpdate }   # 1 second
+      frames = Graphics.frame_rate # Default 1 second
+      frames /= 2 if $PokemonSystem.battlescene > 0
+      frames.times { @scene.pbUpdate }   
     end
   end
 
