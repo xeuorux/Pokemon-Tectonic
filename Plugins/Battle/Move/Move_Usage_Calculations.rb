@@ -472,10 +472,11 @@ class PokeBattle_Move
         if user.effects[PBEffects::ParentalBond]==1
             multipliers[:base_damage_multiplier] *= 0.25
         end
-        # Other
+        # Me First
         if user.effects[PBEffects::MeFirst]
             multipliers[:base_damage_multiplier] *= 1.5
         end
+        # Helping Hand
         if user.effects[PBEffects::HelpingHand] && !self.is_a?(PokeBattle_Confusion)
             multipliers[:base_damage_multiplier] *= 1.5
         end
@@ -487,6 +488,10 @@ class PokeBattle_Move
         if target.effects[PBEffects::ShimmeringHeat]
             echoln("Target is protected by Shimmering Heat")
             multipliers[:final_damage_multiplier] *= 0.67
+        end
+        # Echo
+        if user.effects[PBEffects::Echo]
+            multipliers[:base_damage_multiplier] *= 0.75
         end
         # Multi-targeting attacks
         if numTargets > 1

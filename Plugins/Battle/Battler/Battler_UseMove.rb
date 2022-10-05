@@ -65,11 +65,10 @@ class PokeBattle_Battler
     # Start using the move
     pbBeginTurn(choice)
     # Force the use of certain moves if they're already being used
-    if usingMultiTurnAttack?
+    if usingMultiTurnAttack? && !@currentMove.nil?
       choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@currentMove))
       specialUsage = true
-    elsif @effects[PBEffects::Encore]>0 && choice[1]>=0 &&
-       @battle.pbCanShowCommands?(@index)
+    elsif @effects[PBEffects::Encore] > 0 && choice[1] >= 0 && @battle.pbCanShowCommands?(@index)
       idxEncoredMove = pbEncoredMoveIndex
       if idxEncoredMove>=0 && @battle.pbCanChooseMove?(@index,idxEncoredMove,false)
         if choice[1]!=idxEncoredMove   # Change move if battler was Encored mid-round
@@ -502,7 +501,7 @@ class PokeBattle_Battler
           moveIndex = i
         end
       }
-      next if moveIndex<0
+      next if moveIndex < 0
       moveID = b.lastMoveUsed
       usageMessage = _INTL("{1} used the move instructed by {2}!",b.pbThis,user.pbThis(true))
       preTarget = b.lastRegularMoveTarget
@@ -520,6 +519,20 @@ class PokeBattle_Battler
         preTarget = choice[3]
         preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
         @battle.forceUseMove(nextUser,move.id,preTarget,true,nil,PBEffects::Dancer,true)
+      end
+    end
+    # Echo
+    if !@effects[PBEffects::Echo] && !user.lastMoveFailed && realNumHits>0 &&
+          !move.snatched && magicCoater < 0 && @battle.pbCheckGlobalAbility(:ECHO) && move.soundMove?
+      echoers = []
+      @battle.pbPriority(true).each do |b|
+        echoers.push(b) if b.index != user.index && b.hasActiveAbility?(:ECHO)
+      end
+      while echoers.length>0
+        nextUser = echoers.pop
+        preTarget = choice[3]
+        preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
+        @battle.forceUseMove(nextUser,move.id,preTarget,true,nil,PBEffects::Echo,true)
       end
     end
   end

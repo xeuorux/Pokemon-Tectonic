@@ -34,21 +34,19 @@ module PBEffects
 	Gargantuan			= 141
 	StunningCurl		= 142
     RedHotRetreat       = 143
-
     ExtraTurns          = 144
     EmpoweredMoonlight  = 145
 	EmpoweredEndure		= 146
 	EmpoweredLaserFocus = 147
     EmpoweredDestinyBond= 148
-
     VolleyStance        = 149
     GivingDragonRideTo  = 150
     OnDragonRide        = 151
     ShimmeringHeat      = 152
     FlareWitch          = 153
-
     EmpoweredDetect     = 154
     MirrorShield        = 155
+    Echo                = 156
 
     #===========================================================================
     # These effects apply to a battler position

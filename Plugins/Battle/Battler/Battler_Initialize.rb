@@ -378,6 +378,7 @@ class PokeBattle_Battler
 		@effects[PBEffects::ShimmeringHeat]		 = false
 		@effects[PBEffects::FlareWitch]		 	 = false
 		@effects[PBEffects::MirrorShield]        = false
+		@effects[PBEffects::Echo]				 = false
 		
 		@effects[PBEffects::EmpoweredEndure]     = 0
 		@effects[PBEffects::EmpoweredMoonlight]  = false
