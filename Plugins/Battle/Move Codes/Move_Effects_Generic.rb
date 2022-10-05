@@ -392,14 +392,20 @@ class PokeBattle_TargetStatDownMove < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
+    statReducing = @statDown[0]
+    reductionAmount = @statDown[1]
+
+    if statReducing = :ACCURACY
+      echoln("The AI will never use a move that reduces accuracy.")
+      return 0
+    end
+
+
     if target.hasActiveAbilityAI?(:CONTRARY) && target.opposes?(user) && statusMove?
       return 0
     end
 
     reverse = target.hasActiveAbility?(:CONTRARY) && !target.opposes?(user)
-
-    statReducing = @statDown[0]
-    reductionAmount = @statDown[1]
     if statusMove?
 			if !target.pbCanLowerStatStage?(statReducing,user)
 				score = 0 if !reverse
