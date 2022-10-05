@@ -674,7 +674,7 @@ class PokeBattle_Battler
       move.pbEffectAgainstTarget(user,b)
     end
     move.pbEffectGeneral(user)
-	@battle.eachBattler { |b| b.pbItemFieldEffectCheck} #use this until the field change method applies to all field changes
+	  @battle.eachBattler { |b| b.pbItemFieldEffectCheck} #use this until the field change method applies to all field changes
     targets.each { |b| b.pbFaint if b && b.fainted? }
     user.pbFaint if user.fainted?
     # Additional effect
@@ -682,19 +682,26 @@ class PokeBattle_Battler
       targets.each do |b|
         next if b.damageState.calcDamage==0
         chance = move.pbAdditionalEffectChance(user,b)
-        next if chance<=0
-        if @battle.pbRandom(100)<chance
-          move.pbAdditionalEffect(user,b)
+        next if chance <= 0
+        if @battle.pbRandom(100) < chance
+          if target.hasActiveAbility?(:RUGGEDSCALES)
+            battle.pbShowAbilitySplash(target)
+            @battle.pbDisplay(_INTL("The added effect of {1}'s {2} is deflected, harming it!",pbThis(true),move.name))
+            user.applyFractionalDamage(1.0/6.0,true)
+            battle.pbHideAbilitySplash(target)
+          else
+            move.pbAdditionalEffect(user,b)
+          end
         end
       end
     end
     # Make the target flinch (because of an item/ability)
     targets.each do |b|
       next if b.fainted?
-      next if b.damageState.calcDamage==0 || b.damageState.substitute
+      next if b.damageState.calcDamage == 0 || b.damageState.substitute
       chance = move.pbFlinchChance(user,b)
-      next if chance<=0
-      if @battle.pbRandom(100)<chance
+      next if chance <= 0
+      if @battle.pbRandom(100) < chance
         PBDebug.log("[Item/ability triggered] #{user.pbThis}'s King's Rock/Razor Fang or Stench")
         b.pbFlinch(user)
       end
