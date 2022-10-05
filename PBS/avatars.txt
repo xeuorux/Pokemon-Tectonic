@@ -416,8 +416,8 @@ Moves2 = VENOSHOCK
 HPMult = 4.0
 #-------------------------------
 [DONSTER]
-Ability = STENCH
-Moves1 = CLEARSMOG,MAGNETBOMB,PRIMEVALEMBARGO
+Ability = AGGRAVATE
+Moves1 = CLEARSMOG,MAGNETBOMB,POISONGAS,PRIMEVALEMBARGO
 Moves2 = LASHOUT,MIASMA,BELCH
 HPMult = 4.0
 Item = SITRUSBERRY
@@ -485,7 +485,7 @@ Turns = 1
 HPMult = 2.5
 #-------------------------------
 [ARBOK]
-Ability = SHEDSKIN
+Ability = CONSTRICTOR
 Moves1 = POISONFANG,FEINTATTACK,PRIMEVALSUNNYDAY
 Moves2 = FIREFANG
 HPMult = 4.0
@@ -686,7 +686,7 @@ Moves1 = PSYCHIC,SPIKES
 HPMult = 12.0
 #-------------------------------
 [LANTURN]
-Ability = SHEERFORCE
+Ability = RADIATE
 Moves1 = BUBBLEBLAST,THUNDERBOLT,PRIMEVALTAILWIND
 Moves2 = COLDFRONT,LAHAR
 HPMult = 4.5
