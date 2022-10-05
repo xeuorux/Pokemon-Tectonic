@@ -459,6 +459,7 @@
 458,RADIATE,Radiate,"Increases Sp. Atk by 30%."
 459,ECHO,Echo,"Repeats another Pokémon's sound moves immediately at 75 percent power."
 460,GALEFORCE,Gale Force,"Boosts the power of wind moves by 50%."
+461,ROBUST,Robust,"Double the Pokemon's weight, and boost its Attack by 20%."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

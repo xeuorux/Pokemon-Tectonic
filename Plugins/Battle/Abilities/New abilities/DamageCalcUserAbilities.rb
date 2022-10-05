@@ -28,7 +28,6 @@ BattleHandlers::DamageCalcUserAbility.add(:HEADACHE,
   }
 )
 
-
 BattleHandlers::DamageCalcUserAbility.add(:POWERUP,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] *= 1.5 if move.physicalMove?
@@ -297,5 +296,11 @@ BattleHandlers::DamageCalcUserAbility.add(:RADIATE,
 BattleHandlers::DamageCalcUserAbility.add(:GALEFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] *= 1.5 if move.windMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:ROBUST,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.2 if move.physicalMove?
   }
 )

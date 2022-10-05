@@ -218,3 +218,13 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:BLADETRAINED,
     next :FIGHTING
   }
 )
+
+#===============================================================================
+# WeightCalcAbility handlers
+#===============================================================================
+
+BattleHandlers::WeightCalcAbility.add(:ROBUST,
+  proc { |ability,battler,weight|
+    next weight * 2
+  }
+)
