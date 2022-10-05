@@ -39,7 +39,7 @@ class PokeBattle_Move
       pokemonOrBattler.status      = :NONE
       pokemonOrBattler.statusCount = 0
 
-      Battler.showStatusCureMessage(oldStatus,pokemonOrBattler,@battle)
+      PokeBattle_Battler.showStatusCureMessage(oldStatus,pokemonOrBattler,@battle)
     end
   end
 
