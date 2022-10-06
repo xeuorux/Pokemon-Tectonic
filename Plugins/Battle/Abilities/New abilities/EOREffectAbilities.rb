@@ -49,3 +49,11 @@ BattleHandlers::EOREffectAbility.add(:WARMTHCYCLE,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::EOREffectAbility.add(:EXTREMEHEAT,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.applyFractionalDamage(1.0/10.0,false)
+    battle.pbHideAbilitySplash(battler)
+  }
+)

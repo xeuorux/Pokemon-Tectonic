@@ -304,3 +304,9 @@ BattleHandlers::DamageCalcUserAbility.add(:ROBUST,
     mults[:attack_multiplier] *= 1.2 if move.physicalMove?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:EXTREMEHEAT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5
+  }
+)

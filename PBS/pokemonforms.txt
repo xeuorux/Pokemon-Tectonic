@@ -1485,6 +1485,7 @@ Type2 = PSYCHIC
 BaseStats = 105,30,105,55,140,105
 EffortPoints = 0,0,0,0,2,0
 Color = Blue
+Abilities = TOUGH
 Pokedex = When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit.
 BattlerPlayerY = 65
 BattlerEnemyY = 33
