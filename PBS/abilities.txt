@@ -463,6 +463,7 @@
 462,FEROCIOUS,Ferocious,"Double the Pokémon's Speed if any enemy is below half health."
 463,RUGGEDSCALES,Rugged Scales,"Added effects of enemy attacks are deflected, their users taking 1/6th HP damage."
 464,FUMIGATE,Fumigate,"Added effects of wind-based moves are 4x more likely to occur."
+465,NESTING,Nesting,"Heals quadruple from Grassy terrain, and doesn't count as airborne during."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

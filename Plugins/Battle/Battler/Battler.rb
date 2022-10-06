@@ -170,6 +170,7 @@ class PokeBattle_Battler
     return false if @effects[PBEffects::Ingrain]
     return false if @effects[PBEffects::SmackDown]
     return false if @battle.field.effects[PBEffects::Gravity] > 0
+    return false if @battle.field.terrain == :Grassy && shouldAbilityApply?(:NESTING,checkingForAI)
     return true if shouldTypeApply?(:FLYING,checkingForAI)
     return true if hasLevitate?(checkingForAI) && !@battle.moldBreaker
     return true if hasActiveItem?(:AIRBALLOON)

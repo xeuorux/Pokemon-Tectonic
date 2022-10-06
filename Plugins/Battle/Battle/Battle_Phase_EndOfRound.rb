@@ -263,10 +263,17 @@ class PokeBattle_Battle
           pbDisplay(_INTL("{1} is lashed at by the pit of snakes!",b.pbThis))
           b.applyFractionalDamage(1.0/16.0)
         elsif b.canHeal?
-          amount = b.totalhp/16
-          amount /= 4 if b.boss?
-          b.pbRecoverHP(amount)
+          amount = b.totalhp/16.0
+          amount /= 4.0 if b.boss?
+          if user.hasActiveAbility?(:NESTING)
+            pbShowAbilitySplash(user)
+            amount *= 4.0
+          end
+          b.pbRecoverHP(amount.round)
           pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+          if user.hasActiveAbility?(:NESTING)
+            pbHideAbilitySplash(user)
+          end
         end
       end
       # Healer, Hydration, Shed Skin
