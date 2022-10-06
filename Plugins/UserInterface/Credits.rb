@@ -32,14 +32,14 @@ Tilesheets
 Kyle Dove (Kymotonian)<s>Speedialga
 Sagaxxy<s>Magiscarf
 KingTapir<s>PkmnAlexandrite
-Phyromantical<s>EVoLiNa
+Phyromatical<s>EVoLiNa
 Midnitez-REMIX<s>ditto209
 UltimoSpriter<s>PeekyChew
 Cuddlesthefatcat<s>Pablus94
 Hydrargirium<s>zetavares852
 TyranitarDark<s>ChaoticCherryCake
 AveonTrainer<s>kane89
-carchagui<s>Princess Phoenix
+carchagui<s>Princess-Phoenix
 DormDude<s>Rayquaza-dot
 Vazquinho<s>Yveltalchannel
 Magna-Ryunoid<s>Plutomaniacx
