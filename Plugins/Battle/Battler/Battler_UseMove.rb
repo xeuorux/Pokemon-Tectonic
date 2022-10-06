@@ -684,11 +684,11 @@ class PokeBattle_Battler
         chance = move.pbAdditionalEffectChance(user,b)
         next if chance <= 0
         if @battle.pbRandom(100) < chance
-          if target.hasActiveAbility?(:RUGGEDSCALES)
-            battle.pbShowAbilitySplash(target)
+          if b.hasActiveAbility?(:RUGGEDSCALES)
+            @battle.pbShowAbilitySplash(b)
             @battle.pbDisplay(_INTL("The added effect of {1}'s {2} is deflected, harming it!",pbThis(true),move.name))
             user.applyFractionalDamage(1.0/6.0,true)
-            battle.pbHideAbilitySplash(target)
+            @battle.pbHideAbilitySplash(b)
           else
             move.pbAdditionalEffect(user,b)
           end
