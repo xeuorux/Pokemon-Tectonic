@@ -36,7 +36,6 @@ WET_MAPS = [
 DRY_MAPS = [
     130, # Canal Desert
     37, # Svait
-    186, # Frostflow Farms
     211, # Split Peaks
     121, # Skyward Ascent
     129, # Barren Crater
