@@ -8,6 +8,8 @@ class PokeBattle_Move
   def immuneToRainDebuff?; return false; end
   def immuneToSunDebuff?; return false; end
 
+  def setsARoom?(); return false; end
+
   def smartSpreadsTargets?; return false; end
   
 	def pbAllMissed(user, targets); end # Move effects that occur after all hits if all of them missed

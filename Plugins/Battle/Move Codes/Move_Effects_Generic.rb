@@ -1116,6 +1116,8 @@ class PokeBattle_DoublingMove < PokeBattle_Move
 end
 
 class PokeBattle_RoomMove < PokeBattle_Move
+  def setsARoom?(); return true; end  
+
   def initialize(battle,move)
     super
     @roomEffect = -1

@@ -37,3 +37,9 @@ BattleHandlers::PriorityChangeAbility.add(:ENVY,
     next pri+1 if targets && targets.length == 1 && targets[0].statStagesUp?
   }
 )
+
+BattleHandlers::PriorityChangeAbility.add(:QUICKBUILD,
+  proc { |ability,battler,move,pri,targets=nil|
+    next pri+1 if move.setsARoom?
+  }
+)
