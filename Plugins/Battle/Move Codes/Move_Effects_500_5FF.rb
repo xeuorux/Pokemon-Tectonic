@@ -2598,6 +2598,13 @@ end
 # The user's Speed raises two stages, and it gains the Flying-type. (Mach Flight)
 #===============================================================================
 class PokeBattle_Move_58C < PokeBattle_Move_030
+	def pbMoveFailed?(user,targets)
+		if GameData::Type.exists?(:FLYING) && !user.pbHasType?(:FLYING) && target.canChangeType?
+			return false
+		end
+		super
+	end
+
 	def pbEffectGeneral(user)
 		super
 		user.effects[PBEffects::Type3] = :FLYING
@@ -2767,9 +2774,16 @@ class PokeBattle_Move_594 < PokeBattle_Move
 end
 
 #===============================================================================
-# User's defense is raised two stages, and changes user's type to Rock. (Built Different)
+# User's Attack and Defense are raised by one stage each, and changes user's type to Rock. (Built Different)
 #===============================================================================
-class PokeBattle_Move_595 < PokeBattle_Move_02F
+class PokeBattle_Move_595 < PokeBattle_Move_024
+	def pbMoveFailed?(user,targets)
+		if GameData::Type.exists?(:ROCK) && !user.pbHasType?(:ROCK) && target.canChangeType?
+			return false
+		end
+		super
+	end
+
 	def pbEffectGeneral(user)
 		super
 		user.effects[PBEffects::Type3] = :ROCK
