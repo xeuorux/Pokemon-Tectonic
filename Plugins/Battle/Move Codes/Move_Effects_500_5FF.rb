@@ -2877,3 +2877,28 @@ class PokeBattle_Move_59D < PokeBattle_InvokeMove
 		@statusToApply = :POISON
 	end
 end
+
+#===============================================================================
+# Revives a Electric-type party member back to 100% HP. (Defibrillate)
+#===============================================================================
+class PokeBattle_Move_59E < PokeBattle_Move
+	def pbMoveFailed?(user,targets)
+		@battle.pbParty(user.index).each do |pkmn|
+			next if !pkmn
+			next if !pkmn.fainted?
+			return false
+		end
+		@battle.pbDisplay(_INTL("But it failed, since there are no fainted Electric-type party members!"))
+		return true
+	end
+  
+	def pbEffectGeneral(user)
+		selectPartyMemberForEffect(user.index,proc { |pkmn|
+			next pkmn.hasType?(:ELECTRIC) && pkmn.fainted?
+	  	}) { |pkmn|
+			pkmn.heal_HP
+			pkmn.heal_status
+			@battle.pbDisplay(_INTL("{1} recovered all the way to full health!",pkmn.name))
+		}
+	end
+end

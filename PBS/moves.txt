@@ -1122,3 +1122,4 @@
 1056,INVOKERAIN,Invoke Rain,59B,0,WATER,Status,0,10,0,NearOther,0,bce,"The user numbs the target, then summons rain for four turns.",RAINDANCE
 1057,INVOKEHAIL,Invoke Hail,59C,0,ICE,Status,0,10,0,NearOther,0,bce,"The user frostbites the target, then summons hail for four turns.",HAIL
 1058,HATEFULHAYMAKER,Hateful Haymaker,081,65,DARK,Physical,100,10,0,NearOther,-4,abefj,"A punch that inflicts double the damage if the user has been hurt by the foe in the same turn.",SUCKERPUNCH
+1059,DEFIBRILLATE,Defibrillate,59E,0,ELECTRIC,Status,0,1,0,None,0,,"Restores a fainted Electric-type party member to full health.",ELECTRICTERRAIN
