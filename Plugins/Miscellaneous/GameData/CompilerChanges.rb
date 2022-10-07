@@ -1078,17 +1078,13 @@ end
     trainer_hash              = nil
     trainer_id                = -1
     current_pkmn              = nil
-    old_format_current_line   = 0
-    old_format_expected_lines = 0
+    isExtending               = false
     # Read each line of trainers.txt at a time and compile it as a trainer property
     pbCompilerEachPreppedLine(path) { |line, line_no|
       if line[/^\s*\[\s*(.+)\s*\]\s*$/]
         # New section [trainer_type, name] or [trainer_type, name, version]
         if trainer_hash
-          if old_format_current_line > 0
-            raise _INTL("Previous trainer not defined with as many Pokémon as expected.\r\n{1}", FileLineData.linereport)
-          end
-          if !current_pkmn
+          if !current_pkmn && !isExtending
             raise _INTL("Started new trainer while previous trainer has no Pokémon.\r\n{1}", FileLineData.linereport)
           end
           # Add trainer's data to records
@@ -1104,8 +1100,10 @@ end
           :name         => line_data[1],
           :version      => line_data[2] || 0,
           :pokemon      => [],
-		      :policies		  => []
+		      :policies		  => [],
+          :extends      => -1,
         }
+        isExtending = false
         current_pkmn = nil
         trainer_names[trainer_id] = trainer_hash[:name]
       elsif line[/^\s*(\w+)\s*=\s*(.*)$/]
@@ -1177,6 +1175,10 @@ end
         when "Items", "LoseText","Policies"
           trainer_hash[line_schema[0]] = property_value
           trainer_lose_texts[trainer_id] = property_value if property_name == "LoseText"
+        when "Extends"
+          trainer_hash[line_schema[0]] = property_value
+          echoln("This trainer extends the version of itsself with number #{property_value}")
+          isExtending = true
         when "Pokemon"
           current_pkmn = {
             :species => property_value[0],
@@ -1218,111 +1220,8 @@ end
             current_pkmn[line_schema[0]] = property_value
           end
         end
-      else
-        # Old format - backwards compatibility is SUCH fun!
-        if old_format_current_line == 0   # Started an old trainer section
-          if trainer_hash
-            if !current_pkmn
-              raise _INTL("Started new trainer while previous trainer has no Pokémon.\r\n{1}", FileLineData.linereport)
-            end
-            # Add trainer's data to records
-            trainer_hash[:id] = [trainer_hash[:trainer_type], trainer_hash[:name], trainer_hash[:version]]
-            GameData::Trainer.register(trainer_hash)
-          end
-          trainer_id += 1
-          old_format_expected_lines = 3
-          # Construct trainer hash
-          trainer_hash = {
-            :id_number    => trainer_id,
-            :trainer_type => nil,
-            :name         => nil,
-            :version      => 0,
-            :pokemon      => []
-          }
-          current_pkmn = nil
-        end
-        # Evaluate line and add to hash
-        old_format_current_line += 1
-        case old_format_current_line
-        when 1   # Trainer type
-          line_data = pbGetCsvRecord(line, line_no, [0, "e", :TrainerType])
-          trainer_hash[:trainer_type] = line_data
-        when 2   # Trainer name, version number
-          line_data = pbGetCsvRecord(line, line_no, [0, "sU"])
-          line_data = [line_data] if !line_data.is_a?(Array)
-          trainer_hash[:name]    = line_data[0]
-          trainer_hash[:version] = line_data[1] if line_data[1]
-          trainer_names[trainer_hash[:id_number]] = line_data[0]
-        when 3   # Number of Pokémon, items
-          line_data = pbGetCsvRecord(line, line_no,
-             [0, "vEEEEEEEE", nil, :Item, :Item, :Item, :Item, :Item, :Item, :Item, :Item])
-          line_data = [line_data] if !line_data.is_a?(Array)
-          line_data.compact!
-          old_format_expected_lines += line_data[0]
-          line_data.shift
-          trainer_hash[:items] = line_data if line_data.length > 0
-        else   # Pokémon lines
-          line_data = pbGetCsvRecord(line, line_no,
-             [0, "evEEEEEUEUBEUUSBU", :Species, nil, :Item, :Move, :Move, :Move, :Move, nil,
-                                      {"M" => 0, "m" => 0, "Male" => 0, "male" => 0, "0" => 0,
-                                      "F" => 1, "f" => 1, "Female" => 1, "female" => 1, "1" => 1},
-                                      nil, nil, :Nature, nil, nil, nil, nil, nil])
-          current_pkmn = {
-            :species => line_data[0]
-          }
-          trainer_hash[:pokemon].push(current_pkmn)
-          # Error checking in properties
-          line_data.each_with_index do |value, i|
-            next if value.nil?
-            case i
-            when 1   # Level
-              if value > max_level
-                raise _INTL("Bad level: {1} (must be 1-{2}).\r\n{3}", value, max_level, FileLineData.linereport)
-              end
-            when 12   # IV
-              if value > Pokemon::IV_STAT_LIMIT
-                raise _INTL("Bad IV: {1} (must be 0-{2}).\r\n{3}", value, Pokemon::IV_STAT_LIMIT, FileLineData.linereport)
-              end
-            when 13   # Happiness
-              if value > 255
-                raise _INTL("Bad happiness: {1} (must be 0-255).\r\n{2}", value, FileLineData.linereport)
-              end
-            when 14   # Nickname
-              if value.length > Pokemon::MAX_NAME_SIZE
-                raise _INTL("Bad nickname: {1} (must be 1-{2} characters).\r\n{3}", value, Pokemon::MAX_NAME_SIZE, FileLineData.linereport)
-              end
-            end
-          end
-          # Write all line data to hash
-          moves = [line_data[3], line_data[4], line_data[5], line_data[6]]
-          moves.uniq!.compact!
-          ivs = {}
-          if line_data[12]
-            GameData::Stat.each_main do |s|
-              ivs[s.id] = line_data[12] if s.pbs_order >= 0
-            end
-          end
-          current_pkmn[:level]         = line_data[1]
-          current_pkmn[:item]          = line_data[2] if line_data[2]
-          current_pkmn[:moves]         = moves if moves.length > 0
-          current_pkmn[:ability_index] = line_data[7] if line_data[7]
-          current_pkmn[:gender]        = line_data[8] if line_data[8]
-          current_pkmn[:form]          = line_data[9] if line_data[9]
-          current_pkmn[:shininess]     = line_data[10] if line_data[10]
-          current_pkmn[:nature]        = line_data[11] if line_data[11]
-          current_pkmn[:iv]            = ivs if ivs.length > 0
-          current_pkmn[:happiness]     = line_data[13] if line_data[13]
-          current_pkmn[:name]          = line_data[14] if line_data[14] && !line_data[14].empty?
-          current_pkmn[:shadowness]    = line_data[15] if line_data[15]
-          current_pkmn[:poke_ball]     = line_data[16] if line_data[16]
-          # Check if this is the last expected Pokémon
-          old_format_current_line = 0 if old_format_current_line >= old_format_expected_lines
-        end
       end
     }
-    if old_format_current_line > 0
-      raise _INTL("Unexpected end of file, last trainer not defined with as many Pokémon as expected.\r\n{1}", FileLineData.linereport)
-    end
     # Add last trainer's data to records
     if trainer_hash
       trainer_hash[:id] = [trainer_hash[:trainer_type], trainer_hash[:name], trainer_hash[:version]]
@@ -1627,8 +1526,8 @@ end
     push_else(firstPage.list,2)
     push_text(firstPage.list,"Dialogue here.",2)
     push_script(firstPage.list,"defeatTrainer",2)
-      push_branch_end(firstPage.list,2)
-      push_branch_end(firstPage.list,1)
+    push_branch_end(firstPage.list,2)
+    push_branch_end(firstPage.list,1)
     
     push_script(firstPage.list,"pbTrainerEnd")
     push_end(firstPage.list)
@@ -1652,12 +1551,12 @@ end
     push_end(thirdPage.list)
     
     return ret
-    end
+  end
     
-    #=============================================================================
-    # Convert events using the PHA name command into fully fledged avatars
-    #=============================================================================
-    def convert_avatars(event)
+  #=============================================================================
+  # Convert events using the PHA name command into fully fledged avatars
+  #=============================================================================
+  def convert_avatars(event)
     return nil if !event || event.pages.length==0
     match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)(?:,([_a-zA-Z]+))?(?:,([_a-zA-Z0-9]+))?(?:,([0-9]+))?\).*/)
     return nil if !match
@@ -2163,6 +2062,9 @@ module Compiler
           f.write(sprintf("[%s,%s,%d]\r\n", trainer.trainer_type, trainer.real_name, trainer.version))
         else
           f.write(sprintf("[%s,%s]\r\n", trainer.trainer_type, trainer.real_name))
+        end
+        if trainer.extendsVersion >= 0
+          f.write(sprintf("Extends = %s\r\n", trainer.extendsVersion.to_s))
         end
 		    if trainer.policies && trainer.policies.length > 0
           policiesString = ""

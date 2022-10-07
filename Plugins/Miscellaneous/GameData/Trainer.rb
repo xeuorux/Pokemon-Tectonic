@@ -1,6 +1,7 @@
 module GameData
 	class Trainer
 		attr_reader :policies
+		attr_reader :extendsVersion
 	
 		SCHEMA = {
 		  "Items"        => [:items,         "*e", :Item],
@@ -22,6 +23,7 @@ module GameData
 		  "Shiny"        => [:shininess,     "b"],
 		  "Shadow"       => [:shadowness,    "b"],
 		  "Ball"         => [:poke_ball,     "s"],
+		  "Extends"		 => [:extends,		 "u"],
 		}
 		
 		def initialize(hash)
@@ -40,68 +42,93 @@ module GameData
 			  pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
 			end
 		  end
+		  @extendsVersion = hash[:extends]		|| -1
 		end
 	
 		# Creates a battle-ready version of a trainer's data.
 		# @return [Array] all information about a trainer in a usable form
 		def to_trainer
-		  # Determine trainer's name
-		  tr_name = self.name
-		  Settings::RIVAL_NAMES.each do |rival|
-			next if rival[0] != @trainer_type || !$game_variables[rival[1]].is_a?(String)
-			tr_name = $game_variables[rival[1]]
-			break
-		  end
-		  trainerTypeData = GameData::TrainerType.get(@trainer_type)
-		  
-		  # Create trainer object
-		  trainer = NPCTrainer.new(tr_name, @trainer_type)
-		  trainer.id        = $Trainer.make_foreign_ID
-		  trainer.items     = @items.clone
-		  trainer.lose_text = self.lose_text
-		  trainer.policies  = self.policies
-		  trainer.policies.concat(trainerTypeData.policies)
-		  trainer.policies.uniq!
-		  # Create each Pokémon owned by the trainer
-		  @pokemon.each do |pkmn_data|
-			species = GameData::Species.get(pkmn_data[:species]).species
-			pkmn = Pokemon.new(species, pkmn_data[:level], trainer, false)
-			trainer.party.push(pkmn)
-			# Set Pokémon's properties if defined
-			if pkmn_data[:form]
-			  pkmn.forced_form = pkmn_data[:form] if MultipleForms.hasFunction?(species, "getForm")
-			  pkmn.form_simple = pkmn_data[:form]
+			parentTrainer = nil
+			extending = false
+			if @extendsVersion > -1
+				parentTrainerData = GameData::Trainer.get(@trainer_type, @real_name, @extendsVersion)
+				parentTrainer = parentTrainerData.to_trainer
+				extending = true if !parentTrainer.nil?
+				echoln("Trainer #{@id.to_s} is extending trainer #{parentTrainerData.id.to_s}")
 			end
-			pkmn.item = pkmn_data[:item]
-			if pkmn_data[:moves] && pkmn_data[:moves].length > 0
-			  pkmn_data[:moves].each { |move| pkmn.learn_move(move) }
-			else
-			  pkmn.reset_moves([pkmn.level,50].min,true)
+
+			# Determine trainer's name
+			tr_name = self.name
+			Settings::RIVAL_NAMES.each do |rival|
+				next if rival[0] != @trainer_type || !$game_variables[rival[1]].is_a?(String)
+				tr_name = $game_variables[rival[1]]
+				break
 			end
-			pkmn.ability_index = pkmn_data[:ability_index]
-			pkmn.ability = pkmn_data[:ability]
-			pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)
-			pkmn.shiny = (pkmn_data[:shininess]) ? true : false
-			pkmn.nature = 0
-			GameData::Stat.each_main do |s|
-			  pkmn.iv[s.id] = 0
-			  if pkmn_data[:ev]
-				pkmn.ev[s.id] = pkmn_data[:ev][s.id]
-			  else
-				pkmn.ev[s.id] = 8
-			  end
+			
+			# Create trainer object
+			trainer = NPCTrainer.new(tr_name, @trainer_type)
+			trainer.id        = $Trainer.make_foreign_ID
+			trainer.items     = @items.clone
+			trainer.lose_text = @lose_text
+			trainer.policies  = @policies.clone
+			trainer.policies.concat(GameData::TrainerType.get(@trainer_type).policies)
+
+			if extending
+				trainer.items.concat(parentTrainer.items.clone)
+				trainer.lose_text = parentTrainer.lose_text if @lose_text.nil? || @lose_text == "..."
+				trainer.policies.concat(parentTrainer.policies.clone)
 			end
-			pkmn.happiness = pkmn_data[:happiness] if pkmn_data[:happiness]
-			pkmn.name = pkmn_data[:name] if pkmn_data[:name] && !pkmn_data[:name].empty?
-			if pkmn_data[:shadowness]
-			  pkmn.makeShadow
-			  pkmn.update_shadow_moves(true)
-			  pkmn.shiny = false
+
+			trainer.policies.uniq!
+
+			# Create each Pokémon owned by the trainer
+			@pokemon.each do |pkmn_data|
+				species = GameData::Species.get(pkmn_data[:species]).species
+				pkmn = Pokemon.new(species, pkmn_data[:level], trainer, false)
+				trainer.party.push(pkmn)
+				# Set Pokémon's properties if defined
+				if pkmn_data[:form]
+					pkmn.forced_form = pkmn_data[:form] if MultipleForms.hasFunction?(species, "getForm")
+					pkmn.form_simple = pkmn_data[:form]
+				end
+				pkmn.item = pkmn_data[:item]
+				if pkmn_data[:moves] && pkmn_data[:moves].length > 0
+					pkmn_data[:moves].each { |move| pkmn.learn_move(move) }
+				else
+					pkmn.reset_moves([pkmn.level,50].min,true)
+				end
+				pkmn.ability_index = pkmn_data[:ability_index]
+				pkmn.ability = pkmn_data[:ability]
+				pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)
+				pkmn.shiny = (pkmn_data[:shininess]) ? true : false
+				pkmn.nature = 0
+				GameData::Stat.each_main do |s|
+					pkmn.iv[s.id] = 0
+					if pkmn_data[:ev]
+						pkmn.ev[s.id] = pkmn_data[:ev][s.id]
+					else
+						pkmn.ev[s.id] = 8
+					end
+				end
+				pkmn.happiness = pkmn_data[:happiness] if pkmn_data[:happiness]
+				pkmn.name = pkmn_data[:name] if pkmn_data[:name] && !pkmn_data[:name].empty?
+				if pkmn_data[:shadowness]
+					pkmn.makeShadow
+					pkmn.update_shadow_moves(true)
+					pkmn.shiny = false
+				end
+				pkmn.poke_ball = pkmn_data[:poke_ball] if pkmn_data[:poke_ball]
+				pkmn.calc_stats
 			end
-			pkmn.poke_ball = pkmn_data[:poke_ball] if pkmn_data[:poke_ball]
-			pkmn.calc_stats
-		  end
-		  return trainer
+
+			if extending
+				trainer.party.concat(parentTrainer.party)
+				if trainer.party.length > Settings::MAX_PARTY_SIZE
+					raise _INTL("Error when trying to contruct trainer #{@id.to_s} as an extension of trainer #{trainer.id.to_s}. The resultant party is larger than the maximum party size!")
+				end
+			end
+
+			return trainer
 		end
 	end
 end
