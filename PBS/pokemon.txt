@@ -24135,7 +24135,7 @@ InternalName = TRUMBEAK
 Type1 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,95,75,70,50,65
-# Total = 425
+# Total = 420
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 124
