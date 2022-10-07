@@ -329,7 +329,7 @@ class PokeBattle_Battler
   #=============================================================================
   # Calculated properties
   #=============================================================================
-  def pbSpeed
+  def pbSpeed(aiChecking=false)
     return 1 if fainted?
     stageMul = STAGE_MULTIPLIERS
     stageDiv = STAGE_DIVISORS
@@ -339,7 +339,7 @@ class PokeBattle_Battler
     speed = (@speed + speed_bonus)*stageMul[stage]/stageDiv[stage]
     speedMult = 1.0
     # Ability effects that alter calculated Speed
-    if abilityActive?
+    if abilityActive? && ignoreAbilityInAI?(aiChecking)
       speedMult = BattleHandlers.triggerSpeedCalcAbility(self.ability,self,speedMult)
     end
     # Item effects that alter calculated Speed
@@ -351,12 +351,12 @@ class PokeBattle_Battler
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp]>0
     speedMult *= 2 if @effects[PBEffects::OnDragonRide]
     # Paralysis and Chill
-    if !hasActiveAbility?(:QUICKFEET)
+    if !shouldAbilityApply?(:QUICKFEET,aiChecking)
       if paralyzed?
         speedMult /= 2
         speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
       end
-      if poisoned? && !hasActiveAbility?(:POISONHEAL)
+      if poisoned? && !shouldAbilityApply?(:POISONHEAL,aiChecking)
         speedMult /= 2
         speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
       end

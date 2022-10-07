@@ -56,14 +56,14 @@ PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_PERMANENT_SAND,
 		battle.amuletActivates("Permanent Sand")
 		battle.pbDisplaySlower(_INTL("The weather is set to Sand at the beginning of every turn."))
 		curses_array.push(curse_policy)
-		battle.pbStartWeather(nil,:Sand)
+		battle.pbStartWeather(nil,:Sandstorm)
 		next curses_array
 	}
 )
 
 PokeBattle_Battle::BeginningOfTurnCurseEffect.add(:CURSE_PERMANENT_SAND,
 	proc { |curse_policy,battle|
-		battle.pbStartWeather(nil,:Sand)
+		battle.pbStartWeather(nil,:Sandstorm)
 	}
 )
 

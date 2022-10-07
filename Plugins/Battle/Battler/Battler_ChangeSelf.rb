@@ -13,10 +13,23 @@ class PokeBattle_Battler
     return false
   end
 
+  # Helper method for performing the checks that are supposed to occur whenever the battler loses HP
+  # From a special effect that occurs when entering the field (i.e. Stealth Rock)
+  # Returns whether or not the pokemon was swapped out due to a damage taking ability
+  def pbEntryHealthLossChecks(oldHP = -1)
+    pbItemHPHealCheck()
+    if fainted?
+      pbFaint()
+    elsif oldHP > -1
+      return pbAbilitiesOnDamageTaken(oldHP) 
+    end
+    return false
+  end
+
   # Applies damage effects that are based on a fraction of the battler's total HP
   # Returns how much damage ended up dealt
   # Accounts for bosses taking reduced fractional damage
-  def applyFractionalDamage(fraction,showDamageAnimation=true,basedOnCurrentHP=false)
+  def applyFractionalDamage(fraction,showDamageAnimation=true,basedOnCurrentHP=false,entryCheck=false)
     oldHP = @hp
     fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
     fraction *= 2 if @battle.pbCheckOpposingAbility(:AGGRAVATE,@index)
@@ -30,8 +43,13 @@ class PokeBattle_Battler
       @battle.scene.pbDamageAnimation(self)
     end
     pbReduceHP(reduction,false)
-    fainted = pbHealthLossChecks(oldHP)
-    return reduction
+    if !entryCheck
+      pbHealthLossChecks(oldHP)
+      return reduction
+    else
+      swapped = pbEntryHealthLossChecks(oldHP)
+      return swapped
+    end
   end
 
 	def pbRecoverHP(amt,anim=true,anyAnim=true)

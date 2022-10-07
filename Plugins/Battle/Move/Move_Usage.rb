@@ -365,4 +365,35 @@ class PokeBattle_Move
           end
         end
     end
+
+    # Used by Counter/Mirror Coat/Metal Burst/Revenge/Focus Punch/Bide/Assurance.
+    def pbRecordDamageLost(user,target)
+      damage = target.damageState.hpLost
+      # NOTE: In Gen 3 where a move's category depends on its type, Hidden Power
+      #       is for some reason countered by Counter rather than Mirror Coat,
+      #       regardless of its calculated type. Hence the following two lines of
+      #       code.
+      moveType = nil
+      moveType = :NORMAL if @function=="090"   # Hidden Power
+      if physicalMove?(moveType)
+        target.effects[PBEffects::Counter]       = damage
+        target.effects[PBEffects::CounterTarget] = user.index
+      elsif specialMove?(moveType)
+        target.effects[PBEffects::MirrorCoat]       = damage
+        target.effects[PBEffects::MirrorCoatTarget] = user.index
+      end
+      if target.effects[PBEffects::Bide]>0
+        target.effects[PBEffects::BideDamage] += damage
+        target.effects[PBEffects::BideTarget] = user.index
+      end
+      target.damageState.fainted = true if target.fainted?
+      target.lastHPLost = damage             # For Focus Punch
+      target.tookDamage = true if damage>0   # For Assurance
+      target.lastAttacker.push(user.index)   # For Revenge
+      if target.opposes?(user)
+        target.lastHPLostFromFoe = damage              # For Metal Burst
+        target.lastFoeAttacker.push(user.index)        # For Metal Burst
+        target.lastRoundHighestTypeModFromFoe = target.damageState.typeMod if target.damageState.typeMod > target.lastRoundHighestTypeModFromFoe
+      end
+    end
 end

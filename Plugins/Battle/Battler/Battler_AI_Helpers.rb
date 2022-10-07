@@ -88,6 +88,16 @@ class PokeBattle_Battler
 		return enemiesInReserveCount() != 0
 	end
 
+	def ignoreAbilityInAI?(aiChecking)
+		return false if !aiChecking
+		return aiKnowsAbility?
+	end
+
+	def aiKnowsAbility?
+		return false if @effects[PBEffects::Illusion] && pbOwnedByPlayer?
+		return true
+	end
+
      # A helper method that diverts to an AI-based check or a true calculation check as appropriate
      def shouldAbilityApply?(check_ability, checkingForAI)
 		if checkingForAI
@@ -100,7 +110,7 @@ class PokeBattle_Battler
     # An ability check method that is fooled by Illusion
     # May in the future be extended to having the AI be ignorant about the player's abilities until they are revealed
 	def hasActiveAbilityAI?(check_ability, ignore_fainted = false)
-		return false if @effects[PBEffects::Illusion] && pbOwnedByPlayer?
+		return false if aiKnowsAbility?
 		return hasActiveAbility?(check_ability, ignore_fainted)
 	end
 

@@ -3036,7 +3036,7 @@ Pokemon = HYMNUS,55
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Victoire_2,Victoire]
-Policies = VICTOIRE
+Policies = VICTOIRE,RAIN_TEAM
 Pokemon = BLASTOISE,55
     Moves = FLASHCANNON,MENDINGSPRING,SURF,AURASPHERE
     AbilityIndex = 0
@@ -3063,7 +3063,7 @@ Pokemon = DECEAT,55
     AbilityIndex = 0
 #-------------------------------
 [LEADER_Victoire_2,Victoire,1]
-Policies = VICTOIRE,CURSE_VENGEANT
+Policies = VICTOIRE,CURSE_VENGEANT,RAIN_TEAM
 Pokemon = BLASTOISE,55
     Moves = FLASHCANNON,MENDINGSPRING,SURF,AURASPHERE
     AbilityIndex = 0

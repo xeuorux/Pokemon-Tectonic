@@ -143,6 +143,12 @@ class PokeBattle_Battle
     # Check forms are correct
     eachBattler { |b| b.pbCheckForm }
   end
+
+  def getStealthRockHPRatio(type1,type2=nil,type3=nil)
+    eff = Effectiveness.calculate(:ROCK,type1,type2,type3)
+    effectivenessMult = eff.to_f / Effectiveness::NORMAL_EFFECTIVE
+    return effectivenessMult / 8.0
+  end
   
   # Called when a Pokémon switches in (entry effects, entry hazards).
   def pbOnActiveOne(battler)
@@ -194,32 +200,25 @@ class PokeBattle_Battle
     end
     # Entry hazards
     # Stealth Rock
-    if battler.pbOwnSide.effects[PBEffects::StealthRock] && battler.takesIndirectDamage? && !battler.immuneToHazards? &&
-       GameData::Type.exists?(:ROCK)
+    if battler.pbOwnSide.effects[PBEffects::StealthRock] && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:ROCK)
       bTypes = battler.pbTypes(true)
-      eff = Effectiveness.calculate(:ROCK, bTypes[0], bTypes[1], bTypes[2])
-      if !Effectiveness.ineffective?(eff)
-        eff = eff.to_f / Effectiveness::NORMAL_EFFECTIVE
-        oldHP = battler.hp
-        battler.pbReduceHP(battler.totalhp*eff/8,false)
+      stealthRockHPRatio = getStealthRockHPRatio(bTypes[0], bTypes[1], bTypes[2])
+      if stealthRockHPRatio > 0
         pbDisplay(_INTL("Pointed stones dug into {1}!",battler.pbThis(true)))
-        battler.pbItemHPHealCheck
-        if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+        if battler.applyFractionalDamage(stealthRockHPRatio,true,false,true)
           return pbOnActiveOne(battler)   # For replacement battler
         end
       end
     end
     # Spikes
-    if battler.pbOwnSide.effects[PBEffects::Spikes]>0 && battler.takesIndirectDamage? && !battler.immuneToHazards? &&
-       !battler.airborne?
+    if battler.pbOwnSide.effects[PBEffects::Spikes] > 0 && battler.takesIndirectDamage? && !battler.immuneToHazards? && !battler.airborne?
       spikesIndex = battler.pbOwnSide.effects[PBEffects::Spikes] - 1
       spikesDiv = [8,6,4][spikesIndex]
-      oldHP = battler.hp
-      battler.pbReduceHP(battler.totalhp/spikesDiv,false)
+      spikesHPRatio = 1.0 / spikesDiv.to_f
       layerLabel = ["layer","2 layers","3 layers"][spikesIndex]
       pbDisplay(_INTL("{1} is hurt by the {2} of spikes!",battler.pbThis,layerLabel))
       battler.pbItemHPHealCheck
-      if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+      if battler.applyFractionalDamage(spikesHPRatio,true,false,true)
         return pbOnActiveOne(battler)   # For replacement battler
       end
     end
@@ -232,11 +231,8 @@ class PokeBattle_Battle
         if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] >= 2
           battler.pbPoison(nil,_INTL("{1} was poisoned by the poison spikes!",battler.pbThis))
         else
-          oldHP = battler.hp
-          battler.pbReduceHP(battler.totalhp/16,false)
           pbDisplay(_INTL("{1} was hurt by the thin layer of poison spikes!",battler.pbThis))
-          battler.pbItemHPHealCheck
-          if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+          if battler.applyFractionalDamage(1.0/16.0,true,false,true)
             return pbOnActiveOne(battler)   # For replacement battler
           end
         end
@@ -253,11 +249,8 @@ class PokeBattle_Battle
         if battler.pbOwnSide.effects[PBEffects::FlameSpikes] >= 2
           battler.pbBurn(nil,_INTL("{1} was burned by the flame spikes!",battler.pbThis))
         else
-          oldHP = battler.hp
-          battler.pbReduceHP(battler.totalhp/16,false)
           pbDisplay(_INTL("{1} was hurt by the thin layer of flame spikes!",battler.pbThis))
-          battler.pbItemHPHealCheck
-          if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+          if battler.applyFractionalDamage(1.0/16.0,true,false,true)
             return pbOnActiveOne(battler)   # For replacement battler
           end
         end
@@ -274,11 +267,8 @@ class PokeBattle_Battle
         if battler.pbOwnSide.effects[PBEffects::FrostSpikes] >= 2
           battler.pbFrostbite(nil,_INTL("{1} was frostbitten by the frost spikes!",battler.pbThis))
         else
-          oldHP = battler.hp
-          battler.pbReduceHP(battler.totalhp/16,false)
           pbDisplay(_INTL("{1} was hurt by the thin layer of frost spikes!",battler.pbThis))
-          battler.pbItemHPHealCheck
-          if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+          if battler.applyFractionalDamage(1.0/16.0,true,false,true)
             return pbOnActiveOne(battler)   # For replacement battler
           end
         end
