@@ -292,7 +292,6 @@ BattleHandlers::DamageCalcUserAbility.add(:RADIATE,
   }
 )
 
-
 BattleHandlers::DamageCalcUserAbility.add(:GALEFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] *= 1.5 if move.windMove?
@@ -308,5 +307,13 @@ BattleHandlers::DamageCalcUserAbility.add(:ROBUST,
 BattleHandlers::DamageCalcUserAbility.add(:EXTREMEHEAT,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] *= 1.5
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:ARCANE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if move.specialMove?
+      mults[:attack_multiplier] *= 1.3
+    end
   }
 )

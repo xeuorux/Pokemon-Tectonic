@@ -466,6 +466,7 @@
 465,NESTING,Nesting,"Heals quadruple from Grassy terrain, and doesn't count as airborne during."
 466,QUICKBUILD,Quick Build,"Room creating moves have priority."
 467,EXTREMEHEAT,Extreme Heat,"Increases move damage by 50%, but loses 1/10 HP every turn."
+468,ARCANE,Radiate,"Increases Sp. Atk by 30%."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
