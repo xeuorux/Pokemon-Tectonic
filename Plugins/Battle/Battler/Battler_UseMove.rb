@@ -222,7 +222,7 @@ class PokeBattle_Battler
       @battle.pbCommonAnimation("Powder",user)
       @battle.pbDisplay(_INTL("When the flame touched the powder on the Pokémon, it exploded!"))
       user.lastMoveFailed = true
-      if ![:Rain, :HeavyRain].include?(@battle.pbWeather) && user.takesIndirectDamage?
+      if user.takesIndirectDamage?
         oldHP = user.hp
         user.pbReduceHP((user.totalhp/4.0).round,false)
         cleanupPreMoveDamage(use,oldHP)
