@@ -378,7 +378,16 @@ class PokeBattle_Battler
 				end
 			end
 		end
-		#PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}") if newStatus == :SLEEP
+		if newStatus == :SLEEP
+			PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}")
+			@battle.eachBattler(@index) do |b|
+				next if b.nil?
+				next if !b.hasActiveAbility?(:DREAMWEAVER)
+				@battle.pbShowAbilitySplash(b)
+				b.pbRaiseStatStage(:SPECIAL_ATTACK,1,b)
+				@battle.pbHideAbilitySplash(b)
+			end
+		end
 		# Form change check
 		pbCheckFormOnStatusChange
 		# Synchronize
@@ -590,8 +599,8 @@ class PokeBattle_Battler
 				@battle.eachOtherSideBattler(@index) do |b|
 					if b.hasActiveAbility?(:LINGERINGDAZE)
 						@battle.pbShowAbilitySplash(b)
-						pbLowerStatStageByAbility(:SPECIAL_ATTACK,1,b)
-						pbLowerStatStageByAbility(:SPECIAL_DEFENSE,1,b)
+						pbLowerStatStage(:ATTACK,2,b)
+						pbLowerStatStage(:SPECIAL_ATTACK,2,b,false)
 						@battle.pbHideAbilitySplash(b)
 					end
 				end
