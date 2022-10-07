@@ -3320,6 +3320,10 @@ Pokemon = SCARAPACE,57
     Moves = HUNTDOWN,STORMTHROW,XSCISSOR,BODYSLAM
     AbilityIndex = 0
 #-------------------------------
+[TRAINER_Sang,Sang,3]
+Extends = 2
+Policies = CURSE_PERISH_SONGED
+#-------------------------------
 [VETERAN_F,Emily]
 Pokemon = SAMUROTT,61
     AbilityIndex = 1
