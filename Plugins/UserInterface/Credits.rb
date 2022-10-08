@@ -70,6 +70,7 @@ Newtiteuf<s>moca
 
 Charsets
 DiegoWT<s>PurpleZaffre
+Taiga
 
 Trainer Sprites
 Mr. Gela/theo#7722
