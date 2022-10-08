@@ -310,8 +310,10 @@ class PokeBattle_AI
                     matchup = rateMatchup(battler,pkmn,opposingBattler,getRoughAttackingTypes(opposingBattler))
                     matchups.push(matchup)
                 end
-                worstTypeMatchup = matchups.min
-                switchScore += worstTypeMatchup
+                if matchups.length > 0
+                    worstTypeMatchup = matchups.min
+                    switchScore += worstTypeMatchup
+                end
             end
 
             list.push([i,switchScore])
