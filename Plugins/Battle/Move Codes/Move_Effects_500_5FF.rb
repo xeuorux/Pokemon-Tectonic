@@ -65,26 +65,10 @@ end
 # Target moves immediately after the user, ignoring priority/speed. (Kickstart)
 #===============================================================================
 class PokeBattle_Move_505 < PokeBattle_Move
-  def ignoresSubstitute?(user); return true; end
-
-  def pbFailsAgainstTarget?(user,target)
-    # Target has already moved this round
-    return true if pbMoveFailedTargetAlreadyMoved?(target)
-    # Target was going to move next anyway (somehow)
-    if target.effects[PBEffects::MoveNext]
-      @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} was already going to move next!"))
-      return true
-    end
-    # Target didn't choose to use a move this round
-    oppMove = @battle.choices[target.index][2]
-    if !oppMove
-      @battle.pbDisplay(_INTL("But it failed, #{target.pbThis(true)} isn't set to use a move this turn!"))
-      return true
-    end
-    return false
-  end
-
   def pbEffectAgainstTarget(user,target)
+    return if pbMoveFailedTargetAlreadyMoved?(target) # Target has already moved this round
+    return if target.effects[PBEffects::MoveNext] # Target was going to move next anyway (somehow)
+    return if @battle.choices[target.index][2].nil? # Target didn't choose to use a move this round
     target.effects[PBEffects::MoveNext] = true
     target.effects[PBEffects::Quash]    = 0
     @battle.pbDisplay(_INTL("{1} was kickstarted into action!",target.pbThis))
