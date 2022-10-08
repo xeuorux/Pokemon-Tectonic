@@ -1095,13 +1095,14 @@ end
         line_data = pbGetCsvRecord($~[1], line_no, [0, "esU", :TrainerType])
         # Construct trainer hash
         trainer_hash = {
-          :id_number    => trainer_id,
-          :trainer_type => line_data[0],
-          :name         => line_data[1],
-          :version      => line_data[2] || 0,
-          :pokemon      => [],
-		      :policies		  => [],
-          :extends      => -1,
+          :id_number       => trainer_id,
+          :trainer_type    => line_data[0],
+          :name            => line_data[1],
+          :version         => line_data[2] || 0,
+          :pokemon         => [],
+		      :policies		     => [],
+          :extends         => -1,
+          :removed_pokemon => [],
         }
         isExtending = false
         current_pkmn = nil
@@ -1120,7 +1121,7 @@ end
         when "Items"
           property_value = [property_value] if !property_value.is_a?(Array)
           property_value.compact!
-        when "Pokemon"
+        when "Pokemon","RemovePokemon"
           if property_value[1] > max_level
             raise _INTL("Bad level: {1} (must be 1-{2}).\r\n{3}", property_value[1], max_level, FileLineData.linereport)
           end
@@ -1169,6 +1170,10 @@ end
           if property_value > 255
             raise _INTL("Bad happiness: {1} (must be 0-255).\r\n{2}", property_value, FileLineData.linereport)
           end
+        when "Position"
+          if property_value < 0 || property_value >= Settings::MAX_PARTY_SIZE
+            raise _INTL("Bad party position: {1} (must be 0-{2}).\r\n{3}", property_value, Settings::MAX_PARTY_SIZE-1, FileLineData.linereport)
+          end
         end
         # Record XXX=YYY setting
         case property_name
@@ -1176,16 +1181,22 @@ end
           trainer_hash[line_schema[0]] = property_value
           trainer_lose_texts[trainer_id] = property_value if property_name == "LoseText"
         when "Extends"
-          trainer_hash[line_schema[0]] = property_value
-          echoln("This trainer extends the version of itsself with number #{property_value}")
+          trainer_hash[:extends_class] = property_value[0]
+          trainer_hash[:extends_name] = property_value[1]
+          trainer_hash[:extends_version] = property_value[2]
           isExtending = true
-        when "Pokemon"
+        when "ExtendsVersion"
+          trainer_hash[:extends_version] = property_value
+          isExtending = true
+        when "Pokemon","RemovePokemon"
           current_pkmn = {
             :species => property_value[0],
-            :level   => property_value[1]
+            :level   => property_value[1],
           }
-          # The default ability index for a given species of a given trainer should be chaotic, but not random
-          current_pkmn[:ability_index] = (trainer_hash[:name] + current_pkmn[:species].to_s).hash % 2
+          if !isExtending
+            # The default ability index for a given species of a given trainer should be chaotic, but not random
+            current_pkmn[:ability_index] = (trainer_hash[:name] + current_pkmn[:species].to_s).hash % 2
+          end
           trainer_hash[line_schema[0]].push(current_pkmn)
         else
           if !current_pkmn
@@ -2064,7 +2075,11 @@ module Compiler
           f.write(sprintf("[%s,%s]\r\n", trainer.trainer_type, trainer.real_name))
         end
         if trainer.extendsVersion >= 0
-          f.write(sprintf("Extends = %s\r\n", trainer.extendsVersion.to_s))
+          if !trainer.extendsClass.nil? && !trainer.extendsName.nil?
+            f.write(sprintf("Extends = %s,%s,%s\r\n", trainer.extendsClass.to_s, trainer.extendsName.to_s, trainer.extendsVersion.to_s))
+          else
+            f.write(sprintf("ExtendsVersion = %s\r\n", trainer.extendsVersion.to_s))
+          end
         end
 		    if trainer.policies && trainer.policies.length > 0
           policiesString = ""
@@ -2077,32 +2092,41 @@ module Compiler
         f.write(sprintf("Items = %s\r\n", trainer.items.join(","))) if trainer.items.length > 0
         trainer.pokemon.each do |pkmn|
           f.write(sprintf("Pokemon = %s,%d\r\n", pkmn[:species], pkmn[:level]))
-          f.write(sprintf("    Name = %s\r\n", pkmn[:name])) if pkmn[:name] && !pkmn[:name].empty?
-          f.write(sprintf("    Form = %d\r\n", pkmn[:form])) if pkmn[:form] && pkmn[:form] > 0
-          f.write(sprintf("    Gender = %s\r\n", (pkmn[:gender] == 1) ? "female" : "male")) if pkmn[:gender]
-          f.write("    Shiny = yes\r\n") if pkmn[:shininess]
-          f.write("    Shadow = yes\r\n") if pkmn[:shadowness]
-          f.write(sprintf("    Moves = %s\r\n", pkmn[:moves].join(","))) if pkmn[:moves] && pkmn[:moves].length > 0
-          f.write(sprintf("    Ability = %s\r\n", pkmn[:ability])) if pkmn[:ability]
-          f.write(sprintf("    AbilityIndex = %d\r\n", pkmn[:ability_index])) if pkmn[:ability_index]
-          f.write(sprintf("    Item = %s\r\n", pkmn[:item])) if pkmn[:item]
-          f.write(sprintf("    Nature = %s\r\n", pkmn[:nature])) if pkmn[:nature]
-          ivs_array = []
-          evs_array = []
-          GameData::Stat.each_main do |s|
-            next if s.pbs_order < 0
-            ivs_array[s.pbs_order] = pkmn[:iv][s.id] if pkmn[:iv]
-            evs_array[s.pbs_order] = pkmn[:ev][s.id] if pkmn[:ev]
-          end
-          f.write(sprintf("    IV = %s\r\n", ivs_array.join(","))) if pkmn[:iv]
-          f.write(sprintf("    EV = %s\r\n", evs_array.join(","))) if pkmn[:ev]
-          f.write(sprintf("    Happiness = %d\r\n", pkmn[:happiness])) if pkmn[:happiness]
-          f.write(sprintf("    Ball = %s\r\n", pkmn[:poke_ball])) if pkmn[:poke_ball]
+          writePartyMember(f,pkmn)
+        end
+        trainer.removedPokemon.each do |pkmn|
+          f.write(sprintf("RemovePokemon = %s,%d\r\n", pkmn[:species], pkmn[:level]))
+          writePartyMember(f,pkmn)
         end
       end
     }
     pbSetWindowText(nil)
     Graphics.update
+  end
+
+  def writePartyMember(f,pkmn)
+    f.write(sprintf("    Position = %s\r\n", pkmn[:assigned_position])) if !pkmn[:assigned_position].nil?
+    f.write(sprintf("    Name = %s\r\n", pkmn[:name])) if pkmn[:name] && !pkmn[:name].empty?
+    f.write(sprintf("    Form = %d\r\n", pkmn[:form])) if pkmn[:form] && pkmn[:form] > 0
+    f.write(sprintf("    Gender = %s\r\n", (pkmn[:gender] == 1) ? "female" : "male")) if pkmn[:gender]
+    f.write("    Shiny = yes\r\n") if pkmn[:shininess]
+    f.write("    Shadow = yes\r\n") if pkmn[:shadowness]
+    f.write(sprintf("    Moves = %s\r\n", pkmn[:moves].join(","))) if pkmn[:moves] && pkmn[:moves].length > 0
+    f.write(sprintf("    Ability = %s\r\n", pkmn[:ability])) if pkmn[:ability]
+    f.write(sprintf("    AbilityIndex = %d\r\n", pkmn[:ability_index])) if pkmn[:ability_index]
+    f.write(sprintf("    Item = %s\r\n", pkmn[:item])) if pkmn[:item]
+    f.write(sprintf("    Nature = %s\r\n", pkmn[:nature])) if pkmn[:nature]
+    ivs_array = []
+    evs_array = []
+    GameData::Stat.each_main do |s|
+      next if s.pbs_order < 0
+      ivs_array[s.pbs_order] = pkmn[:iv][s.id] if pkmn[:iv]
+      evs_array[s.pbs_order] = pkmn[:ev][s.id] if pkmn[:ev]
+    end
+    f.write(sprintf("    IV = %s\r\n", ivs_array.join(","))) if pkmn[:iv]
+    f.write(sprintf("    EV = %s\r\n", evs_array.join(","))) if pkmn[:ev]
+    f.write(sprintf("    Happiness = %d\r\n", pkmn[:happiness])) if pkmn[:happiness]
+    f.write(sprintf("    Ball = %s\r\n", pkmn[:poke_ball])) if pkmn[:poke_ball]
   end
 
   #=============================================================================

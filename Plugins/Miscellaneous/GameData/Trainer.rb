@@ -1,13 +1,17 @@
 module GameData
 	class Trainer
 		attr_reader :policies
+		attr_reader :extendsClass
+		attr_reader :extendsName
 		attr_reader :extendsVersion
+		attr_reader :removedPokemon
 	
 		SCHEMA = {
 		  "Items"        => [:items,         "*e", :Item],
 		  "LoseText"     => [:lose_text,     "s"],
 		  "Policies"	 => [:policies,		 "*e", :Policy],
 		  "Pokemon"      => [:pokemon,       "ev", :Species],   # Species, level
+		  "RemovePokemon"=> [:removed_pokemon,       "ev", :Species],   # Species, level
 		  "Form"         => [:form,          "u"],
 		  "Name"         => [:name,          "s"],
 		  "Moves"        => [:moves,         "*e", :Move],
@@ -23,7 +27,9 @@ module GameData
 		  "Shiny"        => [:shininess,     "b"],
 		  "Shadow"       => [:shadowness,    "b"],
 		  "Ball"         => [:poke_ball,     "s"],
-		  "Extends"		 => [:extends,		 "u"],
+		  "ExtendsVersion" => [:extends_version, "u"],
+		  "Extends"		 => [:extends,		 "esu", :TrainerType],
+		  "Position"	 => [:assigned_position, "u"],
 		}
 		
 		def initialize(hash)
@@ -35,23 +41,27 @@ module GameData
 		  @items          = hash[:items]        || []
 		  @real_lose_text = hash[:lose_text]    || "..."
 		  @pokemon        = hash[:pokemon]      || []
-		  @policies		  = hash[:policies]		|| []
 		  @pokemon.each do |pkmn|
 			GameData::Stat.each_main do |s|
 			  pkmn[:iv][s.id] ||= 0 if pkmn[:iv]
 			  pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
 			end
 		  end
-		  @extendsVersion = hash[:extends]		|| -1
+		  @removedPokemon = hash[:removed_pokemon]
+		  @policies		  = hash[:policies]		|| []
+		  @extendsClass	  = hash[:extends_class]
+		  @extendsName	  = hash[:extends_name]
+		  @extendsVersion = hash[:extends_version] || -1
 		end
 	
 		# Creates a battle-ready version of a trainer's data.
 		# @return [Array] all information about a trainer in a usable form
 		def to_trainer
 			parentTrainer = nil
+			parentTrainerData = nil
 			extending = false
 			if @extendsVersion > -1
-				parentTrainerData = GameData::Trainer.get(@trainer_type, @real_name, @extendsVersion)
+				parentTrainerData = GameData::Trainer.get(@extendsClass || @trainer_type, @extendsName || @real_name, @extendsVersion)
 				parentTrainer = parentTrainerData.to_trainer
 				extending = true if !parentTrainer.nil?
 				echoln("Trainer #{@id.to_s} is extending trainer #{parentTrainerData.id.to_s}")
@@ -81,27 +91,96 @@ module GameData
 
 			trainer.policies.uniq!
 
+			# Add pokemon from a parent trainer entry's party, if inheriting
+			if extending
+				parentTrainer.party.each do |parentPartyMember|
+					# Determine if this pokemon was marked for removal in the child trainer entry
+					hasRemoveMatch = false
+					@removedPokemon.each do |removed_member|
+						removedSpecies = GameData::Species.get(removed_member[:species]).species
+						next if parentPartyMember.species != removedSpecies
+						removedLevel = removed_member[:level]
+						removedName = removed_member[:name] || removedSpecies.name
+						if parentPartyMember.level == removedLevel
+							hasRemoveMatch = true
+							break
+						elsif removedName == parentPartyMember.name
+							hasRemoveMatch = true
+							break
+						end
+					end
+
+					if hasRemoveMatch
+						#echoln("Ignoring parent party member #{parentPartyMember.name}, since the child trainer entry marked it as removed")
+					else
+						#echoln("Adding parent party member #{parentPartyMember.name} to child party")
+						trainer.party.push(parentPartyMember.clone)
+					end
+				end
+			end
+
 			# Create each Pokémon owned by the trainer
 			@pokemon.each do |pkmn_data|
 				species = GameData::Species.get(pkmn_data[:species]).species
-				pkmn = Pokemon.new(species, pkmn_data[:level], trainer, false)
-				trainer.party.push(pkmn)
+				level = pkmn_data[:level]
+
+				nickname = nil
+				nickname = pkmn_data[:name] if pkmn_data[:name] && !pkmn_data[:name].empty?
+
+				pkmn = nil
+				matchedOnNickname = false
+				if extending
+					trainer.party.each do |existingPokemon|
+						next if existingPokemon.species != species
+						if existingPokemon.level == level
+							pkmn = existingPokemon
+							break
+						elsif !nickname.nil? && nickname == existingPokemon.name
+							pkmn = existingPokemon
+							pkmn.level = level
+							break
+						end
+					end
+				end
+
+				if pkmn.nil?
+					pkmn = Pokemon.new(species, level, trainer, false)
+					trainer.party.push(pkmn)
+				else
+					#echoln("Pokemon #{pkmn.name} in entry #{@id.to_s} inherits from entry #{parentTrainerData.id.to_s}")
+				end
+
 				# Set Pokémon's properties if defined
-				if pkmn_data[:form]
+				pkmn.name = nickname if !nickname.nil?
+
+				pkmn.assignedPosition = pkmn_data[:assigned_position] || Settings::MAX_PARTY_SIZE
+
+				echoln("Assigning party member #{pkmn.name} position #{pkmn.assignedPosition} in the party")
+
+				if !pkmn_data[:form].nil?
 					pkmn.forced_form = pkmn_data[:form] if MultipleForms.hasFunction?(species, "getForm")
 					pkmn.form_simple = pkmn_data[:form]
 				end
-				pkmn.item = pkmn_data[:item]
+
+				pkmn.item = pkmn_data[:item] if !pkmn_data[:item].nil?
+
 				if pkmn_data[:moves] && pkmn_data[:moves].length > 0
+					pkmn.forget_all_moves
 					pkmn_data[:moves].each { |move| pkmn.learn_move(move) }
-				else
+				end
+
+				if pkmn.moves.length == 0
 					pkmn.reset_moves([pkmn.level,50].min,true)
 				end
-				pkmn.ability_index = pkmn_data[:ability_index]
-				pkmn.ability = pkmn_data[:ability]
+
+				pkmn.ability_index = pkmn_data[:ability_index] if !pkmn_data[:ability_index].nil?
+				pkmn.ability = pkmn_data[:ability] if !pkmn_data[:ability].nil?
+
 				pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)
-				pkmn.shiny = (pkmn_data[:shininess]) ? true : false
+				pkmn.shiny = (pkmn_data[:shininess]) ? true : false if !pkmn_data[:shininess].nil?
+
 				pkmn.nature = 0
+
 				GameData::Stat.each_main do |s|
 					pkmn.iv[s.id] = 0
 					if pkmn_data[:ev]
@@ -110,23 +189,32 @@ module GameData
 						pkmn.ev[s.id] = 8
 					end
 				end
-				pkmn.happiness = pkmn_data[:happiness] if pkmn_data[:happiness]
-				pkmn.name = pkmn_data[:name] if pkmn_data[:name] && !pkmn_data[:name].empty?
+
+				pkmn.happiness = pkmn_data[:happiness] if !pkmn_data[:happiness].nil?
+
 				if pkmn_data[:shadowness]
 					pkmn.makeShadow
 					pkmn.update_shadow_moves(true)
 					pkmn.shiny = false
 				end
-				pkmn.poke_ball = pkmn_data[:poke_ball] if pkmn_data[:poke_ball]
+
+				pkmn.poke_ball = pkmn_data[:poke_ball] if !pkmn_data[:poke_ball].nil?
+
 				pkmn.calc_stats
 			end
 
-			if extending
-				trainer.party.concat(parentTrainer.party)
-				if trainer.party.length > Settings::MAX_PARTY_SIZE
-					raise _INTL("Error when trying to contruct trainer #{@id.to_s} as an extension of trainer #{trainer.id.to_s}. The resultant party is larger than the maximum party size!")
-				end
+			if extending && trainer.party.length > Settings::MAX_PARTY_SIZE
+				raise _INTL("Error when trying to contruct trainer #{@id.to_s} as an extension of trainer #{trainer.id.to_s}. The resultant party is larger than the maximum party size!")
 			end
+
+			trainer.party.sort! { |memberA,memberB|
+				if memberA.assignedPosition == memberB.assignedPosition
+					next 1
+				end
+				next memberA.assignedPosition <=> memberB.assignedPosition
+			}
+
+			echoln(trainer.party.to_s)
 
 			return trainer
 		end
@@ -134,6 +222,8 @@ module GameData
 end
 
 class Pokemon
+	attr_accessor :assignedPosition
+
 	def reset_moves(assignedLevel=-1,forceSignatures=false)
 		if assignedLevel == -1
 			assignedLevel = self.level
