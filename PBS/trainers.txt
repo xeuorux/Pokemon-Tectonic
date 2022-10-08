@@ -3901,6 +3901,7 @@ Pokemon = ARAICHU,70
     EV = 20,20,0,10,20,0
 #-------------------------------
 [GUITARIST3,Mai]
+Policy = SUN_TEAM
 Pokemon = SUNKERN,22
     AbilityIndex = 1
     Item = HEATROCK
