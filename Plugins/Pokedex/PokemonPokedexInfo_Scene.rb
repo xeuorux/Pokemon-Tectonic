@@ -636,7 +636,6 @@ class PokemonPokedexInfo_Scene
 			break if excessWidth <= 0
 			charactersToShave += 1
 		end
-		echoln("Shaving off #{charactersToShave} characters from #{moveName}")
 		moveName = moveName[0..-charactersToShave] + "..."
 	end
 	

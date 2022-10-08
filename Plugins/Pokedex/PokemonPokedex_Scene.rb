@@ -430,9 +430,22 @@ class PokemonPokedex_Scene
 			printDexListInvestigation()
 		elsif Input.pressex?(0x54) && $DEBUG # T, for Tutor
 			modifyTutorLearnability()
+		elsif Input.pressex?(0x46) && $DEBUG # F, for Filter
+			acceptSearchResults {
+				debugFilterToRegularLine()
+			}
 		end
       end
     }
+  end
+
+  # Used in debug mode to quickly filter to non-legendary pokemon that can't evolve
+  def debugFilterToRegularLine()
+	dexlist = searchStartingList()
+	dexlist = dexlist.find_all { |item|	
+		next !isLegendary?(item[0]) && item[14].length == 0
+	}
+	return dexlist
   end
 
   def modifyTutorLearnability()
@@ -781,6 +794,30 @@ class PokemonPokedex_Scene
     pbFadeInAndShow(@sprites,oldsprites)
 	Input.update
   end
+
+	def acceptSearchResults(&searchingBlock)
+		pbPlayDecisionSE
+		@sprites["pokedex"].active = false
+		begin
+		dexlist = searchingBlock.call
+		if !dexlist
+			# Do nothing
+		elsif dexlist.length==0
+			pbMessage(_INTL("No matching Pokémon were found."))
+		else
+			@dexlist = dexlist
+			@sprites["pokedex"].commands = @dexlist
+			@sprites["pokedex"].index    = 0
+			@sprites["pokedex"].refresh
+			@searchResults = true
+			@sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_listsearch")
+		end
+		rescue
+		pbMessage(_INTL("An unknown error has occured."))
+		end
+		@sprites["pokedex"].active = true
+		pbRefresh
+	end
   
   def acceptSearchResults2(&searchingBlock)
 	  pbPlayDecisionSE
@@ -802,30 +839,6 @@ class PokemonPokedex_Scene
 		pbMessage(_INTL("An unknown error has occured."))
 	  end
 	  return false
-  end
-  
-  def acceptSearchResults(&searchingBlock)
-	  pbPlayDecisionSE
-	  @sprites["pokedex"].active = false
-	  begin
-		dexlist = searchingBlock.call
-		if !dexlist
-			# Do nothing
-		elsif dexlist.length==0
-			pbMessage(_INTL("No matching Pokémon were found."))
-		else
-			@dexlist = dexlist
-			@sprites["pokedex"].commands = @dexlist
-			@sprites["pokedex"].index    = 0
-			@sprites["pokedex"].refresh
-			@searchResults = true
-			@sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_listsearch")
-		end
-	  rescue
-		pbMessage(_INTL("An unknown error has occured."))
-	  end
-	  @sprites["pokedex"].active = true
-	  pbRefresh
   end
   
   def searchBySpeciesName()
