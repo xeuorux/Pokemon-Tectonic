@@ -1,6 +1,6 @@
 class ItemIconSprite < SpriteWrapper
 	def item=(value)
-		return if @item==value && !@forceitemchange
+		return if @item==value && !@forceitemchange && ![:TAROTAMULET,:AIDKIT].include?(value)
 		@item = value
 		@animbitmap.dispose if @animbitmap
 		@animbitmap = nil
