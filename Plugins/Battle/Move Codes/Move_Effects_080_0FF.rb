@@ -3504,9 +3504,9 @@ class PokeBattle_Move_0F4 < PokeBattle_Move
   def pbEffectWhenDealingDamage(user,target)
     return if !canRemoveItem?(user,target)
     return if !canPluckBerry?(user,target)
-    item = target.ite
-    itemName = target.itemNam
-    target.pbRemoveIte
+    item = target.item
+    itemName = target.itemName
+    target.pbRemoveItem
     @battle.pbDisplay(_INTL("{1 stole and ate its target's {2}!",user.pbThis,itemName))
     user.pbHeldItemTriggerCheck(item,false)
   end
