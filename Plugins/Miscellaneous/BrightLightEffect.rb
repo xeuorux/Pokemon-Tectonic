@@ -42,15 +42,32 @@ class LightEffect_Abyss < LightEffect
         @map = (map) ? map : $game_map
         @disposed = false
         @opacityCounter = 0
+        @opacityWavelength = 8.0
+        @summonTotem = false
     end
 
     def update
       return if !@light || !@event
       super
+
+      if !@summonTotem && pbGetSelfSwitch(@event.id,'A')
+        echoln("Setting this totem light to the summon version since the #{@event.name}'s A switch is on")
+        @light.setBitmap("Graphics/Pictures/ALE_S")
+        @summonTotem = true
+        @opacityCounter = 0
+        opacifyWavelength = 4.0
+      elsif @summonTotem && !pbGetSelfSwitch(@event.id,'A')
+        echoln("Setting this totem light to the non-summon version since the #{@event.name}'s A switch is off")
+        @light.setBitmap("Graphics/Pictures/ALE")
+        @summonTotem = false
+        @opacityCounter = 0
+        opacifyWavelength = 8.0
+      end
+
       @opacityCounter += 1
-      @light.opacity = (80 + 40 * Math.sin(@opacityCounter.to_f / 8.0)).floor
-      @light.ox      = 32
-      @light.oy      = 48
+      @light.opacity = (80 + 40 * Math.sin(@opacityCounter.to_f / @opacityWavelength)).floor
+      @light.ox      = (@light.bitmap.width * 2) / 4
+      @light.oy      = (@light.bitmap.height * 3) / 4
       if (Object.const_defined?(:ScreenPosHelper) rescue false)
         @light.x      = ScreenPosHelper.pbScreenX(@event)
         @light.y      = ScreenPosHelper.pbScreenY(@event)

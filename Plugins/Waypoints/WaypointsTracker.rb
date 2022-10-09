@@ -7,9 +7,11 @@ end
 
 class WaypointsTracker
 	attr_reader :activeWayPoints
+	attr_reader :legendsMaterialized
 	
 	def initialize()
 		@activeWayPoints = {}
+		@legendsMaterialized = []
 	end
 
 	def overwriteWaypoint(waypointName,mapID,wayPointInfo)
@@ -58,15 +60,25 @@ class WaypointsTracker
 			@activeWayPoints[waypointName] = [event.map_id,event.id]
 		end
 	end
+
+	def summonPokemonFromWaypoint(avatarSpecies,waypointEvent)
+		$PokemonGlobal.respawnPoint = waypointEvent.id
+		speciesDisplayName = GameData::Species.get(avatarSpecies).name
+		pbMessage(_INTL("By the power of Regigigas, a #{speciesDisplayName} was created!"))
+		if pbWildBattleCore(avatarSpecies, 50) == 4 # Caught
+			$PokemonGlobal.respawnPoint = nil
+			return true
+		end
+		return false
+	end
 	
-	
-	def accessWaypoint(waypointName,event)
+	def accessWaypoint(waypointEvent,waypointName)
 		@activeWayPoints = {} if @activeWayPoints.nil?
 		
 		pbMessage(_INTL("#{WAYPOINT_ACCESS_MESSAGE}"))
 		if !@activeWayPoints.has_key?(waypointName)
 			pbMessage(_INTL("#{WAYPOINT_REGISTER_MESSAGE}"))
-			addWaypoint(waypointName,event)
+			addWaypoint(waypointName,waypointEvent)
 		end
 		
 		if @activeWayPoints.length <= 1
@@ -77,6 +89,11 @@ class WaypointsTracker
 	end
 
 	def warpByWaypoints()
+		if @activeWayPoints.length == 0
+			pbMessage(_INTL("#{NO_WAYPOINTS_MESSAGE}"))
+			return
+		end
+
 		chosenLocation = nil
 		if CHOOSE_BY_LIST
 			commands = [_INTL("Cancel")]
@@ -125,58 +142,25 @@ class WaypointsTracker
 	end
 end
 
-DebugMenuCommands.register("waypoints", {
-  "parent"      => "main",
-  "name"        => _INTL("Waypoints..."),
-  "description" => _INTL("Edit information about waypoints."),
-  "always_show" => true
-})
+# Should only be called by the waypoint events themselves
+def accessWaypoint(waypointName,avatarSpecies=nil)
+	waypointEvent = get_self
+	if !avatarSpecies.nil? && $DEBUG && Input.press?(Input::CTRL)
+		avatarSpeciesName = GameData::Species.get(avatarSpecies).name
 
-DebugMenuCommands.register("unlockallwaypoints", {
-  "parent"      => "waypoints",
-  "name"        => _INTL("Unlock all waypoints."),
-  "description" => _INTL("Unlock all waypoints."),
-  "effect"      => proc { |sprites, viewport|
-	mapData = Compiler::MapData.new
-    for id in mapData.mapinfos.keys.sort
-		map = mapData.getMap(id)
-		next if !map || !mapData.mapinfos[id]
-		mapName = mapData.mapinfos[id].name
-		for key in map.events.keys
-			event = map.events[key]
-			next if !event || event.pages.length==0
-			next if event.name != "AvatarTotem"
-			event.pages.each do |page|
-				page.list.each do |eventCommand|
-					eventCommand.parameters.each do |parameter|
-						next unless parameter.is_a?(String)
-						match = parameter.match(/\$waypoints_tracker.accessWaypoint\("([a-zA-Z0-9 ]+)",get_self\)/)
-						if match
-							waypointName = match[1]
-							begin
-								echoln("Unlocking: #{waypointName}")
-								$waypoints_tracker.addWaypoint(waypointName,[id,event.id],false)
-							rescue => exception
-								pbMessage(_INTL("Unable to unlock waypoint: #{waypointName}"))
-							end
-						else
-							echoln("No match: #{parameter}")
-						end
-					end
-				end
+		if pbConfirmMessageSerious(_INTL("The totem pulses with the frequency of #{avatarSpeciesName}. Summon it?"))
+			# No longer allow summoning the pokemon once its been caught once
+			if $waypoints_tracker.summonPokemonFromWaypoint(avatarSpecies,waypointEvent)
+				pbMessage(_INTL("The totem returns to its original state."))
+				pbSetSelfSwitch(waypointEvent.id,'A',false)
 			end
+			return
 		end
 	end
-	pbMessage(_INTL("All waypoints unlocked!"))
+	
+	$waypoints_tracker.accessWaypoint(waypointEvent,waypointName)
+end
 
-  }}
-)
-
-DebugMenuCommands.register("warptowaypoint", {
-  "parent"      => "waypoints",
-  "name"        => _INTL("Warp to waypoint."),
-  "description" => _INTL("Choose a waypoint to warp to."),
-  "effect"      => proc { |sprites, viewport|
-	$waypoints_tracker.warpByWaypoints()
-  }}
-)
+def setWaypointSummonable(waypointEventID)
+	pbSetSelfSwitch(waypointEventID,'A',true)
+end
