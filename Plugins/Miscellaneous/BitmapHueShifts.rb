@@ -7,10 +7,9 @@ class Pokemon
 
     def colorShiftID
         colorShiftID = 0
-        if @owner.id == $Trainer.id
+        if @owner.id == $Trainer.id # Owned by the player
             colorShiftID = @personalID ^ @owner.id
         else
-            #asciiName = @owner.name.encode("ASCII", "UTF-8", :replace)
             @owner.name.each_byte do |byte|
                 colorShiftID += byte.to_i
             end

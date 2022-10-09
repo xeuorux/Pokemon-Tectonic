@@ -1177,7 +1177,7 @@ end
         end
         # Record XXX=YYY setting
         case property_name
-        when "Items", "LoseText","Policies"
+        when "Items", "LoseText","Policies","NameForHashing"
           trainer_hash[line_schema[0]] = property_value
           trainer_lose_texts[trainer_id] = property_value if property_name == "LoseText"
         when "Extends"
@@ -2080,6 +2080,9 @@ module Compiler
           else
             f.write(sprintf("ExtendsVersion = %s\r\n", trainer.extendsVersion.to_s))
           end
+        end
+        if !trainer.nameForHashing.nil?
+          f.write(sprintf("NameForHashing = %s\r\n", trainer.nameForHashing.to_s))
         end
 		    if trainer.policies && trainer.policies.length > 0
           policiesString = ""

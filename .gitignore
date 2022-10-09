@@ -24,3 +24,4 @@ move_distribution.txt
 changelog.txt
 *.lnk
 Game.ini
+*.code-workspace

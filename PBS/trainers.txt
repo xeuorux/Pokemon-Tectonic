@@ -3387,6 +3387,7 @@ Pokemon = TYRANITAR,65
     Item = ASSAULTVEST
 #-------------------------------
 [MASKEDVILLAIN,Crimson]
+NameForHashing = Imogene
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 1
@@ -3410,6 +3411,7 @@ Pokemon = GOLISOPOD,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,1]
 ExtendsVersion = 0
+NameForHashing = Imogene
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Item = ROCKGEM
@@ -3421,6 +3423,7 @@ Pokemon = GOLISOPOD,55
     Item = BUGGEM
 #-------------------------------
 [MASKEDVILLAIN,Crimson,2]
+NameForHashing = Alessa
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 1
@@ -3444,6 +3447,7 @@ Pokemon = RILLABOOM,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,3]
 ExtendsVersion = 2
+NameForHashing = Alessa
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Item = ROCKGEM
@@ -3455,6 +3459,7 @@ Pokemon = RILLABOOM,55
     Item = FLYINGGEM
 #-------------------------------
 [MASKEDVILLAIN,Crimson,4]
+NameForHashing = Skylar
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 1
@@ -3478,6 +3483,7 @@ Pokemon = PALMANTRA,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,5]
 ExtendsVersion = 4
+NameForHashing = Skylar
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Item = ROCKGEM
@@ -3491,6 +3497,7 @@ Pokemon = PALMANTRA,55
     Item = LIFEORB
 #-------------------------------
 [MASKEDVILLAIN,Crimson,6]
+NameForHashing = Keoni
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 1
@@ -3514,6 +3521,7 @@ Pokemon = AGOLEM,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,7]
 ExtendsVersion = 6
+NameForHashing = Keoni
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Item = ROCKGEM
@@ -3525,6 +3533,7 @@ Pokemon = AGOLEM,55
     Item = ELECTRICGEM
 #-------------------------------
 [MASKEDVILLAIN,Crimson,8]
+NameForHashing = Eifion
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 1
@@ -3548,6 +3557,7 @@ Pokemon = GIGANTEON,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,9]
 ExtendsVersion = 8
+NameForHashing = Eifion
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Item = ROCKGEM
@@ -3559,6 +3569,7 @@ Pokemon = GIGANTEON,55
     Item = LEFTOVERS
 #-------------------------------
 [MASKEDVILLAIN,Crimson,10]
+NameForHashing = Candy
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 1
@@ -3586,6 +3597,7 @@ Pokemon = GOLURK,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,11]
 ExtendsVersion = 10
+NameForHashing = Candy
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Item = ROCKGEM
@@ -3597,6 +3609,7 @@ Pokemon = GOLURK,55
     Item = GROUNDGEM
 #-------------------------------
 [MASKEDVILLAIN2,Teal]
+NameForHashing = Imogene
 Pokemon = REGICE,55
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
@@ -3620,6 +3633,7 @@ Pokemon = GOLISOPOD,55
 #-------------------------------
 [MASKEDVILLAIN2,Teal,1]
 ExtendsVersion = 0
+NameForHashing = Imogene
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGICE,55
     Item = ICEGEM
@@ -3631,6 +3645,7 @@ Pokemon = GOLISOPOD,55
     Item = BUGGEM
 #-------------------------------
 [MASKEDVILLAIN2,Teal,2]
+NameForHashing = Alessa
 Pokemon = REGICE,55
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
@@ -3654,6 +3669,7 @@ Pokemon = RILLABOOM,55
 #-------------------------------
 [MASKEDVILLAIN2,Teal,3]
 ExtendsVersion = 2
+NameForHashing = Alessa
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGICE,55
     Item = ICEGEM
@@ -3665,6 +3681,7 @@ Pokemon = RILLABOOM,55
     Item = FLYINGGEM
 #-------------------------------
 [MASKEDVILLAIN2,Teal,4]
+NameForHashing = Skylar
 Pokemon = REGICE,55
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
@@ -3688,6 +3705,7 @@ Pokemon = PALMANTRA,55
 #-------------------------------
 [MASKEDVILLAIN2,Teal,5]
 ExtendsVersion = 4
+NameForHashing = Skylar
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGICE,55
     Item = ICEGEM
@@ -3699,6 +3717,7 @@ Pokemon = PALMANTRA,55
     Item = LIFEORB
 #-------------------------------
 [MASKEDVILLAIN2,Teal,6]
+NameForHashing = Keoni
 Pokemon = REGICE,55
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
@@ -3722,6 +3741,7 @@ Pokemon = AGOLEM,55
 #-------------------------------
 [MASKEDVILLAIN2,Teal,7]
 ExtendsVersion = 6
+NameForHashing = Keoni
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGICE,55
     Item = ICEGEM
@@ -3733,6 +3753,7 @@ Pokemon = AGOLEM,55
     Item = ELECTRICGEM
 #-------------------------------
 [MASKEDVILLAIN2,Teal,8]
+NameForHashing = Eifion
 Pokemon = REGICE,55
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
@@ -3756,6 +3777,7 @@ Pokemon = GIGANTEON,55
 #-------------------------------
 [MASKEDVILLAIN2,Teal,9]
 ExtendsVersion = 8
+NameForHashing = Eifion
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGICE,55
     Item = ICEGEM
@@ -3767,6 +3789,7 @@ Pokemon = GIGANTEON,55
     Item = LEFTOVERS
 #-------------------------------
 [MASKEDVILLAIN2,Teal,10]
+NameForHashing = Candy
 Pokemon = REGICE,55
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1
@@ -3794,6 +3817,7 @@ Pokemon = GOLURK,55
 #-------------------------------
 [MASKEDVILLAIN2,Teal,11]
 ExtendsVersion = 10
+NameForHashing = Candy
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGICE,55
     Item = ICEGEM
@@ -3901,7 +3925,7 @@ Pokemon = ARAICHU,70
     EV = 20,20,0,10,20,0
 #-------------------------------
 [GUITARIST3,Mai]
-Policy = SUN_TEAM
+Policies = SUN_TEAM
 Pokemon = SUNKERN,22
     AbilityIndex = 1
     Item = HEATROCK

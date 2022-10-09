@@ -1,15 +1,3 @@
-class NPCTrainer < Trainer
-	attr_accessor :policies, :policyStates
-
-	def initialize(name, trainer_type)
-		super
-		@items     = []
-		@lose_text = nil
-		@policies  = []
-		@policyStates = {}
-	end
-end
-
 module GameData
 	class Policy
 		attr_reader :id

@@ -5,6 +5,7 @@ module GameData
 		attr_reader :extendsName
 		attr_reader :extendsVersion
 		attr_reader :removedPokemon
+		attr_reader :nameForHashing
 	
 		SCHEMA = {
 		  "Items"        => [:items,         "*e", :Item],
@@ -14,6 +15,7 @@ module GameData
 		  "RemovePokemon"=> [:removed_pokemon,       "ev", :Species],   # Species, level
 		  "Form"         => [:form,          "u"],
 		  "Name"         => [:name,          "s"],
+		  "NameForHashing"   => [:name_for_hashing,   "s"],
 		  "Moves"        => [:moves,         "*e", :Move],
 		  "Ability"      => [:ability,       "s"],
 		  "AbilityIndex" => [:ability_index, "u"],
@@ -37,6 +39,7 @@ module GameData
 		  @id_number      = hash[:id_number]
 		  @trainer_type   = hash[:trainer_type]
 		  @real_name      = hash[:name]         || "Unnamed"
+		  @nameForHashing = hash[:name_for_hashing]
 		  @version        = hash[:version]      || 0
 		  @items          = hash[:items]        || []
 		  @real_lose_text = hash[:lose_text]    || "..."
@@ -47,7 +50,7 @@ module GameData
 			  pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
 			end
 		  end
-		  @removedPokemon = hash[:removed_pokemon]
+		  @removedPokemon = hash[:removed_pokemon] || []
 		  @policies		  = hash[:policies]		|| []
 		  @extendsClass	  = hash[:extends_class]
 		  @extendsName	  = hash[:extends_name]
@@ -76,11 +79,11 @@ module GameData
 			end
 			
 			# Create trainer object
-			trainer = NPCTrainer.new(tr_name, @trainer_type)
-			trainer.id        = $Trainer.make_foreign_ID
-			trainer.items     = @items.clone
-			trainer.lose_text = @lose_text
-			trainer.policies  = @policies.clone
+			trainer = NPCTrainer.new(tr_name, @trainer_type, @nameForHashing)
+			trainer.id         = $Trainer.make_foreign_ID
+			trainer.items      = @items.clone
+			trainer.lose_text  = @lose_text
+			trainer.policies   = @policies.clone
 			trainer.policies.concat(GameData::TrainerType.get(@trainer_type).policies)
 
 			if extending
@@ -260,4 +263,19 @@ end
 
 class Trainer
 	def wild?;           return GameData::TrainerType.get(@trainer_type).wild?;     end
+end
+
+class NPCTrainer < Trainer
+	attr_accessor :policies
+	attr_accessor :policyStates
+	attr_reader   :nameForHashing
+
+	def initialize(name, trainer_type, nameForHashing = nil)
+		super(name, trainer_type)
+		@items     = []
+		@lose_text = nil
+		@policies  = []
+		@policyStates = {}
+		@nameForHashing = nameForHashing || name
+	end
 end

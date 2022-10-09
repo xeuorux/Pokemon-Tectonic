@@ -138,3 +138,15 @@ class Pokemon
     return nil
   end
 end
+
+class Pokemon
+  class Owner
+    # Returns a new Owner object populated with values taken from +trainer+.
+    # @param trainer [Player, NPCTrainer] trainer object to read data from
+    # @return [Owner] new Owner object
+    def self.new_from_trainer(trainer)
+      validate trainer => [Player, NPCTrainer]
+      return new(trainer.id, trainer.nameForHashing, trainer.gender, trainer.language)
+    end
+  end
+end
