@@ -304,7 +304,7 @@
 289,SOLARBLADE,Solar Blade,0C4,125,GRASS,Physical,100,10,0,NearOther,0,abefp,"The user gathers light energy into a blade, attacking the target on the next turn.",
 290,PETALDANCE,Petal Dance,55F,120,GRASS,Special,100,10,0,RandomNearFoe,0,abefo,"The user attacks by scattering petals for three turns.",
 291,POWERWHIP,Power Whip,53C,120,GRASS,Physical,70,10,0,NearOther,0,abef,"The user violently whirls to lash the target. Can't miss if the target has already attacked this turn.",
-292,SEEDFLARE,Seed Flare,04F,120,GRASS,Special,85,5,40,NearOther,0,bef,"The user generates a shock wave from within its body. It has a 40% chance to harshly lower Sp. Def.",
+292,SEEDFLARE,Seed Flare,04F,100,GRASS,Special,100,5,30,NearOther,0,bef,"The user generates a shock wave from within its body. It has a 30% chance to harshly lower Sp. Def.",
 293,SOLARBEAM,Solar Beam,0C4,120,GRASS,Special,100,10,0,NearOther,0,bef,"A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn.",
 294,WOODHAMMER,Wood Hammer,0FB,120,GRASS,Physical,100,12,0,NearOther,0,abef,"The user slams its rugged body into the target to attack. The user also takes 33% recoil.",
 295,ENERGYBALL,Energy Ball,046,90,GRASS,Special,100,10,10,NearOther,0,befn,"The user draws power from nature and fires it at the target. It has a 10% chance to lower Sp. Def.",
