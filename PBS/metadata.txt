@@ -1640,6 +1640,14 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = cave3
+#-------------------------------
+[327]
+# Royal Burial
+Outdoor = false
+ShowArea = true
+Bicycle = true
+BattleBack = wcave
 #-------------------------------
 [328]
 # Suspicious Shed
@@ -1652,6 +1660,13 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+#-------------------------------
+[330]
+# King's Chamber
+Outdoor = false
+ShowArea = false
+Bicycle = true
+BattleBack = wcave
 #-------------------------------
 [335]
 # Svait Sauna Underground
