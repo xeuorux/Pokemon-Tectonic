@@ -66,6 +66,7 @@ end
 #===============================================================================
 class PokeBattle_Move_505 < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
+	return if target.fainted?
     return if pbMoveFailedTargetAlreadyMoved?(target) # Target has already moved this round
     return if target.effects[PBEffects::MoveNext] # Target was going to move next anyway (somehow)
     return if @battle.choices[target.index][2].nil? # Target didn't choose to use a move this round
