@@ -1892,6 +1892,7 @@ Pokemon = DRAPION,70
     AbilityIndex = 0
 #-------------------------------
 [LEADER_Bence,Bence]
+Policies = BENCE
 Pokemon = STARAPTOR,40
     Moves = DUALWINGBEAT,CLOSECOMBAT,UTURN,QUICKATTACK
     AbilityIndex = 0
@@ -1914,25 +1915,16 @@ Pokemon = ARCHEOPS,40
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Bence_2,Bence]
-Pokemon = STARAPTOR,40
-    Moves = DUALWINGBEAT,CLOSECOMBAT,UTURN,QUICKATTACK
-    AbilityIndex = 0
-Pokemon = STONJOURNER,40
-    Name = Agnes
-    Gender = female
-    Moves = BODYPRESS,ROCKSLIDE,STEALTHROCK,HEAVYSLAM
-    AbilityIndex = 1
-    Item = SALACBERRY
-Pokemon = JUMPLUFF,40
-    Moves = GIGADRAIN,ALLERGY,AIRSLASH,SYNTHESIS
-    AbilityIndex = 0
-    Item = GRASSGEM
+Extends = LEADER_Bence,Bence,0
+RemovePokemon = DREDNAW,40
+RemovePokemon = ARCHEOPS,40
 #-------------------------------
 [LEADER_Bence_2,Bence,1]
 Extends = LEADER_Bence,Bence,0
 Policies = CURSE_NO_MERCY
 #-------------------------------
 [LEADER_Zoe,Zoé]
+Policies = ZOE
 Pokemon = CRADILY,40
     Moves = GIGADRAIN,DIAMONDFORCE,BRINE,LEECHSEED
     AbilityIndex = 1
@@ -1955,19 +1947,9 @@ Pokemon = PTEROFLYTE,40
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Zoe_2,Zoé]
-Pokemon = CRADILY,40
-    Moves = GIGADRAIN,DIAMONDFORCE,BRINE,LEECHSEED
-    AbilityIndex = 1
-Pokemon = MANTINE,40
-    Name = 1 Second
-    Gender = male
-    Moves = ROOST,AIRSLASH,SCALD,ICYWIND
-    AbilityIndex = 1
-    Item = LEFTOVERS
-Pokemon = PTEROFLYTE,40
-    Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
-    AbilityIndex = 1
-    Item = SITRUSBERRY
+Extends = LEADER_Zoe,Zoé,0
+RemovePokemon = BRAVIARY,40
+RemovePokemon = SUDOWOODO,40
 #-------------------------------
 [LEADER_Zoe_2,Zoé,1]
 Extends = LEADER_Zoe,Zoé,0
