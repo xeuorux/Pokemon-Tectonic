@@ -43,7 +43,7 @@ DRY_MAPS = [
     129, # Barren Crater
 ]
 
-CONSTANT_FOG_MAPS = [
+FOG_MAPS = [
     7, # Wet Walkways
     8, # Velenz
 ]
@@ -98,7 +98,7 @@ def getWeatherForTimeAndMap(time,map_id)
 
     # Within this section, strength is treated as between 1-5
     strength = 1
-    if CONSTANT_FOG_MAPS.include?(map_id)
+    if FOG_MAPS.include?(map_id)
         weatherSym = :Fog
     else
         hotWetness = hotness + wetness
@@ -146,7 +146,10 @@ def applyOutdoorEffects()
     if weather_metadata.nil?
         weatherSym,strength = getWeatherForTimeAndMap(pbGetTimeNow,map_id)
 
-        if [:None,:Rain,:Overcast,:Snow].include?(weatherSym)
+        weatherData = GameData::Weather.get(weatherSym)
+        cloudCoverOpacity = weatherData.cloud_cover_opacity(strength)
+
+        if cloudCoverOpacity > 0
             speed = 6
             if [:Rain,:Overcast,:Snow].include?(weatherSym)
                 speed -= strength * 2
@@ -155,14 +158,10 @@ def applyOutdoorEffects()
             velX = (Math.sin(pbGetTimeNow.hour / 12.0 * Math::PI) * speed).round
             velY = (Math.sin((pbGetTimeNow.hour + 2 + pbGetTimeNow.day) / 12.0 * Math::PI) * speed).round
 
-            opacity = 50
-            if [:Rain,:Overcast,:Snow].include?(weatherSym)
-                opacity -= strength * 4
-            end
             if glassCeiling
-                opacity /= 2
+                cloudCoverOpacity /= 2
             end
-            applyFog('clouds_fog_texture_high_contrast',0,opacity,velX,velY,2)
+            applyFog('clouds_fog_texture_high_contrast',0,cloudCoverOpacity,velX,velY,2)
         else
             applyFog('')
         end

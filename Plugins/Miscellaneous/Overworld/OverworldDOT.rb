@@ -1,4 +1,3 @@
-# Burn party Pokémon
 Events.onStepTakenTransferPossible += proc { |_sender,e|
   handled = e[0]
   next if handled[0]
@@ -79,3 +78,13 @@ Events.onStepTakenTransferPossible += proc { |_sender,e|
     end
   end
 }
+
+def pbCheckAllFainted
+  if $Trainer.able_pokemon_count == 0
+    pbMessage(_INTL("You have no more Pokémon that can fight!\1"))
+    pbMessage(_INTL("You blacked out!"))
+    pbBGMFade(1.0)
+    pbBGSFade(1.0)
+    pbFadeOutIn { pbStartOver }
+  end
+end

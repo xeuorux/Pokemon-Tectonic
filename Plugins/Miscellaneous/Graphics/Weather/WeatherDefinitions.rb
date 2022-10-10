@@ -1,6 +1,9 @@
 GameData::Weather.register({
   :id               => :None,
-  :id_number        => 0   # Must be 0 (preset RMXP weather)
+  :id_number        => 0,   # Must be 0 (preset RMXP weather)
+  :clouds_proc        => proc { |strength|
+    next 50
+  },
 })
 
 GameData::Weather.register({
@@ -12,7 +15,10 @@ GameData::Weather.register({
   :particle_delta_y => 4800,
   :tone_proc        => proc { |strength|
     next Tone.new(-strength * 3 / 4, -strength * 3 / 4, -strength * 3 / 4, 10)
-  }
+  },
+  :clouds_proc      => proc { |strength|
+    next 50 - strength * 4
+  },
 })
 
 # NOTE: This randomly flashes the screen in RPG::Weather#update.
@@ -25,7 +31,7 @@ GameData::Weather.register({
   :particle_delta_y => 4800,
   :tone_proc        => proc { |strength|
     next Tone.new(-strength * 3, -strength * 3, -strength * 3, 20)
-  }
+  },
 })
 
 # NOTE: This alters the movement of snow particles in RPG::Weather#update_sprite_position.
@@ -38,7 +44,10 @@ GameData::Weather.register({
   :particle_delta_y => 240,
   :tone_proc        => proc { |strength|
     next Tone.new(strength / 2, strength / 2, strength / 2, 0)
-  }
+  },
+  :clouds_proc        => proc { |strength|
+    next 40 - strength * 4
+  },
 })
 
 GameData::Weather.register({
@@ -52,7 +61,7 @@ GameData::Weather.register({
   :tile_delta_y     => 720,
   :tone_proc        => proc { |strength|
     next Tone.new(strength * 3 / 4, strength * 3 / 4, strength * 3 / 4, 0)
-  }
+  },
 })
 
 GameData::Weather.register({
@@ -66,7 +75,7 @@ GameData::Weather.register({
   :tile_delta_y     => 360,
   :tone_proc        => proc { |strength|
     next Tone.new(strength / 2, 0, -strength / 2, 0)
-  }
+  },
 })
 
 GameData::Weather.register({
@@ -78,7 +87,7 @@ GameData::Weather.register({
   :particle_delta_y => 4800,
   :tone_proc        => proc { |strength|
     next Tone.new(-strength * 3 / 2, -strength * 3 / 2, -strength * 3 / 2, 20)
-  }
+  },
 })
 
 # NOTE: This alters the screen tone in RPG::Weather#update_screen_tone.
@@ -88,7 +97,7 @@ GameData::Weather.register({
   :category         => :Sun,
   :tone_proc        => proc { |strength|
     next Tone.new(strength * 3/4, strength * 3/4, strength * 3/8, 0)
-  }
+  },
 })
 
 GameData::Weather.register({
@@ -97,7 +106,7 @@ GameData::Weather.register({
   :id_number        => 8,
   :tile_delta_x     => -32,
   :tile_delta_y     => 0,
-  :graphics         => [nil, ["fog_tile"]]
+  :graphics         => [nil, ["fog_tile"]],
 })
 
 GameData::Weather.register({
@@ -109,7 +118,7 @@ GameData::Weather.register({
   :tile_delta_y     => 0,
   :tone_proc        => proc { |strength|
     next Tone.new(strength / 4, 0, -strength / 4, 0)
-  }
+  },
 })
 
 GameData::Weather.register({
@@ -119,5 +128,18 @@ GameData::Weather.register({
   :graphics         => [],   # Last is splash
   :tone_proc        => proc { |strength|
     next Tone.new(-strength * 2 / 3, -strength * 2 / 3, -strength * 2 / 3, 10)
-  }
+  },
+  :clouds_proc        => proc { |strength|
+    next 50 - strength * 4
+  },
+})
+
+GameData::Weather.register({
+  :id               => :ToxicFog,
+  :category         => :Fog,
+  :id_number        => 11,
+  :tile_delta_x     => 0,
+  :tile_delta_y     => 8,
+  :graphics         => [nil, ["toxic_fog_tile"]],
+  :default_strength => 1,
 })
