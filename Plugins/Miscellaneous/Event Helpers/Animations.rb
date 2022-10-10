@@ -40,7 +40,7 @@ end
 
 def showAnimation(animationID, eventId = 0)
 	event = nil
-	if pbMapInterpreterRunning?
+	if defined?(get_character)
 		event = get_character(eventId)
 	else
 		event = self

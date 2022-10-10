@@ -1,5 +1,6 @@
 class Game_Screen
     attr_reader :weather_in_battle
+    attr_reader :weather_sprites_enabled
 
     #-----------------------------------------------------------------------------
     # * Object Initialization
@@ -35,10 +36,11 @@ class Game_Screen
         @shake_duration = duration
     end
 
-    def weather(type, power, duration, weather_in_battle = true)
+    def weather(type, power, duration, weather_in_battle = true, sprites_enabled = true)
         @weather_type     = GameData::Weather.get(type).id
         @weather_max      = (power + 1) * RPG::Weather::MAX_SPRITES / 10
         @weather_duration = duration   # In 1/20ths of a seconds
         @weather_in_battle = weather_in_battle
+        @weather_sprites_enabled = sprites_enabled
     end
 end

@@ -11,13 +11,15 @@ def coordinates_from_tild_ID (tileID)
 end
 
 class Game_Map
+    def tileset_id;     return @map.tileset_id;     end
+    def bgm;            return @map.bgm;            end
+
     def getTileIDForEventAtCoordinate(event, x, y)
         coordinateX, coordinateY = coordinates_from_tild_ID(event.tile_id)
         newCoordinateX = coordinateX + (x - event.x)
         newCoordinateY = coordinateY + (y - event.y)
         return tile_ID_from_coordinates(newCoordinateX, newCoordinateY)
     end
-
 
     def passable?(x, y, d, self_event = nil)
         if !$game_temp.player_transferring && pbGetFollowerDependentEvent && self_event != $game_player

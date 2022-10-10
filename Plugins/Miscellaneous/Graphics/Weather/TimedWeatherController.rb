@@ -14,6 +14,7 @@ HOT_MAPS = [
 
 COLD_MAPS = [
     217, # Sweetrock Harbor
+    266, # Berry GreenHouse
     258, # Whitebloom Town
     216, # Highland Lake
     37, # Svait
@@ -28,6 +29,7 @@ WET_MAPS = [
     136, # Casaba Villa
     38, # Bluepoint Beach
     217, # Sweetrock Harbor
+    266, # Berry GreenHouse
     258, # Whitebloom Town
     216, # Highland Lake
     53, # Jungle Path
@@ -44,6 +46,10 @@ DRY_MAPS = [
 CONSTANT_FOG_MAPS = [
     7, # Wet Walkways
     8, # Velenz
+]
+
+GLASS_CEILING_MAPS = [
+    266, # Berry Greenhouse
 ]
 
 # Every other map is assumed to be temperate, with potential for both hot days, cold days, wet days, and dry days in equal measure
@@ -135,6 +141,8 @@ def applyOutdoorEffects()
     map_id = $game_map.map_id
     weather_metadata = GameData::MapMetadata.try_get(map_id).weather
 
+    glassCeiling = GLASS_CEILING_MAPS.include?(map_id)
+
     if weather_metadata.nil?
         weatherSym,strength = getWeatherForTimeAndMap(pbGetTimeNow,map_id)
 
@@ -151,12 +159,16 @@ def applyOutdoorEffects()
             if [:Rain,:Overcast,:Snow].include?(weatherSym)
                 opacity -= strength * 4
             end
+            if glassCeiling
+                opacity /= 2
+            end
             applyFog('clouds_fog_texture_high_contrast',0,opacity,velX,velY,2)
         else
             applyFog('')
         end
+
         echoln("Setting weather: #{weatherSym} #{strength}")
-        $game_screen.weather(weatherSym, strength, 0, false)
+        $game_screen.weather(weatherSym, strength, 0, false, !glassCeiling)
     else
         applyFog('')
     end

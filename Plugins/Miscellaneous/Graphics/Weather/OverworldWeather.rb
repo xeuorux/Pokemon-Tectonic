@@ -49,6 +49,7 @@ module RPG
         @fading               = false
         @lastDisplayX         = 0
         @lastDisplayY         = 0
+        @spritesEnabled       = true
       end
   
       def dispose
@@ -63,10 +64,11 @@ module RPG
         end
       end
   
-      def fade_in(new_type, new_max, duration = 1)
+      def fade_in(new_type, new_max, duration = 1, sprites_enabled = true)
         return if @fading
         new_type = GameData::Weather.get(new_type).id
         new_max = 0 if new_type == :None
+        self.spritesEnabled = sprites_enabled
         return if @type == new_type && @max == new_max
         if duration > 0
           @target_type = new_type
@@ -123,7 +125,7 @@ module RPG
         @max = value.clamp(0, MAX_SPRITES)
         ensureSprites
         for i in 0...MAX_SPRITES
-          @sprites[i].visible = (i < @max) if @sprites[i]
+          @sprites[i].visible = (i < @max) if @sprites[i] && @spritesEnabled
         end
       end
   
@@ -141,6 +143,16 @@ module RPG
         @sprites.each { |sprite| sprite.oy = @oy if sprite }
         @new_sprites.each { |sprite| sprite.oy = @oy if sprite }
         @tiles.each { |sprite| sprite.oy = @oy if sprite }
+      end
+
+      def spritesEnabled=(value)
+        return if @spritesEnabled == value
+        @spritesEnabled = value
+        if !@spritesEnabled
+          @sprites.each { |sprite| sprite.visible = false }
+          @new_sprites.each { |sprite| sprite.visible = false }
+          @tiles.each { |sprite| sprite.visible = false }
+        end
       end
   
       def get_weather_tone(weather_type, maximum)
@@ -185,7 +197,7 @@ module RPG
               sprite.opacity = 0
               @sprites[i] = sprite
             end
-            @sprites[i].visible = (i < @max)
+            @sprites[i].visible = (i < @max) && @spritesEnabled
             @sprite_lifetimes[i] = 0
           end
         end
@@ -200,7 +212,7 @@ module RPG
               sprite.opacity = 0
               @new_sprites[i] = sprite
             end
-            @new_sprites[i].visible = (i < @new_max)
+            @new_sprites[i].visible = (i < @new_max) && @spritesEnabled
             @new_sprite_lifetimes[i] = 0
           end
         end
@@ -217,7 +229,7 @@ module RPG
             sprite.opacity = 0
             @tiles[i] = sprite
           end
-          @tiles[i].visible = true
+          @tiles[i].visible = @spritesEnabled
         end
       end
   
@@ -254,7 +266,7 @@ module RPG
         weather_type = (is_new_sprite) ? @target_type : @type
         lifetimes = (is_new_sprite) ? @new_sprite_lifetimes : @sprite_lifetimes
         if index < (is_new_sprite ? @new_max : @max)
-          sprite.visible = true
+          sprite.visible = @spritesEnabled
         else
           sprite.visible = false
           lifetimes[index] = 0
@@ -459,7 +471,7 @@ module RPG
         if @new_max < @target_max && @fade_time >= [FADE_NEW_PARTICLES_START - @time_shift, 0].max
           fraction = (@fade_time - [FADE_NEW_PARTICLES_START - @time_shift, 0].max) / (FADE_NEW_PARTICLES_END - FADE_NEW_PARTICLES_START)
           @new_max = (@target_max * fraction).floor
-          @new_sprites.each_with_index { |sprite, i| sprite.visible = (i < @new_max) if sprite }
+          @new_sprites.each_with_index { |sprite, i| sprite.visible = (i < @new_max) if sprite && @spritesEnabled }
         end
         # End fading
         if @fade_time >= ((@target_type == :None) ? FADE_OLD_PARTICLES_END : FADE_NEW_TILES_END) - @time_shift
@@ -553,7 +565,7 @@ module RPG
                 sprite.y = (@oy + @tile_y + (index / @tiles_wide) * sprite.bitmap.height).round
                 sprite.x += @tiles_wide * sprite.bitmap.width if sprite.x - @ox < -sprite.bitmap.width
                 sprite.y -= @tiles_tall * sprite.bitmap.height if sprite.y - @oy > Graphics.height
-                sprite.visible = true
+                sprite.visible = @spritesEnabled
                 sprite.opacity = opacity
             end
         elsif @tiles.length > 0
