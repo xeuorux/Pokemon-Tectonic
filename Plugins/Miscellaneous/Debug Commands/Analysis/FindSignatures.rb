@@ -20,11 +20,18 @@ DebugMenuCommands.register("getsignatureabilities", {
   "effect"      => proc { |sprites, viewport|
   	echoln("Ability Name, Weilder")
   	abilities = getSignatureAbilities()
-	abilities.each do |ability,weilder|
-		echoln("#{ability},#{weilder}")
-	end
+	abilities = abilities.sort_by {|ability,weilder| GameData::Species.get(weilder).id_number}
+	File.open("signature_abilities.txt","wb") { |file|
+		abilities.each do |ability,weilder|
+			abilityData = GameData::Ability.get(ability)
+			weilderName = GameData::Species.get(weilder).real_name
+			abilityLine = "#{weilderName},#{abilityData.real_name},\"#{abilityData.description}\""
+			abilityLine += "\r\n"
+			file.write(abilityLine)
+		end
+	}
 
-	pbMessage(_INTL("Printed out signature abilities to the console."))
+	pbMessage(_INTL("Printed out signature abilities to signature_abilities.txt"))
   }
 })
 
@@ -48,12 +55,51 @@ DebugMenuCommands.register("getsignaturemoves", {
   "name"        => _INTL("List signature moves"),
   "description" => _INTL("List each move that is only used by one fully evolved base form."),
   "effect"      => proc { |sprites, viewport|
-  	echoln("Move Name, Weilder")
   	moves = getSignatureMoves()
-	moves.each do |move,weilder|
-		echoln("#{move},#{weilder}")
-	end
+	moves = moves.sort_by {|move,weilder| GameData::Species.get(weilder).id_number}
+	categoryDescriptions = ["Physical","Special","Status"]
+	File.open("signature_moves.txt","wb") { |file|
+		moves.each do |move,weilder|
+			moveData = GameData::Move.get(move)
+			weilderName = GameData::Species.get(weilder).real_name
+			typeName = GameData::Type.get(moveData.type).real_name
+			categoryDescriptor = categoryDescriptions[moveData.category]
+			accuracyLabel = moveData.accuracy == 0 ? "-" : moveData.accuracy.to_s
+			priorityLabel = moveData.priority == 0 ? "-" : moveData.priority.to_s
+			if moveData.priority < 0
+				priorityLabel = "-" + priorityLabel
+			elsif moveData.priority > 0
+				priorityLabel = "+" + priorityLabel
+			end
+			tag = ""
+			moveData.flags.split('').each do |flag|
+				case flag
+				when 'i'
+					tag = "Bite"
+				when 'j'
+					tag = "Punch"
+				when 'k'
+					tag = "Sound"
+				when 'l'
+					tag = "Powder"
+				when 'm'
+					tag = "Pulse"
+				when 'o'
+					tag = "Dance"
+				when 'p'
+					tag = "Blade"
+				when 'q'
+					tag = "Wind"
+				end
+			end
+			procChanceLabel = (moveData.effect_chance == 0 || moveData.effect_chance == 100) ? "-" : moveData.effect_chance.to_s
+			moveLine = "#{weilderName},#{moveData.real_name},#{typeName},\"#{moveData.description}\",#{moveData.base_damage},#{categoryDescriptor},"
+			moveLine += "#{accuracyLabel},#{moveData.total_pp},#{moveData.target},#{priorityLabel},#{procChanceLabel},#{tag}"
+			moveLine += "\r\n"
+			file.write(moveLine)
+		end
+	}
 
-	pbMessage(_INTL("Printed out signature moves to the console."))
+	pbMessage(_INTL("Printed out signature moves to signature_moves.txt."))
   }
 })

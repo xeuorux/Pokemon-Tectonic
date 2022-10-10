@@ -25,3 +25,5 @@ changelog.txt
 *.lnk
 Game.ini
 *.code-workspace
+signature_moves.txt
+signature_abilities.txt
