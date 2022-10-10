@@ -506,7 +506,7 @@ HPMult = 4.0
 #-------------------------------
 [GREEDENT]
 Ability = CHEEKPOUCH
-Moves1 = STOCKPILE,SWALLOW,SPITUP
+Moves1 = DOUBLEEDGE
 HPMult = 3.0
 Item = ORANBERRY
 #-------------------------------
