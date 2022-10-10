@@ -12,7 +12,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:DEEPSTING,
     user.pbReduceHP(amt,false)
     battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
     user.pbItemHPHealCheck
-	user.pbFaint if user.fainted?
+	  user.pbFaint if user.fainted?
   }
 )
 
@@ -37,7 +37,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:SCHADENFREUDE,
     next if numFainted==0 || !battler.canHeal?
     battle.pbShowAbilitySplash(battler)
     recover = battler.totalhp/4
-    recover /= 4 if battler.boss?
+    recover /= BOSS_HP_BASED_EFFECT_RESISTANCE if battler.boss?
     battler.pbRecoverHP(recover)
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
@@ -94,5 +94,19 @@ BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
     user.pbRaiseStatStageByAbility(:ATTACK,numFainted,user)
 	  next if numFainted==0 || !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user)
 	  user.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,numFainted,user)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:SPACEINTERLOPER,
+  proc { |ability,battler,targets,move,battle|
+    battle.pbShowAbilitySplash(battler)
+    if battler.pbRecoverHPFromMultiDrain(targets,0.5)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+      else
+        battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
+      end
+    end
+    battle.pbHideAbilitySplash(battler)
   }
 )

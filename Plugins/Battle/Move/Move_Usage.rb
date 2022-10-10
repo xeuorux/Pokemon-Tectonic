@@ -64,6 +64,20 @@ class PokeBattle_Move
         end
     end
 
+    def canParentalBond?(user,targets,checkingForAI=false)
+      return user.shouldAbilityApply?(:PARENTALBOND,checkingForAI) && pbDamagingMove? && !chargingTurnMove? && targets.length==1
+    end
+
+    # The maximum number of hits in a round this move will actually perform. This
+    # can be 1 for Beat Up, and can be 2 for any moves affected by Parental Bond.
+    def pbNumHits(user,targets,checkingForAI=false)
+      return 2 if canParentalBond?(user,targets,checkingForAI)
+      numHits = 1
+      numHits += 1 if user.shouldAbilityApply?(:SPACEINTERLOPER,checkingForAI)
+      numHits += 1 if user.effects[PBEffects::VolleyStance] && move.specialMove?
+      return numHits
+    end
+
       # Reset move usage counters (child classes can increment them).
     def pbChangeUsageCounters(user,specialUsage)
         user.effects[PBEffects::FuryCutter]   = 0
@@ -256,7 +270,7 @@ class PokeBattle_Move
             end
         end
         # Effectiveness message, for moves with 1 hit
-        if !multiHitMove? && user.effects[PBEffects::ParentalBond]==0
+        if !multiHitMove? && user.effects[PBEffects::ParentalBond] == 0
             pbEffectivenessMessage(user,target,numTargets)
         end
         if target.damageState.substitute && target.effects[PBEffects::Substitute]==0

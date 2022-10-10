@@ -345,7 +345,8 @@ class PokeBattle_Battler
       end
       # Get the number of hits
       numHits = move.pbNumHits(user,targets)
-      numHits *= 2 if user.effects[PBEffects::VolleyStance] && move.specialMove?
+      # Record that Parental Bond applies, to weaken the second attack
+      user.effects[PBEffects::ParentalBond] = 3 if move.canParentalBond?(user,targets) 
       # Process each hit in turn
       # Skip all hits if the move is being magic coated, magic bounced, or magic shielded
       realNumHits = 0

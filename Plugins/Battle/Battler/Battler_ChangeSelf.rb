@@ -71,17 +71,42 @@ class PokeBattle_Battler
 		return amt
   end
 
-	def pbRecoverHPFromDrain(amt,target,msg=nil)
+  # Returns whether or not any HP was healed
+  def pbRecoverHPFromMultiDrain(targets,ratio)
+    totalDamageDealt = 0
+    targets.each do |target|
+      next if target.damageState.unaffected
+      damage = target.damageState.totalHPLost
+      if target.hasActiveAbility?(:LIQUIDOOZE)
+        @battle.pbShowAbilitySplash(target)
+        lossAmount = (damage * ratio).round
+        pbReduceHP(lossAmount)
+        @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!",pbThis))
+        @battle.pbHideAbilitySplash(target)
+        pbItemHPHealCheck
+      else
+        totalDamageDealt += damage
+      end
+    end
+    return false if totalDamageDealt <= 0 || !canHeal?
+    drainAmount = (totalDamageDealt * ratio).round
+    drainAmount = 1 if drainAmount < 1
+    drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
+    pbRecoverHP(drainAmount)
+    return true
+  end
+  
+	def pbRecoverHPFromDrain(drainAmount,target,msg=nil)
 		if target.hasActiveAbility?(:LIQUIDOOZE)
 		  @battle.pbShowAbilitySplash(target)
-		  pbReduceHP(amt)
+		  pbReduceHP(drainAmount)
 		  @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!",pbThis))
 		  @battle.pbHideAbilitySplash(target)
 		  pbItemHPHealCheck
 		else
 		  if canHeal?
-        amt = (amt*1.3).floor if hasActiveItem?(:BIGROOT)
-        pbRecoverHP(amt)
+        drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
+        pbRecoverHP(drainAmount)
 		  end
 		end
 	end

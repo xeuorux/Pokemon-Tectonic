@@ -317,3 +317,9 @@ BattleHandlers::DamageCalcUserAbility.add(:ARCANE,
     end
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:SPACEINTERLOPER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 0.5
+  }
+)

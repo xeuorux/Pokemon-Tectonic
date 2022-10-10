@@ -63,7 +63,7 @@ class PokeBattle_Move
   # Same as the above, but for number of hits
   # Can return a float, for average hit amount on random moves
   def pbNumHitsAI(user,target,skill=100)
-    return 1
+    return pbNumHits(user,target,true)
   end
 
   def canRemoveItem?(user,target,checkingForAI=false)

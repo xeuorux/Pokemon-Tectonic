@@ -173,19 +173,36 @@ class PokeBattle_Move
 		return [@battle.pbRandom(ratios[c]) == 0,false]
     end
 
-    def pbGetAttackStats(user,target)
-        if specialMove? || (user.hasActiveAbility?(:MYSTICFIST) && punchingMove?)
+    def forcedSpecial?(user,target,checkingForAI=false)
+        return true if user.shouldAbilityApply?(:MYSTICFIST,checkingForAI) && punchingMove?
+        return true if user.shouldAbilityApply?(:SPACEINTERLOPER,checkingForAI)
+        return false
+    end
+
+    def forcedPhysical?(user,target,checkingForAI=false)
+        return false
+    end
+
+    def specialAfterForcing?(user,target,checkingForAI=false)
+        isSpecial = specialMove?
+        isSpecial = true if forcedSpecial?(user,target,checkingForAI)
+        isSpecial = false if forcedPhysical?(user,target,checkingForAI)
+        return isSpecial
+    end
+
+    def pbGetAttackStats(user,target,checkingForAI=false)
+        if specialAfterForcing?(user,target,checkingForAI)
           return user.spatk, user.stages[:SPECIAL_ATTACK]+6
         end
         return user.attack, user.stages[:ATTACK]+6
-      end
+    end
     
-      def pbGetDefenseStats(user,target)
-        if specialMove? || (user.hasActiveAbility?(:MYSTICFIST) && punchingMove?)
-          return target.spdef, target.stages[:SPECIAL_DEFENSE]+6
+    def pbGetDefenseStats(user,target,checkingForAI=false)
+        if specialAfterForcing?(user,target,checkingForAI)
+            return target.spdef, target.stages[:SPECIAL_DEFENSE]+6
         end
         return target.defense, target.stages[:DEFENSE]+6
-      end
+    end
       
     def pbCalcDamage(user,target,numTargets=1)
         return if statusMove?
