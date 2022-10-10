@@ -462,7 +462,7 @@ class PokeBattle_Battler
 	end
 
   def bunkeringDown?(checkingForAI=false)
-    return shouldAbilityApply?(:BUNKERDOWN,checkingForAI) && user.hp == user.totalhp 
+    return shouldAbilityApply?(:BUNKERDOWN,checkingForAI) && @hp == @totalhp 
   end
 
   def getRoomDuration()

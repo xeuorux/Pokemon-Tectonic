@@ -85,15 +85,25 @@ class PokeBattle_AI
 
         targets = user.pbFindTargets(choice,move,user)
         
-        extraAggro = false
-        if move.empowered? && move.damagingMove?
+        
+        singleTurnBigAttack = false
+        if  move.damagingMove? && move.empowered?
             @battle.pbDisplay(_INTL("#{user.pbThis} is winding up a big attack!"))
-            extraAggro = true
-            user.extraMovesPerTurn = 0
-            user.primevalTimer = 0
+            singleTurnBigAttack = true
         else
             user.resetExtraMovesPerTurn
             PokeBattle_AI.triggerBossDecidedOnMove(user.species,move,user,targets)
+
+            if move.function == "0E0"
+                singleTurnBigAttack = true
+            end
+        end
+
+        extraAggro = false
+        if singleTurnBigAttack
+            extraAggro = true
+            user.extraMovesPerTurn = 0
+            user.primevalTimer = 0
         end
 
         if @battle.commandPhasesThisRound == 0

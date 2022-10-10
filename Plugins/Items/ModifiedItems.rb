@@ -309,6 +309,22 @@ ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.copy(:ABILITYCAPSULE,:ABILITYTRANSFORMER)
 
+BattleHandlers::UserItemAfterMoveUse.add(:LIFEORB,
+  proc { |item,user,targets,move,numHits,battle|
+    next if !user.takesIndirectDamage?
+    next if !move.pbDamagingMove? || numHits==0
+    hitBattler = false
+    targets.each do |b|
+      hitBattler = true if !b.damageState.unaffected && !b.damageState.substitute
+      break if hitBattler
+    end
+    next if !hitBattler
+    PBDebug.log("[Item triggered] #{user.pbThis}'s #{user.itemName} (recoil)")
+    battle.pbDisplay(_INTL("{1} lost some of its HP!",user.pbThis))
+    user.applyFractionalDamage(1.0/10.0)
+  }
+)
+
 BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
   proc { |item,user,targets,move,numHits,battle|
     next if !user.canHeal?

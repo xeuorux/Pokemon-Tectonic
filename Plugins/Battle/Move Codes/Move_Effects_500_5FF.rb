@@ -126,7 +126,7 @@ end
 
 #===============================================================================
 # This move ignores target's Defense, Special Defense and evasion stat changes.
-# It also ignores their abilities. (Shred)
+# It also ignores their abilities. (Rend)
 #===============================================================================
 class PokeBattle_Move_509 < PokeBattle_Move
   def pbChangeUsageCounters(user,specialUsage)
@@ -274,7 +274,7 @@ class PokeBattle_Move_510 < PokeBattle_Move
 		return if target.damageState.unaffected
 		return if !user.takesIndirectDamage?
 		@battle.pbDisplay(_INTL("{1} loses half its health in recoil!",user.pbThis))
-    user.applyFractionalDamage(1.0/2.0,true,true)
+    	user.applyFractionalDamage(1.0/2.0,true,true)
 	end
 	
 	def getScore(score,user,target,skill=100)
