@@ -1,6 +1,8 @@
 class PokeBattle_Battle
   # Used for causing weather by a move or by an ability.
   def pbStartWeather(user,newWeather,duration=-1,showAnim=true)
+    oldWeather = @field.weather
+
     resetExisting = @field.weather == newWeather
     endWeather() if !resetExisting
 
@@ -34,6 +36,8 @@ class PokeBattle_Battle
     end
     pbDisplay(_INTL("It'll last for {1} more turns!",@field.weatherDuration - 1)) if $PokemonSystem.weather_messages == 0
     pbHideAbilitySplash(user) if user
+
+    triggerWeatherChangeDialogue(oldWeather,@field.weather) if !resetExisting
   end
 
   def displayResetWeatherMessage()
@@ -77,8 +81,10 @@ class PokeBattle_Battle
       when :HarshSun    then pbDisplay(_INTL("The harsh sunlight faded!"))
       when :StrongWinds then pbDisplay(_INTL("The mysterious air current has dissipated!"))
     end
+    oldWeather = @field.weather
     @field.weather 			= :None
     @field.weatherDuration  = 0
+    triggerWeatherChangeDialogue(oldWeather,:None)
   end
 
   def pbStartTerrain(user,newTerrain,fixedDuration=true)
@@ -113,14 +119,7 @@ class PokeBattle_Battle
     # Check for terrain seeds that boost stats in a terrain
     eachBattler { |b| b.pbItemTerrainStatBoostCheck }
     
-    # Trigger dialogue for each opponent
-    if @opponent
-      @opponent.each_with_index do |trainer_speaking,idxTrainer|
-        @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-          PokeBattle_AI.triggerTerrainChangeDialogue(policy,old_terrain,newTerrain,trainer_speaking,dialogue)
-        }
-      end
-    end
+    triggerTerrainChangeDialogue(old_terrain,newTerrain)
   end 
   
   def pbChangeField(user,fieldEffect,modifier)

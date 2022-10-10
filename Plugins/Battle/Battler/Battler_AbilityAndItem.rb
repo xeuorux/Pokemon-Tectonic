@@ -24,6 +24,7 @@ class PokeBattle_Battler
 			return
 		end
 		PBDebug.log("[Item consumed] #{pbThis} consumed its held #{itemName}")
+		@battle.triggerBattlerConsumedItemDialogue(self,@item_id)
 		if recoverable
 			setRecycleItem(@item_id)
 			@effects[PBEffects::PickupItem] = @item_id
