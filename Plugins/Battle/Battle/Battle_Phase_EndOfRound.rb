@@ -265,14 +265,14 @@ class PokeBattle_Battle
         elsif b.canHeal?
           amount = b.totalhp/16.0
           amount /= 4.0 if b.boss?
-          if user.hasActiveAbility?(:NESTING)
-            pbShowAbilitySplash(user)
+          if b.hasActiveAbility?(:NESTING)
+            pbShowAbilitySplash(b)
             amount *= 4.0
           end
           b.pbRecoverHP(amount.round)
           pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
-          if user.hasActiveAbility?(:NESTING)
-            pbHideAbilitySplash(user)
+          if b.hasActiveAbility?(:NESTING)
+            pbHideAbilitySplash(b)
           end
         end
       end
