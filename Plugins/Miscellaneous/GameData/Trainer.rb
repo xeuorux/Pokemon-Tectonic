@@ -158,8 +158,6 @@ module GameData
 
 				pkmn.assignedPosition = pkmn_data[:assigned_position] || Settings::MAX_PARTY_SIZE
 
-				echoln("Assigning party member #{pkmn.name} position #{pkmn.assignedPosition} in the party")
-
 				if !pkmn_data[:form].nil?
 					pkmn.forced_form = pkmn_data[:form] if MultipleForms.hasFunction?(species, "getForm")
 					pkmn.form_simple = pkmn_data[:form]
@@ -262,13 +260,14 @@ class Pokemon
 end
 
 class Trainer
+	attr_reader   :nameForHashing
+
 	def wild?;           return GameData::TrainerType.get(@trainer_type).wild?;     end
 end
 
 class NPCTrainer < Trainer
 	attr_accessor :policies
 	attr_accessor :policyStates
-	attr_reader   :nameForHashing
 
 	def initialize(name, trainer_type, nameForHashing = nil)
 		super(name, trainer_type)
