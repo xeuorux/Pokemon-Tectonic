@@ -466,7 +466,7 @@
 465,NESTING,Nesting,"Heals quadruple from Grassy terrain, and doesn't count as airborne during."
 466,QUICKBUILD,Quick Build,"Room creating moves have priority."
 467,EXTREMEHEAT,Extreme Heat,"Increases move damage by 50%, but loses 1/10 HP every turn."
-468,ARCANE,Radiate,"Increases Sp. Atk by 30%."
+468,ARCANE,Arcane,"Increases Sp. Atk by 30%."
 469,DREAMWEAVER,Dream Weaver,"Raises Sp. Atk whenever any battler falls asleep."
 470,SPACEINTERLOPER,Space Interloper,"Attacks hit twice for half damage, drain 50% of damage dealt and become Special."
 471,TIMEINTERLOPER,Time Interloper,"Its attacks have priority, deal 33 percent less damage and become Special."
