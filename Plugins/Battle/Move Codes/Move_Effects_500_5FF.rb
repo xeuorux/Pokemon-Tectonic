@@ -2903,3 +2903,14 @@ class PokeBattle_Move_59E < PokeBattle_Move
 		}
 	end
 end
+
+  #===============================================================================
+  # Decreases the target's Attack and Special Attack by 1 stage each. (Singing Stone)
+  #===============================================================================
+  class PokeBattle_Move_59F < PokeBattle_TargetMultiStatDownMove
+  
+    def initialize(battle,move)
+      super
+      @statDown = [:ATTACK,1,:SPECIAL_ATTACK,1]
+    end
+  end
