@@ -77,3 +77,4 @@
 3045,PRIMEVALCROSSPOISON,Primeval Cross Poison,645,70,POISON,Physical,100,10,10,AllNearFoes,0,abefp,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",
 3046,PRIMEVALSOLARBEAM,Primeval Solar Beam,646,170,GRASS,Special,100,10,0,AllNearFoes,0,bef,"A two-turn attack. The user gathers light, then blasts all near foes on the second turn.",
 3047,PRIMEVALPOWERGEM,Primeval Power Gem,647,120,ROCK,Special,100,15,100,NearOther,0,bef,"The user attacks with a sparkling gem-like ray, mystifying the target.",
+3048,PRIMEVALBULLETSEED,Primeval Bullet Seed,648,35,GRASS,Physical,100,15,0,AllNearFoes,0,abef,"The user forcefully shoots 6 seeds in rapid succession, spread among nearby enemies.",

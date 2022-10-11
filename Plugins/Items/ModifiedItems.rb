@@ -75,9 +75,10 @@ BattleHandlers::HPHealItem.add(:ORANBERRY,
     next false if !battler.canHeal?
     next false if !forced && !battler.canConsumePinchBerry?(true)
     battle.pbCommonAnimation("EatBerry",battler) if !forced
-	hpRestore = battler.totalhp.to_f / 3.0
-	hpRestore *= 2 if battler.hasActiveAbility?(:RIPEN)
-	battler.pbRecoverHP(hpRestore)
+    hpRestore = battler.totalhp.to_f / 3.0
+    hpRestore /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
+    hpRestore *= 2.0 if battler.hasActiveAbility?(:RIPEN)
+    battler.pbRecoverHP(hpRestore.round)
     itemName = GameData::Item.get(item).name
     if forced
       PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
@@ -95,8 +96,9 @@ BattleHandlers::HPHealItem.add(:SITRUSBERRY,
     next false if !forced && !battler.canConsumePinchBerry?(false)
     battle.pbCommonAnimation("EatBerry",battler) if !forced
     hpRestore = battler.totalhp.to_f / 4.0
-	hpRestore *= 2 if battler.hasActiveAbility?(:RIPEN)
-	battler.pbRecoverHP(hpRestore)
+    hpRestore /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
+    hpRestore *= 2.0 if battler.hasActiveAbility?(:RIPEN)
+    battler.pbRecoverHP(hpRestore.round)
     itemName = GameData::Item.get(item).name
     if forced
       PBDebug.log("[Item triggered] Forced consuming of #{itemName}")

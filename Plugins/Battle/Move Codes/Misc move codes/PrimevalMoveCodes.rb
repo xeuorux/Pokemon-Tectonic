@@ -4,6 +4,9 @@ module EmpoweredMove
 	
 	def pbMoveFailed?(user,targets); return false; end
 	def pbFailsAgainstTarget?(user,target); return false; end
+
+	# There must be 2 turns without using a primeval attack to then be able to use it again
+	def turnsBetweenUses(); return 2; end
 	
 	def transformType(user,type)
 		user.pbChangeTypes(type)
@@ -608,4 +611,16 @@ end
 # Empowered Power Gem
 class PokeBattle_Move_647 < PokeBattle_Move_402
 	include EmpoweredMove
+end
+
+# Empowered Bullet Seed
+class PokeBattle_Move_648 < PokeBattle_Move
+	include EmpoweredMove
+
+	def smartSpreadsTargets?;	return true; end
+	def multiHitMove?;           return true; end
+	def pbNumHits(user,targets)
+		return (6 / targets.length).ceil
+	end
+	def turnsBetweenUses(); return 3; end
 end

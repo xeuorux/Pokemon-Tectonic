@@ -355,9 +355,9 @@ BattleHandlers::OnBerryConsumedAbility.add(:CHEEKPOUCH,
   proc { |ability,user,berry,own_item,battle|
     next if !user.canHeal?
     battle.pbShowAbilitySplash(user)
-    recovery = user.totalhp / 3
-    recovery /= 4 if user.boss?
-    user.pbRecoverHP(recovery)
+    recovery = user.totalhp / 3.0
+    recovery /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if user.boss?
+    user.pbRecoverHP(recovery.round)
     battle.pbDisplay(_INTL("{1}'s HP was restored.", user.pbThis))
     battle.pbHideAbilitySplash(user)
   }

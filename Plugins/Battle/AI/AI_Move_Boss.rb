@@ -25,8 +25,10 @@ class PokeBattle_AI
             empoweredDamagingChoices, choices = choices.partition {|choice| user.moves[choice[0]].isEmpowered?}
             guaranteedChoices, regularChoices = choices.partition {|choice| choice[1] >= 5000}
 
+            empoweredDamagingChoices.reject!{|choice| user.primevalTimer < user.moves[choice[0]].turnsBetweenUses}
+
             if guaranteedChoices.length == 0
-                if empoweredDamagingChoices.length > 0 && user.primevalTimer >= 2
+                if empoweredDamagingChoices.length > 0
                     preferredChoice = empoweredDamagingChoices[0]
                     user.primevalTimer = 0
                     PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will use a primeval attacking move since there exists at least one, and the timer is high enough")
