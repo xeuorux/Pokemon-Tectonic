@@ -165,7 +165,7 @@ TeleportBlocked = true
 #-------------------------------
 [022]
 # False-Front House
-Outdoor = true
+Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
