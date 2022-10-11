@@ -112,13 +112,8 @@ module GameData
 							break
 						end
 					end
-
-					if hasRemoveMatch
-						#echoln("Ignoring parent party member #{parentPartyMember.name}, since the child trainer entry marked it as removed")
-					else
-						#echoln("Adding parent party member #{parentPartyMember.name} to child party")
-						trainer.party.push(parentPartyMember.clone)
-					end
+					
+					trainer.party.push(parentPartyMember.clone) if !hasRemoveMatch
 				end
 			end
 
@@ -174,9 +169,11 @@ module GameData
 					pkmn.reset_moves([pkmn.level,50].min,true)
 				end
 
-				pkmn.ability_index = pkmn_data[:ability_index] if !pkmn_data[:ability_index].nil?
-				pkmn.ability = pkmn_data[:ability] if !pkmn_data[:ability].nil?
-
+				if !pkmn_data[:ability].nil? || !pkmn_data[:ability_index].nil?
+					pkmn.ability = pkmn_data[:ability]
+					pkmn.ability_index = pkmn_data[:ability_index]
+				end
+				
 				pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)
 				pkmn.shiny = (pkmn_data[:shininess]) ? true : false if !pkmn_data[:shininess].nil?
 
