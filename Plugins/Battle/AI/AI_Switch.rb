@@ -208,9 +208,9 @@ class PokeBattle_AI
             switchScore = 0
 
             # Determine if the pokemon will be airborne
-            airborne = pkmn.hasType?(:FLYING) || pkmn.hasAbility?(:LEVITATE) || pkmn.item = :AIRBALLOON
+            airborne = pkmn.hasType?(:FLYING) || pkmn.hasAbility?(:LEVITATE) || pkmn.item == :AIRBALLOON
             airborne = false if @battle.field.effects[PBEffects::Gravity] > 0
-            airborne = false if pkmn.item = :IRONBALL
+            airborne = false if pkmn.item == :IRONBALL
 
             willAbsorbSpikes = false
 
