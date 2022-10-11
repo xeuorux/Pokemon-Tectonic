@@ -248,13 +248,13 @@ class PokeBattle_Move
         if target.damageState.critical
             onAddendum = numTargets > 1 ? " on #{target.pbThis(true)}" : ""
             if target.damageState.forced_critical
-                @battle.pbDisplay(_INTL("#{user.pbThis} performed a critical attack#{onAddendum}!",))
+              @battle.pbDisplay(_INTL("#{user.pbThis} performed a critical attack#{onAddendum}!",))
             else
-				@battle.pbDisplay(_INTL("A critical hit#{onAddendum}!"))
+				      @battle.pbDisplay(_INTL("A critical hit#{onAddendum}!"))
             end
         end
         # Effectiveness message, for moves with 1 hit
-        if !multiHitMove? && user.effects[PBEffects::ParentalBond] == 0
+        if !target.damageState.messagesPerHit
             pbEffectivenessMessage(user,target,numTargets)
         end
         if target.damageState.substitute && target.effects[PBEffects::Substitute]==0

@@ -345,6 +345,11 @@ class PokeBattle_Battler
       end
       # Get the number of hits
       numHits = move.pbNumHits(user,targets)
+      # Mark each target with whether its being targeted by a multihit move
+      messagesPerHit = numHits <= 1
+      targets.each do |target|
+        target.damageState.messagesPerHit = messagesPerHit
+      end
       # Record that Parental Bond applies, to weaken the second attack
       user.effects[PBEffects::ParentalBond] = 3 if move.canParentalBond?(user,targets) 
       # Process each hit in turn
@@ -387,17 +392,25 @@ class PokeBattle_Battler
       # Effectiveness message for multi-hit moves
       # NOTE: No move is both multi-hit and multi-target, and the messages below
       #       aren't quite right for such a hypothetical move.
-      if numHits > 1
+      if !messagesPerHit
         if move.damagingMove?
           targets.each do |b|
             next if b.damageState.unaffected || b.damageState.substitute
             move.pbEffectivenessMessage(user,b,targets.length)
           end
         end
-        if realNumHits==1
-          @battle.pbDisplay(_INTL("Hit 1 time!"))
-        elsif realNumHits>1
-          @battle.pbDisplay(_INTL("Hit {1} times!",realNumHits))
+        if targets.length > 1
+          if realNumHits == 1
+            @battle.pbDisplay(_INTL("Hit each 1 time!"))
+          elsif realNumHits > 1
+            @battle.pbDisplay(_INTL("Hit each {1} times!",realNumHits))
+          end
+        else
+          if realNumHits == 1
+            @battle.pbDisplay(_INTL("Hit 1 time!"))
+          elsif realNumHits > 1
+            @battle.pbDisplay(_INTL("Hit {1} times!",realNumHits))
+          end
         end
       end
       # Magic Coat's bouncing back (move has targets)
