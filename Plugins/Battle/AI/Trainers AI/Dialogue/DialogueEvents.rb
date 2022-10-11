@@ -168,7 +168,7 @@ class PokeBattle_Battle
 	end
 
 	def triggerBattlerConsumedItemDialogue(battler,item)
-		triggerDialogueOnBattlerAction() { |isTrainer,policy,trainer_speaking,dialogue|
+		triggerDialogueOnBattlerAction(battler) { |isTrainer,policy,trainer_speaking,dialogue|
 			if isTrainer
 				PokeBattle_AI.triggerTrainerPokemonConsumesItemDialogue(policy,battler,item,trainer_speaking,dialogue)
 			else
