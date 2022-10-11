@@ -42,7 +42,7 @@ Environment = None
 #-------------------------------
 [005]
 # Secret Location
-Outdoor = true
+Outdoor = false
 ShowArea = true
 Bicycle = true
 BattleBack = wcave
