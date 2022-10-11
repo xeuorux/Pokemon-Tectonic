@@ -64,8 +64,8 @@ class PokeBattle_AI
 		return (ret!=nil) ? ret : dialogue_array
 	end
 	
-	def self.triggerTrainerPokemonTookMoveDamageDialogue(policy,dealer,taker,trainer_speaking,dialogue_array)
-		ret = TrainerPokemonTookMoveDamageDialogue.trigger(policy,dealer,taker,trainer_speaking,dialogue_array)
+	def self.triggerTrainerPokemonTookMoveDamageDialogue(policy,dealer,taker,move,trainer_speaking,dialogue_array)
+		ret = TrainerPokemonTookMoveDamageDialogue.trigger(policy,dealer,taker,move,trainer_speaking,dialogue_array)
 		return (ret!=nil) ? ret : dialogue_array
 	end
 	

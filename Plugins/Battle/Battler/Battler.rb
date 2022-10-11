@@ -334,7 +334,6 @@ class PokeBattle_Battler
     stageMul = STAGE_MULTIPLIERS
     stageDiv = STAGE_DIVISORS
     stage = @stages[:SPEED] + 6
-	  stage = 6 if stage > 6 && paralyzed?
     speed_bonus = getBonus(:SPEED)
     speed = (@speed + speed_bonus)*stageMul[stage]/stageDiv[stage]
     speedMult = 1.0

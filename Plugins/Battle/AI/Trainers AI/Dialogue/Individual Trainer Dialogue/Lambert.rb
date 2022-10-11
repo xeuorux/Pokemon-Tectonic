@@ -9,7 +9,7 @@ PokeBattle_AI::TrainerSendsOutPokemonDialogue.add(:LAMBERT,
 )
 
 PokeBattle_AI::TrainerPokemonTookMoveDamageDialogue.add(:LAMBERT,
-  proc { |policy,dealer,taker,trainer_speaking,dialogue_array|
+  proc { |policy,dealer,taker,move,trainer_speaking,dialogue_array|
 	next dialogue_array if trainer_speaking.policyStates[:IllusionComment]
 	next dialogue_array if taker.species !=:ZORUA
 	if taker.damageState.typeMod < Effectiveness::NORMAL_EFFECTIVE	

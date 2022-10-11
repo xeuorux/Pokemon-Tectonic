@@ -101,7 +101,7 @@ PokeBattle_AI::PlayerSendsOutPokemonDialogue.add(:REMARKONSTARTER,
 # TrainerPokemonTookMoveDamageDialogue handlers
 #===============================================================================
 PokeBattle_AI::TrainerPokemonTookMoveDamageDialogue.add(:DEBUG,
-  proc { |policy,dealer,taker,trainer_speaking,dialogue_array|
+  proc { |policy,dealer,taker,move,trainer_speaking,dialogue_array|
 	if !trainer_speaking.policyStates[:TrainerPokemonTookMoveDamageDEBUG]
 		dialogue_array.push("My Pokemon took move damage!")
 		trainer_speaking.policyStates[:TrainerPokemonTookMoveDamageDEBUG] = true
