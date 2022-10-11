@@ -3507,7 +3507,7 @@ class PokeBattle_Move_0F4 < PokeBattle_Move
     item = target.item
     itemName = target.itemName
     target.pbRemoveItem
-    @battle.pbDisplay(_INTL("{1 stole and ate its target's {2}!",user.pbThis,itemName))
+    @battle.pbDisplay(_INTL("{1} stole and ate its target's {2}!",user.pbThis,itemName))
     user.pbHeldItemTriggerCheck(item,false)
   end
 
