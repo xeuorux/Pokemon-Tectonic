@@ -71,9 +71,9 @@
 3039,PRIMEVALANCIENTPOWER,Primeval Ancient Power,639,80,ROCK,Special,100,10,100,NearOther,0,bef,"The user attacks with a prehistoric power which raises all its stats",ANCIENTPOWER
 3040,PRIMEVALTHUNDERBOLT,Primeval Thunderbolt,640,160,ELECTRIC,Special,100,1,100,NearOther,0,bef,"A powerful electric blast is let loose on the target, numbing it.",THUNDERBOLT
 3041,PRIMEVALFLAREBLITZ,Primeval Flare Blitz,641,200,FIRE,Physical,100,10,0,NearOther,0,abef,"The user cloaks itself in fire and charges at the foe. The user also takes 33% recoil.",FLAREBLITZ
-3042,PRIMEVALMETALCLAW,Primeval Metal Claw,642,50,STEEL,Physical,100,30,100,NearOther,0,abef,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
-3043,PRIMEVALSLASH,Primeval Slash,643,100,NORMAL,Physical,100,15,0,NearOther,0,abefp,"The target is attacked with a slash of claws or blades, always critting.",SLASH
-3044,PRIMEVALBRICKBREAK,Primeval Brick Break,644,100,FIGHTING,Physical,100,12,100,NearOther,0,abef,"The user attacks with a swift chop, destroying barriers, and drastically reducing the target's defense.",BRICKBREAK
+3042,PRIMEVALMETALCLAW,Primeval Metal Claw,642,60,STEEL,Physical,100,30,100,NearOther,0,abef,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
+3043,PRIMEVALSLASH,Primeval Slash,643,120,NORMAL,Physical,100,15,0,NearOther,0,abefp,"The target is attacked with a slash of claws or blades, always critting.",SLASH
+3044,PRIMEVALBRICKBREAK,Primeval Brick Break,644,140,FIGHTING,Physical,100,12,100,NearOther,0,abef,"The user attacks with a swift chop, destroying barriers, and drastically reducing the target's defense.",BRICKBREAK
 3045,PRIMEVALCROSSPOISON,Primeval Cross Poison,645,70,POISON,Physical,100,10,10,AllNearFoes,0,abefp,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",
 3046,PRIMEVALSOLARBEAM,Primeval Solar Beam,646,170,GRASS,Special,100,10,0,AllNearFoes,0,bef,"A two-turn attack. The user gathers light, then blasts all near foes on the second turn.",
 3047,PRIMEVALPOWERGEM,Primeval Power Gem,647,120,ROCK,Special,100,15,100,NearOther,0,bef,"The user attacks with a sparkling gem-like ray, mystifying the target.",
