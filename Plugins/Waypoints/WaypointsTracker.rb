@@ -72,7 +72,7 @@ class WaypointsTracker
 		return false
 	end
 	
-	def accessWaypoint(waypointEvent,waypointName)
+	def accessWaypoint(waypointName,waypointEvent)
 		@activeWayPoints = {} if @activeWayPoints.nil?
 		
 		pbMessage(_INTL("#{WAYPOINT_ACCESS_MESSAGE}"))
@@ -158,7 +158,7 @@ def accessWaypoint(waypointName,avatarSpecies=nil)
 		end
 	end
 	
-	$waypoints_tracker.accessWaypoint(waypointEvent,waypointName)
+	$waypoints_tracker.accessWaypoint(waypointName,waypointEvent)
 end
 
 def setWaypointSummonable(waypointEventID)
