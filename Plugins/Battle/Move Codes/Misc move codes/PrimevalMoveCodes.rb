@@ -549,7 +549,7 @@ class PokeBattle_Move_642 < PokeBattle_Move_01C
 	include EmpoweredMove
 
 	def multiHitMove?;           return true; end
-  	def pbNumHits(user,targets); return 2;    end
+  	def pbNumHits(user,targets,checkingForAI=false); return 2;    end
 end
 
 # Empowered Slash
@@ -619,7 +619,7 @@ class PokeBattle_Move_648 < PokeBattle_Move
 
 	def smartSpreadsTargets?;	return true; end
 	def multiHitMove?;           return true; end
-	def pbNumHits(user,targets)
+	def pbNumHits(user,targets,checkingForAI=false)
 		return (6 / targets.length).ceil
 	end
 	def turnsBetweenUses(); return 3; end

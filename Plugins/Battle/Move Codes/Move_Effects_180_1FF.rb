@@ -194,7 +194,7 @@
   #===============================================================================
   class PokeBattle_Move_188 < PokeBattle_Move_0A0
     def multiHitMove?;           return true; end
-    def pbNumHits(user,targets); return 3;    end
+    def pbNumHits(user,targets,checkingForAI=false); return 3;    end
   end
   
   #===============================================================================

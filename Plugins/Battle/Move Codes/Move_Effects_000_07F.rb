@@ -2340,7 +2340,7 @@ class PokeBattle_Move_06E < PokeBattle_FixedDamageMove
     return false
   end
 
-  def pbNumHits(user,targets); return 1; end
+  def pbNumHits(user,targets,checkingForAI=false); return 1; end
 
   def pbFixedDamage(user,target)
     return target.hp-user.hp

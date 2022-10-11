@@ -3,7 +3,7 @@
 #===============================================================================
 class PokeBattle_Move_500 < PokeBattle_Move
   def multiHitMove?;           return true; end
-  def pbNumHits(user,targets); return 3;    end
+  def pbNumHits(user,targets,checkingForAI=false); return 3;    end
 end
   
 #===============================================================================
@@ -2052,7 +2052,7 @@ end
 class PokeBattle_Move_56C < PokeBattle_Move_55F
 	def multiHitMove?; return true; end
   
-	def pbNumHits(user,targets)
+	def pbNumHits(user,targets,checkingForAI=false)
 	  hitChances = [2,2,3,3,4,5]
 	  r = @battle.pbRandom(hitChances.length)
 	  r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)

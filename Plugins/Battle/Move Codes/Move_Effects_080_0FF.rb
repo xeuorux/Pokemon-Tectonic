@@ -1913,7 +1913,7 @@ end
 #===============================================================================
 class PokeBattle_Move_0BD < PokeBattle_Move
   def multiHitMove?;           return true; end
-  def pbNumHits(user,targets); return 2;    end
+  def pbNumHits(user,targets,checkingForAI=false); return 2;    end
 end
 
 #===============================================================================
@@ -1921,7 +1921,7 @@ end
 #===============================================================================
 class PokeBattle_Move_0BE < PokeBattle_PoisonMove
   def multiHitMove?;           return true; end
-  def pbNumHits(user,targets); return 2;    end
+  def pbNumHits(user,targets,checkingForAI=false); return 2;    end
 end
 
 #===============================================================================
@@ -1930,7 +1930,7 @@ end
 #===============================================================================
 class PokeBattle_Move_0BF < PokeBattle_Move
   def multiHitMove?;           return true; end
-  def pbNumHits(user,targets); return 3;    end
+  def pbNumHits(user,targets,checkingForAI=false); return 3;    end
 
   def successCheckPerHit?
     return @accCheckPerHit
@@ -1957,7 +1957,7 @@ end
 class PokeBattle_Move_0C0 < PokeBattle_Move
   def multiHitMove?; return true; end
 
-  def pbNumHits(user,targets)
+  def pbNumHits(user,targets,checkingForAI=false)
     if @id == :WATERSHURIKEN && user.isSpecies?(:GRENINJA) && user.form == 2
       return 3
     end
@@ -2011,7 +2011,7 @@ class PokeBattle_Move_0C1 < PokeBattle_Move
     return false
   end
 
-  def pbNumHits(user,targets)
+  def pbNumHits(user,targets,checkingForAI=false)
     calculateBeatUpList(user) if @beatUpList.empty?
     return @beatUpList.length
   end
@@ -2765,7 +2765,7 @@ end
 #===============================================================================
 class PokeBattle_Move_0E0 < PokeBattle_Move
   def worksWithNoTargets?;     return true; end
-  def pbNumHits(user,targets); return 1;    end
+  def pbNumHits(user,targets,checkingForAI=false); return 1;    end
 
   def pbMoveFailed?(user,targets)
     if !@battle.moldBreaker
@@ -2813,7 +2813,7 @@ end
 # User faints (if successful).
 #===============================================================================
 class PokeBattle_Move_0E1 < PokeBattle_FixedDamageMove
-  def pbNumHits(user,targets); return 1; end
+  def pbNumHits(user,targets,checkingForAI=false); return 1; end
 
   def pbOnStartUse(user,targets)
     @finalGambitDamage = user.hp
@@ -3732,7 +3732,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
     end
   end
 
-  def pbNumHits(user,targets); return 1; end
+  def pbNumHits(user,targets,checkingForAI=false); return 1; end
 
   def pbBaseDamage(baseDmg,user,target)
     return 10 if user.item && user.item.is_berry?
