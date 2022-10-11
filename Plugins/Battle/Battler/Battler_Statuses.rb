@@ -380,7 +380,7 @@ class PokeBattle_Battler
 		end
 		if newStatus == :SLEEP
 			PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}")
-			@battle.eachBattler(@index) do |b|
+			@battle.eachBattler do |b|
 				next if b.nil?
 				next if !b.hasActiveAbility?(:DREAMWEAVER)
 				@battle.pbShowAbilitySplash(b)
