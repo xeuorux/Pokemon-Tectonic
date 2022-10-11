@@ -32493,7 +32493,7 @@ InternalName = MROGGENROLA
 Type1 = PSYCHIC
 Type2 = ROCK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 58,28,61,21,61,71
+BaseStats = 58,38,56,21,61,66
 # Total = 300
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -32529,7 +32529,7 @@ InternalName = MBOLDORE
 Type1 = PSYCHIC
 Type2 = ROCK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 74,49,83,26,101,92
+BaseStats = 74,69,73,26,101,82
 # Total = 425
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -32556,7 +32556,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 31
 BattlerShadowX = 2
 BattlerShadowSize = 3
-Evolutions = MGIGALITH,Level,36
+Evolutions = MGIGALITH,Level,43
 #-------------------------------
 [2517]
 Name = M. Gigalith
@@ -32564,7 +32564,7 @@ InternalName = MGIGALITH
 Type1 = PSYCHIC
 Type2 = ROCK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 94,64,98,36,116,107
+BaseStats = 94,84,88,36,116,97
 # Total = 515
 GenderRate = Female50Percent
 GrowthRate = Parabolic
