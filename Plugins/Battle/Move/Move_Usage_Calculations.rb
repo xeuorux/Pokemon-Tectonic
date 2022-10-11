@@ -175,7 +175,7 @@ class PokeBattle_Move
 
     def forcedSpecial?(user,target,checkingForAI=false)
         return true if user.shouldAbilityApply?(:MYSTICFIST,checkingForAI) && punchingMove?
-        return true if user.shouldAbilityApply?(:SPACEINTERLOPER,checkingForAI)
+        return true if user.shouldAbilityApply?([:TIMEINTERLOPER,:SPACEINTERLOPER],checkingForAI)
         return false
     end
 

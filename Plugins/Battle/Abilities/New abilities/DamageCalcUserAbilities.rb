@@ -323,3 +323,9 @@ BattleHandlers::DamageCalcUserAbility.add(:SPACEINTERLOPER,
     mults[:attack_multiplier] *= 0.5
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:TIMEINTERLOPER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 2.0/3.0
+  }
+)

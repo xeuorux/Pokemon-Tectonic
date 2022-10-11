@@ -43,3 +43,9 @@ BattleHandlers::PriorityChangeAbility.add(:QUICKBUILD,
     next pri+1 if move.setsARoom?
   }
 )
+
+BattleHandlers::PriorityChangeAbility.add(:TIMEINTERLOPER,
+  proc { |ability,battler,move,pri,targets=nil|
+    next pri+1
+  }
+)
