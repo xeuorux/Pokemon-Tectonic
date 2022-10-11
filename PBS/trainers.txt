@@ -559,6 +559,7 @@ Pokemon = FLAAFFY,25
     EV = 20,0,0,0,0,20
 #-------------------------------
 [COOLTRAINER_F7,Raven]
+Policies = RAIN_TEAM
 Pokemon = POLITOED,30
     Moves = COLDFRONT,SCALD,FLIPTURN
     AbilityIndex = 0
@@ -591,6 +592,7 @@ Pokemon = SHIINOTIC,30
     EV = 20,20,0,0,20,10
 #-------------------------------
 [COOLTRAINER_M,Max]
+Policies = SAND_TEAM
 Pokemon = HIPPOPOTAS,25
     Moves = MUDSHOT,FIRESPIN,SANDSTORM,YAWN
     AbilityIndex = 0
@@ -617,6 +619,7 @@ Pokemon = LILEEP,25
     Item = LEFTOVERS
 #-------------------------------
 [COOLTRAINER_F,Priscilla]
+Policies = HAIL_TEAM
 Pokemon = MISMAGIUS,30
     Moves = SPITEFULCHANT,MYSTICALFIRE,DAZZLINGGLEAM,POWERGEM
     AbilityIndex = 0
@@ -962,6 +965,7 @@ Pokemon = UNFEZANT,35
     AbilityIndex = 1
 #-------------------------------
 [TRAINER_Vincent,Vincent]
+Policies = RAIN_TEAM
 Pokemon = MURKROW,25
     Name = Harbinger
     AbilityIndex = 1
@@ -1664,6 +1668,7 @@ Pokemon = LAIRON,40
     AbilityIndex = 0
 #-------------------------------
 [ROUGHNECK,Reese]
+Policies = SAND_TEAM
 Pokemon = PUPITAR,40
     AbilityIndex = 0
     Item = LEFTOVERS
@@ -2430,6 +2435,7 @@ Pokemon = VANILLISH,20
     AbilityIndex = 1
 #-------------------------------
 [TRAINER_Alessa,Alessa,1]
+Policies = SUN_TEAM
 Pokemon = TRUBBISH,26
     AbilityIndex = 1
 Pokemon = SWADLOON,26
@@ -3843,6 +3849,7 @@ Pokemon = WEAVILE,70
     EV = 10,20,0,20,0,0
 #-------------------------------
 [FORMERCHAMP_Vincent,Vincent]
+Policies = RAIN_TEAM
 Pokemon = HONCHKROW,70
     Moves = HURRICANE,STEELWING,BUBBLEBLAST,DARKPULSE
     AbilityIndex = 1
