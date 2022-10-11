@@ -129,12 +129,12 @@ class PokeBattle_Battle
 			if pbOwnedByPlayer?(battler.index)
 				@opponent.each_with_index do |trainer_speaking,idxTrainer|
 					@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-						yield true,policy,trainer_speaking,dialogue
+						yield false,policy,trainer_speaking,dialogue
 					}
 				end
 			else
 				triggerDialogueForOwner(battler) { |policy,trainer_speaking,dialogue|
-					yield false,policy,trainer_speaking,dialogue
+					yield true,policy,trainer_speaking,dialogue
 				}
 			end
 		end
