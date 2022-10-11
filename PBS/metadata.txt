@@ -161,6 +161,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = false
 BattleBack = elite2
+TeleportBlocked = true
 #-------------------------------
 [022]
 # False-Front House
@@ -310,6 +311,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 BattleBack = elite3
+TeleportBlocked = true
 #-------------------------------
 [042]
 # Zeraora's Chamber
@@ -434,6 +436,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 BattleBack = elite8
+TeleportBlocked = true
 #-------------------------------
 [065]
 # Németh Mart
@@ -794,6 +797,7 @@ ShowArea = false
 Bicycle = false
 BattleBack = elite7
 Environment = None
+TeleportBlocked = true
 #-------------------------------
 [135]
 # Ancient Meteorite
@@ -1165,6 +1169,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 BattleBack = elite5
+TeleportBlocked = true
 #-------------------------------
 [196]
 # Boiling Cave
@@ -1451,6 +1456,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = false
+TeleportBlocked = true
 #-------------------------------
 [275]
 # Sweetrock Harbor Gym Tour
@@ -1574,6 +1580,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = false
 BattleBack = champion1
+TeleportBlocked = true
 #-------------------------------
 [301]
 # County Park
