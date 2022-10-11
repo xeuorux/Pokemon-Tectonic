@@ -1,23 +1,7 @@
 class PokeBattle_Move
     def pbDisplayUseMessage(user,targets=[])
-        # Trigger dialogue for a trainer or the player about to use a move
-        if @battle.opponent
-          if user.pbOwnedByPlayer?
-            @battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
-              @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-                PokeBattle_AI.triggerPlayerIsUsingMoveDialogue(policy,user,self,targets,trainer_speaking,dialogue)
-              }
-            end	
-          else
-            idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(user.index)
-            trainer_speaking = @battle.opponent[idxTrainer] || nil
-            if !trainer_speaking.nil?
-              @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-                PokeBattle_AI.triggerTrainerIsUsingMoveDialogue(policy,user,self,targets,trainer_speaking,dialogue)
-              }
-            end
-          end
-        end
+
+        @battle.triggerBattlerIsUsingMoveDialogue(user,targets,self)
     
         if zMove? && !@specialUseZMove
           @battle.pbCommonAnimation("ZPower",user,nil) if @battle.scene.pbCommonAnimationExists?("ZPower")

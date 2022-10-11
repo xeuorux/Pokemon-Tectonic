@@ -409,7 +409,7 @@ class PokeBattle_Battler
     # Move fails due to type immunity ability (Except against or by a boss)
     if !user.boss? && !target.boss
       if move.pbImmunityByAbility(user,target) 
-        triggerImmunityDialogue(target,true)
+        @battle.triggerImmunityDialogue(user,target,true)
         return false
       end
     end
@@ -418,7 +418,7 @@ class PokeBattle_Battler
       PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
       if !@battle.bossBattle?
         @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-        triggerImmunityDialogue(target,false)
+        @battle.triggerImmunityDialogue(user,target,false)
         return false
       else
         @battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!"))
@@ -429,7 +429,7 @@ class PokeBattle_Battler
        target.pbHasType?(:DARK) && target.opposes?(user)
       PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
       @battle.pbDisplay(_INTL("The Prankster-boosted move doesn't affect {1} due to its Dark typing...",target.pbThis(true)))
-      triggerImmunityDialogue(target,false)
+      @battle.triggerImmunityDialogue(user,target,false)
       return false
     end
     # Airborne-based immunity to Ground moves
@@ -442,22 +442,22 @@ class PokeBattle_Battler
           @battle.pbDisplay(_INTL("{1} avoided the attack with {2}!",target.pbThis,target.abilityName))
         end
         @battle.pbHideAbilitySplash(target)
-        triggerImmunityDialogue(target,true)
+        @battle.triggerImmunityDialogue(user,target,true)
         return false unless @battle.bossBattle? # In boss battles, it just reduced damage by half (calced later)
       end
       if target.hasActiveItem?(:AIRBALLOON)
         @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!",target.pbThis,target.itemName))
-        triggerImmunityDialogue(target,false)
+        @battle.triggerImmunityDialogue(user,target,false)
         return false
       end
       if target.effects[PBEffects::MagnetRise]>0
         @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Magnet Rise!",target.pbThis))
-        triggerImmunityDialogue(target,false)
+        @battle.triggerImmunityDialogue(user,target,false)
         return false
       end
       if target.effects[PBEffects::Telekinesis]>0
         @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Telekinesis!",target.pbThis))
-        triggerImmunityDialogue(target,false)
+        @battle.triggerImmunityDialogue(user,target,false)
         return false
       end
     end
@@ -466,7 +466,7 @@ class PokeBattle_Battler
       if target.pbHasType?(:GRASS) && Settings::MORE_TYPE_EFFECTS
         PBDebug.log("[Target immune] #{target.pbThis} is Grass-type and immune to powder-based moves")
         @battle.pbDisplay(_INTL("It doesn't affect {1} because of its Grass typing...",target.pbThis(true)))
-        triggerImmunityDialogue(target,false)
+        @battle.triggerImmunityDialogue(user,target,false)
         return false
       end
       if Settings::MECHANICS_GENERATION >= 6
@@ -478,13 +478,13 @@ class PokeBattle_Battler
             @battle.pbDisplay(_INTL("It doesn't affect {1} because of its {2}.",target.pbThis(true),target.abilityName))
           end
           @battle.pbHideAbilitySplash(target)
-          triggerImmunityDialogue(target,false)
+          @battle.triggerImmunityDialogue(user,target,false)
           return false
         end
         if target.hasActiveItem?(:SAFETYGOGGLES)
           PBDebug.log("[Item triggered] #{target.pbThis} has Safety Goggles and is immune to powder-based moves")
           @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-          triggerImmunityDialogue(target,false)
+          @battle.triggerImmunityDialogue(user,target,false)
           return false
         end
       end
@@ -497,26 +497,5 @@ class PokeBattle_Battler
       return false
     end
     return true
-  end
-
-  def triggerImmunityDialogue(target,isImmunityAbility)
-    if !battle.wildBattle?
-      if @battle.pbOwnedByPlayer?(target.index)
-        # Trigger each opponent's dialogue
-        @battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
-          @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-            trainer = @battle.opponent[idxTrainer]
-            PokeBattle_AI.triggerPlayerPokemonImmuneDialogue(policy,self,target,isImmunityAbility,trainer_speaking,dialogue)
-          }
-        end
-      else
-        # Trigger just this pokemon's trainer's dialogue
-        idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(index)
-        trainer_speaking = @battle.opponent[idxTrainer]
-        @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-          PokeBattle_AI.triggerTrainerPokemonImmuneDialogue(policy,self,target,isImmunityAbility,trainer_speaking,dialogue)
-        }
-      end
-    end
   end
 end

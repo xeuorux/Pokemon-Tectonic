@@ -259,7 +259,7 @@ class PokeBattle_Battle
       # The battle is a draw if the player survives a certain number of turns
       # In survival battles
       if @turnsToSurvive > 0 && @turnCount > @turnsToSurvive
-        triggerBattleSurvivedDialogue
+        triggerBattleSurvivedDialogue()
         @decision = 6
         break
       end
@@ -358,18 +358,6 @@ class PokeBattle_Battle
         @scene.pbRefresh
       end
 	  end
-  end
-
-  # Enemy dialogue for when the battle ends due to rounds survived
-  def triggerBattleSurvivedDialogue()
-    if @opponent
-      # Trigger dialogue for each opponent
-      @opponent.each_with_index do |trainer_speaking,idxTrainer|
-        @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-          PokeBattle_AI.triggerBattleSurvivedDialogue(policy,trainer_speaking,dialogue)
-        }
-      end
-    end
   end
   
   def pbEndOfBattle

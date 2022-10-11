@@ -69,8 +69,8 @@ class PokeBattle_AI
 		return (ret!=nil) ? ret : dialogue_array
 	end
 	
-	def self.triggerPlayerPokemonTookMoveDamageDialogue(policy,dealer,taker,trainer_speaking,dialogue_array)
-		ret = PlayerPokemonTookMoveDamageDialogue.trigger(policy,dealer,taker,trainer_speaking,dialogue_array)
+	def self.triggerPlayerPokemonTookMoveDamageDialogue(policy,dealer,taker,move,trainer_speaking,dialogue_array)
+		ret = PlayerPokemonTookMoveDamageDialogue.trigger(policy,dealer,taker,move,trainer_speaking,dialogue_array)
 		return (ret!=nil) ? ret : dialogue_array
 	end
 	
@@ -125,7 +125,7 @@ class PokeBattle_Battle
 	## Dialogue triggering helper method helper methods (yo dawg)
 	#####################################################
 	def triggerDialogueOnBattlerAction(battler)
-		if @opponent
+		if !@opponent.nil?
 			if pbOwnedByPlayer?(battler.index)
 				@opponent.each_with_index do |trainer_speaking,idxTrainer|
 					@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
@@ -133,9 +133,7 @@ class PokeBattle_Battle
 					}
 				end
 			else
-				idxTrainer = pbGetOwnerIndexFromBattlerIndex(battler.index)
-				trainer_speaking = @opponent[idxTrainer]
-				@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+				triggerDialogueForOwner(battler) { |policy,trainer_speaking,dialogue|
 					yield false,policy,trainer_speaking,dialogue
 				}
 			end
@@ -143,12 +141,22 @@ class PokeBattle_Battle
 	end
 
 	def triggerDialogueForEachOpponent
-		if @opponent
+		if !@opponent.nil?
 			@opponent.each_with_index do |trainer_speaking,idxTrainer|
 				@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
 					yield policy,trainer_speaking,dialogue
 				}
 			end
+		end
+	end
+
+	def triggerDialogueForOwner(battler)
+		if !@opponent.nil?
+			idxTrainer = pbGetOwnerIndexFromBattlerIndex(battler.index)
+			trainer_speaking = @opponent[idxTrainer]
+			@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
+				yield policy,trainer_speaking,dialogue
+			}
 		end
 	end
 
@@ -167,12 +175,95 @@ class PokeBattle_Battle
 		}
 	end
 
+	# Enemy dialogue for when the battle ends due to rounds survived
+	def triggerBattleSurvivedDialogue()
+		triggerDialogueForEachOpponent() { |policy,trainer_speaking,dialogue|
+			PokeBattle_AI.triggerBattleSurvivedDialogue(policy,trainer_speaking,dialogue)
+		}
+	end
+
+	def triggerBattlerChoiceDialogue(battler,choice)
+		triggerDialogueOnBattlerAction(battler) { |isTrainerOwned,policy,trainer_speaking,dialogue|
+			case choice[0]
+				when :UseMove
+					move = choice[2]
+					target = choice[3] == -1 ? nil : @battlers[choice[3]]
+					if isTrainerOwned
+						PokeBattle_AI.triggerTrainerChoseMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue)
+					else
+						PokeBattle_AI.triggerTrainerChoseMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue)
+					end
+			end
+		}
+	end
+
 	def triggerBattlerConsumedItemDialogue(battler,item)
-		triggerDialogueOnBattlerAction(battler) { |isTrainer,policy,trainer_speaking,dialogue|
-			if isTrainer
+		triggerDialogueOnBattlerAction(battler) { |isTrainerOwned,policy,trainer_speaking,dialogue|
+			if isTrainerOwned
 				PokeBattle_AI.triggerTrainerPokemonConsumesItemDialogue(policy,battler,item,trainer_speaking,dialogue)
 			else
 				PokeBattle_AI.triggerPlayerPokemonConsumesItemDialogue(policy,battler,item,trainer_speaking,dialogue)
+			end
+		}
+	end
+	
+	def triggerBattlerEnterDialogue(battler)
+		triggerDialogueOnBattlerAction(battler) { |isTrainerOwned,policy,trainer_speaking,dialogue|
+			if isTrainerOwned
+				PokeBattle_AI.triggerTrainerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue)
+			else
+				PokeBattle_AI.triggerPlayerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue)
+			end
+		}
+	end
+
+	def triggerBattlerTookMoveDamageDialogue(dealer,taker,move)
+		triggerDialogueOnBattlerAction(taker) { |isTrainerOwned,policy,trainer_speaking,dialogue|
+			if isTrainerOwned
+				PokeBattle_AI.triggerTrainerPokemonTookMoveDamageDialogue(policy,dealer,taker,move,trainer_speaking,dialogue)
+			else
+				PokeBattle_AI.triggerPlayerPokemonTookMoveDamageDialogue(policy,dealer,taker,move,trainer_speaking,dialogue)
+			end
+		}
+	end
+
+	def triggerBattlerIsUsingMoveDialogue(user,targets,move)
+		triggerDialogueOnBattlerAction(user) { |isTrainerOwned,policy,trainer_speaking,dialogue|
+			if isTrainerOwned
+				PokeBattle_AI.triggerTrainerIsUsingMoveDialogue(policy,user,move,targets,trainer_speaking,dialogue)
+			else
+				PokeBattle_AI.triggerPlayerIsUsingMoveDialogue(policy,user,move,targets,trainer_speaking,dialogue)
+			end
+		}
+	end
+
+	def triggerBattlerFaintedDialogue(battler)
+		triggerDialogueOnBattlerAction(battler) { |isTrainerOwned,policy,trainer_speaking,dialogue|
+			if isTrainerOwned
+				PokeBattle_AI.triggerTrainerPokemonFaintedDialogue(policy,battler,trainer_speaking,dialogue)
+			else
+				PokeBattle_AI.triggerPlayerPokemonFaintedDialogue(policy,battler,trainer_speaking,dialogue)
+			end
+		}
+	end
+
+	# Enemy dialogue for victims of poison/burn
+	def triggerDOTDeathDialogue(battler)
+		triggerDialogueOnBattlerAction(battler) { |isTrainerOwned,policy,trainer_speaking,dialogue|
+			if isTrainerOwned
+				PokeBattle_AI.triggerTrainerPokemonDiesToDOTDialogue(policy,battler,trainer_speaking,dialogue)
+			else
+				PokeBattle_AI.triggerPlayerPokemonDiesToDOTDialogue(policy,battler,trainer_speaking,dialogue)
+			end
+		}
+	end
+
+	def triggerImmunityDialogue(user,target,isImmunityAbility)
+		triggerDialogueOnBattlerAction(user) { |isTrainerOwned,policy,trainer_speaking,dialogue|
+			if isTrainerOwned
+				PokeBattle_AI.triggerTrainerPokemonImmuneDialogue(policy,user,target,isImmunityAbility,trainer_speaking,dialogue)
+			else
+				PokeBattle_AI.triggerPlayerPokemonImmuneDialogue(policy,user,target,isImmunityAbility,trainer_speaking,dialogue)
 			end
 		}
 	end

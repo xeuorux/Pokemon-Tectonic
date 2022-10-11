@@ -759,25 +759,5 @@ class PokeBattle_Battle
     @field.effects[PBEffects::FusionBolt]  = false
     @field.effects[PBEffects::FusionFlare] = false
   end
-  
-  # Enemy dialogue for victims of poison/burn
-  def triggerDOTDeathDialogue(pokemon)
-    if @opponent
-      if pbOwnedByPlayer?(pokemon.index)
-        # Trigger dialogue for each opponent
-        @opponent.each_with_index do |trainer_speaking,idxTrainer|
-          @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-            PokeBattle_AI.triggerPlayerPokemonDiesToDOTDialogue(policy,pokemon,trainer_speaking,dialogue)
-          }
-        end
-      else
-        # Trigger dialogue for the trainer whose pokemon died
-        idxTrainer = pbGetOwnerIndexFromBattlerIndex(pokemon.index)
-        trainer_speaking = @opponent[idxTrainer]
-        @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-          PokeBattle_AI.triggerTrainerPokemonDiesToDOTDialogue(policy,pokemon,trainer_speaking,dialogue)
-        }
-      end
-    end
-  end
+
 end

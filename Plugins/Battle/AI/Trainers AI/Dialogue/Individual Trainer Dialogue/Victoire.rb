@@ -30,7 +30,7 @@ PokeBattle_AI::TrainerSendsOutPokemonDialogue.add(:VICTOIRE,
 PokeBattle_AI::TrainerPokemonImmuneDialogue.add(:VICTOIRE,
   proc { |policy,attacker,target,isImmunityAbility,trainer_speaking,dialogue_array|
 	if target.species == :AGGRON && isImmunityAbility && !trainer_speaking.policyStates[:AggronMotorComment]
-		dialogue_array.push("All safeties disengaged – the floor is yours, Aggron.")
+		dialogue_array.push("All safeties disengaged - the floor is yours, Aggron.")
 		trainer_speaking.policyStates[:AggronMotorComment] = true
 	end
     next dialogue_array

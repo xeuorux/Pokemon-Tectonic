@@ -19,8 +19,8 @@ PokeBattle_AI::TrainerSendsOutPokemonDialogue.add(:ZOE,
 )
 
 PokeBattle_AI::PlayerPokemonTookMoveDamageDialogue.add(:BENCE,
-  proc { |policy,dealer,taker,trainer_speaking,dialogue_array|
-    next dialogue_array unless dealer.species == :DREDNAW && dealer.lastMoveUsed == :JAWLOCK
+  proc { |policy,dealer,taker,move,trainer_speaking,dialogue_array|
+    next dialogue_array if dealer.species != :DREDNAW || move.id != :JAWLOCK
     if !trainer_speaking.policyStates[:DrednawJawLock]
       dialogue_array.push("They don't call it the Bite Pokémon for nothing! You're stuck here with ME now!")
       trainer_speaking.policyStates[:DrednawJawLock] = true

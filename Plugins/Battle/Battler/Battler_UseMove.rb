@@ -451,28 +451,12 @@ class PokeBattle_Battler
         @battle.triggerMoveUsedCurseEffect(curse_policy,self,choice[3],move)
       end
       
-      if !battle.wildBattle?
-        # Triggers dialogue for each target hit
-        targets.each do |t|
-          next unless t.damageState.totalHPLost > 0
-          if @battle.pbOwnedByPlayer?(t.index)
-            # Trigger each opponent's dialogue
-            @battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
-              @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-                trainer = @battle.opponent[idxTrainer]
-                PokeBattle_AI.triggerPlayerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
-              }
-            end
-          else
-            # Trigger just this pokemon's trainer's dialogue
-            idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(index)
-            trainer_speaking = @battle.opponent[idxTrainer]
-            @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-              PokeBattle_AI.triggerTrainerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
-            }
-          end
-        end
+      # Triggers dialogue for each target hit
+      targets.each do |t|
+        next unless t.damageState.totalHPLost > 0
+        @battle.triggerBattlerTookMoveDamageDialogue(user,t,move)
       end
+
       # Faint if 0 HP
       targets.each { |b| b.pbFaint if b && b.fainted? }
       user.pbFaint if user.fainted?

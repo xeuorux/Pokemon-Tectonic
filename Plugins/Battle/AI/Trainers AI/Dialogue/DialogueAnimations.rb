@@ -11,39 +11,39 @@ class PokeBattle_Scene
   end
   
   def trainerMovesInOut(trainerIndex,&block)
-	pbShowOpponent(trainerIndex)
-	block.call if block
-	pbUnshowOpponent(trainerIndex)
+    pbShowOpponent(trainerIndex)
+    block.call if block
+    pbUnshowOpponent(trainerIndex)
   end
   
   def showTrainerDialogue(idxTrainer,&block)
-	# Gather dialogue from event calls through the trainer's policies
-	dialogue = []
-	policies = @battle.opponent[idxTrainer].policies
-	policies.each do |policy|
-		begin
-			dialogue = block.call(policy,dialogue)
-		rescue
-			pbMessage(_INTL("An error was encountered while trying to check for trainer dialogue."))
-		end
-	end
+    # Gather dialogue from event calls through the trainer's policies
+    dialogue = []
+    policies = @battle.opponent[idxTrainer].policies
+    policies.each do |policy|
+      begin
+        dialogue = block.call(policy,dialogue)
+      rescue
+        pbMessage(_INTL("An error was encountered while trying to check for trainer dialogue."))
+      end
+	  end
 	
-	# Error state
-	if !dialogue
-		echo("Dialogue array somehow became null while trying to show trainer dialogue!")
-		return
-	end
-	
-	# If there's some dialogue schedule, move the trainer on screen,
-	# display all the dialogue, then move the trainer off screen
-	if dialogue.length != 0
-		trainerMovesInOut(idxTrainer) {
-			dialogue.each do |line|
-				line = globalMessageReplacements(line)
-				pbDisplayPausedMessage(line)
-			end
-		}
-	end
+    # Error state
+    if !dialogue
+      echo("Dialogue array somehow became null while trying to show trainer dialogue!")
+      return
+    end
+    
+    # If there's some dialogue schedule, move the trainer on screen,
+    # display all the dialogue, then move the trainer off screen
+    if dialogue.length != 0
+      trainerMovesInOut(idxTrainer) {
+        dialogue.each do |line|
+          line = globalMessageReplacements(line)
+          pbDisplayPausedMessage(line)
+        end
+      }
+    end
   end
 end
 
