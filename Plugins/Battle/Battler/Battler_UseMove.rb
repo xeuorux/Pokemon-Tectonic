@@ -658,7 +658,7 @@ class PokeBattle_Battler
         # Secretion Secret
         targets.each do |target|
           next if target.damageState.unaffected
-          if target.hasActiveAbility?(:SECRETIONSECRET)
+          if target.hasActiveAbility?(:SECRETIONSECRET) && user.opposes?(target)
             battle.pbShowAbilitySplash(target)
             if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
               user.pbPoison(target,nil)
