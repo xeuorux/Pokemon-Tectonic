@@ -254,7 +254,7 @@ class PokeBattle_Move
             end
         end
         # Effectiveness message, for moves with 1 hit
-        if !target.damageState.messagesPerHit
+        if target.damageState.messagesPerHit
             pbEffectivenessMessage(user,target,numTargets)
         end
         if target.damageState.substitute && target.effects[PBEffects::Substitute]==0
