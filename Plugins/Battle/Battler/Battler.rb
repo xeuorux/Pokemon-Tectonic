@@ -2,9 +2,44 @@ class PokeBattle_Battler
   OFFENSIVE_LOCK_STAT = 120
   DEFENSIVE_LOCK_STAT = 95
 
+  #=============================================================================
+  # Queries about what the battler has
+  #=============================================================================
+  def plainStats
+    ret = {}
+    ret[:ATTACK]          = self.attack
+    ret[:DEFENSE]         = self.defense
+    ret[:SPECIAL_ATTACK]  = self.spatk
+    ret[:SPECIAL_DEFENSE] = self.spdef
+    ret[:SPEED]           = self.speed
+
+    if getsTribalBonuses?
+      bonuses = $Tribal_Bonuses.getTribeBonuses(@pokemon)
+      ret[:ATTACK_TRIBAL] = bonuses[:ATTACK]
+      ret[:DEFENSE_TRIBAL] = bonuses[:DEFENSE]
+      ret[:SPECIAL_ATTACK_TRIBAL] = bonuses[:SPECIAL_ATTACK]
+      ret[:SPECIAL_DEFENSE_TRIBAL] = bonuses[:SPECIAL_DEFENSE]
+      ret[:SPEED_TRIBAL] = bonuses[:SPEED]
+    else
+      ret[:ATTACK_TRIBAL] = 0
+      ret[:DEFENSE_TRIBAL] = 0
+      ret[:SPECIAL_ATTACK_TRIBAL] = 0
+      ret[:SPECIAL_DEFENSE_TRIBAL] = 0
+      ret[:SPEED_TRIBAL] = 0
+    end
+
+    return ret
+  end
+
   def getBonus(stat)
-    return 0 if !pbOwnedByPlayer? || !defined?(TribalBonus)
+    return 0 if !getsTribalBonuses?
     return $Tribal_Bonuses.getTribeBonuses(@pokemon)[stat]
+  end
+
+  def getsTribalBonuses?()
+    return false if !defined?(TribalBonus)
+    return false if !pbOwnedByPlayer?
+    return true
   end
 
 	def attack

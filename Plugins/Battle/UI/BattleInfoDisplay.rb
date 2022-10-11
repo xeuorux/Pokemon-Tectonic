@@ -1,5 +1,6 @@
 HIGHEST_STAT_BASE = Color.new(139,52,34)
 LOWEST_STAT_BASE = Color.new(60,55,112)
+TRIBAL_BOOSTED_BASE = Color.new(70, 130, 76)
 
 DEBUGGING_EFFECT_DISPLAY = false
 
@@ -294,31 +295,37 @@ class BattleInfoDisplay < SpriteWrapper
 		y = statStagesSectionTopY + 40 + 40 * index
 		statValueAddendum = ""
 		if stat == highestStat
-			mainColor = HIGHEST_STAT_BASE
+			finalStatColor = HIGHEST_STAT_BASE
 			statValueAddendum = " H"
 		elsif stat == lowestStat
-			mainColor = LOWEST_STAT_BASE
+			finalStatColor = LOWEST_STAT_BASE
 			statValueAddendum = " L"
 		else
-			mainColor = base
+			finalStatColor = base
 		end
 
 		# Display the stat's name
-		textToDraw.push([name,statLabelX,y,0,mainColor,shadow])
+		statNameColor = base
+		if GameData::Stat.get(stat).type == :main_battle
+			tribalBoostSymbol = (stat.to_s + "_TRIBAL").to_sym
+			isTribalBoosted = statValues[tribalBoostSymbol] > 0
+			statNameColor = TRIBAL_BOOSTED_BASE if isTribalBoosted
+		end
+		textToDraw.push([name,statLabelX,y,0,statNameColor,shadow])
 
 		# Display the stat stage
 		x = statStageX
 		x -= 12 if stage != 0
 		stageLabel = stage.to_s
 		stageLabel = "+" + stageLabel if stage > 0
-		textToDraw.push([stageLabel,x,y,0,mainColor,shadow])
+		textToDraw.push([stageLabel,x,y,0,base,shadow])
 
 		# Display the stat multiplier
 		multLabel = statMult.round(2).to_s + "x"
-		textToDraw.push([multLabel,statMultX,y,0,mainColor,shadow])
+		textToDraw.push([multLabel,statMultX,y,0,base,shadow])
 
 		# Display the final calculated stat
-		textToDraw.push([statValue.to_s + statValueAddendum,statValueX,y,0,mainColor,shadow])
+		textToDraw.push([statValue.to_s + statValueAddendum,statValueX,y,0,finalStatColor,shadow])
 
 		index += 1
 	end
