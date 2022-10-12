@@ -15,7 +15,7 @@ Slaynoir<s>Maddie
 FurretKnight<s>Dtp81390
 Gabs<s>derrondad
 BlueObelisk<s>Dark?
-MrPanda1
+MrPanda1<s>Angelcake
 
 Playtesters
 Splitmoon<s>Sets
