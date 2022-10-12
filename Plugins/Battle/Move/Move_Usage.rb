@@ -380,9 +380,9 @@ class PokeBattle_Move
         target.effects[PBEffects::MirrorCoat]       = damage
         target.effects[PBEffects::MirrorCoatTarget] = user.index
       end
-      if target.effects[PBEffects::Bide]>0
+      if target.effects[PBEffects::Bide] > 0
         target.effects[PBEffects::BideDamage] += damage
-        target.effects[PBEffects::BideTarget] = user.index
+        target.effects[PBEffects::BideTarget] = user.index if user.index != target.index
       end
       target.damageState.fainted = true if target.fainted?
       target.lastHPLost = damage             # For Focus Punch
