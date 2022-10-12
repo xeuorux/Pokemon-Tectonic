@@ -1124,4 +1124,4 @@
 1058,HATEFULHAYMAKER,Hateful Haymaker,081,65,DARK,Physical,100,10,0,NearOther,-4,abefj,"A punch that inflicts double the damage if the user has been hurt by the foe in the same turn.",SUCKERPUNCH
 1059,DEFIBRILLATE,Defibrillate,59E,0,ELECTRIC,Status,0,1,0,None,0,,"Restores a fainted Electric-type party member to full health.",ELECTRICTERRAIN
 1060,ABERRANTMOTE,Aberrant Mote,046,66,PSYCHIC,Special,100,12,100,NearOther,0,bef,"The user fires a dimensional mote, lowering the target's Sp. Defense.",LUSTERPURGE
-1061,SINGINGSTONG,Singing Stone,59F,66,ROCK,Special,100,12,100,NearOther,0,befk,"The user thrums ominously, lowering the target's Attack and Sp. Atk.",ECHOEDVOICE
+1061,SINGINGSTONE,Singing Stone,59F,66,ROCK,Special,100,12,100,NearOther,0,befk,"The user thrums ominously, lowering the target's Attack and Sp. Atk.",ECHOEDVOICE
