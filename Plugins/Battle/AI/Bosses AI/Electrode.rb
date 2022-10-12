@@ -1,4 +1,4 @@
-ELECTRODE_TURNS_TO_EXPLODE = 1
+ELECTRODE_TURNS_TO_EXPLODE = 3
 
 # Self-destruct/Explosion
 PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:ELECTRODE,"0E0"],
