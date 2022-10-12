@@ -48,6 +48,10 @@ FOG_MAPS = [
     8, # Velenz
 ]
 
+DARK_MAPS = [
+    8, # Velenz
+]
+
 GLASS_CEILING_MAPS = [
     266, # Berry Greenhouse
 ]
@@ -163,13 +167,18 @@ def applyOutdoorEffects()
             end
             applyFog('clouds_fog_texture_high_contrast',0,cloudCoverOpacity,velX,velY,2)
         else
-            applyFog('')
+            applyDefaultFog(map_id)
         end
 
-        echoln("Setting weather: #{weatherSym} #{strength}")
-        $game_screen.weather(weatherSym, strength, 0, false, !glassCeiling)
+        powerFromMax = ($game_screen.weather_max * 10.0 / RPG::Weather::MAX_SPRITES).floor - 1
+        if $game_screen.weather_type != weatherSym || strength != powerFromMax
+            echoln("Setting weather: #{weatherSym} #{strength}")
+            $game_screen.weather(weatherSym, strength, 0, false, !glassCeiling)
+        else
+            echoln("Weather remains the same.")
+        end
     else
-        applyFog('')
+        applyDefaultFog(map_id)
     end
 end
 
@@ -231,6 +240,12 @@ def getColdDryWeather(strength)
     end
 
     return weatherSym,strength
+end
+
+def applyDefaultFog(mapID)
+    darknessOpacity = 0
+    darknessOpacity = 100 if DARK_MAPS.include?(mapID)
+    applyFog('darkness', 0, darknessOpacity)
 end
 
 def applyFog(name, hue = 0, opacity = 100, velX = 0, velY = 0, blend_type = 0, zoom = 100)
