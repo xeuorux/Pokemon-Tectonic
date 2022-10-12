@@ -4335,7 +4335,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = LAPNESSIE,Level,36
+Evolutions = SAURENAID,Level,36
 #-------------------------------
 [132]
 Name = Ditto
@@ -30348,8 +30348,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [922]
-Name = Lapnessie
-InternalName = LAPNESSIE
+Name = Saurenaid
+InternalName = SAURENAID
 Type1 = DRAGON
 Type2 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -30372,7 +30372,7 @@ Weight = 300.0
 Color = Blue
 Shape = Head
 Kind = Freighter
-Pokedex = The musical staff around its body is made of ice particles. The symbols are indecipherable, but some say they've heard Lapnessie speak its own language.
+Pokedex = The musical staff around its body is made of ice particles. The symbols are indecipherable, but some say they've heard Saurenaid speak its own language.
 WildItemCommon = MYSTICWATER
 WildItemUncommon = MYSTICWATER
 WildItemRare = MYSTICWATER
