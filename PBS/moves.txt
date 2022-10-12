@@ -448,7 +448,7 @@
 428,SWIFT,Swift,0A5,60,NORMAL,Special,0,15,0,AllNearFoes,0,bef,"Star-shaped rays are shot at the opposing team. This attack never misses and skips protections.",
 429,VISEGRIP,Vise Grip,000,55,NORMAL,Physical,100,25,0,NearOther,0,abef,"The target is gripped and squeezed from both sides to inflict damage.",
 430,CUT,Cut,000,50,NORMAL,Physical,100,25,0,NearOther,0,abefp,"The target is cut with a scythe or a claw. It can also be used to cut down thin trees.",
-431,SNORE,Snore,011,75,NORMAL,Special,100,12,50,NearOther,0,bek,"An attack that can be used only if the user is asleep. It has a 50% chancce to make the target flinch.",
+431,SNORE,Snore,011,75,NORMAL,Special,100,12,50,NearOther,0,bek,"An attack that can be used only if the user is asleep. It has a 50% chance to make the target flinch.",
 432,STRUGGLE,Struggle,002,50,NORMAL,Physical,0,1,0,RandomNearFoe,0,abf,"An attack that is used in desperation only if the user has no PP. It also hurts the user slightly.",
 433,WEATHERBALL,Weather Ball,087,50,NORMAL,Special,100,10,0,NearOther,0,befn,"An attack move that varies in power and type depending on the weather.",
 434,ECHOEDVOICE,Echoed Voice,092,40,NORMAL,Special,100,12,0,NearOther,0,befk,"The user attacks the foe with an echoing voice. If this move is used every turn, it does greater damage.",
