@@ -1,4 +1,26 @@
 class PokeBattle_Scene
+  def pbGraphicsUpdate
+    $PokemonGlobal.addNewFrameCount if UnrealTime::ENABLED && UnrealTime::TIME_STOPS && UnrealTime::BATTLE_PASS
+    # Update lineup animations
+    if @animations.length>0
+      shouldCompact = false
+      @animations.each_with_index do |a,i|
+        a.update
+        if a.animDone?
+          a.dispose
+          @animations[i] = nil
+          shouldCompact = true
+        end
+      end
+      @animations.compact! if shouldCompact
+    end
+    # Update other graphics
+    @sprites["battle_bg"].update if @sprites["battle_bg"].respond_to?("update")
+    Graphics.update
+    @frameCounter += 1
+    @frameCounter = @frameCounter%(Graphics.frame_rate*12/20)
+  end
+
 	#=============================================================================
 	# Window displays
 	#=============================================================================

@@ -227,8 +227,7 @@ def pbGetTimeNow
   return time_ret
 end
 
-if UnrealTime::ENABLED
-  class PokemonGlobalMetadata
+class PokemonGlobalMetadata
     attr_accessor :newFrameCount # Became float when using extra values
     attr_accessor :extraYears 
     
@@ -251,34 +250,4 @@ if UnrealTime::ENABLED
       @extraYears=0 if !@extraYears
       return @extraYears
     end
-  end  
-
-  if UnrealTime::TIME_STOPS  
-    class Scene_Map
-      alias :updateold :update
-      def update
-        $PokemonGlobal.addNewFrameCount
-        updateold
-      end
-    
-      if UnrealTime::TALK_PASS  
-        alias :miniupdateold :miniupdate
-        def miniupdate
-          $PokemonGlobal.addNewFrameCount 
-          miniupdateold
-        end
-      end
-    end  
-  
-    if UnrealTime::BATTLE_PASS
-      PokeBattle_Scene = Battle::Scene if !defined?(PokeBattle_Scene)
-      class PokeBattle_Scene
-        alias :pbGraphicsUpdateold :pbGraphicsUpdate
-        def pbGraphicsUpdate
-          $PokemonGlobal.addNewFrameCount 
-          pbGraphicsUpdateold
-        end
-      end
-    end
-  end
 end
