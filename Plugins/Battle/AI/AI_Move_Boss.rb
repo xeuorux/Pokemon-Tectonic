@@ -139,10 +139,7 @@ class PokeBattle_AI
                     next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
                     next if !user.opposes?(b)
                     targets.push(b)
-                    score = pbGetMoveScoreBoss(move,user,b)
-                    targetPercent = b.hp.to_f / b.totalhp.to_f
-                    score = (score*(1.0 + 0.5 * targetPercent)).floor
-                    totalScore += score
+                    totalScore += pbGetMoveScoreBoss(move,user,b)
                 end
                 if targets.length() != 0
                     totalScore = totalScore / targets.length().to_f
@@ -153,7 +150,7 @@ class PokeBattle_AI
                 totalScore = pbGetMoveScoreBoss(move,user,nil)
             end
             if totalScore > 0
-                choices.push([idxMove,totalScore,-1])
+                choices.push([idxMove,totalScore.floor,-1])
             else
                 echoln("Scoring #{move.name} a 0.")
             end
@@ -168,11 +165,8 @@ class PokeBattle_AI
                 next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
                 next if target_data.targets_foe && !user.opposes?(b)
                     
-                score = pbGetMoveScoreBoss(move,user,b)
-                if move.damagingMove?
-                    targetPercent = b.hp.to_f / b.totalhp.to_f
-                    score = (score*(1.0 + 0.5 * targetPercent)).floor
-                end
+                score = pbGetMoveScoreBoss(move,user,b).floor
+
                 if score > 0
                     scoresAndTargets.push([score,b.index])
                 else
