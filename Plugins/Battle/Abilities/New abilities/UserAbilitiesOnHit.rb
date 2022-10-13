@@ -1,7 +1,8 @@
 BattleHandlers::UserAbilityOnHit.add(:SHOCKSTYLE,
   proc { |ability,user,target,move,battle|
-    next if target.paralyzed? || battle.pbRandom(100)>=50
+    next if battle.pbRandom(100)>=50
     next if move.type != :FIGHTING
+    next if target.paralyzed?
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -23,8 +24,9 @@ BattleHandlers::UserAbilityOnHit.add(:SHOCKSTYLE,
 
 BattleHandlers::UserAbilityOnHit.add(:FROSTWINGS,
   proc { |ability,user,target,move,battle|
-    next if target.frostbitten? || battle.pbRandom(100)>=20
+    next if battle.pbRandom(100)>=20
     next if move.type != :FLYING
+    next if target.frostbitten?
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -46,8 +48,9 @@ BattleHandlers::UserAbilityOnHit.add(:FROSTWINGS,
 
 BattleHandlers::UserAbilityOnHit.add(:SHOCKWINGS,
   proc { |ability,user,target,move,battle|
-    next if target.paralyzed? || battle.pbRandom(100)>=20
+    next if battle.pbRandom(100)>=20
     next if move.type != :FLYING
+    next if target.paralyzed?
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -69,8 +72,9 @@ BattleHandlers::UserAbilityOnHit.add(:SHOCKWINGS,
 
 BattleHandlers::UserAbilityOnHit.add(:FLAMEWINGS,
   proc { |ability,user,target,move,battle|
-    next if target.burned? || battle.pbRandom(100)>=20
+    next if battle.pbRandom(100)>=20
     next if move.type != :FLYING
+    next if target.burned?
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -93,6 +97,7 @@ BattleHandlers::UserAbilityOnHit.add(:BURNSKILL,
   proc { |ability,user,target,move,battle|
     next if !move.specialMove?
     next if battle.pbRandom(100)>=30
+    next if target.burned?
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -115,6 +120,7 @@ BattleHandlers::UserAbilityOnHit.add(:CHILLOUT,
   proc { |ability,user,target,move,battle|
     next if !move.specialMove?
     next if battle.pbRandom(100)>=30
+    next if target.frostbitten?
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -137,6 +143,7 @@ BattleHandlers::UserAbilityOnHit.add(:NUMBINGTOUCH,
   proc { |ability,user,target,move,battle|
     next if !move.contactMove?
     next if battle.pbRandom(100)>=30
+    next if target.paralyzed?
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -159,6 +166,7 @@ BattleHandlers::UserAbilityOnHit.add(:NERVENUMBER,
   proc { |ability,user,target,move,battle|
     next if move.contactMove?
     next if battle.pbRandom(100)>=30
+    next if target.paralyzed?
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
