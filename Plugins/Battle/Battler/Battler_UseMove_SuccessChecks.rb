@@ -263,8 +263,9 @@ class PokeBattle_Battler
       @battle.pbCommonAnimation(animationName,target) if !animationName.nil?
       @battle.pbDisplay(_INTL("{1} protected {2}!",effectDisplayName,target.pbThis(true)))
       if user.boss?
-        @battle.pbDisplay(_INTL("Actually, {1} partially pierces through!",user.pbThis))
         target.damageState.partiallyProtected = true
+        yield if block_given?
+        @battle.pbDisplay(_INTL("Actually, {1} partially pierces through!",user.pbThis))
       else
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
