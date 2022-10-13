@@ -242,6 +242,9 @@ end
 
 
 class PokeBattle_Battle
+	SUMMON_MIN_HEALTH_LEVEL = 15
+	SUMMON_MAX_HEALTH_LEVEL = 50
+
 	def addAvatarBattler(species,level)
 		# Create the new pokemon
 		newPokemon = pbGenerateWildPokemon(species,level)
@@ -253,6 +256,16 @@ class PokeBattle_Battle
 		pbCreateBattler(battlerIndexNew,newPokemon,1)
 		newBattler = @battlers[battlerIndexNew]
 		sideSizes[1] += 1
+
+		# Set the battler's starting health
+		if level >= SUMMON_MAX_HEALTH_LEVEL
+			healthPercent = 1.0
+		elsif level <= SUMMON_MIN_HEALTH_LEVEL
+			healthPercent = 0.5
+		else
+			healthPercent = 0.5 + (level - SUMMON_MIN_HEALTH_LEVEL) / (SUMMON_MAX_HEALTH_LEVEL - SUMMON_MIN_HEALTH_LEVEL).to_f
+		end
+		newBattler.hp = newBattler.totalhp * healthPercent
 
 		# Remake all the battle boxes
 		scene.sprites["dataBox_#{battlerIndexNew}"] = PokemonDataBox.new(newBattler,@sideSizes[1],@scene.viewport)
