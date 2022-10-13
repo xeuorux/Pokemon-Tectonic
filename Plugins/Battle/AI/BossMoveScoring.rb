@@ -156,6 +156,19 @@ class PokeBattle_AI
 		end
 	end
 
+	def pbGetRealDamageBoss(move,user,target)
+		# Calculate how much damage the move will do (roughly)
+		baseDmg = pbMoveBaseDamage(move,user,target,0)
+		# Account for accuracy of move
+		accuracy = pbRoughAccuracy(move,user,target,0)
+		realDamage = baseDmg * accuracy/100.0
+		# Two-turn attacks waste 2 turns to deal one lot of damage
+		if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
+		  realDamage *= 2/3   # Not halved because semi-invulnerable during use or hits first turn
+		end
+		return realDamage
+	end
+
 	def pbGetMoveScoreBoss(move,user,target)
 		score = 100
 		
@@ -165,15 +178,7 @@ class PokeBattle_AI
 		
 		# Use protect exactly every three turns, and as the first move of that turn
 		if move.is_a?(PokeBattle_ProtectMove)
-			if user.battle.commandPhasesThisRound == 0
-				if @battle.turnCount % 3 == 0
-					score = 99999
-				else
-					score = 0
-				end
-			else
-				score = 0
-			end
+			score = user.battle.commandPhasesThisRound == 0 ? (@battle.turnCount % 3 == 0 ? 99999 : 0) : 0
 		end
 		
 		# Use healing moves guarenteed if low on health and its not the first move of the turn
