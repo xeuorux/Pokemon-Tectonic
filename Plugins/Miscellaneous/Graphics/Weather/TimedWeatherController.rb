@@ -70,7 +70,7 @@ def getWeatherForTimeAndMap(time,map_id)
     wetnessThisHour = (3 * Math.cos(hours / 31.0) * Math.cos(hours / 87.0))
     wetnessThisHour = wetnessThisHour.round
 
-    echoln("Hour #{hours} hotness/wetness: #{hotnessThisHour}, #{wetnessThisHour}")
+    #echoln("Hour #{hours} hotness/wetness: #{hotnessThisHour}, #{wetnessThisHour}")
 
     # Hotter near noon, colder near midnight
     # Up to + 1 and down to -1
@@ -82,7 +82,7 @@ def getWeatherForTimeAndMap(time,map_id)
     wetness = wetnessThisHour
     wetness += (1 - 2 * [(clockHour - 5).abs / 6,(clockHour - 17).abs / 6].min).round
 
-    echoln("Hotness/wetness after time of day mod: #{hotness}, #{wetness}")
+    #echoln("Hotness/wetness after time of day mod: #{hotness}, #{wetness}")
 
     if HOT_MAPS.include?(map_id)
         hotness += 1
@@ -96,7 +96,7 @@ def getWeatherForTimeAndMap(time,map_id)
         wetness -= 1
     end
 
-    echoln("Hotness/wetness after map mod: #{hotness}, #{wetness}")
+    #echoln("Hotness/wetness after map mod: #{hotness}, #{wetness}")
 
     weatherSym = :None
 
@@ -267,4 +267,36 @@ def debugIncrementWeather(weatherSym)
     newPower = [newPower,10].min
     $game_screen.weather(weatherSym, newPower, 0, false)
     pbMessage("Setting weather to #{weatherSym} at power #{newPower}")
+end
+
+def getWeatherOverNextDay(map_id = -1)
+    mapName = ""
+    if map_id == -1
+        map_id = WEATHER_REPORT_MAPS.keys.sample
+        mapName = WEATHER_REPORT_MAPS[map_id]
+    else
+        mapName = pbGetMapNameFromId(map_id)
+    end
+
+    secondsInAMinute = 60
+    secondsInAnHour = secondsInAMinute * 60
+    secondsInADay = secondsInAnHour * 24
+
+    # Add 24 hours, then round down to latest 24 hour start
+    tomorrowStart = ((pbGetTimeNow.to_i + secondsInADay) / secondsInADay).floor * secondsInADay
+
+    tomorrowMorning = Time.at(tomorrowStart + secondsInAnHour * 8) # 8 AM
+    tomorrowAfternoon = Time.at(tomorrowStart + secondsInAnHour * 14) # 2 PM
+    tomorrowEvening = Time.at(tomorrowStart + secondsInAnHour * 20) # 8 PM
+
+    morningWeather, morningStrength = getWeatherForTimeAndMap(tomorrowMorning,map_id)
+    morningDescriptor = getWeatherDescriptor(morningWeather, morningStrength)
+    
+    afternoonWeather, afternoonStrength = getWeatherForTimeAndMap(tomorrowAfternoon,map_id)
+    afternoonDescriptor = getWeatherDescriptor(afternoonWeather, afternoonStrength)
+    
+    eveningWeather, eveningStrength = getWeatherForTimeAndMap(tomorrowEvening,map_id)
+    eveningDescriptor = getWeatherDescriptor(eveningWeather, eveningStrength)
+
+    return [[morningWeather, morningStrength],[afternoonWeather, afternoonStrength],[eveningWeather, eveningStrength]]
 end
