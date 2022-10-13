@@ -177,7 +177,7 @@
 168,SUBMISSION,Submission,0FB,120,FIGHTING,Physical,100,15,0,NearOther,0,abef,"The user grabs the target and recklessly dives for the ground. The user also takes 33% recoil.",
 169,BRICKBREAK,Brick Break,10A,75,FIGHTING,Physical,100,12,0,NearOther,0,abef,"The user attacks with a swift chop. It can also break any barrier such as Light Screen and Reflect.",
 170,DRAINPUNCH,Drain Punch,545,80,FIGHTING,Physical,100,10,0,NearOther,0,abefj,"An energy-draining punch. The user's HP is restored by one third the damage taken by the target.",
-171,VITALTHROW,Vital Throw,0A5,70,FIGHTING,Physical,0,10,0,NearOther,-1,aef,"The user attacks last. In return, this throw move is guaranteed not to miss and bypasses protection moves.",
+171,VITALTHROW,Vital Throw,0A5,70,FIGHTING,Physical,0,10,0,NearOther,-1,aef,"The user attacks last. In return, its guaranteed not to miss and bypasses protections.",
 172,WAKEUPSLAP,Wake-Up Slap,07D,70,FIGHTING,Physical,100,10,0,NearOther,0,abef,"This attack inflicts double damage on a sleeping target. It also wakes the target up, however.",
 173,LOWSWEEP,Low Sweep,044,65,FIGHTING,Physical,100,15,100,NearOther,0,abef,"The user attacks the target's legs swiftly, reducing the target's Speed stat.",
 174,CIRCLETHROW,Circle Throw,0EC,60,FIGHTING,Physical,90,10,0,NearOther,-6,abef,"The user throws the target and drags out another Pokémon in its party. In the wild, the battle ends.",
