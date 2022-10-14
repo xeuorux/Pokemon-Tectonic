@@ -3111,7 +3111,7 @@ Pokemon = SAURENAID,60
     Item = LEFTOVERS
 #-------------------------------
 [LEADER_Samorn_2,Samorn]
-Policies = SAMORN
+Extends = LEADER_Samorn,Samorn,0
 Pokemon = TOWERPODA,60
     AbilityIndex = 0
     Item = WILLLOCK
