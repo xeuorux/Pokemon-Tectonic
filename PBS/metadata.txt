@@ -1052,7 +1052,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [178]
-# Chasm Dev
+# Tectonic Development
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1060,7 +1060,7 @@ BattleBack = indoor2
 Environment = None
 #-------------------------------
 [179]
-# Chasm Dev F2
+# Tectonic Development F2
 Outdoor = false
 ShowArea = false
 Bicycle = false
