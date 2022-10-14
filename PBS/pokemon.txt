@@ -9771,8 +9771,8 @@ Name = Hariyama
 InternalName = HARIYAMA
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 130,100,70,50,70,70
-# Total = 490
+BaseStats = 130,110,70,50,80,70
+# Total = 510
 GenderRate = Female25Percent
 GrowthRate = Fluctuating
 BaseEXP = 166
