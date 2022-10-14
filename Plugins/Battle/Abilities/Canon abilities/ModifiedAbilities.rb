@@ -462,7 +462,7 @@ BattleHandlers::AbilityOnSwitchOut.add(:REGENERATOR,
   proc { |ability,battler,endOfBattle,battle=nil|
     next if endOfBattle
     PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
-    battler.pbRecoverHP(battler.totalhp/3,false,false)
+    battler.pbRecoverHP(battler.totalhp/3.0,false,false,false)
   }
 )
 
@@ -516,12 +516,10 @@ BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
     when :Rain, :HeavyRain
       next if !battler.canHeal?
       battle.pbShowAbilitySplash(battler)
-      battler.pbRecoverHP(battler.totalhp/8)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
-      end
+      healAmount = battler.totalhp / 8.0
+      healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
+      healingMessage = battle.pbDisplay(_INTL("{1} soaks up the rain.",battler.pbThis))
+      battler.pbRecoverHP(healAmount,true,true,true,healingMessage)
       battle.pbHideAbilitySplash(battler)
     end
   }

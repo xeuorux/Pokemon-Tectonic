@@ -39,11 +39,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:SCHADENFREUDE,
     recover = battler.totalhp/4
     recover /= BOSS_HP_BASED_EFFECT_RESISTANCE if battler.boss?
     battler.pbRecoverHP(recover)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
-    end
     battle.pbHideAbilitySplash(battler)
   }
 )

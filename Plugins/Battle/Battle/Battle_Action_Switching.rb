@@ -175,16 +175,16 @@ class PokeBattle_Battle
     # Healing Wish
     if @positions[battler.index].effects[PBEffects::HealingWish]
       pbCommonAnimation("HealingWish",battler)
-      pbDisplay(_INTL("The healing wish came true for {1}!",battler.pbThis(true)))
-      battler.pbRecoverHP(battler.totalhp)
+      healingMessage = _INTL("The healing wish came true for {1}!",battler.pbThis(true))
+      battler.pbRecoverHP(battler.totalhp,true,true,true,healingMessage)
       battler.pbCureStatus(false)
       @positions[battler.index].effects[PBEffects::HealingWish] = false
     end
     # Lunar Dance
     if @positions[battler.index].effects[PBEffects::LunarDance]
       pbCommonAnimation("LunarDance",battler)
-      pbDisplay(_INTL("{1} became cloaked in mystical moonlight!",battler.pbThis))
-      battler.pbRecoverHP(battler.totalhp)
+      healingMessage = _INTL("{1} became cloaked in mystical moonlight!",battler.pbThis)
+      battler.pbRecoverHP(battler.totalhp,true,true,true,healingMessage)
       battler.pbCureStatus(false)
       battler.eachMove { |m| m.pp = m.total_pp }
       @positions[battler.index].effects[PBEffects::LunarDance] = false

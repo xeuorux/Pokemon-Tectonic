@@ -25,20 +25,9 @@ def pbBattleMoveImmunityHealAbility(user,target,move,moveType,immuneType,battle)
 	return false if moveType != immuneType
 	battle.pbShowAbilitySplash(target)
 	healAmount = target.totalhp / 4.0
-	healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE if target.boss?
-	if target.canHeal? && target.pbRecoverHP(healAmount.round) > 0
-	  if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-		battle.pbDisplay(_INTL("{1}'s HP was restored.",target.pbThis))
-	  else
-		battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",target.pbThis,target.abilityName))
-	  end
-	else
-	  if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-		battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-	  else
-		battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
-		   target.pbThis,target.abilityName,move.name))
-	  end
+	healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if target.boss?
+	if !target.canHeal? || target.pbRecoverHP(healAmount) <= 0
+	  battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!", target.pbThis,target.abilityName,move.name))
 	end
 	battle.pbHideAbilitySplash(target)
 	return true

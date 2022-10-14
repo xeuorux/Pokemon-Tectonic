@@ -580,21 +580,23 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   
     def pbMoveFailed?(user,targets)
       return true if super
-      if user.effects[PBEffects::Stockpile]==0
+      if user.effects[PBEffects::Stockpile] == 0
         @battle.pbDisplay(_INTL("But it failed to swallow a thing!"))
         return true
       end
       return false
     end
 
-    def pbHealAmount(user)
-      hpGain = 0
+    def healRatio(user)
       case [user.effects[PBEffects::Stockpile],1].max
-      when 1 then hpGain = user.totalhp/4
-      when 2 then hpGain = user.totalhp/2
-      when 3 then hpGain = user.totalhp
+      when 1
+        return 1.0/4.0
+      when 2
+        return 1.0/24.0
+      when 3
+        return 1.0
       end
-      return hpGain
+      return 0.0
     end
   
     def pbEffectGeneral(user)
@@ -617,7 +619,6 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
 
     def getScore(score,user,target,skill=100)
-      @scoringMagnitude = [user.effects[PBEffects::Stockpile],1].max * 2
       score = super
       score -= 20 * user.effects[PBEffects::Stockpile]
       return score
@@ -2194,17 +2195,13 @@ end
   # Cures the target's permanent status problems. Heals user by 1/2 of its max HP.
   # (Purify)
   #===============================================================================
-  class PokeBattle_Move_15B < PokeBattle_HealingMove
+  class PokeBattle_Move_15B < PokeBattle_HalfHealingMove
     def pbFailsAgainstTarget?(user,target)
-      if target.status == :NONE
+      if !target.pbHasAnyStatus?
         @battle.pbDisplay(_INTL("But it failed!"))
         return true
       end
       return false
-    end
-  
-    def pbHealAmount(user)
-      return (user.totalhp/2.0).round
     end
   
     def pbEffectAgainstTarget(user,target)
@@ -2215,6 +2212,7 @@ end
     def getScore(score,user,target,skill=100)
       # The target for this is set as the user since its the user that heals
       score = getHealingMoveScore(score,user,user,skill,5)
+      score += 30
       return score
     end
   end
@@ -2377,7 +2375,7 @@ end
       stageDiv = PokeBattle_Battler::STAGE_DIVISORS
       atk      = target.attack
       atkStage = target.stages[:ATTACK]+6
-      healAmt = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
+      healAmount = atk.to_f * stageMul[atkStage] / stageDiv[atkStage].to_f
       # Reduce target's Attack stat
       if target.pbCanLowerStatStage?(:ATTACK,user,self)
         target.pbLowerStatStage(:ATTACK,1,user)
@@ -2385,14 +2383,13 @@ end
       # Heal user
       if target.hasActiveAbility?(:LIQUIDOOZE)
         @battle.pbShowAbilitySplash(target)
-        user.pbReduceHP(healAmt)
+        user.pbReduceHP(healAmount)
         @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!",user.pbThis))
         @battle.pbHideAbilitySplash(target)
         user.pbItemHPHealCheck
       elsif user.canHeal?
-        healAmt = (healAmt*1.3).floor if user.hasActiveItem?(:BIGROOT)
+        healAmount = healAmount * 1.3 if user.hasActiveItem?(:BIGROOT)
         user.pbRecoverHP(healAmt)
-        @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
       end
     end
 
@@ -2733,14 +2730,11 @@ end
   # Heals user by 1/2 of its max HP, or 2/3 of its max HP in a sandstorm. (Shore Up)
   #===============================================================================
   class PokeBattle_Move_16D < PokeBattle_HealingMove
-    def pbHealAmount(user)
-      return (user.totalhp*2/3.0).round if @battle.pbWeather == :Sandstorm
-      return (user.totalhp/2.0).round
-    end
-
-    def getScore(score,user,target,skill=100)
-      score += 30 if @battle.pbWeather == :Sandstorm
-      super
+    def healRatio(user)
+      if @battle.pbWeather == :Sandstorm
+        return 2.0 / 3.0
+      end
+      return 1.0/2.0
     end
   end
   
@@ -2763,10 +2757,13 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      hpGain = (target.totalhp/2.0).round
-      hpGain = (target.totalhp*2/3.0).round if @battle.field.terrain == :Grassy
-      target.pbRecoverHP(hpGain)
-      @battle.pbDisplay(_INTL("{1}'s HP was restored.",target.pbThis))
+      if @battle.field.terrain == :Grassy
+        healAmount = target.totalhp * 2.0/3.0
+      else
+        healAmount = target.totalhp / 2.0
+      end
+      healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if target.boss?
+      target.pbRecoverHP(healAmount)
     end
 
     def getScore(score,user,target,skill=100)
@@ -2811,8 +2808,9 @@ end
   
     def pbEffectAgainstTarget(user,target)
       return if !@healing
-      target.pbRecoverHP(target.totalhp/2)
-      @battle.pbDisplay(_INTL("{1}'s HP was restored.",target.pbThis))
+      healAmount = target.totalhp/2.0
+      healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if target.boss?
+      target.pbRecoverHP(healAmount)
     end
   
     def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
@@ -3180,6 +3178,10 @@ class PokeBattle_Move_17E < PokeBattle_Move
   def healingMove?; return true; end
   def worksWithNoTargets?; return true; end
 
+  def healRatio(user)
+    return 1.0/4.0
+  end
+
   def pbMoveFailed?(user,targets)
     failed = true
     @battle.eachSameSideBattler(user) do |b|
@@ -3208,11 +3210,6 @@ class PokeBattle_Move_17E < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
     hpGain = (target.totalhp/4.0).round
     target.pbRecoverHP(hpGain)
-    @battle.pbDisplay(_INTL("{1}'s HP was restored.",target.pbThis))
-  end
-
-  def pbHealAmount(user)
-    return (user.totalhp/4.0).round
   end
   
   def getScore(score,user,target,skill=100)

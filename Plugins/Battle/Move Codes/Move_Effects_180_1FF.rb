@@ -221,7 +221,6 @@
       if target.hp != target.totalhp && target.canHeal?
         hpGain = (target.totalhp/4.0).round
         target.pbRecoverHP(hpGain)
-        @battle.pbDisplay(_INTL("{1}'s health was restored.",target.pbThis))
       end
       super
     end

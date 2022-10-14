@@ -52,12 +52,12 @@ class PokeBattle_Battler
     end
   end
 
-	def pbRecoverHP(amt,anim=true,anyAnim=true)
-		raise _INTL("Told to recover a negative amount") if amt<0
+	def pbRecoverHP(amt,anim=true,anyAnim=true,showMessage=true,customMessage=nil)
+		raise _INTL("Told to recover a negative amount") if amt < 0
     amt *= 1.5 if hasActiveAbility?(:ROOTED)
 		amt = amt.round
-		amt = @totalhp-@hp if amt>@totalhp-@hp
-		amt = 1 if amt<1 && @hp<@totalhp
+		amt = @totalhp - @hp if amt > @totalhp - @hp
+		amt = 1 if amt < 1 && @hp < @totalhp
 		if effects[PBEffects::NerveBreak]
 			@battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!",pbThis))
 			amt *= -1
@@ -66,8 +66,16 @@ class PokeBattle_Battler
 		self.hp += amt
 		self.hp = 0 if self.hp < 0
 		PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP}=>#{@hp})") if amt>0
-		raise _INTL("HP greater than total HP") if @hp>@totalhp
-		@battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt>0
+		raise _INTL("HP greater than total HP") if @hp > @totalhp
+		@battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt > 0
+    if showMessage
+      if amt > 0
+        message = customMessage.nil? ? _INTL("{1}'s HP was restored.",pbThis) : customMessage
+        @battle.pbDisplay(message)
+      elsif amt < 0
+        @battle.pbDisplay(_INTL("{1}'s lost HP.",pbThis))
+      end
+    end
 		return amt
   end
 
@@ -92,7 +100,7 @@ class PokeBattle_Battler
     drainAmount = (totalDamageDealt * ratio).round
     drainAmount = 1 if drainAmount < 1
     drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
-    pbRecoverHP(drainAmount)
+    pbRecoverHP(drainAmount,true,true,false)
     return true
   end
   
@@ -106,7 +114,7 @@ class PokeBattle_Battler
 		else
 		  if canHeal?
         drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
-        pbRecoverHP(drainAmount)
+        pbRecoverHP(drainAmount,true,true,false)
 		  end
 		end
 	end

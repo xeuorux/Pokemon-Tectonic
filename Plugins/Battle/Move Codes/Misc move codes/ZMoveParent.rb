@@ -194,8 +194,8 @@ class PokeBattle_ZMove < PokeBattle_Move
       #---------------------------------------------------------------------------
       elsif GameData::PowerMove.heals_self?(move) || curseZMoveGhost
         if attacker.hp<attacker.totalhp
-          attacker.pbRecoverHP(attacker.totalhp,false)
-          battle.pbDisplay(_INTL("{1} restored its HP using its Z-Power!",attacker.pbThis))
+          healMessage = _INTL("{1} restored its HP using its Z-Power!",attacker.pbThis)
+          attacker.pbRecoverHP(attacker.totalhp,false,true,true,healMessage)
         end
       elsif GameData::PowerMove.heals_switch?(move)
         battle.positions[attacker.index].effects[PBEffects::ZHeal] = true

@@ -367,8 +367,9 @@ class PokeBattle_Move_094 < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if @presentDmg>0
-    target.pbRecoverHP(target.totalhp/4)
-    @battle.pbDisplay(_INTL("{1}'s HP was restored.",target.pbThis))
+    healAmount = target.totalhp / 4.0
+    healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if target.boss?
+    target.pbRecoverHP(healAmount)
   end
 
   def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
@@ -2503,27 +2504,16 @@ end
 #===============================================================================
 # Heals user by 1/2 of its max HP.
 #===============================================================================
-class PokeBattle_Move_0D5 < PokeBattle_HealingMove
-  def pbHealAmount(user)
-    healAmount = user.totalhp/2.0
-    healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE if user.boss?
-    return healAmount.round
-  end
+class PokeBattle_Move_0D5 < PokeBattle_HalfHealingMove
 end
 
 #===============================================================================
 # Heals user by 1/2 of its max HP. (Roost)
 # User roosts, and its Flying type is ignored for attacks used against it.
 #===============================================================================
-class PokeBattle_Move_0D6 < PokeBattle_HealingMove
-  def pbHealAmount(user)
-    return (user.totalhp/2.0).round
-  end
-
+class PokeBattle_Move_0D6 < PokeBattle_HalfHealingMove
   def pbEffectGeneral(user)
-    amt = pbHealAmount(user)
-    user.pbRecoverHP(amt)
-    @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+    super
     user.effects[PBEffects::Roost] = true
   end
 end
@@ -2560,28 +2550,15 @@ end
 # Synthesis)
 #===============================================================================
 class PokeBattle_Move_0D8 < PokeBattle_HealingMove
-  def pbOnStartUse(user,targets)
+  def healRatio(user)
     case @battle.pbWeather
     when :Sun, :HarshSun
-      @healAmount = (user.totalhp*2/3.0).round
+      return 2.0/3.0
     when :None, :StrongWinds
-      @healAmount = (user.totalhp/2.0).round
+      return 1.0/2.0
     else
-      @healAmount = (user.totalhp/4.0).round
+      return 1.0/4.0
     end
-  end
-
-  def pbHealAmount(user)
-    return @healAmount
-  end
-
-  def getScore(score,user,target,skill=100)
-    if [:Sun, :HarshSun].include?(@battle.pbWeather)
-      score += 50
-    else
-      return 0
-    end
-    super
   end
 end
 
@@ -2589,6 +2566,8 @@ end
 # Heals user to full HP. User falls asleep for 2 more rounds. (Rest)
 #===============================================================================
 class PokeBattle_Move_0D9 < PokeBattle_HealingMove
+  def healRatio(user);         return 1.0; end
+  
   def pbMoveFailed?(user,targets)
     if user.asleep?
       @battle.pbDisplay(_INTL("But it failed!"))
@@ -2597,10 +2576,6 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
     return true if !user.pbCanSleep?(user,true,self,true)
     return true if super
     return false
-  end
-
-  def pbHealAmount(user)
-    return user.totalhp-user.hp
   end
 
   def pbEffectGeneral(user)
@@ -2746,12 +2721,13 @@ class PokeBattle_Move_0DF < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user,target)
-    hpGain = (target.totalhp/2.0).round
     if pulseMove? && user.hasActiveAbility?(:MEGALAUNCHER)
-      hpGain = (target.totalhp*3/4.0).round
+      healAmount = target.totalhp * 3.0 / 4.0
+    else
+      healAmount = target.totalhp / 2.0
     end
-    target.pbRecoverHP(hpGain)
-    @battle.pbDisplay(_INTL("{1}'s HP was restored.",target.pbThis))
+    healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if target.boss?
+    target.pbRecoverHP(healAmount)
   end
 
   def getScore(score,user,target,skill=100)

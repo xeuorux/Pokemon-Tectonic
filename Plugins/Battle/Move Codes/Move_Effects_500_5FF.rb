@@ -389,25 +389,19 @@ end
 # Heals user by 1/3 of their max health, but does not fail at full health. (Douse)
 #===============================================================================
 class PokeBattle_Move_518 < PokeBattle_HealingMove
-  def pbOnStartUse(user,targets)
-    @healAmount = (user.totalhp*1/3.0).round
-	@healAmount /= 4.0 if user.boss?
-  end
+	def healRatio(user)
+		return 1.0/3.0
+	end
   
-  def pbMoveFailed?(user,targets)
-    return false
-  end
-
-  def pbHealAmount(user)
-    return @healAmount
-  end
-  
-  def getScore(score,user,target,skill=100)
-		score -= 20
-		score += 40 if user.hp < user.totalhp
-		score += 40 if user.hp < user.totalhp/2.0
+	def pbMoveFailed?(user,targets)
+		return false
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score = super
+		score += 30
 		return score
-  end
+	end
 end
 
 #===============================================================================
@@ -471,30 +465,24 @@ end
 #===============================================================================
 # Heals user by half, then raises both Attack and Sp. Atk if still unhealed fully. (Dragon Blood)
 #===============================================================================
-class PokeBattle_Move_51C < PokeBattle_HealingMove
-  def pbHealAmount(user)
-    return(user.totalhp/2.0).round
-  end
-  
-  def pbEffectGeneral(user)
-    amt = pbHealAmount(user)
-    user.pbRecoverHP(amt)
-    @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
-	if user.hp < user.totalhp
-		if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-			user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
-		end
-		if user.pbCanRaiseStatStage?(:ATTACK,user,self)
-			user.pbRaiseStatStage(:ATTACK,1,user)
+class PokeBattle_Move_51C < PokeBattle_HalfHealingMove 
+	def pbEffectGeneral(user)
+		super
+		if user.hp < user.totalhp
+			if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
+				user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+			end
+			if user.pbCanRaiseStatStage?(:ATTACK,user,self)
+				user.pbRaiseStatStage(:ATTACK,1,user)
+			end
 		end
 	end
-  end
-  
-  def getScore(score,user,target,skill=100)
-	score += 40 if user.hp < 2*user.totalhp/3
-    score += 40 if user.hp < user.totalhp/2
-	return score
-  end
+	
+	def getScore(score,user,target,skill=100)
+		score += 40 if user.hp < 2*user.totalhp/3
+		score += 40 if user.hp < user.totalhp/2
+		return score
+	end
 end
 
 #===============================================================================
@@ -641,8 +629,8 @@ end
 # Heals the user by 2/3 health. Move disables self. (Stitch Up)
 #===============================================================================
 class PokeBattle_Move_524 < PokeBattle_HealingMove
-	def pbHealAmount(user)
-		return (user.totalhp*2.0/3.0).round
+	def healRatio(user)
+		return 2.0/3.0
 	end
 
 	def pbEffectGeneral(user)
@@ -652,12 +640,6 @@ class PokeBattle_Move_524 < PokeBattle_HealingMove
 		@battle.pbDisplay(_INTL("{1}'s {2} was disabled!",user.pbThis,
 		   GameData::Move.get(user.lastRegularMoveUsed).name))
 		user.pbItemStatusCureCheck
-	end
-	
-	def getScore(score,user,target,skill=100)
-		score = 0 if user.hp > user.totalhp/2
-		score += 80 if user.hp < user.totalhp/3
-		return score
 	end
 end
 
@@ -1165,24 +1147,19 @@ end
 # Heals user by 1/8 of their max health, but does not fail at full health. (???)
 #===============================================================================
 class PokeBattle_Move_53D < PokeBattle_HealingMove
-  def pbOnStartUse(user,targets)
-    @healAmount = (user.totalhp*1/8.0).round
-  end
+	def healRatio(user)
+		return 1.0/8.0
+	end
   
-  def pbMoveFailed?(user,targets)
-    return false
-  end
-
-  def pbHealAmount(user)
-    return @healAmount
-  end
-  
-  def getScore(score,user,target,skill=100)
-	score -= 10
-	score += 20 if user.hp < user.totalhp
-	score += 20 if user.hp < user.totalhp/2.0
-	return score
-  end
+	def pbMoveFailed?(user,targets)
+		return false
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score = super
+		score += 30
+		return score
+	end
 end
 
 #===============================================================================
@@ -1726,8 +1703,8 @@ end
 # Heals user to 100%. Only usable on first turn. (Fresh Start)
 #===============================================================================
 class PokeBattle_Move_55B < PokeBattle_HealingMove
-	def pbHealAmount(user)
-		return user.totalhp
+	def healRatio(user)
+		return 1.0
 	end
   
 	def pbMoveFailed?(user,targets)
@@ -1907,39 +1884,10 @@ end
 #===============================================================================
 # Uses rest on both self and target. (Bedfellows)
 #===============================================================================
-class PokeBattle_Move_564 < PokeBattle_HealingMove
-	def pbMoveFailed?(user,targets)
-		if user.asleep?
-		@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already asleep!"))
-		return true
-		end
-		if !user.pbCanSleep?(user,true,self,true)
-			@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} cannot fall asleep!"))
-			return true
-		end
-		return true if super
-		return false
-	end
-
-	def pbHealAmount(user)
-		return user.totalhp-user.hp
-	end
-  
+class PokeBattle_Move_564 < PokeBattle_Move
 	def pbEffectAgainstTarget(user,target)
-		if !target.asleep?
-			hpGain = target.totalhp-target.hp
-			target.pbRecoverHP(hpGain)
-			@battle.pbDisplay(_INTL("{1} slept and became healthy!",target.pbThis))
-		end
-	end
-
-	def pbEffectGeneral(user)
-		if user.asleep? || !user.pbCanSleep?(user,true,self,true)
-			@battle.pbDisplay(_INTL("But it failed!"))
-		else
-			user.pbSleepSelf(_INTL("{1} slept and became healthy!",user.pbThis),3)
-			super
-		end
+		forceUseMove(user,:REST)
+		forceUseMove(target,:REST)
 	end
 end
 
@@ -1947,8 +1895,8 @@ end
 # Heals user by 2/3 of its max HP.
 #===============================================================================
 class PokeBattle_Move_565 < PokeBattle_HealingMove
-	def pbHealAmount(user)
-	  return (user.totalhp*2.0/3.0).round
+	def healRatio(user)
+	  return 2.0/3.0
 	end
 end
 
@@ -2410,11 +2358,9 @@ end
 #===============================================================================
 # Restores health by 33% and raises Speed by one stage. (Mulch Meal)
 #===============================================================================
-class PokeBattle_Move_583 < PokeBattle_Move
-	def healingMove?;       return true; end
-
-	def pbHealAmount(user)
-		return(user.totalhp/3.0).round
+class PokeBattle_Move_583 < PokeBattle_HealingMove
+	def healRatio(user)
+		return 1.0/3.0
 	end
   
 	def pbMoveFailed?(user,targets)
@@ -2425,23 +2371,12 @@ class PokeBattle_Move_583 < PokeBattle_Move
 	end
   
 	def pbEffectGeneral(user)
-		if user.hp != user.totalhp
-			amt = pbHealAmount(user)
-			user.pbRecoverHP(amt)
-			@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
-		end
-
-		if user.pbCanRaiseStatStage?(:SPEED,user,self,false)
-	  		user.pbRaiseStatStage(:SPEED,1,user)
-		end
+		super
+		user.pbRaiseStatStage(:SPEED,1,user) if user.pbCanRaiseStatStage?(:SPEED,user,self,false)
 	end
 
 	def getScore(score,user,target,skill=100)
-		if user.hp < user.totalhp / 2
-			score += 40
-		else
-			score -= 40
-		end
+		score = super
 		score += 20
 		score -= user.stages[:SPEED] * 20
 		return score

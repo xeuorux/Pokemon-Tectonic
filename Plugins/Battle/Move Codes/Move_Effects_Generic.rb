@@ -636,12 +636,17 @@ end
 # Healing move.
 #===============================================================================
 class PokeBattle_HealingMove < PokeBattle_Move
-  def healingMove?;       return true; end
-  def pbHealAmount(user); return 1;    end
+  def healingMove?;             return true; end
+  def healRatio(user);          return 0.0; end # A float value representing the percent HP heal
 
-  def initialize(battle,move)
-    @scoringMagnitude = 5
-    super
+  def pbHealAmount(user)
+    ratio = healRatio(user)
+    if ratio > 0
+      healAmount = user.totalhp * ratio
+		  healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if user.boss?
+      return healAmount
+    end
+    return 1
   end
 
   def pbMoveFailed?(user,targets)
@@ -654,15 +659,21 @@ class PokeBattle_HealingMove < PokeBattle_Move
 
   def pbEffectGeneral(user)
     amt = pbHealAmount(user)
-    if amt > 0
-      user.pbRecoverHP(amt)
-      @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
-    end
+    user.pbRecoverHP(amt) if amt > 0
   end
 
   def getScore(score,user,target,skill=100)
-    score = getHealingMoveScore(score,user,target,skill,@scoringMagnitude)
+    scoringMagnitude = 3
+    ratio = healRatio(user)
+    scoringMagnitude = 10 * ratio if ratio > 0
+    score = getHealingMoveScore(score,user,target,skill,scoringMagnitude)
     return score
+  end
+end
+
+class PokeBattle_HalfHealingMove < PokeBattle_HealingMove
+  def healRatio(user)
+    return 1.0/2.0
   end
 end
 

@@ -24,7 +24,9 @@ class PokeBattle_Move_600 < PokeBattle_Move_019
 		super
 		super
 		@battle.eachSameSideBattler(user) do |b|
-			b.pbRecoverHP((b.totalhp/8.0).round)
+			healAmount = b.totalhp/2.0
+			healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE if b.boss?
+			b.pbRecoverHP(healAmount)
 		end
 		transformType(user,:NORMAL)
 	end
@@ -230,15 +232,11 @@ class PokeBattle_Move_615 < PokeBattle_Move
 end
 
 # Empowered Moonlight
-class PokeBattle_Move_616 < PokeBattle_Move
+class PokeBattle_Move_616 < PokeBattle_HalfHealingMove
 	include EmpoweredMove
-	
-	def healingMove?;       return true; end
-	
+
 	def pbEffectGeneral(user)
-		user.pbRecoverHP((user.totalhp/8.0).round)
-		@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
-		
+		super
 		user.attack,user.spatk = user.spatk,user.attack
 		@battle.pbDisplay(_INTL("{1} switched its Attack and Sp. Atk!",user.pbThis))
 		
@@ -362,14 +360,14 @@ class PokeBattle_Move_624 < PokeBattle_Move_156
 end
 
 # Empowered Heal Order
-class PokeBattle_Move_625 < PokeBattle_Move
+class PokeBattle_Move_625 < PokeBattle_HalfHealingMove
 	include EmpoweredMove
 	
 	def healingMove?;       return true; end
 	
 	def pbEffectGeneral(user)
-		user.pbRecoverHP((user.totalhp/8.0).round)
-		@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+		super
+
 		@battle.pbDisplay(_INTL("{1} summons a helper!",user.pbThis))
 		@battle.addAvatarBattler(:COMBEE,user.level)
 		
@@ -470,17 +468,11 @@ class PokeBattle_Move_631 < PokeBattle_Move
 end
 
 # Empowered Shore Up
-class PokeBattle_Move_632 < PokeBattle_Move
+class PokeBattle_Move_632 < PokeBattle_HalfHealingMove
 	include EmpoweredMove
 	
-	def healingMove?;       return true; end
-	
 	def pbEffectGeneral(user)
-
 		# TODO
-
-		user.pbRecoverHP((user.totalhp/8.0).round)
-		@battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
 		
 		transformType(user,:GROUND)
 	end

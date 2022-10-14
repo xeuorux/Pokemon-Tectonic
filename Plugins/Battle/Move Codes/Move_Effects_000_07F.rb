@@ -1645,10 +1645,10 @@ class PokeBattle_Move_05A < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
       newHP = (user.hp+target.hp)/2
       if user.hp>newHP;    user.pbReduceHP(user.hp-newHP,false,false)
-      elsif user.hp<newHP; user.pbRecoverHP(newHP-user.hp,false)
+      elsif user.hp<newHP; user.pbRecoverHP(newHP-user.hp,false,true,false)
       end
       if target.hp>newHP;    target.pbReduceHP(target.hp-newHP,false,false)
-      elsif target.hp<newHP; target.pbRecoverHP(newHP-target.hp,false)
+      elsif target.hp<newHP; target.pbRecoverHP(newHP-target.hp,false,true,false)
       end
       @battle.pbDisplay(_INTL("The battlers shared their pain!"))
       user.pbItemHPHealCheck

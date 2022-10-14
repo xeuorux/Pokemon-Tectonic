@@ -3,12 +3,10 @@ BattleHandlers::EOREffectAbility.add(:ASTRALBODY,
 	next unless battle.field.terrain==:Misty
     next if !battler.canHeal?
 	  battle.pbShowAbilitySplash(battler)
-    battler.pbRecoverHP(battler.totalhp/16)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
-    end
+    healAmount = battler.totalhp / 16.0
+    healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
+    healingMessage = battle.pbDisplay(_INTL("{1} absorbs magic from the fae mist.",battler.pbThis))
+    battler.pbRecoverHP(healAmount,true,true,true,healingMessage)
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -18,14 +16,10 @@ BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
     next unless battler.hasActiveItem?(CLOTHING_ITEMS)
     next unless battler.canHeal?
     battle.pbShowAbilitySplash(battler)
-    recover = battler.totalhp/8
-    recover /= 4 if battler.boss?
-    battler.pbRecoverHP(recover)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
-    end
+    healAmount = battler.totalhp / 8.0
+    healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
+    healingMessage = battle.pbDisplay(_INTL("{1} luxuriated in its fine clothing.",battler.pbThis))
+    battler.pbRecoverHP(healAmount,true,true,true,healingMessage)
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -43,7 +37,6 @@ BattleHandlers::EOREffectAbility.add(:WARMTHCYCLE,
         battle.pbDisplay(_INTL("{1} vents its accumulated heat!",battler.pbThis))
         battler.pbLowerStatStage(:SPEED,6,battler)
         battler.pbRecoverHP(battler.totalhp - battler.hp)
-        battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
     end
     
     battle.pbHideAbilitySplash(battler)
