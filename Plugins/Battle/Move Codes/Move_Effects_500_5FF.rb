@@ -2519,7 +2519,7 @@ end
 #===============================================================================
 class PokeBattle_Move_58C < PokeBattle_Move_030
 	def pbMoveFailed?(user,targets)
-		if GameData::Type.exists?(:FLYING) && !user.pbHasType?(:FLYING) && target.canChangeType?
+		if GameData::Type.exists?(:FLYING) && !user.pbHasType?(:FLYING) && user.canChangeType?
 			return false
 		end
 		super
@@ -2698,7 +2698,7 @@ end
 #===============================================================================
 class PokeBattle_Move_595 < PokeBattle_Move_024
 	def pbMoveFailed?(user,targets)
-		if GameData::Type.exists?(:ROCK) && !user.pbHasType?(:ROCK) && target.canChangeType?
+		if GameData::Type.exists?(:ROCK) && !user.pbHasType?(:ROCK) && user.canChangeType?
 			return false
 		end
 		super

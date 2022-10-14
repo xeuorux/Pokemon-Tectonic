@@ -614,5 +614,10 @@ class PokeBattle_Move_648 < PokeBattle_Move
 	def pbNumHits(user,targets,checkingForAI=false)
 		return (6 / targets.length).ceil
 	end
+
+	def pbNumHitsAI(user,target)
+		return 3
+	end
+	
 	def turnsBetweenUses(); return 3; end
 end
