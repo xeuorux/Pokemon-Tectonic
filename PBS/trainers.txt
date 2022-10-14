@@ -1708,8 +1708,8 @@ Pokemon = RHYDON,40
 [SMASHER,Stella]
 Pokemon = SHUCKLE,40
     AbilityIndex = 1
-Pokemon = MASQUERAIN,40
-    AbilityIndex = 1
+Pokemon = VIVILLON,40
+    AbilityIndex = 0
 Pokemon = WEEZING,40
     AbilityIndex = 0
     Item = POISONGEM
