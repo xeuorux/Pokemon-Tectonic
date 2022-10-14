@@ -1285,6 +1285,7 @@ end
 
     def pbEffectAgainstTarget(user,target)
       return if !damagingMove?
+      return if target.pbOwnSide.effects[@spikeEffect] >= 2
       addSpikeLayer(target.pbOwnSide,target.pbTeam(true))
     end
 
