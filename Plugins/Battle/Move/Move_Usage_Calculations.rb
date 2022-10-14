@@ -43,43 +43,58 @@ class PokeBattle_Move
         return ret
     end
     
+    def inherentImmunitiesPierced?(user,target)
+        return (user.boss? || target.boss?) && damagingMove?
+    end
+
     def pbCalcTypeMod(moveType,user,target,uiOnlyCheck=false)
         return Effectiveness::NORMAL_EFFECTIVE if !moveType
         return Effectiveness::NORMAL_EFFECTIVE if moveType == :GROUND && target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL)
+        
         # Determine types
         tTypes = target.pbTypes(true,uiOnlyCheck)
+
+        immunityPierced = false
+
         # Get effectivenesses
         typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
         if moveType == :SHADOW
-        if target.shadowPokemon?
-            typeMods[0] = Effectiveness::NOT_VERY_EFFECTIVE_ONE
-        else
-            typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE
-        end
-        else
-        tTypes.each_with_index do |type,i|
-            newTypeMod = pbCalcTypeModSingle(moveType,type,user,target)
-            if @battle.bossBattle? && newTypeMod == 0
-            newTypeMod = 0.5
-            @battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!")) if !uiOnlyCheck
+            if target.shadowPokemon?
+                typeMods[0] = Effectiveness::NOT_VERY_EFFECTIVE_ONE
+            else
+                typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE
             end
-            typeMods[i] = newTypeMod
+        else
+            tTypes.each_with_index do |type,i|
+                newTypeMod = pbCalcTypeModSingle(moveType,type,user,target)
+                typeMods[i] = newTypeMod
+            end
         end
-        end
+
         # Multiply all effectivenesses together
         ret = 1
         typeMods.each { |m| ret *= m }
         
-        # Late boss specific immunity abilities check
-        if !uiOnlyCheck && @battle.bossBattle? && damagingMove?
-        if pbImmunityByAbility(user,target)
-            @battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
-            ret /= 2
-        elsif moveType == :GROUND && target.airborne? && !hitsFlyingTargets? && target.hasLevitate? && !@battle.moldBreaker
-            @battle.pbDisplay(_INTL("Except, within the avatar's aura, immunities are resistances!"))
-            ret /= 2
+        # Partially pierce immunities
+        if inherentImmunitiesPierced?(user,target)
+            # Damaging moves that would be immune 
+            if ret == 0
+                ret = 0.5
+                immunityPierced = true
+            end
+
+            # This is done here because its skipped in pbSuccessCheckAgainstTarget
+            if !uiOnlyCheck && user.targetInherentlyImmune?(user,target,self,ret,true)
+                immunityPierced = true
+                ret /= 2
+            end
         end
+
+        # Explain to the player what is happening
+        if immunityPierced && !uiOnlyCheck
+            @battle.pbDisplay(_INTL("Near the avatar, immunities are resistances!"))
         end
+
         # Type effectiveness changing curses
         @battle.curses.each do |curse|
             ret = @battle.triggerEffectivenessChangeCurseEffect(curse,moveType,user,target,ret)
