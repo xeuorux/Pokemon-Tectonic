@@ -79,7 +79,6 @@ class PokeBattle_Battler
 		return amt
   end
 
-  # Returns whether or not any HP was healed
   def pbRecoverHPFromMultiDrain(targets,ratio)
     totalDamageDealt = 0
     targets.each do |target|
@@ -96,12 +95,13 @@ class PokeBattle_Battler
         totalDamageDealt += damage
       end
     end
-    return false if totalDamageDealt <= 0 || !canHeal?
+    return if totalDamageDealt <= 0 || !canHeal?
+    @battle.pbShowAbilitySplash(self)
     drainAmount = (totalDamageDealt * ratio).round
     drainAmount = 1 if drainAmount < 1
     drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
     pbRecoverHP(drainAmount,true,true,false)
-    return true
+    @battle.pbHideAbilitySplash(self)
   end
   
 	def pbRecoverHPFromDrain(drainAmount,target,msg=nil)

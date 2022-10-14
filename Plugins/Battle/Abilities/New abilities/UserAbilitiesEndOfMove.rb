@@ -94,14 +94,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
 
 BattleHandlers::UserAbilityEndOfMove.add(:SPACEINTERLOPER,
   proc { |ability,battler,targets,move,battle|
-    battle.pbShowAbilitySplash(battler)
-    if battler.pbRecoverHPFromMultiDrain(targets,0.33)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
-      end
-    end
-    battle.pbHideAbilitySplash(battler)
+    battler.pbRecoverHPFromMultiDrain(targets,0.33)
   }
 )
