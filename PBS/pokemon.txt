@@ -6980,7 +6980,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ZWEIHANDOR,Level,49
+Evolutions = REAVOR,Level,49
 #-------------------------------
 [213]
 Name = Shuckle
@@ -30707,8 +30707,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [933]
-Name = Zweihandor
-InternalName = ZWEIHANDOR
+Name = Reavor
+InternalName = REAVOR
 Type1 = BUG
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

@@ -2894,7 +2894,7 @@ Pokemon = HATTERENE,55
 [WORKER6,Paul]
 Pokemon = KLINKLANG,55
     AbilityIndex = 0
-Pokemon = ZWEIHANDOR,55
+Pokemon = REAVOR,55
     AbilityIndex = 0
 Pokemon = SHIINOTIC,55
     AbilityIndex = 1
@@ -3115,7 +3115,7 @@ Extends = LEADER_Samorn,Samorn,0
 Pokemon = TOWERPODA,60
     AbilityIndex = 0
     Item = WILLLOCK
-Pokemon = ZWEIHANDOR,60
+Pokemon = REAVOR,60
     Moves = BULLETPUNCH,DUALWINGBEAT,BUGBITE,MAGNETHRASH
     AbilityIndex = 0
     Item = LIFEORB
