@@ -312,7 +312,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
     targets.each { |b| totalDamage += b.damageState.totalHPLost }
     next if totalDamage<=0
 	  healAmount = (totalDamage / 6.0)
-	  healAmount = 1 if amt < 1
+	  healAmount = 1 if healAmount < 1
     recoverMessage = _INTL("{1} restored a little HP using its {2}!", user.pbThis,user.itemName)
     user.pbRecoverHP(healAmount,true,true,true,recoverMessage)
   }
