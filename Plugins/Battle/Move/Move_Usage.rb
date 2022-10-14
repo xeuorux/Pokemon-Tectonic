@@ -57,7 +57,7 @@ class PokeBattle_Move
     def pbNumHits(user,targets,checkingForAI=false)
       return 2 if canParentalBond?(user,targets,checkingForAI)
       numHits = 1
-      numHits += 1 if user.shouldAbilityApply?(:SPACEINTERLOPER,checkingForAI)
+      numHits += 1 if user.shouldAbilityApply?(:SPACEINTERLOPER,checkingForAI) && pbDamagingMove?
       numHits += 1 if user.effects[PBEffects::VolleyStance] && move.specialMove?
       return numHits
     end

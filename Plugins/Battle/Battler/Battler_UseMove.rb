@@ -390,8 +390,6 @@ class PokeBattle_Battler
         end
       end
       # Effectiveness message for multi-hit moves
-      # NOTE: No move is both multi-hit and multi-target, and the messages below
-      #       aren't quite right for such a hypothetical move.
       if !messagesPerHit
         if move.damagingMove?
           targets.each do |b|
