@@ -261,3 +261,15 @@ BattleHandlers::TargetAbilityOnHit.add(:CONSTRICTOR,
 	  end
   }
 )
+
+BattleHandlers::TargetAbilityAfterMoveUse.add(:REAWAKENEDPOWER,
+  proc { |ability,target,user,move,switched,battle|
+    next if !move.damagingMove?
+    next if target.damageState.initialHP<target.totalhp/2 || target.hp>=target.totalhp/2
+	if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
+		battle.pbShowAbilitySplash(target)
+		target.pbMaximizeStatStage(:SPECIAL_ATTACK,user,self) if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
+		battle.pbHideAbilitySplash(target)
+	end
+  }
+)
