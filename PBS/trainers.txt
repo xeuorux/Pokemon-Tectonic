@@ -2202,6 +2202,7 @@ Pokemon = FROSLASS,45
     Item = PETAYABERRY
 #-------------------------------
 [WORKER3,Bruce]
+Policies = HAIL_TEAM
 Pokemon = AURORUS,45
     AbilityIndex = 1
     Item = ICYROCK
