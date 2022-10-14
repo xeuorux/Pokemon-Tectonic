@@ -2849,3 +2849,18 @@ end
       @statDown = [:ATTACK,1,:SPECIAL_ATTACK,1]
     end
   end
+
+  #===============================================================================
+# Type effectiveness is multiplied by the Ice-type's effectiveness against
+# the target. (Feverish Gas)
+#===============================================================================
+class PokeBattle_Move_5A0 < PokeBattle_Move
+	def pbCalcTypeModSingle(moveType,defType,user,target)
+	  ret = super
+	  if GameData::Type.exists?(:ICE)
+		iceEffectiveness = Effectiveness.calculate_one(:ICE, defType)
+		ret *= iceEffectiveness.to_f / Effectiveness::NORMAL_EFFECTIVE_ONE
+	  end
+	  return ret
+	end
+end
