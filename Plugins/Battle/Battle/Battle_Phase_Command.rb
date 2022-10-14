@@ -1,5 +1,72 @@
 class PokeBattle_Battle
 	#=============================================================================
+	# Check whether actions can be taken
+	#=============================================================================
+	def pbCanShowCommands?(idxBattler)
+		battler = @battlers[idxBattler]
+		return false if !battler || battler.fainted?
+		return false if battler.usingMultiTurnAttack?
+		return true
+	end
+
+	def canChooseAnyMove?(idxBattler)
+		battler = @battlers[idxBattler]
+		battler.eachMoveWithIndex do |_m,i|
+			next if !pbCanChooseMove?(idxBattler,i,false)
+			return true
+		end
+		return false
+	end
+
+	#=============================================================================
+	# Use sub-menus to choose an action, and register it if is allowed
+	#=============================================================================
+	# Returns true if a choice was made, false if cancelled.
+	def pbFightMenu(idxBattler)
+		battler = @battlers[idxBattler]
+		if !canChooseAnyMove?(idxBattler)
+			if pbDisplayConfirmSerious(_INTL("#{battler.pbThis} cannot use any of its moves, and will Struggle if it fights. Go ahead?"))
+				return pbAutoChooseMove(idxBattler)
+			else
+				return false
+			end
+		end
+		if battler.effects[PBEffects::Encore] > 0
+			encoreMove = battler.moves[battler.pbEncoredMoveIndex]
+			if pbDisplayConfirm(_INTL("#{battler.pbThis} must use #{encoreMove.name} if it fights. Go ahead?"))
+				return pbAutoChooseMove(idxBattler)
+			else
+				return false
+			end
+		end
+		# Battle Palace only
+		return true if pbAutoFightMenu(idxBattler)
+		# Regular move selection
+		ret = false
+		@scene.pbFightMenu(idxBattler,pbCanMegaEvolve?(idxBattler)) { |cmd|
+		case cmd
+		when -1   # Cancel
+		when -2   # Toggle Mega Evolution
+			pbToggleRegisteredMegaEvolution(idxBattler)
+			next false
+		when -3   # Shift
+			pbUnregisterMegaEvolution(idxBattler)
+			pbRegisterShift(idxBattler)
+			ret = true
+		else      # Chose a move to use
+			next false if cmd<0 || !@battlers[idxBattler].moves[cmd] ||
+								!@battlers[idxBattler].moves[cmd].id
+			next false if !pbRegisterMove(idxBattler,cmd)
+			next false if !singleBattle? &&
+			!pbChooseTarget(@battlers[idxBattler],@battlers[idxBattler].moves[cmd])
+			ret = true
+		end
+		next true
+		}
+		return ret
+	end
+
+	#=============================================================================
 	# Command phase
 	#=============================================================================
 	def pbCommandPhase
