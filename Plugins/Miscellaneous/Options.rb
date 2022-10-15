@@ -2,13 +2,16 @@ class PokemonSystem
 	attr_accessor :followers
 	attr_accessor :autosave
 	attr_accessor :particle_effects
+  attr_accessor :screenshake
 	attr_accessor :skip_fades
 	attr_accessor :gendered_look
 	attr_accessor :damage_numbers
 	attr_accessor :show_item_descriptions
 	attr_accessor :effectiveness_messages
+  attr_accessor :weather_messages
   attr_accessor :status_effect_messages
   attr_accessor :nicknaming_prompt
+  attr_accessor :color_shifts
 
   def initialize
     @textspeed   		          = 1 # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
@@ -24,13 +27,16 @@ class PokemonSystem
     @sevolume    		          = 30 # Volume of sound effects
     @textinput   		          = 1 # Text input mode (0=cursor, 1=keyboard)
     @followers   		          = 0	# Follower Pokemon enabled (0=true, 1=false)
-    @autosave	 		            = 1	# Autosave enabled (0=true, 1=false)
+    @autosave	 		            = 0	# Autosave enabled (0=true, 1=false)
+    @color_shifts             = 0 # (0=true, 1=false)
     @particle_effects 	      = 0 # (0=true, 1=false)
+    @screenshake              = 0 # (0=true, 1=false)
     @skip_fades 		          = 1 # (0=true, 1=false)
     @gendered_look 		        = 0 # (0 = Masc, 1 = Fem)
     @damage_numbers 	        = 0 # (0=true, 1=false)
     @show_item_descriptions   = 0 # (0=true, 1=false)
     @effectiveness_messages   = 0 # (0=true, 1=false)
+    @weather_messages         = 0 # (0=true, 1=false)
     @status_effect_messages   = 0 # (0=true, 1=false)
     @nicknaming_prompt        = 0 # (0=true, 1=false)
   end
@@ -130,6 +136,12 @@ class PokemonOption_Scene
 			    $PokemonSystem.effectiveness_messages = value
          }
        ),
+       EnumOption.new(_INTL("Weather Msgs"),[_INTL("On"),_INTL("Off")],
+         proc { $PokemonSystem.weather_messages },
+         proc { |value|
+			    $PokemonSystem.weather_messages = value
+         }
+       ),
       EnumOption.new(_INTL("Status Condition Msgs"),[_INTL("On"),_INTL("Off")],
         proc { $PokemonSystem.status_effect_messages },
         proc { |value|
@@ -148,10 +160,22 @@ class PokemonOption_Scene
           $PokemonSystem.autosave = value
         }
         ),
+      EnumOption.new(_INTL("Color Shifts (Adv.)"),[_INTL("On"),_INTL("Off")],
+        proc { $PokemonSystem.color_shifts },
+        proc { |value|
+            $PokemonSystem.color_shifts = value
+        }
+      ),
       EnumOption.new(_INTL("Particles (Adv.)"),[_INTL("On"),_INTL("Off")],
         proc { $PokemonSystem.particle_effects },
         proc { |value|
             $PokemonSystem.particle_effects = value
+        }
+      ),
+      EnumOption.new(_INTL("Screenshake (Adv.)"),[_INTL("On"),_INTL("Off")],
+        proc { $PokemonSystem.screenshake },
+        proc { |value|
+            $PokemonSystem.screenshake = value
         }
       ),
       EnumOption.new(_INTL("Look"),[_INTL("Masc."),_INTL("Fem.")],

@@ -23,6 +23,7 @@ class PokeBattle_Battle
     PBDebug.log(logMsg)
 	  $game_switches[94] = false
     ableBeforeFight = $Trainer.able_pokemon_count # Record the number of fainted
+    $Tribal_Bonuses.updateTribeCount()
     pbEnsureParticipants
     begin
       pbStartBattleCore
@@ -30,10 +31,10 @@ class PokeBattle_Battle
       @decision = 0
       @scene.pbEndBattle(@decision)
     rescue StandardError
-      pbMessage(_INTL("\\wmA major error has occured! Please screen-shot the following error message and share it in our bug channel.")) if $DEBUG
+      pbMessage(_INTL("\\wmA major error has occured! Please screen-shot the following error message and share it in our bug channel."))
       pbPrintException($!)
-      pbMessage(_INTL("\\wmRather than crashing, we will give the victory to you.")) if $DEBUG
-      pbMessage(_INTL("\\wmPlease don't abuse this functionality.")) if $DEBUG
+      pbMessage(_INTL("\\wmRather than crashing, we will give the victory to you."))
+      pbMessage(_INTL("\\wmPlease don't abuse this functionality."))
       @decision = 1
       @scene.pbEndBattle(@decision)
     end
@@ -258,7 +259,7 @@ class PokeBattle_Battle
       # The battle is a draw if the player survives a certain number of turns
       # In survival battles
       if @turnsToSurvive > 0 && @turnCount > @turnsToSurvive
-        triggerBattleSurvivedDialogue
+        triggerBattleSurvivedDialogue()
         @decision = 6
         break
       end
@@ -357,18 +358,6 @@ class PokeBattle_Battle
         @scene.pbRefresh
       end
 	  end
-  end
-
-  # Enemy dialogue for when the battle ends due to rounds survived
-  def triggerBattleSurvivedDialogue()
-    if @opponent
-      # Trigger dialogue for each opponent
-      @opponent.each_with_index do |trainer_speaking,idxTrainer|
-        @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-          PokeBattle_AI.triggerBattleSurvivedDialogue(policy,trainer_speaking,dialogue)
-        }
-      end
-    end
   end
   
   def pbEndOfBattle
@@ -484,7 +473,7 @@ class PokeBattle_Battle
 		@battlers.each do |b|
 		  next if !b
 		  pbCancelChoice(b.index)   # Restore unused items to Bag
-		  BattleHandlers.triggerAbilityOnSwitchOut(b.ability,b,true,self) if b.abilityActive?
+		  BattleHandlers.triggerAbilityOnSwitchOut(b.ability,b,true) if b.abilityActive?
 		end
 		pbParty(0).each_with_index do |pkmn,i|
 		  next if !pkmn

@@ -1,8 +1,8 @@
 BURNED_EXPLANATION = "It Attack is reduced by a third"
 POISONED_EXPLANATION = "Its Speed is halved"
 FROSTBITE_EXPLANATION = "Its Sp. Atk is reduced by a third"
-NUMBED_EXPLANATION = "Its Speed is halved, and it will deal one third less damage"
-CHILLED_EXPLANATION = "Its speed is halved, and it will take one third more damage"
+NUMBED_EXPLANATION = "Its Speed is halved, and it'll deal less damage"
+CHILLED_EXPLANATION = "Its speed is halved, and it'll take more damage"
 FLUSTERED_EXPLANATION = "Its Defense is reduced by a third"
 MYSTIFIED_EXPLANATION = "Its Sp. Def is reduced by a third"
 
@@ -19,7 +19,7 @@ class PokeBattle_Battler
 	#=============================================================================
 	# NOTE: Not all "does it have this status?" checks use this method. If the
 	#			 check is leading up to curing self of that status condition, then it
-	#			 will look at the value of @status directly instead - if it is that
+	#			 will look at hasStatusNoTrigger instead - if it is that
 	#			 status condition then it is curable. This method only checks for
 	#			 "counts as having that status", which includes Comatose which can't be
 	#			 cured.
@@ -33,6 +33,7 @@ class PokeBattle_Battler
 	def hasStatusNoTrigger(checkStatus)
 		return getStatuses().include?(checkStatus)
 	end
+	alias hasStatusNoTrigger? hasStatusNoTrigger
 
 	def pbHasAnyStatus?
 		if BattleHandlers.triggerStatusCheckAbilityNonIgnorable(self.ability,self,nil)
@@ -48,6 +49,7 @@ class PokeBattle_Battler
 		end
 		return hasStatus
 	end
+	alias hasAnyStatusNoTrigger? hasAnyStatusNoTrigger
 	
 	def hasSpotsForStatus()
 		hasSpots = false
@@ -56,6 +58,7 @@ class PokeBattle_Battler
 		end
 		return hasSpots
 	end
+	alias hasSpotsForStatus? hasSpotsForStatus
 	
 	def reduceStatusCount(statusToReduce = nil)
 		if statusToReduce.nil?
@@ -94,6 +97,7 @@ class PokeBattle_Battler
 				when :PARALYSIS 	then msg = _INTL("{1} is already numbed!", pbThis)
 				when :FROZEN		then msg = _INTL("{1} is already chilled!", pbThis)
 				when :FLUSTERED		then msg = _INTL("{1} is already flustered!", pbThis)
+				when :MYSTIFIED		then msg = _INTL("{1} is already mystified!", pbThis)
 				when :FROSTBITE		then msg = _INTL("{1} is already frostbitten!", pbThis)
 				end
 				@battle.pbDisplay(msg)
@@ -370,11 +374,20 @@ class PokeBattle_Battler
 				when :MYSTIFIED
 				@battle.pbDisplay(_INTL("{1} is mystified! {2}!", pbThis, MYSTIFIED_EXPLANATION))
 				when :FROSTBITE
-				@battle.pbDisplay(_INTL("{1} is frostbitten! {2}!", pbThis, FROSTBITE_EXPLANATION))
+				@battle.pbDisplay(_INTL("{1} was frostbitten! {2}!", pbThis, FROSTBITE_EXPLANATION))
 				end
 			end
 		end
-		#PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}") if newStatus == :SLEEP
+		if newStatus == :SLEEP
+			PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}")
+			@battle.eachBattler do |b|
+				next if b.nil?
+				next if !b.hasActiveAbility?(:DREAMWEAVER)
+				@battle.pbShowAbilitySplash(b)
+				b.pbRaiseStatStage(:SPECIAL_ATTACK,1,b)
+				@battle.pbHideAbilitySplash(b)
+			end
+		end
 		# Form change check
 		pbCheckFormOnStatusChange
 		# Synchronize
@@ -578,26 +591,16 @@ class PokeBattle_Battler
 			end
 		end
 		
-			oldStatuses.each do |oldStatus|
-			if showMessages
-				case oldStatus
-				when :SLEEP		 	then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
-				when :POISON		then @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", pbThis))
-				when :BURN			then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
-				when :PARALYSIS 	then @battle.pbDisplay(_INTL("{1} is no longer numbed.", pbThis))
-				when :FROZEN		then @battle.pbDisplay(_INTL("{1} warmed up!", pbThis))
-				when :FLUSTERED		then @battle.pbDisplay(_INTL("{1} is no longer flustered!", pbThis))
-				when :MYSTIFIED		then @battle.pbDisplay(_INTL("{1} is no longer mystified!", pbThis))
-				end
-			end
+		oldStatuses.each do |oldStatus|
+			PokeBattle_Battler.showStatusCureMessage(oldStatus, self, @battle) if showMessages
 	
 			# Lingering Daze
 			if oldStatus == :SLEEP
 				@battle.eachOtherSideBattler(@index) do |b|
 					if b.hasActiveAbility?(:LINGERINGDAZE)
 						@battle.pbShowAbilitySplash(b)
-						pbLowerStatStageByAbility(:SPECIAL_ATTACK,1,b)
-						pbLowerStatStageByAbility(:SPECIAL_DEFENSE,1,b)
+						pbLowerStatStage(:ATTACK,2,b)
+						pbLowerStatStage(:SPECIAL_ATTACK,2,b,false)
 						@battle.pbHideAbilitySplash(b)
 					end
 				end
@@ -606,6 +609,20 @@ class PokeBattle_Battler
 	
 		@battle.scene.pbRefreshOne(@index)
 		PBDebug.log("[Status change] #{pbThis}'s status was cured")
+	end
+
+	def self.showStatusCureMessage(status,pokemonOrBattler,battle)
+		curedName = pokemonOrBattler.is_a?(PokeBattle_Battler) ? pokemonOrBattler.pbThis : pokemonOrBattler.name
+		case status
+		when :SLEEP		 	then battle.pbDisplay(_INTL("{1} woke up!", curedName))
+		when :POISON		then battle.pbDisplay(_INTL("{1} was cured of its poisoning.", curedName))
+		when :BURN			then battle.pbDisplay(_INTL("{1}'s burn was healed.", curedName))
+		when :FROSTBITE		then battle.pbDisplay(_INTL("{1}'s frostbite was healed.", curedName))
+		when :PARALYSIS 	then battle.pbDisplay(_INTL("{1} is no longer numbed.", curedName))
+		when :FROZEN		then battle.pbDisplay(_INTL("{1} warmed up!", curedName))
+		when :FLUSTERED		then battle.pbDisplay(_INTL("{1} is no longer flustered!", curedName))
+		when :MYSTIFIED		then battle.pbDisplay(_INTL("{1} is no longer mystified!", curedName))
+		end
 	end
 
 	#=============================================================================
@@ -754,7 +771,7 @@ class PokeBattle_Battler
 		return pbHasStatus?(:FLUSTERED)
 	end
 
-	def pbCanFluster?(user=nil,showMessages=true,move=nil)
+	def pbCanFluster?(user,showMessages,move=nil)
 		return pbCanInflictStatus?(:FLUSTERED, user, showMessages, move)
 	end
 
@@ -768,7 +785,7 @@ class PokeBattle_Battler
 		return pbHasStatus?(:MYSTIFIED)
 	end
 
-	def pbCanMystify?(user=nil,showMessages=true,move=nil)
+	def pbCanMystify?(user,showMessages,move=nil)
 		return pbCanInflictStatus?(:MYSTIFIED, user, showMessages, move)
 	end
 

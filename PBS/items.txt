@@ -57,10 +57,10 @@
 52,RELICCOPPER,Relic Copper,Relic Coppers,6,2000,"A copper coin used in a civilization about 3,000 years ago. It can be sold to shops for $1000.",0,0,0
 53,RELICSILVER,Relic Silver,Relic Silvers,6,10000,"A silver coin used in a civilization about 3,000 years ago. It can be sold to shops for $5000.",0,0,0
 54,RELICGOLD,Relic Gold,Relic Golds,6,20000,"A gold coin used in a civilization about 3,000 years ago. It can be sold to shops for $10,000.",0,0,0
-55,RELICVASE,Relic Vase,Relic Vases,6,100000,"A vase made in a civilization about 3,000 years ago. It can be sold to shops for $50,000.",0,0,0
-56,RELICBAND,Relic Band,Relic Bands,6,200000,"A bracelet made in a civilization about 3,000 years ago. It can be sold to shops for $100,000.",0,0,0
-57,RELICSTATUE,Relic Statue,Relic Statues,6,600000,"A stone figure made in a civilization about 3,000 years ago. Can be sold for $300,000",0,0,0
-58,RELICCROWN,Relic Crown,Relic Crowns,6,0,"A crown made in a civilization about 3,000 years ago. A maniac will buy it for a high price.",0,0,0
+55,RELICVASE,Relic Vase,Relic Vases,6,60000,"A vase made in a civilization about 3,000 years ago. It can be sold to shops for $30,000.",0,0,0
+56,RELICBAND,Relic Band,Relic Bands,6,160000,"A bracelet made in a civilization about 3,000 years ago. It can be sold to shops for $80,000.",0,0,0
+57,RELICSTATUE,Relic Statue,Relic Statues,6,300000,"A stone figure made in a civilization about 3,000 years ago. Can be sold for $150,000.",0,0,0
+58,RELICCROWN,Relic Crown,Relic Crowns,6,600000,"A crown made in a civilization about 3,000 years ago. Can be sold for $300,000.",0,0,0
 #-------------------------------
 59,GROWTHMULCH,Growth Mulch,Growth Mulch,1,200,"A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.",0,0,11
 60,DAMPMULCH,Damp Mulch,Damp Mulch,1,200,"A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.",0,0,11
@@ -75,7 +75,7 @@
 68,EVIOLITE,Eviolite,Eviolites,5,8000,"When held, it raises the Defense and Sp. Def if the holder can still evolve. Prevents evolution.",0,0,0
 69,FLOATSTONE,Float Stone,Float Stones,5,4000,"A very light stone. It reduces the weight of a Pokémon when held.",0,0,0
 70,DESTINYKNOT,Destiny Knot,Destiny Knots,5,4000,"A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, so does the foe.",0,0,0
-71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,5,4000,"Damages attackers for 1/8 of their HP when they hit the holder with physical attacks.",0,0,0
+71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with physical attacks.",0,0,0
 72,EJECTBUTTON,Eject Button,Eject Buttons,5,4000,"If the holder is hit by an attack, it will switch with another Pokémon in your party.",0,0,0
 73,REDCARD,Red Card,Red Cards,5,4000,"A card with a mysterious power. When the holder is struck by a foe, the attacker is removed from battle.",0,0,0
 74,SHEDSHELL,Shed Shell,Shed Shells,5,4000,"An item to be held by a Pokémon. This discarded carapace lets the holder switch out of battle without fail.",0,0,0
@@ -403,7 +403,7 @@
 393,ASPEARBERRY,Aspear Berry,Aspear Berries,5,0,"It may be held by a Pokémon to unchill it.",0,0,5
 394,LEPPABERRY,Leppa Berry,Leppa Berries,5,0,"It may be held by a Pokémon to restore a move's PP by 10.",0,0,5
 395,ORANBERRY,Oran Berry,Oran Berries,5,0,"It may be held by a Pokémon to heal the user by 33% in a pinch.",0,0,5
-396,PERSIMBERRY,Persim Berry,Persim Berries,5,0,"It may be held by a Pokémon to recover from confusion or charm.",0,0,5
+396,PERSIMBERRY,Persim Berry,Persim Berries,5,0,"It may be held by a Pokémon to recover from being flustered.",0,0,5
 397,LUMBERRY,Lum Berry,Lum Berries,5,0,"It may be held by a Pokémon to recover from any status problem.",0,0,5
 398,SITRUSBERRY,Sitrus Berry,Sitrus Berries,5,0,"If held by a Pokémon, it heals its HP by 25% at half health.",0,0,5
 399,FIGYBERRY,Figy Berry,Figy Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
@@ -429,7 +429,7 @@
 419,SPELONBERRY,Spelon Berry,Spelon Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
 420,PAMTREBERRY,Pamtre Berry,Pamtre Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
 421,WATMELBERRY,Watmel Berry,Watmel Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-422,DURINBERRY,Durin Berry,Durin Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+422,DURINBERRY,Durin Berry,Durin Berries,5,0,"It may be held by a Pokémon to recover from being mystified.",0,0,5
 423,BELUEBERRY,Belue Berry,Belue Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
 424,OCCABERRY,Occa Berry,Occa Berries,5,0,"Weakens a supereffective Fire-type attack against the holding Pokémon.",0,0,5
 425,PASSHOBERRY,Passho Berry,Passho Berries,5,0,"Weakens a supereffective Water-type attack against the holding Pokémon.",0,0,5
@@ -681,7 +681,7 @@
 658,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,5,4000,"These boots prevent the effects of traps set on the battlefield.",0,0,0
 659,ROOMSERVICE,Room Service,Room Services,5,4000,"An item to be held by a Pokémon. Sharply lowers Speed when Trick Room takes effect.",0,0,0
 660,THROATSPRAY,Throat Spray,Throat Sprays,5,4000,"Raises Sp. Atk when the Pokémon uses a sound-based move.",0,0,0
-661,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"An item to be held by a Pokémon. It protects the holder from the effects of weather.",0,0,0
+661,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"An item to be held by a Pokémon. It protects the holder from the negative effects of weather.",0,0,0
 #-------------------------------
 662,EXPCANDYXS,Exp. Candy XS,Exp. Candies XS,2,20,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.",1,0,0
 663,EXPCANDYS,Exp. Candy S,Exp. Candies S,2,240,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.",1,0,0
@@ -786,7 +786,7 @@
 757,TM165,TM165,TM165s,4,10000,"The user draws power from nature and fires it at the target. This may also lower the target's Sp. Def stat.",3,0,0,ENERGYBALL
 758,TM166,TM166,TM166s,4,16000,"The user tucks in its wings and charges from a low altitude. This also damages the user quite a lot.",3,0,0,BRAVEBIRD
 759,TM167,TM167,TM167s,4,6000,"The user makes the ground under the foe erupt with power. It may also lower the target's Sp. Def.",3,0,0,EARTHPOWER
-760,TM168,TM168,TM168s,4,4000,,3,0,0,VANGUARD
+760,TM168,TM168,TM168s,4,4000,"The user enters a protective stance, boosting both its Defense and Sp. Atk stats.",3,0,0,VANGUARD
 761,TM169,TM169,TM169s,4,6000,"The user focuses its willpower to its head and attacks the target. This may also make the target flinch.",3,0,0,ZENHEADBUTT
 762,TM170,TM170,TM170s,4,6000,"The user gathers all its light energy and releases it all at once. This may also lower the target's Sp. Def stat.",3,0,0,FLASHCANNON
 763,TM171,TM171,TM171s,4,16000,"A storm of sharp leaves is whipped up. The attack's recoil sharply reduces the user's Sp. Atk stat.",3,0,0,LEAFSTORM
@@ -864,7 +864,7 @@
 #-------------------------------
 823,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokemon you find is shiny.",2,0,0
 #-------------------------------
-824,BUSTEDRADIO,Busted Radio,Busted Radios,5,4000,"Damages attackers for 1/8 of their HP when they hit the holder with special attacks.",0,0,0
+824,BUSTEDRADIO,Busted Radio,Busted Radios,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with special attacks.",0,0,0
 #-------------------------------
 825,ABILITYTRANSFORMER,Ability Transformer,Ability Transformers,8,0,"An infinitely usable device which allows a Pokemon with two abilities to switch abilities when used.",5,0,6
 826,FACTORYPASS,Factory Pass,Factory Passes,8,0,"A pass that grants you access through the locked door in Victoire's factory.",5,0,6
@@ -883,7 +883,7 @@
 859,MILKBONETREAT,Milk Bone Treat,Milk Bone Treats,8,0,"It would be a delicious treat if you were a Pokémon.",0,0,6
 860,DIGITSLIP,Digit Slip,Digit Slips,8,0,"A slip of paper with one digit of the code for the lock to Rafael's gym door.",0,0,0
 #-------------------------------
-861,SEVENLEAGUEBOOTS,Seven-League Boots,Seven-League Boots,5,4000,"An item to be held by a Pokémon. They are boots that boost speed by 10%.",0,0,0
+861,SEVENLEAGUEBOOTS,7-League Boots,7-League Boots,5,4000,"An item to be held by a Pokémon. They are boots that boost speed by 10%.",0,0,0
 #-------------------------------
 862,PERFORMANCEANALYZER,Performance Analyzer,Performance Analyzers,8,0,"A hi-tech recording device which increases your Pokemon's experience gained from Trainer battles by 20%.",0,0,6
 863,PERFORMANCEANALYZER2,Performance Analyzer 2,Performance Analyzers 2,8,0,"An upgraded, hi-tech recording device which increases the experience gained from Trainer battles by 25%.",0,0,6
@@ -894,6 +894,8 @@
 866,REINFORCINGROD,Reinforcing Rod,Reinforcing Rods,5,4000,"An item to be held by a Pokémon. It extends the duration of Rooms created by the holder.",0,0,0
 #-------------------------------
 867,CHASMIDCARD,Chasm ID Card,Chasm ID Cards,8,0,"An ID card which unlocks gates and doors with Team Chasm coloring.",0,0,6
+868,SIGILLEFTHALF,Sigil Left Half,Sigils Left Half,8,0,"The left half of the sigil of an ancient order of knights.",5,0,0
+869,SIGILRIGHTHALF,Sigil Right Half,Sigils Right Half,8,0,"The right half of the sigil of an ancient order of knights.",5,0,0
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6

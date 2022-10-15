@@ -257,7 +257,27 @@ class PokeBattle_Battler
     end
     return true
   end
-  
+
+  def doesProtectionEffectNegateThisMove?(effectDisplayName,move,user,target,protectionIgnoredByAbility,animationName=nil)
+    if move.canProtectAgainst? && !protectionIgnoredByAbility
+      @battle.pbCommonAnimation(animationName,target) if !animationName.nil?
+      @battle.pbDisplay(_INTL("{1} protected {2}!",effectDisplayName,target.pbThis(true)))
+      if user.boss?
+        target.damageState.partiallyProtected = true
+        yield if block_given?
+        @battle.pbDisplay(_INTL("Actually, {1} partially pierces through!",user.pbThis))
+      else
+        target.damageState.protected = true
+        @battle.successStates[user.index].protected = true
+        yield if block_given?
+        return true
+      end
+    elsif move.pbTarget(user).targets_foe
+      @battle.pbDisplay(_INTL("{1} was ignored, and failed to protect {2}!",effectDisplayName,target.pbThis(true)))
+    end
+    return false
+  end
+
   #=============================================================================
   # Initial success check against the target. Done once before the first hit.
   # Includes move-specific failure conditions, protections and type immunities.
@@ -303,125 +323,69 @@ class PokeBattle_Battler
     ######################################################
     # Quick Guard
     if target.pbOwnSide.effects[PBEffects::QuickGuard] && @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("QuickGuard",target)
-        @battle.pbDisplay(_INTL("Quick Guard protected {1}!",target.pbThis(true)))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("Quick Guard was ignored, and failed to protect {1}!",target.pbThis(true)))
-      end
+      return false if doesProtectionEffectNegateThisMove?("Quick Guard",move,user,target,protectionIgnoredByAbility,"QuickGuard")
     end
     # Protect
     if target.effects[PBEffects::Protect]
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("Protect",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s Protect was ignored!",target.pbThis))
-      end
+      return false if doesProtectionEffectNegateThisMove?("Protect",move,user,target,protectionIgnoredByAbility,"Protect")
     end
     # Obstruct
     if target.effects[PBEffects::Obstruct]
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("Obstruct",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        if move.pbContactMove?(user) && user.affectedByContactEffect?
+      return false if doesProtectionEffectNegateThisMove?("Obstruct",move,user,target,protectionIgnoredByAbility,"Obstruct") {
+        if move.physical?
           if user.pbCanLowerStatStage?(:DEFENSE)
-          user.pbLowerStatStage(:DEFENSE,2,nil)
+            user.pbLowerStatStage(:DEFENSE,2,nil)
           end
         end
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s Obstruct was ignored!",target.pbThis))
-      end
+      }
     end
     # King's Shield
     if target.effects[PBEffects::KingsShield] && move.damagingMove?
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("KingsShield",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        if move.pbContactMove?(user) && user.affectedByContactEffect?
+      return false if doesProtectionEffectNegateThisMove?("King's Shield",move,user,target,protectionIgnoredByAbility,"KingsShield") {
+        if move.physicalMove?
           if user.pbCanLowerStatStage?(:ATTACK)
           user.pbLowerStatStage(:ATTACK,1,nil)
           end
         end
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s King's Shield was ignored!",target.pbThis))
-      end
+      }
     end
     # Spiky Shield
     if target.effects[PBEffects::SpikyShield]
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("SpikyShield",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        if move.pbContactMove?(user) && user.affectedByContactEffect?
-          reduction = user.totalhp/8
-          reduction /= 4 if user.boss?
-          reduction = reduction.floor
-          user.damageState.displayedDamage = reduction
-          @battle.scene.pbDamageAnimation(user)
-          user.pbReduceHP(reduction,false)
+      return false if doesProtectionEffectNegateThisMove?("Spiky Shield",move,user,target,protectionIgnoredByAbility,"SpikyShield") {
+        if move.physicalMove?
           @battle.pbDisplay(_INTL("{1} was hurt!",user.pbThis))
-          user.pbItemHPHealCheck
+          user.applyFractionalDamage(1.0/8.0)
         end
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s Spiky Shield was ignored!",target.pbThis))
-      end
+      }
+    end
+    # Mirror Shield
+    if target.effects[PBEffects::MirrorShield]
+      return false if doesProtectionEffectNegateThisMove?("Mirror Shield",move,user,target,protectionIgnoredByAbility,"MirrorShield") {
+        if move.specialMove?
+          @battle.pbDisplay(_INTL("{1} was hurt!",user.pbThis))
+          user.applyFractionalDamage(1.0/8.0)
+        end
+      }
     end
     # Baneful Bunker
     if target.effects[PBEffects::BanefulBunker]
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("BanefulBunker",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
+      return false if doesProtectionEffectNegateThisMove?("Baneful Bunker",move,user,target,protectionIgnoredByAbility,"BanefulBunker") {
         if move.physicalMove?
           user.pbPoison(target) if user.pbCanPoison?(target,false)
         end
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s Baneful Bunker was ignored!",target.pbThis))
-      end
+      }
     end
-    # Baneful Bunker
+    # Red-Hot Retreat
     if target.effects[PBEffects::RedHotRetreat]
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        @battle.pbCommonAnimation("RedHotRetreat",target)
-        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
+      return false if doesProtectionEffectNegateThisMove?("Red Hot Retreat",move,user,target,protectionIgnoredByAbility,"RedHotRetreat") {
         if move.specialMove?
           user.pbBurn(target) if user.pbCanBurn?(target,false)
         end
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("{1}'s Red Hot Retreat was ignored!",target.pbThis))
-      end
+      }
     end
     # Mat Block
     if target.pbOwnSide.effects[PBEffects::MatBlock] && move.damagingMove?
-      if move.canProtectAgainst? && !protectionIgnoredByAbility
-        # NOTE: Confirmed no common animation for this effect.
-        @battle.pbDisplay(_INTL("{1} was blocked by the kicked-up mat!",move.name))
-        target.damageState.protected = true
-        @battle.successStates[user.index].protected = true
-        return false
-      elsif move.pbTarget(user).targets_foe
-        @battle.pbDisplay(_INTL("Mat Block was ignored, and failed to protect {1}!",target.pbThis(true)))
-      end
+      return false if doesProtectionEffectNegateThisMove?("Mat Block",move,user,target,protectionIgnoredByAbility)
     end
     # Magic Coat/Magic Bounce/Magic Shield
     if move.canMagicCoat? && !target.semiInvulnerable? && target.opposes?(user)
@@ -443,92 +407,16 @@ class PokeBattle_Battler
        return false
      end
     end
-    # Move fails due to type immunity ability (Except against or by a boss)
-    if !user.boss? && !target.boss
-      if move.pbImmunityByAbility(user,target) 
-        triggerImmunityDialogue(target,true)
-        return false
-      end
-    end
-    # Type immunity
-    if move.damagingMove? && Effectiveness.ineffective?(typeMod)
-      PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
-      if !@battle.bossBattle?
-        @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-        triggerImmunityDialogue(target,false)
-        return false
-      else
-        @battle.pbDisplay(_INTL("Within the avatar's aura, immunities are resistances!"))
-      end
-    end
-    # Dark-type immunity to moves made faster by Prankster
-    if Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::Prankster] &&
-       target.pbHasType?(:DARK) && target.opposes?(user)
-      PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
-      @battle.pbDisplay(_INTL("The Prankster-boosted move doesn't affect {1} due to its Dark typing...",target.pbThis(true)))
-      triggerImmunityDialogue(target,false)
-      return false
-    end
-    # Airborne-based immunity to Ground moves
-    if move.damagingMove? && move.calcType == :GROUND && target.airborne? && !move.hitsFlyingTargets?
-      if target.hasLevitate? && !@battle.moldBreaker
-        @battle.pbShowAbilitySplash(target)
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))
-        else
-          @battle.pbDisplay(_INTL("{1} avoided the attack with {2}!",target.pbThis,target.abilityName))
-        end
-        @battle.pbHideAbilitySplash(target)
-        triggerImmunityDialogue(target,true)
-        return false unless @battle.bossBattle? # In boss battles, it just reduced damage by half (calced later)
-      end
-      if target.hasActiveItem?(:AIRBALLOON)
-        @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!",target.pbThis,target.itemName))
-        triggerImmunityDialogue(target,false)
-        return false
-      end
-      if target.effects[PBEffects::MagnetRise]>0
-        @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Magnet Rise!",target.pbThis))
-        triggerImmunityDialogue(target,false)
-        return false
-      end
-      if target.effects[PBEffects::Telekinesis]>0
-        @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Telekinesis!",target.pbThis))
-        triggerImmunityDialogue(target,false)
-        return false
-      end
-    end
-    # Immunity to powder-based moves
-    if move.powderMove?
-      if target.pbHasType?(:GRASS) && Settings::MORE_TYPE_EFFECTS
-        PBDebug.log("[Target immune] #{target.pbThis} is Grass-type and immune to powder-based moves")
-        @battle.pbDisplay(_INTL("It doesn't affect {1} because of its Grass typing...",target.pbThis(true)))
-        triggerImmunityDialogue(target,false)
-        return false
-      end
-      if Settings::MECHANICS_GENERATION >= 6
-        if target.hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
-          @battle.pbShowAbilitySplash(target)
-          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-          else
-            @battle.pbDisplay(_INTL("It doesn't affect {1} because of its {2}.",target.pbThis(true),target.abilityName))
-          end
-          @battle.pbHideAbilitySplash(target)
-          triggerImmunityDialogue(target,false)
-          return false
-        end
-        if target.hasActiveItem?(:SAFETYGOGGLES)
-          PBDebug.log("[Item triggered] #{target.pbThis} has Safety Goggles and is immune to powder-based moves")
-          @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-          triggerImmunityDialogue(target,false)
-          return false
-        end
-      end
+    # Move fails due to type immunity ability
+    # Skipped for bosses using damaging moves so that it can be calculated properly later
+    if move.inherentImmunitiesPierced?(user,target)
+      # Do nothing
+    else
+      return false if targetInherentlyImmune?(user,target,move,typeMod,true)
     end
     # Substitute
-    if target.effects[PBEffects::Substitute]>0 && move.statusMove? &&
-       !move.ignoresSubstitute?(user) && user.index!=target.index
+    if target.effects[PBEffects::Substitute] > 0 && move.statusMove? &&
+       !move.ignoresSubstitute?(user) && user.index != target.index
       PBDebug.log("[Target immune] #{target.pbThis} is protected by its Substitute")
       @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis(true)))
       return false
@@ -536,24 +424,74 @@ class PokeBattle_Battler
     return true
   end
 
-  def triggerImmunityDialogue(target,isImmunityAbility)
-    if !battle.wildBattle?
-      if @battle.pbOwnedByPlayer?(target.index)
-        # Trigger each opponent's dialogue
-        @battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
-          @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-            trainer = @battle.opponent[idxTrainer]
-            PokeBattle_AI.triggerPlayerPokemonImmuneDialogue(policy,self,target,isImmunityAbility,trainer_speaking,dialogue)
-          }
+  def targetInherentlyImmune?(user,target,move,typeMod,showMessages=true)
+    if move.pbImmunityByAbility(user,target) 
+      @battle.triggerImmunityDialogue(user,target,true) if showMessages
+      return true
+    end
+    # Type immunity
+    if move.damagingMove? && Effectiveness.ineffective?(typeMod)
+      PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
+      if showMessages
+        @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+        @battle.triggerImmunityDialogue(user,target,false)
+      end
+      return true
+    end
+    if airborneImmunity?(user,target,move,showMessages)
+      PBDebug.log("[Target immune] #{target.pbThis}'s immunity due to being airborne")
+      return true
+    end
+    # Dark-type immunity to moves made faster by Prankster
+    if user.effects[PBEffects::Prankster] && target.pbHasType?(:DARK) && target.opposes?(user)
+      PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
+      if showMessages
+        @battle.pbDisplay(_INTL("It doesn't affect {1} since Dark-types are immune to pranks...",target.pbThis(true)))
+        @battle.triggerImmunityDialogue(user,target,false)
+      end
+      return true
+    end
+    return false
+  end
+
+  def airborneImmunity?(user,target,move,showMessages=true)
+    # Airborne-based immunity to Ground moves
+    if move.damagingMove? && move.calcType == :GROUND && target.airborne? && !move.hitsFlyingTargets?
+      if target.hasLevitate? && !@battle.moldBreaker
+        if showMessages
+          @battle.pbShowAbilitySplash(target)
+          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+            @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))
+          else
+            @battle.pbDisplay(_INTL("{1} avoided the attack with {2}!",target.pbThis,target.abilityName))
+          end
+          @battle.pbHideAbilitySplash(target)
+          @battle.triggerImmunityDialogue(user,target,true)
         end
-      else
-        # Trigger just this pokemon's trainer's dialogue
-        idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(index)
-        trainer_speaking = @battle.opponent[idxTrainer]
-        @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-          PokeBattle_AI.triggerTrainerPokemonImmuneDialogue(policy,self,target,isImmunityAbility,trainer_speaking,dialogue)
-        }
+        return true
+      end
+      if target.hasActiveItem?(:AIRBALLOON)
+        if showMessages
+          @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!",target.pbThis,target.itemName))
+          @battle.triggerImmunityDialogue(user,target,false)
+        end
+        return true
+      end
+      if target.effects[PBEffects::MagnetRise]>0
+        if showMessages
+          @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Magnet Rise!",target.pbThis))
+          @battle.triggerImmunityDialogue(user,target,false)
+        end
+        return true
+      end
+      if target.effects[PBEffects::Telekinesis]>0
+        if showMessages
+          @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Telekinesis!",target.pbThis))
+          @battle.triggerImmunityDialogue(user,target,false)
+        end
+        return true
       end
     end
+    return false
   end
 end

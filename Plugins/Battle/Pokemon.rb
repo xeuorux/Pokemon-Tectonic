@@ -100,14 +100,15 @@ class Pokemon
     this_IV    = self.calcIV
     # Calculate stats
     stats = {}
+    stylish = ability_id == :STYLISH
     GameData::Stat.each_main do |s|
       if s.id == :HP
-        stats[s.id] = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id])
+        stats[s.id] = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id],stylish)
         stats[s.id] *= hpMult
       elsif (s.id == :ATTACK) || (s.id == :SPECIAL_ATTACK)
-        stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
+        stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id],stylish)
       else
-        stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id])
+        stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id],stylish)
       end
     end
     hpDiff = @totalhp - @hp
@@ -120,5 +121,32 @@ class Pokemon
     @speed   = stats[:SPEED]
   end
 
-  
+  # The core method that performs evolution checks. Needs a block given to it,
+  # which will provide either a GameData::Species ID (the species to evolve
+  # into) or nil (keep checking).
+  # @return [Symbol, nil] the ID of the species to evolve into
+  def check_evolution_internal
+    return nil if egg? || shadowPokemon?
+    return nil if hasItem?(:EVERSTONE)
+    return nil if hasItem?(:EVIOLITE)
+    return nil if hasAbility?(:BATTLEBOND)
+    species_data.get_evolutions(true).each do |evo|   # [new_species, method, parameter, boolean]
+      next if evo[3]   # Prevolution
+      ret = yield self, evo[0], evo[1], evo[2]   # pkmn, new_species, method, parameter
+      return ret if ret
+    end
+    return nil
+  end
+end
+
+class Pokemon
+  class Owner
+    # Returns a new Owner object populated with values taken from +trainer+.
+    # @param trainer [Player, NPCTrainer] trainer object to read data from
+    # @return [Owner] new Owner object
+    def self.new_from_trainer(trainer)
+      validate trainer => [Player, NPCTrainer]
+      return new(trainer.id, trainer.nameForHashing || trainer.name, trainer.gender, trainer.language)
+    end
+  end
 end

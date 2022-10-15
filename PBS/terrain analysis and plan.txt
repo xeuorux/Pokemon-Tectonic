@@ -1,0 +1,11 @@
+Lines with synergy abilities:
+Grassy: 6
+Electric: 6
+Psychic: 4
+Fairy Terrain: 3
+
+Notes:
+Replace Grassy Surge on Celebi
+Move Grassy Surge from Burmy line to another
+Replace Fairy Surge on Whimsicott (or move Mistcraft to it from Klefki?)
+	Either way, whichever one loses it shoul maybe gain a Fairy Terrain synergy ability its in place

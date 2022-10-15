@@ -137,11 +137,17 @@ class PokeBattle_Battle
     pbCalculatePriority(true)
     pbPriority(true).each do |b|
       b.pbEffectsOnSwitchIn(true)
-      battlerEnterDialogue(b)
+      triggerBattlerEnterDialogue(b)
     end
     pbCalculatePriority
     # Check forms are correct
     eachBattler { |b| b.pbCheckForm }
+  end
+
+  def getStealthRockHPRatio(type1,type2=nil,type3=nil)
+    eff = Effectiveness.calculate(:ROCK,type1,type2,type3)
+    effectivenessMult = eff.to_f / Effectiveness::NORMAL_EFFECTIVE
+    return effectivenessMult / 8.0
   end
   
   # Called when a Pokémon switches in (entry effects, entry hazards).
@@ -169,48 +175,50 @@ class PokeBattle_Battle
     # Healing Wish
     if @positions[battler.index].effects[PBEffects::HealingWish]
       pbCommonAnimation("HealingWish",battler)
-      pbDisplay(_INTL("The healing wish came true for {1}!",battler.pbThis(true)))
-      battler.pbRecoverHP(battler.totalhp)
+      healingMessage = _INTL("The healing wish came true for {1}!",battler.pbThis(true))
+      battler.pbRecoverHP(battler.totalhp,true,true,true,healingMessage)
       battler.pbCureStatus(false)
       @positions[battler.index].effects[PBEffects::HealingWish] = false
     end
     # Lunar Dance
     if @positions[battler.index].effects[PBEffects::LunarDance]
       pbCommonAnimation("LunarDance",battler)
-      pbDisplay(_INTL("{1} became cloaked in mystical moonlight!",battler.pbThis))
-      battler.pbRecoverHP(battler.totalhp)
+      healingMessage = _INTL("{1} became cloaked in mystical moonlight!",battler.pbThis)
+      battler.pbRecoverHP(battler.totalhp,true,true,true,healingMessage)
       battler.pbCureStatus(false)
       battler.eachMove { |m| m.pp = m.total_pp }
       @positions[battler.index].effects[PBEffects::LunarDance] = false
     end
+    # Refuge
+    if @positions[battler.index].effects[PBEffects::Refuge] && battler.hasAnyStatusNoTrigger()
+      pbCommonAnimation("HealingWish",battler)
+      refugeMaker = pbThisEx(battler.index,@positions[battler.index].effects[PBEffects::RefugeMaker])
+      pbDisplay(_INTL("{1} refuge comforts {2}!",refugeMaker,battler.pbThis(true)))
+      battler.pbCureStatus()
+      @positions[battler.index].effects[PBEffects::Refuge] = false
+      @positions[battler.index].effects[PBEffects::RefugeMaker] = -1
+    end
     # Entry hazards
     # Stealth Rock
-    if battler.pbOwnSide.effects[PBEffects::StealthRock] && battler.takesIndirectDamage? && !battler.immuneToHazards? &&
-       GameData::Type.exists?(:ROCK)
+    if battler.pbOwnSide.effects[PBEffects::StealthRock] && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:ROCK)
       bTypes = battler.pbTypes(true)
-      eff = Effectiveness.calculate(:ROCK, bTypes[0], bTypes[1], bTypes[2])
-      if !Effectiveness.ineffective?(eff)
-        eff = eff.to_f / Effectiveness::NORMAL_EFFECTIVE
-        oldHP = battler.hp
-        battler.pbReduceHP(battler.totalhp*eff/8,false)
+      stealthRockHPRatio = getStealthRockHPRatio(bTypes[0], bTypes[1], bTypes[2])
+      if stealthRockHPRatio > 0
         pbDisplay(_INTL("Pointed stones dug into {1}!",battler.pbThis(true)))
-        battler.pbItemHPHealCheck
-        if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+        if battler.applyFractionalDamage(stealthRockHPRatio,true,false,true)
           return pbOnActiveOne(battler)   # For replacement battler
         end
       end
     end
     # Spikes
-    if battler.pbOwnSide.effects[PBEffects::Spikes]>0 && battler.takesIndirectDamage? && !battler.immuneToHazards? &&
-       !battler.airborne?
+    if battler.pbOwnSide.effects[PBEffects::Spikes] > 0 && battler.takesIndirectDamage? && !battler.immuneToHazards? && !battler.airborne?
       spikesIndex = battler.pbOwnSide.effects[PBEffects::Spikes] - 1
       spikesDiv = [8,6,4][spikesIndex]
-      oldHP = battler.hp
-      battler.pbReduceHP(battler.totalhp/spikesDiv,false)
+      spikesHPRatio = 1.0 / spikesDiv.to_f
       layerLabel = ["layer","2 layers","3 layers"][spikesIndex]
       pbDisplay(_INTL("{1} is hurt by the {2} of spikes!",battler.pbThis,layerLabel))
       battler.pbItemHPHealCheck
-      if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+      if battler.applyFractionalDamage(spikesHPRatio,true,false,true)
         return pbOnActiveOne(battler)   # For replacement battler
       end
     end
@@ -223,11 +231,8 @@ class PokeBattle_Battle
         if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] >= 2
           battler.pbPoison(nil,_INTL("{1} was poisoned by the poison spikes!",battler.pbThis))
         else
-          oldHP = battler.hp
-          battler.pbReduceHP(battler.totalhp/16,false)
           pbDisplay(_INTL("{1} was hurt by the thin layer of poison spikes!",battler.pbThis))
-          battler.pbItemHPHealCheck
-          if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+          if battler.applyFractionalDamage(1.0/16.0,true,false,true)
             return pbOnActiveOne(battler)   # For replacement battler
           end
         end
@@ -244,11 +249,8 @@ class PokeBattle_Battle
         if battler.pbOwnSide.effects[PBEffects::FlameSpikes] >= 2
           battler.pbBurn(nil,_INTL("{1} was burned by the flame spikes!",battler.pbThis))
         else
-          oldHP = battler.hp
-          battler.pbReduceHP(battler.totalhp/16,false)
           pbDisplay(_INTL("{1} was hurt by the thin layer of flame spikes!",battler.pbThis))
-          battler.pbItemHPHealCheck
-          if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+          if battler.applyFractionalDamage(1.0/16.0,true,false,true)
             return pbOnActiveOne(battler)   # For replacement battler
           end
         end
@@ -265,11 +267,8 @@ class PokeBattle_Battle
         if battler.pbOwnSide.effects[PBEffects::FrostSpikes] >= 2
           battler.pbFrostbite(nil,_INTL("{1} was frostbitten by the frost spikes!",battler.pbThis))
         else
-          oldHP = battler.hp
-          battler.pbReduceHP(battler.totalhp/16,false)
           pbDisplay(_INTL("{1} was hurt by the thin layer of frost spikes!",battler.pbThis))
-          battler.pbItemHPHealCheck
-          if battler.pbAbilitiesOnDamageTaken(oldHP)   # Switched out
+          if battler.applyFractionalDamage(1.0/16.0,true,false,true)
             return pbOnActiveOne(battler)   # For replacement battler
           end
         end
@@ -301,29 +300,7 @@ class PokeBattle_Battle
       return false
     end
     battler.pbCheckForm
-	  battlerEnterDialogue(battler)
+	  triggerBattlerEnterDialogue(battler)
     return true
-  end
-  
-  def battlerEnterDialogue(battler)
-    if !wildBattle?
-      # Trigger dialogue for this pokemon
-      if pbOwnedByPlayer?(battler.index)
-        # Trigger each opponent's dialogue
-        @opponent.each_with_index do |trainer_speaking,idxTrainer|
-          @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-            trainer = @opponent[idxTrainer]
-            PokeBattle_AI.triggerPlayerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue)
-          }
-        end
-      else
-        # Trigger just this pokemon's trainer's dialogue
-        idxTrainer = pbGetOwnerIndexFromBattlerIndex(battler.index)
-        trainer_speaking = @opponent[idxTrainer]
-        @scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-          PokeBattle_AI.triggerTrainerSendsOutPokemonDialogue(policy,battler,trainer_speaking,dialogue)
-        }
-      end
-    end
   end
 end

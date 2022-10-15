@@ -145,7 +145,8 @@ class PokemonSummary_Scene
 		end
 		# Show shininess star
 		if @pokemon.shiny?
-		  imagepos.push([sprintf("Graphics/Pictures/shiny"),2,134])
+		  shinyIconFileName = @pokemon.shiny_variant? ? "Graphics/Pictures/shiny_variant" : "Graphics/Pictures/shiny"
+		  imagepos.push([sprintf(shinyIconFileName),2,134])
 		end
 		# Draw all images
 		pbDrawImagePositions(overlay,imagepos)

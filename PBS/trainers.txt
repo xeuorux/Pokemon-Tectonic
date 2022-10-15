@@ -128,56 +128,19 @@ Pokemon = RIOLU,15
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Lambert_2,Lambert]
-Policies = LAMBERT
-Pokemon = PANCHAM,15
-    Moves = SMASH,TAUNT,LEER,BITE
-    AbilityIndex = 0
+Extends = LEADER_Lambert,Lambert,0
 Pokemon = ZORUA,15
     Moves = HARSHVOICE,GRASSKNOT,SWIFT
     AbilityIndex = 0
     Item = SITRUSBERRY
-Pokemon = MACHOP,15
-    Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
-    AbilityIndex = 1
-Pokemon = GZIGZAGOON,15
-    Moves = SNARL,LICK,TACKLE,BITE
-    AbilityIndex = 1
-    Item = SITRUSBERRY
-Pokemon = RIOLU,15
-    Name = Sangfroid
-    Gender = female
-    Moves = MAGNETWAVE,SCREECH,COURAGEBOLT,VANGUARD
-    AbilityIndex = 1
 Pokemon = CROAGUNK,15
     Moves = FLATTER,ENTOXIN,MUDTHROW,HEADBUTT
     AbilityIndex = 0
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Lambert_2,Lambert,1]
-Policies = LAMBERT,CURSE_TORMENTED
-Pokemon = PANCHAM,15
-    Moves = SMASH,TAUNT,LEER,BITE
-    AbilityIndex = 0
-Pokemon = ZORUA,15
-    Moves = HARSHVOICE,GRASSKNOT,SWIFT
-    AbilityIndex = 0
-    Item = SITRUSBERRY
-Pokemon = MACHOP,15
-    Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
-    AbilityIndex = 1
-Pokemon = GZIGZAGOON,15
-    Moves = SNARL,LICK,TACKLE,BITE
-    AbilityIndex = 1
-    Item = SITRUSBERRY
-Pokemon = RIOLU,15
-    Name = Sangfroid
-    Gender = female
-    Moves = MAGNETWAVE,SCREECH,COURAGEBOLT,VANGUARD
-    AbilityIndex = 1
-Pokemon = CROAGUNK,15
-    Moves = FLATTER,ENTOXIN,MUDTHROW,HEADBUTT
-    AbilityIndex = 0
-    Item = SITRUSBERRY
+ExtendsVersion = 0
+Policies = CURSE_TORMENTED
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera]
 Policies = YEZERA
@@ -190,14 +153,8 @@ Pokemon = JOLTIK,18
     AbilityIndex = 0
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,5]
-Policies = YEZERA,CURSE_TYPE_WEAKENED
-Pokemon = BUNNELBY,17
-    AbilityIndex = 1
-    Item = ORANBERRY
-Pokemon = SMOOCHUM,17
-    AbilityIndex = 0
-Pokemon = JOLTIK,18
-    AbilityIndex = 0
+ExtendsVersion = 0
+Policies = CURSE_TYPE_WEAKENED
 Pokemon = NOIBAT,17
     AbilityIndex = 1
     Item = FLYINGGEM
@@ -298,22 +255,9 @@ Pokemon = FLETCHINDER,20
     Item = LIECHIBERRY
 #-------------------------------
 [LEADER_Eko_2,Eko]
-Policies = PRIORITIZEDOTS,EKO
+Extends = LEADER_Eko,Eko,0
 Pokemon = SALANDIT,20
-    Moves = POISONGAS,STENCH,EMBER,IGNITE
-    AbilityIndex = 1
     Item = AIRBALLOON
-Pokemon = TENTACOOL,20
-    Moves = WATERPULSE,SUPERSONIC,WRAP,ACID
-    AbilityIndex = 1
-Pokemon = VULPIX,20
-    Moves = INCINERATE,CONFUSERAY,IGNITE,SUBSTITUTE
-    AbilityIndex = 0
-Pokemon = FLETCHINDER,20
-    Name = Dario
-    Moves = FLAMECHARGE,FLAIL,PECK,QUICKATTACK
-    AbilityIndex = 0
-    Item = LIECHIBERRY
 Pokemon = TYNAMO,20
     Moves = JOLT,ENTOXIN,POISONFANG,LIGHTSCREEN
     AbilityIndex = 0
@@ -323,29 +267,8 @@ Pokemon = CAMERUPT,20
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Eko_2,Eko,1]
-Policies = PRIORITIZEDOTS,EKO,CURSE_STATUS_DOUBLED
-Pokemon = SALANDIT,20
-    Moves = POISONGAS,STENCH,EMBER,IGNITE
-    AbilityIndex = 1
-    Item = AIRBALLOON
-Pokemon = TENTACOOL,20
-    Moves = WATERPULSE,SUPERSONIC,WRAP,ACID
-    AbilityIndex = 1
-Pokemon = VULPIX,20
-    Moves = INCINERATE,CONFUSERAY,IGNITE,SUBSTITUTE
-    AbilityIndex = 0
-Pokemon = FLETCHINDER,20
-    Name = Dario
-    Moves = FLAMECHARGE,FLAIL,PECK,QUICKATTACK
-    AbilityIndex = 0
-    Item = LIECHIBERRY
-Pokemon = TYNAMO,20
-    Moves = JOLT,ENTOXIN,POISONFANG,LIGHTSCREEN
-    AbilityIndex = 0
-Pokemon = CAMERUPT,20
-    Moves = TREMOR,FLAMEBURST,INCINERATE,MUDTHROW
-    AbilityIndex = 1
-    Item = SITRUSBERRY
+ExtendsVersion = 0
+Policies = CURSE_STATUS_DOUBLED
 #-------------------------------
 [LINEBACKER,Josh]
 Pokemon = GURDURR,21
@@ -476,10 +399,9 @@ Pokemon = LUXIO,25
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Helena_2,Helena]
-Policies = HELENA
-Pokemon = LANTURN,25
-    Moves = DOUSE,SHOCKWAVE,VOLTSWITCH,EERIEIMPULSE
-    AbilityIndex = 0
+Extends = LEADER_Helena,Helena,0
+Pokemon = WAILMER,25
+    Item = ELECTRICSEED
 Pokemon = PINCURCHIN,25
     Moves = SPARK,PECK,BUBBLEBEAM,VENOSHOCK
     AbilityIndex = 0
@@ -487,45 +409,10 @@ Pokemon = PINCURCHIN,25
 Pokemon = CLAUNCHER,25
     Moves = TERRAINPULSE,AQUAJET,WATERPULSE
     AbilityIndex = 0
-Pokemon = CHARJABUG,25
-    Moves = STRINGSHOT,CLACKACLACK,LIGHTSHOW,RISINGVOLTAGE
-    AbilityIndex = 0
-    Item = SITRUSBERRY
-Pokemon = WAILMER,25
-    Name = Hannibal
-    Gender = male
-    Moves = NOBLEROAR,CHILL,WHIRLPOOL,BRINE
-    AbilityIndex = 1
-    Item = ELECTRICSEED
-Pokemon = LUXIO,25
-    Moves = FEINTATTACK,THUNDERFANG,ROAR,MAGNETRISE
-    AbilityIndex = 1
 #-------------------------------
 [LEADER_Helena_2,Helena,1]
-Policies = HELENA,CURSE_PERMANENT_ELECTRIC
-Pokemon = LANTURN,25
-    Moves = DOUSE,SHOCKWAVE,VOLTSWITCH,EERIEIMPULSE
-    AbilityIndex = 0
-Pokemon = PINCURCHIN,25
-    Moves = SPARK,PECK,BUBBLEBEAM,VENOSHOCK
-    AbilityIndex = 0
-    Item = EJECTBUTTON
-Pokemon = CLAUNCHER,25
-    Moves = TERRAINPULSE,AQUAJET,WATERPULSE
-    AbilityIndex = 0
-Pokemon = CHARJABUG,25
-    Moves = STRINGSHOT,CLACKACLACK,LIGHTSHOW,RISINGVOLTAGE
-    AbilityIndex = 0
-    Item = SITRUSBERRY
-Pokemon = WAILMER,25
-    Name = Hannibal
-    Gender = male
-    Moves = NOBLEROAR,CHILL,WHIRLPOOL,BRINE
-    AbilityIndex = 1
-    Item = ELECTRICSEED
-Pokemon = LUXIO,25
-    Moves = FEINTATTACK,THUNDERFANG,ROAR,MAGNETRISE
-    AbilityIndex = 1
+ExtendsVersion = 0
+Policies = CURSE_PERMANENT_ELECTRIC
 #-------------------------------
 [IDOL,Ishizu]
 Pokemon = JIGGLYPUFF,25
@@ -577,7 +464,7 @@ Pokemon = SNORUNT,25
 #-------------------------------
 [COOLTRAINER_M7,Xander]
 Pokemon = FERROSEED,15
-    Moves = INGRAIN,SELFDESTRUCT,SPIKES
+    Moves = INGRAIN,SELFDESTRUCT,SPIKES,DAZZLE
     AbilityIndex = 0
     Item = LEFTOVERS
     EV = 20,10,0,0,0,20
@@ -587,7 +474,7 @@ Pokemon = LITWICK,15
     Item = FOCUSSASH
     EV = 20,20,0,10,20,0
 Pokemon = RATTATA,15
-    Moves = QUICKATTACK,TACKLE,REVENGE
+    Moves = QUICKATTACK,TACKLE,REVENGE,BITE
     AbilityIndex = 0
     Item = FLAMEORB
     EV = 10,20,0,20,0,0
@@ -597,12 +484,12 @@ Pokemon = SLOWPOKE,15
     Item = ORANBERRY
     EV = 10,0,20,0,0,20
 Pokemon = BEEDRILL,15
-    Moves = TWINEEDLE,POISONSTING,ROOST
+    Moves = TWINEEDLE,POISONSTING,ROOST,RAGE
     AbilityIndex = 0
     Item = SHELLBELL
     EV = 20,20,0,10,0,0
 Pokemon = VANILLITE,15
-    Moves = POWDERSNOW,FAIRYWIND,ICESHARD
+    Moves = POWDERSNOW,FAIRYWIND,ICESHARD,CHILL
     AbilityIndex = 1
     Item = LIFEORB
     EV = 0,20,10,20,20,0
@@ -631,7 +518,7 @@ Pokemon = SKIPLOOM,20
 Pokemon = PIKACHU,20
     Moves = ELECTROBALL,NUZZLE,DRAININGKISS,SHOUT
     AbilityIndex = 0
-    Item = POISONORB
+    Item = FROSTORB
     EV = 0,20,10,20,20,0
 Pokemon = BUTTERFREE,20
     Moves = GUST,ELECTROWEB,CLACKACLACK,PSYBEAM
@@ -648,7 +535,7 @@ Pokemon = WHIRLIPEDE,25
 Pokemon = PIDGEOTTO,25
     Moves = GALE,TAILWIND,ROOST
     AbilityIndex = 1
-    Item = POISONORB
+    Item = FROSTORB
     EV = 10,20,0,15,20,5
 Pokemon = HAUNTER,25
     Moves = WILLOWISP,HEX,CLEARSMOG,SUBSTITUTE
@@ -672,6 +559,7 @@ Pokemon = FLAAFFY,25
     EV = 20,0,0,0,0,20
 #-------------------------------
 [COOLTRAINER_F7,Raven]
+Policies = RAIN_TEAM
 Pokemon = POLITOED,30
     Moves = COLDFRONT,SCALD,FLIPTURN
     AbilityIndex = 0
@@ -704,6 +592,7 @@ Pokemon = SHIINOTIC,30
     EV = 20,20,0,0,20,10
 #-------------------------------
 [COOLTRAINER_M,Max]
+Policies = SAND_TEAM
 Pokemon = HIPPOPOTAS,25
     Moves = MUDSHOT,FIRESPIN,SANDSTORM,YAWN
     AbilityIndex = 0
@@ -730,6 +619,7 @@ Pokemon = LILEEP,25
     Item = LEFTOVERS
 #-------------------------------
 [COOLTRAINER_F,Priscilla]
+Policies = HAIL_TEAM
 Pokemon = MISMAGIUS,30
     Moves = SPITEFULCHANT,MYSTICALFIRE,DAZZLINGGLEAM,POWERGEM
     AbilityIndex = 0
@@ -796,7 +686,7 @@ Pokemon = AMBIPOM,40
 Pokemon = MACHAMP,40
     Moves = BULKUP,KNOCKOFF,FACADE,REVERSAL
     AbilityIndex = 0
-    Item = POISONORB
+    Item = FLAMEORB
     EV = 20,20,10,0,0,0
 Pokemon = TURTONATOR,40
     Moves = INCINERATE,LOOMOVER,CRIPPLINGBREATH,IGNITE
@@ -831,16 +721,8 @@ Pokemon = POLIWHIRL,25
     AbilityIndex = 1
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,6]
+ExtendsVersion = 1
 Policies = CURSE_TYPE_WEAKENED
-Pokemon = MAGNETON,25
-    Moves = LIGHTSCREEN,SHOCKWAVE,MIRRORSHOT
-    AbilityIndex = 1
-Pokemon = MORGREM,25
-    Moves = REFLECT,ASSURANCE,PERFUMEDPUNCH
-    AbilityIndex = 1
-Pokemon = POLIWHIRL,25
-    Moves = SPATTERINGRAM,BRICKBREAK,HELPINGHAND
-    AbilityIndex = 1
 Pokemon = CENTISKORCH,25
     Moves = BUGBITE,FLAMEWHEEL,DAZZLE
     AbilityIndex = 1
@@ -870,22 +752,11 @@ Pokemon = EISCUE,35
     AbilityIndex = 0
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,7]
-Policies = YEZERA,CURSE_TYPE_WEAKENED
-Pokemon = VOLBEAT,35
-    AbilityIndex = 1
-    Item = SITRUSBERRY
-Pokemon = HYPNO,35
-    AbilityIndex = 1
-Pokemon = MALAMAR,35
-    AbilityIndex = 0
-Pokemon = MILTANK,35
-    AbilityIndex = 0
-    Item = LEFTOVERS
+ExtendsVersion = 2
+Policies = CURSE_TYPE_WEAKENED
 Pokemon = RHYDON,35
     AbilityIndex = 0
     Item = ROCKGEM
-Pokemon = EISCUE,35
-    AbilityIndex = 0
 #-------------------------------
 [SCHOOLKID_M,Louis]
 Pokemon = DUCKLETT,19
@@ -1015,7 +886,7 @@ Pokemon = HAXORUS,65
 Pokemon = AGGRON,64
     AbilityIndex = 0
     Item = SITRUSBERRY
-Pokemon = LAPNESSIE,65
+Pokemon = SAURENAID,65
     AbilityIndex = 0
     Item = LEFTOVERS
 Pokemon = EMOLGA,66
@@ -1094,6 +965,7 @@ Pokemon = UNFEZANT,35
     AbilityIndex = 1
 #-------------------------------
 [TRAINER_Vincent,Vincent]
+Policies = RAIN_TEAM
 Pokemon = MURKROW,25
     Name = Harbinger
     AbilityIndex = 1
@@ -1293,23 +1165,9 @@ Pokemon = ORICORIO,30
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Rafael_2,Rafael]
-Policies = RAFAEL
-Pokemon = DHELMISE,30
-    Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
-    AbilityIndex = 1
-Pokemon = THWACKEY,30
-    Moves = BODYSLAM,KNOCKOFF,RAZORLEAF,MEGAPUNCH
-    AbilityIndex = 1
-    Item = TERRAINEXTENDER
-Pokemon = AMAROWAK,30
-    Name = Apotropaia
-    Gender = female
-    Moves = BONECLUB,SHADOWCLAW,FIRELASH,SWORDSDANCE
-    AbilityIndex = 1
+Extends = LEADER_Rafael,Rafael,0
 Pokemon = ORICORIO,30
-    Form = 3
-    Moves = FEATHERDANCE,TEETERDANCE,LIGHTNINGDANCE,FIERYDANCE
-    AbilityIndex = 1
+    Item = MENTALHERB
 Pokemon = MISDREAVUS,30
     Moves = HEX,KALEIDOSCOPE,SHIVER,CLEARSMOG
     AbilityIndex = 1
@@ -1320,31 +1178,8 @@ Pokemon = BELLOSSOM,30
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Rafael_2,Rafael,1]
-Policies = RAFAEL,CURSE_SELF_DEBUFFING
-Pokemon = DHELMISE,30
-    Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
-    AbilityIndex = 1
-Pokemon = THWACKEY,30
-    Moves = BODYSLAM,KNOCKOFF,RAZORLEAF,MEGAPUNCH
-    AbilityIndex = 1
-    Item = TERRAINEXTENDER
-Pokemon = AMAROWAK,30
-    Name = Apotropaia
-    Gender = female
-    Moves = BONECLUB,SHADOWCLAW,FIRELASH,SWORDSDANCE
-    AbilityIndex = 1
-Pokemon = ORICORIO,30
-    Form = 3
-    Moves = FEATHERDANCE,TEETERDANCE,LIGHTNINGDANCE,FIERYDANCE
-    AbilityIndex = 1
-Pokemon = MISDREAVUS,30
-    Moves = HEX,KALEIDOSCOPE,SHIVER,CLEARSMOG
-    AbilityIndex = 1
-    Item = LIFEORB
-Pokemon = BELLOSSOM,30
-    Moves = MEGADRAIN,FIERYDANCE,POISONSPIKES,GRASSYGLIDE
-    AbilityIndex = 1
-    Item = SITRUSBERRY
+ExtendsVersion = 0
+Policies = CURSE_SELF_DEBUFFING
 #-------------------------------
 [ARCHFRIEND_Lainie,Lainie]
 Policies = LAINIE
@@ -1392,7 +1227,7 @@ Pokemon = SCARAPACE,60
     Moves = DIVEBOMB,XSCISSOR,CLOSECOMBAT,TRAMPLE
     AbilityIndex = 0
     Item = STRIKEVEST
-Pokemon = LAPNESSIE,60
+Pokemon = SAURENAID,60
     Moves = HYPERVOICE,DRAGONENERGY,GEYSER,SURF
     AbilityIndex = 0
     Item = ASSAULTVEST
@@ -1833,6 +1668,7 @@ Pokemon = LAIRON,40
     AbilityIndex = 0
 #-------------------------------
 [ROUGHNECK,Reese]
+Policies = SAND_TEAM
 Pokemon = PUPITAR,40
     AbilityIndex = 0
     Item = LEFTOVERS
@@ -1872,8 +1708,8 @@ Pokemon = RHYDON,40
 [SMASHER,Stella]
 Pokemon = SHUCKLE,40
     AbilityIndex = 1
-Pokemon = MASQUERAIN,40
-    AbilityIndex = 1
+Pokemon = VIVILLON,40
+    AbilityIndex = 0
 Pokemon = WEEZING,40
     AbilityIndex = 0
     Item = POISONGEM
@@ -1892,175 +1728,176 @@ Pokemon = AROMATISSE,40
     AbilityIndex = 0
 #-------------------------------
 [DEVJUGGLER,Brickbat]
-Pokemon = WIGGLYTUFF,60
+Pokemon = WIGGLYTUFF,70
     AbilityIndex = 1
-Pokemon = HAEROBIC,60
+Pokemon = HAEROBIC,70
     AbilityIndex = 1
-Pokemon = GIGANTEON,60
+Pokemon = GIGANTEON,70
     AbilityIndex = 0
-Pokemon = KECLEON,60
+Pokemon = KECLEON,70
     AbilityIndex = 1
-Pokemon = CINCCINO,60
+Pokemon = CINCCINO,70
     AbilityIndex = 0
-Pokemon = BEWEAR,60
+Pokemon = BEWEAR,70
     AbilityIndex = 0
 #-------------------------------
 [DEVCOOLTRAINER_M4,Zeu]
-Pokemon = GALVANTULA,60
+Pokemon = GALVANTULA,70
     AbilityIndex = 0
-Pokemon = FERALIGATR,60
+Pokemon = FERALIGATR,70
     AbilityIndex = 1
-Pokemon = CHANDELURE,60
+Pokemon = CHANDELURE,70
     AbilityIndex = 1
-Pokemon = CROBAT,60
+Pokemon = CROBAT,70
     AbilityIndex = 0
-Pokemon = SWALOT,60
+Pokemon = SWALOT,70
     AbilityIndex = 0
-Pokemon = HYDREIGON,60
+Pokemon = HYDREIGON,70
     AbilityIndex = 1
 #-------------------------------
 [DEVPSYCHIC_M,Waka]
-Pokemon = GLALIE,60
+Pokemon = GLALIE,70
     AbilityIndex = 0
-Pokemon = DHELMISE,60
+Pokemon = DHELMISE,70
     AbilityIndex = 1
-Pokemon = CRYOGONAL,60
+Pokemon = CRYOGONAL,70
     AbilityIndex = 0
-Pokemon = GIRAFARIG,60
+Pokemon = GIRAFARIG,70
     AbilityIndex = 0
-Pokemon = MUSHARNA,60
+Pokemon = MUSHARNA,70
     AbilityIndex = 0
-Pokemon = CHIMECHO,60
+Pokemon = CHIMECHO,70
     AbilityIndex = 1
 #-------------------------------
 [DEVSUPERNERD,Agentbla]
-Pokemon = BEARTIC,60
+Pokemon = BEARTIC,70
     AbilityIndex = 1
-Pokemon = NINETALES,60
+Pokemon = NINETALES,70
     AbilityIndex = 1
-Pokemon = KRICKETUNE,60
+Pokemon = KRICKETUNE,70
     AbilityIndex = 0
-Pokemon = WHISCASH,60
+Pokemon = WHISCASH,70
     AbilityIndex = 0
-Pokemon = MFURRET,60
+Pokemon = MFURRET,70
     AbilityIndex = 0
-Pokemon = DIGNIPHITE,60
+Pokemon = DIGNIPHITE,70
     AbilityIndex = 1
 #-------------------------------
 [DEVDRAGONTAMER2,Divock]
-Pokemon = DRAGONITE,60
+Pokemon = DRAGONITE,70
     AbilityIndex = 0
-Pokemon = KLAWSAR,60
+Pokemon = KLAWSAR,70
     AbilityIndex = 1
-Pokemon = VESPIQUEN,60
+Pokemon = VESPIQUEN,70
     AbilityIndex = 1
-Pokemon = SCRAFTY,60
+Pokemon = SCRAFTY,70
     AbilityIndex = 0
-Pokemon = PRIMARINA,60
+Pokemon = PRIMARINA,70
     AbilityIndex = 0
-Pokemon = NIDOKING,60
+Pokemon = NIDOKING,70
     AbilityIndex = 1
 #-------------------------------
 [DEVGAMBLER,IgnitedxSoul]
-Pokemon = AEGISLASH,60
+Pokemon = AEGISLASH,70
     AbilityIndex = 1
-Pokemon = INFERNAPE,60
+Pokemon = INFERNAPE,70
     AbilityIndex = 0
-Pokemon = VIKAVOLT,60
+Pokemon = VIKAVOLT,70
     AbilityIndex = 1
-Pokemon = GARCHOMP,60
+Pokemon = GARCHOMP,70
     AbilityIndex = 1
-Pokemon = TOXAPEX,60
+Pokemon = TOXAPEX,70
     AbilityIndex = 1
-Pokemon = RILLABOOM,60
+Pokemon = RILLABOOM,70
     AbilityIndex = 0
 #-------------------------------
 [DEVARTIST3,Drawingbox]
-Pokemon = ESPEON,60
+Pokemon = ESPEON,70
     AbilityIndex = 0
-Pokemon = GOTHITELLE,60
+Pokemon = GOTHITELLE,70
     AbilityIndex = 0
-Pokemon = BEHEEYEM,60
+Pokemon = BEHEEYEM,70
     AbilityIndex = 0
-Pokemon = ORBEETLE,60
+Pokemon = ORBEETLE,70
     AbilityIndex = 1
-Pokemon = HATTERENE,60
+Pokemon = HATTERENE,70
     AbilityIndex = 0
-Pokemon = MALAMAR,60
+Pokemon = MALAMAR,70
     AbilityIndex = 0
 #-------------------------------
 [DEVCOOLTRAINER_M3,Dada]
-Pokemon = FLAREON,60
+Pokemon = FLAREON,70
     AbilityIndex = 1
-Pokemon = HOUNDOMINUS,60
+Pokemon = HOUNDOMINUS,70
     AbilityIndex = 0
-Pokemon = MAGMORTAR,60
+Pokemon = MAGMORTAR,70
     AbilityIndex = 0
-Pokemon = DARMANITAN,60
+Pokemon = DARMANITAN,70
     AbilityIndex = 1
-Pokemon = CHANDELURE,60
+Pokemon = CHANDELURE,70
     AbilityIndex = 0
-Pokemon = TALONFLAME,60
+Pokemon = TALONFLAME,70
     AbilityIndex = 1
 #-------------------------------
 [DEVPOKEMONRANGER_M,Zufaix]
-Pokemon = ANINETALES,60
+Pokemon = ANINETALES,70
     AbilityIndex = 0
-Pokemon = MISMAGIUS,60
+Pokemon = MISMAGIUS,70
     AbilityIndex = 0
-Pokemon = FROSLASS,60
+Pokemon = FROSLASS,70
     AbilityIndex = 0
-Pokemon = LAPNESSIE,60
+Pokemon = SAURENAID,70
     AbilityIndex = 0
-Pokemon = ASANDSLASH,60
+Pokemon = ASANDSLASH,70
     AbilityIndex = 1
-Pokemon = CONIFEAR,60
+Pokemon = CONIFEAR,70
     AbilityIndex = 1
 #-------------------------------
 [DEVHEXMANIAC,Lichenprincess]
-Pokemon = GALVANTULA,60
+Pokemon = GALVANTULA,70
     AbilityIndex = 0
-Pokemon = TOXAPEX,60
+Pokemon = TOXAPEX,70
     AbilityIndex = 0
-Pokemon = CHANDELURE,60
+Pokemon = CHANDELURE,70
     AbilityIndex = 0
-Pokemon = HATTERENE,60
+Pokemon = HATTERENE,70
     AbilityIndex = 0
-Pokemon = VOLCARONA,60
+Pokemon = VOLCARONA,70
     AbilityIndex = 1
-Pokemon = ARCLAMOR,60
+Pokemon = ARCLAMOR,70
     AbilityIndex = 1
 #-------------------------------
 [DEVMAID2,Maddie]
-Pokemon = BUNEARY,60
+Pokemon = BUNEARY,70
     AbilityIndex = 1
-Pokemon = WOOLOO,60
+Pokemon = WOOLOO,70
     AbilityIndex = 0
-Pokemon = BUNEARY,60
+Pokemon = BUNEARY,70
     AbilityIndex = 0
-Pokemon = PIKACHU,60
+Pokemon = PIKACHU,70
     Form = 14
     AbilityIndex = 1
-Pokemon = BUNEARY,60
+Pokemon = BUNEARY,70
     AbilityIndex = 1
-Pokemon = BRIONNE,60
+Pokemon = BRIONNE,70
     AbilityIndex = 0
 #-------------------------------
 [DEVCLERK_M2,Papper]
-Pokemon = FERALIGATR,60
+Pokemon = FERALIGATR,70
     AbilityIndex = 1
-Pokemon = PACHIRISU,60
+Pokemon = PACHIRISU,70
     AbilityIndex = 0
-Pokemon = TORTERRA,60
+Pokemon = TORTERRA,70
     AbilityIndex = 0
-Pokemon = HONCHKROW,60
+Pokemon = HONCHKROW,70
     AbilityIndex = 0
-Pokemon = BRONZONG,60
+Pokemon = BRONZONG,70
     AbilityIndex = 1
-Pokemon = DRAPION,60
+Pokemon = DRAPION,70
     AbilityIndex = 0
 #-------------------------------
 [LEADER_Bence,Bence]
+Policies = BENCE
 Pokemon = STARAPTOR,40
     Moves = DUALWINGBEAT,CLOSECOMBAT,UTURN,QUICKATTACK
     AbilityIndex = 0
@@ -2080,100 +1917,19 @@ Pokemon = DREDNAW,40
 Pokemon = ARCHEOPS,40
     Moves = PLUCK,STRAFE,ROCKSLIDE,UTURN
     AbilityIndex = 0
-    Item = SITRUSBERRY
-#-------------------------------
-[LEADER_Bence_2,Bence,1]
-Policies = BENCE,CURSE_TYPE_FRAGILE
-Pokemon = STARAPTOR,40
-    Moves = DUALWINGBEAT,CLOSECOMBAT,UTURN,QUICKATTACK
-    AbilityIndex = 0
-Pokemon = BASTIODON,40
-    Moves = TAUNT,SPIKES,SWAGGER,IRONHEAD
-    AbilityIndex = 0
-    Item = LEFTOVERS
-Pokemon = JUMPLUFF,40
-    Moves = GIGADRAIN,ALLERGY,AIRSLASH,SYNTHESIS
-    AbilityIndex = 0
-    Item = GRASSGEM
-Pokemon = STONJOURNER,40
-    Name = Agnes
-    Gender = female
-    Moves = BODYPRESS,ROCKSLIDE,STEALTHROCK,HEAVYSLAM
-    AbilityIndex = 1
-    Item = SALACBERRY
-Pokemon = DREDNAW,40
-    Moves = RAZORSHELL,JAWLOCK,GRANITEHEAD,MEANLOOK
-    AbilityIndex = 1
-Pokemon = ARCHEOPS,40
-    Moves = PLUCK,STRAFE,ROCKSLIDE,UTURN
-    AbilityIndex = 0
-    Item = SITRUSBERRY
-#-------------------------------
-[LEADER_Zoe,Zoé]
-Pokemon = CRADILY,40
-    Moves = GIGADRAIN,DIAMONDFORCE,BRINE,LEECHSEED
-    AbilityIndex = 1
-Pokemon = MANTINE,40
-    Name = 1 Second
-    Gender = male
-    Moves = ROOST,AIRSLASH,SCALD,ICYWIND
-    AbilityIndex = 1
-    Item = LEFTOVERS
-Pokemon = BRAVIARY,40
-    Moves = POWERUPPUNCH,MACHPUNCH,BIRDSTRIKE,SHADOWCLAW
-    AbilityIndex = 0
-    Item = SITRUSBERRY
-Pokemon = SUDOWOODO,40
-    Moves = STRENGTHSAP,TEARFULLOOK,POWERGEM,THRIVINGFORCE
-    AbilityIndex = 1
-Pokemon = PTEROFLYTE,40
-    Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
-    AbilityIndex = 1
-    Item = SITRUSBERRY
-#-------------------------------
-[LEADER_Zoe_2,Zoé,1]
-Policies = ZOE,CURSE_TYPE_FRAGILE
-Pokemon = CRADILY,40
-    Moves = GIGADRAIN,DIAMONDFORCE,BRINE,LEECHSEED
-    AbilityIndex = 1
-Pokemon = MANTINE,40
-    Name = 1 Second
-    Gender = male
-    Moves = ROOST,AIRSLASH,SCALD,ICYWIND
-    AbilityIndex = 1
-    Item = LEFTOVERS
-Pokemon = HAWLUCHA,40
-    Moves = FLYINGPRESS,DRAINPUNCH,SWORDSDANCE,TAILWIND
-    AbilityIndex = 0
-    Item = LIFEORB
-Pokemon = BRAVIARY,40
-    Moves = POWERUPPUNCH,MACHPUNCH,BIRDSTRIKE,SHADOWCLAW
-    AbilityIndex = 0
-    Item = SITRUSBERRY
-Pokemon = SUDOWOODO,40
-    Moves = STRENGTHSAP,TEARFULLOOK,POWERGEM,THRIVINGFORCE
-    AbilityIndex = 1
-Pokemon = PTEROFLYTE,40
-    Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
-    AbilityIndex = 1
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Bence_2,Bence]
-Pokemon = STARAPTOR,40
-    Moves = DUALWINGBEAT,CLOSECOMBAT,UTURN,QUICKATTACK
-    AbilityIndex = 0
-Pokemon = STONJOURNER,40
-    Name = Agnes
-    Gender = female
-    Moves = BODYPRESS,ROCKSLIDE,STEALTHROCK,HEAVYSLAM
-    AbilityIndex = 1
-    Item = SALACBERRY
-Pokemon = JUMPLUFF,40
-    Moves = GIGADRAIN,ALLERGY,AIRSLASH,SYNTHESIS
-    AbilityIndex = 0
-    Item = GRASSGEM
+Extends = LEADER_Bence,Bence,0
+RemovePokemon = DREDNAW,40
+RemovePokemon = ARCHEOPS,40
 #-------------------------------
-[LEADER_Zoe_2,Zoé]
+[LEADER_Bence_2,Bence,1]
+Extends = LEADER_Bence,Bence,0
+Policies = CURSE_NO_MERCY
+#-------------------------------
+[LEADER_Zoe,Zoé]
+Policies = ZOE
 Pokemon = CRADILY,40
     Moves = GIGADRAIN,DIAMONDFORCE,BRINE,LEECHSEED
     AbilityIndex = 1
@@ -2183,10 +1939,25 @@ Pokemon = MANTINE,40
     Moves = ROOST,AIRSLASH,SCALD,ICYWIND
     AbilityIndex = 1
     Item = LEFTOVERS
+Pokemon = BRAVIARY,40
+    Moves = POWERUPPUNCH,MACHPUNCH,BIRDSTRIKE,SHADOWCLAW
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+Pokemon = SUDOWOODO,40
+    Moves = STRENGTHSAP,TEARFULLOOK,POWERGEM,THRIVINGFORCE
+    AbilityIndex = 1
 Pokemon = PTEROFLYTE,40
     Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
     AbilityIndex = 1
     Item = SITRUSBERRY
+#-------------------------------
+[LEADER_Zoe_2,Zoé]
+Extends = LEADER_Zoe,Zoé,0
+RemovePokemon = BRAVIARY,40
+RemovePokemon = SUDOWOODO,40
+#-------------------------------
+[LEADER_Zoe_2,Zoé,1]
+Extends = LEADER_Zoe,Zoé,0
 #-------------------------------
 [TRAINER_Zain,Zain]
 Policies = ZAIN
@@ -2211,26 +1982,8 @@ Pokemon = SERPERIOR,43
     Item = BIGROOT
 #-------------------------------
 [TRAINER_Zain,Zain,1]
-Policies = ZAIN,CURSE_SUBSTITUTED
-Pokemon = LIEPARD,42
-    Moves = FAKEOUT,NUZZLE,SUCKERPUNCH
-    AbilityIndex = 0
-    Item = NORMALGEM
-Pokemon = HARIYAMA,42
-    Moves = BULKUP,BRICKBREAK,FAKEOUT,KNOCKOFF
-    AbilityIndex = 1
-    Item = FLAMEORB
-Pokemon = FROSMOTH,43
-    Moves = BLIZZARD,SILVERWIND,BUGBUZZ,DAZZLINGGLEAM
-    AbilityIndex = 1
-Pokemon = DONPHAN,43
-    Moves = STEAMROLLER,EARTHQUAKE,PROTECT,THUNDERFANG
-    AbilityIndex = 1
-    Item = SHELLBELL
-Pokemon = SERPERIOR,43
-    Moves = MAJESTICGLARE,LEAFTORNADO,LEECHSEED
-    AbilityIndex = 1
-    Item = BIGROOT
+ExtendsVersion = 0
+Policies = CURSE_SUBSTITUTED
 Pokemon = EMPOLEON,43
     Moves = STEELWING,SWORDSDANCE,LIQUIDATION
     AbilityIndex = 0
@@ -2259,58 +2012,17 @@ Pokemon = GLALIE,45
     Item = ORANBERRY
 #-------------------------------
 [LEADER_Noel_2,Noel]
-Policies = NOEL
-Pokemon = MRRIME,45
-    Moves = COLDCONVERSION,EERIESPELL,PSYCHICTERRAIN,DAZZLINGGLEAM
-    AbilityIndex = 1
+Extends = LEADER_Noel,Noel,0
 Pokemon = GIRAFARIG,45
     Moves = FOULPLAY,PSYCHICFANGS,FLING,THIEF
     AbilityIndex = 0
     Item = IRONBALL
 Pokemon = METAGROSS,45
-    Name = Armiger
-    Shiny = yes
-    Moves = METEORMASH,BULLETPUNCH,BODYPRESS,PSYCHOCUT
-    AbilityIndex = 1
     Item = LUMBERRY
-Pokemon = LUNATONE,45
-    Moves = PSYCHIC,SIGNALBEAM,MOONBLAST,METEORBEAM
-    AbilityIndex = 0
-    Item = POWERHERB
-Pokemon = CRABOMINABLE,45
-    Moves = ENLIGHTENEDHIT,ICEHAMMER,BRICKBREAK,THUNDERPUNCH
-    AbilityIndex = 0
-Pokemon = GLALIE,45
-    Moves = CRYSTALCRUSH,CRUNCH,BULLDOZE,ICESHARD
-    AbilityIndex = 0
-    Item = ORANBERRY
 #-------------------------------
 [LEADER_Noel_2,Noel,1]
-Policies = NOEL,CURSE_DELEVELED
-Pokemon = MRRIME,45
-    Moves = COLDCONVERSION,EERIESPELL,PSYCHICTERRAIN,DAZZLINGGLEAM
-    AbilityIndex = 1
-Pokemon = GIRAFARIG,45
-    Moves = FOULPLAY,PSYCHICFANGS,FLING,THIEF
-    AbilityIndex = 0
-    Item = IRONBALL
-Pokemon = METAGROSS,45
-    Name = Armiger
-    Shiny = yes
-    Moves = METEORMASH,BULLETPUNCH,BODYPRESS,PSYCHOCUT
-    AbilityIndex = 1
-    Item = LUMBERRY
-Pokemon = LUNATONE,45
-    Moves = PSYCHIC,SIGNALBEAM,MOONBLAST,METEORBEAM
-    AbilityIndex = 0
-    Item = POWERHERB
-Pokemon = CRABOMINABLE,45
-    Moves = ENLIGHTENEDHIT,ICEHAMMER,BRICKBREAK,THUNDERPUNCH
-    AbilityIndex = 0
-Pokemon = GLALIE,45
-    Moves = CRYSTALCRUSH,CRUNCH,BULLDOZE,ICESHARD
-    AbilityIndex = 0
-    Item = ORANBERRY
+ExtendsVersion = 0
+Policies = CURSE_DELEVELED
 #-------------------------------
 [SWIMMER_F3,Bree]
 Pokemon = SCARODON,46
@@ -2490,6 +2202,7 @@ Pokemon = FROSLASS,45
     Item = PETAYABERRY
 #-------------------------------
 [WORKER3,Bruce]
+Policies = HAIL_TEAM
 Pokemon = AURORUS,45
     AbilityIndex = 1
     Item = ICYROCK
@@ -2534,7 +2247,7 @@ Pokemon = KECLEON,58
     Item = WEAKNESSPOLICY
 Pokemon = ATLACROSS,58
     AbilityIndex = 1
-    Item = POISONORB
+    Item = FLAMEORB
 Pokemon = BRAVIARY,59
     AbilityIndex = 0
     Item = CUSTAPBERRY
@@ -2576,70 +2289,74 @@ Pokemon = JYNX,70
     AbilityIndex = 0
     Item = FOCUSSASH
 Pokemon = SNORLAX,70
+    Moves = BELLYDRUM,KNOCKOFF,GIGAIMPACT,BODYSLAM
     AbilityIndex = 1
 #-------------------------------
 [FORMERCHAMP_Scilla,Scilla]
 Pokemon = AZUMARILL,70
+    Moves = AQUAJET,PLAYROUGH,AQUATAIL,GIGAIMPACT
     AbilityIndex = 1
-    Item = CHOICESCARF
+    Item = POWERLOCK
     EV = 20,20,10,0,0,0
 Pokemon = GALLADE,70
-    AbilityIndex = 0
+    Moves = PSYCHOCUT,CLOSECOMBAT,XSCISSOR,INFINITEFORCE
+    AbilityIndex = 1
     Item = FOCUSSASH
     EV = 10,20,0,20,0,0
 Pokemon = KOMMOO,70
-    Moves = CLANGOROUSSOUL,FIREPUNCH,CHIBURST,CLOSECOMBAT
+    Moves = CLANGOROUSSOUL,CLANGINGSCALES,IRONTAIL,EARTHQUAKE
     AbilityIndex = 0
-    Item = WHITEHERB
-    EV = 10,20,0,0,20,0
+    Item = LEFTOVERS
+    EV = 20,0,15,0,0,15
 Pokemon = GRAPPLOCT,70
+    Moves = STOMPINGTANTRUM,DRAINPUNCH,KRAKENCLUTCHES,BRUTALSWING
     AbilityIndex = 0
-    Item = FIGHTINGGEM
-    EV = 10,20,0,20,0,0
+    Item = ASSAULTVEST
+    EV = 20,0,15,0,0,15
 Pokemon = FLOATZEL,70
-    Moves = EXTREMESPEED,FAKEOUT,LIQUIDATION,AQUAINSTINCT
+    Moves = EXTREMESPEED,FAKEOUT,LIQUIDATION,CHAOSWHEEL
     AbilityIndex = 0
     Item = LIFEORB
     EV = 10,20,0,20,0,0
 Pokemon = URSHIFU,70
     Form = 1
-    Moves = WICKEDBLOW,BULKUP,CLOSECOMBAT,FIREPUNCH
+    Moves = SURGINGSTRIKES,CLOSECOMBAT,ICEPUNCH,IRONHEAD
     AbilityIndex = 0
-    Item = WHITEHERB
-    EV = 10,20,0,0,0,20
+    Item = CHOICEBAND
+    EV = 0,20,10,20,0,0
 #-------------------------------
 [FORMERCHAMP_Casey,Casey]
 Pokemon = CHERRIM,70
-    Moves = SUNNYDAY,MORNINGSUN,SOLARBEAM,FIRELASH
+    Moves = SUNNYDAY,MORNINGSUN,SOLARBEAM,FIREBLAST
     AbilityIndex = 0
     Item = HEATROCK
-    EV = 0,20,0,20,0,10
-Pokemon = PYROAR,70
-    Moves = HARDFEELINGS,TRAINEDOUTBURST,FLAMETHROWER,HYPERVOICE
-    AbilityIndex = 1
-    Item = CHOICESCARF
     EV = 0,20,0,20,20,10
+Pokemon = PYROAR,70
+    Moves = FIREBLAST,HYPERVOICE,SOLARBEAM,DARKPULSE
+    AbilityIndex = 1
+    Item = POWERHERB
+    EV = 0,20,5,20,20,5
 Pokemon = SAWSBUCK,70
     Form = 1
-    Moves = HORNLEECH,DOUBLEEDGE,NATUREPOWER,SUMMERDAZE
-    AbilityIndex = 1
-    Item = SHELLBELL
-    EV = 20,20,5,0,0,5
+    Moves = EARTHQUAKE,ZENHEADBUTT,LEAFBLADE,DOUBLEEDGE
+    AbilityIndex = 0
+    Item = POWERLOCK
+    EV = 20,0,5,20,0,5
 Pokemon = STOUTLAND,70
-    Moves = ROAR,SLACKOFF,SEISMICTOSS,WISH
+    Moves = ROAR,SLACKOFF,SEISMICTOSS,TRICKYTOXINS
     AbilityIndex = 0
     Item = LEFTOVERS
-    EV = 20,0,10,0,0,20
+    EV = 20,0,20,0,0,10
 Pokemon = APPLETUN,70
-    Moves = SYNTHESIS,DRAGONPULSE,SUNNYDAY,FLAMETHROWER
+    Moves = SYNTHESIS,DRACOMETEOR,LEECHSEED,THRIVINGFORCE
     AbilityIndex = 1
     Item = FLAMEORB
-    EV = 20,10,20,0,10,0
+    EV = 20,0,15,0,0,15
 Pokemon = BLAZIKEN,70
-    Moves = BLAZEKICK,ROCKSLIDE,OVERHEAT,CLOSECOMBAT
+    Moves = BLAZEKICK,CLOSECOMBAT,BRAVEBIRD,SWORDSDANCE
     AbilityIndex = 1
     Item = FOCUSSASH
-    EV = 0,20,0,20,0,10
+    EV = 10,20,0,20,0,0
 #-------------------------------
 [TRAINER_Imogene_A,Imogene]
 Pokemon = GOTHORITA,27
@@ -2719,6 +2436,7 @@ Pokemon = VANILLISH,20
     AbilityIndex = 1
 #-------------------------------
 [TRAINER_Alessa,Alessa,1]
+Policies = SUN_TEAM
 Pokemon = TRUBBISH,26
     AbilityIndex = 1
 Pokemon = SWADLOON,26
@@ -2889,7 +2607,7 @@ Pokemon = AMUK,55
 Pokemon = UNFEZANT,55
     AbilityIndex = 0
     Item = SCOPELENS
-Pokemon = LAPNESSIE,55
+Pokemon = SAURENAID,55
     AbilityIndex = 1
     Item = LEFTOVERS
 Pokemon = PORYGONZ,55
@@ -3040,8 +2758,10 @@ Pokemon = HYMNUS,55
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Victoire_2,Victoire]
-Policies = VICTOIRE
+Extends = LEADER_Victoire,Victoire,0
+Policies = RAIN_TEAM
 Pokemon = BLASTOISE,55
+    Position = 0
     Moves = FLASHCANNON,MENDINGSPRING,SURF,AURASPHERE
     AbilityIndex = 0
     Item = DAMPROCK
@@ -3049,49 +2769,13 @@ Pokemon = TOGEDEMARU,55
     Moves = THUNDER,SLAG,FLAMESPIKES,SPIKYSHIELD
     AbilityIndex = 1
     Item = AIRBALLOON
-Pokemon = HYMNUS,55
-    Moves = CALAMITOUSSLASH,PLAYROUGH,DRAGONDANCE,EARTHQUAKE
-    AbilityIndex = 1
-Pokemon = MISMAGIUS,55
-    Name = Cherchez
-    Gender = female
-    Moves = AURATRICK,SHADOWBALL,ENCHANTINGSONG,THUNDER
-    AbilityIndex = 1
-    Item = ASSAULTVEST
 Pokemon = AGGRON,55
-    Moves = BEDROCKBREAKER,IRONTAIL,AQUATAIL,FACADE
-    AbilityIndex = 1
     Item = FOCUSSASH
-Pokemon = DECEAT,55
-    Moves = METEORMASH,LUNARJUSTICE,CRUNCH,SWORDSDANCE
-    AbilityIndex = 0
+RemovePokemon = VANILLUXE,55
 #-------------------------------
 [LEADER_Victoire_2,Victoire,1]
-Policies = VICTOIRE,CURSE_VENGEANT
-Pokemon = BLASTOISE,55
-    Moves = FLASHCANNON,MENDINGSPRING,SURF,AURASPHERE
-    AbilityIndex = 0
-    Item = DAMPROCK
-Pokemon = TOGEDEMARU,55
-    Moves = THUNDER,SLAG,FLAMESPIKES,SPIKYSHIELD
-    AbilityIndex = 1
-    Item = AIRBALLOON
-Pokemon = HYMNUS,55
-    Moves = CALAMITOUSSLASH,PLAYROUGH,DRAGONDANCE,EARTHQUAKE
-    AbilityIndex = 1
-Pokemon = MISMAGIUS,55
-    Name = Cherchez
-    Gender = female
-    Moves = AURATRICK,SHADOWBALL,ENCHANTINGSONG,THUNDER
-    AbilityIndex = 1
-    Item = ASSAULTVEST
-Pokemon = AGGRON,55
-    Moves = BEDROCKBREAKER,IRONTAIL,AQUATAIL,FACADE
-    AbilityIndex = 1
-    Item = FOCUSSASH
-Pokemon = DECEAT,55
-    Moves = METEORMASH,LUNARJUSTICE,CRUNCH,SWORDSDANCE
-    AbilityIndex = 0
+ExtendsVersion = 0
+Policies = CURSE_VENGEANT
 #-------------------------------
 [TRAINER_Sang,Sang]
 Pokemon = EXPLOUD,47
@@ -3128,39 +2812,8 @@ Pokemon = KOMMOO,46
     Item = EJECTPACK
 #-------------------------------
 [TRAINER_Sang,Sang,1]
+ExtendsVersion = 0
 Policies = CURSE_PERISH_SONGED
-Pokemon = EXPLOUD,47
-    Name = Egret Ash
-    Gender = female
-    Moves = HYPERVOICE,FLAMETHROWER,ICEBEAM,SHADOWBALL
-    AbilityIndex = 1
-    Item = NORMALGEM
-Pokemon = ALAKAZAM,47
-    Name = Ibis Veil
-    Gender = male
-    Moves = TELEPORT,PSYCHIC,DAZZLINGGLEAM,CALMMIND
-    AbilityIndex = 1
-Pokemon = PRIMARINA,46
-    Name = Hawk Doll
-    Gender = female
-    Moves = SPARKLINGARIA,ENCHANTINGSONG,MENDINGSPRING,HYPERVOICE
-    AbilityIndex = 0
-Pokemon = KROOKODILE,46
-    Name = Stork Saw
-    Gender = male
-    Moves = EARTHQUAKE,CRUNCH,STAREDOWN,BULKUP
-    AbilityIndex = 0
-Pokemon = SCARAPACE,45
-    Name = Wren Glass
-    Gender = female
-    Moves = HUNTDOWN,STORMTHROW,XSCISSOR,BODYSLAM
-    AbilityIndex = 0
-Pokemon = KOMMOO,46
-    Name = Dove Abyss
-    Gender = male
-    Moves = CLANGINGSCALES,OUTRAGE,BODYPRESS,AURASPHERE
-    AbilityIndex = 0
-    Item = EJECTPACK
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,3]
 Policies = YEZERA4
@@ -3195,36 +2848,8 @@ Pokemon = MAGNEZONE,65
     Item = SHUCABERRY
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,8]
-Policies = YEZERA4,CURSE_FIGHT_EXTENDED
-Pokemon = TOGEKISS,65
-    Name = Artemisia
-    Gender = female
-    Moves = AIRSLASH,MOONBLAST,ROOST,PSYSHOCK
-    AbilityIndex = 1
-    Item = BABIRIBERRY
-Pokemon = GYARADOS,65
-    Name = Asha
-    Gender = female
-    Moves = DRAGONDANCE,REND,CRASHDIVE,AQUAJET
-    AbilityIndex = 0
-    Item = LIFEORB
-Pokemon = HAEROBIC,65
-    Name = Amalthea
-    Gender = female
-    Moves = CLOSECOMBAT,FAKEOUT,COMETSMASH,STRAFE
-    AbilityIndex = 1
-    Item = STRIKEVEST
-Pokemon = CHANDELURE,65
-    Name = Auden
-    Gender = male
-    Moves = SHADOWBALL,FLAMETHROWER,THRIVINGFORCE,DARKPULSE
-    AbilityIndex = 1
-    Item = FOCUSSASH
-Pokemon = MAGNEZONE,65
-    Name = Anri
-    Moves = MAGNETRISE,ZAPCANNON,STEELBEAM,LIGHTSCREEN
-    AbilityIndex = 1
-    Item = SHUCABERRY
+ExtendsVersion = 3
+Policies = CURSE_FIGHT_EXTENDED
 Pokemon = REGIROCK,65
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
     AbilityIndex = 0
@@ -3235,7 +2860,7 @@ Pokemon = DELPHOX,55
     AbilityIndex = 1
 Pokemon = SWELLOW,56
     AbilityIndex = 1
-    Item = POISONORB
+    Item = FLAMEORB
 Pokemon = ARMALDO,57
     AbilityIndex = 0
 Pokemon = MZANGOOSE,56
@@ -3269,7 +2894,7 @@ Pokemon = HATTERENE,55
 [WORKER6,Paul]
 Pokemon = KLINKLANG,55
     AbilityIndex = 0
-Pokemon = ZWEIHANDOR,55
+Pokemon = REAVOR,55
     AbilityIndex = 0
 Pokemon = SHIINOTIC,55
     AbilityIndex = 1
@@ -3349,40 +2974,42 @@ Pokemon = LYCANROC,55
     AbilityIndex = 1
 #-------------------------------
 [SCHOOLKID_M3,Jeremy]
-Pokemon = METAPOD,9
-    AbilityIndex = 0
+Pokemon = PAWNIARD,9
+    Moves = SUCKERPUNCH,BULLETPUNCH,ENDEAVOR
+    AbilityIndex = 1
+    Item = SHELLBELL
 #-------------------------------
 [FORMERCHAMP_Chara,Chara]
 Pokemon = BISHARP,70
-    Moves = SLAY,AMBUSH,METALBURST,SEVER
+    Moves = SLAY,AMBUSH,PSYCHOCUT,SEVER
     AbilityIndex = 1
     Item = WEAKNESSPOLICY
     EV = 0,20,0,20,0,10
 Pokemon = RIOJIN,70
-    Moves = FOCUSBLAST,STEELBEAM,VANGUARD,SHADOWBALL
+    Moves = CHIBURST,EARTHPOWER,STEELBEAM,SHADOWBALL
     AbilityIndex = 1
-    Item = WIDELENS
-    EV = 10,20,0,20,20,0
+    Item = WISEGLASSES
+    EV = 5,20,5,20,20,0
 Pokemon = MANDIBUZZ,70
-    Moves = KNOCKOFF,FOULPLAY,DEFOG,ROOST
+    Moves = KNOCKOFF,FOULPLAY,TRICKYTOXINS,ROOST
     AbilityIndex = 0
-    Item = LEFTOVERS
-    EV = 20,0,10,0,0,20
+    Item = ROSELIBERRY
+    EV = 20,0,15,0,0,15
 Pokemon = ATLACROSS,70
-    Moves = PINMISSILE,ROCKBLAST,FURYPECKS,BULKUP
-    AbilityIndex = 0
-    Item = RAZORCLAW
-    EV = 10,20,0,20,0,0
-Pokemon = URSHIFU,70
-    Moves = WICKEDBLOW,ICEPUNCH,DRAINPUNCH,THUNDERPUNCH
-    AbilityIndex = 0
-    Item = STRIKEVEST
-    EV = 10,20,0,0,0,20
-Pokemon = SPIRITOMB,70
-    Moves = NASTYPLOT,WILLOWISP,HEX,DARKPULSE
+    Moves = CLOSECOMBAT,MEGAHORN,FLING,FACADE
     AbilityIndex = 1
-    Item = ORANBERRY
-    EV = 20,10,0,0,10,20
+    Item = FLAMEORB
+    EV = 0,20,15,0,0,15
+Pokemon = URSHIFU,70
+    Moves = WICKEDBLOW,THUNDERPUNCH,CLOSECOMBAT,IRONHEAD
+    AbilityIndex = 0
+    Item = LIFEORB
+    EV = 10,20,0,20,0,0
+Pokemon = SPIRITOMB,70
+    Moves = NASTYPLOT,WILLOWISP,HEX,BLACKOUT
+    AbilityIndex = 1
+    Item = SALACBERRY
+    EV = 20,15,15,0,15,0
 #-------------------------------
 [COOLTRAINER_F7,Nyx]
 Pokemon = MANTINE,55
@@ -3476,7 +3103,7 @@ Pokemon = GARCHOMP,60
 Pokemon = VOLCARONA,60
     Moves = QUIVERDANCE,GIGADRAIN,BUGBUZZ,FLAMETHROWER
     AbilityIndex = 0
-Pokemon = LAPNESSIE,60
+Pokemon = SAURENAID,60
     Name = Maxie
     Gender = male
     Moves = HYPERVOICE,DRAGONPULSE,BUBBLEBLAST,PSYCHIC
@@ -3484,58 +3111,18 @@ Pokemon = LAPNESSIE,60
     Item = LEFTOVERS
 #-------------------------------
 [LEADER_Samorn_2,Samorn]
-Policies = SAMORN
-Pokemon = FLYGON,60
-    Moves = SANDVORTEX,BUGBUZZ,DRAGONPULSE,HEATWAVE
-    AbilityIndex = 0
-    Item = YACHEBERRY
+Extends = LEADER_Samorn,Samorn,0
 Pokemon = TOWERPODA,60
-    Moves = DOOMDESIRE,CRIPPLINGBREATH,SNARL,LOOMOVER
     AbilityIndex = 0
     Item = WILLLOCK
-Pokemon = GARCHOMP,60
-    Moves = OUTRAGE,BRICKBREAK,UNDERMINE,STEALTHROCK
-    AbilityIndex = 1
-Pokemon = VOLCARONA,60
-    Moves = QUIVERDANCE,GIGADRAIN,BUGBUZZ,FLAMETHROWER
-    AbilityIndex = 0
-Pokemon = ZWEIHANDOR,60
+Pokemon = REAVOR,60
     Moves = BULLETPUNCH,DUALWINGBEAT,BUGBITE,MAGNETHRASH
     AbilityIndex = 0
     Item = LIFEORB
-Pokemon = LAPNESSIE,60
-    Name = Maxie
-    Gender = male
-    Moves = HYPERVOICE,DRAGONPULSE,BUBBLEBLAST,PSYCHIC
-    AbilityIndex = 0
-    Item = LEFTOVERS
 #-------------------------------
 [LEADER_Samorn_2,Samorn,1]
-Policies = SAMORN,CURSE_PERMANENT_SAND
-Pokemon = FLYGON,60
-    Moves = SANDVORTEX,BUGBUZZ,DRAGONPULSE,HEATWAVE
-    AbilityIndex = 0
-    Item = YACHEBERRY
-Pokemon = TOWERPODA,60
-    Moves = DOOMDESIRE,CRIPPLINGBREATH,SNARL,LOOMOVER
-    AbilityIndex = 0
-    Item = WILLLOCK
-Pokemon = GARCHOMP,60
-    Moves = OUTRAGE,BRICKBREAK,UNDERMINE,STEALTHROCK
-    AbilityIndex = 1
-Pokemon = VOLCARONA,60
-    Moves = QUIVERDANCE,GIGADRAIN,BUGBUZZ,FLAMETHROWER
-    AbilityIndex = 0
-Pokemon = ZWEIHANDOR,60
-    Moves = BULLETPUNCH,DUALWINGBEAT,BUGBITE,MAGNETHRASH
-    AbilityIndex = 0
-    Item = LIFEORB
-Pokemon = LAPNESSIE,60
-    Name = Maxie
-    Gender = male
-    Moves = HYPERVOICE,DRAGONPULSE,BUBBLEBLAST,PSYCHIC
-    AbilityIndex = 0
-    Item = LEFTOVERS
+ExtendsVersion = 0
+Policies = CURSE_PERMANENT_SAND
 #-------------------------------
 [FIREBREATHER,Bradley]
 Pokemon = COMFEY,49
@@ -3605,6 +3192,10 @@ Pokemon = SCARAPACE,57
     Gender = female
     Moves = HUNTDOWN,STORMTHROW,XSCISSOR,BODYSLAM
     AbilityIndex = 0
+#-------------------------------
+[TRAINER_Sang,Sang,3]
+ExtendsVersion = 2
+Policies = CURSE_PERISH_SONGED
 #-------------------------------
 [VETERAN_F,Emily]
 Pokemon = SAMUROTT,61
@@ -3783,3 +3374,584 @@ Pokemon = TYRANITAR,65
     Moves = CRUNCH,ROCKSLIDE,EARTHQUAKE,IRONTAIL
     AbilityIndex = 1
     Item = ASSAULTVEST
+#-------------------------------
+[MASKEDVILLAIN,Crimson]
+NameForHashing = Imogene
+Pokemon = REGIROCK,55
+    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    AbilityIndex = 1
+Pokemon = GOTHITELLE,55
+    Moves = CORECOLLAPSE,MASSDESTRUCTION,MOONLIGHT,BLACKOUT
+    AbilityIndex = 0
+Pokemon = SHEDINJA,55
+    Moves = PHANTOMFORCE,XSCISSOR,PSYCHOBLADE,WILLOWISP
+    AbilityIndex = 0
+    Item = FOCUSSASH
+Pokemon = CORVIKNIGHT,55
+    Moves = SLAY,DUALWINGBEAT,BODYPRESS,ROOST
+    AbilityIndex = 1
+Pokemon = GLISCOR,55
+    Moves = EARTHQUAKE,FLY,TRICKYTOXINS,TAILWIND
+    AbilityIndex = 0
+    Item = POISONORB
+Pokemon = GOLISOPOD,55
+    Moves = FIRSTIMPRESSION,CROSSCHOP,WATERFALL,XSCISSOR
+    AbilityIndex = 0
+#-------------------------------
+[MASKEDVILLAIN,Crimson,1]
+ExtendsVersion = 0
+NameForHashing = Imogene
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIROCK,55
+    Item = ROCKGEM
+Pokemon = GOTHITELLE,55
+    Item = ORANBERRY
+Pokemon = CORVIKNIGHT,55
+    Item = LEFTOVERS
+Pokemon = GOLISOPOD,55
+    Item = BUGGEM
+#-------------------------------
+[MASKEDVILLAIN,Crimson,2]
+NameForHashing = Alessa
+Pokemon = REGIROCK,55
+    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    AbilityIndex = 1
+Pokemon = FORRETRESS,55
+    Moves = POISONSPIKES,STEALTHROCK,EXPLOSION
+    AbilityIndex = 1
+    Item = OCCABERRY
+Pokemon = RATTATA,10
+    Moves = QUICKATTACK,ENDEAVOR
+    AbilityIndex = 0
+    Item = FOCUSSASH
+Pokemon = PORYGONZ,55
+    Moves = HARDFEELINGS,CRITICALERROR,PHANTOMGATE,ICEBEAM
+    AbilityIndex = 1
+Pokemon = HAXORUS,55
+    Moves = CRUELTY,DRAGONDANCE,POISONJAB,FIRSTIMPRESSION
+    AbilityIndex = 0
+Pokemon = RILLABOOM,55
+    Moves = GRASSYGLIDE,KNOCKOFF,SWORDSDANCE,ACROBATICS
+    AbilityIndex = 1
+#-------------------------------
+[MASKEDVILLAIN,Crimson,3]
+ExtendsVersion = 2
+NameForHashing = Alessa
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIROCK,55
+    Item = ROCKGEM
+Pokemon = PORYGONZ,55
+    Item = FROSTORB
+Pokemon = HAXORUS,55
+    Item = SALACBERRY
+Pokemon = RILLABOOM,55
+    Item = FLYINGGEM
+#-------------------------------
+[MASKEDVILLAIN,Crimson,4]
+NameForHashing = Skylar
+Pokemon = REGIROCK,55
+    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    AbilityIndex = 1
+Pokemon = ABSOLUS,55
+    Moves = INFINITEFORCE,DARKALLURE,THUNDERBOLT,NASTYPLOT
+    AbilityIndex = 1
+Pokemon = ASANDSLASH,55
+    Moves = CRYSTALCRUSH,METEORMASH,STEALTHROCK,SUPERFANG
+    AbilityIndex = 1
+Pokemon = MILLIBLAZE,55
+    Moves = FIRELASH,LEECHLIFE,KNOCKOFF,SCALD
+    AbilityIndex = 0
+    Item = WATERGEM
+Pokemon = FLORGES,55
+    Moves = SYNTHESIS,AURATRICK,PETALDANCE,CALMMIND
+    AbilityIndex = 1
+    Item = OCCABERRY
+Pokemon = PALMANTRA,55
+    Moves = ADRENALASH,EXTRASENSORY,DEADEND,CALMMIND
+    AbilityIndex = 1
+#-------------------------------
+[MASKEDVILLAIN,Crimson,5]
+ExtendsVersion = 4
+NameForHashing = Skylar
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIROCK,55
+    Item = ROCKGEM
+Pokemon = ABSOLUS,55
+    Item = SITRUSBERRY
+Pokemon = ASANDSLASH,55
+    Item = CUSTAPBERRY
+Pokemon = FLORGES,55
+    Item = OCCABERRY
+Pokemon = PALMANTRA,55
+    Item = LIFEORB
+#-------------------------------
+[MASKEDVILLAIN,Crimson,6]
+NameForHashing = Keoni
+Pokemon = REGIROCK,55
+    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    AbilityIndex = 1
+Pokemon = MFURRET,55
+    Moves = UNDERMINE,STOMPINGTANTRUM,PSYCHICFANGS,POWERUPPUNCH
+    AbilityIndex = 1
+    Item = ASSAULTVEST
+Pokemon = MPOLTEAGEIST,55
+    Moves = LEAFSTORM,FROSTBREATH,SHADOWBALL,STRENGTHSAP
+    AbilityIndex = 0
+Pokemon = GDARMANITAN,55
+    Moves = ICEHAMMER,HAMMERARM,EARTHQUAKE,ZENHEADBUTT
+    AbilityIndex = 1
+Pokemon = AMUK,55
+    Moves = RECOVER,POISONGAS,VENOMDRENCH,KNOCKOFF
+    AbilityIndex = 1
+    Item = ORANBERRY
+Pokemon = AGOLEM,55
+    Moves = ROCKSLIDE,DOUBLEEDGE,EXPLOSION,SUPERPOWER
+    AbilityIndex = 0
+#-------------------------------
+[MASKEDVILLAIN,Crimson,7]
+ExtendsVersion = 6
+NameForHashing = Keoni
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIROCK,55
+    Item = ROCKGEM
+Pokemon = MPOLTEAGEIST,55
+    Item = COLBURBERRY
+Pokemon = GDARMANITAN,55
+    Item = CHOICESCARF
+Pokemon = AGOLEM,55
+    Item = ELECTRICGEM
+#-------------------------------
+[MASKEDVILLAIN,Crimson,8]
+NameForHashing = Eifion
+Pokemon = REGIROCK,55
+    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    AbilityIndex = 1
+Pokemon = HOUNDOMINUS,55
+    Moves = NASTYPLOT,MASSDESTRUCTION,FLAMETHROWER,SUCKERPUNCH
+    AbilityIndex = 1
+Pokemon = SCEPTILE,55
+    Moves = REND,LEAFBLADE,SEVER,CROSSPOISON
+    AbilityIndex = 0
+    Item = ASSAULTVEST
+Pokemon = MANERGETIC,55
+    Moves = THUNDERBOLT,FLAMETHROWER,VANGUARD,VOLTSWITCH
+    AbilityIndex = 1
+Pokemon = PHIONE,55
+    Moves = DREAMDANCE,MOONBLAST,SCALD,SIGNALBEAM
+    AbilityIndex = 0
+    Item = SALACBERRY
+Pokemon = GIGANTEON,55
+    Moves = DOUBLEPUNCH,QUICKATTACK,RECOVER,FACADE
+    AbilityIndex = 0
+#-------------------------------
+[MASKEDVILLAIN,Crimson,9]
+ExtendsVersion = 8
+NameForHashing = Eifion
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIROCK,55
+    Item = ROCKGEM
+Pokemon = HOUNDOMINUS,55
+    Item = DARKGEM
+Pokemon = MANERGETIC,55
+    Item = FIREGEM
+Pokemon = GIGANTEON,55
+    Item = LEFTOVERS
+#-------------------------------
+[MASKEDVILLAIN,Crimson,10]
+NameForHashing = Candy
+Pokemon = REGIROCK,55
+    Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
+    AbilityIndex = 1
+Pokemon = GALLADE,55
+    Gender = female
+    Moves = SWORDSDANCE,DRAINPUNCH,LUNARJUSTICE,SLAY
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+Pokemon = GRAPIDASH,55
+    Gender = female
+    Moves = PLAYROUGH,PSYCHOBLADE,TRAMPLE,WILDCHARGE
+    AbilityIndex = 1
+Pokemon = STARAPTOR,55
+    Gender = male
+    Moves = BRAVEBIRD,JUMPKICK,CLOSECOMBAT,QUICKATTACK
+    AbilityIndex = 0
+Pokemon = ARCANINE,55
+    Gender = male
+    Moves = BLAZINGSPEED,MAGNETHRASH,OUTRAGE,CRUNCH
+    AbilityIndex = 0
+    Item = FIREGEM
+Pokemon = GOLURK,55
+    Moves = INFERNO,LAHAR,PROFANE,ZAPCANNON
+    AbilityIndex = 1
+#-------------------------------
+[MASKEDVILLAIN,Crimson,11]
+ExtendsVersion = 10
+NameForHashing = Candy
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIROCK,55
+    Item = ROCKGEM
+Pokemon = GRAPIDASH,55
+    Item = STRIKEVEST
+Pokemon = STARAPTOR,55
+    Item = WHITEHERB
+Pokemon = GOLURK,55
+    Item = GROUNDGEM
+#-------------------------------
+[MASKEDVILLAIN2,Teal]
+NameForHashing = Imogene
+Pokemon = REGICE,55
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
+    AbilityIndex = 1
+Pokemon = GOTHITELLE,55
+    Moves = CORECOLLAPSE,MASSDESTRUCTION,MOONLIGHT,BLACKOUT
+    AbilityIndex = 0
+Pokemon = SHEDINJA,55
+    Moves = PHANTOMFORCE,XSCISSOR,PSYCHOBLADE,WILLOWISP
+    AbilityIndex = 0
+    Item = FOCUSSASH
+Pokemon = CORVIKNIGHT,55
+    Moves = SLAY,DUALWINGBEAT,BODYPRESS,ROOST
+    AbilityIndex = 1
+Pokemon = GLISCOR,55
+    Moves = EARTHQUAKE,FLY,TRICKYTOXINS,TAILWIND
+    AbilityIndex = 0
+    Item = POISONORB
+Pokemon = GOLISOPOD,55
+    Moves = FIRSTIMPRESSION,CROSSCHOP,WATERFALL,XSCISSOR
+    AbilityIndex = 0
+#-------------------------------
+[MASKEDVILLAIN2,Teal,1]
+ExtendsVersion = 0
+NameForHashing = Imogene
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGICE,55
+    Item = ICEGEM
+Pokemon = GOTHITELLE,55
+    Item = ORANBERRY
+Pokemon = CORVIKNIGHT,55
+    Item = LEFTOVERS
+Pokemon = GOLISOPOD,55
+    Item = BUGGEM
+#-------------------------------
+[MASKEDVILLAIN2,Teal,2]
+NameForHashing = Alessa
+Pokemon = REGICE,55
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
+    AbilityIndex = 1
+Pokemon = FORRETRESS,55
+    Moves = POISONSPIKES,STEALTHROCK,EXPLOSION
+    AbilityIndex = 1
+    Item = OCCABERRY
+Pokemon = RATTATA,10
+    Moves = QUICKATTACK,ENDEAVOR
+    AbilityIndex = 0
+    Item = FOCUSSASH
+Pokemon = PORYGONZ,55
+    Moves = HARDFEELINGS,CRITICALERROR,PHANTOMGATE,ICEBEAM
+    AbilityIndex = 1
+Pokemon = HAXORUS,55
+    Moves = CRUELTY,DRAGONDANCE,POISONJAB,FIRSTIMPRESSION
+    AbilityIndex = 0
+Pokemon = RILLABOOM,55
+    Moves = GRASSYGLIDE,KNOCKOFF,SWORDSDANCE,ACROBATICS
+    AbilityIndex = 1
+#-------------------------------
+[MASKEDVILLAIN2,Teal,3]
+ExtendsVersion = 2
+NameForHashing = Alessa
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGICE,55
+    Item = ICEGEM
+Pokemon = PORYGONZ,55
+    Item = FROSTORB
+Pokemon = HAXORUS,55
+    Item = SALACBERRY
+Pokemon = RILLABOOM,55
+    Item = FLYINGGEM
+#-------------------------------
+[MASKEDVILLAIN2,Teal,4]
+NameForHashing = Skylar
+Pokemon = REGICE,55
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
+    AbilityIndex = 1
+Pokemon = ABSOLUS,55
+    Moves = INFINITEFORCE,DARKALLURE,THUNDERBOLT,NASTYPLOT
+    AbilityIndex = 1
+Pokemon = ASANDSLASH,55
+    Moves = CRYSTALCRUSH,METEORMASH,STEALTHROCK,SUPERFANG
+    AbilityIndex = 1
+Pokemon = MILLIBLAZE,55
+    Moves = FIRELASH,LEECHLIFE,KNOCKOFF,SCALD
+    AbilityIndex = 0
+    Item = WATERGEM
+Pokemon = FLORGES,55
+    Moves = SYNTHESIS,AURATRICK,PETALDANCE,CALMMIND
+    AbilityIndex = 1
+    Item = OCCABERRY
+Pokemon = PALMANTRA,55
+    Moves = ADRENALASH,EXTRASENSORY,DEADEND,CALMMIND
+    AbilityIndex = 1
+#-------------------------------
+[MASKEDVILLAIN2,Teal,5]
+ExtendsVersion = 4
+NameForHashing = Skylar
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGICE,55
+    Item = ICEGEM
+Pokemon = ABSOLUS,55
+    Item = SITRUSBERRY
+Pokemon = ASANDSLASH,55
+    Item = CUSTAPBERRY
+Pokemon = PALMANTRA,55
+    Item = LIFEORB
+#-------------------------------
+[MASKEDVILLAIN2,Teal,6]
+NameForHashing = Keoni
+Pokemon = REGICE,55
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
+    AbilityIndex = 1
+Pokemon = MFURRET,55
+    Moves = UNDERMINE,STOMPINGTANTRUM,PSYCHICFANGS,POWERUPPUNCH
+    AbilityIndex = 1
+    Item = ASSAULTVEST
+Pokemon = MPOLTEAGEIST,55
+    Moves = LEAFSTORM,FROSTBREATH,SHADOWBALL,STRENGTHSAP
+    AbilityIndex = 0
+Pokemon = GDARMANITAN,55
+    Moves = ICEHAMMER,HAMMERARM,EARTHQUAKE,ZENHEADBUTT
+    AbilityIndex = 1
+Pokemon = AMUK,55
+    Moves = RECOVER,POISONGAS,VENOMDRENCH,KNOCKOFF
+    AbilityIndex = 1
+    Item = ORANBERRY
+Pokemon = AGOLEM,55
+    Moves = ROCKSLIDE,DOUBLEEDGE,EXPLOSION,SUPERPOWER
+    AbilityIndex = 0
+#-------------------------------
+[MASKEDVILLAIN2,Teal,7]
+ExtendsVersion = 6
+NameForHashing = Keoni
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGICE,55
+    Item = ICEGEM
+Pokemon = MPOLTEAGEIST,55
+    Item = COLBURBERRY
+Pokemon = GDARMANITAN,55
+    Item = CHOICESCARF
+Pokemon = AGOLEM,55
+    Item = ELECTRICGEM
+#-------------------------------
+[MASKEDVILLAIN2,Teal,8]
+NameForHashing = Eifion
+Pokemon = REGICE,55
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
+    AbilityIndex = 1
+Pokemon = HOUNDOMINUS,55
+    Moves = NASTYPLOT,MASSDESTRUCTION,FLAMETHROWER,SUCKERPUNCH
+    AbilityIndex = 1
+Pokemon = SCEPTILE,55
+    Moves = REND,LEAFBLADE,SEVER,CROSSPOISON
+    AbilityIndex = 0
+    Item = ASSAULTVEST
+Pokemon = MANERGETIC,55
+    Moves = THUNDERBOLT,FLAMETHROWER,VANGUARD,VOLTSWITCH
+    AbilityIndex = 1
+Pokemon = PHIONE,55
+    Moves = DREAMDANCE,MOONBLAST,SCALD,SIGNALBEAM
+    AbilityIndex = 0
+    Item = SALACBERRY
+Pokemon = GIGANTEON,55
+    Moves = DOUBLEPUNCH,QUICKATTACK,RECOVER,FACADE
+    AbilityIndex = 0
+#-------------------------------
+[MASKEDVILLAIN2,Teal,9]
+ExtendsVersion = 8
+NameForHashing = Eifion
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGICE,55
+    Item = ICEGEM
+Pokemon = HOUNDOMINUS,55
+    Item = DARKGEM
+Pokemon = MANERGETIC,55
+    Item = FIREGEM
+Pokemon = GIGANTEON,55
+    Item = LEFTOVERS
+#-------------------------------
+[MASKEDVILLAIN2,Teal,10]
+NameForHashing = Candy
+Pokemon = REGICE,55
+    Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
+    AbilityIndex = 1
+Pokemon = GALLADE,55
+    Gender = female
+    Moves = SWORDSDANCE,DRAINPUNCH,LUNARJUSTICE,SLAY
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+Pokemon = GRAPIDASH,55
+    Gender = female
+    Moves = PLAYROUGH,PSYCHOBLADE,TRAMPLE,WILDCHARGE
+    AbilityIndex = 1
+Pokemon = STARAPTOR,55
+    Gender = male
+    Moves = BRAVEBIRD,JUMPKICK,CLOSECOMBAT,QUICKATTACK
+    AbilityIndex = 0
+Pokemon = ARCANINE,55
+    Gender = male
+    Moves = BLAZINGSPEED,MAGNETHRASH,OUTRAGE,CRUNCH
+    AbilityIndex = 0
+    Item = FIREGEM
+Pokemon = GOLURK,55
+    Moves = INFERNO,LAHAR,PROFANE,ZAPCANNON
+    AbilityIndex = 1
+#-------------------------------
+[MASKEDVILLAIN2,Teal,11]
+ExtendsVersion = 10
+NameForHashing = Candy
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGICE,55
+    Item = ICEGEM
+Pokemon = GRAPIDASH,55
+    Item = STRIKEVEST
+Pokemon = STARAPTOR,55
+    Item = WHITEHERB
+Pokemon = GOLURK,55
+    Item = GROUNDGEM
+#-------------------------------
+[FORMERCHAMP_Elise,Elise]
+Pokemon = FROSLASS,70
+    Moves = SNOWYSORROWS,AURORAVEIL,HAIL,DESTINYBOND
+    AbilityIndex = 0
+    Item = FOCUSSASH
+    EV = 0,20,0,20,20,10
+Pokemon = MAMOSWINE,70
+    Moves = EARTHQUAKE,CRYSTALCRUSH,SUPERPOWER,STONEEDGE
+    AbilityIndex = 1
+    Item = CHOICESCARF
+    EV = 10,20,0,20,0,0
+Pokemon = DROMERUPT,70
+    Moves = EXPLOSION,EARTHPOWER,YAWN,LAVAPLUME
+    AbilityIndex = 1
+    Item = NORMALGEM
+    EV = 20,15,15,0,0,0
+Pokemon = GOLURK,70
+    Moves = THUNDERPUNCH,FIREPUNCH,PHANTOMBREAK,EARTHQUAKE
+    AbilityIndex = 0
+    Item = SALACBERRY
+    EV = 10,20,0,10,0,10
+Pokemon = CHIMECHO,70
+    Moves = SHADOWBALL,DREAMABSORB,SIGNALBEAM,CHARGEBEAM
+    AbilityIndex = 0
+    Item = STRIKEVEST
+    EV = 10,20,0,0,20,20
+Pokemon = WEAVILE,70
+    Moves = TRIPLEAXEL,KNOCKOFF,PSYCHOCUT,ICESHARD
+    AbilityIndex = 1
+    Item = LIFEORB
+    EV = 10,20,0,20,0,0
+#-------------------------------
+[FORMERCHAMP_Vincent,Vincent]
+Policies = RAIN_TEAM
+Pokemon = HONCHKROW,70
+    Moves = HURRICANE,STEELWING,BUBBLEBLAST,DARKPULSE
+    AbilityIndex = 1
+    Item = DAMPROCK
+    EV = 10,20,0,20,20,0
+Pokemon = SWAMPERT,70
+    Moves = EARTHQUAKE,ICEPUNCH,AQUATAIL,FLIPTURN
+    AbilityIndex = 0
+    Item = RINDOBERRY
+    EV = 20,20,0,10,0,0
+Pokemon = KLAWSAR,70
+    Moves = CRABHAMMER,ICYWIND,TRAMPLE,METEORMASH
+    AbilityIndex = 0
+    Item = LEFTOVERS
+    EV = 20,15,15,0,0,0
+Pokemon = GYARADOS,70
+    Moves = AQUATAIL,OUTRAGE,ACROBATICS,POWERWHIP
+    AbilityIndex = 0
+    Item = LUMBERRY
+    EV = 10,20,0,20,0,0
+Pokemon = HYDREIGON,70
+    Moves = DRACOMETEOR,DARKPULSE,EARTHPOWER,FLASHCANNON
+    AbilityIndex = 0
+    Item = CHOICESPECS
+    EV = 10,20,0,20,20,0
+Pokemon = GRENINJA,70
+    Moves = ICEBEAM,GUNKSHOT,HYDROPUMP,POWERGEM
+    AbilityIndex = 0
+    Item = ENERGYLOCK
+    EV = 0,20,5,20,0,5
+#-------------------------------
+[FORMERCHAMP_Praveen,Praveen]
+Pokemon = GIRAFARIG,70
+    Moves = PSYCHICFANGS,BEATUP,REFLECT,LIGHTSCREEN
+    AbilityIndex = 0
+    Item = REINFORCINGROD
+    EV = 20,0,15,0,0,15
+Pokemon = BASTIODON,70
+    Moves = HEAVYSLAM,BODYPRESS,ADAMANTINEPRESS,STEALTHROCK
+    AbilityIndex = 0
+    Item = POWERLOCK
+    EV = 20,20,10,0,0,0
+Pokemon = AGOLEM,70
+    Moves = VOLTTACKLE,EXPLOSION,EARTHQUAKE,ROLLINGBOULDER
+    AbilityIndex = 1
+    Item = ASSAULTVEST
+    EV = 20,20,10,0,0,0
+Pokemon = ARCLAMOR,70
+    Moves = SLUDGEWAVE,RISINGVOLTAGE,HYPERVOICE,HEX
+    AbilityIndex = 1
+    Item = AIRBALLOON
+    EV = 0,20,0,20,20,0
+Pokemon = MGIGALITH,70
+    Moves = DOUSE,PSYCHIC,DIAMONDFORCE,BLOSSOM
+    AbilityIndex = 0
+    Item = LEFTOVERS
+    EV = 20,0,15,0,0,15
+Pokemon = ARAICHU,70
+    Moves = RISINGVOLTAGE,VOLTSWITCH,HYDROPUMP,PSYCHIC
+    AbilityIndex = 1
+    Item = CHOICESPECS
+    EV = 20,20,0,10,20,0
+#-------------------------------
+[GUITARIST3,Mai]
+Policies = SUN_TEAM
+Pokemon = SUNKERN,22
+    AbilityIndex = 1
+    Item = HEATROCK
+Pokemon = NATU,23
+    AbilityIndex = 1
+Pokemon = DARUMAKA,24
+    AbilityIndex = 0
+#-------------------------------
+[FORMERCHAMP_Ansel,Ansel]
+Pokemon = GALVANTULA,70
+    Moves = STICKYWEB,SIGNALOVERLOAD,VOLTSWITCH,THUNDER
+    AbilityIndex = 0
+    Item = FOCUSSASH
+    EV = 0,20,0,20,20,0
+Pokemon = CROBAT,70
+    Moves = UTURN,LEECHLIFE,VENOMLEECH,BRAVEBIRD
+    AbilityIndex = 1
+    Item = BIGROOT
+    EV = 20,0,10,20,0,0
+Pokemon = PAPELLUMEN,70
+    Moves = QUIVERDANCE,BUGBUZZ,COLDFRONT,PSYCHIC
+    AbilityIndex = 1
+    Item = LEFTOVERS
+    EV = 5,20,0,20,20,5
+Pokemon = WORNET,70
+    Moves = XSCISSOR,DRILLRUN,POISONJAB,UTURN
+    AbilityIndex = 0
+    Item = SHELLBELL
+    EV = 10,20,0,20,0,0
+Pokemon = SWALOT,70
+    Moves = BUBBLEBLAST,CORRODE,GIGADRAIN,SHADOWBALL
+    AbilityIndex = 0
+    Item = STRIKEVEST
+    EV = 20,0,15,0,0,15
+Pokemon = BRAVIARY,70
+    Moves = CLOSECOMBAT,BRAVEBIRD,UTURN,IRONHEAD
+    AbilityIndex = 0
+    Item = CHOICESCARF
+    EV = 10,20,0,20,0,0

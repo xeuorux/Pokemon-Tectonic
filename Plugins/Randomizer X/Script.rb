@@ -109,29 +109,39 @@ module Randomizer
   def self.randomizeTrainers
     # loads compiled data and creates new array
     data = load_data("Data/trainers.dat")
-    trainer_exclusions = Randomizer::EXCLUSIONS_TRAINERS
-    species_exclusions = Randomizer::EXCLUSIONS_SPECIES
     return if !data.is_a?(Hash) # failsafe
     # iterate through each trainer
     for key in data.keys
+      trainerData = data[key]
       # skip numeric trainers
-      next if !trainer_exclusions.nil? && trainer_exclusions.include?(data[key].id)
-      # iterate through party
-      for i in 0...data[key].pokemon.length
-	    # don't change this species if it's an excluded one
-        next if !species_exclusions.nil? && species_exclusions.include?(data[key].pokemon[i][:species])
-        data[key].pokemon[i][:species] = self.getNewSpecies(data[key].pokemon[i][:species])
-      end
+      next if trainerExcluded?(trainerData.id)
+      randomizeTrainer(trainerData)
     end
     return data
   end
+
+  def self.randomizeTrainer(trainerData)
+    species_exclusions = Randomizer::EXCLUSIONS_SPECIES
+    # iterate through party
+    for i in 0...trainerData.pokemon.length
+      # don't change this species if it's an excluded one
+      currentSpecies = trainerData.pokemon[i][:species]
+      next if !species_exclusions.nil? && species_exclusions.include?(currentSpecies)
+      trainerData.pokemon[i][:species] = self.getNewSpecies(currentSpecies)
+    end
+  end
+
+  def self.trainerExcluded?(trainerID)
+      return false if Randomizer::EXCLUSIONS_TRAINERS.nil?
+      return Randomizer::EXCLUSIONS_TRAINERS.include?(trainerID)
+  end
+
   #-----------------------------------------------------------------------------
   #  randomizes map encounters
   #-----------------------------------------------------------------------------
   def self.randomizeEncounters
     # loads map encounters
     data = load_data("Data/encounters.dat")
-    species_exclusions = Randomizer::EXCLUSIONS_SPECIES
     return if !data.is_a?(Hash) # failsafe
     # iterates through each map point
     for key in data.keys
@@ -139,14 +149,21 @@ module Randomizer
       for type in data[key].types.keys
         # cycle each definition
         for i in 0...data[key].types[type].length
-		  # don't change this species if it's an excluded one
-          next if !species_exclusions.nil? && species_exclusions.include?(data[key].types[type][i][1])
-		  data[key].types[type][i][1] = self.getNewSpecies(data[key].types[type][i][1])
+		      # don't change this species if it's an excluded one
+          currentSpecies = data[key].types[type][i][1]
+          next if speciesExcluded?(currentSpecies)
+		      data[key].types[type][i][1] = self.getNewSpecies(currentSpecies)
         end
       end
     end
     return data
   end
+
+  def self.speciesExcluded?(speciesID)
+    return false if Randomizer::EXCLUSIONS_SPECIES.nil?
+    return Randomizer::EXCLUSIONS_SPECIES.include?(speciesID)
+  end
+
   #-----------------------------------------------------------------------------
   #  randomizes static battles called through events
   #-----------------------------------------------------------------------------
@@ -161,6 +178,7 @@ module Randomizer
     end
     return new
   end
+
   #-----------------------------------------------------------------------------
   #  randomizes items received through events
   #-----------------------------------------------------------------------------
@@ -177,6 +195,7 @@ module Randomizer
     end
     return new
   end
+
   #-----------------------------------------------------------------------------
   #  begins the process of randomizing all data
   #-----------------------------------------------------------------------------
@@ -215,7 +234,7 @@ module Randomizer
     ret = $PokemonGlobal && $PokemonGlobal.isRandomizer
     ret, cmd = self.randomizerSelection unless skip
     @@randomizer = true
-	pbMessage("Attempting to apply your Randomizer rules...") unless skip || cmd < 0
+	  pbMessage("Attempting to apply your Randomizer rules...") unless skip || cmd < 0
     # randomize data and cache it
     $PokemonGlobal.randomizedData = self.randomizeData if $PokemonGlobal.randomizedData.nil?
     $PokemonGlobal.isRandomizer = ret
@@ -441,15 +460,27 @@ def pbLoadTrainer(tr_type, tr_name, tr_version = 0)
   tr_type = tr_type_data.id
   # handle actual trainer data
   trainer_data = GameData::Trainer.try_get(tr_type, tr_name, tr_version)
-  key = [tr_type.to_sym, tr_name, tr_version]
-  # attempt to randomize
-  trainer_data = Randomizer.getRandomizedData(trainer_data, :TRAINERS, key)
-  if Randomizer.on?
-	  trainer_data.pokemon.each do |pkmn|
-		pkmn[:moves] = nil
-	  end
+
+  # Only modify the trainer if the randomizer is on and the trainer is meant to be randomized
+  if Randomizer.on? && !Randomizer.trainerExcluded?(trainer_data.id)
+    key = [tr_type.to_sym, tr_name, tr_version]
+    new_trainer_data = Randomizer.getRandomizedData(trainer_data, :TRAINERS, key)
+
+    if new_trainer_data.nil?
+      new_trainer_data = trainer_data.clone
+      Randomizer.randomizeTrainer(new_trainer_data)
+      $PokemonGlobal.randomizedData[:TRAINERS][key] = new_trainer_data
+    end
+
+    trainer_data = new_trainer_data
+
+    # Make sure the trainer's pokemon uses the default moves for their level
+    trainer_data.pokemon.each do |pkmn|
+      pkmn[:moves] = nil
+    end
   end
-  return (trainer_data) ? trainer_data.to_trainer : nil
+
+  return trainer_data.to_trainer
 end
 #===============================================================================
 #  randomize encounter data if possible

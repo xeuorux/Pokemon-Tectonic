@@ -4,8 +4,9 @@ class PokemonDataBox < SpriteWrapper
 	EXP_BAR_FILL_TIME  = 0.5
 	# Maximum time in seconds to make a change to the HP bar.
 	HP_BAR_CHANGE_TIME = 0.5
-	
+	PokemonDataBox
 	TYPE_ICON_HEIGHT = 18
+	TYPE_ICON_THIN_HEIGHT = 20
 	NAME_BASE_COLOR = Color.new(255,255,255)
 	NAME_SHADOW_COLOR       = Color.new(136,136,136)
 
@@ -27,6 +28,7 @@ class PokemonDataBox < SpriteWrapper
 		@expFlash     = 0
 		@showTypes    = false
 		@halvedStatus = false
+		@thinBox	  = false
 		@bossGraphics = @battler.boss && sideSize == 1
 		@legendary = isLegendary(@battler.species)
 		initializeDataBoxGraphic(sideSize)
@@ -34,7 +36,7 @@ class PokemonDataBox < SpriteWrapper
 		refresh
 	end
 	
-	  def initializeDataBoxGraphic(sideSize)
+	def initializeDataBoxGraphic(sideSize)
 		onPlayerSide = ((@battler.index%2)==0)
 		# Get the data box graphic and set whether the HP numbers/Exp bar are shown
 		if sideSize==1   # One Pokémon on side, use the regular data box BG
@@ -47,14 +49,14 @@ class PokemonDataBox < SpriteWrapper
 		  if onPlayerSide
 			@showHP  = true
 			@showExp = true
-		  else
-			@showTypes = true
 		  end
 		else   # Multiple Pokémon on side, use the thin data box BG
 		  bgFilename = ["Graphics/Pictures/Battle/databox_thin",
 						"Graphics/Pictures/Battle/databox_thin_foe"][@battler.index%2]
 		  @halvedStatus = true if @battler.boss
+		  @thinBox = true
 		end
+		@showTypes = true if !onPlayerSide
 		@databoxBitmap  = AnimatedBitmap.new(bgFilename)
 		# Determine the co-ordinates of the data box and the left edge padding width
 		if onPlayerSide
@@ -67,6 +69,8 @@ class PokemonDataBox < SpriteWrapper
 		  @spriteBaseX = 16
 		end
 		case sideSize
+		when 1
+			@spriteY -= 20 if @bossGraphics && @legendary
 		when 2
 		  @spriteX += [-12,  12,  0,  0][@battler.index]
 		  @spriteY += [-20, -34, 34, 20][@battler.index]
@@ -138,7 +142,8 @@ class PokemonDataBox < SpriteWrapper
 		# Draw shiny icon
 		if @battler.shiny?
 		  shinyX = (@battler.opposes?(0)) ? 214 : -6   # Foe's/player's
-		  imagePos.push(["Graphics/Pictures/shiny",@spriteBaseX+shinyX,36])
+		  shinyIconFileName = @battler.shiny_variant? ? "Graphics/Pictures/shiny_variant" : "Graphics/Pictures/shiny"
+		  imagePos.push([shinyIconFileName,@spriteBaseX+shinyX,36])
 		end
 		# Draw Mega Evolution/Primal Reversion icon
 		if @battler.mega?
@@ -181,21 +186,23 @@ class PokemonDataBox < SpriteWrapper
 		end
 		# Refresh type bars
 		types = @battler.pbTypes(true,true)
+		iconHeight = @thinBox ? TYPE_ICON_THIN_HEIGHT : TYPE_ICON_HEIGHT
+		iconsVisible = visible && @showTypes
 		if types[0]
-			@type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number * TYPE_ICON_HEIGHT
-			@type1Icon.visible = true if @battler.effects[PBEffects::Transform] && @showTypes
+			@type1Icon.src_rect.y = GameData::Type.get(types[0]).id_number * iconHeight
+			@type1Icon.visible = iconsVisible
 		else
 			@type1Icon.visible = false
 		end
 		if types[1]
-			@type2Icon.src_rect.y = GameData::Type.get(types[1]).id_number * TYPE_ICON_HEIGHT if types[1]
-			@type2Icon.visible = true if @battler.effects[PBEffects::Transform] && @showTypes
+			@type2Icon.src_rect.y = GameData::Type.get(types[1]).id_number * iconHeight
+			@type2Icon.visible = iconsVisible
 		else
 			@type2Icon.visible = false
 		end
 		if types[2]
-			@type3Icon.src_rect.y = GameData::Type.get(types[2]).id_number * TYPE_ICON_HEIGHT if types[2]
-			@type3Icon.visible = true if @battler.effects[PBEffects::Transform] && @showTypes
+			@type3Icon.src_rect.y = GameData::Type.get(types[2]).id_number * iconHeight
+			@type3Icon.visible = iconsVisible
 		else
 			@type3Icon.visible = false
 		end
@@ -253,7 +260,8 @@ class PokemonDataBox < SpriteWrapper
     @numbersBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/icon_numbers_white"))
     @hpBarBitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_hp"))
     @expBarBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_exp"))
-	@typeBitmap    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/icon_types"))
+	typeIconFileName = @thinBox ? "Graphics/Pictures/Battle/icon_types_thin" : "Graphics/Pictures/Battle/icon_types"
+	@typeBitmap    = AnimatedBitmap.new(_INTL(typeIconFileName))
     # Create sprite to draw HP numbers on
     @hpNumbers = BitmapSprite.new(124,16,viewport)
     pbSetSmallFont(@hpNumbers.bitmap)
@@ -281,17 +289,17 @@ class PokemonDataBox < SpriteWrapper
 	# Create type 1 icon
     @type1Icon = SpriteWrapper.new(viewport)
     @type1Icon.bitmap = @typeBitmap.bitmap
-    @type1Icon.src_rect.height = TYPE_ICON_HEIGHT
+    @type1Icon.src_rect.height = @thinBox ? TYPE_ICON_THIN_HEIGHT : TYPE_ICON_HEIGHT
     @sprites["type1Icon"] = @type1Icon
     # Create type 2 icon
     @type2Icon = SpriteWrapper.new(viewport)
     @type2Icon.bitmap = @typeBitmap.bitmap
-    @type2Icon.src_rect.height = TYPE_ICON_HEIGHT
+    @type2Icon.src_rect.height = @thinBox ? TYPE_ICON_THIN_HEIGHT : TYPE_ICON_HEIGHT
     @sprites["type2Icon"] = @type2Icon
     # Create type 3 icon
     @type3Icon = SpriteWrapper.new(viewport)
     @type3Icon.bitmap = @typeBitmap.bitmap
-    @type3Icon.src_rect.height = TYPE_ICON_HEIGHT
+    @type3Icon.src_rect.height = @thinBox ? TYPE_ICON_THIN_HEIGHT : TYPE_ICON_HEIGHT
     @sprites["type3Icon"] = @type3Icon
     # Create sprite wrapper that displays everything except the above
     @contents = BitmapWrapper.new(@databoxBitmap.width,@databoxBitmap.height)
@@ -324,9 +332,15 @@ class PokemonDataBox < SpriteWrapper
 	@hpBar3.x    = value+@spriteBaseX+102
     @expBar.x    = value+@spriteBaseX+2
     @hpNumbers.x = value+@spriteBaseX+80
-    @type1Icon.x = value+@spriteBaseX+4
-    @type2Icon.x = value+@spriteBaseX+4+48
-    @type3Icon.x = value+@spriteBaseX+4+48+48
+    if @thinBox
+		@type1Icon.x = value+@spriteBaseX+244
+		@type2Icon.x = value+@spriteBaseX+244
+		@type3Icon.x = value+@spriteBaseX+244+34
+	else
+		@type1Icon.x = value+@spriteBaseX+4
+		@type2Icon.x = value+@spriteBaseX+4+48
+		@type3Icon.x = value+@spriteBaseX+4+48+48
+	end
   end
 
   def y=(value)
@@ -340,9 +354,15 @@ class PokemonDataBox < SpriteWrapper
 	if @bossGraphics
 		iconDepth = @legendary ? 100 : 80
 	end
-    @type1Icon.y = value+iconDepth
-    @type2Icon.y = value+iconDepth
-    @type3Icon.y = value+iconDepth
+	if @thinBox
+		@type1Icon.y = value+12
+		@type2Icon.y = value+32
+		@type3Icon.y = value+22
+	else
+		@type1Icon.y = value+iconDepth
+		@type2Icon.y = value+iconDepth
+		@type3Icon.y = value+iconDepth
+	end
   end
 
   def z=(value)

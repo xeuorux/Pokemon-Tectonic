@@ -98,7 +98,7 @@ class PokeBattle_Battle
     @messagesBlocked   = false
     @bossBattle		   = false
     @autoTesting	   = false
-    @autoTestingIndex  = 901
+    @autoTestingIndex  = 1
     @commandPhasesThisRound = 0
     @honorAura		   = false
     @curses			   = []
@@ -115,63 +115,116 @@ class PokeBattle_Battle
   def curseActive?(curseID)
     return @curses.include?(curseID)
   end
+
+  def pbCheckAlliedAbility(abil,idxBattler=0,nearOnly=false)
+    eachSameSideBattler(idxBattler) do |b|
+      next if nearOnly && !b.near?(idxBattler)
+      return b if b.hasActiveAbility?(abil)
+    end
+    return nil
+  end
+
+    # moveIDOrIndex is either the index of the move on the user's move list (Integer)
+  # or it's the ID of the move to be used (Symbol)
+  def forceUseMove(forcedMoveUser,moveIDOrIndex,target=-1,specialUsage=true,usageMessage=nil,moveUsageEffect=nil,showAbilitySplash=false)
+    oldLastRoundMoved = forcedMoveUser.lastRoundMoved
+    if specialUsage
+      # NOTE: Petal Dance being used shouldn't lock the
+      #       battler into using that move, and shouldn't contribute to its
+      #       turn counter if it's already locked into Petal Dance.
+      oldCurrentMove = forcedMoveUser.currentMove
+      oldOutrage = forcedMoveUser.effects[PBEffects::Outrage]
+      forcedMoveUser.effects[PBEffects::Outrage] += 1 if forcedMoveUser.effects[PBEffects::Outrage]>0
+    end
+    if showAbilitySplash
+      pbShowAbilitySplash(forcedMoveUser,true)
+    end
+    pbDisplay(usageMessage) if !usageMessage.nil?
+    if showAbilitySplash
+      pbHideAbilitySplash(forcedMoveUser)
+    end
+    moveID = moveIDOrIndex.is_a?(Symbol) ? moveIDOrIndex : nil
+    moveIndex = moveIDOrIndex.is_a?(Integer) ? moveIDOrIndex : -1
+    PBDebug.logonerr{
+      forcedMoveUser.effects[moveUsageEffect] = true if !moveUsageEffect.nil?
+      forcedMoveUser.pbUseMoveSimple(moveID,target,moveIndex,specialUsage)
+      forcedMoveUser.effects[moveUsageEffect] = false if !moveUsageEffect.nil?
+    }
+    forcedMoveUser.lastRoundMoved = oldLastRoundMoved
+    if specialUsage
+      forcedMoveUser.effects[PBEffects::Outrage] = oldOutrage
+      forcedMoveUser.currentMove = oldCurrentMove
+    end
+    pbJudge()
+    return if @decision>0
+end
+
+def getBattleMoveInstanceFromID(move_id)
+  return PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(move_id))
+end
   
   #=============================================================================
   # Messages and animations
   #=============================================================================
   def pbDisplay(msg,&block)
-    @scene.pbDisplayMessage(msg,&block) if !messagesBlocked
+    @scene.pbDisplayMessage(msg,&block) if !@messagesBlocked
   end
 
   def pbDisplayBrief(msg)
-    @scene.pbDisplayMessage(msg,true) if !messagesBlocked
+    @scene.pbDisplayMessage(msg,true) if !@messagesBlocked
   end
 
   def pbDisplayPaused(msg,&block)
-    @scene.pbDisplayPausedMessage(msg,&block) if !messagesBlocked
+    @scene.pbDisplayPausedMessage(msg,&block) if !@messagesBlocked
   end
 
   def pbDisplayConfirm(msg)
-    return @scene.pbDisplayConfirmMessage(msg) if !messagesBlocked
+    return @scene.pbDisplayConfirmMessage(msg) if !@messagesBlocked
   end
   
   def pbDisplayConfirmSerious(msg)
-    return @scene.pbDisplayConfirmMessageSerious(msg) if !messagesBlocked
+    return @scene.pbDisplayConfirmMessageSerious(msg) if !@messagesBlocked
   end
 
-  # moveIDOrIndex is either the index of the move on the user's move list (Integer)
-  # or it's the ID of the move to be used (Symbol)
-  def forceUseMove(forcedMoveUser,moveIDOrIndex,target=-1,specialUsage=true,usageMessage=nil,moveUsageEffect=nil,showAbilitySplash=false)
-      oldLastRoundMoved = forcedMoveUser.lastRoundMoved
-      if specialUsage
-        # NOTE: Petal Dance being used shouldn't lock the
-        #       battler into using that move, and shouldn't contribute to its
-        #       turn counter if it's already locked into Petal Dance.
-        oldCurrentMove = forcedMoveUser.currentMove
-        oldOutrage = forcedMoveUser.effects[PBEffects::Outrage]
-        forcedMoveUser.effects[PBEffects::Outrage] += 1 if forcedMoveUser.effects[PBEffects::Outrage]>0
-      end
-      if showAbilitySplash
-        pbShowAbilitySplash(forcedMoveUser,true)
-      end
-      pbDisplay(usageMessage) if !usageMessage.nil?
-      if showAbilitySplash
-        pbHideAbilitySplash(forcedMoveUser)
-      end
-      moveID = moveIDOrIndex.is_a?(Symbol) ? moveIDOrIndex : nil
-      moveIndex = moveIDOrIndex.is_a?(Integer) ? moveIDOrIndex : -1
-      PBDebug.logonerr{
-        forcedMoveUser.effects[moveUsageEffect] = true if !moveUsageEffect.nil?
-        forcedMoveUser.pbUseMoveSimple(moveID,target,moveIndex,specialUsage)
-        forcedMoveUser.effects[moveUsageEffect] = false if !moveUsageEffect.nil?
-      }
-      forcedMoveUser.lastRoundMoved = oldLastRoundMoved
-      if specialUsage
-        forcedMoveUser.effects[PBEffects::Outrage] = oldOutrage
-        forcedMoveUser.currentMove = oldCurrentMove
-      end
-      pbJudge()
-      return if @decision>0
+  def pbShowAbilitySplash(battler,delay=false,logTrigger=true)
+    return if @messagesBlocked
+    PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}") if logTrigger
+    return if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+    @scene.pbShowAbilitySplash(battler)
+    if delay
+      frames = Graphics.frame_rate # Default 1 second
+      frames /= 2 if $PokemonSystem.battlescene > 0
+      frames.times { @scene.pbUpdate }   
+    end
+  end
+
+  def pbAnimation(move,user,targets,hitNum=0)
+    if @messagesBlocked
+      echoln("Skipping animation during AI calculations.")
+      return
+    end
+    @scene.pbAnimation(move,user,targets,hitNum) if @showAnims
+  end
+
+  def pbCommonAnimation(name,user=nil,targets=nil)
+    if @messagesBlocked
+      echoln("Skipping animation during AI calculations.")
+      return
+    end
+    return if @messagesBlocked
+    @scene.pbCommonAnimation(name,user,targets) if @showAnims
+  end
+
+  def pbHideAbilitySplash(battler)
+    return if @messagesBlocked
+    return if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+    @scene.pbHideAbilitySplash(battler)
+  end
+
+  def pbReplaceAbilitySplash(battler)
+    return if @messagesBlocked
+    return if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+    @scene.pbReplaceAbilitySplash(battler)
   end
 end
 

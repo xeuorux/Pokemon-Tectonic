@@ -1,35 +1,5 @@
-module GameData
-  class Species  
-	def self.sprite_bitmap_from_pokemon(pkmn, back = false, species = nil)
-	  species = pkmn.species if !species
-	  species = GameData::Species.get(species).species   # Just to be sure it's a symbol
-	  return self.egg_sprite_bitmap(species, pkmn.form) if pkmn.egg?
-	  if back
-		ret = self.back_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?)
-	  else
-		ret = self.front_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?)
-	  end
-	  
-	  if ret && pkmn.boss?
-		filename = 'Graphics/Pokemon/Avatars/' + species.to_s
-		filename += '_' + pkmn.form.to_s if pkmn.form != 0
-		filename += '_back' if back
-		echoln("Accessing boss battle sprite: #{filename}")
-		ret = AnimatedBitmap.new(filename)
-	  end
-	  
-	  alter_bitmap_function = MultipleForms.getFunction(species, "alterBitmap")
-	  if ret && !pkmn.boss? && alter_bitmap_function
-		new_ret = ret.copy
-		ret.dispose
-		new_ret.each { |bitmap| alter_bitmap_function.call(pkmn, bitmap) }
-		ret = new_ret
-	  end
-	  return ret
-	end
-  end
-end
-
+# All HP based effects will deal less damage the higher this is
+BOSS_HP_BASED_EFFECT_RESISTANCE = 4
 
 def pbBigAvatarBattle(*args)
 	rule = "3v#{args.length}"
@@ -272,6 +242,9 @@ end
 
 
 class PokeBattle_Battle
+	SUMMON_MIN_HEALTH_LEVEL = 15
+	SUMMON_MAX_HEALTH_LEVEL = 50
+
 	def addAvatarBattler(species,level)
 		# Create the new pokemon
 		newPokemon = pbGenerateWildPokemon(species,level)
@@ -283,6 +256,16 @@ class PokeBattle_Battle
 		pbCreateBattler(battlerIndexNew,newPokemon,1)
 		newBattler = @battlers[battlerIndexNew]
 		sideSizes[1] += 1
+
+		# Set the battler's starting health
+		if level >= SUMMON_MAX_HEALTH_LEVEL
+			healthPercent = 1.0
+		elsif level <= SUMMON_MIN_HEALTH_LEVEL
+			healthPercent = 0.5
+		else
+			healthPercent = 0.5 + (level - SUMMON_MIN_HEALTH_LEVEL) / (SUMMON_MAX_HEALTH_LEVEL - SUMMON_MIN_HEALTH_LEVEL).to_f
+		end
+		newBattler.hp = newBattler.totalhp * healthPercent
 
 		# Remake all the battle boxes
 		scene.sprites["dataBox_#{battlerIndexNew}"] = PokemonDataBox.new(newBattler,@sideSizes[1],@scene.viewport)

@@ -8,6 +8,8 @@ class PokeBattle_Battler
 	attr_accessor	:indexesTargetedThisTurn
 	attr_accessor	:dmgMult
 	attr_accessor	:dmgResist
+
+	attr_accessor	:lastRoundHighestTypeModFromFoe
 	
 	def bossStatus=(value)
 		@effects[PBEffects::Truant] = false if @bossStatus == :SLEEP && value != :SLEEP
@@ -201,6 +203,7 @@ class PokeBattle_Battler
 		@lastFoeAttacker       = []
 		@lastHPLost            = 0
 		@lastHPLostFromFoe     = 0
+		@lastRoundHighestTypeModFromFoe = -1
 		@tookDamage            = false
 		@tookPhysicalHit       = false
 		@lastMoveUsed          = nil
@@ -376,7 +379,9 @@ class PokeBattle_Battler
 		@effects[PBEffects::OnDragonRide]    	 = false
 		@effects[PBEffects::GivingDragonRideTo]  = -1
 		@effects[PBEffects::ShimmeringHeat]		 = false
-		@effects[PBEffects::FlareWitch]		 = false
+		@effects[PBEffects::FlareWitch]		 	 = false
+		@effects[PBEffects::MirrorShield]        = false
+		@effects[PBEffects::Echo]				 = false
 		
 		@effects[PBEffects::EmpoweredEndure]     = 0
 		@effects[PBEffects::EmpoweredMoonlight]  = false

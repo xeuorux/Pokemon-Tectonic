@@ -149,6 +149,7 @@ def get_bnb_coverage(species_data)
 	end
 	typesOfCoverage.uniq!
 	typesOfCoverage.compact!
+	typesOfCoverage.sort_by!{|type_id| GameData::Type.get(type_id).id_number}
 
 	return typesOfCoverage
 end

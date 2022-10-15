@@ -221,13 +221,14 @@ class FightMenuDisplay < BattleMenuBase
           maxEffectiveness = effectiveness if effectiveness > maxEffectiveness
         end
 
-        case maxEffectiveness/Effectiveness::NORMAL_EFFECTIVE.to_f
-        when 0          then effectivenessCategory = 0
-        when 0.25       then effectivenessCategory = 1
-        when 0.5 	      then effectivenessCategory = 2
-        when 1 		    	then effectivenessCategory = 3
-        when 2 			    then effectivenessCategory = 4
-        when 4 			    then effectivenessCategory = 5
+        ration = maxEffectiveness/Effectiveness::NORMAL_EFFECTIVE.to_f
+        case ration
+        when 0              then effectivenessCategory = 0
+        when 0.00001..0.25  then effectivenessCategory = 1
+        when 0.5 	          then effectivenessCategory = 2
+        when 1 		    	    then effectivenessCategory = 3
+        when 2 			        then effectivenessCategory = 4
+        when 4.. 			      then effectivenessCategory = 5
         end
 
         effectivenessDescription = [_INTL("No Effect"),_INTL("Barely"),_INTL("Not Very"),_INTL("Neutral"),_INTL("Super"),_INTL("Hyper"),_INTL("Hyper")][effectivenessCategory]

@@ -1,5 +1,8 @@
 HIGHEST_STAT_BASE = Color.new(139,52,34)
 LOWEST_STAT_BASE = Color.new(60,55,112)
+TRIBAL_BOOSTED_BASE = Color.new(70, 130, 76)
+
+DEBUGGING_EFFECT_DISPLAY = false
 
 class BattleInfoDisplay < SpriteWrapper
 	attr_accessor   :battle
@@ -119,12 +122,14 @@ class BattleInfoDisplay < SpriteWrapper
 	fieldEffects = []
 	for effect in 0..30
 		effectValue = @battle.field.effects[effect]
-		next if effectValue.nil?
-		next if effectValue == false
-		next if effectValue.is_a?(Integer) && effectValue <= 0
+		if !DEBUGGING_EFFECT_DISPLAY
+			next if effectValue.nil?
+			next if effectValue == false
+			next if effectValue.is_a?(Integer) && effectValue <= 0
+		end
 		effectName = labelBattleEffect(effect)
 		next if effectName.blank?
-		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
 		fieldEffects.push(effectName)
 	end
 	
@@ -133,12 +138,14 @@ class BattleInfoDisplay < SpriteWrapper
 	for side in 0..1
 		for effect in 0..30
 			effectValue = @battle.sides[side].effects[effect]
-			next if effectValue.nil?
-			next if effectValue == false
-			next if effectValue.is_a?(Integer) && effectValue <= 0
+			if !DEBUGGING_EFFECT_DISPLAY
+				next if effectValue.nil?
+				next if effectValue == false
+				next if effectValue.is_a?(Integer) && effectValue <= 0
+			end
 			effectName = labelSideEffect(effect)
 			next if effectName.blank?
-			effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+			effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
 			effectName += side == 0 ? " [A]" : " [E]"
 			fieldEffects.push(effectName)
 		end
@@ -219,6 +226,9 @@ class BattleInfoDisplay < SpriteWrapper
 	:EVASION => "Evade"
 	}
 
+	tribalBonus = TribalBonus.new
+	pokemonTribalBonus = tribalBonus.getTribeBonuses(battler.pokemon)
+
 	# Hash containing info about each stat
 	# Each key is a symbol of a stat
 	# Each value is an array of [statName, statStage, statMult, statFinalValue]
@@ -254,7 +264,8 @@ class BattleInfoDisplay < SpriteWrapper
 
 		# Draw the final stat value label
 		value = statValues[stat] || 100 # 100 is for accuracy and evasion
-		value = (value * mult).floor
+		valueBonus = pokemonTribalBonus[stat] || 0
+		value = ((value + valueBonus) * mult).floor
 		statValuesArray.push(value)
 
 		# Track the highest and lowest main battle stat (not accuracy or evasion)
@@ -284,31 +295,37 @@ class BattleInfoDisplay < SpriteWrapper
 		y = statStagesSectionTopY + 40 + 40 * index
 		statValueAddendum = ""
 		if stat == highestStat
-			mainColor = HIGHEST_STAT_BASE
+			finalStatColor = HIGHEST_STAT_BASE
 			statValueAddendum = " H"
 		elsif stat == lowestStat
-			mainColor = LOWEST_STAT_BASE
+			finalStatColor = LOWEST_STAT_BASE
 			statValueAddendum = " L"
 		else
-			mainColor = base
+			finalStatColor = base
 		end
 
 		# Display the stat's name
-		textToDraw.push([name,statLabelX,y,0,mainColor,shadow])
+		statNameColor = base
+		if GameData::Stat.get(stat).type == :main_battle
+			tribalBoostSymbol = (stat.to_s + "_TRIBAL").to_sym
+			isTribalBoosted = statValues[tribalBoostSymbol] > 0
+			statNameColor = TRIBAL_BOOSTED_BASE if isTribalBoosted
+		end
+		textToDraw.push([name,statLabelX,y,0,statNameColor,shadow])
 
 		# Display the stat stage
 		x = statStageX
 		x -= 12 if stage != 0
 		stageLabel = stage.to_s
 		stageLabel = "+" + stageLabel if stage > 0
-		textToDraw.push([stageLabel,x,y,0,mainColor,shadow])
+		textToDraw.push([stageLabel,x,y,0,base,shadow])
 
 		# Display the stat multiplier
 		multLabel = statMult.round(2).to_s + "x"
-		textToDraw.push([multLabel,statMultX,y,0,mainColor,shadow])
+		textToDraw.push([multLabel,statMultX,y,0,base,shadow])
 
 		# Display the final calculated stat
-		textToDraw.push([statValue.to_s + statValueAddendum,statValueX,y,0,mainColor,shadow])
+		textToDraw.push([statValue.to_s + statValueAddendum,statValueX,y,0,finalStatColor,shadow])
 
 		index += 1
 	end
@@ -321,26 +338,30 @@ class BattleInfoDisplay < SpriteWrapper
 	
 	for effect in 0..150
 		effectValue = battler.effects[effect]
-		next if effectValue.nil?
-		next if effectValue == false
-		next if effectValue.is_a?(Integer) && effectValue <= 0
+		if !DEBUGGING_EFFECT_DISPLAY
+			next if effectValue.nil?
+			next if effectValue == false
+			next if effectValue.is_a?(Integer) && effectValue <= 0
+		end
 		next if effect == PBEffects::ProtectRate && effectValue <= 1
 		next if effect == PBEffects::Unburden && !battler.hasActiveAbility?(:UNBURDEN)
 		effectName = labelBattlerEffect(effect)
 		next if effectName.blank?
-		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
 		battlerEffects.push(effectName)
 	end
 	
 	# Slot effects
 	for effect in 0..30
 		effectValue = @battle.positions[battler.index].effects[effect]
-		next if effectValue.nil?
-		next if effectValue == false
-		next if effectValue.is_a?(Integer) && effectValue <= 0
+		if !DEBUGGING_EFFECT_DISPLAY
+			next if effectValue.nil?
+			next if effectValue == false && !DEBUGGING_EFFECT_DISPLAY
+			next if effectValue.is_a?(Integer) && effectValue <= 0
+		end
 		effectName = labelSlotEffect(effect)
 		next if effectName.blank?
-		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String)
+		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
 		battlerEffects.push(effectName)
 	end
 	
@@ -484,7 +505,7 @@ class BattleInfoDisplay < SpriteWrapper
 		"Trapped By User",
 		"Truant",
 		"2-Turn Attack",
-		"",
+		"Added Type",
 		"Unburden",
 		"Uproar Restless",
 		"Water Sport",

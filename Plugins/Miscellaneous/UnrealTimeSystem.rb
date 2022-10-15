@@ -107,10 +107,10 @@ module UnrealTime
     if hour < 0 || hour > 23
       raise RangeError, "hour is #{hour}, should be 0..23"
     end
-    day_seconds = 60*60*24
-    seconds_now = pbGetTimeNow.hour*60*60+pbGetTimeNow.min*60+pbGetTimeNow.sec
-    target_seconds = hour*60*60+min*60+sec
-    seconds_added = target_seconds-seconds_now
+    day_seconds = 60 * 60 * 24
+    seconds_now = pbGetTimeNow.hour * 60 * 60 + pbGetTimeNow.min * 60 + pbGetTimeNow.sec
+    target_seconds = hour * 60 * 60 + min * 60 + sec
+    seconds_added = target_seconds - seconds_now
     seconds_added += day_seconds if seconds_added<0
     add_seconds(seconds_added)
     PBDayNight.sheduleToneRefresh
@@ -156,7 +156,8 @@ module PBDayNight
           Graphics.frame_rate*UnrealTime::TONE_CHECK_INTERVAL
         )
         if toneNeedUpdate
-          getToneInternal
+          getToneInternal()
+          applyOutdoorEffects()
           @dayNightToneLastUpdate = Graphics.frame_count
         end
         return @cachedTone
@@ -194,19 +195,19 @@ def pbGetTimeNow
       $game_variables[UnrealTime::EXTRA_DAYS]-=1
     end  
   end  
-  start_time=UnrealTime.initial_date
+  start_time = UnrealTime.initial_date
   if UnrealTime::TIME_STOPS
-    time_played=$PokemonGlobal.newFrameCount
+    time_played = $PokemonGlobal.newFrameCount
   else
-    time_played=Graphics.frame_count
+    time_played = Graphics.frame_count
   end
-  time_played=(time_played*UnrealTime::PROPORTION)/Graphics.frame_rate
-  time_jumped=0
-  if UnrealTime::EXTRA_SECONDS>-1 
-    time_jumped+=pbGet(UnrealTime::EXTRA_SECONDS)
+  time_played = (time_played * UnrealTime::PROPORTION) / Graphics.frame_rate
+  time_jumped = 0
+  if UnrealTime::EXTRA_SECONDS > -1
+    time_jumped += pbGet(UnrealTime::EXTRA_SECONDS)
   end
-  if UnrealTime::EXTRA_DAYS>-1 
-    time_jumped+=pbGet(UnrealTime::EXTRA_DAYS)*day_seconds
+  if UnrealTime::EXTRA_DAYS >- 1 
+    time_jumped += pbGet(UnrealTime::EXTRA_DAYS) * day_seconds
   end
   time_ret = 0
   # Before Essentials V19, there is a year limit. To prevent crashes due to this
@@ -216,25 +217,28 @@ def pbGetTimeNow
   # when displaying years.
   loop do
     time_fix=0
-    if $PokemonGlobal.extraYears!=0
-      time_fix = $PokemonGlobal.extraYears*day_seconds*(365*6+1)/6
+    if $PokemonGlobal.extraYears != 0
+      time_fix = $PokemonGlobal.extraYears * day_seconds * (365 * 6 + 1) / 6
     end
-    time_ret=start_time+(time_played+time_jumped-time_fix)
-    break if !UnrealTime::NEED_32_BIT_FIX || time_ret.year<2036
-    $PokemonGlobal.extraYears+=6
+    time_ret = start_time + (time_played + time_jumped - time_fix)
+    break if !UnrealTime::NEED_32_BIT_FIX || time_ret.year < 2036
+    $PokemonGlobal.extraYears += 6
   end
   return time_ret
 end
 
-if UnrealTime::ENABLED
-  class PokemonGlobalMetadata
+class PokemonGlobalMetadata
     attr_accessor :newFrameCount # Became float when using extra values
     attr_accessor :extraYears 
     
     def addNewFrameCount
-      return if (UnrealTime::SWITCH_STOPS>0 && 
-        $game_switches[UnrealTime::SWITCH_STOPS])
-      self.newFrameCount+=1
+      return if (UnrealTime::SWITCH_STOPS>0 && $game_switches[UnrealTime::SWITCH_STOPS])
+      if $DEBUG && Input.press?(Input::CTRL) && Input.pressex?(0x54) # T, for time
+        self.newFrameCount += 100
+        PBDayNight.sheduleToneRefresh
+      else
+        self.newFrameCount += 1
+      end
     end
     
     def newFrameCount
@@ -246,34 +250,4 @@ if UnrealTime::ENABLED
       @extraYears=0 if !@extraYears
       return @extraYears
     end
-  end  
-
-  if UnrealTime::TIME_STOPS  
-    class Scene_Map
-      alias :updateold :update
-      def update
-        $PokemonGlobal.addNewFrameCount
-        updateold
-      end
-    
-      if UnrealTime::TALK_PASS  
-        alias :miniupdateold :miniupdate
-        def miniupdate
-          $PokemonGlobal.addNewFrameCount 
-          miniupdateold
-        end
-      end
-    end  
-  
-    if UnrealTime::BATTLE_PASS
-      PokeBattle_Scene = Battle::Scene if !defined?(PokeBattle_Scene)
-      class PokeBattle_Scene
-        alias :pbGraphicsUpdateold :pbGraphicsUpdate
-        def pbGraphicsUpdate
-          $PokemonGlobal.addNewFrameCount 
-          pbGraphicsUpdateold
-        end
-      end
-    end
-  end
 end

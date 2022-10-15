@@ -160,8 +160,8 @@ Special,20
 [040] # Gigalith's Guts
 DarkCave,20
     25,ARON,17,20
-    25,BALTOY,17,20
-    25,ROGGENROLA,17,20
+    25,MROGGENROLA,17,20
+    25,NOSEPASS,17,20
     25,ZUBAT,17,20
 #-------------------------------
 [047] # Grand Hotel
@@ -175,7 +175,7 @@ Special,20
 [051] # Foreclosed Tunnel
 DarkCave,20
     25,GASTLY,9,11
-    25,NOSEPASS,9,11
+    25,ONIX,9,11
     25,ROLYCOLY,9,11
     25,TRAPINCH,9,11
 Mud,40
@@ -203,8 +203,8 @@ LandTall,20
 [055] # Floral Rest
 FloweryGrass,20
     25,BONSLY,15,18
-    25,DUSKULL,15,18
     25,SHUPPET,15,18
+    25,STUFFUL,14,17
     5,FLABEBE,15,18
     5,FLABEBE_1,15,18
     5,FLABEBE_2,15,18
@@ -243,11 +243,10 @@ Special
 #-------------------------------
 [060] # Shipping Lane
 Land,20
-    20,IGGLYBUFF,14,17
-    20,MEOWTH,14,17
-    20,MSENTRET,14,17
-    20,STUFFUL,14,17
-    20,VENIPEDE,14,17
+    25,IGGLYBUFF,14,17
+    25,MEOWTH,14,17
+    25,MSENTRET,14,17
+    25,VENIPEDE,14,17
 LandTall,20
     25,DIGLETT,14,17
     25,PIKIPEK,14,17
@@ -269,14 +268,6 @@ Special
 [074] # Németh Apartments Room 203
 Special
     1,GYAMASK,15
-#-------------------------------
-[081] # East Tunnel
-DarkCave,20
-    20,CUBONE,17,20
-    20,DURALUDON,17,20
-    20,MAWILE,17,20
-    20,SABLEYE,17,20
-    20,WOOBAT,17,20
 #-------------------------------
 [085] # Worried Man's House
 Special,20
@@ -324,9 +315,9 @@ Land,20
 #-------------------------------
 [120] # Hollowed Layer
 DarkCave,20
+    25,BALTOY,17,20
     25,BRONZOR,17,20
     25,LARVITAR,17,20
-    25,ONIX,17,20
     25,TYNAMO,17,20
 #-------------------------------
 [121] # Skyward Ascent
@@ -370,10 +361,11 @@ LandSparse,20
 #-------------------------------
 [129] # Barren Crater
 Land,20
-    25,MTANGELA,18,20
-    25,NINCADA,18,20
-    25,SPOINK,18,20
-    25,VULLABY,18,20
+    20,MTANGELA,18,20
+    20,NINCADA,18,20
+    20,ROGGENROLA,18,20
+    20,SPOINK,18,20
+    20,VULLABY,18,20
 Special,1
     1,LILLIPUP,15
 #-------------------------------
@@ -484,7 +476,7 @@ LandTall,25
 Puddle,21
     40,ESPURR,23,25
     20,CORPHISH,23,25
-    20,DEERLING,23,25
+    20,DEERLING_1,23,25
     20,ILLUMISE,23,25
     20,VOLBEAT,23,25
 #-------------------------------
@@ -608,6 +600,7 @@ Mud,20
 [214] # Team Chasm HQ
 DarkCave,21
     25,CARBINK,16,19
+    25,DURALUDON,16,19
     25,ELGYEM,16,19
     25,MUNNA,16,19
 #-------------------------------
@@ -812,3 +805,19 @@ Special
 [323] # HQ Station Backroom
 Special
     1,WIMPOD,15
+#-------------------------------
+[326] # The Barrows
+DarkCave,20
+    20,CUBONE,17,20
+    20,DUSKULL,17,20
+    20,MAWILE,17,20
+    20,SABLEYE,17,20
+    20,WOOBAT,17,20
+#-------------------------------
+[335] # Svait Sauna Underground
+Land,20
+    20,DARUMAKA,17,20
+    20,DWEBBLE,17,20
+    20,SLUGMA,17,20
+    20,TORKOAL,17,20
+    20,TURTONATOR,17,20

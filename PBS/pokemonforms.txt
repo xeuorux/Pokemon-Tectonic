@@ -917,9 +917,8 @@ Abilities = MENTALBLOCK
 FormName = Midnight
 Type1 = ROCK
 Type2 = DARK
-BaseStats = 85,115,75,82,55,75
+BaseStats = 93,120,75,82,55,75
 Abilities = NOGUARD
-Moves = 0,COUNTER,1,COUNTER,1,REVERSAL,1,TAUNT,1,TACKLE,1,LEER,1,SANDATTACK,1,BITE,4,SANDATTACK,7,BITE,12,HOWL,15,ROCKTHROW,18,ODORSLEUTH,23,ROCKTOMB,26,ROAR,29,STEALTHROCK,34,ROCKSLIDE,37,SCARYFACE,40,CRUNCH,45,ROCKCLIMB,48,STONEEDGE
 Height = 1.1
 Color = Red
 Shape = BipedalTail
@@ -931,9 +930,8 @@ BattlerShadowSize = 3
 #-------------------------------
 [LYCANROC,2]
 FormName = Dusk
-BaseStats = 75,115,65,112,55,65
+BaseStats = 85,125,70,95,55,70
 Abilities = SANDRUSH
-Moves = 0,SUCKERPUNCH,1,SUCKERPUNCH,1,TACKLE,1,LEER,1,GROWL,8,ROCKTHROW,12,BITE,16,HOWL,20,BRUTALSWING,24,ROCKTOMB,30,ROAR,36,ROCKSLIDE,42,CRUNCH,48,SCARYFACE,54,STEALTHROCK,60,STONEEDGE
 Pokedex = Bathed in the setting sun of evening, Lycanroc has undergone a special kind of evolution. An intense fighting spirit underlies its calmness.
 #-------------------------------
 [WISHIWASHI,1]
@@ -1383,7 +1381,7 @@ Pokedex = Trainers Polteageist trusts will be allowed to experience its distinct
 FormName = ♀
 BaseStats = 75,65,65,85,95,105
 EffortPoints = 0,0,0,0,0,2
-Moves = 1,STOREDPOWER,1,PLAYNICE,4,BATONPASS,8,DISARMINGVOICE,12,SHOUT,16,PSYBEAM,20,HELPINGHAND,24,FOLLOWME,28,CALMMIND,32,TELEPORT,36,PSYCHIC,40,HYPERVOICE,44,GUARDSPLIT,48,PSYCHICTERRAIN,52,HEALINGWISH,56,UPROAR,60,EXPANDINGFORCE
+Moves = 1,STOREDPOWER,1,PLAYNICE,4,BATONPASS,8,DISARMINGVOICE,12,SHOUT,16,PSYBEAM,20,HELPINGHAND,24,FOLLOWME,28,CALMMIND,32,TELEPORT,36,PSYCHIC,40,HYPERVOICE,44,GUARDSPLIT,48,PSYCHICTERRAIN,52,HEALINGWISH,56,UPROAR,60,EXPANDINGFORCE,64,LASTRESORT
 EggMoves = FAKEOUT,HEALPULSE,PSYCHUP,PSYCHOSHIFT
 Pokedex = They diligently serve people and Pokémon so they can gather feelings of gratitude. The females are particularly good at babysitting.
 BattlerPlayerY = 23
@@ -1486,6 +1484,7 @@ Type1 = FIRE
 Type2 = PSYCHIC
 BaseStats = 105,30,105,55,140,105
 EffortPoints = 0,0,0,0,2,0
+Abilities = TOUGH
 Color = Blue
 Pokedex = When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit.
 BattlerPlayerY = 65

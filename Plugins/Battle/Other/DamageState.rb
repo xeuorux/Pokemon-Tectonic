@@ -4,6 +4,21 @@ class PokeBattle_DamageState
 	attr_accessor :forced_critical
 	attr_accessor :direDiversion
 	attr_accessor :endureBerry
+	attr_accessor :partiallyProtected
+	attr_accessor :messagesPerHit
+
+	def reset
+		@initialHP          = 0
+		@typeMod            = Effectiveness::INEFFECTIVE
+		@unaffected         = false
+		@protected          = false
+		@magicCoat          = false
+		@magicBounce        = false
+		@totalHPLost        = 0
+		@fainted            = false
+		@messagesPerHit		= true
+		resetPerHit
+	  end
 
 	def resetPerHit
 		@missed        		= false
@@ -22,5 +37,6 @@ class PokeBattle_DamageState
 		@forced_critical	= false
 		@direDiversion		= false
 		@endureBerry		= false
+		@partiallyProtected	= false
 	end
 end

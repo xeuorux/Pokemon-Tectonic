@@ -4,4 +4,4 @@ Requires	 = StatTracking
 Requires	 = ChasmPokedex                                                                    
 Link         = https://reliccastle.com/link-to-the-plugin/               
 Credits      = Zeu
-Scripts		 = Moves/NewMoveCodes.rb
+Scripts		 = Move Codes/Move_Effects_Generic.rb,Abilities/BattleHandlers.rb

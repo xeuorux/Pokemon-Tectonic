@@ -1,14 +1,83 @@
 class PokeBattle_Battle
 	#=============================================================================
+	# Check whether actions can be taken
+	#=============================================================================
+	def pbCanShowCommands?(idxBattler)
+		battler = @battlers[idxBattler]
+		return false if !battler || battler.fainted?
+		return false if battler.usingMultiTurnAttack?
+		return true
+	end
+
+	def canChooseAnyMove?(idxBattler)
+		battler = @battlers[idxBattler]
+		battler.eachMoveWithIndex do |_m,i|
+			next if !pbCanChooseMove?(idxBattler,i,false)
+			return true
+		end
+		return false
+	end
+
+	#=============================================================================
+	# Use sub-menus to choose an action, and register it if is allowed
+	#=============================================================================
+	# Returns true if a choice was made, false if cancelled.
+	def pbFightMenu(idxBattler)
+		battler = @battlers[idxBattler]
+		if !canChooseAnyMove?(idxBattler)
+			if pbDisplayConfirmSerious(_INTL("#{battler.pbThis} cannot use any of its moves, and will Struggle if it fights. Go ahead?"))
+				return pbAutoChooseMove(idxBattler)
+			else
+				return false
+			end
+		end
+		if battler.effects[PBEffects::Encore] > 0
+			encoreMove = battler.moves[battler.pbEncoredMoveIndex]
+			if pbDisplayConfirm(_INTL("#{battler.pbThis} must use #{encoreMove.name} if it fights. Go ahead?"))
+				return pbAutoChooseMove(idxBattler)
+			else
+				return false
+			end
+		end
+		# Battle Palace only
+		return true if pbAutoFightMenu(idxBattler)
+		# Regular move selection
+		ret = false
+		@scene.pbFightMenu(idxBattler,pbCanMegaEvolve?(idxBattler)) { |cmd|
+		case cmd
+		when -1   # Cancel
+		when -2   # Toggle Mega Evolution
+			pbToggleRegisteredMegaEvolution(idxBattler)
+			next false
+		when -3   # Shift
+			pbUnregisterMegaEvolution(idxBattler)
+			pbRegisterShift(idxBattler)
+			ret = true
+		else      # Chose a move to use
+			next false if cmd<0 || !@battlers[idxBattler].moves[cmd] ||
+								!@battlers[idxBattler].moves[cmd].id
+			next false if !pbRegisterMove(idxBattler,cmd)
+			next false if !singleBattle? &&
+			!pbChooseTarget(@battlers[idxBattler],@battlers[idxBattler].moves[cmd])
+			ret = true
+		end
+		next true
+		}
+		return ret
+	end
+
+	#=============================================================================
 	# Command phase
 	#=============================================================================
 	def pbCommandPhase
 		@scene.pbBeginCommandPhase
+		
 		# Reset choices if commands can be shown
 		@battlers.each_with_index do |b,i|
-		next if !b
-		pbClearChoice(i) if pbCanShowCommands?(i)
+			next if !b
+			pbClearChoice(i) if pbCanShowCommands?(i)
 		end
+		
 		# Reset choices to perform Mega Evolution if it wasn't done somehow
 		for side in 0...2
 			@megaEvolution[side].each_with_index do |megaEvo,i|
@@ -26,28 +95,7 @@ class PokeBattle_Battle
 		return if @decision!=0   # Battle ended, stop choosing actions
 		pbCommandPhaseLoop(true)   # Player chooses their actions
 		
-		# For each pokemon the player decided to use a move with, trigger the trainer dialogue method
-		# for any trainers which can do so
-		if @opponent
-			idxBattler = -1
-			loop do
-			idxBattler += 1
-			break if idxBattler>=@battlers.length
-			next if !@battlers[idxBattler] || !pbOwnedByPlayer?(idxBattler)
-			if @choices[idxBattler][0] == :UseMove
-					battler = @battlers[idxBattler]
-					move = @choices[idxBattler][2]
-					target = @choices[idxBattler][3] == -1 ? nil : @battlers[@choices[idxBattler][3]]
-					
-					# Trigger dialogue for each opponent
-					@opponent.each_with_index do |trainer_speaking,idxTrainer|
-						@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-							PokeBattle_AI.triggerPlayerChoseMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue)
-						}
-					end	
-				end
-			end
-		end
+		triggerAllChoicesDialogue()
 	end
 
 	def preSelectionAlerts()
@@ -62,6 +110,17 @@ class PokeBattle_Battle
 				pbDisplay(_INTL("{1} reads {2}'s guilty soul!",battler.pbThis,opponent.pbThis(true)))
 				pbHideAbilitySplash(battler)
 			end
+		end
+	end
+
+	def triggerAllChoicesDialogue()
+		idxBattler = -1
+		loop do
+			idxBattler += 1
+			break if idxBattler >= @battlers.length
+			battler = @battlers[idxBattler]
+			next if battler.nil?
+			triggerBattlerChoiceDialogue(battler,@choices[idxBattler])
 		end
 	end
 
@@ -106,26 +165,15 @@ class PokeBattle_Battle
 			@battleAI.beginAutoTester(battler) if $DEBUG && Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
 		  
 			# Increment their choices taken
-			if @battlers[idxBattler].choicesTaken.nil?
-				@battlers[idxBattler].choicesTaken = 1
+			if battler.choicesTaken.nil?
+				battler.choicesTaken = 1
 			else
-				@battlers[idxBattler].choicesTaken += 1
+				battler.choicesTaken += 1
 			end
 
 			# Have the AI choose an action
 			@battleAI.pbDefaultChooseEnemyCommand(idxBattler)
 
-			# If an AI trainer chose to use a move, trigger dialogue event for that trainer
-			if @opponent && @choices[idxBattler][0] == :UseMove
-				battler = @battlers[idxBattler]
-				move = @choices[idxBattler][2]
-				target = @choices[idxBattler][3] == -1 ? nil : @battlers[@choices[idxBattler][3]]
-				idxTrainer = pbGetOwnerIndexFromBattlerIndex(idxBattler)
-				trainer_speaking = @opponent[idxTrainer]
-				@scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					PokeBattle_AI.triggerTrainerChoseMoveDialogue(policy,battler,move,target,trainer_speaking,dialogue)
-				}
-			end
 			# Go to the next battler
 			next
 		  end
@@ -152,7 +200,7 @@ class PokeBattle_Battle
 				b.hp = b.totalhp
 				b.pbCureStatus(false)
 				b.pbResetStatStages()
-				b.pbInitPokemon(b.pkmn,b.index)
+				b.pbInitPokemon(b.pokemon,b.index)
 			end
 			next
 		  end

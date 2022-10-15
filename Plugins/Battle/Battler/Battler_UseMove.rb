@@ -65,11 +65,10 @@ class PokeBattle_Battler
     # Start using the move
     pbBeginTurn(choice)
     # Force the use of certain moves if they're already being used
-    if usingMultiTurnAttack?
+    if usingMultiTurnAttack? && !@currentMove.nil?
       choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@currentMove))
       specialUsage = true
-    elsif @effects[PBEffects::Encore]>0 && choice[1]>=0 &&
-       @battle.pbCanShowCommands?(@index)
+    elsif @effects[PBEffects::Encore] > 0 && choice[1] >= 0 && @battle.pbCanShowCommands?(@index)
       idxEncoredMove = pbEncoredMoveIndex
       if idxEncoredMove>=0 && @battle.pbCanChooseMove?(@index,idxEncoredMove,false)
         if choice[1]!=idxEncoredMove   # Change move if battler was Encored mid-round
@@ -207,6 +206,14 @@ class PokeBattle_Battler
       pbEndTurn(choice)
       return
     end
+    # "But it failed!" checks, when the move is not a special usage
+    if !specialUsage && move.pbMoveFailedNoSpecial?(user,targets)
+      PBDebug.log(sprintf("[Move failed] In function code %s's def pbMoveFailedNoSpecial?",move.function))
+      user.lastMoveFailed = true
+      pbCancelMoves
+      pbEndTurn(choice)
+      return
+    end
     # Perform set-up actions and display messages
     # Messages include Magnitude's number and Pledge moves' "it's a combo!"
     move.pbOnStartUse(user,targets)
@@ -215,7 +222,7 @@ class PokeBattle_Battler
       @battle.pbCommonAnimation("Powder",user)
       @battle.pbDisplay(_INTL("When the flame touched the powder on the Pokémon, it exploded!"))
       user.lastMoveFailed = true
-      if ![:Rain, :HeavyRain].include?(@battle.pbWeather) && user.takesIndirectDamage?
+      if user.takesIndirectDamage?
         oldHP = user.hp
         user.pbReduceHP((user.totalhp/4.0).round,false)
         cleanupPreMoveDamage(use,oldHP)
@@ -338,10 +345,18 @@ class PokeBattle_Battler
       end
       # Get the number of hits
       numHits = move.pbNumHits(user,targets)
-      numHits *= 2 if user.effects[PBEffects::VolleyStance] && move.specialMove?
+      # Mark each target with whether its being targeted by a multihit move
+      messagesPerHit = numHits <= 1
+      targets.each do |target|
+        target.damageState.messagesPerHit = messagesPerHit
+      end
+      # Record that Parental Bond applies, to weaken the second attack
+      user.effects[PBEffects::ParentalBond] = 3 if move.canParentalBond?(user,targets) 
       # Process each hit in turn
+      # Skip all hits if the move is being magic coated, magic bounced, or magic shielded
       realNumHits = 0
-      if magicCoater < 0 || magicBouncer < 0 || magicShielder < 0
+      moveIsMagicked = magicCoater >= 0 || magicBouncer >= 0 || magicShielder >= 0
+      if !moveIsMagicked
         for i in 0...numHits
           success = pbProcessMoveHit(move,user,targets,i,skipAccuracyCheck,numHits > 1)
           if !success
@@ -375,19 +390,25 @@ class PokeBattle_Battler
         end
       end
       # Effectiveness message for multi-hit moves
-      # NOTE: No move is both multi-hit and multi-target, and the messages below
-      #       aren't quite right for such a hypothetical move.
-      if numHits > 1
+      if !messagesPerHit
         if move.damagingMove?
           targets.each do |b|
             next if b.damageState.unaffected || b.damageState.substitute
             move.pbEffectivenessMessage(user,b,targets.length)
           end
         end
-        if realNumHits==1
-          @battle.pbDisplay(_INTL("Hit 1 time!"))
-        elsif realNumHits>1
-          @battle.pbDisplay(_INTL("Hit {1} times!",realNumHits))
+        if targets.length > 1
+          if realNumHits == 1
+            @battle.pbDisplay(_INTL("Hit each 1 time!"))
+          elsif realNumHits > 1
+            @battle.pbDisplay(_INTL("Hit each {1} times!",realNumHits))
+          end
+        else
+          if realNumHits == 1
+            @battle.pbDisplay(_INTL("Hit 1 time!"))
+          elsif realNumHits > 1
+            @battle.pbDisplay(_INTL("Hit {1} times!",realNumHits))
+          end
         end
       end
       # Magic Coat's bouncing back (move has targets)
@@ -406,7 +427,7 @@ class PokeBattle_Battler
         targets.each { |otherB| otherB.pbFaint if otherB && otherB.fainted? }
         user.pbFaint if user.fainted?
       end
-      # Magic Coat's bouncing back (move has no targets)
+      # Magic Coat and Magic Bounce's bouncing back (move has no targets)
       if magicCoater>=0 || magicBouncer>=0
         mc = @battle.battlers[(magicCoater>=0) ? magicCoater : magicBouncer]
         if !mc.fainted?
@@ -441,28 +462,12 @@ class PokeBattle_Battler
         @battle.triggerMoveUsedCurseEffect(curse_policy,self,choice[3],move)
       end
       
-      if !battle.wildBattle?
-        # Triggers dialogue for each target hit
-        targets.each do |t|
-          next unless t.damageState.totalHPLost > 0
-          if @battle.pbOwnedByPlayer?(t.index)
-            # Trigger each opponent's dialogue
-            @battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
-              @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-                trainer = @battle.opponent[idxTrainer]
-                PokeBattle_AI.triggerPlayerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
-              }
-            end
-          else
-            # Trigger just this pokemon's trainer's dialogue
-            idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(index)
-            trainer_speaking = @battle.opponent[idxTrainer]
-            @battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-              PokeBattle_AI.triggerTrainerPokemonTookMoveDamageDialogue(policy,self,t,trainer_speaking,dialogue)
-            }
-          end
-        end
+      # Triggers dialogue for each target hit
+      targets.each do |t|
+        next unless t.damageState.totalHPLost > 0
+        @battle.triggerBattlerTookMoveDamageDialogue(user,t,move)
       end
+
       # Faint if 0 HP
       targets.each { |b| b.pbFaint if b && b.fainted? }
       user.pbFaint if user.fainted?
@@ -492,7 +497,7 @@ class PokeBattle_Battler
           moveIndex = i
         end
       }
-      next if moveIndex<0
+      next if moveIndex < 0
       moveID = b.lastMoveUsed
       usageMessage = _INTL("{1} used the move instructed by {2}!",b.pbThis,user.pbThis(true))
       preTarget = b.lastRegularMoveTarget
@@ -510,6 +515,20 @@ class PokeBattle_Battler
         preTarget = choice[3]
         preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
         @battle.forceUseMove(nextUser,move.id,preTarget,true,nil,PBEffects::Dancer,true)
+      end
+    end
+    # Echo
+    if !@effects[PBEffects::Echo] && !user.lastMoveFailed && realNumHits>0 &&
+          !move.snatched && magicCoater < 0 && @battle.pbCheckGlobalAbility(:ECHO) && move.soundMove?
+      echoers = []
+      @battle.pbPriority(true).each do |b|
+        echoers.push(b) if b.index != user.index && b.hasActiveAbility?(:ECHO)
+      end
+      while echoers.length>0
+        nextUser = echoers.pop
+        preTarget = choice[3]
+        preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
+        @battle.forceUseMove(nextUser,move.id,preTarget,true,nil,PBEffects::Echo,true)
       end
     end
   end
@@ -634,7 +653,7 @@ class PokeBattle_Battler
         # Secretion Secret
         targets.each do |target|
           next if target.damageState.unaffected
-          if target.hasActiveAbility?(:SECRETIONSECRET)
+          if target.hasActiveAbility?(:SECRETIONSECRET) && user.opposes?(target)
             battle.pbShowAbilitySplash(target)
             if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
               user.pbPoison(target,nil)
@@ -651,7 +670,7 @@ class PokeBattle_Battler
       move.pbEffectAgainstTarget(user,b)
     end
     move.pbEffectGeneral(user)
-	@battle.eachBattler { |b| b.pbItemFieldEffectCheck} #use this until the field change method applies to all field changes
+	  @battle.eachBattler { |b| b.pbItemFieldEffectCheck} #use this until the field change method applies to all field changes
     targets.each { |b| b.pbFaint if b && b.fainted? }
     user.pbFaint if user.fainted?
     # Additional effect
@@ -659,19 +678,26 @@ class PokeBattle_Battler
       targets.each do |b|
         next if b.damageState.calcDamage==0
         chance = move.pbAdditionalEffectChance(user,b)
-        next if chance<=0
-        if @battle.pbRandom(100)<chance
-          move.pbAdditionalEffect(user,b)
+        next if chance <= 0
+        if @battle.pbRandom(100) < chance
+          if b.hasActiveAbility?(:RUGGEDSCALES)
+            @battle.pbShowAbilitySplash(b)
+            @battle.pbDisplay(_INTL("The added effect of {1}'s {2} is deflected, harming it!",pbThis(true),move.name))
+            user.applyFractionalDamage(1.0/6.0,true)
+            @battle.pbHideAbilitySplash(b)
+          else
+            move.pbAdditionalEffect(user,b)
+          end
         end
       end
     end
     # Make the target flinch (because of an item/ability)
     targets.each do |b|
       next if b.fainted?
-      next if b.damageState.calcDamage==0 || b.damageState.substitute
+      next if b.damageState.calcDamage == 0 || b.damageState.substitute
       chance = move.pbFlinchChance(user,b)
-      next if chance<=0
-      if @battle.pbRandom(100)<chance
+      next if chance <= 0
+      if @battle.pbRandom(100) < chance
         PBDebug.log("[Item/ability triggered] #{user.pbThis}'s King's Rock/Razor Fang or Stench")
         b.pbFlinch(user)
       end
@@ -683,10 +709,9 @@ class PokeBattle_Battler
     targets.each do |b|
       next if b.damageState.unaffected
       next if !b.damageState.berryWeakened
-	  name = b.itemName
-	  name = "berry" if name == ""
+	    name = b.itemName
       @battle.pbDisplay(_INTL("The {1} weakened the damage to {2}!",name,b.pbThis(true)))
-      b.pbConsumeItem if b.item
+      b.pbHeldItemTriggered(b.item) if b.item
     end
     targets.each { |b| b.pbFaint if b && b.fainted? }
     user.pbFaint if user.fainted?
@@ -699,11 +724,11 @@ class PokeBattle_Battler
   # Cancels the use of multi-turn moves and counters thereof. Note that Hyper
   # Beam's effect is NOT cancelled.
   def pbCancelMoves(full_cancel = false)
-    # Outragers get confused anyway if they are disrupted during their final
-    # turn of using the move
-    if @effects[PBEffects::Outrage]==1 && pbCanConfuseSelf?(false) && !full_cancel
-      pbConfuse(_INTL("{1} became confused due to fatigue!",pbThis))
-    end
+    # # Outragers get confused anyway if they are disrupted during their final
+    # # turn of using the move
+    # if @effects[PBEffects::Outrage]==1 && pbCanConfuseSelf?(false) && !full_cancel
+    #   pbConfuse(_INTL("{1} became confused due to fatigue!",pbThis))
+    # end
     # Cancel usage of most multi-turn moves
     @effects[PBEffects::TwoTurnAttack] = nil
     @effects[PBEffects::Rollout]       = 0

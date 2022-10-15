@@ -77,11 +77,10 @@ class PokeBattle_Battler
     # NOTE: Although Destiny Bond is similar to Grudge, they don't apply at
     #       the same time (although Destiny Bond does check whether it's going
     #       to trigger at the same time as Grudge).
-    if user.effects[PBEffects::DestinyBondTarget]>=0 && !user.fainted?
+    if user.effects[PBEffects::DestinyBondTarget] >= 0 && !user.fainted?
       dbName = @battle.battlers[user.effects[PBEffects::DestinyBondTarget]].pbThis
       @battle.pbDisplay(_INTL("{1} took its attacker down with it!",dbName))
       user.pbReduceHP(user.hp,false)
-      user.pbItemHPHealCheck
       user.pbFaint
       @battle.pbJudgeCheckpoint(user)
     end
@@ -134,16 +133,16 @@ class PokeBattle_Battler
     hpNow = user.hp   # Intentionally determined now, before Shell Bell
     # Target's held item (Eject Button, Red Card)
     switchByItem = []
-    @battle.pbPriority(true).each do |b|
-      next if !targets.any? { |targetB| targetB.index==b.index }
-      next if b.damageState.unaffected || b.damageState.calcDamage==0 ||
-         switchedBattlers.include?(b.index)
-      next if !b.itemActive?
-      BattleHandlers.triggerTargetItemAfterMoveUse(b.item,b,user,move,switchByItem,@battle)
-	  # Eject Pack
-	  if b.effects[PBEffects::LashOut]
-		BattleHandlers.triggerItemOnStatLoss(b.item,b,user,move,switchByItem,@battle)
-	  end 
+      @battle.pbPriority(true).each do |b|
+        next if !targets.any? { |targetB| targetB.index==b.index }
+        next if b.damageState.unaffected || b.damageState.calcDamage==0 ||
+          switchedBattlers.include?(b.index)
+        next if !b.itemActive?
+        BattleHandlers.triggerTargetItemAfterMoveUse(b.item,b,user,move,switchByItem,@battle)
+      # Eject Pack
+      if b.effects[PBEffects::LashOut]
+      BattleHandlers.triggerItemOnStatLoss(b.item,b,user,move,switchByItem,@battle)
+      end 
     end
     @battle.moldBreaker = false if switchByItem.include?(user.index)
     @battle.pbPriority(true).each do |b|

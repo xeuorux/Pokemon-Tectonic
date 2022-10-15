@@ -42,7 +42,7 @@ Environment = None
 #-------------------------------
 [005]
 # Secret Location
-Outdoor = true
+Outdoor = false
 ShowArea = true
 Bicycle = true
 BattleBack = wcave
@@ -161,16 +161,17 @@ Outdoor = false
 ShowArea = true
 Bicycle = false
 BattleBack = elite2
+TeleportBlocked = true
 #-------------------------------
 [022]
 # False-Front House
-Outdoor = true
+Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
 [023]
 # Testing Map
-Outdoor = true
+Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
@@ -310,6 +311,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 BattleBack = elite3
+TeleportBlocked = true
 #-------------------------------
 [042]
 # Zeraora's Chamber
@@ -434,6 +436,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 BattleBack = elite8
+TeleportBlocked = true
 #-------------------------------
 [065]
 # Németh Mart
@@ -794,6 +797,7 @@ ShowArea = false
 Bicycle = false
 BattleBack = elite7
 Environment = None
+TeleportBlocked = true
 #-------------------------------
 [135]
 # Ancient Meteorite
@@ -1048,7 +1052,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [178]
-# Chasm Dev
+# Tectonic Development
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1056,7 +1060,7 @@ BattleBack = indoor2
 Environment = None
 #-------------------------------
 [179]
-# Chasm Dev F2
+# Tectonic Development F2
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1165,6 +1169,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 BattleBack = elite5
+TeleportBlocked = true
 #-------------------------------
 [196]
 # Boiling Cave
@@ -1224,7 +1229,6 @@ BattleBack = cave1
 Outdoor = true
 ShowArea = true
 Bicycle = true
-Weather = Fog,10
 MapPosition = 0,5,5
 BattleBack = cave3
 MapSize = 1,11
@@ -1234,7 +1238,6 @@ MapSize = 1,11
 Outdoor = true
 ShowArea = true
 Bicycle = true
-Weather = Rain,10
 MapPosition = 0,19,3
 MapSize = 2,1110
 Environment = Grass
@@ -1252,6 +1255,7 @@ Environment = Underwater
 Outdoor = false
 ShowArea = true
 Bicycle = true
+Weather = ToxicFog,100
 MapPosition = 0,14,3
 BattleBack = indoor3
 Environment = StillWater
@@ -1277,6 +1281,7 @@ Environment = StillWater
 Outdoor = false
 ShowArea = true
 Bicycle = true
+Weather = ToxicFog,100
 MapPosition = 0,12,4
 BattleBack = indoor3
 Environment = StillWater
@@ -1451,6 +1456,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = false
+TeleportBlocked = true
 #-------------------------------
 [275]
 # Sweetrock Harbor Gym Tour
@@ -1574,6 +1580,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = false
 BattleBack = champion1
+TeleportBlocked = true
 #-------------------------------
 [301]
 # County Park
@@ -1604,3 +1611,75 @@ ShowArea = true
 Bicycle = true
 BattleBack = sand
 Environment = Sand
+#-------------------------------
+[317]
+# Tournament Arena
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[318]
+# Tournament Grounds
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 0,12,2
+#-------------------------------
+[320]
+# Svait Station Backroom
+Outdoor = false
+ShowArea = false
+Bicycle = false
+Weather = Fog,100
+#-------------------------------
+[324]
+# Waiting Room
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[325]
+# Ticketing Gate
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[326]
+# The Barrows
+Outdoor = false
+ShowArea = true
+Bicycle = true
+BattleBack = cave3
+#-------------------------------
+[327]
+# Royal Burial
+Outdoor = false
+ShowArea = true
+Bicycle = true
+BattleBack = wcave
+#-------------------------------
+[328]
+# Suspicious Shed
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[329]
+# Tournament Lobby
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[330]
+# King's Chamber
+Outdoor = false
+ShowArea = false
+Bicycle = true
+BattleBack = wcave
+#-------------------------------
+[335]
+# Svait Sauna Underground
+Outdoor = false
+ShowArea = false
+Bicycle = false
+Weather = Fog,100

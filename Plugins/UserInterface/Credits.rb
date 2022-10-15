@@ -14,7 +14,8 @@ Fbarbarosa<s>ctWizard
 Slaynoir<s>Maddie
 FurretKnight<s>Dtp81390
 Gabs<s>derrondad
-BlueObelisk<s>
+BlueObelisk<s>Dark?
+MrPanda1<s>Angelcake
 
 Playtesters
 Splitmoon<s>Sets
@@ -31,14 +32,14 @@ Tilesheets
 Kyle Dove (Kymotonian)<s>Speedialga
 Sagaxxy<s>Magiscarf
 KingTapir<s>PkmnAlexandrite
-Phyromantical<s>EVoLiNa
+Phyromatical<s>EVoLiNa
 Midnitez-REMIX<s>ditto209
 UltimoSpriter<s>PeekyChew
 Cuddlesthefatcat<s>Pablus94
 Hydrargirium<s>zetavares852
 TyranitarDark<s>ChaoticCherryCake
 AveonTrainer<s>kane89
-carchagui<s>Princess Phoenix
+carchagui<s>Princess-Phoenix
 DormDude<s>Rayquaza-dot
 Vazquinho<s>Yveltalchannel
 Magna-Ryunoid<s>Plutomaniacx
@@ -69,6 +70,7 @@ Newtiteuf<s>moca
 
 Charsets
 DiegoWT<s>PurpleZaffre
+Taiga
 
 Trainer Sprites
 Mr. Gela/theo#7722

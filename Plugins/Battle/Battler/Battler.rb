@@ -2,6 +2,46 @@ class PokeBattle_Battler
   OFFENSIVE_LOCK_STAT = 120
   DEFENSIVE_LOCK_STAT = 95
 
+  #=============================================================================
+  # Queries about what the battler has
+  #=============================================================================
+  def plainStats
+    ret = {}
+    ret[:ATTACK]          = self.attack
+    ret[:DEFENSE]         = self.defense
+    ret[:SPECIAL_ATTACK]  = self.spatk
+    ret[:SPECIAL_DEFENSE] = self.spdef
+    ret[:SPEED]           = self.speed
+
+    if getsTribalBonuses?
+      bonuses = $Tribal_Bonuses.getTribeBonuses(@pokemon)
+      ret[:ATTACK_TRIBAL] = bonuses[:ATTACK]
+      ret[:DEFENSE_TRIBAL] = bonuses[:DEFENSE]
+      ret[:SPECIAL_ATTACK_TRIBAL] = bonuses[:SPECIAL_ATTACK]
+      ret[:SPECIAL_DEFENSE_TRIBAL] = bonuses[:SPECIAL_DEFENSE]
+      ret[:SPEED_TRIBAL] = bonuses[:SPEED]
+    else
+      ret[:ATTACK_TRIBAL] = 0
+      ret[:DEFENSE_TRIBAL] = 0
+      ret[:SPECIAL_ATTACK_TRIBAL] = 0
+      ret[:SPECIAL_DEFENSE_TRIBAL] = 0
+      ret[:SPEED_TRIBAL] = 0
+    end
+
+    return ret
+  end
+
+  def getBonus(stat)
+    return 0 if !getsTribalBonuses?
+    return $Tribal_Bonuses.getTribeBonuses(@pokemon)[stat]
+  end
+
+  def getsTribalBonuses?()
+    return false if !defined?(TribalBonus)
+    return false if !pbOwnedByPlayer?
+    return true
+  end
+
 	def attack
 		if @battle.field.effects[PBEffects::PuzzleRoom] > 0 && @battle.field.effects[PBEffects::OddRoom] > 0
 			return sp_def_no_room
@@ -51,38 +91,47 @@ class PokeBattle_Battler
 	end
 
   def attack_no_room
+    atk_bonus = getBonus(:ATTACK)
+
     if hasActiveItem?(:POWERLOCK)
-      return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:ATTACK])
+      return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:ATTACK],hasActiveAbility?(:STYLISH)) + atk_bonus
     else
-      return @attack
+      return @attack + atk_bonus
     end
   end
 
   def defense_no_room
+    defense_bonus = getBonus(:DEFENSE)
+
     if hasActiveItem?(:GUARDLOCK)
-      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE])
+      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:DEFENSE],hasActiveAbility?(:STYLISH)) + defense_bonus
     else
-      return @defense
+      return @defense + defense_bonus
     end
   end
 
   def sp_atk_no_room
+    spatk_bonus = getBonus(:SPECIAL_ATTACK)
+
     if hasActiveItem?(:ENERGYLOCK)
-			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK])
+			return calcStatGlobal(OFFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_ATTACK],hasActiveAbility?(:STYLISH)) + spatk_bonus
 		else
-			return @spatk
+			return @spatk + spatk_bonus
 		end
   end
   
   def sp_def_no_room
+    spdef_bonus = getBonus(:SPECIAL_DEFENSE)
+
     if hasActiveItem?(:WILLLOCK)
-      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE])
+      return calcStatGlobal(DEFENSIVE_LOCK_STAT,@level,@pokemon.ev[:SPECIAL_DEFENSE],hasActiveAbility?(:STYLISH)) + spdef_bonus
     else
-      return @spdef 
+      return @spdef + spdef_bonus
     end
   end
 
-	def hasActiveAbility?(check_ability, ignore_fainted = false)
+	def hasActiveAbility?(check_ability, ignore_fainted = false, checkingForAI = false)
+    return hasActiveAbilityAI?(check_ability, ignore_fainted) if checkingForAI
 		return false if !abilityActive?(ignore_fainted)
 		return check_ability.include?(@ability_id) if check_ability.is_a?(Array)
     return false if self.ability.nil?
@@ -101,14 +150,88 @@ class PokeBattle_Battler
 		return true
 	  end
 
-	def takesHailDamage?
+  def affectedByWeatherDownsides?(checkingForAI=false)
+    return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
+    return false if shouldAbilityApply?([:STOUT,:WEATHERSENSES,:NORMALIZE],checkingForAI)
+		return false if hasActiveItem?(:UTILITYUMBRELLA)
+    return false if @battle.pbCheckAlliedAbility(:HIGHRISE,@index)
+    return true
+  end
+
+  def debuffedBySun?(checkingForAI=false)
+    return false if !affectedByWeatherDownsides?(checkingForAI)
+    return false if shouldTypeApply?(:FIRE,checkingForAI) || shouldTypeApply?(:GRASS,checkingForAI)
+    setterAbilities = [:DROUGHT,:INNERLIGHT]
+    synergyAbilities = [:CHLOROPHYLL,:SOLARPOWER,:LEAFGUARD,:FLOWERGIFT,:MIDNIGHTSUN,:HARVEST,:SUNCHASER,:HEATSAVOR,:BLINDINGLIGHT,:SOLARCELL,:ROAST]
+    return false if shouldAbilityApply?(setterAbilities,checkingForAI) || shouldAbilityApply?(synergyAbilities,checkingForAI)
+    return true
+  end
+
+  def debuffedByRain?(checkingForAI=false)
+    return false if !affectedByWeatherDownsides?(checkingForAI)
+    return false if shouldTypeApply?(:WATER,checkingForAI) || shouldTypeApply?(:ELECTRIC,checkingForAI)
+    setterAbilities = [:DRIZZLE,:STORMBRINGER]
+    synergyAbilities = [:SWIFTSWIM,:RAINDISH,:HYDRATION,:TIDALFORCE,:STORMFRONT,:RAINPRISM,:DREARYCLOUDS]
+    return false if shouldAbilityApply?(setterAbilities,checkingForAI) || shouldAbilityApply?(synergyAbilities,checkingForAI)
+    return true
+  end
+  
+	def takesSandstormDamage?(checkingForAI=false)
+		return false if !affectedByWeatherDownsides?(checkingForAI)
+    return false if !takesIndirectDamage?
+    return false if hasActiveItem?(:SAFETYGOGGLES)
+		return false if shouldTypeApply?(:GROUND,checkingForAI) || shouldTypeApply?(:ROCK,checkingForAI) || shouldTypeApply?(:STEEL,checkingForAI)
+    setterAbilities = [:SANDSTREAM,:SANDBURST]
+    synergyAbilities = [:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:DESERTSPIRIT,:BURROWER,:SHRAPNELSTORM,:HARSHHUNTER]
+    return false if shouldAbilityApply?(setterAbilities,checkingForAI) || shouldAbilityApply?(synergyAbilities,checkingForAI)
+		return true
+  end
+
+	def takesHailDamage?(checkingForAI=false)
+    return false if !affectedByWeatherDownsides?(checkingForAI)
 		return false if !takesIndirectDamage?
-		return false if pbHasType?(:ICE) || pbHasType?(:STEEL) || pbHasType?(:GHOST)
-		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
-		return false if hasActiveAbility?([:OVERCOAT,:ICEBODY,:SNOWSHROUD,:STOUT,:SNOWWARNING,:BLIZZBOXER,:WEATHERSENSES])
-		return false if hasActiveItem?(:SAFETYGOGGLES)
+    return false if hasActiveItem?(:SAFETYGOGGLES)
+		return false if shouldTypeApply?(:ICE,checkingForAI) || shouldTypeApply?(:GHOST,checkingForAI) || shouldTypeApply?(:STEEL,checkingForAI)
+    setterAbilities = [:SNOWWARNING,:FROSTSCATTER]
+    synergyAbilities = [:OVERCOAT,:ICEBODY,:SNOWSHROUD,:BLIZZBOXER,:SLUSHRUSH,:ICEFACE,:BITTERCOLD,:ECTOPARTICLES]
+    return false if shouldAbilityApply?(setterAbilities,checkingForAI) || shouldAbilityApply?(synergyAbilities,checkingForAI)
 		return true
 	end
+
+  def takesAcidRainDamage?(checkingForAI=false)
+    return false if !affectedByWeatherDownsides?(checkingForAI)
+    return false if !takesIndirectDamage?
+    return false if hasActiveItem?(:SAFETYGOGGLES)
+    return false if shouldTypeApply?(:POISON,checkingForAI) || shouldTypeApply?(:DARK,checkingForAI)
+    setterAbilities = [:POLLUTION,:ACIDBODY]
+    synergyAbilities = [:OVERCOAT]
+    return false if shouldAbilityApply?(setterAbilities,checkingForAI) || shouldAbilityApply?(synergyAbilities,checkingForAI)
+    return true
+  end
+
+  def airborne?(checkingForAI=false)
+    return false if hasActiveItem?(:IRONBALL)
+    return false if @effects[PBEffects::Ingrain]
+    return false if @effects[PBEffects::SmackDown]
+    return false if @battle.field.effects[PBEffects::Gravity] > 0
+    return false if @battle.field.terrain == :Grassy && shouldAbilityApply?(:NESTING,checkingForAI)
+    return true if shouldTypeApply?(:FLYING,checkingForAI)
+    return true if hasLevitate?(checkingForAI) && !@battle.moldBreaker
+    return true if hasActiveItem?(:AIRBALLOON)
+    return true if @effects[PBEffects::MagnetRise] > 0
+    return true if @effects[PBEffects::Telekinesis] > 0
+    return false
+  end
+
+  def hasLevitate?(checkingForAI=false)
+		return shouldAbilityApply?([:LEVITATE, :DESERTSPIRIT],checkingForAI)
+	end
+
+  def affectedByTerrain?(checkingForAI=false)
+    return false if airborne?(checkingForAI)
+    return false if semiInvulnerable?
+    return true
+  end
 	
 	def shiny?
 		return false if boss?
@@ -230,24 +353,7 @@ class PokeBattle_Battler
     ]
     return ability_blacklist.include?(abil.id)
   end
-  
-	def hasLevitate?
-		return hasActiveAbility?([:LEVITATE, :DESERTSPIRIT])
-	end
-	
-	def airborne?
-		return false if hasActiveItem?(:IRONBALL)
-		return false if @effects[PBEffects::Ingrain]
-		return false if @effects[PBEffects::SmackDown]
-		return false if @battle.field.effects[PBEffects::Gravity] > 0
-		return true if pbHasType?(:FLYING)
-		return true if hasLevitate? && !@battle.moldBreaker
-		return true if hasActiveItem?(:AIRBALLOON)
-		return true if @effects[PBEffects::MagnetRise] > 0
-		return true if @effects[PBEffects::Telekinesis] > 0
-		return false
-	end
-  
+
   # permanent is whether the item is lost even after battle. Is false for Knock
   # Off.
 	def pbRemoveItem(permanent = true)
@@ -267,16 +373,16 @@ class PokeBattle_Battler
   #=============================================================================
   # Calculated properties
   #=============================================================================
-  def pbSpeed
+  def pbSpeed(aiChecking=false)
     return 1 if fainted?
     stageMul = STAGE_MULTIPLIERS
     stageDiv = STAGE_DIVISORS
     stage = @stages[:SPEED] + 6
-	  stage = 6 if stage > 6 && paralyzed?
-    speed = @speed*stageMul[stage]/stageDiv[stage]
+    speed_bonus = getBonus(:SPEED)
+    speed = (@speed + speed_bonus)*stageMul[stage]/stageDiv[stage]
     speedMult = 1.0
     # Ability effects that alter calculated Speed
-    if abilityActive?
+    if abilityActive? && ignoreAbilityInAI?(aiChecking)
       speedMult = BattleHandlers.triggerSpeedCalcAbility(self.ability,self,speedMult)
     end
     # Item effects that alter calculated Speed
@@ -288,12 +394,12 @@ class PokeBattle_Battler
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp]>0
     speedMult *= 2 if @effects[PBEffects::OnDragonRide]
     # Paralysis and Chill
-    if !hasActiveAbility?(:QUICKFEET)
+    if !shouldAbilityApply?(:QUICKFEET,aiChecking)
       if paralyzed?
         speedMult /= 2
         speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
       end
-      if poisoned? && !hasActiveAbility?(:POISONHEAL)
+      if poisoned? && !shouldAbilityApply?(:POISONHEAL,aiChecking)
         speedMult /= 2
         speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
       end
@@ -332,5 +438,101 @@ class PokeBattle_Battler
       return true if @effects[effectID]
     end
     return false
+  end
+
+  def pbHeight
+    ret = (@pokemon) ? @pokemon.height : 2.0
+    ret = 1 if ret<1
+    return ret
+  end
+
+  # Applies to both losing self's ability (i.e. being replaced by another) and
+  # having self's ability be negated.
+  def unstoppableAbility?(abil = nil)
+    abil = @ability_id if !abil
+    abil = GameData::Ability.try_get(abil)
+    return false if !abil
+    ability_blacklist = [
+      # Form-changing abilities
+      :BATTLEBOND,
+      :DISGUISE,
+      :MULTITYPE,
+      :POWERCONSTRUCT,
+      :SCHOOLING,
+      :SHIELDSDOWN,
+      :STANCECHANGE,
+      :ZENMODE,
+      # Abilities intended to be inherent properties of a certain species
+      :COMATOSE,
+      :RKSSYSTEM,
+      # Abilities with undefined behaviour if they were replaced or moved around
+      :STYLISH
+    ]
+    return ability_blacklist.include?(abil.id)
+  end
+
+  # Applies to gaining the ability.
+  def ungainableAbility?(abil = nil)
+    abil = @ability_id if !abil
+    abil = GameData::Ability.try_get(abil)
+    return false if !abil
+    ability_blacklist = [
+      # Form-changing abilities
+      :BATTLEBOND,
+      :DISGUISE,
+      :FLOWERGIFT,
+      :FORECAST,
+      :MULTITYPE,
+      :POWERCONSTRUCT,
+      :SCHOOLING,
+      :SHIELDSDOWN,
+      :STANCECHANGE,
+      :ZENMODE,
+      # Appearance-changing abilities
+      :ILLUSION,
+      :IMPOSTER,
+      # Abilities intended to be inherent properties of a certain species
+      :COMATOSE,
+      :RKSSYSTEM,
+      # Abilities with undefined behaviour if they were replaced or moved around
+      :STYLISH
+    ]
+    return ability_blacklist.include?(abil.id)
+  end
+    
+	def canGulpMissile?
+		return @species == :CRAMORANT && hasActiveAbility?(:GULPMISSILE) && @form==0
+	end
+
+  def bunkeringDown?(checkingForAI=false)
+    return shouldAbilityApply?(:BUNKERDOWN,checkingForAI) && @hp == @totalhp 
+  end
+
+  def getRoomDuration()
+    if hasActiveItem?(:REINFORCINGROD)
+      return 8
+    else
+      return 5
+    end
+  end
+
+  def getScreenDuration()
+    if hasActiveItem?(:LIGHTCLAY)
+      return 8
+    else
+      return 5
+    end
+  end
+
+  # Yields each unfainted opposing Pokémon.
+  def eachOpposing(nearOnly=false)
+    @battle.battlers.each do |b|
+      next if nearOnly && !near?(b)
+      yield b if b && !b.fainted? && b.opposes?(@index)
+    end
+  end
+
+  def firstTurn?
+    return @turnCount == 0
   end
 end

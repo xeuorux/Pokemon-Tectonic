@@ -11,27 +11,29 @@ ItemHandlers::UseOnPokemon.add(:RARECANDY,proc { |item,pkmn,scene|
   next true
 })
 
+def healFromBerry(battler,ratio,item,forced=false)
+  hpAmount = battler.totalhp * ratio.to_f
+  hpAmount *= 2.0 if battler.hasActiveAbility?(:RIPEN)
+  hpAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
+  if forced
+    battler.pbRecoverHP(hpAmount)
+  else
+    itemName = GameData::Item.get(item).name
+    message = _INTL("{1} restored its health using its {2}!",battler.pbThis,itemName)
+    battler.pbRecoverHP(hpAmount,true,true,true,message)
+  end
+end
+
 
 def pbBattleConfusionBerry(battler,battle,item,forced,flavor,confuseMsg)
   return false if !forced && !battler.canHeal?
   return false if !forced && !battler.canConsumePinchBerry?(Settings::MECHANICS_GENERATION >= 7)
-  itemName = GameData::Item.get(item).name
   battle.pbCommonAnimation("EatBerry",battler) if !forced
   fraction_to_heal = 8   # Gens 6 and lower
   if Settings::MECHANICS_GENERATION == 7;    fraction_to_heal = 2
   elsif Settings::MECHANICS_GENERATION >= 8; fraction_to_heal = 3
   end
-  intendedHealAmount = (battler.totalhp / fraction_to_heal)
-  intendedHealAmount *= 2 if battler.hasActiveAbility?(:RIPEN)
-  amt = battler.pbRecoverHP(intendedHealAmount)
-  if amt>0
-    if forced
-      PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1} restored its health using its {2}!",battler.pbThis,itemName))
-    end
-  end
+  healFromBerry(battler,1.0/fraction_to_heal.to_f,item,forced)
   flavor_stat = [:ATTACK, :DEFENSE, :SPEED, :SPECIAL_ATTACK, :SPECIAL_DEFENSE][flavor]
   battler.nature.stat_changes.each do |change|
     next if change[1] > 0 || change[0] != flavor_stat
@@ -75,16 +77,7 @@ BattleHandlers::HPHealItem.add(:ORANBERRY,
     next false if !battler.canHeal?
     next false if !forced && !battler.canConsumePinchBerry?(true)
     battle.pbCommonAnimation("EatBerry",battler) if !forced
-	hpRestore = battler.totalhp.to_f / 3.0
-	hpRestore *= 2 if battler.hasActiveAbility?(:RIPEN)
-	battler.pbRecoverHP(hpRestore)
-    itemName = GameData::Item.get(item).name
-    if forced
-      PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1} restored its health using its {2}!",battler.pbThis,itemName))
-    end
+    healFromBerry(battler,1.0/3.0,item,forced)
     next true
   }
 )
@@ -94,16 +87,7 @@ BattleHandlers::HPHealItem.add(:SITRUSBERRY,
     next false if !battler.canHeal?
     next false if !forced && !battler.canConsumePinchBerry?(false)
     battle.pbCommonAnimation("EatBerry",battler) if !forced
-    hpRestore = battler.totalhp.to_f / 4.0
-	hpRestore *= 2 if battler.hasActiveAbility?(:RIPEN)
-	battler.pbRecoverHP(hpRestore)
-    itemName = GameData::Item.get(item).name
-    if forced
-      PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1} restored its health using its {2}!",battler.pbThis,itemName))
-    end
+    healFromBerry(battler,1.0/4.0,item,forced=false)
     next true
   }
 )
@@ -147,15 +131,11 @@ BattleHandlers::TargetItemOnHit.add(:JABOCABERRY,
     next if !move.physicalMove?
     next if !user.takesIndirectDamage?
     battle.pbCommonAnimation("EatBerry",target)
-	reduction = user.totalhp/8
-	if target.hasActiveAbility?(:RIPEN)
-		reduction *= 2
-	end
-	user.damageState.displayedDamage = reduction
-	battle.scene.pbDamageAnimation(user)
-	user.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",target.pbThis,
        target.itemName,user.pbThis(true)))
+    fraction = 1.0/8.0
+    fraction *= 2 if target.hasActiveAbility?(:RIPEN)
+    user.applyFractionalDamage(fraction)
     target.pbHeldItemTriggered(item)
   }
 )
@@ -166,15 +146,11 @@ BattleHandlers::TargetItemOnHit.add(:ROWAPBERRY,
     next if !move.specialMove?
     next if !user.takesIndirectDamage?
     battle.pbCommonAnimation("EatBerry",target)
-    reduction = user.totalhp/8
-	if target.hasActiveAbility?(:RIPEN)
-		reduction *= 2
-	end
-	user.damageState.displayedDamage = reduction
-	battle.scene.pbDamageAnimation(user)
-	user.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",target.pbThis,
        target.itemName,user.pbThis(true)))
+    fraction = 1.0/8.0
+    fraction *= 2 if target.hasActiveAbility?(:RIPEN)
+    user.applyFractionalDamage(fraction)
     target.pbHeldItemTriggered(item)
   }
 )
@@ -229,17 +205,13 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:ENIGMABERRY,
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
     battle.pbCommonAnimation("EatBerry",battler) if !forced
-    if battler.hasActiveAbility?(:RIPEN)
-      battler.pbRecoverHP(battler.totalhp/2)
-    else
-      battler.pbRecoverHP(battler.totalhp/4)
+    hpAmount = battler.totalhp / 4.0
+    hpAmount *= 2.0 if battler.hasActiveAbility?(:RIPEN)
+    message = nil
+    if !forced
+      message = _INTL("{1} restored its health using its {2}!",battler.pbThis,itemName)
     end
-    if forced
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1} restored its health using its {2}!",battler.pbThis,
-         itemName))
-    end
+    battler.pbRecoverHP(hpAmount,true,true,true,message)
     next true
   }
 )
@@ -249,8 +221,8 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:KEEBERRY,
     next false if !forced && !battler.canConsumeBerry?
     next false if !battler.pbCanRaiseStatStage?(:DEFENSE,battler)
     itemName = GameData::Item.get(item).name
-	increment = 1
-	if battler.hasActiveAbility?(:RIPEN)
+    increment = 1
+    if battler.hasActiveAbility?(:RIPEN)
       increment *=2
     end
     if !forced
@@ -267,9 +239,9 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:MARANGABERRY,
     next false if !forced && !battler.canConsumeBerry?
     next false if !battler.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,battler)
     itemName = GameData::Item.get(item).name
-	increment = 1
-	if battler.hasActiveAbility?(:RIPEN)
-      increment *=2
+    increment = 1
+    if battler.hasActiveAbility?(:RIPEN)
+        increment *=2
     end
     if !forced
       battle.pbCommonAnimation("EatBerry",battler)
@@ -281,48 +253,12 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:MARANGABERRY,
 )
 
 
-BattleHandlers::TargetItemOnHit.add(:JABOCABERRY,
-  proc { |item,user,target,move,battle|
-    next if !target.canConsumeBerry?
-    next if !move.physicalMove?
-    next if !user.takesIndirectDamage?
-    battle.pbCommonAnimation("EatBerry",target)
-    battle.scene.pbDamageAnimation(user)
-	reduce = user.totalhp/8
-	reduce /= 4 if user.boss
-    user.pbReduceHP(reduce,false)
-    battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",target.pbThis,
-       target.itemName,user.pbThis(true)))
-    target.pbHeldItemTriggered(item)
-  }
-)
-
-BattleHandlers::TargetItemOnHit.add(:ROWAPBERRY,
-  proc { |item,user,target,move,battle|
-    next if !target.canConsumeBerry?
-    next if !move.specialMove?
-    next if !user.takesIndirectDamage?
-    battle.pbCommonAnimation("EatBerry",target)
-    battle.scene.pbDamageAnimation(user)
-    reduce = user.totalhp/8
-	reduce /= 4 if user.boss
-    user.pbReduceHP(reduce,false)
-    battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",target.pbThis,
-       target.itemName,user.pbThis(true)))
-    target.pbHeldItemTriggered(item)
-  }
-)
-
 BattleHandlers::TargetItemOnHit.add(:ROCKYHELMET,
   proc { |item,user,target,move,battle|
     next if !move.pbContactMove?(user) || !user.affectedByContactEffect?
     next if !user.takesIndirectDamage?
-	  reduction = user.totalhp/6
-	  reduction /= 4 if user.boss
-	  user.damageState.displayedDamage = reduction
-    battle.scene.pbDamageAnimation(user)
-    user.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} was hurt by the {2}!",user.pbThis,target.itemName))
+    user.applyFractionalDamage(1.0/6.0)
   }
 )
 
@@ -340,16 +276,34 @@ ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE,proc { |item,pkmn,scene|
   newabilindex = (pkmn.ability_index + 1) % 2
   newabil = GameData::Ability.get((newabilindex==0) ? abil1 : abil2)
   newabilname = newabil.name
-  if scene.pbConfirm(_INTL("Would you like to change {1}'s Ability to {2}?",
-     pkmn.name,newabilname))
+  if scene.pbConfirm(_INTL("Would you like to change {1}'s Ability to {2}?", pkmn.name,newabilname))
     pkmn.ability_index = newabilindex
-	pkmn.ability = newabil
+	  pkmn.ability = newabil
     scene.pbRefresh
     scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!",pkmn.name,newabilname))
+    pkmn.calc_stats
     next true
   end
   next false
 })
+
+ItemHandlers::UseOnPokemon.copy(:ABILITYCAPSULE,:ABILITYTRANSFORMER)
+
+BattleHandlers::UserItemAfterMoveUse.add(:LIFEORB,
+  proc { |item,user,targets,move,numHits,battle|
+    next if !user.takesIndirectDamage?
+    next if !move.pbDamagingMove? || numHits==0
+    hitBattler = false
+    targets.each do |b|
+      hitBattler = true if !b.damageState.unaffected && !b.damageState.substitute
+      break if hitBattler
+    end
+    next if !hitBattler
+    PBDebug.log("[Item triggered] #{user.pbThis}'s #{user.itemName} (recoil)")
+    battle.pbDisplay(_INTL("{1} lost some of its HP!",user.pbThis))
+    user.applyFractionalDamage(1.0/10.0)
+  }
+)
 
 BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
   proc { |item,user,targets,move,numHits,battle|
@@ -357,27 +311,18 @@ BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
     totalDamage = 0
     targets.each { |b| totalDamage += b.damageState.totalHPLost }
     next if totalDamage<=0
-	amt = (totalDamage/6.0).round
-	amt = 1 if amt<1
-    user.pbRecoverHP(amt)
-    battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",
-       user.pbThis,user.itemName))
+	  healAmount = (totalDamage / 6.0)
+	  healAmount = 1 if healAmount < 1
+    recoverMessage = _INTL("{1} restored a little HP using its {2}!", user.pbThis,user.itemName)
+    user.pbRecoverHP(healAmount,true,true,true,recoverMessage)
   }
 )
 
 BattleHandlers::EOREffectItem.add(:STICKYBARB,
   proc { |item,battler,battle|
     next if !battler.takesIndirectDamage?
-    oldHP = battler.hp
-	reduction = battler.totalhp/8
-	reduction /= 4 if battler.boss?
-	battler.damageState.displayedDamage = reduction
-    battle.scene.pbDamageAnimation(battler)
-    battler.pbReduceHP(reduction,false)
     battle.pbDisplay(_INTL("{1} is hurt by its {2}!",battler.pbThis,battler.itemName))
-    battler.pbItemHPHealCheck
-    battler.pbAbilitiesOnDamageTaken(oldHP)
-    battler.pbFaint if battler.fainted?
+    battler.applyFractionalDamage(1.0/8.0)
   }
 )
 
@@ -457,3 +402,32 @@ ItemHandlers::UseOnPokemon.add(:POISONORB,proc { |item,pkmn,scene|
   scene.pbRefresh
   scene.pbDisplay(_INTL("{1} was poisoned.",pkmn.name))
 })
+
+
+#===============================================================================
+# WeatherExtenderItem handlers
+#===============================================================================
+
+BattleHandlers::WeatherExtenderItem.add(:DAMPROCK,
+  proc { |item,weather,duration,battler,battle|
+    next duration * 2 if weather == :Rain
+  }
+)
+
+BattleHandlers::WeatherExtenderItem.add(:HEATROCK,
+  proc { |item,weather,duration,battler,battle|
+    next duration * 2 if weather == :Sun
+  }
+)
+
+BattleHandlers::WeatherExtenderItem.add(:ICYROCK,
+  proc { |item,weather,duration,battler,battle|
+    next duration * 2 if weather == :Hail
+  }
+)
+
+BattleHandlers::WeatherExtenderItem.add(:SMOOTHROCK,
+  proc { |item,weather,duration,battler,battle|
+    next duration * 2 if weather == :Sandstorm
+  }
+)

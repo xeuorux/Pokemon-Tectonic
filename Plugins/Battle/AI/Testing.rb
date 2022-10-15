@@ -9,34 +9,8 @@ class PokeBattle_AI
 			return
 		end
 		@battle.scene.pbDisplay("Beginning auto tests...")
-		hpTotals = [proc {|b| 1},proc {|b| b.totalhp/4},proc {|b| b.totalhp/2},proc {|b| b.totalhp}]
-		statuses = [proc {|b| b.pbCureStatus(false)},proc {|b| b.pbSleep("false")},proc {|b| b.pbPoison(nil,"false")},
-			proc {|b| b.pbBurn(nil,"false")},proc {|b| b.pbParalyze(nil,"false")},proc {|b| b.pbFreeze("false")},
-			proc {|b| b.pbConfuse("false")},proc {|b| b.pbCharm("false")}]
-		
-		opponent = nil
-		user.eachOpposing do |b|
-			opponent = b
-		end
-		
-		# statuses.each do |statusUser|
-		# 	statusUser.call(user)
-		# 	statuses.each do |statusOpponent|
-		# 		statusOpponent.call(opponent)
-		# 		hpTotals.each do |hpTotalUser|
-		# 			user.hp = hpTotalUser.call(user)
-		# 			hpTotals.each do |hpTotalOpponent|
-		# 				opponent.hp = hpTotalOpponent.call(opponent)
-		# 				@battle.scene.pbUpdate
-		# 				testAllMoveScores(user)
-		# 			end
-		# 		end
-		# 	end
-		# end
-		
 		@battle.scene.pbUpdate
 		testAllMoveScores(user)
-		
 	end
 
 	def testAllMoveScores(user,show_analysis=false)

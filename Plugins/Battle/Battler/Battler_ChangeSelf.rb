@@ -1,37 +1,123 @@
 class PokeBattle_Battler
-	def pbRecoverHP(amt,anim=true,anyAnim=true)
-		raise _INTL("Told to recover a negative amount") if amt<0
+  # Helper method for performing the two checks that are supposed to occur whenever the battler loses HP
+  # From a special effect. E.g. sandstorm DOT, ability triggers
+  # Returns whether or not the pokemon faints
+  def pbHealthLossChecks(oldHP = -1)
+    pbItemHPHealCheck()
+    if fainted?
+      pbFaint()
+      return true
+    elsif oldHP > -1
+      pbAbilitiesOnDamageTaken(oldHP) 
+    end
+    return false
+  end
+
+  # Helper method for performing the checks that are supposed to occur whenever the battler loses HP
+  # From a special effect that occurs when entering the field (i.e. Stealth Rock)
+  # Returns whether or not the pokemon was swapped out due to a damage taking ability
+  def pbEntryHealthLossChecks(oldHP = -1)
+    pbItemHPHealCheck()
+    if fainted?
+      pbFaint()
+    elsif oldHP > -1
+      return pbAbilitiesOnDamageTaken(oldHP) 
+    end
+    return false
+  end
+
+  # Applies damage effects that are based on a fraction of the battler's total HP
+  # Returns how much damage ended up dealt
+  # Accounts for bosses taking reduced fractional damage
+  def applyFractionalDamage(fraction,showDamageAnimation=true,basedOnCurrentHP=false,entryCheck=false)
+    oldHP = @hp
+    fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
+    fraction *= 2 if @battle.pbCheckOpposingAbility(:AGGRAVATE,@index)
+    if basedOnCurrentHP
+      reduction = (@hp * fraction).ceil
+    else
+      reduction = (@totalhp * fraction).ceil
+    end
+    if showDamageAnimation
+      @damageState.displayedDamage = reduction
+      @battle.scene.pbDamageAnimation(self)
+    end
+    pbReduceHP(reduction,false)
+    if !entryCheck
+      pbHealthLossChecks(oldHP)
+      return reduction
+    else
+      swapped = pbEntryHealthLossChecks(oldHP)
+      return swapped
+    end
+  end
+
+	def pbRecoverHP(amt,anim=true,anyAnim=true,showMessage=true,customMessage=nil)
+		raise _INTL("Told to recover a negative amount") if amt < 0
+    amt *= 1.5 if hasActiveAbility?(:ROOTED)
 		amt = amt.round
-		amt = @totalhp-@hp if amt>@totalhp-@hp
-		amt = 1 if amt<1 && @hp<@totalhp
+		amt = @totalhp - @hp if amt > @totalhp - @hp
+		amt = 1 if amt < 1 && @hp < @totalhp
 		if effects[PBEffects::NerveBreak]
-			@battle.pbDisplay(_INTL("{1} healing is reversed because of their broken nerves!",pbThis))
+			@battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!",pbThis))
 			amt *= -1
 		end
 		oldHP = @hp
 		self.hp += amt
 		self.hp = 0 if self.hp < 0
 		PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP}=>#{@hp})") if amt>0
-		raise _INTL("HP greater than total HP") if @hp>@totalhp
-		@battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt>0
-		return amt
+		raise _INTL("HP greater than total HP") if @hp > @totalhp
+		@battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt > 0
+    if showMessage
+      if amt > 0
+        message = customMessage.nil? ? _INTL("{1}'s HP was restored.",pbThis) : customMessage
+        @battle.pbDisplay(message)
+      elsif amt < 0
+        @battle.pbDisplay(_INTL("{1}'s lost HP.",pbThis))
+      end
     end
+		return amt
+  end
 
-	def pbRecoverHPFromDrain(amt,target,msg=nil)
+  def pbRecoverHPFromMultiDrain(targets,ratio)
+    totalDamageDealt = 0
+    targets.each do |target|
+      next if target.damageState.unaffected
+      damage = target.damageState.totalHPLost
+      if target.hasActiveAbility?(:LIQUIDOOZE)
+        @battle.pbShowAbilitySplash(target)
+        lossAmount = (damage * ratio).round
+        pbReduceHP(lossAmount)
+        @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!",pbThis))
+        @battle.pbHideAbilitySplash(target)
+        pbItemHPHealCheck
+      else
+        totalDamageDealt += damage
+      end
+    end
+    return if totalDamageDealt <= 0 || !canHeal?
+    @battle.pbShowAbilitySplash(self)
+    drainAmount = (totalDamageDealt * ratio).round
+    drainAmount = 1 if drainAmount < 1
+    drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
+    pbRecoverHP(drainAmount,true,true,false)
+    @battle.pbHideAbilitySplash(self)
+  end
+  
+	def pbRecoverHPFromDrain(drainAmount,target,msg=nil)
 		if target.hasActiveAbility?(:LIQUIDOOZE)
 		  @battle.pbShowAbilitySplash(target)
-		  pbReduceHP(amt)
+		  pbReduceHP(drainAmount)
 		  @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!",pbThis))
 		  @battle.pbHideAbilitySplash(target)
 		  pbItemHPHealCheck
 		else
 		  if canHeal?
-			amt = (amt*1.3).floor if hasActiveItem?(:BIGROOT)
-			pbRecoverHP(amt)
+        drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
+        pbRecoverHP(drainAmount,true,true,false)
 		  end
 		end
 	end
-
 
 	def pbFaint(showMessage=true)
 		if !fainted?
@@ -63,7 +149,7 @@ class PokeBattle_Battler
       @battle.triggerBattlerFaintedCurseEffect(curse_policy,self,@battle)
     end
 		
-    showFaintDialogue()
+    @battle.triggerBattlerFaintedDialogue(self)
 
     if @effects[PBEffects::GivingDragonRideTo] != -1
       otherBattler = @battle.battlers[@effects[PBEffects::GivingDragonRideTo]]
@@ -100,27 +186,6 @@ class PokeBattle_Battler
 		# Check for end of primordial weather
 		@battle.pbEndPrimordialWeather
 	end
-
-  def showFaintDialogue()
-    # Show dialogue reacting to the fainting
-		if @battle.opponent
-			if pbOwnedByPlayer?
-				# Trigger dialogue for each opponent
-				@battle.opponent.each_with_index do |trainer_speaking,idxTrainer|
-					@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-						PokeBattle_AI.triggerPlayerPokemonFaintedDialogue(policy,self,trainer_speaking,dialogue)
-					}
-				end
-			else
-				# Trigger dialogue for the opponent which owns this
-				idxTrainer = @battle.pbGetOwnerIndexFromBattlerIndex(@index)
-				trainer_speaking = @battle.opponent[idxTrainer]
-				@battle.scene.showTrainerDialogue(idxTrainer) { |policy,dialogue|
-					PokeBattle_AI.triggerTrainerPokemonFaintedDialogue(policy,self,trainer_speaking,dialogue)
-				}
-			end
-		end
-  end
 	
   #=============================================================================
   # Change type
@@ -180,7 +245,7 @@ class PokeBattle_Battler
         pbChangeForm(0,_INTL("{1} transformed!",pbThis))
       end
     end
-	# Eiscue - Ice Face
+	  # Eiscue - Ice Face
     if @species == :EISCUE && hasActiveAbility?(:ICEFACE) && @battle.pbWeather == :Hail
       if @form==1
         @battle.pbShowAbilitySplash(self,true)

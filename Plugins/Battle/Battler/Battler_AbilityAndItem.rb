@@ -4,7 +4,7 @@ class PokeBattle_Battler
 	#=============================================================================
 	def pbAbilitiesOnSwitchOut
 		if abilityActive?
-		BattleHandlers.triggerAbilityOnSwitchOut(self.ability,self,false,@battle)
+			BattleHandlers.triggerAbilityOnSwitchOut(self.ability,self,false)
 		end
 		# Reset form
 		@battle.peer.pbOnLeavingBattle(@battle,@pokemon,@battle.usedInBattle[idxOwnSide][@index/2])
@@ -13,9 +13,10 @@ class PokeBattle_Battler
 		@fainted = true
 		# Check for end of primordial weather
 		@battle.pbEndPrimordialWeather
-	end  
+	end
+
 	#=========================================
-	#Also handles SCAVENGE
+	# Also handles SCAVENGE
 	#========================================= 
 	def pbConsumeItem(recoverable=true,symbiosis=true,belch=true,scavenge=true)
 		if item.nil?
@@ -23,6 +24,7 @@ class PokeBattle_Battler
 			return
 		end
 		PBDebug.log("[Item consumed] #{pbThis} consumed its held #{itemName}")
+		@battle.triggerBattlerConsumedItemDialogue(self,@item_id)
 		if recoverable
 			setRecycleItem(@item_id)
 			@effects[PBEffects::PickupItem] = @item_id
@@ -57,8 +59,6 @@ class PokeBattle_Battler
 		end
 	end
 
-
-
 	#=============================================================================
 	# Held item trigger checks
 	#=============================================================================
@@ -76,10 +76,10 @@ class PokeBattle_Battler
 		# For Enigma Berry, Kee Berry and Maranga Berry, which have their effects
 		# when forcibly consumed by Pluck/Fling.
 		if item_to_use
-		itm = item_to_use || self.item
-		if BattleHandlers.triggerTargetItemOnHitPositiveBerry(itm, self, @battle, true)
-			pbHeldItemTriggered(itm, false, fling)
-		end
+			itm = item_to_use || self.item
+			if BattleHandlers.triggerTargetItemOnHitPositiveBerry(itm, self, @battle, true)
+				pbHeldItemTriggered(itm, false, fling)
+			end
 		end
 	end
   
@@ -88,10 +88,10 @@ class PokeBattle_Battler
 		return if !item_to_use && !itemActive?
 		itm = item_to_use || self.item
 		if BattleHandlers.triggerHPHealItem(itm, self, @battle, !item_to_use.nil?)
-		pbHeldItemTriggered(itm, item_to_use.nil?, fling)
+			pbHeldItemTriggered(itm, item_to_use.nil?, fling)
 		elsif !item_to_use
-		pbItemTerrainStatBoostCheck
-		pbItemFieldEffectCheck
+			pbItemTerrainStatBoostCheck
+			pbItemFieldEffectCheck
 		end
 	end
 
@@ -101,5 +101,16 @@ class PokeBattle_Battler
 		if BattleHandlers.triggerFieldEffectItem(self.item,self,@battle)
 			pbHeldItemTriggered(self.item)
 		end
+	end
+
+	# item_to_use is an item ID or GameData::Item object. own_item is whether the
+	# item is held by self. fling is for Fling only.
+	def pbHeldItemTriggered(item_to_use, own_item = true, fling = false)
+		# Cheek Pouch and similar abilities
+		if GameData::Item.get(item_to_use).is_berry? && abilityActive?
+			BattleHandlers.triggerOnBerryConsumedAbility(self.ability,self,item_to_use,own_item,@battle)
+		end
+		pbConsumeItem if own_item
+		pbSymbiosis if !own_item && !fling   # Bug Bite/Pluck users trigger Symbiosis
 	end
 end
