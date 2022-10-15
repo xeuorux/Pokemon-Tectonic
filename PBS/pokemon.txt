@@ -32621,7 +32621,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions MNOCTOWL,Level,26
+Evolutions = MNOCTOWL,Level,26
 #-------------------------------
 [2519]
 Name = M. Noctowl
