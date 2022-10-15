@@ -1,8 +1,8 @@
 BURNED_EXPLANATION = "It Attack is reduced by a third"
 POISONED_EXPLANATION = "Its Speed is halved"
 FROSTBITE_EXPLANATION = "Its Sp. Atk is reduced by a third"
-NUMBED_EXPLANATION = "Its Speed is halved, and it will deal one third less damage"
-CHILLED_EXPLANATION = "Its speed is halved, and it will take one third more damage"
+NUMBED_EXPLANATION = "Its Speed is halved, and it'll deal less damage"
+CHILLED_EXPLANATION = "Its speed is halved, and it'll take more damage"
 FLUSTERED_EXPLANATION = "Its Defense is reduced by a third"
 MYSTIFIED_EXPLANATION = "Its Sp. Def is reduced by a third"
 

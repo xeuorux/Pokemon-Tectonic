@@ -2713,7 +2713,7 @@ end
     def pbAdditionalEffect(user,target)
       return if target.fainted? || target.damageState.substitute
       if target.effects[PBEffects::ThroatChop] == 0
-        @battle.pbDisplay(_INTL("The effects of {1} prevent {2} from using sound-based moves!",@name,target.pbThis(true)))
+        @battle.pbDisplay(_INTL("{1} is prevented from using sound-based moves!",target.pbThis))
       end
       target.effects[PBEffects::ThroatChop] = 3
     end
