@@ -240,7 +240,7 @@
 230,EMBER,Ember,00A,40,FIRE,Special,100,20,10,NearOther,0,bef,"The target is attacked with small flames. It has a 10% chance to burn.",
 231,FIRESPIN,Fire Spin,0CF,45,FIRE,Special,100,15,0,NearOther,0,bef,"The user engulfs the target in fierce flames, trapping and damaging it for three turns.",
 232,HEATCRASH,Heat Crash,09B,1,FIRE,Physical,100,10,0,NearOther,0,abef,"The user slams the foe with its flaming body. The heavier the user is, the greater the damage.",
-233,SUNNYDAY,Sunny Day,0FF,0,FIRE,Status,0,5,0,BothSides,0,,"Intensifies the sun for five turns, boosting Fire-type (and hindering Water-type) moves by 50%.",
+233,SUNNYDAY,Sunny Day,0FF,0,FIRE,Status,0,5,0,BothSides,0,,"Intensifies the sun for five turns, boosting Fire-type attacks and hindering most other attacks.",
 #-------------------------------
 234,WILLOWISP,Will-O-Wisp,00A,0,GHOST,Status,100,12,0,NearOther,0,bce,"The user shoots a sinister, bluish-white flame at the target to inflict a burn.",
 #-------------------------------
@@ -797,7 +797,7 @@
 730,WHIRLPOOL,Whirlpool,0CF,45,WATER,Special,100,15,0,NearOther,0,bef,"The user swirls the target in a whirlpool, trapping and damaging it for three turns.",
 731,WATERSHURIKEN,Water Shuriken,0C0,15,WATER,Special,100,15,0,NearOther,1,bef,"The user hits the target with throwing stars 2-5 times in a row. This move always goes first.",
 732,AQUARING,Aqua Ring,0DA,0,WATER,Status,0,15,0,User,0,d,"The user envelops itself in a veil made of water. It regains 1/8 of its HP on every turn.",
-733,RAINDANCE,Rain Dance,100,0,WATER,Status,0,5,0,BothSides,0,,"Summons rain for five turns, boosting Water-type (and hindering Fire-type) moves by 50%.",
+733,RAINDANCE,Rain Dance,100,0,WATER,Status,0,5,0,BothSides,0,,"Summons rain for five turns, boosting Water-type attacks and hindering most other attacks.",
 734,SOAK,Soak,061,0,WATER,Status,100,15,0,NearOther,0,bce,"The user shoots a torrent of water at the target and changes the target's type to Water.",
 735,WATERSPORT,Water Sport,09E,0,WATER,Status,0,12,0,BothSides,0,,"The user soaks itself with water. The move weakens Fire-type moves while the user is in the battle.",
 736,WITHDRAW,Withdraw,01D,0,WATER,Status,0,30,0,User,0,d,"The user withdraws its body into its hard shell, raising its Defense stat.",
