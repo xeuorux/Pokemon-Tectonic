@@ -1,4 +1,4 @@
-# Project Chasm
+# Pokémon Tectonic
 Explore the Makya region, where old and new collide. Host to dozens of ancient caves and tunnels, Makya was settled anew by the disbanded members of Team Chasm, who 20 years ago sought the power of the Regis. When a strange new group puts those plans back into motion, the people of Makya need a newcomer like yourself to delve deep and find the truth. Can you keep Makya from repeating its past?
 
 ## Features​
@@ -40,7 +40,7 @@ Explore the Makya region, where old and new collide. Host to dozens of ancient c
 
 
 All of these features have been fully implemented, along with 8 Gyms worth of content!
-![Sample in game images](https://cdn.discordapp.com/attachments/903083554777473077/1011628654960324628/new_advert_stitch.png)
+![Sample in game images](https://cdn.discordapp.com/attachments/903083554777473077/1028035807426130000/new_advert_stitch_pokemon_tectonic.png)
 
 Engine: Pokémon Essentials v19.1
 
