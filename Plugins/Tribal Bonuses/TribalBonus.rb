@@ -23,6 +23,7 @@ class TribalBonus
             fSpecies = GameData::Species.get_species_form(species, form)
             compatibilities = fSpecies.compatibility
             compatibilities.each {|compatibility|
+                next if !@tribeCounts.has_key?(compatibility)
                 @tribeCounts[compatibility] += 1
             }
         }
