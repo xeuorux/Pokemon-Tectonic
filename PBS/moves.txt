@@ -442,7 +442,7 @@
 422,SMELLINGSALTS,Smelling Salts,07C,70,NORMAL,Physical,100,10,0,NearOther,0,abef,"This attack inflicts double damage on a numbed foe. It also cures the target's numbing, however.",
 423,HORNATTACK,Horn Attack,000,65,NORMAL,Physical,100,20,0,NearOther,0,abef,"The target is jabbed with a sharply pointed horn to inflict damage.",
 424,STOMP,Stomp,010,65,NORMAL,Physical,100,15,30,NearOther,0,abe,"The target is stomped with a big foot. It has a 30% chance to make the target flinch.",
-425,COVET,Covet,0F1,60,NORMAL,Physical,100,20,0,NearOther,0,abef,"The user endearingly approaches the target, then steals their item. Items stolen from wild Pokémon are stored.",
+425,COVET,Covet,0F1,60,NORMAL,Physical,100,20,0,NearOther,0,abef,"The user approaches the target, then steals their item. Items stolen from wild Pokémon are stored.",
 426,HIDDENPOWER,Hidden Power,090,60,NORMAL,Special,100,12,0,NearOther,0,bef,"A unique attack that varies in type and intensity depending on the Pokémon using it.",
 427,ROUND,Round,083,60,NORMAL,Special,100,12,0,NearOther,0,befk,"The user attacks with a song. Others can join in the Round and make the attack do greater damage.",
 428,SWIFT,Swift,0A5,60,NORMAL,Special,0,15,0,AllNearFoes,0,bef,"Star-shaped rays are shot at the opposing team. This attack never misses and skips protections.",
