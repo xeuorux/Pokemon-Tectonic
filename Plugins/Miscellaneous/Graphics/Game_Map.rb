@@ -40,7 +40,7 @@ class Game_Map
           return false if passage & 0x0f == 0x0f
           return true if @priorities[tileID] == 0 && !event.name[/passablemult/]
         end
-        return playerPassable?(x, y, d, self_event) if self_event==$game_player
+        return playerPassable?(x, y, d, self_event) if self_event == $game_player
         # All other events
         newx = x
         newy = y
@@ -107,7 +107,7 @@ class Game_Map
     def passableStrict?(x, y, d, self_event = nil)
       return false if !valid?(x, y)
       for event in events.values
-        next if event == self_event || event.tile_id < 0 || event.through
+        next if event == self_event || event.tile_id <= 0 || event.through
         next if !event.at_coordinate?(x, y)
         tileID = getTileIDForEventAtCoordinate(event, x, y)
         terrainTag = GameData::TerrainTag.try_get(@terrain_tags[tileID])
