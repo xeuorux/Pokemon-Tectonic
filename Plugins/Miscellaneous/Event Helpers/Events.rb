@@ -1,3 +1,14 @@
+class Interpreter
+	def pbSetSelfSwitch(eventid, switch_name, value=true, mapid = -1)
+		mapid = @map_id if mapid < 0
+		old_value = $game_self_switches[[mapid, eventid, switch_name]]
+		$game_self_switches[[mapid, eventid, switch_name]] = value
+		if value != old_value && $MapFactory.hasMap?(mapid)
+		  $MapFactory.getMap(mapid, false).need_refresh = true
+		end
+	end
+end
+
 def pbSetSelfSwitch(eventid, switch_name, value=true, mapid = -1)
 	$game_system.map_interpreter.pbSetSelfSwitch(eventid, switch_name, value, mapid)
 end
