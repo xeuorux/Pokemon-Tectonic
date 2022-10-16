@@ -1733,7 +1733,7 @@ end
 #===============================================================================
 class PokeBattle_Move_55D < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
-		if target.pbCanRaiseStatStage?(:ATTACK,user,self,false) && target.pbCanFluster?(user,false,self)
+		if !target.pbCanRaiseStatStage?(:ATTACK,user,self,false) && !target.pbCanFluster?(user,false,self)
 			@battle.pbDisplay(_INTL("But it failed!"))
 		  return true
 		end
@@ -1761,7 +1761,7 @@ end
 #===============================================================================
 class PokeBattle_Move_55E < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
-	  if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,false) && target.pbCanMystify?(user,false,self)
+	  if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,false) && !target.pbCanMystify?(user,false,self)
 	  	@battle.pbDisplay(_INTL("But it failed!"))
 		return true
 	  end
