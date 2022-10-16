@@ -45,12 +45,20 @@ class PokeBattle_Battler
 		@pokemon.extraMovesPerTurn = GameData::Avatar.get(@species).num_turns - 1
 	end
 
-	def firstMoveThisTurn?
-		return @battle.commandPhasesThisRound == 0
+	def evenTurn?
+		return @battle.turnCount % 2 == 0
+	end
+
+	def oddTurn?
+		return @battle.turnCount % 2 == 1
 	end
 
 	def lastMoveThisTurn?
 		return @battle.commandPhasesThisRound == extraMovesPerTurn
+	end
+
+	def firstMoveThisTurn?
+		return @battle.commandPhasesThisRound == 0
 	end
 
 	def pbInitBlank

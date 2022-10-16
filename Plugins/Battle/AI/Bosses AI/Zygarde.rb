@@ -1,5 +1,5 @@
-FIFTY_PERCENT_MOVESET = [:LANDSWRATH,:FLASHCANNON]
-ONE_HUNDRED_PERCENT_MOVESET = [:THOUSANDARROWS,:THOUSANDWAVES,:COREENFORCER]
+FIFTY_PERCENT_MOVESET = [:COREENFORCER,:DISCHARGE,:FLASHCANNON,:FLAMETHROWER]
+ONE_HUNDRED_PERCENT_MOVESET = [:THOUSANDARROWS,:THOUSANDWAVES,:TORNADO]
 
 PokeBattle_AI::BossBeginTurn.add(:ZYGARDE,
 	proc { |species,battler|
@@ -7,7 +7,9 @@ PokeBattle_AI::BossBeginTurn.add(:ZYGARDE,
 		turnCount = battle.turnCount
 
     turnCount = battler.battle.turnCount
-    if turnCount != 0 && turnCount <= 9
+    if turnCount == 0
+      battle.pbDisplay(_INTL("{1} is at 10 percent cell strength!",battler.pbThis))
+    elsif turnCount <= 9
         battle.pbDisplay(_INTL("{1} gathers a cell!",battler.pbThis))
         percentStrength = (1 + turnCount) * 10 
         battle.pbDisplay(_INTL("{1} is now at at {2} percent cell strength!",battler.pbThis,percentStrength.to_s))
@@ -25,20 +27,57 @@ PokeBattle_AI::BossBeginTurn.add(:ZYGARDE,
             battler.pbRecoverHP(battler.totalhp - battler.hp)
             battler.assignMoveset(ONE_HUNDRED_PERCENT_MOVESET)
         end
-    else
-      battle.pbDisplay(_INTL("{1} is at 10 percent cell strength!",battler.pbThis))
     end
 	}
 )
 
+# First phase
 PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:ZYGARDE,:INFERNOCHARGE],
   proc { |speciesAndMove,user,target,move|
-	next user.battle.commandPhasesThisRound == 0
+	  next user.firstMoveThisTurn? && user.evenTurn?
+  }
+)
+
+PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:ZYGARDE,:TRAMPLE],
+  proc { |speciesAndMove,user,target,move|
+	  next user.firstMoveThisTurn? && user.oddTurn?
   }
 )
 
 PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:ZYGARDE,:RECOVER],
-	 proc { |speciesAndMove,user,target,move|
-	next user.lastMoveThisTurn?
+  proc { |speciesAndMove,user,target,move|
+    next user.lastMoveThisTurn?
+ }
+)
+
+# Second phase
+PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:ZYGARDE,:COREENFORCER],
+  proc { |speciesAndMove,user,target,move|
+	  next user.firstMoveThisTurn? && user.evenTurn?
+  }
+)
+
+PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:ZYGARDE,:FLAMETHROWER],
+  proc { |speciesAndMove,user,target,move|
+	  next user.firstMoveThisTurn? && user.oddTurn?
+  }
+)
+
+# Third phase
+PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:ZYGARDE,:TORNADO],
+  proc { |speciesAndMove,user,target,move|
+	  next user.firstMoveThisTurn?
+  }
+)
+
+PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:ZYGARDE,:THOUSANDWAVES],
+  proc { |speciesAndMove,user,target,move|
+	  next user.lastMoveThisTurn? && user.oddTurn?
+  }
+)
+
+PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:ZYGARDE,:THOUSANDARROWS],
+  proc { |speciesAndMove,user,target,move|
+	  next user.lastMoveThisTurn? && user.evenTurn?
   }
 )
