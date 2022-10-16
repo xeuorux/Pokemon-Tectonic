@@ -3162,35 +3162,35 @@ Pokemon = NINJASK,52
 #-------------------------------
 [TRAINER_Sang,Sang,2]
 Pokemon = REGISTEEL,60
-    Moves = HAMMERARM,STEELBEAM,SHADOWCLAW,HYPERBEAM
+    Moves = HAMMERARM,MAGNETHRASH,POWERUPPUNCH,STEALTHROCK
     AbilityIndex = 0
-Pokemon = EXPLOUD,58
+Pokemon = EXPLOUD,60
     Name = Egret Ash
     Gender = female
-    Moves = HYPERVOICE,FLAMETHROWER,ICEBEAM,SHADOWBALL
+    Moves = BOOMBURST,FLAMETHROWER,ICEBEAM,SHADOWBALL
     AbilityIndex = 1
     Item = NORMALGEM
 Pokemon = ALAKAZAM,58
     Name = Ibis Veil
     Gender = male
-    Moves = TELEPORT,PSYCHIC,DAZZLINGGLEAM,CALMMIND
+    Moves = TELEPORT,PSYCHIC,CALMMIND,TERRAFORM
     AbilityIndex = 1
 Pokemon = PRIMARINA,59
     Name = Hawk Doll
     Gender = female
-    Moves = SPARKLINGARIA,ENCHANTINGSONG,MENDINGSPRING,HYPERVOICE
+    Moves = SPARKLINGARIA,ENCHANTINGSONG,MENDINGSPRING,THRIVINGFORCE
     AbilityIndex = 0
     Item = THROATSPRAY
 Pokemon = KROOKODILE,59
     Name = Stork Saw
     Gender = male
-    Moves = EARTHQUAKE,CRUNCH,STAREDOWN,BULKUP
+    Moves = EARTHQUAKE,CRUNCH,CRUELTY,SWAGGER
     AbilityIndex = 0
     Item = FOCUSSASH
 Pokemon = SCARAPACE,57
     Name = Wren Glass
     Gender = female
-    Moves = HUNTDOWN,STORMTHROW,XSCISSOR,BODYSLAM
+    Moves = DIVEBOMB,STORMTHROW,XSCISSOR,SWORDSDANCE
     AbilityIndex = 0
 #-------------------------------
 [TRAINER_Sang,Sang,3]
