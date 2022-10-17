@@ -69,7 +69,7 @@ def getBurnMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 end
 
 def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
-	if target.pbCanFrostbite?(user,false)
+	if target && target.pbCanFrostbite?(user,false)
 		score += 30
 		score -= 60 if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
