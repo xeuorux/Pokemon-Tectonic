@@ -13,7 +13,7 @@ def pbSetSelfSwitch(eventid, switch_name, value=true, mapid = -1)
 	$game_system.map_interpreter.pbSetSelfSwitch(eventid, switch_name, value, mapid)
 end
 
-def setMySwitch(switch,value)
+def setMySwitch(switch,value=true)
 	pbSetSelfSwitch(get_self.id,switch,value)
 end
 
