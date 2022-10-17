@@ -562,6 +562,8 @@ class Pokemon
     end
 	prevHappiness = @happiness
     @happiness = (@happiness + gain).clamp(0, 255)
+
+	return if $PokemonSystem.show_trait_unlocks == 1
 	
 	traitUnlocked = nil
 	likeUnlocked = nil
