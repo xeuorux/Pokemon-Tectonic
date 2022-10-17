@@ -1487,7 +1487,6 @@ EffortPoints = 0,0,0,0,2,0
 Abilities = TOUGH
 Color = Blue
 Pokedex = When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit.
-BattlerPlayerY = 65
 BattlerEnemyY = 33
 #-------------------------------
 [GDARMANITAN,1]

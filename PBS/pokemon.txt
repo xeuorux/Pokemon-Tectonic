@@ -32596,7 +32596,7 @@ Type1 = ICE
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,40,50,60,61,80
-# Total = 367
+# Total = 366
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 52
