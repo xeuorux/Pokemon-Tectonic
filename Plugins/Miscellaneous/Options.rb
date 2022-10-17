@@ -7,6 +7,7 @@ class PokemonSystem
 	attr_accessor :gendered_look
 	attr_accessor :damage_numbers
 	attr_accessor :show_item_descriptions
+  attr_accessor :show_trait_unlocks
 	attr_accessor :effectiveness_messages
   attr_accessor :weather_messages
   attr_accessor :status_effect_messages
@@ -39,6 +40,7 @@ class PokemonSystem
     @weather_messages         = 0 # (0=true, 1=false)
     @status_effect_messages   = 0 # (0=true, 1=false)
     @nicknaming_prompt        = 0 # (0=true, 1=false)
+    @show_trait_unlocks       = 0 # (0=true, 1=false)
   end
 end
 
@@ -118,12 +120,6 @@ class PokemonOption_Scene
          proc { $PokemonSystem.textinput },
          proc { |value| $PokemonSystem.textinput = value }
        ),
-       EnumOption.new(_INTL("Nicknaming Prompt"),[_INTL("On"),_INTL("Off")],
-         proc { $PokemonSystem.nicknaming_prompt },
-         proc { |value|
-			    $PokemonSystem.nicknaming_prompt = value
-         }
-       ),
        EnumOption.new(_INTL("Damage Numbers"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.damage_numbers },
          proc { |value|
@@ -148,12 +144,24 @@ class PokemonOption_Scene
           $PokemonSystem.status_effect_messages = value
         }
       ),
+      EnumOption.new(_INTL("Nicknaming Prompt"),[_INTL("On"),_INTL("Off")],
+        proc { $PokemonSystem.nicknaming_prompt },
+        proc { |value|
+        $PokemonSystem.nicknaming_prompt = value
+        }
+      ),
       EnumOption.new(_INTL("Item Desc Popups"),[_INTL("On"),_INTL("Off")],
          proc { $PokemonSystem.show_item_descriptions },
          proc { |value|
 			    $PokemonSystem.show_item_descriptions = value
          }
        ),
+      EnumOption.new(_INTL("Trait Unlock Popups"),[_INTL("On"),_INTL("Off")],
+       proc { $PokemonSystem.show_trait_unlocks },
+       proc { |value|
+        $PokemonSystem.show_trait_unlocks = value
+       }
+      ),
       EnumOption.new(_INTL("Autosave"),[_INTL("On"),_INTL("Off")],
         proc { $PokemonSystem.autosave },
         proc { |value|
