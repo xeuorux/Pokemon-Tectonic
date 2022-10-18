@@ -805,9 +805,7 @@ class PokeBattle_Move_52D < PokeBattle_Move
 	def pbEffectGeneral(user)
 		@battle.endWeather()
 		@battle.battlers.each do |b|
-			pkmn = b.pokemon
-			next if !pkmn || !pkmn.able? || pkmn.status == :NONE
-			pbAromatherapyHeal(pkmn,b)
+			healStatus(b)
 		end
 	end
   
@@ -1296,16 +1294,15 @@ end
 class PokeBattle_Move_548 < PokeBattle_Move
 	def pbEffectAfterAllHits(user,target)
 		@battle.eachSameSideBattler(user) do |b|
-			next if b.status == :NONE
-			pbAromatherapyHeal(b)
+			healStatus(b)
 		end
 		# Cure all Pokémon in the user's and partner trainer's party.
 		# NOTE: This intentionally affects the partner trainer's inactive Pokémon
 		#       too.
 		@battle.pbParty(user.index).each_with_index do |pkmn,i|
-			next if !pkmn || !pkmn.able? || pkmn.status == :NONE
+			next if !pkmn || !pkmn.able?
 			next if @battle.pbFindBattler(i,user)   # Skip Pokémon in battle
-			pbAromatherapyHeal(pkmn)
+			healStatus(pkmn)
 		end
 	end
 
