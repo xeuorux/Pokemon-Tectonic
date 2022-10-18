@@ -2928,7 +2928,7 @@ end
   end
   
   #===============================================================================
-  # Fails if this isn't the user's first turn. (First Impression)
+  # Fails if this isn't the user's first turn. (First Impression, Breach)
   #===============================================================================
   class PokeBattle_Move_174 < PokeBattle_Move
     def pbMoveFailed?(user,targets)

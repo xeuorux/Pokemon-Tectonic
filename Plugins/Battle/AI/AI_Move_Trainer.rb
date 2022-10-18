@@ -53,7 +53,11 @@ class PokeBattle_AI
 		
 		# Never use a move that would fail outright
 		@battle.messagesBlocked = true
-		user.turnCount += 1
+
+		# Falsify the turn count so that the AI is calculated as though we are actually
+        # in the midst of performing the move (turnCount is incremented as the attack phase begins)
+        user.turnCount += 1 
+
 		if move.pbMoveFailed?(user,[target])
 			score = 0
             echoln("#{user.pbThis} scores the move #{move.id} as 0 due to it being predicted to fail.")

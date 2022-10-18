@@ -524,6 +524,6 @@ class PokeBattle_Battler
   end
 
   def firstTurn?
-    return @turnCount == 0
+    return @turnCount <= 1
   end
 end
