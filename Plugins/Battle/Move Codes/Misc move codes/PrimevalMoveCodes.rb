@@ -349,8 +349,6 @@ class PokeBattle_Move_624 < PokeBattle_Move_156
 		super
 		
 		@battle.eachSameSideBattler(user) do |b|
-			b.pbRaiseStatStage(:ATTACK,1,user)
-			b.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
 			b.pbRaiseStatStage(:DEFENSE,1,user)
 			b.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
 		end
