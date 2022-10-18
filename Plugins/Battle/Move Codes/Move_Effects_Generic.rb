@@ -1141,7 +1141,7 @@ class PokeBattle_RoomMove < PokeBattle_Move
 		  @battle.field.effects[@roomEffect] = 0
 		  @battle.pbDisplay(_INTL("{1} removed the {2}.",user.pbThis,@areaName))
 	  else
-		  @battle.field.effects[@roomEffect] = getRoomDuration(user)
+		  @battle.field.effects[@roomEffect] = user.getRoomDuration()
 		  @battle.pbDisplay(_INTL("{1} created a {2}.",user.pbThis,@areaName))
 	  end
 	end
