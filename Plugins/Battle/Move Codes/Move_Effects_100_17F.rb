@@ -2389,7 +2389,7 @@ end
         user.pbItemHPHealCheck
       elsif user.canHeal?
         healAmount = healAmount * 1.3 if user.hasActiveItem?(:BIGROOT)
-        user.pbRecoverHP(healAmt)
+        user.pbRecoverHP(healAmount)
       end
     end
 
