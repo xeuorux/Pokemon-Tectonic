@@ -592,6 +592,8 @@ class PokeBattle_Battler
 		end
 		
 		oldStatuses.each do |oldStatus|
+			next if oldStatus == :NONE
+			
 			PokeBattle_Battler.showStatusCureMessage(oldStatus, self, @battle) if showMessages
 	
 			# Lingering Daze

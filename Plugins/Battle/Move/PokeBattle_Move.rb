@@ -34,7 +34,7 @@ class PokeBattle_Move
     end
   end
 
-  def pbAromatherapyHeal(pokemonOrBattler)
+  def healStatus(pokemonOrBattler)
     if pokemonOrBattler.is_a?(PokeBattle_Battler)
       pokemonOrBattler.pbCureStatus
     elsif pokemonOrBattler.status != :NONE

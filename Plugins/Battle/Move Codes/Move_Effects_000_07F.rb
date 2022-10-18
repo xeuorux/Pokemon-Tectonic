@@ -384,7 +384,7 @@ class PokeBattle_Move_019 < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user,target)
-    pbAromatherapyHeal(target)
+    healStatus(target)
   end
 
   def pbEffectGeneral(user)
@@ -392,8 +392,7 @@ class PokeBattle_Move_019 < PokeBattle_Move
     # 5 version of this move, to make Pokémon out in battle get cured first.
     if pbTarget(user) == :UserSide
       @battle.eachSameSideBattler(user) do |b|
-        next if b.status == :NONE
-        pbAromatherapyHeal(b)
+        healStatus(b)
       end
     end
     # Cure all Pokémon in the user's and partner trainer's party.
@@ -402,7 +401,7 @@ class PokeBattle_Move_019 < PokeBattle_Move
     @battle.pbParty(user.index).each_with_index do |pkmn,i|
       next if pkmn.nil? || !pkmn.able?
       next if @battle.pbFindBattler(i,user)   # Skip Pokémon in battle
-      pbAromatherapyHeal(pkmn)
+      healStatus(pkmn)
     end
   end
 
