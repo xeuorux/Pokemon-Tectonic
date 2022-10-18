@@ -1,12 +1,14 @@
 class NewDexNav
   def initialize
+	echoln("Dexnav initializing")
+
 	# Load encounter data for the given route
 	encounter_array = getDexNavEncounterDataForMap()
 	if !encounter_array || encounter_array.length == 0
 		pbMessage(_INTL("There are no encounters on this map."))
 		return
 	end
- 
+
 	# Set up the two viewports to hold UI elements
     @viewport1 = Viewport.new(0, 0, Graphics.width, Graphics.height)
     @viewport1.z = 99999
@@ -14,7 +16,6 @@ class NewDexNav
 	@viewport2.z = 99999
     @viewport3 = Viewport.new(0, 120, Graphics.width, Graphics.height)
     @viewport3.z = 999999
-    $viewport = nil
     @sprites = {}
 	
 	# Set up all the sprites
@@ -163,15 +164,17 @@ class NewDexNav
 					next
 				end
 				searchTime = 20 + rand(80)
+				searchTime = 0 if $DEBUG && Input.press?(Input::CTRL)
 				pbMessage(_INTL("Searching\\ts[15]...\\wtnp[#{searchTime}]"))
 				pbMessage(_INTL("Oh! A #{highlightedSpeciesData.real_name} was found nearby!"))
 				pbFadeOutAndHide(@sprites)
-				beginSearchWithOverlay(highlightedSpeciesData)
+				generateSearch(highlightedSpeciesData)
+				$search_overlay.dispose if $search_overlay
+				$search_overlay = DexNav_SearchOverlay.new
 				break
 			end
 		  elsif Input.trigger?(Input::B)
 			navMon = -1
-			dispose
 			break
 		  else
 			highestLeftRepeat = 0
@@ -187,8 +190,7 @@ class NewDexNav
 	else
 		pbFadeOutAndHide(@sprites)
 	end
-	@viewport1.dispose
-	@viewport2.dispose
+	dispose
   end
   
   def drawSprites(navigationIndex=0)
@@ -232,10 +234,6 @@ class NewDexNav
 	textpos.push([completions,xLeft,yPos,0,base,shadow])
 	yPos += 32
 	
-	#if @displayedName
-	#	textpos.push([@displayedName,(Graphics.width-@displayedName.length*10)/2,yPos,0,base,shadow])
-	#end
-	
 	pbDrawTextPositions(overlay, textpos)
   end
   
@@ -255,41 +253,78 @@ class NewDexNav
 	pbDrawImagePositions(@sprites["overlay2"].bitmap,imagePos)
   end
 
-  def beginSearchWithOverlay(species_data)
-	$currentDexSearch=[species_data,getRandomMentorMove(species_data.species)]
-  	
-	# Determine which of the Pokemon's abilities it will have, and store that info for later
-    navRand = rand(2)
-    $currentDexSearch[2] = navRand
-    navAbil1 = species_data.abilities
-    if navAbil1[1] != nil
-      navAbil = [navAbil1[0],navAbil1[1]]
-    else
-      navAbil = [navAbil1[0],navAbil1[0]]
-    end
-	
-	# Display information about the pokemon being searched for
-	if $currentDexSearch[1] == nil
-      dexMove = "-"
-    else
-      dexMove = GameData::Move.get($currentDexSearch[1]).name
-    end
-    @sprites["search"] = Window_AdvancedTextPokemon.newWithSize("",265,130,250,126,@viewport3)
-    @sprites["search"].text = _INTL("{1}\n{2}\n{3}",
-		species_data.name,GameData::Ability.get(navAbil[navRand]).name,dexMove)
-    @sprites["search"].setSkin("Graphics/Windowskins/frlgtextskin")
-    @sprites["search"].opacity = 140
-    @sprites["searchIcon"] = PokemonSpeciesIconSprite.new(species_data.species,@viewport3)
-    @sprites["searchIcon"].x = 450
-    @sprites["searchIcon"].y = 125
-	@sprites["searchIcon"].z += 100
-
-	Graphics.update
-	$viewport = @viewport3
-	@viewport3.z = 99998
-    pbFadeInAndShow(@sprites) {pbUpdate}
+  def generateSearch(species_data)
+	$currentDexSearch=[species_data,getRandomMentorMove(species_data.species),rand(2)]
   end
-  
+end
+
+def searchActive?()
+	return !$currentDexSearch.nil? && $currentDexSearch.is_a?(Array)
+end
+
+class DexNav_SearchOverlay
+	OVERLAY_WIDTH = 280
+	OVERLAY_HEIGHT = 128
+
+	def initialize()
+		echoln("Dexnav initializing")
+		@sprites = {}
+		@viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
+		@viewport.z = 999
+
+		searchWindowX = Graphics.width - OVERLAY_WIDTH - 8
+		searchWindowY = Graphics.height - OVERLAY_HEIGHT - 8
+		@sprites["search"] = Window_AdvancedTextPokemon.newWithSize("",searchWindowX,searchWindowY,OVERLAY_WIDTH,OVERLAY_HEIGHT,@viewport)
+		@sprites["search"].setSkin("Graphics/Windowskins/frlgtextskin")
+		@sprites["search"].opacity = 140
+		@sprites["search"].visible = false
+	
+		@sprites["searchIcon"] = PokemonSpeciesIconSprite.new(nil,@viewport)
+		@sprites["searchIcon"].x = Graphics.width - 72
+		@sprites["searchIcon"].y = searchWindowY - 8
+		@sprites["searchIcon"].z += 100
+		@sprites["searchIcon"].visible = false
+
+		drawSearchOverlay()
+	end
+
+	def pbUpdate
+		pbUpdateSpriteHash(@sprites)
+	end
+	
+	def dispose
+		pbDisposeSpriteHash(@sprites)
+		@viewport.dispose
+	end
+
+	def drawSearchOverlay()
+		return if !searchActive?
+	
+		if $currentDexSearch[1] == nil
+			dexMove = "-"
+		else
+			dexMove = GameData::Move.get($currentDexSearch[1]).name
+		end
+		
+		species_data = $currentDexSearch[0]
+		navAbil1 = species_data.abilities
+		if navAbil1[1] != nil
+		  navAbil = [navAbil1[0],navAbil1[1]]
+		else
+		  navAbil = [navAbil1[0],navAbil1[0]]
+		end
+		abilityID = navAbil[$currentDexSearch[2]]
+		abilityName = GameData::Ability.get(abilityID).name
+	
+		@sprites["search"].visible = true
+		@sprites["search"].text = _INTL("{1}\n{2}\n{3}",species_data.name,abilityName,dexMove)
+		
+		@sprites["searchIcon"].visible = true
+		@sprites["searchIcon"].species = species_data.species
+	
+		Graphics.update
+		pbFadeInAndShow(@sprites) {pbUpdate}
+	end
 end
 
 def getDexNavEncounterDataForMap(mapid = -1)
@@ -317,12 +352,8 @@ def getDexNavEncounterDataForMap(mapid = -1)
 	return allEncounters
 end
 
-Events.onStartBattle+=proc {|_sender,e|
-    $viewport.dispose if $viewport
-}
-
 Events.onMapChanging +=proc {|_sender,e|
-    $viewport.dispose if $viewport
+    $search_overlay.dispose if $search_overlay
 	$currentDexSearch = nil
 }
 
@@ -365,6 +396,7 @@ Events.onWildPokemonCreate += proc {|sender,e|
 			# There is a higher chance for shininess
 			pokemon.shinyRerolls *= 2
 			$currentDexSearch = nil
+			$search_overlay.dispose if $search_overlay
 		else
 			echoln("Cannot find #{species} in #{currentTileEncounterType}!")
 		end
