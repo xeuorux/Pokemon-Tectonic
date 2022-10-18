@@ -1617,6 +1617,8 @@ Environment = Sand
 Outdoor = false
 ShowArea = false
 Bicycle = false
+BattleBack = elite6
+TeleportBlocked = true
 #-------------------------------
 [318]
 # Tournament Grounds
@@ -1637,6 +1639,8 @@ Weather = Fog,100
 Outdoor = false
 ShowArea = false
 Bicycle = false
+HealingSpot = 329,13,21
+TeleportBlocked = true
 #-------------------------------
 [325]
 # Ticketing Gate

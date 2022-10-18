@@ -3956,3 +3956,43 @@ Pokemon = BRAVIARY,70
     AbilityIndex = 0
     Item = CHOICESCARF
     EV = 10,20,0,20,0,0
+#-------------------------------
+[LEADER_Samorn_2,Samorn,2]
+Pokemon = BIDOOF,10
+    AbilityIndex = 1
+#-------------------------------
+[LEADER_Lambert_2,Lambert,2]
+Pokemon = BIDOOF,10
+    AbilityIndex = 1
+#-------------------------------
+[LEADER_Eko_2,Eko,2]
+Pokemon = BIDOOF,10
+    AbilityIndex = 1
+#-------------------------------
+[COOLTRAINER_M7,X,1]
+Pokemon = BIDOOF,10
+    AbilityIndex = 0
+#-------------------------------
+[FORMERCHAMP_Elise,Elise,1]
+Pokemon = BIDOOF,10
+    AbilityIndex = 0
+#-------------------------------
+[TRAINER_Alessa,Alessa,3]
+Pokemon = BIDOOF,10
+    AbilityIndex = 0
+#-------------------------------
+[TRAINER_Eifion,Eifion,1]
+Pokemon = BIDOOF,10
+    AbilityIndex = 1
+#-------------------------------
+[LEADER_Helena_2,Helena,2]
+Pokemon = BIDOOF,10
+    AbilityIndex = 0
+#-------------------------------
+[LEADER_Bence_2,Bence,2]
+Pokemon = BIDOOF,10
+    AbilityIndex = 1
+#-------------------------------
+[TRAINER_Zain,Zain,2]
+Pokemon = BIDOOF,10
+    AbilityIndex = 1
