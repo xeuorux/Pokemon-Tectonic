@@ -119,22 +119,20 @@ class WaypointsTracker
 		end
 
 		if !chosenLocation.nil?
-			$game_temp.player_new_map_id = waypointMap = chosenLocation[0]
+			mapID = chosenLocation[0]
 			waypointInfo = chosenLocation[1]
+
+			# Old system of storing the specific location
 			if waypointInfo.is_a?(Array)
+				$game_temp.player_new_map_id = mapID
 				$game_temp.player_new_x = waypointInfo[0]
 				$game_temp.player_new_y = waypointInfo[1]
+				$game_temp.player_new_direction = 2
+				$game_temp.transition_processing = true
+				$game_temp.transition_name       = ""
 			else
-				# TODO find location of event with that ID on the waypointMap
-				mapData = Compiler::MapData.new
-				map = mapData.getMap(waypointMap)
-				event = map.events[waypointInfo]
-				$game_temp.player_new_x = event.x
-				$game_temp.player_new_y = event.y + 1
+				transferPlayerToEvent(waypointInfo,Up,mapID,[0,1])
 			end
-			$game_temp.player_new_direction = 2
-			$game_temp.transition_processing = true
-			$game_temp.transition_name       = ""
 			$scene.transfer_player
 			$game_map.autoplay
 			$game_map.refresh

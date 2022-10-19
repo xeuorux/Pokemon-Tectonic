@@ -59,6 +59,16 @@ def mapTransitionTransfer(map_id,x,y,fade=true)
 	end
 end
 
+def transferPlayerToEvent(event_id,direction,map_id = -1,offset=[0,0])
+	map_id = $game_map.map_id if map_id < 0
+	mapData = Compiler::MapData.new
+	map = mapData.getMap(map_id)
+	event = map.events[event_id]
+	x = event.x + offset[0]
+	y = event.y + offset[1]
+	transferPlayer(x,y,direction,map_id)
+end
+
 def teleportPlayer(map_id,x,y)
 	$game_temp.player_transferring = true
 	$game_temp.player_new_map_id    = map_id || $game_map.map_id
