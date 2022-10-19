@@ -1601,7 +1601,7 @@ BattleBack = wcave
 Environment = Cave
 #-------------------------------
 [315]
-# Ancient Antechamber
+# Path of Genesis
 MapPosition = 0,14,10
 #-------------------------------
 [316]
