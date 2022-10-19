@@ -100,7 +100,7 @@
 98,MAGICGUARD,Magic Guard,"The Pokémon only takes damage from attacks."
 99,NOGUARD,No Guard,"Ensures attacks by or against the Pokémon land."
 100,STALL,Stall,"The Pokémon moves after all other Pokémon do."
-101,TECHNICIAN,Technician,"Powers up the Pokémon's moves with base power 60 or less."
+101,TECHNICIAN,Technician,"Moves with base power 60 or less by deal 50% more damage."
 102,LEAFGUARD,Leaf Guard,"Immune to status conditions while in sunshine."
 103,KLUTZ,Klutz,"The Pokémon can't use any held items."
 104,MOLDBREAKER,Mold Breaker,"Moves can be used regardless of Abilities."
