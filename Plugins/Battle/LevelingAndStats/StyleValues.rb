@@ -11,6 +11,10 @@ class Pokemon
 end
 
 def pbStyleValueScreen(pkmn)
+	if !teamEditingAllowed?()
+		showNoTeamEditingMessage()
+		return
+	end
 	pbFadeOutIn {
 		scene = StyleValueScene.new
 		screen = StyleValueScreen.new(scene)
@@ -474,6 +478,11 @@ class PokemonPartyScreen
 end
 
 def styleValuesTrainer()
+	if !teamEditingAllowed?()
+		showNoTeamEditingMessage()
+		return
+	end
+
 	if isTempSwitchOff?("A")
 		pbMessage(_INTL("I'm the Style Points adjuster. I can adjust your Pokémon's Style Points any time."))
 		pbMessage(_INTL("To add Style Points to a stat, you'll have to remove them from another."))

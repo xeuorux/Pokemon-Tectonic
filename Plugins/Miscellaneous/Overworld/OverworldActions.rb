@@ -31,6 +31,7 @@ end
 
 def autoSave
 	return if $PokemonSystem.autosave == 1
+	return if !savingAllowed?()
 	SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
 	if !properlySave
 		pbMessage(_INTL("\\se[]Auto-save failed.\\wtnp[30]"))

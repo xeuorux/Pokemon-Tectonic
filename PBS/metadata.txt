@@ -1619,6 +1619,8 @@ ShowArea = false
 Bicycle = false
 BattleBack = elite6
 TeleportBlocked = true
+SavingBlocked = true
+NoTeamEditing = true
 #-------------------------------
 [318]
 # Tournament Grounds
@@ -1641,6 +1643,8 @@ ShowArea = false
 Bicycle = false
 HealingSpot = 329,13,21
 TeleportBlocked = true
+SavingBlocked = true
+NoTeamEditing = true
 #-------------------------------
 [325]
 # Ticketing Gate

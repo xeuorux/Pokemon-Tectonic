@@ -92,39 +92,43 @@ class Scene_Map
           unless $game_player.moving?
             $PokemonTemp.keyItemCalling = true
           end
-      elsif Input.trigger?(Input::AUX2)
-          #unless $game_player.moving?
-            $PokemonTemp.bicycleCalling = true
-          #end
-      elsif Input.trigger?(Input::AUX1)
-      unless $game_system.menu_disabled or $game_player.moving?
-            $game_temp.save_calling = true
-            $game_temp.menu_beep = true
-          end
+        elsif Input.trigger?(Input::AUX2)
+            #unless $game_player.moving?
+              $PokemonTemp.bicycleCalling = true
+            #end
+        elsif Input.trigger?(Input::AUX1)
+            unless $game_system.menu_disabled or $game_player.moving?
+              if savingAllowed?
+                $game_temp.save_calling = true
+                $game_temp.menu_beep = true
+              else
+                showSaveBlockMessage()
+              end
+            end
         elsif Input.press?(Input::F9)
-          $game_temp.debug_calling = true if $DEBUG
+            $game_temp.debug_calling = true if $DEBUG
+          end
         end
-      end
-      unless $game_player.moving?
-        if $game_temp.menu_calling
-          call_menu
-        elsif $game_temp.debug_calling
-          call_debug
-      elsif $game_temp.save_calling
-      call_save
-        elsif $PokemonTemp.keyItemCalling
-          $PokemonTemp.keyItemCalling = false
-          $game_player.straighten
-          pbUseKeyItem
-        elsif $PokemonTemp.hiddenMoveEventCalling
-          $PokemonTemp.hiddenMoveEventCalling = false
-          $game_player.straighten
-          Events.onAction.trigger(self)
+        unless $game_player.moving?
+          if $game_temp.menu_calling
+            call_menu
+          elsif $game_temp.debug_calling
+            call_debug
+          elsif $game_temp.save_calling
+            call_save
+          elsif $PokemonTemp.keyItemCalling
+            $PokemonTemp.keyItemCalling = false
+            $game_player.straighten
+            pbUseKeyItem
+          elsif $PokemonTemp.hiddenMoveEventCalling
+            $PokemonTemp.hiddenMoveEventCalling = false
+            $game_player.straighten
+            Events.onAction.trigger(self)
+          end
         end
-      end
-      if $PokemonTemp.bicycleCalling
-        call_bike
-      end
+        if $PokemonTemp.bicycleCalling
+          call_bike
+        end
     end
     
     def call_save

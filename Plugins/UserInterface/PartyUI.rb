@@ -209,6 +209,9 @@ class PokemonPartyScreen
       cmdPokedex = -1
 	    cmdSetDown = -1
       cmdSendPC  = -1
+
+      canEditTeam = teamEditingAllowed?()
+
       # Build the commands
       commands[cmdSetDown = commands.length]	    = _INTL("Set Down") if defined?($PokEstate.setDownIntoEstate) && $PokEstate.isInEstate?()
 	    commands[cmdSummary = commands.length]      = _INTL("Summary")
@@ -238,6 +241,10 @@ class PokemonPartyScreen
       elsif cmdDebug >= 0 && command == cmdDebug
         pbPokemonDebug(pkmn,pkmnid)
       elsif cmdSwitch >= 0 && command == cmdSwitch
+        if !canEditTeam
+          showNoTeamEditingMessage()
+          next
+        end
         @scene.pbSetHelpText(_INTL("Move to where?"))
         oldpkmnid = pkmnid
         pkmnid = @scene.pbChoosePokemon(true)
@@ -245,6 +252,10 @@ class PokemonPartyScreen
           pbSwitch(oldpkmnid,pkmnid)
         end
       elsif cmdMail >= 0 && command==cmdMail
+        if !canEditTeam
+          showNoTeamEditingMessage()
+          next
+        end
         command = @scene.pbShowCommands(_INTL("Do what with the mail?"),
            [_INTL("Read"),_INTL("Take"),_INTL("Cancel")])
         case command
@@ -269,6 +280,10 @@ class PokemonPartyScreen
       elsif cmdPokedex >=0 && command == cmdPokedex
         openSingleDexScreen(pkmn)
       elsif cmdSendPC >= 0 && command == cmdSendPC
+        if !canEditTeam
+          showNoTeamEditingMessage()
+          next
+        end
         if $Trainer.able_pokemon_count == 1 && pkmn.able?
           pbDisplay(_INTL("You can't send back your only able Pokémon!"))
         elsif pbConfirm(_INTL("Are you sure you'd like to send back #{pkmn.name}?"))
@@ -286,6 +301,10 @@ class PokemonPartyScreen
           @scene.pbHardRefresh
         end
       elsif cmdSetDown >= 0 && command == cmdSetDown
+        if !canEditTeam
+          showNoTeamEditingMessage()
+          next
+        end
         if $PokEstate.setDownIntoEstate(pkmn)
           @party[pkmnid] = nil
           @party.compact!
@@ -293,6 +312,10 @@ class PokemonPartyScreen
           break
         end
       elsif cmdItem >= 0 && command == cmdItem
+        if !canEditTeam
+          showNoTeamEditingMessage()
+          next
+        end
         itemcommands = []
         cmdUseItem   = -1
         cmdGiveItem  = -1

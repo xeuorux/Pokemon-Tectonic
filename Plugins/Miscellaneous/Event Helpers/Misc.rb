@@ -106,6 +106,30 @@ def playerIsOutdoors?
 	end
 end
 
+def teamEditingAllowed?()
+	begin
+		return !GameData::MapMetadata.get($game_map.map_id).no_team_editing
+	rescue
+		return true
+	end
+end
+
+def showNoTeamEditingMessage()
+	pbMessage(_INTL("Editing your team is not allowed at the moment."))
+end
+
+def savingAllowed?()
+	begin
+		return !GameData::MapMetadata.get($game_map.map_id).saving_blocked
+	rescue
+		return true
+	end
+end
+
+def showSaveBlockMessage()
+	pbMessage(_INTL("Saving is not allowed at the moment."))
+end
+
 class PokemonGlobalMetadata
 	attr_accessor :raffleChancesTried
 end

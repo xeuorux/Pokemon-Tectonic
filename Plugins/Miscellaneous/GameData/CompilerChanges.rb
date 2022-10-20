@@ -1322,7 +1322,9 @@ end
             :wild_capture_ME      => contents["WildCaptureME"],
             :town_map_size        => contents["MapSize"],
             :battle_environment   => contents["Environment"],
-			      :teleport_blocked	    => contents["TeleportBlocked"]
+			      :teleport_blocked	    => contents["TeleportBlocked"],
+            :saving_blocked	      => contents["SavingBlocked"],
+            :no_team_editing	    => contents["NoTeamEditing"],
           }
           # Add metadata's data to records
           GameData::MapMetadata.register(metadata_hash)

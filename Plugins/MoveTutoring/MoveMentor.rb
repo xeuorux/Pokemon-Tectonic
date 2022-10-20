@@ -1,4 +1,9 @@
 def mentorCoordinator()
+	if !teamEditingAllowed?()
+		showNoTeamEditingMessage()
+		return
+	end
+
 	if isTempSwitchOff?("A")
 		pbMessage(_INTL("I help your Pokemon to teach each other moves through mentorships!"))
 		pbMessage(_INTL("Pokemon can teach any move they know to any other Pokemon you have who can learn that move."))
@@ -26,6 +31,11 @@ end
 
 def pbMentorMoveScreen(pkmn)
   	return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
+
+	if !teamEditingAllowed?()
+		showNoTeamEditingMessage()
+		return
+	end
 
   	movesKnownByMentors = []
 	eachPokemonInPartyOrStorage do |otherPkmn|

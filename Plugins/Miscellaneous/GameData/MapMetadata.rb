@@ -1,6 +1,8 @@
 module GameData
   class MapMetadata
 	attr_reader :teleport_blocked
+  attr_reader :saving_blocked
+  attr_reader :no_team_editing
 	
 	SCHEMA = {
        "Outdoor"          => [1,  "b"],
@@ -23,7 +25,9 @@ module GameData
        "WildCaptureME"    => [18, "s"],
        "MapSize"          => [19, "us"],
        "Environment"      => [20, "e", :Environment],
-	     "TeleportBlocked"  => [21, "b"]
+	     "TeleportBlocked"  => [21, "b"],
+       "SavingBlocked"    => [22, "b"],
+       "NoTeamEditing"    => [23, "b"],
     }
   
 		def self.editor_properties
@@ -48,7 +52,9 @@ module GameData
          ["WildCaptureME",    MEProperty,                         _INTL("Default ME played after catching a wild Pokémon on this map.")],
          ["MapSize",          MapSizeProperty,                    _INTL("The width of the map in Town Map squares, and a string indicating which squares are part of this map.")],
          ["Environment",      GameDataProperty.new(:Environment), _INTL("The default battle environment for battles on this map.")],
-		     ["TeleportBlocked",  BooleanProperty,					          _INTL("Whether the player is prevented from teleporting out of this map.")]
+		     ["TeleportBlocked",  BooleanProperty,					          _INTL("Whether the player is prevented from teleporting out of this map.")],
+         ["SavingBlocked",    BooleanProperty,					          _INTL("Whether the player is prevented from saving the game on this map.")],
+         ["NoTeamEditing",    BooleanProperty,					          _INTL("Whether the player is prevented from editing their team on this map.")],
 	  ]
     end
 		
@@ -75,6 +81,8 @@ module GameData
       @town_map_size        = hash[:town_map_size]
       @battle_environment   = hash[:battle_environment]
 	    @teleport_blocked		  = hash[:teleport_blocked]
+      @saving_blocked		    = hash[:saving_blocked]
+      @no_team_editing      = hash[:no_team_editing]
     end
 
     def property_from_string(str)
@@ -100,6 +108,8 @@ module GameData
       when "MapSize"          then return @town_map_size
       when "Environment"      then return @battle_environment
 	    when "TeleportBlocked"  then return @teleport_blocked
+      when "SavingBlocked"    then return @saving_blocked
+      when "NoTeamEditing"    then return @no_team_editing
       end
       return nil
     end
@@ -171,7 +181,9 @@ def pbEditMetadata(map_id = 0)
         :wild_capture_ME      => data[17],
         :town_map_size        => data[18],
         :battle_environment   => data[19],
-        :teleport_blocked     => data[20]
+        :teleport_blocked     => data[20],
+        :saving_blocked       => data[21],
+        :no_team_editing      => data[22],
       }
       # Add metadata's data to records
       GameData::MapMetadata.register(metadata_hash)

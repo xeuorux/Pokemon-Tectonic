@@ -1,4 +1,9 @@
 def moveRelearner()
+	if !teamEditingAllowed?()
+		showNoTeamEditingMessage()
+		return
+	end
+
 	if isTempSwitchOff?("A")
 		pbMessage(_INTL("I'm the Pokémon Move Maniac."))
 		pbMessage(_INTL("I know every single move that Pokémon learn while leveling up or evolving."))
@@ -26,6 +31,11 @@ end
 
 def pbRelearnMoveScreen(pkmn)
 	return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
+
+	if !teamEditingAllowed?()
+		showNoTeamEditingMessage()
+		return
+	end
 	
 	moves = []
 	pkmn.getMoveList.each do |m|

@@ -211,6 +211,11 @@ class Scene_Map
 end
   
 def pbPokeCenterPC
+    if !teamEditingAllowed?()
+      showNoTeamEditingMessage()
+      return
+    end
+
     pbMessage(_INTL("\\se[PC open]The Pokémon Storage System was opened."))
     command = 0
     loop do

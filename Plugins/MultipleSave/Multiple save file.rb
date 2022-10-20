@@ -218,11 +218,14 @@ def pbEmergencySave
 		  end
 		end
 	end
-	if Game.save
-		pbMessage(_INTL("\\se[]The game was saved.\\me[GUI save game] The previous save file has been backed up.\\wtnp[30]"))
-	else
-		pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
+	if savingAllowed?
+		if Game.save
+			pbMessage(_INTL("\\se[]The game was saved.\\me[GUI save game]"))
+		else
+			pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
+		end
 	end
+	pbMessage(_INTL("The previous save file has been backed up.\\wtnp[30]"))
 	$scene = oldscene
 end
 
@@ -240,6 +243,10 @@ end
 # Save screen
 class PokemonSaveScreen
 	def pbSaveScreen(quitting = false)
+		if !savingAllowed?()
+			showSaveBlockMessage()
+			return
+		end
 		# Check for renaming
 		FileSave.rename
 		# Count save file
