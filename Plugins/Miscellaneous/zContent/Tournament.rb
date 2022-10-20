@@ -7,23 +7,23 @@ BLACKOUT_NURSE_MAP_ID = 329
 OPPONENT_MAP_POSITION = [22,16]
 
 
-# Trainer Type, name, version number, arena event ID
+# Trainer Type, name, version number, cursed version number, arena event ID
 POOL_1 = [
-    [:LEADER_Samorn_2,"Samorn",2,2],
-    [:LEADER_Lambert_2,"Lambert",2,3],
-    [:LEADER_Eko_2,"Eko",2,4],
-    [:COOLTRAINER_M7,"X",1,5],
-    [:FORMERCHAMP_Elise,"Elise",1,6],
+    [:LEADER_Samorn_2,"Samorn",2,3,2],
+    [:LEADER_Lambert_2,"Lambert",2,3,3],
+    [:LEADER_Eko_2,"Eko",2,3,4],
+    [:COOLTRAINER_M7,"X",1,2,5],
+    [:FORMERCHAMP_Elise,"Elise",1,2,6],
 ]
 
 POOL_2 = [
-    [:TRAINER_Alessa,"Alessa",3,7],
-    [:TRAINER_Eifion,"Eifion",1,8],
-    [:LEADER_Helena_2,"Helena",2,9],
-    [:LEADER_Bence_2,"Bence",2,10],
+    [:TRAINER_Alessa,"Alessa",3,4,7],
+    [:TRAINER_Eifion,"Eifion",1,2,8],
+    [:LEADER_Helena_2,"Helena",2,3,9],
+    [:LEADER_Bence_2,"Bence",2,3,10],
 ]
 
-CHAMPION = [:TRAINER_Zain,"Zain",2,11]
+CHAMPION = [:TRAINER_Zain,"Zain",2,3,11]
 
 class PokemonGlobalMetadata
     attr_accessor :tournament
@@ -76,11 +76,15 @@ class RandomTournament
 
     def tournamentBattle()
         next_match = nextMatch()
-        return pbTrainerBattle(next_match[0],next_match[1],nil,false,next_match[2])
+        trainerType = next_match[0]
+        trainerName = next_match[1]
+        version = next_match[2]
+        version = next_match[3] if $PokemonGlobal.tarot_amulet_active && !next_match[3].nil?
+        return pbTrainerBattle(trainerType,trainerName,nil,false,version)
     end
 
     def opponentEvent()
-        return $game_system.map_interpreter.get_character(nextMatch()[3])
+        return $game_system.map_interpreter.get_character(nextMatch()[4])
     end
 
     def prepareOpponent()

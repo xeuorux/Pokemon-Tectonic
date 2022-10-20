@@ -3961,38 +3961,68 @@ Pokemon = BRAVIARY,70
 Pokemon = BIDOOF,10
     AbilityIndex = 1
 #-------------------------------
+[LEADER_Samorn_2,Samorn,3]
+ExtendsVersion = 2
+#-------------------------------
 [LEADER_Lambert_2,Lambert,2]
 Pokemon = BIDOOF,10
     AbilityIndex = 1
+#-------------------------------
+[LEADER_Lambert_2,Lambert,3]
+ExtendsVersion = 2
 #-------------------------------
 [LEADER_Eko_2,Eko,2]
 Pokemon = BIDOOF,10
     AbilityIndex = 1
 #-------------------------------
+[LEADER_Eko_2,Eko,3]
+ExtendsVersion = 2
+#-------------------------------
 [COOLTRAINER_M7,X,1]
 Pokemon = BIDOOF,10
     AbilityIndex = 0
+#-------------------------------
+[COOLTRAINER_M7,X,2]
+ExtendsVersion = 1
 #-------------------------------
 [FORMERCHAMP_Elise,Elise,1]
 Pokemon = BIDOOF,10
     AbilityIndex = 0
 #-------------------------------
+[FORMERCHAMP_Elise,Elise,2]
+ExtendsVersion = 1
+#-------------------------------
 [TRAINER_Alessa,Alessa,3]
 Pokemon = BIDOOF,10
     AbilityIndex = 0
+#-------------------------------
+[TRAINER_Alessa,Alessa,4]
+ExtendsVersion = 3
 #-------------------------------
 [TRAINER_Eifion,Eifion,1]
 Pokemon = BIDOOF,10
     AbilityIndex = 1
 #-------------------------------
+[TRAINER_Eifion,Eifion,2]
+ExtendsVersion = 1
+#-------------------------------
 [LEADER_Helena_2,Helena,2]
 Pokemon = BIDOOF,10
     AbilityIndex = 0
+#-------------------------------
+[LEADER_Helena_2,Helena,3]
+ExtendsVersion = 2
 #-------------------------------
 [LEADER_Bence_2,Bence,2]
 Pokemon = BIDOOF,10
     AbilityIndex = 1
 #-------------------------------
+[LEADER_Bence_2,Bence,3]
+ExtendsVersion = 2
+#-------------------------------
 [TRAINER_Zain,Zain,2]
 Pokemon = BIDOOF,10
     AbilityIndex = 1
+#-------------------------------
+[TRAINER_Zain,Zain,3]
+ExtendsVersion = 2
