@@ -1,8 +1,9 @@
-@@globalEffectIDCounter = 0
+$globalEffectIDCounter = 0
 
 module GameData
     class BattleEffect
         attr_reader :id
+        attr_reader :id_number
         attr_reader :real_name
         attr_reader :location # The locations are :Battler, :Side, :BothSides, :Position
         attr_reader :type # :Boolean, :Integer, :Position, :Type, :Pokemon, :Move, :Item, :Species
@@ -11,7 +12,7 @@ module GameData
         
         # An array of other effects to disable at the same time as it
         # Be careful not to create loops with this
-        attr_reader :disable_others
+        attr_reader :connected_effects
 
         # Resets to default value when a battler starts their turn
         attr_reader :resets_battlers_sot
@@ -46,11 +47,16 @@ module GameData
     
         def self.load; end
         def self.save; end
+
+        def self.register_effect(location,hash)
+            hash[:location] = location
+            register(hash)
+        end
     
         def initialize(hash)
             @id                     = hash[:id]
-            @id_number              = @@globalEffectIDCounter
-            @@globalEffectIDCounter += 1
+            @id_number              = $globalEffectIDCounter
+            $globalEffectIDCounter += 1
             @real_name              = hash[:real_name]
             @location               = hash[:location]
             @type                   = hash[:type] || :Boolean
@@ -104,7 +110,7 @@ module GameData
         
             @others_lose_track      = hash[:others_lose_track] || false
         
-            @disable_others         = hash[:disable_others] || false
+            @connected_effects         = hash[:connected_effects] || false
         end
 
         # Method for determining if the effect is considered active
@@ -180,11 +186,6 @@ module GameData
             @expire_proc.call(battle) if @expire_proc
         end
 
-        def register(location,hash)
-            hash[:location] = location
-            super(hash)
-        end
-
         ### Methods dealing with the EOR effect regardless of if it expired this turn or not
 
         def eor_battler(battle,battler)
@@ -204,11 +205,6 @@ module GameData
             @eor_proc.call(battle) if @eor_proc
         end
 
-        def register(location,hash)
-            hash[:location] = location
-            super(hash)
-        end
-
         ### Baton passing
         def baton_pass_value(battler,value)
             if @pass_value_proc
@@ -218,8 +214,16 @@ module GameData
             end
         end
 
+        def each_connected_effect
+            @connected_effects.each do |otherEffect|
+                otherEffectData = GameData::BattleEffect.get(effect)
+                next if otherEffectData.nil?
+                yield otherEffect, otherEffectData
+            end
+        end
+
         ### Iteration methods
-        def each_battler_effect()
+        def self.each_battler_effect()
             each() do |data|
                 next if data.location != :Battler
                 yield data

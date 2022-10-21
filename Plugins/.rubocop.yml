@@ -1,21 +1,32 @@
-inherit_from: ../.rubocop.yml
-
-Layout/LineLength:
-  Max: 99
- 
-Layout/ElseAlignment:
-  Enabled: false
-  
+AllCops:
+    NewCops:
+        disable
+    TargetRubyVersion: 3.1
+    
 Naming:
   Enabled: false
   
-Layout/CommentIndentation:
+Style:
+  AutoCorrect: true
+  
+Metrics:
   Enabled: false
+   
+Layout:
+    AutoCorrect: true
+    IndentationWidth: 1
+
+Layout/IndentationWidth:
+  Width: 1
   
 Layout/IndentationStyle:
-  Enabled: false
-  
+  EnforcedStyle: tabs
+  IndentationWidth: 1
+    
 Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Layout/LineLength:
   Enabled: false
   
 Style/RedundantReturn:
@@ -33,5 +44,17 @@ Style/TernaryParentheses:
 Style/GuardClause:
   Enabled: false
   
-Style/ZeroLengthPredicate:
-  AutoCorrect: true
+Style/Documentation:
+  Enabled: false
+  
+Style/FrozenStringLiteralComment:
+  Enabled: false
+  
+Style/GlobalVars:
+  Enabled: false
+  
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+  
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma

@@ -1,9 +1,9 @@
 class PokeBattle_Battler
-    #=============================================================================
+	#=============================================================================
 	# Creating a battler
 	#=============================================================================
 	def initialize(btl, idxBattler)
-		@battle      = btl
+		@battle = btl
 		@index       = idxBattler
 		@captured    = false
 		@dummy       = false
@@ -15,7 +15,7 @@ class PokeBattle_Battler
 	end
 
 	def pbInitBlank
-		@name           = ""
+		@name           = ''
 		@species        = 0
 		@form           = 0
 		@level          = 0
@@ -104,7 +104,7 @@ class PokeBattle_Battler
 		@participants = [] # Participants earn Exp. if this battler is defeated
 		@moves        = []
 		pkmn.moves.each_with_index do |m, i|
-		@moves[i] = PokeBattle_Move.from_pokemon_move(@battle, m)
+			@moves[i] = PokeBattle_Move.from_pokemon_move(@battle, m)
 		end
 		@iv = {}
 		GameData::Stat.each_main { |s| @iv[s.id] = pkmn.iv[s.id] }
@@ -135,20 +135,22 @@ class PokeBattle_Battler
 
 		# All battlers effects stop pointing at this battler index if appropriate
 		@battle.eachBattler do |b|
-			b.effects.transform_values! do |effect, value|
+			newEffects = {}
+			b.effects.each do |effect, value|
 				effectData = GameData::BattleEffect.try_get(effect)
-				next value if effectData.nil?
-				next value if effectData.type != :Position
-				next value if !effectData.others_lose_track
-				next value if value != @index
-				next effectData.default
+				next if effectData.nil?
+				next if effectData.type != :Position
+				next unless effectData.others_lose_track
+				next if value != @index
+				newEffects[effect] = effectData.default
 			end
+			b.effects.update(newEffects)
 		end
 
 		if batonPass
-			# Don't reset stats
+		# Don't reset stats
 		else
-			@stages[:ATTACK]          = 0
+			@stages[:ATTACK] = 0
 			@stages[:DEFENSE]         = 0
 			@stages[:SPEED]           = 0
 			@stages[:SPECIAL_ATTACK]  = 0
@@ -157,7 +159,7 @@ class PokeBattle_Battler
 			@stages[:EVASION]         = 0
 		end
 
-		@fainted               = (@hp == 0)
+		@fainted               = @hp.zero?
 		@initialHP             = 0
 		@lastAttacker          = []
 		@lastFoeAttacker       = []
@@ -179,50 +181,50 @@ class PokeBattle_Battler
 		@primevalTimer		   = 0
 		@extraMovesPerTurn = 0
 		@indexesTargetedThisTurn = []
- end
+	end
 
-    #=============================================================================
-    # Refreshing a battler's properties
-    #=============================================================================
- def pbUpdate(fullChange = false)
-   return if !@pokemon
-   @pokemon.calc_stats
-   @level          = @pokemon.level
-   @hp             = @pokemon.hp
-   @totalhp        = @pokemon.totalhp
-   if !@effects[PBEffects::Transform]
-     @attack       = @pokemon.attack
-     @defense      = @pokemon.defense
-     @spatk        = @pokemon.spatk
-     @spdef        = @pokemon.spdef
-     @speed        = @pokemon.speed
-     if fullChange
-       @type1      = @pokemon.type1
-       @type2      = @pokemon.type2
-       @ability_id = @pokemon.ability_id
-     end
-   end
- end
+	#=============================================================================
+	# Refreshing a battler's properties
+	#=============================================================================
+	def pbUpdate(fullChange = false)
+		return unless @pokemon
+		@pokemon.calc_stats
+		@level          = @pokemon.level
+		@hp             = @pokemon.hp
+		@totalhp        = @pokemon.totalhp
+		unless @effects[PBEffects::Transform]
+			@attack = @pokemon.attack
+			@defense      = @pokemon.defense
+			@spatk        = @pokemon.spatk
+			@spdef        = @pokemon.spdef
+			@speed        = @pokemon.speed
+			if fullChange
+				@type1 = @pokemon.type1
+				@type2      = @pokemon.type2
+				@ability_id = @pokemon.ability_id
+			end
+		end
+	end
 
-    # Used to erase the battler of a Pokémon that has been caught.
- def pbReset
-   @pokemon      = nil
-   @pokemonIndex = -1
-   @hp           = 0
-   pbInitEffects(false)
-   @participants = []
-   # Reset status
-   @status       = :NONE
-   @statusCount  = 0
-   # Reset choice
-   @battle.pbClearChoice(@index)
- end
+	# Used to erase the battler of a Pokémon that has been caught.
+	def pbReset
+		@pokemon      = nil
+		@pokemonIndex = -1
+		@hp           = 0
+		pbInitEffects(false)
+		@participants = []
+		# Reset status
+		@status       = :NONE
+		@statusCount  = 0
+		# Reset choice
+		@battle.pbClearChoice(@index)
+	end
 
-    # Update which Pokémon will gain Exp if this battler is defeated.
- def pbUpdateParticipants
-   return if fainted? || !@battle.opposes?(@index)
-   eachOpposing do |b|
-     @participants.push(b.pokemonIndex) if !@participants.include?(b.pokemonIndex)
-   end
- end
+	# Update which Pokémon will gain Exp if this battler is defeated.
+	def pbUpdateParticipants
+		return if fainted? || !@battle.opposes?(@index)
+		eachOpposing do |b|
+			@participants.push(b.pokemonIndex) unless @participants.include?(b.pokemonIndex)
+		end
+	end
 end

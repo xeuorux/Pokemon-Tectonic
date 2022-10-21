@@ -71,15 +71,18 @@ class PokeBattle_Battler
   def pbBeginTurn(_choice)
     @effects[PBEffects::DestinyBondPrevious] = @effects[PBEffects::DestinyBond]
 
-    @effects.transform_values!() { |effect,value|
+    newEffects = {}
+    @effects.each do |effect,value|
       effectData = GameData::BattleEffect.get(effect)
-      next value if effectData.nil?
+      next if effectData.nil?
       if effectData.resets_battlers_eot
-        next effectData.default
+        next newEffects[effect] = effectData.default
       else
-        next value
+        next
       end
-    }
+    end
+    @effects.update(changedEffects)
+
     # Encore's effect ends if the encored move is no longer available
     if @effects[PBEffects::Encore] > 0 && pbEncoredMoveIndex < 0
       @effects[PBEffects::Encore]     = 0

@@ -13,16 +13,8 @@ class PokeBattle_Battler
         effectData = GameData::BattleEffect.get(effect)
         return if effectData.nil?
         @effects[effect] = effectData.default
-        disableConnectedEffects(effect)
-    end
-
-    def disableConnectedEffects(effect)
-        effectData = GameData::BattleEffect.get(effect)
-        return if effectData.nil?
-        effectData.disable_others.each do |otherEffect|
-            otherEffectData = GameData::BattleEffect.get(effect)
-            next if otherEffectData.nil?
-            @effects[otherEffect] = otherEffectData.default
+        effectData.eachConnectedEffect do |otherEffect, otherData|
+            @effects[otherEffect] = otherData.default
         end
     end
 
@@ -40,9 +32,11 @@ class PokeBattle_Battler
             effectData.eor_battler(@battle,self)
         end
 
-        @effects.transform_values! do |effect, value|
+        changedEffects = {}
+
+        @effects.each do |effect, value|
             effectData = GameData::BattleEffect.get(effect)
-            next value if effectData.nil?
+            next if effectData.nil?
             # Tick down active effects that tick down
             if effectData.ticks_down && effectData.active_value?(value)
                 newValue = value - effectData.tick_amount
@@ -50,16 +44,19 @@ class PokeBattle_Battler
                 if effectData.active_value?(newValue)
                     effectData.remain_battler(@battle,self)
                 else
-                    disableConnectedEffects(effect)
+                    effectData.eachConnectedEffect do |otherEffect, otherData|
+                        changedEffects[otherEffect] = otherData.default
+                    end
                     effectData.expire_battler(@battle,self)
                 end
-                next newValue
+                changedEffects[effect] = newValue
             end
             if effectData.resets_eor && value != effectData.default
-                next effectData.default
+                changedEffects[effect] = effectData.default
             end
-            next value
         end
+
+        @effects.update(changedEffects)
     end
 
     def modifyTrackersEOR()

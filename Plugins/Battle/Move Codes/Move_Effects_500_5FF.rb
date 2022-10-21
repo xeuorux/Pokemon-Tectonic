@@ -355,14 +355,14 @@ end
 class PokeBattle_Move_516 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    if target.pbCanBurn?(user,false,self) && target.statStagesUp?
+    if target.pbCanBurn?(user,false,self) && target.hasRaisedStatStages?
       target.pbBurn(user)
     end
   end
   
   def getScore(score,user,target,skill=100)
     score -= 20
-	score += 50 if target.statStagesUp? && target.pbCanBurn?(user,false,self)
+	score += 50 if target.hasRaisedStatStages? && target.pbCanBurn?(user,false,self)
 	return score
   end
 end
@@ -1027,14 +1027,14 @@ end
 class PokeBattle_Move_537 < PokeBattle_Move
 	def pbAdditionalEffect(user,target)
 	  return if target.damageState.substitute
-	  if target.pbCanFrostbite?(user,false,self) && target.statStagesUp?
+	  if target.pbCanFrostbite?(user,false,self) && target.hasRaisedStatStages?
 		target.pbFrostbite(user)
 	  end
 	end
 	
 	def getScore(score,user,target,skill=100)
 	  score -= 20
-	  score += 50 if target.statStagesUp? && target.pbCanFrostbite?(user,false,self)
+	  score += 50 if target.hasRaisedStatStages? && target.pbCanFrostbite?(user,false,self)
 	  return score
 	end
 end
@@ -1268,7 +1268,7 @@ end
 #===============================================================================
 class PokeBattle_Move_546 < PokeBattle_Move 
   def pbCritialOverride(user,target)
-	return 1 if target.statStagesUp?
+	return 1 if target.hasRaisedStatStages?
 	return 0
   end
 end
@@ -1522,14 +1522,14 @@ end
 class PokeBattle_Move_553 < PokeBattle_Move
 	def pbAdditionalEffect(user,target)
 	  return if target.damageState.substitute
-	  if target.pbCanPoison?(user,false,self) && target.statStagesUp?
+	  if target.pbCanPoison?(user,false,self) && target.hasRaisedStatStages?
 		target.pbPoison(user)
 	  end
 	end
 	
 	def getScore(score,user,target,skill=100)
 	  score -= 20
-	  score += 50 if target.statStagesUp? && target.pbCanPoison?(user,false,self)
+	  score += 50 if target.hasRaisedStatStages? && target.pbCanPoison?(user,false,self)
 	  return score
 	end
 end
