@@ -1,0 +1,16 @@
+inherit_from: ../.rubocop.yml
+
+Layout/LineLength:
+  Max: 99
+ 
+Layout/ElseAlignment:
+  Enabled: false
+  
+Naming:
+  Enabled: false
+  
+Layout/CommentIndentation:
+  Enabled: false
+  
+Layout/IndentationStyle:
+  Enabled: false
