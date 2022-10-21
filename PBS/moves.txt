@@ -694,7 +694,7 @@
 632,KINESIS,Kinesis,047,0,PSYCHIC,Status,100,12,0,NearOther,0,bce,"The user distracts the target by bending a spoon. It lowers the target's accuracy.",
 633,LIGHTSCREEN,Light Screen,0A3,0,PSYCHIC,Status,0,25,0,UserSide,0,d,"A wondrous wall of light is put up to suppress damage from special attacks for five turns.",
 634,LUNARDANCE,Lunar Dance,0E4,0,PSYCHIC,Status,0,10,0,User,0,do,"The user faints. In return, the Pokémon taking its place will have its status and HP fully restored.",
-635,MAGICCOAT,Magic Coat,0B1,0,PSYCHIC,Status,0,12,0,User,4,,"A barrier reflects back to the target moves like Leech Seed and moves that damage status.",
+635,MAGICCOAT,Magic Coat,0B1,0,PSYCHIC,Status,0,12,0,User,4,,"Until end of turn, reflects status moves that target the user or create hazards around it.",
 636,MAGICROOM,Magic Room,0F9,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates a bizarre area in which Pokémon's held items lose their effects for five turns.",
 637,MEDITATE,Meditate,027,0,PSYCHIC,Status,0,30,0,User,0,d,"The user meditates, raising both its Attack and Sp. Atk stats.",
 638,MIRACLEEYE,Miracle Eye,0A8,0,PSYCHIC,Status,0,30,0,NearOther,0,bce,"Enables the user to hit a Dark type with any type of move. It also enables the user to hit an evasive foe.",
