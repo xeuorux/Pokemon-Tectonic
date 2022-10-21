@@ -777,7 +777,7 @@ class PokemonPokedexInfo_Scene
 			drawTextEx(overlay,xLeft,coordinateY,450,7,_INTL("Evolves into Vaporeon with a Water Stone, " + 
 				"Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Dawn Stone, " +
 				"Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone, " +
-				"Sylveon with a Dawn Stone, and Giganteon at level 42."
+				"Sylveon with a Moon Stone, and Giganteon at level 42."
 			),base,shadow)
 		else
 			allEvolutions.each do |fromSpecies,evolutions|
