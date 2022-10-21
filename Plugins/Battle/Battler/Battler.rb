@@ -373,7 +373,7 @@ class PokeBattle_Battler
     speed = (@speed + speed_bonus)*stageMul[stage]/stageDiv[stage]
     speedMult = 1.0
     # Ability effects that alter calculated Speed
-    if abilityActive? && ignoreAbilityInAI?(aiChecking)
+    if abilityActive? && !ignoreAbilityInAI?(aiChecking)
       speedMult = BattleHandlers.triggerSpeedCalcAbility(self.ability,self,speedMult)
     end
     # Item effects that alter calculated Speed
