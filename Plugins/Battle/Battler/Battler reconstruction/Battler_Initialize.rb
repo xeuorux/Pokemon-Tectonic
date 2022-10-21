@@ -2,7 +2,7 @@ class PokeBattle_Battler
     #=============================================================================
 	# Creating a battler
 	#=============================================================================
-	def initialize(btl,idxBattler)
+	def initialize(btl, idxBattler)
 		@battle      = btl
 		@index       = idxBattler
 		@captured    = false
@@ -33,19 +33,19 @@ class PokeBattle_Battler
 		@moves          = []
 		@iv             = {}
 		GameData::Stat.each_main { |s| @iv[s.id] = 0 }
-		@boss			= false
-		@bossStatus		= :NONE
+		@boss	= false
+		@bossStatus	= :NONE
 		@bossStatusCount = 0
-		@empowered 		= false
+		@empowered	= false
 		@primevalTimer	= 0
 		@extraMovesPerTurn	= 0
 		@indexesTargetedThisTurn	= []
 		@dmgMult = 1
 		@dmgResist = 0
 	end
-  
+
 	# Used by Future Sight only, when Future Sight's user is no longer in battle.
-	def pbInitDummyPokemon(pkmn,idxParty)
+	def pbInitDummyPokemon(pkmn, idxParty)
 		raise _INTL("An egg can't be an active Pokémon.") if pkmn.egg?
 		@name         = pkmn.name
 		@species      = pkmn.species
@@ -64,20 +64,19 @@ class PokeBattle_Battler
 		@speed        = pkmn.speed
 		@status       = pkmn.status
 		@statusCount  = pkmn.statusCount
-		@boss		  = pkmn.boss
+		@boss = pkmn.boss
 		@pokemon      = pkmn
 		@pokemonIndex = idxParty
 		@participants = []
 		# moves intentionally not copied across here
 		@iv           = {}
 		GameData::Stat.each_main { |s| @iv[s.id] = pkmn.iv[s.id] }
-		@dummy        = true
+		@dummy = true
 		@dmgMult   = 1
 		@dmgResist = 0
 	end
 
-
-	def pbInitPokemon(pkmn,idxParty)
+	def pbInitPokemon(pkmn, idxParty)
 		raise _INTL("An egg can't be an active Pokémon.") if pkmn.egg?
 		@name         = pkmn.name
 		@species      = pkmn.species
@@ -97,73 +96,41 @@ class PokeBattle_Battler
 		@speed        = pkmn.speed
 		@status       = pkmn.status
 		@statusCount  = pkmn.statusCount
-		@dmgMult	  = pkmn.dmgMult
-		@dmgResist	  = pkmn.dmgResist
-		@boss		  = pkmn.boss
+		@dmgMult = pkmn.dmgMult
+		@dmgResist = pkmn.dmgResist
+		@boss = pkmn.boss
 		@pokemon      = pkmn
 		@pokemonIndex = idxParty
-		@participants = []   # Participants earn Exp. if this battler is defeated
+		@participants = [] # Participants earn Exp. if this battler is defeated
 		@moves        = []
-		pkmn.moves.each_with_index do |m,i|
-		@moves[i] = PokeBattle_Move.from_pokemon_move(@battle,m)
+		pkmn.moves.each_with_index do |m, i|
+		@moves[i] = PokeBattle_Move.from_pokemon_move(@battle, m)
 		end
-		@iv           = {}
+		@iv = {}
 		GameData::Stat.each_main { |s| @iv[s.id] = pkmn.iv[s.id] }
 	end
 
-	def pbInitialize(pkmn,idxParty,batonPass=false)
-		pbInitPokemon(pkmn,idxParty)
+	def pbInitialize(pkmn, idxParty, batonPass = false)
+		pbInitPokemon(pkmn, idxParty)
 		pbInitEffects(batonPass)
 		@damageState.reset
 	end
 
-	def pbInitPokemon(pkmn,idxParty)
-		raise _INTL("An egg can't be an active Pokémon.") if pkmn.egg?
-		@name         = pkmn.name
-		@species      = pkmn.species
-		@form         = pkmn.form
-		@level        = pkmn.level
-		@hp           = pkmn.hp
-		@totalhp      = pkmn.totalhp
-		@type1        = pkmn.type1
-		@type2        = pkmn.type2
-		@ability_id   = pkmn.ability_id
-		@item_id      = pkmn.item_id
-		@gender       = pkmn.gender
-		@attack       = pkmn.attack
-		@defense      = pkmn.defense
-		@spatk        = pkmn.spatk
-		@spdef        = pkmn.spdef
-		@speed        = pkmn.speed
-		@status       = pkmn.status
-		@statusCount  = pkmn.statusCount
-		@pokemon      = pkmn
-		@pokemonIndex = idxParty
-		@participants = []   # Participants earn Exp. if this battler is defeated
-		@moves        = []
-		pkmn.moves.each_with_index do |m,i|
-			@moves[i] = PokeBattle_Move.from_pokemon_move(@battle,m)
-		end
-		@iv           = {}
-		GameData::Stat.each_main { |s| @iv[s.id] = pkmn.iv[s.id] }
-	end
-
 	def pbInitEffects(batonPass)
-
 		# Reset values, accounting for baton pass
-		GameData::BattleEffect.each_battler_effect() do |effectData|
+		GameData::BattleEffect.each_battler_effect do |effectData|
 			effectID = effectData.id
 			# Reset the value to its default
 			# Unless its a baton passable value and we are baton passing
-			if !(batonPass && effectData.baton_passed)
-				@effects[effectID] = effectData.default
-			else
+			if batonPass && effectData.baton_passed
 				currentValue = @effects[effectID]
-				newValue = effectData.baton_pass_value(self,currentValue)
+				newValue = effectData.baton_pass_value(self, currentValue)
 				@effects[effectID] = newValue
+			else
+				@effects[effectID] = effectData.default
 			end
-			effectData.apply_battler(@battle,self)
-			effectData.initialize_battler(@battle,self)
+			effectData.apply_battler(@battle, self)
+			effectData.initialize_battler(@battle, self)
 		end
 
 		# All battlers effects stop pointing at this battler index if appropriate
@@ -190,7 +157,7 @@ class PokeBattle_Battler
 			@stages[:EVASION]         = 0
 		end
 
-		@fainted               = (@hp==0)
+		@fainted               = (@hp == 0)
 		@initialHP             = 0
 		@lastAttacker          = []
 		@lastFoeAttacker       = []
@@ -208,55 +175,54 @@ class PokeBattle_Battler
 		@lastRoundMoveFailed   = false
 		@movesUsed             = []
 		@turnCount             = 0
-		@avatarPhase		   = 1
+		@avatarPhase = 1
 		@primevalTimer		   = 0
-		@extraMovesPerTurn	   = 0
-		@indexesTargetedThisTurn   = []
-    end
-    
+		@extraMovesPerTurn = 0
+		@indexesTargetedThisTurn = []
+ end
+
     #=============================================================================
     # Refreshing a battler's properties
     #=============================================================================
-    def pbUpdate(fullChange=false)
-      return if !@pokemon
-      @pokemon.calc_stats
-      @level          = @pokemon.level
-      @hp             = @pokemon.hp
-      @totalhp        = @pokemon.totalhp
-      if !@effects[PBEffects::Transform]
-        @attack       = @pokemon.attack
-        @defense      = @pokemon.defense
-        @spatk        = @pokemon.spatk
-        @spdef        = @pokemon.spdef
-        @speed        = @pokemon.speed
-        if fullChange
-          @type1      = @pokemon.type1
-          @type2      = @pokemon.type2
-          @ability_id = @pokemon.ability_id
-        end
-      end
-    end
-  
+ def pbUpdate(fullChange = false)
+   return if !@pokemon
+   @pokemon.calc_stats
+   @level          = @pokemon.level
+   @hp             = @pokemon.hp
+   @totalhp        = @pokemon.totalhp
+   if !@effects[PBEffects::Transform]
+     @attack       = @pokemon.attack
+     @defense      = @pokemon.defense
+     @spatk        = @pokemon.spatk
+     @spdef        = @pokemon.spdef
+     @speed        = @pokemon.speed
+     if fullChange
+       @type1      = @pokemon.type1
+       @type2      = @pokemon.type2
+       @ability_id = @pokemon.ability_id
+     end
+   end
+ end
+
     # Used to erase the battler of a Pokémon that has been caught.
-    def pbReset
-      @pokemon      = nil
-      @pokemonIndex = -1
-      @hp           = 0
-      pbInitEffects(false)
-      @participants = []
-      # Reset status
-      @status       = :NONE
-      @statusCount  = 0
-      # Reset choice
-      @battle.pbClearChoice(@index)
-    end
-  
+ def pbReset
+   @pokemon      = nil
+   @pokemonIndex = -1
+   @hp           = 0
+   pbInitEffects(false)
+   @participants = []
+   # Reset status
+   @status       = :NONE
+   @statusCount  = 0
+   # Reset choice
+   @battle.pbClearChoice(@index)
+ end
+
     # Update which Pokémon will gain Exp if this battler is defeated.
-    def pbUpdateParticipants
-      return if fainted? || !@battle.opposes?(@index)
-      eachOpposing do |b|
-        @participants.push(b.pokemonIndex) if !@participants.include?(b.pokemonIndex)
-      end
-    end
-  end
-  
+ def pbUpdateParticipants
+   return if fainted? || !@battle.opposes?(@index)
+   eachOpposing do |b|
+     @participants.push(b.pokemonIndex) if !@participants.include?(b.pokemonIndex)
+   end
+ end
+end

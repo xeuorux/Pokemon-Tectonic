@@ -14,3 +14,24 @@ Layout/CommentIndentation:
   
 Layout/IndentationStyle:
   Enabled: false
+  
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+  
+Style/RedundantReturn:
+  Enabled: false
+  
+Style/OptionalBooleanParameter:
+  Enabled: false
+
+Style/ConditionalAssignment:
+  Enabled: false
+  
+Style/TernaryParentheses:
+  Enabled: false
+  
+Style/GuardClause:
+  Enabled: false
+  
+Style/ZeroLengthPredicate:
+  AutoCorrect: true

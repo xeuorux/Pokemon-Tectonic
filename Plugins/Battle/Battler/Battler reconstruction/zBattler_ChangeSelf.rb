@@ -20,9 +20,9 @@ class PokeBattle_Battler
   # From a special effect. E.g. sandstorm DOT, ability triggers
   # Returns whether or not the pokemon faints
   def pbHealthLossChecks(oldHP = -1)
-    pbItemHPHealCheck()
+    pbItemHPHealCheck
     if fainted?
-      pbFaint()
+      pbFaint
       return true
     elsif oldHP > -1
       pbAbilitiesOnDamageTaken(oldHP)
@@ -34,9 +34,9 @@ class PokeBattle_Battler
   # From a special effect that occurs when entering the field (i.e. Stealth Rock)
   # Returns whether or not the pokemon was swapped out due to a damage taking ability
   def pbEntryHealthLossChecks(oldHP = -1)
-    pbItemHPHealCheck()
+    pbItemHPHealCheck
     if fainted?
-      pbFaint()
+      pbFaint
     elsif oldHP > -1
       return pbAbilitiesOnDamageTaken(oldHP)
     end
@@ -60,12 +60,12 @@ class PokeBattle_Battler
       @battle.scene.pbDamageAnimation(self)
     end
     pbReduceHP(reduction, false)
-    if !entryCheck
-      pbHealthLossChecks(oldHP)
-      return reduction
-    else
+    if entryCheck
       swapped = pbEntryHealthLossChecks(oldHP)
       return swapped
+    else
+      pbHealthLossChecks(oldHP)
+      return reduction
     end
   end
 
@@ -118,7 +118,7 @@ class PokeBattle_Battler
       PBDebug.log("!!!***Can't faint with HP greater than 0")
       return
     end
-    return if @fainted   # Has already fainted properly
+    return if @fainted # Has already fainted properly
     @battle.pbDisplayBrief(_INTL("{1} fainted!", pbThis)) if showMessage
     PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") if !showMessage
     @battle.scene.pbFaintBattler(self)
@@ -130,16 +130,16 @@ class PokeBattle_Battler
     if @pokemon && @battle.internalBattle
       badLoss = false
       @battle.eachOtherSideBattler(@index) do |b|
-        badLoss = true if b.level >= self.level + 30
+        badLoss = true if b.level >= level + 30
       end
-      @pokemon.changeHappiness((badLoss) ? "faintbad" : "faint")
+      @pokemon.changeHappiness(badLoss ? "faintbad" : "faint")
     end
     # Reset form
     @battle.peer.pbOnLeavingBattle(@battle, @pokemon, @battle.usedInBattle[idxOwnSide][@index / 2])
     @pokemon.makeUnmega if mega?
     @pokemon.makeUnprimal if primal?
     # Do other things
-    @battle.pbClearChoice(@index)   # Reset choice
+    @battle.pbClearChoice(@index) # Reset choice
     pbOwnSide.effects[PBEffects::LastRoundFainted] = @battle.turnCount
     # Check other battlers' abilities that trigger upon a battler fainting
     pbAbilitiesOnFainting
@@ -274,7 +274,7 @@ class PokeBattle_Battler
     # Form changes upon entering battle and when the weather changes
     pbCheckFormOnWeatherChange if !endOfRound
     # Darmanitan - Zen Mode
-    if isSpecies?(:DARMANITAN) && self.ability == :ZENMODE
+    if isSpecies?(:DARMANITAN) && ability == :ZENMODE
       if @hp <= @totalhp / 2
         if @form != 1
           @battle.pbShowAbilitySplash(self, true)
@@ -288,7 +288,7 @@ class PokeBattle_Battler
       end
     end
     # Minior - Shields Down
-    if isSpecies?(:MINIOR) && self.ability == :SHIELDSDOWN
+    if isSpecies?(:MINIOR) && ability == :SHIELDSDOWN
       if @hp > @totalhp / 2 # Turn into Meteor form
         newForm = (@form >= 7) ? @form - 7 : @form
         if @form != newForm
@@ -305,7 +305,7 @@ class PokeBattle_Battler
       end
     end
     # Wishiwashi - Schooling
-    if isSpecies?(:WISHIWASHI) && self.ability == :SCHOOLING
+    if isSpecies?(:WISHIWASHI) && ability == :SCHOOLING
       if @level >= 20 && @hp > @totalhp / 4
         if @form != 1
           @battle.pbShowAbilitySplash(self, true)
@@ -319,14 +319,12 @@ class PokeBattle_Battler
       end
     end
     # Zygarde - Power Construct
-    if isSpecies?(:ZYGARDE) && self.ability == :POWERCONSTRUCT && endOfRound
-      if @hp <= @totalhp / 2 && @form < 2 # Turn into Complete Forme
+    if isSpecies?(:ZYGARDE) && ability == :POWERCONSTRUCT && endOfRound && (@hp <= @totalhp / 2 && @form < 2) # Turn into Complete Forme
         newForm = @form + 2
         @battle.pbDisplay(_INTL("You sense the presence of many!"))
         @battle.pbShowAbilitySplash(self, true)
         @battle.pbHideAbilitySplash(self)
         pbChangeForm(newForm, _INTL("{1} transformed into its Complete Forme!", pbThis))
-      end
     end
   end
 

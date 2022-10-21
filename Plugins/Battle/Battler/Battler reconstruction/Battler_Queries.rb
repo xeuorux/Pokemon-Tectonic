@@ -9,29 +9,29 @@ class PokeBattle_Battler
     # Returns the active types of this Pokémon. The array should not include the
     # same type more than once, and should not include any invalid type numbers
     # (e.g. -1).
-    def pbTypes(withType3=false,allowIllusions=false)
+    def pbTypes(withType3 = false, allowIllusions = false)
         # If the pokemon is disguised as another pokemon, fake its type bars
             if allowIllusions && !@effects[PBEffects::Illusion].nil?
                 ret = @effects[PBEffects::Illusion].types
         else
         ret = [@type1]
-        ret.push(@type2) if @type2!=@type1
+        ret.push(@type2) if @type2 != @type1
             end
         # Burn Up erases the Fire-type.
-        ret.delete(:FIRE) if @effects[PBEffects::BurnUp]
+            ret.delete(:FIRE) if @effects[PBEffects::BurnUp]
         # Cold Conversion erases the Ice-type.
-        ret.delete(:ICE) if @effects[PBEffects::ColdConversion]
+            ret.delete(:ICE) if @effects[PBEffects::ColdConversion]
         # Roost erases the Flying-type. If there are no types left, adds the Normal-
         # type.
-        if @effects[PBEffects::Roost]
-        ret.delete(:FLYING)
-        ret.push(:NORMAL) if ret.length == 0
-        end
+            if @effects[PBEffects::Roost]
+            ret.delete(:FLYING)
+            ret.push(:NORMAL) if ret.length == 0
+            end
         # Add the third type specially.
-        if withType3 && @effects[PBEffects::Type3]
-        ret.push(@effects[PBEffects::Type3]) if !ret.include?(@effects[PBEffects::Type3])
-        end
-        return ret
+            if withType3 && @effects[PBEffects::Type3] && !ret.include?(@effects[PBEffects::Type3])
+            ret.push(@effects[PBEffects::Type3])
+            end
+            return ret
     end
 
     def pbHasType?(type)
@@ -63,8 +63,8 @@ class PokeBattle_Battler
         return hasActiveAbilityAI?(check_ability, ignore_fainted) if checkingForAI
         return false if !abilityActive?(ignore_fainted)
         return check_ability.include?(@ability_id) if check_ability.is_a?(Array)
-        return false if self.ability.nil?
-        return check_ability == self.ability.id
+        return false if ability.nil?
+        return check_ability == ability.id
     end
     alias hasWorkingAbility hasActiveAbility?
 
@@ -78,27 +78,27 @@ class PokeBattle_Battler
         return false if !abil
         ability_blacklist = [
             # Form-changing abilities
-            :BATTLEBOND,
-            :DISGUISE,
-            :MULTITYPE,
-            :POWERCONSTRUCT,
-            :SCHOOLING,
-            :SHIELDSDOWN,
-            :STANCECHANGE,
-            :ZENMODE,
-            :ICEFACE,
+          :BATTLEBOND,
+          :DISGUISE,
+          :MULTITYPE,
+          :POWERCONSTRUCT,
+          :SCHOOLING,
+          :SHIELDSDOWN,
+          :STANCECHANGE,
+          :ZENMODE,
+          :ICEFACE,
             # Abilities intended to be inherent properties of a certain species
-            :COMATOSE,
-            :RKSSYSTEM,
-            :GULPMISSILE,
-            :ASONEICE,
-            :ASONEGHOST
+          :COMATOSE,
+          :RKSSYSTEM,
+          :GULPMISSILE,
+          :ASONEICE,
+          :ASONEGHOST,
             # Abilities with undefined behaviour if they were replaced or moved around
-            :STYLISH
+          :STYLISH,
         ]
         return ability_blacklist.include?(abil.id)
     end
-    
+
     # Applies to gaining the ability.
     def ungainableAbility?(abil = nil)
         abil = @ability_id if !abil
@@ -106,36 +106,36 @@ class PokeBattle_Battler
         return false if !abil
         ability_blacklist = [
             # Form-changing abilities
-            :BATTLEBOND,
-            :DISGUISE,
-            :FLOWERGIFT,
-            :FORECAST,
-            :MULTITYPE,
-            :POWERCONSTRUCT,
-            :SCHOOLING,
-            :SHIELDSDOWN,
-            :STANCECHANGE,
-            :ZENMODE,
+          :BATTLEBOND,
+          :DISGUISE,
+          :FLOWERGIFT,
+          :FORECAST,
+          :MULTITYPE,
+          :POWERCONSTRUCT,
+          :SCHOOLING,
+          :SHIELDSDOWN,
+          :STANCECHANGE,
+          :ZENMODE,
             # Appearance-changing abilities
-            :ILLUSION,
-            :IMPOSTER,
+          :ILLUSION,
+          :IMPOSTER,
             # Abilities intended to be inherent properties of a certain species
-            :COMATOSE,
-            :RKSSYSTEM,
-            :NEUTRALIZINGGAS,
-            :HUNGERSWITCH
+          :COMATOSE,
+          :RKSSYSTEM,
+          :NEUTRALIZINGGAS,
+          :HUNGERSWITCH,
             # Abilities with undefined behaviour if they were replaced or moved around
-            :STYLISH
+          :STYLISH,
         ]
         return ability_blacklist.include?(abil.id)
     end
 
-    def itemActive?(ignoreFainted=false)
+    def itemActive?(ignoreFainted = false)
         return false if fainted? && !ignoreFainted
-        return false if @effects[PBEffects::Embargo]>0
-        return false if pbOwnSide().effects[PBEffects::EmpoweredEmbargo]
-        return false if @battle.field.effects[PBEffects::MagicRoom]>0
-        return false if hasActiveAbility?(:KLUTZ,ignoreFainted)
+        return false if @effects[PBEffects::Embargo] > 0
+        return false if pbOwnSide.effects[PBEffects::EmpoweredEmbargo]
+        return false if @battle.field.effects[PBEffects::MagicRoom] > 0
+        return false if hasActiveAbility?(:KLUTZ, ignoreFainted)
         return true
     end
 
@@ -152,24 +152,24 @@ class PokeBattle_Battler
         return true if GameData::Item.get(check_item).is_mail?
         return false if @effects[PBEffects::Transform]
         # Items that change a Pokémon's form
-        if mega?   # Check if item was needed for this Mega Evolution
+        if mega? # Check if item was needed for this Mega Evolution
         return true if @pokemon.species_data.mega_stone == check_item
-        else   # Check if item could cause a Mega Evolution
+        else # Check if item could cause a Mega Evolution
         GameData::Species.each do |data|
             next if data.species != @species || data.unmega_form != @form
             return true if data.mega_stone == check_item
         end
         end
         # Other unlosable items
-        return GameData::Item.get(check_item).unlosable?(@species, self.ability)
+        return GameData::Item.get(check_item).unlosable?(@species, ability)
     end
 
-    def eachMove
-        @moves.each { |m| yield m }
+    def eachMove(&block)
+        @moves.each(&block)
     end
 
-    def eachMoveWithIndex
-        @moves.each_with_index { |m, i| yield m, i }
+    def eachMoveWithIndex(&block)
+        @moves.each_with_index(&block)
     end
 
     def pbHasMove?(move_id)
@@ -201,13 +201,13 @@ class PokeBattle_Battler
         return ![:MULTITYPE, :RKSSYSTEM].include?(@ability_id)
     end
 
-    def airborne?(checkingForAI=false)
+    def airborne?(checkingForAI = false)
         return false if hasActiveItem?(:IRONBALL)
         return false if @effects[PBEffects::Ingrain]
         return false if @effects[PBEffects::SmackDown]
         return false if @battle.field.effects[PBEffects::Gravity] > 0
-        return false if @battle.field.terrain == :Grassy && shouldAbilityApply?(:NESTING,checkingForAI)
-        return true if shouldTypeApply?(:FLYING,checkingForAI)
+        return false if @battle.field.terrain == :Grassy && shouldAbilityApply?(:NESTING, checkingForAI)
+        return true if shouldTypeApply?(:FLYING, checkingForAI)
         return true if hasLevitate?(checkingForAI) && !@battle.moldBreaker
         return true if hasActiveItem?(:AIRBALLOON)
         return true if @effects[PBEffects::MagnetRise] > 0
@@ -215,19 +215,19 @@ class PokeBattle_Battler
         return false
     end
 
-    def hasLevitate?(checkingForAI=false)
-		return shouldAbilityApply?([:LEVITATE, :DESERTSPIRIT],checkingForAI)
-	end
+    def hasLevitate?(checkingForAI = false)
+		return shouldAbilityApply?([:LEVITATE, :DESERTSPIRIT], checkingForAI)
+    end
 
-    def takesIndirectDamage?(showMsg=false)
+    def takesIndirectDamage?(showMsg = false)
         return false if fainted?
         if hasActiveAbility?(:MAGICGUARD)
         if showMsg
             @battle.pbShowAbilitySplash(self)
             if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("{1} is unaffected!",pbThis))
+            @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
             else
-            @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!",pbThis,abilityName))
+            @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, abilityName))
             end
             @battle.pbHideAbilitySplash(self)
         end
@@ -236,10 +236,10 @@ class PokeBattle_Battler
         return true
     end
 
-    def affectedByPowder?(showMsg=false)
+    def affectedByPowder?(showMsg = false)
         return false if fainted?
         if pbHasType?(:GRASS) && Settings::MORE_TYPE_EFFECTS
-        @battle.pbDisplay(_INTL("{1} is unaffected!",pbThis)) if showMsg
+        @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis)) if showMsg
         return false
         end
         if Settings::MECHANICS_GENERATION >= 6
@@ -247,9 +247,9 @@ class PokeBattle_Battler
             if showMsg
             @battle.pbShowAbilitySplash(self)
             if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-                @battle.pbDisplay(_INTL("{1} is unaffected!",pbThis))
+                @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
             else
-                @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!",pbThis,abilityName))
+                @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, abilityName))
             end
             @battle.pbHideAbilitySplash(self)
             end
@@ -257,7 +257,7 @@ class PokeBattle_Battler
         end
         if hasActiveItem?(:SAFETYGOGGLES)
             if showMsg
-            @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!",pbThis,itemName))
+            @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, itemName))
             end
             return false
         end
@@ -266,26 +266,26 @@ class PokeBattle_Battler
     end
 
     def canHeal?
-        return false if fainted? || @hp>=@totalhp
-        return false if @effects[PBEffects::HealBlock]>0
+        return false if fainted? || @hp >= @totalhp
+        return false if @effects[PBEffects::HealBlock] > 0
         return true
     end
 
-    def affectedByContactEffect?(showMsg=false)
+    def affectedByContactEffect?(showMsg = false)
         return false if fainted?
         if hasActiveItem?(:PROTECTIVEPADS)
-        @battle.pbDisplay(_INTL("{1} protected itself with the {2}!",pbThis,itemName)) if showMsg
+        @battle.pbDisplay(_INTL("{1} protected itself with the {2}!", pbThis, itemName)) if showMsg
         return false
         end
         return true
     end
 
     def movedThisRound?
-        return @lastRoundMoved && @lastRoundMoved==@battle.turnCount
+        return @lastRoundMoved && @lastRoundMoved == @battle.turnCount
     end
 
     def usingMultiTurnAttack?
-        @effects.each do |effect,value|
+        @effects.each do |effect, value|
           effectData = GameData::Effect.try_get(effect)
           next if effectData.nil?
           next if !effectData.multi_turn_tracker?
@@ -297,19 +297,19 @@ class PokeBattle_Battler
     def inTwoTurnAttack?(*arg)
         return false if !@effects[PBEffects::TwoTurnAttack]
         ttaFunction = GameData::Move.get(@effects[PBEffects::TwoTurnAttack]).function_code
-        arg.each { |a| return true if a==ttaFunction }
+        arg.each { |a| return true if a == ttaFunction }
         return false
     end
 
     def semiInvulnerable?
-        return inTwoTurnAttack?("0C9","0CA","0CB","0CC","0CD","0CE","14D")
+        return inTwoTurnAttack?("0C9", "0CA", "0CB", "0CC", "0CD", "0CE", "14D")
     end
 
     def pbEncoredMoveIndex
-        return -1 if @effects[PBEffects::Encore]==0 || !@effects[PBEffects::EncoreMove]
+        return -1 if @effects[PBEffects::Encore] == 0 || !@effects[PBEffects::EncoreMove]
         ret = -1
-        eachMoveWithIndex do |m,i|
-        next if m.id!=@effects[PBEffects::EncoreMove]
+        eachMoveWithIndex do |m, i|
+        next if m.id != @effects[PBEffects::EncoreMove]
         ret = i
         break
         end
@@ -317,42 +317,42 @@ class PokeBattle_Battler
     end
 
     def initialItem
-        return @battle.initialItems[@index&1][@pokemonIndex]
+        return @battle.initialItems[@index & 1][@pokemonIndex]
     end
 
     def setInitialItem(newItem)
-        @battle.initialItems[@index&1][@pokemonIndex] = newItem
+        @battle.initialItems[@index & 1][@pokemonIndex] = newItem
     end
 
     def recycleItem
-        return @battle.recycleItems[@index&1][@pokemonIndex]
+        return @battle.recycleItems[@index & 1][@pokemonIndex]
     end
 
     def setRecycleItem(newItem)
-        @battle.recycleItems[@index&1][@pokemonIndex] = newItem
+        @battle.recycleItems[@index & 1][@pokemonIndex] = newItem
     end
 
     def belched?
-        return @battle.belch[@index&1][@pokemonIndex]
+        return @battle.belch[@index & 1][@pokemonIndex]
     end
 
     def setBelched
-        @battle.belch[@index&1][@pokemonIndex] = true
+        @battle.belch[@index & 1][@pokemonIndex] = true
     end
 
     #=============================================================================
     # Methods relating to this battler's position on the battlefield
     #=============================================================================
     # Returns whether the given position belongs to the opposing Pokémon's side.
-    def opposes?(i=0)
+    def opposes?(i = 0)
         i = i.index if i.respond_to?("index")
-        return (@index&1)!=(i&1)
+        return (@index & 1) != (i & 1)
     end
 
     # Returns whether the given position/battler is near to self.
     def near?(i)
         i = i.index if i.respond_to?("index")
-        return @battle.nearBattlers?(@index,i)
+        return @battle.nearBattlers?(@index, i)
     end
 
     # Returns whether self is owned by the player.
@@ -363,13 +363,13 @@ class PokeBattle_Battler
     # Returns 0 if self is on the player's side, or 1 if self is on the opposing
     # side.
     def idxOwnSide
-        return @index&1
+        return @index & 1
     end
 
     # Returns 1 if self is on the player's side, or 0 if self is on the opposing
     # side.
     def idxOpposingSide
-        return (@index&1)^1
+        return (@index & 1) ^ 1
     end
 
     # Returns the data structure for this battler's side.
@@ -385,12 +385,12 @@ class PokeBattle_Battler
     # Yields each unfainted ally Pokémon.
     def eachAlly
         @battle.battlers.each do |b|
-        yield b if b && !b.fainted? && !b.opposes?(@index) && b.index!=@index
+        yield b if b && !b.fainted? && !b.opposes?(@index) && b.index != @index
         end
     end
 
     # Yields each unfainted opposing Pokémon.
-    def eachOpposing(nearOnly=false)
+    def eachOpposing(nearOnly = false)
         @battle.battlers.each do |b|
         next if nearOnly && !near?(b)
         yield b if b && !b.fainted? && b.opposes?(@index)
@@ -399,7 +399,7 @@ class PokeBattle_Battler
 
     # Returns the battler that is most directly opposite to self. unfaintedOnly is
     # whether it should prefer to return a non-fainted battler.
-    def pbDirectOpposing(unfaintedOnly=false)
+    def pbDirectOpposing(unfaintedOnly = false)
         @battle.pbGetOpposingIndicesInOrder(@index).each do |i|
         next if !@battle.battlers[i]
         break if unfaintedOnly && @battle.battlers[i].fainted?
@@ -410,7 +410,7 @@ class PokeBattle_Battler
         @battle.pbGetOpposingIndicesInOrder(@index).each do |i|
         return @battle.battlers[i] if @battle.battlers[i]
         end
-        return @battle.battlers[(@index^1)]
+        return @battle.battlers[(@index ^ 1)]
     end
 
     def empowered?
@@ -422,11 +422,11 @@ class PokeBattle_Battler
     end
 
     def evenTurn?
-        return @battle.turnCount % 2 == 0
+        return @battle.turnCount.even?
     end
 
     def oddTurn?
-        return @battle.turnCount % 2 == 1
+        return @battle.turnCount.odd?
     end
 
     def lastMoveThisTurn?
@@ -440,49 +440,49 @@ class PokeBattle_Battler
     def immuneToHazards?
 		return true if hasActiveItem?(:HEAVYDUTYBOOTS)
 		return false
-	end
+    end
 
     def hasHonorAura?
         return hasActiveAbility?([:HONORAURA])
     end
-  
+
     def isLastAlive?
       return false if @battle.wildBattle? && opposes?
       return false if fainted?
       return @battle.pbGetOwnerFromBattlerIndex(@index).able_pokemon_count == 1
     end
-  
+
     def protected?
-      invulnerableProtectEffects().each do |effectID|
+      invulnerableProtectEffects.each do |effectID|
         return true if @effects[effectID]
       end
       return false
     end
-      
-      def canGulpMissile?
-          return @species == :CRAMORANT && hasActiveAbility?(:GULPMISSILE) && @form==0
-      end
-  
-    def bunkeringDown?(checkingForAI=false)
-      return shouldAbilityApply?(:BUNKERDOWN,checkingForAI) && @hp == @totalhp 
+
+    def canGulpMissile?
+        return @species == :CRAMORANT && hasActiveAbility?(:GULPMISSILE) && @form == 0
     end
-  
-    def getRoomDuration()
+
+    def bunkeringDown?(checkingForAI = false)
+      return shouldAbilityApply?(:BUNKERDOWN, checkingForAI) && @hp == @totalhp
+    end
+
+    def getRoomDuration
       if hasActiveItem?(:REINFORCINGROD)
         return 8
       else
         return 5
       end
     end
-  
-    def getScreenDuration()
+
+    def getScreenDuration
       if hasActiveItem?(:LIGHTCLAY)
         return 8
       else
         return 5
       end
     end
-  
+
     def firstTurn?
       return @turnCount <= 1
     end
