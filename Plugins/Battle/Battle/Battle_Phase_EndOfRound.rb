@@ -34,22 +34,6 @@ class PokeBattle_Battle
 
     pbEORDamage(priority)
 
-	  # Octolock
-    priority.each do |b|
-      next if !b.effects[PBEffects::Octolock]
-	    octouser = @battlers[b.effects[PBEffects::OctolockUser]]
-      if b.pbCanLowerStatStage?(:DEFENSE,octouser,self)
-        b.pbLowerStatStage(:DEFENSE,1,octouser,true,false,true)
-      end
-      if b.pbCanLowerStatStage?(:SPECIAL_DEFENSE,octouser,self)
-        b.pbLowerStatStage(:SPECIAL_DEFENSE,1,octouser,true,false,true)
-      end
-    end
-
-    processTrappingDOTs(priority)
-    
-    countDownBattlerEffects(priority)
-
     countDownPerishSong(priority)
 
     # Check for end of battle
@@ -85,19 +69,17 @@ class PokeBattle_Battle
     # Try to make Trace work, check for end of primordial weather
     priority.each { |b| b.pbContinualAbilityChecks }
     
+    eachBattler do |b|
+      b.processEffectsEOR()
+      b.modifyTrackersEOR()
+    end
+
     # Decrement or reset various effects that don't show messages when they leave
-    processBattlerEffectsEOR()
     processSideEffectsEOR()
     processFieldEffectsEOR()
 	
 	  # Neutralizing Gas
 	  pbCheckNeutralizingGas
-
-    # Increase primeval timers
-    priority.each do |b|
-      next if !b.boss?
-	    b.primevalTimer += 1
-    end
 	
     @endOfRound = false
   end
@@ -285,26 +267,6 @@ class PokeBattle_Battle
       # Black Sludge, Leftovers
       BattleHandlers.triggerEORHealingItem(b.item,b,self) if b.itemActive?
     end
-    # Aqua Ring
-    priority.each do |b|
-      next if !b.effects[PBEffects::AquaRing]
-      next if !b.canHeal?
-      healAmount = b.totalhp / 8.0
-      healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if b.boss?
-      healAmount *= 1.3 if b.hasActiveItem?(:BIGROOT)
-      healMessage = _INTL("The ring of water restored {1}'s HP!",b.pbThis(true))
-      b.pbRecoverHP(healAmount,true,true,true,healMessage)
-    end
-    # Ingrain
-    priority.each do |b|
-      next if !b.effects[PBEffects::Ingrain]
-      next if !b.canHeal?
-      healAmount = b.totalhp / 8.0
-      healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if b.boss?
-      healAmount *= 1.3 if b.hasActiveItem?(:BIGROOT)
-      healMessage = _INTL("{1} absorbed nutrients with its roots!",b.pbThis)
-      b.pbRecoverHP(healAmount,true,true,true,healMessage)
-    end
   end
 
   def damageFromDOTStatus(battler,status)
@@ -352,22 +314,7 @@ class PokeBattle_Battle
         b.applyFractionalDamage(1.0/8.0)
       end
     end
-    # Leech Seed
-    priority.each do |b|
-      next if b.effects[PBEffects::LeechSeed]<0
-      next if !b.takesIndirectDamage?
-      recipient = @battlers[b.effects[PBEffects::LeechSeed]]
-      next if !recipient || recipient.fainted?
-      pbCommonAnimation("LeechSeed",recipient,b)
-      oldHPRecipient = recipient.hp
-	    fraction = 1.0/8.0
-      hpLost = b.applyFractionalDamage(fraction,false)
-      recipient.pbRecoverHPFromDrain(hpLost,b,
-         _INTL("{1}'s health is sapped by Leech Seed!",b.pbThis))
-      recipient.pbAbilitiesOnDamageTaken(oldHPRecipient) if recipient.hp < oldHPRecipient
-      recipient.pbFaint if recipient.fainted?
-    end
-    # Damage from Hyper Mode (Shadow Pokémon)
+    # Damage from Hyper next if !b.takesIndirectDamage?
     priority.each do |b|
       next if !b.inHyperMode? || @choices[b.index][0]!=:UseMove
       pbDisplay(_INTL("The Hyper Mode attack hurts {1}!",b.pbThis(true)))
@@ -417,106 +364,7 @@ class PokeBattle_Battle
         b.pbContinueStatus(:MYSTIFIED) { b.pbConfusionDamage(nil,true,superEff,selfHitBasePower) }
       end
     end
-    # Damage from sleep (Nightmare)
-    priority.each do |b|
-      b.effects[PBEffects::Nightmare] = false if !b.asleep?
-      next if !b.effects[PBEffects::Nightmare] || !b.takesIndirectDamage?
-      pbDisplay(_INTL("{1} is locked in a nightmare!",b.pbThis))
-      b.applyFractionalDamage(fraction)
-    end
-    # Curse
-    priority.each do |b|
-      next if !b.effects[PBEffects::Curse] || !b.takesIndirectDamage?
-      pbDisplay(_INTL("{1} is afflicted by the curse!",b.pbThis))
-      b.applyFractionalDamage(1.0/4.0,false)
-    end
-  end
 
-  def countDownBattlerEffects(priority)
-    PBDebug.log("[DEBUG] Counting down/ending battler effects")
-    # Taunt
-    pbEORCountDownBattlerEffect(priority,PBEffects::Taunt) { |battler|
-      pbDisplay(_INTL("{1}'s taunt wore off!",battler.pbThis))
-    }
-    # Encore
-    priority.each do |b|
-      next if b.fainted? || b.effects[PBEffects::Encore]==0
-      idxEncoreMove = b.pbEncoredMoveIndex
-      if idxEncoreMove>=0
-        b.effects[PBEffects::Encore] -= 1
-        if b.effects[PBEffects::Encore]==0 || b.moves[idxEncoreMove].pp==0
-          b.effects[PBEffects::Encore] = 0
-          pbDisplay(_INTL("{1}'s encore ended!",b.pbThis))
-        end
-      else
-        PBDebug.log("[End of effect] #{b.pbThis}'s encore ended (encored move no longer known)")
-        b.effects[PBEffects::Encore]     = 0
-        b.effects[PBEffects::EncoreMove] = nil
-      end
-    end
-    # Disable/Cursed Body
-    pbEORCountDownBattlerEffect(priority,PBEffects::Disable) { |battler|
-      battler.effects[PBEffects::DisableMove] = nil
-      pbDisplay(_INTL("{1} is no longer disabled!",battler.pbThis))
-    }
-    # Magnet Rise
-    pbEORCountDownBattlerEffect(priority,PBEffects::MagnetRise) { |battler|
-      pbDisplay(_INTL("{1}'s electromagnetism wore off!",battler.pbThis))
-    }
-    # Telekinesis
-    pbEORCountDownBattlerEffect(priority,PBEffects::Telekinesis) { |battler|
-      pbDisplay(_INTL("{1} was freed from the telekinesis!",battler.pbThis))
-    }
-    # Heal Block
-    pbEORCountDownBattlerEffect(priority,PBEffects::HealBlock) { |battler|
-      pbDisplay(_INTL("{1}'s Heal Block wore off!",battler.pbThis))
-    }
-    # Embargo
-    pbEORCountDownBattlerEffect(priority,PBEffects::Embargo) { |battler|
-      pbDisplay(_INTL("{1} can use items again!",battler.pbThis))
-      battler.pbItemTerrainStatBoostCheck
-	    battler.pbItemFieldEffectCheck
-    }
-    # Yawn
-    pbEORCountDownBattlerEffect(priority,PBEffects::Yawn) { |battler|
-        if battler.pbCanSleepYawn?
-          PBDebug.log("[Lingering effect] #{battler.pbThis} fell asleep because of Yawn")
-          battler.pbSleep
-        end
-    }
-    pbEORCountDownBattlerEffect(priority,PBEffects::EmpoweredDetect) { |battler|
-      pbDisplay(_INTL("{1}'s Primeval Detect wore off!",battler.pbThis))
-    }
-  end
-
-  def processTrappingDOTs(priority)
-    PBDebug.log("[DEBUG] Counting down/ending trapping DOTs")
-    priority.each do |b|
-      next if b.fainted? || b.effects[PBEffects::Trapping]==0
-      b.effects[PBEffects::Trapping] -= 1
-      moveName = GameData::Move.get(b.effects[PBEffects::TrappingMove]).name
-      if b.effects[PBEffects::Trapping]==0
-        pbDisplay(_INTL("{1} was freed from {2}!",b.pbThis,moveName))
-      else
-        case b.effects[PBEffects::TrappingMove]
-        when :BIND,:VINEBIND            then pbCommonAnimation("Bind", b)
-        when :CLAMP,:SLAMSHUT           then pbCommonAnimation("Clamp", b)
-        when :FIRESPIN,:CRIMSONSTORM    then pbCommonAnimation("FireSpin", b)
-        when :MAGMASTORM                then pbCommonAnimation("MagmaStorm", b)
-        when :SANDTOMB,:SANDVORTEX      then pbCommonAnimation("SandTomb", b)
-        when :INFESTATION               then pbCommonAnimation("Infestation", b)
-	    	when :SNAPTRAP 	                then pbCommonAnimation("SnapTrap",b)
-        when :THUNDERCAGE               then pbCommonAnimation("ThunderCage",b)
-        else                            pbCommonAnimation("Wrap", b)
-        end
-        if b.takesIndirectDamage?
-          fraction = (Settings::MECHANICS_GENERATION >= 6) ? 1.0/8.0 : 1.0/16.0
-          fraction *= 2 if @battlers[b.effects[PBEffects::TrappingUser]].hasActiveItem?(:BINDINGBAND)
-          pbDisplay(_INTL("{1} is hurt by {2}!",b.pbThis,moveName))
-          b.applyFractionalDamage(fraction)
-        end
-      end
-    end
   end
   
   def countDownPerishSong(priority)
@@ -621,83 +469,12 @@ class PokeBattle_Battle
           pbDisplay(_INTL("{1} is in Hyper Mode!",b.pbThis))
         end
       end
-      # Uproar
-      if b.effects[PBEffects::Uproar]>0
-        b.effects[PBEffects::Uproar] -= 1
-        if b.effects[PBEffects::Uproar]==0
-          pbDisplay(_INTL("{1} calmed down.",b.pbThis))
-        else
-          pbDisplay(_INTL("{1} is making an uproar!",b.pbThis))
-        end
-      end
-      # Slow Start's end message
-      if b.effects[PBEffects::SlowStart]>0
-        b.effects[PBEffects::SlowStart] -= 1
-        if b.effects[PBEffects::SlowStart]==0
-          pbDisplay(_INTL("{1} finally got its act together!",b.pbThis))
-        end
-      end
       # Bad Dreams, Moody, Speed Boost
       BattleHandlers.triggerEOREffectAbility(b.ability,b,self) if b.abilityActive?
       # Flame Orb, Sticky Barb, Toxic Orb
       BattleHandlers.triggerEOREffectItem(b.item,b,self) if b.itemActive?
       # Harvest, Pickup
       BattleHandlers.triggerEORGainItemAbility(b.ability,b,self) if b.abilityActive?
-    end
-  end
-
-  def processBattlerEffectsEOR()
-    PBDebug.log("[DEBUG] Processing EoR Battler Effects")
-    # Reset/count down battler-specific effects (no messages)
-    eachBattler do |b|
-      b.effects[PBEffects::BanefulBunker]    = false
-      b.effects[PBEffects::Charge]           -= 1 if b.effects[PBEffects::Charge]>0
-      b.effects[PBEffects::Counter]          = -1
-      b.effects[PBEffects::CounterTarget]    = -1
-      b.effects[PBEffects::Electrify]        = false
-      b.effects[PBEffects::Endure]           = false
-      b.effects[PBEffects::FirstPledge]      = 0
-      b.effects[PBEffects::Flinch]           = false
-      b.effects[PBEffects::FocusPunch]       = false
-      b.effects[PBEffects::FollowMe]         = 0
-      b.effects[PBEffects::HelpingHand]      = false
-      b.effects[PBEffects::HyperBeam]        -= 1 if b.effects[PBEffects::HyperBeam]>0
-      b.effects[PBEffects::KingsShield]      = false
-      b.effects[PBEffects::LaserFocus]       -= 1 if b.effects[PBEffects::LaserFocus]>0
-      if b.effects[PBEffects::LockOn]>0   # Also Mind Reader
-        b.effects[PBEffects::LockOn]         -= 1
-        b.effects[PBEffects::LockOnPos]      = -1 if b.effects[PBEffects::LockOn]==0
-      end
-      b.effects[PBEffects::MagicBounce]      = false
-      b.effects[PBEffects::MagicCoat]        = false
-      b.effects[PBEffects::MirrorCoat]       = -1
-      b.effects[PBEffects::MirrorCoatTarget] = -1
-      b.effects[PBEffects::Powder]           = false
-      b.effects[PBEffects::Prankster]        = false
-      b.effects[PBEffects::PriorityAbility]  = false
-      b.effects[PBEffects::PriorityItem]     = false
-      b.effects[PBEffects::Protect]          = false
-      b.effects[PBEffects::RagePowder]       = false
-      b.effects[PBEffects::Roost]            = false
-      b.effects[PBEffects::Snatch]           = 0
-      b.effects[PBEffects::SpikyShield]      = false
-      b.effects[PBEffects::Spotlight]        = 0
-      b.effects[PBEffects::ThroatChop]       -= 1 if b.effects[PBEffects::ThroatChop]>0
-	    b.effects[PBEffects::Assist]			     = false
-	    b.effects[PBEffects::LashOut]			     = false
-	    b.effects[PBEffects::StunningCurl]     = false
-      b.effects[PBEffects::Sentry]           = false
-      b.effects[PBEffects::RedHotRetreat]    = false
-      b.effects[PBEffects::ShimmeringHeat]   = false
-      b.effects[PBEffects::MirrorShield]     = false
-      b.lastHPLost                           = 0
-      b.lastHPLostFromFoe                    = 0
-      b.tookDamage                           = false
-      b.tookPhysicalHit                      = false
-      b.lastRoundMoveFailed                  = b.lastMoveFailed
-      b.lastAttacker.clear
-      b.lastFoeAttacker.clear
-      b.indexesTargetedThisTurn.clear
     end
   end
 

@@ -1,84 +1,4 @@
 class PokeBattle_Battler
-  # Helper method for performing the two checks that are supposed to occur whenever the battler loses HP
-  # From a special effect. E.g. sandstorm DOT, ability triggers
-  # Returns whether or not the pokemon faints
-  def pbHealthLossChecks(oldHP = -1)
-    pbItemHPHealCheck()
-    if fainted?
-      pbFaint()
-      return true
-    elsif oldHP > -1
-      pbAbilitiesOnDamageTaken(oldHP) 
-    end
-    return false
-  end
-
-  # Helper method for performing the checks that are supposed to occur whenever the battler loses HP
-  # From a special effect that occurs when entering the field (i.e. Stealth Rock)
-  # Returns whether or not the pokemon was swapped out due to a damage taking ability
-  def pbEntryHealthLossChecks(oldHP = -1)
-    pbItemHPHealCheck()
-    if fainted?
-      pbFaint()
-    elsif oldHP > -1
-      return pbAbilitiesOnDamageTaken(oldHP) 
-    end
-    return false
-  end
-
-  # Applies damage effects that are based on a fraction of the battler's total HP
-  # Returns how much damage ended up dealt
-  # Accounts for bosses taking reduced fractional damage
-  def applyFractionalDamage(fraction,showDamageAnimation=true,basedOnCurrentHP=false,entryCheck=false)
-    oldHP = @hp
-    fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
-    fraction *= 2 if @battle.pbCheckOpposingAbility(:AGGRAVATE,@index)
-    if basedOnCurrentHP
-      reduction = (@hp * fraction).ceil
-    else
-      reduction = (@totalhp * fraction).ceil
-    end
-    if showDamageAnimation
-      @damageState.displayedDamage = reduction
-      @battle.scene.pbDamageAnimation(self)
-    end
-    pbReduceHP(reduction,false)
-    if !entryCheck
-      pbHealthLossChecks(oldHP)
-      return reduction
-    else
-      swapped = pbEntryHealthLossChecks(oldHP)
-      return swapped
-    end
-  end
-
-	def pbRecoverHP(amt,anim=true,anyAnim=true,showMessage=true,customMessage=nil)
-		raise _INTL("Told to recover a negative amount") if amt < 0
-    amt *= 1.5 if hasActiveAbility?(:ROOTED)
-		amt = amt.round
-		amt = @totalhp - @hp if amt > @totalhp - @hp
-		amt = 1 if amt < 1 && @hp < @totalhp
-		if effects[PBEffects::NerveBreak]
-			@battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!",pbThis))
-			amt *= -1
-		end
-		oldHP = @hp
-		self.hp += amt
-		self.hp = 0 if self.hp < 0
-		PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP}=>#{@hp})") if amt>0
-		raise _INTL("HP greater than total HP") if @hp > @totalhp
-		@battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt > 0
-    if showMessage
-      if amt > 0
-        message = customMessage.nil? ? _INTL("{1}'s HP was restored.",pbThis) : customMessage
-        @battle.pbDisplay(message)
-      elsif amt < 0
-        @battle.pbDisplay(_INTL("{1}'s lost HP.",pbThis))
-      end
-    end
-		return amt
-  end
-
   def pbRecoverHPFromMultiDrain(targets,ratio)
     totalDamageDealt = 0
     targets.each do |target|
@@ -107,10 +27,13 @@ class PokeBattle_Battler
 	def pbRecoverHPFromDrain(drainAmount,target,msg=nil)
 		if target.hasActiveAbility?(:LIQUIDOOZE)
 		  @battle.pbShowAbilitySplash(target)
+      oldHP = @hp
 		  pbReduceHP(drainAmount)
 		  @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!",pbThis))
 		  @battle.pbHideAbilitySplash(target)
-		  pbItemHPHealCheck
+		  pbItemHPHealCheck()
+      pbAbilitiesOnDamageTaken(oldHP)
+		  pbFaint() if fainted?
 		else
 		  if canHeal?
         drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)

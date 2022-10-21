@@ -539,7 +539,6 @@ class BattleInfoDisplay < SpriteWrapper
 		"Nerve Broken",
 		"Ice Ball",
 		"Roll Out",
-		"", # Gargantuan
 		"", # Stunning Curl
 		"", # Red-Hot Retreat
 		"Primeval Moonlight",

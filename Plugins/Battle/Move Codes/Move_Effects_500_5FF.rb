@@ -1883,8 +1883,8 @@ end
 #===============================================================================
 class PokeBattle_Move_564 < PokeBattle_Move
 	def pbEffectAgainstTarget(user,target)
-		forceUseMove(user,:REST)
-		forceUseMove(target,:REST)
+		@battle.forceUseMove(user,:REST)
+		@battle.forceUseMove(target,:REST)
 	end
 end
 

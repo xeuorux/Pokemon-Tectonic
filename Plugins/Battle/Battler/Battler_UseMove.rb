@@ -1,4 +1,110 @@
 class PokeBattle_Battler
+  #=============================================================================
+  # Turn processing
+  #=============================================================================
+  def pbProcessTurn(choice,tryFlee=true)
+    return false if fainted?
+    # Wild roaming Pokémon always flee if possible
+    if tryFlee && @battle.wildBattle? && opposes? &&
+       @battle.rules["alwaysflee"] && @battle.pbCanRun?(@index)
+      pbBeginTurn(choice)
+      pbSEPlay("Battle flee")
+      @battle.pbDisplay(_INTL("{1} fled from battle!",pbThis))
+      @battle.decision = 3
+      pbEndTurn(choice)
+      return true
+    end
+    # Shift with the battler next to this one
+    if choice[0]==:Shift
+      idxOther = -1
+      case @battle.pbSideSize(@index)
+      when 2
+        idxOther = (@index+2)%4
+      when 3
+        if @index!=2 && @index!=3   # If not in middle spot already
+          idxOther = ((@index%2)==0) ? 2 : 3
+        end
+      end
+      if idxOther>=0
+        @battle.pbSwapBattlers(@index,idxOther)
+        case @battle.pbSideSize(@index)
+        when 2
+          @battle.pbDisplay(_INTL("{1} moved across!",pbThis))
+        when 3
+          @battle.pbDisplay(_INTL("{1} moved to the center!",pbThis))
+        end
+      end
+      pbBeginTurn(choice)
+      pbCancelMoves
+      @lastRoundMoved = @battle.turnCount   # Done something this round
+      return true
+    end
+    # If this battler's action for this round wasn't "use a move"
+    if choice[0]!=:UseMove
+      # Clean up effects that end at battler's turn
+      pbBeginTurn(choice)
+      pbEndTurn(choice)
+      return false
+    end
+    # Turn is skipped if Pursuit was used during switch
+    if @effects[PBEffects::Pursuit]
+      @effects[PBEffects::Pursuit] = false
+      pbCancelMoves
+      pbEndTurn(choice)
+      @battle.pbJudge
+      return false
+    end
+    # Use the move
+    PBDebug.log("[Move usage] #{pbThis} started using #{choice[2].name}")
+    PBDebug.logonerr{
+      pbUseMove(choice,choice[2]==@battle.struggle)
+    }
+    @battle.pbJudge
+    # Update priority order
+    @battle.pbCalculatePriority if Settings::RECALCULATE_TURN_ORDER_AFTER_SPEED_CHANGES
+    return true
+  end
+
+  #=============================================================================
+  #
+  #=============================================================================
+  def pbBeginTurn(_choice)
+    @effects[PBEffects::DestinyBondPrevious] = @effects[PBEffects::DestinyBond]
+
+    @effects.transform_values!() { |effect,value|
+      effectData = GameData::BattleEffect.get(effect)
+      next value if effectData.nil?
+      if effectData.resets_battlers_eot
+        next effectData.default
+      else
+        next value
+      end
+    }
+    # Encore's effect ends if the encored move is no longer available
+    if @effects[PBEffects::Encore] > 0 && pbEncoredMoveIndex < 0
+      @effects[PBEffects::Encore]     = 0
+      @effects[PBEffects::EncoreMove] = nil
+    end
+  end
+
+  # Called when the usage of various multi-turn moves is disrupted due to
+  # failing pbTryUseMove, being ineffective against all targets, or because
+  # Pursuit was used specially to intercept a switching foe.
+  # Cancels the use of multi-turn moves and counters thereof. Note that Hyper
+  # Beam's effect is NOT cancelled.
+  def pbCancelMoves(full_cancel = false)
+    @effects.transform_values!() { |effect,value|
+      effectData = GameData::BattleEffect.get(effect)
+      next value if effectData.nil?
+      if effectData.resets_on_cancel
+        next effectData.default
+      else
+        next value
+      end
+    }
+    @currentMove = nil
+  end
+
 	def pbEndTurn(_choice)
 		@lastRoundMoved = @battle.turnCount   # Done something this round
 		 # Gorilla Tactics
@@ -17,10 +123,17 @@ class PokeBattle_Battler
 		  	@effects[PBEffects::ChoiceBand] = @lastRegularMoveUsed
 		  end
 		end
-		@effects[PBEffects::BeakBlast]   = false
-		@effects[PBEffects::Charge]      = 0 if @effects[PBEffects::Charge]==1
-		@effects[PBEffects::GemConsumed] = nil
-		@effects[PBEffects::ShellTrap]   = false
+
+    @effects.transform_values!() { |effect,value|
+      effectData = GameData::BattleEffect.get(effect)
+      next value if effectData.nil?
+      if effectData.resets_battlers_eot
+        next effectData.default
+      else
+        next value
+      end
+    }
+
 		@battle.eachBattler { |b| b.pbContinualAbilityChecks }   # Trace, end primordial weathers
 	end
   
@@ -716,30 +829,6 @@ class PokeBattle_Battler
     targets.each { |b| b.pbFaint if b && b.fainted? }
     user.pbFaint if user.fainted?
     return true
-  end
-  
-  # Called when the usage of various multi-turn moves is disrupted due to
-  # failing pbTryUseMove, being ineffective against all targets, or because
-  # Pursuit was used specially to intercept a switching foe.
-  # Cancels the use of multi-turn moves and counters thereof. Note that Hyper
-  # Beam's effect is NOT cancelled.
-  def pbCancelMoves(full_cancel = false)
-    # # Outragers get confused anyway if they are disrupted during their final
-    # # turn of using the move
-    # if @effects[PBEffects::Outrage]==1 && pbCanConfuseSelf?(false) && !full_cancel
-    #   pbConfuse(_INTL("{1} became confused due to fatigue!",pbThis))
-    # end
-    # Cancel usage of most multi-turn moves
-    @effects[PBEffects::TwoTurnAttack] = nil
-    @effects[PBEffects::Rollout]       = 0
-    @effects[PBEffects::Outrage]       = 0
-    @effects[PBEffects::Uproar]        = 0
-    @effects[PBEffects::Bide]          = 0
-    @currentMove = nil
-    # Reset counters for moves which increase them when used in succession
-    @effects[PBEffects::FuryCutter]    = 0
-	  @effects[PBEffects::IceBall]   	   = 0
-	  @effects[PBEffects::RollOut]       = 0
   end
 
   #=============================================================================
