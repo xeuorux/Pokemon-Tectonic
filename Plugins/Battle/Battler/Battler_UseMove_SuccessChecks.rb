@@ -265,7 +265,7 @@ class PokeBattle_Battler
       if user.boss?
         target.damageState.partiallyProtected = true
         yield if block_given?
-        @battle.pbDisplay(_INTL("Actually, {1} partially pierces through!",user.pbThis))
+        @battle.pbDisplay(_INTL("Actually, {1} partially pierces through!",user.pbThis(true)))
       else
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true

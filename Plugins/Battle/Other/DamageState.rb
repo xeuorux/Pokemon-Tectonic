@@ -17,8 +17,9 @@ class PokeBattle_DamageState
 		@totalHPLost        = 0
 		@fainted            = false
 		@messagesPerHit		= true
+		@partiallyProtected	= false
 		resetPerHit
-	  end
+	end
 
 	def resetPerHit
 		@missed        		= false
@@ -37,6 +38,5 @@ class PokeBattle_DamageState
 		@forced_critical	= false
 		@direDiversion		= false
 		@endureBerry		= false
-		@partiallyProtected	= false
 	end
 end
