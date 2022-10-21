@@ -144,7 +144,7 @@ BattleHandlers::DamageCalcUserAbility.add(:BIGTHORNS,
 
 BattleHandlers::DamageCalcUserAbility.add(:STORMFRONT,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if user.battle.pbWeather==:Rain && [:Electric,:Flying,:Water].include?(type)
+    if user.battle.pbWeather==:Rain && [:ELECTRIC,:FLYING,:WATER].include?(type)
       mults[:base_damage_multiplier] *= 1.3
     end
   }
