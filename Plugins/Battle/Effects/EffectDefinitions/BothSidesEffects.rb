@@ -1,22 +1,132 @@
-module PBEffects
-    #===========================================================================
-    # These effects apply to the battle (i.e. both sides)
-    #===========================================================================
-    AmuletCoin      = 0
-    FairyLock       = 1
-    FusionBolt      = 2
-    FusionFlare     = 3
-    Gravity         = 4
-    HappyHour       = 5
-    IonDeluge       = 6
-    MagicRoom       = 7
-    MudSportField   = 8
-    PayDay          = 9
-    TrickRoom       = 10
-    WaterSportField = 11
-    WonderRoom      = 12
-	Fortune             = 13
-	NeutralizingGas     = 14
-    PuzzleRoom          = 15
-	OddRoom				= 16
-end
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :AmuletCoin,
+	:real_name => "AmuletCoin",
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :FairyLock,
+	:real_name => "FairyLock",
+	:type => :Integer,
+	:ticks_down => true,
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :FusionBolt,
+	:real_name => "FusionBolt",
+	:resets_eor => true,
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :FusionFlare,
+	:real_name => "FusionFlare",
+	:resets_eor => true,
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :Gravity,
+	:real_name => "Gravity",
+	:type => :Integer,
+    :ticks_down => true,
+    :expire_proc => Proc.new { |battle,battler|
+        battle.pbDisplay(_INTL("Gravity returned to normal!"))
+    },
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :HappyHour,
+	:real_name => "HappyHour",
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :IonDeluge,
+	:real_name => "IonDeluge",
+	:resets_eor => true,
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :MagicRoom,
+	:real_name => "MagicRoom",
+	:type => :Integer,
+    :ticks_down => true,
+    :expire_proc => Proc.new { |battle,battler|
+        battle.pbDisplay(_INTL("The #{MAGIC_ROOM_DESCRIPTION} went away."))
+		battle.pbPriority(true).each { |b| b.pbItemTerrainStatBoostCheck }
+		battle.pbPriority(true).each { |b| b.pbItemFieldEffectCheck }
+    },
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :MudSportField,
+	:real_name => "MudSportField",
+	:type => :Integer,
+    :ticks_down => true,
+    :expire_proc => Proc.new { |battle,battler|
+        battle.pbDisplay(_INTL("The effects of Mud Sport have faded."))
+    },
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :PayDay,
+	:real_name => "PayDay",
+	:type => :Integer,
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :TrickRoom,
+	:real_name => "TrickRoom",
+    :type => :Integer,
+    :ticks_down => true,
+    :expire_proc => Proc.new { |battle,battler|
+        battle.pbDisplay(_INTL("The #{TRICK_ROOM_DESCRIPTION} went away."))
+    },
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :WaterSportField,
+	:real_name => "WaterSportField",
+	:type => :Integer,
+    :ticks_down => true,
+    :expire_proc => Proc.new { |battle,battler|
+        battle.pbDisplay(_INTL("The effects of Water Sport have faded."))
+    },
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :WonderRoom,
+	:real_name => "WonderRoom",
+	:type => :Integer,
+    :ticks_down => true,
+    :expire_proc => Proc.new { |battle,battler|
+        battle.pbDisplay(_INTL("The #{WONDER_ROOM_DESCRIPTION} went away."))
+    },
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :Fortune,
+	:real_name => "Fortune",
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :NeutralizingGas,
+	:real_name => "NeutralizingGas",
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :PuzzleRoom,
+	:real_name => "PuzzleRoom",
+	:type => :Integer,
+    :ticks_down => true,
+    :expire_proc => Proc.new { |battle,battler|
+        battle.pbDisplay(_INTL("The #{PUZZLE_ROOM_DESCRIPTION} went away."))
+    },
+})
+
+GameData::BattleEffect.register_effect(:BothSides,{
+	:id => :OddRoom,
+	:real_name => "OddRoom",
+	:type => :Integer,
+    :ticks_down => true,
+    :expire_proc => Proc.new { |battle,battler|
+        battle.pbDisplay(_INTL("The #{ODD_ROOM_DESCRIPTION} went away."))
+    },
+})

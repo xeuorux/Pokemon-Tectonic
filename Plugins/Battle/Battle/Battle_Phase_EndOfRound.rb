@@ -1,19 +1,4 @@
 class PokeBattle_Battle
-	#=============================================================================
-	# Decrement effect counters
-	#=============================================================================
-  def pbEORCountDownFieldEffect(effect,msg)
-    if @field.effects[effect]>0
-      @field.effects[effect] -= 1
-      if @field.effects[effect]==0
-        pbDisplay(msg)
-        if effect==PBEffects::MagicRoom
-          pbPriority(true).each { |b| b.pbItemTerrainStatBoostCheck }
-		      pbPriority(true).each { |b| b.pbItemFieldEffectCheck }
-        end
-      end
-    end
-  end
 
   #=============================================================================
   # End Of Round phase
@@ -44,7 +29,7 @@ class PokeBattle_Battle
 
     countDownSideEffects()
 
-    countDownFieldEffects()
+    @field.processEffectsEOR(self)
     
     # End of terrains
     pbEORTerrain
@@ -426,34 +411,6 @@ class PokeBattle_Battle
     end
   end
 
-  def countDownFieldEffects()
-    PBDebug.log("[DEBUG] Counting down/ending total field effects")
-    # Trick Room
-    pbEORCountDownFieldEffect(PBEffects::TrickRoom,
-       _INTL("The twisted dimensions returned to normal!"))
-    # Gravity
-    pbEORCountDownFieldEffect(PBEffects::Gravity,
-       _INTL("Gravity returned to normal!"))
-    # Water Sport
-    pbEORCountDownFieldEffect(PBEffects::WaterSportField,
-       _INTL("The effects of Water Sport have faded."))
-    # Mud Sport
-    pbEORCountDownFieldEffect(PBEffects::MudSportField,
-       _INTL("The effects of Mud Sport have faded."))
-    # Wonder Room
-    pbEORCountDownFieldEffect(PBEffects::WonderRoom,
-       _INTL("Wonder Room wore off, and Defense and Sp. Def stats returned to normal!"))
-    # Magic Room
-    pbEORCountDownFieldEffect(PBEffects::MagicRoom,
-       _INTL("Magic Room wore off, and held items' effects returned to normal!"))
-    # Puzzle Room
-    pbEORCountDownFieldEffect(PBEffects::PuzzleRoom,
-       _INTL("Puzzle Room wore off, and Attack and Sp. Atk stats returned to normal!"))
-	# Odd Room
-    pbEORCountDownFieldEffect(PBEffects::OddRoom,
-       _INTL("Odd Room wore off, and Offensive and Defensive stats returned to normal!"))
-  end
-
   def processTriggersEOR(priority)
     PBDebug.log("[DEBUG] Processing EoR Triggers")
 
@@ -495,13 +452,5 @@ class PokeBattle_Battle
     end
   end
 
-  def processFieldEffectsEOR()
-    PBDebug.log("[DEBUG] Processing EoR Total Field Effects")
-    # Reset/count down field-specific effects (no messages)
-    @field.effects[PBEffects::IonDeluge]   = false
-    @field.effects[PBEffects::FairyLock]   -= 1 if @field.effects[PBEffects::FairyLock]>0
-    @field.effects[PBEffects::FusionBolt]  = false
-    @field.effects[PBEffects::FusionFlare] = false
-  end
 
 end

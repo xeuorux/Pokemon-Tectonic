@@ -32,31 +32,13 @@ class PokeBattle_Battler
             effectData.eor_battler(@battle,self)
         end
 
-        changedEffects = {}
-
-        @effects.each do |effect, value|
-            effectData = GameData::BattleEffect.get(effect)
-            next if effectData.nil?
-            # Tick down active effects that tick down
-            if effectData.ticks_down && effectData.active_value?(value)
-                newValue = value - effectData.tick_amount
-                newValue = 0 if newValue < 0 && !effectData.ticks_past_zero
-                if effectData.active_value?(newValue)
-                    effectData.remain_battler(@battle,self)
-                else
-                    effectData.eachConnectedEffect do |otherEffect, otherData|
-                        changedEffects[otherEffect] = otherData.default
-                    end
-                    effectData.expire_battler(@battle,self)
-                end
-                changedEffects[effect] = newValue
-            end
-            if effectData.resets_eor && value != effectData.default
-                changedEffects[effect] = effectData.default
-            end
-        end
-
-        @effects.update(changedEffects)
+        remain_proc = Proc.new { |effectData|
+            effectData.remain_battler(@battle,self)
+        }
+        expire_proc = Proc.new { |effectData|
+            effectData.expire_battler(@battle,self)
+        }
+        effectsEndOfRound(@effects,remain_proc,expire_proc)
     end
 
     def modifyTrackersEOR()

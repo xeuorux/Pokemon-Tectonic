@@ -223,9 +223,30 @@ module GameData
         end
 
         ### Iteration methods
-        def self.each_battler_effect()
+        def self.each_battler_effect
             each() do |data|
                 next if data.location != :Battler
+                yield data
+            end
+        end
+
+        def self.each_position_effect
+            each() do |data|
+                next if data.location != :Position
+                yield data
+            end
+        end
+
+        def self.each_side_effect
+            each() do |data|
+                next if data.location != :Side
+                yield data
+            end
+        end
+
+        def self.each_both_sides_effect
+            each() do |data|
+                next if data.location != :BothSides
                 yield data
             end
         end
