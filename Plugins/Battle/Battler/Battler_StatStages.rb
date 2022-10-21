@@ -55,7 +55,7 @@ class PokeBattle_Battler
 			_INTL("{1}'s {2} rose{3}!", pbThis, GameData::Stat.get(stat).name, boss? ? ' slightly' : ''),
 			_INTL("{1}'s {2} rose{3}!", pbThis, GameData::Stat.get(stat).name, boss? ? '' : ' sharply'),
 			_INTL("{1}'s {2} rose{3}!", pbThis, GameData::Stat.get(stat).name,
-									boss? ? ' greatly' : ' drastically')
+									boss? ? ' greatly' : ' drastically'),
 		]
 		@battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
 		# Trigger abilities upon stat gain
@@ -78,7 +78,7 @@ class PokeBattle_Battler
 				_INTL("{1}'s {2}{4} raised its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
 										boss? ? '' : ' sharply'),
 				_INTL("{1}'s {2}{4} raised its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-										boss? ? ' greatly' : ' drastically')
+										boss? ? ' greatly' : ' drastically'),
 			]
 		else
 			arrStatTexts = [
@@ -87,7 +87,7 @@ class PokeBattle_Battler
 				_INTL("{1}'s {2}{5} raised {3}'s {4}!", user.pbThis, cause, pbThis(true),
 										GameData::Stat.get(stat).name, boss? ? '' : ' sharply'),
 				_INTL("{1}'s {2}{5} raised {3}'s {4}!", user.pbThis, cause, pbThis(true),
-										GameData::Stat.get(stat).name, boss? ? ' greatly' : ' drastically')
+										GameData::Stat.get(stat).name, boss? ? ' greatly' : ' drastically'),
 			]
 		end
 		@battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
@@ -212,7 +212,7 @@ class PokeBattle_Battler
 			_INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name, boss? ? ' slightly' : ''),
 			_INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name, boss? ? '' : ' harshly'),
 			_INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name,
-									boss? ? ' severely' : ' badly')
+									boss? ? ' severely' : ' badly'),
 		]
 		@battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
 		# Trigger abilities upon stat loss
@@ -256,7 +256,7 @@ class PokeBattle_Battler
 				_INTL("{1}'s {2}{4} lowered its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
 										boss? ? '' : ' harshly'),
 				_INTL("{1}'s {2}{4} lowered its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-										boss? ? ' severely' : ' badly')
+										boss? ? ' severely' : ' badly'),
 			]
 		else
 			arrStatTexts = [
@@ -265,7 +265,7 @@ class PokeBattle_Battler
 				_INTL("{1}'s {2}{5} lowered {3}'s {4}!", user.pbThis, cause, pbThis(true),
 										GameData::Stat.get(stat).name, boss? ? '' : ' harshly'),
 				_INTL("{1}'s {2}{5} lowered {3}'s {4}!", user.pbThis, cause, pbThis(true),
-										GameData::Stat.get(stat).name, boss? ? ' severely' : ' badly')
+										GameData::Stat.get(stat).name, boss? ? ' severely' : ' badly'),
 			]
 		end
 		@battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])

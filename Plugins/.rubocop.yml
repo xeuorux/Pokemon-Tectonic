@@ -53,6 +53,9 @@ Style/FrozenStringLiteralComment:
 Style/GlobalVars:
   Enabled: false
   
+Style/NumericPredicate:
+ Enabled: false
+  
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: consistent_comma
   
