@@ -1994,14 +1994,18 @@ end
 #===============================================================================
 # Hits 3-5 times, for three turns in a row. (Pattern Release)
 #===============================================================================
-class PokeBattle_Move_56C < PokeBattle_Move_55F
-	def multiHitMove?; return true; end
-  
-	def pbNumHits(user,targets,checkingForAI=false)
-	  hitChances = [2,2,3,3,4,5]
-	  r = @battle.pbRandom(hitChances.length)
-	  r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
-	  return hitChances[r]
+class PokeBattle_Move_56C < PokeBattle_Move_0C0
+	def pbEffectAfterAllHits(user,target)
+		if !target.damageState.unaffected && user.effects[PBEffects::Outrage] == 0
+		  user.effects[PBEffects::Outrage] = 3
+		  user.currentMove = @id
+		end
+		if user.effects[PBEffects::Outrage]>0
+		  user.effects[PBEffects::Outrage] -= 1
+		  if user.effects[PBEffects::Outrage]==0
+			@battle.pbDisplay(_INTL("{1} spun down from its attack.",user.pbThis))
+		  end
+		end
 	end
 end
   

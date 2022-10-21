@@ -1962,10 +1962,19 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
     if @id == :WATERSHURIKEN && user.isSpecies?(:GRENINJA) && user.form == 2
       return 3
     end
-    hitChances = [2,2,3,3,4,5]
-    r = @battle.pbRandom(hitChances.length)
-    r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
-    return hitChances[r]
+    if user.hasActiveItem?(:LOADEDDICE)
+      hitChances = [3,3,4,4,5,5]
+    elsif user.hasActiveItem?(:D8)
+      hitChances = [1,2,3,4,5,6,7,8]
+    else
+      hitChances = [2,2,3,3,4,5]
+    end
+    if user.hasActiveAbility?(:SKILLLINK)
+      numHits = hitChances.last
+    else
+      numHits = hitChances.sample
+    end
+    return numHits
   end
 
   def pbNumHitsAI(user,target,skill=100)
