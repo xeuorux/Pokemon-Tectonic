@@ -21,13 +21,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :BanefulBunker,
-	:real_name => "Baneful Bunker",
-	:resets_eor	=> true,
-	:protection_effect => true,
-})
-
-GameData::BattleEffect.register_effect(:Battler,{
 	:id => :BeakBlast,
 	:real_name => "Beak Blast",
 	:resets_battlers_eot => true,
@@ -361,13 +354,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :KingsShield,
-	:real_name => "King's Shield",
-	:resets_eor	=> true,
-	:protection_effect => true,
-})
-
-GameData::BattleEffect.register_effect(:Battler,{
 	:id => :LaserFocus,
 	:real_name => "Laser Focus Turns",
 	:type => :Integer,
@@ -595,20 +581,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:info_displayed => false,
 })
 
-GameData::BattleEffect.register_effect(:Battler,{
-	:id => :Protect,
-	:real_name => "Protect",
-	:resets_eor	=> true,
-	:protection_effect => true,
-})
-
-GameData::BattleEffect.register_effect(:Battler,{
-	:id => :ProtectRate,
-	:real_name => "Protect Rate",
-	:type => :Integer,
-	:default => 1,
-	:info_displayed => false,
-})
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Pursuit,
@@ -671,13 +643,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Snatch,
 	:real_name => "Snatch",
 	:type => :Integer,
-})
-
-GameData::BattleEffect.register_effect(:Battler,{
-	:id => :SpikyShield,
-	:real_name => "Spiky Shield",
-	:resets_eor	=> true,
-	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -914,12 +879,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :Obstruct,
-	:real_name => "Obstruct",
-	:protection_effect => true,
-})
-
-GameData::BattleEffect.register_effect(:Battler,{
 	:id => :JawLock,
 	:real_name => "Trapped By Jaw",
 	:baton_passed => true,
@@ -1084,13 +1043,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :RedHotRetreat,
-	:real_name => "Red-Hot Retreat",
-	:resets_eor	=> true,
-	:protection_effect => true,
-})
-
-GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ExtraTurns,
 	:real_name => "Extra Turns",
 	:type => :Integer,
@@ -1156,12 +1108,96 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :MirrorShield,
-	:real_name => "Mirror Shield",
-	:resets_eor	=> true,
+	:id => :Echo,
+	:real_name => "Echo",
+})
+
+#######################################################
+# Protection effects
+#######################################################
+
+GameData::BattleEffect.register_effect(:Battler,{
+	:id => :ProtectRate,
+	:real_name => "Protect Rate",
+	:type => :Integer,
+	:default => 1,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :Echo,
-	:real_name => "Echo",
+	:id => :Protect,
+	:real_name => "Protect",
+	:resets_eor	=> true,
+	:protection_effect => true
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
+	:id => :KingsShield,
+	:real_name => "King's Shield",
+	:resets_eor	=> true,
+	:protection_info => {
+		:hit_proc => Proc.new { |attacker, protector, move, battle|
+			user.pbLowerStatStage(:ATTACK, 1, nil) if move.physicalMove? && user.pbCanLowerStatStage?(:ATTACK)
+		}
+	}
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
+	:id => :Obstruct,
+	:real_name => "Obstruct",
+	:protection_info => {
+		:hit_proc => Proc.new { |attacker, protector, move, battle|
+			attacker.pbLowerStatStage(:DEFENSE, 2, nil) if move.physical? && user.pbCanLowerStatStage?(:DEFENSE)
+		}
+	}
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
+	:id => :BanefulBunker,
+	:real_name => "Baneful Bunker",
+	:resets_eor	=> true,
+	:protection_info => {
+		:hit_proc => Proc.new { |attacker, protector, move, battle|
+			attacker.pbPoison(target) if move.physicalMove? && attacker.pbCanPoison?(protector, false)
+		}
+	}
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
+	:id => :RedHotRetreat,
+	:real_name => "Red-Hot Retreat",
+	:resets_eor	=> true,
+	:protection_info => {
+		:hit_proc => Proc.new { |attacker, protector, move, battle|
+			attacker.pbBurn(target) if move.specialMove? && attacker.pbCanBurn?(protector, false)
+		}
+	}
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
+	:id => :SpikyShield,
+	:real_name => "Spiky Shield",
+	:resets_eor	=> true,
+	:protection_info => {
+		:hit_proc => Proc.new { |attacker, protector, move, battle|
+			if move.physicalMove?
+				@battle.pbDisplay(_INTL('{1} was hurt!', attacker.pbThis))
+				attacker.applyFractionalDamage(1.0 / 8.0)
+			end
+		}
+	}
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
+	:id => :MirrorShield,
+	:real_name => "Mirror Shield",
+	:resets_eor	=> true,
+	:protection_info => {
+		:hit_proc => Proc.new { |attacker, protector, move, battle|
+			if move.specialMove?
+				@battle.pbDisplay(_INTL('{1} was hurt!', attacker.pbThis))
+				uattackerser.applyFractionalDamage(1.0 / 8.0)
+			end
+		}
+	}
 })

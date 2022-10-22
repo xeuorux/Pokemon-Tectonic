@@ -55,6 +55,8 @@ module GameData
 		# Marked so that moves like Feint can know to remove it
 		attr_reader :protection_effect
 
+		attr_reader :protection_info
+
 		# Bespoke information for type applying spikes
 		attr_reader :type_applying_hazard
 
@@ -92,6 +94,10 @@ module GameData
 
 		def is_mental?
 			return @is_mental
+		end
+
+		def is_protection?
+			return !@protection_info.nil? || protection_effect
 		end
 
 		def is_status_hazard?
@@ -194,15 +200,16 @@ module GameData
 
 			@sub_effects = hash[:sub_effects] || false
 
-			@protection_effect = hash[:protection_effect] || false
-			@court_changed		= hash[:court_changed] || true
+			@protection_effect 		= hash[:protection_effect] || false
+			@protection_info		= hash[:protection_info]
+			@court_changed			= hash[:court_changed] || true
 
 			@type_applying_hazard = hash[:type_applying_hazard]
 			
-			@is_room			= hash[:is_room] || false
-			@is_screen			= hash[:is_screen] || false
-			@is_hazard			= hash[:is_hazard] || false
-			@is_mental			= hash[:is_mental] || false
+			@is_room				= hash[:is_room] || false
+			@is_screen				= hash[:is_screen] || false
+			@is_hazard				= hash[:is_hazard] || false
+			@is_mental				= hash[:is_mental] || false
 		end
 
 		# Method for determining if the effect is considered active

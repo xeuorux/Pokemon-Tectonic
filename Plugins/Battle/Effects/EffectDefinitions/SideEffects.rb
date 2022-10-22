@@ -21,7 +21,7 @@ GameData::BattleEffect.register_effect(:Side,{
 })
 
 ##########################################
-# Damage reducing effects
+# Screens
 ##########################################
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Reflect,
@@ -103,35 +103,48 @@ GameData::BattleEffect.register_effect(:Side,{
 	:id => :CraftyShield,
 	:real_name => "Crafty Shield",
 	:resets_eor => true,
-	:protection_effect => true,
+	:protection_info => {
+		:does_negate_proc => Proc.new { |user,target, move, battle|
+			move.statusMove? && !move.pbTarget(user).targets_all
+		}
+	}
 })
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :MatBlock,
 	:real_name => "Mat Block",
 	:resets_eor => true,
-	:protection_effect => true,
+	:protection_info => {
+		:does_negate_proc => Proc.new { |user,target, move, battle|
+			move.damagingMove?
+		}
+	}
 })
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :QuickGuard,
 	:real_name => "Quick Guard",
 	:resets_eor => true,
-	:protection_effect => true,
+	:protection_info => {
+		:does_negate_proc => Proc.new { |user, target, move, battle|
+			# Checking the move priority saved from pbCalculatePriority
+			@battle.choices[user.index][4] > 0
+		},
+		:hit_proc => Proc.new { |user, target, move, battle|
+			user.pbLowerStatStage(:ATTACK, 1, nil) if move.physicalMove? && user.pbCanLowerStatStage?(:ATTACK)
+		}
+	}
 })
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :WideGuard,
 	:real_name => "Wide Guard",
 	:resets_eor => true,
-	:protection_effect => true,
-})
-
-GameData::BattleEffect.register_effect(:Side,{
-	:id => :Bulwark,
-	:real_name => "Bulwark",
-	:resets_eor => true,
-	:protection_effect => true,
+	:protection_effect => {
+		:does_negate_proc => Proc.new { |user, target, move, battle|
+			move.pbTarget(user).num_targets > 1 && !move.smartSpreadsTargets?
+		},
+	}
 })
 
 ##########################################
@@ -306,7 +319,14 @@ GameData::BattleEffect.register_effect(:Side,{
 		battle.pbDisplay(_INTL("{1}'s Tailwind petered out!",teamName))
 	}
 })
+
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :EmpoweredEmbargo,
 	:real_name => "Items Supressed",
+})
+
+GameData::BattleEffect.register_effect(:Side,{
+	:id => :Bulwark,
+	:real_name => "Bulwark",
+	:resets_eor => true,
 })

@@ -312,92 +312,49 @@ class PokeBattle_Battler
 	# Includes move-specific failure conditions, protections and type immunities.
 	#=============================================================================
 	def pbSuccessCheckAgainstTarget(move, user, target)
-		# Unseen Fist
-		protectionIgnoredByAbility = false
-		protectionIgnoredByAbility = true if user.ability == :UNSEENFIST && move.contactMove?
-		protectionIgnoredByAbility = true if user.ability == :AQUASNEAK && user.turnCount <= 1
+		# Calculate the type mod
 		typeMod = move.pbCalcTypeMod(move.calcType, user, target)
 		target.damageState.typeMod = typeMod
+
 		# Two-turn attacks can't fail here in the charging turn
 		return true if user.effectActive?(:TwoTurnAttack)
+
 		# Move-specific failures
 		return false if move.pbFailsAgainstTarget?(user, target)
+
 		# Immunity to priority moves because of Psychic Terrain
 		if @battle.field.terrain == :Psychic && target.affectedByTerrain? && target.opposes?(user) &&
 					@battle.choices[user.index][4] > 0 # Move priority saved from pbCalculatePriority
 			@battle.pbDisplay(_INTL('{1} surrounds itself with psychic terrain!', target.pbThis))
 			return false
 		end
-		# Crafty Shield
-		if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index != target.index &&
-					move.statusMove? && !move.pbTarget(user).targets_all && !protectionIgnoredByAbility
-			@battle.pbCommonAnimation('CraftyShield', target)
-			@battle.pbDisplay(_INTL('Crafty Shield protected {1}!', target.pbThis(true)))
-			target.damageState.protected = true
-			@battle.successStates[user.index].protected = true
-			return false
-		end
-		# Wide Guard
-		if target.pbOwnSide.effects[PBEffects::WideGuard] && user.index != target.index &&
-					move.pbTarget(user).num_targets > 1 && !move.smartSpreadsTargets? &&
-					(Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?) && !protectionIgnoredByAbility
-			@battle.pbCommonAnimation('WideGuard', target)
-			@battle.pbDisplay(_INTL('Wide Guard protected {1}!', target.pbThis(true)))
-			target.damageState.protected = true
-			@battle.successStates[user.index].protected = true
-			return false
-		end
-		######################################################
-		#	Protect Style Moves
-		######################################################
-		# Quick Guard
-		return false if target.pbOwnSide.effects[PBEffects::QuickGuard] && @battle.choices[user.index][4] > 0 && doesProtectionEffectNegateThisMove?('Quick Guard', move, user, target, protectionIgnoredByAbility, 'QuickGuard') # Move priority saved from pbCalculatePriority
-		# Protect
-		return false if target.effects[PBEffects::Protect] && doesProtectionEffectNegateThisMove?('Protect', move, user, target, protectionIgnoredByAbility, 'Protect')
-		# Obstruct
-		if target.effects[PBEffects::Obstruct] && doesProtectionEffectNegateThisMove?('Obstruct', move, user, target, protectionIgnoredByAbility, 'Obstruct') do
-						user.pbLowerStatStage(:DEFENSE, 2, nil) if move.physical? && user.pbCanLowerStatStage?(:DEFENSE)
+
+		###	Protect Style Moves
+		# Ability effects that ignore protection
+		protectionIgnoredByAbility = false
+		protectionIgnoredByAbility = true if user.ability == :UNSEENFIST && move.contactMove?
+		protectionIgnoredByAbility = true if user.ability == :AQUASNEAK && user.turnCount <= 1
+		
+		# Only check the target's side if the target is not the self
+		holdersToCheck = [target]
+		holdersToCheck.push(target.pbOwnSide) if target.index != user.index
+		holdersToCheck.each do |effectHolder|
+			effectHolder.eachEffectWithData(true) do |effect,value,data|
+				next if !data.is_protection?
+				if data.protection_info&.has_key?(:does_negate_proc)
+					next if !data.protection_info[:does_negate_proc].call(user,target,move,@battle)
+				end
+				effectName = data.real_name
+				animationName = data.protection_effect[:animation_name] || effect.to_s
+				negated = doesProtectionEffectNegateThisMove?(effectName, move, user, target, protectionIgnoredByAbility, animationName) do
+					if data.protection_info&.has_key?(:hit_proc)
+						data.protection_info[:hit_proc].call(user,target,move,@battle)
 					end
-			return false
+				end
+				return false if negated
+			end
 		end
-		# King's Shield
-		if target.effects[PBEffects::KingsShield] && move.damagingMove? && doesProtectionEffectNegateThisMove?("King's Shield", move, user, target, protectionIgnoredByAbility, 'KingsShield') do
-						user.pbLowerStatStage(:ATTACK, 1, nil) if move.physicalMove? && user.pbCanLowerStatStage?(:ATTACK)
-					end
-			return false
-		end
-		# Spiky Shield
-		if target.effects[PBEffects::SpikyShield] && doesProtectionEffectNegateThisMove?('Spiky Shield', move, user, target, protectionIgnoredByAbility, 'SpikyShield') do
-						if move.physicalMove?
-							@battle.pbDisplay(_INTL('{1} was hurt!', user.pbThis))
-							user.applyFractionalDamage(1.0 / 8.0)
-						end
-					end
-			return false
-		end
-		# Mirror Shield
-		if target.effects[PBEffects::MirrorShield] && doesProtectionEffectNegateThisMove?('Mirror Shield', move, user, target, protectionIgnoredByAbility, 'MirrorShield') do
-						if move.specialMove?
-							@battle.pbDisplay(_INTL('{1} was hurt!', user.pbThis))
-							user.applyFractionalDamage(1.0 / 8.0)
-						end
-					end
-			return false
-		end
-		# Baneful Bunker
-		if target.effects[PBEffects::BanefulBunker] && doesProtectionEffectNegateThisMove?('Baneful Bunker', move, user, target, protectionIgnoredByAbility, 'BanefulBunker') do
-						user.pbPoison(target) if move.physicalMove? && user.pbCanPoison?(target, false)
-					end
-			return false
-		end
-		# Red-Hot Retreat
-		if target.effects[PBEffects::RedHotRetreat] && doesProtectionEffectNegateThisMove?('Red Hot Retreat', move, user, target, protectionIgnoredByAbility, 'RedHotRetreat') do
-						user.pbBurn(target) if move.specialMove? && user.pbCanBurn?(target, false)
-					end
-			return false
-		end
-		# Mat Block
-		return false if target.pbOwnSide.effectActive?(:MatBlock) && move.damagingMove? && doesProtectionEffectNegateThisMove?('Mat Block', move, user, target, protectionIgnoredByAbility)
+		
 		# Magic Coat/Magic Bounce/Magic Shield
 		if move.canMagicCoat? && !target.semiInvulnerable? && target.opposes?(user)
 			if target.effectActive?(:MagicCoat)
@@ -418,14 +375,16 @@ class PokeBattle_Battler
 				return false
 			end
 		end
+
 		# Move fails due to type immunity ability
 		# Skipped for bosses using damaging moves so that it can be calculated properly later
 		if move.inherentImmunitiesPierced?(user, target)
-		# Do nothing
+			# Do nothing
 		elsif targetInherentlyImmune?(user, target, move, typeMod, true)
 			return false
 		end
-		# Substitute
+
+		# Substitute immunity to status moves
 		if target.substituted? && move.statusMove? &&
 					!move.ignoresSubstitute?(user) && user.index != target.index
 			PBDebug.log("[Target immune] #{target.pbThis} is protected by its Substitute")
