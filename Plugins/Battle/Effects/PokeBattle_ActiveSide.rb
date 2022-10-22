@@ -1,22 +1,22 @@
 class PokeBattle_ActiveSide
-    attr_accessor :effects
-    attr_reader :index
+	include EffectHolder
 
-    def initialize(index)
-      @effects = {}
-      @index = index
-      GameData::BattleEffect.each_side_effect do |effectData|
-        @effects[effectData.id] = effectData.default
-      end
-    end
+	attr_accessor :effects
+	attr_reader :index
 
-    def processEffectsEOR(battle)  
-      remain_proc = Proc.new { |effectData|
-          effectData.remain_side(battle,self)
-      }
-      expire_proc = Proc.new { |effectData|
-          effectData.expire_side(battle,self)
-      }
-      effectsEndOfRound(@effects,remain_proc,expire_proc)
-    end
+	def initialize(battle,index)
+		@battle = battle
+		@index = index
+		@effects = {}
+		GameData::BattleEffect.each_side_effect do |effectData|
+			@effects[effectData.id] = effectData.default
+		end
+
+		@remain_proc = proc do |effectData|
+			effectData.remain_side(@battle, self)
+		end
+		@expire_proc = proc do |effectData|
+			effectData.expire_side(@battle, self)
+		end
+	end
 end

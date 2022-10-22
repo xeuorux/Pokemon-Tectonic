@@ -1,20 +1,22 @@
 class PokeBattle_ActivePosition
-    attr_accessor :effects
-  
-    def initialize
-      @effects = {}
-      GameData::BattleEffect.each_position_effect do |effectData|
-        @effects[effectData.id] = effectData.default
-      end
-    end
+	include EffectHolder
 
-    def processEffectsEOR(battle,index)
-      remain_proc = Proc.new { |effectData|
-          effectData.remain_position(battle,index)
-      }
-      expire_proc = Proc.new { |effectData|
-          effectData.expire_position(battle,index)
-      }
-      effectsEndOfRound(@effects,remain_proc,expire_proc)
-    end
+	attr_accessor :effects
+
+	def initialize(battle,index)
+		@battle = battle
+		@index = index
+
+		@effects = {}
+		GameData::BattleEffect.each_position_effect do |effectData|
+			@effects[effectData.id] = effectData.default
+		end
+
+		@remain_proc = proc do |effectData|
+			effectData.remain_position(@battle, @index)
+		end
+		@expire_proc = proc do |effectData|
+			effectData.expire_position(@battle, @index)
+		end
+	end
 end

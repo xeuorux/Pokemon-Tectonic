@@ -23,6 +23,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :BanefulBunker,
 	:real_name => "BanefulBunker",
 	:resets_eor	=> true,
+	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -345,6 +346,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :KingsShield,
 	:real_name => "King's Shield",
 	:resets_eor	=> true,
+	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -578,6 +580,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Protect,
 	:real_name => "Protect",
 	:resets_eor	=> true,
+	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -654,6 +657,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :SpikyShield,
 	:real_name => "SpikyShield",
 	:resets_eor	=> true,
+	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -882,6 +886,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Obstruct,
 	:real_name => "Obstruct",
+	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1047,6 +1052,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :RedHotRetreat,
 	:real_name => "RedHotRetreat",
 	:resets_eor	=> true,
+	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{

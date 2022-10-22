@@ -335,6 +335,18 @@ class PokeBattle_Move
         pkmnScene.pbEndScene
     end
 
+    def removeProtections(target)	
+      GameData::BattleEffect.each do |effectData|
+        next if !effectData.protection_effect
+        case effectData.location
+        when :Battler
+          target.disableEffect(effectData.id)
+        when :Side
+          target.pbOwnSide.disableEffect(effectData.id)
+        end
+      end
+    end
+
     # Used by Counter/Mirror Coat/Metal Burst/Revenge/Focus Punch/Bide/Assurance.
     def pbRecordDamageLost(user,target)
       damage = target.damageState.hpLost

@@ -88,26 +88,35 @@ GameData::BattleEffect.register_effect(:Side,{
 	:id => :CraftyShield,
 	:real_name => "CraftyShield",
 	:resets_eor => true,
+	:protection_effect => true,
 })
+
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :MatBlock,
 	:real_name => "MatBlock",
 	:resets_eor => true,
+	:protection_effect => true,
 })
+
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :QuickGuard,
 	:real_name => "QuickGuard",
 	:resets_eor => true,
+	:protection_effect => true,
 })
+
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :WideGuard,
 	:real_name => "WideGuard",
 	:resets_eor => true,
+	:protection_effect => true,
 })
+
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Bulwark,
 	:real_name => "Bulwark",
 	:resets_eor => true,
+	:protection_effect => true,
 })
 
 ##########################################

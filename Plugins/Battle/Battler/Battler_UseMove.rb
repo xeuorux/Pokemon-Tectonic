@@ -71,17 +71,9 @@ class PokeBattle_Battler
 	def pbBeginTurn(_choice)
 		@effects[PBEffects::DestinyBondPrevious] = @effects[PBEffects::DestinyBond]
 
-		newEffects = {}
-		@effects.each do |effect, _value|
-			effectData = GameData::BattleEffect.get(effect)
-			next if effectData.nil?
-			if effectData.resets_battlers_eot
-				next newEffects[effect] = effectData.default
-			else
-				next
-			end
+		eachEffectWithData() do |effect,value,effectData|
+			disableEffect(effect) if effectData.resets_battlers_sot
 		end
-		@effects.update(changedEffects)
 
 		# Encore's effect ends if the encored move is no longer available
 		if @effects[PBEffects::Encore] > 0 && pbEncoredMoveIndex < 0
@@ -96,14 +88,8 @@ class PokeBattle_Battler
 	# Cancels the use of multi-turn moves and counters thereof. Note that Hyper
 	# Beam's effect is NOT cancelled.
 	def pbCancelMoves(_full_cancel = false)
-		@effects.transform_values! do |effect, value|
-			effectData = GameData::BattleEffect.get(effect)
-			next value if effectData.nil?
-			if effectData.resets_on_cancel
-				next effectData.default
-			else
-				next value
-			end
+		eachEffectWithData() do |effect,value,effectData|
+			disableEffect(effect) if effectData.resets_on_cancel
 		end
 		@currentMove = nil
 	end
@@ -127,14 +113,8 @@ class PokeBattle_Battler
 			end
 		end
 
-		@effects.transform_values! do |effect, value|
-			effectData = GameData::BattleEffect.get(effect)
-			next value if effectData.nil?
-			if effectData.resets_battlers_eot
-				next effectData.default
-			else
-				next value
-			end
+		eachEffectWithData() do |effect,value,effectData|
+			disableEffect(effect) if effectData.resets_battlers_eot
 		end
 
 		@battle.eachBattler { |b| b.pbContinualAbilityChecks } # Trace, end primordial weathers

@@ -1125,6 +1125,12 @@ class PokeBattle_DoublingMove < PokeBattle_Move
   end
 end
 
+PUZZLE_ROOM_DESCRIPTION = "puzzling area in which Pokémon's Attack and Sp. Atk are swapped".freeze
+TRICK_ROOM_DESCRIPTION = "tricky area in which Speed functions in reverse".freeze
+WONDER_ROOM_DESCRIPTION = "wondrous area in which the Defense and Sp. Def stats are swapped".freeze
+MAGIC_ROOM_DESCRIPTION = "bizarre area in which Pokémon's held items lose their effects".freeze
+ODD_ROOM_DESCRIPTION = "odd area in which Pokémon's Offensive and Defensive stats are swapped".freeze
+
 class PokeBattle_RoomMove < PokeBattle_Move
   def setsARoom?(); return true; end  
 

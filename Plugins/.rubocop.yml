@@ -13,7 +13,6 @@ Metrics:
   Enabled: false
    
 Layout:
-    AutoCorrect: true
     IndentationWidth: 1
 
 Layout/IndentationWidth:
@@ -64,3 +63,9 @@ Style/TrailingCommaInHashLiteral:
   
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+  
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
+  
+Layout/HashAlignment:
+  Enabled: false

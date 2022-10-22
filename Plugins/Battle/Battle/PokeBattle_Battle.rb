@@ -17,9 +17,11 @@ class PokeBattle_Battle
   end
   
   def roomActive?
-    return @field.effects[PBEffects::PuzzleRoom] || @field.effects[PBEffects::WonderRoom] ||
-        @field.effects[PBEffects::MagicRoom] || @field.effects[PBEffects::TrickRoom] ||
-		@field.effects[PBEffects::OddRoom]
+    @field.effects.each do |effect,value|
+      effectData = GameData::BattleEffect.get(effect)
+      return true if effectData.is_room?
+    end
+    return false
   end
 	
   #=============================================================================
@@ -34,9 +36,9 @@ class PokeBattle_Battle
     @scene             = scene
     @peer              = PokeBattle_BattlePeer.create
     @battleAI          = PokeBattle_AI.new(self)
-    @field             = PokeBattle_ActiveField.new    # Whole field (gravity/rooms)
-    @sides             = [PokeBattle_ActiveSide.new(0),   # Player's side
-                          PokeBattle_ActiveSide.new(1)]   # Foe's side
+    @field             = PokeBattle_ActiveField.new(self)    # Whole field (gravity/rooms)
+    @sides             = [PokeBattle_ActiveSide.new(self,0),   # Player's side
+                          PokeBattle_ActiveSide.new(self,1)]   # Foe's side
     @positions         = []                            # Battler positions
     @battlers          = []
     @sideSizes         = [1,1]   # Single battle, 1v1

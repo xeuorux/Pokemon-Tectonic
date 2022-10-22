@@ -11,7 +11,20 @@ class PokeBattle_Battler
 		@effects     = {}
 		@damageState = PokeBattle_DamageState.new
 		pbInitBlank
+		pbInitProcs()
 		pbInitEffects(false)
+	end
+
+	def pbInitProcs()
+		@remain_proc = proc do |effectData|
+			effectData.remain_battler(@battle, self)
+		end
+		@expire_proc = proc do |effectData|
+			effectData.expire_battler(@battle, self)
+		end
+		@apply_proc = Proc.new { |effectData|
+			effectData.apply_battler(@battle, self)
+		}
 	end
 
 	def pbInitBlank
@@ -137,8 +150,7 @@ class PokeBattle_Battler
 		@battle.eachBattler do |b|
 			newEffects = {}
 			b.effects.each do |effect, value|
-				effectData = GameData::BattleEffect.try_get(effect)
-				next if effectData.nil?
+				effectData = GameData::BattleEffect.get(effect)
 				next if effectData.type != :Position
 				next unless effectData.others_lose_track
 				next if value != @index

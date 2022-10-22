@@ -110,6 +110,20 @@ class PokeBattle_Battle
     # Main battle loop
     pbBattleLoop
   end
+
+  #=============================================================================
+  # Set up all battlers
+  #=============================================================================
+  def pbCreateBattler(idxBattler,pkmn,idxParty)
+    if !@battlers[idxBattler].nil?
+      raise _INTL("Battler index {1} already exists",idxBattler)
+    end
+    @battlers[idxBattler] = PokeBattle_Battler.new(self,idxBattler)
+    @positions[idxBattler] = PokeBattle_ActivePosition.new(self,idxBattler)
+    pbClearChoice(idxBattler)
+    @successStates[idxBattler] = PokeBattle_SuccessState.new
+    @battlers[idxBattler].pbInitialize(pkmn,idxParty)
+  end
   
   #=============================================================================
   # End of battle
