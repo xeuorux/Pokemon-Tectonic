@@ -712,7 +712,7 @@
 650,TELEPORT,Teleport,0EA,0,PSYCHIC,Status,0,15,0,User,-6,,"Use it to flee from any wild Pokémon, or switch out of other battles.",
 651,TRICK,Trick,0F2,0,PSYCHIC,Status,100,10,0,NearOther,0,be,"The user catches the target off guard and swaps its held item with its own.",
 652,TRICKROOM,Trick Room,11F,0,PSYCHIC,Status,0,5,0,BothSides,-7,e,"The user creates a bizarre area in which slower Pokémon get to move first for five turns.",
-653,WONDERROOM,Wonder Room,124,0,PSYCHIC,Status,0,10,0,BothSides,-7,e,"The user creates a bizarre area in which Pokémon's Defense and Sp. Def stats are swapped for 5 turns.",
+653,WONDERROOM,Wonder Room,124,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates a bizarre area in which Pokémon's Defense and Sp. Def stats are swapped for 5 turns.",
 654,MAGICPOWDER,Magic Powder,197,0,PSYCHIC,Status,100,15,0,NearOther,0,bcel,"The user scatters a cloud of magic powder that changes the target to Psychic type.",
 655,EXPANDINGFORCE,Expanding Force,190,80,PSYCHIC,Special,100,15,0,AllNearOthers,0,bef,"Attacks with its psychic power. Power increases and damages all opponents on Psychic Terrain.",
 656,EERIESPELL,Eerie Spell,521,70,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user casts a horrible spell on the opponent. This removes 4 PP from their last used move.",
