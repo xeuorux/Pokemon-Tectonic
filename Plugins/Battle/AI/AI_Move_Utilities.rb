@@ -190,7 +190,7 @@ class PokeBattle_AI
                 return true
             end
         end
-        if target.effects[PBEffects::Substitute] > 0 && move.statusMove? && !move.ignoresSubstitute?(user) && user.index != target.index
+        if target.substituted? && move.statusMove? && !move.ignoresSubstitute?(user) && user.index != target.index
             moveFailureAlert(move,user,target,"substitute immunity to most status moves")
             return true
         end

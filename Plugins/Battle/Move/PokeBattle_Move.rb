@@ -27,7 +27,7 @@ class PokeBattle_Move
 
   def pbTarget(user)
     targetData = GameData::Target.get(@target)
-    if damagingMove? && targetData.can_target_one_foe? && user.effects[PBEffects::FlareWitch]
+    if damagingMove? && targetData.can_target_one_foe? && user.effectActive?(PBEffects::FlareWitch)
       return GameData::Target.get(:AllNearFoes)
     else
       return targetData
@@ -70,7 +70,7 @@ class PokeBattle_Move
     return false if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't knock off, but bosses can
     return false if user.fainted?
     if checkingForAI
-      return false if target.substituted?
+      return false if target.effectActive?(:Substitute)
     else
       return false if target.damageState.unaffected || target.damageState.substitute
     end

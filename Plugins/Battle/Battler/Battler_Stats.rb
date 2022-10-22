@@ -34,12 +34,20 @@ class PokeBattle_Battler
 		return true
 	end
 
+	def puzzleRoom?
+		return @battle.field.effectActive?(:PuzzleRoom)
+	end
+
+	def oddRoom?
+		return @battle.field.effectActive?(:OddRoom)
+	end
+
 	def attack
-		if @battle.field.effects[PBEffects::PuzzleRoom].positive? && @battle.field.effects[PBEffects::OddRoom].positive?
+		if puzzleRoom? && oddRoom?
 			return sp_def_no_room
-		elsif @battle.field.effects[PBEffects::PuzzleRoom].positive? && @battle.field.effects[PBEffects::OddRoom] <= 0
+		elsif puzzleRoom? && !oddRoom?
 			return sp_atk_no_room
-		elsif @battle.field.effects[PBEffects::OddRoom].positive? && @battle.field.effects[PBEffects::PuzzleRoom] <= 0
+		elsif oddRoom? && !puzzleRoom?
 			return defense_no_room
 		else
 			return attack_no_room
@@ -47,11 +55,11 @@ class PokeBattle_Battler
 	end
 
 	def defense
-		if @battle.field.effects[PBEffects::PuzzleRoom].positive? && @battle.field.effects[PBEffects::OddRoom].positive?
+		if puzzleRoom? && oddRoom?
 			return sp_atk_no_room
-		elsif @battle.field.effects[PBEffects::PuzzleRoom].positive? && @battle.field.effects[PBEffects::OddRoom] <= 0
+		elsif puzzleRoom? && !oddRoom?
 			return sp_def_no_room
-		elsif @battle.field.effects[PBEffects::OddRoom].positive? && @battle.field.effects[PBEffects::PuzzleRoom] <= 0
+		elsif oddRoom? && !puzzleRoom?
 			return attack_no_room
 		else
 			return defense_no_room
@@ -59,11 +67,11 @@ class PokeBattle_Battler
 	end
 
 	def spatk
-		if @battle.field.effects[PBEffects::PuzzleRoom].positive? && @battle.field.effects[PBEffects::OddRoom].positive?
+		if puzzleRoom? && oddRoom?
 			return defense_no_room
-		elsif @battle.field.effects[PBEffects::PuzzleRoom].positive? && @battle.field.effects[PBEffects::OddRoom] <= 0
+		elsif puzzleRoom? && !oddRoom?
 			return attack_no_room
-		elsif @battle.field.effects[PBEffects::OddRoom].positive? && @battle.field.effects[PBEffects::PuzzleRoom] <= 0
+		elsif oddRoom? && !puzzleRoom?
 			return sp_def_no_room
 		else
 			return sp_atk_no_room
@@ -71,11 +79,11 @@ class PokeBattle_Battler
 	end
 
 	def spdef
-		if @battle.field.effects[PBEffects::PuzzleRoom].positive? && @battle.field.effects[PBEffects::OddRoom].positive?
+		if puzzleRoom? && oddRoom?
 			return attack_no_room
-		elsif @battle.field.effects[PBEffects::PuzzleRoom].positive? && @battle.field.effects[PBEffects::OddRoom] <= 0
+		elsif puzzleRoom? && !oddRoom?
 			return defense_no_room
-		elsif @battle.field.effects[PBEffects::OddRoom].positive? && @battle.field.effects[PBEffects::PuzzleRoom] <= 0
+		elsif oddRoom? && !puzzleRoom?
 			return sp_atk_no_room
 		else
 			return sp_def_no_room
@@ -139,9 +147,9 @@ class PokeBattle_Battler
 		# Item effects that alter calculated Speed
 		speedMult = BattleHandlers.triggerSpeedCalcItem(item, self, speedMult) if itemActive?
 		# Other effects
-		speedMult *= 2 if pbOwnSide.effects[PBEffects::Tailwind].positive?
-		speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp].positive?
-		speedMult *= 2 if @effects[PBEffects::OnDragonRide]
+		speedMult *= 2 if pbOwnSide.effectActive?(:Tailwind)
+		speedMult /= 2 if pbOwnSide.effectActive?(:Swamp)
+		speedMult *= 2 if effectActive?(:OnDragonRide)
 		# Paralysis and Chill
 		unless shouldAbilityApply?(:QUICKFEET, aiChecking)
 			if paralyzed?

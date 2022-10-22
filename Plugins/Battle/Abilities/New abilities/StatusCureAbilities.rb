@@ -32,15 +32,15 @@ BattleHandlers::StatusCureAbility.add(:LIMBER,
 
 BattleHandlers::StatusCureAbility.add(:OWNTEMPO,
   proc { |ability,battler|
-    if battler.effects[PBEffects::Confusion]!=0
+    if battler.confused?
 		battler.battle.pbShowAbilitySplash(battler)
-		battler.pbCureConfusion
+		battler.disableEffect(:Charm)
 		battler.battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis))
 		battler.battle.pbHideAbilitySplash(battler)
 	end
-	if battler.effects[PBEffects::Charm]!=0
+	if battler.charmed?
 		battler.battle.pbShowAbilitySplash(battler)
-		battler.pbCureCharm
+		battler.disableEffect(:Charm)
 		battler.battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis))
 		battler.battle.pbHideAbilitySplash(battler)
 	end
@@ -60,59 +60,26 @@ BattleHandlers::StatusCureAbility.copy(:WATERVEIL,:WATERBUBBLE)
 
 BattleHandlers::StatusCureAbility.add(:MENTALBLOCK,
   proc { |ability,battler|
-		battle = battler.battle
-    if battler.effects[PBEffects::Confusion]!=0
-		battler.battle.pbShowAbilitySplash(battler)
-		battler.pbCureConfusion
-		battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis))
-		battler.battle.pbHideAbilitySplash(battler)
+	battle = battler.battle
+
+	activate = false
+	battler.eachEffectWithData(true) do |effect,value,data|
+		next if !data.is_mental?
+		activate = true
+		break
 	end
-	if battler.effects[PBEffects::Charm]!=0
-		battler.battle.pbShowAbilitySplash(battler)
-		battler.pbCureCharm
-		battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis))
-		battler.battle.pbHideAbilitySplash(battler)
-	end
-	if battler.effects[PBEffects::Taunt]  > 0
-		battler.battle.pbShowAbilitySplash(battler)
-		battle.pbDisplay(_INTL("{1}'s taunt wore off!",battler.pbThis)) if battler.effects[PBEffects::Taunt]>0
-		battler.effects[PBEffects::Taunt]      = 0
-		battler.battle.pbHideAbilitySplash(battler)
-	end
-	if battler.effects[PBEffects::Encore] > 0
-		battler.battle.pbShowAbilitySplash(battler)
-		battle.pbDisplay(_INTL("{1}'s encore ended!",battler.pbThis)) if battler.effects[PBEffects::Encore]>0
-		battler.effects[PBEffects::Encore]     = 0
-		battler.effects[PBEffects::EncoreMove] = nil
-		battler.battle.pbHideAbilitySplash(battler)
-	end
-	if battler.effects[PBEffects::Torment]
-		battler.battle.pbShowAbilitySplash(battler)
-		battle.pbDisplay(_INTL("{1}'s torment wore off!",battler.pbThis)) if battler.effects[PBEffects::Torment]
-		battler.effects[PBEffects::Torment]    = false
-		battler.battle.pbHideAbilitySplash(battler)
-	end
-	if battler.effects[PBEffects::Disable] > 0
-		battler.battle.pbShowAbilitySplash(battler)
-		battle.pbDisplay(_INTL("{1} is no longer disabled!",battler.pbThis)) if battler.effects[PBEffects::Disable]>0
-		battler.effects[PBEffects::Disable]    = 0
-		battler.battle.pbHideAbilitySplash(battler)
-	end
-	if battler.effects[PBEffects::HealBlock] > 0
-		battler.battle.pbShowAbilitySplash(battler)
-		battle.pbDisplay(_INTL("{1}'s Heal Block wore off!",battler.pbThis)) if battler.effects[PBEffects::HealBlock]>0
-		battler.effects[PBEffects::HealBlock]  = 0
-		battler.battle.pbHideAbilitySplash(battler)
-	end
-	if battler.flustered?
-		battler.battle.pbShowAbilitySplash(battler)
-		battler.pbCureStatus(true,:FLUSTERED)
-		battler.battle.pbHideAbilitySplash(battler)
-	end
-	if battler.mystified?
-		battler.battle.pbShowAbilitySplash(battler)
-		battler.pbCureStatus(true,:MYSTIFIED)
-		battler.battle.pbHideAbilitySplash(battler)
+	activate = true if battler.flustered? || battler.mystified?
+
+	if activate
+		battle.pbShowAbilitySplash(battler)
+		# Disable all mental effects
+		battler.eachEffectWithData(true) do |effect,value,data|
+			next if !data.is_mental?
+			battler.disableEffect(effect)
+		end
+		battler.pbCureStatus(true,:FLUSTERED) if battler.flustered?
+		battler.pbCureStatus(true,:MYSTIFIED) if battler.mystified?
+		battle.pbHideAbilitySplash(battler)
 	end
   }
 )

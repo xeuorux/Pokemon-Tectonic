@@ -927,7 +927,7 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    score -= 20 if target.substituted?
+    score -= 20 if target.effectActive?(:Substitute)
     return score
   end
 end
@@ -1787,7 +1787,7 @@ class PokeBattle_Move_0BA < PokeBattle_Move
 
   def getScore(score,user,target,skill=100)
     if damagingMove?
-      score -= 50 if target.hasActiveAbilityAI?(:MENTALBLOCK) || target.substituted?
+      score -= 50 if target.hasActiveAbilityAI?(:MENTALBLOCK) || target.effectActive?(:Substitute)
     else
       return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
     end
@@ -2062,7 +2062,7 @@ class PokeBattle_Move_0C4 < PokeBattle_TwoTurnMove
 
   def pbIsChargingTurn?(user)
     ret = super
-    if !user.effects[PBEffects::TwoTurnAttack]
+    if !user.effectActive?(:TwoTurnAttack)
       if [:Sun, :HarshSun].include?(@battle.pbWeather)
         @powerHerb = false
         @chargingTurn = true
@@ -2190,7 +2190,7 @@ class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
 
   def pbIsChargingTurn?(user)
     ret = super
-    if !user.effects[PBEffects::TwoTurnAttack]
+    if !user.effectActive?(:TwoTurnAttack)
       if user.hasActiveAbility?(:BURROWER)
         @powerHerb = false
         @chargingTurn = true
@@ -2273,8 +2273,8 @@ class PokeBattle_Move_0CE < PokeBattle_TwoTurnMove
     # NOTE: Sky Drop doesn't benefit from Power Herb, probably because it works
     #       differently (i.e. immobilises the target during use too).
     @powerHerb = false
-    @chargingTurn = (user.effects[PBEffects::TwoTurnAttack].nil?)
-    @damagingTurn = (!user.effects[PBEffects::TwoTurnAttack].nil?)
+    @chargingTurn = !effectActive?(:TwoTurnAttack)
+    @damagingTurn = effectActive?(:TwoTurnAttack)
     return !@damagingTurn
   end
 
@@ -2283,7 +2283,7 @@ class PokeBattle_Move_0CE < PokeBattle_TwoTurnMove
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    if target.effects[PBEffects::Substitute]>0 && !ignoresSubstitute?(user)
+    if target.substituted? && !ignoresSubstitute?(user)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2366,7 +2366,7 @@ class PokeBattle_Move_0CF < PokeBattle_Move
 
   def getScore(score,user,target,skill=100)
     score -= 20 # Annoying AI move tax
-    score -= 20 if target.effects[PBEffects::Trapping] > 0 || target.substituted?
+    score -= 20 if target.effects[PBEffects::Trapping] > 0 || target.effectActive?(:Substitute)
     return score
   end
 end
@@ -3143,7 +3143,7 @@ end
 class PokeBattle_Move_0EC < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
     if @battle.wildBattle? && target.level<=user.level && @battle.canRun &&
-        (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user)) && !target.boss
+        (target.substituted? || ignoresSubstitute?(user)) && !target.boss
       @battle.decision = 3
     end
   end
@@ -3216,7 +3216,7 @@ class PokeBattle_Move_0ED < PokeBattle_Move
       score += 75 if !user.hasDamagingAttack?
     end
     score = getSwitchOutMoveScore(score,user,target,skill)
-    score -= 40 if user.effects[PBEffects::Confusion] > 0 || user.effects[PBEffects::Charm] > 0
+    score -= 40 if user.confused? || user.charmed?
     return score
   end
 end
@@ -3387,11 +3387,19 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
     oldUserItem = user.item;     oldUserItemName = user.itemName
     oldTargetItem = target.item; oldTargetItemName = target.itemName
     user.item                             = oldTargetItem
-    user.effects[PBEffects::ChoiceBand]   = nil
-    user.effects[PBEffects::Unburden]     = (!user.item && oldUserItem)
+    user.disableEffect(:ChoiceBand)
+    if (!user.item && oldUserItem)
+      user.applyEffect(:Unburden)
+    else
+      user.disableEffect(:Unburden)
+    end
     target.item                           = oldUserItem
-    target.effects[PBEffects::ChoiceBand] = nil
-    target.effects[PBEffects::Unburden]   = (!target.item && oldTargetItem)
+    target.disableEffect(:ChoiceBand)
+    if !target.item && oldTargetItem
+      target.applyEffect(:Unburden)
+    else
+      target.disableEffect(:Unburden)
+    end
     @battle.pbDisplay(_INTL("{1} switched items with its opponent!",user.pbThis))
     @battle.pbDisplay(_INTL("{1} obtained {2}.",user.pbThis,oldTargetItemName)) if oldTargetItem
     @battle.pbDisplay(_INTL("{1} obtained {2}.",target.pbThis,oldUserItemName)) if oldUserItem
@@ -3497,7 +3505,7 @@ end
 class PokeBattle_Move_0F5 < PokeBattle_Move
   def canIncinerateTargetsItem?(target,checkingForAI=false)
     if checkingForAI
-      return false if target.substituted?
+      return false if target.effectActive?(:Substitute)
     else
       return false if target.damageState.substitute || target.damageState.berryWeakened
     end

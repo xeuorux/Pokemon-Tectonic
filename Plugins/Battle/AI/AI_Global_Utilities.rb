@@ -13,8 +13,8 @@ def pbRoughStatCalc(atkStat,atkStage)
   end
 
 def pbRoughStat(battler,stat,skill=100)
-	castBattler = (battler.effects[PBEffects::Illusion] && battler.pbOwnedByPlayer?) ? battler.effects[PBEffects::Illusion] : battler
-	return battler.pbSpeed if stat==:SPEED && !battler.effects[PBEffects::Illusion]
+	castBattler = (battler.illusion? && battler.pbOwnedByPlayer?) ? battler.disguisedAs : battler
+	return battler.pbSpeed if stat == :SPEED && !battler.illusion?
 	
 	stage = battler.stages[stat]+6
 	value = 0

@@ -348,10 +348,10 @@ class PokeBattle_Scene
   end
   
   def pbBattleInfoMenu
-	# Create targeting window
-	cw = BattleInfoDisplay.new(@viewport,300,@battle)
-	totalBattlers = @battle.pbSideBattlerCount + @battle.pbOpposingBattlerCount
-	doRefresh = false
+    # Create targeting window
+    cw = BattleInfoDisplay.new(@viewport,300,@battle)
+    totalBattlers = @battle.pbSideBattlerCount + @battle.pbOpposingBattlerCount
+    doRefresh = false
     loop do
       pbUpdate(cw)
       cw.refresh
@@ -373,9 +373,8 @@ class PokeBattle_Scene
         pbPlayCursorSE
       elsif Input.trigger?(Input::SPECIAL) && cw.individual.nil? && $DEBUG
         #truthifyAllEffects()
-        
-        @battle.battlers[0].effects[PBEffects::Illusion] = false
-        @battle.battlers[0].effects[PBEffects::ProtectRate] = false
+        @battle.battlers[0].disableEffect(:Illusion)
+        @battle.battlers[0].disableEffect(:ProtectRate)
         pbPlayDecisionSE
       elsif Input.trigger?(Input::USE)
         battler = nil

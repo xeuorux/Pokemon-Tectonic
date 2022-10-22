@@ -85,18 +85,6 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
     next if target.fainted?
     next if move.pbContactMove?(user)
     next if battle.pbRandom(100)>=30
-	  # next if target.effects[PBEffects::Charm] > 0
-    # battle.pbShowAbilitySplash(target)
-    # if user.pbCanCharm?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-    #    user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-    #   msg = nil
-    #   if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-    #     msg = _INTL("{1}'s {2} charmed {3}!",target.pbThis,
-    #        target.abilityName,user.pbThis(true))
-    #   end
-    #   user.pbCharm
-    # end
-    # battle.pbHideAbilitySplash(target)
     next if user.mystified?
     battle.pbShowAbilitySplash(target)
     if user.pbCanMystify?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
@@ -115,18 +103,6 @@ BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
     next if target.fainted?
     next if !move.pbContactMove?(user)
     next if battle.pbRandom(100)>=30
-	  # next if target.effects[PBEffects::Confusion] > 0
-    # battle.pbShowAbilitySplash(target)
-    # if user.pbCanConfuse?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-    #    user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-    #   msg = nil
-    #   if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-    #     msg = _INTL("{1}'s {2} confused {3}!",target.pbThis,
-    #        target.abilityName,user.pbThis(true))
-    #   end
-    #   user.pbConfuse
-    # end
-    # battle.pbHideAbilitySplash(target)
     next if user.flustered?
     battle.pbShowAbilitySplash(target)
     if user.pbCanFluster?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)

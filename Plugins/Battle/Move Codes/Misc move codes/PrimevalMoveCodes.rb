@@ -103,7 +103,7 @@ class PokeBattle_Move_606 < PokeBattle_Move_024
 	def pbEffectGeneral(user)
 		super
 		@battle.pbDisplay(_INTL("{1} gained a massive amount of mass!",user.pbThis))
-		user.effects[PBEffects::WeightChange] += 1000
+		user.incrementEffect(:WeightChange, 1000)
 		transformType(user,:FIGHTING)
 	end
 end

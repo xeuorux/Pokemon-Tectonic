@@ -11,24 +11,24 @@ class PokeBattle_Battler
 	# (e.g. -1).
 	def pbTypes(withType3 = false, allowIllusions = false)
 		# If the pokemon is disguised as another pokemon, fake its type bars
-		if allowIllusions && !@effects[PBEffects::Illusion].nil?
-			ret = @effects[PBEffects::Illusion].types
+		if allowIllusions && illusion?
+			ret = disguisedAs.types
 		else
 			ret = [@type1]
 			ret.push(@type2) if @type2 != @type1
 		end
 		# Burn Up erases the Fire-type.
-		ret.delete(:FIRE) if @effects[PBEffects::BurnUp]
+		ret.delete(:FIRE) if effectActive?(:BurnUp)
 		# Cold Conversion erases the Ice-type.
-		ret.delete(:ICE) if @effects[PBEffects::ColdConversion]
+		ret.delete(:ICE) if effectActive?(:ColdConversion)
 		# Roost erases the Flying-type. If there are no types left, adds the Normal-
 		# type.
-		if @effects[PBEffects::Roost]
+		if effectActive?(:ROOST)
 			ret.delete(:FLYING)
 			ret.push(:NORMAL) if ret.length.zero?
 		end
 		# Add the third type specially.
-		ret.push(@effects[PBEffects::Type3]) if withType3 && @effects[PBEffects::Type3] && !ret.include?(@effects[PBEffects::Type3])
+		ret.push(@effects[:Type3]) if withType3 && effectActive?(:Type3) && !ret.include?(@effects[:Type3])
 		return ret
 	end
 
@@ -53,8 +53,8 @@ class PokeBattle_Battler
 	#       the item - the code existing is enough to cause the loop).
 	def abilityActive?(ignore_fainted = false)
 		return false if fainted? && !ignore_fainted
-		return false if @battle.field.effects[PBEffects::NeutralizingGas]
-		return false if @effects[PBEffects::GastroAcid]
+		return false if @battle.field.effectActive?(:NeutralizingGas)
+		return false if effectActive?(:GastroAcid)
 		return true
 	end
 
@@ -131,9 +131,9 @@ class PokeBattle_Battler
 
 	def itemActive?(ignoreFainted = false)
 		return false if fainted? && !ignoreFainted
-		return false if (@effects[PBEffects::Embargo]).positive?
-		return false if pbOwnSide.effects[PBEffects::EmpoweredEmbargo]
-		return false if @battle.field.effects[PBEffects::MagicRoom].positive?
+		return false if effectActive?(:Embargo)
+		return false if pbOwnSide.effectActive?(:EmpoweredEmbargo)
+		return false if @battle.field.effectActive?(:MagicRoom)
 		return false if hasActiveAbility?(:KLUTZ, ignoreFainted)
 		return true
 	end
@@ -149,7 +149,7 @@ class PokeBattle_Battler
 	def unlosableItem?(check_item)
 		return false unless check_item
 		return true if GameData::Item.get(check_item).is_mail?
-		return false if @effects[PBEffects::Transform]
+		return false if effectActive?(:Transform)
 		# Items that change a Pokémon's form
 		if mega? # Check if item was needed for this Mega Evolution
 			return true if @pokemon.species_data.mega_stone == check_item
@@ -202,16 +202,16 @@ class PokeBattle_Battler
 
 	def airborne?(checkingForAI = false)
 		return false if hasActiveItem?(:IRONBALL)
-		return false if @effects[PBEffects::Ingrain]
-		return false if @effects[PBEffects::SmackDown]
-		return false if @battle.field.effects[PBEffects::Gravity].positive?
+		return false if effectActive?(:Ingrain)
+		return false if effectActive?(:SmackDown)
+		return false if @battle.field.effectActive?(:Gravity)
 		return false if @battle.field.terrain == :Grassy && shouldAbilityApply?(:NESTING,
 																																																																										checkingForAI)
 		return true if shouldTypeApply?(:FLYING, checkingForAI)
 		return true if hasLevitate?(checkingForAI) && !@battle.moldBreaker
 		return true if hasActiveItem?(:AIRBALLOON)
-		return true if (@effects[PBEffects::MagnetRise]).positive?
-		return true if (@effects[PBEffects::Telekinesis]).positive?
+		return true if effectActive?(:MagnetRise)
+		return true if effectActive?(:Telekinesis)
 		return false
 	end
 
@@ -266,7 +266,7 @@ class PokeBattle_Battler
 
 	def canHeal?
 		return false if fainted? || @hp >= @totalhp
-		return false if (@effects[PBEffects::HealBlock]).positive?
+		return false if effectActive?(:HealBlock)
 		return true
 	end
 
@@ -293,8 +293,8 @@ class PokeBattle_Battler
 	end
 
 	def inTwoTurnAttack?(*arg)
-		return false unless @effects[PBEffects::TwoTurnAttack]
-		ttaFunction = GameData::Move.get(@effects[PBEffects::TwoTurnAttack]).function_code
+		return false unless effectActive?(:TwoTurnAttack)
+		ttaFunction = GameData::Move.get(@effects[:TwoTurnAttack]).function_code
 		arg.each { |a| return true if a == ttaFunction }
 		return false
 	end
@@ -304,10 +304,10 @@ class PokeBattle_Battler
 	end
 
 	def pbEncoredMoveIndex
-		return -1 if (@effects[PBEffects::Encore]).zero? || !@effects[PBEffects::EncoreMove]
+		return -1 if effectActive?(:Encore)
 		ret = -1
 		eachMoveWithIndex do |m, i|
-			next if m.id != @effects[PBEffects::EncoreMove]
+			next if m.id != @effects[:EncoreMove]
 			ret = i
 			break
 		end
@@ -483,5 +483,9 @@ class PokeBattle_Battler
 
 	def firstTurn?
 		return @turnCount <= 1
+	end
+
+	def substituted?
+		return effectActive?(:Substitute)
 	end
 end

@@ -123,7 +123,7 @@ def getFlinchingMoveScore(score,user,target,skill,policies,magnitude=3)
 	userSpeed = pbRoughStat(user,:SPEED,skill)
     targetSpeed = pbRoughStat(target,:SPEED,skill)
     
-    if target.hasActiveAbilityAI?(:INNERFOCUS) || target.effects[PBEffects::Substitute] > 0 ||
+    if target.hasActiveAbilityAI?(:INNERFOCUS) || target.substituted? ||
           target.effects[PBEffects::FlinchedAlready] || targetSpeed > userSpeed
       score -= magnitude * 10
     else
@@ -194,7 +194,7 @@ def getSwitchOutMoveScore(score,user,target,skill=100)
 end
 
 def getForceOutMoveScore(score,user,target,skill=100,statusMove=false)
-	return 0 if target.substituted?
+	return 0 if target.effectActive?(:Substitute)
 	count = 0
 	@battle.pbParty(target.index).each_with_index do |pkmn,i|
 		count += 1 if @battle.pbCanSwitchLax?(target.index,i)
@@ -235,7 +235,7 @@ def getMultiStatUpMoveScore(statUp,score,user,target,skill=100,statusMove=true)
     score += 30 if target.hp > target.totalhp / 2
 	
 	# Stat up moves tend to be strong when you are protected by a substitute
-	score += 30 if target.substituted?
+	score += 30 if target.effectActive?(:Substitute)
 
     # Feel more free to use the move the fewer pokemon that can attack the buff receiver this turn
     target.eachPotentialAttacker do |b|

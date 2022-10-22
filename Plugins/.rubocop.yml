@@ -17,7 +17,7 @@ Layout:
 
 Layout/IndentationWidth:
   Width: 1
-  
+   
 Layout/IndentationStyle:
   EnforcedStyle: tabs
   IndentationWidth: 1
@@ -26,7 +26,7 @@ Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
 Layout/LineLength:
-  Enabled: false
+    Max: 120
   
 Style/RedundantReturn:
   Enabled: false

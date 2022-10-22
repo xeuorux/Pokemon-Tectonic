@@ -756,8 +756,8 @@ class PokeBattle_Move_031 < PokeBattle_StatUpMove
   end
 
   def pbEffectGeneral(user)
-    if user.pbWeight+user.effects[PBEffects::WeightChange]>1
-      user.effects[PBEffects::WeightChange] -= 1000
+    if user.pbWeight + user.effects[:WeightChange]>1
+      user.effects[:WeightChange] -= 100
       @battle.pbDisplay(_INTL("{1} became nimble!",user.pbThis))
     end
     super
@@ -1328,7 +1328,7 @@ class PokeBattle_Move_050 < PokeBattle_Move
   end
   
   def getScore(score,user,target,skill=100)
-    if target.effects[PBEffects::Substitute] == 0 && target.hasAlteredStatStages?
+    if !target.substituted? && target.hasAlteredStatStages?
 			GameData::Stat.each_battle do |s|
 				score += target.stages[s.id] * 10
 			end
@@ -2222,8 +2222,7 @@ class PokeBattle_Move_069 < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user,target)
-    if target.effects[PBEffects::Transform] ||
-       target.effects[PBEffects::Illusion]
+    if target.effects[PBEffects::Transform] || transform.illusion?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end

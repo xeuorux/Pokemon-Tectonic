@@ -35,8 +35,7 @@ class PokeBattle_Battler
 		# Check the stat stage
 		if statStageAtMax?(stat)
 			if showFailMsg
-				@battle.pbDisplay(_INTL("{1}'s {2} won't go any higher!",
-																												pbThis, GameData::Stat.get(stat).name))
+				@battle.pbDisplay(_INTL("{1}'s {2} won't go any higher!",pbThis, GameData::Stat.get(stat).name))
 			end
 			return false
 		end
@@ -74,20 +73,20 @@ class PokeBattle_Battler
 		if user.index == @index
 			arrStatTexts = [
 				_INTL("{1}'s {2}{4} raised its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-										boss? ? ' slightly' : ''),
+						boss? ? ' slightly' : ''),
 				_INTL("{1}'s {2}{4} raised its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-										boss? ? '' : ' sharply'),
+						boss? ? '' : ' sharply'),
 				_INTL("{1}'s {2}{4} raised its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-										boss? ? ' greatly' : ' drastically'),
+						boss? ? ' greatly' : ' drastically'),
 			]
 		else
 			arrStatTexts = [
 				_INTL("{1}'s {2}{5} raised {3}'s {4}!", user.pbThis, cause, pbThis(true),
-										GameData::Stat.get(stat).name, boss? ? ' slightly' : ''),
+						GameData::Stat.get(stat).name, boss? ? ' slightly' : ''),
 				_INTL("{1}'s {2}{5} raised {3}'s {4}!", user.pbThis, cause, pbThis(true),
-										GameData::Stat.get(stat).name, boss? ? '' : ' sharply'),
+						GameData::Stat.get(stat).name, boss? ? '' : ' sharply'),
 				_INTL("{1}'s {2}{5} raised {3}'s {4}!", user.pbThis, cause, pbThis(true),
-										GameData::Stat.get(stat).name, boss? ? ' greatly' : ' drastically'),
+						GameData::Stat.get(stat).name, boss? ? ' greatly' : ' drastically'),
 			]
 		end
 		@battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
@@ -123,11 +122,11 @@ class PokeBattle_Battler
 		# Contrary
 		return pbCanRaiseStatStage?(stat, user, move, showFailMsg, true) if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
 		if !user || user.index != @index # Not self-inflicted
-			if (@effects[PBEffects::Substitute]).positive? && !(move && move.ignoresSubstitute?(user))
+			if substituted? && !(move && move.ignoresSubstitute?(user))
 				@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis)) if showFailMsg
 				return false
 			end
-			if pbOwnSide.effects[PBEffects::Mist].positive? &&
+			if pbOwnSide.effectActive?(:Mist) &&
 						!(user && user.hasActiveAbility?(:INFILTRATOR))
 				@battle.pbDisplay(_INTL('{1} is protected by Mist!', pbThis)) if showFailMsg
 				return false
@@ -154,8 +153,7 @@ class PokeBattle_Battler
 		# Check the stat stage
 		if statStageAtMin?(stat)
 			if showFailMsg
-				@battle.pbDisplay(_INTL("{1}'s {2} won't go any lower!",
-																												pbThis, GameData::Stat.get(stat).name))
+				@battle.pbDisplay(_INTL("{1}'s {2} won't go any lower!",pbThis, GameData::Stat.get(stat).name))
 			end
 			return false
 		end
@@ -191,8 +189,7 @@ class PokeBattle_Battler
 				return false
 			end
 			if !user.hasActiveAbility?(:MIRRORARMOR) && user.pbCanLowerStatStage?(stat, nil, nil, true)
-				user.pbLowerStatStageByAbility(stat, increment, user, splashAnim = false,
-																																			checkContact = false)
+				user.pbLowerStatStageByAbility(stat, increment, user, splashAnim = false,							checkContact = false)
 				# Trigger user's abilities upon stat loss
 				BattleHandlers.triggerAbilityOnStatLoss(user.ability, user, stat, self) if user.abilityActive?
 			end
@@ -217,7 +214,7 @@ class PokeBattle_Battler
 		@battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
 		# Trigger abilities upon stat loss
 		BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user) if abilityActive?
-		@effects[PBEffects::LashOut] = true
+		applyEffect(:StatsDropped)
 		return true
 	end
 
@@ -232,8 +229,7 @@ class PokeBattle_Battler
 				return false
 			end
 			if !user.hasActiveAbility?(:MIRRORARMOR) && user.pbCanLowerStatStage?(stat, nil, nil, true)
-				user.pbLowerStatStageByAbility(stat, increment, user, splashAnim = false,
-																																			checkContact = false)
+				user.pbLowerStatStageByAbility(stat, increment, user, splashAnim = false,							checkContact = false)
 				# Trigger user's abilities upon stat loss
 				BattleHandlers.triggerAbilityOnStatLoss(user.ability, user, stat, self) if user.abilityActive?
 			end
@@ -252,26 +248,26 @@ class PokeBattle_Battler
 		if user.index == @index
 			arrStatTexts = [
 				_INTL("{1}'s {2}{4} lowered its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-										boss? ? ' slightly' : ''),
+						boss? ? ' slightly' : ''),
 				_INTL("{1}'s {2}{4} lowered its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-										boss? ? '' : ' harshly'),
+						boss? ? '' : ' harshly'),
 				_INTL("{1}'s {2}{4} lowered its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-										boss? ? ' severely' : ' badly'),
+						boss? ? ' severely' : ' badly'),
 			]
 		else
 			arrStatTexts = [
 				_INTL("{1}'s {2}{5} lowered {3}'s {4}!", user.pbThis, cause, pbThis(true),
-										GameData::Stat.get(stat).name, boss? ? ' slightly' : ''),
+						GameData::Stat.get(stat).name, boss? ? ' slightly' : ''),
 				_INTL("{1}'s {2}{5} lowered {3}'s {4}!", user.pbThis, cause, pbThis(true),
-										GameData::Stat.get(stat).name, boss? ? '' : ' harshly'),
+						GameData::Stat.get(stat).name, boss? ? '' : ' harshly'),
 				_INTL("{1}'s {2}{5} lowered {3}'s {4}!", user.pbThis, cause, pbThis(true),
-										GameData::Stat.get(stat).name, boss? ? ' severely' : ' badly'),
+						GameData::Stat.get(stat).name, boss? ? ' severely' : ' badly'),
 			]
 		end
 		@battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
 		# Trigger abilities upon stat loss
 		BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user) if abilityActive?
-		@effects[PBEffects::LashOut] = true
+		applyEffect(:StatsDropped)
 		return true
 	end
 
@@ -293,19 +289,18 @@ class PokeBattle_Battler
 	def pbLowerAttackStatStageIntimidate(user)
 		return false if fainted?
 		# NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
-		if (@effects[PBEffects::Substitute]).positive?
+		if substituted?
 			if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
 				@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
 			else
-				@battle.pbDisplay(_INTL("{1}'s substitute protected it from {2}'s {3}!",
-																												pbThis, user.pbThis(true), user.abilityName))
+				@battle.pbDisplay(_INTL("{1}'s substitute protected it from {2}'s {3}!",pbThis, user.pbThis(true), user.abilityName))
 			end
 			return false
 		end
 		if hasActiveAbility?(:INNERFOCUS)
 			@battle.pbShowAbilitySplash(self, true)
 			@battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-																											pbThis, abilityName, user.pbThis(true), user.abilityName))
+					pbThis, abilityName, user.pbThis(true), user.abilityName))
 			@battle.pbHideAbilitySplash(self)
 			return false
 		end
@@ -314,25 +309,19 @@ class PokeBattle_Battler
 		#       Intimidate is blocked somehow (i.e. the messages should mention the
 		#       Intimidate ability by name).
 		unless hasActiveAbility?(:CONTRARY)
-			if pbOwnSide.effects[PBEffects::Mist].positive?
-				@battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by Mist!",
-																												pbThis, user.pbThis(true), user.abilityName))
+			if pbOwnSide.effectActive?(:Mist)
+				@battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by Mist!",pbThis, user.pbThis(true), user.abilityName))
 				return false
 			end
-			if abilityActive? && (BattleHandlers.triggerStatLossImmunityAbility(ability, self, :ATTACK,
-																																																																							@battle, false) ||
-										BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(ability, self, :ATTACK, @battle,
-																																																																				false))
-				@battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-																												pbThis, abilityName, user.pbThis(true), user.abilityName))
+			if abilityActive? && (BattleHandlers.triggerStatLossImmunityAbility(ability, self, :ATTACK,											@battle, false) ||
+						BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(ability, self, :ATTACK, @battle,								false))
+				@battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",pbThis, abilityName, user.pbThis(true), user.abilityName))
 				return false
 			end
 			eachAlly do |b|
 				next unless b.abilityActive?
-				if BattleHandlers.triggerStatLossImmunityAllyAbility(b.ability, b, self, :ATTACK, @battle,
-																																																									false)
-					@battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by {4}'s {5}!",
-																													pbThis, user.pbThis(true), user.abilityName, b.pbThis(true), b.abilityName))
+				if BattleHandlers.triggerStatLossImmunityAllyAbility(b.ability, b, self, :ATTACK, @battle,	false)
+					@battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by {4}'s {5}!",	pbThis, user.pbThis(true), user.abilityName, b.pbThis(true), b.abilityName))
 					return false
 				end
 			end
@@ -344,19 +333,18 @@ class PokeBattle_Battler
 	def pbLowerSpecialAttackStatStageFascinate(user)
 		return false if fainted?
 		# NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
-		if (@effects[PBEffects::Substitute]).positive?
+		if substitute?
 			if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
 				@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
 			else
-				@battle.pbDisplay(_INTL("{1}'s substitute protected it from {2}'s {3}!",
-																												pbThis, user.pbThis(true), user.abilityName))
+				@battle.pbDisplay(_INTL("{1}'s substitute protected it from {2}'s {3}!",pbThis, user.pbThis(true), user.abilityName))
 			end
 			return false
 		end
 		if hasActiveAbility?(:INNERFOCUS)
 			@battle.pbShowAbilitySplash(self, true)
 			@battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-																											pbThis, abilityName, user.pbThis(true), user.abilityName))
+					pbThis, abilityName, user.pbThis(true), user.abilityName))
 			@battle.pbHideAbilitySplash(self)
 			return false
 		end
@@ -365,25 +353,19 @@ class PokeBattle_Battler
 		#       Intimidate is blocked somehow (i.e. the messages should mention the
 		#       Intimidate ability by name).
 		unless hasActiveAbility?(:CONTRARY)
-			if pbOwnSide.effects[PBEffects::Mist].positive?
-				@battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by Mist!",
-																												pbThis, user.pbThis(true), user.abilityName))
+			if pbOwnSide.effectActive?(:Mist)
+				@battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by Mist!",pbThis, user.pbThis(true), user.abilityName))
 				return false
 			end
-			if abilityActive? && (BattleHandlers.triggerStatLossImmunityAbility(ability, self,
-																																																																							:SPECIAL_ATTACK, @battle, false) ||
-										BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(ability, self, :SPECIAL_ATTACK,
-																																																																				@battle, false))
-				@battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-																												pbThis, abilityName, user.pbThis(true), user.abilityName))
+			if abilityActive? && (BattleHandlers.triggerStatLossImmunityAbility(ability, self,											:SPECIAL_ATTACK, @battle, false) ||
+						BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(ability, self, :SPECIAL_ATTACK,								@battle, false))
+				@battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",pbThis, abilityName, user.pbThis(true), user.abilityName))
 				return false
 			end
 			eachAlly do |b|
 				next unless b.abilityActive?
-				if BattleHandlers.triggerStatLossImmunityAllyAbility(b.ability, b, self, :SPECIAL_ATTACK,
-																																																									@battle, false)
-					@battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by {4}'s {5}!",
-																													pbThis, user.pbThis(true), user.abilityName, b.pbThis(true), b.abilityName))
+				if BattleHandlers.triggerStatLossImmunityAllyAbility(b.ability, b, self, :SPECIAL_ATTACK,	@battle, false)
+					@battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by {4}'s {5}!",	pbThis, user.pbThis(true), user.abilityName, b.pbThis(true), b.abilityName))
 					return false
 				end
 			end
@@ -395,19 +377,18 @@ class PokeBattle_Battler
 	def pbLowerSpeedStatStageFrustrate(user)
 		return false if fainted?
 		# NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
-		if (@effects[PBEffects::Substitute]).positive?
+		if substituted?
 			if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
 				@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
 			else
-				@battle.pbDisplay(_INTL("{1}'s substitute protected it from {2}'s {3}!",
-																												pbThis, user.pbThis(true), user.abilityName))
+				@battle.pbDisplay(_INTL("{1}'s substitute protected it from {2}'s {3}!",pbThis, user.pbThis(true), user.abilityName))
 			end
 			return false
 		end
 		if hasActiveAbility?(:INNERFOCUS)
 			@battle.pbShowAbilitySplash(self, true)
 			@battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-																											pbThis, abilityName, user.pbThis(true), user.abilityName))
+					pbThis, abilityName, user.pbThis(true), user.abilityName))
 			@battle.pbHideAbilitySplash(self)
 			return false
 		end
@@ -416,25 +397,19 @@ class PokeBattle_Battler
 		#       Intimidate is blocked somehow (i.e. the messages should mention the
 		#       Intimidate ability by name).
 		unless hasActiveAbility?(:CONTRARY)
-			if pbOwnSide.effects[PBEffects::Mist].positive?
-				@battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by Mist!",
-																												pbThis, user.pbThis(true), user.abilityName))
+			if pbOwnSide.effectActive?(:Mist)
+				@battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by Mist!",pbThis, user.pbThis(true), user.abilityName))
 				return false
 			end
-			if abilityActive? && (BattleHandlers.triggerStatLossImmunityAbility(ability, self, :SPEED,
-																																																																							@battle, false) ||
-										BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(ability, self, :SPEED, @battle,
-																																																																				false))
-				@battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-																												pbThis, abilityName, user.pbThis(true), user.abilityName))
+			if abilityActive? && (BattleHandlers.triggerStatLossImmunityAbility(ability, self, :SPEED,											@battle, false) ||
+						BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(ability, self, :SPEED, @battle,								false))
+				@battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",pbThis, abilityName, user.pbThis(true), user.abilityName))
 				return false
 			end
 			eachAlly do |b|
 				next unless b.abilityActive?
-				if BattleHandlers.triggerStatLossImmunityAllyAbility(b.ability, b, self, :SPEED, @battle,
-																																																									false)
-					@battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by {4}'s {5}!",
-																													pbThis, user.pbThis(true), user.abilityName, b.pbThis(true), b.abilityName))
+				if BattleHandlers.triggerStatLossImmunityAllyAbility(b.ability, b, self, :SPEED, @battle,	false)
+					@battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by {4}'s {5}!",	pbThis, user.pbThis(true), user.abilityName, b.pbThis(true), b.abilityName))
 					return false
 				end
 			end

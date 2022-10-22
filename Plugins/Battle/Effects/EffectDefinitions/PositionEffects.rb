@@ -3,7 +3,7 @@ GameData::BattleEffect.register_effect(:Position,{
 	:real_name => "Turns Till Move",
 	:type => :Integer,
 	:ticks_down => true,
-    :connected_effects => [:FutureSightMove, :FutureSightUserPartyIndex, :FutureSightUserIndex],
+    :sub_effects => [:FutureSightMove, :FutureSightUserPartyIndex, :FutureSightUserIndex],
 	:expire_proc => Proc.new { |battle,index,position,battler|
 		userIndex = position.effects[:FutureSightUserIndex]
 		partyIndex = position.effects[:FutureSightUserPartyIndex]
@@ -82,7 +82,7 @@ GameData::BattleEffect.register_effect(:Position,{
 			battler.pbRecoverHP(pos.effects[PBEffects::WishAmount],true,true,true,healingMessage)
 		end
 	},
-	:connected_effects => [:WishAmount,:WishMaker],
+	:sub_effects => [:WishAmount,:WishMaker],
 })
 
 GameData::BattleEffect.register_effect(:Position,{
@@ -101,7 +101,7 @@ GameData::BattleEffect.register_effect(:Position,{
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :Refuge,
 	:real_name => "Refuge",
-	:connected_effects => [:RefugeMaker],
+	:sub_effects => [:RefugeMaker],
 })
 
 GameData::BattleEffect.register_effect(:Position,{

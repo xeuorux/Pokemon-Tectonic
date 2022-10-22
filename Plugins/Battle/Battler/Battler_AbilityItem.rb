@@ -95,16 +95,16 @@ class PokeBattle_Battler
 	# Ability change
 	#=============================================================================
 	def pbOnAbilityChanged(oldAbil)
-		if @effects[PBEffects::Illusion] && oldAbil == :ILLUSION
-			@effects[PBEffects::Illusion] = nil
-			unless @effects[PBEffects::Transform]
+		if effectActive?(:Illusion) && oldAbil == :ILLUSION
+			disableEffect(:Illusion)
+			unless effectActive?(:Transform)
 				@battle.scene.pbChangePokemon(self, @pokemon)
 				@battle.pbDisplay(_INTL("{1}'s {2} wore off!", pbThis, GameData::Ability.get(oldAbil).name))
 				@battle.pbSetSeen(self)
 			end
 		end
-		@effects[PBEffects::GastroAcid] = false if unstoppableAbility?
-		@effects[PBEffects::SlowStart]  = 0 if ability != :SLOWSTART
+		disableEffect(:GastroAcid) if unstoppableAbility?
+		disableEffect(:SlowStart) if ability != :SLOWSTART
 		# Revert form if Flower Gift/Forecast was lost
 		pbCheckFormOnWeatherChange
 		# Check for end of primordial weather
@@ -130,8 +130,8 @@ class PokeBattle_Battler
 	# Off.
 	def pbRemoveItem(permanent = true)
 		permanent = false # Items respawn after battle always!!
-		@effects[PBEffects::ChoiceBand] = nil
-		@effects[PBEffects::Unburden]   = true if item
+		disableEffect(:ChoiceBand)
+		applyEffect(:Unburden) if item
 		setInitialItem(nil) if permanent && item == initialItem
 		self.item = nil
 		@battle.scene.pbRefresh
@@ -149,8 +149,8 @@ class PokeBattle_Battler
 		@battle.triggerBattlerConsumedItemDialogue(self, @item_id)
 		if recoverable
 			setRecycleItem(@item_id)
-			@effects[PBEffects::PickupItem] = @item_id
-			@effects[PBEffects::PickupUse]  = @battle.nextPickupUse
+			applyEffect(:PickupItem,@item_id)
+			applyEffect(:PickupUse,@battle.nextPickupUse)
 		end
 		setBelched if belch && item.is_berry?
 		pbScavenge if scavenge
@@ -171,8 +171,7 @@ class PokeBattle_Battler
 			if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
 				@battle.pbDisplay(_INTL("{1} scavenged {2}'s {3}!", b.pbThis, pbThis(true), b.itemName))
 			else
-				@battle.pbDisplay(_INTL("{1}'s {2} let it take {3} with {4}!",
-																												b.pbThis, b.abilityName, b.itemName, pbThis(true)))
+				@battle.pbDisplay(_INTL("{1}'s {2} let it take {3} with {4}!",b.pbThis, b.abilityName, b.itemName, pbThis(true)))
 			end
 			echoln _INTL("{1}'s item is {2}", b.pbThis, b.item)
 			b.item = item
@@ -191,15 +190,13 @@ class PokeBattle_Battler
 			next if unlosableItem?(b.item)
 			@battle.pbShowAbilitySplash(b)
 			if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-				@battle.pbDisplay(_INTL('{1} shared its {2} with {3}!',
-																												b.pbThis, b.itemName, pbThis(true)))
+				@battle.pbDisplay(_INTL('{1} shared its {2} with {3}!',b.pbThis, b.itemName, pbThis(true)))
 			else
-				@battle.pbDisplay(_INTL("{1}'s {2} let it share its {3} with {4}!",
-																												b.pbThis, b.abilityName, b.itemName, pbThis(true)))
+				@battle.pbDisplay(_INTL("{1}'s {2} let it share its {3} with {4}!",b.pbThis, b.abilityName, b.itemName, pbThis(true)))
 			end
 			self.item = b.item
 			b.item = nil
-			b.effects[PBEffects::Unburden] = true
+			applyEffect(:Unburden)
 			@battle.pbHideAbilitySplash(b)
 			pbHeldItemTriggerCheck
 			break

@@ -75,7 +75,7 @@ class PokeBattle_Battler
 		amt = amt.round
 		amt = @totalhp - @hp if amt > @totalhp - @hp
 		amt = 1 if amt < 1 && @hp < @totalhp
-		if effects[PBEffects::NerveBreak]
+		if effectActive?(:NerveBreak)
 			@battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!", pbThis))
 			amt *= -1
 		end
@@ -169,8 +169,8 @@ class PokeBattle_Battler
 
 		@battle.triggerBattlerFaintedDialogue(self)
 
-		if @effects[PBEffects::GivingDragonRideTo] != -1
-			otherBattler = @battle.battlers[@effects[PBEffects::GivingDragonRideTo]]
+		if effectActive?(:GivingDragonRideTo)
+			otherBattler = @battle.battlers[@effects[:GivingDragonRideTo]]
 			damageDealt = otherBattler.hp
 			otherBattler.damageState.displayedDamage = damageDealt
 			@battle.scene.pbDamageAnimation(otherBattler)
@@ -199,7 +199,7 @@ class PokeBattle_Battler
 		@pokemon.makeUnprimal if primal?
 		# Do other things
 		@battle.pbClearChoice(@index) # Reset choice
-		pbOwnSide.effects[PBEffects::LastRoundFainted] = @battle.turnCount
+		pbOwnSide.effects[:LastRoundFainted] = @battle.turnCount
 		# Check other battlers' abilities that trigger upon a battler fainting
 		pbAbilitiesOnFainting
 		# Check for end of primordial weather
@@ -211,9 +211,8 @@ class PokeBattle_Battler
 	#=============================================================================
 	def pbSetPP(move, pp)
 		move.pp = pp
-		# No need to care about @effects[PBEffects::Mimic], since Mimic can't copy
 		# Mimic
-		move.realMove.pp = pp if move.realMove && move.id == move.realMove.id && !@effects[PBEffects::Transform]
+		move.realMove.pp = pp if move.realMove && move.id == move.realMove.id && !@effects[:Transform]
 	end
 
 	def pbReducePP(move)
@@ -239,20 +238,20 @@ class PokeBattle_Battler
 		if newType.is_a?(PokeBattle_Battler)
 			newTypes = newType.pbTypes
 			newTypes.push(:NORMAL) if newTypes.length.zero?
-			newType3 = newType.effects[PBEffects::Type3]
+			newType3 = newType.effectActive?(:Type3)
 			newType3 = nil if newTypes.include?(newType3)
 			@type1 = newTypes[0]
 			@type2 = (newTypes.length == 1) ? newTypes[0] : newTypes[1]
-			@effects[PBEffects::Type3] = newType3
+			applyEffect(:Type3,newType3)
 		else
 			newType = GameData::Type.get(newType).id
 			@type1 = newType
 			@type2 = newType
-			@effects[PBEffects::Type3] = nil
+			disableEffect(:Type3)
 		end
-		@effects[PBEffects::BurnUp]	= false
-		@effects[PBEffects::ColdConversion] = false
-		@effects[PBEffects::Roost] = false
+		disableEffect(:BurnUp)
+		disableEffect(:ColdConversion)
+		disableEffect?(:Roost)
 		@battle.scene.pbRefresh
 	end
 
@@ -260,13 +259,13 @@ class PokeBattle_Battler
 	# Forms
 	#=============================================================================
 	def pbChangeForm(newForm, msg)
-		return if fainted? || @effects[PBEffects::Transform] || @form == newForm
+		return if fainted? || effectActive?(:Transform) || @form == newForm
 		oldForm = @form
 		oldDmg = @totalhp - @hp
 		self.form = newForm
 		pbUpdate(true)
 		@hp = @totalhp - oldDmg
-		@effects[PBEffects::WeightChange] = 0 if Settings::MECHANICS_GENERATION >= 6
+		disableEffect(:WeightChange)
 		@battle.scene.pbChangePokemon(self, @pokemon)
 		@battle.scene.pbRefreshOne(@index)
 		@battle.pbDisplay(msg) if msg && msg != ''
@@ -275,11 +274,11 @@ class PokeBattle_Battler
 	end
 
 	def pbCheckFormOnStatusChange
-		return if fainted? || @effects[PBEffects::Transform]
+		return if fainted? || effectActive?(:Transform)
 	end
 
 	def pbCheckFormOnMovesetChange
-		return if fainted? || @effects[PBEffects::Transform]
+		return if fainted? || effectActive?(:Transform)
 		# Keldeo - knowing Secret Sword
 		if isSpecies?(:KELDEO)
 			newForm = 0
@@ -289,7 +288,7 @@ class PokeBattle_Battler
 	end
 
 	def pbCheckFormOnWeatherChange
-		return if fainted? || @effects[PBEffects::Transform]
+		return if fainted? || effectActive?(:Transform)
 		# Castform - Forecast
 		if isSpecies?(:CASTFORM)
 			if hasActiveAbility?(:FORECAST)
@@ -363,7 +362,7 @@ class PokeBattle_Battler
 	# Pokémon enters battle (endOfRound=false) and at the end of each round
 	# (endOfRound=true).
 	def pbCheckForm(endOfRound = false)
-		return if fainted? || @effects[PBEffects::Transform]
+		return if fainted? || effectActive?(:Transform)
 		# Form changes upon entering battle and when the weather changes
 		pbCheckFormOnWeatherChange unless endOfRound
 		pbCheckFormOnTerrainChange unless endOfRound
@@ -424,8 +423,8 @@ class PokeBattle_Battler
 
 	def pbTransform(target)
 		oldAbil = @ability_id
-		@effects[PBEffects::Transform] = true
-		@effects[PBEffects::TransformSpecies] = target.species
+		applyEffect(:Transform)
+		applyEffect(:TransformSpecies,target.species)
 		pbChangeTypes(target)
 		self.ability = target.ability
 		@attack = target.attack
@@ -435,8 +434,8 @@ class PokeBattle_Battler
 		@speed = target.speed
 		GameData::Stat.each_battle { |s| @stages[s.id] = target.stages[s.id] }
 		if Settings::NEW_CRITICAL_HIT_RATE_MECHANICS
-			@effects[PBEffects::FocusEnergy] = target.effects[PBEffects::FocusEnergy]
-			@effects[PBEffects::LaserFocus] = target.effects[PBEffects::LaserFocus]
+			@effects[:FocusEnergy] = target.effects[:FocusEnergy]
+			@effects[:LaserFocus] = target.effects[:LaserFocus]
 		end
 		@moves.clear
 		target.moves.each_with_index do |m, i|
@@ -444,9 +443,9 @@ class PokeBattle_Battler
 			@moves[i].pp = 5
 			@moves[i].total_pp = 5
 		end
-		@effects[PBEffects::Disable] = 0
-		@effects[PBEffects::DisableMove] = nil
-		@effects[PBEffects::WeightChange] = target.effects[PBEffects::WeightChange]
+		disableEffect(:Disable)
+		@effects[:DisableMove] = nil
+		@effects[:WeightChange] = target.effects[:WeightChange]
 		@battle.scene.pbRefreshOne(@index)
 		@battle.pbDisplay(_INTL('{1} transformed into {2}!', pbThis, target.pbThis(true)))
 		pbOnAbilityChanged(oldAbil)

@@ -47,8 +47,8 @@ class PokeBattle_Battler
 			return false
 		end
 		# Turn is skipped if Pursuit was used during switch
-		if @effects[PBEffects::Pursuit]
-			@effects[PBEffects::Pursuit] = false
+		if effectActive?(:Pursuit)
+			disableEffect(:Pursuit)
 			pbCancelMoves
 			pbEndTurn(choice)
 			@battle.pbJudge
@@ -69,16 +69,15 @@ class PokeBattle_Battler
 	# The battler begins their turn.
 	#=============================================================================
 	def pbBeginTurn(_choice)
-		@effects[PBEffects::DestinyBondPrevious] = @effects[PBEffects::DestinyBond]
+		@effects[:DestinyBondPrevious] = @effects[:DestinyBond]
 
 		eachEffectWithData() do |effect,value,effectData|
 			disableEffect(effect) if effectData.resets_battlers_sot
 		end
 
 		# Encore's effect ends if the encored move is no longer available
-		if @effects[PBEffects::Encore] > 0 && pbEncoredMoveIndex < 0
-			@effects[PBEffects::Encore] = 0
-			@effects[PBEffects::EncoreMove] = nil
+		if effectActive?(:Encore) && pbEncoredMoveIndex < 0
+			disableEffect(:Encore)
 		end
 	end
 
@@ -97,19 +96,19 @@ class PokeBattle_Battler
 	def pbEndTurn(_choice)
 		@lastRoundMoved = @battle.turnCount # Done something this round
 		# Gorilla Tactics
-		if hasActiveAbility?(:GORILLATACTICS) && !@effects[PBEffects::GorillaTactics]
-			if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
-				@effects[PBEffects::GorillaTactics] = @lastMoveUsed
-			elsif @lastRegularMoveUsed && pbHasMove?(@lastRegularMoveUsed)
-				@effects[PBEffects::GorillaTactics] = @lastRegularMoveUsed
+		if !effectActive?(:GorillaTactics) && hasActiveAbility?(:GORILLATACTICS)
+			if !@lastMoveUsed.nil? && pbHasMove?(@lastMoveUsed)
+				applyEffect(:GorillaTactics,@lastMoveUsed)
+			elsif !@lastRegularMoveUsed.nil? && pbHasMove?(@lastRegularMoveUsed)
+				applyEffect(:GorillaTactics,@lastRegularMoveUsed)
 			end
 		end
 		# Choice Items
-		if !@effects[PBEffects::ChoiceBand] && hasActiveItem?(%i[CHOICEBAND CHOICESPECS CHOICESCARF])
-			if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
-				@effects[PBEffects::ChoiceBand] = @lastMoveUsed
-			elsif @lastRegularMoveUsed && pbHasMove?(@lastRegularMoveUsed)
-				@effects[PBEffects::ChoiceBand] = @lastRegularMoveUsed
+		if !effectActive?(:ChoiceBand) && hasActiveItem?(%i[CHOICEBAND CHOICESPECS CHOICESCARF])
+			if !@lastMoveUsed.nil? && pbHasMove?(@lastMoveUsed)
+				applyEffect(:ChoiceBand,@lastMoveUsed)
+			elsif !@lastRegularMoveUsed.nil? && pbHasMove?(@lastRegularMoveUsed)
+				applyEffect(:ChoiceBand,@lastRegularMoveUsed)
 			end
 		end
 
@@ -182,7 +181,7 @@ class PokeBattle_Battler
 		if usingMultiTurnAttack? && !@currentMove.nil?
 			choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@currentMove))
 			specialUsage = true
-		elsif @effects[PBEffects::Encore] > 0 && choice[1] >= 0 && @battle.pbCanShowCommands?(@index)
+		elsif effectActive?(:Encore) && choice[1] >= 0 && @battle.pbCanShowCommands?(@index)
 			idxEncoredMove = pbEncoredMoveIndex
 			if idxEncoredMove >= 0 && @battle.pbCanChooseMove?(@index, idxEncoredMove, false) && (choice[1] != idxEncoredMove) # Change move if battler was Encored mid-round
 				choice[1] = idxEncoredMove
@@ -237,19 +236,20 @@ class PokeBattle_Battler
 		# Remember that user chose a two-turn move
 		if move.pbIsChargingTurn?(self)
 			# Beginning the use of a two-turn attack
-			@effects[PBEffects::TwoTurnAttack] = move.id
+			applyEffect(:TwoTurnAttack,move.id)
 			@currentMove = move.id
 		else
-			@effects[PBEffects::TwoTurnAttack] = nil # Cancel use of two-turn attack
+			# Cancel use of two-turn attack
+			disableEffect(:TwoTurnAttack)
 		end
 		# Add to counters for moves which increase them when used in succession
 		move.pbChangeUsageCounters(self, specialUsage)
 		# Charge up Metronome item
 		if hasActiveItem?(:METRONOME) && !move.callsAnotherMove?
 			if @lastMoveUsed && @lastMoveUsed == move.id && !@lastMoveFailed
-				@effects[PBEffects::Metronome] += 1
+				incrementEffect(:Metronome)
 			else
-				@effects[PBEffects::Metronome] = 0
+				disableEffect(:Metronome)
 			end
 		end
 		# Record move as having been used
@@ -327,7 +327,7 @@ class PokeBattle_Battler
 		# Messages include Magnitude's number and Pledge moves' "it's a combo!"
 		move.pbOnStartUse(user, targets)
 		# Powder
-		if user.effects[PBEffects::Powder] && move.calcType == :FIRE
+		if user.effectActive?(:Powder) && move.calcType == :FIRE
 			@battle.pbCommonAnimation('Powder', user)
 			@battle.pbDisplay(_INTL('When the flame touched the powder on the Pokémon, it exploded!'))
 			user.lastMoveFailed = true
@@ -405,13 +405,13 @@ class PokeBattle_Battler
 				@battle.pbPriority(true).each do |b|
 					next if b.fainted? || !b.opposes?(user)
 					next if b.semiInvulnerable?
-					if b.effects[PBEffects::MagicCoat]
+					if b.effectActive?(:MagicCoat)
 						magicCoater = b.index
-						b.effects[PBEffects::MagicCoat] = false
+						b.disableEffect(:MagicCoat)
 						break
-					elsif b.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker # && !b.effects[PBEffects::MagicBounce]
+					elsif b.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker
 						magicBouncer = b.index
-						b.effects[PBEffects::MagicBounce] = true
+						b.applyEffect(:MagicBounce)
 						break
 					elsif b.hasActiveAbility?(:MAGICSHIELD) && !@battle.moldBreaker
 						magicShielder = b.index
@@ -455,7 +455,7 @@ class PokeBattle_Battler
 				target.damageState.messagesPerHit = messagesPerHit
 			end
 			# Record that Parental Bond applies, to weaken the second attack
-			user.effects[PBEffects::ParentalBond] = 3 if move.canParentalBond?(user, targets)
+			user.applyEffect(:ParentalBond,3) if move.canParentalBond?(user, targets)
 			# Process each hit in turn
 			# Skip all hits if the move is being magic coated, magic bounced, or magic shielded
 			realNumHits = 0
@@ -547,7 +547,7 @@ class PokeBattle_Battler
 			targets.each do |targetBattler|
 				move.pbEffectAfterAllHits(user, targetBattler)
 				move.pbEffectOnNumHits(user, targetBattler, realNumHits)
-				next unless targetBattler.effects[PBEffects::EmpoweredDestinyBond]
+				next unless targetBattler.effectActive?(:EmpoweredDestinyBond)
 				next if targetBattler.damageState.unaffected
 				next unless user.takesIndirectDamage?
 				next if user.hasActiveAbility?(:ROCKHEAD)
@@ -589,8 +589,8 @@ class PokeBattle_Battler
 		pbEndTurn(choice)
 		# Instruct
 		@battle.eachBattler do |b|
-			next if !b.effects[PBEffects::Instruct] || !b.lastMoveUsed
-			b.effects[PBEffects::Instruct] = false
+			next if !b.effectActive?(:Instruct) || !b.lastMoveUsed
+			disableEffect(:Instruct)
 			# Don't force the move if the pokemon someone no longer has that move
 			moveIndex = -1
 			b.eachMoveWithIndex do |m, i|
@@ -600,10 +600,10 @@ class PokeBattle_Battler
 			moveID = b.lastMoveUsed
 			usageMessage = _INTL('{1} used the move instructed by {2}!', b.pbThis, user.pbThis(true))
 			preTarget = b.lastRegularMoveTarget
-			@battle.forceUseMove(b, moveID, preTarget, false, usageMessage, PBEffects::Instructed, false)
+			@battle.forceUseMove(b, moveID, preTarget, false, usageMessage, :Instructed, false)
 		end
 		# Dancer
-		if !@effects[PBEffects::Dancer] && !user.lastMoveFailed && realNumHits > 0 &&
+		if !effectActive?(:Dancer) && !user.lastMoveFailed && realNumHits > 0 &&
 					!move.snatched && magicCoater < 0 && @battle.pbCheckGlobalAbility(:DANCER) && move.danceMove?
 			dancers = []
 			@battle.pbPriority(true).each do |b|
@@ -613,11 +613,11 @@ class PokeBattle_Battler
 				nextUser = dancers.pop
 				preTarget = choice[3]
 				preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
-				@battle.forceUseMove(nextUser, move.id, preTarget, true, nil, PBEffects::Dancer, true)
+				@battle.forceUseMove(nextUser, move.id, preTarget, true, nil, :Dancer, true)
 			end
 		end
 		# Echo
-		if !@effects[PBEffects::Echo] && !user.lastMoveFailed && realNumHits > 0 &&
+		if !effectActive?(:Echo) && !user.lastMoveFailed && realNumHits > 0 &&
 					!move.snatched && magicCoater < 0 && @battle.pbCheckGlobalAbility(:ECHO) && move.soundMove?
 			echoers = []
 			@battle.pbPriority(true).each do |b|
@@ -627,7 +627,7 @@ class PokeBattle_Battler
 				nextUser = echoers.pop
 				preTarget = choice[3]
 				preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
-				@battle.forceUseMove(nextUser, move.id, preTarget, true, nil, PBEffects::Echo, true)
+				@battle.forceUseMove(nextUser, move.id, preTarget, true, nil, :Echo, true)
 			end
 		end
 	end
@@ -642,7 +642,7 @@ class PokeBattle_Battler
 		numTargets = 0 # Number of targets that are affected by this hit
 		targets.each { |b| b.damageState.resetPerHit }
 		# Count a hit for Parental Bond (if it applies)
-		user.effects[PBEffects::ParentalBond] -= 1 if user.effects[PBEffects::ParentalBond] > 0
+		user.tickDown(:ParentalBond)
 		# Redirect Dragon Darts other hits
 		targets = pbChangeTargets(move, user, targets, 1) if move.smartSpreadsTargets? && @battle.pbSideSize(targets[0].index) > 1 && hitNum > 0
 		# Accuracy check (accuracy/evasion calc)
@@ -689,12 +689,11 @@ class PokeBattle_Battler
 		# Show move animation (for this hit)
 		move.pbShowAnimation(move.id, user, targets, hitNum) if hitNum == 0
 		# Type-boosting Gem consume animation/message
-		if user.effects[PBEffects::GemConsumed] && hitNum == 0
+		if effectActive?(:GemConsumed) && hitNum == 0
 			# NOTE: The consume animation and message for Gems are shown now, but the
 			#       actual removal of the item happens in def pbEffectsAfterMove.
 			@battle.pbCommonAnimation('UseItem', user)
-			@battle.pbDisplay(_INTL("The {1} strengthened {2}'s power!",
-																											GameData::Item.get(user.effects[PBEffects::GemConsumed]).name, move.name))
+			@battle.pbDisplay(_INTL("The {1} strengthened {2}'s power!",GameData::Item.get(user.effects[:GemConsumed]).name, move.name))
 		end
 		# Messages about missed target(s) (relevant for multi-target moves only)
 		targets.each do |b|

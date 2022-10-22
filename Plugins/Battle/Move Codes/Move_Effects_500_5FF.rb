@@ -222,7 +222,7 @@ end
 class PokeBattle_Move_50C < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
     if target.frostbitten? &&
-       (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
+       (target.substituted? || ignoresSubstitute?(user))
       baseDmg *= 2
     end
     return baseDmg
@@ -957,10 +957,6 @@ end
 #===============================================================================
 class PokeBattle_Move_534 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		# if target.effects[PBEffects::Confusion] == 0 && target.effects[PBEffects::Charm] == 0
-		# 	@battle.pbDisplay(_INTL("But it failed!"))
-		# 	return true
-		# end
 		if !target.flustered? && !target.mystified?
 			@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is neither flustered nor mystified!"))
 			return true

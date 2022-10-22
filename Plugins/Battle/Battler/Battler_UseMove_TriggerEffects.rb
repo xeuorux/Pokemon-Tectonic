@@ -24,35 +24,38 @@ class PokeBattle_Battler
 		end
 		if target.opposes?(user)
 			# Rage
-			if target.effects[PBEffects::Rage] && !target.fainted? && target.pbCanRaiseStatStage?(:ATTACK, target)
+			if target.effectActive?(:Rage) && !target.fainted? && target.pbCanRaiseStatStage?(:ATTACK, target)
 				@battle.pbDisplay(_INTL("{1}'s rage is building!", target.pbThis))
 				target.pbRaiseStatStage(:ATTACK, 1, target)
 			end
 			# Beak Blast
-			if target.effects[PBEffects::BeakBlast]
+			if target.effectActive?(:BeakBlast)
 				PBDebug.log("[Lingering effect] #{target.pbThis}'s Beak Blast")
 				user.pbBurn(target) if move.pbContactMove?(user) && user.affectedByContactEffect? && user.pbCanBurn?(target, false, self)
 			end
 			# Shell Trap (make the trapper move next if the trap was triggered)
-			if target.effects[PBEffects::ShellTrap] &&
+			if target.effectActive?(:ShellTrap) &&
 						@battle.choices[target.index][0] == :UseMove && !target.movedThisnd? && (target.damageState.hpLost > 0 && !target.damageState.substitute && move.physicalMove?)
 				target.tookPhysicalHit = true
-				target.effects[PBEffects::MoveNext] = true
-				target.effects[PBEffects::Quash]    = 0
+
+				target.applyEffect(:MoveNext)
+				target.applyEffect(:Quash,0)
 			end
 			# Grudge
-			if target.effects[PBEffects::Grudge] && target.fainted?
+			if target.effectActive?(:Grudge) && target.fainted?
 				move.pp = 0
 				@battle.pbDisplay(_INTL("{1}'s {2} lost all of its PP due to the grudge!",
 																												user.pbThis, move.name))
 			end
 			# Destiny Bond (recording that it should apply)
-			user.effects[PBEffects::DestinyBondTarget] = target.index if target.effects[PBEffects::DestinyBond] && target.fainted? && (user.effects[PBEffects::DestinyBondTarget] < 0)
+			if target.effectActive?(:DestinyBond) && target.fainted? && !target.effectActive?(:DestinyBondTarget)
+				applyEffect(:DestinyBondTarget,target.index)
+			end
 			# Stunning Curl
-			if target.effects[PBEffects::StunningCurl]
+			if target.effectActive?(:StunningCurl)
 				PBDebug.log("[Lingering effect] #{target.pbThis}'s Stunning Curl")
 				if user.pbCanParalyze?(target, false)
-					@battle.pbDisplay(_INTL("{1}'s stance causes the attack to bounce of akwardly!", target.pbThis))
+					@battle.pbDisplay(_INTL("{1}'s stance causes the attack to bounce off akwardly!", target.pbThis))
 					user.pbParalyze(target)
 				end
 			end
@@ -67,8 +70,8 @@ class PokeBattle_Battler
 		# NOTE: Although Destiny Bond is similar to Grudge, they don't apply at
 		#       the same time (although Destiny Bond does check whether it's going
 		#       to trigger at the same time as Grudge).
-		if user.effects[PBEffects::DestinyBondTarget] >= 0 && !user.fainted?
-			dbName = @battle.battlers[user.effects[PBEffects::DestinyBondTarget]].pbThis
+		if user.effectActive?(:DestinyBondTarget) && !user.fainted?
+			dbName = @battle.battlers[user.effects[:DestinyBondTarget]].pbThis
 			@battle.pbDisplay(_INTL('{1} took its attacker down with it!', dbName))
 			user.pbReduceHP(user.hp, false)
 			user.pbFaint
@@ -77,7 +80,7 @@ class PokeBattle_Battler
 		# User's ability
 		BattleHandlers.triggerUserAbilityEndOfMove(user.ability, user, targets, move, @battle) if user.abilityActive?
 		# Greninja - Battle Bond
-		if !user.fainted? && !user.effects[PBEffects::Transform] &&
+		if !user.fainted? && !effectActive?(:Transform) &&
 					user.isSpecies?(:GRENINJA) && user.ability == :BATTLEBOND && (!@battle.pbAllFainted?(user.idxOpposingSide) &&
 						!@battle.battleBond[user.index & 1][user.pokemonIndex])
 			numFainted = 0
@@ -91,7 +94,7 @@ class PokeBattle_Battler
 			end
 		end
 		# Consume user's Gem
-		if user.effects[PBEffects::GemConsumed]
+		if user.effectActive?(:GemConsumed)
 			# NOTE: The consume animation and message for Gems are shown immediately
 			#       after the move's animation, but the item is only consumed now.
 			user.pbConsumeItem
@@ -120,7 +123,7 @@ class PokeBattle_Battler
 			next unless b.itemActive?
 			BattleHandlers.triggerTargetItemAfterMoveUse(b.item, b, user, move, switchByItem, @battle)
 			# Eject Pack
-			BattleHandlers.triggerItemOnStatLoss(b.item, b, user, move, switchByItem, @battle) if b.effects[PBEffects::LashOut]
+			BattleHandlers.triggerItemOnStatLoss(b.item, b, user, move, switchByItem, @battle) if b.effectActive?(:StatsDropped)
 		end
 		@battle.moldBreaker = false if switchByItem.include?(user.index)
 		@battle.pbPriority(true).each do |b|

@@ -405,7 +405,7 @@ end
   #===============================================================================
 class PokeBattle_Move_194 < PokeBattle_Move
   def pbBaseDamage(baseDmg, user, _target)
-    baseDmg *= 2 if user.effects[PBEffects::LashOut]
+    baseDmg *= 2 if user.effectActive?(:StatsDropped)
     return baseDmg
   end
 end

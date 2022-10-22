@@ -176,7 +176,7 @@ BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:TANGLEDFEET,
   proc { |ability,mods,user,target,move,type|
-    mods[:accuracy_multiplier] /= 2 if target.effects[PBEffects::Confusion] > 0 || target.effects[PBEffects::Charm] > 0
+    mods[:accuracy_multiplier] /= 2 if target.confused? || target.charmed?
   }
 )
 
@@ -393,7 +393,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
       end
       user.item = b.item
       b.item = nil
-      b.effects[PBEffects::Unburden] = true
+      b.applyEffect(:Unburden)
       if battle.wildBattle? && !user.initialItem && b.initialItem==user.item
         user.setInitialItem(user.item)
         b.setInitialItem(nil)

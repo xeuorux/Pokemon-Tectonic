@@ -392,7 +392,7 @@ class PokemonDataBox < SpriteWrapper
 	
 	if value && @showTypes
 		types = @battler.pbTypes(true)
-		types = @battler.effects[PBEffects::Illusion].types if @battler.effects[PBEffects::Illusion]
+		types = @battler.disguisedAs.types if @battler.illusion?
 		@type1Icon.visible = types[0] != nil
 		@type2Icon.visible = types[1] != nil && types[1] != types[0]
 		@type3Icon.visible = types[2] != nil && types[2] != types[1] && types[2] != types[0]

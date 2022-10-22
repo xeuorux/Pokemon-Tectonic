@@ -46,7 +46,7 @@ class PokeBattle_Scene
     # data box appearing)
     sendOutAnims = []
     sendOuts.each_with_index do |b,i|
-      pkmn = @battle.battlers[b[0]].effects[PBEffects::Illusion] || b[1]
+      pkmn = @battle.battlers[b[0]].disguisedAs || b[1]
       pbChangePokemon(b[0],pkmn)
       pbRefresh
       if @battle.opposes?(b[0])

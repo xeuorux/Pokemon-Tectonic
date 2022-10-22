@@ -17,6 +17,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Attract",
 	:type => :Position,
 	:others_lose_track => true,
+	:is_mental => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -80,6 +81,11 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Confusion Turns",
 	:type => :Integer,
 	:baton_passed => true,
+	:is_mental => true,
+	:expire_proc => Proc.new { |battle, battler|
+		battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis))
+	},
+	:sub_effects => [:ConfusionChance],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -146,8 +152,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} is no longer disabled!",battler.pbThis))
-		battler.disableEffect(:DisableMove)
 	},
+	:is_mental => true,
+	:sub_effects => [:DisableMove],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -192,7 +199,8 @@ GameData::BattleEffect.register_effect(:Battler,{
 		  b.effects[PBEffects::Encore]     = 0
 		  b.effects[PBEffects::EncoreMove] = nil
 		end
-	}
+	},
+	:is_mental => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -290,6 +298,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:expire_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} Heal Block wore off!",battler.pbThis))
 	},
+	:is_mental => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -314,7 +323,8 @@ GameData::BattleEffect.register_effect(:Battler,{
 		if battler.hasActiveAbility?(:ILLUSION)
 			idxLastParty = battle.pbLastInTeam(battler.index)
 			if idxLastParty >= 0 && idxLastParty != battler.pokemonIndex
-				battler.effects[:Illusion]        = battle.pbParty(battler.index)[idxLastParty]
+				toDisguiseAs = battle.pbParty(battler.index)[idxLastParty]
+				battler.applyEffect(:Illusion,toDisguiseAs)
 			end
 		end
 	},
@@ -397,7 +407,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 		next 2 if value > 0
 		next 0
 	},
-	:connected_effects => [:LockOnPos],
+	:sub_effects => [:LockOnPos],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -711,6 +721,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:expire_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} taunt wore off.",battler.pbThis))
 	},
+	:is_mental => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -738,6 +749,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Torment,
 	:real_name => "Tormented",
+	:is_mental => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -787,14 +799,13 @@ GameData::BattleEffect.register_effect(:Battler,{
           battler.applyFractionalDamage(fraction)
         end
 	},
-	:connected_effects => [:TrappingMove,:TrappingUser],
+	:sub_effects => [:TrappingMove,:TrappingUser],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :TrappingMove,
 	:real_name => "Trapping Move",
 	:type => :Move,
-	:connected_effects => [:Trapping,:TrappingUser],
 	:info_displayed => false,
 })
 
@@ -803,7 +814,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Trapped By",
 	:type => :Position,
 	:others_lose_track => true,
-	:connected_effects => [:Trapping,:TrappingMove],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -830,6 +840,13 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Unburden,
 	:real_name => "Unburden",
 	:info_displayed => false,
+	:apply_proc => Proc.new { |battle,battler,value|
+		if battler.hasActiveAbility?(:UNBURDEN)
+			battle.pbShowAbilitySplash(battler)
+			battle.pbDisplay(_INTL("{1} is unburdened of its item. Its Speed is doubled!",battler.pbThis))
+			battle.pbHideAbilitySplash(battler)
+		end
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -885,8 +902,8 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :LashOut,
-	:real_name => "Lashing Out",
+	:id => :StatsDropped,
+	:real_name => "Stats Dropped",
 	:resets_eor	=> true,
 	:info_displayed => false,
 })
@@ -906,12 +923,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :JawLock,
 	:real_name => "Trapped By Jaw",
 	:baton_passed => true,
-	:apply_proc => Proc.new { |battle,battler,value|
-		if value == 0
-			battler.disableEffect(:JawLockUser)
-		end
-	},
-	:connected_effects => [:JawLockUser],
+	:sub_effects => [:JawLockUser],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -920,7 +932,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Position,
 	:baton_passed => true,
 	:others_lose_track => true,
-	:connected_effects => [:JawLock],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -940,12 +951,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 			battler.pbLowerStatStage(:SPECIAL_DEFENSE,1,octouser,true,false,true)
 		end
 	},
-	:apply_proc => Proc.new { |battle,battler,value|
-		if value == 0
-			battler.disableEffect(:OctolockUser)
-		end
-	},
-	:connected_effects => [:OctolockUser],
+	:sub_effects => [:OctolockUser],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -953,7 +959,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Octolocked By",
 	:type => :Position,
 	:others_lose_track => true,
-	:connected_effects => [:Octolock],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -988,6 +993,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:baton_passed => true,
 	:info_displayed => false,
+	:active_value_proc => proc { |value|
+		return value != 0
+	}
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1021,6 +1029,11 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Charm Turns",
 	:type => :Integer,
 	:baton_passed => true,
+	:is_mental => true,
+	:expire_proc => Proc.new { |battle, battler|
+		battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis))
+	},
+	:sub_effects => [:CharmChance],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1029,6 +1042,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:baton_passed => true,
 	:info_displayed => false,
+	:active_value_proc => proc { |value|
+		return value != 0
+	}
 })
 
 GameData::BattleEffect.register_effect(:Battler,{

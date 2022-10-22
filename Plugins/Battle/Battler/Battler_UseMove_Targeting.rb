@@ -13,8 +13,7 @@ class PokeBattle_Battler
 			newUser = nil
 			strength = 100
 			@battle.eachBattler do |b|
-				next if b.effects[PBEffects::Snatch] == 0 ||
-												b.effects[PBEffects::Snatch] >= strength
+				next if b.effects[PBEffects::Snatch] == 0 || b.effects[PBEffects::Snatch] >= strength
 				next if b.effects[PBEffects::SkyDrop] >= 0
 				newUser = b
 				strength = b.effects[PBEffects::Snatch]
@@ -83,7 +82,7 @@ class PokeBattle_Battler
 	end
 
 	def moveWillFail(user, target, move)
-		return true if target.effects[PBEffects::QuickGuard] && @battle.choices[user.index][4] > 0
+		return true if target.effectActive?(:QuickGuard) && @battle.choices[user.index][4] > 0
 		return true if target.protected?
 		return true if invulnerableTwoTurnAttack?(target, move)
 		return true if move.pbImmunityByAbility(user, target)

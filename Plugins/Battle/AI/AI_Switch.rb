@@ -355,7 +355,7 @@ class PokeBattle_AI
     end
     
     def pbCalcMaxOffensiveTypeMod(attackingTypes,victimPokemon)
-        victimPokemon = victimPokemon.effects[PBEffects::Illusion] if victimPokemon.is_a?(PokeBattle_Battler) && victimPokemon.effects[PBEffects::Illusion]
+        victimPokemon = victimPokemon.disguisedAs if victimPokemon.is_a?(PokeBattle_Battler) && victimPokemon.illusion?
         maxTypeMod = 0
         attackingTypes.each do |attackingType|
         mod = Effectiveness.calculate(attackingType,victimPokemon.type1,victimPokemon.type2)

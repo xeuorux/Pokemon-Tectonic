@@ -44,14 +44,14 @@ class PokeBattle_Battler
 	end
 
 	def defense
-		return @spdef if @battle.field.effects[PBEffects::WonderRoom].positive?
+		return @spdef if @battle.field.effectActive?(:WonderRoom)
 		return @defense
 	end
 
 	attr_writer :defense, :spdef, :name
 
 	def spdef
-		return @defense if @battle.field.effects[PBEffects::WonderRoom].positive?
+		return @defense if @battle.field.effectActive?(:WonderRoom)
 		return @spdef
 	end
 
@@ -66,8 +66,8 @@ class PokeBattle_Battler
 	alias isFainted? fainted?
 
 	def status=(value)
-		@effects[PBEffects::Truant] = false if @status == :SLEEP && value != :SLEEP
-		@effects[PBEffects::Toxic] = 0 if value != :POISON
+		disableEffect(:Truant) if @status == :SLEEP && value != :SLEEP
+		disableEffect(:Toxic) if value != :POISON
 		@status = value
 		@pokemon.status = value if @pokemon
 		self.statusCount = 0 if value != :POISON && value != :SLEEP
@@ -81,7 +81,7 @@ class PokeBattle_Battler
 	end
 
 	def bossStatus=(value)
-		@effects[PBEffects::Truant] = false if @bossStatus == :SLEEP && value != :SLEEP
+		disableEffect(:Truant) if @bossStatus == :SLEEP && value != :SLEEP
 		@bossStatus = value
 		@bossStatusCount = 0 if value != :SLEEP
 		@battle.scene.pbRefreshOne(@index)
@@ -94,7 +94,7 @@ class PokeBattle_Battler
 
 	def extraMovesPerTurn
 		val = @pokemon.extraMovesPerTurn || 0
-		val += effects[PBEffects::ExtraTurns]
+		val += @effects[:ExtraTurns]
 		return val
 	end
 
@@ -124,34 +124,42 @@ class PokeBattle_Battler
 	#=============================================================================
 	# Display-only properties
 	#=============================================================================
+	def illusion?
+		return effectActive?(:Illusion)
+	end
+
+	def disguisedAs
+		return @effects[:Illusion]
+	end
+	
 	def name
-		return @effects[PBEffects::Illusion].name if @effects[PBEffects::Illusion]
+		return disguisedAs.name if illusion?
 		return @name
 	end
 
 	def displayPokemon
-		return @effects[PBEffects::Illusion] if @effects[PBEffects::Illusion]
+		return disguisedAs if illusion?
 		return pokemon
 	end
 
 	def displaySpecies
-		return @effects[PBEffects::Illusion].species if @effects[PBEffects::Illusion]
+		return disguisedAs.species if illusion?
 		return species
 	end
 
 	def displayGender
-		return @effects[PBEffects::Illusion].gender if @effects[PBEffects::Illusion]
+		return disguisedAs.gender if illusion?
 		return gender
 	end
 
 	def displayForm
-		return @effects[PBEffects::Illusion].form if @effects[PBEffects::Illusion]
+		return disguisedAs.form if illusion?
 		return form
 	end
 
 	def shiny?
 		return false if boss?
-		return @effects[PBEffects::Illusion].shiny? if @effects[PBEffects::Illusion]
+		return disguisedAs.shiny? if illusion?
 		return @pokemon&.shiny?
 	end
 	alias isShiny? shiny?
@@ -206,7 +214,7 @@ class PokeBattle_Battler
 	#=============================================================================
 	def pbWeight
 		ret = @pokemon ? @pokemon.weight : 500
-		ret += @effects[PBEffects::WeightChange]
+		ret += @effects[:WeightChange]
 		ret = 1 if ret < 1
 		ret = BattleHandlers.triggerWeightCalcAbility(ability, self, ret) if abilityActive? && !@battle.moldBreaker
 		ret = BattleHandlers.triggerWeightCalcItem(item, self, ret) if itemActive?

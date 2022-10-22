@@ -3,7 +3,7 @@ class PokeBattle_Battler
 	# Mega Evolution, Primal Reversion, Shadow Pokémon
 	#=============================================================================
 	def hasMega?
-		return false if @effects[PBEffects::Transform]
+		return false if effectActive?(:Transform)
 		return @pokemon&.hasMegaForm?
 	end
 
@@ -13,7 +13,7 @@ class PokeBattle_Battler
 	alias isMega? mega?
 
 	def hasPrimal?
-		return false if @effects[PBEffects::Transform]
+		return false if effectActive?(:Transform)
 		return @pokemon&.hasPrimalForm?
 	end
 

@@ -19,6 +19,8 @@ module EffectHolder
             else
                 raise _INTL("Value must be provided when applying effect #{effectData.real_name} (it's not a boolean)")
             end
+        elsif !effectData.valid_value(value)
+            raise _INTL("Value provided for effect #{effectData.real_name} is invalid")
 		end
         @effects[effect] = value
         @apply_proc.call(effectData) if @apply_proc
@@ -43,6 +45,16 @@ module EffectHolder
         return false if effectData.maximum.nil?
         value = @effects[effect]
         raise _INTL("Effect above maximum: #{effectData.real_name}") if value >= effectData.maximum
+    end
+
+    # Returns whether the value is either already at the goal or is at the goal after ticking down
+    def tickDown(effect,goal=0)
+        effectData = GameData::BattleEffect.get(effect)
+        validateInteger(effectData)
+        value = @effects[effect]
+        return true if value <= goal
+        @effects[effect] -= 1
+        return value <= goal
     end
 
 	def disableEffect(effect)

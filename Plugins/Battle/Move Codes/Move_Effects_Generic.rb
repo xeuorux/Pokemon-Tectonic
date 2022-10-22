@@ -280,7 +280,7 @@ class PokeBattle_StatUpMove < PokeBattle_Move
     score += 50 if user.firstTurn? && !damagingMove?
 
     # Stat up moves tend to be strong when you are protected by a substitute
-	  score += 30 if target.substituted?
+	  score += 30 if target.effectActive?(:Substitute)
 
     # Feel more free to use the move the fewer pokemon that can attack you this turn
     user.eachPotentialAttacker do |b|
@@ -553,7 +553,7 @@ end
 class PokeBattle_TwoTurnMove < PokeBattle_Move
   def chargingTurnMove?; return true; end
 
-  # user.effects[PBEffects::TwoTurnAttack] is set to the move's ID if this
+  # :TwoTurnAttack is set to the move's ID if this
   # method returns true, or nil if false.
   # Non-nil means the charging turn. nil means the attacking turn.
   def pbIsChargingTurn?(user)
@@ -561,7 +561,7 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
     @chargingTurn = false   # Assume damaging turn by default
     @damagingTurn = true
     # 0 at start of charging turn, move's ID at start of damaging turn
-    if !user.effects[PBEffects::TwoTurnAttack]
+    if !user.effectActive?(:TwoTurnAttack)
       @powerHerb = user.hasActiveItem?(:POWERHERB)
       @chargingTurn = true
       @damagingTurn = @powerHerb
@@ -771,7 +771,7 @@ class PokeBattle_ProtectMove < PokeBattle_Move
     newScore = 0
     user.eachPotentialAttacker do |b|
       newScore += 80
-      newScore += 50 if b.effects[PBEffects::TwoTurnAttack]
+      newScore += 50 if b.effectActive?(:TwoTurnAttack)
     end
     return newScore
   end

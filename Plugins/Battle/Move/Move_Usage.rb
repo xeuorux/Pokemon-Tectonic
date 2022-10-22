@@ -97,7 +97,7 @@ class PokeBattle_Move
     #=============================================================================
     def pbCheckDamageAbsorption(user,target)
         # Substitute will take the damage
-        if target.effects[PBEffects::Substitute]>0 && !ignoresSubstitute?(user) && (!user || user.index!=target.index)
+        if target.substituted? && !ignoresSubstitute?(user) && (!user || user.index!=target.index)
             target.damageState.substitute = true
             return
         end
@@ -118,7 +118,7 @@ class PokeBattle_Move
         target.damageState.displayedDamage = damage
         # Substitute takes the damage
         if target.damageState.substitute
-            damage = target.effects[PBEffects::Substitute] if damage>target.effects[PBEffects::Substitute]
+            damage = target.effects[:Substitute] if damage > target.effects[:Substitute]
             target.damageState.hpLost       = damage
             target.damageState.totalHPLost += damage
             target.damageState.displayedDamage = damage
@@ -257,8 +257,8 @@ class PokeBattle_Move
         if target.damageState.messagesPerHit
             pbEffectivenessMessage(user,target,numTargets)
         end
-        if target.damageState.substitute && target.effects[PBEffects::Substitute]==0
-            target.effects[PBEffects::Substitute] = 0
+        if target.damageState.substitute && target.substituted?
+            target.disableEffect(:Substitute)
             @battle.pbDisplay(_INTL("{1}'s substitute faded!",target.pbThis))
         end
     end

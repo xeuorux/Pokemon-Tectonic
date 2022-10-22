@@ -75,28 +75,6 @@ BattleHandlers::StatusCureItem.add(:LUMBERRY,
   }
 )
 
-# BattleHandlers::StatusCureItem.add(:PERSIMBERRY,
-#   proc { |item,battler,battle,forced|
-#     next false if !forced && !battler.canConsumeBerry?
-#     next false if battler.effects[PBEffects::Confusion]==0 && battler.effects[PBEffects::Charm]==0
-#     itemName = GameData::Item.get(item).name
-#     PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
-#     battle.pbCommonAnimation("EatBerry",battler) if !forced
-#     wasConfused 	= (battler.effects[PBEffects::Confusion]>0)
-#     wasCharmed		= (battler.effects[PBEffects::Charm]>0)
-#       battler.pbCureConfusion
-#     battler.pbCureCharm
-#     if forced
-# 		battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis)) if wasConfused
-# 		battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis)) if wasCharmed
-#     else
-# 		battle.pbDisplay(_INTL("{1}'s {2} snapped it out of its confusion!",battler.pbThis,itemName)) if wasConfused
-# 		battle.pbDisplay(_INTL("{1}'s {2} released it from the charm!",battler.pbThis,itemName)) if wasCharmed
-#     end
-#     next true
-#   }
-# )
-
 BattleHandlers::StatusCureItem.add(:PERSIMBERRY,
   proc { |item,battler,battle,forced|
     next false if !forced && !battler.canConsumeBerry?
@@ -125,32 +103,25 @@ BattleHandlers::StatusCureItem.add(:DURINBERRY,
 
 BattleHandlers::StatusCureItem.add(:MENTALHERB,
   proc { |item,battler,battle,forced|
-    next false if battler.effects[PBEffects::Attract]==-1 &&
-                  battler.effects[PBEffects::Taunt]==0 &&
-                  battler.effects[PBEffects::Encore]==0 &&
-                  !battler.effects[PBEffects::Torment] &&
-                  battler.effects[PBEffects::Disable]==0 &&
-                  battler.effects[PBEffects::HealBlock]==0 &&
-				          battler.effects[PBEffects::Confusion]==0 &&
-				          battler.effects[PBEffects::Charm]==0 &&
+    activate = false
+    battler.eachEffectWithData(true) do |effect,value,data|
+      next if !data.is_mental?
+      activate = true
+      break
+    end
+    activate = true if battler.flustered? || battler.mystified?
+  
+    next false if !activate
+
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}")
     battle.pbCommonAnimation("UseItem",battler) if !forced
-    battle.pbDisplay(_INTL("{1}'s taunt wore off!",battler.pbThis)) if battler.effects[PBEffects::Taunt]>0
-    battler.effects[PBEffects::Taunt]      = 0
-    battle.pbDisplay(_INTL("{1}'s encore ended!",battler.pbThis)) if battler.effects[PBEffects::Encore]>0
-    battler.effects[PBEffects::Encore]     = 0
-    battler.effects[PBEffects::EncoreMove] = nil
-    battle.pbDisplay(_INTL("{1}'s torment wore off!",battler.pbThis)) if battler.effects[PBEffects::Torment]
-    battler.effects[PBEffects::Torment]    = false
-    battle.pbDisplay(_INTL("{1} is no longer disabled!",battler.pbThis)) if battler.effects[PBEffects::Disable]>0
-    battler.effects[PBEffects::Disable]    = 0
-    battle.pbDisplay(_INTL("{1}'s Heal Block wore off!",battler.pbThis)) if battler.effects[PBEffects::HealBlock]>0
-    battler.effects[PBEffects::HealBlock]  = 0
-    battle.pbDisplay(_INTL("{1}'s {2} snapped it out of its confusion!",battler.pbThis,itemName)) if battler.effects[PBEffects::Confusion]>0
-    battler.pbCureConfusion
-    battle.pbDisplay(_INTL("{1}'s {2} released it from the charm!",battler.pbThis,itemName)) if battler.effects[PBEffects::Charm]>0
-    battler.pbCureCharm
+
+    # Disable all mental effects
+    battler.eachEffectWithData(true) do |effect,value,data|
+      next if !data.is_mental?
+      battler.disableEffect(effect)
+    end
     next true
   }
 )

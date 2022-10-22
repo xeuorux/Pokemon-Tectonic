@@ -9,7 +9,7 @@ class PokeBattle_Battler
 	#=============================================================================
 	def pbCanChooseMove?(move, commandPhase, showMessages = true, specialUsage = false)
 		# Disable
-		if @effects[PBEffects::DisableMove] == move.id && !specialUsage
+		if @effects[:DisableMove] == move.id && !specialUsage
 			if showMessages
 				msg = _INTL("{1}'s {2} is disabled!", pbThis, move.name)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
@@ -17,7 +17,7 @@ class PokeBattle_Battler
 			return false
 		end
 		# Heal Block
-		if @effects[PBEffects::HealBlock] > 0 && move.healingMove?
+		if effectActive?(:HealBlock) && move.healingMove?
 			if showMessages
 				msg = _INTL("{1} can't use {2} because of Heal Block!", pbThis, move.name)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
@@ -25,7 +25,7 @@ class PokeBattle_Battler
 			return false
 		end
 		# Gravity
-		if @battle.field.effects[PBEffects::Gravity] > 0 && move.unusableInGravity?
+		if @battle.field.effectActive?(:Gravity) > 0 && move.unusableInGravity?
 			if showMessages
 				msg = _INTL("{1} can't use {2} because of gravity!", pbThis, move.name)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
@@ -33,7 +33,7 @@ class PokeBattle_Battler
 			return false
 		end
 		# Throat Chop
-		if @effects[PBEffects::ThroatChop] > 0 && move.soundMove?
+		if effectActive?(:ThroatChop) && move.soundMove?
 			if showMessages
 				msg = _INTL("{1} can't use {2} because of Throat Chop!", pbThis, move.name)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
@@ -41,37 +41,35 @@ class PokeBattle_Battler
 			return false
 		end
 		# Choice Items
-		if @effects[PBEffects::ChoiceBand]
-			if hasActiveItem?(%i[CHOICEBAND CHOICESPECS CHOICESCARF]) &&
-						pbHasMove?(@effects[PBEffects::ChoiceBand])
-				if move.id != @effects[PBEffects::ChoiceBand] && move.id != :STRUGGLE
+		if effectActive?(:ChoiceBand)
+			if hasActiveItem?(%i[CHOICEBAND CHOICESPECS CHOICESCARF]) && pbHasMove?(@effects[:ChoiceBand])
+				if move.id != @effects[:ChoiceBand] && move.id != :STRUGGLE
 					if showMessages
-						msg = _INTL('{1} allows the use of only {2}!', itemName,
-																		GameData::Move.get(@effects[PBEffects::ChoiceBand]).name)
+						msg = _INTL('{1} allows the use of only {2}!', itemName, GameData::Move.get(@effects[:ChoiceBand]).name)
 						commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
 					end
 					return false
 				end
 			else
-				@effects[PBEffects::ChoiceBand] = nil
+				disableEffect(:ChoiceBand)
 			end
 		end
 		# Gorilla Tactics
-		if @effects[PBEffects::GorillaTactics]
+		if effectActive?(:GorillaTactics)
 			if hasActiveAbility?(:GORILLATACTICS)
-				if move.id != @effects[PBEffects::GorillaTactics]
+				if move.id != @effects[:GorillaTactics]
 					if showMessages
-						msg = _INTL('{1} allows the use of only {2}!', abilityName, GameData::Move.get(@effects[PBEffects::GorillaTactics]).name)
+						msg = _INTL('{1} allows the use of only {2}!', abilityName, GameData::Move.get(@effects[:GorillaTactics]).name)
 						commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
 					end
 					return false
 				end
 			else
-				@effects[PBEffects::GorillaTactics] = nil
+				disableEffect(:GorillaTactics)
 			end
 		end
 		# Taunt
-		if @effects[PBEffects::Taunt] > 0 && move.statusMove?
+		if effectActive?(:Taunt) && move.statusMove?
 			if showMessages
 				msg = _INTL("{1} can't use {2} after the taunt!", pbThis, move.name)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
@@ -79,7 +77,7 @@ class PokeBattle_Battler
 			return false
 		end
 		# Torment
-		if @effects[PBEffects::Torment] && !@effects[PBEffects::Instructed] &&
+		if effectActive?(:Torment) && !effectActive?(:Instructed) &&
 					@lastMoveUsed && move.id == @lastMoveUsed && move.id != @battle.struggle.id
 			if showMessages
 				msg = _INTL("{1} can't use the same move twice in a row due to the torment!", pbThis)
@@ -89,7 +87,7 @@ class PokeBattle_Battler
 		end
 		# Imprison
 		@battle.eachOtherSideBattler(@index) do |b|
-			next if !b.effects[PBEffects::Imprison] || !b.pbHasMove?(move.id)
+			next if !b.effectActive?(:Imprison) || !b.pbHasMove?(move.id)
 			if showMessages
 				msg = _INTL("{1} can't use its sealed {2}!", pbThis, move.name)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
@@ -123,7 +121,7 @@ class PokeBattle_Battler
 	def pbDisobey(choice, badgeLevel)
 		move = choice[2]
 		PBDebug.log("[Disobedience] #{pbThis} disobeyed")
-		@effects[PBEffects::Rage] = false
+		disableEffect(:Rage)
 		# Do nothing if using Snore/Sleep Talk
 		if @status == :SLEEP && move.usableWhenAsleep?
 			@battle.pbDisplay(_INTL('{1} ignored orders and kept sleeping!', pbThis))
@@ -184,11 +182,11 @@ class PokeBattle_Battler
 			return false
 		end
 		# Check whether it's possible for self to do anything at all
-		if @effects[PBEffects::SkyDrop] >= 0 # Intentionally no message here
+		if effectActive?(:SkyDrop) # Intentionally no message here
 			PBDebug.log("[Move failed] #{pbThis} can't use #{move.name} because of being Sky Dropped")
 			return false
 		end
-		if @effects[PBEffects::HyperBeam] > 0 # Intentionally before Truant
+		if effectActive?(:HyperBeam) # Intentionally before Truant
 			@battle.pbDisplay(_INTL('{1} must recharge!', pbThis))
 			return false
 		end
@@ -215,8 +213,8 @@ class PokeBattle_Battler
 		return false unless pbObedienceCheck?(choice)
 		# Truant
 		if hasActiveAbility?(:TRUANT)
-			@effects[PBEffects::Truant] = !@effects[PBEffects::Truant]
-			if !@effects[PBEffects::Truant] && move.id != :SLACKOFF # True means loafing, but was just inverted
+			applyEffect(:Truant,!@effects[:Truant])
+			if !effectActive?(:Taunt) && move.id != :SLACKOFF # True means loafing, but was just inverted
 				@battle.pbShowAbilitySplash(self)
 				@battle.pbDisplay(_INTL('{1} is loafing around!', pbThis))
 				@lastMoveFailed = true
@@ -225,67 +223,61 @@ class PokeBattle_Battler
 			end
 		end
 		# Flinching
-		if @effects[PBEffects::Flinch]
-			if @effects[PBEffects::FlinchedAlready]
-				@battle.pbDisplay("#{pbThis} shrugged off their fear and didn't flinch!")
-				@effects[PBEffects::Flinch] = false
+		if effectActive?(:Flinch)
+			if effectActive?(:FlinchedAlready)
+				@battle.pbDisplay("#{pbThis} has gotten used to the fear, so didn't flinch!")
+				disableEffect(:Flinch)
 			else
 				@battle.pbDisplay(_INTL("{1} flinched and couldn't move!", pbThis))
 				BattleHandlers.triggerAbilityOnFlinch(@ability, self, @battle) if abilityActive?
 				@lastMoveFailed = true
-				@effects[PBEffects::FlinchedAlready] = true
+				applyEffect(:FlinchedAlready)
 				return false
 			end
 		end
 		# Confusion
-		if @effects[PBEffects::Confusion] > 0
-			@effects[PBEffects::Confusion] -= 1
-			if @effects[PBEffects::Confusion] <= 0
-				pbCureConfusion
-				@battle.pbDisplay(_INTL('{1} snapped out of its confusion.', pbThis))
+		if effectActive?(:Confusion)
+			if user.tickDown(:Confusion)
+				disableEffect(:Confusion)
 			else
 				@battle.pbCommonAnimation('Confusion', self)
 				@battle.pbDisplay(_INTL('{1} is confused!', pbThis))
-				threshold = 50 + 50 * @effects[PBEffects::ConfusionChance]
+				threshold = 50 * @effects[:ConfusionChance]
 				if (@battle.pbRandom(100) < threshold && !hasActiveAbility?(%i[HEADACHE TANGLEDFEET])) || ($DEBUG && Input.press?(Input::CTRL))
-					@effects[PBEffects::ConfusionChance] = 0
 					superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE, @index)
 					pbConfusionDamage(_INTL('It hurt itself in its confusion!'), false, superEff)
-					@effects[PBEffects::ConfusionChance] = -999
+					applyEffect(:ConfusionChance,-999)
 					@lastMoveFailed = true
 					return false
 				else
-					@effects[PBEffects::ConfusionChance] += 1
+					incrementEffect(:ConfusionChance)
 				end
 			end
 		end
 		# Charm
-		if @effects[PBEffects::Charm] > 0
-			@effects[PBEffects::Charm] -= 1
-			if @effects[PBEffects::Charm] <= 0
-				pbCureCharm
-				@battle.pbDisplay(_INTL('{1} was released from the charm.', pbThis))
+		if effectActive?(:Charm)
+			if user.tickDown(:Charm)
+				disableEffect(:Charm)
 			else
 				@battle.pbAnimation(:LUCKYCHANT, self, nil)
 				@battle.pbDisplay(_INTL('{1} is charmed!', pbThis))
-				threshold = 50 + 50 * @effects[PBEffects::CharmChance]
+				threshold = 50 * @effects[:CharmChance]
 				if (@battle.pbRandom(100) < threshold && !hasActiveAbility?(%i[HEADACHE TANGLEDFEET])) || ($DEBUG && Input.press?(Input::CTRL))
-					@effects[PBEffects::CharmChance] = 0
 					superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE, @index)
 					pbConfusionDamage(_INTL("It's energy went wild due to the charm!"), true, superEff)
-					@effects[PBEffects::CharmChance] = -999
+					applyEffect(:CharmChance,-999)
 					@lastMoveFailed = true
 					return false
 				else
-					@effects[PBEffects::CharmChance] += 1
+					incrementEffect(:CharmChance)
 				end
 			end
 		end
 		# Infatuation
-		if @effects[PBEffects::Attract] >= 0
+		if effectActive?(:Attract)
 			@battle.pbCommonAnimation('Attract', self)
-			@battle.pbDisplay(_INTL('{1} is in love with {2}!', pbThis,
-																											@battle.battlers[@effects[PBEffects::Attract]].pbThis(true)))
+			otherBattler = @battle.battlers[@effects[:Attract]]
+			@battle.pbDisplay(_INTL('{1} is in love with {2}!', pbThis,otherBattler.pbThis(true)))
 			if @battle.pbRandom(100) < 50
 				@battle.pbDisplay(_INTL('{1} is immobilized by love!', pbThis))
 				@lastMoveFailed = true
@@ -327,7 +319,7 @@ class PokeBattle_Battler
 		typeMod = move.pbCalcTypeMod(move.calcType, user, target)
 		target.damageState.typeMod = typeMod
 		# Two-turn attacks can't fail here in the charging turn
-		return true if user.effects[PBEffects::TwoTurnAttack]
+		return true if user.effectActive?(:TwoTurnAttack)
 		# Move-specific failures
 		return false if move.pbFailsAgainstTarget?(user, target)
 		# Immunity to priority moves because of Psychic Terrain
@@ -405,17 +397,17 @@ class PokeBattle_Battler
 			return false
 		end
 		# Mat Block
-		return false if target.pbOwnSide.effects[PBEffects::MatBlock] && move.damagingMove? && doesProtectionEffectNegateThisMove?('Mat Block', move, user, target, protectionIgnoredByAbility)
+		return false if target.pbOwnSide.effectActive?(:MatBlock) && move.damagingMove? && doesProtectionEffectNegateThisMove?('Mat Block', move, user, target, protectionIgnoredByAbility)
 		# Magic Coat/Magic Bounce/Magic Shield
 		if move.canMagicCoat? && !target.semiInvulnerable? && target.opposes?(user)
-			if target.effects[PBEffects::MagicCoat]
+			if target.effectActive?(:MagicCoat)
 				target.damageState.magicCoat = true
-				target.effects[PBEffects::MagicCoat] = false
+				target.disableEffect(:MagicCoat)
 				return false
 			end
-			if target.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker # && !target.effects[PBEffects::MagicBounce]
+			if target.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker
 				target.damageState.magicBounce = true
-				target.effects[PBEffects::MagicBounce] = true
+				target.applyEffect(:MagicBounce)
 				return false
 			end
 			if target.hasActiveAbility?(:MAGICSHIELD) && !@battle.moldBreaker
@@ -434,7 +426,7 @@ class PokeBattle_Battler
 			return false
 		end
 		# Substitute
-		if target.effects[PBEffects::Substitute] > 0 && move.statusMove? &&
+		if target.substituted? && move.statusMove? &&
 					!move.ignoresSubstitute?(user) && user.index != target.index
 			PBDebug.log("[Target immune] #{target.pbThis} is protected by its Substitute")
 			@battle.pbDisplay(_INTL('{1} avoided the attack!', target.pbThis(true)))
@@ -462,7 +454,7 @@ class PokeBattle_Battler
 			return true
 		end
 		# Dark-type immunity to moves made faster by Prankster
-		if user.effects[PBEffects::Prankster] && target.pbHasType?(:DARK) && target.opposes?(user)
+		if user.effectActive?(:Prankster) && target.pbHasType?(:DARK) && target.opposes?(user)
 			PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
 			if showMessages
 				@battle.pbDisplay(_INTL("It doesn't affect {1} since Dark-types are immune to pranks...", target.pbThis(true)))
@@ -496,14 +488,14 @@ class PokeBattle_Battler
 				end
 				return true
 			end
-			if target.effects[PBEffects::MagnetRise] > 0
+			if target.effectActive?(:MagnetRise)
 				if showMessages
 					@battle.pbDisplay(_INTL('{1} makes Ground moves miss with Magnet Rise!', target.pbThis))
 					@battle.triggerImmunityDialogue(user, target, false)
 				end
 				return true
 			end
-			if target.effects[PBEffects::Telekinesis] > 0
+			if target.effectActive?(:Telekinesis)
 				if showMessages
 					@battle.pbDisplay(_INTL('{1} makes Ground moves miss with Telekinesis!', target.pbThis))
 					@battle.triggerImmunityDialogue(user, target, false)
@@ -520,10 +512,9 @@ class PokeBattle_Battler
 	#=============================================================================
 	def pbSuccessCheckPerHit(move, user, target, skipAccuracyCheck)
 		# Two-turn attacks can't fail here in the charging turn
-		return true if user.effects[PBEffects::TwoTurnAttack]
+		return true if user.effectActive?(:TwoTurnAttack)
 		# Lock-On
-		return true if user.effects[PBEffects::LockOn] > 0 &&
-																	user.effects[PBEffects::LockOnPos] == target.index
+		return true if user.effectActive?(:LockOn) && user.effects[:LockOnPos] == target.index
 		# Toxic
 		return true if move.pbOverrideSuccessCheckPerHit(user, target)
 		miss = false
@@ -537,7 +528,7 @@ class PokeBattle_Battler
 		hitsInvul = true if move.function == '09C'
 		unless hitsInvul
 			# Semi-invulnerable moves
-			if target.effects[PBEffects::TwoTurnAttack]
+			if target.effectActive?(:TwoTurnAttack)
 				if target.inTwoTurnAttack?('0C9', '0CC', '0CE') # Fly, Bounce, Sky Drop
 					miss = true unless move.hitsFlyingTargets?
 				elsif target.inTwoTurnAttack?('0CA')            # Dig
@@ -548,8 +539,7 @@ class PokeBattle_Battler
 					miss = true
 				end
 			end
-			if target.effects[PBEffects::SkyDrop] >= 0 &&
-						target.effects[PBEffects::SkyDrop] != user.index && !move.hitsFlyingTargets?
+			if target.effectActive?(:SkyDrop) && target.effects[:SkyDrop] != user.index && !move.hitsFlyingTargets?
 				miss = true
 			end
 		end
@@ -570,7 +560,7 @@ class PokeBattle_Battler
 	def pbMissMessage(move, user, target)
 		if move.pbTarget(user).num_targets > 1
 			@battle.pbDisplay(_INTL('{1} avoided the attack!', target.pbThis))
-		elsif target.effects[PBEffects::TwoTurnAttack]
+		elsif target.effectActive?(:TwoTurnAttack)
 			@battle.pbDisplay(_INTL('{1} avoided the attack!', target.pbThis))
 		elsif !move.pbMissMessage(user, target)
 			@battle.pbDisplay(_INTL("{1}'s attack missed!", user.pbThis))

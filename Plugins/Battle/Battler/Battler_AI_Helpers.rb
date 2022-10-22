@@ -94,7 +94,7 @@ class PokeBattle_Battler
 	end
 
 	def aiKnowsAbility?
-		return false if @effects[PBEffects::Illusion] && pbOwnedByPlayer?
+		return false if @effects.effectActive?(:Illusion) && pbOwnedByPlayer?
 		return true
 	end
 
@@ -118,23 +118,23 @@ class PokeBattle_Battler
 	# same type more than once, and should not include any invalid type numbers (e.g. -1).
 	# is fooled by Illusion
 	def pbTypesAI(withType3 = false)
-		if @effects[PBEffects::Illusion] && pbOwnedByPlayer?
-			ret = [@effects[PBEffects::Illusion].type1]
-			ret.push(@effects[PBEffects::Illusion].type2) if @effects[PBEffects::Illusion].type2 != @effects[PBEffects::Illusion].type1
+		if effectActive?(:Illusion) && pbOwnedByPlayer?
+			ret = [disguisedAs.type1]
+			ret.push(disguisedAs.type2) if disguisedAs.type2 != disguisedAs.type1
 		else
 			ret = [@type1]
 			ret.push(@type2) if @type2 != @type1
 		end
 		# Burn Up erases the Fire-type.
-		ret.delete(:FIRE) if @effects[PBEffects::BurnUp]
+		ret.delete(:FIRE) if effectActive?(:BurnUp)
 		# Roost erases the Flying-type. If there are no types left, adds the Normal-
 		# type.
-		if @effects[PBEffects::Roost]
+		if effectActive?(:Roost)
 			ret.delete(:FLYING)
 			ret.push(:NORMAL) if ret.length == 0
 		end
 		# Add the third type specially.
-		ret.push(@effects[PBEffects::Type3]) if withType3 && @effects[PBEffects::Type3] && !ret.include?(@effects[PBEffects::Type3])
+		ret.push(@effects[:Type3]) if withType3 && effectActive?(:Type3) && !ret.include?(@effects[:Type3])
 		return ret
 	end
 
@@ -157,13 +157,10 @@ class PokeBattle_Battler
 		return @battle.pbGetOwnerFromBattlerIndex(@index).policies
 	end
 
-	def substituted?
-		return @effects[PBEffects::Substitute] > 0
-	end
-
 	def eachPotentialAttacker(categoryOnly = -1)
 		eachOpposing(true) do |b|
-			next if b.effects[PBEffects::HyperBeam] > 0 # Don't protect yourself from a target that can't even attack this turn
+			# Don't protect yourself from a target that can't even attack this turn
+			next if b.effectActive?(:HyperBeam)
 			next if categoryOnly == 0 && !b.hasPhysicalAttack?
 			next if categoryOnly == 1 && !b.hasSpecialAttack?
 			next if categoryOnly == 2 && !b.hasStatusMove?

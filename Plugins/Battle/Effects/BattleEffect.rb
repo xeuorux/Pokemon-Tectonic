@@ -23,7 +23,7 @@ module GameData
 
 		# An array of other effects to disable at the same time as it
 		# Be careful not to create loops with this
-		attr_reader :connected_effects
+		attr_reader :sub_effects
 
 		# Resets to default value when a battler starts their turn (sot = "start of turn")
 		attr_reader :resets_battlers_sot
@@ -85,6 +85,13 @@ module GameData
 
 		def is_hazard?
 			return @is_hazard
+		end
+
+		# Cursed by Mental Herb or similar
+		attr_reader :is_mental
+
+		def is_mental?
+			return @is_mental
 		end
 
 		def is_status_hazard?
@@ -185,7 +192,7 @@ module GameData
 
 			@others_lose_track      = hash[:others_lose_track] || false
 
-			@connected_effects = hash[:connected_effects] || false
+			@sub_effects = hash[:sub_effects] || false
 
 			@protection_effect = hash[:protection_effect] || false
 			@court_changed		= hash[:court_changed] || true
@@ -195,23 +202,38 @@ module GameData
 			@is_room			= hash[:is_room] || false
 			@is_screen			= hash[:is_screen] || false
 			@is_hazard			= hash[:is_hazard] || false
+			@is_mental			= hash[:is_mental] || false
 		end
 
 		# Method for determining if the effect is considered active
 		def active_value?(value)
-			case @type
-			when :Boolean
-				return value
-			when :Integer, :Species
-				return value > 0
-			when :Position
-				return value >= 0
-			when :Type, :Pokemon, :Move, :Item
-				return !value.nil?
+			active = false
+
+			if @active_value_proc
+				active = @active_value_proc.call(value)
+			else
+				case @type
+				when :Boolean
+					active = value
+				when :Integer, :Species
+					active = value > 0
+				when :Position
+					active = value >= 0
+				when :Type, :Pokemon, :Move, :Item
+					active = !value.nil?
+				end
 			end
+
+			each_sub_effect do |sub_effect, sub_data|
+				sub_active = sub_data.active_value?(@effects[sub_effect])
+				if sub_active != active
+					raise _INTL("Sub-Effect #{sub_data.real_name} of effect #{@real_name} has mismatched activity status")
+				end
+			end
+			return active
 		end
 
-		def valid_value?(battle, value)
+		def valid_value?(value)
 			case @type
 			when :Boolean
 				return [true, false].include?(value)
@@ -220,7 +242,7 @@ module GameData
 			when :Species
 				return value.nil? || GameData::Species.exists?(value)
 			when :Position
-				return value >= -1 && value < battle.positions.length
+				return true # TODO
 			when :Type
 				return value.nil? || GameData::Type.exists?(value)
 			when :Pokemon
@@ -381,8 +403,8 @@ module GameData
 			end
 		end
 
-		def each_connected_effect
-			@connected_effects.each do |otherEffect|
+		def each_sub_effect
+			@sub_effects.each do |otherEffect|
 				otherEffectData = GameData::BattleEffect.get(effect)
 				yield otherEffect, otherEffectData
 			end

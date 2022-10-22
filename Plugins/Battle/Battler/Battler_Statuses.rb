@@ -100,17 +100,15 @@ class PokeBattle_Battler
 		# Trying to give too many statuses
 		if !hasSpotsForStatus && !ignoreStatus && !selfInflicted
 			if showMessages
-				@battle.pbDisplay(_INTL('{1} cannot have any more status problems...',
-																												pbThis(false)))
+				@battle.pbDisplay(_INTL('{1} cannot have any more status problems...', pbThis(false)))
 			end
 			return false
 		end
 		# Trying to inflict a status problem on a Pokémon behind a substitute
-		if (@effects[PBEffects::Substitute]).positive? && !(move && move.ignoresSubstitute?(user)) &&
-					!selfInflicted && !statusDoublingCurse
+		if substituted? && !(move && move.ignoresSubstitute?(user)) && !selfInflicted && !statusDoublingCurse
 			if showMessages
 				@battle.pbDisplay(_INTL("It doesn't affect {1} behind its substitute...",
-																												pbThis(true)))
+						pbThis(true)))
 			end
 			return false
 		end
@@ -121,7 +119,7 @@ class PokeBattle_Battler
 				if %i[SLEEP FLUSTERED MYSTIFIED].include?(newStatus)
 					if showMessages
 						@battle.pbDisplay(_INTL('{1} surrounds itself with electrified terrain!',
-																														pbThis(true)))
+								pbThis(true)))
 					end
 					return false
 				end
@@ -129,7 +127,7 @@ class PokeBattle_Battler
 				if %i[POISON BURN FROSTBITE].include?(newStatus)
 					if showMessages
 						@battle.pbDisplay(_INTL('{1} surrounds itself with fairy terrain!',
-																														pbThis(true)))
+								pbThis(true)))
 					end
 					return false
 				end
@@ -138,7 +136,7 @@ class PokeBattle_Battler
 		# Uproar immunity
 		if newStatus == :SLEEP && !(hasActiveAbility?(:SOUNDPROOF) && !@battle.moldBreaker) && !statusDoublingCurse
 			@battle.eachBattler do |b|
-				next if b.effects[PBEffects::Uproar].zero?
+				next if !b.effectActive?(:Uproar)
 				@battle.pbDisplay(_INTL('But the uproar kept {1} awake!', pbThis(true))) if showMessages
 				return false
 			end
@@ -193,7 +191,7 @@ class PokeBattle_Battler
 			immuneTypeRealName = GameData::Type.get(immuneType).real_name
 			if showMessages
 				@battle.pbDisplay(_INTL("It doesn't affect {1} since it's an {2}-type...", pbThis(true),
-																												immuneTypeRealName))
+						immuneTypeRealName))
 			end
 			return false
 		end
@@ -265,11 +263,11 @@ class PokeBattle_Battler
 					when :PARALYSIS	then msg = _INTL("{1}'s {2} prevents numbing!", pbThis, abilityName)
 					when :FROZEN	then msg = _INTL("{1}'s {2} prevents chilling!", pbThis, abilityName)
 					when :FLUSTERED		then msg = _INTL("{1}'s {2} prevents being flustered!", pbThis,
-																																							abilityName)
+																	abilityName)
 					when :MYSTIFIED		then msg = _INTL("{1}'s {2} prevents being mystified!", pbThis,
-																																							abilityName)
+																	abilityName)
 					when :FROSTBITE		then msg = _INTL("{1}'s {2} prevents being frostbitten!", pbThis,
-																																							abilityName)
+																	abilityName)
 					end
 				end
 				@battle.pbDisplay(msg)
@@ -278,7 +276,7 @@ class PokeBattle_Battler
 			return false
 		end
 		# Safeguard immunity
-		if pbOwnSide.effects[PBEffects::Safeguard].positive? && !selfInflicted && move &&
+		if pbOwnSide.effectActive?(:Safeguard) && !selfInflicted && move &&
 					!(user && user.hasActiveAbility?(:INFILTRATOR)) && !statusDoublingCurse
 			@battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!", pbThis)) if showMessages
 			return false
@@ -329,7 +327,7 @@ class PokeBattle_Battler
 			return false
 		end
 		# Safeguard immunity
-		if pbOwnSide.effects[PBEffects::Safeguard].positive? &&
+		if pbOwnSide.effectActive?(:Safeguard) &&
 					!(user && user.hasActiveAbility?(:INFILTRATOR))
 			return false
 		end
@@ -351,7 +349,7 @@ class PokeBattle_Battler
 			self.bossStatus	= newStatus
 			self.bossStatusCount	= newStatusCount
 		end
-		@effects[PBEffects::Toxic] = 0
+		disableEffect(:Toxic)
 		# Show animation
 		if newStatus == :POISON && newStatusCount.positive?
 			@battle.pbCommonAnimation('Toxic', self)
@@ -406,8 +404,8 @@ class PokeBattle_Battler
 		#			 asleep (i.e. it doesn't cancel Rollout/Uproar/other multi-turn
 		#			 moves, and it doesn't cancel any moves if self becomes frozen/
 		#			 disabled/anything else). This behaviour was tested in Gen 5.
-		if newStatus == :SLEEP && (@effects[PBEffects::Outrage]).positive?
-			@effects[PBEffects::Outrage] = 0
+		if newStatus == :SLEEP && effectActive?(:Outrage)
+			disableEffect(:Outrage)
 			@currentMove = nil
 		end
 	end
@@ -428,7 +426,7 @@ class PokeBattle_Battler
 		return false if affectedByTerrain? && %i[Electric Misty].include?(@battle.field.terrain)
 		unless hasActiveAbility?(:SOUNDPROOF)
 			@battle.eachBattler do |b|
-				return false if b.effects[PBEffects::Uproar].positive?
+				return false if b.effectActive?(:UPROAR)
 			end
 		end
 		return false if BattleHandlers.triggerStatusImmunityAbilityNonIgnorable(ability, self, :SLEEP)
@@ -444,7 +442,7 @@ class PokeBattle_Battler
 		# NOTE: Bulbapedia claims that Safeguard shouldn't prevent sleep due to
 		#			 drowsiness. I disagree with this too. Compare with the other sided
 		#			 effects Misty/Electric Terrain, which do prevent it.
-		return false if pbOwnSide.effects[PBEffects::Safeguard].positive?
+		return false if pbOwnSide.effectActive?(:Safeguard)
 		return true
 	end
 
@@ -627,13 +625,17 @@ class PokeBattle_Battler
 	#=============================================================================
 	# Confusion
 	#=============================================================================
+	def confused?
+		return effectActive?(:Confusion)
+	end
+	
 	def pbCanConfuse?(user = nil, showMessages = true, move = nil, selfInflicted = false)
 		return false if fainted?
-		if (@effects[PBEffects::Confusion]).positive?
+		if confused?
 			@battle.pbDisplay(_INTL('{1} is already confused.', pbThis)) if showMessages
 			return false
 		end
-		if (@effects[PBEffects::Substitute]).positive? && !(move && move.ignoresSubstitute?(user)) &&
+		if substituted? && !(move && move.ignoresSubstitute?(user)) &&
 					!selfInflicted
 			@battle.pbDisplay(_INTL('But it failed!')) if showMessages
 			return false
@@ -650,8 +652,7 @@ class PokeBattle_Battler
 			end
 			return false
 		end
-		if pbOwnSide.effects[PBEffects::Safeguard].positive? && !selfInflicted &&
-					!(user && user.hasActiveAbility?(:INFILTRATOR))
+		if pbOwnSide.effectActive?(:Safeguard) && !selfInflicted && !(user && user.hasActiveAbility?(:INFILTRATOR))
 			@battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!", pbThis)) if showMessages
 			return false
 		end
@@ -663,15 +664,15 @@ class PokeBattle_Battler
 	end
 
 	def pbConfuse(msg = nil)
-		@effects[PBEffects::Confusion] = pbConfusionDuration
-		@effects[PBEffects::ConfusionChance] = 0
+		applyEffect(:Confusion, pbConfusionDuration)
+		applyEffect(:ConfusionChance, 0)
 		@battle.pbCommonAnimation('Confusion', self)
 		if !msg || msg == ''
 			msg = _INTL('{1} became confused! It will hit itself with its own Attack!',
 															pbThis)
 		end
 		@battle.pbDisplay(msg)
-		PBDebug.log("[Lingering effect] #{pbThis}'s confusion count is #{@effects[PBEffects::Confusion]}")
+		PBDebug.log("[Lingering effect] #{pbThis}'s confusion count is #{effectCount(:Confusion)}")
 		# Confusion cures
 		pbItemStatusCureCheck
 		pbAbilityStatusCureCheck
@@ -682,21 +683,20 @@ class PokeBattle_Battler
 		return duration
 	end
 
-	def pbCureConfusion
-		@effects[PBEffects::Confusion] = 0
-		@effects[PBEffects::ConfusionChance] = 0
-	end
-
 	#=============================================================================
 	# Charm
 	#=============================================================================
+	def charmed?
+		return effectActive?(:Charm)
+	end
+
 	def pbCanCharm?(user = nil, showMessages = true, move = nil, selfInflicted = false)
 		return false if fainted?
-		if (@effects[PBEffects::Charm]).positive?
+		if charmed?
 			@battle.pbDisplay(_INTL('{1} is already charmed.', pbThis)) if showMessages
 			return false
 		end
-		if (@effects[PBEffects::Substitute]).positive? && !(move && move.ignoresSubstitute?(user)) &&
+		if substituted? && !(move && move.ignoresSubstitute?(user)) &&
 					!selfInflicted
 			@battle.pbDisplay(_INTL('But it failed!')) if showMessages
 			return false
@@ -713,8 +713,7 @@ class PokeBattle_Battler
 			end
 			return false
 		end
-		if pbOwnSide.effects[PBEffects::Safeguard].positive? && !selfInflicted &&
-					!(user && user.hasActiveAbility?(:INFILTRATOR))
+		if pbOwnSide.effectActive?(:Safeguard) && !selfInflicted && !(user && user.hasActiveAbility?(:INFILTRATOR))
 			@battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!", pbThis)) if showMessages
 			return false
 		end
@@ -726,15 +725,14 @@ class PokeBattle_Battler
 	end
 
 	def pbCharm(msg = nil)
-		@effects[PBEffects::Charm] = pbCharmDuration
-		@effects[PBEffects::CharmChance] = 0
+		applyEffect(:Charm, pbCharmDuration)
+		applyEffect(:CharmChance, 0)
 		@battle.pbAnimation(:LUCKYCHANT, self, nil)
 		if !msg || msg == ''
-			msg = _INTL('{1} became charmed! It will hit itself with its own Sp. Atk!',
-															pbThis)
+			msg = _INTL('{1} became charmed! It will hit itself with its own Sp. Atk!',pbThis)
 		end
 		@battle.pbDisplay(msg)
-		PBDebug.log("[Lingering effect] #{pbThis}'s charm count is #{@effects[PBEffects::Confusion]}")
+		PBDebug.log("[Lingering effect] #{pbThis}'s charm count is #{effectCount(:Charm)}")
 		# Charm cures
 		pbItemStatusCureCheck
 		pbAbilityStatusCureCheck
@@ -745,17 +743,12 @@ class PokeBattle_Battler
 		return duration
 	end
 
-	def pbCureCharm
-		@effects[PBEffects::Charm] = 0
-		@effects[PBEffects::CharmChance] = 0
-	end
-
 	#=============================================================================
 	# Flinching
 	#=============================================================================
 	def pbFlinch(_user = nil)
 		return if hasActiveAbility?(:INNERFOCUS) && !@battle.moldBreaker
-		@effects[PBEffects::Flinch] = true
+		applyEffect(:Flinch)
 	end
 
 	#=============================================================================

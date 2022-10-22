@@ -198,7 +198,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   #===============================================================================
   class PokeBattle_Move_10C < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      if user.effects[PBEffects::Substitute] > 0
+      if user.substituted?
         @battle.pbDisplay(_INTL("{1} already has a substitute!",user.pbThis))
         return true
       end
@@ -629,7 +629,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
 
     def getScore(score,user,target,skill=100)
-      score += 30 if user.substituted?
+      score += 30 if user.effectActive?(:Substitute)
       score += 20 if user.hasAlly?
       user.eachPotentialAttacker do |b|
         score -= 20
@@ -711,7 +711,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       @battle.eachBattler do |b|
         showMessage = false
         if b.inTwoTurnAttack?("0C9","0CC","0CE")   # Fly/Bounce/Sky Drop
-          b.effects[PBEffects::TwoTurnAttack] = nil
+          disableEffect(:TwoTurnAttack)
           @battle.pbClearChoice(b.index) if !b.movedThisRound?
           showMessage = true
         end
@@ -839,7 +839,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def canSmackDown?(target,checkingForAI=false)
       return false if target.fainted?
       if checkingForAI
-        return false if target.substituted?
+        return false if target.effectActive?(:Substitute)
       else
         return false if target.damageState.unaffected || target.damageState.substitute
       end
@@ -852,7 +852,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       return if !canSmackDown?(target)
       target.effects[PBEffects::SmackDown]   = true
       if target.inTwoTurnAttack?("0C9","0CC")   # Fly/Bounce. NOTE: Not Sky Drop.
-        target.effects[PBEffects::TwoTurnAttack] = nil
+        disableEffect(:TwoTurnAttack)
         @battle.pbClearChoice(target.index) if !target.movedThisRound?
       end
       target.effects[PBEffects::MagnetRise]  = 0
@@ -1907,7 +1907,7 @@ end
   #===============================================================================
   class PokeBattle_Move_14E < PokeBattle_TwoTurnMove
     def pbMoveFailed?(user,targets)
-      return false if user.effects[PBEffects::TwoTurnAttack]   # Charging turn
+      return false if user.effectActive?(:TwoTurnAttack)   # Charging turn
       if !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self) &&
          !user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self) &&
          !user.pbCanRaiseStatStage?(:SPEED,user,self)
@@ -2155,7 +2155,7 @@ end
     end
 
     def getScore(score,user,target,skill=100)
-      if !target.substituted? && target.burned?
+      if !target.effectActive?(:Substitute) && target.burned?
         if target.opposes?(user)
           score -= 30
         else
@@ -2491,7 +2491,7 @@ end
     end
 
     def getScore(score,user,target,skill=100)
-      if !target.substituted? && !target.effects[PBEffects::GastroAcid]
+      if !target.effectActive?(:Substitute) && !target.effects[PBEffects::GastroAcid]
         score = getWantsToBeSlowerScore(score,user,target,skill,3)
       end
       return score
@@ -2691,7 +2691,7 @@ end
     end
 
     def getScore(score,user,target,skill=100)
-      if target.effects[PBEffects::ThroatChop] == 0 && target.hasSoundMove? && !target.substituted?
+      if target.effects[PBEffects::ThroatChop] == 0 && target.hasSoundMove? && !target.effectActive?(:Substitute)
         score += 30
       end
       return score
@@ -2762,7 +2762,7 @@ end
   
     def pbFailsAgainstTarget?(user,target)
       return false if !@healing
-      if target.effects[PBEffects::Substitute]>0 && !ignoresSubstitute?(user)
+      if target.substituted? && !ignoresSubstitute?(user)
         @battle.pbDisplay(_INTL("But it failed!"))
         return true
       end

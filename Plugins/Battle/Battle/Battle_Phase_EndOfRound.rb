@@ -353,7 +353,7 @@ class PokeBattle_Battle
       battler.effects.each do |effect,value|
         effectData = GameData::BattleEffect.try_get(effect)
         raise _INTL("Battler effect \"#{effectData.real_name}\" is not a defined effect.") if effectData.nil?
-        next if effectData.valid_value?(self,value)
+        next if effectData.valid_value?(value)
         raise _INTL("Battler effect \"#{effectData.real_name}\" is in invalid state: #{value}")
       end
     end
@@ -362,7 +362,7 @@ class PokeBattle_Battle
       position.effects.each do |effect,value|
         effectData = GameData::BattleEffect.try_get(effect)
         raise _INTL("Position effect \"#{effectData.real_name}\" is not a defined effect.") if effectData.nil?
-        next if effectData.valid_value?(self,value)
+        next if effectData.valid_value?(value)
         raise _INTL("Position effect \"#{effectData.real_name}\" is in invalid state: #{value}")
       end
     end
@@ -371,7 +371,7 @@ class PokeBattle_Battle
       side.effects.each do |effect,value|
         effectData = GameData::BattleEffect.try_get(effect)
         raise _INTL("Side effect \"#{effectData.real_name}\" is not a defined effect") if effectData.nil?
-        next if effectData.valid_value?(self,value)
+        next if effectData.valid_value?(value)
         raise _INTL("Side effect \"#{effectData.real_name}\" is in invalid state: #{value}")
       end
     end
@@ -379,7 +379,7 @@ class PokeBattle_Battle
     @field.effects.each do |effect,value|
       effectData = GameData::BattleEffect.try_get(effect)
       raise _INTL("Whole field effect \"#{effectData.real_name}\" is not a defined effect.") if effectData.nil?
-      next if effectData.valid_value?(self,value)
+      next if effectData.valid_value?(value)
       raise _INTL("Whole field effect \"#{effectData.real_name}\" is in invalid state: #{value}")
     end
   end

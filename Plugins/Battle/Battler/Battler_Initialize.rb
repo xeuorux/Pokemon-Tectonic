@@ -207,7 +207,7 @@ class PokeBattle_Battler
 		@level          = @pokemon.level
 		@hp             = @pokemon.hp
 		@totalhp        = @pokemon.totalhp
-		unless @effects[PBEffects::Transform]
+		unless effectActive?(:Transform)
 			@attack = @pokemon.attack
 			@defense      = @pokemon.defense
 			@spatk        = @pokemon.spatk
