@@ -1276,20 +1276,16 @@ end
 
     # Every subclass of this needs to assign something to @spikeEffect, and then call super
     def initialize(battle,move)
-      @spikeInfo = {
-        PBEffects::PoisonSpikes => "Poison",
-        PBEffects::FlameSpikes => "Flame",
-        PBEffects::FrostSpikes => "Frost",
-      }
       super
-      @spikeName = @spikeInfo[@spikeEffect]
+      @spikeData = GameData::BattleEffect.get(@spikeEffect)
     end
 
     def pbMoveFailed?(user,targets)
       return false if damagingMove?
-      if user.pbOpposingSide.effects[@spikeEffect] >= 2
-          @battle.pbDisplay(_INTL("But it failed, since the opposing side already has two layers of #{@spikeName.downcase} spikes!"))
-          return true
+      if user.pbOpposingSide.effectAtMax?(@spikeEffect)
+        maximum = @spikeData.maximum
+        @battle.pbDisplay(_INTL("But it failed, since the opposing side already has #{maximum} layers of #{@spikeData.real_name} spikes!"))
+        return true
       end
       return false
     end
@@ -1301,24 +1297,17 @@ end
 
     def pbEffectAgainstTarget(user,target)
       return if !damagingMove?
-      return if target.pbOwnSide.effects[@spikeEffect] >= 2
+      return if target.pbOwnSide.effectAtMax?(@spikeEffect)
       addSpikeLayer(target.pbOwnSide,target.pbTeam(true))
     end
 
     def addSpikeLayer(side,teamLabel)
-      side.effects[@spikeEffect] += 1
-      if side.effects[@spikeEffect] == 2
-          @battle.pbDisplay(_INTL("The second layer of #{@spikeName.downcase} spikes were scattered all around {1}'s feet!",teamLabel))
-      else
-          @battle.pbDisplay(_INTL("#{@spikeName} spikes were scattered all around {1}'s feet!",teamLabel))
-      end
+      side.incrementEffect(@spikeEffect)
 
-      @spikeInfo.each do |otherSpikeEffect,otherName|
-        next if otherSpikeEffect == @spikeEffect
-        if side.effects[otherSpikeEffect] > 0
-          side.effects[otherSpikeEffect] = 0
-          @battle.pbDisplay(_INTL("The #{otherName.downcase} spikes around {1}'s feet were brushed aside!",teamLabel))
-        end
+      side.eachEffectWithData(true) do |effect, value, data|
+        next if !data.is_status_hazard?
+        next if effect == @spikeEffect
+        side.disableEffect(effect)
       end
     end
 

@@ -397,9 +397,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 		next 2 if value > 0
 		next 0
 	},
-	:expire_proc => Proc.new { |battle,battler|
-		battler.disableEffect(:LockOnPos)
-	},
+	:connected_effects => [:LockOnPos],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{

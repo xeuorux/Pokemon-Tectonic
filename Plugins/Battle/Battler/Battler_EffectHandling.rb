@@ -1,6 +1,26 @@
 class PokeBattle_Battler
 	include EffectHolder
 
+	def applyEffect(effect, value = ni, ignoreFainted=false)
+		return if fainted? && !ignoreFainted
+		super(effect,value)
+	end
+
+	def disableEffect(effect, ignoreFainted=false)
+		return if fainted? && !ignoreFainted
+		super(effect)
+	end
+
+	def effectActive?(effect, ignoreFainted=false)
+		return false if fainted? && !ignoreFainted
+		super(effect)
+	end
+
+	def effectCount(effect, ignoreFainted=false)
+        return 0 if fainted? && !ignoreFainted
+		super(effect)
+    end
+
 	def processEffectsEOR
 		return if fainted?
 		@effects.each do |effect, _value|

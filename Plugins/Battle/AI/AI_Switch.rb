@@ -198,12 +198,6 @@ class PokeBattle_AI
 
         policies = battler.ownersPolicies
 
-        statusSpikesInfo = {
-            PBEffects::PoisonSpikes => :POISON,
-            PBEffects::FlameSpikes => :FIRE,
-            PBEffects::FrostSpikes => :ICE,
-        }
-
         @battle.pbParty(idxBattler).each_with_index do |pkmn,i|
             switchScore = 0
 
@@ -218,29 +212,28 @@ class PokeBattle_AI
             entryDamage = 0
             if !airborne && pkmn.ability != :MAGICGUARD && pkmn.item != :HEAVYDUTYBOOTS
                 # Spikes
-                spikesCount = battler.pbOwnSide.effects[PBEffects::Spikes]
+                spikesCount = battler.pbOwnSide.effectCount(:Spikes)
                 if spikesCount > 0
                     spikesDenom = [8,6,4][spikesCount-1]
                     entryDamage += pkmn.totalhp / spikesDenom
                 end
 
                 # Stealth Rock
-                if battler.pbOwnSide.effects[PBEffects::StealthRock]
+                if battler.pbOwnSide.effectActive?(:StealthRock)
                     types = pkmn.types
                     stealthRockHPRatio = @battle.getStealthRockHPRatio(types[0], types[1] || nil)
                     entryDamage += pkmn.totalhp * stealthRockHPRatio
                 end
 
                 # Each of the status setting spikes
-                statusSpikesInfo.each do |spike_effect,absorbing_type|
-                    # Poison Spikes
-                    statusSpikesCount = battler.pbOwnSide.effects[spike_effect]
-                    next if statusSpikesCount <= 0
-
-                    if pkmn.hasType?(absorbing_type)
+                battler.pbOwnSide.eachEffectWithData(true) do |effect, value, data|
+                    next if !data.is_status_hazard?
+                    hazardInfo = data.type_applying_hazard
+                    
+                    if hazardInfo[:absorb_proc].call(pkmn)
                         willAbsorbSpikes = true
                     else
-                        statusSpikesDenom = [16,4][statusSpikesCount-1]
+                        statusSpikesDenom = [16,4][value-1]
                         entryDamage += pkmn.totalhp / statusSpikesDenom
                     end
                 end

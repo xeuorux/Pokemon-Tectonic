@@ -37,6 +37,7 @@ class PokeBattle_Battler
 		activeTypes = pbTypes(true)
 		return activeTypes.include?(GameData::Type.get(type).id)
 	end
+	alias hasType? pbHasType?
 
 	def pbHasOtherType?(type)
 		return false unless type

@@ -199,8 +199,9 @@ class PokeBattle_Battle
       @positions[battler.index].effects[PBEffects::RefugeMaker] = -1
     end
     # Entry hazards
+
     # Stealth Rock
-    if battler.pbOwnSide.effects[PBEffects::StealthRock] && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:ROCK)
+    if battler.pbOwnSide.effectActive?(:StealthRock) && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:ROCK)
       bTypes = battler.pbTypes(true)
       stealthRockHPRatio = getStealthRockHPRatio(bTypes[0], bTypes[1], bTypes[2])
       if stealthRockHPRatio > 0
@@ -210,80 +211,55 @@ class PokeBattle_Battle
         end
       end
     end
-    # Spikes
-    if battler.pbOwnSide.effects[PBEffects::Spikes] > 0 && battler.takesIndirectDamage? && !battler.immuneToHazards? && !battler.airborne?
-      spikesIndex = battler.pbOwnSide.effects[PBEffects::Spikes] - 1
-      spikesDiv = [8,6,4][spikesIndex]
-      spikesHPRatio = 1.0 / spikesDiv.to_f
-      layerLabel = ["layer","2 layers","3 layers"][spikesIndex]
-      pbDisplay(_INTL("{1} is hurt by the {2} of spikes!",battler.pbThis,layerLabel))
-      battler.pbItemHPHealCheck
-      if battler.applyFractionalDamage(spikesHPRatio,true,false,true)
-        return pbOnActiveOne(battler)   # For replacement battler
-      end
-    end
-    # Poison Spikes
-    if battler.pbOwnSide.effects[PBEffects::PoisonSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
-      if battler.pbHasType?(:POISON)
-        battler.pbOwnSide.effects[PBEffects::PoisonSpikes] = 0
-        pbDisplay(_INTL("{1} absorbed the poison spikes!",battler.pbThis))
-      elsif battler.pbCanPoison?(nil,false)
-        if battler.pbOwnSide.effects[PBEffects::PoisonSpikes] >= 2
-          battler.pbPoison(nil,_INTL("{1} was poisoned by the poison spikes!",battler.pbThis))
-        else
-          pbDisplay(_INTL("{1} was hurt by the thin layer of poison spikes!",battler.pbThis))
-          if battler.applyFractionalDamage(1.0/16.0,true,false,true)
-            return pbOnActiveOne(battler)   # For replacement battler
-          end
+    
+    # Ground-based hazards
+    if !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
+      # Spikes
+      if battler.pbOwnSide.effectActive?(:Spikes) && battler.takesIndirectDamage?
+        spikesIndex = battler.pbOwnSide.effectCount(:Spikes) - 1
+        spikesDiv = [8,6,4][spikesIndex]
+        spikesHPRatio = 1.0 / spikesDiv.to_f
+        layerLabel = ["layer","2 layers","3 layers"][spikesIndex]
+        pbDisplay(_INTL("{1} is hurt by the {2} of spikes!",battler.pbThis,layerLabel))
+        battler.pbItemHPHealCheck
+        if battler.applyFractionalDamage(spikesHPRatio,true,false,true)
+          return pbOnActiveOne(battler)   # For replacement battler
         end
-      else
-        pbDisplay(_INTL("{1} was unaffected by the poison spikes.",battler.pbThis))
       end
-    end
-	  # Flame Spikes
-    if battler.pbOwnSide.effects[PBEffects::FlameSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
-      if battler.pbHasType?(:FIRE)
-        battler.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
-        pbDisplay(_INTL("{1} absorbed the flame spikes!",battler.pbThis))
-      elsif battler.pbCanBurn?(nil,false)
-        if battler.pbOwnSide.effects[PBEffects::FlameSpikes] >= 2
-          battler.pbBurn(nil,_INTL("{1} was burned by the flame spikes!",battler.pbThis))
-        else
-          pbDisplay(_INTL("{1} was hurt by the thin layer of flame spikes!",battler.pbThis))
-          if battler.applyFractionalDamage(1.0/16.0,true,false,true)
-            return pbOnActiveOne(battler)   # For replacement battler
+
+      # Type applying spike hazards
+      battler.pbOwnSide.eachEffectWithData(true) do |effect,value,data|
+        next if !data.is_status_hazard?
+        hazardInfo = data.type_applying_hazard
+        status = hazardInfo[:status]
+
+        if hazardInfo[:absorb_proc].call(battler)
+          battler.pbOwnSide.disableEffect(effect)
+          pbDisplay(_INTL("{1} absorbed the {2}!",battler.pbThis,data.real_name))
+        elsif battler.pbCanInflictStatus(status,false)
+          if battler.pbOwnSide.effectCount(effect) >= 2
+            battler.pbInflictStatus(status)
+          elsif battler.takesIndirectDamage?
+            pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!",battler.pbThis,data.real_name))
+            if battler.applyFractionalDamage(1.0/16.0,true,false,true)
+              return pbOnActiveOne(battler) # For replacement battler
+            end
           end
-        end
-      else
-        pbDisplay(_INTL("{1} was unaffected by the flame spikes.",battler.pbThis))
-      end
-    end
-    # Frost Spikes
-    if battler.pbOwnSide.effects[PBEffects::FrostSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
-      if battler.pbHasType?(:ICE)
-        battler.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
-        pbDisplay(_INTL("{1} absorbed the frost spikes!",battler.pbThis))
-      elsif battler.pbCanFrostbite?(nil,false)
-        if battler.pbOwnSide.effects[PBEffects::FrostSpikes] >= 2
-          battler.pbFrostbite(nil,_INTL("{1} was frostbitten by the frost spikes!",battler.pbThis))
         else
-          pbDisplay(_INTL("{1} was hurt by the thin layer of frost spikes!",battler.pbThis))
-          if battler.applyFractionalDamage(1.0/16.0,true,false,true)
-            return pbOnActiveOne(battler)   # For replacement battler
-          end
+          pbDisplay(_INTL("{1} was unaffected by the {2}.",battler.pbThis,data.real_name))
         end
-      else
-        pbDisplay(_INTL("{1} was unaffected by the frost spikes.",battler.pbThis))
       end
-   end
-    # Sticky Web
-    if battler.pbOwnSide.effects[PBEffects::StickyWeb] && !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
-      pbDisplay(_INTL("{1} was caught in a sticky web!",battler.pbThis))
-      if battler.pbCanLowerStatStage?(:SPEED)
-        battler.pbLowerStatStage(:SPEED,1,nil)
-        battler.pbItemStatRestoreCheck
+
+      # Sticky Web
+      if battler.pbOwnSide.effectActive?(:StickyWeb)
+        pbDisplay(_INTL("{1} was caught in a sticky web!",battler.pbThis))
+        if battler.pbCanLowerStatStage?(:SPEED)
+          battler.pbLowerStatStage(:SPEED,1,nil)
+          battler.pbItemStatRestoreCheck
+        end
       end
     end
+    
 	  # Proudfire and similar abilities
     if @turnCount > 0
       eachOtherSideBattler(battler.index) do |enemy|

@@ -16,11 +16,17 @@ class PokeBattle_ActiveField
 		@terrainDuration = 0
 		@battle = battle
 
+		@apply_proc = proc do |effectData|
+			effectData.apply_field(@battle)
+		end
 		@remain_proc = proc do |effectData|
-			effectData.remain_both_sides(@battle)
+			effectData.remain_field(@battle)
 		end
 		@expire_proc = proc do |effectData|
-			effectData.expire_both_sides(@battle)
+			effectData.expire_field(@battle)
+		end
+		@increment_proc = proc do |effectData,increment|
+			effectData.increment_field(@battle,increment)
 		end
 	end
 end

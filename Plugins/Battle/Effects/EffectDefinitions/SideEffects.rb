@@ -5,6 +5,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:id => :EchoedVoiceCounter,
 	:real_name => "Echoed Voice Counter",
 	:type => :Integer,
+	:court_changed => false,
 })
 
 GameData::BattleEffect.register_effect(:Side,{
@@ -27,24 +28,38 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Reflect Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:is_screen => true,
+	:apply_proc => Proc.new { |battle,side,teamName|
+		battle.pbDisplay(_INTL("{1}'s Defense is raised!",teamName))
+	},
 	:expire_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s Reflect wore off!",teamName))
 	}
 })
+
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :LightScreen,
 	:real_name => "Light Screen Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:is_screen => true,
+	:apply_proc => Proc.new { |battle,side,teamName|
+		battle.pbDisplay(_INTL("{1}'s Sp. Def is raised!",teamName))
+	},
 	:expire_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s Light Screen wore off!",teamName))
 	}
 })
+
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :AuroraVeil,
 	:real_name => "Aurora Veil Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:is_screen => true,
+	:apply_proc => Proc.new { |battle,side,teamName|
+		battle.pbDisplay(_INTL("{1}'s Defense and Sp. Def are raised!",teamName))
+	},
 	:expire_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!",teamName))
 	}
@@ -170,29 +185,103 @@ GameData::BattleEffect.register_effect(:Side,{
 	:id => :Spikes,
 	:real_name => "Spikes Count",
 	:type => :Integer,
+	:maximum => 3,
+	:increment_proc => Proc.new { |battle,side,teamName,value,increment|
+		if increment == 1
+			battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!", teamName))
+		else
+			battle.pbDisplay(_INTL("{1} layers of Spikes were scattered all around {2}'s feet!", increment, teamName))
+		end
+	}
 })
+
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :PoisonSpikes,
 	:real_name => "Poison Spikes Count",
 	:type => :Integer,
+	:maximum => 2,
+	:type_applying_hazard => {
+		:status => :POISON,
+		:absorb_proc => Proc.new { |pokemonOrBattler|
+			pokemonOrBattler.hasType?(:POISON)
+		},
+	},
+	:increment_proc => Proc.new { |battle,side,teamName,value,increment|
+		if increment == 1
+			battle.pbDisplay(_INTL("Poison Spikes were scattered all around {1}'s feet!", teamName))
+		else
+			battle.pbDisplay(_INTL("{1} layers of Poison Spikes were scattered all around {2}'s feet!", increment, teamName))
+		end
+	},
+	:expire_proc => Proc.new { |battle,side,teamName|
+		teamName[0] = teamName[0].downcase
+		battle.pbDisplay(_INTL("The Poison Spikes around {1}'s feet were swept aside!",teamName))
+	}
 })
+
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :FlameSpikes,
 	:real_name => "Flame Spikes Count",
 	:type => :Integer,
+	:maximum => 2,
+	:type_applying_hazard => {
+		:status => :BURN,
+		:absorb_proc => Proc.new { |pokemonOrBattler|
+			pokemonOrBattler.hasType?(:FIRE)
+		},
+	},
+	:increment_proc => Proc.new { |battle,side,teamName,value,increment|
+		if increment == 1
+			battle.pbDisplay(_INTL("Flame Spikes were scattered all around {1}'s feet!", teamName))
+		else
+			battle.pbDisplay(_INTL("{1} layers of Flame Spikes were scattered all around {2}'s feet!", increment, teamName))
+		end
+	},
+	:expire_proc => Proc.new { |battle,side,teamName|
+		teamName[0] = teamName[0].downcase
+		battle.pbDisplay(_INTL("The Flame Spikes around {1}'s feet were swept aside!",teamName))
+	}
 })
+
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :FrostSpikes,
 	:real_name => "Frost Spikes Count",
 	:type => :Integer,
+	:maximum => 2,
+	:type_applying_hazard => {
+		:status => :FROSTBITE,
+		:absorb_proc => Proc.new { |pokemonOrBattler|
+			pokemonOrBattler.hasType?(:ICE)
+		},
+	},
+	:increment_proc => Proc.new { |battle,side,teamName,value,increment|
+		if increment == 1
+			battle.pbDisplay(_INTL("Frost Spikes were scattered all around {1}'s feet!", teamName))
+		else
+			battle.pbDisplay(_INTL("{1} layers of Frost Spikes were scattered all around {2}'s feet!", increment, teamName))
+		end
+	},
+	:expire_proc => Proc.new { |battle,side,teamName|
+		teamName[0] = teamName[0].downcase
+		battle.pbDisplay(_INTL("The Frost Spikes around {1}'s feet were swept aside!",teamName))
+	}
 })
+
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :StealthRock,
 	:real_name => "Stealth Rock",
+	:apply_proc => Proc.new { |battle,side,teamName|
+		battle.pbDisplay(_INTL("Pointed stones float in the air around {1}!",teamName))
+	},
 })
+
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :StickyWeb,
 	:real_name => "Sticky Web",
+	:apply_proc => Proc.new { |battle,side,teamName|
+		teamName[0] = teamName[0].downcase
+		battle.pbDisplay(_INTL("A sticky web has been laid out beneath {1}'s feet!",teamName))
+	},
 })
 
 ##########################################
@@ -202,6 +291,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:id => :LastRoundFainted,
 	:real_name => "Last Round Fainted",
 	:info_displayed => false,
+	:court_changed => false,
 })
 
 ##########################################
@@ -218,5 +308,5 @@ GameData::BattleEffect.register_effect(:Side,{
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :EmpoweredEmbargo,
-	:real_name => "Empowered Embargo",
+	:real_name => "Items Supressed",
 })

@@ -1390,29 +1390,11 @@ class PokeBattle_Move_54B < PokeBattle_StatUpMove
 			user.effects[PBEffects::LeechSeed] = -1
 			@battle.pbDisplay(_INTL("{1} shed Leech Seed!",user.pbThis))
 		end
-		if user.pbOwnSide.effects[PBEffects::StealthRock]
-			user.pbOwnSide.effects[PBEffects::StealthRock] = false
-			@battle.pbDisplay(_INTL("{1} blew away stealth rocks!",user.pbThis))
-		end
-		if user.pbOwnSide.effects[PBEffects::Spikes]>0
-			user.pbOwnSide.effects[PBEffects::Spikes] = 0
-			@battle.pbDisplay(_INTL("{1} blew away spikes!",user.pbThis))
-		end
-		if user.pbOwnSide.effects[PBEffects::PoisonSpikes] > 0
-			user.pbOwnSide.effects[PBEffects::PoisonSpikes] = 0
-			@battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
-		end
-		if user.pbOwnSide.effects[PBEffects::FlameSpikes] > 0
-			user.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
-			@battle.pbDisplay(_INTL("{1} blew away flame spikes!",user.pbThis))
-		end
-		if user.pbOwnSide.effects[PBEffects::FrostSpikes] > 0
-			user.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
-			@battle.pbDisplay(_INTL("{1} blew away frost spikes!",user.pbThis))
-		end
-		if user.pbOwnSide.effects[PBEffects::StickyWeb]
-			user.pbOwnSide.effects[PBEffects::StickyWeb] = false
-			@battle.pbDisplay(_INTL("{1} blew away sticky webs!",user.pbThis))
+		user.pbOwnSide.eachEffectWithData(true) do |effect,value,data|
+			next unless data.is_hazard?
+			hazardName = data.real_name
+			user.pbOwnSide.disableEffect(effect)
+			@battle.pbDisplay(_INTL("{1} blew away {2}!",user.pbThis, hazardName)) if !data.has_expire_proc?
 		end
 	end
 end
@@ -1500,7 +1482,7 @@ end
 #===============================================================================
 class PokeBattle_Move_551 < PokeBattle_TypeSpikeMove
 	def initialize(battle,move)
-		@spikeEffect = PBEffects::FlameSpikes
+		@spikeEffect = :FlameSpikes
 		super
 	end
 end
@@ -1969,7 +1951,7 @@ end
 #===============================================================================
 class PokeBattle_Move_569 < PokeBattle_TypeSpikeMove
 	def initialize(battle,move)
-		@spikeEffect = PBEffects::FrostSpikes
+		@spikeEffect = :FrostSpikes
 		super
 	end
 end
@@ -2543,8 +2525,8 @@ end
 class PokeBattle_Move_58E < PokeBattle_Move_0EE
 	def pbMoveFailed?(user,targets)
 		return false if damagingMove?
-		if user.pbOpposingSide.effects[PBEffects::Spikes]>=3
-		  @battle.pbDisplay(_INTL("But it failed!"))
+		if user.pbOpposingSide.effectAtMax?(:Spikes)
+		  @battle.pbDisplay(_INTL("But it failed, since there is no room for more Spikes!"))
 		  return true
 		end
 		return false
@@ -2552,17 +2534,13 @@ class PokeBattle_Move_58E < PokeBattle_Move_0EE
 	
 	def pbEffectGeneral(user)
 		return if damagingMove?
-		user.pbOpposingSide.effects[PBEffects::Spikes] += 1
-		@battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
-		user.pbOpposingTeam(true)))
+		user.pbOpposingSide.incrementEffect(:Spikes)
 	end
 
 	def pbAdditionalEffect(user,target)
 		return if !damagingMove?
-		return if user.pbOpposingSide.effects[PBEffects::Spikes]>=3
-		user.pbOpposingSide.effects[PBEffects::Spikes] += 1
-		@battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
-			user.pbOpposingTeam(true)))
+		return if user.pbOpposingSide.effectAtMax?(:Spikes)
+		user.pbOpposingSide.incrementEffect(:Spikes)
 	end
 end
 

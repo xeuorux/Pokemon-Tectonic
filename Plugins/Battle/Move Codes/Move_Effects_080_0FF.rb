@@ -787,16 +787,15 @@ end
 #===============================================================================
 class PokeBattle_Move_0A2 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    if user.pbOwnSide.effects[PBEffects::Reflect]>0
-      @battle.pbDisplay(_INTL("But it failed!"))
+    if user.pbOwnSide.effectActive?(:Reflect)
+      @battle.pbDisplay(_INTL("But it failed, since a Reflect is already active!"))
       return true
     end
     return false
   end
 
   def pbEffectGeneral(user)
-    user.pbOwnSide.effects[PBEffects::Reflect] = user.getScreenDuration()
-    @battle.pbDisplay(_INTL("{1} raised {2}'s Defense!",@name,user.pbTeam(true)))
+    user.pbOwnSide.applyEffect(:Reflect,user.getScreenDuration())
   end
 end
 
@@ -805,16 +804,15 @@ end
 #===============================================================================
 class PokeBattle_Move_0A3 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    if user.pbOwnSide.effects[PBEffects::LightScreen]>0
-      @battle.pbDisplay(_INTL("But it failed!"))
+    if user.pbOwnSide.effectActive?(:LightScreen)
+      @battle.pbDisplay(_INTL("But it failed, since a Light Screen is already active!"))
       return true
     end
     return false
   end
 
   def pbEffectGeneral(user)
-    user.pbOwnSide.effects[PBEffects::LightScreen] = user.getScreenDuration()
-    @battle.pbDisplay(_INTL("{1} raised {2}'s Special Defense!",@name,user.pbTeam(true)))
+    user.pbOwnSide.applyEffect(:LightScreen,user.getScreenDuration())
   end
 end
 

@@ -33,17 +33,15 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   #===============================================================================
   class PokeBattle_Move_103 < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      if user.pbOpposingSide.effects[PBEffects::Spikes]>=3
-        @battle.pbDisplay(_INTL("But it failed!"))
+      if user.pbOpposingSide.effectAtMax?(:Spikes)
+        @battle.pbDisplay(_INTL("But it failed, since there is no room for more Spikes!"))
         return true
       end
       return false
     end
   
     def pbEffectGeneral(user)
-      user.pbOpposingSide.effects[PBEffects::Spikes] += 1
-      @battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
-         user.pbOpposingTeam(true)))
+      user.pbOpposingSide.incrementEffect(:Spikes)
     end
 
     def getScore(score,user,target,skill=100)
@@ -57,7 +55,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   #===============================================================================
   class PokeBattle_Move_104 < PokeBattle_TypeSpikeMove
     def initialize(battle,move)
-      @spikeEffect = PBEffects::PoisonSpikes
+      @spikeEffect = :PoisonSpikes
       super
     end
   end
@@ -67,15 +65,15 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   #===============================================================================
   class PokeBattle_Move_105 < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      if user.pbOpposingSide.effects[PBEffects::StealthRock]
-        @battle.pbDisplay(_INTL("But it failed!"))
+      if user.pbOpposingSide.effectActive?(:StealthRock)
+        @battle.pbDisplay(_INTL("But it failed, since pointed stones already float around the opponent!"))
         return true
       end
       return false
     end
   
     def pbEffectGeneral(user)
-      user.pbOpposingSide.effects[PBEffects::StealthRock] = true
+      user.pbOpposingSide.applyEffect(:StealthRock)
       @battle.pbDisplay(_INTL("Pointed stones float in the air around {1}!",
          user.pbOpposingTeam(true)))
     end
@@ -145,34 +143,27 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   end
   
   #===============================================================================
-  # Ends the opposing side's Light Screen, Reflect and Aurora Break. (Brick Break,
-  # Psychic Fangs)
+  # Ends the opposing side's screen effects.(Brick Break, Psychic Fangs)
   #===============================================================================
   class PokeBattle_Move_10A < PokeBattle_Move
     def ignoresReflect?; return true; end
   
     def pbEffectWhenDealingDamage(user,target)
       side = target.pbOwnSide
-      if side.effects[PBEffects::LightScreen] > 0
-        side.effects[PBEffects::LightScreen] = 0
-        @battle.pbDisplay(_INTL("{1}'s Light Screen wore off!",target.pbTeam))
-      end
-      if side.effects[PBEffects::Reflect] > 0
-        side.effects[PBEffects::Reflect] = 0
-        @battle.pbDisplay(_INTL("{1}'s Reflect wore off!",target.pbTeam))
-      end
-      if side.effects[PBEffects::AuroraVeil] > 0
-        side.effects[PBEffects::AuroraVeil] = 0
-        @battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!",target.pbTeam))
+      side.eachEffectWithData(true) do |effect,value,data|
+        side.disableEffect(effect) if data.is_screen?
       end
     end
   
     def pbShowAnimation(id,user,targets,hitNum = 0,showAnimation=true)
       targets.each do |b|
         side = b.pbOwnSide
-        if side.effects[PBEffects::LightScreen] >0  || side.effects[PBEffects::Reflect] > 0 || side.effects[PBEffects::AuroraVeil] > 0
-          hitNum = 1   # Wall-breaking anim
-          break
+        side.eachEffectWithData(true) do |effect,value,data|
+          # Wall-breaking anim
+          if data.is_screen?
+            hitNum = 1 
+            break
+          end
         end
       end
       super
@@ -180,9 +171,9 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 
     def getScore(score,user,target,skill=100)
       side = target.pbOwnSide
-      score += 10 * side.effects[PBEffects::AuroraVeil]
-			score += 5 * side.effects[PBEffects::Reflect]
-			score += 5 * side.effects[PBEffects::LightScreen]
+      side.eachEffectWithData(true) do |effect,value,data|
+        score += 10 if data.is_screen?
+      end
       return score
     end
   end
@@ -409,21 +400,11 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
         user.effects[PBEffects::LeechSeed] = -1
         @battle.pbDisplay(_INTL("{1} shed Leech Seed!",user.pbThis))
       end
-      if user.pbOwnSide.effects[PBEffects::StealthRock]
-        user.pbOwnSide.effects[PBEffects::StealthRock] = false
-        @battle.pbDisplay(_INTL("{1} blew away stealth rocks!",user.pbThis))
-      end
-      if user.pbOwnSide.effects[PBEffects::Spikes]>0
-        user.pbOwnSide.effects[PBEffects::Spikes] = 0
-        @battle.pbDisplay(_INTL("{1} blew away spikes!",user.pbThis))
-      end
-      if user.pbOwnSide.effects[PBEffects::PoisonSpikes]>0
-        user.pbOwnSide.effects[PBEffects::PoisonSpikes] = 0
-        @battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
-      end
-      if user.pbOwnSide.effects[PBEffects::StickyWeb]
-        user.pbOwnSide.effects[PBEffects::StickyWeb] = false
-        @battle.pbDisplay(_INTL("{1} blew away sticky webs!",user.pbThis))
+      user.pbOwnSide.eachEffectWithData(true) do |effect,value,data|
+          next unless data.is_hazard?
+          user.pbOwnSide.disableEffect(effect)
+          hazardName = data.real_name
+          @battle.pbDisplay(_INTL("{1} blew away {2}!",user.pbThis, hazardName)) if !data.has_expire_proc?
       end
     end
 
@@ -1268,11 +1249,10 @@ class PokeBattle_Move_132 < PokeBattle_Move
   include ShadowMoveAI
 
   def pbEffectGeneral(user)
-    for i in @battle.sides
-      i.effects[PBEffects::AuroraVeil]  = 0
-      i.effects[PBEffects::Reflect]     = 0
-      i.effects[PBEffects::LightScreen] = 0
-      i.effects[PBEffects::Safeguard]   = 0
+    @battle.sides.each do |side|
+      side.eachEffectWithData(true) do |effect,value,data|
+        side.disableEffect(effect) if data.is_screen?
+      end
     end
     @battle.pbDisplay(_INTL("It broke all barriers!"))
   end
@@ -2052,7 +2032,7 @@ end
   #===============================================================================
   class PokeBattle_Move_153 < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      if user.pbOpposingSide.effects[PBEffects::StickyWeb]
+      if user.pbOpposingSide.effectActive?(:StickyWeb)
         @battle.pbDisplay(_INTL("But it failed, since a Sticky Web is already laid out!"))
         return true
       end
@@ -2060,15 +2040,10 @@ end
     end
   
     def pbEffectGeneral(user)
-      user.pbOpposingSide.effects[PBEffects::StickyWeb] = true
-      @battle.pbDisplay(_INTL("A sticky web has been laid out beneath {1}'s feet!",
-         user.pbOpposingTeam(true)))
+      user.pbOpposingSide.applyEffect(:StickyWeb)
     end
 
     def getScore(score,user,target,skill=100)
-      if user.pbOpposingSide.effects[PBEffects::StickyWeb]
-          return 0
-      end
       return getHazardSettingMoveScore(score,user,target,skill)
     end
   end
@@ -2540,21 +2515,18 @@ end
   class PokeBattle_Move_167 < PokeBattle_Move
     def pbMoveFailed?(user,targets)
       if @battle.pbWeather != :Hail
-        @battle.pbDisplay(_INTL("But it failed!"))
+        @battle.pbDisplay(_INTL("But it failed, since it's not Hailing!"))
         return true
       end
-      if user.pbOwnSide.effects[PBEffects::AuroraVeil]>0
-        @battle.pbDisplay(_INTL("But it failed!"))
+      if user.pbOwnSide.effectActive?(:AuroraVeil)
+        @battle.pbDisplay(_INTL("But it failed, since Aurora Veil is already active!"))
         return true
       end
       return false
     end
   
     def pbEffectGeneral(user)
-      user.pbOwnSide.effects[PBEffects::AuroraVeil] = 5
-      user.pbOwnSide.effects[PBEffects::AuroraVeil] = 8 if user.hasActiveItem?(:LIGHTCLAY)
-      @battle.pbDisplay(_INTL("{1} made {2} stronger against physical and special moves!",
-         @name,user.pbTeam(true)))
+      user.pbOwnSide.applyEffect(:AuroraVeil,user.getScreenDuration())
     end
 
     def getScore(score,user,target,skill=100)
@@ -3059,66 +3031,32 @@ end
 # (Court Change)
 #===============================================================================
 class PokeBattle_Move_17A < PokeBattle_Move
-  def initialize(battle,move)
-    super
-    @statUp = [:ATTACK,2,:SPECIAL_ATTACK,2]
-    @numericEffects = [PBEffects::Reflect,PBEffects::LightScreen,PBEffects::AuroraVeil,PBEffects::SeaOfFire,
-  PBEffects::Swamp,PBEffects::Rainbow,PBEffects::Mist,PBEffects::Safeguard,PBEffects::Spikes,
-  PBEffects::PoisonSpikes,PBEffects::Tailwind]
-    @booleanEffects = [PBEffects::StealthRock,PBEffects::StickyWeb]
+  
+  def pbMoveFailed?(user,targets)
+    effectsPlayer = @battle.sides[0].effects
+    effectsTrainer = @battle.sides[1].effects
+    GameData::BattleEffect.each_side_effect do |effectData|
+      next if !effectData.court_changed?
+      id = effectData.id
+      return false if effectsPlayer.effectActive?(id) || effectsTrainer.effectActive?(id)
+    end
+    @battle.pbDisplay(_INTL("But it failed, since there were no effects to swap!"))
+    return true
   end
-  def pbEffectGeneral(user)
-    changeside=false
-    sides=[user.pbOwnSide,user.pbOpposingSide]
-    for i in 0...2
-      noNumericEffectsActive = true
-      noBooleanEffectsActive = true
-      
-      @numericEffects.each do |effect|
-        noNumericEffectsActive = false if sides[i].effects[effect]!=0
-      end
-      
-      @booleanEffects.each do |effect|
-        noBooleanEffectsActive = false if sides[i].effects[effect]
-      end
-      
-      next if noNumericEffectsActive && noBooleanEffectsActive
-      changeside=true
-    end
-    if !changeside
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return -1
-    else
-      ownside=sides[0]; oppside=sides[1]
 
-      @numericEffects.concat(@booleanEffects).each do |effect|
-        temp = ownside.effects[effect]
-        ownside.effects[effect]=oppside.effects[effect]
-        oppside.effects[effect]=temp
-      end
-      
-      # Sticky Web user is preserved, for Defiant/Competitive.
-      stickywebuser=ownside.effects[PBEffects::StickyWebUser]
-      ownside.effects[PBEffects::StickyWebUser]=oppside.effects[PBEffects::StickyWebUser]
-      oppside.effects[PBEffects::StickyWebUser]=stickywebuser
-      
-      @battle.pbDisplay(_INTL("{1} swapped the battle effects affecting each side of the field!",user.pbThis))
-      return 0
+  def pbEffectGeneral(user)
+    effectsPlayer = @battle.sides[0].effects
+    effectsTrainer = @battle.sides[1].effects
+    GameData::BattleEffect.each_side_effect do |effectData|
+      next if !effectData.court_changed?
+      id = effectData.id
+      effectsPlayer[id], effectsTrainer[id] = effectsTrainer[id], effectsPlayer[id]
     end
+    @battle.pbDisplay(_INTL("{1} swapped the battle effects affecting each side of the field!",user.pbThis))
   end
   
   def getScore(score,user,target,skill=100)
-    sides=[user.pbOwnSide,user.pbOpposingSide]
-    @numericEffects.each do |effect|
-        score -= 10 if sides[0].effects[effect]!=0
-        score += 10 if sides[1].effects[effect]!=0
-    end
-      
-    @booleanEffects.each do |effect|
-        score -= 10 if sides[0].effects[effect]
-        score += 10 if sides[1].effects[effect]
-    end
-    return score
+    return 0 # TODO
   end
 end
 

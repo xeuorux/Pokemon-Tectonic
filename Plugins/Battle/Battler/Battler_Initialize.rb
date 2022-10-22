@@ -16,14 +16,17 @@ class PokeBattle_Battler
 	end
 
 	def pbInitProcs()
+		@apply_proc = Proc.new { |effectData|
+			effectData.apply_battler(@battle, self)
+		}
 		@remain_proc = proc do |effectData|
 			effectData.remain_battler(@battle, self)
 		end
 		@expire_proc = proc do |effectData|
 			effectData.expire_battler(@battle, self)
 		end
-		@apply_proc = Proc.new { |effectData|
-			effectData.apply_battler(@battle, self)
+		@increment_proc = Proc.new { |effectData,increment|
+			effectData.increment_battler(@battle, self,increment)
 		}
 	end
 

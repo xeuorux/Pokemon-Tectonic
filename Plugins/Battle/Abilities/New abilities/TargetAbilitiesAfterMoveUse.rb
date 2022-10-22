@@ -48,11 +48,10 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:BOULDERNEST,
     next if !move.damagingMove?
     next if !target.knockedBelowHalf?
     battle.pbShowAbilitySplash(target)
-	if target.pbOpposingSide.effects[PBEffects::StealthRock]
-        battle.pbDisplay(_INTL("But there were already pointed stones floating around #{1}!",target.pbOpposingTeam(true)))
+	  if target.pbOpposingSide.effectActive?(:StealthRock)
+        battle.pbDisplay(_INTL("But there were already pointed stones floating around {1}!",target.pbOpposingTeam(true)))
     else
-        target.pbOpposingSide.effects[PBEffects::StealthRock] = true
-        battle.pbDisplay(_INTL("Pointed stones float in the air around {1}!",target.pbOpposingTeam(true)))
+        target.pbOpposingSide.applyEffect(:StealthRock)
     end
     battle.pbHideAbilitySplash(target)
   }

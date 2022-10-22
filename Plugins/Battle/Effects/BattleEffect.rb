@@ -2,16 +2,21 @@ $globalEffectIDCounter = 0
 
 module GameData
 	class BattleEffect
-		attr_reader :id, :id_number, :real_name, :resets_eor, :resets_on_cancel, :ticks_down, :tick_amount, :baton_passed
+		attr_reader :id, :id_number, :real_name, :resets_eor, :tick_amount, :baton_passed
 
 		# The locations are :Battler, :Side, :Field, :Position
 		attr_reader :location
 		
 		# The types are :Boolean, :Integer, :Position, :Type, :Pokemon, :Move, :Item, :Species, :PartyPosition
+		# If the type isn't included in an effect definition, its assumed to be a boolean
 		attr_reader :type
 		
 		# Don't set the default to nil, will be overwritten
 		attr_reader :default
+
+		# The maximum value attainable by the effect before moves and abilities dont increment it anymore
+		# Only used for Integers
+		attr_reader :maximum
 
 		# Whether or not the effect should be displayed on the battle info menu
 		attr_reader :info_displayed
@@ -20,14 +25,19 @@ module GameData
 		# Be careful not to create loops with this
 		attr_reader :connected_effects
 
-		# Resets to default value when a battler starts their turn
+		# Resets to default value when a battler starts their turn (sot = "start of turn")
 		attr_reader :resets_battlers_sot
 
 		# Resets to default value when a battler has no ability to continue acting this turn
 		# Either when the move ends naturally or is interupted by various effects
+		# (eot = "end of turn")
 		attr_reader :resets_battlers_eot
+
 		# Resets to default value if the battler's move is cancelled
+		attr_reader :resets_on_cancel
+
 		# If it ticks down at end of round. Only used for integers
+		attr_reader :ticks_down
 
 		# When battlers swap position, the effect changes value to point to the correct battler
 		# Only used for :Position type effects
@@ -42,7 +52,26 @@ module GameData
 		attr_reader :multi_turn_tracker
 
 		# Is an effect that makes the pokemon invulnerable
+		# Marked so that moves like Feint can know to remove it
 		attr_reader :protection_effect
+
+		# Bespoke information for type applying spikes
+		attr_reader :type_applying_hazard
+
+		# Whether its swapped by the move Court Change
+		# Defaults to true
+		attr_reader :court_changed
+
+		def court_changed?
+			return @court_changed
+		end
+
+		# Is a "screen" like reflect
+		attr_reader :is_screen
+
+		def is_screen?
+			return @is_screen
+		end
 
 		# Trick Room, etc
 		attr_reader :is_room
@@ -51,6 +80,33 @@ module GameData
 			return @is_room
 		end
 
+		# Spikes, etc.
+		attr_reader :is_hazard
+
+		def is_hazard?
+			return @is_hazard
+		end
+
+		def is_status_hazard?
+			return !@type_applying_hazard.nil?
+		end
+
+		def has_apply_proc?
+			return !@apply_proc.nil?
+		end
+
+		def has_eor_proc?
+			return !@eor_proc.nil?
+		end
+
+		def has_remain_proc?
+			return !@remain_proc.nil?
+		end
+
+		def has_expire_proc?
+			return !@expire_proc.nil?
+		end
+		
 		DATA = {}
 
 		extend ClassMethods
@@ -72,6 +128,7 @@ module GameData
 			@location               = hash[:location]
 			@type                   = hash[:type] || :Boolean
 			@default                = hash[:default]
+			@maximum				= hash[:maximum]
 			@info_displayed			= hash[:info_displayed] || true
 			if @default.nil?
 				case @type
@@ -98,9 +155,17 @@ module GameData
 			@eor_proc               = hash[:eor_proc]
 
 			# Procs every end of round, only when ticking down to 0
-			@expire_proc = hash[:expire_proc]
+			@expire_proc 			= hash[:expire_proc]
 			# Procs every end of round, only when ticked down with still turns remaining
 			@remain_proc            = hash[:remain_proc]
+
+			# Procs every end of round, only when ticked down with still turns remaining
+			@remain_proc            = hash[:remain_proc]
+
+			# Procs whenever the event value is incremented (for integers)
+			@increment_proc			= hash[:increment_proc]
+
+			raise _INTL("Battle effect #{@id} defines an increment proc when its not an integer.") if @increment_proc && @type != :Integer
 
 			# If the effect needs custom logic to determing if it should be active or not
 			# Instead of using the default values (i.e. Integers active above 0)
@@ -123,7 +188,13 @@ module GameData
 			@connected_effects = hash[:connected_effects] || false
 
 			@protection_effect = hash[:protection_effect] || false
+			@court_changed		= hash[:court_changed] || true
+
+			@type_applying_hazard = hash[:type_applying_hazard]
+			
 			@is_room			= hash[:is_room] || false
+			@is_screen			= hash[:is_screen] || false
+			@is_hazard			= hash[:is_hazard] || false
 		end
 
 		# Method for determining if the effect is considered active
@@ -204,7 +275,7 @@ module GameData
 			@apply_proc.call(battle, side, teamName) if @apply_proc
 		end
 
-		def apply_both_sides(battle)
+		def apply_field(battle)
 			@apply_proc.call(battle) if @apply_proc
 		end
 
@@ -226,12 +297,11 @@ module GameData
 			@remain_proc.call(battle, side, teamName) if @remain_proc
 		end
 
-		def remain_both_sides(battle)
+		def remain_field(battle)
 			@remain_proc.call(battle) if @remain_proc
 		end
 
-		### Methods dealing with the effect going away over time
-
+		### Methods dealing with the effect going away after ticking down
 		def expire_battler(battle, battler)
 			@expire_proc.call(battle, battler) if @expire_proc
 		end
@@ -248,12 +318,11 @@ module GameData
 			@expire_proc.call(battle, side, teamName) if @expire_proc
 		end
 
-		def expire_both_sides(battle)
+		def expire_field(battle)
 			@expire_proc.call(battle) if @expire_proc
 		end
 
-		### Methods dealing with the EOR effect regardless of if it expired this turn or not
-
+		### Methods dealing with effects at the end of each round
 		def eor_battler(battle, battler)
 			value = battler.effects[@id]
 			@eor_proc.call(battle, battler, value) if @eor_proc
@@ -263,16 +332,44 @@ module GameData
 			position = battle.positions[index]
 			battler = battle.battlers[index]
 			return if battler.nil? || battler.fainted?
-			@eor_proc.call(battle, index, position, battler) if @eor_proc
+			value = battler.effects[@id]
+			@eor_proc.call(battle, index, position, battler, value) if @eor_proc
 		end
 
 		def eor_side(battle, side)
 			teamName = battle.battlers[side.index].pbTeam
-			@eor_proc.call(battle, side, teamName) if @eor_proc
+			value = battler.effects[@id]
+			@eor_proc.call(battle, side, teamName, value) if @eor_proc
 		end
 
-		def eor_both_sides(battle)
-			@eor_proc.call(battle) if @eor_proc
+		def eor_field(battle)
+			value = battler.effects[@id]
+			@eor_proc.call(battle, value) if @eor_proc
+		end
+
+		### Methods dealing with the effect being incremented (call afterwards)
+		def increment_battler(battle, battler, increment)
+			newValue = battler.effects[@id]
+			@increment_proc.call(battle, battler, newValue, increment) if @increment_proc
+		end
+
+		def increment_position(battle, index, increment)
+			position = battle.positions[index]
+			battler = battle.battlers[index]
+			return if battler.nil? || battler.fainted?
+			newValue = battler.effects[@id]
+			@increment_proc.call(battle, index, position, battler, newValue, increment) if @increment_proc
+		end
+
+		def increment_side(battle, side, increment)
+			teamName = battle.battlers[side.index].pbTeam
+			newValue = battler.effects[@id]
+			@increment_proc.call(battle, side, teamName, newValue, increment) if @increment_proc
+		end
+
+		def increment_field(battle, increment)
+			newValue = battler.effects[@id]
+			@increment_proc.call(battle, newValue, increment) if @increment_proc
 		end
 
 		### Baton passing

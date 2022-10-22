@@ -1152,99 +1152,52 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
   def initialize(battle,move)
     super
     @statDown = [:EVASION,1]
+    @miscEffects = [:Mist, :Safeguard]
+  end
+
+
+  def eachDefoggable(side,isOurSide)
+    side.eachEffectWithData(true) do |effect,value,data|
+      if !isOurSide && (data.is_screen? || @miscEffects.include?(effect))
+        yield effect,data
+      elsif data.is_hazard?
+        yield effect,data
+      end
+    end
   end
 
   def pbFailsAgainstTarget?(user,target)
     targetSide = target.pbOwnSide
-    targetOpposingSide = target.pbOpposingSide
-    return false if targetSide.effects[PBEffects::AuroraVeil]>0 ||
-                    targetSide.effects[PBEffects::LightScreen]>0 ||
-                    targetSide.effects[PBEffects::Reflect]>0 ||
-                    targetSide.effects[PBEffects::Mist]>0 ||
-                    targetSide.effects[PBEffects::Safeguard]>0
-    return false if targetSide.effects[PBEffects::StealthRock] ||
-                    targetSide.effects[PBEffects::Spikes]>0 ||
-                    targetSide.effects[PBEffects::PoisonSpikes]>0 ||
-					          targetSide.effects[PBEffects::FlameSpikes]>0 ||
-                    targetSide.effects[PBEffects::FrostSpikes]>0 ||
-                    targetSide.effects[PBEffects::StickyWeb]
-    return false if Settings::MECHANICS_GENERATION >= 6 &&
-                    (targetOpposingSide.effects[PBEffects::StealthRock] ||
-                    targetOpposingSide.effects[PBEffects::Spikes]>0 ||
-                    targetOpposingSide.effects[PBEffects::PoisonSpikes]>0 ||
-					          targetOpposingSide.effects[PBEffects::FlameSpikes]>0 ||
-                    targetOpposingSide.effects[PBEffects::StickyWeb])
-    return false if Settings::MECHANICS_GENERATION >= 8 && @battle.field.terrain != :None
+    ourSide = user.pbOwnSide
+    eachDefoggable(targetSide,false) do |effect,data|
+      return false
+    end
+    eachDefoggable(ourSide,true) do |effect,data|
+      return false
+    end
+    return false if @battle.field.terrain != :None
     return super
+  end
+
+  def blowAwayEffect(side,effect,data)
+    side.disableEffect(effect)
+    if data.is_hazard?
+      hazardName = data.real_name
+      @battle.pbDisplay(_INTL("{1} blew away {2}!",user.pbThis, hazardName)) if !data.has_expire_proc?
+    end
   end
 
   def pbEffectAgainstTarget(user,target)
     if target.pbCanLowerStatStage?(@statDown[0],user,self)
       target.pbLowerStatStage(@statDown[0],@statDown[1],user)
     end
-    if target.pbOwnSide.effects[PBEffects::AuroraVeil]>0
-      target.pbOwnSide.effects[PBEffects::AuroraVeil] = 0
-      @battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!",target.pbTeam))
+    eachDefoggable(targetSide,false) do |effect,data|
+      blowAwayEffect(targetSide,effect,data)
     end
-    if target.pbOwnSide.effects[PBEffects::LightScreen]>0
-      target.pbOwnSide.effects[PBEffects::LightScreen] = 0
-      @battle.pbDisplay(_INTL("{1}'s Light Screen wore off!",target.pbTeam))
+    eachDefoggable(ourSide,true) do |effect,data|
+      blowAwayEffect(ourSide,effect,data)
     end
-    if target.pbOwnSide.effects[PBEffects::Reflect]>0
-      target.pbOwnSide.effects[PBEffects::Reflect] = 0
-      @battle.pbDisplay(_INTL("{1}'s Reflect wore off!",target.pbTeam))
-    end
-    if target.pbOwnSide.effects[PBEffects::Mist]>0
-      target.pbOwnSide.effects[PBEffects::Mist] = 0
-      @battle.pbDisplay(_INTL("{1}'s Mist faded!",target.pbTeam))
-    end
-    if target.pbOwnSide.effects[PBEffects::Safeguard]>0
-      target.pbOwnSide.effects[PBEffects::Safeguard] = 0
-      @battle.pbDisplay(_INTL("{1} is no longer protected by Safeguard!!",target.pbTeam))
-    end
-    if target.pbOwnSide.effects[PBEffects::StealthRock] ||
-       (Settings::MECHANICS_GENERATION >= 6 &&
-       target.pbOpposingSide.effects[PBEffects::StealthRock])
-      target.pbOwnSide.effects[PBEffects::StealthRock]      = false
-      target.pbOpposingSide.effects[PBEffects::StealthRock] = false if Settings::MECHANICS_GENERATION >= 6
-      @battle.pbDisplay(_INTL("{1} blew away stealth rocks!",user.pbThis))
-    end
-    if target.pbOwnSide.effects[PBEffects::Spikes]>0 ||
-       (Settings::MECHANICS_GENERATION >= 6 &&
-       target.pbOpposingSide.effects[PBEffects::Spikes]>0)
-      target.pbOwnSide.effects[PBEffects::Spikes]      = 0
-      target.pbOpposingSide.effects[PBEffects::Spikes] = 0 if Settings::MECHANICS_GENERATION >= 6
-      @battle.pbDisplay(_INTL("{1} blew away spikes!",user.pbThis))
-    end
-    if target.pbOwnSide.effects[PBEffects::PoisonSpikes]>0 ||
-       (Settings::MECHANICS_GENERATION >= 6 &&
-       target.pbOpposingSide.effects[PBEffects::PoisonSpikes]>0)
-      target.pbOwnSide.effects[PBEffects::PoisonSpikes]      = 0
-      target.pbOpposingSide.effects[PBEffects::PoisonSpikes] = 0 if Settings::MECHANICS_GENERATION >= 6
-      @battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
-    end
-	  if target.pbOwnSide.effects[PBEffects::FlameSpikes]>0 ||
-       (Settings::MECHANICS_GENERATION >= 6 &&
-       target.pbOpposingSide.effects[PBEffects::FlameSpikes]>0)
-      target.pbOwnSide.effects[PBEffects::FlameSpikes]      = 0
-      target.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0 if Settings::MECHANICS_GENERATION >= 6
-      @battle.pbDisplay(_INTL("{1} blew away flame spikes!",user.pbThis))
-    end
-    if target.pbOwnSide.effects[PBEffects::FrostSpikes]>0 ||
-      (Settings::MECHANICS_GENERATION >= 6 &&
-      target.pbOpposingSide.effects[PBEffects::FrostSpikes] > 0)
-     target.pbOwnSide.effects[PBEffects::FrostSpikes]      = 0
-     target.pbOpposingSide.effects[PBEffects::FrostSpikes] = 0 if Settings::MECHANICS_GENERATION >= 6
-     @battle.pbDisplay(_INTL("{1} blew away frost spikes!",user.pbThis))
-    end
-    if target.pbOwnSide.effects[PBEffects::StickyWeb] ||
-       (Settings::MECHANICS_GENERATION >= 6 &&
-       target.pbOpposingSide.effects[PBEffects::StickyWeb])
-      target.pbOwnSide.effects[PBEffects::StickyWeb]      = false
-      target.pbOpposingSide.effects[PBEffects::StickyWeb] = false if Settings::MECHANICS_GENERATION >= 6
-      @battle.pbDisplay(_INTL("{1} blew away sticky webs!",user.pbThis))
-    end
-    if Settings::MECHANICS_GENERATION >= 8 && @battle.field.terrain != :None
+    if @battle.field.terrain != :None
       case @battle.field.terrain
       when :Electric
         @battle.pbDisplay(_INTL("The electricity disappeared from the battlefield."))
@@ -1266,11 +1219,9 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
     score -= hazardWeightOnSide(target.pbOwnSide)
     # Like removing hazards that affect us
     score += hazardWeightOnSide(target.pbOpposingSide)
-    score += 50 if target.pbOwnSide.effects[PBEffects::AuroraVeil]>0 ||
-					 target.pbOwnSide.effects[PBEffects::Reflect]>0 ||
-					 target.pbOwnSide.effects[PBEffects::LightScreen]>0 ||
-					 target.pbOwnSide.effects[PBEffects::Mist]>0 ||
-					 target.pbOwnSide.effects[PBEffects::Safeguard]>0
+    target.pbOwnSide.eachEffectWithData(true) do |effect,value,data|
+      score += 25 if data.is_screen? || @miscEffects.include?(effect)
+    end
     score += 30 if @battle.field.terrain != :None
     return score
   end

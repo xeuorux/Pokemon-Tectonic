@@ -113,9 +113,11 @@ class PokeBattle_Move_607 < PokeBattle_Move_103
 	include EmpoweredMove
 
 	def pbEffectGeneral(user)
-		user.pbOpposingSide.effects[PBEffects::Spikes] = 3
-		@battle.pbDisplay(_INTL("3 layers of spikes were scattered all around {1}'s feet!",
-		   user.pbOpposingTeam(true)))
+		# Apply up to the maximum number of layers
+		increment = GameData::BattleEffect.get(:Spikes).maximum - user.pbOpposingSide.effectCount(:Spikes)
+		if increment > 0
+			user.pbOpposingSide.incrementEffect(:Spikes,increment)
+		end
 		transformType(user,:GROUND)
 	end
 end
@@ -554,25 +556,15 @@ class PokeBattle_Move_644 < PokeBattle_TargetStatDownMove
 	def ignoresReflect?; return true; end
 
   	def pbEffectGeneral(user)
-		if user.pbOpposingSide.effects[PBEffects::LightScreen]>0
-		user.pbOpposingSide.effects[PBEffects::LightScreen] = 0
-		@battle.pbDisplay(_INTL("{1}'s Light Screen wore off!",user.pbOpposingTeam))
-		end
-		if user.pbOpposingSide.effects[PBEffects::Reflect]>0
-		user.pbOpposingSide.effects[PBEffects::Reflect] = 0
-		@battle.pbDisplay(_INTL("{1}'s Reflect wore off!",user.pbOpposingTeam))
-		end
-		if user.pbOpposingSide.effects[PBEffects::AuroraVeil]>0
-		user.pbOpposingSide.effects[PBEffects::AuroraVeil] = 0
-		@battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!",user.pbOpposingTeam))
+		user.pbOpposingSide.eachEffectWithData(true) do |effect,value,data|
+			user.pbOpposingSide.disableEffect(effect) if data.is_screen?
 		end
 	end
 
 	def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
-		if user.pbOpposingSide.effects[PBEffects::LightScreen]>0 ||
-		user.pbOpposingSide.effects[PBEffects::Reflect]>0 ||
-		user.pbOpposingSide.effects[PBEffects::AuroraVeil]>0
-		hitNum = 1   # Wall-breaking anim
+		user.pbOpposingSide.eachEffectWithData(true) do |effect,value,data|
+			# Wall-breaking anim
+			hitNum = 1 if data.is_screen?
 		end
 		super
 	end
