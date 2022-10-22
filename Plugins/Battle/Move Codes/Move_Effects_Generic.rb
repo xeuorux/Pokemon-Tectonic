@@ -1271,7 +1271,7 @@ end
     # Every subclass of this needs to assign something to @spikeEffect, and then call super
     def initialize(battle,move)
       @spikeInfo = {
-        PBEffects::ToxicSpikes => "Poison",
+        PBEffects::PoisonSpikes => "Poison",
         PBEffects::FlameSpikes => "Flame",
         PBEffects::FrostSpikes => "Frost",
       }

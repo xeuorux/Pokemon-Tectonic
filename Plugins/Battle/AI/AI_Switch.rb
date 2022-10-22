@@ -199,8 +199,8 @@ class PokeBattle_AI
         policies = battler.ownersPolicies
 
         statusSpikesInfo = {
-            PBEffects::ToxicSpikes => :POISON,
-            PBEffects::ToxicSpikes => :FIRE,
+            PBEffects::PoisonSpikes => :POISON,
+            PBEffects::FlameSpikes => :FIRE,
             PBEffects::FrostSpikes => :ICE,
         }
 

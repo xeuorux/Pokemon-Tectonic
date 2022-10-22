@@ -223,12 +223,12 @@ class PokeBattle_Battle
       end
     end
     # Poison Spikes
-    if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
+    if battler.pbOwnSide.effects[PBEffects::PoisonSpikes] > 0 && !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
       if battler.pbHasType?(:POISON)
-        battler.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
+        battler.pbOwnSide.effects[PBEffects::PoisonSpikes] = 0
         pbDisplay(_INTL("{1} absorbed the poison spikes!",battler.pbThis))
       elsif battler.pbCanPoison?(nil,false)
-        if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] >= 2
+        if battler.pbOwnSide.effects[PBEffects::PoisonSpikes] >= 2
           battler.pbPoison(nil,_INTL("{1} was poisoned by the poison spikes!",battler.pbThis))
         else
           pbDisplay(_INTL("{1} was hurt by the thin layer of poison spikes!",battler.pbThis))

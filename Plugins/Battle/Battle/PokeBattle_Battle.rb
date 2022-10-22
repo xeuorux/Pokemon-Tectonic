@@ -35,8 +35,8 @@ class PokeBattle_Battle
     @peer              = PokeBattle_BattlePeer.create
     @battleAI          = PokeBattle_AI.new(self)
     @field             = PokeBattle_ActiveField.new    # Whole field (gravity/rooms)
-    @sides             = [PokeBattle_ActiveSide.new,   # Player's side
-                          PokeBattle_ActiveSide.new]   # Foe's side
+    @sides             = [PokeBattle_ActiveSide.new(0),   # Player's side
+                          PokeBattle_ActiveSide.new(1)]   # Foe's side
     @positions         = []                            # Battler positions
     @battlers          = []
     @sideSizes         = [1,1]   # Single battle, 1v1

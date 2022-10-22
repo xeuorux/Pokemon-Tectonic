@@ -172,7 +172,7 @@ end
 
 def statusSpikesWeightOnSide(side,excludeEffects=[])
 	hazardWeight = 0
-	hazardWeight += 20 * side.effects[PBEffects::ToxicSpikes] if !excludeEffects.include?(PBEffects::ToxicSpikes)
+	hazardWeight += 20 * side.effects[PBEffects::PoisonSpikes] if !excludeEffects.include?(PBEffects::PoisonSpikes)
 	hazardWeight += 20 * side.effects[PBEffects::FlameSpikes] if !excludeEffects.include?(PBEffects::FlameSpikes)
 	hazardWeight += 20 * side.effects[PBEffects::FrostSpikes] if !excludeEffects.include?(PBEffects::FrostSpikes)
 	return 0

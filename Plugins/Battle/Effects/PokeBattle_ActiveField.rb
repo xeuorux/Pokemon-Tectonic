@@ -21,7 +21,7 @@ class PokeBattle_ActiveField
     end
 
     def processEffectsEOR(battle)  
-        remain_proc = Proc.new { |effectData|
+      remain_proc = Proc.new { |effectData|
           effectData.remain_both_sides(battle,self)
       }
       expire_proc = Proc.new { |effectData|

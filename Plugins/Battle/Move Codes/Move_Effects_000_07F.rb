@@ -1164,14 +1164,14 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
                     targetSide.effects[PBEffects::Safeguard]>0
     return false if targetSide.effects[PBEffects::StealthRock] ||
                     targetSide.effects[PBEffects::Spikes]>0 ||
-                    targetSide.effects[PBEffects::ToxicSpikes]>0 ||
+                    targetSide.effects[PBEffects::PoisonSpikes]>0 ||
 					          targetSide.effects[PBEffects::FlameSpikes]>0 ||
                     targetSide.effects[PBEffects::FrostSpikes]>0 ||
                     targetSide.effects[PBEffects::StickyWeb]
     return false if Settings::MECHANICS_GENERATION >= 6 &&
                     (targetOpposingSide.effects[PBEffects::StealthRock] ||
                     targetOpposingSide.effects[PBEffects::Spikes]>0 ||
-                    targetOpposingSide.effects[PBEffects::ToxicSpikes]>0 ||
+                    targetOpposingSide.effects[PBEffects::PoisonSpikes]>0 ||
 					          targetOpposingSide.effects[PBEffects::FlameSpikes]>0 ||
                     targetOpposingSide.effects[PBEffects::StickyWeb])
     return false if Settings::MECHANICS_GENERATION >= 8 && @battle.field.terrain != :None
@@ -1216,11 +1216,11 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
       target.pbOpposingSide.effects[PBEffects::Spikes] = 0 if Settings::MECHANICS_GENERATION >= 6
       @battle.pbDisplay(_INTL("{1} blew away spikes!",user.pbThis))
     end
-    if target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 ||
+    if target.pbOwnSide.effects[PBEffects::PoisonSpikes]>0 ||
        (Settings::MECHANICS_GENERATION >= 6 &&
-       target.pbOpposingSide.effects[PBEffects::ToxicSpikes]>0)
-      target.pbOwnSide.effects[PBEffects::ToxicSpikes]      = 0
-      target.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0 if Settings::MECHANICS_GENERATION >= 6
+       target.pbOpposingSide.effects[PBEffects::PoisonSpikes]>0)
+      target.pbOwnSide.effects[PBEffects::PoisonSpikes]      = 0
+      target.pbOpposingSide.effects[PBEffects::PoisonSpikes] = 0 if Settings::MECHANICS_GENERATION >= 6
       @battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
     end
 	  if target.pbOwnSide.effects[PBEffects::FlameSpikes]>0 ||

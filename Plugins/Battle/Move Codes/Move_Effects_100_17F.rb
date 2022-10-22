@@ -57,7 +57,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   #===============================================================================
   class PokeBattle_Move_104 < PokeBattle_TypeSpikeMove
     def initialize(battle,move)
-      @spikeEffect = PBEffects::ToxicSpikes
+      @spikeEffect = PBEffects::PoisonSpikes
       super
     end
   end
@@ -417,8 +417,8 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
         user.pbOwnSide.effects[PBEffects::Spikes] = 0
         @battle.pbDisplay(_INTL("{1} blew away spikes!",user.pbThis))
       end
-      if user.pbOwnSide.effects[PBEffects::ToxicSpikes]>0
-        user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
+      if user.pbOwnSide.effects[PBEffects::PoisonSpikes]>0
+        user.pbOwnSide.effects[PBEffects::PoisonSpikes] = 0
         @battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
       end
       if user.pbOwnSide.effects[PBEffects::StickyWeb]
@@ -3064,7 +3064,7 @@ class PokeBattle_Move_17A < PokeBattle_Move
     @statUp = [:ATTACK,2,:SPECIAL_ATTACK,2]
     @numericEffects = [PBEffects::Reflect,PBEffects::LightScreen,PBEffects::AuroraVeil,PBEffects::SeaOfFire,
   PBEffects::Swamp,PBEffects::Rainbow,PBEffects::Mist,PBEffects::Safeguard,PBEffects::Spikes,
-  PBEffects::ToxicSpikes,PBEffects::Tailwind]
+  PBEffects::PoisonSpikes,PBEffects::Tailwind]
     @booleanEffects = [PBEffects::StealthRock,PBEffects::StickyWeb]
   end
   def pbEffectGeneral(user)

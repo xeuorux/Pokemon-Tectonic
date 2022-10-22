@@ -6,7 +6,7 @@ module GameData
         attr_reader :id_number
         attr_reader :real_name
         attr_reader :location # The locations are :Battler, :Side, :BothSides, :Position
-        attr_reader :type # :Boolean, :Integer, :Position, :Type, :Pokemon, :Move, :Item, :Species
+        attr_reader :type # :Boolean, :Integer, :Position, :Type, :Pokemon, :Move, :Item, :Species, :PartyPosition
         attr_reader :default # Don't set this intentionally to nil, will be overwritten
         attr_reader :resets_eor # Resets to default value at the end of each turn
         
@@ -67,7 +67,7 @@ module GameData
                     @default = false
                 when :Integer, :Species
                     @default = 0
-                when :Position
+                when :Position, :PartyPosition
                     @default = -1
                 end
             end
@@ -127,6 +127,27 @@ module GameData
             end
         end
 
+        def valid_value?(battle,value)
+            case @type
+            when :Boolean
+                return [true, false].include?(value)
+            when :Integer
+                return value.is_a?(Integer)
+            when :Species
+                return value.nil? || GameData::Species.exists?(value)
+            when :Position
+                return value >= -1 && value < battle.positions.length
+            when :Type
+                return value.nil? || GameData::Type.exists?(value)
+            when :Pokemon
+                return value.nil? || value.is_a?(Pokemon)
+            when :Move
+                return value.nil? || GameData::Move.exists?(value)
+            when :Item
+                return value.nil? || GameData::Item.exists?(value)
+            end
+        end
+
         ### Methods dealing with the effect when a battler is initialized
         def initialize_battler(battle,battler)
             @initialize_proc.call(battle,battler) if @initialize_proc
@@ -138,12 +159,16 @@ module GameData
             @apply_proc.call(battle,battler,value) if @apply_proc
         end
 
-        def apply_position(battle,position)
-            @apply_proc.call(battle,position) if @apply_proc
+        def apply_position(battle,index)
+            position = battle.positions[index]
+            battler = battle.battlers[index]
+            return if battler.nil? || battler.fainted?
+            @apply_proc.call(battle,index,position,battler) if @apply_proc
         end
 
         def apply_side(battle,side)
-            @apply_proc.call(battle,side) if @apply_proc
+            teamName = battle.battlers[side.index].pbTeam
+            @apply_proc.call(battle,side,teamName) if @apply_proc
         end
 
         def apply_both_sides(battle)
@@ -156,12 +181,16 @@ module GameData
             @remain_proc.call(battle,battler,value) if @remain_proc
         end
 
-        def remain_position(battle,position)
-            @remain_proc.call(battle,position) if @remain_proc
+        def remain_position(battle,index)
+            position = battle.positions[index]
+            battler = battle.battlers[index]
+            return if battler.nil? || battler.fainted?
+            @remain_proc.call(battle,index,position,battler) if @remain_proc
         end
 
         def remain_side(battle,side)
-            @remain_proc.call(battle,side) if @remain_proc
+            teamName = battle.battlers[side.index].pbTeam
+            @remain_proc.call(battle,side,teamName) if @remain_proc
         end
 
         def remain_both_sides(battle)
@@ -174,12 +203,16 @@ module GameData
             @expire_proc.call(battle,battler) if @expire_proc
         end
 
-        def expire_position(battle,position)
-            @expire_proc.call(battle,position) if @expire_proc
+        def expire_position(battle,index)
+            position = battle.positions[index]
+            battler = battle.battlers[index]
+            return if battler.nil? || battler.fainted?
+            @expire_proc.call(battle,index,position,battler) if @expire_proc
         end
 
         def expire_side(battle,side)
-            @expire_proc.call(battle,side) if @expire_proc
+            teamName = battle.battlers[side.index].pbTeam
+            @expire_proc.call(battle,side,teamName) if @expire_proc
         end
 
         def expire_both_sides(battle)
@@ -193,12 +226,16 @@ module GameData
             @eor_proc.call(battle,battler,value) if @eor_proc
         end
 
-        def eor_position(battle,position)
-            @eor_proc.call(battle,position) if @eor_proc
+        def eor_position(battle,index)
+            position = battle.positions[index]
+            battler = battle.battlers[index]
+            return if battler.nil? || battler.fainted?
+            @eor_proc.call(battle,index,position,battler) if @eor_proc
         end
 
         def eor_side(battle,side)
-            @eor_proc.call(battle,side) if @eor_proc
+            teamName = battle.battlers[side.index].pbTeam
+            @eor_proc.call(battle,side,teamName) if @eor_proc
         end
 
         def eor_both_sides(battle)

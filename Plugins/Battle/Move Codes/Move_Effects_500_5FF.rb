@@ -1398,8 +1398,8 @@ class PokeBattle_Move_54B < PokeBattle_StatUpMove
 			user.pbOwnSide.effects[PBEffects::Spikes] = 0
 			@battle.pbDisplay(_INTL("{1} blew away spikes!",user.pbThis))
 		end
-		if user.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0
-			user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
+		if user.pbOwnSide.effects[PBEffects::PoisonSpikes] > 0
+			user.pbOwnSide.effects[PBEffects::PoisonSpikes] = 0
 			@battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
 		end
 		if user.pbOwnSide.effects[PBEffects::FlameSpikes] > 0

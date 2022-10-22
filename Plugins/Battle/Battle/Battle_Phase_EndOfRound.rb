@@ -7,15 +7,17 @@ class PokeBattle_Battle
     PBDebug.log("")
     PBDebug.log("[End of round]")
     @endOfRound = true
+
+    checkForInvalidEffectStates
+
     @scene.pbBeginEndOfRoundPhase
     pbCalculatePriority           # recalculate speeds
     priority = pbPriority(true)   # in order of fastest -> slowest speeds only
 
-    pbEORWeather(priority)
-
-    processForetoldMovesEOR()
-    
     pbEORHealing(priority)
+
+    pbEORWeather(priority)
+    grassyTerrainEOR(priority)
 
     pbEORDamage(priority)
 
@@ -27,9 +29,20 @@ class PokeBattle_Battle
       return
     end
 
-    countDownSideEffects()
-
+    # Tick down or reset battle effects
     @field.processEffectsEOR(self)
+    @sides.each do |side|
+      if !side.effects[PBEffects::EchoedVoiceUsed]
+        side.effects[PBEffects::EchoedVoiceCounter] = 0
+      end
+      side.processEffectsEOR(self)
+    end
+    @positions.each_with_index do |position,index|
+      position.processEffectsEOR(self,index)
+    end
+    eachBattler do |b|
+      b.processEffectsEOR
+    end
     
     # End of terrains
     pbEORTerrain
@@ -45,6 +58,7 @@ class PokeBattle_Battle
 
     # Switch Pokémon in if possible
     pbEORSwitch
+    
     return if @decision > 0
 
     # In battles with at least one side of size 3+, move battlers around if none
@@ -55,16 +69,13 @@ class PokeBattle_Battle
     priority.each { |b| b.pbContinualAbilityChecks }
     
     eachBattler do |b|
-      b.processEffectsEOR()
       b.modifyTrackersEOR()
     end
-
-    # Decrement or reset various effects that don't show messages when they leave
-    processSideEffectsEOR()
-    processFieldEffectsEOR()
 	
 	  # Neutralizing Gas
 	  pbCheckNeutralizingGas
+
+    checkForInvalidEffectStates()
 	
     @endOfRound = false
   end
@@ -169,67 +180,12 @@ class PokeBattle_Battle
     end
   end
 
-  def processForetoldMovesEOR()
-    PBDebug.log("[DEBUG] Counting down/using foretold moves")
-
-    # Future Sight/Doom Desire
-    @positions.each_with_index do |pos,idxPos|
-      next if !pos || pos.effects[PBEffects::FutureSightCounter]==0
-      pos.effects[PBEffects::FutureSightCounter] -= 1
-      next if pos.effects[PBEffects::FutureSightCounter]>0
-      next if !@battlers[idxPos] || @battlers[idxPos].fainted?   # No target
-      moveUser = nil
-      eachBattler do |b|
-        next if b.opposes?(pos.effects[PBEffects::FutureSightUserIndex])
-        next if b.pokemonIndex!=pos.effects[PBEffects::FutureSightUserPartyIndex]
-        moveUser = b
-        break
-      end
-      next if moveUser && moveUser.index==idxPos   # Target is the user
-      if !moveUser   # User isn't in battle, get it from the party
-        party = pbParty(pos.effects[PBEffects::FutureSightUserIndex])
-        pkmn = party[pos.effects[PBEffects::FutureSightUserPartyIndex]]
-        if pkmn && pkmn.able?
-          moveUser = PokeBattle_Battler.new(self,pos.effects[PBEffects::FutureSightUserIndex])
-          moveUser.pbInitDummyPokemon(pkmn,pos.effects[PBEffects::FutureSightUserPartyIndex])
-        end
-      end
-      next if !moveUser   # User is fainted
-      move = pos.effects[PBEffects::FutureSightMove]
-      pbDisplay(_INTL("{1} took the {2} attack!",@battlers[idxPos].pbThis,
-         GameData::Move.get(move).name))
-      # NOTE: Future Sight failing against the target here doesn't count towards
-      #       Stomping Tantrum.
-      userLastMoveFailed = moveUser.lastMoveFailed
-      @futureSight = true
-      moveUser.pbUseMoveSimple(move,idxPos)
-      @futureSight = false
-      moveUser.lastMoveFailed = userLastMoveFailed
-      @battlers[idxPos].pbFaint if @battlers[idxPos].fainted?
-      pos.effects[PBEffects::FutureSightCounter]        = 0
-      pos.effects[PBEffects::FutureSightMove]           = nil
-      pos.effects[PBEffects::FutureSightUserIndex]      = -1
-      pos.effects[PBEffects::FutureSightUserPartyIndex] = -1
-    end
-  end
-
-  def pbEORHealing(priority)
-    PBDebug.log("[DEBUG] Performing EoR healing effects")
-    # Wish
-    @positions.each_with_index do |pos,idxPos|
-      next if !pos || pos.effects[PBEffects::Wish]==0
-      pos.effects[PBEffects::Wish] -= 1
-      next if pos.effects[PBEffects::Wish]>0
-      next if !@battlers[idxPos] || !@battlers[idxPos].canHeal?
-      wishMaker = pbThisEx(idxPos,pos.effects[PBEffects::WishMaker])
-      healingMessage = _INTL("{1}'s wish came true!",wishMaker)
-      @battlers[idxPos].pbRecoverHP(pos.effects[PBEffects::WishAmount],true,true,true,healingMessage)
-    end
+  def grassyTerrainEOR(priority)
+    return if @field.terrain != :Grassy
     # Status-curing effects/abilities and HP-healing items
     priority.each do |b|
       next if b.fainted?
-      # Grassy Terrain
-      if @field.terrain == :Grassy && b.affectedByTerrain?
+       if b.affectedByTerrain?
         PBDebug.log("[Lingering effect] Grassy Terrain affects #{b.pbThis(true)}")
         if pbCheckOpposingAbility(:SNAKEPIT)
           pbDisplay(_INTL("{1} is lashed at by the pit of snakes!",b.pbThis))
@@ -247,6 +203,14 @@ class PokeBattle_Battle
           pbHideAbilitySplash(b) if b.hasActiveAbility?(:NESTING)
         end
       end
+    end
+  end
+
+  def pbEORHealing(priority)
+    PBDebug.log("[DEBUG] Performing EoR healing effects")
+    # Status-curing effects/abilities and HP-healing items
+    priority.each do |b|
+      next if b.fainted?
       # Healer, Hydration, Shed Skin
       BattleHandlers.triggerEORHealingAbility(b.ability,b,self) if b.abilityActive?
       # Black Sludge, Leftovers
@@ -285,23 +249,9 @@ class PokeBattle_Battle
 
   def pbEORDamage(priority)
     PBDebug.log("[DEBUG] Dealing EoR damage effects")
-    # Sea of Fire damage (Fire Pledge + Grass Pledge combination)
-    curWeather = pbWeather
-    for side in 0...2
-      next if sides[side].effects[PBEffects::SeaOfFire]==0
-      next if [:Rain, :HeavyRain].include?(curWeather)
-      @battle.pbCommonAnimation("SeaOfFire") if side==0
-      @battle.pbCommonAnimation("SeaOfFireOpp") if side==1
-      priority.each do |b|
-        next if b.opposes?(side)
-        next if !b.takesIndirectDamage? || b.pbHasType?(:FIRE)
-        pbDisplay(_INTL("{1} is hurt by the sea of fire!",b.pbThis))
-        b.applyFractionalDamage(1.0/8.0)
-      end
-    end
-    # Damage from Hyper next if !b.takesIndirectDamage?
+    # Damage from Hyper
     priority.each do |b|
-      next if !b.inHyperMode? || @choices[b.index][0]!=:UseMove
+      next if !b.inHyperMode? || @choices[b.index][0] != :UseMove
       pbDisplay(_INTL("The Hyper Mode attack hurts {1}!",b.pbThis(true)))
       b.applyFractionalDamage(1.0/24.0)
     end
@@ -349,7 +299,6 @@ class PokeBattle_Battle
         b.pbContinueStatus(:MYSTIFIED) { b.pbConfusionDamage(nil,true,superEff,selfHitBasePower) }
       end
     end
-
   end
   
   def countDownPerishSong(priority)
@@ -372,42 +321,6 @@ class PokeBattle_Battle
          (perishSongUsers.find_all { |idxBattler| !opposes?(idxBattler) }.length==perishSongUsers.length)
         pbJudgeCheckpoint(@battlers[perishSongUsers[0]])
       end
-    end
-  end
-
-  def countDownSideEffects()
-    PBDebug.log("[DEBUG] Counting down/ending side effects")
-    for side in 0...2
-      # Reflect
-      pbEORCountDownSideEffect(side,PBEffects::Reflect,
-         _INTL("{1}'s Reflect wore off!",@battlers[side].pbTeam))
-      # Light Screen
-      pbEORCountDownSideEffect(side,PBEffects::LightScreen,
-         _INTL("{1}'s Light Screen wore off!",@battlers[side].pbTeam))
-      # Safeguard
-      pbEORCountDownSideEffect(side,PBEffects::Safeguard,
-         _INTL("{1} is no longer protected by Safeguard!",@battlers[side].pbTeam))
-      # Mist
-      pbEORCountDownSideEffect(side,PBEffects::Mist,
-         _INTL("{1} is no longer protected by mist!",@battlers[side].pbTeam))
-      # Tailwind
-      pbEORCountDownSideEffect(side,PBEffects::Tailwind,
-         _INTL("{1}'s Tailwind petered out!",@battlers[side].pbTeam))
-      # Lucky Chant
-      pbEORCountDownSideEffect(side,PBEffects::LuckyChant,
-         _INTL("{1}'s Lucky Chant wore off!",@battlers[side].pbTeam))
-      # Pledge Rainbow
-      pbEORCountDownSideEffect(side,PBEffects::Rainbow,
-         _INTL("The rainbow on {1}'s side disappeared!",@battlers[side].pbTeam(true)))
-      # Pledge Sea of Fire
-      pbEORCountDownSideEffect(side,PBEffects::SeaOfFire,
-         _INTL("The sea of fire around {1} disappeared!",@battlers[side].pbTeam(true)))
-      # Pledge Swamp
-      pbEORCountDownSideEffect(side,PBEffects::Swamp,
-         _INTL("The swamp around {1} disappeared!",@battlers[side].pbTeam(true)))
-      # Aurora Veil
-      pbEORCountDownSideEffect(side,PBEffects::AuroraVeil,
-         _INTL("{1}'s Aurora Veil wore off!",@battlers[side].pbTeam))
     end
   end
 
@@ -435,22 +348,39 @@ class PokeBattle_Battle
     end
   end
 
-  def processSideEffectsEOR()
-    PBDebug.log("[DEBUG] Processing EoR Side-Specific Effects")
-    # Reset/count down side-specific effects (no messages)
-    for side in 0...2
-      @sides[side].effects[PBEffects::CraftyShield]         = false
-      if !@sides[side].effects[PBEffects::EchoedVoiceUsed]
-        @sides[side].effects[PBEffects::EchoedVoiceCounter] = 0
+  def checkForInvalidEffectStates()
+    @battlers.each do |battler|
+      battler.effects.each do |effect,value|
+        effectData = GameData::BattleEffect.try_get(effect)
+        raise _INTL("Battler effect \"#{effectData.real_name}\" is not a defined effect.") if effectData.nil?
+        next if effectData.valid_value?(self,value)
+        raise _INTL("Battler effect \"#{effectData.real_name}\" is in invalid state: #{value}")
       end
-      @sides[side].effects[PBEffects::EchoedVoiceUsed]      = false
-      @sides[side].effects[PBEffects::MatBlock]             = false
-      @sides[side].effects[PBEffects::QuickGuard]           = false
-      @sides[side].effects[PBEffects::Round]                = false
-      @sides[side].effects[PBEffects::WideGuard]            = false
-      @sides[side].effects[PBEffects::Bulwark]              = false
+    end
+
+    @positions.each do |position|
+      position.effects.each do |effect,value|
+        effectData = GameData::BattleEffect.try_get(effect)
+        raise _INTL("Position effect \"#{effectData.real_name}\" is not a defined effect.") if effectData.nil?
+        next if effectData.valid_value?(self,value)
+        raise _INTL("Position effect \"#{effectData.real_name}\" is in invalid state: #{value}")
+      end
+    end
+
+    @sides.each do |side|
+      side.effects.each do |effect,value|
+        effectData = GameData::BattleEffect.try_get(effect)
+        raise _INTL("Side effect \"#{effectData.real_name}\" is not a defined effect") if effectData.nil?
+        next if effectData.valid_value?(self,value)
+        raise _INTL("Side effect \"#{effectData.real_name}\" is in invalid state: #{value}")
+      end
+    end
+
+    @field.effects.each do |effect,value|
+      effectData = GameData::BattleEffect.try_get(effect)
+      raise _INTL("Whole field effect \"#{effectData.real_name}\" is not a defined effect.") if effectData.nil?
+      next if effectData.valid_value?(self,value)
+      raise _INTL("Whole field effect \"#{effectData.real_name}\" is in invalid state: #{value}")
     end
   end
-
-
 end
