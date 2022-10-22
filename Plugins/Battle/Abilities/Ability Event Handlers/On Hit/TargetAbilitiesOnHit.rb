@@ -517,7 +517,6 @@ BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
   }
 )
 
-
 BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
   proc { |ability,user,target,move,battle|
     next if !Effectiveness.resistant?(target.damageState.typeMod)
@@ -528,30 +527,6 @@ BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
 		battle.pbHideAbilitySplash(target)
 	end
   }
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:SEEDSCATTER,
-	proc { |ability,target,battler,move,battle|
-    terrainSetAbility(:Grassy,battler,battle)
-	}
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
-	proc { |ability,target,battler,move,battle|
-    terrainSetAbility(:Electric,battler,battle)
-	}
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:MISTCRAFT,
-	proc { |ability,target,battler,move,battle|
-		terrainSetAbility(:Misty,battler,battle)
-	}
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
-	proc { |ability,target,battler,move,battle|
-    terrainSetAbility(:Psychic,battler,battle)
-	}
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:RELUCTANTBLADE,
@@ -586,4 +561,73 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:REAWAKENEDPOWER,
 		battle.pbHideAbilitySplash(target)
 	end
   }
+)
+
+
+#########################################
+# Weather Abilities
+#########################################
+
+BattleHandlers::TargetAbilityOnHit.add(:SANDBURST,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Sandstorm,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:INNERLIGHT,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Sun,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:STORMBRINGER,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Rain,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Hail,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:SWARMMOUTH,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Swarm,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:ACIDBODY,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:AcidRain,battler,battle)
+	}
+)
+
+#########################################
+# Terrain Abilities
+#########################################
+
+BattleHandlers::TargetAbilityOnHit.add(:SEEDSCATTER,
+	proc { |ability,target,battler,move,battle|
+    terrainSetAbility(:Grassy,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
+	proc { |ability,target,battler,move,battle|
+    terrainSetAbility(:Electric,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:MISTCRAFT,
+	proc { |ability,target,battler,move,battle|
+		terrainSetAbility(:Misty,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
+	proc { |ability,target,battler,move,battle|
+    terrainSetAbility(:Psychic,battler,battle)
+	}
 )

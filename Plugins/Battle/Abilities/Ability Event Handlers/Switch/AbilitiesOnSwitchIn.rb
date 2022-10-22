@@ -298,3 +298,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:CONVICTION,
 )
 
 BattleHandlers::AbilityOnSwitchIn.copy(:FAIRYSURGE,:MISTYSURGE)
+
+BattleHandlers::AbilityOnSwitchIn.add(:SWARMCALL,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:Swarm, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:POLLUTION,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:AcidRain, battler, battle)
+  }
+)
