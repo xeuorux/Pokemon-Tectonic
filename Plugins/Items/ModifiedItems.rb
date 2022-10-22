@@ -318,6 +318,17 @@ BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
   }
 )
 
+BattleHandlers::EORHealingItem.add(:LEFTOVERS,
+  proc { |item,battler,battle|
+    next if !battler.canHeal?
+    battle.pbCommonAnimation("UseItem",battler)
+    healAmount = battler.totalhp / 16.0
+    healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
+    recoverMessage = _INTL("{1} restored a little HP using its {2}!",battler.pbThis,battler.itemName)
+    battler.pbRecoverHP(healAmount, true, true, true, recoverMessage)
+  }
+)
+
 BattleHandlers::EOREffectItem.add(:STICKYBARB,
   proc { |item,battler,battle|
     next if !battler.takesIndirectDamage?
