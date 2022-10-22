@@ -2127,7 +2127,7 @@ class PokeBattle_Move_572 < PokeBattle_SleepMove
 	def pbEffectAgainstTarget(user,target)
 		target.pbCureStatus(false)
 		target.pbSleep
-		user.pbRaiseStatStage(:ATTACK,1,user) if user.pbCanRaiseStatStage(:ATTACK,user,self)
+		user.pbRaiseStatStage(:ATTACK,1,user) if user.pbCanRaiseStatStage?(:ATTACK,user,self)
 	end
 
 	def getScore(score,user,target,skill=100)
