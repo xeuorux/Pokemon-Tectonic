@@ -1,6 +1,6 @@
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :AquaRing,
-	:real_name => "AquaRing",
+	:real_name => "Aqua Ring",
 	:baton_passed => true,
 	:eor_proc => Proc.new { |battler,battle,value|
 		next if !battler.canHeal?
@@ -21,21 +21,21 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :BanefulBunker,
-	:real_name => "BanefulBunker",
+	:real_name => "Baneful Bunker",
 	:resets_eor	=> true,
 	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :BeakBlast,
-	:real_name => "BeakBlast",
+	:real_name => "Beak Blast",
 	:resets_battlers_eot => true,
 	:resets_battlers_sot => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Bide,
-	:real_name => "Bide",
+	:real_name => "Bide Turns",
 	:type => :Integer,
 	:resets_on_cancel => true,
 	:multi_turn_tracker => true,
@@ -43,24 +43,26 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :BideDamage,
-	:real_name => "BideDamage",
+	:real_name => "Bide Damage",
 	:type => :Integer,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :BideTarget,
-	:real_name => "BideTarget",
+	:real_name => "Bide Target",
 	:type => :Position,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :BurnUp,
-	:real_name => "BurnUp",
+	:real_name => "Burnt Up",
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Charge,
-	:real_name => "Charge",
+	:real_name => "Charged",
 	:type => :Integer,
 	:ticks_down => true,
 	:resets_battlers_eot => true,
@@ -68,20 +70,21 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ChoiceBand,
-	:real_name => "ChoiceBand",
+	:real_name => "Choice Band",
 	:type => :Move,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Confusion,
-	:real_name => "Confusion",
+	:real_name => "Confusion Turns",
 	:type => :Integer,
 	:baton_passed => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Counter,
-	:real_name => "Counter",
+	:real_name => "Counter Damage",
 	:type => :Integer,
 	:resets_eor => true,
 	:default => -1,
@@ -89,14 +92,15 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :CounterTarget,
-	:real_name => "CounterTarget",
+	:real_name => "Counter Target",
 	:type => :Position,
 	:resets_eor => true,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Curse,
-	:real_name => "Curse",
+	:real_name => "Cursed",
 	:baton_passed => true,
 	:eor_proc => Proc.new { |battle,battler,value|
 		if battler.takesIndirectDamage?
@@ -113,29 +117,31 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :DefenseCurl,
-	:real_name => "DefenseCurl",
+	:real_name => "Curled Up",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :DestinyBond,
-	:real_name => "DestinyBond",
+	:real_name => "Destiny Bond",
 	:resets_battlers_sot => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :DestinyBondPrevious,
-	:real_name => "DestinyBondPrevious",
+	:real_name => "Destiny Bond Previous",
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :DestinyBondTarget,
-	:real_name => "DestinyBondTarget",
+	:real_name => "Destiny Bond Target",
 	:type => :Position,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Disable,
-	:real_name => "Disable",
+	:real_name => "Disable Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle, battler|
@@ -146,7 +152,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :DisableMove,
-	:real_name => "DisableMove",
+	:real_name => "Disabled Move",
 	:type => :Move
 })
 
@@ -158,7 +164,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Embargo,
-	:real_name => "Embargo",
+	:real_name => "Embargo Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
@@ -171,7 +177,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Encore,
-	:real_name => "Encore",
+	:real_name => "Encore Turns",
 	:eor_proc => Proc.new { |battle,battler,value|
 		next if battler.fainted?
 		idxEncoreMove = b.pbEncoredMoveIndex
@@ -191,7 +197,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :EncoreMove,
-	:real_name => "EncoreMove",
+	:real_name => "Must Use",
 	:type => :Move,
 })
 
@@ -204,14 +210,15 @@ GameData::BattleEffect.register_effect(:Battler,{
 # Stores a move code
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FirstPledge,
-	:real_name => "FirstPledge",
+	:real_name => "First Pledge",
 	:type => :Integer,
 	:default => 0,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FlashFire,
-	:real_name => "FlashFire",
+	:real_name => "Fired Up",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -222,38 +229,38 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FocusEnergy,
-	:real_name => "FocusEnergy",
+	:real_name => "Crit Chance Up",
 	:type => :Integer,
 	:baton_passed => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FocusPunch,
-	:real_name => "FocusPunch",
+	:real_name => "Focus Punch",
 	:resets_eor	=> true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FollowMe,
-	:real_name => "FollowMe",
+	:real_name => "Follow Me",
 	:type => :Integer,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Foresight,
-	:real_name => "Foresight",
+	:real_name => "Identified",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FuryCutter,
-	:real_name => "FuryCutter",
+	:real_name => "Fury Cutter Count",
 	:type => :Integer,
 	:resets_on_cancel => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :GastroAcid,
-	:real_name => "GastroAcid",
+	:real_name => "Ability Surpressed",
 	:baton_passed => true,
 	:pass_value_proc => Proc.new { |battler,value|
 		next false if battler.unstoppableAbility?
@@ -263,7 +270,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :GemConsumed,
-	:real_name => "GemConsumed",
+	:real_name => "Gem Consumed",
 	:type => :Item,
 	:resets_battlers_eot => true,
 })
@@ -276,7 +283,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :HealBlock,
-	:real_name => "HealBlock",
+	:real_name => "Healing Blocked",
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
@@ -287,13 +294,13 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :HelpingHand,
-	:real_name => "HelpingHand",
+	:real_name => "Helping Hand",
 	:resets_eor	=> true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :HyperBeam,
-	:real_name => "HyperBeam",
+	:real_name => "Recharging",
 	:type => :Integer,
 	:ticks_down => true,
 	:multi_turn_tracker => true,
@@ -311,16 +318,17 @@ GameData::BattleEffect.register_effect(:Battler,{
 			end
 		end
 	},
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Imprison,
-	:real_name => "Imprison",
+	:real_name => "Moves Imprisoned",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Ingrain,
-	:real_name => "Ingrain",
+	:real_name => "Ingrained",
 	:baton_passed => true,
 	:eor_proc => Proc.new { |battler,battle,value|
 		next if !battler.canHeal?
@@ -351,7 +359,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :LaserFocus,
-	:real_name => "Laser Focus",
+	:real_name => "Laser Focus Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
@@ -363,7 +371,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :LeechSeed,
-	:real_name => "Leech Seed",
+	:real_name => "Seeded",
 	:type => :Position,
 	:baton_passed => true,
 	:eor_proc => Proc.new { |battler,battle,value|
@@ -380,7 +388,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :LockOn,
-	:real_name => "Lock On",
+	:real_name => "Locked On",
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
@@ -396,26 +404,26 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :LockOnPos,
-	:real_name => "LockOnPos",
+	:real_name => "Locked On To",
 	:type => :Position,
 	:baton_passed => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MagicBounce,
-	:real_name => "MagicBounce",
+	:real_name => "Magic Bounce",
 	:resets_eor	=> true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MagicCoat,
-	:real_name => "MagicCoat",
+	:real_name => "Magic Coat",
 	:resets_eor	=> true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MagnetRise,
-	:real_name => "MagnetRise",
+	:real_name => "Magnet Risen",
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
@@ -426,40 +434,40 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MeanLook,
-	:real_name => "MeanLook",
+	:real_name => "Cannot Escape",
 	:type => :Position,
 	:others_lose_track => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MeFirst,
-	:real_name => "MeFirst",
+	:real_name => "Me First",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Metronome,
-	:real_name => "Metronome",
+	:real_name => "Metronome Count",
 	:type => :Integer,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MicleBerry,
-	:real_name => "MicleBerry",
+	:real_name => "Micle Berry",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Minimize,
-	:real_name => "Minimize",
+	:real_name => "Minimized",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MiracleEye,
-	:real_name => "MiracleEye",
+	:real_name => "Miracle Eye",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MirrorCoat,
-	:real_name => "MirrorCoat",
+	:real_name => "Mirror Coat Damage",
 	:type => :Integer,
 	:resets_eor => true,
 	:default => -1,
@@ -467,25 +475,25 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MirrorCoatTarget,
-	:real_name => "MirrorCoatTarget",
+	:real_name => "Mirror Coat Target",
 	:type => :Position,
 	:resets_eor => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MoveNext,
-	:real_name => "MoveNext",
+	:real_name => "Will Move Next",
 	:resets_battlers_sot => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MudSport,
-	:real_name => "MudSport",
+	:real_name => "Electric Resistant",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Nightmare,
-	:real_name => "Nightmare",
+	:real_name => "Nightmared",
 	:eor_proc => Proc.new { |battle,battler,value|
 		if !battler.asleep?
 			battler.effects[:Nightmare] = false
@@ -498,7 +506,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Outrage,
-	:real_name => "Outrage",
+	:real_name => "Rampaging Turns",
 	:type => :Integer,
 	:resets_on_cancel => true,
 	:multi_turn_tracker => true,
@@ -506,36 +514,37 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ParentalBond,
-	:real_name => "ParentalBond",
+	:real_name => "Parental Bond",
 	:type => :Integer,
 })
 
 # The logic here is complex enough that it is handled elsewhere
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :PerishSong,
-	:real_name => "PerishSong",
+	:real_name => "Perish Song Turns",
 	:type => :Integer,
 	:baton_passed => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :PerishSongUser,
-	:real_name => "PerishSongUser",
+	:real_name => "Perish Singer",
 	:type => :Position,
 	:baton_passed => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :PickupItem,
-	:real_name => "PickupItem",
+	:real_name => "Pickup Item",
 	:type => :Item,
 })
 
 # I don't really understand this one
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :PickupUse,
-	:real_name => "PickupUse",
+	:real_name => "Pickup Use",
 	:type => :Integer,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -551,7 +560,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :PowerTrick,
-	:real_name => "PowerTrick",
+	:real_name => "Power Tricked",
 	:baton_passed => true,
 	:apply_proc => Proc.new { |battle,battler,value|
 		battler.attack,battler.defense = battler.defense,battler.attack
@@ -566,14 +575,16 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :PriorityAbility,
-	:real_name => "PriorityAbility",
+	:real_name => "Priority Ability",
 	:resets_eor	=> true,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :PriorityItem,
-	:real_name => "PriorityItem",
+	:real_name => "Priority Item",
 	:resets_eor	=> true,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -585,9 +596,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ProtectRate,
-	:real_name => "ProtectRate",
+	:real_name => "Protect Rate",
 	:type => :Integer,
 	:default => 1,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -609,32 +621,32 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :RagePowder,
-	:real_name => "RagePowder",
+	:real_name => "Rage Powder",
 	:resets_eor	=> true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Roost,
-	:real_name => "Roost",
+	:real_name => "Roosting",
 	:resets_eor	=> true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ShellTrap,
-	:real_name => "ShellTrap",
+	:real_name => "Shell Trap",
 	:resets_battlers_eot => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :SkyDrop,
-	:real_name => "SkyDrop",
+	:real_name => "Sky Drop",
 	:type => :Position,
 	:others_lose_track => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :SlowStart,
-	:real_name => "SlowStart",
+	:real_name => "Slow Start Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle, battler|
@@ -644,7 +656,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :SmackDown,
-	:real_name => "SmackDown",
+	:real_name => "Smacked Down",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -655,7 +667,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :SpikyShield,
-	:real_name => "SpikyShield",
+	:real_name => "Spiky Shield",
 	:resets_eor	=> true,
 	:protection_effect => true,
 })
@@ -668,32 +680,34 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Stockpile,
-	:real_name => "Stockpile",
+	:real_name => "Stockpile Charges",
 	:type => :Integer,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :StockpileDef,
-	:real_name => "StockpileDef",
+	:real_name => "Stockpile Def",
 	:type => :Integer,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :StockpileSpDef,
-	:real_name => "StockpileSpDef",
+	:real_name => "Stockpile Sp Def",
 	:type => :Integer,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Substitute,
-	:real_name => "Substitute",
+	:real_name => "Substitute Health",
 	:type => :Integer,
 	:baton_passed => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Taunt,
-	:real_name => "Taunt",
+	:real_name => "Taunted Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle, battler|
@@ -703,7 +717,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Telekinesis,
-	:real_name => "Telekinesis",
+	:real_name => "Telekinesis Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
@@ -718,36 +732,37 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ThroatChop,
-	:real_name => "ThroatChop",
+	:real_name => "Throat Injured Turns",
 	:type => :Integer,
 	:ticks_down => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Torment,
-	:real_name => "Torment",
+	:real_name => "Tormented",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Toxic,
-	:real_name => "Toxic",
+	:real_name => "Toxic Turns Passed",
 	:type => :Integer,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Transform,
-	:real_name => "Transform",
+	:real_name => "Transformed",
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :TransformSpecies,
-	:real_name => "TransformSpecies",
+	:real_name => "Transformed Into",
 	:type => :Species,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Trapping,
-	:real_name => "Trapping",
+	:real_name => "Trapping Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle,battler|
@@ -779,14 +794,15 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :TrappingMove,
-	:real_name => "TrappingMove",
+	:real_name => "Trapping Move",
 	:type => :Move,
 	:connected_effects => [:Trapping,:TrappingUser],
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :TrappingUser,
-	:real_name => "TrappingUser",
+	:real_name => "Trapped By",
 	:type => :Position,
 	:others_lose_track => true,
 	:connected_effects => [:Trapping,:TrappingMove],
@@ -794,12 +810,12 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Truant,
-	:real_name => "Truant",
+	:real_name => "Slacking Off",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :TwoTurnAttack,
-	:real_name => "TwoTurnAttack",
+	:real_name => "Two Turn Attack",
 	:type => :Move,
 	:resets_on_cancel => true,
 	:multi_turn_tracker => true,
@@ -809,16 +825,18 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Type3,
 	:real_name => "Type 3",
 	:type => :Type,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Unburden,
 	:real_name => "Unburden",
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Uproar,
-	:real_name => "Uproar",
+	:real_name => "Uproar Turns",
 	:type => :Integer,
 	:resets_on_cancel => true,
 	:ticks_down => true,
@@ -833,18 +851,18 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :WaterSport,
-	:real_name => "WaterSport",
+	:real_name => "Fire Resistant",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :WeightChange,
-	:real_name => "WeightChange",
+	:real_name => "Weight Changed",
 	:type => :Integer,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Yawn,
-	:real_name => "Yawn",
+	:real_name => "Yawn Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle, battler|
@@ -859,6 +877,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :GorillaTactics,
 	:real_name => "GorillaTactics",
 	:type => :Move,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -869,18 +888,14 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :LashOut,
-	:real_name => "LashOut",
+	:real_name => "Lashing Out",
 	:resets_eor	=> true,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :BurningJealousy,
-	:real_name => "BurningJealousy",
-})
-
-GameData::BattleEffect.register_effect(:Battler,{
-	:id => :NoRetreat,
-	:real_name => "NoRetreat",
+	:real_name => "Burning Jealousy",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -891,7 +906,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :JawLock,
-	:real_name => "JawLock",
+	:real_name => "Trapped By Jaw",
 	:baton_passed => true,
 	:apply_proc => Proc.new { |battle,battler,value|
 		if value == 0
@@ -903,7 +918,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :JawLockUser,
-	:real_name => "JawLockUser",
+	:real_name => "Jaw Locker",
 	:type => :Position,
 	:baton_passed => true,
 	:others_lose_track => true,
@@ -912,12 +927,12 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :TarShot,
-	:real_name => "TarShot",
+	:real_name => "Covered In Tar",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Octolock,
-	:real_name => "Octolock",
+	:real_name => "Octolocked",
 	:eor_proc => Proc.new { |battle,battler,value|
 		octouser = battle.battlers[battler.effects[:OctolockUser]]
 		if battler.pbCanLowerStatStage?(:DEFENSE,octouser,self)
@@ -937,7 +952,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :OctolockUser,
-	:real_name => "OctolockUser",
+	:real_name => "Octolocked By",
 	:type => :Position,
 	:others_lose_track => true,
 	:connected_effects => [:Octolock],
@@ -945,174 +960,180 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :BlunderPolicy,
-	:real_name => "BlunderPolicy",
+	:real_name => "Blunder Policy",
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :SwitchedAlly,
-	:real_name => "SwitchedAlly",
+	:real_name => "Switched Ally",
 	:type => :Position,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Sentry,
 	:real_name => "Sentry",
 	:resets_eor	=> true,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Assist,
-	:real_name => "Assist",
+	:real_name => "Assisting",
 	:resets_eor	=> true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ConfusionChance,
-	:real_name => "ConfusionChance",
+	:real_name => "Confusion Chance",
 	:type => :Integer,
 	:baton_passed => true,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FlinchedAlready,
-	:real_name => "FlinchedAlready",
+	:real_name => "Flinch Immune",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Enlightened,
-	:real_name => "Enlightened",
+	:real_name => "Ignores Added Effects",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ColdConversion,
-	:real_name => "ColdConversion",
+	:real_name => "Cold Converted",
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :CreepOut,
-	:real_name => "CreepOut",
+	:real_name => "Weak to Bug",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :LuckyStar,
-	:real_name => "LuckyStar",
+	:real_name => "Added Crit Chance",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Charm,
-	:real_name => "Charm",
+	:real_name => "Charm Turns",
 	:type => :Integer,
 	:baton_passed => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :CharmChance,
-	:real_name => "CharmChance",
+	:real_name => "Charm Chance",
 	:type => :Integer,
 	:baton_passed => true,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Inured,
-	:real_name => "Inured",
+	:real_name => "No Weaknesses",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :NoRetreat,
-	:real_name => "NoRetreat",
+	:real_name => "No Retreat!!",
 	:baton_passed => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :NerveBreak,
-	:real_name => "NerveBreak",
+	:real_name => "Healing Reversed",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :IceBall,
-	:real_name => "IceBall",
+	:real_name => "Ice Ball Count",
 	:type => :Integer,
 	:resets_on_cancel => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :RollOut,
-	:real_name => "RollOut",
+	:real_name => "Roll Out Count",
 	:type => :Integer,
 	:resets_on_cancel => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :StunningCurl,
-	:real_name => "StunningCurl",
+	:real_name => "Stunning Curl",
 	:resets_eor	=> true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :RedHotRetreat,
-	:real_name => "RedHotRetreat",
+	:real_name => "Red-Hot Retreat",
 	:resets_eor	=> true,
 	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ExtraTurns,
-	:real_name => "ExtraTurns",
+	:real_name => "Extra Turns",
 	:type => :Integer,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :EmpoweredMoonlight,
-	:real_name => "EmpoweredMoonlight",
+	:real_name => "Stats Swapped Around",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :EmpoweredEndure,
-	:real_name => "EmpoweredEndure",
+	:real_name => "Enduring Turns",
 	:type => :Integer,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :EmpoweredLaserFocus,
-	:real_name => "EmpoweredLaserFocus",
+	:real_name => "Laser Focus",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :EmpoweredDestinyBond,
-	:real_name => "EmpoweredDestinyBond",
+	:real_name => "Destiny Bonded",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :VolleyStance,
-	:real_name => "VolleyStance",
+	:real_name => "Volley Stance",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :GivingDragonRideTo,
-	:real_name => "GivingDragonRideTo",
+	:real_name => "Carrying",
 	:type => :Position,
 	:others_lose_track => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :OnDragonRide,
-	:real_name => "OnDragonRide",
+	:real_name => "Riding Dragon",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ShimmeringHeat,
-	:real_name => "ShimmeringHeat",
+	:real_name => "Shimmering Heat",
 	:resets_eor	=> true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FlareWitch,
-	:real_name => "FlareWitch",
+	:real_name => "Flare Witch",
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :EmpoweredDetect,
-	:real_name => "EmpoweredDetect",
+	:real_name => "Halving Damage Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle, battler|
@@ -1122,7 +1143,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MirrorShield,
-	:real_name => "MirrorShield",
+	:real_name => "Mirror Shield",
 	:resets_eor	=> true,
 })
 

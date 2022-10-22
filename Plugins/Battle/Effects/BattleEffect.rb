@@ -13,6 +13,9 @@ module GameData
 		# Don't set the default to nil, will be overwritten
 		attr_reader :default
 
+		# Whether or not the effect should be displayed on the battle info menu
+		attr_reader :info_displayed
+
 		# An array of other effects to disable at the same time as it
 		# Be careful not to create loops with this
 		attr_reader :connected_effects
@@ -69,6 +72,7 @@ module GameData
 			@location               = hash[:location]
 			@type                   = hash[:type] || :Boolean
 			@default                = hash[:default]
+			@info_displayed			= hash[:info_displayed] || true
 			if @default.nil?
 				case @type
 				when :Boolean
@@ -155,6 +159,26 @@ module GameData
 			when :Item
 				return value.nil? || GameData::Item.exists?(value)
 			end
+		end
+
+		def value_to_string(value)
+			case @type
+			when :Boolean, :Integer
+				return value.to_s
+			when :Species
+				return GameData::Species.get(value).real_name
+			when :Position
+				return "#{@battle.battlers[value].name}'s Spot"
+			when :Type
+				return GameData::Type.get(value).real_name
+			when :Pokemon
+				return "ERROR"
+			when :Move
+				return GameData::Move.get(value).real_name
+			when :Item
+				return GameData::Item.get(value).real_name
+			end
+			return ""
 		end
 
 		### Methods dealing with the effect when a battler is initialized

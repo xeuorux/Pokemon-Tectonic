@@ -3,19 +3,19 @@
 ##########################################
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :EchoedVoiceCounter,
-	:real_name => "EchoedVoiceCounter",
+	:real_name => "Echoed Voice Counter",
 	:type => :Integer,
 })
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :EchoedVoiceUsed,
-	:real_name => "EchoedVoiceUsed",
+	:real_name => "Echoed Voice Used",
 	:resets_eor => true,
 })
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Round,
-	:real_name => "Round",
+	:real_name => "Round Singers",
 	:resets_eor => true,
 })
 
@@ -24,7 +24,7 @@ GameData::BattleEffect.register_effect(:Side,{
 ##########################################
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Reflect,
-	:real_name => "Reflect",
+	:real_name => "Reflect Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle,side,teamName|
@@ -33,7 +33,7 @@ GameData::BattleEffect.register_effect(:Side,{
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :LightScreen,
-	:real_name => "LightScreen",
+	:real_name => "Light Screen Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle,side,teamName|
@@ -42,7 +42,7 @@ GameData::BattleEffect.register_effect(:Side,{
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :AuroraVeil,
-	:real_name => "AuroraVeil",
+	:real_name => "Aurora Veil Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle,side,teamName|
@@ -55,7 +55,7 @@ GameData::BattleEffect.register_effect(:Side,{
 ##########################################
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :LuckyChant,
-	:real_name => "LuckyChant",
+	:real_name => "Lucky Chant Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle,side,teamName|
@@ -64,7 +64,7 @@ GameData::BattleEffect.register_effect(:Side,{
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Mist,
-	:real_name => "Mist",
+	:real_name => "Mist Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle,side,teamName|
@@ -73,7 +73,7 @@ GameData::BattleEffect.register_effect(:Side,{
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Safeguard,
-	:real_name => "Safeguard",
+	:real_name => "Safeguard Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle,side,teamName|
@@ -86,28 +86,28 @@ GameData::BattleEffect.register_effect(:Side,{
 ##########################################
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :CraftyShield,
-	:real_name => "CraftyShield",
+	:real_name => "Crafty Shield",
 	:resets_eor => true,
 	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :MatBlock,
-	:real_name => "MatBlock",
+	:real_name => "Mat Block",
 	:resets_eor => true,
 	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :QuickGuard,
-	:real_name => "QuickGuard",
+	:real_name => "Quick Guard",
 	:resets_eor => true,
 	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :WideGuard,
-	:real_name => "WideGuard",
+	:real_name => "Wide Guard",
 	:resets_eor => true,
 	:protection_effect => true,
 })
@@ -124,7 +124,7 @@ GameData::BattleEffect.register_effect(:Side,{
 ##########################################
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Rainbow,
-	:real_name => "Rainbow",
+	:real_name => "Rainbow Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle,side,teamName|
@@ -134,7 +134,7 @@ GameData::BattleEffect.register_effect(:Side,{
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :SeaOfFire,
-	:real_name => "SeaOfFire",
+	:real_name => "Sea of Fire Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:remain_proc => Proc.new { |battle,side,teamName|
@@ -154,7 +154,7 @@ GameData::BattleEffect.register_effect(:Side,{
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Swamp,
-	:real_name => "Swamp",
+	:real_name => "Swamp Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle,side,teamName|
@@ -168,31 +168,31 @@ GameData::BattleEffect.register_effect(:Side,{
 ##########################################
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Spikes,
-	:real_name => "Spikes",
+	:real_name => "Spikes Count",
 	:type => :Integer,
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :PoisonSpikes,
-	:real_name => "PoisonSpikes",
+	:real_name => "Poison Spikes Count",
 	:type => :Integer,
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :FlameSpikes,
-	:real_name => "FlameSpikes",
+	:real_name => "Flame Spikes Count",
 	:type => :Integer,
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :FrostSpikes,
-	:real_name => "FrostSpikes",
+	:real_name => "Frost Spikes Count",
 	:type => :Integer,
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :StealthRock,
-	:real_name => "StealthRock",
+	:real_name => "Stealth Rock",
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :StickyWeb,
-	:real_name => "StickyWeb",
+	:real_name => "Sticky Web",
 })
 
 ##########################################
@@ -200,7 +200,8 @@ GameData::BattleEffect.register_effect(:Side,{
 ##########################################
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :LastRoundFainted,
-	:real_name => "LastRoundFainted",
+	:real_name => "Last Round Fainted",
+	:info_displayed => false,
 })
 
 ##########################################
@@ -208,7 +209,7 @@ GameData::BattleEffect.register_effect(:Side,{
 ##########################################
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Tailwind,
-	:real_name => "Tailwind",
+	:real_name => "Tailwind Turns",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle,side,teamName|
@@ -217,5 +218,5 @@ GameData::BattleEffect.register_effect(:Side,{
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :EmpoweredEmbargo,
-	:real_name => "EmpoweredEmbargo",
+	:real_name => "Empowered Embargo",
 })

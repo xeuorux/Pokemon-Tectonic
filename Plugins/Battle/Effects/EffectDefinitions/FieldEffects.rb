@@ -1,30 +1,30 @@
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :AmuletCoin,
-	:real_name => "AmuletCoin",
+	:real_name => "Amulet Coin",
 })
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :FairyLock,
-	:real_name => "FairyLock",
+	:real_name => "Fairy Lock",
 	:type => :Integer,
 	:ticks_down => true,
 })
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :FusionBolt,
-	:real_name => "FusionBolt",
+	:real_name => "Fusion Bolt",
 	:resets_eor => true,
 })
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :FusionFlare,
-	:real_name => "FusionFlare",
+	:real_name => "Fusion Flare",
 	:resets_eor => true,
 })
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :Gravity,
-	:real_name => "Gravity",
+	:real_name => "Gravity Turns",
 	:type => :Integer,
     :ticks_down => true,
     :expire_proc => Proc.new { |battle,battler|
@@ -34,18 +34,18 @@ GameData::BattleEffect.register_effect(:Field,{
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :HappyHour,
-	:real_name => "HappyHour",
+	:real_name => "Happy Hour",
 })
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :IonDeluge,
-	:real_name => "IonDeluge",
+	:real_name => "Ion Deluge",
 	:resets_eor => true,
 })
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :MudSportField,
-	:real_name => "MudSportField",
+	:real_name => "Mud Sport Turns",
 	:type => :Integer,
     :ticks_down => true,
     :expire_proc => Proc.new { |battle,battler|
@@ -55,13 +55,13 @@ GameData::BattleEffect.register_effect(:Field,{
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :PayDay,
-	:real_name => "PayDay",
+	:real_name => "Money Dropped",
 	:type => :Integer,
 })
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :WaterSportField,
-	:real_name => "WaterSportField",
+	:real_name => "Water Sport Turns",
 	:type => :Integer,
     :ticks_down => true,
     :expire_proc => Proc.new { |battle,battler|
@@ -76,12 +76,12 @@ GameData::BattleEffect.register_effect(:Field,{
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :NeutralizingGas,
-	:real_name => "NeutralizingGas",
+	:real_name => "Neutralizing Gas",
 })
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :MagicRoom,
-	:real_name => "MagicRoom",
+	:real_name => "Magic Room Turns",
 	:type => :Integer,
     :ticks_down => true,
 	:is_room => true,
@@ -94,7 +94,7 @@ GameData::BattleEffect.register_effect(:Field,{
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :TrickRoom,
-	:real_name => "TrickRoom",
+	:real_name => "Trick Room Turns",
     :type => :Integer,
     :ticks_down => true,
 	:is_room => true,
@@ -105,7 +105,7 @@ GameData::BattleEffect.register_effect(:Field,{
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :WonderRoom,
-	:real_name => "WonderRoom",
+	:real_name => "Wonder Room Turns",
 	:type => :Integer,
     :ticks_down => true,
 	:is_room => true,
@@ -116,7 +116,7 @@ GameData::BattleEffect.register_effect(:Field,{
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :PuzzleRoom,
-	:real_name => "PuzzleRoom",
+	:real_name => "Puzzle Room Turns",
 	:type => :Integer,
     :ticks_down => true,
 	:is_room => true,
@@ -127,7 +127,7 @@ GameData::BattleEffect.register_effect(:Field,{
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :OddRoom,
-	:real_name => "OddRoom",
+	:real_name => "Odd Room Turns",
 	:type => :Integer,
     :ticks_down => true,
 	:is_room => true,

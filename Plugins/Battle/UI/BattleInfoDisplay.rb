@@ -119,36 +119,18 @@ class BattleInfoDisplay < SpriteWrapper
 	wholeFieldX = 332
 	textToDraw.push([_INTL("Field Effects"),wholeFieldX+60,0,2,base,shadow])
 	
+	# Compile array of descriptors of each field effect
 	fieldEffects = []
-	for effect in 0..30
-		effectValue = @battle.field.effects[effect]
-		if !DEBUGGING_EFFECT_DISPLAY
-			next if effectValue.nil?
-			next if effectValue == false
-			next if effectValue.is_a?(Integer) && effectValue <= 0
+	pushEffectDescriptorsToArray(@battle.field,fieldEffects)
+	@battle.sides.each do |side|
+		thisSideEffects = []
+		pushEffectDescriptorsToArray(side,thisSideEffects)
+		if side.index == 1
+			thisSideEffects.map { |descriptor|
+				"#{descriptor} [O]"
+			}
 		end
-		effectName = labelBattleEffect(effect)
-		next if effectName.blank?
-		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
-		fieldEffects.push(effectName)
-	end
-	
-	# One side effects
-	# Index intentionally not reset
-	for side in 0..1
-		for effect in 0..30
-			effectValue = @battle.sides[side].effects[effect]
-			if !DEBUGGING_EFFECT_DISPLAY
-				next if effectValue.nil?
-				next if effectValue == false
-				next if effectValue.is_a?(Integer) && effectValue <= 0
-			end
-			effectName = labelSideEffect(effect)
-			next if effectName.blank?
-			effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
-			effectName += side == 0 ? " [A]" : " [E]"
-			fieldEffects.push(effectName)
-		end
+		fieldEffects.concat(thisSideEffects)
 	end
 	
 	# Render out the field effects
@@ -333,37 +315,10 @@ class BattleInfoDisplay < SpriteWrapper
 	# Effects
 	textToDraw.push(["Battler Effects",battlerEffectsX,statStagesSectionTopY,0,base,shadow])
 	
-	# Battler effects
+	# Compile a descriptor for each effect on the battler or its position
 	battlerEffects = []
-	
-	for effect in 0..150
-		effectValue = battler.effects[effect]
-		if !DEBUGGING_EFFECT_DISPLAY
-			next if effectValue.nil?
-			next if effectValue == false
-			next if effectValue.is_a?(Integer) && effectValue <= 0
-		end
-		next if effect == PBEffects::ProtectRate && effectValue <= 1
-		next if effect == PBEffects::Unburden && !battler.hasActiveAbility?(:UNBURDEN)
-		effectName = labelBattlerEffect(effect)
-		next if effectName.blank?
-		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
-		battlerEffects.push(effectName)
-	end
-	
-	# Slot effects
-	for effect in 0..30
-		effectValue = @battle.positions[battler.index].effects[effect]
-		if !DEBUGGING_EFFECT_DISPLAY
-			next if effectValue.nil?
-			next if effectValue == false && !DEBUGGING_EFFECT_DISPLAY
-			next if effectValue.is_a?(Integer) && effectValue <= 0
-		end
-		effectName = labelSlotEffect(effect)
-		next if effectName.blank?
-		effectName += ": " + effectValue.to_s if effectValue.is_a?(Integer) || effectValue.is_a?(String) || effectValue.is_a?(Symbol)
-		battlerEffects.push(effectName)
-	end
+	pushEffectDescriptorsToArray(battler,battlerEffects)
+	pushEffectDescriptorsToArray(@battle.positions[battler.index],battlerEffects)
 	
 	scrolling = true if battlerEffects.length > 8
 	
@@ -394,6 +349,18 @@ class BattleInfoDisplay < SpriteWrapper
 	@battlerScrollingValue = 0 if @battlerScrollingValue > battlerEffects.length * 32
 	
 	pbDrawTextPositions(self.bitmap,textToDraw)
+  end
+
+  def pushEffectDescriptorsToArray(effectHolder,descriptorsArray)
+	effectHolder.eachEffectWithData do |effect, value, effectData|
+		next if !effectData.info_displayed
+		next if !effectData.active_value?(value) && !DEBUGGING_EFFECT_DISPLAY
+		effectName = effectData.real_name
+		if !effectData.type == :Boolean
+			effectName = "#{effectName}: #{effectData.value_to_string(value)}"
+		end
+		descriptorsArray.push(effectName)
+	end
   end
   
   def labelBattlerEffect(effectNumber)
@@ -552,72 +519,6 @@ class BattleInfoDisplay < SpriteWrapper
 		"Flare Witch",
 	][effectNumber] || ""
   end
-  
-  def labelSlotEffect(effectNumber)
-	return [
-		"Attack Incoming",
-		"Delayed Attack",
-		"",
-		"",
-		"", # Healing Wish
-		"", # Lunar Dance
-		"", # Wish
-		"Wishing For",
-		"", # Wish Maker
-	][effectNumber] || ""
-  end
-  
-	def labelBattleEffect(effectNumber)
-		return [
-			"Amulet Coin",
-			"Fairy Lock",
-			"", # Fusion Bolt
-			"", # Fusion Flare
-			"Gravity",
-			"Happy Hour",
-			"", # Ion Deluge
-			"Magic Room",
-			"Mud Sport",
-			"Pay Day",
-			"Trick Room",
-			"Water Sport",
-			"Wonder Room",
-			"Fortune",
-			"Neutralizing Gas",
-			"Puzzle Room",
-			"Odd Room",
-		][effectNumber] || ""
-	end
-
-	def labelSideEffect(effectNumber)
-		return [
-			"Aurora Veil",
-			"", # Crafty Shield
-			"", # Echoed Voice Count
-			"", # Encoed Voice Used
-			"", # Last Round Fainted
-			"Light Screen",
-			"Lucky Chant",
-			"", # Mat Block,
-			"Mist",
-			"", # Quick Guard
-			"Rainbow",
-			"Reflect",
-			"", # Round
-			"Safeguard",
-			"Sea of Fire",
-			"Spikes",
-			"Stealth Rock",
-			"Sticky Web",
-			"Swamp",
-			"Tailwind",
-			"Poison Spikes", # Toxic Spikes,
-			"", # Wide Guard
-			"Flame Spikes",
-			"EmpoweredEmbargo",
-			"Frost Spikes",
-		][effectNumber] || ""
-	end
  
   def update(frameCounter=0)
     super()

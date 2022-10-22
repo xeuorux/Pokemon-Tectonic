@@ -1,6 +1,6 @@
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :FutureSightCounter,
-	:real_name => "FutureSightCounter",
+	:real_name => "Turns Till Move",
 	:type => :Integer,
 	:ticks_down => true,
     :connected_effects => [:FutureSightMove, :FutureSightUserPartyIndex, :FutureSightUserIndex],
@@ -42,35 +42,37 @@ GameData::BattleEffect.register_effect(:Position,{
 
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :FutureSightMove,
-	:real_name => "FutureSightMove",
+	:real_name => "Incoming Move",
 	:type => :Move,
 })
 
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :FutureSightUserIndex,
-	:real_name => "FutureSightUserIndex",
+	:real_name => "Foretold Move User Index",
 	:type => :Position,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :FutureSightUserPartyIndex,
-	:real_name => "FutureSightUserPartyIndex",
+	:real_name => "Foretold Move User Party Index",
 	:type => :PartyPosition,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :HealingWish,
-	:real_name => "HealingWish",
+	:real_name => "Healing Wish",
 })
 
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :LunarDance,
-	:real_name => "LunarDance",
+	:real_name => "Lunar Dance",
 })
 
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :Wish,
-	:real_name => "Wish",
+	:real_name => "Turns Till Wish",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle,index,position,battler|
@@ -85,14 +87,15 @@ GameData::BattleEffect.register_effect(:Position,{
 
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :WishAmount,
-	:real_name => "WishAmount",
+	:real_name => "Wish Heal Amount",
 	:type => :Integer,
 })
 
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :WishMaker,
-	:real_name => "WishMaker",
+	:real_name => "Wish Maker",
 	:type => :PartyPosition,
+	:info_displayed => false,
 })
 
 GameData::BattleEffect.register_effect(:Position,{
@@ -103,6 +106,7 @@ GameData::BattleEffect.register_effect(:Position,{
 
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :RefugeMaker,
-	:real_name => "RefugeMaker",
+	:real_name => "Refuge Maker",
 	:type => :PartyPosition,
+	:info_displayed => false,
 })
