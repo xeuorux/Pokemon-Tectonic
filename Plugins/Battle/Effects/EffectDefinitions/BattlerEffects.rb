@@ -1128,7 +1128,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Protect,
 	:real_name => "Protect",
 	:resets_eor	=> true,
-	:protection_effect => true
+	:protection_effect => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1136,7 +1136,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "King's Shield",
 	:resets_eor	=> true,
 	:protection_info => {
-		:hit_proc => Proc.new { |attacker, protector, move, battle|
+		:hit_proc => Proc.new { |user, target, move, battle|
 			user.pbLowerStatStage(:ATTACK, 1, nil) if move.physicalMove? && user.pbCanLowerStatStage?(:ATTACK)
 		}
 	}
@@ -1146,8 +1146,8 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Obstruct,
 	:real_name => "Obstruct",
 	:protection_info => {
-		:hit_proc => Proc.new { |attacker, protector, move, battle|
-			attacker.pbLowerStatStage(:DEFENSE, 2, nil) if move.physical? && user.pbCanLowerStatStage?(:DEFENSE)
+		:hit_proc => Proc.new { |user, target, move, battle|
+			user.pbLowerStatStage(:DEFENSE, 2, nil) if move.physical? && user.pbCanLowerStatStage?(:DEFENSE)
 		}
 	}
 })
@@ -1157,8 +1157,8 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Baneful Bunker",
 	:resets_eor	=> true,
 	:protection_info => {
-		:hit_proc => Proc.new { |attacker, protector, move, battle|
-			attacker.pbPoison(target) if move.physicalMove? && attacker.pbCanPoison?(protector, false)
+		:hit_proc => Proc.new { |user, target, move, battle|
+			user.pbPoison(target) if move.physicalMove? && user.pbCanPoison?(target, false)
 		}
 	}
 })
@@ -1168,8 +1168,8 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Red-Hot Retreat",
 	:resets_eor	=> true,
 	:protection_info => {
-		:hit_proc => Proc.new { |attacker, protector, move, battle|
-			attacker.pbBurn(target) if move.specialMove? && attacker.pbCanBurn?(protector, false)
+		:hit_proc => Proc.new { |user, target, move, battle|
+			user.pbBurn(target) if move.specialMove? && user.pbCanBurn?(target, false)
 		}
 	}
 })
@@ -1179,10 +1179,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Spiky Shield",
 	:resets_eor	=> true,
 	:protection_info => {
-		:hit_proc => Proc.new { |attacker, protector, move, battle|
+		:hit_proc => Proc.new { |user, target, move, battle|
 			if move.physicalMove?
-				@battle.pbDisplay(_INTL('{1} was hurt!', attacker.pbThis))
-				attacker.applyFractionalDamage(1.0 / 8.0)
+				@battle.pbDisplay(_INTL('{1} was hurt!', user.pbThis))
+				user.applyFractionalDamage(1.0 / 8.0)
 			end
 		}
 	}
@@ -1193,10 +1193,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Mirror Shield",
 	:resets_eor	=> true,
 	:protection_info => {
-		:hit_proc => Proc.new { |attacker, protector, move, battle|
+		:hit_proc => Proc.new { |user, target, move, battle|
 			if move.specialMove?
-				@battle.pbDisplay(_INTL('{1} was hurt!', attacker.pbThis))
-				uattackerser.applyFractionalDamage(1.0 / 8.0)
+				@battle.pbDisplay(_INTL('{1} was hurt!', user.pbThis))
+				uuserser.applyFractionalDamage(1.0 / 8.0)
 			end
 		}
 	}
