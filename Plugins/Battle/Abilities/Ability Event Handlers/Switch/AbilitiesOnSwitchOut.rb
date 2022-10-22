@@ -1,3 +1,18 @@
+BattleHandlers::AbilityOnSwitchOut.add(:REGENERATOR,
+  proc { |ability,battler,endOfBattle,battle=nil|
+    next if endOfBattle
+    PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
+    battler.pbRecoverHP(battler.totalhp/3.0,false,false,false)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchOut.add(:NATURALCURE,
+  proc { |ability,battler,endOfBattle|
+    PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
+    battler.pbCureStatus(false)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchOut.add(:FLYBY,
   proc { |ability,battler,endOfBattle|
     next if endOfBattle

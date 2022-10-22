@@ -488,4 +488,9 @@ class PokeBattle_Battler
 	def substituted?
 		return effectActive?(:Substitute)
 	end
+
+	# Only to be called during hit or post-most-use triggers
+	def knockedBelowHalf?
+        return @damageState.initialHP >= @totalhp/2 && @hp < @totalhp/2
+    end
 end

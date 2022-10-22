@@ -1,3 +1,17 @@
+BattleHandlers::DamageCalcTargetAbility.add(:GRASSPELT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.field.terrain == :Grassy
+      mults[:defense_multiplier] *= 2.0
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:ICESCALES,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] /= 2 if move.specialMove?
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:SHIELDWALL,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if Effectiveness.hyper_effective?(target.damageState.typeMod)

@@ -1,8 +1,15 @@
-class PokeBattle_Battler
-    def knockedBelowHalf?
-        return @damageState.initialHP >= @totalhp/2 && @hp < @totalhp/2
+BattleHandlers::TargetAbilityAfterMoveUse.add(:BERSERK,
+  proc { |ability,target,user,move,switched,battle|
+    next if !move.damagingMove?
+    next if !target.knockedBelowHalf?
+    if target.pbCanRaiseStatStage?(:ATTACK,target) || target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
+      battle.pbShowAbilitySplash(target)
+      target.pbRaiseStatStageByAbility(:ATTACK,1,target,false) if target.pbCanRaiseStatStage?(:ATTACK,target)
+      target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target,false) if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
+      battle.pbHideAbilitySplash(target)
     end
-end
+  }
+)
 
 BattleHandlers::TargetAbilityAfterMoveUse.add(:ADRENALINERUSH,
   proc { |ability,target,user,move,switched,battle|

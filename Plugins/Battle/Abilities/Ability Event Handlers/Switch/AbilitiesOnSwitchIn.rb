@@ -1,3 +1,103 @@
+BattleHandlers::AbilityOnSwitchIn.add(:COMATOSE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is drowsing!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:SLOWSTART,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.effects[PBEffects::SlowStart] = 3
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1} can't get it going!",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1} can't get it going because of its {2}!",
+         battler.pbThis,battler.abilityName))
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:ASONEICE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} has 2 Abilities!",battler.name))
+    battle.pbShowAbilitySplash(battler,false,true,PBAbilities.getName(getID(PBAbilities,:UNNERVE)))
+    battle.pbDisplay(_INTL("{1} is too nervous to eat Berries!",battler.pbOpposingTeam))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.copy(:ASONEICE,:ASONEGHOST)
+
+BattleHandlers::AbilityOnSwitchIn.add(:INTREPIDSWORD,
+  proc { |ability,battler,battle|
+    battler.pbRaiseStatStageByAbility(:ATTACK,1,battler)
+  }
+)	
+
+BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSHIELD,
+  proc { |ability,battler,battle|
+    battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:SCREENCLEANER,
+  proc { |ability,battler,battle|
+    target=battler
+    battle.pbShowAbilitySplash(battler)
+    battle.sides.each do |side|
+      side.eachEffectWithData(true) do |effect,value,effectData|
+        next if !effectData.is_screen?
+        side.disableEffect(effect)
+      end
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:PASTELVEIL,
+  proc { |ability,battler,battle|
+    battler.eachAlly do |b|
+      next if b.status != :POISON
+      battle.pbShowAbilitySplash(battler)
+      b.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1}'s {2} cured its {3}'s poison!",battler.pbThis,battler.abilityName,b.pbThis(true)))
+      end
+      battle.pbHideAbilitySplash(battler)
+    end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:CURIOUSMEDICINE,
+  proc { |ability,battler,battle|
+    done= false
+    battler.eachAlly do |b|
+      next if !b.hasAlteredStatStages?
+      b.pbResetStatStages
+      done = true
+    end
+    if done
+      battle.pbShowAbilitySplash(battler)
+      battle.pbDisplay(_INTL("All allies' stat changes were eliminated!"))
+      battle.pbHideAbilitySplash(battler)
+    end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:NEUTRALIZINGGAS,
+  proc { |ability,battler,battle|
+    next if battle.field.effects[PBEffects::NeutralizingGas]
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1}'s gas nullified all abilities!",battler.pbThis))
+    battle.field.effects[PBEffects::NeutralizingGas] = true
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:FASCINATE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)

@@ -1,7 +1,8 @@
 module BattleHandlers
+	PriorityChangeAbility				= AbilityHandlerHash.new
 	AbilityOnEnemySwitchIn              = AbilityHandlerHash.new
 	MoveImmunityAllyAbility           	= AbilityHandlerHash.new
-    OnBerryConsumedAbility           	  = AbilityHandlerHash.new
+    OnBerryConsumedAbility           	= AbilityHandlerHash.new
 
 	def self.triggerAbilityOnEnemySwitchIn(ability,switcher,bearer,battle)
 		AbilityOnEnemySwitchIn.trigger(ability,switcher,bearer,battle)
@@ -12,9 +13,14 @@ module BattleHandlers
 		return (ret!=nil) ? ret : false
 	end
 
-  def self.triggerOnBerryConsumedAbility(ability,user,berry,own_item,battle)
+  	def self.triggerOnBerryConsumedAbility(ability,user,berry,own_item,battle)
 		ret = OnBerryConsumedAbility.trigger(ability,user,berry,own_item,battle)
 		return (ret!=nil) ? ret : false
+	end
+
+	def self.triggerPriorityChangeAbility(ability,battler,move,pri,targets=[])
+		ret = PriorityChangeAbility.trigger(ability,battler,move,pri,targets)
+		return (ret!=nil) ? ret : pri
 	end
 end
 

@@ -1,3 +1,9 @@
+BattleHandlers::CriticalCalcUserAbility.add(:SUPERLUCK,
+  proc { |ability,user,target,c|
+    next c+2
+  }
+)
+
 BattleHandlers::CriticalCalcUserAbility.add(:HARSH,
   proc { |ability,user,target,c|
     next 99 if target.burned?

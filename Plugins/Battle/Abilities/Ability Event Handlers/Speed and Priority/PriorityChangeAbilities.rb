@@ -1,9 +1,23 @@
-module BattleHandlers
-	def self.triggerPriorityChangeAbility(ability,battler,move,pri,targets=[])
-		ret = PriorityChangeAbility.trigger(ability,battler,move,pri,targets)
-		return (ret!=nil) ? ret : pri
-	end
-end
+BattleHandlers::PriorityChangeAbility.add(:GALEWINGS,
+  proc { |ability,battler,move,pri,targets=nil|
+    next pri+1 if battler.hp==battler.totalhp && move.type == :FLYING
+  }
+)
+
+BattleHandlers::PriorityChangeAbility.add(:PRANKSTER,
+  proc { |ability,battler,move,pri,targets=nil|
+    if move.statusMove?
+      battler.effects[PBEffects::Prankster] = true
+      next pri+1
+    end
+  }
+)
+
+BattleHandlers::PriorityChangeAbility.add(:TRIAGE,
+  proc { |ability,battler,move,pri,targets=nil|
+    next pri+3 if move.healingMove?
+  }
+)
 
 BattleHandlers::PriorityChangeAbility.add(:MAESTRO,
   proc { |ability,battler,move,pri,targets=nil|

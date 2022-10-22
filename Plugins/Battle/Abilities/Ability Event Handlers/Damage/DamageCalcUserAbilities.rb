@@ -1,3 +1,41 @@
+BattleHandlers::DamageCalcUserAbility.add(:HUGEPOWER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5 if move.physicalMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.copy(:HUGEPOWER,:PUREPOWER)
+
+BattleHandlers::DamageCalcUserAbility.add(:IRONFIST,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if move.punchingMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:HUSTLE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:DRAGONSMAW,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5 if type == :DRAGON
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:TRANSISTOR,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5 if type == :ELECTRIC
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:GORILLATACTICS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5 if move.physicalMove?
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:GUTS,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.pbHasAnyStatus? && move.physicalMove?

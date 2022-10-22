@@ -1,3 +1,75 @@
+BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
+  proc { |ability,user,targets,move,battle|
+    next if battle.futureSight
+    next if !move.pbDamagingMove?
+    next if user.item
+    next if battle.wildBattle? && user.opposes? && !user.boss
+    targets.each do |b|
+      next if b.damageState.unaffected || b.damageState.substitute
+      next if !b.item
+      next if b.unlosableItem?(b.item) || user.unlosableItem?(b.item)
+      battle.pbShowAbilitySplash(user)
+      if b.hasActiveAbility?(:STICKYHOLD)
+        battle.pbShowAbilitySplash(b) if user.opposes?(b)
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          battle.pbDisplay(_INTL("{1}'s item cannot be stolen!",b.pbThis))
+        end
+        battle.pbHideAbilitySplash(b) if user.opposes?(b)
+        next
+      end
+      user.item = b.item
+      b.item = nil
+      b.applyEffect(:Unburden)
+      if battle.wildBattle? && !user.initialItem && b.initialItem==user.item
+        user.setInitialItem(user.item)
+        b.setInitialItem(nil)
+      end
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,
+           b.pbThis(true),user.itemName))
+      else
+        battle.pbDisplay(_INTL("{1} stole {2}'s {3} with {4}!",user.pbThis,
+           b.pbThis(true),user.itemName,user.abilityName))
+      end
+      battle.pbHideAbilitySplash(user)
+      user.pbHeldItemTriggerCheck
+      break
+    end
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:ASONEICE,
+  proc { |ability,user,targets,move,battle|
+    next if battle.pbAllFainted?(user.idxOpposingSide)
+    numFainted = 0
+    targets.each { |b| numFainted += 1 if b.damageState.fainted }
+    next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user) || user.fainted?
+    battle.pbShowAbilitySplash(user,false,true,:CHILLINGNEIGH)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      user.pbRaiseStatStage(:ATTACK,numFainted,user)
+    else
+      user.pbRaiseStatStageByCause(:ATTACK,numFainted,user,:CHILLINGNEIGH)
+    end
+    battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:ASONEGHOST,
+  proc { |ability,user,targets,move,battle|
+    next if battle.pbAllFainted?(user.idxOpposingSide)
+    numFainted = 0
+    targets.each { |b| numFainted += 1 if b.damageState.fainted }
+    next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user) || user.fainted?
+    battle.pbShowAbilitySplash(user,false,true,:GRIMNEIGH)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      user.pbRaiseStatStage(:SPECIAL_ATTACK,numFainted,user)
+    else
+      user.pbRaiseStatStageByCause(:SPECIAL_ATTACK,numFainted,user,:GRIMNEIGH)
+    end
+    battle.pbHideAbilitySplash(user)
+  }
+)
+
 BattleHandlers::UserAbilityEndOfMove.add(:DEEPSTING,
   proc { |ability,user,targets,move,battle|
     next if !user.takesIndirectDamage?
