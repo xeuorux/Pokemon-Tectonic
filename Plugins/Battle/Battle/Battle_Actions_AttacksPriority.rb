@@ -26,15 +26,18 @@ class PokeBattle_Battle
         bArray = [b,b.pbSpeed,0,0,randomOrder[i]]
         if @choices[b.index][0]==:UseMove || @choices[b.index][0]==:Shift
           # Calculate move's priority
-          if @choices[b.index][0]==:UseMove
+          if @choices[b.index][0] == :UseMove
             move = @choices[b.index][2]
             pri = move.priority
-			pri -= 1 if (self.pbCheckGlobalAbility(:HONORAURA) && move.statusMove?)
-			targets = b.pbFindTargets(@choices[b.index],move,b)
+            targets = b.pbFindTargets(@choices[b.index],move,b)
             if b.abilityActive?
-              pri = BattleHandlers.triggerPriorityChangeAbility(b.ability,b,move,pri,targets)
+              abilityPriorityChange = BattleHandlers.triggerPriorityChangeAbility(b.ability,b,move,0,targets)
+              if abilityPriorityChange > 0
+                pri = [pri + pri, 1].max
+              end
             end
-			pri += move.priorityModification(b,targets)
+			      pri += move.priorityModification(b,targets)
+            pri -= 1 if (pbCheckGlobalAbility(:HONORAURA) && move.statusMove?)
             bArray[3] = pri
             @choices[b.index][4] = pri
           end
