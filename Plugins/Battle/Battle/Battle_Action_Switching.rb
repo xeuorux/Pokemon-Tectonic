@@ -32,19 +32,13 @@ class PokeBattle_Battle
         return false
       end
     end
-	  # Other certain switching effects
-    if battler.effects[PBEffects::OctolockUser]>=0
+
+    # Other certain trapping effects
+    battler.eachEffectAllLocations(true) do |effect,value,data|
+      next unless data.trapping
       partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
-      return true
     end
-    if battler.effects[PBEffects::Trapping]>0 ||
-       battler.effects[PBEffects::MeanLook]>=0 ||
-       battler.effects[PBEffects::Ingrain] ||
-       battler.effects[PBEffects::GivingDragonRideTo] != -1 ||
-       @field.effects[PBEffects::FairyLock]>0
-      partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
-      return true
-    end
+
     # Trapping abilities/items
     eachOtherSideBattler(idxBattler) do |b|
       next if !b.abilityActive?
@@ -228,7 +222,7 @@ class PokeBattle_Battle
     if !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
       # Spikes
       if battler.pbOwnSide.effectActive?(:Spikes) && battler.takesIndirectDamage?
-        spikesIndex = battler.pbOwnSide.effectCount(:Spikes) - 1
+        spikesIndex = battler.pbOwnSide.countEffect(:Spikes) - 1
         spikesDiv = [8,6,4][spikesIndex]
         spikesHPRatio = 1.0 / spikesDiv.to_f
         layerLabel = ["layer","2 layers","3 layers"][spikesIndex]
@@ -240,7 +234,7 @@ class PokeBattle_Battle
       end
 
       # Type applying spike hazards
-      battler.pbOwnSide.eachEffectWithData(true) do |effect,value,data|
+      battler.pbOwnSide.eachEffect(true) do |effect,value,data|
         next if !data.is_status_hazard?
         hazardInfo = data.type_applying_hazard
         status = hazardInfo[:status]
@@ -249,7 +243,7 @@ class PokeBattle_Battle
           battler.pbOwnSide.disableEffect(effect)
           pbDisplay(_INTL("{1} absorbed the {2}!",battler.pbThis,data.real_name))
         elsif battler.pbCanInflictStatus(status,false)
-          if battler.pbOwnSide.effectCount(effect) >= 2
+          if battler.pbOwnSide.countEffect(effect) >= 2
             battler.pbInflictStatus(status)
           elsif battler.takesIndirectDamage?
             pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!",battler.pbThis,data.real_name))

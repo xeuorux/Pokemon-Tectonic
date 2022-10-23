@@ -171,15 +171,15 @@ end
 
 def statusSpikesWeightOnSide(side,excludeEffects=[])
 	hazardWeight = 0
-	hazardWeight += 20 * side.effectCount(:PoisonSpikes) if !excludeEffects.include?(:PoisonSpikes)
-	hazardWeight += 20 * side.effectCount(:FlameSpikes) if !excludeEffects.include?(:FlameSpikes)
-	hazardWeight += 20 * side.effectCount(:FrostSpikes) if !excludeEffects.include?(:FrostSpikes)
+	hazardWeight += 20 * side.countEffect(:PoisonSpikes) if !excludeEffects.include?(:PoisonSpikes)
+	hazardWeight += 20 * side.countEffect(:FlameSpikes) if !excludeEffects.include?(:FlameSpikes)
+	hazardWeight += 20 * side.countEffect(:FrostSpikes) if !excludeEffects.include?(:FrostSpikes)
 	return 0
 end
 
 def hazardWeightOnSide(side,excludeEffects=[])
 	hazardWeight = 0
-	hazardWeight += 20 * side.effectCount(:Spikes) && !excludeEffects.include?(:Spikes)
+	hazardWeight += 20 * side.countEffect(:Spikes) && !excludeEffects.include?(:Spikes)
 	hazardWeight += 50 if side.effectActive?(:StealthRock) && !excludeEffects.include?(:StealthRock)
 	hazardWeight += 20 if side.effectActive?(:StickyWeb) && !excludeEffects.include?(:StickyWeb)
 	hazardWeight += statusSpikesWeightOnSide(side,excludeEffects)
@@ -193,7 +193,7 @@ def getSwitchOutMoveScore(score,user,target,skill=100)
 end
 
 def getForceOutMoveScore(score,user,target,skill=100,statusMove=false)
-	return 0 if target.effectActive?(:Substitute)
+	return 0 if target.substituted?
 	count = 0
 	@battle.pbParty(target.index).each_with_index do |pkmn,i|
 		count += 1 if @battle.pbCanSwitchLax?(target.index,i)
@@ -234,7 +234,7 @@ def getMultiStatUpMoveScore(statUp,score,user,target,skill=100,statusMove=true)
     score += 30 if target.hp > target.totalhp / 2
 	
 	# Stat up moves tend to be strong when you are protected by a substitute
-	score += 30 if target.effectActive?(:Substitute)
+	score += 30 if target.substituted?
 
     # Feel more free to use the move the fewer pokemon that can attack the buff receiver this turn
     target.eachPotentialAttacker do |b|

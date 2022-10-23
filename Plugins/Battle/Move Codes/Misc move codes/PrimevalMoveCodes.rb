@@ -114,7 +114,7 @@ class PokeBattle_Move_607 < PokeBattle_Move_103
 
 	def pbEffectGeneral(user)
 		# Apply up to the maximum number of layers
-		increment = GameData::BattleEffect.get(:Spikes).maximum - user.pbOpposingSide.effectCount(:Spikes)
+		increment = GameData::BattleEffect.get(:Spikes).maximum - user.pbOpposingSide.countEffect(:Spikes)
 		if increment > 0
 			user.pbOpposingSide.incrementEffect(:Spikes,increment)
 		end
@@ -556,13 +556,13 @@ class PokeBattle_Move_644 < PokeBattle_TargetStatDownMove
 	def ignoresReflect?; return true; end
 
   	def pbEffectGeneral(user)
-		user.pbOpposingSide.eachEffectWithData(true) do |effect,value,data|
+		user.pbOpposingSide.eachEffect(true) do |effect,value,data|
 			user.pbOpposingSide.disableEffect(effect) if data.is_screen?
 		end
 	end
 
 	def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
-		user.pbOpposingSide.eachEffectWithData(true) do |effect,value,data|
+		user.pbOpposingSide.eachEffect(true) do |effect,value,data|
 			# Wall-breaking anim
 			hitNum = 1 if data.is_screen?
 		end

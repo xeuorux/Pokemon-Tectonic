@@ -43,10 +43,6 @@ class PokeBattle_Move
         if target.effectActive?(:MiracleEye)
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :DARK && Effectiveness.ineffective_type?(moveType, defType)
         end
-        # Creep Out
-        if target.effectActive?(:CreepOut) && moveType == :BUG
-            ret *= 2
-        end
         # Delta Stream's weather
         if @battle.pbWeather == :StrongWinds
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING && Effectiveness.super_effective_type?(moveType, defType)
@@ -117,6 +113,9 @@ class PokeBattle_Move
         if immunityPierced && !uiOnlyCheck
             @battle.pbDisplay(_INTL("Near the avatar, immunities are resistances!"))
         end
+
+        # Creep Out
+        ret *= 2 if target.effectActive?(:CreepOut) && moveType == :BUG
 
         # Type effectiveness changing curses
         @battle.curses.each do |curse|
@@ -247,7 +246,7 @@ class PokeBattle_Move
 		return [true,true] if user.effectActive?(:LaserFocus) || user.effectActive?(:EmpoweredLaserFocus)
 		return [false,false] if user.boss?
 		c += 1 if highCriticalRate?
-		c += user.effectCount(:FocusEnergy)
+		c += user.countEffect(:FocusEnergy)
 		c += 1 if user.effectActive?(:LuckyStar)
 		c = ratios.length-1 if c>=ratios.length
 		# Calculation
@@ -295,15 +294,18 @@ class PokeBattle_Move
     #=============================================================================
     # Additional effect chance
     #=============================================================================
+    def immuneToAdditionalEffects(user,target,effectChance=0)
+        return true if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
+        return true if target.effectActive?(:Enlightened)
+        return false
+    end
+
     def pbAdditionalEffectChance(user,target,effectChance=0)
-        return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
-        return 0 if target.effectActive?(:Enlightened)
-        ret = (effectChance>0) ? effectChance : @addlEffect
-        if Settings::MECHANICS_GENERATION >= 6 || @function != "0A4"   # Secret Power
-            ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
-            ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
-            ret *= 4 if windMove? && user.hasActiveAbility?(:FUMIGATE)
-        end
+        return 0 if immuneToAdditionalEffects(user,target,effectChance)
+        ret = effectChance > 0 ? effectChance : @effectChance
+        ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
+        ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
+        ret *= 4 if windMove? && user.hasActiveAbility?(:FUMIGATE)
         ret /= 2 if applyRainDebuff?(user)
         ret = 100 if $DEBUG && Input.press?(Input::CTRL)
         return ret

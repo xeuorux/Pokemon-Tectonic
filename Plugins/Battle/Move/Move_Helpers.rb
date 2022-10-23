@@ -15,7 +15,7 @@ class PokeBattle_Move
       return false if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't knock off, but bosses can
       return false if user.fainted?
       if checkingForAI
-          return false if target.effectActive?(:Substitute)
+          return false if target.substituted?
       else
           return false if target.damageState.unaffected || target.damageState.substitute
       end

@@ -13,7 +13,7 @@ class PokeBattle_Move
     attr_reader   :accuracy
     attr_accessor :pp
     attr_writer   :total_pp
-    attr_reader   :addlEffect
+    attr_reader   :effectChance
     attr_reader   :target
     attr_reader   :priority
     attr_reader   :flags
@@ -38,7 +38,7 @@ class PokeBattle_Move
       @category   = move.category
       @accuracy   = move.accuracy
       @pp         = move.pp   # Can be changed with Mimic/Transform
-      @addlEffect = move.effect_chance
+      @effectChance = move.effect_chance
       @target     = move.target
       @priority   = move.priority
       @flags      = move.flags

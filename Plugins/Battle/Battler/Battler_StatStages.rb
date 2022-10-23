@@ -126,8 +126,7 @@ class PokeBattle_Battler
 				@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis)) if showFailMsg
 				return false
 			end
-			if pbOwnSide.effectActive?(:Mist) &&
-						!(user && user.hasActiveAbility?(:INFILTRATOR))
+			if pbOwnSide.effectActive?(:Mist) && !(user && user.hasActiveAbility?(:INFILTRATOR))
 				@battle.pbDisplay(_INTL('{1} is protected by Mist!', pbThis)) if showFailMsg
 				return false
 			end

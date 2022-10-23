@@ -31,7 +31,7 @@ class PokeBattle_Confusion < PokeBattle_Move
     @target     = 0
     @priority   = 0
     @flags      = ""
-    @addlEffect = 0
+    @effectChance = 0
     @calcType   = nil
     @powerBoost = false
     @snatched   = false
@@ -61,7 +61,7 @@ class PokeBattle_Struggle < PokeBattle_Move
     @target     = 0
     @priority   = 0
     @flags      = ""
-    @addlEffect = 0
+    @effectChance = 0
     @calcType   = nil
     @powerBoost = false
     @snatched   = false
@@ -280,7 +280,7 @@ class PokeBattle_StatUpMove < PokeBattle_Move
     score += 50 if user.firstTurn? && !damagingMove?
 
     # Stat up moves tend to be strong when you are protected by a substitute
-	  score += 30 if target.effectActive?(:Substitute)
+	  score += 30 if target.substituted?
 
     # Feel more free to use the move the fewer pokemon that can attack you this turn
     user.eachPotentialAttacker do |b|
@@ -922,7 +922,7 @@ class PokeBattle_Charm < PokeBattle_Move
 	  @target     = 0
 	  @priority   = 0
 	  @flags      = ""
-	  @addlEffect = 0
+	  @effectChance = 0
 	  @calcType   = nil
 	  @powerBoost = false
 	  @snatched   = false
@@ -1294,7 +1294,7 @@ end
     def addSpikeLayer(side,teamLabel)
       side.incrementEffect(@spikeEffect)
 
-      side.eachEffectWithData(true) do |effect, value, data|
+      side.eachEffect(true) do |effect, value, data|
         next if !data.is_status_hazard?
         next if effect == @spikeEffect
         side.disableEffect(effect)

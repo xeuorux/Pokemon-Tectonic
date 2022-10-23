@@ -3,14 +3,14 @@ BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
     next if !move.contactMove?
     next if battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(user)
-    if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+    if target.effectActive?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
       end
       battle.pbHideAbilitySplash(target)
-	elsif target.effects[PBEffects::Enlightened]
-	  battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+	  elsif target.effectActive?(:Enlightened)
+	    battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
     elsif target.pbCanPoison?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH

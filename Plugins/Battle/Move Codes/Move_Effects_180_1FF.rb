@@ -15,26 +15,24 @@ end
   #===============================================================================
 class PokeBattle_Move_181 < PokeBattle_Move
   def pbFailsAgainstTarget?(user, target)
-    if target.effects[PBEffects::OctolockUser] >= 0 || (target.damageState.substitute && !ignoresSubstitute?(user))
+    if target.effectActive?(:Octolock)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
     if target.pbHasType?(:GHOST)
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
+      @battle.pbDisplay(_INTL("But {1} isn't affected because it's a Ghost...", target.pbThis(true)))
       return true
     end
     return false
   end
 
   def pbEffectAgainstTarget(user, target)
-    target.effects[PBEffects::OctolockUser] = user.index
-    target.effects[PBEffects::Octolock] = true
-    @battle.pbDisplay(_INTL("{1} can no longer escape!", target.pbThis))
+    target.applyEffect(:Octolock)
+    target.applyEffect(:OctolockUser,user.index)
   end
 
   def getScore(score, _user, target, _skill = 100)
     score += 40 if target.hp > target.totalhp / 2
-    score = 0 if target.effects[PBEffects::Octolock] || target.pbHasType?(:GHOST)
     return score
   end
 end

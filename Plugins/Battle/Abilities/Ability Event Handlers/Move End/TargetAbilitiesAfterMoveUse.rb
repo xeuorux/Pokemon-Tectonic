@@ -20,7 +20,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:PICKPOCKET,
     next if battle.wildBattle? && target.opposes? && !user.boss
     next if !move.contactMove?
     next if switched.include?(user.index)
-    next if user.effectActive?(:Substitute) || target.damageState.substitute
+    next if user.substituted? || target.damageState.substitute
     next if target.item || !user.item
     next if user.unlosableItem?(user.item) || target.unlosableItem?(user.item)
     battle.pbShowAbilitySplash(target)

@@ -8,6 +8,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:real_name => "Fairy Lock",
 	:type => :Integer,
 	:ticks_down => true,
+	:trapping => true,
 })
 
 GameData::BattleEffect.register_effect(:Field,{

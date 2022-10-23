@@ -335,7 +335,7 @@ class PokeBattle_Battler
 		holdersToCheck = [target]
 		holdersToCheck.push(target.pbOwnSide) if target.index != user.index
 		holdersToCheck.each do |effectHolder|
-			effectHolder.eachEffectWithData(true) do |effect,value,data|
+			effectHolder.eachEffect(true) do |effect,value,data|
 				next if !data.is_protection?
 				if data.protection_info&.has_key?(:does_negate_proc)
 					next if !data.protection_info[:does_negate_proc].call(user,target,move,@battle)

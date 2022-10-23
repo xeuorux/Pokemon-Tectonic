@@ -212,7 +212,7 @@ class PokeBattle_AI
             entryDamage = 0
             if !airborne && pkmn.ability != :MAGICGUARD && pkmn.item != :HEAVYDUTYBOOTS
                 # Spikes
-                spikesCount = battler.pbOwnSide.effectCount(:Spikes)
+                spikesCount = battler.pbOwnSide.countEffect(:Spikes)
                 if spikesCount > 0
                     spikesDenom = [8,6,4][spikesCount-1]
                     entryDamage += pkmn.totalhp / spikesDenom
@@ -233,7 +233,7 @@ class PokeBattle_AI
                 end
 
                 # Each of the status setting spikes
-                battler.pbOwnSide.eachEffectWithData(true) do |effect, value, data|
+                battler.pbOwnSide.eachEffect(true) do |effect, value, data|
                     next if !data.is_status_hazard?
                     hazardInfo = data.type_applying_hazard
                     

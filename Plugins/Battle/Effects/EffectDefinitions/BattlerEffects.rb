@@ -329,6 +329,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Ingrain,
 	:real_name => "Ingrained",
 	:baton_passed => true,
+	:trapping => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} firmly planted its roots! It can't be moved!",battler.pbThis))
+	},
 	:eor_proc => Proc.new { |battler,battle,value|
 		next if !battler.canHeal?
 		healAmount = battler.totalhp / 8.0
@@ -426,7 +430,11 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MeanLook,
 	:real_name => "Cannot Escape",
 	:type => :Position,
+	:trapping => true,
 	:others_lose_track => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} can no longer escape!", battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -675,6 +683,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Substitute Health",
 	:type => :Integer,
 	:baton_passed => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplaySlower(_INTL("{1} put up a substitute!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -739,6 +750,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Trapping Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:trapping => true,
 	:expire_proc => Proc.new { |battle,battler|
 		moveName = GameData::Move.get(battler.effects[:TrappingMove]).name
         battle.pbDisplay(_INTL("{1} was freed from {2}!",battler.pbThis,moveName))
@@ -882,17 +894,27 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :JawLock,
-	:real_name => "Trapped By Jaw",
+	:real_name => "Jaw Lock",
 	:baton_passed => true,
+	:trapping => true,
+	:expire_proc => Proc.new { |battle, battler|
+		# Disable jaw lock on all other battlers who were locked with this
+		battle.eachBattler do |b|
+			if b.pointsAt?(:JawLockUser,battler)
+				b.disableEffect(:JawLock)
+				b.disableEffect(:JawLockUser)
+			end
+		end
+	},
 	:sub_effects => [:JawLockUser],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :JawLockUser,
 	:real_name => "Jaw Locker",
+	:info_displayed => false,
 	:type => :Position,
 	:baton_passed => true,
-	:others_lose_track => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -903,6 +925,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Octolock,
 	:real_name => "Octolocked",
+	:trapping => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} is trapped by the tentacle hold!", battler.pbThis))
+	},
 	:eor_proc => Proc.new { |battle,battler,value|
 		octouser = battle.battlers[battler.effects[:OctolockUser]]
 		if battler.pbCanLowerStatStage?(:DEFENSE,octouser,self)
@@ -1017,6 +1043,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :NoRetreat,
 	:real_name => "No Retreat!!",
 	:baton_passed => true,
+	:trapping => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} is committed to the battle! It can't escape!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1091,6 +1121,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Carrying",
 	:type => :Position,
 	:others_lose_track => true,
+	:trapping => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{

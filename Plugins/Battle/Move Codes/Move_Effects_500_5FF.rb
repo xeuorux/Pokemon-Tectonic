@@ -1176,7 +1176,7 @@ class PokeBattle_Move_53F < PokeBattle_Move
 		roarSwitched = []
 		targets.each do |b|
 		  next if b.fainted? || b.damageState.substitute
-		  next if b.effects[PBEffects::Ingrain]
+		  next if b.effectActive?(:Ingrain)
 		  next if b.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
 		  newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,true)   # Random
 		  next if newPkmn<0
@@ -1362,7 +1362,7 @@ end
 
 #===============================================================================
 # Removes trapping moves, entry hazards and Leech Seed on user/user's side. Raises speed by 1.
-# (new!Rapid Spin)
+# (Rapid Spin)
 #===============================================================================
 class PokeBattle_Move_54B < PokeBattle_StatUpMove
 	def initialize(battle,move)
@@ -1372,24 +1372,31 @@ class PokeBattle_Move_54B < PokeBattle_StatUpMove
 	
 	def pbEffectAfterAllHits(user,target)
 		return if user.fainted? || target.damageState.unaffected
-		if user.effects[PBEffects::Trapping]>0
-			trapMove = GameData::Move.get(user.effects[PBEffects::TrappingMove]).name
-			trapUser = @battle.battlers[user.effects[PBEffects::TrappingUser]]
-			@battle.pbDisplay(_INTL("{1} got free of {2}'s {3}!",user.pbThis,trapUser.pbThis(true),trapMove))
-			user.effects[PBEffects::Trapping]     = 0
-			user.effects[PBEffects::TrappingMove] = nil
-			user.effects[PBEffects::TrappingUser] = -1
+		if user.effectActive?(:Trapping)
+		  trapMove = GameData::Move.get(user.effects[:TrappingMove]).name
+		  trapUser = @battle.battlers[user.effects[:TrappingUser]]
+		  @battle.pbDisplay(_INTL("{1} got free of {2}'s {3}!",user.pbThis,trapUser.pbThis(true),trapMove))
+		  user.disableEffect(:Trapping)
 		end
-		if user.effects[PBEffects::LeechSeed]>=0
-			user.effects[PBEffects::LeechSeed] = -1
-			@battle.pbDisplay(_INTL("{1} shed Leech Seed!",user.pbThis))
+		if user.effectActive?(:LeechSeed)
+		  user.disableEffects(:LeechSeed)
+		  @battle.pbDisplay(_INTL("{1} shed Leech Seed!",user.pbThis))
 		end
-		user.pbOwnSide.eachEffectWithData(true) do |effect,value,data|
+		user.pbOwnSide.eachEffect(true) do |effect,value,data|
 			next unless data.is_hazard?
-			hazardName = data.real_name
 			user.pbOwnSide.disableEffect(effect)
+			hazardName = data.real_name
 			@battle.pbDisplay(_INTL("{1} blew away {2}!",user.pbThis, hazardName)) if !data.has_expire_proc?
 		end
+	  end
+  
+	def getScore(score,user,target,skill=100)
+		if user.alliesInReserve?
+			score += hazardWeightOnSide(user.pbOwnSide)
+		end
+		score += 20 if user.effectActive?(:LeechSeed)
+		score += 20 if user.effectActive?(:Trapping)
+		return score
 	end
 end
 
@@ -1611,31 +1618,8 @@ end
 # Forces the target to use a substitute (Doll Stitch)
 #===============================================================================
 class PokeBattle_Move_558 < PokeBattle_Move
-	def pbFailsAgainstTarget?(user,target)
-		if target.boss
-			@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is an Avatar!"))
-			return true
-		end
-		if target.effects[PBEffects::Substitute]>0
-			@battle.pbDisplay(_INTL("{1} already has a substitute!",target.pbThis))
-			return true
-		end
-		@subLife = target.totalhp/4
-		@subLife = 1 if @subLife<1
-		if target.hp<=@subLife
-			@battle.pbDisplay(_INTL("But {1} does not have enough HP left to make a substitute!",target.pbThis))
-			return true
-		end
-		return false
-	end
-
 	def pbEffectAgainstTarget(user,target)
-		target.pbReduceHP(@subLife,false,false)
-		target.pbItemHPHealCheck
-		target.effects[PBEffects::Trapping]     = 0
-		target.effects[PBEffects::TrappingMove] = nil
-		target.effects[PBEffects::Substitute]   = @subLife
-		@battle.pbDisplay(_INTL("{1} put {2} in a substitute!",user.pbThis,target.pbThis))
+		@battle.forceUseMove(target,:Substitute,-1,true)
 	end
 end
 
@@ -1859,8 +1843,8 @@ end
 #===============================================================================
 class PokeBattle_Move_564 < PokeBattle_Move
 	def pbEffectAgainstTarget(user,target)
-		@battle.forceUseMove(user,:REST)
-		@battle.forceUseMove(target,:REST)
+		@battle.forceUseMove(user,:REST,-1,true)
+		@battle.forceUseMove(target,:REST,-1,true)
 	end
 end
 
@@ -2150,11 +2134,11 @@ end
 #===============================================================================
 class PokeBattle_Move_575 < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
-	  if target.effects[PBEffects::OnDragonRide]
+	  if target.effectActive?(:OnDragonRide)
 		@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already on a dragon ride!"))
 		return true
 	  end
-	  if user.effects[PBEffects::GivingDragonRideTo] != -1
+	  if user.effectActive?(:GivingDragonRideTo)
 		@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis} is already giving a dragon ride!"))
 		return true
 	  end
@@ -2162,8 +2146,8 @@ class PokeBattle_Move_575 < PokeBattle_Move
 	end
   
 	def pbEffectAgainstTarget(user,target)
-	  target.effects[PBEffects::OnDragonRide]     	= true
-	  user.effects[PBEffects::GivingDragonRideTo] 	= target.index
+	  target.applyEffect(:OnDragonRide)
+	  target.applyEffect(:GivingDragonRideTo,target.index)
 	  @battle.pbDisplay(_INTL("{1} gives {2} a ride on its back!",user.pbThis,target.pbThis(true)))
 	end
 	
@@ -2678,7 +2662,7 @@ end
 #===============================================================================
 class PokeBattle_Move_596 < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
-		if target.effects[PBEffects::MeanLook] >= 0 && !user.pbCanRaiseStatStage?(:ATTACK) && !user.pbCanLowerStatStage?(:SPEED)
+		if target.effectActive?(:MeanLook) && !user.pbCanRaiseStatStage?(:ATTACK) && !user.pbCanLowerStatStage?(:SPEED)
 		  @battle.pbDisplay(_INTL("But it failed!"))
 		  return true
 		end
@@ -2686,10 +2670,7 @@ class PokeBattle_Move_596 < PokeBattle_Move
 	end
 
 	def pbEffectAgainstTarget(user,target)
-		if target.effects[PBEffects::MeanLook] < 0
-			target.effects[PBEffects::MeanLook] = user.index
-    		battle.pbDisplay(_INTL("{1} can no longer escape!",target.pbThis))
-		end
+		target.applyEffect(:MeanLook,user.index) if !target.effectActive?(:MeanLook)
 	end
 
 	def pbEffectGeneral(user)

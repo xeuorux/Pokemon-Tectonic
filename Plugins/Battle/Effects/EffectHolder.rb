@@ -1,9 +1,7 @@
 # This assumes that each user of the module has an instance variable called @effects
 # You may also define procs called @apply_proc, @expire_proc, and @remain_proc
 module EffectHolder
-    attr_reader :effects
-
-    def eachEffectWithData(onlyActive=false)
+    def eachEffect(onlyActive=false)
         @effects.each do |effect, value|
 			next if onlyActive && !effectActive?(effect)
             effectData = GameData::BattleEffect.get(effect)
@@ -88,12 +86,37 @@ module EffectHolder
 		return effectData.active_value?(@effects[effect])
 	end
 
-    def effectCount(effect)
+    def countEffect(effect)
         effectData = GameData::BattleEffect.get(effect)
         validateInteger(effectData)
         return @effects[effect]
     end
 
+    def pointsAt?(effect,battler)
+        validatePosition(effect)
+        return false if effectActive?(effect)
+        return @effects[effect] == battler.index
+    end
+
+    def eachEffectPointsAt(onlyActive=false.battler)
+        eachEffect(true) do |effect,value,data|
+            yield effect,value,data if pointsAt?(effect,battler)
+        end
+    end
+
+    def processEffectsEOR()
+        changedEffects = {}
+        eachEffect(true) do |effect, value, data|
+            # Tick down active effects that tick down
+            tickDownAndProc(effect) if effectData.ticks_down
+            # Disable effects that reset end of round
+            disableEffect(effect) if data.resets_eor
+        end
+    end
+
+    #################################################
+    # Validate data types
+    #################################################
     def validateInteger(effect)
         effectData = effect
         effectData = GameData::BattleEffect.get(effect) if effect.is_a?(Symbol)
@@ -102,13 +125,11 @@ module EffectHolder
         end
     end
 
-    def processEffectsEOR()
-        changedEffects = {}
-        eachEffectWithData(true) do |effect, value, data|
-            # Tick down active effects that tick down
-            tickDownAndProc(effect) if effectData.ticks_down
-            # Disable effects that reset end of round
-            disableEffect(effect) if data.resets_eor
+    def validatePosition(effect)
+        effectData = effect
+        effectData = GameData::BattleEffect.get(effect) if effect.is_a?(Symbol)
+        if effectData.type != :Position
+		    raise _INTL("Invalid operation for non-position effect: #{effectData.real_name}")
         end
     end
 end

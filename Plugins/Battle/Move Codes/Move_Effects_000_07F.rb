@@ -40,11 +40,11 @@ class PokeBattle_Move_003 < PokeBattle_SleepMove
   end
 
   def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
-    return if numHits==0
+    return if numHits == 0
     return if user.fainted? || user.transformed?
     return if @id != :RELICSONG
     return if !user.isSpecies?(:MELOETTA)
-    return if user.hasActiveAbility?(:SHEERFORCE) && @addlEffect>0
+    return if user.hasActiveAbility?(:SHEERFORCE) && @effectChance>0
     newForm = (user.Form+1)%2
     user.pbChangeForm(newForm,_INTL("{1} transformed!",user.pbThis))
   end
@@ -124,7 +124,7 @@ class PokeBattle_Move_009 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
     chance = pbAdditionalEffectChance(user,target,10)
-    return if chance==0
+    return if chance == 0
     if @battle.pbRandom(100)<chance
       target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
     end
@@ -153,7 +153,7 @@ class PokeBattle_Move_00B < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
     chance = pbAdditionalEffectChance(user,target,10)
-    return if chance==0
+    return if chance == 0
     if @battle.pbRandom(100)<chance
       target.pbBurn(user) if target.pbCanBurn?(user,false,self)
     end
@@ -192,7 +192,7 @@ class PokeBattle_Move_00E < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
     chance = pbAdditionalEffectChance(user,target,10)
-    return if chance==0
+    return if chance == 0
     if @battle.pbRandom(100)<chance
       target.pbFrostbite if target.pbCanFrostbite?(user,false,self)
     end
@@ -1156,7 +1156,7 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
 
 
   def eachDefoggable(side,isOurSide)
-    side.eachEffectWithData(true) do |effect,value,data|
+    side.eachEffect(true) do |effect,value,data|
       if !isOurSide && (data.is_screen? || @miscEffects.include?(effect))
         yield effect,data
       elsif data.is_hazard?
@@ -1218,7 +1218,7 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
     score -= hazardWeightOnSide(target.pbOwnSide)
     # Like removing hazards that affect us
     score += hazardWeightOnSide(target.pbOpposingSide)
-    target.pbOwnSide.eachEffectWithData(true) do |effect,value,data|
+    target.pbOwnSide.eachEffect(true) do |effect,value,data|
       score += 25 if data.is_screen? || @miscEffects.include?(effect)
     end
     score += 30 if @battle.field.terrain != :None

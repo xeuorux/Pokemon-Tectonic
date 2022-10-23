@@ -344,7 +344,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SCREENCLEANER,
     target=battler
     battle.pbShowAbilitySplash(battler)
     battle.sides.each do |side|
-      side.eachEffectWithData(true) do |effect,value,effectData|
+      side.eachEffect(true) do |effect,value,effectData|
         next if !effectData.is_screen?
         side.disableEffect(effect)
       end

@@ -352,7 +352,7 @@ class BattleInfoDisplay < SpriteWrapper
   end
 
   def pushEffectDescriptorsToArray(effectHolder,descriptorsArray)
-	effectHolder.eachEffectWithData do |effect, value, effectData|
+	effectHolder.eachEffect do |effect, value, effectData|
 		next if !effectData.info_displayed
 		next if !effectData.active_value?(value) && !DEBUGGING_EFFECT_DISPLAY
 		effectName = effectData.real_name

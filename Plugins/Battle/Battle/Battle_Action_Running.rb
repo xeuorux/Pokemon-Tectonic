@@ -6,18 +6,14 @@ class PokeBattle_Battle
     return false if trainerBattle? || bossBattle? # Boss battle
     battler = @battlers[idxBattler]
     return false if !@canRun && !battler.opposes?
-    #return true if battler.pbHasType?(:GHOST) && Settings::MORE_TYPE_EFFECTS
+    return true if battler.pbHasType?(:GHOST) && Settings::MORE_TYPE_EFFECTS
     return true if battler.abilityActive? &&
                    BattleHandlers.triggerRunFromBattleAbility(battler.ability,battler)
     return true if battler.itemActive? &&
                    BattleHandlers.triggerRunFromBattleItem(battler.item,battler)
-    return false if battler.effects[PBEffects::Trapping]>0 ||
-                    battler.effects[PBEffects::MeanLook]>=0 ||
-                    battler.effects[PBEffects::Ingrain] ||
-                    battler.effects[PBEffects::JawLock] ||
-                    battler.effects[PBEffects::OctolockUser]>=0 ||
-                    battler.effects[PBEffects::NoRetreat] ||
-                    @field.effects[PBEffects::FairyLock]>0
+    battler.eachEffectAllLocations(true) do |effect,value,data|
+      return false if data.trapping
+    end
     eachOtherSideBattler(idxBattler) do |b|
       return false if b.abilityActive? &&
                       BattleHandlers.triggerTrappingTargetAbility(b.ability,battler,b,self)
@@ -75,14 +71,12 @@ class PokeBattle_Battle
       return 0
     end
     if !duringBattle
-=begin
-      if battler.pbHasType?(:GHOST) && Settings::MORE_TYPE_EFFECTS
+      if battler.pbHasType?(:GHOST)
         pbSEPlay("Battle flee")
         pbDisplayPaused(_INTL("Your Pokémon uses its ghostly powers to escape!"))
         @decision = 3
         return 1
       end
-=end
       # Abilities that guarantee escape
       if battler.abilityActive?
         if BattleHandlers.triggerRunFromBattleAbility(battler.ability,battler)
@@ -104,19 +98,9 @@ class PokeBattle_Battle
           return 1
         end
       end
-	  if battler.effects[PBEffects::JawLock]
-		  @battlers.each do |b|
-			if (battler.effects[PBEffects::JawLockUser] == b.index) && !b.fainted?
-			  partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
-			  return false
-			end
-		  end
-      end
-      # Other certain trapping effects
-      if battler.effects[PBEffects::Trapping]>0 ||
-         battler.effects[PBEffects::MeanLook]>=0 ||
-         battler.effects[PBEffects::Ingrain] ||
-         @field.effects[PBEffects::FairyLock]>0
+      # Any effect that could keep a battler trapped
+      battler.eachEffectAllLocations do |effect, value, data|
+        next unless data.trapping
         pbDisplayPaused(_INTL("You can't escape!"))
         return 0
       end
@@ -136,34 +120,10 @@ class PokeBattle_Battle
         end
       end
     end
-
-	levelPlayer = 1
-    if levelPlayer<@battlers[idxBattler].level
-      levelPlayer = @battlers[idxBattler].level
-    end
-    @battlers[idxBattler].eachAlly do |a|
-     levelPlayer = a.level if levelPlayer<a.level
-    end
-
-    levelEnemy = 1
-	anyOwned = false
-    eachOtherSideBattler(idxBattler) do |b|
-      levelEnemy = b.level if b.level > levelEnemy
-	  anyOwned = true if b.owned?
-    end
-
-    rate = 140
-    rate += 10 * [levelPlayer-levelEnemy,0].max
-    rate += @runCommand*20
-	rate += 50 if anyOwned
         
-    #if rate>=250 || @battleAI.pbAIRandom(250)<rate
-      pbSEPlay("Battle flee")
-      pbDisplayPaused(_INTL("You got away safely!"))
-      @decision = 3
-      return 1
-    #end	
-	#pbDisplayPaused(_INTL("You couldn't get away!"))
-    #return -1
+    pbSEPlay("Battle flee")
+    pbDisplayPaused(_INTL("You got away safely!"))
+    @decision = 3
+    return 1
   end
 end

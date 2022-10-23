@@ -16,7 +16,7 @@ class PokeBattle_Battler
 		super(effect)
 	end
 
-	def effectCount(effect, ignoreFainted=false)
+	def countEffect(effect, ignoreFainted=false)
         return 0 if fainted? && !ignoreFainted
 		super(effect)
     end
@@ -29,6 +29,29 @@ class PokeBattle_Battler
 			effectData.eor_battler(@battle, self)
 		end
 		super
+	end
+
+	def eachEffectAlsoPosition(onlyActive=false,alsoPosition)
+		super(onlyActive).each do |effect, value, data|
+			yield effect, value, data
+		end
+		if alsoPosition
+			@battle.positions[@index].eachEffect(onlyActive) do |effect, value, data|
+				yield effect, value, data
+			end
+		end
+	end
+
+	def getAllEffectHolders()
+		holders = [self,@battle.positions[@index],pbOwnSide,@battle.field]
+	end
+
+	def eachEffectAllLocations(onlyActive=false)
+		getAllEffectHolders().each do |effectHolder|
+			effectHolder.eachEffect(onlyActive) do |effect,value,data|
+				yield effect,value,data
+			end
+		end
 	end
 
 	def modifyTrackersEOR

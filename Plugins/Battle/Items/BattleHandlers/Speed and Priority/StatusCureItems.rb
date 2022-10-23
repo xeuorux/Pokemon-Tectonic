@@ -104,7 +104,7 @@ BattleHandlers::StatusCureItem.add(:DURINBERRY,
 BattleHandlers::StatusCureItem.add(:MENTALHERB,
   proc { |item,battler,battle,forced|
     activate = false
-    battler.eachEffectWithData(true) do |effect,value,data|
+    battler.eachEffect(true) do |effect,value,data|
       next if !data.is_mental?
       activate = true
       break
@@ -118,7 +118,7 @@ BattleHandlers::StatusCureItem.add(:MENTALHERB,
     battle.pbCommonAnimation("UseItem",battler) if !forced
 
     # Disable all mental effects
-    battler.eachEffectWithData(true) do |effect,value,data|
+    battler.eachEffect(true) do |effect,value,data|
       next if !data.is_mental?
       battler.disableEffect(effect)
     end

@@ -672,7 +672,7 @@ class PokeBattle_Battler
 															pbThis)
 		end
 		@battle.pbDisplay(msg)
-		PBDebug.log("[Lingering effect] #{pbThis}'s confusion count is #{effectCount(:Confusion)}")
+		PBDebug.log("[Lingering effect] #{pbThis}'s confusion count is #{countEffect(:Confusion)}")
 		# Confusion cures
 		pbItemStatusCureCheck
 		pbAbilityStatusCureCheck
@@ -732,7 +732,7 @@ class PokeBattle_Battler
 			msg = _INTL('{1} became charmed! It will hit itself with its own Sp. Atk!',pbThis)
 		end
 		@battle.pbDisplay(msg)
-		PBDebug.log("[Lingering effect] #{pbThis}'s charm count is #{effectCount(:Charm)}")
+		PBDebug.log("[Lingering effect] #{pbThis}'s charm count is #{countEffect(:Charm)}")
 		# Charm cures
 		pbItemStatusCureCheck
 		pbAbilityStatusCureCheck

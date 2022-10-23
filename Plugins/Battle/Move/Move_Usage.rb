@@ -14,7 +14,7 @@ class PokeBattle_Move
     # Reset move usage counters (child classes can increment them).
     def pbChangeUsageCounters(user,specialUsage)
         [user,@battle.field].each do |effectHolder|
-            effectHolder.eachEffectWithData(true) do |effect, value, data|
+            effectHolder.eachEffect(true) do |effect, value, data|
                 next if !data.resets_on_move_start
                 effectHolder.disableEffect(effect)
             end

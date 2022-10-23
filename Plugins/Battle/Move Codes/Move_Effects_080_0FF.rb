@@ -927,7 +927,7 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    score -= 20 if target.effectActive?(:Substitute)
+    score -= 20 if target.substituted?
     return score
   end
 end
@@ -1787,7 +1787,7 @@ class PokeBattle_Move_0BA < PokeBattle_Move
 
   def getScore(score,user,target,skill=100)
     if damagingMove?
-      score -= 50 if target.hasActiveAbilityAI?(:MENTALBLOCK) || target.effectActive?(:Substitute)
+      score -= 50 if target.hasActiveAbilityAI?(:MENTALBLOCK) || target.substituted?
     else
       return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
     end
@@ -2332,15 +2332,13 @@ end
 class PokeBattle_Move_0CF < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
     return if target.fainted? || target.damageState.substitute
-    return if target.effects[PBEffects::Trapping]>0
+    return if target.effectActive?(:Trapping)
     # Set trapping effect duration and info
-    if user.hasActiveItem?(:GRIPCLAW)
-      target.effects[PBEffects::Trapping] = 6
-    else
-      target.effects[PBEffects::Trapping] = 3
-    end
-    target.effects[PBEffects::TrappingMove] = @id
-    target.effects[PBEffects::TrappingUser] = user.index
+    trappingDuration = 3
+    trappingDuration *= 2 if user.hasActiveItem?(:GRIPCLAW)
+    target.applyEffect(:Trapping,trappingDuration)
+    target.applyEffect(:TrappingMove,@id)
+    target.applyEffect(:TrappingUser,user.index)
     # Message
     msg = _INTL("{1} was trapped!",target.pbThis)
     case @id
@@ -2366,7 +2364,7 @@ class PokeBattle_Move_0CF < PokeBattle_Move
 
   def getScore(score,user,target,skill=100)
     score -= 20 # Annoying AI move tax
-    score -= 20 if target.effects[PBEffects::Trapping] > 0 || target.effectActive?(:Substitute)
+    score -= 20 if target.effectActive?(:Trapping) || target.substituted?
     return score
   end
 end
@@ -2628,16 +2626,15 @@ end
 #===============================================================================
 class PokeBattle_Move_0DB < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    if user.effects[PBEffects::Ingrain]
-      @battle.pbDisplay(_INTL("But it failed!"))
+    if user.effectActive?(:Ingrain)
+      @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s roots are already planted!"))
       return true
     end
     return false
   end
 
   def pbEffectGeneral(user)
-    user.effects[PBEffects::Ingrain] = true
-    @battle.pbDisplay(_INTL("{1} planted its roots!",user.pbThis))
+    user.applyEffect(:Ingrain)
   end
 
   def getScore(score,user,target,skill=100)
@@ -3075,7 +3072,7 @@ class PokeBattle_Move_0EB < PokeBattle_Move
       @battle.pbHideAbilitySplash(target)
       return true
     end
-    if target.effects[PBEffects::Ingrain]
+    if target.effectActive?(:Ingrain)
       @battle.pbDisplay(_INTL("{1} anchored itself with its roots!",target.pbThis))
       return true
     end
@@ -3155,7 +3152,7 @@ class PokeBattle_Move_0EC < PokeBattle_Move
     targets.each do |b|
       next if b.fainted? || b.damageState.unaffected || b.damageState.substitute
       next if switchedBattlers.include?(b.index)
-      next if b.effects[PBEffects::Ingrain]
+      next if b.effectActive?(:Ingrain)
       next if b.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
       newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,true)   # Random
       next if newPkmn<0
@@ -3261,8 +3258,8 @@ end
 class PokeBattle_Move_0EF < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
-    if target.effects[PBEffects::MeanLook]>=0
-      @battle.pbDisplay(_INTL("But it failed!"))
+    if target.effectActive?(:MeanLook)
+      @battle.pbDisplay(_INTL("But it failed, since the target already can't escape!"))
       return true
     end
     return false
@@ -3270,20 +3267,18 @@ class PokeBattle_Move_0EF < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    target.effects[PBEffects::MeanLook] = user.index
-    @battle.pbDisplay(_INTL("{1} can no longer escape!",target.pbThis))
+    target.applyEffect(:MeanLook,user.index) if !target.effectActive?(:MeanLook)
   end
 
   def pbAdditionalEffect(user,target)
     return if target.fainted? || target.damageState.substitute
-    return if target.effects[PBEffects::MeanLook]>=0
-    target.effects[PBEffects::MeanLook] = user.index
-    @battle.pbDisplay(_INTL("{1} can no longer escape!",target.pbThis))
+    return if target.effectActive?(:MeanLook)
+    target.applyEffect(:MeanLook,user.index) if !target.effectActive?(:MeanLook)
   end
 
   def getScore(score,user,target,skill=100)
     score -= 20 # Annoying AI move tax
-    score -= 20 if damagingMove? && target.effects[PBEffects::MeanLook]
+    score -= 20 if damagingMove? && target.effectActive?(:MeanLook)
     return score
   end
 end
@@ -3505,7 +3500,7 @@ end
 class PokeBattle_Move_0F5 < PokeBattle_Move
   def canIncinerateTargetsItem?(target,checkingForAI=false)
     if checkingForAI
-      return false if target.effectActive?(:Substitute)
+      return false if target.substituted?
     else
       return false if target.damageState.substitute || target.damageState.berryWeakened
     end

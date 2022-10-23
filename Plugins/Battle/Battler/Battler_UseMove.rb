@@ -71,7 +71,7 @@ class PokeBattle_Battler
 	def pbBeginTurn(_choice)
 		@effects[:DestinyBondPrevious] = @effects[:DestinyBond]
 
-		eachEffectWithData() do |effect,value,effectData|
+		eachEffect() do |effect,value,effectData|
 			disableEffect(effect) if effectData.resets_battlers_sot
 		end
 
@@ -87,7 +87,7 @@ class PokeBattle_Battler
 	# Cancels the use of multi-turn moves and counters thereof. Note that Hyper
 	# Beam's effect is NOT cancelled.
 	def pbCancelMoves(_full_cancel = false)
-		eachEffectWithData() do |effect,value,effectData|
+		eachEffect() do |effect,value,effectData|
 			disableEffect(effect) if effectData.resets_on_cancel
 		end
 		@currentMove = nil
@@ -112,7 +112,7 @@ class PokeBattle_Battler
 			end
 		end
 
-		eachEffectWithData() do |effect,value,effectData|
+		eachEffect() do |effect,value,effectData|
 			disableEffect(effect) if effectData.resets_battlers_eot
 		end
 

@@ -97,8 +97,7 @@ class PokeBattle_Battler
 	def attack_no_room
 		atk_bonus = getBonus(:ATTACK)
 		if hasActiveItem?(:POWERLOCK)
-			return calcStatGlobal(OFFENSIVE_LOCK_STAT, @level, @pokemon.ev[:ATTACK],
-																									hasActiveAbility?(:STYLISH)) + atk_bonus
+			return calcStatGlobal(OFFENSIVE_LOCK_STAT, @level, @pokemon.ev[:ATTACK],hasActiveAbility?(:STYLISH)) + atk_bonus
 		else
 			return @attack + atk_bonus
 		end
@@ -107,8 +106,7 @@ class PokeBattle_Battler
 	def defense_no_room
 		defense_bonus = getBonus(:DEFENSE)
 		if hasActiveItem?(:GUARDLOCK)
-			return calcStatGlobal(DEFENSIVE_LOCK_STAT, @level, @pokemon.ev[:DEFENSE],
-																									hasActiveAbility?(:STYLISH)) + defense_bonus
+			return calcStatGlobal(DEFENSIVE_LOCK_STAT, @level, @pokemon.ev[:DEFENSE],hasActiveAbility?(:STYLISH)) + defense_bonus
 		else
 			return @defense + defense_bonus
 		end
@@ -117,8 +115,7 @@ class PokeBattle_Battler
 	def sp_atk_no_room
 		spatk_bonus = getBonus(:SPECIAL_ATTACK)
 		if hasActiveItem?(:ENERGYLOCK)
-			return calcStatGlobal(OFFENSIVE_LOCK_STAT, @level, @pokemon.ev[:SPECIAL_ATTACK],
-																									hasActiveAbility?(:STYLISH)) + spatk_bonus
+			return calcStatGlobal(OFFENSIVE_LOCK_STAT, @level, @pokemon.ev[:SPECIAL_ATTACK],hasActiveAbility?(:STYLISH)) + spatk_bonus
 		else
 			return @spatk + spatk_bonus
 		end
@@ -127,8 +124,7 @@ class PokeBattle_Battler
 	def sp_def_no_room
 		spdef_bonus = getBonus(:SPECIAL_DEFENSE)
 		if hasActiveItem?(:WILLLOCK)
-			return calcStatGlobal(DEFENSIVE_LOCK_STAT, @level, @pokemon.ev[:SPECIAL_DEFENSE],
-																									hasActiveAbility?(:STYLISH)) + spdef_bonus
+			return calcStatGlobal(DEFENSIVE_LOCK_STAT, @level, @pokemon.ev[:SPECIAL_DEFENSE],hasActiveAbility?(:STYLISH)) + spdef_bonus
 		else
 			return @spdef + spdef_bonus
 		end

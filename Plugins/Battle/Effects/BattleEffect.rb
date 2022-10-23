@@ -55,6 +55,9 @@ module GameData
 		# When the effect is active on a battler, that battler is considered to be in a multi-turn attack
 		attr_reader :multi_turn_tracker
 
+		# When present on a battler, they are unable to swap
+		attr_reader :trapping
+
 		# Is an effect that makes the pokemon invulnerable
 		# Marked so that moves like Feint can know to remove it
 		attr_reader :protection_effect
@@ -170,6 +173,7 @@ module GameData
 			@ticks_down             = hash[:ticks_down] || false
 			@tick_amount            = hash[:tick_amount] || 1
 
+
 			# Procs when the battler is initialized
 			@initialize_proc        = hash[:initialize_proc]
 
@@ -185,13 +189,10 @@ module GameData
 			# Procs whenever the event value is incremented (for integers)
 			@increment_proc			= hash[:increment_proc]
 
-			raise _INTL("Battle effect #{@id} defines an increment proc when its not an integer.") if @increment_proc && @type != :Integer
 
 			# If the effect needs custom logic to determing if it should be active or not
 			# Instead of using the default values (i.e. Integers active above 0)
 			@active_value_proc      = hash[:active_value_proc]
-
-			raise _INTL("Battle effect #{@id} defines both an End of Round proc and either an Expiration or Remaing proc.") if @eor_proc && (@expire_proc || @remain_proc)
 
 			@baton_passed           = hash[:baton_passed] || false
 			@swaps_with_battlers    = hash[:swaps_with_battlers] || false
@@ -199,6 +200,7 @@ module GameData
 			@pass_value_proc 		= hash[:pass_value_proc]
 
 			@multi_turn_tracker     = hash[:multi_turn_tracker] || false
+			@trapping				= hash[:trapping] || false
 
 			@others_lose_track      = hash[:others_lose_track] || false
 
@@ -214,6 +216,16 @@ module GameData
 			@is_screen				= hash[:is_screen] || false
 			@is_hazard				= hash[:is_hazard] || false
 			@is_mental				= hash[:is_mental] || false
+
+			def checkForInvalidDefinitions()
+		end
+
+		def checkForInvalidDefinitions()
+			if @type != :Integer
+				raise _INTL("Battle effect #{@id} defines an increment proc when its not an integer.") if @increment_proc
+				raise _INTL("Battle effect #{@id} is set to down down, but its not an integer.") if @ticks_down
+				raise _INTL("Battle effect #{@id} was given a maximum, but its not an integer.") if !@maximum.nil?
+			end
 		end
 
 		# Method for determining if the effect is considered active
