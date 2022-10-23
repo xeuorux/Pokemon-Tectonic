@@ -1,3 +1,16 @@
+ItemHandlers::UseOnPokemon.add(:RARECANDY,proc { |item,pkmn,scene|
+  if pkmn.level>=GameData::GrowthRate.max_level || pkmn.shadowPokemon?
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  elsif LEVEL_CAPS_USED && (pkmn.level + 1) > $game_variables[26]
+      scene.pbDisplay(_INTL("It won't have any effect due to the level cap at #{$game_variables[26]}."))
+      next false
+  end
+  pbChangeLevel(pkmn,pkmn.level+1,scene)
+  scene.pbHardRefresh
+  next true
+})
+
 ItemHandlers::UseOnPokemon.add(:EXPCANDYXS,proc { |item,pkmn,scene|
   pbEXPAdditionItem(pkmn,250,item,scene)
 })

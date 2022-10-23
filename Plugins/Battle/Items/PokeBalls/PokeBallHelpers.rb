@@ -27,3 +27,19 @@ $BallTypes = {
   25 => :BEASTBALL,
   26 => :BALLLAUNCHER,
 }
+
+def pbBallTypeToItem(ball_type)
+  ret = GameData::Item.try_get($BallTypes[ball_type])
+  return ret if ret
+  ret = GameData::Item.try_get($BallTypes[0])
+  return ret if ret
+  return GameData::Item.get(:POKEBALL)
+end
+
+def pbGetBallType(ball)
+  ball = GameData::Item.try_get(ball)
+  $BallTypes.keys.each do |key|
+    return key if ball == $BallTypes[key]
+  end
+  return 0
+end
