@@ -11380,8 +11380,8 @@ InternalName = LILEEP
 Type1 = ROCK
 Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 66,41,77,23,61,87
-# Total = 355
+BaseStats = 66,51,77,23,71,87
+# Total = 375
 GenderRate = Female50Percent
 GrowthRate = Erratic
 BaseEXP = 71
@@ -11448,8 +11448,8 @@ InternalName = ANORITH
 Type1 = ROCK
 Type2 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 45,95,50,75,40,50
-# Total = 355
+BaseStats = 45,95,70,75,40,50
+# Total = 375
 GenderRate = Female50Percent
 GrowthRate = Erratic
 BaseEXP = 71
