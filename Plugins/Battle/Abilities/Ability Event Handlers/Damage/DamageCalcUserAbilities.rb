@@ -1,3 +1,218 @@
+BattleHandlers::DamageCalcUserAbility.add(:AERILATE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if move.powerBoost
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE)
+
+BattleHandlers::DamageCalcUserAbility.add(:ANALYTIC,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if (target.battle.choices[target.index][0]!=:UseMove &&
+       target.battle.choices[target.index][0]!=:Shift) ||
+       target.movedThisRound?
+      mults[:base_damage_multiplier] *= 1.3
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:BLAZE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.hp <= user.totalhp / 3 && type == :FIRE
+      mults[:attack_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:DEFEATIST,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] /= 2 if user.hp <= user.totalhp / 2
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:FLAREBOOST,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.burned? && move.specialMove?
+      mults[:base_damage_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:FLASHFIRE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.effects[PBEffects::FlashFire] && type == :FIRE
+      mults[:attack_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:FLOWERGIFT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if move.physicalMove? && [:Sun, :HarshSun].include?(user.battle.pbWeather)
+      mults[:attack_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:MEGALAUNCHER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if move.pulseMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:MINUS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    next if !move.specialMove?
+    user.eachAlly do |b|
+      next if !b.hasActiveAbility?([:MINUS, :PLUS])
+      mults[:attack_multiplier] *= 1.5
+      break
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.copy(:MINUS,:PLUS)
+
+BattleHandlers::DamageCalcUserAbility.add(:NEUROFORCE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if Effectiveness.super_effective?(target.damageState.typeMod)
+      mults[:final_damage_multiplier] *= 1.25
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:OVERGROW,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.hp <= user.totalhp / 3 && type == :GRASS
+      mults[:attack_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:RECKLESS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if move.recoilMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:RIVALRY,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.gender!=2 && target.gender!=2
+      if user.gender==target.gender
+        mults[:base_damage_multiplier] *= 1.25
+      else
+        mults[:base_damage_multiplier] *= 0.75
+      end
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:SANDFORCE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.pbWeather == :Sandstorm &&
+       [:ROCK, :GROUND, :STEEL].include?(type)
+      mults[:base_damage_multiplier] *= 1.3
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:SHEERFORCE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if move.addlEffect > 0
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:SLOWSTART,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] /= 2 if user.effects[PBEffects::SlowStart] > 0 && move.physicalMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:SOLARPOWER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if move.specialMove? && [:Sun, :HarshSun].include?(user.battle.pbWeather)
+      mults[:attack_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:SNIPER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if target.damageState.critical
+      mults[:final_damage_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:STAKEOUT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 2 if target.battle.choices[target.index][0] == :SwitchOut
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:STEELWORKER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1.5 if type == :STEEL
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:STRONGJAW,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if move.bitingMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:SWARM,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.hp <= user.totalhp / 3 && type == :BUG
+      mults[:attack_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:TECHNICIAN,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.index != target.index && move && move.id != :STRUGGLE &&
+       baseDmg * mults[:base_damage_multiplier] <= 60
+      mults[:base_damage_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:TINTEDLENS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] *= 2 if Effectiveness.resistant?(target.damageState.typeMod)
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:TORRENT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.hp <= user.totalhp / 3 && type == :WATER
+      mults[:attack_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:TOUGHCLAWS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 4 / 3.0 if move.contactMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:TOXICBOOST,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.poisoned? && move.physicalMove?
+      mults[:base_damage_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:WATERBUBBLE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 2 if type == :WATER
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:HUGEPOWER,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] *= 1.5 if move.physicalMove?

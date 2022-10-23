@@ -1,3 +1,92 @@
+BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINT,
+  proc { |ability,user,target,move,battle|
+    next if !target.damageState.critical
+    next if !target.pbCanRaiseStatStage?(:ATTACK,target)
+    battle.pbShowAbilitySplash(target)
+    target.stages[:ATTACK] = 6
+    battle.pbCommonAnimation("StatUp",target)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1} maxed its {2}!",target.pbThis,GameData::Stat.get(:ATTACK).name))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} maxed its {3}!",
+         target.pbThis,target.abilityName,GameData::Stat.get(:ATTACK).name))
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:CUTECHARM,
+  proc { |ability,user,target,move,battle|
+    next if target.fainted?
+    next if !move.pbContactMove?(user)
+    next if battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(target)
+    if user.pbCanAttract?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} made {3} fall in love!",target.pbThis,
+           target.abilityName,user.pbThis(true))
+      end
+      user.pbAttract(target,msg)
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:GOOEY,
+  proc { |ability,user,target,move,battle|
+    next if !move.pbContactMove?(user)
+    user.pbLowerStatStageByAbility(:SPEED,1,target,true,true)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.copy(:GOOEY,:TANGLINGHAIR)
+
+BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
+  proc { |ability,user,target,move,battle|
+    # NOTE: This intentionally doesn't show the ability splash.
+    next if !target.effects[PBEffects::Illusion]
+    target.effects[PBEffects::Illusion] = nil
+    battle.scene.pbChangePokemon(target,target.pokemon)
+    battle.pbDisplay(_INTL("{1}'s illusion wore off!",target.pbThis))
+    battle.pbSetSeen(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:RATTLED,
+  proc { |ability,user,target,move,battle|
+    next if ![:BUG, :DARK, :GHOST].include?(move.calcType)
+    target.pbRaiseStatStageByAbility(:SPEED,1,target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:STAMINA,
+  proc { |ability,user,target,move,battle|
+    target.pbRaiseStatStageByAbility(:DEFENSE,1,target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:WATERCOMPACTION,
+  proc { |ability,user,target,move,battle|
+    next if move.calcType != :WATER
+    target.pbRaiseStatStageByAbility(:DEFENSE,2,target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
+  proc { |ability,user,target,move,battle|
+    next if !move.physicalMove?
+    next if !target.pbCanLowerStatStage?(:DEFENSE, target) &&
+            !target.pbCanRaiseStatStage?(:SPEED, target)
+    battle.pbShowAbilitySplash(target)
+    target.pbLowerStatStageByAbility(:DEFENSE, 1, target, false)
+    target.pbRaiseStatStageByAbility(:SPEED,
+       (Settings::MECHANICS_GENERATION >= 7) ? 2 : 1, target, false)
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
 BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
   proc { |ability,user,target,move,battle|
     next if !target.fainted?

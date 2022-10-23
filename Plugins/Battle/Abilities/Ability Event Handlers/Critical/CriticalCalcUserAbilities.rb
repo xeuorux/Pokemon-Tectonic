@@ -1,3 +1,9 @@
+BattleHandlers::CriticalCalcUserAbility.add(:MERCILESS,
+  proc { |ability,user,target,c|
+    next 99 if target.poisoned?
+  }
+)
+
 BattleHandlers::CriticalCalcUserAbility.add(:SUPERLUCK,
   proc { |ability,user,target,c|
     next c+2

@@ -1,7 +1,92 @@
+BattleHandlers::DamageCalcTargetAbility.add(:DRYSKIN,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.25 if type == :FIRE
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:FILTER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if Effectiveness.super_effective?(target.damageState.typeMod)
+      mults[:final_damage_multiplier] *= 0.75
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.copy(:FILTER,:SOLIDROCK)
+
+BattleHandlers::DamageCalcTargetAbility.add(:FLOWERGIFT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if move.specialMove? && [:Sun, :HarshSun].include?(user.battle.pbWeather)
+      mults[:defense_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:FLUFFY,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] *= 2 if move.calcType == :FIRE
+    mults[:final_damage_multiplier] /= 2 if move.contactMove?
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:FURCOAT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 2 if move.physicalMove? || move.function == "122"   # Psyshock
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:HEATPROOF,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] /= 2 if type == :FIRE
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:MARVELSCALE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if target.pbHasAnyStatus? && move.physicalMove?
+      mults[:defense_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:MULTISCALE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] /= 2 if target.hp == target.totalhp
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] /= 2 if type == :FIRE || type == :ICE
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:WATERBUBBLE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] /= 2 if type == :FIRE
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:GRASSPELT,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.battle.field.terrain == :Grassy
       mults[:defense_multiplier] *= 2.0
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:PRISMARMOR,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if Effectiveness.super_effective?(target.damageState.typeMod)
+      mults[:final_damage_multiplier] *= 0.75
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:SHADOWSHIELD,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if target.hp==target.totalhp
+      mults[:final_damage_multiplier] /= 2
     end
   }
 )

@@ -1,6 +1,3 @@
-#===============================================================================
-# StatusCureAbility handlers
-#===============================================================================
 BattleHandlers::StatusCureAbility.add(:IMMUNITY,
   proc { |ability,battler|
     next if !battler.hasStatusNoTrigger(:POISON)

@@ -1,3 +1,32 @@
+BattleHandlers::UserAbilityEndOfMove.add(:BEASTBOOST,
+  proc { |ability,user,targets,move,battle|
+    next if battle.pbAllFainted?(user.idxOpposingSide)
+    numFainted = 0
+    targets.each { |b| numFainted += 1 if b.damageState.fainted }
+    next if numFainted == 0
+    userStats = user.plainStats
+    highestStatValue = 0
+    userStats.each_value { |value| highestStatValue = value if highestStatValue < value }
+    GameData::Stat.each_main_battle do |s|
+      next if userStats[s.id] < highestStatValue
+      if user.pbCanRaiseStatStage?(s.id, user)
+        user.pbRaiseStatStageByAbility(s.id, numFainted, user)
+      end
+      break
+    end
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:MOXIE,
+  proc { |ability,user,targets,move,battle|
+    next if battle.pbAllFainted?(user.idxOpposingSide)
+    numFainted = 0
+    targets.each { |b| numFainted += 1 if b.damageState.fainted }
+    next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user)
+    user.pbRaiseStatStageByAbility(:ATTACK,numFainted,user)
+  }
+)
+
 BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
   proc { |ability,user,targets,move,battle|
     next if battle.futureSight
@@ -20,7 +49,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
       user.item = b.item
       b.item = nil
       b.applyEffect(:Unburden)
-      if battle.wildBattle? && !user.initialItem && b.initialItem==user.item
+      if battle.wildBattle? && !user.initialItem && b.initialItem == user.item
         user.setInitialItem(user.item)
         b.setInitialItem(nil)
       end
