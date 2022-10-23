@@ -18,7 +18,7 @@ BattleHandlers::SpeedCalcAbility.add(:SANDRUSH,
 
 BattleHandlers::SpeedCalcAbility.add(:SLOWSTART,
   proc { |ability,battler,mult|
-    next mult/2 if battler.effects[PBEffects::SlowStart]>0
+    next mult/2 if battler.effectActive?(:SlowStart)
   }
 )
 
@@ -42,7 +42,7 @@ BattleHandlers::SpeedCalcAbility.add(:SWIFTSWIM,
 
 BattleHandlers::SpeedCalcAbility.add(:UNBURDEN,
   proc { |ability,battler,mult|
-    next mult*2 if battler.effects[PBEffects::Unburden] && !battler.item
+    next mult*2 if battler.effectActive?(:ItemLost) && !battler.item
   }
 )
 

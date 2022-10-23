@@ -53,14 +53,14 @@ BattleHandlers::EOREffectAbility.add(:SPEEDBOOST,
 
 BattleHandlers::EOREffectAbility.add(:BALLFETCH,
   proc { |ability,battler,battle|
-    if battler.effects[PBEffects::BallFetch]!=0 && battler.item<=0
-      ball=battler.effects[PBEffects::BallFetch]
+    if battler.effectActive?(:BallFetch) && battler.item<=0
+      ball=battler.effects[:BallFetch]
       battler.item=ball
       battler.setInitialItem(battler.item)
       PBDebug.log("[Ability triggered] #{battler.pbThis}'s Ball Fetch found #{PBItems.getName(ball)}")
       battle.pbShowAbilitySplash(battler) if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       battle.pbDisplay(_INTL("{1} found a {2}!",battler.pbThis,PBItems.getName(ball)))
-      battler.effects[PBEffects::BallFetch]=0
+      battler.disableEffect(:BallFetch)
       battle.pbHideAbilitySplash(battler) if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
     end
   }

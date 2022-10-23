@@ -31,7 +31,7 @@ end
 class PokeBattle_Move_003 < PokeBattle_SleepMove
   def pbMoveFailed?(user,targets)
     if Settings::MECHANICS_GENERATION >= 7 && @id == :DARKVOID
-      if !user.isSpecies?(:DARKRAI) && user.effects[PBEffects::TransformSpecies] != :DARKRAI
+      if !user.isSpecies?(:DARKRAI) && !user.transformedInto?(:DARKRAI)
         @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis))
         return true
       end
@@ -41,7 +41,7 @@ class PokeBattle_Move_003 < PokeBattle_SleepMove
 
   def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
     return if numHits==0
-    return if user.fainted? || user.effects[PBEffects::Transform]
+    return if user.fainted? || user.transformed?
     return if @id != :RELICSONG
     return if !user.isSpecies?(:MELOETTA)
     return if user.hasActiveAbility?(:SHEERFORCE) && @addlEffect>0
@@ -1659,7 +1659,7 @@ class PokeBattle_Move_05C < PokeBattle_Move
   end
 
   def pbMoveFailed?(user,targets)
-    if user.effects[PBEffects::Transform] || !user.pbHasMove?(@id)
+    if user.transformed? || !user.pbHasMove?(@id)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -1707,7 +1707,7 @@ class PokeBattle_Move_05D < PokeBattle_Move
   end
 
   def pbMoveFailed?(user,targets)
-    if user.effects[PBEffects::Transform] || !user.pbHasMove?(@id)
+    if user.transformed? || !user.pbHasMove?(@id)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2213,15 +2213,15 @@ end
 #===============================================================================
 class PokeBattle_Move_069 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    if user.effects[PBEffects::Transform]
-      @battle.pbDisplay(_INTL("But it failed!"))
+    if user.transformed?
+      @battle.pbDisplay(_INTL("But it failed, since the user is already transformed!"))
       return true
     end
     return false
   end
 
   def pbFailsAgainstTarget?(user,target)
-    if target.effects[PBEffects::Transform] || transform.illusion?
+    if target.transformed? || transform.illusion?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end

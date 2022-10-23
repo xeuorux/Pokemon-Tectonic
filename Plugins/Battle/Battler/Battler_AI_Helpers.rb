@@ -118,7 +118,7 @@ class PokeBattle_Battler
 	# same type more than once, and should not include any invalid type numbers (e.g. -1).
 	# is fooled by Illusion
 	def pbTypesAI(withType3 = false)
-		if effectActive?(:Illusion) && pbOwnedByPlayer?
+		if illusion? && pbOwnedByPlayer?
 			ret = [disguisedAs.type1]
 			ret.push(disguisedAs.type2) if disguisedAs.type2 != disguisedAs.type1
 		else

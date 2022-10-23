@@ -3389,16 +3389,16 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
     user.item                             = oldTargetItem
     user.disableEffect(:ChoiceBand)
     if (!user.item && oldUserItem)
-      user.applyEffect(:Unburden)
+      user.applyEffect(:ItemLost)
     else
-      user.disableEffect(:Unburden)
+      user.disableEffect(:ItemLost)
     end
     target.item                           = oldUserItem
     target.disableEffect(:ChoiceBand)
     if !target.item && oldTargetItem
-      target.applyEffect(:Unburden)
+      target.applyEffect(:ItemLost)
     else
-      target.disableEffect(:Unburden)
+      target.disableEffect(:ItemLost)
     end
     @battle.pbDisplay(_INTL("{1} switched items with its opponent!",user.pbThis))
     @battle.pbDisplay(_INTL("{1} obtained {2}.",user.pbThis,oldTargetItemName)) if oldTargetItem
@@ -3544,8 +3544,7 @@ class PokeBattle_Move_0F6 < PokeBattle_Move
     user.item = item
     user.setInitialItem(item) if @battle.wildBattle? && !user.initialItem
     user.setRecycleItem(nil)
-    user.effects[PBEffects::PickupItem] = nil
-    user.effects[PBEffects::PickupUse]  = 0
+    user.disableEffect(:PickupItem)
     itemName = GameData::Item.get(item).name
     if itemName.starts_with_vowel?
       @battle.pbDisplay(_INTL("{1} found an {2}!",user.pbThis,itemName))
@@ -3787,9 +3786,7 @@ end
 class PokeBattle_Move_0F9 < PokeBattle_Move
   def initialize(battle,move)
     super
-    @roomEffect = PBEffects::MagicRoom
-    @areaName = "magical"
-    @description = MAGIC_ROOM_DESCRIPTION
+    @roomEffect = :MagicRoom
   end
 end
 

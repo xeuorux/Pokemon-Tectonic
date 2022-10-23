@@ -197,13 +197,13 @@ BattleHandlers::AbilityOnSwitchIn.add(:GRASSYSURGE,
 
 BattleHandlers::AbilityOnSwitchIn.add(:IMPOSTER,
   proc { |ability,battler,battle|
-    next if battler.effects[PBEffects::Transform]
+    next if battler.transformed?
     choice = battler.pbDirectOpposing
     next if choice.fainted?
-    next if choice.effects[PBEffects::Transform] ||
-            choice.effects[PBEffects::Illusion] ||
-            choice.effects[PBEffects::Substitute]>0 ||
-            choice.effects[PBEffects::SkyDrop]>=0 ||
+    next if choice.transformed? ||
+            choice.illusion? ||
+            choice.substituted? ||
+            choice.effectActive?(:SkyDrop) ||
             choice.semiInvulnerable?
     battle.pbShowAbilitySplash(battler,true)
     battle.pbHideAbilitySplash(battler)
@@ -433,6 +433,10 @@ BattleHandlers::AbilityOnSwitchIn.add(:HOLIDAYCHEER,
   }
 )
 
+##########################################
+# Screen setting abilities
+##########################################
+
 BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
@@ -451,12 +455,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:BARRIERMAKER,
   }
 )
 
+##########################################
+# Room setting abilities
+##########################################
+
 BattleHandlers::AbilityOnSwitchIn.add(:MYSTICAURA,
   proc { |ability,battler,battle|
-	if battle.field.effects[PBEffects::MagicRoom]==0
+	if battle.field.effectActive?(:MagicRoom)
 		battle.pbShowAbilitySplash(battler)
-		battle.field.effects[PBEffects::MagicRoom] = battler.getRoomDuration()
-		battle.pbDisplay(_INTL("{1}'s aura creates a {2}!",battler.pbThis,MAGIC_ROOM_DESCRIPTION))
+		battle.field.applyEffect(:MagicRoom,battler.getRoomDuration())
 		battle.pbHideAbilitySplash(battler)
 	end
   }
@@ -464,34 +471,31 @@ BattleHandlers::AbilityOnSwitchIn.add(:MYSTICAURA,
 
 BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
   proc { |ability,battler,battle|
-	if battle.field.effects[PBEffects::PuzzleRoom] == 0
-		battle.pbShowAbilitySplash(battler)
-		battle.field.effects[PBEffects::PuzzleRoom] = battler.getRoomDuration()
-		battle.pbDisplay(_INTL("{1}'s aura creates a {2}!",battler.pbThis,PUZZLE_ROOM_DESCRIPTION))
-		battle.pbHideAbilitySplash(battler)
-	end
+    if battle.field.effectActive?(:PuzzleRoom)
+      battle.pbShowAbilitySplash(battler)
+      battle.field.applyEffect(:PuzzleRoom,battler.getRoomDuration())
+      battle.pbHideAbilitySplash(battler)
+    end
   }
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTER,
   proc { |ability,battler,battle|
-	if battle.field.effects[PBEffects::TrickRoom]==0
-		battle.pbShowAbilitySplash(battler)
-		battle.field.effects[PBEffects::TrickRoom] = battler.getRoomDuration()
-		battle.pbDisplay(_INTL("{1} pulls a trick. It creates a {2}!",battler.pbThis, TRICK_ROOM_DESCRIPTION))
-		battle.pbHideAbilitySplash(battler)
-	end
+    if battle.field.effectActive?(:TrickRoom)
+      battle.pbShowAbilitySplash(battler)
+      battle.field.applyEffect(:TrickRoom,battler.getRoomDuration())
+      battle.pbHideAbilitySplash(battler)
+    end
   }
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
   proc { |ability,battler,battle|
-	if battle.field.effects[PBEffects::OddRoom] == 0
-		battle.pbShowAbilitySplash(battler)
-		battle.field.effects[PBEffects::OddRoom] = battler.getRoomDuration()
-		battle.pbDisplay(_INTL("{1}'s aura creates an {2}!",battler.pbThis, ODD_ROOM_DESCRIPTION))
-		battle.pbHideAbilitySplash(battler)
-	end
+    if battle.field.effectActive?(:OddRoom)
+      battle.pbShowAbilitySplash(battler)
+      battle.field.applyEffect(:OddRoom,battler.getRoomDuration())
+      battle.pbHideAbilitySplash(battler)
+    end
   }
 )
 

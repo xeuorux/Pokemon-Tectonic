@@ -27,6 +27,6 @@ BattleHandlers::DamageCalcUserAllyAbility.add(:STEELYSPIRIT,
 
 BattleHandlers::DamageCalcUserAllyAbility.add(:POSITIVEOUTLOOK,
   proc { |ability,user,target,move,mults,baseDmg,type|
-      mults[:base_damage_multiplier] *= 1.50 	if user.pbHasType?(:ELECTRIC) && move.specialMove?
+      mults[:base_damage_multiplier] *= 1.50 if user.pbHasType?(:ELECTRIC) && move.specialMove?
   }
 )

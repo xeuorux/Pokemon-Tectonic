@@ -41,7 +41,7 @@ class PokeBattle_Battle
   def pbCalculatePriority(fullCalc=false,indexArray=nil)
     needRearranging = false
     if fullCalc
-      @priorityTrickRoom = (@field.effects[PBEffects::TrickRoom]>0)
+      @priorityTrickRoom = @field.effectActive?(:TrickRoom)
       # Recalculate everything from scratch
       randomOrder = Array.new(maxBattlerIndex+1) { |i| i }
       (randomOrder.length-1).times do |i|   # Can't use shuffle! here
@@ -106,9 +106,9 @@ class PokeBattle_Battle
       needRearranging = true
 	  honorAura = false
     else
-      if (@field.effects[PBEffects::TrickRoom]>0)!=@priorityTrickRoom
+      if @field.effectActive?(:TrickRoom) != @priorityTrickRoom
         needRearranging = true
-        @priorityTrickRoom = (@field.effects[PBEffects::TrickRoom]>0)
+        @priorityTrickRoom = @field.effectActive?(:TrickRoom)
       end
       # Just recheck all battler speeds
       @priority.each do |orderArray|

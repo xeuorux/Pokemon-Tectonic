@@ -314,6 +314,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 			end
 		end
 	},
+	:expire_proc => Proc.new { |battle,battler|
+		battle.pbDisplay(_INTL("{1}'s illusion wore off!",battler.pbThis))
+	},
 	:info_displayed => false,
 })
 
@@ -512,6 +515,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Perish Song Turns",
 	:type => :Integer,
 	:baton_passed => true,
+	:sub_effects => [:PerishSongUser],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -525,6 +529,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :PickupItem,
 	:real_name => "Pickup Item",
 	:type => :Item,
+	:sub_effects => [:PickupUse],
 })
 
 # I don't really understand this one
@@ -796,8 +801,8 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :Unburden,
-	:real_name => "Unburden",
+	:id => :ItemLost,
+	:real_name => "Item Lost",
 	:info_displayed => false,
 	:apply_proc => Proc.new { |battle,battler,value|
 		if battler.hasActiveAbility?(:UNBURDEN)

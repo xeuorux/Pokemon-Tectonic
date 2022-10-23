@@ -46,10 +46,9 @@ BattleHandlers::TargetAbilityOnHit.copy(:GOOEY,:TANGLINGHAIR)
 BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
   proc { |ability,user,target,move,battle|
     # NOTE: This intentionally doesn't show the ability splash.
-    next if !target.effects[PBEffects::Illusion]
-    target.effects[PBEffects::Illusion] = nil
+    next if !target.illusion?
+    target.disableEffect?(:Illusion)
     battle.scene.pbChangePokemon(target,target.pokemon)
-    battle.pbDisplay(_INTL("{1}'s illusion wore off!",target.pbThis))
     battle.pbSetSeen(target)
   }
 )
@@ -158,7 +157,7 @@ BattleHandlers::TargetAbilityOnHit.add(:STATIC,
 BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
   proc { |ability,user,target,move,battle|
     next if user.fainted?
-    next if user.effects[PBEffects::Disable]>0
+    next if user.effectActive?(:Disable)
     regularMove = nil
     user.eachMove do |m|
       next if m.id!=user.lastRegularMoveUsed
@@ -327,7 +326,7 @@ BattleHandlers::TargetAbilityOnHit.add(:PERISHBODY,
   proc { |ability,user,target,move,battle|
     next if !move.pbContactMove?(user)
     next if !user.affectedByContactEffect?
-    next if user.effects[PBEffects::PerishSong]>0
+    next if user.effectActive?(:PerishSong)
     battle.pbShowAbilitySplash(target)
     battle.pbDisplay(_INTL("Both Pokémon will faint in three turns!"))
     user.effects[PBEffects::PerishSong] = 3

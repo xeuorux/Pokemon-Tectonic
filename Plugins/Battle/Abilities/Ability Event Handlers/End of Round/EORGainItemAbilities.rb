@@ -21,16 +21,15 @@ BattleHandlers::EORGainItemAbility.add(:HARVEST,
       foundItem = nil; fromBattler = nil; use = 0
       battle.eachBattler do |b|
         next if b.index==battler.index
-        next if b.effects[PBEffects::PickupUse]<=use
-        foundItem   = b.effects[PBEffects::PickupItem]
+        next if b.effects[:PickupUse] <= use
+        foundItem   = b.effects[:PickupItem]
         fromBattler = b
-        use         = b.effects[PBEffects::PickupUse]
+        use         = b.effects[:PickupUse]
       end
       next if !foundItem
       battle.pbShowAbilitySplash(battler)
       battler.item = foundItem
-      fromBattler.effects[PBEffects::PickupItem] = nil
-      fromBattler.effects[PBEffects::PickupUse]  = 0
+      fromBattler.disableEffect(:PickupItem)
       fromBattler.setRecycleItem(nil) if fromBattler.recycleItem==foundItem
       if battle.wildBattle? && !battler.initialItem && fromBattler.initialItem==foundItem
         battler.setInitialItem(foundItem)

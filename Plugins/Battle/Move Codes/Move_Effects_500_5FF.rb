@@ -430,9 +430,7 @@ end
 class PokeBattle_Move_51A < PokeBattle_RoomMove
 	def initialize(battle,move)
 	  super
-	  @roomEffect = PBEffects::PuzzleRoom
-	  @areaName = "puzzling"
-	  @description = PUZZLE_ROOM_DESCRIPTION
+	  @roomEffect = :PuzzleRoom
 	end
 end
 
@@ -2324,9 +2322,7 @@ end
 class PokeBattle_Move_582 < PokeBattle_Move
 	def initialize(battle,move)
 	  super
-	  @roomEffect = PBEffects::OddRoom
-	  @areaName = "odd"
-	  @description = ODD_ROOM_DESCRIPTION
+	  @roomEffect = :OddRoom
 	end
 end
 
@@ -2435,10 +2431,7 @@ end
 class PokeBattle_Move_588 < PokeBattle_Move
 	def pbEffectAfterAllHits(user,target)
 		return if !target.damageState.fainted
-		if user.pbOwnedByPlayer?
-			@battle.field.effects[PBEffects::PayDay] += 10*user.level
-		end
-		@battle.pbDisplay(_INTL("Coins fell out of {1}'s pockets!",target.pbThis(true)))
+		@battle.field.incrementEffect(:PayDay,10*user.level) if user.pbOwnedByPlayer?
 	end
 end
 
@@ -2449,10 +2442,7 @@ class PokeBattle_Move_589 < PokeBattle_Move_0C0
 	def pbEffectOnNumHits(user,target,numHits)
 		return if !target.damageState.fainted
 		coinsGenerated = 2 * user.level * numHits
-		if user.pbOwnedByPlayer?
-			@battle.field.effects[PBEffects::PayDay] += coinsGenerated
-		end
-		@battle.pbDisplay(_INTL("{1} coins were scattered everywhere!",coinsGenerated))
+		@battle.field.incrementEffect(:PayDay,coinsGenerated) if user.pbOwnedByPlayer?
 		if numHits == 5
 			@battle.pbDisplay(_INTL("How fortunate!",coinsGenerated))
 		elsif numHits == 0

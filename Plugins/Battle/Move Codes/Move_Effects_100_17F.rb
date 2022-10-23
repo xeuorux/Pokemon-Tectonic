@@ -126,17 +126,10 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   
   #===============================================================================
   # Scatters coins that the player picks up after winning the battle. (Pay Day)
-  # NOTE: In Gen 6+, if the user levels up after this move is used, the amount of
-  #       money picked up depends on the user's new level rather than its level
-  #       when it used the move. I think this is silly, so I haven't coded this
-  #       effect.
   #===============================================================================
   class PokeBattle_Move_109 < PokeBattle_Move
     def pbEffectGeneral(user)
-      if user.pbOwnedByPlayer?
-        @battle.field.effects[PBEffects::PayDay] += 5*user.level
-      end
-      @battle.pbDisplay(_INTL("Coins were scattered everywhere!"))
+      @battle.field.incrementEffect(:PayDay,5*user.level) if user.pbOwnedByPlayer?
     end
   end
   
@@ -970,9 +963,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   class PokeBattle_Move_11F < PokeBattle_RoomMove
     def initialize(battle,move)
       super
-      @roomEffect = PBEffects::TrickRoom
-      @areaName = "tricky"
-      @description = TRICK_ROOM_DESCRIPTION
+      @roomEffect = :TrickRoom
     end
   end
   
@@ -1063,9 +1054,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   class PokeBattle_Move_124 < PokeBattle_RoomMove
     def initialize(battle,move)
       super
-      @roomEffect = PBEffects::WonderRoom
-      @areaName = "wondrous"
-      @description = WONDER_ROOM_DESCRIPTION
+      @roomEffect = :WonderRoom
     end
   end
   
@@ -2924,7 +2913,7 @@ end
 #===============================================================================
 class PokeBattle_Move_176 < PokeBattle_ParalysisMove
   def pbMoveFailed?(user,targets)
-    if @id == :AURAWHEEL && user.species != :MORPEKO && user.effects[PBEffects::TransformSpecies] != :MORPEKO
+    if @id == :AURAWHEEL && user.species != :MORPEKO && !user.transformedInto?(:MORPEKO)
       @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis))
       return true
     end
@@ -2940,12 +2929,6 @@ class PokeBattle_Move_176 < PokeBattle_ParalysisMove
       ret = :DARK
     end
     return ret
-  end
-  
-  def getScore(score,user,target,skill=100)
-    score = getParalysisMoveScore(score,user,target,skill=100)
-    score = 0 if @id == :AURAWHEEL && user.species != :MORPEKO && user.effects[PBEffects::TransformSpecies] != :MORPEKO
-    return score
   end
 end
 

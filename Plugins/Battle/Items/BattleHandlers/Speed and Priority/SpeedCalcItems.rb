@@ -16,8 +16,7 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
   
   BattleHandlers::SpeedCalcItem.add(:QUICKPOWDER,
     proc { |item,battler,mult|
-      next mult*2 if battler.isSpecies?(:DITTO) &&
-                     !battler.effects[PBEffects::Transform]
+      next mult*2 if battler.isSpecies?(:DITTO) && !battler.transformed?
     }
   )
   

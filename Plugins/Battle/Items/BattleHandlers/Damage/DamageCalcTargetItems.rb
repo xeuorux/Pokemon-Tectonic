@@ -86,7 +86,7 @@ BattleHandlers::DamageCalcTargetItem.add(:ASSAULTVEST,
   
   BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
     proc { |item,user,target,move,mults,baseDmg,type|
-      if target.isSpecies?(:DITTO) && !target.effects[PBEffects::Transform]
+      if target.isSpecies?(:DITTO) && !target.transformed?
         mults[:defense_multiplier] *= 1.5
       end
     }

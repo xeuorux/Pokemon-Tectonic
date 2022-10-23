@@ -131,6 +131,14 @@ class PokeBattle_Battler
 	def disguisedAs
 		return @effects[:Illusion]
 	end
+
+	def transformed?
+		return effectActive?(:Transform)
+	end
+
+	def transformedInto?(species)
+		return @effects[:TransformSpecies] == species
+	end
 	
 	def name
 		return disguisedAs.name if illusion?

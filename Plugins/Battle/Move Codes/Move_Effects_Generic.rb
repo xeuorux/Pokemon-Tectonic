@@ -1125,39 +1125,29 @@ class PokeBattle_DoublingMove < PokeBattle_Move
   end
 end
 
-PUZZLE_ROOM_DESCRIPTION = "puzzling area in which Pokémon's Attack and Sp. Atk are swapped".freeze
-TRICK_ROOM_DESCRIPTION = "tricky area in which Speed functions in reverse".freeze
-WONDER_ROOM_DESCRIPTION = "wondrous area in which the Defense and Sp. Def stats are swapped".freeze
-MAGIC_ROOM_DESCRIPTION = "bizarre area in which Pokémon's held items lose their effects".freeze
-ODD_ROOM_DESCRIPTION = "odd area in which Pokémon's Offensive and Defensive stats are swapped".freeze
-
 class PokeBattle_RoomMove < PokeBattle_Move
   def setsARoom?(); return true; end  
 
   def initialize(battle,move)
     super
-    @roomEffect = -1
-    @areaName = ""
-    @description = ""
+    @roomEffect = nil
   end
 
   def pbEffectGeneral(user)
-	  if @battle.field.effects[@roomEffect] > 0
-		  @battle.field.effects[@roomEffect] = 0
-		  @battle.pbDisplay(_INTL("{1} removed the {2}.",user.pbThis,@areaName))
+	  if @battle.field.effectActive?(@roomEffect)
+		  @battle.field.disableEffect(@roomEffect)
 	  else
-		  @battle.field.effects[@roomEffect] = user.getRoomDuration()
-		  @battle.pbDisplay(_INTL("{1} created a {2}.",user.pbThis,@areaName))
+		  @battle.field.applyEffect(@roomEffect,user.getRoomDuration())
 	  end
 	end
   
 	def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
-	  return if @battle.field.effects[@roomEffect] > 0   # No animation
+	  return if @battle.field.effectActive?(@roomEffect)
 	  super
 	end
 
   def getScore(score,user,target,skill=100)
-    return 0 if @battle.field.effects[@roomEffect] > 0
+    return 0 if @battle.field.effectActive?(@roomEffect)
     return score
   end
 end

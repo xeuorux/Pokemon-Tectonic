@@ -48,7 +48,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
       end
       user.item = b.item
       b.item = nil
-      b.applyEffect(:Unburden)
+      b.applyEffect(:ItemLost)
       if battle.wildBattle? && !user.initialItem && b.initialItem == user.item
         user.setInitialItem(user.item)
         b.setInitialItem(nil)
@@ -172,9 +172,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
            b.pbThis(true),itemName,user.abilityName))
       end
       if user.pbOwnedByPlayer?
-        battle.field.effects[PBEffects::PayDay] += 5*user.level
+        battle.field.incrementEffect(:PayDay,5 * user.level)
       end
-      battle.pbDisplay(_INTL("Coins were scattered everywhere!"))
       battle.pbHideAbilitySplash(user)
       break
     end

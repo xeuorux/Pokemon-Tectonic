@@ -95,7 +95,7 @@ class PokeBattle_Battler
 	# Ability change
 	#=============================================================================
 	def pbOnAbilityChanged(oldAbil)
-		if effectActive?(:Illusion) && oldAbil == :ILLUSION
+		if illusion? && oldAbil == :ILLUSION
 			disableEffect(:Illusion)
 			unless effectActive?(:Transform)
 				@battle.scene.pbChangePokemon(self, @pokemon)
@@ -131,7 +131,7 @@ class PokeBattle_Battler
 	def pbRemoveItem(permanent = true)
 		permanent = false # Items respawn after battle always!!
 		disableEffect(:ChoiceBand)
-		applyEffect(:Unburden) if item
+		applyEffect(:ItemLost) if item
 		setInitialItem(nil) if permanent && item == initialItem
 		self.item = nil
 		@battle.scene.pbRefresh
@@ -196,7 +196,7 @@ class PokeBattle_Battler
 			end
 			self.item = b.item
 			b.item = nil
-			applyEffect(:Unburden)
+			applyEffect(:ItemLost)
 			@battle.pbHideAbilitySplash(b)
 			pbHeldItemTriggerCheck
 			break

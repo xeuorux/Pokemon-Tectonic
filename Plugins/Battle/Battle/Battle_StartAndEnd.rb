@@ -130,17 +130,21 @@ class PokeBattle_Battle
   #=============================================================================
   def pbGainMoney
     return if !@internalBattle || !@moneyGain
+  
+    moneyMult = 1
+    moneyMult *= 2 if @field.effectActive?(:AmuletCoin)
+    moneyMult *= 2 if @field.effectActive?(:HappyHour)
+    moneyMult *= 2 if @field.effectActive?(:Fortune)
+
     # Money rewarded from opposing trainers
     if trainerBattle?
       tMoney = 0
       @opponent.each_with_index do |t,i|
-		baseMoney = [t.base_money,100].min
-		baseMoney = 10 + baseMoney / 2
+		  baseMoney = [t.base_money,100].min
+		  baseMoney = 10 + baseMoney / 2
         tMoney += pbMaxLevelInTeam(1, i) * baseMoney
       end
-      tMoney *= 2 if @field.effects[PBEffects::AmuletCoin]
-      tMoney *= 2 if @field.effects[PBEffects::HappyHour]
-	  tMoney *= 2 if @field.effects[PBEffects::Fortune]
+      tMoney *= moneyMult
       oldMoney = pbPlayer.money
       pbPlayer.money += tMoney
       moneyGained = pbPlayer.money-oldMoney
@@ -149,12 +153,11 @@ class PokeBattle_Battle
       end
     end
     # Pick up money scattered by Pay Day
-    if @field.effects[PBEffects::PayDay]>0
-      @field.effects[PBEffects::PayDay] *= 2 if @field.effects[PBEffects::AmuletCoin]
-      @field.effects[PBEffects::PayDay] *= 2 if @field.effects[PBEffects::HappyHour]
-	  @field.effects[PBEffects::PayDay] *= 2 if @field.effects[PBEffects::Fortune]
+    if @field.effectActive?(:PayDay)
+      paydayMoney = @field.effects[:PayDay]
+      paydayMoney *= moneyMult
       oldMoney = pbPlayer.money
-      pbPlayer.money += @field.effects[PBEffects::PayDay]
+      pbPlayer.money += paydayMoney
       moneyGained = pbPlayer.money-oldMoney
       if moneyGained>0
         pbDisplayPaused(_INTL("You picked up ${1}!",moneyGained.to_s_formatted))

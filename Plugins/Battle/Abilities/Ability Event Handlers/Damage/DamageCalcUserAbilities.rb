@@ -40,7 +40,7 @@ BattleHandlers::DamageCalcUserAbility.add(:FLAREBOOST,
 
 BattleHandlers::DamageCalcUserAbility.add(:FLASHFIRE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if user.effects[PBEffects::FlashFire] && type == :FIRE
+    if user.effectActive?(:FlashFire) && type == :FIRE
       mults[:attack_multiplier] *= 1.5
     end
   }
@@ -124,7 +124,7 @@ BattleHandlers::DamageCalcUserAbility.add(:SHEERFORCE,
 
 BattleHandlers::DamageCalcUserAbility.add(:SLOWSTART,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:attack_multiplier] /= 2 if user.effects[PBEffects::SlowStart] > 0 && move.physicalMove?
+    mults[:attack_multiplier] /= 2 if user.effectActive?(:SlowStart) && move.physicalMove?
   }
 )
 
@@ -531,7 +531,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TUNNELMAKER,
 
 BattleHandlers::DamageCalcUserAbility.add(:RAMMINGSPEED,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if move.physicalMove? && user.pbOwnSide.effects[PBEffects::Tailwind] > 0
+    if move.physicalMove? && user.pbOwnSide.effectActive?(:Tailwind)
       mults[:attack_multiplier] *= 1.30
     end
   }

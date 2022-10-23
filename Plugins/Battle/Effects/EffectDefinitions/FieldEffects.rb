@@ -59,6 +59,9 @@ GameData::BattleEffect.register_effect(:Field,{
 	:id => :PayDay,
 	:real_name => "Money Dropped",
 	:type => :Integer,
+	:increment_proc => Proc.new { |battle,value,increment|
+		battle.pbDisplay(_INTL("Coins were scattered everywhere!"))
+	}
 })
 
 GameData::BattleEffect.register_effect(:Field,{
@@ -87,8 +90,11 @@ GameData::BattleEffect.register_effect(:Field,{
 	:type => :Integer,
     :ticks_down => true,
 	:is_room => true,
+	:apply_proc => Proc.new { |battle|
+		battle.pbDisplay(_INTL("A bizarre area appeared! Pokémon's held items lose their effects!")
+	},
     :expire_proc => Proc.new { |battle,battler|
-        battle.pbDisplay(_INTL("The #{MAGIC_ROOM_DESCRIPTION} went away."))
+        battle.pbDisplay(_INTL("The bizarre area went away."))
 		battle.pbPriority(true).each { |b| b.pbItemTerrainStatBoostCheck }
 		battle.pbPriority(true).each { |b| b.pbItemFieldEffectCheck }
     },
@@ -100,8 +106,11 @@ GameData::BattleEffect.register_effect(:Field,{
     :type => :Integer,
     :ticks_down => true,
 	:is_room => true,
+	:apply_proc => Proc.new { |battle|
+		battle.pbDisplay(_INTL("A tricky area appeared! Speed functions in reverse!")
+	},
     :expire_proc => Proc.new { |battle,battler|
-        battle.pbDisplay(_INTL("The #{TRICK_ROOM_DESCRIPTION} went away."))
+        battle.pbDisplay(_INTL("The tricky room went away."))
     },
 })
 
@@ -111,8 +120,11 @@ GameData::BattleEffect.register_effect(:Field,{
 	:type => :Integer,
     :ticks_down => true,
 	:is_room => true,
-    :expire_proc => Proc.new { |battle,battler|
-        battle.pbDisplay(_INTL("The #{WONDER_ROOM_DESCRIPTION} went away."))
+	:apply_proc => Proc.new { |battle|
+		battle.pbDisplay(_INTL("A wonderous area appeared! Defense and Sp. Def stats are swapped!")
+	},
+    :expire_proc => Proc.new { |battle|
+        battle.pbDisplay(_INTL("The wonderous area went away."))
     },
 })
 
@@ -122,8 +134,11 @@ GameData::BattleEffect.register_effect(:Field,{
 	:type => :Integer,
     :ticks_down => true,
 	:is_room => true,
-    :expire_proc => Proc.new { |battle,battler|
-        battle.pbDisplay(_INTL("The #{PUZZLE_ROOM_DESCRIPTION} went away."))
+	:apply_proc => Proc.new { |battle|
+		battle.pbDisplay(_INTL("A puzzling area appeared! Attack and Sp. Atk are swapped!")
+	},
+    :expire_proc => Proc.new { |battle|
+        battle.pbDisplay(_INTL("The puzzling area went away."))
     },
 })
 
@@ -133,7 +148,10 @@ GameData::BattleEffect.register_effect(:Field,{
 	:type => :Integer,
     :ticks_down => true,
 	:is_room => true,
-    :expire_proc => Proc.new { |battle,battler|
-        battle.pbDisplay(_INTL("The #{ODD_ROOM_DESCRIPTION} went away."))
+	:apply_proc => Proc.new { |battle|
+		battle.pbDisplay(_INTL("An odd area appeared! Offensive and Defensive stats are swapped!")
+	},
+    :expire_proc => Proc.new { |battle|
+        battle.pbDisplay(_INTL("The odd area went away."))
     },
 })
