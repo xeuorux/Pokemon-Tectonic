@@ -276,7 +276,7 @@ class PokeBattle_Move
                 target.damageState.endured = true
                 damage -= 1
                 damageAdjusted = true
-                target.tickDown(:EmpoweredEndure)
+                target.tickDownAndProc(:EmpoweredEndure)
             elsif target.hasActiveAbility?(:DIREDIVERSION) && !target.item.nil? && target.itemActive? && !@battle.moldBreaker
                 target.damageState.direDiversion = true
                 damage -= 1

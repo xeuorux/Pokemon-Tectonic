@@ -237,9 +237,7 @@ class PokeBattle_Battler
 		end
 		# Confusion
 		if effectActive?(:Confusion)
-			if user.tickDown(:Confusion)
-				disableEffect(:Confusion)
-			else
+			if !user.tickDownAndProc(:Confusion)
 				@battle.pbCommonAnimation('Confusion', self)
 				@battle.pbDisplay(_INTL('{1} is confused!', pbThis))
 				threshold = 50 * @effects[:ConfusionChance]
@@ -256,9 +254,7 @@ class PokeBattle_Battler
 		end
 		# Charm
 		if effectActive?(:Charm)
-			if user.tickDown(:Charm)
-				disableEffect(:Charm)
-			else
+			if !user.tickDownAndProc(:Charm)
 				@battle.pbAnimation(:LUCKYCHANT, self, nil)
 				@battle.pbDisplay(_INTL('{1} is charmed!', pbThis))
 				threshold = 50 * @effects[:CharmChance]

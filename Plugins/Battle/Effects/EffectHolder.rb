@@ -47,13 +47,28 @@ module EffectHolder
         raise _INTL("Effect above maximum: #{effectData.real_name}") if value >= effectData.maximum
     end
 
+    # Returns true if the value did not expire, false if it did
+    def tickDownAndProc(effect)
+        if effectActive?(effect)
+            if tickDown(effect)
+                disableEffect(effect)
+                return false
+            else
+                @remain_proc&.call(GameData::BattleEffect.get(effect))
+                return true
+            end
+        end
+    end
+
     # Returns whether the value is either already at the goal or is at the goal after ticking down
-    def tickDown(effect,goal=0)
+    def tickDown(effect,goal=nil)
         effectData = GameData::BattleEffect.get(effect)
         validateInteger(effectData)
         value = @effects[effect]
+        goal = effectData.default if goal.nil?
         return true if value <= goal
         @effects[effect] -= 1
+        @effects[effect] = goal if @effects[effect] < goal
         return value <= goal
     end
 
@@ -89,24 +104,11 @@ module EffectHolder
 
     def processEffectsEOR()
         changedEffects = {}
-        @effects.each do |effect, value|
-            effectData = GameData::BattleEffect.get(effect)
+        eachEffectWithData(true) do |effect, value, data|
             # Tick down active effects that tick down
-            if effectData.ticks_down && effectData.active_value?(value)
-                newValue = value - effectData.tick_amount
-                newValue = 0 if newValue < 0 && !effectData.ticks_past_zero
-                if effectData.active_value?(newValue)
-                    @remain_proc.call(effectData) if @remain_proc
-                else
-                    effectData.eachConnectedEffect do |otherEffect, otherData|
-                        changedEffects[otherEffect] = otherData.default
-                    end
-                    @expire_proc.call(effectData) if @expire_proc
-                end
-                changedEffects[effect] = newValue
-            end
-            changedEffects[effect] = effectData.default if effectData.resets_eor && value != effectData.default
+            tickDownAndProc(effect) if effectData.ticks_down
+            # Disable effects that reset end of round
+            disableEffect(effect) if data.resets_eor
         end
-        @effects.update(changedEffects)
     end
 end

@@ -176,10 +176,8 @@ module GameData
 			# Procs every round when active.
 			@eor_proc               = hash[:eor_proc]
 
-			# Procs every end of round, only when ticking down to 0
+			# Procs when the effect is disabled
 			@expire_proc 			= hash[:expire_proc]
-			# Procs every end of round, only when ticked down with still turns remaining
-			@remain_proc            = hash[:remain_proc]
 
 			# Procs every end of round, only when ticked down with still turns remaining
 			@remain_proc            = hash[:remain_proc]

@@ -644,7 +644,7 @@ class PokeBattle_Battler
 		numTargets = 0 # Number of targets that are affected by this hit
 		targets.each { |b| b.damageState.resetPerHit }
 		# Count a hit for Parental Bond (if it applies)
-		user.tickDown(:ParentalBond)
+		user.tickDownAndProc(:ParentalBond)
 		# Redirect Dragon Darts other hits
 		targets = pbChangeTargets(move, user, targets, 1) if move.smartSpreadsTargets? && @battle.pbSideSize(targets[0].index) > 1 && hitNum > 0
 		# Accuracy check (accuracy/evasion calc)
