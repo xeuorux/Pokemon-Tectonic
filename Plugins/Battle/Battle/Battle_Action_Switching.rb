@@ -144,8 +144,8 @@ class PokeBattle_Battle
     eachBattler { |b| b.pbCheckForm }
   end
 
-  def getStealthRockHPRatio(type1,type2=nil,type3=nil)
-    eff = Effectiveness.calculate(:ROCK,type1,type2,type3)
+  def getTypedHazardHPRatio(hazardType,type1,type2=nil,type3=nil)
+    eff = Effectiveness.calculate(hazardType,type1,type2,type3)
     effectivenessMult = eff.to_f / Effectiveness::NORMAL_EFFECTIVE
     return effectivenessMult / 8.0
   end
@@ -203,15 +203,27 @@ class PokeBattle_Battle
     # Stealth Rock
     if battler.pbOwnSide.effectActive?(:StealthRock) && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:ROCK)
       bTypes = battler.pbTypes(true)
-      stealthRockHPRatio = getStealthRockHPRatio(bTypes[0], bTypes[1], bTypes[2])
-      if stealthRockHPRatio > 0
+      getTypedHazardHPRatio = getTypedHazardHPRatio(:ROCK,bTypes[0], bTypes[1], bTypes[2])
+      if getTypedHazardHPRatio > 0
         pbDisplay(_INTL("Pointed stones dug into {1}!",battler.pbThis(true)))
-        if battler.applyFractionalDamage(stealthRockHPRatio,true,false,true)
+        if battler.applyFractionalDamage(getTypedHazardHPRatio,true,false,true)
           return pbOnActiveOne(battler)   # For replacement battler
         end
       end
     end
     
+    # Feather Ward
+    if battler.pbOwnSide.effectActive?(:FeatherWard) && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:STEEL)
+      bTypes = battler.pbTypes(true)
+      getTypedHazardHPRatio = getTypedHazardHPRatio(:STEEL,bTypes[0], bTypes[1], bTypes[2])
+      if getTypedHazardHPRatio > 0
+        pbDisplay(_INTL("Sharp feathers dug into {1}!",battler.pbThis(true)))
+        if battler.applyFractionalDamage(getTypedHazardHPRatio,true,false,true)
+          return pbOnActiveOne(battler)   # For replacement battler
+        end
+      end
+    end
+
     # Ground-based hazards
     if !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
       # Spikes

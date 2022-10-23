@@ -221,8 +221,15 @@ class PokeBattle_AI
                 # Stealth Rock
                 if battler.pbOwnSide.effectActive?(:StealthRock)
                     types = pkmn.types
-                    stealthRockHPRatio = @battle.getStealthRockHPRatio(types[0], types[1] || nil)
+                    stealthRockHPRatio = @battle.getTypedHazardHPRatio(:ROCK,types[0], types[1] || nil)
                     entryDamage += pkmn.totalhp * stealthRockHPRatio
+                end
+
+                # Feather Ward
+                if battler.pbOwnSide.effectActive?(:FeatherWard)
+                    types = pkmn.types
+                    featherWardHPRatio = @battle.getTypedHazardHPRatio(:STEEL,types[0], types[1] || nil)
+                    entryDamage += pkmn.totalhp * featherWardHPRatio
                 end
 
                 # Each of the status setting spikes

@@ -74,8 +74,6 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   
     def pbEffectGeneral(user)
       user.pbOpposingSide.applyEffect(:StealthRock)
-      @battle.pbDisplay(_INTL("Pointed stones float in the air around {1}!",
-         user.pbOpposingTeam(true)))
     end
 
     def getScore(score,user,target,skill=100)

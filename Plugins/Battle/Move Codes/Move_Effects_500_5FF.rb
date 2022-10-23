@@ -2835,3 +2835,25 @@ class PokeBattle_Move_5A0 < PokeBattle_Move
 	  return ret
 	end
 end
+
+ #===============================================================================
+  # Entry hazard. Lays Feather Ward on the opposing side. (Feather Ward)
+  #===============================================================================
+  class PokeBattle_Move_5A1 < PokeBattle_Move
+    def pbMoveFailed?(user,targets)
+      if user.pbOpposingSide.effectActive?(:FeatherWard)
+        @battle.pbDisplay(_INTL("But it failed, since sharp feathers already float around the opponent!"))
+        return true
+      end
+      return false
+    end
+  
+    def pbEffectGeneral(user)
+      user.pbOpposingSide.applyEffect(:FeatherWard)
+    end
+
+    def getScore(score,user,target,skill=100)
+      score = getHazardSettingMoveScore(score,user,target,skill)
+      return score
+    end
+  end

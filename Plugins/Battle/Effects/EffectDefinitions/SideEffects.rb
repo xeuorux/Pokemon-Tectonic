@@ -297,6 +297,15 @@ GameData::BattleEffect.register_effect(:Side,{
 	},
 })
 
+GameData::BattleEffect.register_effect(:Side,{
+	:id => :FeatherWard,
+	:real_name => "Feather Ward",
+	:apply_proc => Proc.new { |battle,side,teamName|
+		battle.pbDisplay(_INTL("Sharp feathers float in the air around {1}!",teamName))
+	},
+})
+
+
 ##########################################
 # Internal Tracking
 ##########################################
