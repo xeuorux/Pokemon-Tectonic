@@ -253,13 +253,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :FuryCutter,
-	:real_name => "Fury Cutter Count",
-	:type => :Integer,
-	:resets_on_cancel => true,
-})
-
-GameData::BattleEffect.register_effect(:Battler,{
 	:id => :GastroAcid,
 	:real_name => "Ability Surpressed",
 	:baton_passed => true,
@@ -510,6 +503,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ParentalBond,
 	:real_name => "Parental Bond",
 	:type => :Integer,
+	:resets_on_move_start => true,
 })
 
 # The logic here is complex enough that it is handled elsewhere
@@ -842,7 +836,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Yawn,
-	:real_name => "Yawn Turns",
+	:real_name => "Drowsy",
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle, battler|
@@ -850,6 +844,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 			PBDebug.log("[Lingering effect] #{battler.pbThis} fell asleep because of Yawn")
 			battler.pbSleep
 		end
+	},
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} became drowsy!",battler.pbThis))
 	},
 })
 
@@ -1023,10 +1020,19 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
+	:id => :FuryCutter,
+	:real_name => "Fury Cutter Count",
+	:type => :Integer,
+	:resets_on_cancel => true,
+	:resets_on_move_start => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
 	:id => :IceBall,
 	:real_name => "Ice Ball Count",
 	:type => :Integer,
 	:resets_on_cancel => true,
+	:resets_on_move_start => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1034,6 +1040,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Roll Out Count",
 	:type => :Integer,
 	:resets_on_cancel => true,
+	:resets_on_move_start => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1122,6 +1129,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:default => 1,
 	:info_displayed => false,
+	:resets_on_move_start => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{

@@ -36,6 +36,10 @@ module GameData
 		# Resets to default value if the battler's move is cancelled
 		attr_reader :resets_on_cancel
 
+		# Resets to default value when the move begins being used
+		# This is generally used for effects that track usage counters
+		attr_reader :resets_on_move_start
+
 		# If it ticks down at end of round. Only used for integers
 		attr_reader :ticks_down
 
@@ -158,6 +162,11 @@ module GameData
 			@apply_proc             = hash[:activated_proc]
 
 			@resets_eor             = hash[:resets_eor] || false
+			@resets_battlers_sot    = hash[:resets_battlers_sot] || false
+			@resets_battlers_eot    = hash[:resets_battlers_eot] || false
+			@resets_on_cancel       = hash[:resets_on_cancel] || false
+			@resets_on_move_start	= hash[:resets_on_move_start] || false
+
 			@ticks_down             = hash[:ticks_down] || false
 			@tick_amount            = hash[:tick_amount] || 1
 
@@ -191,9 +200,6 @@ module GameData
 			# For when the value has to be transformed when baton passed
 			@pass_value_proc = hash[:pass_value_proc]
 
-			@resets_battlers_sot    = hash[:resets_battlers_sot]
-			@resets_battlers_eot    = hash[:resets_battlers_eot] || false
-			@resets_on_cancel       = hash[:resets_on_cancel] || false
 			@multi_turn_tracker     = hash[:multi_turn_tracker] || false
 
 			@others_lose_track      = hash[:others_lose_track] || false

@@ -38,7 +38,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:STOUT,
 
 BattleHandlers::DamageCalcTargetAbility.add(:SENTRY,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:final_damage_multiplier] *= 0.75 if target.effects[PBEffects::Sentry] == true
+    mults[:final_damage_multiplier] *= 0.75 if target.effectActive?(:Sentry)
   }
 )
 

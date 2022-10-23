@@ -54,15 +54,13 @@ BattleHandlers::DamageCalcUserAbility.add(:AUDACITY,
 
 BattleHandlers::DamageCalcUserAbility.add(:HEADACHE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-   # mods[:attack_multiplier] *= 2.0 if user.effects[PBEffects::Confusion]>0 && move.specialMove?
-   mods[:attack_multiplier] *= 2.0 if move.specialMove? && user.mystified?
+    mods[:attack_multiplier] *= 2.0 if move.specialMove? && user.mystified?
   }
 )
 
 BattleHandlers::DamageCalcUserAbility.add(:HEADACHE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-   # mods[:attack_multiplier] *= 2.0 if user.effects[PBEffects::Confusion]>0 && move.specialMove?
-   mods[:attack_multiplier] *= 2.0 if move.physicalMove? && user.flustered?
+    mods[:attack_multiplier] *= 2.0 if move.physicalMove? && user.flustered?
   }
 )
 

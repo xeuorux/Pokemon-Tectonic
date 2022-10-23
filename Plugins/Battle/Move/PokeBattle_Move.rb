@@ -65,7 +65,7 @@ class PokeBattle_Move
     #=============================================================================
     def pbTarget(user)
         targetData = GameData::Target.get(@target)
-        if damagingMove? && targetData.can_target_one_foe? && user.effectActive?(PBEffects::FlareWitch)
+        if damagingMove? && targetData.can_target_one_foe? && user.effectActive?(:FlareWitch)
           return GameData::Target.get(:AllNearFoes)
         else
           return targetData

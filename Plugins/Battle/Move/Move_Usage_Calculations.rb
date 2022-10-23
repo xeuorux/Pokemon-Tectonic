@@ -14,11 +14,11 @@ class PokeBattle_Move
       @powerBoost = false
       ret = pbBaseType(user)
       if ret && GameData::Type.exists?(:ELECTRIC)
-        if @battle.field.effects[PBEffects::IonDeluge] && ret == :NORMAL
+        if @battle.field.effectActive?(:IonDeluge) && ret == :NORMAL
           ret = :ELECTRIC
           @powerBoost = false
         end
-        if user.effects[PBEffects::Electrify]
+        if user.effectActive?(:Electrify)
           ret = :ELECTRIC
           @powerBoost = false
         end
@@ -36,15 +36,15 @@ class PokeBattle_Move
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
         end
         # Foresight/Scrappy
-        if user.hasActiveAbility?(:SCRAPPY) || target.effects[PBEffects::Foresight]
+        if user.hasActiveAbility?(:SCRAPPY) || target.effectActive?(:Foresight)
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GHOST && Effectiveness.ineffective_type?(moveType, defType)
         end
         # Miracle Eye
-        if target.effects[PBEffects::MiracleEye]
+        if target.effectActive?(:MiracleEye)
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :DARK && Effectiveness.ineffective_type?(moveType, defType)
         end
         # Creep Out
-        if target.effects[PBEffects::CreepOut] && moveType == :BUG
+        if target.effectActive?(:CreepOut) && moveType == :BUG
             ret *= 2
         end
         # Delta Stream's weather
@@ -56,11 +56,11 @@ class PokeBattle_Move
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING && moveType == :GROUND
         end
         # Inured
-        if target.effects[PBEffects::Inured]
+        if target.effectActive?(:Inured)
             ret /= 2 if Effectiveness.super_effective_type?(moveType, defType)
         end
         # Tar Shot
-        if target.effects[PBEffects::TarShot] && moveType == :FIRE
+        if target.effectActive?(:TarShot) && moveType == :FIRE
             ret *= 2
         end
         # Break Through
@@ -134,9 +134,9 @@ class PokeBattle_Move
     # handled elsewhere.
     def pbAccuracyCheck(user,target)
         # "Always hit" effects and "always hit" accuracy
-        return true if target.effects[PBEffects::Telekinesis]>0
+        return true if target.effectActive?(:Telekinesis)
         baseAcc = pbBaseAccuracy(user,target)
-        return true if baseAcc==0
+        return true if baseAcc == 0
         # Calculate all multiplier effects
         modifiers = {}
         modifiers[:base_accuracy]  = baseAcc
@@ -194,15 +194,15 @@ class PokeBattle_Move
       end
       # Other effects, inc. ones that set accuracy_multiplier or evasion_stage to
       # specific values
-      if @battle.field.effects[PBEffects::Gravity] > 0
+      if @battle.field.effectActive?(:Gravity)
         modifiers[:accuracy_multiplier] *= 5 / 3.0
       end
-      if user.effects[PBEffects::MicleBerry]
-        user.effects[PBEffects::MicleBerry] = false
+      if user.effectActive?(:MicleBerry)
+        user.disableEffect?(:MicleBerry)
         modifiers[:accuracy_multiplier] *= 1.2
       end
-      modifiers[:evasion_stage] = 0 if target.effects[PBEffects::Foresight] && modifiers[:evasion_stage] > 0
-      modifiers[:evasion_stage] = 0 if target.effects[PBEffects::MiracleEye] && modifiers[:evasion_stage] > 0
+      modifiers[:evasion_stage] = 0 if target.effectActive?(:Foresight) && modifiers[:evasion_stage] > 0
+      modifiers[:evasion_stage] = 0 if target.effectActive?(:MiracleEye) && modifiers[:evasion_stage] > 0
     end
   
     #=============================================================================
@@ -217,7 +217,7 @@ class PokeBattle_Move
         # Returns whether the move will be a critical hit
     # And whether the critical hit was forced by an effect
 	def pbIsCritical?(user,target)
-		return [false,false] if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
+		return [false,false] if target.pbOwnSide.effectActive?(:LuckyChant)
         return [false,false] if applySunDebuff?(user)
 		# Set up the critical hit ratios
 		ratios = [16,8,4,2,1]
@@ -244,11 +244,11 @@ class PokeBattle_Move
 		end
 		# Other effects
 		return [true,true] if c > 50   # Merciless and similar abilities
-		return [true,true] if user.effects[PBEffects::LaserFocus] > 0 || user.effects[PBEffects::EmpoweredLaserFocus]
+		return [true,true] if user.effectActive?(:LaserFocus) || user.effectActive?(:EmpoweredLaserFocus)
 		return [false,false] if user.boss?
 		c += 1 if highCriticalRate?
-		c += user.effects[PBEffects::FocusEnergy]
-		c += 1 if user.effects[PBEffects::LuckyStar]
+		c += user.effectCount(:FocusEnergy)
+		c += 1 if user.effectActive?(:LuckyStar)
 		c = ratios.length-1 if c>=ratios.length
 		# Calculation
 		return [@battle.pbRandom(ratios[c]) == 0,false]
@@ -297,11 +297,11 @@ class PokeBattle_Move
     #=============================================================================
     def pbAdditionalEffectChance(user,target,effectChance=0)
         return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
-        return 0 if target.effects[PBEffects::Enlightened]
+        return 0 if target.effectActive?(:Enlightened)
         ret = (effectChance>0) ? effectChance : @addlEffect
         if Settings::MECHANICS_GENERATION >= 6 || @function != "0A4"   # Secret Power
             ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
-            ret *= 2 if user.pbOwnSide.effects[PBEffects::Rainbow] > 0
+            ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
             ret *= 4 if windMove? && user.hasActiveAbility?(:FUMIGATE)
         end
         ret /= 2 if applyRainDebuff?(user)
@@ -314,7 +314,7 @@ class PokeBattle_Move
     def pbFlinchChance(user,target)
         return 0 if flinchingMove?
         return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
-        return 0 if target.effects[PBEffects::Enlightened]
+        return 0 if target.effectActive?(:Enlightened)
         ret = 0
         if user.hasActiveAbility?(:STENCH,true)
             ret = 50
@@ -322,7 +322,7 @@ class PokeBattle_Move
             ret = 10
         end
         ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
-                    user.pbOwnSide.effects[PBEffects::Rainbow]>0
+                    user.pbOwnSide.effectActive?(:Rainbow)
         return ret
     end
 end

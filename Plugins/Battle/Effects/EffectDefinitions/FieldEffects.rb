@@ -14,12 +14,14 @@ GameData::BattleEffect.register_effect(:Field,{
 	:id => :FusionBolt,
 	:real_name => "Fusion Bolt",
 	:resets_eor => true,
+	:resets_on_move_start => true,
 })
 
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :FusionFlare,
 	:real_name => "Fusion Flare",
 	:resets_eor => true,
+	:resets_on_move_start => true,
 })
 
 GameData::BattleEffect.register_effect(:Field,{

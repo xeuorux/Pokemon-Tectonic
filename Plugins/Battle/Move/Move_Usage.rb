@@ -13,13 +13,12 @@ class PokeBattle_Move
 
     # Reset move usage counters (child classes can increment them).
     def pbChangeUsageCounters(user,specialUsage)
-        user.effects[PBEffects::FuryCutter]   = 0
-        user.effects[PBEffects::IceBall]   = 0
-        user.effects[PBEffects::RollOut]   = 0
-        user.effects[PBEffects::ParentalBond] = 0
-        user.effects[PBEffects::ProtectRate]  = 1
-        @battle.field.effects[PBEffects::FusionBolt]  = false
-        @battle.field.effects[PBEffects::FusionFlare] = false
+        [user,@battle.field].each do |effectHolder|
+            effectHolder.eachEffectWithData(true) do |effect, value, data|
+                next if !data.resets_on_move_start
+                effectHolder.disableEffect(effect)
+            end
+        end
     end
   
     #=============================================================================
@@ -86,7 +85,7 @@ class PokeBattle_Move
     # Whether the move is currently in the "charging" turn of a two turn attack.
     # Is false if Power Herb or another effect lets a two turn move charge and
     # attack in the same turn.
-    # user.effects[PBEffects::TwoTurnAttack] is set to the move's ID during the
+    # user.effects[:TwoTurnAttack] is set to the move's ID during the
     # charging turn, and is nil during the attack turn.
     def pbIsChargingTurn?(user); return false; end
     def pbDamagingMove?; return damagingMove?; end
@@ -106,7 +105,7 @@ class PokeBattle_Move
         return 2 if canParentalBond?(user,targets,checkingForAI)
         numHits = 1
         numHits += 1 if user.shouldAbilityApply?(:SPACEINTERLOPER,checkingForAI) && pbDamagingMove?
-        numHits += 1 if user.effects[PBEffects::VolleyStance] && move.specialMove?
+        numHits += 1 if user.effectActive?(:VolleyStance) && move.specialMove?
         return numHits
     end
   
@@ -119,7 +118,7 @@ class PokeBattle_Move
   
     def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
       return if !showAnimation
-      if user.effects[PBEffects::ParentalBond]==1
+      if user.effects[:ParentalBond] == 1
         @battle.pbCommonAnimation("ParentalBond",user,targets)
       else
         @battle.pbAnimation(id,user,targets,hitNum)
@@ -269,20 +268,20 @@ class PokeBattle_Move
             if nonLethal?(user,target)
                 damage -= 1
                 damageAdjusted = true
-            elsif target.effects[PBEffects::Endure]
+            elsif target.effectActive?(:Endure)
                 target.damageState.endured = true
                 damage -= 1
                 damageAdjusted = true
-            elsif target.effects[PBEffects::EmpoweredEndure] > 0
+            elsif target.effectActive?(:EmpoweredEndure)
                 target.damageState.endured = true
                 damage -= 1
                 damageAdjusted = true
-                target.effects[PBEffects::EmpoweredEndure] -= 1
+                target.tickDown(:EmpoweredEndure)
             elsif target.hasActiveAbility?(:DIREDIVERSION) && !target.item.nil? && target.itemActive? && !@battle.moldBreaker
                 target.damageState.direDiversion = true
                 damage -= 1
                 damageAdjusted = true
-            elsif damage==target.totalhp
+            elsif damage == target.totalhp
                 if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
                     target.damageState.sturdy = true
                     damage -= 1
@@ -314,7 +313,7 @@ class PokeBattle_Move
     #=============================================================================
     def pbInflictHPDamage(target)
       if target.damageState.substitute
-        target.effects[PBEffects::Substitute] -= target.damageState.hpLost
+        target.effects[:Substitute] -= target.damageState.hpLost
       else
         target.hp -= target.damageState.hpLost
       end
@@ -452,15 +451,15 @@ class PokeBattle_Move
       moveType = nil
       moveType = :NORMAL if @function=="090"   # Hidden Power
       if physicalMove?(moveType)
-        target.effects[PBEffects::Counter]       = damage
-        target.effects[PBEffects::CounterTarget] = user.index
+        target.applyEffect(:Counter,damage)
+        target.applyEffect(:CounterTarget,user.index)
       elsif specialMove?(moveType)
-        target.effects[PBEffects::MirrorCoat]       = damage
-        target.effects[PBEffects::MirrorCoatTarget] = user.index
+        target.applyEffect(:MirrorCoat,damage)
+        target.applyEffect(:MirrorCoatTarget,user.index)
       end
-      if target.effects[PBEffects::Bide] > 0
-        target.effects[PBEffects::BideDamage] += damage
-        target.effects[PBEffects::BideTarget] = user.index if user.index != target.index
+      if target.effectActive?(:BideDamage)
+        target.effects[:BideDamage] += damage
+        target.applyEffect(:BideTarget,user.index) if user.index != target.index
       end
       target.damageState.fainted = true if target.fainted?
       target.lastHPLost = damage             # For Focus Punch

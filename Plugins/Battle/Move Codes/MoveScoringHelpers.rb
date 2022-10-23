@@ -81,7 +81,6 @@ def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],statusMove=fal
 end
 
 def getSleepMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
-	return 0 if statusMove && target.effects[PBEffects::Yawn] > 0
 	if target.hasSleepAttack?
 		score += 20
 	else

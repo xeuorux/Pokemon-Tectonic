@@ -55,8 +55,8 @@ end
 #===============================================================================
 class PokeBattle_Move_004 < PokeBattle_Move
     def pbFailsAgainstTarget?(user,target)
-        if target.effects[PBEffects::Yawn]>0
-            @battle.pbDisplay(_INTL("But it failed!"))
+        if target.effectActive?(:Yawn)
+            @battle.pbDisplay(_INTL("But it failed, since the target is already drowsy!"))
             return true
         end
         return true if !target.pbCanSleep?(user,true,self)
@@ -64,8 +64,7 @@ class PokeBattle_Move_004 < PokeBattle_Move
     end
     
     def pbEffectAgainstTarget(user,target)
-        target.effects[PBEffects::Yawn] = 2
-        @battle.pbDisplay(_INTL("{1} made {2} drowsy!",user.pbThis,target.pbThis(true)))
+      target.applyEffect(:Yawn,2)
     end
     
     def getScore(score,user,target,skill=100)

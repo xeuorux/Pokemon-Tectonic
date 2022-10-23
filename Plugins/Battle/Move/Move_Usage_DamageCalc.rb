@@ -202,13 +202,13 @@ class PokeBattle_Move
             end
         end
         # Partial protection moves
-        if target.effects[PBEffects::StunningCurl]
+        if target.effectActive?(:StunningCurl)
             multipliers[:final_damage_multiplier] *= 0.5
         end
-        if target.effects[PBEffects::EmpoweredDetect] > 0
+        if target.effectActive?(:EmpoweredDetect)
             multipliers[:final_damage_multiplier] *= 0.5
         end
-        if target.pbOwnSide.effects[PBEffects::Bulwark]
+        if target.pbOwnSide.effectActive?(:Bulwark)
             multipliers[:final_damage_multiplier] *= 0.5
         end
         # For when bosses are partway piercing protection
@@ -238,18 +238,18 @@ class PokeBattle_Move
         end
 
         # Charge
-        if user.effects[PBEffects::Charge]>0 && type == :ELECTRIC
+        if user.effectActive?(:Charge) && type == :ELECTRIC
             multipliers[:base_damage_multiplier] *= 2
         end
         
         # Mud Sport
         if type == :ELECTRIC
             @battle.eachBattler do |b|
-                next if !b.effects[PBEffects::MudSport]
+                next if !b.effectActive?(:MudSport)
                 multipliers[:base_damage_multiplier] /= 3.0
                 break
             end
-            if @battle.field.effects[PBEffects::MudSportField]>0
+            if @battle.field.effectActive?(:MudSportField)
                 multipliers[:base_damage_multiplier] /= 3.0
             end
         end
@@ -257,11 +257,11 @@ class PokeBattle_Move
         # Water Sport
         if type == :FIRE
             @battle.eachBattler do |b|
-                next if !b.effects[PBEffects::WaterSport]
+                next if !b.effectActive?(:WaterSport)
                 multipliers[:base_damage_multiplier] /= 3.0
                 break
             end
-            if @battle.field.effects[PBEffects::WaterSportField]>0
+            if @battle.field.effectActive?(:WaterSport)
                 multipliers[:base_damage_multiplier] /= 3.0
             end
         end
@@ -284,28 +284,27 @@ class PokeBattle_Move
                 user,target,self,multipliers,baseDmg,type)
         end
         # Parental Bond's second attack
-        if user.effects[PBEffects::ParentalBond]==1
+        if user.effects[:ParentalBond] == 1
             multipliers[:base_damage_multiplier] *= 0.25
         end
         # Me First
-        if user.effects[PBEffects::MeFirst]
+        if user.effectActive?(:MeFirst)
             multipliers[:base_damage_multiplier] *= 1.5
         end
         # Helping Hand
-        if user.effects[PBEffects::HelpingHand] && !self.is_a?(PokeBattle_Confusion)
+        if user.effectActive?(:HelpingHand) && !self.is_a?(PokeBattle_Confusion)
             multipliers[:base_damage_multiplier] *= 1.5
         end
         # Dragon Ride
-        if user.effects[PBEffects::OnDragonRide] && physicalMove?
+        if user.effectActive?(:OnDragonRide) && physicalMove?
             multipliers[:final_damage_multiplier] *= 1.5
         end
         # Shimmering Heat
-        if target.effects[PBEffects::ShimmeringHeat]
-            echoln("Target is protected by Shimmering Heat")
+        if target.effectActive?(:ShimmeringHeat)
             multipliers[:final_damage_multiplier] *= 0.67
         end
         # Echo
-        if user.effects[PBEffects::Echo]
+        if user.effectActive?(:Echo)
             multipliers[:final_damage_multiplier] *= 0.75
         end
         # Multi-targeting attacks
