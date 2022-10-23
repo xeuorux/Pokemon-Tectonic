@@ -1,3 +1,33 @@
+BattleHandlers::EORWeatherAbility.add(:ICEBODY,
+  proc { |ability,weather,battler,battle|
+    next unless weather == :Hail
+    next if !battler.canHeal?
+    battle.pbShowAbilitySplash(battler)
+    battler.pbRecoverHP(battler.totalhp/16)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::EORWeatherAbility.add(:RAINDISH,
+  proc { |ability,weather,battler,battle|
+    next unless [:Rain, :HeavyRain].include?(weather)
+    next if !battler.canHeal?
+    battle.pbShowAbilitySplash(battler)
+    battler.pbRecoverHP(battler.totalhp/16)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
   proc { |ability,weather,battler,battle|
     case weather

@@ -23,7 +23,7 @@ class PokeBattle_Battler
 		ret.delete(:ICE) if effectActive?(:ColdConversion)
 		# Roost erases the Flying-type. If there are no types left, adds the Normal-
 		# type.
-		if effectActive?(:ROOST)
+		if effectActive?(:Roost)
 			ret.delete(:FLYING)
 			ret.push(:NORMAL) if ret.length.zero?
 		end

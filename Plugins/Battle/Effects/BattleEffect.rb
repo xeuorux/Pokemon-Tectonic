@@ -198,13 +198,13 @@ module GameData
 			@baton_passed           = hash[:baton_passed] || false
 			@swaps_with_battlers    = hash[:swaps_with_battlers] || false
 			# For when the value has to be transformed when baton passed
-			@pass_value_proc = hash[:pass_value_proc]
+			@pass_value_proc 		= hash[:pass_value_proc]
 
 			@multi_turn_tracker     = hash[:multi_turn_tracker] || false
 
 			@others_lose_track      = hash[:others_lose_track] || false
 
-			@sub_effects = hash[:sub_effects] || false
+			@sub_effects 			= hash[:sub_effects] || []
 
 			@protection_effect 		= hash[:protection_effect] || false
 			@protection_info		= hash[:protection_info]

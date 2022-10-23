@@ -1,3 +1,9 @@
+BattleHandlers::AbilityOnBattlerFainting.add(:SOULHEART,
+    proc { |ability,battler,fainted,battle|
+      battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,battler)
+    }
+)
+
 BattleHandlers::AbilityOnBattlerFainting.add(:ARCANEFINALE,
     proc { |ability,battler,fainted,battle|
       next if battler.opposes?(fainted)

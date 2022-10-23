@@ -41,6 +41,16 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
   }
 )
 
+BattleHandlers::EOREffectAbility.add(:SPEEDBOOST,
+  proc { |ability,battler,battle|
+    # A Pokémon's turnCount is 0 if it became active after the beginning of a
+    # round
+    if battler.turnCount>0 && battler.pbCanRaiseStatStage?(:SPEED,battler)
+      battler.pbRaiseStatStageByAbility(:SPEED,1,battler)
+    end
+  }
+)
+
 BattleHandlers::EOREffectAbility.add(:BALLFETCH,
   proc { |ability,battler,battle|
     if battler.effects[PBEffects::BallFetch]!=0 && battler.item<=0

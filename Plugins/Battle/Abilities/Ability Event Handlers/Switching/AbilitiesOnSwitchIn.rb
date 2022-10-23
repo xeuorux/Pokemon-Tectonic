@@ -1,7 +1,302 @@
+BattleHandlers::AbilityOnSwitchIn.add(:AIRLOCK,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1} has {2}!",battler.pbThis,battler.abilityName))
+    end
+    battle.pbDisplay(_INTL("The effects of the weather disappeared."))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.copy(:AIRLOCK,:CLOUDNINE)
+
+BattleHandlers::AbilityOnSwitchIn.add(:ANTICIPATION,
+  proc { |ability,battler,battle|
+    next if !battler.pbOwnedByPlayer?
+    battlerTypes = battler.pbTypes(true)
+    type1 = battlerTypes[0]
+    type2 = battlerTypes[1] || type1
+    type3 = battlerTypes[2] || type2
+    found = false
+    battle.eachOtherSideBattler(battler.index) do |b|
+      b.eachMove do |m|
+        next if m.statusMove?
+        if type1
+          moveType = m.type
+          if Settings::MECHANICS_GENERATION >= 6 && m.function == "090"   # Hidden Power
+            moveType = pbHiddenPower(b.pokemon)[0]
+          end
+          eff = Effectiveness.calculate(moveType,type1,type2,type3)
+          next if Effectiveness.ineffective?(eff)
+          next if !Effectiveness.super_effective?(eff) && m.function != "070"   # OHKO
+        else
+          next if m.function != "070"   # OHKO
+        end
+        found = true
+        break
+      end
+      break if found
+    end
+    if found
+      battle.pbShowAbilitySplash(battler)
+      battle.pbDisplay(_INTL("{1} shuddered with anticipation!",battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+    end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:AURABREAK,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} reversed all other Pokémon's auras!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:COMATOSE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} is drowsing!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:DARKAURA,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is radiating a dark aura!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:DELTASTREAM,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:StrongWinds, battler, battle, true)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:DESOLATELAND,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:HarshSun, battler, battle, true)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:DOWNLOAD,
+  proc { |ability,battler,battle|
+    oDef = oSpDef = 0
+    battle.eachOtherSideBattler(battler.index) do |b|
+      oDef   += b.defense
+      oSpDef += b.spdef
+    end
+    stat = (oDef<oSpDef) ? :ATTACK : :SPECIAL_ATTACK
+    battler.pbRaiseStatStageByAbility(stat,1,battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:DRIZZLE,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:Rain, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:DROUGHT,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:Sun, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
+  proc { |ability,battler,battle|
+    next if battle.field.terrain == :Electric
+    battle.pbShowAbilitySplash(battler)
+    battle.pbStartTerrain(battler, :Electric)
+    # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:FAIRYAURA,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is radiating a fairy aura!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:FOREWARN,
+  proc { |ability,battler,battle|
+    next if !battler.pbOwnedByPlayer?
+    highestPower = 0
+    forewarnMoves = []
+    battle.eachOtherSideBattler(battler.index) do |b|
+      b.eachMove do |m|
+        power = m.baseDamage
+        power = 160 if ["070"].include?(m.function)    # OHKO
+        power = 150 if ["08B"].include?(m.function)    # Eruption
+        # Counter, Mirror Coat, Metal Burst
+        power = 120 if ["071","072","073"].include?(m.function)
+        # Sonic Boom, Dragon Rage, Night Shade, Endeavor, Psywave,
+        # Return, Frustration, Crush Grip, Gyro Ball, Hidden Power,
+        # Natural Gift, Trump Card, Flail, Grass Knot
+        power = 80 if ["06A","06B","06D","06E","06F",
+                       "089","08A","08C","08D","090",
+                       "096","097","098","09A"].include?(m.function)
+        next if power<highestPower
+        forewarnMoves = [] if power>highestPower
+        forewarnMoves.push(m.name)
+        highestPower = power
+      end
+    end
+    if forewarnMoves.length>0
+      battle.pbShowAbilitySplash(battler)
+      forewarnMoveName = forewarnMoves[battle.pbRandom(forewarnMoves.length)]
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} was alerted to {2}!",
+          battler.pbThis, forewarnMoveName))
+      else
+        battle.pbDisplay(_INTL("{1}'s Forewarn alerted it to {2}!",
+          battler.pbThis, forewarnMoveName))
+      end
+      battle.pbHideAbilitySplash(battler)
+    end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:FRISK,
+  proc { |ability,battler,battle|
+    next if !battler.pbOwnedByPlayer?
+    foes = []
+    battle.eachOtherSideBattler(battler.index) do |b|
+      foes.push(b) if b.item
+    end
+    if foes.length>0
+      battle.pbShowAbilitySplash(battler)
+      if Settings::MECHANICS_GENERATION >= 6
+        foes.each do |b|
+          battle.pbDisplay(_INTL("{1} frisked {2} and found its {3}!",
+             battler.pbThis,b.pbThis(true),b.itemName))
+        end
+      else
+        foe = foes[battle.pbRandom(foes.length)]
+        battle.pbDisplay(_INTL("{1} frisked the foe and found one {2}!",
+           battler.pbThis,foe.itemName))
+      end
+      battle.pbHideAbilitySplash(battler)
+    end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:GRASSYSURGE,
+  proc { |ability,battler,battle|
+    next if battle.field.terrain == :Grassy
+    battle.pbShowAbilitySplash(battler)
+    battle.pbStartTerrain(battler, :Grassy)
+    # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:IMPOSTER,
+  proc { |ability,battler,battle|
+    next if battler.effects[PBEffects::Transform]
+    choice = battler.pbDirectOpposing
+    next if choice.fainted?
+    next if choice.effects[PBEffects::Transform] ||
+            choice.effects[PBEffects::Illusion] ||
+            choice.effects[PBEffects::Substitute]>0 ||
+            choice.effects[PBEffects::SkyDrop]>=0 ||
+            choice.semiInvulnerable?
+    battle.pbShowAbilitySplash(battler,true)
+    battle.pbHideAbilitySplash(battler)
+    battle.pbAnimation(:TRANSFORM,battler,choice)
+    battle.scene.pbChangePokemon(battler,choice.pokemon)
+    battler.pbTransform(choice)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.near?(battler)
+      b.pbLowerAttackStatStageIntimidate(battler)
+      b.pbItemOnIntimidatedCheck
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:MISTYSURGE,
+  proc { |ability,battler,battle|
+    next if battle.field.terrain == :Misty
+    battle.pbShowAbilitySplash(battler)
+    battle.pbStartTerrain(battler, :Misty)
+    # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:MOLDBREAKER,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} breaks the mold!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:PRESSURE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is exerting its pressure!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:PRIMORDIALSEA,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:HeavyRain, battler, battle, true)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:PSYCHICSURGE,
+  proc { |ability,battler,battle|
+    next if battle.field.terrain == :Psychic
+    battle.pbShowAbilitySplash(battler)
+    battle.pbStartTerrain(battler, :Psychic)
+    # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:SANDSTREAM,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:Sandstorm, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:SNOWWARNING,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:Hail, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:TERAVOLT,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is radiating a bursting aura!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:TURBOBLAZE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is radiating a blazing aura!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:UNNERVE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is too nervous to eat Berries!",battler.pbOpposingTeam))
     battle.pbHideAbilitySplash(battler)
   }
 )
