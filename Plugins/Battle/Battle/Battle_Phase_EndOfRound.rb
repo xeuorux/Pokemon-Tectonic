@@ -30,18 +30,14 @@ class PokeBattle_Battle
     end
 
     # Tick down or reset battle effects
-    @field.processEffectsEOR(self)
+    eachEffectHolder.do |effectHolder|
+      effectHolder.processEffectsEOR
+    end
+
     @sides.each do |side|
       if !side.effects[PBEffects::EchoedVoiceUsed]
         side.effects[PBEffects::EchoedVoiceCounter] = 0
       end
-      side.processEffectsEOR(self)
-    end
-    @positions.each_with_index do |position,index|
-      position.processEffectsEOR(self,index)
-    end
-    eachBattler do |b|
-      b.processEffectsEOR
     end
     
     # End of terrains
@@ -306,14 +302,12 @@ class PokeBattle_Battle
     # Perish Song
     perishSongUsers = []
     priority.each do |b|
-      next if b.fainted? || b.effects[PBEffects::PerishSong]==0
-      b.effects[PBEffects::PerishSong] -= 1
-      pbDisplay(_INTL("{1}'s perish count fell to {2}!",b.pbThis,b.effects[PBEffects::PerishSong]))
-      if b.effects[PBEffects::PerishSong]==0
-        perishSongUsers.push(b.effects[PBEffects::PerishSongUser])
-        b.pbReduceHP(b.hp)
+      next if b.fainted? || !b.effectActive?(:PerishSong)
+      b.effects[:PerishSong] -= 1
+      pbDisplay(_INTL("{1}'s perish count fell to {2}!",b.pbThis,b.effects[:PerishSong]))
+      if b.tickDownAndProc(:PerishSong)
+        perishSongUsers.push(b.effects[:PerishSongUser])
       end
-      b.pbFaint if b.fainted?
     end
     if perishSongUsers.length>0
       # If all remaining Pokemon fainted by a Perish Song triggered by a single side

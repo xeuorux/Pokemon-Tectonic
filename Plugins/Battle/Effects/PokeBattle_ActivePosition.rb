@@ -15,6 +15,12 @@ class PokeBattle_ActivePosition
 		@apply_proc = proc do |effectData|
 			effectData.apply_position(@battle, @index)
 		end
+		@disable_proc = proc do |effectData|
+			effectData.disable_position(@battle, @index)
+		end
+		@eor_proc = proc do |effectData|
+			effectData.eor_position(@battle, @index)
+		end
 		@remain_proc = proc do |effectData|
 			effectData.remain_position(@battle, @index)
 		end

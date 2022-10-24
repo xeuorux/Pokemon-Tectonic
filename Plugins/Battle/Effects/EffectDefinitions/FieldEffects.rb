@@ -30,7 +30,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:real_name => "Gravity Turns",
 	:type => :Integer,
     :ticks_down => true,
-    :expire_proc => Proc.new { |battle,battler|
+    :disable_proc => Proc.new { |battle,battler|
         battle.pbDisplay(_INTL("Gravity returned to normal!"))
     },
 })
@@ -51,7 +51,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:real_name => "Mud Sport Turns",
 	:type => :Integer,
     :ticks_down => true,
-    :expire_proc => Proc.new { |battle,battler|
+    :disable_proc => Proc.new { |battle,battler|
         battle.pbDisplay(_INTL("The effects of Mud Sport have faded."))
     },
 })
@@ -70,7 +70,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:real_name => "Water Sport Turns",
 	:type => :Integer,
     :ticks_down => true,
-    :expire_proc => Proc.new { |battle,battler|
+    :disable_proc => Proc.new { |battle,battler|
         battle.pbDisplay(_INTL("The effects of Water Sport have faded."))
     },
 })
@@ -94,7 +94,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:apply_proc => Proc.new { |battle, value|
 		battle.pbDisplay(_INTL("A bizarre area appeared! Pokémon's held items lose their effects!")
 	},
-    :expire_proc => Proc.new { |battle,battler|
+    :disable_proc => Proc.new { |battle,battler|
         battle.pbDisplay(_INTL("The bizarre area went away."))
 		battle.pbPriority(true).each { |b| b.pbItemTerrainStatBoostCheck }
 		battle.pbPriority(true).each { |b| b.pbItemFieldEffectCheck }
@@ -110,7 +110,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:apply_proc => Proc.new { |battle, value|
 		battle.pbDisplay(_INTL("A tricky area appeared! Speed functions in reverse!")
 	},
-    :expire_proc => Proc.new { |battle,battler|
+    :disable_proc => Proc.new { |battle,battler|
         battle.pbDisplay(_INTL("The tricky room went away."))
     },
 })
@@ -124,7 +124,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:apply_proc => Proc.new { |battle, value|
 		battle.pbDisplay(_INTL("A wonderous area appeared! Defense and Sp. Def stats are swapped!")
 	},
-    :expire_proc => Proc.new { |battle|
+    :disable_proc => Proc.new { |battle|
         battle.pbDisplay(_INTL("The wonderous area went away."))
     },
 })
@@ -138,7 +138,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:apply_proc => Proc.new { |battle, value|
 		battle.pbDisplay(_INTL("A puzzling area appeared! Attack and Sp. Atk are swapped!")
 	},
-    :expire_proc => Proc.new { |battle|
+    :disable_proc => Proc.new { |battle|
         battle.pbDisplay(_INTL("The puzzling area went away."))
     },
 })
@@ -152,7 +152,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:apply_proc => Proc.new { |battle, value|
 		battle.pbDisplay(_INTL("An odd area appeared! Offensive and Defensive stats are swapped!")
 	},
-    :expire_proc => Proc.new { |battle|
+    :disable_proc => Proc.new { |battle|
         battle.pbDisplay(_INTL("The odd area went away."))
     },
 })

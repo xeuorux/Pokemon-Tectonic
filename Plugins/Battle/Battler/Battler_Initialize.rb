@@ -19,6 +19,12 @@ class PokeBattle_Battler
 		@apply_proc = Proc.new { |effectData|
 			effectData.apply_battler(@battle, self)
 		}
+		@disable_proc = Proc.new { |effectData|
+			effectData.disable_battler(@battle, self)
+		}
+		@eor_proc = proc do |effectData|
+			effectData.eor_battler(@battle, self)
+		end
 		@remain_proc = proc do |effectData|
 			effectData.remain_battler(@battle, self)
 		end

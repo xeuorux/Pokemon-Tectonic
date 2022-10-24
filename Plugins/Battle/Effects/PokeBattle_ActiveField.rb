@@ -19,6 +19,12 @@ class PokeBattle_ActiveField
 		@apply_proc = proc do |effectData|
 			effectData.apply_field(@battle)
 		end
+		@disable_proc = proc do |effectData|
+			effectData.disable_field(@battle)
+		end
+		@eor_proc = proc do |effectData|
+			effectData.eor_battler(@battle, self)
+		end
 		@remain_proc = proc do |effectData|
 			effectData.remain_field(@battle)
 		end

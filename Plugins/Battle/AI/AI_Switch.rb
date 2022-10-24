@@ -61,16 +61,16 @@ class PokeBattle_AI
             end
         end
         # Pokémon is about to faint because of Perish Song
-        if battler.effects[PBEffects::PerishSong]==1
+        if battler.effects[:PerishSong] == 1
             switchingBias += 2
             switchingBias += 2 if user.hp > user.totalhp / 2
         end
         # Should swap when confusion self-damage is likely to deal it a bunch of damage this turn
-        if battler.effects[PBEffects::ConfusionChance] >= 1
+        if battler.effects[:ConfusionChance] >= 1
             switchingBias += 2 if highDamageFromConfusion(battler)
         end
         # Should swap when charm self-damage is likely to deal it a bunch of damage this turn
-        if battler.effects[PBEffects::CharmChance] >= 1
+        if battler.effects[:CharmChance] >= 1
             switchingBias += 2 if highDamageFromConfusion(battler)
         end
 

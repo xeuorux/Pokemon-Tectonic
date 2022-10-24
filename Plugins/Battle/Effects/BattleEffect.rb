@@ -115,6 +115,10 @@ module GameData
 			return !@apply_proc.nil?
 		end
 
+		def has_disable_proc?
+			return !@disable_proc.nil?
+		end
+
 		def has_eor_proc?
 			return !@eor_proc.nil?
 		end
@@ -173,20 +177,22 @@ module GameData
 			@ticks_down             = hash[:ticks_down] || false
 			@tick_amount            = hash[:tick_amount] || 1
 
-
-			# Procs when the battler is initialized
+			# Called when the battler is initialized
 			@initialize_proc        = hash[:initialize_proc]
 
-			# Procs every round when active.
+			# Called every round when active.
 			@eor_proc               = hash[:eor_proc]
 
-			# Procs when the effect is disabled
-			@expire_proc 			= hash[:expire_proc]
+			# Called when the effect is disabled
+			@disable_proc			= hash[:disable_proc]
 
-			# Procs every end of round, only when ticked down with still turns remaining
+			# Called when the effect is ticks down to its final value
+			@expire_proc 			= hash[:expire_proc]
+			
+			# Called every end of round, only when ticked down with still turns remaining
 			@remain_proc            = hash[:remain_proc]
 
-			# Procs whenever the event value is incremented (for integers)
+			# Called whenever the event value is incremented (for integers)
 			@increment_proc			= hash[:increment_proc]
 
 
@@ -325,6 +331,27 @@ module GameData
 		def apply_field(battle)
 			value = battler.effects[@id]
 			@apply_proc.call(battle, value) if @apply_proc
+		end
+
+		### Methods dealing with the effect going away
+		def disable_battler(battle, battler)
+			@disable_proc.call(battle, battler) if @disable_proc
+		end
+
+		def disable_position(battle, index)
+			position = battle.positions[index]
+			battler = battle.battlers[index]
+			return if battler.nil? || battler.fainted?
+			@disable_proc.call(battle, index, position, battler) if @disable_proc
+		end
+
+		def disable_side(battle, side)
+			teamName = battle.battlers[side.index].pbTeam
+			@disable_proc.call(battle, side, teamName) if @disable_proc
+		end
+
+		def disable_field(battle)
+			@disable_proc.call(battle) if @disable_proc
 		end
 
 		### Methods dealing with the effect remaining EOT

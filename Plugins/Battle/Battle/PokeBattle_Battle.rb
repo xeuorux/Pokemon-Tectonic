@@ -126,7 +126,7 @@ class PokeBattle_Battle
     return nil
   end
 
-    # moveIDOrIndex is either the index of the move on the user's move list (Integer)
+  # moveIDOrIndex is either the index of the move on the user's move list (Integer)
   # or it's the ID of the move to be used (Symbol)
   def forceUseMove(forcedMoveUser,moveIDOrIndex,target=-1,specialUsage=true,usageMessage=nil,moveUsageEffect=nil,showAbilitySplash=false)
     oldLastRoundMoved = forcedMoveUser.lastRoundMoved
@@ -159,11 +159,24 @@ class PokeBattle_Battle
     end
     pbJudge()
     return if @decision>0
-end
+  end
 
-def getBattleMoveInstanceFromID(move_id)
-  return PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(move_id))
-end
+  def getBattleMoveInstanceFromID(move_id)
+    return PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(move_id))
+  end
+
+  def allEffectHolders()
+    yield @field
+    @sides.each do |side|
+      yield side
+    end
+    @positions.each_with_index do |position,index|
+      yield position
+    end
+    eachBattler do |b|
+      yield b
+    end
+  end
   
   #=============================================================================
   # Messages and animations

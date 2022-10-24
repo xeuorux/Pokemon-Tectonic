@@ -43,12 +43,12 @@ class PokeBattle_Battler
 		end
 	end
 
-	def getAllEffectHolders()
+	def getReleventEffectHolders()
 		holders = [self,@battle.positions[@index],pbOwnSide,@battle.field]
 	end
 
 	def eachEffectAllLocations(onlyActive=false)
-		getAllEffectHolders().each do |effectHolder|
+		getReleventEffectHolders().each do |effectHolder|
 			effectHolder.eachEffect(onlyActive) do |effect,value,data|
 				yield effect,value,data
 			end

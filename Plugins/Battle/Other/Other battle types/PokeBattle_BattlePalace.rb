@@ -81,8 +81,7 @@ class PokeBattle_BattlePalace < PokeBattle_Battle
     thismove = thispkmn.moves[idxMove]
     return false if !thismove
     return false if thismove.pp<=0
-    if thispkmn.effects[PBEffects::ChoiceBand] &&
-       thismove.id!=thispkmn.effects[PBEffects::ChoiceBand] &&
+    if thispkmn.effectActive?(:ChoiceBand) && thismove.id != thispkmn.getMove(:ChoieBand).id
        thispkmn.hasActiveItem?(:CHOICEBAND)
       return false
     end
@@ -115,7 +114,7 @@ class PokeBattle_BattlePalace < PokeBattle_Battle
     category = 0
     atkpercent = 0
     defpercent = 0
-    if this_battler.effects[PBEffects::Pinch]
+    if !this_battler.effectActive?(:Pinch)
       atkpercent = @@BattlePalacePinchTable[nature][0]
       defpercent = atkpercent+@@BattlePalacePinchTable[nature][1]
     else
@@ -147,10 +146,10 @@ class PokeBattle_BattlePalace < PokeBattle_Battle
 
   def pbPinchChange(battler)
     return if !battler || battler.fainted?
-    return if battler.effects[PBEffects::Pinch] || battler.status == :SLEEP
+    return if battler.effectActive?(:Pinch) || battler.status == :SLEEP
     return if battler.hp > battler.totalhp / 2
     nature = battler.nature.id
-    battler.effects[PBEffects::Pinch] = true
+    battler.applyEffect(:Pinch)
     case nature
     when :QUIET, :BASHFUL, :NAIVE, :QUIRKY, :HARDY, :DOCILE, :SERIOUS
       pbDisplay(_INTL("{1} is eager for more!", battler.pbThis))
@@ -191,7 +190,7 @@ class PokeBattle_AI
     return _battlePalace_pbEnemyShouldWithdraw?(idxBattler) if !@battlePalace
     thispkmn = @battle.battlers[idxBattler]
     shouldswitch = false
-    if thispkmn.effects[PBEffects::PerishSong]==1
+    if thispkmn.effects[:PerishSong] == 1
       shouldswitch = true
     elsif !@battle.pbCanChooseAnyMove?(idxBattler) &&
        thispkmn.turnCount && thispkmn.turnCount>5

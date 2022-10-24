@@ -81,7 +81,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:baton_passed => true,
 	:is_mental => true,
-	:expire_proc => Proc.new { |battle, battler|
+	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis))
 	},
 	:sub_effects => [:ConfusionChance],
@@ -152,7 +152,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Disable Turns",
 	:type => :Integer,
 	:ticks_down => true,
-	:expire_proc => Proc.new { |battle, battler|
+	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} is no longer disabled!",battler.pbThis))
 	},
 	:is_mental => true,
@@ -181,7 +181,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
-	:expire_proc => Proc.new { |battle, battler|
+	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} can use items again!",battler.pbThis))
 		battler.pbItemTerrainStatBoostCheck
 	    battler.pbItemFieldEffectCheck
@@ -233,6 +233,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FlashFire,
 	:real_name => "Fired Up",
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("The power of {1}'s Fire-type moves rose!",battler.pbThis(true)))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -294,7 +297,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
-	:expire_proc => Proc.new { |battle, battler|
+	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} Heal Block wore off!",battler.pbThis))
 	},
 	:is_mental => true,
@@ -327,7 +330,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 			end
 		end
 	},
-	:expire_proc => Proc.new { |battle,battler|
+	:disable_proc => Proc.new { |battle,battler|
 		battle.pbDisplay(_INTL("{1}'s illusion wore off!",battler.pbThis))
 	},
 	:info_displayed => false,
@@ -434,7 +437,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
-	:expire_proc => Proc.new { |battle, battler|
+	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} electromagnetism wore off!",battler.pbThis))
 	},
 })
@@ -536,6 +539,13 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Perish Song Turns",
 	:type => :Integer,
 	:baton_passed => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} heard the Perish Song! It will faint in {2} turns!",battler.pbThis,value))
+	},
+	:expire_proc => Proc.new { |battle, battler|
+		battler.pbReduceHP(battler.hp)
+		battler.pbFaint if battler.fainted?
+	},
 	:sub_effects => [:PerishSongUser],
 })
 
@@ -649,7 +659,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Slow Start Turns",
 	:type => :Integer,
 	:ticks_down => true,
-	:expire_proc => Proc.new { |battle, battler|
+	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} finally got its act together!",battler.pbThis))
 	}
 })
@@ -706,7 +716,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Taunted Turns",
 	:type => :Integer,
 	:ticks_down => true,
-	:expire_proc => Proc.new { |battle, battler|
+	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} taunt wore off.",battler.pbThis))
 	},
 	:is_mental => true,
@@ -722,7 +732,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 		next 0 if battler.isSpecies?(:GENGAR) && battler.mega?
 		next value
 	},
-	:expire_proc => Proc.new { |battle, battler|
+	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} electromagnetism wore off!",battler.pbThis))
 	},
 })
@@ -768,7 +778,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:trapping => true,
-	:expire_proc => Proc.new { |battle,battler|
+	:disable_proc => Proc.new { |battle,battler|
 		moveName = GameData::Move.get(battler.effects[:TrappingMove]).name
         battle.pbDisplay(_INTL("{1} was freed from {2}!",battler.pbThis,moveName))
 	},
@@ -852,7 +862,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:remain_proc => Proc.new { |battle, battler,value|
 		battle.pbDisplay(_INTL("{1} is making an uproar!",battler.pbThis))
 	},
-	:expire_proc => Proc.new { |battle, battler|
+	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} calmed down.",battler.pbThis))
 	},
 })
@@ -914,7 +924,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Jaw Lock",
 	:baton_passed => true,
 	:trapping => true,
-	:expire_proc => Proc.new { |battle, battler|
+	:disable_proc => Proc.new { |battle, battler|
 		# Disable jaw lock on all other battlers who were locked with this
 		battle.eachBattler do |b|
 			if b.pointsAt?(:JawLockUser,battler)
@@ -1034,7 +1044,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:baton_passed => true,
 	:is_mental => true,
-	:expire_proc => Proc.new { |battle, battler|
+	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis))
 	},
 	:sub_effects => [:CharmChance],
@@ -1183,7 +1193,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 		battle.pbDisplay(_INTL("{1} sees everything!",battler.pbThis))
 		battle.pbDisplay(_INTL("It's protected from half of all attack damage for #{value} turns!",battler.pbThis))
 	},
-	:expire_proc => Proc.new { |battle, battler|
+	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1}'s Primeval Detect wore off!",battler.pbThis))
 	},
 })

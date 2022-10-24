@@ -1,6 +1,6 @@
 # This assumes that each user of the module has an instance variable called @effects
 # and a reference to the battle called @battle
-# You may also define procs called @apply_proc, @expire_proc, and @remain_proc
+# You may also define procs called @apply_proc, @disable_proc, @expire_proc, @remain_proc, and @increment_proc
 module EffectHolder
     def eachEffect(onlyActive=false)
         @effects.each do |effect, value|
@@ -63,7 +63,8 @@ module EffectHolder
         end
     end
 
-    # Returns whether the value is either already at the goal or is at the goal after ticking down
+    # Returns true if the value is either already at the goal or is at the goal after ticking down
+    # otherwise false
     def tickDown(effect,goal=nil)
         effectData = GameData::BattleEffect.get(effect)
         validateInteger(effectData)
@@ -118,6 +119,8 @@ module EffectHolder
     def processEffectsEOR()
         changedEffects = {}
         eachEffect(true) do |effect, value, data|
+            # Active end of round effects
+            @eor_proc.call(data)
             # Tick down active effects that tick down
             tickDownAndProc(effect) if effectData.ticks_down
             # Disable effects that reset end of round

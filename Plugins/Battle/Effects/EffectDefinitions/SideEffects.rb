@@ -32,7 +32,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:apply_proc => Proc.new { |battle,side,teamName,value|
 		battle.pbDisplay(_INTL("{1}'s Defense is raised!",teamName))
 	},
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s Reflect wore off!",teamName))
 	}
 })
@@ -46,7 +46,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:apply_proc => Proc.new { |battle,side,teamName,value|
 		battle.pbDisplay(_INTL("{1}'s Sp. Def is raised!",teamName))
 	},
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s Light Screen wore off!",teamName))
 	}
 })
@@ -60,7 +60,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:apply_proc => Proc.new { |battle,side,teamName,value|
 		battle.pbDisplay(_INTL("{1}'s Defense and Sp. Def are raised!",teamName))
 	},
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!",teamName))
 	}
 })
@@ -73,7 +73,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Lucky Chant Turns",
 	:type => :Integer,
 	:ticks_down => true,
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s is no longer protected by Lucky Chant!",teamName))
 	}
 })
@@ -82,7 +82,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Mist Turns",
 	:type => :Integer,
 	:ticks_down => true,
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s is no longer protected by Mist!",teamName))
 	}
 })
@@ -91,7 +91,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Safeguard Turns",
 	:type => :Integer,
 	:ticks_down => true,
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s is no longer protected by Safeguard!",teamName))
 	}
 })
@@ -155,7 +155,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Rainbow Turns",
 	:type => :Integer,
 	:ticks_down => true,
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("The Rainbow on {1}'s side dissapeared!",teamName))
 	}
@@ -175,7 +175,7 @@ GameData::BattleEffect.register_effect(:Side,{
 			b.applyFractionalDamage(1.0/8.0)
 		end
 	},
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("The Sea of Fire on {1}'s side dissapeared!",teamName))
 	}
@@ -185,7 +185,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Swamp Turns",
 	:type => :Integer,
 	:ticks_down => true,
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("The Swamp on {1}'s side dissapeared!",teamName))
 	}
@@ -226,7 +226,7 @@ GameData::BattleEffect.register_effect(:Side,{
 			battle.pbDisplay(_INTL("{1} layers of Poison Spikes were scattered all around {2}'s feet!", increment, teamName))
 		end
 	},
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("The Poison Spikes around {1}'s feet were swept aside!",teamName))
 	}
@@ -250,7 +250,7 @@ GameData::BattleEffect.register_effect(:Side,{
 			battle.pbDisplay(_INTL("{1} layers of Flame Spikes were scattered all around {2}'s feet!", increment, teamName))
 		end
 	},
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("The Flame Spikes around {1}'s feet were swept aside!",teamName))
 	}
@@ -274,7 +274,7 @@ GameData::BattleEffect.register_effect(:Side,{
 			battle.pbDisplay(_INTL("{1} layers of Frost Spikes were scattered all around {2}'s feet!", increment, teamName))
 		end
 	},
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("The Frost Spikes around {1}'s feet were swept aside!",teamName))
 	}
@@ -332,7 +332,7 @@ GameData::BattleEffect.register_effect(:Side,{
 			battle.pbDisplay(_INTL("It will last for #{value-1} more turns!"))
 		end
 	},
-	:expire_proc => Proc.new { |battle,side,teamName|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s Tailwind petered out!",teamName))
 	}
 })

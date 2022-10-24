@@ -13,9 +13,8 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
     next false if user.index==target.index
     next false if type != :FIRE
     battle.pbShowAbilitySplash(target)
-    if !target.effects[PBEffects::FlashFire]
-      target.effects[PBEffects::FlashFire] = true
-      battle.pbDisplay(_INTL("The power of {1}'s Fire-type moves rose!",target.pbThis(true)))
+    if !target.effectActive?(:FlashFire)
+      target.applyEffect(:FlashFire)
     else
       battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
     end

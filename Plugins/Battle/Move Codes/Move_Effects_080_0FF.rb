@@ -2805,29 +2805,24 @@ class PokeBattle_Move_0E5 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
     failed = true
     targets.each do |b|
-      next if b.effects[PBEffects::PerishSong] > 0   # Heard it before
+      next if b.effectActive?(:PerishSong)
       failed = false
       break
     end
     if failed
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("But it failed, since everyone has heard the song already!"))
       return true
     end
     return false
   end
 
   def pbFailsAgainstTarget?(user,target)
-    return target.effects[PBEffects::PerishSong]>0   # Heard it before
+    return target.effectActive?(:PerishSong)
   end
 
   def pbEffectAgainstTarget(user,target)
-    target.effects[PBEffects::PerishSong]     = 4
-    target.effects[PBEffects::PerishSongUser] = user.index
-  end
-
-  def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
-    super
-    @battle.pbDisplay(_INTL("All Pokémon that hear the song will faint in three turns!"))
+    target.applyEffect(:PerishSong,3)
+    target.applyEffect(:PerishSongUser,user.index)
   end
 
   def getScore(score,user,target,skill=100)
