@@ -1590,8 +1590,8 @@ class PokeBattle_Move_0B7 < PokeBattle_Move
   def ignoresSubstitute?(user); return true; end
 
   def pbFailsAgainstTarget?(user,target)
-    if target.effects[PBEffects::Torment]
-      @battle.pbDisplay(_INTL("But it failed!"))
+    if target.effectActive?(:Torment)
+      @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis} is already tormented!"))
       return true
     end
     return true if pbMoveFailedAromaVeil?(user,target)
@@ -1599,9 +1599,7 @@ class PokeBattle_Move_0B7 < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user,target)
-    target.effects[PBEffects::Torment] = true
-    @battle.pbDisplay(_INTL("{1} was subjected to torment!",target.pbThis))
-    target.pbItemStatusCureCheck
+    target.applyEffect(:Torment)
   end
 
   def getScore(score,user,target,skill=100)
@@ -2504,8 +2502,8 @@ end
 class PokeBattle_Move_0DA < PokeBattle_Move
   def pbMoveFailed?(user,targets)
     return false if damagingMove?
-    if user.effects[PBEffects::AquaRing]
-      @battle.pbDisplay(_INTL("But it failed!"))
+    if user.effectActive?(:AquaRing)
+      @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already veiled with water!"))
       return true
     end
     return false
@@ -2513,15 +2511,13 @@ class PokeBattle_Move_0DA < PokeBattle_Move
 
   def pbEffectGeneral(user)
     return if damagingMove?
-    user.effects[PBEffects::AquaRing] = true
-    @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
+    user.applyEffect(:AquaRing)
   end
   
   def pbEffectAfterAllHits(user,target)
     return unless damagingMove?
-    return if user.effects[PBEffects::AquaRing]
-    user.effects[PBEffects::AquaRing] = true
-    @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
+    return if user.effectActive?(:AquaRing)
+    user.applyEffect(:AquaRing)
   end
 
   def getScore(score,user,target,skill=100)
@@ -3160,7 +3156,7 @@ class PokeBattle_Move_0EF < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
     if target.effectActive?(:MeanLook)
-      @battle.pbDisplay(_INTL("But it failed, since the target already can't escape!"))
+      @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} already can't escape!"))
       return true
     end
     return false

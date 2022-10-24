@@ -1,7 +1,7 @@
 class PokeBattle_Battler
 	include EffectHolder
 
-	def applyEffect(effect, value = ni, ignoreFainted=false)
+	def applyEffect(effect, value = nil, ignoreFainted=false)
 		return if fainted? && !ignoreFainted
 		super(effect,value)
 		echoln("[BATTLER EFFECT] Effect #{getName(effect)} applied to battler #{pbThis(true)}")

@@ -312,16 +312,19 @@ module GameData
 			position = battle.positions[index]
 			battler = battle.battlers[index]
 			return if battler.nil? || battler.fainted?
-			@apply_proc.call(battle, index, position, battler) if @apply_proc
+			value = battler.effects[@id]
+			@apply_proc.call(battle, index, position, battler, value) if @apply_proc
 		end
 
 		def apply_side(battle, side)
 			teamName = battle.battlers[side.index].pbTeam
-			@apply_proc.call(battle, side, teamName) if @apply_proc
+			value = battler.effects[@id]
+			@apply_proc.call(battle, side, teamName, value) if @apply_proc
 		end
 
 		def apply_field(battle)
-			@apply_proc.call(battle) if @apply_proc
+			value = battler.effects[@id]
+			@apply_proc.call(battle, value) if @apply_proc
 		end
 
 		### Methods dealing with the effect remaining EOT

@@ -22,7 +22,7 @@ module EffectHolder
             raise _INTL("Value provided for effect #{effectData.real_name} is invalid")
 		end
         @effects[effect] = value
-        @apply_proc.call(effectData) if @apply_proc
+        @apply_proc.call(effectData,value) if @apply_proc
 	end
 
     def incrementEffect(effect,incrementAmount=1)

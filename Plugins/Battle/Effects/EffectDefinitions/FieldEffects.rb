@@ -91,7 +91,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:type => :Integer,
     :ticks_down => true,
 	:is_room => true,
-	:apply_proc => Proc.new { |battle|
+	:apply_proc => Proc.new { |battle, value|
 		battle.pbDisplay(_INTL("A bizarre area appeared! Pokémon's held items lose their effects!")
 	},
     :expire_proc => Proc.new { |battle,battler|
@@ -107,7 +107,7 @@ GameData::BattleEffect.register_effect(:Field,{
     :type => :Integer,
     :ticks_down => true,
 	:is_room => true,
-	:apply_proc => Proc.new { |battle|
+	:apply_proc => Proc.new { |battle, value|
 		battle.pbDisplay(_INTL("A tricky area appeared! Speed functions in reverse!")
 	},
     :expire_proc => Proc.new { |battle,battler|
@@ -121,7 +121,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:type => :Integer,
     :ticks_down => true,
 	:is_room => true,
-	:apply_proc => Proc.new { |battle|
+	:apply_proc => Proc.new { |battle, value|
 		battle.pbDisplay(_INTL("A wonderous area appeared! Defense and Sp. Def stats are swapped!")
 	},
     :expire_proc => Proc.new { |battle|
@@ -135,7 +135,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:type => :Integer,
     :ticks_down => true,
 	:is_room => true,
-	:apply_proc => Proc.new { |battle|
+	:apply_proc => Proc.new { |battle, value|
 		battle.pbDisplay(_INTL("A puzzling area appeared! Attack and Sp. Atk are swapped!")
 	},
     :expire_proc => Proc.new { |battle|
@@ -149,7 +149,7 @@ GameData::BattleEffect.register_effect(:Field,{
 	:type => :Integer,
     :ticks_down => true,
 	:is_room => true,
-	:apply_proc => Proc.new { |battle|
+	:apply_proc => Proc.new { |battle, value|
 		battle.pbDisplay(_INTL("An odd area appeared! Offensive and Defensive stats are swapped!")
 	},
     :expire_proc => Proc.new { |battle|

@@ -1342,7 +1342,7 @@ end
 #===============================================================================
 class PokeBattle_Move_54A < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
-		if target.effects[PBEffects::Curse]
+		if target.effectActive?(:Curse)
 			@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already cursed!"))
 			return true
 		end
@@ -1350,8 +1350,7 @@ class PokeBattle_Move_54A < PokeBattle_Move
 	end
 
 	def pbEffectAgainstTarget(user,target)
-		target.effects[PBEffects::Curse] = true
-		@battle.pbDisplay(_INTL("{1} was cursed!", target.pbThis))
+		target.applyEffect(:Curse)
 	end
 end
 
@@ -2224,8 +2223,8 @@ end
 class PokeBattle_Move_579 < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
 		if target.paralyzed?
-			if target.effects[PBEffects::Curse]
-				@battle.pbDisplay(_INTL("But it failed, since the target is already cursed!"))
+			if target.effectActive?(:Curse)
+				@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already cursed!"))
 			end
 		else
 			return !target.pbCanParalyze?(user,true,self)
@@ -2234,8 +2233,7 @@ class PokeBattle_Move_579 < PokeBattle_Move
   
 	def pbEffectAgainstTarget(user,target)
 		if target.paralyzed?
-			@battle.pbDisplay(_INTL("{1} laid a curse on {2}!",user.pbThis,target.pbThis(true)))
-    		target.effects[PBEffects::Curse] = true
+			target.applyEffect(:Curse)
 		else
 			target.pbParalyze(user)
 		end

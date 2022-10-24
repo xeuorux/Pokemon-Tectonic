@@ -10,8 +10,6 @@ PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_TORMENTED,
 PokeBattle_Battle::BattlerEnterCurseEffect.add(:CURSE_TORMENTED,
 	proc { |curse_policy,battler,battle|
 		next if battler.opposes?
-		battler.effects[PBEffects::Torment] = true
-		battle.pbDisplaySlower(_INTL("{1} was subjected to torment!",battler.pbThis))
-		battler.pbItemStatusCureCheck
+		battler.applyEffect(:Torment)
 	}
 )

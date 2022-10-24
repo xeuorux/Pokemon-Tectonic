@@ -251,8 +251,8 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
   
     def pbFailsAgainstTarget?(user,target)
-      if user.pbHasType?(:GHOST) && target.effects[PBEffects::Curse]
-        @battle.pbDisplay(_INTL("But it failed!"))
+      if user.pbHasType?(:GHOST) && target.effectActive?(:Curse)
+        @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already cursed!"))
         return true
       end
       return false
@@ -278,9 +278,9 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def pbEffectAgainstTarget(user,target)
       return if !user.pbHasType?(:GHOST)
       # Ghost effect
-      @battle.pbDisplay(_INTL("{1} cut its own HP and laid a curse on {2}!",user.pbThis,target.pbThis(true)))
-      target.effects[PBEffects::Curse] = true
+      @battle.pbDisplay(_INTL("{1} cut its own HP!",user.pbThis))
       user.applyFractionalDamage(1.0/4.0,false)
+      target.applyEffect(:Curse)
     end
   
     def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)

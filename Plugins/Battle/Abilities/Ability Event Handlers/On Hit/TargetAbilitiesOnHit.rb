@@ -404,10 +404,9 @@ BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
 BattleHandlers::TargetAbilityOnHit.add(:CURSEDTAIL,
   proc { |ability,user,target,move,battle|
     next if !move.pbContactMove?(user)
-    next if user.effects[PBEffects::Curse] == true || battle.pbRandom(100)>=30
+    next if user.effectActive?(:Curse) || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
-    battle.pbDisplay(_INTL("{1} laid a curse on {2}!",target.pbThis(true),user.pbThis))
-    user.effects[PBEffects::Curse] = true
+    user.applyEffect(:Curse)
     battle.pbHideAbilitySplash(target)
   }
 )

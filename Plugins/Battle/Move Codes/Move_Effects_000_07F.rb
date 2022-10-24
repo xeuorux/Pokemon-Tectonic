@@ -37,7 +37,7 @@ end
 class PokeBattle_Move_004 < PokeBattle_Move
     def pbFailsAgainstTarget?(user,target)
         if target.effectActive?(:Yawn)
-            @battle.pbDisplay(_INTL("But it failed, since the target is already drowsy!"))
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already drowsy!"))
             return true
         end
         return true if !target.pbCanSleep?(user,true,self)
@@ -524,8 +524,7 @@ class PokeBattle_Move_021 < PokeBattle_StatUpMove
   end
 
   def pbEffectGeneral(user)
-    user.effects[PBEffects::Charge] = 2
-    @battle.pbDisplay(_INTL("{1} began charging power!",user.pbThis))
+    user.applyEffect(:Charge,2)
     super
   end
 
@@ -1594,16 +1593,15 @@ end
 #===============================================================================
 class PokeBattle_Move_05B < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    if user.pbOwnSide.effects[PBEffects::Tailwind]>0
-      @battle.pbDisplay(_INTL("But it failed!"))
+    if user.pbOwnSide.effectActive?(:Tailwind)
+      @battle.pbDisplay(_INTL("But it failed, since there is already a tailwind blowing!"))
       return true
     end
     return false
   end
 
   def pbEffectGeneral(user)
-    user.pbOwnSide.effects[PBEffects::Tailwind] = 4
-    @battle.pbDisplay(_INTL("The Tailwind blew from behind {1}!",user.pbTeam(true)))
+    user.pbOwnSide.applyEffect(:Tailwind,4)
   end
 
   def getScore(score,user,target,skill=100)

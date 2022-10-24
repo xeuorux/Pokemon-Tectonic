@@ -29,7 +29,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:type => :Integer,
 	:ticks_down => true,
 	:is_screen => true,
-	:apply_proc => Proc.new { |battle,side,teamName|
+	:apply_proc => Proc.new { |battle,side,teamName,value|
 		battle.pbDisplay(_INTL("{1}'s Defense is raised!",teamName))
 	},
 	:expire_proc => Proc.new { |battle,side,teamName|
@@ -43,7 +43,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:type => :Integer,
 	:ticks_down => true,
 	:is_screen => true,
-	:apply_proc => Proc.new { |battle,side,teamName|
+	:apply_proc => Proc.new { |battle,side,teamName,value|
 		battle.pbDisplay(_INTL("{1}'s Sp. Def is raised!",teamName))
 	},
 	:expire_proc => Proc.new { |battle,side,teamName|
@@ -57,7 +57,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:type => :Integer,
 	:ticks_down => true,
 	:is_screen => true,
-	:apply_proc => Proc.new { |battle,side,teamName|
+	:apply_proc => Proc.new { |battle,side,teamName,value|
 		battle.pbDisplay(_INTL("{1}'s Defense and Sp. Def are raised!",teamName))
 	},
 	:expire_proc => Proc.new { |battle,side,teamName|
@@ -283,7 +283,7 @@ GameData::BattleEffect.register_effect(:Side,{
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :StealthRock,
 	:real_name => "Stealth Rock",
-	:apply_proc => Proc.new { |battle,side,teamName|
+	:apply_proc => Proc.new { |battle,side,teamName,value|
 		battle.pbDisplay(_INTL("Pointed stones float in the air around {1}!",teamName))
 	},
 })
@@ -291,7 +291,7 @@ GameData::BattleEffect.register_effect(:Side,{
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :StickyWeb,
 	:real_name => "Sticky Web",
-	:apply_proc => Proc.new { |battle,side,teamName|
+	:apply_proc => Proc.new { |battle,side,teamName,value|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("A sticky web has been laid out beneath {1}'s feet!",teamName))
 	},
@@ -300,7 +300,7 @@ GameData::BattleEffect.register_effect(:Side,{
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :FeatherWard,
 	:real_name => "Feather Ward",
-	:apply_proc => Proc.new { |battle,side,teamName|
+	:apply_proc => Proc.new { |battle,side,teamName,value|
 		battle.pbDisplay(_INTL("Sharp feathers float in the air around {1}!",teamName))
 	},
 })
@@ -324,6 +324,14 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Tailwind Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:apply_proc => Proc.new { |battle,side,teamName,value|
+		battle.pbDisplay(_INTL("A Tailwind blew from behind {1}!",teamName))
+		if value > 99
+			battle.pbDisplay(_INTL("It will last forever!"))
+		else
+			battle.pbDisplay(_INTL("It will last for #{value-1} more turns!"))
+		end
+	},
 	:expire_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s Tailwind petered out!",teamName))
 	}
@@ -332,6 +340,9 @@ GameData::BattleEffect.register_effect(:Side,{
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :EmpoweredEmbargo,
 	:real_name => "Items Supressed",
+	:apply_proc => Proc.new { |battle,side,teamName,value|
+		battle.pbDisplay(_INTL("{1} can no longer use items!",teamName))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Side,{

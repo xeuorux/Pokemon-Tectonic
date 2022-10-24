@@ -2,6 +2,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :AquaRing,
 	:real_name => "Aqua Ring",
 	:baton_passed => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",battler.pbThis))
+	},
 	:eor_proc => Proc.new { |battler,battle,value|
 		next if !battler.canHeal?
 		healAmount = battler.totalhp / 8.0
@@ -60,6 +63,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:resets_battlers_eot => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} began charging power!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -101,6 +107,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Curse,
 	:real_name => "Cursed",
 	:baton_passed => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} is cursed!",battler.pbThis))
+	},
 	:eor_proc => Proc.new { |battle,battler,value|
 		if battler.takesIndirectDamage?
 			battle.pbDisplay(_INTL("{1} is afflicted by the curse!",battler.pbThis))
@@ -156,7 +165,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Move,
 	:apply_proc => Proc.new { |battle, battler, value|
 		moveName = GameData::Move.get(value).name
-		battle.pbDisplay(_INTL("{1}'s {2} was disabled!",user.pbThis,moveName)
+		battle.pbDisplay(_INTL("{1}'s {2} was disabled!",battler.pbThis,moveName))
 	},
 })
 
@@ -729,6 +738,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Torment,
 	:real_name => "Tormented",
 	:is_mental => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} was subjected to torment!",battler.pbThis))
+		battler.pbItemStatusCureCheck
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1092,6 +1105,13 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ExtraTurns,
 	:real_name => "Extra Turns",
 	:type => :Integer,
+	:apply_proc => Proc.new { |battle, battler, value|
+		if value == 1
+			battle.pbDisplay(_INTL("{1} gained an extra attack!",battler.pbThis))
+		else
+			battle.pbDisplay(_INTL("{1} gained {2} extra attacks!",battler.pbThis, value))
+		end
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1103,16 +1123,26 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :EmpoweredEndure,
 	:real_name => "Enduring Turns",
 	:type => :Integer,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} braced itself!",battler.pbThis))
+		battle.pbDisplay(_INTL("It will endure the next #{value} hits which would faint it!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :EmpoweredLaserFocus,
 	:real_name => "Laser Focus",
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} concentrated with extreme intensity!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :EmpoweredDestinyBond,
-	:real_name => "Destiny Bonded",
+	:real_name => "Empowered Bond",
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("Attacks against {1} will incur half recoil!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1149,6 +1179,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Halving Damage Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} sees everything!",battler.pbThis))
+		battle.pbDisplay(_INTL("It's protected from half of all attack damage for #{value} turns!",battler.pbThis))
+	},
 	:expire_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1}'s Primeval Detect wore off!",battler.pbThis))
 	},
@@ -1229,7 +1263,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:protection_info => {
 		:hit_proc => Proc.new { |user, target, move, battle|
 			if move.physicalMove?
-				@battle.pbDisplay(_INTL('{1} was hurt!', user.pbThis))
+				battle.pbDisplay(_INTL('{1} was hurt!', user.pbThis))
 				user.applyFractionalDamage(1.0 / 8.0)
 			end
 		}
@@ -1243,7 +1277,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:protection_info => {
 		:hit_proc => Proc.new { |user, target, move, battle|
 			if move.specialMove?
-				@battle.pbDisplay(_INTL('{1} was hurt!', user.pbThis))
+				battle.pbDisplay(_INTL('{1} was hurt!', user.pbThis))
 				uuserser.applyFractionalDamage(1.0 / 8.0)
 			end
 		}
