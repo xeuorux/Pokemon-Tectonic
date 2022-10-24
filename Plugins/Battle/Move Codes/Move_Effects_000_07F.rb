@@ -29,25 +29,6 @@ end
 # Puts the target to sleep.
 #===============================================================================
 class PokeBattle_Move_003 < PokeBattle_SleepMove
-  def pbMoveFailed?(user,targets)
-    if Settings::MECHANICS_GENERATION >= 7 && @id == :DARKVOID
-      if !user.isSpecies?(:DARKRAI) && !user.transformedInto?(:DARKRAI)
-        @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis))
-        return true
-      end
-    end
-    return false
-  end
-
-  def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
-    return if numHits == 0
-    return if user.fainted? || user.transformed?
-    return if @id != :RELICSONG
-    return if !user.isSpecies?(:MELOETTA)
-    return if user.hasActiveAbility?(:SHEERFORCE) && @effectChance>0
-    newForm = (user.Form+1)%2
-    user.pbChangeForm(newForm,_INTL("{1} transformed!",user.pbThis))
-  end
 end
 
 #===============================================================================
@@ -1132,12 +1113,12 @@ class PokeBattle_Move_047 < PokeBattle_TargetStatDownMove
 end
 
 #===============================================================================
-# Decreases the target's evasion by 1 stage OR 2 stages. (Sweet Scent)
+# Decreases the target's evasion by 2 stages. (Sweet Scent)
 #===============================================================================
 class PokeBattle_Move_048 < PokeBattle_TargetStatDownMove
   def initialize(battle,move)
     super
-    @statDown = [:EVASION, (Settings::MECHANICS_GENERATION >= 6) ? 2 : 1]
+    @statDown = [:EVASION, 2]
   end
 end
 
@@ -1262,9 +1243,7 @@ end
 class PokeBattle_Move_04D < PokeBattle_TargetStatDownMove
   def initialize(battle,move)
     super
-    inc = 2
-    inc = 1 if @id == :STRINGSHOT && Settings::MECHANICS_GENERATION <= 5
-    @statDown = [:SPEED,inc]
+    @statDown = [:SPEED,2]
   end
 end
 
@@ -1287,11 +1266,7 @@ class PokeBattle_Move_04E < PokeBattle_TargetStatDownMove
     end
     if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
       @battle.pbShowAbilitySplash(target)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
-      else
-        @battle.pbDisplay(_INTL("{1}'s {2} prevents romance!",target.pbThis,target.abilityName))
-      end
+      @battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
       @battle.pbHideAbilitySplash(target)
       return true
     end
@@ -1753,7 +1728,7 @@ class PokeBattle_Move_05E < PokeBattle_Move
     userTypes = user.pbTypes(true)
     @newTypes = []
     user.eachMoveWithIndex do |m,i|
-      break if Settings::MECHANICS_GENERATION >= 6 && i>0
+      break if i > 0
       next if GameData::Type.get(m.type).pseudo_type
       next if userTypes.include?(m.type)
       @newTypes.push(m.type) if !@newTypes.include?(m.type)
@@ -2123,8 +2098,7 @@ class PokeBattle_Move_067 < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user,target)
-    if !target.ability ||
-       (user.ability == target.ability && Settings::MECHANICS_GENERATION <= 5)
+    if !target.ability
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2152,12 +2126,7 @@ class PokeBattle_Move_067 < PokeBattle_Move
       @battle.pbReplaceAbilitySplash(user)
       @battle.pbReplaceAbilitySplash(target)
     end
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      @battle.pbDisplay(_INTL("{1} swapped Abilities with its target!",user.pbThis))
-    else
-      @battle.pbDisplay(_INTL("{1} swapped its {2} Ability with its target's {3} Ability!",
-         user.pbThis,target.abilityName,user.abilityName))
-    end
+    @battle.pbDisplay(_INTL("{1} swapped Abilities with its target!",user.pbThis))
     if user.opposes?(target)
       @battle.pbHideAbilitySplash(user)
       @battle.pbHideAbilitySplash(target)
@@ -2322,17 +2291,8 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
     end
     if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
       @battle.pbShowAbilitySplash(target)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("But it failed to affect {1}!",target.pbThis(true)))
-      else
-        @battle.pbDisplay(_INTL("But it failed to affect {1} because of its {2}!",
-           target.pbThis(true),target.abilityName))
-      end
+      @battle.pbDisplay(_INTL("But it failed to affect {1}!",target.pbThis(true)))
       @battle.pbHideAbilitySplash(target)
-      return true
-    end
-    if Settings::MECHANICS_GENERATION >= 7 && @id == :SHEERCOLD && target.pbHasType?(:ICE)
-      @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
     return false
@@ -2341,7 +2301,6 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
   def pbAccuracyCheck(user,target)
     return true if user.boss
     acc = @accuracy+user.level-target.level
-    acc -= 10 if Settings::MECHANICS_GENERATION >= 7 && @id == :SHEERCOLD && !user.pbHasType?(:ICE)
     return @battle.pbRandom(100)<acc
   end
 
@@ -2547,15 +2506,30 @@ class PokeBattle_Move_076 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# Puts the target to sleep, but only if the user is Darkrai. (Dark Void)
 #===============================================================================
-class PokeBattle_Move_077 < PokeBattle_Move
+class PokeBattle_Move_077 < PokeBattle_SleepMove
+  def pbMoveFailed?(user,targets)
+    if !user.isSpecies?(:DARKRAI) && !user.transformedInto?(:DARKRAI)
+      @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis))
+      return true
+    end
+    return false
+  end
 end
 
 #===============================================================================
-# (Currently unused.)
+# Has a chance to put the target to sleep. Swaps form if the user is Meloetta.
 #===============================================================================
-class PokeBattle_Move_078 < PokeBattle_Move
+class PokeBattle_Move_078 < PokeBattle_SleepMove
+  def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
+    return if numHits == 0
+    return if user.fainted? || user.transformed?
+    return if !user.isSpecies?(:MELOETTA)
+    return if user.hasActiveAbility?(:SHEERFORCE)
+    newForm = (user.Form + 1) % 2
+    user.pbChangeForm(newForm,_INTL("{1} transformed!",user.pbThis))
+  end
 end
 
 #===============================================================================
@@ -2656,7 +2630,7 @@ end
 # Burn's halving of Attack is negated (new mechanics).
 #===============================================================================
 class PokeBattle_Move_07E < PokeBattle_Move
-  def damageReducedByBurn?; return Settings::MECHANICS_GENERATION <= 5; end
+  def damageReducedByBurn?; return false; end
 
   def pbBaseDamage(baseDmg,user,target)
     baseDmg *= 2 if user.pbHasAnyStatus?

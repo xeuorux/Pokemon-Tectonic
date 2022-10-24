@@ -4,6 +4,7 @@ class PokeBattle_Battler
 	def applyEffect(effect, value = ni, ignoreFainted=false)
 		return if fainted? && !ignoreFainted
 		super(effect,value)
+		echoln("[BATTLER EFFECT] Effect #{getName(effect)} applied to battler #{pbThis(true)}")
 	end
 
 	def disableEffect(effect, ignoreFainted=false)

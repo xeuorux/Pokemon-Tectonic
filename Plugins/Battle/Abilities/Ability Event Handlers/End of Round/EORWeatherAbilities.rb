@@ -4,11 +4,7 @@ BattleHandlers::EORWeatherAbility.add(:ICEBODY,
     next if !battler.canHeal?
     battle.pbShowAbilitySplash(battler)
     battler.pbRecoverHP(battler.totalhp/16)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
-    end
+    battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -19,11 +15,7 @@ BattleHandlers::EORWeatherAbility.add(:RAINDISH,
     next if !battler.canHeal?
     battle.pbShowAbilitySplash(battler)
     battler.pbRecoverHP(battler.totalhp/16)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
-    end
+    battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )

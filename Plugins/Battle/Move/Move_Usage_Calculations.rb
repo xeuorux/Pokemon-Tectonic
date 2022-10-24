@@ -294,8 +294,14 @@ class PokeBattle_Move
     #=============================================================================
     # Additional effect chance
     #=============================================================================
-    def immuneToAdditionalEffects(user,target,effectChance=0)
-        return true if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
+    def immuneToAdditionalEffects(user,target,effectChance=0,showMessages=false)
+        if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
+            if showMessages
+                battle.pbShowAbilitySplash(target)
+                battle.pbHideAbilitySplash(target)
+            end
+            return true
+        end
         return true if target.effectActive?(:Enlightened)
         return false
     end

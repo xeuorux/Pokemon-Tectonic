@@ -12,7 +12,7 @@ BattleHandlers::AccuracyCalcUserAbility.add(:COMPOUNDEYES,
   
   BattleHandlers::AccuracyCalcUserAbility.add(:KEENEYE,
     proc { |ability,mods,user,target,move,type|
-      mods[:evasion_stage] = 0 if mods[:evasion_stage] > 0 && Settings::MECHANICS_GENERATION >= 6
+      mods[:evasion_stage] = 0 if mods[:evasion_stage] > 0
     }
   )
   

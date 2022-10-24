@@ -3,14 +3,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINT,
     next if !target.damageState.critical
     next if !target.pbCanRaiseStatStage?(:ATTACK,target)
     battle.pbShowAbilitySplash(target)
-    target.stages[:ATTACK] = 6
-    battle.pbCommonAnimation("StatUp",target)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} maxed its {2}!",target.pbThis,GameData::Stat.get(:ATTACK).name))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} maxed its {3}!",
-         target.pbThis,target.abilityName,GameData::Stat.get(:ATTACK).name))
-    end
+    target.pbMaximizeStatStage(:ATTACK,target)
     battle.pbHideAbilitySplash(target)
   }
 )
@@ -21,14 +14,8 @@ BattleHandlers::TargetAbilityOnHit.add(:CUTECHARM,
     next if !move.pbContactMove?(user)
     next if battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
-    if user.pbCanAttract?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      msg = nil
-      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} made {3} fall in love!",target.pbThis,
-           target.abilityName,user.pbThis(true))
-      end
-      user.pbAttract(target,msg)
+    if user.pbCanAttract?(target,true) && user.affectedByContactEffect?
+      user.pbAttract(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -80,8 +67,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
             !target.pbCanRaiseStatStage?(:SPEED, target)
     battle.pbShowAbilitySplash(target)
     target.pbLowerStatStageByAbility(:DEFENSE, 1, target, false)
-    target.pbRaiseStatStageByAbility(:SPEED,
-       (Settings::MECHANICS_GENERATION >= 7) ? 2 : 1, target, false)
+    target.pbRaiseStatStageByAbility(:SPEED, 2, target, false)
     battle.pbHideAbilitySplash(target)
   }
 )
@@ -95,18 +81,13 @@ BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
       dampBattler = battle.pbCheckGlobalAbility(:DAMP)
       if dampBattler
         battle.pbShowAbilitySplash(dampBattler)
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          battle.pbDisplay(_INTL("{1} cannot use {2}!",target.pbThis,target.abilityName))
-        else
-          battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
-             target.pbThis,target.abilityName,dampBattler.pbThis(true),dampBattler.abilityName))
-        end
+        battle.pbDisplay(_INTL("{1} cannot use {2}!",target.pbThis,target.abilityName))
         battle.pbHideAbilitySplash(dampBattler)
         battle.pbHideAbilitySplash(target)
         next
       end
     end
-    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) && user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if user.takesIndirectDamage?(true) && user.affectedByContactEffect?(true)
       battle.pbDisplay(_INTL("{1} was caught in the aftermath!",user.pbThis))
       b.applyFractionalDamage(1.0/4.0)
     end
@@ -118,13 +99,8 @@ BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
   proc { |ability,user,target,move,battle|
     next if !target.fainted? || user.dummy
     battle.pbShowAbilitySplash(target)
-    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
-           target.pbThis(true),target.abilityName))
-      end
+    if user.takesIndirectDamage?(true)
+      battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
       oldHP = user.hp
       damageTaken = target.damageState.hpLost
       damageTaken /= 4 if target.boss?
@@ -141,14 +117,9 @@ BattleHandlers::TargetAbilityOnHit.add(:STATIC,
   proc { |ability,user,target,move,battle|
     next if user.paralyzed? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
-    if user.pbCanParalyze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      msg = nil
-      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} numbed {3}! It may be unable to move!",
-           target.pbThis,target.abilityName,user.pbThis(true))
-      end
-      user.pbParalyze(target,msg)
+    if user.pbCanParalyze?(target,true) &&
+       user.affectedByContactEffect?(true)
+      user.pbParalyze(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -167,15 +138,9 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
     next if !regularMove || (regularMove.pp==0 && regularMove.total_pp>0)
     next if battle.pbRandom(100)>=60
     battle.pbShowAbilitySplash(target)
-    if !move.pbMoveFailedAromaVeil?(target,user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      user.effects[PBEffects::Disable]     = 3
-      user.effects[PBEffects::DisableMove] = regularMove.id
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s {2} was disabled!",user.pbThis,regularMove.name))
-      else
-        battle.pbDisplay(_INTL("{1}'s {2} was disabled by {3}'s {4}!",
-           user.pbThis,regularMove.name,target.pbThis(true),target.abilityName))
-      end
+    if !move.pbMoveFailedAromaVeil?(target,user,true)
+      user.applyEffect(:Diable,3)
+      user.applyEffect(:DisableMove,regularMove.id)
       battle.pbHideAbilitySplash(target)
       user.pbItemStatusCureCheck
     end
@@ -190,17 +155,12 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
     next if user.unstoppableAbility? || user.ability == ability
     oldAbil = nil
     battle.pbShowAbilitySplash(target) if user.opposes?(target)
-    if user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if user.affectedByContactEffect?(true)
       oldAbil = user.ability
       battle.pbShowAbilitySplash(user,true,false) if user.opposes?(target)
       user.ability = ability
       battle.pbReplaceAbilitySplash(user) if user.opposes?(target)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s Ability became {2}!",user.pbThis,user.abilityName))
-      else
-        battle.pbDisplay(_INTL("{1}'s Ability became {2} because of {3}!",
-           user.pbThis,user.abilityName,target.pbThis(true)))
-      end
+      battle.pbDisplay(_INTL("{1}'s Ability became {2}!",user.pbThis,user.abilityName))
       battle.pbHideAbilitySplash(user) if user.opposes?(target)
     end
     battle.pbHideAbilitySplash(target) if user.opposes?(target)
@@ -212,13 +172,8 @@ BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
   proc { |ability,user,target,move,battle|
     next if !move.pbContactMove?(user)
     battle.pbShowAbilitySplash(target)
-    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) && user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
-           target.pbThis(true),target.abilityName))
-      end
+    if user.takesIndirectDamage?(true) && user.affectedByContactEffect?(true)
+      battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
       user.applyFractionalDamage(1.0/8.0)
     end
     battle.pbHideAbilitySplash(target)
@@ -232,13 +187,8 @@ BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
     next if !move.pbContactMove?(user)
     next if user.burned? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
-    if user.pbCanBurn?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      msg = nil
-      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} burned {3}! Its Attack is reduced!",target.pbThis,target.abilityName,user.pbThis(true))
-      end
-      user.pbBurn(target,msg)
+    if user.pbCanBurn?(target,true) && user.affectedByContactEffect?(true)
+      user.pbBurn(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -256,35 +206,20 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPORE,
     next if r==1 && user.poisoned?
     next if r==2 && user.paralyzed?
     battle.pbShowAbilitySplash(target)
-    if user.affectedByPowder?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if user.affectedByPowder?(true) &&
+       user.affectedByContactEffect?(true)
       case r
       when 0
-        if user.pbCanSleep?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-          msg = nil
-          if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            msg = _INTL("{1}'s {2} made {3} fall asleep!",target.pbThis,
-               target.abilityName,user.pbThis(true))
-          end
-          user.pbSleep(msg)
+        if user.pbCanSleep?(target,true)
+          user.pbSleep()
         end
       when 1
-        if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-          msg = nil
-          if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            msg = _INTL("{1}'s {2} poisoned {3}! Its Sp. Atk is reduced!",target.pbThis,
-               target.abilityName,user.pbThis(true))
-          end
-          user.pbPoison(target,msg)
+        if user.pbCanPoison?(target,true)
+          user.pbPoison(target)
         end
       when 2
-        if user.pbCanParalyze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-          msg = nil
-          if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            msg = _INTL("{1}'s {2} paralyzed {3}! It may be unable to move!",
-               target.pbThis,target.abilityName,user.pbThis(true))
-          end
-          user.pbParalyze(target,msg)
+        if user.pbCanParalyze?(target,true)
+          user.pbParalyze(target)
         end
       end
     end
@@ -297,13 +232,8 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
     next if !move.pbContactMove?(user)
     next if user.poisoned? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
-    if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      msg = nil
-      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} poisoned {3}! Its Sp. Atk is reduced!",target.pbThis,target.abilityName,user.pbThis(true))
-      end
-      user.pbPoison(target,msg)
+    if user.pbCanPoison?(target,true) && user.affectedByContactEffect?(true)
+      user.pbPoison(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -357,7 +287,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
       target.form = 0
       battle.scene.pbChangePokemon(target,target.pokemon)
       battle.scene.pbDamageAnimation(user)
-      if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      if user.takesIndirectDamage?(true)
         user.applyFractionalDamage(1.0/4.0)
       end
       if gulpform==1
@@ -399,7 +329,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
     next if failed
     oldAbil = -1
     battle.pbShowAbilitySplash(target) if user.opposes?(target)
-    if user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if user.affectedByContactEffect?(true)
       oldAbil = user.ability
       battle.pbShowAbilitySplash(user,true,false) if user.opposes?(target)
       user.ability = :WANDERINGSPIRIT
@@ -408,13 +338,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
         battle.pbReplaceAbilitySplash(user)
         battle.pbReplaceAbilitySplash(target)
       end
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s Ability became {2}!",user.pbThis,user.abilityName))
-      else
-        battle.pbDisplay(_INTL("{1}'s Ability became {2} because of {3}!",
-           user.pbThis,user.abilityName,target.pbThis(true)))
-      end
-
+      battle.pbDisplay(_INTL("{1}'s Ability became {2}!",user.pbThis,user.abilityName))
       battle.pbHideAbilitySplash(user)
     end
     battle.pbHideAbilitySplash(target) if user.opposes?(target)
@@ -430,13 +354,8 @@ BattleHandlers::TargetAbilityOnHit.add(:FEEDBACK,
   proc { |ability,user,target,move,battle|
     next if !move.specialMove?(user)
     battle.pbShowAbilitySplash(target)
-    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
-           target.pbThis(true),target.abilityName))
-      end
+    if user.takesIndirectDamage?(true)
+      battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
       user.applyFractionalDamage(1.0/8.0)
     end
     battle.pbHideAbilitySplash(target)
@@ -449,13 +368,8 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
     next if battle.pbRandom(100)>=30
     next if user.poisoned?
     battle.pbShowAbilitySplash(target)
-    if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      msg = nil
-      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} poisoned {3}! {4}}!",target.pbThis,target.abilityName,user.pbThis(true),POISONED_EXPLANATION)
-      end
-      user.pbPoison(target,msg)
+    if user.pbCanPoison?(target,true) && user.affectedByContactEffect?(true)
+      user.pbPoison(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -467,13 +381,8 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
     next if battle.pbRandom(100)>=30
     next if user.frostbitten?
     battle.pbShowAbilitySplash(target)
-    if user.pbCanFrostbite?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      msg = nil
-      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} frostbit {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),FROSTBITE_EXPLANATION)
-      end
-      user.pbFrostbite(msg)
+    if user.pbCanFrostbite?(target,true) && user.affectedByContactEffect?(true)
+      user.pbCanFrostbite?(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -485,13 +394,8 @@ BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
     next if battle.pbRandom(100)>=30
     next if user.frostbitten?
     battle.pbShowAbilitySplash(target)
-    if user.pbCanFrostbite?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      msg = nil
-      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} frostbit {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),FROSTBITE_EXPLANATION)
-      end
-      user.pbFrostbite(msg)
+    if user.pbCanFrostbite?(target,true) && user.affectedByContactEffect?(true)
+      user.pbFrostbite(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -515,11 +419,7 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
     next if battle.pbRandom(100)>=30
     next if user.mystified?
     battle.pbShowAbilitySplash(target)
-    if user.pbCanMystify?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      msg = nil
-      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} mystified {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),MYSTIFIED_EXPLANATION)
-      end
+    if user.pbCanMystify?(target,true)
       user.pbMystify(target)
     end
     battle.pbHideAbilitySplash(target)
@@ -533,11 +433,7 @@ BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
     next if battle.pbRandom(100)>=30
     next if user.flustered?
     battle.pbShowAbilitySplash(target)
-    if user.pbCanFluster?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      msg = nil
-      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} flustered {3}! {4}!",target.pbThis,target.abilityName,user.pbThis(true),FLUSTERED_EXPLANATION)
-      end
+    if user.pbCanFluster?(target,true) && user.affectedByContactEffect?(true)
       user.pbFluster(target)
     end
     battle.pbHideAbilitySplash(target)
@@ -575,13 +471,8 @@ BattleHandlers::TargetAbilityOnHit.add(:ELECTRICFENCE,
 	echoln target.battle.field.terrain == :Electric
     next unless target.battle.field.terrain == :Electric
     battle.pbShowAbilitySplash(target)
-    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) && user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
-           target.pbThis(true),target.abilityName))
-      end
+    if user.takesIndirectDamage?(true)
+      battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
       user.applyFractionalDamage(1.0/6.0)
     end
     battle.pbHideAbilitySplash(target)
@@ -590,16 +481,10 @@ BattleHandlers::TargetAbilityOnHit.add(:ELECTRICFENCE,
 
 BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
   proc { |ability,user,target,move,battle|
-    next if user.paralyzed? || battle.pbRandom(100)>=30
+    next if user.paralyzed? || battle.pbRandom(100) >= 30
     battle.pbShowAbilitySplash(target)
-    if user.pbCanParalyze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      msg = nil
-      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} numbed {3}! {4}!",
-           target.pbThis,target.abilityName,user.pbThis(true),NUMBED_EXPLANATION)
-      end
-      user.pbParalyze(target,msg)
+    if user.pbCanParalyze?(target,true)
+      user.pbParalyze(target)
     end
     battle.pbHideAbilitySplash(target)
   }

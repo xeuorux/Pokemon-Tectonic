@@ -3,13 +3,8 @@ BattleHandlers::EOREffectAbility.add(:BADDREAMS,
     battle.eachOtherSideBattler(battler.index) do |b|
       next if !b.near?(battler) || !b.asleep?
       battle.pbShowAbilitySplash(battler)
-      next if !b.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} is tormented!",b.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1} is tormented by {2}'s {3}!",b.pbThis,
-           battler.pbThis(true),battler.abilityName))
-      end
+      next if !b.takesIndirectDamage?(true)
+      battle.pbDisplay(_INTL("{1} is pained by its dreams!",b.pbThis))
       b.applyFractionalDamage(1.0/8.0,false)
       battle.pbHideAbilitySplash(battler)
     end
@@ -58,10 +53,10 @@ BattleHandlers::EOREffectAbility.add(:BALLFETCH,
       battler.item=ball
       battler.setInitialItem(battler.item)
       PBDebug.log("[Ability triggered] #{battler.pbThis}'s Ball Fetch found #{PBItems.getName(ball)}")
-      battle.pbShowAbilitySplash(battler) if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbShowAbilitySplash(battler)
       battle.pbDisplay(_INTL("{1} found a {2}!",battler.pbThis,PBItems.getName(ball)))
       battler.disableEffect(:BallFetch)
-      battle.pbHideAbilitySplash(battler) if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbHideAbilitySplash(battler)
     end
   }
 )

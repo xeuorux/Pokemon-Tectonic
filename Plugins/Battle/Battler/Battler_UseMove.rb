@@ -431,7 +431,7 @@ class PokeBattle_Battler
 					next if b.damageState.unaffected
 					next unless b.hasActiveAbility?(:NEEDLEFUR)
 					@battle.pbShowAbilitySplash(b)
-					if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+					if user.takesIndirectDamage?(true)
 						@battle.scene.pbDamageAnimation(user)
 						upgradedNeedleFur = b.hp < b.totalhp / 2
 						reduction = user.totalhp / 10
@@ -751,7 +751,7 @@ class PokeBattle_Battler
 				next if target.damageState.unaffected
 				next unless target.hasActiveAbility?(:SECRETIONSECRET) && user.opposes?(target)
 				battle.pbShowAbilitySplash(target)
-				user.pbPoison(target, nil) if user.pbCanPoison?(target, PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+				user.pbPoison(target, nil) if user.pbCanPoison?(target, true)
 				battle.pbHideAbilitySplash(target)
 			end
 			# Secretion Secret

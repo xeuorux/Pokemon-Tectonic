@@ -29,4 +29,9 @@ class PokeBattle_ActiveField
 			effectData.increment_field(@battle,increment)
 		end
 	end
+
+	def applyEffect(effect, value = ni)
+		super(effect,value)
+		echoln("[FIELD EFFECT] Effect #{getName(effect)} applied to whole field")
+	end
 end

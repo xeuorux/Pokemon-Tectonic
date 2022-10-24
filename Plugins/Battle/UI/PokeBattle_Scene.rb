@@ -87,9 +87,7 @@ class PokeBattle_Scene
         ball.visible = false
 		  end
 		  # Ability splash bars
-		  if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-			  @sprites["abilityBar_#{side}"] = AbilitySplashBar.new(side,@viewport)
-		  end
+		  @sprites["abilityBar_#{side}"] = AbilitySplashBar.new(side,@viewport)
 		end
 		# Player's and partner trainer's back sprite
 		@battle.player.each_with_index do |p,i|

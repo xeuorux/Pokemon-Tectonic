@@ -2,12 +2,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:BULLETPROOF,
   proc { |ability,user,target,move,type,battle|
     next false if !move.bombMove?
     battle.pbShowAbilitySplash(target)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
-         target.pbThis,target.abilityName,move.name))
-    end
+    battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
     battle.pbHideAbilitySplash(target)
     next true
   }
@@ -20,19 +15,9 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
     battle.pbShowAbilitySplash(target)
     if !target.effects[PBEffects::FlashFire]
       target.effects[PBEffects::FlashFire] = true
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("The power of {1}'s Fire-type moves rose!",target.pbThis(true)))
-      else
-        battle.pbDisplay(_INTL("The power of {1}'s Fire-type moves rose because of its {2}!",
-           target.pbThis(true),target.abilityName))
-      end
+      battle.pbDisplay(_INTL("The power of {1}'s Fire-type moves rose!",target.pbThis(true)))
     else
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-      else
-        battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
-           target.pbThis,target.abilityName,move.name))
-      end
+      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
     end
     battle.pbHideAbilitySplash(target)
     next true
@@ -61,11 +46,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF,
   proc { |ability,user,target,move,type,battle|
     next false if !move.soundMove?
     battle.pbShowAbilitySplash(target)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} blocks {3}!",target.pbThis,target.abilityName,move.name))
-    end
+    battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
     battle.pbHideAbilitySplash(target)
     next true
 
@@ -83,12 +64,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:TELEPATHY,
     next false if move.statusMove?
     next false if user.index==target.index || target.opposes?(user)
     battle.pbShowAbilitySplash(target)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} avoids attacks by its ally Pokémon!",target.pbThis(true)))
-    else
-      battle.pbDisplay(_INTL("{1} avoids attacks by its ally Pokémon with {2}!",
-         target.pbThis,target.abilityName))
-    end
+    battle.pbDisplay(_INTL("{1} avoids attacks by its ally Pokémon!",target.pbThis(true)))
     battle.pbHideAbilitySplash(target)
     next true
   }
@@ -113,11 +89,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WONDERGUARD,
     next false if move.statusMove?
     next false if !type || Effectiveness.super_effective?(target.damageState.typeMod)
     battle.pbShowAbilitySplash(target)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-    else
-      battle.pbDisplay(_INTL("{1} avoided damage with {2}!",target.pbThis,target.abilityName))
-    end
+    battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
     battle.pbHideAbilitySplash(target)
     next true
   }

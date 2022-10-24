@@ -191,7 +191,6 @@ end
   def pbShowAbilitySplash(battler,delay=false,logTrigger=true)
     return if @messagesBlocked
     PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}") if logTrigger
-    return if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
     @scene.pbShowAbilitySplash(battler)
     if delay
       frames = Graphics.frame_rate # Default 1 second
@@ -219,13 +218,11 @@ end
 
   def pbHideAbilitySplash(battler)
     return if @messagesBlocked
-    return if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
     @scene.pbHideAbilitySplash(battler)
   end
 
   def pbReplaceAbilitySplash(battler)
     return if @messagesBlocked
-    return if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
     @scene.pbReplaceAbilitySplash(battler)
   end
 end

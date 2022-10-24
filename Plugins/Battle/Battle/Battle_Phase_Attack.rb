@@ -51,34 +51,43 @@ class PokeBattle_Battle
   def pbAttackPhase
     @messagesBlocked = false
     @scene.pbBeginAttackPhase
-    # Reset certain effects
-    @battlers.each_with_index do |b,i|
-      next if !b
-      b.turnCount += 1 if !b.fainted?
-      @successStates[i].clear
-      if @choices[i][0]!=:UseMove && @choices[i][0]!=:Shift && @choices[i][0]!=:SwitchOut
-        b.effects[PBEffects::DestinyBond] = false
-        b.effects[PBEffects::Grudge]      = false
-      end
-      b.effects[PBEffects::Rage] = false if !pbChoseMoveFunctionCode?(i,"093")   # Rage
-	    b.effects[PBEffects::Enlightened] = false if !pbChoseMoveFunctionCode?(i,"515")   # Rage
-      if @choices[i][0] == :UseMove && @choices[i][1]
-        b.effects[PBEffects::Sentry] = @choices[i][2].statusMove?
-      end
-      b.lastRoundHighestTypeModFromFoe = -1
-    end
+    resetEffects
     PBDebug.log("")
     # Calculate move order for this round
     pbCalculatePriority(true)
     # Perform actions
+    return if attackPhaseNonMoveActions()
+    pbAttackPhaseMoves
+  end
+
+  def resetEffects()
+    @battlers.each_with_index do |b,i|
+      next if !b
+      b.turnCount += 1 if !b.fainted?
+      @successStates[i].clear
+      if @choices[i][0] != :UseMove && @choices[i][0] != :Shift && @choices[i][0] != :SwitchOut
+        b.disableEffect(:DestinyBond)
+        b.disableEffect(:Grudge)
+      end
+      b.disableEffect(:Rage) if !pbChoseMoveFunctionCode?(i,"093")   # Rage
+	    b.disableEffect(:Enlightened) if !pbChoseMoveFunctionCode?(i,"515")   # Enlightened Hit
+      if @choices[i][0] == :UseMove && @choices[i][2]&.statusMove?
+        b.applyEffect(:Sentry)
+      end
+      b.lastRoundHighestTypeModFromFoe = -1
+    end
+  end
+
+  # Returns whether or not the battle has ended
+  def attackPhaseNonMoveActions()
     pbAttackPhasePriorityChangeMessages
     pbAttackPhaseCall
     pbAttackPhaseSwitch
-    return if @decision>0
+    return true if @decision > 0
     pbAttackPhaseItems
-    return if @decision>0
+    return true if @decision > 0
     pbAttackPhaseMegaEvolution
-    pbAttackPhaseMoves
+    return false
   end
 
   #=============================================================================
@@ -86,31 +95,16 @@ class PokeBattle_Battle
   #=============================================================================
   def pbExtraAttackPhase
     @scene.pbBeginAttackPhase
-    # Reset certain effects
-    @battlers.each_with_index do |b,i|
-      next if !b
-      @successStates[i].clear
-      if @choices[i][0]!=:UseMove && @choices[i][0]!=:Shift && @choices[i][0]!=:SwitchOut
-        b.effects[PBEffects::DestinyBond] = false
-        b.effects[PBEffects::Grudge]      = false
-      end
-      b.effects[PBEffects::Rage] = false if !pbChoseMoveFunctionCode?(i,"093")   # Rage
-    end
+    resetEffects
     PBDebug.log("")
     # Calculate move order for this round
     pbCalculatePriority(true)
     # Perform actions
-    pbAttackPhasePriorityChangeMessages
-    pbAttackPhaseCall
-    pbAttackPhaseSwitch
-    return if @decision>0
-    pbAttackPhaseItems
-    return if @decision>0
-    pbAttackPhaseMegaEvolution
+    return if attackPhaseNonMoveActions()
     
 	  pbPriority.each do |battler|
         next if battler.fainted?
-        next unless @choices[battler.index][0]==:UseMove
+        next unless @choices[battler.index][0] == :UseMove
         next if @commandPhasesThisRound - 1 > battler.extraMovesPerTurn
         battler.pbProcessTurn(@choices[battler.index])
       end

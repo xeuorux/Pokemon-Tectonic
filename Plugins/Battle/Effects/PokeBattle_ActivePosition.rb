@@ -25,4 +25,9 @@ class PokeBattle_ActivePosition
 			effectData.increment_position(@battle, @index,increment)
 		end
 	end
+
+	def applyEffect(effect, value = ni)
+		super(effect,value)
+		echoln("[POSITION EFFECT] Effect #{getName(effect)} applied to position #{@index}, which houses #{battle.battlers[@index].pbThis(true)}")
+	end
 end

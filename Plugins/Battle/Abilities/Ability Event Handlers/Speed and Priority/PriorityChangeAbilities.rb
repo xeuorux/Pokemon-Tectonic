@@ -7,7 +7,7 @@ BattleHandlers::PriorityChangeAbility.add(:GALEWINGS,
 BattleHandlers::PriorityChangeAbility.add(:PRANKSTER,
   proc { |ability,battler,move,pri,targets=nil|
     if move.statusMove?
-      battler.effects[PBEffects::Prankster] = true
+      battler.applyEffect(:Prankster)
       next pri+1
     end
   }
@@ -40,7 +40,7 @@ BattleHandlers::PriorityChangeAbility.add(:LIGHTTRICK,
 BattleHandlers::PriorityChangeAbility.add(:DECEPTIVE,
   proc { |ability,battler,move,pri|
     if move.statusMove? && battler.battle.field.terrain == :Misty
-      battler.effects[PBEffects::Prankster] = true
+      battler.applyEffect(:Prankster)
       next pri+1
     end
   }

@@ -149,10 +149,8 @@ class PokeBattle_Move
     def nonLethal?(_user,_target); return false; end   # For False Swipe
   
     def ignoresSubstitute?(user)   # user is the Pokémon using this move
-      if Settings::MECHANICS_GENERATION >= 6
-        return true if soundMove?
-        return true if user && user.hasActiveAbility?(:INFILTRATOR)
-      end
+      return true if soundMove?
+      return true if user && user.hasActiveAbility?(:INFILTRATOR)
       return false
     end
   end

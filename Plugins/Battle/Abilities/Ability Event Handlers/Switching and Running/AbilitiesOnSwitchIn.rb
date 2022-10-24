@@ -1,9 +1,6 @@
 BattleHandlers::AbilityOnSwitchIn.add(:AIRLOCK,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} has {2}!",battler.pbThis,battler.abilityName))
-    end
     battle.pbDisplay(_INTL("The effects of the weather disappeared."))
     battle.pbHideAbilitySplash(battler)
   }
@@ -24,7 +21,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ANTICIPATION,
         next if m.statusMove?
         if type1
           moveType = m.type
-          if Settings::MECHANICS_GENERATION >= 6 && m.function == "090"   # Hidden Power
+          if m.function == "090"   # Hidden Power
             moveType = pbHiddenPower(b.pokemon)[0]
           end
           eff = Effectiveness.calculate(moveType,type1,type2,type3)
@@ -150,13 +147,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:FOREWARN,
     if forewarnMoves.length>0
       battle.pbShowAbilitySplash(battler)
       forewarnMoveName = forewarnMoves[battle.pbRandom(forewarnMoves.length)]
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} was alerted to {2}!",
-          battler.pbThis, forewarnMoveName))
-      else
-        battle.pbDisplay(_INTL("{1}'s Forewarn alerted it to {2}!",
-          battler.pbThis, forewarnMoveName))
-      end
+      battle.pbDisplay(_INTL("{1} was alerted to {2}!", battler.pbThis, forewarnMoveName))
       battle.pbHideAbilitySplash(battler)
     end
   }
@@ -171,15 +162,9 @@ BattleHandlers::AbilityOnSwitchIn.add(:FRISK,
     end
     if foes.length>0
       battle.pbShowAbilitySplash(battler)
-      if Settings::MECHANICS_GENERATION >= 6
-        foes.each do |b|
-          battle.pbDisplay(_INTL("{1} frisked {2} and found its {3}!",
-             battler.pbThis,b.pbThis(true),b.itemName))
-        end
-      else
-        foe = foes[battle.pbRandom(foes.length)]
-        battle.pbDisplay(_INTL("{1} frisked the foe and found one {2}!",
-           battler.pbThis,foe.itemName))
+      foes.each do |b|
+        battle.pbDisplay(_INTL("{1} frisked {2} and found its {3}!",
+            battler.pbThis,b.pbThis(true),b.itemName))
       end
       battle.pbHideAbilitySplash(battler)
     end
@@ -305,12 +290,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SLOWSTART,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     battler.effects[PBEffects::SlowStart] = 3
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} can't get it going!",battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1} can't get it going because of its {2}!",
-         battler.pbThis,battler.abilityName))
-    end
+    battle.pbDisplay(_INTL("{1} can't get it going!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -358,10 +338,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PASTELVEIL,
     battler.eachAlly do |b|
       next if b.status != :POISON
       battle.pbShowAbilitySplash(battler)
-      b.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s {2} cured its {3}'s poison!",battler.pbThis,battler.abilityName,b.pbThis(true)))
-      end
+      b.pbCureStatus(true)
       battle.pbHideAbilitySplash(battler)
     end
   }
@@ -522,9 +499,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:FREERIDE,
 BattleHandlers::AbilityOnSwitchIn.add(:EARTHLOCK,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} has {2}!",battler.pbThis,battler.abilityName))
-    end
     battle.pbDisplay(_INTL("The effects of the terrain disappeared."))
     battle.pbHideAbilitySplash(battler)
   }

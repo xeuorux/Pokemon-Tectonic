@@ -426,11 +426,7 @@ class PokeBattle_Battler
 			if target.hasLevitate? && !@battle.moldBreaker
 				if showMessages
 					@battle.pbShowAbilitySplash(target)
-					if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-						@battle.pbDisplay(_INTL('{1} avoided the attack!', target.pbThis))
-					else
-						@battle.pbDisplay(_INTL('{1} avoided the attack with {2}!', target.pbThis, target.abilityName))
-					end
+					@battle.pbDisplay(_INTL('{1} avoided the attack!', target.pbThis))
 					@battle.pbHideAbilitySplash(target)
 					@battle.triggerImmunityDialogue(user, target, true)
 				end

@@ -40,9 +40,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
       battle.pbShowAbilitySplash(user)
       if b.hasActiveAbility?(:STICKYHOLD)
         battle.pbShowAbilitySplash(b) if user.opposes?(b)
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          battle.pbDisplay(_INTL("{1}'s item cannot be stolen!",b.pbThis))
-        end
+        battle.pbDisplay(_INTL("{1}'s item cannot be stolen!",b.pbThis))
         battle.pbHideAbilitySplash(b) if user.opposes?(b)
         next
       end
@@ -53,13 +51,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
         user.setInitialItem(user.item)
         b.setInitialItem(nil)
       end
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,
+      battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,
            b.pbThis(true),user.itemName))
-      else
-        battle.pbDisplay(_INTL("{1} stole {2}'s {3} with {4}!",user.pbThis,
-           b.pbThis(true),user.itemName,user.abilityName))
-      end
       battle.pbHideAbilitySplash(user)
       user.pbHeldItemTriggerCheck
       break
@@ -74,11 +67,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ASONEICE,
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
     next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user) || user.fainted?
     battle.pbShowAbilitySplash(user,false,true,:CHILLINGNEIGH)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      user.pbRaiseStatStage(:ATTACK,numFainted,user)
-    else
-      user.pbRaiseStatStageByCause(:ATTACK,numFainted,user,:CHILLINGNEIGH)
-    end
+    user.pbRaiseStatStage(:ATTACK,numFainted,user)
     battle.pbHideAbilitySplash(user)
   }
 )
@@ -90,11 +79,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ASONEGHOST,
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
     next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user) || user.fainted?
     battle.pbShowAbilitySplash(user,false,true,:GRIMNEIGH)
-    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      user.pbRaiseStatStage(:SPECIAL_ATTACK,numFainted,user)
-    else
-      user.pbRaiseStatStageByCause(:SPECIAL_ATTACK,numFainted,user,:GRIMNEIGH)
-    end
+    user.pbRaiseStatStage(:SPECIAL_ATTACK,numFainted,user)
     battle.pbHideAbilitySplash(user)
   }
 )
@@ -156,21 +141,14 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
       battle.pbShowAbilitySplash(user)
       if b.hasActiveAbility?(:STICKYHOLD)
         battle.pbShowAbilitySplash(b) if user.opposes?(b)
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          battle.pbDisplay(_INTL("{1}'s item cannot be gilded!",b.pbThis))
-        end
+        battle.pbDisplay(_INTL("{1}'s item cannot be gilded!",b.pbThis))
         battle.pbHideAbilitySplash(b) if user.opposes?(b)
         next
       end
       itemName = b.itemName
       b.pbRemoveItem(false)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} turned {2}'s {3} into gold!",user.pbThis,
+      battle.pbDisplay(_INTL("{1} turned {2}'s {3} into gold!",user.pbThis,
            b.pbThis(true),itemName))
-      else
-        battle.pbDisplay(_INTL("{1} turned {2}'s {3} into gold with {4}!",user.pbThis,
-           b.pbThis(true),itemName,user.abilityName))
-      end
       if user.pbOwnedByPlayer?
         battle.field.incrementEffect(:PayDay,5 * user.level)
       end

@@ -2761,12 +2761,7 @@ end
         bearer = @battle.pbCheckGlobalAbility(:DAMP)
         if bearer!=nil
           @battle.pbShowAbilitySplash(bearer)
-          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("{1} cannot use {2}!",user.pbThis,@name))
-          else
-            @battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
-               user.pbThis,@name,bearer.pbThis(true),bearer.abilityName))
-          end
+          @battle.pbDisplay(_INTL("{1} cannot use {2}!",user.pbThis,@name))
           @battle.pbHideAbilitySplash(bearer)
           return true
         end

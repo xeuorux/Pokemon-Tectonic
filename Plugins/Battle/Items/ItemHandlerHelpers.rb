@@ -14,13 +14,9 @@ def healFromBerry(battler,ratio,item,forced=false)
   
   def pbBattleConfusionBerry(battler,battle,item,forced,flavor,confuseMsg)
     return false if !forced && !battler.canHeal?
-    return false if !forced && !battler.canConsumePinchBerry?(Settings::MECHANICS_GENERATION >= 7)
+    return false if !forced && !battler.canConsumePinchBerry?(true)
     battle.pbCommonAnimation("EatBerry",battler) if !forced
-    fraction_to_heal = 8   # Gens 6 and lower
-    if Settings::MECHANICS_GENERATION == 7;    fraction_to_heal = 2
-    elsif Settings::MECHANICS_GENERATION >= 8; fraction_to_heal = 3
-    end
-    healFromBerry(battler,1.0/fraction_to_heal.to_f,item,forced)
+    healFromBerry(battler,1.0/3.0,item,forced)
     flavor_stat = [:ATTACK, :DEFENSE, :SPEED, :SPECIAL_ATTACK, :SPECIAL_DEFENSE][flavor]
     battler.nature.stat_changes.each do |change|
       next if change[1] > 0 || change[0] != flavor_stat

@@ -99,12 +99,8 @@ class PokeBattle_Battler
 		return false if fainted?
 		ret = false
 		@battle.pbShowAbilitySplash(user) if splashAnim
-		if pbCanRaiseStatStage?(stat, user, nil, PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-			if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-				ret = pbRaiseStatStage(stat, increment, user)
-			else
-				ret = pbRaiseStatStageByCause(stat, increment, user, user.abilityName)
-			end
+		if pbCanRaiseStatStage?(stat, user, nil, true)
+			ret = pbRaiseStatStage(stat, increment, user)
 		end
 		@battle.pbHideAbilitySplash(user) if splashAnim
 		return ret
@@ -273,13 +269,9 @@ class PokeBattle_Battler
 	def pbLowerStatStageByAbility(stat, increment, user, splashAnim = true, checkContact = false)
 		ret = false
 		@battle.pbShowAbilitySplash(user) if splashAnim
-		if pbCanLowerStatStage?(stat, user, nil, PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-					(!checkContact || affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH))
-			if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-				ret = pbLowerStatStage(stat, increment, user)
-			else
-				ret = pbLowerStatStageByCause(stat, increment, user, user.abilityName)
-			end
+		if pbCanLowerStatStage?(stat, user, nil, true) &&
+					(!checkContact || affectedByContactEffect?(true))
+			ret = pbLowerStatStage(stat, increment, user)
 		end
 		@battle.pbHideAbilitySplash(user) if splashAnim
 		return ret
@@ -289,11 +281,7 @@ class PokeBattle_Battler
 		return false if fainted?
 		# NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
 		if substituted?
-			if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-				@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
-			else
-				@battle.pbDisplay(_INTL("{1}'s substitute protected it from {2}'s {3}!",pbThis, user.pbThis(true), user.abilityName))
-			end
+			@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
 			return false
 		end
 		if hasActiveAbility?(:INNERFOCUS)
@@ -303,7 +291,7 @@ class PokeBattle_Battler
 			@battle.pbHideAbilitySplash(self)
 			return false
 		end
-		return pbLowerStatStageByAbility(:ATTACK, 1, user, false) if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+		return pbLowerStatStageByAbility(:ATTACK, 1, user, false)
 		# NOTE: These checks exist to ensure appropriate messages are shown if
 		#       Intimidate is blocked somehow (i.e. the messages should mention the
 		#       Intimidate ability by name).
@@ -333,11 +321,7 @@ class PokeBattle_Battler
 		return false if fainted?
 		# NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
 		if substitute?
-			if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-				@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
-			else
-				@battle.pbDisplay(_INTL("{1}'s substitute protected it from {2}'s {3}!",pbThis, user.pbThis(true), user.abilityName))
-			end
+			@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
 			return false
 		end
 		if hasActiveAbility?(:INNERFOCUS)
@@ -347,7 +331,7 @@ class PokeBattle_Battler
 			@battle.pbHideAbilitySplash(self)
 			return false
 		end
-		return pbLowerStatStageByAbility(:SPECIAL_ATTACK, 1, user, false) if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+		return pbLowerStatStageByAbility(:SPECIAL_ATTACK, 1, user, false)
 		# NOTE: These checks exist to ensure appropriate messages are shown if
 		#       Intimidate is blocked somehow (i.e. the messages should mention the
 		#       Intimidate ability by name).
@@ -377,11 +361,7 @@ class PokeBattle_Battler
 		return false if fainted?
 		# NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
 		if substituted?
-			if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-				@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
-			else
-				@battle.pbDisplay(_INTL("{1}'s substitute protected it from {2}'s {3}!",pbThis, user.pbThis(true), user.abilityName))
-			end
+			@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
 			return false
 		end
 		if hasActiveAbility?(:INNERFOCUS)
@@ -391,7 +371,7 @@ class PokeBattle_Battler
 			@battle.pbHideAbilitySplash(self)
 			return false
 		end
-		return pbLowerStatStageByAbility(:SPEED, 1, user, false) if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+		return pbLowerStatStageByAbility(:SPEED, 1, user, false)
 		# NOTE: These checks exist to ensure appropriate messages are shown if
 		#       Intimidate is blocked somehow (i.e. the messages should mention the
 		#       Intimidate ability by name).

@@ -217,58 +217,15 @@ class PokeBattle_Battler
 			if showMessages
 				@battle.pbShowAbilitySplash(immAlly || self)
 				msg = ''
-				if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-					case newStatus
-					when :SLEEP	then msg = _INTL('{1} stays awake!', pbThis)
-					when :POISON	then msg = _INTL('{1} cannot be poisoned!', pbThis)
-					when :BURN	then msg = _INTL('{1} cannot be burned!', pbThis)
-					when :PARALYSIS	then msg = _INTL('{1} cannot be numbed!', pbThis)
-					when :FROZEN	then msg = _INTL('{1} cannot be chilled!', pbThis)
-					when :FLUSTERED		then msg = _INTL('{1} cannot be flustered!', pbThis)
-					when :MYSTIFIED		then msg = _INTL('{1} cannot be mystified!', pbThis)
-					when :FROSTBITE		then msg = _INTL('{1} cannot be frostbitten!', pbThis)
-					end
-				elsif immAlly
-					case newStatus
-					when :SLEEP
-						msg = _INTL("{1} stays awake because of {2}'s {3}!",
-																		pbThis, immAlly.pbThis(true), immAlly.abilityName)
-					when :POISON
-						msg = _INTL("{1} cannot be poisoned because of {2}'s {3}!",
-																		pbThis, immAlly.pbThis(true), immAlly.abilityName)
-					when :BURN
-						msg = _INTL("{1} cannot be burned because of {2}'s {3}!",
-																		pbThis, immAlly.pbThis(true), immAlly.abilityName)
-					when :PARALYSIS
-						msg = _INTL("{1} cannot be numbed because of {2}'s {3}!",
-																		pbThis, immAlly.pbThis(true), immAlly.abilityName)
-					when :FROZEN
-						msg = _INTL("{1} cannot be chilled because of {2}'s {3}!",
-																		pbThis, immAlly.pbThis(true), immAlly.abilityName)
-					when :FLUSTERED
-						msg = _INTL("{1} cannot be flustered because of {2}'s {3}!",
-																		pbThis, immAlly.pbThis(true), immAlly.abilityName)
-					when :MYSTIFIED
-						msg = _INTL("{1} cannot be mystified because of {2}'s {3}!",
-																		pbThis, immAlly.pbThis(true), immAlly.abilityName)
-					when :FROSTBITE
-						msg = _INTL("{1} cannot be frostbitten because of {2}'s {3}!",
-																		pbThis, immAlly.pbThis(true), immAlly.abilityName)
-					end
-				else
-					case newStatus
-					when :SLEEP	then msg = _INTL('{1} stays awake because of its {2}!', pbThis, abilityName)
-					when :POISON	then msg = _INTL("{1}'s {2} prevents poisoning!", pbThis, abilityName)
-					when :BURN	then msg = _INTL("{1}'s {2} prevents burns!", pbThis, abilityName)
-					when :PARALYSIS	then msg = _INTL("{1}'s {2} prevents numbing!", pbThis, abilityName)
-					when :FROZEN	then msg = _INTL("{1}'s {2} prevents chilling!", pbThis, abilityName)
-					when :FLUSTERED		then msg = _INTL("{1}'s {2} prevents being flustered!", pbThis,
-																	abilityName)
-					when :MYSTIFIED		then msg = _INTL("{1}'s {2} prevents being mystified!", pbThis,
-																	abilityName)
-					when :FROSTBITE		then msg = _INTL("{1}'s {2} prevents being frostbitten!", pbThis,
-																	abilityName)
-					end
+				case newStatus
+				when :SLEEP	then msg = _INTL('{1} stays awake!', pbThis)
+				when :POISON	then msg = _INTL('{1} cannot be poisoned!', pbThis)
+				when :BURN	then msg = _INTL('{1} cannot be burned!', pbThis)
+				when :PARALYSIS	then msg = _INTL('{1} cannot be numbed!', pbThis)
+				when :FROZEN	then msg = _INTL('{1} cannot be chilled!', pbThis)
+				when :FLUSTERED		then msg = _INTL('{1} cannot be flustered!', pbThis)
+				when :MYSTIFIED		then msg = _INTL('{1} cannot be mystified!', pbThis)
+				when :FROSTBITE		then msg = _INTL('{1} cannot be frostbitten!', pbThis)
 				end
 				@battle.pbDisplay(msg)
 				@battle.pbHideAbilitySplash(immAlly || self)
@@ -338,6 +295,9 @@ class PokeBattle_Battler
 	# Generalised infliction of status problem
 	#=============================================================================
 	def pbInflictStatus(newStatus, newStatusCount = 0, msg = nil, user = nil)
+
+		newStatusCount = pbSleepDuration if newStatusCount <= 0 && newStatus == :SLEEP
+
 		# Inflict the new status
 		if !boss?
 			self.status	= newStatus
@@ -447,7 +407,7 @@ class PokeBattle_Battler
 	end
 
 	def pbSleep(msg = nil)
-		pbInflictStatus(:SLEEP, pbSleepDuration, msg)
+		pbInflictStatus(:SLEEP, -1, msg)
 	end
 
 	def pbSleepSelf(msg = nil, duration = -1)
@@ -643,11 +603,7 @@ class PokeBattle_Battler
 		if (selfInflicted || !@battle.moldBreaker) && hasActiveAbility?(:OWNTEMPO)
 			if showMessages
 				@battle.pbShowAbilitySplash(self)
-				if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-					@battle.pbDisplay(_INTL("{1} doesn't become confused!", pbThis))
-				else
-					@battle.pbDisplay(_INTL("{1}'s {2} prevents confusion!", pbThis, abilityName))
-				end
+				@battle.pbDisplay(_INTL("{1} doesn't become confused!", pbThis))
 				@battle.pbHideAbilitySplash(self)
 			end
 			return false
@@ -704,11 +660,7 @@ class PokeBattle_Battler
 		if (selfInflicted || !@battle.moldBreaker) && hasActiveAbility?(:OWNTEMPO)
 			if showMessages
 				@battle.pbShowAbilitySplash(self)
-				if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-					@battle.pbDisplay(_INTL("{1} doesn't become charmed!", pbThis))
-				else
-					@battle.pbDisplay(_INTL("{1}'s {2} prevents charmed!", pbThis, abilityName))
-				end
+				@battle.pbDisplay(_INTL("{1} doesn't become charmed!", pbThis))
 				@battle.pbHideAbilitySplash(self)
 			end
 			return false

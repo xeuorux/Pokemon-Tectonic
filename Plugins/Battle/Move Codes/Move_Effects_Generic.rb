@@ -732,8 +732,7 @@ class PokeBattle_ProtectMove < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    if (!@sidedEffect || Settings::MECHANICS_GENERATION <= 5) &&
-        user.effects[PBEffects::ProtectRate] > 1
+    if user.effects[PBEffects::ProtectRate] > 1
       user.effects[PBEffects::ProtectRate] = 1
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
@@ -755,7 +754,7 @@ class PokeBattle_ProtectMove < PokeBattle_Move
     else
       user.effects[@effect] = true
     end
-    user.effects[PBEffects::ProtectRate] *= (Settings::MECHANICS_GENERATION >= 6) ? 3 : 2
+    user.effects[PBEffects::ProtectRate] *= 3
     pbProtectMessage(user)
   end
 
@@ -1153,7 +1152,7 @@ class PokeBattle_RoomMove < PokeBattle_Move
 end
 
 class PokeBattle_DrainMove < PokeBattle_Move
-  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
+  def healingMove?; return true; end
 
   def drainFactor(user,target); return 0.0; end
 

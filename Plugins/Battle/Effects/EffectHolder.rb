@@ -1,4 +1,5 @@
 # This assumes that each user of the module has an instance variable called @effects
+# and a reference to the battle called @battle
 # You may also define procs called @apply_proc, @expire_proc, and @remain_proc
 module EffectHolder
     def eachEffect(onlyActive=false)
@@ -35,6 +36,10 @@ module EffectHolder
         @effects[effect] = newValue
         @increment_proc&.call(effectData,incrementAmount)
         return newValue
+    end
+
+    def getName(effect)
+        return getData(effect).real_name
     end
 
     def effectAtMax?(effect)
@@ -104,6 +109,12 @@ module EffectHolder
         end
     end
 
+    def getBattler(effect)
+        validatePosition(effect)
+        return nil if effectActive?(effect)
+        return @battle.battlers[@effects[effect]]
+    end
+
     def processEffectsEOR()
         changedEffects = {}
         eachEffect(true) do |effect, value, data|
@@ -114,22 +125,34 @@ module EffectHolder
         end
     end
 
+    def getMoveData(effect)
+        validateMove(effect)
+        return GameData::Move.get(@effects[effect])
+    end
+
     #################################################
     # Validate data types
     #################################################
+    def getData(dataOrEffect)
+        return dataOrEffect if dataOrEffect.is_a?(GameData::BattleEffect)
+        return GameData::BattleEffect.get(effect)
+    end
+
     def validateInteger(effect)
-        effectData = effect
-        effectData = GameData::BattleEffect.get(effect) if effect.is_a?(Symbol)
-        if effectData.type != :Integer
+        if getData(effectData).type != :Integer
 		    raise _INTL("Invalid operation for non-integer effect: #{effectData.real_name}")
         end
     end
 
     def validatePosition(effect)
-        effectData = effect
-        effectData = GameData::BattleEffect.get(effect) if effect.is_a?(Symbol)
-        if effectData.type != :Position
+        if getData(effectData).type != :Position
 		    raise _INTL("Invalid operation for non-position effect: #{effectData.real_name}")
+        end
+    end
+
+    def validateMove(effect)
+        if getData(effectData).type != :Move
+		    raise _INTL("Invalid operation for non-move effect: #{effectData.real_name}")
         end
     end
 end

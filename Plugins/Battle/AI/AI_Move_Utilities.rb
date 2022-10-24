@@ -195,7 +195,7 @@ class PokeBattle_AI
             return true
         end
         if user.hasActiveAbility?(:PRANKSTER) && target.pbHasTypeAI?(:DARK) && target.opposes?(user) && move.statusMove?
-            moveFailureAlert(move,user,target,"dark immunity to prankster boosted status moves")
+            moveFailureAlert(move,user,target,"dark immunity to prankster boosted moves")
             return true
         end
         if move.priority > 0 && @battle.field.terrain == :Psychic && target.affectedByTerrain?(true) && target.opposes?(user)

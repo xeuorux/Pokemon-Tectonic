@@ -615,10 +615,8 @@ end
 #===============================================================================
 class PokeBattle_Move_523 < PokeBattle_Move
 	def pbEffectAfterAllHits(user,target)
-		user.effects[PBEffects::Disable]     = 5
-		user.effects[PBEffects::DisableMove] = user.lastRegularMoveUsed
-		@battle.pbDisplay(_INTL("{1}'s {2} was disabled!",user.pbThis,
-		   GameData::Move.get(user.lastRegularMoveUsed).name))
+		user.applyEffect(:Disable,5)
+		user.applyEffect(:DisableMove,user.lastRegularMoveUsed)
 		user.pbItemStatusCureCheck
 	end
 end
@@ -633,10 +631,8 @@ class PokeBattle_Move_524 < PokeBattle_HealingMove
 
 	def pbEffectGeneral(user)
 		super
-		user.effects[PBEffects::Disable]     = 5
-		user.effects[PBEffects::DisableMove] = user.lastRegularMoveUsed
-		@battle.pbDisplay(_INTL("{1}'s {2} was disabled!",user.pbThis,
-		   GameData::Move.get(user.lastRegularMoveUsed).name))
+		user.applyEffect(:Disable,5)
+		user.applyEffect(:DisableMove, user.lastRegularMoveUsed)
 		user.pbItemStatusCureCheck
 	end
 end
@@ -1600,7 +1596,7 @@ end
 # Drains 2/3s if target hurt the user this turn (Trap Jaw)
 #===============================================================================
 class PokeBattle_Move_557 < PokeBattle_Move
-  def healingMove?; return Settings::MECHANICS_GENERATION >= 6; end
+  def healingMove?; return true; end
 
   def pbEffectAgainstTarget(user,target)
     return if target.damageState.hpLost <= 0

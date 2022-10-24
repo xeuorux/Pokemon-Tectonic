@@ -20,18 +20,9 @@ def pbBattleMoveImmunityStatAbility(user,target,move,moveType,immuneType,stat,in
 	return false if moveType != immuneType
 	battle.pbShowAbilitySplash(target)
 	if target.pbCanRaiseStatStage?(stat,target)
-	  if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-		target.pbRaiseStatStage(stat,increment,target)
-	  else
-		target.pbRaiseStatStageByCause(stat,increment,target,target.abilityName)
-	  end
+	  target.pbRaiseStatStage(stat,increment,target)
 	else
-	  if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-		battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-	  else
-		battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
-		   target.pbThis,target.abilityName,move.name))
-	  end
+	  battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
 	end
 	battle.pbHideAbilitySplash(target)
 	return true
@@ -40,9 +31,6 @@ end
 def pbBattleWeatherAbility(weather,battler,battle,ignorePrimal=false)
     return if !ignorePrimal && [:HarshSun, :HeavyRain, :StrongWinds].include?(battle.field.weather)
     battle.pbShowAbilitySplash(battler)
-    if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s {2} activated!",battler.pbThis,battler.abilityName))
-    end
     battle.pbStartWeather(battler,weather,4)
     # NOTE: The ability splash is hidden again in def pbStartWeather.
 end
@@ -50,9 +38,17 @@ end
 def terrainSetAbility(terrain,battler,battle,ignorePrimal=false)
 	return if battle.field.terrain == terrain
 	battle.pbShowAbilitySplash(battler)
-	if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-	  battle.pbDisplay(_INTL("{1}'s {2} activated!",battler.pbThis,battler.abilityName))
-	end
 	battle.pbStartTerrain(battler, terrain)
 	# NOTE: The ability splash is hidden again in def pbStartTerrain.
+end
+
+def randomStatusProcAbility(status,chance,user,target,move,battle)
+	return if battle.pbRandom(100) >= chance
+	return if user.pbHasStatus?(status)
+	return if move.immuneToAdditionalEffects(user,target,chance)
+    battle.pbShowAbilitySplash(user)
+    if target.pbCanInflictStatus?(status, user, true, move)
+      target.pbInflictStatus(user)
+    end
+    battle.pbHideAbilitySplash(user)
 end

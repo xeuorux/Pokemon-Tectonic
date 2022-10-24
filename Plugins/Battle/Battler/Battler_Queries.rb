@@ -223,11 +223,7 @@ class PokeBattle_Battler
 		if hasActiveAbility?(:MAGICGUARD)
 			if showMsg
 				@battle.pbShowAbilitySplash(self)
-				if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-					@battle.pbDisplay(_INTL('{1} is unaffected!', pbThis))
-				else
-					@battle.pbDisplay(_INTL('{1} is unaffected because of its {2}!', pbThis, abilityName))
-				end
+				@battle.pbDisplay(_INTL('{1} is unaffected!', pbThis))
 				@battle.pbHideAbilitySplash(self)
 			end
 			return false
@@ -241,24 +237,17 @@ class PokeBattle_Battler
 			@battle.pbDisplay(_INTL('{1} is unaffected!', pbThis)) if showMsg
 			return false
 		end
-		if Settings::MECHANICS_GENERATION >= 6
-			if hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
-				if showMsg
-					@battle.pbShowAbilitySplash(self)
-					if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-						@battle.pbDisplay(_INTL('{1} is unaffected!', pbThis))
-					else
-						@battle.pbDisplay(_INTL('{1} is unaffected because of its {2}!', pbThis,
-																														abilityName))
-					end
-					@battle.pbHideAbilitySplash(self)
-				end
-				return false
+		if hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
+			if showMsg
+				@battle.pbShowAbilitySplash(self)
+				@battle.pbDisplay(_INTL('{1} is unaffected!', pbThis))
+				@battle.pbHideAbilitySplash(self)
 			end
-			if hasActiveItem?(:SAFETYGOGGLES)
-				@battle.pbDisplay(_INTL('{1} is unaffected because of its {2}!', pbThis, itemName)) if showMsg
-				return false
-			end
+			return false
+		end
+		if hasActiveItem?(:SAFETYGOGGLES)
+			@battle.pbDisplay(_INTL('{1} is unaffected because of its {2}!', pbThis, itemName)) if showMsg
+			return false
 		end
 		return true
 	end

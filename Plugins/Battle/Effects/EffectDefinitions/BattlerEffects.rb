@@ -153,7 +153,11 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :DisableMove,
 	:real_name => "Disabled Move",
-	:type => :Move
+	:type => :Move,
+	:apply_proc => Proc.new { |battle, battler, value|
+		moveName = GameData::Move.get(value).name
+		battle.pbDisplay(_INTL("{1}'s {2} was disabled!",user.pbThis,moveName)
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -769,8 +773,8 @@ GameData::BattleEffect.register_effect(:Battler,{
         else                            pbCommonAnimation("Wrap", battler)
         end
         if battler.takesIndirectDamage?
-          fraction = (Settings::MECHANICS_GENERATION >= 6) ? 1.0/8.0 : 1.0/16.0
-          fraction *= 2 if battle.battlers[battler.effects[:TrappingUser]].hasActiveItem?(:BINDINGBAND)
+          fraction = 1.0/8.0
+          fraction *= 2 if battler.getBattler(:TrappingUser).hasActiveItem?(:BINDINGBAND)
           battle.pbDisplay(_INTL("{1} is hurt by {2}!",battler.pbThis,moveName))
           battler.applyFractionalDamage(fraction)
         end

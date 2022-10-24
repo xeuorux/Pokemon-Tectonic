@@ -26,9 +26,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:PICKPOCKET,
     battle.pbShowAbilitySplash(target)
     if user.hasActiveAbility?(:STICKYHOLD)
       battle.pbShowAbilitySplash(user) if target.opposes?(user)
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s item cannot be stolen!",user.pbThis))
-      end
+      battle.pbDisplay(_INTL("{1}'s item cannot be stolen!",user.pbThis))
       battle.pbHideAbilitySplash(user) if target.opposes?(user)
       battle.pbHideAbilitySplash(target)
       next
@@ -73,7 +71,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:VENGEANCE,
     next if !move.damagingMove?
     next if !target.knockedBelowHalf?
     battle.pbShowAbilitySplash(target)
-    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    if user.takesIndirectDamage?(true)
       user.applyFractionalDamage(1.0/4.0)
     end
     battle.pbHideAbilitySplash(target)

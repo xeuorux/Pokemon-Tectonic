@@ -191,12 +191,7 @@ class PokeBattle_Move
       if target.hasActiveAbility?(:AROMAVEIL)
         if showMessage
           @battle.pbShowAbilitySplash(target)
-          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
-          else
-            @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!",
-              target.pbThis,target.abilityName))
-          end
+          @battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
           @battle.pbHideAbilitySplash(target)
         end
         return true
@@ -205,12 +200,7 @@ class PokeBattle_Move
         next if !b.hasActiveAbility?(:AROMAVEIL)
         if showMessage
           @battle.pbShowAbilitySplash(target)
-          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
-          else
-            @battle.pbDisplay(_INTL("{1} is unaffected because of {2}'s {3}!",
-              target.pbThis,b.pbThis(true),b.abilityName))
-          end
+          @battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
           @battle.pbHideAbilitySplash(target)
         end
         return true
@@ -403,11 +393,7 @@ class PokeBattle_Move
     def pbEndureKOMessage(target)
 		if target.damageState.disguise
 			@battle.pbShowAbilitySplash(target)
-			if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-				@battle.pbDisplay(_INTL("Its disguise served it as a decoy!"))
-			else
-				@battle.pbDisplay(_INTL("{1}'s disguise served it as a decoy!",target.pbThis))
-			end
+			@battle.pbDisplay(_INTL("Its disguise served it as a decoy!"))
 			@battle.pbHideAbilitySplash(target)
 			target.pbChangeForm(1,_INTL("{1}'s disguise was busted!",target.pbThis))
 		elsif target.damageState.iceface
@@ -418,11 +404,7 @@ class PokeBattle_Move
 			@battle.pbDisplay(_INTL("{1} endured the hit!",target.pbThis))
 		elsif target.damageState.sturdy
 			@battle.pbShowAbilitySplash(target)
-			if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-				@battle.pbDisplay(_INTL("{1} endured the hit!",target.pbThis))
-			else
-				@battle.pbDisplay(_INTL("{1} hung on with Sturdy!",target.pbThis))
-			end
+			@battle.pbDisplay(_INTL("{1} endured the hit!",target.pbThis))
 			@battle.pbHideAbilitySplash(target)
 		elsif target.damageState.focusSash
 			@battle.pbCommonAnimation("UseItem",target)

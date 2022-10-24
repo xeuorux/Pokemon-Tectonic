@@ -25,4 +25,9 @@ class PokeBattle_ActiveSide
 			effectData.increment_side(@battle, self,increment)
 		end
 	end
+
+	def applyEffect(effect, value = ni)
+		super(effect,value)
+		echoln("[SIDE EFFECT] Effect #{getName(effect)} applied to side #{index}")
+	end
 end
