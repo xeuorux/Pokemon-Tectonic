@@ -1548,7 +1548,7 @@ end
 
 
 #===============================================================================
-# Raises Sp. Def of user and team (CAMARADERIE)
+# Raises Sp. Def of user and team (Camaraderie)
 #===============================================================================
 class PokeBattle_Move_555 < PokeBattle_Move
   def pbMoveFailed?(user,targets)

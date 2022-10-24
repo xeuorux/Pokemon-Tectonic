@@ -372,7 +372,7 @@ class PokeBattle_Scene
       elsif Input.trigger?(Input::SPECIAL) && cw.individual.nil? && $DEBUG
         #truthifyAllEffects()
         @battle.battlers[0].disableEffect(:Illusion)
-        @battle.battlers[0].disableEffect(:ProtectRate)
+        @battle.battlers[0].disableEffect(:ProtectFailure)
         pbPlayDecisionSE
       elsif Input.trigger?(Input::USE)
         battler = nil

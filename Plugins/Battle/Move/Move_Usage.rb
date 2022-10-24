@@ -10,6 +10,7 @@ class PokeBattle_Move
     def pbEffectOnNumHits(user,target,numHits); end   # Move effects that occur after all hits, which base themselves on how many hits landed
     def pbMoveFailedNoSpecial?(user,targets); return false; end # Check if the move should fail, specifically if its not being specifically used (e.g. Dancer)
     def priorityModification(user,target); return 0; end # Checks whether the move should have modified priority
+    def moveFailed(user,targets); end
 
     # Reset move usage counters (child classes can increment them).
     def pbChangeUsageCounters(user,specialUsage)

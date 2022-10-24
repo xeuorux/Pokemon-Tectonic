@@ -72,37 +72,37 @@ end
   # Substitutes. (Tea Time)
   #===============================================================================
 class PokeBattle_Move_184 < PokeBattle_Move
-  def ignoresSubstitute?(_user); return true; end
+    def ignoresSubstitute?(user); return true; end
 
-  def pbMoveFailed?(_user, _targets, messages = true)
-    @validTargets = []
-    @battle.eachBattler do |b|
-      next if !b.item || !b.item.is_berry?
-      @validTargets.push(b.index)
+    def isValidTarget(target)
+      return target.item && target.item.is_berry? && !target.semiInvulnerable?
     end
-    if @validTargets.length == 0
+
+    def pbMoveFailed?(user, targets, messages = true)
+      @battle.eachBattler do |b|
+        return false if isValidTarget(target)
+      end
       @battle.pbDisplay(_INTL("But it failed!")) if messages
       return true
     end
-    @battle.pbDisplay(_INTL("It's tea time! Everyone dug in to their Berries!")) if messages
-    return false
-  end
 
-  def pbFailsAgainstTarget?(_user, target)
-    return false if @validTargets.include?(target.index)
-    return true if target.semiInvulnerable?
-  end
+    def pbEffectGeneral()
+      @battle.pbDisplay(_INTL("It's tea time! Everyone dug in to their Berries!"))
+    end
 
-  def pbEffectAgainstTarget(_user, target)
-    target.pbHeldItemTriggerCheck(target.item, false)
-    target.pbConsumeItem(true, true, false) if target.item.is_berry?
-  end
+    def pbFailsAgainstTarget?(_user, target)
+        return !isValidTarget(target)
+    end
 
-  def getScore(score, _user, target, _skill = 100)
-    score -= 40
-    score += 20 if target.item && target.item.is_berry?
-    return score
-  end
+    def pbEffectAgainstTarget(_user, target)
+        target.pbHeldItemTriggerCheck(target.item, false)
+        target.pbConsumeItem(true, true, false) if target.item.is_berry?
+    end
+
+    def getScore(score, _user, target, _skill = 100)
+        score -= 30 unless isValidTarget(target)
+        return score
+    end
 end
 
   #===============================================================================
@@ -110,15 +110,15 @@ end
   # (Grav Apple)
   #===============================================================================
 class PokeBattle_Move_185 < PokeBattle_TargetStatDownMove
-  def initialize(battle, move)
-    super
-    @statDown = [:DEFENSE, 1]
-  end
+    def initialize(battle, move)
+      super
+      @statDown = [:DEFENSE, 1]
+    end
 
-  def pbBaseDamage(baseDmg, _user, _target)
-    baseDmg *= 1.5 if @battle.field.effects[PBEffects::Gravity] > 0
-    return baseDmg
-  end
+    def pbBaseDamage(baseDmg, _user, _target)
+      baseDmg *= 1.5 if @battle.field.effects[PBEffects::Gravity] > 0
+      return baseDmg
+    end
 end
 
   #===============================================================================

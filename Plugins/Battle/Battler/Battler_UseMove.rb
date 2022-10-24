@@ -313,6 +313,7 @@ class PokeBattle_Battler
 		if move.pbMoveFailed?(user, targets)
 			PBDebug.log(format("[Move failed] In function code %s's def pbMoveFailed?", move.function))
 			user.lastMoveFailed = true
+			move.moveFailed(user,targets)
 			pbCancelMoves
 			pbEndTurn(choice)
 			return

@@ -149,7 +149,7 @@
 141,CRAFTYSHIELD,Crafty Shield,14A,0,FAIRY,Status,0,10,0,UserSide,3,,"The user protects itself and its allies from status moves with a mysterious power.",
 142,FAIRYLOCK,Fairy Lock,152,0,FAIRY,Status,0,10,0,BothSides,0,e,"By locking down the battlefield, the user keeps all Pokémon from fleeing during the next turn.",
 143,FLORALHEALING,Floral Healing,16E,0,FAIRY,Status,0,5,0,NearOther,0,bc,"The user restores the target's HP by up to half of its max HP. It restores more HP when the terrain is grass.",
-144,FLOWERSHIELD,Flower Shield,13F,0,FAIRY,Status,0,10,0,UserAndAllies,0,,"The user raises the Defense stats of all Grass-type Pokémon on its side.",
+144,FLOWERSHIELD,Flower Shield,13F,0,FAIRY,Status,0,10,0,UserAndAllies,0,,"The user raises the Defense and Sp. Def of all Grass-type Pokémon on its side.",
 145,GEOMANCY,Geomancy,14E,0,FAIRY,Status,0,10,0,User,0,,"The user absorbs energy and sharply raises its Sp. Atk, Sp. Def, and Speed stats on the next turn.",
 146,FAIRYTERRAIN,Fairy Terrain,156,0,FAIRY,Status,0,10,0,BothSides,0,,"For five turns, Fairy-type moves are boosted, and grounded Pokémon can't be burned/poisoned.",
 147,MOONLIGHT,Moonlight,0D8,0,FAIRY,Status,0,5,0,User,0,d,"The user restores its own HP. The amount of HP regained varies with the weather.",

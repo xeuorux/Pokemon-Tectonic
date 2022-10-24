@@ -193,23 +193,26 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
         @battle.pbDisplay(_INTL("{1} already has a substitute!",user.pbThis))
         return true
       end
-      @subLife = user.totalhp/4
-      @subLife = 1 if @subLife<1
-      if user.hp <= @subLife
+      
+      if user.hp <= getSubLife(user)
         @battle.pbDisplay(_INTL("But it does not have enough HP left to make a substitute!"))
         return true
       end
       return false
     end
-  
-    def pbOnStartUse(user,targets)
-      user.pbReduceHP(@subLife,false,false)
-      user.pbItemHPHealCheck
+
+    def getSubLife(battler)
+      subLife = battler.totalhp/4
+      subLife = 1 if subLife < 1
+      return subLife
     end
   
     def pbEffectGeneral(user)
+      subLife = getSubLife(user)
+      user.pbReduceHP(subLife,false,false)
+      user.pbItemHPHealCheck
       user.disableEffect(:Trapping)
-		  user.applyEffect(:Substitute,@subLife)
+		  user.applyEffect(:Substitute,subLife)
     end
 
     def getScore(score,user,target,skill=100)
@@ -938,25 +941,28 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   #===============================================================================
   class PokeBattle_Move_120 < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      numTargets = 0
-      @idxAlly = -1
-      idxUserOwner = @battle.pbGetOwnerIndexFromBattlerIndex(user.index)
-      user.eachAlly do |b|
-        next if @battle.pbGetOwnerIndexFromBattlerIndex(b.index)!=idxUserOwner
-        next if !b.near?(user)
-        numTargets += 1
-        @idxAlly = b.index
+      eachValidSwitch(user) do |ally|
+        return false
       end
-      if numTargets!=1
-        @battle.pbDisplay(_INTL("But it failed!"))
-        return true
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+
+    def eachValidSwitch(battler)
+      idxUserOwner = @battle.pbGetOwnerIndexFromBattlerIndex(battler.index)
+      battler.eachAlly do |b|
+        next if @battle.pbGetOwnerIndexFromBattlerIndex(b.index) != idxUserOwner
+        next if !b.near?(battler)
+        yield b
       end
-      return false
     end
   
     def pbEffectGeneral(user)
       idxA = user.index
-      idxB = @idxAlly
+      idxB = -1
+      eachValidSwitch(user) do |ally|
+        idxB = ally.index
+      end
       if @battle.pbSwapBattlers(idxA,idxB)
         @battle.pbDisplay(_INTL("{1} and {2} switched places!",
            @battle.battlers[idxB].pbThis,@battle.battlers[idxA].pbThis(true)))
@@ -1249,11 +1255,6 @@ end
     end
 
     def pbEffectGeneral(user)
-      return if pbTarget(user) != :UserSide
-      @validTargets.each { |b| pbEffectAgainstTarget(user,b) }
-    end
-
-    def pbEffectGeneral(user)
       echoln("The AI will never use Celebrate.")
       return 0
     end
@@ -1279,57 +1280,9 @@ end
   end
   
   #===============================================================================
-  # Increases the user's and its ally's Defense and Special Defense by 1 stage
-  # each, if they have Plus or Minus. (Magnetic Flux)
+  # TODO: Currently unused.
   #===============================================================================
-  # NOTE: In Gen 5, this move should have a target of UserSide, while in Gen 6+ it
-  #       should have a target of UserAndAllies. This is because, in Gen 5, this
-  #       move shouldn't call def pbSuccessCheckAgainstTarget for each Pokémon
-  #       currently in battle that will be affected by this move (i.e. allies
-  #       aren't protected by their substitute/ability/etc., but they are in Gen
-  #       6+). We achieve this by not targeting any battlers in Gen 5, since
-  #       pbSuccessCheckAgainstTarget is only called for targeted battlers.
   class PokeBattle_Move_137 < PokeBattle_Move
-    def ignoresSubstitute?(user); return true; end
-  
-    def pbMoveFailed?(user,targets)
-      @validTargets = []
-      @battle.eachSameSideBattler(user) do |b|
-        next if !b.hasActiveAbility?([:MINUS,:PLUS])
-        next if !b.pbCanRaiseStatStage?(:DEFENSE,user,self) &&
-                !b.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
-        @validTargets.push(b)
-      end
-      if @validTargets.length==0
-        @battle.pbDisplay(_INTL("But it failed!"))
-        return true
-      end
-      return false
-    end
-  
-    def pbFailsAgainstTarget?(user,target)
-      return false if @validTargets.any? { |b| b.index==target.index }
-      return true if !target.hasActiveAbility?([:MINUS,:PLUS])
-      @battle.pbDisplay(_INTL("{1}'s stats can't be raised further!",target.pbThis))
-      return true
-    end
-    
-    def pbEffectAgainstTarget(user,target)
-      showAnim = true
-      if target.pbCanRaiseStatStage?(:DEFENSE,user,self)
-        if target.pbRaiseStatStage(:DEFENSE,1,user,showAnim)
-          showAnim = false
-        end
-      end
-      if target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
-        target.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user,showAnim)
-      end
-    end
-  
-    def pbEffectGeneral(user)
-      return if pbTarget(user) != :UserSide
-      @validTargets.each { |b| pbEffectAgainstTarget(user,b) }
-    end
   end
   
   #===============================================================================
@@ -1433,90 +1386,85 @@ end
   #===============================================================================
   class PokeBattle_Move_13E < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      @validTargets = []
       @battle.eachBattler do |b|
-        next if !b.pbHasType?(:GRASS)
-        next if b.semiInvulnerable?
-        next if !b.pbCanRaiseStatStage?(:ATTACK,user,self) &&
-                !b.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-        @validTargets.push(b.index)
+        return false if isValidTarget(user,b)
       end
-      if @validTargets.length==0
-        @battle.pbDisplay(_INTL("But it failed!"))
-        return true
-      end
-      return false
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+
+    def isValidTarget(user,target)
+      return false if !b.pbHasType?(:GRASS)
+      return false if b.semiInvulnerable?
+      return false if !b.pbCanRaiseStatStage?(:ATTACK,user,self) && !b.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
+      return true
     end
   
     def pbFailsAgainstTarget?(user,target)
-      return false if @validTargets.include?(target.index)
-      return true if !target.pbHasType?(:GRASS)
-      return true if target.semiInvulnerable?
-      @battle.pbDisplay(_INTL("{1}'s stats can't be raised further!",target.pbThis))
-      return true
+      return !isValidTarget(user,target)
     end
   
     def pbEffectAgainstTarget(user,target)
       showAnim = true
-      if target.pbCanRaiseStatStage?(:ATTACK,user,self)
-        if target.pbRaiseStatStage(:ATTACK,1,user,showAnim)
-          showAnim = false
-        end
+      if target.pbCanRaiseStatStage?(:DEFENSE,user,self)
+        target.pbRaiseStatStage(:DEFENSE,1,user,showAnim)
+        showAnim = false
       end
-      if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-        target.pbRaiseStatStage(:SPECIAL_ATTACK,1,user,showAnim)
+      if target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
+        target.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user,showAnim)
       end
     end
 
     def getScore(score,user,target,skill=100)
-			if target.pbHasTypeAI?(:GRASS)
-        if target.pbCanRaiseStatStage?(:ATTACK,user,self)
-          score += 20
-          score -= user.stages[:ATTACK] * 10
-        end
-        if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-          score += 20
-          score -= user.stages[:SPECIAL_ATTACK] * 10
-        end
+			if isValidTarget(target)
+        score += 30
+				score -= user.stages[:DEFENSE] * 5
+        score -= user.stages[:SPECIAL_DEFENSE] * 5
 			end
       return score
     end
   end
   
   #===============================================================================
-  # Increases the Defense of all Grass-type self and allies by 1 stage each.
+  # Increases the Defense and Sp. Def of all Grass-type self and allies by 1 stage each.
   # (Flower Shield)
   #===============================================================================
   class PokeBattle_Move_13F < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      @validTargets = []
-      targets.each do |b|
-        next if !b.pbHasType?(:GRASS)
-        next if b.semiInvulnerable?
-        next if !b.pbCanRaiseStatStage?(:DEFENSE,user,self)
-        @validTargets.push(b.index)
+      @battle.eachBattler do |b|
+        return false if isValidTarget(user,b)
       end
-      if @validTargets.length==0
-        @battle.pbDisplay(_INTL("But it failed!"))
-        return true
-      end
-      return false
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+
+    def isValidTarget(user,target)
+      return false if !b.pbHasType?(:GRASS)
+      return false if b.semiInvulnerable?
+      return false if !b.pbCanRaiseStatStage?(:DEFENSE,user,self) && !b.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
+      return true
     end
   
     def pbFailsAgainstTarget?(user,target)
-      return false if @validTargets.include?(target.index)
-      return true if !target.pbHasType?(:GRASS) || target.semiInvulnerable?
-      return !target.pbCanRaiseStatStage?(:DEFENSE,user,self,true)
+      return !isValidTarget(user,target)
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.pbRaiseStatStage(:DEFENSE,1,user)
+      showAnim = true
+      if target.pbCanRaiseStatStage?(:DEFENSE,user,self)
+        target.pbRaiseStatStage(:DEFENSE,1,user,showAnim)
+        showAnim = false
+      end
+      if target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
+        target.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user,showAnim)
+      end
     end
 
     def getScore(score,user,target,skill=100)
-			if target.pbHasTypeAI?(:GRASS) && target.pbCanRaiseStatStage?(:DEFENSE,user,self)
+			if isValidTarget(target)
         score += 30
-				score -= user.stages[:DEFENSE] * 10
+				score -= user.stages[:DEFENSE] * 5
+        score -= user.stages[:SPECIAL_DEFENSE] * 5
 			end
       return score
     end
@@ -1528,24 +1476,27 @@ end
   #===============================================================================
   class PokeBattle_Move_140 < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      @validTargets = []
-      targets.each do |b|
-        next if !b || b.fainted?
-        next if !b.poisoned?
-        next if !b.pbCanLowerStatStage?(:ATTACK,user,self) &&
-                !b.pbCanLowerStatStage?(:SPECIAL_ATTACK,user,self) &&
-                !b.pbCanLowerStatStage?(:SPEED,user,self)
-        @validTargets.push(b.index)
+      @battle.eachBattler do |b|
+        return false if isValidTarget(user,b)
       end
-      if @validTargets.length==0
-        @battle.pbDisplay(_INTL("But it failed!"))
-        return true
-      end
-      return false
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+
+    def isValidTarget(user,target)
+      return false if target.fainted?
+      return false if !target.poisoned?
+      return false if !target.pbCanLowerStatStage?(:ATTACK,user,self) &&
+                !target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user,self) &&
+                !target.pbCanLowerStatStage?(:SPEED,user,self)
+      return true
+    end
+  
+    def pbFailsAgainstTarget?(user,target)
+      return !isValidTarget(user,target)
     end
   
     def pbEffectAgainstTarget(user,target)
-      return if !@validTargets.include?(target.index)
       showAnim = true
       [:ATTACK,:SPECIAL_ATTACK,:SPEED].each do |s|
         next if !target.pbCanLowerStatStage?(s,user,self)
@@ -1556,11 +1507,11 @@ end
     end
 
     def getScore(score,user,target,skill=100)
-			if target.poisoned?
+			if isValidTarget(user,target)
         score += 30
-        score += target.stages[:ATTACK] * 10
-        score += target.stages[:SPECIAL_ATTACK] * 10
-        score += target.stages[:SPEED] * 10
+        score += target.stages[:ATTACK] * 5
+        score += target.stages[:SPECIAL_ATTACK] * 5
+        score += target.stages[:SPEED] * 5
 			end
       return score
     end
@@ -2145,68 +2096,9 @@ end
   end
   
   #===============================================================================
-  # Increases the user's and its ally's Attack and Special Attack by 1 stage each,
-  # if they have Plus or Minus. (Gear Up)
+  # TODO: Currently unused.
   #===============================================================================
-  # NOTE: In Gen 5, this move should have a target of UserSide, while in Gen 6+ it
-  #       should have a target of UserAndAllies. This is because, in Gen 5, this
-  #       move shouldn't call def pbSuccessCheckAgainstTarget for each Pokémon
-  #       currently in battle that will be affected by this move (i.e. allies
-  #       aren't protected by their substitute/ability/etc., but they are in Gen
-  #       6+). We achieve this by not targeting any battlers in Gen 5, since
-  #       pbSuccessCheckAgainstTarget is only called for targeted battlers.
   class PokeBattle_Move_15C < PokeBattle_Move
-    def ignoresSubstitute?(user); return true; end
-  
-    def pbMoveFailed?(user,targets)
-      @validTargets = []
-      @battle.eachSameSideBattler(user) do |b|
-        next if !b.hasActiveAbility?([:MINUS,:PLUS])
-        next if !b.pbCanRaiseStatStage?(:ATTACK,user,self) &&
-                !b.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-        @validTargets.push(b)
-      end
-      if @validTargets.length==0
-        @battle.pbDisplay(_INTL("But it failed!"))
-        return true
-      end
-      return false
-    end
-  
-    def pbFailsAgainstTarget?(user,target)
-      return false if @validTargets.any? { |b| b.index==target.index }
-      return true if !target.hasActiveAbility?([:MINUS,:PLUS])
-      @battle.pbDisplay(_INTL("{1}'s stats can't be raised further!",target.pbThis))
-      return true
-    end
-  
-    def pbEffectAgainstTarget(user,target)
-      showAnim = true
-      if target.pbCanRaiseStatStage?(:ATTACK,user,self)
-        if target.pbRaiseStatStage(:ATTACK,1,user,showAnim)
-          showAnim = false
-        end
-      end
-      if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-        target.pbRaiseStatStage(:SPECIAL_ATTACK,1,user,showAnim)
-      end
-    end
-  
-    def pbEffectGeneral(user)
-      return if pbTarget(user) != :UserSide
-      @validTargets.each { |b| pbEffectAgainstTarget(user,b) }
-    end
-
-    def getScore(score,user,target,skill=100)
-      score -= 40
-			@battle.eachSameSideBattler(user) do |b|
-        next if !b.hasActiveAbilityAI?([:MINUS,:PLUS])
-        next if !b.pbCanRaiseStatStage?(:ATTACK,user,self) &&
-                !b.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-        score += 40
-      end
-      return score
-    end
   end
   
   #===============================================================================

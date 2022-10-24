@@ -714,35 +714,41 @@ class PokeBattle_ProtectMove < PokeBattle_Move
     @sidedEffect = false
   end
 
+  # Make sure protectfailure stays active if already is
+  # It is set to false in the pbChangeUsageCounters base method
   def pbChangeUsageCounters(user,specialUsage)
-    oldVal = user.effects[PBEffects::ProtectRate]
+    failure = user.effectActive?(:ProtectFailure)
     super
-    user.effects[PBEffects::ProtectRate] = oldVal
+    user.applyEffect(:ProtectFailure) if failure
   end
 
   def pbMoveFailed?(user,targets)
+    shouldFail = false
     if @sidedEffect
-      if user.pbOwnSide.effects[@effect]
-        user.effects[PBEffects::ProtectRate] = 1
-        @battle.pbDisplay(_INTL("But it failed!"))
-        return true
+      if user.pbOwnSide.effectActive?(@effect)
+        shouldFail = true
       end
-    elsif user.effects[@effect]
-      user.effects[PBEffects::ProtectRate] = 1
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
+    elsif user.effectActive?(@effect)
+      shouldFail = true
     end
-    if user.effects[PBEffects::ProtectRate] > 1
-      user.effects[PBEffects::ProtectRate] = 1
+    if user.effectActive?(:ProtectFailure)
+      shouldFail = true
+    end
+
+    if shouldFail
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
     return false
   end
 
+  def moveFailed(user,targets)
+    user.disableEffect(:ProtectFailure)
+  end
+
   def pbMoveFailedNoSpecial?(user,targets)
     if pbMoveFailedLastInRound?(user)
-      user.effects[PBEffects::ProtectRate] = 1
+      user.disableEffect(:ProtectFailure)
       return true
     end
     return false
@@ -754,7 +760,7 @@ class PokeBattle_ProtectMove < PokeBattle_Move
     else
       user.effects[@effect] = true
     end
-    user.effects[PBEffects::ProtectRate] *= 3
+    user.applyEffect(:ProtectFailure)
     pbProtectMessage(user)
   end
 

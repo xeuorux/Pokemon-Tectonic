@@ -30,12 +30,14 @@ module EffectHolder
         validateInteger(effectData)
         oldValue = @effects[effect]
         newValue = oldValue + incrementAmount
-        if newValue >= effectData.maximum
-            raise _INTL("Effect incremented above maximum: #{effectData.real_name}")
+        if newValue > effectData.maximum
+            echo(_INTL("[EFFECT] Effect incremented while already at maximum: #{effectData.real_name}"))
+            return oldValue
+        else
+            @effects[effect] = newValue
+            @increment_proc&.call(effectData,incrementAmount)
+            return newValue
         end
-        @effects[effect] = newValue
-        @increment_proc&.call(effectData,incrementAmount)
-        return newValue
     end
 
     def getName(effect)

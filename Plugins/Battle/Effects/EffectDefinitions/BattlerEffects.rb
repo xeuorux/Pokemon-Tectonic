@@ -1208,11 +1208,8 @@ GameData::BattleEffect.register_effect(:Battler,{
 #######################################################
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :ProtectRate,
-	:real_name => "Protect Rate",
-	:type => :Integer,
-	:default => 1,
-	:info_displayed => false,
+	:id => :ProtectFailure,
+	:real_name => "Protect Will Fail",
 	:resets_on_move_start => true,
 })
 

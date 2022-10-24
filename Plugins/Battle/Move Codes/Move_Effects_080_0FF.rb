@@ -1104,7 +1104,7 @@ class PokeBattle_Move_0AF < PokeBattle_Move
         "172",   # Beak Blast
         # Event moves that do nothing
         "133",   # Hold Hands
-        "134"    # Celebrate
+        "134",    # Celebrate
         # Target-switching moves
         "0EB",   # Roar, Whirlwind
         "0EC"    # Circle Throw, Dragon Tail
@@ -1306,18 +1306,22 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
         # Moves that start focussing at the start of the round
         "115",   # Focus Punch
         "171",   # Shell Trap
-        "172"    # Beak Blast
+        "172",    # Beak Blast
     ]
   end
 
-  def pbMoveFailed?(user,targets)
-    @sleepTalkMoves = []
+  def getSleepTalkMoves(user)
+    sleepTalkMoves = []
     user.eachMoveWithIndex do |m,i|
       next if @moveBlacklist.include?(m.function)
       next if !@battle.pbCanChooseMove?(user.index,i,false,true)
-      @sleepTalkMoves.push(i)
+      sleepTalkMoves.push(i)
     end
-    if !user.asleep? || @sleepTalkMoves.length==0
+    return sleepTalkMoves
+  end
+
+  def pbMoveFailed?(user,targets)
+    if !user.asleep? || getSleepTalkMoves(user).length==0
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -1325,7 +1329,7 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    choice = @sleepTalkMoves[@battle.pbRandom(@sleepTalkMoves.length)]
+    choice = getSleepTalkMoves(user).sample
     user.pbUseMoveSimple(user.moves[choice].id,user.pbDirectOpposing.index)
   end
 end
@@ -1393,7 +1397,7 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
         "172",   # Beak Blast
         # Event moves that do nothing
         "133",   # Hold Hands
-        "134"    # Celebrate
+        "134",    # Celebrate
         # Moves that call other moves
         "0B3",   # Nature Power
         # Two-turn attacks
@@ -1417,19 +1421,22 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
     ]
   end
 
-  def pbMoveFailed?(user,targets)
-    @assistMoves = []
-    # NOTE: This includes the Pokémon of ally trainers in multi battles.
+  def getAssistMoves(user)
+    assistMoves = []
     @battle.pbParty(user.index).each_with_index do |pkmn,i|
       next if !pkmn || i==user.pokemonIndex
       next if pkmn.egg?
       pkmn.moves.each do |move|
         next if @moveBlacklist.include?(move.function_code)
         next if move.type == :SHADOW
-        @assistMoves.push(move.id)
+        assistMoves.push(move.id)
       end
     end
-    if @assistMoves.length==0
+    return assistMoves
+  end
+
+  def pbMoveFailed?(user,targets)
+    if getAssistMoves(user).length==0
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -1437,7 +1444,7 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    move = @assistMoves[@battle.pbRandom(@assistMoves.length)]
+    move = getAssistMoves(user).sample
     user.pbUseMoveSimple(move)
   end
 end
@@ -1555,23 +1562,22 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
     ]
   end
 
-  def pbMoveFailed?(user,targets)
-    @metronomeMove = nil
-    move_keys = GameData::Move::DATA.keys
-    # NOTE: You could be really unlucky and roll blacklisted moves 1000 times in
-    #       a row. This is too unlikely to care about, though.
-    1000.times do
-      move_id = move_keys[@battle.pbRandom(move_keys.length)]
+  def getMetronomeMoves(user)
+    metronomeMoves = []
+    GameData::Move::DATA.keys.each do |move_id|
       move_data = GameData::Move.get(move_id)
       next if @moveBlacklist.include?(move_data.function_code)
       next if @moveBlacklistSignatures.include?(move_data.id)
       next if @moveBlacklistCut.include?(move_data.id)
       next if move_data.type == :SHADOW
       next if @battle.getBattleMoveInstanceFromID(move_id).empowered?
-      @metronomeMove = move_data.id
-      break
+      metronomeMoves.push(move_data.id)
     end
-    if !@metronomeMove
+    return metronomeMoves
+  end
+
+  def pbMoveFailed?(user,targets)
+    if getMetronomeMoves(user).length == 0
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -1579,7 +1585,8 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    user.pbUseMoveSimple(@metronomeMove)
+    choice = getMetronomeMoves().sample
+    user.pbUseMoveSimple(choice)
   end
 end
 
@@ -3558,25 +3565,18 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
     }
   end
 
-  def pbCheckFlingSuccess(user)
-    @willFail = false
-    @willFail = true if !user.item || !user.itemActive? || user.unlosableItem?(user.item)
-    return if @willFail
-    @willFail = true if user.item.is_berry? && !user.canConsumeBerry?
-    return if @willFail
-    return if user.item.is_mega_stone?
-    flingableItem = false
+  def canFling?(user)
+    return false if !user.item || !user.itemActive? || user.unlosableItem?(user.item)
+    return false if user.item.is_berry? && !user.canConsumeBerry?
+    return false if user.item.is_mega_stone?
     @flingPowers.each do |_power, items|
-      next if !items.include?(user.item_id)
-      flingableItem = true
-      break
+      return true if items.include?(user.item_id)
     end
-    @willFail = true if !flingableItem
+    return false
   end
 
   def pbMoveFailed?(user,targets)
-    pbCheckFlingSuccess(user)
-    if @willFail
+    if !canFling?(user)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -3585,8 +3585,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
 
   def pbDisplayUseMessage(user,targets)
     super
-    pbCheckFlingSuccess(user)
-    if !@willFail
+    if canFling?(user)
       @battle.pbDisplay(_INTL("{1} flung its {2}!",user.pbThis,user.itemName))
     end
   end

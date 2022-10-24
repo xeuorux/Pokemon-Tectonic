@@ -1797,67 +1797,65 @@ class PokeBattle_Move_060 < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    @newType = :NORMAL
-    checkedTerrain = false
-    case @battle.field.terrain
-    when :Electric
-      if GameData::Type.exists?(:ELECTRIC)
-        @newType = :ELECTRIC
-        checkedTerrain = true
-      end
-    when :Grassy
-      if GameData::Type.exists?(:GRASS)
-        @newType = :GRASS
-        checkedTerrain = true
-      end
-    when :Misty
-      if GameData::Type.exists?(:FAIRY)
-        @newType = :FAIRY
-        checkedTerrain = true
-      end
-    when :Psychic
-      if GameData::Type.exists?(:PSYCHIC)
-        @newType = :PSYCHIC
-        checkedTerrain = true
-      end
-    end
-    if !checkedTerrain
-      case @battle.environment
-      when :Grass, :TallGrass
-        @newType = :GRASS
-      when :MovingWater, :StillWater, :Puddle, :Underwater
-        @newType = :WATER
-      when :Cave
-        @newType = :ROCK
-      when :Rock, :Sand
-        @newType = :GROUND
-      when :Forest, :ForestGrass
-        @newType = :BUG
-      when :Snow, :Ice
-        @newType = :ICE
-      when :Volcano
-        @newType = :FIRE
-      when :Graveyard
-        @newType = :GHOST
-      when :Sky
-        @newType = :FLYING
-      when :Space
-        @newType = :DRAGON
-      when :UltraSpace
-        @newType = :PSYCHIC
-      end
-    end
-    @newType = :NORMAL if !GameData::Type.exists?(@newType)
-    if !GameData::Type.exists?(@newType) || !user.pbHasOtherType?(@newType)
+    camouflageType = getCamouflageType()
+    if !GameData::Type.exists?(camouflageType) || !user.pbHasOtherType?(camouflageType)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
     return false
   end
 
+  def getCamouflageType()
+    newType = :NORMAL
+    checkedTerrain = false
+    case @battle.field.terrain
+    when :Electric
+        newType = :ELECTRIC
+        checkedTerrain = true
+    when :Grassy
+        newType = :GRASS
+        checkedTerrain = true
+    when :Misty
+        newType = :FAIRY
+        checkedTerrain = true
+    when :Psychic
+        newType = :PSYCHIC
+        checkedTerrain = true
+    end
+    if !checkedTerrain
+      case @battle.environment
+      when :Grass, :TallGrass
+        newType = :GRASS
+      when :MovingWater, :StillWater, :Puddle, :Underwater
+        newType = :WATER
+      when :Cave
+        newType = :ROCK
+      when :Rock, :Sand
+        newType = :GROUND
+      when :Forest, :ForestGrass
+        newType = :BUG
+      when :Snow, :Ice
+        newType = :ICE
+      when :Volcano
+        newType = :FIRE
+      when :Graveyard
+        newType = :GHOST
+      when :Sky
+        newType = :FLYING
+      when :Space
+        newType = :DRAGON
+      when :UltraSpace
+        newType = :PSYCHIC
+      end
+    end
+    newType = :NORMAL if !GameData::Type.exists?(newType)
+    return newType
+  end
+
   def pbEffectGeneral(user)
-    user.pbChangeTypes(@newType)
-    typeName = GameData::Type.get(@newType).name
+    newType = getCamouflageType()
+    user.pbChangeTypes(newType)
+    typeName = GameData::Type.get(newType).name
     @battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
   end
 end
