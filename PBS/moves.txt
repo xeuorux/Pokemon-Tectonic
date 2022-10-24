@@ -1128,3 +1128,4 @@
 1062,LEECHINGCOLD,Leeching Cold,0DD,80,ICE,Special,100,10,0,NearOther,0,bef,"A draining blast of ice. The user's HP is restored by half the damage taken by the target.",ICYWIND
 1063,FEVERISHGAS,Feverish Gas,5A0,100,FIRE,Special,100,10,0,NearOther,0,bef,"The user breathes a pheromonal nerve-chilling agent. This move is also Ice-type.",SMOG
 1064,SNOWSTORM,Snowstorm,102,50,ICE,Special,100,10,0,NearFoe,0,bef,"Hit the target with a frigid blast, then summons hail for five turns.",HAIL
+1065,SHEDCOAT,Shed Coat,5A2,0,ICE,Status,0,12,0,User,0,d,"The user sheds excess covering, sharply raising Speed, raising Sp. Atk, but lowering Sp. Def.",

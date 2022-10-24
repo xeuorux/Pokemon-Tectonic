@@ -2851,7 +2851,7 @@ end
     end
   end
 
-  #===============================================================================
+#===============================================================================
 # Type effectiveness is multiplied by the Ice-type's effectiveness against
 # the target. (Feverish Gas)
 #===============================================================================
@@ -2863,5 +2863,18 @@ class PokeBattle_Move_5A0 < PokeBattle_Move
 		ret *= iceEffectiveness.to_f / Effectiveness::NORMAL_EFFECTIVE_ONE
 	  end
 	  return ret
+	end
+end
+
+#===============================================================================
+# Decreases the user's Sp. Def.
+# Increases the user's Sp. Atk by 1 stage, and Speed by 2 stages.
+# (Shed Coat)
+#===============================================================================
+class PokeBattle_Move_5A2 < PokeBattle_StatUpDownMove
+	def initialize(battle,move)
+		super
+		@statUp   = [:SPEED,2,:SPECIAL_ATTACK,1]
+		@statDown = [:SPECIAL_DEFENSE,1]
 	end
 end
