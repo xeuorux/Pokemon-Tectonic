@@ -804,60 +804,11 @@ end
 # Increases the user's Attack, Speed and Special Attack by 2 stages each.
 # (Shell Smash)
 #===============================================================================
-class PokeBattle_Move_035 < PokeBattle_Move
+class PokeBattle_Move_035 < PokeBattle_StatUpDownMove
   def initialize(battle,move)
     super
     @statUp   = [:ATTACK,2,:SPECIAL_ATTACK,2,:SPEED,2]
     @statDown = [:DEFENSE,1,:SPECIAL_DEFENSE,1]
-  end
-
-  def pbMoveFailed?(user,targets)
-    failed = true
-    for i in 0...@statUp.length/2
-      if user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
-        failed = false; break
-      end
-    end
-    for i in 0...@statDown.length/2
-      if user.pbCanLowerStatStage?(@statDown[i*2],user,self)
-        failed = false; break
-      end
-    end
-    if failed
-      @battle.pbDisplay(_INTL("{1}'s stats can't be changed further!",user.pbThis))
-      return true
-    end
-    return false
-  end
-
-  def pbEffectGeneral(user)
-    showAnim = true
-    for i in 0...@statDown.length/2
-      next if !user.pbCanLowerStatStage?(@statDown[i*2],user,self)
-      if user.pbLowerStatStage(@statDown[i*2],@statDown[i*2+1],user,showAnim)
-        showAnim = false
-      end
-    end
-    showAnim = true
-    for i in 0...@statUp.length/2
-      next if !user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
-      if user.pbRaiseStatStage(@statUp[i*2],@statUp[i*2+1],user,showAnim)
-        showAnim = false
-      end
-    end
-  end
-
-  def getScore(score,user,target,skill=100)
-    return 0 if !user.hasDamagingAttack?
-
-    score += 50 if user.firstTurn?
-
-    score -= user.stages[:ATTACK]*20
-		score -= user.stages[:SPEED]*20
-		score -= user.stages[:SPECIAL_ATTACK]*20
-		score += user.stages[:DEFENSE]*10
-		score += user.stages[:SPECIAL_DEFENSE]*10
-    return score
   end
 end
 

@@ -1323,3 +1323,61 @@ end
       return score
     end
   end
+
+# Each subclass must define a @statUp and @statDown array in their initialization method
+class PokeBattle_StatUpDownMove < PokeBattle_Move 
+	def pbMoveFailed?(user,targets)
+	  failed = true
+	  for i in 0...@statUp.length/2
+		if user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
+		  failed = false; break
+		end
+	  end
+	  for i in 0...@statDown.length/2
+		if user.pbCanLowerStatStage?(@statDown[i*2],user,self)
+		  failed = false; break
+		end
+	  end
+	  if failed
+		@battle.pbDisplay(_INTL("{1}'s stats can't be changed further!",user.pbThis))
+		return true
+	  end
+	  return false
+	end
+  
+	def pbEffectGeneral(user)
+	  showAnim = true
+	  for i in 0...@statDown.length/2
+      next if !user.pbCanLowerStatStage?(@statDown[i*2],user,self)
+      if user.pbLowerStatStage(@statDown[i*2],@statDown[i*2+1],user,showAnim)
+        showAnim = false
+      end
+	  end
+	  showAnim = true
+	  for i in 0...@statUp.length/2
+      next if !user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
+      if user.pbRaiseStatStage(@statUp[i*2],@statUp[i*2+1],user,showAnim)
+        showAnim = false
+      end
+	  end
+	end
+  
+	def getScore(score,user,target,skill=100)
+	  return 0 if !user.hasDamagingAttack?
+  
+	  score += 50 if user.firstTurn?
+
+    for i in 0...@statDown.length/2
+      stat = @statDown[i*2]
+      amount = @statDown[i*2+1]
+      score += user.stages[stat] * 10 * amount
+	  end
+
+    for i in 0...@statUp.length/2
+      stat = @statDown[i*2]
+      amount = @statDown[i*2+1]
+      score -= user.stages[stat] * 10 * amount
+	  end
+	  return score
+	end
+end
