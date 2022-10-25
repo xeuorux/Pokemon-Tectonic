@@ -254,15 +254,17 @@ module GameData
 		def active_value?(value)
 			active = false
 
+			raise _INTL("Value #{@real_name} cannot check if the value #{value} is active because its invalid!}") if !valid_value?(value)
+
 			if @active_value_proc
 				active = @active_value_proc.call(value)
 			else
 				case @type
 				when :Boolean
 					active = value
-				when :Integer, :Species
+				when :Integer
 					active = value > 0
-				when :Position
+				when :Position, :PartyPosition
 					active = value >= 0
 				when :Type, :Pokemon, :Move, :Item
 					active = !value.nil?
@@ -329,18 +331,18 @@ module GameData
 			position = battle.positions[index]
 			battler = battle.battlers[index]
 			return if battler.nil? || battler.fainted?
-			value = battler.effects[@id]
+			value = position.effects[@id]
 			@apply_proc.call(battle, index, position, battler, value) if @apply_proc
 		end
 
 		def apply_side(battle, side)
 			teamName = battle.battlers[side.index].pbTeam
-			value = battler.effects[@id]
+			value = side.effects[@id]
 			@apply_proc.call(battle, side, teamName, value) if @apply_proc
 		end
 
 		def apply_field(battle)
-			value = battler.effects[@id]
+			value = battle.effects[@id]
 			@apply_proc.call(battle, value) if @apply_proc
 		end
 
@@ -418,18 +420,18 @@ module GameData
 			position = battle.positions[index]
 			battler = battle.battlers[index]
 			return if battler.nil? || battler.fainted?
-			value = battler.effects[@id]
+			value = position.effects[@id]
 			@eor_proc.call(battle, index, position, battler, value) if @eor_proc
 		end
 
 		def eor_side(battle, side)
 			teamName = battle.battlers[side.index].pbTeam
-			value = battler.effects[@id]
+			value = side.effects[@id]
 			@eor_proc.call(battle, side, teamName, value) if @eor_proc
 		end
 
 		def eor_field(battle)
-			value = battler.effects[@id]
+			value = battle.effects[@id]
 			@eor_proc.call(battle, value) if @eor_proc
 		end
 

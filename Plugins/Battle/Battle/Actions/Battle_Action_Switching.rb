@@ -1,4 +1,39 @@
 class PokeBattle_Battle
+  #=============================================================================
+  # Choosing Pokémon to switch
+  #=============================================================================
+  # Checks whether the replacement Pokémon (at party index idxParty) can enter
+  # battle.
+  # NOTE: Messages are only shown while in the party screen when choosing a
+  #       command for the next round.
+  def pbCanSwitchLax?(idxBattler,idxParty,partyScene=nil)
+    return true if idxParty<0
+    party = pbParty(idxBattler)
+    return false if idxParty>=party.length
+    return false if !party[idxParty]
+    if party[idxParty].egg?
+      partyScene.pbDisplay(_INTL("An Egg can't battle!")) if partyScene
+      return false
+    end
+    if !pbIsOwner?(idxBattler,idxParty)
+      owner = pbGetOwnerFromPartyIndex(idxBattler,idxParty)
+      partyScene.pbDisplay(_INTL("You can't switch {1}'s Pokémon with one of yours!",
+        owner.name)) if partyScene
+      return false
+    end
+    if party[idxParty].fainted?
+      partyScene.pbDisplay(_INTL("{1} has no energy left to battle!",
+         party[idxParty].name)) if partyScene
+      return false
+    end
+    if pbFindBattler(idxParty,idxBattler)
+      partyScene.pbDisplay(_INTL("{1} is already in battle!",
+         party[idxParty].name)) if partyScene
+      return false
+    end
+    return true
+  end
+
   # Check whether the currently active Pokémon (at battler index idxBattler) can
   # switch out (and that its replacement at party index idxParty can switch in).
   # NOTE: Messages are only shown while in the party screen when choosing a
@@ -59,6 +94,50 @@ class PokeBattle_Battle
 	return false
   end
 
+  def pbCanChooseNonActive?(idxBattler)
+    pbParty(idxBattler).each_with_index do |_pkmn,i|
+      return true if pbCanSwitchLax?(idxBattler,i)
+    end
+    return false
+  end
+
+  def pbRegisterSwitch(idxBattler,idxParty)
+    return false if !pbCanSwitch?(idxBattler,idxParty)
+    @choices[idxBattler][0] = :SwitchOut
+    @choices[idxBattler][1] = idxParty   # Party index of Pokémon to switch in
+    @choices[idxBattler][2] = nil
+    return true
+  end
+
+  #=============================================================================
+  # Open the party screen and potentially pick a replacement Pokémon (or AI
+  # chooses replacement)
+  #=============================================================================
+  # Open party screen and potentially choose a Pokémon to switch with. Used in
+  # all instances where the party screen is opened.
+  def pbPartyScreen(idxBattler,checkLaxOnly=false,canCancel=false,shouldRegister=false)
+    ret = -1
+    @scene.pbPartyScreen(idxBattler,canCancel) { |idxParty,partyScene|
+      if checkLaxOnly
+        next false if !pbCanSwitchLax?(idxBattler,idxParty,partyScene)
+      else
+        next false if !pbCanSwitch?(idxBattler,idxParty,partyScene)
+      end
+      if shouldRegister
+        next false if idxParty<0 || !pbRegisterSwitch(idxBattler,idxParty)
+      end
+      ret = idxParty
+      next true
+    }
+    return ret
+  end
+
+  # For choosing a replacement Pokémon when prompted in the middle of other
+  # things happening (U-turn, Baton Pass, in def pbSwitch).
+  def pbSwitchInBetween(idxBattler,checkLaxOnly=false,canCancel=false)
+    return pbPartyScreen(idxBattler,checkLaxOnly,canCancel) if pbOwnedByPlayer?(idxBattler)
+    return @battleAI.pbDefaultChooseNewEnemy(idxBattler,pbParty(idxBattler))
+  end
 
   #=============================================================================
   # Switching Pokémon
@@ -107,18 +186,101 @@ class PokeBattle_Battle
       end
     end
   end
-  
-  # Called at the start of battle only; Neutralizing Gas activates before anything.
-  def pbPriorityNeutralizingGas
-    eachBattler {|b|
-      next if !b || b.fainted?
-      if b.hasActiveNeutralizingGas?
-        BattleHandlers.triggerAbilityOnSwitchIn(:NEUTRALIZINGGAS,b,self)
-		    return
+
+  def pbGetReplacementPokemonIndex(idxBattler,random=false)
+    if random
+      return -1 if !pbCanSwitch?(idxBattler)   # Can battler switch out?
+      choices = []   # Find all Pokémon that can switch in
+      eachInTeamFromBattlerIndex(idxBattler) do |_pkmn,i|
+        choices.push(i) if pbCanSwitchLax?(idxBattler,i)
       end
-    }
-  end 
-  
+      return -1 if choices.length==0
+      return choices[pbRandom(choices.length)]
+    else
+      return pbSwitchInBetween(idxBattler,true)
+    end
+  end
+
+  # Actually performs the recalling and sending out in all situations.
+  def pbRecallAndReplace(idxBattler,idxParty,randomReplacement=false,batonPass=false)
+    @scene.pbRecall(idxBattler) if !@battlers[idxBattler].fainted?
+    @battlers[idxBattler].pbAbilitiesOnSwitchOut   # Inc. primordial weather check
+    @scene.pbShowPartyLineup(idxBattler&1) if pbSideSize(idxBattler)==1
+    pbMessagesOnReplace(idxBattler,idxParty) if !randomReplacement
+    pbReplace(idxBattler,idxParty,batonPass)
+  end
+
+  def pbMessageOnRecall(battler)
+    if battler.pbOwnedByPlayer?
+      if battler.hp<=battler.totalhp/4
+        pbDisplayBrief(_INTL("Good job, {1}! Come back!",battler.name))
+      elsif battler.hp<=battler.totalhp/2
+        pbDisplayBrief(_INTL("OK, {1}! Come back!",battler.name))
+      elsif battler.turnCount>=5
+        pbDisplayBrief(_INTL("{1}, that's enough! Come back!",battler.name))
+      elsif battler.turnCount>=2
+        pbDisplayBrief(_INTL("{1}, come back!",battler.name))
+      else
+        pbDisplayBrief(_INTL("{1}, switch out! Come back!",battler.name))
+      end
+    else
+      owner = pbGetOwnerName(battler.index)
+      pbDisplayBrief(_INTL("{1} withdrew {2}!",owner,battler.name))
+    end
+  end
+
+  # Only called from def pbRecallAndReplace and Battle Arena's def pbSwitch.
+  def pbMessagesOnReplace(idxBattler,idxParty)
+    party = pbParty(idxBattler)
+    newPkmnName = party[idxParty].name
+    if party[idxParty].ability == :ILLUSION
+      new_index = pbLastInTeam(idxBattler)
+      newPkmnName = party[new_index].name if new_index >= 0 && new_index != idxParty
+    end
+    if pbOwnedByPlayer?(idxBattler)
+      opposing = @battlers[idxBattler].pbDirectOpposing
+      if opposing.fainted? || opposing.hp==opposing.totalhp
+        pbDisplayBrief(_INTL("You're in charge, {1}!",newPkmnName))
+      elsif opposing.hp>=opposing.totalhp/2
+        pbDisplayBrief(_INTL("Go for it, {1}!",newPkmnName))
+      elsif opposing.hp>=opposing.totalhp/4
+        pbDisplayBrief(_INTL("Just a little more! Hang in there, {1}!",newPkmnName))
+      else
+        pbDisplayBrief(_INTL("Your opponent's weak! Get 'em, {1}!",newPkmnName))
+      end
+    else
+      owner = pbGetOwnerFromBattlerIndex(idxBattler)
+      pbDisplayBrief(_INTL("{1} sent out {2}!",owner.full_name,newPkmnName))
+    end
+  end
+
+  # Only called from def pbRecallAndReplace above and Battle Arena's def
+  # pbSwitch.
+  def pbReplace(idxBattler,idxParty,batonPass=false)
+    party = pbParty(idxBattler)
+    idxPartyOld = @battlers[idxBattler].pokemonIndex
+    # Initialise the new Pokémon
+    @battlers[idxBattler].pbInitialize(party[idxParty],idxParty,batonPass)
+    # Reorder the party for this battle
+    partyOrder = pbPartyOrder(idxBattler)
+    partyOrder[idxParty],partyOrder[idxPartyOld] = partyOrder[idxPartyOld],partyOrder[idxParty]
+    # Send out the new Pokémon
+    pbSendOut([[idxBattler,party[idxParty]]])
+    pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_SPEED_CHANGES
+  end
+
+  # Called from def pbReplace above and at the start of battle.
+  # sendOuts is an array; each element is itself an array: [idxBattler,pkmn]
+  def pbSendOut(sendOuts,startBattle=false)
+    sendOuts.each { |b| @peer.pbOnEnteringBattle(self,b[1]) }
+    @scene.pbSendOutBattlers(sendOuts,startBattle)
+    sendOuts.each do |b|
+      @scene.pbResetMoveIndex(b[0])
+      pbSetSeen(@battlers[b[0]])
+      @usedInBattle[b[0]&1][b[0]/2] = true
+    end
+  end
+
   #=============================================================================
   # Effects upon a Pokémon entering battle
   #=============================================================================
@@ -135,6 +297,17 @@ class PokeBattle_Battle
     pbCalculatePriority
     # Check forms are correct
     eachBattler { |b| b.pbCheckForm }
+  end
+
+  # Called at the start of battle only; Neutralizing Gas activates before anything.
+  def pbPriorityNeutralizingGas
+    eachBattler {|b|
+      next if !b || b.fainted?
+      if b.hasActiveNeutralizingGas?
+        BattleHandlers.triggerAbilityOnSwitchIn(:NEUTRALIZINGGAS,b,self)
+		    return
+      end
+    }
   end
 
   def getTypedHazardHPRatio(hazardType,type1,type2=nil,type3=nil)

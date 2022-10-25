@@ -18,7 +18,7 @@ module EffectHolder
             else
                 raise _INTL("Value must be provided when applying effect #{effectData.real_name} (it's not a boolean)")
             end
-        elsif !effectData.valid_value(value)
+        elsif !effectData.valid_value?(value)
             raise _INTL("Value #{value} provided to apply for effect #{effectData.real_name} is invalid")
         elsif value == effectData.default
             raise _INTL("Value #{value} provided to apply for effect #{effectData.real_name} is its default value")
@@ -94,7 +94,7 @@ module EffectHolder
         return if !effectData.active_value?(@effects[effect])
 		@effects[effect] = effectData.default
         @expire_proc.call(effectData) if @expire_proc
-		effectData.eachConnectedEffect do |otherEffect, otherData|
+		effectData.each_sub_effect do |otherEffect, otherData|
 			@effects[otherEffect] = otherData.default
             @expire_proc.call(otherData) if @expire_proc
 		end
@@ -104,6 +104,7 @@ module EffectHolder
 		effectData = GameData::BattleEffect.get(effect)
 
         mainEffectActive = effectData.active_value?(@effects[effect])
+
         effectData.each_sub_effect do |sub_effect|
             sub_active = effectActive?(sub_effect)
             if sub_active != mainEffectActive
@@ -144,7 +145,7 @@ module EffectHolder
             # Active end of round effects
             @eor_proc.call(data)
             # Tick down active effects that tick down
-            tickDownAndProc(effect) if effectData.ticks_down
+            tickDownAndProc(effect) if data.ticks_down
             # Disable effects that reset end of round
             disableEffect(effect) if data.resets_eor
         end
@@ -160,23 +161,26 @@ module EffectHolder
     #################################################
     def getData(dataOrEffect)
         return dataOrEffect if dataOrEffect.is_a?(GameData::BattleEffect)
-        return GameData::BattleEffect.get(effect)
+        return GameData::BattleEffect.get(dataOrEffect)
     end
 
     def validateInteger(effect)
-        if getData(effectData).type != :Integer
+        effectData = getData(effect)
+        if effectData.type != :Integer
 		    raise _INTL("Invalid operation for non-integer effect: #{effectData.real_name}")
         end
     end
 
     def validatePosition(effect)
-        if getData(effectData).type != :Position
+        effectData = getData(effect)
+        if effectData.type != :Position
 		    raise _INTL("Invalid operation for non-position effect: #{effectData.real_name}")
         end
     end
 
     def validateMove(effect)
-        if getData(effectData).type != :Move
+        effectData = getData(effect)
+        if effectData.type != :Move
 		    raise _INTL("Invalid operation for non-move effect: #{effectData.real_name}")
         end
     end

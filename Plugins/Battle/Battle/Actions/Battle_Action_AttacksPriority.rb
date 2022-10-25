@@ -1,5 +1,37 @@
 class PokeBattle_Battle
-      # Called when the Pokémon is Encored, or if it can't use any of its moves.
+  #=============================================================================
+  # Choosing a move/target
+  #=============================================================================
+  def pbCanChooseMove?(idxBattler,idxMove,showMessages,sleepTalk=false)
+    battler = @battlers[idxBattler]
+    move = battler.moves[idxMove]
+    return false unless move
+    if move.pp==0 && move.total_pp>0 && !sleepTalk
+      pbDisplayPaused(_INTL("There's no PP left for this move!")) if showMessages
+      return false
+    end
+    if battler.effectActive?(:Encore)
+      idxEncoredMove = battler.pbEncoredMoveIndex
+      return false if idxEncoredMove>=0 && idxMove!=idxEncoredMove
+    end
+    return battler.pbCanChooseMove?(move,true,showMessages,sleepTalk)
+  end
+
+  def pbCanChooseAnyMove?(idxBattler,sleepTalk=false)
+    battler = @battlers[idxBattler]
+    battler.eachMoveWithIndex do |m,i|
+      next if m.pp==0 && m.total_pp>0 && !sleepTalk
+      if battler.effectActive?(:Encore)
+        idxEncoredMove = battler.pbEncoredMoveIndex
+        next if idxEncoredMove>=0 && i!=idxEncoredMove
+      end
+      next if !battler.pbCanChooseMove?(m,true,false,sleepTalk)
+      return true
+    end
+    return false
+  end
+
+    # Called when the Pokémon is Encored, or if it can't use any of its moves.
     # Makes the Pokémon use the Encored move (if Encored), or Struggle.
     def pbAutoChooseMove(idxBattler,showMessages=true)
       battler = @battlers[idxBattler]
@@ -33,6 +65,66 @@ class PokeBattle_Battle
       @choices[idxBattler][2] = @struggle   # Struggle PokeBattle_Move object
       @choices[idxBattler][3] = -1          # No target chosen yet
       return true
+  end
+
+  def pbRegisterMove(idxBattler,idxMove,showMessages=true)
+    battler = @battlers[idxBattler]
+    move = battler.moves[idxMove]
+    return false if !pbCanChooseMove?(idxBattler,idxMove,showMessages)
+    @choices[idxBattler][0] = :UseMove   # "Use move"
+    @choices[idxBattler][1] = idxMove    # Index of move to be used
+    @choices[idxBattler][2] = move       # PokeBattle_Move object
+    @choices[idxBattler][3] = -1         # No target chosen yet
+    return true
+  end
+
+  def pbChoseMove?(idxBattler,moveID)
+    return false if !@battlers[idxBattler] || @battlers[idxBattler].fainted?
+    if @choices[idxBattler][0]==:UseMove && @choices[idxBattler][1]
+      return @choices[idxBattler][2].id == moveID
+    end
+    return false
+  end
+
+  def pbChoseMoveFunctionCode?(idxBattler,code)
+    return false if @battlers[idxBattler].fainted?
+    if @choices[idxBattler][0]==:UseMove && @choices[idxBattler][1]
+      return @choices[idxBattler][2].function == code
+    end
+    return false
+  end
+
+  def pbRegisterTarget(idxBattler,idxTarget)
+    @choices[idxBattler][3] = idxTarget   # Set target of move
+  end
+
+  # Returns whether the idxTarget will be targeted by a move with target_data
+  # used by a battler in idxUser.
+  def pbMoveCanTarget?(idxUser,idxTarget,target_data)
+    return false if target_data.num_targets == 0
+    case target_data.id
+    when :NearAlly
+      return false if opposes?(idxUser,idxTarget)
+      return false if !nearBattlers?(idxUser,idxTarget)
+    when :UserOrNearAlly
+      return true if idxUser==idxTarget
+      return false if opposes?(idxUser,idxTarget)
+      return false if !nearBattlers?(idxUser,idxTarget)
+    when :UserAndAllies
+      return false if opposes?(idxUser,idxTarget)
+    when :NearFoe, :RandomNearFoe, :AllNearFoes
+      return false if !opposes?(idxUser,idxTarget)
+      return false if !nearBattlers?(idxUser,idxTarget)
+    when :Foe
+      return false if !opposes?(idxUser,idxTarget)
+    when :AllFoes
+      return false if !opposes?(idxUser,idxTarget)
+    when :NearOther, :AllNearOthers
+      return false if !nearBattlers?(idxUser,idxTarget)
+    when :Other
+      return false if idxUser==idxTarget
+    end
+    return true
   end
 
   #=============================================================================
@@ -146,5 +238,21 @@ class PokeBattle_Battle
       end
       PBDebug.log(logMsg)
     end
+  end
+
+  def pbPriority(onlySpeedSort=false)
+    ret = []
+    if onlySpeedSort
+      # Sort battlers by their speed stats and tie-breaker order only.
+      tempArray = []
+      @priority.each { |pArray| tempArray.push([pArray[0],pArray[1],pArray[4]]) }
+      tempArray.sort! { |a,b| (a[1]==b[1]) ? b[2]<=>a[2] : b[1]<=>a[1] }
+      tempArray.each { |tArray| ret.push(tArray[0]) }
+    else
+      # Sort battlers by priority, sub-priority and their speed. Ties are
+      # resolved in the same way each time this method is called in a round.
+      @priority.each { |pArray| ret.push(pArray[0]) if !pArray[0].fainted? }
+    end
+    return ret
   end
 end

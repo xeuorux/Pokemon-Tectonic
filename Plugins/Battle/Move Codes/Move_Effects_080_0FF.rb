@@ -92,7 +92,7 @@ end
 #===============================================================================
 class PokeBattle_Move_085 < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    lrf = user.pbOwnSide.effectActive?(:LastRoundFainted)
+    lrf = user.pbOwnSide.effects[:LastRoundFainted]
     baseDmg *= 2 if lrf >= 0 && lrf == @battle.turnCount - 1
     return baseDmg
   end

@@ -251,7 +251,7 @@ class PokeBattle_Battle
 		# All balls but the beast ball have a 1/10 chance to catch Ultra Beasts
       catch_rate /= 10
     end
-    return captureThresholdCalcInternals(battler.status,battler.hp,battler.totalhp,catch_rate)
+    return PokeBattle_Battle.captureThresholdCalcInternals(battler.status,battler.hp,battler.totalhp,catch_rate)
   end
   
   def captureChanceCalc(pkmn,battler,catch_rate,ball)

@@ -1,16 +1,41 @@
 class PokeBattle_Battle
-	attr_accessor :ballsUsed       # Number of balls thrown without capture
-	attr_accessor :messagesBlocked
-	attr_accessor :commandPhasesThisRound
-	attr_accessor :battleAI
-	attr_accessor :bossBattle
-	attr_accessor :autoTesting
-	attr_accessor :autoTestingIndex
-	attr_accessor :honorAura
-	attr_accessor :expStored
-	attr_reader	  :curses
-	attr_accessor :expCapped
-  attr_accessor :turnsToSurvive
+	def pbRandom(x); return rand(x); end
+
+  #=============================================================================
+  # Information about the type and size of the battle
+  #=============================================================================
+  def wildBattle?;    return @opponent.nil?;  end
+  def trainerBattle?; return !@opponent.nil?; end
+
+  # Sets the number of battler slots on each side of the field independently.
+  # For "1v2" names, the first number is for the player's side and the second
+  # number is for the opposing side.
+  def setBattleMode(mode)
+    @sideSizes =
+      case mode
+      when "triple", "3v3" then [3, 3]
+      when "3v2"           then [3, 2]
+      when "3v1"           then [3, 1]
+      when "2v3"           then [2, 3]
+      when "double", "2v2" then [2, 2]
+      when "2v1"           then [2, 1]
+      when "1v3"           then [1, 3]
+      when "1v2"           then [1, 2]
+      else                      [1, 1]   # Single, 1v1 (default)
+      end
+  end
+
+  def singleBattle?
+    return pbSideSize(0)==1 && pbSideSize(1)==1
+  end
+
+  def pbSideSize(index)
+    return @sideSizes[index%2]
+  end
+
+  def maxBattlerIndex
+    return (pbSideSize(0)>pbSideSize(1)) ? (pbSideSize(0)-1)*2 : pbSideSize(1)*2-1
+  end
   
   def bossBattle?
 	  return bossBattle
@@ -22,96 +47,6 @@ class PokeBattle_Battle
       return true if effectData.is_room?
     end
     return false
-  end
-	
-  #=============================================================================
-  # Creating the battle class
-  #=============================================================================
-  def initialize(scene,p1,p2,player,opponent)
-    if p1.length==0
-      raise ArgumentError.new(_INTL("Party 1 has no Pokémon."))
-    elsif p2.length==0
-      raise ArgumentError.new(_INTL("Party 2 has no Pokémon."))
-    end
-    @scene             = scene
-    @peer              = PokeBattle_BattlePeer.create
-    @battleAI          = PokeBattle_AI.new(self)
-    @field             = PokeBattle_ActiveField.new(self)    # Whole field (gravity/rooms)
-    @sides             = [PokeBattle_ActiveSide.new(self,0),   # Player's side
-                          PokeBattle_ActiveSide.new(self,1)]   # Foe's side
-    @positions         = []                            # Battler positions
-    @battlers          = []
-    @sideSizes         = [1,1]   # Single battle, 1v1
-    @backdrop          = ""
-    @backdropBase      = nil
-    @time              = 0
-    @environment       = :None   # e.g. Tall grass, cave, still water
-    @turnCount         = 0
-    @decision          = 0
-    @caughtPokemon     = []
-    player   = [player] if !player.nil? && !player.is_a?(Array)
-    opponent = [opponent] if !opponent.nil? && !opponent.is_a?(Array)
-    @player            = player     # Array of Player/NPCTrainer objects, or nil
-    @opponent          = opponent   # Array of NPCTrainer objects, or nil
-    @items             = nil
-    @endSpeeches       = []
-    @endSpeechesWin    = []
-    @party1            = p1
-    @party2            = p2
-    @party1order       = Array.new(@party1.length) { |i| i }
-    @party2order       = Array.new(@party2.length) { |i| i }
-    @party1starts      = [0]
-    @party2starts      = [0]
-    @internalBattle    = true
-    @debug             = false
-    @canRun            = true
-    @canLose           = false
-    @switchStyle       = true
-    @showAnims         = true
-    @controlPlayer     = false
-    @expGain           = true
-    @moneyGain         = true
-    @rules             = {}
-    @priority          = []
-    @priorityTrickRoom = false
-    @choices           = []
-    @megaEvolution     = [
-       [-1] * (@player ? @player.length : 1),
-       [-1] * (@opponent ? @opponent.length : 1)
-    ]
-    @initialItems      = [
-       Array.new(@party1.length) { |i| (@party1[i]) ? @party1[i].item_id : nil },
-       Array.new(@party2.length) { |i| (@party2[i]) ? @party2[i].item_id : nil }
-    ]
-    @recycleItems      = [Array.new(@party1.length, nil),   Array.new(@party2.length, nil)]
-    @belch             = [Array.new(@party1.length, false), Array.new(@party2.length, false)]
-    @battleBond        = [Array.new(@party1.length, false), Array.new(@party2.length, false)]
-    @usedInBattle      = [Array.new(@party1.length, false), Array.new(@party2.length, false)]
-    @successStates     = []
-    @lastMoveUsed      = nil
-    @lastMoveUser      = -1
-    @switching         = false
-    @futureSight       = false
-    @endOfRound        = false
-    @moldBreaker       = false
-    @runCommand        = 0
-    @nextPickupUse     = 0
-    @ballsUsed		   = 0
-    @messagesBlocked   = false
-    @bossBattle		   = false
-    @autoTesting	   = false
-    @autoTestingIndex  = 1
-    @commandPhasesThisRound = 0
-    @honorAura		   = false
-    @curses			   = []
-    @expStored		   = 0
-    @expCapped		   = false
-    @turnsToSurvive  = -1
-    if GameData::Move.exists?(:STRUGGLE)
-      @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))
-    else
-      @struggle = PokeBattle_Struggle.new(self, nil)
-    end
   end
 
   def curseActive?(curseID)
@@ -203,67 +138,4 @@ class PokeBattle_Battle
       yield b
     end
   end
-  
-  #=============================================================================
-  # Messages and animations
-  #=============================================================================
-  def pbDisplay(msg,&block)
-    @scene.pbDisplayMessage(msg,&block) if !@messagesBlocked
-  end
-
-  def pbDisplayBrief(msg)
-    @scene.pbDisplayMessage(msg,true) if !@messagesBlocked
-  end
-
-  def pbDisplayPaused(msg,&block)
-    @scene.pbDisplayPausedMessage(msg,&block) if !@messagesBlocked
-  end
-
-  def pbDisplayConfirm(msg)
-    return @scene.pbDisplayConfirmMessage(msg) if !@messagesBlocked
-  end
-  
-  def pbDisplayConfirmSerious(msg)
-    return @scene.pbDisplayConfirmMessageSerious(msg) if !@messagesBlocked
-  end
-
-  def pbShowAbilitySplash(battler,delay=false,logTrigger=true)
-    return if @messagesBlocked
-    PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}") if logTrigger
-    @scene.pbShowAbilitySplash(battler)
-    if delay
-      frames = Graphics.frame_rate # Default 1 second
-      frames /= 2 if $PokemonSystem.battlescene > 0
-      frames.times { @scene.pbUpdate }   
-    end
-  end
-
-  def pbAnimation(move,user,targets,hitNum=0)
-    if @messagesBlocked
-      echoln("Skipping animation during AI calculations.")
-      return
-    end
-    @scene.pbAnimation(move,user,targets,hitNum) if @showAnims
-  end
-
-  def pbCommonAnimation(name,user=nil,targets=nil)
-    if @messagesBlocked
-      echoln("Skipping animation during AI calculations.")
-      return
-    end
-    return if @messagesBlocked
-    @scene.pbCommonAnimation(name,user,targets) if @showAnims
-  end
-
-  def pbHideAbilitySplash(battler)
-    return if @messagesBlocked
-    @scene.pbHideAbilitySplash(battler)
-  end
-
-  def pbReplaceAbilitySplash(battler)
-    return if @messagesBlocked
-    @scene.pbReplaceAbilitySplash(battler)
-  end
 end
-
-

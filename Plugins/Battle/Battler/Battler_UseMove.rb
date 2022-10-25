@@ -550,15 +550,18 @@ class PokeBattle_Battler
 			targets.each do |targetBattler|
 				move.pbEffectAfterAllHits(user, targetBattler)
 				move.pbEffectOnNumHits(user, targetBattler, realNumHits)
-				next unless targetBattler.effectActive?(:EmpoweredDestinyBond)
-				next if targetBattler.damageState.unaffected
-				next unless user.takesIndirectDamage?
-				next if user.hasActiveAbility?(:ROCKHEAD)
-				amt = (targetBattler.damageState.totalHPLost / 2.0).round
-				amt = 1 if amt < 1
-				@battle.pbDisplay(_INTL("{1}'s destiny is bonded with {2}!", user.pbThis, targetBattler.pbThis(true)))
-				user.pbReduceHP(amt, false)
-				user.pbItemHPHealCheck
+
+				# Empowered Destiny Bond
+				if targetBattler.effectActive?(:EmpoweredDestinyBond)
+					next if targetBattler.damageState.unaffected
+					next unless user.takesIndirectDamage?
+					next if user.hasActiveAbility?(:ROCKHEAD)
+					amt = (targetBattler.damageState.totalHPLost / 2.0).round
+					amt = 1 if amt < 1
+					@battle.pbDisplay(_INTL("{1}'s destiny is bonded with {2}!", user.pbThis, targetBattler.pbThis(true)))
+					user.pbReduceHP(amt, false)
+					user.pbItemHPHealCheck
+				end
 			end
 
 			# Curses about move usage
@@ -575,6 +578,7 @@ class PokeBattle_Battler
 			# Faint if 0 HP
 			targets.each { |b| b.pbFaint if b && b.fainted? }
 			user.pbFaint if user.fainted?
+			
 			# External/general effects after all hits. Eject Button, Shell Bell, etc.
 			pbEffectsAfterMove(user, targets, move, realNumHits)
 		end

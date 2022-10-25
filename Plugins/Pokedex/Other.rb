@@ -155,8 +155,8 @@ def get_bnb_coverage(species_data)
 end
 
 def theoreticalCaptureChance(status,current_hp,total_hp,catch_rate)
-	return 0 if !defined?(Battle.captureThresholdCalcInternals)
-    y = Battle.captureThresholdCalcInternals(status,current_hp,total_hp,catch_rate)
+	return 0 if !defined?(PokeBattle_Battle.captureThresholdCalcInternals)
+    y = PokeBattle_Battle.captureThresholdCalcInternals(status,current_hp,total_hp,catch_rate)
     chancePerShake = y.to_f/CATCH_BASE_CHANCE.to_f
     overallChance = chancePerShake ** 4
     return overallChance

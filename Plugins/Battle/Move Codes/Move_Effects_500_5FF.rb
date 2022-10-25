@@ -623,6 +623,12 @@ class PokeBattle_Move_524 < PokeBattle_HealingMove
 		user.applyEffect(:DisableMove, user.lastRegularMoveUsed)
 		user.pbItemStatusCureCheck
 	end
+
+	def getScore(score,user,target,skill=100)
+		score = super
+		score -= 30
+		return score
+	end
 end
 
 #===============================================================================

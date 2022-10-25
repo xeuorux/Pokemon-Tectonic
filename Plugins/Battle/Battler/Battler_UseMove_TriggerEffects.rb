@@ -49,7 +49,7 @@ class PokeBattle_Battler
 				applyEffect(:DestinyBondTarget,target.index)
 			end
 			# Stunning Curl
-			if target.effectActive?(:StunningCurl)
+			if target.effectActive?(:StunningCurl) && !user.paralyzed?
 				PBDebug.log("[Lingering effect] #{target.pbThis}'s Stunning Curl")
 				if user.pbCanParalyze?(target, false)
 					@battle.pbDisplay(_INTL("{1}'s stance causes the attack to bounce off akwardly!", target.pbThis))
@@ -100,7 +100,11 @@ class PokeBattle_Battler
 		switchedBattlers = []
 		move.pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
 		# Target's item, user's item, target's ability (all negated by Sheer Force)
-		pbEffectsAfterMove2(user, targets, move, numHits, switchedBattlers) if move.addlEffect == 0 || !user.hasActiveAbility?(:SHEERFORCE)
+		if user.hasActiveAbility?(:SHEERFORCE) && move.effectChance != 0
+			# Skip other additional effects too if sheer force is being applied to the move
+		else
+			pbEffectsAfterMove2(user, targets, move, numHits, switchedBattlers)
+		end
 		# Some move effects that need to happen here, i.e. U-turn/Volt Switch
 		# switching, Baton Pass switching, Parting Shot switching, Relic Song's form
 		# changing, Fling/Natural Gift consuming item.

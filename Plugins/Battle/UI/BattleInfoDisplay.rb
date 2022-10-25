@@ -352,11 +352,11 @@ class BattleInfoDisplay < SpriteWrapper
   end
 
   def pushEffectDescriptorsToArray(effectHolder,descriptorsArray)
-	effectHolder.eachEffect do |effect, value, effectData|
+	effectHolder.eachEffect(true) do |effect, value, effectData|
 		next if !effectData.info_displayed
 		next if !effectData.active_value?(value) && !DEBUGGING_EFFECT_DISPLAY
 		effectName = effectData.real_name
-		if !effectData.type == :Boolean
+		if !effectData.type != :Boolean
 			effectName = "#{effectName}: #{effectData.value_to_string(value)}"
 		end
 		descriptorsArray.push(effectName)

@@ -919,15 +919,15 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:remain_proc => Proc.new { |battle,battler,value|
 		moveName = battler.getMoveData(:TrappingMove).name
 		case battler.effects[:TrappingMove]
-        when :BIND,:VINEBIND            then pbCommonAnimation("Bind", battler)
-        when :CLAMP,:SLAMSHUT           then pbCommonAnimation("Clamp", battler)
-        when :FIRESPIN,:CRIMSONSTORM    then pbCommonAnimation("FireSpin", battler)
-        when :MAGMASTORM                then pbCommonAnimation("MagmaStorm", battler)
-        when :SANDTOMB,:SANDVORTEX      then pbCommonAnimation("SandTomb", battler)
-        when :INFESTATION               then pbCommonAnimation("Infestation", battler)
-	    when :SNAPTRAP 	                then pbCommonAnimation("SnapTrap",battler)
-        when :THUNDERCAGE               then pbCommonAnimation("ThunderCage",battler)
-        else                            pbCommonAnimation("Wrap", battler)
+        when :BIND,:VINEBIND            then battle.pbCommonAnimation("Bind", battler)
+        when :CLAMP,:SLAMSHUT           then battle.pbCommonAnimation("Clamp", battler)
+        when :FIRESPIN,:CRIMSONSTORM    then battle.pbCommonAnimation("FireSpin", battler)
+        when :MAGMASTORM                then battle.pbCommonAnimation("MagmaStorm", battler)
+        when :SANDTOMB,:SANDVORTEX      then battle.pbCommonAnimation("SandTomb", battler)
+        when :INFESTATION               then battle.pbCommonAnimation("Infestation", battler)
+	    when :SNAPTRAP 	                then battle.pbCommonAnimation("SnapTrap",battler)
+        when :THUNDERCAGE               then battle.pbCommonAnimation("ThunderCage",battler)
+        else                            battle.pbCommonAnimation("Wrap", battler)
         end
         if battler.takesIndirectDamage?
           fraction = 1.0/8.0
@@ -1159,7 +1159,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:baton_passed => true,
 	:info_displayed => false,
 	:active_value_proc => proc { |value|
-		return value != 0
+		next value != 0
 	}
 })
 
@@ -1223,7 +1223,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:baton_passed => true,
 	:info_displayed => false,
 	:active_value_proc => proc { |value|
-		return value != 0
+		next value != 0
 	}
 })
 

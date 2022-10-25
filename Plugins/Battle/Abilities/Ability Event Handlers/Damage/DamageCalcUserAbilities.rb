@@ -118,7 +118,7 @@ BattleHandlers::DamageCalcUserAbility.add(:SANDFORCE,
 
 BattleHandlers::DamageCalcUserAbility.add(:SHEERFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.3 if move.addlEffect > 0
+    mults[:base_damage_multiplier] *= 1.3 if move.effectChance > 0
   }
 )
 

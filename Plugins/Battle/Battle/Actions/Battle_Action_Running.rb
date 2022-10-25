@@ -99,10 +99,12 @@ class PokeBattle_Battle
         end
       end
       # Any effect that could keep a battler trapped
-      battler.eachEffectAllLocations do |effect, value, data|
-        next unless data.trapping?
-        pbDisplayPaused(_INTL("You can't escape!"))
-        return 0
+      battler.eachEffectAllLocations(true) do |effect, value, data|
+        if data.trapping?
+          echoln("[EFFECT] #{battler.pbThis} is trapped by effect #{data.real_name}")
+          pbDisplayPaused(_INTL("You can't escape!"))
+          return 0
+        end
       end
       # Trapping abilities/items
       eachOtherSideBattler(idxBattler) do |b|

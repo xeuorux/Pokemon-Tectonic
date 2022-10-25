@@ -30,7 +30,7 @@ class PokeBattle_Battle
     end
 
     # Tick down or reset battle effects
-    eachEffectHolder do |effectHolder|
+    allEffectHolders do |effectHolder|
       effectHolder.processEffectsEOR
     end
 
@@ -74,132 +74,6 @@ class PokeBattle_Battle
     checkForInvalidEffectStates()
 	
     @endOfRound = false
-  end
-
-  #=============================================================================
-  # End Of Round weather
-  #=============================================================================
-  def pbEORWeather(priority)
-    PBDebug.log("[DEBUG] Counting down weathers")
-
-    # NOTE: Primordial weather doesn't need to be checked here, because if it
-    #       could wear off here, it will have worn off already.
-    # Count down weather duration
-    @field.weatherDuration -= 1 if @field.weatherDuration>0
-    # Weather wears off
-    if @field.weatherDuration==0
-      endWeather()
-      @field.weather = :None
-      # Check for form changes caused by the weather changing
-      eachBattler { |b| b.pbCheckFormOnWeatherChange }
-      # Start up the default weather
-      pbStartWeather(nil,@field.defaultWeather) if @field.defaultWeather != :None
-      return if @field.weather == :None
-    end
-    # Weather continues
-    weather_data = GameData::BattleWeather.try_get(@field.weather)
-    pbCommonAnimation(weather_data.animation) if weather_data
-    # Effects due to weather
-    curWeather = pbWeather
-    showWeatherMessages = $PokemonSystem.weather_messages == 0
-    hailDamage = 0
-    priority.each do |b|
-      # Weather-related abilities
-      if b.abilityActive?
-        oldHP = b.hp
-        BattleHandlers.triggerEORWeatherAbility(b.ability,curWeather,b,self)
-        b.pbHealthLossChecks(oldHP)
-      end
-      # Weather damage
-      # NOTE:
-      case curWeather
-      when :Sandstorm
-        next if !b.takesSandstormDamage?
-        damageDoubled = !pbCheckGlobalAbility(:SHRAPNELSTORM).nil?
-        if showWeatherMessages
-          if damageDoubled
-            pbDisplay(_INTL("{1} is shredded by the razor-sharp shrapnel!",b.pbThis))
-          else
-            pbDisplay(_INTL("{1} is buffeted by the sandstorm!",b.pbThis))
-          end
-        end
-        fraction = 1.0/16.0
-        fraction *= 2 if damageDoubled
-        b.applyFractionalDamage(fraction)
-      when :Hail
-        next if !b.takesHailDamage?
-        damageDoubled = !pbCheckGlobalAbility(:BITTERCOLD).nil?
-        if showWeatherMessages
-          if damageDoubled
-            pbDisplay(_INTL("{1} is pummeled by the bitterly cold hail!",b.pbThis))
-          else
-            pbDisplay(_INTL("{1} is buffeted by the hail!",b.pbThis))
-          end
-        end
-        fraction = 1.0/16.0
-        fraction *= 2 if damageDoubled
-        hailDamage += b.applyFractionalDamage(fraction)
-      when :ShadowSky
-        next if !b.takesShadowSkyDamage?
-        pbDisplay(_INTL("{1} is hurt by the shadow sky!",b.pbThis))if showWeatherMessages
-        fraction = 1.0/16.0
-        b.applyFractionalDamage(fraction)
-      when :AcidRain
-        if !b.takesAcidRainDamage?
-          pbDisplay(_INTL("{1} is hurt by the acid rain!",b.pbThis)) if showWeatherMessages
-          fraction = 1.0/16.0
-          b.applyFractionalDamage(fraction)
-        elsif b.pbHasType?(:POISON) || b.hasActiveAbility?(:POISONHEAL)
-          heal = b.totalhp / 16.0
-          heal /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if b.boss?
-          if showWeatherMessages
-            pbShowAbilitySplash(b) if b.hasActiveAbility?(:POISONHEAL)
-            healingMessage = _INTL("{1} absorbs the acid rain!",b.pbThis)
-            b.pbRecoverHP(heal,true,true,true,healingMessage)
-            pbHideAbilitySplash(b) if b.hasActiveAbility?(:POISONHEAL)
-          else
-            b.pbRecoverHP(heal,true,true,false)
-          end
-        end
-      end
-    end
-    # Ectoparticles
-    if hailDamage > 0
-      priority.each do |b|
-        if b.hasActiveAbility?(:ECTOPARTICLES)
-          pbShowAbilitySplash(b)
-          healingMessage = _INTL("{1} absorbs the suffering from the hailstorm.",b.pbThis)
-          b.pbRecoverHP(hailDamage,true,true,true,healingMessage)
-          pbHideAbilitySplash(b)
-        end
-      end
-    end
-  end
-
-  def grassyTerrainEOR(priority)
-    return if @field.terrain != :Grassy
-    # Status-curing effects/abilities and HP-healing items
-    priority.each do |b|
-      next if b.fainted?
-       if b.affectedByTerrain?
-        PBDebug.log("[Lingering effect] Grassy Terrain affects #{b.pbThis(true)}")
-        if pbCheckOpposingAbility(:SNAKEPIT)
-          pbDisplay(_INTL("{1} is lashed at by the pit of snakes!",b.pbThis))
-          b.applyFractionalDamage(1.0/16.0)
-        elsif b.canHeal?
-          amount = b.totalhp/16.0
-          amount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if b.boss?
-          healingMessage = _INTL("{1} is healed by the Grassy Terrain.",b.pbThis)
-          if b.hasActiveAbility?(:NESTING)
-            pbShowAbilitySplash(b)
-            amount *= 4.0
-            healingMessage = _INTL("{1} nests within the Grassy Terrain.",b.pbThis)
-          end
-          b.pbRecoverHP(amount,true,true,true,healingMessage)
-          pbHideAbilitySplash(b) if b.hasActiveAbility?(:NESTING)
-        end
-      end
-    end
   end
 
   def pbEORHealing(priority)
@@ -343,38 +217,72 @@ class PokeBattle_Battle
   end
 
   def checkForInvalidEffectStates()
-    @battlers.each do |battler|
-      battler.effects.each do |effect,value|
+    allEffectHolders.each do |effectHolder|
+      effectHolder.effects.each do |effect,value|
         effectData = GameData::BattleEffect.try_get(effect)
-        raise _INTL("Battler effect \"#{effectData.real_name}\" is not a defined effect.") if effectData.nil?
+        raise _INTL("Effect \"#{effectData.real_name}\" is not a defined effect.") if effectData.nil?
         next if effectData.valid_value?(value)
-        raise _INTL("Battler effect \"#{effectData.real_name}\" is in invalid state: #{value}")
+        raise _INTL("Effect \"#{effectData.real_name}\" is in invalid state: #{value}")
       end
     end
+  end
 
-    @positions.each do |position|
-      position.effects.each do |effect,value|
-        effectData = GameData::BattleEffect.try_get(effect)
-        raise _INTL("Position effect \"#{effectData.real_name}\" is not a defined effect.") if effectData.nil?
-        next if effectData.valid_value?(value)
-        raise _INTL("Position effect \"#{effectData.real_name}\" is in invalid state: #{value}")
+  #=============================================================================
+  # End Of Round shift distant battlers to middle positions
+  #=============================================================================
+  def pbEORShiftDistantBattlers
+    # Move battlers around if none are near to each other
+    # NOTE: This code assumes each side has a maximum of 3 battlers on it, and
+    #       is not generalised to larger side sizes.
+    if !singleBattle?
+      swaps = []   # Each element is an array of two battler indices to swap
+      for side in 0...2
+        next if pbSideSize(side)==1   # Only battlers on sides of size 2+ need to move
+        # Check if any battler on this side is near any battler on the other side
+        anyNear = false
+        eachSameSideBattler(side) do |b|
+          eachOtherSideBattler(b) do |otherB|
+            next if !nearBattlers?(otherB.index,b.index)
+            anyNear = true
+            break
+          end
+          break if anyNear
+        end
+        break if anyNear
+        # No battlers on this side are near any battlers on the other side; try
+        # to move them
+        # NOTE: If we get to here (assuming both sides are of size 3 or less),
+        #       there is definitely only 1 able battler on this side, so we
+        #       don't need to worry about multiple battlers trying to move into
+        #       the same position. If you add support for a side of size 4+,
+        #       this code will need revising to account for that, as well as to
+        #       add more complex code to ensure battlers will end up near each
+        #       other.
+        eachSameSideBattler(side) do |b|
+          # Get the position to move to
+          pos = -1
+          case pbSideSize(side)
+          when 2 then pos = [2,3,0,1][b.index]   # The unoccupied position
+          when 3 then pos = (side==0) ? 2 : 3    # The centre position
+          end
+          next if pos<0
+          # Can't move if the same trainer doesn't control both positions
+          idxOwner = pbGetOwnerIndexFromBattlerIndex(b.index)
+          next if pbGetOwnerIndexFromBattlerIndex(pos)!=idxOwner
+          swaps.push([b.index,pos])
+        end
       end
-    end
-
-    @sides.each do |side|
-      side.effects.each do |effect,value|
-        effectData = GameData::BattleEffect.try_get(effect)
-        raise _INTL("Side effect \"#{effectData.real_name}\" is not a defined effect") if effectData.nil?
-        next if effectData.valid_value?(value)
-        raise _INTL("Side effect \"#{effectData.real_name}\" is in invalid state: #{value}")
+      # Move battlers around
+      swaps.each do |pair|
+        next if pbSideSize(pair[0])==2 && swaps.length>1
+        next if !pbSwapBattlers(pair[0],pair[1])
+        case pbSideSize(side)
+        when 2
+          pbDisplay(_INTL("{1} moved across!",@battlers[pair[1]].pbThis))
+        when 3
+          pbDisplay(_INTL("{1} moved to the center!",@battlers[pair[1]].pbThis))
+        end
       end
-    end
-
-    @field.effects.each do |effect,value|
-      effectData = GameData::BattleEffect.try_get(effect)
-      raise _INTL("Whole field effect \"#{effectData.real_name}\" is not a defined effect.") if effectData.nil?
-      next if effectData.valid_value?(value)
-      raise _INTL("Whole field effect \"#{effectData.real_name}\" is in invalid state: #{value}")
     end
   end
 end

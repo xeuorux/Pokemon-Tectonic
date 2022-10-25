@@ -1,15 +1,45 @@
 class PokeBattle_Battle
-	#=============================================================================
-	# Check whether actions can be taken
-	#=============================================================================
-	def pbCanShowCommands?(idxBattler)
+    #=============================================================================
+    # Clear commands
+    #=============================================================================
+    def pbClearChoice(idxBattler)
+      @choices[idxBattler] = [] if !@choices[idxBattler]
+      @choices[idxBattler][0] = :None
+      @choices[idxBattler][1] = 0
+      @choices[idxBattler][2] = nil
+      @choices[idxBattler][3] = -1
+    end
+  
+    def pbCancelChoice(idxBattler)
+      # If idxBattler's choice was to use an item, return that item to the Bag
+      if @choices[idxBattler][0] == :UseItem
+        item = @choices[idxBattler][1]
+        pbReturnUnusedItemToBag(item, idxBattler) if item
+      end
+      # If idxBattler chose to Mega Evolve, cancel it
+      pbUnregisterMegaEvolution(idxBattler)
+      # Clear idxBattler's choice
+      pbClearChoice(idxBattler)
+    end
+  
+    #=============================================================================
+    # Use main command menu (Fight/Pokémon/Bag/Run)
+    #=============================================================================
+    def pbCommandMenu(idxBattler,firstAction)
+      return @scene.pbCommandMenu(idxBattler,firstAction)
+    end
+  
+    #=============================================================================
+    # Check whether actions can be taken
+    #=============================================================================
+    def pbCanShowCommands?(idxBattler)
 		battler = @battlers[idxBattler]
 		return false if !battler || battler.fainted?
 		return false if battler.usingMultiTurnAttack?
 		return true
 	end
 
-	def canChooseAnyMove?(idxBattler)
+    def canChooseAnyMove?(idxBattler)
 		battler = @battlers[idxBattler]
 		battler.eachMoveWithIndex do |_m,i|
 			next if !pbCanChooseMove?(idxBattler,i,false)
@@ -17,12 +47,26 @@ class PokeBattle_Battle
 		end
 		return false
 	end
-
-	#=============================================================================
-	# Use sub-menus to choose an action, and register it if is allowed
-	#=============================================================================
-	# Returns true if a choice was made, false if cancelled.
-	def pbFightMenu(idxBattler)
+  
+    def pbCanShowFightMenu?(idxBattler)
+      battler = @battlers[idxBattler]
+      # Encore
+      return false if battler.effectActive?(:Encore)
+      # No moves that can be chosen (will Struggle instead)
+      usable = false
+      battler.eachMoveWithIndex do |_m,i|
+        next if !pbCanChooseMove?(idxBattler,i,false)
+        usable = true
+        break
+      end
+      return usable
+    end
+  
+    #=============================================================================
+    # Use sub-menus to choose an action, and register it if is allowed
+    #=============================================================================
+    # Returns true if a choice was made, false if cancelled.
+    def pbFightMenu(idxBattler)
 		battler = @battlers[idxBattler]
 		if !canChooseAnyMove?(idxBattler)
 			if pbDisplayConfirmSerious(_INTL("#{battler.pbThis} cannot use any of its moves, and will Struggle if it fights. Go ahead?"))
@@ -65,8 +109,82 @@ class PokeBattle_Battle
 		}
 		return ret
 	end
-
-	#=============================================================================
+  
+    def pbAutoFightMenu(idxBattler); return false; end
+  
+    def pbChooseTarget(battler,move)
+      target_data = move.pbTarget(battler)
+      idxTarget = @scene.pbChooseTarget(battler.index,target_data)
+      return false if idxTarget<0
+      pbRegisterTarget(battler.index,idxTarget)
+      return true
+    end
+  
+    def pbItemMenu(idxBattler,firstAction)
+      if !@internalBattle
+        pbDisplay(_INTL("Items can't be used here."))
+        return false
+      end
+      ret = false
+      @scene.pbItemMenu(idxBattler,firstAction) { |item,useType,idxPkmn,idxMove,itemScene|
+        next false if !item
+        battler = pkmn = nil
+        case useType
+        when 1, 2, 6, 7   # Use on Pokémon/Pokémon's move
+          next false if !ItemHandlers.hasBattleUseOnPokemon(item)
+          battler = pbFindBattler(idxPkmn,idxBattler)
+          pkmn    = pbParty(idxBattler)[idxPkmn]
+          next false if !pbCanUseItemOnPokemon?(item,pkmn,battler,itemScene)
+        when 3, 8   # Use on battler
+          next false if !ItemHandlers.hasBattleUseOnBattler(item)
+          battler = pbFindBattler(idxPkmn,idxBattler)
+          pkmn    = battler.pokemon if battler
+          next false if !pbCanUseItemOnPokemon?(item,pkmn,battler,itemScene)
+        when 4, 9   # Poké Balls
+          next false if idxPkmn<0
+          battler = @battlers[idxPkmn]
+          pkmn    = battler.pokemon if battler
+        when 5, 10   # No target (Poké Doll, Guard Spec., Launcher items)
+          battler = @battlers[idxBattler]
+          pkmn    = battler.pokemon if battler
+        else
+          next false
+        end
+        next false if !pkmn
+        next false if !ItemHandlers.triggerCanUseInBattle(item,
+           pkmn,battler,idxMove,firstAction,self,itemScene)
+        next false if !pbRegisterItem(idxBattler,item,idxPkmn,idxMove)
+        ret = true
+        next true
+      }
+      return ret
+    end
+  
+    def pbPartyMenu(idxBattler)
+      ret = -1
+      if @debug
+        ret = @battleAI.pbDefaultChooseNewEnemy(idxBattler,pbParty(idxBattler))
+      else
+        ret = pbPartyScreen(idxBattler,false,true,true)
+      end
+      return ret>=0
+    end
+  
+    def pbRunMenu(idxBattler)
+      # Regardless of succeeding or failing to run, stop choosing actions
+      return pbRun(idxBattler)!=0
+    end
+  
+    def pbCallMenu(idxBattler)
+      return pbRegisterCall(idxBattler)
+    end
+  
+    def pbDebugMenu
+      # NOTE: This doesn't do anything yet. Maybe you can write your own debugging
+      #       options!
+    end
+  
+    	#=============================================================================
 	# Command phase
 	#=============================================================================
 	def pbCommandPhase
@@ -265,3 +383,4 @@ class PokeBattle_Battle
 		@scene.pbBattleInfoMenu
 	end
 end
+  

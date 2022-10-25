@@ -178,9 +178,7 @@ def pbPurify(pkmn, scene)
       return ret
     end
   end
-  
-  
-  
+    
   class PokeBattle_Battler
     alias __shadow__pbInitPokemon pbInitPokemon
   

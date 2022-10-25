@@ -364,6 +364,8 @@ GameData::BattleEffect.register_effect(:Side,{
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :LastRoundFainted,
 	:real_name => "Last Round Fainted",
+	:type => :Integer,
+	:default => -1,
 	:info_displayed => false,
 	:court_changed => false,
 })

@@ -18,8 +18,8 @@ class PokeBattle_ActiveSide
 		@disable_proc = proc do |effectData|
 			effectData.disable_side(@battle, self)
 		end
-		@eor_proc = proc do |effectData,increment|
-			effectData.eor_side(@battle, self,increment)
+		@eor_proc = proc do |effectData|
+			effectData.eor_side(@battle, self)
 		end
 		@remain_proc = proc do |effectData|
 			effectData.remain_side(@battle, self)
