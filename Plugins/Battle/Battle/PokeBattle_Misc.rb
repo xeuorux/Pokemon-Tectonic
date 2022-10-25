@@ -87,6 +87,39 @@ class PokeBattle_Battle
     return nil
   end
 
+  def useEmpoweredStatusMoves()
+	  # Have bosses use empowered moves if appropriate
+	  @battlers.each do |b|
+      next if !b
+      next unless b.boss?
+      avatarData = GameData::Avatar.get(b.species.to_sym)
+      next if b.avatarPhase == avatarData.num_phases
+      hpFraction = 1 - (b.avatarPhase.to_f / avatarData.num_phases.to_f)
+      next if b.hp > b.totalhp * hpFraction
+      usedEmpoweredMove = false
+      b.eachMoveWithIndex do |move,index|
+        next if move.damagingMove?
+        next if !move.isEmpowered?
+        next if move.pp < 1
+        pbDisplayPaused(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
+        b.lastRoundMoved = 0
+        b.pbUseMove([:UseMove,index,move,-1,0])
+        usedEmpoweredMove = true
+      end
+      # Swap to post-empowerment moveset
+      if usedEmpoweredMove
+        b.avatarPhase += 1
+        movesetToAssign = [avatarData.moves1,avatarData.moves2,avatarData.moves3][b.avatarPhase-1]
+        if movesetToAssign.nil?
+          echoln("ERROR: Unable to change moveset.")
+        end
+        b.assignMoveset(movesetToAssign)
+        b.primevalTimer = 0
+        @scene.pbRefresh
+      end
+	  end
+  end
+
   # moveIDOrIndex is either the index of the move on the user's move list (Integer)
   # or it's the ID of the move to be used (Symbol)
   def forceUseMove(forcedMoveUser,moveIDOrIndex,target=-1,specialUsage=true,usageMessage=nil,moveUsageEffect=nil,showAbilitySplash=false)
