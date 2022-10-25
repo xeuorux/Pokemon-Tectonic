@@ -21,6 +21,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Position,
 	:others_lose_track => true,
 	:is_mental => true,
+	:swaps_with_battlers => true,
 	:apply_proc => Proc.new { |battle, battler, value|
 		battle.pbDisplay(_INTL("{1} fell in love!",battler.pbThis))
 	},
@@ -61,6 +62,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Bide Target",
 	:type => :Position,
 	:info_displayed => false,
+	:swaps_with_battlers => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -121,6 +123,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Position,
 	:resets_eor => true,
 	:info_displayed => false,
+	:swaps_with_battlers => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -479,6 +482,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Position,
 	:baton_passed => true,
 	:disable_effecs_on_other_exit => [:LockOn],
+	:swaps_with_battlers => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -516,6 +520,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Position,
 	:trapping => true,
 	:others_lose_track => true,
+	:swaps_with_battlers => true,
 	:apply_proc => Proc.new { |battle,battler,value|
 		battle.pbDisplay(_INTL("{1} can no longer escape!", battler.pbThis))
 	},
@@ -567,6 +572,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Mirror Coat Target",
 	:type => :Position,
 	:resets_eor => true,
+	:swaps_with_battlers => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -751,6 +757,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Sky Drop",
 	:type => :Position,
 	:others_lose_track => true,
+	:swaps_with_battlers => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -915,6 +922,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:trapping => true,
+	:swaps_with_battlers => true,
 	:disable_proc => Proc.new { |battle,battler|
 		moveName = battler.getMoveData(:TrappingMove).name
 		trapUser = battler.getBattlerPointsTo(:TrappingUser)
