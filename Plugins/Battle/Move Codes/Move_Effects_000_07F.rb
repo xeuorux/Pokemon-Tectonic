@@ -2317,13 +2317,13 @@ end
 #===============================================================================
 class PokeBattle_Move_071 < PokeBattle_FixedDamageMove
   def pbAddTarget(targets,user)
-    t = user.effects[PBEffects::CounterTarget]
-    return if t<0 || !user.opposes?(t)
-    user.pbAddTarget(targets,user,@battle.battlers[t],self,false)
+    target = user.getBattler(:CounterTarget)
+    return if target.nil? || !user.opposes?(target)
+    user.pbAddTarget(targets,user,target,self,false)
   end
 
   def pbMoveFailed?(user,targets)
-    if targets.length==0
+    if targets.length == 0
       @battle.pbDisplay(_INTL("But there was no target..."))
       return true
     end
@@ -2331,13 +2331,13 @@ class PokeBattle_Move_071 < PokeBattle_FixedDamageMove
   end
 
   def pbFixedDamage(user,target)
-    dmg = user.effects[PBEffects::Counter]*2
+    dmg = user.effects[:Counter] * 2
     dmg = 1 if dmg==0
     return dmg
   end
 
   def getScore(score,user,target,skill=100)
-    return 0 if target.effectActive?(:HyperBeam)
+    return 0 if !target.canActThisTurn?
 		return 0 if user.hp/user.totalhp <= 0.5
     return 0 if target.lastMoveUsed.nil?
 		moveData = GameData::Move.get(target.lastMoveUsed)
@@ -2352,13 +2352,13 @@ end
 #===============================================================================
 class PokeBattle_Move_072 < PokeBattle_FixedDamageMove
   def pbAddTarget(targets,user)
-    t = user.effects[PBEffects::MirrorCoatTarget]
-    return if t<0 || !user.opposes?(t)
-    user.pbAddTarget(targets,user,@battle.battlers[t],self,false)
+    target = user.getBattler(:MirrorCoatTarget)
+    return if target.nil? || !user.opposes?(target)
+    user.pbAddTarget(targets,user,target,self,false)
   end
 
   def pbMoveFailed?(user,targets)
-    if targets.length==0
+    if targets.length == 0
       @battle.pbDisplay(_INTL("But there was no target..."))
       return true
     end
@@ -2366,13 +2366,13 @@ class PokeBattle_Move_072 < PokeBattle_FixedDamageMove
   end
 
   def pbFixedDamage(user,target)
-    dmg = user.effects[PBEffects::MirrorCoat]*2
+    dmg = user.effects[:MirrorCoat] * 2
     dmg = 1 if dmg==0
     return dmg
   end
 
   def getScore(score,user,target,skill=100)
-    return 0 if target.effectActive?(:HyperBeam)
+    return 0 if !target.canActThisTurn?
 		return 0 if user.hp/user.totalhp <= 0.5
     return 0 if target.lastMoveUsed.nil?
 		moveData = GameData::Move.get(target.lastMoveUsed)
@@ -2408,7 +2408,7 @@ class PokeBattle_Move_073 < PokeBattle_FixedDamageMove
   end
 
   def getScore(score,user,target,skill=100)
-    return 0 iftarget.effectActive?(:HyperBeam)
+    return 0 if !target.canActThisTurn?
 		return 0 if user.hp/user.totalhp <= 0.5
     return 0 if target.lastMoveUsed.nil?
 		moveData = GameData::Move.get(target.lastMoveUsed)

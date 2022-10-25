@@ -96,10 +96,8 @@ module GameData
 		end
 
 		# Spikes, etc.
-		attr_reader :is_hazard
-
 		def is_hazard?
-			return @is_hazard
+			return @is_hazard || is_status_hazard?
 		end
 
 		# Cursed by Mental Herb or similar

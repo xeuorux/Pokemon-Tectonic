@@ -30,6 +30,24 @@ GameData::BattleEffect.register_effect(:Field,{
 	:real_name => "Gravity Turns",
 	:type => :Integer,
     :ticks_down => true,
+	:apply_proc => Proc.new { |battle, value|
+		battle.pbDisplay(_INTL("Gravity intensified!"))
+      	battle.eachBattler do |b|
+        	showMessage = false
+			if b.inTwoTurnAttack?("0C9","0CC","0CE")   # Fly/Bounce/Sky Drop
+				disableEffect(:TwoTurnAttack)
+				battle.pbClearChoice(b.index) if !b.movedThisRound?
+				showMessage = true
+			end
+			if b.effectActive(:MagnetRise) || b.effectActive?(:Telekinesis) || b.effectActive?(:SkyDrop)
+				b.disableEffect(:MagnetRise)
+				b.disableEffect(:Telekinesis)
+				b.disableEffect(:SkyDrop)
+				showMessage = true
+			end
+			battle.pbDisplay(_INTL("{1} couldn't stay airborne because of gravity!",b.pbThis)) if showMessage
+      	end
+	},
     :disable_proc => Proc.new { |battle,battler|
         battle.pbDisplay(_INTL("Gravity returned to normal!"))
     },
@@ -44,6 +62,9 @@ GameData::BattleEffect.register_effect(:Field,{
 	:id => :IonDeluge,
 	:real_name => "Ion Deluge",
 	:resets_eor => true,
+	:disable_proc => Proc.new { |battle,battler|
+        battle.pbDisplay(_INTL("A deluge of ions showers the battlefield!"))
+    },
 })
 
 GameData::BattleEffect.register_effect(:Field,{

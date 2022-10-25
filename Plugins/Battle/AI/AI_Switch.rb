@@ -71,8 +71,8 @@ class PokeBattle_AI
         # If there is a single foe and it is resting after Hyper Beam or is
         # Truanting (i.e. free turn)
         if @battle.pbSideSize(battler.index+1) == 1 && !battler.pbDirectOpposing.fainted?
-            opp = battler.pbDirectOpposing
-            if opp.effectActive?(:HyperBeam) || (opp.hasActiveAbility?(:TRUANT) && opp.effectActive?(:Truant))
+            opposingBattler = battler.pbDirectOpposing
+            if !opposingBattler.canActThisTurn?
                 switchingBias -= 2
             end
         end
@@ -176,8 +176,8 @@ class PokeBattle_AI
         return nil if battler.fainted?
         attackingTypes = [battler.pokemon.type1,battler.pokemon.type2]
         if !battler.lastMoveUsed.nil?
-        moveData = GameData::Move.get(battler.lastMoveUsed)
-        attackingTypes.push(moveData.type)
+            moveData = GameData::Move.get(battler.lastMoveUsed)
+            attackingTypes.push(moveData.type)
         end
         attackingTypes.uniq!
         attackingTypes.compact!

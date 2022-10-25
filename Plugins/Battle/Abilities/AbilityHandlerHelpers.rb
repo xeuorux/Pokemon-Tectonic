@@ -45,7 +45,7 @@ end
 def randomStatusProcAbility(status,chance,user,target,move,battle)
 	return if battle.pbRandom(100) >= chance
 	return if user.pbHasStatus?(status)
-	return if move.immuneToAdditionalEffects(user,target,chance)
+	return if !move.canApplyAdditionalEffects?(user,target)
     battle.pbShowAbilitySplash(user)
     if target.pbCanInflictStatus?(status, user, true, move)
       target.pbInflictStatus(user)

@@ -827,7 +827,7 @@ class PokeBattle_PledgeMove < PokeBattle_Move
     @comboEffect = nil; @overrideType = nil; @overrideAnim = nil
     # Check whether this is the use of a combo move
     @combos.each do |i|
-      next if i[0]!=user.effects[PBEffects::FirstPledge]
+      next if i[0] != user.effects[:FirstPledge]
       @battle.pbDisplay(_INTL("The two moves have become one! It's a combined move!"))
       @pledgeCombo = true
       @comboEffect = i[1]; @overrideType = i[2]; @overrideAnim = i[3]
@@ -1178,7 +1178,7 @@ class PokeBattle_DrainMove < PokeBattle_Move
     drainScore += 20 if user.hasActiveAbilityAI?(:ROOTED)
     drainScore += 20 if user.hasActiveItem?(:BIGROOT)
     drainScore += 20 if user.hp <= user.totalhp/2
-    if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.effects[PBEffects::NerveBreak]
+    if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.effectActive?(:NerveBreak)
       score -= drainScore
     else
       score += drainScore

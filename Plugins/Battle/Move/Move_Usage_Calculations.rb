@@ -294,7 +294,7 @@ class PokeBattle_Move
     #=============================================================================
     # Additional effect chance
     #=============================================================================
-    def immuneToAdditionalEffects(user,target,effectChance=0,showMessages=false)
+    def canApplyAdditionalEffects?(user,target,showMessages=false)
         if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
             if showMessages
                 battle.pbShowAbilitySplash(target)
@@ -307,7 +307,7 @@ class PokeBattle_Move
     end
 
     def pbAdditionalEffectChance(user,target,effectChance=0)
-        return 0 if immuneToAdditionalEffects(user,target,effectChance)
+        return 0 if !canApplyAdditionalEffects?(user,target)
         ret = effectChance > 0 ? effectChance : @effectChance
         ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
         ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
@@ -321,8 +321,7 @@ class PokeBattle_Move
     #       not here.
     def pbFlinchChance(user,target)
         return 0 if flinchingMove?
-        return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
-        return 0 if target.effectActive?(:Enlightened)
+        return 0 if !canApplyAdditionalEffects?(user,target)
         ret = 0
         if user.hasActiveAbility?(:STENCH,true)
             ret = 50

@@ -1,3 +1,5 @@
+PP_INCREASE_REPEAT_MOVES = false
+
 class PokeBattle_Battler
 	#=============================================================================
 	# Change HP
@@ -221,7 +223,9 @@ class PokeBattle_Battler
 		return true if move.total_pp <= 0 # Infinite PP, can always be used
 		return false if move.pp.zero? # Ran out of PP, couldn't reduce
 		reductionAmount = 1
-		reductionAmount = 3 if !boss? && @lastMoveUsed && @lastMoveUsed == move.id && !@lastMoveFailed
+		if PP_INCREASE_REPEAT_MOVES
+			reductionAmount = 3 if !boss? && @lastMoveUsed && @lastMoveUsed == move.id && !@lastMoveFailed
+		end
 		newPPAmount = [move.pp - reductionAmount, 0].max
 		pbSetPP(move, newPPAmount)
 		return true

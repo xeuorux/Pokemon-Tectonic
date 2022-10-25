@@ -34,8 +34,7 @@ class PokeBattle_Battler
 				user.pbBurn(target) if move.pbContactMove?(user) && user.affectedByContactEffect? && user.pbCanBurn?(target, false, self)
 			end
 			# Shell Trap (make the trapper move next if the trap was triggered)
-			if target.effectActive?(:ShellTrap) &&
-						@battle.choices[target.index][0] == :UseMove && !target.movedThisnd? && (target.damageState.hpLost > 0 && !target.damageState.substitute && move.physicalMove?)
+			if target.effectActive?(:ShellTrap) && @battle.choices[target.index][0] == :UseMove && !target.movedThisRound? && (target.damageState.hpLost > 0 && !target.damageState.substitute && move.physicalMove?)
 				target.tookPhysicalHit = true
 				target.applyEffect(:MoveNext)
 			end

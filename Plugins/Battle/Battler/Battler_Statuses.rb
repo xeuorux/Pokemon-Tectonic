@@ -137,7 +137,7 @@ class PokeBattle_Battler
 		if newStatus == :SLEEP && !(hasActiveAbility?(:SOUNDPROOF) && !@battle.moldBreaker) && !statusDoublingCurse
 			@battle.eachBattler do |b|
 				next if !b.effectActive?(:Uproar)
-				@battle.pbDisplay(_INTL('But the uproar kept {1} awake!', pbThis(true))) if showMessages
+				@battle.pbDisplay(_INTL("But the uproar kept {1} awake!", pbThis(true))) if showMessages
 				return false
 			end
 		end
@@ -359,15 +359,9 @@ class PokeBattle_Battler
 		# Status cures
 		pbItemStatusCureCheck
 		pbAbilityStatusCureCheck
-		# Petal Dance/Outrage/Thrash get cancelled immediately by falling asleep
-		# NOTE: I don't know why this applies only to Outrage and only to falling
-		#			 asleep (i.e. it doesn't cancel Rollout/Uproar/other multi-turn
-		#			 moves, and it doesn't cancel any moves if self becomes frozen/
-		#			 disabled/anything else). This behaviour was tested in Gen 5.
-		if newStatus == :SLEEP && effectActive?(:Outrage)
-			disableEffect(:Outrage)
-			@currentMove = nil
-		end
+
+		# Rampaging moves get cancelled immediately by falling asleep
+		disableEffect(:Outrage) if newStatus == :SLEEP
 	end
 
 	#=============================================================================
@@ -622,16 +616,6 @@ class PokeBattle_Battler
 	def pbConfuse(msg = nil)
 		applyEffect(:Confusion, pbConfusionDuration)
 		applyEffect(:ConfusionChance, 0)
-		@battle.pbCommonAnimation('Confusion', self)
-		if !msg || msg == ''
-			msg = _INTL('{1} became confused! It will hit itself with its own Attack!',
-															pbThis)
-		end
-		@battle.pbDisplay(msg)
-		PBDebug.log("[Lingering effect] #{pbThis}'s confusion count is #{countEffect(:Confusion)}")
-		# Confusion cures
-		pbItemStatusCureCheck
-		pbAbilityStatusCureCheck
 	end
 
 	def pbConfusionDuration(duration = -1)
@@ -679,15 +663,6 @@ class PokeBattle_Battler
 	def pbCharm(msg = nil)
 		applyEffect(:Charm, pbCharmDuration)
 		applyEffect(:CharmChance, 0)
-		@battle.pbAnimation(:LUCKYCHANT, self, nil)
-		if !msg || msg == ''
-			msg = _INTL('{1} became charmed! It will hit itself with its own Sp. Atk!',pbThis)
-		end
-		@battle.pbDisplay(msg)
-		PBDebug.log("[Lingering effect] #{pbThis}'s charm count is #{countEffect(:Charm)}")
-		# Charm cures
-		pbItemStatusCureCheck
-		pbAbilityStatusCureCheck
 	end
 
 	def pbCharmDuration(duration = -1)

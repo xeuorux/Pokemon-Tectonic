@@ -330,79 +330,6 @@ class PokeBattle_Battler
 		@battle.belch[@index & 1][@pokemonIndex] = true
 	end
 
-	#=============================================================================
-	# Methods relating to this battler's position on the battlefield
-	#=============================================================================
-	# Returns whether the given position belongs to the opposing Pokémon's side.
-	def opposes?(i = 0)
-		i = i.index if i.respond_to?('index')
-		return (@index & 1) != (i & 1)
-	end
-
-	# Returns whether the given position/battler is near to self.
-	def near?(i)
-		i = i.index if i.respond_to?('index')
-		return @battle.nearBattlers?(@index, i)
-	end
-
-	# Returns whether self is owned by the player.
-	def pbOwnedByPlayer?
-		return @battle.pbOwnedByPlayer?(@index)
-	end
-
-	# Returns 0 if self is on the player's side, or 1 if self is on the opposing
-	# side.
-	def idxOwnSide
-		return @index & 1
-	end
-
-	# Returns 1 if self is on the player's side, or 0 if self is on the opposing
-	# side.
-	def idxOpposingSide
-		return (@index & 1) ^ 1
-	end
-
-	# Returns the data structure for this battler's side.
-	def pbOwnSide
-		return @battle.sides[idxOwnSide]
-	end
-
-	# Returns the data structure for the opposing Pokémon's side.
-	def pbOpposingSide
-		return @battle.sides[idxOpposingSide]
-	end
-
-	# Yields each unfainted ally Pokémon.
-	def eachAlly
-		@battle.battlers.each do |b|
-			yield b if b && !b.fainted? && !b.opposes?(@index) && b.index != @index
-		end
-	end
-
-	# Yields each unfainted opposing Pokémon.
-	def eachOpposing(nearOnly = false)
-		@battle.battlers.each do |b|
-			next if nearOnly && !near?(b)
-			yield b if b && !b.fainted? && b.opposes?(@index)
-		end
-	end
-
-	# Returns the battler that is most directly opposite to self. unfaintedOnly is
-	# whether it should prefer to return a non-fainted battler.
-	def pbDirectOpposing(unfaintedOnly = false)
-		@battle.pbGetOpposingIndicesInOrder(@index).each do |i|
-			next unless @battle.battlers[i]
-			break if unfaintedOnly && @battle.battlers[i].fainted?
-			return @battle.battlers[i]
-		end
-		# Wanted an unfainted battler but couldn't find one; make do with a fainted
-		# battler
-		@battle.pbGetOpposingIndicesInOrder(@index).each do |i|
-			return @battle.battlers[i] if @battle.battlers[i]
-		end
-		return @battle.battlers[(@index ^ 1)]
-	end
-
 	def empowered?
 		return @avatarPhase > 1
 	end
@@ -485,4 +412,87 @@ class PokeBattle_Battler
 	def knockedBelowHalf?
         return @damageState.initialHP >= @totalhp/2 && @hp < @totalhp/2
     end
+
+	def canActThisTurn?
+		return false if effectActive?(:HyperBeam)
+		return false if effectActive?(:Truant)
+		return true
+	end
+
+	#=============================================================================
+	# Methods relating to this battler's position on the battlefield
+	#=============================================================================
+	# Returns whether the given position belongs to the opposing Pokémon's side.
+	def opposes?(i = 0)
+		i = i.index if i.respond_to?('index')
+		return (@index & 1) != (i & 1)
+	end
+
+	# Returns whether the given position/battler is near to self.
+	def near?(i)
+		i = i.index if i.respond_to?('index')
+		return @battle.nearBattlers?(@index, i)
+	end
+
+	# Returns whether self is owned by the player.
+	def pbOwnedByPlayer?
+		return @battle.pbOwnedByPlayer?(@index)
+	end
+
+	# Returns 0 if self is on the player's side, or 1 if self is on the opposing
+	# side.
+	def idxOwnSide
+		return @index & 1
+	end
+
+	# Returns 1 if self is on the player's side, or 0 if self is on the opposing
+	# side.
+	def idxOpposingSide
+		return (@index & 1) ^ 1
+	end
+
+	# Returns the data structure for this battler's side.
+	def pbOwnSide
+		return @battle.sides[idxOwnSide]
+	end
+
+	# Returns the data structure for the opposing Pokémon's side.
+	def pbOpposingSide
+		return @battle.sides[idxOpposingSide]
+	end
+
+	def position
+		return @battle.positions[@index]
+	end
+
+	# Yields each unfainted ally Pokémon.
+	def eachAlly
+		@battle.battlers.each do |b|
+			yield b if b && !b.fainted? && !b.opposes?(@index) && b.index != @index
+		end
+	end
+
+	# Yields each unfainted opposing Pokémon.
+	def eachOpposing(nearOnly = false)
+		@battle.battlers.each do |b|
+			next if nearOnly && !near?(b)
+			yield b if b && !b.fainted? && b.opposes?(@index)
+		end
+	end
+
+	# Returns the battler that is most directly opposite to self. unfaintedOnly is
+	# whether it should prefer to return a non-fainted battler.
+	def pbDirectOpposing(unfaintedOnly = false)
+		@battle.pbGetOpposingIndicesInOrder(@index).each do |i|
+			next unless @battle.battlers[i]
+			break if unfaintedOnly && @battle.battlers[i].fainted?
+			return @battle.battlers[i]
+		end
+		# Wanted an unfainted battler but couldn't find one; make do with a fainted
+		# battler
+		@battle.pbGetOpposingIndicesInOrder(@index).each do |i|
+			return @battle.battlers[i] if @battle.battlers[i]
+		end
+		return @battle.battlers[(@index ^ 1)]
+	end
 end

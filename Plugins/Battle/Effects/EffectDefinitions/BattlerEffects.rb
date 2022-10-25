@@ -21,6 +21,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Position,
 	:others_lose_track => true,
 	:is_mental => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} fell in love!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -28,6 +31,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Beak Blast",
 	:resets_battlers_eot => true,
 	:resets_battlers_sot => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbCommonAnimation("BeakBlast",battler)
+		battle.pbDisplay(_INTL("{1} started heating up its beak!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -60,6 +67,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :BurnUp,
 	:real_name => "Burnt Up",
 	:info_displayed => false,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} burned itself out!",battler.pbThis))
+        battle.scene.pbRefresh()
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -86,6 +97,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:baton_passed => true,
 	:is_mental => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbCommonAnimation('Confusion', battler)
+		battle.pbDisplay(_INTL("{1} became confused! It will hit itself with its own Attack!",battler.pbThis))
+	},
 	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis))
 	},
@@ -178,14 +193,18 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Electrify,
 	:real_name => "Electrify",
 	:resets_eor	=> true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1}'s moves have been electrified!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Embargo,
-	:real_name => "Embargo Turns",
-	:type => :Integer,
-	:ticks_down => true,
+	:real_name => "Embargoed",
 	:baton_passed => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} can't use items anymore!",battler.pbThis))
+	},
 	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} can use items again!",battler.pbThis))
 		battler.pbItemTerrainStatBoostCheck
@@ -196,22 +215,24 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Encore,
 	:real_name => "Encore Turns",
+	:is_mental => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battler.applyEffect(:EncoreMove,battler.lastRegularMoveUsed)
+		battle.pbDisplay(_INTL("{1} received an encore!",battler.pbThis))
+	},
 	:eor_proc => Proc.new { |battle,battler,value|
 		next if battler.fainted?
 		idxEncoreMove = b.pbEncoredMoveIndex
-		if idxEncoreMove>=0
-		  b.effects[:Encore] -= 1
-		  if b.effects[:Encore] == 0 || b.moves[idxEncoreMove].pp == 0
-			b.effects[:Encore] = 0
-			pbDisplay(_INTL("{1}'s encore ended!",b.pbThis))
-		  end
+		if idxEncoreMove < 0 || b.moves[idxEncoreMove].pp == 0
+			battler.disableEffect(:EncoreMove)
 		else
-		  PBDebug.log("[End of effect] #{b.pbThis}'s encore ended (encored move no longer known)")
-		  b.effects[:Encore]     = 0
-		  b.effects[:EncoreMove] = nil
+			battler.tickDownAndProc(:Encore)
 		end
 	},
-	:is_mental => true,
+	:disable_proc => Proc.new { |battle, battler|
+		battle.pbDisplay(_INTL("{1}'s encore ended!",battler.pbThis))
+	},
+	:sub_effects => [:EncoreMove],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -262,6 +283,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FocusPunch,
 	:real_name => "Focus Punch",
 	:resets_eor	=> true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbCommonAnimation("FocusPunch",battler)
+      	battle.pbDisplay(_INTL("{1} is tightening its focus!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -315,10 +340,13 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
+	:is_mental => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} was prevented from healing!",battler.pbThis))
+	},
 	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} Heal Block wore off!",battler.pbThis))
 	},
-	:is_mental => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -333,6 +361,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:multi_turn_tracker => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battler.currentMove = battler.lastMoveUsed
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -357,6 +388,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Imprison,
 	:real_name => "Moves Imprisoned",
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1}'s shared moves were sealed!",user.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -405,6 +439,12 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Seeded",
 	:type => :Position,
 	:baton_passed => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} was seeded!",battler.pbThis))
+	},
+	:disable_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} shed Leech Seed!",battler.pbThis))
+	},
 	:eor_proc => Proc.new { |battler,battle,value|
 		next if !battler.takesIndirectDamage?
 		recipient = battle.battlers[value]
@@ -459,6 +499,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} levitated with electromagnetism!",battler.pbThis))
+	},
 	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} electromagnetism wore off!",battler.pbThis))
 	},
@@ -540,6 +583,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Nightmare,
 	:real_name => "Nightmared",
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} began having a nightmare!",battler.pbThis))
+	},
 	:eor_proc => Proc.new { |battle,battler,value|
 		if !battler.asleep?
 			battler.effects[:Nightmare] = false
@@ -547,7 +593,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 			battle.pbDisplay(_INTL("{1} is locked in a nightmare!",battler.pbThis))
 			battler.applyFractionalDamage(1.0/4.0,false)
 		end
-	}
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -556,8 +602,12 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:resets_on_cancel => true,
 	:multi_turn_tracker => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battler.currentMove = battler.lastMoveUsed
+	},
 	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} spun down from its attack.",battler.pbThis))
+		battler.currentMove = nil
 	},
 })
 
@@ -615,6 +665,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Powder,
 	:real_name => "Powder",
 	:resets_eor	=> true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} is covered in powder!",battler.pbThis))
+	}
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -683,6 +736,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ShellTrap,
 	:real_name => "Shell Trap",
 	:resets_battlers_eot => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbCommonAnimation("ShellTrap",battler)
+      	battle.pbDisplay(_INTL("{1} set a shell trap!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -705,6 +762,15 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :SmackDown,
 	:real_name => "Smacked Down",
+	:apply_proc => Proc.new { |battle,battler,value|
+		if battler.inTwoTurnAttack?("0C9","0CC")   # Fly/Bounce. NOTE: Not Sky Drop.
+			battler.disableEffect(:TwoTurnAttack)
+			battle.pbClearChoice(target.index) if !battler.movedThisRound?
+		end
+		battler.disableEffect(:MagnetRise)
+		battler.disableEffect(:Telekinesis)
+		battle.pbDisplay(_INTL("{1} fell straight down!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -720,12 +786,33 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Spotlight,
 	:real_name => "Spotlight",
 	:type => :Integer,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} became the center of attention!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Stockpile,
 	:real_name => "Stockpile Charges",
 	:type => :Integer,
+	:maximum => 3,
+	:increment_proc => Proc.new { | battle, battler, value, increment|
+		battle.pbDisplay(_INTL("{1} stockpiled {2}!",user.pbThis,value))
+		battler.incrementEffect(:StockpileDef)
+		battler.incrementEffect(:StockpileSpDef)
+	},
+	:disable_proc => Proc.new { |battle, battler|
+		showAnim = true
+		if battler.effectActive?(:StockpileDef) && battler.pbCanLowerStatStage?(:DEFENSE,battler,self)
+		  if battler.pbLowerStatStage(:DEFENSE,battler.effects[:StockpileDef],battler,showAnim)
+			showAnim = false
+		  end
+		end
+		if battler.effectActive?(:StockpileSpDef) && battler.pbCanLowerStatStage?(:SPECIAL_DEFENSE,battler,self)
+			battler.pbLowerStatStage(:SPECIAL_DEFENSE,battler.effects[:StockpileSpDef],battler,showAnim)
+		end
+	},
+	:sub_effects => [:StockpileDef,:StockpileSpDef]
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -760,7 +847,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:is_mental => true,
 	:apply_proc => Proc.new { |battle,battler,value|
 		battle.pbDisplay(_INTL("{1} fell for the taunt!",battler.pbThis))
-		battler.pbItemStatusCureCheck
 	},
 	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} taunt wore off.",battler.pbThis))
@@ -787,6 +873,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Throat Injured Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} can't use sound-based moves for the next #{value-1} turns!",target.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -795,7 +884,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:is_mental => true,
 	:apply_proc => Proc.new { |battle,battler,value|
 		battle.pbDisplay(_INTL("{1} was subjected to torment!",battler.pbThis))
-		battler.pbItemStatusCureCheck
 	},
 })
 
@@ -824,11 +912,12 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:ticks_down => true,
 	:trapping => true,
 	:disable_proc => Proc.new { |battle,battler|
-		moveName = GameData::Move.get(battler.effects[:TrappingMove]).name
-        battle.pbDisplay(_INTL("{1} was freed from {2}!",battler.pbThis,moveName))
+		moveName = battler.getMoveData(:TrappingMove).name
+		trapUser = battler.getBattler(:TrappingUser)
+        battle.pbDisplay(_INTL("{1} was freed from {2}'s {3}!",battler.pbThis,trapUser.pbThis(true),moveName))
 	},
 	:remain_proc => Proc.new { |battle,battler,value|
-		moveName = GameData::Move.get(battler.effects[:TrappingMove]).name
+		moveName = battler.getMoveData(:TrappingMove).name
 		case battler.effects[:TrappingMove]
         when :BIND,:VINEBIND            then pbCommonAnimation("Bind", battler)
         when :CLAMP,:SLAMSHUT           then pbCommonAnimation("Clamp", battler)
@@ -909,11 +998,20 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:resets_on_cancel => true,
 	:ticks_down => true,
 	:multi_turn_tracker => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} caused an uproar!",battler.pbThis))
+		battle.pbPriority(true).each do |b|
+			next if b.fainted?
+			next if b.hasActiveAbility?(:SOUNDPROOF)
+			b.pbCureStatus(true,:SLEEP)
+		end
+	},
 	:remain_proc => Proc.new { |battle, battler,value|
 		battle.pbDisplay(_INTL("{1} is making an uproar!",battler.pbThis))
 	},
 	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} calmed down.",battler.pbThis))
+		battler.currentMove = nil
 	},
 })
 
@@ -1079,17 +1177,27 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ColdConversion,
 	:real_name => "Cold Converted",
 	:info_displayed => false,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} lost its cold!",battler.pbThis))
+        battle.scene.pbRefresh()
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :CreepOut,
 	:real_name => "Weak to Bug",
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} is now afraid of Bug-type moves!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :LuckyStar,
 	:real_name => "Added Crit Chance",
 	:critical_rate_buff => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} is blessed by the lucky star!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1098,6 +1206,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:baton_passed => true,
 	:is_mental => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.battle.pbAnimation(:LUCKYCHANT, battler, nil)
+		battle.pbDisplay(_INTL("{1} became charmed! It will hit itself with its own Sp. Atk!",battler.pbThis))
+	},
 	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} was released from the charm.",battler.pbThis))
 	},
@@ -1118,6 +1230,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Inured,
 	:real_name => "No Weaknesses",
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} shed its weaknesses!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1133,6 +1248,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :NerveBreak,
 	:real_name => "Healing Reversed",
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1}'s nerves are strained!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1219,6 +1337,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :VolleyStance,
 	:real_name => "Volley Stance",
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} prepares to begin the bombardment!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1238,11 +1359,17 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ShimmeringHeat,
 	:real_name => "Shimmering Heat",
 	:resets_eor	=> true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} is obscured by the shimmering haze!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FlareWitch,
 	:real_name => "Flare Witch",
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} breaks open its witch powers!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{

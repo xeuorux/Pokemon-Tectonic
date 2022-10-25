@@ -159,8 +159,7 @@ class PokeBattle_Battler
 
 	def eachPotentialAttacker(categoryOnly = -1)
 		eachOpposing(true) do |b|
-			# Don't protect yourself from a target that can't even attack this turn
-			next if b.effectActive?(:HyperBeam)
+			next if !b.canActThisTurn?
 			next if categoryOnly == 0 && !b.hasPhysicalAttack?
 			next if categoryOnly == 1 && !b.hasSpecialAttack?
 			next if categoryOnly == 2 && !b.hasStatusMove?

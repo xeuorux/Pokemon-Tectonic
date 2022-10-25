@@ -218,7 +218,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def getScore(score,user,target,skill=100)
       score += 20 if user.firstTurn?
       user.eachOpposing(true) do |b|
-        if b.effects[PBEffects::HyperBeam] > 0
+        if !b.canActThisTurn?
           score += 50
         elsif b.hasSoundMove?
           score -= 50
@@ -354,7 +354,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   #===============================================================================
   class PokeBattle_Move_10F < PokeBattle_Move
     def pbFailsAgainstTarget?(user,target)
-      if !target.asleep? || target.effects[PBEffects::Nightmare]
+      if !target.asleep? || target.effectActive?(:Nightmare)
         @battle.pbDisplay(_INTL("But it failed!"))
         return true
       end
@@ -362,8 +362,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.effects[PBEffects::Nightmare] = true
-      @battle.pbDisplay(_INTL("{1} began having a nightmare!",target.pbThis))
+      target.applyEffect(:Nightmare)
     end
 
     def getScore(score,user,target,skill=100)
@@ -401,8 +400,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
   
     def pbFailsAgainstTarget?(user,target)
-      if !@battle.futureSight &&
-         @battle.positions[target.index].effects[PBEffects::FutureSightCounter]>0
+      if !@battle.futureSight && target.position.effectActive?(:FutureSightCounter)
         @battle.pbDisplay(_INTL("But it failed!"))
         return true
       end
@@ -411,13 +409,13 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   
     def pbEffectAgainstTarget(user,target)
       return if @battle.futureSight   # Attack is hitting
-      effects = @battle.positions[target.index].effects
+      position = 
       count = 3
       count -= 1 if user.hasActiveAbility?([:BADOMEN])
-      effects[PBEffects::FutureSightCounter]        = count
-      effects[PBEffects::FutureSightMove]           = @id
-      effects[PBEffects::FutureSightUserIndex]      = user.index
-      effects[PBEffects::FutureSightUserPartyIndex] = user.pokemonIndex
+      target.position.applyEffect(:FutureSightCount,count)
+      target.position.applyEffect(:FutureSightMove,@id)
+      target.position.pointAt(:FutureSightUserIndex,user)
+      target.position.applyEffect(:FutureSightUserPartyIndex,user.pokemonIndex)
       if @id == :DOOMDESIRE
         @battle.pbDisplay(_INTL("{1} chose Doom Desire as its destiny!",user.pbThis))
       else
@@ -449,7 +447,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
     
     def pbMoveFailed?(user,targets)
-      if user.effects[PBEffects::Stockpile] >= 3
+      if user.effectAtMax?(:Stockpile)
         @battle.pbDisplay(_INTL("{1} can't stockpile any more!",user.pbThis))
         return true
       end
@@ -457,8 +455,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
   
     def pbEffectGeneral(user)
-      user.effects[PBEffects::Stockpile] += 1
-      @battle.pbDisplay(_INTL("{1} stockpiled {2}!",user.pbThis,user.effects[PBEffects::Stockpile]))
+      user.incrementEffect(:Stockpile)
       super
     end
 
@@ -476,7 +473,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   #===============================================================================
   class PokeBattle_Move_113 < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      if user.effects[PBEffects::Stockpile]==0
+      if !user.effectActive?(:Stockpile)
         @battle.pbDisplay(_INTL("But it failed to spit up a thing!"))
         return true
       end
@@ -484,32 +481,19 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
   
     def pbBaseDamage(baseDmg,user,target)
-      return 100*user.effects[PBEffects::Stockpile]
+      return 100 * user.effectCount(:Stockpile)
     end
   
     def pbEffectAfterAllHits(user,target)
-      return if user.fainted? || user.effects[PBEffects::Stockpile]==0
+      return if user.fainted? || !user.effectActive?(:Stockpile)
       return if target.damageState.unaffected
       @battle.pbDisplay(_INTL("{1}'s stockpiled effect wore off!",user.pbThis))
       return if @battle.pbAllFainted?(target.idxOwnSide)
-      showAnim = true
-      if user.effects[PBEffects::StockpileDef]>0 &&
-         user.pbCanLowerStatStage?(:DEFENSE,user,self)
-        if user.pbLowerStatStage(:DEFENSE,user.effects[PBEffects::StockpileDef],user,showAnim)
-          showAnim = false
-        end
-      end
-      if user.effects[PBEffects::StockpileSpDef]>0 &&
-         user.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
-        user.pbLowerStatStage(:SPECIAL_DEFENSE,user.effects[PBEffects::StockpileSpDef],user,showAnim)
-      end
-      user.effects[PBEffects::Stockpile]      = 0
-      user.effects[PBEffects::StockpileDef]   = 0
-      user.effects[PBEffects::StockpileSpDef] = 0
+      user.disableEffect(:Stockpile)
     end
 
     def getScore(score,user,target,skill=100)
-      score -= 20 * user.effects[PBEffects::Stockpile]
+      score -= 20 * user.effectCount(:Stockpile)
       return score
     end
   end
@@ -523,7 +507,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   
     def pbMoveFailed?(user,targets)
       return true if super
-      if user.effects[PBEffects::Stockpile] == 0
+      if !user.effectActive?(:Stockpile)
         @battle.pbDisplay(_INTL("But it failed to swallow a thing!"))
         return true
       end
@@ -531,7 +515,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
 
     def healRatio(user)
-      case [user.effects[PBEffects::Stockpile],1].max
+      case [user.effectCount(:Stockpile),1].max
       when 1
         return 1.0/4.0
       when 2
@@ -545,25 +529,12 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def pbEffectGeneral(user)
       super
       @battle.pbDisplay(_INTL("{1}'s stockpiled effect wore off!",user.pbThis))
-      showAnim = true
-      if user.effects[PBEffects::StockpileDef]>0 &&
-         user.pbCanLowerStatStage?(:DEFENSE,user,self)
-        if user.pbLowerStatStage(:DEFENSE,user.effects[PBEffects::StockpileDef],user,showAnim)
-          showAnim = false
-        end
-      end
-      if user.effects[PBEffects::StockpileSpDef] > 0 &&
-         user.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
-        user.pbLowerStatStage(:SPECIAL_DEFENSE,user.effects[PBEffects::StockpileSpDef],user,showAnim)
-      end
-      user.effects[PBEffects::Stockpile]      = 0
-      user.effects[PBEffects::StockpileDef]   = 0
-      user.effects[PBEffects::StockpileSpDef] = 0
+      user.disableEffect(:Stockpile)
     end
 
     def getScore(score,user,target,skill=100)
       score = super
-      score -= 20 * user.effects[PBEffects::Stockpile]
+      score -= 20 * user.effectCount(:Stockpile)
       return score
     end
   end
@@ -573,17 +544,15 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   #===============================================================================
   class PokeBattle_Move_115 < PokeBattle_Move
     def pbDisplayChargeMessage(user)
-      user.effects[PBEffects::FocusPunch] = true
-      @battle.pbCommonAnimation("FocusPunch",user)
-      @battle.pbDisplay(_INTL("{1} is tightening its focus!",user.pbThis))
+      user.applyEffect(:FocusPunch)
     end
   
     def pbDisplayUseMessage(user,targets)
-      super if !user.effects[PBEffects::FocusPunch] || user.lastHPLost == 0
+      super if !user.effectActive?(:FocusPunch) || user.lastHPLost == 0
     end
   
     def pbMoveFailed?(user,targets)
-      if user.effects[PBEffects::FocusPunch] && user.lastHPLost > 0
+      if user.effectActive?(:FocusPunch) && user.lastHPLost > 0
         @battle.pbDisplay(_INTL("{1} lost its focus and couldn't move!",user.pbThis))
         return true
       end
@@ -660,31 +629,15 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   #===============================================================================
   class PokeBattle_Move_118 < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      if @battle.field.effects[PBEffects::Gravity]>0
-        @battle.pbDisplay(_INTL("But it failed!"))
+      if @battle.field.effectActive?(:Gravity)
+        @battle.pbDisplay(_INTL("But it failed, since gravity is already intense!"))
         return true
       end
       return false
     end
   
     def pbEffectGeneral(user)
-      @battle.field.effects[PBEffects::Gravity] = 5
-      @battle.pbDisplay(_INTL("Gravity intensified!"))
-      @battle.eachBattler do |b|
-        showMessage = false
-        if b.inTwoTurnAttack?("0C9","0CC","0CE")   # Fly/Bounce/Sky Drop
-          disableEffect(:TwoTurnAttack)
-          @battle.pbClearChoice(b.index) if !b.movedThisRound?
-          showMessage = true
-        end
-        if b.effectActive(:MagnetRise) || b.effectActive?(:Telekinesis) || b.effectActive?(:SkyDrop)
-          b.disableEffect(:MagnetRise)
-          b.disableEffect(:Telekinesis)
-          b.disableEffect(:SkyDrop)
-          showMessage = true
-        end
-        @battle.pbDisplay(_INTL("{1} couldn't stay airborne because of gravity!",b.pbThis)) if showMessage
-      end
+      @battle.field.applyEffect(:Gravity,5)
     end
 
     def getScore(score,user,target,skill=100)
@@ -715,8 +668,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
   
     def pbEffectGeneral(user)
-      user.effects[PBEffects::MagnetRise] = 5
-      @battle.pbDisplay(_INTL("{1} levitated with electromagnetism!",user.pbThis))
+      user.applyEffect(:MagnetRise,5)
     end
 
     def getScore(score,user,target,skill=100)
@@ -807,19 +759,12 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   
     def pbEffectAfterAllHits(user,target)
       return if !canSmackDown?(target)
-      target.effects[PBEffects::SmackDown]   = true
-      if target.inTwoTurnAttack?("0C9","0CC")   # Fly/Bounce. NOTE: Not Sky Drop.
-        disableEffect(:TwoTurnAttack)
-        @battle.pbClearChoice(target.index) if !target.movedThisRound?
-      end
-      target.effects[PBEffects::MagnetRise]  = 0
-      target.effects[PBEffects::Telekinesis] = 0
-      @battle.pbDisplay(_INTL("{1} fell straight down!",target.pbThis))
+      target.applyEffect(:SmackDown)
     end
 
     def getScore(score,user,target,skill=100)
       if canSmackDown?(target)
-        if !target.effects[PBEffects::SmackDown]
+        if !target.effectActive?(:SmackDown)
           score += 20
         end
         if target.inTwoTurnAttack?("0C9","0CC")
@@ -1149,8 +1094,7 @@ class PokeBattle_Move_12E < PokeBattle_Move
     end
     @battle.pbDisplay(_INTL("Each Pokémon's HP was halved!"))
     @battle.eachBattler { |b| b.pbItemHPHealCheck }
-    user.effects[PBEffects::HyperBeam] = 2
-    user.currentMove = @id
+    user.applyEffect(:HyperBeam,2)
   end
 end
 
@@ -1603,8 +1547,8 @@ end
   #===============================================================================
   class PokeBattle_Move_145 < PokeBattle_Move
     def pbFailsAgainstTarget?(user,target)
-      if target.effects[PBEffects::Electrify]
-        @battle.pbDisplay(_INTL("But it failed!"))
+      if target.effectActive?(:Electrify)
+        @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} was already electrified!"))
         return true
       end
       return true if pbMoveFailedTargetAlreadyMoved?(target)
@@ -1612,8 +1556,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.effects[PBEffects::Electrify] = true
-      @battle.pbDisplay(_INTL("{1}'s moves have been electrified!",target.pbThis))
+      target.applyEffect(:Electrify)
     end
 
     def getScore(score,user,target,skill=100)
@@ -1629,8 +1572,8 @@ end
   class PokeBattle_Move_146 < PokeBattle_Move
     def pbMoveFailed?(user,targets)
       return false if damagingMove?
-      if @battle.field.effects[PBEffects::IonDeluge]
-        @battle.pbDisplay(_INTL("But it failed!"))
+      if @battle.field.effectActive?(:IonDeluge)
+        @battle.pbDisplay(_INTL("But it failed, since ions already shower the field!"))
         return true
       end
       return true if pbMoveFailedLastInRound?(user)
@@ -1638,9 +1581,7 @@ end
     end
   
     def pbEffectGeneral(user)
-      return if @battle.field.effects[PBEffects::IonDeluge]
-      @battle.field.effects[PBEffects::IonDeluge] = true
-      @battle.pbDisplay(_INTL("A deluge of ions showers the battlefield!"))
+      @battle.field.applyEffect(:IonDeluge)
     end
   end
   
@@ -1664,16 +1605,15 @@ end
     def ignoresSubstitute?(user); return true; end
   
     def pbFailsAgainstTarget?(user,target)
-      if target.effects[PBEffects::Powder]
-        @battle.pbDisplay(_INTL("But it failed!"))
+      if target.effectActive?(:Powder)
+        @battle.pbDisplay(_INTL("But it failed, since the target is already covered in powder!"))
         return true
       end
       return false
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.effects[PBEffects::Powder] = true
-      @battle.pbDisplay(_INTL("{1} is covered in powder!",user.pbThis))
+      target.applyEffect(:Powder)
     end
 
     def getScore(score,user,target,skill=100)
@@ -1691,7 +1631,7 @@ end
   #===============================================================================
   class PokeBattle_Move_149 < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      if !user.firstTurn?
+      if !user.firstTurn? || user.pbOwnSide.effectActive?(:MatBlock)
         @battle.pbDisplay(_INTL("But it failed!"))
         return true
       end
@@ -1700,8 +1640,7 @@ end
     end
   
     def pbEffectGeneral(user)
-      user.pbOwnSide.effects[PBEffects::MatBlock] = true
-      @battle.pbDisplay(_INTL("{1} intends to flip up a mat and block incoming attacks!",user.pbThis))
+      user.pbOwnSide.applyEffect(:MatBlock)
     end
 
     def getScore(score,user,target,skill=100)
@@ -1720,8 +1659,8 @@ end
   #===============================================================================
   class PokeBattle_Move_14A < PokeBattle_Move
     def pbMoveFailed?(user,targets)
-      if user.pbOwnSide.effects[PBEffects::CraftyShield]
-        @battle.pbDisplay(_INTL("But it failed!"))
+      if user.pbOwnSide.effectActive?(:CraftyShield)
+        @battle.pbDisplay(_INTL("But it failed, since a crafty shield is already protecting #{user.pbTeam(true)}!"))
         return true
       end
       return true if pbMoveFailedLastInRound?(user)
@@ -1729,8 +1668,7 @@ end
     end
   
     def pbEffectGeneral(user)
-      user.pbOwnSide.effects[PBEffects::CraftyShield] = true
-      @battle.pbDisplay(_INTL("Crafty Shield protected {1}!",user.pbTeam(true)))
+      user.pbOwnSide.applyEffect(:CraftyShield)
     end
 
     def getScore(score,user,target,skill=100)
@@ -1979,7 +1917,7 @@ end
   #===============================================================================
   class PokeBattle_Move_157 < PokeBattle_Move
     def pbEffectGeneral(user)
-      @battle.field.effects[PBEffects::HappyHour] = true if !user.opposes?
+      @battle.field.applyEffect(:HappyHour) if !user.opposes?
       @battle.pbDisplay(_INTL("Everyone is caught up in the happy atmosphere!"))
     end
 
@@ -2241,11 +2179,7 @@ end
     end
   
     def pbEffectAfterAllHits(user,target)
-      if !user.effects[PBEffects::BurnUp]
-        user.effects[PBEffects::BurnUp] = true
-        @battle.pbDisplay(_INTL("{1} burned itself out!",user.pbThis))
-        @battle.scene.pbRefresh()
-      end
+      user.applyEffect(:BurnUp)
     end
 
     def getScore(score,user,target,skill=100)
@@ -2401,12 +2335,12 @@ end
   #===============================================================================
   class PokeBattle_Move_16A < PokeBattle_Move
     def pbEffectAgainstTarget(user,target)
-      target.effects[PBEffects::Spotlight] = 1
+      maxSpotlight = 0
       target.eachAlly do |b|
-        next if b.effects[PBEffects::Spotlight]<target.effects[PBEffects::Spotlight]
-        target.effects[PBEffects::Spotlight] = b.effects[PBEffects::Spotlight]+1
+        next if b.effects[:Spotlight] <= maxSpotlight
+        maxSpotlight = b.effects[:Spotlight]
       end
-      @battle.pbDisplay(_INTL("{1} became the center of attention!",target.pbThis))
+      target.applyEffect(:Spotlight,maxSpotlight + 1)
     end
 
     def getScore(score,user,target,skill=100)
@@ -2498,7 +2432,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.effects[PBEffects::Instruct] = true
+      target.applyEffect(:Instruct)
     end
 
     def getScore(score,user,target,skill=100)
@@ -2512,14 +2446,11 @@ end
   class PokeBattle_Move_16C < PokeBattle_Move
     def pbAdditionalEffect(user,target)
       return if target.fainted? || target.damageState.substitute
-      if target.effects[PBEffects::ThroatChop] == 0
-        @battle.pbDisplay(_INTL("{1} is prevented from using sound-based moves!",target.pbThis))
-      end
-      target.effects[PBEffects::ThroatChop] = 3
+      target.applyEffect(:ThroatChop,3)
     end
 
     def getScore(score,user,target,skill=100)
-      if target.effects[PBEffects::ThroatChop] == 0 && target.hasSoundMove? && !target.substituted?
+      if !target.effectActive?(:ThroatChop) && target.hasSoundMove? && !target.substituted?
         score += 30
       end
       return score
@@ -2579,7 +2510,7 @@ end
   #===============================================================================
   class PokeBattle_Move_16F < PokeBattle_Move
     def pbTarget(user)
-      return GameData::Target.get(:NearFoe) if user.effects[PBEffects::HealBlock]>0
+      return GameData::Target.get(:NearFoe) if user.effectActive?(:HealBlock)
       return super
     end
   
@@ -2666,9 +2597,7 @@ end
   #===============================================================================
   class PokeBattle_Move_171 < PokeBattle_Move
     def pbDisplayChargeMessage(user)
-      user.effects[PBEffects::ShellTrap] = true
-      @battle.pbCommonAnimation("ShellTrap",user)
-      @battle.pbDisplay(_INTL("{1} set a shell trap!",user.pbThis))
+      user.applyEffect(:ShellTrap)
     end
   
     def pbDisplayUseMessage(user,targets)
@@ -2676,7 +2605,7 @@ end
     end
   
     def pbMoveFailed?(user,targets)
-      if !user.effects[PBEffects::ShellTrap]
+      if !user.effectActive?(:ShellTrap)
         @battle.pbDisplay(_INTL("But it failed!"))
         return true
       end
@@ -2699,9 +2628,7 @@ end
   #===============================================================================
   class PokeBattle_Move_172 < PokeBattle_Move
     def pbDisplayChargeMessage(user)
-      user.effects[PBEffects::BeakBlast] = true
-      @battle.pbCommonAnimation("BeakBlast",user)
-      @battle.pbDisplay(_INTL("{1} started heating up its beak!",user.pbThis))
+      user.applyEffect(:BeakBlast)
     end
 
     def getScore(score,user,target,skill=100)

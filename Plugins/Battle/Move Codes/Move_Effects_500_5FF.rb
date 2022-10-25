@@ -68,7 +68,7 @@ class PokeBattle_Move_505 < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
 	return if target.fainted?
     return if pbMoveFailedTargetAlreadyMoved?(target) # Target has already moved this round
-    return if target.effects[PBEffects::MoveNext] # Target was going to move next anyway (somehow)
+    return if target.effectActive?(:MoveNext) # Target was going to move next anyway (somehow)
     return if @battle.choices[target.index][2].nil? # Target didn't choose to use a move this round
     target.applyEffect(:MoveNext)
     @battle.pbDisplay(_INTL("{1} was kickstarted into action!",target.pbThis))
@@ -220,8 +220,7 @@ end
 #===============================================================================
 class PokeBattle_Move_50C < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    if target.frostbitten? &&
-       (target.substituted? || ignoresSubstitute?(user))
+    if target.frostbitten?
       baseDmg *= 2
     end
     return baseDmg
@@ -243,8 +242,7 @@ end
 #===============================================================================
 class PokeBattle_Move_50E < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    if target.burned? &&
-       (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
+    if target.burned?
       baseDmg *= 2
     end
     return baseDmg
@@ -344,7 +342,7 @@ end
 class PokeBattle_Move_515 < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if target.damageState.unaffected
-	user.effects[PBEffects::Enlightened] = true
+	user.applyEffect(:Enlightened)
   end
 end
 
@@ -428,8 +426,8 @@ end
 #===============================================================================
 class PokeBattle_Move_51A < PokeBattle_RoomMove
 	def initialize(battle,move)
-	  super
-	  @roomEffect = :PuzzleRoom
+		super
+		@roomEffect = :PuzzleRoom
 	end
 end
 
@@ -437,26 +435,22 @@ end
 # User loses their Ice type. Fails if user is not Ice-type. (Cold Conversion)
 #===============================================================================
 class PokeBattle_Move_51B < PokeBattle_Move
-  def pbMoveFailed?(user,targets)
-    if !user.pbHasType?(:ICE)
-      @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is not Ice-type!"))
-      return true
-    end
-    return false
-  end
+	def pbMoveFailed?(user,targets)
+		if !user.pbHasType?(:ICE)
+		@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is not Ice-type!"))
+		return true
+		end
+		return false
+	end
 
-  def pbEffectAfterAllHits(user,target)
-    if !user.effects[PBEffects::ColdConversion]
-      user.effects[PBEffects::ColdConversion] = true
-      @battle.pbDisplay(_INTL("{1} lost its cold!",user.pbThis))
-	  @battle.scene.pbRefresh()
-    end
-  end
-  
-  def getScore(score,user,target,skill=100)
-	score -= 20
-	return score
-  end
+	def pbEffectAfterAllHits(user,target)
+		user.applyEffect(:ColdConversion)
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score -= 20
+		return score
+	end
 end
 
 #===============================================================================
@@ -487,24 +481,22 @@ end
 #===============================================================================
 class PokeBattle_Move_51D < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
-		if target.effects[PBEffects::CreepOut]
-		  @battle.pbDisplay(_INTL("The target is already afraid of bug type moves!"))
+		if target.effectActive?(:CreepOut)
+		  @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already afraid of bug type moves!"))
 		  return true
 		end
 		return false
-	  end
+	end
 
-  def pbEffectAgainstTarget(user,target)
-    target.effects[PBEffects::CreepOut] = true
-    @battle.pbDisplay(_INTL("{1} is now afraid of bug type moves!",target.pbThis))
-  end
-  
-  def getScore(score,user,target,skill=100)
-	score += 20 if target.hp > target.totalhp/2
-	score += 20 if user.hp > user.totalhp/2
-	score = 0 if target.effects[PBEffects::CreepOut]
-	return score
-  end
+	def pbEffectAgainstTarget(user,target)
+		target.applyEffect(:CreepOut)
+	end
+	
+	def getScore(score,user,target,skill=100)
+		score += 20 if target.hp > target.totalhp/2
+		score += 20 if user.hp > user.totalhp/2
+		return score
+	end
 end
 
 #===============================================================================
@@ -542,15 +534,12 @@ end
 #===============================================================================
 class PokeBattle_Move_520 < PokeBattle_Move
   def pbEffectGeneral(user)
-	if !user.effects[PBEffects::LuckyStar]
-		user.effects[PBEffects::LuckyStar] = true
-		@battle.pbDisplay(_INTL("{1} is blessed by the lucky star!",user.pbThis))
-    end
+	user.applyEffect(:LuckyStar)
   end
   
   def getScore(score,user,target,skill=100)
 	score += 30
-	score -= 60 if user.effects[PBEffects::LuckyStar]
+	score -= 60 if user.effectActive?(:LuckyStar)
 	return score
   end
 end
@@ -890,8 +879,7 @@ end
 #===============================================================================
 class PokeBattle_Move_531 < PokeBattle_Move
 	def pbMoveFailed?(user,targets)
-		return false if damagingMove?
-		if user.effects[PBEffects::Inured]
+		if user.effectActive?(:Inured)
 			@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already inured!"))
 			return true
 		end
@@ -899,12 +887,11 @@ class PokeBattle_Move_531 < PokeBattle_Move
     end
 	
 	def pbEffectGeneral(user)
-		user.effects[PBEffects::Inured] = true
+		user.applyEffect(:Inured)
 	end
 	
 	def getScore(score,user,target,skill=100)
-		score += 50 if user.firstTurn?
-		score = 0 if user.effects[PBEffects::Inured]
+		score += 30 if user.firstTurn?
 		return score
 	end
 end
@@ -1084,17 +1071,17 @@ end
 # If the target would heal until end of turn, instead they take that much life loss. (Nerve Break)
 #===============================================================================
 class PokeBattle_Move_53A < PokeBattle_Move
-  def pbAdditionalEffect(user,target)
-    return if target.fainted? || target.damageState.substitute
-	return if target.effects[PBEffects::NerveBreak]
-	target.effects[PBEffects::NerveBreak] = true
-  end
-  
-  def getScore(score,user,target,skill=100)
+	def pbAdditionalEffect(user,target)
+		return if target.fainted? || target.damageState.substitute
+		target.applyEffect(:NerveBreak)
+	end
+	
+	def getScore(score,user,target,skill=100)
 		score -= 30
-		score += (target.totalhp - target.hp)/target.level
+		score += (target.totalhp - target.hp)/target.totalhp * 60
+
 		return score
-  end
+	end
 end
 
 #===============================================================================
@@ -1366,23 +1353,13 @@ class PokeBattle_Move_54B < PokeBattle_StatUpMove
 	
 	def pbEffectAfterAllHits(user,target)
 		return if user.fainted? || target.damageState.unaffected
-		if user.effectActive?(:Trapping)
-		  trapMove = GameData::Move.get(user.effects[:TrappingMove]).name
-		  trapUser = @battle.battlers[user.effects[:TrappingUser]]
-		  @battle.pbDisplay(_INTL("{1} got free of {2}'s {3}!",user.pbThis,trapUser.pbThis(true),trapMove))
-		  user.disableEffect(:Trapping)
-		end
-		if user.effectActive?(:LeechSeed)
-		  user.disableEffects(:LeechSeed)
-		  @battle.pbDisplay(_INTL("{1} shed Leech Seed!",user.pbThis))
-		end
+		user.disableEffect(:Trapping)
+		user.disableEffects(:LeechSeed)
 		user.pbOwnSide.eachEffect(true) do |effect,value,data|
 			next unless data.is_hazard?
 			user.pbOwnSide.disableEffect(effect)
-			hazardName = data.real_name
-			@battle.pbDisplay(_INTL("{1} blew away {2}!",user.pbThis, hazardName)) if !data.has_expire_proc?
 		end
-	  end
+	end
   
 	def getScore(score,user,target,skill=100)
 		if user.alliesInReserve?
@@ -1668,14 +1645,12 @@ class PokeBattle_Move_55B < PokeBattle_HealingMove
 end
 
 #===============================================================================
-# Two turn attack. Attacks first turn, skips second turn (if successful).
+# Two turn attack. Attacks first turn, skips second turn unless the target fainted.
+# TODO: Currently unused
 #===============================================================================
 class PokeBattle_Move_55C < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
-    if !target.damageState.fainted
-		user.effects[PBEffects::HyperBeam] = 2
-	end
-    user.currentMove = @id #ONLY PUT HERE BECAUSE IT WAS IN ORIGINAL HYPER BEAM CODE, PLEASE TEST
+    user.applyEffect(:HyperBeam,2) if !target.damageState.fainted
   end
 end
 
@@ -1736,14 +1711,12 @@ class PokeBattle_Move_55E < PokeBattle_Move
 end
 
 #===============================================================================
-# User must use this move for 2 more rounds.
-# (new!Outrage, etc.)
+# User must use this move for 2 more rounds. (Outrage, etc.)
 #===============================================================================
 class PokeBattle_Move_55F < PokeBattle_Move
 	def pbEffectAfterAllHits(user,target)
 	  if !target.damageState.unaffected && !user.effectActive?(:Outrage)
 		user.applyEffect(:Outrage,3)
-		user.currentMove = @id
 	  else
 		user.tickDownAndProc(:Outrage)
 	  end
@@ -1960,16 +1933,15 @@ end
 #===============================================================================
 class PokeBattle_Move_56D < PokeBattle_Move
 	def pbMoveFailed?(user,targets)
-	  if user.effects[PBEffects::VolleyStance]
-		@battle.pbDisplay(_INTL("But it failed!"))
+	  if user.effectActive?(:VolleyStance)
+		@battle.pbDisplay(_INTL("But it faile, since #{user.pbthis(true)} is already in that stance!"))
 		return true
 	  end
 	  return false
 	end
   
 	def pbEffectGeneral(user)
-	  user.effects[PBEffects::VolleyStance] = true
-	  @battle.pbDisplay(_INTL("{1} takes a stance to begin bombardment!",user.pbThis))
+	  user.applyEffect(:VolleyStance)
 	end
 end
 
@@ -2175,10 +2147,7 @@ end
 #===============================================================================
 class PokeBattle_Move_577 < PokeBattle_Move
 	def pbEffectAfterAllHits(user,target)
-		if !user.effects[PBEffects::ShimmeringHeat]
-			@battle.pbDisplay(_INTL("{1} is obscured by the shimmering haze!",user.pbThis))
-			user.effects[PBEffects::ShimmeringHeat] = true
-		end
+		user.applyEffect(:ShimmeringHeat)
 	end
 
 	def getScore(score,user,target,skill=100)
@@ -2368,17 +2337,16 @@ end
 #===============================================================================
 class PokeBattle_Move_585 < PokeBattle_Move
 	def pbMoveFailed?(user,targets)
-	  if user.effects[PBEffects::FlareWitch] && !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,true)
+	  if user.effectActive?(:FlareWitch) && !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,true)
 		@battle.pbDisplay(_INTL("But it failed!"))
 		return true
 	  end
 	  return false
 	end
-  
+
 	def pbEffectGeneral(user)
-		user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
-	  	user.effects[PBEffects::FlareWitch] = true
-	  	@battle.pbDisplay(_INTL("{1} breaks open its witch powers!",user.pbThis))
+		user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user) if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,true)
+	  	user.applyEffect(:FlareWitch)
 	end
 end
 
@@ -2429,8 +2397,7 @@ end
 #===============================================================================
 class PokeBattle_Move_58A < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    if target.poisoned? &&
-       (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
+    if target.poisoned?
       baseDmg *= 3
     end
     return baseDmg

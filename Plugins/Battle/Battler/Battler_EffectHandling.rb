@@ -5,6 +5,8 @@ class PokeBattle_Battler
 		return if fainted? && !ignoreFainted
 		super(effect,value)
 		echoln("[BATTLER EFFECT] Effect #{getName(effect)} applied to battler #{pbThis(true)}")
+		pbItemStatusCureCheck
+		pbAbilityStatusCureCheck
 	end
 
 	def disableEffect(effect, ignoreFainted=false)

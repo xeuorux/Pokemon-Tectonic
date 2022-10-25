@@ -5,6 +5,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:id => :EchoedVoiceCounter,
 	:real_name => "Echoed Voice Counter",
 	:type => :Integer,
+	:maximum => 5,
 	:court_changed => false,
 })
 
@@ -115,6 +116,9 @@ GameData::BattleEffect.register_effect(:Side,{
 	:id => :CraftyShield,
 	:real_name => "Crafty Shield",
 	:resets_eor => true,
+	:apply_proc => Proc.new { |battle,side,teamName,value|
+		battle.pbDisplay(_INTL("Crafty Shield protected {1}!",teamName))
+	},
 	:protection_info => {
 		:does_negate_proc => Proc.new { |user,target, move, battle|
 			move.statusMove? && !move.pbTarget(user).targets_all
@@ -126,6 +130,9 @@ GameData::BattleEffect.register_effect(:Side,{
 	:id => :MatBlock,
 	:real_name => "Mat Block",
 	:resets_eor => true,
+	:apply_proc => Proc.new { |battle,side,teamName,value|
+		battle.pbDisplay(_INTL("The kicked up mat will block attacks against #{teamName} this turn!"))
+	},
 	:protection_info => {
 		:does_negate_proc => Proc.new { |user,target, move, battle|
 			move.damagingMove?
@@ -223,13 +230,18 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Spikes Count",
 	:type => :Integer,
 	:maximum => 3,
+	:is_hazard => true,
 	:increment_proc => Proc.new { |battle,side,teamName,value,increment|
 		if increment == 1
 			battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!", teamName))
 		else
 			battle.pbDisplay(_INTL("{1} layers of Spikes were scattered all around {2}'s feet!", increment, teamName))
 		end
-	}
+	},
+	:disable_proc => Proc.new { |battle,side,teamName|
+		teamName[0] = teamName[0].downcase
+		battle.pbDisplay(_INTL("The Spikes around {1}'s feet were swept aside!",teamName))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Side,{
@@ -253,7 +265,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("The Poison Spikes around {1}'s feet were swept aside!",teamName))
-	}
+	},
 })
 
 GameData::BattleEffect.register_effect(:Side,{
@@ -277,7 +289,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("The Flame Spikes around {1}'s feet were swept aside!",teamName))
-	}
+	},
 })
 
 GameData::BattleEffect.register_effect(:Side,{
@@ -285,6 +297,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Frost Spikes Count",
 	:type => :Integer,
 	:maximum => 2,
+	:is_hazard => true,
 	:type_applying_hazard => {
 		:status => :FROSTBITE,
 		:absorb_proc => Proc.new { |pokemonOrBattler|
@@ -301,34 +314,49 @@ GameData::BattleEffect.register_effect(:Side,{
 	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("The Frost Spikes around {1}'s feet were swept aside!",teamName))
-	}
+	},
 })
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :StealthRock,
 	:real_name => "Stealth Rock",
+	:is_hazard => true,
 	:apply_proc => Proc.new { |battle,side,teamName,value|
 		battle.pbDisplay(_INTL("Pointed stones float in the air around {1}!",teamName))
 	},
-})
-
-GameData::BattleEffect.register_effect(:Side,{
-	:id => :StickyWeb,
-	:real_name => "Sticky Web",
-	:apply_proc => Proc.new { |battle,side,teamName,value|
+	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
-		battle.pbDisplay(_INTL("A sticky web has been laid out beneath {1}'s feet!",teamName))
+		battle.pbDisplay(_INTL("The pointed stones around {1} were removed!",teamName))
 	},
 })
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :FeatherWard,
 	:real_name => "Feather Ward",
+	:is_hazard => true,
 	:apply_proc => Proc.new { |battle,side,teamName,value|
 		battle.pbDisplay(_INTL("Sharp feathers float in the air around {1}!",teamName))
 	},
+	:disable_proc => Proc.new { |battle,side,teamName|
+		teamName[0] = teamName[0].downcase
+		battle.pbDisplay(_INTL("The sharp feathers around {1} were removed!",teamName))
+	},
 })
 
+
+GameData::BattleEffect.register_effect(:Side,{
+	:id => :StickyWeb,
+	:real_name => "Sticky Web",
+	:is_hazard => true,
+	:apply_proc => Proc.new { |battle,side,teamName,value|
+		teamName[0] = teamName[0].downcase
+		battle.pbDisplay(_INTL("A sticky web has been laid out beneath {1}'s feet!",teamName))
+	},
+	:disable_proc => Proc.new { |battle,side,teamName|
+		teamName[0] = teamName[0].downcase
+		battle.pbDisplay(_INTL("The sticky web beneath {1}'s feet was removed!",teamName))
+	},
+})
 
 ##########################################
 # Internal Tracking

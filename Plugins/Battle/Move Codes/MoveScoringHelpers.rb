@@ -212,8 +212,8 @@ def getSelfKOMoveScore(score,user,target,skill=100)
 end
 
 def getHealingMoveScore(score,user,target,skill=100,magnitude=5)
-	return 0 if user.opposes?(target) && !target.effects[PBEffects::NerveBreak]
-    return 0 if !user.opposes?(target) && target.effects[PBEffects::NerveBreak]
+	return 0 if user.opposes?(target) && !target.effectActive?(:NerveBreak)
+    return 0 if !user.opposes?(target) && target.effectActive?(:NerveBreak)
     if target.hp <= target.totalhp / 2
       	score += magnitude * 10
 	  	score += 10 if target.hasActiveAbilityAI?(:ROOTED)
