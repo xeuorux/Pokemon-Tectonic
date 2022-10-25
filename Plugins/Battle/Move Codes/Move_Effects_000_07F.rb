@@ -1433,10 +1433,9 @@ class PokeBattle_Move_055 < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     GameData::Stat.each_battle { |s| user.stages[s.id] = target.stages[s.id] }
+    # Copy critical hit chance raising effects
     target.eachEffect do |effect, value, data|
-      if data.critical_rate_buff
-        user.effects[effect] = value
-      end
+      user.effects[effect] = value if data.critical_rate_buff?
     end
     @battle.pbDisplay(_INTL("{1} copied {2}'s stat changes!",user.pbThis,target.pbThis(true)))
   end

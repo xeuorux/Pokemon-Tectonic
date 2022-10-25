@@ -2411,7 +2411,7 @@ class PokeBattle_Move_58B < PokeBattle_Move
 	def pbChangeUsageCounters(user,specialUsage)
 		oldEffectValues = {}
 		user.eachEffect(true) do |effect, value, data|
-			oldEffectValues[effect] = value if data.snowballing_move_count
+			oldEffectValues[effect] = value if data.snowballing_move_counter?
 		end
 		super
 		oldEffectValues.each do |effect, oldValue|

@@ -102,7 +102,16 @@ module EffectHolder
 
 	def effectActive?(effect)
 		effectData = GameData::BattleEffect.get(effect)
-		return effectData.active_value?(@effects[effect])
+
+        mainEffectActive = effectData.active_value?(@effects[effect])
+        effectData.each_sub_effect do |sub_effect|
+            sub_active = effectActive?(sub_effect)
+            if sub_active != mainEffectActive
+                raise _INTL("Sub-Effect #{getData(sub_effect).real_name} of effect #{@real_name} has mismatched activity status")
+            end
+        end
+
+		return mainEffectActive
 	end
 
     def countEffect(effect)

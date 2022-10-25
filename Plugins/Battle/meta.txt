@@ -4,4 +4,4 @@ Requires	 = StatTracking
 Requires	 = ChasmPokedex                                                                    
 Link         = https://reliccastle.com/link-to-the-plugin/               
 Credits      = Zeu
-Scripts		 = Effects/EffectHolder.rb,Move/PokeBattle_Move.rb,Move Codes/Move_Effects_Generic.rb,Abilities/BattleHandlers.rb
+Scripts		 = Effects/EffectHolder.rb,Move/PokeBattle_Move.rb,Move Codes/Move_Effects_Generic.rb,BattleHandlers.rb,Items/PokeBalls/BallHandlers.rb

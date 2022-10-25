@@ -68,7 +68,7 @@ class PokeBattle_Battler
 	alias hasWorkingAbility hasActiveAbility?
 
 	def hasActiveNeutralizingGas?(ignore_fainted = false)
-		return b.ability == :NEUTRALIZINGGAS && b.abilityActive?(ignore_fainted,true)
+		return @ability == :NEUTRALIZINGGAS && abilityActive?(ignore_fainted,true)
 	end
 
 	alias hasType? pbHasType?

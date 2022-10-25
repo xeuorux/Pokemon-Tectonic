@@ -125,7 +125,7 @@ GameData::BattleEffect.register_effect(:Field,{
     :ticks_down => true,
 	:is_room => true,
 	:apply_proc => Proc.new { |battle, value|
-		battle.pbDisplay(_INTL("A bizarre area appeared! Pokémon's held items lose their effects!")
+		battle.pbDisplay(_INTL("A bizarre area appeared! Pokémon's held items lose their effects!"))
 	},
     :disable_proc => Proc.new { |battle,battler|
         battle.pbDisplay(_INTL("The bizarre area went away."))
@@ -141,7 +141,7 @@ GameData::BattleEffect.register_effect(:Field,{
     :ticks_down => true,
 	:is_room => true,
 	:apply_proc => Proc.new { |battle, value|
-		battle.pbDisplay(_INTL("A tricky area appeared! Speed functions in reverse!")
+		battle.pbDisplay(_INTL("A tricky area appeared! Speed functions in reverse!"))
 	},
     :disable_proc => Proc.new { |battle,battler|
         battle.pbDisplay(_INTL("The tricky room went away."))
@@ -155,7 +155,7 @@ GameData::BattleEffect.register_effect(:Field,{
     :ticks_down => true,
 	:is_room => true,
 	:apply_proc => Proc.new { |battle, value|
-		battle.pbDisplay(_INTL("A wonderous area appeared! Defense and Sp. Def stats are swapped!")
+		battle.pbDisplay(_INTL("A wonderous area appeared! Defense and Sp. Def stats are swapped!"))
 	},
     :disable_proc => Proc.new { |battle|
         battle.pbDisplay(_INTL("The wonderous area went away."))
@@ -169,7 +169,7 @@ GameData::BattleEffect.register_effect(:Field,{
     :ticks_down => true,
 	:is_room => true,
 	:apply_proc => Proc.new { |battle, value|
-		battle.pbDisplay(_INTL("A puzzling area appeared! Attack and Sp. Atk are swapped!")
+		battle.pbDisplay(_INTL("A puzzling area appeared! Attack and Sp. Atk are swapped!"))
 	},
     :disable_proc => Proc.new { |battle|
         battle.pbDisplay(_INTL("The puzzling area went away."))
@@ -183,7 +183,7 @@ GameData::BattleEffect.register_effect(:Field,{
     :ticks_down => true,
 	:is_room => true,
 	:apply_proc => Proc.new { |battle, value|
-		battle.pbDisplay(_INTL("An odd area appeared! Offensive and Defensive stats are swapped!")
+		battle.pbDisplay(_INTL("An odd area appeared! Offensive and Defensive stats are swapped!"))
 	},
     :disable_proc => Proc.new { |battle|
         battle.pbDisplay(_INTL("The odd area went away."))

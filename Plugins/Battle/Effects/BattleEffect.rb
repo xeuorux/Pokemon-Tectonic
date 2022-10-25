@@ -52,22 +52,6 @@ module GameData
 		# Only used for :Position type effects
 		attr_reader :others_lose_track
 
-		# When the effect is active on a battler, that battler is considered to be in a multi-turn attack
-		attr_reader :multi_turn_tracker
-
-		# When present on a battler, they are unable to swap
-		attr_reader :trapping
-
-		# When present on a battler, copied by various stat buff copying effects
-		attr_reader :critical_rate_buff
-
-		# Tracks effects for moves like Iceball
-		attr_reader :snowballing_move_count
-
-		# Is an effect that makes the pokemon invulnerable
-		# Marked so that moves like Feint can know to remove it
-		attr_reader :protection_effect
-
 		attr_reader :protection_info
 
 		# Bespoke information for type applying spikes
@@ -75,22 +59,37 @@ module GameData
 
 		# Whether its swapped by the move Court Change
 		# Defaults to true
-		attr_reader :court_changed
-
 		def court_changed?
 			return @court_changed
 		end
 
-		# Is a "screen" like reflect
-		attr_reader :is_screen
+		### Queries about if the effect is a category
+		# Outrage, etc.
+		def multi_turn_tracker?
+			return @multi_turn_tracker
+		end
 
+		# Mean Look, etc.
+		def trapping?
+			return @trapping
+		end
+
+		# Focus Energy, etc.
+		def critical_rate_buff?
+			return @critical_rate_buff
+		end
+
+		# Fury Cutter, etc.
+		def snowballing_move_counter?
+			return @snowballing_move_count
+		end
+
+		# Reflect, etc.
 		def is_screen?
 			return @is_screen
 		end
 
 		# Trick Room, etc
-		attr_reader :is_room
-
 		def is_room?
 			return @is_room
 		end
@@ -100,20 +99,22 @@ module GameData
 			return @is_hazard || is_status_hazard?
 		end
 
-		# Cursed by Mental Herb or similar
-		attr_reader :is_mental
-
+		# Cured by Mental Herb or similar
 		def is_mental?
 			return @is_mental
 		end
 
+		# Protect, Mat Block, etc.
 		def is_protection?
-			return !@protection_info.nil? || protection_effect
+			return !@protection_info.nil? || @protection_effect
 		end
 
+		# Poison Spikes, etc.
 		def is_status_hazard?
 			return !@type_applying_hazard.nil?
 		end
+
+		### Has defined procs
 
 		def has_apply_proc?
 			return !@apply_proc.nil?
@@ -136,7 +137,7 @@ module GameData
 		end
 
 		def has_entry_proc?
-			reutnr !@entry_proc.nil?
+			return !@entry_proc.nil?
 		end
 		
 		DATA = {}
@@ -166,7 +167,7 @@ module GameData
 				case @type
 				when :Boolean
 					@default = false
-				when :Integer, :Species
+				when :Integer
 					@default = 0
 				when :Position, :PartyPosition
 					@default = -1
@@ -218,7 +219,7 @@ module GameData
 			@multi_turn_tracker     = hash[:multi_turn_tracker] || false
 			@trapping				= hash[:trapping] || false
 			@critical_rate_buff		= hash[:critical_rate_buff] || false
-			@snowballing_move_count = hash[:snowballing_move_count] || false
+			@snowballing_move_counter = hash[:snowballing_move_counter] || false
 
 			@others_lose_track      = hash[:others_lose_track] || false
 
@@ -235,7 +236,7 @@ module GameData
 			@is_hazard				= hash[:is_hazard] || false
 			@is_mental				= hash[:is_mental] || false
 
-			def checkForInvalidDefinitions()
+			checkForInvalidDefinitions()
 		end
 
 		def checkForInvalidDefinitions()
@@ -244,8 +245,8 @@ module GameData
 				raise _INTL("Battle effect #{@id} is set to down down, but its not an integer.") if @ticks_down
 				raise _INTL("Battle effect #{@id} was given a maximum, but its not an integer.") if !@maximum.nil?
 			end
-			if @type != :Position
-				raise _INTL("Battle effect #{@id} defines an entry proc when its not a position-type effect.") if @entry_proc
+			if @location != :Position
+				raise _INTL("Battle effect #{@id} defines an entry proc when its not a position-located effect.") if @entry_proc
 			end
 		end
 
@@ -267,13 +268,6 @@ module GameData
 					active = !value.nil?
 				end
 			end
-
-			each_sub_effect do |sub_effect, sub_data|
-				sub_active = sub_data.active_value?(@effects[sub_effect])
-				if sub_active != active
-					raise _INTL("Sub-Effect #{sub_data.real_name} of effect #{@real_name} has mismatched activity status")
-				end
-			end
 			return active
 		end
 
@@ -287,6 +281,8 @@ module GameData
 				return value.nil? || GameData::Species.exists?(value)
 			when :Position
 				return true # TODO
+		    when :PartyPosition
+				return value >= -1 && value <= 5
 			when :Type
 				return value.nil? || GameData::Type.exists?(value)
 			when :Pokemon
@@ -480,10 +476,14 @@ module GameData
 			end
 		end
 
-		def each_sub_effect
+		def each_sub_effect(yield_data = false)
 			@sub_effects.each do |otherEffect|
-				otherEffectData = GameData::BattleEffect.get(effect)
-				yield otherEffect, otherEffectData
+				otherEffectData = GameData::BattleEffect.get(otherEffect)
+				if yield_data
+					yield otherEffect, otherEffectData
+				else
+					yield otherEffect
+				end
 			end
 		end
 

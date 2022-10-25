@@ -12,7 +12,7 @@ class PokeBattle_Battle
     return true if battler.itemActive? &&
                    BattleHandlers.triggerRunFromBattleItem(battler.item,battler)
     battler.eachEffectAllLocations(true) do |effect,value,data|
-      return false if data.trapping
+      return false if data.trapping?
     end
     eachOtherSideBattler(idxBattler) do |b|
       return false if b.abilityActive? &&
@@ -100,7 +100,7 @@ class PokeBattle_Battle
       end
       # Any effect that could keep a battler trapped
       battler.eachEffectAllLocations do |effect, value, data|
-        next unless data.trapping
+        next unless data.trapping?
         pbDisplayPaused(_INTL("You can't escape!"))
         return 0
       end

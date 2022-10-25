@@ -1260,7 +1260,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:maximum => 4,
 	:resets_on_cancel => true,
 	:resets_on_move_start => true,
-	:snowballing_move_count => true,
+	:snowballing_move_counter => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1270,7 +1270,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:maximum => 4,
 	:resets_on_cancel => true,
 	:resets_on_move_start => true,
-	:snowballing_move_count => true,
+	:snowballing_move_counter => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1280,7 +1280,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:maximum => 4,
 	:resets_on_cancel => true,
 	:resets_on_move_start => true,
-	:snowballing_move_count => true,
+	:snowballing_move_counter => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{

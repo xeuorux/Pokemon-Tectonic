@@ -117,7 +117,6 @@ GameData::BattleEffect.register_effect(:Position,{
 	:id => :Refuge,
 	:real_name => "Refuge",
 	:type => :PartyPosition,
-	:sub_effects => [:RefugeMaker],
 	:entry_proc => Proc.new { |battle,index,position,battler|
 		battle.pbCommonAnimation("HealingWish",battler)
 		refugeMaker = battle.pbThisEx(battler.index,position.effects[:Refuge])

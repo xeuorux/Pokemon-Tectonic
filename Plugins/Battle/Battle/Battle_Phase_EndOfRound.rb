@@ -30,7 +30,7 @@ class PokeBattle_Battle
     end
 
     # Tick down or reset battle effects
-    eachEffectHolder.do |effectHolder|
+    eachEffectHolder do |effectHolder|
       effectHolder.processEffectsEOR
     end
 

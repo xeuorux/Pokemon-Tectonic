@@ -352,7 +352,8 @@ class PokeBattle_Battler
 				if newTypes == originalTypes
 					@battle.pbDisplay(_INTL('{1} returned back to normal!', pbThis))
 				else
-					@battle.pbDisplay(_INTL("{1}'s type changed to {3}!", pbThis,abilityName, GameData::Type.get(newTypes[0]).name))																							abilityName, GameData::Type.get(newTypes[0]).name))
+					typeName = GameData::Type.get(newTypes[0]).name
+					@battle.pbDisplay(_INTL("{1}'s type changed to {3}!", pbThis, abilityName, typeName))
 				end
 			end
 		end
@@ -433,11 +434,10 @@ class PokeBattle_Battler
 		@spdef = target.spdef
 		@speed = target.speed
 		GameData::Stat.each_battle { |s| @stages[s.id] = target.stages[s.id] }
+		# Copy critical hit chance raising effects
 		target.eachEffect do |effect, value, data|
-			if data.critical_rate_buff
-				@effects[effect] = value
-			end
-		  end
+			@effects[effect] = value if data.critical_rate_buff?
+		end
 		@moves.clear
 		target.moves.each_with_index do |m, i|
 			@moves[i] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(m.id))

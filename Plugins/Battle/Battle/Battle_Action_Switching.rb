@@ -35,7 +35,7 @@ class PokeBattle_Battle
 
     # Other certain trapping effects
     battler.eachEffectAllLocations(true) do |effect,value,data|
-      next unless data.trapping
+      next unless data.trapping?
       partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
     end
 

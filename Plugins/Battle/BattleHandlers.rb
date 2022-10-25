@@ -97,7 +97,10 @@ module BattleHandlers
 	RunFromBattleItem                   = ItemHandlerHash.new   # Smoke Ball
 	# Consuming items
 	OnBerryConsumedAbility           	= AbilityHandlerHash.new
-  
+	# Other triggers
+	ItemOnStatLoss                      = ItemHandlerHash.new
+	FieldEffectStatLossItem				= ItemHandlerHash.new
+
 	#=============================================================================
   
 	def self.triggerSpeedCalcAbility(ability,battler,mult)
@@ -494,4 +497,15 @@ module BattleHandlers
 		ret = OnBerryConsumedAbility.trigger(ability,user,berry,own_item,battle)
 		return (ret!=nil) ? ret : false
 	end
+	
+	#=============================================================================
+
+	def self.triggerItemOnStatLoss(item,battler,user,move,switched,battle)
+		ItemOnStatLoss.trigger(item,battler,user,move,switched,battle)
+	end
+	
+	def self.triggerFieldEffectItem(item,battler,battle)
+		FieldEffectStatLossItem.trigger(item,battler,battle)
+	end	
+
 end
