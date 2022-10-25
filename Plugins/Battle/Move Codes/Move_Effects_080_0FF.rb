@@ -1667,8 +1667,6 @@ class PokeBattle_Move_0B9 < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     target.applyEffect(:Disable,5)
-    target.applyEffect(:DisableMove,target.lastRegularMoveUsed)
-    target.pbItemStatusCureCheck
   end
 
   def getScore(score,user,target,skill=100)
@@ -2325,7 +2323,7 @@ end
 class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
   def pbAddTarget(targets,user)
     return if user.effects[:Bide] != 1   # Not the attack turn
-    target = user.getBattler(:BideTarget)
+    target = user.getBattlerPointsTo(:BideTarget)
     if !user.pbAddTarget(targets,user,t,self,false)
       user.pbAddTargetRandomFoe(targets,user,self,false)
     end

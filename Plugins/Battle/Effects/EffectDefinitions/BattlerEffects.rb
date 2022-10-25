@@ -86,7 +86,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ChoiceBand,
-	:real_name => "Choice Band",
+	:real_name => "Choice Locked",
 	:type => :Move,
 	:info_displayed => false,
 })
@@ -172,6 +172,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Disable Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battler.applyEffect(:DisableMove, battler.lastRegularMoveUsed)
+	},
 	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} is no longer disabled!",battler.pbThis))
 	},
@@ -463,7 +466,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
-	:others_lose_track => true,
 	:pass_value_proc => Proc.new { |battler,value|
 		next 2 if value > 0
 		next 0
@@ -476,6 +478,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Locked On To",
 	:type => :Position,
 	:baton_passed => true,
+	:disable_effecs_on_other_exit => [:LockOn],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -605,7 +608,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:apply_proc => Proc.new { |battle,battler,value|
 		battler.currentMove = battler.lastMoveUsed
 	},
-	:disable_proc => Proc.new { |battle, battler|
+	:expire_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} spun down from its attack.",battler.pbThis))
 		battler.currentMove = nil
 	},
@@ -618,7 +621,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:resets_on_move_start => true,
 })
 
-# The logic here is complex enough that it is handled elsewhere
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :PerishSong,
 	:real_name => "Perish Song Turns",
@@ -639,6 +641,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Perish Singer",
 	:type => :Position,
 	:baton_passed => true,
+	:disable_effecs_on_other_exit => [:PerishSong],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -646,6 +649,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Pickup Item",
 	:type => :Item,
 	:sub_effects => [:PickupUse],
+	:info_displayed => false,
 })
 
 # I don't really understand this one
@@ -913,7 +917,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:trapping => true,
 	:disable_proc => Proc.new { |battle,battler|
 		moveName = battler.getMoveData(:TrappingMove).name
-		trapUser = battler.getBattler(:TrappingUser)
+		trapUser = battler.getBattlerPointsTo(:TrappingUser)
         battle.pbDisplay(_INTL("{1} was freed from {2}'s {3}!",battler.pbThis,trapUser.pbThis(true),moveName))
 	},
 	:remain_proc => Proc.new { |battle,battler,value|
@@ -931,7 +935,7 @@ GameData::BattleEffect.register_effect(:Battler,{
         end
         if battler.takesIndirectDamage?
           fraction = 1.0/8.0
-          fraction *= 2 if battler.getBattler(:TrappingUser).hasActiveItem?(:BINDINGBAND)
+          fraction *= 2 if battler.getBattlerPointsTo(:TrappingUser).hasActiveItem?(:BINDINGBAND)
           battle.pbDisplay(_INTL("{1} is hurt by {2}!",battler.pbThis,moveName))
           battler.applyFractionalDamage(fraction)
         end
@@ -950,7 +954,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :TrappingUser,
 	:real_name => "Trapped By",
 	:type => :Position,
-	:others_lose_track => true,
+	:disable_effecs_on_other_exit => [:Trapping],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -985,7 +989,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:apply_proc => Proc.new { |battle,battler,value|
 		if battler.hasActiveAbility?(:UNBURDEN)
 			battle.pbShowAbilitySplash(battler)
-			battle.pbDisplay(_INTL("{1} is unburdened of its item. Its Speed is doubled!",battler.pbThis))
+			battle.pbDisplay(_INTL("{1} is unburdened of its item. Its Speed doubled!",battler.pbThis))
 			battle.pbHideAbilitySplash(battler)
 		end
 	},
@@ -1090,6 +1094,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:info_displayed => false,
 	:type => :Position,
 	:baton_passed => true,
+	:disable_effecs_on_other_exit => [:JawLock],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1123,7 +1128,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :OctolockUser,
 	:real_name => "Octolocked By",
 	:type => :Position,
-	:others_lose_track => true,
+	:disable_effecs_on_other_exit => [:Octolock],
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1424,7 +1429,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Obstruct",
 	:protection_info => {
 		:hit_proc => Proc.new { |user, target, move, battle|
-			user.pbLowerStatStage(:DEFENSE, 2, nil) if move.physical? && user.pbCanLowerStatStage?(:DEFENSE)
+			user.pbLowerStatStage(:DEFENSE, 2, nil) if move.physicalMove? && user.pbCanLowerStatStage?(:DEFENSE)
 		}
 	}
 })

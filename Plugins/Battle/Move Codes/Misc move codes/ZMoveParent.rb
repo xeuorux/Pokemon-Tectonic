@@ -75,7 +75,7 @@ class PokeBattle_ZMove < PokeBattle_Move
     # Protection moves don't fully negate Z-Moves.
     #-----------------------------------------------------------------------------
     def pbModifyDamage(damageMult, user, target)
-      if target.protected?
+      if target.protectedAgainst?(user,self)
         @battle.pbDisplay(_INTL("{1} couldn't fully protect itself!",target.pbThis))
         return damageMult/4
       else      

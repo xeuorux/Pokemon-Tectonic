@@ -34,7 +34,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
   proc { |ability,user,target,move,battle|
     # NOTE: This intentionally doesn't show the ability splash.
     next if !target.illusion?
-    target.disableEffect?(:Illusion)
+    target.disableEffect(:Illusion)
     battle.scene.pbChangePokemon(target,target.pokemon)
     battle.pbSetSeen(target)
   }
@@ -140,7 +140,6 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
     battle.pbShowAbilitySplash(target)
     if !move.pbMoveFailedAromaVeil?(target,user,true)
       user.applyEffect(:Diable,3)
-      user.applyEffect(:DisableMove,regularMove.id)
       battle.pbHideAbilitySplash(target)
       user.pbItemStatusCureCheck
     end

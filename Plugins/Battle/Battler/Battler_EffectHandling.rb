@@ -4,13 +4,14 @@ class PokeBattle_Battler
 	def applyEffect(effect, value = nil, ignoreFainted=false)
 		return if fainted? && !ignoreFainted
 		super(effect,value)
-		echoln("[BATTLER EFFECT] Effect #{getName(effect)} applied to battler #{pbThis(true)}")
+		echoln("[BATTLER EFFECT] Effect #{effect} applied to battler #{pbThis(true)}") if !effectActive?(effect)
 		pbItemStatusCureCheck
 		pbAbilityStatusCureCheck
 	end
 
 	def disableEffect(effect, ignoreFainted=false)
 		return if fainted? && !ignoreFainted
+		echoln("[BATTLER EFFECT] Effect #{effect} disabled on battler #{pbThis(true)}") if effectActive?(effect)
 		super(effect)
 	end
 
@@ -26,11 +27,6 @@ class PokeBattle_Battler
 
 	def processEffectsEOR
 		return if fainted?
-		@effects.each do |effect, _value|
-			next unless effectActive?(effect)
-			effectData = GameData::BattleEffect.get(effect)
-			effectData.eor_battler(@battle, self)
-		end
 		super
 	end
 

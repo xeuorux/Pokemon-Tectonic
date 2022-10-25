@@ -52,6 +52,11 @@ module GameData
 		# Only used for :Position type effects
 		attr_reader :others_lose_track
 
+		# When a battler has this effect, and this effect points at another battler
+		# and that battler leaves the battlefield, disable the effects in the array stored in disable_effecs_on_exit
+		# Only used for :Position type effects
+		attr_reader :disable_effecs_on_other_exit
+
 		attr_reader :protection_info
 
 		# Bespoke information for type applying spikes
@@ -162,7 +167,7 @@ module GameData
 			@type                   = hash[:type] || :Boolean
 			@default                = hash[:default]
 			@maximum				= hash[:maximum]
-			@info_displayed			= hash[:info_displayed] || true
+			@info_displayed			= hash.has_key?(:info_displayed) ? hash[:info_displayed] : true
 			if @default.nil?
 				case @type
 				when :Boolean
@@ -173,10 +178,6 @@ module GameData
 					@default = -1
 				end
 			end
-			# For applying other effects or changes alongside this effect
-			# Called also when baton passing
-			@apply_proc             = hash[:activated_proc]
-
 			@resets_eor             = hash[:resets_eor] || false
 			@resets_battlers_sot    = hash[:resets_battlers_sot] || false
 			@resets_battlers_eot    = hash[:resets_battlers_eot] || false
@@ -188,8 +189,11 @@ module GameData
 
 			# Called when the battler is initialized
 			@initialize_proc        = hash[:initialize_proc]
+			
+			# Called when the effect is applied by an action
+			@apply_proc             = hash[:apply_proc]
 
-			# Called every round when active.
+			# Called every round if active.
 			@eor_proc               = hash[:eor_proc]
 
 			# Called when the effect is disabled
@@ -222,7 +226,8 @@ module GameData
 			@snowballing_move_counter = hash[:snowballing_move_counter] || false
 
 			@others_lose_track      = hash[:others_lose_track] || false
-
+			
+			@disable_effecs_on_other_exit = hash[:disable_effecs_on_other_exit] || []
 			@sub_effects 			= hash[:sub_effects] || []
 
 			@protection_effect 		= hash[:protection_effect] || false
@@ -240,6 +245,7 @@ module GameData
 		end
 
 		def checkForInvalidDefinitions()
+			raise _INTL("Battle effect #{@id} defines both an expire and disable proc.") if @expire_proc && @disable_proc
 			if @type != :Integer
 				raise _INTL("Battle effect #{@id} defines an increment proc when its not an integer.") if @increment_proc
 				raise _INTL("Battle effect #{@id} is set to down down, but its not an integer.") if @ticks_down
@@ -254,7 +260,7 @@ module GameData
 		def active_value?(value)
 			active = false
 
-			raise _INTL("Value #{@real_name} cannot check if the value #{value} is active because its invalid!}") if !valid_value?(value)
+			raise _INTL("Value #{@real_name} cannot check if the value #{value} is active because its value #{value} is invalid}") if !valid_value?(value)
 
 			if @active_value_proc
 				active = @active_value_proc.call(value)
@@ -294,24 +300,29 @@ module GameData
 			when :Item
 				return value.nil? || GameData::Item.exists?(value)
 			end
+			return false
 		end
 
-		def value_to_string(value)
-			case @type
-			when :Boolean, :Integer
-				return value.to_s
-			when :Species
-				return GameData::Species.get(value).real_name
-			when :Position
-				return "#{@battle.battlers[value].name}'s Spot"
-			when :Type
-				return GameData::Type.get(value).real_name
-			when :Pokemon
+		def value_to_string(value,battle)
+			begin
+				case @type
+				when :Boolean, :Integer
+					return value.to_s
+				when :Species
+					return GameData::Species.get(value).real_name
+				when :Position
+					return battle.battlers[value].name
+				when :Type
+					return GameData::Type.get(value).real_name
+				when :Pokemon
+					return value.name
+				when :Move
+					return GameData::Move.get(value).real_name
+				when :Item
+					return GameData::Item.get(value).real_name
+				end
+			rescue
 				return "ERROR"
-			when :Move
-				return GameData::Move.get(value).real_name
-			when :Item
-				return GameData::Item.get(value).real_name
 			end
 			return ""
 		end

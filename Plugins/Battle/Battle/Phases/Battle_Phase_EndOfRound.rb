@@ -217,12 +217,21 @@ class PokeBattle_Battle
   end
 
   def checkForInvalidEffectStates()
-    allEffectHolders.each do |effectHolder|
+    allEffectHolders do |effectHolder|
       effectHolder.effects.each do |effect,value|
         effectData = GameData::BattleEffect.try_get(effect)
         raise _INTL("Effect \"#{effectData.real_name}\" is not a defined effect.") if effectData.nil?
         next if effectData.valid_value?(value)
         raise _INTL("Effect \"#{effectData.real_name}\" is in invalid state: #{value}")
+
+        mainEffectActive = effectData.active_value?(value)
+
+        effectData.each_sub_effect do |sub_effect|
+          sub_active = effectActive?(sub_effect)
+          if sub_active != mainEffectActive
+              raise _INTL("Sub-Effect #{getData(sub_effect).real_name} of effect #{effectData.real_name} has mismatched activity status")
+          end
+        end
       end
     end
   end

@@ -206,20 +206,20 @@ class PokeBattle_Battle
     end
 
     def pbExtraAttackPhase
+        @messagesBlocked = false
         @scene.pbBeginAttackPhase
-        resetEffects
+        resetAttackPhaseEffects
         PBDebug.log("")
         # Calculate move order for this round
         pbCalculatePriority(true)
         # Perform actions
         return if attackPhaseNonMoveActions()
-        
-          pbPriority.each do |battler|
-            next if battler.fainted?
-            next unless @choices[battler.index][0] == :UseMove
-            next if @commandPhasesThisRound - 1 > battler.extraMovesPerTurn
-            battler.pbProcessTurn(@choices[battler.index])
-          end
+        pbPriority.each do |battler|
+          next if battler.fainted?
+          next unless @choices[battler.index][0] == :UseMove
+          next if @commandPhasesThisRound - 1 > battler.extraMovesPerTurn
+          battler.pbProcessTurn(@choices[battler.index])
+        end
     end
 end
   

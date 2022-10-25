@@ -261,7 +261,7 @@ class PokeBattle_Move
                 multipliers[:base_damage_multiplier] /= 3.0
                 break
             end
-            if @battle.field.effectActive?(:WaterSport)
+            if @battle.field.effectActive?(:WaterSportField)
                 multipliers[:base_damage_multiplier] /= 3.0
             end
         end

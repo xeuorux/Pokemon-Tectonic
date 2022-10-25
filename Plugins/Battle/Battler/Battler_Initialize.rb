@@ -16,21 +16,22 @@ class PokeBattle_Battler
 	end
 
 	def pbInitProcs()
+		@location = :Battler
 		@apply_proc = Proc.new { |effectData|
 			effectData.apply_battler(@battle, self)
 		}
 		@disable_proc = Proc.new { |effectData|
 			effectData.disable_battler(@battle, self)
 		}
-		@eor_proc = proc do |effectData|
+		@eor_proc = Proc.new { |effectData|
 			effectData.eor_battler(@battle, self)
-		end
-		@remain_proc = proc do |effectData|
+		}
+		@remain_proc = Proc.new { |effectData|
 			effectData.remain_battler(@battle, self)
-		end
-		@expire_proc = proc do |effectData|
+		}
+		@expire_proc = Proc.new { |effectData|
 			effectData.expire_battler(@battle, self)
-		end
+		}
 		@increment_proc = Proc.new { |effectData,increment|
 			effectData.increment_battler(@battle, self,increment)
 		}
@@ -151,25 +152,40 @@ class PokeBattle_Battler
 			else
 				@effects[effectID] = effectData.default
 			end
-			effectData.apply_battler(@battle, self)
 			effectData.initialize_battler(@battle, self)
 		end
 
 		# All battlers effects stop pointing at this battler index if appropriate
 		@battle.eachBattler do |b|
+			next if b.index == @index
 			newEffects = {}
 			b.effects.each do |effect, value|
 				effectData = GameData::BattleEffect.get(effect)
 				next if effectData.type != :Position
 				next unless effectData.others_lose_track
 				next if value != @index
+				echoln("[BATTLER EFFECT] Effect #{effect} stops pointing from #{b.name} to #{name} (#{@index}) due to it exiting")
 				newEffects[effect] = effectData.default
 			end
 			b.effects.update(newEffects)
 		end
 
+		# Cause other battlers to reset effects that were contingent on this battler
+		# Remaining on the battlefield (e.g. trapping)
+		@battle.eachBattler do |b|
+			next if b.index == @index
+			b.eachEffect(true) do |effect, value, data|
+				next if data.type != :Position
+				next if value != @index
+				data.disable_effecs_on_other_exit.each do |effectToDisable|
+					echoln("[BATTLER EFFECT] Effect #{effectToDisable} is disabled on #{b.name} due to #{name} (#{@index}) exiting")
+					b.disableEffect(effectToDisable)
+				end
+			end
+		end
+
 		if batonPass
-		# Don't reset stats
+			# Don't reset stats
 		else
 			@stages[:ATTACK] = 0
 			@stages[:DEFENSE]         = 0

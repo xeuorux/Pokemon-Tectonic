@@ -197,7 +197,7 @@ class PokeBattle_Move
         modifiers[:accuracy_multiplier] *= 5 / 3.0
       end
       if user.effectActive?(:MicleBerry)
-        user.disableEffect?(:MicleBerry)
+        user.disableEffect(:MicleBerry)
         modifiers[:accuracy_multiplier] *= 1.2
       end
       modifiers[:evasion_stage] = 0 if target.effectActive?(:Foresight) && modifiers[:evasion_stage] > 0
@@ -300,10 +300,10 @@ class PokeBattle_Move
                 battle.pbShowAbilitySplash(target)
                 battle.pbHideAbilitySplash(target)
             end
-            return true
+            return false
         end
-        return true if target.effectActive?(:Enlightened)
-        return false
+        return false if target.effectActive?(:Enlightened)
+        return true
     end
 
     def pbAdditionalEffectChance(user,target,effectChance=0)

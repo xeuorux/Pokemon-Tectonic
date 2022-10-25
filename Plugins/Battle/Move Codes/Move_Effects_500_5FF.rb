@@ -604,8 +604,11 @@ end
 class PokeBattle_Move_523 < PokeBattle_Move
 	def pbEffectAfterAllHits(user,target)
 		user.applyEffect(:Disable,5)
-		user.applyEffect(:DisableMove,user.lastRegularMoveUsed)
-		user.pbItemStatusCureCheck
+	end
+
+	def getScore(score,user,target,skill=100)
+		score -= 30
+		return score
 	end
 end
 
@@ -620,8 +623,6 @@ class PokeBattle_Move_524 < PokeBattle_HealingMove
 	def pbEffectGeneral(user)
 		super
 		user.applyEffect(:Disable,5)
-		user.applyEffect(:DisableMove, user.lastRegularMoveUsed)
-		user.pbItemStatusCureCheck
 	end
 
 	def getScore(score,user,target,skill=100)

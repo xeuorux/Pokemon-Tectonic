@@ -116,7 +116,7 @@ class BattleInfoDisplay < SpriteWrapper
 	textToDraw.push([terrainMessage,256+24,weatherAndTerrainY,0,base,shadow])
 	
 	# Whole field effects
-	wholeFieldX = 332
+	wholeFieldX = 328
 	textToDraw.push([_INTL("Field Effects"),wholeFieldX+60,0,2,base,shadow])
 	
 	# Compile array of descriptors of each field effect
@@ -352,12 +352,11 @@ class BattleInfoDisplay < SpriteWrapper
   end
 
   def pushEffectDescriptorsToArray(effectHolder,descriptorsArray)
-	effectHolder.eachEffect(true) do |effect, value, effectData|
+	effectHolder.eachEffect(!DEBUGGING_EFFECT_DISPLAY) do |effect, value, effectData|
 		next if !effectData.info_displayed
-		next if !effectData.active_value?(value) && !DEBUGGING_EFFECT_DISPLAY
 		effectName = effectData.real_name
-		if !effectData.type != :Boolean
-			effectName = "#{effectName}: #{effectData.value_to_string(value)}"
+		if effectData.type != :Boolean
+			effectName = "#{effectName}: #{effectData.value_to_string(value,@battle)}"
 		end
 		descriptorsArray.push(effectName)
 	end

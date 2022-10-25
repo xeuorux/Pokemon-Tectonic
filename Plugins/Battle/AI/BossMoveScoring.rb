@@ -212,7 +212,7 @@ class PokeBattle_AI
 
 		if score > 0
 			# Try very hard not to attack targets which are protected
-			if !target.nil? && target.protected?
+			if !target.nil? && target.protectedAgainst?(user,move)
 				echoln("Scoring #{move.name} a 2 due to the target being protected this turn")
 				score = 2
 			end

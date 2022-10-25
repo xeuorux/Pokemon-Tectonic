@@ -15,7 +15,8 @@ class PokeBattle_ActiveField
 		@terrain         = :None
 		@terrainDuration = 0
 		@battle = battle
-
+		
+		@location = :Field
 		@apply_proc = proc do |effectData|
 			effectData.apply_field(@battle)
 		end

@@ -182,6 +182,7 @@ class PokeBattle_Battler
 		end
 
 		pbInitEffects(false)
+		
 		# Reset status
 		self.status      = :NONE
 		self.statusCount = 0
@@ -255,7 +256,7 @@ class PokeBattle_Battler
 		end
 		disableEffect(:BurnUp)
 		disableEffect(:ColdConversion)
-		disableEffect?(:Roost)
+		disableEffect(:Roost)
 		@battle.scene.pbRefresh
 	end
 
@@ -445,7 +446,6 @@ class PokeBattle_Battler
 			@moves[i].total_pp = 5
 		end
 		disableEffect(:Disable)
-		@effects[:DisableMove] = nil
 		@effects[:WeightChange] = target.effects[:WeightChange]
 		@battle.scene.pbRefreshOne(@index)
 		@battle.pbDisplay(_INTL('{1} transformed into {2}!', pbThis, target.pbThis(true)))

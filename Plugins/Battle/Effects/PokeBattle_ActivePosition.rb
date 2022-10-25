@@ -11,7 +11,7 @@ class PokeBattle_ActivePosition
 		GameData::BattleEffect.each_position_effect do |effectData|
 			@effects[effectData.id] = effectData.default
 		end
-
+		@location = :Position
 		@apply_proc = proc do |effectData|
 			effectData.apply_position(@battle, @index)
 		end

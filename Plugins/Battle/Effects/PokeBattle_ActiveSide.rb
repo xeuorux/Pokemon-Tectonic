@@ -11,7 +11,7 @@ class PokeBattle_ActiveSide
 		GameData::BattleEffect.each_side_effect do |effectData|
 			@effects[effectData.id] = effectData.default
 		end
-
+		@location = :Side
 		@apply_proc = proc do |effectData|
 			effectData.apply_side(@battle, self)
 		end

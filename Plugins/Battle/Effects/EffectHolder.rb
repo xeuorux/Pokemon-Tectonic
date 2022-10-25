@@ -1,17 +1,15 @@
 # This assumes that each user of the module has an instance variable called @effects
-# and a reference to the battle called @battle
-# You may also define procs called @apply_proc, @disable_proc, @expire_proc, @remain_proc, and @increment_proc
+# and a reference to the battle called @battle, and a variable called @location
+# You must also define procs called @apply_proc, @disable_proc, @expire_proc, @remain_proc, and @increment_proc
 module EffectHolder
-    def eachEffect(onlyActive=false)
-        @effects.each do |effect, value|
-			next if onlyActive && !effectActive?(effect)
-            effectData = GameData::BattleEffect.get(effect)
-			yield effect,value,effectData
-		end
-    end
+
+    #################################################
+    # Modify effect values
+    #################################################
 
     def applyEffect(effect, value = nil)
-		effectData = GameData::BattleEffect.get(effect)
+		validateCorrectLocation(effect)
+        effectData = GameData::BattleEffect.get(effect)
 		if value.nil?
             if effectData.type == :Boolean
                 value = true
@@ -24,19 +22,21 @@ module EffectHolder
             raise _INTL("Value #{value} provided to apply for effect #{effectData.real_name} is its default value")
 		end
         if @effects[effect] == value
-            echo(_INTL("[EFFECT] Effect #{effectData.real_name} applied at existing value #{@effects[effect]}"))
+            echo(_INTL("[EFFECT] Effect #{effectData.real_name} set to apply, but at existing value #{@effects[effect]}"))
         else
             @effects[effect] = value
-            @apply_proc.call(effectData,value) if @apply_proc
+            @apply_proc.call(effectData,value)
         end
 	end
 
     def pointAt(effect,battler)
+        validateCorrectLocation(effect)
         validatePosition(effect)
         applyEffect(effect,battler.index)
     end
 
     def incrementEffect(effect,incrementAmount=1)
+        validateCorrectLocation(effect)
         effectData = GameData::BattleEffect.get(effect)
         validateInteger(effectData)
         oldValue = @effects[effect]
@@ -46,31 +46,22 @@ module EffectHolder
             return oldValue
         else
             @effects[effect] = newValue
-            @increment_proc&.call(effectData,incrementAmount)
+            @increment_proc.call(effectData,incrementAmount)
             return newValue
         end
     end
 
-    def getName(effect)
-        return getData(effect).real_name
-    end
-
-    def effectAtMax?(effect)
-        effectData = GameData::BattleEffect.get(effect)
-        validateInteger(effectData)
-        return false if effectData.maximum.nil?
-        value = @effects[effect]
-        raise _INTL("Effect above maximum: #{effectData.real_name}") if value >= effectData.maximum
-    end
-
     # Returns true if the value did not expire, false if it did
     def tickDownAndProc(effect)
+        validateCorrectLocation(effect)
         if effectActive?(effect)
+            data = getData(effect)
             if tickDown(effect)
+                @expire_proc.call(data)
                 disableEffect(effect)
                 return false
             else
-                @remain_proc&.call(GameData::BattleEffect.get(effect))
+                @remain_proc.call(data)
                 return true
             end
         end
@@ -79,6 +70,7 @@ module EffectHolder
     # Returns true if the value is either already at the goal or is at the goal after ticking down
     # otherwise false
     def tickDown(effect,goal=nil)
+        validateCorrectLocation(effect)
         effectData = GameData::BattleEffect.get(effect)
         validateInteger(effectData)
         value = @effects[effect]
@@ -90,53 +82,91 @@ module EffectHolder
     end
 
 	def disableEffect(effect)
+        validateCorrectLocation(effect)
 		effectData = GameData::BattleEffect.get(effect)
         return if !effectData.active_value?(@effects[effect])
 		@effects[effect] = effectData.default
-        @expire_proc.call(effectData) if @expire_proc
-		effectData.each_sub_effect do |otherEffect, otherData|
+        @disable_proc.call(effectData)
+		effectData.each_sub_effect(true) do |otherEffect, otherData|
 			@effects[otherEffect] = otherData.default
-            @expire_proc.call(otherData) if @expire_proc
+            @disable_proc.call(otherData)
 		end
 	end
 
+    #################################################
+    # Get information about effects
+    #################################################
+
 	def effectActive?(effect)
+        validateCorrectLocation(effect)
 		effectData = GameData::BattleEffect.get(effect)
 
-        mainEffectActive = effectData.active_value?(@effects[effect])
-
-        effectData.each_sub_effect do |sub_effect|
-            sub_active = effectActive?(sub_effect)
-            if sub_active != mainEffectActive
-                raise _INTL("Sub-Effect #{getData(sub_effect).real_name} of effect #{@real_name} has mismatched activity status")
-            end
+        if !@effects.has_key?(effect)
+            echoln(@effects.to_s)
+            raise _INTL("Cannot check if effect #{effectData.real_name} is active because it has no entry in the effect hash")
         end
 
-		return mainEffectActive
+		return effectData.active_value?(@effects[effect])
 	end
 
     def countEffect(effect)
+        validateCorrectLocation(effect)
         effectData = GameData::BattleEffect.get(effect)
         validateInteger(effectData)
         return @effects[effect]
     end
 
     def pointsAt?(effect,battler)
+        validateCorrectLocation(effect)
         validatePosition(effect)
         return false if !effectActive?(effect)
         return @effects[effect] == battler.index
     end
 
     def eachEffectPointsAt(onlyActive=false.battler)
+        validateCorrectLocation(effect)
         eachEffect(true) do |effect,value,data|
             yield effect,value,data if pointsAt?(effect,battler)
         end
     end
 
-    def getBattler(effect)
+    def getBattlerPointsTo(effect)
+        validateCorrectLocation(effect)
         validatePosition(effect)
-        return nil if effectActive?(effect)
+        return nil if !effectActive?(effect)
         return @battle.battlers[@effects[effect]]
+    end
+
+    def getMoveData(effect)
+        validateCorrectLocation(effect)
+        validateMove(effect)
+        return GameData::Move.get(@effects[effect])
+    end
+
+    def getName(effect)
+        validateCorrectLocation(effect)
+        return getData(effect).real_name
+    end
+
+    def effectAtMax?(effect)
+        validateCorrectLocation(effect)
+        effectData = GameData::BattleEffect.get(effect)
+        validateInteger(effectData)
+        return false if effectData.maximum.nil?
+        value = @effects[effect]
+        raise _INTL("Effect above maximum: #{effectData.real_name}") if value >= effectData.maximum
+    end
+
+    #################################################
+    # Iterate through effects
+    #################################################
+
+    def eachEffect(onlyActive=false)
+        @effects.each do |effect, value|
+			next if onlyActive && !effectActive?(effect)
+            effectData = GameData::BattleEffect.get(effect)
+			yield effect,value,effectData
+		end
     end
 
     def processEffectsEOR()
@@ -151,11 +181,6 @@ module EffectHolder
         end
     end
 
-    def getMoveData(effect)
-        validateMove(effect)
-        return GameData::Move.get(@effects[effect])
-    end
-
     #################################################
     # Validate data types
     #################################################
@@ -164,24 +189,27 @@ module EffectHolder
         return GameData::BattleEffect.get(dataOrEffect)
     end
 
+    def validateCorrectLocation(effect)
+        if getData(effect).location != @location
+            raise _INTL("Effect #{effect} is not appropriate for location #{@location}")
+        end
+    end
+
     def validateInteger(effect)
-        effectData = getData(effect)
-        if effectData.type != :Integer
-		    raise _INTL("Invalid operation for non-integer effect: #{effectData.real_name}")
+        if getData(effect).type != :Integer
+		    raise _INTL("Invalid operation for non-integer effect #{effect}")
         end
     end
 
     def validatePosition(effect)
-        effectData = getData(effect)
-        if effectData.type != :Position
-		    raise _INTL("Invalid operation for non-position effect: #{effectData.real_name}")
+        if getData(effect).type != :Position
+		    raise _INTL("Invalid operation for non-position effect #{effect}")
         end
     end
 
     def validateMove(effect)
-        effectData = getData(effect)
-        if effectData.type != :Move
-		    raise _INTL("Invalid operation for non-move effect: #{effectData.real_name}")
+        if getData(effect).type != :Move
+		    raise _INTL("Invalid operation for non-move effect #{effect}")
         end
     end
 end

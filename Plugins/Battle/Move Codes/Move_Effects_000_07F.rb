@@ -2316,7 +2316,7 @@ end
 #===============================================================================
 class PokeBattle_Move_071 < PokeBattle_FixedDamageMove
   def pbAddTarget(targets,user)
-    target = user.getBattler(:CounterTarget)
+    target = user.getBattlerPointsTo(:CounterTarget)
     return if target.nil? || !user.opposes?(target)
     user.pbAddTarget(targets,user,target,self,false)
   end
@@ -2351,7 +2351,7 @@ end
 #===============================================================================
 class PokeBattle_Move_072 < PokeBattle_FixedDamageMove
   def pbAddTarget(targets,user)
-    target = user.getBattler(:MirrorCoatTarget)
+    target = user.getBattlerPointsTo(:MirrorCoatTarget)
     return if target.nil? || !user.opposes?(target)
     user.pbAddTarget(targets,user,target,self,false)
   end

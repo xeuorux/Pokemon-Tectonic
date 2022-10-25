@@ -369,9 +369,17 @@ class PokeBattle_Battler
 		return @battle.pbGetOwnerFromBattlerIndex(@index).able_pokemon_count == 1
 	end
 
-	def protected?
-		invulnerableProtectEffects.each do |effectID|
-			return true if @effects[effectID]
+	def protectedAgainst?(user,move)
+		holdersToCheck = [self,pbOwnSide]
+		holdersToCheck.each do |effectHolder|
+			effectHolder.eachEffect(true) do |effect,value,data|
+				next if !data.is_protection?
+				if data.protection_info&.has_key?(:does_negate_proc)
+					return data.protection_info[:does_negate_proc].call(user,self,move,@battle)
+				else
+					return true
+				end
+			end
 		end
 		return false
 	end
