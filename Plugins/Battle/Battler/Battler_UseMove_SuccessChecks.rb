@@ -332,7 +332,7 @@ class PokeBattle_Battler
     # Obstruct
     if target.effects[PBEffects::Obstruct]
       return false if doesProtectionEffectNegateThisMove?("Obstruct",move,user,target,protectionIgnoredByAbility,"Obstruct") {
-        if move.physical?
+        if move.physicalMove?
           if user.pbCanLowerStatStage?(:DEFENSE)
             user.pbLowerStatStage(:DEFENSE,2,nil)
           end
