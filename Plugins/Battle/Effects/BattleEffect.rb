@@ -58,6 +58,12 @@ module GameData
 		# When present on a battler, they are unable to swap
 		attr_reader :trapping
 
+		# When present on a battler, copied by various stat buff copying effects
+		attr_reader :critical_rate_buff
+
+		# Tracks effects for moves like Iceball
+		attr_reader :snowballing_move_count
+
 		# Is an effect that makes the pokemon invulnerable
 		# Marked so that moves like Feint can know to remove it
 		attr_reader :protection_effect
@@ -130,6 +136,10 @@ module GameData
 		def has_expire_proc?
 			return !@expire_proc.nil?
 		end
+
+		def has_entry_proc?
+			reutnr !@entry_proc.nil?
+		end
 		
 		DATA = {}
 
@@ -195,6 +205,8 @@ module GameData
 			# Called whenever the event value is incremented (for integers)
 			@increment_proc			= hash[:increment_proc]
 
+			# Called whenever a battler enters the position
+			@entry_proc				= hash[:entry_proc]
 
 			# If the effect needs custom logic to determing if it should be active or not
 			# Instead of using the default values (i.e. Integers active above 0)
@@ -207,6 +219,8 @@ module GameData
 
 			@multi_turn_tracker     = hash[:multi_turn_tracker] || false
 			@trapping				= hash[:trapping] || false
+			@critical_rate_buff		= hash[:critical_rate_buff] || false
+			@snowballing_move_count = hash[:snowballing_move_count] || false
 
 			@others_lose_track      = hash[:others_lose_track] || false
 
@@ -231,6 +245,9 @@ module GameData
 				raise _INTL("Battle effect #{@id} defines an increment proc when its not an integer.") if @increment_proc
 				raise _INTL("Battle effect #{@id} is set to down down, but its not an integer.") if @ticks_down
 				raise _INTL("Battle effect #{@id} was given a maximum, but its not an integer.") if !@maximum.nil?
+			end
+			if @type != :Position
+				raise _INTL("Battle effect #{@id} defines an entry proc when its not a position-type effect.") if @entry_proc
 			end
 		end
 
@@ -445,6 +462,15 @@ module GameData
 		def increment_field(battle, increment)
 			newValue = battler.effects[@id]
 			@increment_proc.call(battle, newValue, increment) if @increment_proc
+		end
+
+		### Battler entering
+		def entry_position(battle, index)
+			position = battle.positions[index]
+			battler = battle.battlers[index]
+			return if battler.nil? || battler.fainted?
+			value = battler.effects[@id]
+			@entry_proc.call(battle, index, position, battler, value) if @entry_proc
 		end
 
 		### Baton passing

@@ -9,17 +9,17 @@ class PokeBattle_Battle
 		  next unless pbMoveCanTarget?(b.index,idxSwitcher,@choices[b.index][2].pbTarget(b))
 		  next unless pbCanChooseMove?(b.index,@choices[b.index][1],false)
 		  next if b.asleep?
-		  next if b.effects[PBEffects::SkyDrop]>=0
-		  next if b.hasActiveAbility?(:TRUANT) && b.effects[PBEffects::Truant]
+		  next if b.effectActive?(:SkyDrop)
+		  next if b.hasActiveAbility?(:TRUANT) && b.effectActive?(:Truant)
 		  # Mega Evolve
 		  if !wildBattle? || !b.opposes?
-			owner = pbGetOwnerIndexFromBattlerIndex(b.index)
-			pbMegaEvolve(b.index) if @megaEvolution[b.idxOwnSide][owner]==b.index
+        owner = pbGetOwnerIndexFromBattlerIndex(b.index)
+        pbMegaEvolve(b.index) if @megaEvolution[b.idxOwnSide][owner]==b.index
 		  end
 		  # Use Pursuit
-		  @choices[b.index][3] = idxSwitcher   # Change Pursuit's target
+		  @choices[b.index][3] = idxSwitcher # Change Pursuit's target
 		  if b.pbProcessTurn(@choices[b.index],false)
-			b.effects[PBEffects::Pursuit] = true
+			  b.applyEffect(:Pursuit)
 		  end
 		  break if @decision>0 || @battlers[idxSwitcher].fainted?
 		end

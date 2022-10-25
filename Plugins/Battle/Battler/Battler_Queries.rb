@@ -51,9 +51,9 @@ class PokeBattle_Battler
 	#       active, and the code for the two combined would cause an infinite loop
 	#       (regardless of whether any Pokémon actualy has either the ability or
 	#       the item - the code existing is enough to cause the loop).
-	def abilityActive?(ignore_fainted = false)
+	def abilityActive?(ignore_fainted = false, ignore_gas = false)
 		return false if fainted? && !ignore_fainted
-		return false if @battle.field.effectActive?(:NeutralizingGas)
+		return false if !ignore_gas && @battle.field.effectActive?(:NeutralizingGas)
 		return false if effectActive?(:GastroAcid)
 		return true
 	end
@@ -66,6 +66,10 @@ class PokeBattle_Battler
 		return check_ability == ability.id
 	end
 	alias hasWorkingAbility hasActiveAbility?
+
+	def hasActiveNeutralizingGas?(ignore_fainted = false)
+		return b.ability == :NEUTRALIZINGGAS && b.abilityActive?(ignore_fainted,true)
+	end
 
 	alias hasType? pbHasType?
 

@@ -87,11 +87,11 @@ class PokeBattle_AI
 			end
 		end
 		# Don't prefer attacking the target if they'd be semi-invulnerable
-		if move.accuracy > 0 && (target.semiInvulnerable? || target.effects[PBEffects::SkyDrop]>=0)
+		if move.accuracy > 0 && (target.semiInvulnerable? || target.effectActive?(:SkyDrop))
             echoln("#{user.pbThis} scores the move #{move.id} differently against target #{target.pbThis(false)} due to the target being semi-invulnerable.")
             canHitAnyways = false
             # Knows what can get past semi-invulnerability
-            if target.effects[PBEffects::SkyDrop]>=0
+            if target.effectActive?(:SkyDrop)
                 canHitAnyways = true if move.hitsFlyingTargets?
             else
                 if target.inTwoTurnAttack?("0C9","0CC","0CE")   # Fly, Bounce, Sky Drop
@@ -122,14 +122,12 @@ class PokeBattle_AI
 		end
 		
 		# Pick a good move for the Choice items
-        if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
-            echoln("#{user.pbThis} scores the move #{move.id} differently #{target.pbThis(false)} due to holding a choice item.")
+        if user.user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) || user.hasActiveAbilityAI?(:GORILLATACTICS)
+            echoln("#{user.pbThis} scores the move #{move.id} differently #{target.pbThis(false)} due to choice locking.")
             if move.damagingMove?
                 score += 40
-            elsif move.function=="0F2" # Trick
-                score += 60
             else
-                score -= 60
+                score -= 40
 			end
 		end
 		

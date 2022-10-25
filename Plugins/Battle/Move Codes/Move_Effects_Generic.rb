@@ -756,9 +756,9 @@ class PokeBattle_ProtectMove < PokeBattle_Move
 
   def pbEffectGeneral(user)
     if @sidedEffect
-      user.pbOwnSide.effects[@effect] = true
+      user.pbOwnSide.applyEffect(@effect)
     else
-      user.effects[@effect] = true
+      user.applyEffect(@effect)
     end
     user.applyEffect(:ProtectFailure)
     pbProtectMessage(user)
@@ -866,39 +866,36 @@ class PokeBattle_PledgeMove < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    user.effects[PBEffects::FirstPledge] = 0
+    user.disableEffect(:FirstPledge)
     return if !@pledgeSetup
     @battle.pbDisplay(_INTL("{1} is waiting for {2}'s move...",
        user.pbThis,@pledgeOtherUser.pbThis(true)))
-    @pledgeOtherUser.effects[PBEffects::FirstPledge] = @function
-    @pledgeOtherUser.effects[PBEffects::MoveNext]    = true
+    @pledgeOtherUser.applyEffect(:FirstPledge,@function)
+    @pledgeOtherUser.applyEffect(:MoveNext)
     user.lastMoveFailed = true   # Treated as a failure for Stomping Tantrum
   end
 
   def pbEffectAfterAllHits(user,target)
     return if !@pledgeCombo
-    msg = nil; animName = nil
+    
+    animName = nil
     case @comboEffect
     when :SeaOfFire   # Grass + Fire
-      if user.pbOpposingSide.effects[PBEffects::SeaOfFire]==0
-        user.pbOpposingSide.effects[PBEffects::SeaOfFire] = 4
-        msg = _INTL("A sea of fire enveloped {1}!",user.pbOpposingTeam(true))
+      if !user.pbOpposingSide.effectActive?(:SeaOfFire)
+        user.pbOpposingSide.applyEffect(:SeaOfFire,4)
         animName = (user.opposes?) ? "SeaOfFire" : "SeaOfFireOpp"
       end
     when :Rainbow   # Fire + Water
-      if user.pbOwnSide.effects[PBEffects::Rainbow]==0
-        user.pbOwnSide.effects[PBEffects::Rainbow] = 4
-        msg = _INTL("A rainbow appeared in the sky on {1}'s side!",user.pbTeam(true))
+      if !user.pbOpposingSide.effectActive?(:Rainbow)
+        user.pbOpposingSide.applyEffect(:Rainbow,4)
         animName = (user.opposes?) ? "RainbowOpp" : "Rainbow"
       end
     when :Swamp   # Water + Grass
-      if user.pbOpposingSide.effects[PBEffects::Swamp]==0
-        user.pbOpposingSide.effects[PBEffects::Swamp] = 4
-        msg = _INTL("A swamp enveloped {1}!",user.pbOpposingTeam(true))
+      if !user.pbOpposingSide.effectActive?(:Swamp)
+        user.pbOpposingSide.applyEffect(:Swamp,4)
         animName = (user.opposes?) ? "Swamp" : "SwampOpp"
       end
     end
-    @battle.pbDisplay(msg) if msg
     @battle.pbCommonAnimation(animName) if animName
   end
 
@@ -1115,10 +1112,15 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
 end
 
 class PokeBattle_DoublingMove < PokeBattle_Move
+  def initialize(battle, move)
+    super
+    @effectData = GameData::BattleEffect.get(@usageCountEffect)
+  end
+
   def pbChangeUsageCounters(user,specialUsage)
       oldVal = user.effects[@usageCountEffect]
       super
-      user.effects[@usageCountEffect] = [oldVal + 1,4].min
+      user.effects[@usageCountEffect] = [oldVal + 1,@effectData.maximum].min
   end
 
   def pbBaseDamage(baseDmg,user,target)
@@ -1126,7 +1128,7 @@ class PokeBattle_DoublingMove < PokeBattle_Move
   end
 
   def pbBaseDamageAI(baseDmg,user,target,skill=100)
-      return baseDmg<<(user.effects[PBEffects::FuryCutter])
+      return baseDmg<<(user.effects[@usageCountEffect])
   end
 end
 

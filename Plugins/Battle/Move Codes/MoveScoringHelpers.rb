@@ -123,7 +123,7 @@ def getFlinchingMoveScore(score,user,target,skill,policies,magnitude=3)
     targetSpeed = pbRoughStat(target,:SPEED,skill)
     
     if target.hasActiveAbilityAI?(:INNERFOCUS) || target.substituted? ||
-          target.effects[PBEffects::FlinchedAlready] || targetSpeed > userSpeed
+          target.effectActive?(:FlinchedAlready) || targetSpeed > userSpeed
       score -= magnitude * 10
     else
       score += magnitude * 10

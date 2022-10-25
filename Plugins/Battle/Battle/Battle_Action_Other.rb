@@ -1,14 +1,15 @@
 class PokeBattle_Battle
   def pbCanMegaEvolve?(idxBattler)
     return false if $game_switches[Settings::NO_MEGA_EVOLUTION]
-    return false if !@battlers[idxBattler].hasMega?
-    return false if wildBattle? && opposes?(idxBattler) && !@battlers[idxBattler].boss
+    battler = @battlers[idxBattler]
+    return false if !battler.hasMega?
+    return false if wildBattle? && opposes?(idxBattler) && !battler.boss
     return true if $DEBUG && Input.press?(Input::CTRL)
-    return false if @battlers[idxBattler].effects[PBEffects::SkyDrop]>=0
-    return false if !pbHasMegaRing?(idxBattler) && !@battlers[idxBattler].boss
-    side  = @battlers[idxBattler].idxOwnSide
+    return false if battler.effectActive?(:SkyDrop)
+    return false if !pbHasMegaRing?(idxBattler) && !battler.boss
+    side  = battler.idxOwnSide
     owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
-    return @megaEvolution[side][owner]==-1
+    return @megaEvolution[side][owner] == -1
   end
 
   #=============================================================================
@@ -56,7 +57,7 @@ class PokeBattle_Battle
     owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
     @megaEvolution[side][owner] = -2
     if battler.isSpecies?(:GENGAR) && battler.mega?
-      battler.effects[PBEffects::Telekinesis] = 0
+      battler.disableEffect(:Telekinesis)
     end
     pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
     # Trigger ability

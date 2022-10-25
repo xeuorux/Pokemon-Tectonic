@@ -37,26 +37,42 @@ class PokeBattle_AI
             switchingBias += 4
         end
         
-        # Pokémon is Encored or Choiced into an unfavourable move
-        if battler.effects[PBEffects::Encore] > 0
+        # More likely to switch if locked into a bad move
+        lockedMove = nil
+        if battler.effectActive?(:Encore)
             idxEncoredMove = battler.pbEncoredMoveIndex
-            if idxEncoredMove>=0
-                scoreSum   = 0
-                scoreCount = 0
-                battler.eachOpposing do |b|
-                    scoreSum += pbGetMoveScore(battler.moves[idxEncoredMove],battler,b,skill)
-                    scoreCount += 1
-                end
-                if scoreCount>0 && scoreSum/scoreCount<=20
-                    switchingBias += 2
-                end
+            if idxEncoredMove >= 0
+                lockedMove = battler.moves[idxEncoredMove]
+            end
+        elsif battler.effectActive?(:ChoiceBand)
+            battler.eachMove do |move|
+                lockedMove = move if move.id == battler.effects[:ChoiceBand]
+            end
+        elsif battler.effectActive?(:GorillaTactics)
+            battler.eachMove do |move|
+                lockedMove = move if move.id == battler.effects[:GorillaTactics]
             end
         end
+        if lockedMove
+            maxScore = 0
+            battler.eachOpposing do |b|
+                thisScore += pbGetMoveScore(lockedMove,battler,b,skill)
+                maxScore = [thisScore,maxScore].max
+            end
+            if maxScore <= 40
+                switchingBias += 3
+            elsif maxScore <= 60
+                switchingBias += 2
+            elsif maxScore <= 80
+                switchingBias += 1
+            end
+        end
+
         # If there is a single foe and it is resting after Hyper Beam or is
         # Truanting (i.e. free turn)
         if @battle.pbSideSize(battler.index+1) == 1 && !battler.pbDirectOpposing.fainted?
             opp = battler.pbDirectOpposing
-            if opp.effects[PBEffects::HyperBeam] > 0 || (opp.hasActiveAbility?(:TRUANT) && opp.effects[PBEffects::Truant])
+            if opp.effectActive?(:HyperBeam) || (opp.hasActiveAbility?(:TRUANT) && opp.effectActive?(:Truant))
                 switchingBias -= 2
             end
         end
@@ -203,7 +219,7 @@ class PokeBattle_AI
 
             # Determine if the pokemon will be airborne
             airborne = pkmn.hasType?(:FLYING) || pkmn.hasAbility?(:LEVITATE) || pkmn.item == :AIRBALLOON
-            airborne = false if @battle.field.effects[PBEffects::Gravity] > 0
+            airborne = false if @battle.field.effectActive?(:Gravity)
             airborne = false if pkmn.item == :IRONBALL
 
             willAbsorbSpikes = false

@@ -63,11 +63,26 @@ GameData::BattleEffect.register_effect(:Position,{
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :HealingWish,
 	:real_name => "Healing Wish",
+	:entry_proc => Proc.new { |battle,index,position,battler|
+		battle.pbCommonAnimation("HealingWish",battler)
+		healingMessage = _INTL("The healing wish came true for {1}!",battler.pbThis(true))
+		battler.pbRecoverHP(battler.totalhp,true,true,true,healingMessage)
+		battler.pbCureStatus(false)
+		position.disableEffect(:HealingWish)
+	},
 })
 
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :LunarDance,
 	:real_name => "Lunar Dance",
+	:entry_proc => Proc.new { |battle,index,position,battler|
+		battle.pbCommonAnimation("LunarDance",battler)
+		healingMessage = _INTL("The healing wish came true for {1}!",battler.pbThis(true))
+		battler.pbRecoverHP(battler.totalhp,true,true,true,healingMessage)
+		battler.pbCureStatus(false)
+		battler.eachMove { |m| m.pp = m.total_pp }
+		position.disableEffect(:LunarDance)
+	},
 })
 
 GameData::BattleEffect.register_effect(:Position,{
@@ -77,9 +92,9 @@ GameData::BattleEffect.register_effect(:Position,{
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle,index,position,battler|
 		if battler.canHeal?
-			wishMaker = battle.pbThisEx(index,position.effects[PBEffects::WishMaker])
+			wishMaker = battle.pbThisEx(index,position.effects[:WishMaker])
 			healingMessage = _INTL("{1}'s wish came true!",wishMaker)
-			battler.pbRecoverHP(pos.effects[PBEffects::WishAmount],true,true,true,healingMessage)
+			battler.pbRecoverHP(pos.effects[:WishAmount],true,true,true,healingMessage)
 		end
 	},
 	:sub_effects => [:WishAmount,:WishMaker],
@@ -101,12 +116,13 @@ GameData::BattleEffect.register_effect(:Position,{
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :Refuge,
 	:real_name => "Refuge",
-	:sub_effects => [:RefugeMaker],
-})
-
-GameData::BattleEffect.register_effect(:Position,{
-	:id => :RefugeMaker,
-	:real_name => "Refuge Maker",
 	:type => :PartyPosition,
-	:info_displayed => false,
+	:sub_effects => [:RefugeMaker],
+	:entry_proc => Proc.new { |battle,index,position,battler|
+		battle.pbCommonAnimation("HealingWish",battler)
+		refugeMaker = battle.pbThisEx(battler.index,position.effects[:Refuge])
+		battle.pbDisplay(_INTL("{1}'s refuge comforts {2}!",refugeMaker,battler.pbThis(true)))
+		battler.pbCureStatus(false)
+		position.disableEffect(:Refuge)
+	},
 })

@@ -73,6 +73,10 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Lucky Chant Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:apply_proc => Proc.new { |battle,side,teamName,value|
+		battle.pbDisplay(_INTL("{1} is now blessed!",teamName))
+		battle.pbDisplay(_INTL("They'll be protected from critical hits for #{value-1} more turns!",teamName))
+	},
 	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s is no longer protected by Lucky Chant!",teamName))
 	}
@@ -82,6 +86,10 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Mist Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:apply_proc => Proc.new { |battle,side,teamName,value|
+		battle.pbDisplay(_INTL("{1} is shrouded in mist!",teamName))
+		battle.pbDisplay(_INTL("Their stats can't be lowered for #{value-1} more turns!",teamName))
+	},
 	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s is no longer protected by Mist!",teamName))
 	}
@@ -91,6 +99,10 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Safeguard Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:apply_proc => Proc.new { |battle,side,teamName,value|
+		battle.pbDisplay(_INTL("{1} became cloaked in a mystical veil!",teamName))
+		battle.pbDisplay(_INTL("They'll be protected from status ailments for #{value-1} more turns!",value))
+	},
 	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s is no longer protected by Safeguard!",teamName))
 	}
@@ -155,6 +167,10 @@ GameData::BattleEffect.register_effect(:Side,{
 	:real_name => "Rainbow Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:apply_proc => Proc.new { |battle,side,teamName,value|
+		teamName[0] = teamName[0].downcase
+		battle.pbDisplay(_INTL("A rainbow appeared in the sky above {1}!",teamName))
+	},
 	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("The Rainbow on {1}'s side dissapeared!",teamName))
@@ -175,20 +191,28 @@ GameData::BattleEffect.register_effect(:Side,{
 			b.applyFractionalDamage(1.0/8.0)
 		end
 	},
+	:apply_proc => Proc.new { |battle,side,teamName,value|
+		teamName[0] = teamName[0].downcase
+		battle.pbDisplay(_INTL("A sea of fire enveloped {1}!",teamName))
+	},
 	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("The Sea of Fire on {1}'s side dissapeared!",teamName))
-	}
+	},
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Swamp,
 	:real_name => "Swamp Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:apply_proc => Proc.new { |battle,side,teamName,value|
+		teamName[0] = teamName[0].downcase
+		battle.pbDisplay(_INTL("A swamp enveloped {1}!",teamName))
+	},
 	:disable_proc => Proc.new { |battle,side,teamName|
 		teamName[0] = teamName[0].downcase
 		battle.pbDisplay(_INTL("The Swamp on {1}'s side dissapeared!",teamName))
-	}
+	},
 })
 
 ##########################################

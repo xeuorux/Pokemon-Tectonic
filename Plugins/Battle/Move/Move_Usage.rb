@@ -435,14 +435,14 @@ class PokeBattle_Move
       moveType = :NORMAL if @function=="090"   # Hidden Power
       if physicalMove?(moveType)
         target.applyEffect(:Counter,damage)
-        target.applyEffect(:CounterTarget,user.index)
+        target.pointAt(:CounterTarget,user)
       elsif specialMove?(moveType)
         target.applyEffect(:MirrorCoat,damage)
-        target.applyEffect(:MirrorCoatTarget,user.index)
+        target.pointAt(:MirrorCoatTarget,user)
       end
       if target.effectActive?(:BideDamage)
         target.effects[:BideDamage] += damage
-        target.applyEffect(:BideTarget,user.index) if user.index != target.index
+        target.pointAt(:BideTarget,user) if user.index != target.index
       end
       target.damageState.fainted = true if target.fainted?
       target.lastHPLost = damage             # For Focus Punch

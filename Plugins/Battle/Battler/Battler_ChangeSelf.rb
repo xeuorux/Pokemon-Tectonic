@@ -429,10 +429,11 @@ class PokeBattle_Battler
 		@spdef = target.spdef
 		@speed = target.speed
 		GameData::Stat.each_battle { |s| @stages[s.id] = target.stages[s.id] }
-		if Settings::NEW_CRITICAL_HIT_RATE_MECHANICS
-			@effects[:FocusEnergy] = target.effects[:FocusEnergy]
-			@effects[:LaserFocus] = target.effects[:LaserFocus]
-		end
+		target.eachEffect do |effect, value, data|
+			if data.critical_rate_buff
+				@effects[effect] = value
+			end
+		  end
 		@moves.clear
 		target.moves.each_with_index do |m, i|
 			@moves[i] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(m.id))

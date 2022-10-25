@@ -108,14 +108,13 @@ class PokeBattle_Battle
     end
   end
   
-  # Called at the start of battle only; Neutralizing Gas activates before anything. 
+  # Called at the start of battle only; Neutralizing Gas activates before anything.
   def pbPriorityNeutralizingGas
     eachBattler {|b|
       next if !b || b.fainted?
-      # neutralizing gas can be blocked with gastro acid, ending the effect.
-      if b.ability == :NEUTRALIZINGGAS && !b.effects[PBEffects::GastroAcid]
+      if b.hasActiveNeutralizingGas?
         BattleHandlers.triggerAbilityOnSwitchIn(:NEUTRALIZINGGAS,b,self)
-		    return 
+		    return
       end
     }
   end 
@@ -158,42 +157,22 @@ class PokeBattle_Battle
     end
     # Record money-doubling effect of Amulet Coin/Luck Incense
     if !battler.opposes? && [:AMULETCOIN, :LUCKINCENSE].include?(battler.item_id)
-      @field.effects[PBEffects::AmuletCoin] = true
+      @field.applyEffect(:AmuletCoin)
     end
 	  # Record money-doubling effect of Fortune ability
     if !battler.opposes? && battler.hasActiveAbility?(:FORTUNE)
-      @field.effects[PBEffects::Fortune] = true
+      @fieldd.applyEffect(:Fortune)
     end
     # Update battlers' participants (who will gain Exp/EVs when a battler faints)
     eachBattler { |b| b.pbUpdateParticipants }
-    # Healing Wish
-    if @positions[battler.index].effects[PBEffects::HealingWish]
-      pbCommonAnimation("HealingWish",battler)
-      healingMessage = _INTL("The healing wish came true for {1}!",battler.pbThis(true))
-      battler.pbRecoverHP(battler.totalhp,true,true,true,healingMessage)
-      battler.pbCureStatus(false)
-      @positions[battler.index].effects[PBEffects::HealingWish] = false
-    end
-    # Lunar Dance
-    if @positions[battler.index].effects[PBEffects::LunarDance]
-      pbCommonAnimation("LunarDance",battler)
-      healingMessage = _INTL("{1} became cloaked in mystical moonlight!",battler.pbThis)
-      battler.pbRecoverHP(battler.totalhp,true,true,true,healingMessage)
-      battler.pbCureStatus(false)
-      battler.eachMove { |m| m.pp = m.total_pp }
-      @positions[battler.index].effects[PBEffects::LunarDance] = false
-    end
-    # Refuge
-    if @positions[battler.index].effects[PBEffects::Refuge] && battler.hasAnyStatusNoTrigger()
-      pbCommonAnimation("HealingWish",battler)
-      refugeMaker = pbThisEx(battler.index,@positions[battler.index].effects[PBEffects::RefugeMaker])
-      pbDisplay(_INTL("{1} refuge comforts {2}!",refugeMaker,battler.pbThis(true)))
-      battler.pbCureStatus()
-      @positions[battler.index].effects[PBEffects::Refuge] = false
-      @positions[battler.index].effects[PBEffects::RefugeMaker] = -1
-    end
-    # Entry hazards
 
+    position = @positions[battler.index]
+    position.eachEffect(true) do |effect,value,data|
+      if data.has_entry_proc?
+        position.battlerEntry(effect)
+      end
+    end
+    
     # Stealth Rock
     if battler.pbOwnSide.effectActive?(:StealthRock) && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:ROCK)
       bTypes = battler.pbTypes(true)
@@ -201,7 +180,7 @@ class PokeBattle_Battle
       if getTypedHazardHPRatio > 0
         pbDisplay(_INTL("Pointed stones dug into {1}!",battler.pbThis(true)))
         if battler.applyFractionalDamage(getTypedHazardHPRatio,true,false,true)
-          return pbOnActiveOne(battler)   # For replacement battler
+          return pbOnActiveOne(battler) # For replacement battler
         end
       end
     end
@@ -213,7 +192,7 @@ class PokeBattle_Battle
       if getTypedHazardHPRatio > 0
         pbDisplay(_INTL("Sharp feathers dug into {1}!",battler.pbThis(true)))
         if battler.applyFractionalDamage(getTypedHazardHPRatio,true,false,true)
-          return pbOnActiveOne(battler)   # For replacement battler
+          return pbOnActiveOne(battler) # For replacement battler
         end
       end
     end

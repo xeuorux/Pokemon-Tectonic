@@ -246,7 +246,7 @@ class PokeBattle_Move
 		return [true,true] if user.effectActive?(:LaserFocus) || user.effectActive?(:EmpoweredLaserFocus)
 		return [false,false] if user.boss?
 		c += 1 if highCriticalRate?
-		c += user.countEffect(:FocusEnergy)
+		c += user.effects[:FocusEnergy]
 		c += 1 if user.effectActive?(:LuckyStar)
 		c = ratios.length-1 if c>=ratios.length
 		# Calculation

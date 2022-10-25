@@ -13,14 +13,14 @@ class PokeBattle_Battler
 			newUser = nil
 			strength = 100
 			@battle.eachBattler do |b|
-				next if b.effects[PBEffects::Snatch] == 0 || b.effects[PBEffects::Snatch] >= strength
-				next if b.effects[PBEffects::SkyDrop] >= 0
+				next if b.effects[:Snatch] == 0 || b.effects[:Snatch] >= strength
+				next if b.effectActive?(:SkyDrop)
 				newUser = b
-				strength = b.effects[PBEffects::Snatch]
+				strength = b.effects[:Snatch]
 			end
 			if newUser
 				user = newUser
-				user.effects[PBEffects::Snatch] = 0
+				user.effects[:Snatch] = 0
 				move.snatched = true
 				@battle.moldBreaker = user.hasMoldBreaker?
 				choice[3] = -1 # Clear pre-chosen target
@@ -121,10 +121,10 @@ class PokeBattle_Battler
 			next unless target_data.can_target_one_foe?
 			next if !hasActiveAbility?(:STALWART) && !hasActiveAbility?(:PROPELLERTAIL) && move.function != '182'
 			next if !@battle.choices[b.index][3] == targets
-			next if b.effects[PBEffects::SwitchedAlly] == -1
+			next if b.effectActive?(:SwitchedAlly)
 			allySwitched = !allySwitched
-			ally = b.effects[PBEffects::SwitchedAlly]
-			b.effects[PBEffects::SwitchedAlly] = -1
+			ally = b.effects[:SwitchedAlly]
+			b.disableEffect(:SwitchedAlly)
 		end
 		if allySwitched && ally >= 0
 			targets = []
@@ -139,13 +139,12 @@ class PokeBattle_Battler
 		newTarget = nil
 		strength = 100 # Lower strength takes priority
 		priority.each do |b|
-			next if b.fainted? || b.effects[PBEffects::SkyDrop] >= 0
-			next if b.effects[PBEffects::Spotlight] == 0 ||
-											b.effects[PBEffects::Spotlight] >= strength
+			next if b.fainted? || b.effectActive?(:SkyDrop)
+			next if b.effects[:Spotlight] == 0 || b.effects[:Spotlight] >= strength
 			next unless b.opposes?(user)
 			next if nearOnly && !b.near?(user)
 			newTarget = b
-			strength = b.effects[PBEffects::Spotlight]
+			strength = b.effects[:Spotlight]
 		end
 		if newTarget
 			PBDebug.log("[Move target changed] #{newTarget.pbThis}'s Spotlight made it the target")
@@ -188,14 +187,13 @@ class PokeBattle_Battler
 		newTarget = nil
 		strength = 100 # Lower strength takes priority
 		priority.each do |b|
-			next if b.fainted? || b.effects[PBEffects::SkyDrop] >= 0
-			next if b.effects[PBEffects::RagePowder] && !user.affectedByPowder?
-			next if b.effects[PBEffects::FollowMe] == 0 ||
-											b.effects[PBEffects::FollowMe] >= strength
+			next if b.fainted? || b.effectActive?(:SkyDrop)
+			next if b.effects[:RagePowder] && !user.affectedByPowder?
+			next if b.effects[:FollowMe] == 0 || b.effects[:FollowMe] >= strength
 			next unless b.opposes?(user)
 			next if nearOnly && !b.near?(user)
 			newTarget = b
-			strength = b.effects[PBEffects::FollowMe]
+			strength = b.effects[:FollowMe]
 		end
 		if newTarget
 			PBDebug.log("[Move target changed] #{newTarget.pbThis}'s Follow Me/Rage Powder made it the target")

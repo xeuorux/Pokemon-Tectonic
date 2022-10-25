@@ -5,7 +5,7 @@
 class PokeBattle_Move_180 < PokeBattle_ProtectMove
     def initialize(battle, move)
       super
-      @effect = PBEffects::Obstruct
+      @effect = :Obstruct
     end
 end
 
@@ -28,7 +28,7 @@ class PokeBattle_Move_181 < PokeBattle_Move
 
   def pbEffectAgainstTarget(user, target)
     target.applyEffect(:Octolock)
-    target.applyEffect(:OctolockUser,user.index)
+    target.pointAt(:OctolockUser,user)
   end
 
   def getScore(score, _user, target, _skill = 100)
@@ -116,7 +116,7 @@ class PokeBattle_Move_185 < PokeBattle_TargetStatDownMove
     end
 
     def pbBaseDamage(baseDmg, _user, _target)
-      baseDmg *= 1.5 if @battle.field.effects[PBEffects::Gravity] > 0
+      baseDmg *= 1.5 if @battle.field.effectActive?(:Gravity)
       return baseDmg
     end
 end
@@ -125,24 +125,27 @@ end
   # Decrease 1 stage of speed and weakens target to fire moves. (Tar Shot)
   #===============================================================================
 class PokeBattle_Move_186 < PokeBattle_Move
-  def pbEffectAgainstTarget(_user, target)
-    if !target.pbCanLowerStatStage?(:SPEED, target, self) && !target.effects[PBEffects::TarShot]
+  def pbFailsAgainstTarget?(user, target)
+    if !target.pbCanLowerStatStage?(:SPEED, target, self) && target.effectActive?(:TarShot)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
+    return false
+  end
+
+  def pbEffectAgainstTarget(_user, target)
     if target.pbCanLowerStatStage?(:SPEED, target, self)
       target.pbLowerStatStage(:SPEED, 1, target)
     end
-    if target.effects[PBEffects::TarShot] == false
-      target.effects[PBEffects::TarShot] = true
-      @battle.pbDisplay(_INTL("{1} became weaker to fire!", target.pbThis))
+    if !target.effectActive?(:TarShot)
+      target.applyEffect(:TarShot)
     end
   end
 
   def getScore(score, _user, target, _skill = 100)
     score += 30 if target.hp > target.totalhp / 2
     score += target.stages[:SPEED] * 10
-    score -= 60 if target.effects[PBEffects::TarShot]
+    score -= 60 if target.effectActive?(:TarShot)
     return score
   end
 end

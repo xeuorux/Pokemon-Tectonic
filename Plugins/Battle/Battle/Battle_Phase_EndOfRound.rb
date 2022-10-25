@@ -35,8 +35,8 @@ class PokeBattle_Battle
     end
 
     @sides.each do |side|
-      if !side.effects[PBEffects::EchoedVoiceUsed]
-        side.effects[PBEffects::EchoedVoiceCounter] = 0
+      if !side.effectActive?(:EchoedVoiceUsed)
+        side.disableEffect(:EchoedVoiceCounter)
       end
     end
     

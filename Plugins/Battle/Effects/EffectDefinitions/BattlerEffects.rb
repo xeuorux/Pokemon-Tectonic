@@ -36,6 +36,11 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:resets_on_cancel => true,
 	:multi_turn_tracker => true,
+	:sub_effects => [:BideDamage, :BideTarget],
+	:apply_proc => Proc.new { |battle, battler, value|
+		battler.disableEffect(:BideDamage)
+		battler.disableEffect(:BideTarget)
+	}
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -195,15 +200,15 @@ GameData::BattleEffect.register_effect(:Battler,{
 		next if battler.fainted?
 		idxEncoreMove = b.pbEncoredMoveIndex
 		if idxEncoreMove>=0
-		  b.effects[PBEffects::Encore] -= 1
-		  if b.effects[PBEffects::Encore]==0 || b.moves[idxEncoreMove].pp==0
-			b.effects[PBEffects::Encore] = 0
+		  b.effects[:Encore] -= 1
+		  if b.effects[:Encore] == 0 || b.moves[idxEncoreMove].pp == 0
+			b.effects[:Encore] = 0
 			pbDisplay(_INTL("{1}'s encore ended!",b.pbThis))
 		  end
 		else
 		  PBDebug.log("[End of effect] #{b.pbThis}'s encore ended (encored move no longer known)")
-		  b.effects[PBEffects::Encore]     = 0
-		  b.effects[PBEffects::EncoreMove] = nil
+		  b.effects[:Encore]     = 0
+		  b.effects[:EncoreMove] = nil
 		end
 	},
 	:is_mental => true,
@@ -248,7 +253,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FocusEnergy,
 	:real_name => "Crit Chance Up",
 	:type => :Integer,
+	:maximum => 6,
 	:baton_passed => true,
+	:critical_rate_buff => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -261,11 +268,17 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FollowMe,
 	:real_name => "Follow Me",
 	:type => :Integer,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} became the center of attention!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Foresight,
 	:real_name => "Identified",
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} was identified!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -275,6 +288,11 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:pass_value_proc => Proc.new { |battler,value|
 		next false if battler.unstoppableAbility?
 		next value
+	},
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1}'s Ability was suppressed!",battler.pbThis))
+		battler.disableEffect(:Truant)
+		battler.pbOnAbilityChanged(battler.ability)
 	},
 })
 
@@ -375,6 +393,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:baton_passed => true,
+	:critical_rate_buff => true,
 	:pass_value_proc => Proc.new { |battler,value|
 		next 2 if value > 0
 		next 0
@@ -429,6 +448,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MagicCoat,
 	:real_name => "Magic Coat",
 	:resets_eor	=> true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} was shrouded with Magic Coat!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -462,6 +484,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Metronome,
 	:real_name => "Metronome Count",
 	:type => :Integer,
+	:maximum => 5,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -472,11 +495,17 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Minimize,
 	:real_name => "Minimized",
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} became very small!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MiracleEye,
 	:real_name => "Miracle Eye",
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} was identified!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -498,6 +527,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :MoveNext,
 	:real_name => "Will Move Next",
 	:resets_battlers_sot => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.disableEffect(:Quash)
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -524,6 +556,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:resets_on_cancel => true,
 	:multi_turn_tracker => true,
+	:disable_proc => Proc.new { |battle, battler|
+		battle.pbDisplay(_INTL("{1} spun down from its attack.",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -622,6 +657,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Quash",
 	:type => :Integer,
 	:resets_battlers_sot => true,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.disableEffect(:MoveNext)
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -673,6 +711,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Snatch,
 	:real_name => "Snatch",
 	:type => :Integer,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} waits for a move to steal!",battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -716,10 +757,14 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Taunted Turns",
 	:type => :Integer,
 	:ticks_down => true,
+	:is_mental => true,
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} fell for the taunt!",battler.pbThis))
+		battler.pbItemStatusCureCheck
+	},
 	:disable_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} taunt wore off.",battler.pbThis))
 	},
-	:is_mental => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -837,6 +882,11 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Type 3",
 	:type => :Type,
 	:info_displayed => false,
+	:apply_proc => Proc.new { |battle,battler,value|
+		typeName = GameData::Type.get(value).name
+		battle.pbDisplay(_INTL("{1} gainted the {2} type!",battler.pbThis,typeName))
+		battle.scene.pbRefresh()
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -947,6 +997,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :TarShot,
 	:real_name => "Covered In Tar",
+	:apply_proc => Proc.new { |battle,battler,value|
+		battle.pbDisplay(_INTL("{1} became weaker to fire!", battler.pbThis))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1036,6 +1089,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :LuckyStar,
 	:real_name => "Added Crit Chance",
+	:critical_rate_buff => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1085,24 +1139,30 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :FuryCutter,
 	:real_name => "Fury Cutter Count",
 	:type => :Integer,
+	:maximum => 4,
 	:resets_on_cancel => true,
 	:resets_on_move_start => true,
+	:snowballing_move_count => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :IceBall,
 	:real_name => "Ice Ball Count",
 	:type => :Integer,
+	:maximum => 4,
 	:resets_on_cancel => true,
 	:resets_on_move_start => true,
+	:snowballing_move_count => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :RollOut,
 	:real_name => "Roll Out Count",
 	:type => :Integer,
+	:maximum => 4,
 	:resets_on_cancel => true,
 	:resets_on_move_start => true,
+	:snowballing_move_count => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
@@ -1142,6 +1202,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :EmpoweredLaserFocus,
 	:real_name => "Laser Focus",
+	:critical_rate_buff => true,
 	:apply_proc => Proc.new { |battle, battler, value|
 		battle.pbDisplay(_INTL("{1} concentrated with extreme intensity!",battler.pbThis))
 	},

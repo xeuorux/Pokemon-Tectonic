@@ -70,8 +70,7 @@ class PokeBattle_Move_505 < PokeBattle_Move
     return if pbMoveFailedTargetAlreadyMoved?(target) # Target has already moved this round
     return if target.effects[PBEffects::MoveNext] # Target was going to move next anyway (somehow)
     return if @battle.choices[target.index][2].nil? # Target didn't choose to use a move this round
-    target.effects[PBEffects::MoveNext] = true
-    target.effects[PBEffects::Quash]    = 0
+    target.applyEffect(:MoveNext)
     @battle.pbDisplay(_INTL("{1} was kickstarted into action!",target.pbThis))
   end
   
@@ -1232,7 +1231,7 @@ end
 class PokeBattle_Move_543 < PokeBattle_DoublingMove
     def initialize(battle, move)
         super
-        @usageCountEffect = PBEffects::IceBall
+        @usageCountEffect = :IceBall
     end
 end
   
@@ -1242,7 +1241,7 @@ end
 class PokeBattle_Move_544 < PokeBattle_DoublingMove
     def initialize(battle, move)
         super
-        @usageCountEffect = PBEffects::RollOut
+        @usageCountEffect = :RollOut
     end
 end
 
@@ -1468,7 +1467,7 @@ end
 class PokeBattle_Move_550 < PokeBattle_ProtectMove
   def initialize(battle,move)
     super
-    @effect = PBEffects::StunningCurl
+    @effect = :StunningCurl
   end
 end
 
@@ -1742,15 +1741,11 @@ end
 #===============================================================================
 class PokeBattle_Move_55F < PokeBattle_Move
 	def pbEffectAfterAllHits(user,target)
-	  if !target.damageState.unaffected && user.effects[PBEffects::Outrage] == 0
-		user.effects[PBEffects::Outrage] = 3
+	  if !target.damageState.unaffected && !user.effectActive?(:Outrage)
+		user.applyEffect(:Outrage,3)
 		user.currentMove = @id
-	  end
-	  if user.effects[PBEffects::Outrage]>0
-		user.effects[PBEffects::Outrage] -= 1
-		if user.effects[PBEffects::Outrage]==0
-		  @battle.pbDisplay(_INTL("{1} spun down from its attack.",user.pbThis))
-		end
+	  else
+		user.tickDownAndProc(:Outrage)
 	  end
 	end
 end
@@ -1877,7 +1872,7 @@ end
 class PokeBattle_Move_567 < PokeBattle_ProtectMove
 	def initialize(battle,move)
 	  super
-	  @effect = PBEffects::RedHotRetreat
+	  @effect = :RedHotRetreat
 	end
 
 	def getScore(score,user,target,skill=100)
@@ -2447,13 +2442,15 @@ end
 #===============================================================================
 class PokeBattle_Move_58B < PokeBattle_Move
 	def pbChangeUsageCounters(user,specialUsage)
-		oldFury = user.effects[PBEffects::FuryCutter]
-		oldIceBall = user.effects[PBEffects::IceBall]
-		oldRollOut = user.effects[PBEffects::RollOut]
+		oldEffectValues = {}
+		user.eachEffect(true) do |effect, value, data|
+			oldEffectValues[effect] = value if data.snowballing_move_count
+		end
 		super
-		user.effects[PBEffects::FuryCutter]	= [oldFury+1,4].min
-		user.effects[PBEffects::IceBall]	= [oldIceBall+1,4].min
-  		user.effects[PBEffects::RollOut]	= [oldRollOut+1,4].min
+		oldEffectValues.each do |effect, oldValue|
+			data = GameData::BattleEffect.get(effect)
+			user.effects[effect] = [oldValue + 1, data.maximum].min
+		end
 	end
 end
 
@@ -2470,9 +2467,7 @@ class PokeBattle_Move_58C < PokeBattle_Move_030
 
 	def pbEffectGeneral(user)
 		super
-		user.effects[PBEffects::Type3] = :FLYING
-    	typeName = GameData::Type.get(:FLYING).name
-    	@battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
+		user.applyEffect(:Type3,:FLYING)
 	end
 end
 
@@ -2605,7 +2600,7 @@ end
 class PokeBattle_Move_593 < PokeBattle_ProtectMove
 	def initialize(battle,move)
 	  super
-	  @effect = PBEffects::MirrorShield
+	  @effect = :MirrorShield
 	end
 
 	def getScore(score,user,target,skill=100)
@@ -2623,12 +2618,12 @@ end
 #===============================================================================
 class PokeBattle_Move_594 < PokeBattle_Move
 	def pbBaseDamage(baseDmg,user,target)
-		baseDmg *= 2 if user.effects[PBEffects::DefenseCurl]
+		baseDmg *= 2 if user.effectActive?(:DefenseCurl)
 		return baseDmg
 	end
 
 	def pbEffectAfterAllHits(user,target)
-		user.effects[PBEffects::DefenseCurl] = false
+		user.disableEffect(:DefenseCurl)
 	end
 end
 
@@ -2645,9 +2640,7 @@ class PokeBattle_Move_595 < PokeBattle_Move_024
 
 	def pbEffectGeneral(user)
 		super
-		user.effects[PBEffects::Type3] = :ROCK
-		typeName = GameData::Type.get(:ROCK).name
-		@battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
+		user.applyEffect(:Type3,:ROCK)
 	end
 end
 
@@ -2664,7 +2657,7 @@ class PokeBattle_Move_596 < PokeBattle_Move
 	end
 
 	def pbEffectAgainstTarget(user,target)
-		target.applyEffect(:MeanLook,user.index) if !target.effectActive?(:MeanLook)
+		target.pointAt(:MeanLook,user) if !target.effectActive?(:MeanLook)
 	end
 
 	def pbEffectGeneral(user)
@@ -2679,7 +2672,7 @@ class PokeBattle_Move_596 < PokeBattle_Move
 class PokeBattle_Move_597 < PokeBattle_ProtectMove
 	def initialize(battle,move)
 	  super
-	  @effect      = PBEffects::Bulwark
+	  @effect      = :Bulwark
 	  @sidedEffect = true
 	end
 

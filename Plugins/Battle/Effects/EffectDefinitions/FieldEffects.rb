@@ -51,6 +51,9 @@ GameData::BattleEffect.register_effect(:Field,{
 	:real_name => "Mud Sport Turns",
 	:type => :Integer,
     :ticks_down => true,
+	:apply_proc => Proc.new { |battle, value|
+		battle.pbDisplay(_INTL("Electricity's power was weakened!"))
+	},
     :disable_proc => Proc.new { |battle,battler|
         battle.pbDisplay(_INTL("The effects of Mud Sport have faded."))
     },
@@ -70,6 +73,9 @@ GameData::BattleEffect.register_effect(:Field,{
 	:real_name => "Water Sport Turns",
 	:type => :Integer,
     :ticks_down => true,
+	:apply_proc => Proc.new { |battle, value|
+		battle.pbDisplay(_INTL("Fire's power was weakened!"))
+	},
     :disable_proc => Proc.new { |battle,battler|
         battle.pbDisplay(_INTL("The effects of Water Sport have faded."))
     },
@@ -83,6 +89,12 @@ GameData::BattleEffect.register_effect(:Field,{
 GameData::BattleEffect.register_effect(:Field,{
 	:id => :NeutralizingGas,
 	:real_name => "Neutralizing Gas",
+	:apply_proc => Proc.new { |battle, value|
+		battle.pbDisplay(_INTL("Gas nullified all abilities!"))
+	},
+	:disable_proc => Proc.new { |battle, value|
+		battle.pbDisplay(_INTL("The Neutralizing Gas dissipated."))
+	},
 })
 
 GameData::BattleEffect.register_effect(:Field,{

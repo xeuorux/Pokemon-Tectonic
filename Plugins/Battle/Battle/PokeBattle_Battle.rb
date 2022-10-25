@@ -118,6 +118,32 @@ class PokeBattle_Battle
     return @curses.include?(curseID)
   end
 
+  def pbCheckNeutralizingGas(battler=nil)
+    # Battler = the battler to switch out. 
+	  # Should be specified when called from pbAttackPhaseSwitch
+	  # Should be nil when called from pbEndOfRoundPhase
+    return if !@field.effectActive?(:NeutralizingGas)
+    return if battler && (battler.ability != :NEUTRALIZINGGAS || battler.effects[:GastroAcid])
+    gasActive = false
+    eachBattler {|b|
+      next if !b || b.fainted?
+      next if battler && b.index == battler.index
+      # if specified, the battler will switch out, so don't consider it.
+      # neutralizing gas can be blocked with gastro acid, ending the effect.
+      if b.hasActiveNeutralizingGas?
+        gasActive = true
+        break
+      end
+    }
+    if !gasActive
+      @field.disableEffect(:NeutralizingGas)
+      pbPriority(true).each { |b| 
+	      next if battler && b.index == battler.index
+	      b.pbEffectsOnSwitchIn
+	    }
+    end
+  end 
+
   def pbCheckAlliedAbility(abil,idxBattler=0,nearOnly=false)
     eachSameSideBattler(idxBattler) do |b|
       next if nearOnly && !b.near?(idxBattler)
@@ -135,8 +161,8 @@ class PokeBattle_Battle
       #       battler into using that move, and shouldn't contribute to its
       #       turn counter if it's already locked into Petal Dance.
       oldCurrentMove = forcedMoveUser.currentMove
-      oldOutrage = forcedMoveUser.effects[PBEffects::Outrage]
-      forcedMoveUser.effects[PBEffects::Outrage] += 1 if forcedMoveUser.effects[PBEffects::Outrage]>0
+      oldOutrageTurns = forcedMoveUser.effects[:Outrage]
+      forcedMoveUser.effects[:Outrage] += 1 if forcedMoveUser.effectActive?(:Outrage)
     end
     if showAbilitySplash
       pbShowAbilitySplash(forcedMoveUser,true)
@@ -154,7 +180,7 @@ class PokeBattle_Battle
     }
     forcedMoveUser.lastRoundMoved = oldLastRoundMoved
     if specialUsage
-      forcedMoveUser.effects[PBEffects::Outrage] = oldOutrage
+      forcedMoveUser.effects[:Outrage] = oldOutrageTurns
       forcedMoveUser.currentMove = oldCurrentMove
     end
     pbJudge()

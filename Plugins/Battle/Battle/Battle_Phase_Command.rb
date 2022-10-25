@@ -31,7 +31,7 @@ class PokeBattle_Battle
 				return false
 			end
 		end
-		if battler.effects[PBEffects::Encore] > 0
+		if battler.effectActive?(:Encore)
 			encoreMove = battler.moves[battler.pbEncoredMoveIndex]
 			if pbDisplayConfirm(_INTL("#{battler.pbThis} must use #{encoreMove.name} if it fights. Go ahead?"))
 				return pbAutoChooseMove(idxBattler)
@@ -209,7 +209,7 @@ class PokeBattle_Battle
 		  loop do
 			cmd = pbCommandMenu(idxBattler,actioned.length==1)
 			# If being Sky Dropped, can't do anything except use a move
-			if cmd>0 && @battlers[idxBattler].effects[PBEffects::SkyDrop]>=0
+			if cmd>0 && @battlers[idxBattler].effectActive?(:SkyDrop)
 			  pbDisplay(_INTL("Sky Drop won't let {1} go!",@battlers[idxBattler].pbThis(true)))
 			  next
 			end

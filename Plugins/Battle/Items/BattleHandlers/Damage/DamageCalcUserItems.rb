@@ -185,7 +185,7 @@ BattleHandlers::DamageCalcUserItem.add(:ADAMANTORB,
   
   BattleHandlers::DamageCalcUserItem.add(:METRONOME,
     proc { |item,user,target,move,mults,baseDmg,type|
-      met = 1 + 0.2 * [user.effects[PBEffects::Metronome], 5].min
+      met = 1 + 0.2 * user.countEffect(:Metronome)
       mults[:final_damage_multiplier] *= met
     }
   )

@@ -394,12 +394,13 @@ class PokeBattle_AI
         end
 
         # Other efffects
-        c = -1 if target.pbOwnSide.effects[PBEffects::LuckyChant]>0
+        c = -1 if target.pbOwnSide.effectActive?(:LuckyChant)
 
         if c >= 0
           c += 1 if move.highCriticalRate?
-          c += user.effects[PBEffects::FocusEnergy]
+          c += user.effects[:FocusEnergy]
           c += 1 if user.inHyperMode? && move.type == :SHADOW
+          c = 5 if user.effectActive?(:LaserFocus) || user.effectActive?(:EmpoweredLaserFocus)
         end
 
         if c >= 0
@@ -417,7 +418,7 @@ class PokeBattle_AI
     # Accuracy calculation
     #===========================================================================
     def pbRoughAccuracy(move,user,target,skill)
-        return 100 if target.effects[PBEffects::Telekinesis] > 0
+        return 100 if target.effectActive?(:Telekinesis)
         baseAcc = move.accuracy
         return 100 if baseAcc == 0
         baseAcc = move.pbBaseAccuracy(user,target)
@@ -477,20 +478,19 @@ class PokeBattle_AI
            modifiers,user,target,move,type)
       end
       # Other effects, inc. ones that set accuracy_multiplier or evasion_stage to specific values
-      if @battle.field.effects[PBEffects::Gravity] > 0
+      if @battle.field.effectActive?(:Gravity)
         modifiers[:accuracy_multiplier] *= 5/3.0
       end
-      if user.effects[PBEffects::MicleBerry]
+      if user.effectActive?(:MicleBerry)
         modifiers[:accuracy_multiplier] *= 1.2
       end
-      modifiers[:evasion_stage] = 0 if target.effects[PBEffects::Foresight] && modifiers[:evasion_stage] > 0
-      modifiers[:evasion_stage] = 0 if target.effects[PBEffects::MiracleEye] && modifiers[:evasion_stage] > 0
+      modifiers[:evasion_stage] = 0 if target.effectActive?(:MiracleEye) && modifiers[:evasion_stage] > 0
+      modifiers[:evasion_stage] = 0 if target.effectActive?(:Foresight) && modifiers[:evasion_stage] > 0
       # "AI-specific calculations below"
       modifiers[:evasion_stage] = 0 if move.function == "0A9"   # Chip Away
       modifiers[:base_accuracy] = 0 if ["0A5", "139", "13A", "13B", "13C",   # "Always hit"
                                         "147"].include?(move.function)
-      modifiers[:base_accuracy] = 0 if user.effects[PBEffects::LockOn]>0 &&
-                                        user.effects[PBEffects::LockOnPos]==target.index
+      modifiers[:base_accuracy] = 0 if user.effectActive?(:LockOn) && user.pointsAt?(:LockOnPos,target)
     end
   end
   

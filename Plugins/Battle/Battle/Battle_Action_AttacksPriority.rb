@@ -85,8 +85,8 @@ class PokeBattle_Battle
              b,subPri,self)
             if subPri!=newSubPri
               subPri = newSubPri
-              b.effects[PBEffects::PriorityAbility] = true
-              b.effects[PBEffects::PriorityItem]    = false
+              b.applyEffect(:PriorityAbility)
+              b.disableEffect(:PriorityItem)
             end
           end
           # Items (Quick Claw, Custap Berry, Lagging Tail, Full Incense)
@@ -95,8 +95,8 @@ class PokeBattle_Battle
                b,subPri,self)
             if subPri!=newSubPri
               subPri = newSubPri
-              b.effects[PBEffects::PriorityAbility] = false
-              b.effects[PBEffects::PriorityItem]    = true
+              b.disableEffect(:PriorityAbility)
+              b.applyEffect(:PriorityItem)
             end
           end
           bArray[2] = subPri

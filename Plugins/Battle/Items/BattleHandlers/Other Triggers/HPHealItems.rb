@@ -51,9 +51,9 @@ BattleHandlers::HPHealItem.add(:AGUAVBERRY,
   BattleHandlers::HPHealItem.add(:LANSATBERRY,
     proc { |item,battler,battle,forced|
       next false if !forced && !battler.canConsumePinchBerry?
-      next false if battler.effects[PBEffects::FocusEnergy]>=2
+      next false if battler.effectAtMax?(:FocusEnergy)
       battle.pbCommonAnimation("EatBerry",battler) if !forced
-      battler.effects[PBEffects::FocusEnergy] = 2
+      battler.incrementEffect(:FocusEnergy,2)
       itemName = GameData::Item.get(item).name
       if forced
         battle.pbDisplay(_INTL("{1} got pumped from the {2}!",battler.pbThis,itemName))
@@ -80,9 +80,9 @@ BattleHandlers::HPHealItem.add(:AGUAVBERRY,
   BattleHandlers::HPHealItem.add(:MICLEBERRY,
     proc { |item,battler,battle,forced|
       next false if !forced && !battler.canConsumePinchBerry?
-      next false if !battler.effects[PBEffects::MicleBerry]
+      next false if !battler.effectActive?(:MicleBerry)
       battle.pbCommonAnimation("EatBerry",battler) if !forced
-      battler.effects[PBEffects::MicleBerry] = true
+      battler.applyEffect(:MicleBerry)
       itemName = GameData::Item.get(item).name
       if forced
         PBDebug.log("[Item triggered] Forced consuming of #{itemName}")

@@ -410,16 +410,15 @@ end
 #===============================================================================
 class PokeBattle_Move_01A < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    if user.pbOwnSide.effects[PBEffects::Safeguard]>0
-      @battle.pbDisplay(_INTL("But it failed!"))
+    if user.pbOwnSide.effectActive?(:Safeguard)
+      @battle.pbDisplay(_INTL("But it failed, since a safeguard is already present!"))
       return true
     end
     return false
   end
 
   def pbEffectGeneral(user)
-    user.pbOwnSide.effects[PBEffects::Safeguard] = 5
-    @battle.pbDisplay(_INTL("{1} became cloaked in a mystical veil!",user.pbTeam))
+    user.pbOwnSide.applyEffect(:Safeguard,5)
   end
 
   def getScore(score,user,target,skill=100)
@@ -488,7 +487,7 @@ class PokeBattle_Move_01E < PokeBattle_StatUpMove
   end
 
   def pbEffectGeneral(user)
-    user.effects[PBEffects::DefenseCurl] = true
+    user.applyEffect(:DefenseCurl)
     super
   end
 end
@@ -559,15 +558,15 @@ end
 #===============================================================================
 class PokeBattle_Move_023 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    if user.effects[PBEffects::FocusEnergy]>=2
-      @battle.pbDisplay(_INTL("But it failed!"))
+    if user.effectAtMax?(:FocusEnergy)
+      @battle.pbDisplay(_INTL("But it failed, since it cannot bet any more pumped!"))
       return true
     end
     return false
   end
 
   def pbEffectGeneral(user)
-    user.effects[PBEffects::FocusEnergy] = 2
+    use.incrementEffect(:FocusEnergy,2)
     @battle.pbDisplay(_INTL("{1} is getting pumped!",user.pbThis))
   end
 
@@ -773,7 +772,7 @@ class PokeBattle_Move_034 < PokeBattle_StatUpMove
   end
 
   def pbEffectGeneral(user)
-    user.effects[PBEffects::Minimize] = true
+    user.applyEffect(:Minimize)
     super
   end
 end
@@ -1434,9 +1433,10 @@ class PokeBattle_Move_055 < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     GameData::Stat.each_battle { |s| user.stages[s.id] = target.stages[s.id] }
-    if Settings::NEW_CRITICAL_HIT_RATE_MECHANICS
-      user.effects[PBEffects::FocusEnergy] = target.effects[PBEffects::FocusEnergy]
-      user.effects[PBEffects::LaserFocus]  = target.effects[PBEffects::LaserFocus]
+    target.eachEffect do |effect, value, data|
+      if data.critical_rate_buff
+        user.effects[effect] = value
+      end
     end
     @battle.pbDisplay(_INTL("{1} copied {2}'s stat changes!",user.pbThis,target.pbThis(true)))
   end
@@ -1458,16 +1458,15 @@ end
 #===============================================================================
 class PokeBattle_Move_056 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    if user.pbOwnSide.effects[PBEffects::Mist]>0
-      @battle.pbDisplay(_INTL("But it failed!"))
+    if user.pbOwnSide.effectActive?()
+      @battle.pbDisplay(_INTL("But it failed, because #{user.pbTeam(true)} is already shrouded in mist!"))
       return true
     end
     return false
   end
 
   def pbEffectGeneral(user)
-    user.pbOwnSide.effects[PBEffects::Mist] = 10
-    @battle.pbDisplay(_INTL("{1} became shrouded in mist!",user.pbTeam))
+    user.pbOwnSide.applyEffect(:Mist,10)
   end
 end
 
@@ -1477,14 +1476,14 @@ end
 class PokeBattle_Move_057 < PokeBattle_Move
   def pbEffectGeneral(user)
     user.attack,user.defense = user.defense,user.attack
-    user.effects[PBEffects::PowerTrick] = !user.effects[PBEffects::PowerTrick]
+    user.effects[:PowerTrick] = !user.effects[:PowerTrick]
     @battle.pbDisplay(_INTL("{1} switched its Attack and Defense!",user.pbThis))
   end
 
   def getScore(score,user,target,skill=100)
     aatk = pbRoughStat(user,:ATTACK,skill)
 		adef = pbRoughStat(user,:DEFENSE,skill)
-		if aatk == adef || user.effects[PBEffects::PowerTrick]	 # No flip-flopping
+		if aatk == adef || user.effectActive?(:PowerTrick)	 # No flip-flopping
 			return 0
 		elsif adef > aatk	 # Prefer a higher Attack
 			score += 50
@@ -1900,8 +1899,7 @@ class PokeBattle_Move_062 < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    if user.pbTypes==target.pbTypes &&
-       user.effects[PBEffects::Type3]==target.effects[PBEffects::Type3]
+    if user.pbTypes==target.pbTypes && user.effects[:Type3] == target.effects[:Type3]
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2146,7 +2144,7 @@ end
 #===============================================================================
 class PokeBattle_Move_068 < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
-    if target.unstoppableAbility?
+    if target.unstoppableAbility? || target.effectActive?(:GastroAcid)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2154,10 +2152,7 @@ class PokeBattle_Move_068 < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user,target)
-    target.effects[PBEffects::GastroAcid] = true
-    target.effects[PBEffects::Truant]     = false
-    @battle.pbDisplay(_INTL("{1}'s Ability was suppressed!",target.pbThis))
-    target.pbOnAbilityChanged(target.ability)
+    target.applyEffect(:GastroAcid)
   end
 
   def getScore(score,user,target,skill=100)
@@ -2342,7 +2337,7 @@ class PokeBattle_Move_071 < PokeBattle_FixedDamageMove
   end
 
   def getScore(score,user,target,skill=100)
-    return 0 if target.effects[PBEffects::HyperBeam] > 0
+    return 0 if target.effectActive?(:HyperBeam)
 		return 0 if user.hp/user.totalhp <= 0.5
     return 0 if target.lastMoveUsed.nil?
 		moveData = GameData::Move.get(target.lastMoveUsed)
@@ -2377,7 +2372,7 @@ class PokeBattle_Move_072 < PokeBattle_FixedDamageMove
   end
 
   def getScore(score,user,target,skill=100)
-    return 0 if target.effects[PBEffects::HyperBeam] > 0
+    return 0 if target.effectActive?(:HyperBeam)
 		return 0 if user.hp/user.totalhp <= 0.5
     return 0 if target.lastMoveUsed.nil?
 		moveData = GameData::Move.get(target.lastMoveUsed)
@@ -2413,7 +2408,7 @@ class PokeBattle_Move_073 < PokeBattle_FixedDamageMove
   end
 
   def getScore(score,user,target,skill=100)
-    return 0 if target.effects[PBEffects::HyperBeam] > 0
+    return 0 iftarget.effectActive?(:HyperBeam)
 		return 0 if user.hp/user.totalhp <= 0.5
     return 0 if target.lastMoveUsed.nil?
 		moveData = GameData::Move.get(target.lastMoveUsed)
@@ -2533,7 +2528,7 @@ end
 #===============================================================================
 class PokeBattle_Move_079 < PokeBattle_Move
   def pbChangeUsageCounters(user,specialUsage)
-    @doublePower = @battle.field.effects[PBEffects::FusionFlare]
+    @doublePower = @battle.field.effectActive?(:FusionFlare)
     super
   end
 
@@ -2543,7 +2538,7 @@ class PokeBattle_Move_079 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    @battle.field.effects[PBEffects::FusionBolt] = true
+    @battle.field.applyEffect(:FusionBolt)
   end
 
   def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
@@ -2558,7 +2553,7 @@ end
 #===============================================================================
 class PokeBattle_Move_07A < PokeBattle_Move
   def pbChangeUsageCounters(user,specialUsage)
-    @doublePower = @battle.field.effects[PBEffects::FusionBolt]
+    @doublePower = @battle.field.effectActive?(:FusionBolt)
     super
   end
 
@@ -2568,7 +2563,7 @@ class PokeBattle_Move_07A < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    @battle.field.effects[PBEffects::FusionFlare] = true
+    @battle.field.applyEffect(:FusionFlare)
   end
 
   def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)

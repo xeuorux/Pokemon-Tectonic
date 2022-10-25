@@ -37,9 +37,7 @@ class PokeBattle_Battler
 			if target.effectActive?(:ShellTrap) &&
 						@battle.choices[target.index][0] == :UseMove && !target.movedThisnd? && (target.damageState.hpLost > 0 && !target.damageState.substitute && move.physicalMove?)
 				target.tookPhysicalHit = true
-
 				target.applyEffect(:MoveNext)
-				target.applyEffect(:Quash,0)
 			end
 			# Grudge
 			if target.effectActive?(:Grudge) && target.fainted?

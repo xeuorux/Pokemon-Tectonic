@@ -36,4 +36,8 @@ class PokeBattle_ActivePosition
 		super(effect,value)
 		echoln("[POSITION EFFECT] Effect #{getName(effect)} applied to position #{@index}, which houses #{battle.battlers[@index].pbThis(true)}")
 	end
+
+	def battlerEntry(effect)
+		getData(effect).entry_position(@battle, @index)
+	end
 end

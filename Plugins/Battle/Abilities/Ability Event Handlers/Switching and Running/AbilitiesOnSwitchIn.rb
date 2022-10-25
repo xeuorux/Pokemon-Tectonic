@@ -289,7 +289,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:UNNERVE,
 BattleHandlers::AbilityOnSwitchIn.add(:SLOWSTART,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battler.effects[PBEffects::SlowStart] = 3
+    battler.applyEffect(:SlowStart,3)
     battle.pbDisplay(_INTL("{1} can't get it going!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
@@ -362,10 +362,9 @@ BattleHandlers::AbilityOnSwitchIn.add(:CURIOUSMEDICINE,
 
 BattleHandlers::AbilityOnSwitchIn.add(:NEUTRALIZINGGAS,
   proc { |ability,battler,battle|
-    next if battle.field.effects[PBEffects::NeutralizingGas]
+    next if battle.field.effectActive?(:NeutralizingGas)
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1}'s gas nullified all abilities!",battler.pbThis))
-    battle.field.effects[PBEffects::NeutralizingGas] = true
+    battle.field.applyEffect(:NeutralizingGas)
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -479,8 +478,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
 BattleHandlers::AbilityOnSwitchIn.add(:GARLANDGUARDIAN,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battler.pbOwnSide.effects[PBEffects::Safeguard] = 5
-    battle.pbDisplay(_INTL("{1} put up a Safeguard!",battler.pbThis))
+    battler.pbOwnSide.applyEffect(:Safeguard,5)
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -523,8 +521,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:HONORAURA,
 BattleHandlers::AbilityOnSwitchIn.add(:CLOVERSONG,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battler.pbOwnSide.effects[PBEffects::LuckyChant] = 5
-    battle.pbDisplay(_INTL("{1} sung a Lucky Chant!",battler.pbThis))
+    battler.pbOwnSide.applyEffect(:LuckyChant,5)
     battle.pbHideAbilitySplash(battler)
   }
 )

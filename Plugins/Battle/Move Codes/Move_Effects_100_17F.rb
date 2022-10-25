@@ -638,13 +638,13 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   #===============================================================================
   class PokeBattle_Move_117 < PokeBattle_Move
     def pbEffectGeneral(user)
-      user.effects[PBEffects::FollowMe] = 1
+      maxFollowMe = 0
       user.eachAlly do |b|
-        next if b.effects[PBEffects::FollowMe] < user.effects[PBEffects::FollowMe]
-        user.effects[PBEffects::FollowMe] = b.effects[PBEffects::FollowMe] + 1
+        next if b.effects[:FollowMe] <= maxFollowMe
+        maxFollowMe = b.effects[:FollowMe]
       end
-      user.effects[PBEffects::RagePowder] = true if @id == :RAGEPOWDER
-      @battle.pbDisplay(_INTL("{1} became the center of attention!",user.pbThis))
+      user.applyEffect(:FollowMe,maxFoowMe+1)
+      user.applyEffect(:RagePowder) if @id == :RAGEPOWDER
     end
 
     def getScore(score,user,target,skill=100)
@@ -677,16 +677,13 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
           @battle.pbClearChoice(b.index) if !b.movedThisRound?
           showMessage = true
         end
-        if b.effects[PBEffects::MagnetRise]>0 ||
-           b.effects[PBEffects::Telekinesis]>0 ||
-           b.effects[PBEffects::SkyDrop]>=0
-          b.effects[PBEffects::MagnetRise]  = 0
-          b.effects[PBEffects::Telekinesis] = 0
-          b.effects[PBEffects::SkyDrop]     = -1
+        if b.effectActive(:MagnetRise) || b.effectActive?(:Telekinesis) || b.effectActive?(:SkyDrop)
+          b.disableEffect(:MagnetRise)
+          b.disableEffect(:Telekinesis)
+          b.disableEffect(:SkyDrop)
           showMessage = true
         end
-        @battle.pbDisplay(_INTL("{1} couldn't stay airborne because of gravity!",
-           b.pbThis)) if showMessage
+        @battle.pbDisplay(_INTL("{1} couldn't stay airborne because of gravity!",b.pbThis)) if showMessage
       end
     end
 
@@ -779,7 +776,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 
     def pbBaseDamage(baseDmg,user,target)
       baseDmg *= 2 if target.inTwoTurnAttack?("0C9","0CC","0CE") ||  # Fly/Bounce/Sky Drop
-                      target.effects[PBEffects::SkyDrop]>=0
+                      target.effectActive?(:SkyDrop)
       return baseDmg
     end
   end
@@ -803,7 +800,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       else
         return false if target.damageState.unaffected || target.damageState.substitute
       end
-      return false if target.inTwoTurnAttack?("0CE") || target.effects[PBEffects::SkyDrop] >= 0   # Sky Drop
+      return false if target.inTwoTurnAttack?("0CE") || target.effectActive?(:SkyDrop)   # Sky Drop
       return false if !target.airborne? && !target.inTwoTurnAttack?("0C9","0CC")   # Fly/Bounce
       return true
     end
@@ -843,7 +840,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       # Target has already moved this round
       return true if pbMoveFailedTargetAlreadyMoved?(target)
       # Target was going to move next anyway (somehow)
-      if target.effects[PBEffects::MoveNext]
+      if target.effectActive?(:MoveNext)
         @battle.pbDisplay(_INTL("But it failed!"))
         return true
       end
@@ -857,8 +854,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.effects[PBEffects::MoveNext] = true
-      target.effects[PBEffects::Quash]    = 0
+      target.applyEffect(:MoveNext)
       @battle.pbDisplay(_INTL("{1} took the kind offer!",target.pbThis))
     end
 
@@ -888,10 +884,10 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       # Target is already maximally Quashed and will move last anyway
       highestQuash = 0
       @battle.battlers.each do |b|
-        next if b.effects[PBEffects::Quash]<=highestQuash
-        highestQuash = b.effects[PBEffects::Quash]
+        next if b.effects[:Quash] <= highestQuash
+        highestQuash = b.effects[:Quash]
       end
-      if highestQuash>0 && target.effects[PBEffects::Quash]==highestQuash
+      if highestQuash > 0 && target.effects[:Quash] == highestQuash
         @battle.pbDisplay(_INTL("But it failed!"))
         return true
       end
@@ -906,11 +902,10 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def pbEffectAgainstTarget(user,target)
       highestQuash = 0
       @battle.battlers.each do |b|
-        next if b.effects[PBEffects::Quash]<=highestQuash
-        highestQuash = b.effects[PBEffects::Quash]
+        next if b.effects[:Quash] <= highestQuash
+        highestQuash = b.effects[:Quash]
       end
-      target.effects[PBEffects::Quash]    = highestQuash+1
-      target.effects[PBEffects::MoveNext] = false
+      target.applyEffect(:Quash,highestQuash+1)
       @battle.pbDisplay(_INTL("{1}'s move was postponed!",target.pbThis))
     end
 
@@ -920,7 +915,6 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       userSpeed = pbRoughStat(user,:SPEED,skill)
 		  targetSpeed = pbRoughStat(target,:SPEED,skill)
       return 0 if targetSpeed > userSpeed
-
       # TODO: This can be improved
     end
   end
@@ -1568,10 +1562,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.effects[PBEffects::Type3] = :GHOST
-      typeName = GameData::Type.get(:GHOST).name
-      @battle.pbDisplay(_INTL("{1} transformed into the {2} type!",target.pbThis,typeName))
-      @battle.scene.pbRefresh()
+      target.applyEffect(:Type3,:GHOST)
     end
   end
   
@@ -1588,10 +1579,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.effects[PBEffects::Type3] = :GRASS
-      typeName = GameData::Type.get(:GRASS).name
-      @battle.pbDisplay(_INTL("{1} transformed into the {2} type!",target.pbThis,typeName))
-      @battle.scene.pbRefresh()
+      target.applyEffect(:Type3,:GRASS)
     end
   end
   
@@ -1764,7 +1752,7 @@ end
   class PokeBattle_Move_14B < PokeBattle_ProtectMove
     def initialize(battle,move)
       super
-      @effect = PBEffects::KingsShield
+      @effect = :KingsShield
     end
 
     def getScore(score,user,target,skill=100)
@@ -1784,7 +1772,7 @@ end
   class PokeBattle_Move_14C < PokeBattle_ProtectMove
     def initialize(battle,move)
       super
-      @effect = PBEffects::SpikyShield
+      @effect = :SpikyShield
     end
 
     def getScore(score,user,target,skill=100)
@@ -1884,12 +1872,11 @@ end
       switcher = user
       targets.each do |b|
         next if switchedBattlers.include?(b.index)
-        switcher = b if b.effects[PBEffects::MagicCoat] || b.effects[PBEffects::MagicBounce]
+        switcher = b if b.effectActive?(:MagicCoat) || b.effectActive?(:MagicBounce)
       end
       return if switcher.fainted? || numHits==0
       return if !@battle.pbCanChooseNonActive?(switcher.index)
-      @battle.pbDisplay(_INTL("{1} went back to {2}!",switcher.pbThis,
-         @battle.pbGetOwnerName(switcher.index)))
+      @battle.pbDisplay(_INTL("{1} went back to {2}!",switcher.pbThis,@battle.pbGetOwnerName(switcher.index)))
       @battle.pbPursuit(switcher.index)
       return if switcher.fainted?
       newPkmn = @battle.pbGetReplacementPokemonIndex(switcher.index)   # Owner chooses
@@ -2142,12 +2129,12 @@ end
   #===============================================================================
   class PokeBattle_Move_15E < PokeBattle_Move
     def pbEffectGeneral(user)
-      user.effects[PBEffects::LaserFocus] = 2
+      user.applyEffect(:LaserFocus,2)
       @battle.pbDisplay(_INTL("{1} concentrated intensely!",user.pbThis))
     end
 
     def getScore(score,user,target,skill=100)
-      return 0 if user.effects[PBEffects::LaserFocus] > 0
+      return 0 if user.effectActive?(:LaserFocus)
       score -= 20 # Move isn't very strong
       return score
     end
@@ -2323,19 +2310,16 @@ end
   #===============================================================================
   class PokeBattle_Move_165 < PokeBattle_Move
     def pbEffectAgainstTarget(user,target)
-      return if target.damageState.substitute || target.effects[PBEffects::GastroAcid]
+      return if target.damageState.substitute || target.effectActive?(:GastroAcid)
       return if target.unstoppableAbility?
       return if @battle.choices[target.index][0]!=:UseItem &&
                 !((@battle.choices[target.index][0]==:UseMove ||
                 @battle.choices[target.index][0]==:Shift) && target.movedThisRound?)
-      target.effects[PBEffects::GastroAcid] = true
-      target.effects[PBEffects::Truant]     = false
-      @battle.pbDisplay(_INTL("{1}'s Ability was suppressed!",target.pbThis))
-      target.pbOnAbilityChanged(target.ability)
+      target.applyEffect(:GastroAcid)
     end
 
     def getScore(score,user,target,skill=100)
-      if !target.substituted? && !target.effects[PBEffects::GastroAcid]
+      if !target.substituted? && !target.effectActive?(:GastroAcid)
         score = getWantsToBeSlowerScore(score,user,target,skill,3)
       end
       return score
@@ -2388,7 +2372,7 @@ end
   class PokeBattle_Move_168 < PokeBattle_ProtectMove
     def initialize(battle,move)
       super
-      @effect = PBEffects::BanefulBunker
+      @effect = :BanefulBunker
     end
 
     def getScore(score,user,target,skill=100)
@@ -2931,9 +2915,9 @@ class PokeBattle_Move_17D < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
     if !user.effectActive?(:JawLock) && !target.effectActive?(:JawLock)
       user.applyEffect(:JawLock)
-      user.applyEffect(:JawLock)
-      user.applyEffect(:JawlockUser,target.index)
-      user.applyEffect(:JawlockUser,user.index)
+      target.applyEffect(:JawLock)
+      user.pointAt(:JawlockUser,target)
+      target.pointAt(:JawlockUser,user)
       @battle.pbDisplay(_INTL("Neither Pokémon can escape!"))
     end
   end

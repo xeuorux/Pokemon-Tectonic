@@ -317,11 +317,7 @@ class PokeBattle_Move
         echoln("User's damage mult is #{user.dmgMult} and the target's damage resist is #{target.dmgResist}")
         # Critical hits
         if target.damageState.critical
-            if Settings::NEW_CRITICAL_HIT_RATE_MECHANICS
-                multipliers[:final_damage_multiplier] *= 1.5
-            else
-                multipliers[:final_damage_multiplier] *= 2
-            end
+            multipliers[:final_damage_multiplier] *= 1.5
         end
         # Random variance (What used to be for that)
         if !self.is_a?(PokeBattle_Confusion) && !self.is_a?(PokeBattle_Charm)

@@ -19,11 +19,22 @@ module EffectHolder
                 raise _INTL("Value must be provided when applying effect #{effectData.real_name} (it's not a boolean)")
             end
         elsif !effectData.valid_value(value)
-            raise _INTL("Value provided for effect #{effectData.real_name} is invalid")
+            raise _INTL("Value #{value} provided to apply for effect #{effectData.real_name} is invalid")
+        elsif value == effectData.default
+            raise _INTL("Value #{value} provided to apply for effect #{effectData.real_name} is its default value")
 		end
-        @effects[effect] = value
-        @apply_proc.call(effectData,value) if @apply_proc
+        if @effects[effect] == value
+            echo(_INTL("[EFFECT] Effect #{effectData.real_name} applied at existing value #{@effects[effect]}"))
+        else
+            @effects[effect] = value
+            @apply_proc.call(effectData,value) if @apply_proc
+        end
 	end
+
+    def pointAt(effect,battler)
+        validatePosition(effect)
+        applyEffect(effect,battler.index)
+    end
 
     def incrementEffect(effect,incrementAmount=1)
         effectData = GameData::BattleEffect.get(effect)
@@ -102,7 +113,7 @@ module EffectHolder
 
     def pointsAt?(effect,battler)
         validatePosition(effect)
-        return false if effectActive?(effect)
+        return false if !effectActive?(effect)
         return @effects[effect] == battler.index
     end
 
