@@ -24,7 +24,7 @@ class PokeBattle_Battler
 
 	def debuffedByRain?(checkingForAI = false)
 		return false unless affectedByWeatherDownsides?(checkingForAI)
-		return false if shouldTypeApply?(:WATER,	checkingForAI) || shouldTypeApply?(:ELECTRIC, checkingForAI)
+		return false if shouldTypeApply?(:WATER, checkingForAI) || shouldTypeApply?(:ELECTRIC, checkingForAI)
 		setterAbilities = %i[DRIZZLE STORMBRINGER]
 		synergyAbilities = %i[SWIFTSWIM RAINDISH HYDRATION TIDALFORCE STORMFRONTRAINPRISM DREARYCLOUDS]
 		return false if shouldAbilityApply?(setterAbilities, checkingForAI) || shouldAbilityApply?(synergyAbilities, checkingForAI)

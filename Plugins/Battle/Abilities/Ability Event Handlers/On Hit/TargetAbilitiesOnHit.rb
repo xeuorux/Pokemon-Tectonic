@@ -238,12 +238,6 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
   }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:SANDSPIT,
-  proc { |ability,target,battler,move,battle|
-    pbBattleWeatherAbility(:Sandstorm,battler,battle)
-  }
-)
-
 BattleHandlers::TargetAbilityOnHit.add(:STEAMENGINE,
   proc { |ability,user,target,move,battle|
     next if move.calcType != :FIRE && move.calcType != :WATER
@@ -542,37 +536,37 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:REAWAKENEDPOWER,
 
 BattleHandlers::TargetAbilityOnHit.add(:SANDBURST,
 	proc { |ability,target,battler,move,battle|
-		pbBattleWeatherAbility(:Sandstorm,battler,battle)
+		pbBattleWeatherAbility(:Sandstorm,battler,battle,false,true)
 	}
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:INNERLIGHT,
 	proc { |ability,target,battler,move,battle|
-		pbBattleWeatherAbility(:Sun,battler,battle)
+		pbBattleWeatherAbility(:Sun,battler,battle,false,true)
 	}
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:STORMBRINGER,
 	proc { |ability,target,battler,move,battle|
-		pbBattleWeatherAbility(:Rain,battler,battle)
+		pbBattleWeatherAbility(:Rain,battler,battle,false,true)
 	}
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
 	proc { |ability,target,battler,move,battle|
-		pbBattleWeatherAbility(:Hail,battler,battle)
+		pbBattleWeatherAbility(:Hail,battler,battle,false,true)
 	}
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:SWARMMOUTH,
 	proc { |ability,target,battler,move,battle|
-		pbBattleWeatherAbility(:Swarm,battler,battle)
+		pbBattleWeatherAbility(:Swarm,battler,battle,false,true)
 	}
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:ACIDBODY,
 	proc { |ability,target,battler,move,battle|
-		pbBattleWeatherAbility(:AcidRain,battler,battle)
+		pbBattleWeatherAbility(:AcidRain,battler,battle,false,true)
 	}
 )
 

@@ -1,12 +1,20 @@
 class PokeBattle_Move
-  def applyRainDebuff?(user,checkingForAI=false)
-      return RAIN_DEBUFF_ACTIVE && !immuneToRainDebuff?() && [:Rain, :HeavyRain].include?(@battle.field.weather) && user.debuffedByRain?(checkingForAI)
+  def applyRainDebuff?(user,type,checkingForAI=false)
+    return false if ![:Rain, :HeavyRain].include?(@battle.field.weather)
+    return false if !RAIN_DEBUFF_ACTIVE
+    return false if immuneToRainDebuff?()
+    return false if [:Water,:Electric].include?(type)
+    return user.debuffedByRain?(checkingForAI)
   end
 
-  def applySunDebuff?(user,checkingForAI=false)
-      return SUN_DEBUFF_ACTIVE && !immuneToSunDebuff?() && [:Sun, :HarshSun].include?(@battle.field.weather) && user.debuffedBySun?(checkingForAI)
+  def applySunDebuff?(user,type,checkingForAI=false)
+    return false if ![:Sun, :HarshSun].include?(@battle.field.weather)
+    return false if !SUN_DEBUFF_ACTIVE
+    return false if immuneToSunDebuff?()
+    return false if [:Fire,:Grass].include?(type)
+    return user.debuffedBySun?(checkingForAI)
   end
-
+  
   def inherentImmunitiesPierced?(user,target)
     return (user.boss? || target.boss?) && damagingMove?
   end

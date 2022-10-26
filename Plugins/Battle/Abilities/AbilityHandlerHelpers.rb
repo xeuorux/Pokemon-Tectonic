@@ -28,10 +28,10 @@ def pbBattleMoveImmunityStatAbility(user,target,move,moveType,immuneType,stat,in
 	return true
 end
 
-def pbBattleWeatherAbility(weather,battler,battle,ignorePrimal=false)
+def pbBattleWeatherAbility(weather,battler,battle,ignorePrimal=false,ignoreFainted=false)
     return if !ignorePrimal && [:HarshSun, :HeavyRain, :StrongWinds].include?(battle.field.weather)
     battle.pbShowAbilitySplash(battler)
-    battle.pbStartWeather(battler,weather,4)
+    battle.pbStartWeather(battler,weather,4,true,ignoreFainted)
     # NOTE: The ability splash is hidden again in def pbStartWeather.
 end
 

@@ -42,10 +42,10 @@ class PokeBattle_Move
         @battle.pbDisplay(_INTL("{1} unleashed its full force Z-Move!",user.pbThis))
     end
 
-    def displayDamagingMoveMessages(user,targets=[])
+    def displayDamagingMoveMessages(user,calcType,targets=[])
         displayBPAdjustmentMessage(user,targets) if !multiHitMove?
         # Display messages letting the player know that weather is debuffing a move (if it is)
-        displayWeatherDebuffMessages(user) if $PokemonSystem.weather_messages == 0
+        displayWeatherDebuffMessages(user,calcType) if $PokemonSystem.weather_messages == 0
     end
 
     def displayBPAdjustmentMessage(user,targets=[])
@@ -61,15 +61,15 @@ class PokeBattle_Move
         end
     end
 
-    def displayWeatherDebuffMessages(user)
-        if applyRainDebuff?(user)
+    def displayWeatherDebuffMessages(user,type)
+        if applyRainDebuff?(user,type)
             if @battle.pbCheckGlobalAbility(:DREARYCLOUDS)
                 @battle.pbDisplay(_INTL("{1}'s attack is dampened a lot by the dreary rain.",user.pbThis))
             else
                 @battle.pbDisplay(_INTL("{1}'s attack is dampened by the rain.",user.pbThis))
             end
         end
-        if applySunDebuff?(user)
+        if applySunDebuff?(user,type)
             if @battle.pbCheckGlobalAbility(:BLINDINGLIGHT)
                 @battle.pbDisplay(_INTL("{1} is blinded by the bright light of the sun.",user.pbThis))
             else

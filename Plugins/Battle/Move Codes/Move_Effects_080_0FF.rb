@@ -822,7 +822,7 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if target.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
-    chance = pbAdditionalEffectChance(user,target)
+    chance = pbAdditionalEffectChance(user,target,@calcType)
     return if @battle.pbRandom(100)>=chance
     case @secretPower
     when 2

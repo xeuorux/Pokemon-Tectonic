@@ -104,7 +104,7 @@ class PokeBattle_Move_009 < PokeBattle_Move
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    chance = pbAdditionalEffectChance(user,target,10)
+    chance = pbAdditionalEffectChance(user,target,@calcType,10)
     return if chance == 0
     if @battle.pbRandom(100)<chance
       target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
@@ -133,7 +133,7 @@ class PokeBattle_Move_00B < PokeBattle_Move
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    chance = pbAdditionalEffectChance(user,target,10)
+    chance = pbAdditionalEffectChance(user,target,@calcType,10)
     return if chance == 0
     if @battle.pbRandom(100)<chance
       target.pbBurn(user) if target.pbCanBurn?(user,false,self)
@@ -172,7 +172,7 @@ class PokeBattle_Move_00E < PokeBattle_Move
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    chance = pbAdditionalEffectChance(user,target,10)
+    chance = pbAdditionalEffectChance(user,target,@calcType,10)
     return if chance == 0
     if @battle.pbRandom(100)<chance
       target.pbFrostbite if target.pbCanFrostbite?(user,false,self)

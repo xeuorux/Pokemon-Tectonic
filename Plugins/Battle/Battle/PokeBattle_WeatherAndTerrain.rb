@@ -12,7 +12,7 @@ class PokeBattle_Battle
   end
 
     # Used for causing weather by a move or by an ability.
-    def pbStartWeather(user,newWeather,duration=-1,showAnim=true)
+    def pbStartWeather(user,newWeather,duration=-1,showAnim=true,ignoreFainted=false)
       oldWeather = @field.weather
   
       resetExisting = @field.weather == newWeather
@@ -20,7 +20,7 @@ class PokeBattle_Battle
   
       # Set the new weather and duration
       @field.weather = newWeather
-      if duration>0 && user && user.itemActive?
+      if duration>0 && user && user.itemActive?(ignoreFainted)
         duration = BattleHandlers.triggerWeatherExtenderItem(user.item,
           @field.weather,duration,user,self)
       end

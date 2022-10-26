@@ -113,7 +113,7 @@ class PokeBattle_Move
         when :Sun, :HarshSun
             if type == :FIRE
                 multipliers[:final_damage_multiplier] *= @battle.pbWeather == :HarshSun ? 1.5 : 1.3
-            elsif applySunDebuff?(user,checkingForAI)
+            elsif applySunDebuff?(user,type,checkingForAI)
                 if @battle.pbCheckGlobalAbility(:BLINDINGLIGHT)
                     multipliers[:final_damage_multiplier] *= 0.7
                 else
@@ -123,7 +123,7 @@ class PokeBattle_Move
         when :Rain, :HeavyRain
             if type == :WATER
                 multipliers[:final_damage_multiplier] *= @battle.pbWeather == :HeavyRain ? 1.5 : 1.3
-            elsif applyRainDebuff?(user,checkingForAI)
+            elsif applyRainDebuff?(user,type,checkingForAI)
                 if @battle.pbCheckGlobalAbility(:DREARYCLOUDS)
                     multipliers[:final_damage_multiplier] *= 0.7
                 else

@@ -213,11 +213,11 @@ class PokeBattle_Move
     #    1: Always a critical hit.
     def pbCritialOverride(user,target); return 0; end
   
-        # Returns whether the move will be a critical hit
+    # Returns whether the move will be a critical hit
     # And whether the critical hit was forced by an effect
 	def pbIsCritical?(user,target)
 		return [false,false] if target.pbOwnSide.effectActive?(:LuckyChant)
-        return [false,false] if applySunDebuff?(user)
+        return [false,false] if applySunDebuff?(user,@calcType)
 		# Set up the critical hit ratios
 		ratios = [16,8,4,2,1]
 		c = 0
@@ -306,13 +306,13 @@ class PokeBattle_Move
         return true
     end
 
-    def pbAdditionalEffectChance(user,target,effectChance=0)
+    def pbAdditionalEffectChance(user,target,type,effectChance=0)
         return 0 if !canApplyAdditionalEffects?(user,target)
         ret = effectChance > 0 ? effectChance : @effectChance
         ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
         ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
         ret *= 4 if windMove? && user.hasActiveAbility?(:FUMIGATE)
-        ret /= 2 if applyRainDebuff?(user)
+        ret /= 2 if applyRainDebuff?(user,type)
         ret = 100 if $DEBUG && Input.press?(Input::CTRL)
         return ret
     end

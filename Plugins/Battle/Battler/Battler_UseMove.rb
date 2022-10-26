@@ -781,7 +781,7 @@ class PokeBattle_Battler
 		unless user.hasActiveAbility?(:SHEERFORCE)
 			targets.each do |b|
 				next if b.damageState.calcDamage == 0
-				chance = move.pbAdditionalEffectChance(user, b)
+				chance = move.pbAdditionalEffectChance(user, b, move.calcType)
 				next if chance <= 0
 				if @battle.pbRandom(100) < chance
 					if b.hasActiveAbility?(:RUGGEDSCALES)
