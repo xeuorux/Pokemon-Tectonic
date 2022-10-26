@@ -1565,6 +1565,10 @@ MapPosition = 0,19,4
 BattleBack = wcave
 Environment = Cave
 #-------------------------------
+[292]
+# Crescent Island Secret
+MapPosition = 0,19,4
+#-------------------------------
 [299]
 # Mainland Dock Center
 Outdoor = false
