@@ -412,7 +412,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       position = 
       count = 3
       count -= 1 if user.hasActiveAbility?([:BADOMEN])
-      target.position.applyEffect(:FutureSightCount,count)
+      target.position.applyEffect(:FutureSightCounter,count)
       target.position.applyEffect(:FutureSightMove,@id)
       target.position.pointAt(:FutureSightUserIndex,user)
       target.position.applyEffect(:FutureSightUserPartyIndex,user.pokemonIndex)
@@ -1325,13 +1325,13 @@ end
   class PokeBattle_Move_13E < PokeBattle_Move
     def pbMoveFailed?(user,targets)
       @battle.eachBattler do |b|
-        return false if isValidTarget(user,b)
+        return false if isValidTarget?(user,b)
       end
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
 
-    def isValidTarget(user,target)
+    def isValidTarget?(user,target)
       return false if !target.pbHasType?(:GRASS)
       return false if target.semiInvulnerable?
       return false if !target.pbCanRaiseStatStage?(:ATTACK,user,self) && !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
@@ -1339,7 +1339,7 @@ end
     end
   
     def pbFailsAgainstTarget?(user,target)
-      return !isValidTarget(user,target)
+      return !isValidTarget?(user,target)
     end
   
     def pbEffectAgainstTarget(user,target)
@@ -1354,7 +1354,7 @@ end
     end
 
     def getScore(score,user,target,skill=100)
-			if isValidTarget(target)
+			if isValidTarget?(target)
         score += 30
 				score -= user.stages[:DEFENSE] * 5
         score -= user.stages[:SPECIAL_DEFENSE] * 5
@@ -1370,13 +1370,13 @@ end
   class PokeBattle_Move_13F < PokeBattle_Move
     def pbMoveFailed?(user,targets)
       @battle.eachBattler do |b|
-        return false if isValidTarget(user,b)
+        return false if isValidTarget?(user,b)
       end
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
 
-    def isValidTarget(user,target)
+    def isValidTarget?(user,target)
       return false if !target.pbHasType?(:GRASS)
       return false if target.semiInvulnerable?
       return false if !target.pbCanRaiseStatStage?(:DEFENSE,user,self) && !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
@@ -1384,7 +1384,7 @@ end
     end
   
     def pbFailsAgainstTarget?(user,target)
-      return !isValidTarget(user,target)
+      return !isValidTarget?(user,target)
     end
   
     def pbEffectAgainstTarget(user,target)
@@ -1399,7 +1399,7 @@ end
     end
 
     def getScore(score,user,target,skill=100)
-			if isValidTarget(target)
+			if isValidTarget?(target)
         score += 30
 				score -= user.stages[:DEFENSE] * 5
         score -= user.stages[:SPECIAL_DEFENSE] * 5
@@ -1415,13 +1415,13 @@ end
   class PokeBattle_Move_140 < PokeBattle_Move
     def pbMoveFailed?(user,targets)
       @battle.eachBattler do |b|
-        return false if isValidTarget(user,b)
+        return false if isValidTarget?(user,b)
       end
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
 
-    def isValidTarget(user,target)
+    def isValidTarget?(user,target)
       return false if target.fainted?
       return false if !target.poisoned?
       return false if !target.pbCanLowerStatStage?(:ATTACK,user,self) &&
@@ -1431,7 +1431,7 @@ end
     end
   
     def pbFailsAgainstTarget?(user,target)
-      return !isValidTarget(user,target)
+      return !isValidTarget?(user,target)
     end
   
     def pbEffectAgainstTarget(user,target)
@@ -1445,7 +1445,7 @@ end
     end
 
     def getScore(score,user,target,skill=100)
-			if isValidTarget(user,target)
+			if isValidTarget?(user,target)
         score += 30
         score += target.stages[:ATTACK] * 5
         score += target.stages[:SPECIAL_ATTACK] * 5
@@ -2777,12 +2777,12 @@ end
 class PokeBattle_Move_17A < PokeBattle_Move
   
   def pbMoveFailed?(user,targets)
-    effectsPlayer = @battle.sides[0].effects
-    effectsTrainer = @battle.sides[1].effects
+    playerSide = @battle.sides[0]
+    trainerSide = @battle.sides[1]
     GameData::BattleEffect.each_side_effect do |effectData|
       next if !effectData.court_changed?
       id = effectData.id
-      return false if effectsPlayer.effectActive?(id) || effectsTrainer.effectActive?(id)
+      return false if playerSide.effectActive?(id) || trainerSide.effectActive?(id)
     end
     @battle.pbDisplay(_INTL("But it failed, since there were no effects to swap!"))
     return true

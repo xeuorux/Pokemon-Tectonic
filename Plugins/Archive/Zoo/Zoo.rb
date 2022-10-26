@@ -118,7 +118,7 @@ def debugCheckMissingSpecies()
 	GameData::Species.each do |species_data|
 		next if species_data.form != 0
 		if !eventExistsFor?(species_data.species)
-			echo("No Zoo event exists for species: #{species_data.real_name}\n")
+			echoln("No Zoo event exists for species: #{species_data.real_name}\n")
 			totalMissing += 1
 		else
 			totalPresent += 1

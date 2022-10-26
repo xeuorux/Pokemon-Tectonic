@@ -59,7 +59,7 @@ class PokeBattle_Battler
 		end
 		if showDamageAnimation
 			@damageState.displayedDamage = reduction
-			@battle.scene.pbDamageAnimation(self)
+			@battle.scene.pbDamageAnimation(self) if !@battle.autoTesting
 		end
 		pbReduceHP(reduction, false)
 		if entryCheck
@@ -241,13 +241,18 @@ class PokeBattle_Battler
 	#=============================================================================
 	def pbChangeTypes(newType)
 		if newType.is_a?(PokeBattle_Battler)
-			newTypes = newType.pbTypes
+			typeCopyTarget = newType
+			newTypes = typeCopyTarget.pbTypes
 			newTypes.push(:NORMAL) if newTypes.length.zero?
-			newType3 = newType.effectActive?(:Type3)
+			newType3 = typeCopyTarget.effects[:Type3]
 			newType3 = nil if newTypes.include?(newType3)
 			@type1 = newTypes[0]
 			@type2 = (newTypes.length == 1) ? newTypes[0] : newTypes[1]
-			applyEffect(:Type3,newType3)
+			if newType3
+				applyEffect(:Type3,newType3)
+			else
+				disableEffect(:Type3)
+			end
 		else
 			newType = GameData::Type.get(newType).id
 			@type1 = newType

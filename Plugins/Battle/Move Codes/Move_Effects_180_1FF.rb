@@ -74,13 +74,13 @@ end
 class PokeBattle_Move_184 < PokeBattle_Move
     def ignoresSubstitute?(user); return true; end
 
-    def isValidTarget(target)
+    def isValidTarget?(target)
       return target.item && target.item.is_berry? && !target.semiInvulnerable?
     end
 
     def pbMoveFailed?(user, targets, messages = true)
       @battle.eachBattler do |b|
-        return false if isValidTarget(target)
+        return false if isValidTarget?(b)
       end
       @battle.pbDisplay(_INTL("But it failed!")) if messages
       return true
@@ -91,7 +91,7 @@ class PokeBattle_Move_184 < PokeBattle_Move
     end
 
     def pbFailsAgainstTarget?(_user, target)
-        return !isValidTarget(target)
+        return !isValidTarget?(target)
     end
 
     def pbEffectAgainstTarget(_user, target)
@@ -100,7 +100,7 @@ class PokeBattle_Move_184 < PokeBattle_Move
     end
 
     def getScore(score, _user, target, _skill = 100)
-        score -= 30 unless isValidTarget(target)
+        score -= 30 unless isValidTarget?(target)
         return score
     end
 end
@@ -170,13 +170,13 @@ class PokeBattle_Move_187 < PokeBattle_Move_005
   def specialMove?(_thisType = nil);  return (@calcCategory == 1); end
 
   def pbOnStartUse(_user, targets)
-    stageMul = [2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8]
-    stageDiv = [8, 7, 6, 5, 4, 3, 2, 2, 2, 2, 2, 2, 2]
+    stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
+	  stageDiv = PokeBattle_Battler::STAGE_DIVISORS
     defense      = targets[0].defense
     defenseStage = targets[0].stages[:DEFENSE] + 6
     realDefense  = (defense.to_f * stageMul[defenseStage] / stageDiv[defenseStage]).floor
     spdef        = targets[0].spdef
-    spdefStage   = targets[0].stages[:SPDEF] + 6
+    spdefStage   = targets[0].stages[:SPECIAL_DEFENSE] + 6
     realSpdef    = (spdef.to_f * stageMul[spdefStage] / stageDiv[spdefStage]).floor
     # Determine move's category
     return @calcCategory = 0 if realDefense < realSpdef

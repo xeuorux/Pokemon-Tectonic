@@ -395,7 +395,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Imprison,
 	:real_name => "Moves Imprisoned",
 	:apply_proc => Proc.new { |battle,battler,value|
-		battle.pbDisplay(_INTL("{1}'s shared moves were sealed!",user.pbThis))
+		battle.pbDisplay(_INTL("{1}'s shared moves were sealed!",battler.pbThis))
 	},
 })
 
@@ -607,7 +607,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Outrage,
-	:real_name => "Rampaging Turns",
+	:real_name => "Rampage Turns",
 	:type => :Integer,
 	:resets_on_cancel => true,
 	:multi_turn_tracker => true,
@@ -617,6 +617,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:expire_proc => Proc.new { |battle, battler|
 		battle.pbDisplay(_INTL("{1} spun down from its attack.",battler.pbThis))
 		battler.currentMove = nil
+		echoln("RAMPAGE EXPIRE PROC")
+	},
+	:remain_proc => Proc.new { |battle, battler,value|
+		battle.pbDisplay(_INTL("{1} continues to rampage!",battler.pbThis))
 	},
 })
 
@@ -808,7 +812,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:maximum => 3,
 	:increment_proc => Proc.new { | battle, battler, value, increment|
-		battle.pbDisplay(_INTL("{1} stockpiled {2}!",user.pbThis,value))
+		battle.pbDisplay(_INTL("{1} stockpiled {2}!",battler.pbThis,value))
 		battler.incrementEffect(:StockpileDef)
 		battler.incrementEffect(:StockpileSpDef)
 	},

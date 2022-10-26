@@ -22,7 +22,7 @@ module EffectHolder
             raise _INTL("Value #{value} provided to apply for effect #{effectData.real_name} is its default value")
 		end
         if @effects[effect] == value
-            echo(_INTL("[EFFECT] Effect #{effectData.real_name} set to apply, but at existing value #{@effects[effect]}"))
+            echoln(_INTL("[EFFECT] Effect #{effectData.real_name} set to apply, but at existing value #{@effects[effect]}"))
         else
             @effects[effect] = value
             @apply_proc.call(effectData,value)
@@ -42,7 +42,7 @@ module EffectHolder
         oldValue = @effects[effect]
         newValue = oldValue + incrementAmount
         if effectData.maximum && newValue > effectData.maximum
-            echo(_INTL("[EFFECT] Effect incremented while already at maximum: #{effectData.real_name}"))
+            echoln(_INTL("[EFFECT] Effect incremented while already at maximum: #{effectData.real_name}"))
             return oldValue
         else
             @effects[effect] = newValue
@@ -54,8 +54,8 @@ module EffectHolder
     # Returns true if the value did not expire, false if it did
     def tickDownAndProc(effect)
         validateCorrectLocation(effect)
+        data = getData(effect)
         if effectActive?(effect)
-            data = getData(effect)
             if tickDown(effect)
                 @expire_proc.call(data)
                 disableEffect(effect)
@@ -73,12 +73,10 @@ module EffectHolder
         validateCorrectLocation(effect)
         effectData = GameData::BattleEffect.get(effect)
         validateInteger(effectData)
-        value = @effects[effect]
         goal = effectData.default if goal.nil?
-        return true if value <= goal
-        @effects[effect] -= 1
-        @effects[effect] = goal if @effects[effect] < goal
-        return value <= goal
+        return true if @effects[effect] <= goal
+        @effects[effect] = [@effects[effect] - 1,goal].max
+        return true if @effects[effect] <= goal
     end
 
 	def disableEffect(effect)

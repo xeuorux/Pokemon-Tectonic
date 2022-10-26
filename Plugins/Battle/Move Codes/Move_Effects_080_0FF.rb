@@ -367,9 +367,8 @@ end
 # some semi-invulnerable targets. (Magnitude)
 #===============================================================================
 class PokeBattle_Move_095 < PokeBattle_Move
-  def pbDisplayUseMessage(user,targets=[])
+  def pbOnStartUse(user,targets)
     chooseBasePower(user,targets)
-    super
   end
 
   def chooseBasePower(user,targets)
@@ -723,7 +722,7 @@ end
 #===============================================================================
 class PokeBattle_Move_0A1 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    if user.pbOwnSide.effectActive?
+    if user.pbOwnSide.effectActive?(:LuckyChant)
       @battle.pbDisplay(_INTL("But it failed, since #{user.pbTeam(true)} is already blessed!"))
       return true
     end
@@ -913,7 +912,7 @@ class PokeBattle_Move_0A7 < PokeBattle_Move
   def ignoresSubstitute?(user); return true; end
 
   def pbFailsAgainstTarget?(user,target)
-    if target.effectActive?(:Identified)
+    if target.effectActive?(:Foresight)
       @battle.pbDisplay(_INTL("But it failed, since the target is already identified!"))
       return true
     end
@@ -921,7 +920,7 @@ class PokeBattle_Move_0A7 < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user,target)
-    target.applyEffect(:Identified)
+    target.applyEffect(:Foresight)
   end
 
   def getScore(score,user,target,skill=100)
@@ -1569,7 +1568,7 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
     ]
   end
 
-  def getMetronomeMoves(user)
+  def getMetronomeMoves
     metronomeMoves = []
     GameData::Move::DATA.keys.each do |move_id|
       move_data = GameData::Move.get(move_id)
@@ -1584,7 +1583,7 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
   end
 
   def pbMoveFailed?(user,targets)
-    if getMetronomeMoves(user).length == 0
+    if getMetronomeMoves.length == 0
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -1592,7 +1591,7 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    choice = getMetronomeMoves().sample
+    choice = getMetronomeMoves.sample
     user.pbUseMoveSimple(choice)
   end
 end
@@ -1775,8 +1774,8 @@ class PokeBattle_Move_0BC < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    targetsEncoreFunctionCode = GameData::Move.get(target.lastRegularMoveUsed).function_code
-    if !target.lastRegularMoveUsed || @moveBlacklist.include?(targetsEncoreFunctionCode)
+    if !target.lastRegularMoveUsed ||
+        @moveBlacklist.include?(GameData::Move.get(target.lastRegularMoveUsed).function_code)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2435,7 +2434,7 @@ class PokeBattle_Move_0D7 < PokeBattle_Move
   def pbEffectGeneral(user)
     user.position.applyEffect(:Wish,2)
     user.position.applyEffect(:WishAmount,wishAmount(user))
-    user.position.effects(:WishMaker,user.pokemonIndex)
+    user.position.applyEffect(:WishMaker,user.pokemonIndex)
   end
 
   def getScore(score,user,target,skill=100)
@@ -3159,7 +3158,7 @@ class PokeBattle_Move_0EF < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.fainted? || target.damageState.substitute
     return if target.effectActive?(:MeanLook)
-    target.pointAt(:MeanLook) if !target.effectActive?(:MeanLook)
+    target.pointAt(:MeanLook,user) if !target.effectActive?(:MeanLook)
   end
 
   def getScore(score,user,target,skill=100)

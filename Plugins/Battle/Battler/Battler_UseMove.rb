@@ -87,6 +87,7 @@ class PokeBattle_Battler
 	# Cancels the use of multi-turn moves and counters thereof. Note that Hyper
 	# Beam's effect is NOT cancelled.
 	def pbCancelMoves(_full_cancel = false)
+		echoln("[EFFECTS] Effects are being disabled due moves being cancelled on #{pbThis(true)}")
 		eachEffect() do |effect,value,effectData|
 			disableEffect(effect) if effectData.resets_on_cancel
 		end
@@ -302,10 +303,7 @@ class PokeBattle_Battler
 		#       self except if Snatched, but this message should state the original
 		#       user (self) even if the move is Snatched.
 		@battle.triggerBattlerIsUsingMoveDialogue(user,targets,move)
-		if !@battle.autoTesting
-			move.pbDisplayUseMessage(self, targets)
-			move.displayDamagingMoveMessages(self,targets) if move.damagingMove?
-		end
+		move.pbDisplayUseMessage(self, targets)
 		# Snatch's message (user is the new user, self is the original user)
 		if move.snatched
 			@lastMoveFailed = true # Intentionally applies to self, not user
@@ -328,9 +326,10 @@ class PokeBattle_Battler
 			pbEndTurn(choice)
 			return
 		end
-		# Perform set-up actions and display messages
-		# Messages include Magnitude's number and Pledge moves' "it's a combo!"
+		# Perform set-up actions
 		move.pbOnStartUse(user, targets)
+		# Display messages about BP adjustment and weather debuffing
+		move.displayDamagingMoveMessages(self,targets) if move.damagingMove?
 		# Powder
 		if user.effectActive?(:Powder) && move.calcType == :FIRE
 			@battle.pbCommonAnimation('Powder', user)

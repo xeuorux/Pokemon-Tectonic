@@ -733,4 +733,11 @@ class PokeBattle_Battler
 	def pbFrostbite(user = nil, msg = nil)
 		pbInflictStatus(:FROSTBITE, 0, msg, user)
 	end
+
+	#=============================================================================
+	# Attract (Cut mechanic)
+	#=============================================================================
+	def pbCanAttract?(*args)
+		return false
+	end
 end

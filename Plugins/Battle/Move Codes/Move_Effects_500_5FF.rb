@@ -1597,7 +1597,7 @@ end
 #===============================================================================
 class PokeBattle_Move_558 < PokeBattle_Move
 	def pbEffectAgainstTarget(user,target)
-		@battle.forceUseMove(target,:Substitute,-1,true)
+		@battle.forceUseMove(target,:SUBSTITUTE,-1,true)
 	end
 end
 
@@ -1724,9 +1724,8 @@ class PokeBattle_Move_55F < PokeBattle_Move
 	def pbEffectAfterAllHits(user,target)
 	  if !target.damageState.unaffected && !user.effectActive?(:Outrage)
 		user.applyEffect(:Outrage,3)
-	  else
-		user.tickDownAndProc(:Outrage)
 	  end
+	  user.tickDownAndProc(:Outrage)
 	end
 end
 

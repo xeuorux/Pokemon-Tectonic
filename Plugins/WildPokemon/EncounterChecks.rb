@@ -147,7 +147,7 @@ class PokemonEncounters
     # 25% chance to only roll on Pokemon not yet caught
     uncaught_enc_list = enc_list.clone.delete_if{|e| $Trainer.owned?(e[1])}
     if uncaught_enc_list.length > 0 && rand(100) < 25
-      echo("Only rolling encounters for uncaught Pokemon!\n")
+      echoln("Only rolling encounters for uncaught Pokemon!\n")
       enc_list = uncaught_enc_list
     end
     
@@ -201,7 +201,7 @@ class PokemonEncounters
     # 25% chance to only roll on Pokemon not yet caught
     uncaught_enc_list = enc_list.delete_if{|e| $Trainer.owned?(e[1])}
     if uncaught_enc_list.length > 0 && rand(100) < 25
-      echo("Only rolling encounters for uncaught Pokemon!\n")
+      echoln("Only rolling encounters for uncaught Pokemon!\n")
       enc_list = uncaught_enc_list
     end
 	

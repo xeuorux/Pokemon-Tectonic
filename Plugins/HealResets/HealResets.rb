@@ -38,7 +38,7 @@ class ResetTracker
       
     # Reset all reset events on this map
     @reset_table[$game_map.map_id] = false
-    echo("Resetting events on this map\n")
+    echoln("Resetting events on this map\n")
     anyTrainersRespawned = false
     for event in $game_map.events.values
       if event.name.downcase.include?("reset")

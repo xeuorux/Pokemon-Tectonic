@@ -39,7 +39,7 @@ GameData::BattleEffect.register_effect(:Field,{
 				battle.pbClearChoice(b.index) if !b.movedThisRound?
 				showMessage = true
 			end
-			if b.effectActive(:MagnetRise) || b.effectActive?(:Telekinesis) || b.effectActive?(:SkyDrop)
+			if b.effectActive?(:MagnetRise) || b.effectActive?(:Telekinesis) || b.effectActive?(:SkyDrop)
 				b.disableEffect(:MagnetRise)
 				b.disableEffect(:Telekinesis)
 				b.disableEffect(:SkyDrop)
