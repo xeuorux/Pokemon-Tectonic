@@ -1157,7 +1157,7 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
     return super
   end
 
-  def blowAwayEffect(side,effect,data)
+  def blowAwayEffect(user,side,effect,data)
     side.disableEffect(effect)
     if data.is_hazard?
       hazardName = data.real_name
@@ -1169,11 +1169,13 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
     if target.pbCanLowerStatStage?(@statDown[0],user,self)
       target.pbLowerStatStage(@statDown[0],@statDown[1],user)
     end
+    targetSide = target.pbOwnSide
+    ourSide = user.pbOwnSide
     eachDefoggable(targetSide,false) do |effect,data|
-      blowAwayEffect(targetSide,effect,data)
+      blowAwayEffect(user,targetSide,effect,data)
     end
     eachDefoggable(ourSide,true) do |effect,data|
-      blowAwayEffect(ourSide,effect,data)
+      blowAwayEffect(user,ourSide,effect,data)
     end
     if @battle.field.terrain != :None
       case @battle.field.terrain
@@ -1457,7 +1459,7 @@ end
 #===============================================================================
 class PokeBattle_Move_056 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    if user.pbOwnSide.effectActive?()
+    if user.pbOwnSide.effectActive?(:Mist)
       @battle.pbDisplay(_INTL("But it failed, because #{user.pbTeam(true)} is already shrouded in mist!"))
       return true
     end
@@ -2500,7 +2502,7 @@ end
 #===============================================================================
 class PokeBattle_Move_077 < PokeBattle_SleepMove
   def pbMoveFailed?(user,targets)
-    if !user.isSpecies?(:DARKRAI) && !user.transformedInto?(:DARKRAI)
+    if !user.countsAs?(:DARKRAI)
       @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis))
       return true
     end

@@ -136,8 +136,12 @@ class PokeBattle_Battler
 		return effectActive?(:Transform)
 	end
 
-	def transformedInto?(species)
-		return @effects[:TransformSpecies] == species
+	def countsAs?(speciesCheck)
+		return isSpecies?(speciesCheck) || transformedInto?(speciesCheck)
+	end
+
+	def transformedInto?(transformSpecies)
+		return @effects[:TransformSpecies] == transformSpecies
 	end
 	
 	def name

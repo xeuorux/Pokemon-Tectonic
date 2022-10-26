@@ -5,7 +5,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:apply_proc => Proc.new { |battle, battler, value|
 		battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",battler.pbThis))
 	},
-	:eor_proc => Proc.new { |battler,battle,value|
+	:eor_proc => Proc.new { |battle,battler,value|
 		next if !battler.canHeal?
 		healAmount = battler.totalhp / 8.0
 		healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
@@ -407,7 +407,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:apply_proc => Proc.new { |battle,battler,value|
 		battle.pbDisplay(_INTL("{1} firmly planted its roots! It can't be moved!",battler.pbThis))
 	},
-	:eor_proc => Proc.new { |battler,battle,value|
+	:eor_proc => Proc.new { |battle,battler,value|
 		next if !battler.canHeal?
 		healAmount = battler.totalhp / 8.0
 		healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
@@ -451,7 +451,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:disable_proc => Proc.new { |battle,battler,value|
 		battle.pbDisplay(_INTL("{1} shed Leech Seed!",battler.pbThis))
 	},
-	:eor_proc => Proc.new { |battler,battle,value|
+	:eor_proc => Proc.new { |battle,battler,value|
 		next if !battler.takesIndirectDamage?
 		recipient = battle.battlers[value]
 		next if !recipient || recipient.fainted?
@@ -885,7 +885,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:apply_proc => Proc.new { |battle,battler,value|
-		battle.pbDisplay(_INTL("{1} can't use sound-based moves for the next #{value-1} turns!",target.pbThis))
+		battle.pbDisplay(_INTL("{1} can't use sound-based moves for the next #{value-1} turns!",battler.pbThis))
 	},
 })
 

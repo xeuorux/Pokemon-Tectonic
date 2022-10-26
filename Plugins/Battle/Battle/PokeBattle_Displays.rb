@@ -1,22 +1,26 @@
 class PokeBattle_Battle
+    def showMessages?()
+      return !@messagesBlocked && !@autoTesting
+    end
+  
     def pbDisplay(msg,&block)
-        @scene.pbDisplayMessage(msg,&block) if !@messagesBlocked
+        @scene.pbDisplayMessage(msg,&block) if showMessages?
       end
     
       def pbDisplayBrief(msg)
-        @scene.pbDisplayMessage(msg,true) if !@messagesBlocked
+        @scene.pbDisplayMessage(msg,true) if showMessages?
       end
     
       def pbDisplayPaused(msg,&block)
-        @scene.pbDisplayPausedMessage(msg,&block) if !@messagesBlocked
+        @scene.pbDisplayPausedMessage(msg,&block) if showMessages?
       end
     
       def pbDisplayConfirm(msg)
-        return @scene.pbDisplayConfirmMessage(msg) if !@messagesBlocked
+        return @scene.pbDisplayConfirmMessage(msg) if showMessages?
       end
       
       def pbDisplayConfirmSerious(msg)
-        return @scene.pbDisplayConfirmMessageSerious(msg) if !@messagesBlocked
+        return @scene.pbDisplayConfirmMessageSerious(msg) if showMessages?
       end
     
       def pbShowCommands(msg,commands,canCancel=true)
@@ -24,7 +28,7 @@ class PokeBattle_Battle
       end
     
       def pbAnimation(move,user,targets,hitNum=0)
-        if @messagesBlocked
+        if !showMessages?
           echoln("Skipping animation during AI calculations.")
           return
         end
@@ -32,7 +36,7 @@ class PokeBattle_Battle
       end
     
       def pbCommonAnimation(name,user=nil,targets=nil)
-        if @messagesBlocked
+        if !showMessages?
           echoln("Skipping animation during AI calculations.")
           return
         end
@@ -41,7 +45,7 @@ class PokeBattle_Battle
       end
     
       def pbShowAbilitySplash(battler,delay=false,logTrigger=true)
-        return if @messagesBlocked
+        return if !showMessages?
         PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}") if logTrigger
         @scene.pbShowAbilitySplash(battler)
         if delay
@@ -52,12 +56,12 @@ class PokeBattle_Battle
       end
     
       def pbHideAbilitySplash(battler)
-        return if @messagesBlocked
+        return if !showMessages?
         @scene.pbHideAbilitySplash(battler)
       end
     
       def pbReplaceAbilitySplash(battler)
-        return if @messagesBlocked
+        return if !showMessages?
         @scene.pbReplaceAbilitySplash(battler)
       end
 end

@@ -41,7 +41,7 @@ module EffectHolder
         validateInteger(effectData)
         oldValue = @effects[effect]
         newValue = oldValue + incrementAmount
-        if newValue > effectData.maximum
+        if effectData.maximum && newValue > effectData.maximum
             echo(_INTL("[EFFECT] Effect incremented while already at maximum: #{effectData.real_name}"))
             return oldValue
         else
@@ -154,7 +154,7 @@ module EffectHolder
         validateInteger(effectData)
         return false if effectData.maximum.nil?
         value = @effects[effect]
-        raise _INTL("Effect above maximum: #{effectData.real_name}") if value >= effectData.maximum
+        raise _INTL("Effect above maximum: #{effectData.real_name}") if value > effectData.maximum
     end
 
     #################################################

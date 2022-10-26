@@ -612,7 +612,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
         next if b.effects[:FollowMe] <= maxFollowMe
         maxFollowMe = b.effects[:FollowMe]
       end
-      user.applyEffect(:FollowMe,maxFoowMe+1)
+      user.applyEffect(:FollowMe,maxFollowMe+1)
       user.applyEffect(:RagePowder) if @id == :RAGEPOWDER
     end
 
@@ -660,7 +660,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def unusableInGravity?; return true; end
   
     def pbMoveFailed?(user,targets)
-      if target.effectActive?(:Ingrain) || target.effectActive?(:SmackDown) || target.effectActive?(:MagnetRise)
+      if user.effectActive?(:Ingrain) || user.effectActive?(:SmackDown) || user.effectActive?(:MagnetRise)
         @battle.pbDisplay(_INTL("But it failed!"))
         return true
       end
@@ -1277,7 +1277,7 @@ end
     end
   
     def pbMoveFailed?(user,targets)
-      if !user.isSpecies?(:HOOPA)
+      if !user.countsAs?(:HOOPA)
         @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis(true)))
         return true
       elsif user.form!=1
@@ -1332,9 +1332,9 @@ end
     end
 
     def isValidTarget(user,target)
-      return false if !b.pbHasType?(:GRASS)
-      return false if b.semiInvulnerable?
-      return false if !b.pbCanRaiseStatStage?(:ATTACK,user,self) && !b.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
+      return false if !target.pbHasType?(:GRASS)
+      return false if target.semiInvulnerable?
+      return false if !target.pbCanRaiseStatStage?(:ATTACK,user,self) && !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
       return true
     end
   
@@ -1377,9 +1377,9 @@ end
     end
 
     def isValidTarget(user,target)
-      return false if !b.pbHasType?(:GRASS)
-      return false if b.semiInvulnerable?
-      return false if !b.pbCanRaiseStatStage?(:DEFENSE,user,self) && !b.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
+      return false if !target.pbHasType?(:GRASS)
+      return false if target.semiInvulnerable?
+      return false if !target.pbCanRaiseStatStage?(:DEFENSE,user,self) && !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
       return true
     end
   
@@ -2676,7 +2676,7 @@ end
 #===============================================================================
 class PokeBattle_Move_176 < PokeBattle_ParalysisMove
   def pbMoveFailed?(user,targets)
-    if @id == :AURAWHEEL && user.species != :MORPEKO && !user.transformedInto?(:MORPEKO)
+    if @id == :AURAWHEEL && !user.countsAs?(:MORPEKO)
       @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis))
       return true
     end
@@ -2843,8 +2843,8 @@ class PokeBattle_Move_17D < PokeBattle_Move
     if !user.effectActive?(:JawLock) && !target.effectActive?(:JawLock)
       user.applyEffect(:JawLock)
       target.applyEffect(:JawLock)
-      user.pointAt(:JawlockUser,target)
-      target.pointAt(:JawlockUser,user)
+      user.pointAt(:JawLockUser,target)
+      target.pointAt(:JawLockUser,user)
       @battle.pbDisplay(_INTL("Neither Pokémon can escape!"))
     end
   end

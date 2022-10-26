@@ -24,7 +24,7 @@ class PokeBattle_ActiveField
 			effectData.disable_field(@battle)
 		end
 		@eor_proc = proc do |effectData|
-			effectData.eor_field(@battle, self)
+			effectData.eor_field(@battle)
 		end
 		@remain_proc = proc do |effectData|
 			effectData.remain_field(@battle)
@@ -37,7 +37,7 @@ class PokeBattle_ActiveField
 		end
 	end
 
-	def applyEffect(effect, value = ni)
+	def applyEffect(effect, value = nil)
 		super(effect,value)
 		echoln("[FIELD EFFECT] Effect #{getName(effect)} applied to whole field")
 	end

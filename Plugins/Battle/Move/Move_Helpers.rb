@@ -75,7 +75,7 @@ class PokeBattle_Move
 
   def removeProtections(target)	
     GameData::BattleEffect.each do |effectData|
-      next if !effectData.protection_effect
+      next if !effectData.is_protection?
       case effectData.location
       when :Battler
         target.disableEffect(effectData.id)

@@ -302,8 +302,10 @@ class PokeBattle_Battler
 		#       self except if Snatched, but this message should state the original
 		#       user (self) even if the move is Snatched.
 		@battle.triggerBattlerIsUsingMoveDialogue(user,targets,move)
-		move.pbDisplayUseMessage(self, targets)
-		move.displayDamagingMoveMessages(self,targets) if move.damagingMove?
+		if !@battle.autoTesting
+			move.pbDisplayUseMessage(self, targets)
+			move.displayDamagingMoveMessages(self,targets) if move.damagingMove?
+		end
 		# Snatch's message (user is the new user, self is the original user)
 		if move.snatched
 			@lastMoveFailed = true # Intentionally applies to self, not user
@@ -719,7 +721,7 @@ class PokeBattle_Battler
 			move.pbAnimateHitAndHPLost(user, targets, multiHit)
 		end
 		# Self-Destruct/Explosion's damaging and fainting of user
-		move.pbSelfKO(user) if hitNum == 0
+		move.pbSelfKO(user) if hitNum == 0 && !@battle.autoTesting
 		user.pbFaint if user.fainted?
 		if move.pbDamagingMove?
 			targets.each do |b|

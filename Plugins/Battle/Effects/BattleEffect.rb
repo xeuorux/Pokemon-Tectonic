@@ -353,7 +353,7 @@ module GameData
 		end
 
 		def apply_field(battle)
-			value = battle.effects[@id]
+			value = battle.field.effects[@id]
 			@apply_proc.call(battle, value) if @apply_proc
 		end
 
@@ -442,7 +442,7 @@ module GameData
 		end
 
 		def eor_field(battle)
-			value = battle.effects[@id]
+			value = battle.field.effects[@id]
 			@eor_proc.call(battle, value) if @eor_proc
 		end
 
@@ -456,18 +456,18 @@ module GameData
 			position = battle.positions[index]
 			battler = battle.battlers[index]
 			return if battler.nil? || battler.fainted?
-			newValue = battler.effects[@id]
+			newValue = position.effects[@id]
 			@increment_proc.call(battle, index, position, battler, newValue, increment) if @increment_proc
 		end
 
 		def increment_side(battle, side, increment)
 			teamName = battle.battlers[side.index].pbTeam
-			newValue = battler.effects[@id]
+			newValue = side.effects[@id]
 			@increment_proc.call(battle, side, teamName, newValue, increment) if @increment_proc
 		end
 
 		def increment_field(battle, increment)
-			newValue = battler.effects[@id]
+			newValue = battle.field.effects[@id]
 			@increment_proc.call(battle, newValue, increment) if @increment_proc
 		end
 

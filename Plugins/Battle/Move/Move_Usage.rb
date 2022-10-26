@@ -118,6 +118,7 @@ class PokeBattle_Move
     def pbInitialEffect(user,targets,hitNum); end
   
     def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
+      return if @autoTesting
       return if !showAnimation
       if user.effects[:ParentalBond] == 1
         @battle.pbCommonAnimation("ParentalBond",user,targets)
@@ -315,6 +316,7 @@ class PokeBattle_Move
     #=============================================================================
     # Animate being damaged and losing HP (by a move)
     def pbAnimateHitAndHPLost(user,targets,fastHitAnimation=false)
+        return if @battle.autoTesting
         # Animate allies first, then foes
         animArray = []
         for side in 0...2   # side here means "allies first, then foes"

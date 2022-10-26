@@ -270,8 +270,8 @@ end
 #===============================================================================
 class PokeBattle_Move_091 < PokeBattle_DoublingMove
   def initialize(battle, move)
-      super
-      @usageCountEffect = :FuryCutter
+    @usageCountEffect = :FuryCutter
+    super
   end
 end
   
@@ -285,7 +285,7 @@ class PokeBattle_Move_092 < PokeBattle_Move
     super
     # If this is the first time the move is being used this turn
     if !user.pbOwnSide.effectActive?(:EchoedVoiceUsed)
-      data = GameData::BattleEffect(:EchoedVoiceCounter)
+      data = GameData::BattleEffect.get(:EchoedVoiceCounter)
       user.pbOwnSide.effects[:EchoedVoiceCounter] = [oldCount+1,data.maximum].min
     end
     user.pbOwnSide.effects[:EchoedVoiceUsed] = true
@@ -2186,8 +2186,8 @@ class PokeBattle_Move_0CE < PokeBattle_TwoTurnMove
     # NOTE: Sky Drop doesn't benefit from Power Herb, probably because it works
     #       differently (i.e. immobilises the target during use too).
     @powerHerb = false
-    @chargingTurn = !effectActive?(:TwoTurnAttack)
-    @damagingTurn = effectActive?(:TwoTurnAttack)
+    @chargingTurn = !user.effectActive?(:TwoTurnAttack)
+    @damagingTurn = user.effectActive?(:TwoTurnAttack)
     return !@damagingTurn
   end
 
@@ -2225,7 +2225,7 @@ class PokeBattle_Move_0CE < PokeBattle_TwoTurnMove
   end
 
   def pbChargingTurnEffect(user,target)
-    target.pointAt(SkyDrop,user)
+    target.pointAt(:SkyDrop,user)
   end
 
   def pbAttackingTurnEffect(user,target)
@@ -2324,7 +2324,7 @@ class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
   def pbAddTarget(targets,user)
     return if user.effects[:Bide] != 1   # Not the attack turn
     target = user.getBattlerPointsTo(:BideTarget)
-    if !user.pbAddTarget(targets,user,t,self,false)
+    if !user.pbAddTarget(targets,user,target,self,false)
       user.pbAddTargetRandomFoe(targets,user,self,false)
     end
   end
@@ -3153,13 +3153,13 @@ class PokeBattle_Move_0EF < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    target.pointAt(:MeanLook,user.dex) if !target.effectActive?(:MeanLook)
+    target.pointAt(:MeanLook,user) if !target.effectActive?(:MeanLook)
   end
 
   def pbAdditionalEffect(user,target)
     return if target.fainted? || target.damageState.substitute
     return if target.effectActive?(:MeanLook)
-    target.pointAt(:MeanLook,user) if !target.effectActive?(:MeanLook)
+    target.pointAt(:MeanLook) if !target.effectActive?(:MeanLook)
   end
 
   def getScore(score,user,target,skill=100)

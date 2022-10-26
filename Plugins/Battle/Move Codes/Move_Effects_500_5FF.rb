@@ -1224,8 +1224,8 @@ end
 #===============================================================================
 class PokeBattle_Move_543 < PokeBattle_DoublingMove
     def initialize(battle, move)
+		@usageCountEffect = :IceBall
         super
-        @usageCountEffect = :IceBall
     end
 end
   
@@ -1234,8 +1234,8 @@ end
 #===============================================================================
 class PokeBattle_Move_544 < PokeBattle_DoublingMove
     def initialize(battle, move)
+		@usageCountEffect = :RollOut
         super
-        @usageCountEffect = :RollOut
     end
 end
 
@@ -1361,7 +1361,7 @@ class PokeBattle_Move_54B < PokeBattle_StatUpMove
 	def pbEffectAfterAllHits(user,target)
 		return if user.fainted? || target.damageState.unaffected
 		user.disableEffect(:Trapping)
-		user.disableEffects(:LeechSeed)
+		user.disableEffect(:LeechSeed)
 		user.pbOwnSide.eachEffect(true) do |effect,value,data|
 			next unless data.is_hazard?
 			user.pbOwnSide.disableEffect(effect)

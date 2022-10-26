@@ -341,7 +341,7 @@ class PokeBattle_Battler
 					next if !data.protection_info[:does_negate_proc].call(user,target,move,@battle)
 				end
 				effectName = data.real_name
-				animationName = data.protection_effect[:animation_name] || effect.to_s
+				animationName = data.protection_info[:animation_name] || effect.to_s
 				negated = doesProtectionEffectNegateThisMove?(effectName, move, user, target, protectionIgnoredByAbility, animationName) do
 					if data.protection_info&.has_key?(:hit_proc)
 						data.protection_info[:hit_proc].call(user,target,move,@battle)
