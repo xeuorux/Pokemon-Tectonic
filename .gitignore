@@ -27,3 +27,8 @@ Game.ini
 *.code-workspace
 signature_moves.txt
 signature_abilities.txt
+game_install_.zip
+generate_install_zip.bat
+generate_patch_zip.bat
+install_files.txt
+patch_.zip
