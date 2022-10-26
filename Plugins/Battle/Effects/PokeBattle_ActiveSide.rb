@@ -32,7 +32,7 @@ class PokeBattle_ActiveSide
 		end
 	end
 
-	def applyEffect(effect, value = ni)
+	def applyEffect(effect, value = nil)
 		super(effect,value)
 		echoln("[SIDE EFFECT] Effect #{getName(effect)} applied to side #{index}")
 	end
