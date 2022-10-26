@@ -13,6 +13,8 @@ end
 # Eifion - 4 
 # Candy - 5
 
+RECURRING_NPC_COUNT = 6
+
 class NPCRandomization
     attr_reader :chosenNPC1
     attr_reader :chosenNPC2
@@ -20,9 +22,9 @@ class NPCRandomization
     attr_reader :npc2Traitor
 
     def initialize
-        @chosenNPC1 = Random.rand(6) # Random number between 0 and 5 inclusive
+        @chosenNPC1 = Random.rand(RECURRING_NPC_COUNT) # Random number between 0 and 5 inclusive
         loop do
-            @chosenNPC2 = Random.rand(6)
+            @chosenNPC2 = Random.rand(RECURRING_NPC_COUNT)
             break if @chosenNPC2 != @chosenNPC1
         end
         echoln("The chosen random NPC ids are: #{@chosenNPC1} and #{chosenNPC2}")
@@ -104,12 +106,13 @@ end
 # NPC team 0, NPC team 0 cursed, NPC team 1, NPC team 1 cursed, etc.
 # [MASKEDVILLAIN,Crimson]
 # [MASKEDVILLAIN2,Teal]
-def randomNPCTrainerBattle(isRandom1)
+def randomNPCTrainerBattle(isRandom1,fightSection=0)
     trainerVersion = isRandom1 ? $npc_randomization.chosenNPC1 : $npc_randomization.chosenNPC2
     trainerVersion *= 2
     if $PokemonGlobal.tarot_amulet_active
         trainerVersion += 1
     end
+    trainerVersion += fightSection * RECURRING_NPC_COUNT * 2
 
     trainerType = isRandom1 ? "MASKEDVILLAIN" : "MASKEDVILLAIN2"
     trainerName = isRandom1 ? "Crimson" : "Teal"
@@ -117,12 +120,12 @@ def randomNPCTrainerBattle(isRandom1)
     return pbTrainerBattle(trainerType,trainerName,nil, false, trainerVersion)
 end
 
-def fightVillainCrimson()
-    randomNPCTrainerBattle(true)
+def fightVillainCrimson(fightSection=0)
+    randomNPCTrainerBattle(true,fightSection)
 end
 
-def fightVillainTeal()
-    randomNPCTrainerBattle(false)
+def fightVillainTeal(fightSection=0)
+    randomNPCTrainerBattle(false,fightSection)
 end
 
 DebugMenuCommands.register("setnpcchosen1", {
