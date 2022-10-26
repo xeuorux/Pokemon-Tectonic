@@ -4,10 +4,6 @@ class PokeBattle_ActiveField
 	attr_accessor :effects, :defaultWeather, :weather, :weatherDuration, :defaultTerrain, :terrain, :terrainDuration
 
 	def initialize(battle)
-		@effects = {}
-		GameData::BattleEffect.each_field_effect do |effectData|
-			@effects[effectData.id] = effectData.default
-		end
 		@defaultWeather  = :None
 		@weather         = :None
 		@weatherDuration = 0
@@ -15,6 +11,8 @@ class PokeBattle_ActiveField
 		@terrain         = :None
 		@terrainDuration = 0
 		@battle = battle
+
+		@effects = {}
 		
 		@location = :Field
 		@apply_proc = proc do |effectData|
@@ -34,6 +32,15 @@ class PokeBattle_ActiveField
 		end
 		@increment_proc = proc do |effectData,increment|
 			effectData.increment_field(@battle,increment)
+		end
+
+		resetEffects()
+	end
+
+	def resetEffects()
+		@effects.clear
+		GameData::BattleEffect.each_field_effect do |effectData|
+			@effects[effectData.id] = effectData.default
 		end
 	end
 

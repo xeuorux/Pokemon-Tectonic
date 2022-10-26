@@ -1,37 +1,37 @@
 BattleHandlers::AccuracyCalcTargetAbility.add(:LIGHTNINGROD,
-  proc { |ability,mods,user,target,move,type|
-    mods[:base_accuracy] = 0 if type == :ELECTRIC
+  proc { |ability,mults,user,target,move,type|
+    mults[:base_accuracy] = 0 if type == :ELECTRIC
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:NOGUARD,
-  proc { |ability,mods,user,target,move,type|
-    mods[:base_accuracy] = 0
+  proc { |ability,mults,user,target,move,type|
+    mults[:base_accuracy] = 0
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:STORMDRAIN,
-  proc { |ability,mods,user,target,move,type|
-    mods[:base_accuracy] = 0 if type == :WATER
+  proc { |ability,mults,user,target,move,type|
+    mults[:base_accuracy] = 0 if type == :WATER
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:UNAWARE,
-  proc { |ability,mods,user,target,move,type|
-    mods[:accuracy_stage] = 0 if move.damagingMove?
+  proc { |ability,mults,user,target,move,type|
+    mults[:accuracy_stage] = 0 if move.damagingMove?
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:WONDERSKIN,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,mults,user,target,move,type|
     if move.statusMove? && user.opposes?(target)
-      mods[:base_accuracy] = 50 if mods[:base_accuracy] > 50
+      mults[:base_accuracy] = 50 if mults[:base_accuracy] > 50
     end
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:TANGLEDFEET,
-    proc { |ability,mods,user,target,move,type|
-      mods[:accuracy_multiplier] /= 2 if target.confused? || target.charmed?
+    proc { |ability,mults,user,target,move,type|
+      mults[:accuracy_multiplier] /= 2 if target.confused? || target.charmed?
     }
 )

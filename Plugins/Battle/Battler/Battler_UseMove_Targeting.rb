@@ -82,7 +82,6 @@ class PokeBattle_Battler
 	end
 
 	def moveWillFail(user, target, move)
-		return true if target.effectActive?(:QuickGuard) && @battle.choices[user.index][4] > 0
 		return true if target.protectedAgainst?(user,move)
 		return true if invulnerableTwoTurnAttack?(target, move)
 		return true if move.pbImmunityByAbility(user, target)

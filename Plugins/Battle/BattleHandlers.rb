@@ -253,24 +253,24 @@ module BattleHandlers
   
 	#=============================================================================
   
-	def self.triggerAccuracyCalcUserAbility(ability,mods,user,target,move,type)
-	  AccuracyCalcUserAbility.trigger(ability,mods,user,target,move,type)
+	def self.triggerAccuracyCalcUserAbility(ability,mults,user,target,move,type)
+	  AccuracyCalcUserAbility.trigger(ability,mults,user,target,move,type)
 	end
   
-	def self.triggerAccuracyCalcUserAllyAbility(ability,mods,user,target,move,type)
-	  AccuracyCalcUserAllyAbility.trigger(ability,mods,user,target,move,type)
+	def self.triggerAccuracyCalcUserAllyAbility(ability,mults,user,target,move,type)
+	  AccuracyCalcUserAllyAbility.trigger(ability,mults,user,target,move,type)
 	end
   
-	def self.triggerAccuracyCalcTargetAbility(ability,mods,user,target,move,type)
-	  AccuracyCalcTargetAbility.trigger(ability,mods,user,target,move,type)
+	def self.triggerAccuracyCalcTargetAbility(ability,mults,user,target,move,type)
+	  AccuracyCalcTargetAbility.trigger(ability,mults,user,target,move,type)
 	end
   
-	def self.triggerAccuracyCalcUserItem(item,mods,user,target,move,type)
-	  AccuracyCalcUserItem.trigger(item,mods,user,target,move,type)
+	def self.triggerAccuracyCalcUserItem(item,mults,user,target,move,type)
+	  AccuracyCalcUserItem.trigger(item,mults,user,target,move,type)
 	end
   
-	def self.triggerAccuracyCalcTargetItem(item,mods,user,target,move,type)
-	  AccuracyCalcTargetItem.trigger(item,mods,user,target,move,type)
+	def self.triggerAccuracyCalcTargetItem(item,mults,user,target,move,type)
+	  AccuracyCalcTargetItem.trigger(item,mults,user,target,move,type)
 	end
   
 	#=============================================================================

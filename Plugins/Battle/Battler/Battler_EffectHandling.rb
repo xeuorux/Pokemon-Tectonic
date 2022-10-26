@@ -1,17 +1,25 @@
 class PokeBattle_Battler
 	include EffectHolder
 
+	def resetEffects()
+		@effects.clear
+		# Reset values, accounting for baton pass
+		GameData::BattleEffect.each_battler_effect do |effectData|
+			@effects[effectData.id] = effectData.default
+		end
+	end
+
 	def applyEffect(effect, value = nil, ignoreFainted=false)
 		return if fainted? && !ignoreFainted
 		super(effect,value)
-		echoln("[BATTLER EFFECT] Effect #{effect} applied to battler #{pbThis(true)}") if !effectActive?(effect)
+		#echoln("[BATTLER EFFECT] Effect #{effect} applied to battler #{pbThis(true)}") if !effectActive?(effect)
 		pbItemStatusCureCheck
 		pbAbilityStatusCureCheck
 	end
 
 	def disableEffect(effect, ignoreFainted=false)
 		return if fainted? && !ignoreFainted
-		echoln("[BATTLER EFFECT] Effect #{effect} disabled on battler #{pbThis(true)}") if effectActive?(effect)
+		#echoln("[BATTLER EFFECT] Effect #{effect} disabled on battler #{pbThis(true)}") if effectActive?(effect)
 		super(effect)
 	end
 

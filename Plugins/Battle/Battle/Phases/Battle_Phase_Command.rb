@@ -184,7 +184,7 @@ class PokeBattle_Battle
       #       options!
     end
   
-    	#=============================================================================
+    #=============================================================================
 	# Command phase
 	#=============================================================================
 	def pbCommandPhase
@@ -261,9 +261,60 @@ class PokeBattle_Battle
 		pbCommandPhaseLoop(true)   # Player chooses their actions
 	end
 
+	def chooseAutoTesting(idxBattler)
+		moveData = GameData::Move::DATA.values.sample
+		return if moveData.nil? || moveData.zMove?
+		moveId = moveData.id
+		
+		moveObject = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(moveId))
+		@battlers[idxBattler].moves[0] = moveObject
+		
+		@choices[idxBattler][0] = :UseMove         # "Use move"
+		@choices[idxBattler][1] = 0   # Index of move to be used
+		@choices[idxBattler][2] = moveObject       # PokeBattle_Move object
+		@choices[idxBattler][3] = -1
+	end
+
+	def changeBattlersForAutoTesting()
+		statuses = [:POISON,:BURN,:PARALYSIS,:FROSTBITE,:MYSTIFIED,:FLUSTERED,:SLEEP]
+
+		changeChance = 10
+
+		# Change all battlers
+		@battlers.each do |b|
+			next if b.nil? || b.pokemon.nil?
+			b.hp = b.totalhp * [0.25,0.5,0.75,1.0,1.0,1.0,1.0,1.0].sample
+			if pbRandom(100) < changeChance
+				b.pbInflictStatus(statuses.sample)
+			elsif pbRandom(100) < changeChance
+				b.pbCureStatus(false)
+			end
+			b.pbResetStatStages() if pbRandom(100) < changeChance
+			b.pbInitPokemon(b.pokemon,b.index) if pbRandom(100) < changeChance
+			if pbRandom(100) < changeChance
+				b.ability =  GameData::Ability::DATA.values.sample
+				b.pbEffectsOnSwitchIn
+			end
+			if pbRandom(100) < changeChance
+				b.item = GameData::Item::DATA.values.sample
+				b.pbHeldItemTriggerCheck
+			end
+		end
+		@field.resetEffects if pbRandom(100) < changeChance
+		@sides.each do |side|
+			side.resetEffects if pbRandom(100) < changeChance
+		end
+		@positions.each do |position|
+			position.resetEffects if pbRandom(100) < changeChance
+		end
+		Graphics.update
+	end
+
 	def pbCommandPhaseLoop(isPlayer)
 		# NOTE: Doing some things (e.g. running, throwing a Poké Ball) takes up all
 		#       your actions in a round.
+		changeBattlersForAutoTesting() if @autoTesting
+
 		actioned = []
 		idxBattler = -1
 		loop do
@@ -278,7 +329,11 @@ class PokeBattle_Battle
 		  next if !pbCanShowCommands?(idxBattler)   # Action is forced, can't choose one
 		  # AI controls this battler
 		  if @controlPlayer || !pbOwnedByPlayer?(idxBattler)
-			next if @autoTesting
+			if @autoTesting
+				chooseAutoTesting(idxBattler)
+				next
+			end
+			
 			# Debug testing thing
 			@battleAI.beginAutoTester(battler) if $DEBUG && Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
 		  
@@ -298,28 +353,9 @@ class PokeBattle_Battle
 		  
 		  # Player chooses an action
 		  actioned.push(idxBattler)
-		  
+
 		  if @autoTesting
-			moveData = GameData::Move::DATA[@autoTestingIndex]
-			@autoTestingIndex += 1
-			next if moveData.nil?
-			moveId = moveData.id
-			
-			moveObject = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(moveId))
-			@battlers[idxBattler].moves[0] = moveObject
-		  
-			@choices[idxBattler][0] = :UseMove         # "Use move"
-			@choices[idxBattler][1] = 0   # Index of move to be used
-			@choices[idxBattler][2] = moveObject       # PokeBattle_Move object
-			@choices[idxBattler][3] = -1
-			
-			# Heal all battlers
-			@battlers.each do |b|
-				b.hp = b.totalhp
-				b.pbCureStatus(false)
-				b.pbResetStatStages()
-				b.pbInitPokemon(b.pokemon,b.index)
-			end
+			chooseAutoTesting(idxBattler)
 			next
 		  end
 		  

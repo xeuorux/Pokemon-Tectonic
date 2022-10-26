@@ -8,9 +8,7 @@ class PokeBattle_ActivePosition
 		@index = index
 
 		@effects = {}
-		GameData::BattleEffect.each_position_effect do |effectData|
-			@effects[effectData.id] = effectData.default
-		end
+		
 		@location = :Position
 		@apply_proc = proc do |effectData|
 			effectData.apply_position(@battle, @index)
@@ -29,6 +27,15 @@ class PokeBattle_ActivePosition
 		end
 		@increment_proc = proc do |effectData,increment|
 			effectData.increment_position(@battle, @index,increment)
+		end
+
+		resetEffects()
+	end
+
+	def resetEffects()
+		@effects.clear
+		GameData::BattleEffect.each_position_effect do |effectData|
+			@effects[effectData.id] = effectData.default
 		end
 	end
 

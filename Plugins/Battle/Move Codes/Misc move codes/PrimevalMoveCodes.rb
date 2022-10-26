@@ -270,7 +270,7 @@ class PokeBattle_Move_618 < PokeBattle_Move
 	
 	def pbEffectGeneral(user)
 		super
-		user.applyEffect(:EmpoweredEndure,EmpoweredEndure)
+		user.applyEffect(:EmpoweredEndure,3)
 		transformType(user,:NORMAL)
 	end
 end
@@ -364,8 +364,10 @@ class PokeBattle_Move_625 < PokeBattle_HalfHealingMove
 	def pbEffectGeneral(user)
 		super
 
-		@battle.pbDisplay(_INTL("{1} summons a helper!",user.pbThis))
-		@battle.addAvatarBattler(:COMBEE,user.level)
+		if @battle.pbSideSize(user.index) < 3
+			@battle.pbDisplay(_INTL("{1} summons a helper!",user.pbThis))
+			@battle.addAvatarBattler(:COMBEE,user.level,user.index % 2)
+		end
 		
 		transformType(user,:BUG)
 	end
@@ -397,7 +399,7 @@ class PokeBattle_Move_627 < PokeBattle_Move_030
 
 	def pbEffectGeneral(user)
 		super
-		b.applyEffect(:ExtraTurns,2)
+		user.applyEffect(:ExtraTurns,2)
 		transformType(user,:ROCK)
 	end
 end

@@ -1584,7 +1584,7 @@ class PokeBattle_Move_557 < PokeBattle_Move
     return if target.damageState.hpLost <= 0
 	return if !user.lastAttacker.include?(target.index)
     hpGain = (target.damageState.hpLost*2/3).round
-    user.pbRecoverHPFromDrain(hpGain,target) if drain
+    user.pbRecoverHPFromDrain(hpGain,target)
   end
 
   def getScore(score,user,target,skill=100)
@@ -1940,7 +1940,7 @@ end
 class PokeBattle_Move_56D < PokeBattle_Move
 	def pbMoveFailed?(user,targets)
 	  if user.effectActive?(:VolleyStance)
-		@battle.pbDisplay(_INTL("But it faile, since #{user.pbthis(true)} is already in that stance!"))
+		@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already in that stance!"))
 		return true
 	  end
 	  return false
@@ -2051,7 +2051,7 @@ class PokeBattle_Move_572 < PokeBattle_SleepMove
 	def pbEffectAgainstTarget(user,target)
 		target.pbCureStatus(false)
 		target.pbSleep
-		user.pbRaiseStatStage(:ATTACK,1,user) if user.pbCanRaiseStatStage(:ATTACK,user,self)
+		user.pbRaiseStatStage(:ATTACK,1,user) if user.pbCanRaiseStatStage?(:ATTACK,user,self)
 	end
 
 	def getScore(score,user,target,skill=100)

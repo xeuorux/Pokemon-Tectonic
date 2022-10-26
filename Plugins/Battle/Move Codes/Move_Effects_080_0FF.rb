@@ -1703,7 +1703,7 @@ class PokeBattle_Move_0BA < PokeBattle_Move
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    return if targe.effectActive?(:Taunt)
+    return if target.effectActive?(:Taunt)
     return true if pbMoveFailedAromaVeil?(user,target)
     return if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
     target.applyEffect(:Taunt,4)

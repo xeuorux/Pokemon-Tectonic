@@ -213,7 +213,11 @@ class PokeBattle_Battler
 		return false unless pbObedienceCheck?(choice)
 		# Truant
 		if hasActiveAbility?(:TRUANT)
-			applyEffect(:Truant,!@effects[:Truant])
+			if effectActive?(:Truant)
+				applyEffect(:Truant)
+			else
+				disableEffect(:Truant)
+			end
 			if !effectActive?(:Taunt) && move.id != :SLACKOFF # True means loafing, but was just inverted
 				@battle.pbShowAbilitySplash(self)
 				@battle.pbDisplay(_INTL('{1} is loafing around!', pbThis))
@@ -341,7 +345,7 @@ class PokeBattle_Battler
 					next if !data.protection_info[:does_negate_proc].call(user,target,move,@battle)
 				end
 				effectName = data.real_name
-				animationName = data.protection_info[:animation_name] || effect.to_s
+				animationName = data.protection_info ? data.protection_info[:animation_name] : effect.to_s
 				negated = doesProtectionEffectNegateThisMove?(effectName, move, user, target, protectionIgnoredByAbility, animationName) do
 					if data.protection_info&.has_key?(:hit_proc)
 						data.protection_info[:hit_proc].call(user,target,move,@battle)

@@ -44,10 +44,10 @@ class PokeBattle_Battle
         @scene.pbCommonAnimation(name,user,targets) if @showAnims
       end
     
-      def pbShowAbilitySplash(battler,delay=false,logTrigger=true)
+      def pbShowAbilitySplash(battler,delay=false,logTrigger=true,fakeName=nil)
         return if !showMessages?
         PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}") if logTrigger
-        @scene.pbShowAbilitySplash(battler)
+        @scene.pbShowAbilitySplash(battler,fakeName)
         if delay
           frames = Graphics.frame_rate # Default 1 second
           frames /= 2 if $PokemonSystem.battlescene > 0

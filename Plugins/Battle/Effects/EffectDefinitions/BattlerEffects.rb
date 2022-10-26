@@ -221,15 +221,17 @@ GameData::BattleEffect.register_effect(:Battler,{
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Encore,
 	:real_name => "Encore Turns",
+	:type => :Integer,
 	:is_mental => true,
 	:apply_proc => Proc.new { |battle, battler, value|
 		battler.applyEffect(:EncoreMove,battler.lastRegularMoveUsed)
 		battle.pbDisplay(_INTL("{1} received an encore!",battler.pbThis))
+		battle.pbDisplay(_INTL("It will repeat its move for the next #{value-1} turns!"))
 	},
 	:eor_proc => Proc.new { |battle,battler,value|
 		next if battler.fainted?
-		idxEncoreMove = b.pbEncoredMoveIndex
-		if idxEncoreMove < 0 || b.moves[idxEncoreMove].pp == 0
+		idxEncoreMove = battler.pbEncoredMoveIndex
+		if idxEncoreMove < 0 || battler.moves[idxEncoreMove].pp == 0
 			battler.disableEffect(:EncoreMove)
 		else
 			battler.tickDownAndProc(:Encore)
@@ -455,7 +457,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 		next if !battler.takesIndirectDamage?
 		recipient = battle.battlers[value]
 		next if !recipient || recipient.fainted?
-		pbCommonAnimation("LeechSeed",recipient,battler)
+		battle.pbCommonAnimation("LeechSeed",recipient,battler)
 		oldHPRecipient = recipient.hp
 		hpLost = battler.applyFractionalDamage(1.0/8.0,false)
 		drainMessage = _INTL("{1}'s health is sapped by Leech Seed!",battler.pbThis)
@@ -580,7 +582,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Will Move Next",
 	:resets_battlers_sot => true,
 	:apply_proc => Proc.new { |battle, battler, value|
-		battle.disableEffect(:Quash)
+		battler.disableEffect(:Quash)
 	},
 })
 
@@ -725,7 +727,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:resets_battlers_sot => true,
 	:apply_proc => Proc.new { |battle, battler, value|
-		battle.disableEffect(:MoveNext)
+		battler.disableEffect(:MoveNext)
 	},
 })
 
@@ -1490,7 +1492,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 		:hit_proc => Proc.new { |user, target, move, battle|
 			if move.specialMove?
 				battle.pbDisplay(_INTL('{1} was hurt!', user.pbThis))
-				uuserser.applyFractionalDamage(1.0 / 8.0)
+				user.applyFractionalDamage(1.0 / 8.0)
 			end
 		}
 	}

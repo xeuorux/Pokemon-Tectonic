@@ -84,6 +84,7 @@ class PokemonDataBox < SpriteWrapper
 		@currentHP   = oldHP
 		@endHP       = newHP
 		@rangeHP     = rangeHP
+		fastAnimation = true if @battler.battle.autoTesting
 		if !fastAnimation
 			# NOTE: A change in HP takes the same amount of time to animate, no matter
 			#       how big a change it is.

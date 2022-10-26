@@ -28,7 +28,7 @@ GameData::BattleEffect.register_effect(:Position,{
 		end
 		next if moveUser.nil?   # User is fainted
 		moveName = GameData::Move.get(move).name
-		pbDisplay(_INTL("{1} took the {2} attack!",battler.pbThis,moveName))
+		battle.pbDisplay(_INTL("{1} took the {2} attack!",battler.pbThis,moveName))
 		# NOTE: Future Sight failing against the target here doesn't count towards
 		#       Stomping Tantrum.
 		userLastMoveFailed = moveUser.lastMoveFailed
@@ -94,7 +94,7 @@ GameData::BattleEffect.register_effect(:Position,{
 		if battler.canHeal?
 			wishMaker = battle.pbThisEx(index,position.effects[:WishMaker])
 			healingMessage = _INTL("{1}'s wish came true!",wishMaker)
-			battler.pbRecoverHP(pos.effects[:WishAmount],true,true,true,healingMessage)
+			battler.pbRecoverHP(position.effects[:WishAmount],true,true,true,healingMessage)
 		end
 	},
 	:sub_effects => [:WishAmount,:WishMaker],

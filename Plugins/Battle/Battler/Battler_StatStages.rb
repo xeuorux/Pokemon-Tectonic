@@ -320,7 +320,7 @@ class PokeBattle_Battler
 	def pbLowerSpecialAttackStatStageFascinate(user)
 		return false if fainted?
 		# NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
-		if substitute?
+		if substituted?
 			@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
 			return false
 		end

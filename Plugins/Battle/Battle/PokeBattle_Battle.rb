@@ -122,7 +122,7 @@ class PokeBattle_Battle
       partyOrders = pbPartyOrder(idxBattler)
       idxStart, _idxEnd = pbTeamIndexRangeFromBattlerIndex(idxBattler)
       ret = []
-      eachInTeamFromBattlerIndex(idxBattler) { |pkmn,i| ret[partyOrders[i]-idxStart] = pkmn }
+      eachInTeamFromBattlerIndex(idxBattler) { |pkmn,i| ret[partyOrders[i] - idxStart] = pkmn }
       return ret
     end
   
@@ -420,12 +420,14 @@ class PokeBattle_Battle
     # Only used for Wish, as the Wishing Pokémon will no longer be in battle.
     def pbThisEx(idxBattler,idxParty)
       party = pbParty(idxBattler)
+      partyMember = party[idxParty]
+      return "ERROR" if partyMember.nil?
       if opposes?(idxBattler)
-        return _INTL("The opposing {1}",party[idxParty].name) if trainerBattle?
-        return _INTL("The wild {1}",party[idxParty].name)
+        return _INTL("The opposing {1}",partyMember.name) if trainerBattle?
+        return _INTL("The wild {1}",partyMember.name)
       end
-      return _INTL("The ally {1}",party[idxParty].name) if !pbOwnedByPlayer?(idxBattler)
-      return party[idxParty].name
+      return _INTL("The ally {1}",partyMember.name) if !pbOwnedByPlayer?(idxBattler)
+      return partyMember.name
     end
 end
   

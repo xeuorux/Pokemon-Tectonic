@@ -299,7 +299,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ASONEICE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} has 2 Abilities!",battler.name))
-    battle.pbShowAbilitySplash(battler,false,true,PBAbilities.getName(getID(PBAbilities,:UNNERVE)))
+    battle.pbShowAbilitySplash(battler,false,true,GameData::Ability.get(:UNNERVE).name)
     battle.pbDisplay(_INTL("{1} is too nervous to eat Berries!",battler.pbOpposingTeam))
     battle.pbHideAbilitySplash(battler)
   }

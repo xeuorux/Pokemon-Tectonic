@@ -13,7 +13,7 @@ class PokeBattle_Battler
 		PBDebug.log("[HP change] #{pbThis} lost #{amt} HP (#{oldHP}=>#{@hp})") if amt.positive?
 		raise _INTL('HP less than 0') if @hp.negative?
 		raise _INTL('HP greater than total HP') if @hp > @totalhp
-		@battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim && amt.positive?
+		@battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim && amt.positive? && !@battle.autoTesting
 		@tookDamage = true if amt.positive? && registerDamage
 		return amt
 	end
@@ -142,6 +142,11 @@ class PokeBattle_Battler
 	def pbFaint(showMessage = true)
 		unless fainted?
 			PBDebug.log("!!!***Can't faint with HP greater than 0")
+			return
+		end
+		if @battle.autoTesting
+			@hp = @totalhp
+			echoln("#{pbThis} returned to full health instead of fainted during auto testing")
 			return
 		end
 		return if @fainted # Has already fainted properly

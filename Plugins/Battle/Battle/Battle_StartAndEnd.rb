@@ -102,7 +102,7 @@ class PokeBattle_Battle
     #=============================================================================
     # Set up all battlers
     #=============================================================================
-    def pbCreateBattler(idxBattler,pkmn,idxParty)
+    def pbCreateBattler(idxBattler,pkmn=nil,idxParty=-1)
       if !@battlers[idxBattler].nil?
         raise _INTL("Battler index {1} already exists",idxBattler)
       end
@@ -110,7 +110,9 @@ class PokeBattle_Battle
       @positions[idxBattler] = PokeBattle_ActivePosition.new(self,idxBattler)
       pbClearChoice(idxBattler)
       @successStates[idxBattler] = PokeBattle_SuccessState.new
-      @battlers[idxBattler].pbInitialize(pkmn,idxParty)
+      if pkmn
+        @battlers[idxBattler].pbInitialize(pkmn,idxParty)
+      end
     end
   
     def pbSetUpSides
@@ -673,6 +675,7 @@ class PokeBattle_Battle
     def pbDecisionOnDraw; return 5; end     # Draw
   
     def pbJudge
+      return if @autoTesting
       fainted1 = pbAllFainted?(0)
       fainted2 = pbAllFainted?(1)
       if fainted1 && fainted2; @decision = pbDecisionOnDraw   # Draw

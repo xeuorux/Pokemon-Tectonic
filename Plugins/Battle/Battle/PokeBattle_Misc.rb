@@ -165,10 +165,10 @@ class PokeBattle_Battle
       yield side
     end
     @positions.each_with_index do |position,index|
-      yield position
+      yield position if !position.nil?
     end
     eachBattler do |b|
-      yield b
+      yield b if !b.nil?
     end
   end
 

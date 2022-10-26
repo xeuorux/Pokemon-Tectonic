@@ -7,10 +7,9 @@ class PokeBattle_ActiveSide
 	def initialize(battle,index)
 		@battle = battle
 		@index = index
+
 		@effects = {}
-		GameData::BattleEffect.each_side_effect do |effectData|
-			@effects[effectData.id] = effectData.default
-		end
+		
 		@location = :Side
 		@apply_proc = proc do |effectData|
 			effectData.apply_side(@battle, self)
@@ -29,6 +28,15 @@ class PokeBattle_ActiveSide
 		end
 		@increment_proc = proc do |effectData,increment|
 			effectData.increment_side(@battle, self,increment)
+		end
+
+		resetEffects()
+	end
+
+	def resetEffects()
+		@effects.clear
+		GameData::BattleEffect.each_side_effect do |effectData|
+			@effects[effectData.id] = effectData.default
 		end
 	end
 

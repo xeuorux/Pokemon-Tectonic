@@ -380,7 +380,7 @@ class PokeBattle_Battler
 		return false if affectedByTerrain? && %i[Electric Misty].include?(@battle.field.terrain)
 		unless hasActiveAbility?(:SOUNDPROOF)
 			@battle.eachBattler do |b|
-				return false if b.effectActive?(:UPROAR)
+				return false if b.effectActive?(:Uproar)
 			end
 		end
 		return false if BattleHandlers.triggerStatusImmunityAbilityNonIgnorable(ability, self, :SLEEP)
@@ -545,6 +545,7 @@ class PokeBattle_Battler
 			next if oldStatus == :NONE
 
 			PokeBattle_Battler.showStatusCureMessage(oldStatus, self, @battle) if showMessages
+			PBDebug.log("[Status change] #{pbThis}'s status #{oldStatus} was cured")
 
 			# Lingering Daze
 			next unless oldStatus == :SLEEP
@@ -559,7 +560,6 @@ class PokeBattle_Battler
 		end
 
 		@battle.scene.pbRefreshOne(@index)
-		PBDebug.log("[Status change] #{pbThis}'s status was cured")
 	end
 
 	def self.showStatusCureMessage(status, pokemonOrBattler, battle)

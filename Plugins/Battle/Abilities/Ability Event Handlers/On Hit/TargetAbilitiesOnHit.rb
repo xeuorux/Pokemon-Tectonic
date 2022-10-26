@@ -139,7 +139,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
     next if battle.pbRandom(100)>=60
     battle.pbShowAbilitySplash(target)
     if !move.pbMoveFailedAromaVeil?(target,user,true)
-      user.applyEffect(:Diable,3)
+      user.applyEffect(:Disable,3)
       battle.pbHideAbilitySplash(target)
       user.pbItemStatusCureCheck
     end

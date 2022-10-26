@@ -394,7 +394,7 @@ class PokeBattle_Battle
         if hazardInfo[:absorb_proc].call(battler)
           battler.pbOwnSide.disableEffect(effect)
           pbDisplay(_INTL("{1} absorbed the {2}!",battler.pbThis,data.real_name))
-        elsif battler.pbCanInflictStatus?(status,false)
+        elsif battler.pbCanInflictStatus?(status,nil,false)
           if battler.pbOwnSide.countEffect(effect) >= 2
             battler.pbInflictStatus(status)
           elsif battler.takesIndirectDamage?
@@ -404,7 +404,7 @@ class PokeBattle_Battle
             end
           end
         else
-          pbDisplay(_INTL("{1} was unaffected by the {2}.",battler.pbThis,data.real_name))
+          #pbDisplay(_INTL("{1} was unaffected by the {2}.",battler.pbThis,data.real_name))
         end
       end
 

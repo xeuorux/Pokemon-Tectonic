@@ -56,8 +56,13 @@ class PokeBattle_Battler
 		end
 		# Use the move
 		PBDebug.log("[Move usage] #{pbThis} started using #{choice[2].name}")
-		PBDebug.logonerr do
-			pbUseMove(choice, choice[2] == @battle.struggle)
+		unless PBDebug.logonerr {
+				pbUseMove(choice, choice[2] == @battle.struggle)
+			}
+			pbCancelMoves
+			pbEndTurn(choice)
+			@battle.pbJudge
+			return false
 		end
 		@battle.pbJudge
 		# Update priority order
@@ -338,7 +343,7 @@ class PokeBattle_Battler
 			if user.takesIndirectDamage?
 				oldHP = user.hp
 				user.pbReduceHP((user.totalhp / 4.0).round, false)
-				cleanupPreMoveDamage(use, oldHP)
+				cleanupPreMoveDamage(user, oldHP)
 			end
 			pbCancelMoves
 			pbEndTurn(choice)

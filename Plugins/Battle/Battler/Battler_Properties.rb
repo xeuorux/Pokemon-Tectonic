@@ -93,6 +93,7 @@ class PokeBattle_Battler
 	end
 
 	def extraMovesPerTurn
+		return 0 if @pokemon.nil?
 		val = @pokemon.extraMovesPerTurn || 0
 		val += @effects[:ExtraTurns]
 		return val

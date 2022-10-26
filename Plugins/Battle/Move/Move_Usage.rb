@@ -29,7 +29,7 @@ class PokeBattle_Move
         displayZMoveUseMessage(user) if zMove? && !@specialUseZMove
         
         if isEmpowered?
-          pbMessage(_INTL("\\ts[{3}]{1} used <c2=06644bd2>{2}</c2>!",user.pbThis,@name,MessageConfig.pbGetTextSpeed() * 2))
+          pbMessage(_INTL("\\ts[{3}]{1} used <c2=06644bd2>{2}</c2>!",user.pbThis,@name,MessageConfig.pbGetTextSpeed() * 2)) if !@battle.autoTesting
         else
           @battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
         end
@@ -106,7 +106,7 @@ class PokeBattle_Move
         return 2 if canParentalBond?(user,targets,checkingForAI)
         numHits = 1
         numHits += 1 if user.shouldAbilityApply?(:SPACEINTERLOPER,checkingForAI) && pbDamagingMove?
-        numHits += 1 if user.effectActive?(:VolleyStance) && move.specialMove?
+        numHits += 1 if user.effectActive?(:VolleyStance) && specialMove?
         return numHits
     end
   

@@ -1,6 +1,6 @@
 BattleHandlers::AccuracyCalcTargetItem.add(:BRIGHTPOWDER,
-    proc { |item,mods,user,target,move,type|
-      mods[:accuracy_multiplier] *= 0.9
+    proc { |item,mults,user,target,move,type|
+      mults[:accuracy_multiplier] *= 0.9
     }
   )
   

@@ -245,17 +245,42 @@ class PokeBattle_Battle
 	SUMMON_MIN_HEALTH_LEVEL = 15
 	SUMMON_MAX_HEALTH_LEVEL = 50
 
-	def addAvatarBattler(species,level)
+	def addAvatarBattler(species,level,sideIndex=1)
+		indexOnSide = @sideSizes[sideIndex]
+		if indexOnSide > 3
+			echoln("Cannot create new avatar battler on side #{sideIndex} since the side is already full!")
+			return false
+		end
+
 		# Create the new pokemon
 		newPokemon = pbGenerateWildPokemon(species,level)
 		newPokemon.boss = true
 		setAvatarProperties(newPokemon)
 
+		# Put the pokemon into the party
+		partyIndex = pbParty(sideIndex).length
+		pbParty(sideIndex)[partyIndex] = newPokemon
+
 		# Put the battler into the battle
-		battlerIndexNew = 1 + @sideSizes[1] * 2
-		pbCreateBattler(battlerIndexNew,newPokemon,1)
+		battlerIndexNew = indexOnSide * 2 + sideIndex
+		if @battlers[battlerIndexNew].nil?
+			pbCreateBattler(battlerIndexNew,newPokemon,sideIndex)
+		else
+			@battlers[battlerIndexNew].pbInitialize(newPokemon,partyIndex)
+		end
 		newBattler = @battlers[battlerIndexNew]
-		sideSizes[1] += 1
+		sideSizes[sideIndex] += 1
+
+		# Put the pokemon's party index into the party order tracker
+		partyOrder = [@party1order,@party2order]
+		partyOrder.insert(indexOnSide,partyIndex)
+
+		# Create any missing battler slots
+		0.upto(battlerIndexNew) do |idxBattler|
+			next unless @battlers[idxBattler].nil?
+			pbCreateBattler(idxBattler)
+			scene.pbCreatePokemonSprite(idxBattler)
+		end
 
 		# Set the battler's starting health
 		if level >= SUMMON_MAX_HEALTH_LEVEL
@@ -265,32 +290,32 @@ class PokeBattle_Battle
 		else
 			healthPercent = 0.5 + (level - SUMMON_MIN_HEALTH_LEVEL) / (SUMMON_MAX_HEALTH_LEVEL - SUMMON_MIN_HEALTH_LEVEL).to_f
 		end
-		newBattler.hp = newBattler.totalhp * healthPercent
+		newBattler.hp = (newBattler.totalhp * healthPercent).ceil
 
 		# Remake all the battle boxes
-		scene.sprites["dataBox_#{battlerIndexNew}"] = PokemonDataBox.new(newBattler,@sideSizes[1],@scene.viewport)
+		scene.sprites["dataBox_#{battlerIndexNew}"] = PokemonDataBox.new(newBattler,@sideSizes[sideIndex],@scene.viewport)
 		eachBattler do |b|
-			next if b.index % 2 == 0
+			next unless b.index % 2 == sideIndex
 			databox = scene.sprites["dataBox_#{b.index}"]
 			databox.dispose
-			databox.initialize(b,sideSizes[1],@scene.viewport)
+			databox.initialize(b,@sideSizes[sideIndex],@scene.viewport)
 			databox.visible = true
 		end
 
 		# Create a dummy sprite for the avatar
 		scene.pbCreatePokemonSprite(battlerIndexNew)
 		
-		# Move existing sprites around
+		# Recreate all the battle sprites
 		eachBattler do |b|
-			next if b.index % 2 == 0
+			next unless b.index % 2 == sideIndex
 			battleSprite = scene.sprites["pokemon_#{b.index}"]
 			battleSprite.dispose
-			battleSprite.initialize(@scene.viewport,sideSizes[1],b.index,@scene.animations)
+			battleSprite.initialize(@scene.viewport,@sideSizes[sideIndex],b.index,@scene.animations)
 			scene.pbChangePokemon(b.index,b.pokemon)
 			battleSprite.visible = true
 		end
 
-		# Create the new avatar's battle sprite
+		# Set the new avatars tone to be appropriate for entering the field
 		pkmnSprite = @scene.sprites["pokemon_#{battlerIndexNew}"]
 		pkmnSprite.tone    = Tone.new(-80,-80,-80)
 
@@ -302,6 +327,8 @@ class PokeBattle_Battle
 		@scene.animateIntroNewAvatar(battlerIndexNew)
 		pbOnActiveOne(newBattler)
 		pbCalculatePriority
+
+		return true
 	end
 end
 

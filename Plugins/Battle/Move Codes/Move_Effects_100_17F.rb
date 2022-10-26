@@ -481,7 +481,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
   
     def pbBaseDamage(baseDmg,user,target)
-      return 100 * user.effectCount(:Stockpile)
+      return 100 * user.countEffect(:Stockpile)
     end
   
     def pbEffectAfterAllHits(user,target)
@@ -493,7 +493,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
 
     def getScore(score,user,target,skill=100)
-      score -= 20 * user.effectCount(:Stockpile)
+      score -= 20 * user.countEffect(:Stockpile)
       return score
     end
   end
@@ -515,7 +515,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
 
     def healRatio(user)
-      case [user.effectCount(:Stockpile),1].max
+      case [user.countEffect(:Stockpile),1].max
       when 1
         return 1.0/4.0
       when 2
@@ -534,7 +534,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 
     def getScore(score,user,target,skill=100)
       score = super
-      score -= 20 * user.effectCount(:Stockpile)
+      score -= 20 * user.countEffect(:Stockpile)
       return score
     end
   end

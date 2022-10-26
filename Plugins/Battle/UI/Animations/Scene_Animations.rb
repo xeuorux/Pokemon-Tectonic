@@ -117,4 +117,22 @@ class PokeBattle_Scene
         end
         damageAnims.each { |a| a.dispose }
     end
+
+  #=============================================================================
+  # Ability splash bar animations
+  #=============================================================================
+  def pbShowAbilitySplash(battler,fakeName=nil)
+    return if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+    side = battler.index%2
+    pbHideAbilitySplash(battler) if @sprites["abilityBar_#{side}"].visible
+    @sprites["abilityBar_#{side}"].battler = battler
+    @sprites["abilityBar_#{side}"].fakeName = fakeName
+    abilitySplashAnim = AbilitySplashAppearAnimation.new(@sprites,@viewport,side)
+    loop do
+      abilitySplashAnim.update
+      pbUpdate
+      break if abilitySplashAnim.animDone?
+    end
+    abilitySplashAnim.dispose
+  end
 end

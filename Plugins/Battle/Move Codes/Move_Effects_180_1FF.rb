@@ -86,7 +86,7 @@ class PokeBattle_Move_184 < PokeBattle_Move
       return true
     end
 
-    def pbEffectGeneral()
+    def pbEffectGeneral(user)
       @battle.pbDisplay(_INTL("It's tea time! Everyone dug in to their Berries!"))
     end
 
