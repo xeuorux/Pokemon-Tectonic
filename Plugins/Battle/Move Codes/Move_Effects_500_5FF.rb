@@ -1250,7 +1250,7 @@ end
 # Always critical hit vs Opponents with raised stats (Glitter Slash)
 #===============================================================================
 class PokeBattle_Move_546 < PokeBattle_Move 
-  def pbCritialOverride(user,target)
+  def pbCriticalOverride(user,target)
 	return 1 if target.hasRaisedStatStages?
 	return 0
   end
@@ -2448,7 +2448,7 @@ end
 # Guaranteed to crit, but lowers the user's speed. (Incision)
 #===============================================================================
 class PokeBattle_Move_58D < PokeBattle_Move_03E
-	def pbCritialOverride(user,target); return 1; end
+	def pbCriticalOverride(user,target); return 1; end
 end
 
 #===============================================================================

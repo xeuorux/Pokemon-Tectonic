@@ -39,7 +39,7 @@ class PokeBattle_Confusion < PokeBattle_Move
 
   def physicalMove?(thisType=nil);    return true;  end
   def specialMove?(thisType=nil);     return false; end
-  def pbCritialOverride(user,target); return -1;    end
+  def pbCriticalOverride(user,target); return -1;    end
 end
 
 #===============================================================================
@@ -932,7 +932,7 @@ class PokeBattle_Charm < PokeBattle_Move
   
 	def physicalMove?(thisType=nil);    return false;  end
 	def specialMove?(thisType=nil);     return true; end
-	def pbCritialOverride(user,target); return -1;    end
+	def pbCriticalOverride(user,target); return -1;    end
 end
 
 #===============================================================================

@@ -386,7 +386,7 @@ class PokeBattle_AI
         end
 
         # Critical override
-        case move.pbCritialOverride(user,target)
+        case move.pbCriticalOverride(user,target)
         when -1
           c = -1
         when 1

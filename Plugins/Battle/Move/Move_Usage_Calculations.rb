@@ -211,7 +211,7 @@ class PokeBattle_Move
     #   -1: Never a critical hit.
     #    0: Calculate normally.
     #    1: Always a critical hit.
-    def pbCritialOverride(user,target); return 0; end
+    def pbCriticalOverride(user,target); return 0; end
   
     # Returns whether the move will be a critical hit
     # And whether the critical hit was forced by an effect
@@ -237,7 +237,7 @@ class PokeBattle_Move
 		end
 		return [false,false] if c<0
 		# Move-specific "always/never a critical hit" effects
-		case pbCritialOverride(user,target)
+		case pbCriticalOverride(user,target)
 		when 1  then return [true,true]
 		when -1 then return [false,false]
 		end

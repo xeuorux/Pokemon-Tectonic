@@ -1178,7 +1178,6 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
       blowAwayEffect(user,ourSide,effect,data)
     end
     @battle.pbEndTerrain
-    end
   end
 
   def getScore(score,user,target,skill=100)

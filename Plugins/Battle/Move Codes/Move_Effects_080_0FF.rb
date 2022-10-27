@@ -714,7 +714,7 @@ end
 # This attack is always a critical hit. (Frost Breath, Storm Throw)
 #===============================================================================
 class PokeBattle_Move_0A0 < PokeBattle_Move
-  def pbCritialOverride(user,target); return 1; end
+  def pbCriticalOverride(user,target); return 1; end
 end
 
 #===============================================================================

@@ -557,7 +557,7 @@ end
 class PokeBattle_Move_645 < PokeBattle_Move
 	include EmpoweredMove
 
-	def pbCritialOverride(user,target)
+	def pbCriticalOverride(user,target)
 		return 1 if target.poisoned?
 		return 0
 	end
