@@ -820,12 +820,12 @@ GameData::BattleEffect.register_effect(:Battler,{
 	},
 	:disable_proc => Proc.new { |battle, battler|
 		showAnim = true
-		if battler.effectActive?(:StockpileDef) && battler.pbCanLowerStatStage?(:DEFENSE,battler,self)
+		if battler.effectActive?(:StockpileDef) && battler.pbCanLowerStatStage?(:DEFENSE,battler)
 		  if battler.pbLowerStatStage(:DEFENSE,battler.effects[:StockpileDef],battler,showAnim)
 			showAnim = false
 		  end
 		end
-		if battler.effectActive?(:StockpileSpDef) && battler.pbCanLowerStatStage?(:SPECIAL_DEFENSE,battler,self)
+		if battler.effectActive?(:StockpileSpDef) && battler.pbCanLowerStatStage?(:SPECIAL_DEFENSE,battler)
 			battler.pbLowerStatStage(:SPECIAL_DEFENSE,battler.effects[:StockpileSpDef],battler,showAnim)
 		end
 	},
@@ -1128,10 +1128,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	},
 	:eor_proc => Proc.new { |battle,battler,value|
 		octouser = battle.battlers[battler.effects[:OctolockUser]]
-		if battler.pbCanLowerStatStage?(:DEFENSE,octouser,self)
+		if battler.pbCanLowerStatStage?(:DEFENSE,octouser)
 			battler.pbLowerStatStage(:DEFENSE,1,octouser,true,false,true)
 		end
-		if battler.pbCanLowerStatStage?(:SPECIAL_DEFENSE,octouser,self)
+		if battler.pbCanLowerStatStage?(:SPECIAL_DEFENSE,octouser)
 			battler.pbLowerStatStage(:SPECIAL_DEFENSE,1,octouser,true,false,true)
 		end
 	},

@@ -13,6 +13,7 @@ class PokeBattle_Battler
 	# Complex accessors
 	#=============================================================================
 	attr_reader :level
+	attr_writer :defense, :spdef, :name
 
 	def level=(value)
 		@level = value
@@ -41,18 +42,6 @@ class PokeBattle_Battler
 		new_item = GameData::Item.try_get(value)
 		@item_id = new_item ? new_item.id : nil
 		@pokemon.item = @item_id if @pokemon
-	end
-
-	def defense
-		return @spdef if @battle.field.effectActive?(:WonderRoom)
-		return @defense
-	end
-
-	attr_writer :defense, :spdef, :name
-
-	def spdef
-		return @defense if @battle.field.effectActive?(:WonderRoom)
-		return @spdef
 	end
 
 	def hp=(value)

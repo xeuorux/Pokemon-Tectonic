@@ -1416,9 +1416,8 @@ class PokeBattle_Move_54D < PokeBattle_TargetStatDownMove
   
   
 	def pbAdditionalEffect(user,target)
-		statOptions = [:ATTACK,:DEFENSE,:SPECIALATTACK,:SPECIALDEFENSE,:SPEED]
-		rng = @battle.pbRandom(100) % 5
-		@statDown = [statOptions[rng],1]
+		statOptions = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+		@statDown = [statOptions.sample,1]
 		super
 	end
 end

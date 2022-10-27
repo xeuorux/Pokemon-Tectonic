@@ -89,7 +89,7 @@ BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
     end
     if user.takesIndirectDamage?(true) && user.affectedByContactEffect?(true)
       battle.pbDisplay(_INTL("{1} was caught in the aftermath!",user.pbThis))
-      b.applyFractionalDamage(1.0/4.0)
+      user.applyFractionalDamage(1.0/4.0)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -375,7 +375,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
     next if user.frostbitten?
     battle.pbShowAbilitySplash(target)
     if user.pbCanFrostbite?(target,true) && user.affectedByContactEffect?(true)
-      user.pbCanFrostbite?(target)
+      user.pbFrostbite(target)
     end
     battle.pbHideAbilitySplash(target)
   }

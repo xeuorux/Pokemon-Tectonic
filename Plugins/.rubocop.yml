@@ -64,6 +64,9 @@ Style/TrailingCommaInHashLiteral:
 Style/StringLiterals:
   EnforcedStyle: double_quotes
   
+Style/SingleLineMethods:
+  Enabled: false
+  
 Layout/MultilineMethodCallBraceLayout:
   Enabled: false
   

@@ -279,19 +279,29 @@ class PokeBattle_Battle
 		statuses = [:POISON,:BURN,:PARALYSIS,:FROSTBITE,:MYSTIFIED,:FLUSTERED,:SLEEP]
 
 		changeChance = 10
-		resetChance = 3
+		resetChance = 5
+		speciesChangeChance = 5
 
 		# Change all battlers
 		@battlers.each do |b|
 			next if b.nil? || b.pokemon.nil?
+			if pbRandom(100) < speciesChangeChance
+				b.pokemon.species = GameData::Species::DATA.keys.sample
+				b.pokemon.level = 1 + pbRandom(69).ceil
+				b.pokemon.calc_stats
+				b.pbInitPokemon(b.pokemon,b.pokemonIndex)
+				@scene.pbChangePokemon(b.index,b.pokemon)
+			end
+
 			b.hp = b.totalhp * [0.25,0.5,0.75,1.0,1.0,1.0,1.0,1.0].sample
+			b.hp = 1 if b.hp < 1
 			if pbRandom(100) < resetChance
 				b.pbInflictStatus(statuses.sample)
 			elsif pbRandom(100) < changeChance
 				b.pbCureStatus(false)
 			end
-			b.pbResetStatStages() if pbRandom(100) < resetChance
-			b.pbInitPokemon(b.pokemon,b.index) if pbRandom(100) < resetChance
+			#b.pbResetStatStages() if pbRandom(100) < resetChance
+			#b.pbInitPokemon(b.pokemon,b.index) if pbRandom(100) < resetChance
 			if pbRandom(100) < changeChance
 				b.ability =  GameData::Ability::DATA.values.sample
 				b.pbEffectsOnSwitchIn
@@ -322,6 +332,7 @@ class PokeBattle_Battle
 		@positions.each do |position|
 			position.resetEffects if pbRandom(100) < changeChance
 		end
+		pbWait(1)
 		Graphics.update
 	end
 

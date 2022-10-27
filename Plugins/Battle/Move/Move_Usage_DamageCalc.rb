@@ -46,9 +46,6 @@ class PokeBattle_Move
             :final_damage_multiplier => 1.0
         }
         pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
-        echoln("The calculated base damage multiplier: #{multipliers[:base_damage_multiplier]}")
-        echoln("The calculated attack and defense multipliers: #{multipliers[:attack_multiplier]},#{multipliers[:defense_multiplier]}")
-        echoln("The calculated final damage multiplier: #{multipliers[:final_damage_multiplier]}")
         # Main damage calculation
         baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
         atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
@@ -56,6 +53,12 @@ class PokeBattle_Move
         damage  = calcBasicDamage(baseDmg,user.level,atk,defense)
         damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
         target.damageState.calcDamage = damage
+    end
+
+    def printMultipliers(multipliers)
+        echoln("The calculated base damage multiplier: #{multipliers[:base_damage_multiplier]}")
+        echoln("The calculated attack and defense multipliers: #{multipliers[:attack_multiplier]},#{multipliers[:defense_multiplier]}")
+        echoln("The calculated final damage multiplier: #{multipliers[:final_damage_multiplier]}")
     end
     
     def pbCalcAbilityDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
