@@ -168,7 +168,7 @@ class PokeBattle_Battle
     triggerTerrainChangeDialogue(old_terrain,newTerrain)
   end
 
-  def pbEndTerrain
+  def endTerrain
     return if @field.terrain == :None
     case @field.terrain
     when :Electric
@@ -314,7 +314,7 @@ class PokeBattle_Battle
     @field.terrainDuration -= 1 if @field.terrainDuration>0
     # Terrain wears off
     if @field.terrain != :None && @field.terrainDuration == 0
-      pbEndTerrain
+      endTerrain
       return if @field.terrain == :None
     end
     # Terrain continues

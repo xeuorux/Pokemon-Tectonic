@@ -1037,7 +1037,7 @@ class PokeBattle_Move_538 < PokeBattle_Move
       when :Psychic
         @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))
     end
-    @battle.pbEndTerrain
+    @battle.endTerrain
   end
   
   def getScore(score,user,target,skill=100)

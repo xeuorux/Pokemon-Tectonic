@@ -1177,7 +1177,7 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
     eachDefoggable(ourSide,true) do |effect,data|
       blowAwayEffect(user,ourSide,effect,data)
     end
-    @battle.pbEndTerrain
+    @battle.endTerrain
   end
 
   def getScore(score,user,target,skill=100)

@@ -246,6 +246,8 @@ class PokeBattle_Battle
 	SUMMON_MAX_HEALTH_LEVEL = 50
 
 	def addAvatarBattler(species,level,sideIndex=1)
+		return if @autoTesting
+
 		indexOnSide = @sideSizes[sideIndex]
 		if indexOnSide > 3
 			echoln("Cannot create new avatar battler on side #{sideIndex} since the side is already full!")

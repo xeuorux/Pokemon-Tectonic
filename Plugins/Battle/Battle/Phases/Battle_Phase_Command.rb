@@ -279,18 +279,19 @@ class PokeBattle_Battle
 		statuses = [:POISON,:BURN,:PARALYSIS,:FROSTBITE,:MYSTIFIED,:FLUSTERED,:SLEEP]
 
 		changeChance = 10
+		resetChance = 5
 
 		# Change all battlers
 		@battlers.each do |b|
 			next if b.nil? || b.pokemon.nil?
 			b.hp = b.totalhp * [0.25,0.5,0.75,1.0,1.0,1.0,1.0,1.0].sample
-			if pbRandom(100) < changeChance
+			if pbRandom(100) < resetChance
 				b.pbInflictStatus(statuses.sample)
 			elsif pbRandom(100) < changeChance
 				b.pbCureStatus(false)
 			end
-			b.pbResetStatStages() if pbRandom(100) < changeChance
-			b.pbInitPokemon(b.pokemon,b.index) if pbRandom(100) < changeChance
+			b.pbResetStatStages() if pbRandom(100) < resetChance
+			b.pbInitPokemon(b.pokemon,b.index) if pbRandom(100) < resetChance
 			if pbRandom(100) < changeChance
 				b.ability =  GameData::Ability::DATA.values.sample
 				b.pbEffectsOnSwitchIn
@@ -300,7 +301,21 @@ class PokeBattle_Battle
 				b.pbHeldItemTriggerCheck
 			end
 		end
-		@field.resetEffects if pbRandom(100) < changeChance
+		@field.resetEffects if pbRandom(100) < resetChance
+		if pbRandom(100) < resetChance
+			endWeather
+		else
+			if pbRandom(100) < changeChance
+				pbStartWeather(nil,[:Sun,:Rain,:Sandstorm,:Hail,:HarshSun,:HeavyRain].sample)
+			end
+		end
+		if pbRandom(100) < resetChance
+			endTerrain
+		else
+			if pbRandom(100) < changeChance
+				pbStartTerrain(nil,[:Grassy,:Psychic,:Fairy,:Electric].sample,)
+			end
+		end
 		@sides.each do |side|
 			side.resetEffects if pbRandom(100) < changeChance
 		end
