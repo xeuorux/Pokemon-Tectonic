@@ -138,8 +138,17 @@ class PokeBattle_Battler
 		return check_ability == self.ability.id
 	end
 	alias hasWorkingAbility hasActiveAbility?
-
+  
   alias hasType? pbHasType?
+  
+	def takesSandstormDamage?
+		return false if !takesIndirectDamage?
+		return false if pbHasType?(:GROUND) || pbHasType?(:ROCK) || pbHasType?(:STEEL)
+		return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
+		return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDSHROUD,:STOUT,:DESERTSPIRIT,:BURROWER,:ARTIFICIALNOCTURNE,:WEATHERSENSES])
+		return false if hasActiveItem?(:SAFETYGOGGLES)
+		return true
+	  end
 
   def affectedByWeatherDownsides?(checkingForAI=false)
     return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
