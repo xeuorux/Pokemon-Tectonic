@@ -3253,6 +3253,7 @@ Pokemon = PYUKUMUKU,65
 [ABSOL,Absol]
 Pokemon = ABSOL,20
     AbilityIndex = 1
+    Item = SITRUSBERRY
 #-------------------------------
 [BUGCATCHER_F,Lovina]
 Pokemon = DEWPIDER,27
