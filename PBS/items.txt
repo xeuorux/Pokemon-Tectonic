@@ -897,7 +897,7 @@
 868,SIGILLEFTHALF,Sigil Left Half,Sigils Left Half,8,0,"The left half of the sigil of an ancient order of knights.",5,0,0
 869,SIGILRIGHTHALF,Sigil Right Half,Sigils Right Half,8,0,"The right half of the sigil of an ancient order of knights.",5,0,0
 870,LOADEDDICE,Loaded Dice,Loaded Dices,5,4000,"An item to be held by a Pokémon. It makes multi-hit attacks hit high more consistently.",0,0,0
-871,D8,D8,D8s,5,4000,"An 8-sided die to be held by a Pokémon. It makes multi-hit moves hit anywhere betweeen 1 and 8 times."
+871,D8,D8,D8s,5,4000,"An 8-sided die to be held by a Pokémon. It makes multi-hit moves hit anywhere betweeen 1 and 8 times.",0,0,0
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6
