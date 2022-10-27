@@ -6,6 +6,8 @@ class AbilitySplashBar < SpriteWrapper
     SPECIES_ICON_Y_POS = 0
     SPECIES_IRON_OPACITY_MULT = 0.6 # Between 0 and 1, 1 meaning fully opaque
 
+    attr_accessor :fakeName
+
     def initialize(side,viewport=nil)
         super(viewport)
         @side    = side
