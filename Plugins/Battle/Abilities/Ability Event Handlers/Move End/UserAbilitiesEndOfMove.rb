@@ -66,7 +66,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ASONEICE,
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
     next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user) || user.fainted?
-    battle.pbShowAbilitySplash(user,false,true,:CHILLINGNEIGH)
+    battle.pbShowAbilitySplash(user,false,true,GameData::Ability.get(:CHILLINGNEIGH).name)
     user.pbRaiseStatStage(:ATTACK,numFainted,user)
     battle.pbHideAbilitySplash(user)
   }
@@ -78,7 +78,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ASONEGHOST,
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
     next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user) || user.fainted?
-    battle.pbShowAbilitySplash(user,false,true,:GRIMNEIGH)
+    battle.pbShowAbilitySplash(user,false,true,GameData::Ability.get(:GRIMNEIGH).name)
     user.pbRaiseStatStage(:SPECIAL_ATTACK,numFainted,user)
     battle.pbHideAbilitySplash(user)
   }
