@@ -2161,28 +2161,20 @@ class PokeBattle_Move_577 < PokeBattle_Move
 end
 
 #===============================================================================
-# Revives a Grass-type party member back to 100% HP. (Breathe Life)
+# Revives a fainted Grass-type party member back to 100% HP. (Breathe Life)
 #===============================================================================
-class PokeBattle_Move_578 < PokeBattle_Move
-	def pbMoveFailed?(user,targets)
-		@battle.pbParty(user.index).each do |pkmn|
-			next if !pkmn
-			next if !pkmn.fainted?
-			next if !pkmn.hasType?(:GRASS)
-			return false
-		end
-		@battle.pbDisplay(_INTL("But it failed, since there are no fainted Grass-type party members!"))
+class PokeBattle_Move_578 < PokeBattle_PartyMemberEffectMove
+	def legalChoice(pokemon)
+		return false if !super
+		return false if !pokemon.fainted?
+		return false if !pokemon.hasType?(:GRASS)
 		return true
 	end
   
-	def pbEffectGeneral(user)
-		selectPartyMemberForEffect(user.index,proc { |pkmn|
-			next pkmn && pkmn.hasType?(:GRASS) && pkmn.fainted?
-	  	}) { |pkmn|
-			pkmn.heal_HP
-			pkmn.heal_status
-			@battle.pbDisplay(_INTL("{1} recovered all the way to full health!",pkmn.name))
-		}
+	def effectOnPartyMember(pokemon)
+		pokemon.heal_HP
+		pokemon.heal_status
+		@battle.pbDisplay(_INTL("{1} recovered all the way to full health!",pokemon.name))
 	end
 end
 
@@ -2715,28 +2707,19 @@ class PokeBattle_Move_59D < PokeBattle_InvokeMove
 end
 
 #===============================================================================
-# Revives a Electric-type party member back to 100% HP. (Defibrillate)
+# Revives a fainted party member back to 1 HP. (Defibrillate)
 #===============================================================================
-class PokeBattle_Move_59E < PokeBattle_Move
-	def pbMoveFailed?(user,targets)
-		@battle.pbParty(user.index).each do |pkmn|
-			next if !pkmn
-			next if !pkmn.fainted?
-			next if !pkmn.hasType?(:ELECTRIC)
-			return false
-		end
-		@battle.pbDisplay(_INTL("But it failed, since there are no fainted Electric-type party members!"))
+class PokeBattle_Move_59E < PokeBattle_PartyMemberEffectMove
+	def legalChoice(pokemon)
+		return false if !super
+		return false if !pokemon.fainted?
 		return true
 	end
   
-	def pbEffectGeneral(user)
-		selectPartyMemberForEffect(user.index,proc { |pkmn|
-			next pkmn && pkmn.hasType?(:ELECTRIC) && pkmn.fainted?
-	  	}) { |pkmn|
-			pkmn.heal_HP
-			pkmn.heal_status
-			@battle.pbDisplay(_INTL("{1} recovered all the way to full health!",pkmn.name))
-		}
+	def effectOnPartyMember(pokemon)
+		pokemon.hp = 1
+		pokemon.heal_status
+		@battle.pbDisplay(_INTL("{1} recovered to 1 HP!",pokemon.name))
 	end
 end
 

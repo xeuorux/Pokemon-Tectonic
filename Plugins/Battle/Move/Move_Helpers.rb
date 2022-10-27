@@ -51,34 +51,67 @@ class PokeBattle_Move
   end
 
   def selectPartyMemberForEffect(idxBattler,selectableProc=nil)
-      # Get player's party
-      party    = @battle.pbParty(idxBattler)
-      partyPos = @battle.pbPartyOrder(idxBattler)
-      partyStart, _partyEnd = @battle.pbTeamIndexRangeFromBattlerIndex(idxBattler)
-      modParty = @battle.pbPlayerDisplayParty(idxBattler)
-      # Start party screen
-      pkmnScene = PokemonParty_Scene.new
-      pkmnScreen = PokemonPartyScreen.new(pkmnScene,modParty)
-      #pkmnScreen.pbStartScene(_INTL("Use move on which Pokémon?"),@battle.pbNumPositions(0,0))
-      idxParty = -1
-      # Loop while in party screen
-      loop do
-        # Select a Pokémon
-        idxParty = pkmnScreen.pbChooseAblePokemon(selectableProc)
-        next if idxParty < 0
-        idxPartyRet = -1
-        partyPos.each_with_index do |pos,i|
-          next if pos!=idxParty+partyStart
-          idxPartyRet = i
-          break
-        end
-        next if idxPartyRet < 0
-        pkmn = party[idxPartyRet]
-        next if !pkmn || pkmn.egg?
-        yield pkmn
+    if @battle.pbOwnedByPlayer?(idxBattler)
+      return playerChoosesPartyMemberForEffect(idxBattler,selectableProc)
+    else
+      return trainerChoosesPartyMemberForEffect(idxBattler,selectableProc)
+    end
+  end
+
+  def playerChoosesPartyMemberForEffect(idxBattler,selectableProc=nil)
+    # Get player's party
+    party    = @battle.pbParty(idxBattler)
+    partyOrder = @battle.pbPartyOrder(idxBattler)
+    partyStart = @battle.pbTeamIndexRangeFromBattlerIndex(idxBattler)[0]
+    modParty = @battle.pbPlayerDisplayParty(idxBattler)
+    # Start party screen
+    pkmnScene = PokemonParty_Scene.new
+    pkmnScreen = PokemonPartyScreen.new(pkmnScene,modParty)
+    displayPartyIndex = -1
+    # Loop while in party screen
+    loop do
+      # Select a Pokémon by showing the screen
+      displayPartyIndex = pkmnScreen.pbChooseAblePokemon(selectableProc)
+      next if displayPartyIndex < 0
+
+      # Find the real party index after accounting for shifting around from swaps
+      partyIndex = -1
+      partyOrder.each_with_index do |pos,i|
+        next if pos != displayPartyIndex + partyStart
+        partyIndex = i
         break
       end
+      next if partyIndex < 0
+
+      # Make sure the selected pokemon isn't an active battler
+      next if @battle.pbFindBattler(partyIndex,idxBattler)
+
+      # Get the actual pokemon selection
+      pkmn = party[partyIndex]
+
+      # Don't allow invalid choices
+      next if !pkmn || pkmn.egg?
+
       pkmnScene.pbEndScene
+      return pkmn
+    end
+    pkmnScene.pbEndScene
+    return nil
+  end
+
+  def trainerChoosesPartyMemberForEffect(idxBattler,selectableProc=nil)
+    # Get trainer's party
+    party = @battle.pbParty(idxBattler)
+    party.each_with_index do |pokemon,partyIndex|
+      # Don't allow invalid choices
+      next if !pokemon || pokemon.egg?
+
+      # Make sure the selected pokemon isn't an active battler
+      next if @battle.pbFindBattler(partyIndex,idxBattler)
+
+      return pokemon if selectableProc.call(pokemon)
+    end
+    return nil
   end
 
   def removeProtections(target)	

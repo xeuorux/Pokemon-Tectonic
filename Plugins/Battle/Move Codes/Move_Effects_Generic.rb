@@ -1315,3 +1315,25 @@ end
       return score
     end
   end
+
+class PokeBattle_PartyMemberEffectMove < PokeBattle_Move
+	def legalChoice(pokemon)
+		return false if !pokemon
+    return true
+	end
+
+	def pbMoveFailed?(user,targets)
+		@battle.pbParty(user.index).each do |pkmn|
+			return false if legalChoice(pkmn)
+		end
+		@battle.pbDisplay(_INTL("But it failed, since there are no valid choices in your party!"))
+		return true
+	end
+
+  def effectOnPartyMember(pokemon); end;
+  
+	def pbEffectGeneral(user)
+		selectedPokemon = selectPartyMemberForEffect(user.index,proc { |pkmn| next legalChoice(pkmn) })
+    effectOnPartyMember(selectedPokemon)
+	end
+end
