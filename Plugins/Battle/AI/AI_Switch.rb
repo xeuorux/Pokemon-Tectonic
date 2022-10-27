@@ -316,6 +316,11 @@ class PokeBattle_AI
                 end
             end
 
+            # For preserving the pokemon placed in the last slot
+            if policies.include?(:PRESERVE_LAST_POKEMON) && i == 5
+                switchScore = -99
+            end
+
             list.push([i,switchScore])
         end
         list.sort_by!{|entry| entry[1].nil? ? 9999 : -entry[1]}
