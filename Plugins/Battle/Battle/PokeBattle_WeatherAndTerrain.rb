@@ -194,13 +194,13 @@ class PokeBattle_Battle
   def primevalWeatherPresent?(showMessages=true)
     case @field.weather
     when :HarshSun
-      battle.pbDisplay(_INTL("The extremely harsh sunlight was not lessened at all!")) if showMessages
+      pbDisplay(_INTL("The extremely harsh sunlight was not lessened at all!")) if showMessages
       return true
     when :HeavyRain
-      battle.pbDisplay(_INTL("There is no relief from this heavy rain!")) if showMessages
+      pbDisplay(_INTL("There is no relief from this heavy rain!")) if showMessages
       return true
     when :StrongWinds
-      battle.pbDisplay(_INTL("The mysterious air current blows on regardless!")) if showMessages
+      pbDisplay(_INTL("The mysterious air current blows on regardless!")) if showMessages
       return true
     end
     return false

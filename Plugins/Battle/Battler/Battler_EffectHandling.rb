@@ -13,8 +13,10 @@ class PokeBattle_Battler
 		return if fainted? && !ignoreFainted
 		super(effect,value)
 		#echoln("[BATTLER EFFECT] Effect #{effect} applied to battler #{pbThis(true)}") if !effectActive?(effect)
-		pbItemStatusCureCheck
-		pbAbilityStatusCureCheck
+		if getData(effect).is_mental?
+			pbItemStatusCureCheck
+			pbAbilityStatusCureCheck
+		end
 	end
 
 	def disableEffect(effect, ignoreFainted=false)

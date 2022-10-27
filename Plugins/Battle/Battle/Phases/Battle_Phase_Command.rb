@@ -279,7 +279,7 @@ class PokeBattle_Battle
 		statuses = [:POISON,:BURN,:PARALYSIS,:FROSTBITE,:MYSTIFIED,:FLUSTERED,:SLEEP]
 
 		changeChance = 10
-		resetChance = 5
+		resetChance = 3
 
 		# Change all battlers
 		@battlers.each do |b|
