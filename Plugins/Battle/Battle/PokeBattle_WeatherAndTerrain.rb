@@ -166,7 +166,24 @@ class PokeBattle_Battle
     eachBattler { |b| b.pbItemTerrainStatBoostCheck }
     
     triggerTerrainChangeDialogue(old_terrain,newTerrain)
-  end 
+  end
+
+  def pbEndTerrain
+    return if @field.terrain == :None
+    case @field.terrain
+    when :Electric
+      pbDisplay(_INTL("The electric current disappeared from the battlefield!"))
+    when :Grassy
+      pbDisplay(_INTL("The grass disappeared from the battlefield!"))
+    when :Misty
+      pbDisplay(_INTL("The mist disappeared from the battlefield!"))
+    when :Psychic
+      pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))
+    end
+    @field.terrain = :None
+    # Start up the default terrain
+    pbStartTerrain(nil, @field.defaultTerrain, false) if @field.defaultTerrain != :None
+  end
 
   
   def pbChangeField(user,fieldEffect,modifier)
@@ -289,6 +306,28 @@ class PokeBattle_Battle
     end
   end
 
+  #=============================================================================
+  # End Of Round terrain
+  #=============================================================================
+  def pbEORTerrain
+    # Count down terrain duration
+    @field.terrainDuration -= 1 if @field.terrainDuration>0
+    # Terrain wears off
+    if @field.terrain != :None && @field.terrainDuration == 0
+      pbEndTerrain
+      return if @field.terrain == :None
+    end
+    # Terrain continues
+    terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
+    pbCommonAnimation(terrain_data.animation) if terrain_data
+    case @field.terrain
+    when :Electric then pbDisplay(_INTL("An electric current is running across the battlefield."))
+    when :Grassy   then pbDisplay(_INTL("Grass is covering the battlefield."))
+    when :Misty    then pbDisplay(_INTL("Mist is swirling about the battlefield."))
+    when :Psychic  then pbDisplay(_INTL("The battlefield is weird."))
+    end
+  end
+  
   def grassyTerrainEOR(priority)
     return if @field.terrain != :Grassy
     # Status-curing effects/abilities and HP-healing items
@@ -312,40 +351,6 @@ class PokeBattle_Battle
           pbHideAbilitySplash(b) if b.hasActiveAbility?(:NESTING)
         end
       end
-    end
-  end
-
-  #=============================================================================
-  # End Of Round terrain
-  #=============================================================================
-  def pbEORTerrain
-    # Count down terrain duration
-    @field.terrainDuration -= 1 if @field.terrainDuration>0
-    # Terrain wears off
-    if @field.terrain != :None && @field.terrainDuration == 0
-      case @field.terrain
-      when :Electric
-        pbDisplay(_INTL("The electric current disappeared from the battlefield!"))
-      when :Grassy
-        pbDisplay(_INTL("The grass disappeared from the battlefield!"))
-      when :Misty
-        pbDisplay(_INTL("The mist disappeared from the battlefield!"))
-      when :Psychic
-        pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))
-      end
-      @field.terrain = :None
-      # Start up the default terrain
-      pbStartTerrain(nil, @field.defaultTerrain, false) if @field.defaultTerrain != :None
-      return if @field.terrain == :None
-    end
-    # Terrain continues
-    terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
-    pbCommonAnimation(terrain_data.animation) if terrain_data
-    case @field.terrain
-    when :Electric then pbDisplay(_INTL("An electric current is running across the battlefield."))
-    when :Grassy   then pbDisplay(_INTL("Grass is covering the battlefield."))
-    when :Misty    then pbDisplay(_INTL("Mist is swirling about the battlefield."))
-    when :Psychic  then pbDisplay(_INTL("The battlefield is weird."))
     end
   end
 end
