@@ -439,7 +439,7 @@
 419,RETALIATE,Retaliate,085,70,NORMAL,Physical,100,5,0,NearOther,0,abef,"Gets revenge for a fainted ally. If an ally fainted in the last turn, this attack's damage increases.",
 420,SECRETPOWER,Secret Power,0A4,70,NORMAL,Physical,100,15,30,NearOther,0,be,"The user attacks with a secret power. Its added effects vary depending on the user's environment.",
 421,SLASH,Slash,000,70,NORMAL,Physical,100,15,0,NearOther,0,abefhp,"The target is attacked with a slash of claws or blades. Critical hits land more easily.",
-422,SMELLINGSALTS,Smelling Salts,07C,80,NORMAL,Physical,100,10,0,NearOther,0,abef,"This attack inflicts double damage on a numbed foe. It also cures the target's numbing, however.",
+422,SMELLINGSALTS,Smelling Salts,07C,95,NORMAL,Physical,100,10,0,NearOther,0,abef,"This attack inflicts double damage on a numbed foe. It also cures the target's numbing, however.",
 423,HORNATTACK,Horn Attack,000,65,NORMAL,Physical,100,20,0,NearOther,0,abef,"The target is jabbed with a sharply pointed horn to inflict damage.",
 424,STOMP,Stomp,010,65,NORMAL,Physical,100,15,30,NearOther,0,abe,"The target is stomped with a big foot. It has a 30% chance to make the target flinch.",
 425,COVET,Covet,0F1,60,NORMAL,Physical,100,20,0,NearOther,0,abef,"The user approaches the target, then steals their item. Items stolen from wild Pokémon are stored.",
