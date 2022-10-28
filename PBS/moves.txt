@@ -376,7 +376,7 @@
 #-------------------------------
 360,FREEZESHOCK,Freeze Shock,0C5,140,ICE,Physical,100,5,30,NearOther,0,bef,"On the second turn, the user hits the foe with electrically charged ice. It has a 30% chance to numb.",
 361,ICEBURN,Ice Burn,0C6,140,ICE,Special,100,5,30,NearOther,0,bef,"On the second turn, an ultracold, freezing wind surrounds the foe. It has a 30% chance to burn.",
-362,BLIZZARD,Blizzard,00D,110,ICE,Special,70,5,30,AllNearFoes,0,befq,"A howling blizzard is summoned to strike the opposing team. It has a 30% chance to frostbite.",
+362,BLIZZARD,Blizzard,00D,110,ICE,Special,70,5,30,AllNearFoes,0,befq,"A blizzards strikes all near foes. Can't miss in Hail. 30% chance to frostbite.",
 363,ICEHAMMER,Ice Hammer,03E,100,ICE,Physical,100,10,0,NearOther,0,abefj,"The user swings and hits with its strong, heavy fist. It lowers the user's Speed, however.",
 364,ICEBEAM,Ice Beam,403,90,ICE,Special,100,10,10,NearOther,0,bef,"The target is struck with an icy-cold beam of energy. It has a 10% chance to frostbite.",
 365,ICICLECRASH,Icicle Crash,00F,85,ICE,Physical,100,10,30,NearOther,0,be,"The user attacks by harshly dropping an icicle onto the foe. It has a 30% chance to make the target flinch.",
