@@ -172,6 +172,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
 
 BattleHandlers::UserAbilityEndOfMove.add(:SPACEINTERLOPER,
   proc { |ability,battler,targets,move,battle|
-    battler.pbRecoverHPFromMultiDrain(targets,0.33)
+    battler.pbRecoverHPFromMultiDrain(targets,0.25)
   }
 )
