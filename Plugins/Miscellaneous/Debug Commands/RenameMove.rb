@@ -277,17 +277,19 @@ def renameMoves(renamingHash)
     GameData::Species.save
   end
 
+  renameMovesInArray = Proc.new { |move|
+      if renamingHash.has_key?(move.to_s)
+        next renamingHash[move.to_s][0].to_sym
+      else
+        next move
+      end
+    }
+
   GameData::Trainer.each do |trainer_data|
     new_pokemon = trainer_data.pokemon.clone
     new_pokemon.each do |party_member|
       next if party_member[:moves].nil? || party_member[:moves].length == 0
-      party_member[:moves].map! { |move|
-        if renamingHash.has_key?(move.to_s)
-          next renamingHash[move.to_s][0].to_sym
-        else
-          next move
-        end
-      }
+      party_member[:moves].map!(&renameMovesInArray)
     end
     new_trainer_hash = {
       :id_number    => trainer_data.id_number,
@@ -303,27 +305,11 @@ def renameMoves(renamingHash)
   end
 
   GameData::Avatar.each do |avatar_data|
-    newMoves1 = avatar_data.moves1.map { |move|
-      if renamingHash.has_key?(move.to_s)
-        next renamingHash[move.to_s][0].to_sym
-      else
-        next move
-      end
-    }
-    newMoves2 = avatar_data.moves2.map { |move|
-      if renamingHash.has_key?(move.to_s)
-        next renamingHash[move.to_s][0].to_sym
-      else
-        next move
-      end
-    }
-    newMoves3 = avatar_data.moves3.map { |move|
-      if renamingHash.has_key?(move.to_s)
-        next renamingHash[move.to_s][0].to_sym
-      else
-        next move
-      end
-    }
+    newMoves1 = avatar_data.moves1.map(&renameMovesInArray)
+    newMoves2 = avatar_data.moves2.map(&renameMovesInArray)
+    newMoves3 = avatar_data.moves3.map(&renameMovesInArray)
+    newMoves4 = avatar_data.moves4.map(&renameMovesInArray)    
+    newMoves5 = avatar_data.moves5.map(&renameMovesInArray)
     new_avatar_hash = {
       :id          		    => avatar_data.id,
       :id_number   		    => avatar_data.id_number,
@@ -332,6 +318,8 @@ def renameMoves(renamingHash)
       :moves1		 		      => newMoves1,
       :moves2		 		      => newMoves2,
       :moves3		 		      => newMoves3,
+      :moves4		 		      => newMoves4,
+      :moves5		 		      => newMoves5,
       :ability	 		      => avatar_data.ability,
       :item		 		        => avatar_data.item,
       :hp_mult	 		      => avatar_data.hp_mult,

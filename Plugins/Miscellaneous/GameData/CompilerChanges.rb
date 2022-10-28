@@ -460,6 +460,8 @@ module Compiler
 				:moves1		 		      => contents["Moves1"],
         :moves2		 		      => contents["Moves2"],
         :moves3		 		      => contents["Moves3"],
+        :moves4		 		      => contents["Moves4"],
+        :moves5		 		      => contents["Moves5"],
 				:ability	 		      => contents["Ability"],
 				:item		 		        => contents["Item"],
 				:hp_mult	 		      => contents["HPMult"],
@@ -2150,6 +2152,8 @@ module Compiler
         f.write(sprintf("Moves1 = %s\r\n", avatar.moves1.join(",")))
         f.write(sprintf("Moves2 = %s\r\n", avatar.moves2.join(","))) if !avatar.moves2.nil? && avatar.num_phases >= 2
         f.write(sprintf("Moves3 = %s\r\n", avatar.moves3.join(","))) if !avatar.moves3.nil? && avatar.num_phases >= 3
+        f.write(sprintf("Moves4 = %s\r\n", avatar.moves4.join(","))) if !avatar.moves4.nil? && avatar.num_phases >= 4
+        f.write(sprintf("Moves5 = %s\r\n", avatar.moves5.join(","))) if !avatar.moves5.nil? && avatar.num_phases >= 5
         f.write(sprintf("Turns = %s\r\n", avatar.num_turns)) if avatar.num_turns != 2.0
         f.write(sprintf("HPMult = %s\r\n", avatar.hp_mult)) if avatar.num_turns != 4.0
         f.write(sprintf("HealthBars = %s\r\n", avatar.num_health_bars)) if avatar.num_health_bars != avatar.num_phases

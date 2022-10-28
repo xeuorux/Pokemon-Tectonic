@@ -7,6 +7,8 @@ module GameData
 		attr_reader :moves1
 		attr_reader :moves2
 		attr_reader :moves3
+		attr_reader :moves4
+		attr_reader :moves5
 		attr_reader :post_prime_moves
 		attr_reader :ability
 		attr_reader :item
@@ -26,6 +28,8 @@ module GameData
 		  "Moves1"        		=> [:moves1,         	"*e", :Move],
 		  "Moves2"      		=> [:moves2,			"*E", :Move],
 		  "Moves3"      		=> [:moves3,			"*E", :Move],
+		  "Moves4"      		=> [:moves4,			"*E", :Move],
+		  "Moves5"      		=> [:moves5,			"*E", :Move],
 		  "Ability"      		=> [:ability,       	"s"],
 		  "Item"         		=> [:item,          	"e", :Item],
 		  "HPMult"				=> [:hp_mult,			"f"],
@@ -46,6 +50,8 @@ module GameData
 		  @moves1        	= hash[:moves1]
 		  @moves2 			= hash[:moves2] || []
 		  @moves3 			= hash[:moves3] || []
+		  @moves4 			= hash[:moves4] || []
+		  @moves5 			= hash[:moves5] || []
 		  @ability          = hash[:ability]
 		  @item             = hash[:item]
 		  @size_mult		= hash[:size_mult] || 1.3
@@ -66,6 +72,10 @@ module GameData
 
 		def second_status?
 			return @num_health_bars > 1
+		end
+
+		def arrayOfMoveSets
+			return [@moves1,@moves2,@moves3,@moves4,@moves5]
 		end
 	end
 end

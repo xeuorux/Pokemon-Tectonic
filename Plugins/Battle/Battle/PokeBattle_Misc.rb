@@ -109,7 +109,7 @@ class PokeBattle_Battle
       # Swap to post-empowerment moveset
       if usedEmpoweredMove
         b.avatarPhase += 1
-        movesetToAssign = [avatarData.moves1,avatarData.moves2,avatarData.moves3][b.avatarPhase-1]
+        movesetToAssign = avatarData.arrayOfMoveSets[b.avatarPhase-1]
         if movesetToAssign.nil?
           echoln("ERROR: Unable to change moveset.")
         end
