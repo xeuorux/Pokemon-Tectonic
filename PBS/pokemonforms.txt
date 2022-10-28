@@ -917,7 +917,7 @@ Abilities = MENTALBLOCK
 FormName = Midnight
 Type1 = ROCK
 Type2 = DARK
-BaseStats = 93,120,75,82,55,75
+BaseStats = 98,110,85,82,40,85
 Abilities = NOGUARD
 Height = 1.1
 Color = Red
@@ -930,8 +930,8 @@ BattlerShadowSize = 3
 #-------------------------------
 [LYCANROC,2]
 FormName = Dusk
-BaseStats = 85,125,70,95,55,70
-Abilities = SANDRUSH
+BaseStats = 90,90,70,100,50,100
+Abilities = SANDSHROUD
 Pokedex = Bathed in the setting sun of evening, Lycanroc has undergone a special kind of evolution. An intense fighting spirit underlies its calmness.
 #-------------------------------
 [WISHIWASHI,1]

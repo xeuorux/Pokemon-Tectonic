@@ -4092,8 +4092,25 @@ Pokemon = CLAYDOL,70
 ExtendsVersion = 3
 #-------------------------------
 [TRAINER_Eifion,Eifion,1]
-Pokemon = BIDOOF,10
-    AbilityIndex = 1
+Pokemon = DELPHOX,70
+	Moves = SUNNYDAY,PSYCHIC,HEATWAVE,SOLARBEAM
+	AbilityIndex = 0
+	Item = HEATROCK
+Pokemon = HOUNDOMINUS,70
+	Moves = FLAMETHROWER,DARKPULSE,NASTYPLOT,HYPERVOICE
+	AbilityIndex = 0
+Pokemon = PHIONE,70
+	Moves = DOUSE,DREAMDANCE,MOONBLAST,SURF
+	AbilityIndex = 0
+Pokemon = TOXAPEX,70
+	Moves = RECOVER,TRICKYTOXINS,FLIPTURN,POISONGAS
+	AbilityIndex = 1
+Pokemon = OCTILLERY,70
+	Moves = THRIVINGFORCE,FLAMETHROWER,SURF,PSYCHIC
+	AbilityIndex = 0
+Pokemon = SLOWBRO,70
+	Moves = SLACKOFF,SCALD,PSYCHIC,FLIPTURN
+	AbilityIndex = 0
 #-------------------------------
 [TRAINER_Eifion,Eifion,2]
 ExtendsVersion = 1
