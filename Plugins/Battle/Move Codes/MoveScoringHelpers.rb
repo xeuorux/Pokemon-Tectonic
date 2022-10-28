@@ -179,7 +179,7 @@ end
 
 def hazardWeightOnSide(side,excludeEffects=[])
 	hazardWeight = 0
-	hazardWeight += 20 * side.countEffect(:Spikes) && !excludeEffects.include?(:Spikes)
+	hazardWeight += 20 * side.countEffect(:Spikes) if !excludeEffects.include?(:Spikes)
 	hazardWeight += 50 if side.effectActive?(:StealthRock) && !excludeEffects.include?(:StealthRock)
 	hazardWeight += 20 if side.effectActive?(:StickyWeb) && !excludeEffects.include?(:StickyWeb)
 	hazardWeight += statusSpikesWeightOnSide(side,excludeEffects)
