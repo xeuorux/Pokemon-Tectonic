@@ -26,7 +26,7 @@ class PokeBattle_ZMove < PokeBattle_Move
     #-----------------------------------------------------------------------------
     def PokeBattle_ZMove.from_base_move(battle, battler, move)
       return move if move.is_a?(PokeBattle_ZMove)
-      species = (battler.effects[PBEffects::Transform]) ? battler.effects[PBEffects::TransformPokemon].species_data.id : nil
+      species = battler.transformed? ? battler.effects[:TransformPokemon].species_data.id : nil
       z_compat  = battler.pokemon.compat_zmove?(move, nil, species)
       newMove   = nil
       if !z_compat || move.statusMove?
@@ -75,7 +75,7 @@ class PokeBattle_ZMove < PokeBattle_Move
     # Protection moves don't fully negate Z-Moves.
     #-----------------------------------------------------------------------------
     def pbModifyDamage(damageMult, user, target)
-      if target.protected?
+      if target.protectedAgainst?(user,self)
         @battle.pbDisplay(_INTL("{1} couldn't fully protect itself!",target.pbThis))
         return damageMult/4
       else      

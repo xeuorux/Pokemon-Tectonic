@@ -87,9 +87,7 @@ class PokeBattle_Scene
         ball.visible = false
 		  end
 		  # Ability splash bars
-		  if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-			  @sprites["abilityBar_#{side}"] = AbilitySplashBar.new(side,@viewport)
-		  end
+		  @sprites["abilityBar_#{side}"] = AbilitySplashBar.new(side,@viewport)
 		end
 		# Player's and partner trainer's back sprite
 		@battle.player.each_with_index do |p,i|
@@ -348,10 +346,10 @@ class PokeBattle_Scene
   end
   
   def pbBattleInfoMenu
-	# Create targeting window
-	cw = BattleInfoDisplay.new(@viewport,300,@battle)
-	totalBattlers = @battle.pbSideBattlerCount + @battle.pbOpposingBattlerCount
-	doRefresh = false
+    # Create targeting window
+    cw = BattleInfoDisplay.new(@viewport,300,@battle)
+    totalBattlers = @battle.pbSideBattlerCount + @battle.pbOpposingBattlerCount
+    doRefresh = false
     loop do
       pbUpdate(cw)
       cw.refresh
@@ -373,9 +371,8 @@ class PokeBattle_Scene
         pbPlayCursorSE
       elsif Input.trigger?(Input::SPECIAL) && cw.individual.nil? && $DEBUG
         #truthifyAllEffects()
-        
-        @battle.battlers[0].effects[PBEffects::Illusion] = false
-        @battle.battlers[0].effects[PBEffects::ProtectRate] = false
+        @battle.battlers[0].disableEffect(:Illusion)
+        @battle.battlers[0].disableEffect(:ProtectFailure)
         pbPlayDecisionSE
       elsif Input.trigger?(Input::USE)
         battler = nil

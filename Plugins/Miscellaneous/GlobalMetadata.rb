@@ -62,13 +62,12 @@ class PokemonGlobalMetadata
     @pokerusTime          = nil
     # Save file
     @safesave             = false
-	##exp Jar item
-	@expJAR				  = 0
-	@caughtCountsPerMap	  = {}
-	@teamHealerUpgrades   = 0
-	@teamHealerMaxUses	  = 1
-	@teamHealerCurrentUses= 1
-	@tarot_amulet_active  = false
-	@stored_search		  = nil
+    @expJAR				  = 0
+    @caughtCountsPerMap	  = {}
+    @teamHealerUpgrades   = 0
+    @teamHealerMaxUses	  = 1
+    @teamHealerCurrentUses= 1
+    @tarot_amulet_active  = false
+    @stored_search		  = nil
   end
 end

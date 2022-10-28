@@ -462,7 +462,23 @@ class PokemonSpeciesIconSprite < SpriteWrapper
   end
 end
 
-
 class PokemonGlobalMetadata
 	attr_accessor :dexNavEggMovesUnlocked
+end
+
+def incrementDexNavCounts(caught)
+	$PokemonGlobal.caughtCountsPerMap = {} if !$PokemonGlobal.caughtCountsPerMap
+	if caught
+		if $PokemonGlobal.caughtCountsPerMap.has_key?($game_map.map_id)
+			$PokemonGlobal.caughtCountsPerMap[$game_map.map_id][0] += 1
+		else
+			$PokemonGlobal.caughtCountsPerMap[$game_map.map_id] = [1,0]
+		end
+	else
+		if $PokemonGlobal.caughtCountsPerMap.has_key?($game_map.map_id)
+			$PokemonGlobal.caughtCountsPerMap[$game_map.map_id][1] += 1
+		else
+			$PokemonGlobal.caughtCountsPerMap[$game_map.map_id] = [0,1]
+		end
+	end
 end

@@ -134,7 +134,7 @@ def receiveGymReward(badgeNum)
 		pbReceiveItem(:ULTRABALL)
 		pbReceiveItem(:MAXREVIVE)
 	else
-		echo("Gym item #{index} not yet defined!\n")
+		echoln("Gym item #{index} not yet defined!\n")
 	end
 	
 	$game_variables[78][index] = true # Mark the item as having been received

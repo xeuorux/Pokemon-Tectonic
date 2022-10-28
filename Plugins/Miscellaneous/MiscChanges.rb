@@ -2,7 +2,7 @@
 module PBDebug
 	def self.log(msg)
     if $DEBUG
-      echo("#{msg}\n")
+      echoln("#{msg}\n")
 	  if $INTERNAL
 		@@log.push("#{msg}\r\n")
 		PBDebug.flush
@@ -16,7 +16,7 @@ Events.onMapChange += proc { |_sender,e|
   old_map_ID = e[0] # previous map ID, 0 if no map ID
   
   if old_map_ID == 0 || old_map_ID == $game_map.map_id
-    echo("Skipping off screen events check on this map because of some unknown error.\n")
+    echoln("Skipping off screen events check on this map because of some unknown error.\n")
     next
   end
 
@@ -108,9 +108,9 @@ DebugMenuCommands.register("reformulatecatchrates", {
       totalDiff += diff
       diff  = "+".concat(diff.to_s) if diff > 0
       numSpecies += 1
-      pokeballRate = (captureThresholdCalcInternals(:NONE,50,300,newRarity).to_f/CATCH_BASE_CHANCE.to_f ) ** 4
+      pokeballRate = (PokeBattle_Battle.captureThresholdCalcInternals(:NONE,50,300,newRarity).to_f/CATCH_BASE_CHANCE.to_f ) ** 4
       pokeballRate = (pokeballRate * 10000).floor / 100
-      ultraballRate = (captureThresholdCalcInternals(:NONE,50,300,newRarity * 2).to_f/CATCH_BASE_CHANCE.to_f ) ** 4
+      ultraballRate = (PokeBattle_Battle.captureThresholdCalcInternals(:NONE,50,300,newRarity * 2).to_f/CATCH_BASE_CHANCE.to_f ) ** 4
       ultraballRate = (ultraballRate * 10000).floor / 100
       end
       averageChange = totalDiff/numSpecies

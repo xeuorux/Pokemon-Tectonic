@@ -23,7 +23,7 @@ class PokeBattle_AI
 					score += 30
 					score += 30 if target.hp<=target.totalhp/4
 					score += 50 if target.hp<=target.totalhp/8
-					score -= 40 if target.effects[PBEffects::Yawn]>0
+					score -= 40 if target.effectActive?(:Yawn)
 					score += 10 if pbRoughStat(target,:DEFENSE,skill)>100
 					score += 10 if pbRoughStat(target,:SPECIAL_DEFENSE,skill)>100
 					score -= 40 if target.hasActiveAbilityAI?([:GUTS,:MARVELSCALE,:TOXICBOOST])

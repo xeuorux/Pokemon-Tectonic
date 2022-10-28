@@ -29,7 +29,7 @@ class PokeBattle_AI
 					scores.push([move,targetName,score]) if show_analysis
 				end
 			rescue
-				echo("Exception encountered while evaluating move #{move.real_name} (#{move.function_code})\n")
+				echoln("Exception encountered while evaluating move #{move.real_name} (#{move.function_code})\n")
 			end
 		}
 		printAnalysis(scores) if show_analysis
@@ -37,15 +37,15 @@ class PokeBattle_AI
 	
 	def printAnalysis(scores)
 		scores.sort_by!{ |score| -score[2]}
-		echo("The best five moves in this situation:\n")
+		echoln("The best five moves in this situation:\n")
 		for i in 0..4
 			entry = scores[i]
-			echo("#{i+1}: #{entry[0].id} #{entry[0].function_code} (targeting #{entry[1]}) -- #{entry[2]} \n")
+			echoln("#{i+1}: #{entry[0].id} #{entry[0].function_code} (targeting #{entry[1]}) -- #{entry[2]} \n")
 		end
-		echo("The five worst non-zero moves in this situation:\n")
+		echoln("The five worst non-zero moves in this situation:\n")
 		for i in 0..4
 			entry = scores[scores.length-(5-i)]
-			echo("#{i+1}: #{entry[0].id} #{entry[0].function_code} (targeting #{entry[1]}) -- #{entry[2]} \n")
+			echoln("#{i+1}: #{entry[0].id} #{entry[0].function_code} (targeting #{entry[1]}) -- #{entry[2]} \n")
 		end
 	end
 end

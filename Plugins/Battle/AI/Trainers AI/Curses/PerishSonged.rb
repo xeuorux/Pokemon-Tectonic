@@ -10,8 +10,7 @@ PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_PERISH_SONGED,
 PokeBattle_Battle::BattlerEnterCurseEffect.add(:CURSE_PERISH_SONGED,
 	proc { |curse_policy,battler,battle|
 		next if battler.opposes?
-		battler.effects[PBEffects::PerishSong]     = 3
-    	battler.effects[PBEffects::PerishSongUser] = battler.index
-		battle.pbDisplaySlower(_INTL("{1} heard the Perish Song! It will faint in three turns!",battler.pbThis))
+		battler.applyEffect(:PerishSong,3)
+		battler.applyEffect(:PerishSongUser,battler.index)
 	}
 )

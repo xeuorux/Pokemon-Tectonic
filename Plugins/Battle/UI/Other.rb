@@ -17,7 +17,7 @@ class PokeBattle_Battle
 		idxTarget = @scene.pbChooseTarget(battler.index,GameData::Target.get(:UserOrOther),nil,true)
 		return if idxTarget<0
 		pokemonTargeted = @battlers[idxTarget].pokemon
-		pokemonTargeted = @battlers[idxTarget].effects[PBEffects::Illusion] if @battlers[idxTarget].effects[PBEffects::Illusion]
+		pokemonTargeted = @battlers[idxTarget].disguisedAs if @battlers[idxTarget].illusion?
 		openSingleDexScreen(pokemonTargeted)
     end
 end

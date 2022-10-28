@@ -30,7 +30,7 @@ class PokeBattle_Scene
 	
     # Error state
     if !dialogue
-      echo("Dialogue array somehow became null while trying to show trainer dialogue!")
+      echoln("Dialogue array somehow became null while trying to show trainer dialogue!")
       return
     end
     

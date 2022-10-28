@@ -35,7 +35,7 @@ module Randomizer
   #-----------------------------------------------------------------------------
   def self.all_species
 	if @@allSpeciesArray == nil
-		echo("Generating the species array for the randomizer!\n")
+		echoln("Generating the species array for the randomizer!\n")
 		@@allSpeciesArray = []
 		GameData::Species.each { |species| @@allSpeciesArray.push(species.id) if species.form == 0 }
 	end
@@ -95,7 +95,7 @@ module Randomizer
       if !@@rules.include?(:SIMILAR_BST)
         newSpecies = possibleSpecies
       elsif bstDiff < acceptableDiff
-        echo("Acceptable BST difference between #{oldSpecies} and #{possibleSpecies}: #{bstDiff} (#{acceptableDiff})\n")
+        echoln("Acceptable BST difference between #{oldSpecies} and #{possibleSpecies}: #{bstDiff} (#{acceptableDiff})\n")
         newSpecies = possibleSpecies
       end
       attempts += 1

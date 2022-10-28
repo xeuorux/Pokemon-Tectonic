@@ -165,10 +165,12 @@ class FightMenuDisplay < BattleMenuBase
     pbDrawTextPositions(@overlay.bitmap,textPos)
     @buttons.each_with_index do |button,i|
       next if !@visibility["button_#{i}"]
-      if @battler && @battler.lastMoveUsed && @battler.lastMoveUsed == moves[i].id && !@battler.lastMoveFailed
-        x = button.x-self.x+button.src_rect.width - 32
-        y = button.y-self.y+4
-        @overlay.bitmap.blt(x,y+2,@ppUsageUpBitmap.bitmap,Rect.new(0,0,@ppUsageUpBitmap.width,@ppUsageUpBitmap.height))
+      if PP_INCREASE_REPEAT_MOVES
+        if @battler && @battler.lastMoveUsed && @battler.lastMoveUsed == moves[i].id && !@battler.lastMoveFailed
+          x = button.x-self.x+button.src_rect.width - 32
+          y = button.y-self.y+4
+          @overlay.bitmap.blt(x,y+2,@ppUsageUpBitmap.bitmap,Rect.new(0,0,@ppUsageUpBitmap.width,@ppUsageUpBitmap.height))
+        end
       end
     end
   end

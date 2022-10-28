@@ -1,5 +1,6 @@
 class PokeBattle_Scene
     def pbDamageAnimation(battler,effectiveness=0)
+        return if @battle.autoTesting
         @briefMessage = false
         # Damage animation
         damageAnim = BattlerDamageAnimation.new(@sprites,@viewport,battler.index,effectiveness,battler)
@@ -46,7 +47,7 @@ class PokeBattle_Scene
     # data box appearing)
     sendOutAnims = []
     sendOuts.each_with_index do |b,i|
-      pkmn = @battle.battlers[b[0]].effects[PBEffects::Illusion] || b[1]
+      pkmn = @battle.battlers[b[0]].disguisedAs || b[1]
       pbChangePokemon(b[0],pkmn)
       pbRefresh
       if @battle.opposes?(b[0])
@@ -117,4 +118,22 @@ class PokeBattle_Scene
         end
         damageAnims.each { |a| a.dispose }
     end
+
+  #=============================================================================
+  # Ability splash bar animations
+  #=============================================================================
+  def pbShowAbilitySplash(battler,fakeName=nil)
+    return if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+    side = battler.index%2
+    pbHideAbilitySplash(battler) if @sprites["abilityBar_#{side}"].visible
+    @sprites["abilityBar_#{side}"].battler = battler
+    @sprites["abilityBar_#{side}"].fakeName = fakeName
+    abilitySplashAnim = AbilitySplashAppearAnimation.new(@sprites,@viewport,side)
+    loop do
+      abilitySplashAnim.update
+      pbUpdate
+      break if abilitySplashAnim.animDone?
+    end
+    abilitySplashAnim.dispose
+  end
 end

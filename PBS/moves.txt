@@ -52,7 +52,7 @@
 49,FLING,Fling,0F7,1,DARK,Physical,100,10,0,NearOther,0,bef,"The user flings its held item at the target to attack. Its power and effects depend on the item.",
 50,POWERTRIP,Power Trip,08E,1,DARK,Physical,100,10,0,NearOther,0,abef,"The user boasts of its strength. Power increases the more the user's stats are raised.",
 51,PUNISHMENT,Punishment,08F,1,DARK,Physical,100,5,0,NearOther,0,abef,"This attack's power increases the more the target has powered up with stat changes.",
-52,DARKVOID,Dark Void,003,0,DARK,Status,100,1,0,AllNearFoes,-1,bce,"Targets are dragged into a world of total darkness that makes them sleep. This move always goes last.",
+52,DARKVOID,Dark Void,077,0,DARK,Status,100,1,0,AllNearFoes,-1,bce,"Targets are dragged into a world of total darkness that makes them sleep. This move always goes last.",
 53,EMBARGO,Embargo,0F8,0,DARK,Status,100,12,0,NearOther,0,bce,"It prevents the target from using its held item. Its Trainer is also prevented from using items on it.",
 54,FAKETEARS,Fake Tears,04F,0,DARK,Status,100,15,0,NearOther,0,bce,"The user feigns crying to worry the target, harshly lowering its Sp. Def stat.",
 55,FLATTER,Flatter,55E,0,DARK,Status,100,12,0,NearOther,0,bce,"Flattery is used to mystify the target. However, it also sharply raises the target's Sp. Atk stat.",
@@ -149,7 +149,7 @@
 141,CRAFTYSHIELD,Crafty Shield,14A,0,FAIRY,Status,0,10,0,UserSide,3,,"The user protects itself and its allies from status moves with a mysterious power.",
 142,FAIRYLOCK,Fairy Lock,152,0,FAIRY,Status,0,10,0,BothSides,0,e,"By locking down the battlefield, the user keeps all Pokémon from fleeing during the next turn.",
 143,FLORALHEALING,Floral Healing,16E,0,FAIRY,Status,0,5,0,NearOther,0,bc,"The user restores the target's HP by up to half of its max HP. It restores more HP when the terrain is grass.",
-144,FLOWERSHIELD,Flower Shield,13F,0,FAIRY,Status,0,10,0,UserAndAllies,0,,"The user raises the Defense stats of all Grass-type Pokémon on its side.",
+144,FLOWERSHIELD,Flower Shield,13F,0,FAIRY,Status,0,10,0,UserAndAllies,0,,"The user raises the Defense and Sp. Def of all Grass-type Pokémon on its side.",
 145,GEOMANCY,Geomancy,14E,0,FAIRY,Status,0,10,0,User,0,,"The user absorbs energy and sharply raises its Sp. Atk, Sp. Def, and Speed stats on the next turn.",
 146,FAIRYTERRAIN,Fairy Terrain,156,0,FAIRY,Status,0,10,0,BothSides,0,,"For five turns, Fairy-type moves are boosted, and grounded Pokémon can't be burned/poisoned.",
 147,MOONLIGHT,Moonlight,0D8,0,FAIRY,Status,0,5,0,User,0,d,"The user restores its own HP. The amount of HP regained varies with the weather.",
@@ -431,7 +431,7 @@
 411,STRENGTH,Strength,000,80,NORMAL,Physical,100,12,0,NearOther,0,abef,"The target is slugged with a punch thrown at maximum power.",
 412,TRIATTACK,Tri Attack,017,80,NORMAL,Special,100,10,33,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. It has a 11% chance each to numb, burn, or frostbite.",
 413,CRUSHCLAW,Crush Claw,043,75,NORMAL,Physical,100,10,100,NearOther,0,abef,"The user slashes the target with hard and sharp claws. It also lowers the target's Defense.",
-414,RELICSONG,Relic Song,003,75,NORMAL,Special,100,10,10,AllNearFoes,0,befk,"An ancient song appeals to the hearts of those listening. It has a 10% chance to induce sleep.",
+414,RELICSONG,Relic Song,078,75,NORMAL,Special,100,10,10,AllNearFoes,0,befk,"An ancient song appeals to the hearts of those listening. It has a 10% chance to induce sleep.",
 415,CHIPAWAY,Chip Away,0A9,70,NORMAL,Physical,100,15,0,NearOther,0,abef,"Seeking an opening, the user strikes continually. The foe's stat changes don't affect the damage.",
 416,DIZZYPUNCH,Dizzy Punch,401,85,NORMAL,Physical,100,10,20,NearOther,0,abefj,"The target is hit with rhythmically launched punches that have a 20% chance to fluster.",
 417,FACADE,Facade,07E,70,NORMAL,Physical,100,15,0,NearOther,0,abef,"Doubles its power if the user has a status condition. Ignores burn Attack reduction.",
@@ -947,7 +947,7 @@
 881,BIRDSTRIKE,Bird Strike,0FA,90,FLYING,Physical,100,15,0,Other,0,abef,"A reckless charge attack from the air. It also damages the user by 25% of the damage dealt.",BRAVEBIRD
 882,TERRAFORM,Terraform,538,70,ROCK,Special,100,12,0,AllNearOthers,0,bef,"Churns nearby rocks, dealing damage to nearby Pokémon and removing active terrain.",
 883,PREDICTIONSTRIKE,Prediction Strike,0A5,90,PSYCHIC,Physical,0,12,0,Other,0,abef,"The user perfectly predicts the target's future location, then strikes. It lands without fail.",ZENHEADBUTT
-884,RAKE,Rake,000,65,BUG,Physical,0,20,0,NearOther,0,abefp,"The user rakes the target with sharp claws.",FURYCUTTER
+884,RAKE,Rake,000,65,BUG,Physical,100,20,0,NearOther,0,abefp,"The user rakes the target with sharp claws.",FURYCUTTER
 885,WATERSPIRAL,Water Spiral,16F,85,WATER,Special,100,12,0,NearOther,0,befn,"Fires a spiral of water at enemies, or a HP-restoring one at allies.",
 886,SPATTERINGRAM,Spattering Ram,043,60,WATER,Physical,100,20,30,NearOther,0,abef,"The user rams the target like a ship. It has a 30% chance to lower Defense.",
 887,BLOSSOM,Blossom,020,50,GRASS,Special,100,30,70,NearOther,0,befn,"Flowers blooms underneath, dealing damage. It has a 70% chance to raise user's Sp. Atk.",GRASSPLEDGE
@@ -1129,3 +1129,4 @@
 1063,FEVERISHGAS,Feverish Gas,5A0,100,FIRE,Special,100,10,0,NearOther,0,bef,"The user breathes a pheromonal nerve-chilling agent. This move is also Ice-type.",SMOG
 1064,SNOWSTORM,Snowstorm,102,50,ICE,Special,100,10,0,NearFoe,0,bef,"Hit the target with a frigid blast, then summons hail for five turns.",HAIL
 1065,SHEDCOAT,Shed Coat,5A2,0,ICE,Status,0,12,0,User,0,d,"The user sheds excess covering, sharply raising Speed, raising Sp. Atk, but lowering Sp. Def.",
+1066,FEATHERWARD,Feather Ward,5A1,0,STEEL,Status,0,15,0,FoeSide,0,c,"The user lays a trap of sharp feathers around the foe. It hurts foes that switch into battle.",FEATHERDANCE

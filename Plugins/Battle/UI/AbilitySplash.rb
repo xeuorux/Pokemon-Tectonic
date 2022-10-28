@@ -6,10 +6,13 @@ class AbilitySplashBar < SpriteWrapper
     SPECIES_ICON_Y_POS = 0
     SPECIES_IRON_OPACITY_MULT = 0.6 # Between 0 and 1, 1 meaning fully opaque
 
+    attr_accessor :fakeName
+
     def initialize(side,viewport=nil)
         super(viewport)
         @side    = side
         @battler = nil
+        @fakeName = nil
         # Create sprite wrapper that displays background graphic
         @bgBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/ability_bar"))
         @bgSprite = SpriteWrapper.new(viewport)
@@ -87,5 +90,20 @@ class AbilitySplashBar < SpriteWrapper
         super
         @bgSprite.color = value
         @speciesIcon.color = value
+    end
+
+    def refresh
+        self.bitmap.clear
+        return if !@battler
+        textPos = []
+        textX = (@side==0) ? 10 : self.bitmap.width-8
+        # Draw Pokémon's name
+        textPos.push([_INTL("{1}'s",@battler.name),textX,-4,@side==1,
+           TEXT_BASE_COLOR,TEXT_SHADOW_COLOR,true])
+        # Draw Pokémon's ability
+        nameToShow = @fakeName ? @fakeName : @battler.abilityName
+        textPos.push([nameToShow,textX,26,@side==1,
+           TEXT_BASE_COLOR,TEXT_SHADOW_COLOR,true])
+        pbDrawTextPositions(self.bitmap,textPos)
     end
 end

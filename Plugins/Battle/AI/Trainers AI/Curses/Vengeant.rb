@@ -15,7 +15,7 @@ PokeBattle_Battle::BattlerFaintedCurseEffect.add(:CURSE_VENGEANT,
 		hpLoss = battler.totalhp / 4
 		battler.lastFoeAttacker.each do |battler_index|
 			affected = battle.battlers[battler_index]
-			if affected.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+			if affected.takesIndirectDamage?(true)
 				battle.scene.pbDamageAnimation(affected)
 				affected.pbReduceHP(hpLoss,false)
 			end

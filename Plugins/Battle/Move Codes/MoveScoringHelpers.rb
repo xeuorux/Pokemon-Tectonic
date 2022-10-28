@@ -81,7 +81,6 @@ def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],statusMove=fal
 end
 
 def getSleepMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
-	return 0 if statusMove && target.effects[PBEffects::Yawn] > 0
 	if target.hasSleepAttack?
 		score += 20
 	else
@@ -123,8 +122,8 @@ def getFlinchingMoveScore(score,user,target,skill,policies,magnitude=3)
 	userSpeed = pbRoughStat(user,:SPEED,skill)
     targetSpeed = pbRoughStat(target,:SPEED,skill)
     
-    if target.hasActiveAbilityAI?(:INNERFOCUS) || target.effects[PBEffects::Substitute] > 0 ||
-          target.effects[PBEffects::FlinchedAlready] || targetSpeed > userSpeed
+    if target.hasActiveAbilityAI?(:INNERFOCUS) || target.substituted? ||
+          target.effectActive?(:FlinchedAlready) || targetSpeed > userSpeed
       score -= magnitude * 10
     else
       score += magnitude * 10
@@ -172,17 +171,17 @@ end
 
 def statusSpikesWeightOnSide(side,excludeEffects=[])
 	hazardWeight = 0
-	hazardWeight += 20 * side.effects[PBEffects::ToxicSpikes] if !excludeEffects.include?(PBEffects::ToxicSpikes)
-	hazardWeight += 20 * side.effects[PBEffects::FlameSpikes] if !excludeEffects.include?(PBEffects::FlameSpikes)
-	hazardWeight += 20 * side.effects[PBEffects::FrostSpikes] if !excludeEffects.include?(PBEffects::FrostSpikes)
+	hazardWeight += 20 * side.countEffect(:PoisonSpikes) if !excludeEffects.include?(:PoisonSpikes)
+	hazardWeight += 20 * side.countEffect(:FlameSpikes) if !excludeEffects.include?(:FlameSpikes)
+	hazardWeight += 20 * side.countEffect(:FrostSpikes) if !excludeEffects.include?(:FrostSpikes)
 	return 0
 end
 
 def hazardWeightOnSide(side,excludeEffects=[])
 	hazardWeight = 0
-	hazardWeight += 20 * side.effects[PBEffects::Spikes] if !excludeEffects.include?(PBEffects::Spikes)
-	hazardWeight += 50 if side.effects[PBEffects::StealthRock] if !excludeEffects.include?(PBEffects::StealthRock)
-	hazardWeight += 20 if side.effects[PBEffects::StickyWeb]
+	hazardWeight += 20 * side.countEffect(:Spikes) && !excludeEffects.include?(:Spikes)
+	hazardWeight += 50 if side.effectActive?(:StealthRock) && !excludeEffects.include?(:StealthRock)
+	hazardWeight += 20 if side.effectActive?(:StickyWeb) && !excludeEffects.include?(:StickyWeb)
 	hazardWeight += statusSpikesWeightOnSide(side,excludeEffects)
 	return hazardWeight
 end
@@ -213,8 +212,8 @@ def getSelfKOMoveScore(score,user,target,skill=100)
 end
 
 def getHealingMoveScore(score,user,target,skill=100,magnitude=5)
-	return 0 if user.opposes?(target) && !target.effects[PBEffects::NerveBreak]
-    return 0 if !user.opposes?(target) && target.effects[PBEffects::NerveBreak]
+	return 0 if user.opposes?(target) && !target.effectActive?(:NerveBreak)
+    return 0 if !user.opposes?(target) && target.effectActive?(:NerveBreak)
     if target.hp <= target.totalhp / 2
       	score += magnitude * 10
 	  	score += 10 if target.hasActiveAbilityAI?(:ROOTED)

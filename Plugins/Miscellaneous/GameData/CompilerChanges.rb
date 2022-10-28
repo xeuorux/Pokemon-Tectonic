@@ -1738,7 +1738,7 @@ end
 
 module GameData
 	def self.load_all
-		echo("Loading all game data.")
+		echoln("Loading all game data.")
 		Type.load
 		Ability.load
 		Move.load

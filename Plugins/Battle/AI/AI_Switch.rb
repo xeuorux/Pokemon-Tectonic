@@ -37,40 +37,56 @@ class PokeBattle_AI
             switchingBias += 4
         end
         
-        # Pokémon is Encored or Choiced into an unfavourable move
-        if battler.effects[PBEffects::Encore] > 0
+        # More likely to switch if locked into a bad move
+        lockedMove = nil
+        if battler.effectActive?(:Encore)
             idxEncoredMove = battler.pbEncoredMoveIndex
-            if idxEncoredMove>=0
-                scoreSum   = 0
-                scoreCount = 0
-                battler.eachOpposing do |b|
-                    scoreSum += pbGetMoveScore(battler.moves[idxEncoredMove],battler,b,skill)
-                    scoreCount += 1
-                end
-                if scoreCount>0 && scoreSum/scoreCount<=20
-                    switchingBias += 2
-                end
+            if idxEncoredMove >= 0
+                lockedMove = battler.moves[idxEncoredMove]
+            end
+        elsif battler.effectActive?(:ChoiceBand)
+            battler.eachMove do |move|
+                lockedMove = move if move.id == battler.effects[:ChoiceBand]
+            end
+        elsif battler.effectActive?(:GorillaTactics)
+            battler.eachMove do |move|
+                lockedMove = move if move.id == battler.effects[:GorillaTactics]
             end
         end
+        if lockedMove
+            maxScore = 0
+            battler.eachOpposing do |b|
+                thisScore += pbGetMoveScore(lockedMove,battler,b,skill)
+                maxScore = [thisScore,maxScore].max
+            end
+            if maxScore <= 40
+                switchingBias += 3
+            elsif maxScore <= 60
+                switchingBias += 2
+            elsif maxScore <= 80
+                switchingBias += 1
+            end
+        end
+
         # If there is a single foe and it is resting after Hyper Beam or is
         # Truanting (i.e. free turn)
         if @battle.pbSideSize(battler.index+1) == 1 && !battler.pbDirectOpposing.fainted?
-            opp = battler.pbDirectOpposing
-            if opp.effects[PBEffects::HyperBeam] > 0 || (opp.hasActiveAbility?(:TRUANT) && opp.effects[PBEffects::Truant])
+            opposingBattler = battler.pbDirectOpposing
+            if !opposingBattler.canActThisTurn?
                 switchingBias -= 2
             end
         end
         # Pokémon is about to faint because of Perish Song
-        if battler.effects[PBEffects::PerishSong]==1
+        if battler.effects[:PerishSong] == 1
             switchingBias += 2
             switchingBias += 2 if user.hp > user.totalhp / 2
         end
         # Should swap when confusion self-damage is likely to deal it a bunch of damage this turn
-        if battler.effects[PBEffects::ConfusionChance] >= 1
+        if battler.effects[:ConfusionChance] >= 1
             switchingBias += 2 if highDamageFromConfusion(battler)
         end
         # Should swap when charm self-damage is likely to deal it a bunch of damage this turn
-        if battler.effects[PBEffects::CharmChance] >= 1
+        if battler.effects[:CharmChance] >= 1
             switchingBias += 2 if highDamageFromConfusion(battler)
         end
 
@@ -160,8 +176,8 @@ class PokeBattle_AI
         return nil if battler.fainted?
         attackingTypes = [battler.pokemon.type1,battler.pokemon.type2]
         if !battler.lastMoveUsed.nil?
-        moveData = GameData::Move.get(battler.lastMoveUsed)
-        attackingTypes.push(moveData.type)
+            moveData = GameData::Move.get(battler.lastMoveUsed)
+            attackingTypes.push(moveData.type)
         end
         attackingTypes.uniq!
         attackingTypes.compact!
@@ -198,18 +214,12 @@ class PokeBattle_AI
 
         policies = battler.ownersPolicies
 
-        statusSpikesInfo = {
-            PBEffects::ToxicSpikes => :POISON,
-            PBEffects::ToxicSpikes => :FIRE,
-            PBEffects::FrostSpikes => :ICE,
-        }
-
         @battle.pbParty(idxBattler).each_with_index do |pkmn,i|
             switchScore = 0
 
             # Determine if the pokemon will be airborne
             airborne = pkmn.hasType?(:FLYING) || pkmn.hasAbility?(:LEVITATE) || pkmn.item == :AIRBALLOON
-            airborne = false if @battle.field.effects[PBEffects::Gravity] > 0
+            airborne = false if @battle.field.effectActive?(:Gravity)
             airborne = false if pkmn.item == :IRONBALL
 
             willAbsorbSpikes = false
@@ -218,29 +228,35 @@ class PokeBattle_AI
             entryDamage = 0
             if !airborne && pkmn.ability != :MAGICGUARD && pkmn.item != :HEAVYDUTYBOOTS
                 # Spikes
-                spikesCount = battler.pbOwnSide.effects[PBEffects::Spikes]
+                spikesCount = battler.pbOwnSide.countEffect(:Spikes)
                 if spikesCount > 0
                     spikesDenom = [8,6,4][spikesCount-1]
                     entryDamage += pkmn.totalhp / spikesDenom
                 end
 
                 # Stealth Rock
-                if battler.pbOwnSide.effects[PBEffects::StealthRock]
+                if battler.pbOwnSide.effectActive?(:StealthRock)
                     types = pkmn.types
-                    stealthRockHPRatio = @battle.getStealthRockHPRatio(types[0], types[1] || nil)
+                    stealthRockHPRatio = @battle.getTypedHazardHPRatio(:ROCK,types[0], types[1] || nil)
                     entryDamage += pkmn.totalhp * stealthRockHPRatio
                 end
 
-                # Each of the status setting spikes
-                statusSpikesInfo.each do |spike_effect,absorbing_type|
-                    # Poison Spikes
-                    statusSpikesCount = battler.pbOwnSide.effects[spike_effect]
-                    next if statusSpikesCount <= 0
+                # Feather Ward
+                if battler.pbOwnSide.effectActive?(:FeatherWard)
+                    types = pkmn.types
+                    featherWardHPRatio = @battle.getTypedHazardHPRatio(:STEEL,types[0], types[1] || nil)
+                    entryDamage += pkmn.totalhp * featherWardHPRatio
+                end
 
-                    if pkmn.hasType?(absorbing_type)
+                # Each of the status setting spikes
+                battler.pbOwnSide.eachEffect(true) do |effect, value, data|
+                    next if !data.is_status_hazard?
+                    hazardInfo = data.type_applying_hazard
+                    
+                    if hazardInfo[:absorb_proc].call(pkmn)
                         willAbsorbSpikes = true
                     else
-                        statusSpikesDenom = [16,4][statusSpikesCount-1]
+                        statusSpikesDenom = [16,4][value-1]
                         entryDamage += pkmn.totalhp / statusSpikesDenom
                     end
                 end
@@ -367,7 +383,7 @@ class PokeBattle_AI
     end
     
     def pbCalcMaxOffensiveTypeMod(attackingTypes,victimPokemon)
-        victimPokemon = victimPokemon.effects[PBEffects::Illusion] if victimPokemon.is_a?(PokeBattle_Battler) && victimPokemon.effects[PBEffects::Illusion]
+        victimPokemon = victimPokemon.disguisedAs if victimPokemon.is_a?(PokeBattle_Battler) && victimPokemon.illusion?
         maxTypeMod = 0
         attackingTypes.each do |attackingType|
         mod = Effectiveness.calculate(attackingType,victimPokemon.type1,victimPokemon.type2)
