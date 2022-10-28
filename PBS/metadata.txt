@@ -1250,6 +1250,13 @@ Bicycle = true
 BattleBack = cave3
 Environment = Underwater
 #-------------------------------
+[219]
+# Crumbling Nest
+Outdoor = false
+ShowArea = true
+Bicycle = true
+BattleBack = cave2
+#-------------------------------
 [220]
 # Prizca Sewers East
 Outdoor = false

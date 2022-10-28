@@ -517,9 +517,10 @@ LandSparse,20
 #-------------------------------
 [196] # Boiling Cave
 DarkCave,20
-    34,TORKOAL,37,39
-    33,DWEBBLE,37,39
-    33,TURTONATOR,37,39
+    25,DWEBBLE,37,39
+    25,SOLROCK,37,39
+    25,TORKOAL,37,39
+    25,TURTONATOR,37,39
 Mud,20
     25,SHUCKLE,37,39
     25,STUNFISK,37,39
@@ -638,15 +639,19 @@ ActiveWater,20
     25,RELICANTH,37,39
     25,WIMPOD,37,39
 DarkCave,20
+    25,LUNATONE,37,39
     25,MAREANIE,37,39
     25,UNOWN,37,39
     25,WYNAUT,37,39
 #-------------------------------
-[219] # Regirock Cave
-DarkCave,21
-    33,LUNATONE,38
-    33,SOLROCK,38
-    33,STONJOURNER,38
+[219] # Crumbling Nest
+Land,20
+    20,AXEW,18,20
+    20,EKANS,18,20
+    20,GEODUDE,18,20
+    20,MTANGELA,18,20
+    10,NIDORINA,18,20
+    10,NIDORINO,18,20
 #-------------------------------
 [220] # Prizca Sewers East
 LandSparse,20
