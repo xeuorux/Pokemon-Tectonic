@@ -34,6 +34,12 @@ BattleHandlers::AccuracyCalcUserAbility.add(:COMPOUNDEYES,
     }
   )
 
+  BattleHandlers::AccuracyCalcUserAbility.add(:OCULAR,
+    proc { |ability,mults,user,target,move,type|
+      mults[:accuracy_multiplier] *= 1.5
+    }
+  )
+
 BattleHandlers::AccuracyCalcUserAbility.add(:SANDSNIPER,
     proc { |ability,mults,user,target,move,type|
         mults[:base_accuracy] = 0 if user.battle.pbWeather == :Sandstorm
