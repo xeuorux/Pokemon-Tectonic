@@ -2374,7 +2374,6 @@ Pokemon = GLIGAR,27
     Item = ORANBERRY
 #-------------------------------
 [ROUGHNECK2,Robert]
-Policies = PRESERVE_LAST_POKEMON
 Pokemon = GRIMER,28
     AbilityIndex = 0
 Pokemon = DOTTLER,30
@@ -3821,6 +3820,7 @@ Pokemon = GOLURK,55
     Item = GROUNDGEM
 #-------------------------------
 [FORMERCHAMP_Elise,Elise]
+Policies = PRESERVE_LAST_POKEMON
 Pokemon = FROSLASS,70
     Moves = SNOWYSORROWS,AURORAVEIL,HAIL,DESTINYBOND
     AbilityIndex = 0
