@@ -99,13 +99,14 @@ class PokeBattle_Scene
 			  pbCreateTrainerFrontSprite(i,p.trainer_type,@battle.opponent.length)
 		  end
 		end
-		# Data boxes and Pokémon sprites
-		@battle.battlers.each_with_index do |b,i|
-		  next if !b
-		  @sprites["dataBox_#{i}"] = PokemonDataBox.new(b,@battle.pbSideSize(i),@viewport)
-		  pbCreatePokemonSprite(i)
+    createDataBoxes()
+
+    @battle.battlers.each_with_index do |b,i|
+      next if !b
+      pbCreatePokemonSprite(i)
       createAggroCursor(b,i)
-		end
+    end
+
 		# Wild battle, so set up the Pokémon sprite(s) accordingly
 		if @battle.wildBattle?
 		  @battle.pbParty(1).each_with_index do |pkmn,i|
@@ -121,6 +122,42 @@ class PokeBattle_Scene
 		areaUIpoint = Graphics.height/4
 		indicator_Y = Graphics.height/3
 		indicator_X = Graphics.width/30
+  end
+
+  # Databoxes get closer together the more battlers on a side
+  BASE_PIXELS_BETWEEN_DATABOXES = 2
+  SQUISH_PIXELS_PER_ADDED_BATTLER = 6
+
+  def createDataBoxes()
+    # Trainer side databoxes
+    trainerSideSize = @battle.pbSideSize(1)
+    extraTrainerBattlers = trainerSideSize - 1
+    trainerY = 44 - extraTrainerBattlers * 32
+    pixelsBetweenTrainerDataboxes = BASE_PIXELS_BETWEEN_DATABOXES - extraTrainerBattlers * SQUISH_PIXELS_PER_ADDED_BATTLER
+    @battle.battlers.each do |b|
+      next if !b || b.index.even?
+      newDataBox = PokemonDataBox.new(b,trainerSideSize,@viewport,trainerY)
+      @sprites["dataBox_#{b.index}"] = newDataBox
+      trainerY += newDataBox.getHeight + pixelsBetweenTrainerDataboxes
+    end
+
+    # Player side databoxes
+    playerSideSize = @battle.pbSideSize(0)
+    extraPlayerBattlers = playerSideSize - 1
+    playerY = Graphics.height - 192 + 32 * extraPlayerBattlers
+    pixelsBetweenPlayerDataboxes = BASE_PIXELS_BETWEEN_DATABOXES - extraPlayerBattlers * SQUISH_PIXELS_PER_ADDED_BATTLER
+    @battle.battlers.reverse.each do |b|
+      next if !b || b.index.odd?
+      newDataBox = PokemonDataBox.new(b,playerSideSize,@viewport,playerY)
+      @sprites["dataBox_#{b.index}"] = newDataBox
+      playerY -= newDataBox.getHeight + pixelsBetweenPlayerDataboxes
+    end
+  end
+
+  def deleteDataBoxes()
+    @battle.battlers.each_with_index do |b,i|
+      @sprites["dataBox_#{i}"].dispose if @sprites["dataBox_#{i}"]
+    end
   end
 
   def createAggroCursor(battler,index)

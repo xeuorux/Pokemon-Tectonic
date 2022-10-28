@@ -15,6 +15,7 @@ module GameData
 		attr_reader :dmg_mult
 		attr_reader :dmg_resist
 		attr_reader :num_phases
+		attr_reader :num_health_bars
 	
 		DATA = {}
 		DATA_FILENAME = "avatars.dat"
@@ -31,6 +32,7 @@ module GameData
 		  "SizeMult" 			=> [:size_mult,     	"F"],
 		  "DMGMult"				=> [:dmg_mult,			"F"],
 		  "DMGResist"			=> [:dmg_resist,		"F"],
+		  "HealthBars"			=> [:health_bars,		"U"],
 		}
 
 		extend ClassMethods
@@ -58,6 +60,12 @@ module GameData
 				@num_phases += 1
 			end
 		  end
+
+		  @num_health_bars = hash[:health_bars] || @num_phases
+		end
+
+		def second_status?
+			return @num_health_bars > 1
 		end
 	end
 end

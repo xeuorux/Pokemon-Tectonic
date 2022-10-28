@@ -463,9 +463,10 @@ module Compiler
 				:ability	 		      => contents["Ability"],
 				:item		 		        => contents["Item"],
 				:hp_mult	 		      => contents["HPMult"],
+        :size_mult	 		    => contents["SizeMult"],
 				:dmg_mult			      => contents["DMGMult"],
         :dmg_resist			    => contents["DMGResist"],
-				:size_mult	 		    => contents["SizeMult"],
+				:health_bars	 		  => contents["HealthBars"],
 			}
 			avatar_number += 1
 			# Add trainer avatar's data to records
@@ -2151,6 +2152,7 @@ module Compiler
         f.write(sprintf("Moves3 = %s\r\n", avatar.moves3.join(","))) if !avatar.moves3.nil? && avatar.num_phases >= 3
         f.write(sprintf("Turns = %s\r\n", avatar.num_turns)) if avatar.num_turns != 2.0
         f.write(sprintf("HPMult = %s\r\n", avatar.hp_mult)) if avatar.num_turns != 4.0
+        f.write(sprintf("HealthBars = %s\r\n", avatar.num_health_bars)) if avatar.num_health_bars != avatar.num_phases
         f.write(sprintf("Item = %s\r\n", avatar.item)) if !avatar.item.nil?
         f.write(sprintf("DMGMult = %s\r\n", avatar.dmg_mult)) if avatar.dmg_mult != 1.0
         f.write(sprintf("DMGResist = %s\r\n", avatar.dmg_resist)) if avatar.dmg_resist != 0.0

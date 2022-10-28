@@ -98,7 +98,7 @@ def pbAvatarBattleCore(*args)
   return (decision==1)
 end
 
-def setAvatarProperties(pkmn)
+def getAvatarDataForPokemon(pkmn)
 	avatar_data = nil
 	if pkmn.form != 0
 		speciesFormSymbol = (pkmn.species.to_s + "_" + pkmn.form.to_s).to_sym
@@ -107,6 +107,11 @@ def setAvatarProperties(pkmn)
 	if avatar_data.nil?
 		avatar_data = GameData::Avatar.get(pkmn.species.to_sym)
 	end
+	return avatar_data
+end
+
+def setAvatarProperties(pkmn)
+	avatar_data = getAvatarDataForPokemon(pkmn)
 
 	pkmn.forced_form = avatar_data.form if avatar_data.form != 0
 
@@ -296,12 +301,10 @@ class PokeBattle_Battle
 		newBattler.hp = (newBattler.totalhp * healthPercent).ceil
 
 		# Remake all the battle boxes
-		scene.sprites["dataBox_#{battlerIndexNew}"] = PokemonDataBox.new(newBattler,@sideSizes[sideIndex],@scene.viewport)
+		scene.deleteDataBoxes()
+		scene.createDataBoxes()
 		eachBattler do |b|
-			next unless b.index % 2 == sideIndex
 			databox = scene.sprites["dataBox_#{b.index}"]
-			databox.dispose
-			databox.initialize(b,@sideSizes[sideIndex],@scene.viewport)
 			databox.visible = true
 		end
 

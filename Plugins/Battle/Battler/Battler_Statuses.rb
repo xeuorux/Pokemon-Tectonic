@@ -9,8 +9,12 @@ MYSTIFIED_EXPLANATION = 'Its Sp. Def is reduced by a third'.freeze
 class PokeBattle_Battler
 	def getStatuses
 		statuses = [ability == :COMATOSE ? :SLEEP : @status]
-		statuses.push(@bossStatus) if boss?
+		statuses.push(@bossStatus) if canHaveSecondStatus?
 		return statuses
+	end
+
+	def canHaveSecondStatus?
+		return boss? && GameData::Avatar.get(@pokemon.species).second_status?
 	end
 
 	#=============================================================================
@@ -58,10 +62,10 @@ class PokeBattle_Battler
 	def reduceStatusCount(statusToReduce = nil)
 		if statusToReduce.nil?
 			@statusCount -= 1
-			@bossStatusCount -= 1 if boss?
+			@bossStatusCount -= 1
 		elsif @status == statusToReduce
 			@statusCount -= 1
-		elsif boss? && @bossStatus == statusToReduce
+		elsif @bossStatus == statusToReduce
 			@bossStatusCount -= 1
 		end
 	end
@@ -69,7 +73,7 @@ class PokeBattle_Battler
 	def getStatusCount(statusOfConcern)
 		if @status == statusOfConcern
 			return @statusCount
-		elsif boss? && @bossStatus == statusOfConcern
+		elsif @bossStatus == statusOfConcern
 			return @bossStatusCount
 		end
 		return 0
@@ -299,17 +303,21 @@ class PokeBattle_Battler
 		newStatusCount = pbSleepDuration if newStatusCount <= 0 && newStatus == :SLEEP
 
 		# Inflict the new status
-		if !boss?
+		if !canHaveSecondStatus?
 			self.status	= newStatus
 			self.statusCount	= newStatusCount
-		elsif @status == :NONE && !hasActiveAbility?(:COMATOSE)
-			self.status	= newStatus
-			self.statusCount = newStatusCount
 		else
-			self.bossStatus	= newStatus
-			self.bossStatusCount	= newStatusCount
+			if @status == :NONE && !BattleHandlers.triggerStatusCheckAbilityNonIgnorable(ability, self, nil)
+				self.status	= newStatus
+				self.statusCount = newStatusCount
+			else
+				self.bossStatus	= newStatus
+				self.bossStatusCount	= newStatusCount
+			end
 		end
+
 		disableEffect(:Toxic)
+
 		# Show animation
 		if newStatus == :POISON && newStatusCount.positive?
 			@battle.pbCommonAnimation('Toxic', self)
@@ -317,6 +325,7 @@ class PokeBattle_Battler
 			anim_name = GameData::Status.get(newStatus).animation
 			@battle.pbCommonAnimation(anim_name, self) if anim_name
 		end
+
 		# Show message
 		if msg != 'false'
 			if msg && !msg.empty?
@@ -531,14 +540,12 @@ class PokeBattle_Battler
 			self.status = :NONE
 		end
 
-		if boss?
-			if @bossStatus == statusToCure
-				oldStatuses.push(@bossStatus)
-				self.bossStatus = :NONE
-			elsif @status == :NONE
-				self.status = @bossStatus
-				self.bossStatus = :NONE
-			end
+		if @bossStatus == statusToCure
+			oldStatuses.push(@bossStatus)
+			self.bossStatus = :NONE
+		elsif @status == :NONE
+			self.status = @bossStatus
+			self.bossStatus = :NONE
 		end
 
 		oldStatuses.each do |oldStatus|

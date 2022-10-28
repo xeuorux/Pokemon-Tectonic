@@ -89,6 +89,7 @@ Form = 1
 Ability = AURABREAK
 Moves1 = INFERNOCHARGE,TRAMPLE,RECOVER
 HPMult = 8.0
+HealthBars = 3
 Item = SOFTSAND
 DMGResist = 0.3
 Form = 1
@@ -176,6 +177,7 @@ HPMult = 6.0
 [GOURGEIST]
 Ability = INSOMNIA
 Moves1 = SHADOWBALL,TRICKORTREAT,PRIMEVALCALMMIND
+Moves2 = DREAMABSORB,YAWN
 HPMult = 6.0
 #-------------------------------
 [MAGMAR]
@@ -215,16 +217,11 @@ Moves1 = SHADOWCLAW,SANDTOMB,PRIMEVALSUNNYDAY
 Moves2 = FIREPUNCH
 HPMult = 6.0
 #-------------------------------
-[RAYQUAZA]
-Ability = AIRLOCK
-Moves1 = DRAGONASCENT,ICEBEAM,REST,COLDFRONT
-HPMult = 8.0
-DMGResist = 0.3
-#-------------------------------
 [KYOGRE]
 Ability = DRIZZLE
 Moves1 = ORIGINPULSE,THUNDER,ICEBEAM,WATERSPOUT
 HPMult = 8.0
+HealthBars = 3
 Item = BLUEORB
 DMGResist = 0.3
 #-------------------------------
@@ -232,6 +229,7 @@ DMGResist = 0.3
 Ability = DROUGHT
 Moves1 = PRECIPICEBLADES,ERUPTION,DRAGONCLAW,SOLARBEAM
 HPMult = 8.0
+HealthBars = 3
 Item = REDORB
 DMGResist = 0.3
 #-------------------------------
@@ -364,6 +362,7 @@ HPMult = 6.0
 Ability = BUNKERDOWN
 Moves1 = SWIFT,SHOCKWAVE,NUMB,EXPLOSION
 HPMult = 6.0
+HealthBars = 2
 #-------------------------------
 [GENESECT]
 Ability = DOWNLOAD
@@ -385,7 +384,7 @@ Moves1 = ATTACKORDER,BOREALWIND,PRIMEVALSPIKES
 Moves2 = RUMBLE,NOBLEROAR
 HPMult = 6.0
 #-------------------------------
-[AGOLEM]
+[AGRAVELER]
 Ability = GALVANIZE
 Moves1 = STEALTHROCK,NUMB,TACKLE,PRIMEVALHEALORDER
 Moves2 = STEAMROLLER,FLAIL
@@ -445,6 +444,7 @@ Item = LIFEORB
 Ability = COMATOSE
 Moves1 = SOULRIP,XSCISSOR,SPORE
 HPMult = 6.0
+HealthBars = 2
 Item = MUSCLEBAND
 #-------------------------------
 [SUNFLORA]
@@ -507,6 +507,7 @@ HPMult = 6.0
 Ability = CHEEKPOUCH
 Moves1 = STOCKPILE,SWALLOW,SPITUP,PRIMEVALBULLETSEED
 HPMult = 6.0
+HealthBars = 2
 Item = ORANBERRY
 #-------------------------------
 [LICKILICKY]
@@ -673,6 +674,7 @@ HPMult = 6.0
 Ability = PRESSURE
 Moves1 = PSYCHIC,SPIKES
 HPMult = 12.0
+HealthBars = 3
 #-------------------------------
 [LANTURN]
 Ability = RADIATE
