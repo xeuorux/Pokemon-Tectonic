@@ -1920,7 +1920,7 @@ class PokeBattle_Move_56B < PokeBattle_RecoilMove
 end
 
 #===============================================================================
-# Hits 3-5 times, for three turns in a row. (Pattern Release)
+# Hits 2-5 times, for three turns in a row. (Pattern Release)
 #===============================================================================
 class PokeBattle_Move_56C < PokeBattle_Move_0C0
 	def pbEffectAfterAllHits(user,target)

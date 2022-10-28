@@ -1251,7 +1251,7 @@ BattleBack = cave3
 Environment = Underwater
 #-------------------------------
 [219]
-# Crumbling Nest
+# Regirock Cave
 Outdoor = false
 ShowArea = true
 Bicycle = true

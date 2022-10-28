@@ -644,7 +644,7 @@ DarkCave,20
     25,UNOWN,37,39
     25,WYNAUT,37,39
 #-------------------------------
-[219] # Crumbling Nest
+[219] # Regirock Cave
 Land,20
     20,AXEW,18,20
     20,EKANS,18,20
