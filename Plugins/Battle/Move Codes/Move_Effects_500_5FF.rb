@@ -1924,17 +1924,11 @@ end
 #===============================================================================
 class PokeBattle_Move_56C < PokeBattle_Move_0C0
 	def pbEffectAfterAllHits(user,target)
-		if !target.damageState.unaffected && user.effects[PBEffects::Outrage] == 0
-		  user.effects[PBEffects::Outrage] = 3
-		  user.currentMove = @id
+		if !target.damageState.unaffected && !user.effectActive?(:Outrage)
+		  user.applyEffect(:Outrage,3)
 		end
-		if user.effects[PBEffects::Outrage]>0
-		  user.effects[PBEffects::Outrage] -= 1
-		  if user.effects[PBEffects::Outrage]==0
-			@battle.pbDisplay(_INTL("{1} spun down from its attack.",user.pbThis))
-		  end
-		end
-	end
+		user.tickDownAndProc(:Outrage)
+	  end
 end
   
 #===============================================================================
