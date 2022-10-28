@@ -3959,29 +3959,100 @@ Pokemon = BRAVIARY,70
     EV = 10,20,0,20,0,0
 #-------------------------------
 [LEADER_Samorn_2,Samorn,2]
-Pokemon = BIDOOF,10
+Pokemon = TOWERPODA,70
+    Moves = STEALTHROCK,STEELBEAM,METALBURST,DRACOMETEOR
+    AbilityIndex = 0
+    Item = SMOOTHROCK
+Pokemon = FLYGON,70
+    Moves = DUSTFORCE,BUGBUZZ,DRAGONPULSE,DISPLACE
     AbilityIndex = 1
+Pokemon = SAURENAID,70
+    Name = Maxie
+    Moves = SURF,FROSTSPIKES,LOOMOVER,REST
+    AbilityIndex = 1
+Pokemon = ARMALDO,70
+    Moves = SWORDSDANCE,ADAMANTINEPRESS,XSCISSOR,AQUAJET
+    AbilityIndex = 0
+Pokemon = GOLEM,70
+    Moves = EARTHQUAKE,ROLLINGBOULDER,ROCKPOLISH,THUNDERPUNCH
+    AbilityIndex = 1
+Pokemon = WORNET,70
+    Moves = FELLSTINGER,DRILLRUN,POISONJAB,UTURN
+    AbilityIndex = 0
 #-------------------------------
 [LEADER_Samorn_2,Samorn,3]
 ExtendsVersion = 2
 #-------------------------------
 [LEADER_Lambert_2,Lambert,2]
-Pokemon = BIDOOF,10
+Pokemon = ZOROARK,70
+    Moves = NASTYPLOT,BLACKOUT,MASSDESTRUCTION,PSYCHIC
+    AbilityIndex = 0
+Pokemon = RIOJIN,70
+    Name = Sangfroid
+    Moves = DREAMDANCE,IRONDEFENSE,TRAINEDOUTBURST,STEELBEAM
     AbilityIndex = 1
+    Item = SALACBERRY
+Pokemon = PANGORO,70
+    Moves = SWORDSDANCE,SUCKERPUNCH,HAMMERARM,BULLETPUNCH
+    AbilityIndex = 0
+Pokemon = EXCADRILL,70
+    Moves = UNDERMINE,STEALTHROCK,METEORMASH,XSCISSOR
+    AbilityIndex = 1
+Pokemon = INFERNAPE,70
+    Moves = FIREPUNCH,DRAINPUNCH,MACHPUNCH,NASTYPLOT
+    AbilityIndex = 0
+Pokemon = AEGISLASH,70
+    Moves = KINGSSHIELD,IRONHEAD,WAILINGBLOW,SHADOWSNEAK
+    AbilityIndex = 0
 #-------------------------------
 [LEADER_Lambert_2,Lambert,3]
 ExtendsVersion = 2
 #-------------------------------
 [LEADER_Eko_2,Eko,2]
-Pokemon = BIDOOF,10
-    AbilityIndex = 1
+Pokemon = INCINEROAR,70
+    Moves = DARKESTLARIAT,FLAMESPIKES,PARTINGSHOT,FLAREBLITZ
+    AbilityIndex = 0
+Pokemon = SALAZZLE,70
+    Moves = POISONJAB,FIRELASH,KNOCKOFF,LEECHLIFE
+    AbilityIndex = 0
+    Item = POWERLOCK
+Pokemon = TALONFLAME,70
+    Name = Dario
+    Moves = BRAVEBIRD,FLAREBLITZ,FLAREUP,FLAMESPIKES
+    AbilityIndex = 0
+Pokemon = EELEKTROSS,70
+    Moves = SUPERPOWER,ELECTROSLASH,POISONJAB,ACROBATICS
+    AbilityIndex = 0
+Pokemon = SCOLIPEDE,70
+    Moves = SWORDSDANCE,LEECHLIFE,POISONJAB,ADAMANTINEPRESS
+    AbilityIndex = 0
+Pokemon = ARAICHU,70
+    Moves = PSYCHICOVERLOAD,THUNDERBOLT,DREAMDANCE,SCALD
+    AbilityIndex = 0
 #-------------------------------
 [LEADER_Eko_2,Eko,3]
 ExtendsVersion = 2
 #-------------------------------
 [COOLTRAINER_M7,X,1]
-Pokemon = BIDOOF,10
+Pokemon = MRMIME,70
+    Moves = LIGHTSCREEN,CALMMIND,BATONPASS,ENCORE
     AbilityIndex = 0
+Pokemon = SENSIBELLE,70
+    Moves = CALMMIND,DRAININGKISS,FAIRYTERRAIN,PSYCHIC
+    AbilityIndex = 1
+Pokemon = INDEEDEE,70
+    Moves = EXPANDINGFORCE,MYSTICALFIRE,RUIN,TELEPORT
+    AbilityIndex = 0
+Pokemon = PERSIAN,70
+    Moves = FAKEOUT,CHACHING,SWORDSDANCE,AERIALACE
+    AbilityIndex = 1
+Pokemon = MIMIKYU,70
+    Moves = SHADOWSNEAK,SWORDSDANCE,TANTRUM,PHANTOMFORCE
+    AbilityIndex = 0
+Pokemon = GARDEVOIR,70
+    Moves = PSYCHIC,SHADOWBALL,MYSTICALFIRE,AURATRICK
+    AbilityIndex = 0
+    Item = LIFEORB
 #-------------------------------
 [COOLTRAINER_M7,X,2]
 ExtendsVersion = 1
@@ -3994,8 +4065,25 @@ Pokemon = BIDOOF,10
 ExtendsVersion = 1
 #-------------------------------
 [TRAINER_Alessa,Alessa,3]
-Pokemon = BIDOOF,10
+Pokemon = FORRETRESS,70
+    Moves = SWARMBURST,POISONSPIKES,SPIKES
     AbilityIndex = 0
+Pokemon = ROSERADE,70
+    Moves = CRUELWHIPBLADE,LEAFBLADE,POISONJAB,SLAY
+    AbilityIndex = 1
+Pokemon = SWAMPERT,70
+    Moves = EARTHQUAKE,LIQUIDATION,YAWN,SUPERPOWER
+    AbilityIndex = 1
+Pokemon = CRUSTLE,70
+    Moves = SHELLSMASH,LEECHLIFE,BEDROCKBREAKER,EARTHQUAKE
+    AbilityIndex = 0
+    Item = WHITEHERB
+Pokemon = DURANT,70
+    Moves = IRONHEAD,XSCISSOR,STOMPINGTANTRUM,FIRSTIMPRESSION
+    AbilityIndex = 0
+Pokemon = CLAYDOL,70
+    Moves = LEYLINEBURST,CALMMIND,COSMICPOWER,REST
+    AbilityIndex = 1
 #-------------------------------
 [TRAINER_Alessa,Alessa,4]
 ExtendsVersion = 3
@@ -4008,22 +4096,78 @@ Pokemon = BIDOOF,10
 ExtendsVersion = 1
 #-------------------------------
 [LEADER_Helena_2,Helena,2]
-Pokemon = BIDOOF,10
+Pokemon = PINCURCHIN,70
+    Moves = POISONSPIKES,RISINGVOLTAGE,SPIKES,VENOMDRENCH
     AbilityIndex = 0
+    Item = EJECTBUTTON
+Pokemon = WAILORD,70
+    Moves = WATERSPOUT,DOUSE,COLDFRONT,ICEBEAM
+    AbilityIndex = 0
+Pokemon = LANTURN,70
+    Moves = VOLTSWITCH,DOUSE,SCALD,MOONBLAST
+    AbilityIndex = 1
+Pokemon = SKARMORY,70
+    Moves = ROOST,SPIKES,MAGNETHRASH,STEALTHROCK
+    AbilityIndex = 1
+Pokemon = FEAROW,70
+    Moves = BRAVEBIRD,DRILLRUN,PARTINGSHOT,THROATCHOP
+    AbilityIndex = 1
+Pokemon = ARCLAMOR,70
+    Moves = OVERDRIVE,MIASMA,SHIFTGEAR,STOREDPOWER
+    AbilityIndex = 1
 #-------------------------------
 [LEADER_Helena_2,Helena,3]
 ExtendsVersion = 2
 #-------------------------------
 [LEADER_Bence_2,Bence,2]
-Pokemon = BIDOOF,10
+Pokemon = ARCHEOPS,70
+    Moves = STEALTHROCK,TAILWIND,PARTINGSHOT,ROCKWRECKER
+    AbilityIndex = 0
+Pokemon = STONJOURNER,70
+    Name = Agnes
+    Gender = female
+    Moves = BODYPRESS,ADAMANTINEPRESS,EARTHQUAKE,HEATCRASH
+    AbilityIndex = 1
+    Item = ASSAULTVEST
+Pokemon = JUMPLUFF,70
+    Moves = LEECHSEED,AIRSLASH,THRIVINGFORCE,MOONBLAST
+    AbilityIndex = 0
+Pokemon = HAWLUCHA,70
+    Moves = THUNDERPUNCH,TAILWIND,CLOSECOMBAT,ZEPHYRWING
+    AbilityIndex = 1
+Pokemon = PALMANTRA,70
+    Moves = ADRENALASH,THRIVINGFORCE,PSYCHIC,SIGNALBEAM
+    AbilityIndex = 1
+Pokemon = DRAGONITE,70
+    Moves = TAILWIND,DRAGONDANCE,OUTRAGE,ZEPHYRWING
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Bence_2,Bence,3]
 ExtendsVersion = 2
 #-------------------------------
 [TRAINER_Zain,Zain,2]
-Pokemon = BIDOOF,10
+Pokemon = FERROTHORN,70
+    Moves = SPIKES,KNOCKOFF,LEECHSEED,BODYPRESS
+    AbilityIndex = 0
+Pokemon = SENSIBELLE,70
+    Moves = AURATRICK,RECOVER,YAWN,FLAMETHROWER
     AbilityIndex = 1
+Pokemon = SERPERIOR,70
+    Moves = LEAFSTORM,DRACOMETEOR,THUNDERBOLT,PETRIFY
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+Pokemon = EMPOLEON,70
+    Moves = BREACH,CRASHDIVE,DOUSE,SLAY
+    AbilityIndex = 0
+    Item = STRIKEVEST
+Pokemon = BLAZIKEN,70
+    Moves = SWORDSDANCE,CLOSECOMBAT,BLAZEKICK,EARTHQUAKE
+    AbilityIndex = 0
+    Item = LIFEORB
+Pokemon = MGIGALITH,70
+    Moves = SINGINGSTONE,ABERRANTMOTE,MYSTICALFIRE,HALTINGCOLD
+    AbilityIndex = 1
+    Item = ASSAULTVEST
 #-------------------------------
 [TRAINER_Zain,Zain,3]
 ExtendsVersion = 2
