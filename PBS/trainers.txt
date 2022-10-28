@@ -2374,13 +2374,14 @@ Pokemon = GLIGAR,27
     Item = ORANBERRY
 #-------------------------------
 [ROUGHNECK2,Robert]
+Policies = PRESERVE_LAST_POKEMON
 Pokemon = GRIMER,28
     AbilityIndex = 0
+Pokemon = DOTTLER,30
+    AbilityIndex = 1
 Pokemon = KIRLIA,29
     AbilityIndex = 0
     Item = SITRUSBERRY
-Pokemon = DOTTLER,30
-    AbilityIndex = 1
 #-------------------------------
 [TRAINER_Candy,Candy]
 Pokemon = GALLADE,40
@@ -4037,6 +4038,7 @@ Pokemon = ARAICHU,70
 ExtendsVersion = 2
 #-------------------------------
 [COOLTRAINER_M7,X,1]
+Policies = PRESERVE_LAST_POKEMON
 Pokemon = MRMIME,70
     Moves = LIGHTSCREEN,CALMMIND,BATONPASS,ENCORE
     AbilityIndex = 0
