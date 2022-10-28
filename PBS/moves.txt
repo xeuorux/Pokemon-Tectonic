@@ -282,7 +282,7 @@
 268,SHADOWBALL,Shadow Ball,046,90,GHOST,Special,100,12,20,NearOther,0,befn,"The user hurls a shadowy blob at the target. It has a 20% chance to lower Sp. Def.",
 269,SPIRITSHACKLE,Spirit Shackle,0EF,80,GHOST,Physical,100,10,100,NearOther,0,bef,"The user attacks while also stitching the target's shadow to the ground to prevent it fleeing.",
 270,SHADOWCLAW,Shadow Claw,000,70,GHOST,Physical,100,12,0,NearOther,0,abefh,"The user slashes with a sharp claw made from shadows. Critical hits land more easily.",
-271,HEX,Hex,07F,60,GHOST,Special,100,10,0,NearOther,0,bef,"The user hexes the target with evil magic. This deals double damage if the target has a status condition.",
+271,HEX,Hex,07F,65,GHOST,Special,100,10,0,NearOther,0,bef,"The user hexes the target with evil magic. This deals double damage if the target has a status condition.",
 272,OMINOUSWIND,Ominous Wind,02D,60,GHOST,Special,100,12,10,NearOther,0,befq,"The user blasts the target with a gust of repulsive wind. It has a 10% chance to raise all stats.",
 273,SHADOWPUNCH,Shadow Punch,0A5,75,GHOST,Physical,0,15,0,NearOther,0,abefj,"The user throws a punch from the shadows. The punch lands without fail.",
 274,SHADOWSNEAK,Shadow Sneak,000,40,GHOST,Physical,100,25,0,NearOther,1,abef,"The user extends its shadow and attacks the target from behind. This move always goes first.",
@@ -1037,7 +1037,7 @@
 971,FRESHSTART,Fresh Start,55B,0,NORMAL,Status,0,12,0,NearOther,0,d,"Cleanses itself of old wounds, healing to full. Only usable on first turn.",
 972,DISPLACE,Displace,560,0,PSYCHIC,Status,100,10,0,NearOther,0,bce,"The target's limbs are moved to break its stance, flustering it and lowering its Defense stat.",
 973,MESMERIZE,Unsettle,561,0,FAIRY,Status,100,10,0,NearOther,0,bce,"The target's concentration is broken by a magical display, mystifying it and lowering its Sp. Def stat.",
-974,CRUELTY,Cruelty,07F,60,DRAGON,Physical,100,10,0,NearOther,0,abef,"The user crushes the target with evil intent. This deals double damage if the target has a status condition.",CRUSHCLAW
+974,CRUELTY,Cruelty,07F,65,DRAGON,Physical,100,10,0,NearOther,0,abef,"The user crushes the target with evil intent. This deals double damage if the target has a status condition.",CRUSHCLAW
 975,SLAMSHUT,Slam Shut,0CF,75,WATER,Physical,100,12,0,NearOther,0,abef,"The target is crushed in the user's shell or claws, trapping and damaging it for three turns.",CLAMP
 976,MAELSTROM,Maelstrom,0CF,75,WATER,Special,100,12,0,NearOther,0,bef,"The foe is swirled in a huge whirlpool, trapping and damaging it for three turns.",WHIRLPOOL
 977,CRIMSONSTORM,Crimson Storm,0CF,75,FIRE,Special,100,12,0,NearOther,0,bef,"The foe is engulged in a tempest of fire, trapping and damaging it for three turns.",FIRESPIN
