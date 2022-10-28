@@ -1366,8 +1366,8 @@ class PokeBattle_StatUpDownMove < PokeBattle_Move
 	  end
 
     for i in 0...@statUp.length/2
-      stat = @statDown[i*2]
-      amount = @statDown[i*2+1]
+      stat = @statUp[i*2]
+      amount = @statUp[i*2+1]
       score -= user.stages[stat] * 10 * amount
 	  end
 	  return score
