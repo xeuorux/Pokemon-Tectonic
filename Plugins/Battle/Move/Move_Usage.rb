@@ -255,8 +255,8 @@ class PokeBattle_Move
         # Target takes the damage
         damageAdjusted = false
         if damage>=target.hp
-        damage = target.hp
-        # Survive a lethal hit with 1 HP effects
+            damage = target.hp
+            # Survive a lethal hit with 1 HP effects
             if nonLethal?(user,target)
                 damage -= 1
                 damageAdjusted = true
@@ -323,7 +323,11 @@ class PokeBattle_Move
             targets.each do |b|
                 next if b.damageState.unaffected || b.damageState.hpLost==0
                 next if (side==0 && b.opposes?(user)) || (side==1 && !b.opposes?(user))
-                oldHP = b.hp+b.damageState.hpLost
+                if b.damageState.substitute
+                    oldHP = b.hp
+                else
+                    oldHP = b.hp + b.damageState.hpLost
+                end
                 PBDebug.log("[Move damage] #{b.pbThis} lost #{b.damageState.hpLost} HP (#{oldHP}=>#{b.hp})")
                 effectiveness = b.damageState.typeMod / Effectiveness::NORMAL_EFFECTIVE
                 animArray.push([b,oldHP,effectiveness])
