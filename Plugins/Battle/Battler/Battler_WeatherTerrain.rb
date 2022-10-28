@@ -17,7 +17,7 @@ class PokeBattle_Battler
 		return false unless affectedByWeatherDownsides?(checkingForAI)
 		return false if shouldTypeApply?(:FIRE, checkingForAI) || shouldTypeApply?(:GRASS, checkingForAI)
 		setterAbilities = %i[DROUGHT INNERLIGHT]
-		synergyAbilities = %i[CHLOROPHYLL SOLARPOWER LEAFGUARD FLOWERGIFT MIDNIGHTSUN HARVEST SUNCHASER HEATSAVOR BLINDINGLIGHT SOLARCELL ROAST]
+		synergyAbilities = %i[CHLOROPHYLL SOLARPOWER LEAFGUARD FLOWERGIFT MIDNIGHTSUN HARVEST SUNCHASER HEATSAVOR BLINDINGLIGHT SOLARCELL ROAST FINESUGAR]
 		return false if shouldAbilityApply?(setterAbilities, checkingForAI) || shouldAbilityApply?(synergyAbilities, checkingForAI)
 		return true
 	end
@@ -26,7 +26,7 @@ class PokeBattle_Battler
 		return false unless affectedByWeatherDownsides?(checkingForAI)
 		return false if shouldTypeApply?(:WATER, checkingForAI) || shouldTypeApply?(:ELECTRIC, checkingForAI)
 		setterAbilities = %i[DRIZZLE STORMBRINGER]
-		synergyAbilities = %i[SWIFTSWIM RAINDISH HYDRATION TIDALFORCE STORMFRONTRAINPRISM DREARYCLOUDS]
+		synergyAbilities = %i[SWIFTSWIM RAINDISH HYDRATION TIDALFORCE STORMFRONTRAINPRISM DREARYCLOUDS DRYSKIN]
 		return false if shouldAbilityApply?(setterAbilities, checkingForAI) || shouldAbilityApply?(synergyAbilities, checkingForAI)
 		return true
 	end
