@@ -291,6 +291,7 @@ class PokeBattle_Battle
 			healthPercent = 0.5
 		else
 			healthPercent = 0.5 + (level - SUMMON_MIN_HEALTH_LEVEL) / (SUMMON_MAX_HEALTH_LEVEL - SUMMON_MIN_HEALTH_LEVEL).to_f
+			healthPercent = 1.0 if healthPercent > 1.0
 		end
 		newBattler.hp = (newBattler.totalhp * healthPercent).ceil
 
