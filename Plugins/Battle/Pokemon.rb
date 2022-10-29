@@ -4,6 +4,7 @@ class Pokemon
   attr_accessor :dmgResist
 	attr_accessor :battlingStreak
   attr_accessor :extraMovesPerTurn
+  attr_accessor :bossType
 	
   # Creates a new Pokémon object.
   # @param species [Symbol, String, Integer] Pokémon species
@@ -74,6 +75,7 @@ class Pokemon
     @dmgResist        = 0
     @extraMovesPerTurn = 0
 	  @battlingStreak	  = 0
+    @bossType         = nil
     calc_stats
     if @form == 0 && recheck_form
       f = MultipleForms.call("getFormOnCreation", self)

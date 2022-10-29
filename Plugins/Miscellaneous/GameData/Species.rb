@@ -135,6 +135,7 @@ module GameData
         if ret && pkmn.boss?
           filename = 'Graphics/Pokemon/Avatars/' + species.to_s
           filename += '_' + pkmn.form.to_s if pkmn.form != 0
+          filename += '_' + pkmn.bossType.to_s.downcase if pkmn.bossType
           filename += '_back' if back
           ret = AnimatedBitmap.new(filename)
         elsif !pkmn.egg?

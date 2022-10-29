@@ -88,7 +88,6 @@ class PokeBattle_Scene
 		  end
 		  # Ability splash bars
       newBar = AbilitySplashBar.new(side,@viewport)
-      newBar.z = 100
 		  @sprites["abilityBar_#{side}"] = newBar
 		end
 		# Player's and partner trainer's back sprite
