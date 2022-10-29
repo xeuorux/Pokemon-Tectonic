@@ -479,6 +479,8 @@ module Compiler
     # Save all data
     GameData::Avatar.save
     Graphics.update
+
+    createBossSpritesAllSpeciesForms(false)
   end 
   
   #=============================================================================
@@ -1602,9 +1604,6 @@ end
       end
     end
     
-    # Create the needed graphics
-    createBossGraphics(avatarSpecies)
-    
     ret.pages = [2]
     # Create the first page, where the battle happens
     firstPage = RPG::Event::Page.new
@@ -2168,6 +2167,81 @@ module Compiler
   end
 
   #=============================================================================
+  # Compile type data
+  #=============================================================================
+  def compile_types(path = "PBS/types.txt")
+    GameData::Type::DATA.clear
+    type_names = []
+    # Read from PBS file
+    File.open(path, "rb") { |f|
+      FileLineData.file = path   # For error reporting
+      # Read a whole section's lines at once, then run through this code.
+      # contents is a hash containing all the XXX=YYY lines in that section, where
+      # the keys are the XXX and the values are the YYY (as unprocessed strings).
+      schema = GameData::Type::SCHEMA
+      pbEachFileSection(f) { |contents, type_number|
+        # Go through schema hash of compilable data and compile this section
+        for key in schema.keys
+          FileLineData.setSection(type_number, key, contents[key])   # For error reporting
+          # Skip empty properties, or raise an error if a required property is
+          # empty
+          if contents[key].nil?
+            if ["Name", "InternalName"].include?(key)
+              raise _INTL("The entry {1} is required in {2} section {3}.", key, path, type_id)
+            end
+            next
+          end
+          # Compile value for key
+          value = pbGetCsvRecord(contents[key], key, schema[key])
+          value = nil if value.is_a?(Array) && value.length == 0
+          contents[key] = value
+          # Ensure weaknesses/resistances/immunities are in arrays and are symbols
+          if value && ["Weaknesses", "Resistances", "Immunities"].include?(key)
+            contents[key] = [contents[key]] if !contents[key].is_a?(Array)
+            contents[key].map! { |x| x.to_sym }
+            contents[key].uniq!
+          end
+        end
+        # Construct type hash
+        type_symbol = contents["InternalName"].to_sym
+        type_hash = {
+          :id           => type_symbol,
+          :id_number    => type_number,
+          :name         => contents["Name"],
+          :pseudo_type  => contents["IsPseudoType"],
+          :special_type => contents["IsSpecialType"],
+          :weaknesses   => contents["Weaknesses"],
+          :resistances  => contents["Resistances"],
+          :immunities   => contents["Immunities"],
+          :color        => contents["Color"],
+        }
+        # Add type's data to records
+        GameData::Type.register(type_hash)
+        type_names[type_number] = type_hash[:name]
+      }
+    }
+    # Ensure all weaknesses/resistances/immunities are valid types
+    GameData::Type.each do |type|
+      type.weaknesses.each do |other_type|
+        next if GameData::Type.exists?(other_type)
+        raise _INTL("'{1}' is not a defined type ({2}, section {3}, Weaknesses).", other_type.to_s, path, type.id_number)
+      end
+      type.resistances.each do |other_type|
+        next if GameData::Type.exists?(other_type)
+        raise _INTL("'{1}' is not a defined type ({2}, section {3}, Resistances).", other_type.to_s, path, type.id_number)
+      end
+      type.immunities.each do |other_type|
+        next if GameData::Type.exists?(other_type)
+        raise _INTL("'{1}' is not a defined type ({2}, section {3}, Immunities).", other_type.to_s, path, type.id_number)
+      end
+    end
+    # Save all data
+    GameData::Type.save
+    MessageTypes.setMessages(MessageTypes::Types, type_names)
+    Graphics.update
+  end
+
+  #=============================================================================
   # Compile move data
   #=============================================================================
   def compile_moves()
@@ -2231,6 +2305,32 @@ module Compiler
       next if GameData::Move.exists?(move_data.animation_move)
       raise _INTL("Move ID '{1}' was assigned an Animation Move property {2} that doesn't match with any other move.\r\n", move_data.id, move_data.animation_move)
     end
+  end
+
+  #=============================================================================
+  # Save type data to PBS file
+  #=============================================================================
+  def write_types
+    File.open("PBS/types.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      # Write each type in turn
+      GameData::Type.each do |type|
+        f.write("\#-------------------------------\r\n")
+        f.write("[#{type.id_number}]\r\n")
+        f.write("Name = #{type.real_name}\r\n")
+        f.write("InternalName = #{type.id}\r\n")
+        if type.color
+          rgb = [type.color.red.to_i,type.color.green.to_i,type.color.blue.to_i]
+          f.write("Color = #{rgb.join(",")}\r\n")
+        end
+        f.write("IsPseudoType = true\r\n") if type.pseudo_type
+        f.write("IsSpecialType = true\r\n") if type.special?
+        f.write("Weaknesses = #{type.weaknesses.join(",")}\r\n") if type.weaknesses.length > 0
+        f.write("Resistances = #{type.resistances.join(",")}\r\n") if type.resistances.length > 0
+        f.write("Immunities = #{type.immunities.join(",")}\r\n") if type.immunities.length > 0
+      end
+    }
+    Graphics.update
   end
 
   def compile_signature_metadata

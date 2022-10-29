@@ -99,7 +99,7 @@ class PokeBattle_Battle
       usedEmpoweredMove = false
       b.eachMoveWithIndex do |move,index|
         next if move.damagingMove?
-        next if !move.isEmpowered?
+        next if !move.empoweredMove?
         next if move.pp < 1
         pbDisplayPaused(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
         b.lastRoundMoved = 0

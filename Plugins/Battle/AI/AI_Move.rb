@@ -57,9 +57,9 @@ class PokeBattle_AI
             end
         else # If there are no calculated choices, create a list of the choices all scored the same, to be chosen between randomly later on
           PBDebug.log("[AI] #{user.pbThis} (#{user.index}) scored no moves above a zero, resetting all choices to default")
-          user.eachMoveWithIndex do |_m,i|
+          user.eachMoveWithIndex do |m,i|
             next if !@battle.pbCanChooseMove?(idxBattler,i,false)
-                next if _m.isEmpowered?
+            next if m.empoweredMove?
             choices.push([i,100,-1])   # Move index, score, target
           end
           if choices.length == 0   # No moves are physically possible to use; use Struggle

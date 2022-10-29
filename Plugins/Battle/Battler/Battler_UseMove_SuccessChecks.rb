@@ -173,7 +173,7 @@ class PokeBattle_Battler
 	# to have been used (even if it then fails for whatever reason).
 	#=============================================================================
 	def pbTryUseMove(choice, move, specialUsage, skipAccuracyCheck)
-		return true if move.isEmpowered?
+		return true if move.empoweredMove?
 		# Check whether it's possible for self to use the given move
 		# NOTE: Encore has already changed the move being used, no need to have a
 		#       check for it here.

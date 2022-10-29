@@ -1,7 +1,4 @@
 module EmpoweredMove
-	def empowered?; return true; end
-	def isEmpowered?; return true; end
-	
 	def pbMoveFailed?(user,targets); return false; end
 	def pbFailsAgainstTarget?(user,target); return false; end
 

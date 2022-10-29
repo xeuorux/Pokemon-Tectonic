@@ -3,6 +3,7 @@ module GameData
 		attr_reader :id
 		attr_reader :id_number
 		attr_reader :num_turns
+		attr_reader :species
 		attr_reader :form
 		attr_reader :moves1
 		attr_reader :moves2
@@ -46,6 +47,7 @@ module GameData
 		  @id               = hash[:id]
 		  @id_number        = hash[:id_number]
 		  @num_turns        = hash[:turns] || 2
+		  @species			= @id.to_s.split('_')[0]
 		  @form             = hash[:form] || 0
 		  @moves1        	= hash[:moves1]
 		  @moves2 			= hash[:moves2] || []
@@ -76,6 +78,37 @@ module GameData
 
 		def arrayOfMoveSets
 			return [@moves1,@moves2,@moves3,@moves4,@moves5]
+		end
+
+		def getListOfPhaseTypes
+			phaseTypes = [nil]
+			arrayOfMoveSets.each do |moveSet|
+				moveSet.each do |move|
+					moveData = GameData::Move.get(move)
+
+					if moveData.empoweredMove? && moveData.category == 2
+						phaseTypes.push(moveData.type)
+					end
+				end
+			end
+
+			return phaseTypes
+		end
+
+		def getTypeForPhase(index)
+			return getListOfPhaseTypes[]
+		end
+
+		def self.get_from_pokemon(pokemon)
+			avatar_data = nil
+			if pokemon.form != 0
+				speciesFormSymbol = (pokemon.species.to_s + "_" + pokemon.form.to_s).to_sym
+				avatar_data = GameData::Avatar.try_get(speciesFormSymbol)
+			end
+			if avatar_data.nil?
+				avatar_data = GameData::Avatar.try_get(pokemon.species.to_sym)
+			end
+			return avatar_data
 		end
 	end
 end

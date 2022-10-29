@@ -120,8 +120,6 @@ class PokeBattle_Move
     def worksWithNoTargets?;     return false; end   # For Explosion
     def damageReducedByBurn?;    return true;  end   # For Facade
     def triggersHyperMode?;      return false; end
-    def isEmpowered?;            return false; end
-    alias empowered? isEmpowered?
     def immuneToRainDebuff?;     return false; end
     def immuneToSunDebuff?;      return false; end
     def setsARoom?();            return false; end
@@ -145,6 +143,7 @@ class PokeBattle_Move
     def danceMove?;         return @flags[/o/]; end
     def slashMove?;         return @flags[/p/]; end
     def windMove?;          return @flags[/q/]; end
+    def empoweredMove?;     return @flags[/y/]; end
   
     def nonLethal?(_user,_target); return false; end   # For False Swipe
   

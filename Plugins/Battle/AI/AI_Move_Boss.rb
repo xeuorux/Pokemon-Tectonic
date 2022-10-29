@@ -22,7 +22,7 @@ class PokeBattle_AI
             choices.reject!{|choice| choice[1] <= 0}
 
             # Seperate the choices that the boss specific AI picked out from the others
-            empoweredDamagingChoices, choices = choices.partition {|choice| user.moves[choice[0]].isEmpowered?}
+            empoweredDamagingChoices, choices = choices.partition {|choice| user.moves[choice[0]].empoweredMove?}
             guaranteedChoices, regularChoices = choices.partition {|choice| choice[1] >= 5000}
 
             empoweredDamagingChoices.reject!{|choice| user.primevalTimer < user.moves[choice[0]].turnsBetweenUses}
@@ -89,7 +89,7 @@ class PokeBattle_AI
         
         
         singleTurnBigAttack = false
-        if  move.damagingMove? && move.empowered?
+        if  move.damagingMove? && move.empoweredMove?
             @battle.pbDisplay(_INTL("#{user.pbThis} is winding up a big attack!"))
             singleTurnBigAttack = true
         else
@@ -124,7 +124,7 @@ class PokeBattle_AI
     def pbRegisterMoveBoss(user,idxMove,choices)
         move = user.moves[idxMove]
         # Never ever use empowered status moves normally
-        if move.isEmpowered? && !move.damagingMove?
+        if move.empoweredMove? && !move.damagingMove?
             echoln("Scoring #{move.name} a 0 due to it being an empowered status move.")
             return
         end 

@@ -98,20 +98,8 @@ def pbAvatarBattleCore(*args)
   return (decision==1)
 end
 
-def getAvatarDataForPokemon(pkmn)
-	avatar_data = nil
-	if pkmn.form != 0
-		speciesFormSymbol = (pkmn.species.to_s + "_" + pkmn.form.to_s).to_sym
-		avatar_data = GameData::Avatar.try_get(speciesFormSymbol)
-	end
-	if avatar_data.nil?
-		avatar_data = GameData::Avatar.get(pkmn.species.to_sym)
-	end
-	return avatar_data
-end
-
 def setAvatarProperties(pkmn)
-	avatar_data = getAvatarDataForPokemon(pkmn)
+	avatar_data = GameData::Avatar.get_from_pokemon(pkmn)
 
 	pkmn.forced_form = avatar_data.form if avatar_data.form != 0
 
@@ -196,53 +184,215 @@ def pbGetAvatarBattleBGM(_wildParty)   # wildParty is an array of Pokémon objec
 	return ret
 end
 
-def createBossGraphics(species_internal_name,overworldMult=1.5,battleMult=1.5)
+def createBossSpritesAllSpeciesForms(overwriteExisting=true)
+	# Find all genders/forms of all species that have an avatar
+	avatarSpeciesIDs = []
+	  GameData::Avatar.each do |avatar_data|
+	  avatarSpeciesIDs.push(avatar_data.species)
+	end
+	GameData::Species.each do |sp|
+	  if avatarSpeciesIDs.include?(sp.species)
+		createBossGraphics(sp.id.to_s,1.5,1.5,overwriteExisting)
+	  end
+	end
+end
+
+def createBossGraphics(speciesForm,overworldMult=1.5,battleMult=1.5,overwriteExisting=true)
+	overworldPath = 'Graphics/Characters/zAvatar_'
+	battlePath = 'Graphics/Pokemon/Avatars/'
+
 	# Create the overworld sprite
 	begin
-		overworldBitmap = AnimatedBitmap.new('Graphics/Characters/Followers/' + species_internal_name)
-		copiedOverworldBitmap = overworldBitmap.copy
-		bossifiedOverworld = bossify(copiedOverworldBitmap.bitmap,overworldMult)
-		bossifiedOverworld.to_file('Graphics/Characters/zAvatar_' + species_internal_name + '.png')
+		filePath = overworldPath + speciesForm + '.png'
+		existingFile = pbResolveBitmap(filePath)
+
+		if existingFile.nil? || overwriteExisting
+			overworldBitmap = AnimatedBitmap.new('Graphics/Characters/Followers/' + speciesForm)
+			copiedOverworldBitmap = overworldBitmap.copy
+			bossifiedOverworld = bossify(copiedOverworldBitmap.bitmap,overworldMult)
+			bossifiedOverworld.to_file(filePath)
+		end
 	rescue Exception
 		e = $!
 		pbPrintException(e)
 	end
 	
-	# Create the front in battle sprite
+	# Create the in battle sprites
 	begin
-		battlebitmap = AnimatedBitmap.new('Graphics/Pokemon/Front/' + species_internal_name)
-		copiedBattleBitmap = battlebitmap.copy
-		bossifiedBattle = bossify(copiedBattleBitmap.bitmap,battleMult)
-		bossifiedBattle.to_file('Graphics/Pokemon/Avatars/' + species_internal_name + '.png')
-	rescue Exception
-		e = $!
-		pbPrintException(e)
-	end
-	
-	# Create the back in battle sprite
-	begin
-		battlebitmap = AnimatedBitmap.new('Graphics/Pokemon/Back/' + species_internal_name)
-		copiedBattleBitmap = battlebitmap.copy
-		bossifiedBattle = bossify(copiedBattleBitmap.bitmap,battleMult)
-		bossifiedBattle.to_file('Graphics/Pokemon/Avatars/' + species_internal_name + '_back.png')
+		{
+			'Graphics/Pokemon/Front/' => '.png',
+			'Graphics/Pokemon/Back/' => '_back.png'
+		}.each do |folder, suffix|
+			avatarData = GameData::Avatar.get(speciesForm)
+
+			avatarData.getListOfPhaseTypes.each_with_index do |type,index|
+				filePath = battlePath + speciesForm
+				filePath += "_" + type.to_s.downcase if type
+				filePath += suffix
+				existingFile = pbResolveBitmap(filePath)
+
+				if existingFile.nil? || overwriteExisting
+					battlebitmap = AnimatedBitmap.new(folder + speciesForm)
+					copiedBattleBitmap = battlebitmap.copy
+					bossifiedBattle = bossify(copiedBattleBitmap.bitmap,battleMult,type,index)
+					bossifiedBattle.to_file(filePath)
+				end
+			end
+		end
 	rescue Exception
 		e = $!
 		pbPrintException(e)
 	end
 end
+
+BASE_AVATAR_HUE = 300.0 # Avatars are at base fairly Fuchsia
+BASE_AVATAR_HUE_WEIGHTING = 0.0
+BASE_AVATAR_SATURATION_SHIFT = 0
+BASE_AVATAR_LIGHTNESS_SHIFT = 0
+
+BASE_TYPE_HUE_WEIGHTING = 1.0
+EXTRA_TYPE_HUE_WEIGHTING_PER_PHASE = 0.0
+TYPE_SATURATION_WEIGHTING = 0.2
+TYPE_LUMINOSITY_WEIGHTING = 0.2
+
+BASE_OPACITY = 120
+EXTRA_OPACITY_PER_PHASE = 30
  
-def bossify(bitmap,scaleFactor,verticalOffset = 0)
-  copiedBitmap = Bitmap.new(bitmap.width*scaleFactor,bitmap.height*scaleFactor)
-  for x in 0..copiedBitmap.width
-	for y in 0..copiedBitmap.height
-	  color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor + verticalOffset)
-	  color.alpha   = [color.alpha,140].min
-	  color.red     = [color.red + 50,255].min
-	  color.blue    = [color.blue + 50,255].min
-	  copiedBitmap.set_pixel(x,y,color)
+def bossify(bitmap,scaleFactor=1.5,type=nil,phase=0)
+	# Calculate the opacity
+	opacity = BASE_OPACITY + phase * EXTRA_OPACITY_PER_PHASE
+	opacity = opacity.clamp(0,255)
+
+	# Figure out the color info that should be used for the given type, if any
+	applyType = false
+	if type
+		typeColor = GameData::Type.get(type).color
+		typeH, typeS, typeL = rgb_to_hsl(typeColor.red,typeColor.green,typeColor.blue)
+		typeHueWeight = BASE_TYPE_HUE_WEIGHTING + EXTRA_TYPE_HUE_WEIGHTING_PER_PHASE * phase
+		applyType = true if typeHueWeight > 0
 	end
-  end
-  return copiedBitmap
+
+	# Create the new bitmap
+	copiedBitmap = Bitmap.new(bitmap.width * scaleFactor,bitmap.height * scaleFactor)
+	for x in 0..copiedBitmap.width
+		for y in 0..copiedBitmap.height
+		color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor)
+
+		h,s,l = rgb_to_hsl(color.red,color.green,color.blue)
+
+		# Hue
+		h = averageOfHues(h,BASE_AVATAR_HUE,BASE_AVATAR_HUE_WEIGHTING)
+		h = averageOfHues(h,typeH,typeHueWeight) if applyType
+		h += 360 if h < 0
+
+		# Saturation
+		s -= BASE_AVATAR_SATURATION_SHIFT
+		s = s * (1.0 - TYPE_SATURATION_WEIGHTING) + typeS * TYPE_SATURATION_WEIGHTING if applyType
+		s = s.clamp(0,100)
+
+		# Lightness
+		l += BASE_AVATAR_LIGHTNESS_SHIFT
+		l = l * (1.0 - TYPE_LUMINOSITY_WEIGHTING) + typeL * TYPE_LUMINOSITY_WEIGHTING if applyType
+		l = l.clamp(0,100)
+
+		color.red,color.green,color.blue = hsl_to_rgb(h,s,l)
+
+		# Add a base level of a certain color
+		color.red += BASE_RGB_ADD[0]
+		color.green += BASE_RGB_ADD[1]
+		color.blue += BASE_RGB_ADD[2]
+
+		# Add the transparency
+		color.alpha   = [color.alpha, opacity].min
+
+		# Round and clamp
+		color.red 	= color.red.round.clamp(0,255)
+		color.green = color.green.round.clamp(0,255)
+		color.blue 	= color.blue.round.clamp(0,255)
+		
+		copiedBitmap.set_pixel(x,y,color)
+		end
+	end
+	return copiedBitmap
+end
+
+def averageOfHues(valueA,valueB,weightingTowardsB=0.5)
+	radA = (valueA - 180) / 180.0 * Math::PI
+	radB = (valueB - 180) / 180.0 * Math::PI
+
+	ax,ay = Math.cos(radA),Math.sin(radA)
+	bx,by = Math.cos(radB),Math.sin(radB)
+
+	cx = (ax * (1 - weightingTowardsB) + bx * weightingTowardsB)
+	cy = (ay * (1 - weightingTowardsB) + by * weightingTowardsB)
+
+	radC = Math.atan2(cy,cx)
+
+	degC = radC / Math::PI * 180.0 + 180.0
+
+	return degC
+end
+
+def rgb_to_hsl(r,g,b)
+    r /= 255.0
+    g /= 255.0
+    b /= 255.0
+    max = [r, g, b].max
+    min = [r, g, b].min
+    h = (max + min) / 2.0
+    s = (max + min) / 2.0
+    l = (max + min) / 2.0
+
+    if(max == min)
+      h = 0
+      s = 0 # achromatic
+    else
+      d = max - min;
+      s = l >= 0.5 ? d / (2.0 - max - min) : d / (max + min)
+      case max
+        when r 
+          h = (g - b) / d + (g < b ? 6.0 : 0)
+        when g 
+          h = (b - r) / d + 2.0
+        when b 
+          h = (r - g) / d + 4.0
+      end
+      h /= 6.0
+    end
+    return [(h*360), (s*100), (l*100)]
+end
+
+def hsl_to_rgb(h, s, l)
+	h = h/360.0
+	s = s/100.0
+	l = l/100.0
+
+	r = 0.0
+	g = 0.0
+	b = 0.0
+	
+	if(s == 0.0)
+		r = l.to_f
+		g = l.to_f
+		b = l.to_f #achromatic
+	else
+		q = l < 0.5 ? l * (1 + s) : l + s - l * s
+		p = 2 * l - q
+		r = hue_to_rgb(p, q, h + 1/3.0)
+		g = hue_to_rgb(p, q, h)
+		b = hue_to_rgb(p, q, h - 1/3.0)
+	end
+
+	return [(r * 255), (g * 255), (b * 255)]
+end
+
+def self.hue_to_rgb(p, q, t)
+	t += 1                                  if(t < 0) 
+	t -= 1                                  if(t > 1)
+	return (p + (q - p) * 6 * t)            if(t < 1/6.0) 
+	return q                                if(t < 1/2.0) 
+	return (p + (q - p) * (2/3.0 - t) * 6)  if(t < 2/3.0) 
+	return p
 end
 
 

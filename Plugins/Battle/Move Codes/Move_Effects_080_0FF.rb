@@ -1576,7 +1576,7 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
       next if @moveBlacklistSignatures.include?(move_data.id)
       next if @moveBlacklistCut.include?(move_data.id)
       next if move_data.type == :SHADOW
-      next if @battle.getBattleMoveInstanceFromID(move_id).empowered?
+      next if GameData::Move.get(move_id).empoweredMove?
       metronomeMoves.push(move_data.id)
     end
     return metronomeMoves

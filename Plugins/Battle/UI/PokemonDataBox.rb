@@ -32,7 +32,7 @@ class PokemonDataBox < SpriteWrapper
 		@hpBars		  = []
 		@numHPBars = 1
 		if @battler.boss
-			@numHPBars = getAvatarDataForPokemon(@battler.pokemon).num_health_bars
+			@numHPBars = GameData::Avatar.get_from_pokemon(@battler.pokemon).num_health_bars
 		end
 		initializeDataBoxGraphic(sideSize)
 		initializeOtherGraphics(viewport)

@@ -75,7 +75,7 @@ class PokeBattle_AI
         choices.each_with_index do |c,i|
           logMsg += "#{user.moves[c[0]].name}=#{c[1]}"
           logMsg += " (target #{c[2]})" if c[2]>=0
-          logMsg += " [E]" if user.moves[c[0]].empowered?
+          logMsg += " [E]" if user.moves[c[0]].empoweredMove?
           logMsg += ", " if i < choices.length-1
         end
         PBDebug.log(logMsg)

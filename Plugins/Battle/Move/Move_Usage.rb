@@ -28,7 +28,7 @@ class PokeBattle_Move
     def pbDisplayUseMessage(user,targets=[])
         displayZMoveUseMessage(user) if zMove? && !@specialUseZMove
         
-        if isEmpowered?
+        if empoweredMove?
           pbMessage(_INTL("\\ts[{3}]{1} used <c2=06644bd2>{2}</c2>!",user.pbThis,@name,MessageConfig.pbGetTextSpeed() * 2)) if !@battle.autoTesting
         else
           @battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
