@@ -43,22 +43,21 @@ class PokemonDataBox < SpriteWrapper
 		onPlayerSide = ((@battler.index%2)==0)
 		
 		# Determine the basic shape and size of the databox
-		if sideSize == 1 || @numHPBars > 1
-		  bgFilename = ["Graphics/Pictures/Battle/databox_normal",
+		if sideSize == 1
+		  	bgFilename = ["Graphics/Pictures/Battle/databox_normal",
 						"Graphics/Pictures/Battle/databox_normal_foe"][@battler.index % 2]
+			# Only show HP numbers and EXP if its a player's pokemon and there's the room
+			if onPlayerSide
+				@showHP  = true
+				@showExp = true
+			end
 		else
-		  bgFilename = ["Graphics/Pictures/Battle/databox_thin",
-						"Graphics/Pictures/Battle/databox_thin_foe"][@battler.index % 2]
-		  @thinBox = true
+			bgFilename = ["Graphics/Pictures/Battle/databox_thin",
+							"Graphics/Pictures/Battle/databox_thin_foe"][@battler.index % 2]
+			@thinBox = true
 		end
 
-		# Only show HP numbers and EXP if its a player's pokemon and there's the room
-		if onPlayerSide && sideSize == 1
-			@showHP  = true
-			@showExp = true
-		end
-
-		# Use multiple HP bars
+		# Use multiple HP bar variants
 		if !onPlayerSide && @numHPBars > 1
 			bgFilename = "#{bgFilename}_#{@numHPBars}"
 		end
@@ -332,9 +331,6 @@ class PokemonDataBox < SpriteWrapper
     super
 	@hpBars.each_with_index do |bar,index|
 		bar.x     = value + @spriteBaseX + 102
-		if @thinBox
-			bar.x += index * 76
-		end
 	end
 
     @expBar.x    = value+@spriteBaseX+2
@@ -343,9 +339,8 @@ class PokemonDataBox < SpriteWrapper
 	@typeIcons.each_with_index do |icon, index|
 		icon.x = value + @spriteBaseX
 		if @thinBox
-			icon.x += 244
-			icon.x += 48 if @numHPBars > 1
-			icon.x += 34 * (index/2)
+			icon.x += @databoxBitmap.width - 22
+			icon.x += @databoxBitmap.width * (index/2)
 		else
 			icon.x += 4
 			icon.x += 48 * index
@@ -358,10 +353,7 @@ class PokemonDataBox < SpriteWrapper
 
 	finalBarY = 0
 	@hpBars.each_with_index do |bar,index|
-		bar.y     = value + 40
-		if !@thinBox
-			bar.y += index * 12
-		end
+		bar.y     = value + 40 + index * 12
 		finalBarY = bar.y
 	end
 
@@ -373,7 +365,7 @@ class PokemonDataBox < SpriteWrapper
 		icon.y = value
 		if @thinBox
 			icon.y += 8
-			icon.y += (index % 20) * 20
+			icon.y += (index % 2) * TYPE_ICON_THIN_HEIGHT
 		else
 			icon.y += @databoxBitmap.height - TYPE_ICON_HEIGHT
 		end
