@@ -96,6 +96,8 @@ def pbPrepareBattle(battle)
     else;                                 battle.time = 0
     end
   end
+  # Auto testing
+  battle.autoTesting = battleRules["autotesting"]
 end
 
 #===============================================================================
@@ -352,6 +354,7 @@ class PokemonTemp
     when "nopartner"              then rules["noPartner"]      = true
 	  when "randomorder";           then rules["randomOrder"]    = true
     when "turnstosurvive";        then rules["turnsToSurvive"] = var
+    when "autotesting"            then rules["autotesting"]    = true
     else
       raise _INTL("Battle rule \"{1}\" does not exist.", rule)
     end
@@ -361,103 +364,11 @@ end
 #===============================================================================
 # Start a trainer battle
 #===============================================================================
-def pbTrainerBattleAutoTest(*args)
-  outcomeVar = $PokemonTemp.battleRules["outcomeVar"] || 1
-  canLose    = $PokemonTemp.battleRules["canLose"] || false
-  # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
-  if $Trainer.able_pokemon_count == 0 || ($DEBUG && Input.press?(Input::CTRL))
-    pbMessage(_INTL("SKIPPING BATTLE...")) if $DEBUG
-    pbMessage(_INTL("AFTER WINNING...")) if $DEBUG && $Trainer.able_pokemon_count > 0
-    pbSet(outcomeVar,($Trainer.able_pokemon_count == 0) ? 0 : 1)   # Treat it as undecided/a win
-    $PokemonTemp.clearBattleRules
-    $PokemonGlobal.nextBattleBGM       = nil
-    $PokemonGlobal.nextBattleME        = nil
-    $PokemonGlobal.nextBattleCaptureME = nil
-    $PokemonGlobal.nextBattleBack      = nil
-    pbMEStop
-    return ($Trainer.able_pokemon_count == 0) ? 0 : 1   # Treat it as undecided/a win
+def battleAutoTest(trainerID, trainerName)
+  loop do
+    $game_variables[LEVEL_CAP_VAR] = 70
+    pbTrainerBattle(trainerID, trainerName)
   end
-  # Record information about party Pokémon to be used at the end of battle (e.g.
-  # comparing levels for an evolution check)
-  Events.onStartBattle.trigger(nil)
-  # Generate trainers and their parties based on the arguments given
-  foeTrainers    = []
-  foeItems       = []
-  foeEndSpeeches = []
-  foeParty       = []
-  foePartyStarts = []
-  for arg in args
-    if arg.is_a?(NPCTrainer)
-      foeTrainers.push(arg)
-      foePartyStarts.push(foeParty.length)
-      arg.party.each { |pkmn| foeParty.push(pkmn) }
-      foeEndSpeeches.push(arg.lose_text)
-      foeItems.push(arg.items)
-    elsif arg.is_a?(Array)   # [trainer type, trainer name, ID, speech (optional)]
-      trainer = pbLoadTrainer(arg[0],arg[1],arg[2])
-      pbMissingTrainer(arg[0],arg[1],arg[2]) if !trainer
-      return 0 if !trainer
-      Events.onTrainerPartyLoad.trigger(nil,trainer)
-      foeTrainers.push(trainer)
-      foePartyStarts.push(foeParty.length)
-      trainer.party.each { |pkmn| foeParty.push(pkmn) }
-      foeEndSpeeches.push(arg[3] || trainer.lose_text)
-      foeItems.push(trainer.items)
-    else
-      raise _INTL("Expected NPCTrainer or array of trainer data, got {1}.", arg)
-    end
-  end
-  # Calculate who the player trainer(s) and their party are
-  playerTrainers    = [$Trainer]
-  playerParty       = $Trainer.party
-  playerPartyStarts = [0]
-  room_for_partner = (foeParty.length > 1)
-  if !room_for_partner && $PokemonTemp.battleRules["size"] &&
-     !["single", "1v1", "1v2", "1v3"].include?($PokemonTemp.battleRules["size"])
-    room_for_partner = true
-  end
-  if $PokemonGlobal.partner && !$PokemonTemp.battleRules["noPartner"] && room_for_partner
-    ally = NPCTrainer.new($PokemonGlobal.partner[1], $PokemonGlobal.partner[0])
-    ally.id    = $PokemonGlobal.partner[2]
-    ally.party = $PokemonGlobal.partner[3]
-    playerTrainers.push(ally)
-    playerParty = []
-    $Trainer.party.each { |pkmn| playerParty.push(pkmn) }
-    playerPartyStarts.push(playerParty.length)
-    ally.party.each { |pkmn| playerParty.push(pkmn) }
-    setBattleRule("double") if !$PokemonTemp.battleRules["size"]
-  end
-  # Create the battle scene (the visual side of it)
-  scene = pbNewBattleScene
-  # Create the battle class (the mechanics side of it)
-  battle = PokeBattle_Battle.new(scene,playerParty,foeParty,playerTrainers,foeTrainers)
-  battle.party1starts = playerPartyStarts
-  battle.party2starts = foePartyStarts
-  battle.items        = foeItems
-  battle.endSpeeches  = foeEndSpeeches
-  battle.autoTesting  = true
-  # Set various other properties in the battle class
-  pbPrepareBattle(battle)
-  $PokemonTemp.clearBattleRules
-  # End the trainer intro music
-  Audio.me_stop
-  # Perform the battle itself
-  decision = 0
-  pbBattleAnimation(pbGetTrainerBattleBGM(foeTrainers),(battle.singleBattle?) ? 1 : 3,foeTrainers) {
-    pbSceneStandby {
-      decision = battle.pbStartBattle
-    }
-    pbAfterBattle(decision,canLose)
-  }
-  Input.update
-  # Save the result of the battle in a Game Variable (1 by default)
-  #    0 - Undecided or aborted
-  #    1 - Player won
-  #    2 - Player lost
-  #    3 - Player or wild Pokémon ran from battle, or player forfeited the match
-  #    5 - Draw
-  pbSet(outcomeVar,decision)
-  return decision
 end
 
 def pbTrainerBattleCursed(nonCursedInfoArray, cursedInfoArray)

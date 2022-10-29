@@ -56,9 +56,7 @@ BattleHandlers::SpeedCalcAbility.add(:BROODING,
   proc { |ability,battler,mult|
 	dragonCount = 0
 	battler.battle.eachInTeamFromBattlerIndex(battler.index) do |pkmn,i|
-		dragonCount += 1 if pkmn.hasT
-
-    ype?(:DRAGON)
+		dragonCount += 1 if pkmn.hasType?(:DRAGON)
 	end
 	next mult * (1.0 + dragonCount * 0.05) 
   }

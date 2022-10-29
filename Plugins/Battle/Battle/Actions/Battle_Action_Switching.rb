@@ -188,7 +188,7 @@ class PokeBattle_Battle
   end
 
   def pbGetReplacementPokemonIndex(idxBattler,random=false)
-    if random
+    if random || @autoTesting
       return -1 if !pbCanSwitch?(idxBattler)   # Can battler switch out?
       choices = []   # Find all Pokémon that can switch in
       eachInTeamFromBattlerIndex(idxBattler) do |_pkmn,i|
