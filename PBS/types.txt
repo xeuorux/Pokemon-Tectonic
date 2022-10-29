@@ -3,7 +3,7 @@
 [0]
 Name = Normal
 InternalName = NORMAL
-Type = 168,168,120
+Color = 168,168,120
 Weaknesses = FIGHTING
 Immunities = GHOST
 #-------------------------------
