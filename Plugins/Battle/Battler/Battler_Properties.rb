@@ -42,6 +42,7 @@ class PokeBattle_Battler
 		new_item = GameData::Item.try_get(value)
 		@item_id = new_item ? new_item.id : nil
 		@pokemon.item = @item_id if @pokemon
+		refreshDataBox
 	end
 
 	def hp=(value)
@@ -60,25 +61,25 @@ class PokeBattle_Battler
 		@status = value
 		@pokemon.status = value if @pokemon
 		self.statusCount = 0 if value != :POISON && value != :SLEEP
-		@battle.scene.pbRefreshOne(@index)
+		refreshDataBox
 	end
 
 	def statusCount=(value)
 		@statusCount = value
 		@pokemon.statusCount = value if @pokemon
-		@battle.scene.pbRefreshOne(@index)
+		refreshDataBox
 	end
 
 	def bossStatus=(value)
 		disableEffect(:Truant) if @bossStatus == :SLEEP && value != :SLEEP
 		@bossStatus = value
 		@bossStatusCount = 0 if value != :SLEEP
-		@battle.scene.pbRefreshOne(@index)
+		refreshDataBox
 	end
 
 	def bossStatusCount=(value)
 		@bossStatusCount = value
-		@battle.scene.pbRefreshOne(@index)
+		refreshDataBox
 	end
 
 	def extraMovesPerTurn

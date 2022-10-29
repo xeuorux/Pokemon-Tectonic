@@ -197,6 +197,7 @@ class PokeBattle_Battle
 
     priority.each do |b|
       next if b.fainted?
+
       # Hyper Mode (Shadow Pokémon)
       if b.inHyperMode?
         if pbRandom(100)<10

@@ -264,4 +264,8 @@ class PokeBattle_Battler
 			@participants.push(b.pokemonIndex) unless @participants.include?(b.pokemonIndex)
 		end
 	end
+
+	def refreshDataBox
+		@battle.scene.pbRefreshOne(@index) if @battle.scene
+	end
 end

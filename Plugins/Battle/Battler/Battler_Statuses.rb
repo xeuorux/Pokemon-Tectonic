@@ -566,7 +566,7 @@ class PokeBattle_Battler
 			end
 		end
 
-		@battle.scene.pbRefreshOne(@index)
+		refreshDataBox
 	end
 
 	def self.showStatusCureMessage(status, pokemonOrBattler, battle)

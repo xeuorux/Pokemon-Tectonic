@@ -134,7 +134,6 @@ class PokeBattle_Battler
 		applyEffect(:ItemLost) if item
 		setInitialItem(nil) if permanent && item == initialItem
 		self.item = nil
-		@battle.scene.pbRefresh
 	end
 
 	#=========================================

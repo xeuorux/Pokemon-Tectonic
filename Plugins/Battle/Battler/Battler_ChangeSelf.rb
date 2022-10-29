@@ -267,7 +267,7 @@ class PokeBattle_Battler
 		disableEffect(:BurnUp)
 		disableEffect(:ColdConversion)
 		disableEffect(:Roost)
-		@battle.scene.pbRefresh
+		refreshDataBox
 	end
 
 	#=============================================================================
@@ -282,7 +282,7 @@ class PokeBattle_Battler
 		@hp = @totalhp - oldDmg
 		disableEffect(:WeightChange)
 		@battle.scene.pbChangePokemon(self, @pokemon)
-		@battle.scene.pbRefreshOne(@index)
+		refreshDataBox
 		@battle.pbDisplay(msg) if msg && msg != ''
 		PBDebug.log("[Form changed] #{pbThis} changed from form #{oldForm} to form #{newForm}")
 		@battle.pbSetSeen(self)
@@ -457,7 +457,7 @@ class PokeBattle_Battler
 		end
 		disableEffect(:Disable)
 		@effects[:WeightChange] = target.effects[:WeightChange]
-		@battle.scene.pbRefreshOne(@index)
+		refreshDataBox
 		@battle.pbDisplay(_INTL('{1} transformed into {2}!', pbThis, target.pbThis(true)))
 		pbOnAbilityChanged(oldAbil)
 	end
