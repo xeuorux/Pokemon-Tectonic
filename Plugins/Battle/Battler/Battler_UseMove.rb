@@ -457,9 +457,9 @@ class PokeBattle_Battler
 			# Get the number of hits
 			numHits = move.pbNumHits(user, targets)
 			# Mark each target with whether its being targeted by a multihit move
-			messagesPerHit = numHits <= 1
+			multiHitAesthetics = numHits > 1 || move.pbRepeatHit?
 			targets.each do |target|
-				target.damageState.messagesPerHit = messagesPerHit
+				target.damageState.messagesPerHit = !multiHitAesthetics
 			end
 			# Record that Parental Bond applies, to weaken the second attack
 			user.applyEffect(:ParentalBond,3) if move.canParentalBond?(user, targets)
@@ -469,7 +469,7 @@ class PokeBattle_Battler
 			moveIsMagicked = magicCoater >= 0 || magicBouncer >= 0 || magicShielder >= 0
 			unless moveIsMagicked
 				for i in 0...numHits
-					success = pbProcessMoveHit(move, user, targets, i, skipAccuracyCheck, numHits > 1)
+					success = pbProcessMoveHit(move, user, targets, i, skipAccuracyCheck, multiHitAesthetics)
 					unless success
 						if i == 0 && targets.length > 0
 							hasFailed = false
@@ -501,23 +501,25 @@ class PokeBattle_Battler
 				end
 			end
 			# Effectiveness message for multi-hit moves
-			unless messagesPerHit
+			if multiHitAesthetics
 				if move.damagingMove?
 					targets.each do |b|
 						next if b.damageState.unaffected || b.damageState.substitute
 						move.pbEffectivenessMessage(user, b, targets.length)
 					end
 				end
-				if targets.length > 1
-					if realNumHits == 1
-						@battle.pbDisplay(_INTL('Hit each 1 time!'))
+				if numHits > 1
+					if targets.length > 1
+						if realNumHits == 1
+							@battle.pbDisplay(_INTL('Hit each 1 time!'))
+						elsif realNumHits > 1
+							@battle.pbDisplay(_INTL('Hit each {1} times!', realNumHits))
+						end
+					elsif realNumHits == 1
+						@battle.pbDisplay(_INTL('Hit 1 time!'))
 					elsif realNumHits > 1
-						@battle.pbDisplay(_INTL('Hit each {1} times!', realNumHits))
+						@battle.pbDisplay(_INTL('Hit {1} times!', realNumHits))
 					end
-				elsif realNumHits == 1
-					@battle.pbDisplay(_INTL('Hit 1 time!'))
-				elsif realNumHits > 1
-					@battle.pbDisplay(_INTL('Hit {1} times!', realNumHits))
 				end
 			end
 			# Magic Coat's bouncing back (move has targets)
@@ -531,7 +533,7 @@ class PokeBattle_Battler
 				newChoice[3] = user.index
 				newTargets = pbFindTargets(newChoice, move, b)
 				newTargets = pbChangeTargets(move, b, newTargets)
-				success = pbProcessMoveHit(move, b, newTargets, 0, false)
+				success = pbProcessMoveHit(move, b, newTargets, 0, false, multiHitAesthetics)
 				b.lastMoveFailed = true unless success
 				targets.each { |otherB| otherB.pbFaint if otherB && otherB.fainted? }
 				user.pbFaint if user.fainted?
@@ -544,7 +546,7 @@ class PokeBattle_Battler
 					@battle.pbShowAbilitySplash(mc) if magicBouncer >= 0
 					@battle.pbDisplay(_INTL('{1} bounced the {2} back!', mc.pbThis, move.name))
 					@battle.pbHideAbilitySplash(mc) if magicBouncer >= 0
-					success = pbProcessMoveHit(move, mc, [], 0, false)
+					success = pbProcessMoveHit(move, mc, [], 0, false, multiHitAesthetics)
 					mc.lastMoveFailed = true unless success
 					targets.each { |b| b.pbFaint if b && b.fainted? }
 					user.pbFaint if user.fainted?
@@ -646,7 +648,7 @@ class PokeBattle_Battler
 	#=============================================================================
 	# Attack a single target
 	#=============================================================================
-	def pbProcessMoveHit(move, user, targets, hitNum, skipAccuracyCheck, multiHit = false)
+	def pbProcessMoveHit(move, user, targets, hitNum, skipAccuracyCheck, fastHitAnimation = false)
 		return false if user.fainted?
 		# For two-turn attacks being used in a single turn
 		move.pbInitialEffect(user, targets, hitNum)
@@ -724,7 +726,7 @@ class PokeBattle_Battler
 				move.pbInflictHPDamage(b)
 			end
 			# Animate the hit flashing and HP bar changes
-			move.pbAnimateHitAndHPLost(user, targets, multiHit)
+			move.pbAnimateHitAndHPLost(user, targets, fastHitAnimation)
 		end
 		# Self-Destruct/Explosion's damaging and fainting of user
 		move.pbSelfKO(user) if hitNum == 0 && !@battle.autoTesting
@@ -822,9 +824,8 @@ class PokeBattle_Battler
 		targets.each { |b| b.pbFaint if b && b.fainted? }
 		user.pbFaint if user.fainted?
 		# Dragon Darts' second half of attack
-		if move.pbRepeatHit?(hitNum) &&
-				targets.any? { |b| !b.fainted? && !b.damageState.unaffected }
-			pbProcessMoveHit(move, user, all_targets, hitNum + 1, skipAccuracyCheck)
+		if move.pbRepeatHit?(hitNum) && all_targets.any? { |b| !b.fainted? && !b.damageState.unaffected }
+			pbProcessMoveHit(move, user, all_targets, hitNum + 1, skipAccuracyCheck, fastHitAnimation)
 		end
 		return true
 	end

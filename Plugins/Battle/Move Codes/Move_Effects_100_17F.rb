@@ -2853,8 +2853,19 @@ class PokeBattle_Move_17C < PokeBattle_Move_0BD
 
   def pbDesignateTargetsForHit(targets, hitNum)
     valid_targets = []
-    targets.each { |b| valid_targets.push(b) if !b.damageState.unaffected }
-    return [valid_targets[1]] if valid_targets[1] && hitNum > 0
+    targets.each { |b|
+      next if b.damageState.unaffected || b.damageState.fainted
+      valid_targets.push(b) 
+    }
+    indexThisHit = hitNum % targets.length
+    if indexThisHit == 2
+      if valid_targets[2]
+        return [valid_targets[2]]
+      else
+        indexThisHit = 1
+      end
+    end
+    return [valid_targets[1]] if indexThisHit = 1 && valid_targets[1]
     return [valid_targets[0]]
   end
 end
