@@ -47,7 +47,7 @@ module GameData
 		  @id               = hash[:id]
 		  @id_number        = hash[:id_number]
 		  @num_turns        = hash[:turns] || 2
-		  @species			= @id.to_s.split('_')[0]
+		  @species			= @id.to_s.split('_')[0].to_sym
 		  @form             = hash[:form] || 0
 		  @moves1        	= hash[:moves1]
 		  @moves2 			= hash[:moves2] || []
@@ -99,14 +99,22 @@ module GameData
 			return getListOfPhaseTypes[]
 		end
 
+		def self.get_from_species_form(speciesForm)
+			if DATA.has_key?(speciesForm)
+				return self.get(speciesForm)
+			else
+				species = speciesForm.to_s.split('_')[0].to_sym
+				return self.get(species)
+			end
+		end
+
 		def self.get_from_pokemon(pokemon)
 			avatar_data = nil
 			if pokemon.form != 0
 				speciesFormSymbol = (pokemon.species.to_s + "_" + pokemon.form.to_s).to_sym
-				avatar_data = GameData::Avatar.try_get(speciesFormSymbol)
-			end
-			if avatar_data.nil?
-				avatar_data = GameData::Avatar.try_get(pokemon.species.to_sym)
+				avatar_data = GameData::Avatar.get_from_species_form(speciesFormSymbol)
+			else
+				avatar_data = GameData::Avatar.get(pokemon.species.to_sym)
 			end
 			return avatar_data
 		end

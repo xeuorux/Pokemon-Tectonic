@@ -202,7 +202,7 @@ def createBossGraphics(speciesForm,overworldMult=1.5,battleMult=1.5,overwriteExi
 	battlePath = 'Graphics/Pokemon/Avatars/'
 
 	# Create the overworld sprite
-	begin
+	PBDebug.logonerr {
 		filePath = overworldPath + speciesForm + '.png'
 		existingFile = pbResolveBitmap(filePath)
 
@@ -212,18 +212,15 @@ def createBossGraphics(speciesForm,overworldMult=1.5,battleMult=1.5,overwriteExi
 			bossifiedOverworld = bossify(copiedOverworldBitmap.bitmap,overworldMult)
 			bossifiedOverworld.to_file(filePath)
 		end
-	rescue Exception
-		e = $!
-		pbPrintException(e)
-	end
+	}
 	
 	# Create the in battle sprites
-	begin
+	PBDebug.logonerr {
 		{
 			'Graphics/Pokemon/Front/' => '.png',
 			'Graphics/Pokemon/Back/' => '_back.png'
 		}.each do |folder, suffix|
-			avatarData = GameData::Avatar.get(speciesForm)
+			avatarData = GameData::Avatar.get_from_species_form(speciesForm)
 
 			avatarData.getListOfPhaseTypes.each_with_index do |type,index|
 				filePath = battlePath + speciesForm
@@ -239,21 +236,19 @@ def createBossGraphics(speciesForm,overworldMult=1.5,battleMult=1.5,overwriteExi
 				end
 			end
 		end
-	rescue Exception
-		e = $!
-		pbPrintException(e)
-	end
+	}
 end
 
+BASE_RGB_ADD = [0,0,0]
 BASE_AVATAR_HUE = 300.0 # Avatars are at base fairly Fuchsia
 BASE_AVATAR_HUE_WEIGHTING = 0.0
 BASE_AVATAR_SATURATION_SHIFT = 0
 BASE_AVATAR_LIGHTNESS_SHIFT = 0
 
-BASE_TYPE_HUE_WEIGHTING = 1.0
+BASE_TYPE_HUE_WEIGHTING = 0.7
 EXTRA_TYPE_HUE_WEIGHTING_PER_PHASE = 0.0
 TYPE_SATURATION_WEIGHTING = 0.2
-TYPE_LUMINOSITY_WEIGHTING = 0.2
+TYPE_LUMINOSITY_WEIGHTING = 0.3
 
 BASE_OPACITY = 120
 EXTRA_OPACITY_PER_PHASE = 30
@@ -386,7 +381,7 @@ def hsl_to_rgb(h, s, l)
 	return [(r * 255), (g * 255), (b * 255)]
 end
 
-def self.hue_to_rgb(p, q, t)
+def hue_to_rgb(p, q, t)
 	t += 1                                  if(t < 0) 
 	t -= 1                                  if(t > 1)
 	return (p + (q - p) * 6 * t)            if(t < 1/6.0) 

@@ -17,7 +17,7 @@ Resistances = ROCK,BUG,DARK
 [2]
 Name = Flying
 InternalName = FLYING
-Color = 168,144,240
+Color = 154,144,240
 Weaknesses = ROCK,ELECTRIC,ICE
 Resistances = FIGHTING,BUG,GRASS
 Immunities = GROUND
