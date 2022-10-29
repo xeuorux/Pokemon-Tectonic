@@ -88,3 +88,9 @@ BattleHandlers::SpeedCalcAbility.add(:FEROCIOUS,
   next mult
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:PRIMEVALSLOWSTART,
+  proc { |ability,battler,mult|
+    next mult/2
+  }
+)

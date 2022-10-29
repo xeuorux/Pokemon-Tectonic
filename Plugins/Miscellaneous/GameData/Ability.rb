@@ -10,5 +10,9 @@ module GameData
         def is_signature?()
           return !@signature_of.nil?
         end
+
+        def is_primeval?
+          return @id.to_s[/PRIMEVAL/]
+        end
     end
 end

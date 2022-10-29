@@ -15,10 +15,8 @@ class AbilitySplashBar < SpriteWrapper
         @fakeName = nil
         # Create sprite wrapper that displays background graphic
         @bgBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/ability_bar"))
-        @bgSprite = SpriteWrapper.new(viewport)
-        @bgSprite.bitmap = @bgBitmap.bitmap
-        @bgSprite.src_rect.y      = (side==0) ? 0 : @bgBitmap.height/2
-        @bgSprite.src_rect.height = @bgBitmap.height/2
+        @bgPrimevalBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/ability_bar_primeval"))
+        setBGSprite(@bgBitmap)
         # Create bitmap that displays the text
         @contents = BitmapWrapper.new(@bgBitmap.width,@bgBitmap.height/2)
         self.bitmap = @contents
@@ -30,11 +28,19 @@ class AbilitySplashBar < SpriteWrapper
         self.y       = (side==0) ? 180 : 80
         self.z       = 120
         self.visible = false
-      end
+    end
+
+    def setBGSprite(bgBitmap)
+        @bgSprite = SpriteWrapper.new(viewport)
+        @bgSprite.bitmap = bgBitmap.bitmap
+        @bgSprite.src_rect.y      = (side==0) ? 0 : bgBitmap.height/2
+        @bgSprite.src_rect.height = bgBitmap.height/2
+    end
     
     def dispose
         @bgSprite.dispose
         @bgBitmap.dispose
+        @bgPrimevalBitmap.dispose
         @contents.dispose
         @speciesIcon.dispose
         super
@@ -95,6 +101,11 @@ class AbilitySplashBar < SpriteWrapper
     def refresh
         self.bitmap.clear
         return if !@battler
+        if GameData::Ability.get(@battler.ability).is_primeval?
+            setBGSprite(@bgPrimevalBitmap)
+        else
+            setBGSprite(@bgBitmap)
+        end
         textPos = []
         textX = (@side==0) ? 10 : self.bitmap.width-8
         # Draw Pokémon's name

@@ -580,3 +580,9 @@ BattleHandlers::DamageCalcUserAbility.add(:TIMEINTERLOPER,
     mults[:attack_multiplier] *= 3.0/4.0
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:PRIMEVALSLOWSTART,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] /= 2
+  }
+)

@@ -579,3 +579,11 @@ BattleHandlers::AbilityOnSwitchIn.add(:POLLUTION,
     pbBattleWeatherAbility(:AcidRain, battler, battle)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:PRIMEVALSLOWSTART,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is burdened!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)

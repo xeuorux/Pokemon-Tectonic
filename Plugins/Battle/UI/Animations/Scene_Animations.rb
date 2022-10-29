@@ -126,8 +126,9 @@ class PokeBattle_Scene
     return if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
     side = battler.index%2
     pbHideAbilitySplash(battler) if @sprites["abilityBar_#{side}"].visible
-    @sprites["abilityBar_#{side}"].battler = battler
-    @sprites["abilityBar_#{side}"].fakeName = fakeName
+    splashBar = @sprites["abilityBar_#{side}"]
+    splashBar.battler = battler
+    splashBar.fakeName = fakeName
     abilitySplashAnim = AbilitySplashAppearAnimation.new(@sprites,@viewport,side)
     loop do
       abilitySplashAnim.update
