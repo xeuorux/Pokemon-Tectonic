@@ -10,7 +10,7 @@ PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:ELECTRODE,"0E0"],
 PokeBattle_AI::BossDecidedOnMove.add(:ELECTRODE,
 	proc { |species,move,user,targets|
 		if move.function == "0E0"
-			user.battle.pbDisplay(_INTL("#{user.pbThis} is fully charged. Its about to explode!"))
+			user.battle.pbDisplayBossNarration(_INTL("#{user.pbThis} is fully charged. Its about to explode!"))
 		end
 	}
 )
@@ -19,8 +19,8 @@ PokeBattle_AI::BossBeginTurn.add(:ELECTRODE,
 	proc { |species,battler|
 		turnsRemaining = ELECTRODE_TURNS_TO_EXPLODE - battler.turnCount
 		if turnsRemaining > 0
-			battler.battle.pbDisplay(_INTL("#{battler.pbThis} is charging up."))
-			battler.battle.pbDisplay(_INTL("#{turnsRemaining} turns remain!"))
+			battler.battle.pbDisplayBossNarration(_INTL("#{battler.pbThis} is charging up."))
+			battler.battle.pbDisplayBossNarration(_INTL("#{turnsRemaining} turns remain!"))
 		end
 	}
 )

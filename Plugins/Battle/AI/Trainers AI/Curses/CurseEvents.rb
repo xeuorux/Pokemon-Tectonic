@@ -44,8 +44,4 @@ class PokeBattle_Battle
 		pbDisplaySlower(_INTL("The Tarot Amulet glows with power!"))
 		pbDisplaySlower(_INTL("You have been afflicted with the curse: #{curseName}"))
 	end
-	
-	def pbDisplaySlower(string)
-		pbDisplay(string + "\1")
-	end
 end

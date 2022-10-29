@@ -7,7 +7,7 @@ PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:ENTEI,:INCINERATE],
 PokeBattle_AI::BossDecidedOnMove.add(:ENTEI,
 	proc { |species,move,user,targets|
 		if move.id == :INCINERATE
-			user.battle.pbDisplay(_INTL("#{user.pbThis} notices one of your Pokémon's flammable item!"))
+			user.battle.pbDisplayBossNarration(_INTL("#{user.pbThis} notices one of your Pokémon's flammable item!"))
 		end
 	}
 )

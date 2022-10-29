@@ -7,7 +7,7 @@ PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:XERNEAS,"14E"],
 PokeBattle_AI::BossDecidedOnMove.add(:XERNEAS,
 	proc { |species,move,user,targets|
 		if move.function == "14E"
-			user.battle.pbDisplay(_INTL("{1} senses the powerful defensive auras of your Pokemon!",user.pbThis))
+			user.battle.pbDisplayBossNarration(_INTL("{1} senses the powerful defensive auras of your Pokemon!",user.pbThis))
 		end
 	}
 )

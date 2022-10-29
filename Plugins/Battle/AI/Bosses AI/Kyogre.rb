@@ -17,10 +17,10 @@ PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:KYOGRE,:ORIGINPULSE],
 PokeBattle_AI::BossDecidedOnMove.add(:KYOGRE,
 	proc { |species,move,user,targets|
 		if move.function == "08B"
-			user.battle.pbDisplay(_INTL("The avatar is clearly preparing a massive opening attack!"))
+			user.battle.pbDisplayBossNarration(_INTL("The avatar is clearly preparing a massive opening attack!"))
 			user.extraMovesPerTurn = 0
 		elsif move.id == :ORIGINPULSE
-			user.battle.pbDisplay(_INTL("The avatar is gathering energy for a massive attack!"))
+			user.battle.pbDisplayBossNarration(_INTL("The avatar is gathering energy for a massive attack!"))
 			user.extraMovesPerTurn = 0
 		end
 	}

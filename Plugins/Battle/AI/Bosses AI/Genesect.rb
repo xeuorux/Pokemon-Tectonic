@@ -8,7 +8,7 @@ PokeBattle_AI::BossSpeciesUseMoveCodeIfAndOnlyIf.add([:GENESECT,"150"],
 PokeBattle_AI::BossDecidedOnMove.add(:GENESECT,
 	proc { |species,move,user,target|
 		if move.id == ":FELLSTINGER"
-			user.battle.pbDisplay(_INTL("#{user.pbThis} aims its stinger at #{target.name}!"))
+			user.battle.pbDisplayBossNarration(_INTL("#{user.pbThis} aims its stinger at #{target.name}!"))
 			user.extraMovesPerTurn = 0
 		end
 	}
@@ -18,7 +18,7 @@ PokeBattle_AI::BossBeginTurn.add(:GENESECT,
 	proc { |species,battler|
 		next if battler.turnCount != 0
 		
-		battler.battle.pbDisplay(_INTL("The avatar of Genesect is analyzing your team for weaknesses..."))
+		battler.battle.pbDisplayBossNarration(_INTL("The avatar of Genesect is analyzing your team for weaknesses..."))
 		weakToElectric 	= 0
 		weakToFire 		= 0
 		weakToIce 		= 0
@@ -49,9 +49,9 @@ PokeBattle_AI::BossBeginTurn.add(:GENESECT,
 		end
 		
 		if !chosenItem
-			battler.battle.pbDisplay(_INTL("The avatar of Genesect can't find any!"))
+			battler.battle.pbDisplayBossNarration(_INTL("The avatar of Genesect can't find any!"))
 		else
-			battler.battle.pbDisplay(_INTL("The avatar of Genesect loads a {1}!",GameData::Item.get(chosenItem).real_name))
+			battler.battle.pbDisplayBossNarration(_INTL("The avatar of Genesect loads a {1}!",GameData::Item.get(chosenItem).real_name))
 			battler.item = chosenItem
 		end
 	}

@@ -1,9 +1,9 @@
 class PokeBattle_Battle
-    def showMessages?()
-      return !@messagesBlocked && !@autoTesting
-    end
+      def showMessages?()
+        return !@messagesBlocked && !@autoTesting
+      end
   
-    def pbDisplay(msg,&block)
+      def pbDisplay(msg,&block)
         @scene.pbDisplayMessage(msg,&block) if showMessages?
       end
     
@@ -21,6 +21,19 @@ class PokeBattle_Battle
       
       def pbDisplayConfirmSerious(msg)
         return @scene.pbDisplayConfirmMessageSerious(msg) if showMessages?
+      end
+
+      def pbDisplayWithFormatting(msg)
+        @scene.pbShowWindow(PokeBattle_Scene::MESSAGE_BOX)
+        pbMessageDisplay(@scene.getMessageWindow,msg) # Global display method
+      end
+
+      def pbDisplaySlower(msg)
+        pbDisplayWithFormatting(_INTL("\\ss#{msg}\\1"))
+      end
+
+      def pbDisplayBossNarration(msg)
+        pbDisplaySlower(msg)
       end
     
       def pbShowCommands(msg,commands,canCancel=true)

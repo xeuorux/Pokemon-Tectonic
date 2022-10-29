@@ -1,4 +1,8 @@
 class PokeBattle_Scene
+  def getMessageWindow
+    return @sprites["messageWindow"]
+  end
+
   def pbGraphicsUpdate
     $PokemonGlobal.addNewFrameCount if UnrealTime::ENABLED && UnrealTime::TIME_STOPS && UnrealTime::BATTLE_PASS
     # Update lineup animations

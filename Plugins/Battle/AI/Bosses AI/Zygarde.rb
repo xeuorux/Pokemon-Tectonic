@@ -8,11 +8,11 @@ PokeBattle_AI::BossBeginTurn.add(:ZYGARDE,
 
     turnCount = battler.battle.turnCount
     if turnCount == 0
-      battle.pbDisplay(_INTL("{1} is at 10 percent cell strength!",battler.pbThis))
+      battle.pbDisplayBossNarration(_INTL("{1} is at 10 percent cell strength!",battler.pbThis))
     elsif turnCount <= 9
-        battle.pbDisplay(_INTL("{1} gathers a cell!",battler.pbThis))
+        battle.pbDisplayBossNarration(_INTL("{1} gathers a cell!",battler.pbThis))
         percentStrength = (1 + turnCount) * 10 
-        battle.pbDisplay(_INTL("{1} is now at at {2} percent cell strength!",battler.pbThis,percentStrength.to_s))
+        battle.pbDisplayBossNarration(_INTL("{1} is now at at {2} percent cell strength!",battler.pbThis,percentStrength.to_s))
 
         if percentStrength == 50
             formChangeMessage = _INTL("{1} transforms into its 50 percent form!",battler.pbThis)
@@ -23,7 +23,7 @@ PokeBattle_AI::BossBeginTurn.add(:ZYGARDE,
             formChangeMessage = _INTL("{1} transforms into its 100 percent form!",battler.pbThis)
             battler.pbChangeFormBoss(2,formChangeMessage)
             battler.ability = :AURABREAK
-            battle.pbDisplay(_INTL("{1} completely regenerates!",battler.pbThis))
+            battle.pbDisplayBossNarration(_INTL("{1} completely regenerates!",battler.pbThis))
             battler.pbRecoverHP(battler.totalhp - battler.hp)
             battler.assignMoveset(ONE_HUNDRED_PERCENT_MOVESET)
         end

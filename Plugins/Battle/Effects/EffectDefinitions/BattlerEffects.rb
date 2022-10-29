@@ -1444,7 +1444,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 		battle.pbDisplay(_INTL("{1} entered a state of total focus!",battler.pbThis))
 		battle.pbDisplay(_INTL("Its stats can't be lowered!",battler.pbThis))
 	},
-}
+})
 
 #######################################################
 # Protection effects

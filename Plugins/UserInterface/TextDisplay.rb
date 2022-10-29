@@ -85,7 +85,7 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   ### Controls
   textchunks=[]
   controls=[]
-  while text[/(?:\\(f|ff|i|ts|cl|me|se|wt|wtnp|ch)\[([^\]]*)\]|\\(g|cn|pt|wd|wm|op|cl|wu|or|\.|\||\!|\^))/i]
+  while text[/(?:\\(f|ff|i|ts|cl|me|se|wt|wtnp|ch)\[([^\]]*)\]|\\(g|cn|pt|wd|wm|op|cl|wu|or|ss|\.|\||\!|\^))/i]
     textchunks.push($~.pre_match)
     if $~[1]
       controls.push([$~[1].downcase,$~[2],-1])
@@ -244,6 +244,8 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
         msgwindow.y = Graphics.height-msgwindow.height*(signWaitTime-signWaitCount)/signWaitTime
       when "ts"     # Change text speed
         msgwindow.textspeed = (param=="") ? -999 : param.to_i
+      when "ss"     # Slowed down display speed
+        msgwindow.textspeed = MessageConfig.pbSettingToTextSpeed($PokemonSystem.textspeed,true)
       when "."      # Wait 0.25 seconds
         msgwindow.waitcount += Graphics.frame_rate/4
       when "|"      # Wait 1 second

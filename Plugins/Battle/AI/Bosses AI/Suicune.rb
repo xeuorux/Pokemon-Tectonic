@@ -7,7 +7,7 @@ PokeBattle_AI::BossSpeciesUseMoveIDIfAndOnlyIf.add([:SUICUNE,:PURIFYINGWATER],
 PokeBattle_AI::BossDecidedOnMove.add(:SUICUNE,
 	proc { |species,move,user,targets|
 		if move.id == :PURIFYINGWATER
-			user.battle.pbDisplay(_INTL("#{user.pbThis} inspects it's status conditions."))
+			user.battle.pbDisplayBossNarration(_INTL("#{user.pbThis} inspects it's status conditions."))
 		end
 	}
 )

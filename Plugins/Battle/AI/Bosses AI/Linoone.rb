@@ -9,7 +9,7 @@ PokeBattle_AI::BossDecidedOnMove.add(:LINOONE,
 	proc { |species,move,user,targets|
 		if move.id == :COVET
 			target = targets[0]
-			user.battle.pbDisplay(_INTL("#{user.pbThis} eyes #{target.pbThis(true)}'s #{GameData::Item.get(target.item).real_name} with jealousy!"))
+			user.battle.pbDisplayBossNarration(_INTL("#{user.pbThis} eyes #{target.pbThis(true)}'s #{GameData::Item.get(target.item).real_name} with jealousy!"))
 		end
 	}
 )
