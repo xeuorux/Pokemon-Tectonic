@@ -297,8 +297,10 @@ class PokeBattle_Move_620 < PokeBattle_MultiStatUpMove
 	end
 	
 	def pbEffectGeneral(user)
-		# TO DO
 		super
+
+		user.applyEffect(:EmpoweredFlowState)
+
 		transformType(user,:WATER)
 	end
 end
@@ -451,7 +453,7 @@ class PokeBattle_Move_632 < PokeBattle_HalfHealingMove
 	include EmpoweredMove
 	
 	def pbEffectGeneral(user)
-		# TODO
+		user.applyEffect(:EmpoweredShoreUp)
 		
 		transformType(user,:GROUND)
 	end

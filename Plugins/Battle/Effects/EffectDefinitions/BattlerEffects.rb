@@ -1410,6 +1410,42 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Echo",
 })
 
+GameData::BattleEffect.register_effect(:Battler,{
+	:id => :EmpoweredShoreUp,
+	:real_name => "Eroding",
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} began eroding!",battler.pbThis))
+	},
+	:eor_proc => Proc.new { |battle,battler,value|
+		showDebuffAnim = true
+		if battler.pbCanLowerStatStage?(:DEFENSE,battler)
+			battler.pbLowerStatStage(:DEFENSE,1,battler,showDebuffAnim)
+			showDebuffAnim = false
+		end
+		if battler.pbCanLowerStatStage?(:SPECIAL_DEFENSE,battler)
+			battler.pbLowerStatStage(:SPECIAL_DEFENSE,1,battler,showDebuffAnim)
+		end
+
+		showBuffAnim = true
+		if battler.pbCanRaiseStatStage?(:ATTACK,battler)
+			battler.pbRaiseStatStage(:ATTACK,1,battler,showBuffAnim)
+			showBuffAnim = false
+		end
+		if battler.pbCanRaiseStatStage?(:SPECIAL_ATTACK,battler)
+			battler.pbRaiseStatStage(:SPECIAL_ATTACK,1,battler,showBuffAnim)
+		end
+	},
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
+	:id => :EmpoweredFlowState,
+	:real_name => "Total Focus",
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} entered a state of total focus!",battler.pbThis))
+		battle.pbDisplay(_INTL("Its stats can't be lowered!",battler.pbThis))
+	},
+}
+
 #######################################################
 # Protection effects
 #######################################################

@@ -144,6 +144,9 @@ class PokeBattle_Battler
 			end
 		elsif hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
 			return false
+		elsif effectActive?(:EmpoweredFlowState)
+			@battle.pbDisplay(_INTL('{1} is in a state of total focus!', pbThis)) if showFailMsg
+			return false
 		end
 		# Check the stat stage
 		if statStageAtMin?(stat)
@@ -195,6 +198,8 @@ class PokeBattle_Battler
 		return pbRaiseStatStage(stat, increment, user, showAnim, true) if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
 		# Stubborn
 		return false if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
+		# Total Focus
+		return false if effectActive?(:EmpoweredFlowState)
 		# Perform the stat stage change
 		increment = pbLowerStatStageBasic(stat, increment, ignoreContrary)
 		return false if increment <= 0
@@ -235,6 +240,8 @@ class PokeBattle_Battler
 		return pbRaiseStatStageByCause(stat, increment, user, cause, showAnim, true) if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
 		# Stubborn
 		return false if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
+		# Total Focus
+		return false if effectActive?(:EmpoweredFlowState)
 		# Perform the stat stage change
 		increment = pbLowerStatStageBasic(stat, increment, ignoreContrary)
 		return false if increment <= 0
