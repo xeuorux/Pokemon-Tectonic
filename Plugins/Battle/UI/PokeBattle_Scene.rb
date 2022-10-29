@@ -87,7 +87,9 @@ class PokeBattle_Scene
         ball.visible = false
 		  end
 		  # Ability splash bars
-		  @sprites["abilityBar_#{side}"] = AbilitySplashBar.new(side,@viewport)
+      newBar = AbilitySplashBar.new(side,@viewport)
+      newBar.z = 100
+		  @sprites["abilityBar_#{side}"] = newBar
 		end
 		# Player's and partner trainer's back sprite
 		@battle.player.each_with_index do |p,i|
@@ -127,15 +129,17 @@ class PokeBattle_Scene
   # Databoxes get closer together the more battlers on a side
   BASE_PIXELS_BETWEEN_DATABOXES = 2
   SQUISH_PIXELS_PER_ADDED_BATTLER = 6
-  BASE_TRAINER_DEPTH = 44
+  BASE_TRAINER_DEPTH = 40
   BASE_PLAYER_HEIGHT = 192
-  SHIFT_PIXELS_PER_ADDED_BATTLER = 32
+  SHIFT_PIXELS_PER_ADDED_TRAINER_BATTLER = 20
+  SHIFT_PIXELS_PER_ADDED_PLAYER_BATTLER = 24
 
   def createDataBoxes()
     # Trainer side databoxes
     trainerSideSize = @battle.pbSideSize(1)
     extraTrainerBattlers = trainerSideSize - 1
-    trainerY = BASE_TRAINER_DEPTH - extraTrainerBattlers * SHIFT_PIXELS_PER_ADDED_BATTLER
+    trainerY = BASE_TRAINER_DEPTH - extraTrainerBattlers * SHIFT_PIXELS_PER_ADDED_TRAINER_BATTLER
+    trainerY -= 12 if @battle.battlers[1].boss?
     pixelsBetweenTrainerDataboxes = BASE_PIXELS_BETWEEN_DATABOXES - extraTrainerBattlers * SQUISH_PIXELS_PER_ADDED_BATTLER
     @battle.battlers.each do |b|
       next if !b || b.index.even?
@@ -147,7 +151,7 @@ class PokeBattle_Scene
     # Player side databoxes
     playerSideSize = @battle.pbSideSize(0)
     extraPlayerBattlers = playerSideSize - 1
-    playerY = Graphics.height - BASE_PLAYER_HEIGHT + SHIFT_PIXELS_PER_ADDED_BATTLER * extraPlayerBattlers
+    playerY = Graphics.height - BASE_PLAYER_HEIGHT + extraPlayerBattlers * SHIFT_PIXELS_PER_ADDED_PLAYER_BATTLER
     pixelsBetweenPlayerDataboxes = BASE_PIXELS_BETWEEN_DATABOXES - extraPlayerBattlers * SQUISH_PIXELS_PER_ADDED_BATTLER
     @battle.battlers.reverse.each do |b|
       next if !b || b.index.odd?

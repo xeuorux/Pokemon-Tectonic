@@ -582,7 +582,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:POLLUTION,
 
 BattleHandlers::AbilityOnSwitchIn.add(:PRIMEVALSLOWSTART,
   proc { |ability,battler,battle|
-    battle.pbShowAbilitySplash(battler)
+    battle.pbShowAbilitySplash(battler,true)
     battle.pbDisplay(_INTL("{1} is burdened!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }

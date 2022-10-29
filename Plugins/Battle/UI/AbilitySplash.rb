@@ -33,7 +33,7 @@ class AbilitySplashBar < SpriteWrapper
     def setBGSprite(bgBitmap)
         @bgSprite = SpriteWrapper.new(viewport)
         @bgSprite.bitmap = bgBitmap.bitmap
-        @bgSprite.src_rect.y      = (side==0) ? 0 : bgBitmap.height/2
+        @bgSprite.src_rect.y      = (@side==0) ? 0 : bgBitmap.height/2
         @bgSprite.src_rect.height = bgBitmap.height/2
     end
     

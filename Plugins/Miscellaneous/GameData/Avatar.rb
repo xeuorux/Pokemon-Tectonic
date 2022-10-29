@@ -66,6 +66,12 @@ module GameData
 			@num_phases += 1
 			if @moves3.length > 0 && @moves3.sort != @moves2.sort
 				@num_phases += 1
+				if @moves4.length > 0 && @moves4.sort != @moves3.sort
+					@num_phases += 1
+					if @moves5.length > 0 && @moves5.sort != @moves4.sort
+						@num_phases += 1
+					end
+				end
 			end
 		  end
 

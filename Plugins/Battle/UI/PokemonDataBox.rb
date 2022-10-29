@@ -153,62 +153,47 @@ class PokemonDataBox < SpriteWrapper
 		  textPos.push([_INTL("♀"),@spriteBaseX+126,0,false,FEMALE_BASE_COLOR,FEMALE_SHADOW_COLOR])
 		end
 		pbDrawTextPositions(self.bitmap,textPos)
+
 		# Draw Pokémon's level
 		imagePos.push(["Graphics/Pictures/Battle/overlay_lv",@spriteBaseX+140,16])
 		pbDrawNumber(@battler.level,self.bitmap,@spriteBaseX+162,16)
 
 		# Draw shiny icon
 		if @battler.shiny?
-		  shinyX = (@battler.opposes?(0)) ? 214 : -6   # Foe's/player's
+		  shinyX = (@battler.opposes?(0)) ? 220 : -6   # Foe's/player's
 		  shinyIconFileName = @battler.shiny_variant? ? "Graphics/Pictures/shiny_variant" : "Graphics/Pictures/shiny"
 		  imagePos.push([shinyIconFileName,@spriteBaseX+shinyX,36])
 		end
 
-		# Draw Mega Evolution/Primal Reversion icon
-		if @battler.mega?
-		  imagePos.push(["Graphics/Pictures/Battle/icon_mega",@spriteBaseX+8,34])
-		elsif @battler.primal?
-		  primalX = (@battler.opposes?) ? 208 : -28   # Foe's/player's
-		  if @battler.isSpecies?(:KYOGRE)
-			imagePos.push(["Graphics/Pictures/Battle/icon_primal_Kyogre",@spriteBaseX+primalX,4])
-		  elsif @battler.isSpecies?(:GROUDON)
-			imagePos.push(["Graphics/Pictures/Battle/icon_primal_Groudon",@spriteBaseX+primalX,4])
-		  end
-
 		# Draw held item icon
-		elsif @battler.item && @battler.itemActive?
-		  itemX = (@battler.opposes?(0)) ? 204 : 0   # Foe's/player's
+		if @battler.item && @battler.itemActive?
+		  itemX = (@battler.opposes?(0)) ? 204 : -8   # Foe's/player's
 		  itemY = 36
 		  imagePos.push(["Graphics/Pictures/Party/icon_item",@spriteBaseX+itemX,itemY])
 		end
 
 		# Draw owned icon (foe Pokémon only)
 		if @battler.owned? && @battler.opposes?(0) && !@battler.boss
-		  imagePos.push(["Graphics/Pictures/Battle/icon_own",@spriteBaseX+8,36])
+		  imagePos.push(["Graphics/Pictures/Battle/icon_own",@spriteBaseX+4,36])
 		end
-		firstStatusY = 36
-
-		
 
 		# Draw status icon
+		statusX = 20
+		statusX -= 4 if @numHPBars > 2
+		statusX -= 8 if @numHPBars > 3
+		firstStatusY = 36 + (@numHPBars - 1) * 2
 		statuses = @battler.getStatuses()
-		halvedStatus = statuses.length > 1 && @thinBox
 		statusID = GameData::Status.get(statuses[0]).id_number
-		statusWidth = halvedStatus ? 22 : -1
-		imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+24,firstStatusY,
-			 0,statusID*STATUS_ICON_HEIGHT,statusWidth,STATUS_ICON_HEIGHT])
+		imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",@spriteBaseX+statusX,firstStatusY,
+			 0,statusID*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
 
 		# Draw status icon for bosses
 		if statuses.length > 1
 			statusID2 = GameData::Status.get(statuses[1]).id_number
-			x = @spriteBaseX + 24
-			x += 22 if @halvedStatus
-			y = firstStatusY
-			y += 4 + STATUS_ICON_HEIGHT if !halvedStatus
-			statusXRect = halvedStatus ? 22 : 0
-			statusWidth = halvedStatus ? 22 : -1
+			x = @spriteBaseX + statusX
+			y = firstStatusY + STATUS_ICON_HEIGHT + 4
 			imagePos.push(["Graphics/Pictures/Battle/BattleButtonRework/icon_statuses",x,y,
-				 statusXRect,statusID2*STATUS_ICON_HEIGHT,statusWidth,STATUS_ICON_HEIGHT])
+				 0,statusID2*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
 		end
 
 		refreshTypeIcons
@@ -384,15 +369,13 @@ class PokemonDataBox < SpriteWrapper
 
     @hpNumbers.y = value+52
 
-	iconDepth = 40 + 20 * @numHPBars
-
 	@typeIcons.each_with_index do |icon, index|
 		icon.y = value
 		if @thinBox
 			icon.y += 8
 			icon.y += (index % 20) * 20
 		else
-			icon.y += iconDepth
+			icon.y += @databoxBitmap.height - TYPE_ICON_HEIGHT
 		end
 	end
   end

@@ -53,7 +53,7 @@ class PokeBattle_AI
                         sortedChoices = regularChoices.sort_by{|choice| -choice[1]}
                         preferredChoice = sortedChoices[0]
                         PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.moves[preferredChoice[0]].name}" +
-                        "is the highest rated of its remaining choices") if !preferredChoice.nil?
+                        " is the highest rated of its remaining choices") if !preferredChoice.nil?
                     end
                 end
             else
