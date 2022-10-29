@@ -2540,11 +2540,8 @@ class PokeBattle_Move_592 < PokeBattle_Move
 end
 
 #===============================================================================
-# In singles, this move hits the target twice. In doubles, this move hits each
-# target once. If one of the two opponents protects or while semi-invulnerable
-# or is a Fairy-type Pokémon, it hits the opponent that doesn't protect twice.
-# In Doubles, not affected by WideGuard.
-# Each target hit loses 1 stage of Speed. (Tar Volley)
+# Does Dragon-Darts style hit redirection, plus
+# each target hit loses 1 stage of Speed. (Tar Volley)
 #===============================================================================
 class PokeBattle_Move_592 < PokeBattle_Move_17C
 	def pbAdditionalEffect(user,target)

@@ -386,8 +386,6 @@ class PokeBattle_Battler
 				targets = pbFindTargets(choice, move, user)
 			end
 		end
-		# Redirect Dragon Darts and similar moves first hit if necessary
-		targets = pbChangeTargets(move, user, targets, 0) if move.smartSpreadsTargets? && @battle.pbSideSize(targets[0].index) > 1
 		#---------------------------------------------------------------------------
 		magicCoater  = -1
 		magicBouncer = -1
@@ -404,8 +402,8 @@ class PokeBattle_Battler
 			targets.each do |b|
 				b.damageState.reset
 				b.damageState.initialHP = b.hp
-				unless pbSuccessCheckAgainstTarget(move, user, b)
-					echoln("[DEBUG] #{b.pbThis} enters the unaffected damage state")
+				showFailMessages = move.pbShowFailMessages?(targets)
+				unless pbSuccessCheckAgainstTarget(move, user, b, showFailMessages)
 					b.damageState.unaffected = true
 				end
 			end
@@ -653,14 +651,12 @@ class PokeBattle_Battler
 		# For two-turn attacks being used in a single turn
 		move.pbInitialEffect(user, targets, hitNum)
 		numTargets = 0 # Number of targets that are affected by this hit
-		targets.each { |b| b.damageState.resetPerHit }
 		# Count a hit for Parental Bond (if it applies)
 		user.tickDownAndProc(:ParentalBond)
-		# Redirect Dragon Darts other hits
-		targets = pbChangeTargets(move, user, targets, 1) if move.smartSpreadsTargets? && @battle.pbSideSize(targets[0].index) > 1 && hitNum > 0
 		# Accuracy check (accuracy/evasion calc)
 		if hitNum == 0 || move.successCheckPerHit?
 			targets.each do |b|
+				b.damageState.missed = false
 				next if b.damageState.unaffected
 				if pbSuccessCheckPerHit(move, user, b, skipAccuracyCheck)
 					numTargets += 1
@@ -674,6 +670,7 @@ class PokeBattle_Battler
 				targets.each do |b|
 					next if !b.damageState.missed || b.damageState.magicCoat
 					pbMissMessage(move, user, b)
+					break if move.pbRepeatHit? # Dragon Darts only shows one failure message
 				end
 				move.pbCrashDamage(user)
 				move.pbAllMissed(user, targets)
@@ -683,6 +680,9 @@ class PokeBattle_Battler
 			end
 		end
 		# If we get here, this hit will happen and do something
+		all_targets = targets
+		targets = move.pbDesignateTargetsForHit(targets, hitNum) # For Dragon Darts
+		targets.each { |b| b.damageState.resetPerHit }
 		#---------------------------------------------------------------------------
 		# Calculate damage to deal
 		if move.pbDamagingMove?
@@ -709,9 +709,11 @@ class PokeBattle_Battler
 			@battle.pbDisplay(_INTL("The {1} strengthened {2}'s power!",GameData::Item.get(user.effects[:GemConsumed]).name, move.name))
 		end
 		# Messages about missed target(s) (relevant for multi-target moves only)
-		targets.each do |b|
-			next unless b.damageState.missed
-			pbMissMessage(move, user, b)
+		if !move.pbRepeatHit?
+			targets.each do |b|
+				next unless b.damageState.missed
+				pbMissMessage(move, user, b)
+			end
 		end
 		# Deal the damage (to all allies first simultaneously, then all foes
 		# simultaneously)
@@ -819,6 +821,11 @@ class PokeBattle_Battler
 		end
 		targets.each { |b| b.pbFaint if b && b.fainted? }
 		user.pbFaint if user.fainted?
+		# Dragon Darts' second half of attack
+		if move.pbRepeatHit?(hitNum) &&
+				targets.any? { |b| !b.fainted? && !b.damageState.unaffected }
+			pbProcessMoveHit(move, user, all_targets, hitNum + 1, skipAccuracyCheck)
+		end
 		return true
 	end
 end

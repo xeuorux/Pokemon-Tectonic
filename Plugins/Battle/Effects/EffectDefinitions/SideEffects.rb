@@ -161,7 +161,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:resets_eor => true,
 	:protection_effect => {
 		:does_negate_proc => Proc.new { |user, target, move, battle|
-			move.pbTarget(user).num_targets > 1 && !move.smartSpreadsTargets?
+			move.pbTarget(user).num_targets > 1
 		},
 	}
 })

@@ -75,6 +75,7 @@ GameData::BattleEffect.register_effect(:Position,{
 GameData::BattleEffect.register_effect(:Position,{
 	:id => :LunarDance,
 	:real_name => "Lunar Dance",
+	:swaps_with_battlers => true,
 	:entry_proc => Proc.new { |battle,index,position,battler|
 		battle.pbCommonAnimation("LunarDance",battler)
 		healingMessage = _INTL("The healing wish came true for {1}!",battler.pbThis(true))
@@ -90,6 +91,7 @@ GameData::BattleEffect.register_effect(:Position,{
 	:real_name => "Turns Till Wish",
 	:type => :Integer,
 	:ticks_down => true,
+	:swaps_with_battlers => true,
 	:expire_proc => Proc.new { |battle,index,position,battler|
 		if battler.canHeal?
 			wishMaker = battle.pbThisEx(index,position.effects[:WishMaker])
@@ -117,6 +119,7 @@ GameData::BattleEffect.register_effect(:Position,{
 	:id => :Refuge,
 	:real_name => "Refuge",
 	:type => :PartyPosition,
+	:swaps_with_battlers => true,
 	:entry_proc => Proc.new { |battle,index,position,battler|
 		battle.pbCommonAnimation("HealingWish",battler)
 		refugeMaker = battle.pbThisEx(battler.index,position.effects[:Refuge])

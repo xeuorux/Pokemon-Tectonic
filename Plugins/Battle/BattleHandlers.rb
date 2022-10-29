@@ -234,13 +234,13 @@ module BattleHandlers
 	  return (ret!=nil) ? ret : false
 	end
   
-	def self.triggerMoveImmunityTargetAbility(ability,user,target,move,type,battle)
-	  ret = MoveImmunityTargetAbility.trigger(ability,user,target,move,type,battle)
+	def self.triggerMoveImmunityTargetAbility(ability,user,target,move,type,battle,showMessages)
+	  ret = MoveImmunityTargetAbility.trigger(ability,user,target,move,type,battle,showMessages)
 	  return (ret!=nil) ? ret : false
 	end
 
-	def self.triggerMoveImmunityAllyAbility(ability,user,target,move,type,battle,ally)
-		ret = MoveImmunityAllyAbility.trigger(ability,user,target,move,type,battle,ally)
+	def self.triggerMoveImmunityAllyAbility(ability,user,target,move,type,battle,ally,showMessages)
+		ret = MoveImmunityAllyAbility.trigger(ability,user,target,move,type,battle,ally,showMessages)
 		return (ret!=nil) ? ret : false
 	end
   

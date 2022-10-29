@@ -2816,22 +2816,46 @@ class PokeBattle_Move_17B < PokeBattle_TargetMultiStatUpMove
 end
 
 #===============================================================================
-# In singles, this move hits the target twice. In doubles, this move hits each
-# target once. If one of the two opponents protects or while semi-invulnerable
-# or is a Fairy-type Pokémon, it hits the opponent that doesn't protect twice.
-# In Doubles, not affected by WideGuard.
-# (Dragon Darts)
+# Hits in 2 volleys. The second volley targets the original target's ally if it
+# has one (that can be targeted), or the original target if not. A battler
+# cannot be targeted if it is is immune to or protected from this move somehow,
+# or if this move will miss it. (Dragon Darts)
+# NOTE: This move sometimes shows a different failure message compared to the
+#       official games. This is because of the order in which failure checks are
+#       done (all checks for each target in turn, versus all targets for each
+#       check in turn). This is considered unimportant, and since correcting it
+#       would involve extensive code rewrites, it is being ignored.
 #===============================================================================
 class PokeBattle_Move_17C < PokeBattle_Move_0BD
-  def smartSpreadsTargets?; return true; end
+  def pbNumHits(user, targets); return 1;    end # Move has custom multi-hitting
 
-  def pbNumHits(user,targets,checkingForAI=false)
-    return 1 if targets.length > 1
-    return 2
+  # Hit again if only at the 0th hit
+  def pbRepeatHit?(hitNum = 0)
+    return hitNum < 1
   end
 
-  def pbNumHitsAI(user,target,skill=100)
-    return 2
+  def pbModifyTargets(targets, user)
+    return if targets.length != 1
+    choices = []
+    targets[0].allAllies.each { |b| user.pbAddTarget(choices, user, b, self) }
+    return if choices.length == 0
+    idxChoice = (choices.length > 1) ? @battle.pbRandom(choices.length) : 0
+    user.pbAddTarget(targets, user, choices[idxChoice], self, !pbTarget(user).can_choose_distant_target?)
+  end
+
+  def pbShowFailMessages?(targets)
+    if targets.length > 1
+      valid_targets = targets.select { |b| !b.fainted? && !b.damageState.unaffected }
+      return valid_targets.length <= 1
+    end
+    return super
+  end
+
+  def pbDesignateTargetsForHit(targets, hitNum)
+    valid_targets = []
+    targets.each { |b| valid_targets.push(b) if !b.damageState.unaffected }
+    return [valid_targets[1]] if valid_targets[1] && hitNum > 0
+    return [valid_targets[0]]
   end
 end
 

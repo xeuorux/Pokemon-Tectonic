@@ -111,27 +111,9 @@ class PokeBattle_Battler
 		target_data = move.pbTarget(user)
 		return targets if @battle.switching # For Pursuit interrupting a switch
 		return targets if move.cannotRedirect?
-		return targets if !move.smartSpreadsTargets? && (!target_data.can_target_one_foe? || targets.length != 1)
-		# Stalwart / Propeller Tail
-		allySwitched = false
-		ally = -1
-		user.eachOpposing do |b|
-			next if b.lastMoveUsed && GameData::Move.get(b.lastMoveUsed).function_code != '120'
-			next unless target_data.can_target_one_foe?
-			next if !hasActiveAbility?(:STALWART) && !hasActiveAbility?(:PROPELLERTAIL) && move.function != '182'
-			next if !@battle.choices[b.index][3] == targets
-			next if b.effectActive?(:SwitchedAlly)
-			allySwitched = !allySwitched
-			ally = b.effects[:SwitchedAlly]
-			b.disableEffect(:SwitchedAlly)
-		end
-		if allySwitched && ally >= 0
-			targets = []
-			pbAddTarget(targets, user, @battle.battlers[ally], move, !PBTargets.canChooseDistantTarget?(move.target))
-			return targets
-		end
+		return targets if !target_data.can_target_one_foe? || targets.length != 1
+		move.pbModifyTargets(targets, user) # For Dragon Darts, etc.
 		return targets if user.hasActiveAbility?(:STALWART) || user.hasActiveAbility?(:PROPELLERTAIL)
-		return targets if move.function == '182'
 		priority = @battle.pbPriority(true)
 		nearOnly = !target_data.can_choose_distant_target?
 		# Spotlight (takes priority over Follow Me/Rage Powder or redirection abilities)
@@ -150,37 +132,6 @@ class PokeBattle_Battler
 			targets = []
 			pbAddTarget(targets, user, newTarget, move, nearOnly)
 			return targets
-		end
-		# Dragon Darts-style redirection
-		# Smart Spread -1 means no spread, 0 means first hit, 1 means 2nd or further hit
-		if smartSpread >= 0
-			newTargets = []
-			needNewTarget = false
-			# Check if first use has to be redirected
-			if smartSpread == 0
-				targets.each do |b|
-					moveWillSucceed = true
-					next unless moveWillFail(user, b, move)
-					next needNewTarget = true
-				end
-			end
-			# Redirect first use if necessary or get another target on each consecutive use
-			if needNewTarget || smartSpread == 1
-				targets[0].eachAlly do |b|
-					next if b.index == user.index && smartSpread == 1 # Don't attack yourself on the second hit.
-					next if moveWillFail(user, b, move)
-					newTargets.push(b)
-					b.damageState.unaffected = false
-					# In double battle, the pokémon might keep this state from a hit from the ally.
-					break
-				end
-			end
-			# Final target
-			targets = newTargets if newTargets.length != 0
-			# Reduce PP if the new target has Pressure
-			if targets[0].hasActiveAbility?(:PRESSURE)
-				user.pbReducePP(move) # Reduce PP
-			end
 		end
 		# Follow Me/Rage Powder (takes priority over Lightning Rod/Storm Drain)
 		newTarget = nil
@@ -203,11 +154,11 @@ class PokeBattle_Battler
 		# Bad Luck
 		targets = pbChangeTargetByAbility(:BADLUCK, move, user, targets, priority, nearOnly) if move.statusMove? && !user.pbHasAnyStatus?
 		# Epic Hero
-		maxDamage = 0
+		maxBaseDamage = 0
 		targets.each do |_target|
-			maxDamage = move.baseDamage if move.baseDamage > maxDamage
+			maxBaseDamage = move.baseDamage if move.baseDamage > maxBaseDamage
 		end
-		targets = pbChangeTargetByAbility(:EPICHERO, move, user, targets, priority, nearOnly) if maxDamage >= 100
+		targets = pbChangeTargetByAbility(:EPICHERO, move, user, targets, priority, nearOnly) if maxBaseDamage >= 100
 		return targets
 	end
 

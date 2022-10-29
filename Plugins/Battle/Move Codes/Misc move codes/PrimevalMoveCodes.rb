@@ -528,7 +528,7 @@ class PokeBattle_Move_643 < PokeBattle_Move_0A0
 	include EmpoweredMove
 end
 
-# Primeval Brick Break
+# Empowered Brick Break
 class PokeBattle_Move_644 < PokeBattle_TargetStatDownMove
 	include EmpoweredMove
 
@@ -575,17 +575,11 @@ class PokeBattle_Move_647 < PokeBattle_Move_402
 end
 
 # Empowered Bullet Seed
-class PokeBattle_Move_648 < PokeBattle_Move
+class PokeBattle_Move_648 < PokeBattle_Move_17C
 	include EmpoweredMove
 
-	def smartSpreadsTargets?;	return true; end
-	def multiHitMove?;           return true; end
-	def pbNumHits(user,targets,checkingForAI=false)
-		return (6 / targets.length).ceil
-	end
-
-	def pbNumHitsAI(user,target)
-		return 3
+	def pbRepeatHit?(hitNum = 0)
+		return hitNum < 5
 	end
 	
 	def turnsBetweenUses(); return 3; end

@@ -287,14 +287,14 @@ class PokeBattle_Battler
 		return true
 	end
 
-	def doesProtectionEffectNegateThisMove?(effectDisplayName, move, user, target, protectionIgnoredByAbility, animationName = nil)
+	def doesProtectionEffectNegateThisMove?(effectDisplayName, move, user, target, protectionIgnoredByAbility, animationName = nil, showMessages=true)
 		if move.canProtectAgainst? && !protectionIgnoredByAbility
 			@battle.pbCommonAnimation(animationName, target) unless animationName.nil?
-			@battle.pbDisplay(_INTL('{1} protected {2}!', effectDisplayName, target.pbThis(true)))
+			@battle.pbDisplay(_INTL('{1} protected {2}!', effectDisplayName, target.pbThis(true))) if showMessages
 			if user.boss?
 				target.damageState.partiallyProtected = true
 				yield if block_given?
-				@battle.pbDisplay(_INTL('Actually, {1} partially pierces through!', user.pbThis(true)))
+				@battle.pbDisplay(_INTL('Actually, {1} partially pierces through!', user.pbThis(true))) if showMessages
 			else
 				target.damageState.protected = true
 				@battle.successStates[user.index].protected = true
@@ -302,7 +302,7 @@ class PokeBattle_Battler
 				return true
 			end
 		elsif move.pbTarget(user).targets_foe
-			@battle.pbDisplay(_INTL('{1} was ignored, and failed to protect {2}!', effectDisplayName, target.pbThis(true)))
+			@battle.pbDisplay(_INTL('{1} was ignored, and failed to protect {2}!', effectDisplayName, target.pbThis(true))) if showMessages
 		end
 		return false
 	end
@@ -311,7 +311,7 @@ class PokeBattle_Battler
 	# Initial success check against the target. Done once before the first hit.
 	# Includes move-specific failure conditions, protections and type immunities.
 	#=============================================================================
-	def pbSuccessCheckAgainstTarget(move, user, target)
+	def pbSuccessCheckAgainstTarget(move, user, target, show_message = true)
 		# Calculate the type mod
 		typeMod = move.pbCalcTypeMod(move.calcType, user, target)
 		target.damageState.typeMod = typeMod
@@ -320,12 +320,14 @@ class PokeBattle_Battler
 		return true if user.effectActive?(:TwoTurnAttack)
 
 		# Move-specific failures
+		
 		return false if move.pbFailsAgainstTarget?(user, target)
+		@battle.messagesBlocked = false
 
 		# Immunity to priority moves because of Psychic Terrain
 		if @battle.field.terrain == :Psychic && target.affectedByTerrain? && target.opposes?(user) &&
 					@battle.choices[user.index][4] > 0 # Move priority saved from pbCalculatePriority
-			@battle.pbDisplay(_INTL('{1} surrounds itself with psychic terrain!', target.pbThis))
+			@battle.pbDisplay(_INTL('{1} surrounds itself with psychic terrain!', target.pbThis)) if show_message
 			return false
 		end
 
@@ -346,7 +348,7 @@ class PokeBattle_Battler
 				end
 				effectName = data.real_name
 				animationName = data.protection_info ? data.protection_info[:animation_name] : effect.to_s
-				negated = doesProtectionEffectNegateThisMove?(effectName, move, user, target, protectionIgnoredByAbility, animationName) do
+				negated = doesProtectionEffectNegateThisMove?(effectName, move, user, target, protectionIgnoredByAbility, animationName, show_message) do
 					if data.protection_info&.has_key?(:hit_proc)
 						data.protection_info[:hit_proc].call(user,target,move,@battle)
 					end
@@ -380,7 +382,7 @@ class PokeBattle_Battler
 		# Skipped for bosses using damaging moves so that it can be calculated properly later
 		if move.inherentImmunitiesPierced?(user, target)
 			# Do nothing
-		elsif targetInherentlyImmune?(user, target, move, typeMod, true)
+		elsif targetInherentlyImmune?(user, target, move, typeMod, show_message)
 			return false
 		end
 
@@ -388,14 +390,14 @@ class PokeBattle_Battler
 		if target.substituted? && move.statusMove? &&
 					!move.ignoresSubstitute?(user) && user.index != target.index
 			PBDebug.log("[Target immune] #{target.pbThis} is protected by its Substitute")
-			@battle.pbDisplay(_INTL('{1} avoided the attack!', target.pbThis(true)))
+			@battle.pbDisplay(_INTL('{1} avoided the attack!', target.pbThis(true))) if show_message
 			return false
 		end
 		return true
 	end
 
 	def targetInherentlyImmune?(user, target, move, typeMod, showMessages = true)
-		if move.pbImmunityByAbility(user, target)
+		if move.pbImmunityByAbility(user, target, showMessages)
 			@battle.triggerImmunityDialogue(user, target, true) if showMessages
 			return true
 		end

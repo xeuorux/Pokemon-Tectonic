@@ -41,6 +41,7 @@ end
   # Ignores move redirection from abilities and moves. (Snipe Shot)
   #===============================================================================
 class PokeBattle_Move_182 < PokeBattle_Move
+    def cannotRedirect?; return true; end
 end
 
   #===============================================================================

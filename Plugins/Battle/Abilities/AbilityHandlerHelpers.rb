@@ -15,14 +15,14 @@ end
 
 # For abilities that grant immunity to moves of a particular type, and raises
 # one of the ability's bearer's stats instead.
-def pbBattleMoveImmunityStatAbility(user,target,move,moveType,immuneType,stat,increment,battle)
+def pbBattleMoveImmunityStatAbility(user,target,move,moveType,immuneType,stat,increment,battle,showMessages)
 	return false if user.index==target.index
 	return false if moveType != immuneType
-	battle.pbShowAbilitySplash(target)
+	battle.pbShowAbilitySplash(target) if showMessages
 	if target.pbCanRaiseStatStage?(stat,target)
 	  target.pbRaiseStatStage(stat,increment,target)
 	else
-	  battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+	  battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true))) if showMessages
 	end
 	battle.pbHideAbilitySplash(target)
 	return true

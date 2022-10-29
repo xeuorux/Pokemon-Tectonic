@@ -389,11 +389,6 @@ class PokeBattle_Battle
       @scene.pbSwapBattlerSprites(idxA,idxB)
       # Swap the target of any battlers' effects that point at either of the
       # swapped battlers, to ensure they still point at the correct target
-      # NOTE: LeechSeed is not swapped, because drained HP goes to whichever
-      #       Pokémon is in the position that Leech Seed was used from.
-      # NOTE: PerishSongUser doesn't need to change, as it's only used to
-      #       determine which side the Perish Song user was on, and a battler
-      #       can't change sides.
       eachBattler do |b|
         b.eachEffect(true) do |effect, value, data|
           next unless data.swaps_with_battlers
