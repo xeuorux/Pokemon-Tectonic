@@ -186,8 +186,8 @@ class PokeBattle_AI
 
   alias _battlePalace_pbEnemyShouldWithdraw? pbEnemyShouldWithdraw?
 
-  def pbEnemyShouldWithdraw?(idxBattler)
-    return _battlePalace_pbEnemyShouldWithdraw?(idxBattler) if !@battlePalace
+  def pbEnemyShouldWithdraw?(idxBattler,choices=[])
+    return _battlePalace_pbEnemyShouldWithdraw?(idxBattler,choices) if !@battlePalace
     thispkmn = @battle.battlers[idxBattler]
     shouldswitch = false
     if thispkmn.effects[:PerishSong] == 1

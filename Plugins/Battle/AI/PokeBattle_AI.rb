@@ -58,14 +58,18 @@ class PokeBattle_AI
     # Choose an action
     #=============================================================================
     def pbDefaultChooseEnemyCommand(idxBattler)
-        return if pbEnemyShouldWithdraw?(idxBattler)
         return if @battle.pbAutoFightMenu(idxBattler) #Battle palace shenanigans
-          @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
+        @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
         user = @battle.battlers[idxBattler]
+        
         if user.boss?
           pbChooseMovesBoss(idxBattler)
+        elsif @battle.wildBattle? && @battle.opposes?(idxBattler) # Checks for opposing because it could be an partner trainer's pokemon
+          @battle.pbRegisterMove(idxBattler,pbAIRandom(user.moves.length),false)
         else
-          pbChooseMoves(idxBattler)
+          bestMoveChoices = pbGetBestTrainerMoveChoices(user,100,user.ownersPolicies)
+          return if pbEnemyShouldWithdraw?(idxBattler,bestMoveChoices)
+          pbChooseMovesTrainer(idxBattler,bestMoveChoices)
         end
     end
 

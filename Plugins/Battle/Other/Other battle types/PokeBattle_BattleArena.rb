@@ -211,8 +211,8 @@ class PokeBattle_AI
 
   alias _battleArena_pbEnemyShouldWithdraw? pbEnemyShouldWithdraw?
 
-  def pbEnemyShouldWithdraw?(idxBattler)
-    return _battleArena_pbEnemyShouldWithdraw?(idxBattler) if !@battleArena
+  def pbEnemyShouldWithdraw?(idxBattler,choices=[])
+    return _battleArena_pbEnemyShouldWithdraw?(idxBattler,choices) if !@battleArena
     return false
   end
 end

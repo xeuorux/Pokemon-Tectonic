@@ -1,5 +1,70 @@
 class PokeBattle_AI
-    # Trainer Pokémon calculate how much they want to use each of their moves.
+    def pbChooseMovesTrainer(idxBattler, choices)
+        user        = @battle.battlers[idxBattler]
+        owner = @battle.pbGetOwnerFromBattlerIndex(user.index)
+        skill  = owner.skill_level || 0
+        policies = owner.policies || []
+
+        # Log the available choices
+        logMoveChoices(user,choices)
+        
+        # If there are valid choices, pick among them
+        if choices.length > 0
+            # Determine the most preferred move
+            preferredChoice = nil
+            sortedChoices = choices.sort_by{|choice| -choice[1]}
+            preferredChoice = sortedChoices[0]
+            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.moves[preferredChoice[0]].name} is the highest rated choice")
+            if preferredChoice != nil
+                @battle.pbRegisterMove(idxBattler,preferredChoice[0],false)
+                @battle.pbRegisterTarget(idxBattler,preferredChoice[2]) if preferredChoice[2]>=0
+            end
+        else # If there are no calculated choices, create a list of the choices all scored the same, to be chosen between randomly later on
+          PBDebug.log("[AI] #{user.pbThis} (#{user.index}) scored no moves above a zero, resetting all choices to default")
+          user.eachMoveWithIndex do |m,i|
+            next if !@battle.pbCanChooseMove?(idxBattler,i,false)
+            next if m.empoweredMove?
+            choices.push([i,100,-1])   # Move index, score, target
+          end
+          if choices.length == 0   # No moves are physically possible to use; use Struggle
+            @battle.pbAutoChooseMove(user.index)
+          end
+        end
+
+        # if there is somehow still no choice, randomly choose a move from the choices and register it
+        if @battle.choices[idxBattler][2].nil?
+          echoln("All AI protocols have failed or fallen through, picking at random.")
+          randNum = pbAIRandom(totalScore)
+          choices.each do |c|
+            randNum -= c[1]
+            next if randNum >= 0
+            @battle.pbRegisterMove(idxBattler,c[0],false)
+            @battle.pbRegisterTarget(idxBattler,c[2]) if c[2]>=0
+            break
+          end
+        end
+
+        # Log the result
+        if @battle.choices[idxBattler][2]
+          user.lastMoveChosen = @battle.choices[idxBattler][2].id
+          PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will use #{@battle.choices[idxBattler][2].name}")
+        end
+    end
+
+    # Returns an array filled with each move that has a target worth using against
+    # Giving also the best target to use the move against and the score of doing so
+    def pbGetBestTrainerMoveChoices(user,skill=100,policies=[])
+      choices = []
+      user.eachMoveWithIndex do |move,i|
+        next if !@battle.pbCanChooseMove?(user.index,i,false)
+        newChoice = pbEvaluateMoveTrainer(user,user.moves[i],skill,policies)
+        # Push a new array of [moveIndex,moveScore,targetIndex]
+        # where targetIndex could be -1 for anything thats not single target
+        choices.push([i].concat(newChoice)) if newChoice
+      end
+      return choices
+    end
+
     def pbEvaluateMoveTrainer(user,move,skill,policies=[])
         target_data = move.pbTarget(user)
         newChoice = nil
@@ -86,6 +151,7 @@ class PokeBattle_AI
 				break
 			end
 		end
+
 		# Don't prefer attacking the target if they'd be semi-invulnerable
 		if move.accuracy > 0 && (target.semiInvulnerable? || target.effectActive?(:SkyDrop))
             echoln("#{user.pbThis} scores the move #{move.id} differently against target #{target.pbThis(false)} due to the target being semi-invulnerable.")
