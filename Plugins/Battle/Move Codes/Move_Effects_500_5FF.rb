@@ -2034,20 +2034,11 @@ class PokeBattle_Move_571 < PokeBattle_Move
 end
 
 #===============================================================================
-# Puts the target to sleep if they are statused. (Tranquil Tune)
+# Puts the target to sleep if they are at or below half health, and raises the user's attack. (Tranquil Tune)
 #===============================================================================
-class PokeBattle_Move_572 < PokeBattle_SleepMove
-	def pbFailsAgainstTarget?(user,target)
-		if !target.pbHasAnyStatus?
-			@battle.pbDisplay(_INTL("But it failed, because #{target.pbThis(true)} doesn't have a status!"))
-			return true
-		end
-		return !target.pbCanSleep?(user,true,self,true)
-	end
-	
+class PokeBattle_Move_572 < PokeBattle_Move_528
 	def pbEffectAgainstTarget(user,target)
-		target.pbCureStatus(false)
-		target.pbSleep
+		super
 		user.pbRaiseStatStage(:ATTACK,1,user) if user.pbCanRaiseStatStage?(:ATTACK,user,self)
 	end
 
