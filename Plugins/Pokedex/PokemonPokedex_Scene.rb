@@ -557,28 +557,28 @@ class PokemonPokedex_Scene
 	# Find information about the currently displayed list
 	typesCount = {}
 	GameData::Type.each do |typesData|
-	next if typesData.id == :QMARKS
-	typesCount[typesData.id] = 0
+		next if typesData.id == :QMARKS
+		typesCount[typesData.id] = 0
 	end
 	total = 0
 	@dexlist.each do |dexEntry|
-	next if isLegendary(dexEntry[0]) || isQuarantined(dexEntry[0])
-	speciesData = GameData::Species.get(dexEntry[0])
-	disqualify = false
-	speciesData.get_evolutions().each do |evolutionEntry|
-		evoSpecies = evolutionEntry[0]
-		@dexlist.each do |searchDexEntry|
-			if searchDexEntry[0] == evoSpecies
-				disqualify = true
+		#next if isLegendary(dexEntry[0]) || isQuarantined(dexEntry[0])
+		speciesData = GameData::Species.get(dexEntry[0])
+		disqualify = false
+		speciesData.get_evolutions().each do |evolutionEntry|
+			evoSpecies = evolutionEntry[0]
+			@dexlist.each do |searchDexEntry|
+				if searchDexEntry[0] == evoSpecies
+					disqualify = true
+				end
+				break if disqualify
 			end
 			break if disqualify
 		end
-		break if disqualify
-	end
-	next if disqualify
-	typesCount[speciesData.type1] += 1
-	typesCount[speciesData.type2] += 1 if speciesData.type2 != speciesData.type1
-	total += 1
+		next if disqualify
+		typesCount[speciesData.type1] += 1
+		typesCount[speciesData.type2] += 1 if speciesData.type2 != speciesData.type1
+		total += 1
 	end
 	
 	typesCount = typesCount.sort_by{|type,count| -count}
