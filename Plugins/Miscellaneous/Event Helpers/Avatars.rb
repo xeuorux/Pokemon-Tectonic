@@ -21,6 +21,10 @@ def defeatBoss(item=nil,count=1)
 		pbMessage("It left behind some items!")
 		pbReceiveItem(item,count)
 	end
+
+	# If the map is playing the bad variant of the primal clay BGM
+	# Forces it to move to the good variant
+	primalClayBGMChange()
 end
 
 def defeatMultipleBosses(item=nil,count=1,eventIDs=[])
@@ -47,6 +51,10 @@ def defeatMultipleBosses(item=nil,count=1,eventIDs=[])
 		pbMessage("They left behind some items!")
 		pbReceiveItem(item,count)
 	end
+
+	# If the map is playing the bad variant of the primal clay BGM
+	# Forces it to move to the good variant
+	primalClayBGMChange()
 end
 
 def introduceAvatar(species,form=0)
