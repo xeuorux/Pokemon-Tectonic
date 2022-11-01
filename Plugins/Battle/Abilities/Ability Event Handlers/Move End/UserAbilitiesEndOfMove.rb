@@ -175,3 +175,14 @@ BattleHandlers::UserAbilityEndOfMove.add(:SPACEINTERLOPER,
     battler.pbRecoverHPFromMultiDrain(targets,0.25)
   }
 )
+
+
+BattleHandlers::UserAbilityEndOfMove.add(:FOLLOWTHROUGH,
+  proc { |ability,user,targets,move,battle|
+    next if battle.pbAllFainted?(user.idxOpposingSide)
+    numFainted = 0
+    targets.each { |b| numFainted += 1 if b.damageState.fainted }
+    next if numFainted==0 || !user.pbCanRaiseStatStage?(:FOLLOWTHROUGH,user)
+    user.pbRaiseStatStageByAbility(:FOLLOWTHROUGH,numFainted,user)
+  }
+)

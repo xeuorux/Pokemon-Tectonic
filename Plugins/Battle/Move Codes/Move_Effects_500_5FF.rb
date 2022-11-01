@@ -2769,3 +2769,13 @@ class PokeBattle_Move_5A1 < PokeBattle_Move
 		return score
 	end
 end
+
+#===============================================================================
+# Decreases the user's Speed by 2 stages. (Razor Plunge)
+#===============================================================================
+class PokeBattle_Move_03E < PokeBattle_StatDownMove
+	def initialize(battle,move)
+	  super
+	  @statDown = [:SPEED,2]
+	end
+  end
