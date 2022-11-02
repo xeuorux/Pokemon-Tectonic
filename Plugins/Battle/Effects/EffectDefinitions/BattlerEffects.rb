@@ -1349,7 +1349,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:id => :EmpoweredDestinyBond,
 	:real_name => "Empowered Bond",
 	:apply_proc => Proc.new { |battle, battler, value|
-		battle.pbDisplay(_INTL("Attacks against {1} will incur half recoil!",battler.pbThis))
+		battle.pbDisplay(_INTL("Attacks against {1} will incur half recoil!",battler.pbThis(true)))
 	},
 })
 
@@ -1532,4 +1532,12 @@ GameData::BattleEffect.register_effect(:Battler,{
 			end
 		}
 	}
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
+	:id => :VolatileToxin,
+	:real_name => "Volatile Toxin",
+	:apply_proc => Proc.new { |battle, battler, value|
+	battle.pbDisplay(_INTL("The next Ground-type attack against {1} will deal double damage!",battler.pbThis(true)))
+	},
 })

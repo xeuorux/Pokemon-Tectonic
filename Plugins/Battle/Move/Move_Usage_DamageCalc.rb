@@ -257,6 +257,10 @@ class PokeBattle_Move
                 multipliers[:base_damage_multiplier] /= 3.0
             end
         end
+		# Volatile Toxin
+		if target.effectActive?(:VolatileToxin) && (type == :GROUND)
+			multipliers[:base_damage_multiplier] *= 2
+		end
 
         # Water Sport
         if type == :FIRE

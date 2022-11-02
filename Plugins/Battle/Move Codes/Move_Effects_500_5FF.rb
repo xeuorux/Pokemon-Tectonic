@@ -2740,9 +2740,18 @@ end
 #===============================================================================
 # Decreases the user's Speed by 2 stages. (Razor Plunge)
 #===============================================================================
-class PokeBattle_Move_03E < PokeBattle_StatDownMove
+class PokeBattle_Move_5A2 < PokeBattle_StatDownMove
 	def initialize(battle,move)
 	  super
 	  @statDown = [:SPEED,2]
 	end
   end
+  
+#===============================================================================
+# The next ground type move to hit the target deals double damage. (Volatile Toxin)
+#===============================================================================
+class PokeBattle_Move_5A3 < PokeBattle_StatDownMove
+    def pbEffectAgainstTarget(user,target)
+    target.applyEffect(:VolatileToxin)
+  end
+end

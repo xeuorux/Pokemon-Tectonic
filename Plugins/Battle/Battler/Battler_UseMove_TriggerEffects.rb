@@ -96,6 +96,12 @@ class PokeBattle_Battler
 			#       after the move's animation, but the item is only consumed now.
 			user.pbConsumeItem
 		end
+		# Consume Volatile Toxin
+		if move.pbDamagingMove?
+			targets.each do |b|
+				b.disableEffect(:VolatileToxin)
+			end
+		end
 		# Pokémon switching caused by Roar, Whirlwind, Circle Throw, Dragon Tail
 		switchedBattlers = []
 		move.pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)

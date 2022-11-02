@@ -713,6 +713,14 @@ class PokeBattle_Battler
 			@battle.pbCommonAnimation('UseItem', user)
 			@battle.pbDisplay(_INTL("The {1} strengthened {2}'s power!",GameData::Item.get(user.effects[:GemConsumed]).name, move.name))
 		end
+		# Volatile Toxin proc message
+		if move.pbDamagingMove?
+			targets.each do |b|
+				next unless b.effectActive?(:VolatileToxin)
+				@battle.pbCommonAnimation('Toxic', b)
+				@battle.pbDisplay(_INTL("The {1} burst, causing {2} to deal double damage!",GameData::BattleEffect.get(:VolatileToxin).name, move.name))
+			end
+		end
 		# Messages about missed target(s) (relevant for multi-target moves only)
 		if !move.pbRepeatHit?
 			targets.each do |b|
