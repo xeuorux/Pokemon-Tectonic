@@ -143,3 +143,30 @@ GameData::Weather.register({
   :graphics         => [nil, ["toxic_fog_tile"]],
   :default_strength => 1,
 })
+
+GameData::Weather.register({
+  :id               => :Windy,
+  :category         => :Windy,
+  :id_number        => 12,
+  :particle_delta_x => 0,
+  :particle_delta_y => 400,
+  :graphics         => [["wind_1","wind_2"]],
+  :clouds_proc        => proc { |strength|
+    next 50 - strength * 4
+  },
+})
+
+GameData::Weather.register({
+  :id               => :StrongWinds,
+  :category         => :Windy,
+  :id_number        => 13,
+  :particle_delta_x => 0,
+  :particle_delta_y => 400,
+  :graphics         => [["wind_1","wind_2"]],
+  :clouds_proc        => proc { |strength|
+    next 1
+  },
+  :tone_proc        => proc { |strength|
+    next Tone.new(strength * 1/2, strength, strength * 3/4, 0)
+  },
+})
