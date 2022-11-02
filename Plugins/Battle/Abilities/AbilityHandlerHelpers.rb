@@ -1,15 +1,15 @@
 # For abilities that grant immunity to moves of a particular type, and heals the
 # ability's bearer by 1/4 of its total HP instead.
-def pbBattleMoveImmunityHealAbility(user,target,move,moveType,immuneType,battle)
+def pbBattleMoveImmunityHealAbility(user,target,move,moveType,immuneType,battle,showMessages)
 	return false if user.index==target.index
 	return false if moveType != immuneType
-	battle.pbShowAbilitySplash(target)
+	battle.pbShowAbilitySplash(target) if showMessages
 	healAmount = target.totalhp / 4.0
 	healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if target.boss?
 	if !target.canHeal? || target.pbRecoverHP(healAmount) <= 0
-	  battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!", target.pbThis,target.abilityName,move.name))
+	  battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!", target.pbThis,target.abilityName,move.name)) if showMessages
 	end
-	battle.pbHideAbilitySplash(target)
+	battle.pbHideAbilitySplash(target) if showMessages
 	return true
 end
 

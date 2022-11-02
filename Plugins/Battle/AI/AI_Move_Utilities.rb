@@ -224,13 +224,11 @@ class PokeBattle_AI
         # Get the move's type
         type = pbRoughType(move,user,skill)
 
-        ##### Calculate user's attack stat #####
-        atkStat, atkStage = move.pbGetAttackStats(user,target)
-        atk = pbRoughStatCalc(atkStat,atkStage)
+        # Give the move a chance to change itself to phys or spec
+        move.calculated_category = move.calculateCategory(user, [target])
 
-        ##### Calculate target's defense stat #####
-        defStat, defStage = move.pbGetDefenseStats(user,target)
-        defense = pbRoughStatCalc(defStat,defStage)
+        # Get the relevant attacking and defending stat values (after stages)
+        attack, defense = move.damageCalcStats(user,target)
 
         ##### Calculate all multiplier effects #####
         multipliers = {
@@ -241,11 +239,7 @@ class PokeBattle_AI
         }
 
         # Ability effects that alter damage
-        moldBreaker = false
-
-        if target.hasMoldBreaker?
-          moldBreaker = true
-        end
+        moldBreaker = user.hasMoldBreaker?
 
         if user.abilityActive?
           # NOTE: These abilities aren't suitable for checking at the start of the

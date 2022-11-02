@@ -158,28 +158,11 @@ end
 class PokeBattle_Move_187 < PokeBattle_Move_005
     def initialize(battle, move)
       super
-      @calcCategory = 1
-    end
-    
-    def physicalMove?(_thisType = nil); return (@calcCategory == 0); end
-    def specialMove?(_thisType = nil);  return (@calcCategory == 1); end
-
-    def pbOnStartUse(_user, targets)
-      stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
-      stageDiv = PokeBattle_Battler::STAGE_DIVISORS
-      defense      = targets[0].defense
-      defenseStage = targets[0].stages[:DEFENSE] + 6
-      realDefense  = (defense.to_f * stageMul[defenseStage] / stageDiv[defenseStage]).floor
-      spdef        = targets[0].spdef
-      spdefStage   = targets[0].stages[:SPECIAL_DEFENSE] + 6
-      realSpdef    = (spdef.to_f * stageMul[spdefStage] / stageDiv[spdefStage]).floor
-      # Determine move's category
-      return @calcCategory = 0 if realDefense < realSpdef
-      return @calcCategory = 1 if realDefense >= realSpdef
+      @calculated_category = 1
     end
 
-    def pbAdditionalEffect(user, target)
-      target.pbPoison(user) if target.pbCanPoison?(user, true, self)
+    def calculateCategory(user, targets)
+      return selectBestCategory(user,target[0])
     end
 
     def getScore(score, user, target, skill = 100)

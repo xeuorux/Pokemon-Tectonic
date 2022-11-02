@@ -20,6 +20,7 @@ class PokeBattle_Move
     attr_accessor :calcType
     attr_accessor :powerBoost
     attr_accessor :snatched
+    attr_accessor :calculated_category
   
     def to_int; return @id; end
   
@@ -36,6 +37,7 @@ class PokeBattle_Move
       @baseDamage = move.base_damage
       @type       = move.type
       @category   = move.category
+      @calculated_category = -1 # By default, won't overwrite @category
       @accuracy   = move.accuracy
       @pp         = move.pp   # Can be changed with Mimic/Transform
       @effectChance = move.effect_chance
@@ -81,25 +83,19 @@ class PokeBattle_Move
     # NOTE: This method is only ever called while using a move (and also by the
     #       AI), so using @calcType here is acceptable.
     def physicalMove?(thisType=nil)
-      return (@category==0) if Settings::MOVE_CATEGORY_PER_MOVE
-      thisType ||= @calcType
-      thisType ||= @type
-      return true if !thisType
-      return GameData::Type.get(thisType).physical?
+      return true if @calculated_category == 0
+      return true if @category == 0
+      return false
     end
   
-    # NOTE: This method is only ever called while using a move (and also by the
-    #       AI), so using @calcType here is acceptable.
     def specialMove?(thisType=nil)
-      return (@category==1) if Settings::MOVE_CATEGORY_PER_MOVE
-      thisType ||= @calcType
-      thisType ||= @type
-      return false if !thisType
-      return GameData::Type.get(thisType).special?
+      return true if @calculated_category == 1
+      return true if @category == 1
+      return false
     end
   
-    def damagingMove?; return @category!=2; end
-    def statusMove?;   return @category==2; end
+    def damagingMove?; return @category != 2; end
+    def statusMove?;   return @category == 2; end
   
     def usableWhenAsleep?;       return false; end
     def unusableInGravity?;      return false; end

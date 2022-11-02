@@ -124,5 +124,32 @@ class PokeBattle_Move
         target.pbOwnSide.disableEffect(effectData.id)
       end
     end
-  end 
+  end
+
+  # Chooses a move category based on which attacking stat is higher (if no target is provided)
+  # Or which will deal more damage to the target
+  def selectBestCategory(user,target = nil)
+    real_attack = user.attack
+    real_special_attack = user.spatk
+    if target
+        real_defense = target.pbDefense
+        real_special_defense = target.pbSpDef
+        # Perform simple damage calculation
+        physical_damage = real_attack.to_f / real_defense
+        special_damage = real_special_attack.to_f / real_special_defense
+        # Determine move's category based on likely damage dealt
+        if physical_damage == special_damage
+            return @battle.pbRandom(2)
+        else
+            return (physical_damage > special_damage) ? 0 : 1
+        end
+    else
+        # Determine move's category
+        if real_attack == real_special_attack
+            return @battle.pbRandom(2)
+        else
+            return (real_attack > real_special_attack) ? 0 : 1
+        end
+    end
+end
 end

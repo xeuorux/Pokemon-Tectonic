@@ -1,7 +1,47 @@
 class PokeBattle_Battler
-	# These are not yet used everywhere they should be. Do not modify and expect consistent results.
+	#=============================================================================
+	# Calculate stats based on stat stages.
+	#=============================================================================
 	STAGE_MULTIPLIERS = [2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8].freeze
 	STAGE_DIVISORS    = [8, 7, 6, 5, 4, 3, 2, 2, 2, 2, 2, 2, 2].freeze
+
+	def statMultiplierAtStage(stage)
+		if stage < -6 || stage > 6
+			raise _INTL("Given stat stage value #{stage} is not valid! Must be between -6 and 6, inclusive.")
+		end
+		shiftedStage = stage + 6
+		mult = STAGE_MULTIPLIERS[shiftedStage].to_f / STAGE_DIVISORS[shiftedStage].to_f
+		mult = (mult + 1.0) / 2.0 if boss?
+		return mult
+	end
+
+	def statAfterStage(stat,stage=-1)
+		stage = @stages[stat] if stage == -1
+		return (getPlainStat(stat) * statMultiplierAtStage(stage)).floor
+	end
+
+	def finalStats
+		ret = {}
+		ret[:ATTACK]          = pbAttack
+		ret[:DEFENSE]         = pbDefense
+		ret[:SPECIAL_ATTACK]  = pbSpAtk
+		ret[:SPECIAL_DEFENSE] = pbSpDef
+		ret[:SPEED]           = pbSpeed
+		return ret
+	end
+
+	# Returns an array of [stat, value]
+	def highestStatAndValue()
+		return finalStats.max_by{|k,v| v}
+	end
+
+	def highestStat()
+		return highestStatAndValue[0]
+	end
+
+	def highestStatValue()
+		return highestStatAndValue[1]
+	end
 
 	#=============================================================================
 	# Increase stat stages

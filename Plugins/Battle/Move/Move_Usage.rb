@@ -22,6 +22,8 @@ class PokeBattle_Move
             end
         end
     end
+
+    def calculateCategory(user,targets); return -1; end
   
     #=============================================================================
     # Methods for displaying stuff when the move is used

@@ -915,15 +915,15 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   end
   
   #===============================================================================
-  # Target's Attack is used instead of user's Attack for this move's calculations.
-  # (Foul Play)
+  # Target's attacking stats are used instead of user's Attack for this move's calculations.
+  # (Foul Play, Tricky Toxins)
   #===============================================================================
   class PokeBattle_Move_121 < PokeBattle_Move
-    def pbGetAttackStats(user,target)
+    def pbAttackingStat(user,target)
       if specialMove?
-        return target.spatk, target.stages[:SPECIAL_ATTACK]+6
+        return target,:SPECIAL_ATTACK
       end
-      return target.attack, target.stages[:ATTACK]+6
+      return target,:ATTACK
     end
   end
   
@@ -932,8 +932,8 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   # calculations. (Psyshock, Psystrike, Secret Sword)
   #===============================================================================
   class PokeBattle_Move_122 < PokeBattle_Move
-    def pbGetDefenseStats(user,target)
-      return target.defense, target.stages[:DEFENSE]+6
+    def pbDefendingStat(user,target)
+      return target, :DEFENSE
     end
   end
   
@@ -2114,12 +2114,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      # Calculate target's effective attack value
-      stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
-      stageDiv = PokeBattle_Battler::STAGE_DIVISORS
-      atk      = target.attack
-      atkStage = target.stages[:ATTACK]+6
-      healAmount = atk.to_f * stageMul[atkStage] / stageDiv[atkStage].to_f
+      healAmount = target.pbAttack
       # Reduce target's Attack stat
       if target.pbCanLowerStatStage?(:ATTACK,user,self)
         target.pbLowerStatStage(:ATTACK,1,user)
@@ -2212,29 +2207,11 @@ end
   class PokeBattle_Move_164 < PokeBattle_Move_163
     def initialize(battle,move)
       super
-      @calcCategory = 1
+      @calculated_category = 1
     end
   
-    def physicalMove?(thisType=nil); return (@calcCategory==0); end
-    def specialMove?(thisType=nil);  return (@calcCategory==1); end
-  
-    def pbOnStartUse(user,targets)
-      # Calculate user's effective attacking value
-      stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
-      stageDiv = PokeBattle_Battler::STAGE_DIVISORS
-      atk        = user.attack
-      atkStage   = user.stages[:ATTACK]+6
-      realAtk    = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
-      spAtk      = user.spatk
-      spAtkStage = user.stages[:SPECIAL_ATTACK]+6
-      realSpAtk  = (spAtk.to_f*stageMul[spAtkStage]/stageDiv[spAtkStage]).floor
-      # Determine move's category
-      @calcCategory = (realAtk>realSpAtk) ? 0 : 1
-    end
-
-    def getScore(score,user,target,skill=100)
-      score += 20
-      return score
+    def calculateCategory(user,targets)
+      return selectBestCategory(user)
     end
   end
   
@@ -2700,8 +2677,8 @@ end
 # (Body Press)
 #===============================================================================
 class PokeBattle_Move_177 < PokeBattle_Move
-  def pbGetAttackStats(user,target)
-    return user.defense, user.stages[:DEFENSE]+6
+  def pbAttackingStat(user,target)
+    return user,:DEFENSE
   end
 end
 

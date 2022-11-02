@@ -273,7 +273,7 @@ class PokeBattle_Battle
   # sendOuts is an array; each element is itself an array: [idxBattler,pkmn]
   def pbSendOut(sendOuts,startBattle=false)
     sendOuts.each { |b| @peer.pbOnEnteringBattle(self,b[1]) }
-    @scene.pbSendOutBattlers(sendOuts,startBattle)
+    @scene.pbSendOutBattlers(sendOuts,startBattle) unless @autoTesting
     sendOuts.each do |b|
       @scene.pbResetMoveIndex(b[0])
       pbSetSeen(@battlers[b[0]])

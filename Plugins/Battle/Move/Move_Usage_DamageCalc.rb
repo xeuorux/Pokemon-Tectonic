@@ -2,42 +2,20 @@ class PokeBattle_Move
     #=============================================================================
     # Final damage calculation
     #=============================================================================
-    def calcBasicDamage(base_damage,attacker_level,user_attacking_stat,target_defending_stat)
-        damage  = (((2.0 * attacker_level / 5 + 2).floor * base_damage * user_attacking_stat / target_defending_stat).floor / 50).floor + 2
-    end
-
     def pbCalcDamage(user,target,numTargets=1)
         return if statusMove?
         if target.damageState.disguise
             target.damageState.calcDamage = 1
             return
         end
-        stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
-        stageDiv = PokeBattle_Battler::STAGE_DIVISORS
         # Get the move's type
-        type = @calcType   # nil is treated as physical
+        type = @calcType # nil is treated as physical
         # Calculate whether this hit deals critical damage
         target.damageState.critical,target.damageState.forced_critical = pbIsCritical?(user,target)
         # Calcuate base power of move
         baseDmg = pbBaseDamage(@baseDamage,user,target)
-        # Calculate user's attack stat
-        atk, atkStage = pbGetAttackStats(user,target)
-        if !target.hasActiveAbility?(:UNAWARE) || @battle.moldBreaker
-            atkStage = 6 if target.damageState.critical && atkStage<6
-            calc = stageMul[atkStage].to_f/stageDiv[atkStage].to_f
-            calc = (calc.to_f + 1.0)/2.0 if user.boss?
-            atk = (atk.to_f*calc).floor
-        end
-        # Calculate target's defense stat
-        defense, defStage = pbGetDefenseStats(user,target)
-        if !user.hasActiveAbility?(:UNAWARE)
-            if defStage > 6 && (target.damageState.critical || user.hasActiveAbility?(:INFILTRATOR))
-                defStage = 6
-            end
-            calc = stageMul[defStage].to_f/stageDiv[defStage].to_f
-            calc = (calc.to_f + 1.0)/2.0 if target.boss?
-            defense = (defense.to_f*calc).floor
-        end
+        # Get the relevant attacking and defending stat values (after stages)
+        attack, defense = damageCalcStats(user,target)
         # Calculate all multiplier effects
         multipliers = {
             :base_damage_multiplier  => 1.0,
@@ -48,9 +26,9 @@ class PokeBattle_Move
         pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
         # Main damage calculation
         baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
-        atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
+        attack  = [(attack  * multipliers[:attack_multiplier]).round, 1].max
         defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
-        damage  = calcBasicDamage(baseDmg,user.level,atk,defense)
+        damage  = calcBasicDamage(baseDmg,user.level,attack,defense)
         damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
         target.damageState.calcDamage = damage
     end
@@ -59,6 +37,29 @@ class PokeBattle_Move
         echoln("The calculated base damage multiplier: #{multipliers[:base_damage_multiplier]}")
         echoln("The calculated attack and defense multipliers: #{multipliers[:attack_multiplier]},#{multipliers[:defense_multiplier]}")
         echoln("The calculated final damage multiplier: #{multipliers[:final_damage_multiplier]}")
+    end
+
+    def calcBasicDamage(base_damage,attacker_level,user_attacking_stat,target_defending_stat)
+        damage  = (((2.0 * attacker_level / 5 + 2).floor * base_damage * user_attacking_stat / target_defending_stat).floor / 50).floor + 2
+    end
+
+    def damageCalcStats(user,target)
+        # Calculate user's attack stat
+        attacking_stat_holder, attacking_stat = pbAttackingStat(user,target)
+        attack_stage = attacking_stat_holder.stages[attacking_stat]
+        attack_stage = 6 if target.damageState.critical && attack_stage < 6
+        attack_stage = 6 if target.hasActiveAbility?(:UNAWARE) && !@battle.moldBreaker
+        attack = user.statAfterStage(attacking_stat, attack_stage)
+        # Calculate target's defense stat
+        defending_stat_holder, defending_stat = pbDefendingStat(user,target)
+        defense_stage = defending_stat_holder.stages[defending_stat]
+        if defense_stage > 6 &&
+                (ignoresDefensiveStageBoosts?(user,target) || user.hasActiveAbility?(:INFILTRATOR) || target.damageState.critical)
+            defense_stage = 6
+        end
+        defense_stage = 6 if user.hasActiveAbility?(:UNAWARE)
+        defense = target.statAfterStage(defending_stat, defense_stage)
+        return attack, defense
     end
     
     def pbCalcAbilityDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)

@@ -95,8 +95,8 @@ end
 # calculations. (Soul Claw, Soul Rip)
 #===============================================================================
 class PokeBattle_Move_506 < PokeBattle_Move
-  def pbGetDefenseStats(user,target)
-    return target.spdef, target.stages[:SPECIAL_DEFENSE]+6
+  def pbDefendingStat(user,target)
+    return target, :SPECIAL_DEFENSE
   end
 end
 
@@ -138,10 +138,7 @@ class PokeBattle_Move_509 < PokeBattle_Move
     modifiers[EVA_STAGE] = 0   # Accuracy stat stage
   end
 
-  def pbGetDefenseStats(user,target)
-    ret1, _ret2 = super
-    return ret1, 6   # Def/SpDef stat stage
-  end
+  def ignoresDefensiveStageBoosts?(user,target); return true; end
   
   def getScore(score,user,target,skill=100)
 	score += target.stages[:DEFENSE] * 10 if physicalMove?
@@ -176,16 +173,12 @@ class PokeBattle_Move_50A < PokeBattle_Move
   end
   
   def burnOrFrostbite(user,target)
-	stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
-	stageDiv = PokeBattle_Battler::STAGE_MULTIPLIERS
-	attackStage = target.stages[:ATTACK]+6
-	attack = (target.attack.to_f*stageMul[attackStage].to_f/stageDiv[attackStage].to_f).floor
-	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
-	spAtk = (target.spatk.to_f*stageMul[spAtkStage].to_f/stageDiv[spAtkStage].to_f).floor
+	real_attack = target.pbAttack
+	real_special_attack = target.pbSpAtk
 	
-    if target.pbCanBurn?(user,false,self) && attack >= spAtk
+    if target.pbCanBurn?(user,false,self) && real_attack >= real_special_attack
 		target.pbBurn(user)
-	elsif target.pbCanFrostbite?(user,false,self) && spAtk >= attack
+	elsif target.pbCanFrostbite?(user,false,self) && real_special_attack >= real_attack
 		target.pbFrostbite(user)
 	end
   end
@@ -579,22 +572,7 @@ class PokeBattle_Move_522 < PokeBattle_TargetMultiStatDownMove
   end
   
   def pbEffectAgainstTarget(user,target)
-	stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
-	stageDiv = PokeBattle_Battler::STAGE_DIVISORS
-	bestStat = :ATTACK
-	bestStatValue = -100
-    GameData::Stat.each_battle do |s|
-      next if !target.pbCanLowerStatStage?(s.id,user,self)
-	  baseStat      = target.plainStats[s.id]
-	  statStage		= target.stages[s.id]+6
-	  statValue = (baseStat.to_f*stageMul[statStage]/stageDiv[statStage]).floor
-	  if statValue > bestStatValue
-		bestStatValue = statValue
-		bestStat = s.id
-	  end
-    end
-	
-    target.pbLowerStatStage(bestStat,2,user)
+    target.pbLowerStatStage(target.highestStat,2,user)
   end
 end
 
@@ -747,16 +725,12 @@ class PokeBattle_Move_52B < PokeBattle_Move
   end
 
   def flusterOrMystify(user,target)
-	stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
-	stageDiv = PokeBattle_Battler::STAGE_DIVISORS
-	attackStage = target.stages[:ATTACK]+6
-	attack = (target.attack.to_f*stageMul[attackStage].to_f/stageDiv[attackStage].to_f).floor
-	spAtkStage = target.stages[:SPECIAL_ATTACK]+6
-	spAtk = (target.spatk.to_f*stageMul[spAtkStage].to_f/stageDiv[spAtkStage].to_f).floor
+	real_attack = target.pbAttack
+	real_special_attack = target.pbSpAtk
 	
-    if target.pbCanFluster?(user,true,self) && attack >= spAtk
+    if target.pbCanFluster?(user,true,self) && real_attack >= real_special_attack
 		target.pbFluster
-	elsif target.pbCanMystify?(user,true,self) && spAtk >= attack
+	elsif target.pbCanMystify?(user,true,self) && real_special_attack >= real_attack
 		target.pbMystify
 	end
   end
@@ -907,11 +881,9 @@ end
 # Raises worst stat two stages, second worst stat by one stage. (Breakdance)
 #===============================================================================
 class PokeBattle_Move_532 < PokeBattle_Move
-	MAIN_BATTLE_STATS = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
-
 	def pbFailsAgainstTarget?(user,target)
 		@statArray = []
-		MAIN_BATTLE_STATS.each do |statID|
+		GameData::Stat.each_main_battle do |statID|
 		  @statArray.push(statID) if user.pbCanRaiseStatStage?(statID,user,self)
 		end
 		if @statArray.length==0
@@ -922,16 +894,17 @@ class PokeBattle_Move_532 < PokeBattle_Move
 	end
 	
 	def pbEffectGeneral(user)
-		stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
-		stageDiv = PokeBattle_Battler::STAGE_DIVISORS
-		statsRanked = MAIN_BATTLE_STATS.sort_by { |s| user.plainStats[s].to_f * stageMul[user.stages[s]+6] / stageDiv[user.stages[s]+6] }
+		statsUserCanRaise = user.finalStats.select { |stat, finalValue|
+			next user.pbCanRaiseStatStage?(stat, user, self)
+		}
+		statsRanked =  statsUserCanRaise.sort_by { |s, v| v}
 		user.pbRaiseStatStage(statsRanked[0],2,user,true)
-		user.pbRaiseStatStage(statsRanked[1],1,user,false)
+		user.pbRaiseStatStage(statsRanked[1],1,user,false) if statsRanked.length > 1
 	end
 	
 	def getScore(score,user,target,skill=100)
 		score += 20 if user.firstTurn?
-		MAIN_BATTLE_STATS.each do |s|
+		GameData::Stat.each_main_battle do |s|
 			score -= user.stages[s] * 5
 		end
 		return score
@@ -1188,8 +1161,8 @@ end
 # (Aura Trick)
 #===============================================================================
 class PokeBattle_Move_540 < PokeBattle_Move
-  def pbGetAttackStats(user,target)
-    return user.spdef, user.stages[:SPECIAL_DEFENSE]+6
+  def pbAttackingStat(user,target)
+    return user,:SPECIAL_DEFENSE
   end
 end
 
@@ -2071,14 +2044,8 @@ class PokeBattle_Move_574 < PokeBattle_Move
 	def pbBaseDamage(baseDmg,user,target)
 	  	highestDefense = 0
 		user.eachAlly do |ally_battler|
-			calcedDefense = ally_battler.defense
-			stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
-    		stageDiv = PokeBattle_Battler::STAGE_DIVISORS
-			defStage = ally_battler.stages[:DEFENSE] + 6
-			stageModifier = stageMul[defStage].to_f / stageDiv[defStage].to_f
-	    	stageModifier = (stageModifier.to_f + 1.0)/2.0 if ally_battler.boss?
-			calcedDefense = (calcedDefense.to_f * stageModifier * 0.5).floor
-			highestDefense = calcedDefense if calcedDefense > highestDefense
+			real_defense = ally_battler.pbDefense
+			highestDefense = real_defense if real_defense > highestDefense
 		end
 	  	return [highestDefense,40].max
 	end
@@ -2288,24 +2255,24 @@ end
 class PokeBattle_Move_584 < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
 		@statArray = []
-		GameData::Stat.each_battle do |s|
+		GameData::Stat.each_main_battle do |s|
 		  @statArray.push(s.id) if target.pbCanRaiseStatStage?(s.id,user,self)
 		end
 		if @statArray.length==0
-		  @battle.pbDisplay(_INTL("{1}'s stats won't go any higher!",user.pbThis))
+		  @battle.pbDisplay(_INTL("{1}'s stats won't go any higher!",target.pbThis))
 		  return true
 		end
 		return false
 	end
 	
 	def pbEffectAgainstTarget(user,target)
-		stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
-		stageDiv = PokeBattle_Battler::STAGE_DIVISORS
-		statsRanked = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
-		statsRanked = statsRanked.sort_by { |s| target.plainStats[s].to_f * stageMul[target.stages[s]+6] / stageDiv[target.stages[s]+6] }
+		statsTargetCanRaise = target.finalStats.select { |stat, finalValue|
+			next target.pbCanRaiseStatStage?(stat, user, self)
+		}
+		statsRanked = statsTargetCanRaise.sort_by { |s, v| v}
 		target.pbRaiseStatStage(statsRanked[0],1,user,true)
-		target.pbRaiseStatStage(statsRanked[1],1,user,false)
-		target.pbRaiseStatStage(statsRanked[2],1,user,false)
+		target.pbRaiseStatStage(statsRanked[1],1,user,false) if statsRanked.length > 1
+		target.pbRaiseStatStage(statsRanked[2],1,user,false) if statsRanked.length > 2
 	end
 	
 	def getScore(score,user,target,skill=100)

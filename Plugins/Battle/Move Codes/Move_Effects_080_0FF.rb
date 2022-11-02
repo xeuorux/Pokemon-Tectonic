@@ -972,10 +972,7 @@ class PokeBattle_Move_0A9 < PokeBattle_Move
     modifiers[:evasion_stage] = 0
   end
 
-  def pbGetDefenseStats(user,target)
-    ret1, _ret2 = super
-    return ret1, 6   # Def/SpDef stat stage
-  end
+  def ignoresDefensiveStageBoosts?; return true; end
 end
 
 #===============================================================================

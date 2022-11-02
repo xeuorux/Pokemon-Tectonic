@@ -6,12 +6,6 @@ def pbRoughType(move,user,skill)
 	return ret
 end
 
-def pbRoughStatCalc(atkStat,atkStage)
-	stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
-	stageDiv = PokeBattle_Battler::STAGE_DIVISORS
-	return (atkStat.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
-  end
-
 def pbRoughStat(battler,stat,skill=100)
 	castBattler = (battler.illusion? && battler.pbOwnedByPlayer?) ? battler.disguisedAs : battler
 	return battler.pbSpeed if stat == :SPEED && !battler.illusion?

@@ -77,7 +77,6 @@ class PokeBattle_Battle
   end
 
   def pbEORHealing(priority)
-    PBDebug.log("[DEBUG] Performing EoR healing effects")
     # Status-curing effects/abilities and HP-healing items
     priority.each do |b|
       next if b.fainted?
@@ -118,7 +117,6 @@ class PokeBattle_Battle
   end
 
   def pbEORDamage(priority)
-    PBDebug.log("[DEBUG] Dealing EoR damage effects")
     # Damage from Hyper
     priority.each do |b|
       next if !b.inHyperMode? || @choices[b.index][0] != :UseMove
@@ -172,7 +170,6 @@ class PokeBattle_Battle
   end
   
   def countDownPerishSong(priority)
-    PBDebug.log("[DEBUG] Counting down/ending perish song")
     # Perish Song
     perishSongUsers = []
     priority.each do |b|
@@ -193,11 +190,8 @@ class PokeBattle_Battle
   end
 
   def processTriggersEOR(priority)
-    PBDebug.log("[DEBUG] Processing EoR Triggers")
-
     priority.each do |b|
       next if b.fainted?
-
       # Hyper Mode (Shadow Pokémon)
       if b.inHyperMode?
         if pbRandom(100)<10

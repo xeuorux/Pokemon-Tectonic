@@ -285,7 +285,7 @@ class PokeBattle_Battle
 		# Change all battlers
 		@battlers.each do |b|
 			next if b.nil? || b.pokemon.nil?
-			if pbRandom(100) < speciesChangeChance
+			if pbRandom(100) < speciesChangeChance || @turnCount == 0
 				b.pokemon.species = GameData::Species::DATA.keys.sample
 				b.pokemon.level = 1 + pbRandom(69).ceil
 				b.pokemon.calc_stats

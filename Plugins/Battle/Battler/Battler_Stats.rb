@@ -1,4 +1,23 @@
 class PokeBattle_Battler
+	def getPlainStat(stat)
+		plainStatVal = 0
+		case stat
+		when :ATTACK
+			plainStatVal = attack
+		when :DEFENSE
+			plainStatVal = defense
+		when :SPECIAL_ATTACK
+			plainStatVal = spatk
+		when :SPECIAL_DEFENSE
+			plainStatVal = spdef
+		when :SPEED
+			plainStatVal = speed
+		end
+
+		plainStatVal += tribalBonusForStat(stat)
+		return plainStatVal
+	end
+
 	def plainStats
 		ret = {}
 		ret[:ATTACK]          = attack
@@ -7,12 +26,11 @@ class PokeBattle_Battler
 		ret[:SPECIAL_DEFENSE] = spdef
 		ret[:SPEED]           = speed
 		if getsTribalBonuses?
-			bonuses = $Tribal_Bonuses.getTribeBonuses(@pokemon)
-			ret[:ATTACK_TRIBAL] = bonuses[:ATTACK]
-			ret[:DEFENSE_TRIBAL] = bonuses[:DEFENSE]
-			ret[:SPECIAL_ATTACK_TRIBAL] = bonuses[:SPECIAL_ATTACK]
-			ret[:SPECIAL_DEFENSE_TRIBAL] = bonuses[:SPECIAL_DEFENSE]
-			ret[:SPEED_TRIBAL] = bonuses[:SPEED]
+			ret[:ATTACK_TRIBAL] = @tribalBonuses[:ATTACK]
+			ret[:DEFENSE_TRIBAL] = @tribalBonuses[:DEFENSE]
+			ret[:SPECIAL_ATTACK_TRIBAL] = @tribalBonuses[:SPECIAL_ATTACK]
+			ret[:SPECIAL_DEFENSE_TRIBAL] = @tribalBonuses[:SPECIAL_DEFENSE]
+			ret[:SPEED_TRIBAL] = @tribalBonuses[:SPEED]
 		else
 			ret[:ATTACK_TRIBAL] = 0
 			ret[:DEFENSE_TRIBAL] = 0
@@ -23,9 +41,9 @@ class PokeBattle_Battler
 		return ret
 	end
 
-	def getBonus(stat)
+	def tribalBonusForStat(stat)
 		return 0 unless getsTribalBonuses?
-		return $Tribal_Bonuses.getTribeBonuses(@pokemon)[stat]
+		return @tribalBonuses[stat]
 	end
 
 	def getsTribalBonuses?
@@ -95,7 +113,7 @@ class PokeBattle_Battler
 	DEFENSIVE_LOCK_STAT = 95
 
 	def attack_no_room
-		atk_bonus = getBonus(:ATTACK)
+		atk_bonus = tribalBonusForStat(:ATTACK)
 		if hasActiveItem?(:POWERLOCK)
 			return calcStatGlobal(OFFENSIVE_LOCK_STAT, @level, @pokemon.ev[:ATTACK],hasActiveAbility?(:STYLISH)) + atk_bonus
 		else
@@ -104,7 +122,7 @@ class PokeBattle_Battler
 	end
 
 	def defense_no_room
-		defense_bonus = getBonus(:DEFENSE)
+		defense_bonus = tribalBonusForStat(:DEFENSE)
 		if hasActiveItem?(:GUARDLOCK)
 			return calcStatGlobal(DEFENSIVE_LOCK_STAT, @level, @pokemon.ev[:DEFENSE],hasActiveAbility?(:STYLISH)) + defense_bonus
 		else
@@ -113,7 +131,7 @@ class PokeBattle_Battler
 	end
 
 	def sp_atk_no_room
-		spatk_bonus = getBonus(:SPECIAL_ATTACK)
+		spatk_bonus = tribalBonusForStat(:SPECIAL_ATTACK)
 		if hasActiveItem?(:ENERGYLOCK)
 			return calcStatGlobal(OFFENSIVE_LOCK_STAT, @level, @pokemon.ev[:SPECIAL_ATTACK],hasActiveAbility?(:STYLISH)) + spatk_bonus
 		else
@@ -122,7 +140,7 @@ class PokeBattle_Battler
 	end
 
 	def sp_def_no_room
-		spdef_bonus = getBonus(:SPECIAL_DEFENSE)
+		spdef_bonus = tribalBonusForStat(:SPECIAL_DEFENSE)
 		if hasActiveItem?(:WILLLOCK)
 			return calcStatGlobal(DEFENSIVE_LOCK_STAT, @level, @pokemon.ev[:SPECIAL_DEFENSE],hasActiveAbility?(:STYLISH)) + spdef_bonus
 		else
@@ -130,13 +148,32 @@ class PokeBattle_Battler
 		end
 	end
 
+	#=============================================================================
+	# Query about stats after room modification, stages, and maybe other effects.
+	#=============================================================================
+	def pbAttack(aiChecking = false)
+		return 1 if fainted?
+		return statAfterStage(:ATTACK)
+	end
+
+	def pbSpAtk(aiChecking = false)
+		return 1 if fainted?
+		return statAfterStage(:SPECIAL_ATTACK)
+	end
+
+	def pbDefense(aiChecking = false)
+		return 1 if fainted?
+		return statAfterStage(:DEFENSE)
+	end
+
+	def pbSpDef(aiChecking = false)
+		return 1 if fainted?
+		return statAfterStage(:SPECIAL_DEFENSE)
+	end
+
 	def pbSpeed(aiChecking = false)
 		return 1 if fainted?
-		stageMul = STAGE_MULTIPLIERS
-		stageDiv = STAGE_DIVISORS
-		stage = @stages[:SPEED] + 6
-		speed_bonus = getBonus(:SPEED)
-		speed = (@speed + speed_bonus) * stageMul[stage] / stageDiv[stage]
+		speed = statAfterStage(:SPEED)
 		speedMult = 1.0
 		# Ability effects that alter calculated Speed
 		speedMult = BattleHandlers.triggerSpeedCalcAbility(ability, self, speedMult) if abilityActive? && !ignoreAbilityInAI?(aiChecking)

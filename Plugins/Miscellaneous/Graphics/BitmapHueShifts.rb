@@ -29,7 +29,7 @@ class Pokemon
         if HUE_SHIFT_RANGE > 0 && id != 0
             shift = (-(HUE_SHIFT_RANGE/2.0) + (id % HUE_SHIFT_RANGE)).round
         end
-        echoln("#{name()}'s hue is shifted by #{shift} from ID #{id}")
+        #echoln("#{name()}'s hue is shifted by #{shift} from ID #{id}")
         return shift
     end
 
@@ -42,7 +42,7 @@ class Pokemon
         if SHADE_SHIFT_RANGE > 0 && id != 0
             shift = (-(SHADE_SHIFT_RANGE/2.0) + ((id ^ 65970697) % SHADE_SHIFT_RANGE)).round
         end
-        echoln("#{name()}'s shade is shifted by #{shift} from ID #{id}")
+        #echoln("#{name()}'s shade is shifted by #{shift} from ID #{id}")
         return shift
     end
 end

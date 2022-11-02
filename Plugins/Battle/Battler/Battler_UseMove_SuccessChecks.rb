@@ -477,8 +477,7 @@ class PokeBattle_Battler
 		miss = false
 		hitsInvul = false
 		# No Guard
-		hitsInvul = true if user.hasActiveAbility?(:NOGUARD) ||
-																						target.hasActiveAbility?(:NOGUARD)
+		hitsInvul = true if user.hasActiveAbility?(:NOGUARD) || target.hasActiveAbility?(:NOGUARD)
 		# Future Sight
 		hitsInvul = true if @battle.futureSight
 		# Helping Hand

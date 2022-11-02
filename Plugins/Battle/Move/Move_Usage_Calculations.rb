@@ -259,6 +259,8 @@ class PokeBattle_Move
     def pbBaseDamage(baseDmg,user,target);              return baseDmg;    end
     def pbBaseDamageMultiplier(damageMult,user,target); return damageMult; end
     def pbModifyDamage(damageMult,user,target);         return damageMult; end
+
+    def ignoresDefensiveStageBoosts?(user,target);           return false;       end
   
     def forcedSpecial?(user,target,checkingForAI=false)
         return true if user.shouldAbilityApply?(:MYSTICFIST,checkingForAI) && punchingMove?
@@ -277,18 +279,18 @@ class PokeBattle_Move
         return isSpecial
     end
 
-    def pbGetAttackStats(user,target,checkingForAI=false)
+    def pbAttackingStat(user,target,checkingForAI=false)
         if specialAfterForcing?(user,target,checkingForAI)
-          return user.spatk, user.stages[:SPECIAL_ATTACK]+6
+          return user, :SPECIAL_ATTACK
         end
-        return user.attack, user.stages[:ATTACK]+6
+        return user, :ATTACK
     end
     
-    def pbGetDefenseStats(user,target,checkingForAI=false)
+    def pbDefendingStat(user,target,checkingForAI=false)
         if specialAfterForcing?(user,target,checkingForAI)
-            return target.spdef, target.stages[:SPECIAL_DEFENSE]+6
+            return target, :SPECIAL_DEFENSE
         end
-        return target.defense, target.stages[:DEFENSE]+6
+        return target, :DEFENSE
     end
   
     #=============================================================================

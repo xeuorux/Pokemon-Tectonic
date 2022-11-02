@@ -59,6 +59,7 @@ class PokeBattle_Battler
 		unless PBDebug.logonerr {
 				pbUseMove(choice, choice[2] == @battle.struggle)
 			}
+			PBDebug.log("[Move usage] Cancelling move usage due to an error.")
 			pbCancelMoves
 			pbEndTurn(choice)
 			@battle.pbJudge
@@ -92,7 +93,7 @@ class PokeBattle_Battler
 	# Cancels the use of multi-turn moves and counters thereof. Note that Hyper
 	# Beam's effect is NOT cancelled.
 	def pbCancelMoves(_full_cancel = false)
-		echoln("[EFFECTS] Effects are being disabled due moves being cancelled on #{pbThis(true)}")
+		echoln("[EFFECTS] Effects are being disabled due to moves being cancelled on #{pbThis(true)}")
 		eachEffect() do |effect,value,effectData|
 			disableEffect(effect) if effectData.resets_on_cancel
 		end
@@ -333,6 +334,8 @@ class PokeBattle_Battler
 		end
 		# Perform set-up actions
 		move.pbOnStartUse(user, targets)
+		# Calculate move category (calculateCategory may return)
+		move.calculated_category = move.calculateCategory(user, targets)
 		# Display messages about BP adjustment and weather debuffing
 		move.displayDamagingMoveMessages(self,targets) if move.damagingMove?
 		# Powder

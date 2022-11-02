@@ -149,22 +149,18 @@ class PokeBattle_AI
     def highDamageFromConfusion(battler,charm=false)
         #Calculate the damage the confusionMove would do
         confusionMove = charm ? PokeBattle_Charm.new(@battle,nil) : PokeBattle_Confusion.new(@battle,nil)
-        stageMul = PokeBattle_Battler::STAGE_MULTIPLIERS
-        stageDiv = PokeBattle_Battler::STAGE_DIVISORS
         # Get the move's type
         type = confusionMove.calcType
         # Calcuate base power of move
         baseDmg = confusionMove.pbBaseDamage(confusionMove.baseDamage,battler,battler)
         # Calculate battler's attack stat
-        atk, atkStage = confusionMove.pbGetAttackStats(battler,battler)
-        if !battler.hasActiveAbility?(:UNAWARE) || @battle.moldBreaker
-          atk = (atk.to_f*stageMul[atkStage]/stageDiv[atkStage]).floor
-        end
+        attacking_stat_holder,attacking_stat = confusionMove.pbAttackingStat(battler,battler)
+        defStage = attacking_stat_holder.stages[attacking_stat]
+        attack = battler.statAfterStage(attacking_stat, atkStage)
         # Calculate battler's defense stat
-        defense, defStage = confusionMove.pbGetDefenseStats(battler,battler)
-        if !battler.hasActiveAbility?(:UNAWARE)
-          defense = (defense.to_f*stageMul[defStage]/stageDiv[defStage]).floor
-        end
+        defending_stat_holder, defending_stat = confusionMove.pbDefendingStat(battler,battler)
+        defStage = defending_stat_holder.stages[defending_stat]
+        defense = battler.statAfterStage(defending_stat, defStage)
         # Calculate all multiplier effects
         multipliers = {
           :base_damage_multiplier  => 1.0,

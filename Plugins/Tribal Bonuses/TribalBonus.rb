@@ -59,8 +59,6 @@ class TribalBonus
             end
         }
 
-        #echoln("#{pokemon.name} gets tribal bonuses: #{tribeBonuses.to_s}")
-
         return tribeBonuses
     end
 

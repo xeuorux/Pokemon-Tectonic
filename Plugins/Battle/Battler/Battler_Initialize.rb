@@ -65,6 +65,7 @@ class PokeBattle_Battler
 		@indexesTargetedThisTurn	= []
 		@dmgMult = 1
 		@dmgResist = 0
+		@tribalBonuses = {}
 	end
 
 	# Used by Future Sight only, when Future Sight's user is no longer in battle.
@@ -97,6 +98,7 @@ class PokeBattle_Battler
 		@dummy = true
 		@dmgMult   = 1
 		@dmgResist = 0
+		@tribalBonuses = $Tribal_Bonuses.getTribeBonuses(pkmn)
 	end
 
 	def pbInitPokemon(pkmn, idxParty)
@@ -131,6 +133,7 @@ class PokeBattle_Battler
 		end
 		@iv = {}
 		GameData::Stat.each_main { |s| @iv[s.id] = pkmn.iv[s.id] }
+		@tribalBonuses = $Tribal_Bonuses.getTribeBonuses(pkmn)
 	end
 
 	def pbInitialize(pkmn, idxParty, batonPass = false)
