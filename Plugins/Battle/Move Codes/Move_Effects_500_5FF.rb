@@ -1024,26 +1024,8 @@ end
 #===============================================================================
 class PokeBattle_Move_539 < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
-    return if @battle.wildBattle? && !user.boss   # Wild Pokémon can't thieve, except if they are bosses
-    return if user.fainted?
-    return if target.damageState.unaffected || target.damageState.substitute
-    return if !target.item || target.item.nil? || user.item
-    return if target.unlosableItem?(target.item)
-    return if user.unlosableItem?(target.item)
-    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
-	return unless target.item.is_berry? || target.item.is_gem?
-    itemName = target.itemName
-    user.item = target.item
-    # Permanently steal the item from wild Pokémon
-    if @battle.wildBattle? && target.opposes? &&
-       target.initialItem==target.item && !user.initialItem
-      user.setInitialItem(target.item)
-      target.pbRemoveItem
-    else
-      target.pbRemoveItem(false)
-    end
-    @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,target.pbThis(true),itemName))
-    user.pbHeldItemTriggerCheck
+	return unless target.item&.is_berry? || target.item&.is_gem?
+	stealItem(user,target)
   end
 end
 

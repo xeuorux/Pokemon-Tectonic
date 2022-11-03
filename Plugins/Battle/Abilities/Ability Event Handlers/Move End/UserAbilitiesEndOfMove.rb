@@ -31,31 +31,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
   proc { |ability,user,targets,move,battle|
     next if battle.futureSight
     next if !move.pbDamagingMove?
-    next if user.item
-    next if battle.wildBattle? && user.opposes? && !user.boss
     targets.each do |b|
-      next if b.damageState.unaffected || b.damageState.substitute
-      next if !b.item
-      next if b.unlosableItem?(b.item) || user.unlosableItem?(b.item)
-      battle.pbShowAbilitySplash(user)
-      if b.hasActiveAbility?(:STICKYHOLD)
-        battle.pbShowAbilitySplash(b) if user.opposes?(b)
-        battle.pbDisplay(_INTL("{1}'s item cannot be stolen!",b.pbThis))
-        battle.pbHideAbilitySplash(b) if user.opposes?(b)
-        next
-      end
-      user.item = b.item
-      b.item = nil
-      b.applyEffect(:ItemLost)
-      if battle.wildBattle? && !user.initialItem && b.initialItem == user.item
-        user.setInitialItem(user.item)
-        b.setInitialItem(nil)
-      end
-      battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,
-           b.pbThis(true),user.itemName))
-      battle.pbHideAbilitySplash(user)
-      user.pbHeldItemTriggerCheck
-      break
+      break if move.stealItem(user,b,true)
     end
   }
 )
@@ -133,27 +110,15 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
   proc { |ability,user,targets,move,battle|
     next if battle.futureSight
     next if !move.pbDamagingMove?
-    next if battle.wildBattle? && user.opposes?
     targets.each do |b|
-      next if b.damageState.unaffected || b.damageState.substitute
-      next if !b.item
-      next if b.unlosableItem?(b.item) || user.unlosableItem?(b.item)
-      battle.pbShowAbilitySplash(user)
-      if b.hasActiveAbility?(:STICKYHOLD)
-        battle.pbShowAbilitySplash(b) if user.opposes?(b)
-        battle.pbDisplay(_INTL("{1}'s item cannot be gilded!",b.pbThis))
-        battle.pbHideAbilitySplash(b) if user.opposes?(b)
-        next
+      removeMessage = _INTL("{1} turned {2}'s {3} into gold!",user.pbThis,
+        b.pbThis(true),itemName)
+      if move.removeItem(user,b,true,removeMessage)
+        if user.pbOwnedByPlayer?
+          battle.field.incrementEffect(:PayDay,5 * user.level)
+        end
+        break
       end
-      itemName = b.itemName
-      b.pbRemoveItem(false)
-      battle.pbDisplay(_INTL("{1} turned {2}'s {3} into gold!",user.pbThis,
-           b.pbThis(true),itemName))
-      if user.pbOwnedByPlayer?
-        battle.field.incrementEffect(:PayDay,5 * user.level)
-      end
-      battle.pbHideAbilitySplash(user)
-      break
     end
   }
 )

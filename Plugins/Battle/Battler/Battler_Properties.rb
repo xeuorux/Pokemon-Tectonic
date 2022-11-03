@@ -41,6 +41,7 @@ class PokeBattle_Battler
 	def item=(value)
 		new_item = GameData::Item.try_get(value)
 		@item_id = new_item ? new_item.id : nil
+		disableEffect(:ItemLost) if new_item
 		@pokemon.item = @item_id if @pokemon
 		refreshDataBox
 	end

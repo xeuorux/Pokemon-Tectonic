@@ -3990,6 +3990,7 @@ Pokemon = WORNET,70
 #-------------------------------
 [LEADER_Samorn_2,Samorn,3]
 ExtendsVersion = 2
+Policies = CURSE_SUPER_ITEMS
 #-------------------------------
 [LEADER_Lambert_2,Lambert,2]
 Pokemon = ZOROARK,70
@@ -4016,6 +4017,7 @@ Pokemon = AEGISLASH,70
 #-------------------------------
 [LEADER_Lambert_2,Lambert,3]
 ExtendsVersion = 2
+Policies = CURSE_SUPER_ITEMS
 #-------------------------------
 [LEADER_Eko_2,Eko,2]
 Pokemon = INCINEROAR,70
@@ -4042,6 +4044,7 @@ Pokemon = ARAICHU,70
 #-------------------------------
 [LEADER_Eko_2,Eko,3]
 ExtendsVersion = 2
+Policies = CURSE_SUPER_ITEMS
 #-------------------------------
 [COOLTRAINER_M7,X,1]
 Policies = PRESERVE_LAST_POKEMON
@@ -4067,6 +4070,7 @@ Pokemon = GARDEVOIR,70
 #-------------------------------
 [COOLTRAINER_M7,X,2]
 ExtendsVersion = 1
+Policies = CURSE_SUPER_ITEMS
 #-------------------------------
 [FORMERCHAMP_Elise,Elise,1]
 Pokemon = BIDOOF,10
@@ -4074,6 +4078,7 @@ Pokemon = BIDOOF,10
 #-------------------------------
 [FORMERCHAMP_Elise,Elise,2]
 ExtendsVersion = 1
+Policies = CURSE_SUPER_ITEMS
 #-------------------------------
 [TRAINER_Alessa,Alessa,3]
 Pokemon = FORRETRESS,70
@@ -4098,6 +4103,7 @@ Pokemon = CLAYDOL,70
 #-------------------------------
 [TRAINER_Alessa,Alessa,4]
 ExtendsVersion = 3
+Policies = CURSE_SUPER_ITEMS
 #-------------------------------
 [TRAINER_Eifion,Eifion,1]
 Pokemon = DELPHOX,70
@@ -4122,6 +4128,7 @@ Pokemon = SLOWBRO,70
 #-------------------------------
 [TRAINER_Eifion,Eifion,2]
 ExtendsVersion = 1
+Policies = CURSE_SUPER_ITEMS
 #-------------------------------
 [LEADER_Helena_2,Helena,2]
 Pokemon = PINCURCHIN,70
@@ -4148,6 +4155,7 @@ Pokemon = ARCLAMOR,70
 #-------------------------------
 [LEADER_Helena_2,Helena,3]
 ExtendsVersion = 2
+Policies = CURSE_SUPER_ITEMS
 #-------------------------------
 [LEADER_Bence_2,Bence,2]
 Pokemon = ARCHEOPS,70
@@ -4174,6 +4182,7 @@ Pokemon = DRAGONITE,70
 #-------------------------------
 [LEADER_Bence_2,Bence,3]
 ExtendsVersion = 2
+Policies = CURSE_SUPER_ITEMS
 #-------------------------------
 [TRAINER_Zain,Zain,2]
 Pokemon = FERROTHORN,70
@@ -4201,3 +4210,4 @@ Pokemon = MGIGALITH,70
 #-------------------------------
 [TRAINER_Zain,Zain,3]
 ExtendsVersion = 2
+Policies = CURSE_SUPER_ITEMS

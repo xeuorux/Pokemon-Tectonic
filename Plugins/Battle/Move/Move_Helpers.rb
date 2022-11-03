@@ -21,7 +21,7 @@ class PokeBattle_Move
 
   def canRemoveItem?(user,target,checkingForAI=false)
       return false if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't knock off, but bosses can
-      return false if user.fainted?
+      return false if user.fainted? || target.fainted?
       if checkingForAI
           return false if target.substituted?
       else
@@ -37,6 +37,60 @@ class PokeBattle_Move
       return false if user.item && @battle.trainerBattle?
       return false if user.unlosableItem?(target.item)
       return true
+  end
+
+  # Returns whether the item was removed
+  def removeItem(remover,victim,showRemoverSplash=false,removalMessage=nil)
+    return false unless canRemoveItem?(remover,victim)
+    battle.pbShowAbilitySplash(remover) if showRemoverSplash
+    if victim.hasActiveAbility?(:STICKYHOLD)
+      battle.pbShowAbilitySplash(victim) if remover.opposes?(victim)
+      battle.pbDisplay(_INTL("{1}'s item cannot be removed!",victim.pbThis))
+      battle.pbHideAbilitySplash(victim) if remover.opposes?(victim)
+      battle.pbHideAbilitySplash(remover) if showRemoverSplash
+      return false
+    end
+    itemName = victim.itemName
+    victim.pbRemoveItem(false)
+    removeMessage = _INTL("{1} forced {2} to drop their {3}!",remover.pbThis,
+      victim.pbThis(true),itemName) if !removeMessage
+    battle.pbDisplay(removeMessage)
+    battle.pbHideAbilitySplash(remover) if showRemoverSplash
+    return true
+  end
+
+  # Returns whether the item was removed
+  def stealItem(stealer,victim,showStealerSplash=false)
+    return false unless canStealItem?(remover,victim)
+    @battle.pbShowAbilitySplash(stealer) if showStealerSplash
+    if victim.hasActiveAbility?(:STICKYHOLD)
+      @battle.pbShowAbilitySplash(victim) if stealer.opposes?(victim)
+      @battle.pbDisplay(_INTL("{1}'s item cannot be stolen!",victim.pbThis))
+      @battle.pbHideAbilitySplash(victim) if stealer.opposes?(victim)
+      @battle.pbHideAbilitySplash(stealer) if showStealerSplash
+      return false
+    end
+    oldVictimItem = victim.item
+    oldVictimItemName = victim.itemName
+    b.pbRemoveItem
+    if @battle.curseActive?(:CURSE_SUPER_ITEMS)
+      @battle.pbDisplay(_INTL("{1}'s {2} turned to dust.",victim.pbThis,oldVictimItemName))
+      @battle.pbHideAbilitySplash(stealer) if showStealerSplash
+    else
+      @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",stealer.pbThis,
+        b.pbThis(true),stealer.itemName))
+      # Permanently steal items from wild pokemon
+      if @battle.wildBattle? && victim.opposes? && !@battle.bossBattle?
+        victim.setInitialItem(nil)
+        pbReceiveItem(oldVictimItem)
+        @battle.pbHideAbilitySplash(stealer) if showStealerSplash
+      else
+        stealer.item = oldVictimItem
+        @battle.pbHideAbilitySplash(stealer)
+        stealer.pbHeldItemTriggerCheck if showStealerSplash
+      end
+    end
+    return true
   end
 
   def healStatus(pokemonOrBattler)

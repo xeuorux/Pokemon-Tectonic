@@ -159,6 +159,7 @@ class PokeBattle_Battler
 
 	def pbScavenge
 		return if fainted?
+		return if @battle.curseActive?(:CURSE_SUPER_ITEMS) && pbOwnedByPlayer?
 		# return if self.item
 		@battle.pbPriority(true).each do |b|
 			echoln _INTL('b is {1} and opposes is {2}', b.pbThis, b.idxOwnSide)

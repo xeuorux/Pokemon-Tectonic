@@ -301,19 +301,24 @@ class PokeBattle_Move_18E < PokeBattle_TargetMultiStatUpMove
   end
 end
 
-  #===============================================================================
-  # Renders item unusable (Corrosive Gas)
-  #===============================================================================
+#===============================================================================
+# Renders item unusable (Corrosive Gas)
+#===============================================================================
 class PokeBattle_Move_18F < PokeBattle_Move
-  def pbEffectAgainstTarget(user, target)
-    return if @battle.wildBattle? && user.opposes? && !user.boss # Wild Pokémon can't knock off, except bosses
-    return if user.fainted? || target.fainted?
-    return if target.damageState.substitute
-    return if !target.item || target.unlosableItem?(target.item)
-    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+  def removalMessageForTarget(target)
     itemName = target.itemName
-    target.pbRemoveItem(false)
-    @battle.pbDisplay(_INTL("{1}'s {2} became unusuable, so it dropped it!", target.pbThis, itemName))
+    return _INTL("{1}'s {2} became unusuable, so it dropped it!", target.pbThis, itemName)
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    return if damagingMove?
+    return unless canRemoveItem?(user,target)
+    removeItem(user,target,false,removalMessageForTarget(target))
+  end
+
+  def pbEffectWhenDealingDamage(user,target)
+    return unless canRemoveItem?(user,target)
+    removeItem(user,target,false,removalMessageForTarget(target))
   end
 end
 

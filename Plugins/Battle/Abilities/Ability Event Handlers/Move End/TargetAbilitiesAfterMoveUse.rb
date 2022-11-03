@@ -14,34 +14,11 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:COLORCHANGE,
 
 BattleHandlers::TargetAbilityAfterMoveUse.add(:PICKPOCKET,
   proc { |ability,target,user,move,switched,battle|
-    # NOTE: According to Bulbapedia, this can still trigger to steal the user's
-    #       item even if it was switched out by a Red Card. This doesn't make
-    #       sense, so this code doesn't do it.
-    next if battle.wildBattle? && target.opposes? && !user.boss
-    next if !move.contactMove?
     next if switched.include?(user.index)
-    next if user.substituted? || target.damageState.substitute
-    next if target.item || !user.item
-    next if user.unlosableItem?(user.item) || target.unlosableItem?(user.item)
-    battle.pbShowAbilitySplash(target)
-    if user.hasActiveAbility?(:STICKYHOLD)
-      battle.pbShowAbilitySplash(user) if target.opposes?(user)
-      battle.pbDisplay(_INTL("{1}'s item cannot be stolen!",user.pbThis))
-      battle.pbHideAbilitySplash(user) if target.opposes?(user)
-      battle.pbHideAbilitySplash(target)
-      next
-    end
-    target.item = user.item
-    user.item = nil
-    user.applyEffect(:ItemLost)
-    if battle.wildBattle? && !target.initialItem && user.initialItem == target.item
-      target.setInitialItem(target.item)
-      user.setInitialItem(nil)
-    end
-    battle.pbDisplay(_INTL("{1} pickpocketed {2}'s {3}!",target.pbThis,
-       user.pbThis(true),target.itemName))
-    battle.pbHideAbilitySplash(target)
-    target.pbHeldItemTriggerCheck
+    next if !move.pbDamagingMove?
+    next if !move.physicalMove?
+    next if battle.futureSight
+    move.stealItem(target,user,true)
   }
 )
 
