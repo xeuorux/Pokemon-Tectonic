@@ -587,3 +587,25 @@ BattleHandlers::AbilityOnSwitchIn.add(:PRIMEVALSLOWSTART,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+=begin
+BattleHandlers::AbilityOnSwitchIn.add(:REFRESHMENTS,
+  proc { |ability,battler,battle|
+    next if ![:Sun, :HarshSun].include?(battler.battle.pbWeather)
+    lowestId =  battler.index
+    lowestPercent = battler.hp / battler.totalhp
+    battler.eachAlly do |b|
+		thisHP = b.hp / b.totalhp
+		if thisHP < lowestPercent
+			lowestId = b.index
+			lowestPercent = thisHP
+		end
+	end
+	next if !lowestPercent < 1
+	battle.pbShowAbilitySplash(battler)
+	@battlers[lowestId].pbRecoverHP(@battlers[lowestId].totalHP/2.0)
+	battle.pbDisplay(_INTL("{1} served {2} some refreshments!",battler.pbThis, @battlers[lowestId].pbThis))
+    	battle.pbHideAbilitySplash(battler)
+  }
+)
+=end
