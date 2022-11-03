@@ -58,7 +58,7 @@ class PokemonEncounters
       when :PUREINCENSE
         encounter_chance *= 2.0 / 3
         min_steps_needed *= 4 / 3.0
-	  end
+	    end
     end 
     # Wild encounters are much less likely to happen for the first few steps
     # after a previous wild encounter

@@ -167,6 +167,6 @@ GameData::Weather.register({
     next 1
   },
   :tone_proc        => proc { |strength|
-    next Tone.new(strength * 1/2, strength, strength * 3/4, 0)
+    next Tone.new(-strength * 1/2, 0, -strength * 1/4, 0)
   },
 })

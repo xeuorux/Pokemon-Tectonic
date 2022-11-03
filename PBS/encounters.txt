@@ -606,8 +606,8 @@ DarkCave,21
     25,ELGYEM,16,19
     25,MUNNA,16,19
 #-------------------------------
-[215] # Sky Placeholder
-Land,21
+[215] # Sky Walk Sketch
+Cloud,60
     25,CASTFORM,52,54
     25,CRYOGONAL,52,54
     25,MINIOR,52,54

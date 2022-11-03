@@ -92,3 +92,11 @@ GameData::EncounterType.register({
   :trigger_chance => 30,
   :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
 })
+
+# Dangerous Clouds
+GameData::EncounterType.register({
+  :id             => :Cloud,
+  :type           => :none,
+  :trigger_chance => 1,
+  :old_slots      => [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
+})

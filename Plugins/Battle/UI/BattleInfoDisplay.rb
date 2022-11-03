@@ -102,7 +102,8 @@ class BattleInfoDisplay < SpriteWrapper
 	if @battle.field.weather != :None
 		weatherName = GameData::BattleWeather.get(@battle.field.weather).real_name
 		weatherDuration = @battle.field.weatherDuration
-		weatherMessage = _INTL("{1} Weather ({2})",weatherName,weatherDuration)
+		weatherDuration = "Infinite" if weatherDuration < 0
+		weatherMessage = _INTL("{1} ({2})",weatherName,weatherDuration)
 	end
 	
 	textToDraw.push([weatherMessage,24,weatherAndTerrainY,0,base,shadow])
@@ -111,6 +112,7 @@ class BattleInfoDisplay < SpriteWrapper
 	if @battle.field.terrain != :None
 		terrainName = GameData::BattleTerrain.get(@battle.field.terrain).real_name
 		terrainDuration = @battle.field.terrainDuration
+		terrainDuration = "Inf." if terrainDuration < 0
 		terrainMessage = _INTL("{1} Terrain ({2})",terrainName, terrainDuration)
 	end
 	textToDraw.push([terrainMessage,256+24,weatherAndTerrainY,0,base,shadow])
