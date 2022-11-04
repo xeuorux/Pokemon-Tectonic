@@ -22,7 +22,7 @@ class PokeBattle_AI
         choices     = []
         targetingSizeLastRound = user.indicesTargetedLastRound.length
         targetingSizeLastRound = 2 if targetingSizeLastRound > 2
-        PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) values moves with targets other than #{targetingSizeLastRound}")
+        PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) values moves with targeting size other than #{targetingSizeLastRound}")
         user.eachMoveWithIndex do |_m,i|
             if !@battle.pbCanChooseMove?(idxBattler,i,false)
                 echoln("[BOSS AI] #{user.pbThis} (#{user.index}) can't choose: #{_m.name}")
@@ -223,8 +223,9 @@ class PokeBattle_AI
                 next if target_data.targets_foe && !user.opposes?(b)
                 score = pbGetMoveScoreBoss(move,user,b,bossAI)
                 if move.damagingMove?
-                    hpMod = 0.5 * b.hp.to_f / b.totalhp.to_f
+                    hpMod = 50 * b.hp.to_f / b.totalhp.to_f
                     hpMod *= -1 if targetWeak
+                    echoln("HP-mod: #{hpMod}")
                     score += hpMod
                 end
                 score = score.round
@@ -238,7 +239,14 @@ class PokeBattle_AI
                 chosenST = nil
                 # Try to target the same pokemon as before in the same turn
                 if scoresAndTargets.length >= 2 && @battle.commandPhasesThisRound >= 1
-                    chosenST = scoresAndTargets.find { |scoreAndTarget| user.indicesTargetedThisRound.include?(scoreAndTarget[1]) }
+                    chosenST = scoresAndTargets.find { |scoreAndTarget|
+                        target = scoreAndTarget[1]
+                        if user.indicesTargetedThisRound.include?(target)
+                            echoln("[BOSS AI] #{user.pbThis} (#{user.index}) found a target for move #{move.name} which it previously targeted this turn (target #{target})")
+                            next true
+                        end
+                        next false
+                    }
                 end
         
                 # Get the one best target for the move
@@ -247,7 +255,7 @@ class PokeBattle_AI
                     chosenST = scoresAndTargets[0]
                 end
         
-                choice = [idxMove,chosenST[0],chosenST[1]] if !chosenST.nil?
+                choice = [idxMove,chosenST[0],chosenST[1]] if chosenST
             end
         end
 
@@ -257,39 +265,23 @@ class PokeBattle_AI
             numTargets = moveForChoice.pbTarget(user).num_targets
             if numTargets != 0 && numTargets != targetingSizeLastRound
                 choice[1] += 30
+                echoln("[BOSS AI] #{user.pbThis} (#{user.index}) values that #{move.name} has a targeting size of #{numTargets}, which is different from last turns targeting size of #{targetingSizeLastRound}")
             end
             if user.primevalTimer == 0 && user.pbHasType?(moveForChoice.type)
                 choice[1] += 30
+                echoln("[BOSS AI] #{user.pbThis} (#{user.index}) values that #{move.name} is STAB, on this first turn of battle or a new phase")
             end
         end
 
         return choice
     end
 
-    def pbGetRealDamageBoss(move,user,target)
-		# Calculate how much damage the move will do (roughly)
-		baseDmg = pbMoveBaseDamage(move,user,target,0)
-		# Account for accuracy of move
-		accuracy = pbRoughAccuracy(move,user,target,0)
-		realDamage = baseDmg * accuracy/100.0
-		# Two-turn attacks waste 2 turns to deal one lot of damage
-		if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
-		  realDamage *= 2/3   # Not halved because semi-invulnerable during use or hits first turn
-		end
-		return realDamage
-	end
-
 	def pbGetMoveScoreBoss(move,user,target,bossAI)
 		score = 100
 
         if bossAI.rejectMove?(move, user, target, @battle)
-            echoln("[BOSS AI] #{user.pbThis} (#{user.index}) custom AI rejects move #{move.name}")
+            echoln("[BOSS AI] #{user.pbThis} (#{user.index}) custom AI rejects move #{move.name} against target #{target}")
             return 0
-        end
-
-        if bossAI.requireMove?(move, user, target, @battle)
-            echoln("[BOSS AI] #{user.pbThis} (#{user.index}) custom AI requires move #{move.name} be used")
-            return 99999
         end
 
 		# Rejecting moves based on failure
@@ -297,7 +289,7 @@ class PokeBattle_AI
 
         # Don't use a move that would fail against the target
         if !target.nil? && move.pbFailsAgainstTarget?(user,target)
-            echoln("Scoring #{move.name} a 1 due to being predicted to fail against the target")
+            echoln("Scoring #{move.name} a 1 due to being predicted to fail against the target against target #{target}")
             score = 0
         end
 
@@ -308,6 +300,11 @@ class PokeBattle_AI
         end
 
 		@battle.messagesBlocked = false
+
+        if bossAI.requireMove?(move, user, target, @battle)
+            echoln("[BOSS AI] #{user.pbThis} (#{user.index}) custom AI requires move #{move.name} be used against target #{target}")
+            return 99999
+        end
 		
 		return score
 	end
