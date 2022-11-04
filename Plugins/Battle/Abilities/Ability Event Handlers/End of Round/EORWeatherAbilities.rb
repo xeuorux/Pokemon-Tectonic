@@ -11,7 +11,7 @@ BattleHandlers::EORWeatherAbility.add(:ICEBODY,
 
 BattleHandlers::EORWeatherAbility.add(:RAINDISH,
   proc { |ability,weather,battler,battle|
-    next unless [:Rain, :HeavyRain].include?(weather)
+    next unless battle.rainy?
     next if !battler.canHeal?
     battle.pbShowAbilitySplash(battler)
     battler.pbRecoverHP(battler.totalhp/16)
@@ -22,13 +22,14 @@ BattleHandlers::EORWeatherAbility.add(:RAINDISH,
 
 BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
   proc { |ability,weather,battler,battle|
-    case weather
-    when :Sun, :HarshSun
+    if battle.sunny?
       battle.pbShowAbilitySplash(battler)
       battle.pbDisplay(_INTL("{1} was hurt by the sunlight!",battler.pbThis))
       battler.applyFractionalDamage(1.0/8.0)
       battle.pbHideAbilitySplash(battler)
-    when :Rain, :HeavyRain
+    end
+
+    if battle.rainy?
       next if !battler.canHeal?
       battle.pbShowAbilitySplash(battler)
       healAmount = battler.totalhp / 8.0
@@ -42,7 +43,7 @@ BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
 
 BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
   proc { |ability,weather,battler,battle|
-    next unless [:Sun, :HarshSun].include?(weather)
+    next unless battle.sunny?
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} was hurt by the sunlight!",battler.pbThis))
     battler.applyFractionalDamage(1.0/8.0)
@@ -52,7 +53,7 @@ BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
 
 BattleHandlers::EORWeatherAbility.add(:HEATSAVOR,
     proc { |ability,weather,battler,battle|
-      next if ![:Sun, :HarshSun].include?(weather)
+      next unless battle.sunny?
       next if !battler.canHeal?
       battle.pbShowAbilitySplash(battler)
       healAmount = battler.totalhp / 16.0
@@ -65,13 +66,13 @@ BattleHandlers::EORWeatherAbility.add(:HEATSAVOR,
   
 BattleHandlers::EORWeatherAbility.add(:FINESUGAR,
     proc { |ability,weather,battler,battle|
-      case weather
-      when :Rain, :HeavyRain
+      if battle.rainy?
         battle.pbShowAbilitySplash(battler)
         battle.pbDisplay(_INTL("{1} was hurt by the rain!",battler.pbThis))
         battler.applyFractionalDamage(1.0/8.0)
         battle.pbHideAbilitySplash(battler)
-      when :Sun, :HarshSun
+      end
+      if battle.sunny?
         next if !battler.canHeal?
         battle.pbShowAbilitySplash(battler)
         healAmount = battler.totalhp / 8.0

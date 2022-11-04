@@ -115,6 +115,7 @@ class PokeBattle_Battle
         end
         b.assignMoveset(movesetToAssign)
         b.primevalTimer = 0
+        b.indicesTargetedLastRound = []
         @scene.pbRefresh
       end
 	  end
@@ -180,5 +181,9 @@ class PokeBattle_Battle
   def nextPickupUse
     @nextPickupUse += 1
     return @nextPickupUse
+  end
+
+  def firstTurnThisRound?
+    return @commandPhasesThisRound.zero?
   end
 end

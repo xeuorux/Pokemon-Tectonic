@@ -152,7 +152,7 @@
 144,FLOWERSHIELD,Flower Shield,13F,0,FAIRY,Status,0,10,0,UserAndAllies,0,,"The user raises the Defense and Sp. Def of all Grass-type Pokémon on its side.",
 145,GEOMANCY,Geomancy,14E,0,FAIRY,Status,0,10,0,User,0,,"The user absorbs energy and sharply raises its Sp. Atk, Sp. Def, and Speed stats on the next turn.",
 146,FAIRYTERRAIN,Fairy Terrain,156,0,FAIRY,Status,0,10,0,BothSides,0,,"For five turns, Fairy-type moves are boosted, and grounded Pokémon can't be burned/poisoned.",
-147,MOONLIGHT,Moonlight,0D8,0,FAIRY,Status,0,5,0,User,0,d,"The user restores its own HP. The amount of HP regained varies with the weather.",
+147,MOONLIGHT,Moonlight,0D8,0,FAIRY,Status,0,5,0,User,0,d,"The user restores its own HP by 1/3rd, or 2/3rds in Sunshine.",
 148,NATURESMADNESS,Nature's Madness,06C,0,FAIRY,Status,90,10,0,NearOther,0,bef,"The user hits the target with the force of nature. It halves the target's HP.",
 149,ANGELSKISS,Angel's Kiss,402,0,FAIRY,Status,100,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that mystifies the target.",
 150,SPIRITBREAK,Spirit Break,045,75,FAIRY,Physical,100,12,100,NearOther,0,abef,"Attacks the target and breaks its spirit. Lowers the target's Sp. Atk stat.",
@@ -301,11 +301,11 @@
 #-------------------------------
 287,FRENZYPLANT,Frenzy Plant,0C2,170,GRASS,Special,100,5,0,NearOther,0,bef,"The user slams the target with an enormous tree. The user can't move on the next turn.",
 288,LEAFSTORM,Leaf Storm,03F,130,GRASS,Special,100,5,0,NearOther,0,bef,"A storm of sharp is whipped up. Harshly reduces the user's Sp. Atk stat.",
-289,SOLARBLADE,Solar Blade,0C4,125,GRASS,Physical,100,10,0,NearOther,0,abefp,"The user gathers light energy into a blade, attacking the target on the next turn.",
+289,SOLARBLADE,Solar Blade,0C4,125,GRASS,Physical,100,10,0,NearOther,0,abefp,"The user charges, then attacks on the second turn. Charges instantly in Sunshine.",
 290,PETALDANCE,Petal Dance,55F,120,GRASS,Special,100,10,0,RandomNearFoe,0,abefo,"The user attacks by scattering petals for three turns.",
 291,POWERWHIP,Power Whip,53C,120,GRASS,Physical,70,10,0,NearOther,0,abef,"The user violently whirls to lash the target. Can't miss if the target has already attacked this turn.",
 292,SEEDFLARE,Seed Flare,04F,100,GRASS,Special,100,5,30,NearOther,0,bef,"The user generates a shock wave from within its body. It has a 30% chance to harshly lower Sp. Def.",
-293,SOLARBEAM,Solar Beam,0C4,120,GRASS,Special,100,10,0,NearOther,0,bef,"A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn.",
+293,SOLARBEAM,Solar Beam,0C4,120,GRASS,Special,100,10,0,NearOther,0,bef,"The user charges, then attacks on the second turn. Charges instantly in Sunshine.",
 294,WOODHAMMER,Wood Hammer,0FB,120,GRASS,Physical,100,12,0,NearOther,0,abef,"The user slams its rugged body into the target to attack. The user also takes 33% recoil.",
 295,ENERGYBALL,Energy Ball,046,90,GRASS,Special,100,10,10,NearOther,0,befn,"The user draws power from nature and fires it at the target. It has a 10% chance to lower Sp. Def.",
 296,LEAFBLADE,Leaf Blade,000,90,GRASS,Physical,100,12,0,NearOther,0,abefhp,"The user handles a sharp leaf like a sword and attacks by slashing. Critical hits land more easily.",
@@ -338,7 +338,7 @@
 323,SPORE,Spore,003,0,GRASS,Status,100,12,0,NearOther,-1,bcel,"The user scatters bursts of spores that induce sleep. This move always goes last.",
 324,STRENGTHSAP,Strength Sap,160,0,GRASS,Status,100,10,0,NearOther,0,bce,"Restores its own HP by the target's Attack stat amount, then lowers the target's Attack stat.",
 325,STUNSPORE,Stun Spore,007,0,GRASS,Status,100,25,0,NearOther,0,bcel,"The user scatters a cloud of paralyzing powder. It leaves the target numb.",
-326,SYNTHESIS,Synthesis,0D8,0,GRASS,Status,0,5,0,User,0,d,"The user restores its own HP. The amount of HP regained varies with the weather.",
+326,SYNTHESIS,Synthesis,0D8,0,GRASS,Status,0,5,0,User,0,d,"The user restores its own HP by 1/3rd, or 2/3rds in Sunshine.",
 327,WORRYSEED,Worry Seed,064,0,GRASS,Status,100,10,0,NearOther,0,bce,"A seed that causes worry is planted on the foe. It prevents sleep by making its Ability Insomnia.",
 328,BRANCHPOKE,Branch Poke,000,45,GRASS,Physical,100,30,0,NearOther,0,bef,"The user attacks the target by poking it with a sharply pointed branch.",
 329,DRUMBEATING,Drum Beating,044,80,GRASS,Physical,100,10,100,NearOther,0,bef,"The user controls the drum's roots to attack the target. This also lowers the target's Speed stat.",
@@ -531,7 +531,7 @@
 497,GLARE,Glare,007,0,NORMAL,Status,100,25,0,NearOther,0,bce,"The user intimidates the target by staring at it to cause numbing.",
 498,GROWL,Growl,042,0,NORMAL,Status,100,30,0,AllNearFoes,0,bcek,"The user growls, scaring nearby foes. Their Attack stat is lowered.",
 #-------------------------------
-499,GROWTH,Growth,028,0,GRASS,Status,0,15,0,User,0,d,"The user's body grows all at once, raising the Atk and Sp. Atk stats.",
+499,GROWTH,Growth,028,0,GRASS,Status,0,15,0,User,0,d,"The user's body grows all at once, raising the Atk and Sp. Atk stats. Double that in Sunshine.",
 #-------------------------------
 500,HAPPYHOUR,Happy Hour,157,0,NORMAL,Status,0,25,0,UserSide,0,,"Using Happy Hour doubles the amount of prize money received after battle.",
 501,HARDEN,Harden,01D,0,NORMAL,Status,0,25,0,User,0,d,"The user stiffens all the muscles in its body to raise its Defense stat.",
@@ -557,7 +557,7 @@
 516,MINDREADER,Mind Reader,0A6,0,PSYCHIC,Status,0,5,0,NearOther,0,be,"The user senses the foe's movements with its mind to ensure its next attack does not miss the foe.",
 #-------------------------------
 517,MINIMIZE,Minimize,034,0,NORMAL,Status,0,10,0,User,0,d,"The user compresses its body to make itself look smaller, which sharply raises its evasiveness.",
-518,MORNINGSUN,Morning Sun,0D8,0,NORMAL,Status,0,5,0,User,0,d,"The user restores its own HP. The amount of HP regained varies with the weather.",
+518,MORNINGSUN,Morning Sun,0D8,0,NORMAL,Status,0,5,0,User,0,d,"The user restores its own HP by 1/3rd, or 2/3rds in Sunshine.",
 519,NATUREPOWER,Nature Power,0B3,0,NORMAL,Status,0,15,0,NearOther,0,,"An attack that makes use of nature's power. Its effects vary depending on the user's environment.",
 520,NOBLEROAR,Noble Roar,13A,0,NORMAL,Status,0,25,0,AllNearFoes,0,bcek,"Letting out a noble roar, the user intimidates all nearby foes and lowers their Attack and Sp. Atk.",
 521,ODORSLEUTH,Odor Sleuth,0A7,0,NORMAL,Status,0,30,0,NearOther,0,bce,"Enables the user to hit a Ghost type with any type of move. It also enables the user to hit an evasive foe.",
@@ -616,7 +616,7 @@
 #-------------------------------
 559,WISH,Wish,0D7,0,NORMAL,Status,0,10,0,User,0,d,"One turn after this move is used, the target's HP is restored by half the user's maximum HP.",
 560,WORKUP,Work Up,027,0,NORMAL,Status,0,25,0,User,0,d,"The user is roused, and its Attack and Sp. Atk stats increase.",
-561,YAWN,Yawn,004,0,NORMAL,Status,0,10,0,NearOther,0,bce,"The user lets loose a huge yawn that lulls the target into falling asleep on the next turn.",
+561,YAWN,Yawn,004,0,NORMAL,Status,0,10,0,NearOther,0,bce,"The user yawns, making the target drowsy. They'll fall asleep at end of turn next.",
 562,COURTCHANGE,Court Change,17A,0,NORMAL,Status,100,10,0,BothSides,0,e,"With its mysterious power, the user swaps the effects on either side of the field.",
 563,STUFFCHEEKS,Stuff Cheeks,183,0,NORMAL,Status,100,10,0,User,0,e,"The user eats its held Berry, then sharply raises its Defense stat.",
 564,TEATIME,Teatime,184,0,NORMAL,Status,0,10,0,AllBattlers,0,,"The user has teatime with all the Pokémon in the battle. Each Pokémon eats its held Berry.",
@@ -926,7 +926,7 @@
 860,STITCHUP,Stitch Up,524,0,GHOST,Status,0,5,0,User,0,d,"The user restores two thirds of its own HP. Then, this move is disabled.",RECOVER
 861,PHANTOMBREAK,Phantom Break,523,120,GHOST,Physical,100,5,0,NearOther,0,abef,"Although this move has great power, it disables itself after use.",SHADOWPUNCH
 862,LOOMOVER,Loom Over,522,0,DRAGON,Status,0,12,0,NearOther,0,ce,"The user looms over the target with awful menace, causing their best stat to drop harshly.",SCARYFACE
-863,SUMMERDAZE,Summer Daze,527,0,GRASS,Status,100,12,0,NearOther,0,bcek,"The user plays a pleasant melody that lulls the target into a deep sleep under harsh sunlight.",GRASSWHISTLE
+863,SUMMERDAZE,Summer Daze,527,0,GRASS,Status,100,12,0,NearOther,0,bcek,"The user plays a melody, making the target drowsy. In Sunlight, lowers the target's Attack and Sp. Atk.",GRASSWHISTLE
 864,PACIFY,Pacify,534,0,PSYCHIC,Status,100,15,0,NearOther,0,bce,"The user employs hypnotic suggestion to make a flustered or mystified target fall into a deep sleep.",HYPNOSIS
 865,LULLABY,Lullaby,528,0,NORMAL,Status,100,12,0,NearOther,0,bcek,"A lullaby is sung in a calming voice that puts the target with half its HP or less left into a deep sleep.",SING
 866,PUFFBALL,Puffball,529,0,GRASS,Status,100,12,0,NearOther,0,bce,"The user bursts a ball of sleep-inducing powder. It fails unless the target hit the user this turn.",SLEEPPOWDER

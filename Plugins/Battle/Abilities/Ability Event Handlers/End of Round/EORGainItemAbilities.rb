@@ -2,7 +2,7 @@ BattleHandlers::EORGainItemAbility.add(:HARVEST,
     proc { |ability,battler,battle|
       next if battler.item
       next if !battler.recycleItem || !GameData::Item.get(battler.recycleItem).is_berry?
-      if ![:Sun, :HarshSun].include?(battle.pbWeather)
+      if !battle.sunny?
         next unless battle.pbRandom(100)<50
       end
       battle.pbShowAbilitySplash(battler)

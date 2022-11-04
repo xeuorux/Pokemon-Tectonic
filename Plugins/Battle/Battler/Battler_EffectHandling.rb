@@ -71,7 +71,8 @@ class PokeBattle_Battler
 		@lastRoundMoveFailed                  = @lastMoveFailed
 		@lastAttacker.clear
 		@lastFoeAttacker.clear
-		@indexesTargetedThisTurn.clear
+		@indicesTargetedLastRound = @indicesTargetedThisRound.clone
+		@indicesTargetedThisRound.clear
 		@primevalTimer += 1 if boss?
 	end
 end

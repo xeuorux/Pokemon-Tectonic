@@ -1,6 +1,6 @@
 class PokeBattle_Move
   def applyRainDebuff?(user,type,checkingForAI=false)
-    return false if ![:Rain, :HeavyRain].include?(@battle.field.weather)
+    return false unless @battle.rainy?
     return false if !RAIN_DEBUFF_ACTIVE
     return false if immuneToRainDebuff?()
     return false if [:Water,:Electric].include?(type)
@@ -8,7 +8,7 @@ class PokeBattle_Move
   end
 
   def applySunDebuff?(user,type,checkingForAI=false)
-    return false if ![:Sun, :HarshSun].include?(@battle.field.weather)
+    return false unless @battle.sunny?
     return false if !SUN_DEBUFF_ACTIVE
     return false if immuneToSunDebuff?()
     return false if [:Fire,:Grass].include?(type)

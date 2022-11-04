@@ -346,12 +346,18 @@ class PokeBattle_Battler
 		return @battle.turnCount.odd?
 	end
 
-	def lastMoveThisTurn?
+	def lastTurnThisRound?
 		return @battle.commandPhasesThisRound == extraMovesPerTurn
 	end
 
-	def firstMoveThisTurn?
-		return @battle.commandPhasesThisRound.zero?
+	def firstTurnThisRound?
+		return @battle.firstTurnThisRound?
+	end
+
+	# Turn check starts at 1
+	def nthTurnThisRound?(turnCheck)
+		raise _INTL("nthTurnThisRound checks for turns 1 or above!") if turnCheck <= 0
+		return @battle.commandPhasesThisRound == (turnCheck - 1)
 	end
 
 	def immuneToHazards?

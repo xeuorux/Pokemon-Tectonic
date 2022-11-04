@@ -318,23 +318,11 @@ class PokeBattle_MultiStatUpMove < PokeBattle_Move
 
   def pbEffectGeneral(user)
     return if damagingMove?
-    showAnim = true
-    for i in 0...@statUp.length/2
-      next if !user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
-      if user.pbRaiseStatStage(@statUp[i*2],@statUp[i*2+1],user,showAnim)
-        showAnim = false
-      end
-    end
+    user.pbRaiseMultipleStatStages(@statUp,user,self)
   end
 
   def pbAdditionalEffect(user,target)
-    showAnim = true
-    for i in 0...@statUp.length/2
-      next if !user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
-      if user.pbRaiseStatStage(@statUp[i*2],@statUp[i*2+1],user,showAnim)
-        showAnim = false
-      end
-    end
+    user.pbRaiseMultipleStatStages(@statUp,user,self)
   end
 
   def getScore(score,user,target,skill=100)
@@ -346,13 +334,7 @@ end
 class PokeBattle_StatDownMove < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if @battle.pbAllFainted?(target.idxOwnSide)
-    showAnim = true
-    for i in 0...@statDown.length/2
-      next if !user.pbCanLowerStatStage?(@statDown[i*2],user,self)
-      if user.pbLowerStatStage(@statDown[i*2],@statDown[i*2+1],user,showAnim)
-        showAnim = false
-      end
-    end
+    user.pbLowerMultipleStatStages(@statDown, user, self)
   end
 
   def getScore(score,user,target,skill=100)
@@ -363,7 +345,6 @@ class PokeBattle_StatDownMove < PokeBattle_Move
 			average += user.stages[statSym] * 10 # Reduce the score for each existing stage
       count += 1
 		end
-
 		score += average/count
     return score
   end
@@ -489,24 +470,11 @@ class PokeBattle_TargetMultiStatDownMove < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    showAnim = true
-    for i in 0...@statDown.length/2
-      next if !target.pbCanLowerStatStage?(@statDown[i*2],user,self)
-      if target.pbLowerStatStage(@statDown[i*2],@statDown[i*2+1],user,showAnim)
-        showAnim = false
-      end
-    end
+    target.pbLowerMultipleStatStages(@statDown,user,self)
   end
 
   def pbAdditionalEffect(user,target)
-    return if target.damageState.substitute
-    showAnim = true
-    for i in 0...@statDown.length/2
-      next if !target.pbCanLowerStatStage?(@statDown[i*2],user,self)
-      if target.pbLowerStatStage(@statDown[i*2],@statDown[i*2+1],user,showAnim)
-        showAnim = false
-      end
-    end
+    target.pbLowerMultipleStatStages(@statDown,user,self)
   end
 
   def getScore(score,user,target,skill=100)
@@ -1045,9 +1013,7 @@ class PokeBattle_FrostbiteMove < PokeBattle_Move
 end
 
 class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
-
   # Each subclass of this must initialize a @statUp in its initialization method
-
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
     failed = true
@@ -1058,13 +1024,13 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
     end
     if failed
       # NOTE: It's a bit of a faff to make sure the appropriate failure message
-      #       is shown here, I know.
+      #       is shown here, Inow.
       canRaise = false
       if target.hasActiveAbility?(:CONTRARY) && !@battle.moldBreaker
         for i in 0...@statUp.length/2
           next if target.statStageAtMin?(@statUp[i*2])
           canRaise = true
-          break
+          break k
         end
         @battle.pbDisplay(_INTL("{1}'s stats won't go any lower!",target.pbThis)) if !canRaise
       else
@@ -1085,24 +1051,12 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    showAnim = true
-    for i in 0...@statUp.length/2
-      next if !target.pbCanRaiseStatStage?(@statUp[i*2],user,self)
-      if target.pbRaiseStatStage(@statUp[i*2],@statUp[i*2+1],user,showAnim)
-        showAnim = false
-      end
-    end
+    target.pbRaiseMultipleStatStages(@statUp,user,self)
   end
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    showAnim = true
-    for i in 0...@statUp.length/2
-      next if !target.pbCanLowerStatStage?(@statUp[i*2],user,self)
-      if target.pbRaiseStatStage(@statUp[i*2],@statUp[i*2+1],user,showAnim)
-        showAnim = false
-      end
-    end
+    target.pbRaiseMultipleStatStages(@statUp,user,self)
   end
   
   def getScore(score,user,target,skill=100)
@@ -1338,20 +1292,8 @@ class PokeBattle_StatUpDownMove < PokeBattle_Move
 	end
   
 	def pbEffectGeneral(user)
-	  showAnim = true
-	  for i in 0...@statDown.length/2
-      next if !user.pbCanLowerStatStage?(@statDown[i*2],user,self)
-      if user.pbLowerStatStage(@statDown[i*2],@statDown[i*2+1],user,showAnim)
-        showAnim = false
-      end
-	  end
-	  showAnim = true
-	  for i in 0...@statUp.length/2
-      next if !user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
-      if user.pbRaiseStatStage(@statUp[i*2],@statUp[i*2+1],user,showAnim)
-        showAnim = false
-      end
-	  end
+	  user.pLowerMultipleStages(@statDown,user,self)
+	  user.pbRaiseMultipleStatStages(@statUp,user,self)
 	end
   
 	def getScore(score,user,target,skill=100)

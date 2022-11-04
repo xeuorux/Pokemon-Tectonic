@@ -264,18 +264,8 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def pbEffectGeneral(user)
       return if user.pbHasType?(:GHOST)
       # Non-Ghost effect
-      if user.pbCanLowerStatStage?(:SPEED,user,self)
-        user.pbLowerStatStage(:SPEED,1,user)
-      end
-      showAnim = true
-      if user.pbCanRaiseStatStage?(:ATTACK,user,self)
-        if user.pbRaiseStatStage(:ATTACK,1,user,showAnim)
-          showAnim = false
-        end
-      end
-      if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
-        user.pbRaiseStatStage(:DEFENSE,1,user,showAnim)
-      end
+      user.pbLowerStatStage(:SPEED,1,user) if user.pbCanLowerStatStage?(:SPEED,user,self)
+      user.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1], user, self)
     end
   
     def pbEffectAgainstTarget(user,target)
@@ -1280,7 +1270,7 @@ end
       if !user.countsAs?(:HOOPA)
         @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis(true)))
         return true
-      elsif user.form!=1
+      elsif user.form != 1
         @battle.pbDisplay(_INTL("But {1} can't use it the way it is now!",user.pbThis(true)))
         return true
       end
@@ -1343,14 +1333,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      showAnim = true
-      if target.pbCanRaiseStatStage?(:DEFENSE,user,self)
-        target.pbRaiseStatStage(:DEFENSE,1,user,showAnim)
-        showAnim = false
-      end
-      if target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
-        target.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user,showAnim)
-      end
+      target.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,self)
     end
 
     def getScore(score,user,target,skill=100)
@@ -1388,14 +1371,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      showAnim = true
-      if target.pbCanRaiseStatStage?(:DEFENSE,user,self)
-        target.pbRaiseStatStage(:DEFENSE,1,user,showAnim)
-        showAnim = false
-      end
-      if target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
-        target.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user,showAnim)
-      end
+      target.pbRaiseMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1],user,self)
     end
 
     def getScore(score,user,target,skill=100)
@@ -1413,6 +1389,11 @@ end
   # by 1. (Venom Drench)
   #===============================================================================
   class PokeBattle_Move_140 < PokeBattle_Move
+    def initialize(battle, move)
+      super
+      @statDown = [:ATTACK,1,:SPECIAL_ATTACK,1,:SPEED,1]
+    end
+
     def pbMoveFailed?(user,targets)
       @battle.eachBattler do |b|
         return false if isValidTarget?(user,b)
@@ -1435,13 +1416,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      showAnim = true
-      [:ATTACK,:SPECIAL_ATTACK,:SPEED].each do |s|
-        next if !target.pbCanLowerStatStage?(s,user,self)
-        if target.pbLowerStatStage(s,1,user,showAnim)
-          showAnim = false
-        end
-      end
+      user.pbLowerMultipleStatStages(@statDown, user, self)
     end
 
     def getScore(score,user,target,skill=100)
@@ -1736,6 +1711,11 @@ end
   # Special Defense and Speed by 2 stages each in the second turn. (Geomancy)
   #===============================================================================
   class PokeBattle_Move_14E < PokeBattle_TwoTurnMove
+    def initialize(battle, move)
+      super
+      @statUp = [:SPECIAL_ATTACK,2,:SPECIAL_DEFENSE,2,:SPEED,2]
+    end
+
     def pbMoveFailed?(user,targets)
       return false if user.effectActive?(:TwoTurnAttack)   # Charging turn
       if !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self) &&
@@ -1753,13 +1733,7 @@ end
   
     def pbEffectGeneral(user)
       return if !@damagingTurn
-      showAnim = true
-      [:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED].each do |s|
-        next if !user.pbCanRaiseStatStage?(s,user,self)
-        if user.pbRaiseStatStage(s,2,user,showAnim)
-          showAnim = false
-        end
-      end
+      user.pbRaiseMultipleStatStages(@statUp,user,self)
     end
 
     def getScore(score,user,target,skill=100)

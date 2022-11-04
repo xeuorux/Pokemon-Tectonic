@@ -7,7 +7,7 @@ BattleHandlers::DamageCalcUserAllyAbility.add(:BATTERY,
 
 BattleHandlers::DamageCalcUserAllyAbility.add(:FLOWERGIFT,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if move.physicalMove? && [:Sun, :HarshSun].include?(user.battle.pbWeather)
+    if move.physicalMove? && user.battle.sunny?
       mults[:attack_multiplier] *= 1.5
     end
   }

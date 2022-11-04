@@ -14,7 +14,7 @@ BattleHandlers::EORHealingAbility.add(:SHEDSKIN,
 BattleHandlers::EORHealingAbility.add(:HYDRATION,
     proc { |ability,battler,battle|
         next if !battler.hasAnyStatusNoTrigger
-        next if ![:Rain, :HeavyRain].include?(battle.pbWeather)
+        next if !battle.rainy?
         battle.pbShowAbilitySplash(battler)
         battler.pbCureStatus()
         battle.pbHideAbilitySplash(battler)

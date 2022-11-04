@@ -819,15 +819,17 @@ GameData::BattleEffect.register_effect(:Battler,{
 		battler.incrementEffect(:StockpileSpDef)
 	},
 	:disable_proc => Proc.new { |battle, battler|
-		showAnim = true
-		if battler.effectActive?(:StockpileDef) && battler.pbCanLowerStatStage?(:DEFENSE,battler)
-		  if battler.pbLowerStatStage(:DEFENSE,battler.effects[:StockpileDef],battler,showAnim)
-			showAnim = false
-		  end
+		statArray = []
+		if battler.effectActive?(:StockpileDef)
+			statArray.push(:DEFENSE)
+			statArray.push(battler.countEffect(:StockpileDef))
 		end
-		if battler.effectActive?(:StockpileSpDef) && battler.pbCanLowerStatStage?(:SPECIAL_DEFENSE,battler)
-			battler.pbLowerStatStage(:SPECIAL_DEFENSE,battler.effects[:StockpileSpDef],battler,showAnim)
+		if battler.effectActive?(:StockpileSpDef)
+			statArray.push(:SPECIAL_DEFENSE)
+			statArray.push(battler.countEffect(:StockpileSpDef))
 		end
+
+		battler.pbLowerMultipleStatStages(statArray, battler)
 	},
 	:sub_effects => [:StockpileDef,:StockpileSpDef]
 })

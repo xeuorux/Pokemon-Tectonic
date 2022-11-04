@@ -162,14 +162,12 @@ class PokeBattle_Battler
 		return if @battle.curseActive?(:CURSE_SUPER_ITEMS) && pbOwnedByPlayer?
 		# return if self.item
 		@battle.pbPriority(true).each do |b|
-			echoln _INTL('b is {1} and opposes is {2}', b.pbThis, b.idxOwnSide)
 			next if b.idxOwnSide == idxOwnSide
 			next unless b.hasActiveAbility?(:SCAVENGE)
 			next if b.item || b.unlosableItem?(b.item)
 			next if unlosableItem?(b.item)
 			@battle.pbShowAbilitySplash(b)
 			@battle.pbDisplay(_INTL("{1} scavenged {2}'s {3}!", b.pbThis, pbThis(true), b.itemName))
-			echoln _INTL("{1}'s item is {2}", b.pbThis, b.item)
 			b.item = item
 			@battle.pbHideAbilitySplash(b)
 			break
