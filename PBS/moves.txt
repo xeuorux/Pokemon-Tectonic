@@ -808,7 +808,7 @@
 741,FLIPTURN,Flip Turn,0EE,70,WATER,Physical,100,15,0,NearOther,0,abef,"After making its attack, the user rushes back to switch places with a party Pokémon in waiting.",
 742,COZYUP,Cozy Up,00A,40,FIRE,Physical,100,20,10,NearOther,0,abef,"The user warms up its body and attacks the target. It has a 10% chance to burn.",FLAMEWHEEL
 743,SHATTERSHOT,Shatter Shot,000,45,ROCK,Special,100,20,0,NearOther,0,bef,"The user grinds stone into shrapnel and sprays it at the target.",SANDATTACK
-744,FUGUFORCE,Fugu Force,005,50,WATER,Physical,100,10,100,NearOther,0,abef,"The user crashes into the target with its quills. It leaves the target poisoned.",
+744,FUGUFORCE,Fugu Force,005,70,WATER,Physical,100,10,100,NearOther,0,abef,"The user crashes into the target with its quills. It leaves the target poisoned.",
 745,DIRGE,Dirge,046,40,GHOST,Special,100,25,10,NearOther,0,befk,"The user sends a shadow to attack the target. It has a 10% chance to reduce Sp. Def.",PERISHSONG
 746,CLACKACLACK,Clackaclack,045,40,BUG,Special,100,30,10,AllNearFoes,0,befk,"The user attacks with a horrible clattering noise. It has a 10% chance to lower Sp. Atk.",BUGBUZZ
 747,LIGHTNINGDANCE,Lightning Dance,503,0,ELECTRIC,Status,0,15,0,User,0,do,"The user dances with the speed of lightning, boosting its Sp. Atk and Speed stats.",
@@ -900,7 +900,7 @@
 834,WAILINGBLOW,Wailing Blow,010,80,GHOST,Physical,100,12,40,NearOther,0,abe,"The user attacks while wailing. This has a 40% chance to make the target flinch.",SHADOWCLAW
 835,SAPPINGWIND,Sapping Wind,403,80,ICE,Special,100,12,30,NearOther,0,befq,"The user summons a wind that drains the target's vitality. This has a 30% chance to frostbite it.",ICYWIND
 836,DREAMDANCE,Dream Dance,032,0,FAIRY,Status,0,15,0,User,0,do,"The user dances in tune with a dreamlike energy, sharply raising their Sp. Atk.",
-837,TONGUETWISTER,Tongue Twister,007,80,GHOST,Physical,100,10,50,NearOther,0,abef,"The target is pestered by a giant tongue. This has a 50% chance to numb it.",LICK
+837,TONGUETWISTER,Tongue Twister,007,120,GHOST,Physical,100,10,50,NearOther,0,abef,"The target is pestered by a giant tongue. This has a 50% chance to numb it.",LICK
 838,SMOGSTORM,Smog Storm,005,80,POISON,Special,100,5,30,AllNearOthers,0,bef,"Summons a storm of poisonous gas to hit all nearby pokemon with a a 30% chance to poison.",SMOG
 839,COLDSNOT,Cold Snot,005,65,ICE,Physical,100,20,30,NearOther,0,bef,"The user launches snot at the target. This has a 30% chance to poison the target.",
 840,ENCHANTINGSONG,Enchanting Song,402,80,FAIRY,Special,100,12,30,AllNearOthers,0,befk,"An enchanting outcry. It has a 30% chance to mystify every target.",
@@ -954,7 +954,7 @@
 888,THRIVINGFORCE,Thriving Force,020,90,GRASS,Special,100,12,10,NearOther,0,befn,"The user attacks with the bursting power of nature. It has a 10% chance to raise user's Sp. Atk.",ENERGYBALL
 889,TERADRAIN,Tera Drain,14F,100,GRASS,Special,50,12,0,NearOther,0,befh,"A nutrient-draining attack. The user's HP is restored by 75% of the damage taken by the target.",GIGADRAIN
 890,MENDINGSPRING,Mending Spring,0DA,40,WATER,Special,100,12,0,NearOther,0,bef,"The user opens a spring to blast the target, also healing themselves by 1/8th max HP each turn after.",WATERGUN
-891,INERTIASHOCK,Inertia Shock,53B,80,ELECTRIC,Special,100,10,10,NearOther,0,bef,"Deals 50% more damage if faster than the target. Lower's the user's Speed.",
+891,INERTIASHOCK,Inertia Shock,53B,80,ELECTRIC,Special,100,10,10,NearOther,0,bef,"Deals 50% more damage if faster than the target. Lowers the user's Speed.",
 892,GEYSER,Geyser,53E,120,WATER,Special,100,5,0,NearOther,0,bef,"The user propels a geyser of water at the target. This decreases the user's Sp. Atk and Sp. Def.",WATERSPOUT
 893,NERVEBREAK,Nervebreak,53A,80,ICE,Special,100,12,100,NearOther,0,bef,"For the rest of the round, the target's healing is reversed.",
 894,FROSTBARB,Frost Barb,043,65,ICE,Physical,100,20,20,NearOther,0,abef,"The user jabs the target with a sharp icicle. It has a 20% chance to lower Defense.",
@@ -1065,7 +1065,7 @@
 999,THUNDERBELLY,Thunder Belly,56B,200,ELECTRIC,Physical,100,10,0,AllNearFoes,0,abef,"The user takes an entire grid of power into its belly to slam the target. The user takes 100% recoil.",BODYSLAM
 1000,VOLLEYSTANCE,Volley Stance,56D,0,STEEL,Status,0,10,0,User,0,d,"The user prepares its dual cannons. Until switch out, each special attack hits twice.",FOCUSENERGY
 1001,ASTRALDREAM,Astral Dream,56C,0,PSYCHIC,Status,0,10,0,User,0,d,"This move raises all the user's stats. Can only be used while asleep.",COSMICPOWER
-1002,VINEMAZE,Vine Maze,56F,70,GRASS,Physical,100,10,100,AllNearFoes,0,abef,"The user spurs hundreds of vines to ensnare all enemies, lowering the Speed of any that moved first.",FRENZYPLANT
+1002,VINEMAZE,Vine Maze,56F,85,GRASS,Physical,100,10,100,AllNearFoes,0,abef,"The user spurs hundreds of vines to ensnare all enemies, lowering the Speed of any that moved first.",FRENZYPLANT
 1003,JOKEJOLT,Joke Jolt,0BA,30,ELECTRIC,Special,100,10,100,NearOther,0,bef,"The target is pranked by an electric jolt. They are taunted and unable to use status moves for 3 turns.",THUNDERSHOCK
 1004,PHOTONEDGE,Photon Edge,007,85,ELECTRIC,Physical,100,15,50,NearOther,0,abeh,"The user slices with claws of light that have a 50% chance to numb. Critical hits land more easily.",
 1005,FRANTICFANG,Frantic Fang,571,60,NORMAL,Physical,100,10,0,NearOther,0,abei,"Channeling fear, the user bites the target. Deals double damage if the user is below half health.",HYPERFANG
@@ -1082,7 +1082,7 @@
 1016,MAGMAROAR,Magma Roar,530,50,FIRE,Special,0,30,0,NearOther,0,d,"The user roars with the force of a volcano, raising the Attack of itself and allies.",HOWL
 1017,BLAZINGSPEED,Blazing Speed,000,65,FIRE,Physical,100,5,0,NearOther,2,abef,"The user charges the target at blazing-fast speed. This attack always goes before any other move.",FLAMECHARGE
 1018,ARCHAICDELUGE,Archaic Deluge,576,120,WATER,Special,100,5,0,Other,0,bef,"Summons rain for five turns on the first turn, then overwhelms the foe with water on the second.",SURF
-1019,SHIMMERINGHEAT,Shimmering Heat,577,75,FIRE,Special,100,10,0,AllNearFoes,0,befq,"The user attacks with heat, creating an obscuring wall of haze. The user takes 33% less damage this turn.",HEATWAVE
+1019,SHIMMERINGHEAT,Shimmering Heat,577,90,FIRE,Special,100,10,0,AllNearFoes,0,befq,"The user attacks with heat, creating an obscuring wall of haze. The user takes 33% less damage this turn.",HEATWAVE
 1020,BREATHELIFE,Breathe Life,578,0,GRASS,Status,0,1,0,None,0,,"Restores a fainted Grass-type party member to full health.",GRASSYTERRAIN
 1021,SPECTRALTONGUE,Spectral Tongue,579,0,GHOST,Status,100,10,0,NearOther,0,abcef,"The user licks the target, numbing them, or cursing them if they're already numbed.",
 1022,VICIOUSCLEANING,Vicious Cleaning,580,80,NORMAL,Special,100,10,0,NearOther,0,be,"The user flings the dirty oil on its fur. It transfers any status condition to the target.",ACIDSPRAY
@@ -1099,19 +1099,19 @@
 1033,AUTUMNBLAST,Autumn Blast,03C,70,GRASS,Special,100,12,0,NearOther,0,befn,"The user sheds its leaves to attack. This lowers the user's defenses.",LEAFTORNADO
 1034,INCISION,Incision,58D,50,DARK,Physical,100,12,0,NearOther,0,abefp,"The user prepares a precise cut. Always a critical hit, but lowers the user's Speed.",NIGHTSLASH
 1035,VIPERSHOCK,Vipershock,58A,80,POISON,Physical,100,5,0,NearOther,0,abef,"The user finishes off its prey. Power is tripled against poisoned targets.",POISONFANG
-1036,ONAROLL,On A Roll,58B,70,GROUND,Physical,100,15,0,NearOther,0,abef,"The user attacks while balled up. This counts as a usage of Fury Cutter, Rollout, or Ice Ball.",ROLLOUT
+1036,ONAROLL,On A Roll,58B,90,GROUND,Physical,100,15,0,NearOther,0,abef,"The user attacks while balled up. This counts as a usage of Fury Cutter, Rollout, or Ice Ball.",ROLLOUT
 1037,MACHFLIGHT,Mach Flight,58C,0,FLYING,Status,0,15,0,User,0,d,"The user takes off at sonic speeds, raising its Speed by 2 stages and gaining the Flying type.",AGILITY
 1038,CALTROPSTYLE,Caltrop Style,58E,50,DARK,Special,100,15,0,NearOther,0,bef,"Attacks and sets a layer of Spikes. Afterwards, it returns to switch with a party Pokémon.",UTURN
 1039,CULL,Cull,58F,40,DARK,Special,100,10,0,NearOther,0,bef,"The user tries to pick off a weak target. If the target is below 1/3 HP, they instantly faint.",NIGHTSLASH
 1040,TRIPLETHREAT,Triple Threat,017,80,DRAGON,Special,100,10,60,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. It has a 20% chance each to numb, burn, or frostbite.",TRIATTACK
 1041,ERODINGFOAM,Eroding Foam,590,40,WATER,Special,100,20,100,NearOther,0,bef,"The user spews alkaline bubbles that melt the target, drastically lowering their Defense.",BUBBLEBEAM
 1042,COCODROP,Coco Drop,591,1,GRASS,Physical,100,12,0,NearOther,0,abef,"The user drops a head from high up. The taller the user compared to the target, the greater the damage.",SEEDBOMB
-1043,LIGHTNINGSPEAR,Lightning Spear,592,90,ELECTRIC,Special,100,12,0,NearOther,0,bef,"Shoots a damaging spear at enemies, or a Sp. Def and Speed buffing electric charge at allies.",THUNDERBOLT
+1043,LIGHTNINGSPEAR,Lightning Spear,592,90,ELECTRIC,Special,100,12,0,NearOther,0,bef,"Shoots a damaging spear at enemies, or a Sp. Def- and Speed-increasing electric charge at allies.",THUNDERBOLT
 1044,TARVOLLEY,Tar Volley,592,35,FIRE,Special,100,10,100,AllNearFoes,0,bef,"The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets' Speed.",SMOKESCREEN
 1045,WAXINGWATER,Waxing Water,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with lunar tides, then summons rain for five turns.",SURF
 1046,HEATGYRE,Heat Gyre,0FF,50,FIRE,Physical,0,10,0,NearFoe,0,abef,"Spins into the target while emitting heat, then summons sunshine for five turns.",FLAMEWHEEL
 1047,MIRRORSHIELD,Mirror Shield,593,0,STEEL,Status,0,3,0,User,4,,"Protects the user from attacks. Special attackers take 1/8th HP damage.",PROTECT
-1048,UNFURL,Unfurl,594,75,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user attacks by spreading its body wide. Its power doubles if Defense Curl was used previously.",BODYSLAM
+1048,UNFURL,Unfurl,594,100,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user attacks by spreading its body wide. Its power doubles if Defense Curl was used previously.",BODYSLAM
 1049,BUILTDIFFERENT,Built Different,595,0,FIGHTING,Status,0,15,0,User,0,d,"The user flexes its rocky skin, raising its Attack and Defense and gaining the Rock type.",BULKUP
 1050,SUMMERSUNDER,Summer Sunder,0EE,70,GRASS,Physical,100,15,0,NearOther,0,abefhp,"After slashing, it returns to switch with a party Pokémon. Critical hits land more easily.",XSCISSOR
 1051,DEATHMARK,Death Mark,596,0,DARK,Status,0,1,0,NearOther,0,ce,"Maximizes the user's Attack, but minimizes the user's Speed. The target becomes unable to flee.",MEANLOOK
