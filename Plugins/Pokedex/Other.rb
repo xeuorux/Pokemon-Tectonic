@@ -157,7 +157,25 @@ end
 def theoreticalCaptureChance(status,current_hp,total_hp,catch_rate)
 	return 0 if !defined?(PokeBattle_Battle.captureThresholdCalcInternals)
     y = PokeBattle_Battle.captureThresholdCalcInternals(status,current_hp,total_hp,catch_rate)
-    chancePerShake = y.to_f/CATCH_BASE_CHANCE.to_f
+    chancePerShake = y.to_f/PokeBattle_Battle::CATCH_BASE_CHANCE.to_f
     overallChance = chancePerShake ** 4
     return overallChance
+end
+
+def roundUpToRelevantCap(level)
+	minNearestMapCap = 100
+	MAPS_AVAILABLE_BY_CAP.each do |capLevel, maps|
+		if capLevel >= level
+			minNearestMapCap = capLevel
+			break
+		end
+	end
+	minNearestItemCap = 100
+	ITEMS_AVAILABLE_BY_CAP.each do |capLevel, items|
+		if capLevel >= level
+			minNearestItemCap = capLevel
+			break
+		end
+	end
+	return [minNearestMapCap,minNearestItemCap].min
 end

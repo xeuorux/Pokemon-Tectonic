@@ -1109,98 +1109,14 @@ class PokemonPokedex_Scene
 	  
 		  levelIntAttempt = levelTextInput.to_i
 		  return nil if levelIntAttempt == 0
-		  
-		  surfingAvailable = levelIntAttempt >= 35
+
+		  levelCheck = roundUpToRelevantCap(levelIntAttempt)
 		  
 		  dexlist = searchStartingList()
 		  dexlist = dexlist.find_all { |item|
 			next false if autoDisqualifyFromSearch(item[0])
-			
-			speciesToCheckLocationsFor = [item[0]]
-			# Note each pre-evolution which could be the path to aquiring this pokemon by the given level
-			currentPrevo = item[15].length > 0 ? item[15][0] : nil
-			while currentPrevo != nil
-				evoMethod = currentPrevo[1]
-				case evoMethod
-				# All method based on leveling up to a certain level
-				when :Level,:LevelDay,:LevelNight,:LevelMale,:LevelFemale,:LevelRain,
-					:AttackGreater,:AtkDefEqual,:DefenseGreater,:LevelDarkInParty,
-					:Silcoon,:Cascoon,:Ninjask,:Shedinja
-					
-					levelThreshold = currentPrevo[2]
-					if levelThreshold <= levelIntAttempt
-						speciesToCheckLocationsFor.push(currentPrevo[0])
-					else
-						break
-					end
-				# All methods based on holding a certain item or using a certain item on the pokemon
-				when :HoldItem,:HoldItemMale,:HoldItemFemale,:DayHoldItem,:NightHoldItem,
-					:Item,:ItemMale,:ItemFemale,:ItemDay,:ItemNight,:ItemHappiness
-					
-					# Push this prevo if the evolution from it is gated by an item which is available by this point
-					itemNeeded = currentPrevo[2]
-					itemAvailable = false
-					ITEMS_AVAILABLE_BY_CAP.each do |key, value|
-						itemAvailable = true if value.include?(itemNeeded)
-						break if key >= levelIntAttempt
-					end
-					if itemAvailable
-						speciesToCheckLocationsFor.push(currentPrevo[0])
-					else
-						break
-					end
-				end
-				
-				# Find the prevo of the prevo
-				prevosfSpecies = GameData::Species.get_species_form(currentPrevo[0],0)
-				prevolutions = prevosfSpecies.get_prevolutions
-				currentPrevo = prevolutions.length > 0 ? prevolutions[0] : nil
-			end
-			
-			# Find all the maps which are available by the given level
-			mapsToCheck = []
-			levelCapBracket = 0
-			MAPS_AVAILABLE_BY_CAP.each do |key, value|
-				mapsToCheck.concat(value)
-				levelCapBracket = key
-				break if levelCapBracket >= levelIntAttempt
-			end
-			
-			# For each possible species which could lead to this species, check to see if its available in any of the maps 
-			# which are available by the level cap which would apply at the given level
-			available = false
-			# For each encounters data listing
-			GameData::Encounter.each_of_version($PokemonGlobal.encounter_version) do |enc_data|
-				next unless mapsToCheck.include?(enc_data.map)
-				# For each species we need to check for
-				speciesToCheckLocationsFor.each do |species|
-					encounterInfoForSpecies = nil
-					# For each slot in that encounters data listing
-					enc_data.types.each do |key,slots|
-					    next if !slots
-						next if key == :ActiveWater && !surfingAvailable
-					    slots.each { |slot|
-							species_data = GameData::Species.get(slot[1])
-							if species_data.species == species
-								# Mark down this slot if no such slot is marked, or if this is a lower level encounter
-								if encounterInfoForSpecies == nil || slot[3] < encounterInfoForSpecies[3]
-									encounterInfoForSpecies = slot
-								end
-							end
-					    }
-					end
-					# Continue onto the next species if no slots on the map being currently looked at have an entry for this species
-					next if !encounterInfoForSpecies
-
-					# Assume that encounters which distribute a pokemon beyond the level cap bracket
-					# are not actually available during that level cap
-					# But through returning to a secret part of that map later, or something
-					available = true if encounterInfoForSpecies[3] <= levelCapBracket
-				end
-				break if available
-			end
-			value = available ^ reversed # Boolean XOR
-			next value
+			available = GameData::Species.get(item[0]).available_by?(levelCheck)
+			next available ^ reversed # Boolean XOR
 		  }
 		  return dexlist
 	  end
