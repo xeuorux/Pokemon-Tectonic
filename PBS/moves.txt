@@ -152,7 +152,7 @@
 144,FLOWERSHIELD,Flower Shield,13F,0,FAIRY,Status,0,10,0,UserAndAllies,0,,"The user raises the Defense and Sp. Def of all Grass-type Pokémon on its side.",
 145,GEOMANCY,Geomancy,14E,0,FAIRY,Status,0,10,0,User,0,,"The user absorbs energy and sharply raises its Sp. Atk, Sp. Def, and Speed stats on the next turn.",
 146,FAIRYTERRAIN,Fairy Terrain,156,0,FAIRY,Status,0,10,0,BothSides,0,,"For five turns, Fairy-type moves are boosted, and grounded Pokémon can't be burned/poisoned.",
-147,MOONLIGHT,Moonlight,0D8,0,FAIRY,Status,0,5,0,User,0,d,"The user restores its own HP by 1/3rd, or 2/3rds in Sunshine.",
+147,MOONLIGHT,Moonlight,0D8,0,FAIRY,Status,0,5,0,User,0,d,"The user restores its own HP by 1/3rd, or 2/3rds in sun.",
 148,NATURESMADNESS,Nature's Madness,06C,0,FAIRY,Status,90,10,0,NearOther,0,bef,"The user hits the target with the force of nature. It halves the target's HP.",
 149,ANGELSKISS,Angel's Kiss,402,0,FAIRY,Status,100,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that mystifies the target.",
 150,SPIRITBREAK,Spirit Break,045,75,FAIRY,Physical,100,12,100,NearOther,0,abef,"Attacks the target and breaks its spirit. Lowers the target's Sp. Atk stat.",
@@ -1134,4 +1134,4 @@
 1068,SANDASSAULT,Sand Assault,000,120,GROUND,Special,100,5,0,AllNearOthers,0,bef,"The whips up a flurry of dirt and sand, damaging everything around it.",SCORCHINGSANDS
 1069,RAZORPLUNGE,Razor Plunge,5A2,125,WATER,Physical,100,10,0,NearOther,0,abef,"The user plunges its sharp fangs deep into the target. This sharply lowers the user's Speed.",LIQUIDATION
 1070,VOLATILETOXIN,Volatile Toxin,5A3,75,POISON,Physical,100,12,0,NearOther,0,abef,"The user injects an unstable toxin into the target. The next Ground-type attack they take deals double damage.",POISONJAB
-1071,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,abef,"A kick that can also eliminate trapping and hazard moves. Also raises user's speed.",
+1071,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,abef,"A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.",
