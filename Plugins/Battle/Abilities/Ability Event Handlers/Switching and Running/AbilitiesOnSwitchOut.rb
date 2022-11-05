@@ -24,6 +24,6 @@ BattleHandlers::AbilityOnSwitchOut.add(:REFUGE,
   proc { |ability,battler,endOfBattle|
     next if endOfBattle
     PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
-    battler.battle.positions[battler.index].applyEffect(:Refuge,battler.pokemonIndex)
+    battler.position.applyEffect(:Refuge,battler.pokemonIndex)
   }
 )

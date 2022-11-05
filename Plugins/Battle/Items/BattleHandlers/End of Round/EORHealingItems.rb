@@ -8,15 +8,9 @@ BattleHandlers::EORHealingItem.add(:BLACKSLUDGE,
         healMessage =_INTL("{1} restored a little HP using its {2}!",battler.pbThis,battler.itemName)
         battler.pbRecoverHP(healAmount,true,true,true,healMessage)
       elsif battler.takesIndirectDamage?
-        oldHP = battler.hp
         battle.pbCommonAnimation("UseItem",battler)
-        damageAmount = battler.totalhp/8.0
-        damageAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
-        battler.pbReduceHP(damageAmount)
         battle.pbDisplay(_INTL("{1} is hurt by its {2}!",battler.pbThis,battler.itemName))
-        battler.pbItemHPHealCheck
-        battler.pbAbilitiesOnDamageTaken(oldHP)
-        battler.pbFaint if battler.fainted?
+        battler.applyFractionalDamage(1.0/8.0)
       end
     }
   )

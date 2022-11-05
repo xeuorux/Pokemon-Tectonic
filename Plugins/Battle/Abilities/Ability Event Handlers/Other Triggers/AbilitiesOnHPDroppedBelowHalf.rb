@@ -13,23 +13,8 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:EMERGENCYEXIT,
         next true
       end
       # In trainer battles
-      next false if battle.pbAllFainted?(battler.idxOpposingSide)
-      next false if !battle.pbCanSwitch?(battler.index)   # Battler can't switch out
-      next false if !battle.pbCanChooseNonActive?(battler.index)   # No Pokémon can switch in
-      battle.pbShowAbilitySplash(battler,true)
-      battle.pbHideAbilitySplash(battler)
-      battle.pbDisplay(_INTL("{1} went back to {2}!",
-         battler.pbThis,battle.pbGetOwnerName(battler.index)))
-      if battle.endOfRound   # Just switch out
-        battle.scene.pbRecall(battler.index) if !battler.fainted?
-        battler.pbAbilitiesOnSwitchOut   # Inc. primordial weather check
-        next true
-      end
-      newPkmn = battle.pbGetReplacementPokemonIndex(battler.index)   # Owner chooses
-      next false if newPkmn<0   # Shouldn't ever do this
-      battle.pbRecallAndReplace(battler.index,newPkmn)
-      battle.pbClearChoice(battler.index)   # Replacement Pokémon does nothing this round
-      next true
+      next false if pbAllFainted?(battler.idxOpposingSide)
+      next battle.triggeredSwitchOut(battler.index)
     }
   )
   

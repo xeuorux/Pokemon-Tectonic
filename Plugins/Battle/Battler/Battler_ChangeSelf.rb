@@ -49,6 +49,7 @@ class PokeBattle_Battler
 	# Returns how much damage ended up dealt
 	# Accounts for bosses taking reduced fractional damage
 	def applyFractionalDamage(fraction, showDamageAnimation = true, basedOnCurrentHP = false, entryCheck = false)
+		return unless takesIndirectDamage?
 		oldHP = @hp
 		fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
 		fraction *= 2 if @battle.pbCheckOpposingAbility(:AGGRAVATE, @index)
@@ -68,6 +69,42 @@ class PokeBattle_Battler
 		else
 			pbHealthLossChecks(oldHP)
 			return reduction
+		end
+	end
+
+	def applyRecoilDamage(damage, showDamageAnimation = true, showMessage = true, recoilMessage = nil, cushionRecoil = false,)
+		return unless takesIndirectDamage?
+		return if hasActiveAbility?(:ROCKHEAD)
+		#return if @battle.pbAllFainted?(@idxOpposingSide)
+		damage = damage.round
+		damage = 1 if damage < 1
+		if !cushionRecoil && hasActiveAbility?(:ALLYCUSHION)
+			@battle.pbShowAbilitySplash(self)
+			@battle.pbDisplay(_INTL("{1} looks for an ally to help in avoiding the recoil!",pbThis))
+			allyCushionAmount = (damage / 2.0).round
+			allyCushionAmount = 1 if allyCushionAmount < 1
+			position.applyEffect(:AllyCushion,@pokemonIndex)
+			position.applyEffect(:AllyCushionAmount,allyCushionAmount)
+			@battle.pbHideAbilitySplash(self)
+			if @battle.triggeredSwitchOut(@index,false)
+				pbEffectsOnSwitchIn(true)
+				return
+			else
+				@battle.pbDisplay(_INTL("But it couldn't swap into anybody!"))
+			end
+		end
+			
+		oldHP = @hp
+		recoilMessage = _INTL("{1} is damaged by recoil!",pbThis) if recoilMessage.nil?
+		@battle.pbDisplay(recoilMessage) if showMessage
+		pbReduceHP(damage, showDamageAnimation)
+
+		if cushionRecoil
+			pbHealthLossChecks(oldHP)
+		else
+			if pbEntryHealthLossChecks(oldHP)
+				@battle.pbOnActiveOne(self)
+			end
 		end
 	end
 

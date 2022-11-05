@@ -627,9 +627,6 @@ end
 class PokeBattle_Move_526 < PokeBattle_SleepMove
 	def pbEffectAgainstTarget(user,target)
 		target.pbSleep
-		return if !user.takesIndirectDamage?
-		return if user.hasActiveAbility?(:ROCKHEAD)
-		@battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
 		user.applyFractionalDamage(1.0/2.0)
 	end
   

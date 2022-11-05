@@ -128,3 +128,24 @@ GameData::BattleEffect.register_effect(:Position,{
 		position.disableEffect(:Refuge)
 	},
 })
+
+GameData::BattleEffect.register_effect(:Position,{
+	:id => :AllyCushion,
+	:real_name => "Ally Cushioning",
+	:type => :PartyPosition,
+	:swaps_with_battlers => true,
+	:entry_proc => Proc.new { |battle,index,position,battler|
+		cushionAssisted = battle.pbThisEx(battler.index,position.effects[:AllyCushion])
+		battle.pbDisplay(_INTL("{1}'s cushions the blow for {2}!",battler.pbThis(true),cushionAssisted))
+		battler.applyRecoilDamage(position.effects[:AllyCushionAmount],true,false,nil,true)
+		position.disableEffect(:AllyCushion)
+	},
+	:sub_effects => [:AllyCushionAmount]
+})
+
+
+GameData::BattleEffect.register_effect(:Position,{
+	:id => :AllyCushionAmount,
+	:real_name => "Ally Cushioning Amount",
+	:type => :Integer,
+})

@@ -139,6 +139,28 @@ class PokeBattle_Battle
     return @battleAI.pbDefaultChooseNewEnemy(idxBattler,pbParty(idxBattler))
   end
 
+  def triggeredSwitchOut(idxBattler,showSplash=true)
+    battler = @battlers[idxBattler]
+    return false if !pbCanSwitch?(idxBattler) # Battler can't switch out
+    return false if !pbCanChooseNonActive?(idxBattler) # No Pokémon can switch in
+    if showSplash
+      pbShowAbilitySplash(battler, true)
+      pbHideAbilitySplash(battler)
+    end
+    pbDisplay(_INTL("{1} went back to {2}!",
+        battler.pbThis,pbGetOwnerName(idxBattler)))
+    if endOfRound   # Just switch out
+      @scene.pbRecall(idxBattler) if !battler.fainted?
+      battler.pbAbilitiesOnSwitchOut # Inc. primordial weather check
+      return true
+    end
+    newPkmn = pbGetReplacementPokemonIndex(idxBattler) # Owner chooses
+    return false if newPkmn < 0 # Shouldn't ever do this
+    pbRecallAndReplace(idxBattler,newPkmn)
+    pbClearChoice(idxBattler) # Replacement Pokémon does nothing this round
+    return true
+  end
+
   #=============================================================================
   # Switching Pokémon
   #=============================================================================
@@ -339,6 +361,7 @@ class PokeBattle_Battle
     # Update battlers' participants (who will gain Exp/EVs when a battler faints)
     eachBattler { |b| b.pbUpdateParticipants }
 
+    # Perform procs from battlers entering into a position
     position = @positions[battler.index]
     position.eachEffect(true) do |effect,value,data|
       if data.has_entry_proc?

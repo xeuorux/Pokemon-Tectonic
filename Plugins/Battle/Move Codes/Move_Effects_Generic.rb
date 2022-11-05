@@ -658,13 +658,8 @@ class PokeBattle_RecoilMove < PokeBattle_Move
 
   def pbEffectAfterAllHits(user,target)
     return if target.damageState.unaffected
-    return if !user.takesIndirectDamage?
-    return if user.hasActiveAbility?(:ROCKHEAD)
-    amt = pbRecoilDamage(user,target)
-    amt = 1 if amt < 1
-    user.pbReduceHP(amt,false)
-    @battle.pbDisplay(_INTL("{1} is damaged by recoil!",user.pbThis))
-    user.pbItemHPHealCheck
+    recoilDamage = pbRecoilDamage(user,target)
+    user.applyRecoilDamage(recoilDamage, false, true)
   end
 
   def getScore(score,user,target,skill=100)

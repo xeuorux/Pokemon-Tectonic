@@ -343,7 +343,7 @@ class PokeBattle_Battler
 			@battle.pbCommonAnimation('Powder', user)
 			@battle.pbDisplay(_INTL('When the flame touched the powder on the Pokémon, it exploded!'))
 			user.lastMoveFailed = true
-			if user.takesIndirectDamage?
+			if user.takesIndirectDamage?(true)
 				oldHP = user.hp
 				user.pbReduceHP((user.totalhp / 4.0).round, false)
 				cleanupPreMoveDamage(user, oldHP)
@@ -374,7 +374,8 @@ class PokeBattle_Battler
 			end
 		end
 		# Protean
-		if (user.hasActiveAbility?(:PROTEAN) || user.hasActiveAbility?(:LIBERO)) && !move.callsAnotherMove? && !move.snatched && (user.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type)
+		if (user.hasActiveAbility?(:PROTEAN) || user.hasActiveAbility?(:LIBERO)) && !move.callsAnotherMove? &&
+				!move.snatched && user.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type
 			@battle.pbShowAbilitySplash(user)
 			user.pbChangeTypes(move.calcType)
 			typeName = GameData::Type.get(move.calcType).name
@@ -390,7 +391,8 @@ class PokeBattle_Battler
 			end
 		end
 		# Shifting Fist
-		if (user.hasActiveAbility?(:SHIFTINGFIST) && !move.callsAnotherMove? && !move.snatched && (user.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type && move.punchingMove?)
+		if user.hasActiveAbility?(:SHIFTINGFIST) && !move.callsAnotherMove? && !move.snatched &&
+				user.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type && move.punchingMove?
 			@battle.pbShowAbilitySplash(user)
 			user.applyEffect(:Type3,move.calcType)
 			typeName = GameData::Type.get(move.calcType).name
@@ -571,13 +573,9 @@ class PokeBattle_Battler
 				# Empowered Destiny Bond
 				if targetBattler.effectActive?(:EmpoweredDestinyBond)
 					next if targetBattler.damageState.unaffected
-					next unless user.takesIndirectDamage?
-					next if user.hasActiveAbility?(:ROCKHEAD)
-					amt = (targetBattler.damageState.totalHPLost / 2.0).round
-					amt = 1 if amt < 1
-					@battle.pbDisplay(_INTL("{1}'s destiny is bonded with {2}!", user.pbThis, targetBattler.pbThis(true)))
-					user.pbReduceHP(amt, false)
-					user.pbItemHPHealCheck
+					recoilDamage = targetBattler.damageState.totalHPLost / 2.0
+					recoilMessage = _INTL("{1}'s destiny is bonded with {2}!", user.pbThis, targetBattler.pbThis(true))
+					user.applyRecoilDamage(recoilDamage, false, true, recoilDamage)
 				end
 			end
 

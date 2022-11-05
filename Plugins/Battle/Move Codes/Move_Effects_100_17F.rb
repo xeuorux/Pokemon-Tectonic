@@ -178,9 +178,9 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def unusableInGravity?; return true; end
   
     def pbCrashDamage(user)
-      return if !user.takesIndirectDamage?
-      @battle.pbDisplay(_INTL("{1} kept going and crashed!",user.pbThis))
-      user.applyFractionalDamage(1.0/2.0)
+      recoilDamage = user.totalhp / 2.0
+      recoilMessage = _INTL("{1} kept going and crashed!",user.pbThis)
+      user.applyRecoilDamage(recoilDamage,true,true,recoilMessage)
     end
   end
   

@@ -271,7 +271,7 @@ class PokeBattle_Battle
         hailDamage += b.applyFractionalDamage(fraction)
       when :ShadowSky
         next if !b.takesShadowSkyDamage?
-        pbDisplay(_INTL("{1} is hurt by the shadow sky!",b.pbThis))if showWeatherMessages
+        pbDisplay(_INTL("{1} is hurt by the shadow sky!",b.pbThis)) if showWeatherMessages
         fraction = 1.0/16.0
         b.applyFractionalDamage(fraction)
       when :AcidRain
