@@ -91,7 +91,7 @@ class PokeBattle_Move_008 < PokeBattle_ParalysisMove
   def immuneToRainDebuff?; return false; end
 
   def pbBaseAccuracy(user,target)
-    return 0 if [:Rain, :HeavyRain].include?(@battle.pbWeather)
+    return 0 if @battle.rainy?
     return super
   end
 end
@@ -252,7 +252,7 @@ class PokeBattle_Move_015 < PokeBattle_ConfuseMove
   def hitsFlyingTargets?; return true; end
 
   def pbBaseAccuracy(user,target)
-    return 0 if [:Rain, :HeavyRain].include?(@battle.pbWeather)
+    return 0 if @battle.rainy?
     return super
   end
 end
@@ -630,7 +630,7 @@ class PokeBattle_Move_028 < PokeBattle_MultiStatUpMove
 
   def pbOnStartUse(user,targets)
     increment = 1
-    increment = 2 if [:Sun, :HarshSun].include?(@battle.pbWeather)
+    increment = 2 if @battle.sunny?
     @statUp[1] = @statUp[3] = increment
   end
 end

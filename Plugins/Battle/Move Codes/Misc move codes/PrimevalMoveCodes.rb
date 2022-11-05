@@ -38,8 +38,7 @@ class PokeBattle_Move_601 < PokeBattle_Move_0FF
 	
 	def pbEffectGeneral(user)
 		super
-		user.pbRaiseStatStage(:ATTACK,1,user)
-		user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+		user.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,self)
 		transformType(user,:FIRE)
 	end
 end
@@ -139,8 +138,7 @@ class PokeBattle_Move_609 < PokeBattle_Move_02C
 	 include EmpoweredMove
 
 	def pbEffectGeneral(user)
-		GameData::Stat.each_battle { |s| user.stages[s.id] = 0 if user.stages[s.id] < 0 }
-		@battle.pbDisplay(_INTL("{1}'s negative stat changes were eliminated!", user.pbThis))
+		user.pbRaiseStatStage(:ACCURACY,3,user) if user.pbCanRaiseStatStage?(:ACCURACY,user,self)
 		super
 		transformType(user,:PSYCHIC)
 	end
@@ -211,14 +209,7 @@ class PokeBattle_Move_614 < PokeBattle_Move_0B7
 	
 	def pbEffectAgainstTarget(user,target)
 		target.applyEffect(:Torment)
-		showAnim = true
-		if target.pbCanLowerStatStage?(:ATTACK,user,self,true)
-			target.pbLowerStatStage(:ATTACK,1,user,showAnim)
-			showAnim = false
-		end
-		if target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user,self,true)
-			target.pbLowerStatStage(:SPECIAL_ATTACK,1,user,showAnim) 
-		end
+		target.pbLowerMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,self)
 	 end
 end
 
@@ -335,7 +326,8 @@ class PokeBattle_Move_623 < PokeBattle_Move_173
 	
 	def pbEffectGeneral(user)
 		super
-		user.pbRaiseStatStage(:ACCURACY,3,user)
+		GameData::Stat.each_battle { |s| user.stages[s.id] = 0 if user.stages[s.id] < 0 }
+		@battle.pbDisplay(_INTL("{1}'s negative stat changes were eliminated!", user.pbThis))
 		transformType(user,:PSYCHIC)
 	end
 end
@@ -348,8 +340,7 @@ class PokeBattle_Move_624 < PokeBattle_Move_156
 		super
 		
 		@battle.eachSameSideBattler(user) do |b|
-			b.pbRaiseStatStage(:DEFENSE,1,user)
-			b.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+			b.pbRaiseMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1],user,self)
 		end
 
 		transformType(user,:FAIRY)
@@ -583,4 +574,32 @@ class PokeBattle_Move_648 < PokeBattle_Move_17C
 	end
 	
 	def turnsBetweenUses(); return 3; end
+end
+
+########################################################
+### Specific avatar only moves
+########################################################
+
+#===============================================================================
+# Targets struck lose their flinch immunity. Only usable by the Avatar of Rayquaza (Stratosphere Scream)
+#===============================================================================
+class PokeBattle_Move_700 < PokeBattle_StatDownMove
+    def ignoresSubstitute?(user); return true; end
+  
+    def pbMoveFailed?(user,targets)
+      if !user.countsAs?(:RAYQUAZA) || !user.boss?
+        @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis(true)))
+        return true
+      end
+      return false
+    end
+
+	def pbEffectAfterAllHits(user,target)
+		return if target.fainted?
+		return if target.damageState.unaffected
+		if target.effectActive?(:FlinchedAlready)
+			target.disableEffect(:FlinchedAlready)
+			@battle.pbDisplay(_INTL("#{target.pbThis} is newly afraid. It can be flinched again!"))
+		end
+	end
 end

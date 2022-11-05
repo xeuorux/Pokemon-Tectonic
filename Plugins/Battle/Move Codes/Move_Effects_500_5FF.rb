@@ -640,16 +640,37 @@ class PokeBattle_Move_526 < PokeBattle_SleepMove
 end
 
 #===============================================================================
-# Puts the target to sleep. Fails unless in sunlight. (Summer Daze)
+# Target becomes drowsy. Both of its Attacking stats are lowered by 2 stages.  (Summer Daze)
 #===============================================================================
-class PokeBattle_Move_527 < PokeBattle_SleepMove
-	def pbMoveFailed?(user,targets)
-		if @battle.pbWeather != :Sun
-			@battle.pbDisplay(_INTL("But it failed, since the weather is not Sunny!"))
+class PokeBattle_Move_527 < PokeBattle_Move_004
+	def pbFailsAgainstTarget?(user,target)
+		fails = true
+        if !target.effectActive?(:Yawn) && target.pbCanSleep?(user,true,self)
+            fails = false
+        end
+		if @battle.sunny? && (target.pbCanLowerStatStage?(:ATTACK,user,self) ||
+				target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user,self))
+			fails = false
+		end
+        if fails
+			@battle.pbDisplay(_INTL("But it failed!"))
 			return true
 		end
 		return false
-	end
+    end
+    
+    def pbEffectAgainstTarget(user,target)
+		target.applyEffect(:Yawn,2)
+		if @battle.sunny?
+			target.pbLowerMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,self)
+		end
+    end
+    
+    def getScore(score,user,target,skill=100)
+        score = super
+		score += 20 if @battle.sunny?
+		return score
+    end
 end
 
 #===============================================================================
@@ -1970,7 +1991,7 @@ class PokeBattle_Move_570 < PokeBattle_FlusterMove
 	def hitsFlyingTargets?; return true; end
   
 	def pbBaseAccuracy(user,target)
-	  return 0 if [:Rain, :HeavyRain].include?(@battle.pbWeather)
+	  return 0 if @battle.rainy?
 	  return super
 	end
 end

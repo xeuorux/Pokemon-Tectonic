@@ -20,7 +20,7 @@ BattleHandlers::StatusImmunityAbility.copy(:INSOMNIA,:SWEETVEIL,:VITALSPIRIT)
 
 BattleHandlers::StatusImmunityAbility.add(:LEAFGUARD,
   proc { |ability,battler,status|
-    next true if [:Sun, :HarshSun].include?(battler.battle.pbWeather)
+    next true if battler.battle.sunny?
   }
 )
 

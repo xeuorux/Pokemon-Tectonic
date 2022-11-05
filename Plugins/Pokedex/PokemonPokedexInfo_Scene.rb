@@ -1285,6 +1285,10 @@ class PokemonPokedexInfo_Scene
 		# Use count
 		drawTextEx(overlay,xLeft,coordinateY,450,1,"Usage count: #{@dexlist[@index][16]}",base,shadow)
 		coordinateY += 32
+
+		# Earliest level accessible
+		drawTextEx(overlay,xLeft,coordinateY,450,1,"Earliest level: #{fSpecies.earliest_available}",base,shadow)
+		coordinateY += 32
 		
 		# Speed tier
 		

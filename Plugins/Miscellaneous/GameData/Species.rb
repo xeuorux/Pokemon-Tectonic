@@ -2,6 +2,7 @@ module GameData
     class Species
         attr_reader :notes
         attr_reader :egg_groups
+        attr_accessor :earliest_available
 
         def self.schema(compiling_forms = false)
             ret = {
@@ -111,6 +112,7 @@ module GameData
           @shadow_x              = hash[:shadow_x]              || 0
           @shadow_size           = hash[:shadow_size]           || 2
           @notes                 = hash[:notes]                 || ""
+          @earliest_available    = nil
       end
   
       def notes
@@ -120,6 +122,11 @@ module GameData
       #comment this out if not using Tribes Plugin
       def compatibility
         return @egg_groups
+      end
+
+      def available_by?(level)
+        return false if !earliest_available
+        return level >= earliest_available
       end
 
       def self.sprite_bitmap_from_pokemon(pkmn, back = false, species = nil)

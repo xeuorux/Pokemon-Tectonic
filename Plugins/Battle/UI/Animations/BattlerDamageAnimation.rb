@@ -73,7 +73,7 @@ class BattlerDamageAnimation < PokeBattle_Animation
 			
 			damageX = batSprite.x
 			damageY = batSprite.y - 140
-			damageDisplayLabel = @damageDealt.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/,"\1#{","}")
+			damageDisplayLabel = @damageDealt.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/,"\\1#{","}")
 			pbDrawTextPositions(@damageDisplayBitmap,[[damageDisplayLabel,damageX,damageY,2,color,DAMAGE_POPUP_SHADOW_COLOR,true]])
 		
 			if @fastHitAnimation

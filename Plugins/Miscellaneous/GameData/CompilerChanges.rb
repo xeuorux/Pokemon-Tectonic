@@ -169,6 +169,8 @@ module Compiler
       compile_ribbons                # No dependencies
       yield(_INTL("Compiling encounter data"))
       compile_encounters             # Depends on Species
+      yield(_INTL("Compiling species earliest encounter levels"))
+      compile_species_earliest_levels
 	    yield(_INTL("Compiling Trainer policy data"))
 	    compile_trainer_policies
       yield(_INTL("Compiling Trainer type data"))
@@ -432,21 +434,17 @@ module Compiler
 			  
 			    # Sanitise data
 				case key
-				when "Moves1"
-					if contents["Moves1"].length > 4
-						raise _INTL("The {1} entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
-					end
-        when "Moves2"
-					if contents["Moves2"].length > 4
-						raise _INTL("The {1} entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
-					end
-        when "Moves3"
-					if contents["Moves3"].length > 4
-						raise _INTL("The {1} entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
-					end
+				# when "Moves1"
+				# 	if contents["Moves1"].length > 4
+				# 		raise _INTL("The {1} entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
+				# 	end
         when "Ability"
           if !speciesData.abilities.concat(speciesData.hidden_abilities).include?(contents["Ability"].to_sym)
             echoln(_INTL("Ability {1} is not legal for the Avatar defined in PBS/avatars.txt section {2}.", contents["Ability"], avatar_species))
+          end
+        when "Aggression"
+          if value < 0 || value > PokeBattle_AI_Boss::MAX_BOSS_AGGRESSION
+            raise _INTL("Aggression value {1} is not legal for the Avatar defined in PBS/avatars.txt section {2}. Aggression must be between 0 and {3} (inclusive)", value, avatar_species, PokeBattle_AI_Boss::MAX_BOSS_AGGRESSION)
           end
 				end
 			end
@@ -469,6 +467,7 @@ module Compiler
 				:dmg_mult			      => contents["DMGMult"],
         :dmg_resist			    => contents["DMGResist"],
 				:health_bars	 		  => contents["HealthBars"],
+        :aggression         => contents["Aggression"],
 			}
 			avatar_number += 1
 			# Add trainer avatar's data to records
@@ -2160,6 +2159,7 @@ module Compiler
         f.write(sprintf("DMGMult = %s\r\n", avatar.dmg_mult)) if avatar.dmg_mult != 1.0
         f.write(sprintf("DMGResist = %s\r\n", avatar.dmg_resist)) if avatar.dmg_resist != 0.0
         f.write(sprintf("Form = %s\r\n", avatar.form)) if avatar.form != 0
+        f.write(sprintf("Aggression = %s\r\n", avatar.aggression)) if avatar.aggression != PokeBattle_AI_Boss::DEFAULT_BOSS_AGGRESSION
       end
     }
     pbSetWindowText(nil)
@@ -2375,5 +2375,99 @@ module Compiler
     write_trainer_lists
     write_avatars
     write_metadata
+  end
+
+  def compile_species_earliest_levels
+    # A hash of all species in the game that can be aquired directly
+    # where the key is the species ID and the value is the earliest level they can be directly aquired
+    earliestWildEncounters = {}
+
+    # Checking every single map in the game for encounters
+    GameData::Encounter.each_of_version do |enc_data|
+      earliestLevelForMap = getEarliestLevelForMap(enc_data.map)
+
+      # For each slot in that encounters data listing
+      enc_data.types.each do |key,slots|
+        next if !slots
+        earliestLevelForSlot = earliestLevelForMap
+        earliestLevelForSlot = [earliestLevelForSlot,SURFING_LEVEL].min if key == :ActiveWater
+        slots.each do |slot|
+          species = slot[1]
+          if !earliestWildEncounters.has_key?(species) || earliestWildEncounters[species] > earliestLevelForSlot
+            earliestWildEncounters[species] = earliestLevelForSlot
+          end
+        end
+      end
+    end
+
+    # A hash where the key is a species
+    # and the value is a hash that describes different ways of aquiring it
+    earliestAquisition = earliestWildEncounters.clone
+
+    iterationCount = 0
+    loop do
+      madeAnyChanges = false
+      iterationCount += 1
+      echoln("Iteration #{iterationCount} of calculating earliest species aquisition level!")
+      GameData::Species.each do |speciesData|
+        species = speciesData.id
+        next unless earliestAquisition.has_key?(species)
+        earliestLevelForBase = earliestAquisition[species]
+
+        evolutions = speciesData.get_evolutions
+
+        # Determine the earliest possible aquisiton level for each of its evolutions
+        evolutions.each do |evolutionEntry|
+          evoSpecies = evolutionEntry[0]
+          evoMethod = evolutionEntry[1]
+          param = evolutionEntry[2]
+          case evoMethod
+          # All method based on leveling up to a certain level
+          when :Level,:LevelDay,:LevelNight,:LevelMale,:LevelFemale,:LevelRain,
+            :AttackGreater,:AtkDefEqual,:DefenseGreater,:LevelDarkInParty,
+            :Silcoon,:Cascoon,:Ninjask,:Shedinja
+            
+            evoLevelThreshold = param
+          # All methods based on holding a certain item or using a certain item on the pokemon
+          when :HoldItem,:HoldItemMale,:HoldItemFemale,:DayHoldItem,:NightHoldItem,
+            :Item,:ItemMale,:ItemFemale,:ItemDay,:ItemNight,:ItemHappiness
+            
+            # Push this prevo if the evolution from it is gated by an item which is available by this point
+            evoLevelThreshold = getEarliestLevelForItem(param)
+          end
+
+          earliestLevelForEvolved = [earliestLevelForBase,evoLevelThreshold].max
+
+          if !earliestAquisition.has_key?(evoSpecies) || earliestAquisition[evoSpecies] > earliestLevelForEvolved
+            earliestAquisition[evoSpecies] = earliestLevelForEvolved
+            madeAnyChanges = true
+          end
+        end
+      end
+      break if !madeAnyChanges
+    end
+
+    earliestAquisition.each do |species,level|
+      GameData::Species.get(species).earliest_available = level
+    end
+
+    GameData::Species.save
+    Graphics.update
+  end
+
+  def getEarliestLevelForItem(item_id)
+    ITEMS_AVAILABLE_BY_CAP.each do |levelCapBracket, itemArray|
+      next unless itemArray.include?(item_id)
+      return levelCapBracket
+    end
+    return 100
+  end
+
+  def getEarliestLevelForMap(map_id)
+    MAPS_AVAILABLE_BY_CAP.each do |levelCapBracket, mapArray|
+      next unless mapArray.include?(map_id)
+      return levelCapBracket
+    end
+    return 100
   end
 end

@@ -1,6 +1,6 @@
 BattleHandlers::SpeedCalcAbility.add(:CHLOROPHYLL,
   proc { |ability,battler,mult|
-    next mult * 2 if [:Sun, :HarshSun].include?(battler.battle.pbWeather)
+    next mult * 2 if battler.battle.sunny?
   }
 )
 
@@ -36,7 +36,7 @@ BattleHandlers::SpeedCalcAbility.add(:SURGESURFER,
 
 BattleHandlers::SpeedCalcAbility.add(:SWIFTSWIM,
   proc { |ability,battler,mult|
-    next mult * 2 if [:Rain, :HeavyRain].include?(battler.battle.pbWeather)
+    next mult * 2 if battler.battle.rainy?
   }
 )
 

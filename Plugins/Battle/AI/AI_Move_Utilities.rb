@@ -357,9 +357,9 @@ class PokeBattle_AI
 
         ##### Main damage calculation #####
         baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
-        atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
+        attack     = [(attack     * multipliers[:attack_multiplier]).round, 1].max
         defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
-        damage  = move.calcBasicDamage(baseDmg,user.level,atk,defense)
+        damage  = move.calcBasicDamage(baseDmg,user.level,attack,defense)
         damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
 
         # Increased critical hit rates

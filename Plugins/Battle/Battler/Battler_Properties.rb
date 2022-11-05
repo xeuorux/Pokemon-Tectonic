@@ -1,13 +1,18 @@
 class PokeBattle_Battler
 	# Fundamental to this object
 	attr_reader   :battle
-	attr_accessor :index, :pokemonIndex, :species, :type1, :type2, :ability_id, :item_id, :moves,
-															:gender, :iv, :attack, :spatk, :speed, :stages, :captured, :effects, :boss, :avatarPhase, :extraMovesPerTurn, :primevalTimer, :indexesTargetedThisTurn, :dmgMult, :dmgResist, :participants, :lastAttacker, :lastFoeAttacker, :lastHPLost, :lastHPLostFromFoe, :lastMoveUsed, :lastMoveUsedType, :lastRegularMoveUsed, :lastRegularMoveTarget, :lastRoundMoved, :lastMoveFailed, :lastRoundMoveFailed, :movesUsed, :currentMove, :tookDamage, :tookPhysicalHit, :damageState, :initialHP, :lastRoundHighestTypeModFromFoe
+	attr_accessor :index, :pokemonIndex, :species, :type1, :type2, :ability_id, :item_id, :moves, :turnCount
+	attr_accessor  :gender, :iv, :attack, :spatk, :speed, :stages, :captured, :effects, :boss, :avatarPhase
+	attr_accessor  :extraMovesPerTurn, :primevalTimer, :indicesTargetedThisRound, :indicesTargetedLastRound, :dmgMult, :dmgResist
+	attr_accessor  :participants, :lastAttacker, :lastFoeAttacker, :lastHPLost, :lastHPLostFromFoe
+	attr_accessor  :lastMoveUsed, :lastMoveUsedType, :lastRegularMoveUsed, :lastRegularMoveTarget
+	attr_accessor  :lastRoundMoved, :lastMoveFailed, :lastRoundMoveFailed, :movesUsed, :currentMove
+	attr_accessor  :tookDamage, :tookPhysicalHit, :damageState, :initialHP, :lastRoundHighestTypeModFromFoe
 	# The Pokémon and its properties
 	attr_reader   :pokemon
-	attr_reader :totalhp, :fainted, :dummy, :form, :hp, :status, :statusCount, :bossStatus, :bossStatusCount # Boolean to mark whether self has fainted properly   # Boolean to mark whether self was captured
-	# Things the battler has done in battle
-	attr_accessor :turnCount # For Instruct        # For Stomping Tantrum   # For Stomping Tantrum   # ID of multi-turn move currently being used    # Boolean for whether self took damage this round     # Set at the start of each move's usage
+	attr_reader :fainted # Boolean to mark whether self has fainted properly
+	attr_reader :totalhp, :dummy, :form, :hp, :status, :statusCount, :bossStatus, :bossStatusCount
+	attr_reader :bossAI 
 
 	#=============================================================================
 	# Complex accessors

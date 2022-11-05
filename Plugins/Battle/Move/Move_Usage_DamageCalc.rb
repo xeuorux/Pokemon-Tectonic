@@ -322,7 +322,6 @@ class PokeBattle_Move
         # Battler properites
         multipliers[:base_damage_multiplier] *= user.dmgMult
         multipliers[:base_damage_multiplier] *= [0,(1.0 - target.dmgResist.to_f)].max
-        echoln("User's damage mult is #{user.dmgMult} and the target's damage resist is #{target.dmgResist}")
         # Critical hits
         if target.damageState.critical
             multipliers[:final_damage_multiplier] *= 1.5

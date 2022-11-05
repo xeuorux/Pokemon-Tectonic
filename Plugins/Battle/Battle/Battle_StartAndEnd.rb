@@ -378,27 +378,12 @@ class PokeBattle_Battle
           break
         end
         PBDebug.log("")
-  
-        # The battle is a draw if the player survives a certain number of turns
-        # In survival battles
-        if @turnsToSurvive > 0 && @turnCount > @turnsToSurvive
-          triggerBattleSurvivedDialogue()
-          @decision = 6
-          break
-        end
-      
-        # Allow bosses to set various things about themselves before their turn
-        @battlers.each do |b|
-        next if !b || b.fainted || !b.boss
-          PokeBattle_AI.triggerBossBeginTurn(b.species,b)
-        end
+
+        # End of round phase
+        PBDebug.logonerr { pbStartOfRoundPhase() }
+        break if @decision > 0
         
         @commandPhasesThisRound = 0
-        
-        # Curses effects here
-        @curses.each do |curse_policy|
-          triggerBeginningOfTurnCurseEffect(curse_policy,self)
-        end
       
         # Command phase
         PBDebug.logonerr { pbCommandPhase }
@@ -448,6 +433,35 @@ class PokeBattle_Battle
         @turnCount += 1
       end
       pbEndOfBattle
+    end
+
+    def pbStartOfRoundPhase()
+        # The battle is a draw if the player survives a certain number of turns
+        # In survival battles
+        if @turnsToSurvive > 0 && @turnCount > @turnsToSurvive
+          triggerBattleSurvivedDialogue()
+          @decision = 6
+          return
+        end
+
+        # Bosses begin the battle
+        if @turnCount == 0
+          @battlers.each do |b|
+            next if !b || b.fainted || !b.boss?
+            b.bossAI.startBattle(b, self)
+          end
+        end
+      
+        # Bosses begin their turn
+        @battlers.each do |b|
+          next if !b || b.fainted || !b.boss?
+          b.bossAI.startTurn(b, self, @turnCount)
+        end
+
+        # Curses effects here
+        @curses.each do |curse_policy|
+          triggerBeginningOfTurnCurseEffect(curse_policy,self)
+        end
     end
   
     #=============================================================================

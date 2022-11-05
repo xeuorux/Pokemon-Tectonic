@@ -137,6 +137,7 @@ class PokeBattle_Battler
 
 	def pbRaiseStatStageByAbility(stat, increment, user, splashAnim = true)
 		return false if fainted?
+		return false if statStageAtMax?(stat)
 		ret = false
 		@battle.pbShowAbilitySplash(user) if splashAnim
 		if pbCanRaiseStatStage?(stat, user, nil, true)
@@ -314,6 +315,8 @@ class PokeBattle_Battler
 	end
 
 	def pbLowerStatStageByAbility(stat, increment, user, splashAnim = true, checkContact = false)
+		return false if fainted?
+		return false if statStageAtMin?(stat)
 		ret = false
 		@battle.pbShowAbilitySplash(user) if splashAnim
 		if pbCanLowerStatStage?(stat, user, nil, true) &&
@@ -464,6 +467,34 @@ class PokeBattle_Battler
 			statName = GameData::Stat.get(stat).real_name
 			@battle.pbDisplay(_INTL('{1} maximizes its {2}!', pbThis, statName))
 		end
+	end
+
+	# Pass in array of form
+	# [statToRaise, stagesToRaise, statToRaise2, stagesToRaise2, ...]
+	def pbRaiseMultipleStatStages(statArray, user, move = nil, showFailMsg = false, ignoreContrary = false, showAnim = true)
+		raisedAnyStages = false
+		for i in 0...statArray.length/2
+			next if !pbCanRaiseStatStage?(statArray[i*2],user,move,showFailMsg,ignoreContrary)
+			if pbRaiseStatStage(statArray[i*2],statArray[i*2+1],user,showAnim,ignoreContrary)
+				showAnim = false
+				raisedAnyStages = true
+			end
+		end
+		return raisedAnyStages
+	end
+
+	# Pass in array of form
+	# [statToRaise, stagesToRaise, statToRaise2, stagesToRaise2, ...]
+	def pbLowerMultipleStatStages(statArray, user, move = nil, showFailMsg = false, ignoreContrary = false, showAnim = true)
+		loweredAnyStages = false
+		for i in 0...statArray.length/2
+			next if !pbCanLowerStatStage?(statArray[i*2],user,move,showFailMsg,ignoreContrary)
+			if pbLowerStatStage(statArray[i*2],statArray[i*2+1],user,showAnim,ignoreContrary)
+				showAnim = false
+				loweredAnyStages = true
+			end
+		end
+		return loweredAnyStages
 	end
 
 	#=============================================================================
