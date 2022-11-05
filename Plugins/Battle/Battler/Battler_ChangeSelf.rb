@@ -72,7 +72,7 @@ class PokeBattle_Battler
 		end
 	end
 
-	def applyRecoilDamage(damage, showDamageAnimation = true, showMessage = true, recoilMessage = nil, cushionRecoil = false,)
+	def applyRecoilDamage(damage, showDamageAnimation = true, showMessage = true, recoilMessage = nil, cushionRecoil = false)
 		return unless takesIndirectDamage?
 		return if hasActiveAbility?(:ROCKHEAD)
 		#return if @battle.pbAllFainted?(@idxOpposingSide)
