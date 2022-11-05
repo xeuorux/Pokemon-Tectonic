@@ -7,8 +7,13 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
       currentTag = $game_player.pbTerrainTag
       if slideDownTerrainTag(currentTag)
         pbDescendWaterfall
-      elsif currentTag.ice && !$PokemonGlobal.sliding
-        pbSlideOnIce
+      elsif currentTag.ice
+        if !$PokemonGlobal.sliding
+          pbSlideOnIce
+        end
+      else
+        $PokemonGlobal.sliding = false
+        $game_player.walk_anime = true
       end
     end
   end
@@ -34,4 +39,28 @@ def pbDescendWaterfall
         break if !slideDownTerrainTag(terrain)
     end
     $game_player.through    = oldthrough
+end
+
+def pbSlideOnIce
+  return if !$game_player.pbTerrainTag.ice
+  pbDismountBike
+  $PokemonGlobal.sliding = true
+  direction    = $game_player.direction
+  oldwalkanime = $game_player.walk_anime
+  $game_player.straighten
+  $game_player.walk_anime = false
+  loop do
+    break if !$game_player.can_move_in_direction?(direction)
+    break if !$game_player.pbTerrainTag.ice
+    $game_player.move_forward
+    while $game_player.moving?
+      pbUpdateSceneMap
+      Graphics.update
+      Input.update
+    end
+  end
+  $game_player.center($game_player.x, $game_player.y)
+  $game_player.straighten
+  $game_player.walk_anime = oldwalkanime
+  $PokemonGlobal.sliding = false
 end

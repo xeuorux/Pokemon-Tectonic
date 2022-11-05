@@ -1,17 +1,11 @@
 class Game_Character
 	def move_speed=(val)
-		if $game_player && self==$game_player && $PokemonGlobal && $PokemonGlobal.surfing
-		  val = 5
-		end
-		if $game_player && $game_map.terrain_tag($game_player.x, $game_player.y).slows
-			val -= 1
-		end
 		return if val==@move_speed
 		@move_speed = val
 		# @move_speed_real is the number of quarter-pixels to move each frame. There
 		# are 128 quarter-pixels per tile.
 		self.move_speed_real = [3.2,6.4,12.8,25.6,44,64][val-1]
-	  end
+	end
 end
 
 class Game_Map
