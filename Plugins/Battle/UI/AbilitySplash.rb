@@ -21,13 +21,10 @@ class AbilitySplashBar < SpriteWrapper
         @contents = BitmapWrapper.new(@bgBitmap.width,@bgBitmap.height/2)
         self.bitmap = @contents
         pbSetSystemFont(self.bitmap)
-        # Cretae bitmap that displays the icon
+        # Create bitmap that displays the icon
         @speciesIcon = IconSprite.new(0,0,viewport)
-        # Position the bar
-        self.x       = (side==0) ? -Graphics.width/2 : Graphics.width
-        self.y       = (side==0) ? 180 : 80
-        self.z       = 120
-        self.visible = false
+        
+        positionBar
     end
 
     def setBGSprite(bgBitmap)
@@ -35,6 +32,13 @@ class AbilitySplashBar < SpriteWrapper
         @bgSprite.bitmap = bgBitmap.bitmap
         @bgSprite.src_rect.y      = (@side==0) ? 0 : bgBitmap.height/2
         @bgSprite.src_rect.height = bgBitmap.height/2
+    end
+
+    def positionBar
+        self.x       = (@side==0) ? -Graphics.width/2 : Graphics.width
+        self.y       = (@side==0) ? 180 : 80
+        self.z       = 120
+        self.visible = false
     end
     
     def dispose
@@ -55,6 +59,12 @@ class AbilitySplashBar < SpriteWrapper
         if !@battler.opposes?
             @speciesIcon.mirror = true
         end
+        if GameData::Ability.get(@battler.ability).is_primeval?
+            setBGSprite(@bgPrimevalBitmap)
+        else
+            setBGSprite(@bgBitmap)
+        end
+        positionBar
         refresh
     end
 
@@ -77,7 +87,7 @@ class AbilitySplashBar < SpriteWrapper
     def z=(value)
         super
         @bgSprite.z = value-1
-        @speciesIcon.z = value-1
+        @speciesIcon.z = value
     end
 
     def opacity=(value)
@@ -101,11 +111,6 @@ class AbilitySplashBar < SpriteWrapper
     def refresh
         self.bitmap.clear
         return if !@battler
-        if GameData::Ability.get(@battler.ability).is_primeval?
-            setBGSprite(@bgPrimevalBitmap)
-        else
-            setBGSprite(@bgBitmap)
-        end
         textPos = []
         textX = (@side==0) ? 10 : self.bitmap.width-8
         # Draw Pokémon's name
