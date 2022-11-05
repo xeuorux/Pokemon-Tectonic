@@ -300,7 +300,7 @@
 286,ASTRALBARRAGE,Astral Barrage,000,120,GHOST,Special,100,5,0,AllNearFoes,0,bef,"The user attacks by sending a frightful amount of small ghosts at opposing Pokémon.",
 #-------------------------------
 287,FRENZYPLANT,Frenzy Plant,0C2,170,GRASS,Special,100,5,0,NearOther,0,bef,"The user slams the target with an enormous tree. The user can't move on the next turn.",
-288,LEAFSTORM,Leaf Storm,03F,130,GRASS,Special,100,5,0,NearOther,0,bef,"A storm of sharp is whipped up. Harshly reduces the user's Sp. Atk stat.",
+288,LEAFSTORM,Leaf Storm,03F,130,GRASS,Special,100,5,0,NearOther,0,bef,"A storm of sharp leaves is whipped up. Harshly reduces the user's Sp. Atk stat.",
 289,SOLARBLADE,Solar Blade,0C4,125,GRASS,Physical,100,10,0,NearOther,0,abefp,"The user charges, then attacks on the second turn. Charges instantly in Sunshine.",
 290,PETALDANCE,Petal Dance,55F,120,GRASS,Special,100,10,0,RandomNearFoe,0,abefo,"The user attacks by scattering petals for three turns.",
 291,POWERWHIP,Power Whip,53C,120,GRASS,Physical,70,10,0,NearOther,0,abef,"The user violently whirls to lash the target. Can't miss if the target has already attacked this turn.",
@@ -376,7 +376,7 @@
 #-------------------------------
 360,FREEZESHOCK,Freeze Shock,0C5,140,ICE,Physical,100,5,30,NearOther,0,bef,"On the second turn, the user hits the foe with electrically charged ice. It has a 30% chance to numb.",
 361,ICEBURN,Ice Burn,0C6,140,ICE,Special,100,5,30,NearOther,0,bef,"On the second turn, an ultracold, freezing wind surrounds the foe. It has a 30% chance to burn.",
-362,BLIZZARD,Blizzard,00D,110,ICE,Special,70,5,30,AllNearFoes,0,befq,"A blizzards strikes all near foes. Can't miss in Hail. 30% chance to frostbite.",
+362,BLIZZARD,Blizzard,00D,110,ICE,Special,70,5,30,AllNearFoes,0,befq,"A blizzard strikes all near foes. Can't miss in hail. 30% chance to frostbite.",
 363,ICEHAMMER,Ice Hammer,03E,100,ICE,Physical,100,10,0,NearOther,0,abefj,"The user swings and hits with its strong, heavy fist. It lowers the user's Speed, however.",
 364,ICEBEAM,Ice Beam,403,90,ICE,Special,100,10,10,NearOther,0,bef,"The target is struck with an icy-cold beam of energy. It has a 10% chance to frostbite.",
 365,ICICLECRASH,Icicle Crash,00F,85,ICE,Physical,100,10,30,NearOther,0,be,"The user attacks by harshly dropping an icicle onto the foe. It has a 30% chance to make the target flinch.",
