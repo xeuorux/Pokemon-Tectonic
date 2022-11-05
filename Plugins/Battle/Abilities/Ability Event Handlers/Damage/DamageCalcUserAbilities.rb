@@ -586,3 +586,9 @@ BattleHandlers::DamageCalcUserAbility.add(:PRIMEVALSLOWSTART,
     mults[:attack_multiplier] /= 2
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:SHIFTINGFIST,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if move.punchingMove?
+  }
+)

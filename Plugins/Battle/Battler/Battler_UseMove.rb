@@ -389,6 +389,14 @@ class PokeBattle_Battler
 				targets = pbFindTargets(choice, move, user)
 			end
 		end
+		# Shifting Fist
+		if (user.hasActiveAbility?(:SHIFTINGFIST) && !move.callsAnotherMove? && !move.snatched && (user.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type && move.punchingMove?)
+			@battle.pbShowAbilitySplash(user)
+			user.applyEffect(:Type3,move.calcType)
+			typeName = GameData::Type.get(move.calcType).name
+			@battle.pbDisplay(_INTL('{1} shifted into a {2} stance!', user.pbThis, typeName))
+			@battle.pbHideAbilitySplash(user)
+		end
 		#---------------------------------------------------------------------------
 		magicCoater  = -1
 		magicBouncer = -1
