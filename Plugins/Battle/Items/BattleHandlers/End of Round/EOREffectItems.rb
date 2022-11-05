@@ -15,7 +15,7 @@ BattleHandlers::EOREffectItem.add(:FLAMEORB,
   BattleHandlers::EOREffectItem.add(:FROSTORB,
     proc { |item,battler,battle|
       next if !battler.pbCanFrostbite?(nil,false)
-      battler.pbFrostbite(nil,_INTL("{1} was burned by the {2}! {3}!",battler.pbThis,battler.itemName,FROSTBITE_EXPLANATION))
+      battler.pbFrostbite(nil,_INTL("{1} was afflicted by the {2}! {3}!",battler.pbThis,battler.itemName,FROSTBITE_EXPLANATION))
     }
   )
   
