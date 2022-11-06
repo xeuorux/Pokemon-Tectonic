@@ -1400,7 +1400,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = false
-HealingSpot = 217,27,33
+HealingSpot = 217,27,29
 #-------------------------------
 [264]
 # Sweetrock Harbor Mart
