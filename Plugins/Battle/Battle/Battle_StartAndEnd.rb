@@ -495,7 +495,9 @@ class PokeBattle_Battle
       if @field.effectActive?(:PayDay)
         paydayMoney = @field.effects[:PayDay]
         paydayMoney *= moneyMult
+		oldMoney = pbPlayer.money
         pbPlayer.money += paydayMoney
+		moneyGained = pbPlayer.money-oldMoney
         if moneyGained>0
           pbDisplayPaused(_INTL("You picked up ${1}!",paydayMoney.to_s_formatted))
         end

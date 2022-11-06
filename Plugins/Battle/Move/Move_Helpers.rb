@@ -40,7 +40,7 @@ class PokeBattle_Move
   end
 
   # Returns whether the item was removed
-  def removeItem(remover,victim,showRemoverSplash=false,removalMessage=nil)
+  def removeItem(remover,victim,showRemoverSplash=false,removeMessage=nil)
     return false unless canRemoveItem?(remover,victim)
     battle.pbShowAbilitySplash(remover) if showRemoverSplash
     if victim.hasActiveAbility?(:STICKYHOLD)

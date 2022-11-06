@@ -111,12 +111,16 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
     next if battle.futureSight
     next if !move.pbDamagingMove?
     targets.each do |b|
+		itemName = GameData::Item.get(b.item).name if b.item
       removeMessage = _INTL("{1} turned {2}'s {3} into gold!",user.pbThis,
         b.pbThis(true),itemName)
       if move.removeItem(user,b,true,removeMessage)
+		echoln("move.removeitem succeeded")
         if user.pbOwnedByPlayer?
+			echoln("user pbownedbyplayer succeeded")
           battle.field.incrementEffect(:PayDay,5 * user.level)
         end
+		echoln("move.removeitem failed or is done")
         break
       end
     end
