@@ -564,12 +564,8 @@ end
 class PokeBattle_Move_09B < PokeBattle_Move 
   def pbBaseDamage(baseDmg,user,target)
     ret = 40
-    n = (user.pbWeight/target.pbWeight).floor
-    if n>=5;    ret = 120
-    elsif n>=4; ret = 100
-    elsif n>=3; ret = 80
-    elsif n>=2; ret = 60
-    end
+    ratio = user.pbWeight.to_f/target.pbWeight.to_f
+    ret += ((16 * (ratio ** 0.75)) / 5).floor * 5
     return ret
   end
 end
