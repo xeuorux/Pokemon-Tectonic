@@ -18,7 +18,7 @@
 16,FURYCUTTER,Fury Cutter,091,30,BUG,Physical,100,50,0,NearOther,0,abefp,"The target is slashed with scythes or claws. Its power doubles if it hits in succession.",
 17,PINMISSILE,Pin Missile,0C0,25,BUG,Physical,100,15,0,NearOther,0,bef,"Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.",
 18,TWINEEDLE,Twineedle,0BE,25,BUG,Physical,100,15,20,NearOther,0,bef,"The foe is stabbed twice by a pair of stingers. Each stinger has a 20% chance to poison.",
-19,INFESTATION,Infestation,0CF,45,BUG,Special,100,15,0,NearOther,0,abef,"The user summons bugs to swarm the target, trapping and damaging it for three turns.",
+19,INFESTATION,Infestation,0CF,50,BUG,Special,100,15,0,NearOther,0,abef,"The user summons bugs to swarm the target, trapping and damaging it for three turns.",
 20,DEFENDORDER,Defend Order,02A,0,BUG,Status,0,10,0,User,0,d,"The user calls out its underlings to shield its body, raising its Defense and Sp. Def stats.",
 21,HEALORDER,Heal Order,0D5,0,BUG,Status,0,10,0,User,0,d,"The user calls out its underlings to heal it. The user regains up to half of its max HP.",
 22,POWDER,Powder,148,0,BUG,Status,100,15,0,NearOther,0,bcel,"The target is covered in a powder that explodes and damages it if it uses a Fire-type move.",
@@ -238,7 +238,7 @@
 228,INCINERATE,Incinerate,0F5,60,FIRE,Special,100,12,0,AllNearFoes,0,bef,"The user attacks the foe with fire. The target's held Berry or Gem becomes burnt up and unusable.",
 229,FLAMECHARGE,Flame Charge,01F,50,FIRE,Physical,100,15,100,NearOther,0,abef,"The user cloaks itself in flame and attacks. Building up more power, it raises the user's Speed stat.",
 230,EMBER,Ember,00A,40,FIRE,Special,100,20,10,NearOther,0,bef,"The target is attacked with small flames. It has a 10% chance to burn.",
-231,FIRESPIN,Fire Spin,0CF,45,FIRE,Special,100,15,0,NearOther,0,bef,"The user engulfs the target in fierce flames, trapping and damaging it for three turns.",
+231,FIRESPIN,Fire Spin,0CF,50,FIRE,Special,100,15,0,NearOther,0,bef,"The user engulfs the target in fierce flames, trapping and damaging it for three turns.",
 232,HEATCRASH,Heat Crash,09B,1,FIRE,Physical,100,10,0,NearOther,0,abef,"The user slams the foe with its flaming body. The heavier the user is, the greater the damage.",
 233,SUNNYDAY,Sunny Day,0FF,0,FIRE,Status,0,5,0,BothSides,0,,"Intensifies the sun for five turns, boosting Fire-type attacks and hindering most other attacks.",
 #-------------------------------
@@ -362,7 +362,7 @@
 346,BULLDOZE,Bulldoze,044,60,GROUND,Physical,100,15,100,AllNearOthers,0,bef,"The user strikes everything around it by stomping on the ground. It reduces hit Pokémon's Speed.",
 347,MUDSHOT,Mud Shot,044,60,GROUND,Special,100,12,100,NearOther,0,bef,"The user attacks by shooting a beam of mud at the target. It also reduces the target's Speed.",
 348,BONEMERANG,Bonemerang,0BD,50,GROUND,Physical,100,10,0,NearOther,0,bef,"The user throws the bone it holds. The bone loops to hit the target twice, coming and going.",
-349,SANDTOMB,Sand Tomb,0CF,45,GROUND,Physical,100,15,0,NearOther,0,bef,"The user spins a sandstorm around the target, trapping and damaging it for three turns.",
+349,SANDTOMB,Sand Tomb,0CF,50,GROUND,Physical,100,15,0,NearOther,0,bef,"The user spins a sandstorm around the target, trapping and damaging it for three turns.",
 350,BONERUSH,Bone Rush,0C0,25,GROUND,Physical,100,10,0,NearOther,0,bef,"The user strikes the target with a hard bone two to five times in a row.",
 351,MUDSLAP,Mud-Slap,047,20,GROUND,Special,100,10,100,NearOther,0,bef,"The user hurls mud in the target's face to inflict damage and lower its accuracy.",
 352,FISSURE,Fissure,070,1,GROUND,Physical,30,5,0,NearOther,0,be,"The user opens up a fissure in the ground and drops the foe in. The target instantly faints if it hits.",
@@ -478,7 +478,7 @@
 #-------------------------------
 454,FURYPECKS,Fury Pecks,0C0,20,FLYING,Physical,100,15,0,NearOther,0,abef,"The target is jabbed repeatedly with a horn or beak two to five times in a row.",
 #-------------------------------
-455,WRAP,Wrap,0CF,45,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user binds the target, trapping and damaging it for three turns.",
+455,WRAP,Wrap,0CF,50,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user binds the target, trapping and damaging it for three turns.",
 456,CONSTRICT,Constrict,0CF,10,NORMAL,Physical,100,30,10,NearOther,0,abef,"The user squeezes the target, trapping and damaging it for three turns.",
 457,BIDE,Bide,0D4,1,NORMAL,Physical,0,10,0,None,1,abf,"The user endures attacks for two turns, then strikes back to cause double the damage taken.",
 458,CRUSHGRIP,Crush Grip,08C,1,NORMAL,Physical,100,5,0,NearOther,0,abef,"The target is crushed with great force. The attack is more powerful the more HP the target has left.",
@@ -793,8 +793,8 @@
 726,AQUAJET,Aqua Jet,000,40,WATER,Physical,100,15,0,NearOther,1,abef,"The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.",
 727,BUBBLE,Bubble,044,30,WATER,Special,100,25,100,AllNearFoes,0,bef,"A spray of countless bubbles is jetted at the opposing team. It also lowers the foe's Speed stat.",
 728,WATERGUN,Water Gun,000,40,WATER,Special,100,20,0,NearOther,0,bef,"The target is blasted with a forceful shot of water.",
-729,CLAMP,Clamp,0CF,45,WATER,Physical,100,15,0,NearOther,0,abef,"The user clamps onto the target, trapping and damaging it for three turns.",
-730,WHIRLPOOL,Whirlpool,0CF,45,WATER,Special,100,15,0,NearOther,0,bef,"The user swirls the target in a whirlpool, trapping and damaging it for three turns.",
+729,CLAMP,Clamp,0CF,50,WATER,Physical,100,15,0,NearOther,0,abef,"The user clamps onto the target, trapping and damaging it for three turns.",
+730,WHIRLPOOL,Whirlpool,0CF,50,WATER,Special,100,15,0,NearOther,0,bef,"The user swirls the target in a whirlpool, trapping and damaging it for three turns.",
 731,WATERSHURIKEN,Water Shuriken,0C0,15,WATER,Special,100,15,0,NearOther,1,bef,"The user hits the target with throwing stars 2-5 times in a row. This move always goes first.",
 732,AQUARING,Aqua Ring,0DA,0,WATER,Status,0,15,0,User,0,d,"The user envelops itself in a veil made of water. It regains 1/8 of its HP on every turn.",
 733,RAINDANCE,Rain Dance,100,0,WATER,Status,0,5,0,BothSides,0,,"Summons rain for five turns, boosting Water-type attacks and hindering most other attacks.",
@@ -1041,7 +1041,7 @@
 975,SLAMSHUT,Slam Shut,0CF,75,WATER,Physical,100,12,0,NearOther,0,abef,"The target is crushed in the user's shell or claws, trapping and damaging it for three turns.",CLAMP
 976,MAELSTROM,Maelstrom,0CF,75,WATER,Special,100,12,0,NearOther,0,bef,"The foe is pulled into a huge whirlpool, trapping and damaging it for three turns.",WHIRLPOOL
 977,CRIMSONSTORM,Crimson Storm,0CF,75,FIRE,Special,100,12,0,NearOther,0,bef,"The foe is engulfed in a firestorm, trapping and damaging it for three turns.",FIRESPIN
-978,VINEBIND,Vinebind,0CF,45,GRASS,Physical,100,15,0,NearOther,0,abef,"Binds the foe with vines, trapping and damaging it for three turns.",GRASSKNOT
+978,VINEBIND,Vinebind,0CF,50,GRASS,Physical,100,15,0,NearOther,0,abef,"Binds the foe with vines, trapping and damaging it for three turns.",GRASSKNOT
 979,BLACKOUT,Blackout,562,90,DARK,Special,100,12,0,NearOther,0,bef,"The user removes the energy and light around the target. Super effective vs Electric-types.",DARKVOID
 980,HOLLYCHARM,Holly Charm,563,90,GRASS,Special,100,12,0,NearOther,0,bef,"The user attacks the target with the power of a warding charm. Super effective vs Ghost-types.",MAGICALLEAF
 981,MUTUAL,Mutual,599,55,FIGHTING,Physical,100,25,0,NearOther,0,abef,"The user grabs the target, slamming both of them into the ground. The user takes 20% recoil.",SUBMISSION
