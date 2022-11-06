@@ -51,7 +51,7 @@ class PokeBattle_Move
         displayWeatherDebuffMessages(user,calcType) if $PokemonSystem.weather_messages == 0
     end
 
-    def displayBPAdjustmentMessage(user,targets=[])
+    def displayBPAdjustmentMessage(user,targets)
         targets.each do |target|
             bp = pbBaseDamage(@baseDamage,user,target).floor
             if bp != @baseDamage
