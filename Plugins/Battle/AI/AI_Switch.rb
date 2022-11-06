@@ -43,7 +43,7 @@ class PokeBattle_AI
                 effectivenessSwitchBiasMod -= 2
             end
             switchingBias += effectivenessSwitchBiasMod
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) takes into account the effectiveness of its last hit taken #{effectivenessSwitchBiasMod.to_change}")
+            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) takes into account the effectiveness of its last hit taken (#{effectivenessSwitchBiasMod.to_change})")
         end
         
         # More or less likely to switch based on if you have a good move to use
@@ -52,7 +52,7 @@ class PokeBattle_AI
             maxScore = c[1] if c[1] > maxScore
         end
         maxMoveScoreBiasChange = +5
-        maxMoveScoreBiasChange -= maxScore / 25
+        maxMoveScoreBiasChange -= (maxScore / 25.0).round
         switchingBias += maxMoveScoreBiasChange
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) max score among its #{choices.length} choices is #{maxScore} (#{maxMoveScoreBiasChange.to_change})")
 
