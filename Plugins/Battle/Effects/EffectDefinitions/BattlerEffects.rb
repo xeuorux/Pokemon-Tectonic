@@ -947,6 +947,8 @@ GameData::BattleEffect.register_effect(:Battler,{
         when :INFESTATION               then battle.pbCommonAnimation("Infestation", battler)
 	    when :SNAPTRAP 	                then battle.pbCommonAnimation("SnapTrap",battler)
         when :THUNDERCAGE               then battle.pbCommonAnimation("ThunderCage",battler)
+		when :WHIRLPOOL,:MAELSTROM      then battle.pbCommonAnimation("Whirlpool",battler)
+		when :BEARHUG					then battle.pbCommonAnimation("BearHug",battler)
         else                            battle.pbCommonAnimation("Wrap", battler)
         end
         if battler.takesIndirectDamage?

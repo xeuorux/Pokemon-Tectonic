@@ -167,7 +167,7 @@ class PokeBattle_AI_Boss
 	def decidedOnMove(move,user,targets,battle)
 		if @warnedIFFMove.has_key?(move.id)
 			warningMessage = @warnedIFFMove[move.id][:warning].call(move,user,targets,battle)
-			@battle.pbDisplayBossNarration(warningMessage) if warningMessage
+			battle.pbDisplayBossNarration(warningMessage) if warningMessage
 		end
 
 		if @decidedOnMove.has_key?(move.id)
