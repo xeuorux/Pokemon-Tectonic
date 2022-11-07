@@ -322,11 +322,10 @@ DarkCave,20
 #-------------------------------
 [121] # Skyward Ascent
 Land,20
-    20,CLEFFA,18,20
-    20,CUBCHOO,18,20
-    20,PANCHAM,18,20
-    20,SNOVER,18,20
-    20,SPEAROW,18,20
+    25,CUBCHOO,18,20
+    25,PANCHAM,18,20
+    25,SNOVER,18,20
+    25,SPEAROW,18,20
 Special,20
     1,HAPPINY,15
 #-------------------------------
@@ -814,11 +813,10 @@ Special
 #-------------------------------
 [326] # The Barrows
 DarkCave,20
-    20,CUBONE,17,20
-    20,DUSKULL,17,20
-    20,MAWILE,17,20
-    20,SABLEYE,17,20
-    20,WOOBAT,17,20
+    25,CUBONE,17,20
+    25,DUSKULL,17,20
+    25,MAWILE,17,20
+    25,SABLEYE,17,20
 #-------------------------------
 [335] # Svait Sauna Underground
 Land,20
@@ -827,3 +825,10 @@ Land,20
     20,SLUGMA,17,20
     20,TORKOAL,17,20
     20,TURTONATOR,17,20
+#-------------------------------
+[135] # Ancient Meteorite
+FloweryGrass2,20
+    25,CLEFFA,20,23
+	25,STONJOURNER,20,23
+    25,MINIOR,20,23
+	25,WOOBAT,20,23
