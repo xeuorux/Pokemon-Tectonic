@@ -2371,14 +2371,15 @@ class PokeBattle_Move_58E < PokeBattle_Move_0EE
 end
 
 #===============================================================================
-# Faints the opponant if they are below 1/3 HP. (Cull)
+# Faints the opponant if they are below 1/4 HP, after dealing damage. (Cull)
 #===============================================================================
 class PokeBattle_Move_58F < PokeBattle_FixedDamageMove
-	def pbFixedDamage(user,target)
-		if target.hp < (target.totalhp / 3)
-			return target.hp
+	def pbEffectAgainstTarget(user, target)
+		if target.hp < (target.totalhp / 4)
+			@battle.pbDisplay(_INTL("#{user.pbThis} culls #{target.pbThis(true)}!"))
+			target.pbReduceHP(target.hp,false)
+    		target.pbItemHPHealCheck
 		end
-		return nil
 	end
 end
 
