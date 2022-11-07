@@ -559,10 +559,10 @@ class PokeBattle_Battler
 			stat = statArray[i*2]
 			increment = statArray[i*2+1]
 			next if increment <= 0
-			raisedAnyStages = true if tryRaiseStat(stat, user, move: move, increment: increment, showFailMsg: showFailMsg, showAnim: showAnim, showAbilitySplash: showAbilitySplash, cause: cause)
+			raisedAnyStages = true if tryRaiseStat(stat, user, move: move, increment: increment, showFailMsg: showFailMsg, showAnim: showAnim, showAbilitySplash: false, cause: cause)
 			showAnim = false if raisedAnyStages
 		end
-		@battle.pbShowAbilitySplash(user) if showAbilitySplash
+		@battle.pbHideAbilitySplash(user) if showAbilitySplash
 		return raisedAnyStages
 	end
 
@@ -583,10 +583,10 @@ class PokeBattle_Battler
 			stat = statArray[i*2]
 			increment = statArray[i*2+1]
 			next if increment <= 0
-			raisedAnyStages = true if tryLowerStat(stat, user, move: move, increment: increment, showFailMsg: showFailMsg, showAnim: showAnim, showAbilitySplash: showAbilitySplash, cause: cause)
+			raisedAnyStages = true if tryLowerStat(stat, user, move: move, increment: increment, showFailMsg: showFailMsg, showAnim: showAnim, showAbilitySplash: false, cause: cause)
 			showAnim = false if raisedAnyStages
 		end
-		@battle.pbShowAbilitySplash(user) if showAbilitySplash
+		@battle.pbHideAbilitySplash(user) if showAbilitySplash
 		return loweredAnyStages
 	end
 

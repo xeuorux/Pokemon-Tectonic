@@ -321,7 +321,17 @@ BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSHIELD,
 
 BattleHandlers::AbilityOnSwitchIn.add(:SCREENCLEANER,
   proc { |ability,battler,battle|
-    target=battler
+    anyScreen = false
+    battle.sides.each do |side|
+      side.eachEffect(true) do |effect,value,effectData|
+        next if !effectData.is_screen?
+        anyScreen = true
+        break
+      end
+      break if anyScreen
+    end
+    next unless anyScreen
+    
     battle.pbShowAbilitySplash(battler)
     battle.sides.each do |side|
       side.eachEffect(true) do |effect,value,effectData|
