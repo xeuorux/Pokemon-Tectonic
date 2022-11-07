@@ -356,7 +356,7 @@ class PokemonDataBox < SpriteWrapper
 		finalBarY = bar.y
 	end
 
-	@expBar.y    = finalBarY + 12
+	@expBar.y    = finalBarY + 34
 
     @hpNumbers.y = value+52
 

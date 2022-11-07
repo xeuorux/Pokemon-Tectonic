@@ -45,6 +45,7 @@ Events.onStepTakenFieldMovement += proc { |_sender,e|
     if event == $game_player
 	  currentTag = $game_player.pbTerrainTag
       if currentTag.can_surf && !$PokemonGlobal.surfing && $PokemonGlobal.bridge == 0
+		pbDismountBike
 		pbStartSurfing(false)
 		$PokemonGlobal.call_refresh = [true,false]
       end

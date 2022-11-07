@@ -225,7 +225,6 @@ class PokeBattle_AI
                 if move.damagingMove?
                     hpMod = 50 * b.hp.to_f / b.totalhp.to_f
                     hpMod *= -1 if targetWeak
-                    echoln("HP-mod: #{hpMod}")
                     score += hpMod
                 end
                 score = score.round
@@ -289,7 +288,7 @@ class PokeBattle_AI
 
         # Don't use a move that would fail against the target
         if !target.nil? && move.pbFailsAgainstTarget?(user,target)
-            echoln("Scoring #{move.name} a 1 due to being predicted to fail against the target against target #{target}")
+            echoln("Scoring #{move.name} a 0 due to being predicted to fail against the target against target #{target}")
             score = 0
         end
 
