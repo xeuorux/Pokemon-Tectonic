@@ -1095,7 +1095,7 @@
 1029,CRUELWHIPBLADE,Cruel Whipblade,104,30,GRASS,Physical,100,12,0,NearOther,0,abefp,"The user flicks its thorns, dealing damage and setting a layer of Poison Spikes around the target.",
 1030,HONORLESSSTING,Honorless Sting,586,105,POISON,Physical,100,12,0,NearOther,0,abef,"The user uses venom that turns the target's body against it. Super effective vs Fighting-types.",POISONSTING
 1031,MURKYFOG,Murky Fog,050,85,POISON,Special,0,10,0,NearOther,0,bef,"The user attacks with a pitch black fog. All of the target's stat changes are returned to normal.",SMOKESCREEN
-1032,SLIMEBALL,Slimeball,18F,80,POISON,Special,100,12,0,AllNearOthers,0,bef,"The user attacks with cloying slime, rendering the target's item sticky and unusable.",SLUDGEBOMB
+1032,SLIMEBALL,Slimeball,18F,80,POISON,Special,100,12,0,NearOther,0,bef,"The user attacks with cloying slime, rendering the target's item sticky and unusable.",SLUDGEBOMB
 1033,AUTUMNBLAST,Autumn Blast,03C,70,GRASS,Special,100,12,0,NearOther,0,befn,"The user sheds its leaves to attack. This lowers the user's defenses.",LEAFTORNADO
 1034,INCISION,Incision,58D,50,DARK,Physical,100,12,0,NearOther,0,abefp,"The user prepares a precise cut. Always a critical hit, but lowers the user's Speed.",NIGHTSLASH
 1035,VIPERSHOCK,Vipershock,58A,80,POISON,Physical,100,5,0,NearOther,0,abef,"The user finishes off its prey. Power is tripled against poisoned targets.",POISONFANG
