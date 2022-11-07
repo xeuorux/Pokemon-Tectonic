@@ -311,7 +311,7 @@ class PokeBattle_Battle
   #=============================================================================
   def pbEORTerrain
     # Count down terrain duration
-    @field.terrainDuration -= 1 if @field.terrainDuration>0
+    @field.terrainDuration -= 1 if @field.terrainDuration > 0
     # Terrain wears off
     if @field.terrain != :None && @field.terrainDuration == 0
       endTerrain
@@ -333,7 +333,7 @@ class PokeBattle_Battle
     # Status-curing effects/abilities and HP-healing items
     priority.each do |b|
       next if b.fainted?
-       if b.affectedByTerrain?
+      if b.affectedByTerrain?
         PBDebug.log("[Lingering effect] Grassy Terrain affects #{b.pbThis(true)}")
         if pbCheckOpposingAbility(:SNAKEPIT)
           pbDisplay(_INTL("{1} is lashed at by the pit of snakes!",b.pbThis))

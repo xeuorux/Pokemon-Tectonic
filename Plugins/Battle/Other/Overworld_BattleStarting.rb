@@ -200,12 +200,16 @@ def pbTrainerBattleCore(*args)
   Audio.me_stop
   # Perform the battle itself
   decision = 0
-  pbBattleAnimation(pbGetTrainerBattleBGM(foeTrainers),(battle.singleBattle?) ? 1 : 3,foeTrainers) {
-    pbSceneStandby {
-      decision = battle.pbStartBattle
+  if battle.autoTesting
+    decision = battle.pbStartBattle
+  else
+    pbBattleAnimation(pbGetTrainerBattleBGM(foeTrainers),(battle.singleBattle?) ? 1 : 3,foeTrainers) {
+      pbSceneStandby {
+        decision = battle.pbStartBattle
+      }
+      pbAfterBattle(decision,canLose)
     }
-    pbAfterBattle(decision,canLose)
-  }
+  end
   Input.update
   # Save the result of the battle in a Game Variable (1 by default)
   #    0 - Undecided or aborted
@@ -368,8 +372,10 @@ end
 #===============================================================================
 def battleAutoTest(trainerID, trainerName)
   loop do
+    setBattleRule("autotesting")
     $game_variables[LEVEL_CAP_VAR] = 70
     pbTrainerBattle(trainerID, trainerName)
+    pbHealAll
   end
 end
 

@@ -256,13 +256,11 @@ class PokeBattle_StatUpMove < PokeBattle_Move
 
   def pbEffectGeneral(user)
     return if damagingMove?
-    user.pbRaiseStatStage(@statUp[0],@statUp[1],user)
+    user.tryRaiseStat(@statUp[0],user,increment: @statUp[1], move: self)
   end
 
   def pbAdditionalEffect(user,target)
-    if user.pbCanRaiseStatStage?(@statUp[0],user,self)
-      user.pbRaiseStatStage(@statUp[0],@statUp[1],user)
-    end
+    user.tryRaiseStat(@statUp[0],user,increment: @statUp[1], move: self)
   end
 
   def getScore(score,user,target,skill=100)
@@ -318,11 +316,11 @@ class PokeBattle_MultiStatUpMove < PokeBattle_Move
 
   def pbEffectGeneral(user)
     return if damagingMove?
-    user.pbRaiseMultipleStatStages(@statUp,user,self)
+    user.pbRaiseMultipleStatStages(@statUp,user,move: self)
   end
 
   def pbAdditionalEffect(user,target)
-    user.pbRaiseMultipleStatStages(@statUp,user,self)
+    user.pbRaiseMultipleStatStages(@statUp,user,move: self)
   end
 
   def getScore(score,user,target,skill=100)
@@ -334,7 +332,7 @@ end
 class PokeBattle_StatDownMove < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if @battle.pbAllFainted?(target.idxOwnSide)
-    user.pbLowerMultipleStatStages(@statDown, user, self)
+    user.pbLowerMultipleStatStages(@statDown, user, move: self)
   end
 
   def getScore(score,user,target,skill=100)
@@ -363,13 +361,12 @@ class PokeBattle_TargetStatDownMove < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    target.pbLowerStatStage(@statDown[0],@statDown[1],user)
+    target.tryLowerStat(@statDown[0],user,increment: @statDown[1], move: self)
   end
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    return if !target.pbCanLowerStatStage?(@statDown[0],user,self)
-    target.pbLowerStatStage(@statDown[0],@statDown[1],user)
+    target.tryLowerStat(@statDown[0],user, increment: @statDown[1], move: self)
   end
 
   def getScore(score,user,target,skill=100)
@@ -470,11 +467,11 @@ class PokeBattle_TargetMultiStatDownMove < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    target.pbLowerMultipleStatStages(@statDown,user,self)
+    target.pbLowerMultipleStatStages(@statDown,user,move: self)
   end
 
   def pbAdditionalEffect(user,target)
-    target.pbLowerMultipleStatStages(@statDown,user,self)
+    target.pbLowerMultipleStatStages(@statDown,user,move: self)
   end
 
   def getScore(score,user,target,skill=100)
@@ -1046,12 +1043,12 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    target.pbRaiseMultipleStatStages(@statUp,user,self)
+    target.pbRaiseMultipleStatStages(@statUp,user,move: self)
   end
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    target.pbRaiseMultipleStatStages(@statUp,user,self)
+    target.pbRaiseMultipleStatStages(@statUp,user,move: self)
   end
   
   def getScore(score,user,target,skill=100)
@@ -1268,27 +1265,15 @@ end
 # Each subclass must define a @statUp and @statDown array in their initialization method
 class PokeBattle_StatUpDownMove < PokeBattle_Move 
 	def pbMoveFailed?(user,targets)
-	  failed = true
-	  for i in 0...@statUp.length/2
-		if user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
-		  failed = false; break
-		end
-	  end
-	  for i in 0...@statDown.length/2
-		if user.pbCanLowerStatStage?(@statDown[i*2],user,self)
-		  failed = false; break
-		end
-	  end
-	  if failed
+    return false if user.pbCanRaiseAnyOfStats?(@statUp,user,move: self)
+    return false if user.pbCanRaiseAnyOfStats?(@statDown,user,move: self)
 		@battle.pbDisplay(_INTL("{1}'s stats can't be changed further!",user.pbThis))
 		return true
-	  end
-	  return false
 	end
   
 	def pbEffectGeneral(user)
-	  user.pLowerMultipleStages(@statDown,user,self)
-	  user.pbRaiseMultipleStatStages(@statUp,user,self)
+	  user.pbLowerMultipleStatStages(@statDown,user,move: self)
+	  user.pbRaiseMultipleStatStages(@statUp,user,move: self)
 	end
   
 	def getScore(score,user,target,skill=100)
@@ -1318,6 +1303,7 @@ class PokeBattle_PartyMemberEffectMove < PokeBattle_Move
 	end
 
 	def pbMoveFailed?(user,targets)
+    return true if @battle.autoTesting
 		@battle.pbParty(user.index).each do |pkmn|
 			return false if legalChoice(pkmn)
 		end

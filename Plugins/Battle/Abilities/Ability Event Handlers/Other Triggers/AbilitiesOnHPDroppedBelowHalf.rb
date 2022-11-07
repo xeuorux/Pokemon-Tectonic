@@ -13,7 +13,7 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:EMERGENCYEXIT,
         next true
       end
       # In trainer battles
-      next false if pbAllFainted?(battler.idxOpposingSide)
+      next false if battle.pbAllFainted?(battler.idxOpposingSide)
       next battle.triggeredSwitchOut(battler.index)
     }
   )

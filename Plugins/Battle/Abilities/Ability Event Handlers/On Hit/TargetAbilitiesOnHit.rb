@@ -24,7 +24,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CUTECHARM,
 BattleHandlers::TargetAbilityOnHit.add(:GOOEY,
   proc { |ability,user,target,move,battle|
     next if !move.pbContactMove?(user)
-    user.pbLowerStatStageByAbility(:SPEED,1,target,true,true)
+    user.tryLowerStat(:SPEED,target,showAbilitySplash: true)
   }
 )
 
@@ -43,31 +43,30 @@ BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
 BattleHandlers::TargetAbilityOnHit.add(:RATTLED,
   proc { |ability,user,target,move,battle|
     next if ![:BUG, :DARK, :GHOST].include?(move.calcType)
-    target.pbRaiseStatStageByAbility(:SPEED,1,target)
+    target.tryRaiseStat(:SPEED,target,showAbilitySplash: true)
   }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:STAMINA,
   proc { |ability,user,target,move,battle|
-    target.pbRaiseStatStageByAbility(:DEFENSE,1,target)
+    target.tryRaiseStat(:DEFENSE,target,showAbilitySplash: true)
   }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:WATERCOMPACTION,
   proc { |ability,user,target,move,battle|
     next if move.calcType != :WATER
-    target.pbRaiseStatStageByAbility(:DEFENSE,2,target)
+    target.tryRaiseStat(:DEFENSE,target,increment: 2, showAbilitySplash: true)
   }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
   proc { |ability,user,target,move,battle|
     next if !move.physicalMove?
-    next if !target.pbCanLowerStatStage?(:DEFENSE, target) &&
-            !target.pbCanRaiseStatStage?(:SPEED, target)
+    next unless target.pbCanLowerAnyOfStats?([:DEFENSE,:SPEED],target)
     battle.pbShowAbilitySplash(target)
-    target.pbLowerStatStageByAbility(:DEFENSE, 1, target, false)
-    target.pbRaiseStatStageByAbility(:SPEED, 2, target, false)
+    target.tryLowerStat(:DEFENSE,target)
+    target.tryRaiseStat(:SPEED,target, increment: 2)
     battle.pbHideAbilitySplash(target)
   }
 )
@@ -241,7 +240,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
 BattleHandlers::TargetAbilityOnHit.add(:STEAMENGINE,
   proc { |ability,user,target,move,battle|
     next if move.calcType != :FIRE && move.calcType != :WATER
-    target.pbRaiseStatStageByAbility(:SPEED,6,target)
+    target.tryRaiseStat(:SPEED,target,increment: 6, showAbilitySplash: true)
   }
 )
 
@@ -262,10 +261,10 @@ BattleHandlers::TargetAbilityOnHit.add(:COTTONDOWN,
   proc { |ability,user,target,move,battle|
     battle.pbShowAbilitySplash(target)
     target.eachOpposing{|b|
-      b.pbLowerStatStage(:SPEED,1,target)
+      b.tryLowerStat(:SPEED,target)
     }
     target.eachAlly{|b|
-      b.pbLowerStatStage(:SPEED,1,target)
+      b.tryLowerStat(:SPEED,target)
     }
     battle.pbHideAbilitySplash(target)
   }
@@ -283,8 +282,8 @@ BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
       if user.takesIndirectDamage?(true)
         user.applyFractionalDamage(1.0/4.0)
       end
-      if gulpform==1
-        user.pbLowerStatStageByAbility(:DEFENSE,1,target,false)
+      if gulpform == 1
+        user.tryLowerStat(:DEFENSE, target, showAbilitySplash: true)
       elsif gulpform==2
         msg = nil
         user.pbParalyze(target,msg)
@@ -434,16 +433,16 @@ BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
 
 BattleHandlers::TargetAbilityOnHit.add(:GRIT,
   proc { |ability,user,target,move,battle|
-    target.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,target)
+    target.tryRaiseStat(:SPECIAL_DEFENSE,target,showAbilitySplash: true)
   }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
   proc { |ability,user,target,move,battle|
     if move.physicalMove?
-		  target.pbRaiseStatStageByAbility(:DEFENSE,1,target)
+		  target.tryRaiseStat(:DEFENSE,target,showAbilitySplash: true)
 	  else
-		  target.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,target)
+		  target.tryRaiseStat(:SPECIAL_DEFENSE,target,showAbilitySplash: true)
 	  end
   }
 )
@@ -485,12 +484,7 @@ BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
 BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
   proc { |ability,user,target,move,battle|
     next if !Effectiveness.resistant?(target.damageState.typeMod)
-	if target.pbCanRaiseStatStage?(:ATTACK,target) || target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
-		battle.pbShowAbilitySplash(target)
-		target.pbRaiseStatStageByAbility(:ATTACK,1,target,false) if target.pbCanRaiseStatStage?(:ATTACK,target)
-		target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target,false) if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
-		battle.pbHideAbilitySplash(target)
-	end
+    target.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1], target, showAbilitySplash: true)
   }
 )
 
@@ -514,18 +508,6 @@ BattleHandlers::TargetAbilityOnHit.add(:CONSTRICTOR,
     if move.physicalMove? && !target.fainted?
       battle.forceUseMove(target,:BIND,user.index,true,nil,nil,true)
 	  end
-  }
-)
-
-BattleHandlers::TargetAbilityAfterMoveUse.add(:REAWAKENEDPOWER,
-  proc { |ability,target,user,move,switched,battle|
-    next if !move.damagingMove?
-    next if target.damageState.initialHP<target.totalhp/2 || target.hp>=target.totalhp/2
-    if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
-      battle.pbShowAbilitySplash(target)
-      target.pbMaximizeStatStage(:SPECIAL_ATTACK,user,self) if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
-      battle.pbHideAbilitySplash(target)
-    end
   }
 )
 

@@ -61,7 +61,7 @@ class PokeBattle_Move
 
   # Returns whether the item was removed
   def stealItem(stealer,victim,showStealerSplash=false)
-    return false unless canStealItem?(remover,victim)
+    return false unless canStealItem?(stealer,victim)
     @battle.pbShowAbilitySplash(stealer) if showStealerSplash
     if victim.hasActiveAbility?(:STICKYHOLD)
       @battle.pbShowAbilitySplash(victim) if stealer.opposes?(victim)
@@ -72,13 +72,13 @@ class PokeBattle_Move
     end
     oldVictimItem = victim.item
     oldVictimItemName = victim.itemName
-    b.pbRemoveItem
+    victim.pbRemoveItem
     if @battle.curseActive?(:CURSE_SUPER_ITEMS)
       @battle.pbDisplay(_INTL("{1}'s {2} turned to dust.",victim.pbThis,oldVictimItemName))
       @battle.pbHideAbilitySplash(stealer) if showStealerSplash
     else
       @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",stealer.pbThis,
-        b.pbThis(true),stealer.itemName))
+        victim.pbThis(true),oldVictimItemName))
       # Permanently steal items from wild pokemon
       if @battle.wildBattle? && victim.opposes? && !@battle.bossBattle?
         victim.setInitialItem(nil)

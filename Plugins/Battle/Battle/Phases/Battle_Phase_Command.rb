@@ -282,6 +282,17 @@ class PokeBattle_Battle
 		resetChance = 5
 		speciesChangeChance = 5
 
+		# Change all party members
+		[@party1, @party2].each_with_index do |party,partyIndex|
+			party.each_with_index do |pokemon,i|
+				next if pokemon.nil? || !pokemon.able?
+				next if pbFindBattler(i,partyIndex)   # Skip Pokémon in battle
+				pokemon.species = GameData::Species::DATA.keys.sample
+				pokemon.level = 1 + pbRandom(69).ceil
+				pokemon.calc_stats
+			end
+		end
+
 		# Change all battlers
 		@battlers.each do |b|
 			next if b.nil? || b.pokemon.nil?
@@ -323,7 +334,7 @@ class PokeBattle_Battle
 			endTerrain
 		else
 			if pbRandom(100) < changeChance
-				pbStartTerrain(nil,[:Grassy,:Psychic,:Fairy,:Electric].sample,)
+				pbStartTerrain(nil,[:Grassy,:Psychic,:Fairy,:Electric].sample)
 			end
 		end
 		@sides.each do |side|
@@ -332,8 +343,6 @@ class PokeBattle_Battle
 		@positions.each do |position|
 			position.resetEffects if pbRandom(100) < changeChance
 		end
-		pbWait(1)
-		Graphics.update
 	end
 
 	def pbCommandPhaseLoop(isPlayer)

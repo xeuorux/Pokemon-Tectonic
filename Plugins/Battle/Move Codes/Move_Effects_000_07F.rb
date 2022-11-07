@@ -817,8 +817,8 @@ class PokeBattle_Move_037 < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user,target)
-    stat = @statArray[@battle.pbRandom(@statArray.length)]
-    target.pbRaiseStatStage(stat,2,user)
+    stat = @statArray.sample
+    target.tryRaiseStat(stat,user,increment: 2, move: self)
   end
 
   def getScore(score,user,target,skill=100)
@@ -956,9 +956,7 @@ class PokeBattle_Move_040 < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user,target)
-    if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-      target.pbRaiseStatStage(:SPECIAL_ATTACK,2,user)
-    end
+    target.tryRaiseStat(:SPECIAL_ATTACK,user,self,2)
     target.pbCharm if target.pbCanCharm?(user,false,self)
   end
 
@@ -989,9 +987,7 @@ class PokeBattle_Move_041 < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user,target)
-    if target.pbCanRaiseStatStage?(:ATTACK,user,self)
-      target.pbRaiseStatStage(:ATTACK,2,user)
-    end
+    target.tryRaiseStat(:ATTACK,user,self,2)
     target.pbConfuse if target.pbCanConfuse?(user,false,self)
   end
 
@@ -1117,9 +1113,7 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
   end
 
   def pbEffectAgainstTarget(user,target)
-    if target.pbCanLowerStatStage?(@statDown[0],user,self)
-      target.pbLowerStatStage(@statDown[0],@statDown[1],user)
-    end
+    super
     targetSide = target.pbOwnSide
     ourSide = user.pbOwnSide
     eachDefoggable(targetSide,false) do |effect,data|
@@ -2458,7 +2452,7 @@ class PokeBattle_Move_078 < PokeBattle_SleepMove
     return if user.fainted? || user.transformed?
     return if !user.isSpecies?(:MELOETTA)
     return if user.hasActiveAbility?(:SHEERFORCE)
-    newForm = (user.Form + 1) % 2
+    newForm = (user.form + 1) % 2
     user.pbChangeForm(newForm,_INTL("{1} transformed!",user.pbThis))
   end
 end

@@ -32,9 +32,6 @@ BattleHandlers::UserItemAfterMoveUse.add(:LIFEORB,
       next if battle.pbAllFainted?(user.idxOwnSide) ||
               battle.pbAllFainted?(user.idxOpposingSide)
       next if !move.soundMove? || numHits == 0
-      next if !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK, user)
-      battle.pbCommonAnimation("UseItem",user)
-      user.pbRaiseStatStage(:SPECIAL_ATTACK, 1, user)
-      user.pbConsumeItem
+      user.tryRaiseStat(:SPECIAL_ATTACK,user,item: user.item)
     }
   )

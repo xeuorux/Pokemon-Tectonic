@@ -1,6 +1,6 @@
 BattleHandlers::AbilityOnBattlerFainting.add(:SOULHEART,
     proc { |ability,battler,fainted,battle|
-      battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,battler)
+      battler.tryRaiseStat(:SPECIAL_ATTACK,battler,showAbilitySplash: true)
     }
 )
 

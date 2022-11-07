@@ -782,7 +782,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:apply_proc => Proc.new { |battle,battler,value|
 		if battler.inTwoTurnAttack?("0C9","0CC")   # Fly/Bounce. NOTE: Not Sky Drop.
 			battler.disableEffect(:TwoTurnAttack)
-			battle.pbClearChoice(target.index) if !battler.movedThisRound?
+			battle.pbClearChoice(battler.index) if !battler.movedThisRound?
 		end
 		battler.disableEffect(:MagnetRise)
 		battler.disableEffect(:Telekinesis)
@@ -1130,12 +1130,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	},
 	:eor_proc => Proc.new { |battle,battler,value|
 		octouser = battle.battlers[battler.effects[:OctolockUser]]
-		if battler.pbCanLowerStatStage?(:DEFENSE,octouser)
-			battler.pbLowerStatStage(:DEFENSE,1,octouser,true,false,true)
-		end
-		if battler.pbCanLowerStatStage?(:SPECIAL_DEFENSE,octouser)
-			battler.pbLowerStatStage(:SPECIAL_DEFENSE,1,octouser,true,false,true)
-		end
+		battler.pbLowerMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1],octouser)
 	},
 	:sub_effects => [:OctolockUser],
 })
@@ -1419,23 +1414,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 		battle.pbDisplay(_INTL("{1} began eroding!",battler.pbThis))
 	},
 	:eor_proc => Proc.new { |battle,battler,value|
-		showDebuffAnim = true
-		if battler.pbCanLowerStatStage?(:DEFENSE,battler)
-			battler.pbLowerStatStage(:DEFENSE,1,battler,showDebuffAnim)
-			showDebuffAnim = false
-		end
-		if battler.pbCanLowerStatStage?(:SPECIAL_DEFENSE,battler)
-			battler.pbLowerStatStage(:SPECIAL_DEFENSE,1,battler,showDebuffAnim)
-		end
-
-		showBuffAnim = true
-		if battler.pbCanRaiseStatStage?(:ATTACK,battler)
-			battler.pbRaiseStatStage(:ATTACK,1,battler,showBuffAnim)
-			showBuffAnim = false
-		end
-		if battler.pbCanRaiseStatStage?(:SPECIAL_ATTACK,battler)
-			battler.pbRaiseStatStage(:SPECIAL_ATTACK,1,battler,showBuffAnim)
-		end
+		battler.pbLowerMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1],battler)
+		battler.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],battler)
+		battler.pbItemStatRestoreCheck
 	},
 })
 
@@ -1471,7 +1452,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:resets_eor	=> true,
 	:protection_info => {
 		:hit_proc => Proc.new { |user, target, move, battle|
-			user.pbLowerStatStage(:ATTACK, 1, nil) if move.physicalMove? && user.pbCanLowerStatStage?(:ATTACK)
+			user.tryLowerStat(:ATTACK, user, increment: 1) if move.physicalMove?
 		}
 	}
 })
@@ -1481,7 +1462,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:real_name => "Obstruct",
 	:protection_info => {
 		:hit_proc => Proc.new { |user, target, move, battle|
-			user.pbLowerStatStage(:DEFENSE, 2, nil) if move.physicalMove? && user.pbCanLowerStatStage?(:DEFENSE)
+			user.tryLowerStat(:DEFENSE,user, increment: 2) if move.physicalMove?
 		}
 	}
 })

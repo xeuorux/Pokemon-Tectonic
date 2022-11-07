@@ -140,7 +140,7 @@ class PokeBattle_Move
     def windMove?;          return @flags[/q/]; end
     def empoweredMove?;     return @flags[/y/]; end
   
-    def nonLethal?(_user,_target); return false; end   # For False Swipe
+    def nonLethal?(user,_target); return false; end   # For False Swipe
   
     def ignoresSubstitute?(user)   # user is the Pokémon using this move
       return true if soundMove?

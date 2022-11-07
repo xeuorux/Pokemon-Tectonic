@@ -54,9 +54,7 @@ BattleHandlers::UserAbilityOnHit.add(:NERVENUMBER,
 BattleHandlers::UserAbilityOnHit.add(:SOUNDBARRIER,
   proc { |ability,user,target,move,battle|
     next if !move.soundMove?
-    if user.pbCanRaiseStatStage?(:DEFENSE,user)
-      user.pbRaiseStatStageByAbility(:DEFENSE,1,user)
-    end
+    user.tryRaiseStat(:DEFENSE,user)
   }
 )
 

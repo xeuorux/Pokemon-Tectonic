@@ -149,9 +149,6 @@ GameData::BattleEffect.register_effect(:Side,{
 			# Checking the move priority saved from pbCalculatePriority
 			battle.choices[user.index][4] > 0
 		},
-		:hit_proc => Proc.new { |user, target, move, battle|
-			user.pbLowerStatStage(:ATTACK, 1, nil) if move.physicalMove? && user.pbCanLowerStatStage?(:ATTACK)
-		}
 	}
 })
 

@@ -1,30 +1,21 @@
 BattleHandlers::TargetItemOnHit.add(:ABSORBBULB,
   proc { |item,user,target,move,battle|
     next if move.calcType != :WATER
-    next if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
-    battle.pbCommonAnimation("UseItem",target)
-    target.pbRaiseStatStageByCause(:SPECIAL_ATTACK,1,target,target.itemName)
-    target.pbHeldItemTriggered(item)
+    target.pbHeldItemTriggered(item) if target.tryRaiseStat(:SPECIAL_ATTACK,target,item: target.item)
   }
 )
 
 BattleHandlers::TargetItemOnHit.add(:CELLBATTERY,
   proc { |item,user,target,move,battle|
     next if move.calcType != :ELECTRIC
-    next if !target.pbCanRaiseStatStage?(:ATTACK,target)
-    battle.pbCommonAnimation("UseItem",target)
-    target.pbRaiseStatStageByCause(:ATTACK,1,target,target.itemName)
-    target.pbHeldItemTriggered(item)
+    target.pbHeldItemTriggered(item) if target.tryRaiseStat(:ATTACK,target,item: target.item)
   }
 )
 
 BattleHandlers::TargetItemOnHit.add(:LUMINOUSMOSS,
   proc { |item,user,target,move,battle|
     next if move.calcType != :WATER
-    next if !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,target)
-    battle.pbCommonAnimation("UseItem",target)
-    target.pbRaiseStatStageByCause(:SPECIAL_DEFENSE,1,target,target.itemName)
-    target.pbHeldItemTriggered(item)
+    target.pbHeldItemTriggered(item) if target.tryRaiseStat(:SPECIAL_DEFENSE,target,item: target.item)
   }
 )
 
@@ -119,16 +110,9 @@ BattleHandlers::TargetItemOnHit.add(:WEAKNESSPOLICY,
     next if !Effectiveness.super_effective?(target.damageState.typeMod)
     next if !target.pbCanRaiseStatStage?(:ATTACK,target) &&
             !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
-    battle.pbCommonAnimation("UseItem",target)
-    showAnim = true
-    if target.pbCanRaiseStatStage?(:ATTACK,target)
-      target.pbRaiseStatStageByCause(:ATTACK,2,target,target.itemName,showAnim)
-      showAnim = false
-    end
-    if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
-      target.pbRaiseStatStageByCause(:SPECIAL_ATTACK,2,target,target.itemName,showAnim)
-    end
-    target.pbHeldItemTriggered(item)
+    if target.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],target,item: target.item)
+      target.pbHeldItemTriggered(item)
+    end    
   }
 )
 
@@ -153,9 +137,6 @@ BattleHandlers::TargetItemOnHit.add(:STICKYBARB,
 BattleHandlers::TargetItemOnHit.add(:SNOWBALL,
   proc { |item,user,target,move,battle|
     next if move.calcType != :ICE
-    next if !target.pbCanRaiseStatStage?(:ATTACK,target)
-    battle.pbCommonAnimation("UseItem",target)
-    target.pbRaiseStatStageByCause(:ATTACK,1,target,target.itemName)
-    target.pbHeldItemTriggered(item)
+    target.pbHeldItemTriggered(item) if target.tryRaiseStat(:ATTACK,target,item: target.item)
   }
 )

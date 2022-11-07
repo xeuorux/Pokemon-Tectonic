@@ -26,12 +26,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:BERSERK,
   proc { |ability,target,user,move,switched,battle|
     next if !move.damagingMove?
     next if !target.knockedBelowHalf?
-    if target.pbCanRaiseStatStage?(:ATTACK,target) || target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
-      battle.pbShowAbilitySplash(target)
-      target.pbRaiseStatStageByAbility(:ATTACK,1,target,false) if target.pbCanRaiseStatStage?(:ATTACK,target)
-      target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target,false) if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
-      battle.pbHideAbilitySplash(target)
-    end
+    target.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1], target, showAbilitySplash: true)
   }
 )
 
@@ -39,7 +34,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:ADRENALINERUSH,
   proc { |ability,target,user,move,switched,battle|
     next if !move.damagingMove?
     next if !target.knockedBelowHalf?
-	target.pbRaiseStatStageByAbility(:SPEED,2,target) if target.pbCanRaiseStatStage?(:SPEED,target)
+    target.tryRaiseStat(:SPEED,target,increment: 2, showAbilitySplash: true)
   }
 )
 
@@ -59,18 +54,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:BRILLIANTFLURRY,
   proc { |ability,target,user,move,switched,battle|
     next if !move.damagingMove?
     next if !target.knockedBelowHalf?
-    next if !user.pbCanLowerStatStage?(:ATTACK,target) && !user.pbCanLowerStatStage?(:SPECIAL_ATTACK,target) && !user.pbCanLowerStatStage?(:SPEED,target)
-    battle.pbShowAbilitySplash(target)
-    if user.pbCanLowerStatStage?(:ATTACK,target,nil,true)
-      user.pbLowerStatStage(:ATTACK,1,target)
-    end
-    if user.pbCanLowerStatStage?(:SPECIAL_ATTACK,target,nil,true)
-      user.pbLowerStatStage(:SPECIAL_ATTACK,1,target)
-    end
-    if user.pbCanLowerStatStage?(:SPEED,target,nil,true)
-      user.pbLowerStatStage(:SPEED,1,target)
-    end
-    battle.pbHideAbilitySplash(target)
+    user.pbLowerMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1,:SPEED,1], user, showAbilitySplash: true)
   }
 )
 
@@ -85,5 +69,13 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:BOULDERNEST,
         target.pbOpposingSide.applyEffect(:StealthRock)
     end
     battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityAfterMoveUse.add(:REAWAKENEDPOWER,
+  proc { |ability,target,user,move,switched,battle|
+    next if !move.damagingMove?
+    next if !target.knockedBelowHalf?
+    target.pbMaximizeStatStage(:SPECIAL_ATTACK,user,self,false,true)
   }
 )

@@ -9,9 +9,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:BEASTBOOST,
     userStats.each_value { |value| highestStatValue = value if highestStatValue < value }
     GameData::Stat.each_main_battle do |s|
       next if userStats[s.id] < highestStatValue
-      if user.pbCanRaiseStatStage?(s.id, user)
-        user.pbRaiseStatStageByAbility(s.id, numFainted, user)
-      end
+      stat = s.id
+      user.tryRaiseStat(stat,user, increment: numFainted, showAbilitySplash: true)
       break
     end
   }
@@ -22,8 +21,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:MOXIE,
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
-    next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user)
-    user.pbRaiseStatStageByAbility(:ATTACK,numFainted,user)
+    next if numFainted == 0
+    user.tryRaiseStat(:ATTACK,user,increment: numFainted, showAbilitySplash: true)
   }
 )
 
@@ -84,8 +83,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:HUBRIS,
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
-    next if numFainted==0 || !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user)
-    user.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,numFainted,user)
+    next if numFainted == 0
+    user.tryRaiseStat(:SPECIAL_ATTACK,user,increment: numFainted,showAbilitySplash: true)
   }
 )
 
@@ -113,7 +112,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
     targets.each do |b|
 		itemName = GameData::Item.get(b.item).name if b.item
       removeMessage = _INTL("{1} turned {2}'s {3} into gold!",user.pbThis,
-        b.pbThis(true),itemName)
+        b.pbThis(true),b.itemName)
       if move.removeItem(user,b,true,removeMessage)
 		echoln("move.removeitem succeeded")
         if user.pbOwnedByPlayer?
@@ -132,10 +131,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
-    next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user)
-    user.pbRaiseStatStageByAbility(:ATTACK,numFainted,user)
-	  next if numFainted==0 || !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user)
-	  user.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,numFainted,user)
+    next if numFainted == 0
+    user.pbRaiseMultipleStatStages([:ATTACK,numFainted,:SPECIAL_ATTACK,numFainted],user, showAbilitySplash: true)
   }
 )
 
@@ -151,7 +148,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:FOLLOWTHROUGH,
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
-    next if numFainted==0 || !user.pbCanRaiseStatStage?(:FOLLOWTHROUGH,user)
-    user.pbRaiseStatStageByAbility(:FOLLOWTHROUGH,numFainted,user)
+    next if numFainted == 0
+    user.tryRaiseStat(:SPEED,user,increment: numFainted,showAbilitySplash: true)
   }
 )

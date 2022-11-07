@@ -11,10 +11,6 @@ BattleHandlers::OnBerryConsumedAbility.add(:CHEEKPOUCH,
 
 BattleHandlers::OnBerryConsumedAbility.add(:ROAST,
     proc { |ability,user,berry,own_item,battle|
-      next if !user.pbCanRaiseStatStage?(:ATTACK,user) && !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user)
-      battle.pbShowAbilitySplash(user)
-      user.pbRaiseStatStage(:ATTACK,1,user) if user.pbCanRaiseStatStage?(:ATTACK,user)
-      user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user) if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user)
-      battle.pbHideAbilitySplash(user)
+      user.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,showAbilitySplash: true)
     }
 )

@@ -19,9 +19,7 @@ def pbBattleMoveImmunityStatAbility(user,target,move,moveType,immuneType,stat,in
 	return false if user.index==target.index
 	return false if moveType != immuneType
 	battle.pbShowAbilitySplash(target) if showMessages
-	if target.pbCanRaiseStatStage?(stat,target)
-	  target.pbRaiseStatStage(stat,increment,target)
-	else
+	if target.tryRaiseStat(stat,target,increment: increment)
 	  battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true))) if showMessages
 	end
 	battle.pbHideAbilitySplash(target)

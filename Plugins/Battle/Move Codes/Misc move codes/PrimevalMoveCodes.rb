@@ -38,7 +38,7 @@ class PokeBattle_Move_601 < PokeBattle_Move_0FF
 	
 	def pbEffectGeneral(user)
 		super
-		user.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,self)
+		user.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,move: self)
 		transformType(user,:FIRE)
 	end
 end
@@ -87,8 +87,7 @@ class PokeBattle_Move_605 < PokeBattle_Move_102
 	def pbEffectGeneral(user)
 		super
 		@battle.eachOtherSideBattler(user) do |b|
-			next if !b.pbCanLowerStatStage?(:SPEED,user,self)
-			b.pbLowerStatStage(:SPEED,2,user)
+			b.tryLowerStat(:SPEED,user, increment: 2, move: self)
 	    end
 		transformType(user,:ICE)
 	end
@@ -138,7 +137,7 @@ class PokeBattle_Move_609 < PokeBattle_Move_02C
 	 include EmpoweredMove
 
 	def pbEffectGeneral(user)
-		user.pbRaiseStatStage(:ACCURACY,3,user) if user.pbCanRaiseStatStage?(:ACCURACY,user,self)
+		user.tryRaiseStat(:ACCURACY,user,increment: 3, move: self)
 		super
 		transformType(user,:PSYCHIC)
 	end
@@ -164,8 +163,7 @@ class PokeBattle_Move_611 < PokeBattle_Move_101
 
 	def pbEffectGeneral(user)
 		super
-		user.pbRaiseStatStage(:DEFENSE,1,user)
-		user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+		user.pbRaiseMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1],user,move:self)
 		transformType(user,:ROCK)
 	end
 end
@@ -209,7 +207,7 @@ class PokeBattle_Move_614 < PokeBattle_Move_0B7
 	
 	def pbEffectAgainstTarget(user,target)
 		target.applyEffect(:Torment)
-		target.pbLowerMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,self)
+		target.pbLowerMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,move: self)
 	 end
 end
 
@@ -302,8 +300,7 @@ class PokeBattle_Move_621 < PokeBattle_Move_155
 	
 	def pbEffectGeneral(user)
 		super
-		user.pbRaiseStatStage(:ATTACK,1,user)
-		user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+		user.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,move: self)
 		transformType(user,:GRASS)
 	end
 end
@@ -340,7 +337,7 @@ class PokeBattle_Move_624 < PokeBattle_Move_156
 		super
 		
 		@battle.eachSameSideBattler(user) do |b|
-			b.pbRaiseMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1],user,self)
+			b.pbRaiseMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1],user,move: self)
 		end
 
 		transformType(user,:FAIRY)
@@ -379,7 +376,7 @@ class PokeBattle_Move_626 < PokeBattle_Move_068
   
 	def pbEffectAgainstTarget(user,target)
 		super
-		target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
+		target.tryLowerStat(:SPECIAL_DEFENSE,user,move: self)
 
 		transformType(user,:POISON)
 	end

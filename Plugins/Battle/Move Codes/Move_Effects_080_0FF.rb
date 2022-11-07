@@ -473,11 +473,11 @@ class PokeBattle_Move_096 < PokeBattle_Move
 
   # This is a separate method so that the AI can use it as well
   def pbNaturalGiftBaseDamage(heldItem)
-    ret = 1
     @damageArray.each do |dmg, items|
       next if !items.include?(heldItem)
       return dmg
     end
+    return 1
   end
 
   def pbBaseDamage(baseDmg,user,target)
@@ -830,25 +830,15 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
     when 9
       target.pbFreeze if target.pbCanFreeze?(user,false,self)
     when 5
-      if target.pbCanLowerStatStage?(:ATTACK,user,self)
-        target.pbLowerStatStage(:ATTACK,1,user)
-      end
+      target.tryLowerStat(:ATTACK,user,move: self)
     when 14
-      if target.pbCanLowerStatStage?(:DEFENSE,user,self)
-        target.pbLowerStatStage(:DEFENSE,1,user)
-      end
+      target.tryLowerStat(:DEFENSE,user,move: self)
     when 3
-      if target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user,self)
-        target.pbLowerStatStage(:SPECIAL_ATTACK,1,user)
-      end
+      target.tryLowerStat(:SPECIAL_ATTACK,user,move: self)
     when 4, 6, 12
-      if target.pbCanLowerStatStage?(:SPEED,user,self)
-        target.pbLowerStatStage(:SPEED,1,user)
-      end
+      target.tryLowerStat(:SPEED,user,move: self)
     when 8
-      if target.pbCanLowerStatStage?(:ACCURACY,user,self)
-        target.pbLowerStatStage(:ACCURACY,1,user)
-      end
+      target.tryLowerStat(:ACCURACY,user,move: self)
     when 7, 11, 13
       target.pbFlinch(user)
     end
@@ -2070,9 +2060,7 @@ class PokeBattle_Move_0C8 < PokeBattle_TwoTurnMove
   end
 
   def pbChargingTurnEffect(user,target)
-    if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
-      user.pbRaiseStatStage(:DEFENSE,2,user)
-    end
+    user.tryRaiseStat(:DEFENSE,user,increment: 2, move: self)
   end
 
   def getScore(score,user,target,skill=100)
@@ -2510,7 +2498,6 @@ class PokeBattle_Move_0DA < PokeBattle_Move
   
   def pbEffectAfterAllHits(user,target)
     return unless damagingMove?
-    return if user.effectActive?(:AquaRing)
     user.applyEffect(:AquaRing)
   end
 
@@ -3248,7 +3235,7 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
     oldTargetItem = target.item; oldTargetItemName = target.itemName
     user.pbRemoveItem
     target.pbRemoveItem
-    if @battle.curseActive(:CURSE_SUPER_ITEMS)
+    if @battle.curseActive?(:CURSE_SUPER_ITEMS)
       @battle.pbDisplay(_INTL("{1}'s {2} turned to dust.",user.pbThis,oldUserItemName)) if oldUserItem
       @battle.pbDisplay(_INTL("{1}'s {2} turned to dust.",target.pbThis,oldTargetItemName)) if oldTargetItem
     else

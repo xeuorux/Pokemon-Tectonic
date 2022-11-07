@@ -29,7 +29,7 @@ class PokeBattle_Battle
       end
 
       def pbDisplaySlower(msg)
-        pbDisplayWithFormatting(_INTL("\\ss#{msg}\\1"))
+        pbDisplayWithFormatting(_INTL("\\ss#{msg}\\1")) if showMessages?
       end
 
       def pbDisplayBossNarration(msg)
@@ -41,18 +41,12 @@ class PokeBattle_Battle
       end
     
       def pbAnimation(move,user,targets,hitNum=0)
-        if !showMessages?
-          echoln("Skipping animation during AI calculations.")
-          return
-        end
+        return if !showMessages?
         @scene.pbAnimation(move,user,targets,hitNum) if @showAnims
       end
     
       def pbCommonAnimation(name,user=nil,targets=nil)
-        if !showMessages?
-          echoln("Skipping animation during AI calculations.")
-          return
-        end
+        return if !showMessages?
         return if @messagesBlocked
         @scene.pbCommonAnimation(name,user,targets) if @showAnims
       end

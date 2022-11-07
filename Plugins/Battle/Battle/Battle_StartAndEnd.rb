@@ -293,21 +293,23 @@ class PokeBattle_Battle
     curses.each do |curse_policy|
       triggerBattleEndCurse(curse_policy,self)
     end
-    # Record if the fight was perfected
-    if $Trainer.able_pokemon_count >= ableBeforeFight
-      $game_switches[94] = true 
-      pbMessage(_INTL("\\me[Battle perfected]You perfected the fight!")) if trainerBattle? && @decision == 1
-    end
-    # Update each of the player's pokemon's battling streak
-    if trainerBattle? || bossBattle?
-      pbParty(0).each_with_index do |pkmn,i|
-        wasOnStreak = pkmn.onHotStreak?
-        if pkmn.fainted? || [2,3].include?(@decision)
-          pkmn.battlingStreak = 0
-          pbMessage("#{pkmn.name}'s Hot Streak is now over.") if wasOnStreak
-        elsif @usedInBattle[0][i]
-          pkmn.battlingStreak += 1
-          pbMessage("#{pkmn.name} is on a Hot Streak!") if pkmn.onHotStreak? && !wasOnStreak
+    unless @autoTesting
+      # Record if the fight was perfected
+      if $Trainer.able_pokemon_count >= ableBeforeFight
+        $game_switches[94] = true 
+        pbMessage(_INTL("\\me[Battle perfected]You perfected the fight!")) if trainerBattle? && @decision == 1
+      end
+      # Update each of the player's pokemon's battling streak
+      if trainerBattle? || bossBattle?
+        pbParty(0).each_with_index do |pkmn,i|
+          wasOnStreak = pkmn.onHotStreak?
+          if pkmn.fainted? || [2,3].include?(@decision)
+            pkmn.battlingStreak = 0
+            pbMessage("#{pkmn.name}'s Hot Streak is now over.") if wasOnStreak
+          elsif @usedInBattle[0][i]
+            pkmn.battlingStreak += 1
+            pbMessage("#{pkmn.name} is on a Hot Streak!") if pkmn.onHotStreak? && !wasOnStreak
+          end
         end
       end
     end
@@ -320,7 +322,7 @@ class PokeBattle_Battle
     # Create all the sprites and play the battle intro animation
     @scene.pbStartBattle(self)
     # Show trainers on both sides sending out Pokémon
-    pbStartBattleSendOut(sendOuts)
+    pbStartBattleSendOut(sendOuts) unless @autoTesting
     # Curses apply if at all
     if @opponent && $PokemonGlobal.tarot_amulet_active
       @opponent.each do |opponent|
@@ -370,7 +372,7 @@ class PokeBattle_Battle
       loop do   # Now begin the battle loop
         PBDebug.log("")
         PBDebug.log("***Round #{@turnCount+1}***")
-        if @debug && @turnCount>=100
+        if (@debug || @autoTesting) && @turnCount>=100
           @decision = pbDecisionOnTime
           PBDebug.log("")
           PBDebug.log("***Undecided after 100 rounds, aborting***")
@@ -691,7 +693,6 @@ class PokeBattle_Battle
     def pbDecisionOnDraw; return 5; end     # Draw
   
     def pbJudge
-      return if @autoTesting
       fainted1 = pbAllFainted?(0)
       fainted2 = pbAllFainted?(1)
       if fainted1 && fainted2; @decision = pbDecisionOnDraw   # Draw

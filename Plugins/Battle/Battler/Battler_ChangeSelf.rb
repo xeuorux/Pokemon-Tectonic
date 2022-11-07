@@ -291,6 +291,10 @@ class PokeBattle_Battler
 			else
 				disableEffect(:Type3)
 			end
+		elsif newType.is_a?(Array)
+			@type1 = newType[0]
+			@type2 = newType[1] if newType.length > 1
+			applyEffect(:Type3,newType[2]) if newType.length > 2
 		else
 			newType = GameData::Type.get(newType).id
 			@type1 = newType
@@ -313,6 +317,7 @@ class PokeBattle_Battler
 		self.form = newForm
 		pbUpdate(true)
 		@hp = @totalhp - oldDmg
+		@hp = 1 if @hp < 1
 		disableEffect(:WeightChange)
 		@battle.scene.pbChangePokemon(self, @pokemon)
 		refreshDataBox
@@ -381,7 +386,8 @@ class PokeBattle_Battler
 		return if fainted?
 		if hasActiveAbility?(:MIMICRY)
 			newTypes = pbTypes
-			originalTypes = [@pokemon.type1, @pokemon.type2] | []
+			originalTypes = [@pokemon.type1]
+			originalTypes.push(@pokemon.type2) if @pokemon.type2 != @pokemon.type1
 			case @battle.field.terrain
 			when :Electric then   newTypes = [:ELECTRIC]
 			when :Grassy then     newTypes = [:GRASS]

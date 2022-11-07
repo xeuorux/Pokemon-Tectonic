@@ -15,8 +15,7 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
   proc { |ability,battler,battle|
     randomUp = []
     randomDown = []
-    GameData::Stat.each_battle do |s|
-      next if s == :EVASION || s == :ACCURACY
+    GameData::Stat.each_main_battle do |s|
       randomUp.push(s.id) if battler.pbCanRaiseStatStage?(s.id, battler)
       randomDown.push(s.id) if battler.pbCanLowerStatStage?(s.id, battler)
     end
@@ -24,12 +23,14 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
     battle.pbShowAbilitySplash(battler)
     if randomUp.length>0
       r = battle.pbRandom(randomUp.length)
-      battler.pbRaiseStatStageByAbility(randomUp[r],2,battler,false)
+      randomUpStat = randomUp[r]
+      battler.tryRaiseStat(randomUpStat,battler,increment: 2)
       randomDown.delete(randomUp[r])
     end
     if randomDown.length>0
       r = battle.pbRandom(randomDown.length)
-      battler.pbLowerStatStageByAbility(randomDown[r],1,battler,false)
+      randomDownStat = randomDown[r]
+      battler.tryRaiseStat(randomDownStat,battler)
     end
     battle.pbHideAbilitySplash(battler)
     battler.pbItemStatRestoreCheck if randomDown.length>0
@@ -40,8 +41,8 @@ BattleHandlers::EOREffectAbility.add(:SPEEDBOOST,
   proc { |ability,battler,battle|
     # A Pokémon's turnCount is 0 if it became active after the beginning of a
     # round
-    if battler.turnCount>0 && battler.pbCanRaiseStatStage?(:SPEED,battler)
-      battler.pbRaiseStatStageByAbility(:SPEED,1,battler)
+    if battler.turnCount > 0
+      battler.tryRaiseStat(:SPEED,battler,showAbilitySplash: true)
     end
   }
 )
@@ -104,15 +105,14 @@ BattleHandlers::EOREffectAbility.add(:WARMTHCYCLE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     if !battler.statStageAtMax?(:SPEED)
-        if battler.pbCanRaiseStatStage?(:SPEED)
-            battle.pbDisplay(_INTL("{1} warms up!",battler.pbThis))
-            battler.pbRaiseStatStage(:SPEED,2,battler)
-            battler.applyFractionalDamage(1.0/8.0,false)
-        end
+      if battler.tryRaiseStat(:SPEED,battler, increment: 2)
+        battler.applyFractionalDamage(1.0/8.0,false)
+        battle.pbDisplay(_INTL("{1} warmed up!",battler.pbThis))
+      end
     else
-        battle.pbDisplay(_INTL("{1} vents its accumulated heat!",battler.pbThis))
-        battler.pbLowerStatStage(:SPEED,6,battler)
-        battler.pbRecoverHP(battler.totalhp - battler.hp)
+      battle.pbDisplay(_INTL("{1} vents its accumulated heat!",battler.pbThis))
+      battler.tryLowerStat(:SPEED,battler,increment: 6)
+      battler.pbRecoverHP(battler.totalhp - battler.hp)
     end
     
     battle.pbHideAbilitySplash(battler)

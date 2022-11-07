@@ -724,7 +724,8 @@ class PokeBattle_Battler
 			targets.each do |b|
 				next unless b.effectActive?(:VolatileToxin)
 				@battle.pbCommonAnimation('Toxic', b)
-				@battle.pbDisplay(_INTL("The {1} burst, causing {2} to deal double damage!",GameData::BattleEffect.get(:VolatileToxin).name, move.name))
+				effectName = GameData::BattleEffect.get(:VolatileToxin).real_name
+				@battle.pbDisplay(_INTL("The {1} burst, causing {2} to deal double damage!",effectName, move.name))
 			end
 		end
 		# Messages about missed target(s) (relevant for multi-target moves only)

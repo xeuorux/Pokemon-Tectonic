@@ -264,8 +264,8 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def pbEffectGeneral(user)
       return if user.pbHasType?(:GHOST)
       # Non-Ghost effect
-      user.pbLowerStatStage(:SPEED,1,user) if user.pbCanLowerStatStage?(:SPEED,user,self)
-      user.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1], user, self)
+      user.tryLowerStat(:SPEED,user, increment: 2, move: self)
+      user.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1], user, move: self)
     end
   
     def pbEffectAgainstTarget(user,target)
@@ -1333,7 +1333,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,self)
+      target.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,move: self)
     end
 
     def getScore(score,user,target,skill=100)
@@ -1371,7 +1371,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.pbRaiseMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1],user,self)
+      target.pbRaiseMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1],user,move: self)
     end
 
     def getScore(score,user,target,skill=100)
@@ -1416,7 +1416,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      user.pbLowerMultipleStatStages(@statDown, user, self)
+      user.pbLowerMultipleStatStages(@statDown, user, move: self)
     end
 
     def getScore(score,user,target,skill=100)
@@ -1733,7 +1733,7 @@ end
   
     def pbEffectGeneral(user)
       return if !@damagingTurn
-      user.pbRaiseMultipleStatStages(@statUp,user,self)
+      user.pbRaiseMultipleStatStages(@statUp,user,move: self)
     end
 
     def getScore(score,user,target,skill=100)
@@ -1765,8 +1765,7 @@ end
 
     def pbEffectAfterAllHits(user,target)
         return if !target.damageState.fainted
-        return if !user.pbCanRaiseStatStage?(:ATTACK,user,self)
-        user.pbRaiseStatStage(:ATTACK,3,user)
+        user.tryRaiseStat(:ATTACK,user,increment: 3, move: self)
     end
   end
   
@@ -1940,9 +1939,7 @@ end
   
     def pbEffectAgainstTarget(user,target)
       target.pbPoison(user) if target.pbCanPoison?(user,false,self)
-      if target.pbCanLowerStatStage?(:SPEED,user,self)
-        target.pbLowerStatStage(:SPEED,1,user)
-      end
+      target.tryLowerStat(:SPEED,user,move: self)
     end
   end
   
@@ -2090,9 +2087,7 @@ end
     def pbEffectAgainstTarget(user,target)
       healAmount = target.pbAttack
       # Reduce target's Attack stat
-      if target.pbCanLowerStatStage?(:ATTACK,user,self)
-        target.pbLowerStatStage(:ATTACK,1,user)
-      end
+      target.tryLowerStat(:ATTACK,user,move: self)
       # Heal user
       if target.hasActiveAbility?(:LIQUIDOOZE)
         @battle.pbShowAbilitySplash(target)
@@ -2682,42 +2677,28 @@ end
 # maximum HP, rounded down. Fails if the user would faint. (Clangorous Soul)
 #===============================================================================
 class PokeBattle_Move_179 < PokeBattle_Move
+  def initialize(battle,move)
+		super
+		@statUp = [:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1,:SPEED,1]
+	end
+
   def pbMoveFailed?(user,targets)
-    if user.hp<=(user.totalhp/3) ||
-      (!user.pbCanRaiseStatStage?(:ATTACK,user,self) &&
-      !user.pbCanRaiseStatStage?(:DEFENSE,user,self) &&
-      !user.pbCanRaiseStatStage?(:SPEED,user,self) &&
-      !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self) &&
-      !user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self))
+    if user.hp <= (user.totalhp/3)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    return false
+    super
   end
-
+  
   def pbEffectGeneral(user)
-    if user.pbCanRaiseStatStage?(:ATTACK,user,self)
-      user.pbRaiseStatStage(:ATTACK,1,user)
-    end
-    if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
-      user.pbRaiseStatStage(:DEFENSE,1,user)
-    end
-    if user.pbCanRaiseStatStage?(:SPEED,user,self)
-      user.pbRaiseStatStage(:SPEED,1,user)
-    end
-    if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-      user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
-    end
-    if user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
-      user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
-    end
+    super
     user.applyFractionalDamage(1.0/3.0)
   end
   
   def getScore(score,user,target,skill=100)
-    score += 50 if user.firstTurn?
-    score -= 80 if user.hp < user.totalhp/2
-    return score
+    score -= 20
+    score -= 50 if user.hp < user.totalhp/2
+    super
   end
 end
 
@@ -2894,45 +2875,21 @@ end
 # Increases each stat by 1 stage. Prevents user from fleeing. (No Retreat)
 #===============================================================================
 class PokeBattle_Move_17F < PokeBattle_MultiStatUpMove
-  def pbMoveFailed?(user,targets,messages=true)
+  def initialize(battle,move)
+		super
+		@statUp = [:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1,:SPEED,1]
+	end
+
+  def pbMoveFailed?(user,targets)
     if user.effectActive?(:NoRetreat)
-      @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already committed to the battle!")) if messages
+      @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already committed to the battle!"))
       return true
     end
-    if !user.pbCanRaiseStatStage?(:ATTACK,user,self,true) &&
-       !user.pbCanRaiseStatStage?(:DEFENSE,user,self,true) &&
-       !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,true) &&
-       !user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self,true) &&
-       !user.pbCanRaiseStatStage?(:SPEED,user,self,true)
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    return false
+    super
   end
 
   def pbEffectGeneral(user)
-    if user.pbCanRaiseStatStage?(:ATTACK,user,self)
-      user.pbRaiseStatStage(:ATTACK,1,user)
-    end
-    if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
-      user.pbRaiseStatStage(:DEFENSE,1,user)
-    end
-    if user.pbCanRaiseStatStage?(:SPEED,user,self)
-      user.pbRaiseStatStage(:SPEED,1,user)
-    end
-    if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-      user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
-    end
-    if user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
-      user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
-    end
-
+    super
     user.applyEffect(:NoRetreat)
-  end
-  
-    def getScore(score,user,target,skill=100)
-        score += 40 if user.firstTurn?
-        score -= 40 if user.hp<user.totalhp/2
-      return score
   end
 end

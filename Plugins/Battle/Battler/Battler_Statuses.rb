@@ -356,9 +356,7 @@ class PokeBattle_Battler
 			@battle.eachBattler do |b|
 				next if b.nil?
 				next unless b.hasActiveAbility?(:DREAMWEAVER)
-				@battle.pbShowAbilitySplash(b)
-				b.pbRaiseStatStage(:SPECIAL_ATTACK, 1, b)
-				@battle.pbHideAbilitySplash(b)
+				b.tryRaiseStat(:SPECIAL_ATTACK, b, showAbilitySplash: true)
 			end
 		end
 		# Form change check
@@ -558,10 +556,7 @@ class PokeBattle_Battler
 			next unless oldStatus == :SLEEP
 			@battle.eachOtherSideBattler(@index) do |b|
 				if b.hasActiveAbility?(:LINGERINGDAZE)
-					@battle.pbShowAbilitySplash(b)
-					pbLowerStatStage(:ATTACK, 2, b)
-					pbLowerStatStage(:SPECIAL_ATTACK, 2, b, false)
-					@battle.pbHideAbilitySplash(b)
+					pbLowerMultipleStatStages([:ATTACK,2,:SPECIAL_ATTACK,2],b,showAbilitySplash: true)
 				end
 			end
 		end
@@ -680,7 +675,7 @@ class PokeBattle_Battler
 	#=============================================================================
 	# Flinching
 	#=============================================================================
-	def pbFlinch(_user = nil)
+	def pbFlinch(user = nil)
 		return if hasActiveAbility?(:INNERFOCUS) && !@battle.moldBreaker
 		applyEffect(:Flinch)
 	end

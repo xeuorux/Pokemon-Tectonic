@@ -87,7 +87,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DOWNLOAD,
       oSpDef += b.spdef
     end
     stat = (oDef<oSpDef) ? :ATTACK : :SPECIAL_ATTACK
-    battler.pbRaiseStatStageByAbility(stat,1,battler)
+    battler.tryRaiseStat(stat,battler,showAbilitySplash: true)
   }
 )
 
@@ -309,13 +309,13 @@ BattleHandlers::AbilityOnSwitchIn.copy(:ASONEICE,:ASONEGHOST)
 
 BattleHandlers::AbilityOnSwitchIn.add(:INTREPIDSWORD,
   proc { |ability,battler,battle|
-    battler.pbRaiseStatStageByAbility(:ATTACK,1,battler)
+    battler.tryRaiseStat(:ATTACK,battler,showAbilitySplash: true)
   }
 )	
 
 BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSHIELD,
   proc { |ability,battler,battle|
-    battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler)
+    battler.tryRaiseStat(:DEFENSE,battler,showAbilitySplash: true)
   }
 )
 
@@ -488,7 +488,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:FREERIDE,
     next if !battler.hasAlly?
     battle.pbShowAbilitySplash(battler)
     battler.eachAlly do |b|
-		  b.pbRaiseStatStage(:SPEED,1,battler) 
+      b.tryRaiseStat(:SPEED,battler)
 		end
     battle.pbHideAbilitySplash(battler)
   }
@@ -562,7 +562,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:AQUASNEAK,
 
 BattleHandlers::AbilityOnSwitchIn.add(:CONVICTION,
   proc { |ability,battler,battle|
-    battle.forceUseMove(battler,:ENDURE,battler,true,nil,nil,true)
+    battle.forceUseMove(battler,:ENDURE,-1,true,nil,nil,true)
   }
 )
 
@@ -606,7 +606,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:REFRESHMENTS,
 	served = (lowestId == battler.index ? "itself" : lowestIdBattler.pbThis)
 	battle.pbShowAbilitySplash(battler)
 	battle.pbDisplay(_INTL("{1} served {2} some refreshments!",battler.pbThis, served))
-	lowestIdBattler.pbRecoverHP(lowestIdBattler.totalHP/2.0)
+	lowestIdBattler.pbRecoverHP(lowestIdBattler.totalhp/2.0)
     battle.pbHideAbilitySplash(battler)
   }
 )

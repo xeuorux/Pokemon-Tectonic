@@ -31,7 +31,7 @@ class PokeBattle_Move_181 < PokeBattle_Move
     target.pointAt(:OctolockUser,user)
   end
 
-  def getScore(score, _user, target, _skill = 100)
+  def getScore(score, user, target, _skill = 100)
     score += 40 if target.hp > target.totalhp / 2
     return score
   end
@@ -53,9 +53,7 @@ class PokeBattle_Move_183 < PokeBattle_Move
       @battle.pbDisplay("But it failed!")
       return -1
     end
-    if user.pbCanRaiseStatStage?(:DEFENSE, user, self)
-      user.pbRaiseStatStage(:DEFENSE, 2, user)
-    end
+    user.tryRaiseStat(:DEFENSE,user, increment: 2, move: self)
     user.pbHeldItemTriggerCheck(user.item, false)
     user.pbConsumeItem(true, true, false) if user.item
   end
@@ -91,16 +89,16 @@ class PokeBattle_Move_184 < PokeBattle_Move
       @battle.pbDisplay(_INTL("It's tea time! Everyone dug in to their Berries!"))
     end
 
-    def pbFailsAgainstTarget?(_user, target)
+    def pbFailsAgainstTarget?(user, target)
         return !isValidTarget?(target)
     end
 
-    def pbEffectAgainstTarget(_user, target)
+    def pbEffectAgainstTarget(user, target)
         target.pbHeldItemTriggerCheck(target.item, false)
         target.pbConsumeItem(true, true, false) if target.item.is_berry?
     end
 
-    def getScore(score, _user, target, _skill = 100)
+    def getScore(score, user, target, _skill = 100)
         score -= 30 unless isValidTarget?(target)
         return score
     end
@@ -116,7 +114,7 @@ class PokeBattle_Move_185 < PokeBattle_TargetStatDownMove
       @statDown = [:DEFENSE, 1]
     end
 
-    def pbBaseDamage(baseDmg, _user, _target)
+    def pbBaseDamage(baseDmg, user, _target)
       baseDmg *= 1.5 if @battle.field.effectActive?(:Gravity)
       return baseDmg
     end
@@ -134,16 +132,12 @@ class PokeBattle_Move_186 < PokeBattle_Move
     return false
   end
 
-  def pbEffectAgainstTarget(_user, target)
-    if target.pbCanLowerStatStage?(:SPEED, target, self)
-      target.pbLowerStatStage(:SPEED, 1, target)
-    end
-    if !target.effectActive?(:TarShot)
-      target.applyEffect(:TarShot)
-    end
+  def pbEffectAgainstTarget(user, target)
+    target.tryLowerStat(:SPEED,user,move: self)
+    target.applyEffect(:TarShot)
   end
 
-  def getScore(score, _user, target, _skill = 100)
+  def getScore(score, user, target, _skill = 100)
     score += 30 if target.hp > target.totalhp / 2
     score += target.stages[:SPEED] * 10
     score -= 60 if target.effectActive?(:TarShot)
@@ -162,7 +156,7 @@ class PokeBattle_Move_187 < PokeBattle_Move_005
     end
 
     def calculateCategory(user, targets)
-      return selectBestCategory(user,target[0])
+      return selectBestCategory(user,targets[0])
     end
 
     def getScore(score, user, target, skill = 100)
@@ -176,7 +170,7 @@ end
   #===============================================================================
 class PokeBattle_Move_188 < PokeBattle_Move_0A0
   def multiHitMove?; return true; end
-  def pbNumHits(_user, _targets, _checkingForAI = false); return 3; end
+  def pbNumHits(user, _targets, _checkingForAI = false); return 3; end
 end
 
   #===============================================================================
@@ -186,7 +180,7 @@ end
 class PokeBattle_Move_189 < PokeBattle_Move
   def healingMove?; return true; end
 
-  def pbMoveFailed?(_user, targets, messages = true)
+  def pbMoveFailed?(user, targets, messages = true)
     jglheal = 0
     for i in 0...targets.length
       jglheal += 1 if (targets[i].hp == targets[i].totalhp || !targets[i].canHeal?) && targets[i].status == :NONE
@@ -266,12 +260,12 @@ end
   # Move has increased Priority in Grassy Terrain (Grassy Glide)
   #===============================================================================
 class PokeBattle_Move_18C < PokeBattle_Move
-    def priorityModification(_user, _targets);
+    def priorityModification(user, _targets);
         return 1 if @battle.field.terrain == :Grassy
         return 0
     end
 
-    def getScore(score, _user, target, _skill = 100)
+    def getScore(score, user, target, _skill = 100)
         score -= 20
         if @battle.field.terrain == :Grassy
             score += 50
@@ -285,7 +279,7 @@ end
   # Power Doubles onn Electric Terrain (Rising Voltage)
   #===============================================================================
 class PokeBattle_Move_18D < PokeBattle_Move
-  def pbBaseDamage(baseDmg, _user, target)
+  def pbBaseDamage(baseDmg, user, target)
     baseDmg *= 2 if @battle.field.terrain == :Electric && !target.airborne?
     return baseDmg
   end
@@ -326,7 +320,7 @@ end
   # Power is boosted on Psychic Terrain (Expanding Force)
   #===============================================================================
 class PokeBattle_Move_190 < PokeBattle_Move
-  def pbBaseDamage(baseDmg, _user, _target)
+  def pbBaseDamage(baseDmg, user, _target)
     baseDmg *= 1.5 if @battle.field.terrain == :Psychic
     return baseDmg
   end
@@ -341,9 +335,7 @@ class PokeBattle_Move_191 < PokeBattle_TwoTurnMove
   end
 
   def pbChargingTurnEffect(user, _target)
-    if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK, user, self)
-      user.pbRaiseStatStage(:SPECIAL_ATTACK, 1, user)
-    end
+    user.tryRaiseStat(:SPECIAL_ATTACK,user, move: self)
   end
 end
 
@@ -351,7 +343,7 @@ end
   # Fails if the Target has no Item (Poltergeist)
   #===============================================================================
 class PokeBattle_Move_192 < PokeBattle_Move
-  def pbFailsAgainstTarget?(_user, target)
+  def pbFailsAgainstTarget?(user, target)
     if target.item
       @battle.pbDisplay(_INTL("{1} is about to be attacked by its {2}!", target.pbThis, target.itemName))
       return false
@@ -360,7 +352,7 @@ class PokeBattle_Move_192 < PokeBattle_Move
     return true
   end
 
-  def getScore(score, _user, target, _skill = 100)
+  def getScore(score, user, target, _skill = 100)
     score += 20
     score = 0 if !target.item
     return score
@@ -372,12 +364,7 @@ end
   #===============================================================================
 class PokeBattle_Move_193 < PokeBattle_Move_0C0
   def pbEffectAfterAllHits(user, target)
-    if user.pbCanRaiseStatStage?(:SPEED, user, self)
-      user.pbRaiseStatStage(:SPEED, 1, user)
-    end
-    if user.pbCanLowerStatStage?(:DEFENSE, target)
-      user.pbLowerStatStage(:DEFENSE, 1, user)
-    end
+    user.pbLowerMultipleStatStages([:DEFENSE,1,:SPEED,1], user, move: self)
   end
 
   def getScore(score, user, _target, _skill = 100)
@@ -397,11 +384,11 @@ class PokeBattle_Move_194 < PokeBattle_Move
   end
 end
 
-  #===============================================================================
-  # Removes all Terrain. Fails if there is no Terrain (Steel Roller)
-  #===============================================================================
+#===============================================================================
+# Removes all Terrain. Fails if there is no Terrain (Steel Roller)
+#===============================================================================
 class PokeBattle_Move_195 < PokeBattle_Move
-  def pbMoveFailed?(_user, _targets, messages = true)
+  def pbMoveFailed?(user, _targets, messages = true)
     if @battle.field.terrain == :None
       @battle.pbDisplay(_INTL("But it failed!")) if messages
       return true
@@ -420,10 +407,10 @@ class PokeBattle_Move_195 < PokeBattle_Move
     when :Psychic
         @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))
     end
-    @battle.pbStartTerrain(user, :None, true)
+    @battle.pbStartTerrain(user, :None, false)
   end
 
-  def getScore(score, _user, _target, _skill = 100)
+  def getScore(score, user, _target, _skill = 100)
     score += 30
     score = 0 if battle.field.terrain == :NONE
     return score
@@ -457,7 +444,7 @@ end
   # Target becomes Psychic type. (Magic Powder)
   #===============================================================================
 class PokeBattle_Move_197 < PokeBattle_Move
-  def pbFailsAgainstTarget?(_user, target)
+  def pbFailsAgainstTarget?(user, target)
     if !target.canChangeType? ||
        !target.pbHasOtherType?(:PSYCHIC)
       @battle.pbDisplay(_INTL("But it failed!"))
@@ -466,14 +453,14 @@ class PokeBattle_Move_197 < PokeBattle_Move
     return false
   end
 
-  def pbEffectAgainstTarget(_user, target)
+  def pbEffectAgainstTarget(user, target)
     newType = :PSYCHIC
     target.pbChangeTypes(newType)
     typeName = newType.name
     @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", target.pbThis, typeName))
   end
 
-  def getScore(score, _user, target, _skill = 100)
+  def getScore(score, user, target, _skill = 100)
     score += 50
     score = 0 if !target.canChangeType? || !target.pbHasOtherType?(:PSYCHIC)
     return score
@@ -484,7 +471,7 @@ end
   # Target's last move used loses 3 PP. (Eerie Spell - Galarian Slowking)
   #===============================================================================
 class PokeBattle_Move_198 < PokeBattle_Move
-  def pbFailsAgainstTarget?(_user, target)
+  def pbFailsAgainstTarget?(user, target)
     failed = true
     target.eachMove do |m|
       next if m.id != target.lastRegularMoveUsed || m.pp == 0 || m.totalpp <= 0
@@ -497,7 +484,7 @@ class PokeBattle_Move_198 < PokeBattle_Move
     return false
   end
 
-  def pbEffectAgainstTarget(_user, target)
+  def pbEffectAgainstTarget(user, target)
     target.eachMove do |m|
       next if m.id != target.lastRegularMoveUsed
       reduction = [3, m.pp].min

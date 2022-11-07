@@ -225,9 +225,9 @@ class PokeBattle_Battle
 
   # Actually performs the recalling and sending out in all situations.
   def pbRecallAndReplace(idxBattler,idxParty,randomReplacement=false,batonPass=false)
-    @scene.pbRecall(idxBattler) if !@battlers[idxBattler].fainted?
+    @scene.pbRecall(idxBattler) if !@battlers[idxBattler].fainted? && !@autoTesting
     @battlers[idxBattler].pbAbilitiesOnSwitchOut   # Inc. primordial weather check
-    @scene.pbShowPartyLineup(idxBattler&1) if pbSideSize(idxBattler)==1
+    @scene.pbShowPartyLineup(idxBattler&1) if pbSideSize(idxBattler)==1 && !@autoTesting
     pbMessagesOnReplace(idxBattler,idxParty) if !randomReplacement
     pbReplace(idxBattler,idxParty,batonPass)
   end
@@ -356,7 +356,7 @@ class PokeBattle_Battle
     end
 	  # Record money-doubling effect of Fortune ability
     if !battler.opposes? && battler.hasActiveAbility?(:FORTUNE)
-      @fieldd.applyEffect(:Fortune)
+      @field.applyEffect(:Fortune)
     end
     # Update battlers' participants (who will gain Exp/EVs when a battler faints)
     eachBattler { |b| b.pbUpdateParticipants }
@@ -434,8 +434,7 @@ class PokeBattle_Battle
       # Sticky Web
       if battler.pbOwnSide.effectActive?(:StickyWeb)
         pbDisplay(_INTL("{1} was caught in a sticky web!",battler.pbThis))
-        if battler.pbCanLowerStatStage?(:SPEED)
-          battler.pbLowerStatStage(:SPEED,1,nil)
+        if battler.tryLowerStat(:SPEED,nil)
           battler.pbItemStatRestoreCheck
         end
       end
