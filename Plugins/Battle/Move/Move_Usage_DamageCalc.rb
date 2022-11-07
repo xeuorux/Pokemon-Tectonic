@@ -40,7 +40,10 @@ class PokeBattle_Move
     end
 
     def calcBasicDamage(base_damage,attacker_level,user_attacking_stat,target_defending_stat)
-        damage  = (((2.0 * attacker_level / 5 + 2).floor * base_damage * user_attacking_stat / target_defending_stat).floor / 50).floor + 2
+        pseudoLevel = 15.0 + (attacker_level.to_f / 2.0)
+        levelMultiplier = 2.0 + (0.4 * pseudoLevel)
+        damage  = 2.0 + ((levelMultiplier * base_damage.to_f * user_attacking_stat.to_f / target_defending_stat.to_f) / 50.0).floor
+        return damage
     end
 
     def damageCalcStats(user,target)
