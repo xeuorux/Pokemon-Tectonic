@@ -96,7 +96,7 @@
 94,SOLARPOWER,Solar Power,"In sunshine, Sp. Atk is boosted by 50%, but HP decreases."
 95,QUICKFEET,Quick Feet,"Boosts Speed if there is a status problem by 50%. Ignores Numb and Poison Speed reduction."
 96,NORMALIZE,Normalize,"Non-Normal moves become Normal-type and are powered up by 20%. Immune to weather downsides."
-97,SNIPER,Sniper,"Powers up moves to 225% if they become critical hits."
+97,SNIPER,Sniper,"Powers up critical hits by another 50%."
 98,MAGICGUARD,Magic Guard,"The Pokémon only takes damage from attacks."
 99,NOGUARD,No Guard,"Ensures attacks by or against the Pokémon land."
 100,STALL,Stall,"The Pokémon moves after all other Pokémon do."
