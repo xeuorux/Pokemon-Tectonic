@@ -226,7 +226,7 @@ GameData::BattleEffect.register_effect(:Side,{
 	:id => :Spikes,
 	:real_name => "Spikes Count",
 	:type => :Integer,
-	:maximum => 3,
+	:maximum => 2,
 	:is_hazard => true,
 	:increment_proc => Proc.new { |battle,side,teamName,value,increment|
 		if increment == 1

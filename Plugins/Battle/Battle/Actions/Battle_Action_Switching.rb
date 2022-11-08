@@ -398,7 +398,8 @@ class PokeBattle_Battle
       # Spikes
       if battler.pbOwnSide.effectActive?(:Spikes) && battler.takesIndirectDamage?
         spikesIndex = battler.pbOwnSide.countEffect(:Spikes) - 1
-        spikesDiv = [8,6,4][spikesIndex]
+        spikesDiv = [8,4][spikesIndex]
+        #spikesDiv = [8,6,4][spikesIndex]
         spikesHPRatio = 1.0 / spikesDiv.to_f
         layerLabel = ["layer","2 layers","3 layers"][spikesIndex]
         pbDisplay(_INTL("{1} is hurt by the {2} of spikes!",battler.pbThis,layerLabel))
