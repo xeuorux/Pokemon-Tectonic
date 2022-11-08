@@ -1847,7 +1847,7 @@ end
 # 50% more damage in hailstorm. (Leap Out.)
 #===============================================================================
 class PokeBattle_Move_56A < PokeBattle_Move
-	def pbBaseDamageMultiplier(damageMult,user,target)
+	def pbModifyDamage(damageMult,user,target)
 		damageMult *= 1.5 if @battle.pbWeather == :Hail
 		return damageMult
 	end
@@ -1869,7 +1869,7 @@ class PokeBattle_Move_56C < PokeBattle_Move_0C0
 		  user.applyEffect(:Outrage,3)
 		end
 		user.tickDownAndProc(:Outrage)
-	  end
+	end
 end
   
 #===============================================================================

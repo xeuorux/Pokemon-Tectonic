@@ -2399,9 +2399,9 @@ end
 class PokeBattle_Move_075 < PokeBattle_Move
   def hitsDivingTargets?; return true; end
 
-  def pbModifyDamage(damageMult,user,target)
-    damageMult *= 2 if target.inTwoTurnAttack?("0CB")   # Dive
-    return damageMult
+  def pbBaseDamage(baseDmg,user,target)
+    baseDmg *= 2 if target.inTwoTurnAttack?("0CB")   # Dive
+    return baseDmg
   end
 
   def pbEffectAfterAllHits(user,target)
@@ -2424,9 +2424,9 @@ end
 class PokeBattle_Move_076 < PokeBattle_Move
   def hitsDiggingTargets?; return true; end
 
-  def pbModifyDamage(damageMult,user,target)
-    damageMult *= 2 if target.inTwoTurnAttack?("0CA")   # Dig
-    return damageMult
+  def pbBaseDamage(baseDmg,user,target)
+    baseDmg *= 2 if target.inTwoTurnAttack?("OCA")   # Dig
+    return baseDmg
   end
 end
 
@@ -2466,9 +2466,13 @@ class PokeBattle_Move_079 < PokeBattle_Move
     super
   end
 
-  def pbBaseDamageMultiplier(damageMult,user,target)
-    damageMult *= 2 if @doublePower
-    return damageMult
+  def pbBaseDamage(baseDamage,user,target)
+    baseDamage *= 2 if @doublePower
+    return baseDamage
+  end
+
+  def pbBaseDamageAI(baseDmg,user,target,skill=100)
+    return baseDmg
   end
 
   def pbEffectGeneral(user)
@@ -2476,8 +2480,7 @@ class PokeBattle_Move_079 < PokeBattle_Move
   end
 
   def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
-    hitNum = 1 if (targets.length>0 && targets[0].damageState.critical) ||
-                  @doublePower   # Charged anim
+    hitNum = 1 if (targets.length>0 && targets[0].damageState.critical) || @doublePower   # Charged anim
     super
   end
 end
@@ -2491,9 +2494,13 @@ class PokeBattle_Move_07A < PokeBattle_Move
     super
   end
 
-  def pbBaseDamageMultiplier(damageMult,user,target)
-    damageMult *= 2 if @doublePower
-    return damageMult
+  def pbBaseDamage(baseDamage,user,target)
+    baseDamage *= 2 if @doublePower
+    return baseDamage
+  end
+
+  def pbBaseDamageAI(baseDmg,user,target,skill=100)
+    return baseDmg
   end
 
   def pbEffectGeneral(user)
@@ -2501,8 +2508,7 @@ class PokeBattle_Move_07A < PokeBattle_Move
   end
 
   def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
-    hitNum = 1 if (targets.length>0 && targets[0].damageState.critical) ||
-                  @doublePower   # Charged anim
+    hitNum = 1 if (targets.length>0 && targets[0].damageState.critical) || @doublePower   # Charged anim
     super
   end
 end

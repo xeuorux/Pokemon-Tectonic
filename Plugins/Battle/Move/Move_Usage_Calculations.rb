@@ -305,7 +305,9 @@ class PokeBattle_Move
     # Antecedents for damage calculation
     #=============================================================================
     def pbBaseDamage(baseDmg,user,target);              return baseDmg;    end
-    def pbBaseDamageMultiplier(damageMult,user,target); return damageMult; end
+
+    # For when the damage boost must be applied after the move usage has progressed
+    # Or the damage mult is ugly and will result in weird display BP
     def pbModifyDamage(damageMult,user,target);         return damageMult; end
 
     def ignoresDefensiveStageBoosts?(user,target);           return false;       end

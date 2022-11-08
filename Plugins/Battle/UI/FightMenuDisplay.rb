@@ -19,23 +19,36 @@ class FightMenuDisplay < BattleMenuBase
 	    #@extraReminderBitmap 		= AnimatedBitmap.new(_INTL("Graphics/Pictures/Rework/extra_info_reminder_bottomless"))
       @moveInfoDisplayBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/move_info_display"))
       @ppUsageUpBitmap        = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/pp_usage_up"))
+      @moveHighlightName    = "Graphics/Pictures/Battle/cursor_fight_highlight"
       # Create background graphic
       background = IconSprite.new(0,Graphics.height-96,viewport)
       background.setBitmap("Graphics/Pictures/Battle/overlay_fight")
       addSprite("background",background)
-      # Create move buttons
-      @buttons = Array.new(Pokemon::MAX_MOVES) do |i|
-        button = SpriteWrapper.new(viewport)
-        button.bitmap = @buttonBitmap.bitmap
-        button.x      = self.x+4
-        button.x      += (((i%2)==0) ? 0 : @buttonBitmap.width/2-4)
-        button.y      = self.y+6
-        button.y      += (((i/2)==0) ? 0 : BUTTON_HEIGHT-4)
-        button.src_rect.width  = @buttonBitmap.width/2
-        button.src_rect.height = BUTTON_HEIGHT
-        addSprite("button_#{i}",button)
-        next button
+      # Create move buttons and highlighters
+      @buttons = []
+      @highlights = []
+      for i in 0..Pokemon::MAX_MOVES do
+        newButton = SpriteWrapper.new(viewport)
+        newButton.bitmap = @buttonBitmap.bitmap
+        buttonX = self.x + 4 + (((i%2)==0) ? 0 : @buttonBitmap.width/2-4)
+        newButton.x      = buttonX
+        buttonY = self.y + 6 + (((i/2)==0) ? 0 : BUTTON_HEIGHT-4)
+        newButton.y      = buttonY
+        newButton.src_rect.width  = @buttonBitmap.width/2
+        newButton.src_rect.height = BUTTON_HEIGHT
+        addSprite("button_#{i}",newButton)
+        @buttons.push(newButton)
+
+        newHighlighter = AnimatedSprite.new([@moveHighlightName,37,0.5])
+        newHighlighter.viewport = viewport
+        newHighlighter.x = buttonX + 20
+        newHighlighter.y = buttonY + 8
+        newHighlighter.opacity = 80
+        newHighlighter.blend_type = 1
+        addSprite("highlight_#{i}",newHighlighter)
+        @highlights.push(newHighlighter)
       end
+      
       # Create overlay for buttons (shows move names)
       @overlay = BitmapSprite.new(Graphics.width,Graphics.height-self.y,viewport)
       @overlay.x = self.x
@@ -117,6 +130,18 @@ class FightMenuDisplay < BattleMenuBase
 	  @moveInfoDisplayBitmap.dispose if @moveInfoDisplayBitmap
     @ppUsageUpBitmap.dispose if @ppUsageUpBitmap
   end
+
+  def z=(value)
+    super
+    @msgBox.z      += 1 if @msgBox
+    @cmdWindow.z   += 2 if @cmdWindow
+    @overlay.z     += 5 if @overlay
+    @infoOverlay.z += 6 if @infoOverlay
+    @typeIcon.z    += 1 if @typeIcon
+    @highlights.each do |highlight|
+      highlight.z += 6
+    end
+  end
   
   def visible=(value)
     super(value)
@@ -147,6 +172,7 @@ class FightMenuDisplay < BattleMenuBase
     @overlay.bitmap.clear
     textPos = []
     @buttons.each_with_index do |button,i|
+      @visibility["highlight_#{i}"] = false
       next if !@visibility["button_#{i}"]
       move = moves[i]
       x = button.x-self.x+button.src_rect.width/2
@@ -161,6 +187,25 @@ class FightMenuDisplay < BattleMenuBase
         moveNameBase = button.bitmap.get_pixel(10,button.src_rect.y+34)
       end
       textPos.push([move.name,x,y,2,moveNameBase,TEXT_SHADOW_COLOR])
+      begin
+        if move.damagingMove?
+          targetingData = move.pbTarget(@battler)
+          maxEffectiveness = 0
+          maxBP = move.baseDamage
+          @battler.eachOpposing do |opposingBattler|
+            next if !@battler.battle.pbMoveCanTarget?(@battler.index,opposingBattler.index,targetingData)
+            bpAgainstTarget = move.pbBaseDamageAI(move.baseDamage,@battler,opposingBattler)
+            maxBP = bpAgainstTarget if bpAgainstTarget > maxBP
+          end
+  
+          if maxBP > move.baseDamage
+            @visibility["highlight_#{i}"] = true
+            @sprites["highlight_#{i}"].start
+          end
+        end
+      rescue
+        echoln("Error computing highlighting for move #{move.name}")
+      end
     end
     pbDrawTextPositions(@overlay.bitmap,textPos)
     @buttons.each_with_index do |button,i|
@@ -207,7 +252,6 @@ class FightMenuDisplay < BattleMenuBase
     #   pbDrawTextPositions(@infoOverlay.bitmap,textPosPP)
     # end
     
-    # Find the possible targets of the selected move
     effectivenessTextPos = nil
     effectivenessTextX = 448
     effectivenessTextY = 44
@@ -239,6 +283,8 @@ class FightMenuDisplay < BattleMenuBase
       rescue
         effectivenessTextPos = ["ERROR",effectivenessTextX,44,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
       end
+
+      # Apply a highlight to moves that are in an extra useful state
     else
       effectivenessTextPos = ["Status",effectivenessTextX,44,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
     end
@@ -286,5 +332,34 @@ class FightMenuDisplay < BattleMenuBase
     pbDrawImagePositions(overlay, imagepos)
 	  # Draw selected move's description
 	  drawTextEx(overlay,8,140,264,4,selected_move.description,base,shadow)
+  end
+end
+
+class AnimatedSprite
+  # Shorter version of AnimationSprite.  All frames are placed on a single row
+  # of the bitmap, so that the width and height need not be defined beforehand
+  def initializeShort(animname,framecount,frameskip)
+    @animname=pbBitmapName(animname)
+    @realframes=0
+    @frameskip = frameskip * Graphics.frame_rate/20
+    @frameskip= 1 if @frameskip < 1
+    begin
+      @animbitmap=AnimatedBitmap.new(animname).deanimate
+    rescue
+      @animbitmap=Bitmap.new(framecount*4,32)
+    end
+    if @animbitmap.width%framecount!=0
+      raise _INTL("Bitmap's width ({1}) is not a multiple of frame count ({2}) [Bitmap={3}]",
+         @animbitmap.width,framewidth,animname)
+    end
+    @framecount=framecount
+    @framewidth=@animbitmap.width/@framecount
+    @frameheight=@animbitmap.height
+    @framesperrow=framecount
+    @playing=false
+    self.bitmap=@animbitmap
+    self.src_rect.width=@framewidth
+    self.src_rect.height=@frameheight
+    self.frame=0
   end
 end
