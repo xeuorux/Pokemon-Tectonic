@@ -126,7 +126,7 @@
 124,PICKPOCKET,Pickpocket,"Steals an item when hit by another Pokémon."
 125,SHEERFORCE,Sheer Force,"Removes added effects of attacks to increase their damage by 30%."
 126,CONTRARY,Contrary,"Makes stat changes have an opposite effect."
-127,UNNERVE,Unnerve,"Makes the foe nervous and unable to eat Berries."
+127,UNNERVE,Unnerve,"Makes the foe nervous and unable to eat Berries or Leftovers."
 128,DEFIANT,Defiant,"Sharply boosts Attack when a stat is lowered."
 129,DEFEATIST,Defeatist,"Lowers attacking stats when HP becomes half or less."
 130,CURSEDBODY,Cursed Body,"Moves used on the Pokémon have a 60% chance to be disabled."

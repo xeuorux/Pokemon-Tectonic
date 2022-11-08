@@ -281,7 +281,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:TURBOBLAZE,
 BattleHandlers::AbilityOnSwitchIn.add(:UNNERVE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is too nervous to eat Berries!",battler.pbOpposingTeam))
+    battle.pbDisplay(_INTL("{1} is too nervous to eat Berries or Leftovers!",battler.pbOpposingTeam))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -300,7 +300,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ASONEICE,
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} has 2 Abilities!",battler.name))
     battle.pbShowAbilitySplash(battler,false,true,GameData::Ability.get(:UNNERVE).name)
-    battle.pbDisplay(_INTL("{1} is too nervous to eat Berries!",battler.pbOpposingTeam))
+    battle.pbDisplay(_INTL("{1} is too nervous to eat Berries or Leftovers!",battler.pbOpposingTeam))
     battle.pbHideAbilitySplash(battler)
   }
 )
