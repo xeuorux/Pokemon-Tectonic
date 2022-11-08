@@ -311,10 +311,12 @@ class PokeBattle_Battle
 			elsif pbRandom(100) < changeChance
 				b.pbCureStatus(false)
 			end
-			#b.pbResetStatStages() if pbRandom(100) < resetChance
-			#b.pbInitPokemon(b.pokemon,b.index) if pbRandom(100) < resetChance
+
 			if pbRandom(100) < changeChance
-				b.ability =  GameData::Ability::DATA.values.sample
+				# loop do
+				# 	b.ability = GameData::Ability::DATA.values.sample
+				# 	break if BattleHandlers::CriticalPreventTargetAbility[b.ability]
+				# end
 				b.pbEffectsOnSwitchIn
 			end
 			if pbRandom(100) < changeChance

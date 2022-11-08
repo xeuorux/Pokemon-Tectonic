@@ -231,12 +231,7 @@ class PokeBattle_AI
         attack, defense = move.damageCalcStats(user,target)
 
         ##### Calculate all multiplier effects #####
-        multipliers = {
-          :base_damage_multiplier  => 1.0,
-          :attack_multiplier       => 1.0,
-          :defense_multiplier      => 1.0,
-          :final_damage_multiplier => 1.0
-        }
+        multipliers = move.initializeMultipliers
 
         # Ability effects that alter damage
         moldBreaker = user.hasMoldBreaker?
@@ -356,50 +351,13 @@ class PokeBattle_AI
         baseDmg = move.pbModifyDamage(baseDmg,user,target)
 
         ##### Main damage calculation #####
-        baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
-        attack     = [(attack     * multipliers[:attack_multiplier]).round, 1].max
-        defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
-        damage  = move.calcBasicDamage(baseDmg,user.level,attack,defense)
-        damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
+        damage = move.calcDamageWithMultipliers(baseDmg,attack,defense,user.level,multipliers)
 
-        # Increased critical hit rates
-        c = 0
-        # Ability effects that alter critical hit rate
-        if c >= 0 && user.abilityActive?
-          c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
-        end
-        if c >= 0 && !moldBreaker && target.abilityActive?
-          c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
-        end
-        # Item effects that alter critical hit rate
-        if c >= 0 && user.itemActive?
-          c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
-        end
-        if c >= 0 && target.itemActive?
-          c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
-        end
+        criticalHitRate = move.pbIsCritical?(user,target,true)
 
-        # Critical override
-        case move.pbCriticalOverride(user,target)
-        when -1
-          c = -1
-        when 1
-          c = 9999
-        end
-
-        # Other efffects
-        c = -1 if target.pbOwnSide.effectActive?(:LuckyChant)
-
-        if c >= 0
-          c += 1 if move.highCriticalRate?
-          c += user.effects[:FocusEnergy]
-          c += 1 if user.inHyperMode? && move.type == :SHADOW
-          c = 5 if user.effectActive?(:LaserFocus) || user.effectActive?(:EmpoweredLaserFocus)
-        end
-
-        if c >= 0
-          c = 5 if c > 5
-          damage += damage * 0.1 * c
+        if criticalHitRate >= 0
+          criticalHitRate = 5 if criticalHitRate > 5
+          damage += damage * 0.1 * criticalHitRate
         end
 
         numHits = move.pbNumHitsAI(user,target,skill)

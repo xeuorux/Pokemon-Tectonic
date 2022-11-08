@@ -212,45 +212,93 @@ class PokeBattle_Move
     #    0: Calculate normally.
     #    1: Always a critical hit.
     def pbCriticalOverride(user,target); return 0; end
-  
-    # Returns whether the move will be a critical hit
-    # And whether the critical hit was forced by an effect
-	def pbIsCritical?(user,target)
-		return [false,false] if target.pbOwnSide.effectActive?(:LuckyChant)
-        return [false,false] if applySunDebuff?(user,@calcType)
-		# Set up the critical hit ratios
-		ratios = [16,8,4,2,1]
-		c = 0
-		# Ability effects that alter critical hit rate
-		if c>=0 && user.abilityActive?
-		  c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
-		end
-		if c>=0 && target.abilityActive? && !@battle.moldBreaker
-		  c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
-		end
-		# Item effects that alter critical hit rate
-		if c>=0 && user.itemActive?
-		  c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
-		end
-		if c>=0 && target.itemActive?
-		  c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
-		end
-		return [false,false] if c<0
-		# Move-specific "always/never a critical hit" effects
-		case pbCriticalOverride(user,target)
-		when 1  then return [true,true]
-		when -1 then return [false,false]
-		end
-		# Other effects
-		return [true,true] if c > 50   # Merciless and similar abilities
-		return [true,true] if user.effectActive?(:LaserFocus) || user.effectActive?(:EmpoweredLaserFocus)
-		return [false,false] if user.boss?
-		c += 1 if highCriticalRate?
+
+    # Returns whether the attack is critical, and whether it was forced to be so
+    def pbIsCritical?(user,target,checkingForAI=false)
+        return [false,false] unless critsPossible?(user,target)
+
+        crit = false
+        forced = false
+        criticalHitRate = criticalHitRate(user,target)
+        
+        if guaranteedCrit?(user,target)
+            crit = true
+            forced = true
+        end
+
+        if !crit && isRandomCrit?(user,target,criticalHitRate)
+            crit = true
+            forced = false
+        end
+
+        if crit && target.abilityActive? && !@battle.moldBreaker &&
+                BattleHandlers.triggerCriticalPreventTargetAbility(target.ability,user,target,@battle)
+            if !checkingForAI
+                battle.pbShowAbilitySplash(target)
+                battle.pbDisplay(_INTL("#{target.pbThis} prevents the hit from being critical!"))
+                battle.pbHideAbilitySplash(target)
+            end
+            crit = false
+            forced = true
+        end
+
+        if checkingForAI
+            if forced
+                return crit ? 5 : -1
+            else
+                return criticalHitRate
+            end
+        else
+            return crit,forced
+        end
+    end
+
+    def isRandomCrit?(user,target,rate)
+        return false if user.boss?
+
+        # Calculation
+        ratios = [16,8,4,2,1]
+        rate = ratios.length - 1 if rate >= ratios.length
+        return @battle.pbRandom(ratios[rate]) == 0
+    end
+
+    def criticalHitRate(user,target)
+        c = 0
+        # Ability effects that alter critical hit rate
+        if user.abilityActive?
+            c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
+        end
+        if target.abilityActive? && !@battle.moldBreaker
+            c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
+        end
+        # Item effects that alter critical hit rate
+        if user.itemActive?
+            c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
+        end
+        if target.itemActive?
+            c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
+        end
+
+        c += 1 if highCriticalRate?
 		c += user.effects[:FocusEnergy]
 		c += 1 if user.effectActive?(:LuckyStar)
-		c = ratios.length-1 if c>=ratios.length
-		# Calculation
-		return [@battle.pbRandom(ratios[c]) == 0,false]
+        c += 1 if user.inHyperMode? && @calcType == :SHADOW
+
+        return c
+    end
+
+    def critsPossible?(user,target)
+        return false if target.pbOwnSide.effectActive?(:LuckyChant)
+        return false if applySunDebuff?(user,@calcType)
+        return false if pbCriticalOverride(user,target) < 0
+        return true
+    end
+  
+	def guaranteedCrit?(user,target)
+        return true if user.effectActive?(:LaserFocus) || user.effectActive?(:EmpoweredLaserFocus)
+        return true if pbCriticalOverride(user,target) > 0
+        return true if user.abilityActive? && BattleHandlers.triggerGuaranteedCriticalUserAbility(user.ability,user,target,@battle)
+        return false
     end
 
     #=============================================================================

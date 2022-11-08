@@ -51,7 +51,9 @@ module BattleHandlers
 	DamageCalcTargetItem                = ItemHandlerHash.new
 	# Critical hit calculation
 	CriticalCalcUserAbility             = AbilityHandlerHash.new
+	GuaranteedCriticalUserAbility		= AbilityHandlerHash.new
 	CriticalCalcTargetAbility           = AbilityHandlerHash.new
+	CriticalPreventTargetAbility		= AbilityHandlerHash.new
 	CriticalCalcUserItem                = ItemHandlerHash.new
 	CriticalCalcTargetItem              = ItemHandlerHash.new   # None!
 	# Upon a move hitting a target
@@ -309,10 +311,20 @@ module BattleHandlers
 	  ret = CriticalCalcUserAbility.trigger(ability,user,target,c)
 	  return (ret!=nil) ? ret : c
 	end
+
+	def self.triggerGuaranteedCriticalUserAbility(ability,user,target,battle)
+		ret = GuaranteedCriticalUserAbility.trigger(ability,user,target,battle)
+		return (ret!=nil) ? ret : false
+	  end
   
 	def self.triggerCriticalCalcTargetAbility(ability,user,target,c)
 	  ret = CriticalCalcTargetAbility.trigger(ability,user,target,c)
 	  return (ret!=nil) ? ret : c
+	end
+
+	def self.triggerCriticalPreventTargetAbility(ability,user,target,battle)
+		ret = CriticalPreventTargetAbility.trigger(ability,user,target,battle)
+		return (ret!=nil) ? ret : false
 	end
   
 	def self.triggerCriticalCalcUserItem(item,user,target,c)

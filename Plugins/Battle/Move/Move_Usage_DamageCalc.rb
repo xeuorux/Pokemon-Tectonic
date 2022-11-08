@@ -17,20 +17,29 @@ class PokeBattle_Move
         # Get the relevant attacking and defending stat values (after stages)
         attack, defense = damageCalcStats(user,target)
         # Calculate all multiplier effects
-        multipliers = {
+        multipliers = initializeMultipliers
+        pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
+        # Main damage calculation
+        finalCalculatedDamage = calcDamageWithMultipliers(baseDmg,attack,defense,user.level,multipliers)
+        target.damageState.calcDamage = finalCalculatedDamage
+    end
+
+    def initializeMultipliers
+        return {
             :base_damage_multiplier  => 1.0,
             :attack_multiplier       => 1.0,
             :defense_multiplier      => 1.0,
             :final_damage_multiplier => 1.0
         }
-        pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
-        # Main damage calculation
+    end
+
+    def calcDamageWithMultipliers(baseDmg,attack,defense,userLevel,multipliers)
         baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
         attack  = [(attack  * multipliers[:attack_multiplier]).round, 1].max
         defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
-        damage  = calcBasicDamage(baseDmg,user.level,attack,defense)
+        damage  = calcBasicDamage(baseDmg,userLevel,attack,defense)
         damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
-        target.damageState.calcDamage = damage
+        return damage
     end
 
     def printMultipliers(multipliers)
