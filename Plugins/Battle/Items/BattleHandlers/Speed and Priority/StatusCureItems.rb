@@ -88,6 +88,19 @@ BattleHandlers::StatusCureItem.add(:PERSIMBERRY,
   }
 )
 
+BattleHandlers::StatusCureItem.add(:SPELONBERRY,
+  proc { |item,battler,battle,forced|
+    next false if !forced && !battler.canConsumeBerry?
+    next false if !battler.hasStatusNoTrigger(:LEECHED)
+    itemName = GameData::Item.get(item).name
+    PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
+    battle.pbCommonAnimation("EatBerry",battler) if !forced
+    battler.pbCureStatus(forced,:LEECHED)
+    battle.pbDisplay(_INTL("{1}'s {2} made it no longer leeched!",battler.pbThis,itemName)) if !forced
+    next true
+  }
+)
+
 BattleHandlers::StatusCureItem.add(:MENTALHERB,
   proc { |item,battler,battle,forced|
     activate = false
