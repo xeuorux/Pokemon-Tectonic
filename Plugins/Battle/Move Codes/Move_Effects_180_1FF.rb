@@ -1,6 +1,6 @@
   #===============================================================================
   # User is protected against damaging moves this round. Decreases the Defense of
-  # the user of a stopped contact move by 2 stages. (Obstruct)
+  # the user of a stopped physical move by 2 stages. (Obstruct)
   #===============================================================================
 class PokeBattle_Move_180 < PokeBattle_ProtectMove
     def initialize(battle, move)
@@ -244,14 +244,14 @@ end
 class PokeBattle_Move_18B < PokeBattle_Move
   def pbAdditionalEffect(user, target)
     return if target.damageState.substitute
-    if target.pbCanBurn?(user, false, self) && target.hasRaisedStatStages?
-      target.pbBurn(user)
+    if target.canBurn?(user, false, self) && target.hasRaisedStatStages?
+      target.applyBurn(user)
     end
   end
 
   def getScore(score, user, target, _skill = 100)
     score -= 30
-    score += 60 if target.pbCanBurn?(user, false, self) && target.hasRaisedStatStages?
+    score += 60 if target.canBurn?(user, false, self) && target.hasRaisedStatStages?
     return score
   end
 

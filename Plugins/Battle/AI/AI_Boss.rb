@@ -103,12 +103,6 @@ class PokeBattle_AI_Boss
 
 		return false
 	end
-
-	def rejectMove?(move, user, target, battle)
-		return true if rejectMoveForTiming?(move, user, battle)
-		return true if @rejectedMoves.include?(move.id)
-		#TODO
-	end
 	
 	def requireMove?(move, user, target, battle)
 		return true if @requiredMoves.include?(move.id)
@@ -127,6 +121,7 @@ class PokeBattle_AI_Boss
 	end
 
 	def rejectMove?(move, user, target, battle)
+		return true if rejectMoveForTiming?(move, user, battle)
 		return true if @rejectedMoves.include?(move.id)
 
 		if @rejectMoveIf.has_key?(move.id) && @rejectMoveIf[move.id].call(move, user, target, battle)

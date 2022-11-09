@@ -383,6 +383,13 @@ FloweryGrass,20
 Special,1
     1,DARUMAKA,10
 #-------------------------------
+[135] # Ancient Meteorite
+FloweryGrass2,20
+    25,CLEFFA,20,23
+    25,MINIOR,20,23
+    25,STONJOURNER,20,23
+    25,WOOBAT,20,23
+#-------------------------------
 [136] # Casaba Villa
 Land,20
     25,ELECTRIKE,8,10
@@ -825,10 +832,3 @@ Land,20
     20,SLUGMA,17,20
     20,TORKOAL,17,20
     20,TURTONATOR,17,20
-#-------------------------------
-[135] # Ancient Meteorite
-FloweryGrass2,20
-    25,CLEFFA,20,23
-	25,STONJOURNER,20,23
-    25,MINIOR,20,23
-	25,WOOBAT,20,23

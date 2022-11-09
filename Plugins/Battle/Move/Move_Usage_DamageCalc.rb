@@ -175,22 +175,16 @@ class PokeBattle_Move
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
         # Numb
-        if user.paralyzed?
+        if user.numbed?
             damageReduction = user.boss? ? (3.0/20.0) : (1.0/4.0)
             damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
-        # Fluster
-        if target.flustered? && physicalMove? && @function != "122" && !target.shouldAbilityApply?([:FLUSTERFLOCK,:MARVELSCALE],checkingForAI)
-            defenseDecrease = target.boss? ? (1.0/5.0) : (1.0/3.0)
-            defenseDecrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
-            multipliers[:defense_multiplier] *= (1.0 - defenseDecrease)
-        end
-        # Mystified
-        if target.mystified? && specialMove? && @function != "506" && !target.shouldAbilityApply?([:HEADACHE,:MARVELSKIN],checkingForAI)
-            defenseDecrease = target.boss? ? (1.0/5.0) : (1.0/3.0)
-            defenseDecrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
-            multipliers[:defense_multiplier] *= (1.0 - defenseDecrease)
+        # Dizzy
+        if target.dizzy? && !target.shouldAbilityApply?([:MARVELSKIN,:MARVELSCALE],checkingForAI)
+            damageIncrease = target.boss? ? (3.0/20.0) : (1.0/4.0)
+            damageIncrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+            multipliers[:final_damage_multiplier] *= (1.0 + damageIncrease)
         end
     end
 
@@ -218,7 +212,7 @@ class PokeBattle_Move
             end
         end
         # Partial protection moves
-        if target.effectActive?(:StunningCurl)
+        if target.effectActive?(:StunningCurl) || target.effectActive?(:RootShelter)
             multipliers[:final_damage_multiplier] *= 0.5
         end
         if target.effectActive?(:EmpoweredDetect)

@@ -23,12 +23,11 @@ module FollowerSettings
   APPLYSTATUSTONES = true
   BURNTONE         = [150,40,40,120]
   POISONTONE       = [153,71,112,120]
-  PARALYSISTONE    = [120,120,72,120]
-  FROZENTONE       = [112,150,150,120]
+  NUMBTONE         = [120,120,72,120]
   FROSTBITETONE    = [112,150,150,120]
   SLEEPTONE        = [0,0,0,120]
-  FLUSTEREDTONE    = [120,60,130,120]
-  MYSTIFIEDTONE    = [160,100,100,120]
+  DIZZYTONE        = [140,70,120,120]
+  LEECHEDTONE      = [80,100,50,120]
 
   # List of Pokemon that will always appear behind the player when surfing
   # Doesn't include any flying or water types because those are handled already

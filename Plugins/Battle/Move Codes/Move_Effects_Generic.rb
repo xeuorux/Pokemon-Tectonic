@@ -83,17 +83,17 @@ end
 class PokeBattle_SleepMove < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
-    return !target.pbCanSleep?(user,true,self)
+    return !target.canSleep?(user,true,self)
   end
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    target.pbSleep
+    target.applySleep
   end
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    target.pbSleep if target.pbCanSleep?(user,false,self)
+    target.applySleep if target.canSleep?(user,false,self)
   end
   
   def getScore(score,user,target,skill=100)
@@ -110,17 +110,17 @@ class PokeBattle_PoisonMove < PokeBattle_Move
 
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
-    return !target.pbCanPoison?(user,true,self)
+    return !target.canPoison?(user,true,self)
   end
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    target.pbPoison(user,nil,@toxic)
+    target.applyPoison(user,nil,@toxic)
   end
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    target.pbPoison(user,nil,@toxic) if target.pbCanPoison?(user,false,self)
+    target.applyPoison(user,nil,@toxic) if target.canPoison?(user,false,self)
   end
 
   def getScore(score,user,target,skill=100)
@@ -129,24 +129,24 @@ class PokeBattle_PoisonMove < PokeBattle_Move
   end
 end
 
-class PokeBattle_ParalysisMove < PokeBattle_Move
+class PokeBattle_NumbMove < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
-    return !target.pbCanParalyze?(user,true,self)
+    return !target.canNumb?(user,true,self)
   end
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    target.pbParalyze(user)
+    target.applyNumb(user)
   end
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+    target.applyNumb(user) if target.canNumb?(user,false,self)
   end
 
   def getScore(score,user,target,skill=100)
-    score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+    score = getNumbMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
     return score
   end
 end
@@ -154,17 +154,17 @@ end
 class PokeBattle_BurnMove < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
-    return !target.pbCanBurn?(user,true,self)
+    return !target.canBurn?(user,true,self)
   end
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    target.pbBurn(user)
+    target.applyBurn(user)
   end
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+    target.applyBurn(user) if target.canBurn?(user,false,self)
   end
 
   def getScore(score,user,target,skill=100)
@@ -220,7 +220,7 @@ end
 class PokeBattle_ConfuseMove < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
-    return !target.pbCanConfuse?(user,true,self)
+    return !target.canConfuse?(user,true,self)
   end
 
   def pbEffectAgainstTarget(user,target)
@@ -230,12 +230,12 @@ class PokeBattle_ConfuseMove < PokeBattle_Move
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    return if !target.pbCanConfuse?(user,false,self)
+    return if !target.canConfuse?(user,false,self)
     target.pbConfuse
   end
 
   def getScore(score,user,target,skill=100)
-    canConfuse = target.pbCanConfuse?(user,false) && !target.hasActiveAbilityAI?(:MENTALBLOCK)
+    canConfuse = target.canConfuse?(user,false) && !target.hasActiveAbilityAI?(:MENTALBLOCK)
 		if canConfuse
 			score += 20
 		elsif statusMove?
@@ -896,53 +896,53 @@ class PokeBattle_Charm < PokeBattle_Move
 end
 
 #===============================================================================
-# Flusters the target.
+# Dizzies the target.
 #===============================================================================
-class PokeBattle_FlusterMove < PokeBattle_Move
+class PokeBattle_DizzyMove < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
 	  return false if damagingMove?
-	  return !target.pbCanFluster?(user,true,self)
+	  return !target.canDizzy?(user,true,self)
 	end
   
 	def pbEffectAgainstTarget(user,target)
 	  return if damagingMove?
-	  target.pbFluster
+	  target.applyDizzy
 	end
   
 	def pbAdditionalEffect(user,target)
 	  return if target.damageState.substitute
-	  return if !target.pbCanFluster?(user,false,self)
-	  target.pbFluster
+	  return if !target.canDizzy?(user,false,self)
+	  target.applyDizzy
 	end
 
   def getScore(score,user,target,skill=100)
-      score = getFlusterMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+      score = getDizzyMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
       return score
   end
 end
 
 #===============================================================================
-# Mystifies the target.
+# Leeches the target
 #===============================================================================
-class PokeBattle_MystifyMove < PokeBattle_Move
+class PokeBattle_LeechMove < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
 	  return false if damagingMove?
-	  return !target.pbCanMystify?(user,true,self)
+	  return !target.canLeech?(user,true,self)
 	end
   
 	def pbEffectAgainstTarget(user,target)
 	  return if damagingMove?
-	  target.pbMystify
+	  target.applyLeeched
 	end
   
 	def pbAdditionalEffect(user,target)
 	  return if target.damageState.substitute
-	  return if !target.pbCanMystify?(user,false,self)
-	  target.pbMystify
+	  return if !target.canLeech?(user,false,self)
+	  target.applyLeeched
 	end
 
   def getScore(score,user,target,skill=100)
-      score = getMystifyMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+      score = getLeechMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
       return score
   end
 end
@@ -953,7 +953,7 @@ end
 class PokeBattle_CharmMove < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
-    return !target.pbCanCharm?(user,true,self)
+    return !target.canCharm?(user,true,self)
   end
 
   def pbEffectAgainstTarget(user,target)
@@ -963,12 +963,12 @@ class PokeBattle_CharmMove < PokeBattle_Move
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    return if !target.pbCanCharm?(user,false,self)
+    return if !target.canCharm?(user,false,self)
     target.pbCharm
   end
 
   def getScore(score,user,target,skill=100)
-    canCharm = target.pbCanCharm?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
+    canCharm = target.canCharm?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
     if canCharm
       score += 20
     elsif statusMove?
@@ -984,18 +984,18 @@ end
 class PokeBattle_FrostbiteMove < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
 	  return false if damagingMove?
-	  return !target.pbCanFrostbite?(user,true,self)
+	  return !target.canFrostbite?(user,true,self)
 	end
   
 	def pbEffectAgainstTarget(user,target)
 	  return if damagingMove?
-	  target.pbFrostbite
+	  target.applyFrostbite
 	end
   
 	def pbAdditionalEffect(user,target)
 	  return if target.damageState.substitute
-	  return if !target.pbCanFrostbite?(user,false,self)
-	  target.pbFrostbite
+	  return if !target.canFrostbite?(user,false,self)
+	  target.applyFrostbite
 	end
 
   def getScore(score,user,target,skill=100)
@@ -1147,12 +1147,11 @@ class PokeBattle_InvokeMove < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     if @battle.primevalWeatherPresent?(false) && target.pbCanInflictStatus?(@statusToApply,user,false,self)
       @battle.pbDisplay(_INTL("But it failed!"))
-      # Todo: Make this message more detailed
     end
   end
 
   def pbEffectAgainstTarget(user,target)
-		target.pbBurn(user) if target.pbCanInflictStatus?(@statusToApply,user,true,self)
+		target.applyBurn(user) if target.pbCanInflictStatus?(@statusToApply,user,true,self)
     @battle.pbStartWeather(user,@weatherType,@durationSet,false) if !@battle.primevalWeatherPresent?()
 	end
 

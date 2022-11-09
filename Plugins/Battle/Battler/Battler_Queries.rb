@@ -55,6 +55,7 @@ class PokeBattle_Battler
 		return false if fainted? && !ignore_fainted
 		return false if !ignore_gas && @battle.field.effectActive?(:NeutralizingGas)
 		return false if effectActive?(:GastroAcid)
+		return false if dizzy? && ![:FLUSTERFLOCK,:HEADACHE].include?(@ability_id) && !STATUS_UPSIDE_ABILITIES.include?(@ability_id)
 		return true
 	end
 
@@ -259,15 +260,6 @@ class PokeBattle_Battler
 	def canHeal?
 		return false if fainted? || @hp >= @totalhp
 		return false if effectActive?(:HealBlock)
-		return true
-	end
-
-	def affectedByContactEffect?(showMsg = false)
-		return false if fainted?
-		if hasActiveItem?(:PROTECTIVEPADS)
-			@battle.pbDisplay(_INTL('{1} protected itself with the {2}!', pbThis, itemName)) if showMsg
-			return false
-		end
 		return true
 	end
 

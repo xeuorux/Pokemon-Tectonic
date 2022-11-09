@@ -781,10 +781,10 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
 
   def pbOnStartUse(user,targets)
     # NOTE: This is Gen 7's list plus some of Gen 6 plus a bit of my own.
-    @secretPower = 0   # Body Slam, paralysis
+    @secretPower = 0   # Body Slam, numb
     case @battle.field.terrain
     when :Electric
-      @secretPower = 1   # Thunder Shock, paralysis
+      @secretPower = 1   # Thunder Shock, numb
     when :Grassy
       @secretPower = 2   # Vine Whip, sleep
     when :Misty
@@ -830,11 +830,11 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
     return if @battle.pbRandom(100)>=chance
     case @secretPower
     when 2
-      target.pbSleep if target.pbCanSleep?(user,false,self)
+      target.applySleep if target.canSleep?(user,false,self)
     when 10
-      target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+      target.applyBurn(user) if target.canBurn?(user,false,self)
     when 0, 1
-      target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+      target.applyNumb(user) if target.canNumb?(user,false,self)
     when 9
       target.pbFreeze if target.pbCanFreeze?(user,false,self)
     when 5
@@ -2015,11 +2015,11 @@ class PokeBattle_Move_0C5 < PokeBattle_TwoTurnMove
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+    target.applyNumb(user) if target.canNumb?(user,false,self)
   end
 
   def getScore(score,user,target,skill=100)
-    score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+    score = getNumbMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
     return score
   end
 end
@@ -2035,11 +2035,11 @@ class PokeBattle_Move_0C6 < PokeBattle_TwoTurnMove
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+    target.applyBurn(user) if target.canBurn?(user,false,self)
   end
 
   def getScore(score,user,target,skill=100)
-    score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+    score = getNumbMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
     return score
   end
 end
@@ -2156,11 +2156,11 @@ class PokeBattle_Move_0CC < PokeBattle_TwoTurnMove
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+    target.applyNumb(user) if target.canNumb?(user,false,self)
   end
 
   def getScore(score,user,target,skill=100)
-    score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+    score = getNumbMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
     return score
   end
 end
@@ -2479,13 +2479,13 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    return true if !user.pbCanSleep?(user,true,self,true)
+    return true if !user.canSleep?(user,true,self,true)
     return true if super
     return false
   end
 
   def pbEffectGeneral(user)
-    user.pbSleepSelf(_INTL("{1} slept and became healthy!",user.pbThis),3)
+    user.applySleepSelf(_INTL("{1} slept and became healthy!",user.pbThis),3)
     super
   end
 
@@ -2552,7 +2552,7 @@ end
 
 #===============================================================================
 # Seeds the target. Seeded Pokémon lose 1/8 of max HP at the end of each round,
-# and the Pokémon in the user's position gains the same amount. (Leech Seed)
+# and the Pokémon in the user's position gains the same amount. (old!Leech Seed)
 #===============================================================================
 class PokeBattle_Move_0DC < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
@@ -3589,15 +3589,15 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
     return if !canApplyAdditionalEffects?(user,target)
     case user.item_id
     when :POISONBARB
-      target.pbPoison(user) if target.pbCanPoison?(user,false,self)
+      target.applyPoison(user) if target.canPoison?(user,false,self)
     when :POISONORB
-      target.pbPoison(user) if target.pbCanPoison?(user,false,self)
+      target.applyPoison(user) if target.canPoison?(user,false,self)
     when :FLAMEORB
-      target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+      target.applyBurn(user) if target.canBurn?(user,false,self)
     when :FROSTORB
-      target.pbFrostbite(user) if target.pbCanFrostbite?(user,false,self)
+      target.applyFrostbite(user) if target.canFrostbite?(user,false,self)
     when :LIGHTBALL
-      target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+      target.applyNumb(user) if target.canNumb?(user,false,self)
     when :KINGSROCK, :RAZORFANG
       target.pbFlinch(user)
     else
@@ -3679,11 +3679,11 @@ class PokeBattle_Move_0FD < PokeBattle_RecoilMove
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+    target.applyNumb(user) if target.canNumb?(user,false,self)
   end
 
   def getScore(score,user,target,skill=100)
-    score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies)
+    score = getNumbMoveScore(score,user,target,skill,user.ownersPolicies)
     super
   end
 end
@@ -3697,7 +3697,7 @@ class PokeBattle_Move_0FE < PokeBattle_RecoilMove
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+    target.applyBurn(user) if target.canBurn?(user,false,self)
   end
 
   def getScore(score,user,target,skill=100)

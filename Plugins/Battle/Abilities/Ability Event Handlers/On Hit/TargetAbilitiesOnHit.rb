@@ -8,22 +8,9 @@ BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINT,
   }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:CUTECHARM,
-  proc { |ability,user,target,move,battle|
-    next if target.fainted?
-    next if !move.pbContactMove?(user)
-    next if battle.pbRandom(100)>=30
-    battle.pbShowAbilitySplash(target)
-    if user.pbCanAttract?(target,true) && user.affectedByContactEffect?
-      user.pbAttract(target)
-    end
-    battle.pbHideAbilitySplash(target)
-  }
-)
-
 BattleHandlers::TargetAbilityOnHit.add(:GOOEY,
   proc { |ability,user,target,move,battle|
-    next if !move.pbContactMove?(user)
+    next if !move.physicalMove?
     user.tryLowerStat(:SPEED,target,showAbilitySplash: true)
   }
 )
@@ -74,7 +61,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
 BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
   proc { |ability,user,target,move,battle|
     next if !target.fainted?
-    next if !move.pbContactMove?(user)
+    next if !move.physicalMove?
     battle.pbShowAbilitySplash(target)
     if !battle.moldBreaker
       dampBattler = battle.pbCheckGlobalAbility(:DAMP)
@@ -86,7 +73,7 @@ BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
         next
       end
     end
-    if user.takesIndirectDamage?(true) && user.affectedByContactEffect?(true)
+    if user.takesIndirectDamage?(true)
       battle.pbDisplay(_INTL("{1} was caught in the aftermath!",user.pbThis))
       user.applyFractionalDamage(1.0/4.0)
     end
@@ -114,11 +101,10 @@ BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
 
 BattleHandlers::TargetAbilityOnHit.add(:STATIC,
   proc { |ability,user,target,move,battle|
-    next if user.paralyzed? || battle.pbRandom(100)>=30
+    next if user.numbed? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
-    if user.pbCanParalyze?(target,true) &&
-       user.affectedByContactEffect?(true)
-      user.pbParalyze(target)
+    if user.canNumb?(target,true)
+      user.applyNumb(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -148,19 +134,17 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
 
 BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
   proc { |ability,user,target,move,battle|
-    next if !move.pbContactMove?(user)
+    next if !move.physicalMove?
     next if user.fainted?
     next if user.unstoppableAbility? || user.ability == ability
     oldAbil = nil
     battle.pbShowAbilitySplash(target) if user.opposes?(target)
-    if user.affectedByContactEffect?(true)
-      oldAbil = user.ability
-      battle.pbShowAbilitySplash(user,true,false) if user.opposes?(target)
-      user.ability = ability
-      battle.pbReplaceAbilitySplash(user) if user.opposes?(target)
-      battle.pbDisplay(_INTL("{1}'s Ability became {2}!",user.pbThis,user.abilityName))
-      battle.pbHideAbilitySplash(user) if user.opposes?(target)
-    end
+    oldAbil = user.ability
+    battle.pbShowAbilitySplash(user,true,false) if user.opposes?(target)
+    user.ability = ability
+    battle.pbReplaceAbilitySplash(user) if user.opposes?(target)
+    battle.pbDisplay(_INTL("{1}'s Ability became {2}!",user.pbThis,user.abilityName))
+    battle.pbHideAbilitySplash(user) if user.opposes?(target)
     battle.pbHideAbilitySplash(target) if user.opposes?(target)
     user.pbOnAbilityChanged(oldAbil) if !oldAbil.nil?
   }
@@ -168,9 +152,9 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
 
 BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
   proc { |ability,user,target,move,battle|
-    next if !move.pbContactMove?(user)
+    next if !move.physicalMove?
     battle.pbShowAbilitySplash(target)
-    if user.takesIndirectDamage?(true) && user.affectedByContactEffect?(true)
+    if user.takesIndirectDamage?(true)
       battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
       user.applyFractionalDamage(1.0/8.0)
     end
@@ -182,11 +166,11 @@ BattleHandlers::TargetAbilityOnHit.copy(:IRONBARBS,:ROUGHSKIN)
 
 BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
   proc { |ability,user,target,move,battle|
-    next if !move.pbContactMove?(user)
+    next if !move.physicalMove?
     next if user.burned? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
-    if user.pbCanBurn?(target,true) && user.affectedByContactEffect?(true)
-      user.pbBurn(target)
+    if user.canBurn?(target,true)
+      user.applyBurn(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -197,27 +181,26 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPORE,
     # NOTE: This ability has a 30% chance of triggering, not a 30% chance of
     #       inflicting a status condition. It can try (and fail) to inflict a
     #       status condition that the user is immune to.
-    next if !move.pbContactMove?(user)
+    next if !move.physicalMove?
     next if battle.pbRandom(100)>=30
     r = battle.pbRandom(3)
     next if r==0 && user.asleep?
     next if r==1 && user.poisoned?
-    next if r==2 && user.paralyzed?
+    next if r==2 && user.numbed?
     battle.pbShowAbilitySplash(target)
-    if user.affectedByPowder?(true) &&
-       user.affectedByContactEffect?(true)
+    if user.affectedByPowder?(true)
       case r
       when 0
-        if user.pbCanSleep?(target,true)
-          user.pbSleep()
+        if user.canSleep?(target,true)
+          user.applySleep()
         end
       when 1
-        if user.pbCanPoison?(target,true)
-          user.pbPoison(target)
+        if user.canPoison?(target,true)
+          user.applyPoison(target)
         end
       when 2
-        if user.pbCanParalyze?(target,true)
-          user.pbParalyze(target)
+        if user.canNumb?(target,true)
+          user.applyNumb(target)
         end
       end
     end
@@ -227,11 +210,11 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPORE,
 
 BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
   proc { |ability,user,target,move,battle|
-    next if !move.pbContactMove?(user)
+    next if !move.physicalMove?
     next if user.poisoned? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
-    if user.pbCanPoison?(target,true) && user.affectedByContactEffect?(true)
-      user.pbPoison(target)
+    if user.canPoison?(target,true)
+      user.applyPoison(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -246,8 +229,7 @@ BattleHandlers::TargetAbilityOnHit.add(:STEAMENGINE,
 
 BattleHandlers::TargetAbilityOnHit.add(:PERISHBODY,
   proc { |ability,user,target,move,battle|
-    next if !move.pbContactMove?(user)
-    next if !user.affectedByContactEffect?
+    next if !move.physicalMove?
     next if user.effectActive?(:PerishSong)
     battle.pbShowAbilitySplash(target)
     battle.pbDisplay(_INTL("Both Pokémon will faint in three turns!"))
@@ -286,7 +268,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
         user.tryLowerStat(:DEFENSE, target, showAbilitySplash: true)
       elsif gulpform==2
         msg = nil
-        user.pbParalyze(target,msg)
+        user.applyNumb(target,msg)
       end
       battle.pbHideAbilitySplash(target)
     end
@@ -295,7 +277,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
 
 BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
   proc { |ability,user,target,move,battle|
-    next if !move.pbContactMove?(user)
+    next if !move.physicalMove?
     next if user.fainted?
     abilityBlacklist = [
        :DISGUISE,
@@ -321,18 +303,16 @@ BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
     next if failed
     oldAbil = -1
     battle.pbShowAbilitySplash(target) if user.opposes?(target)
-    if user.affectedByContactEffect?(true)
-      oldAbil = user.ability
-      battle.pbShowAbilitySplash(user,true,false) if user.opposes?(target)
-      user.ability = :WANDERINGSPIRIT
-      target.ability = oldAbil
-      if user.opposes?(target)
-        battle.pbReplaceAbilitySplash(user)
-        battle.pbReplaceAbilitySplash(target)
-      end
-      battle.pbDisplay(_INTL("{1}'s Ability became {2}!",user.pbThis,user.abilityName))
-      battle.pbHideAbilitySplash(user)
+    oldAbil = user.ability
+    battle.pbShowAbilitySplash(user,true,false) if user.opposes?(target)
+    user.ability = :WANDERINGSPIRIT
+    target.ability = oldAbil
+    if user.opposes?(target)
+      battle.pbReplaceAbilitySplash(user)
+      battle.pbReplaceAbilitySplash(target)
     end
+    battle.pbDisplay(_INTL("{1}'s Ability became {2}!",user.pbThis,user.abilityName))
+    battle.pbHideAbilitySplash(user)
     battle.pbHideAbilitySplash(target) if user.opposes?(target)
     if oldAbil
       user.pbOnAbilityChanged(oldAbil)
@@ -360,8 +340,8 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
     next if battle.pbRandom(100)>=30
     next if user.poisoned?
     battle.pbShowAbilitySplash(target)
-    if user.pbCanPoison?(target,true) && user.affectedByContactEffect?(true)
-      user.pbPoison(target)
+    if user.canPoison?(target,true)
+      user.applyPoison(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -373,8 +353,8 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
     next if battle.pbRandom(100)>=30
     next if user.frostbitten?
     battle.pbShowAbilitySplash(target)
-    if user.pbCanFrostbite?(target,true) && user.affectedByContactEffect?(true)
-      user.pbFrostbite(target)
+    if user.canFrostbite?(target,true)
+      user.applyFrostbite(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -382,12 +362,12 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
 
 BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
   proc { |ability,user,target,move,battle|
-    next if !move.pbContactMove?(user)
+    next if !move.physicalMove?
     next if battle.pbRandom(100)>=30
     next if user.frostbitten?
     battle.pbShowAbilitySplash(target)
-    if user.pbCanFrostbite?(target,true) && user.affectedByContactEffect?(true)
-      user.pbFrostbite(target)
+    if user.canFrostbite?(target,true)
+      user.applyFrostbite(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -395,7 +375,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
 
 BattleHandlers::TargetAbilityOnHit.add(:CURSEDTAIL,
   proc { |ability,user,target,move,battle|
-    next if !move.pbContactMove?(user)
+    next if !move.physicalMove?
     next if user.effectActive?(:Curse) || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
     user.applyEffect(:Curse)
@@ -406,12 +386,12 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDTAIL,
 BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
   proc { |ability,user,target,move,battle|
     next if target.fainted?
-    next if move.pbContactMove?(user)
+    next if move.physicalMove?
     next if battle.pbRandom(100)>=30
-    next if user.mystified?
+    next if user.dizzy?
     battle.pbShowAbilitySplash(target)
-    if user.pbCanMystify?(target,true)
-      user.pbMystify(target)
+    if user.canDizzy?(target,true)
+      user.applyDizzy(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -420,12 +400,12 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
 BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
   proc { |ability,user,target,move,battle|
     next if target.fainted?
-    next if !move.pbContactMove?(user)
+    next if !move.physicalMove?
     next if battle.pbRandom(100)>=30
-    next if user.flustered?
+    next if user.dizzy?
     battle.pbShowAbilitySplash(target)
-    if user.pbCanFluster?(target,true) && user.affectedByContactEffect?(true)
-      user.pbFluster(target)
+    if user.canDizzy?(target,true)
+      user.applyDizzy(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -472,10 +452,10 @@ BattleHandlers::TargetAbilityOnHit.add(:ELECTRICFENCE,
 
 BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
   proc { |ability,user,target,move,battle|
-    next if user.paralyzed? || battle.pbRandom(100) >= 30
+    next if user.numbed? || battle.pbRandom(100) >= 30
     battle.pbShowAbilitySplash(target)
-    if user.pbCanParalyze?(target,true)
-      user.pbParalyze(target)
+    if user.canNumb?(target,true)
+      user.applyNumb(target)
     end
     battle.pbHideAbilitySplash(target)
   }

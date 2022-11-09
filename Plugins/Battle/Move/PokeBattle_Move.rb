@@ -119,8 +119,6 @@ class PokeBattle_Move
     def immuneToRainDebuff?;     return false; end
     def immuneToSunDebuff?;      return false; end
     def setsARoom?();            return false; end
-  
-    def contactMove?;      return physicalMove? end
 
     def canProtectAgainst?; return @flags[/b/]; end
     def canMagicCoat?;      return @flags[/c/]; end

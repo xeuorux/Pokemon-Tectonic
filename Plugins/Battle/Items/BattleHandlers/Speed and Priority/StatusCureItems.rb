@@ -14,12 +14,12 @@ BattleHandlers::StatusCureItem.add(:ASPEARBERRY,
 BattleHandlers::StatusCureItem.add(:CHERIBERRY,
   proc { |item,battler,battle,forced|
     next false if !forced && !battler.canConsumeBerry?
-    next false if !battler.hasStatusNoTrigger(:PARALYSIS)
+    next false if !battler.hasStatusNoTrigger(:NUMB)
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
     battle.pbCommonAnimation("EatBerry",battler) if !forced
-    battler.pbCureStatus(forced,:PARALYSIS)
-    battle.pbDisplay(_INTL("{1}'s {2} cured its paralysis!",battler.pbThis,itemName)) if !forced
+    battler.pbCureStatus(forced,:NUMB)
+    battle.pbDisplay(_INTL("{1}'s {2} cured its numb!",battler.pbThis,itemName)) if !forced
     next true
   }
 )
@@ -78,25 +78,12 @@ BattleHandlers::StatusCureItem.add(:LUMBERRY,
 BattleHandlers::StatusCureItem.add(:PERSIMBERRY,
   proc { |item,battler,battle,forced|
     next false if !forced && !battler.canConsumeBerry?
-    next false if !battler.hasStatusNoTrigger(:FLUSTERED)
+    next false if !battler.hasStatusNoTrigger(:DIZZY)
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
     battle.pbCommonAnimation("EatBerry",battler) if !forced
-    battler.pbCureStatus(forced,:FLUSTERED)
-    battle.pbDisplay(_INTL("{1}'s {2} made it no longer flustered!",battler.pbThis,itemName)) if !forced
-    next true
-  }
-)
-
-BattleHandlers::StatusCureItem.add(:DURINBERRY,
-  proc { |item,battler,battle,forced|
-    next false if !forced && !battler.canConsumeBerry?
-    next false if !battler.hasStatusNoTrigger(:MYSTIFIED)
-    itemName = GameData::Item.get(item).name
-    PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
-    battle.pbCommonAnimation("EatBerry",battler) if !forced
-    battler.pbCureStatus(forced,:MYSTIFIED)
-    battle.pbDisplay(_INTL("{1}'s {2} made it no longer mystified!",battler.pbThis,itemName)) if !forced
+    battler.pbCureStatus(forced,:DIZZY)
+    battle.pbDisplay(_INTL("{1}'s {2} made it no longer dizzy!",battler.pbThis,itemName)) if !forced
     next true
   }
 )
@@ -109,7 +96,7 @@ BattleHandlers::StatusCureItem.add(:MENTALHERB,
       activate = true
       break
     end
-    activate = true if battler.flustered? || battler.mystified?
+    activate = true if battler.dizzy?
   
     next false if !activate
 
@@ -122,6 +109,7 @@ BattleHandlers::StatusCureItem.add(:MENTALHERB,
       next if !data.is_mental?
       battler.disableEffect(effect)
     end
+    battler.pbCureStatus(true,:DIZZY) if battler.dizzy?
     next true
   }
 )

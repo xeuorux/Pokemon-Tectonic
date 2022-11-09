@@ -40,7 +40,7 @@ class PokeBattle_Move_004 < PokeBattle_Move
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already drowsy!"))
             return true
         end
-        return true if !target.pbCanSleep?(user,true,self)
+        return true if !target.canSleep?(user,true,self)
         return false
     end
     
@@ -76,16 +76,16 @@ class PokeBattle_Move_006 < PokeBattle_PoisonMove
 end
 
 #===============================================================================
-# Paralyzes the target.
+# Numbs the target.
 #===============================================================================
-class PokeBattle_Move_007 < PokeBattle_ParalysisMove
+class PokeBattle_Move_007 < PokeBattle_NumbMove
 end
 
 #===============================================================================
-# Paralyzes the target. Accuracy perfect in rain. Hits some
+# Numbs the target. Accuracy perfect in rain. Hits some
 # semi-invulnerable targets. (Thunder)
 #===============================================================================
-class PokeBattle_Move_008 < PokeBattle_ParalysisMove
+class PokeBattle_Move_008 < PokeBattle_NumbMove
   def hitsFlyingTargets?; return true; end
 
   def immuneToRainDebuff?; return false; end
@@ -101,7 +101,7 @@ class PokeBattle_Move_008 < PokeBattle_ParalysisMove
 end
 
 #===============================================================================
-# Paralyzes the target. May cause the target to flinch. (Thunder Fang)
+# Numbs the target. May cause the target to flinch. (Thunder Fang)
 #===============================================================================
 class PokeBattle_Move_009 < PokeBattle_Move
   def flinchingMove?; return true; end
@@ -111,13 +111,13 @@ class PokeBattle_Move_009 < PokeBattle_Move
     chance = pbAdditionalEffectChance(user,target,@calcType,10)
     return if chance == 0
     if @battle.pbRandom(100)<chance
-      target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
+      target.applyNumb(user) if target.canNumb?(user,false,self)
     end
     target.pbFlinch(user) if @battle.pbRandom(100)<chance
   end
 
   def getScore(score,user,target,skill=100)
-    score = getParalysisMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+    score = getNumbMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
 		score = getFlinchingMoveScore(score,user,target,skill,user.ownersPolicies)
     return score
   end
@@ -140,7 +140,7 @@ class PokeBattle_Move_00B < PokeBattle_Move
     chance = pbAdditionalEffectChance(user,target,@calcType,10)
     return if chance == 0
     if @battle.pbRandom(100)<chance
-      target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+      target.applyBurn(user) if target.canBurn?(user,false,self)
     end
     target.pbFlinch(user) if @battle.pbRandom(100)<chance
   end
@@ -179,7 +179,7 @@ class PokeBattle_Move_00E < PokeBattle_Move
     chance = pbAdditionalEffectChance(user,target,@calcType,10)
     return if chance == 0
     if @battle.pbRandom(100)<chance
-      target.pbFrostbite if target.pbCanFrostbite?(user,false,self)
+      target.applyFrostbite if target.canFrostbite?(user,false,self)
     end
     target.pbFlinch(user) if @battle.pbRandom(100)<chance
   end
@@ -266,27 +266,9 @@ class PokeBattle_Move_015 < PokeBattle_ConfuseMove
 end
 
 #===============================================================================
-# Attracts the target. (Attract)
+# Currently unused #TODO
 #===============================================================================
 class PokeBattle_Move_016 < PokeBattle_Move
-  def ignoresSubstitute?(user); return true; end
-
-  def pbFailsAgainstTarget?(user,target)
-    return false if damagingMove?
-    return true if !target.pbCanAttract?(user)
-    return true if pbMoveFailedAromaVeil?(user,target)
-    return false
-  end
-
-  def pbEffectAgainstTarget(user,target)
-    return if damagingMove?
-    target.pbAttract(user)
-  end
-
-  def pbAdditionalEffect(user,target)
-    return if target.damageState.substitute
-    target.pbAttract(user) if target.pbCanAttract?(user,false)
-  end
 end
 
 #===============================================================================
@@ -296,9 +278,9 @@ class PokeBattle_Move_017 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
     case @battle.pbRandom(3)
-    when 0 then target.pbBurn(user) if target.pbCanBurn?(user, false, self)
-    when 1 then target.pbFrostbite if target.pbCanFrostbite?(user, false, self)
-    when 2 then target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
+    when 0 then target.applyBurn(user) if target.canBurn?(user, false, self)
+    when 1 then target.applyFrostbite if target.canFrostbite?(user, false, self)
+    when 2 then target.applyNumb(user) if target.canNumb?(user, false, self)
     end
   end
 
@@ -306,7 +288,7 @@ class PokeBattle_Move_017 < PokeBattle_Move
     policies = user.ownersPolicies
     score = getBurnMoveScore(score,user,target,skill,policies,statusMove?)
     score = getFrostbiteMoveScore(score,user,target,skill,policies,statusMove?)
-    score = getParalysisMoveScore(score,user,target,skill,policies,statusMove?)
+    score = getNumbMoveScore(score,user,target,skill,policies,statusMove?)
     return score
   end
 end
@@ -956,7 +938,7 @@ class PokeBattle_Move_040 < PokeBattle_Move
     failed = true
     targets.each do |b|
       next if !b.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self) &&
-              !b.pbCanCharm?(user,false,self)
+              !b.canCharm?(user,false,self)
       failed = false
       break
     end
@@ -969,11 +951,11 @@ class PokeBattle_Move_040 < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     target.tryRaiseStat(:SPECIAL_ATTACK,user,self,2)
-    target.pbCharm if target.pbCanCharm?(user,false,self)
+    target.pbCharm if target.canCharm?(user,false,self)
   end
 
   def getScore(score,user,target,skill=100)
-    return 0 if target.pbCanCharm?(user,false,self)
+    return 0 if target.canCharm?(user,false,self)
     score += 30 if !target.hasSpecialAttack?
     return score
   end
@@ -987,7 +969,7 @@ class PokeBattle_Move_041 < PokeBattle_Move
     failed = true
     targets.each do |b|
       next if !b.pbCanRaiseStatStage?(:ATTACK,user,self) &&
-              !b.pbCanConfuse?(user,false,self)
+              !b.canConfuse?(user,false,self)
       failed = false
       break
     end
@@ -1000,11 +982,11 @@ class PokeBattle_Move_041 < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     target.tryRaiseStat(:ATTACK,user,self,2)
-    target.pbConfuse if target.pbCanConfuse?(user,false,self)
+    target.pbConfuse if target.canConfuse?(user,false,self)
   end
 
   def getScore(score,user,target,skill=100)
-    return 0 if target.pbCanConfuse?(user,false,self)
+    return 0 if target.canConfuse?(user,false,self)
     score += 30 if !target.hasPhysicalAttack?
     return score
   end
@@ -2535,19 +2517,19 @@ class PokeBattle_Move_07B < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is doubled if the target is paralyzed. Cures the target of paralysis.
+# Power is doubled if the target is paralyzed. Cures the target of numb.
 # (Smelling Salts)
 #===============================================================================
 class PokeBattle_Move_07C < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    baseDmg *= 2 if target.paralyzed?
+    baseDmg *= 2 if target.numbed?
     return baseDmg
   end
 
   def pbEffectAfterAllHits(user,target)
     return if target.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
-    target.pbCureStatus(true,:PARALYSIS)
+    target.pbCureStatus(true,:NUMB)
   end
 end
 

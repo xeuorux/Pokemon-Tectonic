@@ -147,8 +147,8 @@ class PokeBattle_Battler
 		c = @level - badgeLevel
 		r = @battle.pbRandom(256)
 		# Fall asleep
-		if r < c && pbCanSleep?(self, false)
-			pbSleepSelf(_INTL('{1} began to nap!', pbThis))
+		if r < c && canSleep?(self, false)
+			applySleepSelf(_INTL('{1} began to nap!', pbThis))
 			return false
 		end
 		# Hurt self in confusion
@@ -334,7 +334,7 @@ class PokeBattle_Battler
 		###	Protect Style Moves
 		# Ability effects that ignore protection
 		protectionIgnoredByAbility = false
-		protectionIgnoredByAbility = true if user.ability == :UNSEENFIST && move.contactMove?
+		protectionIgnoredByAbility = true if user.ability == :UNSEENFIST && move.physicalMove?
 		protectionIgnoredByAbility = true if user.ability == :AQUASNEAK && user.turnCount <= 1
 		
 		# Only check the target's side if the target is not the self

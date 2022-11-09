@@ -100,10 +100,9 @@ STATUS_CONDITIONS_HASH = {
     "Frostbite" => "When frostbitten, a Pokémon's Sp. Atk is reduced by 33%, and loses 1/8th HP every turn. Ice- and Flying-types do the most frostbiting. Ice is immune.",
     "Poison" => "When poisoned, a Pokémon's Speed is halved, and it loses 1/8th HP every turn. Poison- and Grass-types do the most poisoning. Poison/Steel are immune.",
     "Numb" => "When numbed, a Pokémon's Speed is halved, and it deals 25% less damage. Electric- and Fighting-types do the most numbing. Electric is immune.",
-    #"Chill" => "When chilled, a Pokémon's speed is halved, and it takes 33% more damage. Ice- and Flying-types do the most chilling. Ice is immune.",
-    "Flustered" => "When flustered, a Pokemon's Defense is reduced by 33%, and it deals physical self-damage every turn. Psychic- and Bug-types do the most flustering. Psychic is immune.",
-    "Mystified" => "When mystified, a Pokemon's Sp. Def is reduced by 33%, and it deals special self-damage every turn. Fairy- and Dark-types do the most mystifying. Fairy is immune.",
-    "Sleep" => "A rarer status that causes a Pokémon to be unable to do anything for 3 turns. Psychic- and Grass-types put Pokémon to sleep the most often. Grass is immune.",
+    "Dizzy" => "When dizzied, a Pokemon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune.",
+    "Leeched" => "When leeched, it loses 1/8th HP every turn, and each opponent gains that health. Bug- and Dark-types do the most dizzying. Grass is immune.",
+    "Sleep" => "A rarer status that causes a Pokémon to be unable to do anything for 3 turns. Psychic- and Grass-types put Pokémon to sleep the most often. Bug is immune.",
 }
 
 TRAINERS_HASH = {

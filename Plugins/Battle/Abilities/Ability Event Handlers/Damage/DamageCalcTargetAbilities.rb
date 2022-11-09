@@ -25,7 +25,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:FLOWERGIFT,
 BattleHandlers::DamageCalcTargetAbility.add(:FLUFFY,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] *= 2 if move.calcType == :FIRE
-    mults[:final_damage_multiplier] /= 2 if move.contactMove?
+    mults[:final_damage_multiplier] /= 2 if move.physicalMove?
   }
 )
 

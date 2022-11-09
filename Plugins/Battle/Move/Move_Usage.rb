@@ -95,11 +95,6 @@ class PokeBattle_Move
     # charging turn, and is nil during the attack turn.
     def pbIsChargingTurn?(user); return false; end
     def pbDamagingMove?; return damagingMove?; end
-  
-    def pbContactMove?(user)
-      return false if user.hasActiveAbility?(:LONGREACH)
-      return contactMove?
-    end
 
     def canParentalBond?(user,targets,checkingForAI=false)
         return user.shouldAbilityApply?(:PARENTALBOND,checkingForAI) && pbDamagingMove? && !chargingTurnMove? && targets.length==1

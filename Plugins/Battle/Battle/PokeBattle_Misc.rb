@@ -58,9 +58,9 @@ class PokeBattle_Battle
 	  # Should be specified when called from pbAttackPhaseSwitch
 	  # Should be nil when called from pbEndOfRoundPhase
     return if !@field.effectActive?(:NeutralizingGas)
-    return if battler && (battler.ability != :NEUTRALIZINGGAS || battler.effects[:GastroAcid])
+    return if battler && !battler.hasActiveNeutralizingGas?
     gasActive = false
-    eachBattler {|b|
+    eachBattler { |b|
       next if !b || b.fainted?
       next if battler && b.index == battler.index
       # if specified, the battler will switch out, so don't consider it.

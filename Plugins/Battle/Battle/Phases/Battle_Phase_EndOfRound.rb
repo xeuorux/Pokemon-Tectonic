@@ -91,11 +91,16 @@ class PokeBattle_Battle
     if battler.takesIndirectDamage?
       fraction = 1.0/8.0
       fraction *= 2 if battler.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
-      battler.pbContinueStatus(status) { battler.applyFractionalDamage(fraction) }
+      damage = 0
+      battler.pbContinueStatus(status) {
+        damage = battler.applyFractionalDamage(fraction)
+      }
       if battler.fainted?
         triggerDOTDeathDialogue(battler)
       end
+      return damage
     end
+    return 0
   end
 
   def healFromStatusAbility(battler,status)
@@ -126,7 +131,7 @@ class PokeBattle_Battle
     # Damage from poisoning
     priority.each do |b|
       next if b.fainted?
-      next if !b.poisoned?
+      next unless b.poisoned?
       if b.hasActiveAbility?(:POISONHEAL)
         healFromStatusAbility(b,:POISON)
       else
@@ -136,7 +141,7 @@ class PokeBattle_Battle
     # Damage from burn
     priority.each do |b|
 	    next if b.fainted?
-      next if !b.burned?
+      next unless b.burned?
 	    if b.hasActiveAbility?(:BURNHEAL)
         healFromStatusAbility(b,:BURN)
       else
@@ -146,25 +151,20 @@ class PokeBattle_Battle
     # Damage from frostbite
     priority.each do |b|
 	    next if b.fainted?
-      next if !b.frostbitten?
+      next unless b.frostbitten?
 	    if b.hasActiveAbility?(:FROSTHEAL)
         healFromStatusAbility(b,:FROSTBITE)
 	    else
         damageFromDOTStatus(b,:FROSTBITE)
       end
     end
-    # Damage from fluster or mystified
+    # Leeched
     priority.each do |b|
-      calcLevel = [b.level,50].min
-      selfHitBasePower = (20 + calcLevel * (3.0/5.0))
-      selfHitBasePower = selfHitBasePower.ceil
-      if b.flustered?
-        superEff = pbCheckOpposingAbility(:BRAINSCRAMBLE,b.index)
-        b.pbContinueStatus(:FLUSTERED) { b.pbConfusionDamage(nil,false,superEff,selfHitBasePower) }
-      end
-      if b.mystified?
-        superEff = pbCheckOpposingAbility(:BRAINJAMMED,b.index)
-        b.pbContinueStatus(:MYSTIFIED) { b.pbConfusionDamage(nil,true,superEff,selfHitBasePower) }
+      next if b.fainted?
+      next unless b.leeched?
+      leechedHP = damageFromDOTStatus(b,:LEECHED)
+      b.eachOpposing do |opposingBattler|
+        opposingBattler.pbRecoverHPFromDrain(leechedHP,b)
       end
     end
   end

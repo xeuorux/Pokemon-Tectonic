@@ -4,7 +4,7 @@ BattleHandlers::EORHealingAbility.add(:SHEDSKIN,
       battle.pbShowAbilitySplash(battler)
       battler.pbCureStatus(true,:POISON)
       battler.pbCureStatus(true,:BURN)
-      battler.pbCureStatus(true,:PARALYSIS)
+      battler.pbCureStatus(true,:NUMB)
       battler.pbCureStatus(true,:FROZEN)
       battler.pbCureStatus(true,:FROSTBITE)
       battle.pbHideAbilitySplash(battler)

@@ -276,7 +276,7 @@ class PokeBattle_Battle
 	end
 
 	def changeBattlersForAutoTesting()
-		statuses = [:POISON,:BURN,:PARALYSIS,:FROSTBITE,:MYSTIFIED,:FLUSTERED,:SLEEP]
+		statuses = [:POISON,:BURN,:NUMB,:FROSTBITE,:DIZZY,:LEECHED,:SLEEP]
 
 		changeChance = 10
 		resetChance = 5

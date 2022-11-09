@@ -30,6 +30,6 @@ BattleHandlers::GuaranteedCriticalUserAbility.add(:AQUASNEAK,
   
 BattleHandlers::GuaranteedCriticalUserAbility.add(:LURING,
     proc { |ability,user,target,battle|
-      next true if target.mystified?
+      next true if target.dizzy?
     }
 )

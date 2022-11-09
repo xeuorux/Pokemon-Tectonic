@@ -51,7 +51,7 @@ BattleHandlers::TargetItemOnHit.add(:ROWAPBERRY,
 
 BattleHandlers::TargetItemOnHit.add(:ROCKYHELMET,
   proc { |item,user,target,move,battle|
-    next if !move.pbContactMove?(user) || !user.affectedByContactEffect?
+    next if !move.physicalMove?
     next if !user.takesIndirectDamage?
     battle.pbDisplay(_INTL("{1} was hurt by the {2}!",user.pbThis,target.itemName))
     user.applyFractionalDamage(1.0/6.0)
@@ -60,7 +60,7 @@ BattleHandlers::TargetItemOnHit.add(:ROCKYHELMET,
 
 BattleHandlers::TargetItemOnHit.add(:BUSTEDRADIO,
   proc { |item,user,target,move,battle|
-    next if move.pbContactMove?(user)
+    next if move.physicalMove?
     next if !user.takesIndirectDamage?
     battle.pbDisplay(_INTL("{1} was hurt by the {2}!",user.pbThis,target.itemName))
     user.applyFractionalDamage(1.0/6.0)
@@ -118,7 +118,7 @@ BattleHandlers::TargetItemOnHit.add(:WEAKNESSPOLICY,
 
 BattleHandlers::TargetItemOnHit.add(:STICKYBARB,
   proc { |item,user,target,move,battle|
-    next if !move.pbContactMove?(user) || !user.affectedByContactEffect?
+    next if !move.physicalMove?
     next if user.fainted? || user.item
     user.item = target.item
     target.item = nil

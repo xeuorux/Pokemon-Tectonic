@@ -56,11 +56,14 @@ class PokeBattle_Move_602 < PokeBattle_Move_100
 end
 
 # Empowered Leech Seed
-class PokeBattle_Move_603 < PokeBattle_Move_0DC
+class PokeBattle_Move_603 < PokeBattle_Move
 	include EmpoweredMove
 	
 	def pbEffectGeneral(user)
 		super
+		@battle.eachOtherSideBattler(user) do |b|
+			b.applyLeeched(user) if b.canLeech?(user,true,self)
+	    end
 		transformType(user,:GRASS)
 	end
 end
@@ -245,8 +248,8 @@ class PokeBattle_Move_617 < PokeBattle_Move
 	def pbEffectGeneral(user)
 		super
 		@battle.eachOtherSideBattler(user) do |b|
-			next if !b.pbCanPoison?(user,true,self)
-			b.pbPoison(user)
+			next if !b.canPoison?(user,true,self)
+			b.applyPoison(user)
 	    end
 		transformType(user,:POISON)
 	end
@@ -270,7 +273,7 @@ class PokeBattle_Move_619 < PokeBattle_Move
 	def pbEffectGeneral(user)
 		super
 		@battle.eachOtherSideBattler(user) do |b|
-			b.pbBurn(user) if b.pbCanBurn?(user,true,self)
+			b.applyBurn(user) if b.canBurn?(user,true,self)
 	    end
 		transformType(user,:FIRE)
 	end
@@ -419,7 +422,7 @@ class PokeBattle_Move_630 < PokeBattle_Move
 	def pbEffectGeneral(user)
 		super
 		@battle.eachOtherSideBattler(user) do |b|
-			b.pbFrostbite(user) if b.pbCanFrostbite?(user,true,self)
+			b.applyFrostbite(user) if b.canFrostbite?(user,true,self)
 	    end
 		transformType(user,:ICE)
 	end
@@ -494,7 +497,7 @@ class PokeBattle_Move_639 < PokeBattle_Move_02D
 end
 
 # Empowered Thunderbolt
-class PokeBattle_Move_640 < PokeBattle_ParalysisMove
+class PokeBattle_Move_640 < PokeBattle_NumbMove
 	include EmpoweredMove
 end
 
@@ -558,7 +561,7 @@ class PokeBattle_Move_646 < PokeBattle_Move_0C4
 end
 
 # Empowered Power Gem
-class PokeBattle_Move_647 < PokeBattle_Move_402
+class PokeBattle_Move_647 < PokeBattle_Move_401
 	include EmpoweredMove
 end
 

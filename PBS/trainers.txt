@@ -39,7 +39,7 @@ Policies = REMARKONSTARTER
 Pokemon = KRICKETOT,8
     AbilityIndex = 0
 Pokemon = MVULPIX,9
-    Moves = COYGAZE,DAZZLE,DIRGE
+    Moves = PLANTDOUBT,DAZZLE,DIRGE
     AbilityIndex = 0
 #-------------------------------
 [YOUNGSTER,Harvey]
@@ -1993,7 +1993,7 @@ Pokemon = DONPHAN,43
     AbilityIndex = 1
     Item = SHELLBELL
 Pokemon = SERPERIOR,43
-    Moves = MAJESTICGLARE,LEAFTORNADO,LEECHSEED
+    Moves = GALLINGSPIT,LEAFTORNADO,LEECHSEED
     AbilityIndex = 1
     Item = BIGROOT
 #-------------------------------
@@ -3260,7 +3260,7 @@ Pokemon = EXCADRILL,65
     Item = ORANBERRY
     EV = 10,20,0,10,0,10
 Pokemon = PYUKUMUKU,65
-    Moves = MESMERIZE,DISPLACE,GASTROACID,LIFEDEW
+    Moves = SPELLBIND,LATCHON,TAUNT,LIFEDEW
     AbilityIndex = 0
     Item = LEFTOVERS
     EV = 20,0,20,0,0,10
@@ -3980,7 +3980,7 @@ Pokemon = TOWERPODA,70
     AbilityIndex = 0
     Item = SMOOTHROCK
 Pokemon = FLYGON,70
-    Moves = DUSTFORCE,BUGBUZZ,DRAGONPULSE,DISPLACE
+    Moves = DUSTFORCE,BUGBUZZ,DRAGONPULSE,CONFUSERAY
     AbilityIndex = 1
 Pokemon = SAURENAID,70
     Name = Maxie

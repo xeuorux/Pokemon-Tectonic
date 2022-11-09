@@ -26,7 +26,7 @@ BattleHandlers::StatusImmunityAbility.add(:LEAFGUARD,
 
 BattleHandlers::StatusImmunityAbility.add(:LIMBER,
   proc { |ability,battler,status|
-    next true if status == :PARALYSIS
+    next true if status == :NUMB
   }
 )
 
@@ -44,7 +44,7 @@ BattleHandlers::StatusImmunityAbility.add(:WATERVEIL,
 
 BattleHandlers::StatusImmunityAbility.add(:ENERGETIC,
   proc { |ability,battler,status|
-	next true if status == :FROZEN || status == :PARALYSIS || status == :POISON
+	next true if status == :FROZEN || status == :NUMB || status == :POISON
   }
 )
 
@@ -56,24 +56,24 @@ BattleHandlers::StatusImmunityAbility.add(:STABILITY,
 
 BattleHandlers::StatusImmunityAbility.add(:FAEVEIL,
   proc { |ability,battler,status|
-    next true if status == :BURN || status == :FROSTBITE || status == :PARALYSIS 
+    next true if status == :BURN || status == :FROSTBITE || status == :NUMB 
   }
 )
 
 BattleHandlers::StatusImmunityAllyAbility.add(:FAEVEIL,
   proc { |ability,battler,status|
-    next true if status == :BURN || status == :FROSTBITE || status == :PARALYSIS 
+    next true if status == :BURN || status == :FROSTBITE || status == :NUMB 
   }
 )
 
 BattleHandlers::StatusImmunityAbility.add(:CANDYVEIL,
   proc { |ability,battler,status|
-    next true if status == :SLEEP || status == :FLUSTERED || status == :MYSTIFIED
+    next true if status == :SLEEP || status == :DIZZY
   }
 )
 
 BattleHandlers::StatusImmunityAllyAbility.add(:CANDYVEIL,
   proc { |ability,battler,status|
-    next true if status == :SLEEP || status == :FLUSTERED || status == :MYSTIFIED
+    next true if status == :SLEEP || status == :DIZZY
   }
 )

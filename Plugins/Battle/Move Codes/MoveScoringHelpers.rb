@@ -12,22 +12,18 @@ def getStatusSettingMoveScore(statusApplying,score,user,target,skill=100,policie
 		return getBurnMoveScore(score,user,target,skill,policies,statusMove)
 	when :FROSTBITE
 		return getFrostbiteMoveScore(score,user,target,skill,policies,statusMove)
-	when :PARALYSIS
-		return getParalysisMoveScore(score,user,target,skill,policies,statusMove)
-	when :FROZEN
-		return 0
-	when :FLUSTERED
-		return getFlusterMoveScore(score,user,target,skill,policies,statusMove)
-	when :MYSTIFIED
-		return getMystifyMoveScore(score,user,target,skill,policies,statusMove)
+	when :NUMB
+		return getNumbMoveScore(score,user,target,skill,policies,statusMove)
+	when :DIZZY
+		return getDizzyMoveScore(score,user,target,skill,policies,statusMove)
 	end
 
 	return score
 end
 
 # Actually used for numbing now
-def getParalysisMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
-	if target && target.pbCanParalyze?(user,false)
+def getNumbMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+	if target && target.canNumb?(user,false)
 		score += 10
 		aspeed = pbRoughStat(user,:SPEED,skill)
 		ospeed = pbRoughStat(target,:SPEED,skill)
@@ -45,7 +41,7 @@ def getParalysisMoveScore(score,user,target,skill=100,policies=[],statusMove=fal
 end
 
 def getPoisonMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
-	if target && target.pbCanPoison?(user,false)
+	if target && target.canPoison?(user,false)
 		score += 30
 		score -= 60 if target.hasActiveAbilityAI?([:TOXICBOOST,:POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
@@ -57,7 +53,7 @@ def getPoisonMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 end
 
 def getBurnMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
-	if target && target.pbCanBurn?(user,false)
+	if target && target.canBurn?(user,false)
 		score += 30
 		score -= 60 if target.hasActiveAbilityAI?([:FLAREBOOST,:BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
@@ -69,7 +65,7 @@ def getBurnMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 end
 
 def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
-	if target && target.pbCanFrostbite?(user,false)
+	if target && target.canFrostbite?(user,false)
 		score += 30
 		score -= 60 if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
@@ -90,13 +86,12 @@ def getSleepMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	return score
 end
 
-def getFlusterMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
-	canFluster = target.pbCanFluster?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
-	if canFluster
+def getDizzyMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+	canDizzy = target.canDizzy?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
+	if canDizzy
 		score += 20
-		score += 20 if user.hasPhysicalAttack?
-		score -= 60 if target.hasActiveAbilityAI?([:FLUSTERFLOCK].concat(STATUS_UPSIDE_ABILITIES))
-		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
+		score += 20 if user.hasDamagingAttack?
+		score -= 60 if target.hasActiveAbilityAI?([:FLUSTERFLOCK,:HEADACHE].concat(STATUS_UPSIDE_ABILITIES))
 		score += 50 if statusMove && user.hasStatusPunishMove?
 	elsif statusMove?
 		return 0
@@ -104,12 +99,14 @@ def getFlusterMoveScore(score,user,target,skill=100,policies=[],statusMove=false
 	return score
 end
 
-def getMystifyMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
-	canMystify = target.pbCanMystify?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
-    if canMystify
+def getLeechMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+	canLeech = target.canLeech?(user,false)
+	if canLeech
 		score += 20
-		score += 20 if user.hasSpecialAttack?
-		score -= 60 if target.hasActiveAbilityAI?([:HEADACHE].concat(STATUS_UPSIDE_ABILITIES))
+		score += 20 if target.hp > target.totalhp / 2
+		score += 30 if target.totalhp > user.totalhp * 2
+		score -= 30 if target.totalhp < user.totalhp / 2
+		score -= 60 if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
 		score += 50 if statusMove && user.hasStatusPunishMove?
 	elsif statusMove?

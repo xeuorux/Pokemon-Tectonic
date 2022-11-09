@@ -30,7 +30,7 @@ class PokeBattle_Battler
 			# Beak Blast
 			if target.effectActive?(:BeakBlast)
 				PBDebug.log("[Lingering effect] #{target.pbThis}'s Beak Blast")
-				user.pbBurn(target) if move.pbContactMove?(user) && user.affectedByContactEffect? && user.pbCanBurn?(target, false, self)
+				user.applyBurn(target) if move.physicalMove? && user.canBurn?(target, false, self)
 			end
 			# Shell Trap (make the trapper move next if the trap was triggered)
 			if target.effectActive?(:ShellTrap) && @battle.choices[target.index][0] == :UseMove && !target.movedThisRound? && (target.damageState.hpLost > 0 && !target.damageState.substitute && move.physicalMove?)
@@ -48,11 +48,19 @@ class PokeBattle_Battler
 				applyEffect(:DestinyBondTarget,target.index)
 			end
 			# Stunning Curl
-			if target.effectActive?(:StunningCurl) && !user.paralyzed?
+			if target.effectActive?(:StunningCurl) && !user.numbed?
 				PBDebug.log("[Lingering effect] #{target.pbThis}'s Stunning Curl")
-				if user.pbCanParalyze?(target, false)
+				if user.canNumb?(target, false)
 					@battle.pbDisplay(_INTL("{1}'s stance causes the attack to bounce off akwardly!", target.pbThis))
-					user.pbParalyze(target)
+					user.applyNumb(target)
+				end
+			end
+			# Stunning Curl
+			if target.effectActive?(:RootShelter) && !user.leeched?
+				PBDebug.log("[Lingering effect] #{target.pbThis}'s Root Shelter")
+				if user.canLeech?(target, false)
+					@battle.pbDisplay(_INTL("The roots guarding {1} dig into {2}!", target.pbThis(true), user.pbThis(true)))
+					user.applyLeeched(target)
 				end
 			end
 		end

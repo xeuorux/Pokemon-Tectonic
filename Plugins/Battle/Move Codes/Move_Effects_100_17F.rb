@@ -1016,7 +1016,7 @@ class PokeBattle_Move_126 < PokeBattle_Move_000
 end
 
 #===============================================================================
-# Paralyzes the target. (Shadow Bolt)
+# Numbs the target. (Shadow Bolt)
 #===============================================================================
 class PokeBattle_Move_127 < PokeBattle_Move_007
   include ShadowMoveAI
@@ -1678,7 +1678,7 @@ end
   
   #===============================================================================
   # User is protected against damaging moves this round. Decreases the Attack of
-  # the user of a stopped contact move by 2 stages. (King's Shield)
+  # the user of a stopped physical move by 2 stages. (King's Shield)
   #===============================================================================
   class PokeBattle_Move_14B < PokeBattle_ProtectMove
     def initialize(battle,move)
@@ -1698,7 +1698,7 @@ end
   
   #===============================================================================
   # User is protected against moves that target it this round. Damages the user of
-  # a stopped contact move by 1/8 of its max HP. (Spiky Shield)
+  # a stopped physical move by 1/8 of its max HP. (Spiky Shield)
   #===============================================================================
   class PokeBattle_Move_14C < PokeBattle_ProtectMove
     def initialize(battle,move)
@@ -1947,7 +1947,7 @@ end
   #===============================================================================
   class PokeBattle_Move_159 < PokeBattle_Move
     def pbFailsAgainstTarget?(user,target)
-      if !target.pbCanPoison?(user,false,self) &&
+      if !target.canPoison?(user,false,self) &&
          !target.pbCanLowerStatStage?(:SPEED,user,self)
         @battle.pbDisplay(_INTL("But it failed!"))
         return true
@@ -1956,7 +1956,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.pbPoison(user) if target.pbCanPoison?(user,false,self)
+      target.applyPoison(user) if target.canPoison?(user,false,self)
       target.tryLowerStat(:SPEED,user,move: self)
     end
   end
@@ -2268,7 +2268,7 @@ end
   
   #===============================================================================
   # User is protected against moves with the "B" flag this round. If a Pokémon
-  # makes contact with the user while this effect applies, that Pokémon is
+  # attacks the user with a physical move while this effect applies, that Pokémon is
   # poisoned. (Baneful Bunker)
   #===============================================================================
   class PokeBattle_Move_168 < PokeBattle_ProtectMove
@@ -2599,7 +2599,7 @@ end
   end
   
   #===============================================================================
-  # If a Pokémon makes contact with the user before it uses this move, the
+  # If a Pokémon attacks the user with a physical move before it uses this move, the
   # attacker is burned. (Beak Blast)
   #===============================================================================
   class PokeBattle_Move_172 < PokeBattle_Move
@@ -2650,7 +2650,7 @@ end
 # Chance to paralyze the target. Fail if the user is not a Morpeko.
 # If the user is a Morpeko-Hangry, this move will be Dark type. (Aura Wheel)
 #===============================================================================
-class PokeBattle_Move_176 < PokeBattle_ParalysisMove
+class PokeBattle_Move_176 < PokeBattle_NumbMove
   def pbMoveFailed?(user,targets)
     if @id == :AURAWHEEL && !user.countsAs?(:MORPEKO)
       @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis))

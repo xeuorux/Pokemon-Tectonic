@@ -460,8 +460,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 		battle.pbCommonAnimation("LeechSeed",recipient,battler)
 		oldHPRecipient = recipient.hp
 		hpLost = battler.applyFractionalDamage(1.0/8.0,false)
-		drainMessage = _INTL("{1}'s health is sapped by Leech Seed!",battler.pbThis)
-		recipient.pbRecoverHPFromDrain(hpLost,battler,drainMessage)
+		recipient.pbRecoverHPFromDrain(hpLost,battler)
 	}
 })
 
@@ -1054,9 +1053,9 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:type => :Integer,
 	:ticks_down => true,
 	:expire_proc => Proc.new { |battle, battler|
-		if battler.pbCanSleepYawn?
+		if battler.canSleepYawn?
 			PBDebug.log("[Lingering effect] #{battler.pbThis} fell asleep because of Yawn")
-			battler.pbSleep
+			battler.applySleep
 		end
 	},
 	:apply_proc => Proc.new { |battle,battler,value|
@@ -1308,6 +1307,12 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
+	:id => :RootShelter,
+	:real_name => "Root Shelter",
+	:resets_eor	=> true,
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
 	:id => :ExtraTurns,
 	:real_name => "Extra Turns",
 	:type => :Integer,
@@ -1475,7 +1480,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:resets_eor	=> true,
 	:protection_info => {
 		:hit_proc => Proc.new { |user, target, move, battle|
-			user.pbPoison(target) if move.physicalMove? && user.pbCanPoison?(target, false)
+			user.applyPoison(target) if move.physicalMove? && user.canPoison?(target, false)
 		}
 	}
 })
@@ -1486,7 +1491,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:resets_eor	=> true,
 	:protection_info => {
 		:hit_proc => Proc.new { |user, target, move, battle|
-			user.pbBurn(target) if move.specialMove? && user.pbCanBurn?(target, false)
+			user.applyBurn(target) if move.specialMove? && user.canBurn?(target, false)
 		}
 	}
 })

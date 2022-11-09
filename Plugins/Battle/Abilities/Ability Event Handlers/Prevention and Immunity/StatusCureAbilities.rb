@@ -22,7 +22,7 @@ BattleHandlers::StatusCureAbility.add(:LIMBER,
   proc { |ability,battler|
     next if !battler.hasStatusNoTrigger(:SLEEP)
     battler.battle.pbShowAbilitySplash(battler)
-    battler.pbCureStatus(true,:PARALYSIS)
+    battler.pbCureStatus(true,:NUMB)
     battler.battle.pbHideAbilitySplash(battler)
   }
 )
@@ -65,7 +65,7 @@ BattleHandlers::StatusCureAbility.add(:MENTALBLOCK,
 		activate = true
 		break
 	end
-	activate = true if battler.flustered? || battler.mystified?
+	activate = true if battler.dizzy?
 
 	if activate
 		battle.pbShowAbilitySplash(battler)
@@ -74,8 +74,7 @@ BattleHandlers::StatusCureAbility.add(:MENTALBLOCK,
 			next if !data.is_mental?
 			battler.disableEffect(effect)
 		end
-		battler.pbCureStatus(true,:FLUSTERED) if battler.flustered?
-		battler.pbCureStatus(true,:MYSTIFIED) if battler.mystified?
+		battler.pbCureStatus(true,:DIZZY) if battler.dizzy?
 		battle.pbHideAbilitySplash(battler)
 	end
   }
@@ -88,9 +87,9 @@ BattleHandlers::StatusCureAbility.add(:ENERGETIC,
 		battler.pbCureStatus(true,:POISON)
 		battler.battle.pbHideAbilitySplash(battler)
 	end
-	if battler.hasStatusNoTrigger(:PARALYSIS)
+	if battler.hasStatusNoTrigger(:NUMB)
 		battler.battle.pbShowAbilitySplash(battler)
-		battler.pbCureStatus(true,:PARALYSIS)
+		battler.pbCureStatus(true,:NUMB)
 		battler.battle.pbHideAbilitySplash(battler)
 	end
 	if battler.hasStatusNoTrigger(:FROZEN)

@@ -16,10 +16,10 @@ class PokeBattle_AI
 			score += avg/2
 		#---------------------------------------------------------------------------
 		when "159" # Toxic Thread
-			if !target.pbCanPoison?(user,false) && !target.pbCanLowerStatStage?(:SPEED,user)
+			if !target.canPoison?(user,false) && !target.pbCanLowerStatStage?(:SPEED,user)
 				score = 0
 			else
-				if target.pbCanPoison?(user,false)
+				if target.canPoison?(user,false)
 					score += 30
 					score += 30 if target.hp<=target.totalhp/4
 					score += 50 if target.hp<=target.totalhp/8

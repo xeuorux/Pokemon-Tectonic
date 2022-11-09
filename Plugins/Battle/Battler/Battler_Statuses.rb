@@ -2,9 +2,8 @@ BURNED_EXPLANATION = 'It Attack is reduced by a third'.freeze
 POISONED_EXPLANATION = 'Its Speed is halved'.freeze
 FROSTBITE_EXPLANATION = 'Its Sp. Atk is reduced by a third'.freeze
 NUMBED_EXPLANATION = "Its Speed is halved, and it'll deal less damage".freeze
-CHILLED_EXPLANATION = "Its speed is halved, and it'll take more damage".freeze
-FLUSTERED_EXPLANATION = 'Its Defense is reduced by a third'.freeze
-MYSTIFIED_EXPLANATION = 'Its Sp. Def is reduced by a third'.freeze
+DIZZY_EXPLANATION = "It's ability is supressed, and it'll take more damage".freeze
+LEECHED_EXPLANATION = "Its HP will be siphoned by the opposing team".freeze
 
 class PokeBattle_Battler
 	def getStatuses
@@ -88,14 +87,13 @@ class PokeBattle_Battler
 			if showMessages
 				msg = ''
 				case status
-				when :SLEEP	then msg = _INTL('{1} is already asleep!', pbThis)
-				when :POISON	then msg = _INTL('{1} is already poisoned!', pbThis)
-				when :BURN	then msg = _INTL('{1} already has a burn!', pbThis)
-				when :PARALYSIS	then msg = _INTL('{1} is already numbed!', pbThis)
-				when :FROZEN	then msg = _INTL('{1} is already chilled!', pbThis)
-				when :FLUSTERED		then msg = _INTL('{1} is already flustered!', pbThis)
-				when :MYSTIFIED		then msg = _INTL('{1} is already mystified!', pbThis)
+				when :SLEEP			then msg = _INTL('{1} is already asleep!', pbThis)
+				when :POISON		then msg = _INTL('{1} is already poisoned!', pbThis)
+				when :BURN			then msg = _INTL('{1} already has a burn!', pbThis)
+				when :NUMB			then msg = _INTL('{1} is already numbed!', pbThis)
 				when :FROSTBITE		then msg = _INTL('{1} is already frostbitten!', pbThis)
+				when :DIZZY			then msg = _INTL('{1} is already dizzy!', pbThis)
+				when :LEECHED		then msg = _INTL('{1} is already being leeched!', pbThis)
 				end
 				@battle.pbDisplay(msg)
 			end
@@ -111,8 +109,7 @@ class PokeBattle_Battler
 		# Trying to inflict a status problem on a Pokémon behind a substitute
 		if substituted? && !(move && move.ignoresSubstitute?(user)) && !selfInflicted && !statusDoublingCurse
 			if showMessages
-				@battle.pbDisplay(_INTL("It doesn't affect {1} behind its substitute...",
-						pbThis(true)))
+				@battle.pbDisplay(_INTL("It doesn't affect {1} behind its substitute...", pbThis(true)))
 			end
 			return false
 		end
@@ -120,18 +117,16 @@ class PokeBattle_Battler
 		if affectedByTerrain? && !statusDoublingCurse
 			case @battle.field.terrain
 			when :Electric
-				if %i[SLEEP FLUSTERED MYSTIFIED].include?(newStatus)
+				if %i[SLEEP DIZZY].include?(newStatus)
 					if showMessages
-						@battle.pbDisplay(_INTL('{1} surrounds itself with electrified terrain!',
-								pbThis(true)))
+						@battle.pbDisplay(_INTL('{1} surrounds itself with electrified terrain!',pbThis(true)))
 					end
 					return false
 				end
 			when :Misty
 				if %i[POISON BURN FROSTBITE].include?(newStatus)
 					if showMessages
-						@battle.pbDisplay(_INTL('{1} surrounds itself with fairy terrain!',
-								pbThis(true)))
+						@battle.pbDisplay(_INTL('{1} surrounds itself with fairy terrain!', pbThis(true)))
 					end
 					return false
 				end
@@ -145,14 +140,32 @@ class PokeBattle_Battler
 				return false
 			end
 		end
+		# Downside abilities
+		if hasActiveAbility?(DOWNSIDE_ABILITIES) && !@battle.moldBreaker
+			if showMessages
+				@battle.pbShowAbilitySplash(self)
+				@battle.pbDisplay(_INTL("{1}'s ability prevents being dizzied!", pbThis))
+				@battle.pbHideAbilitySplash(self)
+			end
+			return false
+		end
+		# Downside abilities
+		if unstoppableAbility?
+			if showMessages
+				@battle.pbShowAbilitySplash(self)
+				@battle.pbDisplay(_INTL("{1}'s ability prevents being dizzied!", pbThis))
+				@battle.pbHideAbilitySplash(self)
+			end
+			return false
+		end
 		# Type immunities
 		hasImmuneType = false
 		immuneType = nil
 		case newStatus
 		when :SLEEP
-			if pbHasType?(:GRASS) && !selfInflicted
+			if pbHasType?(:BUG) && !selfInflicted
 				hasImmuneType = true
-				immuneType = :GRASS
+				immuneType = :BUG
 			end
 		when :POISON
 			unless user&.hasActiveAbility?(:CORROSION)
@@ -170,32 +183,31 @@ class PokeBattle_Battler
 				hasImmuneType = true
 				immuneType = :FIRE
 			end
-		when :PARALYSIS
+		when :NUMB
 			if pbHasType?(:ELECTRIC)
 				hasImmuneType = true
 				immuneType = :ELECTRIC
 			end
-		when :FROZEN, :FROSTBITE
+		when :FROSTBITE
 			if pbHasType?(:ICE)
 				hasImmuneType = true
 				immuneType = :ICE
 			end
-		when :FLUSTERED
+		when :DIZZY
 			if pbHasType?(:PSYCHIC)
 				hasImmuneType = true
 				immuneType = :PSYCHIC
 			end
-		when :MYSTIFIED
-			if pbHasType?(:FAIRY)
+		when :LEECHED
+			if pbHasType?(:GRASS)
 				hasImmuneType = true
-				immuneType = :FAIRY
+				immuneType = :GRASS
 			end
 		end
 		if hasImmuneType
 			immuneTypeRealName = GameData::Type.get(immuneType).real_name
 			if showMessages
-				@battle.pbDisplay(_INTL("It doesn't affect {1} since it's an {2}-type...", pbThis(true),
-						immuneTypeRealName))
+				@battle.pbDisplay(_INTL("It doesn't affect {1} since it's an {2}-type...", pbThis(true), immuneTypeRealName))
 			end
 			return false
 		end
@@ -222,14 +234,14 @@ class PokeBattle_Battler
 				@battle.pbShowAbilitySplash(immAlly || self)
 				msg = ''
 				case newStatus
-				when :SLEEP	then msg = _INTL('{1} stays awake!', pbThis)
-				when :POISON	then msg = _INTL('{1} cannot be poisoned!', pbThis)
-				when :BURN	then msg = _INTL('{1} cannot be burned!', pbThis)
-				when :PARALYSIS	then msg = _INTL('{1} cannot be numbed!', pbThis)
-				when :FROZEN	then msg = _INTL('{1} cannot be chilled!', pbThis)
-				when :FLUSTERED		then msg = _INTL('{1} cannot be flustered!', pbThis)
-				when :MYSTIFIED		then msg = _INTL('{1} cannot be mystified!', pbThis)
+				when :SLEEP			then msg = _INTL('{1} stays awake!', pbThis)
+				when :POISON		then msg = _INTL('{1} cannot be poisoned!', pbThis)
+				when :BURN			then msg = _INTL('{1} cannot be burned!', pbThis)
+				when :NUMB			then msg = _INTL('{1} cannot be numbed!', pbThis)
+				when :FROZEN		then msg = _INTL('{1} cannot be chilled!', pbThis)
 				when :FROSTBITE		then msg = _INTL('{1} cannot be frostbitten!', pbThis)
+				when :DIZZY			then msg = _INTL('{1} cannot be dizzied!', pbThis)
+				when :LEECHED		then msg = _INTL('{1} cannot become leeched!', pbThis)
 				end
 				@battle.pbDisplay(msg)
 				@battle.pbHideAbilitySplash(immAlly || self)
@@ -250,12 +262,8 @@ class PokeBattle_Battler
 		# Trying to replace a status problem with another one
 		return false unless hasSpotsForStatus
 		# Terrain immunity
-		return false if @battle.field.terrain == :Misty &&
-																		affectedByTerrain? &&
-																		%i[BURN POISON].include?(newStatus)
-		return false if @battle.field.terrain == :Electric &&
-																		affectedByTerrain? &&
-																		newStatus == :FROZEN
+		return false if @battle.field.terrain == :Misty && affectedByTerrain? && %i[BURN POISON FROSTBITE].include?(newStatus)
+		return false if @battle.field.terrain == :Electric && affectedByTerrain? && %i[SLEEP DIZZY].include?(newStatus)
 		# Type immunities
 		hasImmuneType = false
 		case newStatus
@@ -267,16 +275,16 @@ class PokeBattle_Battler
 			end
 		when :BURN
 			hasImmuneType |= pbHasType?(:FIRE)
-		when :PARALYSIS
+		when :NUMB
 			hasImmuneType |= pbHasType?(:ELECTRIC) && Settings::MORE_TYPE_EFFECTS
 		when :FROZEN, :FROSTBITE
 			hasImmuneType |= pbHasType?(:ICE)
 		when :SLEEP
-			hasImmuneType |= pbHasType?(:GRASS)
-		when :FLUSTERED
+			hasImmuneType |= pbHasType?(:BUG)
+		when :DIZZY
 			hasImmuneType |= pbHasType?(:PSYCHIC)
-		when :MYSTIFIED
-			hasImmuneType |= pbHasType?(:FAIRY)
+		when :LEECHED
+			hasImmuneType |= pbHasType?(:GRASS)
 		end
 		return false if hasImmuneType
 		# Ability immunity
@@ -288,8 +296,7 @@ class PokeBattle_Battler
 			return false
 		end
 		# Safeguard immunity
-		if pbOwnSide.effectActive?(:Safeguard) &&
-					!(user && user.hasActiveAbility?(:INFILTRATOR))
+		if pbOwnSide.effectActive?(:Safeguard) && !(user && user.hasActiveAbility?(:INFILTRATOR))
 			return false
 		end
 		return true
@@ -299,9 +306,7 @@ class PokeBattle_Battler
 	# Generalised infliction of status problem
 	#=============================================================================
 	def pbInflictStatus(newStatus, newStatusCount = 0, msg = nil, user = nil)
-
-		newStatusCount = pbSleepDuration if newStatusCount <= 0 && newStatus == :SLEEP
-
+		newStatusCount = sleepDuration if newStatusCount <= 0 && newStatus == :SLEEP
 		# Inflict the new status
 		if !canHaveSecondStatus?
 			self.status	= newStatus
@@ -338,16 +343,16 @@ class PokeBattle_Battler
 					@battle.pbDisplay(_INTL('{1} was poisoned! {2}!', pbThis, POISONED_EXPLANATION))
 				when :BURN
 					@battle.pbDisplay(_INTL('{1} was burned! {2}!', pbThis, BURNED_EXPLANATION))
-				when :PARALYSIS
+				when :NUMB
 					@battle.pbDisplay(_INTL('{1} is numbed! {2}!', pbThis, NUMBED_EXPLANATION))
 				when :FROZEN
 					@battle.pbDisplay(_INTL('{1} was chilled! {2}!', pbThis, CHILLED_EXPLANATION))
-				when :FLUSTERED
-					@battle.pbDisplay(_INTL('{1} is flustered! {2}!', pbThis, FLUSTERED_EXPLANATION))
-				when :MYSTIFIED
-					@battle.pbDisplay(_INTL('{1} is mystified! {2}!', pbThis, MYSTIFIED_EXPLANATION))
 				when :FROSTBITE
 					@battle.pbDisplay(_INTL('{1} was frostbitten! {2}!', pbThis, FROSTBITE_EXPLANATION))
+				when :DIZZY
+					@battle.pbDisplay(_INTL('{1} is dizzy! {2}!', pbThis, DIZZY_EXPLANATION))
+				when :LEECHED
+					@battle.pbDisplay(_INTL('{1} became leeched! {2}!', pbThis, LEECHED_EXPLANATION))
 				end
 			end
 		end
@@ -378,13 +383,13 @@ class PokeBattle_Battler
 		return pbHasStatus?(:SLEEP)
 	end
 
-	def pbCanSleep?(user, showMessages, move = nil, ignoreStatus = false)
+	def canSleep?(user, showMessages, move = nil, ignoreStatus = false)
 		return pbCanInflictStatus?(:SLEEP, user, showMessages, move, ignoreStatus)
 	end
 
-	def pbCanSleepYawn?
+	def canSleepYawn?
 		return false unless hasSpotsForStatus
-		return false if affectedByTerrain? && %i[Electric Misty].include?(@battle.field.terrain)
+		return false if affectedByTerrain? && @battle.field.terrain == :Electric
 		unless hasActiveAbility?(:SOUNDPROOF)
 			@battle.eachBattler do |b|
 				return false if b.effectActive?(:Uproar)
@@ -407,15 +412,15 @@ class PokeBattle_Battler
 		return true
 	end
 
-	def pbSleep(msg = nil)
+	def applySleep(msg = nil)
 		pbInflictStatus(:SLEEP, -1, msg)
 	end
 
-	def pbSleepSelf(msg = nil, duration = -1)
-		pbInflictStatus(:SLEEP, pbSleepDuration(duration), msg)
+	def applySleepSelf(msg = nil, duration = -1)
+		pbInflictStatus(:SLEEP, sleepDuration(duration), msg)
 	end
 
-	def pbSleepDuration(duration = -1)
+	def sleepDuration(duration = -1)
 		duration = 4 if duration <= 0
 		duration = 2 if hasActiveAbility?(:EARLYBIRD) || boss
 		return duration
@@ -428,15 +433,11 @@ class PokeBattle_Battler
 		return pbHasStatus?(:POISON)
 	end
 
-	def pbCanPoison?(user, showMessages, move = nil)
+	def canPoison?(user, showMessages, move = nil)
 		return pbCanInflictStatus?(:POISON, user, showMessages, move)
 	end
 
-	def pbCanPoisonSynchronize?(target)
-		return pbCanSynchronizeStatus?(:POISON, target)
-	end
-
-	def pbPoison(user = nil, msg = nil, toxic = false)
+	def applyPoison(user = nil, msg = nil, toxic = false)
 		if boss && toxic
 			@battle.pbDisplay("The projection's power blunts the toxin.")
 			toxic = false
@@ -451,50 +452,80 @@ class PokeBattle_Battler
 		return pbHasStatus?(:BURN)
 	end
 
-	def pbCanBurn?(user, showMessages, move = nil)
+	def canBurn?(user, showMessages, move = nil)
 		return pbCanInflictStatus?(:BURN, user, showMessages, move)
 	end
 
-	def pbCanBurnSynchronize?(target)
-		return pbCanSynchronizeStatus?(:BURN, target)
+	def applyBurn(user = nil, msg = nil)
+		pbInflictStatus(:BURN, 0, msg, user)
 	end
 
-	def pbBurn(user = nil, msg = nil)
-		pbInflictStatus(:BURN, 0, msg, user)
+	#=============================================================================
+	# Frostbite
+	#=============================================================================
+	def frostbitten?
+		return pbHasStatus?(:FROSTBITE)
+	end
+
+	def canFrostbite?(user, showMessages, move = nil)
+		return pbCanInflictStatus?(:FROSTBITE, user, showMessages, move)
+	end
+
+	def applyFrostbite(user = nil, msg = nil)
+		pbInflictStatus(:FROSTBITE, 0, msg, user)
 	end
 
 	#=============================================================================
 	# Paralyze
 	#=============================================================================
-	def paralyzed?
-		return pbHasStatus?(:PARALYSIS)
+	def numbed?
+		return pbHasStatus?(:NUMB)
 	end
 
-	def pbCanParalyze?(user, showMessages, move = nil)
-		return pbCanInflictStatus?(:PARALYSIS, user, showMessages, move)
+	def canNumb?(user, showMessages, move = nil)
+		return pbCanInflictStatus?(:NUMB, user, showMessages, move)
 	end
 
-	def pbCanParalyzeSynchronize?(target)
-		return pbCanSynchronizeStatus?(:PARALYSIS, target)
-	end
-
-	def pbParalyze(user = nil, msg = nil)
-		pbInflictStatus(:PARALYSIS, 0, msg, user)
+	def applyNumb(user = nil, msg = nil)
+		pbInflictStatus(:NUMB, 0, msg, user)
 	end
 
 	#=============================================================================
-	# Freeze
+	# Dizzy
 	#=============================================================================
-	def frozen?
-		return pbHasStatus?(:FROZEN)
+	def dizzy?
+		return pbHasStatus?(:DIZZY)
 	end
 
-	def pbCanFreeze?(user, showMessages, move = nil)
-		return pbCanInflictStatus?(:FROZEN, user, showMessages, move)
+	def canDizzy?(user, showMessages, move = nil)
+		return pbCanInflictStatus?(:DIZZY, user, showMessages, move)
 	end
 
-	def pbFreeze(msg = nil)
-		pbInflictStatus(:FROZEN, 0, msg)
+	def applyDizzy(user = nil, msg = nil)
+		pbInflictStatus(:DIZZY, 0, msg, user)
+	end
+
+	#=============================================================================
+	# Leeched
+	#=============================================================================
+	def leeched?
+		return pbHasStatus?(:LEECHED)
+	end
+
+	def canLeech?(user, showMessages, move = nil)
+		return pbCanInflictStatus?(:LEECHED, user, showMessages, move)
+	end
+
+	def applyLeeched(user = nil, msg = nil)
+		pbInflictStatus(:LEECHED, 0, msg, user)
+	end
+
+	#=============================================================================
+	# Flinching
+	#=============================================================================
+	def pbFlinch(user = nil)
+		return if hasActiveAbility?(:INNERFOCUS) && !@battle.moldBreaker
+		applyEffect(:Flinch)
 	end
 
 	#=============================================================================
@@ -513,17 +544,15 @@ class PokeBattle_Battler
 			if !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages.zero?
 				case oneStatus
 				when :SLEEP
-					@battle.pbDisplay(_INTL('{1} is fast asleep.', pbThis))
+					@battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis))
 				when :POISON
-					@battle.pbDisplay(_INTL('{1} was hurt by poison!', pbThis))
+					@battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
 				when :BURN
-					@battle.pbDisplay(_INTL('{1} was hurt by its burn!', pbThis))
+					@battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis))
 				when :FROSTBITE
-					@battle.pbDisplay(_INTL('{1} was hurt by frostbite!', pbThis))
-				when :FLUSTERED
-					@battle.pbDisplay(_INTL('{1} was flustered, and attacked itself!', pbThis))
-				when :MYSTIFIED
-					@battle.pbDisplay(_INTL('{1} was mystified, and attacked itself!', pbThis))
+					@battle.pbDisplay(_INTL("{1} was hurt by frostbite!", pbThis))
+				when :LEECHED
+					@battle.pbDisplay(_INTL("{1}'s health was sapped!", pbThis))
 				end
 			end
 			PBDebug.log("[Status continues] #{pbThis}'s sleep count is #{@statusCount}") if oneStatus == :SLEEP
@@ -567,179 +596,13 @@ class PokeBattle_Battler
 	def self.showStatusCureMessage(status, pokemonOrBattler, battle)
 		curedName = pokemonOrBattler.is_a?(PokeBattle_Battler) ? pokemonOrBattler.pbThis : pokemonOrBattler.name
 		case status
-		when :SLEEP	then battle.pbDisplay(_INTL('{1} woke up!', curedName))
-		when :POISON	then battle.pbDisplay(_INTL('{1} was cured of its poisoning.', curedName))
-		when :BURN	then battle.pbDisplay(_INTL("{1}'s burn was healed.", curedName))
+		when :SLEEP			then battle.pbDisplay(_INTL('{1} woke up!', curedName))
+		when :POISON		then battle.pbDisplay(_INTL('{1} was cured of its poisoning.', curedName))
+		when :BURN			then battle.pbDisplay(_INTL("{1}'s burn was healed.", curedName))
 		when :FROSTBITE		then battle.pbDisplay(_INTL("{1}'s frostbite was healed.", curedName))
-		when :PARALYSIS 	then battle.pbDisplay(_INTL('{1} is no longer numbed.', curedName))
-		when :FROZEN	then battle.pbDisplay(_INTL('{1} warmed up!', curedName))
-		when :FLUSTERED		then battle.pbDisplay(_INTL('{1} is no longer flustered!', curedName))
-		when :MYSTIFIED		then battle.pbDisplay(_INTL('{1} is no longer mystified!', curedName))
+		when :NUMB 			then battle.pbDisplay(_INTL('{1} is no longer numbed.', curedName))
+		when :DIZZY			then battle.pbDisplay(_INTL('{1} is no longer dizzy!', curedName))
+		when :LEECHED		then battle.pbDisplay(_INTL('{1} is no longer being leeched!', curedName))
 		end
-	end
-
-	#=============================================================================
-	# Confusion
-	#=============================================================================
-	def confused?
-		return effectActive?(:Confusion)
-	end
-	
-	def pbCanConfuse?(user = nil, showMessages = true, move = nil, selfInflicted = false)
-		return false if fainted?
-		if confused?
-			@battle.pbDisplay(_INTL('{1} is already confused.', pbThis)) if showMessages
-			return false
-		end
-		if substituted? && !(move && move.ignoresSubstitute?(user)) &&
-					!selfInflicted
-			@battle.pbDisplay(_INTL('But it failed!')) if showMessages
-			return false
-		end
-		if (selfInflicted || !@battle.moldBreaker) && hasActiveAbility?(:OWNTEMPO)
-			if showMessages
-				@battle.pbShowAbilitySplash(self)
-				@battle.pbDisplay(_INTL("{1} doesn't become confused!", pbThis))
-				@battle.pbHideAbilitySplash(self)
-			end
-			return false
-		end
-		if pbOwnSide.effectActive?(:Safeguard) && !selfInflicted && !(user && user.hasActiveAbility?(:INFILTRATOR))
-			@battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!", pbThis)) if showMessages
-			return false
-		end
-		return true
-	end
-
-	def pbCanConfuseSelf?(showMessages)
-		return pbCanConfuse?(nil, showMessages, nil, true)
-	end
-
-	def pbConfuse(msg = nil)
-		applyEffect(:Confusion, pbConfusionDuration)
-		applyEffect(:ConfusionChance, 0)
-	end
-
-	def pbConfusionDuration(duration = -1)
-		duration = 3 if duration <= 0
-		return duration
-	end
-
-	#=============================================================================
-	# Charm
-	#=============================================================================
-	def charmed?
-		return effectActive?(:Charm)
-	end
-
-	def pbCanCharm?(user = nil, showMessages = true, move = nil, selfInflicted = false)
-		return false if fainted?
-		if charmed?
-			@battle.pbDisplay(_INTL('{1} is already charmed.', pbThis)) if showMessages
-			return false
-		end
-		if substituted? && !(move && move.ignoresSubstitute?(user)) &&
-					!selfInflicted
-			@battle.pbDisplay(_INTL('But it failed!')) if showMessages
-			return false
-		end
-		if (selfInflicted || !@battle.moldBreaker) && hasActiveAbility?(:OWNTEMPO)
-			if showMessages
-				@battle.pbShowAbilitySplash(self)
-				@battle.pbDisplay(_INTL("{1} doesn't become charmed!", pbThis))
-				@battle.pbHideAbilitySplash(self)
-			end
-			return false
-		end
-		if pbOwnSide.effectActive?(:Safeguard) && !selfInflicted && !(user && user.hasActiveAbility?(:INFILTRATOR))
-			@battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!", pbThis)) if showMessages
-			return false
-		end
-		return true
-	end
-
-	def pbCanCharmSelf?(showMessages)
-		return pbCanConfuse?(nil, showMessages, nil, true)
-	end
-
-	def pbCharm(msg = nil)
-		applyEffect(:Charm, pbCharmDuration)
-		applyEffect(:CharmChance, 0)
-	end
-
-	def pbCharmDuration(duration = -1)
-		duration = 3 if duration <= 0
-		return duration
-	end
-
-	#=============================================================================
-	# Flinching
-	#=============================================================================
-	def pbFlinch(user = nil)
-		return if hasActiveAbility?(:INNERFOCUS) && !@battle.moldBreaker
-		applyEffect(:Flinch)
-	end
-
-	#=============================================================================
-	# Frozen
-	#=============================================================================
-	def pbCanFrozenSynchronize?(target)
-		return pbCanSynchronizeStatus?(:FROZEN, target)
-	end
-
-	#=============================================================================
-	# Flustered
-	#=============================================================================
-	def flustered?
-		return pbHasStatus?(:FLUSTERED)
-	end
-
-	def pbCanFluster?(user, showMessages, move = nil)
-		return pbCanInflictStatus?(:FLUSTERED, user, showMessages, move)
-	end
-
-	def pbFluster(user = nil, msg = nil)
-		pbInflictStatus(:FLUSTERED, 0, msg, user)
-	end
-
-	#=============================================================================
-	# Mystified
-	#=============================================================================
-	def mystified?
-		return pbHasStatus?(:MYSTIFIED)
-	end
-
-	def pbCanMystify?(user, showMessages, move = nil)
-		return pbCanInflictStatus?(:MYSTIFIED, user, showMessages, move)
-	end
-
-	def pbMystify(user = nil, msg = nil)
-		pbInflictStatus(:MYSTIFIED, 0, msg, user)
-	end
-
-	#=============================================================================
-	# Frostbite
-	#=============================================================================
-	def frostbitten?
-		return pbHasStatus?(:FROSTBITE)
-	end
-
-	def pbCanFrostbite?(user, showMessages, move = nil)
-		return pbCanInflictStatus?(:FROSTBITE, user, showMessages, move)
-	end
-
-	def pbCanFrostbiteSynchronize?(target)
-		return pbCanSynchronizeStatus?(:FROSTBITE, target)
-	end
-
-	def pbFrostbite(user = nil, msg = nil)
-		pbInflictStatus(:FROSTBITE, 0, msg, user)
-	end
-
-	#=============================================================================
-	# Attract (Cut mechanic)
-	#=============================================================================
-	def pbCanAttract?(*args)
-		return false
 	end
 end

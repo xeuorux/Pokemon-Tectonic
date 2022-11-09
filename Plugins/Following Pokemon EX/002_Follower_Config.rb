@@ -80,18 +80,14 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal, x, y)
     pbWait(72)
     pbMessage(_INTL("{1} seems really tired.",pkmn.name))
-  when :PARALYSIS
+  when :NUMB
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
     pbWait(72)
     pbMessage(_INTL("{1} is standing still and twitching.",pkmn.name))
-  when :FLUSTERED
+  when :DIZZY
     $scene.spriteset.addUserAnimation(4,x,y)
     pbWait(72)
     pbMessage(_INTL("{1} looks dazed and confused.",pkmn.name))
-  when :MYSTIFIED
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Love,x,y)
-    pbWait(72)
-    pbMessage(_INTL("{1} is distracted by a magical daydream.",pkmn.name))
   when :FROZEN
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
     pbWait(72)

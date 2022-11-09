@@ -223,7 +223,7 @@ class PokeBattle_AI
         factor += 20
       when :POISON, :BURN
         factor += 10
-      when :PARALYSIS
+      when :NUMB
         factor += 15
       end
       if @justswitched[idxBattler]

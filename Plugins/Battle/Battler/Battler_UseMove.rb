@@ -784,7 +784,7 @@ class PokeBattle_Battler
 				next if target.damageState.unaffected
 				next unless target.hasActiveAbility?(:SECRETIONSECRET) && user.opposes?(target)
 				battle.pbShowAbilitySplash(target)
-				user.pbPoison(target, nil) if user.pbCanPoison?(target, true)
+				user.applyPoison(target, nil) if user.canPoison?(target, true)
 				battle.pbHideAbilitySplash(target)
 			end
 			# Secretion Secret

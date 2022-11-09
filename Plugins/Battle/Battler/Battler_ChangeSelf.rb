@@ -49,7 +49,7 @@ class PokeBattle_Battler
 	# Returns how much damage ended up dealt
 	# Accounts for bosses taking reduced fractional damage
 	def applyFractionalDamage(fraction, showDamageAnimation = true, basedOnCurrentHP = false, entryCheck = false)
-		return unless takesIndirectDamage?
+		return 0 unless takesIndirectDamage?
 		oldHP = @hp
 		fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
 		fraction *= 2 if @battle.pbCheckOpposingAbility(:AGGRAVATE, @index)
@@ -136,7 +136,7 @@ class PokeBattle_Battler
 		return amt
 	end
 
-	def pbRecoverHPFromDrain(drainAmount, target, _msg = nil)
+	def pbRecoverHPFromDrain(drainAmount, target)
 		if target.hasActiveAbility?(:LIQUIDOOZE)
 			@battle.pbShowAbilitySplash(target)
 			oldHP = @hp

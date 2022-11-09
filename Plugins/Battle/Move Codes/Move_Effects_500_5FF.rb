@@ -159,7 +159,7 @@ end
 class PokeBattle_Move_50A < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
     return false if damagingMove?
-    if !target.pbCanBurn?(user,true,self) && !target.pbCanFrostbite?(user,true,self)
+    if !target.canBurn?(user,true,self) && !target.canFrostbite?(user,true,self)
 		@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can neither be burned or frostbitten!")) 
 		return true
 	end
@@ -180,16 +180,16 @@ class PokeBattle_Move_50A < PokeBattle_Move
 	real_attack = target.pbAttack
 	real_special_attack = target.pbSpAtk
 	
-    if target.pbCanBurn?(user,false,self) && real_attack >= real_special_attack
-		target.pbBurn(user)
-	elsif target.pbCanFrostbite?(user,false,self) && real_special_attack >= real_attack
-		target.pbFrostbite(user)
+    if target.canBurn?(user,false,self) && real_attack >= real_special_attack
+		target.applyBurn(user)
+	elsif target.canFrostbite?(user,false,self) && real_special_attack >= real_attack
+		target.applyFrostbite(user)
 	end
   end
   
   def getScore(score,user,target,skill=100)
-	score += target.pbCanBurn?(user,false,self) ? 20 : -20
-	score += target.pbCanFrostbite?(user,false,self) ? 20 : -20
+	score += target.canBurn?(user,false,self) ? 20 : -20
+	score += target.canFrostbite?(user,false,self) ? 20 : -20
 	return score
   end
 end
@@ -319,7 +319,7 @@ end
 class PokeBattle_Move_514 < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if target.damageState.unaffected
-	user.pbPoison(nil, _INTL("{1} is poisoned by the grime! {2}",
+	user.applyPoison(nil, _INTL("{1} is poisoned by the grime! {2}",
        user.pbThis,POISONED_EXPLANATION),false)
   end
   
@@ -348,14 +348,14 @@ end
 class PokeBattle_Move_516 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    if target.pbCanBurn?(user,false,self) && target.hasRaisedStatStages?
-      target.pbBurn(user)
+    if target.canBurn?(user,false,self) && target.hasRaisedStatStages?
+      target.applyBurn(user)
     end
   end
   
   def getScore(score,user,target,skill=100)
     score -= 20
-	score += 50 if target.hasRaisedStatStages? && target.pbCanBurn?(user,false,self)
+	score += 50 if target.hasRaisedStatStages? && target.canBurn?(user,false,self)
 	return score
   end
 end
@@ -629,7 +629,7 @@ end
 #===============================================================================
 class PokeBattle_Move_526 < PokeBattle_SleepMove
 	def pbEffectAgainstTarget(user,target)
-		target.pbSleep
+		target.applySleep
 		user.applyFractionalDamage(1.0/2.0)
 	end
   
@@ -645,7 +645,7 @@ end
 class PokeBattle_Move_527 < PokeBattle_Move_004
 	def pbFailsAgainstTarget?(user,target)
 		fails = true
-        if !target.effectActive?(:Yawn) && target.pbCanSleep?(user,true,self)
+        if !target.effectActive?(:Yawn) && target.canSleep?(user,true,self)
             fails = false
         end
 		if @battle.sunny? && (target.pbCanLowerStatStage?(:ATTACK,user,self) ||
@@ -686,7 +686,7 @@ class PokeBattle_Move_528 < PokeBattle_SleepMove
 			@battle.pbDisplay(_INTL("But it failed, #{target.pbThis(true)} is above half health!"))
 			return true
 		end
-		return !target.pbCanSleep?(user,true,self)
+		return !target.canSleep?(user,true,self)
 	end
 end
 
@@ -699,7 +699,7 @@ class PokeBattle_Move_529 < PokeBattle_SleepMove
 			@battle.pbDisplay(_INTL("But it failed, since the #{target.pbThis(true)} didn't attack #{user.pbThis(true)} this turn!"))
 			return true
 		end
-		return !target.pbCanSleep?(user,true,self)
+		return !target.canSleep?(user,true,self)
 	end
 	
 	def getScore(score,user,target,skill=100)
@@ -723,48 +723,10 @@ class PokeBattle_Move_52A < PokeBattle_Move
 end
 
 #===============================================================================
-# Confuses or charms based on which of the target's attacking stats is higher. (Majestic Glare)
+# TODO: Unused
 #===============================================================================
 class PokeBattle_Move_52B < PokeBattle_Move
-  def pbFailsAgainstTarget?(user,target)
-    return false if damagingMove?
-    # if !target.pbCanConfuse?(user,true,self) && !target.pbCanCharm?(user,true,self)
-	# 	@battle.pbDisplay(_INTL("But it failed!")) 
-	# 	return true
-	# end
-	if !target.pbCanFluster?(user,false,self) && !target.pbCanMystify?(user,false,self)
-	 	@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} cannot be flustered or mystified!")) 
-	 	return true
-	end
-	return false
-  end
 
-  def pbEffectAgainstTarget(user,target)
-    return if damagingMove?
-    flusterOrMystify(target)
-  end
-
-  def pbAdditionalEffect(user,target)
-    return if target.damageState.substitute
-	flusterOrMystify(user,target)
-  end
-
-  def flusterOrMystify(user,target)
-	real_attack = target.pbAttack
-	real_special_attack = target.pbSpAtk
-	
-    if target.pbCanFluster?(user,true,self) && real_attack >= real_special_attack
-		target.pbFluster
-	elsif target.pbCanMystify?(user,true,self) && real_special_attack >= real_attack
-		target.pbMystify
-	end
-  end
-  
-  def getScore(score,user,target,skill=100)
-		score += target.pbCanMystify?(user,false) ? 20 : -20
-		score += target.pbCanFluster?(user,false) ? 20 : -20
-		return score
-  end
 end
 
 #===============================================================================
@@ -937,21 +899,20 @@ end
 
 
 #===============================================================================
-# Puts the target to sleep. Fails unless the target is mystified or flustered. (Pacify)
+# Puts the target to sleep. Fails unless the target is dizzy. (Pacify)
 #===============================================================================
 class PokeBattle_Move_534 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		if !target.flustered? && !target.mystified?
-			@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is neither flustered nor mystified!"))
+		if !target.dizzy?
+			@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} isn't dizzy!"))
 			return true
 		end
-		return !target.pbCanSleep?(user,true,self,true)
+		return !target.canSleep?(user,true,self,true)
 	end
 	
 	def pbEffectAgainstTarget(user,target)
-		target.pbCureStatus(false,:FLUSTERED)
-		target.pbCureStatus(false,:MYSTIFIED)
-		target.pbSleep
+		target.pbCureStatus(false,:DIZZY)
+		target.applySleep
 	end
 end
 
@@ -1005,14 +966,14 @@ end
 class PokeBattle_Move_537 < PokeBattle_Move
 	def pbAdditionalEffect(user,target)
 	  return if target.damageState.substitute
-	  if target.pbCanFrostbite?(user,false,self) && target.hasRaisedStatStages?
-		target.pbFrostbite(user)
+	  if target.canFrostbite?(user,false,self) && target.hasRaisedStatStages?
+		target.applyFrostbite(user)
 	  end
 	end
 	
 	def getScore(score,user,target,skill=100)
 	  score -= 20
-	  score += 50 if target.hasRaisedStatStages? && target.pbCanFrostbite?(user,false,self)
+	  score += 50 if target.hasRaisedStatStages? && target.canFrostbite?(user,false,self)
 	  return score
 	end
 
@@ -1241,15 +1202,15 @@ class PokeBattle_Move_546 < PokeBattle_Move
 end
 
 #===============================================================================
-# Poisons, chills, or burns the target. (Chaos Wheel)
+# Poisons, dizzies, or leeches the target. (Chaos Wheel)
 #===============================================================================
 class PokeBattle_Move_547 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
     case @battle.pbRandom(3)
-    when 0 then target.pbPoison(user) if target.pbCanPoison?(user, true, self)
-    when 1 then target.pbFluster if target.pbCanFluster?(user, true, self)
-    when 2 then target.pbMystify(user) if target.pbCanMystify?(user, true, self)
+    when 0 then target.applyPoison(user) 	if target.canPoison?(user, true, self)
+    when 1 then target.applyDizzy 			if target.canDizzy?(user, true, self)
+    when 2 then target.pbLeech(user) 	if target.pbCanLeech?(user, true, self)
     end
   end
 end
@@ -1429,7 +1390,7 @@ end
 
 #===============================================================================
 # User is protected against moves with the "B" flag this round. If a Pokémon
-# attacks the user while this effect applies, that Pokémon is paralyzed (numbed).
+# attacks the user while this effect applies, that Pokémon becomes numbed.
 # (Stunning Curl)
 #===============================================================================
 class PokeBattle_Move_550 < PokeBattle_ProtectMove
@@ -1467,14 +1428,14 @@ end
 class PokeBattle_Move_553 < PokeBattle_Move
 	def pbAdditionalEffect(user,target)
 	  return if target.damageState.substitute
-	  if target.pbCanPoison?(user,false,self) && target.hasRaisedStatStages?
-		target.pbPoison(user)
+	  if target.canPoison?(user,false,self) && target.hasRaisedStatStages?
+		target.applyPoison(user)
 	  end
 	end
 	
 	def getScore(score,user,target,skill=100)
 	  score -= 20
-	  score += 50 if target.hasRaisedStatStages? && target.pbCanPoison?(user,false,self)
+	  score += 50 if target.hasRaisedStatStages? && target.canPoison?(user,false,self)
 	  return score
 	end
 
@@ -1648,24 +1609,15 @@ class PokeBattle_Move_55C < PokeBattle_Move
 end
 
 #===============================================================================
-# Increases the target's Attack by 2 stages. Flusters the target. (new!Swagger)
+# Increases the target's Attack by 2 stages, then the target hits itself with its own attack. (new!Swagger)
 #===============================================================================
 class PokeBattle_Move_55D < PokeBattle_Move
-	def pbFailsAgainstTarget?(user,target)
-		if !target.pbCanRaiseStatStage?(:ATTACK,user,self,false) && !target.pbCanFluster?(user,false,self)
-			@battle.pbDisplay(_INTL("But it failed!"))
-		  return true
-		end
-		return false
-	end
-  
 	def pbEffectAgainstTarget(user,target)
 		target.tryRaiseStat(:ATTACK,user,increment: 2, move: self)
-	  	target.pbFluster if target.pbCanFluster?(user,true,self)
+	  	target.pbConfusionDamage(_INTL('It hurt itself in rage!'), false, false, 70)
 	end
 
 	def getScore(score,user,target,skill=100)
-		score = getFlusterMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
 		if !target.hasPhysicalAttack?
 			score += 30
 		else
@@ -1676,24 +1628,15 @@ class PokeBattle_Move_55D < PokeBattle_Move
 end
 
 #===============================================================================
-# Increases the target's Sp. Atk. by 2 stages. Flusters the target. (new!Flatter)
+# Increases the target's Sp. Atk. by 2 stages, then the target hits itself with its own Sp. Atk. (new!Flatter)
 #===============================================================================
-class PokeBattle_Move_55E < PokeBattle_Move
-	def pbFailsAgainstTarget?(user,target)
-	  if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self,false) && !target.pbCanMystify?(user,false,self)
-	  	@battle.pbDisplay(_INTL("But it failed!"))
-		return true
-	  end
-	  return false
-	end
-  
+class PokeBattle_Move_55E < PokeBattle_Move 
 	def pbEffectAgainstTarget(user,target)
 		target.tryRaiseStat(:SPECIAL_ATTACK,user,increment: 2, move: self)
-	  	target.pbMystify if target.pbCanMystify?(user,true,self)
+		target.pbConfusionDamage(_INTL('It hurt itself in mental turmoil!'), true, false, 70)
 	end
 
 	def getScore(score,user,target,skill=100)
-		score = getMystifyMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
 		if !target.hasSpecialAttack?
 			score += 30
 		else
@@ -1716,61 +1659,15 @@ class PokeBattle_Move_55F < PokeBattle_Move
 end
 
 #===============================================================================
-# Flusters the target, and decreases its Defense by one stage. (Displace)
+# #TODO: Currently unused
 #===============================================================================
 class PokeBattle_Move_560 < PokeBattle_Move
-	def pbFailsAgainstTarget?(user,target)
-		if !target.pbCanLowerStatStage?(:DEFENSE,user,self) && !target.pbCanFluster?(user,false,self)
-			@battle.pbDisplay(_INTL("But it failed!"))
-		  return true
-		end
-		return false
-	end
-  
-	def pbEffectAgainstTarget(user,target)
-		target.tryLowerStat(:DEFENSE,user,move: self)
-	  	target.pbFluster if target.pbCanFluster?(user,true,self)
-	end
-
-	def getScore(score,user,target,skill=100)
-        canFluster = target.pbCanFluster?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
-		score += 10 * target.stages[:DEFENSE]
-        if canFluster
-          score += 20
-        elsif statusMove?
-          score = 0
-        end
-        return score
-    end
 end
 
 #===============================================================================
-# Flusters the target, and decreases its Defense by one stage. (Mesmerize)
+# #TODO: Currently unused
 #===============================================================================
 class PokeBattle_Move_561 < PokeBattle_Move
-	def pbFailsAgainstTarget?(user,target)
-		if !target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self) && !target.pbCanMystify?(user,false,self)
-			@battle.pbDisplay(_INTL("But it failed!"))
-		  return true
-		end
-		return false
-	end
-  
-	def pbEffectAgainstTarget(user,target)
-		target.tryLowerStat(:SPECIAL_DEFENSE,user,move: self)
-		target.pbMystify if target.pbCanMystify?(user,false,self)
-	end
-
-	def getScore(score,user,target,skill=100)
-        canMystify = target.pbCanMystify?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
-		score += 10 * target.stages[:SPECIAL_DEFENSE]
-        if canMystify
-          score += 20
-        elsif statusMove?
-          score = 0
-        end
-        return score
-    end
 end
 
 #===============================================================================
@@ -1957,9 +1854,9 @@ class PokeBattle_Move_56F < PokeBattle_Move
 end
 
 #===============================================================================
-# Flusters the target. Accuracy perfect in rain. Hits flying semi-invuln targets. (Hurricane)
+# Dizzies the target. Accuracy perfect in rain. Hits flying semi-invuln targets. (Hurricane)
 #===============================================================================
-class PokeBattle_Move_570 < PokeBattle_FlusterMove
+class PokeBattle_Move_570 < PokeBattle_DizzyMove
 	def immuneToRainDebuff?; return true; end
 
 	def hitsFlyingTargets?; return true; end
@@ -2120,25 +2017,25 @@ end
 #===============================================================================
 class PokeBattle_Move_579 < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
-		if target.paralyzed?
+		if target.numbed?
 			if target.effectActive?(:Curse)
 				@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already cursed!"))
 			end
 		else
-			return !target.pbCanParalyze?(user,true,self)
+			return !target.canNumb?(user,true,self)
 		end
 	end
   
 	def pbEffectAgainstTarget(user,target)
-		if target.paralyzed?
+		if target.numbed?
 			target.applyEffect(:Curse)
 		else
-			target.pbParalyze(user)
+			target.applyNumb(user)
 		end
 	end
 
 	def shouldHighlight?(user,target)
-		return target.paralyzed?
+		return target.numbed?
 	end
 end
 
@@ -2152,19 +2049,17 @@ class PokeBattle_Move_580 < PokeBattle_Move
 			if target.pbCanInflictStatus?(status,user,false,self)
 				case status
 				when :SLEEP
-				target.pbSleep
+				target.applySleep
 				when :POISON
-				target.pbPoison(user,nil,user.statusCount!=0)
+				target.applyPoison(user,nil,user.statusCount!=0)
 				when :BURN
-				target.pbBurn(user)
-				when :PARALYSIS
-				target.pbParalyze(user)
+				target.applyBurn(user)
+				when :NUMB
+				target.applyNumb(user)
 				when :FROSTBITE
-				target.pbFrostbite
-				when :FLUSTERED
-				target.pbFluster
-				when :MYSTIFIED
-				target.pbMystify
+				target.applyFrostbite(user)
+				when :DIZZY
+				target.applyDizzy(user)
 				end
 			else
 				statusData = GameData::Status.get(status)
@@ -2185,11 +2080,11 @@ end
 #===============================================================================
 class PokeBattle_Move_581 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target)
-		return !target.pbCanSleep?(user,true,self,true)
+		return !target.canSleep?(user,true,self,true)
 	end
 
 	def pbEffectAgainstTarget(user,target)
-		target.pbSleep
+		target.applySleep
 		user.pbMinimizeStatStage(:SPEED,user,self)
 	end
 
@@ -2630,7 +2525,7 @@ class PokeBattle_Move_59B < PokeBattle_InvokeMove
 		super
 		@weatherType = :Rain
 		@durationSet = 4
-		@statusToApply = :PARALYSIS
+		@statusToApply = :NUMB
 	end
 end
 
@@ -2647,14 +2542,14 @@ class PokeBattle_Move_59C < PokeBattle_InvokeMove
 end
 
 #===============================================================================
-# Poisons the target and sets Sandstorm
+# Dizzies the target and sets Sandstorm
 #===============================================================================
 class PokeBattle_Move_59D < PokeBattle_InvokeMove
 	def initialize(battle,move)
 		super
 		@weatherType = :Sandstorm
 		@durationSet = 4
-		@statusToApply = :POISON
+		@statusToApply = :DIZZY
 	end
 end
 
@@ -2753,4 +2648,16 @@ class PokeBattle_Move_5A4 < PokeBattle_Move
     def pbEffectAgainstTarget(user,target)
     	target.applyEffect(:VolatileToxin)
   	end
+end
+
+#===============================================================================
+# User is protected against moves with the "B" flag this round. If a Pokémon
+# attacks the user while this effect applies, that Pokémon become leeched.
+# (Root Haven)
+#===============================================================================
+class PokeBattle_Move_5A5 < PokeBattle_ProtectMove
+	def initialize(battle,move)
+		super
+		@effect = :RootShelter
+	end
 end

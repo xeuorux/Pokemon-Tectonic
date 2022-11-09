@@ -5,15 +5,15 @@ class PokeBattle_Move_400 < PokeBattle_CharmMove
 end
 
 #===============================================================================
-# Flusters the target.
+# Dizzies the target.
 #===============================================================================
-class PokeBattle_Move_401 < PokeBattle_FlusterMove
+class PokeBattle_Move_401 < PokeBattle_DizzyMove
 end
 
 #===============================================================================
-# Mystifies the target.
+# Leeches the target.
 #===============================================================================
-class PokeBattle_Move_402 < PokeBattle_MystifyMove
+class PokeBattle_Move_402 < PokeBattle_LeechMove
 end
 
 #===============================================================================

@@ -5,23 +5,19 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
       case status
       when :POISON
           battler.battle.pbShowAbilitySplash(battler)
-          user.pbPoison(battler,nil,(battler.getStatusCount(:POISON)>0))
+          user.applyPoison(battler,nil,(battler.getStatusCount(:POISON)>0))
           battler.battle.pbHideAbilitySplash(battler)
       when :BURN
           battler.battle.pbShowAbilitySplash(battler)
-          user.pbBurn(battler)
+          user.applyBurn(battler)
           battler.battle.pbHideAbilitySplash(battler)
-      when :PARALYSIS
+      when :NUMB
           battler.battle.pbShowAbilitySplash(battler)
-          user.pbParalyze(battler)
+          user.applyNumb(battler)
           battler.battle.pbHideAbilitySplash(battler)
-        when :FROZEN
+      when :FROSTBITE
           battler.battle.pbShowAbilitySplash(battler)
-          user.pbFreeze(battler)
-          battler.battle.pbHideAbilitySplash(battler)
-       when :FROSTBITE
-          battler.battle.pbShowAbilitySplash(battler)
-          user.pbFrostbite(battler)
+          user.applyFrostbite(battler)
           battler.battle.pbHideAbilitySplash(battler)
       end
     }

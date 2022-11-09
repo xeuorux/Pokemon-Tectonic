@@ -195,7 +195,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TORRENT,
 
 BattleHandlers::DamageCalcUserAbility.add(:TOUGHCLAWS,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 4 / 3.0 if move.contactMove?
+    mults[:base_damage_multiplier] *= 4 / 3.0 if move.physicalMove?
   }
 )
 
@@ -269,13 +269,13 @@ BattleHandlers::DamageCalcUserAbility.add(:AUDACITY,
 
 BattleHandlers::DamageCalcUserAbility.add(:HEADACHE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:attack_multiplier] *= 2.0 if move.specialMove? && user.mystified?
+    mults[:attack_multiplier] *= 2.0 if move.specialMove? && user.dizzy?
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:HEADACHE,
+BattleHandlers::DamageCalcUserAbility.add(:FLUSTERFLOCK,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:attack_multiplier] *= 2.0 if move.physicalMove? && user.flustered?
+    mults[:attack_multiplier] *= 2.0 if move.physicalMove? && user.dizzy?
   }
 )
 

@@ -243,7 +243,7 @@ class PokeBattle_Battler
 				return false
 			end
 			if !user.hasActiveAbility?(:MIRRORARMOR) && user.pbCanLowerStatStage?(stat, nil, nil, true)
-				user.pbLowerStatStageByAbility(stat, increment, user, splashAnim = false,checkContact = false)
+				user.pbLowerStatStageByAbility(stat, increment, user, splashAnim = false)
 				# Trigger user's abilities upon stat loss
 				BattleHandlers.triggerAbilityOnStatLoss(user.ability, user, stat, self) if user.abilityActive?
 			end
@@ -285,7 +285,7 @@ class PokeBattle_Battler
 				return false
 			end
 			if !user.hasActiveAbility?(:MIRRORARMOR) && user.pbCanLowerStatStage?(stat, nil, nil, true)
-				user.pbLowerStatStageByAbility(stat, increment, user, splashAnim = false,checkContact = false)
+				user.pbLowerStatStageByAbility(stat, increment, user, splashAnim = false)
 				# Trigger user's abilities upon stat loss
 				BattleHandlers.triggerAbilityOnStatLoss(user.ability, user, stat, self) if user.abilityActive?
 			end
@@ -329,13 +329,12 @@ class PokeBattle_Battler
 		return true
 	end
 
-	def pbLowerStatStageByAbility(stat, increment, user, splashAnim = true, checkContact = false)
+	def pbLowerStatStageByAbility(stat, increment, user, splashAnim = true)
 		return false if fainted?
 		return false if statStageAtMin?(stat)
 		ret = false
 		@battle.pbShowAbilitySplash(user) if splashAnim
-		if pbCanLowerStatStage?(stat, user, nil, true) &&
-					(!checkContact || affectedByContactEffect?(true))
+		if pbCanLowerStatStage?(stat, user, nil, true)
 			ret = pbLowerStatStage(stat, increment, user)
 		end
 		@battle.pbHideAbilitySplash(user) if splashAnim
