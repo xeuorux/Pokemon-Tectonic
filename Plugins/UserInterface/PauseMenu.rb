@@ -86,6 +86,8 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 						pbListScreenExtra(_INTL("Avatars"), BattleGuideLister.new(AVATARS_HASH), false)
 					when "PokéDex"
 						pbListScreenExtra(_INTL("PokéDex"), BattleGuideLister.new(POKEDEX_HASH), false)
+					when "Weathers"
+						pbListScreenExtra(_INTL("Weathers"), BattleGuideLister.new(WEATHERS_HASH), false)
 					else
 						break
 					end

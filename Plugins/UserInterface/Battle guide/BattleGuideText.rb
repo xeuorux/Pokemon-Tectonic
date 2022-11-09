@@ -10,6 +10,7 @@ MAIN_HASH = {
     "Trainers"          => "How do enemy Trainers work?",
     "Avatars"           => "What are avatars and what do they do?",
     "PokéDex"           => "What does the PokéDex do and how should I use it?",
+    "Weathers"          => "What are weathers, and what does each do?",
 }
 
 BASICS_HASH = {
@@ -141,4 +142,15 @@ POKEDEX_HASH = {
     "Quick Navigation" => "Press A to go up a page at a time, or S to go down a page. Use the number keys (1-9) to quickly go to one of the tab's of a Pokémon's PokéDex entry.",
     "Move Details" => "Press the Use key (defaults to C) on the level up learnset or tutor moves tabs to begin scrolling the lists, and viewing details about individual moves.",
     "Checking Evolutions" => "Press the Use key (defaults to C) on the evolutions tab to choose a Pokémon in the same evolutionary tree, and to warp to that Pokémon's PokéDex entry.",
+}
+
+WEATHERS_HASH = {
+    "What are weathers?" => "Weathers are special states that effect the entire battlefield and help or hinder the Pokémon battling. Only one weather can be active at once.",
+    "Weather Duration" => "Weathers last a certain number of turns. The length differs depending on what move or ability summoned the weather. The duration can be extended by certain items.",
+    "Sun" => "Sun lowers attack damage by 15% and prevents attacks from critting. Fire and Grass-type moves/Pokémon are immune to this. Fire-type attacks are boosted by 30%.",
+    "Rain" => "Rain lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%.",
+    "Sandstorm" => "Sandstorm deals damage to all Pokémon at the end of each turn. Rock, Ground, and Steel-types are immune to this. Additionally, Rock-types get +50% Special Defense.",
+    "Hail" => "Hail deals damage to all Pokémon at the end of each turn. Ice, Ghost, and Steel-types are immune to this. Additionally, Ice-types get +50% Defense.",
+    "Weather Areas" => "Certain areas in the game experience intense weather. That weather will also be present in the battles of that area. Simple daily weather will not do this.",
+    "Weather Synergies" => "Each weather has dozens of moves and abilities that benefit from that weather. Pokémon using these moves/abilities ignore the downsides of their favored weather!",
 }
