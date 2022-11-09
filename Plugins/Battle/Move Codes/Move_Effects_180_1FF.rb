@@ -250,9 +250,13 @@ class PokeBattle_Move_18B < PokeBattle_Move
   end
 
   def getScore(score, user, target, _skill = 100)
-        score -= 30
-        score += 60 if target.pbCanBurn?(user, false, self) && target.hasRaisedStatStages?
-        return score
+    score -= 30
+    score += 60 if target.pbCanBurn?(user, false, self) && target.hasRaisedStatStages?
+    return score
+  end
+
+  def shouldHighlight?(user,target)
+    return target.hasRaisedStatStages?
   end
 end
 
@@ -272,6 +276,10 @@ class PokeBattle_Move_18C < PokeBattle_Move
             score += 50 if target.hp <= target.totalhp / 2
         end
         return score
+    end
+
+    def shouldHighlight?(user,target)
+      return @battle.field.terrain == :Grassy
     end
 end
 
@@ -320,10 +328,10 @@ end
   # Power is boosted on Psychic Terrain (Expanding Force)
   #===============================================================================
 class PokeBattle_Move_190 < PokeBattle_Move
-  def pbBaseDamage(baseDmg, user, _target)
-    baseDmg *= 1.5 if @battle.field.terrain == :Psychic
-    return baseDmg
-  end
+    def pbBaseDamage(baseDmg, user, _target)
+        baseDmg *= 1.5 if @battle.field.terrain == :Psychic
+        return baseDmg
+    end
 end
 
   #===============================================================================

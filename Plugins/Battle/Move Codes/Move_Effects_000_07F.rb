@@ -94,6 +94,10 @@ class PokeBattle_Move_008 < PokeBattle_ParalysisMove
     return 0 if @battle.rainy?
     return super
   end
+
+  def shouldHighlight?(user,target)
+		return @battle.rainy?
+	end
 end
 
 #===============================================================================
@@ -255,6 +259,10 @@ class PokeBattle_Move_015 < PokeBattle_ConfuseMove
     return 0 if @battle.rainy?
     return super
   end
+
+  def shouldHighlight?(user,target)
+		return @battle.rainy?
+	end
 end
 
 #===============================================================================
@@ -633,6 +641,10 @@ class PokeBattle_Move_028 < PokeBattle_MultiStatUpMove
     increment = 2 if @battle.sunny?
     @statUp[1] = @statUp[3] = increment
   end
+
+  def shouldHighlight?(user,target)
+		return @battle.sunny?
+	end
 end
 
 #===============================================================================
@@ -1079,7 +1091,6 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
     @statDown = [:EVASION,1]
     @miscEffects = [:Mist, :Safeguard]
   end
-
 
   def eachDefoggable(side,isOurSide)
     side.eachEffect(true) do |effect,value,data|

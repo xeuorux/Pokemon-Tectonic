@@ -29,7 +29,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   end
   
   #===============================================================================
-  # Entry hazard. Lays spikes on the opposing side (max. 3 layers). (Spikes)
+  # Entry hazard. Lays spikes on the opposing side. (Spikes)
   #===============================================================================
   class PokeBattle_Move_103 < PokeBattle_Move
     def pbMoveFailed?(user,targets)
@@ -134,7 +134,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   end
   
   #===============================================================================
-  # Ends the opposing side's screen effects.(Brick Break, Psychic Fangs)
+  # Ends the opposing side's screen effects. (Brick Break, Psychic Fangs)
   #===============================================================================
   class PokeBattle_Move_10A < PokeBattle_Move
     def ignoresReflect?; return true; end
@@ -145,17 +145,19 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
         side.disableEffect(effect) if data.is_screen?
       end
     end
+
+    def sideHasScreens?(side)
+      side.eachEffect(true) do |effect,value,data|
+        return true if data.is_screen?
+      end
+      return false
+    end
   
     def pbShowAnimation(id,user,targets,hitNum = 0,showAnimation=true)
       targets.each do |b|
-        side = b.pbOwnSide
-        side.eachEffect(true) do |effect,value,data|
-          # Wall-breaking anim
-          if data.is_screen?
-            hitNum = 1 
-            break
-          end
-        end
+        next unless sideHasScreens?(b.pbOwnSide)
+        hitNum = 1 # Wall-breaking anim
+        break
       end
       super
     end
@@ -166,6 +168,10 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
         score += 10 if data.is_screen?
       end
       return score
+    end
+
+    def shouldHighlight?(user,target)
+      return sideHasScreens?(target.pbOwnSide)
     end
   end
   
@@ -486,6 +492,10 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       score -= 20 * user.countEffect(:Stockpile)
       return score
     end
+
+    def shouldHighlight?(user,target)
+      return user.effectAtMax?(:Stockpile)
+    end
   end
   
   #===============================================================================
@@ -526,6 +536,10 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       score = super
       score -= 20 * user.countEffect(:Stockpile)
       return score
+    end
+
+    def shouldHighlight?(user,target)
+      return user.effectAtMax?(:Stockpile)
     end
   end
   
@@ -762,6 +776,10 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
         end
       end
       return score
+    end
+
+    def shouldHighlight?(user,target)
+      return canSmackDown?(target)
     end
   end
   
@@ -2030,6 +2048,10 @@ end
 			end
       return score
     end
+
+    def shouldHighlight?(user,target)
+      return target.hasRaisedStatStages?
+    end
   end
   
   #===============================================================================
@@ -2413,6 +2435,10 @@ end
       end
       return 1.0/2.0
     end
+    
+    def shouldHighlight?(user,target)
+      return @battle.pbWeather == :Sandstorm
+    end
   end
   
   #===============================================================================
@@ -2447,6 +2473,10 @@ end
       score += 30 if @battle.field.terrain == :Grassy
       score = getHealingMoveScore(score,user,target,skill)
       return score
+    end
+
+    def shouldHighlight?(user,target)
+      return @battle.field.terrain == :Grassy
     end
   end
   
@@ -2616,7 +2646,7 @@ end
     def pbNumHits(user,targets,checkingForAI=false);    return 2;    end
   end
 
-  #===============================================================================
+#===============================================================================
 # Chance to paralyze the target. Fail if the user is not a Morpeko.
 # If the user is a Morpeko-Hangry, this move will be Dark type. (Aura Wheel)
 #===============================================================================

@@ -1209,58 +1209,66 @@ class PokeBattle_TerrainMove < PokeBattle_Move
   end
 end
 
-  #===============================================================================
-  # Type-inducing entry hazard move.
-  # Removes similar spikes when setting.
-  # If a damaging move, sets the hazard on the side of the target.
-  # If a status move, sets the hazard on the side of the user's opponent
-  #===============================================================================
-  class PokeBattle_TypeSpikeMove < PokeBattle_Move
+#===============================================================================
+# Type-inducing entry hazard move.
+# Removes similar spikes when setting.
+# If a damaging move, sets the hazard on the side of the target.
+# If a status move, sets the hazard on the side of the user's opponent
+#===============================================================================
+class PokeBattle_TypeSpikeMove < PokeBattle_Move
+  # Every subclass of this needs to assign something to @spikeEffect, and then call super
+  def initialize(battle,move)
+    super
+    @spikeData = GameData::BattleEffect.get(@spikeEffect)
+  end
 
-    # Every subclass of this needs to assign something to @spikeEffect, and then call super
-    def initialize(battle,move)
-      super
-      @spikeData = GameData::BattleEffect.get(@spikeEffect)
+  def pbMoveFailed?(user,targets)
+    return false if damagingMove?
+    if user.pbOpposingSide.effectAtMax?(@spikeEffect)
+      maximum = @spikeData.maximum
+      @battle.pbDisplay(_INTL("But it failed, since the opposing side already has #{maximum} layers of #{@spikeData.real_name} spikes!"))
+      return true
     end
+    return false
+  end
 
-    def pbMoveFailed?(user,targets)
-      return false if damagingMove?
-      if user.pbOpposingSide.effectAtMax?(@spikeEffect)
-        maximum = @spikeData.maximum
-        @battle.pbDisplay(_INTL("But it failed, since the opposing side already has #{maximum} layers of #{@spikeData.real_name} spikes!"))
-        return true
-      end
-      return false
-    end
+  def pbEffectGeneral(user)
+    return if damagingMove?
+    addSpikeLayer(user.pbOpposingSide,user.pbOpposingTeam(true))
+  end
 
-    def pbEffectGeneral(user)
-      return if damagingMove?
-      addSpikeLayer(user.pbOpposingSide,user.pbOpposingTeam(true))
-    end
+  def pbEffectAgainstTarget(user,target)
+    return if !damagingMove?
+    return if target.pbOwnSide.effectAtMax?(@spikeEffect)
+    addSpikeLayer(target.pbOwnSide,target.pbTeam(true))
+  end
 
-    def pbEffectAgainstTarget(user,target)
-      return if !damagingMove?
-      return if target.pbOwnSide.effectAtMax?(@spikeEffect)
-      addSpikeLayer(target.pbOwnSide,target.pbTeam(true))
-    end
+  def addSpikeLayer(side,teamLabel)
+    side.incrementEffect(@spikeEffect)
 
-    def addSpikeLayer(side,teamLabel)
-      side.incrementEffect(@spikeEffect)
-
-      side.eachEffect(true) do |effect, value, data|
-        next if !data.is_status_hazard?
-        next if effect == @spikeEffect
-        side.disableEffect(effect)
-      end
-    end
-
-    def getScore(score,user,target,skill=100)
-      side = damagingMove? ? target.pbOwnSide : user.pbOpposingSide
-      score -= statusSpikesWeightOnSide(side,[@spikeEffect])
-      score = getHazardSettingMoveScore(score,user,target,skill)
-      return score
+    side.eachEffect(true) do |effect, value, data|
+      next if !data.is_status_hazard?
+      next if effect == @spikeEffect
+      side.disableEffect(effect)
     end
   end
+
+  def getScore(score,user,target,skill=100)
+    side = damagingMove? ? target.pbOwnSide : user.pbOpposingSide
+    score -= statusSpikesWeightOnSide(side,[@spikeEffect])
+    score = getHazardSettingMoveScore(score,user,target,skill)
+    return score
+  end
+
+  def shouldHighlight?(user,target)
+    if target
+      side = target.pbOwnSide
+    else
+      side = user.pbOpposingSide
+    end
+    return side.effectActive?(@spikeEffect) > 0 && !side.effectAtMax?(@spikeEffect)
+  end
+end
 
 # Each subclass must define a @statUp and @statDown array in their initialization method
 class PokeBattle_StatUpDownMove < PokeBattle_Move 

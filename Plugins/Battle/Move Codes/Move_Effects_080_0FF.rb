@@ -186,7 +186,7 @@ class PokeBattle_Move_08A < PokeBattle_Move
 end
 
 #===============================================================================
-# Power increases with the user's HP. (Eruption, Water Spout)
+# Power increases with the user's HP. (Eruption, Water Spout, Dragon Energy)
 #===============================================================================
 class PokeBattle_Move_08B < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
@@ -214,7 +214,7 @@ end
 
 #===============================================================================
 # Power increases with the user's positive stat changes (ignores negative ones).
-# (Power Trip, Stored Power)
+# (Power Trip, Stored Powe, Trained Outburst)
 #===============================================================================
 class PokeBattle_Move_08E < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
@@ -393,6 +393,10 @@ class PokeBattle_Move_095 < PokeBattle_Move
   def pbBaseDamageAI(baseDmg,user,target,skill=100)
     return 71
   end
+
+  def shouldHighlight?(user,target)
+    return false
+  end
 end
 
 #===============================================================================
@@ -505,6 +509,10 @@ class PokeBattle_Move_097 < PokeBattle_Move
     dmgs = [200,80,60,50,40]
     ppLeft = [@pp,dmgs.length-1].min   # PP is reduced before the move is used
     return dmgs[ppLeft]
+  end
+
+  def shouldHighlight?(user,target)
+    return @pp == 1
   end
 end
 
@@ -959,6 +967,10 @@ class PokeBattle_Move_0A9 < PokeBattle_Move
   end
 
   def ignoresDefensiveStageBoosts?; return true; end
+
+  def shouldHighlight?(user,target)
+    return target.hasRaisedDefenseStages?
+  end
 end
 
 #===============================================================================
@@ -1986,6 +1998,10 @@ class PokeBattle_Move_0C4 < PokeBattle_TwoTurnMove
     score += 50 if @battle.sunny?
     super
   end
+
+  def shouldHighlight?(user,target)
+		return @battle.sunny?
+	end
 end
 
 #===============================================================================
@@ -2446,6 +2462,10 @@ class PokeBattle_Move_0D8 < PokeBattle_HealingMove
       return 1.0/3.0
     end
   end
+
+  def shouldHighlight?(user,target)
+		return @battle.sunny?
+	end
 end
 
 #===============================================================================
@@ -2571,7 +2591,7 @@ end
 
 #===============================================================================
 # User gains half the HP it inflicts as damage. Deals double damage if the target is asleep.
-# (Dream Eater)
+# (Dream Absorb)
 #===============================================================================
 class PokeBattle_Move_0DE < PokeBattle_DrainMove
   def drainFactor(user,target); return 0.5; end
@@ -2657,6 +2677,10 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
       score -= 20
     end
     return score
+  end
+
+  def shouldHighlight?(user,target)
+    return user.bunkeringDown?(true)
   end
 end
 
@@ -3193,6 +3217,10 @@ class PokeBattle_Move_0F1 < PokeBattle_Move
   def getScore(score,user,target,skill=100)
     score += 30 if canStealItem?(user,target,true)
     return score
+  end
+
+  def shouldHighlight?(user,target)
+    return canStealItem?(user,target,true)
   end
 end
 

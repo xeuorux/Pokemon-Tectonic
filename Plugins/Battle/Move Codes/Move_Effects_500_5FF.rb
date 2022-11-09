@@ -146,6 +146,10 @@ class PokeBattle_Move_509 < PokeBattle_Move
 	score += target.stages[:EVASION] * 10
 	return score
   end
+
+  def shouldHighlight?(user,target)
+    return target.hasRaisedDefenseStages?
+  end
 end
 
 #===============================================================================
@@ -360,18 +364,26 @@ end
 # Priority against Pokemon with half or less health. (Aqua Instinct)
 #===============================================================================
 class PokeBattle_Move_517 < PokeBattle_Move
+	def getsPriorityAgainst?(target)
+		return target.hp < target.totalhp/2
+	end
+	
 	def priorityModification(user,targets);
 		targets.each do |b|
-			return 1 if b.hp.to_f < b.totalhp.to_f/2
+			return 1 if getsPriorityAgainst?(b)
 		end
 		return 0
 	end
 	
 	def getScore(score,user,target,skill=100)
 		score -= 20
-		score += 50 if target.hp < target.totalhp/2
+		score += 50 if getsPriorityAgainst?(target)
 		return score
     end
+
+	def shouldHighlight?(user,target)
+		return getsPriorityAgainst?(target)
+	end
 end
 
 #===============================================================================
@@ -659,6 +671,10 @@ class PokeBattle_Move_527 < PokeBattle_Move_004
 		score += 20 if @battle.sunny?
 		return score
     end
+
+	def shouldHighlight?(user,target)
+		return @battle.sunny?
+	end
 end
 
 #===============================================================================
@@ -999,6 +1015,10 @@ class PokeBattle_Move_537 < PokeBattle_Move
 	  score += 50 if target.hasRaisedStatStages? && target.pbCanFrostbite?(user,false,self)
 	  return score
 	end
+
+	def shouldHighlight?(user,target)
+		return target.hasRaisedStatStages?
+	end
 end
 
 #===============================================================================
@@ -1210,12 +1230,15 @@ end
 # Always critical hit vs Opponents with raised stats (Glitter Slash)
 #===============================================================================
 class PokeBattle_Move_546 < PokeBattle_Move 
-  def pbCriticalOverride(user,target)
-	return 1 if target.hasRaisedStatStages?
-	return 0
-  end
-end
+	def pbCriticalOverride(user,target)
+		return 1 if target.hasRaisedStatStages?
+		return 0
+	end
 
+	def shouldHighlight?(user,target)
+		return target.hasRaisedStatStages?
+	end
+end
 
 #===============================================================================
 # Poisons, chills, or burns the target. (Chaos Wheel)
@@ -1290,7 +1313,7 @@ end
 
 
 #===============================================================================
-# Deals damage and curses the target. (Spooky Snuggling)
+# Curses the target. (Spooky Snuggling)
 #===============================================================================
 class PokeBattle_Move_54A < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target)
@@ -1373,11 +1396,14 @@ class PokeBattle_Move_54D < PokeBattle_TargetStatDownMove
 		return super
 	end
   
-  
 	def pbAdditionalEffect(user,target)
 		statOptions = [:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
 		@statDown = [statOptions.sample,1]
 		super
+	end
+
+	def shouldHighlight?(user,target)
+		return @battle.pbWeather == :Sandstorm
 	end
 end
 
@@ -1450,6 +1476,10 @@ class PokeBattle_Move_553 < PokeBattle_Move
 	  score -= 20
 	  score += 50 if target.hasRaisedStatStages? && target.pbCanPoison?(user,false,self)
 	  return score
+	end
+
+	def shouldHighlight?(user,target)
+		return target.hasRaisedStatStages?
 	end
 end
 
@@ -1786,17 +1816,17 @@ end
 # Returns user to party for swap, deals more damage the lower HP the user has. (Hare Heroics)
 #===============================================================================
 class PokeBattle_Move_566 < PokeBattle_Move_0EE
-  def pbBaseDamage(baseDmg,user,target)
-    ret = 20
-    n = 48*user.hp/user.totalhp
-    if n<2;     ret = 200
-    elsif n<5;  ret = 150
-    elsif n<10; ret = 100
-    elsif n<17; ret = 80
-    elsif n<33; ret = 40
-    end
-    return ret
-  end
+	def pbBaseDamage(baseDmg,user,target)
+		ret = 20
+		n = 48*user.hp/user.totalhp
+		if n<2;     ret = 200
+		elsif n<5;  ret = 150
+		elsif n<10; ret = 100
+		elsif n<17; ret = 80
+		elsif n<33; ret = 40
+		end
+		return ret
+	end
 end
 
 #===============================================================================
@@ -1937,6 +1967,10 @@ class PokeBattle_Move_570 < PokeBattle_FlusterMove
 	def pbBaseAccuracy(user,target)
 	  return 0 if @battle.rainy?
 	  return super
+	end
+
+	def shouldHighlight?(user,target)
+		return @battle.rainy?
 	end
 end
 
@@ -2102,6 +2136,10 @@ class PokeBattle_Move_579 < PokeBattle_Move
 			target.pbParalyze(user)
 		end
 	end
+
+	def shouldHighlight?(user,target)
+		return target.paralyzed?
+	end
 end
 
 #===============================================================================
@@ -2135,6 +2173,10 @@ class PokeBattle_Move_580 < PokeBattle_Move
 			end
 			user.pbCureStatus(status)
 		end
+	end
+
+	def shouldHighlight?(user,target)
+		return user.pbHasAnyStatus?
 	end
 end
 
@@ -2281,7 +2323,6 @@ end
 #===============================================================================
 class PokeBattle_Move_589 < PokeBattle_Move_0C0
 	def pbEffectOnNumHits(user,target,numHits)
-		return if !target.damageState.fainted
 		coinsGenerated = 2 * user.level * numHits
 		@battle.field.incrementEffect(:PayDay,coinsGenerated) if user.pbOwnedByPlayer?
 		if numHits == 5
@@ -2374,12 +2415,21 @@ end
 # Faints the opponant if they are below 1/4 HP, after dealing damage. (Cull)
 #===============================================================================
 class PokeBattle_Move_58F < PokeBattle_FixedDamageMove
+
+	def canCull?(target)
+		return target.hp < (target.totalhp / 4)
+	end
+
 	def pbEffectAgainstTarget(user, target)
-		if target.hp < (target.totalhp / 4)
+		if canCull?(target)
 			@battle.pbDisplay(_INTL("#{user.pbThis} culls #{target.pbThis(true)}!"))
 			target.pbReduceHP(target.hp,false)
     		target.pbItemHPHealCheck
 		end
+	end
+
+	def shouldHighlight?(user,target)
+		return canCull?(target)
 	end
 end
 
@@ -2407,7 +2457,7 @@ class PokeBattle_Move_591 < PokeBattle_Move
 	  end
 	  return ret
 	end
-  end
+end
 
 #===============================================================================
 # Damages target if target is a foe, or buff's the target's Speed and
@@ -2694,7 +2744,7 @@ class PokeBattle_Move_5A3 < PokeBattle_StatDownMove
 	  super
 	  @statDown = [:SPEED,2]
 	end
-  end
+end
   
 #===============================================================================
 # The next ground type move to hit the target deals double damage. (Volatile Toxin)

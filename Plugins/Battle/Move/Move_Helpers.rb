@@ -1,4 +1,16 @@
 class PokeBattle_Move
+  def shouldHighlight?(user,target)
+    if damagingMove?
+      bpAgainstTarget = move.pbBaseDamageAI(@baseDamage,user,target)
+      if move.baseDamage == 1
+        return bpAgainstTarget >= 100
+      else
+        return bpAgainstTarget > move.baseDamage
+      end
+    end
+    return false
+  end
+
   def applyRainDebuff?(user,type,checkingForAI=false)
     return false unless @battle.rainy?
     return false if !RAIN_DEBUFF_ACTIVE

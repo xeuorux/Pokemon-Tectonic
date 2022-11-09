@@ -192,13 +192,20 @@ class FightMenuDisplay < BattleMenuBase
           targetingData = move.pbTarget(@battler)
           maxEffectiveness = 0
           maxBP = move.baseDamage
-          @battler.eachOpposing do |opposingBattler|
-            next if !@battler.battle.pbMoveCanTarget?(@battler.index,opposingBattler.index,targetingData)
-            bpAgainstTarget = move.pbBaseDamageAI(move.baseDamage,@battler,opposingBattler)
-            maxBP = bpAgainstTarget if bpAgainstTarget > maxBP
+          shouldHighlight = false
+
+          if targetingData.num_targets == 0
+            shouldHighlight = move.shouldHighlight?(user,nil)
+          else
+            @battler.eachOpposing do |opposingBattler|
+              next if !@battler.battle.pbMoveCanTarget?(@battler.index,opposingBattler.index,targetingData)
+              next unless move.shouldHighlight?(@battler,opposingBattler)
+              shouldHighlight = true
+              break
+            end
           end
   
-          if maxBP > move.baseDamage
+          if shouldHighlight
             @visibility["highlight_#{i}"] = true
             @sprites["highlight_#{i}"].start
           end

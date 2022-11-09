@@ -603,6 +603,13 @@ class PokeBattle_Battler
 		return false
 	end
 
+	def hasRaisedDefenseStages?
+		return true if (@stages[:DEFENSE]).positive?
+		return true if (@stages[:SPECIAL_DEFENSE]).positive?
+		return true if (@stages[:EVASION]).positive?
+		return false
+	end
+
 	def hasLoweredStatStages?
 		GameData::Stat.each_battle { |s| return true if (@stages[s.id]).negative? }
 		return false
