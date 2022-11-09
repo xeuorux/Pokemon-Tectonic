@@ -215,7 +215,13 @@ class PokeBattle_Move
 
     # Returns whether the attack is critical, and whether it was forced to be so
     def pbIsCritical?(user,target,checkingForAI=false)
-        return [false,false] unless critsPossible?(user,target)
+        if !critsPossible?(user,target)
+            if checkingForAI
+                return 0
+            else
+                return [false,false] 
+            end
+        end
 
         crit = false
         forced = false
