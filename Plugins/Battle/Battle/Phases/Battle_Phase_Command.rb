@@ -265,9 +265,16 @@ class PokeBattle_Battle
 		moveData = GameData::Move::DATA.values.sample
 		return if moveData.nil? || moveData.zMove?
 		moveId = moveData.id
+
+		user = @battlers[idxBattler]
 		
 		moveObject = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(moveId))
-		@battlers[idxBattler].moves[0] = moveObject
+
+		PBDebug.logonerr {
+			@battleAI.pbEvaluateMoveTrainer(user,moveObject)
+		}
+
+		user.moves[0] = moveObject
 		
 		@choices[idxBattler][0] = :UseMove         # "Use move"
 		@choices[idxBattler][1] = 0   # Index of move to be used
@@ -275,7 +282,7 @@ class PokeBattle_Battle
 		@choices[idxBattler][3] = -1
 	end
 
-	def changeBattlersForAutoTesting()
+	def changesForAutoTesting()
 		statuses = [:POISON,:BURN,:NUMB,:FROSTBITE,:DIZZY,:LEECHED,:SLEEP]
 
 		changeChance = 10
@@ -350,7 +357,7 @@ class PokeBattle_Battle
 	def pbCommandPhaseLoop(isPlayer)
 		# NOTE: Doing some things (e.g. running, throwing a Poké Ball) takes up all
 		#       your actions in a round.
-		changeBattlersForAutoTesting() if @autoTesting
+		changesForAutoTesting() if @autoTesting
 
 		actioned = []
 		idxBattler = -1

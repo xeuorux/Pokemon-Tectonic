@@ -65,7 +65,7 @@ class PokeBattle_AI
       return choices
     end
 
-    def pbEvaluateMoveTrainer(user,move,skill,policies=[])
+    def pbEvaluateMoveTrainer(user,move,skill=100,policies=[])
         target_data = move.pbTarget(user)
         newChoice = nil
         if target_data.num_targets > 1
