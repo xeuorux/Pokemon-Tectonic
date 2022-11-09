@@ -58,14 +58,36 @@ class PokeBattle_Battler
 	end
 	alias hasSpotsForStatus? hasSpotsForStatus
 
-	def reduceStatusCount(statusToReduce = nil)
-		if statusToReduce.nil?
+	def resetStatusCount(statusOfConcern = nil)
+		if statusOfConcern.nil?
+			@statusCount = 0
+			@bossStatusCount = 0
+		elsif @status == statusOfConcern
+			@statusCount = 0
+		elsif @bossStatus == statusOfConcern
+			@bossStatusCount = 0
+		end
+	end
+
+	def reduceStatusCount(statusOfConcern = nil)
+		if statusOfConcern.nil?
 			@statusCount -= 1
 			@bossStatusCount -= 1
-		elsif @status == statusToReduce
+		elsif @status == statusOfConcern
 			@statusCount -= 1
-		elsif @bossStatus == statusToReduce
+		elsif @bossStatus == statusOfConcern
 			@bossStatusCount -= 1
+		end
+	end
+
+	def increaseStatusCount(statusOfConcern = nil)
+		if statusOfConcern.nil?
+			@statusCount += 1
+			@bossStatusCount += 1
+		elsif @status == statusOfConcern
+			@statusCount += 1
+		elsif @bossStatus == statusOfConcern
+			@bossStatusCount += 1
 		end
 	end
 
@@ -321,8 +343,6 @@ class PokeBattle_Battler
 			end
 		end
 
-		disableEffect(:Toxic)
-
 		# Show animation
 		if newStatus == :POISON && newStatusCount.positive?
 			@battle.pbCommonAnimation('Toxic', self)
@@ -540,13 +560,34 @@ class PokeBattle_Battler
 				anim_name = GameData::Status.get(oneStatus).animation
 				@battle.pbCommonAnimation(anim_name, self) if anim_name
 			end
+			poisonCount = getStatusCount(:POISON)
 			yield if block_given?
 			if !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages.zero?
 				case oneStatus
 				when :SLEEP
 					@battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis))
 				when :POISON
-					@battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
+					case poisonCount
+					when 0..2
+						@battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
+					when 3..5
+						@battle.pbDisplay(_INTL("{1} was badly hurt by poison!", pbThis))
+					when 6..8
+						@battle.pbDisplay(_INTL("{1} was extremely hurt by poison!", pbThis))
+					else
+						@battle.pbDisplay(_INTL("{1} was brought to its knees entirely by poison!", pbThis))
+					end
+					unless fainted?
+						increaseStatusCount(:POISON)
+						newPoisonCount = getStatusCount(:POISON)
+						if newPoisonCount % 3 == 0
+							if newPoisonCount == 3
+								@battle.pbDisplaySlower(_INTL("The poison worsened! Its damage will be doubled until {1} leaves the field.", pbThis(true)))
+							else
+								@battle.pbDisplaySlower(_INTL("The poison doubled yet again!", pbThis))
+							end
+						end
+					end
 				when :BURN
 					@battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis))
 				when :FROSTBITE

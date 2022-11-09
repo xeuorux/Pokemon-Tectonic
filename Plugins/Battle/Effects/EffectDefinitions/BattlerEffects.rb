@@ -906,12 +906,6 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :Toxic,
-	:real_name => "Toxic Turns Passed",
-	:type => :Integer,
-})
-
-GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Transform,
 	:real_name => "Transformed",
 	:info_displayed => false,

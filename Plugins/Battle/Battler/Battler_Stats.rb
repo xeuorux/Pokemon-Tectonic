@@ -183,13 +183,9 @@ class PokeBattle_Battler
 		speedMult *= 2 if pbOwnSide.effectActive?(:Tailwind)
 		speedMult /= 2 if pbOwnSide.effectActive?(:Swamp)
 		speedMult *= 2 if effectActive?(:OnDragonRide)
-		# Numb and Poison
+		# Numb
 		unless shouldAbilityApply?(:QUICKFEET, aiChecking)
 			if numbed?
-				speedMult /= 2
-				speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
-			end
-			if poisoned? && !shouldAbilityApply?(:POISONHEAL, aiChecking)
 				speedMult /= 2
 				speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
 			end

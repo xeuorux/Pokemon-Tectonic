@@ -346,18 +346,25 @@ class PokeBattle_Battle
       pbCommonAnimation("Shadow",battler)
       pbDisplay(_INTL("Oh!\nA Shadow Pokémon!"))
     end
+
     # Trigger enter the field curses
     curses.each do |curse|
       triggerBattlerEnterCurseEffect(curse,battler,self)
     end
+
     # Record money-doubling effect of Amulet Coin/Luck Incense
     if !battler.opposes? && [:AMULETCOIN, :LUCKINCENSE].include?(battler.item_id)
       @field.applyEffect(:AmuletCoin)
     end
+
 	  # Record money-doubling effect of Fortune ability
     if !battler.opposes? && battler.hasActiveAbility?(:FORTUNE)
       @field.applyEffect(:Fortune)
     end
+
+    # Reset poison ticking up
+    battler.resetStatusCount(:POISON)
+
     # Update battlers' participants (who will gain Exp/EVs when a battler faints)
     eachBattler { |b| b.pbUpdateParticipants }
 
@@ -449,6 +456,7 @@ class PokeBattle_Battle
         end
 	    end
     end
+
     # Battler faints if it is knocked out because of an entry hazard above
     if battler.fainted?
       battler.pbFaint
@@ -456,6 +464,7 @@ class PokeBattle_Battle
       pbJudge
       return false
     end
+
     battler.pbCheckForm
 	  triggerBattlerEnterDialogue(battler)
     return true

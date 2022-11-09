@@ -91,6 +91,13 @@ class PokeBattle_Battle
     if battler.takesIndirectDamage?
       fraction = 1.0/8.0
       fraction *= 2 if battler.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
+      if status == :POISON
+        poisonCount = battler.getStatusCount(:POISON)
+        doublings = poisonCount / 3
+        doublings.times do
+          fraction *= 2
+        end
+      end
       damage = 0
       battler.pbContinueStatus(status) {
         damage = battler.applyFractionalDamage(fraction)
@@ -103,12 +110,12 @@ class PokeBattle_Battle
     return 0
   end
 
-  def healFromStatusAbility(battler,status)
+  def healFromStatusAbility(battler,status,denom = 12)
     statusEffectMessages = !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages == 0
     if battler.canHeal?
       anim_name = GameData::Status.get(status).animation
       pbCommonAnimation(anim_name, battler) if anim_name
-      healAmount = battler.totalhp / 12.0
+      healAmount = battler.totalhp / denom.to_f
       healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
       if statusEffectMessages
         pbShowAbilitySplash(battler) 
@@ -133,10 +140,9 @@ class PokeBattle_Battle
       next if b.fainted?
       next unless b.poisoned?
       if b.hasActiveAbility?(:POISONHEAL)
-        healFromStatusAbility(b,:POISON)
-      else
-        damageFromDOTStatus(b,:POISON)
+        healFromStatusAbility(b,:POISON,4)
       end
+      damageFromDOTStatus(b,:POISON)
     end
     # Damage from burn
     priority.each do |b|

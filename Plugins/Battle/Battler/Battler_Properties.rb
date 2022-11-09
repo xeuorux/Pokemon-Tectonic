@@ -63,7 +63,6 @@ class PokeBattle_Battler
 
 	def status=(value)
 		disableEffect(:Truant) if @status == :SLEEP && value != :SLEEP
-		disableEffect(:Toxic) if value != :POISON
 		@status = value
 		@pokemon.status = value if @pokemon
 		self.statusCount = 0 if value != :POISON && value != :SLEEP

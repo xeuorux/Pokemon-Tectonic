@@ -224,7 +224,10 @@ class PokeBattle_Battler
 		# Reset status
 		self.status      = :NONE
 		self.statusCount = 0
+
 		@bossStatus = :NONE
+		@bossStatusCount = 0
+
 		# Lose happiness
 		if @pokemon && @battle.internalBattle
 			badLoss = false
