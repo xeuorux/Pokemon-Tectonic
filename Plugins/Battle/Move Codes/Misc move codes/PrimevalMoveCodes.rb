@@ -583,7 +583,7 @@ end
 #===============================================================================
 # Targets struck lose their flinch immunity. Only usable by the Avatar of Rayquaza (Stratosphere Scream)
 #===============================================================================
-class PokeBattle_Move_700 < PokeBattle_StatDownMove
+class PokeBattle_Move_700 < PokeBattle_Move
     def ignoresSubstitute?(user); return true; end
   
     def pbMoveFailed?(user,targets)

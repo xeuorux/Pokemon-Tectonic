@@ -1408,8 +1408,8 @@ class PokeBattle_Move_057 < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    aatk = pbRoughStat(user,:ATTACK,skill)
-		adef = pbRoughStat(user,:DEFENSE,skill)
+    aatk = user.pbAttack(true)
+		adef = user.pbDefense(true)
 		if aatk == adef || user.effectActive?(:PowerTrick)	 # No flip-flopping
 			return 0
 		elsif adef > aatk	 # Prefer a higher Attack
@@ -1435,10 +1435,10 @@ class PokeBattle_Move_058 < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    aatk	 = pbRoughStat(user,:ATTACK,skill)
-		aspatk = pbRoughStat(user,:SPECIAL_ATTACK,skill)
-		oatk	 = pbRoughStat(target,:ATTACK,skill)
-		ospatk = pbRoughStat(target,:SPECIAL_ATTACK,skill)
+    aatk	 = user.pbAttack(true)
+		aspatk = user.pbSpAtk(true)
+		oatk	 = target.pbAttack(true)
+		ospatk = target.pbSpAtk(true)
 		if aatk < oatk && aspatk<ospatk
 			score += 50
 		elsif aatk + aspatk < oatk+ospatk
@@ -1464,10 +1464,10 @@ class PokeBattle_Move_059 < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    adef	 = pbRoughStat(user,:DEFENSE,skill)
-		aspdef = pbRoughStat(user,:SPECIAL_DEFENSE,skill)
-		odef	 = pbRoughStat(target,:DEFENSE,skill)
-		ospdef = pbRoughStat(target,:SPECIAL_DEFENSE,skill)
+    adef	 = user.pbDefense(true)
+		aspdef = user.pbSpDef(true)
+		odef	 = target.pbDefense(true)
+		ospdef = target.pbSpDef(true)
 		if adef < odef && aspdef < ospdef
 			score += 50
 		elsif adef + aspdef < odef + ospdef

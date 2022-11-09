@@ -170,7 +170,7 @@ class PokeBattle_AI
             end
             canHitAnyways = true if user.hasActiveAbility?(:NOGUARD) || target.hasActiveAbility?(:NOGUARD)
 			  
-            if pbRoughStat(user,:SPEED,skill) > pbRoughStat(target,:SPEED,skill)
+            if user.pbSpeed(true) > target.pbSpeed(true)
                 if canHitAnyways
                     score *= 2
                 else

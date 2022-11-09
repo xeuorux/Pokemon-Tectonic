@@ -1,5 +1,5 @@
 class PokeBattle_AI
-	def beginAutoTester(user)
+	def beginAITester(user)
 		count = 0
 		@battle.eachBattler do |b|
 			count += 1
@@ -8,7 +8,7 @@ class PokeBattle_AI
 			@battle.scene.pbDisplay("Auto tests not programmed to run in battles with more than 2 pokemon!")
 			return
 		end
-		@battle.scene.pbDisplay("Beginning auto tests...")
+		@battle.scene.pbDisplay("Beginning AI auto tests...")
 		@battle.scene.pbUpdate
 		testAllMoveScores(user)
 	end
@@ -17,6 +17,7 @@ class PokeBattle_AI
 		scores = []
 		target = []
 		GameData::Move.each { |move|    # Get any one move
+			next if move.zMove? || move.empoweredMove?
 			score = 0
 			begin
 				moveObject = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(move.id))

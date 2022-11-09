@@ -37,7 +37,7 @@ class PokeBattle_Move_082 < PokeBattle_Move
     score -= 20
     user.eachAlly do |b|
       next if !b.hasDamagingAttack?
-      score += 40 if pbRoughStat(b,:SPEED,skill) > pbRoughStat(user,:SPEED,skill)
+      score += 40 if b.pbSpeed(true) > user.pbSpeed(true)
     end
     return score
   end
@@ -1800,8 +1800,8 @@ class PokeBattle_Move_0BC < PokeBattle_Move
 
   def getScore(score,user,target,skill=100)
     return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
-    userSpeed = pbRoughStat(user,:SPEED,skill)
-    targetSpeed = pbRoughStat(target,:SPEED,skill)
+    userSpeed = user.pbSpeed(true)
+    targetSpeed = target.pbSpeed(true)
     if userSpeed > targetSpeed
       return 0 if target.lastRegularMoveUsed.nil?
       moveData = GameData::Move.get(target.lastRegularMoveUsed)

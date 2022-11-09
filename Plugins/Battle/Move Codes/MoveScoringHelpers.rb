@@ -2,6 +2,8 @@ DOWNSIDE_ABILITIES = [:SLOWSTART,:DEFEATIST,:TRUANT]
 
 STATUS_UPSIDE_ABILITIES = [:GUTS,:AUDACITY,:MARVELSCALE,:MARVELSKIN,:QUICKFEET]
 
+ALL_STATUS_SCORE_BONUS = 15
+
 def getStatusSettingMoveScore(statusApplying,score,user,target,skill=100,policies=[],statusMove=false)
 	case statusApplying
 	when :SLEEP
@@ -24,9 +26,9 @@ end
 # Actually used for numbing now
 def getNumbMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	if target && target.canNumb?(user,false)
-		score += 10
-		aspeed = pbRoughStat(user,:SPEED,skill)
-		ospeed = pbRoughStat(target,:SPEED,skill)
+		score += ALL_STATUS_SCORE_BONUS
+		aspeed = user.pbSpeed(true)
+		ospeed = target.pbSpeed(true)
 		if aspeed < ospeed
 			score += 30
 		elsif aspeed > ospeed
@@ -42,7 +44,8 @@ end
 
 def getPoisonMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	if target && target.canPoison?(user,false)
-		score += 30
+		score += ALL_STATUS_SCORE_BONUS
+		score += 20 if target.hp == target.totalhp
 		score -= 60 if target.hasActiveAbilityAI?([:TOXICBOOST,:POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
 		score += 50 if statusMove && user.hasStatusPunishMove?
@@ -54,7 +57,7 @@ end
 
 def getBurnMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	if target && target.canBurn?(user,false)
-		score += 30
+		score += ALL_STATUS_SCORE_BONUS
 		score -= 60 if target.hasActiveAbilityAI?([:FLAREBOOST,:BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
 		score += 50 if statusMove && user.hasStatusPunishMove?
@@ -66,7 +69,7 @@ end
 
 def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	if target && target.canFrostbite?(user,false)
-		score += 30
+		score += ALL_STATUS_SCORE_BONUS
 		score -= 60 if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
 		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
 		score += 50 if statusMove && user.hasStatusPunishMove?
@@ -89,7 +92,7 @@ end
 def getDizzyMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	canDizzy = target.canDizzy?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
 	if canDizzy
-		score += 20
+		score += ALL_STATUS_SCORE_BONUS
 		score += 20 if user.hasDamagingAttack?
 		score -= 60 if target.hasActiveAbilityAI?([:FLUSTERFLOCK,:HEADACHE].concat(STATUS_UPSIDE_ABILITIES))
 		score += 50 if statusMove && user.hasStatusPunishMove?
@@ -102,7 +105,7 @@ end
 def getLeechMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	canLeech = target.canLeech?(user,false)
 	if canLeech
-		score += 20
+		score += ALL_STATUS_SCORE_BONUS
 		score += 20 if target.hp > target.totalhp / 2
 		score += 30 if target.totalhp > user.totalhp * 2
 		score -= 30 if target.totalhp < user.totalhp / 2
@@ -116,8 +119,8 @@ def getLeechMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 end
 
 def getFlinchingMoveScore(score,user,target,skill,policies,magnitude=3)
-	userSpeed = pbRoughStat(user,:SPEED,skill)
-    targetSpeed = pbRoughStat(target,:SPEED,skill)
+	userSpeed = user.pbSpeed(true)
+    targetSpeed = target.pbSpeed(true)
     
     if target.hasActiveAbilityAI?(:INNERFOCUS) || target.substituted? ||
           target.effectActive?(:FlinchedAlready) || targetSpeed > userSpeed
@@ -133,8 +136,8 @@ def getWantsToBeFasterScore(score,user,other,skill=100,magnitude=1)
 end
 
 def getWantsToBeSlowerScore(score,user,other,skill=100,magnitude=1)
-	userSpeed = pbRoughStat(user,:SPEED,skill)
-	otherSpeed = pbRoughStat(other,:SPEED,skill)
+	userSpeed = user.pbSpeed(true)
+	otherSpeed = other.pbSpeed(true)
 	if userSpeed < otherSpeed
 		score += 10 * magnitude
 	else

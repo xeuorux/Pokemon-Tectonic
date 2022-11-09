@@ -813,8 +813,8 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 
     def getScore(score,user,target,skill=100)
       return 0 if user.opposes?(target)
-      userSpeed = pbRoughStat(user,:SPEED,skill)
-		  targetSpeed = pbRoughStat(target,:SPEED,skill)
+      userSpeed = user.pbSpeed(true)
+		  targetSpeed = target.pbSpeed(true)
       return 0 if targetSpeed > userSpeed
 
       # TODO: This can be improved
@@ -865,8 +865,8 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def getScore(score,user,target,skill=100)
       return 0 if !user.opposes?(target)
       return 0 if !user.hasAlly?
-      userSpeed = pbRoughStat(user,:SPEED,skill)
-		  targetSpeed = pbRoughStat(target,:SPEED,skill)
+      userSpeed = user.pbSpeed(true)
+		  targetSpeed = target.pbSpeed(true)
       return 0 if targetSpeed > userSpeed
       # TODO: This can be improved
     end
@@ -1355,7 +1355,7 @@ end
     end
 
     def getScore(score,user,target,skill=100)
-			if isValidTarget?(target)
+			if isValidTarget?(user,target)
         score += 30
 				score -= user.stages[:DEFENSE] * 5
         score -= user.stages[:SPECIAL_DEFENSE] * 5
@@ -1393,7 +1393,7 @@ end
     end
 
     def getScore(score,user,target,skill=100)
-			if isValidTarget?(target)
+			if isValidTarget?(user,target)
         score += 30
 				score -= user.stages[:DEFENSE] * 5
         score -= user.stages[:SPECIAL_DEFENSE] * 5
@@ -2789,7 +2789,13 @@ end
 #       would involve extensive code rewrites, it is being ignored.
 #===============================================================================
 class PokeBattle_Move_17C < PokeBattle_Move_0BD
-  def pbNumHits(user, targets); return 1;    end # Move has custom multi-hitting
+  def pbNumHits(user, targets,checkingForAI=false)
+    if checkingForAI
+      return 2
+    else
+      return 1
+    end
+  end
 
   # Hit again if only at the 0th hit
   def pbRepeatHit?(hitNum = 0)

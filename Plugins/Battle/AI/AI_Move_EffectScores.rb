@@ -24,15 +24,10 @@ class PokeBattle_AI
 					score += 30 if target.hp<=target.totalhp/4
 					score += 50 if target.hp<=target.totalhp/8
 					score -= 40 if target.effectActive?(:Yawn)
-					score += 10 if pbRoughStat(target,:DEFENSE,skill)>100
-					score += 10 if pbRoughStat(target,:SPECIAL_DEFENSE,skill)>100
 					score -= 40 if target.hasActiveAbilityAI?([:GUTS,:MARVELSCALE,:TOXICBOOST])
 				end
 				if target.pbCanLowerStatStage?(:SPEED,user)
 					score += target.stages[:SPEED]*10
-					aspeed = pbRoughStat(user,:SPEED,skill)
-					ospeed = pbRoughStat(target,:SPEED,skill)
-					score += 30 if aspeed<ospeed && aspeed*2>ospeed
 				end
 			end
 		#---------------------------------------------------------------------------

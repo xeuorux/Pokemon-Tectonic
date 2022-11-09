@@ -84,7 +84,7 @@ class PokeBattle_Move_505 < PokeBattle_Move
 		damage = @battle.battleAI.pbTotalDamageAI(self,user,target,skill,baseDamage)
 		return 0 if damage >= target.hp * 0.8
 		score += target.level*4
-		score -= pbRoughStat(target,:SPEED,skill) * 2
+		score -= target.pbSpeed(true) * 2
 	end
 	return score
   end
@@ -703,8 +703,8 @@ class PokeBattle_Move_529 < PokeBattle_SleepMove
 	end
 	
 	def getScore(score,user,target,skill=100)
-		userSpeed = pbRoughStat(user,:SPEED,skill)
-		targetSpeed = pbRoughStat(target,:SPEED,skill)
+		userSpeed = user.pbSpeed(true)
+		targetSpeed = target.pbSpeed(true)
 		return 0 if userSpeed > targetSpeed
 		super
 	end
@@ -890,8 +890,8 @@ class PokeBattle_Move_532 < PokeBattle_Move
 	
 	def getScore(score,user,target,skill=100)
 		score += 20 if user.firstTurn?
-		GameData::Stat.each_main_battle do |s|
-			score -= user.stages[s] * 5
+		GameData::Stat.each_main_battle do |statData|
+			score -= user.stages[statData.id] * 5
 		end
 		return score
 	end

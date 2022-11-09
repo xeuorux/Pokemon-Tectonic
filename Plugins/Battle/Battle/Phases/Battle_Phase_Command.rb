@@ -372,7 +372,7 @@ class PokeBattle_Battle
 			end
 			
 			# Debug testing thing
-			@battleAI.beginAutoTester(battler) if $DEBUG && Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
+			@battleAI.beginAITester(battler) if $DEBUG && Input.press?(Input::CTRL) && Input.press?(Input::SPECIAL)
 		  
 			# Increment their choices taken
 			if battler.choicesTaken.nil?

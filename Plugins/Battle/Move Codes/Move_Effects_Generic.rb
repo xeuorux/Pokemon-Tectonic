@@ -402,8 +402,8 @@ class PokeBattle_TargetStatDownMove < PokeBattle_Move
 					  score = 0
 				  end
         elsif statReducing == :SPEED
-          aspeed = pbRoughStat(user,:SPEED,skill)
-          ospeed = pbRoughStat(target,:SPEED,skill)
+          aspeed = user.pbSpeed(true)
+          ospeed = target.pbSpeed(true)
           if !statReducing
             if aspeed < ospeed
               score += 20
@@ -420,8 +420,8 @@ class PokeBattle_TargetStatDownMove < PokeBattle_Move
       elsif statReducing == :SPECIAL_ATTACK
         score += 20 if target.hasSpecialAttack?
       elsif statReducing == :SPEED
-        aspeed = pbRoughStat(user,:SPEED,skill)
-				ospeed = pbRoughStat(target,:SPEED,skill)
+        aspeed = user.pbSpeed(true)
+				ospeed = target.pbSpeed(true)
 				score += 20 if aspeed < ospeed
       end
 		end

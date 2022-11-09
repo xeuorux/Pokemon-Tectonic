@@ -5,19 +5,3 @@ def pbRoughType(move,user,skill)
 	ret = move.pbCalcType(user)
 	return ret
 end
-
-def pbRoughStat(battler,stat,skill=100)
-	castBattler = (battler.illusion? && battler.pbOwnedByPlayer?) ? battler.disguisedAs : battler
-	return battler.pbSpeed if stat == :SPEED && !battler.illusion?
-	
-	stage = battler.stages[stat]+6
-	value = 0
-	case stat
-	when :ATTACK          then value = castBattler.attack
-	when :DEFENSE         then value = castBattler.defense
-	when :SPECIAL_ATTACK  then value = castBattler.spatk
-	when :SPECIAL_DEFENSE then value = castBattler.spdef
-	when :SPEED           then value = castBattler.speed
-	end
-	return pbRoughStatCalc(value,stage)
-end
