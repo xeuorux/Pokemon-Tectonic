@@ -274,7 +274,6 @@ class PokemonDataBox < SpriteWrapper
 
     # Create sprite wrappers that displays HP bars
 	@hpBarWidth = @hpBarBitmap.width.to_f
-	@hpBarWidth = 72.0 if @battler.index % 2 && @thinBox && @numHPBars > 1
 
 	hpBarNum = 0
 	@numHPBars.times do
