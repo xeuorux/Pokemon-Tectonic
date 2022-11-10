@@ -1,5 +1,6 @@
 class OverworldWeather
     MAX_PARTICLES = 60 # Show 60 particles at max strength
+    MAX_TILES = 60
 
     attr_reader :type
     attr_reader :strength # From 0 to 10
@@ -10,28 +11,14 @@ class OverworldWeather
         @givenViewport = givenViewport
         @viewport         = Viewport.new(0, 0, Graphics.width, Graphics.height)
         @viewport.z       = givenViewport.z + 1
-        startWeather(type,strength,fadeInTime,spritesEnabled)
-    end
 
-    def startWeather(type = :None, strength = 0, fadeInTime = 0, spritesEnabled = true)
-        return if @type == type && @strength == strength
-
-        echoln("#{type} weather started at strength #{strength}")
-
-        # Get rid of old sprites
-        # TODO: instead re-use them
-        disposeSprites
-
-        @type = type
-        @strength = strength
-        @spritesEnabled = spritesEnabled
         @ox = 0
         @oy = 0
 
-        @tiles_wide           = 0
-        @tiles_tall           = 0
-        @tile_x               = 0.0
-        @tile_y               = 0.0
+        # Arrays to track all the sprites
+        @particles = []
+        @particleLifetimes = []
+        @tiles = []
 
         # For weathers with cyclical tones (i.e. sun)
         @tonePhase = 0
@@ -39,20 +26,45 @@ class OverworldWeather
         # For weathers with flashes (i.e. storm)
         @time_until_flash     = 0
 
-        @particleBitmaps = []
-        @tileBitmap = nil
+        create_sprites
+        startWeather(type,strength,fadeInTime,spritesEnabled)
+    end
+
+    def startWeather(type = :None, strength = 0, fadeInTime = 0, spritesEnabled = true)
+        return if @type == type && @strength == strength
+
+        if @type != type
+            newWeather(type,strength,spritesEnabled)
+        else
+            @strength = strength
+            update_sprite_assignment
+        end
+    end
+
+    def newWeather(type = :None, strength = 0, spritesEnabled = true)
+        @type = type
+        @strength = strength
+        @spritesEnabled = spritesEnabled
+
+        @tiles_wide           = 0
+        @tiles_tall           = 0
+        @tile_x               = 0.0
+        @tile_y               = 0.0
+
         prepare_weather(type)
 
-        @particles = []
-        @particleLifetimes = []
-        @tiles = []
-        create_sprites
+        update_sprite_assignment
 
         @lastDisplayX = 0
         @lastDisplayY = 0
     end
 
     def prepare_weather(type)
+        disposeBitmaps
+
+        @particleBitmaps = []
+        @tileBitmap = nil
+
         @weatherData = GameData::Weather.get(type)
 
         @weatherData.particle_names.each do |name|
@@ -62,7 +74,6 @@ class OverworldWeather
 
         if @weatherData.tile_name
             @tileBitmap = RPG::Cache.load_bitmap("Graphics/Weather/", @weatherData.tile_name)
-
             w = @tileBitmap.width
             h = @tileBitmap.height
             @tiles_wide = (Graphics.width.to_f / w).ceil + 1
@@ -71,37 +82,63 @@ class OverworldWeather
     end
     
     def create_sprites()
-        if !@particleBitmaps.empty?
-            for i in 0...MAX_PARTICLES
-                sprite = Sprite.new(@givenViewport)
-                sprite.z       = 1000
-                sprite.ox      = @ox
-                sprite.oy      = @oy
-                sprite.opacity = 0
-                @particles[i] = sprite
-                visible = (i < maxParticles) && @spritesEnabled
-                @particles[i].visible = visible
-                @particleLifetimes[i] = 0
-                set_particle_bitmap(sprite,i)
-            end
+        for i in 0...MAX_PARTICLES
+            particleSprite = Sprite.new(@givenViewport)
+            particleSprite.z       = 1000
+            particleSprite.ox      = @ox
+            particleSprite.oy      = @oy
+            particleSprite.opacity = 0
+            particleSprite.visible = false
+            @particles[i] = particleSprite
+            @particleLifetimes[i] = 0
         end
 
-        for i in 0...(@tiles_wide * @tiles_tall)
+        for i in 0...MAX_TILES
             tileSprite = Sprite.new(@givenViewport)
             tileSprite.z       = 1000
             tileSprite.ox      = @ox
             tileSprite.oy      = @oy
             tileSprite.opacity = 0
+            tileSprite.visible = false
             @tiles[i] = tileSprite
-            @tiles[i].visible = @spritesEnabled
-            tileSprite.bitmap = @tileBitmap
+        end
+    end
+
+    def eachParticle(onlyVisible=false)
+        @particles.each_with_index do |particle,index|
+            next if onlyVisible && !particle.visible
+            yield particle,index
+        end
+    end
+
+    def eachTile(onlyVisible=false)
+        @tiles.each_with_index do |tile,index|
+            next if onlyVisible && !tile.visible
+            yield tile,index
+        end
+    end
+
+    def update_sprite_assignment()
+        usingParticles = !@particleBitmaps.empty? && @spritesEnabled
+        
+        eachParticle do |particle,index|
+            visible = (index < numParticlesUsed) && usingParticles
+            particle.visible = visible
+            set_particle_bitmap(particle,index) if visible
+        end
+        
+        usingTiles = @tileBitmap && @spritesEnabled
+        eachTile do |tile,index|
+            visible = (index < numTilesUsed) && usingTiles
+            tile.visible = visible
+            tile.bitmap = @tileBitmap if visible
         end
     end
 
     def set_particle_bitmap(sprite,index)
         if @weatherData.category == :Rain
             last_index = @particleBitmaps.length - 1 # Last sprite is a splash
-            if (index % 2) == 0
+            if index.even?
               sprite.bitmap = @particleBitmaps[index % last_index]
             else
               sprite.bitmap = @particleBitmaps[last_index]
@@ -113,12 +150,16 @@ class OverworldWeather
 
     def dispose
         disposeSprites
+        disposeBitmaps
         @viewport.dispose
     end
 
     def disposeSprites
         @particles.each { |sprite| sprite.dispose if sprite } if @particles
         @tiles.each { |sprite| sprite.dispose if sprite } if @tiles
+    end
+
+    def disposeBitmaps
         @particleBitmaps.each { |bitmap| bitmap.dispose if bitmap } if @particleBitmap
         @tileBitmap.dispose if @tileBitmap
     end
@@ -146,8 +187,12 @@ class OverworldWeather
         end
     end
 
-    def maxParticles
+    def numParticlesUsed
         return MAX_PARTICLES * strengthRatio
+    end
+
+    def numTilesUsed
+        return @tiles_wide * @tiles_tall
     end
 
     def weatherTone
@@ -206,9 +251,7 @@ class OverworldWeather
     end
 
     def update_particles
-        @particles.each_with_index do |particle, index|
-            break if index >= maxParticles
-            next unless particle.visible
+        eachParticle(true) do |particle, index|
             update_particle_position(particle, index)
         end
     end
@@ -253,14 +296,6 @@ class OverworldWeather
     end
 
     def reset_particle_position(particle, index)
-        if index < maxParticles
-            particle.visible = @spritesEnabled
-        else
-            particle.visible = false
-            @particleLifetimes[index] = 0
-            return
-        end
-
         if @weatherData.category == :Rain && index.odd? # Splash
             particle.x = @ox - particle.bitmap.width + rand(Graphics.width + particle.bitmap.width * 2)
             particle.y = @oy - particle.bitmap.height + rand(Graphics.height + particle.bitmap.height * 2)
@@ -292,7 +327,7 @@ class OverworldWeather
         if @type == :Dusty
             opacity /= 2
         end
-        @tiles.each_with_index do |tile, index|
+        eachTile(true) do |tile, index|
             tile.x = (@ox + @tile_x + (index % @tiles_wide) * tile.bitmap.width).round
             tile.y = (@oy + @tile_y + (index / @tiles_wide) * tile.bitmap.height).round
             tile.x += @tiles_wide * tile.bitmap.width if tile.x - @ox < -tile.bitmap.width

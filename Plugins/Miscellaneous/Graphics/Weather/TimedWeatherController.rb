@@ -255,7 +255,7 @@ def applyFog(name, hue = 0, opacity = 100, velX = 0, velY = 0, blend_type = 0, z
 end
 
 def debugIncrementWeather(weatherSym)
-    newPower = 2
+    newPower = Input.press?(Input::CTRL) ? -2 : 2
     if $game_screen.weather_type == GameData::Weather.get(weatherSym).id
         newPower += $game_screen.weather_strength
     end
