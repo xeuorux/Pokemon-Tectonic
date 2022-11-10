@@ -1,23 +1,23 @@
 class Spriteset_Map
     def initialize(map=nil)
         @usersprites = []
-        @map = (map) ? map : $game_map	
+        @map = (map) ? map : $game_map
 
         $scene.map_renderer.add_tileset(@map.tileset_name)
         @map.autotile_names.each { |filename| $scene.map_renderer.add_autotile(filename) }
         $scene.map_renderer.add_extra_autotiles(@map.tileset_id)
 
-        @panorama = AnimatedPlane.new(@@viewport0)	
-        @fog = AnimatedPlane.new(@@viewport1)	
-        @fog.z = 3000	
-        @character_sprites = []	
+        @panorama = AnimatedPlane.new(@@viewport0)
+        @fog = AnimatedPlane.new(@@viewport1)
+        @fog.z = 3000
+        @character_sprites = []
         for i in @map.events.keys.sort	
-          sprite = Sprite_Character.new(@@viewport1,@map.events[i])	
-          @character_sprites.push(sprite)	
-        end	
-        @weather = RPG::Weather.new(@@viewport1)	
-        pbOnSpritesetCreate(self,@@viewport1)	
-        update	
+          sprite = Sprite_Character.new(@@viewport1,@map.events[i])
+          @character_sprites.push(sprite)
+        end
+        @weather = OverworldWeather.new(@@viewport1)
+        pbOnSpritesetCreate(self,@@viewport1)
+        update
     end
 
     def dispose	
@@ -79,10 +79,12 @@ class Spriteset_Map
         for sprite in @character_sprites
           sprite.update
         end
-        if self.map!=$game_map
-          @weather.fade_in(:None, 0, 20)
+        $game_screen.resetWeather if !$game_screen.weather_strength || !$game_screen.weather_type
+        if self.map != $game_map
+          @weather.startWeather
         else
-          @weather.fade_in($game_screen.weather_type, $game_screen.weather_max, $game_screen.weather_duration, $game_screen.weather_sprites_enabled)
+          @weather.startWeather($game_screen.weather_type, $game_screen.weather_strength,
+            $game_screen.weather_duration, $game_screen.weather_sprites_enabled)
         end
         @weather.ox   = tmox
         @weather.oy   = tmoy
