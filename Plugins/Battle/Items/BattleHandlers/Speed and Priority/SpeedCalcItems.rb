@@ -10,9 +10,7 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
     }
   )
   
-  BattleHandlers::SpeedCalcItem.copy(:MACHOBRACE,:POWERANKLET,:POWERBAND,
-                                                 :POWERBELT,:POWERBRACER,
-                                                 :POWERLENS,:POWERWEIGHT)
+  BattleHandlers::SpeedCalcItem.copy(:MACHOBRACE,:POWERANKLET,:POWERBAND,:POWERBELT,:POWERBRACER,:POWERLENS,:POWERWEIGHT)
   
   BattleHandlers::SpeedCalcItem.add(:QUICKPOWDER,
     proc { |item,battler,mult|

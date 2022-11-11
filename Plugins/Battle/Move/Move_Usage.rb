@@ -280,7 +280,7 @@ class PokeBattle_Move
                     target.damageState.sturdy = true
                     damage -= 1
                     damageAdjusted = true
-                elsif target.hasActiveItem?(:FOCUSSASH) && target.hp==target.totalhp
+                elsif (target.hasActiveItem?(:FOCUSSASH) && target.hp==target.totalhp) || target.hasActiveItem?(:CLARITYSASH)
                     target.damageState.focusSash = true
                     damage -= 1
                     damageAdjusted = true
@@ -417,7 +417,7 @@ class PokeBattle_Move
 			@battle.pbHideAbilitySplash(target)
 		elsif target.damageState.focusSash
 			@battle.pbCommonAnimation("UseItem",target)
-			@battle.pbDisplay(_INTL("{1} hung on using its Focus Sash!",target.pbThis))
+			@battle.pbDisplay(_INTL("{1} hung on using its {2}!",target.pbThis,target.itemName))
 			target.pbConsumeItem
 		elsif target.damageState.focusBand
             @battle.pbCommonAnimation("UseItem",target)

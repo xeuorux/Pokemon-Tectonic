@@ -111,7 +111,7 @@ class PokeBattle_Battler
 			end
 		end
 		# Choice Items
-		if !effectActive?(:ChoiceBand) && hasActiveItem?(%i[CHOICEBAND CHOICESPECS CHOICESCARF])
+		if !effectActive?(:ChoiceBand) && hasActiveItem?(CHOICE_LOCKING_ITEMS)
 			if !@lastMoveUsed.nil? && pbHasMove?(@lastMoveUsed)
 				applyEffect(:ChoiceBand,@lastMoveUsed)
 			elsif !@lastRegularMoveUsed.nil? && pbHasMove?(@lastRegularMoveUsed)
@@ -834,10 +834,10 @@ class PokeBattle_Battler
 		#       message about it only shows here.
 		targets.each do |b|
 			next if b.damageState.unaffected
-			next unless b.damageState.berryWeakened
+			next unless b.damageState.berryWeakened || b.damageState.feastWeakened
 			name = b.itemName
 			@battle.pbDisplay(_INTL('The {1} weakened the damage to {2}!', name, b.pbThis(true)))
-			b.pbHeldItemTriggered(b.item) if b.item
+			b.pbHeldItemTriggered(b.item) if b.item && !b.damageState.feastWeakened
 		end
 		targets.each { |b| b.pbFaint if b && b.fainted? }
 		user.pbFaint if user.fainted?

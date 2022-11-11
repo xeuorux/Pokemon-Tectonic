@@ -188,7 +188,7 @@ class PokeBattle_AI
 		end
 		
 		# Pick a good move for the Choice items
-        if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) || user.hasActiveAbilityAI?(:GORILLATACTICS)
+        if user.hasActiveItem?(CHOICE_LOCKING_ITEMS) || user.hasActiveAbilityAI?(:GORILLATACTICS)
             echoln("#{user.pbThis} scores the move #{move.id} differently #{target.pbThis(false)} due to choice locking.")
             if move.damagingMove?
                 score += 40

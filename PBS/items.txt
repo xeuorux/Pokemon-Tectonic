@@ -911,4 +911,40 @@
 #-------------------------------
 1000,CASSBERRY,Cass Berry,Cass Berries,5,0,"If held by a Pokémon, it hangs on at 1 HP if it would be fainted from full health.",0,0,5
 #-------------------------------
-2009,TOXICORB,MISSINGNO Orb,MISSINGNO Orbs,1,4000,"An item that shouldn't exist.",0,0,0
+2000,TOXICORB,MISSINGNO Orb,MISSINGNO Orbs,1,4000,"An item that shouldn't exist.",0,0,0
+#-------------------------------
+2001,CHOICECROWN,Choice Crown,Choice Crowns,5,0,"Held item which ups Attacking stats and Speed by 50%, but allows the use of only one move.",0,0,0
+2002,ZENITHBAND,Zenith Band,Zenith Bands,5,0,"Held item which doubles Attack, but allows the use of only one move.",0,0,0
+2003,ZENITHSPECS,Zenith Specs,Zenith Specs,5,0,"Held item which doubles Sp. Atk, but allows the use of only one move.",0,0,0
+2004,ZENITHSCARF,Zenith Scarf,Zenith Scarves,5,0,"Held item which doubles Speed, but allows the use of only one move.",0,0,0
+2005,CLARITYSASH,Clarity Sash,Clarity Sashes,5,0,"An item to be held by a Pokémon. The holder will endure one potential KO attack, leaving 1 HP.",0,0,0
+2006,ALLPURPOSEVEST,All-Purpose Vest,All-Purpose Vests,5,0,"An item to be held by a Pokémon. The holder's defenses are raised 50% but it can't use status moves.",0,0,0
+2007,STRIKECORSET,Strike Corset,Strike Corsets,5,0,"The holder's Defense is raised 50%, and it harms those who use special attacks against it for 1/6th HP.",0,0,0
+2008,ASSAULTCORSET,Assault Corset,Assault Corsets,5,0,"The holder's Sp. Def is raised 50%, and it harms those who use physical attacks against it for 1/6th HP.",0,0,0
+2009,JAGGEDHELMET,Jagged Helmet,Jagged Helmets,5,0,"Damages attackers for 1/3th of their HP when they hit the holder with physical attacks.",0,0,0
+2010,RUPTUREDRADIO,Ruptured Radio,Ruptured Radios,5,0,"Damages attackers for 1/3th of their HP when they hit the holder with special attacks.",0,0,0
+2011,SITREONBERRY,Sitreon Berry,Sitreon Berries,5,0,"If held by a Pokémon, it heals its HP by 50% at half health.",0,0,5
+2012,ROSELIFEAST,Roseli Feast,Roseli Feasts,5,0,"Halves the damage from one supereffective Fairy-type attack. Holder heals 1/16th HP each turn.",0,0,5
+2013,OCCAFEAST,Occa Feast,Occa Feasts,5,0,"Halves the damage from one supereffective Fire-type attack. Holder heals 1/16th HP each turn.",0,0,5
+2014,RINDOFEAST,Rindo Feast,Rindo Feasts,5,0,"Halves the damage from one supereffective Ground-type attack. Holder heals 1/16th HP each turn.",0,0,5
+2015,LUNUSBERRY,Lunus Berry,Lunus Berries,5,0,"Held to recover from a status problem once per battle. Then, all of the holder's stats are raised.",0,0,5
+2016,ZALAKABERRY,Zalaka Berry,Zalaka Berries,5,0,"If held by a Pokémon which goes below 50% health, it maximizes its Speed stat.",0,0,5
+2017,LUCENTGEM,Lucent Gem,Lucent Gems,5,0,"A brilliant gem. Boosts the power of an attacking move by 50% once per battle.",0,0,10
+2018,NORMALRING,Normal Ring,Normal Rings,5,0,"Boosts the power of a Normal move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2019,FIRERING,Fire Ring,Fire Rings,5,0,"Boosts the power of a Fire move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2020,WATERRING,Water Ring,Water Rings,5,0,"Boosts the power of a Water move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2021,GRASSRING,Grass Ring,Grass Rings,5,0,"Boosts the power of a Grass move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2022,ELECTRICRING,Electric Ring,Electric Rings,5,0,"Boosts the power of a Electric move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2023,ICERING,Ice Ring,Ice Rings,5,0,"Boosts the power of a Ice move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2024,FIGHTINGRING,Fighting Ring,Fighting Rings,5,0,"Boosts the power of a Fighting move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2025,POISONRING,Poison Ring,Poison Rings,5,0,"Boosts the power of a Poison move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2026,GROUNDRING,Ground Ring,Ground Rings,5,0,"Boosts the power of a Ground move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2027,FLYINGRING,Flying Ring,Flying Rings,5,0,"Boosts the power of a Flying move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2028,PSYCHICRING,Psychic Ring,Psychic Rings,5,0,"Boosts the power of a Psychic move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2029,BUGRING,Bug Ring,Bug Rings,5,0,"Boosts the power of a Bug move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2030,ROCKRING,Rock Ring,Rock Rings,5,0,"Boosts the power of a Rock move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2031,GHOSTRING,Ghost Ring,Ghost Rings,5,0,"Boosts the power of a Ghost move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2032,DARKRING,Dark Ring,Dark Rings,5,0,"Boosts the power of a Dark move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2033,DRAGONRING,Dragon Ring,Dragon Rings,5,0,"Boosts the power of a Dragon move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2034,STEELRING,Steel Ring,Steel Rings,5,0,"Boosts the power of a Steel move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2035,FAIRYRING,Fairy Ring,Fairy Rings,5,0,"Boosts the power of a Fairy move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10

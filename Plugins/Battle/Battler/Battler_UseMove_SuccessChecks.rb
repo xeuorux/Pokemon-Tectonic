@@ -42,7 +42,7 @@ class PokeBattle_Battler
 		end
 		# Choice Items
 		if effectActive?(:ChoiceBand)
-			if hasActiveItem?(%i[CHOICEBAND CHOICESPECS CHOICESCARF]) && pbHasMove?(@effects[:ChoiceBand])
+			if hasActiveItem?(CHOICE_LOCKING_ITEMS) && pbHasMove?(@effects[:ChoiceBand])
 				if move.id != @effects[:ChoiceBand] && move.id != :STRUGGLE
 					if showMessages
 						msg = _INTL('{1} allows the use of only {2}!', itemName, GameData::Move.get(@effects[:ChoiceBand]).name)
@@ -96,7 +96,7 @@ class PokeBattle_Battler
 		end
 		# Assault Vest and Strike Vest (prevents choosing status moves but doesn't prevent
 		# executing them)
-		if (hasActiveItem?(:ASSAULTVEST) || hasActiveItem?(:STRIKEVEST)) && move.statusMove? && commandPhase
+		if hasActiveItem?(STATUS_PREVENTING_ITEMS) && move.statusMove? && commandPhase
 			if showMessages
 				msg = _INTL('The effects of the {1} prevent status moves from being used!',
 																itemName)

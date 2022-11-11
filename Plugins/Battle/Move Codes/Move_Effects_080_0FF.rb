@@ -3280,7 +3280,7 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
   def getScore(score,user,target,skill=100)
     if user.hasActiveItem?([:FLAMEORB,:POISONORB,:STICKYBARB,:IRONBALL])
       score += 50
-    elsif user.hasActiveItem?([:CHOICEBAND,:CHOICESCARF,:CHOICESPECS])
+    elsif user.hasActiveItem?(CHOICE_LOCKING_ITEMS)
       score += 100
     elsif !user.item && target.item
       return 0 if user.lastMoveUsed && GameData::Move.get(user.lastMoveUsed).function_code == "0F2"	 # Trick/Switcheroo
@@ -3328,8 +3328,7 @@ class PokeBattle_Move_0F3 < PokeBattle_Move
   end
 
   def getScore(score,user,target,skill=100)
-    if user.hasActiveItem?([:FLAMEORB,:POISONORB,:STICKYBARB,:IRONBALL,
-      :CHOICEBAND,:CHOICESCARF,:CHOICESPECS])
+    if user.hasActiveItem?([:FLAMEORB,:POISONORB,:STICKYBARB,:IRONBALL]) || user.hasActiveitem?(CHOICE_LOCKING_ITEMS)
       if user.opposes?(target)
         score += 50
       else
@@ -3452,7 +3451,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
               :PIXIEPLATE,:SKYPLATE,:SPLASHPLATE,:SPOOKYPLATE,:STONEPLATE,
               :TOXICPLATE,:ZAPPLATE
               ],
-        80 => [:ASSAULTVEST,:STRIKEVEST,:DAWNSTONE,:DUSKSTONE,:ELECTIRIZER,:MAGMARIZER,
+        80 => [:DAWNSTONE,:DUSKSTONE,:ELECTIRIZER,:MAGMARIZER,
               :ODDKEYSTONE,:OVALSTONE,:PROTECTOR,:QUICKCLAW,:RAZORCLAW,:SACHET,
               :SAFETYGOGGLES,:SHINYSTONE,:STICKYBARB,:WEAKNESSPOLICY,
               :WHIPPEDDREAM
@@ -3529,8 +3528,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
               :CLEVERWING,:GENIUSWING,:HEALTHWING,:MUSCLEWING,:PRETTYWING,
               :RESISTWING,:SWIFTWING
               ],
-        10 => [:AIRBALLOON,:BIGROOT,:BRIGHTPOWDER,:CHOICEBAND,:CHOICESCARF,
-              :CHOICESPECS,:DESTINYKNOT,:DISCOUNTCOUPON,:EXPERTBELT,:FOCUSBAND,
+        10 => [:AIRBALLOON,:BIGROOT,:BRIGHTPOWDER,:DESTINYKNOT,:DISCOUNTCOUPON,:EXPERTBELT,:FOCUSBAND,
               :FOCUSSASH,:LAGGINGTAIL,:LEFTOVERS,:MENTALHERB,:METALPOWDER,
               :MUSCLEBAND,:POWERHERB,:QUICKPOWDER,:REAPERCLOTH,:REDCARD,
               :RINGTARGET,:SHEDSHELL,:SILKSCARF,:SILVERPOWDER,:SMOOTHROCK,
@@ -3546,6 +3544,8 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
               :BLUESCARF,:GREENSCARF,:PINKSCARF,:REDSCARF,:YELLOWSCARF
               ]
     }
+    @flingPowers[80].concat(STATUS_PREVENTING_ITEMS)
+    @flingPowers[10].concat(CHOICE_LOCKING_ITEMS)
   end
 
   def canFling?(user)

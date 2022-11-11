@@ -1,0 +1,145 @@
+# Choice Crown
+BattleHandlers::DamageCalcUserItem.add(:CHOICECROWN,
+    proc { |item,user,target,move,mults,baseDmg,type|
+      mults[:base_damage_multiplier] *= 1.5
+    }
+)
+
+BattleHandlers::SpeedCalcItem.add(:CHOICECROWN,
+    proc { |item,battler,mult|
+      next mult * 1.5
+    }
+)
+
+# Zenith Band
+BattleHandlers::DamageCalcUserItem.add(:ZENITHBAND,
+    proc { |item,user,target,move,mults,baseDmg,type|
+      mults[:base_damage_multiplier] *= 2.0 if move.physicalMove?
+    }
+)
+
+# Zenith Specs
+BattleHandlers::DamageCalcUserItem.add(:ZENITHSPECS,
+    proc { |item,user,target,move,mults,baseDmg,type|
+      mults[:base_damage_multiplier] *= 2.0 if move.specialMove?
+    }
+)
+
+# Zenith Scarf
+BattleHandlers::SpeedCalcItem.add(:ZENITHSCARF,
+    proc { |item,battler,mult|
+      next mult * 2.0
+    }
+)
+
+# All-Purpose Vest
+BattleHandlers::DamageCalcTargetItem.add(:ALLPURPOSEVEST,
+    proc { |item,user,target,move,mults,baseDmg,type|
+      mults[:defense_multiplier] *= 1.5
+    }
+)
+
+# Assault Corset
+BattleHandlers::DamageCalcTargetItem.copy(:ASSAULTVEST,:ASSAULTCORSET)
+BattleHandlers::TargetItemOnHit.copy(:ROCKYHELMET,:ASSAULTCORSET)
+
+# Strike Corset
+BattleHandlers::DamageCalcTargetItem.copy(:STRIKEVEST,:STRIKECORSET)
+BattleHandlers::TargetItemOnHit.copy(:BUSTEDRADIO,:STRIKECORSET)
+
+# Jagged Helmet
+BattleHandlers::TargetItemOnHit.add(:JAGGEDHELMET,
+    proc { |item,user,target,move,battle|
+        next unless move.physicalMove?
+        next if !user.takesIndirectDamage?
+        battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,target.itemName))
+        user.applyFractionalDamage(1.0/3.0)
+    }
+)
+  
+BattleHandlers::TargetItemOnHit.add(:RUPTUREDRADIO,
+    proc { |item,user,target,move,battle|
+        next unless move.specialMove?
+        next if !user.takesIndirectDamage?
+        battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,target.itemName))
+        user.applyFractionalDamage(1.0/3.0)
+    }
+)
+
+# Sitreon berry
+BattleHandlers::HPHealItem.add(:SITREONBERRY,
+    proc { |item,battler,battle,forced|
+      next false if !battler.canHeal?
+      next false if !forced && !battler.canConsumePinchBerry?(false)
+      battle.pbCommonAnimation("EatBerry",battler) if !forced
+      healFromBerry(battler,1.0/2.0,item,forced=false)
+      next true
+    }
+)
+
+# Roseli Feast
+BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:ROSELIFEAST)
+
+BattleHandlers::DamageCalcTargetItem.add(:ROSELIFEAST,
+    proc { |item,user,target,move,mults,baseDmg,type|
+      pbBattleTypeWeakingBerry(:FAIRY,type,target,mults,true)
+    }
+)
+
+# Occa Feast
+BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:OCCAFEAST)
+
+BattleHandlers::DamageCalcTargetItem.add(:OCCAFEAST,
+    proc { |item,user,target,move,mults,baseDmg,type|
+      pbBattleTypeWeakingBerry(:FIRE,type,target,mults,true)
+    }
+)
+
+# Rindo Feast
+BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:RINDOFEAST)
+
+BattleHandlers::DamageCalcTargetItem.add(:RINDOFEAST,
+    proc { |item,user,target,move,mults,baseDmg,type|
+      pbBattleTypeWeakingBerry(:GRASS,type,target,mults,true)
+    }
+)
+
+# Lunus berry
+BattleHandlers::StatusCureItem.add(:LUNUSBERRY,
+    proc { |item,battler,battle,forced|
+      next false if !forced && !battler.canConsumeBerry?
+      next false if !battler.hasAnyStatusNoTrigger
+      itemName = GameData::Item.get(item).name
+      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
+      battle.pbCommonAnimation("EatBerry",battler) if !forced
+      battler.pbCureStatus
+      battler.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1,:SPEED,1], user, item: item)
+      next true
+    }
+)
+
+# Zalaka Berry
+BattleHandlers::HPHealItem.add(:ZALAKABERRY,
+    proc { |item,battler,battle,forced|
+      next pbBattleStatIncreasingBerry(battler,battle,item,forced,:SPEED,99,false)
+    }
+)
+
+# Lucent Gem
+BattleHandlers::DamageCalcUserItem.add(:LUCENTGEM,
+    proc { |item,user,target,move,mults,baseDmg,type|
+        user.applyEffect(:GemConsumed,user.item_id)
+        mults[:base_damage_multiplier] *= 1.5
+    }
+)
+
+# Rings
+ringTypes = [:NORMAL,:FIRE,:WATER,:GRASS,:ELECTRIC,:ICE,:FIGHTING,:POISON,:GROUND,:FLYING,:PSYCHIC,:BUG,:ROCK,:GHOST,:DARK,:DRAGON,:STEEL,:FAIRY]
+
+ringTypes.each do |type_sym|
+    ringSym = (type_sym.to_s + "RING").to_sym
+    gemSym = (type_sym.to_s + "GEM").to_sym
+    BattleHandlers::EORHealingItem.copy(:LEFTOVERS,ringSym)
+    BattleHandlers::DamageCalcUserItem.copy(gemSym,ringSym)
+    SUPER_ITEMS.push(ringSym)
+end

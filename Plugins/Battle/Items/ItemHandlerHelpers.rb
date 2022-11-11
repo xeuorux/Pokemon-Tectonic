@@ -27,8 +27,8 @@ def healFromBerry(battler,ratio,item,forced=false)
     return true
   end
   
-  def pbBattleStatIncreasingBerry(battler,battle,item,forced,stat,increment=1)
-    return false if !forced && !battler.canConsumePinchBerry?
+  def pbBattleStatIncreasingBerry(battler,battle,item,forced,stat,increment=1,checkGluttony=true)
+    return false if !forced && !battler.canConsumePinchBerry?(checkGluttony)
     return false if !battler.pbCanRaiseStatStage?(stat,battler)
     itemName = GameData::Item.get(item).name
     if battler.hasActiveAbility?(:RIPEN)
@@ -42,7 +42,7 @@ def healFromBerry(battler,ratio,item,forced=false)
     return battler.pbRaiseStatStageByCause(stat,increment,battler,itemName)
   end
   
-  def pbBattleTypeWeakingBerry(type,moveType,target,mults)
+  def pbBattleTypeWeakingBerry(type,moveType,target,mults,feast=false)
     return if moveType != type
     return if Effectiveness.resistant?(target.damageState.typeMod) && moveType != :NORMAL
     if target.hasActiveAbility?(:RIPEN)
@@ -50,7 +50,11 @@ def healFromBerry(battler,ratio,item,forced=false)
     else
       mults[:final_damage_multiplier] /= 2
     end
-    target.damageState.berryWeakened = true
+    if feast
+      target.damageState.feastWeakened = true
+    else
+      target.damageState.berryWeakened = true
+    end
     target.battle.pbCommonAnimation("EatBerry",target)
   end
 

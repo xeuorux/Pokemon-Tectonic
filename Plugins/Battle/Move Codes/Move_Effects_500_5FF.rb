@@ -1141,7 +1141,7 @@ end
 #===============================================================================
 class PokeBattle_Move_541 < PokeBattle_Move
   def pbEffectWhenDealingDamage(user,target)
-    return if target.damageState.substitute || target.damageState.berryWeakened
+    return if target.damageState.substitute
     return if !target.item
 	return if !CLOTHING_ITEMS.include?(target.item.id)
 	itemName = target.itemName

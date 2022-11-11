@@ -26,6 +26,7 @@ class PokeBattle_DamageState
 	attr_accessor :iceface         # Ice Face ability activated
 	attr_accessor :direDiversion   # Dire Diversion ability activated
 	attr_accessor :endureBerry	   # Cass Berry activated
+	attr_accessor :feastWeakened   # Whether a type-resisting feast was used (wont be consumed)
 
 	def initialize; reset; end
 
@@ -56,6 +57,7 @@ class PokeBattle_DamageState
 		@disguise      		= false
 		@endured       		= false
 		@berryWeakened 		= false
+		@feastWeakened		= false
 		@iceface       		= false
 		@forced_critical	= false
 		@direDiversion		= false
