@@ -11,8 +11,8 @@ GameData::Weather.register({
   :id_number        => 1,   # Must be 1 (preset RMXP weather)
   :category         => :Rain,
   :particle_names   => ["storm_1", "storm_2", "storm_3", "storm_4"], # Last is splash
-  :particle_delta_x => -1200,
-  :particle_delta_y => 4800,
+  :particle_delta_x => -3200,
+  :particle_delta_y => 3200,
   :tone_proc        => proc { |strength|
     next Tone.new(-strength * 3 / 4, -strength * 3 / 4, -strength * 3 / 4, 10)
   },
@@ -39,7 +39,7 @@ GameData::Weather.register({
   :id               => :Snow,
   :id_number        => 3,   # Must be 3 (preset RMXP weather)
   :category         => :Hail,
-  :particle_names   => ["hail_1", "hail_2", "hail_3"],
+  :particle_names   => ["blizzard_1", "blizzard_2", "blizzard_3", "blizzard_4"],
   :particle_delta_x => -240,
   :particle_delta_y => 240,
   :tone_proc        => proc { |strength|
