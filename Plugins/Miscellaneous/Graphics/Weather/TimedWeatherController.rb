@@ -2,7 +2,7 @@ Events.onMapChange += proc { |_sender,*args|
     applyOutdoorEffects()
 }
 
-WEATHER_TRANSITION_DELAY = 20
+WEATHER_TRANSITION_DELAY = 80
 
 # Don't put a map in both hot and cold
 HOT_MAPS = [
@@ -172,6 +172,13 @@ def applyOutdoorEffects()
             applyDefaultFog(map_id)
         end
 
+        if speedingUpTime?
+            if weatherSym != $game_screen.weather_type
+                print("Weather type changed to #{weatherSym}!")
+            elsif strength != $game_screen.weather_strength
+                print("Weather strength changed to #{strength}!")
+            end
+        end
         $game_screen.weather(weatherSym, strength, WEATHER_TRANSITION_DELAY, false, !glassCeiling)
     else
         applyDefaultFog(map_id)

@@ -80,12 +80,14 @@ class Spriteset_Map
           sprite.update
         end
         $game_screen.resetWeather if !$game_screen.weather_strength || !$game_screen.weather_type
+
         if self.map != $game_map
-          @weather.startWeather
+          @weather.updateWeatherSettings
         else
-          @weather.startWeather($game_screen.weather_type, $game_screen.weather_strength,
-            $game_screen.weather_duration, $game_screen.weather_sprites_enabled)
+          @weather.updateWeatherSettings($game_screen.weather_type, $game_screen.weather_strength,
+                                $game_screen.transition_time, $game_screen.weather_sprites_enabled)
         end
+        
         @weather.ox   = tmox
         @weather.oy   = tmoy
         @weather.update

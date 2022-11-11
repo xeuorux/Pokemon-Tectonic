@@ -1,13 +1,14 @@
 class OverworldWeather
     MAX_PARTICLES = 60 # Show 60 particles at max strength
     MAX_TILES = 60
+    DEFAULT_STRENGTH_CHANGE_FRAMES = 10
 
     attr_reader :type
     attr_reader :strength # From 0 to 10
     attr_reader :ox
     attr_reader :oy
 
-    def initialize(givenViewport, type = :None, strength = 0, fadeInTime = 0, spritesEnabled = true)
+    def initialize(givenViewport)
         @givenViewport = givenViewport
         @viewport         = Viewport.new(0, 0, Graphics.width, Graphics.height)
         @viewport.z       = givenViewport.z + 1
@@ -26,25 +27,44 @@ class OverworldWeather
         # For weathers with flashes (i.e. storm)
         @time_until_flash     = 0
 
+        @strength = 0
+        @targetStrength = 0
+        @strengthChangeFrames = 10
+        @strengthChangeCount = 0
+        @weatherRunning = false
+
         create_sprites
-        startWeather(type,strength,fadeInTime,spritesEnabled)
+        updateWeatherSettings(:None,0,DEFAULT_STRENGTH_CHANGE_FRAMES,true)
     end
 
-    def startWeather(type = :None, strength = 0, fadeInTime = 0, spritesEnabled = true)
+    def updateWeatherSettings(type = :None, strength = 0, framesPerStrength = 0, spritesEnabled = true)
         return if @type == type && @strength == strength
 
         if @type != type
-            newWeather(type,strength,spritesEnabled)
+            if @strength == 0
+                newWeather(type,strength,spritesEnabled)
+            else
+                @targetStrength = 0
+                @strengthChangeFrames = framesPerStrength
+            end
         else
-            @strength = strength
-            update_sprite_assignment
+            @targetStrength = strength
+            @strengthChangeFrames = framesPerStrength
         end
     end
 
     def newWeather(type = :None, strength = 0, spritesEnabled = true)
         @type = type
-        @strength = strength
+        
+        if !@weatherRunning
+            @strength = strength
+        end
+        @weatherRunning = true if type != :None
+        @targetStrength = strength
+        @strengthChangeFrames = DEFAULT_STRENGTH_CHANGE_FRAMES
         @spritesEnabled = spritesEnabled
+
+        echoln("Beginning new weather #{type} at starting strength #{ @strength} and target strength #{strength}")
 
         @tiles_wide           = 0
         @tiles_tall           = 0
@@ -53,7 +73,7 @@ class OverworldWeather
 
         prepare_weather(type)
 
-        update_sprite_assignment
+        set_sprite_visibility
 
         @lastDisplayX = 0
         @lastDisplayY = 0
@@ -78,6 +98,18 @@ class OverworldWeather
             h = @tileBitmap.height
             @tiles_wide = (Graphics.width.to_f / w).ceil + 1
             @tiles_tall = (Graphics.height.to_f / h).ceil + 1
+        end
+
+        if !@particleBitmaps.empty?
+            eachParticle do |particle,index|
+                set_particle_bitmap(particle,index)
+            end
+        end
+        
+        if @tileBitmap
+            eachTile do |tile,index|
+                tile.bitmap = @tileBitmap
+            end
         end
     end
     
@@ -118,20 +150,31 @@ class OverworldWeather
         end
     end
 
-    def update_sprite_assignment()
-        usingParticles = !@particleBitmaps.empty? && @spritesEnabled
-        
+    def usingParticles?
+        return !@particleBitmaps.empty? && @spritesEnabled
+    end
+
+    def usingTiles?
+        return @tileBitmap && @spritesEnabled
+    end
+
+    def particleIndexShown?(index)
+        return (index < numParticlesUsed) && usingParticles?
+    end
+
+    def tileIndexShown?(index)
+        return (index < numTilesUsed) && usingTiles?
+    end
+
+    # Should only be used while initializing a new weather
+    # Otherwise may disable a particle while its on screen
+    def set_sprite_visibility()
         eachParticle do |particle,index|
-            visible = (index < numParticlesUsed) && usingParticles
-            particle.visible = visible
-            set_particle_bitmap(particle,index) if visible
+            particle.visible = particleIndexShown?(index)
         end
         
-        usingTiles = @tileBitmap && @spritesEnabled
         eachTile do |tile,index|
-            visible = (index < numTilesUsed) && usingTiles
-            tile.visible = visible
-            tile.bitmap = @tileBitmap if visible
+            tile.visible = tileIndexShown?(index)
         end
     end
 
@@ -188,7 +231,9 @@ class OverworldWeather
     end
 
     def numParticlesUsed
-        return MAX_PARTICLES * strengthRatio
+        num = (MAX_PARTICLES * strengthRatio).floor
+        num -= 1 if num.odd? && @weatherData.category == :Rain # Only allowed an even number of particles
+        return num
     end
 
     def numTilesUsed
@@ -204,10 +249,26 @@ class OverworldWeather
     end
 
     def update
+        update_strength
         update_screen_tone
         update_flashes
-        update_particles if @particleBitmaps.length > 0
-        update_tiles if @tileBitmap
+        update_particles if usingParticles?
+        update_tiles if usingTiles?
+    end
+
+    def update_strength
+        if @targetStrength != @strength
+            @strengthChangeCount += 1
+
+            strengthChange = (1.0 / @strengthChangeFrames.to_f)
+            strengthChange *= -1 if @targetStrength < @strength
+            @strength += strengthChange
+
+            if @strengthChangeCount > @strengthChangeFrames
+                @strength = @strength.round
+                @strengthChangeCount = 0
+            end
+        end
     end
 
     # Set tone of viewport (general screen brightening/darkening)
@@ -233,13 +294,30 @@ class OverworldWeather
         @viewport.tone.set(tone_red, tone_green, tone_blue, tone_gray)
     end
 
+    def flash_color(intensity)
+        value = [160 + 75 * intensity,255].min
+        Color.new(255, 255, 255, value)
+    end
+
+    def flash_length(intensity)
+        seconds = intensity + rand(2.0)
+        return seconds * Graphics.frame_rate
+    end
+
+    # From 0 to 1
+    def random_flash_intensity
+        return strengthRatio * 0.5 + rand(0.5)
+    end
+
     def update_flashes
+        return if @strength == 0
         # Storm flashes
         if @type == :Storm
             if @time_until_flash > 0
                 @time_until_flash -= Graphics.delta_s
                 if @time_until_flash <= 0
-                    @viewport.flash(Color.new(255, 255, 255, 230), (2 + rand(3)) * 20)
+                    intensity = random_flash_intensity
+                    @viewport.flash(flash_color(intensity), flash_length(intensity))
                 end
             end
             if @time_until_flash <= 0
@@ -251,51 +329,67 @@ class OverworldWeather
     end
 
     def update_particles
-        eachParticle(true) do |particle, index|
+        eachParticle do |particle, index|
+            # Skip invisible particles
+            # Unless a recent strength change should cause them to become visible
+            # In which case place them into the world
+            if !particle.visible
+                if particleIndexShown?(index)
+                    particle.visible = true
+                    reset_particle(particle,index)
+                else
+                    next
+                end
+            end
+            update_particle_lifetime(particle, index)
             update_particle_position(particle, index)
         end
     end
 
-    def update_particle_position(sprite, index)
-        delta_t = Graphics.delta_s
-
+    def update_particle_lifetime(particle, index)
         if @particleLifetimes[index] >= 0
-            @particleLifetimes[index] -= delta_t
+            @particleLifetimes[index] -= Graphics.delta_s
             if @particleLifetimes[index] <= 0
-                reset_particle_position(sprite, index)
+                reset_particle(particle, index)
                 return
-            end
-        end
-
-        # Update position and opacity of sprite
-        if @weatherData.category == :Rain && index.odd?   # Splash
-            sprite.opacity = (@particleLifetimes[index] < 0.2) ? 255 : 0 # 0.2 seconds
-        else
-            particleVelX = @weatherData.particle_delta_x  * strengthRatio
-            particleVelY = @weatherData.particle_delta_y
-            dist_x = particleVelX * delta_t
-            dist_y = particleVelY * delta_t
-            sprite.x += dist_x
-            sprite.y += dist_y
-
-            if @type == :Snow
-                sprite.x += dist_x * (sprite.y - @oy) / (Graphics.height * 3)   # Faster when further down screen
-                sprite.x += [2, 1, 0, -1][rand(4)] * dist_x / 8   # Random movement
-                sprite.y += [2, 1, 1, 0, 0, -1][index % 6] * dist_y / 10   # Variety
-            end
-
-            sprite.opacity += @weatherData.particle_delta_opacity * delta_t
-            x = sprite.x - @ox
-            y = sprite.y - @oy
-
-            # Check if sprite is off-screen; if so, reset it
-            if sprite.opacity < 64 || x < -sprite.bitmap.width || y > Graphics.height
-                reset_particle_position(sprite, index)
             end
         end
     end
 
-    def reset_particle_position(particle, index)
+    def update_particle_position(particle, index)
+        # Update position and opacity of sprite
+        if @weatherData.category == :Rain && index.odd?   # Splash
+            particle.opacity = (@particleLifetimes[index] < 0.2) ? 255 : 0 # 0.2 seconds
+        else
+            particleVelX = @weatherData.particle_delta_x  * strengthRatio
+            particleVelY = @weatherData.particle_delta_y
+            dist_x = particleVelX * Graphics.delta_s
+            dist_y = particleVelY * Graphics.delta_s
+            particle.x += dist_x
+            particle.y += dist_y
+
+            if @type == :Snow
+                particle.x += dist_x * (particle.y - @oy) / (Graphics.height * 3)   # Faster when further down screen
+                particle.x += [2, 1, 0, -1][rand(4)] * dist_x / 8   # Random movement
+                particle.y += [2, 1, 1, 0, 0, -1][index % 6] * dist_y / 10   # Variety
+            end
+
+            particle.opacity += @weatherData.particle_delta_opacity * Graphics.delta_s
+            x = particle.x - @ox
+            y = particle.y - @oy
+
+            # Check if particle is off-screen; if so, reset it
+            if particle.opacity < 64 || x < -particle.bitmap.width || y > Graphics.height
+                reset_particle(particle, index)
+            end
+        end
+    end
+
+    def reset_particle(particle, index)
+        if !particleIndexShown?(index)
+            particle.visible = false
+            return
+        end
         if @weatherData.category == :Rain && index.odd? # Splash
             particle.x = @ox - particle.bitmap.width + rand(Graphics.width + particle.bitmap.width * 2)
             particle.y = @oy - particle.bitmap.height + rand(Graphics.height + particle.bitmap.height * 2)

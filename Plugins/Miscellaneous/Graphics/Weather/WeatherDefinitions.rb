@@ -137,7 +137,7 @@ GameData::Weather.register({
 
 GameData::Weather.register({
   :id               => :ToxicFog,
-  :category         => :Fog,
+  :category         => :ToxicFog,
   :id_number        => 11,
   :tile_delta_x     => 0,
   :tile_delta_y     => 8,
