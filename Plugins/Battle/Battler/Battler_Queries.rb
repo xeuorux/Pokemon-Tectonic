@@ -213,7 +213,7 @@ class PokeBattle_Battler
 		return false if @battle.field.terrain == :Grassy && shouldAbilityApply?(:NESTING,checkingForAI)
 		return true if shouldTypeApply?(:FLYING, checkingForAI)
 		return true if hasLevitate?(checkingForAI) && !@battle.moldBreaker
-		return true if hasActiveItem?(:AIRBALLOON)
+		return true if hasActiveItem?(LEVITATION_ITEMS)
 		return true if effectActive?(:MagnetRise)
 		return true if effectActive?(:Telekinesis)
 		return false

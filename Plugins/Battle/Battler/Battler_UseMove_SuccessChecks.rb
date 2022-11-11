@@ -438,7 +438,7 @@ class PokeBattle_Battler
 				end
 				return true
 			end
-			if target.hasActiveItem?(:AIRBALLOON)
+			if target.hasActiveItem?(LEVITATION_ITEMS)
 				if showMessages
 					@battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!", target.pbThis, target.itemName))
 					@battle.triggerImmunityDialogue(user, target, false)

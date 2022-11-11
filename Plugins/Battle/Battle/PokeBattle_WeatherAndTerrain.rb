@@ -162,8 +162,16 @@ class PokeBattle_Battle
       pbDisplay(_INTL("Priority moves are prevented!"))
     end
     pbHideAbilitySplash(user) if user
+
     # Check for terrain seeds that boost stats in a terrain
-    eachBattler { |b| b.pbItemTerrainStatBoostCheck }
+    # And terrain sealant
+    eachBattler { |b|
+      b.pbItemTerrainStatBoostCheck
+      if user == b && b.hasActiveItem?(:TERRAINSEALANT)
+        pbDisplay(_INTL("{1}'s {2} keeps the terrain from expiring!",b.pbThis,b.itemName))
+        @field.pointAt(:TerrainSealant,b)
+      end
+    }
     
     triggerTerrainChangeDialogue(old_terrain,newTerrain)
   end
@@ -311,7 +319,7 @@ class PokeBattle_Battle
   #=============================================================================
   def pbEORTerrain
     # Count down terrain duration
-    @field.terrainDuration -= 1 if @field.terrainDuration > 0
+    @field.terrainDuration -= 1 if @field.terrainDuration > 0 && !@field.effect.effectActive?(:TerrainSealant)
     # Terrain wears off
     if @field.terrain != :None && @field.terrainDuration == 0
       endTerrain

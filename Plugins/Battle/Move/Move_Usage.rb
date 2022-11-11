@@ -280,7 +280,7 @@ class PokeBattle_Move
                     target.damageState.sturdy = true
                     damage -= 1
                     damageAdjusted = true
-                elsif (target.hasActiveItem?(:FOCUSSASH) && target.hp==target.totalhp) || target.hasActiveItem?(:CLARITYSASH)
+                elsif (target.hasActiveItem?(FULL_ENDURE_ITEMS) && target.hp==target.totalhp) || target.hasActiveItem?(:CLARITYSASH)
                     target.damageState.focusSash = true
                     damage -= 1
                     damageAdjusted = true

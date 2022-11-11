@@ -189,3 +189,12 @@ GameData::BattleEffect.register_effect(:Field,{
         battle.pbDisplay(_INTL("The odd area went away."))
     },
 })
+
+GameData::BattleEffect.register_effect(:Field,{
+	:id => :TerrainSealant,
+	:real_name => "Terrain Sealer",
+	:type => :Position,
+	:others_lose_track => true,
+})
+
+

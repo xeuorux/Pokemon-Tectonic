@@ -88,10 +88,10 @@
 81,CHOICEBAND,Choice Band,Choice Bands,5,10000,"Held item which ups Attack by 33%, but allows the use of only one move.",0,0,0
 82,CHOICESPECS,Choice Specs,Choice Specs,5,10000,"Held item which ups Sp. Atk by 33%, but allows the use of only one move.",0,0,0
 83,CHOICESCARF,Choice Scarf,Choice Scarves,5,10000,"Held item which boosts Speed by 33% but allows the use of only one move.",0,0,0
-84,HEATROCK,Heat Rock,Heat Rocks,5,4000,"A Pokémon held item that extends the duration of the move Sunny Day used by the holder.",0,0,0
-85,DAMPROCK,Damp Rock,Damp Rocks,5,4000,"A Pokémon held item that extends the duration of the move Rain Dance used by the holder.",0,0,0
-86,SMOOTHROCK,Smooth Rock,Smooth Rocks,5,4000,"A Pokémon held item that extends the duration of the move Sandstorm used by the holder.",0,0,0
-87,ICYROCK,Icy Rock,Icy Rocks,5,4000,"A Pokémon held item that extends the duration of the move Hail used by the holder.",0,0,0
+84,HEATROCK,Heat Rock,Heat Rocks,5,4000,"A Pokémon held item. When the holder summons Sunshine, it lasts twice as long.",0,0,0
+85,DAMPROCK,Damp Rock,Damp Rocks,5,4000,"A Pokémon held item. When the holder summons Rain, it lasts twice as long.",0,0,0
+86,SMOOTHROCK,Smooth Rock,Smooth Rocks,5,4000,"A Pokémon held item. When the holder summons a Sandstorm, it lasts twice as long.",0,0,0
+87,ICYROCK,Icy Rock,Icy Rocks,5,4000,"A Pokémon held item. When the holder summons Hail, it lasts twice as long.",0,0,0
 88,LIGHTCLAY,Light Clay,Light Clays,5,4000,"An item to be held by a Pokémon. Protective moves like Light Screen and Reflect will be effective longer.",0,0,0
 89,GRIPCLAW,Grip Claw,Grip Claws,5,4000,"A Pokémon held item that doubles the duration of multiturn trapping attacks.",0,0,0
 90,BINDINGBAND,Binding Band,Binding Bands,5,4000,"A band that doubles the damage dealt each turn by binding moves when held.",0,0,0
@@ -140,39 +140,39 @@
 133,ROSEINCENSE,Rose Incense,Rose Incenses,5,2000,"An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Grass-type moves.",0,0,0
 134,ODDINCENSE,Odd Incense,Odd Incenses,5,2000,"An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Psychic-type moves.",0,0,0
 135,ROCKINCENSE,Rock Incense,Rock Incenses,5,2000,"An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Rock-type moves.",0,0,0
-136,CHARCOAL,Charcoal,Charcoals,5,1000,"An item to be held by a Pokémon. It is a combustible fuel that boosts the power of Fire-type moves.",0,0,0
-137,MYSTICWATER,Mystic Water,Mystic Waters,5,1000,"An item to be held by a Pokémon. It is a teardrop-shaped gem that ups the power of Water-type moves.",0,0,0
-138,MAGNET,Magnet,Magnets,5,1000,"An item to be held by a Pokémon. It is a powerful magnet that boosts the power of Electric-type moves.",0,0,0
-139,MIRACLESEED,Miracle Seed,Miracle Seeds,5,1000,"An item to be held by a Pokémon. It is a seed imbued with life that ups the power of Grass-type moves.",0,0,0
-140,NEVERMELTICE,Never-Melt Ice,Never-Melt Ices,5,1000,"An item to be held by a Pokémon. It is a piece of ice that repels heat and boosts Ice-type moves.",0,0,0
-141,BLACKBELT,Black Belt,Black Belts,5,1000,"An item to be held by a Pokémon. It is a belt that boosts determination and Fighting-type moves.",0,0,0
-142,POISONBARB,Poison Barb,Poison Barbs,5,1000,"An item to be held by a Pokémon. It is a small, poisonous barb that ups the power of Poison-type moves.",0,0,0
-143,SOFTSAND,Soft Sand,Soft Sand,5,1000,"An item to be held by a Pokémon. It is a loose, silky sand that boosts the power of Ground-type moves.",0,0,0
-144,SHARPBEAK,Sharp Beak,Sharp Beaks,5,1000,"An item to be held by a Pokémon. It is a long, sharp beak that boosts the power of Flying-type moves.",0,0,0
-145,TWISTEDSPOON,Twisted Spoon,Twisted Spoons,5,1000,"An item to be held by a Pokémon. It is a spoon imbued with telekinetic power that boosts Psychic-type moves.",0,0,0
-146,SILVERPOWDER,Silver Powder,Silver Powders,5,1000,"An item to be held by a Pokémon. It is a shiny, silver powder that ups the power of Bug-type moves.",0,0,0
-147,HARDSTONE,Hard Stone,Hard Stones,5,1000,"An item to be held by a Pokémon. It is an unbreakable stone that ups the power of Rock-type moves.",0,0,0
-148,SPELLTAG,Spell Tag,Spell Tags,5,1000,"An item to be held by a Pokémon. It is a sinister, eerie tag that boosts the power of Ghost-type moves.",0,0,0
-149,DRAGONFANG,Dragon Fang,Dragon Fangs,5,1000,"An item to be held by a Pokémon. It is a hard and sharp fang that ups the power of Dragon-type moves.",0,0,0
-150,BLACKGLASSES,Black Glasses,Black Glasses,5,1000,"An item to be held by a Pokémon. It is a shady-looking pair of glasses that boosts Dark-type moves.",0,0,0
-151,METALCOAT,Metal Coat,Metal Coats,5,2000,"An item to be held by a Pokémon. It is a special metallic film that ups the power of Steel-type moves.",0,0,0
-152,SILKSCARF,Silk Scarf,Silk Scarves,5,1000,"An item to be held by a Pokémon. It is a sumptuous scarf that boosts the power of Normal-type moves.",0,0,0
-153,FLAMEPLATE,Flame Plate,Flame Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fire-type moves.",0,0,0
-154,SPLASHPLATE,Splash Plate,Splash Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Water-type moves.",0,0,0
-155,ZAPPLATE,Zap Plate,Zap Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Electric-type moves.",0,0,0
-156,MEADOWPLATE,Meadow Plate,Meadow Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Grass-type moves.",0,0,0
-157,ICICLEPLATE,Icicle Plate,Icicle Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ice-type moves.",0,0,0
-158,FISTPLATE,Fist Plate,Fist Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fighting-type moves.",0,0,0
-159,TOXICPLATE,Toxic Plate,Toxic Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Poison-type moves.",0,0,0
-160,EARTHPLATE,Earth Plate,Earth Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ground-type moves.",0,0,0
-161,SKYPLATE,Sky Plate,Sky Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Flying-type moves.",0,0,0
-162,MINDPLATE,Mind Plate,Mind Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Psychic-type moves.",0,0,0
-163,INSECTPLATE,Insect Plate,Insect Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Bug-type moves.",0,0,0
-164,STONEPLATE,Stone Plate,Stone Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Rock-type moves.",0,0,0
-165,SPOOKYPLATE,Spooky Plate,Spooky Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ghost-type moves.",0,0,0
-166,DRACOPLATE,Draco Plate,Draco Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Dragon-type moves.",0,0,0
-167,DREADPLATE,Dread Plate,Dread Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Dark-type moves.",0,0,0
-168,IRONPLATE,Iron Plate,Iron Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Steel-type moves.",0,0,0
+136,CHARCOAL,Charcoal,Charcoals,5,1000,"A combustible fuel that boosts the holder's Fire-type moves by 20%.",0,0,0
+137,MYSTICWATER,Mystic Water,Mystic Waters,5,1000,"A teardrop-shaped gem that boosts the holder's Water-type moves by 20%.",0,0,0
+138,MAGNET,Magnet,Magnets,5,1000,"A powerful magnet that boosts the holder's Electric-type moves by 20%.",0,0,0
+139,MIRACLESEED,Miracle Seed,Miracle Seeds,5,1000,"A seed imbued with life that boosts the holder's Grass-type moves by 20%.",0,0,0
+140,NEVERMELTICE,Never-Melt Ice,Never-Melt Ices,5,1000,"A piece of ice that repels heat and boosts Ice-type moves by 20%.",0,0,0
+141,BLACKBELT,Black Belt,Black Belts,5,1000,"A belt that boosts determination and Fighting-type moves by 20%.",0,0,0
+142,POISONBARB,Poison Barb,Poison Barbs,5,1000,"A small, poisonous barb that boosts the holder's Poison-type moves by 20%.",0,0,0
+143,SOFTSAND,Soft Sand,Soft Sand,5,1000,"A loose, silky sand that boosts the holder's Ground-type moves by 20%.",0,0,0
+144,SHARPBEAK,Sharp Beak,Sharp Beaks,5,1000,"A long, sharp beak that boosts the holder's Flying-type moves by 20%.",0,0,0
+145,TWISTEDSPOON,Twisted Spoon,Twisted Spoons,5,1000,"A spoon imbued with telekinetic power that boosts Psychic-type moves by 20%.",0,0,0
+146,SILVERPOWDER,Silver Powder,Silver Powders,5,1000,"A shiny, silver powder that boosts the holder's Bug-type moves by 20%.",0,0,0
+147,HARDSTONE,Hard Stone,Hard Stones,5,1000,"An unbreakable stone that boosts the holder's Rock-type moves by 20%.",0,0,0
+148,SPELLTAG,Spell Tag,Spell Tags,5,1000,"A sinister, eerie tag that boosts the holder's the holder's Ghost-type moves by 20%.",0,0,0
+149,DRAGONFANG,Dragon Fang,Dragon Fangs,5,1000,"A hard and sharp fang that boosts the holder's Dragon-type moves by 20%.",0,0,0
+150,BLACKGLASSES,Black Glasses,Black Glasses,5,1000,"A shady-looking pair of glasses that boosts the holder's Dark-type moves by 20%.",0,0,0
+151,METALCOAT,Metal Coat,Metal Coats,5,2000,"A special metallic film that boosts the holder's Steel-type moves by 20%.",0,0,0
+152,SILKSCARF,Silk Scarf,Silk Scarves,5,1000,"A sumptuous scarf that boosts the holder's Normal-type moves by 20%.",0,0,0
+153,FLAMEPLATE,Flame Plate,Flame Plates,5,1000,"A stone tablet that boosts the holder's Fire-type moves.",0,0,0
+154,SPLASHPLATE,Splash Plate,Splash Plates,5,1000,"A stone tablet that boosts the holder's Water-type moves.",0,0,0
+155,ZAPPLATE,Zap Plate,Zap Plates,5,1000,"A stone tablet that boosts the holder's Electric-type moves.",0,0,0
+156,MEADOWPLATE,Meadow Plate,Meadow Plates,5,1000,"A stone tablet that boosts the holder's Grass-type moves.",0,0,0
+157,ICICLEPLATE,Icicle Plate,Icicle Plates,5,1000,"A stone tablet that boosts the holder's Ice-type moves.",0,0,0
+158,FISTPLATE,Fist Plate,Fist Plates,5,1000,"A stone tablet that boosts the holder's Fighting-type moves.",0,0,0
+159,TOXICPLATE,Toxic Plate,Toxic Plates,5,1000,"A stone tablet that boosts the holder's Poison-type moves.",0,0,0
+160,EARTHPLATE,Earth Plate,Earth Plates,5,1000,"A stone tablet that boosts the holder's Ground-type moves.",0,0,0
+161,SKYPLATE,Sky Plate,Sky Plates,5,1000,"A stone tablet that boosts the holder's Flying-type moves.",0,0,0
+162,MINDPLATE,Mind Plate,Mind Plates,5,1000,"A stone tablet that boosts the holder's Psychic-type moves.",0,0,0
+163,INSECTPLATE,Insect Plate,Insect Plates,5,1000,"A stone tablet that boosts the holder's Bug-type moves.",0,0,0
+164,STONEPLATE,Stone Plate,Stone Plates,5,1000,"A stone tablet that boosts the holder's Rock-type moves.",0,0,0
+165,SPOOKYPLATE,Spooky Plate,Spooky Plates,5,1000,"A stone tablet that boosts the holder's Ghost-type moves.",0,0,0
+166,DRACOPLATE,Draco Plate,Draco Plates,5,1000,"A stone tablet that boosts the holder's Dragon-type moves.",0,0,0
+167,DREADPLATE,Dread Plate,Dread Plates,5,1000,"A stone tablet that boosts the holder's Dark-type moves.",0,0,0
+168,IRONPLATE,Iron Plate,Iron Plates,5,1000,"A stone tablet that boosts the holder's Steel-type moves.",0,0,0
 169,FIREGEM,Fire Gem,Fire Gems,5,1000,"A gem with an essence of fire. Boosts the power of a Fire-type move by 50% once per battle.",0,0,10
 170,WATERGEM,Water Gem,Water Gems,5,1000,"A gem with an essence of water. Boosts the power of a Water-type move by 50% once per battle.",0,0,10
 171,ELECTRICGEM,Electric Gem,Electric Gems,5,1000,"A gem with an essence of electricity. Boosts the power of an Electric-type move by 50% once per battle.",0,0,10
@@ -557,7 +557,7 @@
 542,SNOWBALL,Snowball,Snowballs,5,4000,"An item to be held by a Pokémon. It boosts Attack if hit by an Ice-type attack once per battle.",0,0,0
 543,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,5,1000,"An item to be held by a Pokémon. The holder's Attack and Sp. Atk sharply increase if hit by a move it's weak to.",0,0,0
 544,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,5,4000,"An item to be held by a Pokémon. It boosts Speed when intimidated, fascinated, or frustrated once per battle.",0,0,0
-545,PIXIEPLATE,Pixie Plate,Pixie Plates,5,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fairy-type moves.",0,0,0
+545,PIXIEPLATE,Pixie Plate,Pixie Plates,5,1000,"A stone tablet that boosts the power of Fairy-type moves.",0,0,0
 546,FAIRYGEM,Fairy Gem,Fairy Gems,5,1000,"A gem with an essence of the fey. Boosts the power of a Fairy-type move by 50% once per battle.",0,0,10
 547,FIREMEMORY,Fire Memory,Fire Memories,5,1000,"A memory disc containing Fire-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
 548,WATERMEMORY,Water Memory,Water Memories,5,1000,"A memory disc containing Water-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
@@ -948,3 +948,12 @@
 2033,DRAGONRING,Dragon Ring,Dragon Rings,5,0,"Boosts the power of a Dragon move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
 2034,STEELRING,Steel Ring,Steel Rings,5,0,"Boosts the power of a Steel move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
 2035,FAIRYRING,Fairy Ring,Fairy Rings,5,0,"Boosts the power of a Fairy move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10
+2036,WHITEBOUGH,White Bough,White Boughs,5,0,"A held item. Restores any lowered stats, then heals the holder by 50% HP.",0,0,0
+2037,TERRAINSEALANT,Terrain Sealant,Terrain Sealant,5,0,"While held, terrains set by the holder do not expire.",0,0,0
+2038,LEADBALLOON,Lead Balloon,Lead Balloons,5,0,"An item to be held by a Pokémon. The holder floats in the air, making Ground attacks miss.",0,0,0
+2039,SPELLBELL,Spell Bell,Spell Bells,5,0,"The holder's HP is restored a little every time it inflicts damage. Boosts Ghost-type moves by 20%.",0,0,0
+2040,BIGREDBUTTON,Big Red Button,Big Red Buttons,5,0,"When the holder is struck by a foe, it switches out, leaving a layer of spikes around the foe.",0,0,0
+2041,HEATSASH,Heat Sash,Heat Sashes,5,0,"The user summons Sunshine for twice as long. The holder will endure one potential KO.",0,0,0
+2042,DAMPSASH,Damp Sash,Damp Sashes,5,0,"The user summons Rain for twice as long. The holder will endure one potential KO.",0,0,0
+2043,SMOOTHSASH,Smooth Sash,Smooth Sashes,5,0,"The user summons Sandstorm for twice as long. The holder will endure one potential KO.",0,0,0
+2044,ICYSASH,Icy Sash,Icy Sashes,5,0,"The user summons Hail for twice as long. The holder will endure one potential KO.",0,0,0

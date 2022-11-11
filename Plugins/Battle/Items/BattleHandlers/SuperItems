@@ -143,3 +143,63 @@ ringTypes.each do |type_sym|
     BattleHandlers::DamageCalcUserItem.copy(gemSym,ringSym)
     SUPER_ITEMS.push(ringSym)
 end
+
+# White Bough
+BattleHandlers::EndOfMoveStatRestoreItem.add(:WHITEBOUGH,
+  proc { |item,battler,battle,forced|
+    reducedStats = false
+    GameData::Stat.each_battle do |s|
+      next if battler.stages[s.id] >= 0
+      battler.stages[s.id] = 0
+      reducedStats = true
+    end
+    next false if !reducedStats
+    itemName = GameData::Item.get(item).name
+    PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
+    battle.pbCommonAnimation("UseItem",battler) if !forced
+    if forced
+      battle.pbDisplay(_INTL("{1}'s status returned to normal!",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1} returned its status to normal using its {2}!",
+         battler.pbThis,itemName))
+    end
+    # Healing aspect
+    hpAmount = battler.totalhp * 0.5
+    hpAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
+    if forced
+      battler.pbRecoverHP(hpAmount)
+    else
+      itemName = GameData::Item.get(item).name
+      message = _INTL("{1} restored its health using its {2}!",battler.pbThis,itemName)
+      battler.pbRecoverHP(hpAmount,true,true,true,message)
+    end
+    next true
+  }
+)
+
+# Lead Balloon
+BattleHandlers::ItemOnSwitchIn.add(:AIRBALLOON,:LEADBALLOON)
+
+# Spell Bell
+BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,:SPELLBELL)
+BattleHandlers::DamageCalcUserItem.copy(:SPELLTAG,:SPELLBELL)
+
+# Big Red Button
+BattleHandlers::TargetItemAfterMoveUse.add(:EJECTBUTTON,
+  proc { |item,battler,user,move,switched,battle|
+    next if battle.pbAllFainted?(battler.idxOpposingSide)
+    next if !battle.pbCanChooseNonActive?(battler.index)
+    battle.pbCommonAnimation("UseItem",battler)
+    battle.pbDisplay(_INTL("{1} pressed its {2}!",battler.pbThis,battler.itemName))
+    battler.pbConsumeItem(true,false)
+    user.pbOwnSide.incrementEffect(:Spikes)
+    newPkmn = battle.pbGetReplacementPokemonIndex(battler.index)   # Owner chooses
+    next if newPkmn<0
+    battle.pbRecallAndReplace(battler.index,newPkmn)
+    battle.pbClearChoice(battler.index)   # Replacement Pokémon does nothing this round
+    switched.push(battler.index)
+  }
+)
+
+# Smooth Sash
+BattleHandlers::WeatherExtenderItem.copy(:SMOOTHROCK,:SMOOTHSASH)

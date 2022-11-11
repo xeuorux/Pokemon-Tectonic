@@ -163,19 +163,19 @@ class PokeBattle_Battler
 			effectData.initialize_battler(@battle, self)
 		end
 
-		# All battlers effects stop pointing at this battler index if appropriate
-		@battle.eachBattler do |b|
-			next if b.index == @index
+		# All effects stop pointing at this battler index if appropriate
+		@battle.allEffectHolders do |holder|
+			next if holder.is_a?(PokeBattle_Battler) && holder.index == @index
 			newEffects = {}
-			b.effects.each do |effect, value|
+			holder.effects.each do |effect, value|
 				effectData = GameData::BattleEffect.get(effect)
-				next if effectData.type != :Position
+				next unless effectData.type == :Position
 				next unless effectData.others_lose_track
-				next if value != @index
-				echoln("[BATTLER EFFECT] Effect #{effect} stops pointing from #{b.name} to #{name} (#{@index}) due to it exiting")
+				next unless value == @index
+				echoln("[BATTLER EFFECT] Effect #{effect} in holder #{holder} stops pointing to battler #{name} (#{@index}) due to it exiting")
 				newEffects[effect] = effectData.default
 			end
-			b.effects.update(newEffects)
+			holder.effects.update(newEffects)
 		end
 
 		# Cause other battlers to reset effects that were contingent on this battler
