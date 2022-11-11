@@ -23,7 +23,6 @@ class OverworldWeather
 
         # Arrays to track all the sprites
         @particles = []
-        @particleLifetimes = []
         @tiles = []
 
         # For weathers with cyclical tones (i.e. sun)
@@ -114,8 +113,8 @@ class OverworldWeather
                 @particleBitmaps.push(bitmap)
             end
             if !@particleBitmaps.empty?
-                eachParticle do |particle,index|
-                    set_particle_bitmap(particle,index)
+                eachParticle do |particle|
+                    set_particle_bitmap(particle)
                 end
             end
         end
@@ -141,14 +140,13 @@ class OverworldWeather
     
     def create_sprites()
         for i in 0...MAX_PARTICLES
-            particleSprite = Sprite.new(@givenViewport)
+            particleSprite = WeatherParticle.new(@givenViewport,i)
             particleSprite.z       = 1000
             particleSprite.ox      = @ox
             particleSprite.oy      = @oy
             particleSprite.opacity = 0
             particleSprite.visible = false
             @particles[i] = particleSprite
-            @particleLifetimes[i] = 0
         end
 
         for i in 0...MAX_TILES
@@ -163,9 +161,9 @@ class OverworldWeather
     end
 
     def eachParticle(onlyVisible=false)
-        @particles.each_with_index do |particle,index|
+        @particles.each do |particle|
             next if onlyVisible && !particle.visible
-            yield particle,index
+            yield particle
         end
     end
 
@@ -195,8 +193,8 @@ class OverworldWeather
     # Should only be used while initializing a new weather
     # Otherwise may disable a particle while its on screen
     def set_sprite_visibility()
-        eachParticle do |particle,index|
-            particle.visible = particleIndexShown?(index)
+        eachParticle do |particle|
+            particle.visible = particleIndexShown?(particle.index)
         end
         
         eachTile do |tile,index|
@@ -204,16 +202,17 @@ class OverworldWeather
         end
     end
 
-    def set_particle_bitmap(sprite,index)
+    def set_particle_bitmap(particle)
+        index = particle.index
         if rainStyle?
             last_index = @particleBitmaps.length - 1 # Last sprite is a splash
             if index.even?
-              sprite.bitmap = @particleBitmaps[index % last_index]
+                particle.bitmap = @particleBitmaps[index % last_index]
             else
-              sprite.bitmap = @particleBitmaps[last_index]
+                particle.bitmap = @particleBitmaps[last_index]
             end
         else
-            sprite.bitmap = @particleBitmaps[index % @particleBitmaps.length]
+            particle.bitmap = @particleBitmaps[index % @particleBitmaps.length]
         end
     end
 
@@ -358,30 +357,23 @@ class OverworldWeather
     end
 
     def update_particles
-        eachParticle do |particle, index|
+        eachParticle do |particle|
             # Skip invisible particles
             # Unless a recent strength change should cause them to become visible
             # In which case place them into the world
             if !particle.visible
-                if particleIndexShown?(index)
+                if particleIndexShown?(particle.index)
                     particle.visible = true
-                    reset_particle(particle,index)
+                    reset_particle(particle)
                 else
                     next
                 end
             end
-            update_particle_lifetime(particle, index)
-            update_particle_position(particle, index)
-        end
-    end
-
-    def update_particle_lifetime(particle, index)
-        if @particleLifetimes[index] >= 0
-            @particleLifetimes[index] -= Graphics.delta_s
-            if @particleLifetimes[index] <= 0
-                reset_particle(particle, index)
-                return
+            # Reset particles that time out
+            if particle.lifetime >= 0 && particle.update_lifetime
+                reset_particle(particle)
             end
+            update_particle_position(particle)
         end
     end
 
@@ -389,12 +381,12 @@ class OverworldWeather
         return @weatherData.category == :Rain
     end
 
-    def isSplash?(index)
-        return rainStyle? && index.odd?
+    def isSplash?(particle)
+        return rainStyle? && particle.index.odd?
     end
 
-    def isRaindrop?(index)
-        return rainStyle? && index.even?
+    def isRaindrop?(particle)
+        return rainStyle? && particle.index.even?
     end
 
     def particleDeltaX
@@ -417,9 +409,9 @@ class OverworldWeather
         return y_speed
     end
 
-    def update_particle_position(particle, index)
+    def update_particle_position(particle)
         # Update position and opacity of sprite
-        unless isSplash?(index) # Splash
+        unless isSplash?(particle) # Splash
             dist_x = particleDeltaX * Graphics.delta_s
             dist_y = particleDeltaY * Graphics.delta_s
             particle.x += dist_x
@@ -428,7 +420,7 @@ class OverworldWeather
             if @type == :Snow
                 particle.x += dist_x * (particle.y - @oy) / (Graphics.height * 3)   # Faster when further down screen
                 particle.x += [2, 1, 0, -1][rand(4)] * dist_x / 8   # Random movement
-                particle.y += [2, 1, 1, 0, 0, -1][index % 6] * dist_y / 10   # Variety
+                particle.y += [2, 1, 1, 0, 0, -1][particle.index % 6] * dist_y / 10   # Variety
             end
 
             particle.opacity += @weatherData.particle_delta_opacity * Graphics.delta_s
@@ -437,16 +429,16 @@ class OverworldWeather
 
             # Check if particle is off-screen; if so, reset it
             if particle.opacity < 64 || x < -particle.bitmap.width || y > Graphics.height
-                reset_particle(particle, index)
-            elsif isRaindrop?(index) && rand(@weatherData.particle_delta_y) < 240
-                setSplashForRaindrop(particle,index)
-                @particleLifetimes[index] = 0.2
+                reset_particle(particle)
+            elsif isRaindrop?(particle) && rand(@weatherData.particle_delta_y) < 240
+                setSplashForRaindrop(particle)
+                particle.lifetime = 0.2
             end
         end
     end
 
-    def reset_particle(particle, index)
-        if !particleIndexShown?(index) || isSplash?(index)
+    def reset_particle(particle)
+        if !particleIndexShown?(particle.index) || isSplash?(particle)
             particle.visible = false
             return
         end
@@ -457,27 +449,26 @@ class OverworldWeather
             particle.x = @ox + Graphics.width + rand(Graphics.width)
             particle.y = @oy + Graphics.height - rand(Graphics.height + particle.bitmap.height - Graphics.width / gradient)
             distance_to_cover = particle.x - @ox - Graphics.width / 2 + particle.bitmap.width + rand(Graphics.width * 8 / 5)
-            @particleLifetimes[index] = (distance_to_cover.to_f / particleDeltaX).abs
+            particle.lifetime = (distance_to_cover.to_f / particleDeltaX).abs
         else
             # Position sprite to the top of the screen
             particle.x = @ox - particle.bitmap.width + rand(Graphics.width + particle.bitmap.width - gradient * Graphics.height)
             particle.y = @oy - particle.bitmap.height - rand(Graphics.height)
             distance_to_cover = @oy - particle.y + Graphics.height / 2 + rand(Graphics.height * 8 / 5)
-            @particleLifetimes[index] = (distance_to_cover.to_f / particleDeltaY).abs
+            particle.lifetime = (distance_to_cover.to_f / particleDeltaY).abs
         end
         particle.opacity = 255
     end
 
-    def setSplashForRaindrop(rainDropParticle,rainDropIndex)
-        splashIndex = rainDropIndex + 1
+    def setSplashForRaindrop(rainDropParticle)
+        splashIndex = rainDropParticle.index + 1
         splashParticle = @particles[splashIndex]
 
         splashParticle.x = rainDropParticle.x
         splashParticle.y = rainDropParticle.y + rainDropParticle.bitmap.height
         splashParticle.visible = true
         splashParticle.opacity = 255
-        splashLifetime = (20 + rand(20)) * 0.01 # 0.2-0.4 seconds
-        @particleLifetimes[splashIndex] = splashLifetime
+        splashParticle.lifetime = 0.2
     end
 
     def update_tiles
@@ -529,5 +520,23 @@ class OverworldWeather
         elsif @tile_y < 0
             @tile_y += jumpDistanceY
         end
+    end
+end
+
+class WeatherParticle < Sprite
+    attr_accessor :lifetime
+    attr_reader :index
+
+    def initialize(viewport,index)
+        @lifetime = 0
+        @index = index
+        super
+    end
+
+    # Returns whether the lifetime passed below 0 this update
+    def update_lifetime
+        oldLifetime = @lifetime
+        @lifetime -= Graphics.delta_s
+        return (oldLifetime > 0 && @lifetime <= 0)
     end
 end
