@@ -36,6 +36,7 @@ class OverworldWeather
         @strengthChangeFrames = 10
         @strengthChangeCount = 0
         @weatherRunning = false
+        @weatherCallback = nil
 
         create_sprites
         updateWeatherSettings(:None,0,DEFAULT_STRENGTH_CHANGE_FRAMES,true)
@@ -51,7 +52,7 @@ class OverworldWeather
         return @tileName == newData.tile_name
     end
 
-    def updateWeatherSettings(type = :None, strength = 0, framesPerStrength = 0, spritesEnabled = true)
+    def updateWeatherSettings(type = :None, strength = 0, framesPerStrength = 0, spritesEnabled = true, weatherCallback = nil)
         return if @type == type && @strength == strength
 
         if @type != type
@@ -61,10 +62,11 @@ class OverworldWeather
             particlesRemain = usingParticles? && useExistingParticles
             if @strength == 0 || particlesRemain
                 newWeather(type,strength,spritesEnabled, !useExistingParticles, !useExistingTiles)
-            else
+            elsif @targetStrength != 0
                 # Fade out the weather before allowing a new one to apply
                 @targetStrength = 0
                 @strengthChangeFrames = framesPerStrength
+                @weatherCallback = weatherCallback
             end
         else
             @targetStrength = strength
@@ -85,7 +87,6 @@ class OverworldWeather
         @spritesEnabled = spritesEnabled
 
         echoln("Beginning new weather #{type} at starting strength #{ @strength} and target strength #{strength}")
-        echoln("Resetting particles/tiles? #{resetParticles}, #{resetTiles}")
 
         @tiles_wide           = 0
         @tiles_tall           = 0
@@ -286,15 +287,27 @@ class OverworldWeather
 
     def update_strength
         if @targetStrength != @strength
-            @strengthChangeCount += 1
+            if @strengthChangeFrames > 0
+                @strengthChangeCount += 1
 
-            strengthChange = (1.0 / @strengthChangeFrames.to_f)
-            strengthChange *= -1 if @targetStrength < @strength
-            @strength += strengthChange
+                strengthChange = (1.0 / @strengthChangeFrames.to_f)
+                strengthChange *= -1 if @targetStrength < @strength
+                @strength += strengthChange
 
-            if @strengthChangeCount > @strengthChangeFrames
-                @strength = @strength.round
-                @strengthChangeCount = 0
+                if @strengthChangeCount > @strengthChangeFrames
+                    @strength = @strength.round
+                    @strengthChangeCount = 0
+                    echoln("Weather strength tips to #{@strength}")
+
+                    if @strength == 0 && @weatherCallback
+                        echoln("Calling the weather callback!")
+                        @weatherCallback.call
+                        @weatherCallback = nil
+                    end
+                end
+            else
+                @strength = @targetStrength
+                echoln("Strength instantly changes to #{@strength}")
             end
         end
     end
@@ -312,7 +325,7 @@ class OverworldWeather
         # Modify base tone
         if @type == :Sun
             maxMagnitude = 30 * strengthRatio
-            sunShift = maxMagnitude.to_f * Math.sin(@tonePhase)
+            sunShift = maxMagnitude.to_f * Math.sin(@tonePhase * (5.0/3.0))
             tone_red += sunShift
             tone_green += sunShift
             tone_blue += sunShift / 2
