@@ -112,10 +112,15 @@ class PokeBattle_Battler
 
 	DEFENSIVE_LOCK_STAT = 95
 
+	# Don't use for HP
+	def recalcStat(stat,base)
+		return calcStatGlobal(base, @level, @pokemon.ev[stat],hasActiveAbility?(:STYLISH))
+	end
+
 	def attack_no_room
 		atk_bonus = tribalBonusForStat(:ATTACK)
-		if hasActiveItem?(:POWERLOCK)
-			return calcStatGlobal(OFFENSIVE_LOCK_STAT, @level, @pokemon.ev[:ATTACK],hasActiveAbility?(:STYLISH)) + atk_bonus
+		if hasActiveItem?([:POWERLOCK,:POWERKEY])
+			return recalcStat(:ATTACK,OFFENSIVE_LOCK_STAT) + atk_bonus
 		else
 			return @attack + atk_bonus
 		end
@@ -124,7 +129,9 @@ class PokeBattle_Battler
 	def defense_no_room
 		defense_bonus = tribalBonusForStat(:DEFENSE)
 		if hasActiveItem?(:GUARDLOCK)
-			return calcStatGlobal(DEFENSIVE_LOCK_STAT, @level, @pokemon.ev[:DEFENSE],hasActiveAbility?(:STYLISH)) + defense_bonus
+			return recalcStat(:DEFENSE,DEFENSIVE_LOCK_STAT) + defense_bonus
+		elsif hasActiveItem?(:POWERKEY)
+			return recalcStat(:DEFENSE,OFFENSIVE_LOCK_STAT) + defense_bonus
 		else
 			return @defense + defense_bonus
 		end
@@ -132,8 +139,8 @@ class PokeBattle_Battler
 
 	def sp_atk_no_room
 		spatk_bonus = tribalBonusForStat(:SPECIAL_ATTACK)
-		if hasActiveItem?(:ENERGYLOCK)
-			return calcStatGlobal(OFFENSIVE_LOCK_STAT, @level, @pokemon.ev[:SPECIAL_ATTACK],hasActiveAbility?(:STYLISH)) + spatk_bonus
+		if hasActiveItem?([:ENERGYLOCK,:ENERGYKEY])
+			return recalcStat(:SPECIAL_ATTACK,OFFENSIVE_LOCK_STAT) + spatk_bonus
 		else
 			return @spatk + spatk_bonus
 		end
@@ -142,7 +149,9 @@ class PokeBattle_Battler
 	def sp_def_no_room
 		spdef_bonus = tribalBonusForStat(:SPECIAL_DEFENSE)
 		if hasActiveItem?(:WILLLOCK)
-			return calcStatGlobal(DEFENSIVE_LOCK_STAT, @level, @pokemon.ev[:SPECIAL_DEFENSE],hasActiveAbility?(:STYLISH)) + spdef_bonus
+			return recalcStat(:SPECIAL_DEFENSE,DEFENSIVE_LOCK_STAT) + spdef_bonus
+		elsif hasActiveItem?(:ENERGYKEY)
+			return recalcStat(:SPECIAL_DEFENSE,OFFENSIVE_LOCK_STAT) + spdef_bonus
 		else
 			return @spdef + spdef_bonus
 		end

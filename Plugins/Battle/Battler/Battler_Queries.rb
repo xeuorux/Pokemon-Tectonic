@@ -164,6 +164,7 @@ class PokeBattle_Battler
 				return true if data.mega_stone == check_item
 			end
 		end
+		return true if check_item == :LUNCHBOX
 		# Other unlosable items
 		return GameData::Item.get(check_item).unlosable?(@species, ability)
 	end
@@ -500,5 +501,13 @@ class PokeBattle_Battler
 			return @battle.battlers[i] if @battle.battlers[i]
 		end
 		return @battle.battlers[(@index ^ 1)]
+	end
+
+	def ownerParty
+		return @battle.pbParty(@index)
+	end
+
+	def partyIndex
+		return @index % 2
 	end
 end

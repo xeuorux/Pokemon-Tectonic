@@ -219,6 +219,25 @@ class PokeBattle_Battler
 			otherBattler.pbFaint
 		end
 
+		# On-faint effect items
+		if hasActiveItem?(:HOOHSASHES)
+			faintedPartyMembers = []
+			ownerParty.each do |partyPokemon|
+				next if @battle.pbFindBattler(partyIndex,@index)
+				next unless partyPokemon.fainted?
+				faintedPartyMembers.push(partyPokemon)
+			end
+			pbDisplay(_INTL("{1}'s scattered its {2} when fainting.",pbThis,itemName))
+			if faintedPartyMembers.length == 0
+				pbDisplay(_INTL("But there was no one to revive!"))
+			else
+				reviver = faintedPartyMembers.sample
+				reviver.heal_HP
+				reviver.heal_status
+				pbDisplay(_INTL("Its allied #{reviver.name} was revived to full health!"))
+			end
+		end
+
 		pbInitEffects(false)
 		
 		# Reset status
@@ -236,16 +255,20 @@ class PokeBattle_Battler
 			end
 			@pokemon.changeHappiness(badLoss ? 'faintbad' : 'faint')
 		end
+
 		# Reset form
 		@battle.peer.pbOnLeavingBattle(@battle, @pokemon,
 																																	@battle.usedInBattle[idxOwnSide][@index / 2])
 		@pokemon.makeUnmega if mega?
 		@pokemon.makeUnprimal if primal?
+
 		# Do other things
 		@battle.pbClearChoice(@index) # Reset choice
 		pbOwnSide.effects[:LastRoundFainted] = @battle.turnCount
+
 		# Check other battlers' abilities that trigger upon a battler fainting
 		pbAbilitiesOnFainting
+
 		# Check for end of primordial weather
 		@battle.pbEndPrimordialWeather
 	end

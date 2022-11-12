@@ -97,7 +97,7 @@
 90,BINDINGBAND,Binding Band,Binding Bands,5,4000,"A band that doubles the damage dealt each turn by binding moves when held.",0,0,0
 91,BIGROOT,Big Root,Big Roots,5,4000,"A Pokémon held item that boosts the power of HP-stealing moves to let the holder recover more HP.",0,0,0
 92,BLACKSLUDGE,Black Sludge,Black Sludges,5,4000,"A held item that gradually restores the HP of Poison-type Pokémon. It inflicts damage on all other types.",0,0,0
-93,LEFTOVERS,Leftovers,Leftovers,5,10000,"An item to be held by a Pokémon. The holder's HP is gradually restored during battle.",0,0,0
+93,LEFTOVERS,Leftovers,Leftovers,5,10000,"A held item. The holder's HP is restored by 1/16th at the end of each turn.",0,0,0
 94,SHELLBELL,Shell Bell,Shell Bells,5,4000,"An item to be held by a Pokémon. The holder's HP is restored a little every time it inflicts damage.",0,0,0
 95,MENTALHERB,Mental Herb,Mental Herbs,5,8000,"An item to be held by a Pokémon. It snaps the holder out of a variety of mental warping effects.",0,0,0
 96,WHITEHERB,White Herb,White Herbs,5,8000,"An item to be held by a Pokémon. It restores any lowered stat in battle.",0,0,0
@@ -957,3 +957,9 @@
 2042,DAMPSASH,Damp Sash,Damp Sashes,5,0,"The user summons Rain for twice as long. The holder will endure one potential KO.",0,0,0
 2043,SMOOTHSASH,Smooth Sash,Smooth Sashes,5,0,"The user summons Sandstorm for twice as long. The holder will endure one potential KO.",0,0,0
 2044,ICYSASH,Icy Sash,Icy Sashes,5,0,"The user summons Hail for twice as long. The holder will endure one potential KO.",0,0,0
+2045,HOOHSASHES,Ho-oh's Ashes,Ho-oh's Ashes,5,0,"A held item. When the holder faints, a random other party member is fully revived.",0,0,0
+2046,DEATHORB,Death Orb,Death Orbs,5,0,"A held item. It boosts the power of moves by 30%. The user heals for a third of all move damage they deal.",0,0,0
+2047,POWERKEY,Power Key,Power Locks,5,0,"A held item. In battles, it sets the holder's base Attack and base Defense stats to 120.",0,0,0
+2048,ENERGYKEY,Energy Key,Power Locks,5,0,"A held item. In battles, it sets the holder's base Sp. Atk and base Sp. Def stats to 120.",0,0,0
+2049,GRANDMASTERSCROLL,Grandmaster Scroll,Grandmaster Scroll,5,0,"An ancient scroll that makes the user  that boosts the holder's supereffective moves by 20%.",0,0,0
+2050,LUNCHBOX,Lunch Box,Lunch Boxes,5,0,"The holder's HP is restored by 1/8th each turn, and takes a third less damage at full HP. The holder won't drop it.",0,0,0
