@@ -2,6 +2,8 @@ Events.onMapChange += proc { |_sender,*args|
     applyOutdoorEffects()
 }
 
+WEATHER_TRANSITION_DELAY = 80
+
 # Don't put a map in both hot and cold
 HOT_MAPS = [
     130, # Canal Desert
@@ -170,13 +172,14 @@ def applyOutdoorEffects()
             applyDefaultFog(map_id)
         end
 
-        powerFromMax = ($game_screen.weather_max * 10.0 / RPG::Weather::MAX_SPRITES).floor - 1
-        if $game_screen.weather_type != weatherSym || strength != powerFromMax
-            echoln("Setting weather: #{weatherSym} #{strength}")
-            $game_screen.weather(weatherSym, strength, 0, false, !glassCeiling)
-        else
-            echoln("Weather remains the same.")
+        if speedingUpTime?
+            if weatherSym != $game_screen.weather_type
+                print("Weather type changed to #{weatherSym}!")
+            elsif strength != $game_screen.weather_strength
+                print("Weather strength changed to #{strength}!")
+            end
         end
+        $game_screen.weather(weatherSym, strength, WEATHER_TRANSITION_DELAY, false, !glassCeiling)
     else
         applyDefaultFog(map_id)
     end
@@ -259,13 +262,12 @@ def applyFog(name, hue = 0, opacity = 100, velX = 0, velY = 0, blend_type = 0, z
 end
 
 def debugIncrementWeather(weatherSym)
-    newPower = 2
+    newPower = Input.press?(Input::CTRL) ? -2 : 2
     if $game_screen.weather_type == GameData::Weather.get(weatherSym).id
-        currentPower = ($game_screen.weather_max * 10 / RPG::Weather::MAX_SPRITES) - 1
-        newPower += currentPower
+        newPower += $game_screen.weather_strength
     end
     newPower = [newPower,10].min
-    $game_screen.weather(weatherSym, newPower, 0, false)
+    $game_screen.weather(weatherSym, newPower, WEATHER_TRANSITION_DELAY, false)
     pbMessage("Setting weather to #{weatherSym} at power #{newPower}")
 end
 

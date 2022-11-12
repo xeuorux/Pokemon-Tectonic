@@ -79,3 +79,13 @@ def dexCompletionPercent(dexNumber = -1)
 	ratio = 100.0 * $Trainer.pokedex.owned_count(dexNumber).to_f / pbGetRegionalDexLength(dexNumber).to_f
 	return ratio.floor
 end
+
+def lockPlayerInput
+	$game_player.lock
+	$game_system.menu_disabled = true
+end
+
+def unlockPlayerInput
+	$game_player.unlock
+	$game_system.menu_disabled = false
+end

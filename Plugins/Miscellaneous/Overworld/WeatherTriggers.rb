@@ -14,6 +14,7 @@ Events.onMapChanging += proc { |_sender, e|
       next if new_map_metadata && new_map_metadata.weather
     end
     $game_screen.weather(:None, 0, 0)
+    echoln("Disabling weather on map change.")
 }
 
 # Set up various data related to the new map
@@ -32,5 +33,8 @@ Events.onMapChange += proc { |_sender, e|
     newWeatherSymbol = new_weather[0]
     newWeatherChance = new_weather[1]
     defaultStrength = GameData::Weather.get(newWeatherSymbol).default_strength
-    $game_screen.weather(newWeatherSymbol, defaultStrength, 0) if rand(100) < newWeatherChance
+    if rand(100) < newWeatherChance
+      echoln("Weather randomly appeared on this map!")
+      $game_screen.weather(newWeatherSymbol, defaultStrength, 0)
+    end
 }

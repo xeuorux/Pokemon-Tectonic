@@ -1,5 +1,7 @@
 module GameData
     class Weather
+        attr_reader :particle_names
+        attr_reader :tile_name
         attr_reader :clouds_proc
         attr_reader :default_strength
 
@@ -13,7 +15,8 @@ module GameData
             @particle_delta_opacity = hash[:particle_delta_opacity] || 0
             @tile_delta_x           = hash[:tile_delta_x]           || 0
             @tile_delta_y           = hash[:tile_delta_y]           || 0
-            @graphics               = hash[:graphics]               || []
+            @particle_names         = hash[:particle_names]         || []
+            @tile_name              = hash[:tile_name]
             @tone_proc              = hash[:tone_proc]
             @clouds_proc            = hash[:clouds_proc]
             @default_strength       = hash[:default_strength] || 2

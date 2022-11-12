@@ -227,13 +227,17 @@ def pbGetTimeNow
   return time_ret
 end
 
+def speedingUpTime?
+  $DEBUG && Input.press?(Input::CTRL) && Input.pressex?(0x54) # T, for time
+end
+
 class PokemonGlobalMetadata
     attr_accessor :newFrameCount # Became float when using extra values
     attr_accessor :extraYears 
     
     def addNewFrameCount
       return if (UnrealTime::SWITCH_STOPS>0 && $game_switches[UnrealTime::SWITCH_STOPS])
-      if $DEBUG && Input.press?(Input::CTRL) && Input.pressex?(0x54) # T, for time
+      if speedingUpTime?
         self.newFrameCount += 100
         PBDayNight.sheduleToneRefresh
       else

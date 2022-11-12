@@ -10,9 +10,9 @@ GameData::Weather.register({
   :id               => :Rain,
   :id_number        => 1,   # Must be 1 (preset RMXP weather)
   :category         => :Rain,
-  :graphics         => [["rain_1", "rain_2", "rain_3", "rain_4"]],   # Last is splash
-  :particle_delta_x => -1200,
-  :particle_delta_y => 4800,
+  :particle_names   => ["storm_1", "storm_2", "storm_3", "storm_4"], # Last is splash
+  :particle_delta_x => -3200,
+  :particle_delta_y => 3200,
   :tone_proc        => proc { |strength|
     next Tone.new(-strength * 3 / 4, -strength * 3 / 4, -strength * 3 / 4, 10)
   },
@@ -26,7 +26,7 @@ GameData::Weather.register({
   :id               => :Storm,
   :id_number        => 2,   # Must be 2 (preset RMXP weather)
   :category         => :Rain,
-  :graphics         => [["storm_1", "storm_2", "storm_3", "storm_4"]],   # Last is splash
+  :particle_names   => ["storm_1", "storm_2", "storm_3", "storm_4"], # Last is splash
   :particle_delta_x => -4800,
   :particle_delta_y => 4800,
   :tone_proc        => proc { |strength|
@@ -39,7 +39,7 @@ GameData::Weather.register({
   :id               => :Snow,
   :id_number        => 3,   # Must be 3 (preset RMXP weather)
   :category         => :Hail,
-  :graphics         => [["hail_1", "hail_2", "hail_3"]],
+  :particle_names   => ["blizzard_1", "blizzard_2", "blizzard_3", "blizzard_4"],
   :particle_delta_x => -240,
   :particle_delta_y => 240,
   :tone_proc        => proc { |strength|
@@ -54,9 +54,10 @@ GameData::Weather.register({
   :id               => :Blizzard,
   :id_number        => 4,
   :category         => :Hail,
-  :graphics         => [["blizzard_1", "blizzard_2", "blizzard_3", "blizzard_4"], ["blizzard_tile"]],
+  :particle_names   => ["blizzard_1", "blizzard_2", "blizzard_3", "blizzard_4"],
   :particle_delta_x => -960,
   :particle_delta_y => 480,
+  :tile_name        => "blizzard_tile",
   :tile_delta_x     => -1440,
   :tile_delta_y     => 720,
   :tone_proc        => proc { |strength|
@@ -68,9 +69,10 @@ GameData::Weather.register({
   :id               => :Sandstorm,
   :id_number        => 5,
   :category         => :Sandstorm,
-  :graphics         => [["sandstorm_1", "sandstorm_2", "sandstorm_3", "sandstorm_4"], ["sandstorm_tile"]],
+  :particle_names   => ["sandstorm_1", "sandstorm_2", "sandstorm_3", "sandstorm_4"],
   :particle_delta_x => -1200,
   :particle_delta_y => 640,
+  :tile_name        => "sandstorm_tile",
   :tile_delta_x     => -720,
   :tile_delta_y     => 360,
   :tone_proc        => proc { |strength|
@@ -82,7 +84,7 @@ GameData::Weather.register({
   :id               => :HeavyRain,
   :id_number        => 6,
   :category         => :Rain,
-  :graphics         => [["storm_1", "storm_2", "storm_3", "storm_4"]],   # Last is splash
+  :particle_names   => ["storm_1", "storm_2", "storm_3", "storm_4"], # Last is splash
   :particle_delta_x => -4800,
   :particle_delta_y => 4800,
   :tone_proc        => proc { |strength|
@@ -106,14 +108,14 @@ GameData::Weather.register({
   :id_number        => 8,
   :tile_delta_x     => -32,
   :tile_delta_y     => 0,
-  :graphics         => [nil, ["fog_tile"]],
+  :tile_name        => "fog_tile",
 })
 
 GameData::Weather.register({
   :id               => :Dusty,
   :id_number        => 9,
   :category         => :Sandstorm,
-  :graphics         => [nil, ["dust_tile"]],
+  :tile_name        => "dust_tile",
   :tile_delta_x     => -60,
   :tile_delta_y     => 0,
   :tone_proc        => proc { |strength|
@@ -125,7 +127,6 @@ GameData::Weather.register({
   :id               => :Overcast,
   :id_number        => 10,   # Must be 1 (preset RMXP weather)
   :category         => :Rain,
-  :graphics         => [],   # Last is splash
   :tone_proc        => proc { |strength|
     next Tone.new(-strength * 2 / 3, -strength * 2 / 3, -strength * 2 / 3, 10)
   },
@@ -136,11 +137,11 @@ GameData::Weather.register({
 
 GameData::Weather.register({
   :id               => :ToxicFog,
-  :category         => :Fog,
+  :category         => :ToxicFog,
   :id_number        => 11,
   :tile_delta_x     => 0,
   :tile_delta_y     => 8,
-  :graphics         => [nil, ["toxic_fog_tile"]],
+  :tile_name        => "toxic_fog_tile",
   :default_strength => 1,
 })
 
@@ -150,7 +151,7 @@ GameData::Weather.register({
   :id_number        => 12,
   :particle_delta_x => 0,
   :particle_delta_y => 400,
-  :graphics         => [["wind_1","wind_2"]],
+  :particle_names   => ["wind_1","wind_2"],
   :clouds_proc        => proc { |strength|
     next 50 - strength * 4
   },
@@ -162,7 +163,7 @@ GameData::Weather.register({
   :id_number        => 13,
   :particle_delta_x => 0,
   :particle_delta_y => 400,
-  :graphics         => [["wind_1","wind_2"]],
+  :particle_names   => ["wind_1","wind_2"],
   :clouds_proc        => proc { |strength|
     next 1
   },
