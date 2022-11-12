@@ -4,6 +4,10 @@ Events.onMapChange += proc { |_sender,*args|
 
 WEATHER_TRANSITION_DELAY = 80
 
+SKIPPED_MAPS = [
+    23, # Testing Map
+]
+
 # Don't put a map in both hot and cold
 HOT_MAPS = [
     130, # Canal Desert
@@ -147,31 +151,8 @@ def applyOutdoorEffects()
     map_id = $game_map.map_id
     weather_metadata = GameData::MapMetadata.try_get(map_id).weather
 
-    glassCeiling = GLASS_CEILING_MAPS.include?(map_id)
-
-    if weather_metadata.nil?
+    if weather_metadata.nil? && !SKIPPED_MAPS.include?(map_id)
         weatherSym,strength = getWeatherForTimeAndMap(pbGetTimeNow,map_id)
-
-        weatherData = GameData::Weather.get(weatherSym)
-        cloudCoverOpacity = weatherData.cloud_cover_opacity(strength)
-
-        if cloudCoverOpacity > 0
-            speed = 6
-            if [:Rain,:Overcast,:Snow].include?(weatherSym)
-                speed -= strength * 2
-            end
-            speed = [speed,0].max
-            velX = (Math.sin(pbGetTimeNow.hour / 12.0 * Math::PI) * speed).round
-            velY = (Math.sin((pbGetTimeNow.hour + 2 + pbGetTimeNow.day) / 12.0 * Math::PI) * speed).round
-
-            if glassCeiling
-                cloudCoverOpacity /= 2
-            end
-            applyFog('clouds_fog_texture_high_contrast',0,cloudCoverOpacity,velX,velY,2)
-        else
-            applyDefaultFog(map_id)
-        end
-
         if speedingUpTime?
             if weatherSym != $game_screen.weather_type
                 print("Weather type changed to #{weatherSym}!")
@@ -179,9 +160,7 @@ def applyOutdoorEffects()
                 print("Weather strength changed to #{strength}!")
             end
         end
-        $game_screen.weather(weatherSym, strength, WEATHER_TRANSITION_DELAY, false, !glassCeiling)
-    else
-        applyDefaultFog(map_id)
+        $game_screen.weather(weatherSym, strength, WEATHER_TRANSITION_DELAY, false, !GLASS_CEILING_MAPS.include?(map_id))
     end
 end
 
@@ -243,22 +222,6 @@ def getColdDryWeather(strength)
     end
 
     return weatherSym,strength
-end
-
-def applyDefaultFog(mapID)
-    darknessOpacity = 0
-    darknessOpacity = 100 if DARK_MAPS.include?(mapID)
-    applyFog('darkness', 0, darknessOpacity)
-end
-
-def applyFog(name, hue = 0, opacity = 100, velX = 0, velY = 0, blend_type = 0, zoom = 100)
-    $game_map.fog_name       = name
-    $game_map.fog_hue        = hue
-    $game_map.fog_opacity    = opacity
-    $game_map.fog_blend_type = blend_type
-    $game_map.fog_zoom       = zoom
-    $game_map.fog_sx         = velX
-    $game_map.fog_sy         = velY
 end
 
 def debugIncrementWeather(weatherSym)

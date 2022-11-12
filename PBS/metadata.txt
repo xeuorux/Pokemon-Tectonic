@@ -171,7 +171,7 @@ Bicycle = true
 #-------------------------------
 [023]
 # Testing Map
-Outdoor = false
+Outdoor = true
 ShowArea = true
 Bicycle = false
 #-------------------------------

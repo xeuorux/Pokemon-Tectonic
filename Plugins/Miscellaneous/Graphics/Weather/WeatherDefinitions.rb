@@ -2,7 +2,7 @@ GameData::Weather.register({
   :id               => :None,
   :id_number        => 0,   # Must be 0 (preset RMXP weather)
   :clouds_proc        => proc { |strength|
-    next 50
+    next 0
   },
 })
 
@@ -17,7 +17,7 @@ GameData::Weather.register({
     next Tone.new(-strength * 3 / 4, -strength * 3 / 4, -strength * 3 / 4, 10)
   },
   :clouds_proc      => proc { |strength|
-    next 50 - strength * 4
+    next strength * -6
   },
 })
 
@@ -31,6 +31,9 @@ GameData::Weather.register({
   :particle_delta_y => 4800,
   :tone_proc        => proc { |strength|
     next Tone.new(-strength * 3, -strength * 3, -strength * 3, 20)
+  },
+  :clouds_proc        => proc { |strength|
+    next strength * -8
   },
 })
 
@@ -46,7 +49,7 @@ GameData::Weather.register({
     next Tone.new(strength / 2, strength / 2, strength / 2, 0)
   },
   :clouds_proc        => proc { |strength|
-    next 40 - strength * 4
+    next strength * -4
   },
 })
 
@@ -63,6 +66,9 @@ GameData::Weather.register({
   :tone_proc        => proc { |strength|
     next Tone.new(strength * 3 / 4, strength * 3 / 4, strength * 3 / 4, 0)
   },
+  :clouds_proc        => proc { |strength|
+    next strength * -8
+  },
 })
 
 GameData::Weather.register({
@@ -78,6 +84,9 @@ GameData::Weather.register({
   :tone_proc        => proc { |strength|
     next Tone.new(strength / 2, 0, -strength / 2, 0)
   },
+  :clouds_proc        => proc { |strength|
+    next strength * -10
+  },
 })
 
 GameData::Weather.register({
@@ -90,6 +99,9 @@ GameData::Weather.register({
   :tone_proc        => proc { |strength|
     next Tone.new(-strength * 3 / 2, -strength * 3 / 2, -strength * 3 / 2, 20)
   },
+  :clouds_proc      => proc { |strength|
+    next strength * -8
+  },
 })
 
 # NOTE: This alters the screen tone in RPG::Weather#update_screen_tone.
@@ -100,6 +112,9 @@ GameData::Weather.register({
   :tone_proc        => proc { |strength|
     next Tone.new(strength * 3/4, strength * 3/4, strength * 3/8, 0)
   },
+  :clouds_proc      => proc { |strength|
+    next strength * -10
+  },
 })
 
 GameData::Weather.register({
@@ -109,6 +124,9 @@ GameData::Weather.register({
   :tile_delta_x     => -32,
   :tile_delta_y     => 0,
   :tile_name        => "fog_tile",
+  :clouds_proc      => proc { |strength|
+    next strength * -10
+  },
 })
 
 GameData::Weather.register({
@@ -121,6 +139,9 @@ GameData::Weather.register({
   :tone_proc        => proc { |strength|
     next Tone.new(strength / 4, 0, -strength / 4, 0)
   },
+  :clouds_proc        => proc { |strength|
+    next strength * -8
+  },
 })
 
 GameData::Weather.register({
@@ -131,7 +152,7 @@ GameData::Weather.register({
     next Tone.new(-strength * 2 / 3, -strength * 2 / 3, -strength * 2 / 3, 10)
   },
   :clouds_proc        => proc { |strength|
-    next 50 - strength * 4
+    next strength * -2
   },
 })
 
@@ -143,6 +164,9 @@ GameData::Weather.register({
   :tile_delta_y     => 8,
   :tile_name        => "toxic_fog_tile",
   :default_strength => 1,
+  :clouds_proc        => proc { |strength|
+    next strength * -4
+  },
 })
 
 GameData::Weather.register({
@@ -153,7 +177,7 @@ GameData::Weather.register({
   :particle_delta_y => 400,
   :particle_names   => ["wind_1","wind_2"],
   :clouds_proc        => proc { |strength|
-    next 50 - strength * 4
+    next strength * -4
   },
 })
 
@@ -165,7 +189,7 @@ GameData::Weather.register({
   :particle_delta_y => 400,
   :particle_names   => ["wind_1","wind_2"],
   :clouds_proc        => proc { |strength|
-    next 1
+    next strength * -4
   },
   :tone_proc        => proc { |strength|
     next Tone.new(-strength * 1/2, 0, -strength * 1/4, 0)

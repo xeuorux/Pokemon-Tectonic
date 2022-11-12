@@ -74,6 +74,27 @@ class OverworldWeather
         end
     end
 
+    def updateCloudCover
+        return unless playerIsOutdoors?
+        cloudCoverOpacity = 60 + @weatherData.cloud_cover_opacity(@strength).round
+        if cloudCoverOpacity > 0
+            speed = 6
+            if [:Rain,:Overcast,:Snow].include?(@type)
+                speed -= strength * 2
+            end
+            speed = [speed,0].max
+            velX = (Math.sin(pbGetTimeNow.hour / 12.0 * Math::PI) * speed).round
+            velY = (Math.sin((pbGetTimeNow.hour + 2 + pbGetTimeNow.day) / 12.0 * Math::PI) * speed).round
+
+            if GLASS_CEILING_MAPS.include?($game_map.map_id)
+                cloudCoverOpacity /= 2
+            end
+            applyFog('clouds_fog_texture_high_contrast',0,cloudCoverOpacity,velX,velY,2)
+        else
+            applyDefaultFog
+        end
+    end
+
     def newWeather(type = :None, strength = 0, spritesEnabled = true, resetParticles = true, resetTiles = true)
         @type = type
         @weatherData = GameData::Weather.get(type)
@@ -477,7 +498,7 @@ class OverworldWeather
         splashIndex = rainDropParticle.index + 1
         splashParticle = @particles[splashIndex]
 
-        splashParticle.x = rainDropParticle.x
+        splashParticle.x = rainDropParticle.x - rainDropParticle.bitmap.width / 2
         splashParticle.y = rainDropParticle.y + rainDropParticle.bitmap.height
         splashParticle.visible = true
         splashParticle.opacity = 255
@@ -533,6 +554,22 @@ class OverworldWeather
         elsif @tile_y < 0
             @tile_y += jumpDistanceY
         end
+    end
+
+    def applyDefaultFog
+        darknessOpacity = 0
+        darknessOpacity = 100 if DARK_MAPS.include?($game_map.map_id)
+        applyFog('darkness', 0, darknessOpacity)
+    end
+    
+    def applyFog(name, hue = 0, opacity = 100, velX = 0, velY = 0, blend_type = 0, zoom = 100)
+        $game_map.fog_name       = name
+        $game_map.fog_hue        = hue
+        $game_map.fog_opacity    = opacity
+        $game_map.fog_blend_type = blend_type
+        $game_map.fog_zoom       = zoom
+        $game_map.fog_sx         = velX
+        $game_map.fog_sy         = velY
     end
 end
 
