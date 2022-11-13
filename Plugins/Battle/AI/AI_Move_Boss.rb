@@ -23,9 +23,10 @@ class PokeBattle_AI
         targetingSizeLastRound = user.indicesTargetedLastRound.length
         targetingSizeLastRound = 2 if targetingSizeLastRound > 2
         PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) values moves with targeting size other than #{targetingSizeLastRound}")
-        user.eachMoveWithIndex do |_m,i|
+        user.eachMoveWithIndex do |move,i|
+            move.pp = move.total_pp if @battle.autoTesting
             if !@battle.pbCanChooseMove?(idxBattler,i,false)
-                echoln("[BOSS AI] #{user.pbThis} (#{user.index}) can't choose: #{_m.name}")
+                echoln("[BOSS AI] #{user.pbThis} (#{user.index}) can't choose: #{move.name}")
                 next
             end
             newChoice = getChoiceForMoveBoss(user,i,choices,bossAI,targetWeak,targetingSizeLastRound)
@@ -115,6 +116,9 @@ class PokeBattle_AI
         # if there is somehow still no choice, choose to use Struggle
         if @battle.choices[idxBattler][2].nil?
             echoln("[BOSS AI] #{user.pbThis} (#{user.index}) AI protocols have failed, picking struggle")
+            if @battle.autoTesting
+                print _INTL("Boss using struggle!")
+            end
             @battle.choices[idxBattler][0] = :UseMove    # "Use move"
             @battle.choices[idxBattler][1] = -1          # Index of move to be used
             @battle.choices[idxBattler][2] = @battle.struggle   # Struggle PokeBattle_Move object
@@ -264,11 +268,11 @@ class PokeBattle_AI
             numTargets = moveForChoice.pbTarget(user).num_targets
             if numTargets != 0 && numTargets != targetingSizeLastRound
                 choice[1] += 30
-                echoln("[BOSS AI] #{user.pbThis} (#{user.index}) values that #{move.name} has a targeting size of #{numTargets}, which is different from last turns targeting size of #{targetingSizeLastRound}")
+                #echoln("[BOSS AI] #{user.pbThis} (#{user.index}) values that #{move.name} has a targeting size of #{numTargets}, which is different from last turns targeting size of #{targetingSizeLastRound}")
             end
             if user.primevalTimer == 0 && user.pbHasType?(moveForChoice.type)
                 choice[1] += 30
-                echoln("[BOSS AI] #{user.pbThis} (#{user.index}) values that #{move.name} is STAB, on this first turn of battle or a new phase")
+                #echoln("[BOSS AI] #{user.pbThis} (#{user.index}) values that #{move.name} is STAB, on this first turn of battle or a new phase")
             end
         end
 
@@ -279,7 +283,7 @@ class PokeBattle_AI
 		score = 100
 
         if bossAI.rejectMove?(move, user, target, @battle)
-            echoln("[BOSS AI] #{user.pbThis} (#{user.index}) custom AI rejects move #{move.name} against target #{target}")
+            echoln("[BOSS AI] #{user.pbThis} (#{user.index}) custom AI rejects move #{move.name} against target #{target.pbThis(true)}")
             return 0
         end
 
@@ -288,7 +292,7 @@ class PokeBattle_AI
 
         # Don't use a move that would fail against the target
         if !target.nil? && move.pbFailsAgainstTarget?(user,target)
-            echoln("Scoring #{move.name} a 0 due to being predicted to fail against the target against target #{target}")
+            echoln("Scoring #{move.name} a 0 due to being predicted to fail against the target against target #{target.pbThis(true)}")
             score = 0
         end
 
@@ -301,7 +305,7 @@ class PokeBattle_AI
 		@battle.messagesBlocked = false
 
         if bossAI.requireMove?(move, user, target, @battle)
-            echoln("[BOSS AI] #{user.pbThis} (#{user.index}) custom AI requires move #{move.name} be used against target #{target}")
+            echoln("[BOSS AI] #{user.pbThis} (#{user.index}) custom AI requires move #{move.name} be used against target #{target.pbThis(true)}")
             return 99999
         end
 		

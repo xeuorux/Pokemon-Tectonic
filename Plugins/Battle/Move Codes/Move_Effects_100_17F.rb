@@ -210,7 +210,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def getSubLife(battler)
       subLife = battler.totalhp/4
       subLife = 1 if subLife < 1
-      return subLife
+      return subLife.floor
     end
   
     def pbEffectGeneral(user)

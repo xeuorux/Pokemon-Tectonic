@@ -13,6 +13,15 @@ def pbSmallAvatarBattle(*args)
 	pbAvatarBattleCore(*args)
 end
 
+def avatarBattleAutoTest(*args)
+	loop do
+		setBattleRule("autotesting")
+		$game_variables[LEVEL_CAP_VAR] = 70
+		pbSmallAvatarBattle(*args)
+		pbHealAll
+	end
+end
+
 def pbAvatarBattleCore(*args)
   outcomeVar = $PokemonTemp.battleRules["outcomeVar"] || 1
   canLose    = $PokemonTemp.battleRules["canLose"] || false
@@ -79,13 +88,17 @@ def pbAvatarBattleCore(*args)
   $PokemonTemp.clearBattleRules
   # Perform the battle itself
   decision = 0
-  pbBattleAnimation(pbGetAvatarBattleBGM(foeParty),(foeParty.length==1) ? 0 : 2,foeParty) {
-    pbSceneStandby {
-      decision = battle.pbStartBattle
-    }
-	pbPokemonFollow(1) if decision != 1 && $game_switches[59] # In cave with Yezera
-    pbAfterBattle(decision,canLose)
-  }
+  if battle.autoTesting
+    decision = battle.pbStartBattle
+  else
+	pbBattleAnimation(pbGetAvatarBattleBGM(foeParty),(foeParty.length==1) ? 0 : 2,foeParty) {
+		pbSceneStandby {
+		  decision = battle.pbStartBattle
+		}
+		pbPokemonFollow(1) if decision != 1 && $game_switches[59] # In cave with Yezera
+		pbAfterBattle(decision,canLose)
+	}
+  end  
   Input.update
   # Save the result of the battle in a Game Variable (1 by default)
   #    0 - Undecided or aborted

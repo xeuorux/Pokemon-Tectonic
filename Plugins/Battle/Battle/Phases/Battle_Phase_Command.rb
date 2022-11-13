@@ -246,14 +246,14 @@ class PokeBattle_Battle
 		@scene.pbBeginCommandPhase
 		# Reset choices if commands can be shown
 		@battlers.each_with_index do |b,i|
-		next if !b
-		pbClearChoice(i) if pbCanShowCommands?(i)
+			next if !b
+			pbClearChoice(i) if pbCanShowCommands?(i)
 		end
 		# Reset choices to perform Mega Evolution if it wasn't done somehow
 		for side in 0...2
-		@megaEvolution[side].each_with_index do |megaEvo,i|
-			@megaEvolution[side][i] = -1 if megaEvo>=0
-		end
+			@megaEvolution[side].each_with_index do |megaEvo,i|
+				@megaEvolution[side][i] = -1 if megaEvo>=0
+			end
 		end
 		# Choose actions for the round (AI first, then player)
 		pbCommandPhaseLoop(false)   # AI chooses their actions
@@ -262,6 +262,14 @@ class PokeBattle_Battle
 	end
 
 	def chooseAutoTesting(idxBattler)
+		if @battlers[idxBattler].boss?
+			@battleAI.pbChooseMovesBoss(idxBattler)
+		else
+			chooseAutoTestingTrainer(idxBattler)
+		end
+	end
+
+	def chooseAutoTestingTrainer(idxBattler)
 		moveData = GameData::Move::DATA.values.sample
 		return if moveData.nil? || moveData.zMove?
 		moveId = moveData.id
@@ -282,6 +290,13 @@ class PokeBattle_Battle
 		@choices[idxBattler][3] = -1
 	end
 
+	def autoTestingBattlerSpeciesChange(b)
+		b.pokemon.level = 1 + pbRandom(69).ceil
+		b.pokemon.calc_stats
+		b.pbInitPokemon(b.pokemon,b.pokemonIndex)
+		@scene.pbChangePokemon(b.index,b.pokemon)
+	end
+
 	def changesForAutoTesting()
 		statuses = [:POISON,:BURN,:NUMB,:FROSTBITE,:DIZZY,:LEECHED,:SLEEP]
 
@@ -290,25 +305,25 @@ class PokeBattle_Battle
 		speciesChangeChance = 5
 
 		# Change all party members
-		[@party1, @party2].each_with_index do |party,partyIndex|
-			party.each_with_index do |pokemon,i|
-				next if pokemon.nil? || !pokemon.able?
-				next if pbFindBattler(i,partyIndex)   # Skip Pokémon in battle
-				pokemon.species = GameData::Species::DATA.keys.sample
-				pokemon.level = 1 + pbRandom(69).ceil
-				pokemon.calc_stats
+		unless @bossBattle
+			[@party1, @party2].each_with_index do |party,partyIndex|
+				party.each_with_index do |pokemon,i|
+					next if pokemon.nil? || !pokemon.able?
+					next if pbFindBattler(i,partyIndex)   # Skip Pokémon in battle
+					pokemon.species = GameData::Species::DATA.keys.sample
+					pokemon.level = 1 + pbRandom(69).ceil
+					pokemon.calc_stats
+				end
 			end
 		end
 
 		# Change all battlers
 		@battlers.each do |b|
 			next if b.nil? || b.pokemon.nil?
-			if pbRandom(100) < speciesChangeChance || @turnCount == 0
+
+			if !b.boss? && (pbRandom(100) < speciesChangeChance || @turnCount == 0)
 				b.pokemon.species = GameData::Species::DATA.keys.sample
-				b.pokemon.level = 1 + pbRandom(69).ceil
-				b.pokemon.calc_stats
-				b.pbInitPokemon(b.pokemon,b.pokemonIndex)
-				@scene.pbChangePokemon(b.index,b.pokemon)
+				autoTestingBattlerSpeciesChange(b)
 			end
 
 			b.hp = b.totalhp * [0.25,0.5,0.75,1.0,1.0,1.0,1.0,1.0].sample

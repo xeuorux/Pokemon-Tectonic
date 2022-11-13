@@ -8,11 +8,15 @@ class PokeBattle_Battle
     return false unless move
     if move.pp==0 && move.total_pp>0 && !sleepTalk
       pbDisplayPaused(_INTL("There's no PP left for this move!")) if showMessages
+      echoln("The move #{move.name} has no PP, so it cannot be chosen.")
       return false
     end
     if battler.effectActive?(:Encore)
       idxEncoredMove = battler.pbEncoredMoveIndex
-      return false if idxEncoredMove>=0 && idxMove!=idxEncoredMove
+      if idxEncoredMove>=0 && idxMove!=idxEncoredMove
+        echoln("The move #{move.name} is not the encored move, so it cannot be chosen.")
+        return false
+      end
     end
     return battler.pbCanChooseMove?(move,true,showMessages,sleepTalk)
   end

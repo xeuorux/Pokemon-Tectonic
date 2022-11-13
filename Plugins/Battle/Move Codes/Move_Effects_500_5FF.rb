@@ -1210,7 +1210,7 @@ class PokeBattle_Move_547 < PokeBattle_Move
     case @battle.pbRandom(3)
     when 0 then target.applyPoison(user) 	if target.canPoison?(user, true, self)
     when 1 then target.applyDizzy 			if target.canDizzy?(user, true, self)
-    when 2 then target.pbLeech(user) 	if target.pbCanLeech?(user, true, self)
+    when 2 then target.applyLeeched(user) 	if target.canLeech?(user, true, self)
     end
   end
 end

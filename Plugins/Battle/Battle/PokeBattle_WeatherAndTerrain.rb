@@ -319,7 +319,7 @@ class PokeBattle_Battle
   #=============================================================================
   def pbEORTerrain
     # Count down terrain duration
-    @field.terrainDuration -= 1 if @field.terrainDuration > 0 && !@field.effect.effectActive?(:TerrainSealant)
+    @field.terrainDuration -= 1 if @field.terrainDuration > 0 && !@field.effectActive?(:TerrainSealant)
     # Terrain wears off
     if @field.terrain != :None && @field.terrainDuration == 0
       endTerrain

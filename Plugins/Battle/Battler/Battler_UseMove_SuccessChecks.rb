@@ -10,26 +10,29 @@ class PokeBattle_Battler
 	def pbCanChooseMove?(move, commandPhase, showMessages = true, specialUsage = false)
 		# Disable
 		if @effects[:DisableMove] == move.id && !specialUsage
+			msg = _INTL("{1}'s {2} is disabled!", pbThis, move.name)
 			if showMessages
-				msg = _INTL("{1}'s {2} is disabled!", pbThis, move.name)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
 			end
+			echoln(msg)
 			return false
 		end
 		# Heal Block
 		if effectActive?(:HealBlock) && move.healingMove?
+			msg = _INTL("{1} can't use {2} because of Heal Block!", pbThis, move.name)
 			if showMessages
-				msg = _INTL("{1} can't use {2} because of Heal Block!", pbThis, move.name)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
 			end
+			echoln(msg)
 			return false
 		end
 		# Gravity
 		if @battle.field.effectActive?(:Gravity) && move.unusableInGravity?
+			msg = _INTL("{1} can't use {2} because of gravity!", pbThis, move.name)
 			if showMessages
-				msg = _INTL("{1} can't use {2} because of gravity!", pbThis, move.name)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
 			end
+			echoln(msg)
 			return false
 		end
 		# Throat Chop
@@ -38,16 +41,18 @@ class PokeBattle_Battler
 				msg = _INTL("{1} can't use {2} because of Throat Chop!", pbThis, move.name)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
 			end
+			echoln(msg)
 			return false
 		end
 		# Choice Items
 		if effectActive?(:ChoiceBand)
 			if hasActiveItem?(CHOICE_LOCKING_ITEMS) && pbHasMove?(@effects[:ChoiceBand])
 				if move.id != @effects[:ChoiceBand] && move.id != :STRUGGLE
+					msg = _INTL('{1} allows the use of only {2}!', itemName, GameData::Move.get(@effects[:ChoiceBand]).name)
 					if showMessages
-						msg = _INTL('{1} allows the use of only {2}!', itemName, GameData::Move.get(@effects[:ChoiceBand]).name)
 						commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
 					end
+					echoln(msg)
 					return false
 				end
 			else
@@ -58,10 +63,11 @@ class PokeBattle_Battler
 		if effectActive?(:GorillaTactics)
 			if hasActiveAbility?(:GORILLATACTICS)
 				if move.id != @effects[:GorillaTactics]
+					msg = _INTL('{1} allows the use of only {2}!', abilityName, GameData::Move.get(@effects[:GorillaTactics]).name)
 					if showMessages
-						msg = _INTL('{1} allows the use of only {2}!', abilityName, GameData::Move.get(@effects[:GorillaTactics]).name)
 						commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
 					end
+					echoln(msg)
 					return false
 				end
 			else
@@ -70,38 +76,41 @@ class PokeBattle_Battler
 		end
 		# Taunt
 		if effectActive?(:Taunt) && move.statusMove?
+			msg = _INTL("{1} can't use {2} after the taunt!", pbThis, move.name)
 			if showMessages
-				msg = _INTL("{1} can't use {2} after the taunt!", pbThis, move.name)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
 			end
+			echoln(msg)
 			return false
 		end
 		# Torment
 		if effectActive?(:Torment) && !effectActive?(:Instructed) &&
 					@lastMoveUsed && move.id == @lastMoveUsed && move.id != @battle.struggle.id
+			msg = _INTL("{1} can't use the same move twice in a row due to the torment!", pbThis)
 			if showMessages
-				msg = _INTL("{1} can't use the same move twice in a row due to the torment!", pbThis)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
 			end
+			echoln(msg)
 			return false
 		end
 		# Imprison
 		@battle.eachOtherSideBattler(@index) do |b|
 			next if !b.effectActive?(:Imprison) || !b.pbHasMove?(move.id)
+			msg = _INTL("{1} can't use its sealed {2}!", pbThis, move.name)
 			if showMessages
-				msg = _INTL("{1} can't use its sealed {2}!", pbThis, move.name)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
 			end
+			echoln(msg)
 			return false
 		end
 		# Assault Vest and Strike Vest (prevents choosing status moves but doesn't prevent
 		# executing them)
 		if hasActiveItem?(STATUS_PREVENTING_ITEMS) && move.statusMove? && commandPhase
+			msg = _INTL('The effects of the {1} prevent status moves from being used!', itemName)
 			if showMessages
-				msg = _INTL('The effects of the {1} prevent status moves from being used!',
-																itemName)
 				commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
 			end
+			echoln(msg)
 			return false
 		end
 		# Belch

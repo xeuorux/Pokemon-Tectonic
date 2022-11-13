@@ -358,6 +358,19 @@ class PokeBattle_Battle
     when :Psychic
       pbDisplay(_INTL("The battlefield is weird!"))
     end
+    # Change avatars for auto-testing
+    if @autoTesting
+      eachBattler do |b|
+        next unless b.boss?
+        loop do
+          b.pokemon.species = GameData::Avatar::DATA.keys.sample
+          break if GameData::Avatar::DATA.has_key?(b.pokemon.species)
+        end
+        setAvatarProperties(b.pokemon)
+        b.bossAI = PokeBattle_AI_Boss.from_boss_battler(b)
+        autoTestingBattlerSpeciesChange(b)
+      end
+    end
     # Abilities upon entering battle
     pbOnActiveAll
     # Main battle loop
@@ -402,9 +415,7 @@ class PokeBattle_Battle
           next if !b
           numExtraPhasesThisTurn = b.extraMovesPerTurn if b.extraMovesPerTurn > numExtraPhasesThisTurn
         end
-  
-        echoln("There should be #{numExtraPhasesThisTurn} extra command attack phases this turn.")
-        
+          
         # Boss phases after main phases
         if numExtraPhasesThisTurn > 0
           for i in 1..numExtraPhasesThisTurn do
