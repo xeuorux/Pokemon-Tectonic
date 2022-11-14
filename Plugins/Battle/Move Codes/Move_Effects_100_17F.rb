@@ -1434,7 +1434,7 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      user.pbLowerMultipleStatStages(@statDown, user, move: self)
+      target.pbLowerMultipleStatStages(@statDown, user, move: self)
     end
 
     def getScore(score,user,target,skill=100)

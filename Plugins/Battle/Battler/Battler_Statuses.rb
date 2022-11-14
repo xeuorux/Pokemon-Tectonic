@@ -1,5 +1,5 @@
 BURNED_EXPLANATION = 'It Attack is reduced by a third'.freeze
-POISONED_EXPLANATION = 'Its Speed is halved'.freeze
+POISONED_EXPLANATION = 'The poison will worsen every 3 turns'.freeze
 FROSTBITE_EXPLANATION = 'Its Sp. Atk is reduced by a third'.freeze
 NUMBED_EXPLANATION = "Its Speed is halved, and it'll deal less damage".freeze
 DIZZY_EXPLANATION = "It's ability is supressed, and it'll take more damage".freeze
