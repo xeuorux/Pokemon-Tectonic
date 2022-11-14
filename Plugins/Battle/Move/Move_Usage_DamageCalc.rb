@@ -59,17 +59,17 @@ class PokeBattle_Move
         # Calculate user's attack stat
         attacking_stat_holder, attacking_stat = pbAttackingStat(user,target)
         attack_stage = attacking_stat_holder.stages[attacking_stat]
-        attack_stage = 6 if target.damageState.critical && attack_stage < 6
-        attack_stage = 6 if target.hasActiveAbility?(:UNAWARE) && !@battle.moldBreaker
+        attack_stage = 0 if target.damageState.critical && attack_stage < 0
+        attack_stage = 0 if target.hasActiveAbility?(:UNAWARE) && !@battle.moldBreaker
         attack = user.statAfterStage(attacking_stat, attack_stage)
         # Calculate target's defense stat
         defending_stat_holder, defending_stat = pbDefendingStat(user,target)
         defense_stage = defending_stat_holder.stages[defending_stat]
-        if defense_stage > 6 &&
+        if defense_stage > 0 &&
                 (ignoresDefensiveStageBoosts?(user,target) || user.hasActiveAbility?(:INFILTRATOR) || target.damageState.critical)
-            defense_stage = 6
+            defense_stage = 0
         end
-        defense_stage = 6 if user.hasActiveAbility?(:UNAWARE)
+        defense_stage = 0 if user.hasActiveAbility?(:UNAWARE)
         defense = target.statAfterStage(defending_stat, defense_stage)
         return attack, defense
     end
