@@ -265,3 +265,10 @@ def getWeatherOverNextDay(map_id = -1)
 
     return [[morningWeather, morningStrength],[afternoonWeather, afternoonStrength],[eveningWeather, eveningStrength]]
 end
+
+def weather(type, strength = -1)
+    if strength < 0
+        strength = GameData::Weather.get(type).default_strength
+    end
+    $game_screen.weather(type, strength, WEATHER_TRANSITION_DELAY)
+end
