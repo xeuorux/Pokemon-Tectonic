@@ -17,6 +17,11 @@ def setMySwitch(switch,value=true)
 	pbSetSelfSwitch(get_self.id,switch,value)
 end
 
+def invertMySwitch(switch)
+	value = !$game_self_switches[[$game_map.map_id, get_self.id, switch]]
+	pbSetSelfSwitch(get_self.id,switch,value)
+end
+
 def pbSetAllSwitches(eventid, value, mapid = -1)
 	['A','B','C','D'].each do |switch|
 		pbSetSelfSwitch(eventid, switch, value, mapid)
