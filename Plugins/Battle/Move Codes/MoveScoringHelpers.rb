@@ -228,7 +228,7 @@ end
 
 def getMultiStatUpMoveScore(statUp,score,user,target,skill=100,statusMove=true)
     # Stat up moves tend to be strong on the first turn
-    score += 50 if target.firstTurn? && statusMove
+    score += 20 if target.firstTurn? && statusMove
 
 	# Stat up moves tend to be strong when you have HP to use
     score += 30 if target.hp > target.totalhp / 2
