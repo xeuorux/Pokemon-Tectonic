@@ -8,7 +8,7 @@ SaveData.register_conversion(:move_renaming_0) do
       pokemon.moves.map! { |move|
         moveID = move.id
         if MOVES_REMOVED_112.include?(moveID)
-          echoln("Removing #{moveID} on player's #{pokemon.name}")
+          echoln("Removing #{moveID} on player's #{pokemon.species}")
           nil
         else
           move
@@ -17,7 +17,7 @@ SaveData.register_conversion(:move_renaming_0) do
       pokemon.moves.compact!
       pokemon.first_moves.map! { |move_id|
         if MOVES_REMOVED_112.include?(move_id)
-          echoln("Removing #{move_id} on player's #{pokemon.name}'s first moves array")
+          echoln("Removing #{move_id} on player's #{pokemon.species}'s first moves array")
           nil
         else
           move_id
