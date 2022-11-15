@@ -350,7 +350,7 @@ class PokeBattle_AI
             end
 
             # For preserving the pokemon placed in the last slot
-            if policies.include?(:PRESERVE_LAST_POKEMON) && i == 5
+            if policies.include?(:PRESERVE_LAST_POKEMON) && i == @battle.pbParty(idxBattler).length() - 1
                 switchScore = -99
             end
 
