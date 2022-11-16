@@ -28,7 +28,7 @@ class Game_Screen
         end
         @weather_type     = 0
         @weather_strength = 0
-        @transition_time  = DEFAULT_STRENGTH_CHANGE_FRAMES
+        @transition_time  = OverworldWeather::DEFAULT_STRENGTH_CHANGE_FRAMES
         @weather_duration = 0
         @weather_in_battle = true
         @callback_block = nil
@@ -44,7 +44,7 @@ class Game_Screen
     def resetWeather
         @weather_type       = :None
         @weather_strength   = 0
-        @transition_time    = DEFAULT_STRENGTH_CHANGE_FRAMES
+        @transition_time    = OverworldWeather::DEFAULT_STRENGTH_CHANGE_FRAMES
         @weather_in_battle  = true
         @weather_sprites_enabled = true
         @callback_block = nil
@@ -54,7 +54,7 @@ class Game_Screen
         weatherData = GameData::Weather.get(type)
         @weather_type       = weatherData.id
         @weather_strength   = strength || weatherData.default_strength || 0
-        @transition_time    = transition_time || DEFAULT_STRENGTH_CHANGE_FRAMES   # In 1/20ths of a seconds
+        @transition_time    = transition_time || OverworldWeather::DEFAULT_STRENGTH_CHANGE_FRAMES   # In 1/20ths of a seconds
         @weather_in_battle  = weather_in_battle
         @weather_sprites_enabled = sprites_enabled
         @callback_block = callback_block if callback_block

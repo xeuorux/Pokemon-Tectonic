@@ -33,7 +33,7 @@ class LightEffect_Abyss < LightEffect
     end
   end
 
-  class LightEffect_Totem < LightEffect
+class LightEffect_Totem < LightEffect
     def initialize(event,viewport=nil,map=nil)
         @light = IconSprite.new(0,0,viewport)
         @light.setBitmap("Graphics/Pictures/ALE")
@@ -80,9 +80,33 @@ class LightEffect_Abyss < LightEffect
       @light.zoom_y = @light.zoom_x
       @light.tone   = $game_screen.tone
     end
+end
+
+class LightEffect_DragonFlame < LightEffect
+  def initialize(event,viewport=nil,map=nil)
+    super
+    @light.setBitmap("Graphics/Pictures/DFLE")
+    @opacityCounter = 0
   end
 
-  Events.onSpritesetCreate += proc { |_sender,e|
+  def update
+    return if !@light || !@event
+    super
+    @light.opacity = 200
+    t = @opacityCounter.to_f / 8.0
+    @light.ox      = 32 + (12 * Math.cos(t)).floor
+    @light.oy      = 96 + (8 * Math.sin(t) * Math.cos(t)).floor
+    @light.x      = @event.screen_x
+    @light.y      = @event.screen_y
+    @light.zoom_x = 1.0
+    @light.zoom_y = @light.zoom_x
+    @light.tone   = $game_screen.tone
+    @light.blend_type = 1
+    @opacityCounter += 1
+  end
+end
+
+Events.onSpritesetCreate += proc { |_sender,e|
   spriteset = e[0]      # Spriteset being created
   viewport  = e[1]      # Viewport used for tilemap and characters
   map = spriteset.map   # Map associated with the spriteset (not necessarily the current map)
@@ -94,7 +118,7 @@ class LightEffect_Abyss < LightEffect
     elsif event.name[/^outdoorlight$/i]
       spriteset.addUserSprite(LightEffect_DayNight.new(event,viewport,map))
     elsif event.name[/^abysslight$/i]
-        spriteset.addUserSprite(LightEffect_Abyss.new(event,viewport,map))
+      spriteset.addUserSprite(LightEffect_Abyss.new(event,viewport,map))
     elsif event.name[/^light\((\w+)\)$/i]
       filename = $~[1].to_s
       spriteset.addUserSprite(LightEffect_Basic.new(event,viewport,map,filename))
@@ -105,4 +129,8 @@ class LightEffect_Abyss < LightEffect
     end
   end
   spriteset.addUserSprite(Particle_Engine.new(viewport,map))
+
+  $PokemonGlobal.dragonFlamesCount.times do
+    createDragonFlameGraphic(spriteset)
+  end
 }

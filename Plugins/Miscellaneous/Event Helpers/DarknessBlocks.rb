@@ -3,7 +3,7 @@ def fadeOutDarknessBlock(event_id = -1, play_sound = true)
     pbSEPlay('fake wall reveal') if play_sound
     event = get_character(event_id)
 	255.downto(0) do |i|
-		next if i % 3 != 0
+		next if i % 5 != 0
 		event.opacity = i
 		pbWait(1)
 	end
@@ -14,7 +14,7 @@ def fadeInDarknessBlock(event_id = -1, play_sound = true)
     event_id = 0 if event_id < 0
     event = get_character(event_id)
 	0.upto(255) do |i|
-		next if i % 3 != 0
+		next if i % 5 != 0
 		event.opacity = i
 		pbWait(1)
 	end
