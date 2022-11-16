@@ -170,7 +170,9 @@ class PokeBattle_Battle
       next unless b.leeched?
       leechedHP = damageFromDOTStatus(b,:LEECHED)
       b.eachOpposing do |opposingBattler|
-        opposingBattler.pbRecoverHPFromDrain(leechedHP,b)
+        healthRestore = leechedHP
+        healthRestore /= 3.0 if b.boss?
+        opposingBattler.pbRecoverHPFromDrain(healthRestore,b)
       end
     end
   end

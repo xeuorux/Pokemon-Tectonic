@@ -1,6 +1,6 @@
-def fadeOutDarknessBlock(event_id = -1)
+def fadeOutDarknessBlock(event_id = -1, play_sound = true)
     event_id = 0 if event_id < 0
-    pbSEPlay('fake wall reveal')
+    pbSEPlay('fake wall reveal') if play_sound
     event = get_character(event_id)
 	255.downto(0) do |i|
 		next if i % 3 != 0
@@ -10,7 +10,7 @@ def fadeOutDarknessBlock(event_id = -1)
     pbSetSelfSwitch(event.id,'A',true)
 end
 
-def fadeInDarknessBlock(event_id = -1)
+def fadeInDarknessBlock(event_id = -1, play_sound = true)
     event_id = 0 if event_id < 0
     event = get_character(event_id)
 	0.upto(255) do |i|
