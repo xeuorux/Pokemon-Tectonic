@@ -96,16 +96,13 @@ class PokeBattle_Move
         
         # Partially pierce immunities
         if inherentImmunitiesPierced?(user,target)
-            # Damaging moves that would be immune 
-            if ret == 0
-                ret = 0.5
-                immunityPierced = true
-            end
-
             # This is done here because its skipped in pbSuccessCheckAgainstTarget
             if !uiOnlyCheck && user.targetInherentlyImmune?(user,target,self,ret,true)
                 immunityPierced = true
                 ret /= 2
+            elsif ret == 0
+                ret = 0.5
+                immunityPierced = true
             end
         end
 
