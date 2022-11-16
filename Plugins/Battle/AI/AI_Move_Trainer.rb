@@ -33,15 +33,10 @@ class PokeBattle_AI
 
         # if there is somehow still no choice, randomly choose a move from the choices and register it
         if @battle.choices[idxBattler][2].nil?
-          echoln("All AI protocols have failed or fallen through, picking at random.")
-          randNum = pbAIRandom(totalScore)
-          choices.each do |c|
-            randNum -= c[1]
-            next if randNum >= 0
-            @battle.pbRegisterMove(idxBattler,c[0],false)
-            @battle.pbRegisterTarget(idxBattler,c[2]) if c[2]>=0
-            break
-          end
+            echoln("All AI protocols have failed or fallen through, picking at random.")
+            randomChoice = choices.sample
+            @battle.pbRegisterMove(idxBattler,randomChoice[0],false)
+            @battle.pbRegisterTarget(idxBattler,randomChoice[2]) if randomChoice[2] >= 0
         end
 
         # Log the result
