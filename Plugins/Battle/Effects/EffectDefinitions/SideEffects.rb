@@ -243,7 +243,7 @@ GameData::BattleEffect.register_effect(:Side,{
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :PoisonSpikes,
-	:real_name => "Poison Spikes Count",
+	:real_name => "Poison Spikes",
 	:type => :Integer,
 	:maximum => 2,
 	:type_applying_hazard => {
@@ -267,7 +267,7 @@ GameData::BattleEffect.register_effect(:Side,{
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :FlameSpikes,
-	:real_name => "Flame Spikes Count",
+	:real_name => "Flame Spikes",
 	:type => :Integer,
 	:maximum => 2,
 	:type_applying_hazard => {
@@ -291,7 +291,7 @@ GameData::BattleEffect.register_effect(:Side,{
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :FrostSpikes,
-	:real_name => "Frost Spikes Count",
+	:real_name => "Frost Spikes",
 	:type => :Integer,
 	:maximum => 2,
 	:is_hazard => true,
