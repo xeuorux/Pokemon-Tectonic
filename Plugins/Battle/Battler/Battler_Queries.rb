@@ -289,7 +289,7 @@ class PokeBattle_Battler
 	end
 
 	def pbEncoredMoveIndex
-		return -1 if effectActive?(:Encore)
+		return -1 if !effectActive?(:Encore)
 		ret = -1
 		eachMoveWithIndex do |m, i|
 			next if m.id != @effects[:EncoreMove]
