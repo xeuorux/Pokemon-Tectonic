@@ -366,6 +366,7 @@ class PokeBattle_Move
     def pbAdditionalEffectChance(user,target,type,effectChance=0)
         return 0 if !canApplyAdditionalEffects?(user,target)
         ret = effectChance > 0 ? effectChance : @effectChance
+        return 100 if ret >= 100
         ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
         ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
         ret *= 4 if windMove? && user.hasActiveAbility?(:FUMIGATE)
