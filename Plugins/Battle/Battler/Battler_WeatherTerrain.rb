@@ -26,7 +26,7 @@ class PokeBattle_Battler
 		return false unless affectedByWeatherDownsides?(checkingForAI)
 		return false if shouldTypeApply?(:WATER, checkingForAI) || shouldTypeApply?(:ELECTRIC, checkingForAI)
 		setterAbilities = %i[DRIZZLE STORMBRINGER]
-		synergyAbilities = %i[SWIFTSWIM RAINDISH HYDRATION TIDALFORCE STORMFRONTRAINPRISM DREARYCLOUDS DRYSKIN]
+		synergyAbilities = %i[SWIFTSWIM RAINDISH HYDRATION TIDALFORCE STORMFRONTRAINPRISM DREARYCLOUDS DRYSKIN RAINPRISM]
 		return false if shouldAbilityApply?(setterAbilities, checkingForAI) || shouldAbilityApply?(synergyAbilities, checkingForAI)
 		return true
 	end
