@@ -293,7 +293,6 @@ class Scene_Credits
 	  # Checks if credits bitmap has reached its ending point
 	  def last?
 		if @realOY > @total_height + @trim
-		  $scene = ($game_map) ? Scene_Map.new : nil
 		  pbBGMFade(2.0)
 		  @callback.call if @callback
 		  return true
