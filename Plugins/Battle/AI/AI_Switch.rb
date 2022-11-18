@@ -88,6 +88,13 @@ class PokeBattle_AI
                 PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is seeded (+1)")
             end
 
+            # More likely to switch when poisoned, and especially the more that poison has worsened
+            if battler.poisoned?
+                poisonBias = 1 + battler.getPoisonDoublings * 2
+                switchingBias += poisonBias
+                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is poisoned at count (#{battler.getStatusCount(:POISON)}) (+#{poisonBias})")
+            end
+
             # More likely to swap when in danger of dieing to confusion
             if battler.effects[:ConfusionChance] >= 1 && highDamageFromConfusion(battler)
                 switchingBias += 2
