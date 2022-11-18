@@ -228,3 +228,13 @@ def pbChooseMixFossilBody(var = 0)
 	$game_variables[var] = ret || :NONE if var > 0
 	return ret
 end
+
+def arenaVendor()
+	pbPokemonMart(
+		[:VANILLATULUMBA,
+		:LEMONADE,
+		:SODAPOP],
+		"Grab a Tulumba, a Makyan specialty!",
+		true
+	)
+end

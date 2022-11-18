@@ -40,6 +40,7 @@ MAIN_QUEST_STAGES =
     :DEFEAT_SEVENTH_GYM             => "Defeat Victoire, leader of Sweetrock Harbor Gym. Sweetrock Harbor is east of the Split Peaks. Her gym is in the north part of the town, on the raised earthen platform.",
     :FIND_EIGHTH_GYM                => "Find the eight gym leader, located in Team Chasm HQ. Team Chasm HQ can be found underneath Gigalith's Guts.",
     :DEFEAT_EIGHTH_GYM              => "Defeat Samorne, leader of Team Chasm HQ Gym. Team Chasm HQ can be found underneath Gigalith's Guts. Her gym is on the southwest part of the HQ, inside a sunken area.",
+    :INVESTIGATE_YEZERA             => "The Tournament has yet to begin. With your extra time, you should investigate Yezera's history. Investigate near Whitebloom town, her hometown.",
     :DEFEAT_TEAL_WHITEBLOOM         => "The path into Whitebloom Town is blocked by a disguised supporter of Yezera, with a Teal eye mask. Defeat this villain to rescue Regice, and gain access to Whitebloom Town.",
     :INVESTIGATE_WHITEBLOOM         => "What was the Teal-Eye-Mask villain doing in the Cave of Hatching? Investigate Whitebloom Town, hometown of the first Makyan champion, Yezera.",
     :DEFEAT_YEZERA_WHITEBLOOM       => "Yezera has returned to Whitebloom Town, her home town. Confront Yezera at the southern cliff, overlooking the Highland Lake.",

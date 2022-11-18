@@ -11,6 +11,8 @@ ItemHandlers::UseOnPokemon.add(:RARECANDY,proc { |item,pkmn,scene|
   next true
 })
 
+ItemHandlers::UseOnPokemon.copy(:RARECANDY,:VANILLATULUMBA)
+
 ItemHandlers::UseOnPokemon.add(:EXPCANDYXS,proc { |item,pkmn,scene|
   pbEXPAdditionItem(pkmn,250,item,scene)
 })

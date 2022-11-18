@@ -11,7 +11,15 @@ Events.onBadgeEarned += proc { |_sender,_e|
     end
 }
 
-def setStageEarliestIncompleteGym(badgeArray)
+def setStageEarliestIncompleteGym(badgeArray=nil)
+    if badgeArray.nil?
+        badgeArray = []
+        $Trainer.badges.each_with_index do |hasBadge,index|
+            break if index >= TOTAL_BADGES
+            badgeArray.push(hasBadge)
+        end
+    end
+
     if !badgeArray[1]
         setMQStage(:FIND_SECOND_GYM)
     elsif !badgeArray[2]
@@ -26,6 +34,8 @@ def setStageEarliestIncompleteGym(badgeArray)
         setMQStage(:FIND_SEVENTH_GYM)
     elsif !badgeArray[7]
         setMQStage(:FIND_EIGHTH_GYM)
+    elsif !defeatedYezeraWhitebloom?
+        setMQStage(:INVESTIGATE_YEZERA)
     else
         setMQStage(:FIND_CHAMPIONSHIP)
     end

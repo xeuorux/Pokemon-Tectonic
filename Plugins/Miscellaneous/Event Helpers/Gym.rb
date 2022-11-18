@@ -153,6 +153,11 @@ def hasFirstFourBadges?()
 	return $game_switches[4] && $game_switches[5] && $game_switches[6] && $game_switches[7]
 end
 
+def hasAllEightBadges?()
+	return $game_switches[4] && $game_switches[5] && $game_switches[6] && $game_switches[7] &&
+		$game_switches[8] && $game_switches[9] && $game_switches[10] && $game_switches[11]
+end
+
 def endGymChoice()
 	pbTrainerEnd
 	command_end

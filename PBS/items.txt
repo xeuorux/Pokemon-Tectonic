@@ -899,6 +899,7 @@
 #-------------------------------
 870,LOADEDDICE,Loaded Dice,Loaded Dices,5,4000,"An item to be held by a Pokémon. It makes multi-hit attacks hit high more consistently.",0,0,0
 871,D8,D8,D8s,5,4000,"An 8-sided die to be held by a Pokémon. It makes multi-hit moves hit anywhere betweeen 1 and 8 times.",0,0,0
+872,VANILLATULUMBA,Vanilla Tulumba,Vanilla Tulumba,2,800,"Fried dough dipped in vanilla syrup. It can be used to raise a Pokémon's level by 1.",1,0,0
 #-------------------------------
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
