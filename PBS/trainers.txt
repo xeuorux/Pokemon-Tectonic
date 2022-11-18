@@ -4220,3 +4220,41 @@ Pokemon = MGIGALITH,70
 [TRAINER_Zain,Zain,3]
 ExtendsVersion = 2
 Policies = CURSE_SUPER_ITEMS
+#-------------------------------
+[TRAINER_Sang,Sang,4]
+Pokemon = EXPLOUD,70
+    Name = Egret Ash
+    Gender = female
+    Moves = HYPERVOICE,FLAMETHROWER,ICEBEAM,SHADOWBALL
+    AbilityIndex = 1
+    Item = NORMALGEM
+Pokemon = ALAKAZAM,70
+    Name = Ibis Veil
+    Gender = male
+    Moves = TELEPORT,PSYCHIC,DAZZLINGGLEAM,CALMMIND
+    AbilityIndex = 1
+Pokemon = PRIMARINA,70
+    Name = Hawk Doll
+    Gender = female
+    Moves = SPARKLINGARIA,ENCHANTINGSONG,MENDINGSPRING,HYPERVOICE
+    AbilityIndex = 0
+Pokemon = KROOKODILE,70
+    Name = Stork Saw
+    Gender = male
+    Moves = EARTHQUAKE,CRUNCH,STAREDOWN,BULKUP
+    AbilityIndex = 0
+Pokemon = SCARAPACE,70
+    Name = Wren Glass
+    Gender = female
+    Moves = HUNTDOWN,STORMTHROW,XSCISSOR,BODYSLAM
+    AbilityIndex = 0
+Pokemon = KOMMOO,70
+    Name = Dove Abyss
+    Gender = male
+    Moves = CLANGINGSCALES,OUTRAGE,BODYPRESS,AURASPHERE
+    AbilityIndex = 0
+    Item = EJECTPACK
+#-------------------------------
+[TRAINER_Sang,Sang,5]
+ExtendsVersion = 4
+Policies = CURSE_PERISH_SONGED
