@@ -48,7 +48,7 @@ SpritersResource<s>Thatsowitty
 exiled-shadow<s>ausberge
 supercow<s>LunaMaddalena
 Alucus<s>The English Kiwi
-calisprojects.com<s>PandaInDaGame 
+calisprojects.com<s>PandaInDaGame
 Hek-el-grande<s>Kaliser
 SailorVicious<s>Agentbla
 Shiney570<s>dirtywiggles
@@ -65,8 +65,6 @@ WesleyFG<s>Shawn Frost
 NSora-96<s>Minorthreat0987
 DarkDragonn<s>rafa-cac
 Newtiteuf<s>moca
-
-
 
 Charsets
 DiegoWT<s>PurpleZaffre
@@ -95,17 +93,22 @@ ENLS
 Generation 8 Project
 Battler Sprites
 Gen 1-5 Pokemon Sprites - veekun
-Gen 6 Pokemon Sprites - All Contributors To Smogon X/Y Sprite Project
-Gen 7 Pokemon Sprites - All Contributors To Smogon Sun/Moon Sprite Project
-Gen 8 Pokemon Sprites - All Contributors To Smogon Sword/Shield Sprite Project
+Gen 6 Pokemon Sprites - Smogon X/Y Sprite Project
+Gen 7 Pokemon Sprites - Smogon Sun/Moon Sprite Project
+Gen 8 Pokemon Sprites - Smogon Sword/Shield Sprite Project
 Overworld Sprites
 Gen 6 Pokemon Overworlds - princess-pheonix, LunarDusk, Wolfang62, TintjeMadelintje101, piphybuilder88
 Gen 7 Pokemon Overworlds - Larry Turbo, princess-pheonix
 Gen 8 Pokemon Overworlds - SageDeoxys, Wolfang62
-Gen 1-5 Pokemon Overworlds - MissingLukey, help-14, Kymoyonian, cSc-A7X, 2and2makes5, Pokegirl4ever, Fernandojl, Silver-Skies, TyranitarDark, Getsuei-H, Kid1513, Milomilotic11, Kyt666, kdiamo11, Chocosrawlooid, Syledude, Gallanty, Gizamimi-Pichu, 2and2makes5, Zyon17,LarryTurbo, spritesstealer
+Gen 1-5 Pokemon Overworlds
+MissingLukey, help-14, Kymoyonian, cSc-A7X, 2and2makes5
+Pokegirl4ever, Fernandojl, Silver-Skies, TyranitarDark
+Getsuei-H, Kid1513, Milomilotic11, Kyt666, kdiamo11
+Chocosrawlooid, Syledude, Gallanty, Gizamimi-Pichu
+2and2makes5, Zyon17,LarryTurbo, spritesstealer
 Icon Sprites
 Gen 1-6 Pokemon Icon Sprites - Alaguesia
-Gen 7 Pokemon Icon Sprites - Marin, MapleBranchWing, Contributors to the DS Styled Gen 7+ Repository
+Gen 7 Pokemon Icon Sprites - Marin, MapleBranchWing, DS Styled Gen 7+ Repository
 Gen 8 Icon Sprites - Larry Turbo, Leparagon
 Cry Credits
 Gen 1-6 Pokemon Cries - Rhyden
@@ -154,7 +157,7 @@ IceGod64<s>SoundSpawn
 Jacob O. Wobbrock<s>the__end
 KitsuneKouta<s>Venom12
 Lisa Anthony<s>Wachunga
-Luka S.J.<s> 
+Luka S.J.<s>
 and everyone else who helped out
 
 "mkxp-z" by:
@@ -176,6 +179,11 @@ Please support the official games!
 _END_
 
 class Scene_Credits
+
+	def initialize(callback = nil)
+		@callback = callback
+	end
+
 	def main
 		#-------------------------------
 		# Animated Background Setup
@@ -191,19 +199,19 @@ class Scene_Credits
 		#-------------------------------
 		plugin_credits = ""
 		PluginManager.plugins.each do |plugin|
-		pcred = PluginManager.credits(plugin)
-		plugin_credits << "\"#{plugin}\" v.#{PluginManager.version(plugin)} by:\n"
-		if pcred.size >= 5
-		plugin_credits << pcred[0] + "\n"
-		i = 1
-		until i >= pcred.size
-		  plugin_credits << pcred[i] + "<s>" + (pcred[i + 1] || "") + "\n"
-		  i += 2
-		end
-		else
-		pcred.each { |name| plugin_credits << name + "\n" }
-		end
-		plugin_credits << "\n"
+			pcred = PluginManager.credits(plugin)
+			plugin_credits << "\"#{plugin}\" v.#{PluginManager.version(plugin)} by:\n"
+			if pcred.size >= 5
+				plugin_credits << pcred[0] + "\n"
+				i = 1
+				until i >= pcred.size
+					plugin_credits << pcred[i] + "<s>" + (pcred[i + 1] || "") + "\n"
+					i += 2
+				end
+			else
+				pcred.each { |name| plugin_credits << name + "\n" }
+			end
+			plugin_credits << "\n"
 		end
 		CHASM_CREDITs.gsub!(/\{INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE\}/, plugin_credits)
 		credit_lines = CHASM_CREDITs.split(/\n/)
@@ -219,41 +227,41 @@ class Scene_Credits
 		lines_per_bitmap = @bitmap_height / 32
 		num_bitmaps = (credit_lines.size.to_f / lines_per_bitmap).ceil
 		for i in 0...num_bitmaps
-		credit_bitmap = Bitmap.new(Graphics.width, @bitmap_height)
-		pbSetSystemFont(credit_bitmap)
-		for j in 0...lines_per_bitmap
-		line = credit_lines[i * lines_per_bitmap + j]
-		next if !line
-		line = line.split("<s>")
-		xpos = 0
-		align = 1   # Centre align
-		linewidth = Graphics.width
-		for k in 0...line.length
-		  if line.length > 1
-			xpos = (k == 0) ? 0 : 20 + Graphics.width / 2
-			align = (k == 0) ? 2 : 0   # Right align : left align
-			linewidth = Graphics.width / 2 - 20
-		  end
-		  credit_bitmap.font.color = TEXT_SHADOW_COLOR
-		  credit_bitmap.draw_text(xpos,     j * 32 + 8, linewidth, 32, line[k], align)
-		  credit_bitmap.font.color = TEXT_OUTLINE_COLOR
-		  credit_bitmap.draw_text(xpos + 2, j * 32 - 2, linewidth, 32, line[k], align)
-		  credit_bitmap.draw_text(xpos,     j * 32 - 2, linewidth, 32, line[k], align)
-		  credit_bitmap.draw_text(xpos - 2, j * 32 - 2, linewidth, 32, line[k], align)
-		  credit_bitmap.draw_text(xpos + 2, j * 32,     linewidth, 32, line[k], align)
-		  credit_bitmap.draw_text(xpos - 2, j * 32,     linewidth, 32, line[k], align)
-		  credit_bitmap.draw_text(xpos + 2, j * 32 + 2, linewidth, 32, line[k], align)
-		  credit_bitmap.draw_text(xpos,     j * 32 + 2, linewidth, 32, line[k], align)
-		  credit_bitmap.draw_text(xpos - 2, j * 32 + 2, linewidth, 32, line[k], align)
-		  credit_bitmap.font.color = TEXT_BASE_COLOR
-		  credit_bitmap.draw_text(xpos,     j * 32,     linewidth, 32, line[k], align)
-		end
-		end
-		credit_sprite = Sprite.new(text_viewport)
-		credit_sprite.bitmap = credit_bitmap
-		credit_sprite.z      = 9998
-		credit_sprite.oy     = @realOY - @bitmap_height * i
-		@credit_sprites[i] = credit_sprite
+			credit_bitmap = Bitmap.new(Graphics.width, @bitmap_height)
+			pbSetSystemFont(credit_bitmap)
+			for j in 0...lines_per_bitmap
+				line = credit_lines[i * lines_per_bitmap + j]
+			next if !line
+			line = line.split("<s>")
+			xpos = 0
+			align = 1   # Centre align
+			linewidth = Graphics.width
+			for k in 0...line.length
+				if line.length > 1
+					xpos = (k == 0) ? 0 : 20 + Graphics.width / 2
+					align = (k == 0) ? 2 : 0   # Right align : left align
+					linewidth = Graphics.width / 2 - 20
+				end
+				credit_bitmap.font.color = TEXT_SHADOW_COLOR
+				credit_bitmap.draw_text(xpos,     j * 32 + 8, linewidth, 32, line[k], align)
+				credit_bitmap.font.color = TEXT_OUTLINE_COLOR
+				credit_bitmap.draw_text(xpos + 2, j * 32 - 2, linewidth, 32, line[k], align)
+				credit_bitmap.draw_text(xpos,     j * 32 - 2, linewidth, 32, line[k], align)
+				credit_bitmap.draw_text(xpos - 2, j * 32 - 2, linewidth, 32, line[k], align)
+				credit_bitmap.draw_text(xpos + 2, j * 32,     linewidth, 32, line[k], align)
+				credit_bitmap.draw_text(xpos - 2, j * 32,     linewidth, 32, line[k], align)
+				credit_bitmap.draw_text(xpos + 2, j * 32 + 2, linewidth, 32, line[k], align)
+				credit_bitmap.draw_text(xpos,     j * 32 + 2, linewidth, 32, line[k], align)
+				credit_bitmap.draw_text(xpos - 2, j * 32 + 2, linewidth, 32, line[k], align)
+				credit_bitmap.font.color = TEXT_BASE_COLOR
+				credit_bitmap.draw_text(xpos,     j * 32,     linewidth, 32, line[k], align)
+				end
+			end
+			credit_sprite = Sprite.new(text_viewport)
+			credit_sprite.bitmap = credit_bitmap
+			credit_sprite.z      = 9998
+			credit_sprite.oy     = @realOY - @bitmap_height * i
+			@credit_sprites[i] = credit_sprite
 		end
 		#-------------------------------
 		# Setup
@@ -267,10 +275,10 @@ class Scene_Credits
 		pbBGMPlay(BGM)
 		Graphics.transition(20)
 		loop do
-		Graphics.update
-		Input.update
-		update
-		break if $scene != self
+			Graphics.update
+			Input.update
+			update
+			break if $scene != self
 		end
 		pbBGMFade(2.0)
 		Graphics.freeze
@@ -280,5 +288,36 @@ class Scene_Credits
 		text_viewport.dispose
 		$PokemonGlobal.creditsPlayed = true
 		pbBGMPlay(previousBGM)
+	end
+
+	  # Checks if credits bitmap has reached its ending point
+	  def last?
+		if @realOY > @total_height + @trim
+		  $scene = ($game_map) ? Scene_Map.new : nil
+		  pbBGMFade(2.0)
+		  @callback.call if @callback
+		  return true
+		end
+		return false
+	  end
+
+	def update
+		delta = Graphics.delta_s
+		@counter += delta
+		# Go to next slide
+		if @counter >= SECONDS_PER_BACKGROUND
+		  @counter -= SECONDS_PER_BACKGROUND
+		  @bg_index += 1
+		  @bg_index = 0 if @bg_index >= BACKGROUNDS_LIST.length
+		  @background_sprite.setBitmap("Graphics/Titles/" + BACKGROUNDS_LIST[@bg_index])
+		end
+		return if cancel?
+		return if last?
+		scrollingSpeed = SCROLL_SPEED
+		scrollingSpeed *= 4 if Input.press?(Input::ACTION)
+		scrollingSpeed *= 4 if Input.press?(Input::SPECIAL)
+		scrollingSpeed *= 4 if Input.press?(Input::CTRL)
+		@realOY += scrollingSpeed * delta
+		@credit_sprites.each_with_index { |s, i| s.oy = @realOY - @bitmap_height * i }
 	end
 end

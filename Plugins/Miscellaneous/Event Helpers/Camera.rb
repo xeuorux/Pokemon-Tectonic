@@ -1,14 +1,23 @@
 def blackFadeOutIn(length=10,&block)
-	adjustedLength = length * Graphics.frame_rate / 20
 	if $PokemonSystem.skip_fades == 1 || !$DEBUG
-		$game_screen.start_tone_change(Tone.new(-255,-255,-255,0), adjustedLength)
-		pbWait(adjustedLength)
+		fadeToBlack(length)
 	end
 	block.call
 	if $PokemonSystem.skip_fades == 1 || !$DEBUG
-		$game_screen.start_tone_change(Tone.new(0,0,0,0), adjustedLength)
-		pbWait(adjustedLength)
+		fadeIn(length)
 	end
+end
+
+def fadeToBlack(length=10)
+	adjustedDuration = length * Graphics.frame_rate / 20
+	$game_screen.start_tone_change(Tone.new(-255,-255,-255,0), adjustedDuration)
+	pbWait(adjustedDuration)
+end
+
+def fadeIn(length=10)
+	adjustedDuration = length * Graphics.frame_rate / 20
+	$game_screen.start_tone_change(Tone.new(0,0,0,0), adjustedDuration)
+	pbWait(adjustedDuration)
 end
 
 def timedCameraPreview(centerX,centerY,seconds = 5)

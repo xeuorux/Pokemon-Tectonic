@@ -4,10 +4,11 @@ class Scene_Map
 		pbCancelVehicles($game_temp.player_new_map_id) if cancelVehicles
 		autofade($game_temp.player_new_map_id)
 		pbBridgeOff
-		@spritesetGlobal.playersprite.clearShadows
+		@spritesetGlobal.playersprite.clearShadows if @spritesetGlobal
 		if $game_map.map_id!=$game_temp.player_new_map_id
 		  $MapFactory.setup($game_temp.player_new_map_id)
 		end
+		$game_temp.setup_sames = false
 		$game_player.moveto($game_temp.player_new_x, $game_temp.player_new_y)
 		case $game_temp.player_new_direction
 		when 2 then $game_player.turn_down
@@ -17,6 +18,7 @@ class Scene_Map
 		end
 		$game_player.straighten
 		$game_map.update
+		
 		# The player surfs if they were transferred to a surfable tile
 		terrainID = $game_map.terrain_tag($game_player.x, $game_player.y).id
 		terrain = GameData::TerrainTag.try_get(terrainID)
@@ -25,9 +27,8 @@ class Scene_Map
 			pbUpdateVehicle
 		end
 		
-		disposeSpritesets
-		RPG::Cache.clear
-		createSpritesets
+		recreateSpritesets
+		
 		if $game_temp.transition_processing
 		  $game_temp.transition_processing = false
 		  Graphics.transition(20)
@@ -35,5 +36,11 @@ class Scene_Map
 		$game_map.autoplay
 		Graphics.frame_reset
 		Input.update
+	end
+
+	def recreateSpritesets
+		disposeSpritesets
+		RPG::Cache.clear
+		createSpritesets
 	end
 end

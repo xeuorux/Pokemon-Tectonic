@@ -56,7 +56,7 @@ def transferPlayerToEvent(event_id,direction,map_id = -1,offset=[0,0])
 	transferPlayer(x,y,direction,map_id)
 end
 
-def teleportPlayer(map_id,x,y)
+def teleportPlayer(map_id,x,y,instant=false)
 	$game_temp.player_transferring = true
 	$game_temp.player_new_map_id    = map_id || $game_map.map_id
 	$game_temp.player_new_x         = x
@@ -66,6 +66,8 @@ def teleportPlayer(map_id,x,y)
 	Graphics.freeze
 	$game_temp.transition_processing = true
 	$game_temp.transition_name       = ""
+
+	$scene.transfer_player if instant
 end
 
 def healPartyWithDelay()

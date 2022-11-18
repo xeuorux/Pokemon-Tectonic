@@ -1,4 +1,4 @@
-Name 		= Better DexNav
-Version 	= 2.0
+Name 		= Better DexNav (Chasm Modified)
+Version 	= 1.0
 Link 		= https://reliccastle.com/resources/520/
-Credits 	= Phantombass,Suzerain,Nuri Yuri,Developers of SimpleEncounterUI,Zeu
+Credits 	= Phantombass,Suzerain,Nuri Yuri,SimpleEncounterUI,Zeu

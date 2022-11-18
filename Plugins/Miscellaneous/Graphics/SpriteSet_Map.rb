@@ -3,9 +3,11 @@ class Spriteset_Map
         @usersprites = []
         @map = (map) ? map : $game_map
 
-        $scene.map_renderer.add_tileset(@map.tileset_name)
-        @map.autotile_names.each { |filename| $scene.map_renderer.add_autotile(filename) }
-        $scene.map_renderer.add_extra_autotiles(@map.tileset_id)
+        if $scene.is_a?(Scene_Map)
+          $scene.map_renderer.add_tileset(@map.tileset_name)
+          @map.autotile_names.each { |filename| $scene.map_renderer.add_autotile(filename) }
+          $scene.map_renderer.add_extra_autotiles(@map.tileset_id)
+        end
 
         @panorama = AnimatedPlane.new(@@viewport0)
         @fog = AnimatedPlane.new(@@viewport1)
@@ -44,7 +46,7 @@ class Spriteset_Map
 
     def update
         @@viewport3.tone = Tone.new(0, 0, 0, 0)
-        pbDayNightTint($scene.map_renderer)
+        pbDayNightTint($scene.map_renderer) if $scene.is_a?(Scene_Map)
         if @panorama_name!=@map.panorama_name || @panorama_hue!=@map.panorama_hue
           @panorama_name = @map.panorama_name
           @panorama_hue  = @map.panorama_hue
@@ -76,6 +78,7 @@ class Spriteset_Map
         @fog.tone       = @map.fog_tone
         @panorama.update
         @fog.update
+
         for sprite in @character_sprites
           sprite.update
         end
