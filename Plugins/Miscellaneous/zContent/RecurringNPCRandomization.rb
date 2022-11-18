@@ -117,6 +117,7 @@ def randomNPCTrainerBattle(isRandom1,fightSection=0)
     trainerType = isRandom1 ? "MASKEDVILLAIN" : "MASKEDVILLAIN2"
     trainerName = isRandom1 ? "Crimson" : "Teal"
 
+    echoln("Trying to start fight against #{trainerName} version #{trainerVersion}")
     return pbTrainerBattle(trainerType,trainerName,nil, false, trainerVersion)
 end
 

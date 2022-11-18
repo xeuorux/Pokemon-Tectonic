@@ -96,6 +96,10 @@ class RandomTournament
     def activateOpponent()
        pbSetSelfSwitch(opponentEvent().id,'A')
     end
+
+    def tournamentWon?
+        return @matchesWon >= 5
+    end
 end
 
 def tournamentBattle()
@@ -141,7 +145,12 @@ def handleMatchDecline()
     pbMessage(_INTL("Ok, let me know when you are ready to battle #{nextOpponentName}."))
 end
 
+def tournamentWon?
+    return $PokemonGlobal.tournament.tournamentWon?
+end
+
 def alertNextMatch()
+    return if tournamentWon?
     pbMessage(_INTL("Your next match will be against #{nextOpponentName}."))
     pbMessage(_INTL("Return to me when you are ready to battle."))
 end

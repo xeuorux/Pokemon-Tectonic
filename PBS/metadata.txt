@@ -228,7 +228,7 @@ BattleBack = forest
 Environment = Forest
 #-------------------------------
 [031]
-# Pokemon Zoo - Forest
+# Path to Paradise
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -1138,7 +1138,7 @@ BattleBack = city
 Environment = None
 #-------------------------------
 [189]
-# Catacombs
+# Catacombs Antechamber
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1521,7 +1521,7 @@ Bicycle = false
 Environment = None
 #-------------------------------
 [282]
-# Deep Catacombs
+# The Catacombs
 Outdoor = false
 ShowArea = false
 Bicycle = true
@@ -1576,6 +1576,12 @@ Environment = Cave
 # Crescent Island Secret
 MapPosition = 0,19,4
 #-------------------------------
+[294]
+# Eden
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
 [299]
 # Mainland Dock Center
 Outdoor = false
@@ -1613,6 +1619,9 @@ Environment = Cave
 #-------------------------------
 [315]
 # Path of Genesis
+Outdoor = false
+ShowArea = true
+Bicycle = true
 MapPosition = 0,14,10
 #-------------------------------
 [316]
@@ -1696,9 +1705,34 @@ ShowArea = false
 Bicycle = true
 BattleBack = wcave
 #-------------------------------
+[334]
+# The Present
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
 [335]
 # Svait Sauna Underground
 Outdoor = false
 ShowArea = false
 Bicycle = false
 Weather = Fog,100
+#-------------------------------
+[337]
+# Deep Station Backroom
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[338]
+# Deep Station
+Outdoor = false
+ShowArea = false
+Bicycle = false
+HealingSpot = 315,28,31
+#-------------------------------
+[340]
+# The Hexicle
+Outdoor = false
+ShowArea = true
+Bicycle = true
