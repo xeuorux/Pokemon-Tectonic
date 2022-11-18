@@ -92,9 +92,7 @@ class PokeBattle_Battle
       fraction = 1.0/8.0
       fraction *= 2 if battler.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
       if status == :POISON
-        poisonCount = battler.getStatusCount(:POISON)
-        doublings = poisonCount / 3
-        doublings.times do
+        battler.getPoisonDoublings.times do
           fraction *= 2
         end
       end

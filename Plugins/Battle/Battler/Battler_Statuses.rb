@@ -465,6 +465,16 @@ class PokeBattle_Battler
 		pbInflictStatus(:POISON, toxic ? 1 : 0, msg, user)
 	end
 
+	def badlyPoisoned?
+		return poisoned? && getPoisonDoublings > 0
+	end
+
+	def getPoisonDoublings
+		poisonCount = getStatusCount(:POISON)
+        doublings = poisonCount / 3
+		return doublings
+	end
+
 	#=============================================================================
 	# Burn
 	#=============================================================================
