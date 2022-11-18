@@ -1,8 +1,3 @@
-# Set the proper main quest stage when you earn a new badge
-Events.onBadgeEarned += proc { |_sender,_e|
-    startTournamentIfValid
-}
-
 def startTournamentIfValid
     if hasAllEightBadges? && defeatedYezeraWhitebloom? && !$game_switches[12] # Won Championship
         $game_switches[64] = true # Tournament Running
