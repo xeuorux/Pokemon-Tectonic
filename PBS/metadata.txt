@@ -229,9 +229,10 @@ Environment = Forest
 #-------------------------------
 [031]
 # Path to Paradise
-Outdoor = true
+Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = wcave
 #-------------------------------
 [032]
 # Németh Apartments
@@ -749,7 +750,7 @@ Environment = StillWater
 Outdoor = false
 ShowArea = false
 Bicycle = false
-MapPosition = 0,14,11
+MapPosition = 0,15,11
 BattleBack = forest
 Environment = Cave
 #-------------------------------
@@ -1581,6 +1582,7 @@ MapPosition = 0,19,4
 Outdoor = false
 ShowArea = false
 Bicycle = true
+BattleBack = wcave
 #-------------------------------
 [299]
 # Mainland Dock Center
@@ -1623,6 +1625,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,14,10
+BattleBack = wcave
 #-------------------------------
 [316]
 # Sandstone Estuary
@@ -1710,6 +1713,7 @@ BattleBack = wcave
 Outdoor = false
 ShowArea = false
 Bicycle = true
+BattleBack = wcave
 #-------------------------------
 [335]
 # Svait Sauna Underground
@@ -1736,3 +1740,5 @@ HealingSpot = 315,28,31
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,14,11
+BattleBack = wcave
