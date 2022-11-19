@@ -4625,7 +4625,7 @@ Pokemon = BLACEPHALON,70
     AbilityIndex = 1
     Item = SHELLBELL
 #-------------------------------
-[ANOTHERPOSSIBLETAMARIND,Alessa]
+[ANOTHERPOSSIBLEALESSA,Alessa]
 Pokemon = SALAMENCE,70
     Moves = DRAGONDANCE,OUTRAGE,EARTHQUAKE,HUNTDOWN
     AbilityIndex = 0
@@ -4647,7 +4647,7 @@ Pokemon = PORYGONZ,70
     Moves = TRIATTACK,PHANTOMGATE,PSYSHOCK,ICEBEAM
     AbilityIndex = 0
 #-------------------------------
-[ANOTHERPOSSIBLETAMARIND,Alessa,1]
+[ANOTHERPOSSIBLEALESSA,Alessa,1]
 Pokemon = SALAMENCE,70
     Moves = DRAGONDANCE,OUTRAGE,EARTHQUAKE,HUNTDOWN
     AbilityIndex = 0
