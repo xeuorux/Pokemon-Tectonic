@@ -4995,7 +4995,7 @@ Pokemon = GOLURK,70
     AbilityIndex = 1
     Item = SEVENLEAGUEBOOTS
 #-------------------------------
-[MASKEDVILLAIN,Teal,12]
+[MASKEDVILLAIN2,Teal,12]
 NameForHashing = Imogene
 Pokemon = GOLISOPOD,70
     Moves = FIRSTIMPRESSION,CLOSECOMBAT,LIQUIDATION,XSCISSOR
@@ -5018,7 +5018,7 @@ Pokemon = SHEDINJA,70
     AbilityIndex = 0
     Item = FOCUSSASH
 #-------------------------------
-[MASKEDVILLAIN,Teal,13]
+[MASKEDVILLAIN2,Teal,13]
 NameForHashing = Imogene
 ExtendsVersion = 12
 Policies = CURSE_SELF_DEBUFFING
@@ -5047,7 +5047,7 @@ Pokemon = SHEDINJA,70
     AbilityIndex = 0
     Item = FOCUSSASH
 #-------------------------------
-[MASKEDVILLAIN,Teal,14]
+[MASKEDVILLAIN2,Teal,14]
 NameForHashing = Alessa
 Pokemon = FORRETRESS,70
     Moves = POISONSPIKES,STEALTHROCK,SWARMBURST
@@ -5070,7 +5070,7 @@ Pokemon = CRUSTLE,70
     Moves = SHELLSMASH,LEECHLIFE,EARTHQUAKE,BEDROCKBREAKER
     AbilityIndex = 1
 #-------------------------------
-[MASKEDVILLAIN,Teal,15]
+[MASKEDVILLAIN2,Teal,15]
 NameForHashing = Alessa
 ExtendsVersion = 14
 Policies = CURSE_SELF_DEBUFFING
@@ -5099,7 +5099,7 @@ Pokemon = CRUSTLE,70
     AbilityIndex = 1
     Item = SEVENLEAGUEBOOTS
 #-------------------------------
-[MASKEDVILLAIN,Teal,16]
+[MASKEDVILLAIN2,Teal,16]
 NameForHashing = Skylar
 Pokemon = PALMANTRA,70
     Moves = REFLEXOVERDRIVE,DRAINPUNCH,FAKEOUT,POISONJAB
@@ -5122,7 +5122,7 @@ Pokemon = FLORGES,70
     Moves = SYNTHESIS,AURATRICK,PETALDANCE,CALMMIND
     AbilityIndex = 1
 #-------------------------------
-[MASKEDVILLAIN,Teal,17]
+[MASKEDVILLAIN2,Teal,17]
 NameForHashing = Skylar
 ExtendsVersion = 16
 Policies = CURSE_SELF_DEBUFFING
@@ -5151,7 +5151,7 @@ Pokemon = FLORGES,70
     AbilityIndex = 1
     Item = LEFTOVERS
 #-------------------------------
-[MASKEDVILLAIN,Teal,18]
+[MASKEDVILLAIN2,Teal,18]
 NameForHashing = Keoni
 Pokemon = PERRSERKER,70
     Moves = UTURN,SLAY,CLOSECOMBAT,POWERUPPUNCH
@@ -5174,7 +5174,7 @@ Pokemon = AGOLEM,70
     Moves = ROCKSLIDE,DOUBLEEDGE,AUTOTOMIZE,SUPERPOWER
     AbilityIndex = 0
 #-------------------------------
-[MASKEDVILLAIN,Teal,19]
+[MASKEDVILLAIN2,Teal,19]
 NameForHashing = Keoni
 ExtendsVersion = 18
 Policies = CURSE_SELF_DEBUFFING
@@ -5203,7 +5203,7 @@ Pokemon = AGOLEM,70
     AbilityIndex = 0
     Item = AIRBALLOON
 #-------------------------------
-[MASKEDVILLAIN,Teal,20]
+[MASKEDVILLAIN2,Teal,20]
 NameForHashing = Eifion
 Pokemon = HOUNDOMINUS,70
     Moves = NASTYPLOT,SLUDGEBOMB,FLAMETHROWER,SUCKERPUNCH
@@ -5226,7 +5226,7 @@ Pokemon = GIGANTEON,70
     Moves = QUICKATTACK,UNDERMINE,RECOVER,LASTRESORT
     AbilityIndex = 0
 #-------------------------------
-[MASKEDVILLAIN,Teal,21]
+[MASKEDVILLAIN2,Teal,21]
 NameForHashing = Eifion
 ExtendsVersion = 20
 Policies = CURSE_SELF_DEBUFFING
@@ -5255,7 +5255,7 @@ Pokemon = GIGANTEON,70
     AbilityIndex = 0
     Item = LEFTOVERS
 #-------------------------------
-[MASKEDVILLAIN,Teal,22]
+[MASKEDVILLAIN2,Teal,22]
 NameForHashing = Candy
 Pokemon = STARAPTOR,70
     Gender = male
@@ -5283,7 +5283,7 @@ Pokemon = GOLURK,70
     Moves = INFERNO,LAHAR,PROFANE,ZAPCANNON
     AbilityIndex = 1
 #-------------------------------
-[MASKEDVILLAIN,Teal,23]
+[MASKEDVILLAIN2,Teal,23]
 NameForHashing = Candy
 ExtendsVersion = 22
 Policies = CURSE_SELF_DEBUFFING
