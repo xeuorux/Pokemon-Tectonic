@@ -4939,15 +4939,82 @@ Pokemon = GOLURK,70
     Item = SEVENLEAGUEBOOTS
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,5]
-Pokemon = BIDOOF,10
-    AbilityIndex = 0
+Pokemon = TYRANITAR,70
+    Name = Autochthon
+    Gender = male
+    Moves = ROCKSLIDE,LASHOUT,STOMPINGTANTRUM,ROCKPOLISH
+    AbilityIndex = 1
+    Item = FLAMEORB
+Pokemon = TOGEKISS,70
+    Name = Artemisia
+    Gender = female
+    Moves = AIRSLASH,DAZZLINGGLEAM,TAILWIND,PSYSHOCK
+    AbilityIndex = 1
+    Item = BABIRIBERRY
+Pokemon = HAEROBIC,70
+    Name = Amalthea
+    Gender = female
+    Moves = CLOSECOMBAT,FAKEOUT,EXTREMESPEED,TRIPLEAXEL
+    AbilityIndex = 1
+    Item = ASSAULTVEST
+Pokemon = CHANDELURE,70
+    Name = Auden
+    Gender = male
+    Moves = SHADOWBALL,BURNINGJEALOUSY,THRIVINGFORCE,DARKPULSE
+    AbilityIndex = 1
+    Item = FOCUSSASH
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,10]
 ExtendsVersion = 5
+Pokemon = MAGNEZONE,70
+    Name = Anri
+    Moves = ZAPCANNON,ELECTROWEB,STEELBEAM,FLASHCANNON
+    AbilityIndex = 1
+    Item = AIRBALLOON
+Pokemon = GYARADOS,70
+    Name = Asha
+    Gender = female
+    Moves = REND,CRASHDIVE,AQUAJET,DRAGONDANCE
+    AbilityIndex = 0
+    Item = LIFEORB
 #-------------------------------
 [SHADOWMAVIS,Mavis]
-Pokemon = BIDOOF,10
+Pokemon = GARDEVOIR,70
+    Name = Tiredstars
+    Gender = female
+    Moves = LIGHTSCREEN,REFLECT,DAZZLINGGLEAM,PSYCHIC
     AbilityIndex = 1
+    Item = LIGHTCLAY
+Pokemon = FROSMOTH,70
+    Name = Wellwishes
+    Gender = male
+    Moves = LEECHINGCOLD,QUIVERDANCE,BUGBUZZ,ICYWIND
+    AbilityIndex = 0
+    Item = ICEGEM
+Pokemon = LUXRAY,70
+    Name = Stillheres
+    Gender = female
+    Moves = PHOTONEDGE,SUCKERPUNCH,PSYCHICFANGS,SEVER
+    AbilityIndex = 1
+    Item = STRIKEVEST
+Pokemon = KABUTOPS,70
+    Name = Brokenribs
+    Gender = male
+    Moves = TORRENTBLADE,SUBSTITUTE,STONEEDGE,LEECHLIFE
+    AbilityIndex = 0
+    Item = WIDELENS
 #-------------------------------
 [SHADOWMAVIS,Mavis,1]
 ExtendsVersion = 0
+Pokemon = TITANIX,70
+    Name = Notalones
+    Gender = male
+    Moves = SLUSHSPRAY,SLAG,POWERGEM,AURASPHERE
+    AbilityIndex = 0
+    Item = LEFTOVERS
+Pokemon = ROSERADE,70
+    Name = Firstloves
+    Gender = female
+    Moves = LEAFBLADE,POISONJAB,SUBSTITUTE,FIRELASH
+    AbilityIndex = 0
+    Item = BLACKSLUDGE
