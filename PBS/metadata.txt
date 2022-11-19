@@ -1583,6 +1583,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 BattleBack = wcave
+TeleportBlocked = true
 #-------------------------------
 [299]
 # Mainland Dock Center
@@ -1714,6 +1715,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 BattleBack = wcave
+TeleportBlocked = true
 #-------------------------------
 [335]
 # Svait Sauna Underground
