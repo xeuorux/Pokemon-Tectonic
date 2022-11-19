@@ -272,3 +272,6 @@
 410,DEVMAID2,Developer,80,,,,Female,,,[]
 411,DEVCLERK_M2,Developer,80,,,,Male,,,[]
 412,ABSOL,Wild,100,,,,Wild,,,[]
+413,ANOTHERPOSSIBLEZAIN,Another Possible,80,,,ACETRAINER,Male,,,[]
+414,ANOTHERPOSSIBLETAMARIND,Another Possible,80,,,ACETRAINER,Female,,,[]
+414,ANOTHERPOSSIBLEALESSA,Another Possible,80,,,ACETRAINER,Female,,,[]
