@@ -2,29 +2,42 @@ class Game_Event < Game_Character
 	attr_accessor :opacity
 end
 
-def defeatBoss(item=nil,count=1)
+def defeatBoss(item=nil,count=1,opacityStart=180,opacityTarget=0)
 	$PokemonGlobal.respawnPoint = nil
 
 	event = get_self
-	255.downto(0) do |i|
-		next if i % 3 != 0
+
+	opacityStart.downto(opacityTarget) do |i|
+		next if i % 2 != 0
 		event.opacity = i
 		pbWait(1)
 	end
 
 	setMySwitch('A',true)
-	return if item == nil
-	if count == 1
-		pbMessage("It left behind an item!")
-		pbReceiveItem(item)
-	elsif count > 1
-		pbMessage("It left behind some items!")
-		pbReceiveItem(item,count)
+
+	if item != nil
+		if count == 1
+			pbMessage("It left behind an item!")
+			pbReceiveItem(item)
+		elsif count > 1
+			pbMessage("It left behind some items!")
+			pbReceiveItem(item,count)
+		end
 	end
 
 	# If the map is playing the bad variant of the primal clay BGM
 	# Forces it to move to the good variant
 	primalClayBGMChange()
+end
+
+def defeatRegigigas
+	$PokemonGlobal.respawnPoint = nil
+	event = get_self
+	difference = 255 - 180
+	180.upto(255) do |i|
+		event.opacity = i
+		pbWait(1)
+	end
 end
 
 def defeatMultipleBosses(item=nil,count=1,eventIDs=[])

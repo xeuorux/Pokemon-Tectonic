@@ -1,9 +1,9 @@
 BURNED_EXPLANATION = 'It Attack is reduced by a third'.freeze
-POISONED_EXPLANATION = 'The poison will worsen every 3 turns'.freeze
+POISONED_EXPLANATION = 'The poison will worsen over time'.freeze
 FROSTBITE_EXPLANATION = 'Its Sp. Atk is reduced by a third'.freeze
 NUMBED_EXPLANATION = "Its Speed is halved, and it'll deal less damage".freeze
 DIZZY_EXPLANATION = "It's ability is supressed, and it'll take more damage".freeze
-LEECHED_EXPLANATION = "Its HP will be siphoned by the opposing team".freeze
+LEECHED_EXPLANATION = "Its HP will be siphoned by the opposing side".freeze
 
 class PokeBattle_Battler
 	def getStatuses
@@ -162,23 +162,25 @@ class PokeBattle_Battler
 				return false
 			end
 		end
-		# Downside abilities
-		if hasActiveAbility?(DOWNSIDE_ABILITIES) && !@battle.moldBreaker
-			if showMessages
-				@battle.pbShowAbilitySplash(self)
-				@battle.pbDisplay(_INTL("{1}'s ability prevents being dizzied!", pbThis))
-				@battle.pbHideAbilitySplash(self)
+		if newStatus == :DIZZY
+			# Downside abilities
+			if hasActiveAbility?(DOWNSIDE_ABILITIES) && !@battle.moldBreaker
+				if showMessages
+					@battle.pbShowAbilitySplash(self)
+					@battle.pbDisplay(_INTL("{1}'s ability prevents being dizzied!", pbThis))
+					@battle.pbHideAbilitySplash(self)
+				end
+				return false
 			end
-			return false
-		end
-		# Downside abilities
-		if unstoppableAbility?
-			if showMessages
-				@battle.pbShowAbilitySplash(self)
-				@battle.pbDisplay(_INTL("{1}'s ability prevents being dizzied!", pbThis))
-				@battle.pbHideAbilitySplash(self)
+			# Downside abilities
+			if unstoppableAbility?
+				if showMessages
+					@battle.pbShowAbilitySplash(self)
+					@battle.pbDisplay(_INTL("{1}'s ability prevents being dizzied!", pbThis))
+					@battle.pbHideAbilitySplash(self)
+				end
+				return false
 			end
-			return false
 		end
 		# Type immunities
 		hasImmuneType = false
@@ -471,7 +473,11 @@ class PokeBattle_Battler
 
 	def getPoisonDoublings
 		poisonCount = getStatusCount(:POISON)
-        doublings = poisonCount / 3
+		if boss?
+			doublings = poisonCount / 5
+		else
+        	doublings = poisonCount / 3
+		end
 		return doublings
 	end
 
