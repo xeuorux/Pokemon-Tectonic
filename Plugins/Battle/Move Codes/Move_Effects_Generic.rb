@@ -1214,7 +1214,7 @@ end
 # If a damaging move, sets the hazard on the side of the target.
 # If a status move, sets the hazard on the side of the user's opponent
 #===============================================================================
-class PokeBattle_TypeSpikeMove < PokeBattle_Move
+class PokeBattle_StatusSpikeMove < PokeBattle_Move
   # Every subclass of this needs to assign something to @spikeEffect, and then call super
   def initialize(battle,move)
     super

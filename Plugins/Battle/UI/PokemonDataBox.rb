@@ -167,7 +167,8 @@ class PokemonDataBox < SpriteWrapper
 		if @battler.item && @battler.itemActive?
 		  itemX = (@battler.opposes?(0)) ? 204 : -8   # Foe's/player's
 		  itemY = 36
-		  imagePos.push(["Graphics/Pictures/Party/icon_item",@spriteBaseX+itemX,itemY])
+		  itemIconFileName = SUPER_ITEMS.include?(@battler.item.id) ? "Graphics/Pictures/Battle/icon_item_super" : "Graphics/Pictures/Battle/icon_item"
+		  imagePos.push([itemIconFileName,@spriteBaseX+itemX,itemY])
 		end
 
 		# Draw owned icon (foe Pokémon only)

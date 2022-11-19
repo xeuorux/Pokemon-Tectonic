@@ -92,7 +92,7 @@
 85,DAMPROCK,Damp Rock,Damp Rocks,5,4000,"A Pokémon held item. When the holder summons Rain, it lasts twice as long.",0,0,0
 86,SMOOTHROCK,Smooth Rock,Smooth Rocks,5,4000,"A Pokémon held item. When the holder summons a Sandstorm, it lasts twice as long.",0,0,0
 87,ICYROCK,Icy Rock,Icy Rocks,5,4000,"A Pokémon held item. When the holder summons Hail, it lasts twice as long.",0,0,0
-88,LIGHTCLAY,Light Clay,Light Clays,5,4000,"An item to be held by a Pokémon. Protective moves like Light Screen and Reflect will be effective longer.",0,0,0
+88,LIGHTCLAY,Light Clay,Light Clays,5,4000,"An item to be held by a Pokémon. Protective moves like Light Screen and Reflect will be effective for 3 more turns.",0,0,0
 89,GRIPCLAW,Grip Claw,Grip Claws,5,4000,"A Pokémon held item that doubles the duration of multiturn trapping attacks.",0,0,0
 90,BINDINGBAND,Binding Band,Binding Bands,5,4000,"A band that doubles the damage dealt each turn by binding moves when held.",0,0,0
 91,BIGROOT,Big Root,Big Roots,5,4000,"A Pokémon held item that boosts the power of HP-stealing moves to let the holder recover more HP.",0,0,0
@@ -899,6 +899,7 @@
 #-------------------------------
 870,LOADEDDICE,Loaded Dice,Loaded Dices,5,4000,"An item to be held by a Pokémon. It makes multi-hit attacks hit high more consistently.",0,0,0
 871,D8,D8,D8s,5,4000,"An 8-sided die to be held by a Pokémon. It makes multi-hit moves hit anywhere betweeen 1 and 8 times.",0,0,0
+#-------------------------------
 872,VANILLATULUMBA,Vanilla Tulumba,Vanilla Tulumba,2,800,"Fried dough dipped in vanilla syrup. It can be used to raise a Pokémon's level by 1.",1,0,0
 #-------------------------------
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
@@ -964,3 +965,4 @@
 2048,ENERGYKEY,Energy Key,Power Locks,5,0,"A held item. In battles, it sets the holder's base Sp. Atk and base Sp. Def stats to 120.",0,0,0
 2049,GRANDMASTERSCROLL,Grandmaster Scroll,Grandmaster Scroll,5,0,"An ancient scroll that makes the user  that boosts the holder's supereffective moves by 20%.",0,0,0
 2050,LUNCHBOX,Lunch Box,Lunch Boxes,5,0,"The holder's HP is restored by 1/8th each turn, and takes a third less damage at full HP. The holder won't drop it.",0,0,0
+2051,BRIGHTCLAY,Bright Clay,Bright Clays,5,0,"An item to be held by a Pokémon. Protective moves like Light Screen and Reflect will be effective for 6 turns longer.",0,0,0

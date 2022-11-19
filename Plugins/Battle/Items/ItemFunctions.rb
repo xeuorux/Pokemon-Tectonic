@@ -20,7 +20,7 @@ def pbItemBall(item,quantity=1)
     else
       pbMessage(_INTL("\\me[{1}]You found a \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname))
     end
-	  showItemDescription(item)
+	  showItemDescription(item.id)
     pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
        itemname,pocket,PokemonBag.pocketNames()[pocket]))
     return true
@@ -47,11 +47,12 @@ end
 def pbReceiveItem(item,quantity=1)
   item = GameData::Item.get(item)
   return false if !item || quantity<1
+  raise _INTL("Player cannot receive a Super Item!") if SUPER_ITEMS.include?(item.id) #&& !$DEBUG
   itemname = (quantity>1) ? item.name_plural : item.name
   pocket = item.pocket
   move = item.move
   meName = (item.is_key_item?) ? "Key item get" : "Item get"
-  if item == :LEFTOVERS
+  if item.id == :LEFTOVERS
     pbMessage(_INTL("\\me[{1}]You obtained some \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname))
   elsif item.is_machine?   # TM or HM
     pbMessage(_INTL("\\me[{1}]You obtained \\c[1]{2} {3}\\c[0]!\\wtnp[30]",meName,itemname,GameData::Move.get(move).name))
@@ -62,7 +63,7 @@ def pbReceiveItem(item,quantity=1)
   else
     pbMessage(_INTL("\\me[{1}]You obtained a \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname))
   end
-  showItemDescription(item)
+  showItemDescription(item.id)
   if $PokemonBag.pbStoreItem(item,quantity)   # If item can be added
     pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
        itemname,pocket,PokemonBag.pocketNames()[pocket]))
@@ -77,10 +78,11 @@ end
 
 def showItemDescription(item)
 	$PokemonGlobal.hadItemYet = {} if $PokemonGlobal.hadItemYet.nil?
-	if !$PokemonGlobal.hadItemYet[item.id]
-		$PokemonGlobal.hadItemYet[item.id] = true
+	if !$PokemonGlobal.hadItemYet[item]
+		$PokemonGlobal.hadItemYet[item] = true
 		if $PokemonSystem.show_item_descriptions == 0
-			pbMessage(_INTL("\\cl\\l[4]\\op\\wu\\i[{1}]\\or{2}\\wt[30]",item.id,item.description))
+      itemDesc = GameData::Item.get(item).description
+			pbMessage(_INTL("\\cl\\l[4]\\op\\wu\\i[{1}]\\or{2}\\wt[30]",item,itemDesc))
 		end
 	end
 end
@@ -91,7 +93,6 @@ def pbPickBerry(berry, qty = 1)
   berryData=interp.getVariable
   berry=GameData::Item.get(berry)
   itemname=(qty>1) ? berry.name_plural : berry.name
-
   if !$PokemonBag.pbCanStore?(berry,qty)
       pbMessage(_INTL("Too bad...\nThe Bag is full..."))
       return
@@ -102,7 +103,7 @@ def pbPickBerry(berry, qty = 1)
     else
       pbMessage(_INTL("\\me[Berry get]You picked the \\c[1]{1}\\c[0].\\wtnp[20]",itemname))
     end
-	showItemDescription(berry)
+	  showItemDescription(berry.id)
     pocket = berry.pocket
     pbMessage(_INTL("{1} put the \\c[1]{2}\\c[0] in the <icon=bagPocket{3}>\\c[1]{4}\\c[0] Pocket.\1",
        $Trainer.name,itemname,pocket,PokemonBag.pocketNames()[pocket]))

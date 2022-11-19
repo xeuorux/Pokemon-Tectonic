@@ -244,3 +244,10 @@ BattleHandlers::DamageCalcTargetItem.add(:LUNCHBOX,
     mults[:final_damage_multiplier] *= (2.0/3.0) if target.hp == target.totalhp
   }
 )
+
+# Grandmaster Scroll
+BattleHandlers::ItemOnSwitchIn.add(:GRANDMASTERSCROLL,
+  proc { |item,battler,battle|
+    battle.pbDisplay(_INTL("{1} holds the {2}! It deals double effectiveness!",battler.pbThis,battler.itemName))
+  }
+)

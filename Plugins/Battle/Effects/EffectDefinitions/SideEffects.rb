@@ -26,12 +26,12 @@ GameData::BattleEffect.register_effect(:Side,{
 ##########################################
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Reflect,
-	:real_name => "Reflect Turns",
+	:real_name => "Reflect",
 	:type => :Integer,
 	:ticks_down => true,
 	:is_screen => true,
 	:apply_proc => Proc.new { |battle,side,teamName,value|
-		battle.pbDisplay(_INTL("{1}'s Defense is raised!",teamName))
+		battle.pbDisplay(_INTL("{1}'s Defense is raised! This will last for #{value-1} more turns!",teamName))
 	},
 	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s Reflect wore off!",teamName))
@@ -40,12 +40,12 @@ GameData::BattleEffect.register_effect(:Side,{
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :LightScreen,
-	:real_name => "Light Screen Turns",
+	:real_name => "Light Screen",
 	:type => :Integer,
 	:ticks_down => true,
 	:is_screen => true,
 	:apply_proc => Proc.new { |battle,side,teamName,value|
-		battle.pbDisplay(_INTL("{1}'s Sp. Def is raised!",teamName))
+		battle.pbDisplay(_INTL("{1}'s Sp. Def is raised! This will last for #{value-1} more turns!",teamName))
 	},
 	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s Light Screen wore off!",teamName))
@@ -54,12 +54,12 @@ GameData::BattleEffect.register_effect(:Side,{
 
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :AuroraVeil,
-	:real_name => "Aurora Veil Turns",
+	:real_name => "Aurora Veil",
 	:type => :Integer,
 	:ticks_down => true,
 	:is_screen => true,
 	:apply_proc => Proc.new { |battle,side,teamName,value|
-		battle.pbDisplay(_INTL("{1}'s Defense and Sp. Def are raised!",teamName))
+		battle.pbDisplay(_INTL("{1}'s Defense and Sp. Def are raised! This will last for #{value-1} more turns!",teamName))
 	},
 	:disable_proc => Proc.new { |battle,side,teamName|
 		battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!",teamName))
@@ -71,7 +71,7 @@ GameData::BattleEffect.register_effect(:Side,{
 ##########################################
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :LuckyChant,
-	:real_name => "Lucky Chant Turns",
+	:real_name => "Lucky Chant",
 	:type => :Integer,
 	:ticks_down => true,
 	:apply_proc => Proc.new { |battle,side,teamName,value|
@@ -84,7 +84,7 @@ GameData::BattleEffect.register_effect(:Side,{
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Mist,
-	:real_name => "Mist Turns",
+	:real_name => "Mist",
 	:type => :Integer,
 	:ticks_down => true,
 	:apply_proc => Proc.new { |battle,side,teamName,value|
@@ -97,7 +97,7 @@ GameData::BattleEffect.register_effect(:Side,{
 })
 GameData::BattleEffect.register_effect(:Side,{
 	:id => :Safeguard,
-	:real_name => "Safeguard Turns",
+	:real_name => "Safeguard",
 	:type => :Integer,
 	:ticks_down => true,
 	:apply_proc => Proc.new { |battle,side,teamName,value|

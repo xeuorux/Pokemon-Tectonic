@@ -153,6 +153,7 @@ module EffectHolder
         return false if effectData.maximum.nil?
         value = @effects[effect]
         raise _INTL("Effect above maximum: #{effectData.real_name}") if value > effectData.maximum
+        return value == effectData.maximum
     end
 
     #################################################

@@ -1404,7 +1404,7 @@ end
 # Entry hazard. Lays burn spikes on the opposing side.
 # (Flame Spikes)
 #===============================================================================
-class PokeBattle_Move_551 < PokeBattle_TypeSpikeMove
+class PokeBattle_Move_551 < PokeBattle_StatusSpikeMove
 	def initialize(battle,move)
 		@spikeEffect = :FlameSpikes
 		super
@@ -1763,7 +1763,7 @@ end
 # Entry hazard. Lays frostbite spikes on the opposing side.
 # (Frost Spikes)
 #===============================================================================
-class PokeBattle_Move_569 < PokeBattle_TypeSpikeMove
+class PokeBattle_Move_569 < PokeBattle_StatusSpikeMove
 	def initialize(battle,move)
 		@spikeEffect = :FrostSpikes
 		super

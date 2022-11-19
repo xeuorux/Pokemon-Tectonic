@@ -400,11 +400,10 @@ class PokeBattle_Battler
 	end
 
 	def getScreenDuration
-		if hasActiveItem?(:LIGHTCLAY)
-			return 8
-		else
-			return 5
-		end
+		ret = 5
+		ret += 3 if hasActiveItem?(:LIGHTCLAY)
+		ret += 6 if hasActiveItem?(:BRIGHTCLAY)
+		return ret
 	end
 
 	def firstTurn?

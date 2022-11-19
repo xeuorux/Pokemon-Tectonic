@@ -10,7 +10,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:LIFEORB,
       next if !hitBattler
       PBDebug.log("[Item triggered] #{user.pbThis}'s #{user.itemName} (recoil)")
       battle.pbDisplay(_INTL("{1} lost some of its HP!",user.pbThis))
-      user.applyFractionalDamage(1.0/10.0)
+      user.applyFractionalDamage(1.0/10.0,false)
     }
   )
   

@@ -837,7 +837,7 @@ class PokeBattle_Battler
 			next unless b.damageState.berryWeakened || b.damageState.feastWeakened
 			name = b.itemName
 			@battle.pbDisplay(_INTL('The {1} weakened the damage to {2}!', name, b.pbThis(true)))
-			b.pbHeldItemTriggered(b.item) if b.item && !b.damageState.feastWeakened
+			b.pbHeldItemTriggered(b.item) if b.item && b.damageState.berryWeakened
 		end
 		targets.each { |b| b.pbFaint if b && b.fainted? }
 		user.pbFaint if user.fainted?

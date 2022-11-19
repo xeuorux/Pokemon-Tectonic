@@ -112,7 +112,7 @@ end
 
 def winTournamentMatch()
     $PokemonGlobal.tournament.winMatch()
-    pbMessage("The victor is \\PN!\\me[Bug catching 1st]")
+    pbMessage("\\wmThe victor is \\PN!\\me[Bug catching 1st]")
 end
 
 def enterTournament()
@@ -125,9 +125,11 @@ def resetTournament()
 end
 
 def promptForTournamentCommitment()
-    pbMessage(_INTL("The waiting room for tournament entrants is ahead."))
-    pbMessage(_INTL("Once you enter, you will not be able to save or change your team in any way until the tournament is complete."))
-    pbMessage(_INTL("A nurse is provided, however, for healing between matches."))
+    unless $DEBUG
+        pbMessage(_INTL("The waiting room for tournament entrants is ahead."))
+        pbMessage(_INTL("Once you enter, you will not be able to save or change your team in any way until the tournament is complete."))
+        pbMessage(_INTL("A nurse is provided, however, for healing between matches."))
+    end
     return pbConfirmMessageSerious(_INTL("Enter and begin the tournament?"))
 end
 
@@ -157,7 +159,7 @@ end
 
 def introduceMatch()
     pbWait(20)
-    pbMessage(_INTL("The match between #{nextOpponentName} and \\PN will now begin!"))
+    pbMessage(_INTL("\\wmThe match between #{nextOpponentName} and \\PN will now begin!"))
     pbWait(20)
 end
 

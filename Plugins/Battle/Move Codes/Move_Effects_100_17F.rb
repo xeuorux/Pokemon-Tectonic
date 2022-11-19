@@ -53,7 +53,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
   # Entry hazard. Lays poison spikes on the opposing side (max. 2 layers).
   # (Poison Spikes)
   #===============================================================================
-  class PokeBattle_Move_104 < PokeBattle_TypeSpikeMove
+  class PokeBattle_Move_104 < PokeBattle_StatusSpikeMove
     def initialize(battle,move)
       @spikeEffect = :PoisonSpikes
       super
