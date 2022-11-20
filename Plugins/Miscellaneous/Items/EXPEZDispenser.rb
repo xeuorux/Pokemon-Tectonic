@@ -2,6 +2,7 @@ EXP_PER_EXTRA_SMALL = 250
 
 class PokemonGlobalMetadata
 	attr_accessor :expJARUpgraded
+	attr_accessor :expJAREfficient
 end
 
 ItemHandlers::UseFromBag.add(:EXPEZDISPENSER,proc { |item|

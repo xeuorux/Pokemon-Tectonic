@@ -1,3 +1,14 @@
+def payMoney(cost)
+	raise _INTL("A money cost can't be negative!") if cost < 0
+	if $Trainer.money >= cost
+		$Trainer.money = $Trainer.money - cost
+		pbMessage(_INTL("You hand over #{cost}."))
+		return true
+	else
+		return false
+	end
+end
+
 def purchaseStarters(type,price=0)
 	return unless [:GRASS,:FIRE,:WATER].include?(type)
 	typeName = GameData::Type.get(type).real_name
