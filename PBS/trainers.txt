@@ -439,7 +439,7 @@ Pokemon = SANDACONDA,26
     AbilityIndex = 1
 #-------------------------------
 [PSYCHIC_F2,Ludmila]
-Pokemon = MRMIME,25
+Pokemon = MIMEJR,25
     AbilityIndex = 0
 Pokemon = GOLBAT,26
     AbilityIndex = 0
