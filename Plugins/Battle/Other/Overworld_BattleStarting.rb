@@ -379,6 +379,12 @@ def battleAutoTest(trainerID, trainerName)
   end
 end
 
+# A simpler variant which assumes that the cursed index is 1 higher than the base indexz
+def cursedBattle(trainerType,trainerName,baseIndex = 0)
+  baseIndex += 1 if $PokemonGlobal.tarot_amulet_active
+  pbTrainerBattle(trainerType,trainerName,nil,false,baseIndex)
+end
+
 def pbTrainerBattleCursed(nonCursedInfoArray, cursedInfoArray)
 	if $PokemonGlobal.tarot_amulet_active
 		id = cursedInfoArray[2] || 0

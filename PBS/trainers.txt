@@ -167,6 +167,19 @@ Pokemon = SMOOCHUM,17
 Pokemon = JOLTIK,18
     AbilityIndex = 0
 #-------------------------------
+[POKEMONTRAINER_Yezera,Yezera,1]
+ExtendsVersion = 0
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = NOIBAT,17
+    AbilityIndex = 1
+    Item = FLYINGGEM
+Pokemon = LARVESTA,18
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+Pokemon = WHISMUR,17
+    AbilityIndex = 1
+    Item = THROATSPRAY
+#-------------------------------
 [GUITARIST,Reece]
 Pokemon = BLITZLE,17
     AbilityIndex = 1
@@ -711,7 +724,7 @@ Pokemon = CROBAT,40
     Item = STEELGEM
     EV = 10,20,0,20,0,0
 #-------------------------------
-[POKEMONTRAINER_Yezera,Yezera,1]
+[POKEMONTRAINER_Yezera,Yezera,2]
 Pokemon = MORGREM,25
     Moves = REFLECT,ASSURANCE,PERFUMEDPUNCH
     AbilityIndex = 1
@@ -722,8 +735,8 @@ Pokemon = POLIWHIRL,25
     Moves = SPATTERINGRAM,BRICKBREAK,HELPINGHAND
     AbilityIndex = 1
 #-------------------------------
-[POKEMONTRAINER_Yezera,Yezera,6]
-ExtendsVersion = 1
+[POKEMONTRAINER_Yezera,Yezera,3]
+ExtendsVersion = 2
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = CENTISKORCH,25
     Moves = BUGBITE,FLAMEWHEEL,DAZZLE
@@ -738,7 +751,7 @@ Pokemon = DARTRIX,25
     AbilityIndex = 1
     Item = GHOSTGEM
 #-------------------------------
-[POKEMONTRAINER_Yezera,Yezera,2]
+[POKEMONTRAINER_Yezera,Yezera,4]
 Policies = YEZERA
 Pokemon = VOLBEAT,35
     AbilityIndex = 1
@@ -753,8 +766,8 @@ Pokemon = MILTANK,35
 Pokemon = EISCUE,35
     AbilityIndex = 0
 #-------------------------------
-[POKEMONTRAINER_Yezera,Yezera,7]
-ExtendsVersion = 2
+[POKEMONTRAINER_Yezera,Yezera,5]
+ExtendsVersion = 4
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = RHYDON,35
     AbilityIndex = 0
@@ -2818,7 +2831,7 @@ Pokemon = KOMMOO,46
 ExtendsVersion = 0
 Policies = CURSE_PERISH_SONGED
 #-------------------------------
-[POKEMONTRAINER_Yezera,Yezera,3]
+[POKEMONTRAINER_Yezera,Yezera,6]
 Policies = YEZERA4
 Pokemon = TOGEKISS,65
     Name = Artemisia
@@ -2850,8 +2863,8 @@ Pokemon = MAGNEZONE,65
     AbilityIndex = 1
     Item = SHUCABERRY
 #-------------------------------
-[POKEMONTRAINER_Yezera,Yezera,8]
-ExtendsVersion = 3
+[POKEMONTRAINER_Yezera,Yezera,7]
+ExtendsVersion = 6
 Policies = CURSE_FIGHT_EXTENDED
 Pokemon = REGIROCK,65
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,CURSE
@@ -3346,15 +3359,13 @@ Pokemon = KLAWSAR,58
     AbilityIndex = 0
     Item = LIFEORB
 #-------------------------------
-[POKEMONTRAINER_Yezera,Yezera,9]
+[POKEMONTRAINER_Yezera,Yezera,8]
 Pokemon = REGIDRAGO,65
     Moves = DRAGONENERGY,DRAGONBLOOD,HAMMERARM,CRUNCH
     AbilityIndex = 1
-    Item = DRAGONGEM
 Pokemon = REGIELEKI,65
     Moves = ELECTROWEB,ELECTROBALL,LIGHTSCREEN,REFLECT
     AbilityIndex = 0
-    Item = FOCUSSASH
 Pokemon = TOGEKISS,65
     Name = Artemisia
     Gender = female
@@ -3377,6 +3388,15 @@ Pokemon = TYRANITAR,65
     Name = Autochthon
     Moves = CRUNCH,ROCKSLIDE,EARTHQUAKE,IRONTAIL
     AbilityIndex = 1
+#-------------------------------
+[POKEMONTRAINER_Yezera,Yezera,9]
+ExtendsVersion = 8
+Policies = CURSE_TYPE_WEAKENED
+Pokemon = REGIDRAGO,65
+    Item = DRAGONGEM
+Pokemon = REGIELEKI,65
+    Item = FOCUSSASH
+Pokemon = TYRANITAR,65
     Item = ASSAULTVEST
 #-------------------------------
 [MASKEDVILLAIN,Crimson]
@@ -4938,7 +4958,7 @@ Pokemon = GRAPIDASH,70
 Pokemon = GOLURK,70
     Item = SEVENLEAGUEBOOTS
 #-------------------------------
-[POKEMONTRAINER_Yezera,Yezera,5]
+[POKEMONTRAINER_Yezera,Yezera,10]
 Pokemon = TYRANITAR,70
     Name = Autochthon
     Gender = male
@@ -4964,8 +4984,9 @@ Pokemon = CHANDELURE,70
     AbilityIndex = 1
     Item = FOCUSSASH
 #-------------------------------
-[POKEMONTRAINER_Yezera,Yezera,10]
-ExtendsVersion = 5
+[POKEMONTRAINER_Yezera,Yezera,11]
+ExtendsVersion = 10
+Policies = CURSE_NO_MERCY_2
 Pokemon = MAGNEZONE,70
     Name = Anri
     Moves = ZAPCANNON,ELECTROWEB,STEELBEAM,FLASHCANNON

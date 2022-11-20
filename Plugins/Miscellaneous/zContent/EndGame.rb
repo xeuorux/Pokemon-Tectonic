@@ -23,8 +23,8 @@ end
 
 def yezeraMavisBattle
 	if !$PokemonGlobal.tarot_amulet_active
-		return pbDoubleTrainerBattle(:POKEMONTRAINER_Yezera,"Yezera",5,nil,:SHADOWMAVIS,"Mavis",0,nil)
+		return pbDoubleTrainerBattle(:POKEMONTRAINER_Yezera,"Yezera",10,nil,:SHADOWMAVIS,"Mavis",0,nil)
 	else
-		return pbDoubleTrainerBattle(:POKEMONTRAINER_Yezera,"Yezera",10,nil,:SHADOWMAVIS,"Mavis",1,nil)
+		return pbDoubleTrainerBattle(:POKEMONTRAINER_Yezera,"Yezera",11,nil,:SHADOWMAVIS,"Mavis",1,nil)
 	end
 end
