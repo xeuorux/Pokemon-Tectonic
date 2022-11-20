@@ -444,7 +444,7 @@ Pokemon = MIMEJR,25
 Pokemon = GOLBAT,26
     AbilityIndex = 0
     Item = ORANBERRY
-Pokemon = RATICATE,26
+Pokemon = RATICATE,27
     AbilityIndex = 1
 #-------------------------------
 [RANCHER,Billy]
