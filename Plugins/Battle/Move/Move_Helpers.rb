@@ -15,7 +15,7 @@ class PokeBattle_Move
     return false unless @battle.rainy?
     return false if !RAIN_DEBUFF_ACTIVE
     return false if immuneToRainDebuff?()
-    return false if [:Water,:Electric].include?(type)
+    return false if [:WATER,:ELECTRIC].include?(type)
     return user.debuffedByRain?(checkingForAI)
   end
 
@@ -23,7 +23,7 @@ class PokeBattle_Move
     return false unless @battle.sunny?
     return false if !SUN_DEBUFF_ACTIVE
     return false if immuneToSunDebuff?()
-    return false if [:Fire,:Grass].include?(type)
+    return false if [:FIRE,:GRASS].include?(type)
     return user.debuffedBySun?(checkingForAI)
   end
   

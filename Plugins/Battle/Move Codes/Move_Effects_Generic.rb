@@ -510,6 +510,8 @@ class PokeBattle_FixedDamageMove < PokeBattle_Move
       return super,false
     end
   end
+
+  def displayWeatherDebuffMessages(user,type); return; end
 end
 
 #===============================================================================
