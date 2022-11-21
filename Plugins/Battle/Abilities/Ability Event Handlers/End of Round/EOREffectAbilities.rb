@@ -126,3 +126,12 @@ BattleHandlers::EOREffectAbility.add(:EXTREMEHEAT,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::EOREffectAbility.add(:TENDERIZE,
+  proc { |ability,battler,battle|
+    battler.eachOther do |b|
+      next unless b.numbed?
+      b.pbLowerMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1], battler, showAbilitySplash: true)
+    end
+  }
+)

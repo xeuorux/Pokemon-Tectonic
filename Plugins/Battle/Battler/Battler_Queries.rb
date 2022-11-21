@@ -472,17 +472,29 @@ class PokeBattle_Battler
 	end
 
 	# Yields each unfainted ally Pokémon.
-	def eachAlly
-		@battle.battlers.each do |b|
-			yield b if b && !b.fainted? && !b.opposes?(@index) && b.index != @index
+	def eachAlly(nearOnly = false)
+		eachOther(nearOnly) do |b|
+			next if b.opposes?(@index)
+			yield b
 		end
 	end
 
 	# Yields each unfainted opposing Pokémon.
 	def eachOpposing(nearOnly = false)
+		eachOther(nearOnly) do |b|
+			next unless b.opposes?(@index)
+			yield b
+		end
+	end
+
+	# Yields each other unfainted battler
+	def eachOther(nearOnly = false)
 		@battle.battlers.each do |b|
+			next if b.nil?
+			next if b.index == @index # Ignore the self
 			next if nearOnly && !near?(b)
-			yield b if b && !b.fainted? && b.opposes?(@index)
+			next if b.fainted?
+			yield b
 		end
 	end
 
