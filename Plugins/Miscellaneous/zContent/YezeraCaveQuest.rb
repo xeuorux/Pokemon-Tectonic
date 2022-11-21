@@ -2,7 +2,7 @@ def registerYezera(id = nil)
 	stowFollowerIfActive
 	pbToggleFollowingPokemon("off",false)
 	$PokemonTemp.dependentEvents.removeEventByName("FollowerPkmn")
-	pbRegisterPartner(:POKEMONTRAINER_Yezera,"Yezera",1)
+	pbRegisterPartner(:POKEMONTRAINER_Yezera,"Yezera",2)
 	pbAddDependency2(id ? id : @event_id,"Yezera",3)
 end
 
