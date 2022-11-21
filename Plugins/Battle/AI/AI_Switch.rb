@@ -29,40 +29,43 @@ class PokeBattle_AI
         switchingBias = 0
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is determining whether it should switch out")
 
-        # Figure out the effectiveness of the last move that hit it
-        typeMod = battler.lastRoundHighestTypeModFromFoe
-        if typeMod >= 0 && !policies.include?(:PROACTIVE_MATCHUP_SWAPPER)
-            effectivenessSwitchBiasMod = 0
-            if Effectiveness.hyper_effective?(typeMod)
-                effectivenessSwitchBiasMod += 2
-            elsif Effectiveness.super_effective?(typeMod)
-                effectivenessSwitchBiasMod += 1
-            elsif Effectiveness.not_very_effective?(typeMod)
-                effectivenessSwitchBiasMod -= 1
-            elsif Effectiveness.ineffective?(typeMod)
-                effectivenessSwitchBiasMod -= 2
+        # Ignore these protocols if this is an AI trainer helping you in a boss battle
+        unless @battle.bossBattle?
+            # Figure out the effectiveness of the last move that hit it
+            typeMod = battler.lastRoundHighestTypeModFromFoe
+            if typeMod >= 0 && !policies.include?(:PROACTIVE_MATCHUP_SWAPPER)
+                effectivenessSwitchBiasMod = 0
+                if Effectiveness.hyper_effective?(typeMod)
+                    effectivenessSwitchBiasMod += 2
+                elsif Effectiveness.super_effective?(typeMod)
+                    effectivenessSwitchBiasMod += 1
+                elsif Effectiveness.not_very_effective?(typeMod)
+                    effectivenessSwitchBiasMod -= 1
+                elsif Effectiveness.ineffective?(typeMod)
+                    effectivenessSwitchBiasMod -= 2
+                end
+                switchingBias += effectivenessSwitchBiasMod
+                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) takes into account the effectiveness of its last hit taken (#{effectivenessSwitchBiasMod.to_change})")
             end
-            switchingBias += effectivenessSwitchBiasMod
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) takes into account the effectiveness of its last hit taken (#{effectivenessSwitchBiasMod.to_change})")
-        end
-        
-        # More or less likely to switch based on if you have a good move to use
-        maxScore   = 0
-        choices.each do |c|
-            maxScore = c[1] if c[1] > maxScore
-        end
-        maxMoveScoreBiasChange = +5
-        maxMoveScoreBiasChange -= (maxScore / 25.0).round
-        switchingBias += maxMoveScoreBiasChange
-        PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) max score among its #{choices.length} choices is #{maxScore} (#{maxMoveScoreBiasChange.to_change})")
+            
+            # More or less likely to switch based on if you have a good move to use
+            maxScore   = 0
+            choices.each do |c|
+                maxScore = c[1] if c[1] > maxScore
+            end
+            maxMoveScoreBiasChange = +5
+            maxMoveScoreBiasChange -= (maxScore / 25.0).round
+            switchingBias += maxMoveScoreBiasChange
+            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) max score among its #{choices.length} choices is #{maxScore} (#{maxMoveScoreBiasChange.to_change})")
 
-        # If there is a single foe and it is resting after Hyper Beam or is
-        # Truanting (i.e. free turn)
-        if @battle.pbSideSize(battler.index+1) == 1 && !battler.pbDirectOpposing.fainted?
-            opposingBattler = battler.pbDirectOpposing
-            if !opposingBattler.canActThisTurn?
-                switchingBias -= 2
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) thinks the opposing battler can't act this turn (-2)")
+            # If there is a single foe and it is resting after Hyper Beam or is
+            # Truanting (i.e. free turn)
+            if @battle.pbSideSize(battler.index+1) == 1 && !battler.pbDirectOpposing.fainted?
+                opposingBattler = battler.pbDirectOpposing
+                if !opposingBattler.canActThisTurn?
+                    switchingBias -= 2
+                    PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) thinks the opposing battler can't act this turn (-2)")
+                end
             end
         end
 
