@@ -394,6 +394,10 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def pbDisplayUseMessage(user,targets)
       super if !@battle.futureSight
     end
+
+    def displayWeatherDebuffMessages(user,type)
+      super if !@battle.futureSight
+    end
   
     def pbFailsAgainstTarget?(user,target)
       if !@battle.futureSight && target.position.effectActive?(:FutureSightCounter)

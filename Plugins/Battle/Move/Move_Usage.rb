@@ -65,7 +65,6 @@ class PokeBattle_Move
     end
 
     def displayWeatherDebuffMessages(user,type)
-        return if is_a?(PokeBattle_FixedDamageMove)
         if applyRainDebuff?(user,type)
             if @battle.pbCheckGlobalAbility(:DREARYCLOUDS)
                 @battle.pbDisplay(_INTL("{1}'s attack is dampened a lot by the dreary rain.",user.pbThis))
