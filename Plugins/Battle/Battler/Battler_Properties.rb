@@ -222,6 +222,7 @@ class PokeBattle_Battler
 	#=============================================================================
 	def pbWeight
 		ret = @pokemon ? @pokemon.weight : 500
+		ret = GameData::Species.get(@effects[:TransformSpecies]).weight if effectActive?(:Transform)
 		ret += @effects[:WeightChange]
 		ret = 1 if ret < 1
 		ret = BattleHandlers.triggerWeightCalcAbility(ability, self, ret) if abilityActive? && !@battle.moldBreaker
@@ -231,6 +232,7 @@ class PokeBattle_Battler
 
 	def pbHeight
 		ret = @pokemon ? @pokemon.height : 2.0
+		ret = GameData::Species.get(@effects[:TransformSpecies]).height if effectActive?(:Transform)
 		ret = 1 if ret < 1
 		return ret
 	end

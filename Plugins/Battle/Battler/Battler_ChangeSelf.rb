@@ -517,8 +517,6 @@ class PokeBattle_Battler
 		@moves.clear
 		target.moves.each_with_index do |m, i|
 			@moves[i] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(m.id))
-			@moves[i].pp = 5
-			@moves[i].total_pp = 5
 		end
 		disableEffect(:Disable)
 		@effects[:WeightChange] = target.effects[:WeightChange]
