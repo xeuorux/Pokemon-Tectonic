@@ -23473,7 +23473,7 @@ Name = Bergmite
 InternalName = BERGMITE
 Type1 = ICE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,79,90,28,37,60
+BaseStats = 68,80,88,26,62,68
 # Total = 359
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -23507,8 +23507,8 @@ InternalName = AVALUGG
 Type1 = ICE
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,117,134,35,44,96
-# Total = 521
+BaseStats = 96,112,124,36,88,96
+# Total = 550
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 180
