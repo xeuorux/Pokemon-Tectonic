@@ -40,7 +40,7 @@ class PokeBattle_Battle
     end
     # Fleeing from trainer battles or boss battles
     if trainerBattle? || bossBattle?
-      if $DEBUG && Input.press?(Input::CTRL)
+      if debugControl
         if pbDisplayConfirm(_INTL("Treat this battle as a win?"))
           @decision = 1
           return 1
@@ -60,7 +60,7 @@ class PokeBattle_Battle
       return 0
     end
     # Fleeing from wild battles
-    if $DEBUG && Input.press?(Input::CTRL)
+    if debugControl
       pbSEPlay("Battle flee")
       pbDisplayPaused(_INTL("You got away safely!"))
       @decision = 3

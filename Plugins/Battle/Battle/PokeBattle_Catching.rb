@@ -209,7 +209,7 @@ class PokeBattle_Battle
   CATCH_BASE_CHANCE = 65536
 
   def pbCaptureCalc(pkmn,battler,catch_rate,ball)
-    return 4 if $DEBUG && Input.press?(Input::CTRL)
+    return 4 if debugControl
     return 4 if BallHandlers.isUnconditional?(ball,self,battler)
     y = captureThresholdCalc(pkmn,battler,catch_rate,ball)
     # Critical capture check

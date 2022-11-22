@@ -228,7 +228,7 @@ def pbGetTimeNow
 end
 
 def speedingUpTime?
-  $DEBUG && Input.press?(Input::CTRL) && Input.pressex?(0x54) # T, for time
+  debugControl && Input.pressex?(0x54) # T, for time
 end
 
 class PokemonGlobalMetadata

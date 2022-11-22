@@ -17,7 +17,7 @@ class WaypointsTracker
 	def overwriteWaypoint(waypointName,mapID,wayPointInfo)
 		if @activeWayPoints.has_key?(waypointName)
 			@activeWayPoints[waypointName] = [mapID,wayPointInfo]
-		elsif $DEBUG && Input.press?(Input::CTRL)
+		elsif debugControl
 			setWaypoint(waypointName,mapID,wayPointInfo)
 		end
 	end
@@ -143,7 +143,7 @@ end
 # Should only be called by the waypoint events themselves
 def accessWaypoint(waypointName,avatarSpecies=nil)
 	waypointEvent = get_self
-	if !avatarSpecies.nil? && $DEBUG && Input.press?(Input::CTRL)
+	if !avatarSpecies.nil? && debugControl
 		avatarSpeciesName = GameData::Species.get(avatarSpecies).name
 
 		if pbConfirmMessageSerious(_INTL("The totem pulses with the frequency of #{avatarSpeciesName}. Summon it?"))

@@ -120,7 +120,7 @@ class PokemonPokedexInfo_Scene
     species_data = GameData::Species.get_species_form(@species, @form)
 	@title = species_data.real_form_name ? "#{species_data.real_name} (#{species_data.real_form_name})" : species_data.real_name
     @sprites["infosprite"].setSpeciesBitmap(@species,@gender,@form)
-	forceShiny = $DEBUG && Input.press?(Input::CTRL)
+	forceShiny = debugControl
     if @sprites["formfront"]
       @sprites["formfront"].setSpeciesBitmap(@species,@gender,@form,forceShiny)
     end

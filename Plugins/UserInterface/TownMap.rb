@@ -193,7 +193,7 @@ class PokemonRegionMap_Scene
       elsif Input.trigger?(Input::USE) && mode == 1   # Choosing an area to fly to
         healspot = pbGetHealingSpot(@mapX,@mapY)
         if healspot
-          if $PokemonGlobal.visitedMaps[healspot[0]] || ($DEBUG && Input.press?(Input::CTRL))
+          if $PokemonGlobal.visitedMaps[healspot[0]] || debugControl
             return healspot
           end
         end

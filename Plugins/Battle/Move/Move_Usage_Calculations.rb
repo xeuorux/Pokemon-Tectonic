@@ -371,7 +371,7 @@ class PokeBattle_Move
         ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
         ret *= 4 if windMove? && user.hasActiveAbility?(:FUMIGATE)
         ret /= 2 if applyRainDebuff?(user,type)
-        ret = 100 if $DEBUG && Input.press?(Input::CTRL)
+        ret = 100 if debugControl
         return ret
     end
   

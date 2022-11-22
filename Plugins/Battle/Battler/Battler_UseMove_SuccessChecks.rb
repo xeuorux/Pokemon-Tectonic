@@ -254,7 +254,7 @@ class PokeBattle_Battler
 				@battle.pbCommonAnimation('Confusion', self)
 				@battle.pbDisplay(_INTL('{1} is confused!', pbThis))
 				threshold = 50 * @effects[:ConfusionChance]
-				if (@battle.pbRandom(100) < threshold && !hasActiveAbility?(%i[HEADACHE TANGLEDFEET])) || ($DEBUG && Input.press?(Input::CTRL))
+				if (@battle.pbRandom(100) < threshold && !hasActiveAbility?(%i[HEADACHE TANGLEDFEET])) || debugControl
 					superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE, @index)
 					pbConfusionDamage(_INTL('It hurt itself in its confusion!'), false, superEff)
 					applyEffect(:ConfusionChance,-999)
@@ -271,7 +271,7 @@ class PokeBattle_Battler
 				@battle.pbAnimation(:LUCKYCHANT, self, nil)
 				@battle.pbDisplay(_INTL('{1} is charmed!', pbThis))
 				threshold = 50 * @effects[:CharmChance]
-				if (@battle.pbRandom(100) < threshold && !hasActiveAbility?(%i[HEADACHE TANGLEDFEET])) || ($DEBUG && Input.press?(Input::CTRL))
+				if (@battle.pbRandom(100) < threshold && !hasActiveAbility?(%i[HEADACHE TANGLEDFEET])) || debugControl
 					superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE, @index)
 					pbConfusionDamage(_INTL("It's energy went wild due to the charm!"), true, superEff)
 					applyEffect(:CharmChance,-999)

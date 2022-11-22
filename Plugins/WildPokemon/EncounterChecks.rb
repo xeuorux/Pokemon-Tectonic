@@ -37,7 +37,7 @@ class PokemonEncounters
     end
     return false if $game_system.encounter_disabled
     return false if !$Trainer
-    return false if $DEBUG && Input.press?(Input::CTRL)
+    return false if debugControl
     # Check if enc_type has a defined step chance/encounter table
     return false if !@step_chances[enc_type] || @step_chances[enc_type] == 0
     return false if !has_encounter_type?(enc_type)

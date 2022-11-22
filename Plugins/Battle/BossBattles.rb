@@ -26,7 +26,7 @@ def pbAvatarBattleCore(*args)
   outcomeVar = $PokemonTemp.battleRules["outcomeVar"] || 1
   canLose    = $PokemonTemp.battleRules["canLose"] || false
   # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
-  if $Trainer.able_pokemon_count == 0 || ($DEBUG && Input.press?(Input::CTRL))
+  if $Trainer.able_pokemon_count == 0 || debugControl
     pbMessage(_INTL("SKIPPING BATTLE...")) if $Trainer.pokemon_count > 0
     pbSet(outcomeVar,1)   # Treat it as a win
     $PokemonTemp.clearBattleRules

@@ -82,7 +82,7 @@ class PokeBattle_Battle
     battler = @battlers[idxBattler]
     return false if !battler.hasMega?
     return false if wildBattle? && opposes?(idxBattler) && !battler.boss
-    return true if $DEBUG && Input.press?(Input::CTRL)
+    return true if debugControl
     return false if battler.effectActive?(:SkyDrop)
     return false if !pbHasMegaRing?(idxBattler) && !battler.boss
     side  = battler.idxOwnSide

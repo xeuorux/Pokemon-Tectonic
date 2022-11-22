@@ -155,7 +155,7 @@ class NewDexNav
 				pbPlayCursorSE
 			end
 		  elsif Input.trigger?(Input::C)
-			if !($Trainer.pokedex.owned?(highlightedSpecies) || ($DEBUG && Input.press?(Input::CTRL)))
+			if !($Trainer.pokedex.owned?(highlightedSpecies) || debugControl)
 			    pbMessage(_INTL("You cannot search for this Pokémon, because you haven't owned one yet!"))
 			    next
 			else
@@ -164,7 +164,7 @@ class NewDexNav
 					next
 				end
 				searchTime = 20 + rand(80)
-				searchTime = 0 if $DEBUG && Input.press?(Input::CTRL)
+				searchTime = 0 if debugControl
 				pbMessage(_INTL("Searching\\ts[15]...\\wtnp[#{searchTime}]"))
 				pbMessage(_INTL("Oh! A #{highlightedSpeciesData.real_name} was found nearby!"))
 				pbFadeOutAndHide(@sprites)
