@@ -149,3 +149,9 @@ BattleHandlers::UserAbilityEndOfMove.add(:FOLLOWTHROUGH,
     user.tryRaiseStat(:SPEED,user,increment: numFainted,showAbilitySplash: true)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:SOUNDBARRIER,
+  proc { |ability,user,targets,move,battle|
+    user.tryRaiseStat(:DEFENSE,user, showAbilitySplash: true) if move.soundMove?
+  }
+)
