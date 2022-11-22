@@ -583,7 +583,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TIMEINTERLOPER,
 
 BattleHandlers::DamageCalcUserAbility.add(:PRIMEVALSLOWSTART,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:attack_multiplier] /= 2
+    mults[:attack_multiplier] /= 2 if move.physicalMove?
   }
 )
 
