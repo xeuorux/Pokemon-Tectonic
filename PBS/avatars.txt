@@ -415,7 +415,7 @@ HPMult = 6.0
 Ability = CHILLEDBODY
 Moves1 = ICEFANG,DRAGONCLAW,PRIMEVALICEBEAM,PRIMEVALCHILL
 Moves2 = CRUELTY,CRUNCH
-HPMult = 4.5
+HPMult = 6.0
 #-------------------------------
 [ELECTIVIRE]
 Ability = STATIC
