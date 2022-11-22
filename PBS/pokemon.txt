@@ -1216,6 +1216,7 @@ Evolutions = NINETALES,Item,FIRESTONE
 [38]
 Name = Ninetales
 InternalName = NINETALES
+Notes = change ability - consider back to Drought - needs niche (buffed BST for now)
 Type1 = FIRE
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -20365,6 +20366,7 @@ BattlerShadowSize = 2
 [618]
 Name = Stunfisk
 InternalName = STUNFISK
+Notes = change static to something better to compete with drizzle - potentially give some kind of move to help it as a weather setter
 Type1 = GROUND
 Type2 = ELECTRIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -30937,6 +30939,7 @@ Evolutions = ANINETALES,Item,ICESTONE
 [2006]
 Name = A. Ninetales
 InternalName = ANINETALES
+Notes = consider giving back snow warning or some equivalent snow setting ability - needs niche (buffed BST for now)
 Type1 = ICE
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
