@@ -447,7 +447,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:BARRIERMAKER,
 
 BattleHandlers::AbilityOnSwitchIn.add(:MYSTICAURA,
   proc { |ability,battler,battle|
-	if battle.field.effectActive?(:MagicRoom)
+	unless battle.field.effectActive?(:MagicRoom)
 		battle.pbShowAbilitySplash(battler)
 		battle.field.applyEffect(:MagicRoom,battler.getRoomDuration())
 		battle.pbHideAbilitySplash(battler)
@@ -457,7 +457,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:MYSTICAURA,
 
 BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
   proc { |ability,battler,battle|
-    if battle.field.effectActive?(:PuzzleRoom)
+    unless battle.field.effectActive?(:PuzzleRoom)
       battle.pbShowAbilitySplash(battler)
       battle.field.applyEffect(:PuzzleRoom,battler.getRoomDuration())
       battle.pbHideAbilitySplash(battler)
@@ -467,7 +467,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
 
 BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTER,
   proc { |ability,battler,battle|
-    if battle.field.effectActive?(:TrickRoom)
+    unless battle.field.effectActive?(:TrickRoom)
       battle.pbShowAbilitySplash(battler)
       battle.field.applyEffect(:TrickRoom,battler.getRoomDuration())
       battle.pbHideAbilitySplash(battler)
@@ -477,7 +477,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTER,
 
 BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
   proc { |ability,battler,battle|
-    if battle.field.effectActive?(:OddRoom)
+    unless battle.field.effectActive?(:OddRoom)
       battle.pbShowAbilitySplash(battler)
       battle.field.applyEffect(:OddRoom,battler.getRoomDuration())
       battle.pbHideAbilitySplash(battler)
