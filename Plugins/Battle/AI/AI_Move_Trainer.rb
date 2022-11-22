@@ -70,7 +70,9 @@ class PokeBattle_AI
             @battle.eachBattler do |b|
                 next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
                 targets.push(b)
-                score = pbGetMoveScore(move,user,b,skill,policies)
+            end
+            targets.each do |b|
+                score = pbGetMoveScore(move,user,b,skill,policies,targets.length)
                 totalScore += ((user.opposes?(b)) ? score : -score)
             end
             if targets.length > 1
@@ -80,7 +82,7 @@ class PokeBattle_AI
             newChoice = [totalScore,-1] if totalScore>0
         elsif target_data.num_targets == 0
             # If move has no targets, affects the user, a side or the whole field
-            score = pbGetMoveScore(move,user,user,skill,policies)
+            score = pbGetMoveScore(move,user,user,skill,policies,0)
             newChoice = [score,-1] if score>0
         else
             # If move affects one battler and you have to choose which one
@@ -103,7 +105,7 @@ class PokeBattle_AI
     #=============================================================================
 	# Get a score for the given move being used against the given target
 	#=============================================================================
-	def pbGetMoveScore(move,user,target,skill=100,policies=[])
+	def pbGetMoveScore(move,user,target,skill=100,policies=[],numTargets=1)
 		score = 100
 		score = pbGetMoveScoreFunctionCode(score,move,user,target,skill,policies)
 		if score.nil?
@@ -132,7 +134,7 @@ class PokeBattle_AI
         @battle.messagesBlocked = false
             
         # Don't prefer moves that are ineffective because of abilities or effects
-        if pbCheckMoveImmunity(score,move,user,target,skill)
+        if pbCheckMoveImmunity(move,user,target,skill)
             score = 0
             echoln("#{user.pbThis} scores the move #{move.id} as 0 due to it being ineffective against target #{target.pbThis(false)}.")
         end
@@ -195,7 +197,7 @@ class PokeBattle_AI
 		# Adjust score based on how much damage it can deal
 		if move.damagingMove?
 		  begin
-            score = pbGetMoveScoreDamage(score,move,user,target,skill)
+            score = pbGetMoveScoreDamage(score,move,user,target,skill,numTargets)
           rescue => exception
             pbPrintException($!) if $DEBUG
           end
@@ -222,8 +224,8 @@ class PokeBattle_AI
     # Add to a move's score based on how much damage it will deal (as a percentage
     # of the target's current HP)
     #=============================================================================
-    def pbGetMoveScoreDamage(score,move,user,target,skill)
-        damagePercentage = getDamagePercentageAI(move,user,target,skill)
+    def pbGetMoveScoreDamage(score,move,user,target,skill,numTargets=1)
+        damagePercentage = getDamagePercentageAI(move,user,target,skill,numTargets)
 
         echoln("#{user.pbThis} thinks that move #{move.id} will deal #{damagePercentage.round(1)} percent of #{target.pbThis(false)}'s HP")
         
@@ -237,10 +239,9 @@ class PokeBattle_AI
         return score
     end
 
-    def getDamagePercentageAI(move,user,target,skill)
+    def getDamagePercentageAI(move,user,target,skill,numTargets=1)
         # Calculate how much damage the move will do (roughly)
-        baseDmg = pbMoveBaseDamageAI(move,user,target,skill)
-        realDamage = pbTotalDamageAI(move,user,target,skill,baseDmg)
+        realDamage = pbTotalDamageAI(move,user,target,skill,numTargets)
 
         # Convert damage to percentage of target's remaining HP
         damagePercentage = realDamage*100.0/target.hp

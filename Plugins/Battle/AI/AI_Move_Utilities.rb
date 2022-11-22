@@ -66,8 +66,8 @@ class PokeBattle_AI
     #=============================================================================
     # Immunity to a move because of the target's ability, item or other effects
     #=============================================================================
-    def pbCheckMoveImmunity(score,move,user,target,skill)
-        type = pbRoughType(move,user,skill)
+    def pbCheckMoveImmunity(move,user,target,skill)
+        type = pbRoughType(move,user)
         typeMod = pbCalcTypeModAI(type,user,target,move)
         # Type effectiveness
         if (Effectiveness.ineffective?(typeMod) && !move.statusMove?)
@@ -112,17 +112,12 @@ class PokeBattle_AI
                 return true
             end
         when :FLYING
-            if target.hasActiveAbility?(:PECKINGORDER)
+            if target.hasActiveAbility?([:PECKINGORDER,:AERODYNAMIC])
                 moveFailureAlert(move,user,target,"immunity ability")
                 return true
             end
         when :STEEL
             if target.hasActiveAbility?(:INDUSTRIALIZE)
-                moveFailureAlert(move,user,target,"immunity ability")
-                return true
-            end
-        when :FLYING
-            if target.hasActiveAbility?(:AERODYNAMIC)
                 moveFailureAlert(move,user,target,"immunity ability")
                 return true
             end
@@ -210,134 +205,27 @@ class PokeBattle_AI
     #=============================================================================
     def pbMoveBaseDamageAI(move,user,target,skill)
       baseDmg = move.baseDamage
-      baseDmg,isFixedDamage = move.pbBaseDamageAI(baseDmg,user,target,skill)
+      baseDmg = move.pbBaseDamageAI(baseDmg,user,target,skill)
       return baseDmg
     end
   
     #=============================================================================
     # Damage calculation
     #=============================================================================
-    def pbTotalDamageAI(move,user,target,skill,baseDmg)
+    def pbTotalDamageAI(move,user,target,baseDmg,numTargets=1)
         # Get the move's type
-        type = pbRoughType(move,user,skill)
+        type = pbRoughType(move,user)
 
         # Give the move a chance to change itself to phys or spec
         move.calculated_category = move.calculateCategory(user, [target])
 
-        # Get the relevant attacking and defending stat values (after stages)
-        attack, defense = move.damageCalcStats(user,target,true)
+        # Calculate the damage for one hit
+        damage = move.calculateDamageForHit(user,target,type,baseDmg,numTargets,true)
 
-        ##### Calculate all multiplier effects #####
-        multipliers = move.initializeMultipliers
+        # Estimate how many hits the move will do
+        numHits = move.pbNumHitsAI(user,target)
 
-        # Ability effects that alter damage
-        moldBreaker = user.hasMoldBreaker?
-
-        # TODO: Seperate abilities and items that increase damage based on the move or target chosen
-        # Away from stuff that the AI could not possibly predict
-        # So that it can be used here and that other stuff would not be
-
-        if !moldBreaker && target.abilityActive?
-          # NOTE: These abilities aren't suitable for checking at the start of the
-          #       round.
-          abilityBlacklist = [:FILTER,:SOLIDROCK]
-          canCheck = true
-          abilityBlacklist.each do |m|
-              next if move.id != m
-              canCheck = false
-              break
-          end
-          if canCheck
-              BattleHandlers.triggerDamageCalcTargetAbility(target.ability,
-              user,target,move,multipliers,baseDmg,type)
-          end
-        end
-
-        if !moldBreaker
-          target.eachAlly do |b|
-              next if !b.abilityActive?
-              BattleHandlers.triggerDamageCalcTargetAllyAbility(b.ability,
-                user,target,move,multipliers,baseDmg,type)
-          end
-        end
-
-        # Item effects that alter damage
-        # NOTE: Type-boosting gems aren't suitable for checking at the start of the
-        #       round.
-        if user.itemActive?
-          # NOTE: These items aren't suitable for checking at the start of the
-          #       round.
-          itemBlacklist = [:EXPERTBELT,:LIFEORB]
-          if !itemBlacklist.include?(user.item_id) && user.item && !user.item.is_gem? && !user.item.is_berry?
-              BattleHandlers.triggerDamageCalcUserItem(user.item,
-              user,target,move,multipliers,baseDmg,type)
-          end
-        end
-
-        if target.itemActive?
-          # NOTE: Type-weakening berries aren't suitable for checking at the start
-          #       of the round.
-          if target.item && !target.item.is_berry?
-              BattleHandlers.triggerDamageCalcTargetItem(target.item,
-              user,target,move,multipliers,baseDmg,type)
-          end
-        end
-
-        # Global abilities
-        if (@battle.pbCheckGlobalAbility(:DARKAURA) && type == :DARK) ||
-              (@battle.pbCheckGlobalAbility(:FAIRYAURA) && type == :FAIRY)
-            if @battle.pbCheckGlobalAbility(:AURABREAK)
-              multipliers[:base_damage_multiplier] *= 2 / 3.0
-            else
-              multipliers[:base_damage_multiplier] *= 4 / 3.0
-            end
-        end
-
-        # Parental Bond
-        if user.hasActiveAbility?(:PARENTALBOND)
-          multipliers[:base_damage_multiplier] *= 1.25
-        end
-
-        # Multi-targeting attacks
-        if pbTargetsMultiple?(move,user)
-            multipliers[:final_damage_multiplier] *= 0.75
-        end
-
-        # Type effectiveness
-        typemod = pbCalcTypeModAI(type,user,target,move) / Effectiveness::NORMAL_EFFECTIVE.to_f
-        multipliers[:final_damage_multiplier] *= typemod.to_f 
-
-        # Terrain
-        move.pbCalcTerrainDamageMultipliers(user,target,type,multipliers,true)
-
-        # Weather
-        move.pbCalcWeatherDamageMultipliers(user,target,type,multipliers,true)
-
-        # STAB, etc.
-        # This skips type effectiveness checks when calling for the AI
-        # Due to that otherwise relying on damage state
-        move.pbCalcTypeBasedDamageMultipliers(user,target,type,multipliers,true)
-        
-        # Statuses
-        move.pbCalcStatusesDamageMultipliers(user,target,multipliers,true)
-
-        # Light Screen, etc.
-        move.pbCalcProtectionsDamageMultipliers(user,target,multipliers,true)
-
-        # Move-specific final damage modifiers
-        baseDmg = move.pbModifyDamage(baseDmg,user,target)
-
-        ##### Main damage calculation #####
-        damage = move.calcDamageWithMultipliers(baseDmg,attack,defense,user.level,multipliers)
-
-        criticalHitRate = move.pbIsCritical?(user,target,true)
-
-        if criticalHitRate >= 0
-          criticalHitRate = 5 if criticalHitRate > 5
-          damage += damage * 0.1 * criticalHitRate
-        end
-
-        numHits = move.pbNumHitsAI(user,target,skill)
+        # Calculate the total estimated damage of all hits
         totalDamage = damage * numHits
                 
         return totalDamage.floor
@@ -353,7 +241,7 @@ class PokeBattle_AI
         baseAcc = move.pbBaseAccuracy(user,target)
         return 100 if baseAcc == 0
         # Get the move's type
-        type = pbRoughType(move,user,skill)
+        type = pbRoughType(move,user)
         # Calculate all modifier effects
         modifiers = {}
         modifiers[:base_accuracy]  = baseAcc

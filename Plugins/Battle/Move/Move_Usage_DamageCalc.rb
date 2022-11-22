@@ -4,24 +4,37 @@ class PokeBattle_Move
     #=============================================================================
     def pbCalcDamage(user,target,numTargets=1)
         return if statusMove?
+
         if target.damageState.disguise
             target.damageState.calcDamage = 1
             return
         end
+
         # Get the move's type
         type = @calcType # nil is treated as physical
-        # Calculate whether this hit deals critical damage
-        target.damageState.critical,target.damageState.forced_critical = pbIsCritical?(user,target)
+        
         # Calcuate base power of move
         baseDmg = pbBaseDamage(@baseDamage,user,target)
+
+        # Calculate whether this hit deals critical damage
+        target.damageState.critical,target.damageState.forced_critical = pbIsCritical?(user,target)
+        
+        # Calculate the actual damage dealt, and assign it to the damage state for tracking
+        target.damageState.calcDamage = calculateDamageForHit(user,target,type,baseDmg,numTargets)
+    end
+
+    def calculateDamageForHit(user,target,type,baseDmg,numTargets,aiChecking=false)
         # Get the relevant attacking and defending stat values (after stages)
-        attack, defense = damageCalcStats(user,target)
+        attack, defense = damageCalcStats(user,target,aiChecking)
+
         # Calculate all multiplier effects
         multipliers = initializeMultipliers
-        pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
+        pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers,aiChecking)
+
         # Main damage calculation
         finalCalculatedDamage = calcDamageWithMultipliers(baseDmg,attack,defense,user.level,multipliers)
-        target.damageState.calcDamage = finalCalculatedDamage
+
+        return finalCalculatedDamage
     end
 
     def initializeMultipliers
@@ -75,7 +88,7 @@ class PokeBattle_Move
         return attack, defense
     end
     
-    def pbCalcAbilityDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
+    def pbCalcAbilityDamageMultipliers(user,target,type,baseDmg,multipliers,aiChecking=false)
         # Global abilities
         if (@battle.pbCheckGlobalAbility(:DARKAURA) && type == :DARK) ||
             (@battle.pbCheckGlobalAbility(:FAIRYAURA) && type == :FAIRY)
@@ -90,15 +103,16 @@ class PokeBattle_Move
         end
         # Ability effects that alter damage
         if user.abilityActive?
-            BattleHandlers.triggerDamageCalcUserAbility(user.ability,user,target,self,multipliers,baseDmg,type)
+            BattleHandlers.triggerDamageCalcUserAbility(user.ability,user,target,self,multipliers,baseDmg,type,aiChecking)
         end
         if !@battle.moldBreaker
             # NOTE: It's odd that the user's Mold Breaker prevents its partner's
             #       beneficial abilities (e.g. Power Spot), but that's how it works.
             user.eachAlly do |b|
                 next if !b.abilityActive?
-                BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,user,target,self,multipliers,baseDmg,type)
+                BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,user,target,self,multipliers,baseDmg,type,aiChecking)
             end
+            # TODO: AI-Check discrepency for targets abilities
             if target.abilityActive?
                 BattleHandlers.triggerDamageCalcTargetAbility(target.ability,user,target,self,multipliers,baseDmg,type) if !@battle.moldBreaker
                 BattleHandlers.triggerDamageCalcTargetAbilityNonIgnorable(target.ability,user,target,self,multipliers,baseDmg,type)
@@ -241,11 +255,16 @@ class PokeBattle_Move
             end
         end
 
-        if !checkingForAI
-            # Type effectiveness
-            typeEffect = target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
-            multipliers[:final_damage_multiplier] *= typeEffect
+        # Type effectiveness
+        typeMod = 0
+        if checkingForAI
+            typeMod = @battle.battleAI.pbCalcTypeModAI(type,user,target,self)
+        else
+            typeMod = target.damageState.typeMod
         end
+
+        effectiveness = typeMod / Effectiveness::NORMAL_EFFECTIVE.to_f
+        multipliers[:final_damage_multiplier] *= effectiveness
 
         # Charge
         if user.effectActive?(:Charge) && type == :ELECTRIC
@@ -263,6 +282,7 @@ class PokeBattle_Move
                 multipliers[:base_damage_multiplier] /= 3.0
             end
         end
+        
 		# Volatile Toxin
 		if target.effectActive?(:VolatileToxin) && (type == :GROUND)
 			multipliers[:base_damage_multiplier] *= 2
@@ -281,57 +301,80 @@ class PokeBattle_Move
         end
     end
       
-    def pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
-        pbCalcAbilityDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
-        pbCalcTerrainDamageMultipliers(user,target,type,multipliers)
-        pbCalcWeatherDamageMultipliers(user,target,type,multipliers)
-        pbCalcStatusesDamageMultipliers(user,target,multipliers)
-        pbCalcProtectionsDamageMultipliers(user,target,multipliers)
-        pbCalcTypeBasedDamageMultipliers(user,target,type,multipliers)
+    def pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers,aiChecking=false)
+        pbCalcAbilityDamageMultipliers(user,target,type,baseDmg,multipliers,aiChecking)
+        pbCalcTerrainDamageMultipliers(user,target,type,multipliers,aiChecking)
+        pbCalcWeatherDamageMultipliers(user,target,type,multipliers,aiChecking)
+        pbCalcStatusesDamageMultipliers(user,target,multipliers,aiChecking)
+        pbCalcProtectionsDamageMultipliers(user,target,multipliers,aiChecking)
+        pbCalcTypeBasedDamageMultipliers(user,target,type,multipliers,aiChecking)
+
         # Item effects that alter damage
         if user.itemActive?
             BattleHandlers.triggerDamageCalcUserItem(user.item,
-                user,target,self,multipliers,baseDmg,type)
+                user,target,self,multipliers,baseDmg,type,aiChecking)
         end
         if target.itemActive?
             BattleHandlers.triggerDamageCalcTargetItem(target.item,
                 user,target,self,multipliers,baseDmg,type)
         end
-        # Parental Bond's second attack
-        if user.effects[:ParentalBond] == 1
-            multipliers[:base_damage_multiplier] *= 0.25
+        
+        if aiChecking
+            # Parental Bond
+            if user.hasActiveAbility?(:PARENTALBOND)
+                multipliers[:base_damage_multiplier] *= 1.25
+            end
+        else
+            # Parental Bond's second attack
+            if user.effects[:ParentalBond] == 1
+                multipliers[:base_damage_multiplier] *= 0.25
+            end
+            # Me First
+            if user.effectActive?(:MeFirst)
+                multipliers[:base_damage_multiplier] *= 1.5
+            end
+            # Helping Hand
+            if user.effectActive?(:HelpingHand) && !self.is_a?(PokeBattle_Confusion)
+                multipliers[:base_damage_multiplier] *= 1.5
+            end
+            # Shimmering Heat
+            if target.effectActive?(:ShimmeringHeat)
+                multipliers[:final_damage_multiplier] *= 0.67
+            end
+            # Echo
+            if user.effectActive?(:Echo)
+                multipliers[:final_damage_multiplier] *= 0.75
+            end
         end
-        # Me First
-        if user.effectActive?(:MeFirst)
-            multipliers[:base_damage_multiplier] *= 1.5
-        end
-        # Helping Hand
-        if user.effectActive?(:HelpingHand) && !self.is_a?(PokeBattle_Confusion)
-            multipliers[:base_damage_multiplier] *= 1.5
-        end
-        # Shimmering Heat
-        if target.effectActive?(:ShimmeringHeat)
-            multipliers[:final_damage_multiplier] *= 0.67
-        end
-        # Echo
-        if user.effectActive?(:Echo)
-            multipliers[:final_damage_multiplier] *= 0.75
-        end
+
         # Multi-targeting attacks
         if numTargets > 1
             multipliers[:final_damage_multiplier] *= 0.75
         end
+
         # Battler properites
         multipliers[:base_damage_multiplier] *= user.dmgMult
         multipliers[:base_damage_multiplier] *= [0,(1.0 - target.dmgResist.to_f)].max
+
         # Critical hits
-        if target.damageState.critical
-            multipliers[:final_damage_multiplier] *= 1.5
+        if aiChecking
+            criticalHitRate = pbIsCritical?(user,target,true)
+
+            if criticalHitRate >= 0
+                criticalHitRate = 5 if criticalHitRate > 5
+                multipliers[:final_damage_multiplier] *= 1.0 + (0.1 * criticalHitRate)
+            end
+        else
+            if target.damageState.critical
+                multipliers[:final_damage_multiplier] *= 1.5
+            end
         end
+
         # Random variance (What used to be for that)
         if !self.is_a?(PokeBattle_Confusion) && !self.is_a?(PokeBattle_Charm)
             multipliers[:final_damage_multiplier] *= 0.9
         end
+
         # Move-specific final damage modifiers
         multipliers[:final_damage_multiplier] = pbModifyDamage(multipliers[:final_damage_multiplier], user, target)
     end

@@ -1,6 +1,6 @@
 # Choice Crown
 BattleHandlers::DamageCalcUserItem.add(:CHOICECROWN,
-    proc { |item,user,target,move,mults,baseDmg,type|
+    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
       mults[:base_damage_multiplier] *= 1.5
     }
 )
@@ -13,14 +13,14 @@ BattleHandlers::SpeedCalcItem.add(:CHOICECROWN,
 
 # Zenith Band
 BattleHandlers::DamageCalcUserItem.add(:ZENITHBAND,
-    proc { |item,user,target,move,mults,baseDmg,type|
+    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
       mults[:base_damage_multiplier] *= 2.0 if move.physicalMove?
     }
 )
 
 # Zenith Specs
 BattleHandlers::DamageCalcUserItem.add(:ZENITHSPECS,
-    proc { |item,user,target,move,mults,baseDmg,type|
+    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
       mults[:base_damage_multiplier] *= 2.0 if move.specialMove?
     }
 )
@@ -34,7 +34,7 @@ BattleHandlers::SpeedCalcItem.add(:ZENITHSCARF,
 
 # All-Purpose Vest
 BattleHandlers::DamageCalcTargetItem.add(:ALLPURPOSEVEST,
-    proc { |item,user,target,move,mults,baseDmg,type|
+    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
       mults[:defense_multiplier] *= 1.5
     }
 )
@@ -81,7 +81,7 @@ BattleHandlers::HPHealItem.add(:SITREONBERRY,
 BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:ROSELIFEAST)
 
 BattleHandlers::DamageCalcTargetItem.add(:ROSELIFEAST,
-    proc { |item,user,target,move,mults,baseDmg,type|
+    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
       pbBattleTypeWeakingBerry(:FAIRY,type,target,mults,true)
     }
 )
@@ -90,7 +90,7 @@ BattleHandlers::DamageCalcTargetItem.add(:ROSELIFEAST,
 BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:OCCAFEAST)
 
 BattleHandlers::DamageCalcTargetItem.add(:OCCAFEAST,
-    proc { |item,user,target,move,mults,baseDmg,type|
+    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
       pbBattleTypeWeakingBerry(:FIRE,type,target,mults,true)
     }
 )
@@ -99,7 +99,7 @@ BattleHandlers::DamageCalcTargetItem.add(:OCCAFEAST,
 BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:RINDOFEAST)
 
 BattleHandlers::DamageCalcTargetItem.add(:RINDOFEAST,
-    proc { |item,user,target,move,mults,baseDmg,type|
+    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
       pbBattleTypeWeakingBerry(:GRASS,type,target,mults,true)
     }
 )
@@ -127,8 +127,8 @@ BattleHandlers::HPHealItem.add(:ZALAKABERRY,
 
 # Lucent Gem
 BattleHandlers::DamageCalcUserItem.add(:LUCENTGEM,
-    proc { |item,user,target,move,mults,baseDmg,type|
-        user.applyEffect(:GemConsumed,user.item_id)
+    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
+        user.applyEffect(:GemConsumed,user.item_id) unless aiChecking
         mults[:base_damage_multiplier] *= 1.5
     }
 )
@@ -206,7 +206,7 @@ BattleHandlers::WeatherExtenderItem.copy(:SMOOTHROCK,:SMOOTHSASH)
 
 # Death Orb
 BattleHandlers::DamageCalcUserItem.add(:DEATHORB,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
     if !move.is_a?(PokeBattle_Confusion)
       mults[:final_damage_multiplier] *= 1.3
     end
@@ -240,7 +240,7 @@ BattleHandlers::EORHealingItem.add(:LUNCHBOX,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:LUNCHBOX,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
     mults[:final_damage_multiplier] *= (2.0/3.0) if target.hp == target.totalhp
   }
 )

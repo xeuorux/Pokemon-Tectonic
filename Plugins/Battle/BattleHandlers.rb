@@ -285,13 +285,19 @@ module BattleHandlers
   
 	#=============================================================================
   
-	def self.triggerDamageCalcUserAbility(ability,user,target,move,mults,baseDmg,type)
-	  DamageCalcUserAbility.trigger(ability,user,target,move,mults,baseDmg,type)
+	def self.triggerDamageCalcUserAbility(ability,user,target,move,mults,baseDmg,type,aiChecking=false)
+	  DamageCalcUserAbility.trigger(ability,user,target,move,mults,baseDmg,type,aiChecking)
 	end
   
-	def self.triggerDamageCalcUserAllyAbility(ability,user,target,move,mults,baseDmg,type)
-	  DamageCalcUserAllyAbility.trigger(ability,user,target,move,mults,baseDmg,type)
+	def self.triggerDamageCalcUserAllyAbility(ability,user,target,move,mults,baseDmg,type,aiChecking=false)
+	  DamageCalcUserAllyAbility.trigger(ability,user,target,move,mults,baseDmg,type,aiChecking)
 	end
+
+	def self.triggerDamageCalcUserItem(item,user,target,move,mults,baseDmg,type,aiChecking=false)
+	  DamageCalcUserItem.trigger(item,user,target,move,mults,baseDmg,type,aiChecking)
+	end
+
+	#=============================================================================
   
 	def self.triggerDamageCalcTargetAbility(ability,user,target,move,mults,baseDmg,type)
 	  DamageCalcTargetAbility.trigger(ability,user,target,move,mults,baseDmg,type)
@@ -303,10 +309,6 @@ module BattleHandlers
   
 	def self.triggerDamageCalcTargetAllyAbility(ability,user,target,move,mults,baseDmg,type)
 	  DamageCalcTargetAllyAbility.trigger(ability,user,target,move,mults,baseDmg,type)
-	end
-  
-	def self.triggerDamageCalcUserItem(item,user,target,move,mults,baseDmg,type)
-	  DamageCalcUserItem.trigger(item,user,target,move,mults,baseDmg,type)
 	end
   
 	def self.triggerDamageCalcTargetItem(item,user,target,move,mults,baseDmg,type)
