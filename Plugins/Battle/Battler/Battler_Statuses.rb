@@ -1,6 +1,6 @@
-BURNED_EXPLANATION = 'It Attack is reduced by a third'.freeze
+BURNED_EXPLANATION = 'Its physical damage is reduced by a third'.freeze
 POISONED_EXPLANATION = 'The poison will worsen over time'.freeze
-FROSTBITE_EXPLANATION = 'Its Sp. Atk is reduced by a third'.freeze
+FROSTBITE_EXPLANATION = 'Its special damage is reduced by a third'.freeze
 NUMBED_EXPLANATION = "Its Speed is halved, and it'll deal less damage".freeze
 DIZZY_EXPLANATION = "It's ability is supressed, and it'll take more damage".freeze
 LEECHED_EXPLANATION = "Its HP will be siphoned by the opposing side".freeze

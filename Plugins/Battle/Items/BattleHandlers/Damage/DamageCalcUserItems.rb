@@ -43,14 +43,6 @@ BattleHandlers::DamageCalcUserItem.add(:ADAMANTORB,
     }
   )
   
-  BattleHandlers::DamageCalcUserItem.add(:DEEPSEATOOTH,
-    proc { |item,user,target,move,mults,baseDmg,type|
-      if user.isSpecies?(:CLAMPERL) && move.specialMove?
-        mults[:attack_multiplier] *= 2
-      end
-    }
-  )
-  
   BattleHandlers::DamageCalcUserItem.add(:DRAGONFANG,
     proc { |item,user,target,move,mults,baseDmg,type|
       mults[:base_damage_multiplier] *= 1.2 if type == :DRAGON
@@ -198,12 +190,6 @@ BattleHandlers::DamageCalcUserItem.add(:ADAMANTORB,
   
   BattleHandlers::DamageCalcUserItem.copy(:MIRACLESEED,:MEADOWPLATE,:ROSEINCENSE)
   
-  BattleHandlers::DamageCalcUserItem.add(:MUSCLEBAND,
-    proc { |item,user,target,move,mults,baseDmg,type|
-      mults[:base_damage_multiplier] *= 1.1 if move.physicalMove?
-    }
-  )
-  
   BattleHandlers::DamageCalcUserItem.add(:MYSTICWATER,
     proc { |item,user,target,move,mults,baseDmg,type|
       mults[:base_damage_multiplier] *= 1.2 if type == :WATER
@@ -326,31 +312,5 @@ BattleHandlers::DamageCalcUserItem.add(:ADAMANTORB,
   BattleHandlers::DamageCalcUserItem.add(:WATERGEM,
     proc { |item,user,target,move,mults,baseDmg,type|
       pbBattleGem(user,:WATER,move,mults,type)
-    }
-  )
-  
-  BattleHandlers::DamageCalcUserItem.add(:WISEGLASSES,
-    proc { |item,user,target,move,mults,baseDmg,type|
-      mults[:base_damage_multiplier] *= 1.1 if move.specialMove?
-    }
-  )
-
-BattleHandlers::DamageCalcUserItem.add(:CHOICEBAND,
-    proc { |item,user,target,move,mults,baseDmg,type|
-      mults[:base_damage_multiplier] *= 1.33 if move.physicalMove?
-    }
-  )
-  
-  BattleHandlers::DamageCalcUserItem.add(:CHOICESPECS,
-    proc { |item,user,target,move,mults,baseDmg,type|
-      mults[:base_damage_multiplier] *= 1.33 if move.specialMove?
-    }
-  )
-
-  BattleHandlers::DamageCalcUserItem.add(:THICKCLUB,
-    proc { |item,user,target,move,mults,baseDmg,type|
-      if (user.isSpecies?(:CUBONE) || user.isSpecies?(:MAROWAK)) && move.physicalMove?
-        mults[:attack_multiplier] *= 1.5
-      end
     }
   )

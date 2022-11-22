@@ -225,7 +225,7 @@ class PokeBattle_AI
         move.calculated_category = move.calculateCategory(user, [target])
 
         # Get the relevant attacking and defending stat values (after stages)
-        attack, defense = move.damageCalcStats(user,target)
+        attack, defense = move.damageCalcStats(user,target,true)
 
         ##### Calculate all multiplier effects #####
         multipliers = move.initializeMultipliers
@@ -233,29 +233,9 @@ class PokeBattle_AI
         # Ability effects that alter damage
         moldBreaker = user.hasMoldBreaker?
 
-        if user.abilityActive?
-          # NOTE: These abilities aren't suitable for checking at the start of the
-          #       round.
-          abilityBlacklist = [:ANALYTIC,:SNIPER,:TINTEDLENS,:AERILATE,:PIXILATE,:REFRIGERATE]
-
-          canCheck = true
-          abilityBlacklist.each do |m|
-              next if move.id != m
-              canCheck = false
-              break
-          end
-          if canCheck
-              BattleHandlers.triggerDamageCalcUserAbility(user.ability,
-              user,target,move,multipliers,baseDmg,type)
-          end
-        end
-        if !moldBreaker
-          user.eachAlly do |b|
-              next if !b.abilityActive?
-              BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,
-              user,target,move,multipliers,baseDmg,type)
-          end
-        end
+        # TODO: Seperate abilities and items that increase damage based on the move or target chosen
+        # Away from stuff that the AI could not possibly predict
+        # So that it can be used here and that other stuff would not be
 
         if !moldBreaker && target.abilityActive?
           # NOTE: These abilities aren't suitable for checking at the start of the

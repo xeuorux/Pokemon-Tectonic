@@ -49,6 +49,14 @@ module BattleHandlers
 	DamageCalcTargetAllyAbility         = AbilityHandlerHash.new
 	DamageCalcUserItem                  = ItemHandlerHash.new
 	DamageCalcTargetItem                = ItemHandlerHash.new
+	# Attack calculation
+	AttackCalcUserAbility               = AbilityHandlerHash.new
+	AttackCalcAllyAbility           	= AbilityHandlerHash.new
+	AttackCalcUserItem                  = ItemHandlerHash.new
+	# Special Attack calculation
+	SpecialAttackCalcUserAbility        = AbilityHandlerHash.new
+	SpecialAttackCalcAllyAbility        = AbilityHandlerHash.new
+	SpecialAttackCalcUserItem           = ItemHandlerHash.new
 	# Critical hit calculation
 	CriticalCalcUserAbility             = AbilityHandlerHash.new
 	GuaranteedCriticalUserAbility		= AbilityHandlerHash.new
@@ -303,6 +311,40 @@ module BattleHandlers
   
 	def self.triggerDamageCalcTargetItem(item,user,target,move,mults,baseDmg,type)
 	  DamageCalcTargetItem.trigger(item,user,target,move,mults,baseDmg,type)
+	end
+
+	#=============================================================================
+
+	def self.triggerAttackCalcUserAbility(ability,user,battle,attackMult)
+		ret = AttackCalcUserAbility.trigger(ability,user,battle,attackMult)
+		return ret || attackMult
+	end
+
+	def self.triggerAttackCalcAllyAbility(ability,user,battle,attackMult)
+		ret = AttackCalcAllyAbility.trigger(ability,user,battle,attackMult)
+		return ret || attackMult
+	end
+
+	def self.triggerAttackCalcUserItem(item,user,battle,attackMult)
+		ret = AttackCalcUserItem.trigger(item,user,battle,attackMult)
+		return ret || attackMult
+	end
+
+	#=============================================================================
+
+	def self.triggerSpecialAttackCalcUserAbility(ability,user,battle,spAtkMult)
+		ret = SpecialAttackCalcUserAbility.trigger(ability,user,battle,spAtkMult)
+		return ret || spAtkMult
+	end
+
+	def self.triggerSpecialAttackCalcAllyAbility(ability,user,battle,spAtkMult)
+		ret = SpecialAttackCalcAllyAbility.trigger(ability,user,battle,spAtkMult)
+		return ret || spAtkMult
+	end
+
+	def self.triggerSpecialAttackCalcUserItem(item,user,battle,spAtkMult)
+		ret = SpecialAttackCalcUserItem.trigger(item,user,battle,spAtkMult)
+		return ret || spAtkMult
 	end
   
 	#=============================================================================

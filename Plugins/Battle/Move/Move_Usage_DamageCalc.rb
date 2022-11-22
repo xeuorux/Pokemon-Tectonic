@@ -55,22 +55,23 @@ class PokeBattle_Move
         return damage
     end
 
-    def damageCalcStats(user,target)
+    def damageCalcStats(user,target,aiChecking=false)
         # Calculate user's attack stat
         attacking_stat_holder, attacking_stat = pbAttackingStat(user,target)
         attack_stage = attacking_stat_holder.stages[attacking_stat]
-        attack_stage = 0 if target.damageState.critical && attack_stage < 0
+        critical = !aiChecking && target.damageState.critical
+        attack_stage = 0 if critical && attack_stage < 0
         attack_stage = 0 if target.hasActiveAbility?(:UNAWARE) && !@battle.moldBreaker
-        attack = user.statAfterStage(attacking_stat, attack_stage)
+        attack = user.getFinalStat(attacking_stat, attack_stage)
         # Calculate target's defense stat
         defending_stat_holder, defending_stat = pbDefendingStat(user,target)
         defense_stage = defending_stat_holder.stages[defending_stat]
         if defense_stage > 0 &&
-                (ignoresDefensiveStageBoosts?(user,target) || user.hasActiveAbility?(:INFILTRATOR) || target.damageState.critical)
+                (ignoresDefensiveStageBoosts?(user,target) || user.hasActiveAbility?(:INFILTRATOR) || critical)
             defense_stage = 0
         end
         defense_stage = 0 if user.hasActiveAbility?(:UNAWARE)
-        defense = target.statAfterStage(defending_stat, defense_stage)
+        defense = target.getFinalStat(defending_stat, defense_stage)
         return attack, defense
     end
     
@@ -93,8 +94,7 @@ class PokeBattle_Move
         end
         if !@battle.moldBreaker
             # NOTE: It's odd that the user's Mold Breaker prevents its partner's
-            #       beneficial abilities (i.e. Flower Gift boosting Atk), but that's
-            #       how it works.
+            #       beneficial abilities (e.g. Power Spot), but that's how it works.
             user.eachAlly do |b|
                 next if !b.abilityActive?
                 BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,user,target,self,multipliers,baseDmg,type)
@@ -308,10 +308,6 @@ class PokeBattle_Move
         # Helping Hand
         if user.effectActive?(:HelpingHand) && !self.is_a?(PokeBattle_Confusion)
             multipliers[:base_damage_multiplier] *= 1.5
-        end
-        # Dragon Ride
-        if user.effectActive?(:OnDragonRide) && physicalMove?
-            multipliers[:final_damage_multiplier] *= 1.5
         end
         # Shimmering Heat
         if target.effectActive?(:ShimmeringHeat)
