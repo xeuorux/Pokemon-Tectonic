@@ -398,7 +398,7 @@
 397,PHASESHIFT,Phase Shift,"This Pokemon's moves deal 50% more damage if they're a different type than last."
 398,DOUBLECHECK,Double Check,"Deals 50% more damage to targets who have already taken damage this turn."
 399,FORCEREVERSAL,Force Reversal,"Raises both offensive stats when hit by a not very effective move."
-400,SOUNDBARRIER,Sound Barrier,"Using a sound move raises this Pokémon's Defense stat."
+400,SOUNDBARRIER,Sound Barrier,"After using a sound move, raises this Pokémon's Defense stat."
 401,BELLIGERENT,Belligerent,"Sharply boosts offensive stats when a stat is lowered."
 402,KEEPER,Keeper,"Takes 20% less damage from attacks if there is a terrain."
 403,ERUDITE,Erudite,"Powers up Psychic-type moves by 50%."

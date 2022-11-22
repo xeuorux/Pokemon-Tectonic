@@ -52,13 +52,6 @@ BattleHandlers::UserAbilityOnHit.add(:NERVENUMBER,
   }
 )
 
-BattleHandlers::UserAbilityOnHit.add(:SOUNDBARRIER,
-  proc { |ability,user,target,move,battle|
-    next if !move.soundMove?
-    user.tryRaiseStat(:DEFENSE,user)
-  }
-)
-
 BattleHandlers::UserAbilityOnHit.add(:DAWNBURST,
   proc { |ability,user,target,move,battle|
     next if user.turnCount > 1
