@@ -1135,3 +1135,4 @@
 1070,VOLATILETOXIN,Volatile Toxin,5A4,75,POISON,Physical,100,12,0,NearOther,0,abef,"The user injects an unstable toxin into the target. The next Ground-type attack they take deals double damage.",POISONJAB
 1071,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,abef,"A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.",
 1072,ROOTSHELTER,Root Shelter,5A5,0,GRASS,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also leeches any attacker who attacks the user.",VINEBIND
+1073,DREAMPUNCH,Dream Absorb,0DE,60,PSYCHIC,Physical,100,12,0,NearOther,0,bef,"The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.",
