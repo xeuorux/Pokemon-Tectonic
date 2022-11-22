@@ -1,3 +1,7 @@
+def debugControl
+    $DEBUG && Input.press?(Input::CTRL)
+end
+
 def pbReceiveRandomPokemon(level)
 	$game_variables[26] = level if level > $game_variables[26]
 	possibleSpecies = []
