@@ -926,8 +926,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 	:swaps_with_battlers => true,
 	:disable_proc => Proc.new { |battle,battler|
 		moveName = battler.getMoveData(:TrappingMove).name
-		trapUser = battler.getBattlerPointsTo(:TrappingUser)
-        battle.pbDisplay(_INTL("{1} was freed from {2}'s {3}!",battler.pbThis,trapUser.pbThis(true),moveName))
+        battle.pbDisplay(_INTL("{1} was freed from {2}!",battler.pbThis,moveName))
 	},
 	:remain_proc => Proc.new { |battle,battler,value|
 		moveName = battler.getMoveData(:TrappingMove).name
