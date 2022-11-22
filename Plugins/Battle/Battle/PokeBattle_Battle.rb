@@ -334,19 +334,9 @@ class PokeBattle_Battle
       return true if pbSideSize(0)<=2 && pbSideSize(1)<=2
       # Get all pairs of battler positions that are not close to each other
       pairsArray = [[0,4],[1,5]]   # Covers 3v1 and 1v3
-      case pbSideSize(0)
-      when 3
-        case pbSideSize(1)
-        when 3   # 3v3 (triple)
-          pairsArray.push([0,1])
-          pairsArray.push([4,5])
-        when 2   # 3v2
-          pairsArray.push([0,1])
-          pairsArray.push([3,4])
-        end
-      when 2       # 2v3
+      if pbSideSize(0) == 3 && pbSideSize(1) == 3
         pairsArray.push([0,1])
-        pairsArray.push([2,5])
+        pairsArray.push([4,5])
       end
       # See if any pair matches the two battlers being assessed
       pairsArray.each do |pair|
