@@ -343,7 +343,7 @@ class PokeBattle_Battle
       next if b.fainted?
       if b.affectedByTerrain?
         PBDebug.log("[Lingering effect] Grassy Terrain affects #{b.pbThis(true)}")
-        if pbCheckOpposingAbility(:SNAKEPIT)
+        if pbCheckOpposingAbility(:SNAKEPIT,b.index)
           pbDisplay(_INTL("{1} is lashed at by the pit of snakes!",b.pbThis))
           b.applyFractionalDamage(1.0/16.0)
         elsif b.canHeal?
