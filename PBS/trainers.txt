@@ -4417,6 +4417,7 @@ ExtendsVersion = 4
 Policies = CURSE_PERISH_SONGED
 #-------------------------------
 [ANOTHERPOSSIBLEZAIN,Zain]
+Policies = ALTERNATE_ZAIN
 Pokemon = LIEPARD,70
     Moves = FOULPLAY,YAWN,FAKEOUT,NUMB
     AbilityIndex = 1
@@ -4451,6 +4452,7 @@ Pokemon = GIRATINA,70
     Item = WEAKNESSPOLICY
 #-------------------------------
 [ANOTHERPOSSIBLETAMARIND,Tamarind]
+Policies = ALTERNATE_TAMARIND
 Pokemon = SPIRITOMB,70
     Moves = NIGHTSHADE,WILLOWISP,KNOCKOFF,CURSE
     AbilityIndex = 1
@@ -4484,6 +4486,7 @@ Pokemon = BLACEPHALON,70
     Item = SHELLBELL
 #-------------------------------
 [ANOTHERPOSSIBLEALESSA,Alessa]
+Policies = ALTERNATE_ALESSA
 Pokemon = SALAMENCE,70
     Moves = DRAGONDANCE,OUTRAGE,EARTHQUAKE,HUNTDOWN
     AbilityIndex = 0
@@ -4959,6 +4962,7 @@ Pokemon = GOLURK,70
     Item = SEVENLEAGUEBOOTS
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,10]
+Policies = YEZERA6
 Pokemon = TYRANITAR,70
     Name = Autochthon
     Gender = male
@@ -5000,6 +5004,7 @@ Pokemon = GYARADOS,70
     Item = LIFEORB
 #-------------------------------
 [SHADOWMAVIS,Mavis]
+Policies = SHADOW_MAVIS
 Pokemon = GARDEVOIR,70
     Name = Tiredstars
     Gender = female
