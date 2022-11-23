@@ -966,7 +966,7 @@ class PokeBattle_Move_0A9 < PokeBattle_Move
     modifiers[:evasion_stage] = 0
   end
 
-  def ignoresDefensiveStageBoosts?; return true; end
+  def ignoresDefensiveStageBoosts?(user,target); return true; end
 
   def shouldHighlight?(user,target)
     return target.hasRaisedDefenseStages?
