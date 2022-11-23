@@ -491,6 +491,30 @@ BattleHandlers::TargetAbilityOnHit.add(:CONSTRICTOR,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:KELPLINK,
+  proc { |ability,user,target,move,battle|
+    next unless move.physicalMove?
+    next if user.leeched? || battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(target)
+    if user.canLeech?(target,true)
+      user.applyLeeched(target)
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:PLAYVICTIM,
+  proc { |ability,user,target,move,battle|
+    next unless move.specialMove?
+    next if user.leeched? || battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(target)
+    if user.canLeech?(target,true)
+      user.applyLeeched(target)
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
 
 #########################################
 # Weather Abilities
@@ -531,6 +555,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ACIDBODY,
 		pbBattleWeatherAbility(:AcidRain,battler,battle,false,true)
 	}
 )
+
 
 #########################################
 # Terrain Abilities

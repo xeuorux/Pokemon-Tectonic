@@ -70,3 +70,9 @@ BattleHandlers::UserAbilityOnHit.add(:STAGGERINGSLAPS,
     randomStatusProcAbility(:DIZZY,30,user,target,move,battle) if move.physicalMove?
   }
 )
+
+BattleHandlers::UserAbilityOnHit.add(:SWARMIMPACT,
+  proc { |ability,user,target,move,battle|
+    randomStatusProcAbility(:LEECHED,30,user,target,move,battle) if move.physicalMove?
+	}
+)
