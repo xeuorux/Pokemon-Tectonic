@@ -79,3 +79,14 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:REAWAKENEDPOWER,
     target.pbMaximizeStatStage(:SPECIAL_ATTACK,user,self,false,true)
   }
 )
+
+BattleHandlers::TargetAbilityAfterMoveUse.add(:STICKYMOLD,
+  proc { |ability,target,user,move,switched,battle|
+    next if !move.damagingMove?
+    next if !target.knockedBelowHalf?
+    next if user.leeched?
+    battle.pbShowAbilitySplash(target)
+	  user.applyLeech(target) if user.canLeech?(target, true)
+    battle.pbHideAbilitySplash(target)
+  }
+)
