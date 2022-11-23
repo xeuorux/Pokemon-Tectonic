@@ -1,3 +1,14 @@
+SaveData.register(:game_screen) do
+    ensure_class :Game_Screen
+    save_value {
+        $game_screen.resetWeatherCallback
+        $game_screen
+    }
+    load_value { |value| $game_screen = value }
+    new_game_value { Game_Screen.new }
+    from_old_format { |old_format| old_format[8] }
+end
+
 class Game_Screen
     attr_reader :weather_strength
     attr_reader :transition_time
@@ -65,5 +76,9 @@ class Game_Screen
         weather.updateWeatherSettings($game_screen.weather_type, $game_screen.weather_strength,
             $game_screen.transition_time, $game_screen.weather_sprites_enabled, @callback_block)
         weather.updateCloudCover
+    end
+
+    def resetWeatherCallback
+        @callback_block = nil
     end
 end
