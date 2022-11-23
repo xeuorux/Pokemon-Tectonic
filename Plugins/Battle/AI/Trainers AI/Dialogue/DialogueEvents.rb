@@ -268,3 +268,16 @@ class PokeBattle_Battle
 		}
 	end
 end
+
+def dialogueStateBased(dialogue_array,trainer_speaking, state_id)
+	if !trainer_speaking.policyStates[state_id]
+		newDialogue = yield
+		if newDialogue.is_a?(Array)
+			newDialogue.each do |newDialogueLine|
+				dialogue_array.push(newDialogueLine)
+			end
+		else
+			dialogue_array.push(newDialogue)
+		end
+	end
+end
