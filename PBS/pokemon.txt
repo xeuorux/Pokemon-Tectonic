@@ -28683,7 +28683,6 @@ BattlerShadowSize = 3
 [871]
 Name = Pincurchin
 InternalName = PINCURCHIN
-Notes = todo: retempo moveset
 Type1 = ELECTRIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 68,101,95,15,101,85
