@@ -11678,6 +11678,7 @@ Evolutions = BANETTE,Level,27
 [354]
 Name = Banette
 InternalName = BANETTE
+Notes = change abilities make more interesting
 Type1 = GHOST
 Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -29956,6 +29957,7 @@ BattlerShadowSize = 2
 [910]
 Name = Maniklaw
 InternalName = MANIKLAW
+Notes = make more interesting abilities
 Type1 = GHOST
 Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
