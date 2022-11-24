@@ -2203,7 +2203,7 @@ end
 #===============================================================================
 class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
   def pbFailsAgainstTarget?(user,target)
-    if target.level>user.level
+    if target.level > user.level || target.boss?
       @battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
       return true
     end
