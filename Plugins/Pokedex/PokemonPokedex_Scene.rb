@@ -393,8 +393,16 @@ class PokemonPokedex_Scene
 		  @sprites["pokedex"].refresh
 		  pbRefresh
 		elsif Input.pressex?(0x47) && $DEBUG # G, for Get
-			pbAddPokemonSilent(@sprites["pokedex"].species,$game_variables[26])
-			pbMessage("Added #{@sprites["pokedex"].species}")
+			if debugControl
+				@dexlist.each do |dexlist_entry|
+					entrySpecies = dexlist_entry[0]
+					pbAddPokemonSilent(entrySpecies,$game_variables[26])
+				end
+				pbMessage("Added every species on the current list!")
+			else
+				pbAddPokemonSilent(@sprites["pokedex"].species,$game_variables[26])
+				pbMessage("Added #{@sprites["pokedex"].species}")
+			end
 		elsif Input.pressex?(0x57) && $DEBUG # W, for Wild Pokemon
 			pbWildBattle(@sprites["pokedex"].species, $game_variables[26])
 		elsif Input.pressex?(0x42) && $DEBUG # B, for Boss
