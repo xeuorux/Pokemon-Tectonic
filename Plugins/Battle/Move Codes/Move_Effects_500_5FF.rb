@@ -1608,13 +1608,20 @@ class PokeBattle_Move_55C < PokeBattle_Move
   end
 end
 
+def selfHitBasePower(level)
+	calcLevel = [level,50].min
+	selfHitBasePower = (20 + calcLevel)
+	selfHitBasePower = selfHitBasePower.ceil
+	return selfHitBasePower
+end
+
 #===============================================================================
 # Increases the target's Attack by 2 stages, then the target hits itself with its own attack. (new!Swagger)
 #===============================================================================
 class PokeBattle_Move_55D < PokeBattle_Move
 	def pbEffectAgainstTarget(user,target)
 		target.tryRaiseStat(:ATTACK,user,increment: 2, move: self)
-	  	target.pbConfusionDamage(_INTL('It hurt itself in rage!'), false, false, 70)
+	  	target.pbConfusionDamage(_INTL('It hurt itself in rage!'), false, false, selfHitBasePower(target.level))
 	end
 
 	def getScore(score,user,target,skill=100)
@@ -1633,7 +1640,7 @@ end
 class PokeBattle_Move_55E < PokeBattle_Move 
 	def pbEffectAgainstTarget(user,target)
 		target.tryRaiseStat(:SPECIAL_ATTACK,user,increment: 2, move: self)
-		target.pbConfusionDamage(_INTL('It hurt itself in mental turmoil!'), true, false, 70)
+		target.pbConfusionDamage(_INTL('It hurt itself in mental turmoil!'), true, false, selfHitBasePower(target.level))
 	end
 
 	def getScore(score,user,target,skill=100)
