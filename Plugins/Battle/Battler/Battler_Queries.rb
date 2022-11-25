@@ -55,7 +55,11 @@ class PokeBattle_Battler
 		return false if fainted? && !ignore_fainted
 		return false if !ignore_gas && @battle.field.effectActive?(:NeutralizingGas)
 		return false if effectActive?(:GastroAcid)
-		return false if dizzy? && ![:FLUSTERFLOCK,:HEADACHE].include?(@ability_id) && !STATUS_UPSIDE_ABILITIES.include?(@ability_id)
+		if dizzy?
+			if ![:FLUSTERFLOCK,:HEADACHE].include?(@ability_id) && !STATUS_UPSIDE_ABILITIES.include?(@ability_id)
+				return false
+			end
+		end
 		return true
 	end
 
@@ -69,7 +73,7 @@ class PokeBattle_Battler
 	alias hasWorkingAbility hasActiveAbility?
 
 	def hasActiveNeutralizingGas?(ignore_fainted = false)
-		return @ability == :NEUTRALIZINGGAS && abilityActive?(ignore_fainted,true)
+		return @ability_id == :NEUTRALIZINGGAS && abilityActive?(ignore_fainted,true)
 	end
 
 	alias hasType? pbHasType?
