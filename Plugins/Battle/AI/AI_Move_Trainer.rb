@@ -233,7 +233,7 @@ class PokeBattle_AI
             damagePercentage = 300 if move.hasKOEffect?(user,target)
         end
         
-        if move.effect_chance != 0 && move.effect_chance != 100
+        if move.effectChance != 0 && move.effectChance != 100
             type = pbRoughType(move,user,skill)
             realProcChance = move.pbAdditionalEffectChance(user,target,type)
             score *= (realProcChance / 100.0)
