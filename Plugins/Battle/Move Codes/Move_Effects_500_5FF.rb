@@ -2668,3 +2668,22 @@ class PokeBattle_Move_5A5 < PokeBattle_ProtectMove
 		@effect = :RootShelter
 	end
 end
+
+#===============================================================================
+# User must use this move for 2 more rounds. Raises Speed if KOs. (Tyrant's Fit)
+#===============================================================================
+class PokeBattle_Move_5A6 < PokeBattle_Move
+	def pbEffectAfterAllHits(user,target)
+		if !target.damageState.unaffected && !user.effectActive?(:Outrage)
+		  user.applyEffect(:Outrage,3)
+		end
+		user.tickDownAndProc(:Outrage)
+		return if !target.damageState.fainted
+        user.tryRaiseStat(:SPEED,user,increment: 1, move: self)
+	  end
+	# Used to modify the AI elsewhere
+    def hasKOEffect?(user,target)
+        return false if !user.pbCanRaiseStatStage?(:SPEED,user,self)
+        return true
+    end
+end

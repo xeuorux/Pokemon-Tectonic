@@ -481,6 +481,7 @@
 480,PLAYVICTIM,Play Victim,"Special moves against the Pokémon have a 30% chance to leech the attacker."
 481,SWARMIMPACT,Swarm Impact,"Has a 30% chance to leech targets when using physical moves."
 482,STICKYMOLD,Sticky Mold,"If an attack lowers its HP to half or less, leeches the attacker.
+483,TYRANTSWRATH,Tyrant's Wrath,"Uses Tyrant's Fit if an attack lowers its HP to half or below."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

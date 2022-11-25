@@ -90,3 +90,11 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:STICKYMOLD,
     battle.pbHideAbilitySplash(target)
   }
 )
+
+BattleHandlers::TargetAbilityAfterMoveUse.add(:TYRANTSWRATH,
+  proc { |ability,target,user,move,switched,battle|
+    next if !move.damagingMove?
+    next if !target.knockedBelowHalf?
+    battle.forceUseMove(target,:TYRANTSFIT,user.index,true,nil,nil,true)
+  }
+)
