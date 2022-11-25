@@ -812,7 +812,7 @@
 783,TM191,TM191,TM191s,4,4000,"Opponents are covered in odd poison goo. This lowers the Attack, Sp. Atk, and Speed stats of a poisoned target.",3,0,0,VENOMDRENCH
 784,TM192,TM192,TM192s,4,6000,"The user damages opposing Pokémon by emitting a powerful flash.",3,0,0,DAZZLINGGLEAM
 785,TM193,TM193,TM193s,4,6000,"Damage increases with the user's Sp. Def stat.",3,0,0,AURATRICK
-786,TM194,TM194,TM194s,4,6000,"The user fiercely attacks the target using its entire body.",3,0,0,HIGHHORSEPOWER
+786,TM194,TM194,TM194s,4,6000,"The user fiercely attacks the target using its entire body.",3,0,0,SCORCHINGSANDS
 787,TM195,TM195,TM195s,4,6000,"The user attacks the target's throat, which prevents it from using moves that emit sound for two turns.",3,0,0,THROATCHOP
 788,TM196,TM196,TM196s,4,6000,"The user attacks with an exploding pollen puff. If the target is an ally, it restores its HP instead.",3,0,0,POLLENPUFF
 789,TM197,TM197,TM197s,4,6000,"The user bites the target with its psychic capabilities. This can also destroy Light Screen and Reflect.",3,0,0,PSYCHICFANGS

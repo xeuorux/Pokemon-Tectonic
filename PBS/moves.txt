@@ -692,7 +692,7 @@
 630,IMPRISON,Imprison,0B8,0,PSYCHIC,Status,0,10,0,User,0,d,"If the foe knows any move also known by the user, the foe is prevented from using it.",
 631,INSTRUCT,Instruct,16B,0,PSYCHIC,Status,0,12,0,NearOther,0,b,"The user instructs the target to use the target's last move again.",
 632,KINESIS,Kinesis,047,0,PSYCHIC,Status,100,12,0,NearOther,0,bce,"The user distracts the target by bending a spoon. It lowers the target's accuracy.",
-633,LIGHTSCREEN,Light Screen,0A3,0,PSYCHIC,Status,0,25,0,UserSide,0,d,"A wondrous wall of light is put up to suppress damage from special attacks for five turns.",
+633,LIGHTSCREEN,Light Screen,0A3,0,PSYCHIC,Status,0,15,0,UserSide,0,d,"A wondrous wall of light is put up to suppress damage from special attacks for five turns.",
 634,LUNARDANCE,Lunar Dance,0E4,0,PSYCHIC,Status,0,10,0,User,0,do,"The user faints. In return, the Pokémon taking its place will have its status and HP fully restored.",
 635,MAGICCOAT,Magic Coat,0B1,0,PSYCHIC,Status,0,12,0,User,4,,"Until end of turn, reflects status moves that target the user or create hazards around it.",
 636,MAGICROOM,Magic Room,0F9,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates a bizarre area in which Pokémon's held items lose their effects for five turns.",
