@@ -256,7 +256,7 @@
 254,SCREENCLEANER,Screen Cleaner,"Screens are nullified when entering battle."
 255,STALWART,Stalwart,"Ignores effects changing the target of a move."
 256,STEAMENGINE,Steam Engine,"Raises Speed massively when hit by a Fire- or Water-type move."
-257,STEELYSPIRIT,Steely Spirit,"Powers up ally Pokémon's Steel-type moves."
+257,STEELYSPIRIT,Steely Spirit,"Powers up itself and ally Pokémon's Steel-type moves."
 258,WANDERINGSPIRIT,Wandering Spirit,"Taking a physical hit exchanges Abilities."
 259,UNSEENFIST,Unseen Fist,"Physical moves negate all protection effects."
 260,QUICKDRAW,Quick Draw,"Enables the Pokémon to move first occasionally."
