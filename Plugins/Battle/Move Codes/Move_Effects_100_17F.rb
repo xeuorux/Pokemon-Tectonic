@@ -299,7 +299,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 					end
 				end
 			else
-        statUp = [:ATTACK,2,:DEFENSE,2]
+        statUp = [:ATTACK,1,:DEFENSE,1]
         score = getMultiStatUpMoveScore(statUp,score,user,target,skill,statusMove?)
         score -= user.stages[:SPEED] * 10
 			end
