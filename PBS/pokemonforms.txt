@@ -1497,3 +1497,7 @@ BaseStats = 105,50,95,35,100,95
 Abilities = PHASESHIFT
 Pokedex = Darmanitan takes this form when enraged. It won't stop spewing flames until its rage has settled, even if its body starts to melt.
 BattlerEnemyY = 30
+#-------------------------------
+[AMPHAROS,1]
+FormName = Ascended
+BaseStats = 110,60,165,50,210,165
