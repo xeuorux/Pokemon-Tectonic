@@ -592,3 +592,9 @@ BattleHandlers::DamageCalcUserAbility.add(:SHIFTINGFIST,
     mults[:base_damage_multiplier] *= 1.3 if move.punchingMove?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:STEELYSPIRIT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if type == :STEEL
+  }
+)
