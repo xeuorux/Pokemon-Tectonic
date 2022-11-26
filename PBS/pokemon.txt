@@ -14181,8 +14181,8 @@ InternalName = HONCHKROW
 Type1 = DARK
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,75,55,100,125,55
-# Total = 490
+BaseStats = 80,70,65,100,125,65
+# Total = 505
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 177
