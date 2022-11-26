@@ -1501,3 +1501,7 @@ BattlerEnemyY = 30
 [AMPHAROS,1]
 FormName = Ascended
 BaseStats = 110,60,165,50,210,165
+#-------------------------------
+[GARCHOMP,1]
+FormName = Reaper
+BaseStats = 108,155,125,97,100,75

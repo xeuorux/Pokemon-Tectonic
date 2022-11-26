@@ -2727,5 +2727,5 @@ end
 			@battle.pbCommonAnimation("MegaEvolution",user)
 			super
 		end
-	  end
+	end
 end

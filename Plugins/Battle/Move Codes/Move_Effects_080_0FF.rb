@@ -2119,6 +2119,14 @@ class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
     end
     return ret
   end
+
+  def pbAttackingTurnMessage(user,targets)
+    if @battle.pbWeather == :Sandstorm && user.species == :GARCHOMP && user.hasActiveAbility?(:DUNEPREDATOR) && user.form == 0
+      @battle.pbDisplay(_INTL("The ground rumbles violently underneath {1}!",targets[0].pbThis))
+      @battle.pbAnimation(:EARTHQUAKE,targets[0],targets,0)
+      user.pbChangeForm(1,_INTL("The Reaper appears!",user.pbThis))
+    end
+  end
 end
 
 #===============================================================================
