@@ -9,3 +9,9 @@ MultipleForms.register(:GARCHOMP,{
     next 0
   }
 })
+
+MultipleForms.register(:GYARADOS,{
+  "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
+    next 0
+  }
+})
