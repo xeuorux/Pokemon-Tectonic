@@ -14,12 +14,6 @@ class PokeBattle_Battle
     battler.eachEffectAllLocations(true) do |effect,value,data|
       return false if data.trapping?
     end
-    eachOtherSideBattler(idxBattler) do |b|
-      return false if b.abilityActive? &&
-                      BattleHandlers.triggerTrappingTargetAbility(b.ability,battler,b,self)
-      return false if b.itemActive? &&
-                      BattleHandlers.triggerTrappingTargetItem(b.item,battler,b,self)
-    end
     return true
   end
 	
