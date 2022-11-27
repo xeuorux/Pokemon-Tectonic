@@ -535,6 +535,8 @@ class Pokemon
   # Changes the happiness of this Pokémon depending on what happened to change it.
   # @param method [String] the happiness changing method (e.g. 'walking')
   def changeHappiness(method)
+	@happiness = @happiness.clamp(0, 255)
+
     gain = 0
     happiness_range = @happiness / 100
     case method
@@ -552,8 +554,6 @@ class Pokemon
       gain = [3, 2, 1][happiness_range]
     when "machine", "battleitem"
       gain = [1, 1, 0][happiness_range]
-    else
-      echoln(_INTL("Unknown happiness-changing method: {1}", method.to_s))
     end
     if gain > 0
       gain += 1 if @obtain_map == $game_map.map_id

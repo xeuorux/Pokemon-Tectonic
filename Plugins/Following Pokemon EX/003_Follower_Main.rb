@@ -142,7 +142,6 @@ class DependentEvents
 #-------------------------------------------------------------------------------
   def add_following_time
     $PokemonGlobal.time_taken += 1
-    $Trainer.first_able_pokemon.happiness += 1 if ($PokemonGlobal.time_taken % 5000) == 0
     $PokemonGlobal.follower_hold_item = true if ($PokemonGlobal.time_taken > 15000)
   end
 
