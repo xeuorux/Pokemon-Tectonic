@@ -55,7 +55,8 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 				msgwindow = pbCreateMessageWindow
 				pbMessageDisplay(msgwindow, _INTL("The current level cap is {1}.", cap))
 				pbMessageDisplay(msgwindow, _INTL("Once at level {1}, your Pokémon cannot gain experience or have Candies used on them.", cap))
-				pbMessageDisplay(msgwindow,"The level can be raised by defeating gym leaders.")
+				pbMessageDisplay(msgwindow,"The level cap can be raised by reading Battle Reports (a consumable item).")
+				pbMessageDisplay(msgwindow,"You'll earn Battle Reports after defeating Gym Leaders and major story battles.")
 				pbDisposeMessageWindow(msgwindow)
 			elsif cmdMainQuestHelp > - 1 && infoCommand == cmdMainQuestHelp
 				pbMessage("\\l[7]<b>" + $main_quest_tracker.getCurrentStageName() + "</b>\n" + $main_quest_tracker.getCurrentStageHelp())
