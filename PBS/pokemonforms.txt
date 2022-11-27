@@ -1505,3 +1505,7 @@ BaseStats = 110,60,165,50,210,165
 [GARCHOMP,1]
 FormName = Reaper
 BaseStats = 108,155,125,97,100,75
+#-------------------------------
+[GYARADOS,1]
+FormName = Hull Breaker
+BaseStats = 95,155,109,106,75,115
