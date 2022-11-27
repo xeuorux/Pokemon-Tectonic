@@ -2729,3 +2729,28 @@ end
 		end
 	end
 end
+
+#===============================================================================
+# Target drops its item and is forced to hold a Black Sludge. (Trash Treasure)
+# Also lower's the target's Sp. Def.
+#===============================================================================
+class PokeBattle_Move_5A8 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		if target.item == :BLACKSLUDGE
+			@battle.pbDisplay(_INTL("But {1} is already holding a Black Sludge!",target.pbThis(true)))
+			return true
+		end
+		return !canRemoveItem?(user,target)
+	end
+
+	def pbEffectAgainstTarget(user,target)
+		if target.item
+			itemName = target.itemName
+			removalMessage = _INTL("{1} dropped its {2}!",target.pbThis,itemName)
+			removeItem(user,target,false,removalMessage)
+		end
+		target.item = :BLACKSLUDGE
+		@battle.pbDisplay(_INTL("{1} was forced to hold a {2}!",target.pbThis,target.itemName))
+		target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self)
+	end
+end
