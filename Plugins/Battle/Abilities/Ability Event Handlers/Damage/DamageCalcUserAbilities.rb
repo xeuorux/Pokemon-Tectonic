@@ -545,7 +545,7 @@ BattleHandlers::DamageCalcUserAbility.add(:RADIATE,
 
 BattleHandlers::DamageCalcUserAbility.add(:GALEFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:attack_multiplier] *= 1.5 if move.windMove?
+    mults[:attack_multiplier] *= 1.3 if move.windMove?
   }
 )
 

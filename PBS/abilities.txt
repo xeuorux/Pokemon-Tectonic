@@ -458,7 +458,7 @@
 457,RAMMINGSPEED,Ramming Speed,"Attack is boosted by 30% if a Tailwind is blowing."
 458,RADIATE,Radiate,"Increases Sp. Atk by 30%."
 459,ECHO,Echo,"Repeats another Pokémon's sound moves immediately at 75% power."
-460,GALEFORCE,Gale Force,"Boosts the power of wind-based moves by 50%."
+460,GALEFORCE,Gale Force,"Boosts the power of wind-based moves by 30%."
 461,ROBUST,Robust,"Double the Pokémon's weight, and boost its Attack by 20%."
 462,FEROCIOUS,Ferocious,"Double the Pokémon's Speed if any enemy is below half health."
 463,RUGGEDSCALES,Rugged Scales,"Added effects of enemy attacks are deflected, their users taking 1/6th HP damage."
