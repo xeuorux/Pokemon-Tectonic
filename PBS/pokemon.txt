@@ -2547,7 +2547,7 @@ Name = Rapidash
 InternalName = RAPIDASH
 Type1 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,105,70,105,80,85
+BaseStats = 70,105,70,125,80,85
 # Total = 515
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -31269,7 +31269,7 @@ InternalName = GRAPIDASH
 Type1 = PSYCHIC
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,105,70,105,80,85
+BaseStats = 70,105,70,125,80,85
 # Total = 515
 GenderRate = Female50Percent
 GrowthRate = Medium
