@@ -1135,10 +1135,11 @@
 1070,VOLATILETOXIN,Volatile Toxin,5A4,75,POISON,Physical,100,12,0,NearOther,0,abef,"The user injects an unstable toxin into the target. The next Ground-type attack they take deals double damage.",POISONJAB
 1071,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,abef,"A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.",
 1072,ROOTSHELTER,Root Shelter,5A5,0,GRASS,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also leeches any attacker who attacks the user.",VINEBIND
-1073,DREAMPUNCH,Dream Punch,0DE,60,PSYCHIC,Physical,100,12,0,NearOther,0,bef,"The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.",ZENHEADBUTT
+1073,DREAMPUNCH,Dream Punch,0DE,60,PSYCHIC,Physical,100,12,0,NearOther,0,abef,"The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.",ZENHEADBUTT
 1074,CRUELKISS,Cruel Kiss,402,50,FAIRY,Special,100,10,100,NearOther,0,bce,"Leeches the target by kissing them with its thin mouth.",DRAININGKISS
 1075,TYRANTSFIT,Tyrant's Fit,5A6,120,DRAGON,Physical,100,10,0,RandomNearFoe,0,abef,"The user throws a royal fit for three turns. Raises Speed if a target is knocked out by this move.",OUTRAGE
 1076,TRANSCENDENTENERGY,Transcendent Energy,5A7,0,DRAGON,Status,0,5,0,User,0,,"A two-turn move. The user channels insane amounts of energy the first turn, then transforms.",DAZZLINGGLEAM
 1077,TRASHTREASURE,Trash Treasure,5A8,0,POISON,Status,100,12,0,NearOther,0,bce,"The target is given a Black Sludge, replacing their item. Their Sp. Def is lowered.",
 1078,PETALTEMPEST,Petal Tempest,000,95,GRASS,Special,100,12,0,AllNearOthers,0,befq,"The user stirs up a violent petal tempest and attacks everything around it.",PETALBLIZZARD
-1079,HEARTRHYTHM,Heart Rhythm,5A9,60,FAIRY,Special,100,20,0,NearOther,0,abef,"Power increases by 20 each time its used in succession. User heals for half of damage dealt.",
+1079,HEARTRHYTHM,Heart Rhythm,5A9,60,FAIRY,Special,100,20,0,NearOther,0,abefk,"Power increases by 20 each time its used in succession. User heals for half of damage dealt.",
+1080,SCALEGLINT,Scale Glint,5AF,40,DRAGON,Special,100,15,20,NearOther,0,bef,"The shine from scales damages the target. 20% chance to reduce their higher Attacking stat.",

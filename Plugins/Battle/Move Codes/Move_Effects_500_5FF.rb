@@ -2778,3 +2778,16 @@ class PokeBattle_Move_5A9 < PokeBattle_SnowballingMove
 		user.pbRecoverHPFromDrain(hpGain,target)
 	end
 end
+
+#===============================================================================
+# Reduce's the target's highest attacking stat. (Scale Glint)
+#===============================================================================
+class PokeBattle_Move_5AF < PokeBattle_TargetMultiStatDownMove
+	def pbAdditionalEffect(user,target)
+		if target.pbAttack > target.pbSpAtk
+			target.pbLowerMultipleStatStages(:ATTACK,user,move: self)
+		else
+			target.pbLowerMultipleStatStages(:SPECIAL_ATTACK,user,move: self)
+		end
+	end
+end
