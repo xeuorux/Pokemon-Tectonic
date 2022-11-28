@@ -32512,7 +32512,7 @@ InternalName = MBOLDORE
 Type1 = PSYCHIC
 Type2 = ROCK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 74,69,73,26,101,82
+BaseStats = 69,69,73,31,101,82
 # Total = 425
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -32547,7 +32547,7 @@ InternalName = MGIGALITH
 Type1 = PSYCHIC
 Type2 = ROCK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 94,84,88,36,116,97
+BaseStats = 84,84,88,46,116,97
 # Total = 515
 GenderRate = Female50Percent
 GrowthRate = Parabolic
