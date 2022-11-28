@@ -483,7 +483,7 @@
 482,STICKYMOLD,Sticky Mold,"If an attack lowers its HP to half or less, leeches the attacker."
 483,TYRANTSWRATH,Tyrant's Wrath,"Uses Tyrant's Fit if an attack lowers its HP to half or below."
 484,DUNEPREDATOR,Dune Predator,"When it attacks from underground in sandstorm, it'll transform into Reaper form."
-485,SEALORD,Sea Lord,"Transforms into its Hullbreaker form after knocking out any Pokémon.
+485,SEALORD,Sea Lord,"Transforms into its Hullbreaker form after knocking out any Pokémon."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
