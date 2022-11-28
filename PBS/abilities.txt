@@ -131,7 +131,7 @@
 129,DEFEATIST,Defeatist,"Lowers attacking stats when HP becomes half or less."
 130,CURSEDBODY,Cursed Body,"Moves used on the Pokémon have a 60% chance to be disabled."
 131,HEALER,Healer,"Heals ally's status conditions at the end of turn."
-132,FRIENDGUARD,Friend Guard,"Reduces damage done to allies."
+132,FRIENDGUARD,Friend Guard,"Reduces damage done to allies by 25%."
 133,WEAKARMOR,Weak Armor,"Physical attacks lower Defense and raise Speed."
 134,HEAVYMETAL,Heavy Metal,"Doubles the Pokémon's weight."
 135,LIGHTMETAL,Light Metal,"Halves the Pokémon's weight."
