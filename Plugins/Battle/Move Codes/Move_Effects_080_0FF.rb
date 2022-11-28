@@ -268,7 +268,7 @@ end
 #===============================================================================
 # Power doubles for each consecutive use. (FuryCutter)
 #===============================================================================
-class PokeBattle_Move_091 < PokeBattle_DoublingMove
+class PokeBattle_Move_091 < PokeBattle_SnowballingMove
   def initialize(battle, move)
     @usageCountEffect = :FuryCutter
     super

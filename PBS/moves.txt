@@ -1141,3 +1141,4 @@
 1076,TRANSCENDENTENERGY,Transcendent Energy,5A7,0,DRAGON,Status,0,5,0,User,0,,"A two-turn move. The user channels insane amounts of energy the first turn, then transforms.",DAZZLINGGLEAM
 1077,TRASHTREASURE,Trash Treasure,5A8,0,POISON,Status,100,12,0,NearOther,0,bce,"The target is given a Black Sludge, replacing their item. Their Sp. Def is lowered.",
 1078,PETALTEMPEST,Petal Tempest,000,95,GRASS,Special,100,12,0,AllNearOthers,0,befq,"The user stirs up a violent petal tempest and attacks everything around it.",PETALBLIZZARD
+1079,HEARTRHYTHM,Heart Rhythm,5A9,60,FAIRY,Special,100,20,0,NearOther,0,abef,"Power increases by 20 each time its used in succession. User heals for half of damage dealt.",

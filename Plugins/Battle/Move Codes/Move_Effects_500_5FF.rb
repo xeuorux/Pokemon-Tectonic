@@ -1163,7 +1163,7 @@ end
 #===============================================================================
 # Power doubles for each consecutive use. (Ice Ball)
 #===============================================================================
-class PokeBattle_Move_543 < PokeBattle_DoublingMove
+class PokeBattle_Move_543 < PokeBattle_SnowballingMove
     def initialize(battle, move)
 		@usageCountEffect = :IceBall
         super
@@ -1173,7 +1173,7 @@ end
 #===============================================================================
 # Power doubles for each consecutive use. (Rollout)
 #===============================================================================
-class PokeBattle_Move_544 < PokeBattle_DoublingMove
+class PokeBattle_Move_544 < PokeBattle_SnowballingMove
     def initialize(battle, move)
 		@usageCountEffect = :RollOut
         super
@@ -2752,5 +2752,29 @@ class PokeBattle_Move_5A8 < PokeBattle_Move
 		target.item = :BLACKSLUDGE
 		@battle.pbDisplay(_INTL("{1} was forced to hold a {2}!",target.pbThis,target.itemName))
 		target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self)
+	end
+end
+
+#===============================================================================
+# Power increases by 20 for each consecutive use. User heals by 50% of damage dealt. (Hearth Rhythm)
+#===============================================================================
+class PokeBattle_Move_5A9 < PokeBattle_SnowballingMove
+    def initialize(battle, move)
+		@usageCountEffect = :HeartRhythm
+        super
+    end
+
+	def damageAtCount(count)
+		return baseDmg + 20 * count
+	end
+
+	def healingMove?; return true; end
+
+	def drainFactor(user,target); return 0.5; end
+
+	def pbEffectAgainstTarget(user,target)
+		return if target.damageState.hpLost <= 0
+		hpGain = (target.damageState.hpLost * drainFactor(user,target)).round
+		user.pbRecoverHPFromDrain(hpGain,target)
 	end
 end

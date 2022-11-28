@@ -1294,6 +1294,16 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
+	:id => :HeartRhythm,
+	:real_name => "Heart Rhythm Count",
+	:type => :Integer,
+	:maximum => 4,
+	:resets_on_cancel => true,
+	:resets_on_move_start => true,
+	:snowballing_move_counter => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
 	:id => :StunningCurl,
 	:real_name => "Stunning Curl",
 	:resets_eor	=> true,

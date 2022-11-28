@@ -1059,7 +1059,7 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
 	end
 end
 
-class PokeBattle_DoublingMove < PokeBattle_Move
+class PokeBattle_SnowballingMove < PokeBattle_Move
   def initialize(battle, move)
     super
     @effectData = GameData::BattleEffect.get(@usageCountEffect)
@@ -1071,12 +1071,16 @@ class PokeBattle_DoublingMove < PokeBattle_Move
       user.effects[@usageCountEffect] = [oldVal + 1,@effectData.maximum].min
   end
 
+  def damageAtCount(count)
+    return baseDmg << count
+  end
+
   def pbBaseDamage(baseDmg,user,target)
-      return baseDmg<<(user.effects[@usageCountEffect]-1)
+      return damageAtCount(user.effects[@usageCountEffect]-1)
   end
 
   def pbBaseDamageAI(baseDmg,user,target,skill=100)
-      return baseDmg<<(user.effects[@usageCountEffect])
+      return damageAtCount(user.effects[@usageCountEffect])
   end
 end
 
