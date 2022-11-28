@@ -853,7 +853,7 @@
 786,SLIGHT,Slight,50B,50,DARK,Special,100,20,0,NearOther,0,abefk,"When the user knocks out a target with this move, the user's Sp. Atk stat rises drastically.",
 787,MASSDESTRUCTION,Mass Destruction,0FC,130,DARK,Special,100,10,0,AllNearOthers,0,bef,"The user emits a wave of anxious feelings which overwhelms all nearby Pokémon, taking 50% recoil.",BRUTALSWING
 788,ICEIMPACT,Ice Impact,50C,70,ICE,Physical,100,10,0,NearOther,0,bef,"The user targets the target's coldest spots. Its power doubles if the target is frostbitten.",ICEPUNCH
-789,HALTINGCOLD,Halting Cold,044,75,ICE,Special,100,12,50,NearOther,0,befq,"The user attacks with numbingly cold wind. It reduces the target's Speed.",ICYWIND
+789,HALTINGCOLD,Halting Cold,044,75,ICE,Special,100,12,100,NearOther,0,befq,"The user attacks with numbingly cold wind. It reduces the target's Speed.",ICYWIND
 790,CHIBURST,Chi Burst,03F,130,FIGHTING,Special,100,5,0,NearOther,0,bef,"The user attacks with a burst of inner energy. This sharply reduces the user's Sp. Atk stat.",AURASPHERE
 791,TRAINEDOUTBURST,Trained Outburst,08E,1,FIGHTING,Special,100,10,0,NearOther,0,befk,"The user attacks with focus. The more the user's stats are raised, the greater the damage.",BOOMBURST
 792,BEARHUG,Bear Hug,0CF,85,FIGHTING,Physical,100,12,0,NearOther,0,bef,"The user hugs the target intensely, trapping and damaging it for three turns.",CONSTRICT
