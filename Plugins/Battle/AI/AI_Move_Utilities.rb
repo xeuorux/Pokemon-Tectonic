@@ -116,13 +116,12 @@ class PokeBattle_AI
                 moveFailureAlert(move,user,target,"immunity ability")
                 return true
             end
+            if target.hasActiveAbility?(:AERODYNAMIC)
+              moveFailureAlert(move,user,target,"immunity ability")
+              return true
+          end
         when :STEEL
             if target.hasActiveAbility?(:INDUSTRIALIZE)
-                moveFailureAlert(move,user,target,"immunity ability")
-                return true
-            end
-        when :FLYING
-            if target.hasActiveAbility?(:AERODYNAMIC)
                 moveFailureAlert(move,user,target,"immunity ability")
                 return true
             end
