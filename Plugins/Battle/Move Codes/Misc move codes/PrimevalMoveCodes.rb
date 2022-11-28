@@ -444,6 +444,8 @@ class PokeBattle_Move_632 < PokeBattle_HalfHealingMove
 	include EmpoweredMove
 	
 	def pbEffectGeneral(user)
+		super
+
 		user.applyEffect(:EmpoweredShoreUp)
 		
 		transformType(user,:GROUND)
