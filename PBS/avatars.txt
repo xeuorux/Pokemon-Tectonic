@@ -401,8 +401,8 @@ HPMult = 6.0
 #-------------------------------
 [ABSOLUS]
 Ability = BADOMEN
-Moves1 = KALEIDOSCOPE,NIGHTSLASH,PRIMEVALIGNITE
-Moves2 = FIRELASH,DARKPULSE,PRIMEVALFLAREBLITZ
+Moves1 = DAZZLINGGLEAM,BRUTALSWING,PRIMEVALIGNITE
+Moves2 = NOBLEROAR,INCINERATE,PRIMEVALFLAREBLITZ
 HPMult = 6.0
 #-------------------------------
 [KLANG]
@@ -469,23 +469,23 @@ Moves1 = BOREALWIND,FOULPLAY,PRIMEVALRAINDANCE
 Moves2 = WATERPULSE,HURRICANE
 HPMult = 6.0
 #-------------------------------
-[SIMISAGE]
+[PANSAGE]
 Ability = FRIENDGUARD
 Moves1 = SEEDBOMB
 Turns = 1
-HPMult = 1.0
+HPMult = 2.0
 #-------------------------------
-[SIMIPOUR]
+[PANPOUR]
 Ability = FRIENDGUARD
 Moves1 = BUBBLEBEAM
 Turns = 1
-HPMult = 1.0
+HPMult = 2.0
 #-------------------------------
-[SIMISEAR]
+[PANSEAR]
 Ability = FRIENDGUARD
 Moves1 = FLAMEBURST
 Turns = 1
-HPMult = 1.0
+HPMult = 2.0
 #-------------------------------
 [CLEFABLE]
 Ability = MAGICGUARD
@@ -595,15 +595,16 @@ HPMult = 3.0
 #-------------------------------
 [SLURPUFF]
 Ability = CANDYVEIL
-Moves1 = INFINITEFORCE,PRIMEVALLEECHSEED
-Moves2 = PARAPOLLEN,SEEDBOMB
-HPMult = 4.0
+Moves1 = INFINITEFORCE,AROMATICMIST,PRIMEVALLEECHSEED
+Moves2 = SNAPTRAP,DRAININGKISS
+Turns = 1
+HPMult = 6.0
 #-------------------------------
 [EXCADRILL]
 Ability = SANDRUSH
-Moves1 = TREMOR,IRONHEAD,PRIMEVALDRAGONDANCE
+Moves1 = EARTHQUAKE,IRONHEAD,PRIMEVALDRAGONDANCE
 Moves2 = REND,ROTOTILLER
-HPMult = 4.0
+HPMult = 6.0
 #-------------------------------
 [DURANT]
 Ability = TUNNELMAKER

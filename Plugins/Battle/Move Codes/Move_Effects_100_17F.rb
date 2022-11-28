@@ -270,7 +270,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def pbEffectGeneral(user)
       return if user.pbHasType?(:GHOST)
       # Non-Ghost effect
-      user.tryLowerStat(:SPEED,user, increment: 2, move: self)
+      user.tryLowerStat(:SPEED,user, increment: 1, move: self)
       user.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1], user, move: self)
     end
   
@@ -299,7 +299,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 					end
 				end
 			else
-        statUp = [:ATTACK,2,:DEFENSE,2]
+        statUp = [:ATTACK,1,:DEFENSE,1]
         score = getMultiStatUpMoveScore(statUp,score,user,target,skill,statusMove?)
         score -= user.stages[:SPEED] * 10
 			end

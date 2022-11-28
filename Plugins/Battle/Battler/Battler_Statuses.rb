@@ -186,11 +186,6 @@ class PokeBattle_Battler
 		hasImmuneType = false
 		immuneType = nil
 		case newStatus
-		when :SLEEP
-			if pbHasType?(:BUG) && !selfInflicted
-				hasImmuneType = true
-				immuneType = :BUG
-			end
 		when :POISON
 			unless user&.hasActiveAbility?(:CORROSION)
 				if pbHasType?(:POISON)
@@ -303,8 +298,6 @@ class PokeBattle_Battler
 			hasImmuneType |= pbHasType?(:ELECTRIC) && Settings::MORE_TYPE_EFFECTS
 		when :FROZEN, :FROSTBITE
 			hasImmuneType |= pbHasType?(:ICE)
-		when :SLEEP
-			hasImmuneType |= pbHasType?(:BUG)
 		when :DIZZY
 			hasImmuneType |= pbHasType?(:PSYCHIC)
 		when :LEECHED

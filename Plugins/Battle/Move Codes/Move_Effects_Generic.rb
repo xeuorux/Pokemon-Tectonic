@@ -1153,7 +1153,7 @@ class PokeBattle_InvokeMove < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user,target)
-		target.applyBurn(user) if target.pbCanInflictStatus?(@statusToApply,user,true,self)
+		target.pbInflictStatus(@statusToApply,0,nil,user) if target.pbCanInflictStatus?(@statusToApply,user,true,self)
     @battle.pbStartWeather(user,@weatherType,@durationSet,false) if !@battle.primevalWeatherPresent?()
 	end
 

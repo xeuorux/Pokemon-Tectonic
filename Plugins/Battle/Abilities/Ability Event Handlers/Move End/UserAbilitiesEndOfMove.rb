@@ -155,3 +155,17 @@ BattleHandlers::UserAbilityEndOfMove.add(:SOUNDBARRIER,
     user.tryRaiseStat(:DEFENSE,user, showAbilitySplash: true) if move.soundMove?
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:SEALORD,
+  proc { |ability,user,targets,move,battle|
+    next unless user.species == :GYARADOS
+    next unless user.form == 0
+    next if battle.pbAllFainted?(user.idxOpposingSide)
+    numFainted = 0
+    targets.each { |b| numFainted += 1 if b.damageState.fainted }
+    next if numFainted == 0
+    battle.pbShowAbilitySplash(user)
+    user.pbChangeForm(1,_INTL("{1}'s anger cannot be sated! It enters its Hull Breaker form!",user.pbThis))
+    battle.pbHideAbilitySplash(user)
+  }
+)

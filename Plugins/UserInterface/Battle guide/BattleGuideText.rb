@@ -103,7 +103,7 @@ STATUS_CONDITIONS_HASH = {
     "Numb" => "When numbed, a Pokémon's Speed is halved, and it deals 25% less damage. Electric- and Fighting-types do the most numbing. Electric is immune.",
     "Dizzy" => "When dizzied, a Pokemon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune.",
     "Leeched" => "When leeched, it loses 1/8th HP every turn, and each opponent gains that health. Bug- and Dark-types do the most dizzying. Grass is immune.",
-    "Sleep" => "A rarer status that causes a Pokémon to be unable to do anything for 3 turns. Psychic- and Grass-types put Pokémon to sleep the most often. Bug is immune.",
+    "Sleep" => "A rarer status that causes a Pokémon to be unable to do anything for 3 turns. Psychic- and Grass-types put Pokémon to sleep the most often.",
 }
 
 TRAINERS_HASH = {

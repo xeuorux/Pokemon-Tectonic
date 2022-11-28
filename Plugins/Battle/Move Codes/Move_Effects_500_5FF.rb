@@ -2668,3 +2668,89 @@ class PokeBattle_Move_5A5 < PokeBattle_ProtectMove
 		@effect = :RootShelter
 	end
 end
+
+#===============================================================================
+# User must use this move for 2 more rounds. Raises Speed if KOs. (Tyrant's Fit)
+#===============================================================================
+class PokeBattle_Move_5A6 < PokeBattle_Move
+	def pbEffectAfterAllHits(user,target)
+		if !target.damageState.unaffected && !user.effectActive?(:Outrage)
+		  user.applyEffect(:Outrage,3)
+		end
+		user.tickDownAndProc(:Outrage)
+		return if !target.damageState.fainted
+        user.tryRaiseStat(:SPEED,user,increment: 1, move: self)
+	end
+
+	# Used to modify the AI elsewhere
+    def hasKOEffect?(user,target)
+        return false if !user.pbCanRaiseStatStage?(:SPEED,user,self)
+        return true
+    end
+end
+
+  #===============================================================================
+  # Two turn attack. Skips first turn, and transforms the user into their second form
+  # on the 2nd turn. Only ampharos can use it. (Transcendant Energy)
+  #===============================================================================
+  class PokeBattle_Move_5A7 < PokeBattle_TwoTurnMove
+	def pbMoveFailed?(user,targets)
+		if !user.countsAs?(:AMPHAROS)
+		  @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis(true)))
+		  return true
+		elsif user.form != 0
+		  @battle.pbDisplay(_INTL("But {1} can't use it the way it is now!",user.pbThis(true)))
+		  return true
+		end
+		return false
+	end
+  
+    def pbChargingTurnMessage(user,targets)
+      @battle.pbDisplay(_INTL("{1} is radiating energy!",user.pbThis))
+    end
+  
+    def pbEffectGeneral(user)
+      return if !@damagingTurn
+      user.pbChangeForm(1,_INTL("{1} transcended its limits and transformed!",user.pbThis))
+    end
+
+    def getScore(score,user,target,skill=100)
+      score += 30 if user.firstTurn?
+	  score += 20
+      super
+    end
+
+	def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
+		if @chargingTurn && !@damagingTurn
+			@battle.pbCommonAnimation("StatUp",user)
+		else 
+			@battle.pbCommonAnimation("MegaEvolution",user)
+			super
+		end
+	end
+end
+
+#===============================================================================
+# Target drops its item and is forced to hold a Black Sludge. (Trash Treasure)
+# Also lower's the target's Sp. Def.
+#===============================================================================
+class PokeBattle_Move_5A8 < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target)
+		if target.item == :BLACKSLUDGE
+			@battle.pbDisplay(_INTL("But {1} is already holding a Black Sludge!",target.pbThis(true)))
+			return true
+		end
+		return !canRemoveItem?(user,target)
+	end
+
+	def pbEffectAgainstTarget(user,target)
+		if target.item
+			itemName = target.itemName
+			removalMessage = _INTL("{1} dropped its {2}!",target.pbThis,itemName)
+			removeItem(user,target,false,removalMessage)
+		end
+		target.item = :BLACKSLUDGE
+		@battle.pbDisplay(_INTL("{1} was forced to hold a {2}!",target.pbThis,target.itemName))
+		target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self)
+	end
+end
