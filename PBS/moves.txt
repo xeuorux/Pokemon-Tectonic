@@ -471,7 +471,7 @@
 449,COMETPUNCH,Comet Punch,0C0,18,NORMAL,Physical,85,12,0,NearOther,0,abefj,"The target is hit with a flurry of punches that strike two to five times in a row.",
 450,FURYSWIPES,Fury Swipes,0C0,18,NORMAL,Physical,100,12,0,NearOther,0,abefp,"The target is raked with sharp claws or scythes for two to five times in quick succession.",
 #-------------------------------
-451,HEADTHROW,Head Throw,500,30,GRASS,Special,100,15,0,NearOther,0,befn,"Round objects are hurled at the target to strike three times in a row.",
+451,HEADTHROW,Head Throw,500,40,GRASS,Special,100,15,0,NearOther,0,befn,"Round objects are hurled at the target to strike three times in a row.",
 #-------------------------------
 452,BIND,Bind,0CF,40,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user squeezes the target, trapping and damaging it for three turns.",
 453,DOUBLESLAP,Double Slap,0C0,15,NORMAL,Physical,85,10,0,NearOther,0,abef,"The target is slapped repeatedly, back and forth, two to five times in a row.",
