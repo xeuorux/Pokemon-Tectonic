@@ -95,6 +95,6 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:TYRANTSWRATH,
   proc { |ability,target,user,move,switched,battle|
     next if !move.damagingMove?
     next if !target.knockedBelowHalf?
-    battle.forceUseMove(target,:TYRANTSFIT,user.index,true,nil,nil,true)
+    battle.forceUseMove(target,:TYRANTSFIT,user.index,false,nil,nil,true)
   }
 )
