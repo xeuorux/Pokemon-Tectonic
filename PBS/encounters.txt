@@ -150,10 +150,11 @@ LandSparse,20
     25,SANDYGAST,7,9
     25,VANILLITE,7,9
 Puddle,20
-    25,CLOBBOPUS,7,9
-    25,HORSEA,7,9
-    25,INKAY,7,9
-    25,WINGULL,7,9
+    20,CLOBBOPUS,7,9
+    20,HORSEA,7,9
+    20,INKAY,7,9
+    20,WINGULL,7,9
+	20,CLAMPERL,7,9
 Special,20
     1,SPHEAL,15
 #-------------------------------
@@ -481,7 +482,6 @@ LandTall,25
     25,SEWADDLE,30,32
 Puddle,21
     40,ESPURR,23,25
-    20,CORPHISH,23,25
     20,DEERLING_1,23,25
     20,ILLUMISE,23,25
     20,VOLBEAT,23,25
