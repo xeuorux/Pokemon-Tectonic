@@ -376,7 +376,7 @@ BattleHandlers::DamageCalcUserAbility.add(:GALEFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type,aiCheck|
     mults[:attack_multiplier] *= 1.3 if move.windMove?
   }
-}
+)
 
 BattleHandlers::DamageCalcUserAbility.add(:EXTREMEHEAT,
   proc { |ability,user,target,move,mults,baseDmg,type,aiCheck|
