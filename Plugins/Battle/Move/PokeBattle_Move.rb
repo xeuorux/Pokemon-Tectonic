@@ -93,6 +93,11 @@ class PokeBattle_Move
       return true if @category == 1
       return false
     end
+
+    def calculatedCategory
+      return @calculated_category if @calculated_category != -1
+      return @category
+    end
   
     def damagingMove?; return @category != 2; end
     def statusMove?;   return @category == 2; end

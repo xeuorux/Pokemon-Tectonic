@@ -204,6 +204,7 @@ class PokeBattle_Battler
 		unless pbTryUseMove(choice, move, specialUsage, skipAccuracyCheck)
 			@lastMoveUsed = nil
 			@lastMoveUsedType = nil
+			@lastMoveUsedCategory = -1
 			unless specialUsage
 				@lastRegularMoveUsed = nil
 				@lastRegularMoveTarget = -1
@@ -221,6 +222,7 @@ class PokeBattle_Battler
 			@battle.pbDisplay(_INTL('But there was no PP left for the move!'))
 			@lastMoveUsed          = nil
 			@lastMoveUsedType      = nil
+			@lastMoveUsedCategory = -1
 			@lastRegularMoveUsed   = nil
 			@lastRegularMoveTarget = -1
 			@lastMoveFailed        = true
@@ -262,6 +264,7 @@ class PokeBattle_Battler
 		# Record move as having been used
 		@lastMoveUsed     = move.id
 		@lastMoveUsedType = move.calcType # For Conversion 2
+		@lastMoveUsedCategory = move.calculatedCategory
 		unless specialUsage
 			@lastRegularMoveUsed = move.id # For Disable, Encore, Instruct, Mimic, Mirror Move, Sketch, Spite
 			@lastRegularMoveTarget = choice[3] # For Instruct (remembering original target is fine)

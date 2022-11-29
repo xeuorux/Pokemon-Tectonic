@@ -75,3 +75,10 @@
   )
 
   BattleHandlers::SpecialAttackCalcUserAbility.copy(:RADIATE,:ARCANE)
+
+BattleHandlers::SpecialAttackCalcUserAbility.add(:BALANCEOFPOWER,
+  proc { |ability,user,battle,spAtkMult|
+    spAtkMult *= 1.5 if user.lastMoveUSedCategory == 0
+    next spAtkMult
+  }
+)
