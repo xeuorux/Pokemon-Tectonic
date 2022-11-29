@@ -218,7 +218,7 @@ BattleHandlers::DamageCalcUserAbility.add(:EXPERTISE,
   proc { |ability,user,target,move,mults,baseDmg,type,aiCheck|
     effectivenessToCheck = nil
     if aiCheck
-      effectivenessToCheck = @battle.battleAI.pbCalcTypeModAI(type,user,target,move)
+      effectivenessToCheck = user.battle.battleAI.pbCalcTypeModAI(type,user,target,move)
     else
       effectivenessToCheck = target.damageState.typeMod
     end
