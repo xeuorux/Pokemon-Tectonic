@@ -49,6 +49,22 @@ module BattleHandlers
 	DamageCalcTargetAllyAbility         = AbilityHandlerHash.new
 	DamageCalcUserItem                  = ItemHandlerHash.new
 	DamageCalcTargetItem                = ItemHandlerHash.new
+	# Attack calculation
+	AttackCalcUserAbility               = AbilityHandlerHash.new
+	AttackCalcAllyAbility           	= AbilityHandlerHash.new
+	AttackCalcUserItem                  = ItemHandlerHash.new
+	# Special Attack calculation
+	SpecialAttackCalcUserAbility        = AbilityHandlerHash.new
+	SpecialAttackCalcAllyAbility        = AbilityHandlerHash.new
+	SpecialAttackCalcUserItem           = ItemHandlerHash.new
+	# Defense calculation
+	DefenseCalcUserAbility               = AbilityHandlerHash.new
+	DefenseCalcAllyAbility           	 = AbilityHandlerHash.new
+	DefenseCalcUserItem                  = ItemHandlerHash.new
+	# Special Defense calculation
+	SpecialDefenseCalcUserAbility        = AbilityHandlerHash.new
+	SpecialDefenseCalcAllyAbility        = AbilityHandlerHash.new
+	SpecialDefenseCalcUserItem           = ItemHandlerHash.new
 	# Critical hit calculation
 	CriticalCalcUserAbility             = AbilityHandlerHash.new
 	GuaranteedCriticalUserAbility		= AbilityHandlerHash.new
@@ -277,13 +293,19 @@ module BattleHandlers
   
 	#=============================================================================
   
-	def self.triggerDamageCalcUserAbility(ability,user,target,move,mults,baseDmg,type)
-	  DamageCalcUserAbility.trigger(ability,user,target,move,mults,baseDmg,type)
+	def self.triggerDamageCalcUserAbility(ability,user,target,move,mults,baseDmg,type,aiChecking=false)
+	  DamageCalcUserAbility.trigger(ability,user,target,move,mults,baseDmg,type,aiChecking)
 	end
   
-	def self.triggerDamageCalcUserAllyAbility(ability,user,target,move,mults,baseDmg,type)
-	  DamageCalcUserAllyAbility.trigger(ability,user,target,move,mults,baseDmg,type)
+	def self.triggerDamageCalcUserAllyAbility(ability,user,target,move,mults,baseDmg,type,aiChecking=false)
+	  DamageCalcUserAllyAbility.trigger(ability,user,target,move,mults,baseDmg,type,aiChecking)
 	end
+
+	def self.triggerDamageCalcUserItem(item,user,target,move,mults,baseDmg,type,aiChecking=false)
+	  DamageCalcUserItem.trigger(item,user,target,move,mults,baseDmg,type,aiChecking)
+	end
+
+	#=============================================================================
   
 	def self.triggerDamageCalcTargetAbility(ability,user,target,move,mults,baseDmg,type)
 	  DamageCalcTargetAbility.trigger(ability,user,target,move,mults,baseDmg,type)
@@ -297,12 +319,76 @@ module BattleHandlers
 	  DamageCalcTargetAllyAbility.trigger(ability,user,target,move,mults,baseDmg,type)
 	end
   
-	def self.triggerDamageCalcUserItem(item,user,target,move,mults,baseDmg,type)
-	  DamageCalcUserItem.trigger(item,user,target,move,mults,baseDmg,type)
-	end
-  
 	def self.triggerDamageCalcTargetItem(item,user,target,move,mults,baseDmg,type)
 	  DamageCalcTargetItem.trigger(item,user,target,move,mults,baseDmg,type)
+	end
+
+	#=============================================================================
+
+	def self.triggerAttackCalcUserAbility(ability,user,battle,attackMult)
+		ret = AttackCalcUserAbility.trigger(ability,user,battle,attackMult)
+		return ret || attackMult
+	end
+
+	def self.triggerAttackCalcAllyAbility(ability,user,battle,attackMult)
+		ret = AttackCalcAllyAbility.trigger(ability,user,battle,attackMult)
+		return ret || attackMult
+	end
+
+	def self.triggerAttackCalcUserItem(item,user,battle,attackMult)
+		ret = AttackCalcUserItem.trigger(item,user,battle,attackMult)
+		return ret || attackMult
+	end
+
+	#=============================================================================
+
+	def self.triggerSpecialAttackCalcUserAbility(ability,user,battle,spAtkMult)
+		ret = SpecialAttackCalcUserAbility.trigger(ability,user,battle,spAtkMult)
+		return ret || spAtkMult
+	end
+
+	def self.triggerSpecialAttackCalcAllyAbility(ability,user,battle,spAtkMult)
+		ret = SpecialAttackCalcAllyAbility.trigger(ability,user,battle,spAtkMult)
+		return ret || spAtkMult
+	end
+
+	def self.triggerSpecialAttackCalcUserItem(item,user,battle,spAtkMult)
+		ret = SpecialAttackCalcUserItem.trigger(item,user,battle,spAtkMult)
+		return ret || spAtkMult
+	end
+
+	#=============================================================================
+
+	def self.triggerDefenseCalcUserAbility(ability,user,battle,defenseMult)
+		ret = DefenseCalcUserAbility.trigger(ability,user,battle,defenseMult)
+		return ret || defenseMult
+	end
+
+	def self.triggerDefenseCalcAllyAbility(ability,user,battle,defenseMult)
+		ret = DefenseCalcAllyAbility.trigger(ability,user,battle,defenseMult)
+		return ret || defenseMult
+	end
+
+	def self.triggerDefenseCalcUserItem(item,user,battle,defenseMult)
+		ret = DefenseCalcUserItem.trigger(item,user,battle,defenseMult)
+		return ret || defenseMult
+	end
+
+	#=============================================================================
+
+	def self.triggerSpecialDefenseCalcUserAbility(ability,user,battle,spDefMult)
+		ret = SpecialDefenseCalcUserAbility.trigger(ability,user,battle,spDefMult)
+		return ret || spDefMult
+	end
+
+	def self.triggerSpecialDefenseCalcAllyAbility(ability,user,battle,spDefMult)
+		ret = SpecialDefenseCalcAllyAbility.trigger(ability,user,battle,spDefMult)
+		return ret || spDefMult
+	end
+
+	def self.triggerSpecialDefenseCalcUserItem(item,user,battle,spDefMult)
+		ret = SpecialDefenseCalcUserItem.trigger(item,user,battle,spDefMult)
+		return ret || spDefMult
 	end
   
 	#=============================================================================

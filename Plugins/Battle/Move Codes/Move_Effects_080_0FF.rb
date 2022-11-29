@@ -1885,7 +1885,7 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
     return numHits
   end
 
-  def pbNumHitsAI(user,target,skill=100)
+  def pbNumHitsAI(user,target)
     if @id == :WATERSHURIKEN && user.isSpecies?(:GRENINJA) && user.form == 2
       return 3
     end

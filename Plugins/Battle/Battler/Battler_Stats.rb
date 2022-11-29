@@ -1,21 +1,18 @@
 class PokeBattle_Battler
 	def getPlainStat(stat)
-		plainStatVal = 0
 		case stat
 		when :ATTACK
-			plainStatVal = attack
+			return attack
 		when :DEFENSE
-			plainStatVal = defense
+			return defense
 		when :SPECIAL_ATTACK
-			plainStatVal = spatk
+			return spatk
 		when :SPECIAL_DEFENSE
-			plainStatVal = spdef
+			return spdef
 		when :SPEED
-			plainStatVal = speed
+			return speed
 		end
-
-		plainStatVal += tribalBonusForStat(stat)
-		return plainStatVal
+		return -1
 	end
 
 	def plainStats
@@ -62,49 +59,49 @@ class PokeBattle_Battler
 
 	def attack
 		if puzzleRoom? && oddRoom?
-			return sp_def_no_room
+			return base_special_defense
 		elsif puzzleRoom? && !oddRoom?
-			return sp_atk_no_room
+			return base_special_attack
 		elsif oddRoom? && !puzzleRoom?
-			return defense_no_room
+			return base_defense
 		else
-			return attack_no_room
+			return base_attack
 		end
 	end
 
 	def defense
 		if puzzleRoom? && oddRoom?
-			return sp_atk_no_room
+			return base_special_attack
 		elsif puzzleRoom? && !oddRoom?
-			return sp_def_no_room
+			return base_special_defense
 		elsif oddRoom? && !puzzleRoom?
-			return attack_no_room
+			return base_attack
 		else
-			return defense_no_room
+			return base_defense
 		end
 	end
 
 	def spatk
 		if puzzleRoom? && oddRoom?
-			return defense_no_room
+			return base_defense
 		elsif puzzleRoom? && !oddRoom?
-			return attack_no_room
+			return base_attack
 		elsif oddRoom? && !puzzleRoom?
-			return sp_def_no_room
+			return base_special_defense
 		else
-			return sp_atk_no_room
+			return base_special_attack
 		end
 	end
 
 	def spdef
 		if puzzleRoom? && oddRoom?
-			return attack_no_room
+			return base_attack
 		elsif puzzleRoom? && !oddRoom?
-			return defense_no_room
+			return base_defense
 		elsif oddRoom? && !puzzleRoom?
-			return sp_atk_no_room
+			return base_special_attack
 		else
-			return sp_def_no_room
+			return base_special_defense
 		end
 	end
 
@@ -112,21 +109,25 @@ class PokeBattle_Battler
 
 	DEFENSIVE_LOCK_STAT = 95
 
+	def speed
+		return base_speed
+	end
+
 	# Don't use for HP
 	def recalcStat(stat,base)
 		return calcStatGlobal(base, @level, @pokemon.ev[stat],hasActiveAbility?(:STYLISH))
 	end
 
-	def attack_no_room
-		atk_bonus = tribalBonusForStat(:ATTACK)
+	def base_attack
+		attack_bonus = tribalBonusForStat(:ATTACK)
 		if hasActiveItem?([:POWERLOCK,:POWERKEY])
-			return recalcStat(:ATTACK,OFFENSIVE_LOCK_STAT) + atk_bonus
+			return recalcStat(:ATTACK,OFFENSIVE_LOCK_STAT) + attack_bonus
 		else
-			return @attack + atk_bonus
+			return @attack + attack_bonus
 		end
 	end
 
-	def defense_no_room
+	def base_defense
 		defense_bonus = tribalBonusForStat(:DEFENSE)
 		if hasActiveItem?(:GUARDLOCK)
 			return recalcStat(:DEFENSE,DEFENSIVE_LOCK_STAT) + defense_bonus
@@ -137,7 +138,7 @@ class PokeBattle_Battler
 		end
 	end
 
-	def sp_atk_no_room
+	def base_special_attack
 		spatk_bonus = tribalBonusForStat(:SPECIAL_ATTACK)
 		if hasActiveItem?([:ENERGYLOCK,:ENERGYKEY])
 			return recalcStat(:SPECIAL_ATTACK,OFFENSIVE_LOCK_STAT) + spatk_bonus
@@ -146,7 +147,7 @@ class PokeBattle_Battler
 		end
 	end
 
-	def sp_def_no_room
+	def base_special_defense
 		spdef_bonus = tribalBonusForStat(:SPECIAL_DEFENSE)
 		if hasActiveItem?(:WILLLOCK)
 			return recalcStat(:SPECIAL_DEFENSE,DEFENSIVE_LOCK_STAT) + spdef_bonus
@@ -157,32 +158,92 @@ class PokeBattle_Battler
 		end
 	end
 
+	def base_speed
+		speed_bonus = tribalBonusForStat(:SPEED)
+		return @speed + speed_bonus
+	end
+
 	#=============================================================================
-	# Query about stats after room modification, stages, and maybe other effects.
+	# Query about stats after room modification, stages, abilities and item modifiers.
 	#=============================================================================
-	def pbAttack(aiChecking = false)
+	def pbAttack(aiChecking = false,stage=-1)
 		return 1 if fainted?
-		return statAfterStage(:ATTACK)
+		attack = statAfterStage(:ATTACK,stage)
+		attackMult = 1.0
+
+		unless ignoreAbilityInAI?(aiChecking)
+			attackMult = BattleHandlers.triggerAttackCalcUserAbility(ability, self, @battle, attackMult) if abilityActive?
+			eachAlly do |ally|
+				next unless ally.abilityActive?
+				attackMult = BattleHandlers.triggerAttackCalcUserAbility(ally.ability, self, @battle, attackMult)
+			end
+		end
+		attackMult = BattleHandlers.triggerAttackCalcUserItem(item, self, battle, attackMult) if itemActive?
+
+		# Dragon Ride
+		attackMult *= 1.5 if effectActive?(:OnDragonRide)
+
+		# Calculation
+		return [(attack * attackMult).round, 1].max
 	end
 
-	def pbSpAtk(aiChecking = false)
+	def pbSpAtk(aiChecking = false,stage=-1)
 		return 1 if fainted?
-		return statAfterStage(:SPECIAL_ATTACK)
+		special_attack = statAfterStage(:SPECIAL_ATTACK,stage)
+		spAtkMult = 1.0
+
+		unless ignoreAbilityInAI?(aiChecking)
+			spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserAbility(ability, self, @battle, spAtkMult) if abilityActive?
+			eachAlly do |ally|
+				next unless ally.abilityActive?
+				spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserAbility(ally.ability, self, @battle, spAtkMult)
+			end
+		end
+		spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserItem(item, self, battle, spAtkMult) if itemActive?
+		
+		# Calculation
+		return [(special_attack * spAtkMult).round, 1].max
 	end
 
-	def pbDefense(aiChecking = false)
+	def pbDefense(aiChecking = false,stage=-1)
 		return 1 if fainted?
-		return statAfterStage(:DEFENSE)
+		defense = statAfterStage(:DEFENSE,stage)
+		defenseMult = 1.0
+
+		unless ignoreAbilityInAI?(aiChecking)
+			defenseMult = BattleHandlers.triggerDefenseCalcUserAbility(ability, self, @battle, defenseMult) if abilityActive?
+			eachAlly do |ally|
+				next unless ally.abilityActive?
+				defenseMult = BattleHandlers.triggerDefenseCalcUserAbility(ally.ability, self, @battle, defenseMult)
+			end
+		end
+		defenseMult = BattleHandlers.triggerDefenseCalcUserItem(item, self, battle, defenseMult) if itemActive?
+		
+		# Calculation
+		return [(defense * defenseMult).round, 1].max
 	end
 
-	def pbSpDef(aiChecking = false)
+	def pbSpDef(aiChecking = false,stage=-1)
 		return 1 if fainted?
-		return statAfterStage(:SPECIAL_DEFENSE)
+		special_defense = statAfterStage(:SPECIAL_DEFENSE,stage)
+		spDefMult = 1.0
+
+		unless ignoreAbilityInAI?(aiChecking)
+			spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserAbility(ability, self, @battle, spDefMult) if abilityActive?
+			eachAlly do |ally|
+				next unless ally.abilityActive?
+				spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserAbility(ally.ability, self, @battle, spDefMult)
+			end
+		end
+		spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserItem(item, self, battle, spDefMult) if itemActive?
+		
+		# Calculation
+		return [(special_defense * spDefMult).round, 1].max
 	end
 
-	def pbSpeed(aiChecking = false)
+	def pbSpeed(aiChecking = false,stage=-1)
 		return 1 if fainted?
-		speed = statAfterStage(:SPEED)
+		speed = statAfterStage(:SPEED,stage)
 		speedMult = 1.0
 		# Ability effects that alter calculated Speed
 		speedMult = BattleHandlers.triggerSpeedCalcAbility(ability, self, speedMult) if abilityActive? && !ignoreAbilityInAI?(aiChecking)
@@ -201,5 +262,21 @@ class PokeBattle_Battler
 		end
 		# Calculation
 		return [(speed * speedMult).round, 1].max
+	end
+
+	def getFinalStat(stat,aiChecking = false,stage=-1)
+		case stat
+		when :ATTACK
+			return pbAttack(aiChecking,stage)
+		when :DEFENSE
+			return pbDefense(aiChecking,stage)
+		when :SPECIAL_ATTACK
+			return pbSpAtk(aiChecking,stage)
+		when :SPECIAL_DEFENSE
+			return pbSpDef(aiChecking,stage)
+		when :SPEED
+			return pbSpeed(aiChecking,stage)
+		end
+		return -1
 	end
 end
