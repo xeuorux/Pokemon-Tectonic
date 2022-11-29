@@ -371,7 +371,7 @@
 370,STRATAGEM,Stratagem,"Powers up Rock-type moves by 50%."
 371,ARMORPIERCING,Armor Piercing,"Deals double damage against raised Defense or Sp. Def."
 372,BADLUCK,Bad Luck,"When free from status, non-damaging moves are drawn in."
-373,BROODING,Brooding,"Gets 5% to non-HP stats per other Dragon on team."
+373,BROODING,Brooding,"Deals 5% more damage and takes 5% less damage for each other Dragon on team."
 374,SOULREAD,Soul Read,"Double damage to targets who don't share a type with their last move."
 375,SURFSUP,Surf's Up,"Powers up Water-type moves by 50%."
 376,NUMBINGTOUCH,Numbing Touch,"Physical moves have a 30% chance to numb targets."

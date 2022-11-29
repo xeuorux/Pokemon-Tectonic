@@ -57,6 +57,14 @@ module BattleHandlers
 	SpecialAttackCalcUserAbility        = AbilityHandlerHash.new
 	SpecialAttackCalcAllyAbility        = AbilityHandlerHash.new
 	SpecialAttackCalcUserItem           = ItemHandlerHash.new
+	# Defense calculation
+	DefenseCalcUserAbility               = AbilityHandlerHash.new
+	DefenseCalcAllyAbility           	 = AbilityHandlerHash.new
+	DefenseCalcUserItem                  = ItemHandlerHash.new
+	# Special Defense calculation
+	SpecialDefenseCalcUserAbility        = AbilityHandlerHash.new
+	SpecialDefenseCalcAllyAbility        = AbilityHandlerHash.new
+	SpecialDefenseCalcUserItem           = ItemHandlerHash.new
 	# Critical hit calculation
 	CriticalCalcUserAbility             = AbilityHandlerHash.new
 	GuaranteedCriticalUserAbility		= AbilityHandlerHash.new
@@ -347,6 +355,40 @@ module BattleHandlers
 	def self.triggerSpecialAttackCalcUserItem(item,user,battle,spAtkMult)
 		ret = SpecialAttackCalcUserItem.trigger(item,user,battle,spAtkMult)
 		return ret || spAtkMult
+	end
+
+	#=============================================================================
+
+	def self.triggerDefenseCalcUserAbility(ability,user,battle,defenseMult)
+		ret = DefenseCalcUserAbility.trigger(ability,user,battle,defenseMult)
+		return ret || defenseMult
+	end
+
+	def self.triggerDefenseCalcAllyAbility(ability,user,battle,defenseMult)
+		ret = DefenseCalcAllyAbility.trigger(ability,user,battle,defenseMult)
+		return ret || defenseMult
+	end
+
+	def self.triggerDefenseCalcUserItem(item,user,battle,defenseMult)
+		ret = DefenseCalcUserItem.trigger(item,user,battle,defenseMult)
+		return ret || defenseMult
+	end
+
+	#=============================================================================
+
+	def self.triggerSpecialDefenseCalcUserAbility(ability,user,battle,spDefMult)
+		ret = SpecialDefenseCalcUserAbility.trigger(ability,user,battle,spDefMult)
+		return ret || spDefMult
+	end
+
+	def self.triggerSpecialDefenseCalcAllyAbility(ability,user,battle,spDefMult)
+		ret = SpecialDefenseCalcAllyAbility.trigger(ability,user,battle,spDefMult)
+		return ret || spDefMult
+	end
+
+	def self.triggerSpecialDefenseCalcUserItem(item,user,battle,spDefMult)
+		ret = SpecialDefenseCalcUserItem.trigger(item,user,battle,spDefMult)
+		return ret || spDefMult
 	end
   
 	#=============================================================================

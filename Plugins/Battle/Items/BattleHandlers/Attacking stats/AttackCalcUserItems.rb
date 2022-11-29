@@ -6,14 +6,14 @@ BattleHandlers::AttackCalcUserItem.add(:MUSCLEBAND,
   )
 
 BattleHandlers::AttackCalcUserItem.add(:CHOICEBAND,
-    proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,user,battle,attackMult|
         attackMult *= 1.33
         next attackMult
     }
   )
 
   BattleHandlers::AttackCalcUserItem.add(:THICKCLUB,
-    proc { |item,user,target,move,mults,baseDmg,type|
+    proc { |item,user,battle,attackMult|
         attackMult *= 1.5 if (user.isSpecies?(:CUBONE) || user.isSpecies?(:MAROWAK))
         next attackMult
     }

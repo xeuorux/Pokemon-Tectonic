@@ -207,12 +207,38 @@ class PokeBattle_Battler
 
 	def pbDefense(aiChecking = false,stage=-1)
 		return 1 if fainted?
-		return statAfterStage(:DEFENSE,stage)
+		defense = statAfterStage(:DEFENSE,stage)
+		defenseMult = 1.0
+
+		unless ignoreAbilityInAI?(aiChecking)
+			defenseMult = BattleHandlers.triggerDefenseCalcUserAbility(ability, self, @battle, defenseMult) if abilityActive?
+			eachAlly do |ally|
+				next unless ally.abilityActive?
+				defenseMult = BattleHandlers.triggerDefenseCalcUserAbility(ally.ability, self, @battle, defenseMult)
+			end
+		end
+		defenseMult = BattleHandlers.triggerDefenseCalcUserItem(item, self, battle, defenseMult) if itemActive?
+		
+		# Calculation
+		return [(defense * defenseMult).round, 1].max
 	end
 
 	def pbSpDef(aiChecking = false,stage=-1)
 		return 1 if fainted?
-		return statAfterStage(:SPECIAL_DEFENSE,stage)
+		special_defense = statAfterStage(:SPECIAL_DEFENSE,stage)
+		spDefMult = 1.0
+
+		unless ignoreAbilityInAI?(aiChecking)
+			spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserAbility(ability, self, @battle, spDefMult) if abilityActive?
+			eachAlly do |ally|
+				next unless ally.abilityActive?
+				spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserAbility(ally.ability, self, @battle, spDefMult)
+			end
+		end
+		spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserItem(item, self, battle, spDefMult) if itemActive?
+		
+		# Calculation
+		return [(special_defense * spDefMult).round, 1].max
 	end
 
 	def pbSpeed(aiChecking = false,stage=-1)

@@ -12,17 +12,19 @@ BattleHandlers::SpeedCalcItem.add(:CHOICECROWN,
 )
 
 # Zenith Band
-BattleHandlers::DamageCalcUserItem.add(:ZENITHBAND,
-    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-      mults[:base_damage_multiplier] *= 2.0 if move.physicalMove?
-    }
+BattleHandlers::AttackCalcUserItem.add(:ZENITHBAND,
+  proc { |item,user,target,move,mults,baseDmg,type|
+      attackMult *= 2.0
+      next attackMult
+  }
 )
 
 # Zenith Specs
-BattleHandlers::DamageCalcUserItem.add(:ZENITHSPECS,
-    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-      mults[:base_damage_multiplier] *= 2.0 if move.specialMove?
-    }
+BattleHandlers::SpecialAttackCalcUserItem.add(:ZENITHSPECS,
+  proc { |item,user,battle,spAtkMult|
+      spAtkMult *= 2.0
+      next spAtkMult
+  }
 )
 
 # Zenith Scarf
@@ -40,11 +42,11 @@ BattleHandlers::DamageCalcTargetItem.add(:ALLPURPOSEVEST,
 )
 
 # Assault Corset
-BattleHandlers::DamageCalcTargetItem.copy(:ASSAULTVEST,:ASSAULTCORSET)
+BattleHandlers::SpecialDefenseCalcUserItem.copy(:ASSAULTVEST,:ASSAULTCORSET)
 BattleHandlers::TargetItemOnHit.copy(:ROCKYHELMET,:ASSAULTCORSET)
 
 # Strike Corset
-BattleHandlers::DamageCalcTargetItem.copy(:STRIKEVEST,:STRIKECORSET)
+BattleHandlers::DefenseCalcUserItem.copy(:STRIKEVEST,:STRIKECORSET)
 BattleHandlers::TargetItemOnHit.copy(:BUSTEDRADIO,:STRIKECORSET)
 
 # Jagged Helmet
