@@ -1071,16 +1071,16 @@ class PokeBattle_SnowballingMove < PokeBattle_Move
       user.effects[@usageCountEffect] = [oldVal + 1,@effectData.maximum].min
   end
 
-  def damageAtCount(count)
+  def damageAtCount(baseDmg,count)
     return baseDmg << count
   end
 
   def pbBaseDamage(baseDmg,user,target)
-      return damageAtCount(user.effects[@usageCountEffect]-1)
+      return damageAtCount(baseDmg,user.effects[@usageCountEffect]-1)
   end
 
   def pbBaseDamageAI(baseDmg,user,target,skill=100)
-      return damageAtCount(user.effects[@usageCountEffect])
+      return damageAtCount(baseDmg,user.effects[@usageCountEffect])
   end
 end
 

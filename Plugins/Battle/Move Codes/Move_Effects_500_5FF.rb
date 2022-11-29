@@ -2763,7 +2763,7 @@ class PokeBattle_Move_5A9 < PokeBattle_SnowballingMove
         super
     end
 
-	def damageAtCount(count)
+	def damageAtCount(baseDmg,count)
 		return baseDmg + 20 * count
 	end
 
