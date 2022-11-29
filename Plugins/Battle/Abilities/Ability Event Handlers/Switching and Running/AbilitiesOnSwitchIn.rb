@@ -103,15 +103,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:DROUGHT,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
-  proc { |ability,battler,battle|
-    next if battle.field.terrain == :Electric
-    battle.pbShowAbilitySplash(battler)
-    battle.pbStartTerrain(battler, :Electric)
-    # NOTE: The ability splash is hidden again in def pbStartTerrain.
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:FAIRYAURA,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
@@ -171,15 +162,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:FRISK,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:GRASSYSURGE,
-  proc { |ability,battler,battle|
-    next if battle.field.terrain == :Grassy
-    battle.pbShowAbilitySplash(battler)
-    battle.pbStartTerrain(battler, :Grassy)
-    # NOTE: The ability splash is hidden again in def pbStartTerrain.
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:IMPOSTER,
   proc { |ability,battler,battle|
     next if battler.transformed?
@@ -210,15 +192,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:MISTYSURGE,
-  proc { |ability,battler,battle|
-    next if battle.field.terrain == :Misty
-    battle.pbShowAbilitySplash(battler)
-    battle.pbStartTerrain(battler, :Misty)
-    # NOTE: The ability splash is hidden again in def pbStartTerrain.
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:MOLDBREAKER,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
@@ -238,15 +211,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:PRESSURE,
 BattleHandlers::AbilityOnSwitchIn.add(:PRIMORDIALSEA,
   proc { |ability,battler,battle|
     pbBattleWeatherAbility(:HeavyRain, battler, battle, true)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:PSYCHICSURGE,
-  proc { |ability,battler,battle|
-    next if battle.field.terrain == :Psychic
-    battle.pbShowAbilitySplash(battler)
-    battle.pbStartTerrain(battler, :Psychic)
-    # NOTE: The ability splash is hidden again in def pbStartTerrain.
   }
 )
 
@@ -576,8 +540,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:CONVICTION,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:FAIRYSURGE,:MISTYSURGE)
-
 BattleHandlers::AbilityOnSwitchIn.add(:SWARMCALL,
   proc { |ability,battler,battle|
     pbBattleWeatherAbility(:Swarm, battler, battle)
@@ -618,5 +580,43 @@ BattleHandlers::AbilityOnSwitchIn.add(:REFRESHMENTS,
 	battle.pbDisplay(_INTL("{1} served {2} some refreshments!",battler.pbThis, served))
 	lowestIdBattler.pbRecoverHP(lowestIdBattler.totalhp/2.0)
     battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:GRASSYSURGE,
+  proc { |ability,battler,battle|
+    next if battle.field.terrain == :Grassy
+    battle.pbShowAbilitySplash(battler)
+    battle.pbStartTerrain(battler, :Grassy)
+    # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:PSYCHICSURGE,
+  proc { |ability,battler,battle|
+    next if battle.field.terrain == :Psychic
+    battle.pbShowAbilitySplash(battler)
+    battle.pbStartTerrain(battler, :Psychic)
+    # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:MISTYSURGE,
+  proc { |ability,battler,battle|
+    next if battle.field.terrain == :Misty
+    battle.pbShowAbilitySplash(battler)
+    battle.pbStartTerrain(battler, :Misty)
+    # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.copy(:MISTYSURGE,:FAIRYSURGE)
+
+BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
+  proc { |ability,battler,battle|
+    next if battle.field.terrain == :Electric
+    battle.pbShowAbilitySplash(battler)
+    battle.pbStartTerrain(battler, :Electric)
+    # NOTE: The ability splash is hidden again in def pbStartTerrain.
   }
 )
