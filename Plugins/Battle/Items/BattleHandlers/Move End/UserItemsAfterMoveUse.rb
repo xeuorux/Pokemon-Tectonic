@@ -32,6 +32,6 @@ BattleHandlers::UserItemAfterMoveUse.add(:LIFEORB,
       next if battle.pbAllFainted?(user.idxOwnSide) ||
               battle.pbAllFainted?(user.idxOpposingSide)
       next if !move.soundMove? || numHits == 0
-      user.tryRaiseStat(:SPECIAL_ATTACK,user,item: user.item)
+      user.pbHeldItemTriggered(item) if user.tryRaiseStat(:SPECIAL_ATTACK,user,item: user.item)
     }
   )
