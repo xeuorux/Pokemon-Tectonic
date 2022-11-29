@@ -2316,8 +2316,7 @@ end
 #===============================================================================
 # Faints the opponant if they are below 1/4 HP, after dealing damage. (Cull)
 #===============================================================================
-class PokeBattle_Move_58F < PokeBattle_FixedDamageMove
-
+class PokeBattle_Move_58F < PokeBattle_Move
 	def canCull?(target)
 		return target.hp < (target.totalhp / 4)
 	end
