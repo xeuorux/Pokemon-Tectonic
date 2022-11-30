@@ -2790,3 +2790,35 @@ class PokeBattle_Move_5AF < PokeBattle_TargetMultiStatDownMove
 		end
 	end
 end
+
+#===============================================================================
+# User's Defense and Sp. Def are raised. Then, it heals itself based on (Refurbish)
+# current weight. Then, its current weigtht is cut in half.
+#===============================================================================
+class PokeBattle_Move_5AB < PokeBattle_HealingMove
+	def healRatio(user)
+		case user.pbWeight
+		when 512..999999
+			return 1.0
+		when 256..511
+			return 0.75
+		when 128..255
+			return 0.5
+		when 64..127
+			return 0.25
+		else
+			return 0.125
+		end
+	end
+
+	def pbEffectGeneral(user)
+		user.pbRaiseMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1], user, move: self)
+		super
+		if user.effectActive?(:WeightChange)
+			user.applyEffect(:WeightChange,user.effects[:WeightChange] * 2)
+		else
+			user.applyEffect(:WeightChange,-user.pbWeight/2)
+		end
+		@battle.pbDisplay(_INTL("{1} shed half its weight!",user.pbThis))
+	end
+end
