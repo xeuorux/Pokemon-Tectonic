@@ -236,7 +236,7 @@ class PokeBattle_AI
         end
         
         if move.effectChance != 0 && move.effectChance != 100
-            type = pbRoughType(move,user,skill)
+            type = pbRoughType(move,user)
             realProcChance = move.pbAdditionalEffectChance(user,target,type)
             score *= (realProcChance / 100.0)
         end
