@@ -1041,6 +1041,16 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
+	:id => :Refurbished,
+	:real_name => "Weight Halved",
+	:type => :Integer,
+	:maximum => 10,
+	:increment_proc => Proc.new { | battle, battler, value, increment|
+		battle.pbDisplay(_INTL("{1} shed half its weight!",battler.pbThis))
+	},
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Yawn,
 	:real_name => "Drowsy",
 	:type => :Integer,

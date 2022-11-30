@@ -226,6 +226,10 @@ class PokeBattle_Battler
 		ret = @pokemon ? @pokemon.weight : 500
 		ret = GameData::Species.get(@effects[:TransformSpecies]).weight if effectActive?(:Transform)
 		ret += @effects[:WeightChange]
+		@effects[:Refurbished].times do
+			ret /= 2.0
+		end
+		ret = ret.round
 		ret = 1 if ret < 1
 		ret = BattleHandlers.triggerWeightCalcAbility(ability, self, ret) if abilityActive? && !@battle.moldBreaker
 		ret = BattleHandlers.triggerWeightCalcItem(item, self, ret) if itemActive?
