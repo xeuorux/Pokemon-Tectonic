@@ -216,6 +216,9 @@ class PokeBattle_Battler
 		@lastMoveUsed          = nil
 		@lastMoveUsedType      = nil
 		@lastMoveUsedCategory  = -1
+		@lastRoundMove	   	   = nil
+		@lastRoundMoveType     = nil
+		@lastRoundMoveCategory = -1
 		@lastRegularMoveUsed   = nil
 		@lastRegularMoveTarget = -1
 		@lastRoundMoved        = -1

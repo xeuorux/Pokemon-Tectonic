@@ -74,5 +74,9 @@ class PokeBattle_Battler
 		@indicesTargetedLastRound = @indicesTargetedThisRound.clone
 		@indicesTargetedThisRound.clear
 		@primevalTimer += 1 if boss?
+
+		@lastRoundMove 			= @lastMoveUsed
+		@lastRoundMoveType 		= @lastMoveUsedType
+		@lastRoundMoveCategory 	= @lastMoveUsedCategory
 	end
 end

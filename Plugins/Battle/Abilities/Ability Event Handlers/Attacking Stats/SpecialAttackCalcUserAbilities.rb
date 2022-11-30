@@ -78,7 +78,7 @@
 
 BattleHandlers::SpecialAttackCalcUserAbility.add(:BALANCEOFPOWER,
   proc { |ability,user,battle,spAtkMult|
-    spAtkMult *= 1.5 if user.lastMoveUSedCategory == 0
+    spAtkMult *= 1.5 if user.lastRoundMoveCategory == 0
     next spAtkMult
   }
 )

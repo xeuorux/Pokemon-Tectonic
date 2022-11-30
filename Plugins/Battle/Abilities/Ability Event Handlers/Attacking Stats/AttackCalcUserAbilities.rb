@@ -128,7 +128,7 @@ BattleHandlers::AttackCalcUserAbility.add(:GORILLATACTICS,
 
 BattleHandlers::AttackCalcUserAbility.add(:BALANCEOFPOWER,
   proc { |ability,user,battle,attackMult|
-    attackMult *= 1.5 if user.lastMoveUSedCategory == 1
+    attackMult *= 1.5 if user.lastRoundMoveCategory == 1
     next attackMult
   }
 )
