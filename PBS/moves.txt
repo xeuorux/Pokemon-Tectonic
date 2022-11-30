@@ -1,4 +1,4 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 1,MEGAHORN,Megahorn,000,120,BUG,Physical,85,10,0,NearOther,0,abef,"Using its tough and impressive horn, the user rams into the target with no letup.",
 2,ATTACKORDER,Attack Order,000,90,BUG,Physical,100,12,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Critical hits land more easily.",
@@ -1135,7 +1135,7 @@
 1070,VOLATILETOXIN,Volatile Toxin,5A4,75,POISON,Physical,100,12,0,NearOther,0,abef,"The user injects an unstable toxin into the target. The next Ground-type attack they take deals double damage.",POISONJAB
 1071,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,abef,"A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.",
 1072,ROOTSHELTER,Root Shelter,5A5,0,GRASS,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also leeches any attacker who attacks the user.",VINEBIND
-1073,DREAMPUNCH,Dream Punch,0DE,60,PSYCHIC,Physical,100,12,0,NearOther,0,abef,"The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.",ZENHEADBUTT
+1073,DREAMFEAST,Dream Feast,0DE,60,PSYCHIC,Physical,100,12,0,NearOther,0,abef,"The user assaults its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.",ZENHEADBUTT
 1074,CRUELKISS,Cruel Kiss,402,50,FAIRY,Special,100,10,100,NearOther,0,bce,"Leeches the target by kissing them with its thin mouth.",DRAININGKISS
 1075,TYRANTSFIT,Tyrant's Fit,5A6,120,DRAGON,Physical,100,10,0,RandomNearFoe,0,abef,"The user throws a royal fit for three turns. Raises Speed if a target is knocked out by this move.",OUTRAGE
 1076,TRANSCENDENTENERGY,Transcendent Energy,5A7,0,DRAGON,Status,0,5,0,User,0,,"A two-turn move. The user channels insane amounts of energy the first turn, then transforms.",DAZZLINGGLEAM
