@@ -22,22 +22,6 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:PICKPOCKET,
   }
 )
 
-BattleHandlers::TargetAbilityAfterMoveUse.add(:BERSERK,
-  proc { |ability,target,user,move,switched,battle|
-    next if !move.damagingMove?
-    next if !target.knockedBelowHalf?
-    target.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1], target, showAbilitySplash: true)
-  }
-)
-
-BattleHandlers::TargetAbilityAfterMoveUse.add(:ADRENALINERUSH,
-  proc { |ability,target,user,move,switched,battle|
-    next if !move.damagingMove?
-    next if !target.knockedBelowHalf?
-    target.tryRaiseStat(:SPEED,target,increment: 2, showAbilitySplash: true)
-  }
-)
-
 BattleHandlers::TargetAbilityAfterMoveUse.add(:VENGEANCE,
   proc { |ability,target,user,move,switched,battle|
     next if !move.damagingMove?
@@ -55,28 +39,6 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:BRILLIANTFLURRY,
     next if !move.damagingMove?
     next if !target.knockedBelowHalf?
     user.pbLowerMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1,:SPEED,1], user, showAbilitySplash: true)
-  }
-)
-
-BattleHandlers::TargetAbilityAfterMoveUse.add(:BOULDERNEST,
-  proc { |ability,target,user,move,switched,battle|
-    next if !move.damagingMove?
-    next if !target.knockedBelowHalf?
-    battle.pbShowAbilitySplash(target)
-	  if target.pbOpposingSide.effectActive?(:StealthRock)
-        battle.pbDisplay(_INTL("But there were already pointed stones floating around {1}!",target.pbOpposingTeam(true)))
-    else
-        target.pbOpposingSide.applyEffect(:StealthRock)
-    end
-    battle.pbHideAbilitySplash(target)
-  }
-)
-
-BattleHandlers::TargetAbilityAfterMoveUse.add(:REAWAKENEDPOWER,
-  proc { |ability,target,user,move,switched,battle|
-    next if !move.damagingMove?
-    next if !target.knockedBelowHalf?
-    target.pbMaximizeStatStage(:SPECIAL_ATTACK,user,self,false,true)
   }
 )
 

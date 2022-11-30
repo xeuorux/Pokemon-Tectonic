@@ -16,6 +16,36 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:EMERGENCYEXIT,
       next false if battle.pbAllFainted?(battler.idxOpposingSide)
       next battle.triggeredSwitchOut(battler.index)
     }
-  )
+)
   
 BattleHandlers::AbilityOnHPDroppedBelowHalf.copy(:EMERGENCYEXIT,:WIMPOUT)
+
+BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:BERSERK,
+  proc { |ability,battler,battle|
+    battler.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1], battler, showAbilitySplash: true)
+  }
+)
+
+BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:ADRENALINERUSH,
+  proc { |ability,battler,battle|
+    battler.tryRaiseStat(:SPEED, battler, increment: 2, showAbilitySplash: true)
+  }
+)
+
+BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:BOULDERNEST,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+	  if battler.pbOpposingSide.effectActive?(:StealthRock)
+        battle.pbDisplay(_INTL("But there were already pointed stones floating around {1}!",battler.pbOpposingTeam(true)))
+    else
+      battler.pbOpposingSide.applyEffect(:StealthRock)
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:REAWAKENEDPOWER,
+  proc { |ability,battler,battle|
+    battler.pbMaximizeStatStage(:SPECIAL_ATTACK, battler, self, false, true)
+  }
+)
