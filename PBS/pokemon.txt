@@ -10108,7 +10108,7 @@ InternalName = MEDITITE
 Type1 = FIGHTING
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 40,55,65,70,55,65
+BaseStats = 45,55,75,70,55,75
 # Total = 350
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -10134,7 +10134,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MEDICHAM,Level,30
+Evolutions = MEDICHAM,Level,27
 #-------------------------------
 [308]
 Name = Medicham
@@ -10142,7 +10142,7 @@ InternalName = MEDICHAM
 Type1 = FIGHTING
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,70,75,80,70,75
+BaseStats = 55,70,90,80,70,90
 # Total = 430
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -10167,7 +10167,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 9
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = PALMANTRA,Level,50
+Evolutions = PALMANTRA,Level,49
 #-------------------------------
 [309]
 Name = Electrike
@@ -29791,7 +29791,7 @@ InternalName = PALMANTRA
 Type1 = FIGHTING
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,90,85,100,90,85
+BaseStats = 65,90,105,100,90,105
 # Total = 510
 GenderRate = Female50Percent
 GrowthRate = Medium
