@@ -141,6 +141,12 @@ BattleHandlers::DamageCalcUserAbility.add(:STEELWORKER,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:STEELYSHELL,
+  proc { |ability,user,target,move,mults,baseDmg,type,aiCheck|
+    mults[:attack_multiplier] *= 1.5 if type == :STEEL
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:STRONGJAW,
   proc { |ability,user,target,move,mults,baseDmg,type,aiCheck|
     mults[:base_damage_multiplier] *= 1.5 if move.bitingMove?
