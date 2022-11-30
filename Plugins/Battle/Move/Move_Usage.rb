@@ -447,7 +447,7 @@ class PokeBattle_Move
         target.applyEffect(:MirrorCoat,damage)
         target.pointAt(:MirrorCoatTarget,user)
       end
-      if target.effectActive?(:BideDamage)
+      if target.effectActive?(:Bide)
         target.effects[:BideDamage] += damage
         target.pointAt(:BideTarget,user) if user.index != target.index
       end
