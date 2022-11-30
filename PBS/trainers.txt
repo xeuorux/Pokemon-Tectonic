@@ -3267,10 +3267,10 @@ Pokemon = PYUKUMUKU,65
 #-------------------------------
 [ABSOL,Absol]
 Pokemon = ABSOL,20
+    Gender = female
     Moves = GLITTERSLASH,PLANTDOUBT,LIFEDEW,TAUNT
     AbilityIndex = 1
     Item = SITRUSBERRY
-	Gender = Female
 #-------------------------------
 [BUGCATCHER_F,Lovina]
 Pokemon = DEWPIDER,27

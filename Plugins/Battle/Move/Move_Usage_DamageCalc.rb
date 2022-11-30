@@ -72,10 +72,11 @@ class PokeBattle_Move
         # Calculate user's attack stat
         attacking_stat_holder, attacking_stat = pbAttackingStat(user,target)
         attack_stage = attacking_stat_holder.stages[attacking_stat]
-        critical = !aiChecking && target.damageState.critical
+        critical = target.damageState.critical
+        critical = false if aiChecking
         attack_stage = 0 if critical && attack_stage < 0
         attack_stage = 0 if target.hasActiveAbility?(:UNAWARE) && !@battle.moldBreaker
-        attack = user.getFinalStat(attacking_stat, attack_stage)
+        attack = attacking_stat_holder.getFinalStat(attacking_stat, aiChecking, attack_stage)
         # Calculate target's defense stat
         defending_stat_holder, defending_stat = pbDefendingStat(user,target)
         defense_stage = defending_stat_holder.stages[defending_stat]
@@ -84,7 +85,8 @@ class PokeBattle_Move
             defense_stage = 0
         end
         defense_stage = 0 if user.hasActiveAbility?(:UNAWARE)
-        defense = target.getFinalStat(defending_stat, defense_stage)
+        defense = defending_stat_holder.getFinalStat(defending_stat, aiChecking, defense_stage)
+        echoln("[DAMAGE CALC] Calcing damage based on #{attacking_stat_holder.pbThis(true)}'s final #{attacking_stat} of #{attack} and #{defending_stat_holder.pbThis(true)}'s final #{defending_stat} of #{defense}")
         return attack, defense
     end
     

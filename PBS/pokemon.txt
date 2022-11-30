@@ -1,4 +1,4 @@
-# See the documentation on the wiki to learn how to edit this file.
+﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [1]
 Name = Bulbasaur
@@ -10109,7 +10109,7 @@ Type1 = FIGHTING
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 45,55,75,70,55,75
-# Total = 350
+# Total = 375
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 56
@@ -10143,7 +10143,7 @@ Type1 = FIGHTING
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,70,90,80,70,90
-# Total = 430
+# Total = 455
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 144
@@ -12078,7 +12078,7 @@ InternalName = CLAMPERL
 Type1 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 45,64,85,32,64,85
-# Total = 345
+# Total = 375
 GenderRate = Female50Percent
 GrowthRate = Erratic
 BaseEXP = 69
@@ -29792,7 +29792,7 @@ Type1 = FIGHTING
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,90,105,100,90,105
-# Total = 510
+# Total = 555
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 244

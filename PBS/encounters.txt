@@ -150,11 +150,11 @@ LandSparse,20
     25,SANDYGAST,7,9
     25,VANILLITE,7,9
 Puddle,20
+    20,CLAMPERL,7,9
     20,CLOBBOPUS,7,9
     20,HORSEA,7,9
     20,INKAY,7,9
     20,WINGULL,7,9
-	20,CLAMPERL,7,9
 Special,20
     1,SPHEAL,15
 #-------------------------------

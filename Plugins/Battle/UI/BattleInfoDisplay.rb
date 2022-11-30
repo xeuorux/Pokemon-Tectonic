@@ -247,9 +247,11 @@ class BattleInfoDisplay < SpriteWrapper
 		statValuesArray.push(mult)
 
 		# Draw the final stat value label
-		value = statValues[stat] || 100 # 100 is for accuracy and evasion
-		valueBonus = pokemonTribalBonus[stat] || 0
-		value = ((value + valueBonus) * mult).floor
+		if stat == :ACCURACY || stat == :EVASION
+			value = 100
+		else
+			value = battler.getFinalStat(stat)
+		end
 		statValuesArray.push(value)
 
 		# Track the highest and lowest main battle stat (not accuracy or evasion)

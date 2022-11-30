@@ -226,8 +226,6 @@ class PokeBattle_AI
     #=============================================================================
     def pbGetMoveScoreDamage(score,move,user,target,skill,numTargets=1)
         damagePercentage = getDamagePercentageAI(move,user,target,skill,numTargets)
-
-        echoln("#{user.pbThis} thinks that move #{move.id} will deal #{damagePercentage.round(1)} percent of #{target.pbThis(false)}'s HP")
         
         # Adjust score
         if damagePercentage >= 100   # Prefer lethal damage
@@ -250,5 +248,9 @@ class PokeBattle_AI
 
         # Convert damage to percentage of target's remaining HP
         damagePercentage = realDamage*100.0/target.hp
+
+        echoln("#{user.pbThis} thinks that move #{move.id} will deal #{realDamage} damage -- #{damagePercentage.round(1)} percent of #{target.pbThis(false)}'s HP")
+
+        return damagePercentage
     end
 end
