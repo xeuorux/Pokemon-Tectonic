@@ -76,9 +76,9 @@ class WaypointsTracker
 		@activeWayPoints = {} if @activeWayPoints.nil?
 		
 		if alternateMessage
-			pbMessage(_INTL("#{WAYPOINT_ACCESS_MESSAGE}"))
-		else
 			pbMessage(_INTL("#{WAYPOINT_ACCESS_MESSAGE_ALTERNATE}"))
+		else
+			pbMessage(_INTL("#{WAYPOINT_ACCESS_MESSAGE}"))
 		end
 		if !@activeWayPoints.has_key?(waypointName)
 			pbMessage(_INTL("#{WAYPOINT_REGISTER_MESSAGE}"))

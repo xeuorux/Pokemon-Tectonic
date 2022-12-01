@@ -23,7 +23,7 @@ DebugMenuCommands.register("waypoints", {
                   page.list.each do |eventCommand|
                       eventCommand.parameters.each do |parameter|
                           next unless parameter.is_a?(String)
-                          match = parameter.match(/\$waypoints_tracker.accessWaypoint\("([a-zA-Z0-9 ]+)",get_self\)/)
+                          match = parameter.match(/accessWaypoint\("([a-zA-Z0-9 ']+)"/)
                           if match
                               waypointName = match[1]
                               begin
