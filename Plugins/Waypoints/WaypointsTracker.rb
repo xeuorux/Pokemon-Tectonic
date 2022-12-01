@@ -72,10 +72,14 @@ class WaypointsTracker
 		return false
 	end
 	
-	def accessWaypoint(waypointName,waypointEvent)
+	def accessWaypoint(waypointName,waypointEvent,alternateMessage=false)
 		@activeWayPoints = {} if @activeWayPoints.nil?
 		
-		pbMessage(_INTL("#{WAYPOINT_ACCESS_MESSAGE}"))
+		if alternateMessage
+			pbMessage(_INTL("#{WAYPOINT_ACCESS_MESSAGE}"))
+		else
+			pbMessage(_INTL("#{WAYPOINT_ACCESS_MESSAGE_ALTERNATE}"))
+		end
 		if !@activeWayPoints.has_key?(waypointName)
 			pbMessage(_INTL("#{WAYPOINT_REGISTER_MESSAGE}"))
 			addWaypoint(waypointName,waypointEvent)
@@ -143,20 +147,26 @@ end
 # Should only be called by the waypoint events themselves
 def accessWaypoint(waypointName,avatarSpecies=nil)
 	waypointEvent = get_self
-	if !avatarSpecies.nil? && debugControl
-		avatarSpeciesName = GameData::Species.get(avatarSpecies).name
 
-		if pbConfirmMessageSerious(_INTL("The totem pulses with the frequency of #{avatarSpeciesName}. Summon it?"))
-			# No longer allow summoning the pokemon once its been caught once
-			if $waypoints_tracker.summonPokemonFromWaypoint(avatarSpecies,waypointEvent)
-				pbMessage(_INTL("The totem returns to its original state."))
-				pbSetSelfSwitch(waypointEvent.id,'A',false)
+	alternate = false
+
+	if avatarSpecies
+		alternate = true
+		if pbHasItem?(:PRIMALCLAY)
+			avatarSpeciesName = GameData::Species.get(avatarSpecies).name
+
+			if pbConfirmMessageSerious(_INTL("The totem pulses with the frequency of #{avatarSpeciesName}. Summon it?"))
+				# No longer allow summoning the pokemon once its been caught once
+				if $waypoints_tracker.summonPokemonFromWaypoint(avatarSpecies,waypointEvent)
+					pbMessage(_INTL("The totem returns to its original state."))
+					pbSetSelfSwitch(waypointEvent.id,'A',false)
+				end
+				return
 			end
-			return
 		end
 	end
 	
-	$waypoints_tracker.accessWaypoint(waypointName,waypointEvent)
+	$waypoints_tracker.accessWaypoint(waypointName,waypointEvent,alternate)
 end
 
 def setWaypointSummonable(waypointEventID)
