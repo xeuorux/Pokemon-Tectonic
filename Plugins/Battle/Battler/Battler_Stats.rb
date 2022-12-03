@@ -175,7 +175,7 @@ class PokeBattle_Battler
 			attackMult = BattleHandlers.triggerAttackCalcUserAbility(ability, self, @battle, attackMult) if abilityActive?
 			eachAlly do |ally|
 				next unless ally.abilityActive?
-				attackMult = BattleHandlers.triggerAttackCalcUserAbility(ally.ability, self, @battle, attackMult)
+				attackMult = BattleHandlers.triggerAttackCalcAllyAbility(ally.ability, self, @battle, attackMult)
 			end
 		end
 		attackMult = BattleHandlers.triggerAttackCalcUserItem(item, self, battle, attackMult) if itemActive?
@@ -196,7 +196,7 @@ class PokeBattle_Battler
 			spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserAbility(ability, self, @battle, spAtkMult) if abilityActive?
 			eachAlly do |ally|
 				next unless ally.abilityActive?
-				spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserAbility(ally.ability, self, @battle, spAtkMult)
+				spAtkMult = BattleHandlers.triggerSpecialAttackCalcAllyAbility(ally.ability, self, @battle, spAtkMult)
 			end
 		end
 		spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserItem(item, self, battle, spAtkMult) if itemActive?
@@ -214,7 +214,7 @@ class PokeBattle_Battler
 			defenseMult = BattleHandlers.triggerDefenseCalcUserAbility(ability, self, @battle, defenseMult) if abilityActive?
 			eachAlly do |ally|
 				next unless ally.abilityActive?
-				defenseMult = BattleHandlers.triggerDefenseCalcUserAbility(ally.ability, self, @battle, defenseMult)
+				defenseMult = BattleHandlers.triggerDefenseCalcAllyAbility(ally.ability, self, @battle, defenseMult)
 			end
 		end
 		defenseMult = BattleHandlers.triggerDefenseCalcUserItem(item, self, battle, defenseMult) if itemActive?
@@ -232,7 +232,7 @@ class PokeBattle_Battler
 			spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserAbility(ability, self, @battle, spDefMult) if abilityActive?
 			eachAlly do |ally|
 				next unless ally.abilityActive?
-				spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserAbility(ally.ability, self, @battle, spDefMult)
+				spDefMult = BattleHandlers.triggerSpecialDefenseCalcAllyAbility(ally.ability, self, @battle, spDefMult)
 			end
 		end
 		spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserItem(item, self, battle, spDefMult) if itemActive?
