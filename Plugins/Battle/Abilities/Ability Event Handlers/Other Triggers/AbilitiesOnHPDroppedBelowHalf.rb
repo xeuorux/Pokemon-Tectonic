@@ -23,12 +23,14 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.copy(:EMERGENCYEXIT,:WIMPOUT)
 BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:BERSERK,
   proc { |ability,battler,battle|
     battler.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1], battler, showAbilitySplash: true)
+    next false
   }
 )
 
 BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:ADRENALINERUSH,
   proc { |ability,battler,battle|
     battler.tryRaiseStat(:SPEED, battler, increment: 2, showAbilitySplash: true)
+    next false
   }
 )
 
@@ -41,11 +43,13 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:BOULDERNEST,
       battler.pbOpposingSide.applyEffect(:StealthRock)
     end
     battle.pbHideAbilitySplash(battler)
+    next false
   }
 )
 
 BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:REAWAKENEDPOWER,
   proc { |ability,battler,battle|
     battler.pbMaximizeStatStage(:SPECIAL_ATTACK, battler, self, false, true)
+    next false
   }
 )
