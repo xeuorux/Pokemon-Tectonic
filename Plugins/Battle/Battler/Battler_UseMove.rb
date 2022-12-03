@@ -136,14 +136,14 @@ class PokeBattle_Battler
 		confusionMove.pbCheckDamageAbsorption(self, self)
 		confusionMove.pbCalcDamage(self, self)
 		confusionMove.pbReduceDamage(self, self)
+		oldHP = self.hp
 		self.hp -= @damageState.hpLost
 		confusionMove.pbAnimateHitAndHPLost(self, [self])
 		@battle.pbDisplay(msg) unless msg.nil? # "It hurt itself in its confusion!"
 		@battle.pbDisplay('It was super-effective!') if superEff
 		confusionMove.pbRecordDamageLost(self, self)
 		confusionMove.pbEndureKOMessage(self)
-		pbFaint if fainted?
-		pbItemHPHealCheck
+		pbHealthLossChecks(oldHP)
 	end
 
 	# If there's an effect that causes damage before a move is used
