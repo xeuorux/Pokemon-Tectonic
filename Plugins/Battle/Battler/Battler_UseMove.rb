@@ -319,7 +319,7 @@ class PokeBattle_Battler
 			@battle.pbDisplay(_INTL("{1} snatched {2}'s move!", user.pbThis, pbThis(true)))
 		end
 		# "But it failed!" checks
-		if move.pbMoveFailed?(user, targets)
+		if move.pbMoveFailed?(user, targets, true)
 			PBDebug.log(format("[Move failed] In function code %s's def pbMoveFailed?", move.function))
 			user.lastMoveFailed = true
 			move.moveFailed(user,targets)
@@ -416,10 +416,15 @@ class PokeBattle_Battler
 			# Reset whole damage state, perform various success checks (not accuracy)
 			user.initialHP = user.hp
 			targets.each do |b|
+				
 				b.damageState.reset
 				b.damageState.initialHP = b.hp
+
+				typeMod = move.pbCalcTypeMod(move.calcType, user, b)
+				b.damageState.typeMod = typeMod
+
 				showFailMessages = move.pbShowFailMessages?(targets)
-				unless pbSuccessCheckAgainstTarget(move, user, b, showFailMessages)
+				unless pbSuccessCheckAgainstTarget(move, user, b, typeMod, showFailMessages)
 					b.damageState.unaffected = true
 				end
 			end

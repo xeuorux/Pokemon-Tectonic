@@ -140,7 +140,7 @@ class PokeBattle_Move
     #=============================================================================
     # Check if target is immune to the move because of its ability
     #=============================================================================
-    def pbImmunityByAbility(user,target, showMessages=true)
+    def pbImmunityByAbility(user, target, showMessages=true)
         return false if @battle.moldBreaker
         ret = false
         if target.abilityActive?
@@ -160,11 +160,20 @@ class PokeBattle_Move
     # Move failure checks
     #=============================================================================
     # Check whether the move fails completely due to move-specific requirements.
-    def pbMoveFailed?(user,targets); return false; end
+    def pbMoveFailed?(user,targets,show_message); return false; end
+
     # Checks whether the move will be ineffective against the target.
-    def pbFailsAgainstTarget?(user,target); return false; end
+    def pbFailsAgainstTarget?(user,target,show_message); return false; end
+
+    def pbMoveFailedAI?(user,targets)
+        return pbMoveFailed?(user,targets,false)
+    end
+
+    def pbFailsAgainstTargetAI?(user,target)
+        return pbFailsAgainstTarget?(user,target,false)
+    end
   
-    def pbMoveFailedLastInRound?(user)
+    def pbMoveFailedLastInRound?(user,showMessage=true)
       unmoved = false
       @battle.eachBattler do |b|
         next if b.index==user.index
@@ -174,16 +183,16 @@ class PokeBattle_Move
         break
       end
       if !unmoved
-        @battle.pbDisplay(_INTL("But it failed!"))
+        @battle.pbDisplay(_INTL("But it failed!")) if showMessage
         return true
       end
       return false
     end
   
-    def pbMoveFailedTargetAlreadyMoved?(target)
+    def pbMoveFailedTargetAlreadyMoved?(target,showMessage=true)
       if (@battle.choices[target.index][0]!=:UseMove &&
          @battle.choices[target.index][0]!=:Shift) || target.movedThisRound?
-        @battle.pbDisplay(_INTL("But it failed!"))
+        @battle.pbDisplay(_INTL("But it failed!")) if showMessage
         return true
       end
       return false

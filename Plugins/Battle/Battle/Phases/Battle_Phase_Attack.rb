@@ -164,7 +164,6 @@ class PokeBattle_Battle
     # Attack phase
     #=============================================================================
     def pbAttackPhase
-        @messagesBlocked = false
         @scene.pbBeginAttackPhase
         resetAttackPhaseEffects
         PBDebug.log("")
@@ -206,7 +205,6 @@ class PokeBattle_Battle
     end
 
     def pbExtraAttackPhase
-        @messagesBlocked = false
         @scene.pbBeginAttackPhase
         resetAttackPhaseEffects
         PBDebug.log("")

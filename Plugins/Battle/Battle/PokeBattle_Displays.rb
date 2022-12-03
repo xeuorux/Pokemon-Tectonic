@@ -47,7 +47,6 @@ class PokeBattle_Battle
     
       def pbCommonAnimation(name,user=nil,targets=nil)
         return if !showMessages?
-        return if @messagesBlocked
         @scene.pbCommonAnimation(name,user,targets) if @showAnims
       end
     

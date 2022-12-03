@@ -16,10 +16,9 @@ class FightMenuDisplay < BattleMenuBase
       @typeBitmap    			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
       @megaEvoBitmap 			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_mega"))
       @shiftBitmap   			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_shift"))
-	    #@extraReminderBitmap 		= AnimatedBitmap.new(_INTL("Graphics/Pictures/Rework/extra_info_reminder_bottomless"))
-      @moveInfoDisplayBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/move_info_display"))
-      @ppUsageUpBitmap        = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/pp_usage_up"))
-      @moveHighlightName    = "Graphics/Pictures/Battle/cursor_fight_highlight"
+      @moveInfoDisplayBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/move_info_display"))
+      @ppUsageUpBitmap        = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/pp_usage_up"))
+      @cursorShadeBitmap      = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_fight_shade"))
       # Create background graphic
       background = IconSprite.new(0,Graphics.height-96,viewport)
       background.setBitmap("Graphics/Pictures/Battle/overlay_fight")
@@ -27,6 +26,7 @@ class FightMenuDisplay < BattleMenuBase
       # Create move buttons and highlighters
       @buttons = []
       @highlights = []
+      @shaders = []
       for i in 0..Pokemon::MAX_MOVES do
         newButton = SpriteWrapper.new(viewport)
         newButton.bitmap = @buttonBitmap.bitmap
@@ -39,7 +39,7 @@ class FightMenuDisplay < BattleMenuBase
         addSprite("button_#{i}",newButton)
         @buttons.push(newButton)
 
-        newHighlighter = AnimatedSprite.new([@moveHighlightName,37,0.5])
+        newHighlighter = AnimatedSprite.new(["Graphics/Pictures/Battle/cursor_fight_highlight",37,0.5])
         newHighlighter.viewport = viewport
         newHighlighter.x = buttonX + 20
         newHighlighter.y = buttonY + 8
@@ -47,6 +47,14 @@ class FightMenuDisplay < BattleMenuBase
         newHighlighter.blend_type = 1
         addSprite("highlight_#{i}",newHighlighter)
         @highlights.push(newHighlighter)
+
+        newShader = SpriteWrapper.new(viewport)
+        newShader.bitmap = @cursorShadeBitmap.bitmap
+        newShader.x = buttonX + 20
+        newShader.y = buttonY + 8
+        newShader.opacity = 80
+        addSprite("shader_#{i}",newShader)
+        @shaders.push(newShader)
       end
       
       # Create overlay for buttons (shows move names)
@@ -141,6 +149,9 @@ class FightMenuDisplay < BattleMenuBase
     @highlights.each do |highlight|
       highlight.z += 6
     end
+    @shaders.each do |highlight|
+      highlight.z += 7
+    end
   end
   
   def visible=(value)
@@ -173,6 +184,7 @@ class FightMenuDisplay < BattleMenuBase
     textPos = []
     @buttons.each_with_index do |button,i|
       @visibility["highlight_#{i}"] = false
+      @visibility["shader_#{i}"] = false
       next if !@visibility["button_#{i}"]
       move = moves[i]
       x = button.x-self.x+button.src_rect.width/2
@@ -188,17 +200,33 @@ class FightMenuDisplay < BattleMenuBase
       end
       textPos.push([move.name,x,y,2,moveNameBase,TEXT_SHADOW_COLOR])
       begin
-        if move.damagingMove?
-          targetingData = move.pbTarget(@battler)
-          maxEffectiveness = 0
-          maxBP = move.baseDamage
+        # Determine whether to shade the move
+        targetingData = move.pbTarget(@battler)
+        @battler.turnCount += 1 # Fake the turn count
+        if targetingData.num_targets == 0
+          shouldShade = move.shouldShade?(@battler,nil)
+        else
+          shouldShade = true
+          @battler.eachOther do |otherBattler|
+            next unless @battler.battle.pbMoveCanTarget?(@battler.index,otherBattler.index,targetingData)
+            next if move.shouldShade?(@battler,otherBattler)
+            shouldShade = false
+            break
+          end
+        end
+        @battler.turnCount -= 1 # Fake the turn count
+
+        if shouldShade
+          @visibility["shader_#{i}"] = true
+        # Determine whether to highlight the move
+        elsif move.damagingMove?
           shouldHighlight = false
 
           if targetingData.num_targets == 0
             shouldHighlight = move.shouldHighlight?(user,nil)
           else
             @battler.eachOpposing do |opposingBattler|
-              next if !@battler.battle.pbMoveCanTarget?(@battler.index,opposingBattler.index,targetingData)
+              next unless @battler.battle.pbMoveCanTarget?(@battler.index,opposingBattler.index,targetingData)
               next unless move.shouldHighlight?(@battler,opposingBattler)
               shouldHighlight = true
               break
@@ -211,7 +239,7 @@ class FightMenuDisplay < BattleMenuBase
           end
         end
       rescue
-        echoln("Error computing highlighting for move #{move.name}")
+        echoln("Error computing shading and highlighting for move #{move.name}")
       end
     end
     pbDrawTextPositions(@overlay.bitmap,textPos)
@@ -262,7 +290,6 @@ class FightMenuDisplay < BattleMenuBase
     effectivenessTextPos = nil
     effectivenessTextX = 448
     effectivenessTextY = 44
-    @battler.battle.messagesBlocked = true
     if move.damagingMove?
       begin
         typeOfMove = move.pbCalcType(@battler)
@@ -295,7 +322,6 @@ class FightMenuDisplay < BattleMenuBase
     else
       effectivenessTextPos = ["Status",effectivenessTextX,44,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
     end
-    @battler.battle.messagesBlocked = false
 
     pbDrawTextPositions(@infoOverlay.bitmap,[effectivenessTextPos]) if !effectivenessTextPos.nil?
 	

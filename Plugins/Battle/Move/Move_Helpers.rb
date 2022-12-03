@@ -11,6 +11,12 @@ class PokeBattle_Move
     return false
   end
 
+  def shouldShade?(user,target)
+    return true if pbMoveFailed?(user,[target],false)
+    return true if pbFailsAgainstTargetAI?(user,target)
+    return false
+  end
+
   def applyRainDebuff?(user,type,checkingForAI=false)
     return false unless @battle.rainy?
     return false if !RAIN_DEBUFF_ACTIVE
@@ -32,16 +38,16 @@ class PokeBattle_Move
   end
 
   def canRemoveItem?(user,target,checkingForAI=false)
-      return false if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't knock off, but bosses can
-      return false if user.fainted? || target.fainted?
-      if checkingForAI
-          return false if target.substituted?
-      else
-          return false if target.damageState.unaffected || target.damageState.substitute
-      end
-      return false if !target.item || target.unlosableItem?(target.item)
-      return false if target.shouldAbilityApply?(:STICKYHOLD,checkingForAI) && !@battle.moldBreaker
-      return true
+    return false if @battle.wildBattle? && user.opposes? && !user.boss   # Wild Pokémon can't knock off, but bosses can
+    return false if user.fainted? || target.fainted?
+    if checkingForAI
+        return false if target.substituted?
+    else
+        return false if target.damageState.unaffected || target.damageState.substitute
+    end
+    return false if !target.item || target.unlosableItem?(target.item)
+    return false if target.shouldAbilityApply?(:STICKYHOLD,checkingForAI) && !@battle.moldBreaker
+    return true
   end
 
   def canStealItem?(user,target,checkingForAI=false)

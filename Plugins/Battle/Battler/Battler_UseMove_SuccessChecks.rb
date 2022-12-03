@@ -320,24 +320,30 @@ class PokeBattle_Battler
 	# Initial success check against the target. Done once before the first hit.
 	# Includes move-specific failure conditions, protections and type immunities.
 	#=============================================================================
-	def pbSuccessCheckAgainstTarget(move, user, target, show_message = true)
-		# Calculate the type mod
-		typeMod = move.pbCalcTypeMod(move.calcType, user, target)
-		target.damageState.typeMod = typeMod
-
+	def pbSuccessCheckAgainstTarget(move, user, target, typeMod, show_message = true, ai_check = false)
 		# Two-turn attacks can't fail here in the charging turn
 		return true if user.effectActive?(:TwoTurnAttack)
 
 		# Move-specific failures
 		
-		return false if move.pbFailsAgainstTarget?(user, target)
-		@battle.messagesBlocked = false
+		if ai_check
+			return false if move.pbFailsAgainstTargetAI?(user, target)
+		else
+			return false if move.pbFailsAgainstTarget?(user, target, show_message)
+		end
 
 		# Immunity to priority moves because of Psychic Terrain
-		if @battle.field.terrain == :Psychic && target.affectedByTerrain? && target.opposes?(user) &&
-					@battle.choices[user.index][4] > 0 # Move priority saved from pbCalculatePriority
-			@battle.pbDisplay(_INTL('{1} surrounds itself with psychic terrain!', target.pbThis)) if show_message
-			return false
+		if @battle.field.terrain == :Psychic && target.affectedByTerrain? && target.opposes?(user)
+			if ai_check
+				if move.priority > 0
+					return false
+				end
+			else
+				if @battle.choices[user.index][4] > 0
+					@battle.pbDisplay(_INTL('{1} surrounds itself with psychic terrain!', target.pbThis)) if show_message
+					return false
+				end
+			end
 		end
 
 		###	Protect Style Moves
@@ -358,7 +364,7 @@ class PokeBattle_Battler
 				effectName = data.real_name
 				animationName = data.protection_info ? data.protection_info[:animation_name] : effect.to_s
 				negated = doesProtectionEffectNegateThisMove?(effectName, move, user, target, protectionIgnoredByAbility, animationName, show_message) do
-					if data.protection_info&.has_key?(:hit_proc)
+					if data.protection_info&.has_key?(:hit_proc) && !ai_check
 						data.protection_info[:hit_proc].call(user,target,move,@battle)
 					end
 				end
@@ -369,20 +375,28 @@ class PokeBattle_Battler
 		# Magic Coat/Magic Bounce/Magic Shield
 		if move.canMagicCoat? && !target.semiInvulnerable? && target.opposes?(user)
 			if target.effectActive?(:MagicCoat)
-				target.damageState.magicCoat = true
-				target.disableEffect(:MagicCoat)
+				unless ai_check
+					target.damageState.magicCoat = true
+					target.disableEffect(:MagicCoat)
+				end
 				return false
 			end
 			if target.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker
-				target.damageState.magicBounce = true
-				target.applyEffect(:MagicBounce)
+				unless ai_check
+					target.damageState.magicBounce = true
+					target.applyEffect(:MagicBounce)
+				end
 				return false
 			end
 			if target.hasActiveAbility?(:MAGICSHIELD) && !@battle.moldBreaker
-				@battle.pbShowAbilitySplash(target)
-				target.damageState.protected = true
-				@battle.pbDisplay(_INTL('{1} shielded itself from the {2}!', target.pbThis, move.name))
-				@battle.pbHideAbilitySplash(target)
+				unless ai_check
+					target.damageState.protected = true
+					if show_message
+						@battle.pbShowAbilitySplash(target)
+						@battle.pbDisplay(_INTL('{1} shielded itself from the {2}!', target.pbThis, move.name))
+						@battle.pbHideAbilitySplash(target)
+					end
+				end
 				return false
 			end
 		end

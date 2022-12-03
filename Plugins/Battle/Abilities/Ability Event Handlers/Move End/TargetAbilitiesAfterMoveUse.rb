@@ -48,7 +48,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:STICKYMOLD,
     next if !target.knockedBelowHalf?
     next if user.leeched?
     battle.pbShowAbilitySplash(target)
-	  user.applyLeech(target) if user.canLeech?(target, true)
+	  user.applyLeeched(target) if user.canLeech?(target, true)
     battle.pbHideAbilitySplash(target)
   }
 )
