@@ -3476,7 +3476,7 @@ Name = Hitmonlee
 InternalName = HITMONLEE
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,125,53,87,35,115
+BaseStats = 65,130,53,92,35,115
 # Total = 480
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -7775,7 +7775,7 @@ Name = Hitmontop
 InternalName = HITMONTOP
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 56,95,95,94,35,105
+BaseStats = 56,95,95,94,35,115
 # Total = 480
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -10705,7 +10705,6 @@ BattlerShadowSize = 2
 [325]
 Name = Spoink
 InternalName = SPOINK
-Notes = SPOINK
 Type1 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,70,45,60,45,80
