@@ -1,4 +1,4 @@
-# See the documentation on the wiki to learn how to edit this file.
+﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 1,MEGAHORN,Megahorn,000,120,BUG,Physical,85,10,0,NearOther,0,abef,"Using its tough and impressive horn, the user rams into the target with no letup.",
 2,ATTACKORDER,Attack Order,000,90,BUG,Physical,100,12,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Critical hits land more easily.",

@@ -1,7 +1,7 @@
 BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINT,
   proc { |ability,user,target,move,battle|
-    next if !target.damageState.critical
-    next if !target.pbCanRaiseStatStage?(:ATTACK,target)
+    next unless target.damageState.critical
+    next unless target.pbCanRaiseStatStage?(:ATTACK,target)
     battle.pbShowAbilitySplash(target)
     target.pbMaximizeStatStage(:ATTACK,target)
     battle.pbHideAbilitySplash(target)
@@ -10,7 +10,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINT,
 
 BattleHandlers::TargetAbilityOnHit.add(:GOOEY,
   proc { |ability,user,target,move,battle|
-    next if !move.physicalMove?
+    next unless move.physicalMove?
     user.tryLowerStat(:SPEED,target,showAbilitySplash: true)
   }
 )
@@ -20,7 +20,7 @@ BattleHandlers::TargetAbilityOnHit.copy(:GOOEY,:TANGLINGHAIR)
 BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
   proc { |ability,user,target,move,battle|
     # NOTE: This intentionally doesn't show the ability splash.
-    next if !target.illusion?
+    next unless target.illusion?
     target.disableEffect(:Illusion)
     battle.scene.pbChangePokemon(target,target.pokemon)
     battle.pbSetSeen(target)
@@ -29,7 +29,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
 
 BattleHandlers::TargetAbilityOnHit.add(:RATTLED,
   proc { |ability,user,target,move,battle|
-    next if ![:BUG, :DARK, :GHOST].include?(move.calcType)
+    next unless [:BUG, :DARK, :GHOST].include?(move.calcType)
     target.tryRaiseStat(:SPEED,target,showAbilitySplash: true)
   }
 )
@@ -49,7 +49,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WATERCOMPACTION,
 
 BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
   proc { |ability,user,target,move,battle|
-    next if !move.physicalMove?
+    next unless move.physicalMove?
     next unless target.pbCanLowerAnyOfStats?([:DEFENSE,:SPEED],target)
     battle.pbShowAbilitySplash(target)
     target.tryLowerStat(:DEFENSE,target)
@@ -60,10 +60,10 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
 
 BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
   proc { |ability,user,target,move,battle|
-    next if !target.fainted?
-    next if !move.physicalMove?
+    next unless target.fainted?
+    next unless move.physicalMove?
     battle.pbShowAbilitySplash(target)
-    if !battle.moldBreaker
+    unless battle.moldBreaker
       dampBattler = battle.pbCheckGlobalAbility(:DAMP)
       if dampBattler
         battle.pbShowAbilitySplash(dampBattler)
@@ -83,7 +83,7 @@ BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
 
 BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
   proc { |ability,user,target,move,battle|
-    next if !target.fainted? || user.dummy
+    next unless target.fainted? || user.dummy
     battle.pbShowAbilitySplash(target)
     if user.takesIndirectDamage?(true)
       battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
@@ -101,6 +101,31 @@ BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
 
 BattleHandlers::TargetAbilityOnHit.add(:STATIC,
   proc { |ability,user,target,move,battle|
+    next unless move.physicalMove?
+    next if user.numbed? || battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(target)
+    if user.canNumb?(target,true)
+      user.applyNumb(target)
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:STATIC,
+  proc { |ability,user,target,move,battle|
+    next unless move.specialMove?
+    next if user.numbed? || battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(target)
+    if user.canNumb?(target,true)
+      user.applyNumb(target)
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:LIVEWIRE,
+  proc { |ability,user,target,move,battle|
+    next unless move.physicalMove?
     next if user.numbed? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
     if user.canNumb?(target,true)
@@ -120,10 +145,10 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
       regularMove = m
       break
     end
-    next if !regularMove || (regularMove.pp==0 && regularMove.total_pp>0)
+    next unless regularMove || (regularMove.pp==0 && regularMove.total_pp>0)
     next if battle.pbRandom(100)>=60
     battle.pbShowAbilitySplash(target)
-    if !move.pbMoveFailedAromaVeil?(target,user,true)
+    unless move.pbMoveFailedAromaVeil?(target,user,true)
       user.applyEffect(:Disable,3)
       battle.pbHideAbilitySplash(target)
       user.pbItemStatusCureCheck
@@ -134,7 +159,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
 
 BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
   proc { |ability,user,target,move,battle|
-    next if !move.physicalMove?
+    next unless move.physicalMove?
     next if user.fainted?
     next if user.unstoppableAbility? || user.ability == ability
     oldAbil = nil
@@ -146,13 +171,13 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
     battle.pbDisplay(_INTL("{1}'s Ability became {2}!",user.pbThis,user.abilityName))
     battle.pbHideAbilitySplash(user) if user.opposes?(target)
     battle.pbHideAbilitySplash(target) if user.opposes?(target)
-    user.pbOnAbilityChanged(oldAbil) if !oldAbil.nil?
+    user.pbOnAbilityChanged(oldAbil) unless oldAbil.nil?
   }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
   proc { |ability,user,target,move,battle|
-    next if !move.physicalMove?
+    next unless move.physicalMove?
     battle.pbShowAbilitySplash(target)
     if user.takesIndirectDamage?(true)
       battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
@@ -166,7 +191,7 @@ BattleHandlers::TargetAbilityOnHit.copy(:IRONBARBS,:ROUGHSKIN)
 
 BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
   proc { |ability,user,target,move,battle|
-    next if !move.physicalMove?
+    next unless move.physicalMove?
     next if user.burned? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
     if user.canBurn?(target,true)
@@ -181,7 +206,7 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPORE,
     # NOTE: This ability has a 30% chance of triggering, not a 30% chance of
     #       inflicting a status condition. It can try (and fail) to inflict a
     #       status condition that the user is immune to.
-    next if !move.physicalMove?
+    next unless move.physicalMove?
     next if battle.pbRandom(100)>=30
     r = battle.pbRandom(3)
     next if r==0 && user.asleep?
@@ -210,7 +235,7 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPORE,
 
 BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
   proc { |ability,user,target,move,battle|
-    next if !move.physicalMove?
+    next unless move.physicalMove?
     next if user.poisoned? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
     if user.canPoison?(target,true)
@@ -229,12 +254,12 @@ BattleHandlers::TargetAbilityOnHit.add(:STEAMENGINE,
 
 BattleHandlers::TargetAbilityOnHit.add(:PERISHBODY,
   proc { |ability,user,target,move,battle|
-    next if !move.physicalMove?
+    next unless move.physicalMove?
     next if user.effectActive?(:PerishSong)
     battle.pbShowAbilitySplash(target)
     battle.pbDisplay(_INTL("Both Pokémon will faint in three turns!"))
     user.applyEffect(:PerishSong,3)
-    target.applyEffect(:PerishSong,3) if !target.effectActive?(:PerishSong)
+    target.applyEffect(:PerishSong,3) unless target.effectActive?(:PerishSong)
     battle.pbHideAbilitySplash(target)
   }
 )
@@ -277,7 +302,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
 
 BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
   proc { |ability,user,target,move,battle|
-    next if !move.physicalMove?
+    next unless move.physicalMove?
     next if user.fainted?
     abilityBlacklist = [
        :DISGUISE,
@@ -324,7 +349,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
 
 BattleHandlers::TargetAbilityOnHit.add(:FEEDBACK,
   proc { |ability,user,target,move,battle|
-    next if !move.specialMove?(user)
+    next unless move.specialMove?(user)
     battle.pbShowAbilitySplash(target)
     if user.takesIndirectDamage?(true)
       battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
@@ -349,7 +374,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
 
 BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
   proc { |ability,user,target,move,battle|
-    next if !move.specialMove?
+    next unless move.specialMove?
     next if battle.pbRandom(100)>=30
     next if user.frostbitten?
     battle.pbShowAbilitySplash(target)
@@ -362,7 +387,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
 
 BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
   proc { |ability,user,target,move,battle|
-    next if !move.physicalMove?
+    next unless move.physicalMove?
     next if battle.pbRandom(100)>=30
     next if user.frostbitten?
     battle.pbShowAbilitySplash(target)
@@ -375,7 +400,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
 
 BattleHandlers::TargetAbilityOnHit.add(:CURSEDTAIL,
   proc { |ability,user,target,move,battle|
-    next if !move.physicalMove?
+    next unless move.physicalMove?
     next if user.effectActive?(:Curse) || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
     user.applyEffect(:Curse)
@@ -400,7 +425,7 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
 BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
   proc { |ability,user,target,move,battle|
     next if target.fainted?
-    next if !move.physicalMove?
+    next unless move.physicalMove?
     next if battle.pbRandom(100)>=30
     next if user.dizzy?
     battle.pbShowAbilitySplash(target)
@@ -463,7 +488,7 @@ BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
 
 BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
   proc { |ability,user,target,move,battle|
-    next if !Effectiveness.resistant?(target.damageState.typeMod)
+    next unless Effectiveness.resistant?(target.damageState.typeMod)
     target.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1], target, showAbilitySplash: true)
   }
 )
