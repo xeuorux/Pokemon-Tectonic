@@ -760,22 +760,16 @@ class PokeBattle_WeatherMove < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    @battle.pbStartWeather(user,@weatherType,@durationSet,false) if !@battle.primevalWeatherPresent?
+    @battle.pbStartWeather(user,@weatherType,@durationSet,false) unless @battle.primevalWeatherPresent?
   end
 
   def getScore(score,user,target,skill=100)
-    if damagingMove?
-      score += 60
-    elsif user.firstTurn?
+    return 0 if @battle.primevalWeatherPresent? || @battle.pbCheckGlobalAbility(:AIRLOCK) ||
+      @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == @weatherType
+    if user.firstTurn?
       score += 20
     end
-    if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == @weatherType
-      if !damagingMove?
-        return 0
-      else
-        score -= 60
-      end
-    end
+    score += 20
     return score
   end
 end
