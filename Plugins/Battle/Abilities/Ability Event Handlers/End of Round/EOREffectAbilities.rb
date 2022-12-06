@@ -47,6 +47,8 @@ BattleHandlers::EOREffectAbility.add(:SPEEDBOOST,
   }
 )
 
+BattleHandlers::EOREffectAbility.copy(:SPEEDBOOST,:SPINTENSITY)
+
 BattleHandlers::EOREffectAbility.add(:BALLFETCH,
   proc { |ability,battler,battle|
     if battler.effectActive?(:BallFetch) && battler.item<=0

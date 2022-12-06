@@ -609,3 +609,16 @@ BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
     terrainSetAbility(:Psychic,battler,battle)
 	}
 )
+
+BattleHandlers::TargetAbilityOnHit.add(:SPINTENSITY,
+  proc { |ability,user,target,move,battle|
+    return unless target.stages[:SPEED] > 0
+    battle.pbShowAbilitySplash(target)
+    battle.pbDisplay(_INTL("#{user.pbThis} catches the full force of #{target.pbThis(true)}'s Speed!"))
+    oldStage = target.stages[:SPEED]
+    user.applyFractionalDamage(oldStage / 6.0)
+    battle.pbCommonAnimation("StatDown",target)
+    target.stages[:SPEED] = 0
+    battle.pbHideAbilitySplash(target)
+  }
+)
