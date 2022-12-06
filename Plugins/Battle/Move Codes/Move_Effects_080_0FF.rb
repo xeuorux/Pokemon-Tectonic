@@ -2138,7 +2138,7 @@ class PokeBattle_Move_0C9 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# Two turn attack. Skips first turn, attacks second turn. (Dig)
+# Two turn attack. Skips first turn, attacks second turn. (Dig, Undermine)
 # (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
 #===============================================================================
 class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
@@ -2159,12 +2159,21 @@ class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
     return ret
   end
 
+  def canBecomeReaper?(user)
+    return @battle.pbWeather == :Sandstorm && user.species == :GARCHOMP && user.hasActiveAbility?(:DUNEPREDATOR) && user.form == 0
+  end
+
   def pbAttackingTurnMessage(user,targets)
-    if @battle.pbWeather == :Sandstorm && user.species == :GARCHOMP && user.hasActiveAbility?(:DUNEPREDATOR) && user.form == 0
+    if canBecomeReaper?(user)
       @battle.pbDisplay(_INTL("The ground rumbles violently underneath {1}!",targets[0].pbThis))
       @battle.pbAnimation(:EARTHQUAKE,targets[0],targets,0)
       user.pbChangeForm(1,_INTL("The Reaper appears!",user.pbThis))
     end
+  end
+
+  def getScore(score,user,target,skill=100)
+    score += 50 if canBecomeReaper?(user)
+    return score
   end
 end
 
@@ -2173,7 +2182,6 @@ end
 # (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
 #===============================================================================
 class PokeBattle_Move_0CB < PokeBattle_TwoTurnMove
-
   def pbChargingTurnMessage(user,targets)
     @battle.pbDisplay(_INTL("{1} hid underwater!",user.pbThis))
     if user.canGulpMissile?
