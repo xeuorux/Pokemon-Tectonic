@@ -1893,6 +1893,8 @@ class PokeBattle_Move_0BF < PokeBattle_Move
     return @calcBaseDmg
   end
 
+  def shouldHighlight?(user,target); return false; end
+
   def pbBaseDamageAI(baseDmg,user,target,skill=100)
     return baseDmg * 2
   end
