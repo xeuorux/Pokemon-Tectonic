@@ -725,7 +725,7 @@ FishingContest,20
     3,WAILMER,30,38
     3,WIMPOD,30,38
     3,WISHIWASHI,30,38
-    1,KYOGRE,30,38
+    1,LUGIA,30,38
 #-------------------------------
 [243] # Chasm Base Mess Hall
 Special
