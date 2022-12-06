@@ -2838,3 +2838,45 @@ class PokeBattle_Move_5AB < PokeBattle_HealingMove
 		user.incrementEffect(:Refurbished)
 	end
 end
+
+#===============================================================================
+# Leeches or numbs the target, depending on how its speed compares to the user.
+# (Mystery Seed)
+#===============================================================================
+class PokeBattle_Move_5AC < PokeBattle_Move
+	def pbFailsAgainstTarget?(user,target,show_message)
+	  return false if damagingMove?
+	  if !target.canLeech?(user,true,self) && !target.canNumb?(user,true,self)
+		  @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can neither be leeched or numbed!")) if show_message
+		  return true
+	  end
+	  return false
+	end
+  
+	def pbEffectAgainstTarget(user,target)
+	  return if damagingMove?
+	  leechOrNumb(target)
+	end
+  
+	def pbAdditionalEffect(user,target)
+	  return if target.damageState.substitute
+	  leechOrNumb(user,target)
+	end
+	
+	def leechOrNumb(user,target)
+	  target_speed = target.pbSpeed
+	  user_speed = user.pbSpeed
+	  
+	  if target.canNumb?(user,false,self) && target_speed >= user_speed
+		  target.applyNumb(user)
+	  elsif target.canLeech?(user,false,self) && user_speed >= target_speed
+		  target.applyLeeched(user)
+	  end
+	end
+	
+	def getScore(score,user,target,skill=100)
+	  score += target.canLeech?(user,false,self) ? 20 : -20
+	  score += target.canNumb?(user,false,self) ? 20 : -20
+	  return score
+	end
+end
