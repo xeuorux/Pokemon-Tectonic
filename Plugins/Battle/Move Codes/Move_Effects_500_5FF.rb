@@ -159,7 +159,7 @@ end
 class PokeBattle_Move_50A < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target,show_message)
     return false if damagingMove?
-    if !target.canBurn?(user,true,self) && !target.canFrostbite?(user,true,self)
+    if !target.canBurn?(user,show_message,self) && !target.canFrostbite?(user,show_message,self)
 		@battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can neither be burned or frostbitten!")) if show_message
 		return true
 	end
@@ -2846,7 +2846,7 @@ end
 class PokeBattle_Move_5AC < PokeBattle_Move
 	def pbFailsAgainstTarget?(user,target,show_message)
 	  return false if damagingMove?
-	  if !target.canLeech?(user,true,self) && !target.canNumb?(user,true,self)
+	  if !target.canLeech?(user,show_message,self) && !target.canNumb?(user,show_message,self)
 		  @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can neither be leeched or numbed!")) if show_message
 		  return true
 	  end
