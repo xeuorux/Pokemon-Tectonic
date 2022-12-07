@@ -612,7 +612,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
 
 BattleHandlers::TargetAbilityOnHit.add(:SPINTENSITY,
   proc { |ability,user,target,move,battle|
-    return unless target.stages[:SPEED] > 0
+    next unless target.stages[:SPEED] > 0
     battle.pbShowAbilitySplash(target)
     battle.pbDisplay(_INTL("#{user.pbThis} catches the full force of #{target.pbThis(true)}'s Speed!"))
     oldStage = target.stages[:SPEED]

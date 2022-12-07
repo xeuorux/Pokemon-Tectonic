@@ -168,7 +168,7 @@ class PokeBattle_Move_50A < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    burnOrFrostbite(target)
+    burnOrFrostbite(user,target)
   end
 
   def pbAdditionalEffect(user,target)
@@ -2855,7 +2855,7 @@ class PokeBattle_Move_5AC < PokeBattle_Move
   
 	def pbEffectAgainstTarget(user,target)
 	  return if damagingMove?
-	  leechOrNumb(target)
+	  leechOrNumb(user,target)
 	end
   
 	def pbAdditionalEffect(user,target)
