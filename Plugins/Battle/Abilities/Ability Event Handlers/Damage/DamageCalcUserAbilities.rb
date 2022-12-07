@@ -413,3 +413,9 @@ BattleHandlers::DamageCalcUserAbility.add(:STEELYSPIRIT,
     mults[:base_damage_multiplier] *= 1.5 if type == :STEEL
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:UNCANNYCOLD,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if type == :ICE
+  }
+)
