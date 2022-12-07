@@ -145,5 +145,12 @@ class PokeBattle_Battle
         else
             @struggle = PokeBattle_Struggle.new(self, nil)
         end
+        @knownAbilities    = {}
+        @party1.each do |pokemon|
+            knownAlready = false
+            knownAlready = true if pokemon.getAbilityList.length == 1
+            @knownAbilities[pokemon.personalID] = knownAlready
+            echoln("Player's side pokemon #{pokemon.name}'s ability is known by the AI at the start? #{knownAlready}")
+        end
     end
 end

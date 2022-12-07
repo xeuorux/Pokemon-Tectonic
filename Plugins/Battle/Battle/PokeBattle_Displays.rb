@@ -51,8 +51,9 @@ class PokeBattle_Battle
       end
     
       def pbShowAbilitySplash(battler,delay=false,logTrigger=true,fakeName=nil)
-        return if !showMessages?
+        @knownAbilities[battler.pokemon.personalID] = true if battler.pbOwnedByPlayer?
         PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}") if logTrigger
+        return if !showMessages?
         @scene.pbShowAbilitySplash(battler,fakeName)
         if delay
           frames = Graphics.frame_rate # Default 1 second

@@ -166,12 +166,14 @@ class PokeBattle_Battler
 	#=============================================================================
 	# Query about stats after room modification, stages, abilities and item modifiers.
 	#=============================================================================
+	AI_CHEATS_FOR_STAT_ABILITIES = true
+
 	def pbAttack(aiChecking = false,stage=-1)
 		return 1 if fainted?
 		attack = statAfterStage(:ATTACK,stage)
 		attackMult = 1.0
 
-		unless ignoreAbilityInAI?(aiChecking)
+		if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
 			attackMult = BattleHandlers.triggerAttackCalcUserAbility(ability, self, @battle, attackMult) if abilityActive?
 			eachAlly do |ally|
 				next unless ally.abilityActive?
@@ -192,7 +194,7 @@ class PokeBattle_Battler
 		special_attack = statAfterStage(:SPECIAL_ATTACK,stage)
 		spAtkMult = 1.0
 
-		unless ignoreAbilityInAI?(aiChecking)
+		if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
 			spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserAbility(ability, self, @battle, spAtkMult) if abilityActive?
 			eachAlly do |ally|
 				next unless ally.abilityActive?
@@ -210,7 +212,7 @@ class PokeBattle_Battler
 		defense = statAfterStage(:DEFENSE,stage)
 		defenseMult = 1.0
 
-		unless ignoreAbilityInAI?(aiChecking)
+		if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
 			defenseMult = BattleHandlers.triggerDefenseCalcUserAbility(ability, self, @battle, defenseMult) if abilityActive?
 			eachAlly do |ally|
 				next unless ally.abilityActive?
@@ -228,7 +230,7 @@ class PokeBattle_Battler
 		special_defense = statAfterStage(:SPECIAL_DEFENSE,stage)
 		spDefMult = 1.0
 
-		unless ignoreAbilityInAI?(aiChecking)
+		if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
 			spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserAbility(ability, self, @battle, spDefMult) if abilityActive?
 			eachAlly do |ally|
 				next unless ally.abilityActive?
@@ -245,8 +247,10 @@ class PokeBattle_Battler
 		return 1 if fainted?
 		speed = statAfterStage(:SPEED,stage)
 		speedMult = 1.0
-		# Ability effects that alter calculated Speed
-		speedMult = BattleHandlers.triggerSpeedCalcAbility(ability, self, speedMult) if abilityActive? && !ignoreAbilityInAI?(aiChecking)
+		if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
+			# Ability effects that alter calculated Speed
+			speedMult = BattleHandlers.triggerSpeedCalcAbility(ability, self, speedMult) if abilityActive? && !ignoreAbilityInAI?(aiChecking)
+		end
 		# Item effects that alter calculated Speed
 		speedMult = BattleHandlers.triggerSpeedCalcItem(item, self, speedMult) if itemActive?
 		# Other effects

@@ -186,4 +186,8 @@ class PokeBattle_Battle
   def firstTurnThisRound?
     return @commandPhasesThisRound.zero?
   end
+
+  def aiKnowsAbility?(pokemon)
+		return @knownAbilities[pokemon.personalID]
+	end
 end

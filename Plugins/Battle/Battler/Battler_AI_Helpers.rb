@@ -95,7 +95,7 @@ class PokeBattle_Battler
 
 	def aiKnowsAbility?
 		return false if effectActive?(:Illusion) && pbOwnedByPlayer?
-		return true
+		return @battle.aiKnowsAbility?(@pokemon)
 	end
 
 	# A helper method that diverts to an AI-based check or a true calculation check as appropriate
