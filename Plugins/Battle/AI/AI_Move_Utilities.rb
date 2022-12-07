@@ -79,9 +79,6 @@ class PokeBattle_AI
         # Get the move's type
         type = pbRoughType(move,user)
 
-        # Give the move a chance to change itself to phys or spec
-        move.calculated_category = move.calculateCategory(user, [target])
-
         # Calculate the damage for one hit
         damage = move.calculateDamageForHit(user,target,type,baseDmg,numTargets,true)
 

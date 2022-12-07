@@ -106,10 +106,14 @@ class PokeBattle_AI
 	# Get a score for the given move being used against the given target
 	#=============================================================================
 	def pbGetMoveScore(move,user,target,skill=100,policies=[],numTargets=1)
+        move.calculated_category = move.calculateCategory(user, [target])
+        move.calcType = move.pbCalcType(user)
+
 		score = 100
 		score = pbGetMoveScoreFunctionCode(score,move,user,target,skill,policies)
+
 		if score.nil?
-			echoln("#{user.pbThis} unable to score #{move.id} against target #{target.pbThis(false)} assuming 50")
+			echoln("#{user.pbThis} unable to score #{move.id} against target #{target.pbThis(false)}. Assuming a score of 50.")
 			return 50
 		end
 		
@@ -117,7 +121,7 @@ class PokeBattle_AI
         
 		# Falsify the turn count so that the AI is calculated as though we are actually
         # in the midst of performing the move (turnCount is incremented as the attack phase begins)
-        user.turnCount += 1 
+        user.turnCount += 1
 
 		if move.pbMoveFailedAI?(user,[target])
 			score = 0
@@ -174,7 +178,7 @@ class PokeBattle_AI
         end
 		
 		# A score of 0 here means it absolutely should not be used
-		if score<=0
+		if score <= 0
 			echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)} early: #{0}")
 			return 0
 		end
