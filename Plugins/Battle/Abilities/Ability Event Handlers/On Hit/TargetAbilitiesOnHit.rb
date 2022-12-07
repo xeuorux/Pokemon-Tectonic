@@ -1,3 +1,75 @@
+#########################################
+# Terrain Abilities
+#########################################
+
+BattleHandlers::TargetAbilityOnHit.add(:SEEDSCATTER,
+	proc { |ability,target,battler,move,battle|
+    terrainSetAbility(:Grassy,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
+	proc { |ability,target,battler,move,battle|
+    terrainSetAbility(:Electric,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:MISTCRAFT,
+	proc { |ability,target,battler,move,battle|
+		terrainSetAbility(:Misty,battler,battle)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
+	proc { |ability,target,battler,move,battle|
+    terrainSetAbility(:Psychic,battler,battle)
+	}
+)
+
+#########################################
+# Weather Abilities
+#########################################
+
+BattleHandlers::TargetAbilityOnHit.add(:SANDBURST,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Sandstorm,battler,battle,false,true)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:INNERLIGHT,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Sun,battler,battle,false,true)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:STORMBRINGER,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Rain,battler,battle,false,true)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Hail,battler,battle,false,true)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:SWARMMOUTH,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:Swarm,battler,battle,false,true)
+	}
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:ACIDBODY,
+	proc { |ability,target,battler,move,battle|
+		pbBattleWeatherAbility(:AcidRain,battler,battle,false,true)
+	}
+)
+
+#########################################
+# Other
+#########################################
+
 BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINT,
   proc { |ability,user,target,move,battle|
     next unless target.damageState.critical
@@ -538,76 +610,6 @@ BattleHandlers::TargetAbilityOnHit.add(:PLAYVICTIM,
     end
     battle.pbHideAbilitySplash(target)
   }
-)
-
-
-#########################################
-# Weather Abilities
-#########################################
-
-BattleHandlers::TargetAbilityOnHit.add(:SANDBURST,
-	proc { |ability,target,battler,move,battle|
-		pbBattleWeatherAbility(:Sandstorm,battler,battle,false,true)
-	}
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:INNERLIGHT,
-	proc { |ability,target,battler,move,battle|
-		pbBattleWeatherAbility(:Sun,battler,battle,false,true)
-	}
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:STORMBRINGER,
-	proc { |ability,target,battler,move,battle|
-		pbBattleWeatherAbility(:Rain,battler,battle,false,true)
-	}
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
-	proc { |ability,target,battler,move,battle|
-		pbBattleWeatherAbility(:Hail,battler,battle,false,true)
-	}
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:SWARMMOUTH,
-	proc { |ability,target,battler,move,battle|
-		pbBattleWeatherAbility(:Swarm,battler,battle,false,true)
-	}
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:ACIDBODY,
-	proc { |ability,target,battler,move,battle|
-		pbBattleWeatherAbility(:AcidRain,battler,battle,false,true)
-	}
-)
-
-
-#########################################
-# Terrain Abilities
-#########################################
-
-BattleHandlers::TargetAbilityOnHit.add(:SEEDSCATTER,
-	proc { |ability,target,battler,move,battle|
-    terrainSetAbility(:Grassy,battler,battle)
-	}
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
-	proc { |ability,target,battler,move,battle|
-    terrainSetAbility(:Electric,battler,battle)
-	}
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:MISTCRAFT,
-	proc { |ability,target,battler,move,battle|
-		terrainSetAbility(:Misty,battler,battle)
-	}
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
-	proc { |ability,target,battler,move,battle|
-    terrainSetAbility(:Psychic,battler,battle)
-	}
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:SPINTENSITY,

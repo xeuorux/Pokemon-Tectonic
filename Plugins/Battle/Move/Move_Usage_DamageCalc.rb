@@ -360,11 +360,11 @@ class PokeBattle_Move
 
         # Critical hits
         if aiChecking
-            criticalHitRate = pbIsCritical?(user,target,true)
+            rate = pbIsCritical?(user,target,true)
 
-            if criticalHitRate >= 0
-                criticalHitRate = 5 if criticalHitRate > 5
-                multipliers[:final_damage_multiplier] *= 1.0 + (0.1 * criticalHitRate)
+            if rate >= 0
+                rate = 5 if rate > 5
+                multipliers[:final_damage_multiplier] *= 1.0 + (0.1 * rate)
             end
         else
             if target.damageState.critical

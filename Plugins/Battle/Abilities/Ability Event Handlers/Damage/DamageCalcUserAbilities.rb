@@ -278,6 +278,12 @@ BattleHandlers::DamageCalcUserAbility.add(:SWORDSMAN,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:RAZORSEDGE,
+  proc { |ability,user,target,move,mults,baseDmg,type,aiCheck|
+    mults[:base_damage_multiplier] *= 1.3 if move.slashMove?
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:MYSTICFIST,
   proc { |ability,user,target,move,mults,baseDmg,type,aiCheck|
     mults[:base_damage_multiplier] *= 1.3 if move.punchingMove?

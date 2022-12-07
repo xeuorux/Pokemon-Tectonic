@@ -393,8 +393,8 @@ module BattleHandlers
   
 	#=============================================================================
   
-	def self.triggerCriticalCalcUserAbility(ability,user,target,c)
-	  ret = CriticalCalcUserAbility.trigger(ability,user,target,c)
+	def self.triggerCriticalCalcUserAbility(ability,user,target,move,c)
+	  ret = CriticalCalcUserAbility.trigger(ability,user,target,move,c)
 	  return (ret!=nil) ? ret : c
 	end
 

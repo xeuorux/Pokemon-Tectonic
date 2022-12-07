@@ -224,14 +224,14 @@ class PokeBattle_Move
 
         crit = false
         forced = false
-        criticalHitRate = criticalHitRate(user,target)
+        rate = criticalHitRate(user,target)
         
         if guaranteedCrit?(user,target)
             crit = true
             forced = true
         end
 
-        if !crit && isRandomCrit?(user,target,criticalHitRate)
+        if !crit && isRandomCrit?(user,target,rate)
             crit = true
             forced = false
         end
@@ -251,7 +251,7 @@ class PokeBattle_Move
             if forced
                 return crit ? 5 : -1
             else
-                return criticalHitRate
+                return rate
             end
         else
             return crit,forced
@@ -271,7 +271,7 @@ class PokeBattle_Move
         c = 0
         # Ability effects that alter critical hit rate
         if user.abilityActive?
-            c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
+            c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,move,c)
         end
         if target.abilityActive? && !@battle.moldBreaker
             c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)

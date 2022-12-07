@@ -60,3 +60,14 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:TYRANTSWRATH,
     battle.forceUseMove(target,:TYRANTSFIT,user.index,false,nil,nil,true)
   }
 )
+
+BattleHandlers::TargetAbilityAfterMoveUse.add(:MALICE,
+  proc { |ability,target,user,move,switched,battle|
+    next if !move.damagingMove?
+    next if !target.knockedBelowHalf?
+    next if user.effectActive?(:Curse)
+    battle.pbShowAbilitySplash(target)
+    target.applyEffect(:Curse)
+    battle.pbHideAbilitySplash(target)
+  }
+)
