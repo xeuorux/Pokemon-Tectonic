@@ -169,3 +169,21 @@ BattleHandlers::UserAbilityEndOfMove.add(:SEALORD,
     battle.pbHideAbilitySplash(user)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:VICTORYMOLT,
+  proc { |ability,user,targets,move,battle|
+    next if battle.pbAllFainted?(user.idxOpposingSide)
+    numFainted = 0
+    targets.each { |b| numFainted += 1 if b.damageState.fainted }
+    next if numFainted == 0
+    next unless user.pbHasAnyStatus? || user.hasAlteredStatStages?
+    battle.pbShowAbilitySplash(user)
+    user.pbChangeForm(1,_INTL("{1} molts into a new shell!",user.pbThis))
+    user.pbCureStatus(true)
+    if user.hasAlteredStatStages?
+      @battle.pbDisplay(_INTL("{1}'s stat changes were removed!",user.pbThis))
+      user.resetStatStages
+    end
+    battle.pbHideAbilitySplash(user)
+  }
+)
