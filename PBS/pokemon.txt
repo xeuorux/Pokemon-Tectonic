@@ -11642,7 +11642,7 @@ InternalName = SHUPPET
 Type1 = GHOST
 Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 50,70,65,60,55,55
+BaseStats = 45,70,65,55,55,55
 # Total = 355
 GenderRate = Female50Percent
 GrowthRate = Fast
@@ -11677,7 +11677,7 @@ InternalName = BANETTE
 Type1 = GHOST
 Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,95,85,80,70,70
+BaseStats = 55,95,85,75,70,70
 # Total = 460
 GenderRate = Female50Percent
 GrowthRate = Fast
@@ -29949,7 +29949,7 @@ InternalName = MANIKLAW
 Type1 = GHOST
 Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,115,100,95,85,85
+BaseStats = 70,115,100,90,85,85
 # Total = 555
 GenderRate = Female50Percent
 GrowthRate = Fast
