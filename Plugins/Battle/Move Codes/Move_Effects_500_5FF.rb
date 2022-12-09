@@ -2230,10 +2230,10 @@ class PokeBattle_Move_589 < PokeBattle_Move_0C0
 	def pbEffectOnNumHits(user,target,numHits)
 		coinsGenerated = 2 * user.level * numHits
 		@battle.field.incrementEffect(:PayDay,coinsGenerated) if user.pbOwnedByPlayer?
-		if numHits == 5
-			@battle.pbDisplay(_INTL("How fortunate!",coinsGenerated))
+		if numHits == 10
+			@battle.pbDisplay(_INTL("How fortunate!"))
 		elsif numHits == 0
-			@battle.pbDisplay(_INTL("How unfortunate! Better luck next time.",coinsGenerated))
+			@battle.pbDisplay(_INTL("How unfortunate! Better luck next time."))
 		end
 	end
 end

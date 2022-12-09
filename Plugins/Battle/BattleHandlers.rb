@@ -401,7 +401,7 @@ module BattleHandlers
 	def self.triggerGuaranteedCriticalUserAbility(ability,user,target,battle)
 		ret = GuaranteedCriticalUserAbility.trigger(ability,user,target,battle)
 		return (ret!=nil) ? ret : false
-	  end
+	end
   
 	def self.triggerCriticalCalcTargetAbility(ability,user,target,c)
 	  ret = CriticalCalcTargetAbility.trigger(ability,user,target,c)

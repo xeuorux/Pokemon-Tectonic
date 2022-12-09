@@ -476,7 +476,7 @@ class PokeBattle_Battler
 				end
 			end
 			# Get the number of hits
-			numHits = move.pbNumHits(user, targets)
+			numHits = move.numberOfHits(user, targets)
 			# Mark each target with whether its being targeted by a multihit move
 			multiHitAesthetics = numHits > 1 || move.pbRepeatHit?
 			targets.each do |target|

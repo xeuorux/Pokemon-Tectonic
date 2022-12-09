@@ -97,6 +97,29 @@ class PokeBattle_Move
 
     def canParentalBond?(user,targets,checkingForAI=false)
         return user.shouldAbilityApply?(:PARENTALBOND,checkingForAI) && pbDamagingMove? && !chargingTurnMove? && targets.length==1
+    end 
+
+    def numberOfHits(user,targets,checkingForAI=false)
+        calcedHits = calcNumHits(user,targets,checkingForAI)
+
+        if user.shouldAbilityApply?(:LONGODDS,checkingForAI) && multiHitMove? && pbDamagingMove?
+            calcedHits2 = calcNumHits(user,targets,checkingForAI)
+            if checkingForAI
+                calcedHits += calcedHits2
+            else
+                calcedHits += @battle.pbRandom(calcedHits2 + 1)
+            end
+        end
+
+        return calcedHits
+    end
+
+    def calcNumHits(user,targets,checkingForAI=false)
+        if checkingForAI
+            return pbNumHitsAI(user,targets,checkingForAI)
+        else
+            return pbNumHits(user,targets,checkingForAI)
+        end
     end
   
     # The maximum number of hits in a round this move will actually perform. This

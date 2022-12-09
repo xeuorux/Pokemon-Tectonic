@@ -83,7 +83,7 @@ class PokeBattle_AI
         damage = move.calculateDamageForHit(user,target,type,baseDmg,numTargets,true)
 
         # Estimate how many hits the move will do
-        numHits = move.pbNumHitsAI(user,target)
+        numHits = move.numberOfHits(user,target,true)
 
         # Calculate the total estimated damage of all hits
         totalDamage = damage * numHits

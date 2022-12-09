@@ -493,6 +493,7 @@
 492,RAZORSEDGE,Razor's Edge,"Boosts the power of slashing moves by 30%. They're twice as likely to crit."
 493,MALICE,Malice,"If an attack lowers its HP to half or less, curses the attacker."
 494,VICTORYMOLT,Victory Molt,"Heals status conditions and resets stat changes after knocking out any Pokémon."
+495,LONGODDS,Long Odds,"Multi-hit moves can hit up to twice as many times."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
