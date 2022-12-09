@@ -271,7 +271,7 @@ class PokeBattle_Move
         c = 0
         # Ability effects that alter critical hit rate
         if user.abilityActive?
-            c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,move,c)
+            c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,self,c)
         end
         if target.abilityActive? && !@battle.moldBreaker
             c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
