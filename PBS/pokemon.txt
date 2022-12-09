@@ -11643,7 +11643,7 @@ Type1 = GHOST
 Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 45,70,65,55,55,55
-# Total = 355
+# Total = 345
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 59
@@ -11678,7 +11678,7 @@ Type1 = GHOST
 Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,95,85,75,70,70
-# Total = 460
+# Total = 450
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 159
@@ -29950,7 +29950,7 @@ Type1 = GHOST
 Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 70,115,100,90,85,85
-# Total = 555
+# Total = 545
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 259

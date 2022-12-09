@@ -253,7 +253,7 @@ class PokeBattle_Battle
       case curWeather
       when :Sandstorm
         next if !b.takesSandstormDamage?
-        damageDoubled = !pbCheckGlobalAbility(:SHRAPNELSTORM).nil?
+        damageDoubled = pbCheckGlobalAbility(:SHRAPNELSTORM)
         if showWeatherMessages
           if damageDoubled
             pbDisplay(_INTL("{1} is shredded by the razor-sharp shrapnel!",b.pbThis))
@@ -266,7 +266,7 @@ class PokeBattle_Battle
         b.applyFractionalDamage(fraction)
       when :Hail
         next if !b.takesHailDamage?
-        damageDoubled = !pbCheckGlobalAbility(:BITTERCOLD).nil?
+        damageDoubled = pbCheckGlobalAbility(:BITTERCOLD)
         if showWeatherMessages
           if damageDoubled
             pbDisplay(_INTL("{1} is pummeled by the bitterly cold hail!",b.pbThis))

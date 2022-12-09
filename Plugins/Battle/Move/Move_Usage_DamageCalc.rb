@@ -168,11 +168,19 @@ class PokeBattle_Move
             end
         when :Sandstorm
             if target.shouldTypeApply?(:ROCK,checkingForAI) && specialMove? && @function != "122"   # Psyshock/Psystrike
-                multipliers[:defense_multiplier] *= 1.5
+                if pbCheckGlobalAbility(:SHRAPNELSTORM)
+                    multipliers[:defense_multiplier] *= 2.0
+                else
+                    multipliers[:defense_multiplier] *= 1.5
+                end
             end
         when :Hail
             if target.shouldTypeApply?(:ICE,checkingForAI) && physicalMove? && @function != "506"   # Soul Claw/Rip
-                multipliers[:defense_multiplier] *= 1.5
+                if pbCheckGlobalAbility(:BITTERCOLD)
+                    multipliers[:defense_multiplier] *= 2.0
+                else
+                    multipliers[:defense_multiplier] *= 1.5
+                end
             end
         end
     end
