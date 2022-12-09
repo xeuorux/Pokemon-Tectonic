@@ -50,9 +50,6 @@ alias speciesEntry openSingleDexScreen
 
 def unlockDex
   $Trainer.pokedex.unlock(-1)
-  $Trainer.pokedex.set_seen(:TREECKO,false)
-  $Trainer.pokedex.set_seen(:TORCHIC,false)
-  $Trainer.pokedex.set_seen(:MUDKIP,false)
   $Trainer.pokedex.refresh_accessible_dexes()
 end
 
