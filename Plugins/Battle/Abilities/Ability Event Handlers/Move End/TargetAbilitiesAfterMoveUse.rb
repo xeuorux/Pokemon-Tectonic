@@ -67,7 +67,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:MALICE,
     next if !target.knockedBelowHalf?
     next if user.effectActive?(:Curse)
     battle.pbShowAbilitySplash(target)
-    target.applyEffect(:Curse)
+    user.applyEffect(:Curse)
     battle.pbHideAbilitySplash(target)
   }
 )
