@@ -72,6 +72,7 @@ class PokeBattle_Battle
     battler.eachEffectAllLocations(true) do |effect,value,data|
       next unless data.trapping?
       partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
+      return true
     end
 
     # Trapping abilities/items
@@ -91,7 +92,7 @@ class PokeBattle_Battle
         return true
       end
     end
-	return false
+	  return false
   end
 
   def pbCanChooseNonActive?(idxBattler)
