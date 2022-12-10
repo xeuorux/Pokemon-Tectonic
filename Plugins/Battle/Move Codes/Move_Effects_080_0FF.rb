@@ -2180,7 +2180,7 @@ class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# Two turn attack. Skips first turn, attacks second turn. (Dive)
+# Two turn attack. Skips first turn, attacks second turn. (Dive, Depth Charge)
 # (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
 #===============================================================================
 class PokeBattle_Move_0CB < PokeBattle_TwoTurnMove

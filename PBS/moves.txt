@@ -781,7 +781,7 @@
 714,SPARKLINGARIA,Sparkling Aria,15A,80,WATER,Special,100,10,100,AllNearOthers,0,befk,"The user bursts into song, emitting many bubbles. Any burnt Pokémon will be healed by these bubbles.",
 715,SURF,Surf,075,90,WATER,Special,100,12,0,AllNearOthers,0,bef,"It swamps the area with a giant wave, hitting every battler nearby and underwater.",
 716,LIQUIDATION,Liquidation,043,90,WATER,Physical,100,10,20,NearOther,0,abef,"Slams into the target using an aquatic blast with a 20% chance to lower Defense.",
-717,DIVE,Dive,0CB,100,WATER,Physical,100,10,0,NearOther,0,abef,"Diving on the first turn, the user rises and hits on the next turn. It can be used to dive in the ocean.",
+717,DIVE,Dive,0CB,90,WATER,Physical,100,10,0,NearOther,0,abef,"Diving on the first turn, the user rises and hits on the next turn. It can be used to dive in the ocean.",
 718,SCALD,Scald,00A,80,WATER,Special,100,12,30,NearOther,0,bef,"The user shoots boiling hot water at its target. This has a 30% chance to burn.",
 719,WATERPLEDGE,Water Pledge,108,80,WATER,Special,100,10,0,NearOther,0,bef,"A column of water strikes the target. When combined with its fire equivalent, it makes a rainbow.",
 720,WATERFALL,Waterfall,00F,80,WATER,Physical,100,12,40,NearOther,0,abe,"The user charges at the target and has a 40% chance to make it flinch.",
@@ -1145,3 +1145,4 @@
 1080,SCALEGLINT,Scale Glint,5AA,40,DRAGON,Special,100,15,20,NearOther,0,bef,"The shine from scales damages the target. 20% chance to reduce their higher Attacking stat.",DAZZLINGGLEAM
 1081,REFURBISH,Refurbish,5AB,0,STEEL,Status,0,15,0,User,0,d,"The user economizes half of its weight, raising its Defenses and also healing based on the weight lost.",AUTOTOMIZE
 1082,MYSTERYSEED,Mystery Seed,5AC,0,GRASS,Status,0,10,0,NearOther,0,bce,"The target eats a strange seed. They become numbed if faster than the user, or leeched if slower.",LEECHSEED
+1083,DEPTHCHARGE,Depth Charge,0CB,120,WATER,Physical,100,10,0,NearOther,0,abef,"Diving deep on the first turn, the user rises and strikes with explosive strength on second.",DIVE

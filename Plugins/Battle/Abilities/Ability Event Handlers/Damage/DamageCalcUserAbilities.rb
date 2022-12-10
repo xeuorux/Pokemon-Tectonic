@@ -425,3 +425,9 @@ BattleHandlers::DamageCalcUserAbility.add(:UNCANNYCOLD,
     mults[:base_damage_multiplier] *= 1.5 if type == :ICE
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:MARINEMENACE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if move.function == "0CB"
+  }
+)
