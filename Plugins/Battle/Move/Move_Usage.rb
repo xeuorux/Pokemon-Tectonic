@@ -116,7 +116,7 @@ class PokeBattle_Move
 
     def calcNumHits(user,targets,checkingForAI=false)
         if checkingForAI
-            return pbNumHitsAI(user,targets,checkingForAI)
+            return pbNumHitsAI(user,targets)
         else
             return pbNumHits(user,targets,checkingForAI)
         end
