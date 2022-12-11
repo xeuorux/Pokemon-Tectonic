@@ -1,8 +1,8 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
-0,POKEMONTRAINER_Red,Pokémon Trainer,60,,,,Male,,,[]
-1,POKEMONTRAINER_Leaf,Pokémon Trainer,60,,,,Female,,,[]
-2,POKEMONTRAINER_RIVAL,Pokémon Trainer,60,,,,Male,,,[]
+0,POKEMONTRAINER_Masculine,Pokémon Trainer,60,,,,Male,,,[]
+1,POKEMONTRAINER_Feminine,Pokémon Trainer,60,,,,Female,,,[]
+2,POKEMONTRAINER_Androgynous,Pokémon Trainer,60,,,,Mixed,,,[]
 3,POKEMONTRAINER_RIVALM,Pokémon Trainer,60,,,,Female,,,[]
 4,POKEMONTRAINER_RIVALF,Pokémon Trainer,60,,,,Male,,,[]
 5,YOUNGSTER,Youngster,16,,,YOUNGSTER,Male,,,[]
