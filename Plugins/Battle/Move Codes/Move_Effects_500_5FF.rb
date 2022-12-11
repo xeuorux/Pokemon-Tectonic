@@ -2090,7 +2090,7 @@ end
 #===============================================================================
 class PokeBattle_Move_581 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target,show_message)
-		return !target.canSleep?(user,show_message,self,true)
+		return !target.canSleep?(user,show_message,self)
 	end
 
 	def pbEffectAgainstTarget(user,target)
