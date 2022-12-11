@@ -204,7 +204,7 @@ class PokemonOption_Scene
             $PokemonSystem.screenshake = value
         }
       ),
-      EnumOption.new(_INTL("Look"),[_INTL("Masc."),_INTL("Fem.")],
+      EnumOption.new(_INTL("Look"),[_INTL("M"),_INTL("F"), _INTL("A")],
          proc { $PokemonSystem.gendered_look },
          proc { |value|
           pbChangePlayer(value)
