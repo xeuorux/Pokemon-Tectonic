@@ -1146,3 +1146,4 @@
 1081,REFURBISH,Refurbish,5AB,0,STEEL,Status,0,15,0,User,0,d,"The user economizes half of its weight, raising its Defenses and also healing based on the weight lost.",AUTOTOMIZE
 1082,MYSTERYSEED,Mystery Seed,5AC,0,GRASS,Status,0,10,0,NearOther,0,bce,"The target eats a strange seed. They become numbed if faster than the user, or leeched if slower.",LEECHSEED
 1083,DEPTHCHARGE,Depth Charge,0CB,120,WATER,Physical,100,10,0,NearOther,0,abef,"Diving deep on the first turn, the user rises and strikes with explosive strength on second.",DIVE
+1084,SCARRINGSWING,Scarring Swing,042,80,DARK,Physical,100,10,100,AllNearFoes,0,abef,"The user slashes all around them, creating deep scars. This lowers each target's Attack.",
