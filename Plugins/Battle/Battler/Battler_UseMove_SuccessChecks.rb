@@ -405,7 +405,9 @@ class PokeBattle_Battler
 		# Skipped for bosses using damaging moves so that it can be calculated properly later
 		if move.inherentImmunitiesPierced?(user, target)
 			# Do nothing
-		elsif targetInherentlyImmune?(user, target, move, typeMod, show_message)
+		elsif targetInherentlyImmune?(user, target, move, show_message)
+			return false
+		elsif targetTypeModImmune?(user, target, move, typeMod, show_message)
 			return false
 		end
 
@@ -419,11 +421,7 @@ class PokeBattle_Battler
 		return true
 	end
 
-	def targetInherentlyImmune?(user, target, move, typeMod, showMessages = true)
-		if move.pbImmunityByAbility(user, target, showMessages)
-			@battle.triggerImmunityDialogue(user, target, true) if showMessages
-			return true
-		end
+	def targetTypeModImmune?(user, target, move, typeMod, showMessages = true)
 		# Type immunity
 		if move.damagingMove? && Effectiveness.ineffective?(typeMod)
 			PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
@@ -431,6 +429,14 @@ class PokeBattle_Battler
 				@battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
 				@battle.triggerImmunityDialogue(user, target, false)
 			end
+			return true
+		end
+		return false
+	end
+
+	def targetInherentlyImmune?(user, target, move, showMessages = true)
+		if move.pbImmunityByAbility(user, target, showMessages)
+			@battle.triggerImmunityDialogue(user, target, true) if showMessages
 			return true
 		end
 		if airborneImmunity?(user, target, move, showMessages)
