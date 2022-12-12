@@ -101,7 +101,7 @@ class PokeBattle_Move
                 immunityPierced = true
                 ret /= 2
             elsif ret == 0
-                ret = 0.5
+                ret = 4.0 # Weird effectiveness stuff present here
                 immunityPierced = true
             end
         end
