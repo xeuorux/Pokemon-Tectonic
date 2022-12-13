@@ -1066,7 +1066,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :GorillaTactics,
-	:real_name => "GorillaTactics",
+	:real_name => "Choice Locking",
 	:type => :Move,
 	:info_displayed => false,
 })

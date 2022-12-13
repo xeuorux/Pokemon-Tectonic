@@ -92,3 +92,9 @@ BattleHandlers::SpeedCalcAbility.add(:PRIMEVALSLOWSTART,
     next mult/2
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:LOCOMOTION,
+  proc { |ability,battler,mult|
+    next mult * 1.5
+  }
+)

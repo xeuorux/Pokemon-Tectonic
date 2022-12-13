@@ -103,7 +103,7 @@ class PokeBattle_Battler
 	def pbEndTurn(_choice)
 		@lastRoundMoved = @battle.turnCount # Done something this round
 		# Gorilla Tactics
-		if !effectActive?(:GorillaTactics) && hasActiveAbility?(:GORILLATACTICS)
+		if !effectActive?(:GorillaTactics) && hasActiveAbility?(CHOICE_LOCKING_ABILITIES)
 			if !@lastMoveUsed.nil? && pbHasMove?(@lastMoveUsed)
 				applyEffect(:GorillaTactics,@lastMoveUsed)
 			elsif !@lastRegularMoveUsed.nil? && pbHasMove?(@lastRegularMoveUsed)
