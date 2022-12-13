@@ -351,9 +351,7 @@ class PokeBattle_Move_094 < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if @presentDmg>0
-    healAmount = target.totalhp / 4.0
-    healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if target.boss?
-    target.pbRecoverHP(healAmount)
+    target.applyFractionalHealing(1.0/4.0)
   end
 
   def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
@@ -1925,7 +1923,7 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
     return numHits
   end
 
-  def pbNumHitsAI(user,target)
+  def pbNumHitsAI(user,targets)
     if @id == :WATERSHURIKEN && user.isSpecies?(:GRENINJA) && user.form == 2
       return 3
     end
@@ -2680,12 +2678,11 @@ class PokeBattle_Move_0DF < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     if pulseMove? && user.hasActiveAbility?(:MEGALAUNCHER)
-      healAmount = target.totalhp * 3.0 / 4.0
+      ratio = 3.0 / 4.0
     else
-      healAmount = target.totalhp / 2.0
+      ratio = 1.0 / 2.0
     end
-    healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if target.boss?
-    target.pbRecoverHP(healAmount)
+    target.applyFractionalHealing(ratio)
   end
 
   def getScore(score,user,target,skill=100)

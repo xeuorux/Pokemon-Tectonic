@@ -2519,12 +2519,11 @@ end
   
     def pbEffectAgainstTarget(user,target)
       if @battle.field.terrain == :Grassy
-        healAmount = target.totalhp * 2.0/3.0
+        ratio = 2.0/3.0
       else
-        healAmount = target.totalhp / 2.0
+        ratio = 1.0 / 2.0
       end
-      healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if target.boss?
-      target.pbRecoverHP(healAmount)
+      target.applyFractionalHealing(ratio)
     end
 
     def getScore(score,user,target,skill=100)
@@ -2573,9 +2572,7 @@ end
   
     def pbEffectAgainstTarget(user,target)
       return if !@healing
-      healAmount = target.totalhp/2.0
-      healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if target.boss?
-      target.pbRecoverHP(healAmount)
+      target.applyFractionalHealing(1.0/2.0)
     end
   
     def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)

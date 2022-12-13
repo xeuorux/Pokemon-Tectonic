@@ -166,15 +166,8 @@ BattleHandlers::EndOfMoveStatRestoreItem.add(:WHITEBOUGH,
          battler.pbThis,itemName))
     end
     # Healing aspect
-    hpAmount = battler.totalhp * 0.5
-    hpAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
-    if forced
-      battler.pbRecoverHP(hpAmount)
-    else
-      itemName = GameData::Item.get(item).name
-      message = _INTL("{1} restored its health using its {2}!",battler.pbThis,itemName)
-      battler.pbRecoverHP(hpAmount,true,true,true,message)
-    end
+    itemToPass = forced ? nil : item
+    battler.applyFractionalHealing(1.0/2.0, item: itemToPass)
     next true
   }
 )
@@ -231,13 +224,9 @@ BattleHandlers::UserItemAfterMoveUse.add(:DEATHORB,
 # Lunch Box
 BattleHandlers::EORHealingItem.add(:LUNCHBOX,
   proc { |item,battler,battle|
-      next if !battler.canHeal?
       next if !battler.canLeftovers?
-      battle.pbCommonAnimation("UseItem",battler)
-      healAmount = battler.totalhp/8.0
-      healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
-      healMessage =_INTL("{1} restored some HP using its {2}!",battler.pbThis,battler.itemName)
-      battler.pbRecoverHP(healAmount,true,true,true,healMessage)
+      healMessage =_INTL("{1} restored HP using its {2}!",battler.pbThis,battler.itemName)
+      battler.applyFractionalHealing(1.0/8.0, customMessage: healMessage, item: item)
   }
 )
 

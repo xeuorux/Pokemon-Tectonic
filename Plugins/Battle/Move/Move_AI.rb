@@ -15,7 +15,7 @@ class PokeBattle_Move
 
     # Same as the above, but for number of hits
     # Can return a float, for average hit amount on random moves
-    def pbNumHitsAI(user,target)
+    def pbNumHitsAI(user,targets)
         return pbNumHits(user,target,true)
     end
 

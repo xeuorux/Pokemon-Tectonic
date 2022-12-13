@@ -96,12 +96,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:SCHADENFREUDE,
   proc { |ability,battler,targets,move,battle|
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
-    next if numFainted==0 || !battler.canHeal?
-    battle.pbShowAbilitySplash(battler)
-    recover = battler.totalhp/4
-    recover /= BOSS_HP_BASED_EFFECT_RESISTANCE if battler.boss?
-    battler.pbRecoverHP(recover)
-    battle.pbHideAbilitySplash(battler)
+    next if numFainted == 0
+    battler.applyFractionalHealing(1.0/4.0,showAbilitySplash: true)
   }
 )
 

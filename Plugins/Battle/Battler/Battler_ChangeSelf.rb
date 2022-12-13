@@ -177,6 +177,26 @@ class PokeBattle_Battler
 		@battle.pbHideAbilitySplash(self)
 	end
 
+	def applyFractionalHealing(fraction, showAbilitySplash: false, anim: true, anyAnim: true, showMessage: true, customMessage: nil, item: nil)
+		return 0 unless canHeal?
+		if item
+			@battle.pbCommonAnimation("UseItem",self)
+			unless customMessage
+				if fraction <= 1.0 / 8.0
+					customMessage =_INTL("{1} restored a little HP using its {2}!",pbThis,itemName)
+				else
+					customMessage = _INTL("{1} restored its health using its {2}!",pbThis,itemName)
+				end
+			end
+		end
+		battle.pbShowAbilitySplash(self) if showAbilitySplash
+		healAmount = @totalhp * fraction
+		healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if boss?
+		actuallyHealed = pbRecoverHP(healAmount, anim, anyAnim, showMessage, customMessage)
+		battle.pbHideAbilitySplash(self) if showAbilitySplash
+		return actuallyHealed
+	end
+
 	def pbFaint(showMessage = true)
 		unless fainted?
 			PBDebug.log("!!!***Can't faint with HP greater than 0")

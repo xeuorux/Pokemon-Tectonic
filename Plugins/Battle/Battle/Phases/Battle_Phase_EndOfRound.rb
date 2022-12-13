@@ -113,16 +113,8 @@ class PokeBattle_Battle
     if battler.canHeal?
       anim_name = GameData::Status.get(status).animation
       pbCommonAnimation(anim_name, battler) if anim_name
-      healAmount = battler.totalhp / denom.to_f
-      healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
-      if statusEffectMessages
-        pbShowAbilitySplash(battler) 
-        healingMessage = _INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName)
-        battler.pbRecoverHP(healAmount,true,true,true,healingMessage)
-        pbHideAbilitySplash(battler)
-      else
-        battler.pbRecoverHP(healAmount,true,true,false)
-      end
+      ratio = 1.0 / denom.to_f
+      battler.applyFractionalHealing(ratio, showAbilitySplash: statusEffectMessages, showMessage: statusEffectMessages)
     end
   end
 

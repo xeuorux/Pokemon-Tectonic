@@ -288,16 +288,8 @@ class PokeBattle_Battle
           fraction = 1.0/16.0
           b.applyFractionalDamage(fraction)
         elsif b.pbHasType?(:POISON) || b.hasActiveAbility?(:POISONHEAL)
-          heal = b.totalhp / 16.0
-          heal /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if b.boss?
-          if showWeatherMessages
-            pbShowAbilitySplash(b) if b.hasActiveAbility?(:POISONHEAL)
-            healingMessage = _INTL("{1} absorbs the acid rain!",b.pbThis)
-            b.pbRecoverHP(heal,true,true,true,healingMessage)
-            pbHideAbilitySplash(b) if b.hasActiveAbility?(:POISONHEAL)
-          else
-            b.pbRecoverHP(heal,true,true,false)
-          end
+          healingMessage = _INTL("{1} absorbs the acid rain!",b.pbThis)
+          battler.applyFractionalHealing(1.0 / 16.0, showAbilitySplash: statusEffectMessages, showMessage: statusEffectMessages, customMessage: healingMessage)
         end
       end
     end
@@ -346,16 +338,15 @@ class PokeBattle_Battle
         if pbCheckOpposingAbility(:SNAKEPIT,b.index)
           pbDisplay(_INTL("{1} is lashed at by the pit of snakes!",b.pbThis))
           b.applyFractionalDamage(1.0/16.0)
-        elsif b.canHeal?
-          amount = b.totalhp/16.0
-          amount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if b.boss?
+        else
+          fraction = 1.0/16.0
           healingMessage = _INTL("{1} is healed by the Grassy Terrain.",b.pbThis)
           if b.hasActiveAbility?(:NESTING)
             pbShowAbilitySplash(b)
-            amount *= 4.0
+            fraction *= 4.0
             healingMessage = _INTL("{1} nests within the Grassy Terrain.",b.pbThis)
           end
-          b.pbRecoverHP(amount,true,true,true,healingMessage)
+          b.applyFractionalHealing(fraction, customMessage: healingMessage)
           pbHideAbilitySplash(b) if b.hasActiveAbility?(:NESTING)
         end
       end

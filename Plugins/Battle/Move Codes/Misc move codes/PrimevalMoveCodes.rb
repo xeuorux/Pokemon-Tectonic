@@ -24,9 +24,7 @@ class PokeBattle_Move_600 < PokeBattle_Move_019
 		super
 		super
 		@battle.eachSameSideBattler(user) do |b|
-			healAmount = b.totalhp/2.0
-			healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE if b.boss?
-			b.pbRecoverHP(healAmount)
+			b.applyFractionalHealing(1.0/2.0)
 		end
 		transformType(user,:NORMAL)
 	end
