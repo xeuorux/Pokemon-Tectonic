@@ -100,7 +100,7 @@ BattleHandlers::AttackCalcUserAbility.add(:GORILLATACTICS,
 
   BattleHandlers::AttackCalcUserAbility.add(:STRANGESTRENGTH,
     proc { |ability,user,battle,attackMult|
-        attackMult *= 2.0 if battle.field.terrain == :Misty
+        attackMult *= 2.0 if battle.field.terrain == :Fairy
         next attackMult
     }
   )

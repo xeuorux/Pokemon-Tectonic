@@ -1747,7 +1747,7 @@ class PokeBattle_Move_060 < PokeBattle_Move
     when :Grassy
         newType = :GRASS
         checkedTerrain = true
-    when :Misty
+    when :Fairy
         newType = :FAIRY
         checkedTerrain = true
     when :Psychic

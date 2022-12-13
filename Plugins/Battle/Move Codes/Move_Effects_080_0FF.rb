@@ -793,7 +793,7 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
       @secretPower = 1   # Thunder Shock, numb
     when :Grassy
       @secretPower = 2   # Vine Whip, sleep
-    when :Misty
+    when :Fairy
       @secretPower = 3   # Fairy Wind, lower Sp. Atk by 1
     when :Psychic
       @secretPower = 4   # Confusion, lower Speed by 1
@@ -1243,7 +1243,7 @@ class PokeBattle_Move_0B3 < PokeBattle_Move
       @npMove = :THUNDERBOLT if GameData::Move.exists?(:THUNDERBOLT)
     when :Grassy
       @npMove = :ENERGYBALL if GameData::Move.exists?(:ENERGYBALL)
-    when :Misty
+    when :Fairy
       @npMove = :MOONBLAST if GameData::Move.exists?(:MOONBLAST)
     when :Psychic
       @npMove = :PSYCHIC if GameData::Move.exists?(:PSYCHIC)
@@ -1580,7 +1580,7 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
         :SWEETKISS,
         :SONICBOOM,
         :PRESENT,
-        :MISTYTERRAIN,
+        :FairyTERRAIN,
         :THUNDERWAVE,
         :DREAMEATER,
         :FURYATTACK,
@@ -2952,6 +2952,7 @@ class PokeBattle_Move_0E8 < PokeBattle_ProtectMove
   end
 
   def getScore(score,user,target,skill=100)
+    score -= 20
     score -= 40 if user.hp > user.totalhp / 2
     super
   end
@@ -3613,7 +3614,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
               :RINGTARGET,:SHEDSHELL,:SILKSCARF,:SILVERPOWDER,:SMOOTHROCK,
               :SOFTSAND,:SOOTHEBELL,:WHITEHERB,:WIDELENS,:WISEGLASSES,:ZOOMLENS,
               # Terrain seeds
-              :ELECTRICSEED,:GRASSYSEED,:MISTYSEED,:PSYCHICSEED,
+              :ELECTRICSEED,:GRASSYSEED,:FairySEED,:PSYCHICSEED,
               # Nectar
               :PINKNECTAR,:PURPLENECTAR,:REDNECTAR,:YELLOWNECTAR,
               # Incenses

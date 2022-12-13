@@ -1953,7 +1953,7 @@ end
   class PokeBattle_Move_156 < PokeBattle_TerrainMove
     def initialize(battle,move)
       super
-      @terrainType = :Misty
+      @terrainType = :Fairy
     end
   end
   

@@ -154,7 +154,7 @@ class PokeBattle_Battle
     when :Grassy
       pbDisplay(_INTL("Grass grew to cover the battlefield!"))
       pbDisplay(_INTL("All Pokemon are healed each turn!"))
-    when :Misty
+    when :Fairy
       pbDisplay(_INTL("Fae mist swirled about the battlefield!"))
       pbDisplay(_INTL("Pokemon cannot be burned, frostbitten, or poisoned!"))
     when :Psychic
@@ -183,7 +183,7 @@ class PokeBattle_Battle
       pbDisplay(_INTL("The electric current disappeared from the battlefield!"))
     when :Grassy
       pbDisplay(_INTL("The grass disappeared from the battlefield!"))
-    when :Misty
+    when :Fairy
       pbDisplay(_INTL("The mist disappeared from the battlefield!"))
     when :Psychic
       pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))
@@ -331,7 +331,7 @@ class PokeBattle_Battle
     case @field.terrain
     when :Electric then pbDisplay(_INTL("An electric current is running across the battlefield."))
     when :Grassy   then pbDisplay(_INTL("Grass is covering the battlefield."))
-    when :Misty    then pbDisplay(_INTL("Mist is swirling about the battlefield."))
+    when :Fairy    then pbDisplay(_INTL("Mist is swirling about the battlefield."))
     when :Psychic  then pbDisplay(_INTL("The battlefield is weird."))
     end
   end

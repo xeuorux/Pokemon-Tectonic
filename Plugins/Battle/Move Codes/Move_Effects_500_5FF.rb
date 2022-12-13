@@ -995,7 +995,7 @@ class PokeBattle_Move_538 < PokeBattle_Move
         @battle.pbDisplay(_INTL("The electric current disappeared from the battlefield!"))
       when :Grassy
         @battle.pbDisplay(_INTL("The grass disappeared from the battlefield!"))
-      when :Misty
+      when :Fairy
         @battle.pbDisplay(_INTL("The fae mist disappeared from the battlefield!"))
       when :Psychic
         @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))

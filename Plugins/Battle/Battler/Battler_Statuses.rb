@@ -145,7 +145,7 @@ class PokeBattle_Battler
 					end
 					return false
 				end
-			when :Misty
+			when :Fairy
 				if %i[POISON BURN FROSTBITE].include?(newStatus)
 					if showMessages
 						@battle.pbDisplay(_INTL('{1} surrounds itself with fairy terrain!', pbThis(true)))
@@ -281,7 +281,7 @@ class PokeBattle_Battler
 		# Trying to replace a status problem with another one
 		return false unless hasSpotsForStatus
 		# Terrain immunity
-		return false if @battle.field.terrain == :Misty && affectedByTerrain? && %i[BURN POISON FROSTBITE].include?(newStatus)
+		return false if @battle.field.terrain == :Fairy && affectedByTerrain? && %i[BURN POISON FROSTBITE].include?(newStatus)
 		return false if @battle.field.terrain == :Electric && affectedByTerrain? && %i[SLEEP DIZZY].include?(newStatus)
 		# Type immunities
 		hasImmuneType = false

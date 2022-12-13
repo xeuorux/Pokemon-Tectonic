@@ -219,7 +219,7 @@ class PokeBattle_Move_18A < PokeBattle_Move
         ret = :ELECTRIC || ret
       when :Grassy
         ret = :GRASS || ret
-      when :Misty
+      when :Fairy
         ret = :FAIRY || ret
       when :Psychic
         ret = :PSYCHIC || ret
@@ -410,7 +410,7 @@ class PokeBattle_Move_195 < PokeBattle_Move
         @battle.pbDisplay(_INTL("The electric current disappeared from the battlefield!"))
     when :Grassy
         @battle.pbDisplay(_INTL("The grass disappeared from the battlefield!"))
-    when :Misty
+    when :Fairy
         @battle.pbDisplay(_INTL("The fae mist disappeared from the battlefield!"))
     when :Psychic
         @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))
@@ -430,7 +430,7 @@ end
   #===============================================================================
 class PokeBattle_Move_196 < PokeBattle_Move_0E0
   def pbBaseDamage(baseDmg, user, _target)
-    if @battle.field.terrain == :Misty && !user.airborne?
+    if @battle.field.terrain == :Fairy && !user.airborne?
       baseDmg = (baseDmg * 1.5).round
     end
     return baseDmg

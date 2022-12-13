@@ -79,7 +79,7 @@ BattleHandlers::EOREffectAbility.add(:HUNGERSWITCH,
 
 BattleHandlers::EOREffectAbility.add(:ASTRALBODY,
   proc { |ability,battler,battle|
-	next unless battle.field.terrain==:Misty
+	next unless battle.field.terrain==:Fairy
     next if !battler.canHeal?
 	  battle.pbShowAbilitySplash(battler)
     healAmount = battler.totalhp / 16.0

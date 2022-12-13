@@ -179,7 +179,6 @@ class PokeBattle_AI
 		
 		# A score of 0 here means it absolutely should not be used
 		if score <= 0
-			echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)} early: #{0}")
 			return 0
 		end
 		

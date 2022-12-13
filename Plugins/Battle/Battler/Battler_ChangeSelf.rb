@@ -417,7 +417,7 @@ class PokeBattle_Battler
 			case @battle.field.terrain
 			when :Electric then   newTypes = [:ELECTRIC]
 			when :Grassy then     newTypes = [:GRASS]
-			when :Misty then      newTypes = [:FAIRY]
+			when :Fairy then      newTypes = [:FAIRY]
 			when :Psychic then    newTypes = [:PSYCHIC]
 			else; newTypes = originalTypes.dup
 			end

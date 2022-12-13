@@ -16,7 +16,7 @@ BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
 
 BattleHandlers::TargetAbilityOnHit.add(:MISTCRAFT,
 	proc { |ability,target,battler,move,battle|
-		terrainSetAbility(:Misty,battler,battle)
+		terrainSetAbility(:Fairy,battler,battle)
 	}
 )
 

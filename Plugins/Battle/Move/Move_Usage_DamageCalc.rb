@@ -135,7 +135,7 @@ class PokeBattle_Move
             multipliers[:base_damage_multiplier] *= 1.3 if type == :GRASS && user.affectedByTerrain?
         when :Psychic
             multipliers[:base_damage_multiplier] *= 1.3 if type == :PSYCHIC && user.affectedByTerrain?
-        when :Misty
+        when :Fairy
             multipliers[:base_damage_multiplier] *= 1.3 if type == :FAIRY && target.affectedByTerrain?
         end
     end
