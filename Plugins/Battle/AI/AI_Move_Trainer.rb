@@ -235,8 +235,12 @@ class PokeBattle_AI
             realProcChance = move.pbAdditionalEffectChance(user,target,type)
             score *= (realProcChance / 100.0)
         end
-        score = (score * 0.75 + damagePercentage * 1.25).to_i
-        return score
+
+        effectScore = (score * 0.75).to_i
+        damageScore = (damagePercentage * 1.25).to_i
+        echoln("#{user.pbThis} gives #{move.id} a move effect score of #{effectScore} and a damage score of #{damageScore} (against target #{target.pbThis(false)})")
+
+        return effectScore + damageScore
     end
 
     def getDamagePercentageAI(move,user,target,numTargets=1)
