@@ -191,9 +191,9 @@ class PokemonPokedex_Scene
 		zShadow = Color.new(0,0,0)
 		iconspecies = @sprites["pokedex"].species
 		iconspecies = nil if isLegendary(iconspecies) && !$Trainer.seen?(iconspecies) && !$DEBUG
-		dexname = _INTL("Pokédex")
+		dexname = _INTL("MasterDex")
 		textpos = [
-		   [dexname,Graphics.width/10,-2,2,Color.new(248,248,248),Color.new(0,0,0)]
+		   [dexname,Graphics.width/8,-2,2,Color.new(248,248,248),Color.new(0,0,0)]
 		]
 		textpos.push([GameData::Species.get(iconspecies).name,112,46,2,base,shadow]) if iconspecies
 		

@@ -85,8 +85,8 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 						pbListScreenExtra(_INTL("Trainers"), BattleGuideLister.new(TRAINERS_HASH), false)
 					when "Avatars"
 						pbListScreenExtra(_INTL("Avatars"), BattleGuideLister.new(AVATARS_HASH), false)
-					when "PokéDex"
-						pbListScreenExtra(_INTL("PokéDex"), BattleGuideLister.new(POKEDEX_HASH), false)
+					when "MasterDex"
+						pbListScreenExtra(_INTL("MasterDex"), BattleGuideLister.new(MASTERDEX_HASH), false)
 					when "Weathers"
 						pbListScreenExtra(_INTL("Weathers"), BattleGuideLister.new(WEATHERS_HASH), false)
 					else
@@ -175,7 +175,7 @@ class PokemonPauseMenu
 		cmdQuit     = -1
 		cmdEndGame  = -1
 		if $Trainer.has_pokedex && $Trainer.pokedex.accessible_dexes.length > 0
-		  commands[cmdPokedex = commands.length] = _INTL("Pokédex")
+		  commands[cmdPokedex = commands.length] = _INTL("MasterDex")
 		end
 		commands[cmdPokemon = commands.length]   = _INTL("Pokémon") if $Trainer.party_count > 0
 		commands[cmdBag = commands.length]       = _INTL("Bag") if !pbInBugContest?
