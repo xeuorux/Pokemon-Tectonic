@@ -24,7 +24,7 @@ class PokeBattle_Move
     end
 
     def calculateDamageForHit(user,target,type,baseDmg,numTargets,aiChecking=false)
-        echoln("[DAMAGE CALC] Calcing damage based given base damage #{baseDmg} and type #{type}")
+        echoln("[DAMAGE CALC] Calcing damage based on given base damage #{baseDmg} and type #{type}")
         
         # Get the relevant attacking and defending stat values (after stages)
         attack, defense = damageCalcStats(user,target,aiChecking)

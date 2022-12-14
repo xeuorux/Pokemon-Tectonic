@@ -4,27 +4,27 @@ STATUS_UPSIDE_ABILITIES = [:GUTS,:AUDACITY,:MARVELSCALE,:MARVELSKIN,:QUICKFEET]
 
 ALL_STATUS_SCORE_BONUS = 15
 
-def getStatusSettingMoveScore(statusApplying,score,user,target,skill=100,policies=[],statusMove=false)
+def getStatusSettingMoveScore(statusApplying,score,user,target,policies=[],statusMove=false)
 	case statusApplying
 	when :SLEEP
-		return getSleepMoveScore(score,user,target,skill,policies,statusMove)
+		return getSleepMoveScore(score,user,target,policies,statusMove)
 	when :POISON
-		return getPoisonMoveScore(score,user,target,skill,policies,statusMove)
+		return getPoisonMoveScore(score,user,target,policies,statusMove)
 	when :BURN
-		return getBurnMoveScore(score,user,target,skill,policies,statusMove)
+		return getBurnMoveScore(score,user,target,policies,statusMove)
 	when :FROSTBITE
-		return getFrostbiteMoveScore(score,user,target,skill,policies,statusMove)
+		return getFrostbiteMoveScore(score,user,target,policies,statusMove)
 	when :NUMB
-		return getNumbMoveScore(score,user,target,skill,policies,statusMove)
+		return getNumbMoveScore(score,user,target,policies,statusMove)
 	when :DIZZY
-		return getDizzyMoveScore(score,user,target,skill,policies,statusMove)
+		return getDizzyMoveScore(score,user,target,policies,statusMove)
 	end
 
 	return score
 end
 
 # Actually used for numbing now
-def getNumbMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+def getNumbMoveScore(score,user,target,policies=[],statusMove=false)
 	if target && target.canNumb?(user,false)
 		score += ALL_STATUS_SCORE_BONUS
 		aspeed = user.pbSpeed(true)
@@ -42,7 +42,7 @@ def getNumbMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	return score
 end
 
-def getPoisonMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+def getPoisonMoveScore(score,user,target,policies=[],statusMove=false)
 	if target && target.canPoison?(user,false)
 		score += ALL_STATUS_SCORE_BONUS
 		score += 20 if target.hp == target.totalhp
@@ -55,7 +55,7 @@ def getPoisonMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	return score
 end
 
-def getBurnMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+def getBurnMoveScore(score,user,target,policies=[],statusMove=false)
 	if target && target.canBurn?(user,false)
 		score += ALL_STATUS_SCORE_BONUS
 		score -= 60 if target.hasActiveAbilityAI?([:FLAREBOOST,:BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
@@ -67,7 +67,7 @@ def getBurnMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	return score
 end
 
-def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+def getFrostbiteMoveScore(score,user,target,policies=[],statusMove=false)
 	if target && target.canFrostbite?(user,false)
 		score += ALL_STATUS_SCORE_BONUS
 		score -= 60 if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
@@ -79,7 +79,7 @@ def getFrostbiteMoveScore(score,user,target,skill=100,policies=[],statusMove=fal
 	return score
 end
 
-def getSleepMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+def getSleepMoveScore(score,user,target,policies=[],statusMove=false)
 	if target.hasSleepAttack?
 		score += 20
 	else
@@ -89,7 +89,7 @@ def getSleepMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	return score
 end
 
-def getDizzyMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+def getDizzyMoveScore(score,user,target,policies=[],statusMove=false)
 	canDizzy = target.canDizzy?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
 	if canDizzy
 		score += ALL_STATUS_SCORE_BONUS
@@ -102,7 +102,7 @@ def getDizzyMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	return score
 end
 
-def getLeechMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
+def getLeechMoveScore(score,user,target,policies=[],statusMove=false)
 	canLeech = target.canLeech?(user,false)
 	if canLeech
 		score += ALL_STATUS_SCORE_BONUS
@@ -118,7 +118,7 @@ def getLeechMoveScore(score,user,target,skill=100,policies=[],statusMove=false)
 	return score
 end
 
-def getFlinchingMoveScore(score,user,target,skill,policies,magnitude=3)
+def getFlinchingMoveScore(score,user,target,policies,magnitude=3)
 	userSpeed = user.pbSpeed(true)
     targetSpeed = target.pbSpeed(true)
     
@@ -131,11 +131,11 @@ def getFlinchingMoveScore(score,user,target,skill,policies,magnitude=3)
 	return score
 end
 
-def getWantsToBeFasterScore(score,user,other,skill=100,magnitude=1)
-	return getWantsToBeSlowerScore(score,user,other,skill,-magnitude)
+def getWantsToBeFasterScore(score,user,other,magnitude=1)
+	return getWantsToBeSlowerScore(score,user,other,-magnitude)
 end
 
-def getWantsToBeSlowerScore(score,user,other,skill=100,magnitude=1)
+def getWantsToBeSlowerScore(score,user,other,magnitude=1)
 	userSpeed = user.pbSpeed(true)
 	otherSpeed = other.pbSpeed(true)
 	if userSpeed < otherSpeed
@@ -146,7 +146,7 @@ def getWantsToBeSlowerScore(score,user,other,skill=100,magnitude=1)
 	return score
 end
 
-def getHazardSettingMoveScore(score,user,target,skill=100)
+def getHazardSettingMoveScore(score,user,target)
 	score -= 40
 	canChoose = false
 	user.eachOpposing do |b|
@@ -161,7 +161,7 @@ def getHazardSettingMoveScore(score,user,target,skill=100)
 	return score
 end
 
-def getSelfKOMoveScore(score,user,target,skill=100)
+def getSelfKOMoveScore(score,user,target)
 	reserves = user.battle.pbAbleNonActiveCount(user.idxOwnSide)
 	return 0 if reserves == 0 # don't want to lose or draw
 	return 0 if user.hp > user.totalhp / 2
@@ -186,13 +186,13 @@ def hazardWeightOnSide(side,excludeEffects=[])
 	return hazardWeight
 end
 
-def getSwitchOutMoveScore(score,user,target,skill=100)
+def getSwitchOutMoveScore(score,user,target)
 	score -= 10
 	score -= hazardWeightOnSide(user.pbOwnSide)
 	return score
 end
 
-def getForceOutMoveScore(score,user,target,skill=100,statusMove=false)
+def getForceOutMoveScore(score,user,target,statusMove=false)
 	return 0 if target.substituted?
 	count = 0
 	@battle.pbParty(target.index).each_with_index do |pkmn,i|
@@ -203,7 +203,7 @@ def getForceOutMoveScore(score,user,target,skill=100,statusMove=false)
 	return score
 end
 
-def getSelfKOMoveScore(score,user,target,skill=100)
+def getSelfKOMoveScore(score,user,target)
 	reserves = user.battle.pbAbleNonActiveCount(user.idxOwnSide)
 	return 0 if reserves == 0 # don't want to lose or draw
 	return 0 if user.hp > user.totalhp / 2
@@ -211,7 +211,7 @@ def getSelfKOMoveScore(score,user,target,skill=100)
 	return score
 end
 
-def getHealingMoveScore(score,user,target,skill=100,magnitude=5)
+def getHealingMoveScore(score,user,target,magnitude=5)
 	return 0 if user.opposes?(target) && !target.effectActive?(:NerveBreak)
     return 0 if !user.opposes?(target) && target.effectActive?(:NerveBreak)
     if target.hp <= target.totalhp / 2
@@ -226,7 +226,7 @@ def getHealingMoveScore(score,user,target,skill=100,magnitude=5)
 	return score
 end
 
-def getMultiStatUpMoveScore(statUp,score,user,target,skill=100,statusMove=true)
+def getMultiStatUpMoveScore(statUp,score,user,target,statusMove=true)
     # Stat up moves tend to be strong on the first turn
     score += 20 if target.firstTurn? && statusMove
 

@@ -96,8 +96,8 @@ class PokeBattle_SleepMove < PokeBattle_Move
     target.applySleep if target.canSleep?(user,false,self)
   end
   
-  def getScore(score,user,target,skill=100)
-    score = getSleepMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+  def getScore(score,user,target)
+    score = getSleepMoveScore(score,user,target,user.ownersPolicies,statusMove?)
     return score
   end
 end
@@ -123,8 +123,8 @@ class PokeBattle_PoisonMove < PokeBattle_Move
     target.applyPoison(user,nil,@toxic) if target.canPoison?(user,false,self)
   end
 
-  def getScore(score,user,target,skill=100)
-    score = getPoisonMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+  def getScore(score,user,target)
+    score = getPoisonMoveScore(score,user,target,user.ownersPolicies,statusMove?)
     return score
   end
 end
@@ -145,8 +145,8 @@ class PokeBattle_NumbMove < PokeBattle_Move
     target.applyNumb(user) if target.canNumb?(user,false,self)
   end
 
-  def getScore(score,user,target,skill=100)
-    score = getNumbMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+  def getScore(score,user,target)
+    score = getNumbMoveScore(score,user,target,user.ownersPolicies,statusMove?)
     return score
   end
 end
@@ -167,8 +167,8 @@ class PokeBattle_BurnMove < PokeBattle_Move
     target.applyBurn(user) if target.canBurn?(user,false,self)
   end
 
-  def getScore(score,user,target,skill=100)
-    score = getBurnMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+  def getScore(score,user,target)
+    score = getBurnMoveScore(score,user,target,user.ownersPolicies,statusMove?)
     return score
   end
 end
@@ -189,7 +189,7 @@ class PokeBattle_FreezeMove < PokeBattle_Move
     target.pbFreeze if target.pbCanFreeze?(user,false,self)
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     echoln("AI should never use freezing moves")
     return 0
   end
@@ -211,8 +211,8 @@ class PokeBattle_FlinchMove < PokeBattle_Move
     target.pbFlinch(user)
   end
 
-  def getScore(score,user,target,skill=100)
-    score = getFlinchingMoveScore(score,user,target,skill,user.ownersPolicies)
+  def getScore(score,user,target)
+    score = getFlinchingMoveScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -234,7 +234,7 @@ class PokeBattle_ConfuseMove < PokeBattle_Move
     target.pbConfuse
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     canConfuse = target.canConfuse?(user,false) && !target.hasActiveAbilityAI?(:MENTALBLOCK)
 		if canConfuse
 			score += 20
@@ -263,7 +263,7 @@ class PokeBattle_StatUpMove < PokeBattle_Move
     user.tryRaiseStat(@statUp[0],user,increment: @statUp[1], move: self)
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     statToRaise = @statUp[0]
     statRaiseAmount = @statUp[1]
     
@@ -323,8 +323,8 @@ class PokeBattle_MultiStatUpMove < PokeBattle_Move
     user.pbRaiseMultipleStatStages(@statUp,user,move: self)
   end
 
-  def getScore(score,user,target,skill=100)
-    score = getMultiStatUpMoveScore(@statUp,score,user,target,skill,statusMove?)
+  def getScore(score,user,target)
+    score = getMultiStatUpMoveScore(@statUp,score,user,target,statusMove?)
 		return score
 	end
 end
@@ -335,7 +335,7 @@ class PokeBattle_StatDownMove < PokeBattle_Move
     user.pbLowerMultipleStatStages(@statDown, user, move: self)
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     average = 0
     count = 0
     for i in 0...@statDown.length/2
@@ -377,7 +377,7 @@ class PokeBattle_TargetStatDownMove < PokeBattle_Move
     target.tryLowerStat(@statDown[0],user, increment: @statDown[1], move: self)
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     statReducing = @statDown[0]
     reductionAmount = @statDown[1]
 
@@ -482,7 +482,7 @@ class PokeBattle_TargetMultiStatDownMove < PokeBattle_Move
     target.pbLowerMultipleStatStages(@statDown,user,move: self)
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     return score # TODO: write this
   end
 end
@@ -501,7 +501,7 @@ class PokeBattle_FixedDamageMove < PokeBattle_Move
 
   def pbCalcDamage(user,target,numTargets=1)
     fixedDamage = pbFixedDamage(user,target)
-    if !fixedDamage.nil?
+    if fixedDamage
       target.damageState.critical   = false
       target.damageState.calcDamage = fixedDamage
       target.damageState.calcDamage = 1 if target.damageState.calcDamage < 1
@@ -510,13 +510,10 @@ class PokeBattle_FixedDamageMove < PokeBattle_Move
     end
   end
 
-  def pbBaseDamageAI(baseDmg,user,target,skill=100)
+  def calculateDamageForHit(user,target,type,baseDmg,numTargets,aiChecking=false)
     fixedDamage = pbFixedDamage(user,target)
-    if !fixedDamage.nil?
-      return fixedDamage,true
-    else
-      return super,false
-    end
+    return fixedDamage if fixedDamage
+    super
   end
 
   def displayWeatherDebuffMessages(user,type); return; end
@@ -599,7 +596,7 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
     super
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     score -= 30 if !user.firstTurn?
     score -= 30 if !user.hasActiveItem?(:POWERHERB)
     return score
@@ -636,11 +633,11 @@ class PokeBattle_HealingMove < PokeBattle_Move
     user.pbRecoverHP(amt) if amt > 0
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     scoringMagnitude = 3
     ratio = healRatio(user)
     scoringMagnitude = 10 * ratio if ratio > 0
-    score = getHealingMoveScore(score,user,target,skill,scoringMagnitude)
+    score = getHealingMoveScore(score,user,target,scoringMagnitude)
     return score
   end
 end
@@ -669,7 +666,7 @@ class PokeBattle_RecoilMove < PokeBattle_Move
     user.applyRecoilDamage(recoilDamage, false, true)
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     score -= 60 * recoilFactor()
     return score
   end
@@ -742,7 +739,7 @@ class PokeBattle_ProtectMove < PokeBattle_Move
     end
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     newScore = 0
     user.eachPotentialAttacker do |b|
       newScore += 80
@@ -771,7 +768,7 @@ class PokeBattle_WeatherMove < PokeBattle_Move
     @battle.pbStartWeather(user,@weatherType,@durationSet,false) unless @battle.primevalWeatherPresent?
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     return 0 if @battle.primevalWeatherPresent? || @battle.pbCheckGlobalAbility(:AIRLOCK) ||
       @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == @weatherType
     if user.firstTurn?
@@ -919,8 +916,8 @@ class PokeBattle_DizzyMove < PokeBattle_Move
 	  target.applyDizzy
 	end
 
-  def getScore(score,user,target,skill=100)
-      score = getDizzyMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+  def getScore(score,user,target)
+      score = getDizzyMoveScore(score,user,target,user.ownersPolicies,statusMove?)
       return score
   end
 end
@@ -945,8 +942,8 @@ class PokeBattle_LeechMove < PokeBattle_Move
 	  target.applyLeeched
 	end
 
-  def getScore(score,user,target,skill=100)
-      score = getLeechMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+  def getScore(score,user,target)
+      score = getLeechMoveScore(score,user,target,user.ownersPolicies,statusMove?)
       return score
   end
 end
@@ -971,7 +968,7 @@ class PokeBattle_CharmMove < PokeBattle_Move
     target.pbCharm
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     canCharm = target.canCharm?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
     if canCharm
       score += 20
@@ -1002,8 +999,8 @@ class PokeBattle_FrostbiteMove < PokeBattle_Move
 	  target.applyFrostbite
 	end
 
-  def getScore(score,user,target,skill=100)
-    score = getFrostbiteMoveScore(score,user,target,skill,user.ownersPolicies,statusMove?)
+  def getScore(score,user,target)
+    score = getFrostbiteMoveScore(score,user,target,user.ownersPolicies,statusMove?)
     return score
   end
 end
@@ -1055,8 +1052,8 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
     target.pbRaiseMultipleStatStages(@statUp,user,move: self)
   end
   
-  def getScore(score,user,target,skill=100)
-    score = getMultiStatUpMoveScore(@statUp,score,user,target,skill,statusMove?)
+  def getScore(score,user,target)
+    score = getMultiStatUpMoveScore(@statUp,score,user,target,statusMove?)
 		return score
 	end
 end
@@ -1081,7 +1078,7 @@ class PokeBattle_SnowballingMove < PokeBattle_Move
       return damageAtCount(baseDmg,user.effects[@usageCountEffect]-1)
   end
 
-  def pbBaseDamageAI(baseDmg,user,target,skill=100)
+  def pbBaseDamageAI(baseDmg,user,target)
       return damageAtCount(baseDmg,user.effects[@usageCountEffect])
   end
 end
@@ -1107,7 +1104,7 @@ class PokeBattle_RoomMove < PokeBattle_Move
 	  super
 	end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     return 0 if @battle.field.effectActive?(@roomEffect)
     return score
   end
@@ -1126,7 +1123,7 @@ class PokeBattle_DrainMove < PokeBattle_Move
     user.pbRecoverHPFromDrain(hpGain,target)
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     drainScore = 10
     drainScore += 40 * drainFactor(user,target)
     drainScore += 20 if user.hasActiveAbilityAI?(:ROOTED)
@@ -1163,7 +1160,7 @@ class PokeBattle_InvokeMove < PokeBattle_Move
     @battle.pbStartWeather(user,@weatherType,@durationSet,false) if !@battle.primevalWeatherPresent?
 	end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.primevalWeatherPresent?(false)
 			score -= 40
 		elsif @battle.pbWeather == @weatherType
@@ -1171,7 +1168,7 @@ class PokeBattle_InvokeMove < PokeBattle_Move
     elsif user.firstTurn?
       score += 20
     end
-    statusScore = getStatusSettingMoveScore(@statusToApply,0,user,target,skill,user.ownersPolicies,statusMove?)
+    statusScore = getStatusSettingMoveScore(@statusToApply,0,user,target,user.ownersPolicies,statusMove?)
     score += statusScore
     return score
   end
@@ -1199,7 +1196,7 @@ class PokeBattle_TerrainMove < PokeBattle_Move
     @battle.pbStartTerrain(user, @terrainType)
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     if damagingMove?
       score += 60
     elsif user.firstTurn?
@@ -1260,10 +1257,10 @@ class PokeBattle_StatusSpikeMove < PokeBattle_Move
     end
   end
 
-  def getScore(score,user,target,skill=100)
+  def getScore(score,user,target)
     side = damagingMove? ? target.pbOwnSide : user.pbOpposingSide
     score -= statusSpikesWeightOnSide(side,[@spikeEffect])
-    score = getHazardSettingMoveScore(score,user,target,skill)
+    score = getHazardSettingMoveScore(score,user,target)
     return score
   end
 
@@ -1291,7 +1288,7 @@ class PokeBattle_StatUpDownMove < PokeBattle_Move
 	  user.pbRaiseMultipleStatStages(@statUp,user,move: self)
 	end
   
-	def getScore(score,user,target,skill=100)
+	def getScore(score,user,target)
 	  return 0 if !user.hasDamagingAttack?
   
 	  score += 50 if user.firstTurn?

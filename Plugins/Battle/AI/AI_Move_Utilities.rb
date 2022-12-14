@@ -66,18 +66,20 @@ class PokeBattle_AI
     #=============================================================================
     # Get a move's base damage value
     #=============================================================================
-    def pbMoveBaseDamageAI(move,user,target,skill)
+    def pbMoveBaseDamageAI(move,user,target)
       baseDmg = move.baseDamage
-      baseDmg = move.pbBaseDamageAI(baseDmg,user,target,skill)
+      baseDmg = move.pbBaseDamageAI(baseDmg,user,target)
       return baseDmg
     end
   
     #=============================================================================
     # Damage calculation
     #=============================================================================
-    def pbTotalDamageAI(move,user,target,baseDmg,numTargets=1)
+    def pbTotalDamageAI(move,user,target,numTargets=1)
         # Get the move's type
         type = pbRoughType(move,user)
+
+        baseDmg = pbMoveBaseDamageAI(move,user,target)
 
         # Calculate the damage for one hit
         damage = move.calculateDamageForHit(user,target,type,baseDmg,numTargets,true)
@@ -94,7 +96,7 @@ class PokeBattle_AI
    #===========================================================================
     # Accuracy calculation
     #===========================================================================
-    def pbRoughAccuracy(move,user,target,skill)
+    def pbRoughAccuracy(move,user,target)
         return 100 if target.effectActive?(:Telekinesis)
         baseAcc = move.accuracy
         return 100 if baseAcc == 0
@@ -109,7 +111,7 @@ class PokeBattle_AI
         modifiers[:evasion_stage]  = target.stages[:EVASION]
         modifiers[:accuracy_multiplier] = 1.0
         modifiers[:evasion_multiplier]  = 1.0
-        pbCalcAccuracyModifiers(user,target,modifiers,move,type,skill)
+        pbCalcAccuracyModifiers(user,target,modifiers,move,type)
         # Calculation
         accStage = [[modifiers[:accuracy_stage], -6].max, 6].min + 6
         evaStage = [[modifiers[:evasion_stage], -6].max, 6].min + 6
@@ -127,7 +129,7 @@ class PokeBattle_AI
         return modifiers[:base_accuracy] * accuracy / evasion
     end
   
-    def pbCalcAccuracyModifiers(user,target,modifiers,move,type,skill)
+    def pbCalcAccuracyModifiers(user,target,modifiers,move,type)
       moldBreaker = false
       if target.hasMoldBreaker?
         moldBreaker = true

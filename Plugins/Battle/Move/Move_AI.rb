@@ -2,14 +2,14 @@ class PokeBattle_Move
     ########################################################
     ### AI functions
     ########################################################
-    def getScore(score,user,target,skill=100)
+    def getScore(score,user,target)
         return score
     end
 
     # For moves that want to lie to the AI about their base damage
     # Or avoid side effects of the base damage method
     # Or give an estimate of the base damage when it can't be accurately measured at the point of choosing moves
-    def pbBaseDamageAI(baseDmg,user,target,skill=100)
+    def pbBaseDamageAI(baseDmg,user,target)
         pbBaseDamage(baseDmg,user,target)
     end
 
