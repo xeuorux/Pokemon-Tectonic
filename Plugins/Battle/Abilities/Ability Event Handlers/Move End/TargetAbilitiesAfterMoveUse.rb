@@ -76,7 +76,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:EXOADAPTION,
   proc { |ability,target,user,move,switched,battle|
     next unless move.pbDamagingMove?
     next unless move.specialMove?
-    healingMessage = _INTL("{1} regenerates its Exo-Skeleton with the energy from {2}'s attack!", target.pbThis, user.pbThis(true))
+    healingMessage = _INTL("{1} heals itself with energy from {2}'s attack!", target.pbThis, user.pbThis(true))
     target.applyFractionalHealing(1.0/4.0, showAbilitySplash: true, customMessage: healingMessage)
   }
 )
