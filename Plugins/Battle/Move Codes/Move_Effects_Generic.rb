@@ -349,14 +349,22 @@ class PokeBattle_StatDownMove < PokeBattle_Move
 end
 
 #===============================================================================
-# Generic target's stat increase/decrease classes.
+# Generic target's stat decrease classes.
 #===============================================================================
 class PokeBattle_TargetStatDownMove < PokeBattle_Move
   attr_accessor :statDown
 
   def pbFailsAgainstTarget?(user,target,show_message)
+    failsWithTarget?(user,target,show_message,false)
+  end
+
+  def shouldShade?(user,target)
+    failsWithTarget?(user,target,false,true)
+  end
+
+  def failsWithTarget?(user,target,show_message,ignore_abilities)
     return false if damagingMove?
-    return !target.pbCanLowerStatStage?(@statDown[0],user,self,show_message)
+    return !target.pbCanLowerStatStage?(@statDown[0],user,self,show_message, ignoreAbilities: ignore_abilities)
   end
 
   def pbEffectAgainstTarget(user,target)
