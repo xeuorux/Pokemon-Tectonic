@@ -4,27 +4,27 @@ STATUS_UPSIDE_ABILITIES = [:GUTS,:AUDACITY,:MARVELSCALE,:MARVELSKIN,:QUICKFEET]
 
 ALL_STATUS_SCORE_BONUS = 15
 
-def getStatusSettingMoveScore(statusApplying,score,user,target,policies=[],statusMove=false)
+def getStatusSettingMoveScore(statusApplying,score,user,target,policies=[])
 	case statusApplying
 	when :SLEEP
-		return getSleepMoveScore(score,user,target,policies,statusMove)
+		return getSleepMoveScore(score,user,target,policies)
 	when :POISON
-		return getPoisonMoveScore(score,user,target,policies,statusMove)
+		return getPoisonMoveScore(score,user,target,policies)
 	when :BURN
-		return getBurnMoveScore(score,user,target,policies,statusMove)
+		return getBurnMoveScore(score,user,target,policies)
 	when :FROSTBITE
-		return getFrostbiteMoveScore(score,user,target,policies,statusMove)
+		return getFrostbiteMoveScore(score,user,target,policies)
 	when :NUMB
-		return getNumbMoveScore(score,user,target,policies,statusMove)
+		return getNumbMoveScore(score,user,target,policies)
 	when :DIZZY
-		return getDizzyMoveScore(score,user,target,policies,statusMove)
+		return getDizzyMoveScore(score,user,target,policies)
 	end
 
 	return score
 end
 
 # Actually used for numbing now
-def getNumbMoveScore(score,user,target,policies=[],statusMove=false)
+def getNumbMoveScore(score,user,target,policies=[])
 	if target && target.canNumb?(user,false)
 		score += ALL_STATUS_SCORE_BONUS
 		aspeed = user.pbSpeed(true)
@@ -35,74 +35,74 @@ def getNumbMoveScore(score,user,target,policies=[],statusMove=false)
 			score -= 30
 		end
 		score -= 60 if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
-		score += 50 if statusMove && user.hasStatusPunishMove?
-	elsif statusMove
+		score += 50 if user.hasStatusPunishMove?
+	else
 		return 0
 	end
 	return score
 end
 
-def getPoisonMoveScore(score,user,target,policies=[],statusMove=false)
+def getPoisonMoveScore(score,user,target,policies=[])
 	if target && target.canPoison?(user,false)
 		score += ALL_STATUS_SCORE_BONUS
 		score += 20 if target.hp == target.totalhp
 		score -= 60 if target.hasActiveAbilityAI?([:TOXICBOOST,:POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
-		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
-		score += 50 if statusMove && user.hasStatusPunishMove?
-	elsif statusMove
+		score = 9999 if policies.include?(:PRIORITIZEDOTS)
+		score += 50 if user.hasStatusPunishMove?
+	else
 		return 0
 	end
 	return score
 end
 
-def getBurnMoveScore(score,user,target,policies=[],statusMove=false)
+def getBurnMoveScore(score,user,target,policies=[])
 	if target && target.canBurn?(user,false)
 		score += ALL_STATUS_SCORE_BONUS
 		score -= 60 if target.hasActiveAbilityAI?([:FLAREBOOST,:BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
-		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
-		score += 50 if statusMove && user.hasStatusPunishMove?
-	elsif statusMove
+		score = 9999 if policies.include?(:PRIORITIZEDOTS)
+		score += 50 if user.hasStatusPunishMove?
+	else
 		return 0
 	end
 	return score
 end
 
-def getFrostbiteMoveScore(score,user,target,policies=[],statusMove=false)
+def getFrostbiteMoveScore(score,user,target,policies=[])
 	if target && target.canFrostbite?(user,false)
 		score += ALL_STATUS_SCORE_BONUS
 		score -= 60 if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
-		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
-		score += 50 if statusMove && user.hasStatusPunishMove?
-	elsif statusMove
+		score = 9999 if policies.include?(:PRIORITIZEDOTS)
+		score += 50 if user.hasStatusPunishMove?
+	else
 		return 0
 	end
 	return score
 end
 
-def getSleepMoveScore(score,user,target,policies=[],statusMove=false)
+def getSleepMoveScore(score,user,target,policies=[])
 	if target.hasSleepAttack?
 		score += 20
 	else
 		score += 100
 	end
-	score += 50 if statusMove && user.hasStatusPunishMove?
+	score += 50 if user.hasStatusPunishMove?
 	return score
 end
 
-def getDizzyMoveScore(score,user,target,policies=[],statusMove=false)
+def getDizzyMoveScore(score,user,target,policies=[])
 	canDizzy = target.canDizzy?(user,false) && !target.hasActiveAbility?(:MENTALBLOCK)
 	if canDizzy
 		score += ALL_STATUS_SCORE_BONUS
 		score += 20 if user.hasDamagingAttack?
 		score -= 60 if target.hasActiveAbilityAI?([:FLUSTERFLOCK,:HEADACHE].concat(STATUS_UPSIDE_ABILITIES))
-		score += 50 if statusMove && user.hasStatusPunishMove?
-	elsif statusMove?
+		score += 50 if user.hasStatusPunishMove?
+	else
 		return 0
 	end
 	return score
 end
 
-def getLeechMoveScore(score,user,target,policies=[],statusMove=false)
+def getLeechMoveScore(score,user,target,policies=[])
 	canLeech = target.canLeech?(user,false)
 	if canLeech
 		score += ALL_STATUS_SCORE_BONUS
@@ -110,9 +110,9 @@ def getLeechMoveScore(score,user,target,policies=[],statusMove=false)
 		score += 30 if target.totalhp > user.totalhp * 2
 		score -= 30 if target.totalhp < user.totalhp / 2
 		score -= 60 if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
-		score = 9999 if policies.include?(:PRIORITIZEDOTS) && statusMove
-		score += 50 if statusMove && user.hasStatusPunishMove?
-	elsif statusMove?
+		score = 9999 if policies.include?(:PRIORITIZEDOTS)
+		score += 50 if user.hasStatusPunishMove?
+	else
 		return 0
 	end
 	return score
@@ -192,7 +192,7 @@ def getSwitchOutMoveScore(score,user,target)
 	return score
 end
 
-def getForceOutMoveScore(score,user,target,statusMove=false)
+def getForceOutMoveScore(score,user,target)
 	return 0 if target.substituted?
 	count = 0
 	@battle.pbParty(target.index).each_with_index do |pkmn,i|
@@ -226,9 +226,9 @@ def getHealingMoveScore(score,user,target,magnitude=5)
 	return score
 end
 
-def getMultiStatUpMoveScore(statUp,score,user,target,statusMove=true)
+def getMultiStatUpMoveScore(statUp,score,user,target)
     # Stat up moves tend to be strong on the first turn
-    score += 20 if target.firstTurn? && statusMove
+    score += 20 if target.firstTurn?
 
 	# Stat up moves tend to be strong when you have HP to use
     score += 30 if target.hp > target.totalhp / 2
@@ -256,10 +256,8 @@ def getMultiStatUpMoveScore(statUp,score,user,target,statusMove=true)
     score += 20 if totalStats > 2	 # Stat up moves that raise 3 or more stats are better
 
 	# Check if it boosts an offensive stat that the pokemon can't actually use
-    if statusMove
-      return 0 if upsPhysicalAttack && !upsSpecialAttack && !target.hasPhysicalAttack?
-      return 0 if !upsPhysicalAttack && upsSpecialAttack && !target.hasSpecialAttack?
-    end
+    return 0 if upsPhysicalAttack && !upsSpecialAttack && !target.hasPhysicalAttack?
+    return 0 if !upsPhysicalAttack && upsSpecialAttack && !target.hasSpecialAttack?
 
 	score -= 10 if !upsPhysicalAttack && !upsSpecialAttack # Boost moves that dont up offensives are worse
 	

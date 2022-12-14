@@ -2,7 +2,7 @@ class PokeBattle_Move
     ########################################################
     ### AI functions
     ########################################################
-    def getScore(score,user,target)
+    def getEffectScore(score,user,target)
         return score
     end
 

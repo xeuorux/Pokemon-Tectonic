@@ -31,7 +31,7 @@ class PokeBattle_Move_181 < PokeBattle_Move
     target.pointAt(:OctolockUser,user)
   end
 
-  def getScore(score,user,target)
+  def getEffectScore(score,user,target)
     score += 40 if target.hp > target.totalhp / 2
     return score
   end
@@ -58,7 +58,7 @@ class PokeBattle_Move_183 < PokeBattle_Move
     user.pbConsumeItem(true, true, false) if user.item
   end
 
-  def getScore(score,user,target)
+  def getEffectScore(score,user,target)
     score += 40 if user.hp > user.totalhp / 2
     score -= user.stages[:DEFENSE] * 10
     score = 0 if !user.item || !user.item.is_berry?
@@ -98,7 +98,7 @@ class PokeBattle_Move_184 < PokeBattle_Move
         target.pbConsumeItem(true, true, false) if target.item.is_berry?
     end
 
-    def getScore(score,user,target)
+    def getEffectScore(score,user,target)
         score -= 30 unless isValidTarget?(target)
         return score
     end
@@ -137,7 +137,7 @@ class PokeBattle_Move_186 < PokeBattle_Move
     target.applyEffect(:TarShot)
   end
 
-  def getScore(score,user,target)
+  def getEffectScore(score,user,target)
     score += 30 if target.hp > target.totalhp / 2
     score += target.stages[:SPEED] * 10
     score -= 60 if target.effectActive?(:TarShot)
@@ -159,7 +159,7 @@ class PokeBattle_Move_187 < PokeBattle_Move_005
       return selectBestCategory(user,targets[0])
     end
 
-    def getScore(score,user,target)
+    def getEffectScore(score,user,target)
         score = getPoisonMoveScore(score, user, target, [], statusMove?)
         return score
     end
@@ -249,7 +249,7 @@ class PokeBattle_Move_18B < PokeBattle_Move
     end
   end
 
-  def getScore(score,user,target)
+  def getEffectScore(score,user,target)
     score -= 30
     score += 60 if target.canBurn?(user, false, self) && target.hasRaisedStatStages?
     return score
@@ -269,7 +269,7 @@ class PokeBattle_Move_18C < PokeBattle_Move
         return 0
     end
 
-    def getScore(score,user,target)
+    def getEffectScore(score,user,target)
         score -= 20
         if @battle.field.terrain == :Grassy
             score += 50
@@ -360,7 +360,7 @@ class PokeBattle_Move_192 < PokeBattle_Move
     return true
   end
 
-  def getScore(score,user,target)
+  def getEffectScore(score,user,target)
     score += 20
     score = 0 if !target.item
     return score
@@ -375,7 +375,7 @@ class PokeBattle_Move_193 < PokeBattle_Move_0C0
     user.pbLowerMultipleStatStages([:DEFENSE,1,:SPEED,1], user, move: self)
   end
 
-  def getScore(score,user,target)
+  def getEffectScore(score,user,target)
     score -= user.stages[:SPEED] * 10
     score += user.stages[:DEFENSE] * 10
     return score
@@ -418,7 +418,7 @@ class PokeBattle_Move_195 < PokeBattle_Move
     @battle.pbStartTerrain(user, :None, false)
   end
 
-  def getScore(score,user,target)
+  def getEffectScore(score,user,target)
     score += 30
     score = 0 if battle.field.terrain == :NONE
     return score
@@ -436,7 +436,7 @@ class PokeBattle_Move_196 < PokeBattle_Move_0E0
     return baseDmg
   end
 
-  def getScore(score,user,target)
+  def getEffectScore(score,user,target)
       score += 50
       score -= ((user.hp.to_f / user.totalhp.to_f) * 100).floor
       return score
@@ -471,7 +471,7 @@ class PokeBattle_Move_197 < PokeBattle_Move
     @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", target.pbThis, typeName))
   end
 
-  def getScore(score,user,target)
+  def getEffectScore(score,user,target)
     score += 50
     score = 0 if !target.canChangeType? || !target.pbHasOtherType?(:PSYCHIC)
     return score

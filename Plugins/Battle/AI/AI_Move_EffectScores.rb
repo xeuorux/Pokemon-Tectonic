@@ -33,7 +33,7 @@ class PokeBattle_AI
 		#---------------------------------------------------------------------------
 		else
 			begin
-				score = move.getScore(score,user,target)
+				score = move.getEffectScore(score,user,target)
 			rescue
 				echoln("FAILURE IN THE SCORING SYSTEM FOR MOVE #{move.name} #{move.function}")
 				score = 100

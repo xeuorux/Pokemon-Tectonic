@@ -108,6 +108,8 @@ class PokeBattle_AI
         move.calculated_category = move.calculateCategory(user, [target])
         move.calcType = move.pbCalcType(user)
 
+        return 0 if aiPredictsFailure?(move,user,target)
+
 		score = 100
 		score = pbGetMoveScoreFunctionCode(score,move,user,target,policies)
 
@@ -115,39 +117,18 @@ class PokeBattle_AI
 			echoln("#{user.pbThis} unable to score #{move.id} against target #{target.pbThis(false)}. Assuming a score of 50.")
 			return 50
 		end
-		
-		# Never use a move that would fail outright
-        
-		# Falsify the turn count so that the AI is calculated as though we are actually
-        # in the midst of performing the move (turnCount is incremented as the attack phase begins)
-        user.turnCount += 1
 
-		if move.pbMoveFailedAI?(user,[target])
-			score = 0
-            echoln("#{user.pbThis} scores the move #{move.id} as 0 due to it being predicted to fail.")
-		end
-            
-        # Don't prefer moves that are ineffective because of abilities or effects
-        type = pbRoughType(move,user)
-        typeMod = pbCalcTypeModAI(type,user,target,move)
-        unless user.pbSuccessCheckAgainstTarget(move, user, target, typeMod, false, true)
-            score = 0
-            echoln("#{user.pbThis} scores the move #{move.id} as 0 due to it being predicted to fail or be ineffective against target #{target.pbThis(false)}.")
-        end
-
-        user.turnCount -= 1
-		
-		# If user is asleep, prefer moves that are usable while asleep
-		if user.status == :SLEEP && !move.usableWhenAsleep?
-            echoln("#{user.pbThis} scores the move #{move.id} differently against target #{target.pbThis(false)} due to the user being asleep.")
-			user.eachMove do |m|
-				next unless m.usableWhenAsleep?
-				score = 0
-				break
-			end
+		# Adjust score based on how much damage it can deal
+		if move.damagingMove?
+		  begin
+            score = pbGetMoveScoreDamage(score,move,user,target,numTargets)
+          rescue => exception
+            pbPrintException($!) if $DEBUG
+          end
+		  score *= 0.75 if policies.include?(:DISLIKEATTACKING)
 		end
 
-		# Don't prefer attacking the target if they'd be semi-invulnerable
+        # Don't prefer attacking the target if they'd be semi-invulnerable
 		if move.accuracy > 0 && (target.semiInvulnerable? || target.effectActive?(:SkyDrop))
             echoln("#{user.pbThis} scores the move #{move.id} differently against target #{target.pbThis(false)} due to the target being semi-invulnerable.")
             canHitAnyways = false
@@ -175,30 +156,15 @@ class PokeBattle_AI
                 score /= 2
             end
         end
-		
-		# A score of 0 here means it absolutely should not be used
-		if score <= 0
-			return 0
-		end
-		
-		# Pick a good move for the Choice items
+        
+        # Pick a good move for the Choice items
         if user.hasActiveItem?(CHOICE_LOCKING_ITEMS) || user.hasActiveAbilityAI?(CHOICE_LOCKING_ABILITIES)
             echoln("#{user.pbThis} scores the move #{move.id} differently #{target.pbThis(false)} due to choice locking.")
             if move.damagingMove?
-                score += 40
+                score += 50
             else
-                score -= 40
+                score -= 50
 			end
-		end
-		
-		# Adjust score based on how much damage it can deal
-		if move.damagingMove?
-		  begin
-            score = pbGetMoveScoreDamage(score,move,user,target,numTargets)
-          rescue => exception
-            pbPrintException($!) if $DEBUG
-          end
-		  score *= 0.75 if policies.include?(:DISLIKEATTACKING)
 		end
 
         # Two-turn attacks waste a turn
@@ -208,14 +174,41 @@ class PokeBattle_AI
 	
 		# Account for accuracy of move
 		accuracy = pbRoughAccuracy(move,user,target)
-		score *= accuracy/100.0
+		score *= accuracy / 100.0
+
+        echoln("#{user.pbThis} predicts the move #{move.id} against target #{target.pbThis(false)} will have an accuracy of #{accuracy}") if accuracy < 100
 		
 		# Final adjustments t score
 		score = score.to_i
-		score = 0 if score<0
+		score = 0 if score < 0
 		echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)}: #{score}")
 		return score
 	end
+
+    def aiPredictsFailure?(move,user,target)
+        fails = false
+        
+		# Falsify the turn count so that the AI is calculated as though we are actually
+        # in the midst of performing the move (turnCount is incremented as the attack phase begins)
+        user.turnCount += 1
+
+		if move.pbMoveFailedAI?(user,[target])
+			fails = true
+            echoln("#{user.pbThis} rejects the move #{move.id} due to it being predicted to fail.")
+		end
+            
+        # Don't prefer moves that are ineffective because of abilities or effects
+        type = pbRoughType(move,user)
+        typeMod = pbCalcTypeModAI(type,user,target,move)
+        unless user.pbSuccessCheckAgainstTarget(move, user, target, typeMod, false, true)
+            fails = true
+            echoln("#{user.pbThis} rejects the move #{move.id} due to it being predicted to fail or be ineffective against target #{target.pbThis(false)}.")
+        end
+
+        user.turnCount -= 1
+
+        return fails
+    end
   
     #=============================================================================
     # Add to a move's score based on how much damage it will deal (as a percentage
@@ -236,8 +229,8 @@ class PokeBattle_AI
             score *= (realProcChance / 100.0)
         end
 
-        effectScore = (score * 0.75).to_i
-        damageScore = (damagePercentage * 1.25).to_i
+        effectScore = (score * 0.5).to_i
+        damageScore = (damagePercentage * 1.5).to_i
         echoln("#{user.pbThis} gives #{move.id} a move effect score of #{effectScore} and a damage score of #{damageScore} (against target #{target.pbThis(false)})")
 
         return effectScore + damageScore
