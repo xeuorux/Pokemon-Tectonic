@@ -3,7 +3,8 @@ class PokeBattle_Move
     ### AI functions
     ########################################################
     def getEffectScore(score,user,target)
-        return score
+        echoln("Move #{@name} has no effect scoring method defined! Returning 0.")
+        return 0
     end
 
     # For moves that want to lie to the AI about their base damage

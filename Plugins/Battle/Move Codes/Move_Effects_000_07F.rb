@@ -2,9 +2,6 @@
 # No additional effect.
 #===============================================================================
 class PokeBattle_Move_000 < PokeBattle_Move
-  def getEffectScore(score,user,target)
-    return 0
-  end
 end
 
 #===============================================================================

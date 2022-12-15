@@ -225,12 +225,12 @@ class PokeBattle_AI
             type = pbRoughType(move,user)
             realProcChance = move.pbAdditionalEffectChance(user,target,type)
             factor = (realProcChance / 100.0)
-            echoln("#{user.pbThis} multiplies #{move.id}'s move effect score of #{effectScore} by a factor of #{factor} based on its predicted additional effect chance (against target #{target.pbThis(false)})")
+            echoln("#{user.pbThis} multiplies #{move.id}'s effect score of #{effectScore} by a factor of #{factor} based on its predicted additional effect chance (against target #{target.pbThis(false)})")
             effectScore *= factor
         end
 
         damageScore = (damagePercentage * 1.25).to_i
-        echoln("#{user.pbThis} gives #{move.id} a move effect score of #{effectScore} and a damage score of #{damageScore} (against target #{target.pbThis(false)})")
+        echoln("#{user.pbThis} gives #{move.id} an effect score of #{effectScore} and a damage score of #{damageScore} (against target #{target.pbThis(false)})")
 
         return effectScore + damageScore
     end

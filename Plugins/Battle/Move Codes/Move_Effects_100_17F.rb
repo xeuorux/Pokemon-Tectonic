@@ -2758,9 +2758,9 @@ class PokeBattle_Move_178 < PokeBattle_Move
     return baseDmg
   end
   
-  def getEffectScore(score,user,target)
-    score = getWantsToBeSlowerScore(score,user,target,-5)
-    return score
+  def pbBaseDamageAI(baseDmg,user,target)
+    baseDmg *= 2 if user.pbSpeed(true) > target.pbSpeed(true)
+    return baseDmg
   end
 end
 

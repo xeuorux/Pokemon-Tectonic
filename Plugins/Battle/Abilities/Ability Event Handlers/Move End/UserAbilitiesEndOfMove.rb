@@ -177,7 +177,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:VICTORYMOLT,
     user.pbChangeForm(1,_INTL("{1} molts into a new shell!",user.pbThis))
     user.pbCureStatus(true)
     if user.hasAlteredStatStages?
-      @battle.pbDisplay(_INTL("{1}'s stat changes were removed!",user.pbThis))
+      battle.pbDisplay(_INTL("{1}'s stat changes were removed!",user.pbThis))
       user.resetStatStages
     end
     battle.pbHideAbilitySplash(user)
