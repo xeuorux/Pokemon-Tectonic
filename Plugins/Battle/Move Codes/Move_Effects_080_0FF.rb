@@ -758,6 +758,12 @@ class PokeBattle_Move_0A2 < PokeBattle_Move
   def pbEffectGeneral(user)
     user.pbOwnSide.applyEffect(:Reflect,user.getScreenDuration())
   end
+
+  def getEffectScore(score,user,target)
+    score += 30 if user.firstTurn?
+    score += 5 * user.getScreenDuration()
+    return score
+  end
 end
 
 #===============================================================================
@@ -774,6 +780,12 @@ class PokeBattle_Move_0A3 < PokeBattle_Move
 
   def pbEffectGeneral(user)
     user.pbOwnSide.applyEffect(:LightScreen,user.getScreenDuration())
+  end
+
+  def getEffectScore(score,user,target)
+    score += 30 if user.firstTurn?
+    score += 5 * user.getScreenDuration()
+    return score
   end
 end
 
@@ -2054,7 +2066,7 @@ class PokeBattle_Move_0C5 < PokeBattle_TwoTurnMove
   end
 
   def getEffectScore(score,user,target)
-    score = getNumbMoveScore(score,user,target,user.ownersPolicies)
+    score = getNumbEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -2074,7 +2086,7 @@ class PokeBattle_Move_0C6 < PokeBattle_TwoTurnMove
   end
 
   def getEffectScore(score,user,target)
-    score = getNumbMoveScore(score,user,target,user.ownersPolicies)
+    score = getNumbEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -2096,7 +2108,7 @@ class PokeBattle_Move_0C7 < PokeBattle_TwoTurnMove
   end
 
   def getEffectScore(score,user,target)
-    score = getFlinchingMoveScore(score,user,target,user.ownersPolicies)
+    score = getFlinchingEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -2211,7 +2223,7 @@ class PokeBattle_Move_0CC < PokeBattle_TwoTurnMove
   end
 
   def getEffectScore(score,user,target)
-    score = getNumbMoveScore(score,user,target,user.ownersPolicies)
+    score = getNumbEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -2682,7 +2694,7 @@ class PokeBattle_Move_0DF < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score = getHealingMoveScore(score,user,target)
+    score = getHealingEffectScore(score,user,target)
     return score
   end
 end
@@ -3008,7 +3020,7 @@ class PokeBattle_Move_0EA < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score = getSwitchOutMoveScore(score,user,target)
+    score = getSwitchOutEffectScore(score,user,target)
     return score
   end
 end
@@ -3085,7 +3097,7 @@ class PokeBattle_Move_0EB < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score = getForceOutMoveScore(score,user,target)
+    score = getForceOutEffectScore(score,user,target)
     return score
   end
 end
@@ -3130,7 +3142,7 @@ class PokeBattle_Move_0EC < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score = getForceOutMoveScore(score,user,target)
+    score = getForceOutEffectScore(score,user,target)
     return score
   end
 end
@@ -3171,7 +3183,7 @@ class PokeBattle_Move_0ED < PokeBattle_Move
       score += total * 10
       score += 75 if !user.hasDamagingAttack?
     end
-    score = getSwitchOutMoveScore(score,user,target)
+    score = getSwitchOutEffectScore(score,user,target)
     score -= 40 if user.confused? || user.charmed?
     return score
   end
@@ -3204,7 +3216,7 @@ class PokeBattle_Move_0EE < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score = getSwitchOutMoveScore(score,user,target)
+    score = getSwitchOutEffectScore(score,user,target)
     score += 20
     return score
   end
@@ -3237,7 +3249,7 @@ class PokeBattle_Move_0EF < PokeBattle_Move
 
   def getEffectScore(score,user,target)
     return 0 if target.effectActive?(:MeanLook)
-    return score
+    return 50
   end
 end
 
@@ -3277,7 +3289,7 @@ class PokeBattle_Move_0F1 < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score += 30 if canStealItem?(user,target,true)
+    return 0 unless canStealItem?(user,target,true)
     return score
   end
 
@@ -3433,7 +3445,7 @@ class PokeBattle_Move_0F4 < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score += 30 if canRemoveItem?(user,target) && canPluckBerry?(user,target)
+    return 0 unless canRemoveItem?(user,target) && canPluckBerry?(user,target)
     return score
   end
 end
@@ -3461,7 +3473,7 @@ class PokeBattle_Move_0F5 < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score += 30 if canIncinerateTargetsItem?(target)
+    return 0 unless canIncinerateTargetsItem?(target)
     return score
   end
 end
@@ -3720,8 +3732,8 @@ class PokeBattle_Move_0F8 < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score -= 30 unless target.item
-    return score
+    return 0 unless target.item
+    return 50
   end
 end
 
@@ -3729,7 +3741,7 @@ end
 # For 5 rounds, all held items cannot be used in any way and have no effect.
 # Held items can still change hands, but can't be thrown. (Magic Room)
 #===============================================================================
-class PokeBattle_Move_0F9 < PokeBattle_Move
+class PokeBattle_Move_0F9 < PokeBattle_RoomMove
   def initialize(battle,move)
     super
     @roomEffect = :MagicRoom
@@ -3771,7 +3783,7 @@ class PokeBattle_Move_0FD < PokeBattle_RecoilMove
   end
 
   def getEffectScore(score,user,target)
-    score = getNumbMoveScore(score,user,target,user.ownersPolicies)
+    score = getNumbEffectScore(score,user,target,user.ownersPolicies)
     super
   end
 end
@@ -3789,7 +3801,7 @@ class PokeBattle_Move_0FE < PokeBattle_RecoilMove
   end
 
   def getEffectScore(score,user,target)
-    score = getBurnMoveScore(score,user,target,user.ownersPolicies)
+    score = getBurnEffectScore(score,user,target,user.ownersPolicies)
     super
   end
 end

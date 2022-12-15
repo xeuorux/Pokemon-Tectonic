@@ -576,7 +576,7 @@ class PokeBattle_Move_5A1 < PokeBattle_Move
 	end
 
 	def getEffectScore(score,user,target)
-		score = getHazardSettingMoveScore(score,user,target)
+		score = getHazardSettingEffectScore(score,user,target)
 		return score
 	end
 end

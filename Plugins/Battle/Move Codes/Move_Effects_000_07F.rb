@@ -52,7 +52,7 @@ class PokeBattle_Move_004 < PokeBattle_Move
     end
     
     def getEffectScore(score,user,target)
-        score = getSleepMoveScore(score,user,target,user.ownersPolicies)
+        score = getSleepEffectScore(score,user,target,user.ownersPolicies)
         score -= 30
         return score
     end
@@ -120,8 +120,8 @@ class PokeBattle_Move_009 < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score = getNumbMoveScore(score,user,target,user.ownersPolicies)
-		score = getFlinchingMoveScore(score,user,target,user.ownersPolicies)
+    score = getNumbEffectScore(score,user,target,user.ownersPolicies)
+		score += 10 * getFlinchingEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -149,8 +149,8 @@ class PokeBattle_Move_00B < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score = getBurnMoveScore(score,user,target,user.ownersPolicies)
-		score = getFlinchingMoveScore(score,user,target,user.ownersPolicies)
+    score = getBurnEffectScore(score,user,target,user.ownersPolicies)
+		score += 10 * getFlinchingEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -234,7 +234,7 @@ class PokeBattle_Move_012 < PokeBattle_FlinchMove
   end
 
   def getEffectScore(score,user,target)
-    score = getFlinchingMoveScore(score,user,target,user.ownersPolicies,10)
+    score = getFlinchingEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -289,9 +289,9 @@ class PokeBattle_Move_017 < PokeBattle_Move
 
   def getEffectScore(score,user,target)
     policies = user.ownersPolicies
-    score = getBurnMoveScore(score,user,target,policies)
-    score = getFrostbiteMoveScore(score,user,target,policies)
-    score = getNumbMoveScore(score,user,target,policies)
+    score = getBurnEffectScore(score,user,target,policies)
+    score = getFrostbiteEffectScore(score,user,target,policies)
+    score = getNumbEffectScore(score,user,target,policies)
     return score
   end
 end

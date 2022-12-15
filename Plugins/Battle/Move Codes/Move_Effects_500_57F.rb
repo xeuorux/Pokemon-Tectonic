@@ -1751,7 +1751,7 @@ class PokeBattle_Move_567 < PokeBattle_ProtectMove
 		score = super
 		# Check only special attackers
 		user.eachPotentialAttacker(true) do |b|
-		  score += getPoisonMoveScore(0,user,b,user.ownersPolicies)
+		  score += getPoisonEffectScore(0,user,b,user.ownersPolicies)
 		end
 		return score
 	end

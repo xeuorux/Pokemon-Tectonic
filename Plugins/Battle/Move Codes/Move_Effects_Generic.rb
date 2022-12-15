@@ -97,7 +97,7 @@ class PokeBattle_SleepMove < PokeBattle_Move
   end
   
   def getEffectScore(score,user,target)
-    score = getSleepMoveScore(score,user,target,user.ownersPolicies)
+    score = getSleepEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -124,7 +124,7 @@ class PokeBattle_PoisonMove < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score = getPoisonMoveScore(score,user,target,user.ownersPolicies)
+    score = getPoisonEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -146,7 +146,7 @@ class PokeBattle_NumbMove < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score = getNumbMoveScore(score,user,target,user.ownersPolicies)
+    score = getNumbEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -168,7 +168,7 @@ class PokeBattle_BurnMove < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score = getBurnMoveScore(score,user,target,user.ownersPolicies)
+    score = getBurnEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -212,7 +212,7 @@ class PokeBattle_FlinchMove < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score = getFlinchingMoveScore(score,user,target,user.ownersPolicies)
+    score = getFlinchingEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -246,7 +246,7 @@ class PokeBattle_ConfuseMove < PokeBattle_Move
 end
 
 #===============================================================================
-# Generic user's stat increase/decrease classes.
+# Generic user's stat increase classe.
 #===============================================================================
 class PokeBattle_StatUpMove < PokeBattle_Move
   def pbMoveFailed?(user,targets,show_message)
@@ -264,34 +264,7 @@ class PokeBattle_StatUpMove < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    statToRaise = @statUp[0]
-    statRaiseAmount = @statUp[1]
-    
-    # Wont use this move if it boosts an offensive
-		# Stat that the pokemon can't actually use
-    if !damagingMove?
-		  return 0 if statToRaise == :ATTACK && !user.hasPhysicalAttack?
-		  return 0 if statToRaise == :SPECIAL_ATTACK && !user.hasSpecialAttack?
-    end
-
-    # Stat up moves tend to be strong on the first turn
-    score += 50 if user.firstTurn? && !damagingMove?
-
-    # Stat up moves tend to be strong when you are protected by a substitute
-	  score += 30 if target.substituted?
-
-    # Feel more free to use the move the fewer pokemon that can attack you this turn
-    user.eachPotentialAttacker do |b|
-      score -= 20
-    end
-
-    score += 20 if statRaiseAmount > 1	 # Stat up moves that raise stats multiple times are better
-    score += 20 if statRaiseAmount > 2	 # Stat up moves that raise stats multiple times are better
-	
-		score -= user.stages[statToRaise]*10
-
-    score -= 10 if ![:ATTACK,:SPECIAL_ATTACK].include?(statToRaise) # Boost moves that dont up offensives are worse
-		
+    score = getMultiStatUpEffectScore(@statUp,score,user,target)
 		return score
 	end
 end
@@ -324,7 +297,7 @@ class PokeBattle_MultiStatUpMove < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score = getMultiStatUpMoveScore(@statUp,score,user,target)
+    score = getMultiStatUpEffectScore(@statUp,score,user,target)
 		return score
 	end
 end
@@ -336,14 +309,10 @@ class PokeBattle_StatDownMove < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    average = 0
-    count = 0
+    score = 0
     for i in 0...@statDown.length/2
-			statSym = @statDown[i*2]
-			average += user.stages[statSym] * 10 # Reduce the score for each existing stage
-      count += 1
+			score -= 10 * @statDown[i * 2 + 1]
 		end
-		score += average/count
     return score
   end
 end
@@ -597,8 +566,9 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score -= 30 if !user.firstTurn?
-    score -= 30 if !user.hasActiveItem?(:POWERHERB)
+    score = 0
+    score -= 30 unless user.firstTurn?
+    score -= 30 unless user.hasActiveItem?(:POWERHERB)
     return score
   end
 end
@@ -637,7 +607,7 @@ class PokeBattle_HealingMove < PokeBattle_Move
     scoringMagnitude = 3
     ratio = healRatio(user)
     scoringMagnitude = 10 * ratio if ratio > 0
-    score = getHealingMoveScore(score,user,target,scoringMagnitude)
+    score = getHealingEffectScore(score,user,target,scoringMagnitude)
     return score
   end
 end
@@ -667,8 +637,8 @@ class PokeBattle_RecoilMove < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    score -= 60 * recoilFactor()
-    return score
+    return 0 if user.hasActiveAbilityAI?(:ROCKHEAD)
+    return -50 * recoilFactor()
   end
 end
 
@@ -740,12 +710,12 @@ class PokeBattle_ProtectMove < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    newScore = 0
+    score = 0
     user.eachPotentialAttacker do |b|
-      newScore += 80
-      newScore += 50 if b.effectActive?(:TwoTurnAttack)
+      score += 80
+      score += 50 if b.effectActive?(:TwoTurnAttack)
     end
-    return newScore
+    return score
   end
 end
 
@@ -917,7 +887,7 @@ class PokeBattle_DizzyMove < PokeBattle_Move
 	end
 
   def getEffectScore(score,user,target)
-      score = getDizzyMoveScore(score,user,target,user.ownersPolicies)
+      score = getDizzyEffectScore(score,user,target,user.ownersPolicies)
       return score
   end
 end
@@ -943,7 +913,7 @@ class PokeBattle_LeechMove < PokeBattle_Move
 	end
 
   def getEffectScore(score,user,target)
-      score = getLeechMoveScore(score,user,target,user.ownersPolicies)
+      score = getLeechEffectScore(score,user,target,user.ownersPolicies)
       return score
   end
 end
@@ -1000,7 +970,7 @@ class PokeBattle_FrostbiteMove < PokeBattle_Move
 	end
 
   def getEffectScore(score,user,target)
-    score = getFrostbiteMoveScore(score,user,target,user.ownersPolicies)
+    score = getFrostbiteEffectScore(score,user,target,user.ownersPolicies)
     return score
   end
 end
@@ -1053,7 +1023,7 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
   end
   
   def getEffectScore(score,user,target)
-    score = getMultiStatUpMoveScore(@statUp,score,user,target)
+    score = getMultiStatUpEffectScore(@statUp,score,user,target)
 		return score
 	end
 end
@@ -1105,7 +1075,8 @@ class PokeBattle_RoomMove < PokeBattle_Move
 	end
 
   def getEffectScore(score,user,target)
-    return 0 if @battle.field.effectActive?(@roomEffect)
+    return -100 if @battle.field.effectActive?(@roomEffect)
+    score += 5 * user.getRoomDuration()
     return score
   end
 end
@@ -1124,17 +1095,14 @@ class PokeBattle_DrainMove < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    drainScore = 10
-    drainScore += 40 * drainFactor(user,target)
-    drainScore += 20 if user.hasActiveAbilityAI?(:ROOTED)
-    drainScore += 20 if user.hasActiveItem?(:BIGROOT)
-    drainScore += 20 if user.hp <= user.totalhp/2
+    drainScore = 40 * drainFactor(user,target)
+    drainScore *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
+    drainScore *= 1.3 if user.hasActiveItem?(:BIGROOT)
+    drainScore *= 2 if user.hp <= user.totalhp/2
     if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.effectActive?(:NerveBreak)
-      score -= drainScore
-    else
-      score += drainScore
+      drainScore *= -1
     end
-    return score
+    return drainScore
   end
 end
 
@@ -1168,7 +1136,7 @@ class PokeBattle_InvokeMove < PokeBattle_Move
     elsif user.firstTurn?
       score += 20
     end
-    statusScore = getStatusSettingMoveScore(@statusToApply,0,user,target,user.ownersPolicies)
+    statusScore = getStatusSettingEffectScore(@statusToApply,0,user,target,user.ownersPolicies)
     score += statusScore
     return score
   end
@@ -1254,7 +1222,7 @@ class PokeBattle_StatusSpikeMove < PokeBattle_Move
   def getEffectScore(score,user,target)
     side = damagingMove? ? target.pbOwnSide : user.pbOpposingSide
     score -= statusSpikesWeightOnSide(side,[@spikeEffect])
-    score = getHazardSettingMoveScore(score,user,target)
+    score = getHazardSettingEffectScore(score,user,target)
     return score
   end
 
@@ -1283,21 +1251,19 @@ class PokeBattle_StatUpDownMove < PokeBattle_Move
 	end
   
 	def getEffectScore(score,user,target)
-	  return 0 if !user.hasDamagingAttack?
-  
-	  score += 50 if user.firstTurn?
+	  score = 0
 
+    #TODO: Create a helper method for this, mirroring getMultiStatUpEffectScore
     for i in 0...@statDown.length/2
       stat = @statDown[i*2]
       amount = @statDown[i*2+1]
+      score -= 30 * amount
       score += user.stages[stat] * 10 * amount
 	  end
 
-    for i in 0...@statUp.length/2
-      stat = @statUp[i*2]
-      amount = @statUp[i*2+1]
-      score -= user.stages[stat] * 10 * amount
-	  end
+    upScore = getMultiStatUpEffectScore(@statUp,score,user,target)
+    score += upScore
+
 	  return score
   end
 end

@@ -45,7 +45,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
 
     def getEffectScore(score,user,target)
-        return getHazardSettingMoveScore(score,user,target)
+        return getHazardSettingEffectScore(score,user,target)
     end
   end
   
@@ -77,7 +77,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     end
 
     def getEffectScore(score,user,target)
-      score = getHazardSettingMoveScore(score,user,target)
+      score = getHazardSettingEffectScore(score,user,target)
       return score
     end
   end
@@ -300,7 +300,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 				end
 			else
         statUp = [:ATTACK,1,:DEFENSE,1]
-        score = getMultiStatUpMoveScore(statUp,score,user,target)
+        score = getMultiStatUpEffectScore(statUp,score,user,target)
         score -= user.stages[:SPEED] * 10
 			end
       return score
@@ -1872,7 +1872,7 @@ end
     end
 
     def getEffectScore(score,user,target)
-      score = getSwitchOutMoveScore(score,user,target)
+      score = getSwitchOutEffectScore(score,user,target)
       return score
     end
   end
@@ -1917,7 +1917,7 @@ end
     end
 
     def getEffectScore(score,user,target)
-      return getHazardSettingMoveScore(score,user,target)
+      return getHazardSettingEffectScore(score,user,target)
     end
   end
   
@@ -2057,7 +2057,7 @@ end
 
     def getEffectScore(score,user,target)
       # The target for this is set as the user since its the user that heals
-      score = getHealingMoveScore(score,user,user,5)
+      score = getHealingEffectScore(score,user,user,5)
       score += 30
       return score
     end
@@ -2184,7 +2184,7 @@ end
           score += 20
         end
       end
-      score = getHealingMoveScore(score,user,user,2)
+      score = getHealingEffectScore(score,user,user,2)
       return score
     end
   end
@@ -2314,8 +2314,9 @@ end
     end
 
     def getEffectScore(score,user,target)
-      score += 30
+      score += 50
       score += 30 if user.firstTurn?
+      score += 5 * user.getScreenDuration()
       return score
     end
   end
@@ -2335,7 +2336,7 @@ end
       score = super
       # Check only physical attackers
       user.eachPotentialAttacker(0) do |b|
-        score += getPoisonMoveScore(0,user,b,user.ownersPolicies)
+        score += getPoisonEffectScore(0,user,b,user.ownersPolicies)
       end
       return score
     end
@@ -2528,7 +2529,7 @@ end
 
     def getEffectScore(score,user,target)
       score += 30 if @battle.field.terrain == :Grassy
-      score = getHealingMoveScore(score,user,target)
+      score = getHealingEffectScore(score,user,target)
       return score
     end
 
@@ -2582,7 +2583,7 @@ end
 
     def getEffectScore(score,user,target)
       if !user.opposes?(target)
-        score = getHealingMoveScore(score,user,target)
+        score = getHealingEffectScore(score,user,target)
       end
       return score
     end

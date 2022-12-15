@@ -160,7 +160,7 @@ class PokeBattle_Move_187 < PokeBattle_Move_005
     end
 
     def getEffectScore(score,user,target)
-        score = getPoisonMoveScore(score, user, target, [], statusMove?)
+        score = getPoisonEffectScore(score, user, target, [], statusMove?)
         return score
     end
 end

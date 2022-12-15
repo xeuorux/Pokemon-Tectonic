@@ -109,26 +109,29 @@ class PokeBattle_AI
         move.calcType = move.pbCalcType(user)
 
         return 0 if aiPredictsFailure?(move,user,target)
+        
+		effectScore = pbGetMoveScoreFunctionCode(100,move,user,target,policies)
 
-		score = 100
-		score = pbGetMoveScoreFunctionCode(score,move,user,target,policies)
-
-		if score.nil?
-			echoln("#{user.pbThis} unable to score #{move.id} against target #{target.pbThis(false)}. Assuming a score of 50.")
-			return 50
+		if effectScore.nil?
+			echoln("ERROR! #{user.pbThis} unable to score #{move.id} against target #{target.pbThis(false)}. Assuming an effect score of 0.")
+			effectScore = 0
 		end
 
 		# Adjust score based on how much damage it can deal
 		if move.damagingMove?
-		  begin
-            score = pbGetMoveScoreDamage(score,move,user,target,numTargets)
-          rescue => exception
-            pbPrintException($!) if $DEBUG
-          end
-		  score *= 0.75 if policies.include?(:DISLIKEATTACKING)
+		    begin
+            score = pbGetMoveScoreDamage(effectScore,move,user,target,numTargets)
+            rescue => exception
+                pbPrintException($!) if $DEBUG
+            end
+		    score *= 0.75 if policies.include?(:DISLIKEATTACKING)
+        else
+            score = effectScore
 		end
 
-        # Don't prefer attacking the target if they'd be semi-invulnerable
+        # All score changes from this point forward must be multiplicative!!
+
+        # Don't prefer targeting the target if they'd be semi-invulnerable
 		if move.accuracy > 0 && (target.semiInvulnerable? || target.effectActive?(:SkyDrop))
             echoln("#{user.pbThis} scores the move #{move.id} differently against target #{target.pbThis(false)} due to the target being semi-invulnerable.")
             canHitAnyways = false
@@ -159,18 +162,13 @@ class PokeBattle_AI
         
         # Pick a good move for the Choice items
         if user.hasActiveItem?(CHOICE_LOCKING_ITEMS) || user.hasActiveAbilityAI?(CHOICE_LOCKING_ABILITIES)
-            echoln("#{user.pbThis} scores the move #{move.id} differently #{target.pbThis(false)} due to choice locking.")
+            echoln("#{user.pbThis} scores the move #{move.id} differently due to choice locking.")
             if move.damagingMove?
-                score += 50
+                score *= 1.5
             else
-                score -= 50
+                score /= 2
 			end
 		end
-
-        # Two-turn attacks waste a turn
-        if move.chargingTurnMove? || move.function == "0C2"   # Hyper Beam
-            score *= 2/3   # Not halved because semi-invulnerable during use or hits first turn
-        end
 	
 		# Account for accuracy of move
 		accuracy = pbRoughAccuracy(move,user,target)
@@ -214,7 +212,7 @@ class PokeBattle_AI
     # Add to a move's score based on how much damage it will deal (as a percentage
     # of the target's current HP)
     #=============================================================================
-    def pbGetMoveScoreDamage(score,move,user,target,numTargets=1)
+    def pbGetMoveScoreDamage(effectScore,move,user,target,numTargets=1)
         damagePercentage = getDamagePercentageAI(move,user,target,numTargets)
         
         # Adjust score
@@ -226,11 +224,12 @@ class PokeBattle_AI
         if move.effectChance != 0 && move.effectChance != 100
             type = pbRoughType(move,user)
             realProcChance = move.pbAdditionalEffectChance(user,target,type)
-            score *= (realProcChance / 100.0)
+            factor = (realProcChance / 100.0)
+            echoln("#{user.pbThis} multiplies #{move.id}'s move effect score of #{effectScore} by a factor of #{factor} based on its predicted additional effect chance (against target #{target.pbThis(false)})")
+            effectScore *= factor
         end
 
-        effectScore = (score * 0.5).to_i
-        damageScore = (damagePercentage * 1.5).to_i
+        damageScore = (damagePercentage * 1.25).to_i
         echoln("#{user.pbThis} gives #{move.id} a move effect score of #{effectScore} and a damage score of #{damageScore} (against target #{target.pbThis(false)})")
 
         return effectScore + damageScore
