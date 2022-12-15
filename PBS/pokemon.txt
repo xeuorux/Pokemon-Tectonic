@@ -24546,7 +24546,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LYCANROC,Level,22
+Evolutions = LYCANROC,Level,27
 #-------------------------------
 [745]
 Name = Lycanroc
@@ -24916,7 +24916,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = SHIINOTIC,Level,24
+Evolutions = SHIINOTIC,Level,29
 #-------------------------------
 [756]
 Name = Shiinotic
