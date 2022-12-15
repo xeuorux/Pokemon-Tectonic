@@ -13,6 +13,6 @@ BattleHandlers::EORHealingItem.add(:BLACKSLUDGE,
   BattleHandlers::EORHealingItem.add(:LEFTOVERS,
     proc { |item,battler,battle|
         next if !battler.canLeftovers?
-        target.applyFractionalHealing(1.0/16.0, customMessage: healMessage, item: item)
+        battler.applyFractionalHealing(1.0/16.0, customMessage: healMessage, item: item)
     }
   )
