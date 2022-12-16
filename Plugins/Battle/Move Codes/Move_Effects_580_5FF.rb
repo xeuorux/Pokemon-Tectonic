@@ -35,10 +35,14 @@ class PokeBattle_Move_580 < PokeBattle_Move
 end
 
 #===============================================================================
-# Puts the target to sleep, then minimizes the user's speed. (Sedating Dust)
+# Puts the target to sleep if they are slower, then minimizes the user's speed. (Sedating Dust)
 #===============================================================================
 class PokeBattle_Move_581 < PokeBattle_SleepMove
 	def pbFailsAgainstTarget?(user,target,show_message)
+		if target.pbSpeed > user.pbSpeed
+			@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is slower than #{target.pbThis(true)}!")) if show_message
+			return true
+		end
 		return !target.canSleep?(user,show_message,self)
 	end
 
@@ -74,7 +78,7 @@ class PokeBattle_Move_583 < PokeBattle_HealingMove
   
 	def pbMoveFailed?(user,targets,show_message)
 	  if user.hp == user.totalhp && !user.pbCanRaiseStatStage?(:SPEED,user,self,true)
-		@battle.pbDisplay(_INTL("But it failed!",user.pbThis)) if show_message
+		@battle.pbDisplay(_INTL("But it failed!")) if show_message
 		return true
 	  end
 	end
