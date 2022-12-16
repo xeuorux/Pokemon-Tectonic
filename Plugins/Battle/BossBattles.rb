@@ -48,7 +48,7 @@ def pbAvatarBattleCore(*args)
     if arg.is_a?(Array)
 		for i in 0...arg.length/2
 			speciesData = GameData::Species.get(arg[i*2])
-			pkmn = pbGenerateWildPokemon(speciesData.species,arg[i*2+1])
+			pkmn = pbGenerateWildPokemon(speciesData.species,arg[i*2+1],true)
 			pkmn.forced_form = speciesData.form
 			pkmn.boss = true
 			pkmn.name += " " + speciesData.real_form_name if speciesData.form != 0
@@ -418,7 +418,7 @@ class PokeBattle_Battle
 		end
 
 		# Create the new pokemon
-		newPokemon = pbGenerateWildPokemon(species,level)
+		newPokemon = pbGenerateWildPokemon(species,level,true)
 		newPokemon.boss = true
 		setAvatarProperties(newPokemon)
 

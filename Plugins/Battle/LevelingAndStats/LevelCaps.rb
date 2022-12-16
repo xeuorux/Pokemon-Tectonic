@@ -16,3 +16,7 @@ end
 def levelCapMaxed?()
 	return $game_variables[LEVEL_CAP_VAR] >= MAX_LEVEL_CAP
 end
+
+def getLevelCap()
+	return $game_variables[LEVEL_CAP_VAR]
+end

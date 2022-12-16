@@ -4,7 +4,8 @@
 # Creates and returns a Pokémon based on the given species and level.
 # Applies wild Pokémon modifiers (wild held item, shiny chance modifiers,
 # Pokérus, gender/nature forcing because of player's lead Pokémon).
-def pbGenerateWildPokemon(species,level,isRoamer=false)
+def pbGenerateWildPokemon(species,level,ignoreCap = false)
+  level = [getLevelCap(),level].min unless ignoreCap
   genwildpoke = Pokemon.new(species,level)
   # Give the wild Pokémon a held item
   item = generateWildHeldItem(genwildpoke,$Trainer.first_pokemon.hasAbility?(:FRISK))
