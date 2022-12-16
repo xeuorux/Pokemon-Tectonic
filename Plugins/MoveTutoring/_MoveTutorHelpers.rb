@@ -1,3 +1,30 @@
+def moveLearningScreen(pkmn,moves)
+	return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
+
+	if !teamEditingAllowed?()
+		showNoTeamEditingMessage()
+		return
+	end
+
+	moves.sort! { |move_a, move_b|
+		moveDataA = GameData::Move.get(move_a)
+		moveDataB = GameData::Move.get(move_b)
+
+		scoreA = moveDataA.category * 1000 - moveDataA.base_damage
+		scoreB = moveDataB.category * 1000 - moveDataB.base_damage
+
+		scoreA <=> scoreB
+	}
+	
+	retval = true
+	pbFadeOutIn {
+	  scene = MoveLearner_Scene.new
+	  screen = MoveLearnerScreen.new(scene)
+	  retval = screen.pbStartScreen(pkmn,moves)
+	}
+	return retval
+end
+
 def eachPokemonInPartyOrStorage()
 	$Trainer.party.each do |pkmn|
 		yield pkmn
@@ -12,12 +39,12 @@ def eachPokemonInPartyOrStorage()
 end
 
 class Pokemon
-	def mentorable_moves()
+	def learnable_moves()
 		species_data = GameData::Species.get(@species)
 
 		moves = []
 
-		# Gather mentorable moves from egg moves
+		# Gather egg moves
 		firstSpecies = species_data
 		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
 			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
@@ -27,13 +54,13 @@ class Pokemon
 			moves.push(m)
 		end
 
-		# Gather mentorable moves from tutor moves
+		# Gather tutor moves
 		species_data.tutor_moves.each do |m|
 			next if hasMove?(m)
 			moves.push(m)
 		end
 
-		# Gather mentorable moves from level up moves
+		# Gather level up moves
 		species_data.moves.each { |learnset_entry|
 			m = learnset_entry[1]
 			next if hasMove?(m)

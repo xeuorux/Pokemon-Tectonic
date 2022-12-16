@@ -29,14 +29,7 @@ def moveRelearner()
 	end
 end
 
-def pbRelearnMoveScreen(pkmn)
-	return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
-
-	if !teamEditingAllowed?()
-		showNoTeamEditingMessage()
-		return
-	end
-	
+def getRelearnableMoves(pkmn)
 	moves = []
 	pkmn.getMoveList.each do |m|
 		next if m[0] > pkmn.level || pkmn.hasMove?(m[1])
@@ -47,15 +40,16 @@ def pbRelearnMoveScreen(pkmn)
 		next if pkmn.hasMove?(m)
 		moves.push(m) if !moves.include?(m)
 	end
+
+	moves.uniq!
+	moves.compact!
 	
-	retval = true
-	pbFadeOutIn {
-	  scene = MoveLearner_Scene.new
-	  screen = MoveLearnerScreen.new(scene)
-	  retval = screen.pbStartScreen(pkmn,moves)
-	}
-	return retval
-  end
+	return moves
+end
+
+def pbRelearnMoveScreen(pkmn)
+	return moveLearningScreen(pkmn,getRelearnableMoves(pkmn))
+end
 
 class Pokemon
 	def can_relearn_move?

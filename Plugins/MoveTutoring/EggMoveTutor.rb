@@ -12,23 +12,25 @@ class Pokemon
 	end
 end
 
-def pbEggMoveScreen(pkmn)
-    return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
+def getEggMoves(pkmn)
 	moves = []
+
     firstSpecies = GameData::Species.get(pkmn.species)
 	while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
 		firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 	end
+
     firstSpecies.egg_moves.each do |m|
       next if pkmn.hasMove?(m)
-      moves.push(m) if !moves.include?(m)
+      moves.push(m)
     end
+	
+	moves.uniq!
+	moves.compact!
 
-	retval = true
-	pbFadeOutIn {
-		scene = MoveLearner_Scene.new
-		screen = MoveLearnerScreen.new(scene)
-		retval = screen.pbStartScreen(pkmn,moves)
-	}
-	return retval
+	return moves
+end
+
+def pbEggMoveScreen(pkmn)
+    return moveLearningScreen(pkmn,getEggMoves(pkmn))
 end

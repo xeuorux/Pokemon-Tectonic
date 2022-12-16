@@ -29,15 +29,8 @@ def mentorCoordinator()
 	end
 end
 
-def pbMentorMoveScreen(pkmn)
-  	return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
-
-	if !teamEditingAllowed?()
-		showNoTeamEditingMessage()
-		return
-	end
-
-  	movesKnownByMentors = []
+def getMentorableMoves()
+	movesKnownByMentors = []
 	eachPokemonInPartyOrStorage do |otherPkmn|
 		otherPkmn.moves.each do |m|
 			movesKnownByMentors.push(m.id)
@@ -45,18 +38,17 @@ def pbMentorMoveScreen(pkmn)
 	end
 	movesKnownByMentors.uniq!
 	movesKnownByMentors.compact!
+	return movesKnownByMentors
+end
+
+def pbMentorMoveScreen(pkmn)
+	movesKnownByMentors = getMentorableMoves()
 	return false if movesKnownByMentors.length == 0
 
-	mentorableMoves = pkmn.mentorable_moves & movesKnownByMentors # Get the elements shared by both arrays
+	mentorableMoves = pkmn.learnable_moves & movesKnownByMentors # Get the elements shared by both arrays
 	return false if mentorableMoves.length == 0
 
-	retval = true
-	pbFadeOutIn {
-		scene = MoveLearner_Scene.new
-		screen = MoveLearnerScreen.new(scene)
-		retval = screen.pbStartScreen(pkmn,mentorableMoves,true)
-	}
-	return retval
+	return moveLearningScreen(pkmn,getRelearnableMoves(pkmn))
 end
 
 class Pokemon
