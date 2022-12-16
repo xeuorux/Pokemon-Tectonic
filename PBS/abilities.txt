@@ -498,6 +498,7 @@
 497,MISTBLANKET,Mist Blanket,"User and allies take 25% less move damage during Fairy Terrain."
 498,EXOADAPTION,Exo-Adaption,"Boosts Sp. Def by 25%, and heals user by 25% after taking a Special attack."
 499,LOCOMOTION,Locomotion,"Boosts Speed by 50% but the user is locked into the first move they use."
+500,TANTALIZING,Tantalizing,"Draws in attacks from enemies with below half health."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
