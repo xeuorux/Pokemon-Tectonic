@@ -39,7 +39,7 @@ BattleHandlers::PriorityChangeAbility.add(:LIGHTTRICK,
 
 BattleHandlers::PriorityChangeAbility.add(:DECEPTIVE,
   proc { |ability,battler,move,pri|
-    if move.statusMove? && battler.battle.field.terrain == :Misty
+    if move.statusMove? && battler.battle.field.terrain == :Fairy
       battler.applyEffect(:Prankster)
       next pri+1
     end

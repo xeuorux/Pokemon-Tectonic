@@ -81,11 +81,13 @@ class PokeBattle_Battler
 		return increment
 	end
 
-	def pbCanRaiseStatStage?(stat, user = nil, move = nil, showFailMsg = false, ignoreContrary = false)
+	def pbCanRaiseStatStage?(stat, user = nil, move = nil, showFailMsg = false, ignoreContrary = false, ignoreAbilities: false)
 		validateStat(stat)
 		return false if fainted?
 		# Contrary
-		return pbCanLowerStatStage?(stat, user, move, showFailMsg, true) if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
+		if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker && !ignoreAbilities
+			return pbCanLowerStatStage?(stat, user, move, showFailMsg, true, ignoreAbilities: ignoreAbilities) 
+		end
 		# Check the stat stage
 		if statStageAtMax?(stat)
 			if showFailMsg
@@ -168,11 +170,13 @@ class PokeBattle_Battler
 		return @stages[stat] <= -6
 	end
 
-	def pbCanLowerStatStage?(stat, user = nil, move = nil, showFailMsg = false, ignoreContrary = false)
+	def pbCanLowerStatStage?(stat, user = nil, move = nil, showFailMsg = false, ignoreContrary = false, ignoreAbilities: false)
 		validateStat(stat)
 		return false if fainted?
 		# Contrary
-		return pbCanRaiseStatStage?(stat, user, move, showFailMsg, true) if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
+		if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker && !ignoreAbilities
+			return pbCanRaiseStatStage?(stat, user, move, showFailMsg, true, ignoreAbilities: ignoreAbilities)
+		end
 		if !user || user.index != @index # Not self-inflicted
 			if substituted? && !(move && move.ignoresSubstitute?(user))
 				@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis)) if showFailMsg
@@ -182,23 +186,25 @@ class PokeBattle_Battler
 				@battle.pbDisplay(_INTL('{1} is protected by Mist!', pbThis)) if showFailMsg
 				return false
 			end
-			if abilityActive?
-				return false if !@battle.moldBreaker && BattleHandlers.triggerStatLossImmunityAbility(
-					ability, self, stat, @battle, showFailMsg
-				)
-				return false if BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(
-					ability, self, stat, @battle, showFailMsg
-				)
-			end
-			unless @battle.moldBreaker
-				eachAlly do |b|
-					next unless b.abilityActive?
-					return false if BattleHandlers.triggerStatLossImmunityAllyAbility(
-						b.ability, b, self, stat, @battle, showFailMsg
+			unless ignoreAbilities
+				if abilityActive?
+					return false if !@battle.moldBreaker && BattleHandlers.triggerStatLossImmunityAbility(
+						ability, self, stat, @battle, showFailMsg
+					)
+					return false if BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(
+						ability, self, stat, @battle, showFailMsg
 					)
 				end
+				unless @battle.moldBreaker
+					eachAlly do |b|
+						next unless b.abilityActive?
+						return false if BattleHandlers.triggerStatLossImmunityAllyAbility(
+							b.ability, b, self, stat, @battle, showFailMsg
+						)
+					end
+				end
 			end
-		elsif hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
+		elsif hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker && !ignoreAbilities
 			return false
 		elsif effectActive?(:EmpoweredFlowState)
 			@battle.pbDisplay(_INTL('{1} is in a state of total focus!', pbThis)) if showFailMsg

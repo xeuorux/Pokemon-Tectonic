@@ -7,11 +7,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	},
 	:eor_proc => Proc.new { |battle,battler,value|
 		next if !battler.canHeal?
-		healAmount = battler.totalhp / 8.0
-		healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
-		healAmount *= 1.3 if battler.hasActiveItem?(:BIGROOT)
+		fraction = 1.0/8.0
+		fraction *= 1.3 if battler.hasActiveItem?(:BIGROOT)
 		healMessage = _INTL("The ring of water restored {1}'s HP!",battler.pbThis(true))
-		battler.pbRecoverHP(healAmount,true,true,true,healMessage)
+		battler.applyFractionalHealing(fraction,customMessage: healMessage)
 	}
 })
 
@@ -411,11 +410,10 @@ GameData::BattleEffect.register_effect(:Battler,{
 	},
 	:eor_proc => Proc.new { |battle,battler,value|
 		next if !battler.canHeal?
-		healAmount = battler.totalhp / 8.0
-		healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
-		healAmount *= 1.3 if battler.hasActiveItem?(:BIGROOT)
+		ratio = 1.0 / 8.0
+		ratio *= 1.3 if battler.hasActiveItem?(:BIGROOT)
 		healMessage = _INTL("{1} absorbed nutrients with its roots!",battler.pbThis)
-		battler.pbRecoverHP(healAmount,true,true,true,healMessage)
+		battler.applyFractionalHealing(ratio, customMessage: healMessage)
 	}
 })
 
@@ -1068,7 +1066,7 @@ GameData::BattleEffect.register_effect(:Battler,{
 
 GameData::BattleEffect.register_effect(:Battler,{
 	:id => :GorillaTactics,
-	:real_name => "GorillaTactics",
+	:real_name => "Choice Locking",
 	:type => :Move,
 	:info_displayed => false,
 })

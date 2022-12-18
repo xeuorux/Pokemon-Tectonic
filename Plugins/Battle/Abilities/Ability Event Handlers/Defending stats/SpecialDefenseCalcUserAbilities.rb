@@ -32,3 +32,10 @@ BattleHandlers::SpecialDefenseCalcUserAbility.add(:PARANOID,
         next spDefMult
     }
 )
+
+BattleHandlers::SpecialDefenseCalcUserAbility.add(:EXOADAPTION,
+    proc { |ability,user,battle,spDefMult|
+        spDefMult *= 1.25
+        next spDefMult
+    }
+)

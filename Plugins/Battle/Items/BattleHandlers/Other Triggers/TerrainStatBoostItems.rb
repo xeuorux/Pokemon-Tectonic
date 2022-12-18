@@ -12,9 +12,9 @@ BattleHandlers::TerrainStatBoostItem.add(:ELECTRICSEED,
     }
   )
   
-  BattleHandlers::TerrainStatBoostItem.add(:MISTYSEED,
+  BattleHandlers::TerrainStatBoostItem.add(:FairySEED,
     proc { |item,battler,battle|
-      next false if battle.field.terrain != :Misty
+      next false if battle.field.terrain != :Fairy
       next battler.tryRaiseStat(:SPECIAL_DEFENSE,battler,item: item)
     }
   )

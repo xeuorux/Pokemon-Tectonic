@@ -9,7 +9,7 @@ MAIN_HASH = {
     "Status Conditions" => "What are the Conditions a Pokémon can be afflicted with?",
     "Trainers"          => "How do enemy Trainers work?",
     "Avatars"           => "What are avatars and what do they do?",
-    "PokéDex"           => "What does the PokéDex do and how should I use it?",
+    "MasterDex"           => "What does the MasterDex do and how should I use it?",
     "Weathers"          => "What are weathers, and what does each do?",
 }
 
@@ -46,7 +46,7 @@ TYPE_MATCHUPS_HASH = {
     "Not Very Effective" => "Not Very Effective moves deal half the damage compared to normal effective moves.",
     "Barely Effective" => "Barely Effective moves deal one quarter the damage compared to normal effective moves. This happens when a Pokémon is double resistant to a type.",
     "Ineffective" => "Ineffective moves deal no damage at all. This can happen if one of a Pokémon's types has an immunity to the attacking move type, even if the other is neutral (or even weak!).",
-    "Looking Up Matchups" => "The 5th and 6th pages of a PokéDex entry show that Pokémon's type matchups. Open the PokéDex in battle to check matchups if you're not sure.",
+    "Looking Up Matchups" => "The 5th and 6th pages of a MasterDex entry show that Pokémon's type matchups. Open the MasterDex in battle to check matchups if you're not sure.",
 }
 
 ACQUIRING_POKEMON_HASH = {
@@ -75,7 +75,7 @@ STATS_HASH = {
 ABILITIES_HASH = {
     "What are abilities?" => "Abilities are special powers that Pokémon can have based on their species. Most Pokémon can have one of 2 possible abilities.",
     "Ability Effects" => "Abilities do a wide variety of different things. Understanding your team's abilities, and choosing the right ones, is important to winning.",
-    "Checking Abilities" => "Check your Pokémon's summary to see what ability they have. Use the PokéDex to read about the abilities of enemy Pokémon during battle.",
+    "Checking Abilities" => "Check your Pokémon's summary to see what ability they have. Use the MasterDex to read about the abilities of enemy Pokémon during battle.",
     "Choosing Abilities" => "A Pokémon's ability is one of the two its species can have, randomly chosen when you get it. You can use Ability Capsules to swap to the other.",
     "Conditional Abilities" => "Many abilities only do things under certain circumstances. Buiding around Weather and Terrain-synergy abilities is a common strategy.",
     "Effect Of Evolution" => "A Pokémon's ability tends to stay the same when evolving, but can change. When this happens, the game will alert you.",
@@ -132,16 +132,16 @@ AVATARS_HASH = {
     "Legendary Avatars" => "Legendary Avatars are unique. You fight them with 3 Pokémon, they have 3 HP bars, and they have more moves with more smarts about how to use them.",
 }
 
-POKEDEX_HASH = {
-    "What is the PokéDex?" => "The PokéDex is an advanced encyclopedia about the 900+ Pokémon available in this game.",
-    "Single PokéDex" => "Access the PokéDex entry of a single Pokémon when looking at a Pokémon in the summary or the PC, or by using the Dex button in battles.",
-    "Full Pokdex" => "Access the full PokéDex from your pause menu, or by pressing D when using the Dex button in battles (while its waiting for you to select a battler).",
-    "Searching" => "When in the PokéDex, you can press your Special keybind (default Shift or Z) to open the first search page. There's dozens of searches to experiment with!",
+MASTERDEX_HASH = {
+    "What is the MasterDex?" => "The MasterDex is an advanced encyclopedia about the 900+ Pokémon available in this game.",
+    "Single MasterDex" => "Access the MasterDex entry of a single Pokémon when looking at a Pokémon in the summary or the PC, or by using the Dex button in battles.",
+    "Full MasterDex" => "Access the full MasterDex from your pause menu, or by pressing D when using the Dex button in battles (while its waiting for you to select a battler).",
+    "Searching" => "When in the MasterDex, you can press your Special keybind (default Shift or Z) to open the first search page. There's dozens of searches to experiment with!",
     "Combining Searches" => "You can begin a search while you're already looking at the results of a search. This will narrow down from what you were already looking at.",
-    "Storing Searches" => "When you press the cancel button while looking at a search, it will ask you if you'd like to cancel the search, or store it for the next time you open the PokéDex.",
-    "Quick Navigation" => "Press A to go up a page at a time, or S to go down a page. Use the number keys (1-9) to quickly go to one of the tab's of a Pokémon's PokéDex entry.",
+    "Storing Searches" => "When you press the cancel button while looking at a search, it will ask you if you'd like to cancel the search, or store it for the next time you open the MasterDex.",
+    "Quick Navigation" => "Press A to go up a page at a time, or S to go down a page. Use the number keys (1-9) to quickly go to one of the tab's of a Pokémon's MasterDex entry.",
     "Move Details" => "Press the Use key (defaults to C) on the level up learnset or tutor moves tabs to begin scrolling the lists, and viewing details about individual moves.",
-    "Checking Evolutions" => "Press the Use key (defaults to C) on the evolutions tab to choose a Pokémon in the same evolutionary tree, and to warp to that Pokémon's PokéDex entry.",
+    "Checking Evolutions" => "Press the Use key (defaults to C) on the evolutions tab to choose a Pokémon in the same evolutionary tree, and to warp to that Pokémon's MasterDex entry.",
 }
 
 WEATHERS_HASH = {

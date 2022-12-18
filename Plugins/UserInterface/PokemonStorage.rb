@@ -40,6 +40,7 @@ class PokemonStorageScreen
           else
             commands = []
             cmdMove     = -1
+            cmdOmniTutor= -1
             cmdSummary  = -1
             cmdWithdraw = -1
             cmdItem     = -1
@@ -48,13 +49,18 @@ class PokemonStorageScreen
 			      cmdPokedex  = -1
             cmdDebug    = -1
             cmdCancel   = -1
+
+            tutoringPokemon = nil
             if heldpoke
               helptext = _INTL("{1} is selected.",heldpoke.name)
               commands[cmdMove=commands.length]   = (pokemon) ? _INTL("Shift") : _INTL("Place")
+              tutoringPokemon = heldpoke
             elsif pokemon
               helptext = _INTL("{1} is selected.",pokemon.name)
               commands[cmdMove=commands.length]   = _INTL("Move")
+              tutoringPokemon = pokemon
             end
+            commands[cmdOmniTutor=commands.length] = _INTL("OmniTutor") if tutoringPokemon && getOmniMoves(tutoringPokemon).length != 0
             commands[cmdSummary=commands.length]  = _INTL("Summary")
 			      commands[cmdPokedex = commands.length]  = _INTL("Pokédex") if $Trainer.has_pokedex
             commands[cmdWithdraw=commands.length] = (selected[0]==-1) ? _INTL("Store") : _INTL("Withdraw")
@@ -88,6 +94,8 @@ class PokemonStorageScreen
               end
             elsif cmdDebug>=0 && command==cmdDebug   # Debug
               pbPokemonDebug((@heldpkmn) ? @heldpkmn : pokemon,selected,heldpoke)
+            elsif cmdOmniTutor>=0 && command==cmdOmniTutor
+              omniTutorScreen(tutoringPokemon)
             end
           end
         end

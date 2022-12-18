@@ -1,22 +1,16 @@
 BattleHandlers::EORWeatherAbility.add(:ICEBODY,
   proc { |ability,weather,battler,battle|
     next unless weather == :Hail
-    next if !battler.canHeal?
-    battle.pbShowAbilitySplash(battler)
-    battler.pbRecoverHP(battler.totalhp/16)
-    battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    battle.pbHideAbilitySplash(battler)
+    healingMessage = battle.pbDisplay(_INTL("{1} incorporates hail into its body.",battler.pbThis))
+    battler.applyFractionalHealing(1.0/8.0, showAbilitySplash: true)
   }
 )
 
 BattleHandlers::EORWeatherAbility.add(:RAINDISH,
   proc { |ability,weather,battler,battle|
     next unless battle.rainy?
-    next if !battler.canHeal?
-    battle.pbShowAbilitySplash(battler)
-    battler.pbRecoverHP(battler.totalhp/16)
-    battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
-    battle.pbHideAbilitySplash(battler)
+    healingMessage = battle.pbDisplay(_INTL("{1} soaks up the rain.",battler.pbThis))
+    battler.applyFractionalHealing(1.0/8.0, showAbilitySplash: true)
   }
 )
 
@@ -30,13 +24,8 @@ BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
     end
 
     if battle.rainy?
-      next if !battler.canHeal?
-      battle.pbShowAbilitySplash(battler)
-      healAmount = battler.totalhp / 8.0
-      healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
       healingMessage = battle.pbDisplay(_INTL("{1} soaks up the rain.",battler.pbThis))
-      battler.pbRecoverHP(healAmount,true,true,true,healingMessage)
-      battle.pbHideAbilitySplash(battler)
+      battler.applyFractionalHealing(1.0/8.0, showAbilitySplash: true, customMessage: healingMessage)
     end
   }
 )
@@ -54,13 +43,8 @@ BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
 BattleHandlers::EORWeatherAbility.add(:HEATSAVOR,
     proc { |ability,weather,battler,battle|
       next unless battle.sunny?
-      next if !battler.canHeal?
-      battle.pbShowAbilitySplash(battler)
-      healAmount = battler.totalhp / 16.0
-      healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
       healingMessage = battle.pbDisplay(_INTL("{1} soaks up the heat.",battler.pbThis))
-      battler.pbRecoverHP(healAmount,true,true,true,healingMessage)
-      battle.pbHideAbilitySplash(battler)
+      battler.applyFractionalHealing(1.0/8.0, showAbilitySplash: true, customMessage: healingMessage)
     }
 )
   
@@ -73,13 +57,8 @@ BattleHandlers::EORWeatherAbility.add(:FINESUGAR,
         battle.pbHideAbilitySplash(battler)
       end
       if battle.sunny?
-        next if !battler.canHeal?
-        battle.pbShowAbilitySplash(battler)
-        healAmount = battler.totalhp / 8.0
-        healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
         healingMessage = battle.pbDisplay(_INTL("{1} caramlizes slightly in the heat.",battler.pbThis))
-        battler.pbRecoverHP(healAmount,true,true,true,healingMessage)
-        battle.pbHideAbilitySplash(battler)
+        battler.applyFractionalHealing(1.0/8.0, showAbilitySplash: true, customMessage: healingMessage)
       end
     }
 )

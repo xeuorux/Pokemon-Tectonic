@@ -78,15 +78,15 @@ PokeBattle_AI::PlayerSendsOutPokemonDialogue.add(:DEBUG,
 
 PokeBattle_AI::PlayerSendsOutPokemonDialogue.add(:REMARKONSTARTER,
   proc { |policy,battler,trainer_speaking,dialogue_array|
-	next dialogue_array unless [:TREECKO,:CYNDAQUIL,:KRABBY].include?(battler.species)
+	next dialogue_array unless [:APPLIN,:NUMEL,:KRABBY].include?(battler.species)
 	if !trainer_speaking.policyStates[:RemarkedOnStarter]
 		dialogue_array.push("Wow, I've never seen that Pokemon before!")
-		dialogue_array.push("I'm gonna check my Pokedex!")
+		dialogue_array.push("I'm gonna check my MasterDex!")
 		case battler.species
-		when :TREECKO
-			dialogue_array.push("Treecko, huh? It's a Grass-type, and pretty fast too...")
-		when :CYNDAQUIL	
-			dialogue_array.push("Cyndaquil, it says. Fire-type--both of its abilities look scary!")
+		when :APPLIN
+			dialogue_array.push("Applin, it says. A Grass-type, AND a Dragon-type? Crazy!")
+		when :NUMEL	
+			dialogue_array.push("Numel, huh? Fire-type--hope I don't get burned!")
 		when :KRABBY
 			dialogue_array.push("Krabby... a Water-type... with massive attack power, wow!")
 		end

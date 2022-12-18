@@ -353,7 +353,7 @@ class PokeBattle_Battle
       pbDisplay(_INTL("An electric current runs across the battlefield!"))
     when :Grassy
       pbDisplay(_INTL("Grass is covering the battlefield!"))
-    when :Misty
+    when :Fairy
       pbDisplay(_INTL("Fae mist swirls about the battlefield!"))
     when :Psychic
       pbDisplay(_INTL("The battlefield is weird!"))

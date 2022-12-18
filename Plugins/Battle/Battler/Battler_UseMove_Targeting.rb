@@ -159,6 +159,9 @@ class PokeBattle_Battler
 			maxBaseDamage = move.baseDamage if move.baseDamage > maxBaseDamage
 		end
 		targets = pbChangeTargetByAbility(:EPICHERO, move, user, targets, priority, nearOnly) if maxBaseDamage >= 100
+		if move.damagingMove? && user.hp <= user.totalhp / 2
+			targets = pbChangeTargetByAbility(:TANTALIZING, move, user, targets, priority, nearOnly)
+		end
 		return targets
 	end
 

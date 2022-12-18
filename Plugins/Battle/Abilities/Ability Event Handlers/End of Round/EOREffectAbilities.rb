@@ -79,27 +79,17 @@ BattleHandlers::EOREffectAbility.add(:HUNGERSWITCH,
 
 BattleHandlers::EOREffectAbility.add(:ASTRALBODY,
   proc { |ability,battler,battle|
-	next unless battle.field.terrain==:Misty
-    next if !battler.canHeal?
-	  battle.pbShowAbilitySplash(battler)
-    healAmount = battler.totalhp / 16.0
-    healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
+	next unless battle.field.terrain==:Fairy
     healingMessage = battle.pbDisplay(_INTL("{1} absorbs magic from the fae mist.",battler.pbThis))
-    battler.pbRecoverHP(healAmount,true,true,true,healingMessage)
-    battle.pbHideAbilitySplash(battler)
+    battler.applyFractionalHealing(1.0/8.0,showAbilitySplash: true, customMessage: healingMessage)
   }
 )
 
 BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
   proc { |ability,battler,battle|
     next unless battler.hasActiveItem?(CLOTHING_ITEMS)
-    next unless battler.canHeal?
-    battle.pbShowAbilitySplash(battler)
-    healAmount = battler.totalhp / 8.0
-    healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if battler.boss?
     healingMessage = battle.pbDisplay(_INTL("{1} luxuriated in its fine clothing.",battler.pbThis))
-    battler.pbRecoverHP(healAmount,true,true,true,healingMessage)
-    battle.pbHideAbilitySplash(battler)
+    battler.applyFractionalHealing(1.0/8.0,showAbilitySplash: true, customMessage: healingMessage)
   }
 )
 

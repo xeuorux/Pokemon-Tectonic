@@ -3,13 +3,9 @@
 def pbBattleMoveImmunityHealAbility(user,target,move,moveType,immuneType,battle,showMessages)
 	return false if user.index==target.index
 	return false if moveType != immuneType
-	battle.pbShowAbilitySplash(target) if showMessages
-	healAmount = target.totalhp / 4.0
-	healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if target.boss?
-	if !target.canHeal? || target.pbRecoverHP(healAmount) <= 0
+	if target.applyFractionalHealing(1.0/4.0, showAbilitySplash: true) <= 0
 	  battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!", target.pbThis,target.abilityName,move.name)) if showMessages
 	end
-	battle.pbHideAbilitySplash(target) if showMessages
 	return true
 end
 

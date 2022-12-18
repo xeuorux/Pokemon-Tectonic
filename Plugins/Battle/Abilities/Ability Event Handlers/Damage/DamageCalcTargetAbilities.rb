@@ -189,3 +189,11 @@ BattleHandlers::DamageCalcTargetAbility.add(:FINESUGAR,
     mults[:base_damage_multiplier] *= 1.25 if type == :WATER
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:MISTBLANKET,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.field.terrain == :Fairy
+      mults[:final_damage_multiplier] *= 0.75
+    end
+  }
+)

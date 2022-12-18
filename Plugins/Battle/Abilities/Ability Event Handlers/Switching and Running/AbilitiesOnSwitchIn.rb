@@ -601,16 +601,16 @@ BattleHandlers::AbilityOnSwitchIn.add(:PSYCHICSURGE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:MISTYSURGE,
+BattleHandlers::AbilityOnSwitchIn.add(:FairySURGE,
   proc { |ability,battler,battle|
-    next if battle.field.terrain == :Misty
+    next if battle.field.terrain == :Fairy
     battle.pbShowAbilitySplash(battler)
-    battle.pbStartTerrain(battler, :Misty)
+    battle.pbStartTerrain(battler, :Fairy)
     # NOTE: The ability splash is hidden again in def pbStartTerrain.
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:MISTYSURGE,:FAIRYSURGE)
+BattleHandlers::AbilityOnSwitchIn.copy(:FairySURGE,:FAIRYSURGE)
 
 BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
   proc { |ability,battler,battle|

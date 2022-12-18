@@ -61,7 +61,7 @@ class PokeBattle_Battler
 		end
 		# Gorilla Tactics
 		if effectActive?(:GorillaTactics)
-			if hasActiveAbility?(:GORILLATACTICS)
+			if hasActiveAbility?(CHOICE_LOCKING_ABILITIES)
 				if move.id != @effects[:GorillaTactics]
 					msg = _INTL('{1} allows the use of only {2}!', abilityName, GameData::Move.get(@effects[:GorillaTactics]).name)
 					if showMessages

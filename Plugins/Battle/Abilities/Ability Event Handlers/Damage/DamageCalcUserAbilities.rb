@@ -222,13 +222,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TEMPERATURE,
 
 BattleHandlers::DamageCalcUserAbility.add(:EXPERTISE,
   proc { |ability,user,target,move,mults,baseDmg,type,aiCheck|
-    effectivenessToCheck = nil
-    if aiCheck
-      effectivenessToCheck = user.battle.battleAI.pbCalcTypeModAI(type,user,target,move)
-    else
-      effectivenessToCheck = target.damageState.typeMod
-    end
-    if Effectiveness.super_effective?(effectivenessToCheck)
+    if Effectiveness.super_effective?(target.typeMod(type,target,move,aiCheck))
       mults[:final_damage_multiplier] *= 1.3
     end
   }

@@ -1085,7 +1085,7 @@
 1020,BREATHELIFE,Breathe Life,578,0,GRASS,Status,0,1,0,None,0,,"Restores a fainted Grass-type party member to full health.",GRASSYTERRAIN
 1021,SPECTRALTONGUE,Spectral Tongue,579,0,GHOST,Status,100,12,0,NearOther,0,abcef,"The user licks the target, numbing them, or cursing them if they're already numbed.",LICK
 1022,VICIOUSCLEANING,Vicious Cleaning,580,80,NORMAL,Special,100,10,0,NearOther,0,be,"The user flings the dirty oil on its fur. It transfers any status condition to the target.",ACIDSPRAY
-1023,SEDATINGDUST,Sedating Dust,581,0,BUG,Status,100,10,0,NearOther,0,bce,"The user spreads a soothing dust. It puts the target to sleep, but minimizes the user's Speed stat.",POISONPOWDER
+1023,SEDATINGDUST,Sedating Dust,581,0,BUG,Status,100,10,0,NearOther,0,bce,"If the user is faster than the target, puts the target to sleep, then minimizes the user's Speed stat.",POISONPOWDER
 1024,ODDROOM,Odd Room,582,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates an odd area in which Pokémon's offensive and defensive stats are swapped.",MAGICROOM
 1025,MULCHMEAL,Mulch Meal,583,0,GRASS,Status,0,10,0,User,0,d,"The user eats decaying leaves, restoring its HP by 33% and raising its Speed.",RECOVER
 1026,GUIDINGAROMA,Guiding Aroma,584,0,BUG,Status,0,12,0,NearAlly,0,,"The user raises the target's three lowest stats by using a helpful scent.",AROMATICMIST

@@ -2,7 +2,7 @@ class PokeBattle_AI
 	#=============================================================================
 	# Get a score for the given move based on its effect
 	#=============================================================================
-	def pbGetMoveScoreFunctionCode(score,move,user,target,skill=100,policies=[])		
+	def pbGetMoveScoreFunctionCode(score,move,user,target,policies=[])		
 		case move.function
 		#---------------------------------------------------------------------------
 		when "13A" # Noble Roar
@@ -33,7 +33,7 @@ class PokeBattle_AI
 		#---------------------------------------------------------------------------
 		else
 			begin
-				score = move.getScore(score,user,target,skill=100)
+				score = move.getEffectScore(score,user,target)
 			rescue
 				echoln("FAILURE IN THE SCORING SYSTEM FOR MOVE #{move.name} #{move.function}")
 				score = 100

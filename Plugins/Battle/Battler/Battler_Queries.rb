@@ -525,4 +525,12 @@ class PokeBattle_Battler
 	def partyIndex
 		return @index % 2
 	end
+
+	def typeMod(type,target,move,aiCheck=false)
+		if aiCheck
+			return @battle.battleAI.pbCalcTypeModAI(type,self,target,move)
+		  else
+			return @damageState.typeMod
+		end
+	end
 end

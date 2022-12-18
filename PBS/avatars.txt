@@ -163,9 +163,9 @@ HPMult = 6.0
 DMGResist = 0.3
 #-------------------------------
 [GENGAR]
-Ability = CHILLOUT
-Moves1 = SPITEFULCHANT,ACIDSPRAY,PRIMEVALHAIL
-Moves2 = NERVEBREAK,SOULDRAIN
+Ability = UNCANNYCOLD
+Moves1 = SPITEFULCHANT,NERVEBREAK,PRIMEVALHAIL
+Moves2 = ICYWIND,SOULDRAIN
 HPMult = 6.0
 #-------------------------------
 [ZOROARK]
@@ -187,7 +187,7 @@ Moves2 = FLAMETHROWER,SOULDRAIN
 HPMult = 6.0
 #-------------------------------
 [MANIKLAW]
-Ability = INSOMNIA
+Ability = MALICE
 Moves1 = SHADOWCLAW,SLASH,PRIMEVALHEALORDER
 Moves2 = RAKE,SOULCLAW
 HPMult = 6.0
@@ -254,7 +254,7 @@ Moves2 = SHATTERSHOT,GUST
 HPMult = 6.0
 #-------------------------------
 [PINSIR]
-Ability = MOXIE
+Ability = VICTORYMOLT
 Moves1 = XSCISSOR,CROSSCHOP,PRIMEVALEMBARGO
 Moves2 = CRUNCH,REVERSAL
 HPMult = 6.0
@@ -310,7 +310,7 @@ Turns = 1
 HPMult = 4.0
 #-------------------------------
 [SHUCKLE]
-Ability = GLUTTONY
+Ability = STICKYMOLD
 Moves1 = POWERTRIP,GIGAIMPACT,STEALTHROCK
 Turns = 3
 HPMult = 2.0
@@ -418,7 +418,7 @@ Moves2 = CRUELTY,ICYWIND,PRIMEVALICEBEAM
 HPMult = 6.0
 #-------------------------------
 [ELECTIVIRE]
-Ability = STATIC
+Ability = SHOCKSTYLE
 Moves1 = THUNDERPUNCH,HAMMERARM,PRIMEVALTHUNDERBOLT,PRIMEVALELECTRICTERRAIN
 Moves2 = RISINGVOLTAGE,KARATECHOP,PRIMEVALTHUNDERBOLT
 HPMult = 6.0
@@ -521,8 +521,8 @@ HealthBars = 2
 Item = ORANBERRY
 #-------------------------------
 [LICKILICKY]
-Ability = MENTALBLOCK
-Moves1 = CRUSHGRIP,CORRODE,PRIMEVALDESTINYBOND
+Ability = TENDERIZE
+Moves1 = BODYSLAM,CORRODE,PRIMEVALDESTINYBOND
 Moves2 = TONGUETWISTER,ACIDSPRAY
 HPMult = 6.0
 #-------------------------------

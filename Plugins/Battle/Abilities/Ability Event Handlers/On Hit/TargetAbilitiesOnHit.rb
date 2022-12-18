@@ -16,7 +16,7 @@ BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
 
 BattleHandlers::TargetAbilityOnHit.add(:MISTCRAFT,
 	proc { |ability,target,battler,move,battle|
-		terrainSetAbility(:Misty,battler,battle)
+		terrainSetAbility(:Fairy,battler,battle)
 	}
 )
 
@@ -213,11 +213,11 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
     next if user.effectActive?(:Disable)
     regularMove = nil
     user.eachMove do |m|
-      next if m.id!=user.lastRegularMoveUsed
+      next if m.id != user.lastRegularMoveUsed
       regularMove = m
       break
     end
-    next unless regularMove || (regularMove.pp==0 && regularMove.total_pp>0)
+    next unless regularMove && (regularMove.pp == 0 && regularMove.total_pp > 0)
     next if battle.pbRandom(100)>=60
     battle.pbShowAbilitySplash(target)
     unless move.pbMoveFailedAromaVeil?(target,user,true)
