@@ -1,129 +1,6 @@
 module Compiler
 	module_function
 	
-  def main
-    return if !$DEBUG
-    begin
-      dataFiles = [
-         "berry_plants.dat",
-         "encounters.dat",
-         "form2species.dat",
-         "items.dat",
-         "map_connections.dat",
-         "metadata.dat",
-         "moves.dat",
-         "phone.dat",
-         "regional_dexes.dat",
-         "ribbons.dat",
-         "shadow_movesets.dat",
-         "species.dat",
-         "species_eggmoves.dat",
-         "species_evolutions.dat",
-         "species_metrics.dat",
-         "species_movesets.dat",
-         "species_old.dat",
-         "tm.dat",
-         "town_map.dat",
-         "trainer_lists.dat",
-         "trainer_types.dat",
-         "trainers.dat",
-         "types.dat",
-         "policies.dat",
-         "avatars.dat"
-      ]
-      textFiles = [
-         "abilities.txt",
-         "berryplants.txt",
-         "connections.txt",
-         "encounters.txt",
-         "items.txt",
-         "metadata.txt",
-         "moves.txt",
-         "phone.txt",
-         "pokemon.txt",
-		     "pokemon_old.txt",
-         "pokemonforms.txt",
-         "regionaldexes.txt",
-         "ribbons.txt",
-         "shadowmoves.txt",
-         "townmap.txt",
-         "trainerlists.txt",
-         "trainers.txt",
-         "trainertypes.txt",
-         "types.txt",
-		     "policies.txt",
-		     "avatars.txt"
-      ]
-      latestDataTime = 0
-      latestTextTime = 0
-      mustCompile = false
-      # Should recompile if new maps were imported
-      mustCompile |= import_new_maps
-      # If no PBS file, create one and fill it, then recompile
-      if !safeIsDirectory?("PBS")
-        Dir.mkdir("PBS") rescue nil
-        write_all
-        mustCompile = true
-      end
-
-      # Check data files and PBS files, and recompile if any PBS file was edited
-      # more recently than the data files were last created
-      dataFiles.each do |filename|
-        next if !safeExists?("Data/" + filename)
-        begin
-          File.open("Data/#{filename}") { |file|
-            latestDataTime = [latestDataTime, file.mtime.to_i].max
-          }
-        rescue SystemCallError
-          mustCompile = true
-        end
-      end
-      textFiles.each do |filename|
-        next if !safeExists?("PBS/" + filename)
-        begin
-          File.open("PBS/#{filename}") { |file|
-            latestTextTime = [latestTextTime, file.mtime.to_i].max
-          }
-        rescue SystemCallError
-        end
-      end
-      MessageTypes.loadMessageFile("Data/messages.dat")
-      if !mustCompile && latestTextTime >= latestDataTime
-        echoln("!!!!!At least one PBS file is younger than your .rxdata compiled files!!!!!")
-      end
-
-      # Should recompile if holding Ctrl
-      Input.update
-      mustCompile = true if Input.press?(Input::CTRL) || ARGV.include?("compile")
-      
-      # Delete old data files in preparation for recompiling
-      if mustCompile
-        for i in 0...dataFiles.length
-          begin
-            File.delete("Data/#{dataFiles[i]}") if safeExists?("Data/#{dataFiles[i]}")
-            rescue SystemCallError
-          end
-        end
-      end
-      # Recompile all data
-      compile_all(mustCompile) { |msg| pbSetWindowText(msg); echoln(msg) }
-    rescue Exception
-      e = $!
-      raise e if "#{e.class}"=="Reset" || e.is_a?(Reset) || e.is_a?(SystemExit)
-      pbPrintException(e)
-      for i in 0...dataFiles.length
-        begin
-          File.delete("Data/#{dataFiles[i]}")
-        rescue SystemCallError
-        end
-      end
-      raise Reset.new if e.is_a?(Hangup)
-      loop do
-        Graphics.update
-      end
-    end
-  end
-	
   #=============================================================================
   # Compile all data
   #=============================================================================
@@ -200,6 +77,195 @@ module Compiler
       write_all if ARGV.include?("compile") || pbConfirmMessageSerious(_INTL("\\ts[]Would you like to rewrite the PBS files from the compiled data?"))
     end
     pbSetWindowText(nil)
+  end
+
+  #=============================================================================
+  # Compile type data
+  #=============================================================================
+  def compile_types(path = "PBS/types.txt")
+    GameData::Type::DATA.clear
+    type_names = []
+    # Read from PBS file
+    File.open(path, "rb") { |f|
+      FileLineData.file = path   # For error reporting
+      # Read a whole section's lines at once, then run through this code.
+      # contents is a hash containing all the XXX=YYY lines in that section, where
+      # the keys are the XXX and the values are the YYY (as unprocessed strings).
+      schema = GameData::Type::SCHEMA
+      pbEachFileSection(f) { |contents, type_number|
+        # Go through schema hash of compilable data and compile this section
+        for key in schema.keys
+          FileLineData.setSection(type_number, key, contents[key])   # For error reporting
+          # Skip empty properties, or raise an error if a required property is
+          # empty
+          if contents[key].nil?
+            if ["Name", "InternalName"].include?(key)
+              raise _INTL("The entry {1} is required in {2} section {3}.", key, path, type_id)
+            end
+            next
+          end
+          # Compile value for key
+          value = pbGetCsvRecord(contents[key], key, schema[key])
+          value = nil if value.is_a?(Array) && value.length == 0
+          contents[key] = value
+          # Ensure weaknesses/resistances/immunities are in arrays and are symbols
+          if value && ["Weaknesses", "Resistances", "Immunities"].include?(key)
+            contents[key] = [contents[key]] if !contents[key].is_a?(Array)
+            contents[key].map! { |x| x.to_sym }
+            contents[key].uniq!
+          end
+        end
+        # Construct type hash
+        type_symbol = contents["InternalName"].to_sym
+        type_hash = {
+          :id           => type_symbol,
+          :id_number    => type_number,
+          :name         => contents["Name"],
+          :pseudo_type  => contents["IsPseudoType"],
+          :special_type => contents["IsSpecialType"],
+          :weaknesses   => contents["Weaknesses"],
+          :resistances  => contents["Resistances"],
+          :immunities   => contents["Immunities"],
+          :color        => contents["Color"],
+        }
+        # Add type's data to records
+        GameData::Type.register(type_hash)
+        type_names[type_number] = type_hash[:name]
+      }
+    }
+    # Ensure all weaknesses/resistances/immunities are valid types
+    GameData::Type.each do |type|
+      type.weaknesses.each do |other_type|
+        next if GameData::Type.exists?(other_type)
+        raise _INTL("'{1}' is not a defined type ({2}, section {3}, Weaknesses).", other_type.to_s, path, type.id_number)
+      end
+      type.resistances.each do |other_type|
+        next if GameData::Type.exists?(other_type)
+        raise _INTL("'{1}' is not a defined type ({2}, section {3}, Resistances).", other_type.to_s, path, type.id_number)
+      end
+      type.immunities.each do |other_type|
+        next if GameData::Type.exists?(other_type)
+        raise _INTL("'{1}' is not a defined type ({2}, section {3}, Immunities).", other_type.to_s, path, type.id_number)
+      end
+    end
+    # Save all data
+    GameData::Type.save
+    MessageTypes.setMessages(MessageTypes::Types, type_names)
+    Graphics.update
+  end
+
+  #=============================================================================
+  # Compile move data
+  #=============================================================================
+  def compile_moves()
+    GameData::Move::DATA.clear
+    move_names        = []
+    move_descriptions = []
+    ["PBS/moves.txt","PBS/other_moves.txt"].each do |path|
+      # Read each line of moves.txt at a time and compile it into an move
+      pbCompilerEachPreppedLine(path) { |line, line_no|
+        line = pbGetCsvRecord(line, line_no, [0, "vnssueeuuueissN",
+          nil, nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
+          nil, nil, nil, :Target, nil, nil, nil, nil
+        ])
+        move_number = line[0]
+        move_symbol = line[1].to_sym
+        if GameData::Move::DATA[move_number]
+          raise _INTL("Move ID number '{1}' is used twice.\r\n{2}", move_number, FileLineData.linereport)
+        elsif GameData::Move::DATA[move_symbol]
+          raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_symbol, FileLineData.linereport)
+        end
+        # Sanitise data
+        if line[6] == 2 && line[4] != 0
+          raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
+        elsif line[6] != 2 && line[4] == 0
+          print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
+          line[6] = 2
+        end
+        animation_move = line[14].nil? ? nil : line[14].to_sym
+        # Construct move hash
+        move_hash = {
+          :id_number        => move_number,
+          :id               => move_symbol,
+          :name             => line[2],
+          :function_code    => line[3],
+          :base_damage      => line[4],
+          :type             => line[5],
+          :category         => line[6],
+          :accuracy         => line[7],
+          :total_pp         => line[8],
+          :effect_chance    => line[9],
+          :target           => GameData::Target.get(line[10]).id,
+          :priority         => line[11],
+          :flags            => line[12],
+          :description      => line[13],
+          :animation_move   => animation_move
+        }
+        # Add move's data to records
+        GameData::Move.register(move_hash)
+        move_names[move_number]        = move_hash[:name]
+        move_descriptions[move_number] = move_hash[:description]
+      }
+    end
+    # Save all data
+    GameData::Move.save
+    MessageTypes.setMessages(MessageTypes::Moves, move_names)
+    MessageTypes.setMessages(MessageTypes::MoveDescriptions, move_descriptions)
+    Graphics.update
+
+    GameData::Move.each do |move_data|
+      next if move_data.animation_move.nil?
+      next if GameData::Move.exists?(move_data.animation_move)
+      raise _INTL("Move ID '{1}' was assigned an Animation Move property {2} that doesn't match with any other move.\r\n", move_data.id, move_data.animation_move)
+    end
+  end
+
+  #=============================================================================
+  # Compile item data
+  #=============================================================================
+  def compile_items()
+    GameData::Item::DATA.clear
+    item_names        = []
+    item_names_plural = []
+    item_descriptions = []
+    ["PBS/items.txt","PBS/other_items.txt"].each do |path|
+      # Read each line of items.txt at a time and compile it into an item
+      pbCompilerEachCommentedLine(path) { |line, line_no|
+        line = pbGetCsvRecord(line, line_no, [0, "vnssuusuuUN"])
+        item_number = line[0]
+        item_symbol = line[1].to_sym
+        if GameData::Item::DATA[item_number]
+          raise _INTL("Item ID number '{1}' is used twice.\r\n{2}", item_number, FileLineData.linereport)
+        elsif GameData::Item::DATA[item_symbol]
+          raise _INTL("Item ID '{1}' is used twice.\r\n{2}", item_symbol, FileLineData.linereport)
+        end
+        # Construct item hash
+        item_hash = {
+          :id_number   => item_number,
+          :id          => item_symbol,
+          :name        => line[2],
+          :name_plural => line[3],
+          :pocket      => line[4],
+          :price       => line[5],
+          :description => line[6],
+          :field_use   => line[7],
+          :battle_use  => line[8],
+          :type        => line[9]
+        }
+        item_hash[:move] = parseMove(line[10]) if !nil_or_empty?(line[10])
+        # Add item's data to records
+        GameData::Item.register(item_hash)
+        item_names[item_number]        = item_hash[:name]
+        item_names_plural[item_number] = item_hash[:name_plural]
+        item_descriptions[item_number] = item_hash[:description]
+      }
+    end
+    # Save all data
+    GameData::Item.save
+    MessageTypes.setMessages(MessageTypes::Items, item_names)
+    MessageTypes.setMessages(MessageTypes::ItemPlurals, item_names_plural)
+    MessageTypes.setMessages(MessageTypes::ItemDescriptions, item_descriptions)
+    Graphics.update
   end
   
   #=============================================================================
@@ -364,9 +430,28 @@ module Compiler
     GameData::SpeciesOld.save
     Graphics.update
   end
+
+  def compile_signature_metadata
+    signatureMoveInfo = getSignatureMoves()
+
+    signatureMoveInfo.each do |moveID,signatureHolder|
+      GameData::Move.get(moveID).signature_of = signatureHolder
+    end
+
+    signatureAbilityInfo = getSignatureAbilities()
+
+    signatureAbilityInfo.each do |abilityID,signatureHolder|
+      GameData::Ability.get(abilityID).signature_of = signatureHolder
+    end
+
+    # Save all data
+    GameData::Move.save
+    GameData::Ability.save
+    Graphics.update
+  end
   
   def compile_trainer_policies(path = "PBS/policies.txt")
-	GameData::Policy::DATA.clear
+	  GameData::Policy::DATA.clear
     # Read each line of policies.txt at a time and compile it into a trainer type
     pbCompilerEachCommentedLine(path) { |line, line_no|
 	  line = pbGetCsvRecord(line, line_no, [0, "*n"])
@@ -1340,1134 +1425,98 @@ end
     GameData::MapMetadata.save
     Graphics.update
   end
+
+    def compile_species_earliest_levels
+      # A hash of all species in the game that can be aquired directly
+      # where the key is the species ID and the value is the earliest level they can be directly aquired
+      earliestWildEncounters = {}
   
-  #=============================================================================
-  # Main compiler method for events
-  #=============================================================================
-  def compile_events
-    mapData = MapData.new
-    t = Time.now.to_i
-    Graphics.update
-    trainerChecker = TrainerChecker.new
-    for id in mapData.mapinfos.keys.sort
-      changed = false
-      map = mapData.getMap(id)
-      next if !map || !mapData.mapinfos[id]
-	    mapName = mapData.mapinfos[id].name
-      pbSetWindowText(_INTL("Processing map {1} ({2})",id,mapName))
-      for key in map.events.keys
-        if Time.now.to_i-t>=5
-          Graphics.update
-          t = Time.now.to_i
-        end
-        newevent = convert_to_trainer_event(map.events[key],trainerChecker)
-        if newevent
-          map.events[key] = newevent
-          changed = true
-        end
-        newevent = convert_to_item_event(map.events[key])
-        if newevent
-          map.events[key] = newevent
-          changed = true
-        end
-		    newevent = convert_chasm_style_trainers(map.events[key])
-        if newevent
-          map.events[key] = newevent
-          changed = true
-        end
-		    newevent = convert_avatars(map.events[key])
-        if newevent
-          map.events[key] = newevent
-          changed = true
-        end
-		    newevent = convert_placeholder_pokemon(map.events[key])
-        if newevent
-          map.events[key] = newevent
-          changed = true
-        end
-		    newevent = convert_overworld_pokemon(map.events[key])
-        if newevent
-          map.events[key] = newevent
-          changed = true
-        end
-		    newevent = change_overworld_placeholders(map.events[key])
-		    if newevent
-          map.events[key] = newevent
-          changed = true
-        end
-        changed = true if fix_event_name(map.events[key])
-        newevent = fix_event_use(map.events[key],id,mapData)
-        if newevent
-          map.events[key] = newevent
-          changed = true
-        end
-      end
-      if Time.now.to_i-t>=5
-        Graphics.update
-        t = Time.now.to_i
-      end
-      changed = true if check_counters(map,id,mapData)
-      if changed
-        mapData.saveMap(id)
-        mapData.saveTilesets
-      end
-    end
-    changed = false
-    Graphics.update
-    commonEvents = load_data("Data/CommonEvents.rxdata")
-    pbSetWindowText(_INTL("Processing common events"))
-    for key in 0...commonEvents.length
-      newevent = fix_event_use(commonEvents[key],0,mapData)
-      if newevent
-        commonEvents[key] = newevent
-        changed = true
-      end
-    end
-    save_data(commonEvents,"Data/CommonEvents.rxdata") if changed
-  end
-
-  def edit_maps
-    wallReplaceConvexID = GameData::TerrainTag.get(:WallReplaceConvex).id_number
+      # Checking every single map in the game for encounters
+      GameData::Encounter.each_of_version do |enc_data|
+        earliestLevelForMap = getEarliestLevelForMap(enc_data.map)
   
-    # Iterate over all maps
-    mapData = Compiler::MapData.new
-    tilesets_data = load_data("Data/Tilesets.rxdata")
-    for id in mapData.mapinfos.keys.sort
-        map = mapData.getMap(id)
-        next if !map || !mapData.mapinfos[id]
-        mapName = mapData.mapinfos[id].name
-
-        # Grab the tileset here
-        tileset = tilesets_data[map.tileset_id]
-
-        next if tileset.nil?
-
-        # Iterate over all tiles, finding the first with the relevant tag
-        taggedPositions = []
-        for x in 0..map.data.xsize
-          for y in 0..map.data.ysize
-            currentID = map.data[x, y, 1]
-            next if currentID.nil?
-            currentTag = tileset.terrain_tags[currentID]
-            if currentTag == wallReplaceConvexID
-              taggedPositions.push([x,y])
+        # For each slot in that encounters data listing
+        enc_data.types.each do |key,slots|
+          next if !slots
+          earliestLevelForSlot = earliestLevelForMap
+          earliestLevelForSlot = [earliestLevelForSlot,SURFING_LEVEL].min if key == :ActiveWater
+          slots.each do |slot|
+            species = slot[1]
+            if !earliestWildEncounters.has_key?(species) || earliestWildEncounters[species] > earliestLevelForSlot
+              earliestWildEncounters[species] = earliestLevelForSlot
             end
           end
-        end  
-
-        next if taggedPositions.length == 0
-
-        echoln("Map #{mapName} contains some WallReplaceConvex tiles")
-
-        changeNum = 0
-        taggedPositions.each do |position|
-          taggedX = position[0]
-          taggedY = position[1]
-
-          touchedDirs = 0b0000 # North, East, South, West
-          taggedPositions.each do |position2|
-            posX = position2[0]
-            posY = position2[1]
-            # North
-            touchedDirs = touchedDirs | 0b1000 if posX == taggedX && posY == taggedY - 1
-            # East
-            touchedDirs = touchedDirs | 0b0100 if posY == taggedY && posX == taggedX + 1
-            # South
-            touchedDirs = touchedDirs | 0b0010 if posX == taggedX && posY == taggedY + 1
-            # West
-            touchedDirs = touchedDirs | 0b0001 if posY == taggedY && posX == taggedX - 1
-          end
-
-          tileIDToAdd = 0
-          if touchedDirs == 0b1100 # Northeast
-            tileIDToAdd = 1485
-          elsif touchedDirs == 0b1001 # NorthWest
-            tileIDToAdd = 1487
-          elsif touchedDirs == 0b0110 # Southeast
-            tileIDToAdd = 1469
-          elsif touchedDirs == 0b0011 # Southwest
-            tileIDToAdd = 1471
-          end
-
-          next if tileIDToAdd == 0
-
-          map.data[taggedX,taggedY,1] = tileIDToAdd
-          changeNum += 1
         end
-
-        if changeNum > 0
-          echoln("Saving map after changing #{changeNum} tiles: #{mapName} (#{id})")
-          mapData.saveMap(id)
-        else
-          echoln("Unable to make any changes to: #{mapName} (#{id})")
-        end
-    end
-  end
-
-  def tile_ID_from_coordinates(x, y)
-    return x * TILES_PER_AUTOTILE if y == 0   # Autotile
-    return TILESET_START_ID + (y - 1) * TILES_PER_ROW + x
-  end
+      end
   
-  #=============================================================================
-  # Convert events using the PHT command into fully fledged trainers
-  #=============================================================================
-  def convert_chasm_style_trainers(event)
-    return nil if !event || event.pages.length==0
-    match = event.name.match(/PHT\(([_a-zA-Z0-9]+),([_a-zA-Z]+),([0-9]+)\)/)
-    return nil if !match
-    ret = RPG::Event.new(event.x,event.y)
-    ret.id   = event.id
-    ret.pages = []
-    trainerTypeName = match[1]
-    return nil if !trainerTypeName || trainerTypeName == ""
-    trainerName = match[2]
-    ret.name = "resettrainer(4) - " + trainerTypeName + " " + trainerName
-    trainerMaxLevel = match[3]
-    ret.pages = [3]
-    
-    # Create the first page, where the battle happens
-    firstPage = RPG::Event::Page.new
-    ret.pages[0] = firstPage
-    firstPage.graphic.character_name = trainerTypeName
-    firstPage.trigger = 2   # On event touch
-    firstPage.list = []
-    push_script(firstPage.list,"pbTrainerIntro(:#{trainerTypeName})")
-    push_script(firstPage.list,"pbNoticePlayer(get_self)")
-    push_text(firstPage.list,"Dialogue here.")
-    
-    push_branch(firstPage.list,"pbTrainerBattle(:#{trainerTypeName},\"#{trainerName}\")")
-    push_branch(firstPage.list,"$game_switches[94]",1)
-    push_text(firstPage.list,"Dialogue here.",2)
-    push_script(firstPage.list,"perfectTrainer(#{trainerMaxLevel})",2)
-    push_else(firstPage.list,2)
-    push_text(firstPage.list,"Dialogue here.",2)
-    push_script(firstPage.list,"defeatTrainer",2)
-    push_branch_end(firstPage.list,2)
-    push_branch_end(firstPage.list,1)
-    
-    push_script(firstPage.list,"pbTrainerEnd")
-    push_end(firstPage.list)
-    
-    # Create the second page, which has a talkable action-button graphic
-    secondPage = RPG::Event::Page.new
-    ret.pages[1] = secondPage
-    secondPage.graphic.character_name = trainerTypeName
-    secondPage.condition.self_switch_valid = true
-    secondPage.condition.self_switch_ch = "A"
-    secondPage.list = []
-    push_text(secondPage.list,"Dialogue here.")
-    push_end(secondPage.list)
-    
-    # Create the third page, which has no functionality and no graphic
-    thirdPage = RPG::Event::Page.new
-    ret.pages[2] = thirdPage
-    thirdPage.condition.self_switch_valid = true
-    thirdPage.condition.self_switch_ch = "D"
-    thirdPage.list = []
-    push_end(thirdPage.list)
-    
-    return ret
-  end
-    
-  #=============================================================================
-  # Convert events using the PHA name command into fully fledged avatars
-  #=============================================================================
-  def convert_avatars(event)
-    return nil if !event || event.pages.length==0
-    match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)(?:,([_a-zA-Z]+))?(?:,([_a-zA-Z0-9]+))?(?:,([0-9]+))?\).*/)
-    return nil if !match
-    ret = RPG::Event.new(event.x,event.y)
-    ret.id   = event.id
-    ret.pages = []
-    avatarSpecies = match[1]
-    ret.name = "size(2,2)trainer(4) - " + avatarSpecies
-    legendary = isLegendary(avatarSpecies)
-    return nil if !avatarSpecies || avatarSpecies == ""
-    level = match[2]
-    directionText = match[3]
-    item = match[4] || nil
-    itemCount = match[5].to_i || 0
-    
-    direction = Down
-    if !directionText.nil?
-      case directionText.downcase
-      when "left"
-        direction = Left
-      when "right"
-        direction = Right
-      when "up"
-        direction = Up
-      else
-        direction = Down
-      end
-    end
-    
-    ret.pages = [2]
-    # Create the first page, where the battle happens
-    firstPage = RPG::Event::Page.new
-    ret.pages[0] = firstPage
-    firstPage.graphic.character_name = "zAvatar_#{avatarSpecies}"
-    firstPage.graphic.opacity = 180
-    firstPage.graphic.direction = direction
-    firstPage.trigger = 2   # On event touch
-    firstPage.step_anime = true # Animate while still
-    firstPage.list = []
-    push_script(firstPage.list,"pbNoticePlayer(get_self)")
-    push_script(firstPage.list,"introduceAvatar(:#{avatarSpecies})")
-    push_branch(firstPage.list,"pb#{legendary ? "Big" : "Small"}AvatarBattle([:#{avatarSpecies},#{level}])")
-    if item.nil?
-      push_script(firstPage.list,"defeatBoss",1)
-    else
-      if itemCount > 1
-        push_script(firstPage.list,"defeatBoss(:#{item},#{itemCount})",1)
-      else
-        push_script(firstPage.list,"defeatBoss(:#{item})",1)
-      end
-    end
-      push_branch_end(firstPage.list,1)
-    push_end(firstPage.list)
-    
-    # Create the second page, which has nothing
-    secondPage = RPG::Event::Page.new
-    ret.pages[1] = secondPage
-    secondPage.condition.self_switch_valid = true
-    secondPage.condition.self_switch_ch = "A"
-    
-    return ret
-    end
-    
-    #=============================================================================
-    # Convert events using the PHP name command into fully fledged overworld pokemon
-    #=============================================================================
-    def convert_placeholder_pokemon(event)
-    return nil if !event || event.pages.length==0
-    match = event.name.match(/.*PHP\(([a-zA-Z0-9]+)(?:_([0-9]*))?(?:,([_a-zA-Z]+))?.*/)
-    return nil if !match
-    species = match[1]
-    return if !species
-    species = species.upcase
-    form	= match[2]
-    form = 0 if !form || form == ""
-    speciesData = GameData::Species.get(species.to_sym)
-    return if !speciesData
-    directionText = match[3]
-    direction = Down
-    if !directionText.nil?
-      case directionText.downcase
-      when "left"
-        direction = Left
-      when "right"
-        direction = Right
-      when "up"
-        direction = Up
-      else
-        direction = Down
-      end
-    end
-    
-    echoln("Converting event: #{species},#{form},#{direction}")
-    
-    ret = RPG::Event.new(event.x,event.y)
-    ret.name = "resetfollower"
-    ret.id   = event.id
-    ret.pages = [3]
-    
-    # Create the first page, where the cry happens
-    firstPage = RPG::Event::Page.new
-    ret.pages[0] = firstPage
-    fileName = species
-    fileName += "_" + form.to_s if form != 0
-    firstPage.graphic.character_name = "Followers/#{fileName}"
-    firstPage.graphic.direction = direction
-    firstPage.step_anime = true # Animate while still
-    firstPage.trigger = 0 # Action button
-    firstPage.list = []
-    push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesData.id,form))
-    push_script(firstPage.list,sprintf("pbMessage(\"#{speciesData.real_name} cries out!\")",))
-    push_end(firstPage.list)
-    
-    # Create the second page, which has nothing
-    secondPage = RPG::Event::Page.new
-    ret.pages[1] = secondPage
-    secondPage.condition.self_switch_valid = true
-    secondPage.condition.self_switch_ch = "A"
-    
-    # Create the third page, which has nothing
-    thirdPage = RPG::Event::Page.new
-    ret.pages[2] = thirdPage
-    thirdPage.condition.self_switch_valid = true
-    thirdPage.condition.self_switch_ch = "D"
-    
-    return ret
-  end
+      # A hash where the key is a species
+      # and the value is a hash that describes different ways of aquiring it
+      earliestAquisition = earliestWildEncounters.clone
   
-  #=============================================================================
-  # Convert events using the overworld name command to use the correct graphic.
-  #=============================================================================
-  def convert_overworld_pokemon(event)
-    return nil if !event || event.pages.length==0
-    match = event.name.match(/(.*)?overworld\(([a-zA-Z0-9]+)\)(.*)?/)
-    return nil if !match
-    nameStuff = match[1] || ""
-    nameStuff += match[3] || ""
-    nameStuff += match[2] || ""
-    species = match[2]
-    return nil if !species
-    
-    event.name = nameStuff
-    event.pages.each do |page|
-      next if page.graphic.character_name != "00Overworld Placeholder"
-      page.graphic.character_name = "Followers/#{species}" 
-    end
-    
-    return event
-    end
-    
-    def change_overworld_placeholders(event)
-    return nil if !event || event.pages.length==0
-    return nil unless event.name.downcase.include?("boxplaceholder")
-    
-    return nil
-    #event.pages.each do |page|
-    #	page.move_type = 1
-    #end
-    
-    return event
-    end
-  end
-
-module GameData
-	def self.load_all
-		echoln("Loading all game data.")
-		Type.load
-		Ability.load
-		Move.load
-		Item.load
-		BerryPlant.load
-		Species.load
-		SpeciesOld.load
-		Ribbon.load
-		Encounter.load
-		TrainerType.load
-		Trainer.load
-		Metadata.load
-		MapMetadata.load
-		Policy.load
-		Avatar.load
-	end
-end
-
-module Compiler
-	module_function
-
-  #=============================================================================
-  # Save Pokémon data to PBS file
-  #=============================================================================
-  def write_pokemon
-    File.open("PBS/pokemon.txt", "wb") { |f|
-      add_PBS_header_to_file(f)
-      GameData::Species.each do |species|
-        next if species.form != 0
-        pbSetWindowText(_INTL("Writing species {1}...", species.id_number))
-        Graphics.update if species.id_number % 50 == 0
-        f.write("\#-------------------------------\r\n")
-        f.write(sprintf("[%d]\r\n", species.id_number))
-        f.write(sprintf("Name = %s\r\n", species.real_name))
-        f.write(sprintf("InternalName = %s\r\n", species.species))
-        f.write(sprintf("Notes = %s\r\n", species.notes)) if !species.notes.nil? && !species.notes.blank?
-        f.write(sprintf("Type1 = %s\r\n", species.type1))
-        f.write(sprintf("Type2 = %s\r\n", species.type2)) if species.type2 != species.type1
-        stats_array = []
-        evs_array = []
-		    total = 0
-        GameData::Stat.each_main do |s|
-          next if s.pbs_order < 0
-          stats_array[s.pbs_order] = species.base_stats[s.id]
-          evs_array[s.pbs_order] = species.evs[s.id]
-		      total += species.base_stats[s.id]
-        end
-		    f.write(sprintf("# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def\r\n", total))
-        f.write(sprintf("BaseStats = %s\r\n", stats_array.join(",")))
-		    f.write(sprintf("# Total = %s\r\n", total))
-        f.write(sprintf("GenderRate = %s\r\n", species.gender_ratio))
-        f.write(sprintf("GrowthRate = %s\r\n", species.growth_rate))
-        f.write(sprintf("BaseEXP = %d\r\n", species.base_exp))
-        f.write(sprintf("EffortPoints = %s\r\n", evs_array.join(",")))
-        f.write(sprintf("Rareness = %d\r\n", species.catch_rate))
-        f.write(sprintf("Happiness = %d\r\n", species.happiness))
-        if species.abilities.length > 0
-          f.write(sprintf("Abilities = %s\r\n", species.abilities.join(",")))
-        end
-        if species.hidden_abilities.length > 0
-          f.write(sprintf("HiddenAbility = %s\r\n", species.hidden_abilities.join(",")))
-        end
-        if species.moves.length > 0
-          f.write(sprintf("Moves = %s\r\n", species.moves.join(",")))
-        end
-        if species.tutor_moves.length > 0
-          f.write(sprintf("TutorMoves = %s\r\n", species.tutor_moves.join(",")))
-        end
-        if species.egg_moves.length > 0
-          f.write(sprintf("EggMoves = %s\r\n", species.egg_moves.join(",")))
-        end
-        if species.egg_groups.length > 0
-          f.write(sprintf("Compatibility = %s\r\n", species.egg_groups.join(",")))
-        end
-        f.write(sprintf("StepsToHatch = %d\r\n", species.hatch_steps))
-        f.write(sprintf("Height = %.1f\r\n", species.height / 10.0))
-        f.write(sprintf("Weight = %.1f\r\n", species.weight / 10.0))
-        f.write(sprintf("Color = %s\r\n", species.color))
-        f.write(sprintf("Shape = %s\r\n", species.shape))
-        f.write(sprintf("Habitat = %s\r\n", species.habitat)) if species.habitat != :None
-        f.write(sprintf("Kind = %s\r\n", species.real_category))
-        f.write(sprintf("Pokedex = %s\r\n", species.real_pokedex_entry))
-        f.write(sprintf("FormName = %s\r\n", species.real_form_name)) if species.real_form_name && !species.real_form_name.empty?
-        f.write(sprintf("Generation = %d\r\n", species.generation)) if species.generation != 0
-        f.write(sprintf("WildItemCommon = %s\r\n", species.wild_item_common)) if species.wild_item_common
-        f.write(sprintf("WildItemUncommon = %s\r\n", species.wild_item_uncommon)) if species.wild_item_uncommon
-        f.write(sprintf("WildItemRare = %s\r\n", species.wild_item_rare)) if species.wild_item_rare
-        f.write(sprintf("BattlerPlayerX = %d\r\n", species.back_sprite_x))
-        f.write(sprintf("BattlerPlayerY = %d\r\n", species.back_sprite_y))
-        f.write(sprintf("BattlerEnemyX = %d\r\n", species.front_sprite_x))
-        f.write(sprintf("BattlerEnemyY = %d\r\n", species.front_sprite_y))
-        f.write(sprintf("BattlerAltitude = %d\r\n", species.front_sprite_altitude)) if species.front_sprite_altitude != 0
-        f.write(sprintf("BattlerShadowX = %d\r\n", species.shadow_x))
-        f.write(sprintf("BattlerShadowSize = %d\r\n", species.shadow_size))
-        if species.evolutions.any? { |evo| !evo[3] }
-          f.write("Evolutions = ")
-          need_comma = false
-          species.evolutions.each do |evo|
-            next if evo[3]   # Skip prevolution entries
-            f.write(",") if need_comma
-            need_comma = true
-            evo_type_data = GameData::Evolution.get(evo[1])
-            param_type = evo_type_data.parameter
-            f.write(sprintf("%s,%s,", evo[0], evo_type_data.id.to_s))
-            if !param_type.nil?
-              if !GameData.const_defined?(param_type.to_sym) && param_type.is_a?(Symbol)
-                f.write(getConstantName(param_type, evo[2]))
-              else
-                f.write(evo[2].to_s)
-              end
+      iterationCount = 0
+      loop do
+        madeAnyChanges = false
+        iterationCount += 1
+        echoln("Iteration #{iterationCount} of calculating earliest species aquisition level!")
+        GameData::Species.each do |speciesData|
+          species = speciesData.id
+          next unless earliestAquisition.has_key?(species)
+          earliestLevelForBase = earliestAquisition[species]
+  
+          evolutions = speciesData.get_evolutions
+  
+          # Determine the earliest possible aquisiton level for each of its evolutions
+          evolutions.each do |evolutionEntry|
+            evoSpecies = evolutionEntry[0]
+            evoMethod = evolutionEntry[1]
+            param = evolutionEntry[2]
+            case evoMethod
+            # All method based on leveling up to a certain level
+            when :Level,:LevelDay,:LevelNight,:LevelMale,:LevelFemale,:LevelRain,
+              :AttackGreater,:AtkDefEqual,:DefenseGreater,:LevelDarkInParty,
+              :Silcoon,:Cascoon,:Ninjask,:Shedinja
+              
+              evoLevelThreshold = param
+            # All methods based on holding a certain item or using a certain item on the pokemon
+            when :HoldItem,:HoldItemMale,:HoldItemFemale,:DayHoldItem,:NightHoldItem,
+              :Item,:ItemMale,:ItemFemale,:ItemDay,:ItemNight,:ItemHappiness
+              
+              # Push this prevo if the evolution from it is gated by an item which is available by this point
+              evoLevelThreshold = getEarliestLevelForItem(param)
+            end
+  
+            earliestLevelForEvolved = [earliestLevelForBase,evoLevelThreshold].max
+  
+            if !earliestAquisition.has_key?(evoSpecies) || earliestAquisition[evoSpecies] > earliestLevelForEvolved
+              earliestAquisition[evoSpecies] = earliestLevelForEvolved
+              madeAnyChanges = true
             end
           end
-          f.write("\r\n")
         end
-        f.write(sprintf("Incense = %s\r\n", species.incense)) if species.incense
+        break if !madeAnyChanges
       end
-    }
-    pbSetWindowText(nil)
-    Graphics.update
-  end
-
-  #=============================================================================
-  # Save Pokémon forms data to PBS file
-  #=============================================================================
-  def write_pokemon_forms
-    File.open("PBS/pokemonforms.txt", "wb") { |f|
-      add_PBS_header_to_file(f)
-      GameData::Species.each do |species|
-        next if species.form == 0
-        base_species = GameData::Species.get(species.species)
-        pbSetWindowText(_INTL("Writing species {1}...", species.id_number))
-        Graphics.update if species.id_number % 50 == 0
-        f.write("\#-------------------------------\r\n")
-        f.write(sprintf("[%s,%d]\r\n", species.species, species.form))
-        f.write(sprintf("FormName = %s\r\n", species.real_form_name)) if species.real_form_name && !species.real_form_name.empty?
-        f.write(sprintf("Notes = %s\r\n", species.notes)) if !species.notes.nil? && !species.notes.blank?
-        f.write(sprintf("PokedexForm = %d\r\n", species.pokedex_form)) if species.pokedex_form != species.form
-        f.write(sprintf("MegaStone = %s\r\n", species.mega_stone)) if species.mega_stone
-        f.write(sprintf("MegaMove = %s\r\n", species.mega_move)) if species.mega_move
-        f.write(sprintf("UnmegaForm = %d\r\n", species.unmega_form)) if species.unmega_form != 0
-        f.write(sprintf("MegaMessage = %d\r\n", species.mega_message)) if species.mega_message != 0
-        if species.type1 != base_species.type1 || species.type2 != base_species.type2
-          f.write(sprintf("Type1 = %s\r\n", species.type1))
-          f.write(sprintf("Type2 = %s\r\n", species.type2)) if species.type2 != species.type1
-        end
-        stats_array = []
-        evs_array = []
-        GameData::Stat.each_main do |s|
-          next if s.pbs_order < 0
-          stats_array[s.pbs_order] = species.base_stats[s.id]
-          evs_array[s.pbs_order] = species.evs[s.id]
-        end
-        f.write(sprintf("BaseStats = %s\r\n", stats_array.join(","))) if species.base_stats != base_species.base_stats
-        f.write(sprintf("BaseEXP = %d\r\n", species.base_exp)) if species.base_exp != base_species.base_exp
-        f.write(sprintf("EffortPoints = %s\r\n", evs_array.join(","))) if species.evs != base_species.evs
-        f.write(sprintf("Rareness = %d\r\n", species.catch_rate)) if species.catch_rate != base_species.catch_rate
-        f.write(sprintf("Happiness = %d\r\n", species.happiness)) if species.happiness != base_species.happiness
-        if species.abilities.length > 0 && species.abilities != base_species.abilities
-          f.write(sprintf("Abilities = %s\r\n", species.abilities.join(",")))
-        end
-        if species.hidden_abilities.length > 0 && species.hidden_abilities != base_species.hidden_abilities
-          f.write(sprintf("HiddenAbility = %s\r\n", species.hidden_abilities.join(",")))
-        end
-        if species.moves.length > 0 && species.moves != base_species.moves
-          f.write(sprintf("Moves = %s\r\n", species.moves.join(",")))
-        end
-        if species.tutor_moves.length > 0 && species.tutor_moves != base_species.tutor_moves
-          f.write(sprintf("TutorMoves = %s\r\n", species.tutor_moves.join(",")))
-        end
-        if species.egg_moves.length > 0 && species.egg_moves != base_species.egg_moves
-          f.write(sprintf("EggMoves = %s\r\n", species.egg_moves.join(",")))
-        end
-        if species.egg_groups.length > 0 && species.egg_groups != base_species.egg_groups
-          f.write(sprintf("Compatibility = %s\r\n", species.egg_groups.join(",")))
-        end
-        f.write(sprintf("StepsToHatch = %d\r\n", species.hatch_steps)) if species.hatch_steps != base_species.hatch_steps
-        f.write(sprintf("Height = %.1f\r\n", species.height / 10.0)) if species.height != base_species.height
-        f.write(sprintf("Weight = %.1f\r\n", species.weight / 10.0)) if species.weight != base_species.weight
-        f.write(sprintf("Color = %s\r\n", species.color)) if species.color != base_species.color
-        f.write(sprintf("Shape = %s\r\n", species.shape)) if species.shape != base_species.shape
-        if species.habitat != :None && species.habitat != base_species.habitat
-          f.write(sprintf("Habitat = %s\r\n", species.habitat))
-        end
-        f.write(sprintf("Kind = %s\r\n", species.real_category)) if species.real_category != base_species.real_category
-        f.write(sprintf("Pokedex = %s\r\n", species.real_pokedex_entry)) if species.real_pokedex_entry != base_species.real_pokedex_entry
-        f.write(sprintf("Generation = %d\r\n", species.generation)) if species.generation != base_species.generation
-        if species.wild_item_common != base_species.wild_item_common ||
-           species.wild_item_uncommon != base_species.wild_item_uncommon ||
-           species.wild_item_rare != base_species.wild_item_rare
-          f.write(sprintf("WildItemCommon = %s\r\n", species.wild_item_common)) if species.wild_item_common
-          f.write(sprintf("WildItemUncommon = %s\r\n", species.wild_item_uncommon)) if species.wild_item_uncommon
-          f.write(sprintf("WildItemRare = %s\r\n", species.wild_item_rare)) if species.wild_item_rare
-        end
-        f.write(sprintf("BattlerPlayerX = %d\r\n", species.back_sprite_x)) if species.back_sprite_x != base_species.back_sprite_x
-        f.write(sprintf("BattlerPlayerY = %d\r\n", species.back_sprite_y)) if species.back_sprite_y != base_species.back_sprite_y
-        f.write(sprintf("BattlerEnemyX = %d\r\n", species.front_sprite_x)) if species.front_sprite_x != base_species.front_sprite_x
-        f.write(sprintf("BattlerEnemyY = %d\r\n", species.front_sprite_y)) if species.front_sprite_y != base_species.front_sprite_y
-        f.write(sprintf("BattlerAltitude = %d\r\n", species.front_sprite_altitude)) if species.front_sprite_altitude != base_species.front_sprite_altitude
-        f.write(sprintf("BattlerShadowX = %d\r\n", species.shadow_x)) if species.shadow_x != base_species.shadow_x
-        f.write(sprintf("BattlerShadowSize = %d\r\n", species.shadow_size)) if species.shadow_size != base_species.shadow_size
-        if species.evolutions != base_species.evolutions && species.evolutions.any? { |evo| !evo[3] }
-          f.write("Evolutions = ")
-          need_comma = false
-          species.evolutions.each do |evo|
-            next if evo[3]   # Skip prevolution entries
-            f.write(",") if need_comma
-            need_comma = true
-            evo_type_data = GameData::Evolution.get(evo[1])
-            param_type = evo_type_data.parameter
-            f.write(sprintf("%s,%s,", evo[0], evo_type_data.id.to_s))
-            if !param_type.nil?
-              if !GameData.const_defined?(param_type.to_sym) && param_type.is_a?(Symbol)
-                f.write(getConstantName(param_type, evo[2]))
-              else
-                f.write(evo[2].to_s)
-              end
-            end
-          end
-          f.write("\r\n")
-        end
-      end
-    }
-    pbSetWindowText(nil)
-    Graphics.update
-  end
-
-  def write_moves
-    File.open("PBS/moves.txt", "wb") { |f|
-      add_PBS_header_to_file(f)
-      current_type = -1
-      GameData::Move.each do |m|
-        break if m.id_number >= 2000
-        if current_type != m.type && m.id_number < 742
-          current_type = m.type
-          f.write("\#-------------------------------\r\n")
-        end
-        f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s,%s\r\n",
-          m.id_number,
-          csvQuote(m.id.to_s),
-          csvQuote(m.real_name),
-          csvQuote(m.function_code),
-          m.base_damage,
-          m.type.to_s,
-          ["Physical", "Special", "Status"][m.category],
-          m.accuracy,
-          m.total_pp,
-          m.effect_chance,
-          m.target,
-          m.priority,
-          csvQuote(m.flags),
-          csvQuoteAlways(m.real_description),
-          m.animation_move.nil? ? "" : m.animation_move.to_s
-        ))
-      end
-    }
-    File.open("PBS/other_moves.txt", "wb") { |f|
-      add_PBS_header_to_file(f)
-      current_type = -1
-      GameData::Move.each do |m|
-        next if m.id_number < 2000
-        if current_type != m.type && m.id_number < 742
-          current_type = m.type
-          f.write("\#-------------------------------\r\n")
-        end
-        f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s,%s\r\n",
-          m.id_number,
-          csvQuote(m.id.to_s),
-          csvQuote(m.real_name),
-          csvQuote(m.function_code),
-          m.base_damage,
-          m.type.to_s,
-          ["Physical", "Special", "Status"][m.category],
-          m.accuracy,
-          m.total_pp,
-          m.effect_chance,
-          m.target,
-          m.priority,
-          csvQuote(m.flags),
-          csvQuoteAlways(m.real_description),
-          m.animation_move.nil? ? "" : m.animation_move.to_s
-        ))
-      end
-    }
-    Graphics.update
-  end
   
-  #=============================================================================
-  # Save trainer type data to PBS file
-  #=============================================================================
-  def write_trainer_types
-    File.open("PBS/trainertypes.txt", "wb") { |f|
-      add_PBS_header_to_file(f)
-      f.write("\#-------------------------------\r\n")
-      GameData::TrainerType.each do |t|
-        policiesString = ""
-        if t.policies
-          policiesString += "["
-          t.policies.each_with_index do |policy_symbol,index|
-            policiesString += policy_symbol.to_s
-            policiesString += "," if index < t.policies.length - 1
-          end
-          policiesString += "]"
-        end
-	  
-        f.write(sprintf("%d,%s,%s,%d,%s,%s,%s,%s,%s,%s,%s\r\n",
-        t.id_number,
-        csvQuote(t.id.to_s),
-        csvQuote(t.real_name),
-        t.base_money,
-        csvQuote(t.battle_BGM),
-        csvQuote(t.victory_ME),
-        csvQuote(t.intro_ME),
-        ["Male", "Female", "Mixed", "Wild"][t.gender],
-        (t.skill_level == t.base_money) ? "" : t.skill_level.to_s,
-        csvQuote(t.skill_code),
-        policiesString
-        ))
+      earliestAquisition.each do |species,level|
+        GameData::Species.get(species).earliest_available = level
       end
-    }
-    Graphics.update
-  end
-
-  #=============================================================================
-  # Save individual trainer data to PBS file
-  #=============================================================================
-  def write_trainers
-    File.open("PBS/trainers.txt", "wb") { |f|
-      add_PBS_header_to_file(f)
-      GameData::Trainer.each do |trainer|
-        pbSetWindowText(_INTL("Writing trainer {1}...", trainer.id_number))
-        Graphics.update if trainer.id_number % 50 == 0
-        f.write("\#-------------------------------\r\n")
-        if trainer.version > 0
-          f.write(sprintf("[%s,%s,%d]\r\n", trainer.trainer_type, trainer.real_name, trainer.version))
-        else
-          f.write(sprintf("[%s,%s]\r\n", trainer.trainer_type, trainer.real_name))
-        end
-        if trainer.extendsVersion >= 0
-          if !trainer.extendsClass.nil? && !trainer.extendsName.nil?
-            f.write(sprintf("Extends = %s,%s,%s\r\n", trainer.extendsClass.to_s, trainer.extendsName.to_s, trainer.extendsVersion.to_s))
-          else
-            f.write(sprintf("ExtendsVersion = %s\r\n", trainer.extendsVersion.to_s))
-          end
-        end
-        if !trainer.nameForHashing.nil?
-          f.write(sprintf("NameForHashing = %s\r\n", trainer.nameForHashing.to_s))
-        end
-		    if trainer.policies && trainer.policies.length > 0
-          policiesString = ""
-          trainer.policies.each_with_index do |policy_symbol,index|
-            policiesString += policy_symbol.to_s
-            policiesString += "," if index < trainer.policies.length - 1
-          end
-          f.write(sprintf("Policies = %s\r\n", policiesString))
-        end
-        f.write(sprintf("Items = %s\r\n", trainer.items.join(","))) if trainer.items.length > 0
-        trainer.pokemon.each do |pkmn|
-          f.write(sprintf("Pokemon = %s,%d\r\n", pkmn[:species], pkmn[:level]))
-          writePartyMember(f,pkmn)
-        end
-        trainer.removedPokemon.each do |pkmn|
-          f.write(sprintf("RemovePokemon = %s,%d\r\n", pkmn[:species], pkmn[:level]))
-          writePartyMember(f,pkmn)
-        end
+  
+      GameData::Species.save
+      Graphics.update
+    end
+  
+    def getEarliestLevelForItem(item_id)
+      ITEMS_AVAILABLE_BY_CAP.each do |levelCapBracket, itemArray|
+        next unless itemArray.include?(item_id)
+        return levelCapBracket
       end
-    }
-    pbSetWindowText(nil)
-    Graphics.update
-  end
-
-  def writePartyMember(f,pkmn)
-    f.write(sprintf("    Position = %s\r\n", pkmn[:assigned_position])) if !pkmn[:assigned_position].nil?
-    f.write(sprintf("    Name = %s\r\n", pkmn[:name])) if pkmn[:name] && !pkmn[:name].empty?
-    f.write(sprintf("    Form = %d\r\n", pkmn[:form])) if pkmn[:form] && pkmn[:form] > 0
-    f.write(sprintf("    Gender = %s\r\n", (pkmn[:gender] == 1) ? "female" : "male")) if pkmn[:gender]
-    f.write("    Shiny = yes\r\n") if pkmn[:shininess]
-    f.write("    Shadow = yes\r\n") if pkmn[:shadowness]
-    f.write(sprintf("    Moves = %s\r\n", pkmn[:moves].join(","))) if pkmn[:moves] && pkmn[:moves].length > 0
-    f.write(sprintf("    Ability = %s\r\n", pkmn[:ability])) if pkmn[:ability]
-    f.write(sprintf("    AbilityIndex = %d\r\n", pkmn[:ability_index])) if pkmn[:ability_index]
-    f.write(sprintf("    Item = %s\r\n", pkmn[:item])) if pkmn[:item]
-    f.write(sprintf("    Nature = %s\r\n", pkmn[:nature])) if pkmn[:nature]
-    ivs_array = []
-    evs_array = []
-    GameData::Stat.each_main do |s|
-      next if s.pbs_order < 0
-      ivs_array[s.pbs_order] = pkmn[:iv][s.id] if pkmn[:iv]
-      evs_array[s.pbs_order] = pkmn[:ev][s.id] if pkmn[:ev]
+      return 100
     end
-    f.write(sprintf("    IV = %s\r\n", ivs_array.join(","))) if pkmn[:iv]
-    f.write(sprintf("    EV = %s\r\n", evs_array.join(","))) if pkmn[:ev]
-    f.write(sprintf("    Happiness = %d\r\n", pkmn[:happiness])) if pkmn[:happiness]
-    f.write(sprintf("    Ball = %s\r\n", pkmn[:poke_ball])) if pkmn[:poke_ball]
-  end
-
-  #=============================================================================
-  # Save individual trainer data to PBS file
-  #=============================================================================
-  def write_avatars
-    File.open("PBS/avatars.txt", "wb") { |f|
-      add_PBS_header_to_file(f)
-      GameData::Avatar.each do |avatar|
-        pbSetWindowText(_INTL("Writing avatar {1}...", avatar.id_number))
-        Graphics.update if avatar.id_number % 20 == 0
-        f.write("\#-------------------------------\r\n")
-        f.write(sprintf("[%s]\r\n", avatar.id))
-        f.write(sprintf("Ability = %s\r\n", avatar.ability))
-        f.write(sprintf("Moves1 = %s\r\n", avatar.moves1.join(",")))
-        f.write(sprintf("Moves2 = %s\r\n", avatar.moves2.join(","))) if !avatar.moves2.nil? && avatar.num_phases >= 2
-        f.write(sprintf("Moves3 = %s\r\n", avatar.moves3.join(","))) if !avatar.moves3.nil? && avatar.num_phases >= 3
-        f.write(sprintf("Moves4 = %s\r\n", avatar.moves4.join(","))) if !avatar.moves4.nil? && avatar.num_phases >= 4
-        f.write(sprintf("Moves5 = %s\r\n", avatar.moves5.join(","))) if !avatar.moves5.nil? && avatar.num_phases >= 5
-        f.write(sprintf("Turns = %s\r\n", avatar.num_turns)) if avatar.num_turns != 2.0
-        f.write(sprintf("HPMult = %s\r\n", avatar.hp_mult)) if avatar.num_turns != 4.0
-        f.write(sprintf("HealthBars = %s\r\n", avatar.num_health_bars)) if avatar.num_health_bars != avatar.num_phases
-        f.write(sprintf("Item = %s\r\n", avatar.item)) if !avatar.item.nil?
-        f.write(sprintf("DMGMult = %s\r\n", avatar.dmg_mult)) if avatar.dmg_mult != 1.0
-        f.write(sprintf("DMGResist = %s\r\n", avatar.dmg_resist)) if avatar.dmg_resist != 0.0
-        f.write(sprintf("Form = %s\r\n", avatar.form)) if avatar.form != 0
-        f.write(sprintf("Aggression = %s\r\n", avatar.aggression)) if avatar.aggression != PokeBattle_AI_Boss::DEFAULT_BOSS_AGGRESSION
+  
+    def getEarliestLevelForMap(map_id)
+      MAPS_AVAILABLE_BY_CAP.each do |levelCapBracket, mapArray|
+        next unless mapArray.include?(map_id)
+        return levelCapBracket
       end
-    }
-    pbSetWindowText(nil)
-    Graphics.update
-  end
-
-  #=============================================================================
-  # Compile type data
-  #=============================================================================
-  def compile_types(path = "PBS/types.txt")
-    GameData::Type::DATA.clear
-    type_names = []
-    # Read from PBS file
-    File.open(path, "rb") { |f|
-      FileLineData.file = path   # For error reporting
-      # Read a whole section's lines at once, then run through this code.
-      # contents is a hash containing all the XXX=YYY lines in that section, where
-      # the keys are the XXX and the values are the YYY (as unprocessed strings).
-      schema = GameData::Type::SCHEMA
-      pbEachFileSection(f) { |contents, type_number|
-        # Go through schema hash of compilable data and compile this section
-        for key in schema.keys
-          FileLineData.setSection(type_number, key, contents[key])   # For error reporting
-          # Skip empty properties, or raise an error if a required property is
-          # empty
-          if contents[key].nil?
-            if ["Name", "InternalName"].include?(key)
-              raise _INTL("The entry {1} is required in {2} section {3}.", key, path, type_id)
-            end
-            next
-          end
-          # Compile value for key
-          value = pbGetCsvRecord(contents[key], key, schema[key])
-          value = nil if value.is_a?(Array) && value.length == 0
-          contents[key] = value
-          # Ensure weaknesses/resistances/immunities are in arrays and are symbols
-          if value && ["Weaknesses", "Resistances", "Immunities"].include?(key)
-            contents[key] = [contents[key]] if !contents[key].is_a?(Array)
-            contents[key].map! { |x| x.to_sym }
-            contents[key].uniq!
-          end
-        end
-        # Construct type hash
-        type_symbol = contents["InternalName"].to_sym
-        type_hash = {
-          :id           => type_symbol,
-          :id_number    => type_number,
-          :name         => contents["Name"],
-          :pseudo_type  => contents["IsPseudoType"],
-          :special_type => contents["IsSpecialType"],
-          :weaknesses   => contents["Weaknesses"],
-          :resistances  => contents["Resistances"],
-          :immunities   => contents["Immunities"],
-          :color        => contents["Color"],
-        }
-        # Add type's data to records
-        GameData::Type.register(type_hash)
-        type_names[type_number] = type_hash[:name]
-      }
-    }
-    # Ensure all weaknesses/resistances/immunities are valid types
-    GameData::Type.each do |type|
-      type.weaknesses.each do |other_type|
-        next if GameData::Type.exists?(other_type)
-        raise _INTL("'{1}' is not a defined type ({2}, section {3}, Weaknesses).", other_type.to_s, path, type.id_number)
-      end
-      type.resistances.each do |other_type|
-        next if GameData::Type.exists?(other_type)
-        raise _INTL("'{1}' is not a defined type ({2}, section {3}, Resistances).", other_type.to_s, path, type.id_number)
-      end
-      type.immunities.each do |other_type|
-        next if GameData::Type.exists?(other_type)
-        raise _INTL("'{1}' is not a defined type ({2}, section {3}, Immunities).", other_type.to_s, path, type.id_number)
-      end
+      return 100
     end
-    # Save all data
-    GameData::Type.save
-    MessageTypes.setMessages(MessageTypes::Types, type_names)
-    Graphics.update
-  end
-
-  #=============================================================================
-  # Compile move data
-  #=============================================================================
-  def compile_moves()
-    GameData::Move::DATA.clear
-    move_names        = []
-    move_descriptions = []
-    ["PBS/moves.txt","PBS/other_moves.txt"].each do |path|
-      # Read each line of moves.txt at a time and compile it into an move
-      pbCompilerEachPreppedLine(path) { |line, line_no|
-        line = pbGetCsvRecord(line, line_no, [0, "vnssueeuuueissN",
-          nil, nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
-          nil, nil, nil, :Target, nil, nil, nil, nil
-        ])
-        move_number = line[0]
-        move_symbol = line[1].to_sym
-        if GameData::Move::DATA[move_number]
-          raise _INTL("Move ID number '{1}' is used twice.\r\n{2}", move_number, FileLineData.linereport)
-        elsif GameData::Move::DATA[move_symbol]
-          raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_symbol, FileLineData.linereport)
-        end
-        # Sanitise data
-        if line[6] == 2 && line[4] != 0
-          raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
-        elsif line[6] != 2 && line[4] == 0
-          print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
-          line[6] = 2
-        end
-        animation_move = line[14].nil? ? nil : line[14].to_sym
-        # Construct move hash
-        move_hash = {
-          :id_number        => move_number,
-          :id               => move_symbol,
-          :name             => line[2],
-          :function_code    => line[3],
-          :base_damage      => line[4],
-          :type             => line[5],
-          :category         => line[6],
-          :accuracy         => line[7],
-          :total_pp         => line[8],
-          :effect_chance    => line[9],
-          :target           => GameData::Target.get(line[10]).id,
-          :priority         => line[11],
-          :flags            => line[12],
-          :description      => line[13],
-          :animation_move   => animation_move
-        }
-        # Add move's data to records
-        GameData::Move.register(move_hash)
-        move_names[move_number]        = move_hash[:name]
-        move_descriptions[move_number] = move_hash[:description]
-      }
-    end
-    # Save all data
-    GameData::Move.save
-    MessageTypes.setMessages(MessageTypes::Moves, move_names)
-    MessageTypes.setMessages(MessageTypes::MoveDescriptions, move_descriptions)
-    Graphics.update
-
-    GameData::Move.each do |move_data|
-      next if move_data.animation_move.nil?
-      next if GameData::Move.exists?(move_data.animation_move)
-      raise _INTL("Move ID '{1}' was assigned an Animation Move property {2} that doesn't match with any other move.\r\n", move_data.id, move_data.animation_move)
-    end
-  end
-
-  #=============================================================================
-  # Save type data to PBS file
-  #=============================================================================
-  def write_types
-    File.open("PBS/types.txt", "wb") { |f|
-      add_PBS_header_to_file(f)
-      # Write each type in turn
-      GameData::Type.each do |type|
-        f.write("\#-------------------------------\r\n")
-        f.write("[#{type.id_number}]\r\n")
-        f.write("Name = #{type.real_name}\r\n")
-        f.write("InternalName = #{type.id}\r\n")
-        if type.color
-          rgb = [type.color.red.to_i,type.color.green.to_i,type.color.blue.to_i]
-          f.write("Color = #{rgb.join(",")}\r\n")
-        end
-        f.write("IsPseudoType = true\r\n") if type.pseudo_type
-        f.write("IsSpecialType = true\r\n") if type.special?
-        f.write("Weaknesses = #{type.weaknesses.join(",")}\r\n") if type.weaknesses.length > 0
-        f.write("Resistances = #{type.resistances.join(",")}\r\n") if type.resistances.length > 0
-        f.write("Immunities = #{type.immunities.join(",")}\r\n") if type.immunities.length > 0
-      end
-    }
-    Graphics.update
-  end
-
-  def compile_signature_metadata
-    signatureMoveInfo = getSignatureMoves()
-
-    signatureMoveInfo.each do |moveID,signatureHolder|
-      GameData::Move.get(moveID).signature_of = signatureHolder
-    end
-
-    signatureAbilityInfo = getSignatureAbilities()
-
-    signatureAbilityInfo.each do |abilityID,signatureHolder|
-      GameData::Ability.get(abilityID).signature_of = signatureHolder
-    end
-
-    # Save all data
-    GameData::Move.save
-    GameData::Ability.save
-    Graphics.update
-  end
-
-  #=============================================================================
-  # Save all data to PBS files
-  #=============================================================================
-  def write_all
-    write_town_map
-    write_connections
-    write_phone
-    write_types
-    write_abilities
-    write_moves
-    write_items
-    write_berry_plants
-    write_pokemon
-    write_pokemon_forms
-    write_shadow_movesets
-    write_regional_dexes
-    write_ribbons
-    write_encounters
-    write_trainer_types
-    write_trainers
-    write_trainer_lists
-    write_avatars
-    write_metadata
-  end
-
-  def compile_species_earliest_levels
-    # A hash of all species in the game that can be aquired directly
-    # where the key is the species ID and the value is the earliest level they can be directly aquired
-    earliestWildEncounters = {}
-
-    # Checking every single map in the game for encounters
-    GameData::Encounter.each_of_version do |enc_data|
-      earliestLevelForMap = getEarliestLevelForMap(enc_data.map)
-
-      # For each slot in that encounters data listing
-      enc_data.types.each do |key,slots|
-        next if !slots
-        earliestLevelForSlot = earliestLevelForMap
-        earliestLevelForSlot = [earliestLevelForSlot,SURFING_LEVEL].min if key == :ActiveWater
-        slots.each do |slot|
-          species = slot[1]
-          if !earliestWildEncounters.has_key?(species) || earliestWildEncounters[species] > earliestLevelForSlot
-            earliestWildEncounters[species] = earliestLevelForSlot
-          end
-        end
-      end
-    end
-
-    # A hash where the key is a species
-    # and the value is a hash that describes different ways of aquiring it
-    earliestAquisition = earliestWildEncounters.clone
-
-    iterationCount = 0
-    loop do
-      madeAnyChanges = false
-      iterationCount += 1
-      echoln("Iteration #{iterationCount} of calculating earliest species aquisition level!")
-      GameData::Species.each do |speciesData|
-        species = speciesData.id
-        next unless earliestAquisition.has_key?(species)
-        earliestLevelForBase = earliestAquisition[species]
-
-        evolutions = speciesData.get_evolutions
-
-        # Determine the earliest possible aquisiton level for each of its evolutions
-        evolutions.each do |evolutionEntry|
-          evoSpecies = evolutionEntry[0]
-          evoMethod = evolutionEntry[1]
-          param = evolutionEntry[2]
-          case evoMethod
-          # All method based on leveling up to a certain level
-          when :Level,:LevelDay,:LevelNight,:LevelMale,:LevelFemale,:LevelRain,
-            :AttackGreater,:AtkDefEqual,:DefenseGreater,:LevelDarkInParty,
-            :Silcoon,:Cascoon,:Ninjask,:Shedinja
-            
-            evoLevelThreshold = param
-          # All methods based on holding a certain item or using a certain item on the pokemon
-          when :HoldItem,:HoldItemMale,:HoldItemFemale,:DayHoldItem,:NightHoldItem,
-            :Item,:ItemMale,:ItemFemale,:ItemDay,:ItemNight,:ItemHappiness
-            
-            # Push this prevo if the evolution from it is gated by an item which is available by this point
-            evoLevelThreshold = getEarliestLevelForItem(param)
-          end
-
-          earliestLevelForEvolved = [earliestLevelForBase,evoLevelThreshold].max
-
-          if !earliestAquisition.has_key?(evoSpecies) || earliestAquisition[evoSpecies] > earliestLevelForEvolved
-            earliestAquisition[evoSpecies] = earliestLevelForEvolved
-            madeAnyChanges = true
-          end
-        end
-      end
-      break if !madeAnyChanges
-    end
-
-    earliestAquisition.each do |species,level|
-      GameData::Species.get(species).earliest_available = level
-    end
-
-    GameData::Species.save
-    Graphics.update
-  end
-
-  def getEarliestLevelForItem(item_id)
-    ITEMS_AVAILABLE_BY_CAP.each do |levelCapBracket, itemArray|
-      next unless itemArray.include?(item_id)
-      return levelCapBracket
-    end
-    return 100
-  end
-
-  def getEarliestLevelForMap(map_id)
-    MAPS_AVAILABLE_BY_CAP.each do |levelCapBracket, mapArray|
-      next unless mapArray.include?(map_id)
-      return levelCapBracket
-    end
-    return 100
-  end
 end
