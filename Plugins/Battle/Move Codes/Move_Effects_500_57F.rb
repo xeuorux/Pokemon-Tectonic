@@ -1547,7 +1547,7 @@ end
 #===============================================================================
 class PokeBattle_Move_558 < PokeBattle_Move
 	def pbEffectAgainstTarget(user,target)
-		@battle.forceUseMove(target,:SUBSTITUTE,-1,true)
+		@battle.forceUseMove(target,:SUBSTITUTE)
 	end
 end
 
@@ -1705,8 +1705,8 @@ end
 #===============================================================================
 class PokeBattle_Move_564 < PokeBattle_Move
 	def pbEffectAgainstTarget(user,target)
-		@battle.forceUseMove(user,:REST,-1,true)
-		@battle.forceUseMove(target,:REST,-1,true)
+		@battle.forceUseMove(user,:REST)
+		@battle.forceUseMove(target,:REST)
 	end
 end
 
@@ -2046,5 +2046,30 @@ class PokeBattle_Move_579 < PokeBattle_Move
 
 	def shouldHighlight?(user,target)
 		return target.numbed?
+	end
+end
+
+#===============================================================================
+# Target is forced to use this Pokemon's first move slot. (Hivemind)
+#===============================================================================
+class PokeBattle_Move_57A < PokeBattle_Move
+	def pbMoveFailed?(user,targets,show_message)
+		unless getFirstSlotMove(user)
+			@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has no moves!")) if show_message
+			return true
+		end
+		unless GameData::Move.get(getFirstSlotMove(user).id).can_be_forced?
+			@battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s first slot move cant be shared!")) if show_message
+			return true
+		end
+		return false
+	end
+
+	def getFirstSlotMove(user)
+		return user.moves[0] || nil
+	end
+
+	def pbEffectAgainstTarget(user,target)
+		@battle.forceUseMove(target,getFirstSlotMove(user).id)
 	end
 end
