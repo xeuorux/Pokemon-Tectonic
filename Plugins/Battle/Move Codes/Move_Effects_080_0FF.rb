@@ -2728,12 +2728,20 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
   def pbSelfKO(user)
     return if user.fainted?
     if user.bunkeringDown?
-      user.pbReduceHP(user.hp-1,false)
       @battle.pbShowAbilitySplash(user)
       @battle.pbDisplay(_INTL("{1}'s {2} barely saves it!",user.pbThis,@name))
+      user.pbReduceHP(user.hp-1,false)
       @battle.pbHideAbilitySplash(user)
     else
-      user.pbReduceHP(user.hp,false)
+      reduction = user.totalhp
+      unbreakable = user.hasActiveAbility?(:UNBREAKABLE)
+      if unbreakable
+        @battle.pbShowAbilitySplash(user)
+        @battle.pbDisplay(_INTL("{1} resists the recoil!",user.pbThis))
+        reduction /= 2
+      end
+      user.pbReduceHP(reduction,false)
+      @battle.pbHideAbilitySplash(user) if unbreakable
     end
     user.pbItemHPHealCheck
   end
@@ -2745,10 +2753,6 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
       score -= 20
     end
     return score
-  end
-
-  def shouldHighlight?(user,target)
-    return user.bunkeringDown?(true)
   end
 end
 

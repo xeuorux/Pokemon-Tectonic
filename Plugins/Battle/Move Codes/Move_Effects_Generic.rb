@@ -627,7 +627,14 @@ class PokeBattle_RecoilMove < PokeBattle_Move
   def recoilFactor;  return 0.0; end
 
   def pbRecoilDamage(user,target)
-    return (target.damageState.totalHPLost * recoilFactor()).round
+    return (target.damageState.totalHPLost * finalRecoilFactor(user)).round
+  end
+
+  def finalRecoilFactor(user,checkingForAI=false)
+    return 0 if user.shouldAbilityApply?(:ROCKHEAD,checkingForAI)
+    factor = recoilFactor()
+    factor /= 2 if user.shouldAbilityApply?(:UNBREAKABLE,checkingForAI)
+    return factor
   end
 
   def pbEffectAfterAllHits(user,target)
@@ -637,8 +644,8 @@ class PokeBattle_RecoilMove < PokeBattle_Move
   end
 
   def getEffectScore(score,user,target)
-    return 0 if user.hasActiveAbilityAI?(:ROCKHEAD)
-    return -50 * recoilFactor()
+    downSideScore = -50 * finalRecoilFactor(true)
+    return downSideScore
   end
 end
 
