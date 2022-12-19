@@ -61,7 +61,7 @@
 60,QUASH,Quash,11E,0,DARK,Status,100,12,0,NearOther,0,be,"The user suppresses the target and makes its move go last.",
 61,SNATCH,Snatch,0B2,0,DARK,Status,0,10,0,User,4,,"The user steals the effects of any healing or stat-changing move the foe attempts to use.",
 62,SWITCHEROO,Switcheroo,0F2,0,DARK,Status,100,10,0,NearOther,0,be,"The user trades held items with the target faster than the eye can follow.",
-63,TAUNT,Taunt,0BA,0,DARK,Status,100,15,0,NearOther,0,bce,"The target is taunted into a rage that allows it to use only attack moves for three turns.",
+63,TAUNT,Taunt,0BA,0,DARK,Status,100,15,0,NearOther,0,bce,"The target is taunted into a rage that prevents it from using status moves for three more turns.",
 64,TOPSYTURVY,Topsy-Turvy,141,0,DARK,Status,0,15,0,NearOther,1,bce,"All stat changes affecting the target turn topsy-turvy and become the opposite of what they were.",
 65,TORMENT,Torment,0B7,0,DARK,Status,100,12,0,NearOther,0,bce,"The user torments and enrages the foe, making it incapable of using the same move twice in a row.",
 66,JAWLOCK,Jaw Lock,17D,80,DARK,Physical,100,10,0,NearOther,0,befi,"Prevents the user and target from switching out until either of them faints or is switched out.",
@@ -1082,3 +1082,4 @@
 1083,DEPTHCHARGE,Depth Charge,0CB,120,WATER,Physical,100,10,0,NearOther,0,abef,"Diving deep on the first turn, the user rises and strikes with explosive strength on second.",DIVE
 1084,SCARRINGSWING,Scarring Swing,042,80,DARK,Physical,100,10,100,AllNearFoes,0,abef,"The user slashes all around them, creating deep scars. This lowers each target's Attack.",
 1085,HIVEMIND,Hive Mind,57A,0,BUG,Status,0,10,0,NearAlly,0,,"The user makes its ally perform the move in the user's first slot.",
+1086,DOCILEMASK,Docile Mask,0D0,0,FAIRY,Status,100,15,0,NearOther,1,bce,"The target is taunted by a deceptive look. It can't use status moves this or next turn. This move always goes first.",PLAYNICE

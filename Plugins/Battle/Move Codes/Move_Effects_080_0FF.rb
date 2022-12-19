@@ -1718,6 +1718,11 @@ end
 class PokeBattle_Move_0BA < PokeBattle_Move
   def ignoresSubstitute?(user); return statusMove?; end
 
+  def initialize(battle,move)
+    super
+    @tauntTurns = 4
+  end
+
   def pbFailsAgainstTarget?(user,target,show_message)
     return false if damagingMove?
     if target.effectActive?(:Taunt)
@@ -1738,7 +1743,7 @@ class PokeBattle_Move_0BA < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    target.applyEffect(:Taunt,4)
+    target.applyEffect(:Taunt,@tauntTurns)
   end
 
   def pbAdditionalEffect(user,target)
@@ -1746,7 +1751,7 @@ class PokeBattle_Move_0BA < PokeBattle_Move
     return if target.effectActive?(:Taunt)
     return true if pbMoveFailedAromaVeil?(user,target)
     return if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
-    target.applyEffect(:Taunt,4)
+    target.applyEffect(:Taunt,@tauntTurns)
   end
 
   def getEffectScore(score,user,target)
@@ -2347,9 +2352,13 @@ class PokeBattle_Move_0CF < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# For 2 rounds, disables the target's non-damaging moves. (Taunt)
 #===============================================================================
-class PokeBattle_Move_0D0 < PokeBattle_Move
+class PokeBattle_Move_0D0 < PokeBattle_Move_0BA
+  def initialize(battle,move)
+    super
+    @tauntTurns = 2
+  end
 end
 
 #===============================================================================
