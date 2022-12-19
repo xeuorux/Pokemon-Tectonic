@@ -50,5 +50,6 @@
 2049,GRANDMASTERSCROLL,Grandmaster Scroll,Grandmaster Scroll,5,0,"An ancient scroll that makes the user  that boosts the holder's supereffective moves by 20%.",0,0,0
 2050,LUNCHBOX,Lunch Box,Lunch Boxes,5,0,"The holder's HP is restored by 1/8th each turn, and takes a third less damage at full HP. The holder won't drop it.",0,0,0
 2051,BRIGHTCLAY,Bright Clay,Bright Clays,5,0,"An item to be held by a Pokémon. Protective moves like Light Screen and Reflect will be effective for 6 turns longer.",0,0,0
-3000,TOXICORB,MISSINGNO Orb,MISSINGNO Orbs,1,4000,"An item that shouldn't exist.",0,0,0
-3001,MISTYSEED,MISSINGNO Orb,MISSINGNO Orbs,1,4000,"An item that shouldn't exist.",0,0,0
+3000,TOXICORB,MISSINGNO Orb,MISSINGNO Orbs,1,0,"An item that shouldn't exist.",0,0,0
+3001,MISTYSEED,MISSINGNO Orb,MISSINGNO Orbs,1,0,"An item that shouldn't exist.",0,0,0
+3002,ABILITYTRANSFORMER,MISSINGNO Orb,MISSINGNO Orbs,1,0,"An item that shouldn't exist.",0,0,0
