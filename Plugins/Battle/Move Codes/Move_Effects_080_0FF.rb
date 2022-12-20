@@ -2578,7 +2578,7 @@ class PokeBattle_Move_0D8 < PokeBattle_HealingMove
     if @battle.sunny?
       return 2.0/3.0
     else
-      return 1.0/3.0
+      return 1.0/2.0
     end
   end
 
