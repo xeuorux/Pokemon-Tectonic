@@ -1,5 +1,4 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
-#-------------------------------
 1,MEGAHORN,Megahorn,000,120,BUG,Physical,85,10,0,NearOther,0,abef,"Using its tough and impressive horn, the user rams into the target with no letup.",
 2,ATTACKORDER,Attack Order,000,90,BUG,Physical,100,12,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Critical hits land more easily.",
 3,BUGBUZZ,Bug Buzz,045,90,BUG,Special,100,10,10,NearOther,0,befk,"The user vibrates its wings to make a damaging sound wave. It has a 10% chance to lower Sp. Atk.",
@@ -29,7 +28,6 @@
 27,STRINGSHOT,String Shot,04D,0,BUG,Status,100,30,0,AllNearFoes,0,bce,"The foe is bound with silk blown from the user's mouth. This silk reduces the target's Speed.",
 28,TAILGLOW,Tail Glow,039,0,BUG,Status,0,15,0,User,0,d,"The user stares at flashing lights to focus its mind, drastically raising its Sp. Atk stat.",
 29,SKITTERSMACK,Skitter Smack,045,70,BUG,Physical,100,10,100,NearOther,0,abef,"The user skitters behind the target to attack. This also lowers the target's Sp. Atk stat.",
-#-------------------------------
 30,HYPERSPACEFURY,Hyperspace Fury,13B,100,DARK,Physical,0,5,0,NearOther,0,ef,"Unleashes a barrage of multi-arm attacks, skipping and destroying protections. It always hits. The user's Defense stat falls.",
 31,FOULPLAY,Foul Play,121,95,DARK,Physical,100,12,0,NearOther,0,abef,"Turns the foe's power against it, dealing damage using the target's Attack stat.",
 32,DARKESTLARIAT,Darkest Lariat,0A9,85,DARK,Physical,100,10,0,NearOther,0,abef,"The user swings both arms and hits the target. Ignores the target's stat changes.",
@@ -63,7 +61,7 @@
 60,QUASH,Quash,11E,0,DARK,Status,100,12,0,NearOther,0,be,"The user suppresses the target and makes its move go last.",
 61,SNATCH,Snatch,0B2,0,DARK,Status,0,10,0,User,4,,"The user steals the effects of any healing or stat-changing move the foe attempts to use.",
 62,SWITCHEROO,Switcheroo,0F2,0,DARK,Status,100,10,0,NearOther,0,be,"The user trades held items with the target faster than the eye can follow.",
-63,TAUNT,Taunt,0BA,0,DARK,Status,100,15,0,NearOther,0,bce,"The target is taunted into a rage that allows it to use only attack moves for three turns.",
+63,TAUNT,Taunt,0BA,0,DARK,Status,100,15,0,NearOther,0,bce,"The target is taunted into a rage that prevents it from using status moves for three more turns.",
 64,TOPSYTURVY,Topsy-Turvy,141,0,DARK,Status,0,15,0,NearOther,1,bce,"All stat changes affecting the target turn topsy-turvy and become the opposite of what they were.",
 65,TORMENT,Torment,0B7,0,DARK,Status,100,12,0,NearOther,0,bce,"The user torments and enrages the foe, making it incapable of using the same move twice in a row.",
 66,JAWLOCK,Jaw Lock,17D,80,DARK,Physical,100,10,0,NearOther,0,befi,"Prevents the user and target from switching out until either of them faints or is switched out.",
@@ -72,7 +70,6 @@
 69,WICKEDBLOW,Wicked Blow,0A0,80,DARK,Physical,100,5,0,NearOther,0,abef,"The user strikes with a fierce blow of Dark Mastery. It always results in a critical hit.",
 70,LASHOUT,Lash Out,194,75,DARK,Physical,100,5,100,NearOther,0,abef,"If the user's stats were lowered during the turn, the power of this move is doubled.",
 71,FIERYWRATH,Fiery Wrath,00F,90,DARK,Special,100,10,50,AllNearFoes,0,ef,"The user transforms its wrath into a fire-like aura to attack. It has a 50% chance to make the target flinch.",
-#-------------------------------
 72,ROAROFTIME,Roar of Time,0C2,170,DRAGON,Special,100,5,0,NearOther,0,bef,"The user blasts the target with power that distorts even time. The user must rest on the next turn.",
 73,DRACOMETEOR,Draco Meteor,03F,130,DRAGON,Special,100,5,0,NearOther,0,bef,"Comets are summoned down from the sky. Harshly reduces the user's Sp. Atk stat.",
 74,OUTRAGE,Outrage,55F,120,DRAGON,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks for three turns.",
@@ -96,7 +93,6 @@
 92,CLANGOROUSSOUL,Clangorous Soul,179,0,DRAGON,Status,100,5,0,User,0,dk,"The user raises all its stats by using some of its HP.",
 93,SCALESHOT,Scale Shot,193,25,DRAGON,Physical,100,15,100,NearOther,0,abef,"The user attacks by shooting scales two to five times. It boosts the user's Speed stat but lowers its Defense stat.",
 94,DRAGONENERGY,Dragon Energy,08B,1,DRAGON,Special,100,5,0,AllNearFoes,0,ef,"Attacks all enemy Pokémon with pure vitality. Its power decreases with the user's HP.",
-#-------------------------------
 95,BOLTSTRIKE,Bolt Strike,007,130,ELECTRIC,Physical,85,5,20,NearOther,0,abef,"The user charges at its foe, surrounding itself with lightning. It has a 20% chance to numb.",
 96,VOLTTACKLE,Volt Tackle,0FD,120,ELECTRIC,Physical,100,12,10,NearOther,0,abef,"The user charges at the foe while electrified. The user also takes 33% recoil. This has a 10% chance to numb.",
 97,ZAPCANNON,Zap Cannon,007,100,ELECTRIC,Special,50,5,100,NearOther,0,befn,"The user fires an electric blast like a cannon to inflict damage and cause numbing.",
@@ -130,11 +126,8 @@
 125,AURAWHEEL,Aura Wheel,176,100,ELECTRIC,Physical,100,10,10,NearOther,0,bef,"Type changes depending on the user's form. It has a 10% chance to numb.",
 126,BOLTBEAK,Bolt Beak,178,85,ELECTRIC,Physical,100,10,0,NearOther,0,abef,"Attacks with an electrified beak. Power is doubled if the user moves before the target.",
 127,RISINGVOLTAGE,Rising Voltage,18D,70,ELECTRIC,Special,100,15,0,NearOther,0,bef,"Attacks with electric voltage rising from the ground. Power doubles on Electric Terrain.",
-#-------------------------------
 128,THUNDEROUSKICK,Thunderous Kick,043,90,FIGHTING,Physical,100,10,100,NearOther,0,abef,"The user kicks the target with lightning-like movement. It lowers the target's Defense.",
-#-------------------------------
 129,THUNDERCAGE,Thunder Cage,0CF,75,ELECTRIC,Special,100,12,0,NearOther,0,bef,"The user throws a cage of electricity around the target, trapping and damaging it for three turns.",
-#-------------------------------
 130,LIGHTOFRUIN,Light of Ruin,0FC,130,FAIRY,Special,100,5,0,NearOther,0,bef,"Fires a powerful beam of light drawn from the Eternal Flower. The user also takes 50% recoil.",
 131,FLEURCANNON,Fleur Cannon,03F,130,FAIRY,Special,100,5,0,NearOther,0,bef,"The user unleashes a strong beam. Harshly lowers the user's Sp. Atk stat.",
 132,MOONBLAST,Moonblast,045,90,FAIRY,Special,100,12,10,NearOther,0,bef,"The user attacks by borrowing the power of the moon. It has a 10% chance to lower Sp. Atk.",
@@ -159,7 +152,6 @@
 151,DECORATE,Decorate,17B,0,FAIRY,Status,0,12,0,NearAlly,0,,"The user sharply raises the target's Attack and Sp. Atk stats by decorating the target.",
 152,MISTYEXPLOSION,Misty Explosion,196,150,FAIRY,Special,100,5,0,AllNearFoes,0,bef,"Attacks nearby enemies. Deals 50% more on Misty Terrain. User loses 50% max HP.",
 153,STRANGESTEAM,Strange Steam,401,90,FAIRY,Special,100,10,20,NearOther,0,bef,"The user attacks the target by emitting steam. It has a 20% chance to dizzy.",
-#-------------------------------
 154,FOCUSPUNCH,Focus Punch,115,150,FIGHTING,Physical,100,15,0,NearOther,-3,abfj,"The user focuses its mind before launching a punch. It will fail if the user is hit before it is used.",
 155,HIGHJUMPKICK,High Jump Kick,10B,130,FIGHTING,Physical,85,10,0,NearOther,0,abef,"The target is attacked with a knee kick from a jump. If it misses, the user is hurt instead.",
 156,CLOSECOMBAT,Close Combat,03C,120,FIGHTING,Physical,100,5,0,NearOther,0,abef,"The user fights the foe up close without guarding itself. This cuts the user's Defenses.",
@@ -207,7 +199,6 @@
 198,NORETREAT,No Retreat,17F,0,FIGHTING,Status,0,5,0,User,3,d,"This move raises all the user's stats but prevents the user from switching out or fleeing.",
 199,COACHING,Coaching,18E,0,FIGHTING,Status,0,10,0,NearAlly,0,,"The user properly coaches its ally Pokémon, boosting their Attack and Defense stats.",
 200,BODYPRESS,Body Press,177,80,FIGHTING,Physical,100,10,0,NearOther,0,abef,"The user slams into the opponent, dealing damage based on the user's Defense stat.",
-#-------------------------------
 201,VCREATE,V-create,03D,180,FIRE,Physical,100,5,0,NearOther,0,abef,"With a fiery forehead, the user hurls itself at the foe. It lowers the user's Defense, Sp. Def, and Speed.",
 202,BLASTBURN,Blast Burn,0C2,170,FIRE,Special,100,5,0,NearOther,0,bef,"The target is razed by a fiery explosion. The user must rest on the next turn, however.",
 203,ERUPTION,Eruption,08B,1,FIRE,Special,100,5,0,AllNearFoes,0,bef,"The user attacks in an explosive fury. The lower the user's HP, the less powerful this attack becomes.",
@@ -241,12 +232,9 @@
 231,FIRESPIN,Fire Spin,0CF,50,FIRE,Special,100,15,0,NearOther,0,bef,"The user engulfs the target in fierce flames, trapping and damaging it for three turns.",
 232,HEATCRASH,Heat Crash,09B,1,FIRE,Physical,100,10,0,NearOther,0,abef,"The user slams the foe with its flaming body. The heavier the user is, the greater the damage.",
 233,SUNNYDAY,Sunny Day,0FF,0,FIRE,Status,0,10,0,BothSides,0,,"Intensifies the sun for five turns, boosting Fire-type attacks and hindering most other attacks.",
-#-------------------------------
 234,WILLOWISP,Will-O-Wisp,00A,0,GHOST,Status,100,12,0,NearOther,0,bce,"The user shoots a sinister, bluish-white flame at the target to inflict a burn.",
-#-------------------------------
 235,PYROBALL,Pyro Ball,00A,120,FIRE,Physical,80,5,10,NearOther,0,bef,"Attacks by igniting a small stone and launching it as a fiery ball. It has a 10% chance to burn.",
 236,BURNINGJEALOUSY,Burning Jealousy,516,70,FIRE,Special,100,12,100,AllNearFoes,0,bef,"Attacks with energy from jealousy. All opposing Pokémon with stat boosts get burned.",
-#-------------------------------
 237,ZEPHYRWING,Zephyr Wing,536,130,FLYING,Physical,100,5,30,Other,0,bef,"The user flies up to sharply raise its Sp. Def in the first turn, then rams the foe on the second.",
 238,BRAVEBIRD,Brave Bird,0FB,120,FLYING,Physical,100,12,0,Other,0,abef,"The user tucks in its wings and charges from a low altitude. The user also takes 33% recoil.",
 239,DRAGONASCENT,Dragon Ascent,03C,120,FLYING,Physical,100,5,0,NearOther,0,abef,"The user soars upward and drops at high speeds. This lowers the user's defenses.",
@@ -273,7 +261,6 @@
 260,ROOST,Roost,0D6,0,FLYING,Status,0,5,0,User,0,d,"Restores the user's HP by up to half of its max HP. User loses Flying-type this turn.",
 261,TAILWIND,Tailwind,05B,0,FLYING,Status,0,12,0,UserSide,0,dq,"The user whips up a turbulent whirlwind that ups the Speed of all party Pokémon for four turns.",
 262,DUALWINGBEAT,Dual Wingbeat,0BD,40,FLYING,Physical,100,10,0,NearOther,0,abef,"The user slams the target with its wings. The target is hit twice in a row.",
-#-------------------------------
 263,SHADOWFORCE,Shadow Force,0CD,120,GHOST,Physical,100,5,0,NearOther,0,aef,"The user disappears, then strikes the foe on the second turn. It hits even if the foe protects itself.",
 264,MOONGEISTBEAM,Moongeist Beam,163,100,GHOST,Special,100,5,0,NearOther,0,bef,"The user emits a sinister ray. This move can be used on the target regardless of its Abilities.",
 265,PHANTOMFORCE,Phantom Force,14D,90,GHOST,Physical,100,10,0,NearOther,0,aef,"The user vanishes somewhere, then strikes on the next turn. Skips and destroys protections.",
@@ -298,7 +285,6 @@
 284,TRICKORTREAT,Trick-or-Treat,142,0,GHOST,Status,100,15,0,NearOther,0,bce,"The user takes the target trick-or-treating. This adds Ghost type to the target's type.",
 285,POLTERGEIST,Poltergeist,192,110,GHOST,Physical,100,5,0,NearOther,0,abef,"Attacks the target by controlling its item. Fails if the target doesn't have an item.",
 286,ASTRALBARRAGE,Astral Barrage,000,120,GHOST,Special,100,5,0,AllNearFoes,0,bef,"The user attacks by sending a frightful amount of small ghosts at opposing Pokémon.",
-#-------------------------------
 287,FRENZYPLANT,Frenzy Plant,0C2,170,GRASS,Special,100,5,0,NearOther,0,bef,"The user slams the target with an enormous tree. The user can't move on the next turn.",
 288,LEAFSTORM,Leaf Storm,03F,130,GRASS,Special,100,5,0,NearOther,0,bef,"A storm of sharp leaves is whipped up. Harshly reduces the user's Sp. Atk stat.",
 289,SOLARBLADE,Solar Blade,0C4,125,GRASS,Physical,100,10,0,NearOther,0,abefp,"The user charges, then attacks on the second turn. Charges instantly in Sunshine.",
@@ -346,7 +332,6 @@
 331,APPLEACID,Apple Acid,046,80,GRASS,Special,100,10,100,NearOther,0,bef,"Attacks with an acidic liquid created from tart apples. Lowers the target's Sp. Def stat.",
 332,GRASSYGLIDE,Grassy Glide,18C,70,GRASS,Physical,100,15,0,NearOther,0,abef,"Attacks by gliding on the ground. This move always goes first on Grassy Terrain.",
 333,JUNGLEHEALING,Jungle Healing,189,0,GRASS,Status,0,5,0,UserAndAllies,0,,"Restores HP and heals status of itself and its ally Pokémon in battle by using Jungle Powers.",
-#-------------------------------
 334,PRECIPICEBLADES,Precipice Blades,000,120,GROUND,Physical,85,10,0,AllNearFoes,0,befp,"The user attacks its foes by manifesting the power of the land in fearsome blades of stone.",
 335,EARTHQUAKE,Earthquake,076,95,GROUND,Physical,100,10,0,AllNearOthers,0,bef,"The user sets off an earthquake that strikes every Pokémon around it and underground.",
 336,HIGHHORSEPOWER,High Horsepower,000,95,GROUND,Physical,100,10,0,NearOther,0,abef,"The user fiercely attacks the target using its entire body.",
@@ -373,7 +358,6 @@
 357,SHOREUP,Shore Up,16D,0,GROUND,Status,0,5,0,User,0,d,"The user regains up to half of its max HP. It restores more HP in a sandstorm.",
 358,SPIKES,Spikes,103,0,GROUND,Status,0,15,0,FoeSide,0,c,"The user lays a trap of spikes at the foe's feet. Foes that switch into battle are hurt a bit for each layer.",
 359,SCORCHINGSANDS,Scorching Sands,00A,80,GROUND,Special,100,10,30,NearOther,0,abef,"Throws scorching sand at the target to attack. It has a 30% chance to burn.",
-#-------------------------------
 360,FREEZESHOCK,Freeze Shock,0C5,140,ICE,Physical,100,5,30,NearOther,0,bef,"On the second turn, the user hits the foe with electrically charged ice. It has a 30% chance to numb.",
 361,ICEBURN,Ice Burn,0C6,140,ICE,Special,100,5,30,NearOther,0,bef,"On the second turn, an ultracold, freezing wind surrounds the foe. It has a 30% chance to burn.",
 362,BLIZZARD,Blizzard,00D,110,ICE,Special,70,5,30,AllNearFoes,0,befq,"A blizzard strikes all near foes. Can't miss in hail. 30% chance to frostbite.",
@@ -399,7 +383,6 @@
 382,MIST,Mist,056,0,ICE,Status,0,25,0,UserSide,0,d,"The user creates a white mist that prevents any of its or its allies stats from being cut for ten turns.",
 383,TRIPLEAXEL,Triple Axel,0BF,20,ICE,Physical,100,10,0,NearOther,0,abef,"A consecutive three-kick attack that becomes more powerful with each successful hit.",
 384,GLACIALLANCE,Glacial Lance,000,130,ICE,Physical,100,5,0,NearOther,0,bef,"The user attacks by hurling a blizzard-cloaked icicle lance at opposing Pokémon.",
-#-------------------------------
 385,EXPLOSION,Explosion,0E0,350,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,"The user explodes to inflict damage on those around it. The user faints upon using this move.",
 386,SELFDESTRUCT,Self-Destruct,0E0,250,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,"The user blows up to inflict damage on all Pokémon in battle. The user faints upon using this move.",
 387,GIGAIMPACT,Giga Impact,0C2,200,NORMAL,Physical,100,5,0,NearOther,0,abef,"The user charges at the target using every bit of its power. The user must rest on the next turn.",
@@ -424,9 +407,7 @@
 406,EXTREMESPEED,Extreme Speed,000,80,NORMAL,Physical,100,5,0,NearOther,2,abef,"The user charges the target at blinding speed. This attack always goes before any other move.",
 407,HYPERFANG,Hyper Fang,00F,80,NORMAL,Physical,100,12,40,NearOther,0,abei,"The user bites hard on the target with its sharp front fangs. It has a 40% to make the target flinch.",
 408,MEGAPUNCH,Mega Punch,000,100,NORMAL,Physical,100,15,0,NearOther,0,abefj,"The target is slugged by a punch thrown with muscle-packed power.",
-#-------------------------------
 409,RAZORWIND,Razor Wind,0C3,80,FLYING,Special,100,10,0,AllNearFoes,0,befpq,"A two-turn attack. Blades of wind hit the foe on the second turn. Critical hits land more easily.",
-#-------------------------------
 410,SLAM,Slam,000,80,NORMAL,Physical,75,15,0,NearOther,0,abef,"The target is slammed with a long tail, vines, etc., to inflict damage.",
 411,STRENGTH,Strength,000,80,NORMAL,Physical,100,12,0,NearOther,0,abef,"The target is slugged with a punch thrown at maximum power.",
 412,TRIATTACK,Tri Attack,017,80,NORMAL,Special,100,10,33,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. It has a 11% chance each to numb, burn, or frostbite.",
@@ -465,19 +446,13 @@
 445,TAILSLAP,Tail Slap,0C0,25,NORMAL,Physical,85,10,0,NearOther,0,abef,"The user attacks by striking the target with its hard tail. It hits the Pokémon two to five times in a row.",
 446,RAGE,Rage,093,30,NORMAL,Physical,100,15,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle.",
 447,RAPIDSPIN,Rapid Spin,54B,50,NORMAL,Physical,100,30,100,NearOther,0,abef,"A spin attack that can also eliminate trapping and hazard moves. Also raises user's speed.",
-#-------------------------------
 448,SPIKECANNON,Spike Cannon,0C0,25,STEEL,Physical,100,20,0,NearOther,0,bef,"Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.",
-#-------------------------------
 449,COMETPUNCH,Comet Punch,0C0,18,NORMAL,Physical,85,12,0,NearOther,0,abefj,"The target is hit with a flurry of punches that strike two to five times in a row.",
 450,FURYSWIPES,Fury Swipes,0C0,18,NORMAL,Physical,100,12,0,NearOther,0,abefp,"The target is raked with sharp claws or scythes for two to five times in quick succession.",
-#-------------------------------
 451,HEADTHROW,Head Throw,500,40,GRASS,Special,100,15,0,NearOther,0,befn,"Round objects are hurled at the target to strike three times in a row.",
-#-------------------------------
 452,BIND,Bind,0CF,40,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user squeezes the target, trapping and damaging it for three turns.",
 453,DOUBLESLAP,Double Slap,0C0,15,NORMAL,Physical,85,10,0,NearOther,0,abef,"The target is slapped repeatedly, back and forth, two to five times in a row.",
-#-------------------------------
 454,FURYPECKS,Fury Pecks,0C0,20,FLYING,Physical,100,15,0,NearOther,0,abef,"The target is jabbed repeatedly with a horn or beak two to five times in a row.",
-#-------------------------------
 455,WRAP,Wrap,0CF,50,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user binds the target, trapping and damaging it for three turns.",
 456,CONSTRICT,Constrict,0CF,10,NORMAL,Physical,100,30,10,NearOther,0,abef,"The user squeezes the target, trapping and damaging it for three turns.",
 457,BIDE,Bide,0D4,1,NORMAL,Physical,0,10,0,None,1,abf,"The user endures attacks for two turns, then strikes back to cause double the damage taken.",
@@ -488,9 +463,7 @@
 462,GUILLOTINE,Guillotine,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"A vicious, tearing attack with big pincers. The target will faint instantly if this attack hits.",
 463,HORNDRILL,Horn Drill,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"The user stabs the foe with a horn that rotates like a drill. If it hits, the target faints instantly.",
 464,NATURALGIFT,Natural Gift,096,1,NORMAL,Physical,100,12,0,NearOther,0,bef,"The user draws power to attack by using its held Berry. The Berry determines its type and power.",
-#-------------------------------
 465,PACKAGE,Package,16F,90,ICE,Special,100,10,0,NearOther,0,befn,"The user throws an exploding package at enemies, or one filled with healing treats at allies.",PRESENT
-#-------------------------------
 466,RETURN,Return,089,1,NORMAL,Physical,100,15,0,NearOther,0,abef,"A full-power attack that grows more powerful the more the user likes its Trainer.",
 467,SHOUT,Shout,000,40,NORMAL,Special,100,25,0,NearOther,1,befk,"The user shouts with force at the target. This move always hits first.",
 468,SPITUP,Spit Up,113,1,NORMAL,Special,100,10,0,NearOther,0,bf,"The power stored using the move Stockpile is released all at once in an attack.",
@@ -506,20 +479,14 @@
 478,BESTOW,Bestow,0F3,0,NORMAL,Status,0,12,0,NearOther,0,e,"The user passes its held item to the target when the target isn't holding an item.",
 479,BLOCK,Block,0EF,0,NORMAL,Status,0,5,0,NearOther,0,ce,"The user blocks the target's way with arms spread wide to prevent escape.",
 480,CAMOUFLAGE,Camouflage,060,0,NORMAL,Status,0,15,0,User,0,d,"The user's type is changed depending on its environment, such as at water's edge, in grass, or in a cave.",
-#-------------------------------
 481,CAPTIVATE,Captivate,13D,0,FAIRY,Status,100,15,0,AllNearFoes,0,bce,"The target is charmed into harshly lowering its Sp. Atk stat.",
-#-------------------------------
 482,CELEBRATE,Celebrate,134,0,NORMAL,Status,0,30,0,User,0,,"The Pokémon congratulates you on your special day!",
-#-------------------------------
 483,CONFIDE,Confide,13C,0,DARK,Status,0,15,0,NearOther,1,cek,"The user tells the target a secret, lowering its Sp. Atk stat. Always goes first.",
-#-------------------------------
 484,CONVERSION,Conversion,05E,0,NORMAL,Status,0,25,0,User,0,d,"The user changes its type to become the same type as one of its moves.",
 485,CONVERSION2,Conversion 2,05F,0,NORMAL,Status,0,25,0,NearOther,0,,"The user changes its type to make itself resistant to the type of the attack the opponent used last.",
 486,COPYCAT,Copycat,0AF,0,NORMAL,Status,0,15,0,User,0,,"The user mimics the move used immediately before it. The move fails if no other move has been used yet.",
 487,DEFENSECURL,Defense Curl,01E,0,NORMAL,Status,0,30,0,User,0,d,"The user curls up to conceal weak spots and raise its Defense stat.",
-#-------------------------------
 488,DISABLE,Disable,0B9,0,GHOST,Status,100,15,0,NearOther,0,bce,"For four turns, this move prevents the target from using the move it last used.",
-#-------------------------------
 489,DOUBLETEAM,Double Team,022,0,NORMAL,Status,0,12,0,User,0,d,"By moving rapidly, the user makes illusory copies of itself to raise its evasiveness.",
 490,ENCORE,Encore,0BC,0,NORMAL,Status,100,5,0,NearOther,0,bce,"The user compels the target to keep using only the move it last used for three turns.",
 491,ENDURE,Endure,0E8,0,NORMAL,Status,0,10,0,User,4,,"The user endures any attack with at least 1 HP. It always fails if it is used in succession.",
@@ -530,61 +497,44 @@
 496,FORESIGHT,Foresight,0A7,0,NORMAL,Status,0,30,0,NearOther,0,bce,"Enables the user to hit a Ghost type with any kind of move. It also enables the user to hit an evasive foe.",
 497,GLARE,Glare,007,0,NORMAL,Status,100,12,0,NearOther,0,bce,"The user intimidates the target by staring at it to cause numbing.",
 498,GROWL,Growl,042,0,NORMAL,Status,100,30,0,AllNearFoes,0,bcek,"The user growls, scaring nearby foes. Their Attack stat is lowered.",
-#-------------------------------
 499,GROWTH,Growth,028,0,GRASS,Status,0,15,0,User,0,d,"The user's body grows all at once, raising the Atk and Sp. Atk stats. Double that in Sunshine.",
-#-------------------------------
 500,HAPPYHOUR,Happy Hour,157,0,NORMAL,Status,0,25,0,UserSide,0,,"Using Happy Hour doubles the amount of prize money received after battle.",
 501,HARDEN,Harden,01D,0,NORMAL,Status,0,25,0,User,0,d,"The user stiffens all the muscles in its body to raise its Defense stat.",
 502,HEALBELL,Heal Bell,019,0,NORMAL,Status,0,5,0,UserAndAllies,0,dk,"The user makes a soothing bell chime to heal the status problems of all the party Pokémon.",
 503,HELPINGHAND,Helping Hand,09C,0,NORMAL,Status,0,15,0,NearAlly,5,,"The user assists an ally by boosting the power of its attack.",
 504,HOLDHANDS,Hold Hands,133,0,NORMAL,Status,0,30,0,NearAlly,0,,"The user and an ally hold hands. This makes them very happy.",
 505,HOWL,Howl,530,0,NORMAL,Status,0,30,0,User,0,d,"The user howls loudly to raise the Attack stat of itself and its allies.",
-#-------------------------------
 506,LASERFOCUS,Laser Focus,15E,0,STEEL,Status,0,25,0,User,0,d,"The user focuses intensely. The attack on the next turn always results in a critical hit.",
-#-------------------------------
 507,LEER,Leer,043,0,NORMAL,Status,100,25,0,AllNearFoes,0,bce,"The user leers at nearby foes with sharp eyes. Their Defense stat is reduced.",
 508,LOCKON,Lock-On,0A6,0,NORMAL,Status,0,5,0,NearOther,0,be,"The user takes sure aim at the target. This ensures the next attack does not miss the target.",
 509,LOVELYKISS,Lovely Kiss,003,0,NORMAL,Status,75,10,0,NearOther,0,bce,"With a scary face, the user tries to force a kiss on the target. If it suceeds, the target falls asleep.",
 510,LUCKYCHANT,Lucky Chant,0A1,0,NORMAL,Status,0,25,0,UserSide,0,d,"The user chants an incantation toward the sky, preventing the foe from landing critical hits.",
 511,MEFIRST,Me First,0B0,0,NORMAL,Status,0,15,0,NearFoe,0,b,"The user tries to cut ahead of the foe to steal and use the foe's intended move with greater power.",
-#-------------------------------
 512,MEANLOOK,Mean Look,0EF,0,DARK,Status,0,5,0,NearOther,0,ce,"The user pins the target with a dark, arresting look. The target becomes unable to flee.",
-#-------------------------------
 513,METRONOME,Metronome,0B6,0,NORMAL,Status,0,10,0,User,0,,"The user waggles a finger and stimulates its brain into randomly using nearly any move.",
 514,MILKDRINK,Milk Drink,0D5,0,NORMAL,Status,0,10,0,User,0,d,"The user restores its own HP by up to half of its maximum HP. May also be used in the field to heal HP.",
 515,MIMIC,Mimic,05C,0,NORMAL,Status,0,10,0,NearOther,0,b,"The user copies the move last used by the foe. The move can be used until the user is switched out.",
-#-------------------------------
 516,MINDREADER,Mind Reader,0A6,0,PSYCHIC,Status,0,5,0,NearOther,0,be,"The user senses the foe's movements with its mind to ensure its next attack does not miss the foe.",
-#-------------------------------
 517,MINIMIZE,Minimize,034,0,NORMAL,Status,0,10,0,User,0,d,"The user compresses its body to make itself look smaller, which sharply raises its evasiveness.",
 518,MORNINGSUN,Morning Sun,0D8,0,NORMAL,Status,0,5,0,User,0,d,"The user restores its own HP by 1/3rd, or 2/3rds in Sunshine.",
 519,NATUREPOWER,Nature Power,0B3,0,NORMAL,Status,0,15,0,NearOther,0,,"An attack that makes use of nature's power. Its effects vary depending on the user's environment.",
 520,NOBLEROAR,Noble Roar,13A,0,NORMAL,Status,0,25,0,AllNearFoes,0,bcek,"Letting out a noble roar, the user intimidates all nearby foes and lowers their Attack and Sp. Atk.",
 521,ODORSLEUTH,Odor Sleuth,0A7,0,NORMAL,Status,0,30,0,NearOther,0,bce,"Enables the user to hit a Ghost type with any type of move. It also enables the user to hit an evasive foe.",
-#-------------------------------
 522,PAINSPLIT,Pain Split,05A,0,GHOST,Status,0,15,0,NearOther,0,be,"The user adds its HP to the target's HP, then equally shares the combined HP with the target.",
 523,PERISHSONG,Perish Song,0E5,0,GHOST,Status,0,5,0,AllBattlers,0,k,"Any Pokémon that hears this song faints in three turns, unless it switches out of battle.",
-#-------------------------------
 524,PLAYNICE,Play Nice,139,0,FAIRY,Status,0,15,0,NearOther,0,ce,"The user and target become friends. The target loses its will to fight, lowering its Attack stat.",
-#-------------------------------
 525,PROTECT,Protect,0AA,0,NORMAL,Status,0,3,0,User,4,,"It enables the user to evade all attacks. It fails if used in succession.",
-#-------------------------------
 526,PSYCHUP,Psych Up,055,0,PSYCHIC,Status,0,10,0,NearOther,0,,"The user hypnotizes itself into copying any stat change made by the target.",
-#-------------------------------
 527,RECOVER,Recover,0D5,0,NORMAL,Status,0,10,0,User,0,d,"Restoring its own cells, the user restores its own HP by half of its max HP.",
 528,RECYCLE,Recycle,0F6,0,NORMAL,Status,0,10,0,User,0,d,"The user recycles a held item that has been used in battle so it can be used again.",
 529,REFLECTTYPE,Reflect Type,062,0,NORMAL,Status,0,12,0,NearOther,0,b,"The user reflects the target's type, making it the same type as the target.",
 530,REFRESH,Refresh,018,0,NORMAL,Status,0,15,0,User,0,d,"The user rests to cure itself of any status condition.",
 531,ROAR,Roar,0EB,0,NORMAL,Status,0,15,0,NearOther,-6,cek,"The target is scared off and replaced by another Pokémon in its party. In the wild, the battle ends.",
 532,SAFEGUARD,Safeguard,01A,0,NORMAL,Status,0,20,0,UserSide,0,d,"The user creates a protective field that prevents status problems for five turns.",
-#-------------------------------
 533,SCARYFACE,Scary Face,04D,0,GHOST,Status,100,10,0,NearOther,0,bce,"The user frightens the target with a scary face to harshly reduce its Speed stat.",
-#-------------------------------
 534,SCREECH,Screech,04C,0,NORMAL,Status,100,30,0,AllNearFoes,0,bcek,"An earsplitting screech harshly reduces the target's Defense stat.",
 535,SHARPEN,Sharpen,01C,0,NORMAL,Status,0,25,0,User,0,d,"The user edges become sharper, raising its Attack stat.",
-#-------------------------------
 536,SHELLSMASH,Shell Smash,035,0,WATER,Status,0,12,0,User,0,d,"The user breaks its shell, lowering its defenses but sharply raising attacking and Speed stats.",
-#-------------------------------
 537,SIMPLEBEAM,Simple Beam,063,0,NORMAL,Status,100,12,0,NearOther,0,bce,"The user shoots a mysterious beam that changes the target's Ability to Simple.",
 538,SING,Sing,003,0,NORMAL,Status,55,12,0,NearOther,0,bcek,"A soothing lullaby is sung in a calming voice that puts the target into a deep slumber.",
 539,SKETCH,Sketch,05D,0,NORMAL,Status,0,1,0,NearOther,0,,"It enables the user to permanently learn the move last used by the foe. Once used, Sketch disappears.",
@@ -592,28 +542,21 @@
 541,SLEEPTALK,Sleep Talk,0B4,0,NORMAL,Status,0,10,0,User,0,k,"While it is asleep, the user randomly uses one of the moves it knows.",
 542,SMOKESCREEN,Smokescreen,047,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user releases an obscuring cloud of smoke or ink. It reduces the target's accuracy.",
 543,SOFTBOILED,Soft-Boiled,0D5,0,NORMAL,Status,0,10,0,User,0,d,"The user restores its own HP by up to half of its maximum HP. May also be used in the field to heal HP.",
-#-------------------------------
 544,SPLASH,Splash,001,0,WATER,Status,0,30,0,User,0,,"The user just flops and splashes around to no effect at all...",
-#-------------------------------
 545,SPOTLIGHT,Spotlight,16A,0,NORMAL,Status,0,12,0,NearOther,3,bc,"The user shines a spotlight on the target so that only it will be attacked during the turn.",
 546,STOCKPILE,Stockpile,112,0,NORMAL,Status,0,15,0,User,0,d,"The user charges up power and raises both its Defense and Sp. Def. The move can be used three times.",
 547,SUBSTITUTE,Substitute,10C,0,NORMAL,Status,0,10,0,User,0,d,"The user makes a copy of itself using some of its HP. The copy serves as the user's decoy.",
 548,SUPERSONIC,Supersonic,401,0,NORMAL,Status,100,12,0,NearOther,0,bcek,"The user generates odd sound waves from its body. The target becomes dizzy.",
 549,SWAGGER,Swagger,55D,0,NORMAL,Status,100,12,0,NearOther,0,bce,"The target's Attack stat is sharply raised. It then hits itself in a rage.",
 550,SWALLOW,Swallow,114,0,NORMAL,Status,0,10,0,User,0,d,"The power stored using the move Stockpile is absorbed by the user to heal its HP.",
-#-------------------------------
 551,SWEETSCENT,Sweet Scent,048,0,GRASS,Status,100,15,0,AllNearFoes,0,bce,"A sweet scent that lowers the foe's evasiveness. It also lures wild Pokémon if used in grass, etc.",
-#-------------------------------
 552,SWORDSDANCE,Swords Dance,02E,0,STEEL,Status,0,10,0,User,0,do,"A frenetic dance to uplift the fighting spirit. It sharply raises the user's Attack stat.",
-#-------------------------------
 553,TAILWHIP,Tail Whip,043,0,NORMAL,Status,100,25,0,AllNearFoes,0,bce,"The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat.",
 554,TEARFULLOOK,Tearful Look,13A,0,NORMAL,Status,0,15,0,NearOther,0,ce,"The user gets teary eyed. This lowers the target's Attack and Sp. Atk stats.",
 555,TEETERDANCE,Teeter Dance,401,0,NORMAL,Status,100,15,0,AllNearOthers,0,beo,"The user performs a wobbly dance that dizzies the Pokémon around it.",
 556,TICKLE,Tickle,04A,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user tickles the target into laughing, reducing its Attack and Defense stats.",
 557,TRANSFORM,Transform,069,0,NORMAL,Status,0,10,0,NearOther,0,,"The user transforms into a copy of the target right down to having the same move set.",
-#-------------------------------
 558,WHIRLWIND,Whirlwind,0EB,0,FLYING,Status,0,15,0,NearOther,-6,ceq,"The foe is blown away, to be replaced by another Pokémon in its party. In the wild, the battle ends.",
-#-------------------------------
 559,WISH,Wish,0D7,0,NORMAL,Status,0,10,0,User,0,d,"One turn after this move is used, the target's HP is restored by half the user's maximum HP.",
 560,WORKUP,Work Up,027,0,NORMAL,Status,0,25,0,User,0,d,"The user is roused, and its Attack and Sp. Atk stats increase.",
 561,YAWN,Yawn,004,0,NORMAL,Status,0,10,0,NearOther,0,bce,"The user yawns, making the target drowsy. They'll fall asleep at end of turn next.",
@@ -621,7 +564,6 @@
 563,STUFFCHEEKS,Stuff Cheeks,183,0,NORMAL,Status,100,10,0,User,0,e,"The user eats its held Berry, then sharply raises its Defense stat.",
 564,TEATIME,Teatime,184,0,NORMAL,Status,0,10,0,AllBattlers,0,,"The user has teatime with all the Pokémon in the battle. Each Pokémon eats its held Berry.",
 565,TERRAINPULSE,Terrain Pulse,18A,50,NORMAL,Special,100,10,0,NearOther,0,befm,"Uses the power of the terrain to attack. Type and power changes depending on the terrain.",
-#-------------------------------
 566,BELCH,Belch,158,120,POISON,Special,100,10,0,NearOther,0,bf,"The user lets out a damaging belch at the target. The user must eat a held Berry to use this move.",
 567,GUNKSHOT,Gunk Shot,005,120,POISON,Physical,80,5,10,NearOther,0,bef,"The user shoots filthy garbage at the target to attack. It has a 10% chance to poison.",
 568,SLUDGEWAVE,Sludge Wave,005,95,POISON,Special,100,10,10,AllNearOthers,0,bef,"It swamps the area around the user with a giant sludge wave. It has a 10% chance to poison.",
@@ -650,7 +592,6 @@
 591,VENOMDRENCH,Venom Drench,140,0,POISON,Status,100,15,0,AllNearFoes,0,bc,"Foes are drenched in an odd liquid that lowers the Attack, Sp. Atk, and Speed of poisoned Pokémon.",
 592,CORROSIVEGAS,Corrosive Gas,18F,0,POISON,Status,100,30,0,AllNearOthers,0,,"The user surrounds everything around it with highly acidic gas and melts away items they hold.",
 593,SHELLSIDEARM,Shell Side Arm,187,90,POISON,Special,100,10,25,NearOther,0,bef,"Inflicts physical or special damage, whichever will be more effective. This has a 25% chance to poison.",
-#-------------------------------
 594,PRISMATICLASER,Prismatic Laser,0C2,170,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user shoots powerful lasers using the power of a prism. The user can't move on the next turn.",
 595,PSYCHOBOOST,Psycho Boost,03F,130,PSYCHIC,Special,100,5,0,NearOther,0,bef,"The user attacks the target at full power. The attack harshly reduces the user's Sp. Atk stat.",
 596,FUTURESIGHT,Future Sight,111,140,PSYCHIC,Special,100,10,0,NearOther,0,,"Two turns after this move is used, a hunk of psychic energy attacks the target.",
@@ -679,9 +620,7 @@
 619,BARRIER,Barrier,02F,0,PSYCHIC,Status,0,15,0,User,0,d,"The user throws up a sturdy wall that sharply raises its Defense stat.",
 620,CALMMIND,Calm Mind,02C,0,PSYCHIC,Status,0,15,0,User,0,d,"The user quietly focuses its mind and calms its spirit to raise its Sp. Atk and Sp. Def stats.",
 621,COSMICPOWER,Cosmic Power,02A,0,PSYCHIC,Status,0,15,0,User,0,d,"The user absorbs a mystical power from space to raise its Defense and Sp. Def stats.",
-#-------------------------------
 622,GRAVITY,Gravity,118,0,GROUND,Status,0,5,0,BothSides,0,,"Gravity is intensified for five turns, making moves involving flying unusable and negating Levitation.",
-#-------------------------------
 623,GUARDSPLIT,Guard Split,059,0,PSYCHIC,Status,0,10,0,NearOther,0,b,"The user employs its psychic power to average its Defense and Sp. Def stats with those of its target.",
 624,GUARDSWAP,Guard Swap,053,0,PSYCHIC,Status,0,10,0,NearOther,0,be,"The user employs its psychic power to switch changes to its Defense and Sp. Def with the target.",
 625,HEALBLOCK,Heal Block,0BB,0,PSYCHIC,Status,100,12,0,AllNearFoes,0,bce,"For five turns, the foe is prevented from using any moves, Abilities, or held items that recover HP.",
@@ -717,7 +656,6 @@
 655,EXPANDINGFORCE,Expanding Force,190,80,PSYCHIC,Special,100,15,0,AllNearOthers,0,bef,"Attacks with its psychic power. Power increases and damages all opponents on Psychic Terrain.",
 656,EERIESPELL,Eerie Spell,521,70,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user casts a horrible spell on the opponent. This removes 4 PP from their last used move.",
 657,FREEZINGGLARE,Freezing Glare,403,90,PSYCHIC,Special,100,10,20,NearOther,0,ef,"The user shoots its psychic power from its eyes to attack. It has a 20% chance to frostbite.",
-#-------------------------------
 658,HEADSMASH,Head Smash,0FC,120,ROCK,Physical,100,5,0,NearOther,0,abef,"The user attacks the foe with a hazardous, full-power headbutt. The user also takes 50% recoil.",
 659,ROCKWRECKER,Rock Wrecker,0C2,170,ROCK,Physical,100,5,0,NearOther,0,befn,"The user launches a huge boulder at the target to attack. It must rest on the next turn, however.",
 660,DIAMONDSTORM,Diamond Storm,136,95,ROCK,Physical,100,5,50,AllNearFoes,0,bef,"The user whips up a storm of diamonds to damage foes. This has a 50% to sharply raise Defense.",
@@ -737,7 +675,6 @@
 674,WIDEGUARD,Wide Guard,0AC,0,ROCK,Status,0,10,0,UserSide,3,d,"The user and its allies are protected from wide-ranging attacks for a turn. Always fails if used in succession.",
 675,TARSHOT,Tar Shot,186,0,ROCK,Status,0,12,0,NearOther,3,bce,"Pours sticky tar over the target, lowering its Speed stat and making it weak to Fire.",
 676,METEORBEAM,Meteor Beam,191,120,ROCK,Special,100,10,0,NearOther,0,bef,"Gathers space power and boosts its Sp. Atk stat on one turn, then attacks on the next turn.",
-#-------------------------------
 677,DOOMDESIRE,Doom Desire,111,140,STEEL,Special,100,5,0,NearOther,0,,"Two turns after this move is used, the user blasts the target with a concentrated bundle of light.",
 678,IRONTAIL,Iron Tail,043,110,STEEL,Physical,90,12,30,NearOther,0,abef,"The target is slammed with a steel-hard tail. It has a 30% chance to lower Defense.",
 679,SUNSTEELSTRIKE,Sunsteel Strike,163,100,STEEL,Physical,100,5,0,NearOther,0,abef,"The user slams into the target with the force of a meteor. Can't be stopped by the target's Ability.",
@@ -765,11 +702,8 @@
 701,BEHEMOTHBASH,Behemoth Bash,000,100,STEEL,Physical,100,5,0,NearOther,0,abef,"The user becomes a gigantic shield and slams into the target.",
 702,BEHEMOTHBLADE,Behemoth Blade,000,100,STEEL,Physical,100,5,0,NearOther,0,abefp,"The user becomes a gigantic sword and cuts the target.",
 703,STEELROLLER,Steel Roller,195,130,STEEL,Physical,100,5,0,NearOther,0,abef,"Attacks while destroying the terrain. This move fails in the absence of a terrain.",
-#-------------------------------
 704,SNAPTRAP,Snap Trap,0CF,75,GRASS,Special,100,12,0,NearOther,0,abef,"The user snares the target, trapping and damaging it for three turns.",
-#-------------------------------
 705,STEELBEAM,Steel Beam,510,140,STEEL,Special,100,5,100,NearOther,0,bef,"Fires a beam of steel that it collected from its entire body. The user loses half its current HP.",
-#-------------------------------
 706,HYDROCANNON,Hydro Cannon,0C2,170,WATER,Special,100,5,0,NearOther,0,bef,"The target is hit with a watery blast. The user must rest on the next turn, however.",
 707,WATERSPOUT,Water Spout,08B,1,WATER,Special,100,5,0,AllNearFoes,0,bef,"The user spouts water to damage the foe. The lower the user's HP, the less powerful it becomes.",
 708,HYDROPUMP,Hydro Pump,000,110,WATER,Special,80,5,0,NearOther,0,bef,"The target is blasted by a huge volume of water launched under great pressure.",
@@ -1147,3 +1081,5 @@
 1082,MYSTERYSEED,Mystery Seed,5AC,0,GRASS,Status,0,10,0,NearOther,0,bce,"The target eats a strange seed. They become numbed if faster than the user, or leeched if slower.",LEECHSEED
 1083,DEPTHCHARGE,Depth Charge,0CB,120,WATER,Physical,100,10,0,NearOther,0,abef,"Diving deep on the first turn, the user rises and strikes with explosive strength on second.",DIVE
 1084,SCARRINGSWING,Scarring Swing,042,80,DARK,Physical,100,10,100,AllNearFoes,0,abef,"The user slashes all around them, creating deep scars. This lowers each target's Attack.",
+1085,HIVEMIND,Hive Mind,57A,0,BUG,Status,0,10,0,NearAlly,0,,"The user makes its ally perform the move in the user's first slot.",
+1086,DOCILEMASK,Docile Mask,0D0,0,FAIRY,Status,100,15,0,NearOther,1,bce,"The target is taunted by a deceptive look. It can't use status moves this or next turn. This move always goes first.",PLAYNICE

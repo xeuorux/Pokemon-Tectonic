@@ -502,8 +502,8 @@ class ScreenChooseFileSave
 		# Check quantity
 		@count = count
 		if @count<=0
-		pbMessage("No save file was found.")
-		return
+			pbMessage("No save file was found.")
+			return
 		end
 		# Check still menu
 		@staymenu = false
@@ -659,6 +659,7 @@ class ScreenChooseFileSave
 			# Information page
 			else
 				if draw
+					self.fileLoad(true)
 					startPanelInfor(@type)
 					draw = false
 				else

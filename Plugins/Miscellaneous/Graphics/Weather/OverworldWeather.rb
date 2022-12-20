@@ -307,6 +307,8 @@ class OverworldWeather
     end
 
     def update_strength
+        @strengthChangeFrames = 10 if @strengthChangeFrames.nil?
+        
         if @targetStrength != @strength
             if @strengthChangeFrames > 0
                 @strengthChangeCount += 1
