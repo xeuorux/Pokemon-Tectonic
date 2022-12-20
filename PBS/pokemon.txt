@@ -1453,6 +1453,7 @@ Evolutions = VILEPLUME,Item,LEAFSTONE,BELLOSSOM,Item,SUNSTONE
 [45]
 Name = Vileplume
 InternalName = VILEPLUME
+Notes = Signature - * Top down "corpse flower stench" ability replaces generic Stench on Vileplume
 Type1 = GRASS
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -6195,6 +6196,7 @@ Evolutions = JUMPLUFF,Level,27
 [189]
 Name = Jumpluff
 InternalName = JUMPLUFF
+Notes = Signature - change leaf guard to something better (maybe Spatk doubled in tailwind)
 Type1 = GRASS
 Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -6588,6 +6590,7 @@ Evolutions = MISMAGIUS,Item,DUSKSTONE
 [201]
 Name = Unown
 InternalName = UNOWN
+Moves = Signature - Letter matters ability (but not sawsbuck x 5)
 Type1 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 95,95,95,95,95,95
@@ -6883,6 +6886,7 @@ Evolutions = GRANBULL,Level,36
 [210]
 Name = Granbull
 InternalName = GRANBULL
+Notes = Signature - a more traditional taunt (force to use attacking moves against it), if not here, somewhere else
 Type1 = FAIRY
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -7120,6 +7124,7 @@ Evolutions = URSARING,Level,30
 [217]
 Name = Ursaring
 InternalName = URSARING
+Notes = Signature - Autumn's End: Physical Normal move. 5PP, 150BP, 100AC. This pokemon uses Rest the turn after it uses this move. 
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 100,130,85,65,75,75
@@ -8937,6 +8942,7 @@ Evolutions = LUDICOLO,Level,36
 [272]
 Name = Ludicolo
 InternalName = LUDICOLO
+Notes = dance synergy ability (suggestion: [Can't Stop the Beat]: Ability. Heals status conditions of self/allies when using a dance move.) - tiki
 Type1 = WATER
 Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -13979,6 +13985,7 @@ BattlerShadowSize = 2
 Name = Ambipom
 InternalName = AMBIPOM
 Type1 = NORMAL
+Notes = Signature - hold two items
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,100,86,115,60,86
 # Total = 522
@@ -19307,6 +19314,7 @@ Evolutions = SAWSBUCK,Level,36
 [586]
 Name = Sawsbuck
 InternalName = SAWSBUCK
+Notes = Signature Season's End: Physical Normal move. 5PP, 100BP, 100AC. This move changes type to match its user's Forme. After use, it changes the user to the next season - Tiki
 Type1 = NORMAL
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -22636,6 +22644,7 @@ Evolutions = MALAMAR,Level,30
 [687]
 Name = Malamar
 InternalName = MALAMAR
+Notes = Signature - Bizarro: Ability. This Pokemon takes "super effective" damage from resisted moves, and vice versa. - Tiki
 Type1 = DARK
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -23563,6 +23572,7 @@ Name = Noivern
 InternalName = NOIVERN
 Type1 = FLYING
 Type2 = DRAGON
+Notes = signature - Piercing Shrill: Special Dragon move. 5PP, 100BP, 100AC. Hits all active Pokemon. All non-active Pokemon take 1/16th of their maximum HP in damage (including your own). - tiki
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 85,70,80,123,117,80
 # Total = 555
@@ -24720,6 +24730,7 @@ Evolutions = MUDSDALE,Level,30
 Name = Mudsdale
 InternalName = MUDSDALE
 Type1 = GROUND
+Notes = Signature - Muds-Hail (name pending): Ability. Ground-type moves from the user deal 50% more damage in the hail.
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 100,125,100,35,55,85
 # Total = 500
@@ -27270,6 +27281,7 @@ Evolutions = THIEVUL,Level,27
 [828]
 Name = Thievul
 InternalName = THIEVUL
+Notes = Signature - stolen items matter/stealing items matter 
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 108,92,108,50,92,108
@@ -28480,6 +28492,7 @@ BattlerShadowSize = 2
 Name = Sirfetch'd
 InternalName = SIRFETCHD
 Type1 = FIGHTING
+Notes = signature - something  called "julienne"
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 62,135,95,75,68,82
 # Total = 517
@@ -28673,6 +28686,7 @@ BattlerShadowSize = 3
 Name = Pincurchin
 InternalName = PINCURCHIN
 Type1 = ELECTRIC
+Notes = Signature - sticky barb type ability
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 68,101,95,15,101,85
 # Total = 465
@@ -30759,6 +30773,7 @@ Evolutions = ARATICATE,Level,40
 [2001]
 Name = A. Raticate
 InternalName = ARATICATE
+Notes = Signature - Vampire Fang: Physical Dark move. 10PP, 0BP, 90AC. Deals 50% of the target's current HP. Restore HP equal to half of that. - tiki
 Type1 = DARK
 Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -31261,6 +31276,7 @@ Evolutions = GRAPIDASH,Level,34
 [2016]
 Name = G. Rapidash
 InternalName = GRAPIDASH
+Notes = Signature - Rainbow Dash as a name, for a move
 Type1 = PSYCHIC
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
