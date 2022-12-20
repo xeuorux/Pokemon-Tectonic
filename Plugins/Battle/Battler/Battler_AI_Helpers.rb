@@ -3,7 +3,6 @@ class PokeBattle_Battler
 		eachMove do |m|
 			next unless m.physicalMove?(m.type)
 			return true
-			break
 		end
 		return false
 	end
@@ -12,7 +11,6 @@ class PokeBattle_Battler
 		eachMove do |m|
 			next unless m.specialMove?(m.type)
 			return true
-			break
 		end
 		return false
 	end
@@ -21,7 +19,6 @@ class PokeBattle_Battler
 		eachMove do |m|
 			next unless m.damagingMove?
 			return true
-			break
 		end
 		return false
 	end
@@ -30,7 +27,6 @@ class PokeBattle_Battler
 		eachMove do |m|
 			next unless m.statusMove?
 			return true
-			break
 		end
 		return false
 	end
@@ -40,7 +36,6 @@ class PokeBattle_Battler
 			battleMove = @battle.getBattleMoveInstanceFromID(m.id)
 			next unless battleMove.usableWhenAsleep?
 			return true
-			break
 		end
 		return false
 	end
@@ -57,6 +52,39 @@ class PokeBattle_Battler
 		return pbHasMoveFunction?('07F') # Hex, Cruelty
 	end
 
+	def hasHealingMove?
+		eachMove do |m|
+			battleMove = @battle.getBattleMoveInstanceFromID(m.id)
+			next unless battleMove.healingMove?
+			return true
+		end
+		return false
+	end
+
+	def hasInaccurateMove?
+		eachMove do |m|
+			next unless m.accuracy <= 85
+			return true
+		end
+		return false
+	end
+
+	def hasLowAccuracyMove?
+		eachMove do |m|
+			next unless m.accuracy <= 65
+			return true
+		end
+		return false
+	end
+
+	def hasHighCritAttack?
+		eachMove do |m|
+			next unless m.highCriticalRate?
+			return true
+		end
+		return false
+	end
+
 	def pbHasAttackingType?(check_type)
 		return false unless check_type
 		check_type = GameData::Type.get(check_type).id
@@ -67,7 +95,6 @@ class PokeBattle_Battler
 	def hasAlly?
 		eachAlly do |_b|
 			return true
-			break
 		end
 		return false
 	end

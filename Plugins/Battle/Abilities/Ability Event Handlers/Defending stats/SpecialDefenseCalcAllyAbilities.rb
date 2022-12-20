@@ -7,7 +7,7 @@ BattleHandlers::SpecialDefenseCalcAllyAbility.add(:FLOWERGIFT,
 
 BattleHandlers::SpecialDefenseCalcAllyAbility.add(:NEGATIVEOUTLOOK,
     proc { |ability,user,battle,spDefMult|
-        spDefMult *= 1.5 if target.pbHasType?(:ELECTRIC)
+        spDefMult *= 1.5 if user.pbHasType?(:ELECTRIC)
         next spDefMult
     }
 )

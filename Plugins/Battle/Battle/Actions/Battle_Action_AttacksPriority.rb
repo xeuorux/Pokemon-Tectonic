@@ -158,18 +158,10 @@ class PokeBattle_Battle
         bArray = [b,b.pbSpeed,0,0,randomOrder[i]]
         if @choices[b.index][0]==:UseMove || @choices[b.index][0]==:Shift
           # Calculate move's priority
-          if @choices[b.index][0]==:UseMove
+          if @choices[b.index][0] == :UseMove
             move = @choices[b.index][2]
-            pri = move.priority
-            pri -= 1 if (self.pbCheckGlobalAbility(:HONORAURA) && move.statusMove?)
             targets = b.pbFindTargets(@choices[b.index],move,b)
-            if b.abilityActive?
-              abilityPriorityChange = BattleHandlers.triggerPriorityChangeAbility(b.ability,b,move,0,targets)
-              if abilityPriorityChange > 0
-                pri = [pri + pri, 1].max
-              end
-            end
-			      pri += move.priorityModification(b,targets)
+            pri = getMovePriority(move,b,targets)
             bArray[3] = pri
             @choices[b.index][4] = pri
           end
@@ -203,7 +195,7 @@ class PokeBattle_Battle
         @priority.push(bArray)
       end
       needRearranging = true
-	  honorAura = false
+	    honorAura = false
     else
       if @field.effectActive?(:TrickRoom) != @priorityTrickRoom
         needRearranging = true
@@ -245,6 +237,19 @@ class PokeBattle_Battle
       end
       PBDebug.log(logMsg)
     end
+  end
+
+  def getMovePriority(move,user,targets)
+    priority = move.priority
+    priority -= 1 if (pbCheckGlobalAbility(:HONORAURA) && move.statusMove?)
+    if user.abilityActive?
+      abilityPriorityChange = BattleHandlers.triggerPriorityChangeAbility(user.ability,user,move,0,targets)
+      if abilityPriorityChange > 0
+        priority = [priority + priority, 1].max
+      end
+    end
+    priority += move.priorityModification(user,targets)
+    return priority
   end
 
   def pbPriority(onlySpeedSort=false)

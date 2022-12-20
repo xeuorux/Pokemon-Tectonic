@@ -172,7 +172,7 @@ class PokeBattle_AI_Jirachi < PokeBattle_AI_Boss
 
 		@warnedIFFMove.add(:LIFEDEW, {
 			:condition => proc { |move, user, target, battle|
-				next battle.turnCount % 3 == 1 && user.hp < user.totalhp/2
+				next battle.turnCount % 3 == 1 && user.belowHalfHealth?
 			},
 			:warning => proc { |move, user, targets, battle|
 				_INTL("#{user.pbThis} takes a passive stance, inspecting its wounds.")

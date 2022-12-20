@@ -31,8 +31,9 @@ class PokeBattle_Move_181 < PokeBattle_Move
     target.pointAt(:OctolockUser,user)
   end
 
-  def getEffectScore(score,user,target)
-    score += 40 if target.hp > target.totalhp / 2
+  def getEffectScore(user,target)
+    score = 60
+    score += 60 if target.aboveHalfHealth?
     return score
   end
 end
@@ -58,10 +59,9 @@ class PokeBattle_Move_183 < PokeBattle_Move
     user.pbConsumeItem(true, true, false) if user.item
   end
 
-  def getEffectScore(score,user,target)
-    score += 40 if user.hp > user.totalhp / 2
-    score -= user.stages[:DEFENSE] * 10
-    score = 0 if !user.item || !user.item.is_berry?
+  def getEffectScore(user,target)
+    score = getMultiStatUpEffectScore([:DEFENSE,2],user,target)
+    score += 40 if user.item&.is_berry?
     return score
   end
 end
@@ -98,9 +98,8 @@ class PokeBattle_Move_184 < PokeBattle_Move
         target.pbConsumeItem(true, true, false) if target.item.is_berry?
     end
 
-    def getEffectScore(score,user,target)
-        score -= 30 unless isValidTarget?(target)
-        return score
+    def getEffectScore(user,target)
+        return 60 # I don't understand the utility of this move
     end
 end
 
@@ -137,10 +136,10 @@ class PokeBattle_Move_186 < PokeBattle_Move
     target.applyEffect(:TarShot)
   end
 
-  def getEffectScore(score,user,target)
-    score += 30 if target.hp > target.totalhp / 2
-    score += target.stages[:SPEED] * 10
-    score -= 60 if target.effectActive?(:TarShot)
+  def getEffectScore(user,target)
+    score = 0
+    score += getMultiStatDownEffectScore([:SPEED,1],user,target)
+    score += 60 unless target.effectActive?(:TarShot)
     return score
   end
 end
@@ -157,11 +156,6 @@ class PokeBattle_Move_187 < PokeBattle_Move_005
 
     def calculateCategory(user, targets)
       return selectBestCategory(user,targets[0])
-    end
-
-    def getEffectScore(score,user,target)
-        score = getPoisonEffectScore(score, user, target, [], statusMove?)
-        return score
     end
 end
 
@@ -241,22 +235,10 @@ end
   #===============================================================================
   # Burns opposing Pokemon that have increased their stats. (Burning Jealousy)
   #===============================================================================
-class PokeBattle_Move_18B < PokeBattle_Move
-  def pbAdditionalEffect(user, target)
-    return if target.damageState.substitute
-    if target.canBurn?(user, false, self) && target.hasRaisedStatStages?
-      target.applyBurn(user)
-    end
-  end
-
-  def getEffectScore(score,user,target)
-    score -= 30
-    score += 60 if target.canBurn?(user, false, self) && target.hasRaisedStatStages?
-    return score
-  end
-
-  def shouldHighlight?(user,target)
-    return target.hasRaisedStatStages?
+class PokeBattle_Move_18B < PokeBattle_JealousyMove
+  def initialize(battle, move)
+    @statusToApply = :BURN
+    super
   end
 end
 
@@ -269,13 +251,9 @@ class PokeBattle_Move_18C < PokeBattle_Move
         return 0
     end
 
-    def getEffectScore(score,user,target)
-        score -= 20
-        if @battle.field.terrain == :Grassy
-            score += 50
-            score += 50 if target.hp <= target.totalhp / 2
-        end
-        return score
+    def getEffectScore(user,target)
+        return 50 if @battle.field.terrain == :Grassy
+        return 0
     end
 
     def shouldHighlight?(user,target)
@@ -322,6 +300,11 @@ class PokeBattle_Move_18F < PokeBattle_Move
     return unless canRemoveItem?(user,target)
     removeItem(user,target,false,removalMessageForTarget(target))
   end
+
+  def getEffectScore(user,target)
+    return 30 if canRemoveItem?(user,target)
+    return 0
+  end
 end
 
   #===============================================================================
@@ -359,12 +342,6 @@ class PokeBattle_Move_192 < PokeBattle_Move
     @battle.pbDisplay(_INTL("But it failed!")) if show_message
     return true
   end
-
-  def getEffectScore(score,user,target)
-    score += 20
-    score = 0 if !target.item
-    return score
-  end
 end
 
   #===============================================================================
@@ -372,12 +349,14 @@ end
   #===============================================================================
 class PokeBattle_Move_193 < PokeBattle_Move_0C0
   def pbEffectAfterAllHits(user, target)
-    user.pbLowerMultipleStatStages([:DEFENSE,1,:SPEED,1], user, move: self)
+    user.tryLowerStat(:DEFENSE,user,move: self)
+    user.tryRaiseStat(:SPEED,user,move: self)
   end
 
-  def getEffectScore(score,user,target)
-    score -= user.stages[:SPEED] * 10
-    score += user.stages[:DEFENSE] * 10
+  def getEffectScore(user,target)
+    score = super
+    score += getMultiStatUpEffectScore([:SPEED,1],user,target)
+    score -= getMultiStatDownEffectScore([:DEFENSE,1],user,target)
     return score
   end
 end
@@ -418,10 +397,8 @@ class PokeBattle_Move_195 < PokeBattle_Move
     @battle.pbStartTerrain(user, :None, false)
   end
 
-  def getEffectScore(score,user,target)
-    score += 30
-    score = 0 if battle.field.terrain == :NONE
-    return score
+  def getEffectScore(user,target)
+    return 20
   end
 end
 
@@ -436,10 +413,8 @@ class PokeBattle_Move_196 < PokeBattle_Move_0E0
     return baseDmg
   end
 
-  def getEffectScore(score,user,target)
-      score += 50
-      score -= ((user.hp.to_f / user.totalhp.to_f) * 100).floor
-      return score
+  def getEffectScore(user,target)
+      return getHPLossEffectScore(user,0.5)
   end
 
   def pbSelfKO(user)
@@ -471,10 +446,8 @@ class PokeBattle_Move_197 < PokeBattle_Move
     @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", target.pbThis, typeName))
   end
 
-  def getEffectScore(score,user,target)
-    score += 50
-    score = 0 if !target.canChangeType? || !target.pbHasOtherType?(:PSYCHIC)
-    return score
+  def getEffectScore(user,target)
+    return 50
   end
 end
 

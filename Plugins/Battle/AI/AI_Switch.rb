@@ -81,7 +81,7 @@ class PokeBattle_AI
             # Pokémon is about to faint because of Perish Song
             if battler.effects[:PerishSong] == 1
                 switchingBias += 2
-                switchingBias += 2 if user.hp > user.totalhp / 2
+                switchingBias += 2 if user.aboveHalfHealth?
                 PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is to die to perish song (+2)")
             end
 

@@ -1,3 +1,5 @@
+DAMAGE_CALC_DEBUG = false
+
 class PokeBattle_Move
     #=============================================================================
     # Final damage calculation
@@ -24,7 +26,7 @@ class PokeBattle_Move
     end
 
     def calculateDamageForHit(user,target,type,baseDmg,numTargets,aiChecking=false)
-        echoln("[DAMAGE CALC] Calcing damage based on given base damage #{baseDmg} and type #{type}")
+        echoln("[DAMAGE CALC] Calcing damage based on given base power #{baseDmg} and type #{type}") if DAMAGE_CALC_DEBUG
         
         # Get the relevant attacking and defending stat values (after stages)
         attack, defense = damageCalcStats(user,target,aiChecking)
@@ -88,7 +90,7 @@ class PokeBattle_Move
         end
         defense_stage = 0 if user.hasActiveAbility?(:UNAWARE)
         defense = defending_stat_holder.getFinalStat(defending_stat, aiChecking, defense_stage)
-        echoln("[DAMAGE CALC] Calcing damage based on #{attacking_stat_holder.pbThis(true)}'s final #{attacking_stat} of #{attack} and #{defending_stat_holder.pbThis(true)}'s final #{defending_stat} of #{defense}")
+        echoln("[DAMAGE CALC] Calcing damage based on #{attacking_stat_holder.pbThis(true)}'s final #{attacking_stat} of #{attack} and #{defending_stat_holder.pbThis(true)}'s final #{defending_stat} of #{defense}") if DAMAGE_CALC_DEBUG
         return attack, defense
     end
     
@@ -272,7 +274,7 @@ class PokeBattle_Move
         effectiveness = typeMod / Effectiveness::NORMAL_EFFECTIVE.to_f
         multipliers[:final_damage_multiplier] *= effectiveness
 
-        echoln("[DAMAGE CALC] Calcing damage based on expected type effectiveness mult of #{effectiveness}")
+        echoln("[DAMAGE CALC] Calcing damage based on expected type effectiveness mult of #{effectiveness}") if DAMAGE_CALC_DEBUG
 
         # Charge
         if user.effectActive?(:Charge) && type == :ELECTRIC

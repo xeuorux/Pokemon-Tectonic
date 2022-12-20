@@ -313,7 +313,7 @@ class PokeBattle_Battler
 			return false
 		end
 		# Safeguard immunity
-		if pbOwnSide.effectActive?(:Safeguard) && !(user && user.hasActiveAbility?(:INFILTRATOR))
+		if pbOwnSide.effectActive?(:Safeguard) && !(target && target.hasActiveAbility?(:INFILTRATOR))
 			return false
 		end
 		return true

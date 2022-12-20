@@ -20,9 +20,8 @@ class PokeBattle_Battle
   
       # Set the new weather and duration
       @field.weather = newWeather
-      if duration>0 && user && user.itemActive?(ignoreFainted)
-        duration = BattleHandlers.triggerWeatherExtenderItem(user.item,
-          @field.weather,duration,user,self)
+      if duration>0 && user
+        duration = user.getWeatherSettingDuration(newWeather,duration,ignoreFainted)
       end
   
       # If we're resetting an existing weather, don't set the duration to lower than it was before

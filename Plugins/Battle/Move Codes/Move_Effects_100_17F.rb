@@ -44,8 +44,8 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       user.pbOpposingSide.incrementEffect(:Spikes)
     end
 
-    def getEffectScore(score,user,target)
-        return getHazardSettingEffectScore(score,user,target)
+    def getEffectScore(user,target)
+        return getHazardSettingEffectScore(user,target)
     end
   end
   
@@ -76,8 +76,8 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       user.pbOpposingSide.applyEffect(:StealthRock)
     end
 
-    def getEffectScore(score,user,target)
-      score = getHazardSettingEffectScore(score,user,target)
+    def getEffectScore(user,target)
+      score = getHazardSettingEffectScore(user,target)
       return score
     end
   end
@@ -162,8 +162,9 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       super
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       side = target.pbOwnSide
+      score = 0
       side.eachEffect(true) do |effect,value,data|
         score += 10 if data.is_screen?
       end
@@ -187,6 +188,10 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       recoilDamage = user.totalhp / 2.0
       recoilMessage = _INTL("{1} kept going and crashed!",user.pbThis)
       user.applyRecoilDamage(recoilDamage,true,true,recoilMessage)
+    end
+
+    def getEffectScore(user,target)
+      return (@accuracy - 100) * 2
     end
   end
   
@@ -221,7 +226,8 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 		  user.applyEffect(:Substitute,subLife)
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
+      score = 80
       score += 20 if user.firstTurn?
       user.eachOpposing(true) do |b|
         if !b.canActThisTurn?
@@ -287,23 +293,17 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       super
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       if user.pbHasTypeAI?(:GHOST)
-        return 0 if target.hp <= target.totalhp / 2
-
-				if user.hp <= user.totalhp / 2
-					if !user.alliesInReserve?
-					  return 0
-					else
-            score -= 50
-					end
-				end
+        score = getCurseEffectScore(user,target)
+        score += getHPLossEffectScore(user,0.5)
+        return score
 			else
         statUp = [:ATTACK,1,:DEFENSE,1]
-        score = getMultiStatUpEffectScore(statUp,score,user,target)
+        score = getMultiStatUpEffectScore(statUp,user,target)
         score -= user.stages[:SPEED] * 10
+        return score
 			end
-      return score
     end
   end
   
@@ -339,7 +339,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       end
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       echoln("The AI should never use Spite.")
       return 0
     end
@@ -365,9 +365,9 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       target.applyEffect(:Nightmare)
     end
 
-    def getEffectScore(score,user,target)
-      score -= 30
-      score += 30 * target.statusCount
+    def getEffectScore(user,target)
+      score = 100
+      score += 50 if target.aboveHalfHealth?
       return score
     end
   end
@@ -432,9 +432,10 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       super
     end
 
-    def getEffectScore(score,user,target)
-      return 0 if !user.alliesInReserve?
-      score += 20 if user.firstTurn?
+    def getEffectScore(user,target)
+      score = 0
+      score -=50 if !user.alliesInReserve?
+      score -=20 unless user.firstTurn?
       return score
     end
   end
@@ -463,7 +464,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       super
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       score = super
       score += 20 if user.pbHasMoveFunction?("113")	# Spit Up
       score += 20 if user.pbHasMoveFunction?("114") # Swallow
@@ -496,9 +497,8 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       user.disableEffect(:Stockpile)
     end
 
-    def getEffectScore(score,user,target)
-      score -= 20 * user.countEffect(:Stockpile)
-      return score
+    def getEffectScore(user,target)
+      return -20 * user.countEffect(:Stockpile)
     end
 
     def shouldHighlight?(user,target)
@@ -540,7 +540,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       user.disableEffect(:Stockpile)
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       score = super
       score -= 20 * user.countEffect(:Stockpile)
       return score
@@ -573,13 +573,13 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 
     def pbMoveFailedAI?(user,targets); return false; end
 
-    def getEffectScore(score,user,target)
-      score += 30 if user.substituted?
-      score += 20 if user.hasAlly?
+    def getEffectScore(user,target)
+      score = 0
+      score -= 30 unless user.substituted?
+      score -= 20 unless user.hasAlly?
       user.eachPotentialAttacker do |b|
         score -= 20
       end
-      score -= 50 if target.hp <= target.totalhp / 2	 # If target is weak, don't risk it
       return score
     end
   end
@@ -606,9 +606,10 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 
     def pbFailsAgainstTargetAI?(user,target); return false; end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       return 0 unless target.hasDamagingAttack?
-      if user.hp < user.totalhp / 2
+      score = 0
+      if user.belowHalfHealth?
         score -= 20
       else
         score += 20
@@ -632,9 +633,10 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       user.applyEffect(:RagePowder) if @id == :RAGEPOWDER
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       return 0 if !user.hasAlly?
-      # TODO: Add a calculation for if tankier than ally
+      score = 50
+      score += 25 if user.aboveHalfHealth?
       return score
     end
   end
@@ -656,15 +658,17 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       @battle.field.applyEffect(:Gravity,5)
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
+      score = 0
       @battle.eachBattler do |b|
-        if user.opposes?(b)
-          score += 20 if b.airborne?(true)
-        else
-          score -= 20 if b.airborne?(true)
-        end
+        bScore = 0
+        bScore -= 20 if b.airborne?(true)
+        bScore += 20 if b.hasInaccurateMove?
+        bScore += 40 if b.hasLowAccuracyMove?
+        bScore *= 1 if b.opposes?(user)
+
+        score += bScore
       end
-      # TODO: Add a section that cares about accuracy
       return score
     end
   end
@@ -695,9 +699,9 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       user.applyEffect(:MagnetRise,5)
     end
 
-    def getEffectScore(score,user,target)
-      score -= 20
-      score -= 20 if !user.firstTurn?
+    def getEffectScore(user,target)
+      score = 20
+      score += 20 if user.firstTurn?
       user.eachOpposing(true) do |b|
         if b.pbHasAttackingType?(:GROUND)
           score += 50
@@ -737,10 +741,9 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       @battle.pbDisplay(_INTL("{1} was hurled into the air!",target.pbThis))
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       return 0 if !user.opposes?(target)
-      score -= 40 # Move is very bad
-      return score
+      return 40 # Move is very bad
     end
   end
 
@@ -786,7 +789,8 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       target.applyEffect(:SmackDown)
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
+      score = 0
       if canSmackDown?(target)
         if !target.effectActive?(:SmackDown)
           score += 20
@@ -833,7 +837,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 
     def pbFailsAgainstTargetAI?(user,target); return false; end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       return 0 if user.opposes?(target)
       userSpeed = user.pbSpeed(true)
 		  targetSpeed = target.pbSpeed(true)
@@ -886,7 +890,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 
     def pbFailsAgainstTargetAI?(user,target); return false; end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       return 0 if !user.opposes?(target)
       return 0 if !user.hasAlly?
       userSpeed = user.pbSpeed(true)
@@ -940,7 +944,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
       end
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       echoln("The AI will never use Ally Switch.")
       return 0
     end
@@ -1032,7 +1036,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 # NOTE: Shadow moves use function codes 126-132 inclusive.
 #===============================================================================
 module ShadowMoveAI
-  def getEffectScore(score,user,target)
+  def getEffectScore(user,target)
     echoln("The AI for Shadow moves is not created.")
     super
   end
@@ -1214,7 +1218,7 @@ end
       return false
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       echoln("The AI will never use Hold Hands.")
       super
     end
@@ -1363,6 +1367,11 @@ end
   # 1 stage each. (Rototiller)
   #===============================================================================
   class PokeBattle_Move_13E < PokeBattle_Move
+    def initialize(battle, move)
+      super
+      @statUp = [:ATTACK,1,:SPECIAL_ATTACK,1]
+    end
+
     def pbMoveFailed?(user,targets,show_message)
       @battle.eachBattler do |b|
         return false if isValidTarget?(user,b)
@@ -1383,16 +1392,14 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.pbRaiseMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],user,move: self)
+      target.pbRaiseMultipleStatStages(@statUp,user,move: self)
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
 			if isValidTarget?(user,target)
-        score += 30
-				score -= user.stages[:DEFENSE] * 5
-        score -= user.stages[:SPECIAL_DEFENSE] * 5
+        return getMultiStatUpEffectScore(@statUp, user, target)
 			end
-      return score
+      return 0
     end
   end
   
@@ -1401,6 +1408,11 @@ end
   # (Flower Shield)
   #===============================================================================
   class PokeBattle_Move_13F < PokeBattle_Move
+    def initialize(battle, move)
+      super
+      @statUp = [:DEFENSE,1,:SPECIAL_DEFENSE,1]
+    end
+
     def pbMoveFailed?(user,targets,show_message)
       @battle.eachBattler do |b|
         return false if isValidTarget?(user,b)
@@ -1421,16 +1433,14 @@ end
     end
   
     def pbEffectAgainstTarget(user,target)
-      target.pbRaiseMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1],user,move: self)
+      target.pbRaiseMultipleStatStages(@statUp,user,move: self)
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
 			if isValidTarget?(user,target)
-        score += 30
-				score -= user.stages[:DEFENSE] * 5
-        score -= user.stages[:SPECIAL_DEFENSE] * 5
+        return getMultiStatUpEffectScore(@statUp, user, target)
 			end
-      return score
+      return 0
     end
   end
   
@@ -1469,14 +1479,11 @@ end
       target.pbLowerMultipleStatStages(@statDown, user, move: self)
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
 			if isValidTarget?(user,target)
-        score += 30
-        score += target.stages[:ATTACK] * 5
-        score += target.stages[:SPECIAL_ATTACK] * 5
-        score += target.stages[:SPEED] * 5
+        return getMultiStatDownEffectScore(@statDown, user, target)
 			end
-      return score
+      return 0
     end
   end
   
@@ -1503,8 +1510,8 @@ end
       @battle.pbDisplay(_INTL("{1}'s stats were reversed!",target.pbThis))
     end
 
-    def getEffectScore(score,user,target)
-      score -= 40
+    def getEffectScore(user,target)
+      score = 0
       netStages = 0
       GameData::Stat.each_battle do |s|
         netStages += target.stages[s.id]
@@ -1541,6 +1548,10 @@ end
     def pbEffectAgainstTarget(user,target)
       target.applyEffect(:Type3,:GHOST)
     end
+
+    def getEffectScore(user,target)
+      return 60
+    end
   end
   
   #===============================================================================
@@ -1565,6 +1576,10 @@ end
   
     def pbEffectAgainstTarget(user,target)
       target.applyEffect(:Type3,:GRASS)
+    end
+
+    def getEffectScore(user,target)
+      return 60
     end
   end
   
@@ -1602,9 +1617,8 @@ end
       target.applyEffect(:Electrify)
     end
 
-    def getEffectScore(score,user,target)
-      score -= 40 # Move sucks
-      return score
+    def getEffectScore(user,target)
+      return 40 # Move sucks
     end
   end
   
@@ -1659,13 +1673,11 @@ end
       target.applyEffect(:Powder)
     end
 
-    def getEffectScore(score,user,target)
-      if target.pbHasMoveType?(:FIRE)
-        score += 50 
-      else
-        score -= 50 
+    def getEffectScore(user,target)
+      if !target.pbHasMoveType?(:FIRE)
+        return 20
       end
-      return score
+      return 80
     end
   end
   
@@ -1690,12 +1702,13 @@ end
       user.pbOwnSide.applyEffect(:MatBlock)
     end
 
-    def getEffectScore(score,user,target)
-      score += 20 if user.hasAlly?
+    def getEffectScore(user,target)
+      score = 0
       # Check only status having pokemon
-      user.eachOpposing() do |b|
-        next if !b.hasDamagingAttack?
-        score += 20
+      user.eachOpposing do |b|
+        next unless b.hasDamagingAttack?
+        score += 40
+        score += 40 if user.hasAlly?
       end
       return score
     end
@@ -1718,13 +1731,13 @@ end
       user.pbOwnSide.applyEffect(:CraftyShield)
     end
 
-    def getEffectScore(score,user,target)
-      score -= 20
-      score -= 20 if !user.hasAlly?
+    def getEffectScore(user,target)
+      score = 0
       # Check only status having pokemon
       user.eachOpposing do |b|
-        next if !b.hasStatusMove?
-        score += 20
+        next unless b.hasStatusMove?
+        score += 40
+        score += 40 if user.hasAlly?
       end
       return score
     end
@@ -1740,7 +1753,7 @@ end
       @effect = :KingsShield
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       score = super
       # Check only physical attackers
       user.eachPotentialAttacker(0) do |b|
@@ -1760,7 +1773,7 @@ end
       @effect = :SpikyShield
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       score = super
       # Check only physical attackers
       user.eachPotentialAttacker(0) do |b|
@@ -1808,12 +1821,10 @@ end
       user.pbRaiseMultipleStatStages(@statUp,user,move: self)
     end
 
-    def getEffectScore(score,user,target)
-      score += 30 if user.firstTurn? && user.hasSpecialAttack?
-      score -= user.stages[:SPECIAL_ATTACK] * 10
-      score -= user.stages[:SPECIAL_DEFENSE] * 10
-      score -= user.stages[:SPEED] * 10
-      super
+    def getEffectScore(user,target)
+      score = super
+      score += getMultiStatUpEffectScore(@statUp,user,target)
+      return score
     end
   end
   
@@ -1871,8 +1882,9 @@ end
       switcher.pbEffectsOnSwitchIn(true)
     end
 
-    def getEffectScore(score,user,target)
-      score = getSwitchOutEffectScore(score,user,target)
+    def getEffectScore(user,target)
+      score = super
+      score += getSwitchOutEffectScore(user,target)
       return score
     end
   end
@@ -1894,7 +1906,7 @@ end
       @battle.pbDisplay(_INTL("No one will be able to run away during the next turn!"))
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       echoln("The AI will never use Fairy Lock.")
       return 0 # The move is both annoying and very weak
     end
@@ -1916,8 +1928,8 @@ end
       user.pbOpposingSide.applyEffect(:StickyWeb)
     end
 
-    def getEffectScore(score,user,target)
-      return getHazardSettingEffectScore(score,user,target)
+    def getEffectScore(user,target)
+      return getHazardSettingEffectScore(user,target)
     end
   end
   
@@ -1966,7 +1978,7 @@ end
       @battle.pbDisplay(_INTL("Everyone is caught up in the happy atmosphere!"))
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       echoln("The AI will never use Happy Hour.")
       return 0
     end
@@ -2025,7 +2037,8 @@ end
       target.pbCureStatus(true,:BURN)
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
+      score = 0
       if !target.substituted? && target.burned?
         if target.opposes?(user)
           score -= 30
@@ -2055,9 +2068,9 @@ end
       super
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       # The target for this is set as the user since its the user that heals
-      score = getHealingEffectScore(score,user,user,5)
+      score = getHealingEffectScore(user,user,5)
       score += 30
       return score
     end
@@ -2095,10 +2108,11 @@ end
       super
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
+      score = 0
 			GameData::Stat.each_battle do |s|
 				next if target.stages[s.id] <= 0
-				score += target.stages[s.id] * 15
+				score += target.stages[s.id] * 20
 			end
       return score
     end
@@ -2118,10 +2132,9 @@ end
       @battle.pbDisplay(_INTL("{1} concentrated intensely!",user.pbThis))
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       return 0 if user.effectActive?(:LaserFocus)
-      score -= 20 # Move isn't very strong
-      return score
+      return 80
     end
   end
   
@@ -2177,14 +2190,9 @@ end
       end
     end
 
-    def getEffectScore(score,user,target)
-      if target.pbCanLowerStatStage?(:ATTACK,user)
-        score += target.stages[:ATTACK] * 20
-        if target.hasPhysicalAttack?
-          score += 20
-        end
-      end
-      score = getHealingEffectScore(score,user,user,2)
+    def getEffectScore(user,target)
+      score = getMultiStatDownEffectScore([:ATTACK,1],user,target)
+      score += getHealingEffectScore(user,user,2)
       return score
     end
   end
@@ -2200,8 +2208,8 @@ end
       @battle.pbDisplay(_INTL("{1} switched Speed with its target!",user.pbThis))
     end
 
-    def getEffectScore(score,user,target)
-      score = getWantsToBeSlowerScore(score,user,target,magnitude=8)
+    def getEffectScore(user,target)
+      score = getWantsToBeSlowerScore(user,target,magnitude=8)
       return score
     end
   end
@@ -2222,9 +2230,8 @@ end
       user.applyEffect(:BurnUp)
     end
 
-    def getEffectScore(score,user,target)
-      score -= 20
-      return score
+    def getEffectScore(user,target)
+      return -20
     end
   end
   
@@ -2238,9 +2245,8 @@ end
       @battle.moldBreaker = true if !specialUsage
     end
 
-    def getEffectScore(score,user,target)
-      score += 10
-      return score
+    def getEffectScore(user,target)
+      return 10
     end
   end
   
@@ -2274,9 +2280,9 @@ end
       target.applyEffect(:GastroAcid)
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       if !target.substituted? && !target.effectActive?(:GastroAcid)
-        score = getWantsToBeSlowerScore(score,user,target,3)
+        score = getWantsToBeSlowerScore(user,target,3)
       end
       return score
     end
@@ -2313,10 +2319,9 @@ end
       user.pbOwnSide.applyEffect(:AuroraVeil,user.getScreenDuration())
     end
 
-    def getEffectScore(score,user,target)
-      score += 50
-      score += 30 if user.firstTurn?
-      score += 5 * user.getScreenDuration()
+    def getEffectScore(user,target)
+      score = 40 * user.getScreenDuration()
+      score += 60 if user.firstTurn?
       return score
     end
   end
@@ -2332,11 +2337,12 @@ end
       @effect = :BanefulBunker
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       score = super
-      # Check only physical attackers
-      user.eachPotentialAttacker(0) do |b|
-        score += getPoisonEffectScore(0,user,b,user.ownersPolicies)
+      # Check only special attackers
+      user.eachPotentialAttacker(true) do |b|
+        next unless b.hasPhysicalAttack?
+        score += getPoisonEffectScore(user,b) * 0.75
       end
       return score
     end
@@ -2366,8 +2372,10 @@ end
       target.applyEffect(:Spotlight,maxSpotlight + 1)
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       return 0 if !target.hasAlly?
+      score = 50
+      score += 25 if target.aboveHalfHealth?
       return score
     end
   end
@@ -2417,7 +2425,7 @@ end
       target.applyEffect(:Instruct)
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       return 0 # Much too chaotic of a move to allow the AI to use
     end
   end
@@ -2431,11 +2439,11 @@ end
       target.applyEffect(:ThroatChop,3)
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       if !target.effectActive?(:ThroatChop) && target.hasSoundMove? && !target.substituted?
-        score += 30
+        return 30
       end
-      return score
+      return 0
     end
   end
   
@@ -2455,6 +2463,7 @@ end
     end
   end
   
+  # TODO create a "targeting healing move" parent class
   #===============================================================================
   # Heals target by 1/2 of its max HP, or 2/3 of its max HP in Grassy Terrain.
   # (Floral Healing)
@@ -2482,10 +2491,10 @@ end
       target.applyFractionalHealing(ratio)
     end
 
-    def getEffectScore(score,user,target)
-      score += 30 if @battle.field.terrain == :Grassy
-      score = getHealingEffectScore(score,user,target)
-      return score
+    def getEffectScore(user,target)
+      magnitude = 3
+      magnitude = 6 if @battle.field.terrain == :Grassy
+      return getHealingEffectScore(user,target,magnitude)
     end
 
     def shouldHighlight?(user,target)
@@ -2536,11 +2545,11 @@ end
       super
     end
 
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
       if !user.opposes?(target)
-        score = getHealingEffectScore(score,user,target)
+        return getHealingEffectScore(user,target)
       end
-      return score
+      return 0
     end
   end
   
@@ -2573,12 +2582,8 @@ end
       user.pbItemHPHealCheck
     end
 
-    def getEffectScore(score,user,target)
-      if user.hp <= user.totalhp / 2
-        return 0 if !user.alliesInReserve?
-      end
-      score -= 40
-      return score
+    def getEffectScore(user,target)
+      return getHPLossEffectScore(user,0.5)
     end
   end
   
@@ -2609,9 +2614,9 @@ end
 
     def pbMoveFailedAI?(user,targets); return false; end
 
-    def getEffectScore(score,user,target)
-      score = 0 if !target.hasPhysicalAttack?
-      return score
+    def getEffectScore(user,target)
+      return -1000 unless target.hasPhysicalAttack?
+      return -30
     end
   end
   
@@ -2624,9 +2629,12 @@ end
       user.applyEffect(:BeakBlast)
     end
 
-    def getEffectScore(score,user,target)
-      score += 30 if target.hasPhysicalAttack?
-      return score
+    def getEffectScore(user,target)
+      if target.hasPhysicalAttack?
+        return getBurnEffectScore(user,target) / 2
+      else
+        return 0
+      end
     end
   end
   
@@ -2723,7 +2731,7 @@ end
 # Raises all user's stats by 1 stage in exchange for the user losing 1/3 of its
 # maximum HP, rounded down. Fails if the user would faint. (Clangorous Soul)
 #===============================================================================
-class PokeBattle_Move_179 < PokeBattle_Move
+class PokeBattle_Move_179 < PokeBattle_MultiStatUpMove
   def initialize(battle,move)
 		super
 		@statUp = [:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1,:SPEED,1]
@@ -2742,10 +2750,10 @@ class PokeBattle_Move_179 < PokeBattle_Move
     user.applyFractionalDamage(1.0/3.0)
   end
   
-  def getEffectScore(score,user,target)
-    score -= 20
-    score -= 50 if user.hp < user.totalhp/2
-    super
+  def getEffectScore(user,target)
+    score = super
+    score += getHPLossEffectScore(user,0.33)
+    return score
   end
 end
 
@@ -2778,7 +2786,7 @@ class PokeBattle_Move_17A < PokeBattle_Move
     @battle.pbDisplay(_INTL("{1} swapped the battle effects affecting each side of the field!",user.pbThis))
   end
   
-  def getEffectScore(score,user,target)
+  def getEffectScore(user,target)
     return 0 # TODO
   end
 end
@@ -2868,6 +2876,11 @@ class PokeBattle_Move_17D < PokeBattle_Move
       @battle.pbDisplay(_INTL("Neither Pokémon can escape!"))
     end
   end
+
+  def getEffectScore(user,target)
+    return 20 unless target.effectActive?(:JawLock)
+    return 0
+  end
 end
 
 #===============================================================================
@@ -2913,13 +2926,12 @@ class PokeBattle_Move_17E < PokeBattle_Move
     target.pbRecoverHP(hpGain)
   end
   
-  def getEffectScore(score,user,target)
-    score += 20 if user.hp < user.totalhp
-    score += 20 if user.hp < user.totalhp/2
-    score += 20 if target.hp < target.totalhp
-    score += 20 if target.hp < target.totalhp/2
-    score -= 80 if !user.canHeal?
-    score -= 80 if !target.canHeal?
+  def getEffectScore(user,target)
+    score = 0
+    if target.canHeal?
+      score += 20
+      score += 40 if target.belowHalfHealth?
+    end
     return score
   end
 end

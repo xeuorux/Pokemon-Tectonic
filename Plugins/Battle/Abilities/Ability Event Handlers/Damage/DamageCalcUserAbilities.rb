@@ -50,7 +50,7 @@ BattleHandlers::DamageCalcUserAbility.add(:BLAZE,
 
 BattleHandlers::DamageCalcUserAbility.add(:DEFEATIST,
   proc { |ability,user,target,move,mults,baseDmg,type,aiCheck|
-    mults[:attack_multiplier] /= 2 if user.hp <= user.totalhp / 2
+    mults[:attack_multiplier] /= 2 if user.belowHalfHealth?
   }
 )
 

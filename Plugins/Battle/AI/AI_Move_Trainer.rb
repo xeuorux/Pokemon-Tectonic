@@ -67,7 +67,7 @@ class PokeBattle_AI
             totalScore = 0
             targets = []
             @battle.eachBattler do |b|
-                next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
+                next unless @battle.pbMoveCanTarget?(user.index,b.index,target_data)
                 targets.push(b)
             end
             targets.each do |b|
@@ -87,7 +87,7 @@ class PokeBattle_AI
             # If move affects one battler and you have to choose which one
             scoresAndTargets = []
             @battle.eachBattler do |b|
-                next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
+                next unless @battle.pbMoveCanTarget?(user.index,b.index,target_data)
                 next if target_data.targets_foe && !user.opposes?(b)
                 score = pbGetMoveScore(move,user,b,policies)
                 scoresAndTargets.push([score,b.index]) if score>0
@@ -110,7 +110,7 @@ class PokeBattle_AI
 
         return 0 if aiPredictsFailure?(move,user,target)
         
-		effectScore = pbGetMoveScoreFunctionCode(100,move,user,target,policies)
+		effectScore = pbGetMoveScoreFunctionCode(0,move,user,target,policies)
 
 		if effectScore.nil?
 			echoln("ERROR! #{user.pbThis} unable to score #{move.id} against target #{target.pbThis(false)}. Assuming an effect score of 0.")
@@ -176,6 +176,12 @@ class PokeBattle_AI
 
         echoln("#{user.pbThis} predicts the move #{move.id} against target #{target.pbThis(false)} will have an accuracy of #{accuracy}") if accuracy < 100
 		
+        # Account for the value of priority
+        if target.pbSpeed(true) > user.pbSpeed(true) && @battle.getMovePriority(move,user,[target]) > 0
+            echoln("#{user.pbThis} scores the move #{move.id} differently due to priority.")
+            score *= 1.5
+        end
+
 		# Final adjustments t score
 		score = score.to_i
 		score = 0 if score < 0
@@ -217,7 +223,7 @@ class PokeBattle_AI
         
         # Adjust score
         if damagePercentage >= 100   # Prefer lethal damage
-            damagePercentage = 150
+            damagePercentage = 200
             damagePercentage = 300 if move.hasKOEffect?(user,target)
         end
         

@@ -2,7 +2,7 @@ class PokeBattle_Move
     ########################################################
     ### AI functions
     ########################################################
-    def getEffectScore(score,user,target)
+    def getEffectScore(user,target)
         echoln("Move #{@name} has no effect scoring method defined! Returning 0.")
         return 0
     end

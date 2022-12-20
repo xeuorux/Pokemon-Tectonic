@@ -78,7 +78,7 @@ BattleHandlers::SpeedCalcAbility.add(:FEROCIOUS,
   proc { |ability,battler,mult|
   active = false
   battler.eachOpposing do |b|
-    next if b.hp >= b.totalhp/2
+    next unless b.belowHalfHealth?
     active = true
     break
   end

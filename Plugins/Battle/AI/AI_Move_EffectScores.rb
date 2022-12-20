@@ -32,11 +32,15 @@ class PokeBattle_AI
 			end
 		#---------------------------------------------------------------------------
 		else
-			begin
-				score = move.getEffectScore(score,user,target)
-			rescue
-				echoln("FAILURE IN THE SCORING SYSTEM FOR MOVE #{move.name} #{move.function}")
-				score = 100
+			if @battle.autoTesting
+				score = move.getEffectScore(user,target)
+			else
+				begin
+					score = move.getEffectScore(user,target)
+				rescue
+					echoln("FAILURE IN THE SCORING SYSTEM FOR MOVE #{move.name} #{move.function}")
+					return 0
+				end
 			end
 		end
 		return score

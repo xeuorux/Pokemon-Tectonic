@@ -533,4 +533,20 @@ class PokeBattle_Battler
 			return @damageState.typeMod
 		end
 	end
+
+	def aboveHalfHealth?
+		return @hp > @totalhp / 2
+	end
+
+	def belowHalfHealth?
+		return @hp <= @totalhp / 2
+	end
+
+	def getWeatherSettingDuration(weatherType,baseDuration = 4,ignoreFainted=false)
+		duration = baseDuration
+		if duration > 0 && itemActive?(ignoreFainted)
+			duration = BattleHandlers.triggerWeatherExtenderItem(@item,weatherType,duration,self,@battle)
+		end
+		return duration
+	end
 end
