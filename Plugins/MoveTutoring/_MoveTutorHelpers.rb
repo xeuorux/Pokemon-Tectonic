@@ -39,7 +39,7 @@ def eachPokemonInPartyOrStorage()
 end
 
 class Pokemon
-	def learnable_moves()
+	def learnable_moves(skipAlreadyLearned = true)
 		species_data = GameData::Species.get(@species)
 
 		moves = []
@@ -50,20 +50,20 @@ class Pokemon
 			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 		end
 		firstSpecies.egg_moves.each do |m| 
-			next if hasMove?(m)
+			next if hasMove?(m) && skipAlreadyLearned
 			moves.push(m)
 		end
 
 		# Gather tutor moves
 		species_data.tutor_moves.each do |m|
-			next if hasMove?(m)
+			next if hasMove?(m) && skipAlreadyLearned
 			moves.push(m)
 		end
 
 		# Gather level up moves
 		species_data.moves.each { |learnset_entry|
 			m = learnset_entry[1]
-			next if hasMove?(m)
+			next if hasMove?(m) && skipAlreadyLearned
 			moves.push(m)
 		}
 

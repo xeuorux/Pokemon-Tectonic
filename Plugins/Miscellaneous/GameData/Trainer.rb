@@ -67,7 +67,7 @@ module GameData
 				parentTrainerData = GameData::Trainer.get(@extendsClass || @trainer_type, @extendsName || @real_name, @extendsVersion)
 				parentTrainer = parentTrainerData.to_trainer
 				extending = true if !parentTrainer.nil?
-				echoln("Trainer #{@id.to_s} is extending trainer #{parentTrainerData.id.to_s}")
+				#echoln("Trainer #{@id.to_s} is extending trainer #{parentTrainerData.id.to_s}")
 			end
 
 			# Determine trainer's name
@@ -212,7 +212,7 @@ module GameData
 				next memberA.assignedPosition <=> memberB.assignedPosition
 			}
 
-			echoln(trainer.party.to_s)
+			#echoln(trainer.party.to_s)
 
 			return trainer
 		end

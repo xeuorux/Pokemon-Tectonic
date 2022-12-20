@@ -27,35 +27,9 @@ def checkTrainerPokemonLegality(pkmn,trainerInfo)
 	species_data = GameData::Species.get_species_form(pkmn.species,pkmn.form)
 	if pkmn.species != :SMEARGLE
 		pkmn.moves.each do |move|
-			return if !move
-			moveID = move.id
-			next if pkmn.first_moves.include?(moveID)
-			next if species_data.tutor_moves.include?(moveID)
-			
-			firstSpecies = species_data
-			while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
-				firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
-			end
-			next if firstSpecies.egg_moves.include?(moveID)
-			
-			learnsViaLevel = false
-			learnsAtAll = false
-			species_data.moves.each do |learnset_entry|
-				break if learnset_entry[0] > pkmn.level
-				if learnset_entry[1] == moveID
-					learnsAtAll = true
-					if learnset_entry[0] <= pkmn.level
-						learnsViaLevel = true 
-					end
-				end
-			end
-			next if learnsViaLevel
-			
-			if learnsAtAll
-				echoln("WARNING: #{moveID} learned early on #{pkmn.name} on #{trainerInfo}")
-			else
-				echoln("ERROR: #{moveID} learned illegaly on #{pkmn.name} on #{trainerInfo}")
-			end
+			next unless move
+			next if pkmn.learnable_moves(false).include?(move.id)
+			echoln("ERROR: #{move.id} learned illegaly on #{pkmn.name} on #{trainerInfo}")
 		end
 	end
 	
