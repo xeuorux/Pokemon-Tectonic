@@ -177,9 +177,13 @@ class PokeBattle_AI
         echoln("#{user.pbThis} predicts the move #{move.id} against target #{target.pbThis(false)} will have an accuracy of #{accuracy}") if accuracy < 100
 		
         # Account for the value of priority
-        if target.pbSpeed(true) > user.pbSpeed(true) && @battle.getMovePriority(move,user,[target]) > 0
-            echoln("#{user.pbThis} scores the move #{move.id} differently due to priority.")
+        movePrio = @battle.getMovePriority(move,user,[target])
+        if target.pbSpeed(true) > user.pbSpeed(true) && movePrio > 0
+            echoln("#{user.pbThis} scores the move #{move.id} higher since its positive priority (#{movePrio}) when normally would be slower")
             score *= 1.5
+        elsif target.pbSpeed(true) < user.pbSpeed(true) && movePrio < 0
+            echoln("#{user.pbThis} scores the move #{move.id} lower since its negative priority (#{movePrio}) when normally would be faster")
+            score *= 0.66
         end
 
 		# Final adjustments t score
