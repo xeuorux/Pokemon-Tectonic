@@ -1152,6 +1152,24 @@ Pokemon = CORVISQUIRE,27
 Pokemon = GABITE,28
     AbilityIndex = 1
 #-------------------------------
+[NINJABOY,Hwan]
+Pokemon = DARTRIX,28
+    AbilityIndex = 1
+Pokemon = RIBOMBEE,28
+    AbilityIndex = 1
+Pokemon = HELIOPTILE,29
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+#-------------------------------
+[VETERAN_F,Genevieve]
+Pokemon = MNOCTOWL,28
+    AbilityIndex = 1
+Pokemon = ANORITH,28
+    AbilityIndex = 0
+    Item = ROCKGEM
+Pokemon = POLIWHIRL,29
+    AbilityIndex = 1
+#-------------------------------
 [HOOPSTER,Jerel]
 Pokemon = VOLTORB,28
     AbilityIndex = 1

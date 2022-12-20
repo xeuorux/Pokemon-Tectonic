@@ -104,7 +104,7 @@ LandTall,20
 Special,20
     1,PIDOVE,15
 #-------------------------------
-[032] # Németh Apartments
+[032] # Novo Apartments
 Special
     1,ESPURR,15
 #-------------------------------
@@ -219,7 +219,7 @@ FloweryGrass2,20
 Special,20
     1,MVULPIX,15
 #-------------------------------
-[056] # Németh
+[056] # Novo Town
 FloweryGrass,20
     25,CHERUBI,15,18
     25,DUCKLETT,15,18
@@ -254,19 +254,19 @@ LandTall,20
     25,PINECO,14,17
     25,SNOM,14,17
 #-------------------------------
-[065] # Németh Mart
+[065] # Novo Mart
 Special,1
     1,AMEOWTH,15
 #-------------------------------
-[066] # Németh Apartments Attic
+[066] # Apartment Attic
 Special,20
     1,ABSOL,15
 #-------------------------------
-[071] # Németh Apartments Room 103
+[071] # Room 103
 Special
     1,MAREANIE,15
 #-------------------------------
-[074] # Németh Apartments Room 203
+[074] # Room 203
 Special
     1,GYAMASK,15
 #-------------------------------
@@ -339,7 +339,7 @@ SewerFloor,20
     25,SOLOSIS,17,19
     25,TRUBBISH,17,19
 #-------------------------------
-[123] # Németh College
+[123] # Novo College
 Special,20
     1,AERODACTYL,30
     1,AMAURA,10

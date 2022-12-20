@@ -236,7 +236,7 @@ Bicycle = true
 BattleBack = wcave
 #-------------------------------
 [032]
-# Németh Apartments
+# Novo Apartments
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -390,7 +390,7 @@ MapSize = 2,110101
 Environment = Graveyard
 #-------------------------------
 [056]
-# Németh
+# Novo Town
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -400,7 +400,7 @@ MapSize = 2,11
 Environment = None
 #-------------------------------
 [057]
-# Németh Center
+# Novo Center
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -434,7 +434,7 @@ Bicycle = false
 HealingSpot = 59,26,20
 #-------------------------------
 [062]
-# Németh Gym
+# Novo Gym
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -442,79 +442,79 @@ BattleBack = elite8
 TeleportBlocked = true
 #-------------------------------
 [065]
-# Németh Mart
+# Novo Mart
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [066]
-# Németh Apartments Attic
+# Apartment Attic
 Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
 [067]
-# Németh Apartments Room 101
+# Room 101
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [068]
-# Németh Apartments Room 105
+# Room 105
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [069]
-# Németh Apartment Rooms
+# Apartment Rooms
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [070]
-# Németh Apartments Room 102
+# Room 102
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [071]
-# Németh Apartments Room 103
+# Room 103
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [072]
-# Németh Apartments Room 104
+# Room 104
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [073]
-# Németh Apartments Room 106
+# Room 106
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [074]
-# Németh Apartments Room 203
+# Room 203
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [075]
-# Németh Apartments Room 204
+# Room 204
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [076]
-# Németh Apartments Room 201
+# Room 201
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
 [077]
-# Németh Apartments Room 202
+# Room 202
 Outdoor = false
 ShowArea = false
 Bicycle = false

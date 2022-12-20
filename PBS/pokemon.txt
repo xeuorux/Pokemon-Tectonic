@@ -6591,7 +6591,6 @@ Evolutions = MISMAGIUS,Item,DUSKSTONE
 [201]
 Name = Unown
 InternalName = UNOWN
-Moves = Signature - Letter matters ability (but not sawsbuck x 5)
 Type1 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 95,95,95,95,95,95
@@ -7125,7 +7124,7 @@ Evolutions = URSARING,Level,30
 [217]
 Name = Ursaring
 InternalName = URSARING
-Notes = Signature - Autumn's End: Physical Normal move. 5PP, 150BP, 100AC. This pokemon uses Rest the turn after it uses this move. 
+Notes = Signature - Autumn's End: Physical Normal move. 5PP, 150BP, 100AC. This pokemon uses Rest the turn after it uses this move.
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 100,130,85,65,75,75
@@ -13985,8 +13984,8 @@ BattlerShadowSize = 2
 [424]
 Name = Ambipom
 InternalName = AMBIPOM
-Type1 = NORMAL
 Notes = Signature - hold two items
+Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,100,86,115,60,86
 # Total = 522
@@ -23571,9 +23570,9 @@ Evolutions = NOIVERN,Level,36
 [715]
 Name = Noivern
 InternalName = NOIVERN
+Notes = signature - Piercing Shrill: Special Dragon move. 5PP, 100BP, 100AC. Hits all active Pokemon. All non-active Pokemon take 1/16th of their maximum HP in damage (including your own). - tiki
 Type1 = FLYING
 Type2 = DRAGON
-Notes = signature - Piercing Shrill: Special Dragon move. 5PP, 100BP, 100AC. Hits all active Pokemon. All non-active Pokemon take 1/16th of their maximum HP in damage (including your own). - tiki
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 85,70,80,123,117,80
 # Total = 555
@@ -24730,8 +24729,8 @@ Evolutions = MUDSDALE,Level,30
 [750]
 Name = Mudsdale
 InternalName = MUDSDALE
-Type1 = GROUND
 Notes = Signature - Muds-Hail (name pending): Ability. Ground-type moves from the user deal 50% more damage in the hail.
+Type1 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 100,125,100,35,55,85
 # Total = 500
@@ -27282,7 +27281,7 @@ Evolutions = THIEVUL,Level,27
 [828]
 Name = Thievul
 InternalName = THIEVUL
-Notes = Signature - stolen items matter/stealing items matter 
+Notes = Signature - stolen items matter/stealing items matter
 Type1 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 108,92,108,50,92,108
@@ -28492,8 +28491,8 @@ BattlerShadowSize = 2
 [865]
 Name = Sirfetch'd
 InternalName = SIRFETCHD
-Type1 = FIGHTING
 Notes = signature - something  called "julienne"
+Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 62,135,95,75,68,82
 # Total = 517
@@ -28686,8 +28685,8 @@ BattlerShadowSize = 3
 [871]
 Name = Pincurchin
 InternalName = PINCURCHIN
-Type1 = ELECTRIC
 Notes = Signature - sticky barb type ability
+Type1 = ELECTRIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 68,101,95,15,101,85
 # Total = 465
