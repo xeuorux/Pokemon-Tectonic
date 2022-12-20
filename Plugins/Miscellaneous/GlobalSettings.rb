@@ -15,6 +15,7 @@ module Settings
   # (true), or whether a menu pops up for the player to manually choose which
   # Dex list to view if more than one is available (false).
   USE_CURRENT_REGION_DEX = true
+
   # The names of the Pokédex lists, in the order they are defined in the PBS
   # file "regionaldexes.txt". The last name is for the National Dex and is added
   # onto the end of this array (remember that you don't need to use it). This
@@ -81,4 +82,9 @@ module Settings
       _INTL("Key Items")
     ]
   end
+
+  LANGUAGES = [
+    ["English", "english.dat"],
+    ["Spanish", "spanish.dat"]
+  ]
 end

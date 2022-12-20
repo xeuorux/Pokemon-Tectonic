@@ -1,0 +1,66 @@
+﻿[24]
+Music Volume
+Volumen de Música
+SE Volume
+Volumen de Audio
+Text Speed
+Velocidad de Texto
+Normal
+Normal
+Battle Effects
+Animaciones
+Standard
+Estándar
+Fast
+Rápidas
+On
+Sí
+Off
+No
+Default Movement
+Movimiento Pred.
+Walking
+Caminar
+Running
+Correr
+Type {1}/{2}
+Tipo {1}/{2}
+Speech Frame
+Marco de Diálogo
+Menu Frame
+Marco del Menu
+Text Entry
+Introducir Texto
+Cursor
+Cursor
+Keyboard
+Teclado
+Standard
+Estándar
+Damage Numbers
+Número de Daño
+Effectiveness Msgs
+Msj de Efectividades
+Weather Msgs
+Msj de Clima
+Status Condition Msgs
+Msj de Prob. de Estado
+Nicknaming Prompt
+Preguntar Mote
+Item Desc Popups
+Mostrar Descr. de objetos
+Trait Unlock Popups
+Mostrar Rasgos Desbl.
+Autosave
+Autoguardado
+Color Shifts (Av.)
+Cambios de color (Av.)
+Particles (Av.)
+Partículas (Av.)
+Screenshake (Av.)
+Vibrar pantalla (Av.)
+Look
+Estilo
+Pokemon Follow
+Pokemon Acompañantes
+

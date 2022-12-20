@@ -1,4 +1,6 @@
 *.dat
+!spanish.dat
+!english.dat
 *.bak
 Data/debuglog.txt
 Data/Actors.rxdata

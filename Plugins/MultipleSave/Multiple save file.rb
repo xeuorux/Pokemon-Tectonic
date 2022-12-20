@@ -192,7 +192,7 @@ module Game
 		# Set resize factor
 		pbSetResizeFactor([$PokemonSystem.screensize, 4].min)
 		# Set language (and choose language if there is no save file)
-		if Settings::LANGUAGES.length >= 2
+		if Settings::LANGUAGES.length >= 2 && $DEBUG
 		  $PokemonSystem.language = pbChooseLanguage if save_data.empty?
 		  pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
 		end
@@ -381,7 +381,6 @@ class PokemonLoadScreen
 		cmd_continue     = -1
 		cmd_load_game	 = -1
 		cmd_new_game     = -1
-		cmd_options      = -1
 		cmd_debug        = -1
 		cmd_survey		 = -1
 		cmd_quit         = -1
@@ -393,6 +392,7 @@ class PokemonLoadScreen
 			commands[cmd_load_game = commands.length] = _INTL('Load Game')
 		end
 		commands[cmd_new_game = commands.length]  = _INTL('New Game')
+		commands[cmd_language = commands.length]  = _INTL('Language') if Settings::LANGUAGES.length >= 2
 		commands[cmd_survey = commands.length]   = _INTL('Playtest Survey')
 		commands[cmd_debug = commands.length]     = _INTL('Debug') if $DEBUG
 		commands[cmd_quit = commands.length]      = _INTL('Quit Game')
@@ -420,12 +420,6 @@ class PokemonLoadScreen
 			@scene.pbEndScene
 			Game.start_new
 			return
-		  when cmd_options
-			pbFadeOutIn do
-			scene = PokemonOption_Scene.new
-			screen = PokemonOptionScreen.new(scene)
-			screen.pbStartScreen(true)
-			end
 		  when cmd_survey
 			system("start /B https://forms.gle/AgrPMQuCjbcmVWNWA")
 		  when cmd_debug
@@ -735,7 +729,7 @@ class ScreenChooseFileSave
 						dispose; draw = true; loadmenu=false; infor = false
 					}
 				# Language
-				elsif Settings::LANGUAGES.length >= 2 && ( @posinfor==2 || (@posinfor==1 && !@mysgif))
+				elsif Settings::LANGUAGES.length >= 2 && ( @posinfor==2 || (@posinfor==1 && !@mysgif)) && $DEBUG
 					$PokemonSystem.language = pbChooseLanguage
 					pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
 					saveData = self.fileLoad(true)
