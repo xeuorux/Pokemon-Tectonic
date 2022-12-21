@@ -392,7 +392,6 @@ class PokemonLoadScreen
 			commands[cmd_load_game = commands.length] = _INTL('Load Game')
 		end
 		commands[cmd_new_game = commands.length]  = _INTL('New Game')
-		commands[cmd_language = commands.length]  = _INTL('Language') if Settings::LANGUAGES.length >= 2
 		commands[cmd_survey = commands.length]   = _INTL('Playtest Survey')
 		commands[cmd_debug = commands.length]     = _INTL('Debug') if $DEBUG
 		commands[cmd_quit = commands.length]      = _INTL('Quit Game')

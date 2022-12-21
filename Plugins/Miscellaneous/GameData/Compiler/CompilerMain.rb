@@ -70,8 +70,8 @@ module Compiler
             "trainers.txt",
             "trainertypes.txt",
             "types.txt",
-                "policies.txt",
-                "avatars.txt"
+            "policies.txt",
+            "avatars.txt"
         ]
         latestDataTime = 0
         latestTextTime = 0

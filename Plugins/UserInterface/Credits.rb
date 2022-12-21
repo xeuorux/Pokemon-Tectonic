@@ -73,6 +73,19 @@ Taiga
 Trainer Sprites
 Mr. Gela/theo#7722
 
+Taiga´s Trainer Collection (X/Y)
+Taiga
+DiegoWT
+Neo-Spriteman
+Vanilla Sunshine
+AtomicReactor
+izzyvivious
+Mademoiselle
+PizzaSun
+izzyvicious
+Wolfgang62
+Somersault
+
 Megs/Gigantamax Overworld Sprites
 Kidkatt<s>Larryturbo
 Princess-Phoenix<s>Sagedeoxys
