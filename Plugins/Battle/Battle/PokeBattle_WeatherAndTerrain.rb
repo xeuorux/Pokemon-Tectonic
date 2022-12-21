@@ -20,7 +20,7 @@ class PokeBattle_Battle
   
       # Set the new weather and duration
       @field.weather = newWeather
-      if duration>0 && user
+      if duration > 0 && user
         duration = user.getWeatherSettingDuration(newWeather,duration,ignoreFainted)
       end
   
@@ -45,7 +45,13 @@ class PokeBattle_Battle
         eachBattler { |b| b.pbCheckFormOnWeatherChange }
         pbEndPrimordialWeather
       end
-      pbDisplay(_INTL("It'll last for {1} more turns!",@field.weatherDuration - 1)) if $PokemonSystem.weather_messages == 0
+      if $PokemonSystem.weather_messages == 0
+        if @field.weatherDuration < 0
+          pbDisplay(_INTL("It'll last indefinitely!"))
+        else
+          pbDisplay(_INTL("It'll last for {1} more turns!",@field.weatherDuration - 1))
+        end
+      end
       pbHideAbilitySplash(user) if user
   
       triggerWeatherChangeDialogue(oldWeather,@field.weather) if !resetExisting
@@ -262,6 +268,7 @@ class PokeBattle_Battle
         end
         fraction = 1.0/16.0
         fraction *= 2 if damageDoubled
+        fraction *= 2 if curseActive?(:CURSE_BOOSTED_SAND)
         b.applyFractionalDamage(fraction)
       when :Hail
         next if !b.takesHailDamage?
@@ -275,6 +282,7 @@ class PokeBattle_Battle
         end
         fraction = 1.0/16.0
         fraction *= 2 if damageDoubled
+        fraction *= 2 if curseActive?(:CURSE_BOOSTED_HAIL)
         hailDamage += b.applyFractionalDamage(fraction)
       when :ShadowSky
         next if !b.takesShadowSkyDamage?

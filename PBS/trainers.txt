@@ -427,7 +427,7 @@ Pokemon = CLAUNCHER,25
 #-------------------------------
 [LEADER_Helena_2,Helena,1]
 ExtendsVersion = 0
-Policies = CURSE_PERMANENT_ELECTRIC
+Policies = CURSE_BOOSTED_ELECTRIC
 #-------------------------------
 [IDOL,Ishizu]
 Pokemon = JIGGLYPUFF,25
@@ -3069,7 +3069,9 @@ Pokemon = REAVOR,60
 #-------------------------------
 [LEADER_Samorn_2,Samorn,1]
 ExtendsVersion = 0
-Policies = CURSE_PERMANENT_SAND
+Policies = CURSE_BOOSTED_SAND
+Pokemon = REAVOR,60
+    Position = 1
 #-------------------------------
 [FIREBREATHER,Bradley]
 Pokemon = COMFEY,49

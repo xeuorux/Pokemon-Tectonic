@@ -148,43 +148,39 @@ class PokeBattle_Move
         case @battle.pbWeather
         when :Sun, :HarshSun
             if type == :FIRE
-                multipliers[:final_damage_multiplier] *= @battle.pbWeather == :HarshSun ? 1.5 : 1.3
+                damageBonus = @battle.pbWeather == :HarshSun ? 0.5 : 0.3
+                damageBonus *= 2 if @battle.curseActive?(:CURSE_BOOSTED_SUN)
+                multipliers[:final_damage_multiplier] *= (1 + damageBonus)
             elsif applySunDebuff?(user,type,checkingForAI)
-                if @battle.pbCheckGlobalAbility(:BLINDINGLIGHT)
-                    multipliers[:final_damage_multiplier] *= 0.7
-                else
-                    multipliers[:final_damage_multiplier] *= 0.85
-                end
+                damageReduction = 0.15
+                damageReduction *= 2 if @battle.pbCheckGlobalAbility(:BLINDINGLIGHT)
+                damageReduction *= 2 if @battle.curseActive?(:CURSE_BOOSTED_SUN)
+                multipliers[:final_damage_multiplier] *= (1 - damageReduction)
             end
         when :Rain, :HeavyRain
             if type == :WATER
-                multipliers[:final_damage_multiplier] *= @battle.pbWeather == :HeavyRain ? 1.5 : 1.3
+                damageBonus = @battle.pbWeather == :HeavyRain ? 0.5 : 0.3
+                damageBonus *= 2 if @battle.curseActive?(:CURSE_BOOSTED_RAIN)
+                multipliers[:final_damage_multiplier] *= (1 + damageBonus)
             elsif applyRainDebuff?(user,type,checkingForAI)
-                if @battle.pbCheckGlobalAbility(:DREARYCLOUDS)
-                    multipliers[:final_damage_multiplier] *= 0.7
-                else
-                    multipliers[:final_damage_multiplier] *= 0.85
-                end
-            end
-        when :Swarm
-            if type == :DRAGON || type == :BUG
-                multipliers[:final_damage_multiplier] *= 1.3
+                damageReduction = 0.15
+                damageReduction *= 2 if @battle.pbCheckGlobalAbility(:DREARYCLOUDS)
+                damageReduction *= 2 if @battle.curseActive?(:CURSE_BOOSTED_RAIN)
+                multipliers[:final_damage_multiplier] *= (1 - damageReduction)
             end
         when :Sandstorm
             if target.shouldTypeApply?(:ROCK,checkingForAI) && specialMove? && @function != "122"   # Psyshock/Psystrike
-                if @battle.pbCheckGlobalAbility(:SHRAPNELSTORM)
-                    multipliers[:defense_multiplier] *= 2.0
-                else
-                    multipliers[:defense_multiplier] *= 1.5
-                end
+                defenseAddition = 0.5
+                defenseAddition *= 2 if @battle.pbCheckGlobalAbility(:SHRAPNELSTORM)
+                defenseAddition *= 2 if @battle.curseActive?(:CURSE_BOOSTED_SAND)
+                multipliers[:defense_multiplier] *= (1 + defenseAddition)
             end
         when :Hail
             if target.shouldTypeApply?(:ICE,checkingForAI) && physicalMove? && @function != "506"   # Soul Claw/Rip
-                if @battle.pbCheckGlobalAbility(:BITTERCOLD)
-                    multipliers[:defense_multiplier] *= 2.0
-                else
-                    multipliers[:defense_multiplier] *= 1.5
-                end
+                defenseAddition = 0.5
+                defenseAddition *= 2 if @battle.pbCheckGlobalAbility(:BITTERCOLD)
+                defenseAddition *= 2 if @battle.curseActive?(:CURSE_BOOSTED_HAIL)
+                multipliers[:defense_multiplier] *= (1 + defenseAddition)
             end
         end
     end
