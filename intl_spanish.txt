@@ -63,4 +63,423 @@ Look
 Estilo
 Pokemon Follow
 Pokemon Acompañantes
-
+Basic Strategy
+Estrategia Básica
+How do I win battles?
+¿Cómo gano batallas? 
+What are moves and what are the differences between them?
+¿Qué son movimientos y cuáles son las diferencias entre ellos?
+When and how are types better or worse against one another?
+¿Cuándo y cómo los tipos son mejores y peores contra otros?
+How do I get more Pokémon?
+¿Cómo consigo más Pokémon?
+What are stats, and how do they affect battles?
+¿Qué son las estadísticas, y cómo afectan las batallas? 
+How do abilities work?
+¿Cómo funcionan las habilidades?
+What are held items and how to use them?
+¿Qué son los objetos equipables y cómo usarlos?
+What are the Conditions a Pokémon can be afflicted with?
+¿Cuáles son los Estados que pueden afectar a un Pokémon?
+How do enemy Trainers work?
+¿Cómo funcionan los Entrenadores rivales?
+What are avatars and what do they do?
+¿Qué son los avatares y qué hacen?
+What does the MasterDex do and how should I use it?
+¿Qué hace la MasterDex y cómo debería usarla?
+What are weathers, and what does each do?
+¿Qué son los climas, y qué hace cada uno?
+Winning Battles
+Ganar Batallas
+You win a battle when all enemy Pokémon faint: reach 0 health points. You lose a battle if that happens to your Pokémon.
+Ganas una batalla cuando todos los Pokémon rivales se debilitan: llegan a 0 puntos de salud. Pierdes una batalla si le ocurre a tus Pokémon.
+1. Have as many Pokémon as you can. 2. Level up your Pokémon as much as you can. 3. Abuse type matchups. 4. Start battles with healthy Pokémon.
+1. Ten tantos Pokémon como puedas. 2. Sube de nivel a tus Pokémon tanto como puedas. 3. Abusa las efectividades de tipos. 4. Inicia batalla con Pokémon sanos.
+Team Size
+Tamaño de un Equipo
+You can have a maximum of 6 Pokémon with you at any time. This is known as your 'Team'. You can store extra Pokémon using the PC in any PokéCenter.
+Puedes tener un máximo de 6 Pokémon contigo en cualquier momento. Esto se conoce como tu “Equipo”. Puedes guardar Pokémon extra usando la PC en cualquier Centro Pokémon
+Levels
+Niveles
+Each Pokémon has a level from 1 to 70. A Pokémon's level determines its stats as well as what moves it could learn. Reaching high enough levels also unlocks Evolution.
+Cada Pokémon tiene un nivel desde el 1 hasta el 70. El nivel de un Pokémon determina las estadísticas como también qué movimientos puede aprender. Alcanzar niveles altos también desbloquea la Evolución.
+Types are strong or weak against other types. Having a variety of different types on your team helps you take advantage of these relationships.
+Los tipos son fuertes o débiles contra otros tipos. Tener una gran variedad de tipos en tu equipo te ayuda a tomar ventaja de estas relaciones.
+Healing your Pokémon
+Curar tus Pokémon
+Heal your Pokémon at PokéCenters between battles. You can often use the Aid Kit instead to save on traveling time.
+Cura tus Pokémon en Centros Pokémon entre batallas. Puedes usar el Botiquín en su lugar para ahorrar tiempo.
+Who goes first?
+¿Quién va primero?
+In battle, the Pokémon with the higher speed stat gets to use their move first. Some moves modify this. Speed ties are decided randomly.
+En una batalla, el Pokémon con la velocidad más alta usa su movimiento primero. Algunos movimientos modifican esto. Los empates en Velocidad se deciden aleatoriamente.
+Attacking vs Status
+Ofensa contra Estados
+Attacking moves deal damage. Status moves do not. Status moves are notated by a Yin/Yang symbol (White and Black intermixing).
+Los movimientos ofensivos hacen daño. Los movimientos de Estado no lo hacen. Los movimientos de Estado son representados por un símbolo del Yin/Yang.
+Physical vs Special
+Físico contra Especial
+Attacking moves are split into Physical moves, and Special moves. Each of these categories uses different stats to determine how much damage is dealt to the target.
+Los movimientos ofensivos se dividen en movimientos Físicos y Especiales. Cada una de estas categorías usan diferentes estadísticas para determinar cuánto daño se le hace al objetivo.
+Physical Moves
+Movimientos Físicos
+Physical moves are notated by the symbol of a smashing fist. Their damage is based on the Attack (Atk) stat of the attacker and the Defense (Def) stat of the target.
+Los Movimientos Físicos son representados por un símbolo de un impacto. Su daño se calcula en base del Ataque del usuario y la Defensa del objetivo.
+Special Moves
+Movimientos Especiales
+Special moves are notated by the symbol of a splash. Their damage is based on the Special Attack (Sp. Atk) of the attacker and the Special Defense (Sp. Def) of the target.
+Los movimientos especiales son representados por el símbolo de un charco. Su daño se calcula en base del Ataque Especial del usuario y la Defensa Especial del objetivo.
+Targeting
+Apuntando
+Most moves target only a single Pokémon, but many can target multiple Pokémon at once. Some moves differ in how far they can target in the bigger battle styles (doubles, triples).
+La mayoría de movimientos apuntan a sólo un Pokémon, pero varios pueden apuntar múltiples Pokémon a la vez. Algunos movimientos varían en cuantos objetivos alcanzan en distintas modalidades (dobles, triples).
+Move Types
+Tipos de Movimientos
+Every move has a type. Attacking moves deal different amounts of damage to different Pokémon based on those Pokémon's types. This is called 'type effectiveness'.
+Cada movimiento tiene un tipo. Movimientos defensivos hacen diferentes cantidades de daño a diferentes Pokémon basado en sus tipos. A esto se le llama “efectividades de tipos”.
+Same-Type Bonus
+Bonificación del Mismo Tipo
+Pokémon deal 50% more damage with moves they share a type with. For example, a Raichu deals 50% more damage with an Electric move than a Normal move.
+Los Pokémon hacen un 50% extra de daño con movimientos con los que comparten tipo. Por ejemplo un Raichu incrementa un 50% la potencia de movimientos eléctricos.
+Learning Moves
+Aprendiendo Movimientos
+Pokémon learn new moves as they level up. They can also learn moves from the 'Move Tutors' who sit in the left side of every PokéCenter.
+Los Pokémon aprenden movimientos al subir de nivel. También aprenden movimientos mediante los “Tutores de Movimiento” encontrados en la parte oeste de cada Centro Pokémon.
+Base Power
+Poder Base
+Moves with higher Base Power deal more damage. Some moves deal variable Base Power depending on the situation. Status moves have no base power.
+Movimientos con un Poder Base alto hacen más daño. Algunos movimientos varían su Poder Base dependiendo de la situación. Los Movimientos de Estado no tienen Poder Base.
+Accuracy is a move's chance of hitting. Most moves have 100% accuracy. Some effects can raise accuracy to let you use low-accuracy moves consistently.
+La Precisión es la probabilidad de un movimiento de golpear. La mayoría de los movimientos tienen un 100% de precisión. Algunos efectos pueden incrementar la precisión para usar movimientos de baja precisión consistentemente.
+Power Points
+Puntos de Poder
+Power Points, or PP, is a number which limits how many times a move can be used. Healing at a PokéCenter or with the Aid Kit restores PP.
+Puntos de Poder, o PP, es un número que limita cuantas veces un movimiento puede ser usado. Curar en un Centro Pokémon o con un Botiquín restaura los PP.
+Each Pokémon has type weakness and type resistances based on its own type. eg. Water deals double damage to Fire, and Fire deals half damage to Water.
+Cada Pokémon tiene debilidades y resistencias basadas en su tipo. Por ejemplo, Agua hace el doble de daño a fuego, y Fuego hace la mitad de daño a Agua.
+Type Combinations
+Combinaciones de Tipo
+When a Pokémon has two types, its type weaknesses and resistances multiply. A Pokémon can be double weak or double resistant, or immune even though one of their types is weak.
+Cuando un Pokémon tiene dos tipos, sus debilidades y resistencias se multiplican. Este puede ser doblemente débil o resistente, o inmune aunque uno de sus tipos sea débil.
+Normal Effective
+Efectividad Neutra
+Normal Effective is the default effectiveness of all moves against a Pokémon.
+La Efectividad Neutra es la efectividad predeterminada de todos los movimientos contra un Pokémon.
+Super Effective
+Súper Efectivo
+Super Effective moves deal double the damage compared to normal effective moves.
+Movimientos Súper Efectivos hacen el doble de daño comparado a un movimiento de Efectividad Neutra.
+Hyper Effective
+Híper Efectivo
+Hyper Effective moves deal quadruple the damage compared to normal effective moves. This happens when a Pokémon is double weak to a type.
+Los movimientos Híper Efectivos hacen el cuádruple de daño comparado a un movimiento de Efectividad Neutra. Esto ocurre cuando un Pokémon es doblemente débil a un tipo.
+Not Very Effective
+Poco Efectivos
+Not Very Effective moves deal half the damage compared to normal effective moves.
+Movimientos Poco Efectivos hacen la mitad de daño comparado a los movimientos de Efectividad Neutra.
+Barely Effective
+Apenas Efectivo
+Barely Effective moves deal one quarter the damage compared to normal effective moves. This happens when a Pokémon is double resistant to a type.
+Los movimientos Apenas Efectivos hacen el cuarto de daño comparado a los movimientos de Efectividad Neutra. Esto ocurre cuando un Pokémon es doblemente resistente a un tipo.
+Ineffective
+Inefectivo 
+Ineffective moves deal no damage at all. This can happen if one of a Pokémon's types has an immunity to the attacking move type, even if the other is neutral (or even weak!).
+Los Movimientos Inefectivos no hacen daño en absoluto. Esto ocurre si uno de los tipos del Pokémon tiene una inmunidad al tipo atacante, incluso si el otro es neutral (¡O incluso débil!)
+Looking Up Matchups
+Comprobar Efectividades
+The 5th and 6th pages of a MasterDex entry show that Pokémon's type matchups. Open the MasterDex in battle to check matchups if you're not sure.
+La página 5 y 6 de la entrada de la MasterDex muestran las efectividades de un Pokémon. Abre la MasterDex en batalla para comprobar las efectividades si no estás seguro.
+Why Get More?
+¿Por qué conseguir más?
+Having choices of Pokémon is important when facing challenges. A team of six is a bare minimum--it's best to catch more and pull them from the PC as needed.
+Tener elección de Pokémon es importante a la hora de enfrentar desafíos. Un equipo de 6 es el mínimo--es mejor capturar más y sacarlos del PC cuando sea necesario.
+Methods of Acquiring
+Métodos de Obtención
+The two main methods of acquiring Pokémon are catching them from the wild, and receiving them from other Trainers through gifts or trades.
+Los dos principales métodos para obtener Pokémon es atrapar salvajes, o recibirlos de otros Entrenadores mediante regalos o intercambios.
+Catching Basics
+Básicas de la Captura
+Wild Pokémon will attack you if you walk through patches of grass, dark ground in caves, or other wild terrain. You can catch these Pokémon by throwing Poké Balls at them.
+Pokémon Salvajes te atacarán si caminas en la hierba alta, tierra oscura en las cuevas u otros terrenos. Puedes atrapar estos Pokémon tirandoles Poké Balls.
+Increase Catch Chance pt. 1
+Aumentar el Radio de Captura pt. 1
+Catching a Pokémon isn't guaranteed. It's easier to catch Pokémon when their health has been lowered by your attacks, or when they have a status ailment.
+Capturar un Pokémon no está garantizado. Es más fácil capturar Pokémon cuando bajas su salud atacando, o cuando tienen un Problema de Estado.
+Increase Catch Chance pt. 2
+Aumentar el Radio de Captura pt. 2
+Every time a Pokémon breaks out of a ball, it'll be slightly easier to catch for the rest of the battle. You can check what your current catch chance is in the Poké Ball menu.
+Cada vez que un Pokémon escapa de la ball, será un poco más fácil de capturar por el resto de la batalla. Puedes comprobar tu ratio de captura en el menú Poké Ball.
+Finding Wild Pokémon
+Encontrar Pokémon Salvajes
+Use the DexNav to get information on which Pokémon are available where you are. You can also use it to find more Pokémon of a species that you've already caught one of.
+Usa el DexNav para obtener información sobre qué Pokémon están disponibles en la zona. También puedes usarlo para obtener más de una especie de Pokémon que ya hayas atrapado.
+Trades
+Intercambios
+Throughout the world there will be people offering trades for Pokémon. Usually they want a different Pokémon, but sometimes they want money.
+A través del mundo habrá gente ofreciendo intercambios por Pokémon. Normalmente quieren un Pokémon diferente, pero a veces querrán dinero.
+What are Stats?
+¿Qué son las Stats?
+Stats, short for Statistics, are the numbers which determine how your Pokémon performs in battle.
+Stats, abreviación de Estadísticas, son los números que determinan cómo tu Pokémon se desempeña en batalla.
+Checking Stats
+Comprobando Stats
+Check your Pokémon's stats by looking at the second page of their summary screen, accessible through the Pokémon menu in the pause menu.
+Comprueba las stats de un Pokémon en la segunda página de su pantalla de datos, accesibles desde el menú Pokémon en el menú de pausa.
+Stat Factors
+Factores de las Stats
+Your Pokémon's stats are calculated from a combination of their species' 'Base Stats', their own 'Style Points', and extra modifications during battle.
+Las Stats de un Pokémon se calculan mediante la combinación de las “Stats Base” de una especie, sus “Puntos de Estilo”, y las modificaciones extra durante una batalla.
+Base Stats
+Stats Base
+Every species of Pokémon have base stats, which affect every Pokémon of that species. e.g. Every Raichu will be fast because the Raichu species has a high Speed base stat.
+Cada especie de Pokémon tiene stats base, que afectan a cada Pokémon de esa especie. Por ejemplo, cada Raichu será veloz porque la especie de Raichu tiene una alta Velocidad base.
+Style Points
+Puntos de Estilo
+Style Points are numbers which you can customize to change your Pokémon's stats (except HP). Style Points show as blue numbers on the stat page of the summary.
+Los Puntos de Estilo son números que puedes personalizar para cambiar las stats de un Pokémon (Excepto los PS). Los Puntos de Estilo se muestran como números azules en la página de las stats en los datos.
+Leveling and Evolution
+Subiendo de Nivel y Evolución
+Your Pokémon's stats will increase every time they level up. When Pokémon evolve, their stats change (almost always they increase).
+Las stats de un Pokémon incrementarán cada vez que suba de nivel. Cuando un Pokémon evoluciona, sus stats cambian (casi siempre incrementarán).
+Accuracy and Evasion
+Precisión y Evasión
+Accuracy and Evasion are two stats which are only active in battle, starting at 100% each. They are only modified by in-battle changing effects.
+La Precisión y la Evasión son dos stats sólo activas en batalla, empezando en 100% cada una. Estas sólo pueden ser modificadas por distintos efectos en batalla.
+Stat Stages
+Niveles de las Stats
+Effects can modify a Pokémon's stats during battle. These are called 'stat stages'. Stat stages multiply or divide the Pokémon's listed stat value.
+Efectos pueden modificar las stats de un Pokémon durante una batalla. A esto se le llama “niveles de las stats”. Los niveles de las stats  multiplican o dividen el valor de la stat correspondiente de un Pokémon.
+Bounds of Stat Stages
+Límites de los niveles de las Stats
+Stat stages start at 0, and can increase up to +6 (4x) and down to -6 (.25x). Stat stages are reset if you swap the Pokémon out or it faints.
+Los niveles de las Stats empiezan en 0 y pueden incrementarse hasta +6 (4x) y bajar hasta -6 (.25x). Los niveles de las stats se reinician al cambiar un Pokémon o si se debilita.
+Checking Stat Stages
+Comprobando niveles de las Stats
+You can check the current stat stages of each Pokémon on the battlefield using the Info button. It lists the numerical stage as well as resultant multiplier.
+Puedes comprobar los cambios de stats actuales de cada Pokémon en el campo usando el botón Info. Este muestra los cambios numéricos a la vez del múltiplo resultante.
+What are abilities?
+¿Qué son las habilidades?
+Abilities are special powers that Pokémon can have based on their species. Most Pokémon can have one of 2 possible abilities.
+Las Habilidades son poderes especiales que un Pokémon puede tener basado en su especie. La mayoría de Pokémon pueden tener una de sus dos posibles habilidades.
+Ability Effects
+Efectos de las Habilidades
+Abilities do a wide variety of different things. Understanding your team's abilities, and choosing the right ones, is important to winning.
+Las habilidades tienen una gran variedad de distintos efectos. El entendimiento de las habilidades de tu equipo, y eligiendo las correctas, es importante para ganar.
+Checking Abilities
+Comprobando Habilidades
+Check your Pokémon's summary to see what ability they have. Use the MasterDex to read about the abilities of enemy Pokémon during battle.
+Comprueba los datos de tu Pokémon para ver qué habilidad tiene. Usa la MasterDex para leer sobre las habilidades de un Pokémon rival durante una batalla.
+Choosing Abilities
+Eligiendo Habilidades
+A Pokémon's ability is one of the two its species can have, randomly chosen when you get it. You can use Ability Capsules to swap to the other.
+La habilidad de un Pokémon es una de las dos que una especie puede tener, elegida aleatoriamente cuando lo obtienes. Puedes usar una Cápsula Habilidad para cambiar a la otra.
+Conditional Abilities
+Habilidades Condicionales
+Many abilities only do things under certain circumstances. Building around Weather and Terrain-synergy abilities is a common strategy.
+Varias habilidades sólo se activan bajo ciertas circunstancias. Planificar alrededor de sinergias de habilidades relacionadas con el Clima y Terreno es una estrategia común.
+Effect Of Evolution
+Efecto de la Evolución
+A Pokémon's ability tends to stay the same when evolving, but can change. When this happens, the game will alert you.
+La habilidad de un Pokémon suele quedarse como la misma al evolucionar, pero puede cambiar. Cuando esto ocurre, el juego te avisará,
+Defeating Abilities
+Derrotando Habilidades
+An enemy Trainer's ability too much? Abilities like Neutralizing Gas, and moves like Gastro Acid, can suppress abilities in battle.
+¿La habilidad de un Entrenador rival es demasiado? Habilidades como Gas Reactivo, o movimientos como Bilis anulan habilidades en batalla.
+Swapping Abilities
+Cambiando Habilidades
+Moves like Skill Swap can be used to give a new ability to Pokémon during battle, enabling unique and creative team synergies.
+Movimientos como Intercambio se usan para darle una nueva habilidad durante una batalla, permitiendo sinergias únicas y creativas en un equipo.
+What are Held Items?
+¿Qué son los Objetos Equipables?
+Held items are items which you can give your Pokémon to benefit them during battle. They can increase their damage, heal them, or other things.
+Los objetos equipables son objetos que puedes darle a tu Pokémon para beneficiarlo durante una batalla. Estos pueden aumentar su daño, curarles, entre otras cosas.
+Equipping an item
+Equipando un Objeto
+You can give a Pokémon an item from your bag, or through the summary screen. Not all items have an effect when held, so read carefully.
+Puedes darle un objeto a un Pokémon desde tu mochila, o desde la pantalla de datos. No todos los objetos tienen un efecto al ser equipados, así que lee atentamente.
+Berries are a common held item. During battles, Pokémon will eat the berry to get a benefit. Get berries by picking from Berry Trees.
+Las Bayas son un objeto equipable común. Durante las batallas, los Pokémon comerán una baya para obtener un beneficio. Consigue bayas cosechandolas de los Árboles de Bayas.
+Sitrus and Oran Berry
+Bayas Aranja y Zidra
+Sitrus Berry and Oran Berry are common berries which heal your Pokémon when at low health. If in doubt about what item to give, give them one of these.
+La Baya Aranja y la Baya Zidra son bayas comunes que curan a un Pokémon con baja salud. Si tienes dudas en qué equipar, equipa una de estas.
+Rematerializer
+Rematerializador
+In Project Chasm, the rematerializer regenerates held items which are consumed in battle. You'll never run out of berries!
+En Project Chasm, el rematerializador regenera objetos equipables que son consumidos en batalla. ¡Nunca te quedarás sin bayas!
+Wild Held Items
+Objetos Equipables Salvajes
+Wild Pokémon can be found holding items. These items sometimes have held effects, but often don't.
+Los Pokémon salvajes pueden tener objetos equipables. Estos objetos a veces tienen efectos, pero usualmente no lo tienen.
+Getting More
+Conseguir Más
+You will find more held items on the ground when traveling, or as gifts from people, or as the reward for defeating Avatars, or as purchasable items in shops.
+Conseguirás más objetos equipables en el suelo al viajar, como regalos de la gente, como recompensas al derrotar Avatares, o como mercancía en las tiendas.
+What are Status Conditions?
+¿Qué son los Problemas de Estado?
+Status Conditions are ailments a Pokémon can have which hurt or restrict them. They remain after swapping out, and even between battles.
+Los Problemas de Estado son padecimientos que un Pokémon puede tener que lo lastiman o restringen. Estos permanecen al cambiarlo, e incluso entre batallas.
+Healing Status Conditions
+Curar Problemas de Estado
+Status Conditions are removed when you heal at the PokéCenter or when you use the Aid Kit.
+Los Problemas de Estado son removidos al curar en un Centro Pokémon o al usar un Botiquín.
+Status Immunity
+Inmunidad de Estados
+Type immunities do not prevent status moves. However, some types give immunities to certain status conditions. Don't confuse these two!
+Inmunidad de Tipos do previene movimientos de estado. Sin embargo, algunos tipos dan inmunidades a ciertos problemas de estado. ¡No confundas esto!
+When burned, a Pokémon's Attack is reduced by 33%, and loses 1/8th HP every turn. Fire- and Ghost-types do the most burning. Fire is immune.
+Al ser quemado, el Ataque de un Pokémon se reduce un 33%, y pierde 1/8 PS cada turno. Los tipo Fuego y Fantasma queman más seguido. Fuego es inmune.
+Frostbite
+Helado
+When frostbitten, a Pokémon's Sp. Atk is reduced by 33%, and loses 1/8th HP every turn. Ice- and Flying-types do the most frostbiting. Ice is immune.
+Al estar helado, el Ataque Especial de un Pokémon se reduce un 33%, y pierde 1/8 PS cada turno. Los tipo Hielo y Volador helan más seguido. Hielo es inmune.
+When poisoned, a Pokémon loses 1/8th HP every turn--doubling every 3 turns until swapped. Poison- and Grass-types do the most poisoning. Poison/Steel are immune.
+Al ser envenenado, un Pokémon pierde 1/8 cada turno--duplicando cada 3 turnos hasta ser cambiado. Los tipo Veneno y Planta envenenan más seguido. Veneno/Acero son inmunes.
+When numbed, a Pokémon's Speed is halved, and it deals 25% less damage. Electric- and Fighting-types do the most numbing. Electric is immune.
+Al estar en shock, la Velocidad de un Pokémon se reduce a la mitad, y hace un 25% menos de daño. Los tipo Electrico y Lucha ponen en shock más seguido. Eléctrico es inmune.
+When dizzied, a Pokemon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune.
+Al ser mareado, un Pokémon reduce un 25% su daño, y su habilidad es anulada. Los tipo Psíquico y Hada marean más seguido. Psíquico es inmune.
+When leeched, a Pokémon loses 1/8th HP every turn, and each opponent gains that health. Bug- and Dark-types do the most leeching. Grass is immune.
+Al ser infectado, un Pokémon pierde 1/8 PS cada turno, y cada oponente restaura salud. Los tipo Bicho y Siniestro infectan más seguido. Planta es inmune.
+A rarer status that causes a Pokémon to be unable to do anything for 3 turns. Psychic- and Grass-types put Pokémon to sleep the most often.
+Un raro estado que deja a un Pokémon incapaz de hacer nada por 3 turnos. Los tipo Psíquico y Planta duermen más seguido.
+What are Enemy Trainers?
+¿Qué son los Entrenadores Rivales?
+Enemy Trainers are the Pokémon Trainers you will battle throughout the game. Some block your path forwards (like Gym Leaders), others are optional.
+Los Entrenadores Rivales son Entrenadores Pokémon que te enfrentarás a través del juego. Algunos cortan tu camino (como los Líderes de Gimnasio), otros son opcionales.
+Detecting Trainers
+Detectando Entrenadores
+Trainers are people who have a companion Pokémon next to them. If a person doesn't have that, they either aren't a Trainer, or are an inactive one.
+Los Entrenadores son gente que tiene un Pokémon acompañante a su lado. Si una persona no lo tiene, o no es un entrenador, o es uno inactivo.
+Avoiding Trainers
+Evitando Entrenadores
+Trainers will challenge you if they see you within 4 tiles of them. Avoid them by going out of that distance, sneaking around them, or waiting until they move.
+Entrenadores te desafiarán si te ven en un rango de 4 baldosas en frente a ellos. Evítalos estando fuera de ese rango, caminando alrededor de ellos o esperar hasta que se muevan.
+Trainer Inactivity
+Inactividad de un Entrenador
+When you defeat a Trainer, they will become inactive until the next time you heal at a PokéCenter. This is indicated by them returning their companion Pokémon to its Poké Ball.
+Cuando derrotas un Entrenador, pasará a ser inactivo hasta la próxima vez que cures en un Centro Pokémon. Esto se indica por ellos regresando su acompañante a su Poké Ball.
+Perfecting Fights
+Perfeccionando Batallas
+If you defeat a Trainer without any of your Pokémon fainting, you've 'perfected' the fight. They will leave forever and drop experience candy as a reward.
+Si derrotas un Entrenador sin ninguno de tus Pokémon debilitándose, “perfeccionas” la batalla. Se irán para siempre y dejarán caramelos de experiencia como recompensa.
+Enemy Teams
+Entrenadores Rivales
+Enemy Trainers have their own teams of Pokémon with their own moves and held items. It's important to pay attention to these possibilities to win battles.
+Los Entrenadores Rivales tienen sus propios equipos de Pokémon con sus propios movimientos y objetos equipables. Es importante prestar atención a todas estas posibilidades.
+Differences
+Diferencias
+The typical trainer has 3 Pokémon, but Gym Leaders will have more. Trainers with more Pokémon also have more move variety and more items on their Pokémon.
+El Entrenador típico tiene 3 Pokémon, pero los Líderes de Gimnasio tienen más. Entrenadores con más Pokémon tienen una mayor variedad y más objetos en sus Pokémon.
+Pro Trainers
+Entrenadores Profesional
+Pro Trainers are special Trainers, noted by their grey hair and black clothes. Their teams are always 6 Pokémon, with a wide variety of moves, all with items. They're hard!
+Los Entrenadores Profesional son Entrenadores especiales, denotados por su pelo gris y ropa negra. Sus equipos son siempre 6 Pokemon, con gran variedad de movimientos y objetos equipados.
+Trainer Behaviour
+Comportamiento de Entrenadores
+Individual Trainers will always react to the same in-battle circumstances the same way. You can learn how to beat or even perfect a Trainer through trial and error.
+Los Entrenadores Individuales siempre reaccionan a las mismas circunstancias de la misma forma. Puedes aprender cómo derrotarlos o perfeccionarlos mediante prueba y error.
+What are Avatars?
+¿Qué son los Avatares?
+Avatars are powerful enemy Pokémon with unique properties that you will fight and destroy during your adventure. They cannot be caught.
+Avatares son poderosos Pokémon rivales con propiedades únicas a los que te enfrentarás y destruirás durante tu aventura. No pueden ser atrapados.
+Avatars are Healthy
+Avatares son Saludables
+Avatars have two health bars, which means they have a lot of health. Usually more than double the normal amount!
+Los Avatares tienen dos barras de salud, lo que significa que tienen mucha salud. ¡Normalmente más que el doble de la cantidad normal!
+Multi-Attack
+Multi-Ataques
+Avatars can attack multiple times each turn. Usually they attack twice, but some can attack three or even more times.
+Avatares pueden atacar múltiples veces cada turno. Normalmente atacan dos veces, pero en algunos pueden atacar tres o incluso más veces.
+Two Statuses
+Dos Estados
+Avatars are large, and have room for up to two status Conditions at a time. However, they are affected less than normal Pokémon.
+Los Avatares son grandes, y tienen espacio para dos Problemas de Estado a la vez. Sin embargo, son afectados en menor medida que un Pokémon.
+HP-Based Effects
+Efectos Basados en los PS
+Effects that damage based on a fraction of total HP are only one-fourth as powerful against avatars, compared to normal Pokémon.
+Efectos basados en el daño en una fracción del PS total son sólo un cuarto de su poder total contra avatares, comparados con Pokémon normales.
+Stat-Modifying
+Modificando Estadísticas
+Avatars are only half as affected by in-battle stat stage changes. For example, their attack is only given a 25% increase from a +1 boost.
+Los Avatares son sólo afectados a la mitad por una modificación de estadísticas. Por ejemplo, su ataque sólo es incrementado un 25% por un aumento de +1.
+Primeval Moves
+Movimientos Primitivos
+When about half damaged, most avatars will use their one Primeval Move! Primeval Moves are powered up versions of other moves, which also change the Avatars type.
+Al estar a la mitad de vida, ¡La mayoría de avatares usarán su Movimiento Primitivo! Estas son versiones más poderosas de otros movimientos, que cambian el Tipo del Avatar.
+Attack Choice
+Elección de Ataque
+Avatars usually only have a few moves to choose from. They usually alternate between their moves on successive attacks.
+Avatares usualmente sólo tienen una poca cantidad de movimientos de los que elegir. Normalmente alternan entre sus movimientos en ataques sucesivos.
+Target Choice
+Elección de Objetivos
+Avatars usually attack your healthiest Pokémon. However, they avoid attacking Pokémon that they've noticed are invulnerable by moves like Protect.
+Avatares normalmente atacan a tu Pokémon más saludable. Sin embargo, evitan atacar Pokémon en un estado invulnerable por movimientos como Protección.
+Experience Reward
+Recompensa de Experiencia
+When an Avatar is destroyed, every Pokémon on your team is given experience, even those that are fainted.
+Cuando un Avatar es destruido, cada Pokémon de tu equipo obtiene experiencia, incluso aquellos que estén debilitados.
+Legendary Avatars
+Avatares Legendarios
+Legendary Avatars are unique. You fight them with 3 Pokémon, they have 3 HP bars, and they have more moves with more smarts about how to use them.
+Los Avatares Legendarios son únicos. Te enfrentas a ellos con 3 Pokémon, tienen 3 barras de PS, tienen más movimientos y los usan más inteligentemente.
+What is the MasterDex?
+¿Qué es la MasterDex?
+The MasterDex is an advanced encyclopedia about the 900+ Pokémon available in this game.
+La MasterDex es una enciclopedia avanzada sobre todos los 900+ Pokémon disponibles en el juego.
+Single MasterDex 
+MasterDex Unica 
+Access the MasterDex entry of a single Pokémon when looking at a Pokémon in the summary or the PC, or by using the Dex button in battles.
+Accede a la entrada de un sólo Pokémon en la MasterDex al mirar los datos de un Pokémon en la PC, o usando el botón Dex en batallas.
+Full MasterDex
+MasterDex Completa
+Access the full MasterDex from your pause menu, or by pressing D when using the Dex button in battles (while its waiting for you to select a battler).
+Accede a la MasterDex completa desde el menú de pausa, o pulsando D mientras usas el botón Dex en batallas (mientras se espera que selecciones un Pokémon)
+Searching
+Busando
+When in the MasterDex, you can press your Special keybind (default Shift or Z) to open the first search page. There's dozens of searches to experiment with!
+Cuando buscas en la MasterDex, puedes presionar la tecla Especial (Shift o Z como predeterminada) para abrir la primera página de búsqueda.
+Combining Searches
+Combinando Búsquedas
+You can begin a search while you're already looking at the results of a search. This will narrow down from what you were already looking at.
+Puedes empezar una búsqueda mientras estás viendo los resultados de otra. Esta se combinará con lo que ya estabas viendo antes.
+Storing Searches
+Guardando Búsquedas
+When you press the cancel button while looking at a search, it will ask you if you'd like to cancel the search, or store it for the next time you open the MasterDex.
+Cuando presionas el botón de cancelar mientras miras una búsqueda, te preguntará si quieres cancelar la búsqueda, o guardarla para la próxima vez que abras la MasterDex
+Quick Navigation
+Navegación Rápida
+Press A to go up a page at a time, or S to go down a page. Use the number keys (1-9) to quickly go to one of the tab's of a Pokémon's MasterDex entry.
+Pression A para ir arriba una página a la vez, o S para ir abajo una página. Usa las teclas de los números (1-9) para navegar por las secciones de una entrada de la MasterDex.
+Move Details
+Detalles de los Movimientos
+Press the Use key (defaults to C) on the level up learnset or tutor moves tabs to begin scrolling the lists, and viewing details about individual moves.
+Presionar la tecla Usar (predeterminado en C) en las ventanas de los movimientos por nivel o tutor para desplazarse por las listas o ver detalles sobre movimientos individuales.
+Checking Evolutions
+Comprobar Evoluciones
+Press the Use key (defaults to C) on the evolutions tab to choose a Pokémon in the same evolutionary tree, and to warp to that Pokémon's MasterDex entry.
+Presiona la tecla Usar (Predeterminado en C) en la ventana de evoluciones para elegir un Pokémon de la misma línea evolutiva y acceder a la entrada de la MasterDex de ese Pokémon.
+What are weathers?
+¿Qué son los Climas?
+Weathers are special states that affect the entire battlefield and help or hinder the Pokémon battling. Only one weather can be active at once.
+Climas son los estados especiales que afectan el campo de batalla y ayudan o perjudican a los Pokémon batallando. Sólo un clima puede estar activo a la vez.
+Weather Duration
+Duración del Clima
+Weathers last a certain number of turns. The length differs depending on what move or ability summoned the weather. The duration can be extended by certain items.
+Los climas duran una cierta cantidad de turnos. La longitud difiere dependiendo en qué movimiento o habilidad. La duración puede ser extendida por distintos objetos.
+Sun lowers attack damage by 15% and prevents attacks from critting. Fire and Grass-type moves/Pokémon are immune to this. Fire-type attacks are boosted by 30%.
+El sol baja el daño un 15% y previene golpes críticos. Los Pokémon y movimientos tipo Planta y Fuego son inmunes a esto. Movimientos tipo Fuego son potenciados un 30%. 
+Rain lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%.
+La lluvia baja el daño un 15% y reduce a la mitad la probabilidad de efectos secundarios. Los Pokémon y Movimientos tipo Agua y Eléctrico son inmunes a esto. Los movimientos tipo Agua son potenciados un 30%.
+Sandstorm deals damage to all Pokémon at the end of each turn. Rock, Ground, and Steel-types are immune to this. Additionally, Rock-types get +50% Special Defense.
+La Tormenta de Arena daña a todos los Pokémon al final de cada turno. Los tipos Roca, Tierra y Acero son inmunes a esto. Además, los tipo Roca incrementan su Defensa Especial un 50%.
+Hail deals damage to all Pokémon at the end of each turn. Ice, Ghost, and Steel-types are immune to this. Additionally, Ice-types get +50% Defense.
+Granizo daña a todos los Pokémon al final de cada turno. Los tipos Hielo, Fantasma y Acero son inmunes a esto. Además, los tipo Hielo incrementan su Defensa un 50%.
+Weather Areas
+Areas de Clima
+Certain areas in the game experience intense weather. That weather will also be present in the battles of that area. Simple daily weather will not do this.
+Algunas áreas en el juego tienen un clima intenso. Este clima estará presente en la batalla de esta área. El clima diario simple no hará esto.
+Weather Synergies
+Sinergias de Clima
+Each weather has dozens of moves and abilities that benefit from that weather. Pokémon using these moves/abilities ignore the downsides of their favored weather!
+Cada clima tiene gran cantidad de movimientos y habilidades que se aprovechan de este. Un Pokémon que usa estos movimientos/habilidades ignora los efectos negativos del clima.
