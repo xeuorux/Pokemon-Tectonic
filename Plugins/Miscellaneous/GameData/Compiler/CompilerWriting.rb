@@ -394,7 +394,7 @@ module Compiler
       GameData::Type.each do |type|
         f.write("\#-------------------------------\r\n")
         f.write("[#{type.id_number}]\r\n")
-        f.write("Name = #{type.real_name}\r\n")
+        f.write("Name = #{type.l_name}\r\n")
         f.write("InternalName = #{type.id}\r\n")
         if type.color
           rgb = [type.color.red.to_i,type.color.green.to_i,type.color.blue.to_i]
