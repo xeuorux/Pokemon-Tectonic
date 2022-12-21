@@ -1099,13 +1099,13 @@ Pokemon = GABITE,28
     AbilityIndex = 1
 #-------------------------------
 [NINJABOY,Hwan]
-Pokemon = DARTRIX,28
-    AbilityIndex = 1
-Pokemon = RIBOMBEE,28
+Pokemon = SPINARAK,28
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+Pokemon = CARKOL,28
     AbilityIndex = 1
 Pokemon = HELIOPTILE,29
     AbilityIndex = 1
-    Item = SITRUSBERRY
 #-------------------------------
 [VETERAN_F,Genevieve]
 Pokemon = MNOCTOWL,28
