@@ -1642,12 +1642,13 @@ class PokeBattle_Move_05D < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     user.eachMoveWithIndex do |m,i|
-      next if m.id!=@id
+      next if m.id != @id
       newMove = Pokemon::Move.new(target.lastRegularMoveUsed)
       user.pokemon.moves[i] = newMove
       user.moves[i] = PokeBattle_Move.from_pokemon_move(@battle,newMove)
       @battle.pbDisplay(_INTL("{1} learned {2}!",user.pbThis,newMove.name))
       user.pbCheckFormOnMovesetChange
+      user.pokemon.first_moves.push(newMove.id)
       break
     end
   end
