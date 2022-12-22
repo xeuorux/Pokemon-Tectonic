@@ -6,12 +6,12 @@ Events.onBadgeEarned += proc { |_sender,_e|
     case badgeEarned+1
     when 0
         setMQStage(:MEET_TAMARIND_AT_DOCKS)
-    when 1..7
-        setStageEarliestIncompleteGym(badgeArray)
+    when 1..8
+        setProgressionStage(badgeArray)
     end
 }
 
-def setStageEarliestIncompleteGym(badgeArray=nil)
+def setProgressionStage(badgeArray=nil)
     if badgeArray.nil?
         badgeArray = []
         $Trainer.badges.each_with_index do |hasBadge,index|
