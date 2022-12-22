@@ -676,10 +676,10 @@ class PokemonPokedex_Scene
 	page2textpos = [
 	   [_INTL("Choose a Search"),Graphics.width/2,-2,2,shadow,base],
        [_INTL("Collecting"),xLeft,68,0,base,shadow],
-       [_INTL("Stats"),xLeft2,68,0,base,shadow],
-       [_INTL("Matchups"),xLeft,164,0,base,shadow],
-       [_INTL("Filters"),xLeft2,164,0,base,shadow],
-	   [_INTL("Stat Sort"),xLeft,260,0,base,shadow],
+	   [_INTL("Matchups"),xLeft2,68,0,base,shadow],
+       [_INTL("Stats"),xLeft,164,0,base,shadow],
+	   [_INTL("Stat Sort"),xLeft2,164,0,base,shadow],
+       [_INTL("Filters"),xLeft,260,0,base,shadow],
 	   [_INTL("Sorts"),xLeft2,260,0,base,shadow]
     ]
 	pbDrawTextPositions(overlay,page1textpos)
@@ -766,19 +766,19 @@ class PokemonPokedex_Scene
 		  }
 		when 7
 		  searchChanged = acceptSearchResults2 {
-			searchByStatComparison()
+			searchByTypeMatchup()
 		  }
 		when 8
 		  searchChanged = acceptSearchResults2 {
-			searchByTypeMatchup()
+			searchByStatComparison()
 		  }
 		when 9
 		  searchChanged = acceptSearchResults2 {
-			searchByMisc()
+			sortByStat()
 		  }
 		when 10
 		  searchChanged = acceptSearchResults2 {
-			sortByStat()
+			searchByMisc()
 		  }
 		when 11
 		  searchChanged = acceptSearchResults2 {
@@ -1133,7 +1133,7 @@ class PokemonPokedex_Scene
 
 
 	def searchByCollecting()
-		selection = pbMessage("Which search?",[_INTL("Starred"),_INTL("Owned"),_INTL("Not Starred"),_INTL("Not Owned"),_INTL("Cancel")],3)
+		selection = pbMessage("Which search?",[_INTL("Starred"),_INTL("Owned"),_INTL("Not Starred"),_INTL("Not Owned"),_INTL("Cancel")],5)
 	    if selection != 4 
 			dexlist = searchStartingList()
 			
