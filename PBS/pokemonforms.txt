@@ -826,7 +826,6 @@ BaseStats = 75,58,122,69,95,75
 Height = 1.1
 Weight = 14.0
 Pokedex = Large Gourgeist put on the guise of adults, taking the hands of children to lead them to the afterlife.
-BattlerPlayerY = 0
 BattlerEnemyY = 14
 #-------------------------------
 [GOURGEIST,3]
@@ -838,7 +837,6 @@ Pokedex = Supersized Gourgeist aren't picky. They will forcefully drag anyone of
 WildItemCommon = MIRACLESEED
 WildItemUncommon = MIRACLESEED
 WildItemRare = MIRACLESEED
-BattlerPlayerY = 0
 BattlerEnemyY = 12
 #-------------------------------
 [XERNEAS,1]
@@ -1034,7 +1032,7 @@ EffortPoints = 0,1,0,0,1,0
 Weight = 0.3
 Color = Red
 Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
-BattlerPlayerY = 32
+BattlerPlayerY = 28
 BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
@@ -1045,7 +1043,7 @@ EffortPoints = 0,1,0,0,1,0
 Weight = 0.3
 Color = Red
 Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
-BattlerPlayerY = 32
+BattlerPlayerY = 28
 BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
@@ -1056,7 +1054,7 @@ EffortPoints = 0,1,0,0,1,0
 Weight = 0.3
 Color = Yellow
 Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
-BattlerPlayerY = 32
+BattlerPlayerY = 28
 BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
@@ -1067,7 +1065,7 @@ EffortPoints = 0,1,0,0,1,0
 Weight = 0.3
 Color = Green
 Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
-BattlerPlayerY = 32
+BattlerPlayerY = 28
 BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
@@ -1078,7 +1076,7 @@ EffortPoints = 0,1,0,0,1,0
 Weight = 0.3
 Color = Blue
 Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
-BattlerPlayerY = 32
+BattlerPlayerY = 28
 BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
@@ -1089,7 +1087,7 @@ EffortPoints = 0,1,0,0,1,0
 Weight = 0.3
 Color = Blue
 Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
-BattlerPlayerY = 32
+BattlerPlayerY = 28
 BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
@@ -1100,7 +1098,7 @@ EffortPoints = 0,1,0,0,1,0
 Weight = 0.3
 Color = Purple
 Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
-BattlerPlayerY = 32
+BattlerPlayerY = 28
 BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
@@ -1509,6 +1507,7 @@ BattlerEnemyY = 30
 [AMPHAROS,1]
 FormName = Ascended
 BaseStats = 110,60,165,50,210,165
+BattlerPlayerY = 12
 #-------------------------------
 [GARCHOMP,1]
 FormName = Reaper
