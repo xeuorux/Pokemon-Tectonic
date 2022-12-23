@@ -1237,6 +1237,7 @@ class PokemonPokedex_Scene
 	
 	def searchByMisc()
 		miscSearches 			= []
+		cmdTribe				= -1
 		cmdMapFound 			= -1
 		cmdZooSection 			= -1
 		cmdWildItem 			= -1
@@ -1251,6 +1252,7 @@ class PokemonPokedex_Scene
 		cmdOneAbility 			= -1
 		cmdHasCoverageType		= - 1
 		cmdInvertList			= -1
+		miscSearches[cmdTribe = miscSearches.length] = _INTL("Tribe")
 		miscSearches[cmdMapFound = miscSearches.length] = _INTL("Map Found")
 		miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
 		miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined") if $DEBUG
@@ -1266,7 +1268,9 @@ class PokemonPokedex_Scene
 		miscSearches[cmdInvertList = miscSearches.length] = _INTL("Invert Current")
 		miscSearches.push(_INTL("Cancel"))
 		searchSelection = pbMessage("Which search?",miscSearches,miscSearches.length)
-		if cmdMapFound > -1 && searchSelection == cmdMapFound
+		if cmdTribe > -1 && searchSelection == cmdTribe
+			return searchByTribe() 
+		elsif cmdMapFound > -1 && searchSelection == cmdMapFound
 			return searchByMapFound() 
 		elsif cmdZooSection > -1 && searchSelection == cmdZooSection
 			return searchByZooSection()
@@ -1297,8 +1301,36 @@ class PokemonPokedex_Scene
 		end
 	end
 
-	def searchByHasCoverageType()
+	def searchByTribe()
+		dexlist = searchStartingList()
 
+		commands = []
+		tribes = []
+		GameData::Tribe.each do |tribe|
+			tribes.push(tribe.id)
+			commands.push(TribalBonus.getTribeName(tribe.id))
+		end
+		commands.push(_INTL("Cancel"))
+		command = pbMessage("Which tribe?",commands,commands.length)
+		return if command == commands.length - 1
+
+		chosenTribe = tribes[command]
+
+		echoln("Searching for the tribe #{chosenTribe}")
+
+		dexlist = dexlist.find_all { |dex_item|
+				next false if autoDisqualifyFromSearch(dex_item[0])
+				
+				fSpecies = GameData::Species.get(dex_item[0])
+
+				echoln(fSpecies.tribes)
+				
+				next fSpecies.tribes.include?(chosenTribe)
+		}
+		return dexlist
+	end
+
+	def searchByHasCoverageType()
 		while true
 			typeInput = pbEnterText("Search type...", 0, 100)
 			typeInput.downcase!
