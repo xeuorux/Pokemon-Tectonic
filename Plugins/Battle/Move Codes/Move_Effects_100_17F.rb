@@ -2574,6 +2574,10 @@ end
       return false
     end
 
+    def shouldShade?(user,target)
+      return false
+    end
+
     def pbMoveFailedAI?(user,targets); return false; end
   
     def pbSelfKO(user)

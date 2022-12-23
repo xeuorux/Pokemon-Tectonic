@@ -327,49 +327,28 @@ class PokeBattle_Move_019 < PokeBattle_Move
   def worksWithNoTargets?; return true; end
 
   def pbMoveFailed?(user,targets,show_message)
-    failed = true
-    @battle.eachSameSideBattler(user) do |b|
-      next if b.status == :NONE
-      failed = false
-      break
+    @battle.pbParty(user.index).each do |pkmn|
+      return false if validPokemon(pkmn)
     end
-    if !failed
-      @battle.pbParty(user.index).each do |pkmn|
-        next if !pkmn || !pkmn.able? || pkmn.status == :NONE
-        failed = false
-        break
-      end
-    end
-    if failed
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+    @battle.pbDisplay(_INTL("But it failed!")) if show_message
       return true
-    end
-    return false
   end
-
-  def pbFailsAgainstTarget?(user,target,show_message)
-    return target.status == :NONE
-  end
-
-  def pbEffectAgainstTarget(user,target)
-    healStatus(target)
+  
+  def validPokemon(pkmn)
+    return pkmn&.able? && pkmn.status != :NONE
   end
 
   def pbEffectGeneral(user)
-    # Cure all Pokémon in battle on the user's side. For the benefit of the Gen
-    # 5 version of this move, to make Pokémon out in battle get cured first.
-    if pbTarget(user) == :UserSide
-      @battle.eachSameSideBattler(user) do |b|
-        healStatus(b)
-      end
-    end
     # Cure all Pokémon in the user's and partner trainer's party.
     # NOTE: This intentionally affects the partner trainer's inactive Pokémon
     #       too.
     @battle.pbParty(user.index).each_with_index do |pkmn,i|
-      next if pkmn.nil? || !pkmn.able?
-      next if @battle.pbFindBattler(i,user)   # Skip Pokémon in battle
-      healStatus(pkmn)
+      battler = @battle.pbFindBattler(i,user)
+      if battler
+        healStatus(battler)
+      else
+        healStatus(pkmn)
+      end
     end
   end
 
@@ -384,9 +363,8 @@ class PokeBattle_Move_019 < PokeBattle_Move
 
   def getEffectScore(user,target)
     score = 0
-    statuses = 0
 		@battle.pbParty(user.index).each do |pkmn|
-			score += 40 if pkmn && pkmn.status != :NONE
+			score += 40 if validPokemon(pkmn)
 		end
     return score
   end
