@@ -3135,25 +3135,8 @@ class PokeBattle_Move_0EB < PokeBattle_Move
   end
   
   def pbSwitchOutTargetsEffect(user,targets,numHits,switchedBattlers)
-    return if @battle.wildBattle? && !@battle.bossBattle?
-    return if user.fainted? || numHits==0
-    roarSwitched = []
-    targets.each do |b|
-      next if b.fainted? || b.damageState.unaffected || switchedBattlers.include?(b.index)
-      newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,true)   # Random
-      next if newPkmn<0
-      @battle.pbRecallAndReplace(b.index, newPkmn, true)
-      @battle.pbDisplay(_INTL("{1} was dragged out!",b.pbThis))
-      @battle.pbClearChoice(b.index)   # Replacement Pokémon does nothing this round
-      switchedBattlers.push(b.index)
-      roarSwitched.push(b.index)
-    end
-    if roarSwitched.length > 0
-      @battle.moldBreaker = false if roarSwitched.include?(user.index)
-      @battle.pbPriority(true).each do |b|
-        b.pbEffectsOnSwitchIn(true) if roarSwitched.include?(b.index)
-      end
-    end
+    return if numHits==0
+    forceOutTargets(user,targets,switchedBattlers)
   end
 
   def getEffectScore(user,target)
@@ -3176,28 +3159,8 @@ class PokeBattle_Move_0EC < PokeBattle_Move
   end
 
   def pbSwitchOutTargetsEffect(user,targets,numHits,switchedBattlers)
-    return if @battle.wildBattle?
-    return if user.fainted? || numHits==0
-    roarSwitched = []
-    targets.each do |b|
-      next if b.fainted? || b.damageState.unaffected || b.damageState.substitute
-      next if switchedBattlers.include?(b.index)
-      next if b.effectActive?(:Ingrain)
-      next if b.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
-      newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,true)   # Random
-      next if newPkmn<0
-      @battle.pbRecallAndReplace(b.index, newPkmn, true)
-      @battle.pbDisplay(_INTL("{1} was dragged out!",b.pbThis))
-      @battle.pbClearChoice(b.index)   # Replacement Pokémon does nothing this round
-      switchedBattlers.push(b.index)
-      roarSwitched.push(b.index)
-    end
-    if roarSwitched.length > 0
-      @battle.moldBreaker = false if roarSwitched.include?(user.index)
-      @battle.pbPriority(true).each do |b|
-        b.pbEffectsOnSwitchIn(true) if roarSwitched.include?(b.index)
-      end
-    end
+    return if numHits==0
+    forceOutTargets(user,targets,switchedBattlers,true)
   end
 
   def getEffectScore(user,target)

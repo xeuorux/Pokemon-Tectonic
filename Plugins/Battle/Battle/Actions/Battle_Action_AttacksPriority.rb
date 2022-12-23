@@ -245,7 +245,9 @@ class PokeBattle_Battle
     if user.abilityActive?
       abilityPriorityChange = BattleHandlers.triggerPriorityChangeAbility(user.ability,user,move,0,targets)
       if abilityPriorityChange > 0
-        priority = [priority + priority, 1].max
+        priority = [priority + abilityPriorityChange, 1].max
+      elsif abilityPriorityChange < 0
+        priority = [priority + abilityPriorityChange, -1].min
       end
     end
     priority += move.priorityModification(user,targets)

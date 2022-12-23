@@ -82,7 +82,8 @@ class PokeBattle_Battler
 			@battle.pbJudgeCheckpoint(user)
 		end
 		# User's ability
-		BattleHandlers.triggerUserAbilityEndOfMove(user.ability, user, targets, move, @battle) if user.abilityActive?
+		switchedBattlers = []
+		BattleHandlers.triggerUserAbilityEndOfMove(user.ability, user, targets, move, @battle, switchedBattlers) if user.abilityActive?
 		# Greninja - Battle Bond
 		if !user.fainted? && !effectActive?(:Transform) &&
 					user.isSpecies?(:GRENINJA) && user.ability == :BATTLEBOND && (!@battle.pbAllFainted?(user.idxOpposingSide) &&
@@ -110,7 +111,6 @@ class PokeBattle_Battler
 			end
 		end
 		# Pokémon switching caused by Roar, Whirlwind, Circle Throw, Dragon Tail
-		switchedBattlers = []
 		move.pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
 		# Target's item, user's item, target's ability (all negated by Sheer Force)
 		if user.hasActiveAbility?(:SHEERFORCE) && move.effectChance != 0

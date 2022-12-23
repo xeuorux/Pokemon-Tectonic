@@ -223,5 +223,35 @@ class PokeBattle_Move
             return (real_attack > real_special_attack) ? 0 : 1
         end
     end
-end
+  end
+
+  def forceOutTargets(user,targets,switchedBattlers,substituteBlocks=false,random=true)
+    return if @battle.wildBattle? && !@battle.bossBattle?
+    return if user.fainted?
+    roarSwitched = []
+    targets.each do |b|
+      next if b.fainted? || b.damageState.unaffected
+      next if switchedBattlers.include?(b.index)
+      next if b.effectActive?(:Ingrain)
+      next if b.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
+      next if substituteBlocks && b.damageState.substitute
+      newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,random)   # Random
+      next if newPkmn<0
+      @battle.pbRecallAndReplace(b.index, newPkmn, true)
+      if random
+        @battle.pbDisplay(_INTL("{1} was dragged out!",b.pbThis))
+      else
+        @battle.pbDisplay(_INTL("{1} switches in!",b.pbThis))
+      end
+      @battle.pbClearChoice(b.index)   # Replacement Pokémon does nothing this round
+      switchedBattlers.push(b.index)
+      roarSwitched.push(b.index)
+    end
+    if roarSwitched.length > 0
+      @battle.moldBreaker = false if roarSwitched.include?(user.index)
+      @battle.pbPriority(true).each do |b|
+        b.pbEffectsOnSwitchIn(true) if roarSwitched.include?(b.index)
+      end
+    end
+  end
 end

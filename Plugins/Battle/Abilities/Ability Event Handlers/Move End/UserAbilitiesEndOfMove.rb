@@ -1,5 +1,5 @@
 BattleHandlers::UserAbilityEndOfMove.add(:BEASTBOOST,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
@@ -17,7 +17,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:BEASTBOOST,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:MOXIE,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
@@ -27,7 +27,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MOXIE,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     next if battle.futureSight
     next if !move.pbDamagingMove?
     targets.each do |b|
@@ -37,7 +37,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:ASONEICE,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
@@ -49,7 +49,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ASONEICE,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:ASONEGHOST,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
@@ -61,7 +61,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ASONEGHOST,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:DEEPSTING,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     next if !user.takesIndirectDamage?
     totalDamageDealt = 0
     targets.each do |target|
@@ -79,7 +79,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:DEEPSTING,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:HUBRIS,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
@@ -102,7 +102,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:SCHADENFREUDE,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:GILD,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     next if battle.futureSight
     next if !move.pbDamagingMove?
     targets.each do |b|
@@ -120,7 +120,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
@@ -137,7 +137,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:SPACEINTERLOPER,
 
 
 BattleHandlers::UserAbilityEndOfMove.add(:FOLLOWTHROUGH,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
@@ -147,13 +147,13 @@ BattleHandlers::UserAbilityEndOfMove.add(:FOLLOWTHROUGH,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:SOUNDBARRIER,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     user.tryRaiseStat(:DEFENSE,user, showAbilitySplash: true) if move.soundMove?
   }
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:SEALORD,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     next unless user.species == :GYARADOS
     next unless user.form == 0
     next if battle.pbAllFainted?(user.idxOpposingSide)
@@ -167,7 +167,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:SEALORD,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:VICTORYMOLT,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,targets,move,battle,switchedBattlers|
     next if battle.pbAllFainted?(user.idxOpposingSide)
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
@@ -175,11 +175,20 @@ BattleHandlers::UserAbilityEndOfMove.add(:VICTORYMOLT,
     next unless user.pbHasAnyStatus? || user.hasAlteredStatStages?
     battle.pbShowAbilitySplash(user)
     user.pbChangeForm(1,_INTL("{1} molts into a new shell!",user.pbThis))
+    battle.pbAnimation(:REFRESH,user,nil)
     user.pbCureStatus(true)
     if user.hasAlteredStatStages?
       battle.pbDisplay(_INTL("{1}'s stat changes were removed!",user.pbThis))
-      user.resetStatStages
+      user.pbResetStatStages
     end
     battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:POWERLIFTER,
+  proc { |ability,user,targets,move,battle,switchedBattlers|
+    next if battle.futureSight
+    next unless move.physicalMove?
+    move.forceOutTargets(user,targets,switchedBattlers,true,false)
   }
 )

@@ -220,7 +220,7 @@ module BattleHandlers
   
 	def self.triggerPriorityChangeAbility(ability,battler,move,pri,targets=[])
 		ret = PriorityChangeAbility.trigger(ability,battler,move,pri,targets)
-		return (ret!=nil) ? ret : pri
+		return (ret!=nil) ? ret : 0
 	end
   
 	def self.triggerPriorityBracketChangeAbility(ability,battler,subPri,battle)
@@ -444,8 +444,8 @@ module BattleHandlers
   
 	#=============================================================================
   
-	def self.triggerUserAbilityEndOfMove(ability,user,targets,move,battle)
-	  UserAbilityEndOfMove.trigger(ability,user,targets,move,battle)
+	def self.triggerUserAbilityEndOfMove(ability,user,targets,move,battle,switchedBattlers)
+	  UserAbilityEndOfMove.trigger(ability,user,targets,move,battle,switchedBattlers)
 	end
   
 	def self.triggerTargetItemAfterMoveUse(item,battler,user,move,switched,battle)
