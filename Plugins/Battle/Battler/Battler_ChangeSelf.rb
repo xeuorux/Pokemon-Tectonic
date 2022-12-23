@@ -62,6 +62,7 @@ class PokeBattle_Battler
 			@damageState.displayedDamage = reduction
 			@battle.scene.pbDamageAnimation(self)
 		end
+		reduction = @hp if reduction > @hp
 		pbReduceHP(reduction, false)
 		if entryCheck
 			swapped = pbEntryHealthLossChecks(oldHP)
