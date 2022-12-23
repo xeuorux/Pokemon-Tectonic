@@ -365,6 +365,7 @@ class PokeBattle_Move
 
     def pbAdditionalEffectChance(user,target,type,effectChance=0)
         return 0 if !canApplyAdditionalEffects?(user,target)
+        return 100 if !user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_PERFECT_LUCK)
         ret = effectChance > 0 ? effectChance : @effectChance
         return 100 if ret >= 100
         ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
