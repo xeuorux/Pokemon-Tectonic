@@ -1258,8 +1258,8 @@ class PokemonPokedexInfo_Scene
     for i in available
         if i[2] == @form
 			speciesFormData = GameData::Species.get_species_form(@species, @form)
-			speciesFormData.compatibility.each {|compatibility|
-				drawTextEx(overlay, xLeft, coordinateY += 30, 450, 1, _INTL($Tribal_Bonuses.getTribeName(compatibility)), base, shadow)
+			speciesFormData.tribes.each {|tribe|
+				drawTextEx(overlay, xLeft, coordinateY += 30, 450, 1, _INTL(TribalBonus.getTribeName(tribe)), base, shadow)
 			}
         end
     end

@@ -8,8 +8,8 @@ class TribalBonus
     def resetTribeCounts()
         @tribeCounts = {}
         # Reset all counts
-        TRIBAL_DEFINITIONS.keys.each do |tribe_id|
-            @tribeCounts[tribe_id] = 0
+        GameData::Tribe.each do |tribe|
+            @tribeCounts[tribe.id] = 0
         end
     end
 
@@ -21,10 +21,10 @@ class TribalBonus
             form = pokemon.form
             species = pokemon.species
             fSpecies = GameData::Species.get_species_form(species, form)
-            compatibilities = fSpecies.compatibility
-            compatibilities.each {|compatibility|
-                next if !@tribeCounts.has_key?(compatibility)
-                @tribeCounts[compatibility] += 1
+            tribes = fSpecies.tribes
+            tribes.each {|tribe|
+                next if !@tribeCounts.has_key?(tribe)
+                @tribeCounts[tribe] += 1
             }
         }
     end
@@ -43,30 +43,21 @@ class TribalBonus
         form = pokemon.form
         species = pokemon.species
         fSpecies = GameData::Species.get_species_form(species, form)
-        compatibilities = fSpecies.compatibility
-        compatibilities.each {|compatibility|
-            next if !TRIBAL_DEFINITIONS.has_key?(compatibility)
-            tribalBonusDefinition = TRIBAL_DEFINITIONS[compatibility]
-            tribalThresholdDefinitions = tribalBonusDefinition[1]
-            tribalThresholdDefinitions.each do |tribalThresholdDefinition|
-                threshold = tribalThresholdDefinition[0]
-                next if @tribeCounts[compatibility] < threshold
-
-                thresholdStatBonuses = tribalThresholdDefinition[1]
-                thresholdStatBonuses.each do |stat, bonus|
-                    tribeBonuses[stat] += bonus
-                end
+        tribes = fSpecies.tribes
+        tribes.each {|tribe|
+            next unless @tribeCounts[tribe] < 5
+            GameData::Stat.each_main_battle do |stat|
+                tribeBonuses[stat] = 5 + (pokemon.level / 14).floor
             end
         }
 
         return tribeBonuses
     end
 
-    def tribes
-        return TRIBAL_DEFINITIONS.keys
-    end
-
-    def getTribeName(tribe_id)
-        return TRIBAL_DEFINITIONS[tribe_id][0] || ""
+    def self.getTribeName(tribe_id)
+        name = tribe_id.downcase
+        name = name[0].upcase + name[1...]
+        return name
     end
 end
+

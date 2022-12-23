@@ -3,6 +3,7 @@ module GameData
         attr_reader :notes
         attr_reader :egg_groups
         attr_accessor :earliest_available
+        attr_writer :tribes
 
         def self.schema(compiling_forms = false)
             ret = {
@@ -39,7 +40,8 @@ module GameData
               "BattlerAltitude"   => [0, "i"],
               "BattlerShadowX"    => [0, "i"],
               "BattlerShadowSize" => [0, "u"],
-              "Notes"             => [0, "q"]
+              "Notes"             => [0, "q"],
+              "Tribes"            => [0, "*e", :Tribe],
             }
             if compiling_forms
               ret["PokedexForm"]  = [0, "u"]
@@ -113,15 +115,23 @@ module GameData
           @shadow_size           = hash[:shadow_size]           || 2
           @notes                 = hash[:notes]                 || ""
           @earliest_available    = nil
+          @tribes                = hash[:tribes]                || []
       end
   
       def notes
           return @notes
       end
 
-      #comment this out if not using Tribes Plugin
-      def compatibility
-        return @egg_groups
+      def tribes(ignoreInheritance=false)
+        allTribes = @tribes.clone
+        unless ignoreInheritance
+          get_prevolutions.each do |prevo_entry|
+            allTribes.concat(GameData::Species.get_species_form(prevo_entry[0],@form).tribes)
+          end
+          allTribes.uniq!
+          allTribes.compact!
+        end
+        return allTribes
       end
 
       def available_by?(level)

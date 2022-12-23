@@ -35,7 +35,7 @@ class TribalBonusScene
         drewAny = false
         $Tribal_Bonuses.tribeCounts.each {|tribe, count|
             if count > 0
-                tribeName = $Tribal_Bonuses.getTribeName(tribe)
+                tribeName = TribalBonus.getTribeName(tribe)
                 coordinateY += 30
                 drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("{1}: {2}", tribeName, count), base, shadow)
                 drewAny = true
@@ -111,23 +111,13 @@ class TribalBonusScene
         @sprites["scroll_arrow_down"].visible = false
         @sprites["scroll_arrow_down"].play
 
-        TRIBAL_DEFINITIONS.each {|tribe, tribeDefinition|
-            tribeName = tribeDefinition[0]
-            tribalThresholdEntries = tribeDefinition[1]
-
+        GameData::Tribe.each { |tribe|
+            tribeName = TribalBonus.getTribeName(tribe.id)
             @displayText << tribeName + ":"
-
-            tribalThresholdEntries.each do |tribalThresholdEntry|
-                threshold = tribalThresholdEntry[0]
-                statBonusesHash = tribalThresholdEntry[1]
-                statBonusesDescription = tribalThresholdEntry[2]
-                bonusDescription = "#{threshold} battlers in this category will get #{statBonusesDescription}"
-
-                break_string(bonusDescription, 40).each {|line|
-                    @displayText << line
-                }
-            end
-            @displayText << "" # Blank line
+            bonusDescription = "5 battlers in this category will get a bonus to each main battle stat"
+            break_string(bonusDescription, 40).each {|line|
+                @displayText << line
+            }
         }
 
         pbFadeInAndShow(@sprites) { pbUpdate }

@@ -54,6 +54,9 @@ module Compiler
         if species.egg_groups.length > 0
           f.write(sprintf("Compatibility = %s\r\n", species.egg_groups.join(",")))
         end
+        if species.tribes(true).length > 0
+          f.write(sprintf("Tribes = %s\r\n", species.tribes(true).join(",")))
+        end
         f.write(sprintf("StepsToHatch = %d\r\n", species.hatch_steps))
         f.write(sprintf("Height = %.1f\r\n", species.height / 10.0))
         f.write(sprintf("Weight = %.1f\r\n", species.weight / 10.0))

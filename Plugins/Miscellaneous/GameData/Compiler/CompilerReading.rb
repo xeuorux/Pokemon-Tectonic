@@ -28,6 +28,8 @@ module Compiler
       compile_items                  # Depends on Move
       yield(_INTL("Compiling berry plant data"))
       compile_berry_plants           # Depends on Item
+      yield(_INTL("Compiling species tribes"))
+	    compile_tribes
       yield(_INTL("Compiling Pokémon data"))
       compile_pokemon                # Depends on Move, Item, Type, Ability
       yield(_INTL("Compiling Pokémon forms data"))
@@ -454,7 +456,7 @@ module Compiler
 	  GameData::Policy::DATA.clear
     # Read each line of policies.txt at a time and compile it into a trainer type
     pbCompilerEachCommentedLine(path) { |line, line_no|
-	  line = pbGetCsvRecord(line, line_no, [0, "*n"])
+	    line = pbGetCsvRecord(line, line_no, [0, "*n"])
       policy_symbol = line[0].to_sym
       if GameData::Policy::DATA[policy_symbol]
         raise _INTL("Trainer policy ID '{1}' is used twice.\r\n{2}", policy_symbol, FileLineData.linereport)
@@ -468,6 +470,31 @@ module Compiler
     }
     # Save all data
     GameData::Policy.save
+    Graphics.update
+  end
+
+  def compile_tribes(path = "PBS/tribes.txt")
+	  GameData::Tribe::DATA.clear
+    # Read each line of tribes.txt at a time and compile it
+    pbCompilerEachCommentedLine(path) { |line, line_no|
+
+    tribe_number = 1
+	  line = pbGetCsvRecord(line, line_no, [0, "*n"])
+      tribe_symbol = line[0].to_sym
+      if GameData::Tribe::DATA[tribe_symbol]
+        raise _INTL("Tribe ID '{1}' is used twice.\r\n{2}", tribe_symbol, FileLineData.linereport)
+      end
+      tribe_number += 1
+      # Construct trainer type hash
+      tribe_hash = {
+        :id          => tribe_symbol,
+        :id_number   => tribe_number,
+      }
+      # Add trainer policy's data to records
+      GameData::Tribe.register(tribe_hash)
+    }
+    # Save all data
+    GameData::Tribe.save
     Graphics.update
   end
   
@@ -909,7 +936,8 @@ end
           :front_sprite_altitude => contents["BattlerAltitude"],
           :shadow_x              => contents["BattlerShadowX"],
           :shadow_size           => contents["BattlerShadowSize"],
-          :notes                 => contents["Notes"]
+          :notes                 => contents["Notes"],
+          :tribes                => contents["Tribes"],
         }
         # Add species' data to records
         GameData::Species.register(species_hash)
@@ -1115,7 +1143,8 @@ end
           :front_sprite_altitude => contents["BattlerAltitude"] || base_data.front_sprite_altitude,
           :shadow_x              => contents["BattlerShadowX"] || base_data.shadow_x,
           :shadow_size           => contents["BattlerShadowSize"] || base_data.shadow_size,
-          :notes                 => contents["Notes"]
+          :notes                 => contents["Notes"],
+          :tribes                => contents["Tribes"]  || base_data.tribes,
         }
         # If form is single-typed, ensure it remains so if base species is dual-typed
         species_hash[:type2] = contents["Type1"] if contents["Type1"] && !contents["Type2"]

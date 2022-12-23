@@ -15,7 +15,7 @@ module GameData
         Metadata.load
         MapMetadata.load
         Policy.load
-        echoln("Loading avatar data")
         Avatar.load
+        Tribe.load
     end
 end
