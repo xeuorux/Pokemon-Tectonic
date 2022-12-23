@@ -2052,6 +2052,16 @@ Pokemon = OCTILLERY,47
 Pokemon = MEOWSTIC,47
     AbilityIndex = 1
 #-------------------------------
+[DANDY,Jules]
+Pokemon = CHARIZARD,47
+    AbilityIndex = 1
+Pokemon = VILEPLUME,48
+    AbilityIndex = 1
+Pokemon = CLAWITZER,47
+    AbilityIndex = 0
+Pokemon = ARATICATE,48
+    AbilityIndex = 0
+#-------------------------------
 [CAMPER,Liam]
 Pokemon = HITMONCHAN,34
     AbilityIndex = 1

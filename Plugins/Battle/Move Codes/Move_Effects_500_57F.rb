@@ -1994,3 +1994,13 @@ class PokeBattle_Move_57A < PokeBattle_Move
 		return -1000
 	end
 end
+
+#===============================================================================
+# Increases the user's Sp. Def by 3 stages. (Mucus Armor)
+#===============================================================================
+class PokeBattle_Move_57B < PokeBattle_StatUpMove
+	def initialize(battle,move)
+	  super
+	  @statUp = [:SPECIAL_DEFENSE,3]
+	end
+end
