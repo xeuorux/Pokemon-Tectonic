@@ -1304,6 +1304,13 @@ Bicycle = false
 BattleBack = indoor2
 Environment = None
 #-------------------------------
+[229]
+# Canal Desert Station
+Outdoor = false
+ShowArea = false
+Bicycle = false
+HealingSpot = 130,12,28
+#-------------------------------
 [235]
 # Renovated House
 Outdoor = false

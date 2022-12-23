@@ -576,6 +576,11 @@ class PokeBattle_Move_648 < PokeBattle_Move_17C
 	def turnsBetweenUses(); return 3; end
 end
 
+# Empowered Future Sight
+class PokeBattle_Move_649 < PokeBattle_Move_111
+	include EmpoweredMove
+end
+
 ########################################################
 ### Specific avatar only moves
 ########################################################

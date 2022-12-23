@@ -78,4 +78,5 @@
 3046,PRIMEVALSOLARBEAM,Primeval Solar Beam,646,170,GRASS,Special,100,10,0,AllNearFoes,0,befy,"A two-turn attack. The user gathers light, then blasts all near foes on the second turn.",
 3047,PRIMEVALPOWERGEM,Primeval Power Gem,647,120,ROCK,Special,100,15,100,NearOther,0,befy,"The user attacks with a sparkling gem-like ray, dizzying the target.",
 3048,PRIMEVALBULLETSEED,Primeval Bullet Seed,648,35,GRASS,Physical,100,15,0,AllNearFoes,0,abefy,"The user forcefully shoots 6 seeds in rapid succession, spread among nearby enemies.",
+3049,PRIMEVALFUTURESIGHT,Primeval Future Sight,649,280,PSYCHIC,Special,100,10,0,NearOther,0,,"Two turns after this move is used, a hunk of psychic energy attacks the target.",
 4000,STRATOSPHERESCREAM,Stratosphere Scream,700,100,FLYING,Special,0,5,0,AllNearFoes,0,befk,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",
