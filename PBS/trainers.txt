@@ -160,23 +160,29 @@ Policies = CURSE_TORMENTED
 [POKEMONTRAINER_Yezera,Yezera]
 Policies = YEZERA
 Pokemon = BUNNELBY,17
+    Moves = TREADON,QUICKATTACK,TACKLE,PLAYNICE
     AbilityIndex = 1
     Item = ORANBERRY
 Pokemon = SMOOCHUM,17
+    Moves = POWDERSNOW,MINDWAVES,LIGHTSCREEN,FAKETEARS
     AbilityIndex = 0
 Pokemon = JOLTIK,18
+    Moves = LIGHTSHOW,STICKYWEB,DISABLE,THUNDERSHOCK
     AbilityIndex = 0
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,1]
 ExtendsVersion = 0
-Policies = CURSE_TYPE_WEAKENED
+Policies = CURSE_PERFECT_LUCK
 Pokemon = NOIBAT,17
+    Moves = BOREALWIND,ABSORB,DEFOG,DRAGONBREATH
     AbilityIndex = 1
     Item = FLYINGGEM
 Pokemon = LARVESTA,18
+    Moves = EMBER,STRUGGLEBUG,INFESTATION,PROTECT
     AbilityIndex = 0
     Item = SITRUSBERRY
 Pokemon = WHISMUR,17
+    Moves = COURAGEBOLT,SCREECH,ECHOEDVOICE,SHOUT
     AbilityIndex = 1
     Item = THROATSPRAY
 #-------------------------------
