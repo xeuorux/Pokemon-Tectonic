@@ -1725,66 +1725,95 @@ class PokemonPokedex_Scene
 	
 	def searchByTypeMatchup()
 		sectionSelection = pbMessage("Which interaction?",[_INTL("Weak To"),_INTL("Resists"),
-			_INTL("Immune To"),_INTL("Neutral To"),_INTL("Cancel")],5)
-	    return if sectionSelection == 4 
+			_INTL("Immune To"),_INTL("Neutral To"),_INTL("Has Immunity"),_INTL("Has Hyper Weakness"),_INTL("Cancel")],7)
+	    return if sectionSelection == 6 
 		
-		while true
-		  typesInput = pbEnterText("Which type(s)?", 0, 100)
-		  typesInput.downcase!
-		  if typesInput && typesInput!=""
-			  typesInputArray = typesInput.split(" ")
-			  
-			  # Don't do the search if one of the input type names isn't an actual type
-			  invalid = false
-			  typesSearchInfo = {}
-			  typesInputArray.each do |type_input_entry|
-				reversed = type_input_entry[0] == '-'
-			    type_input_entry = type_input_entry[1..-1] if reversed
-				typeIsReal = false
-				type_symbol = nil
-				GameData::Type.each do |type_data|
-					if type_data.real_name.downcase == type_input_entry
-						typeIsReal = true
-						type_symbol = type_data.id
+		if sectionSelection <= 3
+			return searchByTypeEffectiveness(sectionSelection)
+		else
+			dexlist = searchStartingList()
+			dexlist = dexlist.find_all { |item|
+				next false if autoDisqualifyFromSearch(item[0])
+				
+				hasThingOfInterest = false
+				GameData::Type.each do |type|
+					next if type.pseudo_type
+
+					effectiveness = Effectiveness.calculate(type.id,item[6],item[7])
+
+					if sectionSelection == 4 && Effectiveness.ineffective?(effectiveness)
+						hasThingOfInterest = true
+						break
+					end
+
+					if sectionSelection == 5 && Effectiveness.hyper_effective?(effectiveness)
+						hasThingOfInterest = true
 						break
 					end
 				end
-				if !typeIsReal
-					pbMessage(_INTL("Invalid input: {1}", type_input_entry))
-					invalid = true
-					break
-				end
-				typesSearchInfo[type_symbol] = reversed
-			  end
-			  next if invalid
-			  
-			  dexlist = searchStartingList()
-			  dexlist = dexlist.find_all { |item|
-			  	next false if autoDisqualifyFromSearch(item[0])
+
+				next hasThingOfInterest
+			}
+			return dexlist
+		end
+	end
+
+	def searchByTypeEffectiveness(effectivenessSelection)
+		while true
+			typesInput = pbEnterText("Which type(s)?", 0, 100)
+			typesInput.downcase!
+			if typesInput && typesInput!=""
+				typesInputArray = typesInput.split(" ")
 				
-				result = true
-				
-				survivesSearch = true
-				typesSearchInfo.each do |type,reversed|
-					effect = Effectiveness.calculate(type,item[6],item[7])
-							
-					case sectionSelection
-					when 0
-						survivesSearch = false if !Effectiveness.super_effective?(effect) ^ reversed
-					when 1
-						survivesSearch = false if !Effectiveness.not_very_effective?(effect) ^ reversed
-					when 2
-						survivesSearch = false if !Effectiveness.ineffective?(effect) ^ reversed
-					when 3
-						survivesSearch = false if !Effectiveness.normal?(effect) ^ reversed
+				# Don't do the search if one of the input type names isn't an actual type
+				invalid = false
+				typesSearchInfo = {}
+				typesInputArray.each do |type_input_entry|
+					reversed = type_input_entry[0] == '-'
+					type_input_entry = type_input_entry[1..-1] if reversed
+					typeIsReal = false
+					type_symbol = nil
+					GameData::Type.each do |type_data|
+						if type_data.real_name.downcase == type_input_entry
+							typeIsReal = true
+							type_symbol = type_data.id
+							break
+						end
 					end
+					if !typeIsReal
+						pbMessage(_INTL("Invalid input: {1}", type_input_entry))
+						invalid = true
+						break
+					end
+					typesSearchInfo[type_symbol] = reversed
 				end
-				next survivesSearch
-			  }
-			  return dexlist
-		  end
-		  return nil
-	  end
+				next if invalid
+				
+				dexlist = searchStartingList()
+				dexlist = dexlist.find_all { |item|
+					next false if autoDisqualifyFromSearch(item[0])
+					
+					survivesSearch = true
+					typesSearchInfo.each do |type,reversed|
+						effect = Effectiveness.calculate(type,item[6],item[7])
+								
+						case sectionSelection
+						when 0
+							survivesSearch = false if !Effectiveness.super_effective?(effect) ^ reversed
+						when 1
+							survivesSearch = false if !Effectiveness.not_very_effective?(effect) ^ reversed
+						when 2
+							survivesSearch = false if !Effectiveness.ineffective?(effect) ^ reversed
+						when 3
+							survivesSearch = false if !Effectiveness.normal?(effect) ^ reversed
+						end
+					end
+					next survivesSearch
+				}
+				return dexlist
+			end
+			return nil
+		end
 	end
 	
 	def sortByStat()
