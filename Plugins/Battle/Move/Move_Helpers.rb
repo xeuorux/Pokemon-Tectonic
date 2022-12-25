@@ -45,7 +45,7 @@ class PokeBattle_Move
     else
         return false if target.damageState.unaffected || target.damageState.substitute
     end
-    return false if !target.item || target.unlosableItem?(target.item)
+    return false if !target.item || target.unlosableItem?(target.item,!checkingForAI)
     return false if target.shouldAbilityApply?(:STICKYHOLD,checkingForAI) && !@battle.moldBreaker
     return true
   end

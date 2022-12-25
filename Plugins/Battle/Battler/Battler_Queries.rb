@@ -155,7 +155,7 @@ class PokeBattle_Battler
 	alias hasWorkingItem hasActiveItem?
 
 	# Returns whether the specified item will be unlosable for this Pokémon.
-	def unlosableItem?(check_item)
+	def unlosableItem?(check_item, showMessages=false)
 		return false unless check_item
 		return true if GameData::Item.get(check_item).is_mail?
 		return false if effectActive?(:Transform)
@@ -168,7 +168,10 @@ class PokeBattle_Battler
 				return true if data.mega_stone == check_item
 			end
 		end
-		return true if check_item == :LUNCHBOX
+		if check_item == :LUNCHBOX
+			@battle.pbDisplay(_INTL("But #{pbThis(false)} hold's tightly onto its Lunch Box!")) if showMessages
+			return true
+		end
 		# Other unlosable items
 		return GameData::Item.get(check_item).unlosable?(@species, ability)
 	end
