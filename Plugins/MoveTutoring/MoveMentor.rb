@@ -1,10 +1,10 @@
-def mentorCoordinator()
+def mentorCoordinator(skipExplanation=false)
 	if !teamEditingAllowed?()
 		showNoTeamEditingMessage()
 		return
 	end
 
-	if isTempSwitchOff?("A")
+	if isTempSwitchOff?("A") && !skipExplanation
 		pbMessage(_INTL("I help your Pokemon to teach each other moves through mentorships!"))
 		pbMessage(_INTL("Pokemon can teach any move they know to any other Pokemon you have who can learn that move."))
 		pbMessage(_INTL("Any Pokemon in your party or in your PC can be a mentor!"))
@@ -48,7 +48,7 @@ def pbMentorMoveScreen(pkmn)
 	mentorableMoves = pkmn.learnable_moves & movesKnownByMentors # Get the elements shared by both arrays
 	return false if mentorableMoves.length == 0
 
-	return moveLearningScreen(pkmn,getRelearnableMoves(pkmn))
+	return moveLearningScreen(pkmn,mentorableMoves)
 end
 
 class Pokemon

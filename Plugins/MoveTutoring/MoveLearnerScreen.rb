@@ -18,7 +18,7 @@ class MoveLearnerScreen
               return true
             end
           end
-        elsif @scene.pbConfirm(_INTL("Give up trying to teach a new move to {1}?", pkmn.name))
+        else
           @scene.pbEndScene
           return false
         end
