@@ -2004,3 +2004,18 @@ class PokeBattle_Move_57B < PokeBattle_StatUpMove
 	  @statUp = [:SPECIAL_DEFENSE,3]
 	end
 end
+
+#===============================================================================
+# This move is physical if user's Attack is higher than its Special Attack (Long Shot)
+# (after applying stat stages)
+#===============================================================================
+class PokeBattle_Move_57C < PokeBattle_Move_005
+    def initialize(battle, move)
+      super
+      @calculated_category = 1
+    end
+
+    def calculateCategory(user, targets)
+      return selectBestCategory(user)
+    end
+end

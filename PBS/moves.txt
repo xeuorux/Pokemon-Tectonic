@@ -1084,3 +1084,4 @@
 1085,HIVEMIND,Hive Mind,57A,0,BUG,Status,0,10,0,NearAlly,0,,"The user makes its ally perform the move in the user's first slot.",
 1086,DOCILEMASK,Docile Mask,0D0,0,FAIRY,Status,100,15,0,NearOther,1,bce,"The target is taunted by a deceptive look. It can't use status moves this or next turn. This move always goes first.",PLAYNICE
 1087,MUCUSARMOR,Mucus Armor,57B,0,POISON,Status,0,10,0,User,0,d,"The user protects itself by excreting a thick mucus, drastically raising its Sp. Def stat.",
+1088,LONGSHOT,Long Shot,000,90,NORMAL,Physical,75,25,0,User,0,bef,"Inflicts physical or special damage based on the user's stats. However, its likely to miss.",
