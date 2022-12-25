@@ -382,6 +382,7 @@ class PokemonLoadScreen
 		cmd_load_game	 = -1
 		cmd_new_game     = -1
 		cmd_debug        = -1
+		cmd_website		 = -1
 		cmd_survey		 = -1
 		cmd_quit         = -1
 		lastModifiedSaveName = FileSave.lastModifiedSaveName
@@ -392,6 +393,7 @@ class PokemonLoadScreen
 			commands[cmd_load_game = commands.length] = _INTL('Load Game')
 		end
 		commands[cmd_new_game = commands.length]  = _INTL('New Game')
+		commands[cmd_website = commands.length]   = _INTL('Website')
 		commands[cmd_survey = commands.length]   = _INTL('Playtest Survey')
 		commands[cmd_debug = commands.length]     = _INTL('Debug') if $DEBUG
 		commands[cmd_quit = commands.length]      = _INTL('Quit Game')
@@ -421,6 +423,8 @@ class PokemonLoadScreen
 			return
 		  when cmd_survey
 			system("start /B https://forms.gle/AgrPMQuCjbcmVWNWA")
+		  when cmd_website
+			system("start /B https://www.tectonic-game.com/")
 		  when cmd_debug
 			pbFadeOutIn { pbDebugMenu(false) }
 		  when cmd_quit
