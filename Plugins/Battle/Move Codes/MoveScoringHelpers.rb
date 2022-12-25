@@ -21,6 +21,8 @@ def getStatusSettingEffectScore(statusApplying,user,target,ignoreCheck: false)
 		return getNumbEffectScore(user,target,ignoreCheck: ignoreCheck)
 	when :DIZZY
 		return getDizzyEffectScore(user,target,ignoreCheck: ignoreCheck)
+	when :LEECHED
+		return getLeechEffectScore(user,target,ignoreCheck: ignoreCheck)
 	end
 
 	raise _INTL("Given status #{statusApplying} is not valid.")

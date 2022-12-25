@@ -3524,8 +3524,7 @@ class PokeBattle_Move_0F6 < PokeBattle_Move
   end
 
   def getEffectScore(user,target)
-    score += 30
-    return score
+    return 100
   end
 end
 

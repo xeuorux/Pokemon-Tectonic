@@ -328,9 +328,9 @@ class PokeBattle_Battle
 
 			b.hp = b.totalhp * [0.25,0.5,0.75,1.0,1.0,1.0,1.0,1.0].sample
 			b.hp = 1 if b.hp < 1
-			if pbRandom(100) < resetChance
+			if pbRandom(100) < changeChance
 				b.pbInflictStatus(statuses.sample)
-			elsif pbRandom(100) < changeChance
+			elsif pbRandom(100) < resetChance
 				b.pbCureStatus(false)
 			end
 
@@ -346,27 +346,27 @@ class PokeBattle_Battle
 				b.pbHeldItemTriggerCheck
 			end
 		end
-		@field.resetEffects if pbRandom(100) < resetChance
-		if pbRandom(100) < resetChance
-			endWeather
-		else
-			if pbRandom(100) < changeChance
-				pbStartWeather(nil,[:Sun,:Rain,:Sandstorm,:Hail,:HarshSun,:HeavyRain].sample)
-			end
-		end
-		if pbRandom(100) < resetChance
-			endTerrain
-		else
-			if pbRandom(100) < changeChance
-				pbStartTerrain(nil,[:Grassy,:Psychic,:Fairy,:Electric].sample)
-			end
-		end
-		@sides.each do |side|
-			side.resetEffects if pbRandom(100) < changeChance
-		end
-		@positions.each do |position|
-			position.resetEffects if pbRandom(100) < changeChance
-		end
+		# @field.resetEffects if pbRandom(100) < resetChance
+		# if pbRandom(100) < resetChance
+		# 	endWeather
+		# else
+		# 	if pbRandom(100) < changeChance
+		# 		pbStartWeather(nil,[:Sun,:Rain,:Sandstorm,:Hail,:HarshSun,:HeavyRain].sample)
+		# 	end
+		# end
+		# if pbRandom(100) < resetChance
+		# 	endTerrain
+		# else
+		# 	if pbRandom(100) < changeChance
+		# 		pbStartTerrain(nil,[:Grassy,:Psychic,:Fairy,:Electric].sample)
+		# 	end
+		# end
+		# @sides.each do |side|
+		# 	side.resetEffects if pbRandom(100) < changeChance
+		# end
+		# @positions.each do |position|
+		# 	position.resetEffects if pbRandom(100) < changeChance
+		# end
 	end
 
 	def pbCommandPhaseLoop(isPlayer)

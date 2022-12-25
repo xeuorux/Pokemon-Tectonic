@@ -1231,7 +1231,7 @@ class PokeBattle_TeamStatBuffMove < PokeBattle_Move
 		failed = true
 		@battle.eachSameSideBattler(user) do |b|
 		  for i in 0..@statUp.length/2 do
-        statSym = @statUp[i]
+        statSym = @statUp[i*2]
         next unless b.pbCanRaiseStatStage?(statSym, user, self)
         failed = false
         break
