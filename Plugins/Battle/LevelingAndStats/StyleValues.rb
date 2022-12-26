@@ -477,13 +477,13 @@ class PokemonPartyScreen
   end
 end
 
-def styleValuesTrainer()
+def styleValuesTrainer(skipExplanation=false)
 	if !teamEditingAllowed?()
 		showNoTeamEditingMessage()
 		return
 	end
 
-	if isTempSwitchOff?("A")
+	if isTempSwitchOff?("A") && !skipExplanation
 		pbMessage(_INTL("I'm the Style Points adjuster. I can adjust your Pokémon's Style Points any time."))
 		pbMessage(_INTL("To add Style Points to a stat, you'll have to remove them from another."))
 		setTempSwitchOn("A")

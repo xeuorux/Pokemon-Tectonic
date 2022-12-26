@@ -48,43 +48,14 @@ def getMentorableMoves(pkmn)
 end
 
 def pbMentorMoveScreen(pkmn)
-	mentorableMoves
-	return false if mentorableMoves.length == 0
-
+	mentorableMoves = getMentorableMoves(pkmn)
+	return false if mentorableMoves.empty?
 	return moveLearningScreen(pkmn,mentorableMoves)
 end
 
 class Pokemon
 	def can_mentor_move?
 		return false if egg? || shadowPokemon?
-		species_data = GameData::Species.get(@species)
-		firstSpecies = species_data
-		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
-			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
-		end
-		
-		possibleMoves = []
-		eachPokemonInPartyOrStorage do |otherPkmn|
-			otherPkmn.moves.each do |m|
-				possibleMoves.push(m.id)
-			end
-		end
-		possibleMoves.uniq!
-		possibleMoves.compact!
-		
-		firstSpecies.egg_moves.each { |m| 
-			next if hasMove?(m)
-			return true if possibleMoves.include?(m)
-		}
-		species_data.tutor_moves.each { |m|
-			next if hasMove?(m)
-			return true if possibleMoves.include?(m)
-		}
-		species_data.moves.each { |learnset_entry|
-			m = learnset_entry[1]
-			next if hasMove?(m)
-			return true if possibleMoves.include?(m)
-		}
-		return false
+		return !getMentorableMoves(self).empty?
 	end
 end

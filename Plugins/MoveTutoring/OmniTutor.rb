@@ -6,7 +6,7 @@ def useOmniTutor()
 
     while true do
         pbChoosePokemon(1,3,proc{|p|
-            getOmniMoves(p).length != 0
+            p.can_omni_tutor?
         },false)
         if $game_variables[1] < 0
             break
@@ -44,4 +44,11 @@ end
 
 def omniTutorScreen(pkmn)
     return moveLearningScreen(pkmn,getOmniMoves(pkmn))
+end
+
+class Pokemon
+	def can_omni_tutor?
+		return false if egg? || shadowPokemon?
+		return !getOmniMoves(self).empty?
+	end
 end

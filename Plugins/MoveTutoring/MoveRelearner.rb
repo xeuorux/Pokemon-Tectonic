@@ -1,10 +1,10 @@
-def moveRelearner()
+def moveRelearner(skipExplanation=false)
 	if !teamEditingAllowed?()
 		showNoTeamEditingMessage()
 		return
 	end
 
-	if isTempSwitchOff?("A")
+	if isTempSwitchOff?("A") && !skipExplanation
 		pbMessage(_INTL("I'm the Pokémon Move Maniac."))
 		pbMessage(_INTL("I know every single move that Pokémon learn while leveling up or evolving."))
 		pbMessage(_INTL("I can teach moves to your Pokémon -- at no cost!"))
@@ -56,9 +56,6 @@ end
 class Pokemon
 	def can_relearn_move?
 		return false if egg? || shadowPokemon?
-		this_level = self.level
-		getMoveList.each { |m| return true if m[0] <= this_level && !hasMove?(m[1]) }
-		@first_moves.each { |m| return true if !hasMove?(m) }
-		return false
+		return !getRelearnableMoves(self).empty?
 	end
 end
