@@ -199,6 +199,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 BicycleAlways = false
+BattleBack = cave1
 Environment = Cave
 #-------------------------------
 [027]
