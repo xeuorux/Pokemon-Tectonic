@@ -48,7 +48,9 @@ def getRelearnableMoves(pkmn)
 end
 
 def pbRelearnMoveScreen(pkmn)
-	return moveLearningScreen(pkmn,getRelearnableMoves(pkmn))
+	relearnableMoves = getRelearnableMoves(pkmn)
+	return false if relearnableMoves.empty?
+	return moveLearningScreen(pkmn,relearnableMoves)
 end
 
 class Pokemon
