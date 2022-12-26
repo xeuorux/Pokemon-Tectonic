@@ -29,7 +29,7 @@ def mentorCoordinator(skipExplanation=false)
 	end
 end
 
-def getMentorableMoves()
+def getMovesKnownByMentors()
 	movesKnownByMentors = []
 	eachPokemonInPartyOrStorage do |otherPkmn|
 		otherPkmn.moves.each do |m|
@@ -41,11 +41,14 @@ def getMentorableMoves()
 	return movesKnownByMentors
 end
 
-def pbMentorMoveScreen(pkmn)
-	movesKnownByMentors = getMentorableMoves()
-	return false if movesKnownByMentors.length == 0
+def getMentorableMoves(pkmn)
+	movesKnownByMentors = getMovesKnownByMentors()
+	mentorableMoves = pkmn.learnable_moves & movesKnownByMentors
+	return mentorableMoves
+end
 
-	mentorableMoves = pkmn.learnable_moves & movesKnownByMentors # Get the elements shared by both arrays
+def pbMentorMoveScreen(pkmn)
+	mentorableMoves
 	return false if mentorableMoves.length == 0
 
 	return moveLearningScreen(pkmn,mentorableMoves)

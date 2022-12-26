@@ -49,6 +49,7 @@ class Pokemon
 		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
 			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
 		end
+		
 		firstSpecies.egg_moves.each do |m| 
 			next if hasMove?(m) && skipAlreadyLearned
 			moves.push(m)
