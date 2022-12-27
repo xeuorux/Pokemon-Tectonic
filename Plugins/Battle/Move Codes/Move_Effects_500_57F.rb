@@ -535,7 +535,7 @@ end
 #===============================================================================
 class PokeBattle_Move_522 < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target,show_message)
-    return !target.pbCanLowerStatStage?(target.highestStat,user,self, true)
+    return !target.pbCanLowerStatStage?(target.highestStat,user,self, show_message)
   end
   
   def pbEffectAgainstTarget(user,target)
