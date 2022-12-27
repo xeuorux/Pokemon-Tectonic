@@ -38,6 +38,7 @@ class TilemapRenderer
     # Extra autotiles are only useful if the tiles are animated, because otherwise
     # you just have some tiles which belong in the tileset instead.
     EXTRA_AUTOTILES = {
+      24 => [[],["Water current north","Water current south","Water current east","Water current west"]]
   #   Examples:
   #    1 => [["Sand shore"], ["Flowers2"]],
   #    2 => [[], ["Flowers2", "Waterfall", "Waterfall crest", "Waterfall bottom"]],
