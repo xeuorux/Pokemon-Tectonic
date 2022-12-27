@@ -29,6 +29,11 @@ class PokeBattle_AI
         switchingBias = 0
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is determining whether it should switch out")
 
+        if battler.firstTurn? && @battle.turnCount != 0
+            switchingBias -= 1
+            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is less likely to switch on its first turn after switching in (-1)")
+        end
+
         # Ignore these protocols if this is an AI trainer helping you in a boss battle
         unless @battle.bossBattle?
             # Figure out the effectiveness of the last move that hit it

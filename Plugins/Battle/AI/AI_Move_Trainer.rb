@@ -239,7 +239,7 @@ class PokeBattle_AI
             effectScore *= factor
         end
 
-        damageScore = (damagePercentage * 1.25).to_i
+        damageScore = (damagePercentage * 2.0).to_i
         echoln("#{user.pbThis} gives #{move.id} an effect score of #{effectScore} and a damage score of #{damageScore} (against target #{target.pbThis(false)})")
 
         return effectScore + damageScore
