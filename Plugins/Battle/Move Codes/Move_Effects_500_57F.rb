@@ -2019,3 +2019,15 @@ class PokeBattle_Move_57C < PokeBattle_Move_005
       return selectBestCategory(user)
     end
 end
+
+#===============================================================================
+# The target loses their Water-type before the move strikes. (Dry Heat)
+#===============================================================================
+class PokeBattle_Move_57D < PokeBattle_Move
+	def pbEffectBeforeDealingDamage(user,target)
+		if target.pbHasType?(:WATER)
+			target.applyEffect(:DryHeat)
+			target.damageState.typeMod = pbCalcTypeMod(@calcType, user, target)
+		end
+	end
+end

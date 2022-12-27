@@ -152,6 +152,7 @@ class PokeBattle_Move
     end
   
     def pbSelfKO(user); end
+    def pbEffectBeforeDealingDamage(user,target); end
     def pbEffectWhenDealingDamage(user,target); end
     def pbEffectAgainstTarget(user,target); end
     def pbEffectGeneral(user); end

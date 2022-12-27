@@ -703,6 +703,14 @@ class PokeBattle_Battler
 		targets = move.pbDesignateTargetsForHit(targets, hitNum) # For Dragon Darts
 		targets.each { |b| b.damageState.resetPerHit }
 		#---------------------------------------------------------------------------
+		# Pre effects
+		if move.pbDamagingMove?
+			targets.each do |b|
+				next if b.damageState.unaffected
+				move.pbEffectBeforeDealingDamage(user, b)
+			end
+		end
+		#---------------------------------------------------------------------------
 		# Calculate damage to deal
 		if move.pbDamagingMove?
 			targets.each do |b|

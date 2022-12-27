@@ -75,6 +75,16 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
+	:id => :DryHeat,
+	:real_name => "Dried Out",
+	:info_displayed => false,
+	:apply_proc => Proc.new { |battle, battler, value|
+		battle.pbDisplay(_INTL("{1} was dried out!",battler.pbThis))
+        battle.scene.pbRefresh()
+	},
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
 	:id => :Charge,
 	:real_name => "Charged",
 	:type => :Integer,
