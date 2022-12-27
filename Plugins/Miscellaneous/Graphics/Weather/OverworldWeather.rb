@@ -320,7 +320,7 @@ class OverworldWeather
                 if @strengthChangeCount > @strengthChangeFrames
                     @strength = @strength.round
                     @strengthChangeCount = 0
-                    echoln("Weather strength tips to #{@strength}")
+                    #echoln("Weather strength tips to #{@strength}")
 
                     if @strength == 0 && @weatherCallback
                         echoln("Calling the weather callback!")

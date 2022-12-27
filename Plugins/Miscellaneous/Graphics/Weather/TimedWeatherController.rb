@@ -8,11 +8,13 @@ SKIPPED_MAPS = [
     23, # Testing Map
 ]
 
+###########################
+# Tempurature Settings
+###########################
 # Don't put a map in both hot and cold
 HOT_MAPS = [
     130, # Canal Desert
     316, # Sandstone Estuary
-    59, # Mainland Dock
     136, # Casaba Villa
     38, # Bluepoint Beach
     53, # Jungle Path
@@ -22,13 +24,21 @@ COLD_MAPS = [
     217, # Sweetrock Harbor
     266, # Berry GreenHouse
     258, # Whitebloom Town
-    216, # Highland Lake
     37, # Svait
     186, # Frostflow Farms
     211, # Split Peaks
     121, # Skyward Ascent
 ]
 
+STABLE_TEMP_MAPS = [
+    7, # Wet Walkways
+    59, # Mainland Dock
+    216, # Highland Lake
+]
+
+###########################
+# Humidity Settings
+###########################
 # Don't put a map in both wet and dry
 WET_MAPS = [
     59, # Mainland Dock
@@ -37,8 +47,8 @@ WET_MAPS = [
     217, # Sweetrock Harbor
     266, # Berry GreenHouse
     258, # Whitebloom Town
-    216, # Highland Lake
     53, # Jungle Path
+    7, # Wet Walkways
 ]
 
 DRY_MAPS = [
@@ -47,10 +57,10 @@ DRY_MAPS = [
     211, # Split Peaks
     121, # Skyward Ascent
     129, # Barren Crater
+    25, # Grouz
 ]
 
 FOG_MAPS = [
-    7, # Wet Walkways
     8, # Velenz
 ]
 
@@ -70,30 +80,26 @@ def getWeatherForTimeAndMap(time,map_id)
 
     # Both of these go from -3 to +3
     hotnessThisHour = (3 * Math.sin(hours / 31.0) * Math.sin(hours / 87.0))
-    hotnessThisHour += 0.45 # The game takes place in summer
-    hotnessThisHour = hotnessThisHour.round
+    hotnessThisHour += 0.2 # The game takes place in summer
 
     wetnessThisHour = (3 * Math.cos(hours / 31.0) * Math.cos(hours / 87.0))
-    wetnessThisHour = wetnessThisHour.round
-
-    #echoln("Hour #{hours} hotness/wetness: #{hotnessThisHour}, #{wetnessThisHour}")
 
     # Hotter near noon, colder near midnight
     # Up to + 1 and down to -1
     hotness = hotnessThisHour
-    hotness += (1 - (clockHour - 11).abs / 6).round
+    hotness += (1 - (clockHour - 11).abs / 6)
 
     # Wetter near 6 AM and 6 PM, dryer neat midnight and noon
     # Up to + 1 and down to -1
     wetness = wetnessThisHour
-    wetness += (1 - 2 * [(clockHour - 5).abs / 6,(clockHour - 17).abs / 6].min).round
-
-    #echoln("Hotness/wetness after time of day mod: #{hotness}, #{wetness}")
+    wetness += (1 - 2 * [(clockHour - 5).abs / 6,(clockHour - 17).abs / 6].min)
 
     if HOT_MAPS.include?(map_id)
         hotness += 1
     elsif COLD_MAPS.include?(map_id)
         hotness -= 1
+    elsif STABLE_TEMP_MAPS.include?(map_id)
+        hotness *= 0.75
     end
 
     if WET_MAPS.include?(map_id)
@@ -101,8 +107,6 @@ def getWeatherForTimeAndMap(time,map_id)
     elsif DRY_MAPS.include?(map_id)
         wetness -= 1
     end
-
-    #echoln("Hotness/wetness after map mod: #{hotness}, #{wetness}")
 
     weatherSym = :None
 
@@ -118,26 +122,23 @@ def getWeatherForTimeAndMap(time,map_id)
         
         if hotness > 0 && wetness > 0 && hotWetness >= 4
             weatherSym, strength = getHotWetWeather(hotWetness - 3)
-            strength *= 2
         elsif hotness > 0 && wetness < 0 && hotDryness >= 4
             weatherSym, strength = getHotDryWeather(hotDryness - 3)
-            strength *= 2
         elsif hotness < 0 && wetness > 0 && coldWetness >= 4
             weatherSym, strength = getColdWetWeather(coldWetness - 3)
-            strength *= 2
         elsif hotness < 0 && wetness < 0 && coldDryness >= 4
             weatherSym, strength = getColdDryWeather(coldDryness - 3)
-            strength *= 2
-        elsif hotness >= 3
-            weatherSym, strength = getHotWeather(hotness - 2)
-        elsif hotness <= -3
-            weatherSym, strength = getColdWeather(-hotness - 2)
-        elsif wetness >= 3
-            weatherSym, strength = getWetWeather(wetness - 2)
-        elsif wetness <= -3
-            weatherSym, strength = getDryWeather(-wetness - 2)
+        elsif hotness >= 2
+            weatherSym, strength = getHotWeather(hotness - 1)
+        elsif hotness <= -2
+            weatherSym, strength = getColdWeather(-hotness - 1)
+        elsif wetness >= 2
+            weatherSym, strength = getWetWeather(wetness - 1)
+        elsif wetness <= -2
+            weatherSym, strength = getDryWeather(-wetness - 1)
         end
     end
+    strength = strength.round
     return weatherSym, strength
 end
 
@@ -153,7 +154,7 @@ def applyOutdoorEffects()
 
     if weather_metadata.nil? && !SKIPPED_MAPS.include?(map_id)
         weatherSym,strength = getWeatherForTimeAndMap(pbGetTimeNow,map_id)
-        if speedingUpTime?
+        if speedingUpTime? && Input.press?(Input::ACTION)
             if weatherSym != $game_screen.weather_type
                 print("Weather type changed to #{weatherSym}!")
             elsif strength != $game_screen.weather_strength
@@ -183,9 +184,9 @@ end
 def getHotWetWeather(strength)
     weatherSym = :Overcast
 
-    if strength >= 4
+    if strength >= 3
         weatherSym = :Storm
-        strength -= 3
+        strength = (strength - 2) * 2
     end
 
     return weatherSym,strength
@@ -194,9 +195,9 @@ end
 def getHotDryWeather(strength)
     weatherSym = :Sun
 
-    if strength >= 4
+    if strength >= 3
         weatherSym = :Sandstorm
-        strength -= 3
+        strength = (strength - 2) * 2
     end
 
     return weatherSym,strength
@@ -205,9 +206,9 @@ end
 def getColdWetWeather(strength)
     weatherSym = :Fog
 
-    if strength >= 4
+    if strength >= 3
         weatherSym = :Rain
-        strength -= 3
+        strength = (strength - 2) * 2
     end
 
     return weatherSym,strength
@@ -216,9 +217,9 @@ end
 def getColdDryWeather(strength)
     weatherSym = :Snow
 
-    if strength >= 4
+    if strength >= 3
         weatherSym = :Blizzard
-        strength -= 3
+        strength = (strength - 2) * 2
     end
 
     return weatherSym,strength
@@ -234,6 +235,18 @@ def debugIncrementWeather(weatherSym)
     pbMessage("Setting weather to #{weatherSym} at power #{newPower}")
 end
 
+def secondsInAMinute
+    return 60
+end
+
+def secondsInAnHour
+    return secondsInAMinute * 60
+end
+
+def secondsInADay
+    return secondsInAnHour * 24
+end
+
 def getWeatherOverNextDay(map_id = -1)
     mapName = ""
     if map_id == -1
@@ -242,10 +255,6 @@ def getWeatherOverNextDay(map_id = -1)
     else
         mapName = pbGetMapNameFromId(map_id)
     end
-
-    secondsInAMinute = 60
-    secondsInAnHour = secondsInAMinute * 60
-    secondsInADay = secondsInAnHour * 24
 
     # Add 24 hours, then round down to latest 24 hour start
     tomorrowStart = ((pbGetTimeNow.to_i + secondsInADay) / secondsInADay).floor * secondsInADay
@@ -271,4 +280,34 @@ def weather(type, strength = -1)
         strength = GameData::Weather.get(type).default_strength
     end
     $game_screen.weather(type, strength, WEATHER_TRANSITION_DELAY)
+end
+
+def debugTestMap(mapID)
+    weatherCounts = {}
+    hourCount = 100_000
+
+    for i in 0..hourCount
+        weatherSym,strength = getWeatherForTimeAndMap(UnrealTime.initial_date + i * secondsInAnHour,mapID)
+        if weatherCounts.has_key?(weatherSym)
+            weatherCounts[weatherSym] += 1
+        else
+            weatherCounts[weatherSym] = 1
+        end
+    end
+
+    echoln("Over the course of #{hourCount} hours, map #{mapID} had the following weathers each percentage of the time:")
+    weatherCounts.each do |key, value|
+        echoln("#{key}: #{(100 * value / hourCount.to_f).round(1)} percent")
+    end
+end
+
+def weatherTestingArray
+    echoln("Hot and Wet")
+    debugTestMap(53)
+    echoln("Hot and Dry")
+    debugTestMap(130)
+    echoln("Cold and Wet")
+    debugTestMap(217)
+    echoln("Cold and Dry")
+    debugTestMap(37)
 end
