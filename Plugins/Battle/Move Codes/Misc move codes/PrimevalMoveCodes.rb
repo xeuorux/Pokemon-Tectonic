@@ -30,7 +30,7 @@ class PokeBattle_Move_600 < PokeBattle_Move_019
 	end
 end
 
-# Empowered Sunny Day
+# Empowered Sunshine
 class PokeBattle_Move_601 < PokeBattle_Move_0FF
 	include EmpoweredMove
 	
@@ -41,7 +41,7 @@ class PokeBattle_Move_601 < PokeBattle_Move_0FF
 	end
 end
 
-# Empowered Rain Dance
+# Empowered Rain
 class PokeBattle_Move_602 < PokeBattle_Move_100
 	include EmpoweredMove
 

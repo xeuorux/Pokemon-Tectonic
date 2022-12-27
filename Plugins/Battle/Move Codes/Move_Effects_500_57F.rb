@@ -717,7 +717,7 @@ class PokeBattle_Move_52C < PokeBattle_DrainMove
 end
 
 #===============================================================================
-# Resets weather and cures all active Pokemon of statuses. (Shadowpass)
+# Resets weather and cures all active Pokemon of statuses. (Abyssal Reset)
 #===============================================================================
 class PokeBattle_Move_52D < PokeBattle_Move
 	def pbEffectGeneral(user)
@@ -1112,30 +1112,30 @@ end
 #===============================================================================
 class PokeBattle_Move_543 < PokeBattle_SnowballingMove
     def initialize(battle, move)
-		@usageCountEffect = :IceBall
+		@usageCountEffect = :Snowball
         super
     end
 end
   
 #===============================================================================
-# Power doubles for each consecutive use. (Rollout)
+# Power doubles for each consecutive use. (Rock Roll)
 #===============================================================================
 class PokeBattle_Move_544 < PokeBattle_SnowballingMove
     def initialize(battle, move)
-		@usageCountEffect = :RollOut
+		@usageCountEffect = :RockRoll
         super
     end
 end
 
 #===============================================================================
-# Heals for 1/3 the damage dealt. (new!Drain Punch, Venom Leech)
+# Heals for 1/3 the damage dealt. (new!Drain Punch)
 #===============================================================================
 class PokeBattle_Move_545 < PokeBattle_DrainMove
 	def drainFactor(user,target); return (1.0/3.0); end
 end
 
 #===============================================================================
-# Always critical hit vs Opponents with raised stats (Glitter Slash)
+# Always critical hit vs Opponents with raised stats (Lunar Justice)
 #===============================================================================
 class PokeBattle_Move_546 < PokeBattle_Move 
 	def pbCriticalOverride(user,target)

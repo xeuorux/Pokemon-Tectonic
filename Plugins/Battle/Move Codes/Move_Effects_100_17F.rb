@@ -1,5 +1,5 @@
 #===============================================================================
-# Starts rainy weather. (Rain Dance)
+# Starts rainy weather. (Rain)
 #===============================================================================
 class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def initialize(battle,move)

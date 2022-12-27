@@ -206,7 +206,7 @@ class PokeBattle_Move_58A < PokeBattle_Move
 end
 
 #===============================================================================
-# Counts as a use of Rollout, Iceball, or Furycutter. (On A Roll)
+# Counts as a use of Rock Roll, Snowball, or Furycutter. (On A Roll)
 #===============================================================================
 class PokeBattle_Move_58B < PokeBattle_Move
 	def pbChangeUsageCounters(user,specialUsage)

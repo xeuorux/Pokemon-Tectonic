@@ -1292,8 +1292,8 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :IceBall,
-	:real_name => "Ice Ball Count",
+	:id => :Snowball,
+	:real_name => "Snowball Count",
 	:type => :Integer,
 	:maximum => 4,
 	:resets_on_cancel => true,
@@ -1302,8 +1302,8 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
-	:id => :RollOut,
-	:real_name => "Roll Out Count",
+	:id => :RockRoll,
+	:real_name => "Rock Roll Count",
 	:type => :Integer,
 	:maximum => 4,
 	:resets_on_cancel => true,

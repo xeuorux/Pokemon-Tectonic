@@ -6,6 +6,14 @@ SaveData.register_conversion(:move_renaming_0) do
   end
 end
 
+SaveData.register_conversion(:move_renaming_0) do
+  game_version '2.0.1'
+  display_title '2.0.1 move renames'
+  to_all do |save_data|
+    renameAllSavedMovesInBatch(save_data,1)
+  end
+end
+
 def renameAllSavedMovesInBatch(save_data,batch_number)
   move_renames = getRenamedMovesBatch(batch_number)
   save_data[:player].party.each do |pokemon|

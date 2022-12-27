@@ -31,17 +31,17 @@
 2516,BLACKHOLEECLIPSE,Black Hole Eclipse,Z000,1,DARK,Physical,0,1,0,NearOther,0,fz,"The user gathers dark energy using its Z-Power and sucks the target into it.",
 2517,TWINKLETACKLE,Twinkle Tackle,Z000,1,FAIRY,Physical,0,1,0,NearOther,0,fz,"The user creates a very charming space using its Z-Power and totally toys with the target.",
 3000,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dky,"The user heals itself and allies and removes their statuses, and becomes Normal-type.",HEALBELL
-3001,PRIMEVALSUNNYDAY,Primeval Sunny Day,601,0,FIRE,Status,0,1,0,BothSides,0,y,"The user creates harsh sunlight, boosts its Atk. and Sp. Atk, and becomes Fire-type.",SUNNYDAY
-3002,PRIMEVALRAINDANCE,Primeval Rain Dance,602,0,WATER,Status,0,1,0,BothSides,0,y,"The user summons rain, surrounds itself with healing water, and becomes Water-type.",RAINDANCE
+3001,PRIMEVALSUNSHINE,Primeval Sunshine,601,0,FIRE,Status,0,1,0,BothSides,0,y,"The user summons sunshine for 5 turns, boosts its Atk. and Sp. Atk, and becomes Fire-type.",SUNSHINE
+3002,PRIMEVALRAIN,Primeval Rain,602,0,WATER,Status,0,1,0,BothSides,0,y,"The user summons rain for 5 turns, surrounds itself with healing water, and becomes Water-type.",RAIN
 3003,PRIMEVALLEECHSEED,Primeval Leech Seed,603,0,GRASS,Status,100,1,0,AllNearFoes,0,bey,"Plants seeds on all near foes, draining HP each turn. User becomes Grass-type.",LEECHSEED
 3004,PRIMEVALLIGHTNINGDANCE,Primeval Lightning Dance,604,0,ELECTRIC,Status,0,1,0,User,0,doy,"The user sharply boosts its Sp. Atk and Speed stats, and becomes Electric-type.",LIGHTNINGDANCE
-3005,PRIMEVALHAIL,Primeval Hail,605,0,ICE,Status,0,1,0,BothSides,0,y,"The user summons a hail storm, harshly reduces the speed of all enemies, and becomes Ice-type.",HAIL
+3005,PRIMEVALHAIL,Primeval Hail,605,0,ICE,Status,0,1,0,BothSides,0,y,"The user summons a hail storm for 5 turns, harshly reduces the speed of all enemies, and becomes Ice-type.",HAIL
 3006,PRIMEVALBULKUP,Primeval Bulk Up,606,0,FIGHTING,Status,0,1,0,User,0,dy,"The user boosts its Attack and Defense, gains a lot of weight, and becomes Fighting-type.",BULKUP
 3007,PRIMEVALSPIKES,Primeval Spikes,607,0,GROUND,Status,0,1,0,FoeSide,0,y,"The user lays 3 layers of spike traps at the foe's feet, and becomes Ground-type.",SPIKES
 3008,PRIMEVALTAILWIND,Primeval Tailwind,608,0,FLYING,Status,0,1,0,UserSide,0,dy,"The user ups the Speed and attack count of itself and allies, and becomes Flying-type.",TAILWIND
 3009,PRIMEVALCALMMIND,Primeval Calm Mind,609,0,PSYCHIC,Status,0,1,0,User,0,dy,"The user raises its Sp. Atk and Sp. Def, drastically raises its accuracy, and becomes Psychic-type.",CALMMIND
 3010,PRIMEVALSTRINGSHOT,Primeval String Shot,610,0,BUG,Status,100,1,0,AllNearFoes,0,bey,"Nearby foes are bound with silk, sharply lowering their Speed, Atk., and Sp. Atk User also becomes Bug-type.",STRINGSHOT
-3011,PRIMEVALSANDSTORM,Primeval Sandstorm,611,0,ROCK,Status,0,1,0,BothSides,0,y,"The user summons a sandstorm, boosts its Def. and Sp. Def, and becomes Rock-type.",SANDSTORM
+3011,PRIMEVALSANDSTORM,Primeval Sandstorm,611,0,ROCK,Status,0,1,0,BothSides,0,y,"The user summons a sandstorm for 5 turns, boosts its Def. and Sp. Def, and becomes Rock-type.",SANDSTORM
 3012,PRIMEVALCURSE,Primeval Curse,612,0,GHOST,Status,100,1,0,AllNearFoes,0,bey,"The user applies a damaging curse to all nearby foes. User becomes a Ghost-type.",CURSE
 3013,PRIMEVALDRAGONDANCE,Primeval Dragon Dance,613,0,DRAGON,Status,0,1,0,User,0,doy,"The user sharply boosts its Attack and Speed, and becomes Dragon-type.",DRAGONDANCE
 3014,PRIMEVALTORMENT,Primeval Torment,614,0,DARK,Status,100,1,0,AllNearFoes,0,bey,"The user torments and enrages the foe, making it incapable of using the same move twice in a row.",TORMENT

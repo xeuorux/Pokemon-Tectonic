@@ -319,8 +319,8 @@
 318,TM30,TM30,TM30s,4,10000,"The target is hit with wings of steel. This may also raise the user's Defense stat.",3,0,0,STEELWING
 319,TM31,TM31,TM31s,4,10000,"If it is the opposite gender of the user, the target becomes infatuated and less likely to attack.",3,0,0,ATTRACT
 320,TM32,TM32,TM32s,4,5000,"A five-turn sandstorm is summoned to hurt all combatants except the Rock, Ground, and Steel types.",3,0,0,SANDSTORM
-321,TM33,TM33,TM33s,4,5000,"The user summons a heavy rain that falls for five turns, powering up Water-type moves.",3,0,0,RAINDANCE
-322,TM34,TM34,TM34s,4,5000,"The user intensifies the sun for five turns, powering up Fire-type moves.",3,0,0,SUNNYDAY
+321,TM33,TM33,TM33s,4,5000,"The user summons a heavy rain that falls for five turns, powering up Water-type moves.",3,0,0,RAIN
+322,TM34,TM34,TM34s,4,5000,"The user intensifies the sun for five turns, powering up Fire-type moves.",3,0,0,SUNSHINE
 323,TM35,TM35,TM35s,4,5000,"The user summons a hailstorm lasting five turns. It damages all Pokémon that aren't Ice or Ghost-type.",3,0,0,HAIL
 324,TM36,TM36,TM36s,4,10000,"The user traps the target in a violent swirling whirlpool for four to five turns.",3,0,0,WHIRLPOOL
 325,TM37,TM37,TM37s,4,10000,"The user gets all party Pokémon to attack the target. The more party Pokémon, the greater the number of attacks.",3,0,0,BEATUP

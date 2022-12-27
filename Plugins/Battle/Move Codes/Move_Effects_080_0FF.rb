@@ -3822,7 +3822,7 @@ class PokeBattle_Move_0FE < PokeBattle_RecoilMove
 end
 
 #===============================================================================
-# Starts sunny weather. (Sunny Day)
+# Starts sunny weather. (Sunshine)
 #===============================================================================
 class PokeBattle_Move_0FF < PokeBattle_WeatherMove
   def initialize(battle,move)
