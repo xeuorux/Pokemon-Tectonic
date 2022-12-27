@@ -20,7 +20,7 @@ def boatTravel(currentDock = "")
     if casabaVillaCommand >= -1 && choice == casabaVillaCommand
         transferPlayer(30,42,Up,136)
     elsif mainlandDockCommand >= -1 && choice == mainlandDockCommand
-        transferPlayer(32,31,Up,59)
+        transferPlayer(38,31,Up,59)
     elsif eleigBoatingCommand > -1 && choice == eleigBoatingCommand
         transferPlayer(47,17,Up,185)
     elsif sweetrockHarborCommand > -1 && choice == sweetrockHarborCommand
