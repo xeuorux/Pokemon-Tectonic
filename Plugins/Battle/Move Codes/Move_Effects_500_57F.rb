@@ -1510,7 +1510,7 @@ class PokeBattle_Move_55D < PokeBattle_Move
 	end
 
 	def getEffectScore(user,target)
-		score = 160
+		score = 140
 		score -= getMultiStatUpEffectScore([:ATTACK,2],user,target)
 		return score
 	end
@@ -1526,7 +1526,7 @@ class PokeBattle_Move_55E < PokeBattle_Move
 	end
 
 	def getEffectScore(user,target)
-		score = 160
+		score = 140
 		score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK,2],user,target)
 		return score
 	end
