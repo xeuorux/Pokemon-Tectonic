@@ -192,8 +192,8 @@ def pbGetAvatarBattleBGM(_wildParty)   # wildParty is an array of Pokémon objec
 
 	# Check global metadata
 	music = legend ? GameData::Metadata.get.legendary_avatar_battle_BGM : GameData::Metadata.get.avatar_battle_BGM
-	ret = pbStringToAudioFile(music) if music && music!=""
-	ret = pbStringToAudioFile("Battle wild") if !ret
+	ret = pbStringToAudioFile(music) unless music&.blank?
+	ret = pbStringToAudioFile("Battle wild") if ret.nil?
 	return ret
 end
 

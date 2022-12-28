@@ -4,6 +4,8 @@
 Home = 32,9,7,2
 WildBattleBGM = Battle wild.ogg
 TrainerBattleBGM = DPPTTrainer.ogg
+AvatarBattleBGM = Battle avatar.ogg
+LegendaryAvatarBattleBGM = Battle avatar legendary.ogg
 WildVictoryME = VICTORYWILDPOKEMONHGSS.ogg
 TrainerVictoryME = VICTORYTRAINERDPPT.ogg
 BicycleBGM = BICYCLE2.ogg
@@ -409,7 +411,7 @@ BicycleAlways = false
 HealingSpot = 56,43,27
 #-------------------------------
 [059]
-# Mainland Dock
+# Feebas' Fin
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -1596,7 +1598,7 @@ BattleBack = wcave
 TeleportBlocked = true
 #-------------------------------
 [299]
-# Mainland Dock Center
+# Fin Center
 Outdoor = false
 ShowArea = false
 Bicycle = false
