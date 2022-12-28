@@ -441,9 +441,26 @@ end
 class PokeBattle_AI_Greedent < PokeBattle_AI_Boss
 	def initialize(user,battle)
 		super
-		@requiredMoves.push(:STOCKPILE)
-		@firstTurnOnly += [:SWALLOW,:SPITUP]
+		@nonFirstTurnOnly += [:STOCKPILE]
 		@fallback.push(:STOCKPILE)
+
+		@lastUsedMove = :SWALLOW
+		@decidedOnMove[:SWALLOW] = proc { |move, user, targets, battle|
+			@lastUsedMove = :SWALLOW
+		}
+		@decidedOnMove[:SPITUP] = proc { |move, user, targets, battle|
+			@lastUsedMove = :SPITUP
+		}
+
+		@useMoveIFF.add(:SPITUP, proc { |move, user, target, battle|
+			next @lastUsedMove == :SWALLOW && user.firstTurnThisRound? &&
+				user.countEffect(:Stockpile) >= 2 && user.primevalTimer < 3
+		})
+
+		@useMoveIFF.add(:SWALLOW, proc { |move, user, target, battle|
+			next @lastUsedMove == :SPITUP && user.firstTurnThisRound? &&
+				user.countEffect(:Stockpile) >= 2 && user.primevalTimer < 3
+		})
 	end
 end
 

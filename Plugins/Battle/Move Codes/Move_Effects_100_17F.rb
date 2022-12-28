@@ -525,9 +525,9 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
     def healRatio(user)
       case [user.countEffect(:Stockpile),1].max
       when 1
-        return 1.0/4.0
+        return 1.0/2.0
       when 2
-        return 1.0/24.0
+        return 2.0/3.0
       when 3
         return 1.0
       end

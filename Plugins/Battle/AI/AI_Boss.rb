@@ -63,6 +63,9 @@ class PokeBattle_AI_Boss
 		# An array of procs
 		# All of the procs are called at the beginning of the first round
 		@beginBattle = []
+
+		# A hash, where the key is a move ID and the value is a proc which provides a score for the given move
+		@scoreMove = {}
 	end
 
 	def PokeBattle_AI_Boss.from_boss_battler(battler)
