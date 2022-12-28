@@ -2,7 +2,7 @@
 #-------------------------------
 [COMBEE]
 Ability = HONEYGATHER
-Moves1 = HELPINGHAND,SMUSH,CREEPOUT,BUGBUZZ
+Moves1 = HELPINGHAND,SMUSH,CREEPOUT
 HPMult = 2.5
 #-------------------------------
 [VIGOROTH]

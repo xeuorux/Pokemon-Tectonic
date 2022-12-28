@@ -10,15 +10,18 @@ class PokeBattle_AI_Combee < PokeBattle_AI_Boss
 		when 1..24
 			@nonFirstTurnOnly.push(:SMUSH)
 		when 25..39
-			@useMoveIFF.add(:CREEPOUT, proc { |move, user, target, battle|
-				next user.nthTurnThisRound?(1)
-			})
 			@fallback.push(:STEAMROLLER)
 		when 40..70
+			@fallback.push(:BUGBUZZ)
+		end
+
+		if user.level >= 25
 			@useMoveIFF.add(:CREEPOUT, proc { |move, user, target, battle|
 				next user.nthTurnThisRound?(1)
 			})
-			@fallback.push(:BUGBUZZ)
+			@rejectedMoves.push(:SMUSH)
+		else
+			@rejectedMoves.push(:CREEPOUT)
 		end
 	end
 end
