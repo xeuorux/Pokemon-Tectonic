@@ -33,7 +33,7 @@ end
 
 def getOmniMoves(pkmn)
     relearnableMoves = getRelearnableMoves(pkmn)
-    mentorableMoves = getMentorableMoves
+    mentorableMoves = getMentorableMoves(pkmn)
     tmLearnableMoves = getTMLearnableMoves
 
     omniMoves = [relearnableMoves, mentorableMoves, tmLearnableMoves].reduce([], :concat)
