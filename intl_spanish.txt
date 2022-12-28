@@ -1,4 +1,67 @@
-﻿[24]
+﻿[1]
+Do you need information about the game controls?
+¿Necesitas información sobre los controles?
+The "Game Info" menu contains lots of useful information, including the "What Next?" feature and the "Battle Guide".
+El menú “Info. del Juego“ contiene mucha información útil, incluyendo la función “¿Qué Sigue?” y la “Guía de Batalla”.
+The "What Next?" feature tells you what to do to progress the main story, if you forgot or got lost.
+La función “¿Qué Sigue?” te dice qué hacer para progresar en la historia principal, en caso de que lo olvides o te pierdas.
+The "Battle Guide" explains the battle mechanics as well as basic battling strategy.
+La “Guía de Batalla” explica las mecánicas de batalla como estrategia básica.
+What sort of look would you prefer? You can change this later.
+¿Qué tipo de estilo preferirías? Puedes cambiar esto luego.
+.....\ts[10]
+.....\ts[10]
+...Of course, of course. I can arrange for a ship to take you.
+…Por supuesto, por supuesto. Puedo arreglar un barco para que te traiga.
+What was your name, again?
+¿Cómo decías que era tu nombre?
+So you're \PN?
+¿Así que eres \PN?
+So, what is your name, then?
+Entonces, ¿Cómo es tu nombre?
+Ah, right. Mavis's youngest child, right?
+Ah, cierto, el hijo más joven de Mavis, ¿No?
+Well, thank you for your family's past, uh... patronage. I'll set about arrangements on the double.
+Bueno, gracias por el pasado… patrocinio de tu familia. Me encargaré de los preparativos inmediatamente.
+Mom isn't happy. She's sick of us leeching off of the company's success. 'Prove yourselves', she said.
+Mamá no está contenta. Está harta de nosotros aprovechándose del éxito de la compañía. “Demuestren su valor”, ella dijo.
+So now your brother's got it in his head to become a Champion. That'll show her, right?
+Así que tu hermano se metió en su cabeza el ser Campeón. Eso le enseñará, ¿Cierto?
+Not if you become Champion first.
+No si tú eres Campeón primero.
+Your brother Zain is already in the \c[2]Makya region\c[0], with who knows how many badges under his belt.
+Tu hermano Zain ya está en la \c[2]región Makya\c[0], con quién sabe cuántas medallas ya.
+Fortunately, the regional Professor owes your family a favor, and you just called it in.
+Afortunadamente, la Profesora regional le debe a tu familia un favor, y acabas de llamar.
+You're leaving tonight.
+Esta noche te vas.
+Eight badges, one Championship.
+Ocho medallas, un Campeonato.
+Get there before Zain.
+Consiguelo antes que Zain.
+Prove that you're better than him -- Mom's better heir.
+Demuestra que eres mejor que él -- El mejor heredero de Mamá.
+You're already behind, but that's never stopped you before.
+Ya estás atrás, pero eso nunca te ha detenido antes.
+It's time.
+Ya es la hora.
+No info needed
+No necesito info
+Controls
+Controles
+Not sure
+No estoy seguro
+Masculine Look
+Estilo Masculino
+Feminine Look
+Estilo Femenino
+Androgynous Look
+Estilo Andrógino 
+Yes
+Sí
+No
+No
+[24]
 Music Volume
 Volumen de Música
 SE Volume
