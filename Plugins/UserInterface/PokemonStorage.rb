@@ -60,7 +60,8 @@ class PokemonStorageScreen
               commands[cmdMove=commands.length]   = _INTL("Move")
               tutoringPokemon = pokemon
             end
-            commands[cmdOmniTutor=commands.length] = _INTL("OmniTutor") if tutoringPokemon && getOmniMoves(tutoringPokemon).length != 0
+            commands[cmdOmniTutor=commands.length] = _INTL("OmniTutor") if tutoringPokemon &&
+              $PokemonGlobal.omnitutor_active && getOmniMoves(tutoringPokemon).length != 0
             commands[cmdSummary=commands.length]  = _INTL("Summary")
 			      commands[cmdPokedex = commands.length]  = _INTL("Pokédex") if $Trainer.has_pokedex
             commands[cmdWithdraw=commands.length] = (selected[0]==-1) ? _INTL("Store") : _INTL("Withdraw")
