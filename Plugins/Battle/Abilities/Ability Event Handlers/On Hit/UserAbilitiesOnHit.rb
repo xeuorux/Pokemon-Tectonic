@@ -76,3 +76,9 @@ BattleHandlers::UserAbilityOnHit.add(:SWARMIMPACT,
     randomStatusProcAbility(:LEECHED,30,user,target,move,battle) if move.physicalMove?
 	}
 )
+
+BattleHandlers::UserAbilityOnHit.add(:BURNOUT,
+  proc { |ability,user,target,move,battle|
+    randomStatusProcAbility(:BURN,30,user,target,move,battle) if move.physicalMove?
+  }
+)

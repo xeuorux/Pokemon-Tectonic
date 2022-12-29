@@ -501,6 +501,7 @@
 500,TANTALIZING,Tantalizing,"Draws in attacks from enemies with below half health."
 501,UNBREAKABLE,Unbreakable,"Prevents half the self-damage from recoil and Self-Destruct/Explosion."
 502,POWERLIFTER,Power Lifter,"Its physical attacks go last. But, they force the target to switch out after use."
+503,BURNOUT,Burn Out,"Has a 30% chance to burn targets when using physical moves."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
