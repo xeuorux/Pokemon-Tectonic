@@ -1,3 +1,5 @@
+MAX_HAPPINESS = 255
+
 class Pokemon
 	PERSONALITY_THRESHOLD_ONE = 50
 	PERSONALITY_THRESHOLD_TWO = 150
@@ -561,7 +563,7 @@ class Pokemon
       gain = (gain * 1.5).floor if hasItem?(:SOOTHEBELL)
     end
 	prevHappiness = @happiness
-    @happiness = (@happiness + gain).clamp(0, 255)
+    @happiness = (@happiness + gain).clamp(0, MAX_HAPPINESS)
 
 	return if $PokemonSystem.show_trait_unlocks == 1
 	
