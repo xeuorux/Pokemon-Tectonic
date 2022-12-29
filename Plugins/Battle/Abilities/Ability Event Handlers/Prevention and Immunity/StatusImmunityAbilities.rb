@@ -77,3 +77,9 @@ BattleHandlers::StatusImmunityAllyAbility.add(:CANDYVEIL,
     next true if status == :SLEEP || status == :DIZZY
   }
 )
+
+BattleHandlers::StatusImmunityAbility.add(:SLICKSURFACE,
+  proc { |ability,battler,status|
+    next true if status == :LEECHED
+  }
+)

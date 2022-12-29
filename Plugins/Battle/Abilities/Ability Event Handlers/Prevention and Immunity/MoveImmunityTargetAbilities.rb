@@ -181,3 +181,15 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FINESUGAR,
     next pbBattleMoveImmunityHealAbility(user,target,move,type,:FIRE,battle,showMessages)
   }
 )
+
+BattleHandlers::MoveImmunityTargetAbility.add(:SLICKSURFACE,
+  proc { |ability,user,target,move,type,battle,showMessages|
+    next false unless move.healingMove?
+    if showMessages
+      battle.pbShowAbilitySplash(target)
+      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      battle.pbHideAbilitySplash(target)
+    end
+    next true
+  }
+)
