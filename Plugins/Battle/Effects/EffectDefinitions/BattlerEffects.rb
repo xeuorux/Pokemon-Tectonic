@@ -1518,6 +1518,17 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
+	:id => :IcicleArmor,
+	:real_name => "Icicle Armor",
+	:resets_eor	=> true,
+	:protection_info => {
+		:hit_proc => Proc.new { |user, target, move, battle|
+			user.applyFrostbite(target) if move.physicalMove? && user.canFrostbite?(target, false)
+		}
+	}
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
 	:id => :SpikyShield,
 	:real_name => "Spiky Shield",
 	:resets_eor	=> true,

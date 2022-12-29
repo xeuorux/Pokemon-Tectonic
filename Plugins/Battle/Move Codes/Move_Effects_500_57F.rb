@@ -2031,3 +2031,25 @@ class PokeBattle_Move_57D < PokeBattle_Move
 		end
 	end
 end
+
+#===============================================================================
+# User is protected against moves with the "B" flag this round. If a Pokémon
+# attacks with the user with a physical attack while this effect applies, that Pokémon is
+# frostbitten. (Icicle Armor)
+#===============================================================================
+class PokeBattle_Move_57E < PokeBattle_ProtectMove
+	def initialize(battle,move)
+	  super
+	  @effect = :IcicleArmor
+	end
+
+	def getEffectScore(user,target)
+		score = super
+		# Check only special attackers
+		user.eachPotentialAttacker(true) do |b|
+			next unless b.hasPhysicalAttack?
+		  	score += getBurnEffectScore(user,b) * 0.75
+		end
+		return score
+	end
+end

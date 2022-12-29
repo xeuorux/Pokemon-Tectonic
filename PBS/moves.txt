@@ -1086,3 +1086,4 @@
 1087,MUCUSARMOR,Mucus Armor,57B,0,POISON,Status,0,10,0,User,0,d,"The user protects itself by excreting a thick mucus, drastically raising its Sp. Def stat.",
 1088,LONGSHOT,Long Shot,57C,90,NORMAL,Physical,75,25,0,User,0,bef,"Inflicts physical or special damage based on the user's stats. However, its likely to miss.",
 1089,DRYHEAT,Dry Heat,57D,90,FIRE,Special,100,10,10,NearOther,0,bef,"The target is dried out and loses Water-type. Then, it bursts into flame from the heat.",
+1090,ICICLEARMOR,Icicle Armor,57E,0,ICE,Status,0,3,0,User,4,,"Protects the user from attacks. Also frostbites any attacker who physically attacks the user.",DEFENSECURL
