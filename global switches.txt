@@ -1,0 +1,15 @@
+51: Visited Underground River
+52: Visited Volcanic Shore
+
+59: Battling Avatars with Yezera
+60: Is in prototype
+61: Surfboard Call
+62: Climbing Gear Call
+63: Estate Disabled
+64: Tournament Running
+65: Villain 1 Defeated
+
+67: Yezera Defeated
+
+70: Eleig Boating Dock Unlocked
+71: Sweetrock Dock Unlocked
