@@ -64,31 +64,31 @@ end
 
 def describeEvolutionMethod(method,parameter=0)
     case method
-    when :Level,:Ninjask; return "at level #{parameter}"
-    when :LevelMale; return "at level #{parameter} if it's male"
-    when :LevelFemale; return "at level #{parameter} if it's female"
-    when :LevelDay; return "at level #{parameter} during the day"
-    when :LevelNight; return "at level #{parameter} during nighttime"
-    when :LevelRain; return "at level #{parameter} while raining"
-    when :LevelDarkInParty; return "at level #{parameter} while a dark type is in the party"
-    when :AttackGreater; return "at level #{parameter} if it has more attack than defense"
-    when :AtkDefEqual; return "at level #{parameter} if it has attack equal to defense" 
-    when :DefenseGreater; return "at level #{parameter} if it has more defense than attack" 
-    when :Silcoon; return "at level #{parameter} half of the time"
-    when :Cascoon; return "at level #{parameter} the other half of the time"
-    when :Happiness; return "when leveled up while it has high happiness"
-    when :MaxHappiness; return "when leveled up while it has maximum happiness"
-    when :Beauty; return "when leveled up while it has maximum beauty"
-    when :HasMove; return "when leveled up while it knows the move #{GameData::Move.get(parameter).real_name}"
-    when :HasMoveType; return "when leveled up while it knows a move of the #{GameData::Move.get(parameter).real_name} type"
-    when :Location; return "when leveled up near a special location"
-    when :Item; return "when a #{GameData::Item.get(parameter).real_name} is used on it"
-    when :ItemMale; return "when a #{GameData::Item.get(parameter).real_name} is used on it if it's male"
-    when :ItemFemale; return "when a #{GameData::Item.get(parameter).real_name} is used on it if it's female"
-    when :Trade; return "when traded"
-    when :TradeItem; return "when traded holding an #{GameData::Item.get(parameter).real_name}"
-	when :HasInParty; return "when leveled up while a #{GameData::Species.get(parameter).name} is also in the party"
-	when :Shedinja; return "also if you have an empty pokeball and party slot"
+    when :Level,:Ninjask; return _INTL("at level #{parameter}")
+    when :LevelMale; return _INTL("at level #{parameter} if it's male")
+    when :LevelFemale; return _INTL("at level #{parameter} if it's female")
+    when :LevelDay; return _INTL("at level #{parameter} during the day")
+    when :LevelNight; return _INTL("at level #{parameter} during nighttime")
+    when :LevelRain; return _INTL("at level #{parameter} while raining")
+    when :LevelDarkInParty; return _INTL("at level #{parameter} while a dark type is in the party")
+    when :AttackGreater; return _INTL("at level #{parameter} if it has more attack than defense")
+    when :AtkDefEqual; return _INTL("at level #{parameter} if it has attack equal to defense" )
+    when :DefenseGreater; return _INTL("at level #{parameter} if it has more defense than attack" )
+    when :Silcoon; return _INTL("at level #{parameter} half of the time")
+    when :Cascoon; return _INTL("at level #{parameter} the other half of the time")
+    when :Happiness; return _INTL("when leveled up while it has high happiness")
+    when :MaxHappiness; return _INTL("when leveled up while it has maximum happiness")
+    when :Beauty; return _INTL("when leveled up while it has maximum beauty")
+    when :HasMove; return _INTL("when leveled up while it knows the move #{GameData::Move.get(parameter).real_name}")
+    when :HasMoveType; return _INTL("when leveled up while it knows a move of the #{GameData::Move.get(parameter).real_name} type")
+    when :Location; return _INTL("when leveled up near a special location")
+    when :Item; return _INTL("when a #{GameData::Item.get(parameter).real_name} is used on it")
+    when :ItemMale; return _INTL("when a #{GameData::Item.get(parameter).real_name} is used on it if it's male")
+    when :ItemFemale; return _INTL("when a #{GameData::Item.get(parameter).real_name} is used on it if it's female")
+    when :Trade; return _INTL("when traded")
+    when :TradeItem; return _INTL("when traded holding an #{GameData::Item.get(parameter).real_name}")
+	when :HasInParty; return _INTL("when leveled up while a #{GameData::Species.get(parameter).name} is also in the party")
+	when :Shedinja; return _INTL("also if you have an empty pokeball and party slot")
     end
     return "via a method the programmer was too lazy to describe"
 end

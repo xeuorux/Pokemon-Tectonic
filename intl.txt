@@ -57391,6 +57391,446 @@ Graphics/Pictures/Rework/extra_info_reminder
 Graphics/Pictures/Rework/extra_info_reminder
 No proper map position is known for totem ID #{waypointName}. Please inform a programmer about this.
 No proper map position is known for totem ID #{waypointName}. Please inform a programmer about this.
+Basic Strategy
+Basic Strategy
+How do I win battles?
+How do I win battles?
+What are moves and what are the differences between them?
+What are moves and what are the differences between them?
+When and how are types better or worse against one another?
+When and how are types better or worse against one another?
+How do I get more Pokémon?
+How do I get more Pokémon?
+What are stats, and how do they affect battles?
+What are stats, and how do they affect battles?
+How do abilities work?
+How do abilities work?
+What are held items and how to use them?
+What are held items and how to use them?
+What are the Conditions a Pokémon can be afflicted with?
+What are the Conditions a Pokémon can be afflicted with?
+How do enemy Trainers work?
+How do enemy Trainers work?
+What are avatars and what do they do?
+What are avatars and what do they do?
+What does the MasterDex do and how should I use it?
+What does the MasterDex do and how should I use it?
+What are weathers, and what does each do?
+What are weathers, and what does each do?
+Winning Battles
+Winning Battles
+You win a battle when all enemy Pokémon faint: reach 0 health points. You lose a battle if that happens to your Pokémon.
+You win a battle when all enemy Pokémon faint: reach 0 health points. You lose a battle if that happens to your Pokémon.
+1. Have as many Pokémon as you can. 2. Level up your Pokémon as much as you can. 3. Abuse type matchups. 4. Start battles with healthy Pokémon.
+1. Have as many Pokémon as you can. 2. Level up your Pokémon as much as you can. 3. Abuse type matchups. 4. Start battles with healthy Pokémon.
+Team Size
+Team Size
+You can have a maximum of 6 Pokémon with you at any time. This is known as your 'Team'. You can store extra Pokémon using the PC in any PokéCenter.
+You can have a maximum of 6 Pokémon with you at any time. This is known as your 'Team'. You can store extra Pokémon using the PC in any PokéCenter.
+Levels
+Levels
+Each Pokémon has a level from 1 to 70. A Pokémon's level determines its stats as well as what moves it could learn. Reaching high enough levels also unlocks Evolution.
+Each Pokémon has a level from 1 to 70. A Pokémon's level determines its stats as well as what moves it could learn. Reaching high enough levels also unlocks Evolution.
+Types are strong or weak against other types. Having a variety of different types on your team helps you take advantage of these relationships.
+Types are strong or weak against other types. Having a variety of different types on your team helps you take advantage of these relationships.
+Healing your Pokémon
+Healing your Pokémon
+Heal your Pokémon at PokéCenters between battles. You can often use the Aid Kit instead to save on traveling time.
+Heal your Pokémon at PokéCenters between battles. You can often use the Aid Kit instead to save on traveling time.
+Who goes first?
+Who goes first?
+In battle, the Pokémon with the higher speed stat gets to use their move first. Some moves modify this. Speed ties are decided randomly.
+In battle, the Pokémon with the higher speed stat gets to use their move first. Some moves modify this. Speed ties are decided randomly.
+Attacking vs Status
+Attacking vs Status
+Attacking moves deal damage. Status moves do not. Status moves are notated by a Yin/Yang symbol (White and Black intermixing).
+Attacking moves deal damage. Status moves do not. Status moves are notated by a Yin/Yang symbol (White and Black intermixing).
+Physical vs Special
+Physical vs Special
+Attacking moves are split into Physical moves, and Special moves. Each of these categories uses different stats to determine how much damage is dealt to the target.
+Attacking moves are split into Physical moves, and Special moves. Each of these categories uses different stats to determine how much damage is dealt to the target.
+Physical Moves
+Physical Moves
+Physical moves are notated by the symbol of a smashing fist. Their damage is based on the Attack (Atk) stat of the attacker and the Defense (Def) stat of the target.
+Physical moves are notated by the symbol of a smashing fist. Their damage is based on the Attack (Atk) stat of the attacker and the Defense (Def) stat of the target.
+Special Moves
+Special Moves
+Special moves are notated by the symbol of a splash. Their damage is based on the Special Attack (Sp. Atk) of the attacker and the Special Defense (Sp. Def) of the target.
+Special moves are notated by the symbol of a splash. Their damage is based on the Special Attack (Sp. Atk) of the attacker and the Special Defense (Sp. Def) of the target.
+Targeting
+Targeting
+Most moves target only a single Pokémon, but many can target multiple Pokémon at once. Some moves differ in how far they can target in the bigger battle styles (doubles, triples).
+Most moves target only a single Pokémon, but many can target multiple Pokémon at once. Some moves differ in how far they can target in the bigger battle styles (doubles, triples).
+Move Types
+Move Types
+Every move has a type. Attacking moves deal different amounts of damage to different Pokémon based on those Pokémon's types. This is called 'type effectiveness'.
+Every move has a type. Attacking moves deal different amounts of damage to different Pokémon based on those Pokémon's types. This is called 'type effectiveness'.
+Same-Type Bonus
+Same-Type Bonus
+Pokémon deal 50% more damage with moves the share a type with them. For example, a Raichu deals 50% more damage with an Electric move than a Normal move.
+Pokémon deal 50% more damage with moves the share a type with them. For example, a Raichu deals 50% more damage with an Electric move than a Normal move.
+Learning Moves
+Learning Moves
+Pokémon learn new moves as they level up. They can also learn moves from the 'Move Tutors' who sit in the left side of every PokéCenter.
+Pokémon learn new moves as they level up. They can also learn moves from the 'Move Tutors' who sit in the left side of every PokéCenter.
+Base Power
+Base Power
+Moves with higher Base Power deal more damage. Some moves deal variable Base Power depending on the situation. Status moves have no base power.
+Moves with higher Base Power deal more damage. Some moves deal variable Base Power depending on the situation. Status moves have no base power.
+Accuracy is a move's chance of hitting. Most moves have 100% accuracy. Some effects can raise accuracy to let you use low-accuracy moves consistently.
+Accuracy is a move's chance of hitting. Most moves have 100% accuracy. Some effects can raise accuracy to let you use low-accuracy moves consistently.
+Power Points
+Power Points
+Power Points, or PP, is a number which limits how many times a move can be used. Healing at a PokéCenter or with the Aid Kit restores PP.
+Power Points, or PP, is a number which limits how many times a move can be used. Healing at a PokéCenter or with the Aid Kit restores PP.
+Each Pokémon has type weakness and type resistances based on its own type. eg. Water deals double damage to Fire, and Fire deals half damage to Water.
+Each Pokémon has type weakness and type resistances based on its own type. eg. Water deals double damage to Fire, and Fire deals half damage to Water.
+Type Combinations
+Type Combinations
+When a Pokémon has two types, its type weaknesses and resistances multiply. A Pokémon can be double weak or double resistant, or immune even though one of their types is weak.
+When a Pokémon has two types, its type weaknesses and resistances multiply. A Pokémon can be double weak or double resistant, or immune even though one of their types is weak.
+Normal Effective
+Normal Effective
+Normal Effective is the default effectiveness of all moves against a Pokémon.
+Normal Effective is the default effectiveness of all moves against a Pokémon.
+Super Effective
+Super Effective
+Super Effective moves deal double the damage compared to normal effective moves.
+Super Effective moves deal double the damage compared to normal effective moves.
+Hyper Effective
+Hyper Effective
+Hyper Effective moves deal quadruple the damage compared to normal effective moves. This happens when a Pokémon is double weak to a type.
+Hyper Effective moves deal quadruple the damage compared to normal effective moves. This happens when a Pokémon is double weak to a type.
+Not Very Effective
+Not Very Effective
+Not Very Effective moves deal half the damage compared to normal effective moves.
+Not Very Effective moves deal half the damage compared to normal effective moves.
+Barely Effective
+Barely Effective
+Barely Effective moves deal one quarter the damage compared to normal effective moves. This happens when a Pokémon is double resistant to a type.
+Barely Effective moves deal one quarter the damage compared to normal effective moves. This happens when a Pokémon is double resistant to a type.
+Ineffective
+Ineffective
+Ineffective moves deal no damage at all. This can happen if one of a Pokémon's types has an immunity to the attacking move type, even if the other is neutral (or even weak!).
+Ineffective moves deal no damage at all. This can happen if one of a Pokémon's types has an immunity to the attacking move type, even if the other is neutral (or even weak!).
+Looking Up Matchups
+Looking Up Matchups
+The 5th and 6th pages of a MasterDex entry show that Pokémon's type matchups. Open the MasterDex in battle to check matchups if you're not sure.
+The 5th and 6th pages of a MasterDex entry show that Pokémon's type matchups. Open the MasterDex in battle to check matchups if you're not sure.
+Why Get More?
+Why Get More?
+Having choices of Pokémon is important when facing challenges. A team of six is a bare minimum--it's best to catch more and pull them from the PC as needed.
+Having choices of Pokémon is important when facing challenges. A team of six is a bare minimum--it's best to catch more and pull them from the PC as needed.
+Methods of Aquiring
+Methods of Aquiring
+The two main methods of acquiring Pokémon are catching them from the wild, and receiving them from other Trainers through gifts or trades.
+The two main methods of acquiring Pokémon are catching them from the wild, and receiving them from other Trainers through gifts or trades.
+Catching Basics
+Catching Basics
+Wild Pokémon will attack you if you walk through patches of grass, dark ground in caves, or other wild terrain. You can catch these Pokémon by throwing Poké Balls at them.
+Wild Pokémon will attack you if you walk through patches of grass, dark ground in caves, or other wild terrain. You can catch these Pokémon by throwing Poké Balls at them.
+Increase Catch Chance pt. 1
+Increase Catch Chance pt. 1
+Catching a Pokémon isn't guaranteed. It's easier to catch Pokémon when their health has been lowered by your attacks, or when they have a status ailment.
+Catching a Pokémon isn't guaranteed. It's easier to catch Pokémon when their health has been lowered by your attacks, or when they have a status ailment.
+Increase Catch Chance pt. 2
+Increase Catch Chance pt. 2
+Every time a Pokémon breaks out of a ball, it'll be slightly easier to catch for the rest of the battle. You can check what your current catch chance is in the Poké Ball menu.
+Every time a Pokémon breaks out of a ball, it'll be slightly easier to catch for the rest of the battle. You can check what your current catch chance is in the Poké Ball menu.
+Finding Wild Pokémon
+Finding Wild Pokémon
+Use the DexNav to get information on which Pokémon are available where you are. You can also use it to find more Pokémon of a species that you've already caught one of.
+Use the DexNav to get information on which Pokémon are available where you are. You can also use it to find more Pokémon of a species that you've already caught one of.
+Trades
+Trades
+Throughout the world there will be people offering trades for Pokémon. Usually they want a different Pokémon, but sometimes they want money.
+Throughout the world there will be people offering trades for Pokémon. Usually they want a different Pokémon, but sometimes they want money.
+What are Stats?
+What are Stats?
+Stats, short for Statistics, are the numbers which determine how your Pokémon performs in battle.
+Stats, short for Statistics, are the numbers which determine how your Pokémon performs in battle.
+Checking Stats
+Checking Stats
+Check your Pokémon's stats by looking at the second page of their summary screen, accessible through the Pokémon menu in the pause menu.
+Check your Pokémon's stats by looking at the second page of their summary screen, accessible through the Pokémon menu in the pause menu.
+Stat Factors
+Stat Factors
+Your Pokémon's stats are calculated from a combination of their species' 'Base Stats', their own 'Style Points', and extra modifications during battle.
+Your Pokémon's stats are calculated from a combination of their species' 'Base Stats', their own 'Style Points', and extra modifications during battle.
+Base Stats
+Base Stats
+Every species of Pokémon have base stats, which affect every Pokémon of that species. e.g. Every Raichu will be fast because the Raichu species has a high Speed base stat.
+Every species of Pokémon have base stats, which affect every Pokémon of that species. e.g. Every Raichu will be fast because the Raichu species has a high Speed base stat.
+Style Points
+Style Points
+Style Points are numbers which you can customize to change your Pokémon's stats (except HP). Style Points show as blue numbers on the stat page of the summary.
+Style Points are numbers which you can customize to change your Pokémon's stats (except HP). Style Points show as blue numbers on the stat page of the summary.
+Leveling and Evolution
+Leveling and Evolution
+Your Pokémon's stats will increase every time they level up. When Pokémon evolve, their stats change (almost always they increase).
+Your Pokémon's stats will increase every time they level up. When Pokémon evolve, their stats change (almost always they increase).
+Accuracy and Evasion
+Accuracy and Evasion
+Accuracy and Evasion are two stats which are only active in battle, starting at 100% each. They are only modified by in-battle changing effects.
+Accuracy and Evasion are two stats which are only active in battle, starting at 100% each. They are only modified by in-battle changing effects.
+Stat Stages
+Stat Stages
+Effects can modify a Pokémon's stats during battle. These are called 'stat stages'. Stat stages multiply or divide the Pokémon's listed stat value.
+Effects can modify a Pokémon's stats during battle. These are called 'stat stages'. Stat stages multiply or divide the Pokémon's listed stat value.
+Bounds of Stat Stages
+Bounds of Stat Stages
+Stat stages start at 0, and can increase up to +6 (4x) and down to -6 (.25x). Stat stages are reset if you swap the Pokémon out or it faints.
+Stat stages start at 0, and can increase up to +6 (4x) and down to -6 (.25x). Stat stages are reset if you swap the Pokémon out or it faints.
+Checking Stat Stages
+Checking Stat Stages
+You can check the current stat stages of each Pokémon on the battlefield using the Info button. It lists the numerical stage as well as resultant multiplier.
+You can check the current stat stages of each Pokémon on the battlefield using the Info button. It lists the numerical stage as well as resultant multiplier.
+What are abilities?
+What are abilities?
+Abilities are special powers that Pokémon can have based on their species. Most Pokémon can have one of 2 possible abilities.
+Abilities are special powers that Pokémon can have based on their species. Most Pokémon can have one of 2 possible abilities.
+Ability Effects
+Ability Effects
+Abilities do a wide variety of different things. Understanding your team's abilities, and choosing the right ones, is important to winning.
+Abilities do a wide variety of different things. Understanding your team's abilities, and choosing the right ones, is important to winning.
+Checking Abilities
+Checking Abilities
+Check your Pokémon's summary to see what ability they have. Use the MasterDex to read about the abilities of enemy Pokémon during battle.
+Check your Pokémon's summary to see what ability they have. Use the MasterDex to read about the abilities of enemy Pokémon during battle.
+Choosing Abilities
+Choosing Abilities
+A Pokémon's ability is one of the two its species can have, randomly chosen when you get it. You can use Ability Capsules to swap to the other.
+A Pokémon's ability is one of the two its species can have, randomly chosen when you get it. You can use Ability Capsules to swap to the other.
+Conditional Abilities
+Conditional Abilities
+Many abilities only do things under certain circumstances. Buiding around Weather and Terrain-synergy abilities is a common strategy.
+Many abilities only do things under certain circumstances. Buiding around Weather and Terrain-synergy abilities is a common strategy.
+Effect Of Evolution
+Effect Of Evolution
+A Pokémon's ability tends to stay the same when evolving, but can change. When this happens, the game will alert you.
+A Pokémon's ability tends to stay the same when evolving, but can change. When this happens, the game will alert you.
+Defeating Abilities
+Defeating Abilities
+An enemy Trainer's ability too much? Abilities like Neutralizing Gas, and moves like Gastro Acid, can suppress abilities in battle.
+An enemy Trainer's ability too much? Abilities like Neutralizing Gas, and moves like Gastro Acid, can suppress abilities in battle.
+Swapping Abilities
+Swapping Abilities
+Moves like Skill Swap can be used to give a new ability to Pokémon during battle, enabling unique and creative team synergies.
+Moves like Skill Swap can be used to give a new ability to Pokémon during battle, enabling unique and creative team synergies.
+What are Held Items?
+What are Held Items?
+Held items are items which you can give your Pokémon to benefit them during battle. They can increase their damage, heal them, or other things.
+Held items are items which you can give your Pokémon to benefit them during battle. They can increase their damage, heal them, or other things.
+Equipping an item
+Equipping an item
+You can give a Pokémon an item from your bag, or through the summary screen. Not all items do an effect when held, so read carefully.
+You can give a Pokémon an item from your bag, or through the summary screen. Not all items do an effect when held, so read carefully.
+Berries are a common held item. During battles, Pokémon will eat the berry to get a benefit. Get berries by picking from Berry Trees.
+Berries are a common held item. During battles, Pokémon will eat the berry to get a benefit. Get berries by picking from Berry Trees.
+Sitrus and Oran Berry
+Sitrus and Oran Berry
+Sitrus Berry and Oran Berry are common berries which heal your Pokémon when at low health. If in doubt about what item to give, give them one of these.
+Sitrus Berry and Oran Berry are common berries which heal your Pokémon when at low health. If in doubt about what item to give, give them one of these.
+Rematerializer
+Rematerializer
+In Project Chasm, the rematerializer regenerates held items which are consumed in battle. You'll never run out of berries!
+In Project Chasm, the rematerializer regenerates held items which are consumed in battle. You'll never run out of berries!
+Wild Held Items
+Wild Held Items
+Wild Pokémon can be found holding items. These items sometimes have held effects, but often don't.
+Wild Pokémon can be found holding items. These items sometimes have held effects, but often don't.
+Getting More
+Getting More
+You will find more held items on the ground when traveling, or as gifts from people, or as the reward for defeating Avatars, or as purchasable items in shops.
+You will find more held items on the ground when traveling, or as gifts from people, or as the reward for defeating Avatars, or as purchasable items in shops.
+What are Status Conditions?
+What are Status Conditions?
+Status Conditions are ailments a Pokémon can have which hurt or restrict them. They remain after swapping out, and even between battles.
+Status Conditions are ailments a Pokémon can have which hurt or restrict them. They remain after swapping out, and even between battles.
+Healing Status Conditions
+Healing Status Conditions
+Status Conditions are removed when you heal at the PokéCenter or when you use the Aid Kit.
+Status Conditions are removed when you heal at the PokéCenter or when you use the Aid Kit.
+Status Immunity
+Status Immunity
+Type immunities do not prevent status moves. However, some types give immunities to certain status conditions. Don't confuse these two!
+Type immunities do not prevent status moves. However, some types give immunities to certain status conditions. Don't confuse these two!
+Burn
+Burn
+When burned, a Pokémon's Attack is reduced by 33%, and loses 1/8th HP every turn. Fire- and Ghost-types do the most burning. Fire is immune.
+When burned, a Pokémon's Attack is reduced by 33%, and loses 1/8th HP every turn. Fire- and Ghost-types do the most burning. Fire is immune.
+Frostbite
+Frostbite
+When frostbitten, a Pokémon's Sp. Atk is reduced by 33%, and loses 1/8th HP every turn. Ice- and Flying-types do the most frostbiting. Ice is immune.
+When frostbitten, a Pokémon's Sp. Atk is reduced by 33%, and loses 1/8th HP every turn. Ice- and Flying-types do the most frostbiting. Ice is immune.
+Poison
+Poison
+When poisoned, a Pokémon loses 1/8th HP every turn--doubling every 3 turns until swapped. Poison- and Grass-types do the most poisoning. Poison/Steel are immune.
+When poisoned, a Pokémon loses 1/8th HP every turn--doubling every 3 turns until swapped. Poison- and Grass-types do the most poisoning. Poison/Steel are immune.
+Numb
+Numb
+When numbed, a Pokémon's Speed is halved, and it deals 25% less damage. Electric- and Fighting-types do the most numbing. Electric is immune.
+When numbed, a Pokémon's Speed is halved, and it deals 25% less damage. Electric- and Fighting-types do the most numbing. Electric is immune.
+Dizzy
+Dizzy
+When dizzied, a Pokemon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune.
+When dizzied, a Pokemon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune.
+Leeched
+Leeched
+When leeched, it loses 1/8th HP every turn, and each opponent gains that health. Bug- and Dark-types do the most dizzying. Grass is immune.
+When leeched, it loses 1/8th HP every turn, and each opponent gains that health. Bug- and Dark-types do the most dizzying. Grass is immune.
+Sleep
+Sleep
+A rarer status that causes a Pokémon to be unable to do anything for 3 turns. Psychic- and Grass-types put Pokémon to sleep the most often.
+A rarer status that causes a Pokémon to be unable to do anything for 3 turns. Psychic- and Grass-types put Pokémon to sleep the most often.
+What are Enemy Trainers?
+What are Enemy Trainers?
+Enemy Trainers are the Pokémon Trainers you will battle throughout the game. Some block your path forwards (like Gym Leaders), others are optional.
+Enemy Trainers are the Pokémon Trainers you will battle throughout the game. Some block your path forwards (like Gym Leaders), others are optional.
+Detecting Trainers
+Detecting Trainers
+Trainers are people who have a companion Pokémon next to them. If a person doesn't have that, they either aren't a Trainer, or are an inactive one.
+Trainers are people who have a companion Pokémon next to them. If a person doesn't have that, they either aren't a Trainer, or are an inactive one.
+Avoiding Trainers
+Avoiding Trainers
+Trainers will challenge you if they see you within 4 tiles of them. Avoid them by going out of that distance, sneaking around them, or waiting until they move.
+Trainers will challenge you if they see you within 4 tiles of them. Avoid them by going out of that distance, sneaking around them, or waiting until they move.
+Trainer Inactivity
+Trainer Inactivity
+When you defeat a Trainer, they will become inactive until the next time you heal at a PokéCenter. This is indicated by them returning their companion Pokémon to its Poké Ball.
+When you defeat a Trainer, they will become inactive until the next time you heal at a PokéCenter. This is indicated by them returning their companion Pokémon to its Poké Ball.
+Perfecting Fights
+Perfecting Fights
+If you defeat a Trainer without any of your Pokémon fainting, you've 'perfected' the fight. They will leave forever and drop experience candy as a reward.
+If you defeat a Trainer without any of your Pokémon fainting, you've 'perfected' the fight. They will leave forever and drop experience candy as a reward.
+Enemy Teams
+Enemy Teams
+Enemy Trainers have their own teams of Pokémon with their own moves and held items. Its important to pay attention to these possibilities to win battles.
+Enemy Trainers have their own teams of Pokémon with their own moves and held items. Its important to pay attention to these possibilities to win battles.
+Differences
+Differences
+The typical trainer has 3 Pokémon, but Gym Leaders will have more. Trainers with more Pokémon also have more move variety and more items on their Pokémon.
+The typical trainer has 3 Pokémon, but Gym Leaders will have more. Trainers with more Pokémon also have more move variety and more items on their Pokémon.
+Pro Trainers
+Pro Trainers
+Pro Trainers are special Trainers, noted by their grey hair and black clothes. Their teams are always 6 Pokémon, with a wide variety of moves, all with items. They're hard!
+Pro Trainers are special Trainers, noted by their grey hair and black clothes. Their teams are always 6 Pokémon, with a wide variety of moves, all with items. They're hard!
+Trainer Behaviour
+Trainer Behaviour
+Individual Trainers will always react to the same in-battle circumstances the same way. You can learn how to beat or even perfect a Trainer through trial and error.
+Individual Trainers will always react to the same in-battle circumstances the same way. You can learn how to beat or even perfect a Trainer through trial and error.
+What are Avatars?
+What are Avatars?
+Avatars are powerful enemy Pokémon with unique properties that you will fight and destroy during your adventure. They cannot be caught.
+Avatars are powerful enemy Pokémon with unique properties that you will fight and destroy during your adventure. They cannot be caught.
+Avatars are Healthy
+Avatars are Healthy
+Avatars have two health bars, which means they have a lot of health. Usually more than double the normal amount!
+Avatars have two health bars, which means they have a lot of health. Usually more than double the normal amount!
+Multi-Attack
+Multi-Attack
+Avatars can attack multiple times each turn. Usually they attack twice, but some can attack three or even more times.
+Avatars can attack multiple times each turn. Usually they attack twice, but some can attack three or even more times.
+Two Statuses
+Two Statuses
+Avatars are large, and have room for up to two status Conditions at a time. However, they are affected less than normal Pokémon.
+Avatars are large, and have room for up to two status Conditions at a time. However, they are affected less than normal Pokémon.
+HP-Based Effects
+HP-Based Effects
+Effects that damage based on a fraction of total HP are only one-fourth as powerful against avatars, compared to normal Pokémon.
+Effects that damage based on a fraction of total HP are only one-fourth as powerful against avatars, compared to normal Pokémon.
+Stat-Modifying
+Stat-Modifying
+Avatars are only half as affected by in-battle stat stage changes. For example, their attack is only given a 25% increase from a +1 boost.
+Avatars are only half as affected by in-battle stat stage changes. For example, their attack is only given a 25% increase from a +1 boost.
+Primeval Moves
+Primeval Moves
+When about half damaged, most avatars will use their one Primeval Move! Primeval Moves are powered up versions of other moves, which also change the Avatars type.
+When about half damaged, most avatars will use their one Primeval Move! Primeval Moves are powered up versions of other moves, which also change the Avatars type.
+Attack Choice
+Attack Choice
+Avatars usually only have a few moves to choose from. They usually alternate between their moves on successive attacks.
+Avatars usually only have a few moves to choose from. They usually alternate between their moves on successive attacks.
+Target Choice
+Target Choice
+Avatars usually attack your healthiest Pokémon. However, they avoid attacking Pokémon that they've noticed are invulnerable by moves like Protect.
+Avatars usually attack your healthiest Pokémon. However, they avoid attacking Pokémon that they've noticed are invulnerable by moves like Protect.
+Experience Reward
+Experience Reward
+When an Avatar is destroyed, every Pokémon on your team is given experience, even those that are fainted.
+When an Avatar is destroyed, every Pokémon on your team is given experience, even those that are fainted.
+Legendary Avatars
+Legendary Avatars
+Legendary Avatars are unique. You fight them with 3 Pokémon, they have 3 HP bars, and they have more moves with more smarts about how to use them.
+Legendary Avatars are unique. You fight them with 3 Pokémon, they have 3 HP bars, and they have more moves with more smarts about how to use them.
+What is the MasterDex?
+What is the MasterDex?
+The MasterDex is an advanced encyclopedia about the 900+ Pokémon available in this game.
+The MasterDex is an advanced encyclopedia about the 900+ Pokémon available in this game.
+Single MasterDex
+Single MasterDex
+Access the MasterDex entry of a single Pokémon when looking at a Pokémon in the summary or the PC, or by using the Dex button in battles.
+Access the MasterDex entry of a single Pokémon when looking at a Pokémon in the summary or the PC, or by using the Dex button in battles.
+Full MasterDex
+Full MasterDex
+Access the full MasterDex from your pause menu, or by pressing D when using the Dex button in battles (while its waiting for you to select a battler).
+Access the full MasterDex from your pause menu, or by pressing D when using the Dex button in battles (while its waiting for you to select a battler).
+Searching
+Searching
+When in the MasterDex, you can press your Special keybind (default Shift or Z) to open the first search page. There's dozens of searches to experiment with!
+When in the MasterDex, you can press your Special keybind (default Shift or Z) to open the first search page. There's dozens of searches to experiment with!
+Combining Searches
+Combining Searches
+You can begin a search while you're already looking at the results of a search. This will narrow down from what you were already looking at.
+You can begin a search while you're already looking at the results of a search. This will narrow down from what you were already looking at.
+Storing Searches
+Storing Searches
+When you press the cancel button while looking at a search, it will ask you if you'd like to cancel the search, or store it for the next time you open the MasterDex.
+When you press the cancel button while looking at a search, it will ask you if you'd like to cancel the search, or store it for the next time you open the MasterDex.
+Quick Navigation
+Quick Navigation
+Press A to go up a page at a time, or S to go down a page. Use the number keys (1-9) to quickly go to one of the tab's of a Pokémon's MasterDex entry.
+Press A to go up a page at a time, or S to go down a page. Use the number keys (1-9) to quickly go to one of the tab's of a Pokémon's MasterDex entry.
+Move Details
+Move Details
+Press the Use key (defaults to C) on the level up learnset or tutor moves tabs to begin scrolling the lists, and viewing details about individual moves.
+Press the Use key (defaults to C) on the level up learnset or tutor moves tabs to begin scrolling the lists, and viewing details about individual moves.
+Checking Evolutions
+Checking Evolutions
+Press the Use key (defaults to C) on the evolutions tab to choose a Pokémon in the same evolutionary tree, and to warp to that Pokémon's MasterDex entry.
+Press the Use key (defaults to C) on the evolutions tab to choose a Pokémon in the same evolutionary tree, and to warp to that Pokémon's MasterDex entry.
+What are weathers?
+What are weathers?
+Weathers are special states that effect the entire battlefield and help or hinder the Pokémon battling. Only one weather can be active at once.
+Weathers are special states that effect the entire battlefield and help or hinder the Pokémon battling. Only one weather can be active at once.
+Weather Duration
+Weather Duration
+Weathers last a certain number of turns. The length differs depending on what move or ability summoned the weather. The duration can be extended by certain items.
+Weathers last a certain number of turns. The length differs depending on what move or ability summoned the weather. The duration can be extended by certain items.
+Sun
+Sun
+Sun lowers attack damage by 15% and prevents attacks from critting. Fire and Grass-type moves/Pokémon are immune to this. Fire-type attacks are boosted by 30%.
+Sun lowers attack damage by 15% and prevents attacks from critting. Fire and Grass-type moves/Pokémon are immune to this. Fire-type attacks are boosted by 30%.
+Rain
+Rain
+Rain lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%.
+Rain lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%.
+Sandstorm
+Sandstorm
+Sandstorm deals damage to all Pokémon at the end of each turn. Rock, Ground, and Steel-types are immune to this. Additionally, Rock-types get +50% Special Defense.
+Sandstorm deals damage to all Pokémon at the end of each turn. Rock, Ground, and Steel-types are immune to this. Additionally, Rock-types get +50% Special Defense.
+Hail
+Hail
+Hail deals damage to all Pokémon at the end of each turn. Ice, Ghost, and Steel-types are immune to this. Additionally, Ice-types get +50% Defense.
+Hail deals damage to all Pokémon at the end of each turn. Ice, Ghost, and Steel-types are immune to this. Additionally, Ice-types get +50% Defense.
+Weather Areas
+Weather Areas
+Certain areas in the game experience intense weather. That weather will also be present in the battles of that area. Simple daily weather will not do this.
+Certain areas in the game experience intense weather. That weather will also be present in the battles of that area. Simple daily weather will not do this.
+Weather Synergies
+Weather Synergies
+Each weather has dozens of moves and abilities that benefit from that weather. Pokémon using these moves/abilities ignore the downsides of their favored weather!
+Each weather has dozens of moves and abilities that benefit from that weather. Pokémon using these moves/abilities ignore the downsides of their favored weather!
 Your selected Randomizer rules have been applied.
 Your selected Randomizer rules have been applied.
 No Randomizer rules have been applied.
@@ -57649,10 +58089,10 @@ Collecting
 Collecting
 Matchups
 Matchups
-Filters
-Filters
 Stat Sort
 Stat Sort
+Filters
+Filters
 Sorts
 Sorts
 An unknown error has occured.
@@ -57699,6 +58139,8 @@ Greater than stat
 Greater than stat
 Less than stat
 Less than stat
+Tribe
+Tribe
 Map Found
 Map Found
 Wild Items
@@ -57755,6 +58197,10 @@ Immune To
 Immune To
 Neutral To
 Neutral To
+Has Immunity
+Has Immunity
+Has Hyper Weakness
+Has Hyper Weakness
 Descending
 Descending
 Ascending
@@ -57827,6 +58273,10 @@ But it failed, since the opposing side already has #{maximum} layers of #{@spike
 {1}'s stats can't be changed further!
 But it failed, since there are no valid choices in your party!
 But it failed, since there are no valid choices in your party!
+The Tarot Amulet glows with power!
+The Tarot Amulet glows with power!
+You have been afflicted with the curse: #{curseName}
+You have been afflicted with the curse: #{curseName}
 \w[]\wm\c[8]\l[3]You feel the pull of the nearby Avatar Totem. Would you like it to revive you?
 \w[]\wm\c[8]\l[3]You feel the pull of the nearby Avatar Totem. Would you like it to revive you?
 \w[]\wm\c[8]\l[3]By the power of the Avatar Totem, your team is revived.
@@ -57895,10 +58345,16 @@ Boss using struggle!
 Boss using struggle!
 #{user.pbThis} is winding up a big attack!
 #{user.pbThis} is winding up a big attack!
-The Tarot Amulet glows with power!
-The Tarot Amulet glows with power!
-You have been afflicted with the curse: #{curseName}
-You have been afflicted with the curse: #{curseName}
+The battle starts with Electric Terrain. When active, Electric-types are 50% faster.
+The battle starts with Electric Terrain. When active, Electric-types are 50% faster.
+The battle begins with Sunshine. The effects of Sunshine are doubled.
+The battle begins with Sunshine. The effects of Sunshine are doubled.
+The battle begins with Rain. The effects of Rain are doubled.
+The battle begins with Rain. The effects of Rain are doubled.
+The battle begins with Hail. The effects of Hail are doubled.
+The battle begins with Hail. The effects of Hail are doubled.
+The battle begins with Sandstorm. The effects of Sandstorm are doubled.
+The battle begins with Sandstorm. The effects of Sandstorm are doubled.
 Your Pokemon start this fight 10 levels lower. All XP gained goes to the EXP-EZ dispenser.
 Your Pokemon start this fight 10 levels lower. All XP gained goes to the EXP-EZ dispenser.
 Your Pokemon don't get extra damage on their same-type attacks.
@@ -57909,18 +58365,10 @@ Bence and Zoé are using 5 battlers each. This is a big battle!
 Bence and Zoé are using 5 battlers each. This is a big battle!
 Yezera and Shadow Mavis are using 6 battlers each. This is a huge battle!
 Yezera and Shadow Mavis are using 6 battlers each. This is a huge battle!
+Enemy moves with a chance to activate an added effect always activate.
+Enemy moves with a chance to activate an added effect always activate.
 Your Pokemon gain the "Perish Song" status when they enter battle.
 Your Pokemon gain the "Perish Song" status when they enter battle.
-The terrain is set to Electric Terrain at the beginning of every turn.
-The terrain is set to Electric Terrain at the beginning of every turn.
-The weather is set to Harsh Sun at the beginning of every turn.
-The weather is set to Harsh Sun at the beginning of every turn.
-The weather is set to Rain at the beginning of every turn.
-The weather is set to Rain at the beginning of every turn.
-The weather is set to Hail at the beginning of every turn.
-The weather is set to Hail at the beginning of every turn.
-The weather is set to Sand at the beginning of every turn.
-The weather is set to Sand at the beginning of every turn.
 When your Pokemon use damaging moves, their Attack is lowered if that move is physical, and their Sp. Atk is lowered if that move was special. This ignores Contrary.
 When your Pokemon use damaging moves, their Attack is lowered if that move is physical, and their Sp. Atk is lowered if that move was special. This ignores Contrary.
 #{spikesCount} layers of Spikes were scattered all around your Pokemon's feet!
@@ -58253,6 +58701,8 @@ Party 2 has no Pokémon.
 Party 2 has no Pokémon.
 A great energy rises up from inside {1}!
 A great energy rises up from inside {1}!
+It'll last indefinitely!
+It'll last indefinitely!
 It'll last for {1} more turns!
 It'll last for {1} more turns!
 The sunshine continues!
@@ -58469,8 +58919,6 @@ Sharp feathers dug into {1}!
 {1} absorbed the {2}!
 {1} was hurt by the thin layer of {2}!
 {1} was hurt by the thin layer of {2}!
-{1} was unaffected by the {2}.
-{1} was unaffected by the {2}.
 {1} was caught in a sticky web!
 {1} was caught in a sticky web!
 Embargo's effect prevents the item's use on {1}!
@@ -58525,44 +58973,100 @@ Sub-Effect #{getData(sub_effect).real_name} of effect #{effectData.real_name} ha
 {1}'s {2} wore off!
 {1} scavenged {2}'s {3}!
 {1} scavenged {2}'s {3}!
+{1} shared its {2} with {3}!
+{1} shared its {2} with {3}!
+HP less than 0
+HP less than 0
+HP greater than total HP
+HP greater than total HP
 {1} looks for an ally to help in avoiding the recoil!
 {1} looks for an ally to help in avoiding the recoil!
 But it couldn't swap into anybody!
 But it couldn't swap into anybody!
+Told to recover a negative amount
+Told to recover a negative amount
 {1}'s healing is reversed because of their broken nerves!
 {1}'s healing is reversed because of their broken nerves!
 {1}'s lost HP.
 {1}'s lost HP.
+{1} sucked up the liquid ooze!
+{1} sucked up the liquid ooze!
 {1} restored a little HP using its {2}!
 {1} restored a little HP using its {2}!
 {1} restored its health using its {2}!
 {1} restored its health using its {2}!
+{1} was defeated!
+{1} was defeated!
+{1} was destroyed!
+{1} was destroyed!
+{1} fainted!
+{1} fainted!
+{1} fell to the ground!
+{1} fell to the ground!
 {1}'s scattered its {2} when fainting.
 {1}'s scattered its {2} when fainting.
 But there was no one to revive!
 But there was no one to revive!
 Its allied #{reviver.name} was revived to full health!
 Its allied #{reviver.name} was revived to full health!
+{1} returned back to normal!
+{1} returned back to normal!
 {1}'s type changed to {3}!
 {1}'s type changed to {3}!
+{1} triggered!
+{1} triggered!
+{1} deactivated!
+{1} deactivated!
+{1} activated!
+{1} activated!
+{1} formed a school!
+{1} formed a school!
+{1} stopped schooling!
+{1} stopped schooling!
+You sense the presence of many!
+You sense the presence of many!
+{1} transformed into its Complete Forme!
+{1} transformed into its Complete Forme!
+{1} transformed into {2}!
+{1} transformed into {2}!
+{1} is already confused.
+{1} is already confused.
 {1} doesn't become confused!
 {1} doesn't become confused!
 {1}'s team is protected by Safeguard!
 {1}'s team is protected by Safeguard!
+{1} is already charmed.
+{1} is already charmed.
 {1} doesn't become charmed!
 {1} doesn't become charmed!
 An egg can't be an active Pokémon.
 An egg can't be an active Pokémon.
+the opposing {1}
+the opposing {1}
+the wild {1}
+the wild {1}
+the avatar of {1}
+the avatar of {1}
+The avatar of {1}
+The avatar of {1}
+the ally {1}
+the ally {1}
+the opposing team
+the opposing team
+The opposing team
+The opposing team
+your team
+your team
+Your team
+Your team
+But #{pbThis(false)} hold's tightly onto its Lunch Box!
+But #{pbThis(false)} hold's tightly onto its Lunch Box!
+{1} is unaffected!
+{1} is unaffected!
+{1} is unaffected because of its {2}!
+{1} is unaffected because of its {2}!
 nthTurnThisRound checks for turns 1 or above!
 nthTurnThisRound checks for turns 1 or above!
-Given #{stat} is not a symbol!
-Given #{stat} is not a symbol!
-Symbol #{stat} is not a valid stat ID!
-Symbol #{stat} is not a valid stat ID!
-Symbol #{stat} is not a battle stat!
-Symbol #{stat} is not a battle stat!
-Given stat stage value #{stage} is not valid! Must be between -6 and 6, inclusive.
-Given stat stage value #{stage} is not valid! Must be between -6 and 6, inclusive.
 {1}'s {2} won't go any higher!
 {1}'s {2} won't go any higher!
 {1}'s {2} rose{3}!
@@ -58571,6 +59075,12 @@ Given stat stage value #{stage} is not valid! Must be between -6 and 6, inclusiv
 {1}'s {2}{4} raised its {3}!
 {1}'s {2}{5} raised {3}'s {4}!
 {1}'s {2}{5} raised {3}'s {4}!
+{1} is protected by its substitute!
+{1} is protected by its substitute!
+{1} is protected by Mist!
+{1} is protected by Mist!
+{1} is in a state of total focus!
+{1} is in a state of total focus!
 {1}'s {2} won't go any lower!
 {1}'s {2} won't go any lower!
 {1}'s Mirror Armor activated!
@@ -58587,14 +59097,80 @@ Given stat stage value #{stage} is not valid! Must be between -6 and 6, inclusiv
 {1} is protected from {2}'s {3} by Mist!
 {1} is protected from {2}'s {3} by {4}'s {5}!
 {1} is protected from {2}'s {3} by {4}'s {5}!
+{1} minimized its {2}!
+{1} minimized its {2}!
+{1} maximizes its {2}!
+{1} maximizes its {2}!
+Its physical damage is reduced by a third
+Its physical damage is reduced by a third
+The poison will worsen over time
+The poison will worsen over time
+Its special damage is reduced by a third
+Its special damage is reduced by a third
+Its Speed is halved, and it'll deal less damage
+Its Speed is halved, and it'll deal less damage
+It's ability is supressed, and it'll take more damage
+It's ability is supressed, and it'll take more damage
+Its HP will be siphoned by the opposing side
+Its HP will be siphoned by the opposing side
+{1} is already asleep!
+{1} is already asleep!
+{1} is already poisoned!
+{1} is already poisoned!
+{1} already has a burn!
+{1} already has a burn!
+{1} is already numbed!
+{1} is already numbed!
+{1} is already frostbitten!
+{1} is already frostbitten!
+{1} is already dizzy!
+{1} is already dizzy!
+{1} is already being leeched!
+{1} is already being leeched!
+{1} cannot have any more status problems...
+{1} cannot have any more status problems...
 It doesn't affect {1} behind its substitute...
 It doesn't affect {1} behind its substitute...
+{1} surrounds itself with electrified terrain!
+{1} surrounds itself with electrified terrain!
+{1} surrounds itself with fairy terrain!
+{1} surrounds itself with fairy terrain!
 But the uproar kept {1} awake!
 But the uproar kept {1} awake!
 {1}'s ability prevents being dizzied!
 {1}'s ability prevents being dizzied!
 It doesn't affect {1} since it's an {2}-type...
 It doesn't affect {1} since it's an {2}-type...
+{1} stays awake!
+{1} stays awake!
+{1} cannot be poisoned!
+{1} cannot be poisoned!
+{1} cannot be burned!
+{1} cannot be burned!
+{1} cannot be numbed!
+{1} cannot be numbed!
+{1} cannot be chilled!
+{1} cannot be chilled!
+{1} cannot be frostbitten!
+{1} cannot be frostbitten!
+{1} cannot be dizzied!
+{1} cannot be dizzied!
+{1} cannot become leeched!
+{1} cannot become leeched!
+{1} fell asleep!
+{1} fell asleep!
+{1} was poisoned! {2}!
+{1} was poisoned! {2}!
+{1} was burned! {2}!
+{1} was burned! {2}!
+{1} is numbed! {2}!
+{1} is numbed! {2}!
+{1} was frostbitten! {2}!
+{1} was frostbitten! {2}!
+{1} is dizzy! {2}!
+{1} is dizzy! {2}!
+{1} became leeched! {2}!
+{1} became leeched! {2}!
 {1} is fast asleep.
 {1} is fast asleep.
 {1} was hurt by poison!
@@ -58615,20 +59191,64 @@ The poison doubled yet again!
 {1} was hurt by frostbite!
 {1}'s health was sapped!
 {1}'s health was sapped!
+{1} woke up!
+{1} woke up!
 {1}'s frostbite was healed.
 {1}'s frostbite was healed.
+{1} is no longer numbed.
+{1} is no longer numbed.
+{1} is no longer dizzy!
+{1} is no longer dizzy!
+{1} is no longer being leeched!
+{1} is no longer being leeched!
+But there was no PP left for the move!
+But there was no PP left for the move!
+{1} changed to Blade Forme!
+{1} changed to Blade Forme!
+{1} changed to Shield Forme!
+{1} changed to Shield Forme!
+{1} tried to use {2}!
+{1} tried to use {2}!
+But, {1} cannot use {2}!
+But, {1} cannot use {2}!
 {1} snatched {2}'s move!
 {1} snatched {2}'s move!
+When the flame touched the powder on the Pokémon, it exploded!
+When the flame touched the powder on the Pokémon, it exploded!
+The Fire-type attack fizzled out in the heavy rain!
+The Fire-type attack fizzled out in the heavy rain!
+The Water-type attack evaporated in the harsh sunlight!
+The Water-type attack evaporated in the harsh sunlight!
+{1} transformed into the {2} type!
+{1} transformed into the {2} type!
+{1} shifted into a {2} stance!
+{1} shifted into a {2} stance!
+{1} shielded its side from the {2}!
+{1} shielded its side from the {2}!
 {1}'s fur is standing sharp! {2} is hurt!
 {1}'s fur is standing sharp! {2} is hurt!
+Hit each 1 time!
+Hit each 1 time!
+Hit each {1} times!
+Hit each {1} times!
+Hit 1 time!
+Hit 1 time!
+Hit {1} times!
+Hit {1} times!
+{1} bounced the {2} back!
+{1} bounced the {2} back!
 {1}'s destiny is bonded with {2}!
 {1}'s destiny is bonded with {2}!
+{1} used the move instructed by {2}!
+{1} used the move instructed by {2}!
 The {1} strengthened {2}'s power!
 The {1} strengthened {2}'s power!
 The {1} burst, causing {2} to deal double damage!
 The {1} burst, causing {2} to deal double damage!
 The added effect of {1}'s {2} is deflected, harming it!
 The added effect of {1}'s {2} is deflected, harming it!
+The {1} weakened the damage to {2}!
+The {1} weakened the damage to {2}!
 {1}'s {2} is disabled!
 {1}'s {2} is disabled!
 {1} can't use {2} because of Heal Block!
@@ -58637,34 +59257,88 @@ The added effect of {1}'s {2} is deflected, harming it!
 {1} can't use {2} because of gravity!
 {1} can't use {2} because of Throat Chop!
 {1} can't use {2} because of Throat Chop!
+{1} allows the use of only {2}!
+{1} allows the use of only {2}!
 {1} can't use {2} after the taunt!
 {1} can't use {2} after the taunt!
 {1} can't use the same move twice in a row due to the torment!
 {1} can't use the same move twice in a row due to the torment!
 {1} can't use its sealed {2}!
 {1} can't use its sealed {2}!
+The effects of the {1} prevent status moves from being used!
+The effects of the {1} prevent status moves from being used!
+{1} ignored orders and kept sleeping!
+{1} ignored orders and kept sleeping!
+{1} ignored orders!
+{1} ignored orders!
+{1} began to nap!
+{1} began to nap!
 {1} won't obey! It hurt itself in its confusion!
 {1} won't obey! It hurt itself in its confusion!
 {1} won't obey!
 {1} won't obey!
+{1} turned away!
+{1} turned away!
+{1} is loafing around!
+{1} is loafing around!
+{1} pretended not to notice!
+{1} pretended not to notice!
+{1} must recharge!
+{1} must recharge!
+{1} appears incapable of using its power!
+{1} appears incapable of using its power!
 {1} flinched and couldn't move!
 {1} flinched and couldn't move!
+{1} is confused!
+{1} is confused!
+It hurt itself in its confusion!
+It hurt itself in its confusion!
+{1} is charmed!
+{1} is charmed!
 It's energy went wild due to the charm!
 It's energy went wild due to the charm!
+{1} is in love with {2}!
+{1} is in love with {2}!
+{1} is immobilized by love!
+{1} is immobilized by love!
+Actually, {1} partially pierces through!
+Actually, {1} partially pierces through!
+{1} was ignored, and failed to protect {2}!
+{1} was ignored, and failed to protect {2}!
+{1} surrounds itself with psychic terrain!
+{1} surrounds itself with psychic terrain!
+{1} shielded itself from the {2}!
+{1} shielded itself from the {2}!
+{1} avoided the attack!
+{1} avoided the attack!
 It doesn't affect {1} since Dark-types are immune to pranks...
 It doesn't affect {1} since Dark-types are immune to pranks...
 {1}'s {2} makes Ground moves miss!
 {1}'s {2} makes Ground moves miss!
+{1} makes Ground moves miss with Magnet Rise!
+{1} makes Ground moves miss with Magnet Rise!
+{1} makes Ground moves miss with Telekinesis!
+{1} makes Ground moves miss with Telekinesis!
 {1}'s attack missed!
 {1}'s attack missed!
+{1} took the attack!
+{1} took the attack!
 {1}'s rage is building!
 {1}'s rage is building!
 {1}'s {2} lost all of its PP due to the grudge!
 {1}'s {2} lost all of its PP due to the grudge!
-{1}'s stance causes the attack to bounce off akwardly!
-{1}'s stance causes the attack to bounce off akwardly!
+{1}'s stance made {2}'s attack bounce off akwardly!
+{1}'s stance made {2}'s attack bounce off akwardly!
 The roots guarding {1} dig into {2}!
 The roots guarding {1} dig into {2}!
+{1} was stuck by {2}'s venom!
+{1} was stuck by {2}'s venom!
+{1} took its attacker down with it!
+{1} took its attacker down with it!
+{1} became fully charged due to its bond with its Trainer!
+{1} became fully charged due to its bond with its Trainer!
+{1} became Ash-Greninja!
+{1} became Ash-Greninja!
 Battle effect #{@id} defines both an expire and disable proc.
 Battle effect #{@id} defines both an expire and disable proc.
 Battle effect #{@id} defines an increment proc when its not an integer.
@@ -58687,6 +59361,8 @@ The ring of water restored {1}'s HP!
 {1} started heating up its beak!
 {1} burned itself out!
 {1} burned itself out!
+{1} was dried out!
+{1} was dried out!
 {1} began charging power!
 {1} began charging power!
 {1} became confused! It will hit itself with its own Attack!
@@ -58707,8 +59383,8 @@ The ring of water restored {1}'s HP!
 {1} can use items again!
 {1} received an encore!
 {1} received an encore!
-It will repeat its move for the next #{value-1} turns!
-It will repeat its move for the next #{value-1} turns!
+It will repeat its move for the next #{value - 1} turns!
+It will repeat its move for the next #{value - 1} turns!
 {1}'s encore ended!
 {1}'s encore ended!
 The power of {1}'s Fire-type moves rose!
@@ -58775,8 +59451,8 @@ The power of {1}'s Fire-type moves rose!
 {1} fell for the taunt!
 {1} taunt wore off.
 {1} taunt wore off.
-{1} can't use sound-based moves for the next #{value-1} turns!
-{1} can't use sound-based moves for the next #{value-1} turns!
+{1} can't use sound-based moves for the next #{value - 1} turns!
+{1} can't use sound-based moves for the next #{value - 1} turns!
 {1} was subjected to torment!
 {1} was subjected to torment!
 {1} was freed from {2}!
@@ -58845,6 +59521,8 @@ It's protected from half of all attack damage for #{value} turns!
 {1} entered a state of total focus!
 Its stats can't be lowered!
 Its stats can't be lowered!
+{1} was hurt!
+{1} was hurt!
 The next Ground-type attack against {1} will deal double damage!
 The next Ground-type attack against {1} will deal double damage!
 Gravity intensified!
@@ -58899,34 +59577,34 @@ The healing wish came true for {1}!
 {1}'s refuge comforts {2}!
 {1}'s cushions the blow for {2}!
 {1}'s cushions the blow for {2}!
-{1}'s Defense is raised! This will last for #{value-1} more turns!
-{1}'s Defense is raised! This will last for #{value-1} more turns!
+{1}'s Defense is raised! This will last for #{value - 1} more turns!
+{1}'s Defense is raised! This will last for #{value - 1} more turns!
 {1}'s Reflect wore off!
 {1}'s Reflect wore off!
-{1}'s Sp. Def is raised! This will last for #{value-1} more turns!
-{1}'s Sp. Def is raised! This will last for #{value-1} more turns!
+{1}'s Sp. Def is raised! This will last for #{value - 1} more turns!
+{1}'s Sp. Def is raised! This will last for #{value - 1} more turns!
 {1}'s Light Screen wore off!
 {1}'s Light Screen wore off!
-{1}'s Defense and Sp. Def are raised! This will last for #{value-1} more turns!
-{1}'s Defense and Sp. Def are raised! This will last for #{value-1} more turns!
+{1}'s Defense and Sp. Def are raised! This will last for #{value - 1} more turns!
+{1}'s Defense and Sp. Def are raised! This will last for #{value - 1} more turns!
 {1}'s Aurora Veil wore off!
 {1}'s Aurora Veil wore off!
 {1} is now blessed!
 {1} is now blessed!
-They'll be protected from critical hits for #{value-1} more turns!
-They'll be protected from critical hits for #{value-1} more turns!
+They'll be protected from critical hits for #{value - 1} more turns!
+They'll be protected from critical hits for #{value - 1} more turns!
 {1}'s is no longer protected by Lucky Chant!
 {1}'s is no longer protected by Lucky Chant!
 {1} is shrouded in mist!
 {1} is shrouded in mist!
-Their stats can't be lowered for #{value-1} more turns!
-Their stats can't be lowered for #{value-1} more turns!
+Their stats can't be lowered for #{value - 1} more turns!
+Their stats can't be lowered for #{value - 1} more turns!
 {1}'s is no longer protected by Mist!
 {1}'s is no longer protected by Mist!
 {1} became cloaked in a mystical veil!
 {1} became cloaked in a mystical veil!
-They'll be protected from status ailments for #{value-1} more turns!
-They'll be protected from status ailments for #{value-1} more turns!
+They'll be protected from status ailments for #{value - 1} more turns!
+They'll be protected from status ailments for #{value - 1} more turns!
 {1}'s is no longer protected by Safeguard!
 {1}'s is no longer protected by Safeguard!
 Crafty Shield protected {1}!
@@ -58987,8 +59665,8 @@ A Tailwind blew from behind {1}!
 A Tailwind blew from behind {1}!
 It will last forever!
 It will last forever!
-It will last for #{value-1} more turns!
-It will last for #{value-1} more turns!
+It will last for #{value - 1} more turns!
+It will last for #{value - 1} more turns!
 {1}'s Tailwind petered out!
 {1}'s Tailwind petered out!
 {1} can no longer use items!
@@ -59077,8 +59755,8 @@ For {1}, the {2} was too dry!
 {1} floats in the air with its {2}!
 \wmLevel cap raised to {1}!\me<<[>>Bug catching 3rd<<]>>\wtnp<<[>>80<<]>><<1>>
 \wmLevel cap raised to {1}!\me<<[>>Bug catching 3rd<<]>>\wtnp<<[>>80<<]>><<1>>
-Max. HP<r>#{hpDif >= 0 ?
-Max. HP<r>#{hpDif >= 0 ? 
+Max. HP<r>#{hpDif >= 0 ? '+' : ''}{1}<<n>>Attack<r>#{attackDif >= 0 ? '+' : ''}{2}<<n>>Defense<r>#{defenseDif >= 0 ? '+' : ''}{3}<<n>>Sp. Atk<r>#{spAtkDif >= 0 ? '+' : ''}{4}<<n>>Sp. Def<r>#{spDefDif >= 0 ? '+' : ''}{5}<<n>>Speed<r>#{speedDif >= 0 ? '+' : ''}{6}
+Max. HP<r>#{hpDif >= 0 ? '+' : ''}{1}<<r>><<n>>Attack<r>#{attackDif >= 0 ? '+' : ''}{2}<<r>><<n>>Defense<r>#{defenseDif >= 0 ? '+' : ''}{3}<<r>><<n>>Sp. Atk<r>#{spAtkDif >= 0 ? '+' : ''}{4}<<r>><<n>>Sp. Def<r>#{spDefDif >= 0 ? '+' : ''}{5}<<r>><<n>>Speed<r>#{speedDif >= 0 ? '+' : ''}{6}
 {1}'s ability was changed to {2}.
 {1}'s ability was changed to {2}.
 Style Values
@@ -59121,6 +59799,8 @@ If your Pokémon need to have their Style Points adjusted, come to me.
 {1}'s {2} turned to dust.
 {1} stole {2}'s {3}!
 {1} stole {2}'s {3}!
+{1} switches in!
+{1} switches in!
 \ss{1} used <c2=06644bd2>{2}</c2>!
 \ss{1} used <c2=06644bd2>{2}</c2>!
 {1} surrounded itself with its Z-Power!
@@ -59139,8 +59819,6 @@ Its base power was adjusted to {1} against {2}!
 {1} is blinded by the bright light of the sun.
 {1} is distracted by the shining sun.
 {1} is distracted by the shining sun.
-{1} is unaffected!
-{1} is unaffected!
 It's hyper effective on {1}!
 It's hyper effective on {1}!
 It's hyper effective!
@@ -59235,8 +59913,6 @@ But it failed, since there is already a tailwind blowing!
 But it failed, since there is already a tailwind blowing!
 But it failed, since #{user.pbThis(true)} can't have its type changed!
 But it failed, since #{user.pbThis(true)} can't have its type changed!
-{1} transformed into the {2} type!
-{1} transformed into the {2} type!
 But it failed, since #{user.pbThis(true)} can't have its types changed!
 But it failed, since #{user.pbThis(true)} can't have its types changed!
 But it failed, since the type #{user.pbThis(true)} is supposed to become doesn't exist!
@@ -59627,8 +60303,6 @@ But it failed, since #{target.pbThis(true)}'s Attack can't go any higher!
 But it failed, since #{target.pbThis(true)}'s Attack can't go any higher!
 But it failed, since #{target.pbThis(true)}'s Attack can't go any lower!
 But it failed, since #{target.pbThis(true)}'s Attack can't go any lower!
-{1} sucked up the liquid ooze!
-{1} sucked up the liquid ooze!
 {1} switched Speed with its target!
 {1} switched Speed with its target!
 But it failed, since #{user.pbThis(true)} isn't Fire-type!
@@ -59723,6 +60397,10 @@ But it failed, since #{user.pbThis(true)} is already only a Ghost-type!
 But it failed, since #{user.pbThis(true)} is already only a Ghost-type!
 But it failed, since it's not #{user.pbThis(true)}'s first turn!
 But it failed, since it's not #{user.pbThis(true)}'s first turn!
+It hurt itself in rage!
+It hurt itself in rage!
+It hurt itself in mental turmoil!
+It hurt itself in mental turmoil!
 But it failed, since #{user.pbThis(true)} is already in a volley stance!
 But it failed, since #{user.pbThis(true)} is already in a volley stance!
 But it failed, since #{target.pbThis(true)} is already on a dragon ride!
@@ -59797,14 +60475,6 @@ Misty
 Misty
 Psychic
 Psychic
-Sun
-Sun
-Rain
-Rain
-Sandstorm
-Sandstorm
-Hail
-Hail
 Harsh Sun
 Harsh Sun
 Heavy Rain
@@ -59823,20 +60493,8 @@ SKIPPING BATTLE PERFECT...
 SKIPPING BATTLE PERFECT...
 Expected an array of trainer data, got {1}.
 Expected an array of trainer data, got {1}.
-Sleep
-Sleep
-Poison
-Poison
-Burn
-Burn
-Numb
-Numb
 Frostbitten
 Frostbitten
-Dizzy
-Dizzy
-Leeched
-Leeched
 {1} tied the opponent<<n>>{2} in a referee's decision!
 {1} tied the opponent<<n>>{2} in a referee's decision!
 {1} defeated the opponent<<n>>{2} in a referee's decision!
@@ -59891,8 +60549,6 @@ Switch Pokémon?
 Switch Pokémon?
 Caught {1}!
 Caught {1}!
-the wild {1}
-the wild {1}
 Safari Balls
 Safari Balls
 Left: {1}
@@ -60101,6 +60757,8 @@ That's rather well done, there!
 That's rather well done, there!
 Writing avatar {1}...
 Writing avatar {1}...
+Compiling species tribes
+Compiling species tribes
 Compiling Old Pokémon data
 Compiling Old Pokémon data
 Compiling signature metadata
@@ -60119,6 +60777,8 @@ Move ID '{1}' was assigned an Animation Move property {2} that doesn't match wit
 Move ID '{1}' was assigned an Animation Move property {2} that doesn't match with any other move.<<r>><<n>>
 Trainer policy ID '{1}' is used twice.<<n>>{2}
 Trainer policy ID '{1}' is used twice.<<r>><<n>>{2}
+Tribe ID '{1}' is used twice.<<n>>{2}
+Tribe ID '{1}' is used twice.<<r>><<n>>{2}
 An Avatar entry name can't be blank (PBS/avatars.txt).
 An Avatar entry name can't be blank (PBS/avatars.txt).
 Avatar name '{1}' is used twice.<<n>>{2}
@@ -60131,8 +60791,6 @@ Ability {1} is not legal for the Avatar defined in PBS/avatars.txt section {2}.
 Ability {1} is not legal for the Avatar defined in PBS/avatars.txt section {2}.
 Aggression value {1} is not legal for the Avatar defined in PBS/avatars.txt section {2}. Aggression must be between 0 and {3} (inclusive)
 Aggression value {1} is not legal for the Avatar defined in PBS/avatars.txt section {2}. Aggression must be between 0 and {3} (inclusive)
-The moves entry has too many moves in PBS/avatars.txt section {2}.
-The moves entry has too many moves in PBS/avatars.txt section {2}.
 A Pokémon species can't be numbered 0 (PBS/pokemon.txt).
 A Pokémon species can't be numbered 0 (PBS/pokemon.txt).
 The entry {1} is required in PBS/pokemon.txt section {2}.
@@ -60209,6 +60867,16 @@ Pokemon Follow
 Pokemon Follow
 Skip Fades
 Skip Fades
+Casaba Villa
+Casaba Villa
+Mainland Dock
+Mainland Dock
+Eleig Boating Dock
+Eleig Boating Dock
+Sweetrock Harbor
+Sweetrock Harbor
+Where would you like to go?
+Where would you like to go?
 Add Rock Walls
 Add Rock Walls
 Add Rock walls replacing the cave wall placeholder tiles.
@@ -60273,6 +60941,14 @@ Set undefined global metadata values to new save file defaults.
 Set undefined global metadata values to new save file defaults.
 Reset #{varName} to a value of #{defaultValue.to_s}.
 Reset #{varName} to a value of #{defaultValue.to_s}.
+Import Tribes
+Import Tribes
+Import tribes from comma seperated value file tribe_assignment.txt
+Import tribes from comma seperated value file tribe_assignment.txt
+Cannot import tribe #{tribe} for species #{speciesName}, its not a defined tribe
+Cannot import tribe #{tribe} for species #{speciesName}, its not a defined tribe
+Tribes imported for #{speciesCount} species!
+Tribes imported for #{speciesCount} species!
 Reregister Partner
 Reregister Partner
 Get rid of any partner trainer joining your battles.
@@ -60635,536 +61311,62 @@ Odds are displayed for the #{ordinal} round matches, gathered from a spectator p
 Odds are displayed for the #{ordinal} round matches, gathered from a spectator poll.
 #{percent} percent of respondents expect you to win against #{nextOpponentName()}.
 #{percent} percent of respondents expect you to win against #{nextOpponentName()}.
-Basic Strategy
-Basic Strategy
-How do I win battles?
-How do I win battles?
-What are moves and what are the differences between them?
-What are moves and what are the differences between them?
-When and how are types better or worse against one another?
-When and how are types better or worse against one another?
-How do I get more Pokémon?
-How do I get more Pokémon?
-What are stats, and how do they affect battles?
-What are stats, and how do they affect battles?
-How do abilities work?
-How do abilities work?
-What are held items and how to use them?
-What are held items and how to use them?
-What are the Conditions a Pokémon can be afflicted with?
-What are the Conditions a Pokémon can be afflicted with?
-How do enemy Trainers work?
-How do enemy Trainers work?
-What are avatars and what do they do?
-What are avatars and what do they do?
-What does the MasterDex do and how should I use it?
-What does the MasterDex do and how should I use it?
-What are weathers, and what does each do?
-What are weathers, and what does each do?
-Winning Battles
-Winning Battles
-You win a battle when all enemy Pokémon faint: reach 0 health points. You lose a battle if that happens to your Pokémon.
-You win a battle when all enemy Pokémon faint: reach 0 health points. You lose a battle if that happens to your Pokémon.
-1. Have as many Pokémon as you can. 2. Level up your Pokémon as much as you can. 3. Abuse type matchups. 4. Start battles with healthy Pokémon.
-1. Have as many Pokémon as you can. 2. Level up your Pokémon as much as you can. 3. Abuse type matchups. 4. Start battles with healthy Pokémon.
-Team Size
-Team Size
-You can have a maximum of 6 Pokémon with you at any time. This is known as your 'Team'. You can store extra Pokémon using the PC in any PokéCenter.
-You can have a maximum of 6 Pokémon with you at any time. This is known as your 'Team'. You can store extra Pokémon using the PC in any PokéCenter.
-Levels
-Levels
-Each Pokémon has a level from 1 to 70. A Pokémon's level determines its stats as well as what moves it could learn. Reaching high enough levels also unlocks Evolution.
-Each Pokémon has a level from 1 to 70. A Pokémon's level determines its stats as well as what moves it could learn. Reaching high enough levels also unlocks Evolution.
-Types are strong or weak against other types. Having a variety of different types on your team helps you take advantage of these relationships.
-Types are strong or weak against other types. Having a variety of different types on your team helps you take advantage of these relationships.
-Healing your Pokémon
-Healing your Pokémon
-Heal your Pokémon at PokéCenters between battles. You can often use the Aid Kit instead to save on traveling time.
-Heal your Pokémon at PokéCenters between battles. You can often use the Aid Kit instead to save on traveling time.
-Who goes first?
-Who goes first?
-In battle, the Pokémon with the higher speed stat gets to use their move first. Some moves modify this. Speed ties are decided randomly.
-In battle, the Pokémon with the higher speed stat gets to use their move first. Some moves modify this. Speed ties are decided randomly.
-Attacking vs Status
-Attacking vs Status
-Attacking moves deal damage. Status moves do not. Status moves are notated by a Yin/Yang symbol (White and Black intermixing).
-Attacking moves deal damage. Status moves do not. Status moves are notated by a Yin/Yang symbol (White and Black intermixing).
-Physical vs Special
-Physical vs Special
-Attacking moves are split into Physical moves, and Special moves. Each of these categories uses different stats to determine how much damage is dealt to the target.
-Attacking moves are split into Physical moves, and Special moves. Each of these categories uses different stats to determine how much damage is dealt to the target.
-Physical Moves
-Physical Moves
-Physical moves are notated by the symbol of a smashing fist. Their damage is based on the Attack (Atk) stat of the attacker and the Defense (Def) stat of the target.
-Physical moves are notated by the symbol of a smashing fist. Their damage is based on the Attack (Atk) stat of the attacker and the Defense (Def) stat of the target.
-Special Moves
-Special Moves
-Special moves are notated by the symbol of a splash. Their damage is based on the Special Attack (Sp. Atk) of the attacker and the Special Defense (Sp. Def) of the target.
-Special moves are notated by the symbol of a splash. Their damage is based on the Special Attack (Sp. Atk) of the attacker and the Special Defense (Sp. Def) of the target.
-Targeting
-Targeting
-Most moves target only a single Pokémon, but many can target multiple Pokémon at once. Some moves differ in how far they can target in the bigger battle styles (doubles, triples).
-Most moves target only a single Pokémon, but many can target multiple Pokémon at once. Some moves differ in how far they can target in the bigger battle styles (doubles, triples).
-Move Types
-Move Types
-Every move has a type. Attacking moves deal different amounts of damage to different Pokémon based on those Pokémon's types. This is called 'type effectiveness'.
-Every move has a type. Attacking moves deal different amounts of damage to different Pokémon based on those Pokémon's types. This is called 'type effectiveness'.
-Same-Type Bonus
-Same-Type Bonus
-Pokémon deal 50% more damage with moves the share a type with them. For example, a Raichu deals 50% more damage with an Electric move than a Normal move.
-Pokémon deal 50% more damage with moves the share a type with them. For example, a Raichu deals 50% more damage with an Electric move than a Normal move.
-Learning Moves
-Learning Moves
-Pokémon learn new moves as they level up. They can also learn moves from the 'Move Tutors' who sit in the left side of every PokéCenter.
-Pokémon learn new moves as they level up. They can also learn moves from the 'Move Tutors' who sit in the left side of every PokéCenter.
-Base Power
-Base Power
-Moves with higher Base Power deal more damage. Some moves deal variable Base Power depending on the situation. Status moves have no base power.
-Moves with higher Base Power deal more damage. Some moves deal variable Base Power depending on the situation. Status moves have no base power.
-Accuracy is a move's chance of hitting. Most moves have 100% accuracy. Some effects can raise accuracy to let you use low-accuracy moves consistently.
-Accuracy is a move's chance of hitting. Most moves have 100% accuracy. Some effects can raise accuracy to let you use low-accuracy moves consistently.
-Power Points
-Power Points
-Power Points, or PP, is a number which limits how many times a move can be used. Healing at a PokéCenter or with the Aid Kit restores PP.
-Power Points, or PP, is a number which limits how many times a move can be used. Healing at a PokéCenter or with the Aid Kit restores PP.
-Each Pokémon has type weakness and type resistances based on its own type. eg. Water deals double damage to Fire, and Fire deals half damage to Water.
-Each Pokémon has type weakness and type resistances based on its own type. eg. Water deals double damage to Fire, and Fire deals half damage to Water.
-Type Combinations
-Type Combinations
-When a Pokémon has two types, its type weaknesses and resistances multiply. A Pokémon can be double weak or double resistant, or immune even though one of their types is weak.
-When a Pokémon has two types, its type weaknesses and resistances multiply. A Pokémon can be double weak or double resistant, or immune even though one of their types is weak.
-Normal Effective
-Normal Effective
-Normal Effective is the default effectiveness of all moves against a Pokémon.
-Normal Effective is the default effectiveness of all moves against a Pokémon.
-Super Effective
-Super Effective
-Super Effective moves deal double the damage compared to normal effective moves.
-Super Effective moves deal double the damage compared to normal effective moves.
-Hyper Effective
-Hyper Effective
-Hyper Effective moves deal quadruple the damage compared to normal effective moves. This happens when a Pokémon is double weak to a type.
-Hyper Effective moves deal quadruple the damage compared to normal effective moves. This happens when a Pokémon is double weak to a type.
-Not Very Effective
-Not Very Effective
-Not Very Effective moves deal half the damage compared to normal effective moves.
-Not Very Effective moves deal half the damage compared to normal effective moves.
-Barely Effective
-Barely Effective
-Barely Effective moves deal one quarter the damage compared to normal effective moves. This happens when a Pokémon is double resistant to a type.
-Barely Effective moves deal one quarter the damage compared to normal effective moves. This happens when a Pokémon is double resistant to a type.
-Ineffective
-Ineffective
-Ineffective moves deal no damage at all. This can happen if one of a Pokémon's types has an immunity to the attacking move type, even if the other is neutral (or even weak!).
-Ineffective moves deal no damage at all. This can happen if one of a Pokémon's types has an immunity to the attacking move type, even if the other is neutral (or even weak!).
-Looking Up Matchups
-Looking Up Matchups
-The 5th and 6th pages of a MasterDex entry show that Pokémon's type matchups. Open the MasterDex in battle to check matchups if you're not sure.
-The 5th and 6th pages of a MasterDex entry show that Pokémon's type matchups. Open the MasterDex in battle to check matchups if you're not sure.
-Why Get More?
-Why Get More?
-Having choices of Pokémon is important when facing challenges. A team of six is a bare minimum--it's best to catch more and pull them from the PC as needed.
-Having choices of Pokémon is important when facing challenges. A team of six is a bare minimum--it's best to catch more and pull them from the PC as needed.
-Methods of Aquiring
-Methods of Aquiring
-The two main methods of acquiring Pokémon are catching them from the wild, and receiving them from other Trainers through gifts or trades.
-The two main methods of acquiring Pokémon are catching them from the wild, and receiving them from other Trainers through gifts or trades.
-Catching Basics
-Catching Basics
-Wild Pokémon will attack you if you walk through patches of grass, dark ground in caves, or other wild terrain. You can catch these Pokémon by throwing Poké Balls at them.
-Wild Pokémon will attack you if you walk through patches of grass, dark ground in caves, or other wild terrain. You can catch these Pokémon by throwing Poké Balls at them.
-Increase Catch Chance pt. 1
-Increase Catch Chance pt. 1
-Catching a Pokémon isn't guaranteed. It's easier to catch Pokémon when their health has been lowered by your attacks, or when they have a status ailment.
-Catching a Pokémon isn't guaranteed. It's easier to catch Pokémon when their health has been lowered by your attacks, or when they have a status ailment.
-Increase Catch Chance pt. 2
-Increase Catch Chance pt. 2
-Every time a Pokémon breaks out of a ball, it'll be slightly easier to catch for the rest of the battle. You can check what your current catch chance is in the Poké Ball menu.
-Every time a Pokémon breaks out of a ball, it'll be slightly easier to catch for the rest of the battle. You can check what your current catch chance is in the Poké Ball menu.
-Finding Wild Pokémon
-Finding Wild Pokémon
-Use the DexNav to get information on which Pokémon are available where you are. You can also use it to find more Pokémon of a species that you've already caught one of.
-Use the DexNav to get information on which Pokémon are available where you are. You can also use it to find more Pokémon of a species that you've already caught one of.
-Trades
-Trades
-Throughout the world there will be people offering trades for Pokémon. Usually they want a different Pokémon, but sometimes they want money.
-Throughout the world there will be people offering trades for Pokémon. Usually they want a different Pokémon, but sometimes they want money.
-What are Stats?
-What are Stats?
-Stats, short for Statistics, are the numbers which determine how your Pokémon performs in battle.
-Stats, short for Statistics, are the numbers which determine how your Pokémon performs in battle.
-Checking Stats
-Checking Stats
-Check your Pokémon's stats by looking at the second page of their summary screen, accessible through the Pokémon menu in the pause menu.
-Check your Pokémon's stats by looking at the second page of their summary screen, accessible through the Pokémon menu in the pause menu.
-Stat Factors
-Stat Factors
-Your Pokémon's stats are calculated from a combination of their species' 'Base Stats', their own 'Style Points', and extra modifications during battle.
-Your Pokémon's stats are calculated from a combination of their species' 'Base Stats', their own 'Style Points', and extra modifications during battle.
-Base Stats
-Base Stats
-Every species of Pokémon have base stats, which affect every Pokémon of that species. e.g. Every Raichu will be fast because the Raichu species has a high Speed base stat.
-Every species of Pokémon have base stats, which affect every Pokémon of that species. e.g. Every Raichu will be fast because the Raichu species has a high Speed base stat.
-Style Points
-Style Points
-Style Points are numbers which you can customize to change your Pokémon's stats (except HP). Style Points show as blue numbers on the stat page of the summary.
-Style Points are numbers which you can customize to change your Pokémon's stats (except HP). Style Points show as blue numbers on the stat page of the summary.
-Leveling and Evolution
-Leveling and Evolution
-Your Pokémon's stats will increase every time they level up. When Pokémon evolve, their stats change (almost always they increase).
-Your Pokémon's stats will increase every time they level up. When Pokémon evolve, their stats change (almost always they increase).
-Accuracy and Evasion
-Accuracy and Evasion
-Accuracy and Evasion are two stats which are only active in battle, starting at 100% each. They are only modified by in-battle changing effects.
-Accuracy and Evasion are two stats which are only active in battle, starting at 100% each. They are only modified by in-battle changing effects.
-Stat Stages
-Stat Stages
-Effects can modify a Pokémon's stats during battle. These are called 'stat stages'. Stat stages multiply or divide the Pokémon's listed stat value.
-Effects can modify a Pokémon's stats during battle. These are called 'stat stages'. Stat stages multiply or divide the Pokémon's listed stat value.
-Bounds of Stat Stages
-Bounds of Stat Stages
-Stat stages start at 0, and can increase up to +6 (4x) and down to -6 (.25x). Stat stages are reset if you swap the Pokémon out or it faints.
-Stat stages start at 0, and can increase up to +6 (4x) and down to -6 (.25x). Stat stages are reset if you swap the Pokémon out or it faints.
-Checking Stat Stages
-Checking Stat Stages
-You can check the current stat stages of each Pokémon on the battlefield using the Info button. It lists the numerical stage as well as resultant multiplier.
-You can check the current stat stages of each Pokémon on the battlefield using the Info button. It lists the numerical stage as well as resultant multiplier.
-What are abilities?
-What are abilities?
-Abilities are special powers that Pokémon can have based on their species. Most Pokémon can have one of 2 possible abilities.
-Abilities are special powers that Pokémon can have based on their species. Most Pokémon can have one of 2 possible abilities.
-Ability Effects
-Ability Effects
-Abilities do a wide variety of different things. Understanding your team's abilities, and choosing the right ones, is important to winning.
-Abilities do a wide variety of different things. Understanding your team's abilities, and choosing the right ones, is important to winning.
-Checking Abilities
-Checking Abilities
-Check your Pokémon's summary to see what ability they have. Use the MasterDex to read about the abilities of enemy Pokémon during battle.
-Check your Pokémon's summary to see what ability they have. Use the MasterDex to read about the abilities of enemy Pokémon during battle.
-Choosing Abilities
-Choosing Abilities
-A Pokémon's ability is one of the two its species can have, randomly chosen when you get it. You can use Ability Capsules to swap to the other.
-A Pokémon's ability is one of the two its species can have, randomly chosen when you get it. You can use Ability Capsules to swap to the other.
-Conditional Abilities
-Conditional Abilities
-Many abilities only do things under certain circumstances. Buiding around Weather and Terrain-synergy abilities is a common strategy.
-Many abilities only do things under certain circumstances. Buiding around Weather and Terrain-synergy abilities is a common strategy.
-Effect Of Evolution
-Effect Of Evolution
-A Pokémon's ability tends to stay the same when evolving, but can change. When this happens, the game will alert you.
-A Pokémon's ability tends to stay the same when evolving, but can change. When this happens, the game will alert you.
-Defeating Abilities
-Defeating Abilities
-An enemy Trainer's ability too much? Abilities like Neutralizing Gas, and moves like Gastro Acid, can suppress abilities in battle.
-An enemy Trainer's ability too much? Abilities like Neutralizing Gas, and moves like Gastro Acid, can suppress abilities in battle.
-Swapping Abilities
-Swapping Abilities
-Moves like Skill Swap can be used to give a new ability to Pokémon during battle, enabling unique and creative team synergies.
-Moves like Skill Swap can be used to give a new ability to Pokémon during battle, enabling unique and creative team synergies.
-What are Held Items?
-What are Held Items?
-Held items are items which you can give your Pokémon to benefit them during battle. They can increase their damage, heal them, or other things.
-Held items are items which you can give your Pokémon to benefit them during battle. They can increase their damage, heal them, or other things.
-Equipping an item
-Equipping an item
-You can give a Pokémon an item from your bag, or through the summary screen. Not all items do an effect when held, so read carefully.
-You can give a Pokémon an item from your bag, or through the summary screen. Not all items do an effect when held, so read carefully.
-Berries are a common held item. During battles, Pokémon will eat the berry to get a benefit. Get berries by picking from Berry Trees.
-Berries are a common held item. During battles, Pokémon will eat the berry to get a benefit. Get berries by picking from Berry Trees.
-Sitrus and Oran Berry
-Sitrus and Oran Berry
-Sitrus Berry and Oran Berry are common berries which heal your Pokémon when at low health. If in doubt about what item to give, give them one of these.
-Sitrus Berry and Oran Berry are common berries which heal your Pokémon when at low health. If in doubt about what item to give, give them one of these.
-Rematerializer
-Rematerializer
-In Project Chasm, the rematerializer regenerates held items which are consumed in battle. You'll never run out of berries!
-In Project Chasm, the rematerializer regenerates held items which are consumed in battle. You'll never run out of berries!
-Wild Held Items
-Wild Held Items
-Wild Pokémon can be found holding items. These items sometimes have held effects, but often don't.
-Wild Pokémon can be found holding items. These items sometimes have held effects, but often don't.
-Getting More
-Getting More
-You will find more held items on the ground when traveling, or as gifts from people, or as the reward for defeating Avatars, or as purchasable items in shops.
-You will find more held items on the ground when traveling, or as gifts from people, or as the reward for defeating Avatars, or as purchasable items in shops.
-What are Status Conditions?
-What are Status Conditions?
-Status Conditions are ailments a Pokémon can have which hurt or restrict them. They remain after swapping out, and even between battles.
-Status Conditions are ailments a Pokémon can have which hurt or restrict them. They remain after swapping out, and even between battles.
-Healing Status Conditions
-Healing Status Conditions
-Status Conditions are removed when you heal at the PokéCenter or when you use the Aid Kit.
-Status Conditions are removed when you heal at the PokéCenter or when you use the Aid Kit.
-Status Immunity
-Status Immunity
-Type immunities do not prevent status moves. However, some types give immunities to certain status conditions. Don't confuse these two!
-Type immunities do not prevent status moves. However, some types give immunities to certain status conditions. Don't confuse these two!
-When burned, a Pokémon's Attack is reduced by 33%, and loses 1/8th HP every turn. Fire- and Ghost-types do the most burning. Fire is immune.
-When burned, a Pokémon's Attack is reduced by 33%, and loses 1/8th HP every turn. Fire- and Ghost-types do the most burning. Fire is immune.
-Frostbite
-Frostbite
-When frostbitten, a Pokémon's Sp. Atk is reduced by 33%, and loses 1/8th HP every turn. Ice- and Flying-types do the most frostbiting. Ice is immune.
-When frostbitten, a Pokémon's Sp. Atk is reduced by 33%, and loses 1/8th HP every turn. Ice- and Flying-types do the most frostbiting. Ice is immune.
-When poisoned, a Pokémon loses 1/8th HP every turn--doubling every 3 turns until swapped. Poison- and Grass-types do the most poisoning. Poison/Steel are immune.
-When poisoned, a Pokémon loses 1/8th HP every turn--doubling every 3 turns until swapped. Poison- and Grass-types do the most poisoning. Poison/Steel are immune.
-When numbed, a Pokémon's Speed is halved, and it deals 25% less damage. Electric- and Fighting-types do the most numbing. Electric is immune.
-When numbed, a Pokémon's Speed is halved, and it deals 25% less damage. Electric- and Fighting-types do the most numbing. Electric is immune.
-When dizzied, a Pokemon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune.
-When dizzied, a Pokemon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune.
-When leeched, it loses 1/8th HP every turn, and each opponent gains that health. Bug- and Dark-types do the most dizzying. Grass is immune.
-When leeched, it loses 1/8th HP every turn, and each opponent gains that health. Bug- and Dark-types do the most dizzying. Grass is immune.
-A rarer status that causes a Pokémon to be unable to do anything for 3 turns. Psychic- and Grass-types put Pokémon to sleep the most often.
-A rarer status that causes a Pokémon to be unable to do anything for 3 turns. Psychic- and Grass-types put Pokémon to sleep the most often.
-What are Enemy Trainers?
-What are Enemy Trainers?
-Enemy Trainers are the Pokémon Trainers you will battle throughout the game. Some block your path forwards (like Gym Leaders), others are optional.
-Enemy Trainers are the Pokémon Trainers you will battle throughout the game. Some block your path forwards (like Gym Leaders), others are optional.
-Detecting Trainers
-Detecting Trainers
-Trainers are people who have a companion Pokémon next to them. If a person doesn't have that, they either aren't a Trainer, or are an inactive one.
-Trainers are people who have a companion Pokémon next to them. If a person doesn't have that, they either aren't a Trainer, or are an inactive one.
-Avoiding Trainers
-Avoiding Trainers
-Trainers will challenge you if they see you within 4 tiles of them. Avoid them by going out of that distance, sneaking around them, or waiting until they move.
-Trainers will challenge you if they see you within 4 tiles of them. Avoid them by going out of that distance, sneaking around them, or waiting until they move.
-Trainer Inactivity
-Trainer Inactivity
-When you defeat a Trainer, they will become inactive until the next time you heal at a PokéCenter. This is indicated by them returning their companion Pokémon to its Poké Ball.
-When you defeat a Trainer, they will become inactive until the next time you heal at a PokéCenter. This is indicated by them returning their companion Pokémon to its Poké Ball.
-Perfecting Fights
-Perfecting Fights
-If you defeat a Trainer without any of your Pokémon fainting, you've 'perfected' the fight. They will leave forever and drop experience candy as a reward.
-If you defeat a Trainer without any of your Pokémon fainting, you've 'perfected' the fight. They will leave forever and drop experience candy as a reward.
-Enemy Teams
-Enemy Teams
-Enemy Trainers have their own teams of Pokémon with their own moves and held items. Its important to pay attention to these possibilities to win battles.
-Enemy Trainers have their own teams of Pokémon with their own moves and held items. Its important to pay attention to these possibilities to win battles.
-Differences
-Differences
-The typical trainer has 3 Pokémon, but Gym Leaders will have more. Trainers with more Pokémon also have more move variety and more items on their Pokémon.
-The typical trainer has 3 Pokémon, but Gym Leaders will have more. Trainers with more Pokémon also have more move variety and more items on their Pokémon.
-Cool Trainers
-Cool Trainers
-Cool Trainers are special Trainers, noted by their grey hair and black clothes. Their teams are always 6 Pokémon, with a wide variety of moves, all with items. They're hard!
-Cool Trainers are special Trainers, noted by their grey hair and black clothes. Their teams are always 6 Pokémon, with a wide variety of moves, all with items. They're hard!
-Trainer Behaviour
-Trainer Behaviour
-Individual Trainers will always react to the same in-battle circumstances the same way. You can learn how to beat or even perfect a Trainer through trial and error.
-Individual Trainers will always react to the same in-battle circumstances the same way. You can learn how to beat or even perfect a Trainer through trial and error.
-What are Avatars?
-What are Avatars?
-Avatars are powerful enemy Pokémon with unique properties that you will fight and destroy during your adventure. They cannot be caught.
-Avatars are powerful enemy Pokémon with unique properties that you will fight and destroy during your adventure. They cannot be caught.
-Avatars are Healthy
-Avatars are Healthy
-Avatars have two health bars, which means they have a lot of health. Usually more than double the normal amount!
-Avatars have two health bars, which means they have a lot of health. Usually more than double the normal amount!
-Multi-Attack
-Multi-Attack
-Avatars can attack multiple times each turn. Usually they attack twice, but some can attack three or even more times.
-Avatars can attack multiple times each turn. Usually they attack twice, but some can attack three or even more times.
-Two Statuses
-Two Statuses
-Avatars are large, and have room for up to two status Conditions at a time. However, they are affected less than normal Pokémon.
-Avatars are large, and have room for up to two status Conditions at a time. However, they are affected less than normal Pokémon.
-HP-Based Effects
-HP-Based Effects
-Effects that damage based on a fraction of total HP are only one-fourth as powerful against avatars, compared to normal Pokémon.
-Effects that damage based on a fraction of total HP are only one-fourth as powerful against avatars, compared to normal Pokémon.
-Stat-Modifying
-Stat-Modifying
-Avatars are only half as affected by in-battle stat stage changes. For example, their attack is only given a 25% increase from a +1 boost.
-Avatars are only half as affected by in-battle stat stage changes. For example, their attack is only given a 25% increase from a +1 boost.
-Primeval Moves
-Primeval Moves
-When about half damaged, most avatars will use their one Primeval Move! Primeval Moves are powered up versions of other moves, which also change the Avatars type.
-When about half damaged, most avatars will use their one Primeval Move! Primeval Moves are powered up versions of other moves, which also change the Avatars type.
-Attack Choice
-Attack Choice
-Avatars usually only have a few moves to choose from. They usually alternate between their moves on successive attacks.
-Avatars usually only have a few moves to choose from. They usually alternate between their moves on successive attacks.
-Target Choice
-Target Choice
-Avatars usually attack your healthiest Pokémon. However, they avoid attacking Pokémon that they've noticed are invulnerable by moves like Protect.
-Avatars usually attack your healthiest Pokémon. However, they avoid attacking Pokémon that they've noticed are invulnerable by moves like Protect.
-Experience Reward
-Experience Reward
-When an Avatar is destroyed, every Pokémon on your team is given experience, even those that are fainted.
-When an Avatar is destroyed, every Pokémon on your team is given experience, even those that are fainted.
-Legendary Avatars
-Legendary Avatars
-Legendary Avatars are unique. You fight them with 3 Pokémon, they have 3 HP bars, and they have more moves with more smarts about how to use them.
-Legendary Avatars are unique. You fight them with 3 Pokémon, they have 3 HP bars, and they have more moves with more smarts about how to use them.
-What is the MasterDex?
-What is the MasterDex?
-The MasterDex is an advanced encyclopedia about the 900+ Pokémon available in this game.
-The MasterDex is an advanced encyclopedia about the 900+ Pokémon available in this game.
-Single MasterDex
-Single MasterDex
-Access the MasterDex entry of a single Pokémon when looking at a Pokémon in the summary or the PC, or by using the Dex button in battles.
-Access the MasterDex entry of a single Pokémon when looking at a Pokémon in the summary or the PC, or by using the Dex button in battles.
-Full MasterDex
-Full MasterDex
-Access the full MasterDex from your pause menu, or by pressing D when using the Dex button in battles (while its waiting for you to select a battler).
-Access the full MasterDex from your pause menu, or by pressing D when using the Dex button in battles (while its waiting for you to select a battler).
-Searching
-Searching
-When in the MasterDex, you can press your Special keybind (default Shift or Z) to open the first search page. There's dozens of searches to experiment with!
-When in the MasterDex, you can press your Special keybind (default Shift or Z) to open the first search page. There's dozens of searches to experiment with!
-Combining Searches
-Combining Searches
-You can begin a search while you're already looking at the results of a search. This will narrow down from what you were already looking at.
-You can begin a search while you're already looking at the results of a search. This will narrow down from what you were already looking at.
-Storing Searches
-Storing Searches
-When you press the cancel button while looking at a search, it will ask you if you'd like to cancel the search, or store it for the next time you open the MasterDex.
-When you press the cancel button while looking at a search, it will ask you if you'd like to cancel the search, or store it for the next time you open the MasterDex.
-Quick Navigation
-Quick Navigation
-Press A to go up a page at a time, or S to go down a page. Use the number keys (1-9) to quickly go to one of the tab's of a Pokémon's MasterDex entry.
-Press A to go up a page at a time, or S to go down a page. Use the number keys (1-9) to quickly go to one of the tab's of a Pokémon's MasterDex entry.
-Move Details
-Move Details
-Press the Use key (defaults to C) on the level up learnset or tutor moves tabs to begin scrolling the lists, and viewing details about individual moves.
-Press the Use key (defaults to C) on the level up learnset or tutor moves tabs to begin scrolling the lists, and viewing details about individual moves.
-Checking Evolutions
-Checking Evolutions
-Press the Use key (defaults to C) on the evolutions tab to choose a Pokémon in the same evolutionary tree, and to warp to that Pokémon's MasterDex entry.
-Press the Use key (defaults to C) on the evolutions tab to choose a Pokémon in the same evolutionary tree, and to warp to that Pokémon's MasterDex entry.
-What are weathers?
-What are weathers?
-Weathers are special states that effect the entire battlefield and help or hinder the Pokémon battling. Only one weather can be active at once.
-Weathers are special states that effect the entire battlefield and help or hinder the Pokémon battling. Only one weather can be active at once.
-Weather Duration
-Weather Duration
-Weathers last a certain number of turns. The length differs depending on what move or ability summoned the weather. The duration can be extended by certain items.
-Weathers last a certain number of turns. The length differs depending on what move or ability summoned the weather. The duration can be extended by certain items.
-Sun lowers attack damage by 15% and prevents attacks from critting. Fire and Grass-type moves/Pokémon are immune to this. Fire-type attacks are boosted by 30%.
-Sun lowers attack damage by 15% and prevents attacks from critting. Fire and Grass-type moves/Pokémon are immune to this. Fire-type attacks are boosted by 30%.
-Rain lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%.
-Rain lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%.
-Sandstorm deals damage to all Pokémon at the end of each turn. Rock, Ground, and Steel-types are immune to this. Additionally, Rock-types get +50% Special Defense.
-Sandstorm deals damage to all Pokémon at the end of each turn. Rock, Ground, and Steel-types are immune to this. Additionally, Rock-types get +50% Special Defense.
-Hail deals damage to all Pokémon at the end of each turn. Ice, Ghost, and Steel-types are immune to this. Additionally, Ice-types get +50% Defense.
-Hail deals damage to all Pokémon at the end of each turn. Ice, Ghost, and Steel-types are immune to this. Additionally, Ice-types get +50% Defense.
-Weather Areas
-Weather Areas
-Certain areas in the game experience intense weather. That weather will also be present in the battles of that area. Simple daily weather will not do this.
-Certain areas in the game experience intense weather. That weather will also be present in the battles of that area. Simple daily weather will not do this.
-Weather Synergies
-Weather Synergies
-Each weather has dozens of moves and abilities that benefit from that weather. Pokémon using these moves/abilities ignore the downsides of their favored weather!
-Each weather has dozens of moves and abilities that benefit from that weather. Pokémon using these moves/abilities ignore the downsides of their favored weather!
-The battle starts with Electric Terrain. When active, Electric-types are 50% faster.
-The battle starts with Electric Terrain. When active, Electric-types are 50% faster.
-The battle begins with Sunshine. The effects of Sunshine are doubled.
-The battle begins with Sunshine. The effects of Sunshine are doubled.
-The battle begins with Rain. The effects of Rain are doubled.
-The battle begins with Rain. The effects of Rain are doubled.
-The battle begins with Hail. The effects of Hail are doubled.
-The battle begins with Hail. The effects of Hail are doubled.
-The battle begins with Sandstorm. The effects of Sandstorm are doubled.
-The battle begins with Sandstorm. The effects of Sandstorm are doubled.
-It'll last indefinitely!
-It'll last indefinitely!
-Pro Trainers
-Pro Trainers
-Pro Trainers are special Trainers, noted by their grey hair and black clothes. Their teams are always 6 Pokémon, with a wide variety of moves, all with items. They're hard!
-Pro Trainers are special Trainers, noted by their grey hair and black clothes. Their teams are always 6 Pokémon, with a wide variety of moves, all with items. They're hard!
-Where would you like to go?
-Where would you like to go?
-Casaba Villa
-Casaba Villa
-Mainland Dock
-Mainland Dock
-Eleig Boating Dock
-Eleig Boating Dock
-Sweetrock Harbor
-Sweetrock Harbor
-Enemy moves with a chance to activate an added effect always activate.
-Enemy moves with a chance to activate an added effect always activate.
-{1} switches in!
-{1} switches in!
-Compiling species tribes
-Compiling species tribes
-Tribe ID '{1}' is used twice.<<n>>{2}
-Tribe ID '{1}' is used twice.<<r>><<n>>{2}
-Import Tribes
-Import Tribes
-Import tribes from comma seperated value file tribe_assignment.txt
-Import tribes from comma seperated value file tribe_assignment.txt
-Cannot import tribe #{tribe} for species #{speciesName}, its not a defined tribe
-Cannot import tribe #{tribe} for species #{speciesName}, its not a defined tribe
-Tribes imported for #{speciesCount} species!
-Tribes imported for #{speciesCount} species!
-Tribe
-Tribe
-Has Immunity
-Has Immunity
-Has Hyper Weakness
-Has Hyper Weakness
-But #{pbThis(false)} hold's tightly onto its Lunch Box!
-But #{pbThis(false)} hold's tightly onto its Lunch Box!
-{1} was dried out!
-{1} was dried out!
-{1}'s stance made {2}'s attack bounce off akwardly!
-{1}'s stance made {2}'s attack bounce off akwardly!
-{1} was stuck by {2}'s venom!
-{1} was stuck by {2}'s venom!
-Its physical damage is reduced by a third
-Its physical damage is reduced by a third
-The poison will worsen over time
-The poison will worsen over time
-Its special damage is reduced by a third
-Its special damage is reduced by a third
-Its Speed is halved, and it'll deal less damage
-Its Speed is halved, and it'll deal less damage
-It's ability is supressed, and it'll take more damage
-It's ability is supressed, and it'll take more damage
-Its HP will be siphoned by the opposing side
-Its HP will be siphoned by the opposing side
-{1} is already asleep!
-{1} is already asleep!
-{1} is already poisoned!
-{1} is already poisoned!
-{1} already has a burn!
-{1} already has a burn!
-{1} is already numbed!
-{1} is already numbed!
-{1} is already frostbitten!
-{1} is already frostbitten!
-{1} is already dizzy!
-{1} is already dizzy!
-{1} is already being leeched!
-{1} is already being leeched!
-{1} cannot have any more status problems...
-{1} cannot have any more status problems...
-{1} surrounds itself with electrified terrain!
-{1} surrounds itself with electrified terrain!
-{1} surrounds itself with fairy terrain!
-{1} surrounds itself with fairy terrain!
-{1} fell asleep!
-{1} fell asleep!
-{1} was poisoned! {2}!
-{1} was poisoned! {2}!
-{1} was burned! {2}!
-{1} was burned! {2}!
-{1} is numbed! {2}!
-{1} is numbed! {2}!
-{1} was frostbitten! {2}!
-{1} was frostbitten! {2}!
-{1} is dizzy! {2}!
-{1} is dizzy! {2}!
-{1} became leeched! {2}!
-{1} became leeched! {2}!
-{1} woke up!
-{1} woke up!
-{1} is no longer numbed.
-{1} is no longer numbed.
-{1} is no longer dizzy!
-{1} is no longer dizzy!
-{1} is no longer being leeched!
-{1} is no longer being leeched!
+at level #{parameter}
+at level #{parameter}
+at level #{parameter} if it's male
+at level #{parameter} if it's male
+at level #{parameter} if it's female
+at level #{parameter} if it's female
+at level #{parameter} during the day
+at level #{parameter} during the day
+at level #{parameter} during nighttime
+at level #{parameter} during nighttime
+at level #{parameter} while raining
+at level #{parameter} while raining
+at level #{parameter} while a dark type is in the party
+at level #{parameter} while a dark type is in the party
+at level #{parameter} if it has more attack than defense
+at level #{parameter} if it has more attack than defense
+at level #{parameter} if it has attack equal to defense
+at level #{parameter} if it has attack equal to defense
+at level #{parameter} if it has more defense than attack
+at level #{parameter} if it has more defense than attack
+at level #{parameter} half of the time
+at level #{parameter} half of the time
+at level #{parameter} the other half of the time
+at level #{parameter} the other half of the time
+when leveled up while it has high happiness
+when leveled up while it has high happiness
+when leveled up while it has maximum happiness
+when leveled up while it has maximum happiness
+when leveled up while it has maximum beauty
+when leveled up while it has maximum beauty
+when leveled up while it knows the move #{GameData::Move.get(parameter).real_name}
+when leveled up while it knows the move #{GameData::Move.get(parameter).real_name}
+when leveled up while it knows a move of the #{GameData::Move.get(parameter).real_name} type
+when leveled up while it knows a move of the #{GameData::Move.get(parameter).real_name} type
+when leveled up near a special location
+when leveled up near a special location
+when a #{GameData::Item.get(parameter).real_name} is used on it
+when a #{GameData::Item.get(parameter).real_name} is used on it
+when a #{GameData::Item.get(parameter).real_name} is used on it if it's male
+when a #{GameData::Item.get(parameter).real_name} is used on it if it's male
+when a #{GameData::Item.get(parameter).real_name} is used on it if it's female
+when a #{GameData::Item.get(parameter).real_name} is used on it if it's female
+when traded
+when traded
+when traded holding an #{GameData::Item.get(parameter).real_name}
+when traded holding an #{GameData::Item.get(parameter).real_name}
+when leveled up while a #{GameData::Species.get(parameter).name} is also in the party
+when leveled up while a #{GameData::Species.get(parameter).name} is also in the party
+also if you have an empty pokeball and party slot
+also if you have an empty pokeball and party slot
+Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Dawn Stone,
+Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Dawn Stone, 
+Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone,
+Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone, 
+Sylveon with a Moon Stone, and Giganteon at level 42.
+Sylveon with a Moon Stone, and Giganteon at level 42.
 [25]
 1
 Cool Ribbon

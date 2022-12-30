@@ -529,7 +529,6 @@ class PokemonPokedexInfo_Scene
 			drawTextEx(overlay,xLeft+immuneOffset,yBase+30,450,1,_INTL("None"),base,shadow)
 		else
 			immuneTypes.each_with_index do |t,index|
-				#drawTextEx(overlay,310,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
 				type_number = GameData::Type.get(t).id_number
 				typerect = Rect.new(0, type_number*32, 96, 32)
 				overlay.blt(xLeft+immuneOffset, yBase+30+36*index, @typebitmap.bitmap, typerect)
@@ -578,7 +577,6 @@ class PokemonPokedexInfo_Scene
 			drawTextEx(overlay,xLeft,yBase+30,450,1,_INTL("None"),base,shadow)
 		else
 			weakTypes.each_with_index do |t,index|
-				#drawTextEx(overlay,30,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
 				type_number = GameData::Type.get(t).id_number
 				typerect = Rect.new(0, type_number*32, 96, 32)
 				overlay.blt(xLeft + (index >= 7 ? 100 : 0), yBase+30+36*(index % 7), @typebitmap.bitmap, typerect)
@@ -605,7 +603,6 @@ class PokemonPokedexInfo_Scene
 			drawTextEx(overlay,xLeft+immuneOffset,yBase+30,450,1,_INTL("None"),base,shadow)
 		else
 			immuneTypes.each_with_index do |t,index|
-				#drawTextEx(overlay,310,110+30*index,450,1,_INTL("{1}",t.real_name),base,shadow)
 				type_number = GameData::Type.get(t).id_number
 				typerect = Rect.new(0, type_number*32, 96, 32)
 				overlay.blt(xLeft+immuneOffset, yBase+30+36*index, @typebitmap.bitmap, typerect)
@@ -775,9 +772,9 @@ class PokemonPokedexInfo_Scene
 			coordinateY += 30
 		elsif @species == :EEVEE
 			drawTextEx(overlay,xLeft,coordinateY,450,7,_INTL("Evolves into Vaporeon with a Water Stone, " + 
-				"Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Dawn Stone, " +
-				"Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone, " +
-				"Sylveon with a Moon Stone, and Giganteon at level 42."
+				_INTL("Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Dawn Stone, ") +
+					_INTL("Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone, ") +
+						_INTL("Sylveon with a Moon Stone, and Giganteon at level 42.")
 			),base,shadow)
 		else
 			allEvolutions.each do |fromSpecies,evolutions|
