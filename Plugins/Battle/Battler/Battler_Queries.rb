@@ -57,11 +57,6 @@ class PokeBattle_Battler
 		return false if fainted? && !ignore_fainted
 		return false if !ignore_gas && @battle.field.effectActive?(:NeutralizingGas)
 		return false if effectActive?(:GastroAcid)
-		if dizzy?
-			if ![:FLUSTERFLOCK,:HEADACHE].include?(@ability_id) && !STATUS_UPSIDE_ABILITIES.include?(@ability_id)
-				return false
-			end
-		end
 		return true
 	end
 

@@ -108,7 +108,7 @@ def getDizzyEffectScore(user,target,ignoreCheck: false)
 		score = 60 # TODO: Some sort of basic AI for rating abilities?
 		score += 20 if target.hp >= target.totalhp / 2
 		score += 20 if user.hasDamagingAttack?
-		score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?([:FLUSTERFLOCK,:HEADACHE].concat(STATUS_UPSIDE_ABILITIES))
+		score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
 		score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove?
 	else
 		return 0

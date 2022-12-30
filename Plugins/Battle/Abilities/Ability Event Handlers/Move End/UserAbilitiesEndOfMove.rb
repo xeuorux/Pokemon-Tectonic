@@ -192,3 +192,15 @@ BattleHandlers::UserAbilityEndOfMove.add(:POWERLIFTER,
     move.forceOutTargets(user,targets,switchedBattlers,true,false)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:FLUSTERFLOCK,
+  proc { |ability,user,targets,move,battle,switchedBattlers|
+    next if battle.futureSight
+    next unless move.pbDamagingMove?
+    battle.pbShowAbilitySplash(user)
+    user.applyDizzy(user)
+    battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.copy(:FLUSTERFLOCK,:HEADACHE)

@@ -34,7 +34,7 @@
   
   BattleHandlers::SpecialAttackCalcUserAbility.add(:HEADACHE,
     proc { |ability,user,battle,spAtkMult|
-      spAtkMult *= 2.0 if user.dizzy?
+      spAtkMult *= 2.0
       next spAtkMult
     }
   )

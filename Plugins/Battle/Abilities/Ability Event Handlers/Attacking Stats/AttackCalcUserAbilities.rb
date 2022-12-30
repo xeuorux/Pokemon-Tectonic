@@ -58,7 +58,7 @@ BattleHandlers::AttackCalcUserAbility.add(:GORILLATACTICS,
 
   BattleHandlers::AttackCalcUserAbility.add(:FLUSTERFLOCK,
     proc { |ability,user,battle,attackMult|
-        attackMult *= 2.0 if user.dizzy?
+        attackMult *= 2.0
         next attackMult
     }
   )
